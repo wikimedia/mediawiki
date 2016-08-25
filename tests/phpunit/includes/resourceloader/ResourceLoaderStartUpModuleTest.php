@@ -310,7 +310,6 @@ mw.loader.register( [
 	 * @dataProvider provideGetModuleRegistrations
 	 * @covers ResourceLoaderStartUpModule::compileUnresolvedDependencies
 	 * @covers ResourceLoaderStartUpModule::getModuleRegistrations
-	 * @covers ResourceLoader::makeLoaderSourcesScript
 	 * @covers ResourceLoader::makeLoaderRegisterScript
 	 */
 	public function testGetModuleRegistrations( $case ) {
