@@ -247,6 +247,7 @@
 					$.extend( stats, mw.loader.store.stats );
 					try {
 						raw = localStorage.getItem( mw.loader.store.getStoreKey() );
+						stats.totalSizeInBytes =  $.byteLength( raw );
 						stats.totalSize = humanSize( $.byteLength( raw ) );
 					} catch ( e ) {}
 				}
