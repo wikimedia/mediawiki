@@ -3749,5 +3749,7 @@
 	"linkaccounts-submit": "Vincular contas",
 	"unlinkaccounts": "Desvincular contas",
 	"unlinkaccounts-success": "A conta foi desvinculada.",
-	"authenticationdatachange-ignored": "Os cambios de datos de autenticación non foron xerados. Está configurado o provedor?"
+	"authenticationdatachange-ignored": "Os cambios de datos de autenticación non foron xerados. Está configurado o provedor?",
+	"userjsispublic": "Lembre: As subpáxinas JavaScript non deberían conter datos confidenciais porque outros usuarios poden velos.",
+	"usercssispublic": "Lembre: As subpáxinas CSS non deberían conter datos confidenciais porque outros usuarios poden velos."
 }

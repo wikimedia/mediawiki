@@ -1942,6 +1942,7 @@
 	"rollback-success": "$1 ने उलटवलेली संपादने;$2 च्या आवृत्तीस परत नेली.",
 	"sessionfailure-title": "सत्र त्रुटी",
 	"sessionfailure": "तुमच्या दाखल सत्रात काही समस्या दिसते;सत्र अपहारणापासून \nवाचविण्याचे दृष्टीने ही कृती रद्द केल्या गेली आहे.कृपया आपल्या विचरकाच्या \"back\" कळीवर टिचकी मारा आणि तुम्ही ज्या पानावरून आला ते पुन्हा चढवा,आणि परत प्रयत्न करा.",
+	"changecontentmodel": "पानाचा आशय नमूना (कंटेंट मॉडेल) बदला",
 	"changecontentmodel-title-label": "लेखपान शीर्ष",
 	"changecontentmodel-reason-label": "कारण:",
 	"logentry-contentmodel-change-revertlink": "उलटवा",
@@ -3372,5 +3373,7 @@
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "कुकी-आधारीत सत्रे",
 	"sessionprovider-nocookies": "कुकिज अक्षम असू शकतात. याची खात्री करा कि कुकिज सक्षम केल्या आहेत व पुन्हा सुरुवात करा.",
 	"randomrootpage": "अविशिष्ट मूळ पान",
-	"log-action-filter-suppress-block": "रोधामार्फत सदस्य दाबणे"
+	"log-action-filter-suppress-block": "रोधामार्फत सदस्य दाबणे",
+	"changecredentials": "अधिकारपत्रे (क्रेडेंटियल्स)बदला",
+	"removecredentials": "अधिकारपत्रे (क्रेडेंटियल्स) हटवा"
 }

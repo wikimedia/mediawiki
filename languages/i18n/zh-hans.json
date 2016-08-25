@@ -3844,5 +3844,7 @@
 	"linkaccounts-submit": "链接帐户",
 	"unlinkaccounts": "取消链接账户",
 	"unlinkaccounts-success": "账户已取消链接。",
-	"authenticationdatachange-ignored": "身份验证数据更改未处理。也许没有配置的提供者？"
+	"authenticationdatachange-ignored": "身份验证数据更改未处理。也许没有配置的提供者？",
+	"userjsispublic": "请注意：JavaScript子页面不应包含机密数据，因为它们可以被其他用户查看。",
+	"usercssispublic": "请注意：CSS子页面不应包含机密数据，因为它们可以被其他用户查看。"
 }

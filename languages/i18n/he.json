@@ -3846,5 +3846,7 @@
 	"linkaccounts-submit": "קישור החשבונות",
 	"unlinkaccounts": "ביטול הקישור של החשבונות",
 	"unlinkaccounts-success": "קישור החשבון בוטל.",
-	"authenticationdatachange-ignored": "השינוי בנתוני האימות לא הצליח. ייתכן שלא הוגדר ספק."
+	"authenticationdatachange-ignored": "השינוי בנתוני האימות לא הצליח. ייתכן שלא הוגדר ספק.",
+	"userjsispublic": "שימו לב: משתמשים אחרים יכולים לצפות בדפי ה־JavaScript שלכם, ולכן אין לכלול בהם מידע סודי.",
+	"usercssispublic": "שימו לב: משתמשים אחרים יכולים לצפות בדפי ה־CSS שלכם, ולכן אין לכלול בהם מידע סודי."
 }

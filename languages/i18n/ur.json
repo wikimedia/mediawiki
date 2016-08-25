@@ -1507,7 +1507,7 @@
 	"htmlform-no": "نہیں",
 	"htmlform-yes": "ہاں",
 	"logentry-delete-delete": "$1 {{GENDER:$2|حذف کیا گیا}} صفحہ $3",
-	"logentry-move-move": "$1 نے صفحہ $3 کو بجانب $4 منتقل کیا",
+	"logentry-move-move": "$1 نے صفحہ $3 کو $4 کی جانب منتقل کیا",
 	"logentry-newusers-create": "صارف کھاتہ $1 {{GENDER:$2|بنایا گیا}}",
 	"logentry-protect-move_prot": "$1 نے ترتیب درجہ حفاظت $4 سے $3 کی طرف {{GENDER:$2|منتقل کی}}",
 	"logentry-protect-modify": "$1 نے $3 کا درجۂ حفاظت {{GENDER:$2|تبدیل کیا}} $4",

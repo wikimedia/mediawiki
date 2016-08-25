@@ -429,7 +429,7 @@
 	"title-invalid-too-long": "Podany tytuł strony jest zbyt długi. Nie może mieć więcej niż $1 {{PLURAL:$1|bajt|bajty|bajtów}} w kodowaniu UTF-8.",
 	"title-invalid-leading-colon": "Podany tytuł strony zawiera na początku nieprawidłowy dwukropek.",
 	"perfcached": "Poniższe dane są kopią z pamięci podręcznej i mogą być nieaktualne. W pamięci podręcznej {{PLURAL:$1|znajduje|znajdują|znajduje}} się maksymalnie {{PLURAL:$1|jeden wynik|$1 wyniki|$1 wyników}}.",
-	"perfcachedts": "Poniższe dane są kopią z pamięci podręcznej. Ostatnia aktualizacja odbyła się $1. W pamięci podręcznej {{PLURAL:$4|znajduje|znajdują|znajduje}} się maksymalnie {{PLURAL:$4|jeden wynik|$4 wyniki|$4 wyników}}.",
+	"perfcachedts": "Poniższe dane są kopią z pamięci podręcznej. Ostatnia aktualizacja odbyła się o $1. W pamięci podręcznej {{PLURAL:$4|znajduje|znajdują|znajduje}} się maksymalnie {{PLURAL:$4|jeden wynik|$4 wyniki|$4 wyników}}.",
 	"querypage-no-updates": "Uaktualnienia dla tej strony są obecnie wyłączone. Znajdujące się tutaj dane nie zostaną odświeżone.",
 	"viewsource": "Tekst źródłowy",
 	"viewsource-title": "Tekst źródłowy strony $1",

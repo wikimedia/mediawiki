@@ -36,6 +36,7 @@
 	"apihelp-block-param-watchuser": "その利用者またはIPアドレスの利用者ページとトークページをウォッチします。",
 	"apihelp-block-example-ip-simple": "IPアドレス <kbd>192.0.2.5</kbd> を <kbd>First strike<kbd> という理由で3日ブロックする",
 	"apihelp-block-example-user-complex": "利用者 <kbd>Vandal</kbd> を <kbd>Vandalism</kbd> という理由で無期限ブロックし、新たなアカウント作成とメールの送信を禁止する。",
+	"apihelp-changeauthenticationdata-example-password": "現在の利用者のパスワードを <kbd>ExamplePassword</kbd> に変更する。",
 	"apihelp-checktoken-description": "<kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd> のトークンの妥当性を確認します。",
 	"apihelp-checktoken-param-type": "調べるトークンの種類。",
 	"apihelp-checktoken-param-token": "調べるトークン。",
