@@ -36,6 +36,10 @@ class SiteStats {
 	/** @var int[] */
 	private static $pageCount = [];
 
+	static function unload() {
+		self::$loaded = false;
+	}
+
 	static function recache() {
 		self::load( true );
 	}

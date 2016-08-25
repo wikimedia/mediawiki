@@ -122,6 +122,9 @@ class SiteStatsUpdate implements DeferrableUpdate {
 			// Commit the updates and unlock the table
 			$dbw->unlock( $lockKey, __METHOD__ );
 		}
+
+		// Invalid cache used by parser functions
+		SiteStats::unload();
 	}
 
 	/**
@@ -151,6 +154,9 @@ class SiteStatsUpdate implements DeferrableUpdate {
 			[ 'ss_row_id' => 1 ],
 			__METHOD__
 		);
+
+		// Invalid cache used by parser functions
+		SiteStats::unload();
 
 		return $activeUsers;
 	}
