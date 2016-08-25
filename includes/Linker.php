@@ -316,7 +316,7 @@ class Linker {
 	/**
 	 * @since 1.16.3
 	 * @param LinkTarget $target
-	 * @return LinkTarget|Title You will get back the same type you passed in, or a Title object
+	 * @return LinkTarget
 	 */
 	public static function normaliseSpecialPage( LinkTarget $target ) {
 		if ( $target->getNamespace() == NS_SPECIAL ) {
@@ -324,7 +324,7 @@ class Linker {
 			if ( !$name ) {
 				return $target;
 			}
-			$ret = SpecialPage::getTitleFor( $name, $subpage, $target->getFragment() );
+			$ret = SpecialPage::getTitleValueFor( $name, $subpage, $target->getFragment() );
 			return $ret;
 		} else {
 			return $target;
@@ -571,7 +571,9 @@ class Linker {
 				}
 			}
 		} elseif ( isset( $frameParams['link-title'] ) && $frameParams['link-title'] !== '' ) {
-			$mtoParams['custom-title-link'] = self::normaliseSpecialPage( $frameParams['link-title'] );
+			$mtoParams['custom-title-link'] = Title::newFromLinkTarget(
+				self::normaliseSpecialPage( $frameParams['link-title'] )
+			);
 		} elseif ( !empty( $frameParams['no-link'] ) ) {
 			// No link
 		} else {
