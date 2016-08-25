@@ -29,6 +29,8 @@ production.
 * When $EditSubmitButtonLabelPublish is true, MediaWiki will label the button
   to store-to-database-and-show-to-others as "Publish page"/"Publish changes";
   if false, the default, they will be "Save page"/"Save changes".
+* $wgRunJobsAsync is now false by default (T142751). This change only affects
+  wikis with $wgJobRunRate > 0.
 
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.
