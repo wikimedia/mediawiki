@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers ComposerJson
+ */
 class ComposerJsonTest extends MediaWikiTestCase {
 
 	private $json, $json2;
@@ -20,16 +23,12 @@ class ComposerJsonTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideGetHash
-	 * @covers ComposerJson::getHash
 	 */
 	public function testIsHashUpToDate( $file, $expected ) {
 		$json = new ComposerJson( $this->$file );
 		$this->assertEquals( $expected, $json->getHash() );
 	}
 
-	/**
-	 * @covers ComposerJson::getRequiredDependencies
-	 */
 	public function testGetRequiredDependencies() {
 		$json = new ComposerJson( $this->json );
 		$this->assertArrayEquals( [
@@ -49,7 +48,6 @@ class ComposerJsonTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideNormalizeVersion
-	 * @covers ComposerJson::normalizeVersion
 	 */
 	public function testNormalizeVersion( $input, $expected ) {
 		$this->assertEquals( $expected, ComposerJson::normalizeVersion( $input ) );
