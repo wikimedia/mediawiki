@@ -2553,7 +2553,10 @@ class Title implements LinkTarget {
 			return $errors;
 		}
 
-		if ( $wgEmailConfirmToEdit && !$user->isEmailConfirmed() ) {
+		if ( $wgEmailConfirmToEdit
+			&& !$user->isEmailConfirmed()
+			&& $action === 'edit'
+		) {
 			$errors[] = [ 'confirmedittext' ];
 		}
 
