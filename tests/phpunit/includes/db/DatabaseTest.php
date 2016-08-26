@@ -291,6 +291,53 @@ class DatabaseTest extends MediaWikiTestCase {
 		$this->assertTrue( $called, 'Callback reached' );
 	}
 
+	/**
+	 * @covers DatabaseBase::setTransactionListener()
+	 */
+	public function testTransactionListener() {
+		$db = $this->db;
+
+		$db->setTransactionListener( 'ping', function() use ( $db, &$called ) {
+			$called = true;
+		} );
+
+		$called = false;
+		$db->begin( __METHOD__ );
+		$db->commit( __METHOD__ );
+		$this->assertTrue( $called, 'Callback reached' );
+
+		$called = false;
+		$db->begin( __METHOD__ );
+		$db->commit( __METHOD__ );
+		$this->assertTrue( $called, 'Callback still reached' );
+
+		$called = false;
+		$db->begin( __METHOD__ );
+		$db->rollback( __METHOD__ );
+		$this->assertTrue( $called, 'Callback reached' );
+
+		$db->setTransactionListener( 'ping', null );
+		$called = false;
+		$db->begin( __METHOD__ );
+		$db->commit( __METHOD__ );
+		$this->assertFalse( $called, 'Callback not reached' );
+	}
+
+	/**
+	 * @covers DatabaseBase::clearSnapshot()
+	 */
+	public function testClearSnapshot() {
+		$db = $this->db;
+
+		$db->clearSnapshot( __METHOD__ ); // ok
+		$db->clearSnapshot( __METHOD__ ); // ok
+
+		$db->begin( __METHOD__ );
+		$db->clearSnapshot( __METHOD__ ); // ok
+
+		$this->assertFalse( (bool)$db->trxLevel(), "Transaction cleared." );
+	}
+
 	public function testGetScopedLock() {
 		$db = $this->db;
 
