@@ -4070,10 +4070,11 @@ HTML
 		$buttons = [];
 
 		$labelAsPublish = $this->mArticle->getContext()->getConfig()->get( 'EditButtonPublishNotSave' );
+		// Can't use $this->isNew as that's also true if we're adding a new section to an extant page
 		if ( $labelAsPublish ) {
-			$buttonLabelKey = $this->isNew ? 'publishpage' : 'publishchanges';
+			$buttonLabelKey = !$this->mTitle->exists() ? 'publishpage' : 'publishchanges';
 		} else {
-			$buttonLabelKey = $this->isNew ? 'savearticle' : 'savechanges';
+			$buttonLabelKey = !$this->mTitle->exists() ? 'savearticle' : 'savechanges';
 		}
 		$buttonLabel = wfMessage( $buttonLabelKey )->text();
 		$attribs = [
