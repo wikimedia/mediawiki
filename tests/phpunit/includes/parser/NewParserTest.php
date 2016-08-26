@@ -712,6 +712,7 @@ class NewParserTest extends MediaWikiTestCase {
 		if ( $this->regex != '' && !preg_match( '/' . $this->regex . '/', $desc ) ) {
 			$this->assertTrue( true ); // XXX: don't flood output with "test made no assertions"
 			// $this->markTestSkipped( 'Filtered out by the user' );
+			$this->teardownGlobals();
 			return;
 		}
 
@@ -719,6 +720,7 @@ class NewParserTest extends MediaWikiTestCase {
 			// parser tests frequently assume that the main namespace contains wikitext.
 			// @todo When setting up pages, force the content model. Only skip if
 			//        $wgtContentModelUseDB is false.
+			$this->teardownGlobals();
 			$this->markTestSkipped( "Main namespace does not support wikitext,"
 				. "skipping parser test: $desc" );
 		}
@@ -749,8 +751,10 @@ class NewParserTest extends MediaWikiTestCase {
 			global $wgTexvc;
 
 			if ( !isset( $wgTexvc ) ) {
+				$this->teardownGlobals();
 				$this->markTestSkipped( "SKIPPED: \$wgTexvc is not set" );
 			} elseif ( !is_executable( $wgTexvc ) ) {
+				$this->teardownGlobals();
 				$this->markTestSkipped( "SKIPPED: texvc binary does not exist"
 					. " or is not executable.\n"
 					. "Current configuration is:\n\$wgTexvc = '$wgTexvc'" );
@@ -759,12 +763,14 @@ class NewParserTest extends MediaWikiTestCase {
 
 		if ( isset( $opts['djvu'] ) ) {
 			if ( !$this->djVuSupport->isEnabled() ) {
+				$this->teardownGlobals();
 				$this->markTestSkipped( "SKIPPED: djvu binaries do not exist or are not executable.\n" );
 			}
 		}
 
 		if ( isset( $opts['tidy'] ) ) {
 			if ( !$this->tidySupport->isEnabled() ) {
+				$this->teardownGlobals();
 				$this->markTestSkipped( "SKIPPED: tidy extension is not installed.\n" );
 			} else {
 				$options->setTidy( true );
