@@ -29,6 +29,8 @@ production.
 * When $EditSubmitButtonLabelPublish is true, MediaWiki will label the button
   to store-to-database-and-show-to-others as "Publish page"/"Publish changes";
   if false, the default, they will be "Save page"/"Save changes".
+* (T143790) $wgEmailConfirmToEdit will now only affect the user's ability to
+  edit. Other rights will be unaffected.
 
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.
