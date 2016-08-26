@@ -37,7 +37,8 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	protected $fld_ids = false, $fld_flags = false, $fld_timestamp = false,
 		$fld_size = false, $fld_sha1 = false, $fld_comment = false,
 		$fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
-		$fld_content = false, $fld_tags = false, $fld_contentmodel = false, $fld_parsetree = false;
+		$fld_content = false, $fld_tags = false, $fld_contentmodel = false, $fld_parsetree = false,
+		$fld_structuredcontent = false;
 
 	public function execute() {
 		$this->run();
@@ -101,11 +102,18 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		$this->fld_size = isset( $prop['size'] );
 		$this->fld_sha1 = isset( $prop['sha1'] );
 		$this->fld_content = isset( $prop['content'] );
+		$this->fld_structuredcontent = isset( $prop['structuredcontent'] );
 		$this->fld_contentmodel = isset( $prop['contentmodel'] );
 		$this->fld_userid = isset( $prop['userid'] );
 		$this->fld_user = isset( $prop['user'] );
 		$this->fld_tags = isset( $prop['tags'] );
 		$this->fld_parsetree = isset( $prop['parsetree'] );
+
+		if ( $this->fld_content && $this->fld_structuredcontent ) {
+			$p = $this->getModulePrefix();
+			$this->dieUsage( "{$p}prop cannot contain both the content and structuredcontent properties.",
+				'invalidpropmix' );
+		}
 
 		if ( !empty( $params['contentformat'] ) ) {
 			$this->contentFormat = $params['contentformat'];
@@ -113,8 +121,8 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 		$this->limit = $params['limit'];
 
-		$this->fetchContent = $this->fld_content || !is_null( $this->diffto )
-			|| !is_null( $this->difftotext ) || $this->fld_parsetree;
+		$this->fetchContent = $this->fld_content || $this->fld_structuredcontent
+			|| !is_null( $this->diffto ) || !is_null( $this->difftotext ) || $this->fld_parsetree;
 
 		$smallLimit = false;
 		if ( $this->fetchContent ) {
@@ -301,7 +309,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( $this->fld_content && $content ) {
+		if ( ( $this->fld_content || $this->fld_structuredcontent ) && $content ) {
 			$text = null;
 
 			if ( $this->expandTemplates && !$this->parseContent ) {
@@ -331,23 +339,40 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				$text = $po->getText();
 			}
 
-			if ( $text === null ) {
-				$format = $this->contentFormat ?: $content->getDefaultFormat();
+			$format = $this->contentFormat ?: $content->getDefaultFormat();
+			if ( $text === null && ( $this->fld_content || $this->fld_structuredcontent ) ) {
 				$model = $content->getModel();
 
-				if ( !$content->isSupportedFormat( $format ) ) {
-					$name = $title->getPrefixedDBkey();
-					$this->setWarning( "The requested format {$this->contentFormat} is not " .
-						"supported for content model $model used by $name" );
-					$vals['badcontentformat'] = true;
-					$text = false;
-				} else {
-					$text = $content->serialize( $format );
-					// always include format and model.
-					// Format is needed to deserialize, model is needed to interpret.
-					$vals['contentformat'] = $format;
-					$vals['contentmodel'] = $model;
+				if ( $this->fld_structuredcontent ) {
+					$handler = ContentHandler::getForContent( $content );
+					// Yes this probably isn't text, but...
+					$text = $handler->formatForApiOutput( $content );
+					if ( $text === false ) {
+						$this->setWarning(
+							"The content model $model does not support outputting structured content. "
+							. "Falling back to serialized representation."
+						);
+						// fall through
+					}
 				}
+
+				// $this->fld_content
+				if ( $text === false || $text === null ) {
+					if ( !$content->isSupportedFormat( $format ) ) {
+						$name = $title->getPrefixedDBkey();
+						$this->setWarning( "The requested format {$this->contentFormat} is not " .
+							"supported for content model $model used by $name" );
+						$vals['badcontentformat'] = true;
+						$text = false;
+					} else {
+						$text = $content->serialize( $format );
+						// Include format to indicate how to deserialize
+						$vals['contentformat'] = $format;
+					}
+				}
+
+				// always include model, it's needed to interpret
+				$vals['contentmodel'] = $model;
 			}
 
 			if ( $text !== false ) {
@@ -440,6 +465,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					'comment',
 					'parsedcomment',
 					'content',
+					'structuredcontent',
 					'tags',
 					'parsetree',
 				],
@@ -456,6 +482,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					'comment' => 'apihelp-query+revisions+base-paramvalue-prop-comment',
 					'parsedcomment' => 'apihelp-query+revisions+base-paramvalue-prop-parsedcomment',
 					'content' => 'apihelp-query+revisions+base-paramvalue-prop-content',
+					'structuredcontent' => 'apihelp-query+revisions+base-paramvalue-prop-structuredcontent',
 					'tags' => 'apihelp-query+revisions+base-paramvalue-prop-tags',
 					'parsetree' => [ 'apihelp-query+revisions+base-paramvalue-prop-parsetree',
 						CONTENT_MODEL_WIKITEXT ],

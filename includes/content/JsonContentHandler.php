@@ -18,6 +18,8 @@
  * @file
  */
 
+use Wikimedia\Assert\Assert;
+
 /**
  * Content handler for JSON.
  *
@@ -38,5 +40,21 @@ class JsonContentHandler extends CodeContentHandler {
 	 */
 	protected function getContentClass() {
 		return JsonContent::class;
+	}
+
+	/**
+	 * @param Content $content
+	 * @throws InvalidArgumentException
+	 * @return array
+	 */
+	public function formatForApiOutput( Content $content ) {
+		Assert::parameterType( JsonContent::class, $content, '$content' );
+
+		$value = $content->getData()->getValue();
+		if ( is_array( $value ) || $value instanceof stdClass ) {
+			$value = ApiResult::addMetadataToResultVars( (array)$value, is_object( $value ) );
+		}
+
+		return $value;
 	}
 }

@@ -23,6 +23,8 @@
  * @ingroup Content
  */
 
+use Wikimedia\Assert\Assert;
+
 /**
  * Base content handler implementation for flat text contents.
  *
@@ -156,6 +158,17 @@ class TextContentHandler extends ContentHandler {
 		$fields['language'] =
 			$this->getPageLanguage( $page->getTitle(), $page->getContent() )->getCode();
 		return $fields;
+	}
+
+	/**
+	 * @param Content $content
+	 * @throws InvalidArgumentException
+	 * @return string
+	 */
+	public function formatForApiOutput( Content $content ) {
+		Assert::parameterType( TextContent::class, $content, '$content' );
+
+		return $content->getNativeData();
 	}
 
 }

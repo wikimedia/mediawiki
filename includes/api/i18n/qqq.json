@@ -994,6 +994,7 @@
 	"apihelp-query+revisions+base-paramvalue-prop-comment": "{{doc-apihelp-paramvalue|query+revisions+base|prop|comment}}",
 	"apihelp-query+revisions+base-paramvalue-prop-parsedcomment": "{{doc-apihelp-paramvalue|query+revisions+base|prop|parsedcomment}}",
 	"apihelp-query+revisions+base-paramvalue-prop-content": "{{doc-apihelp-paramvalue|query+revisions+base|prop|content}}",
+	"apihelp-query+revisions+base-paramvalue-prop-structuredcontent": "{{doc-apihelp-paramvalue|query+revisions+base|prop|structuredcontent}}",
 	"apihelp-query+revisions+base-paramvalue-prop-tags": "{{doc-apihelp-paramvalue|query+revisions+base|prop|tags}}",
 	"apihelp-query+revisions+base-paramvalue-prop-parsetree": "{{doc-apihelp-paramvalue|query+revisions+base|prop|parsetree|params=* $1 - Value of the constant CONTENT_MODEL_WIKITEXT|paramstart=2}}",
 	"apihelp-query+revisions+base-param-limit": "{{doc-apihelp-param|query+revisions+base|limit|description=the \"limit\" parameter to revision querying modules|noseealso=1}}",
