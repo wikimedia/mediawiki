@@ -35,6 +35,8 @@ production.
 * (T156983) $wgRateLimitsExcludedIPs now accepts CIDR ranges as well as single IPs.
 * $wgDummyLanguageCodes is deprecated. Additional language code mappings may be
   added to $wgExtraLanguageCodes instead.
+* (T143790) $wgEmailConfirmToEdit will now only affect the user's ability to
+  edit. Other rights will be unaffected.
 
 === New features in 1.29 ===
 * (T5233) A cookie can now be set when a user is autoblocked, to track that user
