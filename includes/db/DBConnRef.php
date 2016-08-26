@@ -441,6 +441,10 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function setTransactionListener( $name, callable $callback = null ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	public function startAtomic( $fname = __METHOD__ ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
