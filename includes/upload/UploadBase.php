@@ -1659,7 +1659,7 @@ abstract class UploadBase {
 	 * @return array Containing the namespace URI and prefix
 	 */
 	private static function splitXmlNamespace( $element ) {
-		// 'http://www.w3.org/2000/svg:script' -> array( 'http://www.w3.org/2000/svg', 'script' )
+		// 'http://www.w3.org/2000/svg:script' -> [ 'http://www.w3.org/2000/svg', 'script' ]
 		$parts = explode( ':', strtolower( $element ) );
 		$name = array_pop( $parts );
 		$ns = implode( ':', $parts );

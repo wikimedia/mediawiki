@@ -906,11 +906,11 @@ class Parser {
 	 * the form:
 	 *
 	 * @code
-	 *   'UNIQ-xxxxx' => array(
+	 *   'UNIQ-xxxxx' => [
 	 *     'element',
 	 *     'tag content',
-	 *     array( 'param' => 'x' ),
-	 *     '<element param="x">tag content</element>' ) )
+	 *     [ 'param' => 'x' ],
+	 *     '<element param="x">tag content</element>' ]
 	 * @endcode
 	 *
 	 * @param array $elements List of element names. Comments are always extracted.

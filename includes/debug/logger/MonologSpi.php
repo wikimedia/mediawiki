@@ -39,73 +39,73 @@ use ObjectFactory;
  * global configuration variable used by LoggerFactory to construct its
  * default SPI provider:
  * @code
- * $wgMWLoggerDefaultSpi = array(
+ * $wgMWLoggerDefaultSpi = [
  *   'class' => '\\MediaWiki\\Logger\\MonologSpi',
- *   'args' => array( array(
- *       'loggers' => array(
- *           '@default' => array(
- *               'processors' => array( 'wiki', 'psr', 'pid', 'uid', 'web' ),
- *               'handlers'   => array( 'stream' ),
- *           ),
- *           'runJobs' => array(
- *               'processors' => array( 'wiki', 'psr', 'pid' ),
- *               'handlers'   => array( 'stream' ),
- *           )
- *       ),
- *       'processors' => array(
- *           'wiki' => array(
+ *   'args' => [ [
+ *       'loggers' => [
+ *           '@default' => [
+ *               'processors' => [ 'wiki', 'psr', 'pid', 'uid', 'web' ],
+ *               'handlers'   => [ 'stream' ],
+ *           ],
+ *           'runJobs' => [
+ *               'processors' => [ 'wiki', 'psr', 'pid' ],
+ *               'handlers'   => [ 'stream' ],
+ *           ]
+ *       ],
+ *       'processors' => [
+ *           'wiki' => [
  *               'class' => '\\MediaWiki\\Logger\\Monolog\\WikiProcessor',
- *           ),
- *           'psr' => array(
+ *           ],
+ *           'psr' => [
  *               'class' => '\\Monolog\\Processor\\PsrLogMessageProcessor',
- *           ),
- *           'pid' => array(
+ *           ],
+ *           'pid' => [
  *               'class' => '\\Monolog\\Processor\\ProcessIdProcessor',
- *           ),
- *           'uid' => array(
+ *           ],
+ *           'uid' => [
  *               'class' => '\\Monolog\\Processor\\UidProcessor',
- *           ),
- *           'web' => array(
+ *           ],
+ *           'web' => [
  *               'class' => '\\Monolog\\Processor\\WebProcessor',
- *           ),
- *       ),
- *       'handlers' => array(
- *           'stream' => array(
+ *           ],
+ *       ],
+ *       'handlers' => [
+ *           'stream' => [
  *               'class'     => '\\Monolog\\Handler\\StreamHandler',
- *               'args'      => array( 'path/to/your.log' ),
+ *               'args'      => [ 'path/to/your.log' ],
  *               'formatter' => 'line',
- *           ),
- *           'redis' => array(
+ *           ],
+ *           'redis' => [
  *               'class'     => '\\Monolog\\Handler\\RedisHandler',
- *               'args'      => array( function() {
+ *               'args'      => [ function() {
  *                       $redis = new Redis();
  *                       $redis->connect( '127.0.0.1', 6379 );
  *                       return $redis;
  *                   },
  *                   'logstash'
- *               ),
+ *               ],
  *               'formatter' => 'logstash',
  *               'buffer' => true,
- *           ),
- *           'udp2log' => array(
+ *           ],
+ *           'udp2log' => [
  *               'class' => '\\MediaWiki\\Logger\\Monolog\\LegacyHandler',
- *               'args' => array(
+ *               'args' => [
  *                   'udp://127.0.0.1:8420/mediawiki
- *               ),
+ *               ],
  *               'formatter' => 'line',
- *           ),
- *       ),
- *       'formatters' => array(
- *           'line' => array(
+ *           ],
+ *       ],
+ *       'formatters' => [
+ *           'line' => [
  *               'class' => '\\Monolog\\Formatter\\LineFormatter',
- *            ),
- *            'logstash' => array(
+ *            ],
+ *            'logstash' => [
  *                'class' => '\\Monolog\\Formatter\\LogstashFormatter',
- *                'args'  => array( 'mediawiki', php_uname( 'n' ), null, '', 1 ),
- *            ),
- *       ),
- *   ) ),
- * );
+ *                'args'  => [ 'mediawiki', php_uname( 'n' ), null, '', 1 ],
+ *            ],
+ *       ],
+ *   ] ],
+ * ];
  * @endcode
  *
  * @see https://github.com/Seldaek/monolog
