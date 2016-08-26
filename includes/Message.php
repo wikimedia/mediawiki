@@ -120,7 +120,7 @@
  *
  * @code
  *     // old style:
- *     wfMsgExt( 'key', array( 'parseinline' ), 'apple' );
+ *     wfMsgExt( 'key', [ 'parseinline' ], 'apple' );
  *     // new style:
  *     wfMessage( 'key', 'apple' )->parse();
  * @endcode
@@ -131,7 +131,7 @@
  * Places where HTML cannot be used. {{-transformation is done.
  * @code
  *     // old style:
- *     wfMsgExt( 'key', array( 'parsemag' ), 'apple', 'pear' );
+ *     wfMsgExt( 'key', [ 'parsemag' ], 'apple', 'pear' );
  *     // new style:
  *     wfMessage( 'key', 'apple', 'pear' )->text();
  * @endcode

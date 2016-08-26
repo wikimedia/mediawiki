@@ -1437,10 +1437,10 @@ abstract class Installer {
 
 	/**
 	 * Get an array of install steps. Should always be in the format of
-	 * array(
+	 * [
 	 *   'name'     => 'someuniquename',
-	 *   'callback' => array( $obj, 'method' ),
-	 * )
+	 *   'callback' => [ $obj, 'method' ],
+	 * ]
 	 * There must be a config-install-$name message defined per step, which will
 	 * be shown on install.
 	 *
@@ -1724,7 +1724,7 @@ abstract class Installer {
 	 * Add an installation step following the given step.
 	 *
 	 * @param callable $callback A valid installation callback array, in this form:
-	 *    array( 'name' => 'some-unique-name', 'callback' => array( $obj, 'function' ) );
+	 *    [ 'name' => 'some-unique-name', 'callback' => [ $obj, 'function' ] ];
 	 * @param string $findStep The step to find. Omit to put the step at the beginning
 	 */
 	public function addInstallStep( $callback, $findStep = 'BEGINNING' ) {

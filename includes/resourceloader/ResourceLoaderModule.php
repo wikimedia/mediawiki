@@ -264,8 +264,8 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 *
 	 * @param ResourceLoaderContext $context
 	 * @return array List of CSS strings or array of CSS strings keyed by media type.
-	 *  like array( 'screen' => '.foo { width: 0 }' );
-	 *  or array( 'screen' => array( '.foo { width: 0 }' ) );
+	 *  like [ 'screen' => '.foo { width: 0 }' ];
+	 *  or [ 'screen' => [ '.foo { width: 0 }' ] ];
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
 		// Stub, override expected
@@ -279,7 +279,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * load the files directly. See also getScriptURLsForDebug()
 	 *
 	 * @param ResourceLoaderContext $context
-	 * @return array Array( mediaType => array( URL1, URL2, ... ), ... )
+	 * @return array [ mediaType => [ URL1, URL2, ... ], ... ]
 	 */
 	public function getStyleURLsForDebug( ResourceLoaderContext $context ) {
 		$resourceLoader = $context->getResourceLoader();
@@ -637,7 +637,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		// Styles
 		if ( $context->shouldIncludeStyles() ) {
 			$styles = [];
-			// Don't create empty stylesheets like array( '' => '' ) for modules
+			// Don't create empty stylesheets like [ '' => '' ] for modules
 			// that don't *have* any stylesheets (bug 38024).
 			$stylePairs = $this->getStyles( $context );
 			if ( count( $stylePairs ) ) {

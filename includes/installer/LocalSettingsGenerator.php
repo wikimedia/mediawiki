@@ -98,7 +98,7 @@ class LocalSettingsGenerator {
 	 * For $wgGroupPermissions, set a given ['group']['permission'] value.
 	 * @param string $group Group name
 	 * @param array $rightsArr An array of permissions, in the form of:
-	 *   array( 'right' => true, 'right2' => false )
+	 *   [ 'right' => true, 'right2' => false ]
 	 */
 	public function setGroupRights( $group, $rightsArr ) {
 		$this->groupPermissions[$group] = $rightsArr;
