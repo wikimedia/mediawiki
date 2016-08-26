@@ -109,15 +109,18 @@ class ApiUpload extends ApiBase {
 		// Get the result based on the current upload context:
 		try {
 			$result = $this->getContextResult();
-			if ( $result['result'] === 'Success' ) {
-				$result['imageinfo'] = $this->mUpload->getImageInfo( $this->getResult() );
-			}
 		} catch ( UploadStashException $e ) { // XXX: don't spam exception log
 			list( $msg, $code ) = $this->handleStashException( get_class( $e ), $e->getMessage() );
 			$this->dieUsage( $msg, $code );
 		}
-
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
+
+		// Add 'imageinfo' in a separate addValue() call. File metadata can be unreasonably large,
+		// so otherwise when it exceeded $wgAPIMaxResultSize, no result would be returned (T143993).
+		if ( $result['result'] === 'Success' ) {
+			$imageinfo = $this->mUpload->getImageInfo( $this->getResult() );
+			$this->getResult()->addValue( $this->getModuleName(), 'imageinfo', $imageinfo );
+		}
 
 		// Cleanup any temporary mess
 		$this->mUpload->cleanupTempFile();
@@ -445,7 +448,18 @@ class ApiUpload extends ApiBase {
 				}
 			}
 			unset( $progress['status'] ); // remove Status object
+			$imageinfo = null;
+			if ( isset( $progress['imageinfo'] ) ) {
+				$imageinfo = $progress['imageinfo'];
+				unset( $progress['imageinfo'] );
+			}
+
 			$this->getResult()->addValue( null, $this->getModuleName(), $progress );
+			// Add 'imageinfo' in a separate addValue() call. File metadata can be unreasonably large,
+			// so otherwise when it exceeded $wgAPIMaxResultSize, no result would be returned (T143993).
+			if ( $imageinfo ) {
+				$this->getResult()->addValue( $this->getModuleName(), 'imageinfo', $imageinfo );
+			}
 
 			return false;
 		}
