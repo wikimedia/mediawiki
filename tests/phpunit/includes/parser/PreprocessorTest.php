@@ -1,5 +1,29 @@
 <?php
 
+/**
+ * @covers Preprocessor
+ *
+ * @covers Preprocessor_DOM
+ * @covers PPDStack
+ * @covers PPDStackElement
+ * @covers PPDPart
+ * @covers PPFrame_DOM
+ * @covers PPTemplateFrame_DOM
+ * @covers PPCustomFrame_DOM
+ * @covers PPNode_DOM
+ *
+ * @covers Preprocessor_Hash
+ * @covers PPDStack_Hash
+ * @covers PPDStackElement_Hash
+ * @covers PPDPart_Hash
+ * @covers PPFrame_Hash
+ * @covers PPTemplateFrame_Hash
+ * @covers PPCustomFrame_Hash
+ * @covers PPNode_Hash_Tree
+ * @covers PPNode_Hash_Text
+ * @covers PPNode_Hash_Array
+ * @covers PPNode_Hash_Attr
+ */
 class PreprocessorTest extends MediaWikiTestCase {
 	protected $mTitle = 'Page title';
 	protected $mPPNodeCount = 0;
@@ -174,7 +198,6 @@ class PreprocessorTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideCases
-	 * @covers Preprocessor_DOM::preprocessToXml
 	 */
 	public function testPreprocessorOutput( $className, $wikiText, $expectedXml ) {
 		$this->assertEquals( $this->normalizeXml( $expectedXml ),
@@ -198,7 +221,6 @@ class PreprocessorTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideFiles
-	 * @covers Preprocessor_DOM::preprocessToXml
 	 */
 	public function testPreprocessorOutputFiles( $className, $filename ) {
 		$folder = __DIR__ . "/../../../parser/preprocess";
@@ -264,7 +286,6 @@ class PreprocessorTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideHeadings
-	 * @covers Preprocessor_DOM::preprocessToXml
 	 */
 	public function testHeadings( $className, $wikiText, $expectedXml ) {
 		$this->assertEquals( $this->normalizeXml( $expectedXml ),
