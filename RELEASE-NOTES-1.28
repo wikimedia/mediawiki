@@ -34,6 +34,8 @@ production.
   instead of just administrators ('sysop'). Documentation for this feature is
   available at <https://www.mediawiki.org/wiki/Help:ChangeContentModel>.
 * $wgRevisionCacheExpiry is now set to one week by default instead of being disabled.
+* (T143790) $wgEmailConfirmToEdit will now only affect the user's ability to
+  edit. Other rights will be unaffected.
 
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.
