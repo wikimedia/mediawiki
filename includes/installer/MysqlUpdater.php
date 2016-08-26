@@ -155,7 +155,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addField', 'ipblocks', 'ipb_allow_usertalk', 'patch-ipb_allow_usertalk.sql' ],
 
 			// 1.15
-			[ 'doUniquePlTlIl' ],
 			[ 'addTable', 'change_tag', 'patch-change_tag.sql' ],
 			[ 'addTable', 'tag_summary', 'patch-tag_summary.sql' ],
 			[ 'addTable', 'valid_tag', 'patch-valid_tag.sql' ],
@@ -287,7 +286,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.28
 			[ 'addIndex', 'recentchanges', 'rc_name_type_patrolled_timestamp',
 				'patch-add-rc_name_type_patrolled_timestamp_index.sql' ],
-			[ 'doRevisionPageRevIndexNonUnique' ]
+			[ 'doRevisionPageRevIndexNonUnique' ],
+			[ 'doNonUniquePlTlIl' ],
 		];
 	}
 
@@ -974,24 +974,24 @@ class MysqlUpdater extends DatabaseUpdater {
 		return true;
 	}
 
-	protected function doUniquePlTlIl() {
+	protected function doNonUniquePlTlIl() {
 		$info = $this->db->indexInfo( 'pagelinks', 'pl_namespace' );
-		if ( is_array( $info ) && !$info[0]->Non_unique ) {
-			$this->output( "...pl_namespace, tl_namespace, il_to indices are already UNIQUE.\n" );
+		if ( is_array( $info ) && $info[0]->Non_unique ) {
+			$this->output( "...pl_namespace, tl_namespace, il_to indices are already non-UNIQUE.\n" );
 
 			return true;
 		}
 		if ( $this->skipSchema ) {
 			$this->output( "...skipping schema change (making pl_namespace, tl_namespace " .
-				"and il_to indices UNIQUE).\n" );
+				"and il_to indices non-UNIQUE).\n" );
 
 			return false;
 		}
 
 		return $this->applyPatch(
-			'patch-pl-tl-il-unique.sql',
+			'patch-pl-tl-il-nonunique.sql',
 			false,
-			'Making pl_namespace, tl_namespace and il_to indices UNIQUE'
+			'Making pl_namespace, tl_namespace and il_to indices non-UNIQUE'
 		);
 	}
 
