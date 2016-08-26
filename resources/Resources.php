@@ -160,6 +160,9 @@ return [
 		'targets' => [ 'mobile', 'desktop' ],
 	],
 	'jquery.appear' => [
+		'deprecated' => [
+			'message' => 'Please use "mediawiki.viewport" instead.',
+		],
 		'scripts' => 'resources/lib/jquery/jquery.appear.js',
 	],
 	'jquery.arrowSteps' => [
