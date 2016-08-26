@@ -24,8 +24,11 @@ production.
   input methods provided by the UniversalLanguageSelector extension.
 * When $wgPingback is true, MediaWiki will periodically ping
   https://www.mediawiki.org/beacon with basic information about the local
-  MediaWiki installation.  This data includes, for example, the type of system,
+  MediaWiki installation. This data includes, for example, the type of system,
   PHP version, and chosen database backend. This behavior is off by default.
+* When $wgEditButtonPublishNotSave is true, MediaWiki will label the button to
+  store-to-database-and-show-to-others as "Publish page"/"Publish changes"; if
+  false, the default, they will be "Save page"/"Save changes".
 
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.
@@ -100,7 +103,7 @@ changes to languages because of Phabricator reports.
 
 === Other changes in 1.28 ===
 * (T128697) Improved handling of large diffs.
-* [BREAKING CHANGE] $wgExtendedLoginCookies has been removed.  You can
+* [BREAKING CHANGE] $wgExtendedLoginCookies has been removed. You can
   use or update a custom session provider if needed.
 * Deprecated APIEditBeforeSave hook in favor of EditFilterMergedContent.
 * The 'UploadVerification' hook is deprecated. Use 'UploadVerifyFile' instead.
