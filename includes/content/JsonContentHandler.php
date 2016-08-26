@@ -39,4 +39,23 @@ class JsonContentHandler extends CodeContentHandler {
 	protected function getContentClass() {
 		return JsonContent::class;
 	}
+
+	/**
+	 * @param Content $content
+	 * @throws InvalidArgumentException
+	 * @return array
+	 */
+	public function formatForApiOutput( Content $content ) {
+		if ( !$content instanceof JsonContent ) {
+			throw new InvalidArgumentException(
+				'Expected JsonContent class, got ' . get_class( $content ) );
+		}
+
+		$value = $content->getData()->getValue();
+		if ( is_array( $value ) || $value instanceof stdClass ) {
+			$value = ApiResult::addMetadataToResultVars( (array)$value, is_object( $value ) );
+		}
+
+		return $value;
+	}
 }
