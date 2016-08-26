@@ -110,6 +110,7 @@ class ExtensionProcessor implements Processor {
 		'type',
 		'config',
 		'config_prefix',
+		'ServiceWiringFiles',
 		'ParserTestFiles',
 		'AutoloadClasses',
 		'manifest_version',
@@ -174,6 +175,7 @@ class ExtensionProcessor implements Processor {
 		$this->extractMessagesDirs( $dir, $info );
 		$this->extractNamespaces( $info );
 		$this->extractResourceLoaderModules( $dir, $info );
+		$this->extractServiceWiringFiles( $dir, $info );
 		$this->extractParserTestFiles( $dir, $info );
 		if ( isset( $info['callback'] ) ) {
 			$this->callbacks[] = $info['callback'];
@@ -402,6 +404,14 @@ class ExtensionProcessor implements Processor {
 					$value = "$dir/$value";
 				}
 				$this->globals["$prefix$key"] = $value;
+			}
+		}
+	}
+
+	protected function extractServiceWiringFiles( $dir, array $info ) {
+		if ( isset( $info['ServiceWiringFiles'] ) ) {
+			foreach ( $info['ServiceWiringFiles'] as $path ) {
+				$this->globals['wgServiceWiringFiles'][] = "$dir/$path";
 			}
 		}
 	}
