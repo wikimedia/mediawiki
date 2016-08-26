@@ -1132,6 +1132,23 @@ abstract class ContentHandler {
 	}
 
 	/**
+	 * Get a structured representation of the content suitable for
+	 * API output. Note that some special keys are reserved by the API
+	 * for internal metadata, see class constants on ApiResult for
+	 * more details.
+	 *
+	 * The default implementation returns false, indicating that no
+	 * alternative structured content is available.
+	 *
+	 * @since 1.28
+	 * @param Content $content
+	 * @return array|stdClass|string|bool
+	 */
+	public function formatForApiOutput( Content $content ) {
+		return false;
+	}
+
+	/**
 	 * Logs a deprecation warning, visible if $wgDevelopmentWarnings, but only if
 	 * self::$enableDeprecationWarnings is set to true.
 	 *

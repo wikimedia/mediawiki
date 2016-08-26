@@ -158,4 +158,18 @@ class TextContentHandler extends ContentHandler {
 		return $fields;
 	}
 
+	/**
+	 * @param Content $content
+	 * @throws InvalidArgumentException
+	 * @return string
+	 */
+	public function formatForApiOutput( Content $content ) {
+		if ( !$content instanceof TextContent ) {
+			throw new InvalidArgumentException(
+				'Expected TextContent class, got ' . get_class( $content ) );
+		}
+
+		return $content->getNativeData();
+	}
+
 }
