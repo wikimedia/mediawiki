@@ -2972,13 +2972,14 @@ abstract class DatabaseBase implements IDatabase {
 		if ( $this->isOpen() && ( microtime( true ) - $this->lastPing ) < self::PING_TTL ) {
 			return true;
 		}
-		try {
-			// This will reconnect if possible, or error out if not
-			$this->query( "SELECT 1 AS ping", __METHOD__ );
-			return true;
-		} catch ( DBError $e ) {
-			return false;
-		}
+
+		$ignoreErrors = true;
+		$this->clearFlag( DBO_TRX, self::REMEMBER_PRIOR );
+		// This will reconnect if possible or return false if not
+		$ok = (bool)$this->query( "SELECT 1 AS ping", __METHOD__, $ignoreErrors );
+		$this->restoreFlags( self::RESTORE_PRIOR );
+
+		return $ok;
 	}
 
 	/**
