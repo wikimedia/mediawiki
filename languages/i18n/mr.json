@@ -1945,6 +1945,7 @@
 	"changecontentmodel": "पानाचा आशय नमूना (कंटेंट मॉडेल) बदला",
 	"changecontentmodel-title-label": "लेखपान शीर्ष",
 	"changecontentmodel-reason-label": "कारण:",
+	"changecontentmodel-submit": "बदला",
 	"logentry-contentmodel-change-revertlink": "उलटवा",
 	"logentry-contentmodel-change-revert": "उलटवा",
 	"protectlogpage": "सुरक्षा नोंदी",

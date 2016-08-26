@@ -375,7 +375,7 @@
 	"mypreferencesprotected": "Ez daukazu eskumenik zure hobespenak aldatzeko.",
 	"ns-specialprotected": "Ezin dira {{ns:special}} izen-tarteko orrialdeak editatu.",
 	"titleprotected": "[[User:$1|$1]]ek izenburu hau sortzea ekidin zuen.\nEmandako arrazoia <em>$2</em> izan zen.",
-	"filereadonlyerror": "Ezin izan da \"$1\" fitxategia aldatu, \"$2\" fitxategi bilduma irakrutzeko-bakarrik moduan dagoelako.\n\nBlokeoa ezarri zuen administratzaileak honako arrazoia eman zuen: \"$3\".",
+	"filereadonlyerror": "Ezin izan da \"$1\" fitxategia aldatu, \"$2\" fitxategi bilduma irakrutzeko-bakarrik moduan dagoelako.\n\nBlokeoa ezarri zuen sistema administratzaileak honako arrazoia eman zuen: \"$3\".",
 	"invalidtitle-knownnamespace": "Izenburua gaizki dago \"$2\" izen eremuan eta \"$3\" testuan",
 	"invalidtitle-unknownnamespace": "Izenburua gaizki dago \"$1\" izen eremuan ezezagunean eta \"$2\" testuan",
 	"exception-nologin": "Saioa hasi gabe",

@@ -3468,5 +3468,6 @@
 	"credentialsform-account": "Numm vum Kont:",
 	"cannotlink-no-provider-title": "Et gëtt keng Benotzerkonte fir ze verlinken",
 	"linkaccounts": "Benotzerkonte verbannen",
-	"linkaccounts-submit": "Benotzerkonte verbannen"
+	"linkaccounts-submit": "Benotzerkonte verbannen",
+	"userjsispublic": "DEnkt drun: Op JavaScript-Ënnersäite solle keng vertraulech Informatioune stoe well se vun anere Benotzer kënne gesi ginn."
 }

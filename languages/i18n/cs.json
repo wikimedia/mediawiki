@@ -3815,5 +3815,7 @@
 	"linkaccounts-submit": "Propojit účty",
 	"unlinkaccounts": "Zrušení propojení účtů",
 	"unlinkaccounts-success": "Propojení účtu bylo zrušeno.",
-	"authenticationdatachange-ignored": "Změna autentizačních údajů nebyla zpracována. Možná není nakonfigurován žádný poskytovatel?"
+	"authenticationdatachange-ignored": "Změna autentizačních údajů nebyla zpracována. Možná není nakonfigurován žádný poskytovatel?",
+	"userjsispublic": "Uvědomte si prosím, že podstránky s JavaScriptem by neměly obsahovat tajné údaje, protože jsou viditelné ostatním uživatelům.",
+	"usercssispublic": "Uvědomte si prosím, že podstránky s CSS by neměly obsahovat tajné údaje, protože jsou viditelné ostatním uživatelům."
 }
