@@ -26,6 +26,8 @@ production.
   https://www.mediawiki.org/beacon with basic information about the local
   MediaWiki installation.  This data includes, for example, the type of system,
   PHP version, and chosen database backend. This behavior is off by default.
+* (T143790) $wgEmailConfirmToEdit will now only affect the user's ability to
+  edit. Other rights will be unaffected.
 
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.
