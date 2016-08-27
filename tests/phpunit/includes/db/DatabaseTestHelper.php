@@ -19,17 +19,21 @@ class DatabaseTestHelper extends DatabaseBase {
 	 */
 	protected $lastSqls = [];
 
+	/** @var array List of row arrays */
+	protected $nextResult = [];
+
 	/**
 	 * Array of tables to be considered as existing by tableExist()
 	 * Use setExistingTables() to alter.
 	 */
 	protected $tablesExists;
 
-	public function __construct( $testName ) {
+	public function __construct( $testName, $cliMode = true ) {
 		$this->testName = $testName;
 
 		$this->profiler = new ProfilerStub( [] );
 		$this->trxProfiler = new TransactionProfiler();
+		$this->cliMode = $cliMode;
 	}
 
 	/**
@@ -45,6 +49,13 @@ class DatabaseTestHelper extends DatabaseBase {
 
 	public function setExistingTables( $tablesExists ) {
 		$this->tablesExists = (array)$tablesExists;
+	}
+
+	/**
+	 * @param mixed $res Use an array of row arrays to set row result
+	 */
+	public function forceNextResult( $res ) {
+		$this->nextResult = $res;
 	}
 
 	protected function addSql( $sql ) {
@@ -168,6 +179,9 @@ class DatabaseTestHelper extends DatabaseBase {
 	}
 
 	protected function doQuery( $sql ) {
-		return [];
+		$res = $this->nextResult;
+		$this->nextResult = [];
+
+		return new FakeResultWrapper( $res );
 	}
 }
