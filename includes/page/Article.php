@@ -552,6 +552,8 @@ class Article implements Page {
 
 				return;
 			}
+
+			$this->getContext()->getOutput()->setLastModified( $timestamp );
 		}
 
 		# Should the parser cache be used?
