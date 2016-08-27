@@ -498,3 +498,7 @@
 	path = extensions/RSS
 	url = https://github.com/wikimedia/mediawiki-extensions-RSS
 	branch = REL1_27
+[submodule "extensions/CookieWarning"]
+	path = extensions/CookieWarning
+	url = https://github.com/wikimedia/mediawiki-extensions-CookieWarning.git
+	branch = master
