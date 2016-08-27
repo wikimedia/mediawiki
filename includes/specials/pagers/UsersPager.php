@@ -241,6 +241,11 @@ class UsersPager extends AlphabeticPager {
 			$cache[intval( $row->ug_user )][] = $row->ug_group;
 			$groups[$row->ug_group] = true;
 		}
+
+		// Give extensions a chance to add things like global user group data
+		// into the cache array to ensure proper output later on
+		Hooks::run( 'UsersPagerDoBatchLookups', [ $dbr, $userIds, &$cache, &$groups ] );
+
 		$this->userGroupCache = $cache;
 
 		// Add page of groups to link batch
