@@ -1101,7 +1101,7 @@ class LoadBalancer {
 			}
 			// Assert that the time to replicate the transaction will be sane.
 			// If this fails, then all DB transactions will be rollback back together.
-			$time = $conn->pendingWriteQueryDuration();
+			$time = $conn->pendingWriteQueryDuration( $conn::ESTIMATE_DB_APPLY );
 			if ( $limit > 0 && $time > $limit ) {
 				throw new DBTransactionError(
 					$conn,

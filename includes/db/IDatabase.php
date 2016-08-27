@@ -59,6 +59,11 @@ interface IDatabase {
 	/** @var string Restore to the initial flag state */
 	const RESTORE_INITIAL = 'initial';
 
+	/** @var string Estimate total time (RTT, scanning, waiting on locks, applying) */
+	const ESTIMATE_TOTAL = 'total';
+	/** @var string Estimate time to apply (scanning, applying) */
+	const ESTIMATE_DB_APPLY = 'apply';
+
 	/**
 	 * A string describing the current software version, and possibly
 	 * other details in a user-friendly way. Will be listed on Special:Version, etc.
@@ -210,10 +215,11 @@ interface IDatabase {
 	 *
 	 * High times could be due to scanning, updates, locking, and such
 	 *
+	 * @param string $type IDatabase::ESTIMATE_* constant [default: ESTIMATE_ALL]
 	 * @return float|bool Returns false if not transaction is active
 	 * @since 1.26
 	 */
-	public function pendingWriteQueryDuration();
+	public function pendingWriteQueryDuration( $type = self::ESTIMATE_TOTAL );
 
 	/**
 	 * Get the list of method names that did write queries for this transaction
@@ -1485,9 +1491,10 @@ interface IDatabase {
 	/**
 	 * Ping the server and try to reconnect if it there is no connection
 	 *
+	 * @param float|null &$rtt Value to store the estimated RTT [optional]
 	 * @return bool Success or failure
 	 */
-	public function ping();
+	public function ping( &$rtt = null );
 
 	/**
 	 * Get slave lag. Currently supported only by MySQL.
