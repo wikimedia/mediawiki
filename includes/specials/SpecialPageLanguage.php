@@ -188,6 +188,9 @@ class SpecialPageLanguage extends FormSpecialPage {
 		$logid = $entry->insert();
 		$entry->publish( $logid );
 
+		// Force re-render so that language-based content (parser functions etc.) gets updated
+		$title->invalidateCache();
+
 		return true;
 	}
 
