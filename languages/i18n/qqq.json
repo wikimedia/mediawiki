@@ -2327,6 +2327,7 @@
 	"rollbacklinkcount-morethan": "{{doc-actionlink}}\nText of the rollback link when a greater number of edits is to be rolled back. See also {{msg-mw|rollbacklink}}.\n\nWhen the number of edits rolled back is smaller than [[mw:Special:MyLanguage/Manual:$wgShowRollbackEditCount|$wgShowRollbackEditCount]], {{msg-mw|rollbacklinkcount}} is used instead.\n\nParameters:\n* $1 - number of edits",
 	"rollbackfailed": "{{Identical|Rollback}}",
 	"rollback-missingparam": "Used as error message that rollback is accessed without the required parameters\n\nSee also:\n* {{msg-mw|Rollbackfailed}}",
+	"rollback-missingparam": "Used as error message that rollback failed to load revision data\n\nSee also:\n* {{msg-mw|Rollbackfailed}}",
 	"cantrollback": "Used as error message when rollback fails due to there not being a valid revision to revert back to.\n\nSee also:\n* {{msg-mw|Notvisiblerev}}\n{{Identical|Revert}}\n{{Identical|Rollback}}",
 	"alreadyrolled": "Appear when there's rollback and/or edit collision.\n\nRefers to:\n* {{msg-mw|Pipe-separator}}\n* {{msg-mw|Contribslink}}\nParameters:\n* $1 - the page to be rolled back\n* $2 - the editor to be rolled-back of that page\n* $3 - the editor that cause collision\n{{Identical|Rollback}}",
 	"editcomment": "Only shown if there is an edit {{msg-mw|Summary}}. Parameters:\n* $1 - the edit summary",
