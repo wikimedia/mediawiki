@@ -503,16 +503,21 @@ class JobRunner implements LoggerAwareInterface {
 		if ( $wgJobSerialCommitThreshold !== false && $lb->getServerCount() > 1 ) {
 			// Generally, there is one master connection to the local DB
 			$dbwSerial = $lb->getAnyOpenConnection( $lb->getWriterIndex() );
+			// We need natively blocking fast locks
+			if ( $dbwSerial && $dbwSerial->namedLocksEnqueue() ) {
+				$time = $dbwSerial->pendingWriteQueryDuration( $dbwSerial::ESTIMATE_DB_APPLY );
+				if ( $time < $wgJobSerialCommitThreshold ) {
+					$dbwSerial = false;
+				}
+			} else {
+				$dbwSerial = false;
+			}
 		} else {
+			// There are no slaves or writes are all to foreign DB (we don't handle that)
 			$dbwSerial = false;
 		}
 
-		if ( !$dbwSerial
-			|| !$dbwSerial->namedLocksEnqueue()
-			|| $dbwSerial->pendingWriteQueryDuration() < $wgJobSerialCommitThreshold
-		) {
-			// Writes are all to foreign DBs, named locks don't form queues,
-			// or $wgJobSerialCommitThreshold is not reached; commit changes now
+		if ( !$dbwSerial ) {
 			wfGetLBFactory()->commitMasterChanges( __METHOD__ );
 			return;
 		}
