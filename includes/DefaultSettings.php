@@ -3756,10 +3756,8 @@ $wgResourceLoaderLESSImportPaths = [
 /**
  * Whether ResourceLoader should attempt to persist modules in localStorage on
  * browsers that support the Web Storage API.
- *
- * @since 1.23 - Client-side module persistence is experimental. Exercise care.
  */
-$wgResourceLoaderStorageEnabled = false;
+$wgResourceLoaderStorageEnabled = true;
 
 /**
  * Cache version for client-side ResourceLoader module storage. You can trigger
