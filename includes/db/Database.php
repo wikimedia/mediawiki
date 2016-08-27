@@ -39,6 +39,11 @@ abstract class DatabaseBase implements IDatabase {
 
 	/** How long before it is worth doing a dummy query to test the connection */
 	const PING_TTL = 1.0;
+	const PING_QUERY = 'SELECT 1 AS ping';
+
+	const TINY_WRITE_SEC = .010;
+	const SLOW_WRITE_SEC = .500;
+	const SMALL_WRITE_ROWS = 100;
 
 	/** @var string SQL query */
 	protected $mLastQuery = '';
@@ -102,7 +107,6 @@ abstract class DatabaseBase implements IDatabase {
 	 * @var int
 	 */
 	protected $mTrxLevel = 0;
-
 	/**
 	 * Either a short hexidecimal string if a transaction is active or ""
 	 *
@@ -110,7 +114,6 @@ abstract class DatabaseBase implements IDatabase {
 	 * @see DatabaseBase::mTrxLevel
 	 */
 	protected $mTrxShortId = '';
-
 	/**
 	 * The UNIX time that the transaction started. Callers can assume that if
 	 * snapshot isolation is used, then the data is *at least* up to date to that
@@ -120,10 +123,8 @@ abstract class DatabaseBase implements IDatabase {
 	 * @see DatabaseBase::mTrxLevel
 	 */
 	private $mTrxTimestamp = null;
-
 	/** @var float Lag estimate at the time of BEGIN */
 	private $mTrxSlaveLag = null;
-
 	/**
 	 * Remembers the function name given for starting the most recent transaction via begin().
 	 * Used to provide additional context for error reporting.
@@ -132,7 +133,6 @@ abstract class DatabaseBase implements IDatabase {
 	 * @see DatabaseBase::mTrxLevel
 	 */
 	private $mTrxFname = null;
-
 	/**
 	 * Record if possible write queries were done in the last transaction started
 	 *
@@ -140,7 +140,6 @@ abstract class DatabaseBase implements IDatabase {
 	 * @see DatabaseBase::mTrxLevel
 	 */
 	private $mTrxDoneWrites = false;
-
 	/**
 	 * Record if the current transaction was started implicitly due to DBO_TRX being set.
 	 *
@@ -148,34 +147,44 @@ abstract class DatabaseBase implements IDatabase {
 	 * @see DatabaseBase::mTrxLevel
 	 */
 	private $mTrxAutomatic = false;
-
 	/**
 	 * Array of levels of atomicity within transactions
 	 *
 	 * @var array
 	 */
 	private $mTrxAtomicLevels = [];
-
 	/**
 	 * Record if the current transaction was started implicitly by DatabaseBase::startAtomic
 	 *
 	 * @var bool
 	 */
 	private $mTrxAutomaticAtomic = false;
-
 	/**
 	 * Track the write query callers of the current transaction
 	 *
 	 * @var string[]
 	 */
 	private $mTrxWriteCallers = [];
-
 	/**
-	 * Track the seconds spent in write queries for the current transaction
-	 *
-	 * @var float
+	 * @var float Seconds spent in write queries for the current transaction
 	 */
 	private $mTrxWriteDuration = 0.0;
+	/**
+	 * @var integer Number of write queries for the current transaction
+	 */
+	private $mTrxWriteQueryCount = 0;
+	/**
+	 * @var float Like mTrxWriteQueryCount but excludes lock-bound, easy to replicate, queries
+	 */
+	private $mTrxWriteAdjDuration = 0.0;
+	/**
+	 * @var integer Number of write queries counted in mTrxWriteAdjDuration
+	 */
+	private $mTrxWriteAdjQueryCount = 0;
+	/**
+	 * @var float RTT time estimate
+	 */
+	private $mRTTEstimate = 0.0;
 
 	/** @var array Map of (name => 1) for locks obtained via lock() */
 	private $mNamedLocksHeld = [];
@@ -421,8 +430,26 @@ abstract class DatabaseBase implements IDatabase {
 		);
 	}
 
-	public function pendingWriteQueryDuration() {
-		return $this->mTrxLevel ? $this->mTrxWriteDuration : false;
+	public function pendingWriteQueryDuration( $type = self::ESTIMATE_TOTAL ) {
+		if ( !$this->mTrxLevel ) {
+			return false;
+		} elseif ( !$this->mTrxDoneWrites ) {
+			return 0.0;
+		}
+
+		switch ( $type ) {
+			case self::ESTIMATE_DB_APPLY:
+				$this->ping( $rtt );
+				$rttAdjTotal = $this->mTrxWriteAdjQueryCount * $rtt;
+				$applyTime = max( $this->mTrxWriteAdjDuration - $rttAdjTotal, 0 );
+				// For ommitted queries, make them count as something at least
+				$omitted = $this->mTrxWriteQueryCount - $this->mTrxWriteAdjQueryCount;
+				$applyTime += self::TINY_WRITE_SEC * $omitted;
+
+				return $applyTime;
+			default: // everything
+				return $this->mTrxWriteDuration;
+		}
 	}
 
 	public function pendingWriteCallers() {
@@ -806,7 +833,16 @@ abstract class DatabaseBase implements IDatabase {
 	 * @return bool
 	 */
 	protected function isWriteQuery( $sql ) {
-		return !preg_match( '/^(?:SELECT|BEGIN|ROLLBACK|COMMIT|SET|SHOW|EXPLAIN|\(SELECT)\b/i', $sql );
+		return !preg_match(
+			'/^(?:SELECT|BEGIN|ROLLBACK|COMMIT|SET|SHOW|EXPLAIN|\(SELECT)\b/i', $sql );
+	}
+
+	/**
+	 * @param $sql
+	 * @return string|null
+	 */
+	protected function getQueryVerb( $sql ) {
+		return preg_match( '/^\s*([a-z]+)\s*/i', $sql, $m ) ? strtoupper( $m[1] ) : null;
 	}
 
 	/**
@@ -819,8 +855,8 @@ abstract class DatabaseBase implements IDatabase {
 	 * @return bool
 	 */
 	protected function isTransactableQuery( $sql ) {
-		$verb = substr( $sql, 0, strcspn( $sql, " \t\r\n" ) );
-		return !in_array( $verb, [ 'BEGIN', 'COMMIT', 'ROLLBACK', 'SHOW', 'SET' ] );
+		$verb = $this->getQueryVerb( $sql );
+		return !in_array( $verb, [ 'BEGIN', 'COMMIT', 'ROLLBACK', 'SHOW', 'SET' ], true );
 	}
 
 	public function query( $sql, $fname = __METHOD__, $tempIgnore = false ) {
@@ -946,16 +982,20 @@ abstract class DatabaseBase implements IDatabase {
 
 		$startTime = microtime( true );
 		$ret = $this->doQuery( $commentedSql );
-		$queryRuntime = microtime( true ) - $startTime;
+		$queryRuntime = max( microtime( true ) - $startTime, 0.0 );
 
 		unset( $queryProfSection ); // profile out (if set)
 
 		if ( $ret !== false ) {
 			$this->lastPing = $startTime;
 			if ( $isWrite && $this->mTrxLevel ) {
-				$this->mTrxWriteDuration += $queryRuntime;
+				$this->updateTrxWriteQueryTime( $sql, $queryRuntime );
 				$this->mTrxWriteCallers[] = $fname;
 			}
+		}
+
+		if ( $sql === self::PING_QUERY ) {
+			$this->mRTTEstimate = $queryRuntime;
 		}
 
 		$this->getTransactionProfiler()->recordQueryCompletion(
@@ -964,6 +1004,37 @@ abstract class DatabaseBase implements IDatabase {
 		MWDebug::query( $sql, $fname, $isMaster, $queryRuntime );
 
 		return $ret;
+	}
+
+	/**
+	 * Update the estimated run-time of a query, not counting large row lock times
+	 *
+	 * LoadBalancer can be set to rollback transactions that will create huge replication
+	 * lag. It bases this estimate off of pendingWriteQueryDuration(). Certain simple
+	 * queries, like inserting a row can take a long time due to row locking. This method
+	 * uses some simple heuristics to discount those cases.
+	 *
+	 * @param string $sql
+	 * @param float $runtime Total runtime, including RTT
+	 */
+	private function updateTrxWriteQueryTime( $sql, $runtime ) {
+		$isSane = true;
+		if ( $runtime > self::SLOW_WRITE_SEC ) {
+			$verb = $this->getQueryVerb( $sql );
+			// insert(), upsert(), replace() are fast unless bulky in size or blocked on locks
+			if ( $verb === 'INSERT' ) {
+				$isSane = $this->affectedRows() > self::SMALL_WRITE_ROWS;
+			} elseif ( $verb === 'REPLACE' ) {
+				$isSane = $this->affectedRows() > self::SMALL_WRITE_ROWS / 2;
+			}
+		}
+
+		$this->mTrxWriteDuration += $runtime;
+		$this->mTrxWriteQueryCount += 1;
+		if ( $isSane ) {
+			$this->mTrxWriteAdjDuration += $runtime;
+			$this->mTrxWriteAdjQueryCount += 1;
+		}
 	}
 
 	private function canRecoverFromDisconnect( $sql, $priorWritesPending ) {
@@ -2740,6 +2811,9 @@ abstract class DatabaseBase implements IDatabase {
 		$this->mTrxAtomicLevels = [];
 		$this->mTrxShortId = wfRandomString( 12 );
 		$this->mTrxWriteDuration = 0.0;
+		$this->mTrxWriteQueryCount = 0;
+		$this->mTrxWriteAdjDuration = 0.0;
+		$this->mTrxWriteAdjQueryCount = 0;
 		$this->mTrxWriteCallers = [];
 		// First SELECT after BEGIN will establish the snapshot in REPEATABLE-READ.
 		// Get an estimate of the slave lag before then, treating estimate staleness
@@ -2968,16 +3042,22 @@ abstract class DatabaseBase implements IDatabase {
 		}
 	}
 
-	public function ping() {
+	public function ping( &$rtt = null ) {
+		// Avoid hitting the server if it was hit recently
 		if ( $this->isOpen() && ( microtime( true ) - $this->lastPing ) < self::PING_TTL ) {
-			return true;
+			if ( !func_num_args() ) {
+				return true; // don't care about $rtt
+			}
 		}
 
-		$ignoreErrors = true;
-		$this->clearFlag( DBO_TRX, self::REMEMBER_PRIOR );
 		// This will reconnect if possible or return false if not
-		$ok = (bool)$this->query( "SELECT 1 AS ping", __METHOD__, $ignoreErrors );
+		$this->clearFlag( DBO_TRX, self::REMEMBER_PRIOR );
+		$ok = ( $this->query( self::PING_QUERY, __METHOD__, true ) !== false );
 		$this->restoreFlags( self::RESTORE_PRIOR );
+
+		if ( $ok ) {
+			$rtt = $this->mRTTEstimate;
+		}
 
 		return $ok;
 	}
