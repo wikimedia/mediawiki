@@ -103,7 +103,7 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function pendingWriteQueryDuration() {
+	public function pendingWriteQueryDuration( $type = self::ESTIMATE_TOTAL ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
@@ -477,8 +477,10 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function ping() {
-		return $this->__call( __FUNCTION__, func_get_args() );
+	public function ping( &$rtt = null ) {
+		return func_num_args()
+			? $this->__call( __FUNCTION__, [ &$rtt ] )
+			: $this->__call( __FUNCTION__, [] ); // method cares about null vs missing
 	}
 
 	public function getLag() {
