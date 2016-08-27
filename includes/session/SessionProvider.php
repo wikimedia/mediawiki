@@ -66,13 +66,14 @@ use WebRequest;
  *    would make sense.
  *
  * Note that many methods that are technically "cannot persist ID" could be
- * turned into "can persist ID but not changing User" using a session cookie,
+ * turned into "can persist ID but not change User" using a session cookie,
  * as implemented by ImmutableSessionProviderWithCookie. If doing so, different
  * session cookie names should be used for different providers to avoid
  * collisions.
  *
  * @ingroup Session
  * @since 1.27
+ * @see https://www.mediawiki.org/wiki/Manual:SessionManager_and_AuthManager
  */
 abstract class SessionProvider implements SessionProviderInterface, LoggerAwareInterface {
 
@@ -180,14 +181,23 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	/**
 	 * Merge saved session provider metadata
 	 *
+	 * This method will be used to compare the metadata returned by
+	 * provideSessionInfo() with the saved metadata (which has been returned by
+	 * provideSessionInfo() the last time the session was saved), and merge the two
+	 * into the new saved metadata, or abort if the current request is not a valid
+	 * continuation of the session.
+	 *
 	 * The default implementation checks that anything in both arrays is
 	 * identical, then returns $providedMetadata.
 	 *
 	 * @protected For use by \MediaWiki\Session\SessionManager only
 	 * @param array $savedMetadata Saved provider metadata
-	 * @param array $providedMetadata Provided provider metadata
+	 * @param array $providedMetadata Provided provider metadata (from the SessionInfo)
 	 * @return array Resulting metadata
-	 * @throws MetadataMergeException If the metadata cannot be merged
+	 * @throws MetadataMergeException If the metadata cannot be merged.
+	 *  Such exceptions will be handled by SessionManager and are a safe way of rejecting
+	 *  a suspicious or incompatible session. The provider is expected to write an
+	 *  appropriate message to its logger.
 	 */
 	public function mergeMetadata( array $savedMetadata, array $providedMetadata ) {
 		foreach ( $providedMetadata as $k => $v ) {
@@ -211,7 +221,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 * expected to write an appropriate message to its logger.
 	 *
 	 * @protected For use by \MediaWiki\Session\SessionManager only
-	 * @param SessionInfo $info
+	 * @param SessionInfo $info Any changes by mergeMetadata() will already be reflected here.
 	 * @param WebRequest $request
 	 * @param array|null &$metadata Provider metadata, may be altered.
 	 * @return bool Return false to reject the SessionInfo after all.
@@ -420,6 +430,11 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 
 	/**
 	 * Fetch the rights allowed the user when the specified session is active.
+	 *
+	 * This is mainly meant for allowing the user to restrict access to the account
+	 * by certain methods; you probably want to use this with MWGrants. The returned
+	 * rights will be intersected with the user's actual rights.
+	 *
 	 * @param SessionBackend $backend
 	 * @return null|string[] Allowed user rights, or null to allow all.
 	 */

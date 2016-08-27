@@ -27,16 +27,19 @@ use StatusValue;
 use User;
 
 /**
- * A pre-authentication provider is a check that must pass for authentication
- * to proceed.
+ * A pre-authentication provider can prevent authentication early on.
  *
  * A PreAuthenticationProvider is used to supply arbitrary checks to be
  * performed before the PrimaryAuthenticationProviders are consulted during the
- * login process. Possible uses include checking that a per-IP throttle has not
- * been reached or that a captcha has been solved.
+ * login / account creation / account linking process. Possible uses include
+ * checking that a per-IP throttle has not been reached or that a captcha has been solved.
+ *
+ * This interface also provides callbacks that are invoked after login / account creation
+ * / account linking succeeded or failed.
  *
  * @ingroup Auth
  * @since 1.27
+ * @see https://www.mediawiki.org/wiki/Manual:SessionManager_and_AuthManager
  */
 interface PreAuthenticationProvider extends AuthenticationProvider {
 
@@ -52,10 +55,17 @@ interface PreAuthenticationProvider extends AuthenticationProvider {
 
 	/**
 	 * Post-login callback
+	 *
+	 * This will be called at the end of a login attempt. It will not be called for unfinished
+	 * login attempts that fail by the session timing out.
+	 *
+	 * @note Under certain circumstances, this can be called even when testForAuthentication
+	 *   was not; see AuthenticationRequest::$loginRequest.
 	 * @param User|null $user User that was attempted to be logged in, if known.
 	 *   This may become a "UserValue" in the future, or User may be refactored
 	 *   into such.
 	 * @param AuthenticationResponse $response Authentication response that will be returned
+	 *   (PASS or FAIL)
 	 */
 	public function postAuthentication( $user, AuthenticationResponse $response );
 
@@ -97,12 +107,18 @@ interface PreAuthenticationProvider extends AuthenticationProvider {
 
 	/**
 	 * Post-creation callback
+	 *
+	 * This will be called at the end of an account creation attempt. It will not be called if
+	 * the account creation process results in a session timeout (possibly after a successful
+	 * user creation, while a secondary provider is waiting for a response).
+	 *
 	 * @param User $user User that was attempted to be created.
 	 *   This may become a "UserValue" in the future, or User may be refactored
 	 *   into such.
 	 * @param User $creator User doing the creation. This may become a
 	 *   "UserValue" in the future, or User may be refactored into such.
 	 * @param AuthenticationResponse $response Authentication response that will be returned
+	 *   (PASS or FAIL)
 	 */
 	public function postAccountCreation( $user, $creator, AuthenticationResponse $response );
 
@@ -118,10 +134,14 @@ interface PreAuthenticationProvider extends AuthenticationProvider {
 
 	/**
 	 * Post-link callback
+	 *
+	 * This will be called at the end of an account linking attempt.
+	 *
 	 * @param User $user User that was attempted to be linked.
 	 *   This may become a "UserValue" in the future, or User may be refactored
 	 *   into such.
 	 * @param AuthenticationResponse $response Authentication response that will be returned
+	 *   (PASS or FAIL)
 	 */
 	public function postAccountLink( $user, AuthenticationResponse $response );
 

@@ -29,7 +29,7 @@ use Message;
  * This is a value object for authentication requests.
  *
  * An AuthenticationRequest represents a set of form fields that are needed on
- * and provided from the login, account creation, or password change forms.
+ * and provided from a login, account creation, password change or similar form.
  *
  * @ingroup Auth
  * @since 1.27
@@ -39,11 +39,14 @@ abstract class AuthenticationRequest {
 	/** Indicates that the request is not required for authentication to proceed. */
 	const OPTIONAL = 0;
 
-	/** Indicates that the request is required for authentication to proceed. */
+	/** Indicates that the request is required for authentication to proceed.
+	 * This will only be used for UI purposes; it is the authentication providers'
+	 * responsibility to verify that all required requests are present.
+	 */
 	const REQUIRED = 1;
 
 	/** Indicates that the request is required by a primary authentication
-	 * provdier. Since the user can choose which primary to authenticate with,
+	 * provider. Since the user can choose which primary to authenticate with,
 	 * the request might or might not end up being actually required. */
 	const PRIMARY_REQUIRED = 2;
 
@@ -60,7 +63,8 @@ abstract class AuthenticationRequest {
 	/** @var string|null Return-to URL, in case of redirect */
 	public $returnToUrl = null;
 
-	/** @var string|null Username. May not be used by all subclasses. */
+	/** @var string|null Username. See AuthenticationProvider::getAuthenticationRequests()
+	 * for details of what this means and how it behaves. */
 	public $username = null;
 
 	/**
@@ -105,6 +109,11 @@ abstract class AuthenticationRequest {
 	 *  - sensitive: (bool) If set and truthy, the field is considered sensitive. Code using the
 	 *      request should avoid exposing the value of the field.
 	 *
+	 * All AuthenticationRequests are populated from the same data, so most of the time you'll
+	 * want to prefix fields names with something unique to the extension/provider (although
+	 * in some cases sharing the field with other requests is the right thing to do, e.g. for
+	 * a 'password' field).
+	 *
 	 * @return array As above
 	 */
 	abstract public function getFieldInfo();
@@ -126,10 +135,13 @@ abstract class AuthenticationRequest {
 	/**
 	 * Initialize form submitted form data.
 	 *
-	 * Should always return false if self::getFieldInfo() returns an empty
-	 * array.
+	 * The default behavior is to to check for each key of self::getFieldInfo()
+	 * in the submitted data, and copy the value - after type-appropriate transformations -
+	 * to $this->$key. Most subclasses won't need to override this; if you do override it,
+	 * make sure to always return false if self::getFieldInfo() returns an empty array.
 	 *
-	 * @param array $data Submitted data as an associative array
+	 * @param array $data Submitted data as an associative array (keys will correspond
+	 *   to getFieldInfo())
 	 * @return bool Whether the request data was successfully loaded
 	 */
 	public function loadFromSubmission( array $data ) {
@@ -250,7 +262,7 @@ abstract class AuthenticationRequest {
 	 *
 	 * Only considers requests that have a "username" field.
 	 *
-	 * @param AuthenticationRequest[] $requests
+	 * @param AuthenticationRequest[] $reqs
 	 * @return string|null
 	 * @throws \UnexpectedValueException If multiple different usernames are present.
 	 */
