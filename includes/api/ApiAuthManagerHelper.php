@@ -85,6 +85,7 @@ class ApiAuthManagerHelper {
 					'key' => $message->getKey(),
 					'params' => $message->getParams(),
 				];
+				ApiResult::setIndexedTagName( $res[$key]['params'], 'param' );
 				break;
 		}
 	}
