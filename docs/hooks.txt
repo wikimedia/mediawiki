@@ -2404,6 +2404,13 @@ $revId: ID of the revision that was parsed to create $parserOutput
 'ParserCloned': Called when the parser is cloned.
 $parser: Newly-cloned Parser object
 
+'ParserFetchTemplate': Called when the parser fetches a template
+$parser: Parser Parser object or false
+$title: Title object of the template to be fetched
+$rev: Revision object of the template
+&$text: Transclusion text of the template or false or null
+&$deps: Array of template dependencies with 'title', 'page_id', 'rev_id' keys
+
 'ParserFirstCallInit': Called when the parser initialises for the first time.
 &$parser: Parser object being cleared
 
