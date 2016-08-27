@@ -1904,7 +1904,7 @@ $wgSharedSchema = false;
  *                  to several groups, the most specific group defined here is used.
  *
  *   - flags:       bit field
- *                  - DBO_DEFAULT -- turns on DBO_TRX only if !$wgCommandLineMode (recommended)
+ *                  - DBO_DEFAULT -- turns on DBO_TRX only if "cliMode" is off (recommended)
  *                  - DBO_DEBUG -- equivalent of $wgDebugDumpSql
  *                  - DBO_TRX -- wrap entire request in a transaction
  *                  - DBO_NOBUFFER -- turn off buffering (not useful in LocalSettings.php)
@@ -1915,6 +1915,9 @@ $wgSharedSchema = false;
  *
  *   - max lag:     (optional) Maximum replication lag before a slave will taken out of rotation
  *   - is static:   (optional) Set to true if the dataset is static and no replication is used.
+ *   - cliMode:     (optional) Connection handles will not assume that requests are short-lived
+ *                  nor that INSERT..SELECT can be rewritten into a buffered SELECT and INSERT.
+ *                  [Default: uses value of $wgCommandLineMode]
  *
  *   These and any other user-defined properties will be assigned to the mLBInfo member
  *   variable of the Database object.
