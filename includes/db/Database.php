@@ -59,6 +59,8 @@ abstract class DatabaseBase implements IDatabase {
 	protected $mPassword;
 	/** @var string */
 	protected $mDBname;
+	/** @var bool */
+	protected $cliMode;
 
 	/** @var BagOStuff APC cache */
 	protected $srvCache;
@@ -568,7 +570,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @param array $params Parameters passed from DatabaseBase::factory()
 	 */
 	function __construct( array $params ) {
-		global $wgDBprefix, $wgDBmwschema, $wgCommandLineMode;
+		global $wgDBprefix, $wgDBmwschema;
 
 		$this->srvCache = ObjectCache::getLocalServerInstance( 'hash' );
 
@@ -581,9 +583,13 @@ abstract class DatabaseBase implements IDatabase {
 		$schema = $params['schema'];
 		$foreign = $params['foreign'];
 
+		$this->cliMode = isset( $params['cliMode'] )
+			? $params['cliMode']
+			: ( php_sapi_name() === 'cli' );
+
 		$this->mFlags = $flags;
 		if ( $this->mFlags & DBO_DEFAULT ) {
-			if ( $wgCommandLineMode ) {
+			if ( $this->cliMode ) {
 				$this->mFlags &= ~DBO_TRX;
 			} else {
 				$this->mFlags |= DBO_TRX;
@@ -654,6 +660,8 @@ abstract class DatabaseBase implements IDatabase {
 	 * @return DatabaseBase|null DatabaseBase subclass or null
 	 */
 	final public static function factory( $dbType, $p = [] ) {
+		global $wgCommandLineMode;
+
 		$canonicalDBTypes = [
 			'mysql' => [ 'mysqli', 'mysql' ],
 			'postgres' => [],
@@ -711,6 +719,7 @@ abstract class DatabaseBase implements IDatabase {
 				$p['schema'] = isset( $defaultSchemas[$dbType] ) ? $defaultSchemas[$dbType] : null;
 			}
 			$p['foreign'] = isset( $p['foreign'] ) ? $p['foreign'] : false;
+			$p['cliMode'] = $wgCommandLineMode;
 
 			return new $class( $p );
 		} else {
@@ -1013,7 +1022,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * queries, like inserting a row can take a long time due to row locking. This method
 	 * uses some simple heuristics to discount those cases.
 	 *
-	 * @param string $sql
+	 * @param string $sql A SQL write query
 	 * @param float $runtime Total runtime, including RTT
 	 */
 	private function updateTrxWriteQueryTime( $sql, $runtime ) {
@@ -2411,7 +2420,43 @@ abstract class DatabaseBase implements IDatabase {
 		return $this->query( $sql, $fname );
 	}
 
-	public function insertSelect( $destTable, $srcTable, $varMap, $conds,
+	public function insertSelect(
+		$destTable, $srcTable, $varMap, $conds,
+		$fname = __METHOD__, $insertOptions = [], $selectOptions = []
+	) {
+		if ( $this->cliMode ) {
+			// For massive migrations with downtime, we don't want to select everything
+			// into memory and OOM, so do all this native on the server side if possible.
+			return $this->nativeInsertSelect(
+				$destTable,
+				$srcTable,
+				$varMap,
+				$conds,
+				$fname,
+				$insertOptions,
+				$selectOptions
+			);
+		}
+
+		// For web requests, do a locking SELECT and then INSERT. This puts the SELECT burden
+		// on only the master (without needing row-based-replication). It also makes it easy to
+		// know how big the INSERT is going to be.
+		$fields = [];
+		foreach ( $varMap as $dstColumn => $sourceColumnOrSql ) {
+			$fields[] = $this->fieldNameWithAlias( $sourceColumnOrSql, $dstColumn );
+		}
+		$selectOptions[] = 'FOR UPDATE';
+		$res = $this->select( $srcTable, implode( ',', $fields ), $conds, $fname, $selectOptions );
+
+		$rows = [];
+		foreach ( $res as $row ) {
+			$rows[] = (array)$row;
+		}
+
+		return $this->insert( $destTable, $rows, $fname, $insertOptions );
+	}
+
+	public function nativeInsertSelect( $destTable, $srcTable, $varMap, $conds,
 		$fname = __METHOD__,
 		$insertOptions = [], $selectOptions = []
 	) {

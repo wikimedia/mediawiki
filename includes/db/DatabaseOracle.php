@@ -732,7 +732,7 @@ class DatabaseOracle extends Database {
 		return oci_free_statement( $stmt );
 	}
 
-	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
+	function nativeInsertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
 		$insertOptions = [], $selectOptions = []
 	) {
 		$destTable = $this->tableName( $destTable );
