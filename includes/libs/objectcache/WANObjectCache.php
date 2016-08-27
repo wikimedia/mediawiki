@@ -104,6 +104,13 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/** Default time-since-expiry on a miss that makes a key "hot" */
 	const LOCK_TSE = 1;
 
+	/** Never consider performing "popularity" refreshes until a key reaches this age */
+	const AGE_NEW = 60;
+	/** The time length of the "popularity" refresh window for hot keys */
+	const HOT_TTR = 900;
+	/** Hits/second for a refresh to be expected within the "popularity" window */
+	const HIT_RATE_HIGH = 1;
+
 	/** Idiom for getWithSetCallback() callbacks to avoid calling set() */
 	const TTL_UNCACHEABLE = -1;
 	/** Idiom for getWithSetCallback() callbacks to 'lockTSE' logic */
@@ -765,9 +772,6 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *   - checkKeys: List of "check" keys. The key at $key will be seen as invalid when either
 	 *      touchCheckKey() or resetCheckKey() is called on any of these keys.
 	 *      Default: [].
-	 *   - lowTTL: Consider pre-emptive updates when the current TTL (seconds) of the key is less
-	 *      than this. It becomes more likely over time, becoming certain once the key is expired.
-	 *      Default: WANObjectCache::LOW_TTL.
 	 *   - lockTSE: If the key is tombstoned or expired (by checkKeys) less than this many seconds
 	 *      ago, then try to have a single thread handle cache regeneration at any given time.
 	 *      Other threads will try to use stale values if possible. If, on miss, the time since
@@ -792,6 +796,17 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *      versions are stored alongside older versions concurrently. Avoid storing class objects
 	 *      however, as this reduces compatibility (due to serialization).
 	 *      Default: null.
+	 *   - hotTTR: Expected time-till-refresh for keys that average ~1 hit/second.
+	 *      This should be greater than "ageNew". Keys with higher hit rates will regenerate
+	 *      more often. This is useful when a popular key is changed but the cache purge was
+	 *      delayed or lost. Seldom used keys are rarely affected by this setting, unless an
+	 *      extremely low "hotTTR" value is passed in.
+	 *      Default: WANObjectCache::HOT_TTR.
+	 *   - lowTTL: Consider pre-emptive updates when the current TTL (seconds) of the key is less
+	 *      than this. It becomes more likely over time, becoming certain once the key is expired.
+	 *      Default: WANObjectCache::LOW_TTL.
+	 *   - ageNew: Consider popularity refreshes only once a key reaches this age in seconds.
+	 *      Default: WANObjectCache::AGE_NEW.
 	 * @return mixed Value found or written to the key
 	 * @note Callable type hints are not used to avoid class-autoloading
 	 */
@@ -875,6 +890,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$lockTSE = isset( $opts['lockTSE'] ) ? $opts['lockTSE'] : self::TSE_NONE;
 		$checkKeys = isset( $opts['checkKeys'] ) ? $opts['checkKeys'] : [];
 		$busyValue = isset( $opts['busyValue'] ) ? $opts['busyValue'] : null;
+		$popWindow = isset( $opts['hotTTR'] ) ? $opts['hotTTR'] : self::HOT_TTR;
+		$ageNew = isset( $opts['ageNew'] ) ? $opts['ageNew'] : self::AGE_NEW;
 		$minTime = isset( $opts['minTime'] ) ? $opts['minTime'] : 0.0;
 		$versioned = isset( $opts['version'] );
 
@@ -887,7 +904,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		if ( $value !== false
 			&& $curTTL > 0
 			&& $this->isValid( $value, $versioned, $asOf, $minTime )
-			&& !$this->worthRefresh( $curTTL, $lowTTL )
+			&& !$this->worthRefreshExpiring( $curTTL, $lowTTL )
+			&& !$this->worthRefreshPopular( $asOf, $ageNew, $popWindow )
 		) {
 			return $value;
 		}
@@ -1151,7 +1169,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @param float $lowTTL Consider a refresh when $curTTL is less than this
 	 * @return bool
 	 */
-	protected function worthRefresh( $curTTL, $lowTTL ) {
+	protected function worthRefreshExpiring( $curTTL, $lowTTL ) {
 		if ( $curTTL >= $lowTTL ) {
 			return false;
 		} elseif ( $curTTL <= 0 ) {
@@ -1159,6 +1177,40 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		}
 
 		$chance = ( 1 - $curTTL / $lowTTL );
+
+		return mt_rand( 1, 1e9 ) <= 1e9 * $chance;
+	}
+
+	/**
+	 * Check if a key is due for randomized regeneration due to its popularity
+	 *
+	 * This is used so that popular keys can preemptively refresh themselves for higher
+	 * consistency (especially in the case of purge loss/delay). Unpopular keys can remain
+	 * in cache with their high nominal TTL. This means popular keys keep good consistency,
+	 * whether the data changes frequently or not, and long-tail keys get to stay in cache
+	 * and get hits too. Similar to worthRefreshExpiring(), randomization is used.
+	 *
+	 * @param float $asOf UNIX timestamp of the value
+	 * @param integer $ageNew Age of key when this might recommend refreshing (seconds)
+	 * @param integer $timeTillRefresh Age of key when it should be refreshed if popular (seconds)
+	 * @return bool
+	 */
+	protected function worthRefreshPopular( $asOf, $ageNew, $timeTillRefresh ) {
+		$age = microtime( true ) - $asOf;
+		$timeOld = $age - $ageNew;
+		if ( $timeOld <= 0 ) {
+			return false;
+		}
+
+		// Lifecycle is: new, ramp-up refresh chance, full refresh chance
+		$refreshWindowSec = max( $timeTillRefresh - $ageNew - self::LOW_TTL / 2, 1 );
+		// P(refresh) * (# hits in $refreshWindowSec) = (expected # of refreshes)
+		// P(refresh) * ($refreshWindowSec * $popularHitsPerSec) = 1
+		// P(refresh) = 1/($refreshWindowSec * $popularHitsPerSec)
+		$chance = 1 / ( self::HIT_RATE_HIGH * $refreshWindowSec );
+
+		// Ramp up $chance from 0 to its nominal value over LOW_TTL seconds to avoid stampedes
+		$chance *= ( $timeOld <= self::LOW_TTL ) ? $timeOld / self::LOW_TTL : 1;
 
 		return mt_rand( 1, 1e9 ) <= 1e9 * $chance;
 	}
