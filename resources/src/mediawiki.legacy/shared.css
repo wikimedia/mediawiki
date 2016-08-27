@@ -162,6 +162,7 @@ input#wpSummary {
 
 .mw-input-with-label {
 	white-space: nowrap;
+	display: inline-block;
 }
 
 /**
