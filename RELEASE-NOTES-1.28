@@ -128,6 +128,8 @@ changes to languages because of Phabricator reports.
   login and visiting the login page while already logged in.
 * ResourceLoader::makeLoaderURL() was removed (deprecated since 1.24).
 * $.fn.liveAndTestAtStart was removed (deprecated since 1.24).
+* mw.util.tooltipAccessKeyPrefix was removed (deprecated since 1.24).
+* mw.util.tooltipAccessKeyRegexp was removed (deprecated since 1.24).
 * Linker::link() and Linker::linkKnown() were deprecated; please instead use
   MediaWiki\Linker\LinkRenderer. In addition, the LinkBegin and LinkEnd hooks
   were replaced by HtmlPageLinkRendererBegin and HtmlPageLinkRendererEnd
