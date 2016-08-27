@@ -37,8 +37,39 @@ use WebRequest;
  * In the future, it may also serve as the entry point to the authorization
  * system.
  *
+ * If you are looking at this because you are working on an extension that creates its own
+ * login or signup page, then 1) you really shouldn't do that, 2) if you feel you absolutely
+ * have to, subclass AuthManagerSpecialPage or build it on the client side using the clientlogin
+ * or the createaccount API. Trying to call this class directly will very likely end up in
+ * security vulnerabilities or broken UX in edge cases.
+ *
+ * If you are working on an extension that needs to integrate with the authentication system
+ * (e.g. by providing a new login method, or doing extra permission checks), you'll probably
+ * need to write an AuthenticationProvider.
+ *
+ * If you want to create a "reserved" user programmatically, User::newSystemUser() might be what
+ * you are looking for. If you want to create a normal user, use AuthManager::autoCreateUser().
+ * If you want to change user data, use User::changeAuthenticationData().
+ *
+ * The two main control flows when using this class are as follows:
+ * * Login, user creation or account linking code will call getAuthenticationRequests(), populate
+ *   the requests with data (by using them to a HTMLForm and have the user fill it, or by exposing
+ *   a form specification via the API, so that the client can build it), and pass them to the
+ *   appropriate begin* method. That will return either a success/failure response, or more
+ *   requests to fill (either by building a form or by redirecting the user to some external
+ *   provider which will send the data back), in which case they need to be submitted to the
+ *   appropriate continue* method and that step has to be repeated until the response is success
+ *   or failure response. AuthManager will use the session to maintain internal state during the
+ *   process.
+ * * Code doing an authentication data change will call call getAuthenticationRequests(), select
+ *   a single request, populate it, and pass it to allowsAuthenticationDataChange() and then
+ *   changeAuthenticationData(). If the data change is user-initiated, the whole process needs
+ *   to be preceded by a call to securitySensitiveOperationStatus() and aborted if that returns
+ *   a non-OK status.
+ *
  * @ingroup Auth
  * @since 1.27
+ * @see https://www.mediawiki.org/wiki/Manual:SessionManager_and_AuthManager
  */
 class AuthManager implements LoggerAwareInterface {
 	/** Log in with an existing (not necessarily local) user */
@@ -737,7 +768,10 @@ class AuthManager implements LoggerAwareInterface {
 	/**
 	 * Determine whether a username can authenticate
 	 *
-	 * @param string $username
+	 * This is mainly for internal purposes and only takes authentication data into account,
+	 * not things like blocks that can change without the authentication system being aware.
+	 *
+	 * @param string $username MediaWiki username
 	 * @return bool
 	 */
 	public function userCanAuthenticate( $username ) {
@@ -832,6 +866,9 @@ class AuthManager implements LoggerAwareInterface {
 	 * If $req was returned for AuthManager::ACTION_REMOVE, using $req should
 	 * no longer result in a successful login.
 	 *
+	 * This method should only be called if allowsAuthenticationDataChange( $req, true )
+	 * returned success.
+	 *
 	 * @param AuthenticationRequest $req
 	 */
 	public function changeAuthenticationData( AuthenticationRequest $req ) {
@@ -871,7 +908,7 @@ class AuthManager implements LoggerAwareInterface {
 
 	/**
 	 * Determine whether a particular account can be created
-	 * @param string $username
+	 * @param string $username MediaWiki username
 	 * @param array $options
 	 *  - flags: (int) Bitfield of User:READ_* constants, default User::READ_NORMAL
 	 *  - creating: (bool) For internal use only. Never specify this.
@@ -1474,6 +1511,13 @@ class AuthManager implements LoggerAwareInterface {
 
 	/**
 	 * Auto-create an account, and log into that account
+	 *
+	 * PrimaryAuthenticationProviders can invoke this method by returning a PASS from
+	 * beginPrimaryAuthentication/continuePrimaryAuthentication with the username of a
+	 * non-existing user. SessionProviders can invoke it by returning a SessionInfo with
+	 * the username of a non-existing user from provideSessionInfo(). Calling this method
+	 * explicitly (e.g. from a maintenance script) is also fine.
+	 *
 	 * @param User $user User to auto-create
 	 * @param string $source What caused the auto-creation? This must be the ID
 	 *  of a PrimaryAuthenticationProvider or the constant self::AUTOCREATE_SOURCE_SESSION.
@@ -2310,6 +2354,7 @@ class AuthManager implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Log the user in
 	 * @param User $user
 	 * @param bool|null $remember
 	 */
@@ -2374,6 +2419,7 @@ class AuthManager implements LoggerAwareInterface {
 
 	/**
 	 * Reset the internal caching for unit testing
+	 * @protected Unit tests only
 	 */
 	public static function resetCache() {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {

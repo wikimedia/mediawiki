@@ -27,16 +27,27 @@ use StatusValue;
 use User;
 
 /**
- * A secondary authentication provider performs additional authentication steps
- * after a PrimaryAuthenticationProvider has done its thing.
+ * A secondary provider mostly acts when the submitted authentication data has
+ * already been associated to a MediaWiki user account.
  *
- * A SecondaryAuthenticationProvider is used to perform arbitrary checks on an
- * authentication request after the user itself has been authenticated. For
- * example, it might implement a password reset, request the second factor for
- * two-factor auth, or prevent the login if the account is blocked.
+ * For login, a secondary provider performs additional authentication steps
+ * after a PrimaryAuthenticationProvider has identified which MediaWiki user is
+ * trying to log in. For example, it might implement a password reset, request
+ * the second factor for two-factor auth, or prevent the login if the account is blocked.
+ *
+ * For account creation, a secondary provider performs optional extra steps after
+ * a PrimaryAuthenticationProvider has created the user; for example, it can collect
+ * further user information such as a biography.
+ *
+ * (For account linking, secondary providers are not involved.)
+ *
+ * This interface also provides methods for changing authentication data such
+ * as a second-factor token, and callbacks that are invoked after login / account creation
+ * succeeded or failed.
  *
  * @ingroup Auth
  * @since 1.27
+ * @see https://www.mediawiki.org/wiki/Manual:SessionManager_and_AuthManager
  */
 interface SecondaryAuthenticationProvider extends AuthenticationProvider {
 
@@ -75,10 +86,15 @@ interface SecondaryAuthenticationProvider extends AuthenticationProvider {
 
 	/**
 	 * Post-login callback
+	 *
+	 * This will be called at the end of a login attempt. It will not be called for unfinished
+	 * login attempts that fail by the session timing out.
+	 *
 	 * @param User|null $user User that was attempted to be logged in, if known.
 	 *   This may become a "UserValue" in the future, or User may be refactored
 	 *   into such.
 	 * @param AuthenticationResponse $response Authentication response that will be returned
+	 *   (PASS or FAIL)
 	 */
 	public function postAuthentication( $user, AuthenticationResponse $response );
 
@@ -129,6 +145,10 @@ interface SecondaryAuthenticationProvider extends AuthenticationProvider {
 	 * If $req was returned for AuthManager::ACTION_REMOVE, the corresponding
 	 * credentials should no longer result in a successful login.
 	 *
+	 * It can be assumed that providerAllowsAuthenticationDataChange with $checkData === true
+	 * was called before this, and passed. This method should never fail (other than throwing an
+	 * exception).
+	 *
 	 * @param AuthenticationRequest $req
 	 */
 	public function providerChangeAuthenticationData( AuthenticationRequest $req );
@@ -151,6 +171,12 @@ interface SecondaryAuthenticationProvider extends AuthenticationProvider {
 
 	/**
 	 * Start an account creation flow
+	 *
+	 * @note There is no guarantee this will be called in a successful account
+	 *   creation process as the user can just abandon the process at any time
+	 *   after the primary provider has issued a PASS and still have a valid
+	 *   account. Be prepared to handle any database inconsistencies that result
+	 *   from this or continueSecondaryAccountCreation() not being called.
 	 * @param User $user User being created (has been added to the database).
 	 *   This may become a "UserValue" in the future, or User may be refactored
 	 *   into such.
@@ -167,6 +193,7 @@ interface SecondaryAuthenticationProvider extends AuthenticationProvider {
 
 	/**
 	 * Continue an authentication flow
+	 *
 	 * @param User $user User being created (has been added to the database).
 	 *   This may become a "UserValue" in the future, or User may be refactored
 	 *   into such.
@@ -183,12 +210,18 @@ interface SecondaryAuthenticationProvider extends AuthenticationProvider {
 
 	/**
 	 * Post-creation callback
+	 *
+	 * This will be called at the end of an account creation attempt. It will not be called if
+	 * the account creation process results in a session timeout (possibly after a successful
+	 * user creation, while a secondary provider is waiting for a response).
+	 *
 	 * @param User $user User that was attempted to be created.
 	 *   This may become a "UserValue" in the future, or User may be refactored
 	 *   into such.
 	 * @param User $creator User doing the creation. This may become a
 	 *   "UserValue" in the future, or User may be refactored into such.
 	 * @param AuthenticationResponse $response Authentication response that will be returned
+	 *   (PASS or FAIL)
 	 */
 	public function postAccountCreation( $user, $creator, AuthenticationResponse $response );
 

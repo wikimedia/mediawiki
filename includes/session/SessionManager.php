@@ -35,8 +35,15 @@ use WebRequest;
 /**
  * This serves as the entry point to the MediaWiki session handling system.
  *
+ * Most methods here are for internal use by session handling code. Other callers
+ * should only use getGlobalSession and the methods of SessionManagerInterface;
+ * the rest of the functionality is exposed via MediaWiki\Session\Session methods.
+ *
+ * To provide custom session handling, implement a MediaWiki\Session\SessionProvider.
+ *
  * @ingroup Session
  * @since 1.27
+ * @see https://www.mediawiki.org/wiki/Manual:SessionManager_and_AuthManager
  */
 final class SessionManager implements SessionManagerInterface {
 	/** @var SessionManager|null */
@@ -819,9 +826,9 @@ final class SessionManager implements SessionManagerInterface {
 	}
 
 	/**
-	 * Create a session corresponding to the passed SessionInfo
+	 * Create a Session corresponding to the passed SessionInfo
 	 * @private For use by a SessionProvider that needs to specially create its
-	 *  own session.
+	 *  own Session. Most session providers won't need this.
 	 * @param SessionInfo $info
 	 * @param WebRequest $request
 	 * @return Session
@@ -941,6 +948,7 @@ final class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Reset the internal caching for unit testing
+	 * @protected Unit tests only
 	 */
 	public static function resetCache() {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
