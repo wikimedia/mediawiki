@@ -512,32 +512,6 @@
 	mw.log.deprecate( util, 'wikiGetlink', util.getUrl, 'Use mw.util.getUrl instead.' );
 
 	/**
-	 * Access key prefix. Might be wrong for browsers implementing the accessKeyLabel property.
-	 * @property {string} tooltipAccessKeyPrefix
-	 * @deprecated since 1.24 Use the module jquery.accessKeyLabel instead.
-	 */
-	mw.log.deprecate( util, 'tooltipAccessKeyPrefix', $.fn.updateTooltipAccessKeys.getAccessKeyPrefix(), 'Use jquery.accessKeyLabel instead.' );
-
-	/**
-	 * Regex to match accesskey tooltips.
-	 *
-	 * Should match:
-	 *
-	 * - "[ctrl-option-x]"
-	 * - "[alt-shift-x]"
-	 * - "[ctrl-alt-x]"
-	 * - "[ctrl-x]"
-	 *
-	 * The accesskey is matched in group $6.
-	 *
-	 * Will probably not work for browsers implementing the accessKeyLabel property.
-	 *
-	 * @property {RegExp} tooltipAccessKeyRegexp
-	 * @deprecated since 1.24 Use the module jquery.accessKeyLabel instead.
-	 */
-	mw.log.deprecate( util, 'tooltipAccessKeyRegexp', /\[(ctrl-)?(option-)?(alt-)?(shift-)?(esc-)?(.)\]$/, 'Use jquery.accessKeyLabel instead.' );
-
-	/**
 	 * Add the appropriate prefix to the accesskey shown in the tooltip.
 	 *
 	 * If the `$nodes` parameter is given, only those nodes are updated;
