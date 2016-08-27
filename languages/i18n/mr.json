@@ -1934,6 +1934,7 @@
 	"rollbacklinkcount": "उलटवा $1 {{PLURAL:$1|संपादन|संपादने}}",
 	"rollbacklinkcount-morethan": "$1 पेक्षा अधिक {{PLURAL:$1|संपादन|संपादने}} उलटवा",
 	"rollbackfailed": "द्रूतमाघार फसली",
+	"rollback-missingrevision": "आवृत्ती डाटा भारण करु शकत नाही.",
 	"cantrollback": "जुन्या आवृत्तीकडे परतवता येत नाही; शेवटचा संपादक या पानाचा एकमात्र लेखक आहे.",
 	"alreadyrolled": "[[User:$2|$2]] ([[User talk:$2|Talk]] [[Special:Contributions/$2|{{int:contribslink}}]])चे शेवटाचे [[:$1]]वे संपादन माघारी परतवता येत नाही; पान आधीच कुणी माघारी परतवले आहे किंवा संपादित केले आहे.\n\nशेवटचे संपादन [[User:$3|$3]] ([[User talk:$3|Talk]] [[Special:Contributions/$3|{{int:contribslink}}]])-चे होते.",
 	"editcomment": "संपादन सारांश <em>$1</em> होता.",

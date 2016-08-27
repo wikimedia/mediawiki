@@ -2034,6 +2034,7 @@
 	"rollbacklinkcount-morethan": "отповикај повеќе од $1 {{PLURAL:$1|уредување|уредувања}}",
 	"rollbackfailed": "Отповикувањето не успеа",
 	"rollback-missingparam": "Недостасуваат задолжителни параметри за барањето.",
+	"rollback-missingrevision": "Не можам да ги вчитам податоците за преработката.",
 	"cantrollback": "Уредувањето не може да се отповика.\nПоследниот уредник е воедно и единствениот автор на страницата.",
 	"alreadyrolled": "Не може да се отповика последното уредување на страницата „[[:$1]]“ извршено од  [[User:$2|$2]] ([[User talk:$2|разговор]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);\nнекој друг веќе ја изменил или отповикал страницата.\n\nПоследното уредување го изврши [[User:$3|$3]] ([[User talk:$3|разговор]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "Коментарот на уредувањето беше: <em>$1</em>.",

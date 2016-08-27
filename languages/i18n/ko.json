@@ -2067,6 +2067,7 @@
 	"rollbacklinkcount-morethan": "{{PLURAL:$1|편집}} $1회 이상 되돌리기",
 	"rollbackfailed": "되돌리기 실패",
 	"rollback-missingparam": "요청에 필요한 변수가 존재하지 않습니다.",
+	"rollback-missingrevision": "판 데이터를 불러올 수 없습니다.",
 	"cantrollback": "편집을 되돌릴 수 없습니다.\n문서를 편집한 저자가 한 명뿐입니다.",
 	"alreadyrolled": "[[:$1]]에서 [[User:$2|$2]] ([[User talk:$2|토론]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]])의 편집을 되돌릴 수 없습니다.\n누군가가 이미 문서를 고치거나 되돌렸습니다.\n\n마지막으로 이 문서를 편집한 사용자는 [[User:$3|$3]] ([[User talk:$3|토론]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]])입니다.",
 	"editcomment": "편집 요약: <em>$1</em>",

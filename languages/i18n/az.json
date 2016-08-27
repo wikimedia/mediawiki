@@ -1447,6 +1447,7 @@
 	"delete-confirm": "Silinən səhifə: \"$1\"",
 	"delete-legend": "Sil",
 	"historywarning": "'''Xəbərdarlıq:''' Silinəcək səhifənin tarixçəsində qeyd olunmuş $1 {{PLURAL:$1|redaktə|redaktə}} var:",
+	"historyaction-submit": "Göstər",
 	"confirmdeletetext": "Bu səhifə və ya fayl bütün tarixçəsi ilə birlikdə birdəfəlik silinəcək. Bunu [[{{MediaWiki:Policy-url}}|qaydalara]] uyğun etdiyinizi və əməliyyatın nəticələrini başa düşdüyünüzü təsdiq edin.",
 	"actioncomplete": "Fəaliyyət tamamlandı",
 	"actionfailed": "Əməliyyat yerinə yetirilmədi",

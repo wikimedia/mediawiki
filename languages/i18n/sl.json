@@ -2017,6 +2017,7 @@
 	"rollbacklinkcount-morethan": "vrni več kot $1 {{PLURAL:$1|urejanje|urejanji|urejanja|urejanj}}",
 	"rollbackfailed": "Vrnitev ni uspela",
 	"rollback-missingparam": "Pri zahtevi manjkajo zahtevani parametri.",
+	"rollback-missingrevision": "Ne moremo naložiti podatkov o redakciji.",
 	"cantrollback": "Urejanja ne morem vrniti; zadnji urejevalec je hkrati edini.",
 	"alreadyrolled": "Zadnje spremembe [[:$1]] uporabnika [[User:$2|$2]] ([[User talk:$2|pogovor]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) ne morem vrniti;\nstran je spremenil ali vrnil že nekdo drug.\n\nZadnji je stran urejal uporabnik [[User:$3|$3]] ([[User talk:$3|pogovor]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "Povzetek urejanja je bil: <em>$1</em>.",
