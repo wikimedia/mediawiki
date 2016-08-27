@@ -428,47 +428,43 @@ class Linker {
 			return self::link( $title );
 		}
 
-		// Shortcuts
-		$fp =& $frameParams;
-		$hp =& $handlerParams;
-
 		// Clean up parameters
-		$page = isset( $hp['page'] ) ? $hp['page'] : false;
-		if ( !isset( $fp['align'] ) ) {
-			$fp['align'] = '';
+		$page = isset( $handlerParams['page'] ) ? $handlerParams['page'] : false;
+		if ( !isset( $frameParams['align'] ) ) {
+			$frameParams['align'] = '';
 		}
-		if ( !isset( $fp['alt'] ) ) {
-			$fp['alt'] = '';
+		if ( !isset( $frameParams['alt'] ) ) {
+			$frameParams['alt'] = '';
 		}
-		if ( !isset( $fp['title'] ) ) {
-			$fp['title'] = '';
+		if ( !isset( $frameParams['title'] ) ) {
+			$frameParams['title'] = '';
 		}
-		if ( !isset( $fp['class'] ) ) {
-			$fp['class'] = '';
+		if ( !isset( $frameParams['class'] ) ) {
+			$frameParams['class'] = '';
 		}
 
 		$prefix = $postfix = '';
 
-		if ( 'center' == $fp['align'] ) {
+		if ( 'center' == $frameParams['align'] ) {
 			$prefix = '<div class="center">';
 			$postfix = '</div>';
-			$fp['align'] = 'none';
+			$frameParams['align'] = 'none';
 		}
-		if ( $file && !isset( $hp['width'] ) ) {
-			if ( isset( $hp['height'] ) && $file->isVectorized() ) {
+		if ( $file && !isset( $handlerParams['width'] ) ) {
+			if ( isset( $handlerParams['height'] ) && $file->isVectorized() ) {
 				// If its a vector image, and user only specifies height
 				// we don't want it to be limited by its "normal" width.
 				global $wgSVGMaxSize;
-				$hp['width'] = $wgSVGMaxSize;
+				$handlerParams['width'] = $wgSVGMaxSize;
 			} else {
-				$hp['width'] = $file->getWidth( $page );
+				$handlerParams['width'] = $file->getWidth( $page );
 			}
 
-			if ( isset( $fp['thumbnail'] )
-				|| isset( $fp['manualthumb'] )
-				|| isset( $fp['framed'] )
-				|| isset( $fp['frameless'] )
-				|| !$hp['width']
+			if ( isset( $frameParams['thumbnail'] )
+				|| isset( $frameParams['manualthumb'] )
+				|| isset( $frameParams['framed'] )
+				|| isset( $frameParams['frameless'] )
+				|| !$handlerParams['width']
 			) {
 				global $wgThumbLimits, $wgThumbUpright;
 
@@ -477,73 +473,77 @@ class Linker {
 				}
 
 				// Reduce width for upright images when parameter 'upright' is used
-				if ( isset( $fp['upright'] ) && $fp['upright'] == 0 ) {
-					$fp['upright'] = $wgThumbUpright;
+				if ( isset( $frameParams['upright'] ) && $frameParams['upright'] == 0 ) {
+					$frameParams['upright'] = $wgThumbUpright;
 				}
 
 				// For caching health: If width scaled down due to upright
 				// parameter, round to full __0 pixel to avoid the creation of a
 				// lot of odd thumbs.
-				$prefWidth = isset( $fp['upright'] ) ?
-					round( $wgThumbLimits[$widthOption] * $fp['upright'], -1 ) :
+				$prefWidth = isset( $frameParams['upright'] ) ?
+					round( $wgThumbLimits[$widthOption] * $frameParams['upright'], -1 ) :
 					$wgThumbLimits[$widthOption];
 
 				// Use width which is smaller: real image width or user preference width
 				// Unless image is scalable vector.
-				if ( !isset( $hp['height'] ) && ( $hp['width'] <= 0 ||
-						$prefWidth < $hp['width'] || $file->isVectorized() ) ) {
-					$hp['width'] = $prefWidth;
+				if ( !isset( $handlerParams['height'] ) && ( $handlerParams['width'] <= 0 ||
+						$prefWidth < $handlerParams['width'] || $file->isVectorized() ) ) {
+					$handlerParams['width'] = $prefWidth;
 				}
 			}
 		}
 
-		if ( isset( $fp['thumbnail'] ) || isset( $fp['manualthumb'] ) || isset( $fp['framed'] ) ) {
+		if ( isset( $frameParams['thumbnail'] ) || isset( $frameParams['manualthumb'] )
+			|| isset( $frameParams['framed'] )
+		) {
 			# Create a thumbnail. Alignment depends on the writing direction of
 			# the page content language (right-aligned for LTR languages,
 			# left-aligned for RTL languages)
 			# If a thumbnail width has not been provided, it is set
 			# to the default user option as specified in Language*.php
-			if ( $fp['align'] == '' ) {
-				$fp['align'] = $parser->getTargetLanguage()->alignEnd();
+			if ( $frameParams['align'] == '' ) {
+				$frameParams['align'] = $parser->getTargetLanguage()->alignEnd();
 			}
-			return $prefix . self::makeThumbLink2( $title, $file, $fp, $hp, $time, $query ) . $postfix;
+			return $prefix .
+				self::makeThumbLink2( $title, $file, $frameParams, $handlerParams, $time, $query ) .
+				$postfix;
 		}
 
-		if ( $file && isset( $fp['frameless'] ) ) {
+		if ( $file && isset( $frameParams['frameless'] ) ) {
 			$srcWidth = $file->getWidth( $page );
 			# For "frameless" option: do not present an image bigger than the
 			# source (for bitmap-style images). This is the same behavior as the
 			# "thumb" option does it already.
-			if ( $srcWidth && !$file->mustRender() && $hp['width'] > $srcWidth ) {
-				$hp['width'] = $srcWidth;
+			if ( $srcWidth && !$file->mustRender() && $handlerParams['width'] > $srcWidth ) {
+				$handlerParams['width'] = $srcWidth;
 			}
 		}
 
-		if ( $file && isset( $hp['width'] ) ) {
+		if ( $file && isset( $handlerParams['width'] ) ) {
 			# Create a resized image, without the additional thumbnail features
-			$thumb = $file->transform( $hp );
+			$thumb = $file->transform( $handlerParams );
 		} else {
 			$thumb = false;
 		}
 
 		if ( !$thumb ) {
-			$s = self::makeBrokenImageLinkObj( $title, $fp['title'], '', '', '', $time == true );
+			$s = self::makeBrokenImageLinkObj( $title, $frameParams['title'], '', '', '', $time == true );
 		} else {
-			self::processResponsiveImages( $file, $thumb, $hp );
+			self::processResponsiveImages( $file, $thumb, $handlerParams );
 			$params = [
-				'alt' => $fp['alt'],
-				'title' => $fp['title'],
-				'valign' => isset( $fp['valign'] ) ? $fp['valign'] : false,
-				'img-class' => $fp['class'] ];
-			if ( isset( $fp['border'] ) ) {
+				'alt' => $frameParams['alt'],
+				'title' => $frameParams['title'],
+				'valign' => isset( $frameParams['valign'] ) ? $frameParams['valign'] : false,
+				'img-class' => $frameParams['class'] ];
+			if ( isset( $frameParams['border'] ) ) {
 				$params['img-class'] .= ( $params['img-class'] !== '' ? ' ' : '' ) . 'thumbborder';
 			}
-			$params = self::getImageLinkMTOParams( $fp, $query, $parser ) + $params;
+			$params = self::getImageLinkMTOParams( $frameParams, $query, $parser ) + $params;
 
 			$s = $thumb->toHtml( $params );
 		}
-		if ( $fp['align'] != '' ) {
-			$s = "<div class=\"float{$fp['align']}\">{$s}</div>";
+		if ( $frameParams['align'] != '' ) {
+			$s = "<div class=\"float{$frameParams['align']}\">{$s}</div>";
 		}
 		return str_replace( "\n", ' ', $prefix . $s . $postfix );
 	}
@@ -626,65 +626,61 @@ class Linker {
 	) {
 		$exists = $file && $file->exists();
 
-		# Shortcuts
-		$fp =& $frameParams;
-		$hp =& $handlerParams;
-
-		$page = isset( $hp['page'] ) ? $hp['page'] : false;
-		if ( !isset( $fp['align'] ) ) {
-			$fp['align'] = 'right';
+		$page = isset( $handlerParams['page'] ) ? $handlerParams['page'] : false;
+		if ( !isset( $frameParams['align'] ) ) {
+			$frameParams['align'] = 'right';
 		}
-		if ( !isset( $fp['alt'] ) ) {
-			$fp['alt'] = '';
+		if ( !isset( $frameParams['alt'] ) ) {
+			$frameParams['alt'] = '';
 		}
-		if ( !isset( $fp['title'] ) ) {
-			$fp['title'] = '';
+		if ( !isset( $frameParams['title'] ) ) {
+			$frameParams['title'] = '';
 		}
-		if ( !isset( $fp['caption'] ) ) {
-			$fp['caption'] = '';
+		if ( !isset( $frameParams['caption'] ) ) {
+			$frameParams['caption'] = '';
 		}
 
-		if ( empty( $hp['width'] ) ) {
+		if ( empty( $handlerParams['width'] ) ) {
 			// Reduce width for upright images when parameter 'upright' is used
-			$hp['width'] = isset( $fp['upright'] ) ? 130 : 180;
+			$handlerParams['width'] = isset( $frameParams['upright'] ) ? 130 : 180;
 		}
 		$thumb = false;
 		$noscale = false;
 		$manualthumb = false;
 
 		if ( !$exists ) {
-			$outerWidth = $hp['width'] + 2;
+			$outerWidth = $handlerParams['width'] + 2;
 		} else {
-			if ( isset( $fp['manualthumb'] ) ) {
+			if ( isset( $frameParams['manualthumb'] ) ) {
 				# Use manually specified thumbnail
-				$manual_title = Title::makeTitleSafe( NS_FILE, $fp['manualthumb'] );
+				$manual_title = Title::makeTitleSafe( NS_FILE, $frameParams['manualthumb'] );
 				if ( $manual_title ) {
 					$manual_img = wfFindFile( $manual_title );
 					if ( $manual_img ) {
-						$thumb = $manual_img->getUnscaledThumb( $hp );
+						$thumb = $manual_img->getUnscaledThumb( $handlerParams );
 						$manualthumb = true;
 					} else {
 						$exists = false;
 					}
 				}
-			} elseif ( isset( $fp['framed'] ) ) {
+			} elseif ( isset( $frameParams['framed'] ) ) {
 				// Use image dimensions, don't scale
-				$thumb = $file->getUnscaledThumb( $hp );
+				$thumb = $file->getUnscaledThumb( $handlerParams );
 				$noscale = true;
 			} else {
 				# Do not present an image bigger than the source, for bitmap-style images
 				# This is a hack to maintain compatibility with arbitrary pre-1.10 behavior
 				$srcWidth = $file->getWidth( $page );
-				if ( $srcWidth && !$file->mustRender() && $hp['width'] > $srcWidth ) {
-					$hp['width'] = $srcWidth;
+				if ( $srcWidth && !$file->mustRender() && $handlerParams['width'] > $srcWidth ) {
+					$handlerParams['width'] = $srcWidth;
 				}
-				$thumb = $file->transform( $hp );
+				$thumb = $file->transform( $handlerParams );
 			}
 
 			if ( $thumb ) {
 				$outerWidth = $thumb->getWidth() + 2;
 			} else {
-				$outerWidth = $hp['width'] + 2;
+				$outerWidth = $handlerParams['width'] + 2;
 			}
 		}
 
@@ -696,35 +692,35 @@ class Linker {
 			$url = wfAppendQuery( $url, [ 'page' => $page ] );
 		}
 		if ( $manualthumb
-			&& !isset( $fp['link-title'] )
-			&& !isset( $fp['link-url'] )
-			&& !isset( $fp['no-link'] ) ) {
-			$fp['link-url'] = $url;
+			&& !isset( $frameParams['link-title'] )
+			&& !isset( $frameParams['link-url'] )
+			&& !isset( $frameParams['no-link'] ) ) {
+			$frameParams['link-url'] = $url;
 		}
 
-		$s = "<div class=\"thumb t{$fp['align']}\">"
+		$s = "<div class=\"thumb t{$frameParams['align']}\">"
 			. "<div class=\"thumbinner\" style=\"width:{$outerWidth}px;\">";
 
 		if ( !$exists ) {
-			$s .= self::makeBrokenImageLinkObj( $title, $fp['title'], '', '', '', $time == true );
+			$s .= self::makeBrokenImageLinkObj( $title, $frameParams['title'], '', '', '', $time == true );
 			$zoomIcon = '';
 		} elseif ( !$thumb ) {
 			$s .= wfMessage( 'thumbnail_error', '' )->escaped();
 			$zoomIcon = '';
 		} else {
 			if ( !$noscale && !$manualthumb ) {
-				self::processResponsiveImages( $file, $thumb, $hp );
+				self::processResponsiveImages( $file, $thumb, $handlerParams );
 			}
 			$params = [
-				'alt' => $fp['alt'],
-				'title' => $fp['title'],
-				'img-class' => ( isset( $fp['class'] ) && $fp['class'] !== ''
-					? $fp['class'] . ' '
+				'alt' => $frameParams['alt'],
+				'title' => $frameParams['title'],
+				'img-class' => ( isset( $frameParams['class'] ) && $frameParams['class'] !== ''
+					? $frameParams['class'] . ' '
 					: '' ) . 'thumbimage'
 			];
-			$params = self::getImageLinkMTOParams( $fp, $query ) + $params;
+			$params = self::getImageLinkMTOParams( $frameParams, $query ) + $params;
 			$s .= $thumb->toHtml( $params );
-			if ( isset( $fp['framed'] ) ) {
+			if ( isset( $frameParams['framed'] ) ) {
 				$zoomIcon = "";
 			} else {
 				$zoomIcon = Html::rawElement( 'div', [ 'class' => 'magnify' ],
@@ -735,7 +731,7 @@ class Linker {
 						"" ) );
 			}
 		}
-		$s .= '  <div class="thumbcaption">' . $zoomIcon . $fp['caption'] . "</div></div></div>";
+		$s .= '  <div class="thumbcaption">' . $zoomIcon . $frameParams['caption'] . "</div></div></div>";
 		return str_replace( "\n", ' ', $s );
 	}
 
