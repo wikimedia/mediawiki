@@ -496,12 +496,12 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		if ( $tagFilter ) {
 			$filterSelection = Html::rawElement(
-				'td',
+				'span',
 				[],
 				implode( '&#160;', $tagFilter )
-			);
+			) . "\n<br />\n";
 		} else {
-			$filterSelection = Html::rawElement( 'td', [ 'colspan' => 2 ], '' );
+			$filterSelection = Html::rawElement( 'span', [ ], '' );
 		}
 
 		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
@@ -542,13 +542,13 @@ class SpecialContributions extends IncludableSpecialPage {
 		);
 
 		$targetSelection = Html::rawElement(
-			'td',
-			[ 'colspan' => 2 ],
+			'span',
+			[ ],
 			$labelNewbies . '<br />' . $labelUsername . ' ' . $input . ' '
 		);
 
 		$namespaceSelection = Xml::tags(
-			'td',
+			'span',
 			[],
 			Xml::label(
 				$this->msg( 'namespace' )->text(),
@@ -647,12 +647,12 @@ class SpecialContributions extends IncludableSpecialPage {
 		);
 
 		$extraOptions = Html::rawElement(
-			'td',
-			[ 'colspan' => 2 ],
+			'div',
+			[ 'style' => 'word-wrap: break-word; display: inline-block;' ],
 			implode( '', $filters )
 		);
 
-		$dateSelectionAndSubmit = Xml::tags( 'td', [ 'colspan' => 2 ],
+		$dateSelectionAndSubmit = Xml::tags( 'span', [],
 			Xml::dateMenu(
 				$this->opts['year'] === '' ? MWTimestamp::getInstance()->format( 'Y' ) : $this->opts['year'],
 				$this->opts['month']
@@ -663,13 +663,15 @@ class SpecialContributions extends IncludableSpecialPage {
 				)
 		);
 
-		$form .= Xml::fieldset( $this->msg( 'sp-contributions-search' )->text() );
-		$form .= Html::rawElement( 'table', [ 'class' => 'mw-contributions-table' ], "\n" .
-			Html::rawElement( 'tr', [], $targetSelection ) . "\n" .
-			Html::rawElement( 'tr', [], $namespaceSelection ) . "\n" .
-			Html::rawElement( 'tr', [], $filterSelection ) . "\n" .
-			Html::rawElement( 'tr', [], $extraOptions ) . "\n" .
-			Html::rawElement( 'tr', [], $dateSelectionAndSubmit ) . "\n"
+		$separator = "\n<br />\n";
+		$form .= Xml::fieldset(
+			$this->msg( 'sp-contributions-search' )->text(),
+			$targetSelection . $separator .
+			$filterSelection .
+			$extraOptions . $separator . "\n<hr />\n" .
+			$namespaceSelection . $separator .
+			$dateSelectionAndSubmit . $separator,
+			[ 'class' => 'mw-contributions-table' ]
 		);
 
 		$explain = $this->msg( 'sp-contributions-explain' );
