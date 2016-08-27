@@ -41,6 +41,9 @@ abstract class DatabaseBase implements IDatabase {
 	const PING_TTL = 1.0;
 	const PING_QUERY = 'SELECT 1 AS ping';
 
+	const SLOW_WRITE_SEC = .500;
+	const SMALL_WRITE_ROWS = 100;
+
 	/** @var string SQL query */
 	protected $mLastQuery = '';
 	/** @var bool */
@@ -1005,16 +1008,18 @@ abstract class DatabaseBase implements IDatabase {
 	 * queries, like inserting a row can take a long time due to row locking. This method
 	 * uses some simple heuristics to discount those cases.
 	 *
-	 * @param string $sql
+	 * @param string $sql A SQL write query
 	 * @param float $runtime Total runtime, including RTT
 	 */
 	private function updateTrxWriteQueryTime( $sql, $runtime ) {
 		$isSane = true;
-		if ( $runtime > .500 ) {
+		if ( $runtime > self::SLOW_WRITE_SEC ) {
 			$verb = substr( $sql, 0, strcspn( $sql, " \t\r\n" ) );
 			// insert(), upsert(), replace() are fast unless bulky in size or blocked on locks
-			if ( $verb === 'INSERT ' || $verb === 'REPLACE ' ) {
-				$isSane = ( $this->affectedRows() > 50 );
+			if ( $verb === 'INSERT' ) {
+				$isSane = $this->affectedRows() > self::SMALL_WRITE_ROWS;
+			} elseif ( $verb === 'REPLACE ' ) {
+				$isSane = $this->affectedRows() > self::SMALL_WRITE_ROWS / 2;
 			}
 		}
 
@@ -2401,7 +2406,45 @@ abstract class DatabaseBase implements IDatabase {
 		return $this->query( $sql, $fname );
 	}
 
-	public function insertSelect( $destTable, $srcTable, $varMap, $conds,
+	public function insertSelect(
+		$destTable, $srcTable, $varMap, $conds,
+		$fname = __METHOD__, $insertOptions = [], $selectOptions = []
+	) {
+		global $wgCommandLineMode;
+
+		if ( $wgCommandLineMode ) {
+			// For massive migrations with downtime, we don't want to select everything
+			// into memory and OOM, so do all this native on the server side if possible.
+			return $this->nativeInsertSelect(
+				$destTable,
+				$srcTable,
+				$varMap,
+				$conds,
+				$fname,
+				$insertOptions,
+				$selectOptions
+			);
+		}
+
+		// For web requests, do a locking SELECT and then INSERT. This puts the SELECT burden
+		// on only the master (without needing row-based-replication). It also makes it easy to
+		// know how big the INSERT is going to be.
+		$fields = [];
+		foreach ( $varMap as $dstColumn => $sourceColumnOrSql ) {
+			$fields[] = $this->fieldNameWithAlias( $sourceColumnOrSql, $dstColumn );
+		}
+		$selectOptions[] = 'FOR UPDATE';
+		$res = $this->select( $srcTable, implode( ',', $fields ), $conds, $fname, $selectOptions );
+
+		$rows = [];
+		foreach ( $res as $row ) {
+			$rows[] = (array)$row;
+		}
+
+		return $this->insert( $destTable, $rows, $fname, $insertOptions );
+	}
+
+	public function nativeInsertSelect( $destTable, $srcTable, $varMap, $conds,
 		$fname = __METHOD__,
 		$insertOptions = [], $selectOptions = []
 	) {
