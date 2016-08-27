@@ -129,6 +129,9 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 
 	/**
 	 * Make this session not be persisted across requests
+	 *
+	 * This does not delete any backend data but detaches it from the current request
+	 * (e.g. deletes cookies).
 	 */
 	public function unpersist() {
 		$this->backend->unpersist();
@@ -602,7 +605,7 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/**
-	 * Save the session
+	 * Save and persist session data
 	 */
 	public function save() {
 		$this->backend->save();

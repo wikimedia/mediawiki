@@ -27,27 +27,48 @@ use StatusValue;
 use User;
 
 /**
- * A primary authentication provider determines which user is trying to log in.
+ * A primary authentication provider determines is responsible for associating
+ * the submitted authentication data with a MediaWiki account.
  *
- * A PrimaryAuthenticationProvider is used as part of presenting a login form
- * to authenticate a user. In particular, the PrimaryAuthenticationProvider
- * takes form data and determines the authenticated user (if any) corresponds
- * to that form data. It might do this on the basis of a username and password
- * in that data, or by interacting with an external authentication service
- * (e.g. using OpenID), or by some other mechanism.
+ * When multiple primary authentication providers are configured for a site, they
+ * act as alternatives; the first one that recognizes the data will handle it,
+ * and further primary providers are not called (although they all get a chance
+ * to prevent actions).
  *
- * A PrimaryAuthenticationProvider would not be appropriate for something like
+ * For login, the PrimaryAuthenticationProvider takes form data and determines
+ * which authenticated user (if any) corresponds to that form data. It might
+ * do this on the basis of a username and password in that data, or by
+ * interacting with an external authentication service (e.g. using OpenID),
+ * or by some other mechanism.
+ *
+ * (A PrimaryAuthenticationProvider would not be appropriate for something like
  * HTTP authentication, OAuth, or SSL client certificates where each HTTP
  * request contains all the information needed to identify the user. In that
- * case you'll want to be looking at a \\MediaWiki\\Session\\SessionProvider
- * instead.
+ * case you'll want to be looking at a \MediaWiki\Session\SessionProvider
+ * instead.)
+ *
+ * For account creation, the PrimaryAuthenticationProvider takes form data and
+ * stores some authentication details which will allow it to verify a login by
+ * that user in the future. This might involve saving it in the database in
+ * a table that can be joined to the user table, or sending it to some
+ * external service for account creation, or something else.
+ * Not all primary authentication providers need to handle account creation;
+ * typically, a provider would either create or link accounts, but not both.
+ *
+ * For account linking, the PrimaryAuthenticationProvider verifies the user's
+ * identity at some external service (typically by redirecting the user and
+ * asking the external service to verify) and then records which local account
+ * is linked to which remote accounts (which should be a one-to-many relation).
+ * It should keep track of this and be able to enumerate linked accounts via
+ * getAuthenticationRequests().
  *
  * This interface also provides methods for changing authentication data such
- * as passwords and for creating new users who can later be authenticated with
- * this provider.
+ * as passwords, and callbacks that are invoked after login / account creation
+ * / account linking succeeded or failed.
  *
  * @ingroup Auth
  * @since 1.27
+ * @see https://www.mediawiki.org/wiki/Manual:SessionManager_and_AuthManager
  */
 interface PrimaryAuthenticationProvider extends AuthenticationProvider {
 	/** Provider can create accounts */
@@ -93,16 +114,25 @@ interface PrimaryAuthenticationProvider extends AuthenticationProvider {
 
 	/**
 	 * Post-login callback
+	 *
+	 * This will be called at the end of any login attempt, regardless of whether this provider was
+	 * the one that handled it. It will not be called for unfinished login attempts that fail by
+	 * the session timing out.
+	 *
 	 * @param User|null $user User that was attempted to be logged in, if known.
 	 *   This may become a "UserValue" in the future, or User may be refactored
 	 *   into such.
 	 * @param AuthenticationResponse $response Authentication response that will be returned
+	 *   (PASS or FAIL)
 	 */
 	public function postAuthentication( $user, AuthenticationResponse $response );
 
 	/**
 	 * Test whether the named user exists
-	 * @param string $username
+	 *
+	 * Single sign-on providers can use this to preserve a username for autocreation.
+	 *
+	 * @param string $username MediaWiki username
 	 * @param int $flags Bitfield of User:READ_* constants
 	 * @return bool
 	 */
@@ -110,7 +140,11 @@ interface PrimaryAuthenticationProvider extends AuthenticationProvider {
 
 	/**
 	 * Test whether the named user can authenticate with this provider
-	 * @param string $username
+	 *
+	 * Should return true if the provider has any data for this user which can be used to
+	 * authenticate it, even if the user is temporarily prevented from authentication somehow.
+	 *
+	 * @param string $username MediaWiki username
 	 * @return bool
 	 */
 	public function testUserCanAuthenticate( $username );
@@ -184,6 +218,10 @@ interface PrimaryAuthenticationProvider extends AuthenticationProvider {
 	 * If $req was returned for AuthManager::ACTION_REMOVE, the corresponding
 	 * credentials should no longer result in a successful login.
 	 *
+	 * It can be assumed that providerAllowsAuthenticationDataChange with $checkData === true
+	 * was called before this, and passed. This method should never fail (other than throwing an
+	 * exception).
+	 *
 	 * @param AuthenticationRequest $req
 	 */
 	public function providerChangeAuthenticationData( AuthenticationRequest $req );
@@ -249,7 +287,8 @@ interface PrimaryAuthenticationProvider extends AuthenticationProvider {
 	 * Post-creation callback
 	 *
 	 * Called after the user is added to the database, before secondary
-	 * authentication providers are run.
+	 * authentication providers are run. Only called if this provider was the one that issued
+	 * a PASS.
 	 *
 	 * @param User $user User being created (has been added to the database now).
 	 *   This may become a "UserValue" in the future, or User may be refactored
@@ -266,7 +305,10 @@ interface PrimaryAuthenticationProvider extends AuthenticationProvider {
 	/**
 	 * Post-creation callback
 	 *
-	 * Called when the account creation process ends.
+	 * This will be called at the end of any account creation attempt, regardless of whether this
+	 * provider was the one that handled it. It will not be called if the account creation process
+	 * results in a session timeout (possibly after a successful user creation, while a secondary
+	 * provider is waiting for a response).
 	 *
 	 * @param User $user User that was attempted to be created.
 	 *   This may become a "UserValue" in the future, or User may be refactored
@@ -274,6 +316,7 @@ interface PrimaryAuthenticationProvider extends AuthenticationProvider {
 	 * @param User $creator User doing the creation. This may become a
 	 *   "UserValue" in the future, or User may be refactored into such.
 	 * @param AuthenticationResponse $response Authentication response that will be returned
+	 *   (PASS or FAIL)
 	 */
 	public function postAccountCreation( $user, $creator, AuthenticationResponse $response );
 
@@ -340,10 +383,15 @@ interface PrimaryAuthenticationProvider extends AuthenticationProvider {
 
 	/**
 	 * Post-link callback
+	 *
+	 * This will be called at the end of any account linking attempt, regardless of whether this
+	 * provider was the one that handled it.
+	 *
 	 * @param User $user User that was attempted to be linked.
 	 *   This may become a "UserValue" in the future, or User may be refactored
 	 *   into such.
 	 * @param AuthenticationResponse $response Authentication response that will be returned
+	 *   (PASS or FAIL)
 	 */
 	public function postAccountLink( $user, AuthenticationResponse $response );
 

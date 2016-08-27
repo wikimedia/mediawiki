@@ -37,8 +37,22 @@ use WebRequest;
  * In the future, it may also serve as the entry point to the authorization
  * system.
  *
+ * To perform a login, user creation or account linking call getAuthenticationRequests(), populate
+ * the requests with data (probably by using them to build some sort of form and have the user
+ * fill it), and pass them to the appropriate begin* method. You might receive a success/failure
+ * response, or more requests to fill, in which case you should submit them to the appropriate
+ * continue* method and repeat that until you get a success/failure response. AuthManager will
+ * use the session to maintain internal state during the process.
+ *
+ * To perform an authentication data change call getAuthenticationRequests(), select a single
+ * request, populate it, and pass it to allowsAuthenticationDataChange() and then
+ * changeAuthenticationData().
+ *
+ * To integrate some authentication method, implement an AuthenticationProvider.
+ *
  * @ingroup Auth
  * @since 1.27
+ * @see https://www.mediawiki.org/wiki/Manual:SessionManager_and_AuthManager
  */
 class AuthManager implements LoggerAwareInterface {
 	/** Log in with an existing (not necessarily local) user */
@@ -737,7 +751,10 @@ class AuthManager implements LoggerAwareInterface {
 	/**
 	 * Determine whether a username can authenticate
 	 *
-	 * @param string $username
+	 * This is mainly for internal purposes and only takes authentication data into account,
+	 * not things like blocks that can change without the authentication system being aware.
+	 *
+	 * @param string $username MediaWiki username
 	 * @return bool
 	 */
 	public function userCanAuthenticate( $username ) {
@@ -832,6 +849,9 @@ class AuthManager implements LoggerAwareInterface {
 	 * If $req was returned for AuthManager::ACTION_REMOVE, using $req should
 	 * no longer result in a successful login.
 	 *
+	 * This method should only be called if allowsAuthenticationDataChange( $req, true )
+	 * returned success.
+	 *
 	 * @param AuthenticationRequest $req
 	 */
 	public function changeAuthenticationData( AuthenticationRequest $req ) {
@@ -871,7 +891,7 @@ class AuthManager implements LoggerAwareInterface {
 
 	/**
 	 * Determine whether a particular account can be created
-	 * @param string $username
+	 * @param string $username MediaWiki username
 	 * @param array $options
 	 *  - flags: (int) Bitfield of User:READ_* constants, default User::READ_NORMAL
 	 *  - creating: (bool) For internal use only. Never specify this.
@@ -1474,6 +1494,13 @@ class AuthManager implements LoggerAwareInterface {
 
 	/**
 	 * Auto-create an account, and log into that account
+	 *
+	 * PrimaryAuthenticationProviders can invoke this method by returning a PASS from
+	 * beginPrimaryAuthentication/continuePrimaryAuthentication with the username of a
+	 * non-existing user. SessionProviders can invoke it by returning a SessionInfo with
+	 * the username of a non-existing user from provideSessionInfo(). Calling this method
+	 * explicitly (e.g. from a maintenance script) is also fine.
+	 *
 	 * @param User $user User to auto-create
 	 * @param string $source What caused the auto-creation? This must be the ID
 	 *  of a PrimaryAuthenticationProvider or the constant self::AUTOCREATE_SOURCE_SESSION.
@@ -2310,6 +2337,7 @@ class AuthManager implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Log the user in
 	 * @param User $user
 	 * @param bool|null $remember
 	 */
@@ -2374,6 +2402,7 @@ class AuthManager implements LoggerAwareInterface {
 
 	/**
 	 * Reset the internal caching for unit testing
+	 * @protected Unit tests only
 	 */
 	public static function resetCache() {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {

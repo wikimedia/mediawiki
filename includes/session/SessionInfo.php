@@ -73,7 +73,8 @@ class SessionInfo {
 	 *    Defaults to true.
 	 *  - forceHTTPS: (bool) Whether to force HTTPS for this session
 	 *  - metadata: (array) Provider metadata, to be returned by
-	 *    Session::getProviderMetadata().
+	 *    Session::getProviderMetadata(). See SessionProvider::mergeMetadata()
+	 *    and SessionProvider::refreshSessionInfo().
 	 *  - idIsSafe: (bool) Set true if the 'id' did not come from the user.
 	 *    Generally you'll use this from SessionProvider::newEmptySession(),
 	 *    and not from any other method.
@@ -200,7 +201,8 @@ class SessionInfo {
 	 * The normal behavior is to discard the SessionInfo if validation against
 	 * the data stored in the session store fails. If this returns true,
 	 * SessionManager will instead delete the session store data so this
-	 * SessionInfo may still be used.
+	 * SessionInfo may still be used. This is important for providers which use
+	 * deterministic IDs and so cannot just generate a random new one.
 	 *
 	 * @return bool
 	 */

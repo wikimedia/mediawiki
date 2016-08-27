@@ -27,6 +27,10 @@ use Message;
 
 /**
  * This is a value object to hold authentication response data
+ *
+ * An AuthenticationResponse represents both the status of the authentication
+ * (success, failure, in progress) and it its state (what data is needed to continue).
+ *
  * @ingroup Auth
  * @since 1.27
  */
@@ -39,7 +43,8 @@ class AuthenticationResponse {
 
 	/** Indicates that third-party authentication succeeded but no user exists.
 	 * Either treat this like a UI response or pass $this->createRequest to
-	 * AuthManager::beginCreateAccount().
+	 * AuthManager::beginCreateAccount(). For use by AuthManager only (providers
+	 * should just return a PASS with no username).
 	 */
 	const RESTART = 'RESTART';
 
@@ -67,7 +72,9 @@ class AuthenticationResponse {
 
 	/**
 	 * @var AuthenticationRequest[] Needed AuthenticationRequests to continue
-	 * after a UI or REDIRECT response
+	 * after a UI or REDIRECT response. This plays the same role when continuing
+	 * authentication as AuthManager::getAuthenticationRequests() does when
+	 * beginning it.
 	 */
 	public $neededRequests = [];
 
@@ -84,35 +91,40 @@ class AuthenticationResponse {
 	 * @var AuthenticationRequest|null
 	 *
 	 * Returned with a PrimaryAuthenticationProvider login FAIL or a PASS with
-	 * no username, this holds a request that should result in a PASS when
+	 * no username, this can be set to a request that should result in a PASS when
 	 * passed to that provider's PrimaryAuthenticationProvider::beginPrimaryAccountCreation().
+	 * The client will be able to send that back for expedited account creation where only
+	 * the username needs to be filled.
 	 *
 	 * Returned with an AuthManager login FAIL or RESTART, this holds a
 	 * CreateFromLoginAuthenticationRequest that may be passed to
 	 * AuthManager::beginCreateAccount(), possibly in place of any
 	 * "primary-required" requests. It may also be passed to
-	 * AuthManager::beginAuthentication() to preserve state.
+	 * AuthManager::beginAuthentication() to preserve the list of
+	 * accounts which can be linked after success (see $linkRequest).
 	 */
 	public $createRequest = null;
 
 	/**
 	 * @var AuthenticationRequest|null Returned with a PrimaryAuthenticationProvider
-	 *  login PASS with no username, this holds a request to pass to
-	 *  AuthManager::changeAuthenticationData() to link the account once the
-	 *  local user has been determined.
+	 *  login PASS with no username, the request this holds will be automatically passed to
+	 *  AuthManager::changeAuthenticationData() once the local user has been determined.
+	 *  The provider should handle that authentication data change by doing the linking.
 	 */
 	public $linkRequest = null;
 
 	/**
 	 * @var AuthenticationRequest|null Returned with an AuthManager account
 	 *  creation PASS, this holds a request to pass to AuthManager::beginAuthentication()
-	 *  to immediately log into the created account.
+	 *  to immediately log into the created account. All provider methods except
+	 *   postAuthentication will be skipped.
 	 */
 	public $loginRequest = null;
 
 	/**
 	 * @param string|null $username Local username
 	 * @return AuthenticationResponse
+	 * @see AuthenticationResponse::PASS
 	 */
 	public static function newPass( $username = null ) {
 		$ret = new AuthenticationResponse;
@@ -124,6 +136,7 @@ class AuthenticationResponse {
 	/**
 	 * @param Message $msg
 	 * @return AuthenticationResponse
+	 * @see AuthenticationResponse::FAIL
 	 */
 	public static function newFail( Message $msg ) {
 		$ret = new AuthenticationResponse;
@@ -135,6 +148,7 @@ class AuthenticationResponse {
 	/**
 	 * @param Message $msg
 	 * @return AuthenticationResponse
+	 * @see AuthenticationResponse::RESTART
 	 */
 	public static function newRestart( Message $msg ) {
 		$ret = new AuthenticationResponse;
@@ -145,6 +159,7 @@ class AuthenticationResponse {
 
 	/**
 	 * @return AuthenticationResponse
+	 * @see AuthenticationResponse::ABSTAIN
 	 */
 	public static function newAbstain() {
 		$ret = new AuthenticationResponse;
@@ -156,6 +171,7 @@ class AuthenticationResponse {
 	 * @param AuthenticationRequest[] $reqs AuthenticationRequests needed to continue
 	 * @param Message $msg
 	 * @return AuthenticationResponse
+	 * @see AuthenticationResponse::UI
 	 */
 	public static function newUI( array $reqs, Message $msg ) {
 		if ( !$reqs ) {
@@ -174,6 +190,7 @@ class AuthenticationResponse {
 	 * @param string $redirectTarget URL
 	 * @param mixed $redirectApiData Data suitable for adding to an ApiResult
 	 * @return AuthenticationResponse
+	 * @see AuthenticationResponse::REDIRECT
 	 */
 	public static function newRedirect( array $reqs, $redirectTarget, $redirectApiData = null ) {
 		if ( !$reqs ) {
