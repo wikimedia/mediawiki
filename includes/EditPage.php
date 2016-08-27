@@ -2494,8 +2494,7 @@ class EditPage {
 		}
 
 		if ( !$this->isSupportedContentModel( $content->getModel() ) ) {
-			throw new MWException( 'This content model is not supported: '
-				. ContentHandler::getLocalizedName( $content->getModel() ) );
+			throw new MWException( 'This content model is not supported: ' . $content->getModel() );
 		}
 
 		return $content->serialize( $this->contentFormat );
@@ -2526,8 +2525,7 @@ class EditPage {
 			$this->contentModel, $this->contentFormat );
 
 		if ( !$this->isSupportedContentModel( $content->getModel() ) ) {
-			throw new MWException( 'This content model is not supported: '
-				. ContentHandler::getLocalizedName( $content->getModel() ) );
+			throw new MWException( 'This content model is not supported: ' . $content->getModel() );
 		}
 
 		return $content;
