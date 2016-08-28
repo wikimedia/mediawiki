@@ -480,6 +480,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 
 		DeferredUpdates::clearPendingUpdates();
+		DeferredUpdates::installDBListener( wfGetLB() );
 		ObjectCache::getMainWANInstance()->clearProcessCache();
 
 		ob_start( 'MediaWikiTestCase::wfResetOutputBuffersBarrier' );
