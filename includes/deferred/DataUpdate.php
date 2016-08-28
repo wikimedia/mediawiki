@@ -46,6 +46,14 @@ abstract class DataUpdate implements DeferrableUpdate {
 	}
 
 	/**
+	 * @return bool Whether this should be in the DataUpdate transaction round
+	 * @since 1.28
+	 */
+	public function useTransaction() {
+		return false;
+	}
+
+	/**
 	 * Begin an appropriate transaction, if any.
 	 * This default implementation does nothing.
 	 */
