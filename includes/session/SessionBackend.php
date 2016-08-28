@@ -716,6 +716,8 @@ final class SessionBackend {
 			}
 		}
 
+		$flags = $this->persist ? 0 : CachedBagOStuff::WRITE_CACHE_ONLY;
+		$flags |= CachedBagOStuff::WRITE_SYNC; // write to all datacenters
 		$this->store->set(
 			wfMemcKey( 'MWSession', (string)$this->id ),
 			[
@@ -723,7 +725,7 @@ final class SessionBackend {
 				'metadata' => $metadata,
 			],
 			$metadata['expires'],
-			$this->persist ? 0 : CachedBagOStuff::WRITE_CACHE_ONLY
+			$flags
 		);
 
 		$this->metaDirty = false;
