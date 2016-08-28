@@ -2262,7 +2262,7 @@ abstract class DatabaseBase implements IDatabase {
 			throw $e;
 		}
 		if ( $useTrx ) {
-			$this->commit( $fname, self::TRANSACTION_INTERNAL );
+			$this->commit( $fname, self::FLUSHING_INTERNAL );
 		}
 
 		return $ok;

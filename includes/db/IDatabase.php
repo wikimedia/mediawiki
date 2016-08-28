@@ -42,7 +42,7 @@ interface IDatabase {
 
 	/** @var string Transaction is requested by regular caller outside of the DB layer */
 	const TRANSACTION_EXPLICIT = '';
-	/** @var string Transaction is requested interally via DBO_TRX/startAtomic() */
+	/** @var string Transaction is requested internally via DBO_TRX/startAtomic() */
 	const TRANSACTION_INTERNAL = 'implicit';
 
 	/** @var string Transaction operation comes from service managing all DBs */
