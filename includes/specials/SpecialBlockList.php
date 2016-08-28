@@ -124,6 +124,10 @@ class SpecialBlockList extends SpecialPage {
 			$conds['ipb_deleted'] = 0;
 		}
 
+		$dbr = wfGetDB( DB_SLAVE );
+		# Filter out expired rows
+		$conds[] = 'ipb_expiry > ' . $dbr->addQuotes( $dbr->timestamp() );
+
 		if ( $this->target !== '' ) {
 			list( $target, $type ) = Block::parseTarget( $this->target );
 
@@ -136,7 +140,6 @@ class SpecialBlockList extends SpecialPage {
 				case Block::TYPE_IP:
 				case Block::TYPE_RANGE:
 					list( $start, $end ) = IP::parseRange( $target );
-					$dbr = wfGetDB( DB_SLAVE );
 					$conds[] = $dbr->makeList(
 						[
 							'ipb_address' => $target,

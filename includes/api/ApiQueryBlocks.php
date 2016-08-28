@@ -173,10 +173,8 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$this->addWhereFld( 'ipb_deleted', 0 );
 		}
 
-		// Purge expired entries on one in every 10 queries
-		if ( !mt_rand( 0, 10 ) ) {
-			Block::purgeExpired();
-		}
+		# Filter out expired rows
+		$this->addWhere( 'ipb_expiry > ' . $db->addQuotes( $db->timestamp() ) );
 
 		$res = $this->select( __METHOD__ );
 
