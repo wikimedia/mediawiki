@@ -72,6 +72,8 @@ class LoadBalancer {
 	private $connsOpened = 0;
 	/** @var string|bool String if a requested DBO_TRX transaction round is active */
 	private $trxRoundId = false;
+	/** @var array[] Map of (name => callable) */
+	private $trxRecurringCallbacks = [];
 
 	/** @var integer Warn when this many connection are held */
 	const CONN_HELD_WARN_THRESHOLD = 10;
@@ -869,6 +871,12 @@ class LoadBalancer {
 			$this->applyTransactionRoundFlags( $db );
 		}
 
+		if ( $server['serverIndex'] === $this->getWriterIndex() ) {
+			foreach ( $this->trxRecurringCallbacks as $name => $callback ) {
+				$db->setTransactionListener( $name, $callback );
+			}
+		}
+
 		return $db;
 	}
 
@@ -1449,10 +1457,10 @@ class LoadBalancer {
 		} elseif ( $this->getLaggedSlaveMode( $wiki ) ) {
 			if ( $this->slavesDownMode ) {
 				return 'The database has been automatically locked ' .
-					'until the slave database servers become available';
+				'until the slave database servers become available';
 			} else {
 				return 'The database has been automatically locked ' .
-					'while the slave database servers catch up to the master.';
+				'while the slave database servers catch up to the master.';
 			}
 		} elseif ( $this->masterRunningReadOnly( $wiki, $conn ) ) {
 			return 'The database master is running in read-only mode.';
@@ -1665,5 +1673,26 @@ class LoadBalancer {
 	 */
 	public function clearLagTimeCache() {
 		$this->getLoadMonitor()->clearCaches();
+	}
+
+	/**
+	 * Set a callback via DatabaseBase::setTransactionListener() on
+	 * all current and future master connections of this load balancer
+	 *
+	 * @param string $name Callback name
+	 * @param callable|null $callback
+	 * @since 1.28
+	 */
+	public function setTransactionListener( $name, callable $callback = null ) {
+		if ( $callback ) {
+			$this->trxRecurringCallbacks[$name] = $callback;
+		} else {
+			unset( $this->trxRecurringCallbacks[$name] );
+		}
+		$this->forEachOpenMasterConnection(
+			function ( DatabaseBase $conn ) use ( $name, $callback ) {
+				$conn->setTransactionListener( $name, $callback );
+			}
+		);
 	}
 }
