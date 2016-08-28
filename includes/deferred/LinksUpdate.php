@@ -162,14 +162,16 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	 * @note: this is managed by DeferredUpdates::execute(). Do not run this in a transaction.
 	 */
 	public function doUpdate() {
-		// Make sure all links update threads see the changes of each other.
-		// This handles the case when updates have to batched into several COMMITs.
-		$scopedLock = self::acquirePageLock( $this->getDB(), $this->mId );
+		if ( $this->ticket ) {
+			// Make sure all links update threads see the changes of each other.
+			// This handles the case when updates have to batched into several COMMITs.
+			$scopedLock = self::acquirePageLock( $this->getDB(), $this->mId );
+		}
 
 		Hooks::run( 'LinksUpdate', [ &$this ] );
 		$this->doIncrementalUpdate();
 
-		// Commit and release the lock
+		// Commit and release the lock (if set)
 		ScopedCallback::consume( $scopedLock );
 		// Run post-commit hooks without DBO_TRX
 		$this->getDB()->onTransactionIdle( function() {

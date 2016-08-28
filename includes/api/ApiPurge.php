@@ -91,7 +91,9 @@ class ApiPurge extends ApiBase {
 						# Update the links tables
 						$updates = $content->getSecondaryDataUpdates(
 							$title, null, $forceRecursiveLinkUpdate, $p_result );
-						DataUpdate::runUpdates( $updates );
+						foreach ( $updates as $update ) {
+							DeferredUpdates::addUpdate( $update, DeferredUpdates::PRESEND );
+						}
 
 						$r['linkupdate'] = true;
 
