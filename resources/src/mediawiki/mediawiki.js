@@ -1068,11 +1068,11 @@
 						j -= 1;
 						try {
 							if ( hasErrors ) {
-								if ( $.isFunction( job.error ) ) {
+								if ( typeof job.error === 'function' ) {
 									job.error( new Error( 'Module ' + module + ' has failed dependencies' ), [ module ] );
 								}
 							} else {
-								if ( $.isFunction( job.ready ) ) {
+								if ( typeof job.ready === 'function' ) {
 									job.ready();
 								}
 							}
@@ -1131,7 +1131,7 @@
 				}
 
 				// Resolves dynamic loader function and replaces it with its own results
-				if ( $.isFunction( registry[ module ].dependencies ) ) {
+				if ( typeof registry[ module ].dependencies === 'function' ) {
 					registry[ module ].dependencies = registry[ module ].dependencies();
 					// Ensures the module's dependencies are always in an array
 					if ( typeof registry[ module ].dependencies !== 'object' ) {
@@ -1309,7 +1309,7 @@
 						legacyWait.always( function () {
 							if ( $.isArray( script ) ) {
 								nestedAddScript( script, markModuleReady, 0 );
-							} else if ( $.isFunction( script ) ) {
+							} else if ( typeof script === 'function' ) {
 								// Pass jQuery twice so that the signature of the closure which wraps
 								// the script can bind both '$' and 'jQuery'.
 								script( $, $, mw.loader.require, registry[ module ].module );
@@ -1547,13 +1547,18 @@
 			 * @param {Array} modules Modules array
 			 */
 			function resolveIndexedDependencies( modules ) {
-				$.each( modules, function ( idx, module ) {
-					if ( module[ 2 ] ) {
-						module[ 2 ] = $.map( module[ 2 ], function ( dep ) {
-							return typeof dep === 'number' ? modules[ dep ][ 0 ] : dep;
-						} );
+				var i, j, deps;
+				function resolveIndex( dep ) {
+					return typeof dep === 'number' ? modules[ dep ][ 0 ] : dep;
+				}
+				for ( i = 0; i < modules.length; i++ ) {
+					deps = modules[ i ][ 2 ];
+					if ( deps ) {
+						for ( j = 0; j < deps.length; j++ ) {
+							deps[ j ] = resolveIndex( deps[ j ] );
+						}
 					}
-				} );
+				}
 			}
 
 			/**
@@ -1798,7 +1803,7 @@
 				 * @param {string} [skip=null] Script body of the skip function
 				 */
 				register: function ( module, version, dependencies, group, source, skip ) {
-					var i;
+					var i, deps;
 					// Allow multiple registration
 					if ( typeof module === 'object' ) {
 						resolveIndexedDependencies( module );
@@ -1816,6 +1821,13 @@
 					if ( hasOwn.call( registry, module ) ) {
 						throw new Error( 'module already registered: ' + module );
 					}
+					if ( typeof dependencies === 'string' ) {
+						// A single module name
+						deps = [ dependencies ];
+					} else if ( typeof dependencies === 'object' || typeof dependencies === 'function' ) {
+						// Array of module names or a function that returns an array
+						deps = dependencies;
+					}
 					// List the module as registered
 					registry[ module ] = {
 						// Exposed to execute() for mw.loader.implement() closures.
@@ -1824,20 +1836,12 @@
 							exports: {}
 						},
 						version: version !== undefined ? String( version ) : '',
-						dependencies: [],
+						dependencies: deps || [],
 						group: typeof group === 'string' ? group : null,
 						source: typeof source === 'string' ? source : 'local',
 						state: 'registered',
 						skip: typeof skip === 'string' ? skip : null
 					};
-					if ( typeof dependencies === 'string' ) {
-						// Allow dependencies to be given as a single module name
-						registry[ module ].dependencies = [ dependencies ];
-					} else if ( typeof dependencies === 'object' || $.isFunction( dependencies ) ) {
-						// Allow dependencies to be given as an array of module names
-						// or a function which returns an array
-						registry[ module ].dependencies = dependencies;
-					}
 				},
 
 				/**
@@ -2023,14 +2027,11 @@
 					if ( !hasOwn.call( registry, module ) ) {
 						mw.loader.register( module );
 					}
-					if ( $.inArray( state, [ 'ready', 'error', 'missing' ] ) !== -1
-						&& registry[ module ].state !== state ) {
+					registry[ module ].state = state;
+					if ( $.inArray( state, [ 'ready', 'error', 'missing' ] ) !== -1 ) {
 						// Make sure pending modules depending on this one get executed if their
 						// dependencies are now fulfilled!
-						registry[ module ].state = state;
 						handlePending( module );
-					} else {
-						registry[ module ].state = state;
 					}
 				},
 
@@ -2275,6 +2276,7 @@
 							// Unversioned, private, or site-/user-specific
 							( !descriptor.version || $.inArray( descriptor.group, [ 'private', 'user' ] ) !== -1 ) ||
 							// Partial descriptor
+							// (e.g. skipped module, or style module with state=ready)
 							$.inArray( undefined, [ descriptor.script, descriptor.style,
 									descriptor.messages, descriptor.templates ] ) !== -1
 						) {
