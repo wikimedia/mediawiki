@@ -477,6 +477,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			while ( $this->db->trxLevel() > 0 ) {
 				$this->db->rollback( __METHOD__, 'flush' );
 			}
+			DeferredUpdates::installDBListener( wfGetLB() );
 		}
 
 		DeferredUpdates::clearPendingUpdates();
