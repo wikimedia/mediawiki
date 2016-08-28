@@ -30,8 +30,11 @@ use MediaWiki\MediaWikiServices;
  * run synchronously. If such an update works via queueing, it will be more likely to complete by
  * the time the client makes their next request after this one.
  *
- * In CLI mode, updates are only deferred until the current wiki has no DB write transaction
- * active within this request.
+ * In CLI mode, updates run immediately if no DB writes are pending. Otherwise, they run when:
+ *   - a) Any waitForReplication() call if no writes are pending on any DB
+ *   - b) A commit happens on Maintenance::getDB( DB_MASTER ) if no writes are pending on any DB
+ *   - c) EnqueueableDataUpdate tasks may enqueue on commit of Maintenance::getDB( DB_MASTER )
+ *   - d) At the completion of Maintenance::execute()
  *
  * When updates are deferred, they use a FIFO queue (one for pre-send and one for post-send).
  *
@@ -43,23 +46,44 @@ class DeferredUpdates {
 	/** @var DeferrableUpdate[] Updates to be deferred until after request end */
 	private static $postSendUpdates = [];
 
-	const ALL = 0; // all updates
+	const ALL = 0; // all updates; in web requests, use only after flushing the output buffer
 	const PRESEND = 1; // for updates that should run before flushing output buffer
 	const POSTSEND = 2; // for updates that should run after flushing output buffer
 
 	const BIG_QUEUE_SIZE = 100;
 
+	/** @var bool Whether execute() is active */
+	private static $recursionGuard = false;
+
 	/**
-	 * Add an update to the deferred list
+	 * Add an update to the deferred list to be run later by execute()
+	 *
+	 * In CLI mode, callback magic will also be used to run updates when safe
 	 *
 	 * @param DeferrableUpdate $update Some object that implements doUpdate()
 	 * @param integer $type DeferredUpdates constant (PRESEND or POSTSEND) (since 1.27)
 	 */
 	public static function addUpdate( DeferrableUpdate $update, $type = self::POSTSEND ) {
+		global $wgCommandLineMode;
+
 		if ( $type === self::PRESEND ) {
 			self::push( self::$preSendUpdates, $update );
 		} else {
 			self::push( self::$postSendUpdates, $update );
+		}
+
+		// Try to run the updates now if in CLI mode and no transaction is active.
+		// This covers scripts that don't/barely use the DB but make updates to other stores.
+		if ( $wgCommandLineMode ) {
+			if ( self::$recursionGuard ) {
+				return; // update loop is already active and will pick this up
+			}
+
+			$lb = wfGetLB();
+			$dbw = $lb->getAnyOpenConnection( $lb->getWriterIndex() );
+			if ( !$dbw || !$dbw->trxLevel() ) {
+				self::doUpdates();
+			}
 		}
 	}
 
@@ -87,17 +111,19 @@ class DeferredUpdates {
 	 */
 	public static function doUpdates( $mode = 'run', $type = self::ALL ) {
 		if ( $type === self::ALL || $type == self::PRESEND ) {
-			self::execute( self::$preSendUpdates, $mode );
+			self::execute( self::$preSendUpdates, $mode, $type );
 		}
 
 		if ( $type === self::ALL || $type == self::POSTSEND ) {
-			self::execute( self::$postSendUpdates, $mode );
+			self::execute( self::$postSendUpdates, $mode, $type );
 		}
 	}
 
+	/**
+	 * @param DeferredUpdates[] $queue
+	 * @param DeferrableUpdate $update
+	 */
 	private static function push( array &$queue, DeferrableUpdate $update ) {
-		global $wgCommandLineMode;
-
 		if ( $update instanceof MergeableUpdate ) {
 			$class = get_class( $update ); // fully-qualified class
 			if ( isset( $queue[$class] ) ) {
@@ -110,77 +136,69 @@ class DeferredUpdates {
 		} else {
 			$queue[] = $update;
 		}
-
-		// CLI scripts may forget to periodically flush these updates,
-		// so try to handle that rather than OOMing and losing them entirely.
-		// Try to run the updates as soon as there is no current wiki transaction.
-		static $waitingOnTrx = false; // de-duplicate callback
-		if ( $wgCommandLineMode && !$waitingOnTrx ) {
-			$lb = wfGetLB();
-			$dbw = $lb->getAnyOpenConnection( $lb->getWriterIndex() );
-			// Do the update as soon as there is no transaction
-			if ( $dbw && $dbw->trxLevel() ) {
-				$waitingOnTrx = true;
-				$dbw->onTransactionIdle( function() use ( &$waitingOnTrx ) {
-					DeferredUpdates::doUpdates();
-					$waitingOnTrx = false;
-				} );
-			} else {
-				self::doUpdates();
-			}
-		}
 	}
 
-	public static function execute( array &$queue, $mode ) {
-		$stats = \MediaWiki\MediaWikiServices::getInstance()->getStatsdDataFactory();
+	/**
+	 * @param DeferrableUpdate[] &$queue List of DeferrableUpdate objects
+	 * @param string $mode Use "enqueue" to use the job queue when possible
+	 * @param integer $type Class constant (PRESEND, POSTSEND, or ALL) (since 1.28)
+	 * @throws ErrorPageError
+	 */
+	public static function execute( array &$queue, $mode, $type ) {
+		self::$recursionGuard = true;
+
+		$services = MediaWikiServices::getInstance();
+		$stats = $services->getStatsdDataFactory();
+		$lbFactory = $services->getDBLoadBalancerFactory();
 		$method = RequestContext::getMain()->getRequest()->getMethod();
 
-		$updates = $queue; // snapshot of queue
-		// Keep doing rounds of updates until none get enqueued
-		while ( count( $updates ) ) {
-			$queue = []; // clear the queue
-			/** @var DataUpdate[] $dataUpdates */
-			$dataUpdates = [];
-			/** @var DeferrableUpdate[] $otherUpdates */
-			$otherUpdates = [];
-			foreach ( $updates as $update ) {
-				if ( $update instanceof DataUpdate ) {
-					$dataUpdates[] = $update;
-				} else {
-					$otherUpdates[] = $update;
-				}
+		/** @var ErrorPageError $reportError */
+		$reportError = null;
+		/** @var DeferrableUpdate[] $updates Snapshot of queue */
+		$updates = $queue;
 
-				$name = $update instanceof DeferrableCallback
+		// Keep doing rounds of updates until none get enqueued...
+		while ( $updates ) {
+			$queue = []; // clear the queue
+
+			if ( $mode === 'enqueue' ) {
+				try {
+					// Push enqueuable updates to the job queue and get the rest
+					$updates = self::enqueueUpdates( $updates );
+				} catch ( Exception $e ) {
+					// Let other updates have a chance to run if this failed
+					MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+				}
+			}
+
+			// Execute all remaining tasks...
+			foreach ( $updates as $update ) {
+				$name = ( $update instanceof DeferrableCallback )
 					? get_class( $update ) . '-' . $update->getOrigin()
 					: get_class( $update );
 				$stats->increment( 'deferred_updates.' . $method . '.' . $name );
-			}
-
-			// Delegate DataUpdate execution to the DataUpdate class
-			try {
-				DataUpdate::runUpdates( $dataUpdates, $mode );
-			} catch ( Exception $e ) {
-				// Let the other updates occur if these had to rollback
-				MWExceptionHandler::logException( $e );
-			}
-			// Execute the non-DataUpdate tasks
-			foreach ( $otherUpdates as $update ) {
+				/** @var $update DeferrableUpdate */
 				try {
+					$lbFactory->beginMasterChanges( __METHOD__ );
 					$update->doUpdate();
-					wfGetLBFactory()->commitMasterChanges( __METHOD__ );
+					$lbFactory->commitMasterChanges( __METHOD__ );
 				} catch ( Exception $e ) {
-					// We don't want exceptions thrown during deferred updates to
-					// be reported to the user since the output is already sent
-					if ( !$e instanceof ErrorPageError ) {
-						MWExceptionHandler::logException( $e );
+					// Reporting GUI exceptions does not work post-send
+					if ( $e instanceof ErrorPageError && $type === self::PRESEND ) {
+						$reportError = $reportError ?: $e;
+					} else {
+						wfWarn( $e->getMessage() );
 					}
-					// Make sure incomplete transactions are not committed and end any
-					// open atomic sections so that other DB updates have a chance to run
-					wfGetLBFactory()->rollbackMasterChanges( __METHOD__ );
+					MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 				}
 			}
 
 			$updates = $queue; // new snapshot of queue (check for new entries)
+		}
+
+		self::$recursionGuard = false;
+		if ( $reportError ) {
+			throw $reportError; // throw the first of any GUI errors
 		}
 	}
 
@@ -195,29 +213,23 @@ class DeferredUpdates {
 	 * @since 1.28
 	 */
 	public static function tryOpportunisticExecute( $mode = 'run' ) {
-		static $recursionGuard = false;
-		if ( $recursionGuard ) {
-			return false; // COMMITs trigger inside update loop and inside some updates
+		if ( self::$recursionGuard ) {
+			return false; // update loop is already active
 		}
 
-		try {
-			$recursionGuard = true;
-			if ( !self::getBusyDbConnections() ) {
-				self::doUpdates( $mode );
-				return true;
-			}
-
-			if ( self::pendingUpdatesCount() >= self::BIG_QUEUE_SIZE ) {
-				// If we cannot run the updates with outer transaction context, try to
-				// at least enqueue all the updates that support queueing to job queue
-				self::$preSendUpdates = self::enqueueUpdates( self::$preSendUpdates );
-				self::$postSendUpdates = self::enqueueUpdates( self::$postSendUpdates );
-			}
-
-			return !self::pendingUpdatesCount();
-		} finally {
-			$recursionGuard = false;
+		if ( !self::getBusyDbConnections() ) {
+			self::doUpdates( $mode );
+			return true;
 		}
+
+		if ( self::pendingUpdatesCount() >= self::BIG_QUEUE_SIZE ) {
+			// If we cannot run the updates with outer transaction context, try to
+			// at least enqueue all the updates that support queueing to job queue
+			self::$preSendUpdates = self::enqueueUpdates( self::$preSendUpdates );
+			self::$postSendUpdates = self::enqueueUpdates( self::$postSendUpdates );
+		}
+
+		return !self::pendingUpdatesCount();
 	}
 
 	/**
