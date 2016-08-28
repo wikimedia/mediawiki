@@ -44,50 +44,12 @@ abstract class DataUpdate implements DeferrableUpdate {
 	/**
 	 * Convenience method, calls doUpdate() on every DataUpdate in the array.
 	 *
-	 * This methods supports transactions logic by first calling beginTransaction()
-	 * on all updates in the array, then calling doUpdate() on each, and, if all goes well,
-	 * then calling commitTransaction() on each update. If an error occurs,
-	 * rollbackTransaction() will be called on any update object that had beginTransaction()
-	 * called but not yet commitTransaction().
-	 *
-	 * This allows for limited transactional logic across multiple backends for storing
-	 * secondary data.
-	 *
 	 * @param DataUpdate[] $updates A list of DataUpdate instances
 	 * @param string $mode Use "enqueue" to use the job queue when possible [Default: run]
-	 * @throws Exception|null
+	 * @throws Exception
+	 * @deprecated Since 1.28 Use DeferredUpdates::execute()
 	 */
 	public static function runUpdates( array $updates, $mode = 'run' ) {
-		if ( $mode === 'enqueue' ) {
-			// When possible, push updates as jobs instead of calling doUpdate()
-			$updates = self::enqueueUpdates( $updates );
-		}
-
-		foreach ( $updates as $update ) {
-			$update->doUpdate();
-		}
-	}
-
-	/**
-	 * Enqueue jobs for every DataUpdate that support enqueueUpdate()
-	 * and return the remaining DataUpdate objects (those that do not)
-	 *
-	 * @param DataUpdate[] $updates A list of DataUpdate instances
-	 * @return DataUpdate[]
-	 * @since 1.27
-	 */
-	protected static function enqueueUpdates( array $updates ) {
-		$remaining = [];
-
-		foreach ( $updates as $update ) {
-			if ( $update instanceof EnqueueableDataUpdate ) {
-				$spec = $update->getAsJobSpecification();
-				JobQueueGroup::singleton( $spec['wiki'] )->push( $spec['job'] );
-			} else {
-				$remaining[] = $update;
-			}
-		}
-
-		return $remaining;
+		DeferredUpdates::execute( $updates, $mode, DeferredUpdates::ALL );
 	}
 }

@@ -64,9 +64,12 @@ class LinksDeletionUpdate extends DataUpdate implements EnqueueableDataUpdate {
 
 		// Page may already be deleted, so don't just getId()
 		$id = $this->pageId;
-		// Make sure all links update threads see the changes of each other.
-		// This handles the case when updates have to batched into several COMMITs.
-		$scopedLock = LinksUpdate::acquirePageLock( $this->getDB(), $id );
+
+		if ( $this->ticket ) {
+			// Make sure all links update threads see the changes of each other.
+			// This handles the case when updates have to batched into several COMMITs.
+			$scopedLock = LinksUpdate::acquirePageLock( $this->getDB(), $id );
+		}
 
 		$title = $this->page->getTitle();
 		$dbw = $this->getDB(); // convenience
@@ -189,7 +192,7 @@ class LinksDeletionUpdate extends DataUpdate implements EnqueueableDataUpdate {
 			}
 		}
 
-		// Commit and release the lock
+		// Commit and release the lock (if set)
 		ScopedCallback::consume( $scopedLock );
 	}
 
