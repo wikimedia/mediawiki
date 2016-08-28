@@ -554,11 +554,38 @@ abstract class Maintenance {
 	 * @since 1.28
 	 */
 	public function setTriggers() {
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		self::setLBFactoryTriggers( $lbFactory );
+	}
+
+	/**
+	 * @param LBFactory $LBFactory
+	 * @since 1.28
+	 */
+	public static function setLBFactoryTriggers( LBFactory $LBFactory ) {
 		// Hook into period lag checks which often happen in long-running scripts
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$lbFactory->setWaitForReplicationListener(
 			__METHOD__,
-			[ 'DeferredUpdates', 'tryOpportunisticExecute' ]
+			function () {
+				global $wgCommandLineMode;
+				// Check config in case of JobRunner and unit tests
+				if ( $wgCommandLineMode ) {
+					DeferredUpdates::tryOpportunisticExecute( 'run' );
+				}
+			}
+		);
+		// Check for other windows to run them. A script may read or do a few writes
+		// to the master but mostly be writing to something else, like a file store.
+		$lbFactory->getMainLB()->setTransactionListener(
+			__METHOD__,
+			function ( $trigger ) {
+				global $wgCommandLineMode;
+				// Check config in case of JobRunner and unit tests
+				if ( $wgCommandLineMode && $trigger === IDatabase::TRIGGER_COMMIT ) {
+					DeferredUpdates::tryOpportunisticExecute( 'run' );
+				}
+			}
 		);
 	}
 
