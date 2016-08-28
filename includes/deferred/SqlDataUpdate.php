@@ -55,8 +55,12 @@ abstract class SqlDataUpdate extends DataUpdate {
 
 		$this->mDb = wfGetLB()->getLazyConnectionRef( DB_MASTER );
 
-		$this->mWithTransaction = $withTransaction;
+		$this->mUseTransaction = $withTransaction;
 		$this->mHasTransaction = false;
+	}
+
+	public function useTransaction() {
+		return $this->mUseTransaction;
 	}
 
 	/**
@@ -68,7 +72,7 @@ abstract class SqlDataUpdate extends DataUpdate {
 	 * transaction if none is already active.
 	 */
 	public function beginTransaction() {
-		if ( !$this->mWithTransaction ) {
+		if ( !$this->mUseTransaction ) {
 			return;
 		}
 
