@@ -42,7 +42,7 @@ interface IDatabase {
 
 	/** @var string Transaction is requested by regular caller outside of the DB layer */
 	const TRANSACTION_EXPLICIT = '';
-	/** @var string Transaction is requested interally via DBO_TRX/startAtomic() */
+	/** @var string Transaction is requested internally via DBO_TRX/startAtomic() */
 	const TRANSACTION_INTERNAL = 'implicit';
 
 	/** @var string Transaction operation comes from service managing all DBs */
@@ -50,7 +50,7 @@ interface IDatabase {
 	/** @var string Transaction operation comes from the database class internally */
 	const FLUSHING_INTERNAL = 'flush';
 
-	/** @var string No not remember the prior flags */
+	/** @var string Do not remember the prior flags */
 	const REMEMBER_NOTHING = '';
 	/** @var string Remember the prior flags */
 	const REMEMBER_PRIOR = 'remember';
