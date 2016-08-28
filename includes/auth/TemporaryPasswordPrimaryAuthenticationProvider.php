@@ -126,8 +126,8 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			return AuthenticationResponse::newAbstain();
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
-		$row = $dbw->selectRow(
+		$dbr = wfGetDB( DB_SLAVE );
+		$row = $dbr->selectRow(
 			'user',
 			[
 				'user_id', 'user_newpassword', 'user_newpass_time',
@@ -165,8 +165,8 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			return false;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
-		$row = $dbw->selectRow(
+		$dbr = wfGetDB( DB_SLAVE );
+		$row = $dbr->selectRow(
 			'user',
 			[ 'user_newpassword', 'user_newpass_time' ],
 			[ 'user_name' => $username ],
