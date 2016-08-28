@@ -428,7 +428,7 @@
 	"userlogin-loggedin": "سیر حال حاضیردا {{GENDER:$1|$1}} عونوانیندا گیریش ائدیب سیز.\nآشاغیداکی فورمودان بیر آیری ایشلدن عونوانیندا گیریش اوچون ایشلدین.",
 	"userlogin-reauth": "{{GENDER:$1|$1}} اوْلدوغونوزو تأیید ائتمک اۆچون یئنه گیرمه‌لیسینیز.",
 	"userlogin-createanother": "بیر باشقا حساب یارات",
-	"createacct-emailrequired": "ایمیل آدرسی",
+	"createacct-emailrequired": "ایمئیل آدرسی",
 	"createacct-emailoptional": "ایمیل آدرسی (ایستگه باغلی)",
 	"createacct-email-ph": "ایمیل آدرسینیزی یازین",
 	"createacct-another-email-ph": "ایمیل آدرسینیزی یازین",

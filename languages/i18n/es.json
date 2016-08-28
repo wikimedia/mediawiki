@@ -2153,6 +2153,7 @@
 	"rollbacklinkcount-morethan": "revertir más de $1 {{PLURAL:$1|edición|ediciones}}",
 	"rollbackfailed": "No se pudo revertir",
 	"rollback-missingparam": "Faltan parámetros requeridos en la solicitud.",
+	"rollback-missingrevision": "No se pueden cargar datos de la revisión.",
 	"cantrollback": "No se puede revertir la edición;\nel último colaborador es el único autor de esta página.",
 	"alreadyrolled": "No se puede revertir la última edición de [[:$1]] hecha por [[User:$2|$2]] ([[User talk:$2|discusión]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);\nalguien más ya ha editado o revertido esa página.\n\nLa última edición fue hecha por [[User:$3|$3]] ([[User talk:$3|discusión]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "El resumen de la edición fue: <em>$1</em>.",
@@ -2295,8 +2296,8 @@
 	"sp-contributions-newbies-sub": "Para cuentas nuevas",
 	"sp-contributions-newbies-title": "Contribuciones de usuarios nuevos",
 	"sp-contributions-blocklog": "registro de bloqueos",
-	"sp-contributions-suppresslog": "contribuciones de {{GENDER:$1|usuario|usuaria}} suprimidas",
-	"sp-contributions-deleted": "contribuciones de {{GENDER:$1|usuario|usuaria}} borradas",
+	"sp-contributions-suppresslog": "contribuciones {{GENDER:$1|del usuario|de la usuaria}} suprimidas",
+	"sp-contributions-deleted": "contribuciones {{GENDER:$1|del usuario|de la usuaria}} borradas",
 	"sp-contributions-uploads": "subidas",
 	"sp-contributions-logs": "registros",
 	"sp-contributions-talk": "discusión",
@@ -3887,6 +3888,6 @@
 	"unlinkaccounts": "Desvincular cuentas",
 	"unlinkaccounts-success": "Se ha desvinculado la cuenta.",
 	"authenticationdatachange-ignored": "El cambio den los datos de autentificacion no fue realizado. ¿Tal vez, no se configuró un proveedor?",
-	"userjsispublic": "Recuerda: Las subpáginas JavaScript no deberían contener datos confidenciales, pues otros usuarios los pueden ver.",
-	"usercssispublic": "Recuerda: Las subpáginas CSS no deberían contener datos confidenciales, pues otros usuarios los pueden ver."
+	"userjsispublic": "Recuerda: las subpáginas JavaScript no deberían contener datos confidenciales, pues otros usuarios los pueden ver.",
+	"usercssispublic": "Recuerda: las subpáginas CSS no deberían contener datos confidenciales, pues otros usuarios los pueden ver."
 }

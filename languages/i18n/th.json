@@ -25,7 +25,8 @@
 			"Macofe",
 			"Pilarbini",
 			"Matma Rex",
-			"B20180"
+			"B20180",
+			"Pon44695"
 		]
 	},
 	"tog-underline": "การขีดเส้นใต้ลิงก์:",
@@ -1978,7 +1979,7 @@
 	"whatlinkshere-prev": "{{PLURAL:$1|ก่อนหน้า|ก่อนหน้า $1}}",
 	"whatlinkshere-next": "{{PLURAL:$1|ถัดไป|ถัดไป $1}}",
 	"whatlinkshere-links": "← ลิงก์",
-	"whatlinkshere-hideredirs": "$1การเปลี่ยนทาง",
+	"whatlinkshere-hideredirs": "$1 การเปลี่ยนทาง",
 	"whatlinkshere-hidetrans": "$1 ถูกรวมอยู่",
 	"whatlinkshere-hidelinks": "$1 ลิงก์",
 	"whatlinkshere-hideimages": "$1ลิงก์ไฟล์",
