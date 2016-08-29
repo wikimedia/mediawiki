@@ -1,0 +1,42 @@
+{
+  "extends": "wikimedia",
+  "env": {
+    "browser": true
+  },
+  "globals": {
+    "require": false,
+    "module": false,
+    "mediaWiki": true,
+    "JSON": true,
+    "OO": true,
+    "mwPerformance": true,
+    "jQuery": false,
+    "QUnit": false,
+    "sinon": false
+  },
+  "rules": {
+    "no-bitwise": 2,
+    "eqeqeq": 2,
+    "no-extend-native": 2,
+    "no-use-before-define": [
+      2,
+      {
+        "functions": false
+      }
+    ],
+    "no-caller": 2,
+    "no-new": 2,
+    "strict": 0,
+    "no-undef": 2,
+    "no-unused-vars": 2,
+    "linebreak-style": 2,
+    "no-multi-str": 2,
+    "dot-notation": [
+      2,
+      {
+        "allowKeywords": true
+      }
+    ],
+    "valid-jsdoc": 2
+  }
+}

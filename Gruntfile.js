@@ -1,11 +1,10 @@
-/*jshint node:true */
+/* eslint-env node */
 module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-contrib-copy' );
-	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
+	grunt.loadNpmTasks( 'grunt-eslint' );
 	grunt.loadNpmTasks( 'grunt-stylelint' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
-	grunt.loadNpmTasks( 'grunt-jscs' );
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
 	grunt.loadNpmTasks( 'grunt-karma' );
 
@@ -16,18 +15,13 @@ module.exports = function ( grunt ) {
 	karmaProxy[ wgScriptPath ] = wgServer + wgScriptPath;
 
 	grunt.initConfig( {
-		jshint: {
-			options: {
-				jshintrc: true
-			},
-			all: '.'
-		},
-		jscs: {
-			all: '.'
+		eslint: {
+			dev: [
+				'.'
+			]
 		},
 		jsonlint: {
 			all: [
-				'.jscsrc',
 				'**/*.json',
 				'!{docs/js,extensions,node_modules,skins,vendor}/**'
 			]
@@ -48,7 +42,7 @@ module.exports = function ( grunt ) {
 		},
 		watch: {
 			files: [
-				'.{stylelintrc,jscsrc,jshintignore,jshintrc}',
+				'.{stylelintrc,eslintignore,.eslintrc.json}',
 				'**/*',
 				'!{docs,extensions,node_modules,skins,vendor}/**'
 			],
@@ -103,7 +97,7 @@ module.exports = function ( grunt ) {
 		return !!( process.env.MW_SERVER && process.env.MW_SCRIPT_PATH );
 	} );
 
-	grunt.registerTask( 'lint', [ 'jshint', 'jscs', 'jsonlint', 'banana', 'stylelint' ] );
+	grunt.registerTask( 'lint', [ 'eslint', 'jsonlint', 'banana', 'stylelint' ] );
 	grunt.registerTask( 'qunit', [ 'assert-mw-env', 'karma:main' ] );
 
 	grunt.registerTask( 'test', [ 'lint' ] );
