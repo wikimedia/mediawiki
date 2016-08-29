@@ -240,7 +240,7 @@ abstract class LBFactory implements DestructibleService {
 		if ( $this->trxRoundId !== false ) {
 			throw new DBTransactionError(
 				null,
-				"Transaction round '{$this->trxRoundId}' already started."
+				"$fname: transaction round '{$this->trxRoundId}' already started."
 			);
 		}
 		$this->trxRoundId = $fname;
@@ -279,6 +279,12 @@ abstract class LBFactory implements DestructibleService {
 	 * @throws Exception
 	 */
 	public function commitMasterChanges( $fname = __METHOD__, array $options = [] ) {
+		if ( $this->trxRoundId !== false && $this->trxRoundId !== $fname ) {
+			throw new DBTransactionError(
+				null,
+				"$fname: transaction round '{$this->trxRoundId}' still running."
+			);
+		}
 		// Run pre-commit callbacks and suppress post-commit callbacks, aborting on failure
 		$this->forEachLBCallMethod( 'finalizeMasterChanges' );
 		$this->trxRoundId = false;
@@ -509,7 +515,7 @@ abstract class LBFactory implements DestructibleService {
 	 * This will commit and wait unless $ticket indicates it is unsafe to do so
 	 *
 	 * @param string $fname Caller name (e.g. __METHOD__)
-	 * @param mixed $ticket Result of getOuterTransactionScopeTicket()
+	 * @param mixed $ticket Result of getEmptyTransactionTicket()
 	 * @param array $opts Options to waitForReplication()
 	 * @throws DBReplicationWaitError
 	 * @since 1.28
@@ -521,8 +527,21 @@ abstract class LBFactory implements DestructibleService {
 			return;
 		}
 
-		$this->commitMasterChanges( $fname );
+		$fnameEffective = $fname;
+		// The transaction owner and any caller with the empty transaction ticket can commit
+		// so that getEmptyTransactionTicket() callers don't risk seeing DBTransactionError.
+		if ( $this->trxRoundId !== false && $fname !== $this->trxRoundId ) {
+			$this->trxLogger->info( "$fname: committing on behalf of {$this->trxRoundId}." );
+			$fnameEffective = $this->trxRoundId;
+		}
+
+		$this->commitMasterChanges( $fnameEffective );
 		$this->waitForReplication( $opts );
+		// If a nested caller committed on behalf of $fname, start another empty $fname
+		// transaction, leaving the caller with the same empty transaction state as before.
+		if ( $fnameEffective !== $fname ) {
+			$this->beginMasterChanges( $fname );
+		}
 	}
 
 	/**
