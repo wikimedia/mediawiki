@@ -4067,7 +4067,9 @@ HTML
 	public function getEditButtons( &$tabindex ) {
 		$buttons = [];
 
-		$labelAsPublish = $this->mArticle->getContext()->getConfig()->get( 'EditButtonPublishNotSave' );
+		$labelAsPublish =
+			$this->mArticle->getContext()->getConfig()->get( 'EditSubmitButtonLabelPublish' );
+
 		// Can't use $this->isNew as that's also true if we're adding a new section to an extant page
 		if ( $labelAsPublish ) {
 			$buttonLabelKey = !$this->mTitle->exists() ? 'publishpage' : 'publishchanges';
