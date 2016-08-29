@@ -1483,7 +1483,7 @@ return [
 			'jquery.spinner',
 			'jquery.textSelection',
 			'mediawiki.api',
-			'mediawiki.action.history.diff',
+			'mediawiki.action.history.diff.styles',
 			'mediawiki.util',
 			'mediawiki.jqueryMsg',
 		],
@@ -1511,10 +1511,13 @@ return [
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.history.styles.css',
 	],
 	'mediawiki.action.history.diff' => [
+		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.history.diff.js',
+	],
+	'mediawiki.action.history.diff.styles' => [
 		'position' => 'top',
 		'styles' => [
-			'resources/src/mediawiki.action/mediawiki.action.history.diff.css',
-			'resources/src/mediawiki.action/mediawiki.action.history.diff.print.css' => [
+			'resources/src/mediawiki.action/mediawiki.action.history.diff.styles.css',
+			'resources/src/mediawiki.action/mediawiki.action.history.diff.styles.print.css' => [
 				'media' => 'print'
 			],
 		],
