@@ -1329,4 +1329,16 @@ abstract class ContentHandler {
 		return $parserOutput;
 	}
 
+	/**
+	 * Gets an IMessagePoster for this content handler, if supported.  Otherwise,
+	 * null.
+	 *
+	 * The IMessagePoster is responsible for posting to a discussion page in this
+	 * content model.
+	 *
+	 * @return {IMessagePoster|null} IMessagePoster if supported, otherwise null.
+	 */
+	public function getMessagePoster() {
+		return null;
+	}
 }
