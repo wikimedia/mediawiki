@@ -1638,6 +1638,10 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
+	'mediawiki.diff' => [
+		'scripts' => 'resources/src/mediawiki/mediawiki.diff.js',
+	],
+
 	'mediawiki.libs.pluralruleparser' => [
 		'scripts' => 'resources/src/mediawiki.libs/CLDRPluralRuleParser.js',
 		'targets' => [ 'desktop', 'mobile' ],
