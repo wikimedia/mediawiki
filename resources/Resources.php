@@ -1510,6 +1510,9 @@ return [
 		'position' => 'top',
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.history.styles.css',
 	],
+	'mediawiki.action.history.diff' => [
+		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.history.diff.js',
+	],
 	'mediawiki.action.history.diff.styles' => [
 		'position' => 'top',
 		'styles' => [
