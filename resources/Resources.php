@@ -1511,6 +1511,9 @@ return [
 		'position' => 'top',
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.history.styles.css',
 	],
+	'mediawiki.diff' => [
+		'scripts' => 'resources/src/mediawiki/mediawiki.diff.js',
+	],
 	'mediawiki.action.history.diff' => [
 		'position' => 'top',
 		'styles' => [
