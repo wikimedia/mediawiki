@@ -8150,6 +8150,17 @@ $wgUploadMaintenance = false;
 $wgNamespaceContentModels = [];
 
 /**
+ * Associative array mapping content model strings to the class name of IMessagePoster
+ * implementations.  This is a pluggable mechanism to be used for discussion systems, so
+ * clients can create a discussion page topic without knowing the underlying system.
+ *
+ * @since 1.28
+ */
+$wgContentModelMessagePosters = [
+	'wikitext' => MediaWiki\MessagePoster\WikitextMessagePoster::class,
+];
+
+/**
  * How to react if a plain text version of a non-text Content object is requested using
  * ContentHandler::getContentText():
  *
