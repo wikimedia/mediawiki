@@ -1512,6 +1512,7 @@ return [
 	],
 	'mediawiki.action.history.diff' => [
 		'position' => 'top',
+		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.history.diff.js',
 		'styles' => [
 			'resources/src/mediawiki.action/mediawiki.action.history.diff.css',
 			'resources/src/mediawiki.action/mediawiki.action.history.diff.print.css' => [
