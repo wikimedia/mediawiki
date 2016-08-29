@@ -80,9 +80,6 @@ class ParserTest {
 	 */
 	private $recorder;
 
-	private $maxFuzzTestLength = 300;
-	private $fuzzSeed = 0;
-	private $memoryLimit = 50;
 	private $uploadDir = null;
 
 	public $regex = "";
@@ -159,10 +156,6 @@ class ParserTest {
 			$this->uploadDir = wfTempDir() . '/mwParser-images';
 		} else {
 			$this->uploadDir = wfTempDir() . "/mwParser-" . mt_rand() . "-images";
-		}
-
-		if ( isset( $options['seed'] ) ) {
-			$this->fuzzSeed = intval( $options['seed'] ) - 1;
 		}
 
 		$this->runDisabled = isset( $options['run-disabled'] );
@@ -386,142 +379,6 @@ class ParserTest {
 		} else {
 			return $s;
 		}
-	}
-
-	/**
-	 * Run a fuzz test series
-	 * Draw input from a set of test files
-	 * @param array $filenames
-	 */
-	function fuzzTest( $filenames ) {
-		$GLOBALS['wgContLang'] = Language::factory( 'en' );
-		$dict = $this->getFuzzInput( $filenames );
-		$dictSize = strlen( $dict );
-		$logMaxLength = log( $this->maxFuzzTestLength );
-		$this->setupDatabase();
-		ini_set( 'memory_limit', $this->memoryLimit * 1048576 );
-
-		$numTotal = 0;
-		$numSuccess = 0;
-		$user = new User;
-		$opts = ParserOptions::newFromUser( $user );
-		$title = Title::makeTitle( NS_MAIN, 'Parser_test' );
-
-		while ( true ) {
-			// Generate test input
-			mt_srand( ++$this->fuzzSeed );
-			$totalLength = mt_rand( 1, $this->maxFuzzTestLength );
-			$input = '';
-
-			while ( strlen( $input ) < $totalLength ) {
-				$logHairLength = mt_rand( 0, 1000000 ) / 1000000 * $logMaxLength;
-				$hairLength = min( intval( exp( $logHairLength ) ), $dictSize );
-				$offset = mt_rand( 0, $dictSize - $hairLength );
-				$input .= substr( $dict, $offset, $hairLength );
-			}
-
-			$this->setupGlobals();
-			$parser = $this->getParser();
-
-			// Run the test
-			try {
-				$parser->parse( $input, $title, $opts );
-				$fail = false;
-			} catch ( Exception $exception ) {
-				$fail = true;
-			}
-
-			if ( $fail ) {
-				echo "Test failed with seed {$this->fuzzSeed}\n";
-				echo "Input:\n";
-				printf( "string(%d) \"%s\"\n\n", strlen( $input ), $input );
-				echo "$exception\n";
-			} else {
-				$numSuccess++;
-			}
-
-			$numTotal++;
-			$this->teardownGlobals();
-			$parser->__destruct();
-
-			if ( $numTotal % 100 == 0 ) {
-				$usage = intval( memory_get_usage( true ) / $this->memoryLimit / 1048576 * 100 );
-				echo "{$this->fuzzSeed}: $numSuccess/$numTotal (mem: $usage%)\n";
-				if ( $usage > 90 ) {
-					echo "Out of memory:\n";
-					$memStats = $this->getMemoryBreakdown();
-
-					foreach ( $memStats as $name => $usage ) {
-						echo "$name: $usage\n";
-					}
-					$this->abort();
-				}
-			}
-		}
-	}
-
-	/**
-	 * Get an input dictionary from a set of parser test files
-	 * @param array $filenames
-	 * @return string
-	 */
-	function getFuzzInput( $filenames ) {
-		$dict = '';
-
-		foreach ( $filenames as $filename ) {
-			$contents = file_get_contents( $filename );
-			preg_match_all(
-				'/!!\s*(input|wikitext)\n(.*?)\n!!\s*(result|html|html\/\*|html\/php)/s',
-				$contents,
-				$matches
-			);
-
-			foreach ( $matches[1] as $match ) {
-				$dict .= $match . "\n";
-			}
-		}
-
-		return $dict;
-	}
-
-	/**
-	 * Get a memory usage breakdown
-	 * @return array
-	 */
-	function getMemoryBreakdown() {
-		$memStats = [];
-
-		foreach ( $GLOBALS as $name => $value ) {
-			$memStats['$' . $name] = strlen( serialize( $value ) );
-		}
-
-		$classes = get_declared_classes();
-
-		foreach ( $classes as $class ) {
-			$rc = new ReflectionClass( $class );
-			$props = $rc->getStaticProperties();
-			$memStats[$class] = strlen( serialize( $props ) );
-			$methods = $rc->getMethods();
-
-			foreach ( $methods as $method ) {
-				$memStats[$class] += strlen( serialize( $method->getStaticVariables() ) );
-			}
-		}
-
-		$functions = get_defined_functions();
-
-		foreach ( $functions['user'] as $function ) {
-			$rf = new ReflectionFunction( $function );
-			$memStats["$function()"] = strlen( serialize( $rf->getStaticVariables() ) );
-		}
-
-		asort( $memStats );
-
-		return $memStats;
-	}
-
-	function abort() {
-		$this->abort();
 	}
 
 	/**
@@ -854,7 +711,7 @@ class ParserTest {
 	 * @param string $config
 	 * @return RequestContext
 	 */
-	private function setupGlobals( $opts = '', $config = '' ) {
+	public function setupGlobals( $opts = '', $config = '' ) {
 		# Find out values for some special options.
 		$lang =
 			self::getOptionValue( 'language', $opts, 'en' );
@@ -1290,7 +1147,7 @@ class ParserTest {
 	 * Restore default values and perform any necessary clean-up
 	 * after each test runs.
 	 */
-	private function teardownGlobals() {
+	public function teardownGlobals() {
 		RepoGroup::destroySingleton();
 		FileBackendGroup::destroySingleton();
 		LockManagerGroup::destroySingletons();
@@ -1730,86 +1587,5 @@ class ParserTest {
 	static function getFakeTimestamp( &$parser, &$ts ) {
 		$ts = 123; // parsed as '1970-01-01T00:02:03Z'
 		return true;
-	}
-}
-
-class ParserTestResultNormalizer {
-	protected $doc, $xpath, $invalid;
-
-	public static function normalize( $text, $funcs ) {
-		$norm = new self( $text );
-		if ( $norm->invalid ) {
-			return $text;
-		}
-		foreach ( $funcs as $func ) {
-			$norm->$func();
-		}
-		return $norm->serialize();
-	}
-
-	protected function __construct( $text ) {
-		$this->doc = new DOMDocument( '1.0', 'utf-8' );
-
-		// Note: parsing a supposedly XHTML document with an XML parser is not
-		// guaranteed to give accurate results. For example, it may introduce
-		// differences in the number of line breaks in <pre> tags.
-
-		MediaWiki\suppressWarnings();
-		if ( !$this->doc->loadXML( '<html><body>' . $text . '</body></html>' ) ) {
-			$this->invalid = true;
-		}
-		MediaWiki\restoreWarnings();
-		$this->xpath = new DOMXPath( $this->doc );
-		$this->body = $this->xpath->query( '//body' )->item( 0 );
-	}
-
-	protected function removeTbody() {
-		foreach ( $this->xpath->query( '//tbody' ) as $tbody ) {
-			while ( $tbody->firstChild ) {
-				$child = $tbody->firstChild;
-				$tbody->removeChild( $child );
-				$tbody->parentNode->insertBefore( $child, $tbody );
-			}
-			$tbody->parentNode->removeChild( $tbody );
-		}
-	}
-
-	/**
-	 * The point of this function is to produce a normalized DOM in which
-	 * Tidy's output matches the output of html5depurate. Tidy both trims
-	 * and pretty-prints, so this requires fairly aggressive treatment.
-	 *
-	 * In particular, note that Tidy converts <pre>x</pre> to <pre>\nx\n</pre>,
-	 * which theoretically affects display since the second line break is not
-	 * ignored by compliant HTML parsers.
-	 *
-	 * This function also removes empty elements, as does Tidy.
-	 */
-	protected function trimWhitespace() {
-		foreach ( $this->xpath->query( '//text()' ) as $child ) {
-			if ( strtolower( $child->parentNode->nodeName ) === 'pre' ) {
-				// Just trim one line break from the start and end
-				if ( substr_compare( $child->data, "\n", 0 ) === 0 ) {
-					$child->data = substr( $child->data, 1 );
-				}
-				if ( substr_compare( $child->data, "\n", -1 ) === 0 ) {
-					$child->data = substr( $child->data, 0, -1 );
-				}
-			} else {
-				// Trim all whitespace
-				$child->data = trim( $child->data );
-			}
-			if ( $child->data === '' ) {
-				$child->parentNode->removeChild( $child );
-			}
-		}
-	}
-
-	/**
-	 * Serialize the XML DOM for comparison purposes. This does not generate HTML.
-	 */
-	protected function serialize() {
-		return strtr( $this->doc->saveXML( $this->body ),
-			[ '<body>' => '', '</body>' => '' ] );
 	}
 }
