@@ -2103,6 +2103,7 @@
 	"rollbacklinkcount-morethan": "rollback di più di {{PLURAL:$1|una modifica|$1 modifiche}}",
 	"rollbackfailed": "Rollback fallito",
 	"rollback-missingparam": "Parametri obbligatori mancanti nella richiesta.",
+	"rollback-missingrevision": "Impossibile caricare i dati della versione.",
 	"cantrollback": "Impossibile annullare le modifiche; l'utente che le ha effettuate è l'unico ad aver contribuito alla pagina.",
 	"alreadyrolled": "Non è possibile annullare le modifiche apportate alla pagina [[:$1]] da parte di [[User:$2|$2]] ([[User talk:$2|discussione]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); un altro utente ha già modificato la pagina oppure ha effettuato il rollback.\n\nLa modifica più recente alla pagina è stata apportata da [[User:$3|$3]] ([[User talk:$3|discussione]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "L'oggetto della modifica era: <em>$1</em>.",

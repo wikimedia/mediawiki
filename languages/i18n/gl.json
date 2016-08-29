@@ -2027,6 +2027,7 @@
 	"rollbacklinkcount-morethan": "reverter máis de $1 {{PLURAL:$1|edición|edicións}}",
 	"rollbackfailed": "Houbo un erro ao reverter as edicións",
 	"rollback-missingparam": "Faltan parámetros obrigatorios na solicitude.",
+	"rollback-missingrevision": "Non se poden cargar datos da revisión.",
 	"cantrollback": "Non se pode desfacer a edición; o último colaborador é o único autor desta páxina.",
 	"alreadyrolled": "Non se pode desfacer a edición en \"[[:$1]]\" feita por [[User:$2|$2]] ([[User talk:$2|conversa]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); alguén máis editou ou desfixo os cambios desta páxina.\n\nA última edición fíxoa [[User:$3|$3]] ([[User talk:$3|conversa]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "O resumo de edición foi: <em>$1</em>.",

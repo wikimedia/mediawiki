@@ -2437,7 +2437,7 @@
 	"revertmove": "zurück verschieben",
 	"delete_and_move_text": "Die Seite „[[:$1]]“ existiert bereits.\nMöchtest du diese löschen, um die Seite verschieben zu können?",
 	"delete_and_move_confirm": "Ja, Seite löschen",
-	"delete_and_move_reason": "gelöscht, um Platz für die Verschiebung von „[[$1]]“ zu machen",
+	"delete_and_move_reason": "Gelöscht, um Platz für die Verschiebung von „[[$1]]“ zu machen",
 	"selfmove": "Ursprungs- und Zielname sind gleich.\nEine Seite kann nicht auf sich selbst verschoben werden.",
 	"immobile-source-namespace": "Seiten des „$1“-Namensraums können nicht verschoben werden",
 	"immobile-target-namespace": "Seiten können nicht in den „$1“-Namensraum verschoben werden",

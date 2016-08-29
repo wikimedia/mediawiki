@@ -2039,6 +2039,7 @@
 	"rollbacklinkcount-morethan": "vrácení více než $1 {{PLURAL:$1|editace|editací}} zpět",
 	"rollbackfailed": "Nešlo vrátit zpět",
 	"rollback-missingparam": "V požadavku chybí povinné parametry.",
+	"rollback-missingrevision": "Nepodařilo se načíst data revize.",
 	"cantrollback": "Nelze vrátit zpět poslední editaci, neboť poslední přispěvatel je jediným autorem této stránky.",
 	"alreadyrolled": "Nelze vrátit zpět poslední editaci [[:$1]] od uživatele [[User:$2|$2]] ([[User talk:$2|diskuse]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]), protože někdo jiný již stránku editoval nebo vrátil tuto změnu zpět.\n\nPoslední editaci této stránky {{GENDER:$3|provedl|provedla|provedl uživatel}} [[User:$3|$3]] ([[User talk:$3|diskuse]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "Shrnutí editace bylo: <em>$1</em>.",
