@@ -237,7 +237,7 @@ abstract class LBFactory implements DestructibleService {
 		if ( $this->trxRoundId !== false ) {
 			throw new DBTransactionError(
 				null,
-				"Transaction round '{$this->trxRoundId}' already started."
+				"$fname: transaction round '{$this->trxRoundId}' already started."
 			);
 		}
 		$this->trxRoundId = $fname;
@@ -266,6 +266,12 @@ abstract class LBFactory implements DestructibleService {
 	 * @throws Exception
 	 */
 	public function commitMasterChanges( $fname = __METHOD__, array $options = [] ) {
+		if ( $this->trxRoundId !== false && $this->trxRoundId !== $fname ) {
+			throw new DBTransactionError(
+				null,
+				"$fname: transaction round '{$this->trxRoundId}' still running."
+			);
+		}
 		// Run pre-commit callbacks and suppress post-commit callbacks, aborting on failure
 		$this->forEachLBCallMethod( 'finalizeMasterChanges' );
 		$this->trxRoundId = false;
