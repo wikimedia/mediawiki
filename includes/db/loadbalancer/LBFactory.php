@@ -539,19 +539,3 @@ abstract class LBFactory implements DestructibleService {
 	}
 
 }
-
-/**
- * Exception class for attempted DB access
- */
-class DBAccessError extends MWException {
-	public function __construct() {
-		parent::__construct( "Mediawiki tried to access the database via wfGetDB(). " .
-			"This is not allowed, because database access has been disabled." );
-	}
-}
-
-/**
- * Exception class for replica DB wait timeouts
- */
-class DBReplicationWaitError extends Exception {
-}
