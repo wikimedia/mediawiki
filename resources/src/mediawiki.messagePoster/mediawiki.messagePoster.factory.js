@@ -41,7 +41,7 @@
 	};
 
 	/**
-	 * Create a MessagePoster for given a title.
+	 * Create a MessagePoster for a given title (and optional api.php URL for cross-wiki)
 	 *
 	 * A promise for this is returned. It works by determining the content model, then loading
 	 * the corresponding module (which registers the MessagePoster class), and finally constructing
@@ -93,7 +93,7 @@
 	};
 
 	/**
-	 * Creates a MessagePoster instance, given a title and content model
+	 * Creates a MessagePoster instance, given a title, content model, and mw.Api.
 	 *
 	 * @private
 	 * @param {string} contentModel Content model of title
