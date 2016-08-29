@@ -418,11 +418,4 @@ class LBFactoryMulti extends LBFactory {
 			call_user_func_array( $callback, array_merge( [ $lb ], $params ) );
 		}
 	}
-
-	public function shutdown( $flags = 0 ) {
-		if ( !( $flags & self::SHUTDOWN_NO_CHRONPROT ) ) {
-			$this->shutdownChronologyProtector( $this->chronProt );
-		}
-		$this->commitMasterChanges( __METHOD__ ); // sanity
-	}
 }
