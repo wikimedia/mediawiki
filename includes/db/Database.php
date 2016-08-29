@@ -201,6 +201,8 @@ abstract class DatabaseBase implements IDatabase {
 	/** @var int[] Prior mFlags values */
 	private $priorFlags = [];
 
+	/** @var Profiler */
+	protected $profiler;
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
 
@@ -320,10 +322,6 @@ abstract class DatabaseBase implements IDatabase {
 	 * @return TransactionProfiler
 	 */
 	protected function getTransactionProfiler() {
-		if ( !$this->trxProfiler ) {
-			$this->trxProfiler = new TransactionProfiler();
-		}
-
 		return $this->trxProfiler;
 	}
 
@@ -583,13 +581,17 @@ abstract class DatabaseBase implements IDatabase {
 
 		$this->mForeign = $foreign;
 
-		if ( isset( $params['trxProfiler'] ) ) {
-			$this->trxProfiler = $params['trxProfiler']; // override
-		}
+		$this->profiler = isset( $params['profiler'] )
+			? $params['profiler']
+			: Profiler::instance(); // @TODO: remove global state
+		$this->trxProfiler = isset( $params['trxProfiler'] )
+			? $params['trxProfiler']
+			: new TransactionProfiler();
 
 		if ( $user ) {
 			$this->open( $server, $user, $password, $dbName );
 		}
+
 	}
 
 	/**
@@ -939,13 +941,10 @@ abstract class DatabaseBase implements IDatabase {
 		# Include query transaction state
 		$queryProf .= $this->mTrxShortId ? " [TRX#{$this->mTrxShortId}]" : "";
 
-		$profiler = Profiler::instance();
-		if ( !( $profiler instanceof ProfilerStub ) ) {
-			$queryProfSection = $profiler->scopedProfileIn( $queryProf );
-		}
-
 		$startTime = microtime( true );
+		$this->profiler->profileIn( $queryProf );
 		$ret = $this->doQuery( $commentedSql );
+		$this->profiler->profileOut( $queryProf );
 		$queryRuntime = microtime( true ) - $startTime;
 
 		unset( $queryProfSection ); // profile out (if set)
