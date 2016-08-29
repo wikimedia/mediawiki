@@ -45,6 +45,8 @@ production.
   to 'uca-default-u-kn' or 'uca-<langcode>-u-kn'. If you can't use UCA collations,
   a 'numeric' collation is also available. If migrating from another
   collation, you will need to run the updateCollation.php maintenance script.
+* Two new codes have been added to #time parser function: "xit" for days in current
+  month, and "xiz" for days passed in the year, both in Iranian calendar.
 
 === External library changes in 1.28 ===
 
