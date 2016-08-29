@@ -1494,7 +1494,7 @@ class Preferences {
 
 			$context = $form->getContext();
 			// Set session data for the success message
-			$context->getRequest()->setSessionData( 'specialPreferencesSaveSuccess', 1 );
+			$context->getRequest()->getSession()->set( 'specialPreferencesSaveSuccess', 1 );
 
 			$context->getOutput()->redirect( $url );
 		}

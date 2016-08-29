@@ -53,10 +53,10 @@ class SpecialPreferences extends SpecialPage {
 		$out->addModules( 'mediawiki.special.preferences' );
 		$out->addModuleStyles( 'mediawiki.special.preferences.styles' );
 
-		$request = $this->getRequest();
-		if ( $request->getSessionData( 'specialPreferencesSaveSuccess' ) ) {
+		$session = $this->getRequest()->getSession();
+		if ( $session->get( 'specialPreferencesSaveSuccess' ) ) {
 			// Remove session data for the success message
-			$request->setSessionData( 'specialPreferencesSaveSuccess', null );
+			$session->remove( 'specialPreferencesSaveSuccess' );
 			$out->addModuleStyles( 'mediawiki.notification.convertmessagebox.styles' );
 
 			$out->addHtml(
@@ -146,7 +146,7 @@ class SpecialPreferences extends SpecialPage {
 		$user->saveSettings();
 
 		// Set session data for the success message
-		$this->getRequest()->setSessionData( 'specialPreferencesSaveSuccess', 1 );
+		$this->getRequest()->getSession()->set( 'specialPreferencesSaveSuccess', 1 );
 
 		$url = $this->getPageTitle()->getFullURL();
 		$this->getOutput()->redirect( $url );
