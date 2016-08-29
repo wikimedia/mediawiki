@@ -1,4 +1,8 @@
+/* jshint unused: vars */
+/* eslint no-unused-vars: ["error", { "args": "none" }] */
 ( function ( mw ) {
+	// TODO: Implement this using a call to the server-side version: T145086
+
 	/**
 	 * This is the abstract base class for MessagePoster implementations.
 	 *
@@ -8,12 +12,12 @@
 	 * @constructor
 	 * @param {mw.Title} title Title to post to
 	 */
-	mw.messagePoster.MessagePoster = function MwMessagePoster() {};
+	mw.messagePoster.MessagePoster = function MwMessagePoster( title ) {};
 
 	OO.initClass( mw.messagePoster.MessagePoster );
 
 	/**
-	 * Post a message (with subject and body) to a talk page.
+	 * Post a topic (with subject and body) to a talk page.
 	 *
 	 * @abstract
 	 * @param {string} subject Subject/topic title.  The amount of wikitext supported is
@@ -36,5 +40,5 @@
 	 * The base class currently does nothing, but could be used for shared analytics or
 	 * something.
 	 */
-	mw.messagePoster.MessagePoster.prototype.post = function () {};
+	mw.messagePoster.MessagePoster.prototype.post = function ( subject, body ) {};
 }( mediaWiki ) );
