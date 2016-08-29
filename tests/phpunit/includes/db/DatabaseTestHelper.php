@@ -27,6 +27,9 @@ class DatabaseTestHelper extends DatabaseBase {
 
 	public function __construct( $testName ) {
 		$this->testName = $testName;
+
+		$this->profiler = new ProfilerStub( [] );
+		$this->trxProfiler = new TransactionProfiler();
 	}
 
 	/**

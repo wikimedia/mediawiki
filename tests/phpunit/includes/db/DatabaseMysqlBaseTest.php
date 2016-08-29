@@ -31,6 +31,8 @@
 class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 	// From DatabaseBase
 	function __construct() {
+		$this->profiler = new ProfilerStub( [] );
+		$this->trxProfiler = new TransactionProfiler();
 	}
 
 	protected function closeConnection() {
