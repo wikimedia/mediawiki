@@ -989,6 +989,9 @@ return [
 		// must be loaded on the bottom
 		'position' => 'bottom',
 	],
+	'mediawiki.diff' => [
+		'scripts' => 'resources/src/mediawiki/mediawiki.diff.js',
+	],
 	'mediawiki.feedback' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.feedback.js',
 		'styles' => 'resources/src/mediawiki/mediawiki.feedback.css',
