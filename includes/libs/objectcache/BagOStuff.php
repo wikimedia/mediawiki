@@ -45,30 +45,28 @@ use Psr\Log\NullLogger;
 abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	/** @var array[] Lock tracking */
 	protected $locks = [];
-
 	/** @var integer ERR_* class constant */
 	protected $lastError = self::ERR_NONE;
-
 	/** @var string */
 	protected $keyspace = 'local';
-
 	/** @var LoggerInterface */
 	protected $logger;
-
 	/** @var callback|null */
 	protected $asyncHandler;
+	/** @var integer Seconds */
+	protected $syncTimeout;
 
 	/** @var bool */
 	private $debugMode = false;
-
 	/** @var array */
 	private $duplicateKeyLookups = [];
-
 	/** @var bool */
 	private $reportDupes = false;
-
 	/** @var bool */
 	private $dupeTrackScheduled = false;
+
+	/** @var callable[] */
+	protected $busyCallbacks = [];
 
 	/** @var integer[] Map of (ATTR_* class constant => QOS_* class constant) */
 	protected $attrMap = [];
@@ -94,6 +92,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 *      In CLI mode, it should run the task immediately.
 	 *   - reportDupes: Whether to emit warning log messages for all keys that were
 	 *      requested more than once (requires an asyncHandler).
+	 *   - syncTimeout: How long to wait with WRITE_SYNC in seconds.
 	 * @param array $params
 	 */
 	public function __construct( array $params = [] ) {
@@ -114,6 +113,8 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 		if ( !empty( $params['reportDupes'] ) && is_callable( $this->asyncHandler ) ) {
 			$this->reportDupes = true;
 		}
+
+		$this->syncTimeout = isset( $params['syncTimeout'] ) ? $params['syncTimeout'] : 3;
 	}
 
 	/**
@@ -640,6 +641,30 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 */
 	protected function setLastError( $err ) {
 		$this->lastError = $err;
+	}
+
+	/**
+	 * Let a callback be run to avoid wasting time on special blocking calls
+	 *
+	 * The callbacks may or may not be called ever, in any particular order.
+	 * They are likely to be invoked when something WRITE_SYNC is used used.
+	 * They should follow a caching pattern as shown below, so that any code
+	 * using the word will get it's result no matter what happens.
+	 * @code
+	 *     $result = null;
+	 *     $workCallback = function () use ( &$result ) {
+	 *         if ( !$result ) {
+	 *             $result = ....
+	 *         }
+	 *         return $result;
+	 *     }
+	 * @endcode
+	 *
+	 * @param callable $workCallback
+	 * @since 1.28
+	 */
+	public function addBusyCallback( callable $workCallback ) {
+		$this->busyCallbacks[] = $workCallback;
 	}
 
 	/**
