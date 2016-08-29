@@ -196,9 +196,12 @@ abstract class LBFactory implements DestructibleService {
 	/**
 	 * Prepare all tracked load balancers for shutdown
 	 * @param integer $flags Supports SHUTDOWN_* flags
-	 * STUB
 	 */
 	public function shutdown( $flags = 0 ) {
+		if ( !( $flags & self::SHUTDOWN_NO_CHRONPROT ) ) {
+			$this->shutdownChronologyProtector( $this->chronProt );
+		}
+		$this->commitMasterChanges( __METHOD__ ); // sanity
 	}
 
 	/**
