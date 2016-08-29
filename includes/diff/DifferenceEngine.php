@@ -242,6 +242,7 @@ class DifferenceEngine extends ContextSource {
 		$out = $this->getOutput();
 		$out->allowClickjacking();
 		$out->setRobotPolicy( 'noindex,nofollow' );
+		$out->addModules( 'mediawiki.action.diff' );
 
 		// Allow extensions to add any extra output here
 		Hooks::run( 'DifferenceEngineShowDiffPage', [ $out ] );
