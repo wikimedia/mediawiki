@@ -37,7 +37,7 @@
 		},
 
 		/**
-		 * Loads a set of mesages and add them to mw.messages.
+		 * Loads a set of messages and add them to mw.messages.
 		 *
 		 * @param {Array} messages Messages to retrieve
 		 * @return {jQuery.Promise}
@@ -47,7 +47,7 @@
 		},
 
 		/**
-		 * Loads a set of mesages and add them to mw.messages. Only messages that are not already known
+		 * Loads a set of messages and add them to mw.messages. Only messages that are not already known
 		 * are loaded. If all messages are known, the returned promise is resolved immediately.
 		 *
 		 * @param {Array} messages Messages to retrieve
