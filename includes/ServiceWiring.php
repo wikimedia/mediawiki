@@ -187,6 +187,12 @@ return [
 		}
 	},
 
+	'MessagePosterRegistry' => function( MediaWikiServices $services ) {
+		return new MediaWiki\MessagePoster\MessagePosterRegistry(
+			$services->getMainConfig()->get( 'ContentModelMessagePosters' )
+		);
+	},
+
 	'GenderCache' => function( MediaWikiServices $services ) {
 		return new GenderCache();
 	},

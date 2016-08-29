@@ -14,6 +14,7 @@ use LoadBalancer;
 use MediaHandlerFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\MessagePoster\MessagePosterRegistry;
 use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceContainer;
 use MediaWiki\Services\NoSuchServiceException;
@@ -527,6 +528,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getMediaHandlerFactory() {
 		return $this->getService( 'MediaHandlerFactory' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return MessagePosterRegistry
+	 */
+	public function getMessagePosterRegistry() {
+		return $this->getService( 'MessagePosterRegistry' );
 	}
 
 	/**

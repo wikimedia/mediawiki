@@ -1132,6 +1132,17 @@ abstract class ContentHandler {
 	}
 
 	/**
+	 * Whether or not this content model provides an IMessagePoster for posting
+	 * to discussion pages
+	 *
+	 * @return bool Default is false, true for WikitextContentHandler and other
+	 * handlers.
+	 */
+	public function supportsMessagePoster() {
+		return false;
+	}
+
+	/**
 	 * Logs a deprecation warning, visible if $wgDevelopmentWarnings, but only if
 	 * self::$enableDeprecationWarnings is set to true.
 	 *
@@ -1321,4 +1332,25 @@ abstract class ContentHandler {
 		return $parserOutput;
 	}
 
+	/**
+	 * Gets an IMessagePoster for this content handler, if supported.
+	 *
+	 * If there is no IMessagePoster for this content model, this will throw throw a
+	 * BadMethodCallException.
+	 *
+	 * supportsMessagePoster is also required to return false in that case.
+	 *
+	 * The IMessagePoster is responsible for posting to a discussion page in this
+	 * content model.
+	 *
+	 * @return {IMessagePoster}
+	 * @throws {BadMethodCallException} If there is no IMessagePoster for this content
+	 *   model
+	 */
+	public function getMessagePoster() {
+		throw new \BadMethodCallException(
+			__METHOD__ .
+			' is not implemented.  There is no IMessagePoster available for this content model'
+		);
+	}
 }

@@ -120,6 +120,20 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $handler->supportsDirectEditing(), 'direct editing is supported' );
 	}
 
+	public function testSupportsMessagePoster() {
+		$this->assertTrue( $this->handler->supportsMessagePoster(), 'IMessagePoster is supported' );
+	}
+
+	public function testMessagePoster() {
+		$messagePoster = $this->handler->getMessagePoster();
+
+		$this>assertInstanceOf(
+			WikitextMessagePoster::class,
+			$messagePoster,
+			'Should return instance of correct class'
+		);
+	}
+
 	public static function dataMerge3() {
 		return [
 			[
