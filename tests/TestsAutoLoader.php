@@ -26,18 +26,6 @@ $testDir = __DIR__;
 
 $wgAutoloadClasses += [
 
-	# tests
-	'DbTestPreviewer' => "$testDir/testHelpers.inc",
-	'DbTestRecorder' => "$testDir/testHelpers.inc",
-	'DelayedParserTest' => "$testDir/testHelpers.inc",
-	'ParserTestResult' => "$testDir/parser/ParserTestResult.php",
-	'TestFileIterator' => "$testDir/testHelpers.inc",
-	'TestFileDataProvider' => "$testDir/testHelpers.inc",
-	'TestRecorder' => "$testDir/testHelpers.inc",
-	'ITestRecorder' => "$testDir/testHelpers.inc",
-	'DjVuSupport' => "$testDir/testHelpers.inc",
-	'TidySupport' => "$testDir/testHelpers.inc",
-
 	# tests/phpunit
 	'MediaWikiTestCase' => "$testDir/phpunit/MediaWikiTestCase.php",
 	'MediaWikiPHPUnitTestListener' => "$testDir/phpunit/MediaWikiPHPUnitTestListener.php",
@@ -142,11 +130,21 @@ $wgAutoloadClasses += [
 	'DummySessionProvider' => "$testDir/phpunit/mocks/session/DummySessionProvider.php",
 
 	# tests/parser
-	'NewParserTest' => "$testDir/phpunit/includes/parser/NewParserTest.php",
+	'DbTestPreviewer' => "$testDir/parser/DbTestPreviewer.php",
+	'DbTestRecorder' => "$testDir/parser/DbTestRecorder.php",
+	'DelayedParserTest' => "$testDir/parser/DelayedParserTest.php",
+	'DjVuSupport' => "$testDir/parser/DjVuSupport.php",
+	'ITestRecorder' => "$testDir/parser/ITestRecorder.php",
 	'MediaWikiParserTest' => "$testDir/phpunit/includes/parser/MediaWikiParserTest.php",
-	'ParserTest' => "$testDir/parser/parserTest.inc",
-	'ParserTestResultNormalizer' => "$testDir/parser/parserTest.inc",
-	'ParserTestParserHook' => "$testDir/parser/parserTestsParserHook.php",
+	'NewParserTest' => "$testDir/phpunit/includes/parser/NewParserTest.php",
+	'ParserTest' => "$testDir/parser/ParserTest.php",
+	'ParserTestParserHook' => "$testDir/parser/ParserTestParserHook.php",
+	'ParserTestResult' => "$testDir/parser/ParserTestResult.php",
+	'ParserTestResultNormalizer' => "$testDir/parser/ParserTestResultNormalizer.php",
+	'TestFileDataProvider' => "$testDir/parser/TestFileDataProvider.php",
+	'TestFileIterator' => "$testDir/parser/TestFileIterator.php",
+	'TestRecorder' => "$testDir/parser/TestRecorder.php",
+	'TidySupport' => "$testDir/parser/TidySupport.php",
 
 	# tests/phpunit/includes/site
 	'SiteTest' => "$testDir/phpunit/includes/site/SiteTest.php",
