@@ -101,7 +101,7 @@ TEXT
 			'STRAIGHT_JOIN' // per T58041
 		];
 
-		if ( $force || $dryRun ) {
+		if ( $force ) {
 			$collationConds = [];
 		} else {
 			if ( $this->hasOption( 'previous-collation' ) ) {
@@ -132,7 +132,11 @@ TEXT
 
 				return;
 			}
-			$this->output( "Fixing collation for $count rows.\n" );
+			if ( $dryRun ) {
+				$this->output( "$count rows would be updated.\n" );
+			} else {
+				$this->output( "Fixing collation for $count rows.\n" );
+			}
 			wfWaitForSlaves();
 		}
 		$count = 0;
