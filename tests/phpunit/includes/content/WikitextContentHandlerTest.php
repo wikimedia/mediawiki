@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MessagePoster\WikitextMessagePoster;
+
 /**
  * @group ContentHandler
  */
@@ -118,6 +120,16 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	public function testSupportsDirectEditing() {
 		$handler = new WikiTextContentHandler();
 		$this->assertTrue( $handler->supportsDirectEditing(), 'direct editing is supported' );
+	}
+
+	public function testMessagePoster() {
+		$messagePoster = $this->handler->getMessagePoster();
+
+		$this->assertInstanceOf(
+			WikitextMessagePoster::class,
+			$messagePoster,
+			'Should return instance of correct class'
+		);
 	}
 
 	public static function dataMerge3() {

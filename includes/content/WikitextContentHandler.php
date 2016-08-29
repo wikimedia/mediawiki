@@ -23,6 +23,8 @@
  * @ingroup Content
  */
 
+use MediaWiki\MessagePoster\WikitextMessagePoster;
+
 /**
  * Content handler for wiki text pages.
  *
@@ -172,4 +174,7 @@ class WikitextContentHandler extends TextContentHandler {
 		return $fields;
 	}
 
+	public function getMessagePoster() {
+		return new WikitextMessagePoster();
+	}
 }

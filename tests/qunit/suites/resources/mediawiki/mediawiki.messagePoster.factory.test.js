@@ -22,7 +22,7 @@
 				mw.messagePoster.factory.register( TEST_MODEL, testMessagePosterConstructor );
 			},
 			new RegExp( 'Content model "' + TEST_MODEL + '" is already registered' ),
-			'Throws exception is same model is registered a second time'
+			'Throws exception if same model is registered a second time'
 		);
 	} );
 }( mediaWiki ) );
