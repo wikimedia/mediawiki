@@ -377,7 +377,7 @@ class SqlBagOStuff extends BagOStuff {
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		$ok = $this->setMulti( [ $key => $value ], $exptime );
 		if ( ( $flags & self::WRITE_SYNC ) == self::WRITE_SYNC ) {
-			$ok = $ok && $this->waitForSlaves();
+			$ok = $this->waitForReplication() && $ok;
 		}
 
 		return $ok;
@@ -489,7 +489,7 @@ class SqlBagOStuff extends BagOStuff {
 	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
 		$ok = $this->mergeViaCas( $key, $callback, $exptime, $attempts );
 		if ( ( $flags & self::WRITE_SYNC ) == self::WRITE_SYNC ) {
-			$ok = $ok && $this->waitForSlaves();
+			$ok = $ok && $this->waitForReplication();
 		}
 
 		return $ok;
@@ -797,26 +797,34 @@ class SqlBagOStuff extends BagOStuff {
 		return !$this->serverInfos;
 	}
 
-	protected function waitForSlaves() {
-		if ( $this->usesMainDB() ) {
-			$lb = $this->getSeparateMainLB()
-				?: MediaWikiServices::getInstance()->getDBLoadBalancer();
-			// Return if there are no slaves
-			if ( $lb->getServerCount() <= 1 ) {
-				return true;
-			}
-			// Main LB is used; wait for any slaves to catch up
-			try {
-				$pos = $lb->getMasterPos();
-				if ( $pos ) {
-					return $lb->waitForAll( $pos, 3 );
-				}
-			} catch ( DBReplicationWaitError $e ) {
-				return false;
-			}
+	protected function waitForReplication() {
+		if ( !$this->usesMainDB() ) {
+			// Custom DB server list; probably doesn't use replication
+			return true;
 		}
 
-		// Custom DB server list; probably doesn't use replication
-		return true;
+		$lb = $this->getSeparateMainLB()
+			?: MediaWikiServices::getInstance()->getDBLoadBalancer();
+
+		if ( $lb->getServerCount() <= 1 ) {
+			return true; // no slaves
+		}
+
+		// Main LB is used; wait for any slaves to catch up
+		$masterPos = $lb->getMasterPos();
+
+		$loop = new WaitConditionLoop(
+			function () use ( $lb, $masterPos ) {
+				$status = StatusValue::newGood();
+				if ( !$lb->waitForAll( $masterPos, 1 ) ) {
+					$status->warning( 'not_synced' );
+				}
+				return $status;
+			},
+			$this->syncTimeout,
+			$this->busyCallbacks
+		);
+
+		return $loop->invoke()->isGood();
 	}
 }
