@@ -3200,7 +3200,7 @@ $wgUseMediaWikiUIEverywhere = false;
  *
  * @since 1.28
  */
-$wgEditButtonPublishNotSave = false;
+$wgEditSubmitButtonLabelPublish = false;
 
 /**
  * Permit other namespaces in addition to the w3.org default.
