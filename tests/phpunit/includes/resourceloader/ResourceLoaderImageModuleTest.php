@@ -154,6 +154,49 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 		$styles = $module->getStyles( $this->getResourceLoaderContext() );
 		$this->assertEquals( $expected, $styles['all'] );
 	}
+
+	/**
+	 * @covers ResourceLoaderContext::getImageObj
+	 */
+	public function testContext() {
+		$context = new ResourceLoaderContext( new EmptyResourceLoader(), new FauxRequest() );
+		$this->assertFalse( $context->getImageObj(), 'Missing image parameter' );
+
+		$context = new ResourceLoaderContext( new EmptyResourceLoader(), new FauxRequest( [
+			'image' => 'example',
+		] ) );
+		$this->assertFalse( $context->getImageObj(), 'Missing module parameter' );
+
+		$context = new ResourceLoaderContext( new EmptyResourceLoader(), new FauxRequest( [
+			'modules' => 'unknown',
+			'image' => 'example',
+		] ) );
+		$this->assertFalse( $context->getImageObj(), 'Not an image module' );
+
+		$rl = new EmptyResourceLoader();
+		$rl->register( 'test', [
+			'class' => ResourceLoaderImageModule::class,
+			'prefix' => 'test',
+			'images' => [ 'example' => 'example.png' ],
+		] );
+		$context = new ResourceLoaderContext( $rl, new FauxRequest( [
+			'modules' => 'test',
+			'image' => 'unknown',
+		] ) );
+		$this->assertFalse( $context->getImageObj(), 'Unknown image' );
+
+		$rl = new EmptyResourceLoader();
+		$rl->register( 'test', [
+			'class' => ResourceLoaderImageModule::class,
+			'prefix' => 'test',
+			'images' => [ 'example' => 'example.png' ],
+		] );
+		$context = new ResourceLoaderContext( $rl, new FauxRequest( [
+			'modules' => 'test',
+			'image' => 'example',
+		] ) );
+		$this->assertInstanceOf( ResourceLoaderImage::class, $context->getImageObj() );
+	}
 }
 
 class ResourceLoaderImageModuleTestable extends ResourceLoaderImageModule {
