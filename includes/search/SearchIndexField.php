@@ -35,6 +35,16 @@ interface SearchIndexField {
 	 * Do not index this field, just store it.
 	 */
 	const FLAG_NO_INDEX = 8;
+
+	/**
+	 * Similar to FLAG_NO_INDEX but we inform the SearchEngine
+	 * that this field should not be part of the search schema
+	 * by default.
+	 * SearchEngine implementations could then override its settings
+	 * or simply use this data for other purposes.
+	 */
+	const FLAG_SOURCE_DATA = 16;
+
 	/**
 	 * Get mapping for specific search engine
 	 * @param SearchEngine $engine
