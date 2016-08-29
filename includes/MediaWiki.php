@@ -571,12 +571,13 @@ class MediaWiki {
 			// Abort if any transaction was too big
 			[ 'maxWriteDuration' => $config->get( 'MaxUserDBWriteDuration' ) ]
 		);
-		// Record ChronologyProtector positions
-		$factory->shutdown();
-		wfDebug( __METHOD__ . ': all transactions committed' );
 
 		DeferredUpdates::doUpdates( 'enqueue', DeferredUpdates::PRESEND );
 		wfDebug( __METHOD__ . ': pre-send deferred updates completed' );
+
+		// Record ChronologyProtector positions
+		$factory->shutdown();
+		wfDebug( __METHOD__ . ': all transactions committed' );
 
 		// Set a cookie to tell all CDN edge nodes to "stick" the user to the DC that handles this
 		// POST request (e.g. the "master" data center). Also have the user briefly bypass CDN so
