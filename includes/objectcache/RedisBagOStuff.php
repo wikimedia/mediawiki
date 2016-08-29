@@ -115,6 +115,9 @@ class RedisBagOStuff extends BagOStuff {
 				// No expiry, that is very different from zero expiry in Redis
 				$result = $conn->set( $key, $this->serialize( $value ) );
 			}
+			if ( ( $flags & self::WRITE_SYNC ) == self::WRITE_SYNC ) {
+				$result = $this->waitForReplication( $conn ) && $result;
+			}
 		} catch ( RedisException $e ) {
 			$result = false;
 			$this->handleException( $conn, $e );
@@ -410,11 +413,60 @@ class RedisBagOStuff extends BagOStuff {
 	 * not. The safest response for us is to explicitly destroy the connection
 	 * object and let it be reopened during the next request.
 	 * @param RedisConnRef $conn
-	 * @param Exception $e
+	 * @param RedisException $e
 	 */
 	protected function handleException( RedisConnRef $conn, $e ) {
 		$this->setLastError( BagOStuff::ERR_UNEXPECTED );
 		$this->redisPool->handleError( $conn, $e );
+	}
+
+	/**
+	 * @param RedisConnRef $conn
+	 * @return bool
+	 */
+	protected function waitForReplication( RedisConnRef $conn ) {
+		// http://redis.io/commands/info
+		$info = $conn->info( 'replication' );
+		if ( !isset( $info['slave0'] ) || !isset( $info['master_repl_offset'] ) ) {
+			return true; // no slaves configured
+		}
+
+		$masterPos = (int)$info['master_repl_offset'];
+		$loop = new WaitConditionLoop(
+			function () use ( $conn, $masterPos ) {
+				$status = StatusValue::newGood();
+				if ( !$this->wasReplicated( $masterPos, $conn->info( 'replication' ) ) ) {
+					$status->warning( 'notsynced' );
+				}
+				return $status;
+			},
+			$this->syncTimeout,
+			$this->busyCallbacks
+		);
+
+		return $loop->invoke()->isGood();
+	}
+
+	/**
+	 * @param integer $masterPos
+	 * @param array $info Info from 'replication' group
+	 * @return bool
+	 */
+	private function wasReplicated( $masterPos, array $info ) {
+		foreach ( $info as $key => $value ) {
+			$m = [];
+			// https://github.com/antirez/redis/issues/2375
+			if ( preg_match( '/^slave\d+$/', $key )
+				&& preg_match( '/offset=(\d+)/', $value, $m )
+			) {
+				$slavePos = (int)$m[1];
+				if ( $slavePos < $masterPos ) {
+					return false;
+				}
+			}
+		}
+
+		return true;
 	}
 
 	/**
