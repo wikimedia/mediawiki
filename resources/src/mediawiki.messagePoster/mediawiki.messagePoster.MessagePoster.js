@@ -1,5 +1,8 @@
 /*global OO*/
 ( function ( mw ) {
+	// TODO: When the server implementation is stable, consider replacing this with an API
+	// call to that.
+
 	/**
 	 * This is the abstract base class for MessagePoster implementations.
 	 *
@@ -14,7 +17,7 @@
 	OO.initClass( mw.messagePoster.MessagePoster );
 
 	/**
-	 * Post a message (with subject and body) to a talk page.
+	 * Post a topic (with subject and body) to a talk page.
 	 *
 	 * @abstract
 	 * @param {string} subject Subject/topic title.  The amount of wikitext supported is
