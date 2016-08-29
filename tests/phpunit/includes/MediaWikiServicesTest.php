@@ -321,6 +321,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'LinkCache' => [ 'LinkCache', LinkCache::class ],
 			'LinkRenderer' => [ 'LinkRenderer', LinkRenderer::class ],
 			'LinkRendererFactory' => [ 'LinkRendererFactory', LinkRendererFactory::class ],
+			'MessagePosterRegistry' => [ 'MessagePosterRegistry', MessagePosterRegistry::class ],
 			'_MediaWikiTitleCodec' => [ '_MediaWikiTitleCodec', MediaWikiTitleCodec::class ],
 			'TitleFormatter' => [ 'TitleFormatter', TitleFormatter::class ],
 			'TitleParser' => [ 'TitleParser', TitleParser::class ],

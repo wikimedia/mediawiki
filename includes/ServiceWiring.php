@@ -187,6 +187,17 @@ return [
 		}
 	},
 
+	'MessagePosterRegistry' => function( MediaWikiServices $services ) {
+		$factory = new MediaWiki\MessagePoster\MessagePosterRegistry;
+
+		$factory->register(
+			'wikitext',
+			'MediaWiki\MessagePoster\WikitextMessagePoster'
+		);
+
+		return $factory;
+	},
+
 	'GenderCache' => function( MediaWikiServices $services ) {
 		return new GenderCache();
 	},
