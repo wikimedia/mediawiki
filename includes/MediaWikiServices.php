@@ -198,7 +198,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	private function salvage( self $other ) {
 		foreach ( $this->getServiceNames() as $name ) {
-			$oldService = $other->peekService( $name );
+			// The service could be new in the new instance and not registered in the
+			// other instance (e.g. an extension that was loaded after the instantiation of
+			// the other instance. Skip this service in this case. See T143974
+			try {
+				$oldService = $other->peekService( $name );
+			} catch ( NoSuchServiceException $e ) {
+				continue;
+			}
 
 			if ( $oldService instanceof SalvageableService ) {
 				/** @var SalvageableService $newService */
