@@ -3534,6 +3534,7 @@
 	"log-action-filter-rights-autopromote": "স্বয়ংক্রিয় পরিবর্তন",
 	"log-action-filter-upload-upload": "নতুন আপলোড",
 	"log-action-filter-upload-overwrite": "পুনঃআপলোড",
+	"authmanager-authn-no-primary": "সরবরাহকৃত পরিচয়পত্রের অনুমোদন যাচাই করা যায়নি।",
 	"authmanager-create-from-login": "আপনার একাউন্ট তৈরি করতে, নীচের ক্ষেত্রগুলি পূরণ করুন।",
 	"authmanager-authplugin-setpass-failed-title": "পাসওয়ার্ড পরিবর্তন ব্যর্থ হয়েছে",
 	"authmanager-authplugin-setpass-bad-domain": "অবৈধ ডোমেইন।",

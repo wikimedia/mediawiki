@@ -1192,6 +1192,8 @@
 	"cantrollback": "تدوین ثانی کا اعادہ نہیں کیا جاسکتا؛ کیونکہ اس میں آخری بار حصہ لینے والا ہی اس صفحہ کا واحد کاتب ہے۔",
 	"changecontentmodel-title-label": "صفحہ کا عنوان",
 	"changecontentmodel-reason-label": "وجہ:",
+	"log-name-contentmodel": "نوشتہ تبدیلی نمونہ مواد",
+	"logentry-contentmodel-change": "$1 نے صفحہ $3 کے مواد کی ساخت کو \"$4\" سے \"$5\" میں {{GENDER:$2|تبدیل کیا}}",
 	"protectlogpage": "نوشتۂ محفوظ شدگی",
 	"protectedarticle": "\"[[$1]]\" کومحفوظ کردیا",
 	"unprotectedarticle": "\"[[$1]]\" کوغیر محفوظ کیا",
