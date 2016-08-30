@@ -259,7 +259,17 @@ class ExifBitmapHandler extends BitmapHandler {
 
 			$this->swapICCProfile(
 				$params['dstPath'],
-				self::SRGB_ICC_PROFILE_NAME,
+				/**
+				 * We'll want to replace the color profile for JPGs:
+				 * * in the sRGB color space, or with the sRGB profile
+				 *   (other profiles will be left untouched)
+				 * * without color space or profile, in which case browsers
+				 *   should assume sRGB, but don't always do (e.g. on wide-gamut
+				 *   monitors
+				 * @see https://phabricator.wikimedia.org/T134498
+				 */
+				[ 'sRGB', '-' ], // must match sRGB, or not be set
+				[ self::SRGB_ICC_PROFILE_NAME, '-' ], // must match sRGB, or not be set
 				realpath( __DIR__ ) . '/tinyrgb.icc'
 			);
 		}
@@ -271,13 +281,14 @@ class ExifBitmapHandler extends BitmapHandler {
 	 * Swaps an embedded ICC profile for another, if found.
 	 * Depends on exiftool, no-op if not installed.
 	 * @param string $filepath File to be manipulated (will be overwritten)
-	 * @param string $oldProfileString Exact name of color profile to look for
+	 * @param array $colorSpaces Only process files with this/these Color Space(s)
+	 * @param array $oldProfileStrings Exact name(s) of color profile to look for
 	 *  (the one that will be replaced)
 	 * @param string $profileFilepath ICC profile file to apply to the file
 	 * @since 1.26
 	 * @return bool
 	 */
-	public function swapICCProfile( $filepath, $oldProfileString, $profileFilepath ) {
+	public function swapICCProfile( $filepath, array $colorSpaces, array $oldProfileStrings, $profileFilepath ) {
 		global $wgExiftool;
 
 		if ( !$wgExiftool || !is_executable( $wgExiftool ) ) {
@@ -285,7 +296,8 @@ class ExifBitmapHandler extends BitmapHandler {
 		}
 
 		$cmd = wfEscapeShellArg( $wgExiftool,
-			'-DeviceModelDesc',
+			'-EXIF:ColorSpace',
+			'-ICC_Profile:DeviceModelDesc',
 			'-S',
 			'-T',
 			$filepath
@@ -293,7 +305,23 @@ class ExifBitmapHandler extends BitmapHandler {
 
 		$output = wfShellExecWithStderr( $cmd, $retval );
 
-		if ( $retval !== 0 || strcasecmp( trim( $output ), $oldProfileString ) !== 0 ) {
+		// Explode EXIF data into an array with [0 => Color Space, 1 => Device Model Desc]
+		$data = explode( "\t", trim( $output ) );
+
+		if ( $retval !== 0 ) {
+			return false;
+		}
+
+		// Make a regex out of the source data to match it to an array of color
+		// spaces in a case-insensitive way
+		$colorSpaceRegex = '/'.preg_quote( $data[0], '/' ).'/i';
+		if ( empty( preg_grep( $colorSpaceRegex, $colorSpaces ) ) ) {
+			// We can't establish that this file matches the color space, don't process it
+			return false;
+		}
+
+		$profileRegex = '/'.preg_quote( $data[1], '/' ).'/i';
+		if ( empty( preg_grep( $profileRegex, $oldProfileStrings ) ) ) {
 			// We can't establish that this file has the expected ICC profile, don't process it
 			return false;
 		}
