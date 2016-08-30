@@ -290,10 +290,18 @@
 				.toggleClass( 'mw-notification-area-layout', !isFloating );
 		}
 
-		// Write to the DOM:
-		// Prepend the notification area to the content area and save its object.
-		// The ID attribute here is deprecated.
-		$area = $( '<div id="mw-notification-area" class="mw-notification-area mw-notification-area-layout"></div>' )
+		// Look for a preset notification area in the skin.
+		// 'data-mw*' attributes are banned from user content in Sanitizer.
+		$area = $( '.mw-notification-area[data-mw="interface"]' ).first();
+		if ( !$area.length ) {
+			$area = $( '<div>' ).addClass( 'mw-notification-area' );
+			// Prepend the notification area to the content area
+			mw.util.$content.prepend( $area );
+		}
+		$area
+			.addClass( 'mw-notification-area-layout' )
+			// The ID attribute here is deprecated.
+			.attr( 'id', 'mw-notification-area' )
 			// Pause auto-hide timers when the mouse is in the notification area.
 			.on( {
 				mouseenter: notification.pause,
@@ -311,8 +319,6 @@
 			.on( 'click', 'a', function ( e ) {
 				e.stopPropagation();
 			} );
-
-		mw.util.$content.prepend( $area );
 
 		// Read from the DOM:
 		// Must be in the next frame to avoid synchronous layout
