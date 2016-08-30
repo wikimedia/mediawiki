@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 /**
  * Class for viewing MediaWiki file description pages
  *
@@ -439,6 +440,7 @@ class ImagePage extends Article {
 
 				if ( $isMulti ) {
 					$count = $this->displayImg->pageCount();
+					$fileLinkRenderer = MediaWikiServices::getInstance()->getFileLinkRenderer();
 
 					if ( $page > 1 ) {
 						$label = $out->parse( $this->getContext()->msg( 'imgmultipageprev' )->text(), false );
@@ -450,12 +452,14 @@ class ImagePage extends Article {
 							[],
 							[ 'page' => $page - 1 ]
 						);
-						$thumb1 = Linker::makeThumbLinkObj(
+						$thumb1 = $fileLinkRenderer->makeThumbLink(
 							$this->getTitle(),
 							$this->displayImg,
-							$link,
-							$label,
-							'none',
+							[
+								'alt' => $label,
+								'caption' => $link,
+								'align' => 'none'
+							],
 							[ 'page' => $page - 1 ]
 						);
 					} else {
@@ -470,12 +474,14 @@ class ImagePage extends Article {
 							[],
 							[ 'page' => $page + 1 ]
 						);
-						$thumb2 = Linker::makeThumbLinkObj(
+						$thumb2 = $fileLinkRenderer->makeThumbLink(
 							$this->getTitle(),
 							$this->displayImg,
-							$link,
-							$label,
-							'none',
+							[
+								'alt' => $label,
+								'caption' => $link,
+								'align' => 'none'
+							],
 							[ 'page' => $page + 1 ]
 						);
 					} else {
