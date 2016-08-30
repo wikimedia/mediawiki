@@ -858,7 +858,8 @@
 				cssBuffer = '',
 				cssBufferTimer = null,
 				cssCallbacks = $.Callbacks(),
-				isIE9 = document.documentMode === 9;
+				isIE9 = document.documentMode === 9,
+				rAF = window.requestAnimationFrame || setTimeout;
 
 			function getMarker() {
 				if ( !marker ) {
@@ -930,10 +931,9 @@
 					if ( !cssBuffer || cssText.slice( 0, '@import'.length ) !== '@import' ) {
 						// Linebreak for somewhat distinguishable sections
 						cssBuffer += '\n' + cssText;
-						// TODO: Using requestAnimationFrame would perform better by not injecting
-						// styles while the browser is busy painting.
 						if ( !cssBufferTimer ) {
-							cssBufferTimer = setTimeout( function () {
+							cssBufferTimer = rAF( function () {
+								// Wrap in anonymous function that takes no arguments
 								// Support: Firefox < 13
 								// Firefox 12 has non-standard behaviour of passing a number
 								// as first argument to a setTimeout callback.
