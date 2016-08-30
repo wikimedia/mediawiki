@@ -47,6 +47,9 @@ production.
   collation, you will need to run the updateCollation.php maintenance script.
 * Two new codes have been added to #time parser function: "xit" for days in current
   month, and "xiz" for days passed in the year, both in Iranian calendar.
+* mw.Api has a new option, useUS, to use U+001F (Unit Separator) when
+  appropriate for sending multi-valued parameters. This defaults to true when
+  the mw.Api instance seems to be for the local wiki.
 
 === External library changes in 1.28 ===
 
@@ -84,6 +87,9 @@ production.
   action=createaccount, action=linkaccount, and action=changeauthenticationdata
   in the query string is now deprecated and outputs a warning. They should be
   submitted in the POST body instead.
+* (T141960) Multi-valued parameters may now be separated using U+001F (Unit Separator)
+  instead of the pipe character. This will be useful if some of the multiple
+  values need to contain pipes, e.g. for action=options.
 
 === Action API internal changes in 1.28 ===
 * Added a new hook, 'ApiMakeParserOptions', to allow extensions to better
