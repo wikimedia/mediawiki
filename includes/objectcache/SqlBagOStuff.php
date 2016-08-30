@@ -801,6 +801,10 @@ class SqlBagOStuff extends BagOStuff {
 		if ( $this->usesMainDB() ) {
 			$lb = $this->getSeparateMainLB()
 				?: MediaWikiServices::getInstance()->getDBLoadBalancer();
+			// Return if there are no slaves
+			if ( $lb->getServerCount() <= 1 ) {
+				return true;
+			}
 			// Main LB is used; wait for any slaves to catch up
 			try {
 				$pos = $lb->getMasterPos();
