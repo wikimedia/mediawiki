@@ -52,13 +52,21 @@
 			prop: [ 'info' ],
 			titles: titles
 		} ).done( function ( response ) {
+			var
+				normalized = {},
+				pages = {};
+			$.each( response.query.normalized || [], function ( index, data ) {
+				normalized[ data.fromencoded ? decodeURIComponent( data.from ) : data.from ] = data.to;
+			} );
 			$.each( response.query.pages, function ( index, page ) {
-				var title = new ForeignTitle( page.title ).getPrefixedText();
-				cache.existenceCache[ title ] = !page.missing;
-				if ( !queue[ title ] ) {
-					// Debugging for T139130
-					throw new Error( 'No queue for "' + title + '", requested "' + titles.join( '|' ) + '"' );
+				pages[ page.title ] = !page.missing;
+			} );
+			$.each( titles, function ( index, title ) {
+				var normalizedTitle = title;
+				while ( normalized[ normalizedTitle ] ) {
+					normalizedTitle = normalized[ normalizedTitle ];
 				}
+				cache.existenceCache[ title ] = pages[ normalizedTitle ];
 				queue[ title ].resolve( cache.existenceCache[ title ] );
 			} );
 		} );
