@@ -90,6 +90,12 @@ production.
 * (T141960) Multi-valued parameters may now be separated using U+001F (Unit Separator)
   instead of the pipe character. This will be useful if some of the multiple
   values need to contain pipes, e.g. for action=options.
+* The API will now warn if input is not NFC-normalized Unicode or if it
+  contains invalid characters.
+* The 'normalized' list output by action=query and other modules that use
+  ApiPageSet may contain entries where the 'from' value is percent-encoded as
+  the raw value cannot be represented in a valid API response. These are
+  indicated by a 'fromencoded' boolean alongside the existing 'from' parameter.
 
 === Action API internal changes in 1.28 ===
 * Added a new hook, 'ApiMakeParserOptions', to allow extensions to better

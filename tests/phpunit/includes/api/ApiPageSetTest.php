@@ -75,4 +75,25 @@ class ApiPageSetTest extends ApiTestCase {
 
 		return [ $target, $pageSet ];
 	}
+
+	public function testHandleNormalization() {
+		$context = new RequestContext();
+		$context->setRequest( new FauxRequest( [ 'titles' => "a|B|a\xcc\x8a" ] ) );
+		$main = new ApiMain( $context );
+		$pageSet = new ApiPageSet( $main );
+		$pageSet->execute();
+
+		$this->assertSame(
+			[ 0 => [ 'A' => -1, 'B' => -2, 'Å' => -3 ] ],
+			$pageSet->getAllTitlesByNamespace()
+		);
+		$this->assertSame(
+			[
+				[ 'fromencoded' => true, 'from' => 'a%CC%8A', 'to' => 'å' ],
+				[ 'fromencoded' => false, 'from' => 'a', 'to' => 'A' ],
+				[ 'fromencoded' => false, 'from' => 'å', 'to' => 'Å' ],
+			],
+			$pageSet->getNormalizedTitlesAsResult()
+		);
+	}
 }
