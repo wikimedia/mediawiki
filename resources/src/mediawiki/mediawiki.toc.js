@@ -30,7 +30,7 @@
 			hideToc = mw.cookie.get( 'hidetoc' ) === '1';
 
 			$tocToggleLink = $( '<a href="#" id="togglelink"></a>' )
-				.text( hideToc ? mw.msg( 'showtoc' ) : mw.msg( 'hidetoc' ) )
+				.text( mw.msg( hideToc ? 'showtoc' : 'hidetoc' ) )
 				.click( function ( e ) {
 					e.preventDefault();
 					toggleToc();
