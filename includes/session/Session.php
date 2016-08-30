@@ -129,6 +129,11 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 
 	/**
 	 * Make this session not be persisted across requests
+	 *
+	 * This will remove persistence information (e.g. delete cookies)
+	 * from the associated WebRequest(s), and delete session data in the
+	 * backend. The session data will still be available via get() until
+	 * the end of the request.
 	 */
 	public function unpersist() {
 		$this->backend->unpersist();
@@ -603,6 +608,9 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 
 	/**
 	 * Save the session
+	 *
+	 * This will update the backend data and might re-persist the session
+	 * if needed.
 	 */
 	public function save() {
 		$this->backend->save();

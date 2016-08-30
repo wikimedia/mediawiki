@@ -709,6 +709,9 @@ class WebRequest {
 
 	/**
 	 * Return the session for this request
+	 *
+	 * This might unpersist an existing session if it was invalid.
+	 *
 	 * @since 1.27
 	 * @note For performance, keep the session locally if you will be making
 	 *  much use of it instead of calling this method repeatedly.

@@ -599,7 +599,8 @@ final class SessionBackend {
 	}
 
 	/**
-	 * Save and persist session data, unless delayed
+	 * Save the session, unless delayed
+	 * @see SessionBackend::save()
 	 */
 	private function autosave() {
 		if ( $this->delaySave <= 0 ) {
@@ -608,7 +609,12 @@ final class SessionBackend {
 	}
 
 	/**
-	 * Save and persist session data
+	 * Save the session
+	 *
+	 * Update both the backend data and the associated WebRequest(s) to
+	 * reflect the state of the the SessionBackend. This might include
+	 * persisting or unpersisting the session.
+	 *
 	 * @param bool $closing Whether the session is being closed
 	 */
 	public function save( $closing = false ) {

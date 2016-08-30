@@ -28,6 +28,11 @@ use Psr\Log\LoggerAwareInterface;
 
 /**
  * An AuthenticationProvider is used by AuthManager when authenticating users.
+ *
+ * This interface should not be implemented directly; use one of its children.
+ *
+ * Authentication providers can be registered via $wgAuthManagerAutoConfig.
+ *
  * @ingroup Auth
  * @since 1.27
  */
@@ -83,9 +88,9 @@ interface AuthenticationProvider extends LoggerAwareInterface {
 	 *    - ACTION_LINK: The local user being linked to.
 	 *    - ACTION_CHANGE: The user having data changed.
 	 *    - ACTION_REMOVE: The user having data removed.
-	 *    This does not need to be copied into the returned requests, you only
-	 *    need to pay attention to it if the set of requests differs based on
-	 *    the user.
+	 *    If you leave the username property of the returned requests empty, this
+	 *    will automatically be copied there (except for ACTION_CREATE where it
+	 *    wouldn't really make sense).
 	 * @return AuthenticationRequest[]
 	 */
 	public function getAuthenticationRequests( $action, array $options );
