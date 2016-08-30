@@ -470,3 +470,21 @@ class DBReadOnlyError extends DBExpectedError {
  */
 class DBTransactionError extends DBExpectedError {
 }
+
+/**
+ * Exception class for attempted DB access
+ * @ingroup Database
+ */
+class DBAccessError extends DBUnexpectedError {
+	public function __construct() {
+		parent::__construct( "Mediawiki tried to access the database via wfGetDB(). " .
+			"This is not allowed, because database access has been disabled." );
+	}
+}
+
+/**
+ * Exception class for replica DB wait timeouts
+ * @ingroup Database
+ */
+class DBReplicationWaitError extends DBUnexpectedError {
+}
