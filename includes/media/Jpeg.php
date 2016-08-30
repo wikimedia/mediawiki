@@ -31,6 +31,8 @@
  * @ingroup Media
  */
 class JpegHandler extends ExifBitmapHandler {
+	const SRGB_EXIF_COLOR_SPACE = 'sRGB';
+	const SRGB_ICC_PROFILE_DESCRIPTION = 'sRGB IEC61966-2.1';
 
 	function normaliseParams( $image, &$params ) {
 		if ( !parent::normaliseParams( $image, $params ) ) {
@@ -170,5 +172,119 @@ class JpegHandler extends ExifBitmapHandler {
 		}
 
 		return $params;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function transformImageMagick( $image, $params ) {
+		global $wgUseTinyRGBForJPGThumbnails;
+
+		$ret = parent::transformImageMagick( $image, $params );
+
+		if ( $ret ) {
+			return $ret;
+		}
+
+		if ( $wgUseTinyRGBForJPGThumbnails ) {
+			// T100976 If the profile embedded in the JPG is sRGB, swap it for the smaller
+			// (and free) TinyRGB
+
+			/**
+			 * We'll want to replace the color profile for JPGs:
+			 * * in the sRGB color space, or with the sRGB profile
+			 *   (other profiles will be left untouched)
+			 * * without color space or profile, in which case browsers
+			 *   should assume sRGB, but don't always do (e.g. on wide-gamut
+			 *   monitors (unless it's meant for low bandwith)
+			 * @see https://phabricator.wikimedia.org/T134498
+			 */
+			$colorSpaces = [ self::SRGB_EXIF_COLOR_SPACE, '-' ];
+			$profiles = [ self::SRGB_ICC_PROFILE_DESCRIPTION ];
+
+			// we'll also add TinyRGB profile to images lacking a profile, but
+			// only if they're not low quality (which are meant to save bandwith
+			// and we don't want to increase the filesize by adding a profile)
+			if ( $params['quality'] > 30 ) {
+				$profiles[] = '-';
+			}
+
+			$this->swapICCProfile(
+				$params['dstPath'],
+				$colorSpaces,
+				$profiles,
+				realpath( __DIR__ ) . '/tinyrgb.icc'
+			);
+		}
+
+		return false;
+	}
+
+	/**
+	 * Swaps an embedded ICC profile for another, if found.
+	 * Depends on exiftool, no-op if not installed.
+	 * @param string $filepath File to be manipulated (will be overwritten)
+	 * @param array $colorSpaces Only process files with this/these Color Space(s)
+	 * @param array $oldProfileStrings Exact name(s) of color profile to look for
+	 *  (the one that will be replaced)
+	 * @param string $profileFilepath ICC profile file to apply to the file
+	 * @since 1.26
+	 * @return bool
+	 */
+	public function swapICCProfile( $filepath, array $colorSpaces,
+									array $oldProfileStrings, $profileFilepath
+	) {
+		global $wgExiftool;
+
+		if ( !$wgExiftool || !is_executable( $wgExiftool ) ) {
+			return false;
+		}
+
+		$cmd = wfEscapeShellArg( $wgExiftool,
+			'-EXIF:ColorSpace',
+			'-ICC_Profile:ProfileDescription',
+			'-S',
+			'-T',
+			$filepath
+		);
+
+		$output = wfShellExecWithStderr( $cmd, $retval );
+
+		// Explode EXIF data into an array with [0 => Color Space, 1 => Device Model Desc]
+		$data = explode( "\t", trim( $output ) );
+
+		if ( $retval !== 0 ) {
+			return false;
+		}
+
+		// Make a regex out of the source data to match it to an array of color
+		// spaces in a case-insensitive way
+		$colorSpaceRegex = '/'.preg_quote( $data[0], '/' ).'/i';
+		if ( empty( preg_grep( $colorSpaceRegex, $colorSpaces ) ) ) {
+			// We can't establish that this file matches the color space, don't process it
+			return false;
+		}
+
+		$profileRegex = '/'.preg_quote( $data[1], '/' ).'/i';
+		if ( empty( preg_grep( $profileRegex, $oldProfileStrings ) ) ) {
+			// We can't establish that this file has the expected ICC profile, don't process it
+			return false;
+		}
+
+		$cmd = wfEscapeShellArg( $wgExiftool,
+			'-overwrite_original',
+			'-icc_profile<=' . $profileFilepath,
+			$filepath
+		);
+
+		$output = wfShellExecWithStderr( $cmd, $retval );
+
+		if ( $retval !== 0 ) {
+			$this->logErrorForExternalProcess( $retval, $output, $cmd );
+
+			return false;
+		}
+
+		return true;
 	}
 }
