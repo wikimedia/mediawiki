@@ -10,7 +10,8 @@
 		$tocList = $toc.find( 'ul' ).eq( 0 );
 
 		// Hide/show the table of contents element
-		function toggleToc() {
+		function toggleToc( e ) {
+			e.preventDefault();
 			if ( $tocList.is( ':hidden' ) ) {
 				$tocList.slideDown( 'fast' );
 				$tocToggleLink.text( mw.msg( 'hidetoc' ) );
@@ -31,10 +32,7 @@
 
 			$tocToggleLink = $( '<a href="#" id="togglelink"></a>' )
 				.text( mw.msg( hideToc ? 'showtoc' : 'hidetoc' ) )
-				.click( function ( e ) {
-					e.preventDefault();
-					toggleToc();
-				} );
+				.click( toggleToc );
 
 			$tocTitle.append(
 				$tocToggleLink
