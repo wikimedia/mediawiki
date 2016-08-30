@@ -167,7 +167,12 @@ class ExifBitmapTest extends MediaWikiMediaTestCase {
 		copy( $sourceFilepath, $filepath );
 
 		$file = $this->dataFile( $sourceFilename, 'image/jpeg' );
-		$this->handler->swapICCProfile( $filepath, $oldProfileName, $profileFilepath );
+		$this->handler->swapICCProfile(
+			$filepath,
+			[ 'sRGB', '-' ],
+			[ $oldProfileName ],
+			$profileFilepath
+		);
 
 		$this->assertEquals(
 			sha1( file_get_contents( $filepath ) ),
@@ -191,10 +196,17 @@ class ExifBitmapTest extends MediaWikiMediaTestCase {
 				'tinyrgb.icc',
 				'IEC 61966-2.1 Default RGB colour space - sRGB'
 			],
-			// File with no profile should be left unchanged
+			// File without profile should end up with TinyRGB
 			[
-				'test.jpg',
-				'test.jpg',
+				'missingprofile.jpg',
+				'tinyrgb.jpg',
+				'tinyrgb.icc',
+				'IEC 61966-2.1 Default RGB colour space - sRGB'
+			],
+			// Non-sRGB file should be left untouched
+			[
+				'adobergb.jpg',
+				'adobergb.jpg',
 				'tinyrgb.icc',
 				'IEC 61966-2.1 Default RGB colour space - sRGB'
 			]
