@@ -395,7 +395,8 @@ class Parser {
 	 * @param int $revid Number to pass in {{REVISIONID}}
 	 * @return ParserOutput A ParserOutput
 	 */
-	public function parse( $text, Title $title, ParserOptions $options,
+	public function parse(
+		$text, Title $title, ParserOptions $options,
 		$linestart = true, $clearState = true, $revid = null
 	) {
 		/**
@@ -462,6 +463,10 @@ class Parser {
 			}
 		}
 
+		# Done parsing! Compute runtime adaptive expiry if set
+		$this->mOutput->finalizeAdaptiveCacheExpiry();
+
+		# Warn if too many heavyweight parser functions were used
 		if ( $this->mExpensiveFunctionCount > $this->mOptions->getExpensiveParserFunctionLimit() ) {
 			$this->limitationWarn( 'expensive-parserfunction',
 				$this->mExpensiveFunctionCount,
@@ -3144,14 +3149,17 @@ class Parser {
 						$context->setUser( User::newFromName( '127.0.0.1', false ) );
 					}
 					$context->setLanguage( $this->mOptions->getUserLangObj() );
-					$ret = SpecialPageFactory::capturePath( $title, $context, $this->getLinkRenderer() );
+					$ret = SpecialPageFactory::capturePath(
+						$title, $context, $this->getLinkRenderer() );
 					if ( $ret ) {
 						$text = $context->getOutput()->getHTML();
 						$this->mOutput->addOutputPageMetadata( $context->getOutput() );
 						$found = true;
 						$isHTML = true;
 						if ( $specialPage && $specialPage->maxIncludeCacheTime() !== false ) {
-							$this->mOutput->updateCacheExpiry( $specialPage->maxIncludeCacheTime() );
+							$this->mOutput->updateRuntimeAdaptiveExpiry(
+								$specialPage->maxIncludeCacheTime()
+							);
 						}
 					}
 				} elseif ( MWNamespace::isNonincludable( $title->getNamespace() ) ) {
