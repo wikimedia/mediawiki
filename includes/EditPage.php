@@ -1039,6 +1039,7 @@ class EditPage {
 	 * @return bool If the requested section is valid
 	 */
 	function initialiseForm() {
+		global $wgUser;
 		$this->edittime = $this->page->getTimestamp();
 		$this->editRevId = $this->page->getLatest();
 
@@ -1047,21 +1048,20 @@ class EditPage {
 			return false;
 		}
 		$this->textbox1 = $this->toEditText( $content );
-		$user = $this->context->getUser();
 
 		// activate checkboxes if user wants them to be always active
 		# Sort out the "watch" checkbox
-		if ( $user->getOption( 'watchdefault' ) ) {
+		if ( $wgUser->getOption( 'watchdefault' ) ) {
 			# Watch all edits
 			$this->watchthis = true;
-		} elseif ( $user->getOption( 'watchcreations' ) && !$this->mTitle->exists() ) {
+		} elseif ( $wgUser->getOption( 'watchcreations' ) && !$this->mTitle->exists() ) {
 			# Watch creations
 			$this->watchthis = true;
-		} elseif ( $user->isWatched( $this->mTitle ) ) {
+		} elseif ( $wgUser->isWatched( $this->mTitle ) ) {
 			# Already watched
 			$this->watchthis = true;
 		}
-		if ( $user->getOption( 'minordefault' ) && !$this->isNew ) {
+		if ( $wgUser->getOption( 'minordefault' ) && !$this->isNew ) {
 			$this->minoredit = true;
 		}
 		if ( $this->textbox1 === false ) {
@@ -1078,11 +1078,9 @@ class EditPage {
 	 * @since 1.21
 	 */
 	protected function getContentObject( $def_content = null ) {
-		global $wgContLang;
+		global $wgOut, $wgRequest, $wgUser, $wgContLang;
 
 		$content = false;
-		$request = $this->context->getRequest();
-		$user = $this->context->getUser();
 
 		// For message page not locally set, use the i18n message.
 		// For other non-existent articles, use preload text if any.
@@ -1095,10 +1093,10 @@ class EditPage {
 			}
 			if ( $content === false ) {
 				# If requested, preload some text.
-				$preload = $request->getVal( 'preload',
+				$preload = $wgRequest->getVal( 'preload',
 					// Custom preload text for new sections
 					$this->section === 'new' ? 'MediaWiki:addsection-preload' : '' );
-				$params = $request->getArray( 'preloadparams', [] );
+				$params = $wgRequest->getArray( 'preloadparams', [] );
 
 				$content = $this->getPreloadedContent( $preload, $params );
 			}
@@ -1106,15 +1104,15 @@ class EditPage {
 		} else {
 			if ( $this->section != '' ) {
 				// Get section edit text (returns $def_text for invalid sections)
-				$orig = $this->getOriginalContent( $user );
+				$orig = $this->getOriginalContent( $wgUser );
 				$content = $orig ? $orig->getSection( $this->section ) : null;
 
 				if ( !$content ) {
 					$content = $def_content;
 				}
 			} else {
-				$undoafter = $request->getInt( 'undoafter' );
-				$undo = $request->getInt( 'undo' );
+				$undoafter = $wgRequest->getInt( 'undoafter' );
+				$undo = $wgRequest->getInt( 'undo' );
 
 				if ( $undo > 0 && $undoafter > 0 ) {
 					$undorev = Revision::newFromId( $undo );
@@ -1134,8 +1132,8 @@ class EditPage {
 							$undoMsg = 'failure';
 						} else {
 							$oldContent = $this->page->getContent( Revision::RAW );
-							$popts = ParserOptions::newFromUserAndLang( $user, $wgContLang );
-							$newContent = $content->preSaveTransform( $this->mTitle, $user, $popts );
+							$popts = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
+							$newContent = $content->preSaveTransform( $this->mTitle, $wgUser, $popts );
 
 							if ( $newContent->equals( $oldContent ) ) {
 								# Tell the user that the undo results in no change,
@@ -1182,13 +1180,12 @@ class EditPage {
 
 					// Messages: undo-success, undo-failure, undo-norev, undo-nochange
 					$class = ( $undoMsg == 'success' ? '' : 'error ' ) . "mw-undo-{$undoMsg}";
-					$this->editFormPageTop .= $this->context->getOutput()->parse(
-						"<div class=\"{$class}\">" .
+					$this->editFormPageTop .= $wgOut->parse( "<div class=\"{$class}\">" .
 						wfMessage( 'undo-' . $undoMsg )->plain() . '</div>', true, /* interface */true );
 				}
 
 				if ( $content === false ) {
-					$content = $this->getOriginalContent( $user );
+					$content = $this->getOriginalContent( $wgUser );
 				}
 			}
 		}
@@ -1385,10 +1382,10 @@ class EditPage {
 	 * @private
 	 */
 	function tokenOk( &$request ) {
+		global $wgUser;
 		$token = $request->getVal( 'wpEditToken' );
-		$user = $this->context->getUser();
-		$this->mTokenOk = $user->matchEditToken( $token );
-		$this->mTokenOkExceptSuffix = $user->matchEditTokenNoSuffix( $token );
+		$this->mTokenOk = $wgUser->matchEditToken( $token );
+		$this->mTokenOkExceptSuffix = $wgUser->matchEditTokenNoSuffix( $token );
 		return $this->mTokenOk;
 	}
 
@@ -1419,7 +1416,7 @@ class EditPage {
 			$val = 'restored';
 		}
 
-		$response = $this->context->getRequest()->response();
+		$response = RequestContext::getMain()->getRequest()->response();
 		$response->setCookie( $postEditKey, $val, time() + self::POST_EDIT_COOKIE_DURATION, [
 			'httpOnly' => false,
 		] );
@@ -1432,8 +1429,10 @@ class EditPage {
 	 * @return Status The resulting status object.
 	 */
 	public function attemptSave( &$resultDetails = false ) {
+		global $wgUser;
+
 		# Allow bots to exempt some edits from bot flagging
-		$bot = $this->context->getUser()->isAllowed( 'bot' ) && $this->bot;
+		$bot = $wgUser->isAllowed( 'bot' ) && $this->bot;
 		$status = $this->internalAttemptSave( $resultDetails, $bot );
 
 		Hooks::run( 'EditPage::attemptSave:after', [ $this, $status, $resultDetails ] );
@@ -1451,6 +1450,8 @@ class EditPage {
 	 * @return bool False, if output is done, true if rest of the form should be displayed
 	 */
 	private function handleStatus( Status $status, $resultDetails ) {
+		global $wgUser, $wgOut;
+
 		/**
 		 * @todo FIXME: once the interface for internalAttemptSave() is made
 		 *   nicer, this should use the message in $status
@@ -1464,11 +1465,9 @@ class EditPage {
 			}
 		}
 
-		$out = $this->context->getOutput();
-
 		// "wpExtraQueryRedirect" is a hidden input to modify
 		// after save URL and is not used by actual edit form
-		$request = $this->context->getRequest();
+		$request = RequestContext::getMain()->getRequest();
 		$extraQueryRedirect = $request->getVal( 'wpExtraQueryRedirect' );
 
 		switch ( $status->value ) {
@@ -1489,7 +1488,7 @@ class EditPage {
 
 			case self::AS_CANNOT_USE_CUSTOM_MODEL:
 			case self::AS_PARSE_ERROR:
-				$out->addWikiText( '<div class="error">' . "\n" . $status->getWikiText() . '</div>' );
+				$wgOut->addWikiText( '<div class="error">' . "\n" . $status->getWikiText() . '</div>' );
 				return true;
 
 			case self::AS_SUCCESS_NEW_ARTICLE:
@@ -1502,7 +1501,7 @@ class EditPage {
 					}
 				}
 				$anchor = isset( $resultDetails['sectionanchor'] ) ? $resultDetails['sectionanchor'] : '';
-				$out->redirect( $this->mTitle->getFullURL( $query ) . $anchor );
+				$wgOut->redirect( $this->mTitle->getFullURL( $query ) . $anchor );
 				return false;
 
 			case self::AS_SUCCESS_UPDATE:
@@ -1530,7 +1529,7 @@ class EditPage {
 					}
 				}
 
-				$out->redirect( $this->mTitle->getFullURL( $extraQuery ) . $sectionanchor );
+				$wgOut->redirect( $this->mTitle->getFullURL( $extraQuery ) . $sectionanchor );
 				return false;
 
 			case self::AS_SPAM_ERROR:
@@ -1538,7 +1537,7 @@ class EditPage {
 				return false;
 
 			case self::AS_BLOCKED_PAGE_FOR_USER:
-				throw new UserBlockedError( $this->context->getUser()->getBlock() );
+				throw new UserBlockedError( $wgUser->getBlock() );
 
 			case self::AS_IMAGE_REDIRECT_ANON:
 			case self::AS_IMAGE_REDIRECT_LOGGED:
@@ -1599,7 +1598,7 @@ class EditPage {
 
 		// Run new style post-section-merge edit filter
 		if ( !Hooks::run( 'EditFilterMergedContent',
-				[ $this->context, $content, $status, $this->summary,
+				[ $this->mArticle->getContext(), $content, $status, $this->summary,
 				$user, $this->minoredit ] )
 		) {
 			# Error messages etc. could be handled within the hook...
@@ -1684,11 +1683,10 @@ class EditPage {
 	 * time.
 	 */
 	function internalAttemptSave( &$result, $bot = false ) {
-		global $wgParser, $wgMaxArticleSize, $wgContentHandlerUseDB;
+		global $wgUser, $wgRequest, $wgParser, $wgMaxArticleSize;
+		global $wgContentHandlerUseDB;
 
 		$status = Status::newGood();
-		$user = $this->context->getUser();
-		$request = $this->context->getRequest();
 
 		if ( !Hooks::run( 'EditPage::attemptSave', [ $this ] ) ) {
 			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving\n" );
@@ -1697,11 +1695,11 @@ class EditPage {
 			return $status;
 		}
 
-		$spam = $request->getText( 'wpAntispam' );
+		$spam = $wgRequest->getText( 'wpAntispam' );
 		if ( $spam !== '' ) {
 			wfDebugLog(
 				'SimpleAntiSpam',
-				$user->getName() .
+				$wgUser->getName() .
 				' editing "' .
 				$this->mTitle->getPrefixedText() .
 				'" submitted bogus field "' .
@@ -1730,9 +1728,9 @@ class EditPage {
 		# Check image redirect
 		if ( $this->mTitle->getNamespace() == NS_FILE &&
 			$textbox_content->isRedirect() &&
-			!$user->isAllowed( 'upload' )
+			!$wgUser->isAllowed( 'upload' )
 		) {
-				$code = $user->isAnon() ? self::AS_IMAGE_REDIRECT_ANON : self::AS_IMAGE_REDIRECT_LOGGED;
+				$code = $wgUser->isAnon() ? self::AS_IMAGE_REDIRECT_ANON : self::AS_IMAGE_REDIRECT_LOGGED;
 				$status->setResult( false, $code );
 
 				return $status;
@@ -1757,7 +1755,7 @@ class EditPage {
 		}
 		if ( $match !== false ) {
 			$result['spam'] = $match;
-			$ip = $request->getIP();
+			$ip = $wgRequest->getIP();
 			$pdbk = $this->mTitle->getPrefixedDBkey();
 			$match = str_replace( "\n", '', $match );
 			wfDebugLog( 'SpamRegex', "$ip spam regex hit [[$pdbk]]: \"$match\"" );
@@ -1780,10 +1778,10 @@ class EditPage {
 			return $status;
 		}
 
-		if ( $user->isBlockedFrom( $this->mTitle, false ) ) {
+		if ( $wgUser->isBlockedFrom( $this->mTitle, false ) ) {
 			// Auto-block user's IP if the account was "hard" blocked
 			if ( !wfReadOnly() ) {
-				$user->spreadAnyEditBlock();
+				$wgUser->spreadAnyEditBlock();
 			}
 			# Check block state against master, thus 'false'.
 			$status->setResult( false, self::AS_BLOCKED_PAGE_FOR_USER );
@@ -1798,8 +1796,8 @@ class EditPage {
 			return $status;
 		}
 
-		if ( !$user->isAllowed( 'edit' ) ) {
-			if ( $user->isAnon() ) {
+		if ( !$wgUser->isAllowed( 'edit' ) ) {
+			if ( $wgUser->isAnon() ) {
 				$status->setResult( false, self::AS_READ_ONLY_PAGE_ANON );
 				return $status;
 			} else {
@@ -1815,7 +1813,7 @@ class EditPage {
 				$status->fatal( 'editpage-cannot-use-custom-model' );
 				$status->value = self::AS_CANNOT_USE_CUSTOM_MODEL;
 				return $status;
-			} elseif ( !$user->isAllowed( 'editcontentmodel' ) ) {
+			} elseif ( !$wgUser->isAllowed( 'editcontentmodel' ) ) {
 				$status->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL );
 				return $status;
 
@@ -1826,7 +1824,7 @@ class EditPage {
 
 		if ( $this->changeTags ) {
 			$changeTagsStatus = ChangeTags::canAddTagsAccompanyingChange(
-				$this->changeTags, $user );
+				$this->changeTags, $wgUser );
 			if ( !$changeTagsStatus->isOK() ) {
 				$changeTagsStatus->value = self::AS_CHANGE_TAG_ERROR;
 				return $changeTagsStatus;
@@ -1838,7 +1836,7 @@ class EditPage {
 			$status->value = self::AS_READ_ONLY_PAGE;
 			return $status;
 		}
-		if ( $user->pingLimiter() || $user->pingLimiter( 'linkpurge', 0 ) ) {
+		if ( $wgUser->pingLimiter() || $wgUser->pingLimiter( 'linkpurge', 0 ) ) {
 			$status->fatal( 'actionthrottledtext' );
 			$status->value = self::AS_RATE_LIMITED;
 			return $status;
@@ -1858,7 +1856,7 @@ class EditPage {
 
 		if ( $new ) {
 			// Late check for create permission, just in case *PARANOIA*
-			if ( !$this->mTitle->userCan( 'create', $user ) ) {
+			if ( !$this->mTitle->userCan( 'create', $wgUser ) ) {
 				$status->fatal( 'nocreatetext' );
 				$status->value = self::AS_NO_CREATE_PERMISSION;
 				wfDebug( __METHOD__ . ": no create permission\n" );
@@ -1882,7 +1880,7 @@ class EditPage {
 				return $status;
 			}
 
-			if ( !$this->runPostMergeFilters( $textbox_content, $status, $user ) ) {
+			if ( !$this->runPostMergeFilters( $textbox_content, $status, $wgUser ) ) {
 				return $status;
 			}
 
@@ -1918,7 +1916,7 @@ class EditPage {
 			) {
 				$this->isConflict = true;
 				if ( $this->section == 'new' ) {
-					if ( $this->page->getUserText() == $user->getName() &&
+					if ( $this->page->getUserText() == $wgUser->getName() &&
 						$this->page->getComment() == $this->newSectionSummary()
 					) {
 						// Probably a duplicate submission of a new comment.
@@ -1934,7 +1932,7 @@ class EditPage {
 				} elseif ( $this->section == ''
 					&& Revision::userWasLastToEdit(
 						DB_MASTER, $this->mTitle->getArticleID(),
-						$user->getId(), $this->edittime
+						$wgUser->getId(), $this->edittime
 					)
 				) {
 					# Suppress edit conflict with self, except for section edits where merging is required.
@@ -2004,7 +2002,7 @@ class EditPage {
 				return $status;
 			}
 
-			if ( !$this->runPostMergeFilters( $content, $status, $user ) ) {
+			if ( !$this->runPostMergeFilters( $content, $status, $wgUser ) ) {
 				return $status;
 			}
 
@@ -2025,7 +2023,7 @@ class EditPage {
 					return $status;
 				}
 			} elseif ( !$this->allowBlankSummary
-				&& !$content->equals( $this->getOriginalContent( $user ) )
+				&& !$content->equals( $this->getOriginalContent( $wgUser ) )
 				&& !$content->isRedirect()
 				&& md5( $this->summary ) == $this->autoSumm
 			) {
@@ -2095,7 +2093,7 @@ class EditPage {
 			$this->summary,
 			$flags,
 			false,
-			$user,
+			$wgUser,
 			$content->getDefaultFormat(),
 			$this->changeTags
 		);
@@ -2118,7 +2116,7 @@ class EditPage {
 		$result['nullEdit'] = $doEditStatus->hasMessage( 'edit-no-change' );
 		if ( $result['nullEdit'] ) {
 			// We don't know if it was a null edit until now, so increment here
-			$user->pingLimiter( 'linkpurge' );
+			$wgUser->pingLimiter( 'linkpurge' );
 		}
 		$result['redirect'] = $content->isRedirect();
 
@@ -2127,7 +2125,7 @@ class EditPage {
 		// If the content model changed, add a log entry
 		if ( $changingContentModel ) {
 			$this->addContentModelChangeLogEntry(
-				$user,
+				$wgUser,
 				$new ? false : $oldContentModel,
 				$this->contentModel,
 				$this->summary
