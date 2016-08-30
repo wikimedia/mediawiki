@@ -24,11 +24,6 @@
 use \MediaWiki\Logger\LoggerFactory;
 
 /**
- * Bump this number when serialized cache records may be incompatible.
- */
-define( 'MW_FILE_VERSION', 9 );
-
-/**
  * Class to represent a local file in the wiki's own database
  *
  * Provides methods to retrieve paths (physical, logical, URL),
@@ -46,6 +41,8 @@ define( 'MW_FILE_VERSION', 9 );
  * @ingroup FileAbstraction
  */
 class LocalFile extends File {
+	const VERSION = 10; // cache version
+
 	const CACHE_FIELD_MAX_LEN = 1000;
 
 	/** @var bool Does the file exist on disk? (loadFromXxx) */
@@ -240,83 +237,71 @@ class LocalFile extends File {
 	 * @return string|bool
 	 */
 	function getCacheKey() {
-		$hashedName = md5( $this->getName() );
-
-		return $this->repo->getSharedCacheKey( 'file', $hashedName );
+		return $this->repo->getSharedCacheKey( 'file', sha1( $this->getName() ) );
 	}
 
 	/**
-	 * Try to load file metadata from memcached. Returns true on success.
-	 * @return bool
+	 * Try to load file metadata from memcached, falling back to the database
 	 */
 	private function loadFromCache() {
 		$this->dataLoaded = false;
 		$this->extraDataLoaded = false;
-		$key = $this->getCacheKey();
-
-		if ( !$key ) {
-			return false;
-		}
-
-		$cache = ObjectCache::getMainWANInstance();
-		$cachedValues = $cache->get( $key );
-
-		// Check if the key existed and belongs to this version of MediaWiki
-		if ( is_array( $cachedValues ) && $cachedValues['version'] == MW_FILE_VERSION ) {
-			$this->fileExists = $cachedValues['fileExists'];
-			if ( $this->fileExists ) {
-				$this->setProps( $cachedValues );
-			}
-			$this->dataLoaded = true;
-			$this->extraDataLoaded = true;
-			foreach ( $this->getLazyCacheFields( '' ) as $field ) {
-				$this->extraDataLoaded = $this->extraDataLoaded && isset( $cachedValues[$field] );
-			}
-		}
-
-		return $this->dataLoaded;
-	}
-
-	/**
-	 * Save the file metadata to memcached
-	 * @param array $cacheSetOpts Result of Database::getCacheSetOptions()
-	 */
-	private function saveToCache( array $cacheSetOpts ) {
-		$this->load();
 
 		$key = $this->getCacheKey();
 		if ( !$key ) {
+			$this->loadFromDB( self::READ_NORMAL );
+
 			return;
 		}
 
-		$fields = $this->getCacheFields( '' );
-		$cacheVal = [ 'version' => MW_FILE_VERSION ];
-		$cacheVal['fileExists'] = $this->fileExists;
+		$cache = ObjectCache::getMainWANInstance();
+		$cachedValues = $cache->getWithSetCallback(
+			$key,
+			$cache::TTL_WEEK,
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $cache ) {
+				$setOpts += Database::getCacheSetOptions( $this->repo->getSlaveDB() );
 
+				$this->loadFromDB( self::READ_NORMAL );
+
+				$fields = $this->getCacheFields( '' );
+				$cacheVal['fileExists'] = $this->fileExists;
+				if ( $this->fileExists ) {
+					foreach ( $fields as $field ) {
+						$cacheVal[$field] = $this->$field;
+					}
+				}
+				// Strip off excessive entries from the subset of fields that can become large.
+				// If the cache value gets to large it will not fit in memcached and nothing will
+				// get cached at all, causing master queries for any file access.
+				foreach ( $this->getLazyCacheFields( '' ) as $field ) {
+					if ( isset( $cacheVal[$field] )
+						&& strlen( $cacheVal[$field] ) > 100 * 1024
+					) {
+						unset( $cacheVal[$field] ); // don't let the value get too big
+					}
+				}
+
+				if ( $this->fileExists ) {
+					$ttl = $cache->adaptiveTTL( wfTimestamp( TS_UNIX, $this->timestamp ), $ttl );
+				} else {
+					$ttl = $cache::TTL_DAY;
+				}
+
+				return $cacheVal;
+			},
+			[ 'version' => self::VERSION ]
+		);
+
+		$this->fileExists = $cachedValues['fileExists'];
 		if ( $this->fileExists ) {
-			foreach ( $fields as $field ) {
-				$cacheVal[$field] = $this->$field;
-			}
+			$this->setProps( $cachedValues );
 		}
 
-		// Strip off excessive entries from the subset of fields that can become large.
-		// If the cache value gets to large it will not fit in memcached and nothing will
-		// get cached at all, causing master queries for any file access.
+		$this->dataLoaded = true;
+		$this->extraDataLoaded = true;
 		foreach ( $this->getLazyCacheFields( '' ) as $field ) {
-			if ( isset( $cacheVal[$field] ) && strlen( $cacheVal[$field] ) > 100 * 1024 ) {
-				unset( $cacheVal[$field] ); // don't let the value get too big
-			}
+			$this->extraDataLoaded = $this->extraDataLoaded && isset( $cachedValues[$field] );
 		}
-
-		// Cache presence for 1 week and negatives for 1 day
-		$wanCache = ObjectCache::getMainWANInstance();
-		if ( $this->fileExists ) {
-			$ttl = $wanCache::TTL_WEEK;
-			$ttl = $wanCache->adaptiveTTL( wfTimestamp( TS_UNIX, $this->timestamp ), $ttl );
-		} else {
-			$ttl = $wanCache::TTL_DAY;
-		}
-		$wanCache->set( $key, $cacheVal, $ttl, $cacheSetOpts );
 	}
 
 	/**
@@ -551,13 +536,13 @@ class LocalFile extends File {
 	 */
 	function load( $flags = 0 ) {
 		if ( !$this->dataLoaded ) {
-			if ( ( $flags & self::READ_LATEST ) || !$this->loadFromCache() ) {
-				$opts = Database::getCacheSetOptions( $this->repo->getSlaveDB() );
+			if ( $flags & self::READ_LATEST ) {
 				$this->loadFromDB( $flags );
-				$this->saveToCache( $opts );
+			} else {
+				$this->loadFromCache();
 			}
-			$this->dataLoaded = true;
 		}
+
 		if ( ( $flags & self::LOAD_ALL ) && !$this->extraDataLoaded ) {
 			// @note: loads on name/timestamp to reduce race condition problems
 			$this->loadExtraFromDB();
@@ -773,7 +758,7 @@ class LocalFile extends File {
 
 		if ( $type == 'text' ) {
 			return $this->user_text;
-		} elseif ( $type == 'id' ) {
+		} else { // id
 			return (int)$this->user;
 		}
 	}
@@ -1628,7 +1613,9 @@ class LocalFile extends File {
 			$sha1 = $repo->isVirtualUrl( $srcPath )
 				? $repo->getFileSha1( $srcPath )
 				: FSFile::getSha1Base36FromPath( $srcPath );
-			$dst = $repo->getBackend()->getPathForSHA1( $sha1 );
+			/** @var FileBackendDBRepoWrapper $wrapperBackend */
+			$wrapperBackend = $repo->getBackend();
+			$dst = $wrapperBackend->getPathForSHA1( $sha1 );
 			$status = $repo->quickImport( $src, $dst );
 			if ( $flags & File::DELETE_SOURCE ) {
 				unlink( $srcPath );
@@ -2499,6 +2486,7 @@ class LocalFileRestoreBatch {
 	 * @return FileRepoStatus
 	 */
 	public function execute() {
+		/** @var Language */
 		global $wgLang;
 
 		$repo = $this->file->getRepo();
