@@ -311,7 +311,14 @@
 				e.stopPropagation();
 			} );
 
-		mw.util.$content.prepend( $area );
+		// Look for a preset notification area to append to
+		if ( $( '#mw-notifications-container' ).length ) {
+			$( '#mw-notifications-container' ).append( $area );
+		} else {
+			// If the preset notification area was not found,
+			// prepend the notification area to the content area and save it's object.
+			mw.util.$content.prepend( $area );
+		}
 
 		// Read from the DOM:
 		// Must be in the next frame to avoid synchronous layout
