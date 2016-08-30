@@ -175,8 +175,7 @@ class ResourceLoaderContext {
 			// Stricter version of RequestContext::sanitizeLangCode()
 			if ( !Language::isValidBuiltInCode( $lang ) ) {
 				wfDebug( "Invalid user language code\n" );
-				global $wgLanguageCode;
-				$lang = $wgLanguageCode;
+				$lang = $this->getResourceLoader()->getConfig()->get( 'LanguageCode' );
 			}
 			$this->language = $lang;
 		}

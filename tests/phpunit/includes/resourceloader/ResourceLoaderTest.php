@@ -163,6 +163,12 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 				[ 'single.module', 'foobar', 'foobaz' ],
 				'single.module|foobar,foobaz',
 			],
+			[
+				'Ordering',
+				[ 'foo', 'foo.baz', 'baz.quux', 'foo.bar' ],
+				'foo|foo.baz,bar|baz.quux',
+				[ 'foo', 'foo.baz', 'foo.bar', 'baz.quux' ],
+			]
 		];
 	}
 
@@ -178,8 +184,12 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 * @dataProvider providePackedModules
 	 * @covers ResourceLoaderContext::expandModuleNames
 	 */
-	public function testexpandModuleNames( $desc, $modules, $packed ) {
-		$this->assertEquals( $modules, ResourceLoaderContext::expandModuleNames( $packed ), $desc );
+	public function testExpandModuleNames( $desc, $modules, $packed, $unpacked = null ) {
+		$this->assertEquals(
+			$unpacked ?: $modules,
+			ResourceLoaderContext::expandModuleNames( $packed ),
+			$desc
+		);
 	}
 
 	public static function provideAddSource() {
