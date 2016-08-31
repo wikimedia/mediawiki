@@ -2693,14 +2693,18 @@
 		var loading = $.grep( mw.loader.getModuleNames(), function ( module ) {
 			return mw.loader.getState( module ) === 'loading';
 		} );
-		// In order to use jQuery.when (which stops early if one of the promises got rejected)
-		// cast any loading failures into successes. We only need a callback, not the module.
-		loading = $.map( loading, function ( module ) {
-			return mw.loader.using( module ).then( null, function () {
-				return $.Deferred().resolve();
+		// We only need a callback, not any actual module. First try a single using()
+		// for all loading modules. If one fails, fall back to tracking each module
+		// separately via $.when(), this is expensive.
+		loading = mw.loader.using( loading ).then( null, function () {
+			var all = $.map( loading, function ( module ) {
+				return mw.loader.using( module ).then( null, function () {
+					return $.Deferred().resolve();
+				} );
 			} );
+			return $.when.apply( $, all );
 		} );
-		$.when.apply( $, loading ).then( function () {
+		loading.then( function () {
 			mwPerformance.mark( 'mwLoadEnd' );
 			mw.hook( 'resourceloader.loadEnd' ).fire();
 		} );
