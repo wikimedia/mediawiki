@@ -285,6 +285,7 @@
 	"apihelp-paraminfo-param-pagesetmodule": "{{doc-apihelp-param|paraminfo|pagesetmodule}}",
 	"apihelp-paraminfo-param-formatmodules": "{{doc-apihelp-param|paraminfo|formatmodules}}",
 	"apihelp-paraminfo-example-1": "{{doc-apihelp-example|paraminfo}}",
+	"apihelp-paraminfo-example-2": "{{doc-apihelp-example|paraminfo}}",
 	"apihelp-parse-description": "{{doc-apihelp-description|parse}}",
 	"apihelp-parse-param-title": "{{doc-apihelp-param|parse|title}}",
 	"apihelp-parse-param-text": "{{doc-apihelp-param|parse|text}}",

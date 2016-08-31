@@ -96,6 +96,8 @@ production.
   ApiPageSet may contain entries where the 'from' value is percent-encoded as
   the raw value cannot be represented in a valid API response. These are
   indicated by a 'fromencoded' boolean alongside the existing 'from' parameter.
+* (T28680) action=paraminfo can now return info about all submodules of a
+  module without listing them all explicitly.
 
 === Action API internal changes in 1.28 ===
 * Added a new hook, 'ApiMakeParserOptions', to allow extensions to better
