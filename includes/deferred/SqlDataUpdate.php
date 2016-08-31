@@ -29,6 +29,8 @@
  *       a transaction will automatically be wrapped around the update. Starting another
  *       one would break the outer transaction bracket. If need be, subclasses can override
  *       the beginTransaction() and commitTransaction() methods.
+ *
+ * @deprecated Since 1.28 Use DataUpdate directly, injecting the database
  */
 abstract class SqlDataUpdate extends DataUpdate {
 	/** @var IDatabase Database connection reference */
