@@ -12,7 +12,8 @@
 			"Wyvernoid",
 			"לערי ריינהארט",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Robin van der Vliet"
 		]
 	},
 	"tog-underline": "Sub-strekizez ligili:",
@@ -338,6 +339,8 @@
 	"minoredit": "Ico esas mikra redaktajo",
 	"watchthis": "Surveyar ica pagino",
 	"savearticle": "Registragar pagino",
+	"publishpage": "Publikigar pagino",
+	"publishchanges": "Publikigar chanji",
 	"preview": "Previdar",
 	"showpreview": "Previdar",
 	"showdiff": "Montrez chanji",

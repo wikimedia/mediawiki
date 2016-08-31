@@ -6,13 +6,14 @@
 			"सरोज कुमार ढकाल",
 			"Ganesh Paudel",
 			"बिप्लब आनन्द",
-			"Nirjal stha"
+			"Nirjal stha",
+			"राम प्रसाद जोशी"
 		]
 	},
 	"config-desc": "मेडियाविकिको लागि स्थापक",
 	"config-title": "मेडिया विकि $1 स्थापना",
 	"config-information": "जानकारी",
-	"config-localsettings-badkey": "तपाइले दिनु भएको कुन्जी गलत छ ।",
+	"config-localsettings-badkey": "तपाईंले दिएको कुंजी मिलेन ।",
 	"config-your-language": "तपाईंको भाषा:",
 	"config-your-language-help": "इन्स्टल गर्दा उपयोग गर्ने भाषा छान्नुहोस् ।",
 	"config-wiki-language": "विकि भाषाहरू",

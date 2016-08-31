@@ -2405,6 +2405,7 @@
 	"recreate": "Izveidot no jauna",
 	"confirm_purge_button": "Labi",
 	"confirm-purge-top": "Iztīrīt šīs lapas kešu (''cache'')?",
+	"confirm-purge-bottom": "Lapas atjaunināšana iztīra kešatmiņu un liek parādīt lapas jaunāko versiju.",
 	"confirm-watch-button": "Labi",
 	"confirm-watch-top": "Pievienot šo lapu uzraugāmo lapu sarakstam?",
 	"confirm-unwatch-button": "Labi",
