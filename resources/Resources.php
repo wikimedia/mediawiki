@@ -571,6 +571,7 @@ return [
 	],
 	'jquery.ui.position' => [
 		'deprecated' => true,
+		'targets' => [ 'mobile', 'desktop' ],
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.position.js',
 		'group' => 'jquery.ui',
 	],
