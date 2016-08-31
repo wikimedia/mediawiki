@@ -416,8 +416,8 @@ class DifferenceEngine extends ContextSource {
 		$newChangeTags = ChangeTags::formatSummaryRow( $this->mNewTags, 'diff', $this->getContext() );
 
 		$newHeader = '<div id="mw-diff-ntitle1"><strong>' . $newRevisionHeader . '</strong></div>' .
-			'<div id="mw-diff-ntitle2">' . Linker::revUserTools( $this->mNewRev, !$this->unhide ) .
-			" $rollback</div>" .
+			'<div id="mw-diff-ntitle2"><bdi>' . Linker::revUserTools( $this->mNewRev, !$this->unhide ) .
+			"</bdi> $rollback</div>" .
 			'<div id="mw-diff-ntitle3">' . $newminor .
 			Linker::revComment( $this->mNewRev, !$diffOnly, !$this->unhide ) . $rdel . '</div>' .
 			'<div id="mw-diff-ntitle5">' . $newChangeTags[0] . '</div>' .
