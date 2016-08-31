@@ -1143,7 +1143,7 @@ class Linker {
 		} elseif ( $rev->userCan( Revision::DELETED_USER ) ) {
 			$userId = $rev->getUser( Revision::FOR_THIS_USER );
 			$userText = $rev->getUserText( Revision::FOR_THIS_USER );
-			$link = self::userLink( $userId, $userText )
+			$link = '<bdi>' . self::userLink( $userId, $userText ) . '</bdi>'
 				. self::userToolLinks( $userId, $userText );
 		} else {
 			$link = wfMessage( 'rev-deleted-user' )->escaped();
