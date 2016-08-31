@@ -74,8 +74,10 @@ abstract class DatabaseBase implements IDatabase {
 	protected $mTrxPreCommitCallbacks = [];
 	/** @var array[] List of (callable, method name) */
 	protected $mTrxEndCallbacks = [];
-	/** @var bool Whether to suppress triggering of post-commit callbacks */
-	protected $suppressPostCommitCallbacks = false;
+	/** @var array[] Map of (name => (callable, method name)) */
+	protected $mTrxRecurringCallbacks = [];
+	/** @var bool Whether to suppress triggering of transaction end callbacks */
+	protected $mTrxEndCallbacksSuppressed = false;
 
 	/** @var string */
 	protected $mTablePrefix;
@@ -1063,6 +1065,7 @@ abstract class DatabaseBase implements IDatabase {
 		try {
 			// Handle callbacks in mTrxEndCallbacks
 			$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
+			$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
 			return null;
 		} catch ( Exception $e ) {
 			// Already logged; move on...
@@ -2642,16 +2645,24 @@ abstract class DatabaseBase implements IDatabase {
 		}
 	}
 
+	final public function setTransactionListener( $name, callable $callback = null ) {
+		if ( $callback ) {
+			$this->mTrxRecurringCallbacks[$name] = [ $callback, wfGetCaller() ];
+		} else {
+			unset( $this->mTrxRecurringCallbacks[$name] );
+		}
+	}
+
 	/**
-	 * Whether to disable running of post-commit callbacks
+	 * Whether to disable running of post-COMMIT/ROLLBACK callbacks
 	 *
 	 * This method should not be used outside of Database/LoadBalancer
 	 *
 	 * @param bool $suppress
 	 * @since 1.28
 	 */
-	final public function setPostCommitCallbackSupression( $suppress ) {
-		$this->suppressPostCommitCallbacks = $suppress;
+	final public function setTrxEndCallbackSuppression( $suppress ) {
+		$this->mTrxEndCallbacksSuppressed = $suppress;
 	}
 
 	/**
@@ -2664,7 +2675,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @throws Exception
 	 */
 	public function runOnTransactionIdleCallbacks( $trigger ) {
-		if ( $this->suppressPostCommitCallbacks ) {
+		if ( $this->mTrxEndCallbacksSuppressed ) {
 			return;
 		}
 
@@ -2728,6 +2739,38 @@ abstract class DatabaseBase implements IDatabase {
 				}
 			}
 		} while ( count( $this->mTrxPreCommitCallbacks ) );
+
+		if ( $e instanceof Exception ) {
+			throw $e; // re-throw any first exception
+		}
+	}
+
+	/**
+	 * Actually run any "transaction listener" callbacks.
+	 *
+	 * This method should not be used outside of Database/LoadBalancer
+	 *
+	 * @param integer $trigger IDatabase::TRIGGER_* constant
+	 * @throws Exception
+	 * @since 1.20
+	 */
+	public function runTransactionListenerCallbacks( $trigger ) {
+		if ( $this->mTrxEndCallbacksSuppressed ) {
+			return;
+		}
+
+		/** @var Exception $e */
+		$e = null; // first exception
+
+		foreach ( $this->mTrxRecurringCallbacks as $callback ) {
+			try {
+				list( $phpCallback ) = $callback;
+				$phpCallback( $trigger, $this );
+			} catch ( Exception $ex ) {
+				MWExceptionHandler::logException( $ex );
+				$e = $e ?: $ex;
+			}
+		}
 
 		if ( $e instanceof Exception ) {
 			throw $e; // re-throw any first exception
@@ -2875,6 +2918,7 @@ abstract class DatabaseBase implements IDatabase {
 		}
 
 		$this->runOnTransactionIdleCallbacks( self::TRIGGER_COMMIT );
+		$this->runTransactionListenerCallbacks( self::TRIGGER_COMMIT );
 	}
 
 	/**
@@ -2920,6 +2964,7 @@ abstract class DatabaseBase implements IDatabase {
 		$this->mTrxIdleCallbacks = []; // clear
 		$this->mTrxPreCommitCallbacks = []; // clear
 		$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
+		$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
 	}
 
 	/**
@@ -2935,6 +2980,18 @@ abstract class DatabaseBase implements IDatabase {
 			$this->query( 'ROLLBACK', $fname, $ignoreErrors );
 			$this->mTrxLevel = 0;
 		}
+	}
+
+	public function clearSnapshot( $fname = __METHOD__ ) {
+		if ( $this->writesOrCallbacksPending() || $this->explicitTrxActive() ) {
+			// This only flushes transactions to clear snapshots, not to write data
+			throw new DBUnexpectedError(
+				$this,
+				"$fname: Cannot COMMIT to clear snapshot because writes are pending."
+			);
+		}
+
+		$this->commit( $fname, self::FLUSHING_INTERNAL );
 	}
 
 	public function explicitTrxActive() {
