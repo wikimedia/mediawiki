@@ -30,6 +30,7 @@ use TitleFormatter;
 use TitleParser;
 use VirtualRESTServiceClient;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Services\NoSuchServiceException;
 
 /**
  * Service locator for MediaWiki core services.
