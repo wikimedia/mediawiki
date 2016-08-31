@@ -813,16 +813,18 @@ class MediaWiki {
 
 		$runJobsLogger = LoggerFactory::getInstance( 'runJobs' );
 
+		// Fall back to running the job(s) while the user waits if needed
 		if ( !$this->config->get( 'RunJobsAsync' ) ) {
-			// Fall back to running the job here while the user waits
 			$runner = new JobRunner( $runJobsLogger );
-			$runner->run( [ 'maxJobs'  => $n ] );
+			$runner->run( [ 'maxJobs' => $n ] );
 			return;
 		}
 
+		// Do not send request if there are probably no jobs
 		try {
-			if ( !JobQueueGroup::singleton()->queuesHaveJobs( JobQueueGroup::TYPE_DEFAULT ) ) {
-				return; // do not send request if there are probably no jobs
+			$group = JobQueueGroup::singleton();
+			if ( !$group->queuesHaveJobs( JobQueueGroup::TYPE_DEFAULT ) ) {
+				return;
 			}
 		} catch ( JobQueueError $e ) {
 			MWExceptionHandler::logException( $e );
@@ -835,9 +837,8 @@ class MediaWiki {
 			$query, $this->config->get( 'SecretKey' ) );
 
 		$errno = $errstr = null;
-		$info = wfParseUrl( $this->config->get( 'Server' ) );
-		MediaWiki\suppressWarnings();
-		$host = $info['host'];
+		$info = wfParseUrl( $this->config->get( 'CanonicalServer' ) );
+		$host = $info ? $info['host'] : null;
 		$port = 80;
 		if ( isset( $info['scheme'] ) && $info['scheme'] == 'https' ) {
 			$host = "tls://" . $host;
@@ -846,47 +847,60 @@ class MediaWiki {
 		if ( isset( $info['port'] ) ) {
 			$port = $info['port'];
 		}
-		$sock = fsockopen(
+
+		MediaWiki\suppressWarnings();
+		$sock = $host ? fsockopen(
 			$host,
 			$port,
 			$errno,
 			$errstr,
-			// If it takes more than 100ms to connect to ourselves there
-			// is a problem elsewhere.
-			0.1
-		);
+			// If it takes more than 100ms to connect to ourselves there is a problem...
+			0.100
+		) : false;
 		MediaWiki\restoreWarnings();
-		if ( !$sock ) {
+
+		$invokedWithSuccess = true;
+		if ( $sock ) {
+			$special = SpecialPageFactory::getPage( 'RunJobs' );
+			$url = $special->getPageTitle()->getCanonicalURL( $query );
+			$req = (
+				"POST $url HTTP/1.1\r\n" .
+				"Host: {$info['host']}\r\n" .
+				"Connection: Close\r\n" .
+				"Content-Length: 0\r\n\r\n"
+			);
+
+			$runJobsLogger->info( "Running $n job(s) via '$url'" );
+			// Send a cron API request to be performed in the background.
+			// Give up if this takes too long to send (which should be rare).
+			stream_set_timeout( $sock, 2 );
+			$bytes = fwrite( $sock, $req );
+			if ( $bytes !== strlen( $req ) ) {
+				$invokedWithSuccess = false;
+				$runJobsLogger->error( "Failed to start cron API (socket write error)" );
+			} else {
+				// Do not wait for the response (the script should handle client aborts).
+				// Make sure that we don't close before that script reaches ignore_user_abort().
+				$start = microtime( true );
+				$status = fgets( $sock );
+				$sec = microtime( true ) - $start;
+				if ( !preg_match( '#^HTTP/\d\.\d 202 #', $status ) ) {
+					$invokedWithSuccess = false;
+					$runJobsLogger->error( "Failed to start cron API: received '$status' ($sec)" );
+				}
+			}
+			fclose( $sock );
+		} else {
+			$invokedWithSuccess = false;
 			$runJobsLogger->error( "Failed to start cron API (socket error $errno): $errstr" );
-			// Fall back to running the job here while the user waits
+		}
+
+		// Fall back to running the job(s) while the user waits if needed
+		if ( !$invokedWithSuccess ) {
+			$runJobsLogger->warning( "Jobs switched to blocking; Special:RunJobs disabled" );
+
 			$runner = new JobRunner( $runJobsLogger );
 			$runner->run( [ 'maxJobs'  => $n ] );
-			return;
 		}
-
-		$url = wfAppendQuery( wfScript( 'index' ), $query );
-		$req = (
-			"POST $url HTTP/1.1\r\n" .
-			"Host: {$info['host']}\r\n" .
-			"Connection: Close\r\n" .
-			"Content-Length: 0\r\n\r\n"
-		);
-
-		$runJobsLogger->info( "Running $n job(s) via '$url'" );
-		// Send a cron API request to be performed in the background.
-		// Give up if this takes too long to send (which should be rare).
-		stream_set_timeout( $sock, 1 );
-		$bytes = fwrite( $sock, $req );
-		if ( $bytes !== strlen( $req ) ) {
-			$runJobsLogger->error( "Failed to start cron API (socket write error)" );
-		} else {
-			// Do not wait for the response (the script should handle client aborts).
-			// Make sure that we don't close before that script reaches ignore_user_abort().
-			$status = fgets( $sock );
-			if ( !preg_match( '#^HTTP/\d\.\d 202 #', $status ) ) {
-				$runJobsLogger->error( "Failed to start cron API: received '$status'" );
-			}
-		}
-		fclose( $sock );
 	}
 }
