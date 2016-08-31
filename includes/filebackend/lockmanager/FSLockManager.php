@@ -228,13 +228,15 @@ class FSLockManager extends LockManager {
 	/**
 	 * Get the path to the lock file for a key
 	 * @param string $path
-	 * @return string
-	 */
-	protected function getLockPath( $path ) {
-		return "{$this->lockDir}/{$this->sha1Base36Absolute( $path )}.lock";
-	}
-
-	/**
+        * @return string
+        */
+       protected function getLockPath( $path ) {
+               if ( is_writable( $this->lockDir ) ) {
+                       return "{$this->lockDir}/{$this->sha1Base36Absolute( $path )}.lock";
+               }
+               throw new MWException( "Lockdir isn't writable: $this->lockDir\n" );
+       }
+        /**
 	 * Make sure remaining locks get cleared for sanity
 	 */
 	function __destruct() {
