@@ -10,8 +10,6 @@
 // through this entry point or not.
 define( 'MW_PHPUNIT_TEST', true );
 
-$wgPhpUnitClass = 'PHPUnit_TextUI_Command';
-
 // Start up MediaWiki in command-line mode
 require_once dirname( dirname( __DIR__ ) ) . "/maintenance/Maintenance.php";
 
@@ -27,6 +25,7 @@ class PHPUnitMaintClass extends Maintenance {
 		'use-normal-tables' => false,
 		'reuse-db' => false,
 		'wiki' => false,
+		'profiler' => false,
 	];
 
 	public function __construct() {
@@ -167,7 +166,7 @@ class PHPUnitMaintClass extends Maintenance {
 
 		// TODO: we should call MediaWikiTestCase::prepareServices( new GlobalVarConfig() ) here.
 		// But PHPUnit may not be loaded yet, so we have to wait until just
-		// before PHPUnit_TextUI_Command::main() is executed at the end of this file.
+		// before PHPUnit_TextUI_Command::main() is executed.
 	}
 
 	public function execute() {
@@ -188,9 +187,10 @@ class PHPUnitMaintClass extends Maintenance {
 				[ '--configuration', $IP . '/tests/phpunit/suite.xml' ] );
 		}
 
+		$phpUnitClass = 'PHPUnit_TextUI_Command';
+
 		if ( $this->hasOption( 'with-phpunitclass' ) ) {
-			global $wgPhpUnitClass;
-			$wgPhpUnitClass = $this->getOption( 'with-phpunitclass' );
+			$phpUnitClass = $this->getOption( 'with-phpunitclass' );
 
 			# Cleanup $args array so the option and its value do not
 			# pollute PHPUnit
@@ -220,6 +220,25 @@ class PHPUnitMaintClass extends Maintenance {
 			}
 		}
 
+		if ( !class_exists( 'PHPUnit_Framework_TestCase' ) ) {
+			echo "PHPUnit not found. Please install it and other dev dependencies by
+		running `composer install` in MediaWiki root directory.\n";
+			exit( 1 );
+		}
+		if ( !class_exists( $phpUnitClass ) ) {
+			echo "PHPUnit entry point '" . $phpUnitClass . "' not found. Please make sure you installed
+		the containing component and check the spelling of the class name.\n";
+			exit( 1 );
+		}
+
+		echo defined( 'HHVM_VERSION' ) ?
+			'Using HHVM ' . HHVM_VERSION . ' (' . PHP_VERSION . ")\n" :
+			'Using PHP ' . PHP_VERSION . "\n";
+
+		// Prepare global services for unit tests.
+		MediaWikiTestCase::prepareServices( new GlobalVarConfig() );
+
+		$phpUnitClass::main();
 	}
 
 	public function getDbType() {
@@ -250,25 +269,3 @@ class PHPUnitMaintClass extends Maintenance {
 
 $maintClass = 'PHPUnitMaintClass';
 require RUN_MAINTENANCE_IF_MAIN;
-
-if ( !class_exists( 'PHPUnit_Framework_TestCase' ) ) {
-	echo "PHPUnit not found. Please install it and other dev dependencies by
-running `composer install` in MediaWiki root directory.\n";
-	exit( 1 );
-}
-if ( !class_exists( $wgPhpUnitClass ) ) {
-	echo "PHPUnit entry point '" . $wgPhpUnitClass . "' not found. Please make sure you installed
-the containing component and check the spelling of the class name.\n";
-	exit( 1 );
-}
-
-echo defined( 'HHVM_VERSION' ) ?
-	'Using HHVM ' . HHVM_VERSION . ' (' . PHP_VERSION . ")\n" :
-	'Using PHP ' . PHP_VERSION . "\n";
-
-// Prepare global services for unit tests.
-// FIXME: this should be done in the finalSetup() method,
-// but PHPUnit may not have been loaded at that point.
-MediaWikiTestCase::prepareServices( new GlobalVarConfig() );
-
-$wgPhpUnitClass::main();
