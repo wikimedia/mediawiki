@@ -1483,7 +1483,7 @@ return [
 			'jquery.spinner',
 			'jquery.textSelection',
 			'mediawiki.api',
-			'mediawiki.action.history.diff',
+			'mediawiki.action.history.diff.styles',
 			'mediawiki.util',
 			'mediawiki.jqueryMsg',
 		],
@@ -1510,11 +1510,22 @@ return [
 		'position' => 'top',
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.history.styles.css',
 	],
+	// this module is only kept for b/c, for diff styles use mediawiki.action.history.diff.styles
 	'mediawiki.action.history.diff' => [
 		'position' => 'top',
 		'styles' => [
 			'resources/src/mediawiki.action/mediawiki.action.history.diff.css',
 			'resources/src/mediawiki.action/mediawiki.action.history.diff.print.css' => [
+				'media' => 'print'
+			],
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	'mediawiki.action.history.diff.styles' => [
+		'position' => 'top',
+		'styles' => [
+			'resources/src/mediawiki.action/mediawiki.action.history.diff.styles.css',
+			'resources/src/mediawiki.action/mediawiki.action.history.diff.styles.print.css' => [
 				'media' => 'print'
 			],
 		],

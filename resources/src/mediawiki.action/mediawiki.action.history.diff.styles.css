@@ -1,0 +1,120 @@
+/*!
+ * Diff rendering
+ */
+table.diff {
+	border: none;
+	border-spacing: 4px;
+	margin: 0;
+	width: 100%;
+	/* Ensure that colums are of equal width */
+	table-layout: fixed;
+}
+
+table.diff td {
+	padding: 0.33em 0.5em;
+}
+
+table.diff td.diff-marker {
+	/* Compensate padding for increased font-size */
+	padding: 0.25em;
+}
+
+table.diff col.diff-marker {
+	width: 2%;
+}
+
+table.diff col.diff-content {
+	width: 48%;
+}
+
+table.diff td div {
+	/* Force-wrap very long lines such as URLs or page-widening char strings */
+	word-wrap: break-word;
+}
+
+td.diff-otitle,
+td.diff-ntitle {
+	text-align: center;
+}
+
+td.diff-lineno {
+	font-weight: bold;
+}
+
+td.diff-marker {
+	text-align: right;
+	font-weight: bold;
+	font-size: 1.25em;
+	line-height: 1.2;
+}
+
+td.diff-addedline,
+td.diff-deletedline,
+td.diff-context {
+	font-size: 88%;
+	line-height: 1.6;
+	vertical-align: top;
+	white-space: -moz-pre-wrap;
+	white-space: pre-wrap;
+	border-style: solid;
+	border-width: 1px 1px 1px 4px;
+	border-radius: 0.33em;
+}
+
+td.diff-addedline {
+	border-color: #a3d3ff;
+}
+
+td.diff-deletedline {
+	border-color: #ffe49c;
+}
+
+td.diff-context {
+	background: #f9f9f9;
+	border-color: #e6e6e6;
+	color: #333;
+}
+
+.diffchange {
+	font-weight: bold;
+	text-decoration: none;
+}
+
+td.diff-addedline .diffchange,
+td.diff-deletedline .diffchange {
+	border-radius: 0.33em;
+	padding: 0.25em 0;
+}
+
+td.diff-addedline .diffchange {
+	background: #d8ecff;
+}
+
+td.diff-deletedline .diffchange {
+	background: #feeec8;
+}
+
+/* Correct user & content directionality when viewing a diff */
+.diff-currentversion-title,
+.diff {
+	direction: ltr;
+	unicode-bidi: embed;
+}
+
+/* @noflip */ .diff-contentalign-right td {
+	direction: rtl;
+	unicode-bidi: embed;
+}
+
+/* @noflip */ .diff-contentalign-left td {
+	direction: ltr;
+	unicode-bidi: embed;
+}
+
+.diff-multi,
+.diff-otitle,
+.diff-ntitle,
+.diff-lineno {
+	direction: ltr !important;
+	unicode-bidi: embed;
+}
