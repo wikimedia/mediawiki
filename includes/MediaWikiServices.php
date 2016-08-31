@@ -16,6 +16,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceContainer;
+use MediaWiki\Services\NoSuchServiceException;
 use MWException;
 use ObjectCache;
 use SearchEngine;
