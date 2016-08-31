@@ -993,9 +993,10 @@ class Linker {
 			$page = Title::makeTitle( NS_USER, $userName );
 		}
 
+		// Wrap the output with <bdi> tags for directionality isolation
 		return self::link(
 			$page,
-			htmlspecialchars( $altUserName !== false ? $altUserName : $userName ),
+			'<bdi>' . htmlspecialchars( $altUserName !== false ? $altUserName : $userName ) . '</bdi>',
 			[ 'class' => $classes ]
 		);
 	}
