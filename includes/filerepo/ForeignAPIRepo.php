@@ -253,6 +253,18 @@ class ForeignAPIRepo extends FileRepo {
 		return $ret;
 	}
 
+	public function getImageData( $name, $width = -1, $height = -1, $otherParams = '', $etc = [] ) {
+		return $this->fetchImageQuery(
+			array_merge( [
+				'titles' => 'File:' . $name,
+				'iiprop' => self::getIIProps(),
+				'iiurlwidth' => $width,
+				'iiurlheight' => $height,
+				'iiurlparam' => $otherParams,
+				'prop' => 'imageinfo'
+			], $etc ) );
+	}
+
 	/**
 	 * @param string $name
 	 * @param int $width
@@ -263,13 +275,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * @return bool
 	 */
 	function getThumbUrl( $name, $width = -1, $height = -1, &$result = null, $otherParams = '' ) {
-		$data = $this->fetchImageQuery( [
-			'titles' => 'File:' . $name,
-			'iiprop' => self::getIIProps(),
-			'iiurlwidth' => $width,
-			'iiurlheight' => $height,
-			'iiurlparam' => $otherParams,
-			'prop' => 'imageinfo' ] );
+		$data = $this->getImageData( $name, $width, $height, $otherParams );
 		$info = $this->getImageInfo( $data );
 
 		if ( $data && $info && isset( $info['thumburl'] ) ) {
@@ -292,15 +298,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * @since 1.22
 	 */
 	function getThumbError( $name, $width = -1, $height = -1, $otherParams = '', $lang = null ) {
-		$data = $this->fetchImageQuery( [
-			'titles' => 'File:' . $name,
-			'iiprop' => self::getIIProps(),
-			'iiurlwidth' => $width,
-			'iiurlheight' => $height,
-			'iiurlparam' => $otherParams,
-			'prop' => 'imageinfo',
-			'uselang' => $lang,
-		] );
+		$data = $this->getImageData( $name, $width, $height, $otherParams, [ 'uselang' => $lang ] );
 		$info = $this->getImageInfo( $data );
 
 		if ( $data && $info && isset( $info['thumberror'] ) ) {
