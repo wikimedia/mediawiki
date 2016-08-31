@@ -14,6 +14,7 @@ use LoadBalancer;
 use MediaHandlerFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\Services\NoSuchServiceException;
 use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceContainer;
 use MWException;
