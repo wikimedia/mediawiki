@@ -55,6 +55,14 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 
 		$result = $this->getResult();
 
+		// If the user wants no namespaces, they get no pages.
+		if ( $params['namespace'] === [] ) {
+			if ( $resultPageSet === null ) {
+				$result->addValue( 'query', $this->getModuleName(), [] );
+			}
+			return;
+		}
+
 		// This module operates in two modes:
 		// 'user': List deleted revs by a certain user
 		// 'all': List all deleted revs in NS
@@ -153,10 +161,10 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 		if ( $mode == 'all' ) {
 			if ( $params['namespace'] !== null ) {
 				$namespaces = $params['namespace'];
-				$this->addWhereFld( 'ar_namespace', $namespaces );
 			} else {
 				$namespaces = MWNamespace::getValidNamespaces();
 			}
+			$this->addWhereFld( 'ar_namespace', $namespaces );
 
 			// For from/to/prefix, we have to consider the potential
 			// transformations of the title in all specified namespaces.
@@ -447,7 +455,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 		return [
 			'action=query&list=alldeletedrevisions&adruser=Example&adrlimit=50'
 				=> 'apihelp-query+alldeletedrevisions-example-user',
-			'action=query&list=alldeletedrevisions&adrdir=newer&adrlimit=50'
+			'action=query&list=alldeletedrevisions&adrdir=newer&adrnamespace=0&adrlimit=50'
 				=> 'apihelp-query+alldeletedrevisions-example-ns-main',
 		];
 	}
