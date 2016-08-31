@@ -681,8 +681,8 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		$s .= " $link";
 		$s .= $dirmark;
-		$s .= " <span class='history-user'>" .
-			Linker::revUserTools( $rev, true ) . "</span>";
+		$s .= " <span class='history-user'><bdi>" .
+			Linker::revUserTools( $rev, true ) . "<bdi></span>";
 		$s .= $dirmark;
 
 		if ( $rev->isMinor() ) {
