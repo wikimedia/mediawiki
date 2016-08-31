@@ -1510,17 +1510,6 @@ return [
 		'position' => 'top',
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.history.styles.css',
 	],
-	// this module is only kept for b/c, for diff styles use mediawiki.action.history.diff.styles
-	'mediawiki.action.history.diff' => [
-		'position' => 'top',
-		'styles' => [
-			'resources/src/mediawiki.action/mediawiki.action.history.diff.css',
-			'resources/src/mediawiki.action/mediawiki.action.history.diff.print.css' => [
-				'media' => 'print'
-			],
-		],
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'mediawiki.action.history.diff.styles' => [
 		'position' => 'top',
 		'styles' => [
