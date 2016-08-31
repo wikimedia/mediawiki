@@ -695,10 +695,10 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * Add style sheets and supporting JS for diff display.
+	 * Add style sheets for diff display.
 	 */
 	public function showDiffStyle() {
-		$this->getOutput()->addModuleStyles( 'mediawiki.action.history.diff' );
+		$this->getOutput()->addModuleStyles( 'mediawiki.diff.styles' );
 	}
 
 	/**
