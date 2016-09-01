@@ -46,7 +46,39 @@ class ApiParamInfo extends ApiBase {
 		$this->context->setLanguage( $this->getMain()->getLanguage() );
 
 		if ( is_array( $params['modules'] ) ) {
-			$modules = $params['modules'];
+			$modules = [];
+			foreach ( $params['modules'] as $path ) {
+				if ( $path === '*' || $path === '**' ) {
+					$path = "main+$path";
+				}
+				if ( substr( $path, -2 ) === '+*' || substr( $path, -2 ) === ' *' ) {
+					$submodules = true;
+					$path = substr( $path, 0, -2 );
+					$recursive = false;
+				} elseif ( substr( $path, -3 ) === '+**' || substr( $path, -3 ) === ' **' ) {
+					$submodules = true;
+					$path = substr( $path, 0, -3 );
+					$recursive = true;
+				} else {
+					$submodules = false;
+				}
+
+				if ( $submodules ) {
+					try {
+						$module = $this->getModuleFromPath( $path );
+					} catch ( UsageException $ex ) {
+						$this->setWarning( $ex->getMessage() );
+					}
+					$submodules = $this->listAllSubmodules( $module, $recursive );
+					if ( $submodules ) {
+						$modules = array_merge( $modules, $submodules );
+					} else {
+						$this->setWarning( "Module $path has no submodules" );
+					}
+				} else {
+					$modules[] = $path;
+				}
+			}
 		} else {
 			$modules = [];
 		}
@@ -68,6 +100,8 @@ class ApiParamInfo extends ApiBase {
 		} else {
 			$formatModules = [];
 		}
+
+		$modules = array_unique( $modules );
 
 		$res = [];
 
@@ -119,6 +153,29 @@ class ApiParamInfo extends ApiBase {
 		}
 
 		$result->addValue( null, $this->getModuleName(), $res );
+	}
+
+	/**
+	 * List all submodules of a module
+	 * @param ApiBase $module
+	 * @param boolean $recursive
+	 * @return string[]
+	 */
+	private function listAllSubmodules( ApiBase $module, $recursive ) {
+		$manager = $module->getModuleManager();
+		if ( $manager ) {
+			$paths = [];
+			$names = $manager->getNames();
+			sort( $names );
+			foreach ( $names as $name ) {
+				$submodule = $manager->getModule( $name );
+				$paths[] = $submodule->getModulePath();
+				if ( $recursive && $submodule->getModuleManager() ) {
+					$paths = array_merge( $paths, $this->listAllSubmodules( $submodule, $recursive ) );
+				}
+			}
+		}
+		return $paths;
 	}
 
 	/**
@@ -449,8 +506,10 @@ class ApiParamInfo extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=paraminfo&modules=parse|phpfm|query+allpages|query+siteinfo'
+			'action=paraminfo&modules=parse|phpfm|query%2Ballpages|query%2Bsiteinfo'
 				=> 'apihelp-paraminfo-example-1',
+			'action=paraminfo&modules=query%2B*'
+				=> 'apihelp-paraminfo-example-2',
 		];
 	}
 
