@@ -679,6 +679,68 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
+	 * Merge a different ParserOutput object into this one
+	 *
+	 * @note This will not add the textual content to the ParserOutput.
+	 * @note The following properties aren't merged: Sections,
+	 *  EditSectionToken, TOCHtml, Timestamp, ParseStartTime,
+	 *  SpeculativeRevId, MaxAdaptiveExpiry.
+	 *  Additionally the following are only merged if they have not
+	 *  yet been set: LimitWarnings, TitleText, IndexPolicy.
+	 *
+	 * @param ParserOutput $other
+	 */
+	public function mergeMetadata( ParserOutput $other ) {
+		$this->mLanguageLinks = array_merge( $this->mLanguageLinks, $other->mLanguageLinks );
+		$this->mLinks = wfArrayPlus2d( $this->mLinks, $other->mLinks );
+		$this->mCategories += $other->mCategories;
+		$this->mIndicators += $other->mIndicators;
+		$this->mNewSection = $this->mNewSection || $other->mNewSection;
+		$this->mHideNewSection = $this->mHideNewSection || $other->mHideNewSection;
+
+		$this->mWarnings += $other->mWarnings;
+		if ( $other->mCacheExpiry !== null ) {
+			$this->updateCacheExpiry( $other->getCacheExpiry() );
+		}
+		$this->mNoGallery = $this->mNoGallery || $other->mNoGallery;
+		$this->mHeadItems = array_merge( $this->mHeadItems, $other->mHeadItems );
+		$this->addModules( $other->mModules );
+		$this->addModuleScripts( $other->mModuleScripts );
+		$this->addModuleStyles( $other->mModuleStyles );
+		$this->addJsConfigVars( $other->mJsConfigVars );
+		$this->mPreventClickjacking = $this->mPreventClickjacking
+			|| $other->mPreventClickjacking;
+		$this->mProperties += $other->mProperties;
+		// Template versioning...
+		$this->mTemplateIds = wfArrayPlus2d( $other->mTemplateIds, $this->mTemplateIds );
+		$this->mTemplates = wfArrayPlus2d( $other->mTemplates, $this->mTemplates );
+		$this->mFileSearchOptions += $other->mFileSearchOptions;
+		$this->mImages += $other->mImages;
+		$this->mOutputHooks = array_merge( $this->mOutputHooks, $other->getOutputHooks() );
+
+		$this->mTOCEnabled = $this->mTOCEnabled && $other->mTOCEnabled;
+		$this->mAccessedOptions += $other->mAccessedOptions;
+		$this->mExtensionData += $other->mExtensionData;
+		$this->mFlags += $other->mFlags;
+		if ( !$this->mIndexPolicy ) {
+			$this->mIndexPolicy = $other->mIndexPolicy;
+		}
+		if ( $other->mEnableOOUI ) {
+			$this->mEnableOOUI = true;
+		}
+
+		// FIXME Better handling of limit report data.
+		// Limit report data cannot be easily merged, so for the
+		// moment we will set it only if its not currently set.
+		if ( !$this->mLimitReportData ) {
+			$this->mLimitReportData = $other->mLimitReportData;
+		}
+		if ( !strlen( (string)$this->mTitleText ) ) {
+			$this->mTitleText = $other->mTitleText;
+		}
+	}
+
+	/**
 	 * Add a tracking category, getting the title from a system message,
 	 * or print a debug message if the title is invalid.
 	 *
