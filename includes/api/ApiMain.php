@@ -82,6 +82,7 @@ class ApiMain extends ApiBase {
 		'checktoken' => 'ApiCheckToken',
 		'cspreport' => 'ApiCSPReport',
 		'validatepassword' => 'ApiValidatePassword',
+		'x-amples' => ApiXAmples::class,
 
 		// Write modules
 		'purge' => 'ApiPurge',

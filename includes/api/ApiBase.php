@@ -2919,6 +2919,35 @@ abstract class ApiBase extends ContextSource {
 		] ];
 	}
 
+	/**
+	 * Return an x-ample stanza for service-checker
+	 *
+	 * Each x-ample should have a title, request, and response
+	 * field.
+	 *
+	 * Since nearly all API requests will return a HTTP 200
+	 * response, that status code will be set unless already set.
+	 *
+	 * @since 1.30
+	 * @param string $group Module manager group $this is in
+	 * @return array
+	 */
+	public function getTestXAmples( $group ) {
+		$moduleName = $this->getModuleName();
+		return [
+			[
+				'title' => "$group=$moduleName ({$this->getModulePath()})",
+				'request' => [
+					'query' => [
+						$group => $moduleName,
+					],
+				],
+				// response.status = 200 is default
+				'response' => [],
+			]
+		];
+	}
+
 	/**@}*/
 }
 
