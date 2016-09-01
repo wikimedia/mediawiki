@@ -42,6 +42,8 @@ class LinksDeletionUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	 * @throws MWException
 	 */
 	function __construct( WikiPage $page, $pageId = null, $timestamp = null ) {
+		parent::__construct();
+
 		$this->page = $page;
 		if ( $pageId ) {
 			$this->pageId = $pageId; // page ID at time of deletion
