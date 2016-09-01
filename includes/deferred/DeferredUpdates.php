@@ -195,29 +195,19 @@ class DeferredUpdates {
 	 * @since 1.28
 	 */
 	public static function tryOpportunisticExecute( $mode = 'run' ) {
-		static $recursionGuard = false;
-		if ( $recursionGuard ) {
-			return false; // COMMITs trigger inside update loop and inside some updates
+		if ( !self::getBusyDbConnections() ) {
+			self::doUpdates( $mode );
+			return true;
 		}
 
-		try {
-			$recursionGuard = true;
-			if ( !self::getBusyDbConnections() ) {
-				self::doUpdates( $mode );
-				return true;
-			}
-
-			if ( self::pendingUpdatesCount() >= self::BIG_QUEUE_SIZE ) {
-				// If we cannot run the updates with outer transaction context, try to
-				// at least enqueue all the updates that support queueing to job queue
-				self::$preSendUpdates = self::enqueueUpdates( self::$preSendUpdates );
-				self::$postSendUpdates = self::enqueueUpdates( self::$postSendUpdates );
-			}
-
-			return !self::pendingUpdatesCount();
-		} finally {
-			$recursionGuard = false;
+		if ( self::pendingUpdatesCount() >= self::BIG_QUEUE_SIZE ) {
+			// If we cannot run the updates with outer transaction context, try to
+			// at least enqueue all the updates that support queueing to job queue
+			self::$preSendUpdates = self::enqueueUpdates( self::$preSendUpdates );
+			self::$postSendUpdates = self::enqueueUpdates( self::$postSendUpdates );
 		}
+
+		return !self::pendingUpdatesCount();
 	}
 
 	/**
