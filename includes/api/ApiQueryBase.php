@@ -579,5 +579,20 @@ abstract class ApiQueryBase extends ApiBase {
 		);
 	}
 
+	/**
+	 * Set action=query in the request parameters
+	 *
+	 * @param string $group
+	 * @return array
+	 */
+	public function getTestXAmples( $group ) {
+		$xamples = parent::getTestXAmples( $group );
+		foreach ( $xamples as &$xample ) {
+			$xample['request']['query']['action'] = 'query';
+		}
+
+		return $xamples;
+	}
+
 	/**@}*/
 }
