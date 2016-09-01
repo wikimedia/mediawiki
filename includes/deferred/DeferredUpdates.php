@@ -52,8 +52,8 @@ class DeferredUpdates {
 
 	const BIG_QUEUE_SIZE = 100;
 
-	/** @var integer Levels of execute() active */
-	private static $recursionDepth = 0;
+	/** @var array|null Information about the current execute() call or null if not running */
+	private static $executeContext;
 
 	/**
 	 * Add an update to the deferred list to be run later by execute()
@@ -61,12 +61,18 @@ class DeferredUpdates {
 	 * In CLI mode, callback magic will also be used to run updates when safe
 	 *
 	 * @param DeferrableUpdate $update Some object that implements doUpdate()
-	 * @param integer $type DeferredUpdates constant (PRESEND or POSTSEND) (since 1.27)
+	 * @param integer $stage DeferredUpdates constant (PRESEND or POSTSEND) (since 1.27)
 	 */
-	public static function addUpdate( DeferrableUpdate $update, $type = self::POSTSEND ) {
+	public static function addUpdate( DeferrableUpdate $update, $stage = self::POSTSEND ) {
 		global $wgCommandLineMode;
 
-		if ( $type === self::PRESEND ) {
+		// This is a sub-DeferredUpdate, run it right after its parent update
+		if ( self::$executeContext && self::$executeContext['stage'] >= $stage ) {
+			self::$executeContext['subqueue'][] = $update;
+			return;
+		}
+
+		if ( $stage === self::PRESEND ) {
 			self::push( self::$preSendUpdates, $update );
 		} else {
 			self::push( self::$postSendUpdates, $update );
@@ -86,28 +92,30 @@ class DeferredUpdates {
 	 * @see MWCallableUpdate::__construct()
 	 *
 	 * @param callable $callable
-	 * @param integer $type DeferredUpdates constant (PRESEND or POSTSEND) (since 1.27)
+	 * @param integer $stage DeferredUpdates constant (PRESEND or POSTSEND) (since 1.27)
 	 * @param IDatabase|null $dbw Abort if this DB is rolled back [optional] (since 1.28)
 	 */
 	public static function addCallableUpdate(
-		$callable, $type = self::POSTSEND, IDatabase $dbw = null
+		$callable, $stage = self::POSTSEND, IDatabase $dbw = null
 	) {
-		self::addUpdate( new MWCallableUpdate( $callable, wfGetCaller(), $dbw ), $type );
+		self::addUpdate( new MWCallableUpdate( $callable, wfGetCaller(), $dbw ), $stage );
 	}
 
 	/**
 	 * Do any deferred updates and clear the list
 	 *
 	 * @param string $mode Use "enqueue" to use the job queue when possible [Default: "run"]
-	 * @param integer $type DeferredUpdates constant (PRESEND, POSTSEND, or ALL) (since 1.27)
+	 * @param integer $stage DeferredUpdates constant (PRESEND, POSTSEND, or ALL) (since 1.27)
 	 */
-	public static function doUpdates( $mode = 'run', $type = self::ALL ) {
-		if ( $type === self::ALL || $type == self::PRESEND ) {
-			self::execute( self::$preSendUpdates, $mode, $type );
+	public static function doUpdates( $mode = 'run', $stage = self::ALL ) {
+		$stageEffective = ( $stage === self::ALL ) ? self::POSTSEND : $stage;
+
+		if ( $stage === self::ALL || $stage === self::PRESEND ) {
+			self::execute( self::$preSendUpdates, $mode, $stageEffective );
 		}
 
-		if ( $type === self::ALL || $type == self::POSTSEND ) {
-			self::execute( self::$postSendUpdates, $mode, $type );
+		if ( $stage === self::ALL || $stage == self::POSTSEND ) {
+			self::execute( self::$postSendUpdates, $mode, $stageEffective );
 		}
 	}
 
@@ -133,19 +141,18 @@ class DeferredUpdates {
 	/**
 	 * @param DeferrableUpdate[] &$queue List of DeferrableUpdate objects
 	 * @param string $mode Use "enqueue" to use the job queue when possible
-	 * @param integer $type Class constant (PRESEND, POSTSEND, or ALL) (since 1.28)
-	 * @throws ErrorPageError
+	 * @param integer $stage Class constant (PRESEND, POSTSEND) (since 1.28)
+	 * @throws ErrorPageError Happens on top-level calls
+	 * @throws Exception Happens on second-level calls
 	 */
-	public static function execute( array &$queue, $mode, $type ) {
-		global $wgCommandLineMode;
-
+	public static function execute( array &$queue, $mode, $stage ) {
 		$services = MediaWikiServices::getInstance();
 		$stats = $services->getStatsdDataFactory();
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$method = RequestContext::getMain()->getRequest()->getMethod();
 
-		/** @var ErrorPageError $reportError */
-		$reportError = null;
+		/** @var ErrorPageError $reportableError */
+		$reportableError = null;
 		/** @var DeferrableUpdate[] $updates Snapshot of queue */
 		$updates = $queue;
 
@@ -176,33 +183,56 @@ class DeferredUpdates {
 			// Execute all remaining tasks...
 			foreach ( $updatesByType as $updatesForType ) {
 				foreach ( $updatesForType as $update ) {
-					++self::$recursionDepth;
+					self::$executeContext = [
+						'update' => $update,
+						'stage' => $stage,
+						'subqueue' => []
+					];
 					/** @var DeferrableUpdate $update */
-					try {
-						if ( self::$recursionDepth == 1 && !$wgCommandLineMode ) {
-							$lbFactory->beginMasterChanges( __METHOD__ );
-						}
-						$update->doUpdate();
-						if ( self::$recursionDepth == 1 ) {
-							$lbFactory->commitMasterChanges( __METHOD__ );
-						}
-					} catch ( Exception $e ) {
-						// Reporting GUI exceptions does not work post-send
-						if ( $e instanceof ErrorPageError && $type === self::PRESEND ) {
-							$reportError = $reportError ?: $e;
-						}
-						MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+					$guiError = self::runUpdate( $update, $lbFactory, $stage );
+					$reportableError = $reportableError ?: $guiError;
+					// Do the subqueue updates for $update until there are none
+					while ( self::$executeContext['subqueue'] ) {
+						$subUpdate = reset( self::$executeContext['subqueue'] );
+						$firstKey = key( self::$executeContext['subqueue'] );
+						unset( self::$executeContext['subqueue'][$firstKey] );
+
+						$guiError = self::runUpdate( $subUpdate, $lbFactory, $stage );
+						$reportableError = $reportableError ?: $guiError;
 					}
-					--self::$recursionDepth;
+					self::$executeContext = null;
 				}
 			}
 
 			$updates = $queue; // new snapshot of queue (check for new entries)
 		}
 
-		if ( $reportError ) {
-			throw $reportError; // throw the first of any GUI errors
+		if ( $reportableError ) {
+			throw $reportableError; // throw the first of any GUI errors
 		}
+	}
+
+	/**
+	 * @param DeferrableUpdate $update
+	 * @param LBFactory $lbFactory
+	 * @param integer $stage
+	 * @return ErrorPageError|null
+	 */
+	private static function runUpdate( DeferrableUpdate $update, LBFactory $lbFactory, $stage ) {
+		$guiError = null;
+		try {
+			$lbFactory->beginMasterChanges( __METHOD__ );
+			$update->doUpdate();
+			$lbFactory->commitMasterChanges( __METHOD__ );
+		} catch ( Exception $e ) {
+			// Reporting GUI exceptions does not work post-send
+			if ( $e instanceof ErrorPageError && $stage === self::PRESEND ) {
+				$guiError = $e;
+			}
+			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+		}
+
+		return $guiError;
 	}
 
 	/**
@@ -216,6 +246,12 @@ class DeferredUpdates {
 	 * @since 1.28
 	 */
 	public static function tryOpportunisticExecute( $mode = 'run' ) {
+		// execute() loop is already running
+		if ( self::$executeContext ) {
+			return false;
+		}
+
+		// Updates run inside updates join their transaction and loose outer scope
 		if ( !self::getBusyDbConnections() ) {
 			self::doUpdates( $mode );
 			return true;
