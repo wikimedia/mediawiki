@@ -1865,6 +1865,7 @@
 	"filerevert-submit": "{{Identical|Revert}}",
 	"filerevert-success": "Message displayed when you succeed in reverting a version of a file.\n* $1 is the name of the media\n* $2 is a date\n* $3 is a time\n* $4 is an URL and must follow square bracket: [$4\n{{Identical|Revert}}",
 	"filerevert-badversion": "Used as error message.",
+	"filerevert-identical": "Used as error message.",
 	"filedelete": "Used as page title. Parameters:\n* $1 - file title\nSee also:\n* {{msg-mw|Filedelete-intro}}",
 	"filedelete-legend": "Used as fieldset label in the \"Delete file\" form.\n{{Identical|Delete file}}",
 	"filedelete-intro": "Used as introduction for FileDelete form. Parameters:\n* $1 - page title for file\nSee also:\n* {{msg-mw|Filedelete|page title}}",

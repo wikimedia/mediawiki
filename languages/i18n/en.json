@@ -1682,6 +1682,7 @@
 	"filerevert-submit": "Revert",
 	"filerevert-success": "<strong>[[Media:$1|$1]]</strong> has been reverted to the [$4 version as of $3, $2].",
 	"filerevert-badversion": "There is no previous local version of this file with the provided timestamp.",
+	"filerevert-identical": "The current version of the file is already identical to the selected one.",
 	"filedelete": "Delete $1",
 	"filedelete-legend": "Delete file",
 	"filedelete-intro": "You are about to delete the file <strong>[[Media:$1|$1]]</strong> along with all of its history.",
