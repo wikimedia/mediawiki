@@ -50,7 +50,7 @@ abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 	private static function removeSomeHtml( $html ) {
 		$html = str_replace( '&quot;', '"', $html );
 		$html = preg_replace( '/\xE2\x80[\x8E\x8F]/', '', $html ); // Strip lrm/rlm
-		return trim( preg_replace( '/<(a|span)[^>]*>([^<]*)<\/\1>/', '$2', $html ) );
+		return trim( strip_tags( $html ) );
 	}
 
 	private static function removeApiMetaData( $val ) {

@@ -37,34 +37,34 @@ class LinkerTest extends MediaWikiLangTestCase {
 			[
 				'<a href="/wiki/Special:Contributions/JohnDoe" '
 					. 'class="mw-userlink mw-anonuserlink" '
-					. 'title="Special:Contributions/JohnDoe">JohnDoe</a>',
+					. 'title="Special:Contributions/JohnDoe"><bdi>JohnDoe</bdi></a>',
 				0, 'JohnDoe', false,
 			],
 			[
 				'<a href="/wiki/Special:Contributions/::1" '
 					. 'class="mw-userlink mw-anonuserlink" '
-					. 'title="Special:Contributions/::1">::1</a>',
+					. 'title="Special:Contributions/::1"><bdi>::1</bdi></a>',
 				0, '::1', false,
 				'Anonymous with pretty IPv6'
 			],
 			[
 				'<a href="/wiki/Special:Contributions/0:0:0:0:0:0:0:1" '
 					. 'class="mw-userlink mw-anonuserlink" '
-					. 'title="Special:Contributions/0:0:0:0:0:0:0:1">::1</a>',
+					. 'title="Special:Contributions/0:0:0:0:0:0:0:1"><bdi>::1</bdi></a>',
 				0, '0:0:0:0:0:0:0:1', false,
 				'Anonymous with almost pretty IPv6'
 			],
 			[
 				'<a href="/wiki/Special:Contributions/0000:0000:0000:0000:0000:0000:0000:0001" '
 					. 'class="mw-userlink mw-anonuserlink" '
-					. 'title="Special:Contributions/0000:0000:0000:0000:0000:0000:0000:0001">::1</a>',
+					. 'title="Special:Contributions/0000:0000:0000:0000:0000:0000:0000:0001"><bdi>::1</bdi></a>',
 				0, '0000:0000:0000:0000:0000:0000:0000:0001', false,
 				'Anonymous with full IPv6'
 			],
 			[
 				'<a href="/wiki/Special:Contributions/::1" '
 					. 'class="mw-userlink mw-anonuserlink" '
-					. 'title="Special:Contributions/::1">AlternativeUsername</a>',
+					. 'title="Special:Contributions/::1"><bdi>AlternativeUsername</bdi></a>',
 				0, '::1', 'AlternativeUsername',
 				'Anonymous with pretty IPv6 and an alternative username'
 			],
@@ -73,14 +73,14 @@ class LinkerTest extends MediaWikiLangTestCase {
 			[
 				'<a href="/wiki/Special:Contributions/127.0.0.1" '
 					. 'class="mw-userlink mw-anonuserlink" '
-					. 'title="Special:Contributions/127.0.0.1">127.0.0.1</a>',
+					. 'title="Special:Contributions/127.0.0.1"><bdi>127.0.0.1</bdi></a>',
 				0, '127.0.0.1', false,
 				'Anonymous with IPv4'
 			],
 			[
 				'<a href="/wiki/Special:Contributions/127.0.0.1" '
 					. 'class="mw-userlink mw-anonuserlink" '
-					. 'title="Special:Contributions/127.0.0.1">AlternativeUsername</a>',
+					. 'title="Special:Contributions/127.0.0.1"><bdi>AlternativeUsername</bdi></a>',
 				0, '127.0.0.1', 'AlternativeUsername',
 				'Anonymous with IPv4 and an alternative username'
 			],
