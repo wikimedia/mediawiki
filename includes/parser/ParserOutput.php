@@ -679,6 +679,84 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
+	 * Merge a different ParserOutput object into this one
+	 *
+	 * @note This will not add the textual content to the ParserOutput.
+	 * @note The following properties aren't merged: Sections,
+	 *  EditSectionToken, TOCHtml, Timestamp, ParseStartTime,
+	 *  SpeculativeRevId, MaxAdaptiveExpiry.
+	 *  Additionally the following are only merged if they have not
+	 *  yet been set: LimitWarnings, TitleText, IndexPolicy.
+	 */
+	public function mergeMetadata( ParserOutput $parserOutput ) {
+		$this->mLanguageLinks = array_merge( $this->mLanguageLinks, $parserOutput->getLanguageLinks() );
+		$this->mLinks = $this->2dMerge( $this->mLinks, $parserOutput->getLinks() ); 
+		$this->mCategories += $parserOutput->getCategories();
+		$this->mIndicators += $parserOutput->getIndicators();
+		$this->mNewSection = $this->mNewSection || $parserOutput->getNewSection();
+		$this->mHideNewSection = $this->mHideNewSection || $parserOutput->getHideNewSection();
+
+		$this->mWarnings += $parserOutput->mWarnings;
+		if ( $parserOutput->mCacheExpiry !== null ) {
+			$this->updateCacheExpiry( $parserOutput->getCacheExpiry() );
+		}
+		$this->mNoGallery = $this->mNoGallery || $parserOutput->getNoGallery();
+		$this->mHeadItems = array_merge( $this->mHeadItems, $parserOutput->getHeadItems() );
+		$this->addModules( $parserOutput->getModules() );
+		$this->addModuleScripts( $parserOutput->getModuleScripts() );
+		$this->addModuleStyles( $parserOutput->getModuleStyles() );
+		$this->addJsConfigVars( $parserOutput->getJsConfigVars() );
+		$this->mPreventClickjacking = $this->mPreventClickjacking
+			|| $parserOutput->preventClickjacking();
+		$this->mProperties += $parserOutput->getProperties();
+		// Template versioning...
+		$this->mTemplateIds = $this->2dMerge( $this->getTemplateIds(), $this->mTemplateIds );
+		$this->mTemplates = $this->2dMerge( $parserOutout->getTemplates, $this->mTemplates );
+		$this->mFileSearchOptions += $parserOutput->getFileSearchOptions();
+		$this->mImages += $parserOutput->getImages();
+		$this->mOutputHooks = array_merge( $this->mOutputHooks, $parserOutput->getOutputHooks() );
+
+		$this->mTOCEnabled = $this->mTOCEnabled && $parserOutput->getTOCEnabled();
+		$this->mAccessedOptions += $parserOutput->mAccessedOptions;
+		$this->mExtensionData += $parserOutput->getExtensionData;
+		$this->mFlags += $parserOutput->mFlags;
+		if ( !$this->mIndexPolicy ) {
+			$this->mIndexPolicy = $parserOutput->getIndexPolicy();
+		}
+		if ( $parserOutput->getEnableOOUI() ) {
+			$this->setEnableOOUI( true );
+		}
+
+		// FIXME Better hadnling of limit report data.
+		// Limit report data cannot be easily merged, so for the
+		// moment we will set it only if its not currently set.
+		if ( $this->getLimitReportData() ) {
+			$this->setLimitReportData( $parserOutput->getLimitReportData() );
+		}
+		if ( !$this->mTitleText ) {
+			$this->setTitleText( $parserOutput->getTitleText() );
+		}
+	}
+
+	/**
+	 * Helper function for merging 2D arrays
+	 *
+	 * @param $original Array With 2D structure.
+	 * @param $new Array
+	 * @return Array
+	 */
+	private 2dMerge( $original, $new ) {
+		foreach( $new as $key1 => $value1 ) {
+			if ( isset( $original[$key1] ) ) {
+				$original[$key1] += $value1;
+			} else {
+				$original[$key1] = $value1
+			}
+		}
+		return $orignal;
+	}
+
+	/**
 	 * Add a tracking category, getting the title from a system message,
 	 * or print a debug message if the title is invalid.
 	 *
