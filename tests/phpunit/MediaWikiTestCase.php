@@ -482,6 +482,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		DeferredUpdates::clearPendingUpdates();
 		ObjectCache::getMainWANInstance()->clearProcessCache();
 
+		// XXX: reset maintenance triggers
+		// Hook into period lag checks which often happen in long-running scripts
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		Maintenance::setLBFactoryTriggers( $lbFactory );
+
 		ob_start( 'MediaWikiTestCase::wfResetOutputBuffersBarrier' );
 	}
 
