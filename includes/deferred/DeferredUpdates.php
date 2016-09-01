@@ -50,16 +50,26 @@ class DeferredUpdates {
 	const BIG_QUEUE_SIZE = 100;
 
 	/**
-	 * Add an update to the deferred list
+	 * Add an update to the deferred list to be run later by execute()
+	 *
+	 * In CLI mode, callback magic will also be used to run updates when safe
 	 *
 	 * @param DeferrableUpdate $update Some object that implements doUpdate()
 	 * @param integer $type DeferredUpdates constant (PRESEND or POSTSEND) (since 1.27)
 	 */
 	public static function addUpdate( DeferrableUpdate $update, $type = self::POSTSEND ) {
+		global $wgCommandLineMode;
+
 		if ( $type === self::PRESEND ) {
 			self::push( self::$preSendUpdates, $update );
 		} else {
 			self::push( self::$postSendUpdates, $update );
+		}
+
+		// Try to run the updates now if in CLI mode and no transaction is active.
+		// This covers scripts that don't/barely use the DB but make updates to other stores.
+		if ( $wgCommandLineMode ) {
+			self::tryOpportunisticExecute( 'run' );
 		}
 	}
 
@@ -96,8 +106,6 @@ class DeferredUpdates {
 	}
 
 	private static function push( array &$queue, DeferrableUpdate $update ) {
-		global $wgCommandLineMode;
-
 		if ( $update instanceof MergeableUpdate ) {
 			$class = get_class( $update ); // fully-qualified class
 			if ( isset( $queue[$class] ) ) {
@@ -109,25 +117,6 @@ class DeferredUpdates {
 			}
 		} else {
 			$queue[] = $update;
-		}
-
-		// CLI scripts may forget to periodically flush these updates,
-		// so try to handle that rather than OOMing and losing them entirely.
-		// Try to run the updates as soon as there is no current wiki transaction.
-		static $waitingOnTrx = false; // de-duplicate callback
-		if ( $wgCommandLineMode && !$waitingOnTrx ) {
-			$lb = wfGetLB();
-			$dbw = $lb->getAnyOpenConnection( $lb->getWriterIndex() );
-			// Do the update as soon as there is no transaction
-			if ( $dbw && $dbw->trxLevel() ) {
-				$waitingOnTrx = true;
-				$dbw->onTransactionIdle( function() use ( &$waitingOnTrx ) {
-					DeferredUpdates::doUpdates();
-					$waitingOnTrx = false;
-				} );
-			} else {
-				self::doUpdates();
-			}
 		}
 	}
 
