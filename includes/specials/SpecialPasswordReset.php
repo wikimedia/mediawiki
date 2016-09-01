@@ -34,7 +34,7 @@ use MediaWiki\Auth\AuthManager;
  */
 class SpecialPasswordReset extends FormSpecialPage {
 	/** @var PasswordReset */
-	private $passwordReset;
+	private $passwordReset = null;
 
 	/**
 	 * @var string[] Temporary storage for the passwords which have been sent out, keyed by username.
@@ -53,7 +53,13 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 	public function __construct() {
 		parent::__construct( 'PasswordReset', 'editmyprivateinfo' );
-		$this->passwordReset = new PasswordReset( $this->getConfig(), AuthManager::singleton() );
+	}
+
+	private function getPasswordReset() {
+		if ( $this->passwordReset === null ) {
+			$this->passwordReset = new PasswordReset( $this->getConfig(), AuthManager::singleton() );
+		}
+		return $this->passwordReset;
 	}
 
 	public function doesWrites() {
@@ -61,11 +67,11 @@ class SpecialPasswordReset extends FormSpecialPage {
 	}
 
 	public function userCanExecute( User $user ) {
-		return $this->passwordReset->isAllowed( $user )->isGood();
+		return $this->getPasswordReset()->isAllowed( $user )->isGood();
 	}
 
 	public function checkExecutePermissions( User $user ) {
-		$status = Status::wrap( $this->passwordReset->isAllowed( $user ) );
+		$status = Status::wrap( $this->getPasswordReset()->isAllowed( $user ) );
 		if ( !$status->isGood() ) {
 			throw new ErrorPageError( 'internalerror', $status->getMessage() );
 		}
@@ -150,7 +156,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 		$this->method = $username ? 'username' : 'email';
 		$this->result = Status::wrap(
-			$this->passwordReset->execute( $this->getUser(), $username, $email, $capture ) );
+			$this->getPasswordReset()->execute( $this->getUser(), $username, $email, $capture ) );
 		if ( $capture && $this->result->isOK() ) {
 			$this->passwords = $this->result->getValue();
 		}
@@ -199,7 +205,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 	 * @return bool
 	 */
 	public function isListed() {
-		if ( $this->passwordReset->isAllowed( $this->getUser() )->isGood() ) {
+		if ( $this->getPasswordReset()->isAllowed( $this->getUser() )->isGood() ) {
 			return parent::isListed();
 		}
 
