@@ -128,10 +128,6 @@ class WikitextContentHandler extends TextContentHandler {
 		$fields['file_text'] =
 			$engine->makeSearchFieldMapping( 'file_text', SearchIndexField::INDEX_TYPE_TEXT );
 
-		$fields['defaultsort'] = $engine->makeSearchFieldMapping( 'defaultsort',
-			SearchIndexField::INDEX_TYPE_TEXT );
-		$fields['defaultsort']->setFlag( SearchIndexField::FLAG_SOURCE_DATA );
-
 		return $fields;
 	}
 
