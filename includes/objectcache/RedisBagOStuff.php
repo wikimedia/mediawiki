@@ -34,6 +34,8 @@ class RedisBagOStuff extends BagOStuff {
 	protected $serverTagMap;
 	/** @var bool */
 	protected $automaticFailover;
+	/** @var bool */
+	protected $allowInfo;
 
 	/**
 	 * Construct a RedisBagOStuff object. Parameters are:
@@ -61,6 +63,9 @@ class RedisBagOStuff extends BagOStuff {
 	 *     consistent hashing algorithm). True by default. This has the
 	 *     potential to create consistency issues if a server is slow enough to
 	 *     flap, for example if it is in swap death.
+	 *
+	 *   - allowInfo: Allow usage of the INFO command. This does not work with
+	 *     twemproxy or probably any proxy like that due to server ambiguity.
 	 * @param array $params
 	 */
 	function __construct( $params ) {
@@ -83,6 +88,8 @@ class RedisBagOStuff extends BagOStuff {
 		} else {
 			$this->automaticFailover = true;
 		}
+
+		$this->allowInfo = !empty( $params['allowInfo'] );
 	}
 
 	protected function doGet( $key, $flags = 0 ) {
@@ -114,6 +121,9 @@ class RedisBagOStuff extends BagOStuff {
 			} else {
 				// No expiry, that is very different from zero expiry in Redis
 				$result = $conn->set( $key, $this->serialize( $value ) );
+			}
+			if ( ( $flags & self::WRITE_SYNC ) == self::WRITE_SYNC ) {
+				$result = $this->waitForReplication( $conn ) && $result;
 			}
 		} catch ( RedisException $e ) {
 			$result = false;
@@ -390,7 +400,7 @@ class RedisBagOStuff extends BagOStuff {
 	 *  if the server is not a slave.
 	 */
 	protected function getMasterLinkStatus( RedisConnRef $conn ) {
-		$info = $conn->info();
+		$info = $this->allowInfo ? $conn->info() : [];
 		return isset( $info['master_link_status'] )
 			? $info['master_link_status']
 			: null;
@@ -410,11 +420,56 @@ class RedisBagOStuff extends BagOStuff {
 	 * not. The safest response for us is to explicitly destroy the connection
 	 * object and let it be reopened during the next request.
 	 * @param RedisConnRef $conn
-	 * @param Exception $e
+	 * @param RedisException $e
 	 */
 	protected function handleException( RedisConnRef $conn, $e ) {
 		$this->setLastError( BagOStuff::ERR_UNEXPECTED );
 		$this->redisPool->handleError( $conn, $e );
+	}
+
+	/**
+	 * @param RedisConnRef $conn
+	 * @return bool
+	 */
+	protected function waitForReplication( RedisConnRef $conn ) {
+		// http://redis.io/commands/info
+		$info = $this->allowInfo ? $conn->info( 'replication' ) : [];
+		if ( !isset( $info['slave0'] ) || !isset( $info['master_repl_offset'] ) ) {
+			return true; // no slaves configured or INFO disabled
+		}
+
+		$masterPos = (int)$info['master_repl_offset'];
+		$loop = new WaitConditionLoop(
+			function () use ( $conn, $masterPos ) {
+				return $this->wasReplicated( $masterPos, $conn->info( 'replication' ) );
+			},
+			$this->syncTimeout,
+			$this->busyCallbacks
+		);
+
+		return ( $loop->invoke() === $loop::CONDITION_REACHED );
+	}
+
+	/**
+	 * @param integer $masterPos
+	 * @param array $info Info from 'replication' group
+	 * @return bool
+	 */
+	private function wasReplicated( $masterPos, array $info ) {
+		foreach ( $info as $key => $value ) {
+			$m = [];
+			// https://github.com/antirez/redis/issues/2375
+			if ( preg_match( '/^slave\d+$/', $key )
+				&& preg_match( '/offset=(\d+)/', $value, $m )
+			) {
+				$slavePos = (int)$m[1];
+				if ( $slavePos < $masterPos ) {
+					return false;
+				}
+			}
+		}
+
+		return true;
 	}
 
 	/**
