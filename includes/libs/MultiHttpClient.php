@@ -32,7 +32,9 @@
  *                this can simply be a string (always), a resource for
  *                PUT requests, and a field/value array for POST request;
  *                array bodies are encoded as multipart/form-data and strings
- *                use application/x-www-form-urlencoded (headers sent automatically)
+ *                use application/x-www-form-urlencoded (headers sent automatically).
+ *                If 'application/json' content-type header is provided explicitly,
+ *                the payload can be an array that will be JSON-stringified.
  *   - stream   : resource to stream the HTTP response body to
  *   - proxy    : HTTP proxy to use
  *   - flags    : map of boolean flags which supports:
@@ -353,7 +355,17 @@ class MultiHttpClient {
 				// for safety.
 				$req['body'] = wfArrayToCgi( $req['body'] );
 			}
-			curl_setopt( $ch, CURLOPT_POSTFIELDS, $req['body'] );
+
+			// If the 'application/json' content type is set explicitly - stringify body
+			// and set content-length
+			if ( $req['headers']['content-type']
+					&& preg_match( '/^application\/json/', $req['headers']['content-type'] ) ) {
+				$body_string = json_encode( $req['body'] );
+				$req['headers']['content-length'] = strlen( $body_string );
+				curl_setopt( $ch, CURLOPT_POSTFIELDS, $body_string );
+			} else {
+				curl_setopt( $ch, CURLOPT_POSTFIELDS, $req['body'] );
+			}
 		} else {
 			if ( is_resource( $req['body'] ) || $req['body'] !== '' ) {
 				throw new Exception( "HTTP body specified for a non PUT/POST request." );
