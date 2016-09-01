@@ -37,6 +37,8 @@
  *                PUT requests, and a field/value array for POST request;
  *                array bodies are encoded as multipart/form-data and strings
  *                use application/x-www-form-urlencoded (headers sent automatically)
+ *                If 'application/json' content-type header is provided explicitly,
+ *                the payload can be an array that will be JSON-stringified.
  *   - stream   : resource to stream the HTTP response body to
  * Request maps can use integer index 0 instead of 'method' and 1 instead of 'url'.
  *
