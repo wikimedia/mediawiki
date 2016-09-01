@@ -112,13 +112,19 @@ class RevertAction extends FormAction {
 	public function onSubmit( $data ) {
 		$this->useTransactionalTimeLimit();
 
-		$source = $this->page->getFile()->getArchiveVirtualUrl(
-			$this->getRequest()->getText( 'oldimage' )
-		);
+		$old = $this->getRequest()->getText( 'oldimage' );
+		$localFile = $this->page->getFile();
+		$oldFile = OldLocalFile::newFromArchiveName( $this->getTitle(), $localFile->getRepo(), $old );
+
+		$source = $localFile->getArchiveVirtualUrl( $old );
 		$comment = $data['comment'];
 
+		if ( $localFile->getSha1() === $oldFile->getSha1() ) {
+			return Status::newFatal( 'filerevert-identical' );
+		}
+
 		// TODO: Preserve file properties from database instead of reloading from file
-		return $this->page->getFile()->upload(
+		return $localFile->upload(
 			$source,
 			$comment,
 			$comment,
