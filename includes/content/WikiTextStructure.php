@@ -233,4 +233,12 @@ class WikiTextStructure {
 		$this->extractWikitextParts();
 		return $this->auxText;
 	}
+
+	/**
+	 * Get the defaultsort property
+	 * @return string|null
+	 */
+	public function getDefaultSort() {
+		return $this->parserOutput->getProperty( 'defaultsort' );
+	}
 }

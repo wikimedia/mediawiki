@@ -128,6 +128,10 @@ class WikitextContentHandler extends TextContentHandler {
 		$fields['file_text'] =
 			$engine->makeSearchFieldMapping( 'file_text', SearchIndexField::INDEX_TYPE_TEXT );
 
+		$fields['defaultsort'] = $engine->makeSearchFieldMapping( 'defaultsort',
+			SearchIndexField::INDEX_TYPE_TEXT );
+		$fields['defaultsort']->setFlag( SearchIndexField::FLAG_SOURCE_DATA );
+
 		return $fields;
 	}
 
@@ -160,6 +164,7 @@ class WikitextContentHandler extends TextContentHandler {
 		$fields['opening_text'] = $structure->getOpeningText();
 		$fields['text'] = $structure->getMainText(); // overwrites one from ContentHandler
 		$fields['auxiliary_text'] = $structure->getAuxiliaryText();
+		$fields['defaultsort'] = $structure->getDefaultSort();
 
 		$title = $page->getTitle();
 		if ( NS_FILE == $title->getNamespace() ) {

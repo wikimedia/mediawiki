@@ -49,6 +49,19 @@ END;
 		$this->assertContains( "Wikitext in Heading and also html", $headings );
 	}
 
+	public function testDefaultSort() {
+		$text = <<<END
+Louise Michel
+== Heading one ==
+Some text
+==== See also ====
+* Also things to see!
+{{DEFAULTSORT:Michel, Louise}}
+END;
+		$struct = $this->getStructure( $text );
+		$this->assertEquals( "Michel, Louise", $struct->getDefaultSort() );
+	}
+
 	public function testHeadingsFirst() {
 		$text = <<<END
 == Heading one ==
