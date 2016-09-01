@@ -24,10 +24,6 @@
 /**
  * Abstract base class for update jobs that do something with some secondary
  * data extracted from article.
- *
- * @note subclasses should NOT start or commit transactions in their doUpdate() method,
- *       a transaction will automatically be wrapped around the update. If need be,
- *       subclasses can override the beginTransaction() and commitTransaction() methods.
  */
 abstract class DataUpdate implements DeferrableUpdate {
 	/** @var mixed Result from LBFactory::getEmptyTransactionTicket() */
@@ -43,30 +39,6 @@ abstract class DataUpdate implements DeferrableUpdate {
 	 */
 	public function setTransactionTicket( $ticket ) {
 		$this->ticket = $ticket;
-	}
-
-	/**
-	 * Begin an appropriate transaction, if any.
-	 * This default implementation does nothing.
-	 */
-	public function beginTransaction() {
-		// noop
-	}
-
-	/**
-	 * Commit the transaction started via beginTransaction, if any.
-	 * This default implementation does nothing.
-	 */
-	public function commitTransaction() {
-		// noop
-	}
-
-	/**
-	 * Abort / roll back the transaction started via beginTransaction, if any.
-	 * This default implementation does nothing.
-	 */
-	public function rollbackTransaction() {
-		// noop
 	}
 
 	/**
@@ -91,44 +63,8 @@ abstract class DataUpdate implements DeferrableUpdate {
 			$updates = self::enqueueUpdates( $updates );
 		}
 
-		if ( !count( $updates ) ) {
-			return; // nothing to do
-		}
-
-		$open_transactions = [];
-		$exception = null;
-
-		try {
-			// begin transactions
-			foreach ( $updates as $update ) {
-				$update->beginTransaction();
-				$open_transactions[] = $update;
-			}
-
-			// do work
-			foreach ( $updates as $update ) {
-				$update->doUpdate();
-			}
-
-			// commit transactions
-			while ( count( $open_transactions ) > 0 ) {
-				$trans = array_pop( $open_transactions );
-				$trans->commitTransaction();
-			}
-		} catch ( Exception $ex ) {
-			$exception = $ex;
-			wfDebug( "Caught exception, will rethrow after rollback: " .
-				$ex->getMessage() . "\n" );
-		}
-
-		// rollback remaining transactions
-		while ( count( $open_transactions ) > 0 ) {
-			$trans = array_pop( $open_transactions );
-			$trans->rollbackTransaction();
-		}
-
-		if ( $exception ) {
-			throw $exception; // rethrow after cleanup
+		foreach ( $updates as $update ) {
+			$update->doUpdate();
 		}
 	}
 
