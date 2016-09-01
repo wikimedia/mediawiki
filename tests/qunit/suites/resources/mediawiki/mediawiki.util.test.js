@@ -237,20 +237,6 @@
 		assert.strictEqual( mw.util.getParamValue( 'TEST', url ), 'a b+c d', 'Bug 30441: getParamValue must understand "+" encoding of space (multiple spaces)' );
 	} );
 
-	QUnit.test( 'tooltipAccessKey', 4, function ( assert ) {
-		this.suppressWarnings();
-
-		assert.equal( typeof mw.util.tooltipAccessKeyPrefix, 'string', 'tooltipAccessKeyPrefix must be a string' );
-		assert.equal( $.type( mw.util.tooltipAccessKeyRegexp ), 'regexp', 'tooltipAccessKeyRegexp is a regexp' );
-		assert.ok( mw.util.updateTooltipAccessKeys, 'updateTooltipAccessKeys is non-empty' );
-
-		'Example [a]'.replace( mw.util.tooltipAccessKeyRegexp, function ( sub, m1, m2, m3, m4, m5, m6 ) {
-			assert.equal( m6, 'a', 'tooltipAccessKeyRegexp finds the accesskey hint' );
-		} );
-
-		this.restoreWarnings();
-	} );
-
 	QUnit.test( '$content', 2, function ( assert ) {
 		assert.ok( mw.util.$content instanceof jQuery, 'mw.util.$content instance of jQuery' );
 		assert.strictEqual( mw.util.$content.length, 1, 'mw.util.$content must have length of 1' );
