@@ -3034,6 +3034,30 @@ abstract class ApiBase extends ContextSource {
 		}
 	}
 
+	/**
+	 * Return an x-ample stanza for service-checker
+	 *
+	 * @since 1.28
+	 * @param string $group Module manager group $this is in
+	 * @return array
+	 */
+	public function getTestXAmples( $group ) {
+		$moduleName = $this->getModuleName();
+		return [
+			[
+				'title' => "$group=$moduleName ({$this->getModulePath()})",
+				'request' => [
+					'query' => [
+						$group => $moduleName,
+					],
+				],
+				'response' => [
+					'status' => 200,
+				],
+			]
+		];
+	}
+
 	/**@}*/
 }
 
