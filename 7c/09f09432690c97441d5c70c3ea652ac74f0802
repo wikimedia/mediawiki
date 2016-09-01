@@ -1,0 +1,8 @@
+Code-Review-1: Smalyshev <smalyshev@wikimedia.org>
+Code-Review+2: EBernhardson <ebernhardson@wikimedia.org>
+Verified+2: jenkins-bot
+Submitted-by: jenkins-bot
+Submitted-at: Thu, 01 Sep 2016 14:51:41 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/307295
+Project: mediawiki/core
+Branch: refs/heads/master
