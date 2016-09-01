@@ -2086,6 +2086,7 @@
 	"rollbacklinkcount-morethan": "відкинути понад $1 {{PLURAL:$1|редагування|редагування|редагувань}}",
 	"rollbackfailed": "Відкинути зміни не вдалося",
 	"rollback-missingparam": "Відсутні обов'язкові параметри за запитом.",
+	"rollback-missingrevision": "Не вдалося завантажити дані версії.",
 	"cantrollback": "Неможливо відкинути редагування, оскільки останній дописувач сторінки є її автором.",
 	"alreadyrolled": "Неможливо відкинути останні редагування [[:$1]], зроблені [[User:$2|$2]] ([[User talk:$2|обговорення]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]), оскільки хтось інший уже змінив чи відкинув редагування цієї статті.\n\nОстанні редагування зроблено [[User:$3|$3]] ([[User talk:$3|обговорення]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "Пояснення редагування було: «<em>$1</em>.».",

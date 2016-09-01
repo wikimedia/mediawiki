@@ -416,6 +416,7 @@
 	"minoredit": "Ci n' est k' ene tchitcheye",
 	"watchthis": "Shuve cist årtike",
 	"savearticle": "Schaper l' pådje",
+	"savechanges": "Schaper l' pådje",
 	"preview": "Vey divant",
 	"showpreview": "Vey divant",
 	"showdiff": "Vey les candjmints",
@@ -488,7 +489,6 @@
 	"editwarning-warning": "Cwiter cisse pådje ci vos frè piede tos les candjmints ki vos avoz fwait.\nSi vos estoz elodjî, vos ploz dismete cist adviertixhmint ci dins l' linwete «Boesse di tecse» di vos preferinces.",
 	"post-expand-template-inclusion-warning": "'''Asteme:''' I gn a trop di modeles dins cisse pådje ci.\nSacwants di zels ni seront nén eployîs.",
 	"post-expand-template-inclusion-category": "Pådjes ki l' inclusion d' modeles est foû limite",
-	"cantcreateaccounttitle": "Vos n' ploz nén ahiver-st on conte.",
 	"viewpagelogs": "Vey les djournås po cisse pådje ci",
 	"nohistory": "I n' a pont d' istwere des modêyes po cisse pådje chal.",
 	"currentrev": "Modêye d' asteure",
@@ -1704,6 +1704,5 @@
 	"duration-years": "$1 anêye{{PLURAL:$1||s}}",
 	"duration-decades": "$1 dijhinne{{PLURAL:$1||s}} d' anêyes",
 	"duration-centuries": "$1 sieke{{PLURAL:$1||s}}",
-	"duration-millennia": "$1 meynaire{{PLURAL:$1||s}}",
-	"api-error-blacklisted": "S' i vs plait, tchoezixhoz èn ôte tite, pus esplicant."
+	"duration-millennia": "$1 meynaire{{PLURAL:$1||s}}"
 }

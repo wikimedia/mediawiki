@@ -3815,6 +3815,7 @@
 	"log-action-filter-block-block": "ブロック",
 	"log-action-filter-block-reblock": "ブロック変更",
 	"log-action-filter-block-unblock": "ブロック解除",
+	"log-action-filter-contentmodel-change": "コンテンツモデルの変更",
 	"log-action-filter-delete-delete": "ページの削除",
 	"log-action-filter-delete-restore": "ページの復帰",
 	"log-action-filter-delete-event": "記録の削除",
