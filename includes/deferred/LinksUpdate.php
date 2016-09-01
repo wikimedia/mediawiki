@@ -108,6 +108,8 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	 * @throws MWException
 	 */
 	function __construct( Title $title, ParserOutput $parserOutput, $recursive = true ) {
+		parent::__construct();
+
 		$this->mTitle = $title;
 		$this->mId = $title->getArticleID( Title::GAID_FOR_UPDATE );
 
