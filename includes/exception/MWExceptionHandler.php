@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Handler class for MWExceptions
@@ -136,16 +137,16 @@ class MWExceptionHandler {
 	 * @param Exception|Throwable $e
 	 */
 	public static function rollbackMasterChangesAndLog( $e ) {
-		$factory = wfGetLBFactory();
-		if ( $factory->hasMasterChanges() ) {
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		if ( $lbFactory->hasMasterChanges() ) {
 			$logger = LoggerFactory::getInstance( 'Bug56269' );
 			$logger->warning(
 				'Exception thrown with an uncommited database transaction: ' .
 				self::getLogMessage( $e ),
 				self::getLogContext( $e )
 			);
-			$factory->rollbackMasterChanges( __METHOD__ );
 		}
+		$lbFactory->rollbackMasterChanges( __METHOD__ );
 	}
 
 	/**
