@@ -2330,12 +2330,12 @@ abstract class DatabaseBase implements IDatabase {
 			$ok = $this->insert( $table, $rows, $fname, [ 'IGNORE' ] ) && $ok;
 		} catch ( Exception $e ) {
 			if ( $useTrx ) {
-				$this->rollback( $fname );
+				$this->rollback( $fname, self::FLUSHING_INTERNAL );
 			}
 			throw $e;
 		}
 		if ( $useTrx ) {
-			$this->commit( $fname, self::TRANSACTION_INTERNAL );
+			$this->commit( $fname, self::FLUSHING_INTERNAL );
 		}
 
 		return $ok;
@@ -2634,12 +2634,12 @@ abstract class DatabaseBase implements IDatabase {
 			$this->mTrxPreCommitCallbacks[] = [ $callback, wfGetCaller() ];
 		} else {
 			// If no transaction is active, then make one for this callback
-			$this->begin( __METHOD__, self::TRANSACTION_INTERNAL );
+			$this->startAtomic( __METHOD__ );
 			try {
 				call_user_func( $callback );
-				$this->commit( __METHOD__ );
+				$this->endAtomic( __METHOD__ );
 			} catch ( Exception $e ) {
-				$this->rollback( __METHOD__ );
+				$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
 				throw $e;
 			}
 		}
@@ -2705,7 +2705,7 @@ abstract class DatabaseBase implements IDatabase {
 					// Some callbacks may use startAtomic/endAtomic, so make sure
 					// their transactions are ended so other callbacks don't fail
 					if ( $this->trxLevel() ) {
-						$this->rollback( __METHOD__ );
+						$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
 					}
 				}
 			}
@@ -2780,7 +2780,6 @@ abstract class DatabaseBase implements IDatabase {
 	final public function startAtomic( $fname = __METHOD__ ) {
 		if ( !$this->mTrxLevel ) {
 			$this->begin( $fname, self::TRANSACTION_INTERNAL );
-			$this->mTrxAutomatic = true;
 			// If DBO_TRX is set, a series of startAtomic/endAtomic pairs will result
 			// in all changes being in one transaction to keep requests transactional.
 			if ( !$this->getFlag( DBO_TRX ) ) {
@@ -2811,7 +2810,7 @@ abstract class DatabaseBase implements IDatabase {
 		try {
 			$res = call_user_func_array( $callback, [ $this, $fname ] );
 		} catch ( Exception $e ) {
-			$this->rollback( $fname );
+			$this->rollback( $fname, self::FLUSHING_INTERNAL );
 			throw $e;
 		}
 		$this->endAtomic( $fname );
@@ -2833,11 +2832,14 @@ abstract class DatabaseBase implements IDatabase {
 				// @TODO: make this an exception at some point
 				$msg = "$fname: Implicit transaction already active (from {$this->mTrxFname}).";
 				wfLogDBError( $msg );
+				wfWarn( $msg );
 				return; // join the main transaction set
 			}
 		} elseif ( $this->getFlag( DBO_TRX ) && $mode !== self::TRANSACTION_INTERNAL ) {
 			// @TODO: make this an exception at some point
-			wfLogDBError( "$fname: Implicit transaction expected (DBO_TRX set)." );
+			$msg = "$fname: Implicit transaction expected (DBO_TRX set).";
+			wfLogDBError( $msg );
+			wfWarn( $msg );
 			return; // let any writes be in the main transaction
 		}
 
@@ -2848,7 +2850,7 @@ abstract class DatabaseBase implements IDatabase {
 		$this->mTrxTimestamp = microtime( true );
 		$this->mTrxFname = $fname;
 		$this->mTrxDoneWrites = false;
-		$this->mTrxAutomatic = false;
+		$this->mTrxAutomatic = ( $mode === self::TRANSACTION_INTERNAL );
 		$this->mTrxAutomaticAtomic = false;
 		$this->mTrxAtomicLevels = [];
 		$this->mTrxShortId = wfRandomString( 12 );
@@ -2900,7 +2902,9 @@ abstract class DatabaseBase implements IDatabase {
 				return; // nothing to do
 			} elseif ( $this->mTrxAutomatic ) {
 				// @TODO: make this an exception at some point
-				wfLogDBError( "$fname: Explicit commit of implicit transaction." );
+				$msg = "$fname: Explicit commit of implicit transaction.";
+				wfLogDBError( $msg );
+				wfWarn( $msg );
 				return; // wait for the main transaction set commit round
 			}
 		}
