@@ -37,7 +37,7 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 	 * @throws MWException
 	 */
 	function __construct( WikiPage $page, $pageId = null, $timestamp = null ) {
-		parent::__construct( false ); // no implicit transaction
+		parent::__construct();
 
 		$this->page = $page;
 		if ( $pageId ) {

@@ -103,8 +103,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	 * @throws MWException
 	 */
 	function __construct( Title $title, ParserOutput $parserOutput, $recursive = true ) {
-		// Implicit transactions are disabled as they interfere with batching
-		parent::__construct( false );
+		parent::__construct();
 
 		$this->mTitle = $title;
 		$this->mId = $title->getArticleID( Title::GAID_FOR_UPDATE );
