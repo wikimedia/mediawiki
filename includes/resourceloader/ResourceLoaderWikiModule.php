@@ -61,6 +61,8 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	// Group of module
 	protected $group;
 
+	const VERSION = 1;
+
 	/**
 	 * @param array $options For back-compat, this can be omitted in favour of overwriting getPages.
 	 */
@@ -289,35 +291,62 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		}
 
 		$pages = $this->getPages( $context );
-		$key = implode( '|', array_keys( $pages ) );
-		if ( !isset( $this->titleInfo[$key] ) ) {
-			$this->titleInfo[$key] = [];
-			$batch = new LinkBatch;
-			foreach ( $pages as $titleText => $options ) {
-				$batch->addObj( Title::newFromText( $titleText ) );
-			}
+		$names = array_keys( $pages );
+		sort( $names );
+		$key = implode( '|', $names );
+		if ( isset( $this->titleInfo[$key] ) ) {
+			return $this->titleInfo[$key];
+		}
 
-			if ( !$batch->isEmpty() ) {
-				$res = $dbr->select( [ 'page', 'revision' ],
-					// Include page_touched to allow purging if cache is poisoned (T117587, T113916)
+		$cache = ObjectCache::getMainWANInstance();
+		$this->titleInfo[$key] = $cache->getWithSetCallback(
+			$cache->makeGlobalKey( 'wikimodules', 'info', $dbr->getWikiID(), sha1( $key ) ),
+			$cache::TTL_HOUR,
+			function ( $curValue, &$ttl, array &$setOpts ) use ( $pages, $dbr, $cache ) {
+				$setOpts += Database::getCacheSetOptions( $dbr );
+
+				$titleInfo = [];
+				$batch = new LinkBatch;
+				foreach ( $pages as $titleText => $options ) {
+					$batch->addObj( Title::newFromText( $titleText ) );
+				}
+				if ( $batch->isEmpty() ) {
+					return $titleInfo;
+				}
+
+				$res = $dbr->select(
+					[ 'page', 'revision' ],
+					// Include page_touched to allow purging poisoned cache (T117587, T113916)
 					[ 'page_namespace', 'page_title', 'page_touched', 'rev_len', 'rev_sha1' ],
 					$batch->constructSet( 'page', $dbr ),
 					__METHOD__,
 					[],
 					[ 'revision' => [ 'INNER JOIN', [ 'page_latest=rev_id' ] ] ]
 				);
+
+				$mtime = 1;
 				foreach ( $res as $row ) {
 					// Avoid including ids or timestamps of revision/page tables so
 					// that versions are not wasted
 					$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-					$this->titleInfo[$key][$title->getPrefixedText()] = [
+					$titleInfo[$title->getPrefixedText()] = [
 						'rev_len' => $row->rev_len,
 						'rev_sha1' => $row->rev_sha1,
 						'page_touched' => $row->page_touched,
 					];
+					$mtime = max( wfTimestamp( TS_UNIX, $row->page_touched ), $mtime );
 				}
-			}
-		}
+
+				$ttl = $cache->adaptiveTTL( $mtime, $ttl );
+
+				return $titleInfo;
+			},
+			[
+				'checkKeys' => [ $cache->makeGlobalKey( 'wikimodules', $dbr->getWikiID() ) ],
+				'version' => self::VERSION
+			]
+		);
+
 		return $this->titleInfo[$key];
 	}
 
@@ -337,5 +366,18 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		// they may also override getPages() instead, in which case we should keep
 		// defaulting to LOAD_GENERAL and allow them to override getType() separately.
 		return ( $this->styles && !$this->scripts ) ? self::LOAD_STYLES : self::LOAD_GENERAL;
+	}
+
+	/**
+	 * Touch the getTitleInfo() cache for all wiki modules on this wiki
+	 *
+	 * @param string $wikiId
+	 * @since 1.28
+	 */
+	public static function touchModuleKey( $wikiId ) {
+		$cache = ObjectCache::getMainWANInstance();
+		$cache->touchCheckKey(
+			$cache->makeGlobalKey( 'wikimodules', $wikiId )
+		);
 	}
 }
