@@ -55,10 +55,8 @@ class UploadStashTest extends MediaWikiTestCase {
 	 * @todo give this test a real name explaining what is being tested here
 	 */
 	public function testBug29408() {
-		$this->setMwGlobals( 'wgUser', self::$users['uploader']->getUser() );
-
 		$repo = RepoGroup::singleton()->getLocalRepo();
-		$stash = new UploadStash( $repo );
+		$stash = new UploadStash( $repo, self::$users['uploader']->getUser() );
 
 		// Throws exception caught by PHPUnit on failure
 		$file = $stash->stashFile( $this->bug29408File );
