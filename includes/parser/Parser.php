@@ -3458,10 +3458,18 @@ class Parser {
 	 * @since 1.24
 	 * @param Title $title
 	 * @param Parser|bool $parser
-	 * @return Revision
+	 * @return Revision|bool False if missing
 	 */
-	public static function statelessFetchRevision( $title, $parser = false ) {
-		return Revision::newFromTitle( $title );
+	public static function statelessFetchRevision( Title $title, $parser = false ) {
+		$pageId = $title->getArticleID();
+		$revId = $title->getLatestRevID();
+
+		$rev = Revision::newKnownCurrent( wfGetDB( DB_SLAVE ), $pageId, $revId );
+		if ( $rev ) {
+			$rev->setTitle( $title );
+		}
+
+		return $rev;
 	}
 
 	/**
