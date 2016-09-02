@@ -4366,16 +4366,21 @@ class Title implements LinkTarget {
 	public function invalidateCache( $purgeTime = null ) {
 		if ( wfReadOnly() ) {
 			return false;
+		} elseif ( $this->mArticleID === 0 ) {
+			return true; // avoid gap locking if we know it's not there
 		}
 
-		if ( $this->mArticleID === 0 ) {
-			return true; // avoid gap locking if we know it's not there
+		$dbw = wfGetDB( DB_MASTER );
+		if ( $this->isCssOrJsPage() ) {
+			$dbw->onTransactionPreCommitOrIdle( function () {
+				ResourceLoaderWikiModule::touchModuleKey( wfWikiID() );
+			} );
 		}
 
 		$conds = $this->pageCond();
 		DeferredUpdates::addUpdate(
 			new AutoCommitUpdate(
-				wfGetDB( DB_MASTER ),
+				$dbw,
 				__METHOD__,
 				function ( IDatabase $dbw, $fname ) use ( $conds, $purgeTime ) {
 					$dbTimestamp = $dbw->timestamp( $purgeTime ?: time() );
