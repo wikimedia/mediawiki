@@ -285,6 +285,10 @@ class RecentChange {
 			$this->mAttribs['rc_ip'] = '';
 		}
 
+		# Strict mode fixups
+		$this->mAttribs['rc_minor'] = (int)$this->mAttribs['rc_minor'];
+		$this->mAttribs['rc_bot'] = (int)$this->mAttribs['rc_bot'];
+
 		# If our database is strict about IP addresses, use NULL instead of an empty string
 		if ( $dbw->strictIPs() && $this->mAttribs['rc_ip'] == '' ) {
 			unset( $this->mAttribs['rc_ip'] );
