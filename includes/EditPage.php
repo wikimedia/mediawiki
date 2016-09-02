@@ -407,6 +407,11 @@ class EditPage {
 	protected $context;
 
 	/**
+	 * @var User
+	 */
+	protected $user;
+
+	/**
 	 * @param Article $article
 	 */
 	public function __construct( Article $article ) {
@@ -414,6 +419,7 @@ class EditPage {
 		$this->page = $article->getPage(); // model object
 		$this->mTitle = $article->getTitle();
 		$this->context = $article->getContext();
+		$this->user = $this->context->getUser();
 
 		$this->contentModel = $this->mTitle->getContentModel();
 
@@ -507,7 +513,7 @@ class EditPage {
 	 * the newly-edited page.
 	 */
 	function edit() {
-		global $wgOut, $wgRequest, $wgUser;
+		global $wgOut, $wgRequest;
 		// Allow extensions to modify/prevent this form or submission
 		if ( !Hooks::run( 'AlternateEdit', [ $this ] ) ) {
 			return;
@@ -550,9 +556,8 @@ class EditPage {
 			wfDebug( __METHOD__ . ": User can't edit\n" );
 			// Auto-block user's IP if the account was "hard" blocked
 			if ( !wfReadOnly() ) {
-				$user = $wgUser;
-				DeferredUpdates::addCallableUpdate( function () use ( $user ) {
-					$user->spreadAnyEditBlock();
+				DeferredUpdates::addCallableUpdate( function () {
+					$this->user->spreadAnyEditBlock();
 				} );
 			}
 			$this->displayPermissionsError( $permErrors );
@@ -624,15 +629,13 @@ class EditPage {
 	 * @return array
 	 */
 	protected function getEditPermissionErrors( $rigor = 'secure' ) {
-		global $wgUser;
-
-		$permErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser, $rigor );
+		$permErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $this->user, $rigor );
 		# Can this title be created?
 		if ( !$this->mTitle->exists() ) {
 			$permErrors = array_merge(
 				$permErrors,
 				wfArrayDiff2(
-					$this->mTitle->getUserPermissionsErrors( 'create', $wgUser, $rigor ),
+					$this->mTitle->getUserPermissionsErrors( 'create', $this->user, $rigor ),
 					$permErrors
 				)
 			);
@@ -751,7 +754,7 @@ class EditPage {
 	 * @return bool
 	 */
 	protected function previewOnOpen() {
-		global $wgRequest, $wgUser, $wgPreviewOnOpenNamespaces;
+		global $wgRequest, $wgPreviewOnOpenNamespaces;
 		if ( $wgRequest->getVal( 'preview' ) == 'yes' ) {
 			// Explicit override from request
 			return true;
@@ -762,7 +765,7 @@ class EditPage {
 			// Nothing *to* preview for new sections
 			return false;
 		} elseif ( ( $wgRequest->getVal( 'preload' ) !== null || $this->mTitle->exists() )
-			&& $wgUser->getOption( 'previewonfirst' )
+			&& $this->user->getOption( 'previewonfirst' )
 		) {
 			// Standard preference behavior
 			return true;
@@ -815,7 +818,7 @@ class EditPage {
 	 * @throws ErrorPageError
 	 */
 	function importFormData( &$request ) {
-		global $wgContLang, $wgUser;
+		global $wgContLang;
 
 		# Section edit can come from either the form or a link
 		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section' ) );
@@ -928,12 +931,12 @@ class EditPage {
 
 			# Don't force edit summaries when a user is editing their own user or talk page
 			if ( ( $this->mTitle->mNamespace == NS_USER || $this->mTitle->mNamespace == NS_USER_TALK )
-				&& $this->mTitle->getText() == $wgUser->getName()
+				&& $this->mTitle->getText() == $this->user->getName()
 			) {
 				$this->allowBlankSummary = true;
 			} else {
 				$this->allowBlankSummary = $request->getBool( 'wpIgnoreBlankSummary' )
-					|| !$wgUser->getOption( 'forceeditsummary' );
+					|| !$this->user->getOption( 'forceeditsummary' );
 			}
 
 			$this->autoSumm = $request->getText( 'wpAutoSummary' );
@@ -1039,7 +1042,6 @@ class EditPage {
 	 * @return bool If the requested section is valid
 	 */
 	function initialiseForm() {
-		global $wgUser;
 		$this->edittime = $this->page->getTimestamp();
 		$this->editRevId = $this->page->getLatest();
 
@@ -1051,17 +1053,17 @@ class EditPage {
 
 		// activate checkboxes if user wants them to be always active
 		# Sort out the "watch" checkbox
-		if ( $wgUser->getOption( 'watchdefault' ) ) {
+		if ( $this->user->getOption( 'watchdefault' ) ) {
 			# Watch all edits
 			$this->watchthis = true;
-		} elseif ( $wgUser->getOption( 'watchcreations' ) && !$this->mTitle->exists() ) {
+		} elseif ( $this->user->getOption( 'watchcreations' ) && !$this->mTitle->exists() ) {
 			# Watch creations
 			$this->watchthis = true;
-		} elseif ( $wgUser->isWatched( $this->mTitle ) ) {
+		} elseif ( $this->user->isWatched( $this->mTitle ) ) {
 			# Already watched
 			$this->watchthis = true;
 		}
-		if ( $wgUser->getOption( 'minordefault' ) && !$this->isNew ) {
+		if ( $this->user->getOption( 'minordefault' ) && !$this->isNew ) {
 			$this->minoredit = true;
 		}
 		if ( $this->textbox1 === false ) {
@@ -1078,7 +1080,7 @@ class EditPage {
 	 * @since 1.21
 	 */
 	protected function getContentObject( $def_content = null ) {
-		global $wgOut, $wgRequest, $wgUser, $wgContLang;
+		global $wgOut, $wgRequest, $wgContLang;
 
 		$content = false;
 
@@ -1104,7 +1106,7 @@ class EditPage {
 		} else {
 			if ( $this->section != '' ) {
 				// Get section edit text (returns $def_text for invalid sections)
-				$orig = $this->getOriginalContent( $wgUser );
+				$orig = $this->getOriginalContent( $this->user );
 				$content = $orig ? $orig->getSection( $this->section ) : null;
 
 				if ( !$content ) {
@@ -1132,8 +1134,8 @@ class EditPage {
 							$undoMsg = 'failure';
 						} else {
 							$oldContent = $this->page->getContent( Revision::RAW );
-							$popts = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
-							$newContent = $content->preSaveTransform( $this->mTitle, $wgUser, $popts );
+							$popts = ParserOptions::newFromUserAndLang( $this->user, $wgContLang );
+							$newContent = $content->preSaveTransform( $this->mTitle, $this->user, $popts );
 
 							if ( $newContent->equals( $oldContent ) ) {
 								# Tell the user that the undo results in no change,
@@ -1185,7 +1187,7 @@ class EditPage {
 				}
 
 				if ( $content === false ) {
-					$content = $this->getOriginalContent( $wgUser );
+					$content = $this->getOriginalContent( $this->user );
 				}
 			}
 		}
@@ -1318,8 +1320,6 @@ class EditPage {
 	 * @since 1.21
 	 */
 	protected function getPreloadedContent( $preload, $params = [] ) {
-		global $wgUser;
-
 		if ( !empty( $this->mPreloadContent ) ) {
 			return $this->mPreloadContent;
 		}
@@ -1332,7 +1332,7 @@ class EditPage {
 
 		$title = Title::newFromText( $preload );
 		# Check for existence to avoid getting MediaWiki:Noarticletext
-		if ( $title === null || !$title->exists() || !$title->userCan( 'read', $wgUser ) ) {
+		if ( $title === null || !$title->exists() || !$title->userCan( 'read', $this->user ) ) {
 			// TODO: somehow show a warning to the user!
 			return $handler->makeEmptyContent();
 		}
@@ -1341,14 +1341,14 @@ class EditPage {
 		if ( $page->isRedirect() ) {
 			$title = $page->getRedirectTarget();
 			# Same as before
-			if ( $title === null || !$title->exists() || !$title->userCan( 'read', $wgUser ) ) {
+			if ( $title === null || !$title->exists() || !$title->userCan( 'read', $this->user ) ) {
 				// TODO: somehow show a warning to the user!
 				return $handler->makeEmptyContent();
 			}
 			$page = WikiPage::factory( $title );
 		}
 
-		$parserOptions = ParserOptions::newFromUser( $wgUser );
+		$parserOptions = ParserOptions::newFromUser( $this->user );
 		$content = $page->getContent( Revision::RAW );
 
 		if ( !$content ) {
@@ -1382,10 +1382,9 @@ class EditPage {
 	 * @private
 	 */
 	function tokenOk( &$request ) {
-		global $wgUser;
 		$token = $request->getVal( 'wpEditToken' );
-		$this->mTokenOk = $wgUser->matchEditToken( $token );
-		$this->mTokenOkExceptSuffix = $wgUser->matchEditTokenNoSuffix( $token );
+		$this->mTokenOk = $this->user->matchEditToken( $token );
+		$this->mTokenOkExceptSuffix = $this->user->matchEditTokenNoSuffix( $token );
 		return $this->mTokenOk;
 	}
 
@@ -1429,10 +1428,8 @@ class EditPage {
 	 * @return Status The resulting status object.
 	 */
 	public function attemptSave( &$resultDetails = false ) {
-		global $wgUser;
-
 		# Allow bots to exempt some edits from bot flagging
-		$bot = $wgUser->isAllowed( 'bot' ) && $this->bot;
+		$bot = $this->user->isAllowed( 'bot' ) && $this->bot;
 		$status = $this->internalAttemptSave( $resultDetails, $bot );
 
 		Hooks::run( 'EditPage::attemptSave:after', [ $this, $status, $resultDetails ] );
@@ -1450,7 +1447,7 @@ class EditPage {
 	 * @return bool False, if output is done, true if rest of the form should be displayed
 	 */
 	private function handleStatus( Status $status, $resultDetails ) {
-		global $wgUser, $wgOut;
+		global $wgOut;
 
 		/**
 		 * @todo FIXME: once the interface for internalAttemptSave() is made
@@ -1537,7 +1534,7 @@ class EditPage {
 				return false;
 
 			case self::AS_BLOCKED_PAGE_FOR_USER:
-				throw new UserBlockedError( $wgUser->getBlock() );
+				throw new UserBlockedError( $this->user->getBlock() );
 
 			case self::AS_IMAGE_REDIRECT_ANON:
 			case self::AS_IMAGE_REDIRECT_LOGGED:
@@ -1683,7 +1680,7 @@ class EditPage {
 	 * time.
 	 */
 	function internalAttemptSave( &$result, $bot = false ) {
-		global $wgUser, $wgRequest, $wgParser, $wgMaxArticleSize;
+		global $wgRequest, $wgParser, $wgMaxArticleSize;
 		global $wgContentHandlerUseDB;
 
 		$status = Status::newGood();
@@ -1699,7 +1696,7 @@ class EditPage {
 		if ( $spam !== '' ) {
 			wfDebugLog(
 				'SimpleAntiSpam',
-				$wgUser->getName() .
+				$this->user->getName() .
 				' editing "' .
 				$this->mTitle->getPrefixedText() .
 				'" submitted bogus field "' .
@@ -1728,9 +1725,9 @@ class EditPage {
 		# Check image redirect
 		if ( $this->mTitle->getNamespace() == NS_FILE &&
 			$textbox_content->isRedirect() &&
-			!$wgUser->isAllowed( 'upload' )
+			!$this->user->isAllowed( 'upload' )
 		) {
-				$code = $wgUser->isAnon() ? self::AS_IMAGE_REDIRECT_ANON : self::AS_IMAGE_REDIRECT_LOGGED;
+				$code = $this->user->isAnon() ? self::AS_IMAGE_REDIRECT_ANON : self::AS_IMAGE_REDIRECT_LOGGED;
 				$status->setResult( false, $code );
 
 				return $status;
@@ -1778,10 +1775,10 @@ class EditPage {
 			return $status;
 		}
 
-		if ( $wgUser->isBlockedFrom( $this->mTitle, false ) ) {
+		if ( $this->user->isBlockedFrom( $this->mTitle, false ) ) {
 			// Auto-block user's IP if the account was "hard" blocked
 			if ( !wfReadOnly() ) {
-				$wgUser->spreadAnyEditBlock();
+				$this->user->spreadAnyEditBlock();
 			}
 			# Check block state against master, thus 'false'.
 			$status->setResult( false, self::AS_BLOCKED_PAGE_FOR_USER );
@@ -1796,8 +1793,8 @@ class EditPage {
 			return $status;
 		}
 
-		if ( !$wgUser->isAllowed( 'edit' ) ) {
-			if ( $wgUser->isAnon() ) {
+		if ( !$this->user->isAllowed( 'edit' ) ) {
+			if ( $this->user->isAnon() ) {
 				$status->setResult( false, self::AS_READ_ONLY_PAGE_ANON );
 				return $status;
 			} else {
@@ -1813,7 +1810,7 @@ class EditPage {
 				$status->fatal( 'editpage-cannot-use-custom-model' );
 				$status->value = self::AS_CANNOT_USE_CUSTOM_MODEL;
 				return $status;
-			} elseif ( !$wgUser->isAllowed( 'editcontentmodel' ) ) {
+			} elseif ( !$this->user->isAllowed( 'editcontentmodel' ) ) {
 				$status->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL );
 				return $status;
 
@@ -1824,7 +1821,7 @@ class EditPage {
 
 		if ( $this->changeTags ) {
 			$changeTagsStatus = ChangeTags::canAddTagsAccompanyingChange(
-				$this->changeTags, $wgUser );
+				$this->changeTags, $this->user );
 			if ( !$changeTagsStatus->isOK() ) {
 				$changeTagsStatus->value = self::AS_CHANGE_TAG_ERROR;
 				return $changeTagsStatus;
@@ -1836,7 +1833,7 @@ class EditPage {
 			$status->value = self::AS_READ_ONLY_PAGE;
 			return $status;
 		}
-		if ( $wgUser->pingLimiter() || $wgUser->pingLimiter( 'linkpurge', 0 ) ) {
+		if ( $this->user->pingLimiter() || $this->user->pingLimiter( 'linkpurge', 0 ) ) {
 			$status->fatal( 'actionthrottledtext' );
 			$status->value = self::AS_RATE_LIMITED;
 			return $status;
@@ -1856,7 +1853,7 @@ class EditPage {
 
 		if ( $new ) {
 			// Late check for create permission, just in case *PARANOIA*
-			if ( !$this->mTitle->userCan( 'create', $wgUser ) ) {
+			if ( !$this->mTitle->userCan( 'create', $this->user ) ) {
 				$status->fatal( 'nocreatetext' );
 				$status->value = self::AS_NO_CREATE_PERMISSION;
 				wfDebug( __METHOD__ . ": no create permission\n" );
@@ -1880,7 +1877,7 @@ class EditPage {
 				return $status;
 			}
 
-			if ( !$this->runPostMergeFilters( $textbox_content, $status, $wgUser ) ) {
+			if ( !$this->runPostMergeFilters( $textbox_content, $status, $this->user ) ) {
 				return $status;
 			}
 
@@ -1916,7 +1913,7 @@ class EditPage {
 			) {
 				$this->isConflict = true;
 				if ( $this->section == 'new' ) {
-					if ( $this->page->getUserText() == $wgUser->getName() &&
+					if ( $this->page->getUserText() == $this->user->getName() &&
 						$this->page->getComment() == $this->newSectionSummary()
 					) {
 						// Probably a duplicate submission of a new comment.
@@ -1932,7 +1929,7 @@ class EditPage {
 				} elseif ( $this->section == ''
 					&& Revision::userWasLastToEdit(
 						DB_MASTER, $this->mTitle->getArticleID(),
-						$wgUser->getId(), $this->edittime
+						$this->user->getId(), $this->edittime
 					)
 				) {
 					# Suppress edit conflict with self, except for section edits where merging is required.
@@ -2002,7 +1999,7 @@ class EditPage {
 				return $status;
 			}
 
-			if ( !$this->runPostMergeFilters( $content, $status, $wgUser ) ) {
+			if ( !$this->runPostMergeFilters( $content, $status, $this->user ) ) {
 				return $status;
 			}
 
@@ -2023,7 +2020,7 @@ class EditPage {
 					return $status;
 				}
 			} elseif ( !$this->allowBlankSummary
-				&& !$content->equals( $this->getOriginalContent( $wgUser ) )
+				&& !$content->equals( $this->getOriginalContent( $this->user ) )
 				&& !$content->isRedirect()
 				&& md5( $this->summary ) == $this->autoSumm
 			) {
@@ -2093,7 +2090,7 @@ class EditPage {
 			$this->summary,
 			$flags,
 			false,
-			$wgUser,
+			$this->user,
 			$content->getDefaultFormat(),
 			$this->changeTags
 		);
@@ -2116,7 +2113,7 @@ class EditPage {
 		$result['nullEdit'] = $doEditStatus->hasMessage( 'edit-no-change' );
 		if ( $result['nullEdit'] ) {
 			// We don't know if it was a null edit until now, so increment here
-			$wgUser->pingLimiter( 'linkpurge' );
+			$this->user->pingLimiter( 'linkpurge' );
 		}
 		$result['redirect'] = $content->isRedirect();
 
@@ -2125,7 +2122,7 @@ class EditPage {
 		// If the content model changed, add a log entry
 		if ( $changingContentModel ) {
 			$this->addContentModelChangeLogEntry(
-				$wgUser,
+				$this->user,
 				$new ? false : $oldContentModel,
 				$this->contentModel,
 				$this->summary
@@ -2159,13 +2156,11 @@ class EditPage {
 	 * Register the change of watch status
 	 */
 	protected function updateWatchlist() {
-		global $wgUser;
-
-		if ( !$wgUser->isLoggedIn() ) {
+		if ( !$this->user->isLoggedIn() ) {
 			return;
 		}
 
-		$user = $wgUser;
+		$user = $this->user;
 		$title = $this->mTitle;
 		$watch = $this->watchthis;
 		// Do this in its own transaction to reduce contention...
@@ -2280,12 +2275,12 @@ class EditPage {
 	}
 
 	function setHeaders() {
-		global $wgOut, $wgUser, $wgAjaxEditStash;
+		global $wgOut, $wgAjaxEditStash;
 
 		$wgOut->addModules( 'mediawiki.action.edit' );
 		$wgOut->addModuleStyles( 'mediawiki.action.edit.styles' );
 
-		if ( $wgUser->getOption( 'showtoolbar' ) ) {
+		if ( $this->user->getOption( 'showtoolbar' ) ) {
 			// The addition of default buttons is handled by getEditToolbar() which
 			// has its own dependency on this module. The call here ensures the module
 			// is loaded in time (it has position "top") for other modules to register
@@ -2293,11 +2288,11 @@ class EditPage {
 			$wgOut->addModules( 'mediawiki.toolbar' );
 		}
 
-		if ( $wgUser->getOption( 'uselivepreview' ) ) {
+		if ( $this->user->getOption( 'uselivepreview' ) ) {
 			$wgOut->addModules( 'mediawiki.action.edit.preview' );
 		}
 
-		if ( $wgUser->getOption( 'useeditwarning' ) ) {
+		if ( $this->user->getOption( 'useeditwarning' ) ) {
 			$wgOut->addModules( 'mediawiki.action.edit.editWarning' );
 		}
 
@@ -2338,7 +2333,7 @@ class EditPage {
 	 * Show all applicable editing introductions
 	 */
 	protected function showIntro() {
-		global $wgOut, $wgUser;
+		global $wgOut;
 		if ( $this->suppressIntro ) {
 			return;
 		}
@@ -2412,7 +2407,7 @@ class EditPage {
 			$helpLink = wfExpandUrl( Skin::makeInternalOrExternalUrl(
 				wfMessage( 'helppage' )->inContentLanguage()->text()
 			) );
-			if ( $wgUser->isLoggedIn() ) {
+			if ( $this->user->isLoggedIn() ) {
 				$wgOut->wrapWikiMsg(
 					// Suppress the external link icon, consider the help url an internal one
 					"<div class=\"mw-newarticletext plainlinks\">\n$1\n</div>",
@@ -2537,7 +2532,7 @@ class EditPage {
 	 * use the EditPage::showEditForm:fields hook instead.
 	 */
 	function showEditForm( $formCallback = null ) {
-		global $wgOut, $wgUser;
+		global $wgOut;
 
 		# need to parse the preview early so that we know which templates are used,
 		# otherwise users with "show preview after edit box" will get a blank list
@@ -2558,7 +2553,7 @@ class EditPage {
 
 		$wgOut->addHTML( $this->editFormPageTop );
 
-		if ( $wgUser->getOption( 'previewontop' ) ) {
+		if ( $this->user->getOption( 'previewontop' ) ) {
 			$this->displayPreviewArea( $previewOutput, true );
 		}
 
@@ -2685,7 +2680,7 @@ class EditPage {
 
 		$wgOut->addHTML( $this->editFormTextBeforeContent );
 
-		if ( !$this->isCssJsSubpage && $showToolbar && $wgUser->getOption( 'showtoolbar' ) ) {
+		if ( !$this->isCssJsSubpage && $showToolbar && $this->user->getOption( 'showtoolbar' ) ) {
 			$wgOut->addHTML( EditPage::getEditToolbar( $this->mTitle ) );
 		}
 
@@ -2764,7 +2759,7 @@ class EditPage {
 		$wgOut->addHTML( Html::hidden( 'wpUltimateParam', true ) );
 		$wgOut->addHTML( $this->editFormTextBottom . "\n</form>\n" );
 
-		if ( !$wgUser->getOption( 'previewontop' ) ) {
+		if ( !$this->user->getOption( 'previewontop' ) ) {
 			$this->displayPreviewArea( $previewOutput, false );
 		}
 
@@ -2790,7 +2785,7 @@ class EditPage {
 	 * @return bool
 	 */
 	protected function showHeader() {
-		global $wgOut, $wgUser, $wgMaxArticleSize, $wgLang;
+		global $wgOut, $wgMaxArticleSize, $wgLang;
 		global $wgAllowUserCss, $wgAllowUserJs;
 
 		if ( $this->mTitle->isTalkPage() ) {
@@ -2866,7 +2861,7 @@ class EditPage {
 				if ( $revision ) {
 					// Let sysop know that this will make private content public if saved
 
-					if ( !$revision->userCan( Revision::DELETED_TEXT, $wgUser ) ) {
+					if ( !$revision->userCan( Revision::DELETED_TEXT, $this->user ) ) {
 						$wgOut->wrapWikiMsg(
 							"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 							'rev-deleted-text-permission'
@@ -2896,7 +2891,7 @@ class EditPage {
 				"<div id=\"mw-read-only-warning\">\n$1\n</div>",
 				[ 'readonlywarning', wfReadOnlyReason() ]
 			);
-		} elseif ( $wgUser->isAnon() ) {
+		} elseif ( $this->user->isAnon() ) {
 			if ( $this->formtype != 'preview' ) {
 				$wgOut->wrapWikiMsg(
 					"<div id='mw-anon-edit-warning' class='warningbox'>\n$1\n</div>",
@@ -2925,7 +2920,7 @@ class EditPage {
 						[ 'userinvalidcssjstitle', $this->mTitle->getSkinFromCssJsSubpage() ]
 					);
 				}
-				if ( $this->getTitle()->isSubpageOf( $wgUser->getUserPage() ) ) {
+				if ( $this->getTitle()->isSubpageOf( $this->user->getUserPage() ) ) {
 					$wgOut->wrapWikiMsg( '<div class="mw-usercssjspublic">$1</div>',
 						$this->isCssSubpage ? 'usercssispublic' : 'userjsispublic'
 					);
@@ -3134,7 +3129,7 @@ HTML
 	}
 
 	protected function showFormAfterText() {
-		global $wgOut, $wgUser;
+		global $wgOut;
 		/**
 		 * To make it harder for someone to slip a user a page
 		 * which submits an edit form to the wiki without their
@@ -3147,7 +3142,7 @@ HTML
 		 * include the constant suffix to prevent editing from
 		 * broken text-mangling proxies.
 		 */
-		$wgOut->addHTML( "\n" . Html::hidden( "wpEditToken", $wgUser->getEditToken() ) . "\n" );
+		$wgOut->addHTML( "\n" . Html::hidden( "wpEditToken", $this->user->getEditToken() ) . "\n" );
 	}
 
 	/**
@@ -3217,7 +3212,7 @@ HTML
 	}
 
 	protected function showTextbox( $text, $name, $customAttribs = [] ) {
-		global $wgOut, $wgUser;
+		global $wgOut;
 
 		$wikitext = $this->safeUnicodeOutput( $text );
 		if ( strval( $wikitext ) !== '' ) {
@@ -3231,8 +3226,8 @@ HTML
 		$attribs = $customAttribs + [
 			'accesskey' => ',',
 			'id' => $name,
-			'cols' => $wgUser->getIntOption( 'cols' ),
-			'rows' => $wgUser->getIntOption( 'rows' ),
+			'cols' => $this->user->getIntOption( 'cols' ),
+			'rows' => $this->user->getIntOption( 'rows' ),
 			// Avoid PHP notices when appending preferences
 			// (appending allows customAttribs['style'] to still work).
 			'style' => ''
@@ -3315,7 +3310,7 @@ HTML
 	 * save and then make a comparison.
 	 */
 	function showDiff() {
-		global $wgUser, $wgContLang, $wgOut;
+		global $wgContLang, $wgOut;
 
 		$oldtitlemsg = 'currentrev';
 		# if message does not exist, show diff against the preloaded default
@@ -3346,8 +3341,8 @@ HTML
 			ContentHandler::runLegacyHooks( 'EditPageGetDiffText', [ $this, &$newContent ] );
 			Hooks::run( 'EditPageGetDiffContent', [ $this, &$newContent ] );
 
-			$popts = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
-			$newContent = $newContent->preSaveTransform( $this->mTitle, $wgUser, $popts );
+			$popts = ParserOptions::newFromUserAndLang( $this->user, $wgContLang );
+			$newContent = $newContent->preSaveTransform( $this->mTitle, $this->user, $popts );
 		}
 
 		if ( ( $oldContent && !$oldContent->isEmpty() ) || ( $newContent && !$newContent->isEmpty() ) ) {
@@ -3816,11 +3811,10 @@ HTML
 	 *   - html: The HTML to be displayed
 	 */
 	protected function doPreviewParse( Content $content ) {
-		global $wgUser;
 		$parserOptions = $this->getPreviewParserOptions();
-		$pstContent = $content->preSaveTransform( $this->mTitle, $wgUser, $parserOptions );
+		$pstContent = $content->preSaveTransform( $this->mTitle, $this->user, $parserOptions );
 		$scopedCallback = $parserOptions->setupFakeRevision(
-			$this->mTitle, $pstContent, $wgUser );
+			$this->mTitle, $pstContent, $this->user );
 		$parserOutput = $pstContent->getParserOutput( $this->mTitle, null, $parserOptions );
 		ScopedCallback::consume( $scopedCallback );
 		$parserOutput->setEditSectionTokens( false ); // no section edit links
@@ -3996,7 +3990,7 @@ HTML
 	 * @return array
 	 */
 	public function getCheckboxes( &$tabindex, $checked ) {
-		global $wgUser, $wgUseMediaWikiUIEverywhere;
+		global $wgUseMediaWikiUIEverywhere;
 
 		$checkboxes = [];
 
@@ -4004,7 +3998,7 @@ HTML
 		if ( !$this->isNew ) {
 			$checkboxes['minor'] = '';
 			$minorLabel = wfMessage( 'minoredit' )->parse();
-			if ( $wgUser->isAllowed( 'minoredit' ) ) {
+			if ( $this->user->isAllowed( 'minoredit' ) ) {
 				$attribs = [
 					'tabindex' => ++$tabindex,
 					'accesskey' => wfMessage( 'accesskey-minoredit' )->text(),
@@ -4028,7 +4022,7 @@ HTML
 
 		$watchLabel = wfMessage( 'watchthis' )->parse();
 		$checkboxes['watch'] = '';
-		if ( $wgUser->isLoggedIn() ) {
+		if ( $this->user->isLoggedIn() ) {
 			$attribs = [
 				'tabindex' => ++$tabindex,
 				'accesskey' => wfMessage( 'accesskey-watch' )->text(),
