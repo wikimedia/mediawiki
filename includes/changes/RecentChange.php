@@ -285,6 +285,17 @@ class RecentChange {
 			$this->mAttribs['rc_ip'] = '';
 		}
 
+		# Strict mode fixups (not-NULL fields)
+		foreach ( [ 'minor', 'bot', 'new', 'patrolled', 'deleted' ] as $field ) {
+			$this->mAttribs["rc_$field"] = (int)$this->mAttribs["rc_$field"];
+		}
+		# ...more fixups (NULL fields)
+		foreach ( [ 'old_len', 'new_len' ] as $field ) {
+			$this->mAttribs["rc_$field"] = isset( $this->mAttribs["rc_$field"] )
+				? (int)$this->mAttribs["rc_$field"]
+				: null;
+		}
+
 		# If our database is strict about IP addresses, use NULL instead of an empty string
 		if ( $dbw->strictIPs() && $this->mAttribs['rc_ip'] == '' ) {
 			unset( $this->mAttribs['rc_ip'] );
@@ -776,7 +787,7 @@ class RecentChange {
 			'rc_comment' => $logComment,
 			'rc_this_oldid' => $revId,
 			'rc_last_oldid' => 0,
-			'rc_bot' => $user->isAllowed( 'bot' ) ? $wgRequest->getBool( 'bot', true ) : 0,
+			'rc_bot' => $user->isAllowed( 'bot' ) ? (int)$wgRequest->getBool( 'bot', true ) : 0,
 			'rc_ip' => self::checkIPAddress( $ip ),
 			'rc_patrolled' => $markPatrolled ? 1 : 0,
 			'rc_new' => 0, # obsolete
