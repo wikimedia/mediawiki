@@ -244,15 +244,32 @@ class LinkCache {
 			return 0;
 		}
 
-		// Some fields heavily used for linking...
-		$db = $this->mForUpdate ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
+		// Cache template/file pages as they are less often viewed but heavily used
+		if ( $this->mForUpdate ) {
+			$row = $this->fetchPageRow( wfGetDB( DB_MASTER ), $nt );
+		} elseif ( $nt->inNamespace( NS_TEMPLATE ) || $nt->inNamespace( NS_FILE ) ) {
+			// These pages are often transcluded heavily, so cache them
+			$cache = ObjectCache::getMainWANInstance();
+			$row = $cache->getWithSetCallback(
+				$cache->makeKey( 'page', $nt->getNamespace(), sha1( $nt->getDBkey() ) ),
+				$cache::TTL_WEEK,
+				function ( $curValue, &$ttl, array &$setOpts ) use ( $cache, $nt ) {
+					$dbr = wfGetDB( DB_SLAVE );
+					$setOpts += Database::getCacheSetOptions( $dbr );
 
-		$row = $db->selectRow( 'page', self::getSelectFields(),
-			[ 'page_namespace' => $nt->getNamespace(), 'page_title' => $nt->getDBkey() ],
-			__METHOD__
-		);
+					$row = $this->fetchPageRow( $dbr, $nt );
+					$mtime = $row ? wfTimestamp( TS_UNIX, $row->page_touched ) : false;
 
-		if ( $row !== false ) {
+					$ttl = $cache->adaptiveTTL( $mtime, $ttl );
+
+					return $row;
+				}
+			);
+		} else {
+			$row = $this->fetchPageRow( wfGetDB( DB_SLAVE ), $nt );
+		}
+
+		if ( $row ) {
 			$this->addGoodLinkObjFromRow( $nt, $row );
 			$id = intval( $row->page_id );
 		} else {
@@ -261,6 +278,35 @@ class LinkCache {
 		}
 
 		return $id;
+	}
+
+	private function fetchPageRow( IDatabase $db, LinkTarget $nt ) {
+		return $db->selectRow(
+			'page',
+			self::getSelectFields(),
+			[ 'page_namespace' => $nt->getNamespace(), 'page_title' => $nt->getDBkey() ],
+			__METHOD__
+		);
+	}
+
+	/**
+	 * Purge the link cache for a title
+	 *
+	 * @param LinkTarget $title
+	 * @return bool
+	 * @since 1.28
+	 */
+	public function invalidateTitle( LinkTarget $title ) {
+		$this->clearLink( $title );
+
+		if ( !$title->inNamespace( NS_TEMPLATE ) && !$title->inNamespace( NS_FILE ) ) {
+			return true; // not cached
+		}
+
+		$cache = ObjectCache::getMainWANInstance();
+		return $cache->delete(
+			$cache->makeKey( 'page', $title->getNamespace(), sha1( $title->getDBkey() ) )
+		);
 	}
 
 	/**
