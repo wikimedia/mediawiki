@@ -613,7 +613,6 @@ class LoadBalancer {
 		$serverIndex = $conn->getLBInfo( 'serverIndex' );
 		$refCount = $conn->getLBInfo( 'foreignPoolRefCount' );
 		if ( $serverIndex === null || $refCount === null ) {
-			wfDebug( __METHOD__ . ": this connection was not opened as a foreign connection\n" );
 			/**
 			 * This can happen in code like:
 			 *   foreach ( $dbs as $db ) {
