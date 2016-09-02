@@ -143,7 +143,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param string $title
+	 * @param string $titleText
 	 * @return null|string
 	 */
 	protected function getContent( $titleText ) {
@@ -332,7 +332,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * @since 1.28
 	 * @param ResourceLoaderContext $context
 	 * @param IDatabase $db
-	 * @param string[] $modules
+	 * @param string[] $moduleNames
 	 */
 	public static function preloadTitleInfo(
 		ResourceLoaderContext $context, IDatabase $db, array $moduleNames
@@ -341,6 +341,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		// getDB() can be overridden to point to a foreign database.
 		// For now, only preload local. In the future, we could preload by wikiID.
 		$allPages = [];
+		/** @var ResourceLoaderWikiModule[] $wikiModules */
 		$wikiModules = [];
 		foreach ( $moduleNames as $name ) {
 			$module = $rl->getModule( $name );
@@ -353,9 +354,28 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 				}
 			}
 		}
-		$allInfo = static::fetchTitleInfo( $db, array_keys( $allPages ), __METHOD__ );
-		foreach ( $wikiModules as $module ) {
-			$pages = $module->getPages( $context );
+
+		$allPageNames = array_keys( $allPages );
+		sort( $allPageNames );
+		$hash = sha1( implode( '|', $allPageNames ) );
+
+		// Avoid Zend bug where "static::" does not apply LSB in the closure
+		$func = [ get_called_class(), 'fetchTitleInfo' ];
+
+		$cache = ObjectCache::getMainWANInstance();
+		$allInfo = $cache->getWithSetCallback(
+			$cache->makeGlobalKey( 'resourceloader', 'titleinfo', $db->getWikiID(), $hash ),
+			$cache::TTL_HOUR,
+			function ( $curValue, &$ttl, array &$setOpts ) use ( $func, $allPageNames, $db ) {
+				$setOpts += Database::getCacheSetOptions( $db );
+
+				return call_user_func( $func, $db, $allPageNames, __METHOD__ );
+			},
+			[ 'checkKeys' => [ $cache->makeGlobalKey( 'resourceloader', 'titleinfo', $db->getWikiID() ) ] ]
+		);
+
+		foreach ( $wikiModules as $wikiModule ) {
+			$pages = $wikiModule->getPages( $context );
 			// Before we intersect, map the names to canonical form (T145673).
 			$intersect = [];
 			foreach ( $pages as $page => $unused ) {
@@ -363,13 +383,25 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 				$intersect[$title] = 1;
 			}
 			$info = array_intersect_key( $allInfo, $intersect );
-
 			$pageNames = array_keys( $pages );
 			sort( $pageNames );
 			$key = implode( '|', $pageNames );
-			$module->setTitleInfo( $key, $info );
+			$wikiModule->setTitleInfo( $key, $info );
 		}
-		return $allInfo;
+	}
+
+	/**
+	 * Touch the preloadTitleInfo() cache for all wiki modules on this wiki
+	 *
+	 * @since 1.28
+	 * @param Title $title
+	 * @param string $wikiId
+	 */
+	public static function invalidateModuleCache( Title $title, $wikiId ) {
+		if ( $title->isCssOrJsPage() ) {
+			$cache = ObjectCache::getMainWANInstance();
+			$cache->touchCheckKey( $cache->makeGlobalKey( 'resourceloader', 'titleinfo', $wikiId ) );
+		}
 	}
 
 	/**

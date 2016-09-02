@@ -199,6 +199,10 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 		$rl->register( 'testmodule', $module );
 		$context = new ResourceLoaderContext( $rl, new FauxRequest() );
 
+		TestResourceLoaderWikiModule::invalidateModuleCache(
+			Title::newFromText( 'MediaWiki:Common.css' ),
+			wfWikiID()
+		);
 		TestResourceLoaderWikiModule::preloadTitleInfo(
 			$context,
 			wfGetDB( DB_REPLICA ),
