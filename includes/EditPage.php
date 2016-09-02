@@ -1809,14 +1809,15 @@ class EditPage {
 
 		$changingContentModel = false;
 		if ( $this->contentModel !== $this->mTitle->getContentModel() ) {
-			if ( !$wgContentHandlerUseDB ) {
-				$status->fatal( 'editpage-cannot-use-custom-model' );
-				$status->value = self::AS_CANNOT_USE_CUSTOM_MODEL;
-				return $status;
-			} elseif ( !$wgUser->isAllowed( 'editcontentmodel' ) ) {
-				$status->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL );
-				return $status;
-
+			if ( !Hooks::run( 'AllowCustomContentModel', [ $this->mTitle, &$wgUser ] ) === false ) {
+				if ( !$wgContentHandlerUseDB ) {
+					$status->fatal( 'editpage-cannot-use-custom-model' );
+					$status->value = self::AS_CANNOT_USE_CUSTOM_MODEL;
+					return $status;
+				} elseif ( !$wgUser->isAllowed( 'editcontentmodel' ) ) {
+					$status->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL );
+					return $status;
+				}
 			}
 			$changingContentModel = true;
 			$oldContentModel = $this->mTitle->getContentModel();
