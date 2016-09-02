@@ -26,7 +26,8 @@
  * Abstraction for ResourceLoader modules which pull from wiki pages
  *
  * This can only be used for wiki pages in the MediaWiki and User namespaces,
- * because of its dependence on the functionality of Title::isCssJsSubpage.
+ * because of its dependence on the functionality of Title::isCssJsSubpage
+ * and Title::isCssOrJsPage().
  *
  * This module supports being used as a placeholder for a module on a remote wiki.
  * To do so, getDB() must be overloaded to return a foreign database object that
@@ -143,7 +144,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param string $title
+	 * @param string $titleText
 	 * @return null|string
 	 */
 	protected function getContent( $titleText ) {
@@ -336,7 +337,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * @since 1.28
 	 * @param ResourceLoaderContext $context
 	 * @param IDatabase $db
-	 * @param string[] $modules
+	 * @param string[] $moduleNames
 	 */
 	public static function preloadTitleInfo(
 		ResourceLoaderContext $context, IDatabase $db, array $moduleNames
@@ -345,6 +346,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		// getDB() can be overridden to point to a foreign database.
 		// For now, only preload local. In the future, we could preload by wikiID.
 		$allPages = [];
+		/** @var ResourceLoaderWikiModule[] $wikiModules */
 		$wikiModules = [];
 		foreach ( $moduleNames as $name ) {
 			$module = $rl->getModule( $name );
@@ -357,9 +359,28 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 				}
 			}
 		}
-		$allInfo = static::fetchTitleInfo( $db, array_keys( $allPages ), __METHOD__ );
-		foreach ( $wikiModules as $module ) {
-			$pages = $module->getPages( $context );
+
+		$allPageNames = array_keys( $allPages );
+		sort( $allPageNames );
+		$hash = sha1( implode( '|', $allPageNames ) );
+
+		// Avoid Zend bug where "static::" does not apply LSB in the closure
+		$func = [ static::class, 'fetchTitleInfo' ];
+
+		$cache = ObjectCache::getMainWANInstance();
+		$allInfo = $cache->getWithSetCallback(
+			$cache->makeGlobalKey( 'resourceloader', 'titleinfo', $db->getWikiID(), $hash ),
+			$cache::TTL_HOUR,
+			function ( $curValue, &$ttl, array &$setOpts ) use ( $func, $allPageNames, $db ) {
+				$setOpts += Database::getCacheSetOptions( $db );
+
+				return call_user_func( $func, $db, $allPageNames, __METHOD__ );
+			},
+			[ 'checkKeys' => [ $cache->makeGlobalKey( 'resourceloader', 'titleinfo', $db->getWikiID() ) ] ]
+		);
+
+		foreach ( $wikiModules as $wikiModule ) {
+			$pages = $wikiModule->getPages( $context );
 			// Before we intersect, map the names to canonical form (T145673).
 			$intersect = [];
 			foreach ( $pages as $page => $unused ) {
@@ -375,13 +396,41 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 				}
 			}
 			$info = array_intersect_key( $allInfo, $intersect );
-
 			$pageNames = array_keys( $pages );
 			sort( $pageNames );
 			$key = implode( '|', $pageNames );
-			$module->setTitleInfo( $key, $info );
+			$wikiModule->setTitleInfo( $key, $info );
 		}
-		return $allInfo;
+	}
+
+	/**
+	 * Clear the preloadTitleInfo() cache for all wiki modules on this wiki on
+	 * page change if it was a JS or CSS page
+	 *
+	 * @param Title $title
+	 * @param Revision|null $old Prior page revision
+	 * @param Revision|null $new New page revision
+	 * @param string $wikiId
+	 * @since 1.28
+	 */
+	public static function invalidateModuleCache(
+		Title $title, Revision $old = null, Revision $new = null, $wikiId
+	) {
+		static $formats = [ CONTENT_FORMAT_CSS, CONTENT_FORMAT_JAVASCRIPT ];
+
+		if ( $old && in_array( $old->getContentFormat(), $formats ) ) {
+			$purge = true;
+		} elseif ( $new && in_array( $new->getContentFormat(), $formats ) ) {
+			$purge = true;
+		} else {
+			$purge = ( $title->isCssOrJsPage() || $title->isCssJsSubpage() );
+		}
+
+		if ( $purge ) {
+			$cache = ObjectCache::getMainWANInstance();
+			$key = $cache->makeGlobalKey( 'resourceloader', 'titleinfo', $wikiId );
+			$cache->touchCheckKey( $key );
+		}
 	}
 
 	/**
