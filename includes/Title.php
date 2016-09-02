@@ -4368,6 +4368,8 @@ class Title implements LinkTarget {
 			return false;
 		}
 
+		MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $this );
+
 		if ( $this->mArticleID === 0 ) {
 			return true; // avoid gap locking if we know it's not there
 		}
