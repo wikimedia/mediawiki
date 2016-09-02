@@ -1702,8 +1702,8 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $path === null ) {
 			return; // invalid storage path
 		}
-		$age = time() - wfTimestamp( TS_UNIX, $val['mtime'] );
-		$ttl = min( 7 * 86400, max( 300, floor( .1 * $age ) ) );
+		$mtime = wfTimestamp( TS_UNIX, $val['mtime'] );
+		$ttl = $this->memCache->adaptiveTTL( $mtime, 7 * 86400, 300, .1 );
 		$key = $this->fileCacheKey( $path );
 		// Set the cache unless it is currently salted.
 		$this->memCache->set( $key, $val, $ttl );
