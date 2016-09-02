@@ -1146,7 +1146,7 @@ return [
 	'mediawiki.notification' => [
 		'styles' => [
 			'resources/src/mediawiki/mediawiki.notification.common.css',
-			'resources/src/mediawiki/mediawiki.notification.hideForPrint.css'
+			'resources/src/mediawiki/mediawiki.notification.print.css'
 				=> [ 'media' => 'print' ],
 		],
 		'skinStyles' => [
@@ -1695,7 +1695,7 @@ return [
 	],
 	'mediawiki.page.gallery.styles' => [
 		'styles' => [
-			'resources/src/mediawiki/page/gallery-print.css' => [ 'media' => 'print' ],
+			'resources/src/mediawiki/page/gallery.print.css' => [ 'media' => 'print' ],
 			'resources/src/mediawiki/page/gallery.css',
 		],
 		'position' => 'top',
