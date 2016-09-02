@@ -607,8 +607,8 @@ class NamespaceConflictChecker extends Maintenance {
 		 * accidentally introduce an assumption of title validity to the code we
 		 * are calling.
 		 */
-		$updates = [ new LinksDeletionUpdate( $wikiPage ) ];
-		DataUpdate::runUpdates( $updates );
+		DeferredUpdates::addUpdate( new LinksDeletionUpdate( $wikiPage ) );
+		DeferredUpdates::doUpdates();
 
 		return true;
 	}

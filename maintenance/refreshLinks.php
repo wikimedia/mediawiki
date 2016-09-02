@@ -237,8 +237,9 @@ class RefreshLinks extends Maintenance {
 			return;
 		}
 
-		$updates = $content->getSecondaryDataUpdates( $page->getTitle() );
-		DataUpdate::runUpdates( $updates );
+		foreach ( $content->getSecondaryDataUpdates( $page->getTitle() ) as $update ) {
+			DeferredUpdates::addUpdate( $update );
+		}
 	}
 
 	/**
