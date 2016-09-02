@@ -86,7 +86,8 @@
 			"İnternion",
 			"Hbseren",
 			"Kumkumuk",
-			"Basak"
+			"Basak",
+			"Ece Alpdeniz"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çiz:",
@@ -261,7 +262,7 @@
 	"print": "Yazdır",
 	"view": "Görüntüle",
 	"view-foreign": "$1 üzerinde gör",
-	"edit": "Değiştir",
+	"edit": "Düzenle",
 	"edit-local": "Yerel açıklamayı düzenle",
 	"create": "Oluştur",
 	"create-local": "Yerel açıklama ekle",

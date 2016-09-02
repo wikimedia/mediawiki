@@ -26,7 +26,8 @@
 			"Verdy p",
 			"Yasten",
 			"Trial",
-			"Pols12"
+			"Pols12",
+			"The RedBurn"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentation]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Liste de diffusion]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bogues et demandes]\n</div>\n<strong>État :</strong> Toutes les fonctionnalités affichées sur cette page devraient fonctionner, mais l’API est encore en cours de développement et peut changer à tout moment. Inscrivez-vous à [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la liste de diffusion mediawiki-api-announce] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> Si des requêtes erronées sont envoyées à l’API, un en-tête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet en-tête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’information, voyez [[mw:API:Errors_and_warnings|API: Errors and warnings]].\n\n<strong>Test :</strong> Pour faciliter le test des requêtes de l’API, voyez [[Special:ApiSandbox]].",
@@ -111,7 +112,7 @@
 	"apihelp-edit-param-sectiontitle": "Le titre pour une nouvelle section.",
 	"apihelp-edit-param-text": "Contenu de la page.",
 	"apihelp-edit-param-summary": "Modifier le résumé. Également le titre de la section quand $1section=new et $1sectiontitle n’est pas défini.",
-	"apihelp-edit-param-tags": "Modifier les balises à appliquer à la révision.",
+	"apihelp-edit-param-tags": "Modifier les balises à appliquer à la version.",
 	"apihelp-edit-param-minor": "Modification mineure.",
 	"apihelp-edit-param-notminor": "Modification non mineure.",
 	"apihelp-edit-param-bot": "Marquer cette modification comme robot.",
