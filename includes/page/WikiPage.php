@@ -3331,6 +3331,9 @@ class WikiPage implements Page, IDBAccessObject {
 			// a category that probably doesn't have many members.
 			Category::newFromTitle( $title )->getID();
 		}
+
+		// Invalidate module info cache
+		ResourceLoaderWikiModule::invalidateModuleCache( $title, wfWikiID() );
 	}
 
 	/**
@@ -3379,6 +3382,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Image redirects
 		RepoGroup::singleton()->getLocalRepo()->invalidateImageRedirect( $title );
+
+		// Invalidate module info cache
+		ResourceLoaderWikiModule::invalidateModuleCache( $title, wfWikiID() );
 	}
 
 	/**
@@ -3400,6 +3406,9 @@ class WikiPage implements Page, IDBAccessObject {
 		$title->purgeSquid();
 		// Clear file cache for this page only
 		HTMLFileCache::clearFileCache( $title );
+
+		// Invalidate module info cache
+		ResourceLoaderWikiModule::invalidateModuleCache( $title, wfWikiID() );
 
 		$revid = $revision ? $revision->getId() : null;
 		DeferredUpdates::addCallableUpdate( function() use ( $title, $revid ) {

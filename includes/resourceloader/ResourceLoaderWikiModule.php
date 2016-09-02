@@ -49,9 +49,6 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	// Origin defaults to users with sitewide authority
 	protected $origin = self::ORIGIN_USER_SITEWIDE;
 
-	// In-process cache for title info
-	protected $titleInfo = [];
-
 	// List of page names that contain CSS
 	protected $styles = [];
 
@@ -60,6 +57,10 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 	// Group of module
 	protected $group;
+
+	const TITLE_INFO_CACHE_GROUP = 'WikiModuleTitleInfo:100'; // group name and max key count
+
+	const VERSION = 1;
 
 	/**
 	 * @param array $options For back-compat, this can be omitted in favour of overwriting getPages.
@@ -143,7 +144,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param string $title
+	 * @param string $titleText
 	 * @return null|string
 	 */
 	protected function getContent( $titleText ) {
@@ -262,7 +263,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		// For user modules, don't needlessly load if there are no non-empty pages
 		if ( $this->getGroup() === 'user' ) {
 			foreach ( $revisions as $revision ) {
-				if ( $revision['rev_len'] > 0 ) {
+				if ( $revision['page_len'] > 0 ) {
 					// At least one non-empty page, module should be loaded
 					return false;
 				}
@@ -279,7 +280,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	/**
 	 * Get the information about the wiki pages for a given context.
 	 * @param ResourceLoaderContext $context
-	 * @return array Keyed by page name. Contains arrays with 'rev_len' and 'rev_sha1' keys
+	 * @return array[] Keyed by page name
 	 */
 	protected function getTitleInfo( ResourceLoaderContext $context ) {
 		$dbr = $this->getDB();
@@ -289,36 +290,65 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		}
 
 		$pages = $this->getPages( $context );
-		$key = implode( '|', array_keys( $pages ) );
-		if ( !isset( $this->titleInfo[$key] ) ) {
-			$this->titleInfo[$key] = [];
-			$batch = new LinkBatch;
-			foreach ( $pages as $titleText => $options ) {
-				$batch->addObj( Title::newFromText( $titleText ) );
-			}
 
-			if ( !$batch->isEmpty() ) {
-				$res = $dbr->select( [ 'page', 'revision' ],
-					// Include page_touched to allow purging if cache is poisoned (T117587, T113916)
-					[ 'page_namespace', 'page_title', 'page_touched', 'rev_len', 'rev_sha1' ],
+		return $this->getTitleInfoArray( $dbr, array_keys( $pages ) );
+	}
+
+	/**
+	 * @param IDatabase $dbr
+	 * @param string[] $names Prefixed title strings
+	 * @return array[] Map of prefixed title string to page fields
+	 */
+	private function getTitleInfoArray( IDatabase $dbr, array $names ) {
+		sort( $names );
+		$hash = sha1( implode( '|', $names ) );
+
+		$cache = ObjectCache::getMainWANInstance();
+
+		return $cache->getWithSetCallback(
+			$cache->makeGlobalKey( 'wikimodules', 'info', $dbr->getWikiID(), $hash ),
+			$cache::TTL_HOUR,
+			function ( $curValue, &$ttl, array &$setOpts ) use ( $names, $dbr, $cache ) {
+				$setOpts += Database::getCacheSetOptions( $dbr );
+
+				$titleInfo = [];
+				$batch = new LinkBatch;
+				foreach ( $names as $titleText ) {
+					$batch->addObj( Title::newFromText( $titleText ) );
+				}
+				if ( $batch->isEmpty() ) {
+					return $titleInfo;
+				}
+
+				$res = $dbr->select(
+					'page',
+					// Include page_touched to allow purging poisoned cache (T117587, T113916)
+					[ 'page_namespace', 'page_title', 'page_touched', 'page_latest', 'page_len' ],
 					$batch->constructSet( 'page', $dbr ),
-					__METHOD__,
-					[],
-					[ 'revision' => [ 'INNER JOIN', [ 'page_latest=rev_id' ] ] ]
+					__METHOD__
 				);
+
+				$mtime = 1;
 				foreach ( $res as $row ) {
-					// Avoid including ids or timestamps of revision/page tables so
-					// that versions are not wasted
 					$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-					$this->titleInfo[$key][$title->getPrefixedText()] = [
-						'rev_len' => $row->rev_len,
-						'rev_sha1' => $row->rev_sha1,
+					$titleInfo[$title->getPrefixedText()] = [
+						'page_latest' => $row->page_latest,
 						'page_touched' => $row->page_touched,
 					];
+					$mtime = max( (int)wfTimestamp( TS_UNIX, $row->page_touched ), $mtime );
 				}
-			}
-		}
-		return $this->titleInfo[$key];
+
+				$ttl = $cache->adaptiveTTL( $mtime, $ttl );
+
+				return $titleInfo;
+			},
+			[
+				'checkKeys' => [ $cache->makeGlobalKey( 'wikimodules', $dbr->getWikiID() ) ],
+				'version' => self::VERSION,
+				'pcTTL' => $cache::TTL_PROC_LONG,
+				'pcGroup' => self::TITLE_INFO_CACHE_GROUP
+			]
+		);
 	}
 
 	/**
@@ -337,5 +367,19 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		// they may also override getPages() instead, in which case we should keep
 		// defaulting to LOAD_GENERAL and allow them to override getType() separately.
 		return ( $this->styles && !$this->scripts ) ? self::LOAD_STYLES : self::LOAD_GENERAL;
+	}
+
+	/**
+	 * Touch the getTitleInfo() cache for all wiki modules on this wiki
+	 *
+	 * @param Title $title
+	 * @param string $wikiId
+	 * @since 1.28
+	 */
+	public static function invalidateModuleCache( Title $title, $wikiId ) {
+		if ( $title->isCssOrJsPage() ) {
+			$cache = ObjectCache::getMainWANInstance();
+			$cache->touchCheckKey( $cache->makeGlobalKey( 'wikimodules', $wikiId ) );
+		}
 	}
 }
