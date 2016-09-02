@@ -44,6 +44,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	public function execute( $subpage ) {
 		$this->rcSubpage = $subpage;
+		// Always setup cached fields again when making new requests on cached special page objects
+		$this->rcOptions = null;
+		$this->customFilters = null;
 
 		$this->setHeaders();
 		$this->outputHeader();
