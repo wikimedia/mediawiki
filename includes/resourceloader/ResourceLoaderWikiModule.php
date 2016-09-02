@@ -143,7 +143,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param string $title
+	 * @param string $titleText
 	 * @return null|string
 	 */
 	protected function getContent( $titleText ) {
@@ -332,7 +332,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * @since 1.28
 	 * @param ResourceLoaderContext $context
 	 * @param IDatabase $db
-	 * @param string[] $modules
+	 * @param string[] $moduleNames
 	 */
 	public static function preloadTitleInfo(
 		ResourceLoaderContext $context, IDatabase $db, array $moduleNames
@@ -341,6 +341,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		// getDB() can be overridden to point to a foreign database.
 		// For now, only preload local. In the future, we could preload by wikiID.
 		$allPages = [];
+		/** @var ResourceLoaderWikiModule[] $wikiModules */
 		$wikiModules = [];
 		foreach ( $moduleNames as $name ) {
 			$module = $rl->getModule( $name );
@@ -353,16 +354,31 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 				}
 			}
 		}
-		$allInfo = self::fetchTitleInfo( $db, array_keys( $allPages ), __METHOD__ );
-		foreach ( $wikiModules as $module ) {
-			$pages = $module->getPages( $context );
+
+		$allPageNames = array_keys( $allPages );
+		sort( $allPageNames );
+		$hash = sha1( implode( '|', $allPageNames ) );
+		$cache = ObjectCache::getMainWANInstance();
+
+		$allInfo = $cache->getWithSetCallback(
+			$cache->makeGlobalKey( 'wikimodules', 'info', $db->getWikiID(), $hash ),
+			$cache::TTL_HOUR,
+			function ( $curValue, &$ttl, array &$setOpts ) use ( $allPageNames, $db ) {
+				$setOpts += Database::getCacheSetOptions( $db );
+
+				return self::fetchTitleInfo( $db, $allPageNames, __METHOD__ );
+			},
+			[ 'checkKeys' => [ $cache->makeGlobalKey( 'wikimodules', $db->getWikiID() ) ] ]
+		);
+
+		foreach ( $wikiModules as $wikiModule ) {
+			$pages = $wikiModule->getPages( $context );
 			$info = array_intersect_key( $allInfo, $pages );
 			$pageNames = array_keys( $pages );
 			sort( $pageNames );
 			$key = implode( '|', $pageNames );
-			$module->setTitleInfo( $key, $info );
+			$wikiModule->setTitleInfo( $key, $info );
 		}
-		return $allInfo;
 	}
 
 	/**
