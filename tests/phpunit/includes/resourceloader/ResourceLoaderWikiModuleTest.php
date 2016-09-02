@@ -114,25 +114,25 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 			[ [], 'test1', true ],
 			// 'site' module with a non-empty page
 			[
-				[ 'MediaWiki:Common.js' => [ 'rev_sha1' => 'dmh6qn', 'rev_len' => 1234 ] ],
+				[ 'MediaWiki:Common.js' => [ 'rev_sha1' => 'dmh6qn', 'page_len' => 1234 ] ],
 				'site',
 				false,
 			],
 			// 'site' module with an empty page
 			[
-				[ 'MediaWiki:Foo.js' => [ 'rev_sha1' => 'phoi', 'rev_len' => 0 ] ],
+				[ 'MediaWiki:Foo.js' => [ 'rev_sha1' => 'phoi', 'page_len' => 0 ] ],
 				'site',
 				false,
 			],
 			// 'user' module with a non-empty page
 			[
-				[ 'User:Example/common.js' => [ 'rev_sha1' => 'j7ssba', 'rev_len' => 25 ] ],
+				[ 'User:Example/common.js' => [ 'rev_sha1' => 'j7ssba', 'page_len' => 25 ] ],
 				'user',
 				false,
 			],
 			// 'user' module with an empty page
 			[
-				[ 'User:Example/foo.js' => [ 'rev_sha1' => 'phoi', 'rev_len' => 0 ] ],
+				[ 'User:Example/foo.js' => [ 'rev_sha1' => 'phoi', 'page_len' => 0 ] ],
 				'user',
 				true,
 			],
