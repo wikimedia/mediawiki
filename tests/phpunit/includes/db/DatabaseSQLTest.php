@@ -5,15 +5,12 @@
  * This is a non DBMS depending test.
  */
 class DatabaseSQLTest extends MediaWikiTestCase {
-
-	/**
-	 * @var DatabaseTestHelper
-	 */
+	/** @var DatabaseTestHelper */
 	private $database;
 
 	protected function setUp() {
 		parent::setUp();
-		$this->database = new DatabaseTestHelper( __CLASS__ );
+		$this->database = new DatabaseTestHelper( __CLASS__, [ 'cliMode' => true ] );
 	}
 
 	protected function assertLastSql( $sqlText ) {
@@ -21,6 +18,10 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 			$this->database->getLastSqls(),
 			$sqlText
 		);
+	}
+
+	protected function assertLastSqlDb( $sqlText, $db ) {
+		$this->assertEquals( $db->getLastSqls(), $sqlText );
 	}
 
 	/**
@@ -354,7 +355,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	 * @dataProvider provideInsertSelect
 	 * @covers DatabaseBase::insertSelect
 	 */
-	public function testInsertSelect( $sql, $sqlText ) {
+	public function testInsertSelect( $sql, $sqlTextNative, $sqlSelect, $sqlInsert ) {
 		$this->database->insertSelect(
 			$sql['destTable'],
 			$sql['srcTable'],
@@ -364,7 +365,22 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 			isset( $sql['insertOptions'] ) ? $sql['insertOptions'] : [],
 			isset( $sql['selectOptions'] ) ? $sql['selectOptions'] : []
 		);
-		$this->assertLastSql( $sqlText );
+		$this->assertLastSql( $sqlTextNative );
+
+		$dbWeb = new DatabaseTestHelper( __CLASS__, [ 'cliMode' => false ] );
+		$dbWeb->forceNextResult( [
+			array_flip( array_keys( $sql['varMap'] ) )
+		] );
+		$dbWeb->insertSelect(
+			$sql['destTable'],
+			$sql['srcTable'],
+			$sql['varMap'],
+			$sql['conds'],
+			__METHOD__,
+			isset( $sql['insertOptions'] ) ? $sql['insertOptions'] : [],
+			isset( $sql['selectOptions'] ) ? $sql['selectOptions'] : []
+		);
+		$this->assertLastSqlDb( implode( '; ', [ $sqlSelect, $sqlInsert ] ), $dbWeb );
 	}
 
 	public static function provideInsertSelect() {
@@ -379,7 +395,10 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 				"INSERT INTO insert_table " .
 					"(field_insert,field) " .
 					"SELECT field_select,field2 " .
-					"FROM select_table"
+					"FROM select_table",
+				"SELECT field_select AS field_insert,field2 AS field " .
+				"FROM select_table WHERE *   FOR UPDATE",
+				"INSERT INTO insert_table (field_insert,field) VALUES ('0','1')"
 			],
 			[
 				[
@@ -392,7 +411,10 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 					"(field_insert,field) " .
 					"SELECT field_select,field2 " .
 					"FROM select_table " .
-					"WHERE field = '2'"
+					"WHERE field = '2'",
+				"SELECT field_select AS field_insert,field2 AS field FROM " .
+				"select_table WHERE field = '2'   FOR UPDATE",
+				"INSERT INTO insert_table (field_insert,field) VALUES ('0','1')"
 			],
 			[
 				[
@@ -408,7 +430,10 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 					"SELECT field_select,field2 " .
 					"FROM select_table " .
 					"WHERE field = '2' " .
-					"ORDER BY field"
+					"ORDER BY field",
+				"SELECT field_select AS field_insert,field2 AS field " .
+				"FROM select_table WHERE field = '2' ORDER BY field  FOR UPDATE",
+				"INSERT IGNORE INTO insert_table (field_insert,field) VALUES ('0','1')"
 			],
 		];
 	}
