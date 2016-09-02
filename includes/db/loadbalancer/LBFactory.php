@@ -249,6 +249,16 @@ abstract class LBFactory implements DestructibleService {
 	}
 
 	/**
+	 * Commit all replica DB transactions so as to flush any REPEATABLE-READ or SSI snapshot
+	 *
+	 * @param string $fname Caller name
+	 * @since 1.28
+	 */
+	public function flushReplicaSnapshots( $fname = __METHOD__ ) {
+		$this->forEachLBCallMethod( 'flushReplicaSnapshots', [ $fname ] );
+	}
+
+	/**
 	 * Commit on all connections. Done for two reasons:
 	 * 1. To commit changes to the masters.
 	 * 2. To release the snapshot on all connections, master and slave.
