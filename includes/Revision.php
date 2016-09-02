@@ -340,16 +340,9 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	private static function loadFromConds( $db, $conditions, $flags = 0 ) {
-		$res = self::fetchFromConds( $db, $conditions, $flags );
-		if ( $res ) {
-			$row = $res->fetchObject();
-			if ( $row ) {
-				$ret = new Revision( $row );
-				return $ret;
-			}
-		}
-		$ret = null;
-		return $ret;
+		$row = self::fetchFromConds( $db, $conditions, $flags );
+
+		return $row ? new Revision( $row ) : null;
 	}
 
 	/**
@@ -357,11 +350,12 @@ class Revision implements IDBAccessObject {
 	 * fetch all of a given page's revisions in turn.
 	 * Each row can be fed to the constructor to get objects.
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $title
 	 * @return ResultWrapper
+	 * @deprecated Since 1.28
 	 */
-	public static function fetchRevision( $title ) {
-		return self::fetchFromConds(
+	public static function fetchRevision( LinkTarget $title ) {
+		$row = self::fetchFromConds(
 			wfGetDB( DB_SLAVE ),
 			[
 				'rev_id=page_latest',
@@ -369,6 +363,8 @@ class Revision implements IDBAccessObject {
 				'page_title' => $title->getDBkey()
 			]
 		);
+
+		return new FakeResultWrapper( $row ? [ $row ] : [] );
 	}
 
 	/**
@@ -387,11 +383,11 @@ class Revision implements IDBAccessObject {
 			self::selectPageFields(),
 			self::selectUserFields()
 		);
-		$options = [ 'LIMIT' => 1 ];
+		$options = [];
 		if ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING ) {
 			$options[] = 'FOR UPDATE';
 		}
-		return $db->select(
+		return $db->selectRow(
 			[ 'revision', 'page', 'user' ],
 			$fields,
 			$conditions,
