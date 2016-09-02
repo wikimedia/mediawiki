@@ -610,17 +610,51 @@ class ResourceLoader implements LoggerAwareInterface {
 	 *
 	 * @since 1.26
 	 * @param ResourceLoaderContext $context
-	 * @param array $modules List of ResourceLoaderModule objects
+	 * @param string[] $modules List of known module names
 	 * @return string Hash
 	 */
-	public function getCombinedVersion( ResourceLoaderContext $context, array $modules ) {
-		if ( !$modules ) {
+	public function getCombinedVersion( ResourceLoaderContext $context, array $moduleNames ) {
+		if ( !$moduleNames ) {
 			return '';
 		}
 		$hashes = array_map( function ( $module ) use ( $context ) {
 			return $this->getModule( $module )->getVersionHash( $context );
-		}, $modules );
-		return self::makeHash( implode( $hashes ) );
+		}, $moduleNames );
+		return self::makeHash( implode( '', $hashes ) );
+	}
+
+	/**
+	 * Get the expected value of the 'version' query parameter.
+	 *
+	 * This is used by respond() to set a short Cache-Control header for requests with
+	 * information newer than the current server has. This avoids polution of edge caches.
+	 * Typically during deployment. (T117587)
+	 *
+	 * This MUST match return value of `mw.loader#getCombinedVersion()` client-side.
+	 *
+	 * @since 1.28
+	 * @param ResourceLoaderContext $context
+	 * @param string[] $modules List of module names
+	 * @return string Hash
+	 */
+	public function getExpectedVersionQuery( ResourceLoaderContext $context ) {
+		// As of MediaWiki 1.28, the server and client use the same algorithm for combining
+		// version hashes. There is no technical reason for this to be same, and years the
+		// implementations were different (convenience in each environment). If the output from
+		// getCombinedVersion in PHP (used for StartupModule and E-Tag headers) differs in the
+		// future from getCombinedVersion in JS (used for 'version' query), then this method must
+		// continue to match the JS one.
+		$moduleNames = [];
+		foreach ( $context->getModules() as $name ) {
+			if ( !$this->getModule( $name ) ) {
+				// If a versioned request (e.g. not an unversioned stylesheet of which the url may
+				// be cached in HTML) contains a missing module, the version is always a mismatch
+				// as the client considered a module (and version) we don't (or no longer) have.
+				return '';
+			}
+			$moduleNames[] = $name;
+		}
+		return $this->getCombinedVersion( $context, $moduleNames );
 	}
 
 	/**
@@ -759,10 +793,14 @@ class ResourceLoader implements LoggerAwareInterface {
 	 */
 	protected function sendResponseHeaders( ResourceLoaderContext $context, $etag, $errors ) {
 		$rlMaxage = $this->config->get( 'ResourceLoaderMaxage' );
-		// If a version wasn't specified we need a shorter expiry time for updates
-		// to propagate to clients quickly
-		// If there were errors, we also need a shorter expiry time so we can recover quickly
-		if ( is_null( $context->getVersion() ) || $errors ) {
+		// Use a short cache expiry so that updates propagate to clients quickly, if:
+		// - No version specified (shared resources, e.g. stylesheets)
+		// - There were errors (recover quickly)
+		// - Version mismatch (T117587, T47877)
+		if ( is_null( $context->getVersion() )
+			|| $errors
+			|| $context->getVersion() !== $this->getExpectedVersionQuery( $context )
+		) {
 			$maxage = $rlMaxage['unversioned']['client'];
 			$smaxage = $rlMaxage['unversioned']['server'];
 		// If a version was specified we can use a longer expiry time since changing
