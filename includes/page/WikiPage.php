@@ -2900,8 +2900,9 @@ class WikiPage implements Page, IDBAccessObject {
 			$bitfield |= Revision::DELETED_COMMENT;
 			$bitfield |= Revision::DELETED_USER;
 			$bitfield |= Revision::DELETED_RESTRICTED;
+			$deletionFields = [ $dbw->addQuotes( $bitfield ) . ' AS deleted' ];
 		} else {
-			$bitfield = 'rev_deleted';
+			$deletionFields = [ 'rev_deleted AS deleted' ];
 		}
 
 		// For now, shunt the revision data into the archive table.
@@ -2912,9 +2913,10 @@ class WikiPage implements Page, IDBAccessObject {
 		// the rev_deleted field, which is reserved for this purpose.
 
 		// Get all of the page revisions
+		$fields = array_diff( Revision::selectFields(), [ 'rev_deleted' ] );
 		$res = $dbw->select(
 			'revision',
-			Revision::selectFields(),
+			array_merge( $fields, $deletionFields ),
 			[ 'rev_page' => $id ],
 			__METHOD__,
 			'FOR UPDATE'
@@ -2937,7 +2939,7 @@ class WikiPage implements Page, IDBAccessObject {
 				'ar_flags'      => '',
 				'ar_len'        => $row->rev_len,
 				'ar_page_id'    => $id,
-				'ar_deleted'    => $bitfield,
+				'ar_deleted'    => $row->deleted,
 				'ar_sha1'       => $row->rev_sha1,
 			];
 			if ( $wgContentHandlerUseDB ) {
