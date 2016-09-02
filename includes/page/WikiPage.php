@@ -21,6 +21,7 @@
  */
 
 use \MediaWiki\Logger\LoggerFactory;
+use \MediaWiki\MediaWikiServices;
 
 /**
  * Class representing a MediaWiki article and history.
@@ -3321,6 +3322,8 @@ class WikiPage implements Page, IDBAccessObject {
 		$title->purgeSquid();
 		$title->deleteTitleProtection();
 
+		MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $title );
+
 		if ( $title->getNamespace() == NS_CATEGORY ) {
 			// Load the Category object, which will schedule a job to create
 			// the category table row if necessary. Checking a replica DB is ok
@@ -3345,6 +3348,8 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$title->touchLinks();
 		$title->purgeSquid();
+
+		MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $title );
 
 		// File cache
 		HTMLFileCache::clearFileCache( $title );
@@ -3388,6 +3393,8 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Invalidate the caches of all pages which redirect here
 		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $title, 'redirect' ) );
+
+		MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $title );
 
 		// Purge CDN for this page only
 		$title->purgeSquid();

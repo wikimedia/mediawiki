@@ -166,7 +166,8 @@ return [
 
 	'LinkCache' => function( MediaWikiServices $services ) {
 		return new LinkCache(
-			$services->getTitleFormatter()
+			$services->getTitleFormatter(),
+			ObjectCache::getMainWANInstance()
 		);
 	},
 
