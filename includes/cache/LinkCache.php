@@ -244,15 +244,31 @@ class LinkCache {
 			return 0;
 		}
 
-		// Some fields heavily used for linking...
-		$db = $this->mForUpdate ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
+		// Cache template/file pages as they are less often viewed but heavily used
+		if ( $this->mForUpdate ) {
+			$row = $this->fetchPageRow( wfGetDB( DB_MASTER ), $nt );
+		} elseif ( $this->isCacheable( $nt ) ) {
+			// These pages are often transcluded heavily, so cache them
+			$cache = ObjectCache::getMainWANInstance();
+			$row = $cache->getWithSetCallback(
+				$cache->makeKey( 'page', $nt->getNamespace(), sha1( $nt->getDBkey() ) ),
+				$cache::TTL_DAY,
+				function ( $curValue, &$ttl, array &$setOpts ) use ( $cache, $nt ) {
+					$dbr = wfGetDB( DB_SLAVE );
+					$setOpts += Database::getCacheSetOptions( $dbr );
 
-		$row = $db->selectRow( 'page', self::getSelectFields(),
-			[ 'page_namespace' => $nt->getNamespace(), 'page_title' => $nt->getDBkey() ],
-			__METHOD__
-		);
+					$row = $this->fetchPageRow( $dbr, $nt );
+					$mtime = $row ? wfTimestamp( TS_UNIX, $row->page_touched ) : false;
+					$ttl = $cache->adaptiveTTL( $mtime, $ttl );
 
-		if ( $row !== false ) {
+					return $row;
+				}
+			);
+		} else {
+			$row = $this->fetchPageRow( wfGetDB( DB_SLAVE ), $nt );
+		}
+
+		if ( $row ) {
 			$this->addGoodLinkObjFromRow( $nt, $row );
 			$id = intval( $row->page_id );
 		} else {
@@ -261,6 +277,39 @@ class LinkCache {
 		}
 
 		return $id;
+	}
+
+	private function isCacheable( LinkTarget $title ) {
+		return ( $title->inNamespace( NS_TEMPLATE ) || $title->inNamespace( NS_FILE ) );
+	}
+
+	private function fetchPageRow( IDatabase $db, LinkTarget $nt ) {
+		$fields = self::getSelectFields();
+		if ( $this->isCacheable( $nt ) ) {
+			$fields[] = 'page_touched';
+		}
+
+		return $db->selectRow(
+			'page',
+			$fields,
+			[ 'page_namespace' => $nt->getNamespace(), 'page_title' => $nt->getDBkey() ],
+			__METHOD__
+		);
+	}
+
+	/**
+	 * Purge the link cache for a title
+	 *
+	 * @param LinkTarget $title
+	 * @since 1.28
+	 */
+	public function invalidateTitle( LinkTarget $title ) {
+		if ( $this->isCacheable( $title ) ) {
+			$cache = ObjectCache::getMainWANInstance();
+			$cache->delete(
+				$cache->makeKey( 'page', $title->getNamespace(), sha1( $title->getDBkey() ) )
+			);
+		}
 	}
 
 	/**
