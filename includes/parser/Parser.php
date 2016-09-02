@@ -4621,22 +4621,21 @@ class Parser {
 	 *
 	 * @param string $text The text to preprocess
 	 * @param ParserOptions $options Options
-	 * @param Title|null $title Title object or null to use $wgTitle
+	 * @param Title $title Title object for context
 	 * @return string
 	 */
-	public function transformMsg( $text, $options, $title = null ) {
+	public function transformMsg( $text, $options, $title ) {
 		static $executing = false;
+
+		if ( !$title instanceof Title ) {
+			throw new InvalidArgumentException( '$title must be a Title (probably null)' );
+		}
 
 		# Guard against infinite recursion
 		if ( $executing ) {
 			return $text;
 		}
 		$executing = true;
-
-		if ( !$title ) {
-			global $wgTitle;
-			$title = $wgTitle;
-		}
 
 		$text = $this->preprocess( $text, $title, $options );
 
