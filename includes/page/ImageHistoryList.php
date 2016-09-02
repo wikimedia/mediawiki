@@ -180,7 +180,6 @@ class ImageHistoryList extends ContextSource {
 					[
 						'action' => 'revert',
 						'oldimage' => $img,
-						'wpEditToken' => $user->getEditToken( $img )
 					]
 				);
 			}
