@@ -73,8 +73,8 @@ class UploadStash {
 	// fileprops cache
 	protected $fileProps = [];
 
-	// current user
-	protected $user, $userId, $isLoggedIn;
+	// current user info
+	protected $userId, $isLoggedIn;
 
 	/**
 	 * Represents a temporary filestore, with metadata in the database.
@@ -82,25 +82,15 @@ class UploadStash {
 	 * (should replace it eventually).
 	 *
 	 * @param FileRepo $repo
-	 * @param User $user (default null)
+	 * @param User $user
 	 */
-	public function __construct( FileRepo $repo, $user = null ) {
+	public function __construct( FileRepo $repo, User $user ) {
 		// this might change based on wiki's configuration.
 		$this->repo = $repo;
 
-		// if a user was passed, use it. otherwise, attempt to use the global.
-		// this keeps FileRepo from breaking when it creates an UploadStash object
-		if ( $user ) {
-			$this->user = $user;
-		} else {
-			global $wgUser;
-			$this->user = $wgUser;
-		}
-
-		if ( is_object( $this->user ) ) {
-			$this->userId = $this->user->getId();
-			$this->isLoggedIn = $this->user->isLoggedIn();
-		}
+		// We only need the logged in status and user id.
+		$this->userId = $user->getId();
+		$this->isLoggedIn = $user->isLoggedIn();
 	}
 
 	/**
