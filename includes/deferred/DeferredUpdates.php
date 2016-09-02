@@ -174,6 +174,7 @@ class DeferredUpdates {
 				} catch ( Exception $e ) {
 					// Let other updates have a chance to run if this failed
 					MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+					wfWarn( __METHOD__ . ': ' . $e->getMessage() );
 				}
 			}
 
@@ -238,6 +239,7 @@ class DeferredUpdates {
 				$guiError = $e;
 			}
 			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+			wfWarn( __METHOD__ . ': ' . $e->getMessage() );
 		}
 
 		return $guiError;
