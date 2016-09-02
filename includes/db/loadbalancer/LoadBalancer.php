@@ -1318,6 +1318,18 @@ class LoadBalancer {
 	}
 
 	/**
+	 * Commit all replica DB transactions so as to flush any REPEATABLE-READ or SSI snapshot
+	 *
+	 * @param string $fname Caller name
+	 * @since 1.28
+	 */
+	public function flushReplicaSnapshots( $fname = __METHOD__ ) {
+		$this->forEachOpenReplicaConnection( function ( DatabaseBase $conn ) {
+			$conn->clearSnapshot( __METHOD__ );
+		} );
+	}
+
+	/**
 	 * @return bool Whether a master connection is already open
 	 * @since 1.24
 	 */
@@ -1552,6 +1564,26 @@ class LoadBalancer {
 			if ( isset( $connsByServer[$masterIndex] ) ) {
 				/** @var DatabaseBase $conn */
 				foreach ( $connsByServer[$masterIndex] as $conn ) {
+					$mergedParams = array_merge( [ $conn ], $params );
+					call_user_func_array( $callback, $mergedParams );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Call a function with each open replica DB connection object
+	 * @param callable $callback
+	 * @param array $params
+	 * @since 1.28
+	 */
+	public function forEachOpenReplicaConnection( $callback, array $params = [] ) {
+		foreach ( $this->mConns as $connsByServer ) {
+			foreach ( $connsByServer as $i => $serverConns ) {
+				if ( $i === $this->getWriterIndex() ) {
+					continue; // skip master
+				}
+				foreach ( $serverConns as $conn ) {
 					$mergedParams = array_merge( [ $conn ], $params );
 					call_user_func_array( $callback, $mergedParams );
 				}
