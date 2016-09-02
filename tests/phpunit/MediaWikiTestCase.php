@@ -477,6 +477,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			while ( $this->db->trxLevel() > 0 ) {
 				$this->db->rollback( __METHOD__, 'flush' );
 			}
+			// Check for unsafe queries
+			if ( $this->db->getType() === 'mysql' ) {
+				$this->db->query( "SET sql_mode = 'STRICT_ALL_TABLES'" );
+			}
 		}
 
 		DeferredUpdates::clearPendingUpdates();
@@ -495,7 +499,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	protected function tearDown() {
-		global $wgRequest;
+		global $wgRequest, $wgSQLMode;
 
 		$status = ob_get_status();
 		if ( isset( $status['name'] ) &&
@@ -518,6 +522,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			// Clean up open transactions
 			while ( $this->db->trxLevel() > 0 ) {
 				$this->db->rollback( __METHOD__, 'flush' );
+			}
+			if ( $this->db->getType() === 'mysql' ) {
+				$this->db->query( "SET sql_mode = " . $this->db->addQuotes( $wgSQLMode ) );
 			}
 		}
 
