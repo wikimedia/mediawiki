@@ -340,16 +340,9 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	private static function loadFromConds( $db, $conditions, $flags = 0 ) {
-		$res = self::fetchFromConds( $db, $conditions, $flags );
-		if ( $res ) {
-			$row = $res->fetchObject();
-			if ( $row ) {
-				$ret = new Revision( $row );
-				return $ret;
-			}
-		}
-		$ret = null;
-		return $ret;
+		$row = self::fetchFromConds( $db, $conditions, $flags );
+
+		return $row ? new Revision( $row ) : null;
 	}
 
 	/**
@@ -387,11 +380,11 @@ class Revision implements IDBAccessObject {
 			self::selectPageFields(),
 			self::selectUserFields()
 		);
-		$options = [ 'LIMIT' => 1 ];
+		$options = [];
 		if ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING ) {
 			$options[] = 'FOR UPDATE';
 		}
-		return $db->select(
+		return $db->selectRow(
 			[ 'revision', 'page', 'user' ],
 			$fields,
 			$conditions,
