@@ -135,8 +135,9 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 	}
 
 	public function testGetLinkClasses() {
+		$wanCache = ObjectCache::getMainWANInstance();
 		$titleFormatter = MediaWikiServices::getInstance()->getTitleFormatter();
-		$linkCache = new LinkCache( $titleFormatter );
+		$linkCache = new LinkCache( $titleFormatter, $wanCache );
 		$foobarTitle = new TitleValue( NS_MAIN, 'FooBar' );
 		$redirectTitle = new TitleValue( NS_MAIN, 'Redirect' );
 		$userTitle = new TitleValue( NS_USER, 'Someuser' );
