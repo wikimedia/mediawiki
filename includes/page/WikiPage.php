@@ -2394,6 +2394,10 @@ class WikiPage implements Page, IDBAccessObject {
 		} elseif ( $options['changed'] ) { // bug 50785
 			self::onArticleEdit( $this->mTitle, $revision );
 		}
+
+		ResourceLoaderWikiModule::invalidateModuleCache(
+			$this->mTitle, $options['oldrevision'], $revision, wfWikiID()
+		);
 	}
 
 	/**
@@ -2907,6 +2911,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// unless they actually try to catch exceptions (which is rare).
 
 		// we need to remember the old content so we can use it to generate all deletion updates.
+		$revision = $this->getRevision();
 		try {
 			$content = $this->getContent( Revision::RAW );
 		} catch ( Exception $ex ) {
@@ -3006,7 +3011,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$dbw->endAtomic( __METHOD__ );
 
-		$this->doDeleteUpdates( $id, $content );
+		$this->doDeleteUpdates( $id, $content, $revision );
 
 		Hooks::run( 'ArticleDeleteComplete', [
 			&$wikiPageBeforeDelete,
@@ -3053,11 +3058,12 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Do some database updates after deletion
 	 *
 	 * @param int $id The page_id value of the page being deleted
-	 * @param Content $content Optional page content to be used when determining
+	 * @param Content|null $content Optional page content to be used when determining
 	 *   the required updates. This may be needed because $this->getContent()
 	 *   may already return null when the page proper was deleted.
+	 * @param Revision|null $revision The latest page revision
 	 */
-	public function doDeleteUpdates( $id, Content $content = null ) {
+	public function doDeleteUpdates( $id, Content $content = null, Revision $revision = null ) {
 		try {
 			$countable = $this->isCountable();
 		} catch ( Exception $ex ) {
@@ -3085,6 +3091,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Clear caches
 		WikiPage::onArticleDelete( $this->mTitle );
+		ResourceLoaderWikiModule::invalidateModuleCache(
+			$this->mTitle, $revision, null, wfWikiID()
+		);
 
 		// Reset this object and the Title object
 		$this->loadFromRow( false, self::READ_LATEST );

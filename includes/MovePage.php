@@ -539,8 +539,8 @@ class MovePage {
 			__METHOD__
 		);
 
-		// clean up the old title before reset article id - bug 45348
 		if ( !$redirectContent ) {
+			// Clean up the old title *before* reset article id - bug 45348
 			WikiPage::onArticleDelete( $this->oldTitle );
 		}
 
