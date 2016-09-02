@@ -4613,10 +4613,10 @@ class Parser {
 	 *
 	 * @param string $text The text to preprocess
 	 * @param ParserOptions $options Options
-	 * @param Title|null $title Title object or null to use $wgTitle
+	 * @param Title $title Title object for context
 	 * @return string
 	 */
-	public function transformMsg( $text, $options, $title = null ) {
+	public function transformMsg( $text, $options, Title $title ) {
 		static $executing = false;
 
 		# Guard against infinite recursion
@@ -4624,11 +4624,6 @@ class Parser {
 			return $text;
 		}
 		$executing = true;
-
-		if ( !$title ) {
-			global $wgTitle;
-			$title = $wgTitle;
-		}
 
 		$text = $this->preprocess( $text, $title, $options );
 
