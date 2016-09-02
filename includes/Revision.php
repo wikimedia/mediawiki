@@ -25,52 +25,58 @@ use MediaWiki\Linker\LinkTarget;
  * @todo document
  */
 class Revision implements IDBAccessObject {
+	/** @var int|null */
 	protected $mId;
-
-	/**
-	 * @var int|null
-	 */
+	/** @var int|null */
 	protected $mPage;
+	/** @var string */
 	protected $mUserText;
+	/** @var string */
 	protected $mOrigUserText;
+	/** @var int */
 	protected $mUser;
+	/** @var bool */
 	protected $mMinorEdit;
+	/** @var string */
 	protected $mTimestamp;
+	/** @var int */
 	protected $mDeleted;
+	/** @var int */
 	protected $mSize;
+	/** @var string */
 	protected $mSha1;
+	/** @var int */
 	protected $mParentId;
+	/** @var string */
 	protected $mComment;
+	/** @var string */
 	protected $mText;
+	/** @var int */
 	protected $mTextId;
 
-	/**
-	 * @var stdClass|null
-	 */
+	/** @var stdClass|null */
 	protected $mTextRow;
 
-	/**
-	 * @var null|Title
-	 */
+	/**  @var null|Title */
 	protected $mTitle;
+	/** @var bool */
 	protected $mCurrent;
+	/** @var string */
 	protected $mContentModel;
+	/** @var string */
 	protected $mContentFormat;
 
-	/**
-	 * @var Content|null|bool
-	 */
+	/** @var Content|null|bool */
 	protected $mContent;
-
-	/**
-	 * @var null|ContentHandler
-	 */
+	/** @var null|ContentHandler */
 	protected $mContentHandler;
 
-	/**
-	 * @var int
-	 */
+	/** @var int */
 	protected $mQueryFlags = 0;
+	/** @var bool Used for cached values to reload user text and rev_deleted */
+	protected $mRefreshMutableFields = false;
+	/** @var string Wiki ID; false means the current wiki */
+	protected $mWiki = false;
 
 	// Revision deletion constants
 	const DELETED_TEXT = 1;
@@ -345,6 +351,7 @@ class Revision implements IDBAccessObject {
 			$row = $res->fetchObject();
 			if ( $row ) {
 				$ret = new Revision( $row );
+				$ret->mWiki = $db->getWikiID();
 				return $ret;
 			}
 		}
@@ -878,6 +885,8 @@ class Revision implements IDBAccessObject {
 	 * @return string
 	 */
 	public function getUserText( $audience = self::FOR_PUBLIC, User $user = null ) {
+		$this->loadMutableFields();
+
 		if ( $audience == self::FOR_PUBLIC && $this->isDeleted( self::DELETED_USER ) ) {
 			return '';
 		} elseif ( $audience == self::FOR_THIS_USER && !$this->userCan( self::DELETED_USER, $user ) ) {
@@ -994,7 +1003,11 @@ class Revision implements IDBAccessObject {
 	 * @return bool
 	 */
 	public function isDeleted( $field ) {
-		return ( $this->mDeleted & $field ) == $field;
+		if ( $this->isCurrent() && $field === self::DELETED_TEXT ) {
+			return false; // top revisions cannot have deleted text
+		}
+
+		return ( $this->getVisibility() & $field ) == $field;
 	}
 
 	/**
@@ -1003,6 +1016,8 @@ class Revision implements IDBAccessObject {
 	 * @return int
 	 */
 	public function getVisibility() {
+		$this->loadMutableFields();
+
 		return (int)$this->mDeleted;
 	}
 
@@ -1706,7 +1721,7 @@ class Revision implements IDBAccessObject {
 	 * @return bool
 	 */
 	public function userCan( $field, User $user = null ) {
-		return self::userCanBitfield( $this->mDeleted, $field, $user );
+		return self::userCanBitfield( $this->getVisibility(), $field, $user );
 	}
 
 	/**
@@ -1849,5 +1864,59 @@ class Revision implements IDBAccessObject {
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * Load a revision based on a known page ID and current revision ID from the DB
+	 *
+	 * This method allows for the use of caching, though accessing anything that normally
+	 * requires permission checks (aside from the text) will trigger a small DB lookup
+	 *
+	 * @param IDatabase $db
+	 * @param int $pageId Page ID
+	 * @param int $revId Known current revision of this page
+	 * @return Revision|bool Returns false if missing
+	 * @since 1.28
+	 */
+	public static function newCurrentRevision( IDatabase $db, $pageId, $revId ) {
+		$cache = ObjectCache::getMainWANInstance();
+		return $cache->getWithSetCallback(
+			// Page/rev IDs passed in from DB to reflect history merges
+			$cache->makeGlobalKey( 'revision', $db->getWikiID(), $pageId, $revId ),
+			$cache::TTL_WEEK,
+			function ( $curValue, &$ttl, array &$setOpts ) use ( $db, $pageId, $revId ) {
+				$setOpts += Database::getCacheSetOptions( $db );
+
+				$rev = Revision::loadFromPageId( $db, $pageId, $revId );
+				// Reflect revision deletion and user renames
+				if ( $rev ) {
+					$rev->mRefreshMutableFields = true;
+				}
+
+				return $rev ?: false; // don't cache negatives
+			}
+		);
+	}
+
+	/**
+	 * For cached revisions, make sure the user name and rev_deleted is up-to-date
+	 */
+	private function loadMutableFields() {
+		if ( !$this->mRefreshMutableFields ) {
+			return; // not needed
+		}
+
+		$this->mRefreshMutableFields = false;
+		$dbr = wfGetLB( $this->mWiki )->getConnectionRef( DB_SLAVE, [], $this->mWiki );
+		$row = $dbr->selectRow(
+			[ 'revision', 'user' ],
+			[ 'rev_deleted', 'user_name' ],
+			[ 'rev_id' => $this->mId, 'user_id = rev_user' ],
+			__METHOD__
+		);
+		if ( $row ) { // update values
+			$this->mDeleted = (int)$row->rev_deleted;
+			$this->mUserText = $row->user_name;
+		}
 	}
 }
