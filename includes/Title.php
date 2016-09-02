@@ -4385,6 +4385,7 @@ class Title implements LinkTarget {
 						$conds + [ 'page_touched < ' . $dbw->addQuotes( $dbTimestamp ) ],
 						$fname
 					);
+					MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $this );
 				}
 			),
 			DeferredUpdates::PRESEND
