@@ -1235,20 +1235,20 @@ interface IDatabase {
 	public function wasReadOnlyError();
 
 	/**
-	 * Wait for the slave to catch up to a given master position
+	 * Wait for the replica DB to catch up to a given master position
 	 *
 	 * @param DBMasterPos $pos
 	 * @param int $timeout The maximum number of seconds to wait for synchronisation
-	 * @return int|null Zero if the slave was past that position already,
+	 * @return int|null Zero if the replica DB was past that position already,
 	 *   greater than zero if we waited for some period of time, less than
 	 *   zero if it timed out, and null on error
 	 */
 	public function masterPosWait( DBMasterPos $pos, $timeout );
 
 	/**
-	 * Get the replication position of this slave
+	 * Get the replication position of this replica DB
 	 *
-	 * @return DBMasterPos|bool False if this is not a slave.
+	 * @return DBMasterPos|bool False if this is not a replica DB.
 	 */
 	public function getSlavePos();
 
@@ -1515,7 +1515,7 @@ interface IDatabase {
 	public function ping( &$rtt = null );
 
 	/**
-	 * Get slave lag. Currently supported only by MySQL.
+	 * Get replica DB lag. Currently supported only by MySQL.
 	 *
 	 * Note that this function will generate a fatal error on many
 	 * installations. Most callers should use LoadBalancer::safeGetLag()
@@ -1526,7 +1526,7 @@ interface IDatabase {
 	public function getLag();
 
 	/**
-	 * Get the slave lag when the current transaction started
+	 * Get the replica DB lag when the current transaction started
 	 * or a general lag estimate if not transaction is active
 	 *
 	 * This is useful when transactions might use snapshot isolation

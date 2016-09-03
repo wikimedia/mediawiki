@@ -314,7 +314,7 @@ class LikeMatch {
 }
 
 /**
- * An object representing a master or slave position in a replicated setup.
+ * An object representing a master or replica DB position in a replicated setup.
  *
  * The implementation details of this opaque type are up to the database subclass.
  */
