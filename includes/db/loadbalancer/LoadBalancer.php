@@ -36,9 +36,9 @@ class LoadBalancer {
 	private $mLoads;
 	/** @var array[] Map of (group => server index => weight) */
 	private $mGroupLoads;
-	/** @var bool Whether to disregard slave lag as a factor in slave selection */
+	/** @var bool Whether to disregard replica DB lag as a factor in replica DB selection */
 	private $mAllowLagged;
-	/** @var integer Seconds to spend waiting on slave lag to resolve */
+	/** @var integer Seconds to spend waiting on replica DB lag to resolve */
 	private $mWaitTimeout;
 	/** @var array LBFactory information */
 	private $mParentInfo;
@@ -56,13 +56,13 @@ class LoadBalancer {
 
 	/** @var bool|DatabaseBase Database connection that caused a problem */
 	private $mErrorConnection;
-	/** @var integer The generic (not query grouped) slave index (of $mServers) */
+	/** @var integer The generic (not query grouped) replica DB index (of $mServers) */
 	private $mReadIndex;
 	/** @var bool|DBMasterPos False if not set */
 	private $mWaitForPos;
-	/** @var bool Whether the generic reader fell back to a lagged slave */
+	/** @var bool Whether the generic reader fell back to a lagged replica DB */
 	private $laggedSlaveMode = false;
-	/** @var bool Whether the generic reader fell back to a lagged slave */
+	/** @var bool Whether the generic reader fell back to a lagged replica DB */
 	private $slavesDownMode = false;
 	/** @var string The last DB selection or connection error */
 	private $mLastError = 'Unknown error';
@@ -79,7 +79,7 @@ class LoadBalancer {
 	const CONN_HELD_WARN_THRESHOLD = 10;
 	/** @var integer Default 'max lag' when unspecified */
 	const MAX_LAG = 10;
-	/** @var integer Max time to wait for a slave to catch up (e.g. ChronologyProtector) */
+	/** @var integer Max time to wait for a replica DB to catch up (e.g. ChronologyProtector) */
 	const POS_WAIT_TIMEOUT = 10;
 	/** @var integer Seconds to cache master server read-only status */
 	const TTL_CACHE_READONLY = 5;
@@ -211,16 +211,16 @@ class LoadBalancer {
 			}
 		}
 
-		# Find out if all the slaves with non-zero load are lagged
+		# Find out if all the replica DBs with non-zero load are lagged
 		$sum = 0;
 		foreach ( $loads as $load ) {
 			$sum += $load;
 		}
 		if ( $sum == 0 ) {
-			# No appropriate DB servers except maybe the master and some slaves with zero load
+			# No appropriate DB servers except maybe the master and some replica DBs with zero load
 			# Do NOT use the master
 			# Instead, this function will return false, triggering read-only mode,
-			# and a lagged slave will be used instead.
+			# and a lagged replica DB will be used instead.
 			return false;
 		}
 
@@ -233,7 +233,7 @@ class LoadBalancer {
 	}
 
 	/**
-	 * Get the index of the reader connection, which may be a slave
+	 * Get the index of the reader connection, which may be a replica DB
 	 * This takes into account load ratios and lag times. It should
 	 * always return a consistent index during a given invocation
 	 *
@@ -306,8 +306,8 @@ class LoadBalancer {
 					$i = $this->getRandomNonLagged( $currentLoads, $wiki );
 				}
 				if ( $i === false && count( $currentLoads ) != 0 ) {
-					# All slaves lagged. Switch to read-only mode
-					wfDebugLog( 'replication', "All slaves lagged. Switch to read-only mode" );
+					# All replica DBs lagged. Switch to read-only mode
+					wfDebugLog( 'replication', "All replica DBs lagged. Switch to read-only mode" );
 					$i = ArrayUtils::pickRandom( $currentLoads );
 					$laggedSlaveMode = true;
 				}
@@ -350,7 +350,7 @@ class LoadBalancer {
 		}
 
 		if ( $i !== false ) {
-			# Slave connection successful
+			# replica DB connection successful
 			# Wait for the session master pos for a short time
 			if ( $this->mWaitForPos && $i > 0 ) {
 				if ( !$this->doWait( $i ) ) {
@@ -359,7 +359,7 @@ class LoadBalancer {
 			}
 			if ( $this->mReadIndex <= 0 && $this->mLoads[$i] > 0 && $group === false ) {
 				$this->mReadIndex = $i;
-				# Record if the generic reader index is in "lagged slave" mode
+				# Record if the generic reader index is in "lagged replica DB" mode
 				if ( $laggedSlaveMode ) {
 					$this->laggedSlaveMode = true;
 				}
@@ -391,7 +391,7 @@ class LoadBalancer {
 	}
 
 	/**
-	 * Set the master wait position and wait for a "generic" slave to catch up to it
+	 * Set the master wait position and wait for a "generic" replica DB to catch up to it
 	 *
 	 * This can be used a faster proxy for waitForAll()
 	 *
@@ -405,9 +405,9 @@ class LoadBalancer {
 
 		$i = $this->mReadIndex;
 		if ( $i <= 0 ) {
-			// Pick a generic slave if there isn't one yet
+			// Pick a generic replica DB if there isn't one yet
 			$readLoads = $this->mLoads;
-			unset( $readLoads[$this->getWriterIndex()] ); // slaves only
+			unset( $readLoads[$this->getWriterIndex()] ); // replica DBs only
 			$readLoads = array_filter( $readLoads ); // with non-zero load
 			$i = ArrayUtils::pickRandom( $readLoads );
 		}
@@ -422,7 +422,7 @@ class LoadBalancer {
 	}
 
 	/**
-	 * Set the master wait position and wait for ALL slaves to catch up to it
+	 * Set the master wait position and wait for ALL replica DBs to catch up to it
 	 * @param DBMasterPos $pos
 	 * @param int $timeout Max seconds to wait; default is mWaitTimeout
 	 * @return bool Success (able to connect and no timeouts reached)
@@ -459,7 +459,7 @@ class LoadBalancer {
 	}
 
 	/**
-	 * Wait for a given slave to catch up to the master pos stored in $this
+	 * Wait for a given replica DB to catch up to the master pos stored in $this
 	 * @param int $index Server index
 	 * @param bool $open Check the server even if a new connection has to be made
 	 * @param int $timeout Max seconds to wait; default is mWaitTimeout
@@ -475,7 +475,7 @@ class LoadBalancer {
 		$knownReachedPos = $this->srvCache->get( $key );
 		if ( $knownReachedPos && $knownReachedPos->hasReached( $this->mWaitForPos ) ) {
 			wfDebugLog( 'replication', __METHOD__ .
-				": slave $server known to be caught up (pos >= $knownReachedPos).\n" );
+				": replica DB $server known to be caught up (pos >= $knownReachedPos).\n" );
 			return true;
 		}
 
@@ -499,12 +499,12 @@ class LoadBalancer {
 			}
 		}
 
-		wfDebugLog( 'replication', __METHOD__ . ": Waiting for slave $server to catch up...\n" );
+		wfDebugLog( 'replication', __METHOD__ . ": Waiting for replica DB $server to catch up...\n" );
 		$timeout = $timeout ?: $this->mWaitTimeout;
 		$result = $conn->masterPosWait( $this->mWaitForPos, $timeout );
 
 		if ( $result == -1 || is_null( $result ) ) {
-			// Timed out waiting for slave, use master instead
+			// Timed out waiting for replica DB, use master instead
 			$msg = __METHOD__ . ": Timed out waiting on $server pos {$this->mWaitForPos}";
 			wfDebugLog( 'replication', "$msg\n" );
 			wfDebugLog( 'DBPerformance', "$msg:\n" . wfBacktrace( true ) );
@@ -573,7 +573,7 @@ class LoadBalancer {
 				: $this->getReaderIndex( false, $wiki );
 			# Couldn't find a working server in getReaderIndex()?
 			if ( $i === false ) {
-				$this->mLastError = 'No working slave server: ' . $this->mLastError;
+				$this->mLastError = 'No working replica DB server: ' . $this->mLastError;
 
 				return $this->reportConnectionError();
 			}
@@ -996,8 +996,8 @@ class LoadBalancer {
 	 * @return mixed
 	 */
 	public function getMasterPos() {
-		# If this entire request was served from a slave without opening a connection to the
-		# master (however unlikely that may be), then we can fetch the position from the slave.
+		# If this entire request was served from a replica DB without opening a connection to the
+		# master (however unlikely that may be), then we can fetch the position from the replica DB.
 		$masterConn = $this->getAnyOpenConnection( 0 );
 		if ( !$masterConn ) {
 			$serverCount = count( $this->mServers );
@@ -1468,10 +1468,10 @@ class LoadBalancer {
 		} elseif ( $this->getLaggedSlaveMode( $wiki ) ) {
 			if ( $this->slavesDownMode ) {
 				return 'The database has been automatically locked ' .
-					'until the slave database servers become available';
+					'until the replica database servers become available';
 			} else {
 				return 'The database has been automatically locked ' .
-					'while the slave database servers catch up to the master.';
+					'while the replica database servers catch up to the master.';
 			}
 		} elseif ( $this->masterRunningReadOnly( $wiki, $conn ) ) {
 			return 'The database master is running in read-only mode.';
@@ -1591,10 +1591,10 @@ class LoadBalancer {
 	}
 
 	/**
-	 * Get the hostname and lag time of the most-lagged slave
+	 * Get the hostname and lag time of the most-lagged replica DB
 	 *
 	 * This is useful for maintenance scripts that need to throttle their updates.
-	 * May attempt to open connections to slaves on the default DB. If there is
+	 * May attempt to open connections to replica DBs on the default DB. If there is
 	 * no lag, the maximum lag will be reported as -1.
 	 *
 	 * @param bool|string $wiki Wiki ID, or false for the default database
@@ -1663,11 +1663,11 @@ class LoadBalancer {
 	}
 
 	/**
-	 * Wait for a slave DB to reach a specified master position
+	 * Wait for a replica DB to reach a specified master position
 	 *
 	 * This will connect to the master to get an accurate position if $pos is not given
 	 *
-	 * @param IDatabase $conn Slave DB
+	 * @param IDatabase $conn Replica DB
 	 * @param DBMasterPos|bool $pos Master position; default: current position
 	 * @param integer $timeout Timeout in seconds
 	 * @return bool Success
@@ -1675,7 +1675,7 @@ class LoadBalancer {
 	 */
 	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = 10 ) {
 		if ( $this->getServerCount() == 1 || !$conn->getLBInfo( 'slave' ) ) {
-			return true; // server is not a slave DB
+			return true; // server is not a replica DB
 		}
 
 		$pos = $pos ?: $this->getConnection( DB_MASTER )->getMasterPos();

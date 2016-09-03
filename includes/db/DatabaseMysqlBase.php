@@ -32,9 +32,9 @@
 abstract class DatabaseMysqlBase extends Database {
 	/** @var MysqlMasterPos */
 	protected $lastKnownSlavePos;
-	/** @var string Method to detect slave lag */
+	/** @var string Method to detect replica DB lag */
 	protected $lagDetectionMethod;
-	/** @var array Method to detect slave lag */
+	/** @var array Method to detect replica DB lag */
 	protected $lagDetectionOptions = [];
 	/** @var bool bool Whether to use GTID methods */
 	protected $useGTIDs = false;
@@ -695,7 +695,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$key = $cache->makeGlobalKey(
 			'mysql',
 			'master-info',
-			// Using one key for all cluster slaves is preferable
+			// Using one key for all cluster replica DBs is preferable
 			$this->getLBInfo( 'clusterMasterHost' ) ?: $this->getServer()
 		);
 
@@ -797,7 +797,7 @@ abstract class DatabaseMysqlBase extends Database {
 		if ( $status === null ) {
 			// T126436: jobs programmed to wait on master positions might be referencing binlogs
 			// with an old master hostname. Such calls make MASTER_POS_WAIT() return null. Try
-			// to detect this and treat the slave as having reached the position; a proper master
+			// to detect this and treat the replica DB as having reached the position; a proper master
 			// switchover already requires that the new master be caught up before the switch.
 			$slavePos = $this->getSlavePos();
 			if ( $slavePos && !$slavePos->channelsMatch( $pos ) ) {

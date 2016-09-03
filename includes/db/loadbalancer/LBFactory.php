@@ -261,7 +261,7 @@ abstract class LBFactory implements DestructibleService {
 	/**
 	 * Commit on all connections. Done for two reasons:
 	 * 1. To commit changes to the masters.
-	 * 2. To release the snapshot on all connections, master and slave.
+	 * 2. To release the snapshot on all connections, master and replica DB.
 	 * @param string $fname Caller name
 	 * @param array $options Options map:
 	 *   - maxWriteDuration: abort if more than this much time was spent in write queries
@@ -356,7 +356,7 @@ abstract class LBFactory implements DestructibleService {
 	}
 
 	/**
-	 * Detemine if any lagged slave connection was used
+	 * Detemine if any lagged replica DB connection was used
 	 * @since 1.27
 	 * @return bool
 	 */
@@ -383,10 +383,10 @@ abstract class LBFactory implements DestructibleService {
 	}
 
 	/**
-	 * Waits for the slave DBs to catch up to the current master position
+	 * Waits for the replica DBs to catch up to the current master position
 	 *
 	 * Use this when updating very large numbers of rows, as in maintenance scripts,
-	 * to avoid causing too much lag. Of course, this is a no-op if there are no slaves.
+	 * to avoid causing too much lag. Of course, this is a no-op if there are no replica DBs.
 	 *
 	 * By default this waits on all DB clusters actually used in this request.
 	 * This makes sense when lag being waiting on is caused by the code that does this check.
@@ -440,7 +440,7 @@ abstract class LBFactory implements DestructibleService {
 		$masterPositions = array_fill( 0, count( $lbs ), false );
 		foreach ( $lbs as $i => $lb ) {
 			if ( $lb->getServerCount() <= 1 ) {
-				// Bug 27975 - Don't try to wait for slaves if there are none
+				// Bug 27975 - Don't try to wait for replica DBs if there are none
 				// Prevents permission error when getting master position
 				continue;
 			} elseif ( $opts['ifWritesSince']
@@ -464,7 +464,7 @@ abstract class LBFactory implements DestructibleService {
 
 		if ( $failed ) {
 			throw new DBReplicationWaitError(
-				"Could not wait for slaves to catch up to " .
+				"Could not wait for replica DBs to catch up to " .
 				implode( ', ', $failed )
 			);
 		}
@@ -570,7 +570,7 @@ abstract class LBFactory implements DestructibleService {
 		// Write them to the stash
 		$unsavedPositions = $cp->shutdown();
 		// If the positions failed to write to the stash, at least wait on local datacenter
-		// slaves to catch up before responding. Even if there are several DCs, this increases
+		// replica DBs to catch up before responding. Even if there are several DCs, this increases
 		// the chance that the user will see their own changes immediately afterwards. As long
 		// as the sticky DC cookie applies (same domain), this is not even an issue.
 		$this->forEachLB( function ( LoadBalancer $lb ) use ( $unsavedPositions ) {
