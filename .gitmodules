@@ -502,3 +502,7 @@
 	path = extensions/CookieWarning
 	url = https://github.com/wikimedia/mediawiki-extensions-CookieWarning.git
 	branch = master
+[submodule "extensions/FancyBoxThumbs"]
+	path = extensions/FancyBoxThumbs
+	url = https://github.com/gilluminate/FancyBoxThumbs
+	branch = REL1_27
