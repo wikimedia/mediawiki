@@ -970,6 +970,65 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
+	 * Locally set a key to expire soon if it is stale based on $purgeTimestamp
+	 *
+	 * This sets stale keys' time-to-live at HOLDOFF_TTL seconds, which both avoids
+	 * broadcasting in mcrouter setups and also avoids races with new tombstones.
+	 *
+	 * @param string $key Cache key
+	 * @param int $purgeTimestamp UNIX timestamp of purge
+	 * @param bool &$isStale Whether the key is stale
+	 * @return bool Success
+	 * @since 1.28
+	 */
+	public function reap( $key, $purgeTimestamp, &$isStale = false ) {
+		$minAsOf = $purgeTimestamp + self::HOLDOFF_TTL;
+		$wrapped = $this->cache->get( self::VALUE_KEY_PREFIX . $key );
+		if ( is_array( $wrapped ) && $wrapped[self::FLD_TIME] < $minAsOf ) {
+			$isStale = true;
+			$this->logger->warning( "Reaping stale value key '$key'." );
+			$ttlReap = self::HOLDOFF_TTL; // avoids races with tombstone creation
+			$ok = $this->cache->changeTTL( self::VALUE_KEY_PREFIX . $key, $ttlReap );
+			if ( !$ok ) {
+				$this->logger->error( "Could not complete reap of key '$key'." );
+			}
+
+			return $ok;
+		}
+
+		$isStale = false;
+
+		return true;
+	}
+
+	/**
+	 * Locally set a "check" key to expire soon if it is stale based on $purgeTimestamp
+	 *
+	 * @param string $key Cache key
+	 * @param int $purgeTimestamp UNIX timestamp of purge
+	 * @param bool &$isStale Whether the key is stale
+	 * @return bool Success
+	 * @since 1.28
+	 */
+	public function reapCheckKey( $key, $purgeTimestamp, &$isStale = false ) {
+		$purge = $this->parsePurgeValue( $this->cache->get( self::TIME_KEY_PREFIX . $key ) );
+		if ( $purge && $purge[self::FLD_TIME] < $purgeTimestamp ) {
+			$isStale = true;
+			$this->logger->warning( "Reaping stale check key '$key'." );
+			$ok = $this->cache->changeTTL( self::TIME_KEY_PREFIX . $key, 1 );
+			if ( !$ok ) {
+				$this->logger->error( "Could not complete reap of check key '$key'." );
+			}
+
+			return $ok;
+		}
+
+		$isStale = false;
+
+		return false;
+	}
+
+	/**
 	 * @see BagOStuff::makeKey()
 	 * @param string ... Key component
 	 * @return string
