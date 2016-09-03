@@ -3684,4 +3684,15 @@ class WikiPage implements Page, IDBAccessObject {
 		Hooks::run( 'WikiPageDeletionUpdates', [ $this, $content, &$updates ] );
 		return $updates;
 	}
+
+	/**
+	 * @param WANObjectCache $cache
+	 * @return string[]
+	 * @since 1.28
+	 */
+	public function getMutableCacheKeys( WANObjectCache $cache ) {
+		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
+
+		return $linkCache->getMutableCacheKeys( $cache, $this->getTitle()->getTitleValue() );
+	}
 }
