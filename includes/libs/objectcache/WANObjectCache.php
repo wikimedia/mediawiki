@@ -970,6 +970,38 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
+	 * Locally destroy any value or "check" key $key if stale based on $purgeTimestamp
+	 *
+	 * @param string $key Cache key
+	 * @param int $purgeTimestamp UNIX timestamp of purge
+	 * @return bool Success
+	 * @since 1.28
+	 */
+	public function reap( $key, $purgeTimestamp ) {
+		$ok = 1;
+
+		$minAsOf = $purgeTimestamp + self::HOLDOFF_TTL;
+		$wrapped = $this->cache->get( self::VALUE_KEY_PREFIX . $key );
+		if ( is_array( $wrapped ) && $wrapped[self::FLD_TIME] < $minAsOf ) {
+			$this->logger->warning( "Reaping stale value key '$key'." );
+			$ttlReap = self::HOLDOFF_TTL; // avoids races with tombstone creation
+			$ok &= $this->cache->changeTTL( self::VALUE_KEY_PREFIX . $key, $ttlReap );
+		}
+
+		$purge = $this->parsePurgeValue( $this->cache->get( self::TIME_KEY_PREFIX . $key ) );
+		if ( $purge && $purge[self::FLD_TIME] < $purgeTimestamp ) {
+			$this->logger->warning( "Reaping stale check key '$key'." );
+			$ok &= $this->cache->changeTTL( self::TIME_KEY_PREFIX . $key, 1 );
+		}
+
+		if ( !$ok ) {
+			$this->logger->error( "Could not complete reap of key '$key'." );
+		}
+
+		return (bool)$ok;
+	}
+
+	/**
 	 * @see BagOStuff::makeKey()
 	 * @param string ... Key component
 	 * @return string
