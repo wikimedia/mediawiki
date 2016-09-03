@@ -31,7 +31,7 @@
  */
 abstract class DatabaseMysqlBase extends Database {
 	/** @var MysqlMasterPos */
-	protected $lastKnownSlavePos;
+	protected $lastKnownReplicaPos;
 	/** @var string Method to detect replica DB lag */
 	protected $lagDetectionMethod;
 	/** @var array Method to detect replica DB lag */
@@ -771,7 +771,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 		if ( $this->getLBInfo( 'is static' ) === true ) {
 			return 0; // this is a copy of a read-only dataset with no master DB
-		} elseif ( $this->lastKnownSlavePos && $this->lastKnownSlavePos->hasReached( $pos ) ) {
+		} elseif ( $this->lastKnownReplicaPos && $this->lastKnownReplicaPos->hasReached( $pos ) ) {
 			return 0; // already reached this point for sure
 		}
 
@@ -799,14 +799,14 @@ abstract class DatabaseMysqlBase extends Database {
 			// with an old master hostname. Such calls make MASTER_POS_WAIT() return null. Try
 			// to detect this and treat the replica DB as having reached the position; a proper master
 			// switchover already requires that the new master be caught up before the switch.
-			$slavePos = $this->getSlavePos();
-			if ( $slavePos && !$slavePos->channelsMatch( $pos ) ) {
-				$this->lastKnownSlavePos = $slavePos;
+			$replicationPos = $this->getSlavePos();
+			if ( $replicationPos && !$replicationPos->channelsMatch( $pos ) ) {
+				$this->lastKnownReplicaPos = $replicationPos;
 				$status = 0;
 			}
 		} elseif ( $status >= 0 ) {
 			// Remember that this position was reached to save queries next time
-			$this->lastKnownSlavePos = $pos;
+			$this->lastKnownReplicaPos = $pos;
 		}
 
 		return $status;
