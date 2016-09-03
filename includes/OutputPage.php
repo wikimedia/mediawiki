@@ -2303,7 +2303,6 @@ class OutputPage extends ContextSource {
 			// Hook that allows last minute changes to the output page, e.g.
 			// adding of CSS or Javascript by extensions.
 			Hooks::run( 'BeforePageDisplay', [ &$this, &$sk ] );
-			$this->getSkin()->setupSkinUserCss( $this );
 
 			try {
 				$sk->outputPage();
@@ -2675,6 +2674,7 @@ class OutputPage extends ContextSource {
 				'user.styles',
 				'user.cssprefs',
 			] );
+			$this->getSkin()->setupSkinUserCss( $this );
 
 			// Prepare exempt modules for buildExemptModules()
 			$exemptGroups = [ 'site' => [], 'noscript' => [], 'private' => [], 'user' => [] ];
