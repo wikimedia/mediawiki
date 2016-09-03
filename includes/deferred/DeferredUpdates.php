@@ -221,9 +221,10 @@ class DeferredUpdates {
 	private static function runUpdate( DeferrableUpdate $update, LBFactory $lbFactory, $stage ) {
 		$guiError = null;
 		try {
-			$lbFactory->beginMasterChanges( __METHOD__ );
+			$fnameTrxOwner = get_class( $update ) . '::doUpdate';
+			$lbFactory->beginMasterChanges( $fnameTrxOwner );
 			$update->doUpdate();
-			$lbFactory->commitMasterChanges( __METHOD__ );
+			$lbFactory->commitMasterChanges( $fnameTrxOwner );
 		} catch ( Exception $e ) {
 			// Reporting GUI exceptions does not work post-send
 			if ( $e instanceof ErrorPageError && $stage === self::PRESEND ) {
