@@ -2908,7 +2908,7 @@ abstract class DatabaseBase implements IDatabase {
 		$this->mTrxWriteAdjQueryCount = 0;
 		$this->mTrxWriteCallers = [];
 		// First SELECT after BEGIN will establish the snapshot in REPEATABLE-READ.
-		// Get an estimate of the slave lag before then, treating estimate staleness
+		// Get an estimate of the replica DB lag before then, treating estimate staleness
 		// as lag itself just to be safe
 		$status = $this->getApproximateLagStatus();
 		$this->mTrxSlaveLag = $status['lag'] + ( microtime( true ) - $status['since'] );
@@ -3194,7 +3194,7 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	/**
-	 * Get the slave lag when the current transaction started
+	 * Get the replica DB lag when the current transaction started
 	 *
 	 * This is useful when transactions might use snapshot isolation
 	 * (e.g. REPEATABLE-READ in innodb), so the "real" lag of that data
@@ -3211,7 +3211,7 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	/**
-	 * Get a slave lag estimate for this server
+	 * Get a replica DB lag estimate for this server
 	 *
 	 * @return array ('lag': seconds or false on error, 'since': UNIX timestamp of estimate)
 	 * @since 1.27

@@ -79,9 +79,9 @@ class ChronologyProtector {
 	 * Initialise a LoadBalancer to give it appropriate chronology protection.
 	 *
 	 * If the stash has a previous master position recorded, this will try to
-	 * make sure that the next query to a slave of that master will see changes up
+	 * make sure that the next query to a replica DB of that master will see changes up
 	 * to that position by delaying execution. The delay may timeout and allow stale
-	 * data if no non-lagged slaves are available.
+	 * data if no non-lagged replica DBs are available.
 	 *
 	 * @param LoadBalancer $lb
 	 * @return void
