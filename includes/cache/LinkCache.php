@@ -278,6 +278,20 @@ class LinkCache {
 		return $id;
 	}
 
+	/**
+	 * @param WANObjectCache $cache
+	 * @param TitleValue $t
+	 * @return string[]
+	 * @since 1.28
+	 */
+	public function getMutableCacheKeys( WANObjectCache $cache, TitleValue $t ) {
+		if ( $this->isCacheable( $t ) ) {
+			return [ $cache->makeKey( 'page', $t->getNamespace(), sha1( $t->getDBkey() ) ) ];
+		}
+
+		return [];
+	}
+
 	private function isCacheable( LinkTarget $title ) {
 		return ( $title->inNamespace( NS_TEMPLATE ) || $title->inNamespace( NS_FILE ) );
 	}

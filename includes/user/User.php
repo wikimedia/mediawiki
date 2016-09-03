@@ -463,6 +463,17 @@ class User implements IDBAccessObject {
 	}
 
 	/**
+	 * @param WANObjectCache $cache
+	 * @return string[]
+	 * @since 1.28
+	 */
+	public function getMutableCacheKeys( WANObjectCache $cache ) {
+		$id = $this->getId();
+
+		return $id ? [ $this->getCacheKey( $cache ) ] : [];
+	}
+
+	/**
 	 * Load user data from shared cache, given mId has already been set.
 	 *
 	 * @return bool True
