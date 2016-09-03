@@ -284,7 +284,6 @@ class LoadBalancer {
 
 		# No server found yet
 		$i = false;
-		$conn = false;
 		# First try quickly looking through the available servers for a server that
 		# meets our criteria
 		$currentLoads = $nonErrorLoads;
@@ -353,9 +352,7 @@ class LoadBalancer {
 			# Replica DB connection successful.
 			# Wait for the session master pos for a short time.
 			if ( $this->mWaitForPos && $i > 0 ) {
-				if ( !$this->doWait( $i ) ) {
-					$this->mServers[$i]['slave pos'] = $conn->getSlavePos();
-				}
+				$this->doWait( $i );
 			}
 			if ( $this->mReadIndex <= 0 && $this->mLoads[$i] > 0 && $group === false ) {
 				$this->mReadIndex = $i;
@@ -384,7 +381,6 @@ class LoadBalancer {
 
 		if ( $i > 0 ) {
 			if ( !$this->doWait( $i ) ) {
-				$this->mServers[$i]['slave pos'] = $this->getAnyOpenConnection( $i )->getSlavePos();
 				$this->laggedReplicaMode = true;
 			}
 		}
