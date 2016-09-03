@@ -77,6 +77,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$this->webOutput( $rows, $opts );
 
 		$rows->free();
+
+		// Clean up any bad page entries for titles showing up in RC
+		DeferredUpdates::addUpdate( new WANCacheReapUpdate( $this->getDB() ) );
 	}
 
 	/**
