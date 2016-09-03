@@ -970,6 +970,37 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
+	 * Locally destroy any value or "check" key $key if older than $cutoffTime
+	 *
+	 * @param string $key Cache key
+	 * @param int $cutoffTime UNIX timestamp
+	 * @return bool Success
+	 * @since 1.28
+	 */
+	public function reap( $key, $cutoffTime ) {
+		$ok = true;
+
+		$wrapped = $this->cache->get( self::VALUE_KEY_PREFIX . $key );
+		if ( is_array( $wrapped ) && $wrapped[self::FLD_TIME] < $cutoffTime ) {
+			$this->logger->warning( "Reaping bad value key '$key'." );
+			$ok = $this->cache->changeTTL( self::VALUE_KEY_PREFIX . $key, 1 ) && $ok;
+		}
+
+		$rawValue = $this->cache->get( self::TIME_KEY_PREFIX . $key );
+		$purgeValue = $this->parsePurgeValue( $rawValue );
+		if ( $purgeValue && $purgeValue[self::FLD_TIME] < $cutoffTime ) {
+			$this->logger->warning( "Reaping bad value key '$key'." );
+			$ok = $this->cache->changeTTL( self::TIME_KEY_PREFIX . $key, 1 ) && $ok;
+		}
+
+		if ( !$ok ) {
+			$this->logger->error( "Could not complete reap of key '$key'." );
+		}
+
+		return $ok;
+	}
+
+	/**
 	 * @see BagOStuff::makeKey()
 	 * @param string ... Key component
 	 * @return string
