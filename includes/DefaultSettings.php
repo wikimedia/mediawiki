@@ -2343,6 +2343,19 @@ $wgWANObjectCaches = [
 ];
 
 /**
+ * Verify and enforce WAN cache purges using reliable DB sources as streams.
+ *
+ * These secondary cache purges are de-duplicated via simple cache mutexes.
+ * This improves consistency when cache purges are lost, which becomes more likely
+ * as more cache servers are added or if there are multiple datacenters. Only keys
+ * related to important mutable content will be checked.
+ *
+ * @var bool
+ * @since 1.29
+ */
+$wgEnableWANCacheReaper = false;
+
+/**
  * Main object stash type. This should be a fast storage system for storing
  * lightweight data like hit counters and user activity. Sites with multiple
  * data-centers should have this use a store that replicates all writes. The
