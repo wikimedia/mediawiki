@@ -2849,23 +2849,6 @@ class Title implements LinkTarget {
 	}
 
 	/**
-	 * Loads a string into mRestrictions array
-	 *
-	 * @param ResultWrapper $res Resource restrictions as an SQL result.
-	 * @param string $oldFashionedRestrictions Comma-separated list of page
-	 *        restrictions from page table (pre 1.10)
-	 */
-	private function loadRestrictionsFromResultWrapper( $res, $oldFashionedRestrictions = null ) {
-		$rows = [];
-
-		foreach ( $res as $row ) {
-			$rows[] = $row;
-		}
-
-		$this->loadRestrictionsFromRows( $rows, $oldFashionedRestrictions );
-	}
-
-	/**
 	 * Compiles list of active page restrictions from both page table (pre 1.10)
 	 * and page_restrictions table for this existing page.
 	 * Public for usage by LiquidThreads.
@@ -2948,36 +2931,53 @@ class Title implements LinkTarget {
 	 *   restrictions from page table (pre 1.10)
 	 */
 	public function loadRestrictions( $oldFashionedRestrictions = null ) {
-		if ( !$this->mRestrictionsLoaded ) {
-			$dbr = wfGetDB( DB_SLAVE );
-			if ( $this->exists() ) {
-				$res = $dbr->select(
-					'page_restrictions',
-					[ 'pr_type', 'pr_expiry', 'pr_level', 'pr_cascade' ],
-					[ 'pr_page' => $this->getArticleID() ],
-					__METHOD__
-				);
+		if ( $this->mRestrictionsLoaded ) {
+			return;
+		}
 
-				$this->loadRestrictionsFromResultWrapper( $res, $oldFashionedRestrictions );
-			} else {
-				$title_protection = $this->getTitleProtection();
+		$dbr = wfGetDB( DB_SLAVE );
 
-				if ( $title_protection ) {
-					$now = wfTimestampNow();
-					$expiry = $dbr->decodeExpiry( $title_protection['expiry'] );
+		$id = $this->getArticleID();
+		if ( $id ) {
+			$cache = ObjectCache::getMainWANInstance();
+			$rows = $cache->getWithSetCallback(
+				// Page protections always leave a null edit
+				$cache->makeKey( 'page-restrictions', $id, $this->getLatestRevID() ),
+				$cache::TTL_DAY,
+				function ( $curValue, &$ttl, array &$setOpts ) use ( $dbr ) {
+					$setOpts += Database::getCacheSetOptions( $dbr );
 
-					if ( !$expiry || $expiry > $now ) {
-						// Apply the restrictions
-						$this->mRestrictionsExpiry['create'] = $expiry;
-						$this->mRestrictions['create'] = explode( ',', trim( $title_protection['permission'] ) );
-					} else { // Get rid of the old restrictions
-						$this->mTitleProtection = false;
-					}
-				} else {
-					$this->mRestrictionsExpiry['create'] = 'infinity';
+					return iterator_to_array(
+						$dbr->select(
+							'page_restrictions',
+							[ 'pr_type', 'pr_expiry', 'pr_level', 'pr_cascade' ],
+							[ 'pr_page' => $this->getArticleID() ],
+							__METHOD__
+						)
+					);
 				}
-				$this->mRestrictionsLoaded = true;
+			);
+
+			$this->loadRestrictionsFromRows( $rows, $oldFashionedRestrictions );
+		} else {
+			$title_protection = $this->getTitleProtection();
+
+			if ( $title_protection ) {
+				$now = wfTimestampNow();
+				$expiry = $dbr->decodeExpiry( $title_protection['expiry'] );
+
+				if ( !$expiry || $expiry > $now ) {
+					// Apply the restrictions
+					$this->mRestrictionsExpiry['create'] = $expiry;
+					$this->mRestrictions['create'] =
+						explode( ',', trim( $title_protection['permission'] ) );
+				} else { // Get rid of the old restrictions
+					$this->mTitleProtection = false;
+				}
+			} else {
+				$this->mRestrictionsExpiry['create'] = 'infinity';
 			}
+			$this->mRestrictionsLoaded = true;
 		}
 	}
 
