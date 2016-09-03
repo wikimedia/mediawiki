@@ -595,6 +595,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 		$form = HTMLForm::factory( 'vform', $formDescriptor, $context );
 
+		$form->setAutocomplete( 'off' );
 		$form->addHiddenField( 'authAction', $this->authAction );
 		if ( $wgLoginLanguageSelector ) {
 			$form->addHiddenField( 'uselang', $this->mLanguage );

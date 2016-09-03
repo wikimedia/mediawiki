@@ -533,6 +533,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			$context->setRequest( $this->getRequest() );
 		}
 		$form = HTMLForm::factory( 'ooui', $formDescriptor, $context );
+		$form->setAutocomplete( 'off' );
 		$form->setAction( $this->getFullTitle()->getFullURL( $this->getPreservedParams() ) );
 		$form->addHiddenField( $this->getTokenName(), $this->getToken()->toString() );
 		$form->addHiddenField( 'authAction', $this->authAction );
