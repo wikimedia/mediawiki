@@ -3652,4 +3652,15 @@ class WikiPage implements Page, IDBAccessObject {
 	public function getSourceURL() {
 		return $this->getTitle()->getCanonicalURL();
 	}
+
+	/*
+	 * @param WANObjectCache $cache
+	 * @return string[]
+	 * @since 1.28
+	 */
+	public function getMutableCacheKeys( WANObjectCache $cache ) {
+		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
+
+		return $linkCache->getMutableCacheKeys( $cache, $this->getTitle()->getTitleValue() );
+	}
 }
