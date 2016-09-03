@@ -821,7 +821,7 @@
 	"suppressionlog": "廢止日誌",
 	"suppressionlogtext": "下面係刪除同埋由操作員牽涉到內容封鎖嘅一覽。\n睇吓[[Special:BlockList|封鎖一覽]]去睇現時進行緊嘅禁止同埋封鎖表。",
 	"mergehistory": "合併頁歷史",
-	"mergehistory-header": "呢一版可以畀你去合併一個來源頁嘅修訂記錄到另一個新頁。\n請確認呢次更改會繼續保留嗰版之前嘅歷史版。",
+	"mergehistory-header": "呢一版可以畀你去合併一個來源頁嘅修訂記錄到另一個新頁。\n請確認呢次更改會繼續保留嗰版之前嘅歷史連續性。",
 	"mergehistory-box": "合併兩版嘅修訂:",
 	"mergehistory-from": "來源頁:",
 	"mergehistory-into": "目的頁:",

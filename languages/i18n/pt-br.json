@@ -1923,6 +1923,8 @@
 	"trackingcategories-msg": "Categoria de monitoramento",
 	"trackingcategories-name": "Nome da mensagem",
 	"trackingcategories-desc": "Critérios de inclusão de categoria",
+	"restricted-displaytitle-ignored": "Páginas com títulos de exibição ignorados",
+	"restricted-displaytitle-ignored-desc": "Esta página tem um <code><nowiki>{{DISPLAYTITLE}}</nowiki></code> ignorado porque não é equivalente ao título verdadeiro da página.",
 	"noindex-category-desc": "A página não é indexada por robôs, porque possui a palavra mágica <code><nowiki>__NOINDEX__</nowiki></code> e está em um namespace onde a flag é permitida.",
 	"index-category-desc": "A página contém a palavra mágica <code><nowiki>__INDEX__</nowiki></code> (e está num domínio em que essa marca é permitida) e, portanto, será indexada pelos robôs mesmo quando normalmente não o seria.",
 	"post-expand-template-inclusion-category-desc": "O tamanho da página é superior a <code>$wgMaxArticleSize</code>, após a expansão de todas as predefinições, pelo que algumas predefinições não foram expandidas.",
