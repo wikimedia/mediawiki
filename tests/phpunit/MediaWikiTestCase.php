@@ -336,6 +336,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		JobQueueGroup::destroySingletons();
 		ObjectCache::clear();
+		$this->setService( 'MainObjectStash', new HashBagOStuff() );
+		$this->setService( 'MainWANObjectCache', WANObjectCache::newEmpty() );
+		$this->setService( 'LocalServerObjectCache', new HashBagOStuff() );
 		FileBackendGroup::destroySingleton();
 
 		// TODO: move global state into MediaWikiServices
@@ -483,12 +486,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 
 		DeferredUpdates::clearPendingUpdates();
-		ObjectCache::getMainWANInstance()->clearProcessCache();
-
+		$services = MediaWikiServices::getInstance();
+		$services->getMainWANObjectCache()->clearProcessCache();
 		// XXX: reset maintenance triggers
 		// Hook into period lag checks which often happen in long-running scripts
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		Maintenance::setLBFactoryTriggers( $lbFactory );
+		Maintenance::setLBFactoryTriggers( $services->getDBLoadBalancerFactory() );
 
 		ob_start( 'MediaWikiTestCase::wfResetOutputBuffersBarrier' );
 	}
@@ -535,7 +537,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$this->restoreLoggers();
 
 		if ( self::$serviceLocator && MediaWikiServices::getInstance() !== self::$serviceLocator ) {
+			$lbf = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 			MediaWikiServices::forceGlobalInstance( self::$serviceLocator );
+			// Carry over the LBFactory/LoadBalancer to avoid exhausting the max connection
+			// limit and wasting time connecting and reconning again and again
+			$this->setService( 'DBLoadBalancerFactory', $lbf );
+			$this->setService( 'DBLoadBalancer', $lbf->getMainLB() );
 		}
 
 		// TODO: move global state into MediaWikiServices
