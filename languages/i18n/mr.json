@@ -1574,6 +1574,7 @@
 	"filerevert-submit": "पूर्वपदास न्या",
 	"filerevert-success": "[$3, $2 प्रमाणे आवर्तन $4]कडे<strong>[[Media:$1|$1]]</strong>उलटवण्यात आली.",
 	"filerevert-badversion": "दिलेलेल्या वेळ मापनानुसार,या संचिकेकरिता कोणतीही पूर्वीची स्थानिक आवृत्ती नाही.",
+	"filerevert-identical": "या संचिकेची सध्याची आवृत्ती ही निवड केलेल्या आवृत्तीसमच आहे.",
 	"filedelete": "$1 वगळा",
 	"filedelete-legend": "संचिका वगळा",
 	"filedelete-intro": "तुम्ही<strong>[[Media:$1|$1]]</strong>त्याच्या सर्व इतिहासासह,वगळण्याच्या तयारीत आहात.",

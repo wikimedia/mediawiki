@@ -1670,6 +1670,7 @@
 	"filerevert-submit": "Återställ",
 	"filerevert-success": "'''[[Media:$1|$1]]''' har återställts till [$4 versionen från $2 kl. $3].",
 	"filerevert-badversion": "Det finns ingen tidigare version av filen från den angivna tidpunkten.",
+	"filerevert-identical": "Den aktuella versionen av filen är redan identisk med den valda.",
 	"filedelete": "Radera $1",
 	"filedelete-legend": "Radera fil",
 	"filedelete-intro": "Du håller på att radera filen '''[[Media:$1|$1]]''' tillsammans med hela dess historik.",

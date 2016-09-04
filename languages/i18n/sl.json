@@ -1608,6 +1608,7 @@
 	"filerevert-submit": "Vrni",
 	"filerevert-success": "Datoteka '''[[Media:$1|$1]]''' je bila vrnjena na [$4 različico $3, $2].",
 	"filerevert-badversion": "Ne najdem preteklih lokalnih verzij datoteke s podanim časovnim žigom.",
+	"filerevert-identical": "Trenutna različica datoteke je že enaka izbrani.",
 	"filedelete": "Izbriši $1",
 	"filedelete-legend": "Brisanje datoteke",
 	"filedelete-intro": "Brišete datoteko '''[[Media:$1|$1]]''' skupaj z njeno celotno zgodovino.",

@@ -1656,6 +1656,7 @@
 	"filerevert-submit": "되돌리기",
 	"filerevert-success": "'''[[Media:$1|$1]]''' 파일을 [$4 $2 $3 버전]으로 되돌렸습니다.",
 	"filerevert-badversion": "입력된 시간 기록을 가진 파일의 로컬 버전이 없습니다.",
+	"filerevert-identical": "파일의 현재 버전은 선택한 것과 이미 동일합니다.",
 	"filedelete": "$1 삭제하기",
 	"filedelete-legend": "파일 삭제하기",
 	"filedelete-intro": "'''[[Media:$1|$1]]''' 파일과 모든 역사를 삭제합니다.",

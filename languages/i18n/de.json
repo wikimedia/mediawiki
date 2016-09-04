@@ -1688,6 +1688,7 @@
 	"filerevert-submit": "Zurücksetzen",
 	"filerevert-success": "'''[[Media:$1|$1]]''' wurde auf die [$4 Version vom $2, $3 Uhr] zurückgesetzt.",
 	"filerevert-badversion": "Es gibt keine Version der Datei zu dem angegebenen Zeitpunkt.",
+	"filerevert-identical": "Die aktuelle Version der Datei ist bereits mit der ausgewählten Version identisch.",
 	"filedelete": "Lösche „$1“",
 	"filedelete-legend": "Lösche Datei",
 	"filedelete-intro": "Du löschst die Datei '''„[[Media:$1|$1]]“''' inklusive ihrer Versionsgeschichte.",

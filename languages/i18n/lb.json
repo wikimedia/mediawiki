@@ -1548,6 +1548,7 @@
 	"filerevert-submit": "Zrécksetzen",
 	"filerevert-success": "<strong>[[Media:$1|$1]]</strong> gouf op d'[$4 Versioun vum $2, $3 Auer] zréckgesat.",
 	"filerevert-badversion": "Et gëtt keng vireg lokal Versioun vun deem Fichier mat der Zäitinformatioun déi Dir uginn hutt.",
+	"filerevert-identical": "Déi aktuell Versioun vum Fichier ass identesch mat där erausgesichter.",
 	"filedelete": "Läsch \"$1\"",
 	"filedelete-legend": "Fichier läschen",
 	"filedelete-intro": "Dir läscht de Fichier '''[[Media:$1|$1]]''' mat all senge Versiounen (Historique).",
