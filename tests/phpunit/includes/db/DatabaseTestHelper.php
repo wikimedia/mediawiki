@@ -36,6 +36,7 @@ class DatabaseTestHelper extends DatabaseBase {
 		$this->cliMode = isset( $opts['cliMode'] ) ? $opts['cliMode'] : true;
 		$this->connLogger = new \Psr\Log\NullLogger();
 		$this->queryLogger = new \Psr\Log\NullLogger();
+		$this->currentDomain = DatabaseDomain::newUnspecified();
 	}
 
 	/**
