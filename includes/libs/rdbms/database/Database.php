@@ -281,16 +281,16 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 			? $params['queryLogger']
 			: new \Psr\Log\NullLogger();
 
+		$this->currentDomain = DatabaseDomain::newUnspecified();
 		if ( $user ) {
 			$this->open( $server, $user, $password, $dbName );
+			// Set the domain object after open() sets the relevant fields
+			$this->currentDomain = ( $this->mDBname != '' )
+				? new DatabaseDomain( $this->mDBname, null, $this->mTablePrefix )
+				: DatabaseDomain::newUnspecified();
 		} elseif ( $this->requiresDatabaseUser() ) {
 			throw new InvalidArgumentException( "No database user provided." );
 		}
-
-		// Set the domain object after open() sets the relevant fields
-		$this->currentDomain = ( $this->mDBname != '' )
-			? new DatabaseDomain( $this->mDBname, null, $this->mTablePrefix )
-			: DatabaseDomain::newUnspecified();
 	}
 
 	/**
