@@ -210,6 +210,92 @@ return [
 		return $services->getService( '_MediaWikiTitleCodec' );
 	},
 
+	'MainObjectStash' => function( MediaWikiServices $services ) {
+		$mainConfig = $services->getMainConfig();
+
+		$id = $mainConfig->get( 'MainStash' );
+		$cacheConfs = $mainConfig->get( 'ObjectCaches' );
+		if ( !isset( $cacheConfs[$id] ) ) {
+			throw new UnexpectedValueException(
+				"Invalid object cache type \"$id\" requested. " .
+				"It is not present in \$wgObjectCaches." );
+		}
+
+		return \ObjectCache::newFromParams( $cacheConfs[$id] );
+	},
+
+	'MainWANObjectCache' => function( MediaWikiServices $services ) {
+		$mainConfig = $services->getMainConfig();
+
+		$id = $mainConfig->get( 'MainWANCache' );
+		$wanCacheConfs = $mainConfig->get( 'WANObjectCaches' );
+		if ( !isset( $wanCacheConfs[$id] ) ) {
+			throw new UnexpectedValueException(
+				"Invalid WAN cache type \"$id\" requested. " .
+				"It is not present in \$wgWANObjectCaches." );
+		}
+
+		$params = $wanCacheConfs[$id];
+		$class = $params['class'];
+		$objectCacheId = $params['cacheId'];
+		$objectCacheConfs = $mainConfig->get( 'ObjectCaches' );
+		if ( !isset( $objectCacheConfs[$objectCacheId] ) ) {
+			throw new UnexpectedValueException(
+				"Invalid backing WAN object cache type \"$objectCacheId\" requested. " .
+				"It is not present in \$wgObjectCaches." );
+		}
+		$params['cache'] = \ObjectCache::newFromParams( $objectCacheConfs[$objectCacheId] );
+
+		// @TODO: clean up logger construction
+		$channel = isset( $params['loggroup'] ) ? $params['loggroup'] : 'objectcache';
+		$params['logger'] = \MediaWiki\Logger\LoggerFactory::getInstance( $channel );
+
+		foreach ( $params['channels'] as $action => $channel ) {
+			$params['relayers'][$action] =
+				$services->getEventRelayerGroup()->getRelayer( $channel );
+			$params['channels'][$action] = $channel;
+		}
+
+		return new $class( $params );
+	},
+
+	'LocalClusterObjectCache' => function( MediaWikiServices $services ) {
+		$mainConfig = $services->getMainConfig();
+
+		$id = $mainConfig->get( 'MainCacheType' );
+		$cacheConfs = $mainConfig->get( 'ObjectCaches' );
+		if ( !isset( $cacheConfs[$id] ) ) {
+			throw new UnexpectedValueException(
+				"Invalid object cache type \"$id\" requested. " .
+				"It is not present in \$wgObjectCaches." );
+		}
+
+		return \ObjectCache::newFromParams( $cacheConfs[$id] );
+	},
+
+	'LocalServerObjectCache' => function( MediaWikiServices $services ) {
+		$mainConfig = $services->getMainConfig();
+
+		if ( function_exists( 'apc_fetch' ) ) {
+			$id = 'apc';
+		} elseif ( function_exists( 'xcache_get' ) && wfIniGetBool( 'xcache.var_size' ) ) {
+			$id = 'xcache';
+		} elseif ( function_exists( 'wincache_ucache_get' ) ) {
+			$id = 'wincache';
+		} else {
+			$id = CACHE_NONE;
+		}
+
+		$cacheConfs = $mainConfig->get( 'ObjectCaches' );
+		if ( !isset( $cacheConfs[$id] ) ) {
+			throw new UnexpectedValueException(
+				"Invalid object cache type \"$id\" requested. " .
+				"It is not present in \$wgObjectCaches." );
+		}
+
+		return \ObjectCache::newFromParams( $cacheConfs[$id] );
+	},
+
 	'VirtualRESTServiceClient' => function( MediaWikiServices $services ) {
 		$config = $services->getMainConfig()->get( 'VirtualRestConfig' );
 
