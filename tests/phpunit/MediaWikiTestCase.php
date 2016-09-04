@@ -334,8 +334,18 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	private function doLightweightServiceReset() {
 		global $wgRequest;
 
+		$services = MediaWikiServices::getInstance();
 		JobQueueGroup::destroySingletons();
 		ObjectCache::clear();
+		$services->redefineService( 'MainObjectStash', function () {
+			return new HashBagOStuff();
+		} );
+		$services->redefineService( 'MainWANObjectCache', function () {
+			return new HashBagOStuff();
+		} );
+		$services->redefineService( 'LocalServerObjectCache', function () {
+			return new HashBagOStuff();
+		} );
 		FileBackendGroup::destroySingleton();
 
 		// TODO: move global state into MediaWikiServices

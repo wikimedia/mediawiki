@@ -23,7 +23,6 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Services\ServiceDisabledException;
 
 /**
  * Functions to get cache objects
@@ -118,13 +117,20 @@ class ObjectCache {
 	 *
 	 * @param string $id A key in $wgObjectCaches.
 	 * @return BagOStuff
-	 * @throws MWException
+	 * @throws UnexpectedValueException
 	 */
 	public static function newFromId( $id ) {
 		global $wgObjectCaches;
 
 		if ( !isset( $wgObjectCaches[$id] ) ) {
-			throw new MWException( "Invalid object cache type \"$id\" requested. " .
+			// Always recognize these ones
+			if ( $id === CACHE_NONE ) {
+				return new EmptyBagOStuff();
+			} elseif ( $id === 'hash' ) {
+				return new HashBagOStuff();
+			}
+
+			throw new UnexpectedValueException( "Invalid object cache type \"$id\" requested. " .
 				"It is not present in \$wgObjectCaches." );
 		}
 
@@ -160,7 +166,7 @@ class ObjectCache {
 	 *  - loggroup: Alias to set 'logger' key with LoggerFactory group.
 	 *  - .. Other parameters passed to factory or class.
 	 * @return BagOStuff
-	 * @throws MWException
+	 * @throws UnexpectedValueException
 	 */
 	public static function newFromParams( $params ) {
 		if ( isset( $params['loggroup'] ) ) {
@@ -217,7 +223,7 @@ class ObjectCache {
 			}
 			return new $class( $params );
 		} else {
-			throw new MWException( "The definition of cache type \""
+			throw new UnexpectedValueException( "The definition of cache type \""
 				. print_r( $params, true ) . "\" lacks both "
 				. "factory and class parameters." );
 		}
@@ -270,8 +276,9 @@ class ObjectCache {
 	 *
 	 * @param int|string|array $fallback Fallback cache or parameter map with 'fallback'
 	 * @return BagOStuff
-	 * @throws MWException
+	 * @throws UnexpectedValueException
 	 * @since 1.27
+	 * @deprecated Since 1.28; use MediaWikiServices::getLocalServerObjectCache
 	 */
 	public static function getLocalServerInstance( $fallback = CACHE_NONE ) {
 		if ( function_exists( 'apc_fetch' ) ) {
@@ -315,23 +322,40 @@ class ObjectCache {
 	 * @since 1.26
 	 * @param string $id A key in $wgWANObjectCaches.
 	 * @return WANObjectCache
-	 * @throws MWException
+	 * @throws UnexpectedValueException
 	 */
 	public static function newWANCacheFromId( $id ) {
-		global $wgWANObjectCaches;
+		global $wgWANObjectCaches, $wgObjectCaches;
 
 		if ( !isset( $wgWANObjectCaches[$id] ) ) {
-			throw new MWException( "Invalid object cache type \"$id\" requested. " .
-				"It is not present in \$wgWANObjectCaches." );
+			throw new UnexpectedValueException(
+				"Cache type \"$id\" requested is not present in \$wgWANObjectCaches." );
+		} elseif ( !isset( $wgObjectCaches[$wgWANObjectCaches[$id]['cacheId']] ) ) {
+			throw new UnexpectedValueException(
+				"Cache type \"$id\" is not present in \$wgObjectCaches." );
 		}
 
 		$params = $wgWANObjectCaches[$id];
+		$params['store'] = $wgObjectCaches[$params['cacheId']];
+
+		return self::newWANCacheFromParams( $params );
+	}
+
+	/**
+	 * Create a new cache object of the specified type.
+	 *
+	 * @since 1.28
+	 * @param array $params
+	 * @return WANObjectCache
+	 * @throws UnexpectedValueException
+	 */
+	public static function newWANCacheFromParams( array $params ) {
 		foreach ( $params['channels'] as $action => $channel ) {
 			$params['relayers'][$action] = MediaWikiServices::getInstance()->getEventRelayerGroup()
 				->getRelayer( $channel );
 			$params['channels'][$action] = $channel;
 		}
-		$params['cache'] = self::newFromId( $params['cacheId'] );
+		$params['cache'] = self::newFromParams( $params['store'] );
 		if ( isset( $params['loggroup'] ) ) {
 			$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] );
 		} else {
@@ -347,11 +371,10 @@ class ObjectCache {
 	 *
 	 * @since 1.27
 	 * @return BagOStuff
+	 * @deprecated Since 1.28 Use MediaWikiServices::getLocalClusterCache
 	 */
 	public static function getLocalClusterInstance() {
-		global $wgMainCacheType;
-
-		return self::getInstance( $wgMainCacheType );
+		return MediaWikiServices::getInstance()->getLocalClusterObjectCache();
 	}
 
 	/**
@@ -359,11 +382,10 @@ class ObjectCache {
 	 *
 	 * @since 1.26
 	 * @return WANObjectCache
+	 * @deprecated Since 1.28 Use MediaWikiServices::getMainWANCache()
 	 */
 	public static function getMainWANInstance() {
-		global $wgMainWANCache;
-
-		return self::getWANInstance( $wgMainWANCache );
+		return MediaWikiServices::getInstance()->getMainWANObjectCache();
 	}
 
 	/**
@@ -383,11 +405,10 @@ class ObjectCache {
 	 *
 	 * @return BagOStuff
 	 * @since 1.26
+	 * @deprecated Since 1.28 Use MediaWikiServices::getMainObjectStash
 	 */
 	public static function getMainStashInstance() {
-		global $wgMainStash;
-
-		return self::getInstance( $wgMainStash );
+		return MediaWikiServices::getInstance()->getMainObjectStash();
 	}
 
 	/**
