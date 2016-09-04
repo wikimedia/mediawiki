@@ -324,6 +324,10 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'_MediaWikiTitleCodec' => [ '_MediaWikiTitleCodec', MediaWikiTitleCodec::class ],
 			'TitleFormatter' => [ 'TitleFormatter', TitleFormatter::class ],
 			'TitleParser' => [ 'TitleParser', TitleParser::class ],
+			'MainObjectStash' => [ 'BagOStuff', BagOStuff::class ],
+			'MainWANObjectCache' => [ 'WANObjectCache', WANObjectCache::class ],
+			'LocalClusterObjectCache' => [ 'BagOStuff', BagOStuff::class ],
+			'LocalServerObjectCache' => [ 'BagOStuff', BagOStuff::class ],
 			'VirtualRESTServiceClient' => [ 'VirtualRESTServiceClient', VirtualRESTServiceClient::class ]
 		];
 	}
