@@ -241,31 +241,31 @@ abstract class FileBackend {
 	 *
 	 * a) Create a new file in storage with the contents of a string
 	 * @code
-	 *     array(
+	 *     [
 	 *         'op'                  => 'create',
 	 *         'dst'                 => <storage path>,
 	 *         'content'             => <string of new file contents>,
 	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>,
 	 *         'headers'             => <HTTP header name/value map> # since 1.21
-	 *     );
+	 *     ]
 	 * @endcode
 	 *
 	 * b) Copy a file system file into storage
 	 * @code
-	 *     array(
+	 *     [
 	 *         'op'                  => 'store',
 	 *         'src'                 => <file system path, FSFile, or TempFSFile>,
 	 *         'dst'                 => <storage path>,
 	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>,
 	 *         'headers'             => <HTTP header name/value map> # since 1.21
-	 *     )
+	 *     ]
 	 * @endcode
 	 *
 	 * c) Copy a file within storage
 	 * @code
-	 *     array(
+	 *     [
 	 *         'op'                  => 'copy',
 	 *         'src'                 => <storage path>,
 	 *         'dst'                 => <storage path>,
@@ -273,12 +273,12 @@ abstract class FileBackend {
 	 *         'overwriteSame'       => <boolean>,
 	 *         'ignoreMissingSource' => <boolean>, # since 1.21
 	 *         'headers'             => <HTTP header name/value map> # since 1.21
-	 *     )
+	 *     ]
 	 * @endcode
 	 *
 	 * d) Move a file within storage
 	 * @code
-	 *     array(
+	 *     [
 	 *         'op'                  => 'move',
 	 *         'src'                 => <storage path>,
 	 *         'dst'                 => <storage path>,
@@ -286,32 +286,32 @@ abstract class FileBackend {
 	 *         'overwriteSame'       => <boolean>,
 	 *         'ignoreMissingSource' => <boolean>, # since 1.21
 	 *         'headers'             => <HTTP header name/value map> # since 1.21
-	 *     )
+	 *     ]
 	 * @endcode
 	 *
 	 * e) Delete a file within storage
 	 * @code
-	 *     array(
+	 *     [
 	 *         'op'                  => 'delete',
 	 *         'src'                 => <storage path>,
 	 *         'ignoreMissingSource' => <boolean>
-	 *     )
+	 *     ]
 	 * @endcode
 	 *
 	 * f) Update metadata for a file within storage
 	 * @code
-	 *     array(
+	 *     [
 	 *         'op'                  => 'describe',
 	 *         'src'                 => <storage path>,
 	 *         'headers'             => <HTTP header name/value map>
-	 *     )
+	 *     ]
 	 * @endcode
 	 *
 	 * g) Do nothing (no-op)
 	 * @code
-	 *     array(
+	 *     [
 	 *         'op'                  => 'null',
-	 *     )
+	 *     ]
 	 * @endcode
 	 *
 	 * Boolean flags for operations (operation-specific):
@@ -513,69 +513,69 @@ abstract class FileBackend {
 	 *
 	 * a) Create a new file in storage with the contents of a string
 	 * @code
-	 *     array(
+	 *     [
 	 *         'op'                  => 'create',
 	 *         'dst'                 => <storage path>,
 	 *         'content'             => <string of new file contents>,
 	 *         'headers'             => <HTTP header name/value map> # since 1.21
-	 *     )
+	 *     ]
 	 * @endcode
 	 *
 	 * b) Copy a file system file into storage
 	 * @code
-	 *     array(
+	 *     [
 	 *         'op'                  => 'store',
 	 *         'src'                 => <file system path, FSFile, or TempFSFile>,
 	 *         'dst'                 => <storage path>,
 	 *         'headers'             => <HTTP header name/value map> # since 1.21
-	 *     )
+	 *     ]
 	 * @endcode
 	 *
 	 * c) Copy a file within storage
 	 * @code
-	 *     array(
+	 *     [
 	 *         'op'                  => 'copy',
 	 *         'src'                 => <storage path>,
 	 *         'dst'                 => <storage path>,
 	 *         'ignoreMissingSource' => <boolean>, # since 1.21
 	 *         'headers'             => <HTTP header name/value map> # since 1.21
-	 *     )
+	 *     ]
 	 * @endcode
 	 *
 	 * d) Move a file within storage
 	 * @code
-	 *     array(
+	 *     [
 	 *         'op'                  => 'move',
 	 *         'src'                 => <storage path>,
 	 *         'dst'                 => <storage path>,
 	 *         'ignoreMissingSource' => <boolean>, # since 1.21
 	 *         'headers'             => <HTTP header name/value map> # since 1.21
-	 *     )
+	 *     ]
 	 * @endcode
 	 *
 	 * e) Delete a file within storage
 	 * @code
-	 *     array(
+	 *     [
 	 *         'op'                  => 'delete',
 	 *         'src'                 => <storage path>,
 	 *         'ignoreMissingSource' => <boolean>
-	 *     )
+	 *     ]
 	 * @endcode
 	 *
 	 * f) Update metadata for a file within storage
 	 * @code
-	 *     array(
+	 *     [
 	 *         'op'                  => 'describe',
 	 *         'src'                 => <storage path>,
 	 *         'headers'             => <HTTP header name/value map>
-	 *     )
+	 *     ]
 	 * @endcode
 	 *
 	 * g) Do nothing (no-op)
 	 * @code
-	 *     array(
+	 *     [
 	 *         'op'                  => 'null',
-	 *     )
+	 *     ]
 	 * @endcode
 	 *
 	 * @par Boolean flags for operations (operation-specific):

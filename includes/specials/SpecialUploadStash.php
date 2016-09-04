@@ -181,7 +181,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * Scale a file (probably with a locally installed imagemagick, or similar)
 	 * and output it to STDOUT.
 	 * @param File $file
-	 * @param array $params Scaling parameters ( e.g. array( width => '50' ) );
+	 * @param array $params Scaling parameters ( e.g. [ width => '50' ] );
 	 * @param int $flags Scaling flags ( see File:: constants )
 	 * @throws MWException|UploadStashFileNotFoundException
 	 * @return bool Success
@@ -227,7 +227,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * client to cache it forever.
 	 *
 	 * @param File $file
-	 * @param array $params Scaling parameters ( e.g. array( width => '50' ) );
+	 * @param array $params Scaling parameters ( e.g. [ width => '50' ] );
 	 * @param int $flags Scaling flags ( see File:: constants )
 	 * @throws MWException
 	 * @return bool Success

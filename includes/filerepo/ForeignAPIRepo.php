@@ -28,13 +28,13 @@ use MediaWiki\Logger\LoggerFactory;
  *
  * Example config:
  *
- * $wgForeignFileRepos[] = array(
+ * $wgForeignFileRepos[] = [
  *   'class'                  => 'ForeignAPIRepo',
  *   'name'                   => 'shared',
  *   'apibase'                => 'https://en.wikipedia.org/w/api.php',
  *   'fetchDescription'       => true, // Optional
  *   'descriptionCacheExpiry' => 3600,
- * );
+ * ];
  *
  * @ingroup FileRepo
  */
