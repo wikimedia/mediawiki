@@ -336,6 +336,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		JobQueueGroup::destroySingletons();
 		ObjectCache::clear();
+		$this->setService( 'MainObjectStash', new HashBagOStuff() );
+		$this->setService( 'MainWANObjectCache', WANObjectCache::newEmpty() );
+		$this->setService( 'LocalServerObjectCache', new HashBagOStuff() );
 		FileBackendGroup::destroySingleton();
 
 		// TODO: move global state into MediaWikiServices
