@@ -23,7 +23,6 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Services\ServiceDisabledException;
 
 /**
  * Functions to get cache objects
@@ -124,6 +123,13 @@ class ObjectCache {
 		global $wgObjectCaches;
 
 		if ( !isset( $wgObjectCaches[$id] ) ) {
+			// Always recognize these ones
+			if ( $id === CACHE_NONE ) {
+				return new EmptyBagOStuff();
+			} elseif ( $id === 'hash' ) {
+				return new HashBagOStuff();
+			}
+
 			throw new MWException( "Invalid object cache type \"$id\" requested. " .
 				"It is not present in \$wgObjectCaches." );
 		}
@@ -255,6 +261,7 @@ class ObjectCache {
 	 * @return BagOStuff
 	 * @throws MWException
 	 * @since 1.27
+	 * @deprecated Since 1.28; use MediaWikiServices::getLocalServerCache
 	 */
 	public static function getLocalServerInstance( $fallback = CACHE_NONE ) {
 		if ( function_exists( 'apc_fetch' ) ) {
@@ -330,11 +337,10 @@ class ObjectCache {
 	 *
 	 * @since 1.27
 	 * @return BagOStuff
+	 * @deprecated Since 1.28 Use MediaWikiServices::getLocalClusterCache
 	 */
 	public static function getLocalClusterInstance() {
-		global $wgMainCacheType;
-
-		return self::getInstance( $wgMainCacheType );
+		return MediaWikiServices::getInstance()->getLocalClusterObjectCache();
 	}
 
 	/**
@@ -342,11 +348,10 @@ class ObjectCache {
 	 *
 	 * @since 1.26
 	 * @return WANObjectCache
+	 * @deprecated Since 1.28 Use MediaWikiServices::getMainWANCache()
 	 */
 	public static function getMainWANInstance() {
-		global $wgMainWANCache;
-
-		return self::getWANInstance( $wgMainWANCache );
+		return MediaWikiServices::getInstance()->getMainWANObjectCache();
 	}
 
 	/**
@@ -366,11 +371,10 @@ class ObjectCache {
 	 *
 	 * @return BagOStuff
 	 * @since 1.26
+	 * @deprecated Since 1.28 Use MediaWikiServices::getMainObjectStash
 	 */
 	public static function getMainStashInstance() {
-		global $wgMainStash;
-
-		return self::getInstance( $wgMainStash );
+		return MediaWikiServices::getInstance()->getMainObjectStash();
 	}
 
 	/**
@@ -379,5 +383,10 @@ class ObjectCache {
 	public static function clear() {
 		self::$instances = [];
 		self::$wanInstances = [];
+		$services = MediaWikiServices::getInstance();
+		$services->resetServiceForTesting( 'MainObjectStash' );
+		$services->resetServiceForTesting( 'MainWANObjectCache' );
+		$services->resetServiceForTesting( 'LocalClusterObjectCache' );
+		$services->resetServiceForTesting( 'LocalServerObjectCache' );
 	}
 }
