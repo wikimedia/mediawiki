@@ -2354,6 +2354,8 @@ class AuthManagerTest extends \MediaWikiTestCase {
 
 		\ObjectCache::$instances[__METHOD__] = new \HashBagOStuff();
 		$this->setMwGlobals( [ 'wgMainCacheType' => __METHOD__ ] );
+		// @TODO: just do service reset
+		$this->setService( 'LocalClusterObjectCache', new \HashBagOStuff() );
 
 		// Set up lots of mocks...
 		$mocks = [];
