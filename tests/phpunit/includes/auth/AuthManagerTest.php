@@ -2352,8 +2352,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$wgGroupPermissions['*']['createaccount'] = true;
 		$wgGroupPermissions['*']['autocreateaccount'] = false;
 
-		\ObjectCache::$instances[__METHOD__] = new \HashBagOStuff();
-		$this->setMwGlobals( [ 'wgMainCacheType' => __METHOD__ ] );
+		$this->setService( 'LocalClusterObjectCache', new \HashBagOStuff() );
 
 		// Set up lots of mocks...
 		$mocks = [];
