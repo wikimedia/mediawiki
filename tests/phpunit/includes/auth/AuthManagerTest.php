@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\UserInfo;
 use Psr\Log\LogLevel;
@@ -2352,8 +2353,13 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$wgGroupPermissions['*']['createaccount'] = true;
 		$wgGroupPermissions['*']['autocreateaccount'] = false;
 
-		\ObjectCache::$instances[__METHOD__] = new \HashBagOStuff();
-		$this->setMwGlobals( [ 'wgMainCacheType' => __METHOD__ ] );
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'LocalClusterObjectCache' );
+		MediaWikiServices::getInstance()->redefineService(
+			'LocalClusterObjectCache',
+			function () {
+				return new \HashBagOStuff();
+			}
+		);
 
 		// Set up lots of mocks...
 		$mocks = [];
