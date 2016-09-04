@@ -33,6 +33,7 @@ class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 	function __construct() {
 		$this->profiler = new ProfilerStub( [] );
 		$this->trxProfiler = new TransactionProfiler();
+		$this->currentDomain = DatabaseDomain::newUnspecified();
 	}
 
 	protected function closeConnection() {
