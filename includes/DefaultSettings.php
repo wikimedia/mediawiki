@@ -2281,7 +2281,8 @@ $wgObjectCaches = [
 			'class' => 'SqlBagOStuff',
 			'args'  => [ [ 'slaveOnly' => false ] ]
 		],
-		'loggroup'  => 'SQLBagOStuff'
+		'loggroup'  => 'SQLBagOStuff',
+		'reportDupes' => false
 	],
 
 	'apc' => [ 'class' => 'APCBagOStuff', 'reportDupes' => false ],

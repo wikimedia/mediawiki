@@ -59,12 +59,13 @@ class ReplicatedBagOStuff extends BagOStuff {
 				__METHOD__ . ': the "readFactory" parameter is required' );
 		}
 
+		$opts = [ 'reportDupes' => false ]; // redundant
 		$this->writeStore = ( $params['writeFactory'] instanceof BagOStuff )
 			? $params['writeFactory']
-			: ObjectFactory::getObjectFromSpec( $params['writeFactory'] );
+			: ObjectFactory::getObjectFromSpec( $opts + $params['writeFactory'] );
 		$this->readStore = ( $params['readFactory'] instanceof BagOStuff )
 			? $params['readFactory']
-			: ObjectFactory::getObjectFromSpec( $params['readFactory'] );
+			: ObjectFactory::getObjectFromSpec( $opts + $params['readFactory'] );
 		$this->attrMap = $this->mergeFlagMaps( [ $this->readStore, $this->writeStore ] );
 	}
 
