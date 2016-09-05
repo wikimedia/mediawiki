@@ -61,9 +61,9 @@ class LoadBalancer {
 	/** @var bool|DBMasterPos False if not set */
 	private $mWaitForPos;
 	/** @var bool Whether the generic reader fell back to a lagged replica DB */
-	private $laggedSlaveMode = false;
+	private $laggedReplicaMode = false;
 	/** @var bool Whether the generic reader fell back to a lagged replica DB */
-	private $slavesDownMode = false;
+	private $allReplicasDownMode = false;
 	/** @var string The last DB selection or connection error */
 	private $mLastError = 'Unknown error';
 	/** @var string|bool Reason the LB is read-only or false if not */
@@ -280,7 +280,7 @@ class LoadBalancer {
 		# Scale the configured load ratios according to the dynamic load (if the load monitor supports it)
 		$this->getLoadMonitor()->scaleLoads( $nonErrorLoads, $group, $wiki );
 
-		$laggedSlaveMode = false;
+		$laggedReplicaMode = false;
 
 		# No server found yet
 		$i = false;
@@ -289,7 +289,7 @@ class LoadBalancer {
 		# meets our criteria
 		$currentLoads = $nonErrorLoads;
 		while ( count( $currentLoads ) ) {
-			if ( $this->mAllowLagged || $laggedSlaveMode ) {
+			if ( $this->mAllowLagged || $laggedReplicaMode ) {
 				$i = ArrayUtils::pickRandom( $currentLoads );
 			} else {
 				$i = false;
@@ -309,7 +309,7 @@ class LoadBalancer {
 					# All replica DBs lagged. Switch to read-only mode
 					wfDebugLog( 'replication', "All replica DBs lagged. Switch to read-only mode" );
 					$i = ArrayUtils::pickRandom( $currentLoads );
-					$laggedSlaveMode = true;
+					$laggedReplicaMode = true;
 				}
 			}
 
@@ -350,8 +350,8 @@ class LoadBalancer {
 		}
 
 		if ( $i !== false ) {
-			# replica DB connection successful
-			# Wait for the session master pos for a short time
+			# Replica DB connection successful.
+			# Wait for the session master pos for a short time.
 			if ( $this->mWaitForPos && $i > 0 ) {
 				if ( !$this->doWait( $i ) ) {
 					$this->mServers[$i]['slave pos'] = $conn->getSlavePos();
@@ -360,8 +360,8 @@ class LoadBalancer {
 			if ( $this->mReadIndex <= 0 && $this->mLoads[$i] > 0 && $group === false ) {
 				$this->mReadIndex = $i;
 				# Record if the generic reader index is in "lagged replica DB" mode
-				if ( $laggedSlaveMode ) {
-					$this->laggedSlaveMode = true;
+				if ( $laggedReplicaMode ) {
+					$this->laggedReplicaMode = true;
 				}
 			}
 			$serverName = $this->getServerName( $i );
@@ -385,7 +385,7 @@ class LoadBalancer {
 		if ( $i > 0 ) {
 			if ( !$this->doWait( $i ) ) {
 				$this->mServers[$i]['slave pos'] = $this->getAnyOpenConnection( $i )->getSlavePos();
-				$this->laggedSlaveMode = true;
+				$this->laggedReplicaMode = true;
 			}
 		}
 	}
@@ -1431,19 +1431,19 @@ class LoadBalancer {
 	 */
 	public function getLaggedSlaveMode( $wiki = false ) {
 		// No-op if there is only one DB (also avoids recursion)
-		if ( !$this->laggedSlaveMode && $this->getServerCount() > 1 ) {
+		if ( !$this->laggedReplicaMode && $this->getServerCount() > 1 ) {
 			try {
-				// See if laggedSlaveMode gets set
+				// See if laggedReplicaMode gets set
 				$conn = $this->getConnection( DB_SLAVE, false, $wiki );
 				$this->reuseConnection( $conn );
 			} catch ( DBConnectionError $e ) {
 				// Avoid expensive re-connect attempts and failures
-				$this->slavesDownMode = true;
-				$this->laggedSlaveMode = true;
+				$this->allReplicasDownMode = true;
+				$this->laggedReplicaMode = true;
 			}
 		}
 
-		return $this->laggedSlaveMode;
+		return $this->laggedReplicaMode;
 	}
 
 	/**
@@ -1452,7 +1452,7 @@ class LoadBalancer {
 	 * @since 1.27
 	 */
 	public function laggedSlaveUsed() {
-		return $this->laggedSlaveMode;
+		return $this->laggedReplicaMode;
 	}
 
 	/**
@@ -1466,7 +1466,7 @@ class LoadBalancer {
 		if ( $this->readOnlyReason !== false ) {
 			return $this->readOnlyReason;
 		} elseif ( $this->getLaggedSlaveMode( $wiki ) ) {
-			if ( $this->slavesDownMode ) {
+			if ( $this->allReplicasDownMode ) {
 				return 'The database has been automatically locked ' .
 					'until the replica database servers become available';
 			} else {

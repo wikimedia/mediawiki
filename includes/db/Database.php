@@ -128,7 +128,7 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	private $mTrxTimestamp = null;
 	/** @var float Lag estimate at the time of BEGIN */
-	private $mTrxSlaveLag = null;
+	private $mTrxReplicaLag = null;
 	/**
 	 * Remembers the function name given for starting the most recent transaction via begin().
 	 * Used to provide additional context for error reporting.
@@ -1028,20 +1028,21 @@ abstract class DatabaseBase implements IDatabase {
 	 * @param float $runtime Total runtime, including RTT
 	 */
 	private function updateTrxWriteQueryTime( $sql, $runtime ) {
-		$indicativeOfSlaveRuntime = true;
+		// Whether this is indicative of replica DB runtime (except for RBR or ws_repl)
+		$indicativeOfReplicaRuntime = true;
 		if ( $runtime > self::SLOW_WRITE_SEC ) {
 			$verb = $this->getQueryVerb( $sql );
 			// insert(), upsert(), replace() are fast unless bulky in size or blocked on locks
 			if ( $verb === 'INSERT' ) {
-				$indicativeOfSlaveRuntime = $this->affectedRows() > self::SMALL_WRITE_ROWS;
+				$indicativeOfReplicaRuntime = $this->affectedRows() > self::SMALL_WRITE_ROWS;
 			} elseif ( $verb === 'REPLACE' ) {
-				$indicativeOfSlaveRuntime = $this->affectedRows() > self::SMALL_WRITE_ROWS / 2;
+				$indicativeOfReplicaRuntime = $this->affectedRows() > self::SMALL_WRITE_ROWS / 2;
 			}
 		}
 
 		$this->mTrxWriteDuration += $runtime;
 		$this->mTrxWriteQueryCount += 1;
-		if ( $indicativeOfSlaveRuntime ) {
+		if ( $indicativeOfReplicaRuntime ) {
 			$this->mTrxWriteAdjDuration += $runtime;
 			$this->mTrxWriteAdjQueryCount += 1;
 		}
@@ -2920,7 +2921,7 @@ abstract class DatabaseBase implements IDatabase {
 		// Get an estimate of the replica DB lag before then, treating estimate staleness
 		// as lag itself just to be safe
 		$status = $this->getApproximateLagStatus();
-		$this->mTrxSlaveLag = $status['lag'] + ( microtime( true ) - $status['since'] );
+		$this->mTrxReplicaLag = $status['lag'] + ( microtime( true ) - $status['since'] );
 	}
 
 	/**
@@ -3215,7 +3216,7 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	public function getTransactionLagStatus() {
 		return $this->mTrxLevel
-			? [ 'lag' => $this->mTrxSlaveLag, 'since' => $this->trxTimestamp() ]
+			? [ 'lag' => $this->mTrxReplicaLag, 'since' => $this->trxTimestamp() ]
 			: null;
 	}
 
