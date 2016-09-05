@@ -244,7 +244,7 @@ class SkinTemplate extends Skin {
 		$out = $this->getOutput();
 
 		$this->initPage( $out );
-		$tpl = $this->prepareQuickTemplate( $out );
+		$tpl = $this->prepareQuickTemplate();
 		// execute template
 		$res = $tpl->execute();
 
