@@ -180,7 +180,7 @@ class RecentChange {
 	public static function newFromConds(
 		$conds,
 		$fname = __METHOD__,
-		$dbType = DB_SLAVE
+		$dbType = DB_REPLICA
 	) {
 		$db = wfGetDB( $dbType );
 		$row = $db->selectRow( 'recentchanges', self::selectFields(), $conds, $fname );

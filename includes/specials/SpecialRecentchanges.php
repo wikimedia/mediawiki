@@ -281,7 +281,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	protected function getDB() {
-		return wfGetDB( DB_SLAVE, 'recentchanges' );
+		return wfGetDB( DB_REPLICA, 'recentchanges' );
 	}
 
 	public function outputFeedLinks() {

@@ -109,7 +109,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			// Or else Database*::select() will explode, plus it's cheaper!
 			return;
 		}
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$skin = $context->getSkin();
 		$lang = $context->getLanguage();
 
@@ -893,7 +893,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		$good = $fileCache->isCacheGood( wfTimestamp( TS_MW, time() - $maxage ) );
 		if ( !$good ) {
 			try { // RL always hits the DB on file cache miss...
-				wfGetDB( DB_SLAVE );
+				wfGetDB( DB_REPLICA );
 			} catch ( DBConnectionError $e ) { // ...check if we need to fallback to cache
 				$good = $fileCache->isCacheGood(); // cache existence check
 			}

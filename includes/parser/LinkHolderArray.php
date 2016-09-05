@@ -289,7 +289,7 @@ class LinkHolderArray {
 		$output = $this->parent->getOutput();
 		$linkRenderer = $this->parent->getLinkRenderer();
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		# Sort by namespace
 		ksort( $this->internals );
@@ -534,7 +534,7 @@ class LinkHolderArray {
 
 		if ( !$linkBatch->isEmpty() ) {
 			// construct query
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 			$fields = array_merge(
 				LinkCache::getSelectFields(),
 				[ 'page_namespace', 'page_title' ]

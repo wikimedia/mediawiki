@@ -57,7 +57,7 @@ class CategoryMembershipChangeJob extends Job {
 			return false;
 		}
 
-		$dbr = wfGetDB( DB_SLAVE, [ 'recentchanges' ] );
+		$dbr = wfGetDB( DB_REPLICA, [ 'recentchanges' ] );
 		// Wait till the slave is caught up so that jobs for this page see each others' changes
 		if ( !wfGetLB()->safeWaitForMasterPos( $dbr ) ) {
 			$this->setLastError( "Timed out while waiting for slave to catch up" );

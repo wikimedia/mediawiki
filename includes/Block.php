@@ -145,7 +145,7 @@ class Block {
 
 		$this->mReason = $options['reason'];
 		$this->mTimestamp = wfTimestamp( TS_MW, $options['timestamp'] );
-		$this->mExpiry = wfGetDB( DB_SLAVE )->decodeExpiry( $options['expiry'] );
+		$this->mExpiry = wfGetDB( DB_REPLICA )->decodeExpiry( $options['expiry'] );
 
 		# Boolean settings
 		$this->mAuto = (bool)$options['auto'];
@@ -168,7 +168,7 @@ class Block {
 	 * @return Block|null
 	 */
 	public static function newFromID( $id ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$res = $dbr->selectRow(
 			'ipblocks',
 			self::selectFields(),
@@ -242,7 +242,7 @@ class Block {
 	 * @return bool Whether a relevant block was found
 	 */
 	protected function newLoad( $vagueTarget = null ) {
-		$db = wfGetDB( $this->mFromMaster ? DB_MASTER : DB_SLAVE );
+		$db = wfGetDB( $this->mFromMaster ? DB_MASTER : DB_REPLICA );
 
 		if ( $this->type !== null ) {
 			$conds = [
@@ -351,7 +351,7 @@ class Block {
 		# range. We know that all blocks must be smaller than $wgBlockCIDRLimit,
 		# so we can improve performance by filtering on a LIKE clause
 		$chunk = self::getIpFragment( $start );
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$like = $dbr->buildLike( $chunk, $dbr->anyString() );
 
 		# Fairly hard to make a malicious SQL statement out of hex characters,
@@ -405,7 +405,7 @@ class Block {
 		$this->mParentBlockId = $row->ipb_parent_block_id;
 
 		// I wish I didn't have to do this
-		$this->mExpiry = wfGetDB( DB_SLAVE )->decodeExpiry( $row->ipb_expiry );
+		$this->mExpiry = wfGetDB( DB_REPLICA )->decodeExpiry( $row->ipb_expiry );
 
 		$this->isHardblock( !$row->ipb_anon_only );
 		$this->isAutoblocking( $row->ipb_enable_autoblock );
@@ -569,7 +569,7 @@ class Block {
 	 */
 	protected function getDatabaseArray( $db = null ) {
 		if ( !$db ) {
-			$db = wfGetDB( DB_SLAVE );
+			$db = wfGetDB( DB_REPLICA );
 		}
 		$expiry = $db->encodeExpiry( $this->mExpiry );
 
@@ -653,7 +653,7 @@ class Block {
 			return;
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$options = [ 'ORDER BY' => 'rc_timestamp DESC' ];
 		$conds = [ 'rc_user_text' => (string)$block->getTarget() ];
@@ -1146,7 +1146,7 @@ class Block {
 		if ( $fromMaster ) {
 			$db = wfGetDB( DB_MASTER );
 		} else {
-			$db = wfGetDB( DB_SLAVE );
+			$db = wfGetDB( DB_REPLICA );
 		}
 		$conds = $db->makeList( $conds, LIST_OR );
 		if ( !$isAnon ) {

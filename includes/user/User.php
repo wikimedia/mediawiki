@@ -474,7 +474,7 @@ class User implements IDBAccessObject {
 			$this->getCacheKey( $cache ),
 			$cache::TTL_HOUR,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $cache ) {
-				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
+				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
 				wfDebug( "User: cache miss for user {$this->mId}\n" );
 
 				$this->loadFromDatabase( self::READ_NORMAL );
@@ -566,7 +566,7 @@ class User implements IDBAccessObject {
 	public static function newFromConfirmationCode( $code, $flags = 0 ) {
 		$db = ( $flags & self::READ_LATEST ) == self::READ_LATEST
 			? wfGetDB( DB_MASTER )
-			: wfGetDB( DB_SLAVE );
+			: wfGetDB( DB_REPLICA );
 
 		$id = $db->selectField(
 			'user',
@@ -897,7 +897,7 @@ class User implements IDBAccessObject {
 			$conds[] = 'ug_user > ' . (int)$after;
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$ids = $dbr->selectFieldValues(
 			'user_groups',
 			'ug_user',
@@ -1362,7 +1362,7 @@ class User implements IDBAccessObject {
 		if ( is_null( $this->mGroups ) ) {
 			$db = ( $this->queryFlagsUsed & self::READ_LATEST )
 				? wfGetDB( DB_MASTER )
-				: wfGetDB( DB_SLAVE );
+				: wfGetDB( DB_REPLICA );
 			$res = $db->select( 'user_groups',
 				[ 'ug_group' ],
 				[ 'ug_user' => $this->mId ],
@@ -2190,7 +2190,7 @@ class User implements IDBAccessObject {
 			return [];
 		}
 		$utp = $this->getTalkPage();
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		// Get the "last viewed rev" timestamp from the oldest message notification
 		$timestamp = $dbr->selectField( 'user_newtalk',
 			'MIN(user_last_timestamp)',
@@ -2233,7 +2233,7 @@ class User implements IDBAccessObject {
 	 * @return bool True if the user has new messages
 	 */
 	protected function checkNewtalk( $field, $id ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$ok = $dbr->selectField( 'user_newtalk', $field, [ $field => $id ], __METHOD__ );
 
@@ -3243,7 +3243,7 @@ class User implements IDBAccessObject {
 		if ( is_null( $this->mFormerGroups ) ) {
 			$db = ( $this->queryFlagsUsed & self::READ_LATEST )
 				? wfGetDB( DB_MASTER )
-				: wfGetDB( DB_SLAVE );
+				: wfGetDB( DB_REPLICA );
 			$res = $db->select( 'user_former_groups',
 				[ 'ufg_group' ],
 				[ 'ufg_user' => $this->mId ],
@@ -3268,7 +3268,7 @@ class User implements IDBAccessObject {
 
 		if ( $this->mEditCount === null ) {
 			/* Populate the count, if it has not been populated yet */
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 			// check if the user_editcount field has been initialized
 			$count = $dbr->selectField(
 				'user', 'user_editcount',
@@ -3870,7 +3870,7 @@ class User implements IDBAccessObject {
 
 		$db = ( ( $flags & self::READ_LATEST ) == self::READ_LATEST )
 			? wfGetDB( DB_MASTER )
-			: wfGetDB( DB_SLAVE );
+			: wfGetDB( DB_REPLICA );
 
 		$options = ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING )
 			? [ 'LOCK IN SHARE MODE' ]
@@ -4510,7 +4510,7 @@ class User implements IDBAccessObject {
 		if ( $this->getId() == 0 ) {
 			return false; // anons
 		}
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$time = $dbr->selectField( 'revision', 'rev_timestamp',
 			[ 'rev_user' => $this->getId() ],
 			__METHOD__,
@@ -4915,14 +4915,14 @@ class User implements IDBAccessObject {
 		// Lazy initialization check...
 		if ( $dbw->affectedRows() == 0 ) {
 			// Now here's a goddamn hack...
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 			if ( $dbr !== $dbw ) {
 				// If we actually have a slave server, the count is
 				// at least one behind because the current transaction
 				// has not been committed and replicated.
 				$this->mEditCount = $this->initEditCount( 1 );
 			} else {
-				// But if DB_SLAVE is selecting the master, then the
+				// But if DB_REPLICA is selecting the master, then the
 				// count we just read includes the revision that was
 				// just added in the working transaction.
 				$this->mEditCount = $this->initEditCount();
@@ -4930,7 +4930,7 @@ class User implements IDBAccessObject {
 		} else {
 			if ( $this->mEditCount === null ) {
 				$this->getEditCount();
-				$dbr = wfGetDB( DB_SLAVE );
+				$dbr = wfGetDB( DB_REPLICA );
 				$this->mEditCount += ( $dbr !== $dbw ) ? 1 : 0;
 			} else {
 				$this->mEditCount++;
@@ -4949,7 +4949,7 @@ class User implements IDBAccessObject {
 	protected function initEditCount( $add = 0 ) {
 		// Pull from a slave to be less cruel to servers
 		// Accuracy isn't the point anyway here
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$count = (int)$dbr->selectField(
 			'revision',
 			'COUNT(rev_user)',
@@ -5107,7 +5107,7 @@ class User implements IDBAccessObject {
 				// Load from database
 				$dbr = ( $this->queryFlagsUsed & self::READ_LATEST )
 					? wfGetDB( DB_MASTER )
-					: wfGetDB( DB_SLAVE );
+					: wfGetDB( DB_REPLICA );
 
 				$res = $dbr->select(
 					'user_properties',

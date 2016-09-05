@@ -70,7 +70,7 @@ TEXT
 		global $wgCategoryCollation;
 
 		$dbw = $this->getDB( DB_MASTER );
-		$dbr = $this->getDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_REPLICA );
 		$force = $this->getOption( 'force' );
 		$dryRun = $this->getOption( 'dry-run' );
 		$verboseStats = $this->getOption( 'verbose-stats' );

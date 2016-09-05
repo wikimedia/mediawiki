@@ -364,7 +364,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 * Example usage:
 	 * @code
-	 *     $dbr = wfGetDB( DB_SLAVE );
+	 *     $dbr = wfGetDB( DB_REPLICA );
 	 *     $setOpts = Database::getCacheSetOptions( $dbr );
 	 *     // Fetch the row from the DB
 	 *     $row = $dbr->selectRow( ... );
@@ -660,7 +660,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *         $cache::TTL_MINUTE,
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
-	 *             $dbr = wfGetDB( DB_SLAVE );
+	 *             $dbr = wfGetDB( DB_REPLICA );
 	 *             // Account for any snapshot/slave lag
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
@@ -678,7 +678,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *         $cache::TTL_DAY,
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
-	 *             $dbr = wfGetDB( DB_SLAVE );
+	 *             $dbr = wfGetDB( DB_REPLICA );
 	 *             // Account for any snapshot/slave lag
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
@@ -705,7 +705,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             // Determine new value from the DB
-	 *             $dbr = wfGetDB( DB_SLAVE );
+	 *             $dbr = wfGetDB( DB_REPLICA );
 	 *             // Account for any snapshot/slave lag
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
@@ -732,7 +732,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *         10,
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
-	 *             $dbr = wfGetDB( DB_SLAVE );
+	 *             $dbr = wfGetDB( DB_REPLICA );
 	 *             // Account for any snapshot/slave lag
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *

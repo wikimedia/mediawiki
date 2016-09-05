@@ -209,7 +209,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return string
 	 */
 	public static function softwareInformation() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		// Put the software in an array of form 'name' => 'version'. All messages should
 		// be loaded here, so feel free to use wfMessage in the 'name'. Raw HTML or

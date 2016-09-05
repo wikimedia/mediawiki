@@ -604,7 +604,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	protected function getDB() {
 		if ( !isset( $this->mSlaveDB ) ) {
-			$this->mSlaveDB = wfGetDB( DB_SLAVE, 'api' );
+			$this->mSlaveDB = wfGetDB( DB_REPLICA, 'api' );
 		}
 
 		return $this->mSlaveDB;

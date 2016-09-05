@@ -139,7 +139,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * @return IDatabase|null
 	 */
 	protected function getDB() {
-		return wfGetDB( DB_SLAVE );
+		return wfGetDB( DB_REPLICA );
 	}
 
 	/**

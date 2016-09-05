@@ -59,7 +59,7 @@ class WatchedItemQueryService {
 	 * @throws MWException
 	 */
 	private function getConnection() {
-		return $this->loadBalancer->getConnection( DB_SLAVE, [ 'watchlist' ] );
+		return $this->loadBalancer->getConnection( DB_REPLICA, [ 'watchlist' ] );
 	}
 
 	/**

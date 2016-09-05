@@ -74,7 +74,7 @@ class ImageListPager extends TablePager {
 			$nt = Title::newFromText( $this->mSearch );
 
 			if ( $nt ) {
-				$dbr = wfGetDB( DB_SLAVE );
+				$dbr = wfGetDB( DB_REPLICA );
 				$this->mQueryConds[] = 'LOWER(img_name)' .
 					$dbr->buildLike( $dbr->anyString(),
 						strtolower( $nt->getDBkey() ), $dbr->anyString() );
@@ -136,7 +136,7 @@ class ImageListPager extends TablePager {
 		if ( $this->mSearch !== '' ) {
 			$nt = Title::newFromText( $this->mSearch );
 			if ( $nt ) {
-				$dbr = wfGetDB( DB_SLAVE );
+				$dbr = wfGetDB( DB_REPLICA );
 				$conds[] = 'LOWER(' . $prefix . '_name)' .
 					$dbr->buildLike( $dbr->anyString(),
 						strtolower( $nt->getDBkey() ), $dbr->anyString() );
@@ -272,7 +272,7 @@ class ImageListPager extends TablePager {
 			}
 			unset( $field );
 
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 			if ( $dbr->implicitGroupby() ) {
 				$options = [ 'GROUP BY' => 'img_name' ];
 			} else {

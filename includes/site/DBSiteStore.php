@@ -73,7 +73,7 @@ class DBSiteStore implements SiteStore {
 	protected function loadSites() {
 		$this->sites = new SiteList();
 
-		$dbr = $this->dbLoadBalancer->getConnection( DB_SLAVE );
+		$dbr = $this->dbLoadBalancer->getConnection( DB_REPLICA );
 
 		$res = $dbr->select(
 			'sites',

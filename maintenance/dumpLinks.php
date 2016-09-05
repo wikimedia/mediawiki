@@ -44,7 +44,7 @@ class DumpLinks extends Maintenance {
 	}
 
 	public function execute() {
-		$dbr = $this->getDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_REPLICA );
 		$result = $dbr->select( [ 'pagelinks', 'page' ],
 			[
 				'page_id',

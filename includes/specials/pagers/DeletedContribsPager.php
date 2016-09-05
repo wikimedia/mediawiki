@@ -43,7 +43,7 @@ class DeletedContribsPager extends IndexPager {
 		}
 		$this->target = $target;
 		$this->namespace = $namespace;
-		$this->mDb = wfGetDB( DB_SLAVE, 'contributions' );
+		$this->mDb = wfGetDB( DB_REPLICA, 'contributions' );
 	}
 
 	function getDefaultQuery() {

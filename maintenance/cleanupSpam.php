@@ -64,7 +64,7 @@ class CleanupSpam extends Maintenance {
 			$this->output( "Finding spam on " . count( $wgLocalDatabases ) . " wikis\n" );
 			$found = false;
 			foreach ( $wgLocalDatabases as $wikiID ) {
-				$dbr = $this->getDB( DB_SLAVE, [], $wikiID );
+				$dbr = $this->getDB( DB_REPLICA, [], $wikiID );
 
 				$count = $dbr->selectField( 'externallinks', 'COUNT(*)',
 					[ 'el_index' . $dbr->buildLike( $like ) ], __METHOD__ );
@@ -83,7 +83,7 @@ class CleanupSpam extends Maintenance {
 		} else {
 			// Clean up spam on this wiki
 
-			$dbr = $this->getDB( DB_SLAVE );
+			$dbr = $this->getDB( DB_REPLICA );
 			$res = $dbr->select( 'externallinks', [ 'DISTINCT el_from' ],
 				[ 'el_index' . $dbr->buildLike( $like ) ], __METHOD__ );
 			$count = $dbr->numRows( $res );

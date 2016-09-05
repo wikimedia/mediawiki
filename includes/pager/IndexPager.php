@@ -146,7 +146,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 
 		$this->mIsBackwards = ( $this->mRequest->getVal( 'dir' ) == 'prev' );
 		# Let the subclass set the DB here; otherwise use a slave DB for the current wiki
-		$this->mDb = $this->mDb ?: wfGetDB( DB_SLAVE );
+		$this->mDb = $this->mDb ?: wfGetDB( DB_REPLICA );
 
 		$index = $this->getIndexField(); // column to sort on
 		$extraSort = $this->getExtraSortFields(); // extra columns to sort on for query planning

@@ -370,12 +370,12 @@ class SpecialExport extends SpecialPage {
 		/* Ok, let's get to it... */
 		if ( $history == WikiExporter::CURRENT ) {
 			$lb = false;
-			$db = wfGetDB( DB_SLAVE );
+			$db = wfGetDB( DB_REPLICA );
 			$buffer = WikiExporter::BUFFER;
 		} else {
 			// Use an unbuffered query; histories may be very long!
 			$lb = wfGetLBFactory()->newMainLB();
-			$db = $lb->getConnection( DB_SLAVE );
+			$db = $lb->getConnection( DB_REPLICA );
 			$buffer = WikiExporter::STREAM;
 
 			// This might take a while... :D
@@ -426,7 +426,7 @@ class SpecialExport extends SpecialPage {
 
 		$name = $title->getDBkey();
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$res = $dbr->select(
 			[ 'page', 'categorylinks' ],
 			[ 'page_namespace', 'page_title' ],
@@ -459,7 +459,7 @@ class SpecialExport extends SpecialPage {
 
 		$maxPages = $this->getConfig()->get( 'ExportPagelistLimit' );
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$res = $dbr->select(
 			'page',
 			[ 'page_namespace', 'page_title' ],
@@ -556,7 +556,7 @@ class SpecialExport extends SpecialPage {
 	 * @return array
 	 */
 	private function getLinks( $inputPages, $pageSet, $table, $fields, $join ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		foreach ( $inputPages as $page ) {
 			$title = Title::newFromText( $page );

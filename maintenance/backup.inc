@@ -302,7 +302,7 @@ class BackupDumper extends Maintenance {
 
 		$dbr = $this->forcedDb;
 		if ( $this->forcedDb === null ) {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 		}
 		$this->maxCount = $dbr->selectField( $table, "MAX($field)", '', __METHOD__ );
 		$this->startTime = microtime( true );
@@ -322,7 +322,7 @@ class BackupDumper extends Maintenance {
 		}
 
 		$this->lb = wfGetLBFactory()->newMainLB();
-		$db = $this->lb->getConnection( DB_SLAVE, 'dump' );
+		$db = $this->lb->getConnection( DB_REPLICA, 'dump' );
 
 		// Discourage the server from disconnecting us if it takes a long time
 		// to read out the big ol' batch query.

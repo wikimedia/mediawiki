@@ -732,7 +732,7 @@ class JobQueueDB extends JobQueue {
 	 */
 	protected function getSlaveDB() {
 		try {
-			return $this->getDB( DB_SLAVE );
+			return $this->getDB( DB_REPLICA );
 		} catch ( DBConnectionError $e ) {
 			throw new JobQueueConnectionError( "DBConnectionError:" . $e->getMessage() );
 		}
@@ -751,7 +751,7 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
-	 * @param int $index (DB_SLAVE/DB_MASTER)
+	 * @param int $index (DB_REPLICA/DB_MASTER)
 	 * @return DBConnRef
 	 */
 	protected function getDB( $index ) {

@@ -57,7 +57,7 @@ class CheckStorage {
 	];
 
 	function check( $fix = false, $xml = '' ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		if ( $fix ) {
 			print "Checking, will fix errors if possible...\n";
 		} else {
@@ -462,7 +462,7 @@ class CheckStorage {
 			return;
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$dbw = wfGetDB( DB_MASTER );
 		$dbr->ping();
 		$dbw->ping();
@@ -507,7 +507,7 @@ class CheckStorage {
 		}
 
 		// Find text row again
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$oldId = $dbr->selectField( 'revision', 'rev_text_id', [ 'rev_id' => $id ], __METHOD__ );
 		if ( !$oldId ) {
 			echo "Missing revision row for rev_id $id\n";

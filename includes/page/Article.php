@@ -1068,7 +1068,7 @@ class Article implements Page {
 			return false;
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$oldestRevisionTimestamp = $dbr->selectField(
 			'revision',
 			'MIN( rev_timestamp )',
@@ -1705,7 +1705,7 @@ class Article implements Page {
 			// This, as a side-effect, also makes sure that the following query isn't being run for
 			// pages with a larger history, unless the user has the 'bigdelete' right
 			// (and is about to delete this page).
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 			$revisions = $edits = (int)$dbr->selectField(
 				'revision',
 				'COUNT(rev_page)',

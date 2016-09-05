@@ -47,7 +47,7 @@ class RefreshFileHeaders extends Maintenance {
 		$end = str_replace( ' ', '_', $this->getOption( 'end', '' ) ); // page on img_name
 
 		$count = 0;
-		$dbr = $this->getDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_REPLICA );
 		do {
 			$conds = [ "img_name > {$dbr->addQuotes( $start )}" ];
 			if ( strlen( $end ) ) {

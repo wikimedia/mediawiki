@@ -45,7 +45,7 @@ class RemoveUnusedAccounts extends Maintenance {
 		# Do an initial scan for inactive accounts and report the result
 		$this->output( "Checking for unused user accounts...\n" );
 		$del = [];
-		$dbr = $this->getDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_REPLICA );
 		$res = $dbr->select( 'user', [ 'user_id', 'user_name', 'user_touched' ], '', __METHOD__ );
 		if ( $this->hasOption( 'ignore-groups' ) ) {
 			$excludedGroups = explode( ',', $this->getOption( 'ignore-groups' ) );
@@ -107,7 +107,7 @@ class RemoveUnusedAccounts extends Maintenance {
 	 * @return bool
 	 */
 	private function isInactiveAccount( $id, $master = false ) {
-		$dbo = $this->getDB( $master ? DB_MASTER : DB_SLAVE );
+		$dbo = $this->getDB( $master ? DB_MASTER : DB_REPLICA );
 		$checks = [
 			'revision' => 'rev',
 			'archive' => 'ar',

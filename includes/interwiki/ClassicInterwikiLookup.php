@@ -282,7 +282,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 			$this->objectCache->makeKey( 'interwiki', $prefix ),
 			$this->objectCacheExpiry,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $prefix ) {
-				$dbr = wfGetDB( DB_SLAVE ); // TODO: inject LoadBalancer
+				$dbr = wfGetDB( DB_REPLICA ); // TODO: inject LoadBalancer
 
 				$setOpts += Database::getCacheSetOptions( $dbr );
 
@@ -395,7 +395,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	 * @return array[] Interwiki rows
 	 */
 	private function getAllPrefixesDB( $local ) {
-		$db = wfGetDB( DB_SLAVE ); // TODO: inject DB LoadBalancer
+		$db = wfGetDB( DB_REPLICA ); // TODO: inject DB LoadBalancer
 
 		$where = [];
 

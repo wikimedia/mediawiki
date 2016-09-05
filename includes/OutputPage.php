@@ -1265,7 +1265,7 @@ class OutputPage extends ContextSource {
 		$lb->setArray( $arr );
 
 		# Fetch existence plus the hiddencat property
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$fields = array_merge(
 			LinkCache::getSelectFields(),
 			[ 'page_namespace', 'page_title', 'pp_value' ]

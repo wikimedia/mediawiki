@@ -633,7 +633,7 @@ class ChangeTags {
 			throw new MWException( 'Unable to determine appropriate JOIN condition for tagging.' );
 		}
 
-		$fields['ts_tags'] = wfGetDB( DB_SLAVE )->buildGroupConcatField(
+		$fields['ts_tags'] = wfGetDB( DB_REPLICA )->buildGroupConcatField(
 			',', 'change_tag', 'ct_tag', $join_cond
 		);
 
@@ -1136,7 +1136,7 @@ class ChangeTags {
 			wfMemcKey( 'active-tags' ),
 			WANObjectCache::TTL_MINUTE * 5,
 			function ( $oldValue, &$ttl, array &$setOpts ) {
-				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
+				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
 
 				// Ask extensions which tags they consider active
 				$extensionActive = [];
@@ -1181,7 +1181,7 @@ class ChangeTags {
 			wfMemcKey( 'valid-tags-db' ),
 			WANObjectCache::TTL_MINUTE * 5,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
-				$dbr = wfGetDB( DB_SLAVE );
+				$dbr = wfGetDB( DB_REPLICA );
 
 				$setOpts += Database::getCacheSetOptions( $dbr );
 
@@ -1211,7 +1211,7 @@ class ChangeTags {
 			wfMemcKey( 'valid-tags-hook' ),
 			WANObjectCache::TTL_MINUTE * 5,
 			function ( $oldValue, &$ttl, array &$setOpts ) {
-				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
+				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
 
 				$tags = [];
 				Hooks::run( 'ListDefinedTags', [ &$tags ] );
@@ -1266,7 +1266,7 @@ class ChangeTags {
 			wfMemcKey( 'change-tag-statistics' ),
 			WANObjectCache::TTL_MINUTE * 5,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
-				$dbr = wfGetDB( DB_SLAVE, 'vslow' );
+				$dbr = wfGetDB( DB_REPLICA, 'vslow' );
 
 				$setOpts += Database::getCacheSetOptions( $dbr );
 

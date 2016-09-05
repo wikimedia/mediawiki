@@ -40,12 +40,12 @@ class DBAccessObjectUtils {
 	 * Get an appropriate DB index and options for a query
 	 *
 	 * @param integer $bitfield
-	 * @return array (DB_MASTER/DB_SLAVE, SELECT options array)
+	 * @return array (DB_MASTER/DB_REPLICA, SELECT options array)
 	 */
 	public static function getDBOptions( $bitfield ) {
 		$index = self::hasFlags( $bitfield, IDBAccessObject::READ_LATEST )
 			? DB_MASTER
-			: DB_SLAVE;
+			: DB_REPLICA;
 
 		$options = [];
 		if ( self::hasFlags( $bitfield, IDBAccessObject::READ_EXCLUSIVE ) ) {
