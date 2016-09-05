@@ -34,10 +34,13 @@ class MwSql extends Maintenance {
 		parent::__construct();
 		$this->addDescription( 'Send SQL queries to a MediaWiki database. ' .
 			'Takes a file name containing SQL as argument or runs interactively.' );
-		$this->addOption( 'query', 'Run a single query instead of running interactively', false, true );
+		$this->addOption( 'query', 
+			'Run a single query instead of running interactively', false, true );
 		$this->addOption( 'cluster', 'Use an external cluster by name', false, true );
-		$this->addOption( 'wikidb', 'The database wiki ID to use if not the current one', false, true );
-		$this->addOption( 'slave', 'Use a slave server (either "any" or by name)', false, true );
+		$this->addOption( 'wikidb',
+			'The database wiki ID to use if not the current one', false, true );
+		$this->addOption( 'replicadb', 
+			'Replica DB server to use instead of the master DB (can be "any")', false, true );
 	}
 
 	public function execute() {
@@ -50,22 +53,20 @@ class MwSql extends Maintenance {
 			$lb = wfGetLB( $wiki );
 		}
 		// Figure out which server to use
-		if ( $this->hasOption( 'slave' ) ) {
-			$server = $this->getOption( 'slave' );
-			if ( $server === 'any' ) {
-				$index = DB_SLAVE;
-			} else {
-				$index = null;
-				$serverCount = $lb->getServerCount();
-				for ( $i = 0; $i < $serverCount; ++$i ) {
-					if ( $lb->getServerName( $i ) === $server ) {
-						$index = $i;
-						break;
-					}
+		$replicaDB = $this->getOption( 'replicadb', $this->getOption( 'slave', '' ) );
+		if ( $replicaDB === 'any' ) {
+			$index = DB_SLAVE;
+		} elseif ( $replicaDB != '' ) {
+			$index = null;
+			$serverCount = $lb->getServerCount();
+			for ( $i = 0; $i < $serverCount; ++$i ) {
+				if ( $lb->getServerName( $i ) === $replicaDB ) {
+					$index = $i;
+					break;
 				}
-				if ( $index === null ) {
-					$this->error( "No slave server configured with the name '$server'.", 1 );
-				}
+			}
+			if ( $index === null ) {
+				$this->error( "No replica DB server configured with the name '$server'.", 1 );
 			}
 		} else {
 			$index = DB_MASTER;
@@ -73,7 +74,7 @@ class MwSql extends Maintenance {
 		// Get a DB handle (with this wiki's DB selected) from the appropriate load balancer
 		$db = $lb->getConnection( $index, [], $wiki );
 		if ( $this->hasOption( 'slave' ) && $db->getLBInfo( 'master' ) !== null ) {
-			$this->error( "The server selected ({$db->getServer()}) is not a slave.", 1 );
+			$this->error( "The server selected ({$db->getServer()}) is not a replica DB.", 1 );
 		}
 
 		if ( $this->hasArg( 0 ) ) {

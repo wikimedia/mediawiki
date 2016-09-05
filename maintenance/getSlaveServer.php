@@ -1,6 +1,6 @@
 <?php
 /**
- * Reports the hostname of a slave server.
+ * Reports the hostname of a replica DB server.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Maintenance script that reports the hostname of a slave server.
+ * Maintenance script that reports the hostname of a replica DB server.
  *
  * @ingroup Maintenance
  */
@@ -32,7 +32,7 @@ class GetSlaveServer extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( "group", "Query group to check specifically" );
-		$this->addDescription( 'Report the hostname of a slave server' );
+		$this->addDescription( 'Report the hostname of a replica DB server' );
 	}
 
 	public function execute() {

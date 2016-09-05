@@ -109,7 +109,7 @@ class UpdateSpecialPages extends Maintenance {
 						} while ( !wfGetLB()->pingAll() );
 						$this->output( "Reconnected\n\n" );
 					}
-					# Wait for the slave to catch up
+					# Wait for the replica DB to catch up
 					wfWaitForSlaves();
 				} else {
 					$this->output( "cheap, skipped\n" );
@@ -153,7 +153,7 @@ class UpdateSpecialPages extends Maintenance {
 					$this->output( $minutes . 'm ' );
 				}
 				$this->output( sprintf( "%.2fs\n", $seconds ) );
-				# Wait for the slave to catch up
+				# Wait for the replica DB to catch up
 				wfWaitForSlaves();
 			}
 		}

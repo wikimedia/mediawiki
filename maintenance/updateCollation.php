@@ -34,7 +34,7 @@ require_once __DIR__ . '/Maintenance.php';
  */
 class UpdateCollation extends Maintenance {
 	const BATCH_SIZE = 100; // Number of rows to process in one batch
-	const SYNC_INTERVAL = 5; // Wait for slaves after this many batches
+	const SYNC_INTERVAL = 5; // Wait for replica DBs after this many batches
 
 	public $sizeHistogram = [];
 
@@ -220,7 +220,7 @@ TEXT
 			$this->output( "$count done.\n" );
 
 			if ( !$dryRun && ++$batchCount % self::SYNC_INTERVAL == 0 ) {
-				$this->output( "Waiting for slaves ... " );
+				$this->output( "Waiting for replica DBs ... " );
 				wfWaitForSlaves();
 				$this->output( "done\n" );
 			}
