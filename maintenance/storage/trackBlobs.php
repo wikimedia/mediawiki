@@ -219,7 +219,7 @@ class TrackBlobs {
 	 * archive table counts as orphan for our purposes.
 	 */
 	function trackOrphanText() {
-		# Wait until the blob_tracking table is available in the slave
+		# Wait until the blob_tracking table is available in the replica DB
 		$dbw = wfGetDB( DB_MASTER );
 		$dbr = wfGetDB( DB_SLAVE );
 		$pos = $dbw->getMasterPos();

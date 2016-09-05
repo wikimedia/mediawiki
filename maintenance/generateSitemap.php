@@ -113,7 +113,7 @@ class GenerateSitemap extends Maintenance {
 	public $timestamp;
 
 	/**
-	 * A database slave object
+	 * A database replica DB object
 	 *
 	 * @var object
 	 */
