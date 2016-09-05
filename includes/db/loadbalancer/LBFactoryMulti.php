@@ -353,7 +353,7 @@ class LBFactoryMulti extends LBFactory {
 				}
 				$master = false;
 			} else {
-				$serverInfo['slave'] = true;
+				$serverInfo['replica'] = true;
 			}
 			if ( isset( $this->templateOverridesByServer[$serverName] ) ) {
 				$serverInfo = $this->templateOverridesByServer[$serverName] + $serverInfo;
