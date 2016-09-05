@@ -31,7 +31,7 @@
  * @code
  * $ php maintenance/eval.php
  * > $queue = JobQueueGroup::singleton();
- * > $job = new NullJob( Title::newMainPage(), array( 'lives' => 10 ) );
+ * > $job = new NullJob( Title::newMainPage(), [ 'lives' => 10 ] );
  * > $queue->push( $job );
  * @endcode
  * You can then confirm the job has been enqueued by using the showJobs.php

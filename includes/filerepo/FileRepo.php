@@ -482,8 +482,8 @@ class FileRepo {
 	 * @param array $items An array of titles, or an array of findFile() options with
 	 *    the "title" option giving the title. Example:
 	 *
-	 *     $findItem = array( 'title' => $title, 'private' => true );
-	 *     $findBatch = array( $findItem );
+	 *     $findItem = [ 'title' => $title, 'private' => true ];
+	 *     $findBatch = [ $findItem ];
 	 *     $repo->findFiles( $findBatch );
 	 *
 	 *    No title should appear in $items twice, as the result use titles as keys

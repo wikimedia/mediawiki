@@ -1594,7 +1594,7 @@ class PreferencesForm extends HTMLForm {
 	 * Get extra parameters for the query string when redirecting after
 	 * successful save.
 	 *
-	 * @return array()
+	 * @return array
 	 */
 	public function getExtraSuccessRedirectParameters() {
 		return [];

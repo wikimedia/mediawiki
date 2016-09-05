@@ -184,7 +184,7 @@ class AllMessagesTablePager extends TablePager {
 
 	/**
 	 * Determine which of the MediaWiki and MediaWiki_talk namespace pages exist.
-	 * Returns array( 'pages' => ..., 'talks' => ... ), where the subarrays have
+	 * Returns [ 'pages' => ..., 'talks' => ... ], where the subarrays have
 	 * an entry for each existing page, with the key being the message name and
 	 * value arbitrary.
 	 *
