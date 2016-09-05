@@ -1,6 +1,6 @@
 <?php
 /**
- * Run a database query in batches and wait for slaves. This is used on large
+ * Run a database query in batches and wait for replica DBs. This is used on large
  * wikis to prevent replication lag from going through the roof when executing
  * large write queries.
  *
@@ -26,7 +26,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Maintenance script to run a database query in batches and wait for slaves.
+ * Maintenance script to run a database query in batches and wait for replica DBs.
  *
  * @ingroup Maintenance
  */
@@ -34,7 +34,7 @@ class BatchedQueryRunner extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription(
-			"Run a query repeatedly until it affects 0 rows, and wait for slaves in between.\n" .
+			"Run a query repeatedly until it affects 0 rows, and wait for replica DBs in between.\n" .
 				"NOTE: You need to set a LIMIT clause yourself." );
 	}
 

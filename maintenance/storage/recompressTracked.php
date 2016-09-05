@@ -148,8 +148,8 @@ class RecompressTracked {
 	}
 
 	/**
-	 * Wait until the selected slave has caught up to the master.
-	 * This allows us to use the slave for things that were committed in a
+	 * Wait until the selected replica DB has caught up to the master.
+	 * This allows us to use the replica DB for things that were committed in a
 	 * previous part of this batch process.
 	 */
 	function syncDBs() {
@@ -239,7 +239,7 @@ class RecompressTracked {
 			$proc = proc_open( "$cmd --slave-id $i", $spec, $pipes );
 			MediaWiki\restoreWarnings();
 			if ( !$proc ) {
-				$this->critical( "Error opening slave process: $cmd" );
+				$this->critical( "Error opening replica DB process: $cmd" );
 				exit( 1 );
 			}
 			$this->slaveProcs[$i] = $proc;
@@ -252,7 +252,7 @@ class RecompressTracked {
 	 * Gracefully terminate the child processes
 	 */
 	function killSlaveProcs() {
-		$this->info( "Waiting for slave processes to finish..." );
+		$this->info( "Waiting for replica DB processes to finish..." );
 		for ( $i = 0; $i < $this->numProcs; $i++ ) {
 			$this->dispatchToSlave( $i, 'quit' );
 		}
@@ -266,15 +266,15 @@ class RecompressTracked {
 	}
 
 	/**
-	 * Dispatch a command to the next available slave.
-	 * This may block until a slave finishes its work and becomes available.
+	 * Dispatch a command to the next available replica DB.
+	 * This may block until a replica DB finishes its work and becomes available.
 	 */
 	function dispatch( /*...*/ ) {
 		$args = func_get_args();
 		$pipes = $this->slavePipes;
 		$numPipes = stream_select( $x = [], $pipes, $y = [], 3600 );
 		if ( !$numPipes ) {
-			$this->critical( "Error waiting to write to slaves. Aborting" );
+			$this->critical( "Error waiting to write to replica DBs. Aborting" );
 			exit( 1 );
 		}
 		for ( $i = 0; $i < $this->numProcs; $i++ ) {
@@ -291,7 +291,7 @@ class RecompressTracked {
 	}
 
 	/**
-	 * Dispatch a command to a specified slave
+	 * Dispatch a command to a specified replica DB
 	 * @param int $slaveId
 	 * @param array|string $args
 	 */
@@ -762,7 +762,7 @@ class CgzCopyTransaction {
 
 		/* Check to see if the target text_ids have been moved already.
 		 *
-		 * We originally read from the slave, so this can happen when a single
+		 * We originally read from the replica DB, so this can happen when a single
 		 * text_id is shared between multiple pages. It's rare, but possible
 		 * if a delete/move/undelete cycle splits up a null edit.
 		 *

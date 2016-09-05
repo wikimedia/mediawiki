@@ -37,7 +37,7 @@ class MwSql extends Maintenance {
 		$this->addOption( 'query', 'Run a single query instead of running interactively', false, true );
 		$this->addOption( 'cluster', 'Use an external cluster by name', false, true );
 		$this->addOption( 'wikidb', 'The database wiki ID to use if not the current one', false, true );
-		$this->addOption( 'slave', 'Use a slave server (either "any" or by name)', false, true );
+		$this->addOption( 'slave', 'Use a replica DB server (either "any" or by name)', false, true );
 	}
 
 	public function execute() {
@@ -64,7 +64,7 @@ class MwSql extends Maintenance {
 					}
 				}
 				if ( $index === null ) {
-					$this->error( "No slave server configured with the name '$server'.", 1 );
+					$this->error( "No replica DB server configured with the name '$server'.", 1 );
 				}
 			}
 		} else {
@@ -73,7 +73,7 @@ class MwSql extends Maintenance {
 		// Get a DB handle (with this wiki's DB selected) from the appropriate load balancer
 		$db = $lb->getConnection( $index, [], $wiki );
 		if ( $this->hasOption( 'slave' ) && $db->getLBInfo( 'master' ) !== null ) {
-			$this->error( "The server selected ({$db->getServer()}) is not a slave.", 1 );
+			$this->error( "The server selected ({$db->getServer()}) is not a replica DB.", 1 );
 		}
 
 		if ( $this->hasArg( 0 ) ) {
