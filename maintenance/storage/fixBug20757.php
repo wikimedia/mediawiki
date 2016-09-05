@@ -42,7 +42,7 @@ class FixBug20757 extends Maintenance {
 	}
 
 	function execute() {
-		$dbr = $this->getDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_REPLICA );
 		$dbw = $this->getDB( DB_MASTER );
 
 		$dryRun = $this->getOption( 'dry-run' );
@@ -281,7 +281,7 @@ class FixBug20757 extends Maintenance {
 				unset( $this->mapCache[$key] );
 			}
 
-			$dbr = $this->getDB( DB_SLAVE );
+			$dbr = $this->getDB( DB_REPLICA );
 			$map = [];
 			$res = $dbr->select( 'revision',
 				[ 'rev_id', 'rev_text_id' ],

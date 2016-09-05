@@ -134,7 +134,7 @@ class Revision implements IDBAccessObject {
 		} else {
 			// Use a join to get the latest revision
 			$conds[] = 'rev_id=page_latest';
-			$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE );
+			$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_REPLICA );
 			return self::loadFromConds( $db, $conds, $flags );
 		}
 	}
@@ -161,7 +161,7 @@ class Revision implements IDBAccessObject {
 		} else {
 			// Use a join to get the latest revision
 			$conds[] = 'rev_id = page_latest';
-			$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE );
+			$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_REPLICA );
 			return self::loadFromConds( $db, $conds, $flags );
 		}
 	}
@@ -316,7 +316,7 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	private static function newFromConds( $conditions, $flags = 0 ) {
-		$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE );
+		$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_REPLICA );
 
 		$rev = self::loadFromConds( $db, $conditions, $flags );
 		// Make sure new pending/committed revision are visibile later on
@@ -370,7 +370,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function fetchRevision( LinkTarget $title ) {
 		$row = self::fetchFromConds(
-			wfGetDB( DB_SLAVE ),
+			wfGetDB( DB_REPLICA ),
 			[
 				'rev_id=page_latest',
 				'page_namespace' => $title->getNamespace(),
@@ -803,7 +803,7 @@ class Revision implements IDBAccessObject {
 		}
 		// rev_id is defined as NOT NULL, but this revision may not yet have been inserted.
 		if ( $this->mId !== null ) {
-			$dbr = wfGetLB( $this->mWiki )->getConnectionRef( DB_SLAVE, [], $this->mWiki );
+			$dbr = wfGetLB( $this->mWiki )->getConnectionRef( DB_REPLICA, [], $this->mWiki );
 			$row = $dbr->selectRow(
 				[ 'page', 'revision' ],
 				self::selectPageFields(),
@@ -989,7 +989,7 @@ class Revision implements IDBAccessObject {
 	 * @return RecentChange|null
 	 */
 	public function getRecentChange( $flags = 0 ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		list( $dbType, ) = DBAccessObjectUtils::getDBOptions( $flags );
 
@@ -1610,7 +1610,7 @@ class Revision implements IDBAccessObject {
 
 		if ( !$row ) {
 			// Text data is immutable; check replica DBs first.
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 			$row = $dbr->selectRow( 'text',
 				[ 'old_text', 'old_flags' ],
 				[ 'old_id' => $textId ],
@@ -1792,7 +1792,7 @@ class Revision implements IDBAccessObject {
 	static function getTimestampFromId( $title, $id, $flags = 0 ) {
 		$db = ( $flags & self::READ_LATEST )
 			? wfGetDB( DB_MASTER )
-			: wfGetDB( DB_SLAVE );
+			: wfGetDB( DB_REPLICA );
 		// Casting fix for databases that can't take '' for rev_id
 		if ( $id == '' ) {
 			$id = 0;
@@ -1919,7 +1919,7 @@ class Revision implements IDBAccessObject {
 		}
 
 		$this->mRefreshMutableFields = false;
-		$dbr = wfGetLB( $this->mWiki )->getConnectionRef( DB_SLAVE, [], $this->mWiki );
+		$dbr = wfGetLB( $this->mWiki )->getConnectionRef( DB_REPLICA, [], $this->mWiki );
 		$row = $dbr->selectRow(
 			[ 'revision', 'user' ],
 			[ 'rev_deleted', 'user_name' ],

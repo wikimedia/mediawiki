@@ -154,7 +154,7 @@ class RecompressTracked {
 	 */
 	function syncDBs() {
 		$dbw = wfGetDB( DB_MASTER );
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$pos = $dbw->getMasterPos();
 		$dbr->masterPosWait( $pos, 100000 );
 	}
@@ -190,7 +190,7 @@ class RecompressTracked {
 	 * @return bool
 	 */
 	function checkTrackingTable() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		if ( !$dbr->tableExists( 'blob_tracking' ) ) {
 			$this->critical( "Error: blob_tracking table does not exist" );
 
@@ -305,7 +305,7 @@ class RecompressTracked {
 	 * Move all tracked pages to the new clusters
 	 */
 	function doAllPages() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$i = 0;
 		$startId = 0;
 		if ( $this->noCount ) {
@@ -374,7 +374,7 @@ class RecompressTracked {
 	 * Move all orphan text to the new clusters
 	 */
 	function doAllOrphans() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$startId = 0;
 		$i = 0;
 		if ( $this->noCount ) {
@@ -480,7 +480,7 @@ class RecompressTracked {
 		} else {
 			$titleText = '[deleted]';
 		}
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		// Finish any incomplete transactions
 		if ( !$this->copyOnly ) {
@@ -590,7 +590,7 @@ class RecompressTracked {
 	 * @param array $conds
 	 */
 	function finishIncompleteMoves( $conds ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$startId = 0;
 		$conds = array_merge( $conds, [
@@ -659,7 +659,7 @@ class RecompressTracked {
 
 		$trx = new CgzCopyTransaction( $this, $this->orphanBlobClass );
 
-		$res = wfGetDB( DB_SLAVE )->select(
+		$res = wfGetDB( DB_REPLICA )->select(
 			[ 'text', 'blob_tracking' ],
 			[ 'old_id', 'old_text', 'old_flags' ],
 			[

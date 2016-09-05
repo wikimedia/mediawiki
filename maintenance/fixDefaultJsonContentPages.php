@@ -47,7 +47,7 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 			return true;
 		}
 
-		$dbr = $this->getDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_REPLICA );
 		$namespaces = [
 			NS_MEDIAWIKI => $dbr->buildLike( $dbr->anyString(), '.json' ),
 			NS_USER => $dbr->buildLike( $dbr->anyString(), '/', $dbr->anyString(), '.json' ),

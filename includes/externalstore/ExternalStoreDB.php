@@ -130,7 +130,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			wfDebug( "writable external store\n" );
 		}
 
-		$db = $lb->getConnection( DB_SLAVE, [], $wiki );
+		$db = $lb->getConnection( DB_REPLICA, [], $wiki );
 		$db->clearFlag( DBO_TRX ); // sanity
 
 		return $db;

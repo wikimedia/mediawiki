@@ -70,7 +70,7 @@ class RebuildFileCache extends Maintenance {
 
 		$this->output( "Building content page file cache from page {$start}!\n" );
 
-		$dbr = $this->getDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_REPLICA );
 		$overwrite = $this->getOption( 'overwrite', false );
 		$start = ( $start > 0 )
 			? $start

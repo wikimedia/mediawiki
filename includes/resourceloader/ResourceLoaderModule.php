@@ -417,7 +417,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 
 		// Try in-object cache first
 		if ( !isset( $this->fileDeps[$vary] ) ) {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 			$deps = $dbr->selectField( 'module_deps',
 				'md_deps',
 				[

@@ -46,7 +46,7 @@ abstract class UserArray implements Iterator {
 			// Database::select() doesn't like empty arrays
 			return new ArrayIterator( [] );
 		}
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$res = $dbr->select(
 			'user',
 			User::selectFields(),
@@ -67,7 +67,7 @@ abstract class UserArray implements Iterator {
 			// Database::select() doesn't like empty arrays
 			return new ArrayIterator( [] );
 		}
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$res = $dbr->select(
 			'user',
 			User::selectFields(),

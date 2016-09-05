@@ -146,7 +146,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		$from = self::convertSelectType( $from );
-		$db = wfGetDB( $from === self::READ_LATEST ? DB_MASTER : DB_SLAVE );
+		$db = wfGetDB( $from === self::READ_LATEST ? DB_MASTER : DB_REPLICA );
 		$row = $db->selectRow(
 			'page', self::selectFields(), [ 'page_id' => $id ], __METHOD__ );
 		if ( !$row ) {
@@ -365,7 +365,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$data = $this->pageDataFromTitle( wfGetDB( $index ), $this->mTitle, $opts );
 
 			if ( !$data
-				&& $index == DB_SLAVE
+				&& $index == DB_REPLICA
 				&& wfGetLB()->getServerCount() > 1
 				&& wfGetLB()->hasOrMadeRecentMasterChanges()
 			) {
@@ -554,7 +554,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Try using the replica DB first, then try the master
 		$continue = 2;
-		$db = wfGetDB( DB_SLAVE );
+		$db = wfGetDB( DB_REPLICA );
 		$revSelectFields = Revision::selectFields();
 
 		$row = null;
@@ -831,7 +831,7 @@ class WikiPage implements Page, IDBAccessObject {
 				// links.
 				$hasLinks = (bool)count( $editInfo->output->getLinks() );
 			} else {
-				$hasLinks = (bool)wfGetDB( DB_SLAVE )->selectField( 'pagelinks', 1,
+				$hasLinks = (bool)wfGetDB( DB_REPLICA )->selectField( 'pagelinks', 1,
 					[ 'pl_from' => $this->getId() ], __METHOD__ );
 			}
 		}
@@ -856,7 +856,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// Query the redirect table
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$row = $dbr->selectRow( 'redirect',
 			[ 'rd_namespace', 'rd_title', 'rd_fragment', 'rd_interwiki' ],
 			[ 'rd_from' => $this->getId() ],
@@ -989,7 +989,7 @@ class WikiPage implements Page, IDBAccessObject {
 	public function getContributors() {
 		// @todo FIXME: This is expensive; cache this info somewhere.
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		if ( $dbr->implicitGroupby() ) {
 			$realNameField = 'user_real_name';
@@ -1386,7 +1386,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$baseRevId = null;
 		if ( $edittime && $sectionId !== 'new' ) {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 			$rev = Revision::loadFromTimestamp( $dbr, $this->mTitle, $edittime );
 			// Try the master if this thread may have just added it.
 			// This could be abstracted into a Revision method, but we don't want
@@ -3414,7 +3414,7 @@ class WikiPage implements Page, IDBAccessObject {
 			return TitleArray::newFromResult( new FakeResultWrapper( [] ) );
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$res = $dbr->select( 'categorylinks',
 			[ 'cl_to AS page_title, ' . NS_CATEGORY . ' AS page_namespace' ],
 			// Have to do that since DatabaseBase::fieldNamesWithAlias treats numeric indexes
@@ -3439,7 +3439,7 @@ class WikiPage implements Page, IDBAccessObject {
 			return [];
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$res = $dbr->select( [ 'categorylinks', 'page_props', 'page' ],
 			[ 'cl_to' ],
 			[ 'cl_from' => $id, 'pp_page=page_id', 'pp_propname' => 'hiddencat',

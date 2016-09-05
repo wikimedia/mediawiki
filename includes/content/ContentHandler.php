@@ -900,7 +900,7 @@ abstract class ContentHandler {
 	 * have it / want it.
 	 */
 	public function getAutoDeleteReason( Title $title, &$hasHistory ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		// Get the last revision
 		$rev = Revision::newFromTitle( $title );

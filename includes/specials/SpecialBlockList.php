@@ -136,7 +136,7 @@ class SpecialBlockList extends SpecialPage {
 				case Block::TYPE_IP:
 				case Block::TYPE_RANGE:
 					list( $start, $end ) = IP::parseRange( $target );
-					$conds[] = wfGetDB( DB_SLAVE )->makeList(
+					$conds[] = wfGetDB( DB_REPLICA )->makeList(
 						[
 							'ipb_address' => $target,
 							Block::getRangeCond( $start, $end )

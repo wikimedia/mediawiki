@@ -62,7 +62,7 @@ class MediaStatisticsPage extends QueryPage {
 	 * Special:BrokenRedirects also rely on this.
 	 */
 	public function getQueryInfo() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$fakeTitle = $dbr->buildConcat( [
 			'img_media_type',
 			$dbr->addQuotes( ';' ),

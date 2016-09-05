@@ -222,7 +222,7 @@ TEXT
 
 		// 2. The Connection, through the load balancer.
 		try {
-			$this->db = $this->lb->getConnection( DB_SLAVE, 'dump' );
+			$this->db = $this->lb->getConnection( DB_REPLICA, 'dump' );
 		} catch ( Exception $e ) {
 			throw new MWException( __METHOD__
 				. " rotating DB failed to obtain new database (" . $e->getMessage() . ")" );

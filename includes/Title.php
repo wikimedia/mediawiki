@@ -394,7 +394,7 @@ class Title implements LinkTarget {
 	 * @return Title|null The new object, or null on an error
 	 */
 	public static function newFromID( $id, $flags = 0 ) {
-		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
+		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_REPLICA );
 		$row = $db->selectRow(
 			'page',
 			self::getSelectFields(),
@@ -419,7 +419,7 @@ class Title implements LinkTarget {
 		if ( !count( $ids ) ) {
 			return [];
 		}
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$res = $dbr->select(
 			'page',
@@ -561,7 +561,7 @@ class Title implements LinkTarget {
 	 * @return Title|null An object representing the article, or null if no such article was found
 	 */
 	public static function nameOf( $id ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$s = $dbr->selectRow(
 			'page',
@@ -2540,7 +2540,7 @@ class Title implements LinkTarget {
 		}
 
 		if ( $this->mTitleProtection === null ) {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 			$res = $dbr->select(
 				'protected_titles',
 				[
@@ -2708,7 +2708,7 @@ class Title implements LinkTarget {
 			return [ $this->mHasCascadingRestrictions, $pagerestrictions ];
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		if ( $this->getNamespace() == NS_FILE ) {
 			$tables = [ 'imagelinks', 'page_restrictions' ];
@@ -2875,7 +2875,7 @@ class Title implements LinkTarget {
 	 *   restrictions from page table (pre 1.10)
 	 */
 	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = null ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$restrictionTypes = $this->getRestrictionTypes();
 
@@ -2949,7 +2949,7 @@ class Title implements LinkTarget {
 	 */
 	public function loadRestrictions( $oldFashionedRestrictions = null ) {
 		if ( !$this->mRestrictionsLoaded ) {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 			if ( $this->exists() ) {
 				$res = $dbr->select(
 					'page_restrictions',
@@ -3069,7 +3069,7 @@ class Title implements LinkTarget {
 			return [];
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$conds['page_namespace'] = $this->getNamespace();
 		$conds[] = 'page_title ' . $dbr->buildLike( $this->getDBkey() . '/', $dbr->anyString() );
 		$options = [];
@@ -3096,7 +3096,7 @@ class Title implements LinkTarget {
 		if ( $this->getNamespace() < 0 ) {
 			$n = 0;
 		} else {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 
 			$n = $dbr->selectField( 'archive', 'COUNT(*)',
 				[ 'ar_namespace' => $this->getNamespace(), 'ar_title' => $this->getDBkey() ],
@@ -3121,7 +3121,7 @@ class Title implements LinkTarget {
 		if ( $this->getNamespace() < 0 ) {
 			return false;
 		}
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$deleted = (bool)$dbr->selectField( 'archive', '1',
 			[ 'ar_namespace' => $this->getNamespace(), 'ar_title' => $this->getDBkey() ],
 			__METHOD__
@@ -3375,7 +3375,7 @@ class Title implements LinkTarget {
 		if ( count( $options ) > 0 ) {
 			$db = wfGetDB( DB_MASTER );
 		} else {
-			$db = wfGetDB( DB_SLAVE );
+			$db = wfGetDB( DB_REPLICA );
 		}
 
 		$res = $db->select(
@@ -3437,7 +3437,7 @@ class Title implements LinkTarget {
 			return [];
 		}
 
-		$db = wfGetDB( DB_SLAVE );
+		$db = wfGetDB( DB_REPLICA );
 
 		$blNamespace = "{$prefix}_namespace";
 		$blTitle = "{$prefix}_title";
@@ -3500,7 +3500,7 @@ class Title implements LinkTarget {
 			return [];
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$res = $dbr->select(
 			[ 'page', 'pagelinks' ],
 			[ 'pl_namespace', 'pl_title' ],
@@ -3860,7 +3860,7 @@ class Title implements LinkTarget {
 			return $data;
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$res = $dbr->select(
 			'categorylinks',
@@ -3928,7 +3928,7 @@ class Title implements LinkTarget {
 	 * @return int|bool Old revision ID, or false if none exists
 	 */
 	public function getPreviousRevisionID( $revId, $flags = 0 ) {
-		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
+		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_REPLICA );
 		$revId = $db->selectField( 'revision', 'rev_id',
 			[
 				'rev_page' => $this->getArticleID( $flags ),
@@ -3953,7 +3953,7 @@ class Title implements LinkTarget {
 	 * @return int|bool Next revision ID, or false if none exists
 	 */
 	public function getNextRevisionID( $revId, $flags = 0 ) {
-		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
+		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_REPLICA );
 		$revId = $db->selectField( 'revision', 'rev_id',
 			[
 				'rev_page' => $this->getArticleID( $flags ),
@@ -3979,7 +3979,7 @@ class Title implements LinkTarget {
 	public function getFirstRevision( $flags = 0 ) {
 		$pageId = $this->getArticleID( $flags );
 		if ( $pageId ) {
-			$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
+			$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_REPLICA );
 			$row = $db->selectRow( 'revision', Revision::selectFields(),
 				[ 'rev_page' => $pageId ],
 				__METHOD__,
@@ -4009,7 +4009,7 @@ class Title implements LinkTarget {
 	 * @return bool
 	 */
 	public function isNewPage() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		return (bool)$dbr->selectField( 'page', 'page_is_new', $this->pageCond(), __METHOD__ );
 	}
 
@@ -4026,7 +4026,7 @@ class Title implements LinkTarget {
 		}
 
 		if ( $this->mIsBigDeletion === null ) {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 
 			$revCount = $dbr->selectRowCount(
 				'revision',
@@ -4053,7 +4053,7 @@ class Title implements LinkTarget {
 		}
 
 		if ( $this->mEstimateRevisions === null ) {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 			$this->mEstimateRevisions = $dbr->estimateRowCount( 'revision', '*',
 				[ 'rev_page' => $this->getArticleID() ], __METHOD__ );
 		}
@@ -4080,7 +4080,7 @@ class Title implements LinkTarget {
 		if ( !$old || !$new ) {
 			return 0; // nothing to compare
 		}
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$conds = [
 			'rev_page' => $this->getArticleID(),
 			'rev_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) ),
@@ -4158,7 +4158,7 @@ class Title implements LinkTarget {
 			}
 			return $authors;
 		}
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$res = $dbr->select( 'revision', 'DISTINCT rev_user_text',
 			[
 				'rev_page' => $this->getArticleID(),
@@ -4413,7 +4413,7 @@ class Title implements LinkTarget {
 	 */
 	public function getTouched( $db = null ) {
 		if ( $db === null ) {
-			$db = wfGetDB( DB_SLAVE );
+			$db = wfGetDB( DB_REPLICA );
 		}
 		$touched = $db->selectField( 'page', 'page_touched', $this->pageCond(), __METHOD__ );
 		return $touched;
@@ -4497,7 +4497,7 @@ class Title implements LinkTarget {
 	public function getRedirectsHere( $ns = null ) {
 		$redirs = [];
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$where = [
 			'rd_namespace' => $this->getNamespace(),
 			'rd_title' => $this->getDBkey(),

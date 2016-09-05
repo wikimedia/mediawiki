@@ -183,7 +183,7 @@ class SqlBagOStuff extends BagOStuff {
 				$db = DatabaseBase::factory( $type, $info );
 				$db->clearFlag( DBO_TRX );
 			} else {
-				$index = $this->slaveOnly ? DB_SLAVE : DB_MASTER;
+				$index = $this->slaveOnly ? DB_REPLICA : DB_MASTER;
 				if ( $this->getSeparateMainLB() ) {
 					$db = $this->getSeparateMainLB()->getConnection( $index );
 					$db->clearFlag( DBO_TRX ); // auto-commit mode

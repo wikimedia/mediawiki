@@ -49,7 +49,7 @@ class BrokenRedirectsPage extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		return [
 			'tables' => [

@@ -60,7 +60,7 @@ class LocalIdLookup extends CentralIdLookup {
 		}
 
 		$audience = $this->checkAudience( $audience );
-		$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE );
+		$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_REPLICA );
 		$options = ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING )
 			? [ 'LOCK IN SHARE MODE' ]
 			: [];
@@ -93,7 +93,7 @@ class LocalIdLookup extends CentralIdLookup {
 		}
 
 		$audience = $this->checkAudience( $audience );
-		$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE );
+		$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_REPLICA );
 		$options = ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING )
 			? [ 'LOCK IN SHARE MODE' ]
 			: [];

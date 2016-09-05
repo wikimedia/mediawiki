@@ -100,7 +100,7 @@ class UsersPager extends AlphabeticPager {
 	 * @return array
 	 */
 	function getQueryInfo() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$conds = [];
 
 		// Don't show hidden names
@@ -228,7 +228,7 @@ class UsersPager extends AlphabeticPager {
 		}
 
 		// Lookup groups for all the users
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$groupRes = $dbr->select(
 			'user_groups',
 			[ 'ug_user', 'ug_group' ],

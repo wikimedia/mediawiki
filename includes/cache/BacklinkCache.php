@@ -143,7 +143,7 @@ class BacklinkCache {
 	 */
 	protected function getDB() {
 		if ( !isset( $this->db ) ) {
-			$this->db = wfGetDB( DB_SLAVE );
+			$this->db = wfGetDB( DB_REPLICA );
 		}
 
 		return $this->db;

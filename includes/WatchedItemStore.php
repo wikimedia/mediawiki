@@ -190,7 +190,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * @param int $slaveOrMaster DB_MASTER or DB_SLAVE
+	 * @param int $slaveOrMaster DB_MASTER or DB_REPLICA
 	 *
 	 * @return DatabaseBase
 	 * @throws MWException
@@ -217,7 +217,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 * @return int
 	 */
 	public function countWatchedItems( User $user ) {
-		$dbr = $this->getConnection( DB_SLAVE );
+		$dbr = $this->getConnection( DB_REPLICA );
 		$return = (int)$dbr->selectField(
 			'watchlist',
 			'COUNT(*)',
@@ -237,7 +237,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 * @return int
 	 */
 	public function countWatchers( LinkTarget $target ) {
-		$dbr = $this->getConnection( DB_SLAVE );
+		$dbr = $this->getConnection( DB_REPLICA );
 		$return = (int)$dbr->selectField(
 			'watchlist',
 			'COUNT(*)',
@@ -263,7 +263,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 * @throws MWException
 	 */
 	public function countVisitingWatchers( LinkTarget $target, $threshold ) {
-		$dbr = $this->getConnection( DB_SLAVE );
+		$dbr = $this->getConnection( DB_REPLICA );
 		$visitingWatchers = (int)$dbr->selectField(
 			'watchlist',
 			'COUNT(*)',
@@ -293,7 +293,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	public function countWatchersMultiple( array $targets, array $options = [] ) {
 		$dbOptions = [ 'GROUP BY' => [ 'wl_namespace', 'wl_title' ] ];
 
-		$dbr = $this->getConnection( DB_SLAVE );
+		$dbr = $this->getConnection( DB_REPLICA );
 
 		if ( array_key_exists( 'minimumWatchers', $options ) ) {
 			$dbOptions['HAVING'] = 'COUNT(*) >= ' . (int)$options['minimumWatchers'];
@@ -341,7 +341,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 		array $targetsWithVisitThresholds,
 		$minimumWatchers = null
 	) {
-		$dbr = $this->getConnection( DB_SLAVE );
+		$dbr = $this->getConnection( DB_REPLICA );
 
 		$conds = $this->getVisitingWatchersCondition( $dbr, $targetsWithVisitThresholds );
 
@@ -452,7 +452,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 			return false;
 		}
 
-		$dbr = $this->getConnection( DB_SLAVE );
+		$dbr = $this->getConnection( DB_REPLICA );
 		$row = $dbr->selectRow(
 			'watchlist',
 			'wl_notificationtimestamp',
@@ -499,7 +499,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 				"wl_title {$options['sort']}"
 			];
 		}
-		$db = $this->getConnection( $options['forWrite'] ? DB_MASTER : DB_SLAVE );
+		$db = $this->getConnection( $options['forWrite'] ? DB_MASTER : DB_REPLICA );
 
 		$res = $db->select(
 			'watchlist',
@@ -569,7 +569,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 			return $timestamps;
 		}
 
-		$dbr = $this->getConnection( DB_SLAVE );
+		$dbr = $this->getConnection( DB_REPLICA );
 
 		$lb = new LinkBatch( $targetsToLoad );
 		$res = $dbr->select(
@@ -885,7 +885,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 			$queryOptions['LIMIT'] = $unreadLimit;
 		}
 
-		$dbr = $this->getConnection( DB_SLAVE );
+		$dbr = $this->getConnection( DB_REPLICA );
 		$rowCount = $dbr->selectRowCount(
 			'watchlist',
 			'1',

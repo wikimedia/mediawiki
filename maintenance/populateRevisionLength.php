@@ -73,7 +73,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 	 * @return int
 	 */
 	protected function doLenUpdates( $table, $idCol, $prefix, $fields ) {
-		$dbr = $this->getDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_REPLICA );
 		$dbw = $this->getDB( DB_MASTER );
 		$start = $dbw->selectField( $table, "MIN($idCol)", false, __METHOD__ );
 		$end = $dbw->selectField( $table, "MAX($idCol)", false, __METHOD__ );

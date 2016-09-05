@@ -313,7 +313,7 @@ class ApiStashEdit extends ApiBase {
 	 * @return string|null TS_MW timestamp or null
 	 */
 	private static function lastEditTime( User $user ) {
-		$time = wfGetDB( DB_SLAVE )->selectField(
+		$time = wfGetDB( DB_REPLICA )->selectField(
 			'recentchanges',
 			'MAX(rc_timestamp)',
 			[ 'rc_user_text' => $user->getName() ],
