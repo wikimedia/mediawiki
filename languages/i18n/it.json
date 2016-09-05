@@ -1692,6 +1692,7 @@
 	"filerevert-submit": "Ripristina",
 	"filerevert-success": "'''Il file [[Media:$1|$1]]''' è stato ripristinato alla [$4 versione del $2, $3].",
 	"filerevert-badversion": "Non esistono versioni locali precedenti del file con il timestamp richiesto.",
+	"filerevert-identical": "La versione attuale del file è già identica a quella selezionata.",
 	"filedelete": "Cancella $1",
 	"filedelete-legend": "Cancella il file",
 	"filedelete-intro": "Stai per cancellare il file '''[[Media:$1|$1]]''' con tutta la sua cronologia.",

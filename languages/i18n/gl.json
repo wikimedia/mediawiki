@@ -1618,6 +1618,7 @@
 	"filerevert-submit": "Reverter",
 	"filerevert-success": "Reverteuse \"'''[[Media:$1|$1]]'''\" á [$4 versión do $2 ás $3].",
 	"filerevert-badversion": "Non existe unha versión local anterior deste ficheiro coa data e hora indicadas.",
+	"filerevert-identical": "A versión actual do ficheiro é igual á seleccionada.",
 	"filedelete": "Borrar \"$1\"",
 	"filedelete-legend": "Eliminar un ficheiro",
 	"filedelete-intro": "Está a piques de eliminar o ficheiro \"'''[[Media:$1|$1]]'''\" xunto con todo o seu historial.",

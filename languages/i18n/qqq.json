@@ -182,7 +182,8 @@
 			"2axterix2",
 			"Ата",
 			"Matěj Suchánek",
-			"Chaduvari"
+			"Chaduvari",
+			"MarcoAurelio"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -3974,7 +3975,7 @@
 	"logentry-delete-revision": "{{Logentry|[[Special:Log/delete]]}}\n{{Logentryparam}}\n* $5 - the number of affected revisions of the page $3",
 	"logentry-delete-event-legacy": "{{Logentry|[[Special:Log/delete]]}}",
 	"logentry-delete-revision-legacy": "{{Logentry|[[Special:Log/delete]]}}",
-	"logentry-suppress-delete": "{{Logentry}}\n\n'Hid' is a possible alternative to 'suppressed' in this message.",
+	"logentry-suppress-delete": "{{Logentry}}\n\n'Hid' is a possible alternative to 'suppressed' in this message.\n\n'''This is not a normal deletion log entry''' and is used only when the page is removed even from administrators view (on WMF wikis this is called 'oversight' or 'suppression'.",
 	"logentry-suppress-event": "{{Logentry}}\n{{Logentryparam}}\n* $5 - count of affected log events",
 	"logentry-suppress-revision": "{{Logentry}}\n{{Logentryparam}}\n* $5 - the number of affected revisions of the page $3.",
 	"logentry-suppress-event-legacy": "{{Logentry}}",

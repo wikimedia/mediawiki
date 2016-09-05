@@ -3473,7 +3473,7 @@
 	"logentry-delete-revision": "$1{{GENDER:$2|更改}}页面$3的{{PLURAL:$5|$5个版本}}的可见性：$4",
 	"logentry-delete-event-legacy": "$1{{GENDER:$2|更改}}$3的日志事件的可见性",
 	"logentry-delete-revision-legacy": "$1{{GENDER:$2|更改}}页面$3的版本的可见性",
-	"logentry-suppress-delete": "$1{{GENDER:$2|已隐藏}}页面$3",
+	"logentry-suppress-delete": "$1{{GENDER:$2|已屏蔽}}页面$3",
 	"logentry-suppress-event": "$1秘密地{{GENDER:$2|更改}}$3的{{PLURAL:$5|$5个日志事件}}的可见性：$4",
 	"logentry-suppress-revision": "$1秘密地{{GENDER:$2|更改}}页面$3的{{PLURAL:$5|$5个版本}}的可见性：$4",
 	"logentry-suppress-event-legacy": "$1秘密地{{GENDER:$2|更改}}$3的日志事件的可见性",

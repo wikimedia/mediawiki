@@ -1631,6 +1631,7 @@
 	"filerevert-submit": "שחזור",
 	"filerevert-success": "<strong>[[Media:$1|$1]]</strong> שוחזר ל[$4 גרסה מ־$3, $2].",
 	"filerevert-badversion": "אין גרסה מקומית קודמת של הקובץ שהועלתה בתאריך המבוקש.",
+	"filerevert-identical": "הגרסה הנוכחית של הקובץ כבר זהה לגרסה שנבחרה.",
 	"filedelete": "מחיקת $1",
 	"filedelete-legend": "מחיקת קובץ",
 	"filedelete-intro": "אתם עומדים למחוק את הקובץ <strong>[[Media:$1|$1]]</strong> יחד עם כל היסטוריית הגרסאות שלו.",
