@@ -377,8 +377,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @param integer $ttl Seconds to live. Special values are:
 	 *   - WANObjectCache::TTL_INDEFINITE: Cache forever
 	 * @param array $opts Options map:
-	 *   - lag     : Seconds of slave lag. Typically, this is either the slave lag
-	 *               before the data was read or, if applicable, the slave lag before
+	 *   - lag     : Seconds of replica DB lag. Typically, this is either the replica DB lag
+	 *               before the data was read or, if applicable, the replica DB lag before
 	 *               the snapshot-isolated transaction the data was read from started.
 	 *               Default: 0 seconds
 	 *   - since   : UNIX timestamp of the data in $value. Typically, this is either
@@ -566,7 +566,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * Keys using it via get(), getMulti(), or getWithSetCallback() will
 	 * be invalidated. It is treated as being HOLDOFF_TTL seconds in the future
 	 * by those methods to avoid race conditions where dependent keys get updated
-	 * with stale values (e.g. from a DB slave).
+	 * with stale values (e.g. from a DB replica DB).
 	 *
 	 * This is typically useful for keys with hardcoded names or in some cases
 	 * dynamically generated names where a low number of combinations exist.
@@ -661,7 +661,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = wfGetDB( DB_SLAVE );
-	 *             // Account for any snapshot/slave lag
+	 *             // Account for any snapshot/replica DB lag
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
 	 *             return $dbr->selectRow( ... );
@@ -679,7 +679,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = wfGetDB( DB_SLAVE );
-	 *             // Account for any snapshot/slave lag
+	 *             // Account for any snapshot/replica DB lag
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
 	 *             return CatConfig::newFromRow( $dbr->selectRow( ... ) );
@@ -706,7 +706,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             // Determine new value from the DB
 	 *             $dbr = wfGetDB( DB_SLAVE );
-	 *             // Account for any snapshot/slave lag
+	 *             // Account for any snapshot/replica DB lag
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
 	 *             return CatState::newFromResults( $dbr->select( ... ) );
@@ -733,7 +733,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = wfGetDB( DB_SLAVE );
-	 *             // Account for any snapshot/slave lag
+	 *             // Account for any snapshot/replica DB lag
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
 	 *             // Start off with the last cached list
@@ -784,7 +784,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *   - pcTTL: Process cache the value in this PHP instance for this many seconds. This avoids
 	 *      network I/O when a key is read several times. This will not cache when the callback
 	 *      returns false, however. Note that any purges will not be seen while process cached;
-	 *      since the callback should use slave DBs and they may be lagged or have snapshot
+	 *      since the callback should use replica DBs and they may be lagged or have snapshot
 	 *      isolation anyway, this should not typically matter.
 	 *      Default: WANObjectCache::TTL_UNCACHEABLE.
 	 *   - version: Integer version number. This allows for callers to make breaking changes to

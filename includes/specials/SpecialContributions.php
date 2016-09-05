@@ -203,7 +203,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			if ( !$pager->getNumRows() ) {
 				$out->addWikiMsg( 'nocontribs', $target );
 			} else {
-				# Show a message about slave lag, if applicable
+				# Show a message about replica DB lag, if applicable
 				$lag = wfGetLB()->safeGetLag( $pager->getDatabase() );
 				if ( $lag > 0 ) {
 					$out->showLagWarning( $lag );

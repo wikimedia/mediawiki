@@ -42,7 +42,7 @@ class JobRunner implements LoggerAwareInterface {
 	protected $logger;
 
 	const MAX_ALLOWED_LAG = 3; // abort if more than this much DB lag is present
-	const LAG_CHECK_PERIOD = 1.0; // check slave lag this many seconds
+	const LAG_CHECK_PERIOD = 1.0; // check replica DB lag this many seconds
 	const ERROR_BACKOFF_TTL = 1; // seconds to back off a queue due to errors
 
 	/**
@@ -126,7 +126,7 @@ class JobRunner implements LoggerAwareInterface {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$lbFactory->commitAll( __METHOD__ );
 
-		// Catch huge single updates that lead to slave lag
+		// Catch huge single updates that lead to replica DB lag
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
 		$trxProfiler->setExpectations( $wgTrxProfilerLimits['JobRunner'], __METHOD__ );
@@ -141,7 +141,7 @@ class JobRunner implements LoggerAwareInterface {
 		$jobsPopped = 0;
 		$timeMsTotal = 0;
 		$startTime = microtime( true ); // time since jobs started running
-		$lastCheckTime = 1; // timestamp of last slave check
+		$lastCheckTime = 1; // timestamp of last replica DB check
 		do {
 			// Sync the persistent backoffs with concurrent runners
 			$backoffs = $this->syncBackoffDeltas( $backoffs, $backoffDeltas, $wait );
@@ -210,7 +210,7 @@ class JobRunner implements LoggerAwareInterface {
 					break;
 				}
 
-				// Don't let any of the main DB slaves get backed up.
+				// Don't let any of the main DB replica DBs get backed up.
 				// This only waits for so long before exiting and letting
 				// other wikis in the farm (on different masters) get a chance.
 				$timePassed = microtime( true ) - $lastCheckTime;
@@ -226,7 +226,7 @@ class JobRunner implements LoggerAwareInterface {
 					}
 					$lastCheckTime = microtime( true );
 				}
-				// Don't let any queue slaves/backups fall behind
+				// Don't let any queue replica DBs/backups fall behind
 				if ( $jobsPopped > 0 && ( $jobsPopped % 100 ) == 0 ) {
 					$group->waitForBackups();
 				}
@@ -288,7 +288,7 @@ class JobRunner implements LoggerAwareInterface {
 
 		// Commit all outstanding connections that are in a transaction
 		// to get a fresh repeatable read snapshot on every connection.
-		// Note that jobs are still responsible for handling slave lag.
+		// Note that jobs are still responsible for handling replica DB lag.
 		$lbFactory->flushReplicaSnapshots( __METHOD__ );
 		// Clear out title cache data from prior snapshots
 		LinkCache::singleton()->clear();
@@ -490,7 +490,7 @@ class JobRunner implements LoggerAwareInterface {
 	/**
 	 * Issue a commit on all masters who are currently in a transaction and have
 	 * made changes to the database. It also supports sometimes waiting for the
-	 * local wiki's slaves to catch up. See the documentation for
+	 * local wiki's replica DBs to catch up. See the documentation for
 	 * $wgJobSerialCommitThreshold for more.
 	 *
 	 * @param Job $job
@@ -513,7 +513,7 @@ class JobRunner implements LoggerAwareInterface {
 				$dbwSerial = false;
 			}
 		} else {
-			// There are no slaves or writes are all to foreign DB (we don't handle that)
+			// There are no replica DBs or writes are all to foreign DB (we don't handle that)
 			$dbwSerial = false;
 		}
 
@@ -532,7 +532,7 @@ class JobRunner implements LoggerAwareInterface {
 			// This will trigger a rollback in the main loop
 			throw new DBError( $dbwSerial, "Timed out waiting on commit queue." );
 		}
-		// Wait for the slave DBs to catch up
+		// Wait for the replica DBs to catch up
 		$pos = $lb->getMasterPos();
 		if ( $pos ) {
 			$lb->waitForAll( $pos );

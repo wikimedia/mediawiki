@@ -57,10 +57,10 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->fld_patrolled = isset( $prop['patrolled'] );
 		$this->fld_tags = isset( $prop['tags'] );
 
-		// Most of this code will use the 'contributions' group DB, which can map to slaves
+		// Most of this code will use the 'contributions' group DB, which can map to replica DBs
 		// with extra user based indexes or partioning by user. The additional metadata
-		// queries should use a regular slave since the lookup pattern is not all by user.
-		$dbSecondary = $this->getDB(); // any random slave
+		// queries should use a regular replica DB since the lookup pattern is not all by user.
+		$dbSecondary = $this->getDB(); // any random replica DB
 
 		// TODO: if the query is going only against the revision table, should this be done?
 		$this->selectNamedDB( 'contributions', DB_SLAVE, 'contributions' );

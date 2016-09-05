@@ -1913,7 +1913,7 @@ $wgSharedSchema = false;
  *                  - DBO_COMPRESS -- uses internal compression in database connections,
  *                                    if available
  *
- *   - max lag:     (optional) Maximum replication lag before a slave will taken out of rotation
+ *   - max lag:     (optional) Maximum replication lag before a replica DB goes out of rotation
  *   - is static:   (optional) Set to true if the dataset is static and no replication is used.
  *   - cliMode:     (optional) Connection handles will not assume that requests are short-lived
  *                  nor that INSERT..SELECT can be rewritten into a buffered SELECT and INSERT.
@@ -1927,15 +1927,15 @@ $wgSharedSchema = false;
  * perhaps in some command-line scripts).
  *
  * The first server listed in this array (with key 0) will be the master. The
- * rest of the servers will be slaves. To prevent writes to your slaves due to
+ * rest of the servers will be replica DBs. To prevent writes to your replica DBs due to
  * accidental misconfiguration or MediaWiki bugs, set read_only=1 on all your
- * slaves in my.cnf. You can set read_only mode at runtime using:
+ * replica DBs in my.cnf. You can set read_only mode at runtime using:
  *
  * @code
  *     SET @@read_only=1;
  * @endcode
  *
- * Since the effect of writing to a slave is so damaging and difficult to clean
+ * Since the effect of writing to a replica DB is so damaging and difficult to clean
  * up, we at Wikimedia set read_only=1 in my.cnf on all our DB servers, even
  * our masters, and then set read_only=0 on masters at runtime.
  */
@@ -2660,7 +2660,7 @@ $wgInternalServer = false;
 $wgSquidMaxage = 18000;
 
 /**
- * Cache timeout for the CDN when DB slave lag is high
+ * Cache timeout for the CDN when DB replica DB lag is high
  * @see $wgSquidMaxage
  * @since 1.27
  */
@@ -2670,7 +2670,7 @@ $wgCdnMaxageLagged = 30;
  * If set, any SquidPurge call on a URL or URLs will send a second purge no less than
  * this many seconds later via the job queue. This requires delayed job support.
  * This should be safely higher than the 'max lag' value in $wgLBFactoryConf, so that
- * slave lag does not cause page to be stuck in stales states in CDN.
+ * replica DB lag does not cause page to be stuck in stales states in CDN.
  *
  * This also fixes race conditions in two-tiered CDN setups (e.g. cdn2 => cdn1 => MediaWiki).
  * If a purge for a URL reaches cdn2 before cdn1 and a request reaches cdn2 for that URL,
@@ -7219,8 +7219,8 @@ $wgJobTypesExcludedFromDefaultQueue = [ 'AssembleUploadChunks', 'PublishStashedF
 $wgJobBackoffThrottling = [];
 
 /**
- * Make job runners commit changes for slave-lag prone jobs one job at a time.
- * This is useful if there are many job workers that race on slave lag checks.
+ * Make job runners commit changes for replica DB-lag prone jobs one job at a time.
+ * This is useful if there are many job workers that race on replica DB lag checks.
  * If set, jobs taking this many seconds of DB write time have serialized commits.
  *
  * Note that affected jobs may have worse lock contention. Also, if they affect
@@ -7842,7 +7842,7 @@ $wgAPIMaxResultSize = 8388608;
 $wgAPIMaxUncachedDiffs = 1;
 
 /**
- * Maximum amount of DB lag on a majority of DB slaves to tolerate
+ * Maximum amount of DB lag on a majority of DB replica DBs to tolerate
  * before forcing bots to retry any write requests via API errors.
  * This should be lower than the 'max lag' value in $wgLBFactoryConf.
  */

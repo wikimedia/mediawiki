@@ -174,7 +174,7 @@ class ChangeTags {
 
 		// Might as well look for rcids and so on.
 		if ( !$rc_id ) {
-			// Info might be out of date, somewhat fractionally, on slave.
+			// Info might be out of date, somewhat fractionally, on replica DB.
 			// LogEntry/LogPage and WikiPage match rev/log/rc timestamps,
 			// so use that relation to avoid full table scans.
 			if ( $log_id ) {
@@ -201,7 +201,7 @@ class ChangeTags {
 				);
 			}
 		} elseif ( !$log_id && !$rev_id ) {
-			// Info might be out of date, somewhat fractionally, on slave.
+			// Info might be out of date, somewhat fractionally, on replica DB.
 			$log_id = $dbw->selectField(
 				'recentchanges',
 				'rc_logid',
@@ -313,7 +313,7 @@ class ChangeTags {
 		$tagsToAdd = array_diff( $tagsToAdd, $tagsToRemove );
 
 		// Update the summary row.
-		// $prevTags can be out of date on slaves, especially when addTags is called consecutively,
+		// $prevTags can be out of date on replica DBs, especially when addTags is called consecutively,
 		// causing loss of tags added recently in tag_summary table.
 		$prevTags = $dbw->selectField( 'tag_summary', 'ts_tags', $tsConds, __METHOD__ );
 		$prevTags = $prevTags ? $prevTags : '';

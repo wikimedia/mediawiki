@@ -37,7 +37,7 @@ use WANObjectCache;
  * and tree storage backends (SQL, CDB, and plain PHP arrays).
  *
  * All information is loaded on creation when called by $this->fetch( $prefix ).
- * All work is done on slave, because this should *never* change (except during
+ * All work is done on replica DB, because this should *never* change (except during
  * schema updates etc, which aren't wiki-related)
  *
  * @since 1.28

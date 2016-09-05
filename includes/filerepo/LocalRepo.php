@@ -453,7 +453,7 @@ class LocalRepo extends FileRepo {
 	}
 
 	/**
-	 * Get a connection to the slave DB
+	 * Get a connection to the replica DB
 	 * @return DatabaseBase
 	 */
 	function getSlaveDB() {

@@ -1886,8 +1886,8 @@ class Title implements LinkTarget {
 	 * @param string $action Action that permission needs to be checked for
 	 * @param User $user User to check
 	 * @param string $rigor One of (quick,full,secure)
-	 *   - quick  : does cheap permission checks from slaves (usable for GUI creation)
-	 *   - full   : does cheap and expensive checks possibly from a slave
+	 *   - quick  : does cheap permission checks from replica DBs (usable for GUI creation)
+	 *   - full   : does cheap and expensive checks possibly from a replica DB
 	 *   - secure : does cheap and expensive checks, using the master as needed
 	 * @param array $ignoreErrors Array of Strings Set this to a list of message keys
 	 *   whose corresponding errors may be ignored.
@@ -2416,8 +2416,8 @@ class Title implements LinkTarget {
 	 * @param string $action Action that permission needs to be checked for
 	 * @param User $user User to check
 	 * @param string $rigor One of (quick,full,secure)
-	 *   - quick  : does cheap permission checks from slaves (usable for GUI creation)
-	 *   - full   : does cheap and expensive checks possibly from a slave
+	 *   - quick  : does cheap permission checks from replica DBs (usable for GUI creation)
+	 *   - full   : does cheap and expensive checks possibly from a replica DB
 	 *   - secure : does cheap and expensive checks, using the master as needed
 	 * @param bool $short Set this to true to stop after the first permission error.
 	 * @return array Array of arrays of the arguments to wfMessage to explain permissions problems.
