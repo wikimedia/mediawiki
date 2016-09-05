@@ -206,7 +206,7 @@ class FileTest extends MediaWikiMediaTestCase {
 			] ],
 			[ [
 				'supportsBucketing' => true,
-				'tmpBucketedThumbCache' => [ 1024 => '/tmp/shouldnotexist' + rand() ],
+				'tmpBucketedThumbCache' => [ 1024 => '/tmp/shouldnotexist' . rand() ],
 				'thumbnailBucket' => 1024,
 				'physicalWidth' => 2048,
 				'expectedPath' => 'fsFilePath',
