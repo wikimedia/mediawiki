@@ -1,8 +1,6 @@
 <?php
 /**
- * Run a database query in batches and wait for replica DBs. This is used on large
- * wikis to prevent replication lag from going through the roof when executing
- * large write queries.
+ * Reports the hostname of a replica DB server.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,40 +24,32 @@
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Maintenance script to run a database query in batches and wait for replica DBs.
+ * Maintenance script that reports the hostname of a replica DB server.
  *
  * @ingroup Maintenance
  */
-class BatchedQueryRunner extends Maintenance {
+class GetSlaveServer extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->addDescription(
-			"Run a query repeatedly until it affects 0 rows, and wait for replica DBs in between.\n" .
-				"NOTE: You need to set a LIMIT clause yourself." );
+		$this->addOption( "group", "Query group to check specifically" );
+		$this->addDescription( 'Report the hostname of a replica DB server' );
 	}
 
 	public function execute() {
-		if ( !$this->hasArg() ) {
-			$this->error( "No query specified. Specify the query as a command line parameter.", true );
+		global $wgAllDBsAreLocalhost;
+		if ( $wgAllDBsAreLocalhost ) {
+			$host = 'localhost';
+		} elseif ( $this->hasOption( 'group' ) ) {
+			$db = $this->getDB( DB_SLAVE, $this->getOption( 'group' ) );
+			$host = $db->getServer();
+		} else {
+			$lb = wfGetLB();
+			$i = $lb->getReaderIndex();
+			$host = $lb->getServerName( $i );
 		}
-
-		$query = $this->getArg();
-		$n = 1;
-		$dbw = $this->getDB( DB_MASTER );
-		do {
-			$this->output( "Batch $n: " );
-			$n++;
-			$dbw->query( $query, __METHOD__ );
-			$affected = $dbw->affectedRows();
-			$this->output( "$affected rows\n" );
-			wfWaitForSlaves();
-		} while ( $affected > 0 );
-	}
-
-	public function getDbType() {
-		return Maintenance::DB_ADMIN;
+		$this->output( "$host\n" );
 	}
 }
 
-$maintClass = "BatchedQueryRunner";
+$maintClass = "GetSlaveServer";
 require_once RUN_MAINTENANCE_IF_MAIN;
