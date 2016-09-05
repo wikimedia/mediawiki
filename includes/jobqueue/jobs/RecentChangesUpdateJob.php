@@ -93,7 +93,7 @@ class RecentChangesUpdateJob extends Job {
 			);
 			if ( $rcIds ) {
 				$dbw->delete( 'recentchanges', [ 'rc_id' => $rcIds ], __METHOD__ );
-				// There might be more, so try waiting for slaves
+				// There might be more, so try waiting for replica DBs
 				try {
 					$factory->commitAndWaitForReplication(
 						__METHOD__, $ticket, [ 'timeout' => 3 ]

@@ -255,7 +255,7 @@ class JobQueueGroup {
 	}
 
 	/**
-	 * Wait for any slaves or backup queue servers to catch up.
+	 * Wait for any replica DBs or backup queue servers to catch up.
 	 *
 	 * This does nothing for certain queue classes.
 	 *

@@ -363,7 +363,7 @@ class RedisBagOStuff extends BagOStuff {
 				try {
 					if ( $this->getMasterLinkStatus( $conn ) === 'down' ) {
 						// If the master cannot be reached, fail-over to the next server.
-						// If masters are in data-center A, and slaves in data-center B,
+						// If masters are in data-center A, and replica DBs in data-center B,
 						// this helps avoid the case were fail-over happens in A but not
 						// to the corresponding server in B (e.g. read/write mismatch).
 						continue;
@@ -384,10 +384,10 @@ class RedisBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * Check the master link status of a Redis server that is configured as a slave.
+	 * Check the master link status of a Redis server that is configured as a replica DB.
 	 * @param RedisConnRef $conn
 	 * @return string|null Master link status (either 'up' or 'down'), or null
-	 *  if the server is not a slave.
+	 *  if the server is not a replica DB.
 	 */
 	protected function getMasterLinkStatus( RedisConnRef $conn ) {
 		$info = $conn->info();

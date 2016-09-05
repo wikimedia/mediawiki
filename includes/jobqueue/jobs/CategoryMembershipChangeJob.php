@@ -58,9 +58,9 @@ class CategoryMembershipChangeJob extends Job {
 		}
 
 		$dbr = wfGetDB( DB_SLAVE, [ 'recentchanges' ] );
-		// Wait till the slave is caught up so that jobs for this page see each others' changes
+		// Wait till the replica DB is caught up so that jobs for this page see each others' changes
 		if ( !wfGetLB()->safeWaitForMasterPos( $dbr ) ) {
-			$this->setLastError( "Timed out while waiting for slave to catch up" );
+			$this->setLastError( "Timed out while waiting for replica DB to catch up" );
 			return false;
 		}
 		// Clear any stale REPEATABLE-READ snapshot

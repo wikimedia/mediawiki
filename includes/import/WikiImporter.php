@@ -377,7 +377,7 @@ class WikiImporter {
 		// Update article count statistics (T42009)
 		// The normal counting logic in WikiPage->doEditUpdates() is designed for
 		// one-revision-at-a-time editing, not bulk imports. In this situation it
-		// suffers from issues of slave lag. We let WikiPage handle the total page
+		// suffers from issues of replica DB lag. We let WikiPage handle the total page
 		// and revision count, and we implement our own custom logic for the
 		// article (content page) count.
 		$page = WikiPage::factory( $title );

@@ -134,7 +134,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @param int $id Article ID to load
 	 * @param string|int $from One of the following values:
-	 *        - "fromdb" or WikiPage::READ_NORMAL to select from a slave database
+	 *        - "fromdb" or WikiPage::READ_NORMAL to select from a replica DB
 	 *        - "fromdbmaster" or WikiPage::READ_LATEST to select from the master database
 	 *
 	 * @return WikiPage|null
@@ -161,7 +161,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @since 1.20
 	 * @param object $row Database row containing at least fields returned by selectFields().
 	 * @param string|int $from Source of $data:
-	 *        - "fromdb" or WikiPage::READ_NORMAL: from a slave DB
+	 *        - "fromdb" or WikiPage::READ_NORMAL: from a replica DB
 	 *        - "fromdbmaster" or WikiPage::READ_LATEST: from the master DB
 	 *        - "forupdate" or WikiPage::READ_LOCKING: from the master DB using SELECT FOR UPDATE
 	 * @return WikiPage
@@ -346,7 +346,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @param object|string|int $from One of the following:
 	 *   - A DB query result object.
-	 *   - "fromdb" or WikiPage::READ_NORMAL to get from a slave DB.
+	 *   - "fromdb" or WikiPage::READ_NORMAL to get from a replica DB.
 	 *   - "fromdbmaster" or WikiPage::READ_LATEST to get from the master DB.
 	 *   - "forupdate"  or WikiPage::READ_LOCKING to get from the master DB
 	 *     using SELECT FOR UPDATE.
@@ -374,7 +374,7 @@ class WikiPage implements Page, IDBAccessObject {
 				$data = $this->pageDataFromTitle( wfGetDB( $index ), $this->mTitle, $opts );
 			}
 		} else {
-			// No idea from where the caller got this data, assume slave database.
+			// No idea from where the caller got this data, assume replica DB.
 			$data = $from;
 			$from = self::READ_NORMAL;
 		}
@@ -388,7 +388,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @since 1.20
 	 * @param object|bool $data DB row containing fields returned by selectFields() or false
 	 * @param string|int $from One of the following:
-	 *        - "fromdb" or WikiPage::READ_NORMAL if the data comes from a slave DB
+	 *        - "fromdb" or WikiPage::READ_NORMAL if the data comes from a replica DB
 	 *        - "fromdbmaster" or WikiPage::READ_LATEST if the data comes from the master DB
 	 *        - "forupdate"  or WikiPage::READ_LOCKING if the data comes from
 	 *          the master DB using SELECT FOR UPDATE
@@ -552,7 +552,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function getOldestRevision() {
 
-		// Try using the slave database first, then try the master
+		// Try using the replica DB first, then try the master
 		$continue = 2;
 		$db = wfGetDB( DB_SLAVE );
 		$revSelectFields = Revision::selectFields();
@@ -609,7 +609,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$flags = Revision::READ_LOCKING;
 		} elseif ( $this->mDataLoadedFrom == self::READ_LATEST ) {
 			// Bug T93976: if page_latest was loaded from the master, fetch the
-			// revision from there as well, as it may not exist yet on a slave DB.
+			// revision from there as well, as it may not exist yet on a replica DB.
 			// Also, this keeps the queries in the same REPEATABLE-READ snapshot.
 			$flags = Revision::READ_LATEST;
 		} else {
@@ -2110,7 +2110,7 @@ class WikiPage implements Page, IDBAccessObject {
 				// We get here if vary-revision is set. This means that this page references
 				// itself (such as via self-transclusion). In this case, we need to make sure
 				// that any such self-references refer to the newly-saved revision, and not
-				// to the previous one, which could otherwise happen due to slave lag.
+				// to the previous one, which could otherwise happen due to replica DB lag.
 				$oldCallback = $edit->popts->getCurrentRevisionCallback();
 				$edit->popts->setCurrentRevisionCallback(
 					function ( Title $title, $parser = false ) use ( $revision, &$oldCallback ) {
@@ -3323,7 +3323,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		if ( $title->getNamespace() == NS_CATEGORY ) {
 			// Load the Category object, which will schedule a job to create
-			// the category table row if necessary. Checking a slave is ok
+			// the category table row if necessary. Checking a replica DB is ok
 			// here, in the worst case it'll run an unnecessary recount job on
 			// a category that probably doesn't have many members.
 			Category::newFromTitle( $title )->getID();

@@ -553,7 +553,7 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * Wait for any slaves or backup servers to catch up.
+	 * Wait for any replica DBs or backup servers to catch up.
 	 *
 	 * This does nothing for certain queue classes.
 	 *

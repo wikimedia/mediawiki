@@ -65,7 +65,7 @@ use MediaWiki\Services\ServiceDisabledException;
  *   Purpose: Ephemeral global storage.
  *   Stored centrally within the primary data-center.
  *   Changes are applied there first and replicated to other DCs (best-effort).
- *   To retrieve the latest value (e.g. not from a slave), use BagOStuff::READ_LATEST.
+ *   To retrieve the latest value (e.g. not from a replica DB), use BagOStuff::READ_LATEST.
  *   This store may be subject to LRU style evictions.
  *
  * - ObjectCache::getInstance( $cacheType )

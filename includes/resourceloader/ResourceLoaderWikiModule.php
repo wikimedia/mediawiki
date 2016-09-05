@@ -130,7 +130,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	/**
 	 * Get the Database object used in getTitleInfo().
 	 *
-	 * Defaults to the local slave DB. Subclasses may want to override this to return a foreign
+	 * Defaults to the local replica DB. Subclasses may want to override this to return a foreign
 	 * database object, or null if getTitleInfo() shouldn't access the database.
 	 *
 	 * NOTE: This ONLY works for getTitleInfo() and isKnownEmpty(), NOT FOR ANYTHING ELSE.
