@@ -489,10 +489,10 @@ class UploadStash {
 	 * Helper function: do the actual database query to fetch file metadata.
 	 *
 	 * @param string $key
-	 * @param int $readFromDB Constant (default: DB_SLAVE)
+	 * @param int $readFromDB Constant (default: DB_REPLICA)
 	 * @return bool
 	 */
-	protected function fetchFileMetadata( $key, $readFromDB = DB_SLAVE ) {
+	protected function fetchFileMetadata( $key, $readFromDB = DB_REPLICA ) {
 		// populate $fileMetadata[$key]
 		$dbr = null;
 		if ( $readFromDB === DB_MASTER ) {

@@ -37,7 +37,7 @@ class ClearInterwikiCache extends Maintenance {
 
 	public function execute() {
 		global $wgLocalDatabases, $wgMemc;
-		$dbr = $this->getDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_REPLICA );
 		$res = $dbr->select( 'interwiki', [ 'iw_prefix' ], false );
 		$prefixes = [];
 		foreach ( $res as $row ) {

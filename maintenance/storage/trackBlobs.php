@@ -67,7 +67,7 @@ class TrackBlobs {
 
 	function checkIntegrity() {
 		echo "Doing integrity check...\n";
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		// Scan for HistoryBlobStub objects in the text table (bug 20757)
 
@@ -117,7 +117,7 @@ class TrackBlobs {
 
 	function getTextClause() {
 		if ( !$this->textClause ) {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 			$this->textClause = '';
 			foreach ( $this->clusters as $cluster ) {
 				if ( $this->textClause != '' ) {
@@ -147,7 +147,7 @@ class TrackBlobs {
 	 */
 	function trackRevisions() {
 		$dbw = wfGetDB( DB_MASTER );
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$textClause = $this->getTextClause();
 		$startId = 0;
@@ -221,7 +221,7 @@ class TrackBlobs {
 	function trackOrphanText() {
 		# Wait until the blob_tracking table is available in the replica DB
 		$dbw = wfGetDB( DB_MASTER );
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$pos = $dbw->getMasterPos();
 		$dbr->masterPosWait( $pos, 100000 );
 
@@ -317,7 +317,7 @@ class TrackBlobs {
 			echo "Searching for orphan blobs in $cluster...\n";
 			$lb = wfGetLBFactory()->getExternalLB( $cluster );
 			try {
-				$extDB = $lb->getConnection( DB_SLAVE );
+				$extDB = $lb->getConnection( DB_REPLICA );
 			} catch ( DBConnectionError $e ) {
 				if ( strpos( $e->error, 'Unknown database' ) !== false ) {
 					echo "No database on $cluster\n";

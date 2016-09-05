@@ -40,7 +40,7 @@ class GetSlaveServer extends Maintenance {
 		if ( $wgAllDBsAreLocalhost ) {
 			$host = 'localhost';
 		} elseif ( $this->hasOption( 'group' ) ) {
-			$db = $this->getDB( DB_SLAVE, $this->getOption( 'group' ) );
+			$db = $this->getDB( DB_REPLICA, $this->getOption( 'group' ) );
 			$host = $db->getServer();
 		} else {
 			$lb = wfGetLB();

@@ -153,7 +153,7 @@ class LinkSearchPage extends QueryPage {
 	 */
 	static function mungeQuery( $query, $prot ) {
 		$field = 'el_index';
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		if ( $query === '*' && $prot !== '' ) {
 			// Allow queries like 'ftp://*' to find all ftp links
@@ -185,7 +185,7 @@ class LinkSearchPage extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		// strip everything past first wildcard, so that
 		// index-based-only lookup would be done
 		list( $this->mungedQuery, $clause ) = self::mungeQuery( $this->mQuery, $this->mProt );

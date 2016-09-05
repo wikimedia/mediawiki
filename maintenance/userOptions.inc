@@ -141,7 +141,7 @@ class UserOptions {
 		$defaultOptions = User::getDefaultOptions();
 
 		// We list user by user_id from one of the replica DBs
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$result = $dbr->select( 'user',
 			[ 'user_id' ],
 			[],
@@ -195,7 +195,7 @@ class UserOptions {
 		$this->warn();
 
 		// We list user by user_id from one of the replica DBs
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$result = $dbr->select( 'user',
 			[ 'user_id' ],
 			[],

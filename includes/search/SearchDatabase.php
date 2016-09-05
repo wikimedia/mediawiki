@@ -40,7 +40,7 @@ class SearchDatabase extends SearchEngine {
 		if ( $db ) {
 			$this->db = $db;
 		} else {
-			$this->db = wfGetDB( DB_SLAVE );
+			$this->db = wfGetDB( DB_REPLICA );
 		}
 	}
 

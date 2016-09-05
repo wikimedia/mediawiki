@@ -272,7 +272,7 @@ abstract class PrefixSearch {
 
 		$t = Title::newFromText( $search, $ns );
 		$prefix = $t ? $t->getDBkey() : '';
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$res = $dbr->select( 'page',
 			[ 'page_id', 'page_namespace', 'page_title' ],
 			[

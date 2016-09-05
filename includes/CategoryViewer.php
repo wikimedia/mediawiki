@@ -286,7 +286,7 @@ class CategoryViewer extends ContextSource {
 	}
 
 	function doCategoryQuery() {
-		$dbr = wfGetDB( DB_SLAVE, 'category' );
+		$dbr = wfGetDB( DB_REPLICA, 'category' );
 
 		$this->nextPage = [
 			'page' => null,

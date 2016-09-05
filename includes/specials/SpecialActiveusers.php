@@ -62,7 +62,7 @@ class SpecialActiveUsers extends SpecialPage {
 
 		// Mention the level of cache staleness...
 		$cacheText = '';
-		$dbr = wfGetDB( DB_SLAVE, 'recentchanges' );
+		$dbr = wfGetDB( DB_REPLICA, 'recentchanges' );
 		$rcMax = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)', '', __METHOD__ );
 		if ( $rcMax ) {
 			$cTime = $dbr->selectField( 'querycache_info',

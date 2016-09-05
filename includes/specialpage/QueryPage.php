@@ -376,7 +376,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return IDatabase
 	 */
 	function getRecacheDB() {
-		return wfGetDB( DB_SLAVE, [ $this->getName(), 'QueryPage::recache', 'vslow' ] );
+		return wfGetDB( DB_REPLICA, [ $this->getName(), 'QueryPage::recache', 'vslow' ] );
 	}
 
 	/**
@@ -453,7 +453,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @since 1.18
 	 */
 	public function fetchFromCache( $limit, $offset = false ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$options = [];
 		if ( $limit !== false ) {
 			$options['LIMIT'] = intval( $limit );
@@ -477,7 +477,7 @@ abstract class QueryPage extends SpecialPage {
 
 	public function getCachedTimestamp() {
 		if ( is_null( $this->cachedTimestamp ) ) {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 			$fname = get_class( $this ) . '::getCachedTimestamp';
 			$this->cachedTimestamp = $dbr->selectField( 'querycache_info', 'qci_timestamp',
 				[ 'qci_type' => $this->getName() ], $fname );

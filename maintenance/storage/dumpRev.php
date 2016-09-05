@@ -36,7 +36,7 @@ class DumpRev extends Maintenance {
 	}
 
 	public function execute() {
-		$dbr = $this->getDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_REPLICA );
 		$row = $dbr->selectRow(
 			[ 'text', 'revision' ],
 			[ 'old_flags', 'old_text' ],

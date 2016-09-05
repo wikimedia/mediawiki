@@ -1278,7 +1278,7 @@ function wfReadOnly() {
  * Check if the site is in read-only mode and return the message if so
  *
  * This checks wfConfiguredReadOnlyReason() and the main load balancer
- * for replica DB lag. This may result in DB_SLAVE connection being made.
+ * for replica DB lag. This may result in DB connection being made.
  *
  * @return string|bool String when in read-only mode; false otherwise
  */
@@ -3125,7 +3125,7 @@ function wfSplitWikiID( $wiki ) {
  * Get a Database object.
  *
  * @param int $db Index of the connection to get. May be DB_MASTER for the
- *            master (for write queries), DB_SLAVE for potentially lagged read
+ *            master (for write queries), DB_REPLICA for potentially lagged read
  *            queries, or an integer >= 0 for a particular server.
  *
  * @param string|string[] $groups Query groups. An array of group names that this query
@@ -3134,7 +3134,7 @@ function wfSplitWikiID( $wiki ) {
  *
  * @param string|bool $wiki The wiki ID, or false for the current wiki
  *
- * Note: multiple calls to wfGetDB(DB_SLAVE) during the course of one request
+ * Note: multiple calls to wfGetDB(DB_REPLICA) during the course of one request
  * will always return the same object, unless the underlying connection or load
  * balancer is manually destroyed.
  *

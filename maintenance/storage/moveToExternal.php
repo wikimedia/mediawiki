@@ -51,7 +51,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 function moveToExternal( $cluster, $maxID, $minID = 1 ) {
 	$fname = 'moveToExternal';
 	$dbw = wfGetDB( DB_MASTER );
-	$dbr = wfGetDB( DB_SLAVE );
+	$dbr = wfGetDB( DB_REPLICA );
 
 	$count = $maxID - $minID + 1;
 	$blockSize = 1000;

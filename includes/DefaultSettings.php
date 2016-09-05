@@ -1895,7 +1895,7 @@ $wgSharedSchema = false;
  *   - password:    DB password
  *   - type:        DB type
  *
- *   - load:        Ratio of DB_SLAVE load, must be >=0, the sum of all loads must be >0.
+ *   - load:        Ratio of DB_REPLICA load, must be >=0, the sum of all loads must be >0.
  *                  If this is zero for any given server, no normal query traffic will be
  *                  sent to it. It will be excluded from lag checks in maintenance scripts.
  *                  The only way it can receive traffic is if groupLoads is used.

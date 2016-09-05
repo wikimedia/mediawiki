@@ -3464,7 +3464,7 @@ class Parser {
 		$pageId = $title->getArticleID();
 		$revId = $title->getLatestRevID();
 
-		$rev = Revision::newKnownCurrent( wfGetDB( DB_SLAVE ), $pageId, $revId );
+		$rev = Revision::newKnownCurrent( wfGetDB( DB_REPLICA ), $pageId, $revId );
 		if ( $rev ) {
 			$rev->setTitle( $title );
 		}
@@ -3684,7 +3684,7 @@ class Parser {
 	 */
 	public function fetchScaryTemplateMaybeFromCache( $url ) {
 		global $wgTranscludeCacheExpiry;
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$tsCond = $dbr->timestamp( time() - $wgTranscludeCacheExpiry );
 		$obj = $dbr->selectRow( 'transcache', [ 'tc_time', 'tc_contents' ],
 				[ 'tc_url' => $url, "tc_time >= " . $dbr->addQuotes( $tsCond ) ] );

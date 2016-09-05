@@ -72,7 +72,7 @@ class Pingback {
 	 * @return bool
 	 */
 	private function checkIfSent() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$sent = $dbr->selectField(
 			'updatelog', '1', [ 'ul_key' => $this->key ], __METHOD__ );
 		return $sent !== false;
@@ -168,7 +168,7 @@ class Pingback {
 	 */
 	private function getOrCreatePingbackId() {
 		if ( !$this->id ) {
-			$id = wfGetDB( DB_SLAVE )->selectField(
+			$id = wfGetDB( DB_REPLICA )->selectField(
 				'updatelog', 'ul_value', [ 'ul_key' => 'PingBack' ] );
 
 			if ( $id == false ) {

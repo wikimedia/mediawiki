@@ -180,7 +180,7 @@ class DifferenceEngine extends ContextSource {
 	 */
 	public function deletedLink( $id ) {
 		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 			$row = $dbr->selectRow( 'archive', '*',
 				[ 'ar_rev_id' => $id ],
 				__METHOD__ );
@@ -528,7 +528,7 @@ class DifferenceEngine extends ContextSource {
 			RecentChange::isInRCLifespan( $this->mNewRev->getTimestamp(), 21600 )
 		) {
 			// Look for an unpatrolled change corresponding to this diff
-			$db = wfGetDB( DB_SLAVE );
+			$db = wfGetDB( DB_REPLICA );
 			$change = RecentChange::newFromConds(
 				[
 					'rc_timestamp' => $db->timestamp( $this->mNewRev->getTimestamp() ),
@@ -1338,7 +1338,7 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		// Load tags information for both revisions
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		if ( $this->mOldid !== false ) {
 			$this->mOldTags = $dbr->selectField(
 				'tag_summary',

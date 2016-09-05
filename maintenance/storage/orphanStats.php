@@ -39,11 +39,11 @@ class OrphanStats extends Maintenance {
 	protected function &getDB( $cluster, $groups = [], $wiki = false ) {
 		$lb = wfGetLBFactory()->getExternalLB( $cluster );
 
-		return $lb->getConnection( DB_SLAVE );
+		return $lb->getConnection( DB_REPLICA );
 	}
 
 	public function execute() {
-		$dbr = $this->getDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_REPLICA );
 		if ( !$dbr->tableExists( 'blob_orphans' ) ) {
 			$this->error( "blob_orphans doesn't seem to exist, need to run trackBlobs.php first", true );
 		}

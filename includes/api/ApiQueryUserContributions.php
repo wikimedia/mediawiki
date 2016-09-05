@@ -63,7 +63,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		$dbSecondary = $this->getDB(); // any random replica DB
 
 		// TODO: if the query is going only against the revision table, should this be done?
-		$this->selectNamedDB( 'contributions', DB_SLAVE, 'contributions' );
+		$this->selectNamedDB( 'contributions', DB_REPLICA, 'contributions' );
 
 		$this->idMode = false;
 		if ( isset( $this->params['userprefix'] ) ) {

@@ -78,7 +78,7 @@ class LogPager extends ReverseChronologicalPager {
 		$this->getDateCond( $year, $month );
 		$this->mTagFilter = $tagFilter;
 
-		$this->mDb = wfGetDB( DB_SLAVE, 'logpager' );
+		$this->mDb = wfGetDB( DB_REPLICA, 'logpager' );
 	}
 
 	public function getDefaultQuery() {

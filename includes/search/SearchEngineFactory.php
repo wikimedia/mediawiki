@@ -32,7 +32,7 @@ class SearchEngineFactory {
 		} elseif ( $configType !== null ) {
 			$class = $configType;
 		} else {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 			$class = $dbr->getSearchEngine();
 		}
 

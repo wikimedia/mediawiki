@@ -371,7 +371,7 @@ class LoadBalancer {
 
 	/**
 	 * Set the master wait position
-	 * If a DB_SLAVE connection has been opened already, waits
+	 * If a DB_REPLICA connection has been opened already, waits
 	 * Otherwise sets a variable telling it to wait if such a connection is opened
 	 * @param DBMasterPos $pos
 	 */
@@ -561,7 +561,7 @@ class LoadBalancer {
 		}
 
 		# Operation-based index
-		if ( $i == DB_SLAVE ) {
+		if ( $i == DB_REPLICA ) {
 			$this->mLastError = 'Unknown error'; // reset error string
 			# Try the general server pool if $groups are unavailable.
 			$i = in_array( false, $groups, true )
@@ -612,7 +612,7 @@ class LoadBalancer {
 			/**
 			 * This can happen in code like:
 			 *   foreach ( $dbs as $db ) {
-			 *     $conn = $lb->getConnection( DB_SLAVE, [], $db );
+			 *     $conn = $lb->getConnection( DB_REPLICA, [], $db );
 			 *     ...
 			 *     $lb->reuseConnection( $conn );
 			 *   }
@@ -1429,7 +1429,7 @@ class LoadBalancer {
 		if ( !$this->laggedReplicaMode && $this->getServerCount() > 1 ) {
 			try {
 				// See if laggedReplicaMode gets set
-				$conn = $this->getConnection( DB_SLAVE, false, $wiki );
+				$conn = $this->getConnection( DB_REPLICA, false, $wiki );
 				$this->reuseConnection( $conn );
 			} catch ( DBConnectionError $e ) {
 				// Avoid expensive re-connect attempts and failures

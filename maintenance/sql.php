@@ -55,7 +55,7 @@ class MwSql extends Maintenance {
 		// Figure out which server to use
 		$replicaDB = $this->getOption( 'replicadb', $this->getOption( 'slave', '' ) );
 		if ( $replicaDB === 'any' ) {
-			$index = DB_SLAVE;
+			$index = DB_REPLICA;
 		} elseif ( $replicaDB != '' ) {
 			$index = null;
 			$serverCount = $lb->getServerCount();

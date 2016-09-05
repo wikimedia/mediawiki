@@ -140,7 +140,7 @@ class PageProps {
 		}
 
 		if ( $queryIDs ) {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 			$result = $dbr->select(
 				'page_props',
 				[
@@ -198,7 +198,7 @@ class PageProps {
 		}
 
 		if ( $queryIDs != [] ) {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 			$result = $dbr->select(
 				'page_props',
 				[

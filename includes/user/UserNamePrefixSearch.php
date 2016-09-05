@@ -39,7 +39,7 @@ class UserNamePrefixSearch {
 	public static function search( $audience, $search, $limit, $offset = 0 ) {
 		$user = User::newFromName( $search );
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$prefix = $user ? $user->getName() : '';
 		$tables = [ 'user' ];
 		$cond = [ 'user_name ' . $dbr->buildLike( $prefix, $dbr->anyString() ) ];

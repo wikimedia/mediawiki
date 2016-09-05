@@ -63,7 +63,7 @@ class ForeignDBViaLBRepo extends LocalRepo {
 	 * @return IDatabase
 	 */
 	function getSlaveDB() {
-		return wfGetDB( DB_SLAVE, [], $this->wiki );
+		return wfGetDB( DB_REPLICA, [], $this->wiki );
 	}
 
 	/**

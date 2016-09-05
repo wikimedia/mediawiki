@@ -74,7 +74,7 @@ class RefreshLinks extends Maintenance {
 		$end = null, $redirectsOnly = false, $oldRedirectsOnly = false
 	) {
 		$reportingInterval = 100;
-		$dbr = $this->getDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_REPLICA );
 
 		if ( $start === null ) {
 			$start = 1;
@@ -258,7 +258,7 @@ class RefreshLinks extends Maintenance {
 	) {
 		wfWaitForSlaves();
 		$this->output( "Deleting illegal entries from the links tables...\n" );
-		$dbr = $this->getDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_REPLICA );
 		do {
 			// Find the start of the next chunk. This is based only
 			// on existent page_ids.
@@ -299,7 +299,7 @@ class RefreshLinks extends Maintenance {
 	 */
 	private function dfnCheckInterval( $start = null, $end = null, $batchSize = 100 ) {
 		$dbw = $this->getDB( DB_MASTER );
-		$dbr = $this->getDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_REPLICA );
 
 		$linksTables = [ // table name => page_id field
 			'pagelinks' => 'pl_from',

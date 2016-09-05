@@ -56,7 +56,7 @@ in the load balancer, usually indicating a replication environment.' );
 		if ( $backgroundMode ) {
 			$this->output( "Using replication-friendly background mode...\n" );
 
-			$dbr = $this->getDB( DB_SLAVE );
+			$dbr = $this->getDB( DB_REPLICA );
 			$chunkSize = 100;
 			$lastUser = $dbr->selectField( 'user', 'MAX(user_id)', '', __METHOD__ );
 
