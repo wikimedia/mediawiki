@@ -1278,7 +1278,7 @@ function wfReadOnly() {
  * Check if the site is in read-only mode and return the message if so
  *
  * This checks wfConfiguredReadOnlyReason() and the main load balancer
- * for slave lag. This may result in DB_SLAVE connection being made.
+ * for replica DB lag. This may result in DB_SLAVE connection being made.
  *
  * @return string|bool String when in read-only mode; false otherwise
  */
@@ -3279,10 +3279,10 @@ function wfGetNull() {
 }
 
 /**
- * Waits for the slaves to catch up to the master position
+ * Waits for the replica DBs to catch up to the master position
  *
  * Use this when updating very large numbers of rows, as in maintenance scripts,
- * to avoid causing too much lag. Of course, this is a no-op if there are no slaves.
+ * to avoid causing too much lag. Of course, this is a no-op if there are no replica DBs.
  *
  * By default this waits on the main DB cluster of the current wiki.
  * If $cluster is set to "*" it will wait on all DB clusters, including

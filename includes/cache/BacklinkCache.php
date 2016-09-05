@@ -137,7 +137,7 @@ class BacklinkCache {
 	}
 
 	/**
-	 * Get the slave connection to the database
+	 * Get the replica DB connection to the database
 	 * When non existing, will initialize the connection.
 	 * @return DatabaseBase
 	 */

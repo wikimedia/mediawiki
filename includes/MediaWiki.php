@@ -580,7 +580,7 @@ class MediaWiki {
 			$request->response()->setCookie( 'UseCDNCache', 'false', $expires, $options );
 		}
 
-		// Avoid letting a few seconds of slave lag cause a month of stale data. This logic is
+		// Avoid letting a few seconds of replica DB lag cause a month of stale data. This logic is
 		// also intimately related to the value of $wgCdnReboundPurgeDelay.
 		if ( $factory->laggedSlaveUsed() ) {
 			$maxAge = $config->get( 'CdnMaxageLagged' );

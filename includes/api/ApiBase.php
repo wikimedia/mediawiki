@@ -599,7 +599,7 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Gets a default slave database connection object
+	 * Gets a default replica DB connection object
 	 * @return DatabaseBase
 	 */
 	protected function getDB() {
@@ -826,7 +826,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param array $params
 	 * @param bool|string $load Whether load the object's state from the database:
 	 *        - false: don't load (if the pageid is given, it will still be loaded)
-	 *        - 'fromdb': load from a slave database
+	 *        - 'fromdb': load from a replica DB
 	 *        - 'fromdbmaster': load from the master database
 	 * @return WikiPage
 	 */

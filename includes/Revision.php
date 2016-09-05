@@ -309,7 +309,7 @@ class Revision implements IDBAccessObject {
 	 * Given a set of conditions, fetch a revision
 	 *
 	 * This method is used then a revision ID is qualified and
-	 * will incorporate some basic slave/master fallback logic
+	 * will incorporate some basic replica DB/master fallback logic
 	 *
 	 * @param array $conditions
 	 * @param int $flags (optional)
@@ -1609,7 +1609,7 @@ class Revision implements IDBAccessObject {
 		}
 
 		if ( !$row ) {
-			// Text data is immutable; check slaves first.
+			// Text data is immutable; check replica DBs first.
 			$dbr = wfGetDB( DB_SLAVE );
 			$row = $dbr->selectRow( 'text',
 				[ 'old_text', 'old_flags' ],
@@ -1617,7 +1617,7 @@ class Revision implements IDBAccessObject {
 				__METHOD__ );
 		}
 
-		// Fallback to the master in case of slave lag. Also use FOR UPDATE if it was
+		// Fallback to the master in case of replica DB lag. Also use FOR UPDATE if it was
 		// used to fetch this revision to avoid missing the row due to REPEATABLE-READ.
 		$forUpdate = ( $this->mQueryFlags & self::READ_LOCKING == self::READ_LOCKING );
 		if ( !$row && ( $forUpdate || wfGetLB()->getServerCount() > 1 ) ) {
@@ -1638,7 +1638,7 @@ class Revision implements IDBAccessObject {
 			wfDebugLog( 'Revision', "No blob for text row '$textId' (revision {$this->getId()})." );
 		}
 
-		# No negative caching -- negative hits on text rows may be due to corrupted slave servers
+		# No negative caching -- negative hits on text rows may be due to corrupted replica DB servers
 		if ( $wgRevisionCacheExpiry && $text !== false ) {
 			$processCache->set( $key, $text );
 			$cache->set( $key, $text, $wgRevisionCacheExpiry );

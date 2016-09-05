@@ -110,7 +110,7 @@ class SpecialTags extends SpecialPage {
 			// continuing with this, as the user is just going to end up getting sent
 			// somewhere else. Additionally, if we keep going here, we end up
 			// populating the memcache of tag data (see ChangeTags::listDefinedTags)
-			// with out-of-date data from the slave, because the slave hasn't caught
+			// with out-of-date data from the replica DB, because the replica DB hasn't caught
 			// up to the fact that a new tag has been created as part of an implicit,
 			// as yet uncommitted transaction on master.
 			if ( $out->getRedirect() !== '' ) {

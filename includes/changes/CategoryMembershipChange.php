@@ -164,7 +164,7 @@ class CategoryMembershipChange {
 		/**
 		 * T109700 - Default bot flag to true when there is no corresponding RC entry
 		 * This means all changes caused by parser functions & Lua on reparse are marked as bot
-		 * Also in the case no RC entry could be found due to slave lag
+		 * Also in the case no RC entry could be found due to replica DB lag
 		 */
 		$bot = 1;
 		$lastRevId = 0;

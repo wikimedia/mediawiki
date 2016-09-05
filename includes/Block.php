@@ -1110,7 +1110,7 @@ class Block {
 	 * @param array $ipChain List of IPs (strings), usually retrieved from the
 	 *	   X-Forwarded-For header of the request
 	 * @param bool $isAnon Exclude anonymous-only blocks if false
-	 * @param bool $fromMaster Whether to query the master or slave database
+	 * @param bool $fromMaster Whether to query the master or replica DB
 	 * @return array Array of Blocks
 	 * @since 1.22
 	 */

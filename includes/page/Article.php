@@ -1151,7 +1151,7 @@ class Article implements Page {
 
 		if ( !$rc ) {
 			// Don't cache: This can be hit if the page gets accessed very fast after
-			// its creation / latest upload or in case we have high slave lag. In case
+			// its creation / latest upload or in case we have high replica DB lag. In case
 			// the revision is too old, we will already return above.
 			return false;
 		}
