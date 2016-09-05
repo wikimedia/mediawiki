@@ -1670,7 +1670,7 @@ class LoadBalancer {
 	 * @since 1.27
 	 */
 	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = 10 ) {
-		if ( $this->getServerCount() == 1 || !$conn->getLBInfo( 'slave' ) ) {
+		if ( $this->getServerCount() == 1 || !$conn->getLBInfo( 'replica' ) ) {
 			return true; // server is not a replica DB
 		}
 
