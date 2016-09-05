@@ -582,7 +582,7 @@ class MediaWiki {
 
 		// Avoid letting a few seconds of slave lag cause a month of stale data. This logic is
 		// also intimately related to the value of $wgCdnReboundPurgeDelay.
-		if ( $factory->laggedSlaveUsed() ) {
+		if ( $factory->laggedReplicaUsed() ) {
 			$maxAge = $config->get( 'CdnMaxageLagged' );
 			$context->getOutput()->lowerCdnMaxage( $maxAge );
 			$request->response()->header( "X-Database-Lagged: true" );

@@ -357,16 +357,25 @@ abstract class LBFactory implements DestructibleService {
 
 	/**
 	 * Detemine if any lagged replica DB connection was used
-	 * @since 1.27
 	 * @return bool
+	 * @since 1.28
 	 */
-	public function laggedSlaveUsed() {
+	public function laggedReplicaUsed() {
 		$ret = false;
 		$this->forEachLB( function ( LoadBalancer $lb ) use ( &$ret ) {
-			$ret = $ret || $lb->laggedSlaveUsed();
+			$ret = $ret || $lb->laggedReplicaUsed();
 		} );
 
 		return $ret;
+	}
+
+	/**
+	 * @return bool
+	 * @since 1.27
+	 * @deprecated Since 1.28; use laggedReplicaUsed()
+	 */
+	public function laggedSlaveUsed() {
+		return $this->laggedReplicaUsed();
 	}
 
 	/**
