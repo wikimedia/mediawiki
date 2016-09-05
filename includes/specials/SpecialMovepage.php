@@ -223,7 +223,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			( $oldTalk->exists()
 				|| ( $oldTitleTalkSubpages && $canMoveSubpage ) );
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		if ( $this->getConfig()->get( 'FixDoubleRedirects' ) ) {
 			$hasRedirects = $dbr->selectField( 'redirect', '1',
 				[

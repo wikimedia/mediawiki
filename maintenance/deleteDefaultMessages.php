@@ -41,7 +41,7 @@ class DeleteDefaultMessages extends Maintenance {
 		global $wgUser;
 
 		$this->output( "Checking existence of old default messages..." );
-		$dbr = $this->getDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_REPLICA );
 		$res = $dbr->select( [ 'page', 'revision' ],
 			[ 'page_namespace', 'page_title' ],
 			[

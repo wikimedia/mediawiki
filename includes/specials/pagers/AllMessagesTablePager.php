@@ -196,7 +196,7 @@ class AllMessagesTablePager extends TablePager {
 	public static function getCustomisedStatuses( $messageNames, $langcode = 'en', $foreign = false ) {
 		// FIXME: This function should be moved to Language:: or something.
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$res = $dbr->select( 'page',
 			[ 'page_namespace', 'page_title' ],
 			[ 'page_namespace' => [ NS_MEDIAWIKI, NS_MEDIAWIKI_TALK ] ],

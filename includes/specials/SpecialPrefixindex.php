@@ -181,7 +181,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 
 			# ## @todo FIXME: Should complain if $fromNs != $namespace
 
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 
 			$conds = [
 				'page_namespace' => $namespace,

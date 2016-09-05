@@ -59,7 +59,7 @@ class SiteStats {
 			# Update schema
 			$u = new SiteStatsUpdate( 0, 0, 0 );
 			$u->doUpdate();
-			self::$row = self::doLoad( wfGetDB( DB_SLAVE ) );
+			self::$row = self::doLoad( wfGetDB( DB_REPLICA ) );
 		}
 
 		self::$loaded = true;
@@ -72,7 +72,7 @@ class SiteStats {
 		global $wgMiserMode;
 
 		wfDebug( __METHOD__ . ": reading site_stats from replica DB\n" );
-		$row = self::doLoad( wfGetDB( DB_SLAVE ) );
+		$row = self::doLoad( wfGetDB( DB_REPLICA ) );
 
 		if ( !self::isSane( $row ) ) {
 			// Might have just been initialized during this request? Underflow?
@@ -87,7 +87,7 @@ class SiteStats {
 			// clean schema with mwdumper.
 			wfDebug( __METHOD__ . ": initializing damaged or missing site_stats\n" );
 
-			SiteStatsInit::doAllAndCommit( wfGetDB( DB_SLAVE ) );
+			SiteStatsInit::doAllAndCommit( wfGetDB( DB_REPLICA ) );
 
 			$row = self::doLoad( wfGetDB( DB_MASTER ) );
 		}
@@ -186,7 +186,7 @@ class SiteStats {
 			wfMemcKey( 'SiteStats', 'groupcounts', $group ),
 			$cache::TTL_HOUR,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $group ) {
-				$dbr = wfGetDB( DB_SLAVE );
+				$dbr = wfGetDB( DB_REPLICA );
 
 				$setOpts += Database::getCacheSetOptions( $dbr );
 
@@ -229,7 +229,7 @@ class SiteStats {
 	 */
 	static function pagesInNs( $ns ) {
 		if ( !isset( self::$pageCount[$ns] ) ) {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 			self::$pageCount[$ns] = (int)$dbr->selectField(
 				'page',
 				'COUNT(*)',
@@ -296,7 +296,7 @@ class SiteStatsInit {
 		} elseif ( $database ) {
 			$this->db = wfGetDB( DB_MASTER );
 		} else {
-			$this->db = wfGetDB( DB_SLAVE, 'vslow' );
+			$this->db = wfGetDB( DB_REPLICA, 'vslow' );
 		}
 	}
 

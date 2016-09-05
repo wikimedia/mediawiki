@@ -457,7 +457,7 @@ class LocalRepo extends FileRepo {
 	 * @return DatabaseBase
 	 */
 	function getSlaveDB() {
-		return wfGetDB( DB_SLAVE );
+		return wfGetDB( DB_REPLICA );
 	}
 
 	/**
@@ -469,7 +469,7 @@ class LocalRepo extends FileRepo {
 	}
 
 	/**
-	 * Get a callback to get a DB handle given an index (DB_SLAVE/DB_MASTER)
+	 * Get a callback to get a DB handle given an index (DB_REPLICA/DB_MASTER)
 	 * @return Closure
 	 */
 	protected function getDBFactory() {

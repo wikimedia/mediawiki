@@ -3613,7 +3613,7 @@ HTML
 	 * @return bool|stdClass
 	 */
 	protected function getLastDelete() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$data = $dbr->selectRow(
 			[ 'logging', 'user' ],
 			[

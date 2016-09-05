@@ -74,7 +74,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		// with extra user based indexes or partioning by user. The additional metadata
 		// queries should use a regular replica DB since the lookup pattern is not all by user.
 		$this->mDbSecondary = wfGetDB( DB_SLAVE ); // any random replica DB
-		$this->mDb = wfGetDB( DB_SLAVE, 'contributions' );
+		$this->mDb = wfGetDB( DB_REPLICA, 'contributions' );
 	}
 
 	function getDefaultQuery() {

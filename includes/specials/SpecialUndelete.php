@@ -63,7 +63,7 @@ class PageArchive {
 	 * @return ResultWrapper
 	 */
 	public static function listAllPages() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		return self::listPages( $dbr, '' );
 	}
@@ -77,7 +77,7 @@ class PageArchive {
 	 * @return ResultWrapper
 	 */
 	public static function listPagesByPrefix( $prefix ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$title = Title::newFromText( $prefix );
 		if ( $title ) {
@@ -127,7 +127,7 @@ class PageArchive {
 	 * @return ResultWrapper
 	 */
 	function listRevisions() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$tables = [ 'archive' ];
 
@@ -179,7 +179,7 @@ class PageArchive {
 			return null;
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		return $dbr->select(
 			'filearchive',
 			ArchivedFile::selectFields(),
@@ -197,7 +197,7 @@ class PageArchive {
 	 * @return Revision|null
 	 */
 	function getRevision( $timestamp ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$fields = [
 			'ar_rev_id',
@@ -244,7 +244,7 @@ class PageArchive {
 	 * @return Revision|null Null when there is no previous revision
 	 */
 	function getPreviousRevision( $timestamp ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		// Check the previous deleted revision...
 		$row = $dbr->selectRow( 'archive',
@@ -300,7 +300,7 @@ class PageArchive {
 		}
 
 		// New-style: keyed to the text storage backend.
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$text = $dbr->selectRow( 'text',
 			[ 'old_text', 'old_flags' ],
 			[ 'old_id' => $row->ar_text_id ],
@@ -318,7 +318,7 @@ class PageArchive {
 	 * @return string|null
 	 */
 	function getLastRevisionText() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$row = $dbr->selectRow( 'archive',
 			[ 'ar_text', 'ar_flags', 'ar_text_id' ],
 			[ 'ar_namespace' => $this->title->getNamespace(),
@@ -339,7 +339,7 @@ class PageArchive {
 	 * @return bool
 	 */
 	function isDeleted() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$n = $dbr->selectField( 'archive', 'COUNT(ar_title)',
 			[ 'ar_namespace' => $this->title->getNamespace(),
 				'ar_title' => $this->title->getDBkey() ],
@@ -1247,7 +1247,7 @@ class SpecialUndelete extends SpecialPage {
 
 		$minor = $rev->isMinor() ? ChangesList::flag( 'minor' ) : '';
 
-		$tags = wfGetDB( DB_SLAVE )->selectField(
+		$tags = wfGetDB( DB_REPLICA )->selectField(
 			'tag_summary',
 			'ts_tags',
 			[ 'ts_rev_id' => $rev->getId() ],

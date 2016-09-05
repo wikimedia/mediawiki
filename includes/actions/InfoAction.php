@@ -676,8 +676,8 @@ class InfoAction extends FormlessAction {
 				$title = $page->getTitle();
 				$id = $title->getArticleID();
 
-				$dbr = wfGetDB( DB_SLAVE );
-				$dbrWatchlist = wfGetDB( DB_SLAVE, 'watchlist' );
+				$dbr = wfGetDB( DB_REPLICA );
+				$dbrWatchlist = wfGetDB( DB_REPLICA, 'watchlist' );
 
 				$setOpts += Database::getCacheSetOptions( $dbr, $dbrWatchlist );
 

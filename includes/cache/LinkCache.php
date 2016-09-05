@@ -245,7 +245,7 @@ class LinkCache {
 		}
 
 		// Some fields heavily used for linking...
-		$db = $this->mForUpdate ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
+		$db = $this->mForUpdate ? wfGetDB( DB_MASTER ) : wfGetDB( DB_REPLICA );
 
 		$row = $db->selectRow( 'page', self::getSelectFields(),
 			[ 'page_namespace' => $nt->getNamespace(), 'page_title' => $nt->getDBkey() ],

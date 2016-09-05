@@ -165,7 +165,7 @@ class MessageBlobStore implements LoggerAwareInterface {
 		$cache->set( $cacheKey, $blob,
 			// Add part of a day to TTL to avoid all modules expiring at once
 			$cache::TTL_WEEK + mt_rand( 0, $cache::TTL_DAY ),
-			Database::getCacheSetOptions( wfGetDB( DB_SLAVE ) )
+			Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) )
 		);
 		return $blob;
 	}

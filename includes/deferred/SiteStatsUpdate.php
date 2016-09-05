@@ -133,7 +133,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 	 */
 	public static function cacheUpdate( $dbw ) {
 		global $wgActiveUserDays;
-		$dbr = wfGetDB( DB_SLAVE, 'vslow' );
+		$dbr = wfGetDB( DB_REPLICA, 'vslow' );
 		# Get non-bot users than did some recent action other than making accounts.
 		# If account creation is included, the number gets inflated ~20+ fold on enwiki.
 		$activeUsers = $dbr->selectField(

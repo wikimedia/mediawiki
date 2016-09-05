@@ -237,7 +237,7 @@ class CompressOld extends Maintenance {
 	) {
 		$loadStyle = self::LS_CHUNKED;
 
-		$dbr = $this->getDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_REPLICA );
 		$dbw = $this->getDB( DB_MASTER );
 
 		# Set up external storage

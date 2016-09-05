@@ -313,7 +313,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * @return IDatabase
 	 */
 	protected function getDB() {
-		return wfGetDB( DB_SLAVE, 'watchlist' );
+		return wfGetDB( DB_REPLICA, 'watchlist' );
 	}
 
 	/**

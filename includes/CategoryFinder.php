@@ -96,7 +96,7 @@ class CategoryFinder {
 	 * @return array Array of page_ids (those given to seed() that match the conditions)
 	 */
 	public function run() {
-		$this->dbr = wfGetDB( DB_SLAVE );
+		$this->dbr = wfGetDB( DB_REPLICA );
 		while ( count( $this->next ) > 0 ) {
 			$this->scanNextLayer();
 		}

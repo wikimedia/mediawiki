@@ -47,7 +47,7 @@ if ( isset( $options['limit'] ) ) {
 }
 $type = isset( $options['type'] ) ? $options['type'] : 'ConcatenatedGzipHistoryBlob';
 
-$dbr = $this->getDB( DB_SLAVE );
+$dbr = $this->getDB( DB_REPLICA );
 $res = $dbr->select(
 	[ 'page', 'revision', 'text' ],
 	'*',

@@ -40,7 +40,7 @@ class RevDelLogList extends RevDelList {
 	}
 
 	public static function suggestTarget( $target, array $ids ) {
-		$result = wfGetDB( DB_SLAVE )->select( 'logging',
+		$result = wfGetDB( DB_REPLICA )->select( 'logging',
 			'log_type',
 			[ 'log_id' => $ids ],
 			__METHOD__,

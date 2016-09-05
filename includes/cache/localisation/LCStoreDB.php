@@ -39,7 +39,7 @@ class LCStoreDB implements LCStore {
 		if ( $this->writesDone && $this->dbw ) {
 			$db = $this->dbw; // see the changes in finishWrite()
 		} else {
-			$db = wfGetDB( DB_SLAVE );
+			$db = wfGetDB( DB_REPLICA );
 		}
 
 		$value = $db->selectField(

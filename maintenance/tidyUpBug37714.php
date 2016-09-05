@@ -7,7 +7,7 @@ require_once __DIR__ . '/Maintenance.php';
 class TidyUpBug37714 extends Maintenance {
 	public function execute() {
 		// Search for all log entries which are about changing the visability of other log entries.
-		$result = $this->getDB( DB_SLAVE )->select(
+		$result = $this->getDB( DB_REPLICA )->select(
 			'logging',
 			[ 'log_id', 'log_params' ],
 			[
@@ -21,7 +21,7 @@ class TidyUpBug37714 extends Maintenance {
 
 		foreach ( $result as $row ) {
 			$ids = explode( ',', explode( "\n", $row->log_params )[0] );
-			$result = $this->getDB( DB_SLAVE )->select( // Work out what log entries were changed here.
+			$result = $this->getDB( DB_REPLICA )->select( // Work out what log entries were changed here.
 				'logging',
 				'log_type',
 				[ 'log_id' => $ids ],

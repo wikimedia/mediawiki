@@ -63,7 +63,7 @@ class ApiTag extends ApiBase {
 	}
 
 	protected static function validateLogId( $logid ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$result = $dbr->selectField( 'logging', 'log_id', [ 'log_id' => $logid ],
 			__METHOD__ );
 		return (bool)$result;

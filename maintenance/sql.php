@@ -53,7 +53,7 @@ class MwSql extends Maintenance {
 		if ( $this->hasOption( 'slave' ) ) {
 			$server = $this->getOption( 'slave' );
 			if ( $server === 'any' ) {
-				$index = DB_SLAVE;
+				$index = DB_REPLICA;
 			} else {
 				$index = null;
 				$serverCount = $lb->getServerCount();

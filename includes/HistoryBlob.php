@@ -245,7 +245,7 @@ class HistoryBlobStub {
 		if ( isset( self::$blobCache[$this->mOldId] ) ) {
 			$obj = self::$blobCache[$this->mOldId];
 		} else {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 			$row = $dbr->selectRow(
 				'text',
 				[ 'old_flags', 'old_text' ],
@@ -336,7 +336,7 @@ class HistoryBlobCurStub {
 	 * @return string|bool
 	 */
 	function getText() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$row = $dbr->selectRow( 'cur', [ 'cur_text' ], [ 'cur_id' => $this->mCurId ] );
 		if ( !$row ) {
 			return false;
