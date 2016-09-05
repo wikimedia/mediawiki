@@ -1421,11 +1421,10 @@ class LoadBalancer {
 
 	/**
 	 * @note This method will trigger a DB connection if not yet done
-	 *
 	 * @param string|bool $wiki Wiki ID, or false for the current wiki
 	 * @return bool Whether the generic connection for reads is highly "lagged"
 	 */
-	public function getLaggedSlaveMode( $wiki = false ) {
+	public function getLaggedReplicaMode( $wiki = false ) {
 		// No-op if there is only one DB (also avoids recursion)
 		if ( !$this->laggedReplicaMode && $this->getServerCount() > 1 ) {
 			try {
@@ -1443,12 +1442,30 @@ class LoadBalancer {
 	}
 
 	/**
+	 * @param bool $wiki
+	 * @return bool
+	 * @deprecated 1.28; use getLaggedReplicaMode()
+	 */
+	public function getLaggedSlaveMode( $wiki = false ) {
+		return $this->getLaggedReplicaMode( $wiki );
+	}
+
+	/**
 	 * @note This method will never cause a new DB connection
 	 * @return bool Whether any generic connection used for reads was highly "lagged"
+	 * @since 1.28
+	 */
+	public function laggedReplicaUsed() {
+		return $this->laggedReplicaMode;
+	}
+
+	/**
+	 * @return bool
 	 * @since 1.27
+	 * @deprecated Since 1.28; use laggedReplicaUsed()
 	 */
 	public function laggedSlaveUsed() {
-		return $this->laggedReplicaMode;
+		return $this->laggedReplicaUsed();
 	}
 
 	/**
@@ -1461,7 +1478,7 @@ class LoadBalancer {
 	public function getReadOnlyReason( $wiki = false, DatabaseBase $conn = null ) {
 		if ( $this->readOnlyReason !== false ) {
 			return $this->readOnlyReason;
-		} elseif ( $this->getLaggedSlaveMode( $wiki ) ) {
+		} elseif ( $this->getLaggedReplicaMode( $wiki ) ) {
 			if ( $this->allReplicasDownMode ) {
 				return 'The database has been automatically locked ' .
 					'until the replica database servers become available';
