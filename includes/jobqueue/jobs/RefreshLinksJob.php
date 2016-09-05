@@ -40,7 +40,7 @@ class RefreshLinksJob extends Job {
 	const PARSE_THRESHOLD_SEC = 1.0;
 	/** @var integer Lag safety margin when comparing root job times to last-refresh times */
 	const CLOCK_FUDGE = 10;
-	/** @var integer How many seconds to wait for slaves to catch up */
+	/** @var integer How many seconds to wait for replica DBs to catch up */
 	const LAG_WAIT_TIMEOUT = 15;
 
 	function __construct( Title $title, array $params ) {
@@ -83,7 +83,7 @@ class RefreshLinksJob extends Job {
 
 		// Job to update all (or a range of) backlink pages for a page
 		if ( !empty( $this->params['recursive'] ) ) {
-			// When the base job branches, wait for the slaves to catch up to the master.
+			// When the base job branches, wait for the replica DBs to catch up to the master.
 			// From then on, we know that any template changes at the time the base job was
 			// enqueued will be reflected in backlink page parses when the leaf jobs run.
 			if ( !isset( $params['range'] ) ) {
@@ -182,7 +182,7 @@ class RefreshLinksJob extends Job {
 
 			$skewedTimestamp = $this->params['rootJobTimestamp'];
 			if ( $opportunistic ) {
-				// Neither clock skew nor DB snapshot/slave lag matter much for such
+				// Neither clock skew nor DB snapshot/replica DB lag matter much for such
 				// updates; focus on reusing the (often recently updated) cache
 			} else {
 				// For transclusion updates, the template changes must be reflected

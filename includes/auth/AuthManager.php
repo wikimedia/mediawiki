@@ -1540,7 +1540,7 @@ class AuthManager implements LoggerAwareInterface {
 
 		$username = $user->getName();
 
-		// Try the local user from the slave DB
+		// Try the local user from the replica DB
 		$localId = User::idFromName( $username );
 		$flags = User::READ_NORMAL;
 

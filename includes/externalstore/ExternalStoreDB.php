@@ -112,7 +112,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	}
 
 	/**
-	 * Get a slave database connection for the specified cluster
+	 * Get a replica DB connection for the specified cluster
 	 *
 	 * @param string $cluster Cluster name
 	 * @return IDatabase
@@ -264,7 +264,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	}
 
 	/**
-	 * Helper function for self::batchFetchBlobs for merging master/slave results
+	 * Helper function for self::batchFetchBlobs for merging master/replica DB results
 	 * @param array &$ret Current self::batchFetchBlobs return value
 	 * @param array &$ids Map from blob_id to requested itemIDs
 	 * @param mixed $res DB result from Database::select

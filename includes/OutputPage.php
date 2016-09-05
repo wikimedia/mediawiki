@@ -2535,7 +2535,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Show a warning about slave lag
+	 * Show a warning about replica DB lag
 	 *
 	 * If the lag is higher than $wgSlaveLagCritical seconds,
 	 * then the warning is a bit more obvious. If the lag is

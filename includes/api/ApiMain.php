@@ -1322,7 +1322,7 @@ class ApiMain extends ApiBase {
 			}
 		}
 
-		// If a majority of slaves are too lagged then disallow writes
+		// If a majority of replica DBs are too lagged then disallow writes
 		$slaveCount = wfGetLB()->getServerCount() - 1;
 		if ( $numLagged >= ceil( $slaveCount / 2 ) ) {
 			$laggedServers = implode( ', ', $laggedServers );

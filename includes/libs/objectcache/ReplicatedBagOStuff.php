@@ -22,7 +22,7 @@
 
 /**
  * A cache class that directs writes to one set of servers and reads to
- * another. This assumes that the servers used for reads are setup to slave
+ * another. This assumes that the servers used for reads are setup to replica DB
  * those that writes go to. This can easily be used with redis for example.
  *
  * In the WAN scenario (e.g. multi-datacenter case), this is useful when
@@ -42,7 +42,7 @@ class ReplicatedBagOStuff extends BagOStuff {
 	 *   - writeFactory : ObjectFactory::getObjectFromSpec array yeilding BagOStuff.
 	 *                    This object will be used for writes (e.g. the master DB).
 	 *   - readFactory  : ObjectFactory::getObjectFromSpec array yeilding BagOStuff.
-	 *                    This object will be used for reads (e.g. a slave DB).
+	 *                    This object will be used for reads (e.g. a replica DB).
 	 *
 	 * @param array $params
 	 * @throws InvalidArgumentException

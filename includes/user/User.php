@@ -1570,8 +1570,8 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Get blocking information
-	 * @param bool $bFromSlave Whether to check the slave database first.
-	 *   To improve performance, non-critical checks are done against slaves.
+	 * @param bool $bFromSlave Whether to check the replica DB first.
+	 *   To improve performance, non-critical checks are done against replica DBs.
 	 *   Check when actually saving should be done against master.
 	 */
 	private function getBlockedStatus( $bFromSlave = true ) {
@@ -1922,7 +1922,7 @@ class User implements IDBAccessObject {
 	/**
 	 * Check if user is blocked
 	 *
-	 * @param bool $bFromSlave Whether to check the slave database instead of
+	 * @param bool $bFromSlave Whether to check the replica DB instead of
 	 *   the master. Hacked from false due to horrible probs on site.
 	 * @return bool True if blocked, false otherwise
 	 */
@@ -1933,7 +1933,7 @@ class User implements IDBAccessObject {
 	/**
 	 * Get the block affecting the user, or null if the user is not blocked
 	 *
-	 * @param bool $bFromSlave Whether to check the slave database instead of the master
+	 * @param bool $bFromSlave Whether to check the replica DB instead of the master
 	 * @return Block|null
 	 */
 	public function getBlock( $bFromSlave = true ) {
@@ -1945,7 +1945,7 @@ class User implements IDBAccessObject {
 	 * Check if user is blocked from editing a particular article
 	 *
 	 * @param Title $title Title to check
-	 * @param bool $bFromSlave Whether to check the slave database instead of the master
+	 * @param bool $bFromSlave Whether to check the replica DB instead of the master
 	 * @return bool
 	 */
 	public function isBlockedFrom( $title, $bFromSlave = false ) {
@@ -3595,7 +3595,7 @@ class User implements IDBAccessObject {
 
 		// Only update the timestamp if the page is being watched.
 		// The query to find out if it is watched is cached both in memcached and per-invocation,
-		// and when it does have to be executed, it can be on a slave
+		// and when it does have to be executed, it can be on a replica DB
 		// If this is the user's newtalk page, we always update the timestamp
 		$force = '';
 		if ( $title->getNamespace() == NS_USER_TALK && $title->getText() == $this->getName() ) {
@@ -3818,7 +3818,7 @@ class User implements IDBAccessObject {
 
 		// Get a new user_touched that is higher than the old one.
 		// This will be used for a CAS check as a last-resort safety
-		// check against race conditions and slave lag.
+		// check against race conditions and replica DB lag.
 		$newTouched = $this->newTouchedTimestamp();
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -4917,7 +4917,7 @@ class User implements IDBAccessObject {
 			// Now here's a goddamn hack...
 			$dbr = wfGetDB( DB_SLAVE );
 			if ( $dbr !== $dbw ) {
-				// If we actually have a slave server, the count is
+				// If we actually have a replica DB server, the count is
 				// at least one behind because the current transaction
 				// has not been committed and replicated.
 				$this->mEditCount = $this->initEditCount( 1 );
@@ -4947,7 +4947,7 @@ class User implements IDBAccessObject {
 	 * @return int Number of edits
 	 */
 	protected function initEditCount( $add = 0 ) {
-		// Pull from a slave to be less cruel to servers
+		// Pull from a replica DB to be less cruel to servers
 		// Accuracy isn't the point anyway here
 		$dbr = wfGetDB( DB_SLAVE );
 		$count = (int)$dbr->selectField(
@@ -5317,7 +5317,7 @@ class User implements IDBAccessObject {
 	 * Get a new instance of this user that was loaded from the master via a locking read
 	 *
 	 * Use this instead of the main context User when updating that user. This avoids races
-	 * where that user was loaded from a slave or even the master but without proper locks.
+	 * where that user was loaded from a replica DB or even the master but without proper locks.
 	 *
 	 * @return User|null Returns null if the user was not found in the DB
 	 * @since 1.27

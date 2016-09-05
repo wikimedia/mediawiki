@@ -29,15 +29,15 @@
  * though certain objects may assume READ_LATEST for common use case or legacy reasons.
  *
  * There are four types of reads:
- *   - READ_NORMAL    : Potentially cached read of data (e.g. from a slave or stale replica)
+ *   - READ_NORMAL    : Potentially cached read of data (e.g. from a replica DB or stale replica)
  *   - READ_LATEST    : Up-to-date read as of transaction start (e.g. from master or a quorum read)
  *   - READ_LOCKING   : Up-to-date read as of now, that locks (shared) the records
  *   - READ_EXCLUSIVE : Up-to-date read as of now, that locks (exclusive) the records
  * All record locks persist for the duration of the transaction.
  *
  * A special constant READ_LATEST_IMMUTABLE can be used for fetching append-only data. Such
- * data is either (a) on a slave and up-to-date or (b) not yet there, but on the master/quorum.
- * Because the data is append-only, it can never be stale on a slave if present.
+ * data is either (a) on a replica DB and up-to-date or (b) not yet there, but on the master/quorum.
+ * Because the data is append-only, it can never be stale on a replica DB if present.
  *
  * Callers should use READ_NORMAL (or pass in no flags) unless the read determines a write.
  * In theory, such cases may require READ_LOCKING, though to avoid contention, READ_LATEST is
@@ -54,7 +54,7 @@
  */
 interface IDBAccessObject {
 	/** Constants for object loading bitfield flags (higher => higher QoS) */
-	/** @var integer Read from a slave/non-quorum */
+	/** @var integer Read from a replica DB/non-quorum */
 	const READ_NORMAL = 0;
 	/** @var integer Read from the master/quorum */
 	const READ_LATEST = 1;
@@ -63,7 +63,7 @@ interface IDBAccessObject {
 	/** @var integer Read from the master/quorum and lock out other writers and locking readers */
 	const READ_EXCLUSIVE = 7; // READ_LOCKING (3) and "FOR UPDATE" (4)
 
-	/** @var integer Read from a slave/non-quorum immutable data, using the master/quorum on miss */
+	/** @var integer Read from a replica DB/non-quorum immutable data, using the master/quorum on miss */
 	const READ_LATEST_IMMUTABLE = 8;
 
 	// Convenience constant for tracking how data was loaded (higher => higher QoS)

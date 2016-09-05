@@ -236,7 +236,7 @@ class JobQueueDB extends JobQueue {
 			}
 			// Build the full list of job rows to insert
 			$rows = array_merge( $rowList, array_values( $rowSet ) );
-			// Insert the job rows in chunks to avoid slave lag...
+			// Insert the job rows in chunks to avoid replica DB lag...
 			foreach ( array_chunk( $rows, 50 ) as $rowBatch ) {
 				$dbw->insert( 'job', $rowBatch, $method );
 			}

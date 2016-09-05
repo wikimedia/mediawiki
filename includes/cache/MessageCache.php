@@ -302,7 +302,7 @@ class MessageCache {
 						$where[] = 'global cache is expired';
 						$staleCache = $cache;
 					} elseif ( $hashVolatile ) {
-						# DB results are slave lag prone until the holdoff TTL passes.
+						# DB results are replica DB lag prone until the holdoff TTL passes.
 						# By then, updates should be reflected in loadFromDBWithLock().
 						# One thread renerates the cache while others use old values.
 						$where[] = 'global cache is expired/volatile';
@@ -564,7 +564,7 @@ class MessageCache {
 		}
 
 		// Mark this cache as definitely "latest" (non-volatile) so
-		// load() calls do try to refresh the cache with slave data
+		// load() calls do try to refresh the cache with replica DB data
 		$this->mCache[$code]['LATEST'] = time();
 
 		// Update caches if the lock was acquired

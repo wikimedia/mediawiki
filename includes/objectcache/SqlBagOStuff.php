@@ -85,11 +85,11 @@ class SqlBagOStuff extends BagOStuff {
 	 *                  required to hold the largest shard index. Data will be
 	 *                  distributed across all tables by key hash. This is for
 	 *                  MySQL bugs 61735 and 61736.
-	 *   - slaveOnly:   Whether to only use slave DBs and avoid triggering
+	 *   - replica DBOnly:   Whether to only use replica DBs and avoid triggering
 	 *                  garbage collection logic of expired items. This only
 	 *                  makes sense if the primary DB is used and only if get()
 	 *                  calls will be used. This is used by ReplicatedBagOStuff.
-	 *   - syncTimeout: Max seconds to wait for slaves to catch up for WRITE_SYNC.
+	 *   - syncTimeout: Max seconds to wait for replica DBs to catch up for WRITE_SYNC.
 	 *
 	 * @param array $params
 	 */
@@ -807,10 +807,10 @@ class SqlBagOStuff extends BagOStuff {
 			?: MediaWikiServices::getInstance()->getDBLoadBalancer();
 
 		if ( $lb->getServerCount() <= 1 ) {
-			return true; // no slaves
+			return true; // no replica DBs
 		}
 
-		// Main LB is used; wait for any slaves to catch up
+		// Main LB is used; wait for any replica DBs to catch up
 		$masterPos = $lb->getMasterPos();
 
 		$loop = new WaitConditionLoop(

@@ -4,7 +4,7 @@
  * method of batch updating rows in a database. To use create a class
  * implementing the RowUpdateGenerator interface and configure the
  * BatchRowIterator and BatchRowWriter for access to the correct table.
- * The components will handle reading, writing, and waiting for slaves
+ * The components will handle reading, writing, and waiting for replica DBs
  * while the generator implementation handles generating update arrays
  * for singular rows.
  *
