@@ -591,9 +591,9 @@
 	"apihelp-query+authmanagerinfo-description": "Retrieve information about the current authentication status.",
 	"apihelp-query+authmanagerinfo-param-securitysensitiveoperation": "Test whether the user's current authentication status is sufficient for the specified security-sensitive operation.",
 	"apihelp-query+authmanagerinfo-param-requestsfor": "Fetch information about the authentication requests needed for the specified authentication action.",
-	"apihelp-query+filerepoinfo-example-login": "Fetch the requests that may be used when beginning a login.",
-	"apihelp-query+filerepoinfo-example-login-merged": "Fetch the requests that may be used when beginning a login, with form fields merged.",
-	"apihelp-query+filerepoinfo-example-securitysensitiveoperation": "Test whether authentication is sufficient for action <kbd>foo</kbd>.",
+	"apihelp-query+authmanagerinfo-example-login": "Fetch the requests that may be used when beginning a login.",
+	"apihelp-query+authmanagerinfo-example-login-merged": "Fetch the requests that may be used when beginning a login, with form fields merged.",
+	"apihelp-query+authmanagerinfo-example-securitysensitiveoperation": "Test whether authentication is sufficient for action <kbd>foo</kbd>.",
 
 	"apihelp-query+backlinks-description": "Find all pages that link to the given page.",
 	"apihelp-query+backlinks-param-title": "Title to search. Cannot be used together with <var>$1pageid</var>.",
