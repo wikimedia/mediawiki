@@ -109,7 +109,7 @@ abstract class Maintenance {
 	private $mDb = null;
 
 	/** @var float UNIX timestamp */
-	private $lastSlaveWait = 0.0;
+	private $lastReplicationWait = 0.0;
 
 	/**
 	 * Used when creating separate schema files.
@@ -1276,11 +1276,17 @@ abstract class Maintenance {
 	 */
 	protected function commitTransaction( IDatabase $dbw, $fname ) {
 		$dbw->commit( $fname );
+		try {
+			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+			$lbFactory->waitForReplication(
+				[ 'timeout' => 30, 'ifWritesSince' => $this->lastReplicationWait ]
+			);
+			$this->lastReplicationWait = microtime( true );
 
-		$ok = wfWaitForSlaves( $this->lastSlaveWait, false, '*', 30 );
-		$this->lastSlaveWait = microtime( true );
-
-		return $ok;
+			return true;
+		} catch ( DBReplicationWaitError $e ) {
+			return false;
+		}
 	}
 
 	/**
