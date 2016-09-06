@@ -75,6 +75,12 @@ if ( is_readable( "$IP/vendor/autoload.php" ) ) {
 	require_once "$IP/vendor/autoload.php";
 }
 
+if ( defined( 'MW_NO_EXTENSIONS' ) ) {
+	// If the maintenance script wants to run with no
+	// extensions, disable them.
+	ExtensionRegistry::getInstance()->disable();
+}
+
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Use a callback function to configure MediaWiki
 	call_user_func( MW_CONFIG_CALLBACK );

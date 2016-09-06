@@ -66,6 +66,13 @@ class ExtensionRegistry {
 	protected $attributes = [];
 
 	/**
+	 * Whether the registry is disabled
+	 *
+	 * @var bool
+	 */
+	private $disabled = false;
+
+	/**
 	 * @var ExtensionRegistry
 	 */
 	private static $instance;
@@ -93,6 +100,15 @@ class ExtensionRegistry {
 	}
 
 	/**
+	 * Prevent any extensions from being loaded
+	 *
+	 * @since 1.28
+	 */
+	public function disable() {
+		$this->disabled = true;
+	}
+
+	/**
 	 * @param string $path Absolute path to the JSON file
 	 */
 	public function queue( $path ) {
@@ -116,6 +132,10 @@ class ExtensionRegistry {
 	public function loadFromQueue() {
 		global $wgVersion;
 		if ( !$this->queued ) {
+			return;
+		}
+
+		if ( $this->disabled ) {
 			return;
 		}
 

@@ -246,6 +246,17 @@ $wgExtensionDirectory = "{$IP}/extensions";
 $wgStyleDirectory = "{$IP}/skins";
 
 /**
+ * Location of list of enabled extensions and skins
+ * Should only be manipulated with manageExtensions.php
+ *
+ * Note! You should make sure permissions are set properly on this
+ * so the webserver is unable to write to it.
+ *
+ * @since 1.28
+ */
+$wgExtensionListFile = "{$IP}/EnabledExtensions.json";
+
+/**
  * The URL path for primary article page views. This path should contain $1,
  * which is replaced by the article title.
  *
