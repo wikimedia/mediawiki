@@ -80,7 +80,7 @@ class FixUserRegistration extends Maintenance {
 					$this->output( "Could not find registration for #$id NULL\n" );
 				}
 			}
-			$this->output( "Waiting for slaves..." );
+			$this->output( "Waiting for replica DBs..." );
 			wfWaitForSlaves();
 			$this->output( " done.\n" );
 		} while ( $res->numRows() >= $this->mBatchSize );

@@ -1264,14 +1264,14 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Commit the transcation on a DB handle and wait for slaves to catch up
+	 * Commit the transcation on a DB handle and wait for replica DBs to catch up
 	 *
 	 * This method makes it clear that commit() is called from a maintenance script,
 	 * which has outermost scope. This is safe, unlike $dbw->commit() called in other places.
 	 *
 	 * @param IDatabase $dbw
 	 * @param string $fname Caller name
-	 * @return bool Whether the slave wait succeeded
+	 * @return bool Whether the replica DB wait succeeded
 	 * @since 1.27
 	 */
 	protected function commitTransaction( IDatabase $dbw, $fname ) {

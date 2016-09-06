@@ -29,8 +29,8 @@ class InitEditCount extends Maintenance {
 		parent::__construct();
 		$this->addOption( 'quick', 'Force the update to be done in a single query' );
 		$this->addOption( 'background', 'Force replication-friendly mode; may be inefficient but
-		avoids locking tables or lagging slaves with large updates;
-		calculates counts on a slave if possible.
+		avoids locking tables or lagging replica DBs with large updates;
+		calculates counts on a replica DB if possible.
 
 Background mode will be automatically used if multiple servers are listed
 in the load balancer, usually indicating a replication environment.' );
