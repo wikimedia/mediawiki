@@ -147,7 +147,7 @@ function wfStreamThumb( array $params ) {
 
 	// Check the source file title
 	if ( !$img ) {
-		wfThumbError( 404, wfMessage( 'badtitletext' )->parse() );
+		wfThumbError( 404, wfMessage( 'badtitletext' )->title( $title )->parse() );
 		return;
 	}
 
@@ -327,10 +327,10 @@ function wfStreamThumb( array $params ) {
 
 	$user = RequestContext::getMain()->getUser();
 	if ( !wfThumbIsStandard( $img, $params ) && $user->pingLimiter( 'renderfile-nonstandard' ) ) {
-		wfThumbError( 429, wfMessage( 'actionthrottledtext' )->parse() );
+		wfThumbError( 429, wfMessage( 'actionthrottledtext' )->title( $title )->parse() );
 		return;
 	} elseif ( $user->pingLimiter( 'renderfile' ) ) {
-		wfThumbError( 429, wfMessage( 'actionthrottledtext' )->parse() );
+		wfThumbError( 429, wfMessage( 'actionthrottledtext' )->title( $title )->parse() );
 		return;
 	}
 
@@ -339,7 +339,8 @@ function wfStreamThumb( array $params ) {
 	/** @var MediaTransformOutput|MediaTransformError|bool $thumb */
 
 	// Check for thumbnail generation errors...
-	$msg = wfMessage( 'thumbnail_error' );
+	$msg = wfMessage( 'thumbnail_error' )->title( $title );
+	$errorMsg = false;
 	$errorCode = 500;
 	if ( !$thumb ) {
 		$errorMsg = $errorMsg ?: $msg->rawParams( 'File::transform() returned false' )->escaped();
@@ -433,8 +434,9 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
 						? $file->transform( $params, File::RENDER_NOW )
 						: false; // retry once more in exclusive mode
 				},
-				'error' => function ( Status $status ) {
-					return wfMessage( 'generic-pool-error' )->parse() . '<hr>' . $status->getHTML();
+				'error' => function ( Status $status ) use ( $title ) {
+					return wfMessage( 'generic-pool-error' )->title( $title )->parse() .
+						'<hr>' . $status->getHTML();
 				}
 			]
 		);
