@@ -63,7 +63,7 @@ module.exports = function ( grunt ) {
 					included: true,
 					served: false
 				} ],
-				logLevel: 'DEBUG',
+				logLevel: 'INFO',
 				frameworks: [ 'qunit' ],
 				reporters: [ 'progress' ],
 				singleRun: true,
