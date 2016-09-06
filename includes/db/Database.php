@@ -3228,7 +3228,7 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	public function getApproximateLagStatus() {
 		return [
-			'lag'   => $this->getLBInfo( 'slave' ) ? $this->getLag() : 0,
+			'lag'   => $this->getLBInfo( 'replica' ) ? $this->getLag() : 0,
 			'since' => microtime( true )
 		];
 	}

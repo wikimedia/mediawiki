@@ -54,7 +54,7 @@ class LBFactorySimple extends LBFactory {
 				if ( $i == 0 ) {
 					$server['master'] = true;
 				} else {
-					$server['slave'] = true;
+					$server['replica'] = true;
 				}
 				$server += [ 'flags' => DBO_DEFAULT ];
 			}
