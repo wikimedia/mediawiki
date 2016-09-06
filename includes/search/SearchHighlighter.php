@@ -34,10 +34,11 @@ class SearchHighlighter {
 	}
 
 	/**
-	 * Default implementation of wikitext highlighting
+	 * Wikitext highlighting when $wgAdvancedSearchHighlighting = true
 	 *
 	 * @param string $text
-	 * @param array $terms Terms to highlight (unescaped)
+	 * @param array $terms Terms to highlight (not html escaped but
+	 *   regex escaped via SearchDatabase::regexTerm())
 	 * @param int $contextlines
 	 * @param int $contextchars
 	 * @return string
@@ -145,7 +146,6 @@ class SearchHighlighter {
 		}
 		$anyterm = implode( '|', $terms );
 		$phrase = implode( "$wgSearchHighlightBoundaries+", $terms );
-
 		// @todo FIXME: A hack to scale contextchars, a correct solution
 		// would be to have contextchars actually be char and not byte
 		// length, and do proper utf-8 substrings and lengths everywhere,
@@ -485,8 +485,10 @@ class SearchHighlighter {
 	 * Simple & fast snippet extraction, but gives completely unrelevant
 	 * snippets
 	 *
+	 * Used when $wgAdvancedSearchHighlighting is false.
+	 *
 	 * @param string $text
-	 * @param array $terms
+	 * @param array $terms Escaped for regex by SearchDatabase::regexTerm()
 	 * @param int $contextlines
 	 * @param int $contextchars
 	 * @return string
