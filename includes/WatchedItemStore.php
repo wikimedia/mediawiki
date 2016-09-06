@@ -190,13 +190,13 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * @param int $slaveOrMaster DB_MASTER or DB_REPLICA
+	 * @param int $dbIndex DB_MASTER or DB_REPLICA
 	 *
 	 * @return DatabaseBase
 	 * @throws MWException
 	 */
-	private function getConnection( $slaveOrMaster ) {
-		return $this->loadBalancer->getConnection( $slaveOrMaster, [ 'watchlist' ] );
+	private function getConnection( $dbIndex ) {
+		return $this->loadBalancer->getConnection( $dbIndex, [ 'watchlist' ] );
 	}
 
 	/**

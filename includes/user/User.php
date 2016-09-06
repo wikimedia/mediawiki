@@ -3841,7 +3841,7 @@ class User implements IDBAccessObject {
 			// Maybe the problem was a missed cache update; clear it to be safe
 			$this->clearSharedCache( 'refresh' );
 			// User was changed in the meantime or loaded with stale data
-			$from = ( $this->queryFlagsUsed & self::READ_LATEST ) ? 'master' : 'slave';
+			$from = ( $this->queryFlagsUsed & self::READ_LATEST ) ? 'master' : 'replica';
 			throw new MWException(
 				"CAS update failed on user_touched for user ID '{$this->mId}' (read from $from);" .
 				" the version of the user to be saved is older than the current version."

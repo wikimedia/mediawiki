@@ -44,7 +44,7 @@ class SqlBagOStuff extends BagOStuff {
 	/** @var string */
 	protected $tableName = 'objectcache';
 	/** @var bool */
-	protected $slaveOnly = false;
+	protected $replicaOnly = false;
 	/** @var int */
 	protected $syncTimeout = 3;
 
@@ -132,7 +132,7 @@ class SqlBagOStuff extends BagOStuff {
 		if ( isset( $params['syncTimeout'] ) ) {
 			$this->syncTimeout = $params['syncTimeout'];
 		}
-		$this->slaveOnly = !empty( $params['slaveOnly'] );
+		$this->replicaOnly = !empty( $params['slaveOnly'] );
 	}
 
 	protected function getSeparateMainLB() {
@@ -183,7 +183,7 @@ class SqlBagOStuff extends BagOStuff {
 				$db = DatabaseBase::factory( $type, $info );
 				$db->clearFlag( DBO_TRX );
 			} else {
-				$index = $this->slaveOnly ? DB_REPLICA : DB_MASTER;
+				$index = $this->replicaOnly ? DB_REPLICA : DB_MASTER;
 				if ( $this->getSeparateMainLB() ) {
 					$db = $this->getSeparateMainLB()->getConnection( $index );
 					$db->clearFlag( DBO_TRX ); // auto-commit mode
@@ -539,7 +539,7 @@ class SqlBagOStuff extends BagOStuff {
 	}
 
 	protected function garbageCollect() {
-		if ( !$this->purgePeriod || $this->slaveOnly ) {
+		if ( !$this->purgePeriod || $this->replicaOnly ) {
 			// Disabled
 			return;
 		}
