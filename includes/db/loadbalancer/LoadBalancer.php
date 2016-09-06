@@ -864,11 +864,11 @@ class LoadBalancer {
 			$this->getLazyConnectionRef( DB_MASTER, [], $db->getWikiID() )
 		);
 		$db->setTransactionProfiler( $this->trxProfiler );
-		if ( $this->trxRoundId !== false ) {
-			$this->applyTransactionRoundFlags( $db );
-		}
 
 		if ( $server['serverIndex'] === $this->getWriterIndex() ) {
+			if ( $this->trxRoundId !== false ) {
+				$this->applyTransactionRoundFlags( $db );
+			}
 			foreach ( $this->trxRecurringCallbacks as $name => $callback ) {
 				$db->setTransactionListener( $name, $callback );
 			}
