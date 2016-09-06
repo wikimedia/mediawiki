@@ -104,6 +104,12 @@ if ( !interface_exists( 'Psr\Log\LoggerInterface' ) ) {
 	die( 1 );
 }
 
+if ( defined( 'MW_NO_EXTENSIONS' ) ) {
+	// This should never be set for web entry-points, but
+	// be sane and disable it if requested.
+	ExtensionRegistry::getInstance()->disable();
+}
+
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Use a callback function to configure MediaWiki
 	call_user_func( MW_CONFIG_CALLBACK );
