@@ -784,6 +784,7 @@
 	"content-model-json": "JSON",
 	"content-json-empty-object": "Objecte buit",
 	"content-json-empty-array": "Matriu buida",
+	"deprecated-self-close-category": "Pàgines que usen etiquetes HTML autotancades no vàlides",
 	"duplicate-args-warning": "<strong>Avís:</strong> [[:$1]] crida [[:$2]] amb més d'un valor pel paràmetre «$3». Només s'utilitzarà el darrer valor proporcionat.",
 	"duplicate-args-category": "Pàgines amb arguments duplicats en utilització de plantilles",
 	"duplicate-args-category-desc": "La pàgina conté crides a plantilles que fan servir duplicats d'arguments, com ara <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> o <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

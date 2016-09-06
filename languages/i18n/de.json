@@ -1477,6 +1477,8 @@
 	"file-thumbnail-no": "Der Dateiname beginnt mit <strong>$1</strong>. Dies deutet auf ein Bild verringerter Größe ''(Minitatur)'' hin.\nBitte prüfe, ob du das Bild in voller Auflösung vorliegen hast und lade dieses unter dem Originalnamen hoch.",
 	"fileexists-forbidden": "Unter diesem Namen existiert bereits eine Datei und sie kann nicht überschrieben werden. Bitte gehe zurück und lade die Datei unter einem anderen Namen hoch. [[File:$1|thumb|center|$1]]",
 	"fileexists-shared-forbidden": "Unter diesem Namen existiert bereits eine Datei im zentralen Medienarchiv.\nWenn du diese Datei trotzdem hochladen möchtest, gehe bitte zurück und ändere den Namen.\n[[File:$1|thumb|center|$1]]",
+	"fileexists-no-change": "Die hochgeladene Datei ist ein exaktes Duplikat der aktuellen Version von <strong>[[:$1]]</strong>.",
+	"fileexists-duplicate-version": "Die hochgeladene Datei ist ein exaktes Duplikat {{PLURAL:$2|einer älteren Version|von älteren Versionen}} von <strong>[[:$1]]</strong>.",
 	"file-exists-duplicate": "Diese Datei ist ein Duplikat der folgenden {{PLURAL:$1|Datei|$1 Dateien}}:",
 	"file-deleted-duplicate": "Eine mit dieser identische Datei ([[:$1]]) wurde früher gelöscht. Sieh das Lösch-Logbuch ein, bevor du sie hochlädst.",
 	"file-deleted-duplicate-notitle": "Eine identische Datei wurde kürzlich gelöscht und der Titel wurde unterdrückt.\nDu solltest jemanden fragen, der die Möglichkeit hat, die unterdrückten Dateidaten anzusehen, um die Situation vor dem erneuten Hochladen zu überprüfen.",

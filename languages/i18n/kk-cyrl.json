@@ -439,6 +439,7 @@
 	"createacct-reason-ph": "Неге басқа тіркегі жасамақшысыз",
 	"createacct-submit": "Тіркелгіңізді жасаңыз",
 	"createacct-another-submit": "Тіркелгі жасау",
+	"createacct-continue-submit": "Тіркелуді жалғастыру",
 	"createacct-benefit-heading": "{{SITENAME}} сіздермен жасалады.",
 	"createacct-benefit-body1": "{{PLURAL:$1|өңдеме|өңдеме}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|бет|бет}}",

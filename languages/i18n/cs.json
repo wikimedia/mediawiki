@@ -1630,6 +1630,7 @@
 	"filerevert-submit": "Vrátit zpět",
 	"filerevert-success": "Soubor '''[[Media:$1|$1]]''' byl vrácen zpět na [$4 verzi z $3 $2].",
 	"filerevert-badversion": "Není dostupná předchozí verze tohoto souboru s odpovídající časovou značkou.",
+	"filerevert-identical": "Aktuální verze souboru se již od vybrané verze neliší.",
 	"filedelete": "Smazání souboru $1",
 	"filedelete-legend": "Smazat soubor",
 	"filedelete-intro": "Chystáte se smazat soubor '''[[Media:$1|$1]]''' i s celou historií.",

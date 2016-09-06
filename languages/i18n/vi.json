@@ -1630,6 +1630,7 @@
 	"filerevert-submit": "Lùi lại",
 	"filerevert-success": "'''[[Media:$1|$1]]''' đã được lùi về [$4 phiên bản lúc $3, $2].",
 	"filerevert-badversion": "Không tồn tại phiên bản trước đó của tập tin tại thời điểm trên.",
+	"filerevert-identical": "Phiên bản hiện tại của tập tin đã y hệt với phiên bản được chọn.",
 	"filedelete": "Xóa $1",
 	"filedelete-legend": "Xóa tập tin",
 	"filedelete-intro": "Bạn sắp xóa tập tin '''[[Media:$1|$1]]''' cùng với tất cả lịch sử của nó.",
