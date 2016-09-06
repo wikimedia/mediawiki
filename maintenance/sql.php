@@ -73,7 +73,7 @@ class MwSql extends Maintenance {
 		}
 		// Get a DB handle (with this wiki's DB selected) from the appropriate load balancer
 		$db = $lb->getConnection( $index, [], $wiki );
-		if ( $this->hasOption( 'slave' ) && $db->getLBInfo( 'master' ) !== null ) {
+		if ( $replicaDB != '' && $db->getLBInfo( 'master' ) !== null ) {
 			$this->error( "The server selected ({$db->getServer()}) is not a replica DB.", 1 );
 		}
 
