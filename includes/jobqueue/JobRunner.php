@@ -269,12 +269,14 @@ class JobRunner implements LoggerAwareInterface {
 		$rssStart = $this->getMaxRssKb();
 		$jobStartTime = microtime( true );
 		try {
+			$fnameTrxOwner = get_class( $job ) . '::run';
+			$lbFactory->beginMasterChanges( $fnameTrxOwner );
 			$status = $job->run();
 			$error = $job->getLastError();
-			$this->commitMasterChanges( $lbFactory, $job );
+			$this->commitMasterChanges( $lbFactory, $job, $fnameTrxOwner );
 
 			DeferredUpdates::doUpdates();
-			$this->commitMasterChanges( $lbFactory, $job );
+			$this->commitMasterChanges( $lbFactory, $job, __METHOD__ );
 		} catch ( Exception $e ) {
 			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 			$status = false;
@@ -497,9 +499,10 @@ class JobRunner implements LoggerAwareInterface {
 	 *
 	 * @param LBFactory $lbFactory
 	 * @param Job $job
+	 * @param string $fnameTrxOwner
 	 * @throws DBError
 	 */
-	private function commitMasterChanges( LBFactory $lbFactory, Job $job ) {
+	private function commitMasterChanges( LBFactory $lbFactory, Job $job, $fnameTrxOwner ) {
 		global $wgJobSerialCommitThreshold;
 
 		$lb = $lbFactory->getMainLB( wfWikiID() );
@@ -521,7 +524,7 @@ class JobRunner implements LoggerAwareInterface {
 		}
 
 		if ( !$dbwSerial ) {
-			$lbFactory->commitMasterChanges( __METHOD__ );
+			$lbFactory->commitMasterChanges( $fnameTrxOwner );
 			return;
 		}
 
@@ -542,7 +545,7 @@ class JobRunner implements LoggerAwareInterface {
 		}
 
 		// Actually commit the DB master changes
-		$lbFactory->commitMasterChanges( __METHOD__ );
+		$lbFactory->commitMasterChanges( $fnameTrxOwner );
 
 		// Release the lock
 		$dbwSerial->unlock( 'jobrunner-serial-commit', __METHOD__ );
