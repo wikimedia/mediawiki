@@ -779,27 +779,27 @@ class SpecialUpload extends SpecialPage {
 
 		if ( $exists['warning'] == 'exists' ) {
 			// Exact match
-			$warning = wfMessage( 'fileexists', $filename )->parse();
+			$warning = wfMessage( 'fileexists', $filename );
 		} elseif ( $exists['warning'] == 'page-exists' ) {
 			// Page exists but file does not
-			$warning = wfMessage( 'filepageexists', $filename )->parse();
+			$warning = wfMessage( 'filepageexists', $filename );
 		} elseif ( $exists['warning'] == 'exists-normalized' ) {
 			$warning = wfMessage( 'fileexists-extension', $filename,
-				$exists['normalizedFile']->getTitle()->getPrefixedText() )->parse();
+				$exists['normalizedFile']->getTitle()->getPrefixedText() );
 		} elseif ( $exists['warning'] == 'thumb' ) {
 			// Swapped argument order compared with other messages for backwards compatibility
 			$warning = wfMessage( 'fileexists-thumbnail-yes',
-				$exists['thumbFile']->getTitle()->getPrefixedText(), $filename )->parse();
+				$exists['thumbFile']->getTitle()->getPrefixedText(), $filename );
 		} elseif ( $exists['warning'] == 'thumb-name' ) {
 			// Image w/o '180px-' does not exists, but we do not like these filenames
 			$name = $file->getName();
 			$badPart = substr( $name, 0, strpos( $name, '-' ) + 1 );
-			$warning = wfMessage( 'file-thumbnail-no', $badPart )->parse();
+			$warning = wfMessage( 'file-thumbnail-no', $badPart );
 		} elseif ( $exists['warning'] == 'bad-prefix' ) {
-			$warning = wfMessage( 'filename-bad-prefix', $exists['prefix'] )->parse();
+			$warning = wfMessage( 'filename-bad-prefix', $exists['prefix'] );
 		}
 
-		return $warning;
+		return $warning->title( $this->getTitle() )->parse();
 	}
 
 	/**
