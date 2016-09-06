@@ -658,17 +658,19 @@
 		 * Toggle "fullscreen" mode
 		 */
 		toggleFullscreen: function () {
-			var $body = $( document.body );
+			var $body = $( document.body ),
+				$ui = $( '#mw-apisandbox-ui' );
 
 			$body.toggleClass( 'mw-apisandbox-fullscreen' );
+			$ui.toggleClass( 'mw-body-content' );
 			if ( $body.hasClass( 'mw-apisandbox-fullscreen' ) ) {
 				fullscreenButton.setLabel( mw.message( 'apisandbox-unfullscreen' ).text() );
 				fullscreenButton.setTitle( mw.message( 'apisandbox-unfullscreen-tooltip' ).text() );
-				$body.append( $( '#mw-apisandbox-ui' ) );
+				$body.append( $ui );
 			} else {
 				fullscreenButton.setLabel( mw.message( 'apisandbox-fullscreen' ).text() );
 				fullscreenButton.setTitle( mw.message( 'apisandbox-fullscreen-tooltip' ).text() );
-				$content.append( $( '#mw-apisandbox-ui' ) );
+				$content.append( $ui );
 			}
 			ApiSandbox.resizePanel();
 		},
