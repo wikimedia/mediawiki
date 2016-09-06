@@ -580,6 +580,8 @@
 		init: function () {
 			var $toolbar;
 
+			ApiSandbox.isFullscreen = false;
+
 			$content = $( '#mw-apisandbox' );
 
 			windowManager = new OO.ui.WindowManager();
@@ -658,17 +660,21 @@
 		 * Toggle "fullscreen" mode
 		 */
 		toggleFullscreen: function () {
-			var $body = $( document.body );
+			var $body = $( document.body ),
+				$ui = $( '#mw-apisandbox-ui' );
 
-			$body.toggleClass( 'mw-apisandbox-fullscreen' );
-			if ( $body.hasClass( 'mw-apisandbox-fullscreen' ) ) {
+			ApiSandbox.isFullscreen = !ApiSandbox.isFullscreen;
+
+			$body.toggleClass( 'mw-apisandbox-fullscreen', ApiSandbox.isFullscreen );
+			$ui.toggleClass( 'mw-body-content', ApiSandbox.isFullscreen );
+			if ( ApiSandbox.isFullscreen ) {
 				fullscreenButton.setLabel( mw.message( 'apisandbox-unfullscreen' ).text() );
 				fullscreenButton.setTitle( mw.message( 'apisandbox-unfullscreen-tooltip' ).text() );
-				$body.append( $( '#mw-apisandbox-ui' ) );
+				$body.append( $ui );
 			} else {
 				fullscreenButton.setLabel( mw.message( 'apisandbox-fullscreen' ).text() );
 				fullscreenButton.setTitle( mw.message( 'apisandbox-fullscreen-tooltip' ).text() );
-				$content.append( $( '#mw-apisandbox-ui' ) );
+				$content.append( $ui );
 			}
 			ApiSandbox.resizePanel();
 		},
@@ -680,7 +686,7 @@
 			var height = $( window ).height(),
 				contentTop = $content.offset().top;
 
-			if ( $( document.body ).hasClass( 'mw-apisandbox-fullscreen' ) ) {
+			if ( ApiSandbox.isFullscreen ) {
 				height -= panel.$element.offset().top - $( '#mw-apisandbox-ui' ).offset().top;
 				panel.$element.height( height - 1 );
 			} else {
