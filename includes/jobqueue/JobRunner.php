@@ -118,7 +118,7 @@ class JobRunner implements LoggerAwareInterface {
 		// This check should not block as we want to try other wiki queues.
 		list( , $maxLag ) = wfGetLB( wfWikiID() )->getMaxLag();
 		if ( $maxLag >= self::MAX_ALLOWED_LAG ) {
-			$response['reached'] = 'slave-lag-limit';
+			$response['reached'] = 'replica-lag-limit';
 			return $response;
 		}
 
@@ -221,7 +221,7 @@ class JobRunner implements LoggerAwareInterface {
 							'timeout' => self::MAX_ALLOWED_LAG
 						] );
 					} catch ( DBReplicationWaitError $e ) {
-						$response['reached'] = 'slave-lag-limit';
+						$response['reached'] = 'replica-lag-limit';
 						break;
 					}
 					$lastCheckTime = microtime( true );
