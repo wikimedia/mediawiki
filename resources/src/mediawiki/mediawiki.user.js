@@ -76,8 +76,8 @@
 				hexRnds[ i ] = byteToHex[ rnds[ i ] ];
 			}
 
-			// Concatenation of two random integers with entrophy n and m
-			// returns a string with entrophy n+m if those strings are independent
+			// Concatenation of two random integers with entropy n and m
+			// returns a string with entropy n+m if those strings are independent
 			return hexRnds.join( '' );
 		},
 
