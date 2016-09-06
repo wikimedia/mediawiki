@@ -59,7 +59,7 @@ class DeleteLinksJob extends Job {
 
 		$update = new LinksDeletionUpdate( $page, $pageId, $timestamp );
 		$update->setTransactionTicket( $factory->getEmptyTransactionTicket( __METHOD__ ) );
-		DataUpdate::runUpdates( [ $update ] );
+		$update->doUpdate();
 
 		return true;
 	}

@@ -181,7 +181,7 @@ class JobRunner implements LoggerAwareInterface {
 					$backoffs = $this->syncBackoffDeltas( $backoffs, $backoffDeltas, $wait );
 				}
 
-				$info = $this->executeJob( $job, $stats, $popTime );
+				$info = $this->executeJob( $job, $lbFactory, $stats, $popTime );
 				if ( $info['status'] !== false || !$job->allowRetries() ) {
 					$group->ack( $job ); // succeeded or job cannot be retried
 					$lbFactory->commitMasterChanges( __METHOD__ ); // flush any JobQueueDB writes
@@ -254,27 +254,28 @@ class JobRunner implements LoggerAwareInterface {
 
 	/**
 	 * @param Job $job
+	 * @param LBFactory $lbFactory
 	 * @param StatsdDataFactory $stats
 	 * @param float $popTime
 	 * @return array Map of status/error/timeMs
 	 */
-	private function executeJob( Job $job, $stats, $popTime ) {
+	private function executeJob( Job $job, LBFactory $lbFactory, $stats, $popTime ) {
 		$jType = $job->getType();
 		$msg = $job->toString() . " STARTING";
 		$this->logger->debug( $msg );
 		$this->debugCallback( $msg );
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		// Run the job...
 		$rssStart = $this->getMaxRssKb();
 		$jobStartTime = microtime( true );
 		try {
+			$fnameTrxOwner = get_class( $job ) . '::run'; // give run() outer scope
+			$lbFactory->beginMasterChanges( $fnameTrxOwner );
 			$status = $job->run();
 			$error = $job->getLastError();
-			$this->commitMasterChanges( $lbFactory, $job );
-
+			$this->commitMasterChanges( $lbFactory, $job, $fnameTrxOwner );
+			// Run any deferred update tasks; doUpdates() manages transactions itself
 			DeferredUpdates::doUpdates();
-			$this->commitMasterChanges( $lbFactory, $job );
 		} catch ( Exception $e ) {
 			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 			$status = false;
@@ -497,9 +498,10 @@ class JobRunner implements LoggerAwareInterface {
 	 *
 	 * @param LBFactory $lbFactory
 	 * @param Job $job
+	 * @param string $fnameTrxOwner
 	 * @throws DBError
 	 */
-	private function commitMasterChanges( LBFactory $lbFactory, Job $job ) {
+	private function commitMasterChanges( LBFactory $lbFactory, Job $job, $fnameTrxOwner ) {
 		global $wgJobSerialCommitThreshold;
 
 		$lb = $lbFactory->getMainLB( wfWikiID() );
@@ -521,7 +523,7 @@ class JobRunner implements LoggerAwareInterface {
 		}
 
 		if ( !$dbwSerial ) {
-			$lbFactory->commitMasterChanges( __METHOD__ );
+			$lbFactory->commitMasterChanges( $fnameTrxOwner );
 			return;
 		}
 
@@ -542,7 +544,7 @@ class JobRunner implements LoggerAwareInterface {
 		}
 
 		// Actually commit the DB master changes
-		$lbFactory->commitMasterChanges( __METHOD__ );
+		$lbFactory->commitMasterChanges( $fnameTrxOwner );
 
 		// Release the lock
 		$dbwSerial->unlock( 'jobrunner-serial-commit', __METHOD__ );
