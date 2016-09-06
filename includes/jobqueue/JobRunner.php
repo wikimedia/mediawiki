@@ -23,6 +23,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Logger\LoggerFactory;
+use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 
@@ -114,16 +115,17 @@ class JobRunner implements LoggerAwareInterface {
 			$response['reached'] = 'read-only';
 			return $response;
 		}
+
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		// Bail out if there is too much DB lag.
 		// This check should not block as we want to try other wiki queues.
-		list( , $maxLag ) = wfGetLB( wfWikiID() )->getMaxLag();
+		list( , $maxLag ) = $lbFactory->getMainLB( wfWikiID() )->getMaxLag();
 		if ( $maxLag >= self::MAX_ALLOWED_LAG ) {
 			$response['reached'] = 'replica-lag-limit';
 			return $response;
 		}
 
 		// Flush any pending DB writes for sanity
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$lbFactory->commitAll( __METHOD__ );
 
 		// Catch huge single updates that lead to replica DB lag
@@ -137,7 +139,7 @@ class JobRunner implements LoggerAwareInterface {
 		$wait = 'wait'; // block to read backoffs the first time
 
 		$group = JobQueueGroup::singleton();
-		$stats = RequestContext::getMain()->getStats();
+		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 		$jobsPopped = 0;
 		$timeMsTotal = 0;
 		$startTime = microtime( true ); // time since jobs started running
@@ -159,6 +161,7 @@ class JobRunner implements LoggerAwareInterface {
 			} else {
 				$job = $group->pop( $type ); // job from a single queue
 			}
+			$lbFactory->commitMasterChanges( __METHOD__ ); // flush any JobQueueDB writes
 
 			if ( $job ) { // found a job
 				++$jobsPopped;
@@ -178,7 +181,6 @@ class JobRunner implements LoggerAwareInterface {
 					$backoffs = $this->syncBackoffDeltas( $backoffs, $backoffDeltas, $wait );
 				}
 
-				$lbFactory->commitMasterChanges( __METHOD__ ); // flush any JobQueueDB writes
 				$info = $this->executeJob( $job, $stats, $popTime );
 				if ( $info['status'] !== false || !$job->allowRetries() ) {
 					$group->ack( $job ); // succeeded or job cannot be retried
@@ -252,7 +254,7 @@ class JobRunner implements LoggerAwareInterface {
 
 	/**
 	 * @param Job $job
-	 * @param BufferingStatsdDataFactory $stats
+	 * @param StatsdDataFactory $stats
 	 * @param float $popTime
 	 * @return array Map of status/error/timeMs
 	 */
@@ -269,10 +271,10 @@ class JobRunner implements LoggerAwareInterface {
 		try {
 			$status = $job->run();
 			$error = $job->getLastError();
-			$this->commitMasterChanges( $job );
+			$this->commitMasterChanges( $lbFactory, $job );
 
 			DeferredUpdates::doUpdates();
-			$this->commitMasterChanges( $job );
+			$this->commitMasterChanges( $lbFactory, $job );
 		} catch ( Exception $e ) {
 			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 			$status = false;
@@ -291,7 +293,7 @@ class JobRunner implements LoggerAwareInterface {
 		// Note that jobs are still responsible for handling replica DB lag.
 		$lbFactory->flushReplicaSnapshots( __METHOD__ );
 		// Clear out title cache data from prior snapshots
-		LinkCache::singleton()->clear();
+		MediaWikiServices::getInstance()->getLinkCache()->clear();
 		$timeMs = intval( ( microtime( true ) - $jobStartTime ) * 1000 );
 		$rssEnd = $this->getMaxRssKb();
 
@@ -493,13 +495,14 @@ class JobRunner implements LoggerAwareInterface {
 	 * local wiki's replica DBs to catch up. See the documentation for
 	 * $wgJobSerialCommitThreshold for more.
 	 *
+	 * @param LBFactory $lbFactory
 	 * @param Job $job
 	 * @throws DBError
 	 */
-	private function commitMasterChanges( Job $job ) {
+	private function commitMasterChanges( LBFactory $lbFactory, Job $job ) {
 		global $wgJobSerialCommitThreshold;
 
-		$lb = wfGetLB( wfWikiID() );
+		$lb = $lbFactory->getMainLB( wfWikiID() );
 		if ( $wgJobSerialCommitThreshold !== false && $lb->getServerCount() > 1 ) {
 			// Generally, there is one master connection to the local DB
 			$dbwSerial = $lb->getAnyOpenConnection( $lb->getWriterIndex() );
@@ -518,7 +521,7 @@ class JobRunner implements LoggerAwareInterface {
 		}
 
 		if ( !$dbwSerial ) {
-			wfGetLBFactory()->commitMasterChanges( __METHOD__ );
+			$lbFactory->commitMasterChanges( __METHOD__ );
 			return;
 		}
 
@@ -539,7 +542,7 @@ class JobRunner implements LoggerAwareInterface {
 		}
 
 		// Actually commit the DB master changes
-		wfGetLBFactory()->commitMasterChanges( __METHOD__ );
+		$lbFactory->commitMasterChanges( __METHOD__ );
 
 		// Release the lock
 		$dbwSerial->unlock( 'jobrunner-serial-commit', __METHOD__ );
