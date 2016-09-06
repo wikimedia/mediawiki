@@ -78,7 +78,7 @@ class LoadBalancer {
 	/** @var integer Warn when this many connection are held */
 	const CONN_HELD_WARN_THRESHOLD = 10;
 	/** @var integer Default 'max lag' when unspecified */
-	const MAX_LAG = 10;
+	const MAX_LAG_DEFAULT = 10;
 	/** @var integer Max time to wait for a replica DB to catch up (e.g. ChronologyProtector) */
 	const POS_WAIT_TIMEOUT = 10;
 	/** @var integer Seconds to cache master server read-only status */
@@ -189,19 +189,21 @@ class LoadBalancer {
 	 * @param int $maxLag Restrict the maximum allowed lag to this many seconds
 	 * @return bool|int|string
 	 */
-	private function getRandomNonLagged( array $loads, $wiki = false, $maxLag = self::MAX_LAG ) {
+	private function getRandomNonLagged( array $loads, $wiki = false, $maxLag = INF ) {
 		$lags = $this->getLagTimes( $wiki );
 
 		# Unset excessively lagged servers
 		foreach ( $lags as $i => $lag ) {
 			if ( $i != 0 ) {
-				$maxServerLag = $maxLag;
-				if ( isset( $this->mServers[$i]['max lag'] ) ) {
-					$maxServerLag = min( $maxServerLag, $this->mServers[$i]['max lag'] );
-				}
+				# How much lag this server nominally is allowed to have
+				$maxServerLag = isset( $this->mServers[$i]['max lag'] )
+					? $this->mServers[$i]['max lag']
+					: self::MAX_LAG_DEFAULT; // default
+				# Constrain that futher by $maxLag argument
+				$maxServerLag = min( $maxServerLag, $maxLag );
 
 				$host = $this->getServerName( $i );
-				if ( $lag === false ) {
+				if ( $lag === false && !is_infinite( $maxServerLag ) ) {
 					wfDebugLog( 'replication', "Server $host (#$i) is not replicating?" );
 					unset( $loads[$i] );
 				} elseif ( $lag > $maxServerLag ) {
