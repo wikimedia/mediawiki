@@ -49,8 +49,6 @@ define( 'DB_MASTER', -2 );    # Write to master (or only server)
 
 # Obsolete aliases
 define( 'DB_SLAVE', -1 );
-define( 'DB_READ', -1 );
-define( 'DB_WRITE', -2 );
 
 /**@{
  * Virtual namespaces; don't appear in the page database
