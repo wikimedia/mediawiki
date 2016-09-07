@@ -54,7 +54,7 @@ class RollbackAction extends FormlessAction {
 		$user = $this->getUser();
 		$from = $request->getVal( 'from' );
 		$rev = $this->page->getRevision();
-		if ( $from === null || $from === '' ) {
+		if ( $from === null ) {
 			throw new ErrorPageError( 'rollbackfailed', 'rollback-missingparam' );
 		}
 		if ( !$rev ) {
