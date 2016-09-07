@@ -1,7 +1,7 @@
 -- Split user table into two parts:
 --   user
 --   user_rights
--- The later contains only the permissions of the user. This way,
+-- The latter contains only the permissions of the user. This way,
 -- you can store the accounts for several wikis in one central
 -- database but keep user rights local to the wiki.
 

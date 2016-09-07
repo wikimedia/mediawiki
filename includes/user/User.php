@@ -5173,7 +5173,7 @@ class User implements IDBAccessObject {
 			[ 'up_property', 'up_value' ], [ 'up_user' => $userId ], __METHOD__ );
 
 		// Find prior rows that need to be removed or updated. These rows will
-		// all be deleted (the later so that INSERT IGNORE applies the new values).
+		// all be deleted (the latter so that INSERT IGNORE applies the new values).
 		$keysDelete = [];
 		foreach ( $res as $row ) {
 			if ( !isset( $saveOptions[$row->up_property] )

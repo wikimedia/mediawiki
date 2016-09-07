@@ -271,7 +271,7 @@ class HtmlTest extends MediaWikiTestCase {
 	/**
 	 * How do we handle duplicate keys in HTML attributes expansion?
 	 * We could pass a "class" the values: 'GREEN' and array( 'GREEN' => false )
-	 * The later will take precedence.
+	 * The latter will take precedence.
 	 *
 	 * Feature added by r96188
 	 * @covers Html::expandAttributes

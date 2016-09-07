@@ -1015,7 +1015,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 */
 	final public function getLastError() {
 		if ( $this->lastRelayError ) {
-			// If the cache and the relayer failed, focus on the later.
+			// If the cache and the relayer failed, focus on the latter.
 			// An update not making it to the relayer means it won't show up
 			// in other DCs (nor will consistent re-hashing see up-to-date values).
 			// On the other hand, if just the cache update failed, then it should

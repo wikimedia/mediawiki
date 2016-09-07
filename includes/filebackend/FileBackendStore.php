@@ -1443,7 +1443,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Like resolveStoragePath() except null values are returned if
 	 * the container is sharded and the shard could not be determined
-	 * or if the path ends with '/'. The later case is illegal for FS
+	 * or if the path ends with '/'. The latter case is illegal for FS
 	 * backends and can confuse listings for object store backends.
 	 *
 	 * This function is used when resolving paths that must be valid
