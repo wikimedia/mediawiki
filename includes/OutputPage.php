@@ -2677,7 +2677,6 @@ class OutputPage extends ContextSource {
 				'site.styles',
 				'noscript',
 				'user.styles',
-				'user.cssprefs',
 			] );
 			$this->getSkin()->setupSkinUserCss( $this );
 
@@ -2791,6 +2790,14 @@ class OutputPage extends ContextSource {
 		# Classes for LTR/RTL directionality support
 		$bodyClasses[] = $userdir;
 		$bodyClasses[] = "sitedir-$sitedir";
+
+		$underline = $this->getUser()->getOption( 'underline' );
+		if ( $underline < 2 ) {
+			// The following classes can be used here:
+			// * mw-underline-always
+			// * mw-underline-never
+			$bodyClasses[] = 'mw-underline-' . ( $underline ? 'always' : 'never' );
+		}
 
 		if ( $this->getLanguage()->capitalizeAllNouns() ) {
 			# A <body> class is probably not the best way to do this . . .
