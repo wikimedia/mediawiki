@@ -27,8 +27,11 @@ use MediaWiki\MediaWikiServices;
  * In web request mode, deferred updates can be run at the end of the request, either before or
  * after the HTTP response has been sent. In either case, they run after the DB commit step. If
  * an update runs after the response is sent, it will not block clients. If sent before, it will
- * run synchronously. If such an update works via queueing, it will be more likely to complete by
- * the time the client makes their next request after this one.
+ * run synchronously. These two modes are defined via PRESEND and POSTSEND constants, the latter
+ * being the default for addUpdate() and addCallableUpdate().
+ *
+ * Updates that work through this system will be more likely to complete by the time the client
+ * makes their next request after this one than with the JobQueue system.
  *
  * In CLI mode, updates run immediately if no DB writes are pending. Otherwise, they run when:
  *   - a) Any waitForReplication() call if no writes are pending on any DB
@@ -36,7 +39,11 @@ use MediaWiki\MediaWikiServices;
  *   - c) EnqueueableDataUpdate tasks may enqueue on commit of Maintenance::getDB( DB_MASTER )
  *   - d) At the completion of Maintenance::execute()
  *
- * When updates are deferred, they use a FIFO queue (one for pre-send and one for post-send).
+ * When updates are deferred, they go into one two FIFO "top-queues" (one for pre-send and one
+ * for post-send). Updates enqueued *during* doUpdate() of a "top" update go into the "sub-queue"
+ * for that update. After that method finishes, the sub-queue is run until drained. This continues
+ * for each top-queue job until the entire top queue is drained. This happens for the pre-send
+ * top-queue, and later on, the post-send top-queue, in execute().
  *
  * @since 1.19
  */
