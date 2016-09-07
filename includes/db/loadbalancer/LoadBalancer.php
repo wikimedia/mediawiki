@@ -1244,9 +1244,14 @@ class LoadBalancer {
 	public function runMasterPostTrxCallbacks( $type ) {
 		$e = null; // first exception
 		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( $type, &$e ) {
-			$conn->clearSnapshot( __METHOD__ ); // clear no-op transactions
-
 			$conn->setTrxEndCallbackSuppression( false );
+			if ( $conn->writesOrCallbacksPending() ) {
+				// This should not normally happen, but can if onTransactionIdle() callbacks
+				// leave open snapshots on *outside* DBs. Let these COMMIT on the next call
+				// to commitMasterChanges(), possibly in shudown().
+				wfWarn( __METHOD__ . ": did not expect writes/callbacks pending." );
+				return;
+			}
 			try {
 				$conn->runOnTransactionIdleCallbacks( $type );
 			} catch ( Exception $ex ) {
