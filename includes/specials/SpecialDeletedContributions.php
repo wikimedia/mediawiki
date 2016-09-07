@@ -135,7 +135,7 @@ class DeletedContributionsPage extends SpecialPage {
 		if ( $userObj->isAnon() ) {
 			$user = htmlspecialchars( $userObj->getName() );
 		} else {
-			$user = $linkRenderer->makeKnownLink( $userObj->getUserPage(), $userObj->getName() );
+			$user = $linkRenderer->makeLink( $userObj->getUserPage(), $userObj->getName() );
 		}
 		$links = '';
 		$nt = $userObj->getUserPage();
