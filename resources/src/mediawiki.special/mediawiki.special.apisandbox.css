@@ -27,6 +27,11 @@
 	z-index: 100;
 }
 
+.mw-apisandbox-fullscreen .mw-apisandbox-container {
+	border-width: 1px 0 0 0;
+	border-radius: 0;
+}
+
 .mw-apisandbox-spacer {
 	display: inline-block;
 	height: 1px;
