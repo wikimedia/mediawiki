@@ -1594,6 +1594,11 @@ class Revision implements IDBAccessObject {
 		return $processCache->getWithSetCallback( $key, function () use ( $cache, $key ) {
 			global $wgRevisionCacheExpiry;
 
+			if ( $cache->getQoS( $cache::ATTR_EMULATION ) <= $cache::QOS_EMULATION_SQL ) {
+				// Do not cache RDBMs blobs in...the RDBMs store
+				return $this->fetchText();
+			}
+
 			return $cache->getWithSetCallback(
 				$key,
 				$wgRevisionCacheExpiry,
