@@ -17,6 +17,8 @@
  *
  * @file
  */
+
+use MediaWiki\Auth\AuthManager;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -652,15 +654,17 @@ class SkinTemplate extends Skin {
 				'href' => $href,
 				'active' => $active
 			];
-			$personal_urls['logout'] = [
-				'text' => $this->msg( 'pt-userlogout' )->text(),
-				'href' => self::makeSpecialUrl( 'Userlogout',
-					// userlogout link must always contain an & character, otherwise we might not be able
-					// to detect a buggy precaching proxy (bug 17790)
-					$title->isSpecial( 'Preferences' ) ? 'noreturnto' : $returnto
-				),
-				'active' => false
-			];
+			// if we can't set the user, we can't unset it either
+			if ( $request->getSession()->canSetUser() ) {
+				$personal_urls['logout'] = [
+					'text' => $this->msg( 'pt-userlogout' )->text(),
+					'href' => self::makeSpecialUrl( 'Userlogout',
+						// userlogout link must always contain an & character, otherwise we might not be able
+						// to detect a buggy precaching proxy (bug 17790)
+						$title->isSpecial( 'Preferences' ) ? 'noreturnto' : $returnto ),
+					'active' => false
+				];
+			}
 		} else {
 			$useCombinedLoginLink = $this->useCombinedLoginLink();
 			$loginlink = $this->getUser()->isAllowed( 'createaccount' ) && $useCombinedLoginLink
@@ -703,7 +707,9 @@ class SkinTemplate extends Skin {
 				$personal_urls['createaccount'] = $createaccount_url;
 			}
 
-			$personal_urls['login'] = $login_url;
+			if ( AuthManager::singleton()->canAuthenticateNow() ) {
+				$personal_urls['login'] = $login_url;
+			}
 		}
 
 		Hooks::run( 'PersonalUrls', [ &$personal_urls, &$title, $this ] );
