@@ -264,7 +264,6 @@
 	"yourname": "Vua uzantonomo:",
 	"yourpassword": "Pasovorto:",
 	"yourpasswordagain": "Riskribez la pasovorto:",
-	"remembermypassword": "Memorez mea pasovorto en ca komputoro (maximo: $1 {{PLURAL:$1|dio|dii}})",
 	"yourdomainname": "Vua domano:",
 	"login": "Enirar",
 	"nav-login-createaccount": "Enirar",

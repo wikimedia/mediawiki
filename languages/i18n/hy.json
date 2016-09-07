@@ -394,7 +394,6 @@
 	"yourpasswordagain": "Կրկնեք գաղտնաբառը",
 	"createacct-yourpasswordagain": "Հաստատեք գաղտնաբառը",
 	"createacct-yourpasswordagain-ph": "Կրկին մուտքագրեք գաղտնաբառը",
-	"remembermypassword": "Հիշել իմ մուտքը այս դիտարկչում ($1 {{PLURAL:$1|օրից}} ոչ ավել ժամկետով)",
 	"userlogin-remembermypassword": "Մուտք գործած մնալ",
 	"userlogin-signwithsecure": "Օգտագործել անվտանգ միացում",
 	"cannotloginnow-title": "Այժմ դուրս գալ անհնար է",

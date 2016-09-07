@@ -463,7 +463,6 @@
 	"yourpasswordagain": "再輸入密碼一次：",
 	"createacct-yourpasswordagain": "確認密碼",
 	"createacct-yourpasswordagain-ph": "再次輸入密碼",
-	"remembermypassword": "在瀏覽器上記住我的登入資訊 (上限 $1 {{PLURAL:$1|天}})",
 	"userlogin-remembermypassword": "記住我的登入狀態",
 	"userlogin-signwithsecure": "使用安全連線",
 	"cannotloginnow-title": "現在無法登入",

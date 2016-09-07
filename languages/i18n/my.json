@@ -350,7 +350,6 @@
 	"yourpasswordagain": "စကားဝှက် ပြန်​ရိုက်​ပါ -",
 	"createacct-yourpasswordagain": "စကားဝှက်ကို အတည်ပြုပါ",
 	"createacct-yourpasswordagain-ph": "စကားဝှက်ကို ထပ်မံ ရိုက်ထည့်ပါ",
-	"remembermypassword": "ဤ​ကွန်​ပျူ​တာ​တွင်​ ကျွန်ုပ်ကို ​မှတ်​ထား​ရန် (အများဆုံး $1 {{PLURAL:$1|ရက်|ရက်}}ကြာ)",
 	"userlogin-remembermypassword": "Log in ဝင်ထားမည်",
 	"userlogin-signwithsecure": "လုံခြုံသော ဆက်သွယ်မှုကို သုံးမည်",
 	"yourdomainname": "သင့်ဒိုမိန်း -",

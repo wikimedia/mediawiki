@@ -382,7 +382,6 @@
 	"yourpasswordagain": "دیسان تێپەڕوشەکە بنووسەوە:",
 	"createacct-yourpasswordagain": "تێپەروشە پشتڕاست بکەرەوە",
 	"createacct-yourpasswordagain-ph": "تێپەروشە دیسان بنووسەوە",
-	"remembermypassword": "چوونە ژوورەوەم لەسەر ئەم کۆمپیوتەرە پاشەکەوت بکە (ئەو پەڕی $1 {{PLURAL:$1|ڕۆژ}}ە)",
 	"userlogin-remembermypassword": "چوونەژوورەوەکەم ڕابگرە",
 	"userlogin-signwithsecure": "پەیوەندیی دڵنیا بەکاربھێنە",
 	"yourdomainname": "دۆمەینەکەت:",

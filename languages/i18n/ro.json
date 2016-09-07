@@ -419,7 +419,6 @@
 	"yourpasswordagain": "Repetați parola:",
 	"createacct-yourpasswordagain": "Confirmare parolă",
 	"createacct-yourpasswordagain-ph": "Introduceți parola din nou",
-	"remembermypassword": "Autentificare automată de la acest calculator (expiră după {{PLURAL:$1|24 de ore|$1 zile|$1 de zile}})",
 	"userlogin-remembermypassword": "Păstrează-mă autentificat",
 	"userlogin-signwithsecure": "Utilizează conexiunea securizată",
 	"cannotloginnow-title": "Nu se poate conecta acum",

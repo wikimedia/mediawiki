@@ -389,7 +389,6 @@
 	"yourpasswordagain": "Confirmar lo senhal :",
 	"createacct-yourpasswordagain": "Confirmatz lo senhal",
 	"createacct-yourpasswordagain-ph": "Entratz lo senhal tornarmai",
-	"remembermypassword": "Me reconnectar automaticament a las visitas venentas (al maximum $1 {{PLURAL:$1|jorn|jorns}})",
 	"userlogin-remembermypassword": "Gardar ma session activa",
 	"userlogin-signwithsecure": "Utilizar una connexion securizada",
 	"cannotloginnow-title": "Impossible de se connectar ara",

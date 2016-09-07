@@ -459,7 +459,6 @@
 	"yourpasswordagain": "Repita a palavra-passe:",
 	"createacct-yourpasswordagain": "Confirme a palavra-passe",
 	"createacct-yourpasswordagain-ph": "Digite a palavra-passe novamente",
-	"remembermypassword": "Recordar os meus dados neste computador (no máximo, por $1 {{PLURAL:$1|dia|dias}})",
 	"userlogin-remembermypassword": "Manter-me autenticado",
 	"userlogin-signwithsecure": "Usar uma ligação segura",
 	"cannotloginnow-title": "Não é possível iniciar sessão agora",

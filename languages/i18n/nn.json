@@ -394,7 +394,6 @@
 	"yourpasswordagain": "Skriv opp att passordet",
 	"createacct-yourpasswordagain": "Stadfest passord",
 	"createacct-yourpasswordagain-ph": "Skriv inn passordet på nytt",
-	"remembermypassword": "Hugs innlogginga mi på denne datamaskinen (høgst {{PLURAL:$1|éin dag|$1 dagar}})",
 	"userlogin-remembermypassword": "Hald meg innlogga",
 	"userlogin-signwithsecure": "Nytt trygg kopling",
 	"yourdomainname": "Domenet ditt",

@@ -401,7 +401,6 @@
 	"yourpasswordagain": "Құпия сөзді қайталаңыз:",
 	"createacct-yourpasswordagain": "Құпия сөзді құптаңыз",
 	"createacct-yourpasswordagain-ph": "Құпия сөзіңізді қайтадан енгізіңіз",
-	"remembermypassword": "Тіркелгімді осы браузерде ұмытпа (ең көбі $1 {{PLURAL:$1|күн|күн}})",
 	"userlogin-remembermypassword": "Мені жүйеде сақтап қою",
 	"userlogin-signwithsecure": "Қауіпсіз байланысуды қолдану",
 	"cannotloginnow-title": "Қазір шығу мүмкін емес",

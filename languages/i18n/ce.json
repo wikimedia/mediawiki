@@ -385,7 +385,6 @@
 	"yourpasswordagain": "Юха язъе пароль:",
 	"createacct-yourpasswordagain": "Бакъе пароль",
 	"createacct-yourpasswordagain-ph": "Кхин цкъа язъе пароль",
-	"remembermypassword": "Даглаца сан дӀаяздар хӀокху компьютеран тӀехь (цхьан $1 {{PLURAL:$1|дийнахь}})",
 	"userlogin-remembermypassword": "Системин чохь Ӏойла",
 	"userlogin-signwithsecure": "Ларийна цхьаьнакхетар",
 	"cannotloginnow-title": "ХӀинца чудаха таро яц",

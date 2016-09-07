@@ -387,7 +387,6 @@
 	"yourpasswordagain": "کلمۂ شناخت دوبارہ لکھیں",
 	"createacct-yourpasswordagain": "کلمۂ اجازت تصدیق کریں",
 	"createacct-yourpasswordagain-ph": "پاس ورڈ پھر داخل کریں",
-	"remembermypassword": "اِس متصفح پر میرے داخلِ نوشتگی معلومات یاد رکھو (زیادہ سے زیادہ $1 {{PLURAL:$1|دِن|ایام}} کیلئے)",
 	"userlogin-remembermypassword": "مجھے داخل رکھے",
 	"userlogin-signwithsecure": "محفوظ رابطہ (کنکشن) استعمال کریں",
 	"yourdomainname": "آپکا ڈومین",

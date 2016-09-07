@@ -424,7 +424,6 @@
 	"yourpasswordagain": "Zopakujte heslo:",
 	"createacct-yourpasswordagain": "Potvrzení hesla",
 	"createacct-yourpasswordagain-ph": "Zadejte heslo ještě jednou",
-	"remembermypassword": "Zapamatovat si mé přihlášení na tomto počítači (maximálně $1 {{PLURAL:$1|den|dny|dní}})",
 	"userlogin-remembermypassword": "Přihlásit trvale",
 	"userlogin-signwithsecure": "Používat zabezpečené připojení",
 	"cannotloginnow-title": "Momentálně se nelze přihlásit",

@@ -339,7 +339,6 @@
 	"yourpasswordagain": "Klavolös dönu letavödi:",
 	"createacct-yourpasswordagain": "Fümedolös letavödi",
 	"createacct-yourpasswordagain-ph": "Penolös letavödi dönu",
-	"remembermypassword": "Dakipolöd ninädamanünis obik in nünöm at (muiko {{PLURAL:$1|del|dels}} $1)",
 	"userlogin-remembermypassword": "Dakipön obi penunädöl",
 	"yourdomainname": "Domen olik:",
 	"password-change-forbidden": "No kanol votükön letavödis su el wiki at.",

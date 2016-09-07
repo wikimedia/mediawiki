@@ -351,7 +351,6 @@
 	"yourpasswordagain": "Tesseram adfirmare:",
 	"createacct-yourpasswordagain": "Tesseram confirmare",
 	"createacct-yourpasswordagain-ph": "Tesseram iterum inscribe",
-	"remembermypassword": "Tesseram meam hoc in navigatro inter conventa memento ({{PLURAL:$1|die|diebus}} $1 tenus)",
 	"userlogin-remembermypassword": "Nomen meum retineatur",
 	"yourdomainname": "Regnum tuum:",
 	"login": "Nomen dare",

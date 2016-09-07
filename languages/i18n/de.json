@@ -478,7 +478,6 @@
 	"yourpasswordagain": "Passwort wiederholen:",
 	"createacct-yourpasswordagain": "Passwort bestätigen",
 	"createacct-yourpasswordagain-ph": "Gib das Passwort erneut ein",
-	"remembermypassword": "Mit diesem Browser dauerhaft angemeldet bleiben (maximal $1 {{PLURAL:$1|Tag|Tage}})",
 	"userlogin-remembermypassword": "Angemeldet bleiben",
 	"userlogin-signwithsecure": "Sichere Verbindung verwenden",
 	"cannotloginnow-title": "Anmeldung nicht erfolgreich",

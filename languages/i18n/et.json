@@ -415,7 +415,6 @@
 	"yourpasswordagain": "Sisesta parool uuesti:",
 	"createacct-yourpasswordagain": "Parooli kinnitus",
 	"createacct-yourpasswordagain-ph": "Sisesta uuesti parool",
-	"remembermypassword": "Jäta parool meelde (kuni $1 {{PLURAL:$1|päevaks|päevaks}})",
 	"userlogin-remembermypassword": "Jää sisseloginuks",
 	"userlogin-signwithsecure": "Kasuta turvalist ühendust",
 	"yourdomainname": "Sinu domeen:",

@@ -433,7 +433,6 @@
 	"yourpasswordagain": "Jelszavad ismét:",
 	"createacct-yourpasswordagain": "Új jelszó megerősítése",
 	"createacct-yourpasswordagain-ph": "Írd be a jelszót újra",
-	"remembermypassword": "Emlékezzen rám ezen a számítógépen (legfeljebb $1 napig)",
 	"userlogin-remembermypassword": "Maradjak bejelentkezve",
 	"userlogin-signwithsecure": "Biztonságos kapcsolat használata",
 	"cannotloginnow-title": "Nem lehet most bejelentkezni",

@@ -391,7 +391,6 @@
 	"yourpasswordagain": "पासवर्ड फेरि टाईप गर",
 	"createacct-yourpasswordagain": "पासवर्ड निश्चित गर",
 	"createacct-yourpasswordagain-ph": "आजी पासवर्ड लेख",
-	"remembermypassword": "येइ ब्राउजर मी मेरो लगइन फाम अर: (जेदा है जेदा $1 {{PLURAL:$1|दिन|दिनन}})",
 	"userlogin-remembermypassword": "मुलाई अघाडी झान्या काम गराइराख्या",
 	"userlogin-signwithsecure": "सुक्षित जडान प्रयोग गद्द्या",
 	"cannotloginnow-title": "अईल भितर झान नाइँ पाईनो",

@@ -416,7 +416,6 @@
 	"yourpasswordagain": "পাসওয়ার্ড আবার লিখুন:",
 	"createacct-yourpasswordagain": "পাসওয়ার্ড নিশ্চিত করুন",
 	"createacct-yourpasswordagain-ph": "আবারও পাসওয়ার্ড লিখুন",
-	"remembermypassword": "এই ব্রাউজারে আমার প্রবেশ মনে রাখা হোক (সর্বোচ্চ $1 {{PLURAL:$1|দিনের}} জন্য)",
 	"userlogin-remembermypassword": "আমাকে প্রবেশ অবস্থায় রাখো",
 	"userlogin-signwithsecure": "নিরাপদ সংযোগ ব্যবহার করুন",
 	"cannotloginnow-title": "এখন প্রবেশ করা যাবে না",

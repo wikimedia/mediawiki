@@ -476,7 +476,6 @@
 	"yourpasswordagain": "Powtórz hasło:",
 	"createacct-yourpasswordagain": "Potwierdź hasło",
 	"createacct-yourpasswordagain-ph": "Wprowadź hasło jeszcze raz",
-	"remembermypassword": "Zapamiętaj moje logowanie na tym komputerze (maksymalnie przez $1 {{PLURAL:$1|dzień|dni}})",
 	"userlogin-remembermypassword": "Nie wylogowuj mnie",
 	"userlogin-signwithsecure": "Użyj bezpiecznego połączenia",
 	"cannotloginnow-title": "W tej chwili nie można się teraz zalogować",

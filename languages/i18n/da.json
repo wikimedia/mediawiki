@@ -447,7 +447,6 @@
 	"yourpasswordagain": "Gentag adgangskode",
 	"createacct-yourpasswordagain": "Bekræft adgangskode",
 	"createacct-yourpasswordagain-ph": "Indtast adgangskode igen",
-	"remembermypassword": "Husk mit brugernavn i denne browser (højst $1 {{PLURAL:$1|dag|dage}})",
 	"userlogin-remembermypassword": "Husk mig",
 	"userlogin-signwithsecure": "Brug sikker forbindelse",
 	"cannotloginnow-title": "Kan ikke logge ind på nuværende tidspunkt",

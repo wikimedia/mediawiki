@@ -451,7 +451,6 @@
 	"yourpasswordagain": "비밀번호 다시 입력:",
 	"createacct-yourpasswordagain": "비밀번호 확인",
 	"createacct-yourpasswordagain-ph": "비밀번호를 다시 입력하세요",
-	"remembermypassword": "이 브라우저에 로그인 상태 저장하기 (최대 $1일)",
 	"userlogin-remembermypassword": "로그인 상태를 유지하기",
 	"userlogin-signwithsecure": "보안 연결 사용",
 	"cannotloginnow-title": "지금 로그인할 수 없습니다.",

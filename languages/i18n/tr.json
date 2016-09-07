@@ -479,7 +479,6 @@
 	"yourpasswordagain": "Parolayı yeniden girin:",
 	"createacct-yourpasswordagain": "Parolayı onayla",
 	"createacct-yourpasswordagain-ph": "Parolayı yeniden girin",
-	"remembermypassword": "Girişimi bu tarayıcıda hatırla (en fazla $1 {{PLURAL:$1|gün|gün}} için)",
 	"userlogin-remembermypassword": "Oturumumu sürekli açık tut",
 	"userlogin-signwithsecure": "Güvenli bağlantı kullanın",
 	"cannotloginnow-title": "Şu an oturum açılamıyor",

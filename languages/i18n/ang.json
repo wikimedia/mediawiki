@@ -351,7 +351,6 @@
 	"yourpasswordagain": "Wrītan þafungword eft:",
 	"createacct-yourpasswordagain": "Asēð þafungword",
 	"createacct-yourpasswordagain-ph": "Wrīt þafungword eft",
-	"remembermypassword": "Gemynan mīne inmeldunge on þissum webbsēcende (oþ $1 {{PLURAL:$1|dæg|daga}} lengest)",
 	"userlogin-remembermypassword": "Ætfeolan mīnre inmeldunge",
 	"yourdomainname": "Þīn geweald:",
 	"password-change-forbidden": "Þū ne canst awendan þafungword on þissum wiki.",

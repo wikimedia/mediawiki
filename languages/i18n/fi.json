@@ -441,7 +441,6 @@
 	"yourpasswordagain": "Salasana uudelleen:",
 	"createacct-yourpasswordagain": "Vahvista salasana",
 	"createacct-yourpasswordagain-ph": "Kirjoita salasana uudelleen",
-	"remembermypassword": "Muista kirjautumiseni tässä selaimessa (enintään $1 {{PLURAL:$1|päivä|päivää}})",
 	"userlogin-remembermypassword": "Pidä minut kirjautuneena",
 	"userlogin-signwithsecure": "Käytä salattua yhteyttä",
 	"cannotloginnow-title": "Nyt ei voi kirjautua sisään",

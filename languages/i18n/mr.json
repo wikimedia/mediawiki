@@ -437,7 +437,6 @@
 	"yourpasswordagain": "तुमचा परवलीचा शब्द पुन्हा टंका:",
 	"createacct-yourpasswordagain": "परवलीच्या शब्दाची निश्चिती करा",
 	"createacct-yourpasswordagain-ph": "पुन्हा परवलीचा शब्द टाका",
-	"remembermypassword": "माझा सनोंदप्रवेश (लॉग-ईन) या न्याहाळकावर लक्षात ठेवा (जास्तीत जास्त $1 {{PLURAL:$1|दिवसासाठी|दिवसांसाठी}})",
 	"userlogin-remembermypassword": "मला नोंदीकृतच(लॉग्ड-ईन) ठेवा",
 	"userlogin-signwithsecure": "सुरक्षित अनुबंध(सेक्युअर कनेक्शन) वापरा",
 	"cannotloginnow-title": "आता सनोंद प्रवेश घेऊ शकत नाही",

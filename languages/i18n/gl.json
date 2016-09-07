@@ -412,7 +412,6 @@
 	"yourpasswordagain": "Insira o contrasinal outra vez:",
 	"createacct-yourpasswordagain": "Confirme o contrasinal",
 	"createacct-yourpasswordagain-ph": "Insira o contrasinal outra vez",
-	"remembermypassword": "Lembrar o meu contrasinal neste ordenador (ata $1 {{PLURAL:$1|día|días}})",
 	"userlogin-remembermypassword": "Manter a miña conexión",
 	"userlogin-signwithsecure": "Utilizar a conexión segura",
 	"cannotloginnow-title": "Non se pode iniciar a sesión agora mesmo",

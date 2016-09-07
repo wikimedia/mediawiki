@@ -396,7 +396,6 @@
 	"yourpasswordagain": "Imakinilya manen ti kontrasenias:",
 	"createacct-yourpasswordagain": "Pasingkedan ti kontrasenias",
 	"createacct-yourpasswordagain-ph": "Ikabil manen ti kontrasenias",
-	"remembermypassword": "Laglagipem ti iseserrekko iti daytoy a pagbasabasa (para iti kapaut iti $1 {{PLURAL:$1|nga aldaw|nga al-aldaw}})",
 	"userlogin-remembermypassword": "Taginayonennak nga iserrek",
 	"userlogin-signwithsecure": "Usaren ti natalged a koneksion",
 	"cannotloginnow-title": "Saan a mabalin itan iti sumrek",

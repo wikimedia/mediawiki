@@ -406,7 +406,6 @@
 	"yourpasswordagain": "Zopakujte heslo:",
 	"createacct-yourpasswordagain": "Potvrdiť heslo",
 	"createacct-yourpasswordagain-ph": "Zadajte heslo znova",
-	"remembermypassword": "Pamätať si prihlásenie na tomto počítači (naviac $1 {{PLURAL:$1|deň|dni|dní}})",
 	"userlogin-remembermypassword": "Zapamätať si ma",
 	"userlogin-signwithsecure": "Použiť zabezpečené pripojenie",
 	"yourdomainname": "Vaša doména:",

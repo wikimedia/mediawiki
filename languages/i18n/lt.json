@@ -424,7 +424,6 @@
 	"yourpasswordagain": "Pakartokite slaptažodį:",
 	"createacct-yourpasswordagain": "Patvirtinkite slaptažodį",
 	"createacct-yourpasswordagain-ph": "Įveskite slaptažodį dar kartą",
-	"remembermypassword": "Prisiminti prisijungimo duomenis šiame kompiuteryje (daugiausiai $1 {{PLURAL:$1|dieną|dienas|dienų}})",
 	"userlogin-remembermypassword": "Įsiminti mane",
 	"userlogin-signwithsecure": "Naudoti saugią jungtį",
 	"cannotloginnow-title": "Dabar negalima prisijungti",

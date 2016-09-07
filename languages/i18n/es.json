@@ -540,7 +540,6 @@
 	"yourpasswordagain": "Confirma la contraseña:",
 	"createacct-yourpasswordagain": "Confirma la contraseña",
 	"createacct-yourpasswordagain-ph": "Repite la contraseña",
-	"remembermypassword": "Mantenerme conectado en este navegador (hasta $1 {{PLURAL:$1|día|días}})",
 	"userlogin-remembermypassword": "Mantener mi sesión iniciada",
 	"userlogin-signwithsecure": "Usar conexión segura",
 	"cannotloginnow-title": "No se puede iniciar sesión ahora",

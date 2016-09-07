@@ -459,7 +459,6 @@
 	"yourpasswordagain": "Повторний набір пароля:",
 	"createacct-yourpasswordagain": "Підтвердіть пароль",
 	"createacct-yourpasswordagain-ph": "Введіть пароль знову",
-	"remembermypassword": "Запам'ятати мій обліковий запис на цьому комп'ютері (на строк не більше $1 {{PLURAL:$1|1=дня|днів}})",
 	"userlogin-remembermypassword": "Запам'ятати мене",
 	"userlogin-signwithsecure": "Захищене з'єднання",
 	"cannotloginnow-title": "Неможливо увійти прямо зараз",

@@ -468,7 +468,6 @@
 	"yourpasswordagain": "Geef uw wachtwoord opnieuw in:",
 	"createacct-yourpasswordagain": "Bevestig wachtwoord",
 	"createacct-yourpasswordagain-ph": "Geef het wachtwoord opnieuw in",
-	"remembermypassword": "Aanmeldgegevens onthouden (maximaal $1 {{PLURAL:$1|dag|dagen}})",
 	"userlogin-remembermypassword": "Aangemeld blijven",
 	"userlogin-signwithsecure": "Beveiligde verbinding gebruiken",
 	"cannotloginnow-title": "Niet mogelijk om aan te melden",

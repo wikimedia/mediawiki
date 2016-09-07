@@ -537,7 +537,6 @@
 	"yourpasswordagain": "Confirmez le mot de passe :",
 	"createacct-yourpasswordagain": "Confirmez le mot de passe",
 	"createacct-yourpasswordagain-ph": "Entrez à nouveau le mot de passe",
-	"remembermypassword": "Mémoriser mes données de connection avec ce navigateur (durant au maximum $1 jour{{PLURAL:$1||s}})",
 	"userlogin-remembermypassword": "Garder ma session active",
 	"userlogin-signwithsecure": "Utiliser une connexion sécurisée",
 	"cannotloginnow-title": "Impossible de se connecter maintenant",

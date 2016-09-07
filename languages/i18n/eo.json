@@ -437,7 +437,6 @@
 	"yourpasswordagain": "Retajpu pasvorton",
 	"createacct-yourpasswordagain": "Konfirmu pasvorton",
 	"createacct-yourpasswordagain-ph": "Retajpu pasvorton",
-	"remembermypassword": "Memori mian ensalutadon ĉe ĉi tiu komputilo (daŭrante maksimume $1 {{PLURAL:$1|tagon|tagojn}})",
 	"userlogin-remembermypassword": "Memori mian ensaluton",
 	"userlogin-signwithsecure": "Uzu sekurigitan konekton",
 	"cannotloginnow-title": "Nuntempe ne eblas ensaluti",

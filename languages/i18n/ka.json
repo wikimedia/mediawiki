@@ -423,7 +423,6 @@
 	"yourpasswordagain": "ხელმეორედ შეიყვანეთ პაროლი",
 	"createacct-yourpasswordagain": "დაადასტურეთ პაროლი",
 	"createacct-yourpasswordagain-ph": "ხელმეორედ შეიყვანეთ პაროლი",
-	"remembermypassword": "დამიმახსოვრე ამ კომპიუტერზე (მაქსიმუმ $1 {{PLURAL:$1|დღე}})",
 	"userlogin-remembermypassword": "დამიმახსოვრე",
 	"userlogin-signwithsecure": "უსაფრთხო კავშირის გამოყენება",
 	"cannotloginnow-title": "ამჟამად შესვლა შუეძლებელია",

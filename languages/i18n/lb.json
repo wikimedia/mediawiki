@@ -404,7 +404,6 @@
 	"yourpasswordagain": "Passwuert nach eemol antippen:",
 	"createacct-yourpasswordagain": "Passwuert confirméieren",
 	"createacct-yourpasswordagain-ph": "Passwuert nach eng Kéier aginn",
-	"remembermypassword": "Meng Umeldung op dësem Computer (fir maximal $1 {{PLURAL:$1|Dag|Deeg}}) verhalen",
 	"userlogin-remembermypassword": "Mech ageloggt halen",
 	"userlogin-signwithsecure": "Eng sécher Verbindung benotzen",
 	"cannotloginnow-title": "Aloggen ass elo net méiglech",

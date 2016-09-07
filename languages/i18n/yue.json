@@ -409,7 +409,6 @@
 	"yourpasswordagain": "再輸入密碼:",
 	"createacct-yourpasswordagain": "確認密碼",
 	"createacct-yourpasswordagain-ph": "入多次密碼",
-	"remembermypassword": "響呢個瀏覽器度記住我嘅登入資料 (最高維持$1{{PLURAL:$1|日|日}})",
 	"userlogin-remembermypassword": "記住我有簽到",
 	"userlogin-signwithsecure": "用安全連線",
 	"yourdomainname": "你嘅網域:",

@@ -448,7 +448,6 @@
 	"yourpasswordagain": "Escriviu una altra vegada la contrasenya",
 	"createacct-yourpasswordagain": "Confirmeu la contrasenya",
 	"createacct-yourpasswordagain-ph": "Introduïu de nou la contrasenya",
-	"remembermypassword": "Recorda la contrasenya entre sessions (per un màxim de $1 {{PLURAL:$1|dia|dies}})",
 	"userlogin-remembermypassword": "Mantén-me connectat",
 	"userlogin-signwithsecure": "Connexió segura",
 	"cannotloginnow-title": "Ara no es pot iniciar la sessió",

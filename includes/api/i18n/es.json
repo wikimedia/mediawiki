@@ -507,7 +507,7 @@
 	"apihelp-query+allusers-param-limit": "Cuántos nombres de usuario se devolverán.",
 	"apihelp-query+allusers-param-activeusers": "Solo listar usuarios activos en {{PLURAL:$1|el último día|los $1 últimos días}}.",
 	"apihelp-query+allusers-example-Y": "Listar usuarios que empiecen por <kbd>Y</kbd>.",
-	"apihelp-query+filerepoinfo-example-login": "Captura de las solicitudes que puede ser utilizadas al comienzo de inicio de sesión.",
+	"apihelp-query+authmanagerinfo-example-login": "Captura de las solicitudes que puede ser utilizadas al comienzo de inicio de sesión.",
 	"apihelp-query+backlinks-description": "Encuentra todas las páginas que enlazan a la página dada.",
 	"apihelp-query+backlinks-param-pageid": "Identificador de página que buscar. No puede usarse junto con <var>$1title</var>",
 	"apihelp-query+backlinks-param-filterredir": "Cómo filtrar redirecciones. Si se establece a <kbd>nonredirects</kbd> cuando está activo <var>$1redirect</var>, esto sólo se aplica al segundo nivel.",

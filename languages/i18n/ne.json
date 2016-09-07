@@ -404,7 +404,6 @@
 	"yourpasswordagain": "पासवर्ड फेरि टाईप गर्नुहोस्",
 	"createacct-yourpasswordagain": "पासवर्ड निश्चित गर्नुहोस्",
 	"createacct-yourpasswordagain-ph": "फेरि पासवर्ड लेख्नुहोस्",
-	"remembermypassword": "यो कम्प्युटरमा मेरो प्रवेश याद राख्ने (धेरैमा $1 {{PLURAL:$1|दिन|दिनहरू}})",
 	"userlogin-remembermypassword": "मलाई प्रवेश गराइराख्ने",
 	"userlogin-signwithsecure": "सुक्षित जडान प्रयोग गर्ने",
 	"yourdomainname": "तपाईंको ज्ञानक्षेत्र(डोमेन):",

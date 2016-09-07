@@ -424,7 +424,6 @@
 	"yourpasswordagain": "Gõ lại mật khẩu",
 	"createacct-yourpasswordagain": "Xác nhận lại mật khẩu",
 	"createacct-yourpasswordagain-ph": "Nhập mật khẩu lần nữa",
-	"remembermypassword": "Nhớ thông tin đăng nhập của tôi trên máy tính này (cho đến $1 ngày)",
 	"userlogin-remembermypassword": "Giữ trạng thái đăng nhập",
 	"userlogin-signwithsecure": "Sử dụng kết nối an toàn",
 	"cannotloginnow-title": "Không thể đăng nhập lúc này",

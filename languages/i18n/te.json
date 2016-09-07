@@ -411,7 +411,6 @@
 	"yourpasswordagain": "సంకేతపదాన్ని మళ్ళీ ఇవ్వండి:",
 	"createacct-yourpasswordagain": "సంకేతపదాన్ని నిర్ధారించండి",
 	"createacct-yourpasswordagain-ph": "సంకేతపదాన్ని మళ్ళీ ఇవ్వండి",
-	"remembermypassword": "ఈ కంప్యూటరులో నా ప్రవేశాన్ని గుర్తుంచుకో (గరిష్ఠంగా $1 {{PLURAL:$1|రోజు|రోజుల}}కి)",
 	"userlogin-remembermypassword": "నన్ను లాగిన్ చేసే ఉంచు",
 	"userlogin-signwithsecure": "సురక్షిత కనెక్షను వాడు",
 	"cannotloginnow-title": "ఇప్పుడు లాగిన్ అవలేరు",

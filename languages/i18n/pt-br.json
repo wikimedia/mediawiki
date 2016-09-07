@@ -492,7 +492,6 @@
 	"yourpasswordagain": "Redigite sua senha",
 	"createacct-yourpasswordagain": "Confirmar senha",
 	"createacct-yourpasswordagain-ph": "Digite a senha novamente",
-	"remembermypassword": "Lembrar meu login neste navegador (por no máximo $1 {{PLURAL:$1|dia|dias}})",
 	"userlogin-remembermypassword": "Mantenha-me conectado",
 	"userlogin-signwithsecure": "Use a conexão segura",
 	"cannotloginnow-title": "Não é possível iniciar a sessão agora",

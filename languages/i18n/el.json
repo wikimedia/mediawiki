@@ -439,7 +439,6 @@
 	"yourpasswordagain": "Επαναπληκτρολόγηση κωδικού:",
 	"createacct-yourpasswordagain": "Επιβεβαίωση κωδικού",
 	"createacct-yourpasswordagain-ph": "Εισαγωγή κωδικού ξανά",
-	"remembermypassword": "Απομνημόνευση της σύνδεσής μου σε αυτόν τον περιηγητή (για μέγιστο $1 {{PLURAL:$1|ημέρα|ημέρες}})",
 	"userlogin-remembermypassword": "Να διατηρούμαι μόνιμα σε σύνδεση",
 	"userlogin-signwithsecure": "Χρησιμοποιείστε ασφαλή σύνδεση",
 	"cannotloginnow-title": "Δεν μπορείτε να συνδεθείτε τώρα",

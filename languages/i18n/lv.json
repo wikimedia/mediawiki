@@ -390,7 +390,6 @@
 	"yourpasswordagain": "Atkārto paroli",
 	"createacct-yourpasswordagain": "Apstipriniet paroli",
 	"createacct-yourpasswordagain-ph": "Vēlreiz ievadiet paroli",
-	"remembermypassword": "Atcerēties pēc pārlūka aizvēršanas (spēkā ne vairāk kā $1 {{PLURAL:$1|dienas|diena|dienas}}).",
 	"userlogin-remembermypassword": "Atcerēties mani",
 	"userlogin-signwithsecure": "Izmantot drošu savienojumu",
 	"yourdomainname": "Tavs domēns",

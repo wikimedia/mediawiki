@@ -402,7 +402,6 @@
 	"yourpasswordagain": "कूटशब्दः पुनः लिख्यताम् :",
 	"createacct-yourpasswordagain": "कूटशब्दस्य पुष्टिं करोतु ।",
 	"createacct-yourpasswordagain-ph": "कूटशब्दः पुनः लिख्यताम्",
-	"remembermypassword": "अस्मिन् सङ्गणके मम प्रवेशः स्मर्यताम् (अधिकतमम् $1 {{PLURAL:$1|दिनम्|दिनानि}})",
 	"userlogin-remembermypassword": "अहं प्रविष्ट एव स्याम्",
 	"userlogin-signwithsecure": "संरक्षितः सम्पर्कः (https) उपयुज्यताम्",
 	"yourdomainname": "भवतः प्रदेशः (domain) :",

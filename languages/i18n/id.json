@@ -442,7 +442,6 @@
 	"yourpasswordagain": "Ulangi kata sandi:",
 	"createacct-yourpasswordagain": "Konfirmasi kata sandi",
 	"createacct-yourpasswordagain-ph": "Masukkan lagi kata sandi",
-	"remembermypassword": "Ingat kata sandi saya di komputer ini (selama $1 {{PLURAL:$1|hari|hari}})",
 	"userlogin-remembermypassword": "Biarkan saya tetap masuk",
 	"userlogin-signwithsecure": "Gunakan server aman",
 	"cannotloginnow-title": "Tidak dapat masuk log saat ini",
