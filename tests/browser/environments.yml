@@ -21,6 +21,7 @@ mw-vagrant-host: &default
 mw-vagrant-guest:
   user_factory: true
   mediawiki_url: http://127.0.0.1/wiki/
+  headless: 'true'
 
 beta:
   mediawiki_url: https://en.wikipedia.beta.wmflabs.org/wiki/
