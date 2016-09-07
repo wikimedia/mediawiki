@@ -1615,25 +1615,38 @@ class Revision implements IDBAccessObject {
 			$row = null;
 		}
 
+		// Callers doing updates will pass in READ_LATEST as usual. Since the text/blob tables
+		// do not normally get rows changed around, set READ_LATEST_IMMUTABLE in those cases.
+		$flags = $this->mQueryFlags;
+		$flags |= DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST )
+			? self::READ_LATEST_IMMUTABLE
+			: 0;
+
+		list( $index, $options, $fallbackIndex, $fallbackOptions ) =
+			DBAccessObjectUtils::getDBOptions( $flags );
+
 		if ( !$row ) {
 			// Text data is immutable; check replica DBs first.
-			$dbr = wfGetDB( DB_REPLICA );
-			$row = $dbr->selectRow( 'text',
-				[ 'old_text', 'old_flags' ],
-				[ 'old_id' => $textId ],
-				__METHOD__ );
-		}
-
-		// Fallback to the master in case of replica DB lag. Also use FOR UPDATE if it was
-		// used to fetch this revision to avoid missing the row due to REPEATABLE-READ.
-		$forUpdate = ( $this->mQueryFlags & self::READ_LOCKING == self::READ_LOCKING );
-		if ( !$row && ( $forUpdate || wfGetLB()->getServerCount() > 1 ) ) {
-			$dbw = wfGetDB( DB_MASTER );
-			$row = $dbw->selectRow( 'text',
+			$row = wfGetDB( $index )->selectRow(
+				'text',
 				[ 'old_text', 'old_flags' ],
 				[ 'old_id' => $textId ],
 				__METHOD__,
-				$forUpdate ? [ 'FOR UPDATE' ] : [] );
+				$options
+			);
+		}
+
+		// Fallback to DB_MASTER in some cases if the row was not found
+		if ( !$row && $fallbackIndex !== null ) {
+			// Use FOR UPDATE if it was used to fetch this revision. This avoids missing the row
+			// due to REPEATABLE-READ. Also fallback to the master if READ_LATEST is provided.
+			$row = wfGetDB( $fallbackIndex )->selectRow(
+				'text',
+				[ 'old_text', 'old_flags' ],
+				[ 'old_id' => $textId ],
+				__METHOD__,
+				$fallbackOptions
+			);
 		}
 
 		if ( !$row ) {
