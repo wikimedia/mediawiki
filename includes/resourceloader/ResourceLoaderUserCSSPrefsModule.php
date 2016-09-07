@@ -50,15 +50,13 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 		// Build CSS rules
 		$rules = [];
 
+		// TODO: This should be made into a global class, so this file can be removed
 		// Underline: 2 = skin default, 1 = always, 0 = never
 		if ( $options['underline'] < 2 ) {
 			$rules[] = "a { text-decoration: " .
 				( $options['underline'] ? 'underline' : 'none' ) . "; }";
 		}
 		$style = implode( "\n", $rules );
-		if ( $this->getFlip( $context ) ) {
-			$style = CSSJanus::transform( $style, true, false );
-		}
 		return [ 'all' => $style ];
 	}
 
