@@ -1079,13 +1079,14 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * Fetch original serialized data without regard for view restrictions
+	 * Get original serialized data (without checking view restrictions)
 	 *
 	 * @since 1.21
 	 * @return string
 	 */
 	public function getSerializedData() {
 		if ( $this->mText === null ) {
+			// Revision is immutable. Load on demand.
 			$this->mText = $this->loadText();
 		}
 
@@ -1103,17 +1104,14 @@ class Revision implements IDBAccessObject {
 	 */
 	protected function getContentInternal() {
 		if ( $this->mContent === null ) {
-			// Revision is immutable. Load on demand:
-			if ( $this->mText === null ) {
-				$this->mText = $this->loadText();
-			}
+			$text = $this->getSerializedData();
 
-			if ( $this->mText !== null && $this->mText !== false ) {
+			if ( $text !== null && $text !== false ) {
 				// Unserialize content
 				$handler = $this->getContentHandler();
 				$format = $this->getContentFormat();
 
-				$this->mContent = $handler->unserializeContent( $this->mText, $format );
+				$this->mContent = $handler->unserializeContent( $text, $format );
 			}
 		}
 
@@ -1576,29 +1574,36 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @return string|bool The revision's text, or false on failure
 	 */
-	protected function loadText() {
+	private function loadText() {
 		// Caching may be beneficial for massive use of external storage
 		global $wgRevisionCacheExpiry;
 		static $processCache = null;
+
+		if ( !$wgRevisionCacheExpiry ) {
+			return $this->fetchText();
+		}
 
 		if ( !$processCache ) {
 			$processCache = new MapCacheLRU( 10 );
 		}
 
 		$cache = ObjectCache::getMainWANInstance();
-		$textId = $this->getTextId();
-		$key = wfMemcKey( 'revisiontext', 'textid', $textId );
+		$key = $cache->makeKey( 'revisiontext', 'textid', $this->getTextId() );
 
-		if ( $wgRevisionCacheExpiry ) {
-			if ( $processCache->has( $key ) ) {
-				return $processCache->get( $key );
-			}
-			$text = $cache->get( $key );
-			if ( is_string( $text ) ) {
-				$processCache->set( $key, $text );
-				return $text;
-			}
-		}
+		// No negative caching; negative hits on text rows may be due to corrupted replica DBs
+		return $processCache->getWithSetCallback( $key, function () use ( $key ) {
+			return $cache->getWithSetCallback(
+				$key,
+				$wgRevisionCacheExpiry,
+				function () {
+					return $this->fetchText();
+				}
+			);
+	    } );
+	}
+
+	private function fetchText() {
+		$textId = $this->getTextId();
 
 		// If we kept data for lazy extraction, use it now...
 		if ( $this->mTextRow !== null ) {
@@ -1638,13 +1643,7 @@ class Revision implements IDBAccessObject {
 			wfDebugLog( 'Revision', "No blob for text row '$textId' (revision {$this->getId()})." );
 		}
 
-		# No negative caching -- negative hits on text rows may be due to corrupted replica DB servers
-		if ( $wgRevisionCacheExpiry && $text !== false ) {
-			$processCache->set( $key, $text );
-			$cache->set( $key, $text, $wgRevisionCacheExpiry );
-		}
-
-		return $text;
+		return is_string( $text ) ? $text : false;
 	}
 
 	/**
