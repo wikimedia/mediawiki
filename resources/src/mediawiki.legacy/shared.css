@@ -105,6 +105,21 @@ span.comment {
 	clear: both;
 }
 
+/* Edit font preference */
+/* TODO: for 'default' on non-textareas we could compute the default font of textarea in the client */
+.mw-editfont-default:not( textarea ),
+.mw-editfont-monospace {
+	font-family: monospace;
+}
+
+.mw-editfont-sansserif {
+	font-family: sans-serif;
+}
+
+.mw-editfont-serif {
+	font-family: serif;
+}
+
 /**
  * rev_deleted stuff
  */
