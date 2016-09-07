@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Prepare an edit in shared cache so that it can be reused on edit
@@ -62,6 +63,8 @@ class ApiStashEdit extends ApiBase {
 			$this->dieUsage( 'Unsupported content model/format', 'badmodelformat' );
 		}
 
+		$text = null;
+		$textHash = null;
 		if ( strlen( $params['stashedtexthash'] ) ) {
 			// Load from cache since the client indicates the text is the same as last stash
 			$textHash = $params['stashedtexthash'];
@@ -138,7 +141,8 @@ class ApiStashEdit extends ApiBase {
 			$cache->set( $textKey, $text, self::MAX_CACHE_TTL );
 		}
 
-		$this->getStats()->increment( "editstash.cache_stores.$status" );
+		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$stats->increment( "editstash.cache_stores.$status" );
 
 		$this->getResult()->addValue(
 			null,
@@ -171,6 +175,7 @@ class ApiStashEdit extends ApiBase {
 			// De-duplicate requests on the same key
 			return self::ERROR_BUSY;
 		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$unlocker = new ScopedCallback( function () use ( $dbw, $key ) {
 			$dbw->unlock( $key, __METHOD__ );
 		} );
@@ -246,7 +251,7 @@ class ApiStashEdit extends ApiBase {
 
 		$cache = ObjectCache::getLocalClusterInstance();
 		$logger = LoggerFactory::getInstance( 'StashEdit' );
-		$stats = RequestContext::getMain()->getStats();
+		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 
 		$key = self::getStashKey( $title, self::getContentHash( $content ), $user );
 		$editInfo = $cache->get( $key );
@@ -256,7 +261,7 @@ class ApiStashEdit extends ApiBase {
 			// so as to use its results and make use of the time spent parsing.
 			// Skip this logic if there no master connection in case this method
 			// is called on an HTTP GET request for some reason.
-			$lb = wfGetLB();
+			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 			$dbw = $lb->getAnyOpenConnection( $lb->getWriterIndex() );
 			if ( $dbw && $dbw->lock( $key, __METHOD__, 30 ) ) {
 				$editInfo = $cache->get( $key );
