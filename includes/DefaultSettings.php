@@ -8275,7 +8275,7 @@ $wgPageLanguageUseDB = false;
  * Global configuration variable for Virtual REST Services.
  *
  * Use the 'path' key to define automatically mounted services. The value for this
- * key is a map of path prefixes to service configuration. The later is an array of:
+ * key is a map of path prefixes to service configuration. The latter is an array of:
  *   - class : the fully qualified class name
  *   - options : map of arguments to the class constructor
  * Such services will be available to handle queries under their path from the VRS

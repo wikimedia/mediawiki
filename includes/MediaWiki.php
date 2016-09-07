@@ -632,7 +632,7 @@ class MediaWiki {
 				fastcgi_finish_request();
 			} else {
 				// Either all DB and deferred updates should happen or none.
-				// The later should not be cancelled due to client disconnect.
+				// The latter should not be cancelled due to client disconnect.
 				ignore_user_abort( true );
 			}
 

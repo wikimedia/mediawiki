@@ -246,7 +246,7 @@ LUA;
 			} elseif ( $slot === 'QUEUE_WAIT' ) {
 				// This process is now registered as waiting
 				$keys = ( $doWakeup == self::AWAKE_ALL )
-					// Wait for an open slot or wake-up signal (preferring the later)
+					// Wait for an open slot or wake-up signal (preferring the latter)
 					? [ $this->getWakeupListKey(), $this->getSlotListKey() ]
 					// Just wait for an actual pool slot
 					: [ $this->getSlotListKey() ];
@@ -292,7 +292,7 @@ LUA;
 		local rMaxWorkers,rMaxQueue,rTimeout,rExpiry,rSess,rTime = unpack(ARGV)
 		-- Initialize if the "next release" time sorted-set is empty. The slot key
 		-- itself is empty if all slots are busy or when nothing is initialized.
-		-- If the list is empty but the set is not, then it is the later case.
+		-- If the list is empty but the set is not, then it is the latter case.
 		-- For sanity, if the list exists but not the set, then reset everything.
 		if redis.call('exists',kSlotsNextRelease) == 0 then
 			redis.call('del',kSlots)

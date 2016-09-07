@@ -76,7 +76,7 @@ help:
 	#   tap                 Run the tests individually through Test::Harness's prove(1)
 	#   help                You're looking at it!
 	#   coverage            Run the tests and generates an HTML code coverage report
-	#                       You will need the Xdebug PHP extension for the later.
+	#                       You will need the Xdebug PHP extension for the latter.
 	#   [no]parser          Skip or only run Parser tests
 	#
 	#   list-groups         List available Tests groups.

@@ -1034,7 +1034,7 @@ abstract class FileBackend {
 	 *
 	 * Write operations should *never* be done on this file as some backends
 	 * may do internal tracking or may be instances of FileBackendMultiWrite.
-	 * In that later case, there are copies of the file that must stay in sync.
+	 * In that latter case, there are copies of the file that must stay in sync.
 	 * Additionally, further calls to this function may return the same file.
 	 *
 	 * @param array $params Parameters include:
