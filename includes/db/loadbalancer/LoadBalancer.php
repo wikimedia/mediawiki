@@ -1350,7 +1350,7 @@ class LoadBalancer {
 			}
 			/** @var DatabaseBase $conn */
 			foreach ( $conns2[$masterIndex] as $conn ) {
-				if ( $conn->trxLevel() && $conn->writesOrCallbacksPending() ) {
+				if ( $conn->writesOrCallbacksPending() ) {
 					return true;
 				}
 			}

@@ -224,6 +224,29 @@ abstract class LBFactory implements DestructibleService {
 	}
 
 	/**
+	 * Commit all replica DB transactions so as to flush any REPEATABLE-READ or SSI snapshot
+	 *
+	 * @param string $fname Caller name
+	 * @since 1.28
+	 */
+	public function flushReplicaSnapshots( $fname = __METHOD__ ) {
+		$this->forEachLBCallMethod( 'flushReplicaSnapshots', [ $fname ] );
+	}
+
+	/**
+	 * Commit on all connections. Done for two reasons:
+	 * 1. To commit changes to the masters.
+	 * 2. To release the snapshot on all connections, master and replica DB.
+	 * @param string $fname Caller name
+	 * @param array $options Options map:
+	 *   - maxWriteDuration: abort if more than this much time was spent in write queries
+	 */
+	public function commitAll( $fname = __METHOD__, array $options = [] ) {
+		$this->commitMasterChanges( $fname, $options );
+		$this->forEachLBCallMethod( 'commitAll', [ $fname ] );
+	}
+
+	/**
 	 * Flush any master transaction snapshots and set DBO_TRX (if DBO_DEFAULT is set)
 	 *
 	 * The DBO_TRX setting will be reverted to the default in each of these methods:
@@ -247,29 +270,6 @@ abstract class LBFactory implements DestructibleService {
 		$this->trxRoundId = $fname;
 		// Set DBO_TRX flags on all appropriate DBs
 		$this->forEachLBCallMethod( 'beginMasterChanges', [ $fname ] );
-	}
-
-	/**
-	 * Commit all replica DB transactions so as to flush any REPEATABLE-READ or SSI snapshot
-	 *
-	 * @param string $fname Caller name
-	 * @since 1.28
-	 */
-	public function flushReplicaSnapshots( $fname = __METHOD__ ) {
-		$this->forEachLBCallMethod( 'flushReplicaSnapshots', [ $fname ] );
-	}
-
-	/**
-	 * Commit on all connections. Done for two reasons:
-	 * 1. To commit changes to the masters.
-	 * 2. To release the snapshot on all connections, master and replica DB.
-	 * @param string $fname Caller name
-	 * @param array $options Options map:
-	 *   - maxWriteDuration: abort if more than this much time was spent in write queries
-	 */
-	public function commitAll( $fname = __METHOD__, array $options = [] ) {
-		$this->commitMasterChanges( $fname, $options );
-		$this->forEachLBCallMethod( 'commitAll', [ $fname ] );
 	}
 
 	/**
