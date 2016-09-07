@@ -54,9 +54,6 @@ return [
 	'user' => [ 'class' => 'ResourceLoaderUserModule' ],
 	'user.styles' => [ 'class' => 'ResourceLoaderUserStylesModule' ],
 
-	// Scripts generated based on the current user's preferences
-	'user.cssprefs' => [ 'class' => 'ResourceLoaderUserCSSPrefsModule' ],
-
 	// Populate mediawiki.user placeholders with information about the current user
 	'user.defaults' => [ 'class' => 'ResourceLoaderUserDefaultsModule' ],
 	'user.options' => [ 'class' => 'ResourceLoaderUserOptionsModule' ],
