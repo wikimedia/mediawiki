@@ -76,8 +76,8 @@ use Psr\Log\NullLogger;
 class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/** @var BagOStuff The local datacenter cache */
 	protected $cache;
-	/** @var HashBagOStuff Script instance PHP cache */
-	protected $procCache;
+	/** @var HashBagOStuff[] Map of group PHP instance caches */
+	protected $processCaches = [];
 	/** @var string Purge channel name */
 	protected $purgeChannel;
 	/** @var EventRelayer Bus that handles purge broadcasts */
@@ -154,7 +154,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	const VFLD_DATA = 'WOC:d'; // key to the value of versioned data
 	const VFLD_VERSION = 'WOC:v'; // key to the version of the value present
 
-	const MAX_PC_KEYS = 1000; // max keys to keep in process cache
+	const PC_PRIMARY = 'primary:1000'; // name and max key count
 
 	const DEFAULT_PURGE_CHANNEL = 'wancache-purge';
 
@@ -167,7 +167,6 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 */
 	public function __construct( array $params ) {
 		$this->cache = $params['cache'];
-		$this->procCache = new HashBagOStuff( [ 'maxKeys' => self::MAX_PC_KEYS ] );
 		$this->purgeChannel = isset( $params['channels']['purge'] )
 			? $params['channels']['purge']
 			: self::DEFAULT_PURGE_CHANNEL;
@@ -793,6 +792,12 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *      since the callback should use replica DBs and they may be lagged or have snapshot
 	 *      isolation anyway, this should not typically matter.
 	 *      Default: WANObjectCache::TTL_UNCACHEABLE.
+	 *   - pcGroup: Process cache group to use instead of the primary one. If set, this must be
+	 *      of the format <alphanumeric name>:<max key size>. Use this for storing large values,
+	 *      small but numerous values, or a few values with a high cost if they are evicted.
+	 *      It is generally preferable to use a class constant when setting this value.
+	 *      This has no effect unless pcTTL is used.
+	 *      Default: WANObjectCache::PC_PRIMARY.
 	 *   - version: Integer version number. This allows for callers to make breaking changes to
 	 *      how values are stored while maintaining compatability and correct cache purges. New
 	 *      versions are stored alongside older versions concurrently. Avoid storing class objects
@@ -816,7 +821,14 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$pcTTL = isset( $opts['pcTTL'] ) ? $opts['pcTTL'] : self::TTL_UNCACHEABLE;
 
 		// Try the process cache if enabled
-		$value = ( $pcTTL >= 0 ) ? $this->procCache->get( $key ) : false;
+		if ( $pcTTL >= 0 ) {
+			$group = isset( $opts['pcGroup'] ) ? $opts['pcGroup'] : self::PC_PRIMARY;
+			$procCache = $this->getProcessCache( $group );
+			$value = $procCache->get( $key );
+		} else {
+			$procCache = false;
+			$value = false;
+		}
 
 		if ( $value === false ) {
 			unset( $opts['minTime'] ); // not a public feature
@@ -865,8 +877,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			}
 
 			// Update the process cache if enabled
-			if ( $pcTTL >= 0 && $value !== false ) {
-				$this->procCache->set( $key, $value, $pcTTL );
+			if ( $procCache && $value !== false ) {
+				$procCache->set( $key, $value, $pcTTL );
 			}
 		}
 
@@ -1050,7 +1062,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @since 1.27
 	 */
 	public function clearProcessCache() {
-		$this->procCache->clear();
+		$this->processCaches = [];
 	}
 
 	/**
@@ -1339,5 +1351,18 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 */
 	protected function makePurgeValue( $timestamp, $holdoff ) {
 		return self::PURGE_VAL_PREFIX . (float)$timestamp . ':' . (int)$holdoff;
+	}
+
+	/**
+	 * @param string $group
+	 * @return HashBagOStuff
+	 */
+	private function getProcessCache( $group ) {
+		if ( !isset( $this->processCaches[$group] ) ) {
+			list( , $n ) = explode( ':', $group );
+			$this->processCaches[$group] = new HashBagOStuff( [ 'maxKeys' => (int)$n ] );
+		}
+
+		return $this->processCaches[$group];
 	}
 }
