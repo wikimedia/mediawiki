@@ -3233,6 +3233,12 @@ HTML
 			'id' => $name,
 			'cols' => $wgUser->getIntOption( 'cols' ),
 			'rows' => $wgUser->getIntOption( 'rows' ),
+			// The following classes can be used here:
+			// * mw-editfont-default
+			// * mw-editfont-monospace
+			// * mw-editfont-sansserif
+			// * mw-editfont-serif
+			'class' => 'mw-editfont-' . $wgUser->getOption( 'editfont' ),
 			// Avoid PHP notices when appending preferences
 			// (appending allows customAttribs['style'] to still work).
 			'style' => ''
