@@ -2768,6 +2768,13 @@ class OutputPage extends ContextSource {
 		# Classes for LTR/RTL directionality support
 		$bodyClasses[] = $userdir;
 		$bodyClasses[] = "sitedir-$sitedir";
+		$underline = $this->getUser()->getOption( 'underline' );
+		if ( $underline < 2 ) {
+			// The following classes can be used here:
+			// * mw-underline-never
+			// * mw-underline-always
+			$bodyClasses[] = 'mw-underline-' . [ 'never', 'always' ][$underline];
+		}
 
 		if ( $this->getLanguage()->capitalizeAllNouns() ) {
 			# A <body> class is probably not the best way to do this . . .
