@@ -84,13 +84,15 @@ class MapCacheLRU {
 	 * If the item is already set, it will be pushed to the top of the cache.
 	 *
 	 * @param string $key
-	 * @return mixed
+	 * @return mixed Returns null if the key was not found
 	 */
 	public function get( $key ) {
 		if ( !array_key_exists( $key, $this->cache ) ) {
 			return null;
 		}
+
 		$this->ping( $key );
+
 		return $this->cache[$key];
 	}
 
@@ -100,6 +102,28 @@ class MapCacheLRU {
 	 */
 	public function getAllKeys() {
 		return array_keys( $this->cache );
+	}
+
+	/**
+	 * Get an item with the given key, producing and setting it if not found.
+	 *
+	 * If the callback returns false, then nothing is stored.
+	 *
+	 * @since 1.28
+	 * @param string $key
+	 * @param callable $callback Callback that will produce the value
+	 * @return mixed The cached value if found or the result of $callback otherwise
+	 */
+	public function getWithSetCallback( $key, callable $callback ) {
+		$value = $this->get( $key );
+		if ( $value === null ) {
+			$value = call_user_func( $callback );
+			if ( $value !== false ) {
+				$this->set( $key, $value );
+			}
+		}
+
+		return $value;
 	}
 
 	/**
