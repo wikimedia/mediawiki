@@ -94,6 +94,7 @@ class LoadBalancer {
 	 *  - servers : Required. Array of server info structures.
 	 *  - loadMonitor : Name of a class used to fetch server lag and load.
 	 *  - readOnlyReason : Reason the master DB is read-only if so [optional]
+	 *  - waitTimeout : Maximum time to wait for replicas for consistency [optional]
 	 *  - srvCache : BagOStuff object [optional]
 	 *  - wanCache : WANObjectCache object [optional]
 	 * @throws MWException
@@ -103,7 +104,9 @@ class LoadBalancer {
 			throw new MWException( __CLASS__ . ': missing servers parameter' );
 		}
 		$this->mServers = $params['servers'];
-		$this->mWaitTimeout = self::POS_WAIT_TIMEOUT;
+		$this->mWaitTimeout = isset( $params['waitTimeout'] )
+			? $params['waitTimeout']
+			: self::POS_WAIT_TIMEOUT;
 
 		$this->mReadIndex = -1;
 		$this->mWriteIndex = -1;
@@ -1411,14 +1414,6 @@ class LoadBalancer {
 		}
 
 		return $fnames;
-	}
-
-	/**
-	 * @param mixed $value
-	 * @return mixed
-	 */
-	public function waitTimeout( $value = null ) {
-		return wfSetVar( $this->mWaitTimeout, $value );
 	}
 
 	/**
