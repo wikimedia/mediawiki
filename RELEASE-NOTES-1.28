@@ -32,6 +32,7 @@ production.
 * The 'editcontentmodel' permission is now granted to all logged-in users ('user').
   instead of just administrators ('sysop'). Documentation for this feature is
   available at <https://www.mediawiki.org/wiki/Help:ChangeContentModel>.
+* $wgRevisionCacheExpiry is now set to one week by default instead of being disabled.
 
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.

@@ -1577,19 +1577,20 @@ class Revision implements IDBAccessObject {
 	 * @return string|bool The revision's text, or false on failure
 	 */
 	private function loadText() {
-		// Caching may be beneficial for massive use of external storage
 		global $wgRevisionCacheExpiry;
 
-		if ( !$wgRevisionCacheExpiry ) {
-			return $this->fetchText();
-		}
-
 		$cache = ObjectCache::getMainWANInstance();
+		if ( $cache->getQoS( $cache::ATTR_EMULATION ) <= $cache::QOS_EMULATION_SQL ) {
+			// Do not cache RDBMs blobs in...the RDBMs store
+			$ttl = $cache::TTL_UNCACHEABLE;
+		} else {
+			$ttl = $wgRevisionCacheExpiry ?: $cache::TTL_UNCACHEABLE;
+		}
 
 		// No negative caching; negative hits on text rows may be due to corrupted replica DBs
 		return $cache->getWithSetCallback(
-			$key = $cache->makeKey( 'revisiontext', 'textid', $this->getTextId() ),
-			$wgRevisionCacheExpiry,
+			$cache->makeKey( 'revisiontext', 'textid', $this->getTextId() ),
+			$ttl,
 			function () {
 				return $this->fetchText();
 			},
