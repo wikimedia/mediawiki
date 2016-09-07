@@ -1244,9 +1244,18 @@ class LoadBalancer {
 	public function runMasterPostTrxCallbacks( $type ) {
 		$e = null; // first exception
 		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( $type, &$e ) {
-			$conn->clearSnapshot( __METHOD__ ); // clear no-op transactions
-
 			$conn->setTrxEndCallbackSuppression( false );
+			if ( $conn->writesOrCallbacksPending() ) {
+				// This happens if onTransactionIdle() callbacks leave implicit transactions open
+				// on *other* DBs, though ideally that would never happen. Let these COMMIT on the
+				// next call to commitMasterChanges(), possibly in LBFactory::shutdown().
+				wfWarn( __METHOD__ . ": did not expect writes/callbacks pending." );
+				return;
+			} elseif ( $conn->trxLevel() ) {
+				// This happens for single-DB setups where DB_REPLICA uses the master,
+				// this leaving an implicit read-only transaction open at this point
+				return;
+			}
 			try {
 				$conn->runOnTransactionIdleCallbacks( $type );
 			} catch ( Exception $ex ) {
