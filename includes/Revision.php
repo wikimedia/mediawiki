@@ -92,6 +92,8 @@ class Revision implements IDBAccessObject {
 	const FOR_THIS_USER = 2;
 	const RAW = 3;
 
+	const TEXT_CACHE_GROUP = 'revisiontext:10'; // process cache name and max key count
+
 	/**
 	 * Load a page revision from a given revision ID number.
 	 * Returns null if no such revision can be found.
@@ -1577,31 +1579,22 @@ class Revision implements IDBAccessObject {
 	private function loadText() {
 		// Caching may be beneficial for massive use of external storage
 		global $wgRevisionCacheExpiry;
-		static $processCache = null;
 
 		if ( !$wgRevisionCacheExpiry ) {
 			return $this->fetchText();
 		}
 
-		if ( !$processCache ) {
-			$processCache = new MapCacheLRU( 10 );
-		}
-
 		$cache = ObjectCache::getMainWANInstance();
-		$key = $cache->makeKey( 'revisiontext', 'textid', $this->getTextId() );
 
 		// No negative caching; negative hits on text rows may be due to corrupted replica DBs
-		return $processCache->getWithSetCallback( $key, function () use ( $cache, $key ) {
-			global $wgRevisionCacheExpiry;
-
-			return $cache->getWithSetCallback(
-				$key,
-				$wgRevisionCacheExpiry,
-				function () {
-					return $this->fetchText();
-				}
-			);
-		} );
+		return $cache->getWithSetCallback(
+			$key = $cache->makeKey( 'revisiontext', 'textid', $this->getTextId() ),
+			$wgRevisionCacheExpiry,
+			function () {
+				return $this->fetchText();
+			},
+			[ 'pcGroup' => self::TEXT_CACHE_GROUP, 'pcTTL' => $cache::TTL_PROC_LONG ]
+		);
 	}
 
 	private function fetchText() {
