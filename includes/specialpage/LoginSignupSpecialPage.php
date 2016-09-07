@@ -224,10 +224,10 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$this->checkPermissions();
 
 		// Make sure it's possible to log in
-		if ( !$this->isSignup() && !$session->canSetUser() ) {
+		if ( !$this->isSignup() && !$authManager->canAuthenticateNow() ) {
 			throw new ErrorPageError( 'cannotloginnow-title', 'cannotloginnow-text', [
-					$session->getProvider()->describe( RequestContext::getMain()->getLanguage() )
-				] );
+				$session->getProvider()->describe( RequestContext::getMain()->getLanguage() )
+			] );
 		}
 
 		/*
