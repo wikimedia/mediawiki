@@ -2727,7 +2727,7 @@ class OutputPage extends ContextSource {
 	 * @return string The doctype, opening "<html>", and head element.
 	 */
 	public function headElement( Skin $sk, $includeStyle = true ) {
-		global $wgContLang;
+		global $wgContLang, $wgUser;
 
 		$userdir = $this->getLanguage()->getDir();
 		$sitedir = $wgContLang->getDir();
@@ -2768,6 +2768,12 @@ class OutputPage extends ContextSource {
 		# Classes for LTR/RTL directionality support
 		$bodyClasses[] = $userdir;
 		$bodyClasses[] = "sitedir-$sitedir";
+		if ( $wgUser->getOption( 'underline' ) < 2 ) {
+			// The following classes can be used here:
+			// * mw-underline-never
+			// * mw-underline-always
+			$bodyClasses[] = 'mw-underline-' . ['never', 'always'][$wgUser->getOption( 'underline' )];
+		}
 
 		if ( $this->getLanguage()->capitalizeAllNouns() ) {
 			# A <body> class is probably not the best way to do this . . .
