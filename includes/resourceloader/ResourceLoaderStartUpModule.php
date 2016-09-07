@@ -311,14 +311,12 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 */
 	public static function getStartupModulesUrl( ResourceLoaderContext $context ) {
 		$rl = $context->getResourceLoader();
-		$moduleNames = self::getStartupModules();
 
 		$derivative = new DerivativeResourceLoaderContext( $context );
-		$derivative->setModules( $moduleNames );
+		$derivative->setModules( self::getStartupModules() );
 		$derivative->setOnly( 'scripts' );
-		$derivative->setVersion(
-			$rl->getCombinedVersion( $context, $moduleNames )
-		);
+		// Must setModules() before makeVersionQuery()
+		$derivative->setVersion( $rl->makeVersionQuery( $derivative ) );
 
 		return $rl->createLoaderURL( 'local', $derivative );
 	}

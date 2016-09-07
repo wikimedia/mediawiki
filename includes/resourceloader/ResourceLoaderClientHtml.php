@@ -429,6 +429,7 @@ class ResourceLoaderClientHtml {
 		foreach ( $sortedModules as $source => $groups ) {
 			foreach ( $groups as $group => $grpModules ) {
 				$context = self::makeContext( $mainContext, $group, $only, $extraQuery );
+				$context->setModules( array_keys( $grpModules ) );
 
 				if ( $group === 'private' ) {
 					// Decide whether to use style or script element
@@ -456,11 +457,10 @@ class ResourceLoaderClientHtml {
 				// This should NOT be done for the site group (bug 27564) because anons get that too
 				// and we shouldn't be putting timestamps in CDN-cached HTML
 				if ( $group === 'user' ) {
-					$version = $rl->getCombinedVersion( $context, array_keys( $grpModules ) );
-					$context->setVersion( $version );
+					// Must setModules() before makeVersionQuery()
+					$context->setVersion( $rl->makeVersionQuery( $context ) );
 				}
 
-				$context->setModules( array_keys( $grpModules ) );
 				$url = $rl->createLoaderURL( $source, $context, $extraQuery );
 
 				// Decide whether to use 'style' or 'script' element

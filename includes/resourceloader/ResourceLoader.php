@@ -637,7 +637,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @param string[] $modules List of module names
 	 * @return string Hash
 	 */
-	public function getExpectedVersionQuery( ResourceLoaderContext $context ) {
+	public function makeVersionQuery( ResourceLoaderContext $context ) {
 		// As of MediaWiki 1.28, the server and client use the same algorithm for combining
 		// version hashes. There is no technical reason for this to be same, and for years the
 		// implementations differed. If getCombinedVersion in PHP (used for StartupModule and
@@ -797,7 +797,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		// - Version mismatch (T117587, T47877)
 		if ( is_null( $context->getVersion() )
 			|| $errors
-			|| $context->getVersion() !== $this->getExpectedVersionQuery( $context )
+			|| $context->getVersion() !== $this->makeVersionQuery( $context )
 		) {
 			$maxage = $rlMaxage['unversioned']['client'];
 			$smaxage = $rlMaxage['unversioned']['server'];
