@@ -15,7 +15,7 @@
 				page = mw.util.getParamValue( 'title', url ),
 				user = mw.util.getParamValue( 'from', url );
 
-			if ( !page || !user ) {
+			if ( !page || user === null ) {
 				// Let native browsing handle the link
 				return true;
 			}
