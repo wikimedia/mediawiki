@@ -554,9 +554,9 @@ class MediaWiki {
 
 		$config = $context->getConfig();
 
-		$factory = wfGetLBFactory();
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		// Commit all changes
-		$factory->commitMasterChanges(
+		$lbFactory->commitMasterChanges(
 			__METHOD__,
 			// Abort if any transaction was too big
 			[ 'maxWriteDuration' => $config->get( 'MaxUserDBWriteDuration' ) ]
@@ -566,14 +566,14 @@ class MediaWiki {
 		wfDebug( __METHOD__ . ': pre-send deferred updates completed' );
 
 		// Record ChronologyProtector positions
-		$factory->shutdown();
+		$lbFactory->shutdown();
 		wfDebug( __METHOD__ . ': all transactions committed' );
 
 		// Set a cookie to tell all CDN edge nodes to "stick" the user to the DC that handles this
 		// POST request (e.g. the "master" data center). Also have the user briefly bypass CDN so
 		// ChronologyProtector works for cacheable URLs.
 		$request = $context->getRequest();
-		if ( $request->wasPosted() && $factory->hasOrMadeRecentMasterChanges() ) {
+		if ( $request->wasPosted() && $lbFactory->hasOrMadeRecentMasterChanges() ) {
 			$expires = time() + $config->get( 'DataCenterUpdateStickTTL' );
 			$options = [ 'prefix' => '' ];
 			$request->response()->setCookie( 'UseDC', 'master', $expires, $options );
@@ -582,7 +582,7 @@ class MediaWiki {
 
 		// Avoid letting a few seconds of replica DB lag cause a month of stale data. This logic is
 		// also intimately related to the value of $wgCdnReboundPurgeDelay.
-		if ( $factory->laggedReplicaUsed() ) {
+		if ( $lbFactory->laggedReplicaUsed() ) {
 			$maxAge = $config->get( 'CdnMaxageLagged' );
 			$context->getOutput()->lowerCdnMaxage( $maxAge );
 			$request->response()->header( "X-Database-Lagged: true" );
@@ -763,9 +763,9 @@ class MediaWiki {
 	 * @param string $mode Use 'fast' to always skip job running
 	 */
 	public function restInPeace( $mode = 'fast' ) {
-		$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		// Assure deferred updates are not in the main transaction
-		$factory->commitMasterChanges( __METHOD__ );
+		$lbFactory->commitMasterChanges( __METHOD__ );
 
 		// Loosen DB query expectations since the HTTP client is unblocked
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
@@ -791,8 +791,8 @@ class MediaWiki {
 		wfLogProfilingData();
 
 		// Commit and close up!
-		$factory->commitMasterChanges( __METHOD__ );
-		$factory->shutdown( LBFactory::SHUTDOWN_NO_CHRONPROT );
+		$lbFactory->commitMasterChanges( __METHOD__ );
+		$lbFactory->shutdown( LBFactory::SHUTDOWN_NO_CHRONPROT );
 
 		wfDebug( "Request ended normally\n" );
 	}
