@@ -103,6 +103,28 @@ class MapCacheLRU {
 	}
 
 	/**
+	 * Get an item with the given key, producing and setting it if not found.
+	 *
+	 * If the callback returns false, then nothing is stored.
+	 *
+	 * @since 1.28
+	 * @param string $key
+	 * @param callable $callback Callback that will produce the value
+	 * @return mixed The cached value if found or the result of $callback otherwise
+	 */
+	public function getWithSetCallback( $key, callable $callback ) {
+		$value = $this->get( $key );
+		if ( $value === false ) {
+			$value = call_user_func( $callback );
+			if ( $value !== false ) {
+				$this->set( $key, $value );
+			}
+		}
+
+		return $value;
+	}
+
+	/**
 	 * Clear one or several cache entries, or all cache entries
 	 *
 	 * @param string|array $keys
