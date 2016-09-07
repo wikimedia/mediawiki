@@ -313,17 +313,14 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		$rl = $context->getResourceLoader();
 		$moduleNames = self::getStartupModules();
 
-		$query = [
-			'modules' => ResourceLoader::makePackedModulesString( $moduleNames ),
-			'only' => 'scripts',
-			'lang' => $context->getLanguage(),
-			'skin' => $context->getSkin(),
-			'debug' => $context->getDebug() ? 'true' : 'false',
-			'version' => $rl->getCombinedVersion( $context, $moduleNames ),
-		];
-		// Ensure uniform query order
-		ksort( $query );
-		return wfAppendQuery( wfScript( 'load' ), $query );
+		$derivative = new DerivativeResourceLoaderContext( $context );
+		$derivative->setModules( $moduleNames );
+		$derivative->setOnly( 'scripts' );
+		$derivative->setVersion(
+			$rl->getCombinedVersion( $context, $moduleNames )
+		);
+
+		return $rl->createLoaderURL( 'local', $derivative );
 	}
 
 	/**
