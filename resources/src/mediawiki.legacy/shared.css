@@ -120,6 +120,16 @@ span.comment {
 	font-family: serif;
 }
 
+/* Underline preference */
+
+.mw-underline-always a {
+	text-decoration: underline;
+}
+
+.mw-underline-never a {
+	text-decoration: none;
+}
+
 /**
  * rev_deleted stuff
  */
