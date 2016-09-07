@@ -537,12 +537,13 @@ abstract class LBFactory implements DestructibleService {
 			return;
 		}
 
-		$fnameEffective = $fname;
 		// The transaction owner and any caller with the empty transaction ticket can commit
 		// so that getEmptyTransactionTicket() callers don't risk seeing DBTransactionError.
 		if ( $this->trxRoundId !== false && $fname !== $this->trxRoundId ) {
 			$this->trxLogger->info( "$fname: committing on behalf of {$this->trxRoundId}." );
 			$fnameEffective = $this->trxRoundId;
+		} else {
+			$fnameEffective = $fname;
 		}
 
 		$this->commitMasterChanges( $fnameEffective );
@@ -550,7 +551,7 @@ abstract class LBFactory implements DestructibleService {
 		// If a nested caller committed on behalf of $fname, start another empty $fname
 		// transaction, leaving the caller with the same empty transaction state as before.
 		if ( $fnameEffective !== $fname ) {
-			$this->beginMasterChanges( $fname );
+			$this->beginMasterChanges( $fnameEffective );
 		}
 	}
 

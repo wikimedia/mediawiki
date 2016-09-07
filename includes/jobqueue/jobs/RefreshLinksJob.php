@@ -263,7 +263,9 @@ class RefreshLinksJob extends Job {
 			}
 		}
 
-		DataUpdate::runUpdates( $updates );
+		foreach ( $updates as $update ) {
+			$update->doUpdate();
+		}
 
 		InfoAction::invalidateCache( $title );
 
