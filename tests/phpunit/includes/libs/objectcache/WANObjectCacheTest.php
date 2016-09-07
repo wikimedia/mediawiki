@@ -734,6 +734,11 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 		$this->assertGreaterThanOrEqual( $adaptiveTTL - $margin, $ttl );
 		$this->assertLessThanOrEqual( $adaptiveTTL + $margin, $ttl );
+
+		$ttl = $this->cache->adaptiveTTL( (string)$mtime, $maxTTL, $minTTL, $factor );
+
+		$this->assertGreaterThanOrEqual( $adaptiveTTL - $margin, $ttl );
+		$this->assertLessThanOrEqual( $adaptiveTTL + $margin, $ttl );
 	}
 
 	public static function provideAdaptiveTTL() {
