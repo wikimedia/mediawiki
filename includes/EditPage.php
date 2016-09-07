@@ -2600,7 +2600,7 @@ class EditPage {
 			. Html::rawElement(
 				'label',
 				[ 'for' => 'wpAntispam' ],
-				wfMessage( 'simpleantispam-label' )->parse()
+				wfMessage( 'simpleantispam-label' )->title( $this->getTitle() )->parse()
 			)
 			. Xml::element(
 				'input',
@@ -2630,7 +2630,8 @@ class EditPage {
 				: 'confirmrecreate';
 			$wgOut->addHTML(
 				'<div class="mw-confirm-recreate">' .
-					wfMessage( $key, $username, "<nowiki>$comment</nowiki>" )->parse() .
+					wfMessage( $key, $username, "<nowiki>$comment</nowiki>" )
+						->title( $this->getTitle() )->parse() .
 				Xml::checkLabel( wfMessage( 'recreate' )->text(), 'wpRecreate', 'wpRecreate', false,
 					[ 'title' => Linker::titleAttrib( 'recreate' ), 'tabindex' => 1, 'id' => 'wpRecreate' ]
 				) .
@@ -2802,7 +2803,7 @@ class EditPage {
 		if ( count( $editNotices ) ) {
 			$wgOut->addHTML( implode( "\n", $editNotices ) );
 		} else {
-			$msg = wfMessage( 'editnotice-notext' );
+			$msg = wfMessage( 'editnotice-notext' )->title( $this->getTitle() );
 			if ( !$msg->isDisabled() ) {
 				$wgOut->addHTML(
 					'<div class="mw-editnotice-notext">'
@@ -3078,7 +3079,8 @@ class EditPage {
 				return;
 			}
 		}
-		$labelText = wfMessage( $isSubjectPreview ? 'subject' : 'summary' )->parse();
+		$labelText = wfMessage( $isSubjectPreview ? 'subject' : 'summary' )
+			->title( $this->getTitle() )->parse();
 		list( $label, $input ) = $this->getSummaryInput(
 			$summary,
 			$labelText,
@@ -3111,7 +3113,7 @@ class EditPage {
 
 		$message = $isSubjectPreview ? 'subject-preview' : 'summary-preview';
 
-		$summary = wfMessage( $message )->parse()
+		$summary = wfMessage( $message )->title( $this->getTitle() )->parse()
 			. Linker::commentBlock( $summary, $this->mTitle, $isSubjectPreview );
 		return Xml::tags( 'div', [ 'class' => 'mw-summary-preview' ], $summary );
 	}
@@ -3351,8 +3353,8 @@ HTML
 		}
 
 		if ( ( $oldContent && !$oldContent->isEmpty() ) || ( $newContent && !$newContent->isEmpty() ) ) {
-			$oldtitle = wfMessage( $oldtitlemsg )->parse();
-			$newtitle = wfMessage( 'yourtext' )->parse();
+			$oldtitle = wfMessage( $oldtitlemsg )->title( $this->getTitle() )->parse();
+			$newtitle = wfMessage( 'yourtext' )->title( $this->getTitle() )->parse();
 
 			if ( !$oldContent ) {
 				$oldContent = $newContent->getContentHandler()->makeEmptyContent();
@@ -3408,7 +3410,7 @@ HTML
 	protected function showEditTools() {
 		global $wgOut;
 		$wgOut->addHTML( '<div class="mw-editTools">' .
-			wfMessage( 'edittools' )->inContentLanguage()->parse() .
+			wfMessage( 'edittools' )->inContentLanguage()->title( $this->getTitle() )->parse() .
 			'</div>' );
 	}
 
@@ -3493,7 +3495,7 @@ HTML
 				wfMessage( 'pipe-separator' )->text() );
 		}
 
-		$message = wfMessage( 'edithelppage' )->inContentLanguage()->text();
+		$message = wfMessage( 'edithelppage' )->inContentLanguage()->title( $this->getTitle() )->text();
 		$edithelpurl = Skin::makeInternalOrExternalUrl( $message );
 		$attrs = [
 			'target' => 'helpwindow',
@@ -3502,7 +3504,7 @@ HTML
 		$edithelp = Html::linkButton( wfMessage( 'edithelp' )->text(),
 			$attrs, [ 'mw-ui-quiet' ] ) .
 			wfMessage( 'word-separator' )->escaped() .
-			wfMessage( 'newwindow' )->parse();
+			wfMessage( 'newwindow' )->title( $this->getTitle() )->parse();
 
 		$wgOut->addHTML( "	<span class='cancelLink'>{$cancel}</span>\n" );
 		$wgOut->addHTML( "	<span class='editHelp'>{$edithelp}</span>\n" );
@@ -3540,7 +3542,7 @@ HTML
 			$de = $handler->createDifferenceEngine( $this->mArticle->getContext() );
 			$de->setContent( $content2, $content1 );
 			$de->showDiff(
-				wfMessage( 'yourtext' )->parse(),
+				wfMessage( 'yourtext' )->title( $this->getTitle() )->parse(),
 				wfMessage( 'storedversion' )->text()
 			);
 
@@ -3563,7 +3565,7 @@ HTML
 
 		return Linker::linkKnown(
 			$this->getContextTitle(),
-			wfMessage( 'cancel' )->parse(),
+			wfMessage( 'cancel' )->title( $this->getTitle() )->parse(),
 			Html::buttonAttributes( $attrs, [ 'mw-ui-quiet' ] ),
 			$cancelParams
 		);
@@ -3765,13 +3767,12 @@ HTML
 			}
 
 		} catch ( MWContentSerializationException $ex ) {
-			$m = wfMessage(
+		 	$note .= "\n\n" . wfMessage(
 				'content-failed-to-parse',
 				$this->contentModel,
 				$this->contentFormat,
 				$ex->getMessage()
-			);
-			$note .= "\n\n" . $m->parse();
+			)->title( $this->getTitle() )->parse();
 			$previewHTML = '';
 		}
 
@@ -4003,7 +4004,7 @@ HTML
 		// don't show the minor edit checkbox if it's a new page or section
 		if ( !$this->isNew ) {
 			$checkboxes['minor'] = '';
-			$minorLabel = wfMessage( 'minoredit' )->parse();
+			$minorLabel = wfMessage( 'minoredit' )->title( $this->getTitle() )->parse();
 			if ( $wgUser->isAllowed( 'minoredit' ) ) {
 				$attribs = [
 					'tabindex' => ++$tabindex,
@@ -4026,7 +4027,7 @@ HTML
 			}
 		}
 
-		$watchLabel = wfMessage( 'watchthis' )->parse();
+		$watchLabel = wfMessage( 'watchthis' )->title( $this->getTitle() )->parse();
 		$checkboxes['watch'] = '';
 		if ( $wgUser->isLoggedIn() ) {
 			$attribs = [
@@ -4110,7 +4111,8 @@ HTML
 
 		$wgOut->prepareErrorPage( wfMessage( 'nosuchsectiontitle' ) );
 
-		$res = wfMessage( 'nosuchsectiontext', $this->section )->parseAsBlock();
+		$res = wfMessage( 'nosuchsectiontext', $this->section )
+			->title( $this->getTitle() )->parseAsBlock();
 		Hooks::run( 'EditPageNoSuchSection', [ &$this, &$res ] );
 		$wgOut->addHTML( $res );
 
