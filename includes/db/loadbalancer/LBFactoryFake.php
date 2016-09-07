@@ -40,7 +40,7 @@ class LBFactoryFake extends LBFactory {
 		throw new DBAccessError;
 	}
 
-	public function &getExternalLB( $cluster, $wiki = false ) {
+	public function getExternalLB( $cluster, $wiki = false ) {
 		throw new DBAccessError;
 	}
 

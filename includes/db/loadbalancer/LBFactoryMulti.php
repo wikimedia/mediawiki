@@ -293,7 +293,7 @@ class LBFactoryMulti extends LBFactory {
 	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
-	public function &getExternalLB( $cluster, $wiki = false ) {
+	public function getExternalLB( $cluster, $wiki = false ) {
 		if ( !isset( $this->extLBs[$cluster] ) ) {
 			$this->extLBs[$cluster] = $this->newExternalLB( $cluster, $wiki );
 			$this->extLBs[$cluster]->parentInfo( [ 'id' => "ext-$cluster" ] );

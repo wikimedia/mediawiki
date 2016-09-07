@@ -185,7 +185,7 @@ abstract class LBFactory implements DestructibleService {
 	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
-	abstract public function &getExternalLB( $cluster, $wiki = false );
+	abstract public function getExternalLB( $cluster, $wiki = false );
 
 	/**
 	 * Execute a function for each tracked load balancer

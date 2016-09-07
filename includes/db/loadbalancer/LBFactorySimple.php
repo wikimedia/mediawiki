@@ -122,7 +122,7 @@ class LBFactorySimple extends LBFactory {
 	 * @param bool|string $wiki
 	 * @return array
 	 */
-	public function &getExternalLB( $cluster, $wiki = false ) {
+	public function getExternalLB( $cluster, $wiki = false ) {
 		if ( !isset( $this->extLBs[$cluster] ) ) {
 			$this->extLBs[$cluster] = $this->newExternalLB( $cluster, $wiki );
 			$this->extLBs[$cluster]->parentInfo( [ 'id' => "ext-$cluster" ] );

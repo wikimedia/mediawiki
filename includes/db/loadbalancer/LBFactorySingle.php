@@ -73,7 +73,7 @@ class LBFactorySingle extends LBFactory {
 	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancerSingle
 	 */
-	public function &getExternalLB( $cluster, $wiki = false ) {
+	public function getExternalLB( $cluster, $wiki = false ) {
 		return $this->lb;
 	}
 
