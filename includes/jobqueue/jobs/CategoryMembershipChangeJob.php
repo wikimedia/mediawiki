@@ -19,6 +19,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Job to add recent change entries mentioning category membership changes
@@ -48,7 +49,8 @@ class CategoryMembershipChangeJob extends Job {
 			return false; // deleted?
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$dbw = $lb->getConnection( DB_MASTER );
 		// Use a named lock so that jobs for this page see each others' changes
 		$lockKey = "CategoryMembershipUpdates:{$page->getId()}";
 		$scopedLock = $dbw->getScopedLockAndFlush( $lockKey, __METHOD__, 10 );
@@ -59,12 +61,12 @@ class CategoryMembershipChangeJob extends Job {
 
 		$dbr = wfGetDB( DB_REPLICA, [ 'recentchanges' ] );
 		// Wait till the replica DB is caught up so that jobs for this page see each others' changes
-		if ( !wfGetLB()->safeWaitForMasterPos( $dbr ) ) {
+		if ( !$lb->safeWaitForMasterPos( $dbr ) ) {
 			$this->setLastError( "Timed out while waiting for replica DB to catch up" );
 			return false;
 		}
 		// Clear any stale REPEATABLE-READ snapshot
-		wfGetLBFactory()->commitAll( __METHOD__ );
+		$dbr->flushSnapshot( __METHOD__ );
 
 		$cutoffUnix = wfTimestamp( TS_UNIX, $this->params['revTimestamp'] );
 		// Using ENQUEUE_FUDGE_SEC handles jobs inserted out of revision order due to the delay
@@ -118,19 +120,23 @@ class CategoryMembershipChangeJob extends Job {
 		);
 
 		// Apply all category updates in revision timestamp order
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		foreach ( $res as $row ) {
-			$this->notifyUpdatesForRevision( $page, Revision::newFromRow( $row ) );
+			$this->notifyUpdatesForRevision( $lbFactory, $page, Revision::newFromRow( $row ) );
 		}
 
 		return true;
 	}
 
 	/**
+	 * @param LBFactory $lbFactory
 	 * @param WikiPage $page
 	 * @param Revision $newRev
 	 * @throws MWException
 	 */
-	protected function notifyUpdatesForRevision( WikiPage $page, Revision $newRev ) {
+	protected function notifyUpdatesForRevision( 
+		LBFactory $lbFactory, WikiPage $page, Revision $newRev 
+	) {
 		$config = RequestContext::getMain()->getConfig();
 		$title = $page->getTitle();
 
@@ -156,9 +162,7 @@ class CategoryMembershipChangeJob extends Job {
 			return; // nothing to do
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
-		$factory = wfGetLBFactory();
-		$ticket = $factory->getEmptyTransactionTicket( __METHOD__ );
+		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
 
 		$catMembChange = new CategoryMembershipChange( $title, $newRev );
 		$catMembChange->checkTemplateLinks();
@@ -170,7 +174,7 @@ class CategoryMembershipChangeJob extends Job {
 			$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryName );
 			$catMembChange->triggerCategoryAddedNotification( $categoryTitle );
 			if ( $insertCount++ && ( $insertCount % $batchSize ) == 0 ) {
-				$factory->commitAndWaitForReplication( __METHOD__, $ticket );
+				$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
 			}
 		}
 
@@ -178,7 +182,7 @@ class CategoryMembershipChangeJob extends Job {
 			$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryName );
 			$catMembChange->triggerCategoryRemovedNotification( $categoryTitle );
 			if ( $insertCount++ && ( $insertCount++ % $batchSize ) == 0 ) {
-				$factory->commitAndWaitForReplication( __METHOD__, $ticket );
+				$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
 			}
 		}
 	}
