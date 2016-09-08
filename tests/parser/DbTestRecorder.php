@@ -19,8 +19,13 @@
  * @ingroup Testing
  */
 
-class DbTestRecorder extends DbTestPreviewer {
+class DbTestRecorder extends TestRecorder {
 	public $version;
+	private $db;
+
+	public function __construct( IDatabase $db ) {
+		$this->db = $db;
+	}
 
 	/**
 	 * Set up result recording; insert a record for the run with the date
@@ -36,8 +41,6 @@ class DbTestRecorder extends DbTestPreviewer {
 			$this->db->sourceFile( $this->db->patchPath( 'patch-testrun.sql' ) );
 			echo "OK, resuming.\n";
 		}
-
-		parent::start();
 
 		$this->db->insert( 'testrun',
 			[
@@ -58,17 +61,15 @@ class DbTestRecorder extends DbTestPreviewer {
 	/**
 	 * Record an individual test item's success or failure to the db
 	 *
-	 * @param string $test
-	 * @param bool $result
+	 * @param array $test
+	 * @param ParserTestResult $result
 	 */
-	function record( $test, $subtest, $result ) {
-		parent::record( $test, $subtest, $result );
-
+	function record( $test, ParserTestResult $result ) {
 		$this->db->insert( 'testitem',
 			[
 				'ti_run' => $this->curRun,
-				'ti_name' => $this->getName( $test, $subtest ),
-				'ti_success' => $result ? 1 : 0,
+				'ti_name' => $test['desc'],
+				'ti_success' => $result->isSuccess() ? 1 : 0,
 			],
 			__METHOD__ );
 	}
@@ -78,7 +79,6 @@ class DbTestRecorder extends DbTestPreviewer {
 	 */
 	function end() {
 		$this->db->commit( __METHOD__ );
-		parent::end();
 	}
 }
 

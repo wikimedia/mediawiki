@@ -1,8 +1,7 @@
 <?php
 /**
- * Helper code for the MediaWiki parser test suite. Some code is duplicated
- * in PHPUnit's ParserIntegrationTest.php, so you'll probably want to update both
- * at the same time.
+ * Generic backend for the MediaWiki parser test suite, used by both the
+ * standalone parserTests.php and the PHPUnit "parsertests" suite.
  *
  * Copyright © 2004, 2010 Brion Vibber <brion@pobox.com>
  * https://www.mediawiki.org/
@@ -23,7 +22,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @todo Make this more independent of the configuration (and if possible the database)
- * @todo document
  * @file
  * @ingroup Testing
  */
@@ -34,24 +32,20 @@ use MediaWiki\MediaWikiServices;
  */
 class ParserTestRunner {
 	/**
-	 * @var bool $color whereas output should be colorized
-	 */
-	private $color;
-
-	/**
-	 * @var bool $showOutput Show test output
-	 */
-	private $showOutput;
-
-	/**
 	 * @var bool $useTemporaryTables Use temporary tables for the temporary database
 	 */
 	private $useTemporaryTables = true;
 
 	/**
-	 * @var bool $databaseSetupDone True if the database has been set up
+	 * @var array $setupDone The status of each setup function
 	 */
-	private $databaseSetupDone = false;
+	private $setupDone = [
+		'staticSetup' => false,
+		'perTestSetup' => false,
+		'setupDatabase' => false,
+		'setDatabase' => false,
+		'setupUploads' => false,
+	];
 
 	/**
 	 * Our connection to the database
@@ -76,189 +70,417 @@ class ParserTestRunner {
 	private $tidySupport;
 
 	/**
-	 * @var ITestRecorder
+	 * @var TidyDriverBase
+	 */
+	private $tidyDriver = null;
+
+	/**
+	 * @var TestRecorder
 	 */
 	private $recorder;
 
+	/**
+	 * The upload directory, or null to not set up an upload directory
+	 *
+	 * @var string|null
+	 */
 	private $uploadDir = null;
 
-	public $regex = "";
-	private $savedGlobals = [];
-	private $useDwdiff = false;
-	private $markWhitespace = false;
+	/**
+	 * The name of the file backend to use, or null to use MockFileBackend.
+	 * @var string|null
+	 */
+	private $fileBackendName;
+
+	/**
+	 * A complete regex for filtering tests.
+	 * @var string
+	 */
+	private $regex;
+
+	/**
+	 * A list of normalization functions to apply to the expected and actual
+	 * output.
+	 * @var array
+	 */
 	private $normalizationFunctions = [];
 
 	/**
-	 * Sets terminal colorization and diff/quick modes depending on OS and
-	 * command-line options (--color and --quick).
+	 * @param TestRecorder $recorder
 	 * @param array $options
 	 */
-	public function __construct( $options = [] ) {
-		# Only colorize output if stdout is a terminal.
-		$this->color = !wfIsWindows() && Maintenance::posix_isatty( 1 );
-
-		if ( isset( $options['color'] ) ) {
-			switch ( $options['color'] ) {
-				case 'no':
-					$this->color = false;
-					break;
-				case 'yes':
-				default:
-					$this->color = true;
-					break;
-			}
-		}
-
-		$this->term = $this->color
-			? new AnsiTermColorer()
-			: new DummyTermColorer();
-
-		$this->showDiffs = !isset( $options['quick'] );
-		$this->showProgress = !isset( $options['quiet'] );
-		$this->showFailure = !(
-			isset( $options['quiet'] )
-				&& ( isset( $options['record'] )
-				|| isset( $options['compare'] ) ) ); // redundant output
-
-		$this->showOutput = isset( $options['show-output'] );
-		$this->useDwdiff = isset( $options['dwdiff'] );
-		$this->markWhitespace = isset( $options['mark-ws'] );
+	public function __construct( TestRecorder $recorder, $options = [] ) {
+		$this->recorder = $recorder;
 
 		if ( isset( $options['norm'] ) ) {
-			foreach ( explode( ',', $options['norm'] ) as $func ) {
+			foreach ( $options['norm'] as $func ) {
 				if ( in_array( $func, [ 'removeTbody', 'trimWhitespace' ] ) ) {
 					$this->normalizationFunctions[] = $func;
 				} else {
-					echo "Warning: unknown normalization option \"$func\"\n";
+					$this->recorder->warning(
+						"Warning: unknown normalization option \"$func\"\n" );
 				}
 			}
 		}
 
-		if ( isset( $options['filter'] ) ) {
-			$options['regex'] = $options['filter'];
-		}
-
-		if ( isset( $options['regex'] ) ) {
-			if ( isset( $options['record'] ) ) {
-				echo "Warning: --record cannot be used with --regex, disabling --record\n";
-				unset( $options['record'] );
-			}
+		if ( isset( $options['regex'] ) && $options['regex'] !== false ) {
 			$this->regex = $options['regex'];
 		} else {
 			# Matches anything
-			$this->regex = '';
+			$this->regex = '//';
 		}
 
-		$this->setupRecorder( $options );
-		$this->keepUploads = isset( $options['keep-uploads'] );
+		$this->keepUploads = !empty( $options['keep-uploads'] );
 
-		if ( $this->keepUploads ) {
-			$this->uploadDir = wfTempDir() . '/mwParser-images';
-		} else {
-			$this->uploadDir = wfTempDir() . "/mwParser-" . mt_rand() . "-images";
-		}
+		$this->fileBackendName = isset( $options['file-backend'] ) ?
+			$options['file-backend'] : false;
 
-		$this->runDisabled = isset( $options['run-disabled'] );
-		$this->runParsoid = isset( $options['run-parsoid'] );
+		$this->runDisabled = !empty( $options['run-disabled'] );
+		$this->runParsoid = !empty( $options['run-parsoid'] );
 
 		$this->djVuSupport = new DjVuSupport();
-		$this->tidySupport = new TidySupport( isset( $options['use-tidy-config'] ) );
+		$this->tidySupport = new TidySupport( !empty( $options['use-tidy-config'] ) );
 		if ( !$this->tidySupport->isEnabled() ) {
-			echo "Warning: tidy is not installed, skipping some tests\n";
+			$this->recorder->warning(
+				"Warning: tidy is not installed, skipping some tests\n" );
 		}
 
-		$this->hooks = [];
-		$this->functionHooks = [];
-		$this->transparentHooks = [];
-		$this->setUp();
+		if ( isset( $options['upload-dir'] ) ) {
+			$this->uploadDir = $options['upload-dir'];
+		}
 	}
 
-	function setUp() {
-		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc,
-			$wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory,
-			$wgExtraNamespaces, $wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
-			$wgExtraInterlanguageLinkPrefixes, $wgLocalInterwikis,
-			$parserMemc, $wgThumbnailScriptPath, $wgScriptPath, $wgResourceBasePath,
-			$wgArticlePath, $wgScript, $wgStylePath, $wgExtensionAssetsPath,
-			$wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgLockManagers;
+	public function getRecorder() {
+		return $this->recorder;
+	}
 
-		$wgScriptPath = '';
-		$wgScript = '/index.php';
-		$wgStylePath = '/skins';
-		$wgResourceBasePath = '';
-		$wgExtensionAssetsPath = '/extensions';
-		$wgArticlePath = '/wiki/$1';
-		$wgThumbnailScriptPath = false;
-		$wgLockManagers = [ [
+	/**
+	 * Do any setup which can be done once for all tests, independent of test
+	 * options, except for database setup.
+	 *
+	 * Public setup functions in this class return a ScopedCallback object. When
+	 * this object is destroyed by going out of scope, teardown of the
+	 * corresponding test setup is performed.
+	 *
+	 * Teardown objects may be chained by passing a ScopedCallback from a
+	 * previous setup stage as the $nextTeardown parameter. This enforces the
+	 * convention that teardown actions are taken in reverse order to the
+	 * corresponding setup actions. When $nextTeardown is specified, a
+	 * ScopedCallback will be returned which first tears down the current
+	 * setup stage, and then tears down the previous setup stage which was
+	 * specified by $nextTeardown.
+	 *
+	 * @param ScopedCallback|null $nextTeardown
+	 * @return ScopedCallback
+	 */
+	public function staticSetup( $nextTeardown = null ) {
+		// A note on coding style:
+
+		// The general idea here is to keep setup code together with
+		// corresponding teardown code, in a fine-grained manner. We have two
+		// arrays: $setup and $teardown. The code snippets in the $setup array
+		// are executed at the end of the method, before it returns, and the
+		// code snippets in the $teardown array are executed in reverse order
+		// when the ScopedCallback object is consumed.
+
+		// Because it is a common operation to save, set and restore global
+		// variables, we have an additional convention: when the array key of
+		// $setup is a string, the string is taken to be the name of the global
+		// variable, and the element value is taken to be the desired new value.
+
+		// It's acceptable to just do the setup immediately, instead of adding
+		// a closure to $setup, except when the setup action depends on global
+		// variable initialisation being done first. In this case, you have to
+		// append a closure to $setup after the global variable is appended.
+
+		// When you add to setup functions in this class, please keep associated
+		// setup and teardown actions together in the source code, and please
+		// add comments explaining why the setup action is necessary.
+
+		$setup = [];
+		$teardown = [];
+
+		$teardown[] = $this->markSetupDone( 'staticSetup' );
+
+		// Some settings which influence HTML output
+		$setup['wgSitename'] = 'MediaWiki';
+		$setup['wgServer'] = 'http://example.org';
+		$setup['wgServerName'] = 'example.org';
+		$setup['wgScriptPath'] = '';
+		$setup['wgScript'] = '/index.php';
+		$setup['wgResourceBasePath'] = '';
+		$setup['wgStylePath'] = '/skins';
+		$setup['wgExtensionAssetsPath'] = '/extensions';
+		$setup['wgArticlePath'] = '/wiki/$1';
+		$setup['wgActionPaths'] = [];
+		$setup['wgVariantArticlePath'] = false;
+		$setup['wgUploadNavigationUrl'] = false;
+		$setup['wgCapitalLinks'] = true;
+		$setup['wgNoFollowLinks'] = true;
+		$setup['wgNoFollowDomainExceptions'] = [ 'no-nofollow.org' ];
+		$setup['wgExternalLinkTarget'] = false;
+		$setup['wgExperimentalHtmlIds'] = false;
+		$setup['wgLocaltimezone'] = 'UTC';
+		$setup['wgHtml5'] = true;
+		$setup['wgDisableLangConversion'] = false;
+		$setup['wgDisableTitleConversion'] = false;
+
+		// "extra language links"
+		// see https://gerrit.wikimedia.org/r/111390
+		$setup['wgExtraInterlanguageLinkPrefixes'] = [ 'mul' ];
+
+		// All FileRepo changes should be done here by injecting services,
+		// there should be no need to change global variables.
+		RepoGroup::setSingleton( $this->createRepoGroup() );
+		$teardown[] = function () {
+			RepoGroup::destroySingleton();
+		};
+
+		// Set up null lock managers
+		$setup['wgLockManagers'] = [ [
 			'name' => 'fsLockManager',
-			'class' => 'FSLockManager',
-			'lockDirectory' => $this->uploadDir . '/lockdir',
+			'class' => 'NullLockManager',
 		], [
 			'name' => 'nullLockManager',
 			'class' => 'NullLockManager',
 		] ];
-		$wgLocalFileRepo = [
-			'class' => 'LocalRepo',
-			'name' => 'local',
-			'url' => 'http://example.com/images',
-			'hashLevels' => 2,
-			'transformVia404' => false,
-			'backend' => new FSFileBackend( [
+		$reset = function() {
+			LockManagerGroup::destroySingletons();
+		};
+		$setup[] = $reset;
+		$teardown[] = $reset;
+
+		// This allows article insertion into the prefixed DB
+		$setup['wgDefaultExternalStore'] = false;
+
+		// This might slightly reduce memory usage
+		$setup['wgAdaptiveMessageCache'] = true;
+
+		// This is essential and overrides disabling of database messages in TestSetup
+		$setup['wgUseDatabaseMessages'] = true;
+		$reset = function () {
+			MessageCache::destroyInstance();
+		};
+		$setup[] = $reset;
+		$teardown[] = $reset;
+
+		// It's not necessary to actually convert any files
+		$setup['wgSVGConverter'] = 'null';
+		$setup['wgSVGConverters'] = [ 'null' => 'echo "1">$output' ];
+
+		// Fake constant timestamp
+		Hooks::register( 'ParserGetVariableValueTs', 'ParserTestRunner::getFakeTimestamp' );
+		$teardown[] = function () {
+			Hooks::clear( 'ParserGetVariableValueTs' );
+		};
+
+		$this->appendNamespaceSetup( $setup, $teardown );
+
+		// Set up interwikis and append teardown function
+		$teardown[] = $this->setupInterwikis();
+
+		// This affects title normalization in links. It invalidates
+		// MediaWikiTitleCodec objects.
+		$setup['wgLocalInterwikis'] = [ 'local', 'mi' ];
+		$reset = function () {
+			$this->resetTitleServices();
+		};
+		$setup[] = $reset;
+		$teardown[] = $reset;
+
+		// Set up a mock MediaHandlerFactory
+		MediaWikiServices::getInstance()->disableService( 'MediaHandlerFactory' );
+		MediaWikiServices::getInstance()->redefineService(
+			'MediaHandlerFactory',
+			function() {
+				return new MockMediaHandlerFactory();
+			}
+		);
+		$teardown[] = function () {
+			MediaWikiServices::getInstance()->resetServiceForTesting( 'MediaHandlerFactory' );
+		};
+
+		// SqlBagOStuff broke when using temporary tables on r40209 (bug 15892).
+		// It seems to have been fixed since (r55079?), but regressed at some point before r85701.
+		// This works around it for now...
+		global $wgObjectCaches;
+		$setup['wgObjectCaches'] = [ CACHE_DB => $wgObjectCaches['hash'] ] + $wgObjectCaches;
+		if ( isset( ObjectCache::$instances[CACHE_DB] ) ) {
+			$savedCache = ObjectCache::$instances[CACHE_DB];
+			ObjectCache::$instances[CACHE_DB] = new HashBagOStuff;
+			$teardown[] = function () use ( $savedCache ) {
+				ObjectCache::$instances[CACHE_DB] = $savedCache;
+			};
+		}
+
+		$teardown[] = $this->executeSetupSnippets( $setup );
+
+		// Schedule teardown snippets in reverse order
+		return $this->createTeardownObject( $teardown, $nextTeardown );
+	}
+
+	private function appendNamespaceSetup( &$setup, &$teardown ) {
+		// Add a namespace shadowing a interwiki link, to test
+		// proper precedence when resolving links. (bug 51680)
+		$setup['wgExtraNamespaces'] = [
+			100 => 'MemoryAlpha',
+			101 => 'MemoryAlpha_talk'
+		];
+		// Changing wgExtraNamespaces invalidates caches in MWNamespace and
+		// any live Language object, both on setup and teardown
+		$reset = function () {
+			MWNamespace::getCanonicalNamespaces( true );
+			$GLOBALS['wgContLang']->resetNamespaces();
+		};
+		$setup[] = $reset;
+		$teardown[] = $reset;
+	}
+
+	/**
+	 * Create a RepoGroup object appropriate for the current configuration
+	 * @return RepoGroup
+	 */
+	protected function createRepoGroup() {
+		if ( $this->uploadDir ) {
+			if ( $this->fileBackendName ) {
+				throw new MWException( 'You cannot specify both use-filebackend and upload-dir' );
+			}
+			$backend = new FSFileBackend( [
 				'name' => 'local-backend',
 				'wikiId' => wfWikiID(),
-				'containerPaths' => [
-					'local-public' => $this->uploadDir . '/public',
-					'local-thumb' => $this->uploadDir . '/thumb',
-					'local-temp' => $this->uploadDir . '/temp',
-					'local-deleted' => $this->uploadDir . '/deleted',
-				]
-			] )
-		];
-		$wgNamespaceProtection[NS_MEDIAWIKI] = 'editinterface';
-		$wgNamespaceAliases['Image'] = NS_FILE;
-		$wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
-		# add a namespace shadowing a interwiki link, to test
-		# proper precedence when resolving links. (bug 51680)
-		$wgExtraNamespaces[100] = 'MemoryAlpha';
-		$wgExtraNamespaces[101] = 'MemoryAlpha talk';
-
-		// XXX: tests won't run without this (for CACHE_DB)
-		if ( $wgMainCacheType === CACHE_DB ) {
-			$wgMainCacheType = CACHE_NONE;
-		}
-		if ( $wgMessageCacheType === CACHE_DB ) {
-			$wgMessageCacheType = CACHE_NONE;
-		}
-		if ( $wgParserCacheType === CACHE_DB ) {
-			$wgParserCacheType = CACHE_NONE;
-		}
-
-		DeferredUpdates::clearPendingUpdates();
-		$wgMemc = wfGetMainCache(); // checks $wgMainCacheType
-		$messageMemc = wfGetMessageCacheStorage();
-		$parserMemc = wfGetParserCacheStorage();
-
-		RequestContext::resetMain();
-		$context = new RequestContext;
-		$wgUser = new User;
-		$wgLang = $context->getLanguage();
-		$wgOut = $context->getOutput();
-		$wgRequest = $context->getRequest();
-		$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], [ $wgParserConf ] );
-
-		if ( $wgStyleDirectory === false ) {
-			$wgStyleDirectory = "$IP/skins";
+				'basePath' => $this->uploadDir
+			] );
+		} elseif ( $this->fileBackendName ) {
+			global $wgFileBackends;
+			$name = $this->fileBackendName;
+			$useConfig = false;
+			foreach ( $wgFileBackends as $conf ) {
+				if ( $conf['name'] === $name ) {
+					$useConfig = $conf;
+				}
+			}
+			if ( $useConfig === false ) {
+				throw new MWException( "Unable to find file backend \"$name\"" );
+			}
+			$useConfig['name'] = 'local-backend'; // swap name
+			unset( $useConfig['lockManager'] );
+			unset( $useConfig['fileJournal'] );
+			$class = $useConfig['class'];
+			$backend = new $class( $useConfig );
+		} else {
+			# Replace with a mock. We do not care about generating real
+			# files on the filesystem, just need to expose the file
+			# informations.
+			$backend = new MockFileBackend( [
+				'name' => 'local-backend',
+				'wikiId' => wfWikiID()
+			] );
 		}
 
-		self::setupInterwikis();
-		$wgLocalInterwikis = [ 'local', 'mi' ];
-		// "extra language links"
-		// see https://gerrit.wikimedia.org/r/111390
-		array_push( $wgExtraInterlanguageLinkPrefixes, 'mul' );
+		return new RepoGroup(
+			[
+				'class' => 'LocalRepo',
+				'name' => 'local',
+				'url' => 'http://example.com/images',
+				'hashLevels' => 2,
+				'transformVia404' => false,
+				'backend' => $backend
+			],
+			[]
+		);
+	}
 
-		// Reset namespace cache
-		MWNamespace::getCanonicalNamespaces( true );
-		Language::factory( 'en' )->resetNamespaces();
+	/**
+	 * Execute an array in which elements with integer keys are taken to be
+	 * callable objects, and other elements are taken to be global variable
+	 * set operations, with the key giving the variable name and the value
+	 * giving the new global variable value. A closure is returned which, when
+	 * executed, sets the global variables back to the values they had before
+	 * this function was called.
+	 *
+	 * @see staticSetup
+	 *
+	 * @param array $setup
+	 * @return closure
+	 */
+	protected function executeSetupSnippets( $setup ) {
+		$saved = [];
+		foreach ( $setup as $name => $value ) {
+			if ( is_int( $name ) ) {
+				$value();
+			} else {
+				$saved[$name] = isset( $GLOBALS[$name] ) ? $GLOBALS[$name] : null;
+				$GLOBALS[$name] = $value;
+			}
+		}
+		return function () use ( $saved ) {
+			$this->executeSetupSnippets( $saved );
+		};
+	}
+
+	/**
+	 * Take a setup array in the same format as the one given to
+	 * executeSetupSnippets(), and return a ScopedCallback which, when consumed,
+	 * executes the snippets in the setup array in reverse order. This is used
+	 * to create "teardown objects" for the public API.
+	 *
+	 * @see staticSetup
+	 *
+	 * @param array $teardown The snippet array
+	 * @param ScopedCallback|null A ScopedCallback to consume
+	 * @return ScopedCallback
+	 */
+	protected function createTeardownObject( $teardown, $nextTeardown ) {
+		return new ScopedCallback( function() use ( $teardown, $nextTeardown ) {
+			// Schedule teardown snippets in reverse order
+			$teardown = array_reverse( $teardown );
+
+			$this->executeSetupSnippets( $teardown );
+			if ( $nextTeardown ) {
+				ScopedCallback::consume( $nextTeardown );
+			}
+		} );
+	}
+
+	/**
+	 * Set a setupDone flag to indicate that setup has been done, and return
+	 * the teardown closure. If the flag was already set, throw an exception.
+	 *
+	 * @param string $funcName The setup function name
+	 * @return closure
+	 */
+	protected function markSetupDone( $funcName ) {
+		if ( $this->setupDone[$funcName] ) {
+			throw new MWException( "$funcName is already done" );
+		}
+		$this->setupDone[$funcName] = true;
+		return function () use ( $funcName ) {
+			wfDebug( "markSetupDone unmarked $funcName" );
+			$this->setupDone[$funcName] = false;
+		};
+	}
+
+	/**
+	 * Ensure a given setup stage has been done, throw an exception if it has
+	 * not.
+	 */
+	protected function checkSetupDone( $funcName, $funcName2 = null ) {
+		if ( !$this->setupDone[$funcName]
+			&& ( $funcName === null || !$this->setupDone[$funcName2] )
+		) {
+			throw new MWException( "$funcName must be called before calling " .
+				wfGetCaller() );
+		}
+	}
+
+	/**
+	 * Determine whether a particular setup function has been run
+	 *
+	 * @param string $funcName
+	 * @return boolean
+	 */
+	public function isSetupDone( $funcName ) {
+		return isset( $this->setupDone[$funcName] ) ? $this->setupDone[$funcName] : false;
 	}
 
 	/**
@@ -269,8 +491,10 @@ class ParserTestRunner {
 	 * the interwiki cache by using the 'InterwikiLoadPrefix' hook.
 	 * Since we are not interested in looking up interwikis in the database,
 	 * the hook completely replace the existing mechanism (hook returns false).
+	 *
+	 * @return closure for teardown
 	 */
-	public static function setupInterwikis() {
+	private function setupInterwikis() {
 		# Hack: insert a few Wikipedia in-project interwiki prefixes,
 		# for testing inter-language links
 		Hooks::register( 'InterwikiLoadPrefix', function ( $prefix, &$iwData ) {
@@ -333,38 +557,24 @@ class ParserTestRunner {
 			// We only want to rely on the above fixtures
 			return false;
 		} );// hooks::register
-	}
 
-	/**
-	 * Remove the hardcoded interwiki lookup table.
-	 */
-	public static function tearDownInterwikis() {
-		Hooks::clear( 'InterwikiLoadPrefix' );
+		return function () {
+			// Tear down
+			Hooks::clear( 'InterwikiLoadPrefix' );
+		};
 	}
 
 	/**
 	 * Reset the Title-related services that need resetting
 	 * for each test
 	 */
-	public static function resetTitleServices() {
+	private function resetTitleServices() {
 		$services = MediaWikiServices::getInstance();
 		$services->resetServiceForTesting( 'TitleFormatter' );
 		$services->resetServiceForTesting( 'TitleParser' );
 		$services->resetServiceForTesting( '_MediaWikiTitleCodec' );
 		$services->resetServiceForTesting( 'LinkRenderer' );
 		$services->resetServiceForTesting( 'LinkRendererFactory' );
-	}
-
-	public function setupRecorder( $options ) {
-		if ( isset( $options['record'] ) ) {
-			$this->recorder = new DbTestRecorder( $this );
-			$this->recorder->version = isset( $options['setversion'] ) ?
-				$options['setversion'] : SpecialVersion::getVersion();
-		} elseif ( isset( $options['compare'] ) ) {
-			$this->recorder = new DbTestPreviewer( $this );
-		} else {
-			$this->recorder = new TestRecorder( $this );
-		}
 	}
 
 	/**
@@ -389,50 +599,111 @@ class ParserTestRunner {
 	 * Prints status updates on stdout and counts up the total
 	 * number and percentage of passed tests.
 	 *
+	 * Handles all setup and teardown.
+	 *
 	 * @param array $filenames Array of strings
 	 * @return bool True if passed all tests, false if any tests failed.
 	 */
 	public function runTestsFromFiles( $filenames ) {
 		$ok = false;
 
-		// be sure, ParserTestRunner::addArticle has correct language set,
-		// so that system messages gets into the right language cache
-		$GLOBALS['wgLanguageCode'] = 'en';
-		$GLOBALS['wgContLang'] = Language::factory( 'en' );
+		$teardownGuard = $this->staticSetup();
+		$teardownGuard = $this->setupDatabase( $teardownGuard );
+		$teardownGuard = $this->setupUploads( $teardownGuard );
 
 		$this->recorder->start();
 		try {
-			$this->setupDatabase();
 			$ok = true;
 
 			foreach ( $filenames as $filename ) {
-				echo "Running parser tests from: $filename\n";
-				$tests = new TestFileReader( $filename, $this );
-				$ok = $this->runTests( $tests ) && $ok;
+				$testFileInfo = TestFileReader::read( $filename, [
+					'runDisabled' => $this->runDisabled,
+					'runParsoid' => $this->runParsoid,
+					'regex' => $this->regex ] );
+
+				// Don't start the suite if there are no enabled tests in the file
+				if ( !$testFileInfo['tests'] ) {
+					continue;
+				}
+
+				$this->recorder->startSuite( $filename );
+				$ok = $this->runTests( $testFileInfo ) && $ok;
+				$this->recorder->endSuite( $filename );
 			}
 
-			$this->teardownDatabase();
 			$this->recorder->report();
 		} catch ( DBError $e ) {
-			echo $e->getMessage();
+			$this->recorder->warning( $e->getMessage() );
 		}
 		$this->recorder->end();
+
+		ScopedCallback::consume( $teardownGuard );
 
 		return $ok;
 	}
 
-	function runTests( $tests ) {
+	/**
+	 * Determine whether the current parser has the hooks registered in it
+	 * that are required by a file read by TestFileReader.
+	 */
+	public function meetsRequirements( $requirements ) {
+		foreach ( $requirements as $requirement ) {
+			switch ( $requirement['type'] ) {
+			case 'hook':
+				$ok = $this->requireHook( $requirement['name'] );
+				break;
+			case 'functionHook':
+				$ok = $this->requireFunctionHook( $requirement['name'] );
+				break;
+			case 'transparentHook':
+				$ok = $this->requireTransparentHook( $requirement['name'] );
+				break;
+			}
+			if ( !$ok ) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Run the tests from a single file. staticSetup() and setupDatabase()
+	 * must have been called already.
+	 *
+	 * @param array $testFileInfo Parsed file info returned by TestFileReader
+	 * @return bool True if passed all tests, false if any tests failed.
+	 */
+	public function runTests( $testFileInfo ) {
 		$ok = true;
 
-		foreach ( $tests as $t ) {
-			$result =
-				$this->runTest( $t['test'], $t['input'], $t['result'], $t['options'], $t['config'] );
-			$ok = $ok && $result;
-			$this->recorder->record( $t['test'], $t['subtest'], $result );
+		$this->checkSetupDone( 'staticSetup' );
+
+		// Don't add articles from the file if there are no enabled tests from the file
+		if ( !$testFileInfo['tests'] ) {
+			return true;
 		}
 
-		if ( $this->showProgress ) {
-			print "\n";
+		// If any requirements are not met, mark all tests from the file as skipped
+		if ( !$this->meetsRequirements( $testFileInfo['requirements'] ) ) {
+			foreach ( $testFileInfo['tests'] as $test ) {
+				$this->recorder->startTest( $test );
+				$this->recorder->skipped( $test, 'required extension not enabled' );
+			}
+			return true;
+		}
+
+		// Add articles
+		$this->addArticles( $testFileInfo['articles'] );
+
+		// Run tests
+		foreach ( $testFileInfo['tests'] as $test ) {
+			$this->recorder->startTest( $test );
+			$result =
+				$this->runTest( $test );
+			if ( $result !== false ) {
+				$ok = $ok && $result->isSuccess();
+				$this->recorder->record( $test, $result );
+			}
 		}
 
 		return $ok;
@@ -449,21 +720,7 @@ class ParserTestRunner {
 
 		$class = $wgParserConf['class'];
 		$parser = new $class( [ 'preprocessorClass' => $preprocessor ] + $wgParserConf );
-
-		foreach ( $this->hooks as $tag => $callback ) {
-			$parser->setHook( $tag, $callback );
-		}
-
-		foreach ( $this->functionHooks as $tag => $bits ) {
-			list( $callback, $flags ) = $bits;
-			$parser->setFunctionHook( $tag, $callback, $flags );
-		}
-
-		foreach ( $this->transparentHooks as $tag => $callback ) {
-			$parser->setTransparentTagHook( $tag, $callback );
-		}
-
-		Hooks::run( 'ParserTestParser', [ &$parser ] );
+		ParserTestParserHook::setup( $parser );
 
 		return $parser;
 	}
@@ -473,33 +730,39 @@ class ParserTestRunner {
 	 * and compare the output against the expected results.
 	 * Prints status and explanatory messages to stdout.
 	 *
-	 * @param string $desc Test's description
-	 * @param string $input Wikitext to try rendering
-	 * @param string $result Result to output
-	 * @param array $opts Test's options
-	 * @param string $config Overrides for global variables, one per line
-	 * @return bool
+	 * staticSetup() and setupWikiData() must be called before this function
+	 * is entered.
+	 *
+	 * @param array $test The test parameters:
+	 *  - test: The test name
+	 *  - desc: The subtest description
+	 *  - input: Wikitext to try rendering
+	 *  - options: Array of test options
+	 *  - config: Overrides for global variables, one per line
+	 *
+	 * @return ParserTestResult or false if skipped
 	 */
-	public function runTest( $desc, $input, $result, $opts, $config ) {
-		if ( $this->showProgress ) {
-			$this->showTesting( $desc );
-		}
+	public function runTest( $test ) {
+		wfDebug( __METHOD__.": running {$test['desc']}" );
+		$opts = $this->parseOptions( $test['options'] );
+		$teardownGuard = $this->perTestSetup( $test );
 
-		$opts = $this->parseOptions( $opts );
-		$context = $this->setupGlobals( $opts, $config );
-
+		$context = RequestContext::getMain();
 		$user = $context->getUser();
 		$options = ParserOptions::newFromContext( $context );
 
 		if ( isset( $opts['djvu'] ) ) {
 			if ( !$this->djVuSupport->isEnabled() ) {
-				return $this->showSkipped();
+				$this->recorder->skipped( $test,
+					'djvu binaries do not exist or are not executable' );
+				return false;
 			}
 		}
 
 		if ( isset( $opts['tidy'] ) ) {
 			if ( !$this->tidySupport->isEnabled() ) {
-				return $this->showSkipped();
+				$this->recorder->skipped( $test, 'tidy extension is not installed' );
+				return false;
 			} else {
 				$options->setTidy( true );
 			}
@@ -511,29 +774,28 @@ class ParserTestRunner {
 			$titleText = 'Parser test';
 		}
 
-		ObjectCache::getMainWANInstance()->clearProcessCache();
 		$local = isset( $opts['local'] );
 		$preprocessor = isset( $opts['preprocessor'] ) ? $opts['preprocessor'] : null;
 		$parser = $this->getParser( $preprocessor );
 		$title = Title::newFromText( $titleText );
 
 		if ( isset( $opts['pst'] ) ) {
-			$out = $parser->preSaveTransform( $input, $title, $user, $options );
+			$out = $parser->preSaveTransform( $test['input'], $title, $user, $options );
 		} elseif ( isset( $opts['msg'] ) ) {
-			$out = $parser->transformMsg( $input, $options, $title );
+			$out = $parser->transformMsg( $test['input'], $options, $title );
 		} elseif ( isset( $opts['section'] ) ) {
 			$section = $opts['section'];
-			$out = $parser->getSection( $input, $section );
+			$out = $parser->getSection( $test['input'], $section );
 		} elseif ( isset( $opts['replace'] ) ) {
 			$section = $opts['replace'][0];
 			$replace = $opts['replace'][1];
-			$out = $parser->replaceSection( $input, $section, $replace );
+			$out = $parser->replaceSection( $test['input'], $section, $replace );
 		} elseif ( isset( $opts['comment'] ) ) {
-			$out = Linker::formatComment( $input, $title, $local );
+			$out = Linker::formatComment( $test['input'], $title, $local );
 		} elseif ( isset( $opts['preload'] ) ) {
-			$out = $parser->getPreloadText( $input, $title, $options );
+			$out = $parser->getPreloadText( $test['input'], $title, $options );
 		} else {
-			$output = $parser->parse( $input, $title, $options, true, true, 1337 );
+			$output = $parser->parse( $test['input'], $title, $options, true, true, 1337 );
 			$output->setTOCEnabled( !isset( $opts['notoc'] ) );
 			$out = $output->getText();
 			if ( isset( $opts['tidy'] ) ) {
@@ -559,45 +821,27 @@ class ParserTestRunner {
 			if ( isset( $opts['ill'] ) ) {
 				$out = implode( ' ', $output->getLanguageLinks() );
 			} elseif ( isset( $opts['cat'] ) ) {
-				$outputPage = $context->getOutput();
-				$outputPage->addCategoryLinks( $output->getCategories() );
-				$cats = $outputPage->getCategoryLinks();
-
-				if ( isset( $cats['normal'] ) ) {
-					$out = implode( ' ', $cats['normal'] );
-				} else {
-					$out = '';
+				$out = '';
+				foreach ( $output->getCategories() as $name => $sortkey ) {
+					if ( $out !== '' ) {
+						$out .= "\n";
+					}
+					$out .= "cat=$name sort=$sortkey";
 				}
 			}
 		}
 
-		$this->teardownGlobals();
+		ScopedCallback::consume( $teardownGuard );
 
+		$expected = $test['result'];
 		if ( count( $this->normalizationFunctions ) ) {
-			$result = ParserTestResultNormalizer::normalize( $result, $this->normalizationFunctions );
+			$expected = ParserTestResultNormalizer::normalize(
+				$test['expected'], $this->normalizationFunctions );
 			$out = ParserTestResultNormalizer::normalize( $out, $this->normalizationFunctions );
 		}
 
-		$testResult = new ParserTestResult( $desc );
-		$testResult->expected = $result;
-		$testResult->actual = $out;
-
-		return $this->showTestResult( $testResult );
-	}
-
-	/**
-	 * Refactored in 1.22 to use ParserTestResult
-	 * @param ParserTestResult $testResult
-	 * @return bool
-	 */
-	function showTestResult( ParserTestResult $testResult ) {
-		if ( $testResult->isSuccess() ) {
-			$this->showSuccess( $testResult );
-			return true;
-		} else {
-			$this->showFailure( $testResult );
-			return false;
-		}
+		$testResult = new ParserTestResult( $test, $expected, $out );
+		return $testResult;
 	}
 
 	/**
@@ -617,6 +861,13 @@ class ParserTestRunner {
 		}
 	}
 
+	/**
+	 * Given the options string, return an associative array of options.
+	 * @todo Move this to TestFileReader
+	 *
+	 * @param string $instring
+	 * @return array
+	 */
 	private function parseOptions( $instring ) {
 		$opts = [];
 		// foo
@@ -705,15 +956,25 @@ class ParserTestRunner {
 	}
 
 	/**
-	 * Set up the global variables for a consistent environment for each test.
-	 * Ideally this should replace the global configuration entirely.
-	 * @param string $opts
-	 * @param string $config
-	 * @return RequestContext
+	 * Do any required setup which is dependent on test options.
+	 *
+	 * @see staticSetup() for more information about setup/teardown
+	 *
+	 * @param array $test Test info supplied by TestFileReader
+	 * @param callable|null $nextTeardown
+	 * @return ScopedCallback
 	 */
-	public function setupGlobals( $opts = '', $config = '' ) {
-		# Find out values for some special options.
-		$lang =
+	public function perTestSetup( $test, $nextTeardown = null ) {
+		$teardown = [];
+
+		$this->checkSetupDone( 'setupDatabase', 'setDatabase' );
+		$teardown[] = $this->markSetupDone( 'perTestSetup' );
+
+		$opts = $this->parseOptions( $test['options'] );
+		$config = $test['config'];
+
+		// Find out values for some special options.
+		$langCode =
 			self::getOptionValue( 'language', $opts, 'en' );
 		$variant =
 			self::getOptionValue( 'variant', $opts, false );
@@ -722,131 +983,79 @@ class ParserTestRunner {
 		$linkHolderBatchSize =
 			self::getOptionValue( 'wgLinkHolderBatchSize', $opts, 1000 );
 
-		$settings = [
-			'wgServer' => 'http://example.org',
-			'wgServerName' => 'example.org',
-			'wgScript' => '/index.php',
-			'wgScriptPath' => '',
-			'wgArticlePath' => '/wiki/$1',
-			'wgActionPaths' => [],
-			'wgLockManagers' => [ [
-				'name' => 'fsLockManager',
-				'class' => 'FSLockManager',
-				'lockDirectory' => $this->uploadDir . '/lockdir',
-			], [
-				'name' => 'nullLockManager',
-				'class' => 'NullLockManager',
-			] ],
-			'wgLocalFileRepo' => [
-				'class' => 'LocalRepo',
-				'name' => 'local',
-				'url' => 'http://example.com/images',
-				'hashLevels' => 2,
-				'transformVia404' => false,
-				'backend' => new FSFileBackend( [
-					'name' => 'local-backend',
-					'wikiId' => wfWikiID(),
-					'containerPaths' => [
-						'local-public' => $this->uploadDir,
-						'local-thumb' => $this->uploadDir . '/thumb',
-						'local-temp' => $this->uploadDir . '/temp',
-						'local-deleted' => $this->uploadDir . '/delete',
-					]
-				] )
-			],
+		$setup = [
 			'wgEnableUploads' => self::getOptionValue( 'wgEnableUploads', $opts, true ),
-			'wgUploadNavigationUrl' => false,
-			'wgStylePath' => '/skins',
-			'wgSitename' => 'MediaWiki',
-			'wgLanguageCode' => $lang,
-			'wgDBprefix' => $this->db->getType() != 'oracle' ? 'parsertest_' : 'pt_',
+			'wgLanguageCode' => $langCode,
 			'wgRawHtml' => self::getOptionValue( 'wgRawHtml', $opts, false ),
-			'wgLang' => null,
-			'wgContLang' => null,
 			'wgNamespacesWithSubpages' => [ 0 => isset( $opts['subpage'] ) ],
 			'wgMaxTocLevel' => $maxtoclevel,
-			'wgCapitalLinks' => true,
-			'wgNoFollowLinks' => true,
-			'wgNoFollowDomainExceptions' => [ 'no-nofollow.org' ],
-			'wgThumbnailScriptPath' => false,
-			'wgUseImageResize' => true,
-			'wgSVGConverter' => 'null',
-			'wgSVGConverters' => [ 'null' => 'echo "1">$output' ],
-			'wgLocaltimezone' => 'UTC',
 			'wgAllowExternalImages' => self::getOptionValue( 'wgAllowExternalImages', $opts, true ),
 			'wgThumbLimits' => [ self::getOptionValue( 'thumbsize', $opts, 180 ) ],
 			'wgDefaultLanguageVariant' => $variant,
-			'wgVariantArticlePath' => false,
-			'wgGroupPermissions' => [ '*' => [
-				'createaccount' => true,
-				'read' => true,
-				'edit' => true,
-				'createpage' => true,
-				'createtalk' => true,
-			] ],
-			'wgNamespaceProtection' => [ NS_MEDIAWIKI => 'editinterface' ],
-			'wgDefaultExternalStore' => [],
-			'wgForeignFileRepos' => [],
 			'wgLinkHolderBatchSize' => $linkHolderBatchSize,
-			'wgExperimentalHtmlIds' => false,
-			'wgExternalLinkTarget' => false,
-			'wgHtml5' => true,
-			'wgAdaptiveMessageCache' => true,
-			'wgDisableLangConversion' => false,
-			'wgDisableTitleConversion' => false,
-			// Tidy options.
-			'wgUseTidy' => false,
-			'wgTidyConfig' => isset( $opts['tidy'] ) ? $this->tidySupport->getConfig() : null
 		];
 
 		if ( $config ) {
 			$configLines = explode( "\n", $config );
 
 			foreach ( $configLines as $line ) {
-				list( $var, $value ) = explode( '=', $line, 2 );
-
-				$settings[$var] = eval( "return $value;" );
+				list( $var, $value )  = explode( '=', $line, 2 );
+				$setup[$var] = eval( "return $value;" );
 			}
 		}
-
-		$this->savedGlobals = [];
 
 		/** @since 1.20 */
-		Hooks::run( 'ParserTestGlobals', [ &$settings ] );
+		Hooks::run( 'ParserTestGlobals', [ &$setup ] );
 
-		foreach ( $settings as $var => $val ) {
-			if ( array_key_exists( $var, $GLOBALS ) ) {
-				$this->savedGlobals[$var] = $GLOBALS[$var];
+		// Create tidy driver
+		if ( isset( $opts['tidy'] ) ) {
+			// Cache a driver instance
+			if ( $this->tidyDriver === null ) {
+				$this->tidyDriver = MWTidy::factory( $this->tidySupport->getConfig() );
 			}
-
-			$GLOBALS[$var] = $val;
+			$tidy = $this->tidyDriver;
+		} else {
+			$tidy = false;
 		}
+		MWTidy::setInstance( $tidy );
+		$teardown[] = function () {
+			MWTidy::destroySingleton();
+		};
 
-		// Must be set before $context as user language defaults to $wgContLang
-		$GLOBALS['wgContLang'] = Language::factory( $lang );
-		$GLOBALS['wgMemc'] = new EmptyBagOStuff;
+		// Set content language. This invalidates the magic word cache and title services
+		wfDebug( "Setting up language $langCode" );
+		$lang = Language::factory( $langCode );
+		$setup['wgContLang'] = $lang;
+		$reset = function () {
+			MagicWord::clearCache();
+			$this->resetTitleServices();
+		};
+		$setup[] = $reset;
+		$teardown[] = $reset;
 
-		RequestContext::resetMain();
-		$context = RequestContext::getMain();
-		$GLOBALS['wgLang'] = $context->getLanguage();
-		$GLOBALS['wgOut'] = $context->getOutput();
-		$GLOBALS['wgUser'] = $context->getUser();
+		// Make a user object with the same language
+		$user = new User;
+		$user->setOption( 'language', $langCode );
+		$setup['wgLang'] = $lang;
 
 		// We (re)set $wgThumbLimits to a single-element array above.
-		$context->getUser()->setOption( 'thumbsize', 0 );
+		$user->setOption( 'thumbsize', 0 );
 
-		global $wgHooks;
+		$setup['wgUser'] = $user;
 
-		$wgHooks['ParserTestParser'][] = 'ParserTestParserHook::setup';
-		$wgHooks['ParserGetVariableValueTs'][] = 'ParserTestRunner::getFakeTimestamp';
+		// And put both user and language into the context
+		$context = RequestContext::getMain();
+		$context->setUser( $user );
+		$context->setLanguage( $lang );
+		$teardown[] = function () use ( $context ) {
+			// Reset context to the restored globals
+			$context->setUser( $GLOBALS['wgUser'] );
+			$context->setLanguage( $GLOBALS['wgContLang'] );
+		};
 
-		MagicWord::clearCache();
-		MWTidy::destroySingleton();
-		RepoGroup::destroySingleton();
+		$teardown[] = $this->executeSetupSnippets( $setup );
 
-		self::resetTitleServices();
-
-		return $context;
+		return $this->createTeardownObject( $teardown, $nextTeardown );
 	}
 
 	/**
@@ -876,31 +1085,46 @@ class ParserTestRunner {
 		return $tables;
 	}
 
-	/**
-	 * Set up a temporary set of wiki tables to work with for the tests.
-	 * Currently this will only be done once per run, and any changes to
-	 * the db will be visible to later tests in the run.
-	 */
-	public function setupDatabase() {
-		global $wgDBprefix;
+	public function setDatabase( IDatabase $db ) {
+		$this->db = $db;
+		$this->setupDone['setDatabase'] = true;
+	}
 
-		if ( $this->databaseSetupDone ) {
-			return;
-		}
+	/**
+	 * Set up temporary DB tables.
+	 *
+	 * For best performance, call this once only for all tests. However, it can
+	 * be called at the start of each test if more isolation is desired.
+	 *
+	 * @todo: This is basically an unrefactored copy of
+	 * MediaWikiTestCase::setupAllTestDBs. They should be factored out somehow.
+	 *
+	 * Do not call this function from a MediaWikiTestCase subclass, since
+	 * MediaWikiTestCase does its own DB setup. Instead use setDatabase().
+	 *
+	 * @see staticSetup() for more information about setup/teardown
+	 *
+	 * @param ScopedCallback|null $nextTeardown The next teardown object
+	 * @return ScopedCallback The teardown object
+	 */
+	public function setupDatabase( $nextTeardown = null ) {
+		global $wgDBprefix;
 
 		$this->db = wfGetDB( DB_MASTER );
 		$dbType = $this->db->getType();
 
-		if ( $wgDBprefix === 'parsertest_' || ( $dbType == 'oracle' && $wgDBprefix === 'pt_' ) ) {
-			throw new MWException( 'setupDatabase should be called before setupGlobals' );
+		if ( $dbType == 'oracle' ) {
+			$suspiciousPrefixes = [ 'pt_', MediaWikiTestCase::ORA_DB_PREFIX ];
+		} else {
+			$suspiciousPrefixes = [ 'parsertest_', MediaWikiTestCase::DB_PREFIX ];
+		}
+		if ( in_array( $wgDBprefix, $suspiciousPrefixes ) ) {
+			throw new MWException( "\$wgDBprefix=$wgDBprefix suggests DB setup is already done" );
 		}
 
-		$this->databaseSetupDone = true;
+		$teardown = [];
 
-		# SqlBagOStuff broke when using temporary tables on r40209 (bug 15892).
-		# It seems to have been fixed since (r55079?), but regressed at some point before r85701.
-		# This works around it for now...
-		ObjectCache::$instances[CACHE_DB] = new HashBagOStuff;
+		$teardown[] = $this->markSetupDone( 'setupDatabase' );
 
 		# CREATE TEMPORARY TABLE breaks if there is more than one server
 		if ( wfGetLB()->getServerCount() != 1 ) {
@@ -924,20 +1148,45 @@ class ParserTestRunner {
 				'user_name' => 'Anonymous' ] );
 		}
 
-		# Update certain things in site_stats
-		$this->db->insert( 'site_stats',
-			[ 'ss_row_id' => 1, 'ss_images' => 2, 'ss_good_articles' => 1 ] );
+		$teardown[] = function () {
+			$this->teardownDatabase();
+		};
 
-		# Reinitialise the LocalisationCache to match the database state
-		Language::getLocalisationCache()->unloadAll();
+		// Wipe some DB query result caches on setup and teardown
+		$reset = function () {
+			LinkCache::singleton()->clear();
 
-		# Clear the message cache
-		MessageCache::singleton()->clear();
+			// Clear the message cache
+			MessageCache::singleton()->clear();
+		};
+		$reset();
+		$teardown[] = $reset;
+		return $this->createTeardownObject( $teardown, $nextTeardown );
+	}
 
-		// Remember to update newParserTests.php after changing the below
-		// (and it uses a slightly different syntax just for teh lulz)
-		$this->setupUploadDir();
+	/**
+	 * Add data about uploads to the new test DB, and set up the upload
+	 * directory. This should be called after either setDatabase() or
+	 * setupDatabase().
+	 *
+	 * @param ScopedCallback|null $nextTeardown The next teardown object
+	 * @return ScopedCallback The teardown object
+	 */
+	public function setupUploads( $nextTeardown = null ) {
+		$teardown = [];
+
+		$this->checkSetupDone( 'setupDatabase', 'setDatabase' );
+		$teardown[] = $this->markSetupDone( 'setupUploads' );
+
+		// Create the files in the upload directory (or pretend to create them
+		// in a MockFileBackend). Append teardown callback.
+		$teardown[] = $this->setupUploadBackend();
+
+		// Create a user
 		$user = User::createNew( 'WikiSysop' );
+
+		// Register the uploads in the database
+
 		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Foobar.jpg' ) );
 		# note that the size/width/height/bits/etc of the file
 		# are actually set by inspecting the file itself; the arguments
@@ -1060,14 +1309,18 @@ class ParserTestRunner {
 			'sha1' => Wikimedia\base_convert( '', 16, 36, 31 ),
 			'fileExists' => true
 		], $this->db->timestamp( '20010115123600' ), $user );
+
+		return $this->createTeardownObject( $teardown, $nextTeardown );
 	}
 
-	public function teardownDatabase() {
-		if ( !$this->databaseSetupDone ) {
-			$this->teardownGlobals();
-			return;
-		}
-		$this->teardownUploadDir( $this->uploadDir );
+	/**
+	 * Helper for database teardown, called from the teardown closure. Destroy
+	 * the database clone and fix up some things that CloneDatabase doesn't fix.
+	 *
+	 * @todo Move most things here to CloneDatabase
+	 */
+	private function teardownDatabase() {
+		$this->checkSetupDone( 'setupDatabase' );
 
 		$this->dbClone->destroy();
 		$this->databaseSetupDone = false;
@@ -1081,7 +1334,6 @@ class ParserTestRunner {
 				$this->db->query( "DROP TABLE `parsertest_searchindex`" );
 			}
 			# Don't need to do anything
-			$this->teardownGlobals();
 			return;
 		}
 
@@ -1098,375 +1350,179 @@ class ParserTestRunner {
 		if ( $this->db->getType() == 'oracle' ) {
 			$this->db->query( 'BEGIN FILL_WIKI_INFO; END;' );
 		}
-
-		$this->teardownGlobals();
 	}
 
 	/**
-	 * Create a dummy uploads directory which will contain a couple
-	 * of files in order to pass existence tests.
+	 * Upload test files to the backend created by createRepoGroup().
 	 *
-	 * @return string The directory
+	 * @return callable The teardown callback
 	 */
-	private function setupUploadDir() {
+	private function setupUploadBackend() {
 		global $IP;
 
-		$dir = $this->uploadDir;
-		if ( $this->keepUploads && is_dir( $dir ) ) {
-			return;
-		}
+		$repo = RepoGroup::singleton()->getLocalRepo();
+		$base = $repo->getZonePath( 'public' );
+		$backend = $repo->getBackend();
+		$backend->prepare( [ 'dir' => "$base/3/3a" ] );
+		$backend->store( [
+			'src' => "$IP/tests/phpunit/data/parser/headbg.jpg",
+			'dst' => "$base/3/3a/Foobar.jpg"
+		] );
+		$backend->prepare( [ 'dir' => "$base/e/ea" ] );
+		$backend->store( [
+			'src' => "$IP/tests/phpunit/data/parser/wiki.png",
+			'dst' => "$base/e/ea/Thumb.png"
+		] );
+		$backend->prepare( [ 'dir' => "$base/0/09" ] );
+		$backend->store( [
+			'src' => "$IP/tests/phpunit/data/parser/headbg.jpg",
+			'dst' => "$base/0/09/Bad.jpg"
+		] );
+		$backend->prepare( [ 'dir' => "$base/5/5f" ] );
+		$backend->store( [
+			'src' => "$IP/tests/phpunit/data/parser/LoremIpsum.djvu",
+			'dst' => "$base/5/5f/LoremIpsum.djvu"
+		] );
 
-		// wfDebug( "Creating upload directory $dir\n" );
-		if ( file_exists( $dir ) ) {
-			wfDebug( "Already exists!\n" );
-			return;
-		}
-
-		wfMkdirParents( $dir . '/3/3a', null, __METHOD__ );
-		copy( "$IP/tests/phpunit/data/parser/headbg.jpg", "$dir/3/3a/Foobar.jpg" );
-		wfMkdirParents( $dir . '/e/ea', null, __METHOD__ );
-		copy( "$IP/tests/phpunit/data/parser/wiki.png", "$dir/e/ea/Thumb.png" );
-		wfMkdirParents( $dir . '/0/09', null, __METHOD__ );
-		copy( "$IP/tests/phpunit/data/parser/headbg.jpg", "$dir/0/09/Bad.jpg" );
-		wfMkdirParents( $dir . '/f/ff', null, __METHOD__ );
-		file_put_contents( "$dir/f/ff/Foobar.svg",
-			'<?xml version="1.0" encoding="utf-8"?>' .
+		// No helpful SVG file to copy, so make one ourselves
+		$data = '<?xml version="1.0" encoding="utf-8"?>' .
 			'<svg xmlns="http://www.w3.org/2000/svg"' .
-			' version="1.1" width="240" height="180"/>' );
-		wfMkdirParents( $dir . '/5/5f', null, __METHOD__ );
-		copy( "$IP/tests/phpunit/data/parser/LoremIpsum.djvu", "$dir/5/5f/LoremIpsum.djvu" );
-		wfMkdirParents( $dir . '/0/00', null, __METHOD__ );
-		copy( "$IP/tests/phpunit/data/parser/320x240.ogv", "$dir/0/00/Video.ogv" );
-		wfMkdirParents( $dir . '/4/41', null, __METHOD__ );
-		copy( "$IP/tests/phpunit/data/media/say-test.ogg", "$dir/4/41/Audio.oga" );
+			' version="1.1" width="240" height="180"/>';
 
-		return;
-	}
+		$backend->prepare( [ 'dir' => "$base/f/ff" ] );
+		$backend->quickCreate( [
+			'content' => $data, 'dst' => "$base/f/ff/Foobar.svg"
+		] );
 
-	/**
-	 * Restore default values and perform any necessary clean-up
-	 * after each test runs.
-	 */
-	public function teardownGlobals() {
-		RepoGroup::destroySingleton();
-		FileBackendGroup::destroySingleton();
-		LockManagerGroup::destroySingletons();
-		LinkCache::singleton()->clear();
-		MWTidy::destroySingleton();
-
-		foreach ( $this->savedGlobals as $var => $val ) {
-			$GLOBALS[$var] = $val;
-		}
+		return function () use ( $backend ) {
+			if ( $backend instanceof MockFileBackend ) {
+				// In memory backend, so dont bother cleaning them up.
+				return;
+			}
+			$this->teardownUploadBackend();
+		};
 	}
 
 	/**
 	 * Remove the dummy uploads directory
-	 * @param string $dir
 	 */
-	private function teardownUploadDir( $dir ) {
+	private function teardownUploadBackend() {
 		if ( $this->keepUploads ) {
 			return;
 		}
 
-		// delete the files first, then the dirs.
-		self::deleteFiles(
-			[
-				"$dir/3/3a/Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/*.jpg",
-				"$dir/e/ea/Thumb.png",
-				"$dir/0/09/Bad.jpg",
-				"$dir/5/5f/LoremIpsum.djvu",
-				"$dir/thumb/5/5f/LoremIpsum.djvu/*-LoremIpsum.djvu.jpg",
-				"$dir/f/ff/Foobar.svg",
-				"$dir/thumb/f/ff/Foobar.svg/*-Foobar.svg.png",
-				"$dir/math/f/a/5/fa50b8b616463173474302ca3e63586b.png",
-				"$dir/0/00/Video.ogv",
-				"$dir/thumb/0/00/Video.ogv/120px--Video.ogv.jpg",
-				"$dir/thumb/0/00/Video.ogv/180px--Video.ogv.jpg",
-				"$dir/thumb/0/00/Video.ogv/240px--Video.ogv.jpg",
-				"$dir/thumb/0/00/Video.ogv/320px--Video.ogv.jpg",
-				"$dir/thumb/0/00/Video.ogv/270px--Video.ogv.jpg",
-				"$dir/thumb/0/00/Video.ogv/320px-seek=2-Video.ogv.jpg",
-				"$dir/thumb/0/00/Video.ogv/320px-seek=3.3666666666667-Video.ogv.jpg",
-				"$dir/4/41/Audio.oga",
-			]
-		);
+		$repo = RepoGroup::singleton()->getLocalRepo();
+		$public = $repo->getZonePath( 'public' );
 
-		self::deleteDirs(
+		$this->deleteFiles(
 			[
-				"$dir/3/3a",
-				"$dir/3",
-				"$dir/thumb/3/3a/Foobar.jpg",
-				"$dir/thumb/3/3a",
-				"$dir/thumb/3",
-				"$dir/e/ea",
-				"$dir/e",
-				"$dir/f/ff/",
-				"$dir/f/",
-				"$dir/thumb/f/ff/Foobar.svg",
-				"$dir/thumb/f/ff/",
-				"$dir/thumb/f/",
-				"$dir/0/00/",
-				"$dir/0/09/",
-				"$dir/0/",
-				"$dir/5/5f",
-				"$dir/5",
-				"$dir/thumb/0/00/Video.ogv",
-				"$dir/thumb/0/00",
-				"$dir/thumb/0",
-				"$dir/thumb/5/5f/LoremIpsum.djvu",
-				"$dir/thumb/5/5f",
-				"$dir/thumb/5",
-				"$dir/thumb",
-				"$dir/4/41",
-				"$dir/4",
-				"$dir/math/f/a/5",
-				"$dir/math/f/a",
-				"$dir/math/f",
-				"$dir/math",
-				"$dir/lockdir",
-				"$dir",
+				"$public/3/3a/Foobar.jpg",
+				"$public/e/ea/Thumb.png",
+				"$public/0/09/Bad.jpg",
+				"$public/5/5f/LoremIpsum.djvu",
+				"$public/f/ff/Foobar.svg",
+				"$public/0/00/Video.ogv",
+				"$public/4/41/Audio.oga",
 			]
 		);
 	}
 
 	/**
-	 * Delete the specified files, if they exist.
-	 * @param array $files Full paths to files to delete.
+	 * Delete the specified files and their parent directories
+	 * @param array $files File backend URIs mwstore://...
 	 */
-	private static function deleteFiles( $files ) {
-		foreach ( $files as $pattern ) {
-			foreach ( glob( $pattern ) as $file ) {
-				if ( file_exists( $file ) ) {
-					unlink( $file );
+	private function deleteFiles( $files ) {
+		// Delete the files
+		$backend = RepoGroup::singleton()->getLocalRepo()->getBackend();
+		foreach ( $files as $file ) {
+			$backend->delete( [ 'src' => $file ], [ 'force' => 1 ] );
+		}
+
+		// Delete the parent directories
+		foreach ( $files as $file ) {
+			$tmp = FileBackend::parentStoragePath( $file );
+			while ( $tmp ) {
+				if ( !$backend->clean( [ 'dir' => $tmp ] )->isOK() ) {
+					break;
 				}
+				$tmp = FileBackend::parentStoragePath( $tmp );
 			}
 		}
 	}
 
 	/**
-	 * Delete the specified directories, if they exist. Must be empty.
-	 * @param array $dirs Full paths to directories to delete.
-	 */
-	private static function deleteDirs( $dirs ) {
-		foreach ( $dirs as $dir ) {
-			if ( is_dir( $dir ) ) {
-				rmdir( $dir );
-			}
-		}
-	}
-
-	/**
-	 * "Running test $desc..."
-	 * @param string $desc
-	 */
-	protected function showTesting( $desc ) {
-		print "Running test $desc... ";
-	}
-
-	/**
-	 * Print a happy success message.
+	 * Add articles to the test DB.
 	 *
-	 * Refactored in 1.22 to use ParserTestResult
-	 *
-	 * @param ParserTestResult $testResult
-	 * @return bool
+	 * @param $articles Article info array from TestFileReader
 	 */
-	protected function showSuccess( ParserTestResult $testResult ) {
-		if ( $this->showProgress ) {
-			print $this->term->color( '1;32' ) . 'PASSED' . $this->term->reset() . "\n";
+	public function addArticles( $articles ) {
+		global $wgContLang;
+		$setup = [];
+		$teardown = [];
+
+		// Be sure ParserTestRunner::addArticle has correct language set,
+		// so that system messages get into the right language cache
+		if ( $wgContLang->getCode() !== 'en' ) {
+			$setup['wgLanguageCode'] = 'en';
+			$setup['wgContLang'] = Language::factory( 'en' );
 		}
 
-		return true;
-	}
+		// Add special namespaces, in case that hasn't been done by staticSetup() yet
+		$this->appendNamespaceSetup( $setup, $teardown );
 
-	/**
-	 * Print a failure message and provide some explanatory output
-	 * about what went wrong if so configured.
-	 *
-	 * Refactored in 1.22 to use ParserTestResult
-	 *
-	 * @param ParserTestResult $testResult
-	 * @return bool
-	 */
-	protected function showFailure( ParserTestResult $testResult ) {
-		if ( $this->showFailure ) {
-			if ( !$this->showProgress ) {
-				# In quiet mode we didn't show the 'Testing' message before the
-				# test, in case it succeeded. Show it now:
-				$this->showTesting( $testResult->description );
-			}
+		// wgCapitalLinks obviously needs initialisation
+		$setup['wgCapitalLinks'] = true;
 
-			print $this->term->color( '31' ) . 'FAILED!' . $this->term->reset() . "\n";
+		$teardown[] = $this->executeSetupSnippets( $setup );
 
-			if ( $this->showOutput ) {
-				print "--- Expected ---\n{$testResult->expected}\n";
-				print "--- Actual ---\n{$testResult->actual}\n";
-			}
-
-			if ( $this->showDiffs ) {
-				print $this->quickDiff( $testResult->expected, $testResult->actual );
-				if ( !$this->wellFormed( $testResult->actual ) ) {
-					print "XML error: $this->mXmlError\n";
-				}
-			}
+		foreach ( $articles as $info ) {
+			$this->addArticle( $info['name'], $info['text'], $info['file'], $info['line'] );
 		}
 
-		return false;
-	}
+		// Wipe WANObjectCache process cache, which is invalidated by article insertion
+		// due to T144706
+		ObjectCache::getMainWANInstance()->clearProcessCache();
 
-	/**
-	 * Print a skipped message.
-	 *
-	 * @return bool
-	 */
-	protected function showSkipped() {
-		if ( $this->showProgress ) {
-			print $this->term->color( '1;33' ) . 'SKIPPED' . $this->term->reset() . "\n";
-		}
-
-		return true;
-	}
-
-	/**
-	 * Run given strings through a diff and return the (colorized) output.
-	 * Requires writable /tmp directory and a 'diff' command in the PATH.
-	 *
-	 * @param string $input
-	 * @param string $output
-	 * @param string $inFileTail Tailing for the input file name
-	 * @param string $outFileTail Tailing for the output file name
-	 * @return string
-	 */
-	protected function quickDiff( $input, $output,
-		$inFileTail = 'expected', $outFileTail = 'actual'
-	) {
-		if ( $this->markWhitespace ) {
-			$pairs = [
-				"\n" => '¶',
-				' ' => '·',
-				"\t" => '→'
-			];
-			$input = strtr( $input, $pairs );
-			$output = strtr( $output, $pairs );
-		}
-
-		# Windows, or at least the fc utility, is retarded
-		$slash = wfIsWindows() ? '\\' : '/';
-		$prefix = wfTempDir() . "{$slash}mwParser-" . mt_rand();
-
-		$infile = "$prefix-$inFileTail";
-		$this->dumpToFile( $input, $infile );
-
-		$outfile = "$prefix-$outFileTail";
-		$this->dumpToFile( $output, $outfile );
-
-		$shellInfile = wfEscapeShellArg( $infile );
-		$shellOutfile = wfEscapeShellArg( $outfile );
-
-		global $wgDiff3;
-		// we assume that people with diff3 also have usual diff
-		if ( $this->useDwdiff ) {
-			$shellCommand = 'dwdiff -Pc';
-		} else {
-			$shellCommand = ( wfIsWindows() && !$wgDiff3 ) ? 'fc' : 'diff -au';
-		}
-
-		$diff = wfShellExec( "$shellCommand $shellInfile $shellOutfile" );
-
-		unlink( $infile );
-		unlink( $outfile );
-
-		if ( $this->useDwdiff ) {
-			return $diff;
-		} else {
-			return $this->colorDiff( $diff );
-		}
-	}
-
-	/**
-	 * Write the given string to a file, adding a final newline.
-	 *
-	 * @param string $data
-	 * @param string $filename
-	 */
-	private function dumpToFile( $data, $filename ) {
-		$file = fopen( $filename, "wt" );
-		fwrite( $file, $data . "\n" );
-		fclose( $file );
-	}
-
-	/**
-	 * Colorize unified diff output if set for ANSI color output.
-	 * Subtractions are colored blue, additions red.
-	 *
-	 * @param string $text
-	 * @return string
-	 */
-	protected function colorDiff( $text ) {
-		return preg_replace(
-			[ '/^(-.*)$/m', '/^(\+.*)$/m' ],
-			[ $this->term->color( 34 ) . '$1' . $this->term->reset(),
-				$this->term->color( 31 ) . '$1' . $this->term->reset() ],
-			$text );
-	}
-
-	/**
-	 * Show "Reading tests from ..."
-	 *
-	 * @param string $path
-	 */
-	public function showRunFile( $path ) {
-		print $this->term->color( 1 ) .
-			"Reading tests from \"$path\"..." .
-			$this->term->reset() .
-			"\n";
+		$this->executeSetupSnippets( $teardown );
 	}
 
 	/**
 	 * Insert a temporary test article
 	 * @param string $name The title, including any prefix
 	 * @param string $text The article text
+	 * @param string $file The input file name
 	 * @param int|string $line The input line number, for reporting errors
-	 * @param bool|string $ignoreDuplicate Whether to silently ignore duplicate pages
 	 * @throws Exception
 	 * @throws MWException
 	 */
-	public static function addArticle( $name, $text, $line = 'unknown', $ignoreDuplicate = '' ) {
-		global $wgCapitalLinks;
-
-		$oldCapitalLinks = $wgCapitalLinks;
-		$wgCapitalLinks = true; // We only need this from SetupGlobals() See r70917#c8637
-
+	private function addArticle( $name, $text, $file, $line ) {
 		$text = self::chomp( $text );
 		$name = self::chomp( $name );
 
 		$title = Title::newFromText( $name );
+		wfDebug( __METHOD__ . ": adding $name" );
 
 		if ( is_null( $title ) ) {
-			throw new MWException( "invalid title '$name' at line $line\n" );
+			throw new MWException( "invalid title '$name' at $file:$line\n" );
 		}
 
 		$page = WikiPage::factory( $title );
 		$page->loadPageData( 'fromdbmaster' );
 
 		if ( $page->exists() ) {
-			if ( $ignoreDuplicate == 'ignoreduplicate' ) {
-				return;
-			} else {
-				throw new MWException( "duplicate article '$name' at line $line\n" );
-			}
+			throw new MWException( "duplicate article '$name' at $file:$line\n" );
 		}
 
 		$page->doEditContent( ContentHandler::makeContent( $text, $title ), '', EDIT_NEW );
 
-		$wgCapitalLinks = $oldCapitalLinks;
+		// The RepoGroup cache is invalidated by the creation of file redirects
+		if ( $title->getNamespace() === NS_IMAGE ) {
+			RepoGroup::singleton()->clearCache( $title );
+		}
 	}
 
 	/**
-	 * Steal a callback function from the primary parser, save it for
-	 * application to our scary parser. If the hook is not installed,
-	 * abort processing of this file.
+	 * Check if a hook is installed
 	 *
 	 * @param string $name
 	 * @return bool True if tag hook is present
@@ -1475,21 +1531,17 @@ class ParserTestRunner {
 		global $wgParser;
 
 		$wgParser->firstCallInit(); // make sure hooks are loaded.
-
 		if ( isset( $wgParser->mTagHooks[$name] ) ) {
-			$this->hooks[$name] = $wgParser->mTagHooks[$name];
+			return true;
 		} else {
-			echo "   This test suite requires the '$name' hook extension, skipping.\n";
+			$this->recorder->warning( "   This test suite requires the '$name' hook " .
+				"extension, skipping." );
 			return false;
 		}
-
-		return true;
 	}
 
 	/**
-	 * Steal a callback function from the primary parser, save it for
-	 * application to our scary parser. If the hook is not installed,
-	 * abort processing of this file.
+	 * Check if a function hook is installed
 	 *
 	 * @param string $name
 	 * @return bool True if function hook is present
@@ -1500,19 +1552,16 @@ class ParserTestRunner {
 		$wgParser->firstCallInit(); // make sure hooks are loaded.
 
 		if ( isset( $wgParser->mFunctionHooks[$name] ) ) {
-			$this->functionHooks[$name] = $wgParser->mFunctionHooks[$name];
+			return true;
 		} else {
-			echo "   This test suite requires the '$name' function hook extension, skipping.\n";
+			$this->recorder->warning( "   This test suite requires the '$name' function " .
+				"hook extension, skipping." );
 			return false;
 		}
-
-		return true;
 	}
 
 	/**
-	 * Steal a callback function from the primary parser, save it for
-	 * application to our scary parser. If the hook is not installed,
-	 * abort processing of this file.
+	 * Check if a transparent tag hook is installed
 	 *
 	 * @param string $name
 	 * @return bool True if function hook is present
@@ -1523,67 +1572,18 @@ class ParserTestRunner {
 		$wgParser->firstCallInit(); // make sure hooks are loaded.
 
 		if ( isset( $wgParser->mTransparentTagHooks[$name] ) ) {
-			$this->transparentHooks[$name] = $wgParser->mTransparentTagHooks[$name];
+			return true;
 		} else {
-			echo "   This test suite requires the '$name' transparent hook extension, skipping.\n";
+			$this->recorder->warning( "   This test suite requires the '$name' transparent " .
+				"hook extension, skipping.\n" );
 			return false;
 		}
-
-		return true;
 	}
 
-	private function wellFormed( $text ) {
-		$html =
-			Sanitizer::hackDocType() .
-				'<html>' .
-				$text .
-				'</html>';
-
-		$parser = xml_parser_create( "UTF-8" );
-
-		# case folding violates XML standard, turn it off
-		xml_parser_set_option( $parser, XML_OPTION_CASE_FOLDING, false );
-
-		if ( !xml_parse( $parser, $html, true ) ) {
-			$err = xml_error_string( xml_get_error_code( $parser ) );
-			$position = xml_get_current_byte_index( $parser );
-			$fragment = $this->extractFragment( $html, $position );
-			$this->mXmlError = "$err at byte $position:\n$fragment";
-			xml_parser_free( $parser );
-
-			return false;
-		}
-
-		xml_parser_free( $parser );
-
-		return true;
-	}
-
-	private function extractFragment( $text, $position ) {
-		$start = max( 0, $position - 10 );
-		$before = $position - $start;
-		$fragment = '...' .
-			$this->term->color( 34 ) .
-			substr( $text, $start, $before ) .
-			$this->term->color( 0 ) .
-			$this->term->color( 31 ) .
-			$this->term->color( 1 ) .
-			substr( $text, $position, 1 ) .
-			$this->term->color( 0 ) .
-			$this->term->color( 34 ) .
-			substr( $text, $position + 1, 9 ) .
-			$this->term->color( 0 ) .
-			'...';
-		$display = str_replace( "\n", ' ', $fragment );
-		$caret = '   ' .
-			str_repeat( ' ', $before ) .
-			$this->term->color( 31 ) .
-			'^' .
-			$this->term->color( 0 );
-
-		return "$display\n$caret";
-	}
-
+	/**
+	 * The ParserGetVariableValueTs hook, used to make sure time-related parser
+	 * functions give a persistent value.
+	 */
 	static function getFakeTimestamp( &$parser, &$ts ) {
 		$ts = 123; // parsed as '1970-01-01T00:02:03Z'
 		return true;
