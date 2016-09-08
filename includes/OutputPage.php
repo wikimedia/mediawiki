@@ -2679,16 +2679,29 @@ class OutputPage extends ContextSource {
 			// Prepare exempt modules for buildExemptModules()
 			$exemptGroups = [ 'site' => [], 'noscript' => [], 'private' => [], 'user' => [] ];
 			$exemptStates = [];
-			$moduleStyles = array_filter( $this->getModuleStyles( /*filter*/ true ),
+			$moduleStyles = $this->getModuleStyles( /*filter*/ true );
+
+			// Batch preload getTitleInfo for isKnownEmpty() calls below
+			$exemptModules = array_filter( $moduleStyles,
+				function ( $name ) use ( $rl, &$exemptGroups ) {
+					$module = $rl->getModule( $name );
+					return $module && isset( $exemptGroups[ $module->getGroup() ] );
+				}
+			);
+			ResourceLoaderWikiModule::preloadTitleInfo(
+				$context, wfGetDB( DB_REPLICA ), $exemptModules );
+
+			// Filter out modules handled by buildExemptModules()
+			$moduleStyles = array_filter( $moduleStyles,
 				function ( $name ) use ( $rl, $context, &$exemptGroups, &$exemptStates ) {
 					$module = $rl->getModule( $name );
 					if ( $module ) {
-						$group = $module->getGroup();
 						if ( $name === 'user.styles' && $this->isUserCssPreview() ) {
 							$exemptStates[$name] = 'ready';
 							// Special case in buildExemptModules()
 							return false;
 						}
+						$group = $module->getGroup();
 						if ( isset( $exemptGroups[$group] ) ) {
 							$exemptStates[$name] = 'ready';
 							if ( !$module->isKnownEmpty( $context ) ) {
