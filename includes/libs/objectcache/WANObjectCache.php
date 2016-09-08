@@ -793,8 +793,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *      isolation anyway, this should not typically matter.
 	 *      Default: WANObjectCache::TTL_UNCACHEABLE.
 	 *   - pcGroup: Process cache group to use instead of the primary one. If set, this must be
-	 *      of the format <alphanumeric name>:<max key size>. Use this for storing large values,
-	 *      small but numerous values, or a few values with a high cost if they are evicted.
+	 *      of the format ALPHANUMERIC_NAME:MAX_KEY_SIZE, e.g. "mydata:10". Use this for storing
+	 *      large values, small yet numerous values, or some values with a high cost of eviction.
 	 *      It is generally preferable to use a class constant when setting this value.
 	 *      This has no effect unless pcTTL is used.
 	 *      Default: WANObjectCache::PC_PRIMARY.
