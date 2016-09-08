@@ -453,10 +453,6 @@ abstract class ContentHandler {
 	public function __construct( $modelId, $formats ) {
 		$this->mModelID = $modelId;
 		$this->mSupportedFormats = $formats;
-
-		$this->mModelName = preg_replace( '/(Content)?Handler$/', '', get_class( $this ) );
-		$this->mModelName = preg_replace( '/[_\\\\]/', '', $this->mModelName );
-		$this->mModelName = strtolower( $this->mModelName );
 	}
 
 	/**
