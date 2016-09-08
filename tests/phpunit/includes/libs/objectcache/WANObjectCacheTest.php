@@ -161,9 +161,15 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$cKey1 = wfRandomString();
 		$cKey2 = wfRandomString();
 
+		$priorValue = null;
+		$priorAsOf = null;
 		$wasSet = 0;
-		$func = function( $old, &$ttl ) use ( &$wasSet, $value ) {
+		$func = function( $old, &$ttl, &$opts, $asOf )
+			use ( &$wasSet, &$priorValue, &$priorAsOf, $value )
+		{
 			++$wasSet;
+			$priorValue = $old;
+			$priorAsOf = $asOf;
 			$ttl = 20; // override with another value
 			return $value;
 		};
@@ -172,6 +178,8 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$v = $cache->getWithSetCallback( $key, 30, $func, [ 'lockTSE' => 5 ] + $extOpts );
 		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value regenerated" );
+		$this->assertFalse( $priorValue, "No prior value" );
+		$this->assertNull( $priorAsOf, "No prior value" );
 
 		$curTTL = null;
 		$cache->get( $key, $curTTL );
@@ -194,6 +202,8 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		);
 		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value regenerated due to check keys" );
+		$this->assertEquals( $value, $priorValue, "Has prior value" );
+		$this->assertType( 'float', $priorAsOf, "Has prior value" );
 		$t1 = $cache->getCheckKeyTime( $cKey1 );
 		$this->assertGreaterThanOrEqual( $priorTime, $t1, 'Check keys generated on miss' );
 		$t2 = $cache->getCheckKeyTime( $cKey2 );
