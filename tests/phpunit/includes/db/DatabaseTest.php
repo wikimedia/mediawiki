@@ -324,18 +324,18 @@ class DatabaseTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers DatabaseBase::clearSnapshot()
+	 * @covers DatabaseBase::flushSnapshot()
 	 */
-	public function testClearSnapshot() {
+	public function testFlushSnapshot() {
 		$db = $this->db;
 
-		$db->clearSnapshot( __METHOD__ ); // ok
-		$db->clearSnapshot( __METHOD__ ); // ok
+		$db->flushSnapshot( __METHOD__ ); // ok
+		$db->flushSnapshot( __METHOD__ ); // ok
 
 		$db->setFlag( DBO_TRX, $db::REMEMBER_PRIOR );
 		$db->query( 'SELECT 1', __METHOD__ );
 		$this->assertTrue( (bool)$db->trxLevel(), "Transaction started." );
-		$db->clearSnapshot( __METHOD__ ); // ok
+		$db->flushSnapshot( __METHOD__ ); // ok
 		$db->restoreFlags( $db::RESTORE_PRIOR );
 
 		$this->assertFalse( (bool)$db->trxLevel(), "Transaction cleared." );

@@ -3044,7 +3044,7 @@ abstract class DatabaseBase implements IDatabase {
 		}
 	}
 
-	public function clearSnapshot( $fname = __METHOD__ ) {
+	public function flushSnapshot( $fname = __METHOD__ ) {
 		if ( $this->writesOrCallbacksPending() || $this->explicitTrxActive() ) {
 			// This only flushes transactions to clear snapshots, not to write data
 			throw new DBUnexpectedError(

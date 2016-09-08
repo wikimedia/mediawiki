@@ -1420,7 +1420,7 @@ interface IDatabase {
 	 * will cause a warning, unless the current transaction was started
 	 * automatically because of the DBO_TRX flag.
 	 *
-	 * @param string $fname
+	 * @param string $fname Calling function name
 	 * @param string $mode A situationally valid IDatabase::TRANSACTION_* constant [optional]
 	 * @throws DBError
 	 */
@@ -1458,7 +1458,7 @@ interface IDatabase {
 	 * throwing an Exception is preferrable, using a pre-installed error handler to trigger
 	 * rollback (in any case, failure to issue COMMIT will cause rollback server-side).
 	 *
-	 * @param string $fname
+	 * @param string $fname Calling function name
 	 * @param string $flush Flush flag, set to a situationally valid IDatabase::FLUSHING_*
 	 *   constant to disable warnings about calling rollback when no transaction is in
 	 *   progress. This will silently break any ongoing explicit transaction. Only set the
@@ -1467,6 +1467,20 @@ interface IDatabase {
 	 * @since 1.23 Added $flush parameter
 	 */
 	public function rollback( $fname = __METHOD__, $flush = '' );
+
+	/**
+	 * Commit any transaction but error out if writes or callbacks are pending
+	 *
+	 * This is intended for clearing out REPEATABLE-READ snapshots so that callers can
+	 * see a new point-in-time of the database. This is useful when one of many transaction
+	 * rounds finished and significant time will pass in the script's lifetime. It is also
+	 * useful to call on a replica DB after waiting on replication to catch up to the master.
+	 *
+	 * @param string $fname Calling function name
+	 * @throws DBUnexpectedError
+	 * @since 1.28
+	 */
+	public function flushSnapshot( $fname = __METHOD__ );
 
 	/**
 	 * List all tables on the database
