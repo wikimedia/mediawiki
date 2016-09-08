@@ -97,6 +97,7 @@ class ApiEditPage extends ApiBase {
 		} else {
 			$contentHandler = ContentHandler::getForModelID( $params['contentmodel'] );
 		}
+		$contentModel = $contentHandler->getModelID();
 
 		$name = $titleObj->getPrefixedDBkey();
 		$model = $contentHandler->getModelID();
@@ -111,10 +112,10 @@ class ApiEditPage extends ApiBase {
 		}
 
 		if ( !isset( $params['contentformat'] ) || $params['contentformat'] == '' ) {
-			$params['contentformat'] = $contentHandler->getDefaultFormat();
+			$contentFormat = $contentHandler->getDefaultFormat();
+		} else {
+			$contentFormat = $params['contentformat'];
 		}
-
-		$contentFormat = $params['contentformat'];
 
 		if ( !$contentHandler->isSupportedFormat( $contentFormat ) ) {
 
@@ -265,9 +266,21 @@ class ApiEditPage extends ApiBase {
 			if ( !$newContent ) {
 				$this->dieUsageMsg( 'undo-failure' );
 			}
-
-			$params['text'] = $newContent->serialize( $params['contentformat'] );
-
+			if ( empty( $params['contentmodel'] )
+				&& empty( $params['contentformat'] )
+			) {
+				// If we are reverting content model, the new content model
+				// might not support the current serialization format, in
+				// which case go back to the old serialization format,
+				// but only if the user hasn't specified a format/model
+				// parameter.
+				if ( !$newContent->isSupportedFormat( $contentFormat ) ) {
+					$contentFormat = $undoafterRev->getContentFormat();
+				}
+				// Override content model with model of undid revision.
+				$contentModel = $newContent->getModel();
+			}
+			$params['text'] = $newContent->serialize( $contentFormat );
 			// If no summary was given and we only undid one rev,
 			// use an autosummary
 			if ( is_null( $params['summary'] ) &&
@@ -288,7 +301,7 @@ class ApiEditPage extends ApiBase {
 		$requestArray = [
 			'wpTextbox1' => $params['text'],
 			'format' => $contentFormat,
-			'model' => $contentHandler->getModelID(),
+			'model' => $contentModel,
 			'wpEditToken' => $params['token'],
 			'wpIgnoreBlankSummary' => true,
 			'wpIgnoreBlankArticle' => true,
