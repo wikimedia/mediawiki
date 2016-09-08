@@ -40,7 +40,7 @@ class CheckLess extends Maintenance {
 		// NOTE (phuedx, 2014-03-26) wgAutoloadClasses isn't set up
 		// by either of the dependencies at the top of the file, so
 		// require it here.
-		require_once __DIR__ . '/../tests/TestsAutoLoader.php';
+		require_once __DIR__ . '/../tests/common/TestsAutoLoader.php';
 
 		// If phpunit isn't available by autoloader try pulling it in
 		if ( !class_exists( 'PHPUnit_Framework_TestCase' ) ) {

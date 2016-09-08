@@ -11,7 +11,7 @@ use MediaWiki\MediaWikiServices;
  *
  * @todo covers tags
  */
-class NewParserTest extends MediaWikiTestCase {
+class ParserIntegrationTest extends MediaWikiTestCase {
 	static protected $articles = []; // Array of test articles defined by the tests
 	/* The data provider is run on a different instance than the test, so it must be static
 	 * When running tests from several files, all tests will see all articles.
@@ -41,8 +41,8 @@ class NewParserTest extends MediaWikiTestCase {
 	protected $file = false;
 
 	public static function setUpBeforeClass() {
-		// Inject ParserTest well-known interwikis
-		ParserTest::setupInterwikis();
+		// Inject ParserTestRunner well-known interwikis
+		ParserTestRunner::setupInterwikis();
 	}
 
 	protected function setUp() {
@@ -127,7 +127,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 		$tmpHooks = $wgHooks;
 		$tmpHooks['ParserTestParser'][] = 'ParserTestParserHook::setup';
-		$tmpHooks['ParserGetVariableValueTs'][] = 'ParserTest::getFakeTimestamp';
+		$tmpHooks['ParserGetVariableValueTs'][] = 'ParserTestRunner::getFakeTimestamp';
 		$tmpGlobals['wgHooks'] = $tmpHooks;
 		# add a namespace shadowing a interwiki link, to test
 		# proper precedence when resolving links. (bug 51680)
@@ -158,7 +158,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
 		$wgContLang->resetNamespaces(); # reset namespace cache
-		ParserTest::resetTitleServices();
+		ParserTestRunner::resetTitleServices();
 		MediaWikiServices::getInstance()->disableService( 'MediaHandlerFactory' );
 		MediaWikiServices::getInstance()->redefineService(
 			'MediaHandlerFactory',
@@ -194,7 +194,7 @@ class NewParserTest extends MediaWikiTestCase {
 	}
 
 	public static function tearDownAfterClass() {
-		ParserTest::tearDownInterwikis();
+		ParserTestRunner::tearDownInterwikis();
 		parent::tearDownAfterClass();
 	}
 
@@ -367,7 +367,7 @@ class NewParserTest extends MediaWikiTestCase {
 		}
 	}
 
-	// ParserTest setup/teardown functions
+	// ParserTestRunner setup/teardown functions
 
 	/**
 	 * Set up the global variables for a consistent environment for each test.
@@ -861,7 +861,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 		foreach ( self::$articles as $name => $info ) {
 			list( $text, $line ) = $info;
-			ParserTest::addArticle( $name, $text, $line, 'ignoreduplicate' );
+			ParserTestRunner::addArticle( $name, $text, $line, 'ignoreduplicate' );
 		}
 	}
 

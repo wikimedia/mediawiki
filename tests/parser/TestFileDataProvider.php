@@ -21,9 +21,9 @@
 
 /**
  * An iterator for use as a phpunit data provider. Provides the test arguments
- * in the order expected by NewParserTest::testParserTest().
+ * in the order expected by ParserIntegrationTest::testParserTest().
  */
-class TestFileDataProvider extends TestFileIterator {
+class TestFileDataProvider extends TestFileReader {
 	function current() {
 		$test = parent::current();
 		if ( $test ) {

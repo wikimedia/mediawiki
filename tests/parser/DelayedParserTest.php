@@ -47,14 +47,16 @@ class DelayedParserTest {
 	/**
 	 * Called whenever we actually want to run the hook.
 	 * Should be the case if we found the parserTest is not disabled
-	 * @param ParserTest|NewParserTest $parserTest
+	 * @param ParserTestRunner|ParserIntegrationTest $parserTest
 	 * @return bool
 	 * @throws MWException
 	 */
 	public function unleash( &$parserTest ) {
-		if ( !( $parserTest instanceof ParserTest || $parserTest instanceof NewParserTest ) ) {
-			throw new MWException( __METHOD__ . " must be passed an instance of ParserTest or "
-				. "NewParserTest classes\n" );
+		if ( !( $parserTest instanceof ParserTestRunner
+			|| $parserTest instanceof ParserIntegrationTest )
+		) {
+			throw new MWException( __METHOD__ . " must be passed an instance of " .
+				"ParserTestRunner or ParserIntegrationTest classes\n" );
 		}
 
 		# Trigger delayed hooks. Any failure will make us abort
@@ -86,7 +88,7 @@ class DelayedParserTest {
 	}
 
 	/**
-	 * Similar to ParserTest object but does not run anything
+	 * Similar to ParserTestRunner object but does not run anything
 	 * Use unleash() to really execute the hook
 	 * @param string $hook
 	 */
@@ -95,7 +97,7 @@ class DelayedParserTest {
 	}
 
 	/**
-	 * Similar to ParserTest object but does not run anything
+	 * Similar to ParserTestRunner object but does not run anything
 	 * Use unleash() to really execute the hook function
 	 * @param string $fnHook
 	 */
@@ -104,7 +106,7 @@ class DelayedParserTest {
 	}
 
 	/**
-	 * Similar to ParserTest object but does not run anything
+	 * Similar to ParserTestRunner object but does not run anything
 	 * Use unleash() to really execute the hook function
 	 * @param string $hook
 	 */

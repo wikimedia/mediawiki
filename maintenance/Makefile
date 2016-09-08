@@ -4,7 +4,7 @@ help:
 	@echo "Run 'make man' to run the doxygen generation with man pages."
 
 test:
-	php tests/parserTests.php --quiet
+	php tests/parser/parserTests.php --quiet
 
 doc:
 	php mwdocgen.php --all

@@ -22,13 +22,13 @@ class ParserFuzzTest extends Maintenance {
 	}
 
 	function finalSetup() {
-		require_once __DIR__ . '/../TestsAutoLoader.php';
+		require_once __DIR__ . '/../common/TestsAutoLoader.php';
 	}
 
 	function execute() {
 		$files = $this->getOption( 'file', [ __DIR__ . '/parserTests.txt' ] );
 		$this->seed = intval( $this->getOption( 'seed', 1 ) ) - 1;
-		$this->parserTest = new ParserTest;
+		$this->parserTest = new ParserTestRunner;
 		$this->fuzzTest( $files );
 	}
 
