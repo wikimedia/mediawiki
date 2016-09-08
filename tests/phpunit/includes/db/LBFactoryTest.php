@@ -159,7 +159,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 		$mockDB->expects( $this->any() )
-			->method( 'doneWrites' )->will( $this->returnValue( true ) );
+			->method( 'lastDoneWrites' )->will( $this->returnValue( true ) );
 		$mockDB->expects( $this->any() )
 			->method( 'getMasterPos' )->will( $this->returnValue( $mPos ) );
 
@@ -184,7 +184,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 			]
 		);
 
-		$mockDB->expects( $this->exactly( 2 ) )->method( 'doneWrites' );
+		$mockDB->expects( $this->exactly( 2 ) )->method( 'lastDoneWrites' );
 
 		// Nothing to wait for
 		$cp->initLB( $lb );
