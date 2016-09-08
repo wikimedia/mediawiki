@@ -22,9 +22,28 @@
  */
 
 global $wgAutoloadClasses;
-$testDir = __DIR__ . '/..';
+$testDir = __DIR__ . "/..";
 
 $wgAutoloadClasses += [
+
+	# tests/common
+	'TestSetup' => "$testDir/common/TestSetup.php",
+
+	# tests/parser
+	'DbTestPreviewer' => "$testDir/parser/DbTestPreviewer.php",
+	'DbTestRecorder' => "$testDir/parser/DbTestRecorder.php",
+	'DjVuSupport' => "$testDir/parser/DjVuSupport.php",
+	'TestRecorder' => "$testDir/parser/TestRecorder.php",
+	'MultiTestRecorder' => "$testDir/parser/MultiTestRecorder.php",
+	'ParserTestRunner' => "$testDir/parser/ParserTestRunner.php",
+	'ParserTestParserHook' => "$testDir/parser/ParserTestParserHook.php",
+	'ParserTestPrinter' => "$testDir/parser/ParserTestPrinter.php",
+	'ParserTestResult' => "$testDir/parser/ParserTestResult.php",
+	'ParserTestResultNormalizer' => "$testDir/parser/ParserTestResultNormalizer.php",
+	'PhpunitTestRecorder' => "$testDir/parser/PhpunitTestRecorder.php",
+	'TestFileReader' => "$testDir/parser/TestFileReader.php",
+	'TestRecorder' => "$testDir/parser/TestRecorder.php",
+	'TidySupport' => "$testDir/parser/TidySupport.php",
 
 	# tests/phpunit
 	'MediaWikiTestCase' => "$testDir/phpunit/MediaWikiTestCase.php",
@@ -85,6 +104,9 @@ $wgAutoloadClasses += [
 	# tests/phpunit/includes/page
 	'WikiPageTest' => "$testDir/phpunit/includes/page/WikiPageTest.php",
 
+	# tests/phpunit/includes/parser
+	'ParserIntegrationTest' => "$testDir/phpunit/includes/parser/ParserIntegrationTest.php",
+
 	# tests/phpunit/includes/password
 	'PasswordTestCase' => "$testDir/phpunit/includes/password/PasswordTestCase.php",
 
@@ -97,6 +119,13 @@ $wgAutoloadClasses += [
 	# tests/phpunit/includes/session
 	'MediaWiki\\Session\\TestBagOStuff' => "$testDir/phpunit/includes/session/TestBagOStuff.php",
 	'MediaWiki\\Session\\TestUtils' => "$testDir/phpunit/includes/session/TestUtils.php",
+
+	# tests/phpunit/includes/site
+	'SiteTest' => "$testDir/phpunit/includes/site/SiteTest.php",
+	'TestSites' => "$testDir/phpunit/includes/site/TestSites.php",
+
+	# tests/phpunit/includes/specialpage
+	'SpecialPageTestHelper' => "$testDir/phpunit/includes/specialpage/SpecialPageTestHelper.php",
 
 	# tests/phpunit/includes/specials
 	'SpecialPageTestBase' => "$testDir/phpunit/includes/specials/SpecialPageTestBase.php",
@@ -129,29 +158,7 @@ $wgAutoloadClasses += [
 		=> "$testDir/phpunit/mocks/session/DummySessionBackend.php",
 	'DummySessionProvider' => "$testDir/phpunit/mocks/session/DummySessionProvider.php",
 
-	# tests/parser
-	'DbTestPreviewer' => "$testDir/parser/DbTestPreviewer.php",
-	'DbTestRecorder' => "$testDir/parser/DbTestRecorder.php",
-	'DelayedParserTest' => "$testDir/parser/DelayedParserTest.php",
-	'DjVuSupport' => "$testDir/parser/DjVuSupport.php",
-	'ITestRecorder' => "$testDir/parser/ITestRecorder.php",
-	'ParserIntegrationTest' => "$testDir/phpunit/includes/parser/ParserIntegrationTest.php",
-	'ParserTestRunner' => "$testDir/parser/ParserTestRunner.php",
-	'ParserTestParserHook' => "$testDir/parser/ParserTestParserHook.php",
-	'ParserTestResult' => "$testDir/parser/ParserTestResult.php",
-	'ParserTestResultNormalizer' => "$testDir/parser/ParserTestResultNormalizer.php",
-	'TestFileDataProvider' => "$testDir/parser/TestFileDataProvider.php",
-	'TestFileReader' => "$testDir/parser/TestFileReader.php",
-	'TestRecorder' => "$testDir/parser/TestRecorder.php",
-	'TidySupport' => "$testDir/parser/TidySupport.php",
-
-	# tests/phpunit/includes/site
-	'SiteTest' => "$testDir/phpunit/includes/site/SiteTest.php",
-	'TestSites' => "$testDir/phpunit/includes/site/TestSites.php",
-
-	# tests/phpunit/includes/specialpage
-	'SpecialPageTestHelper' => "$testDir/phpunit/includes/specialpage/SpecialPageTestHelper.php",
-
-	# tests/phpunit/suites
+	# tests/suites
+	'ParserTestFileSuite' => "$testDir/phpunit/suites/ParserTestFileSuite.php",
 	'ParserTestTopLevelSuite' => "$testDir/phpunit/suites/ParserTestTopLevelSuite.php",
 ];

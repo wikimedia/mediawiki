@@ -674,7 +674,7 @@ $parserMemc = wfGetParserCacheStorage();
 
 wfDebugLog( 'caches',
 	'cluster: ' . get_class( $wgMemc ) .
-	', WAN: ' . $wgMainWANCache .
+	', WAN: ' . ( $wgMainWANCache === 0 ? 'CACHE_NONE' : $wgMainWANCache ) .
 	', stash: ' . $wgMainStash .
 	', message: ' . get_class( $messageMemc ) .
 	', parser: ' . get_class( $parserMemc ) .

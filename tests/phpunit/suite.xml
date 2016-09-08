@@ -25,7 +25,7 @@
 			<directory>languages</directory>
 		</testsuite>
 		<testsuite name="parsertests">
-			<file>suites/ParserTestTopLevelSuite.php</file>
+			<file>suites/CoreParserTestSuite.php</file>
 			<file>suites/ExtensionsParserTestSuite.php</file>
 		</testsuite>
 		<testsuite name="skins">
@@ -55,7 +55,6 @@
 		<exclude>
 			<group>Utility</group>
 			<group>Broken</group>
-			<group>ParserFuzz</group>
 			<group>Stub</group>
 		</exclude>
 	</groups>
