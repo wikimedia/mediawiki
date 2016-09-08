@@ -155,11 +155,14 @@ class LBFactoryTest extends MediaWikiTestCase {
 		// (a) First HTTP request
 		$mPos = new MySQLMasterPos( 'db1034-bin.000976', '843431247' );
 
+		$now = microtime( true );
 		$mockDB = $this->getMockBuilder( 'DatabaseMysql' )
 			->disableOriginalConstructor()
 			->getMock();
 		$mockDB->expects( $this->any() )
-			->method( 'doneWrites' )->will( $this->returnValue( true ) );
+			->method( 'writesOrCallbacksPending' )->will( $this->returnValue( true ) );
+		$mockDB->expects( $this->any() )
+			->method( 'lastDoneWrites' )->will( $this->returnValue( $now ) );
 		$mockDB->expects( $this->any() )
 			->method( 'getMasterPos' )->will( $this->returnValue( $mPos ) );
 
@@ -174,6 +177,18 @@ class LBFactoryTest extends MediaWikiTestCase {
 			->method( 'parentInfo' )->will( $this->returnValue( [ 'id' => "main-DEFAULT" ] ) );
 		$lb->expects( $this->any() )
 			->method( 'getAnyOpenConnection' )->will( $this->returnValue( $mockDB ) );
+		$lb->expects( $this->any() )
+			->method( 'hasOrMadeRecentMasterChanges' )->will( $this->returnCallback(
+				function () use ( $mockDB ) {
+					$p = 0;
+					$p |= call_user_func( [ $mockDB, 'writesOrCallbacksPending' ] );
+					$p |= call_user_func( [ $mockDB, 'lastDoneWrites' ] );
+
+					return (bool)$p;
+				}
+			) );
+		$lb->expects( $this->any() )
+			->method( 'getMasterPos' )->will( $this->returnValue( $mPos ) );
 
 		$bag = new HashBagOStuff();
 		$cp = new ChronologyProtector(
@@ -184,7 +199,8 @@ class LBFactoryTest extends MediaWikiTestCase {
 			]
 		);
 
-		$mockDB->expects( $this->exactly( 2 ) )->method( 'doneWrites' );
+		$mockDB->expects( $this->exactly( 2 ) )->method( 'writesOrCallbacksPending' );
+		$mockDB->expects( $this->exactly( 2 ) )->method( 'lastDoneWrites' );
 
 		// Nothing to wait for
 		$cp->initLB( $lb );
