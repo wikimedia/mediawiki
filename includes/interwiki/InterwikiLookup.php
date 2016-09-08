@@ -26,7 +26,7 @@ use Interwiki;
 /**
  * Service interface for looking up Interwiki records.
  *
- * @singe 1.28
+ * @since 1.28
  */
 interface InterwikiLookup {
 
