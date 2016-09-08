@@ -2676,6 +2676,10 @@ class OutputPage extends ContextSource {
 			] );
 			$this->getSkin()->setupSkinUserCss( $this );
 
+			// Batched version of ResourceLoaderWikiModule::getTitleInfo
+			ResourceLoaderWikiModule::preloadTitleInfo(
+				$context, wfGetDB( DB_REPLICA ), $this->getModuleStyles() );
+
 			// Prepare exempt modules for buildExemptModules()
 			$exemptGroups = [ 'site' => [], 'noscript' => [], 'private' => [], 'user' => [] ];
 			$exemptStates = [];
