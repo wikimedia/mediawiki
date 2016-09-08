@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/NewParserTest.php';
+require_once __DIR__ . '/../includes/parser/ParserIntegrationTest.php';
 
 /**
  * The UnitTest must be either a class that inherits from MediaWikiTestCase
@@ -10,7 +10,7 @@ require_once __DIR__ . '/NewParserTest.php';
  * @group ParserTests
  * @group Database
  */
-class MediaWikiParserTest {
+class ParserTestTopLevelSuite {
 
 	/**
 	 * @defgroup filtering_constants Filtering constants
@@ -35,19 +35,19 @@ class MediaWikiParserTest {
 	 * @par Examples:
 	 * Get a suite of parser tests shipped by MediaWiki core:
 	 * @code
-	 * MediaWikiParserTest::suite( MediaWikiParserTest::CORE_ONLY );
+	 * ParserTestTopLevelSuite::suite( ParserTestTopLevelSuite::CORE_ONLY );
 	 * @endcode
 	 * Get a suite of various parser tests, like extensions:
 	 * @code
-	 * MediaWikiParserTest::suite( MediaWikiParserTest::NO_CORE );
+	 * ParserTestTopLevelSuite::suite( ParserTestTopLevelSuite::NO_CORE );
 	 * @endcode
 	 * Get any test defined via $wgParserTestFiles:
 	 * @code
-	 * MediaWikiParserTest::suite( MediaWikiParserTest::WITH_ALL );
+	 * ParserTestTopLevelSuite::suite( ParserTestTopLevelSuite::WITH_ALL );
 	 * @endcode
 	 *
 	 * @param int $flags Bitwise flag to filter out the $wgParserTestFiles that
-	 * will be included.  Default: MediaWikiParserTest::CORE_ONLY
+	 * will be included.  Default: ParserTestTopLevelSuite::CORE_ONLY
 	 *
 	 * @return PHPUnit_Framework_TestSuite
 	 */
@@ -116,7 +116,7 @@ class MediaWikiParserTest {
  * @group ParserTests
  * @group ParserTests_$parserTestClassName
  */
-class $parserTestClassName extends NewParserTest {
+class $parserTestClassName extends ParserIntegrationTest {
 	protected \$file = '$escapedFileName';
 }
 EOT;

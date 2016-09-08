@@ -79,7 +79,7 @@ class PHPUnitMaintClass extends Maintenance {
 		global $wgAuthManagerConfig, $wgAuth;
 
 		// Inject test autoloader
-		require_once __DIR__ . '/../TestsAutoLoader.php';
+		require_once __DIR__ . '/../common/TestsAutoLoader.php';
 
 		// wfWarn should cause tests to fail
 		$wgDevelopmentWarnings = true;
