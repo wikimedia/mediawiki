@@ -1743,6 +1743,7 @@
 	"filerevert-submit": "Revertir",
 	"filerevert-success": "<strong>[[Media:$1|$1]]</strong> ha sido revertido a la [$4 versión del $2 a las $3].",
 	"filerevert-badversion": "No existe versión local previa de este archivo con esa marca de tiempo.",
+	"filerevert-identical": "La versión actual del archivo ya es idéntica a la seleccionada.",
 	"filedelete": "Borrar $1",
 	"filedelete-legend": "Borrar archivo",
 	"filedelete-intro": "Estás por borrar el archivo <strong>[[Media:$1|$1]]</strong> así como todo su historial.",

@@ -71,7 +71,8 @@
 			"Kana Higashikawa",
 			"Shield-9",
 			"Waiesu",
-			"Matma Rex"
+			"Matma Rex",
+			"組曲師"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -3630,7 +3631,7 @@
 	"feedback-terms": "私のユーザーエージェント情報には、使用ブラウザやオペレーティングシステムのバージョンの情報が含まれており、その情報は私が提供するフィードバックとあわせて公開されることを理解しました。",
 	"feedback-termsofuse": "利用規約に従い、フィードバックを提供することに同意します。",
 	"feedback-thanks": "ありがとうございます。フィードバックを「[$2 $1]」のページに投稿しました。",
-	"feedback-thanks-title": "ありがとうございます!",
+	"feedback-thanks-title": "お願いします！",
 	"feedback-useragent": "ユーザーエージェント:",
 	"searchsuggest-search": "検索",
 	"searchsuggest-containing": "この語句を全文検索",

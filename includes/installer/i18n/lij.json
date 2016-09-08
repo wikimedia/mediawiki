@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Giromin Cangiaxo"
+		]
+	},
+	"config-desc": "Programma de installaçion pe MediaWiki",
+	"config-title": "Installaçion de MediaWiki $1",
+	"config-information": "Informaçioin",
+	"config-localsettings-upgrade": "L'è stæto rilevou un file <code>LocalSettings.php</code>.\nPe aggiornâ questa installaçion, se prega de insei o valô de <code>$wgUpgradeKey</code> inta casella chì de sotta.\nO poei atrovâ in <code>LocalSettings.php</code>.",
+	"config-localsettings-cli-upgrade": "L 'è stæto rilevou un file <code>LocalSettings.php</code>.\nPe aggiornâ questa installaçion, eseguî <code>update.php</code>",
+	"config-localsettings-key": "Ciave de aggiornamento:",
+	"config-localsettings-badkey": "A ciave d'agiornamento che t'hæ fornio a no l'è corretta.",
+	"config-upgrade-key-missing": "L'è stæto rilevou un'installaçion existente de MediaWiki.\nPe aggiornâ quest'installaçion, se prega de insei a seguente riga inta parte infeiô do to <code>LocalSettings.php</code>:\n\n$1",
+	"config-localsettings-incomplete": "O file <code>LocalSettings.php</code> existente pâ ese incompleto.\nA variabile $1 a no l'è impostâ.\nCangia <code>LocalSettings.php</code> de moddo che questa variabile a segge impostâ e fanni clic insce \"{{int:Config-continue}}\".",
+	"config-localsettings-connection-error": "S'è veificou un errô durante a connescion a-o database doeuviando e impostaçioin specificæ in <code>LocalSettings.php</code>. Se prega de coreze queste impostaçioin e riprovâ.\n\n$1",
+	"config-session-error": "Errô inte l'avvio da sescion: $1",
+	"config-session-expired": "I dæti da sescion pan ese descheiti.\nE sescioin son configuæ pe 'na duata de $1.\nTi poeu aomentâla impostando <code>session.gc_maxlifetime</code> into file php.ini.\nRiavvia o processo d'installaçion.",
+	"config-no-session": "I dæti da sescion son andæti persci!\nControlla o to file php.ini e aseguite che <code>session.save_path</code> o l'è impostou insce 'na directory apropiâ.",
+	"config-your-language": "A to lengua:",
+	"config-your-language-help": "Seleçion-a una lengua da doeuviâ  durante o processo d'installaçion.",
+	"config-wiki-language": "A lengua do wiki:",
+	"config-wiki-language-help": "Seleçion-a a lengua ch'a saiâ prevalentemente doeuviâ into wiki."
+}
