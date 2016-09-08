@@ -19,12 +19,12 @@
  * @ingroup Testing
  */
 
-class TestFileIterator implements Iterator {
+class TestFileReader implements Iterator {
 	private $file;
 	private $fh;
 	/**
-	 * @var ParserTest|MediaWikiParserTest An instance of ParserTest (parserTests.php)
-	 *  or MediaWikiParserTest (phpunit)
+	 * @var ParserTestRunner|ParserTestTopLevelSuite An instance of ParserTestRunner
+	 * (parserTests.php) or ParserTestTopLevelSuite (phpunit)
 	 */
 	private $parserTest;
 	private $index = 0;
@@ -134,12 +134,12 @@ class TestFileIterator implements Iterator {
 		}
 
 		$this->test = [
-			'test' => ParserTest::chomp( $this->sectionData['test'] ),
+			'test' => ParserTestRunner::chomp( $this->sectionData['test'] ),
 			'subtest' => $this->nextSubTest,
-			'input' => ParserTest::chomp( $this->sectionData[$input] ),
-			'result' => ParserTest::chomp( $this->sectionData[$result] ),
-			'options' => ParserTest::chomp( $this->sectionData['options'] ),
-			'config' => ParserTest::chomp( $this->sectionData['config'] ),
+			'input' => ParserTestRunner::chomp( $this->sectionData[$input] ),
+			'result' => ParserTestRunner::chomp( $this->sectionData[$result] ),
+			'options' => ParserTestRunner::chomp( $this->sectionData['options'] ),
+			'config' => ParserTestRunner::chomp( $this->sectionData['config'] ),
 		];
 		if ( $tidy != false ) {
 			$this->test['options'] .= " tidy";
@@ -171,7 +171,7 @@ class TestFileIterator implements Iterator {
 					$this->checkSection( 'article' );
 
 					$this->parserTest->addArticle(
-						ParserTest::chomp( $this->sectionData['article'] ),
+						ParserTestRunner::chomp( $this->sectionData['article'] ),
 						$this->sectionData['text'], $this->lineNum );
 
 					$this->clearSection();

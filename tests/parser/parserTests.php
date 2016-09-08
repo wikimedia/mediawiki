@@ -30,8 +30,8 @@ $options = [ 'quick', 'color', 'quiet', 'help', 'show-output',
 	'record', 'run-disabled', 'run-parsoid', 'dwdiff', 'mark-ws' ];
 $optionsWithArgs = [ 'regex', 'filter', 'seed', 'setversion', 'file', 'norm' ];
 
-require_once __DIR__ . '/../maintenance/commandLine.inc';
-require_once __DIR__ . '/TestsAutoLoader.php';
+require_once __DIR__ . '/../../maintenance/commandLine.inc';
+require_once __DIR__ . '/../common/TestsAutoLoader.php';
 
 if ( isset( $options['help'] ) ) {
 	echo <<<ENDS
@@ -79,7 +79,7 @@ if ( $wgDBtype == 'sqlite' ) {
 	}
 }
 
-$tester = new ParserTest( $options );
+$tester = new ParserTestRunner( $options );
 
 if ( isset( $options['file'] ) ) {
 	$files = [ $options['file'] ];

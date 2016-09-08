@@ -25,7 +25,7 @@
 			<directory>languages</directory>
 		</testsuite>
 		<testsuite name="parsertests">
-			<file>includes/parser/MediaWikiParserTest.php</file>
+			<file>suites/ParserTestTopLevelSuite.php</file>
 			<file>suites/ExtensionsParserTestSuite.php</file>
 		</testsuite>
 		<testsuite name="skins">

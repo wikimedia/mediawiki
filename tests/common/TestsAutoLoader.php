@@ -22,7 +22,7 @@
  */
 
 global $wgAutoloadClasses;
-$testDir = __DIR__;
+$testDir = __DIR__ . '/..';
 
 $wgAutoloadClasses += [
 
@@ -135,14 +135,13 @@ $wgAutoloadClasses += [
 	'DelayedParserTest' => "$testDir/parser/DelayedParserTest.php",
 	'DjVuSupport' => "$testDir/parser/DjVuSupport.php",
 	'ITestRecorder' => "$testDir/parser/ITestRecorder.php",
-	'MediaWikiParserTest' => "$testDir/phpunit/includes/parser/MediaWikiParserTest.php",
-	'NewParserTest' => "$testDir/phpunit/includes/parser/NewParserTest.php",
-	'ParserTest' => "$testDir/parser/ParserTest.php",
+	'ParserIntegrationTest' => "$testDir/phpunit/includes/parser/ParserIntegrationTest.php",
+	'ParserTestRunner' => "$testDir/parser/ParserTestRunner.php",
 	'ParserTestParserHook' => "$testDir/parser/ParserTestParserHook.php",
 	'ParserTestResult' => "$testDir/parser/ParserTestResult.php",
 	'ParserTestResultNormalizer' => "$testDir/parser/ParserTestResultNormalizer.php",
 	'TestFileDataProvider' => "$testDir/parser/TestFileDataProvider.php",
-	'TestFileIterator' => "$testDir/parser/TestFileIterator.php",
+	'TestFileReader' => "$testDir/parser/TestFileReader.php",
 	'TestRecorder' => "$testDir/parser/TestRecorder.php",
 	'TidySupport' => "$testDir/parser/TidySupport.php",
 
@@ -152,4 +151,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/specialpage
 	'SpecialPageTestHelper' => "$testDir/phpunit/includes/specialpage/SpecialPageTestHelper.php",
+
+	# tests/phpunit/suites
+	'ParserTestTopLevelSuite' => "$testDir/phpunit/suites/ParserTestTopLevelSuite.php",
 ];

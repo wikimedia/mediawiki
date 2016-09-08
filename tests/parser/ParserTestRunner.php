@@ -1,7 +1,7 @@
 <?php
 /**
  * Helper code for the MediaWiki parser test suite. Some code is duplicated
- * in PHPUnit's NewParserTests.php, so you'll probably want to update both
+ * in PHPUnit's ParserIntegrationTest.php, so you'll probably want to update both
  * at the same time.
  *
  * Copyright © 2004, 2010 Brion Vibber <brion@pobox.com>
@@ -32,7 +32,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * @ingroup Testing
  */
-class ParserTest {
+class ParserTestRunner {
 	/**
 	 * @var bool $color whereas output should be colorized
 	 */
@@ -395,7 +395,7 @@ class ParserTest {
 	public function runTestsFromFiles( $filenames ) {
 		$ok = false;
 
-		// be sure, ParserTest::addArticle has correct language set,
+		// be sure, ParserTestRunner::addArticle has correct language set,
 		// so that system messages gets into the right language cache
 		$GLOBALS['wgLanguageCode'] = 'en';
 		$GLOBALS['wgContLang'] = Language::factory( 'en' );
@@ -407,7 +407,7 @@ class ParserTest {
 
 			foreach ( $filenames as $filename ) {
 				echo "Running parser tests from: $filename\n";
-				$tests = new TestFileIterator( $filename, $this );
+				$tests = new TestFileReader( $filename, $this );
 				$ok = $this->runTests( $tests ) && $ok;
 			}
 
@@ -838,7 +838,7 @@ class ParserTest {
 		global $wgHooks;
 
 		$wgHooks['ParserTestParser'][] = 'ParserTestParserHook::setup';
-		$wgHooks['ParserGetVariableValueTs'][] = 'ParserTest::getFakeTimestamp';
+		$wgHooks['ParserGetVariableValueTs'][] = 'ParserTestRunner::getFakeTimestamp';
 
 		MagicWord::clearCache();
 		MWTidy::destroySingleton();
