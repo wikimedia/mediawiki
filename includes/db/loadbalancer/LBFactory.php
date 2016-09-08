@@ -556,6 +556,15 @@ abstract class LBFactory implements DestructibleService {
 	}
 
 	/**
+	 * @param string $dbName DB master name (e.g. "db1052")
+	 * @return float|bool UNIX timestamp when client last touched the DB or false if not recent
+	 * @since 1.28
+	 */
+	public function getChronologyProtectorTouched( $dbName ) {
+		return $this->chronProt->getTouched( $dbName );
+	}
+
+	/**
 	 * Disable the ChronologyProtector for all load balancers
 	 *
 	 * This can be called at the start of special API entry points
