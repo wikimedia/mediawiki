@@ -37,8 +37,9 @@ class WaitConditionLoop {
 
 	const CONDITION_REACHED = 1;
 	const CONDITION_CONTINUE = 0; // evaluates as falsey
-	const CONDITION_TIMED_OUT = -1;
-	const CONDITION_ABORTED = -2;
+	const CONDITION_FAILED = -1;
+	const CONDITION_TIMED_OUT = -2;
+	const CONDITION_ABORTED = -3;
 
 	/**
 	 * @param callable $condition Callback that returns a WaitConditionLoop::CONDITION_ constant
@@ -53,10 +54,13 @@ class WaitConditionLoop {
 
 	/**
 	 * Invoke the loop and continue until either:
-	 *   - a) The condition callback does not return either CONDITION_CONTINUE or true
+	 *   - a) The condition callback returns neither CONDITION_CONTINUE nor false
 	 *   - b) The timeout is reached
 	 * This a condition callback can return true (stop) or false (continue) for convenience.
 	 * In such cases, the halting result of "true" will be converted to CONDITION_REACHED.
+	 *
+	 * If $timeout is 0, then only the condition callback will be called (no busy callbacks),
+	 * and this will immediately return CONDITION_FAILED if the condition was not met.
 	 *
 	 * Exceptions in callbacks will be caught and the callback will be swapped with
 	 * one that simply rethrows that exception back to the caller when invoked.
@@ -81,8 +85,10 @@ class WaitConditionLoop {
 			if ( (int)$checkResult !== self::CONDITION_CONTINUE ) {
 				$finalResult = is_int( $checkResult ) ? $checkResult : self::CONDITION_REACHED;
 				break;
+			} elseif ( $this->timeout <= 0 ) {
+				$finalResult = self::CONDITION_FAILED; // non-blocking condition not met
 			} elseif ( $lastCheck ) {
-				break; // timeout
+				break; // timeout reached
 			}
 			// Detect if condition callback seems to block or if justs burns CPU
 			$conditionUsesInterrupts = ( $real > 0.100 && $cpu <= $real * .03 );

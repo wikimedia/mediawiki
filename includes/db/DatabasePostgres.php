@@ -1588,21 +1588,21 @@ SQL;
 	 */
 	public function lock( $lockName, $method, $timeout = 5 ) {
 		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
-		for ( $attempts = 1; $attempts <= $timeout; ++$attempts ) {
-			$result = $this->query(
-				"SELECT pg_try_advisory_lock($key) AS lockstatus", $method );
-			$row = $this->fetchObject( $result );
-			if ( $row->lockstatus === 't' ) {
-				parent::lock( $lockName, $method, $timeout ); // record
-				return true;
-			} else {
-				sleep( 1 );
-			}
-		}
+		$loop = new WaitConditionLoop(
+			function () use ( $lockName, $key, $timeout, $method ) {
+				$res = $this->query( "SELECT pg_try_advisory_lock($key) AS lockstatus", $method );
+				$row = $this->fetchObject( $res );
+				if ( $row->lockstatus === 't' ) {
+					parent::lock( $lockName, $method, $timeout ); // record
+					return true;
+				}
 
-		wfDebug( __METHOD__ . " failed to acquire lock\n" );
+				return WaitConditionLoop::CONDITION_CONTINUE;
+			},
+			$timeout
+		);
 
-		return false;
+		return ( $loop->invoke() === $loop::CONDITION_REACHED );
 	}
 
 	/**

@@ -102,6 +102,30 @@ class WaitConditionLoopTest extends PHPUnit_Framework_TestCase {
 		$loop->setWallClock( $wallClock );
 		$this->assertEquals( $loop::CONDITION_TIMED_OUT, $loop->invoke() );
 		$this->assertEquals( [ 1, 1, 1 ], [ $x, $y, $z ], "Busy work done" );
+
+		$loop = new WaitConditionLoopFakeTime(
+			function () use ( &$count, &$wallClock ) {
+				$wallClock += 3;
+				++$count;
+
+				return true;
+			},
+			0.0,
+			$this->newBusyWork( $x, $y, $z, $wallClock )
+		);
+		$this->assertEquals( $loop::CONDITION_REACHED, $loop->invoke() );
+
+		$loop = new WaitConditionLoopFakeTime(
+			function () use ( &$count, &$wallClock ) {
+				$wallClock += 3;
+				++$count;
+
+				return $count > 10 ? true : false;
+			},
+			0,
+			$this->newBusyWork( $x, $y, $z, $wallClock )
+		);
+		$this->assertEquals( $loop::CONDITION_FAILED, $loop->invoke() );
 	}
 
 	public function testCallbackAborted() {
