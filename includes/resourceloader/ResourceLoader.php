@@ -140,6 +140,9 @@ class ResourceLoader implements LoggerAwareInterface {
 			}
 		}
 
+		// Batched version of ResourceLoaderWikiModule::getTitleInfo
+		ResourceLoaderWikiModule::preloadTitleInfo( $context, $dbr, $moduleNames );
+
 		// Prime in-object cache for message blobs for modules with messages
 		$modules = [];
 		foreach ( $moduleNames as $name ) {
