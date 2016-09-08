@@ -1018,9 +1018,15 @@ abstract class ContentHandler {
 			return false; // no content to undo
 		}
 
-		$this->checkModelID( $cur_content->getModel() );
-		$this->checkModelID( $undo_content->getModel() );
-		$this->checkModelID( $undoafter_content->getModel() );
+		try {
+			$this->checkModelID( $cur_content->getModel() );
+			$this->checkModelID( $undo_content->getModel() );
+			$this->checkModelID( $undoafter_content->getModel() );
+		} catch ( MWException $e ) {
+			// If the revisions have different content models
+			// just return false
+			return false;
+		}
 
 		if ( $cur_content->equals( $undo_content ) ) {
 			// No use doing a merge if it's just a straight revert.
