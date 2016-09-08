@@ -1181,7 +1181,7 @@ class LoadBalancer {
 			function ( DatabaseBase $conn ) use ( $fname, &$failures ) {
 				$conn->setTrxEndCallbackSuppression( true );
 				try {
-					$conn->clearSnapshot( $fname );
+					$conn->flushSnapshot( $fname );
 				} catch ( DBError $e ) {
 					MWExceptionHandler::logException( $e );
 					$failures[] = "{$conn->getServer()}: {$e->getMessage()}";
@@ -1215,7 +1215,7 @@ class LoadBalancer {
 					if ( $conn->writesOrCallbacksPending() ) {
 						$conn->commit( $fname, $conn::FLUSHING_ALL_PEERS );
 					} elseif ( $restore ) {
-						$conn->clearSnapshot( $fname );
+						$conn->flushSnapshot( $fname );
 					}
 				} catch ( DBError $e ) {
 					MWExceptionHandler::logException( $e );
@@ -1337,7 +1337,7 @@ class LoadBalancer {
 	 */
 	public function flushReplicaSnapshots( $fname = __METHOD__ ) {
 		$this->forEachOpenReplicaConnection( function ( DatabaseBase $conn ) {
-			$conn->clearSnapshot( __METHOD__ );
+			$conn->flushSnapshot( __METHOD__ );
 		} );
 	}
 
