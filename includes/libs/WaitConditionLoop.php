@@ -53,7 +53,7 @@ class WaitConditionLoop {
 
 	/**
 	 * Invoke the loop and continue until either:
-	 *   - a) The condition callback does not return either CONDITION_CONTINUE or true
+	 *   - a) The condition callback returns neither CONDITION_CONTINUE nor false
 	 *   - b) The timeout is reached
 	 * This a condition callback can return true (stop) or false (continue) for convenience.
 	 * In such cases, the halting result of "true" will be converted to CONDITION_REACHED.
@@ -81,8 +81,8 @@ class WaitConditionLoop {
 			if ( (int)$checkResult !== self::CONDITION_CONTINUE ) {
 				$finalResult = is_int( $checkResult ) ? $checkResult : self::CONDITION_REACHED;
 				break;
-			} elseif ( $lastCheck ) {
-				break; // timeout
+			} elseif ( $lastCheck || $this->timeout <= 0 ) {
+				break; // timeout or non-blocking
 			}
 			// Detect if condition callback seems to block or if justs burns CPU
 			$conditionUsesInterrupts = ( $real > 0.100 && $cpu <= $real * .03 );
