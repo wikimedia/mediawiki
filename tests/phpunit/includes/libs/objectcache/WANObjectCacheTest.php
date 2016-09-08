@@ -105,6 +105,47 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$this->assertFalse( $this->cache->get( $key ), "Stale set() value ignored" );
 	}
 
+	public function testProcessCache() {
+		$hit = 0;
+		$callback = function () use ( &$hit ) {
+			++$hit;
+			return 42;
+		};
+		$keys = [ wfRandomString(), wfRandomString(), wfRandomString() ];
+		$groups = [ 'thiscache:1', 'thatcache:1', 'somecache:1' ];
+
+		foreach ( $keys as $i => $key ) {
+			$this->cache->getWithSetCallback(
+				$key, 100, $callback, [ 'pcTTL' => 5, 'pcGroup' => $groups[$i] ] );
+		}
+		$this->assertEquals( 3, $hit );
+
+		foreach ( $keys as $i => $key ) {
+			$this->cache->getWithSetCallback(
+				$key, 100, $callback, [ 'pcTTL' => 5, 'pcGroup' => $groups[$i] ] );
+		}
+		$this->assertEquals( 3, $hit, "Values cached" );
+
+		foreach ( $keys as $i => $key ) {
+			$this->cache->getWithSetCallback(
+				"$key-2", 100, $callback, [ 'pcTTL' => 5, 'pcGroup' => $groups[$i] ] );
+		}
+		$this->assertEquals( 6, $hit );
+
+		foreach ( $keys as $i => $key ) {
+			$this->cache->getWithSetCallback(
+				"$key-2", 100, $callback, [ 'pcTTL' => 5, 'pcGroup' => $groups[$i] ] );
+		}
+		$this->assertEquals( 6, $hit, "New values cached" );
+
+		foreach ( $keys as $i => $key ) {
+			$this->cache->delete( $key );
+			$this->cache->getWithSetCallback(
+				$key, 100, $callback, [ 'pcTTL' => 5, 'pcGroup' => $groups[$i] ] );
+		}
+		$this->assertEquals( 9, $hit, "Values evicted" );
+	}
+
 	/**
 	 * @dataProvider getWithSetCallback_provider
 	 * @covers WANObjectCache::getWithSetCallback()
