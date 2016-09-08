@@ -4007,6 +4007,7 @@ class User implements IDBAccessObject {
 			);
 			$loaded = false;
 			if ( $this->mId ) {
+				$this->setItemLoaded( 'id' );
 				if ( $this->loadFromDatabase( self::READ_LOCKING ) ) {
 					$loaded = true;
 				}
