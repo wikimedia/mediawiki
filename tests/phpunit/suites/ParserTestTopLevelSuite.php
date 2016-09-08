@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__ . '/../includes/parser/ParserIntegrationTest.php';
 
 /**
  * The UnitTest must be either a class that inherits from MediaWikiTestCase
@@ -10,7 +9,12 @@ require_once __DIR__ . '/../includes/parser/ParserIntegrationTest.php';
  * @group ParserTests
  * @group Database
  */
-class ParserTestTopLevelSuite {
+class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
+	/** @var ParserTestRunner */
+	private $ptRunner;
+
+	/** @var ScopedCallback */
+	private $ptTeardownScope;
 
 	/**
 	 * @defgroup filtering_constants Filtering constants
@@ -52,6 +56,15 @@ class ParserTestTopLevelSuite {
 	 * @return PHPUnit_Framework_TestSuite
 	 */
 	public static function suite( $flags = self::CORE_ONLY ) {
+		return new self( $flags );
+	}
+
+	function __construct( $flags ) {
+		parent::__construct();
+
+		$this->ptRecorder = new PhpunitTestRecorder;
+		$this->ptRunner = new ParserTestRunner( $this->ptRecorder );
+
 		if ( is_string( $flags ) ) {
 			$flags = self::CORE_ONLY;
 		}
@@ -83,7 +96,6 @@ class ParserTestTopLevelSuite {
 		self::debug( 'parser tests files: '
 			. implode( ' ', $filesToTest ) );
 
-		$suite = new PHPUnit_Framework_TestSuite;
 		$testList = [];
 		$counter = 0;
 		foreach ( $filesToTest as $fileName ) {
@@ -93,7 +105,6 @@ class ParserTestTopLevelSuite {
 			// things, which is good enough for our purposes.
 			$extensionName = basename( dirname( $fileName ) );
 			$testsName = $extensionName . '__' . basename( $fileName, '.txt' );
-			$escapedFileName = strtr( $fileName, [ "'" => "\\'", '\\' => '\\\\' ] );
 			$parserTestClassName = ucfirst( $testsName );
 
 			// Official spec for class names: http://php.net/manual/en/language.oop5.basic.php
@@ -102,30 +113,38 @@ class ParserTestTopLevelSuite {
 				preg_replace( '/[^a-zA-Z0-9_\x7f-\xff]/', '_', $parserTestClassName );
 
 			if ( isset( $testList[$parserTestClassName] ) ) {
-				// If a conflict happens, gives a very unclear fatal.
-				// So as a last ditch effort to prevent that eventuality, if there
-				// is a conflict, append a number.
+				// If there is a conflict, append a number.
 				$counter++;
 				$parserTestClassName .= $counter;
 			}
 			$testList[$parserTestClassName] = true;
-			$parserTestClassDefinition = <<<EOT
-/**
- * @group Database
- * @group Parser
- * @group ParserTests
- * @group ParserTests_$parserTestClassName
- */
-class $parserTestClassName extends ParserIntegrationTest {
-	protected \$file = '$escapedFileName';
-}
-EOT;
 
-			eval( $parserTestClassDefinition );
+			// Previously we actually created a class here, with eval(). We now
+			// just override the name.
+
 			self::debug( "Adding test class $parserTestClassName" );
-			$suite->addTestSuite( $parserTestClassName );
+			$this->addTest( new ParserTestFileSuite(
+				$this->ptRunner, $parserTestClassName, $fileName ) );
 		}
-		return $suite;
+	}
+
+	public function setUp() {
+		wfDebug( __METHOD__ );
+		$db = wfGetDB( DB_MASTER );
+		$type = $db->getType();
+		$prefix = $type === 'oracle' ?
+			MediaWikiTestCase::ORA_DB_PREFIX : MediaWikiTestCase::DB_PREFIX;
+		MediaWikiTestCase::setupTestDB( $db, $prefix );
+		$teardown = $this->ptRunner->setDatabase( $db );
+		$teardown = $this->ptRunner->setupUploads( $teardown );
+		$this->ptTeardownScope = $teardown;
+	}
+
+	public function tearDown() {
+		wfDebug( __METHOD__ );
+		if ( $this->ptTeardownScope ) {
+			ScopedCallback::consume( $this->ptTeardownScope );
+		}
 	}
 
 	/**

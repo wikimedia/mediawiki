@@ -19,51 +19,76 @@
  * @ingroup Testing
  */
 
-class TestRecorder implements ITestRecorder {
-	public $parent;
-	public $term;
+/**
+ * Interface to record parser test results.
+ *
+ * The TestRecorder is an class hierarchy to record the result of
+ * MediaWiki parser tests. One should call start() before running the
+ * full parser tests and end() once all the tests have been finished.
+ * After each test, you should use record() to keep track of your tests
+ * results. Finally, report() is used to generate a summary of your
+ * test run, one could dump it to the console for human consumption or
+ * register the result in a database for tracking purposes.
+ *
+ * @since 1.22
+ */
+abstract class TestRecorder {
 
-	function __construct( $parent ) {
-		$this->parent = $parent;
-		$this->term = $parent->term;
+	/**
+	 * Called at beginning of the parser test run
+	 */
+	public function start() {
 	}
 
-	function start() {
-		$this->total = 0;
-		$this->success = 0;
+	/**
+	 * Called before starting a test
+	 */
+	public function startTest( $test ) {
 	}
 
-	function record( $test, $subtest, $result ) {
-		$this->total++;
-		$this->success += ( $result ? 1 : 0 );
+	/**
+	 * Called before starting an input file
+	 */
+	public function startSuite( $path ) {
 	}
 
-	function end() {
-		// dummy
+	/**
+	 * Called after ending an input file
+	 */
+	public function endSuite( $path ) {
 	}
 
-	function report() {
-		if ( $this->total > 0 ) {
-			$this->reportPercentage( $this->success, $this->total );
-		} else {
-			throw new MWException( "No tests found.\n" );
-		}
+	/**
+	 * Called after each test
+	 * @param array $test
+	 * @param ParserTestResult $result
+	 */
+	public function record( $test, ParserTestResult $result ) {
 	}
 
-	function reportPercentage( $success, $total ) {
-		$ratio = wfPercent( 100 * $success / $total );
-		print $this->term->color( 1 ) . "Passed $success of $total tests ($ratio)... ";
-
-		if ( $success == $total ) {
-			print $this->term->color( 32 ) . "ALL TESTS PASSED!";
-		} else {
-			$failed = $total - $success;
-			print $this->term->color( 31 ) . "$failed tests failed!";
-		}
-
-		print $this->term->reset() . "\n";
-
-		return ( $success == $total );
+	/**
+	 * Show a warning to the user
+	 */
+	public function warning( $message ) {
 	}
+
+	/**
+	 * Mark a test skipped
+	 */
+	public function skipped( $test, $subtest ) {
+	}
+
+	/**
+	 * Called before finishing the test run
+	 */
+	public function report() {
+	}
+
+	/**
+	 * Called at the end of the parser test run
+	 */
+	public function end() {
+	}
+
 }
 
