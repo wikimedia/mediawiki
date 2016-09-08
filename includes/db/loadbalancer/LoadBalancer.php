@@ -994,7 +994,7 @@ class LoadBalancer {
 
 	/**
 	 * Get the current master position for chronology control purposes
-	 * @return mixed
+	 * @return DBMasterPos|bool Returns false if not applicable
 	 */
 	public function getMasterPos() {
 		# If this entire request was served from a replica DB without opening a connection to the
@@ -1355,19 +1355,12 @@ class LoadBalancer {
 	 * @return bool
 	 */
 	public function hasMasterChanges() {
-		$masterIndex = $this->getWriterIndex();
-		foreach ( $this->mConns as $conns2 ) {
-			if ( empty( $conns2[$masterIndex] ) ) {
-				continue;
-			}
-			/** @var DatabaseBase $conn */
-			foreach ( $conns2[$masterIndex] as $conn ) {
-				if ( $conn->writesOrCallbacksPending() ) {
-					return true;
-				}
-			}
-		}
-		return false;
+		$pending = 0;
+		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( &$pending ) {
+			$pending |= $conn->writesOrCallbacksPending();
+		} );
+
+		return (bool)$pending;
 	}
 
 	/**
@@ -1377,16 +1370,10 @@ class LoadBalancer {
 	 */
 	public function lastMasterChangeTimestamp() {
 		$lastTime = false;
-		$masterIndex = $this->getWriterIndex();
-		foreach ( $this->mConns as $conns2 ) {
-			if ( empty( $conns2[$masterIndex] ) ) {
-				continue;
-			}
-			/** @var DatabaseBase $conn */
-			foreach ( $conns2[$masterIndex] as $conn ) {
-				$lastTime = max( $lastTime, $conn->lastDoneWrites() );
-			}
-		}
+		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( &$lastTime ) {
+			$lastTime = max( $lastTime, $conn->lastDoneWrites() );
+		} );
+
 		return $lastTime;
 	}
 
