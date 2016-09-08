@@ -643,6 +643,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *   - $oldValue : current cache value or false if not present
 	 *   - &$ttl : a reference to the TTL which can be altered
 	 *   - &$setOpts : a reference to options for set() which can be altered
+	 *   - $oldAsOf : generation UNIX timestamp of $oldValue or null if not present (since 1.28)
 	 *
 	 * It is strongly recommended to set the 'lag' and 'since' fields to avoid race conditions
 	 * that can cause stale values to get stuck at keys. Usually, callbacks ignore the current
@@ -840,7 +841,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 				$cur = $this->doGetWithSetCallback(
 					$key,
 					$ttl,
-					function ( $oldValue, &$ttl, &$setOpts ) use ( $callback, $version ) {
+					function ( $oldValue, &$ttl, &$setOpts, $oldAsOf )
+					use ( $callback, $version ) {
 						if ( is_array( $oldValue )
 							&& array_key_exists( self::VFLD_DATA, $oldValue )
 						) {
@@ -851,7 +853,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 						}
 
 						return [
-							self::VFLD_DATA => $callback( $oldData, $ttl, $setOpts ),
+							self::VFLD_DATA => $callback( $oldData, $ttl, $setOpts, $oldAsOf ),
 							self::VFLD_VERSION => $version
 						];
 					},
@@ -969,13 +971,13 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 		// Generate the new value from the callback...
 		$setOpts = [];
-		$value = call_user_func_array( $callback, [ $cValue, &$ttl, &$setOpts ] );
-		$asOf = microtime( true );
+		$value = call_user_func_array( $callback, [ $cValue, &$ttl, &$setOpts, $asOf ] );
 		// When delete() is called, writes are write-holed by the tombstone,
 		// so use a special INTERIM key to pass the new value around threads.
 		if ( ( $isTombstone && $lockTSE > 0 ) && $value !== false && $ttl >= 0 ) {
 			$tempTTL = max( 1, (int)$lockTSE ); // set() expects seconds
-			$wrapped = $this->wrap( $value, $tempTTL, $asOf );
+			$newAsOf = microtime( true );
+			$wrapped = $this->wrap( $value, $tempTTL, $newAsOf );
 			// Avoid using set() to avoid pointless mcrouter broadcasting
 			$this->cache->merge(
 				self::INTERIM_KEY_PREFIX . $key,
