@@ -1488,6 +1488,14 @@ abstract class Maintenance {
 
 		return fgets( STDIN, 1024 );
 	}
+
+	/**
+	 * Call this to set up the autoloader to allow classes to be used from the
+	 * tests directory.
+	 */
+	public static function requireTestsAutoloader() {
+		require_once __DIR__ . '/../tests/common/TestsAutoLoader.php';
+	}
 }
 
 /**
