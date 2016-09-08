@@ -562,16 +562,29 @@ class EditPage {
 
 		$revision = $this->mArticle->getRevisionFetched();
 		// Disallow editing revisions with content models different from the current one
-		if ( $revision && $revision->getContentModel() !== $this->contentModel ) {
-			$this->displayViewSourcePage(
-				$this->getContentObject(),
-				wfMessage(
-					'contentmodelediterror',
-					$revision->getContentModel(),
-					$this->contentModel
-				)->plain()
-			);
-			return;
+		// Undo edits being an exception in order to allow reverting content model changes.
+		if ( $revision
+			&& $revision->getContentModel() !== $this->contentModel
+		) {
+			$prevRev = null;
+			if ( $this->undidRev ) {
+				$undidRevObj = Revision::newFromId( $this->undidRev );
+				$prevRev = $undidRevObj ? $undidRevObj->getPrevious() : null;
+			}
+			if ( !$this->undidRev
+				|| !$prevRev
+				|| $prevRev->getContentModel() !== $this->contentModel
+			) {
+				$this->displayViewSourcePage(
+					$this->getContentObject(),
+					wfMessage(
+						'contentmodelediterror',
+						$revision->getContentModel(),
+						$this->contentModel
+					)->plain()
+				);
+				return;
+			}
 		}
 
 		$this->isConflict = false;
@@ -1134,6 +1147,14 @@ class EditPage {
 							$oldContent = $this->page->getContent( Revision::RAW );
 							$popts = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
 							$newContent = $content->preSaveTransform( $this->mTitle, $wgUser, $popts );
+							if ( $newContent->getModel() !== $oldContent->getModel() ) {
+								// The undo may change content
+								// model if its reverting the top
+								// edit. This can result in
+								// mismatched content model/format.
+								$this->contentModel = $newContent->getModel();
+								$this->contentFormat = $oldrev->getContentFormat();
+							}
 
 							if ( $newContent->equals( $oldContent ) ) {
 								# Tell the user that the undo results in no change,
@@ -1264,9 +1285,11 @@ class EditPage {
 			$handler = ContentHandler::getForModelID( $this->contentModel );
 
 			return $handler->makeEmptyContent();
-		} else {
+		} elseif ( !$this->undidRev ) {
 			// Content models should always be the same since we error
-			// out if they are different before this point.
+			// out if they are different before this point (in ->edit()).
+			// The exception being, during an undo, the current revision might
+			// differ from the prior revision.
 			$logger = LoggerFactory::getInstance( 'editpage' );
 			if ( $this->contentModel !== $rev->getContentModel() ) {
 				$logger->warning( "Overriding content model from current edit {prev} to {new}", [
@@ -1290,9 +1313,8 @@ class EditPage {
 				] );
 				$this->contentFormat = $rev->getContentFormat();
 			}
-
-			return $content;
 		}
+		return $content;
 	}
 
 	/**
