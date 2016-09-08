@@ -276,6 +276,10 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		return count( $revisions ) === 0;
 	}
 
+	private function setTitleInfo( $key, array $titleInfo ) {
+		$this->titleInfo[$key] = $titleInfo;
+	}
+
 	/**
 	 * Get the information about the wiki pages for a given context.
 	 * @param ResourceLoaderContext $context
@@ -288,35 +292,77 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			return [];
 		}
 
-		$pages = $this->getPages( $context );
-		$key = implode( '|', array_keys( $pages ) );
+		$pageNames = array_keys( $this->getPages( $context ) );
+		sort( $pageNames );
+		$key = implode( '|', $pageNames );
 		if ( !isset( $this->titleInfo[$key] ) ) {
-			$this->titleInfo[$key] = [];
-			$batch = new LinkBatch;
-			foreach ( $pages as $titleText => $options ) {
-				$batch->addObj( Title::newFromText( $titleText ) );
-			}
+			$this->titleInfo[$key] = self::fetchTitleInfo( $dbr, $pageNames, __METHOD__ );
+		}
+		return $this->titleInfo[$key];
+	}
 
-			if ( !$batch->isEmpty() ) {
-				$res = $dbr->select( 'page',
-					// Include page_touched to allow purging if cache is poisoned (T117587, T113916)
-					[ 'page_namespace', 'page_title', 'page_touched', 'page_len', 'page_latest' ],
-					$batch->constructSet( 'page', $dbr ),
-					__METHOD__
-				);
-				foreach ( $res as $row ) {
-					// Avoid including ids or timestamps of revision/page tables so
-					// that versions are not wasted
-					$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-					$this->titleInfo[$key][$title->getPrefixedText()] = [
-						'page_len' => $row->page_len,
-						'page_latest' => $row->page_latest,
-						'page_touched' => $row->page_touched,
-					];
+	private static function fetchTitleInfo( IDatabase $db, array $pages, $fname = __METHOD__ ) {
+		$titleInfo = [];
+		$batch = new LinkBatch;
+		foreach ( $pages as $titleText ) {
+			$batch->addObj( Title::newFromText( $titleText ) );
+		}
+		if ( !$batch->isEmpty() ) {
+			$res = $db->select( 'page',
+				// Include page_touched to allow purging if cache is poisoned (T117587, T113916)
+				[ 'page_namespace', 'page_title', 'page_touched', 'page_len', 'page_latest' ],
+				$batch->constructSet( 'page', $db ),
+				$fname
+			);
+			foreach ( $res as $row ) {
+				// Avoid including ids or timestamps of revision/page tables so
+				// that versions are not wasted
+				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+				$titleInfo[$title->getPrefixedText()] = [
+					'page_len' => $row->page_len,
+					'page_latest' => $row->page_latest,
+					'page_touched' => $row->page_touched,
+				];
+			}
+		}
+		return $titleInfo;
+	}
+
+	/**
+	 * @since 1.28
+	 * @param ResourceLoaderContext $context
+	 * @param IDatabase $db
+	 * @param string[] $modules
+	 */
+	public static function preloadTitleInfo(
+		ResourceLoaderContext $context, IDatabase $db, array $moduleNames
+	) {
+		$rl = $context->getResourceLoader();
+		// getDB() can be overridden to point to a foreign database.
+		// For now, only preload local. In the future, we could preload by wikiID.
+		$allPages = [];
+		$wikiModules = [];
+		foreach ( $moduleNames as $name ) {
+			$module = $rl->getModule( $name );
+			if ( $module instanceof self ) {
+				$mDB = $module->getDB();
+				// Subclasses may disable getDB and implement getTitleInfo differently
+				if ( $mDB && $mDB->getWikiID() === $db->getWikiID() ) {
+					$wikiModules[] = $module;
+					$allPages += $module->getPages( $context );
 				}
 			}
 		}
-		return $this->titleInfo[$key];
+		$allInfo = self::fetchTitleInfo( $db, array_keys( $allPages ), __METHOD__ );
+		foreach ( $wikiModules as $module ) {
+			$pages = $module->getPages( $context );
+			$info = array_intersect_key( $allInfo, $pages );
+			$pageNames = array_keys( $pages );
+			sort( $pageNames );
+			$key = implode( '|', $pageNames );
+			$module->setTitleInfo( $key, $info );
+		}
+		return $allInfo;
 	}
 
 	/**
