@@ -5581,6 +5581,11 @@ $wgRateLimits = [
 		'ip' => [ 8, 60 ],
 		'newbie' => [ 8, 60 ],
 	],
+	// Changing the content model of a page
+	'editcontentmodel' => [
+		'newbie' => [ 2, 120 ],
+		'user' => [ 8, 60 ],
+	],
 ];
 
 /**

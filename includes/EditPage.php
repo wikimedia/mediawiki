@@ -1836,7 +1836,9 @@ class EditPage {
 			$status->value = self::AS_READ_ONLY_PAGE;
 			return $status;
 		}
-		if ( $wgUser->pingLimiter() || $wgUser->pingLimiter( 'linkpurge', 0 ) ) {
+		if ( $wgUser->pingLimiter() || $wgUser->pingLimiter( 'linkpurge', 0 )
+			|| ( $changingContentModel && $wgUser->pingLimiter( 'editcontentmodel' ) )
+		) {
 			$status->fatal( 'actionthrottledtext' );
 			$status->value = self::AS_RATE_LIMITED;
 			return $status;

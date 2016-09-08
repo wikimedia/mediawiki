@@ -191,6 +191,12 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			// Page doesn't exist, create an empty content object
 			$newContent = ContentHandler::getForModelID( $data['model'] )->makeEmptyContent();
 		}
+
+		// All other checks have passed, let's check rate limits
+		if ( $user->pingLimiter( 'editcontentmodel' ) ) {
+			throw new ThrottledError();
+		}
+
 		$flags = $this->oldRevision ? EDIT_UPDATE : EDIT_NEW;
 		$flags |= EDIT_INTERNAL;
 		if ( $user->isAllowed( 'bot' ) ) {
