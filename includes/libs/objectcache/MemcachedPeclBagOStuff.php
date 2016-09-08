@@ -115,7 +115,13 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		}
 		$servers = [];
 		foreach ( $params['servers'] as $host ) {
-			$servers[] = IP::splitHostAndPort( $host ); // (ip, port)
+			if ( preg_match( '/^\[(.+)\]:(\d+)$/', $host, $m ) ) {
+				$servers[] = [ $m[1], (int)$m[2] ]; // (ip, port)
+			} elseif ( preg_match( '/^([^:]+):(\d+)$/', $host, $m ) ) {
+				$servers[] = [ $m[1], (int)$m[2] ]; // (ip or path, port)
+			} else {
+				$servers[] = [ $host, false ]; // (ip or path, port)
+			}
 		}
 		$this->client->addServers( $servers );
 	}
