@@ -537,6 +537,10 @@ class JobRunner implements LoggerAwareInterface {
 			// This will trigger a rollback in the main loop
 			throw new DBError( $dbwSerial, "Timed out waiting on commit queue." );
 		}
+		$unlocker = new ScopedCallback( function () use ( $dbwSerial ) {
+			$dbwSerial->unlock( 'jobrunner-serial-commit', __METHOD__ );
+		} );
+
 		// Wait for the replica DBs to catch up
 		$pos = $lb->getMasterPos();
 		if ( $pos ) {
@@ -545,8 +549,6 @@ class JobRunner implements LoggerAwareInterface {
 
 		// Actually commit the DB master changes
 		$lbFactory->commitMasterChanges( $fnameTrxOwner );
-
-		// Release the lock
-		$dbwSerial->unlock( 'jobrunner-serial-commit', __METHOD__ );
+		ScopedCallback::consume( $unlocker );
 	}
 }
