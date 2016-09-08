@@ -22,13 +22,16 @@ class ParserFuzzTest extends Maintenance {
 	}
 
 	function finalSetup() {
-		require_once __DIR__ . '/../common/TestsAutoLoader.php';
+		self::requireTestsAutoloader();
+		TestSetup::applyInitialConfig();
 	}
 
 	function execute() {
 		$files = $this->getOption( 'file', [ __DIR__ . '/parserTests.txt' ] );
 		$this->seed = intval( $this->getOption( 'seed', 1 ) ) - 1;
-		$this->parserTest = new ParserTestRunner;
+		$this->parserTest = new ParserTestRunner(
+			new MultiTestRecorder,
+			[] );
 		$this->fuzzTest( $files );
 	}
 
@@ -38,11 +41,23 @@ class ParserFuzzTest extends Maintenance {
 	 * @param array $filenames
 	 */
 	function fuzzTest( $filenames ) {
-		$GLOBALS['wgContLang'] = Language::factory( 'en' );
 		$dict = $this->getFuzzInput( $filenames );
 		$dictSize = strlen( $dict );
 		$logMaxLength = log( $this->maxFuzzTestLength );
-		$this->parserTest->setupDatabase();
+
+		$teardown = $this->parserTest->staticSetup();
+		$teardown = $this->parserTest->setupDatabase( $teardown );
+		$teardown = $this->parserTest->setupUploads( $teardown );
+
+		$fakeTest = [
+			'test' => '',
+			'desc' => '',
+			'input' => '',
+			'result' => '',
+			'options' => '',
+			'config' => ''
+		];
+
 		ini_set( 'memory_limit', $this->memoryLimit * 1048576 * 2 );
 
 		$numTotal = 0;
@@ -64,7 +79,7 @@ class ParserFuzzTest extends Maintenance {
 				$input .= substr( $dict, $offset, $hairLength );
 			}
 
-			$this->parserTest->setupGlobals();
+			$perTestTeardown = $this->parserTest->perTestSetup( $fakeTest );
 			$parser = $this->parserTest->getParser();
 
 			// Run the test
@@ -85,8 +100,7 @@ class ParserFuzzTest extends Maintenance {
 			}
 
 			$numTotal++;
-			$this->parserTest->teardownGlobals();
-			$parser->__destruct();
+			ScopedCallback::consume( $perTestTeardown );
 
 			if ( $numTotal % 100 == 0 ) {
 				$usage = intval( memory_get_usage( true ) / $this->memoryLimit / 1048576 * 100 );

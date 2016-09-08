@@ -122,9 +122,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	public static function setUpBeforeClass() {
 		parent::setUpBeforeClass();
 
-		// NOTE: Usually, PHPUnitMaintClass::finalSetup already called this,
-		// but let's make doubly sure.
-		self::prepareServices( new GlobalVarConfig() );
+		// Get the service locator, and reset services if it's not done already
+		self::$serviceLocator = self::prepareServices( new GlobalVarConfig() );
 	}
 
 	/**
@@ -180,28 +179,26 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @param Config $bootstrapConfig The bootstrap config to use with the new
 	 *        MediaWikiServices. Only used for the first call to this method.
+	 * @return MediaWikiServices
 	 */
 	public static function prepareServices( Config $bootstrapConfig ) {
-		static $servicesPrepared = false;
+		static $services = null;
 
-		if ( $servicesPrepared ) {
-			return;
-		} else {
-			$servicesPrepared = true;
+		if ( !$services ) {
+			$services = self::resetGlobalServices( $bootstrapConfig );
 		}
-
-		self::resetGlobalServices( $bootstrapConfig );
+		return $services;
 	}
 
 	/**
 	 * Reset global services, and install testing environment.
 	 * This is the testing equivalent of MediaWikiServices::resetGlobalInstance().
 	 * This should only be used to set up the testing environment, not when
-	 * running unit tests. Use overrideMwServices() for that.
+	 * running unit tests. Use MediaWikiTestCase::overrideMwServices() for that.
 	 *
 	 * @see MediaWikiServices::resetGlobalInstance()
 	 * @see prepareServices()
-	 * @see overrideMwServices()
+	 * @see MediaWikiTestCase::overrideMwServices()
 	 *
 	 * @param Config|null $bootstrapConfig The bootstrap config to use with the new
 	 *        MediaWikiServices.
@@ -214,11 +211,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		MediaWikiServices::resetGlobalInstance( $testConfig );
 
-		self::$serviceLocator = MediaWikiServices::getInstance();
+		$serviceLocator = MediaWikiServices::getInstance();
 		self::installTestServices(
 			$oldConfigFactory,
-			self::$serviceLocator
+			$serviceLocator
 		);
+		return $serviceLocator;
 	}
 
 	/**
@@ -1114,13 +1112,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @throws MWException If the database table prefix is already $prefix
 	 */
 	public static function setupTestDB( DatabaseBase $db, $prefix ) {
+		if ( self::$dbSetup ) {
+			return;
+		}
+
 		if ( $db->tablePrefix() === $prefix ) {
 			throw new MWException(
 				'Cannot run unit tests, the database prefix is already "' . $prefix . '"' );
-		}
-
-		if ( self::$dbSetup ) {
-			return;
 		}
 
 		// TODO: the below should be re-written as soon as LBFactory, LoadBalancer,
