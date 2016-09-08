@@ -12,26 +12,22 @@
  * @since 1.22
  */
 class ParserTestResult {
-	/**
-	 * Description of the parser test.
-	 *
-	 * This is usually the text used to describe a parser test in the .txt
-	 * files.  It is initialized on a construction and you most probably
-	 * never want to change it.
-	 */
-	public $description;
+	/** The test info array */
+	public $test;
 	/** Text that was expected */
 	public $expected;
 	/** Actual text rendered */
 	public $actual;
 
 	/**
-	 * @param string $description A short text describing the parser test
-	 *   usually the text in the parser test .txt file.  The description
-	 *   is later available using the property $description.
+	 * @param array $test The test info array from TestIterator
+	 * @param string $expected The normalized expected output
+	 * @param string $actual The actual output
 	 */
-	public function __construct( $description ) {
-		$this->description = $description;
+	public function __construct( $test, $expected, $actual ) {
+		$this->test = $test;
+		$this->expected = $expected;
+		$this->actual = $actual;
 	}
 
 	/**
@@ -40,5 +36,9 @@ class ParserTestResult {
 	 */
 	public function isSuccess() {
 		return $this->expected === $this->actual;
+	}
+
+	public function getDescription() {
+		return $this->test['desc'];
 	}
 }

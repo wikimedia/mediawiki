@@ -20,6 +20,7 @@
  */
 
 class DbTestPreviewer extends TestRecorder {
+	protected $filter; // /< Test name filter callback
 	protected $lb; // /< Database load balancer
 	protected $db; // /< Database connection to the main DB
 	protected $curRun; // /< run ID number for the current run
@@ -28,14 +29,10 @@ class DbTestPreviewer extends TestRecorder {
 
 	/**
 	 * This should be called before the table prefix is changed
-	 * @param TestRecorder $parent
 	 */
-	function __construct( $parent ) {
-		parent::__construct( $parent );
-
-		$this->lb = wfGetLBFactory()->newMainLB();
-		// This connection will have the wiki's table prefix, not parsertest_
-		$this->db = $this->lb->getConnection( DB_MASTER );
+	function __construct( $db, $filter = false ) {
+		$this->db = $db;
+		$this->filter = $filter;
 	}
 
 	/**
@@ -43,8 +40,6 @@ class DbTestPreviewer extends TestRecorder {
 	 * and all that fun stuff
 	 */
 	function start() {
-		parent::start();
-
 		if ( !$this->db->tableExists( 'testrun', __METHOD__ )
 			|| !$this->db->tableExists( 'testitem', __METHOD__ )
 		) {
@@ -58,17 +53,8 @@ class DbTestPreviewer extends TestRecorder {
 		$this->results = [];
 	}
 
-	function getName( $test, $subtest ) {
-		if ( $subtest ) {
-			return "$test subtest #$subtest";
-		} else {
-			return $test;
-		}
-	}
-
-	function record( $test, $subtest, $result ) {
-		parent::record( $test, $subtest, $result );
-		$this->results[ $this->getName( $test, $subtest ) ] = $result;
+	function record( $test, ParserTestResult $result ) {
+		$this->results[$test['desc']] = $result->isSuccess() ? 1 : 0;
 	}
 
 	function report() {
@@ -90,11 +76,10 @@ class DbTestPreviewer extends TestRecorder {
 
 			$res = $this->db->select( 'testitem', [ 'ti_name', 'ti_success' ],
 				[ 'ti_run' => $this->prevRun ], __METHOD__ );
+			$filter = $this->filter;
 
 			foreach ( $res as $row ) {
-				if ( !$this->parent->regex
-					|| preg_match( "/{$this->parent->regex}/i", $row->ti_name )
-				) {
+				if ( !$filter || $filter( $row->ti_name ) ) {
 					$prevResults[$row->ti_name] = $row->ti_success;
 				}
 			}
@@ -143,7 +128,6 @@ class DbTestPreviewer extends TestRecorder {
 		}
 
 		print "\n";
-		parent::report();
 	}
 
 	/**
@@ -215,14 +199,6 @@ class DbTestPreviewer extends TestRecorder {
 		return ( $after == "f" ? "Introduced" : "Fixed" ) . " between "
 			. date( "d-M-Y H:i:s", strtotime( $pre->tr_date ) ) . ", " . $pre->tr_mw_version
 			. " and $postDate";
-	}
-
-	/**
-	 * Close the DB connection
-	 */
-	function end() {
-		$this->lb->closeAll();
-		parent::end();
 	}
 }
 
