@@ -2,7 +2,7 @@
  * Enhance rollback links by using asynchronous API requests,
  * rather than navigating to an action page.
  *
- * @since 1.27
+ * @since 1.28
  * @author Timo Tijhof
  */
 ( function ( mw, $ ) {

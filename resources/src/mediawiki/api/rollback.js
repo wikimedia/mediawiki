@@ -1,6 +1,6 @@
 /**
  * @class mw.Api.plugin.rollback
- * @since 1.27
+ * @since 1.28
  */
 ( function ( mw, $ ) {
 
