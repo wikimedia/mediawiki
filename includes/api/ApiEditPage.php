@@ -97,6 +97,7 @@ class ApiEditPage extends ApiBase {
 		} else {
 			$contentHandler = ContentHandler::getForModelID( $params['contentmodel'] );
 		}
+		$contentModel = $contentHandler->getModelID();
 
 		$name = $titleObj->getPrefixedDBkey();
 		$model = $contentHandler->getModelID();
@@ -265,8 +266,15 @@ class ApiEditPage extends ApiBase {
 			if ( !$newContent ) {
 				$this->dieUsageMsg( 'undo-failure' );
 			}
-
-			$params['text'] = $newContent->serialize( $params['contentformat'] );
+			// If we are reverting content model, the new content model
+			// might not support the current serialization format, in
+			// which case go back to the old serialization format.
+			if ( !$newContent->isSupportedFormat( $params['contentformat'] ) ) {
+				$contentFormat = $undoafterRev->getContentFormat();
+			}
+			$params['text'] = $newContent->serialize( $contentFormat );
+			// Override content model.
+			$contentModel = $newContent->getModel();
 
 			// If no summary was given and we only undid one rev,
 			// use an autosummary
@@ -288,7 +296,7 @@ class ApiEditPage extends ApiBase {
 		$requestArray = [
 			'wpTextbox1' => $params['text'],
 			'format' => $contentFormat,
-			'model' => $contentHandler->getModelID(),
+			'model' => $contentModel,
 			'wpEditToken' => $params['token'],
 			'wpIgnoreBlankSummary' => true,
 			'wpIgnoreBlankArticle' => true,
