@@ -276,6 +276,7 @@ class MemcLockManager extends QuorumLockManager {
 	 * @return MemcachedBagOStuff|null
 	 */
 	protected function getCache( $lockSrv ) {
+		/** @var BagOStuff $memc */
 		$memc = null;
 		if ( isset( $this->bagOStuffs[$lockSrv] ) ) {
 			$memc = $this->bagOStuffs[$lockSrv];
@@ -337,20 +338,21 @@ class MemcLockManager extends QuorumLockManager {
 		// Try to quickly loop to acquire the keys, but back off after a few rounds.
 		// This reduces memcached spam, especially in the rare case where a server acquires
 		// some lock keys and dies without releasing them. Lock keys expire after a few minutes.
-		$rounds = 0;
-		$start = microtime( true );
-		do {
-			if ( ( ++$rounds % 4 ) == 0 ) {
-				usleep( 1000 * 50 ); // 50 ms
-			}
-			foreach ( array_diff( $keys, $lockedKeys ) as $key ) {
-				if ( $memc->add( "$key:mutex", 1, 180 ) ) { // lock record
-					$lockedKeys[] = $key;
-				} else {
-					continue; // acquire in order
+		$loop = new WaitConditionLoop(
+			function () use ( $memc, $keys, &$lockedKeys ) {
+				foreach ( array_diff( $keys, $lockedKeys ) as $key ) {
+					if ( $memc->add( "$key:mutex", 1, 180 ) ) { // lock record
+						$lockedKeys[] = $key;
+					}
 				}
-			}
-		} while ( count( $lockedKeys ) < count( $keys ) && ( microtime( true ) - $start ) <= 3 );
+
+				return array_diff( $keys, $lockedKeys )
+					? WaitConditionLoop::CONDITION_CONTINUE
+					: true;
+			},
+			3.0 // timeout
+		);
+		$loop->invoke();
 
 		if ( count( $lockedKeys ) != count( $keys ) ) {
 			$this->releaseMutexes( $memc, $lockedKeys ); // failed; release what was locked
