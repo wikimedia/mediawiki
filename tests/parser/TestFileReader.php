@@ -19,27 +19,43 @@
  * @ingroup Testing
  */
 
-class TestFileReader implements Iterator {
+class TestFileReader {
 	private $file;
 	private $fh;
-	/**
-	 * @var ParserTestRunner|ParserTestTopLevelSuite An instance of ParserTestRunner
-	 * (parserTests.php) or ParserTestTopLevelSuite (phpunit)
-	 */
-	private $parserTest;
-	private $index = 0;
-	private $test;
 	private $section = null;
 	/** String|null: current test section being analyzed */
 	private $sectionData = [];
-	private $lineNum;
-	private $eof;
-	# Create a fake parser tests which never run anything unless
-	# asked to do so. This will avoid running hooks for a disabled test
-	private $delayedParserTest;
-	private $nextSubTest = 0;
+	private $lineNum = 0;
+	private $runDisabled;
+	private $runParsoid;
+	private $regex;
 
-	function __construct( $file, $parserTest ) {
+	private $articles = [];
+	private $requirements = [];
+	private $tests = [];
+
+	public static function read( $file, array $options = [] ) {
+		$reader = new self( $file, $options );
+		$reader->execute();
+
+		$requirements = [];
+		foreach ( $reader->requirements as $type => $reqsOfType ) {
+			foreach ( $reqsOfType as $name => $unused ) {
+				$requirements[] = [
+					'type' => $type,
+					'name' => $name
+				];
+			}
+		}
+
+		return [
+			'requirements' => $requirements,
+			'tests' => $reader->tests,
+			'articles' => $reader->articles
+		];
+	}
+
+	private function __construct( $file, $options ) {
 		$this->file = $file;
 		$this->fh = fopen( $this->file, "rt" );
 
@@ -47,64 +63,23 @@ class TestFileReader implements Iterator {
 			throw new MWException( "Couldn't open file '$file'\n" );
 		}
 
-		$this->parserTest = $parserTest;
-		$this->delayedParserTest = new DelayedParserTest();
-
-		$this->lineNum = $this->index = 0;
+		$options = $options + [
+			'runDisabled' => false,
+			'runParsoid' => false,
+			'regex' => '//',
+		];
+		$this->runDisabled = $options['runDisabled'];
+		$this->runParsoid = $options['runParsoid'];
+		$this->regex = $options['regex'];
 	}
 
-	function rewind() {
-		if ( fseek( $this->fh, 0 ) ) {
-			throw new MWException( "Couldn't fseek to the start of '$this->file'\n" );
-		}
-
-		$this->index = -1;
-		$this->lineNum = 0;
-		$this->eof = false;
-		$this->next();
-
-		return true;
-	}
-
-	function current() {
-		return $this->test;
-	}
-
-	function key() {
-		return $this->index;
-	}
-
-	function next() {
-		if ( $this->readNextTest() ) {
-			$this->index++;
-			return true;
-		} else {
-			$this->eof = true;
-		}
-	}
-
-	function valid() {
-		return $this->eof != true;
-	}
-
-	function setupCurrentTest() {
+	private function addCurrentTest() {
 		// "input" and "result" are old section names allowed
 		// for backwards-compatibility.
 		$input = $this->checkSection( [ 'wikitext', 'input' ], false );
 		$result = $this->checkSection( [ 'html/php', 'html/*', 'html', 'result' ], false );
-		// some tests have "with tidy" and "without tidy" variants
+		// Some tests have "with tidy" and "without tidy" variants
 		$tidy = $this->checkSection( [ 'html/php+tidy', 'html+tidy' ], false );
-		if ( $tidy != false ) {
-			if ( $this->nextSubTest == 0 ) {
-				if ( $result != false ) {
-					$this->nextSubTest = 1; // rerun non-tidy variant later
-				}
-				$result = $tidy;
-			} else {
-				$this->nextSubTest = 0; // go on to next test after this
-				$tidy = false;
-			}
-		}
 
 		if ( !isset( $this->sectionData['options'] ) ) {
 			$this->sectionData['options'] = '';
@@ -115,50 +90,35 @@ class TestFileReader implements Iterator {
 		}
 
 		$isDisabled = preg_match( '/\\bdisabled\\b/i', $this->sectionData['options'] ) &&
-			!$this->parserTest->runDisabled;
+			!$this->runDisabled;
 		$isParsoidOnly = preg_match( '/\\bparsoid\\b/i', $this->sectionData['options'] ) &&
 			$result == 'html' &&
-			!$this->parserTest->runParsoid;
-		$isFiltered = !preg_match( "/" . $this->parserTest->regex . "/i", $this->sectionData['test'] );
+			!$this->runParsoid;
+		$isFiltered = !preg_match( $this->regex, $this->sectionData['test'] );
 		if ( $input == false || $result == false || $isDisabled || $isParsoidOnly || $isFiltered ) {
-			# disabled test
-			return false;
+			// Disabled test
+			return;
 		}
 
-		# We are really going to run the test, run pending hooks and hooks function
-		wfDebug( __METHOD__ . " unleashing delayed test for: {$this->sectionData['test']}" );
-		$hooksResult = $this->delayedParserTest->unleash( $this->parserTest );
-		if ( !$hooksResult ) {
-			# Some hook reported an issue. Abort.
-			throw new MWException( "Problem running requested parser hook from the test file" );
-		}
-
-		$this->test = [
+		$test = [
 			'test' => ParserTestRunner::chomp( $this->sectionData['test'] ),
-			'subtest' => $this->nextSubTest,
 			'input' => ParserTestRunner::chomp( $this->sectionData[$input] ),
 			'result' => ParserTestRunner::chomp( $this->sectionData[$result] ),
 			'options' => ParserTestRunner::chomp( $this->sectionData['options'] ),
 			'config' => ParserTestRunner::chomp( $this->sectionData['config'] ),
 		];
-		if ( $tidy != false ) {
-			$this->test['options'] .= " tidy";
+		$test['desc'] = $test['test'];
+		$this->tests[] = $test;
+
+		if ( $tidy !== false ) {
+			$test['options'] .= " tidy";
+			$test['desc'] .= ' (with tidy)';
+			$test['result'] = ParserTestRunner::chomp( $this->sectionData[$tidy] );
+			$this->tests[] = $test;
 		}
-		return true;
 	}
 
-	function readNextTest() {
-		# Run additional subtests of previous test
-		while ( $this->nextSubTest > 0 ) {
-			if ( $this->setupCurrentTest() ) {
-				return true;
-			}
-		}
-
-		$this->clearSection();
-		# Reset hooks for the delayed test object
-		$this->delayedParserTest->reset();
-
+	private function execute() {
 		while ( false !== ( $line = fgets( $this->fh ) ) ) {
 			$this->lineNum++;
 			$matches = [];
@@ -170,7 +130,7 @@ class TestFileReader implements Iterator {
 					$this->checkSection( 'text' );
 					$this->checkSection( 'article' );
 
-					$this->parserTest->addArticle(
+					$this->addArticle(
 						ParserTestRunner::chomp( $this->sectionData['article'] ),
 						$this->sectionData['text'], $this->lineNum );
 
@@ -186,7 +146,7 @@ class TestFileReader implements Iterator {
 						$line = trim( $line );
 
 						if ( $line ) {
-							$this->delayedParserTest->requireHook( $line );
+							$this->addRequirement( 'hook', $line );
 						}
 					}
 
@@ -202,7 +162,7 @@ class TestFileReader implements Iterator {
 						$line = trim( $line );
 
 						if ( $line ) {
-							$this->delayedParserTest->requireFunctionHook( $line );
+							$this->addRequirement( 'functionHook', $line );
 						}
 					}
 
@@ -218,7 +178,7 @@ class TestFileReader implements Iterator {
 						$line = trim( $line );
 
 						if ( $line ) {
-							$this->delayedParserTest->requireTransparentHook( $line );
+							$this->addRequirement( 'transparentHook', $line );
 						}
 					}
 
@@ -229,14 +189,8 @@ class TestFileReader implements Iterator {
 
 				if ( $this->section == 'end' ) {
 					$this->checkSection( 'test' );
-					do {
-						if ( $this->setupCurrentTest() ) {
-							return true;
-						}
-					} while ( $this->nextSubTest > 0 );
-					# go on to next test (since this was disabled)
+					$this->addCurrentTest();
 					$this->clearSection();
-					$this->delayedParserTest->reset();
 					continue;
 				}
 
@@ -254,8 +208,6 @@ class TestFileReader implements Iterator {
 				$this->sectionData[$this->section] .= $line;
 			}
 		}
-
-		return false;
 	}
 
 	/**
@@ -319,6 +271,19 @@ class TestFileReader implements Iterator {
 		}
 
 		return array_values( $tokens )[0];
+	}
+
+	private function addArticle( $name, $text, $line ) {
+		$this->articles[] = [
+			'name' => $name,
+			'text' => $text,
+			'line' => $line,
+			'file' => $this->file
+		];
+	}
+
+	private function addRequirement( $type, $name ) {
+		$this->requirements[$type][$name] = true;
 	}
 }
 

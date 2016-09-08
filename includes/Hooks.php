@@ -64,7 +64,7 @@ class Hooks {
 	 * @throws MWException If not in testing mode.
 	 */
 	public static function clear( $name ) {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
 			throw new MWException( 'Cannot reset hooks in operation.' );
 		}
 
