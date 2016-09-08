@@ -31,8 +31,8 @@ class ChronologyProtector {
 
 	/** @var string Storage key name */
 	protected $key;
-	/** @var array Map of (ip: <IP>, agent: <user-agent>) */
-	protected $client;
+	/** @var string Hash of client parameters */
+	protected $clientId;
 	/** @var bool Whether to no-op all method calls */
 	protected $enabled = true;
 	/** @var bool Whether to check and wait on positions */
@@ -44,6 +44,8 @@ class ChronologyProtector {
 	protected $startupPositions = [];
 	/** @var DBMasterPos[] Map of (DB master name => position) */
 	protected $shutdownPositions = [];
+	/** @var float[] Map of (DB master name => UNIX timestamp) */
+	protected $shutdownTimestamps = [];
 
 	/**
 	 * @param BagOStuff $store
@@ -52,11 +54,8 @@ class ChronologyProtector {
 	 */
 	public function __construct( BagOStuff $store, array $client ) {
 		$this->store = $store;
-		$this->client = $client;
-		$this->key = $store->makeGlobalKey(
-			'ChronologyProtector',
-			md5( $client['ip'] . "\n" . $client['agent'] )
-		);
+		$this->clientId = md5( $client['ip'] . "\n" . $client['agent'] );
+		$this->key = $store->makeGlobalKey( __CLASS__, $this->clientId );
 	}
 
 	/**
@@ -111,24 +110,23 @@ class ChronologyProtector {
 	 * @return void
 	 */
 	public function shutdownLB( LoadBalancer $lb ) {
-		if ( !$this->enabled || $lb->getServerCount() <= 1 ) {
-			return; // non-replicated setup or disabled
+		if ( !$this->enabled ) {
+			return; // not enabled
+		} elseif ( !$lb->hasOrMadeRecentMasterChanges( INF ) ) {
+			// Only save the position if writes have been done on the connection
+			return;
 		}
 
-		$info = $lb->parentInfo();
 		$masterName = $lb->getServerName( $lb->getWriterIndex() );
-
-		// Only save the position if writes have been done on the connection
-		$db = $lb->getAnyOpenConnection( $lb->getWriterIndex() );
-		if ( !$db || !$db->doneWrites() ) {
-			wfDebugLog( 'replication', __METHOD__ . ": LB {$info['id']}, no writes done\n" );
-
-			return; // nothing to do
+		if ( $lb->getServerCount() > 1 ) {
+			$pos = $lb->getMasterPos();
+			wfDebugLog( 'replication', __METHOD__ . ": DB '$masterName' has master pos $pos\n" );
+			$this->shutdownPositions[$masterName] = $pos;
+			$this->shutdownTimestamps[$masterName] = $pos ? $pos->asOfTime() : microtime( true );
+		} else {
+			wfDebugLog( 'replication', __METHOD__ . ": DB '$masterName' touched\n" );
+			$this->shutdownTimestamps = microtime( true );
 		}
-
-		$pos = $db->getMasterPos();
-		wfDebugLog( 'replication', __METHOD__ . ": LB {$info['id']} has master pos $pos\n" );
-		$this->shutdownPositions[$masterName] = $pos;
 	}
 
 	/**
@@ -157,6 +155,15 @@ class ChronologyProtector {
 				BagOStuff::TTL_MINUTE,
 				BagOStuff::WRITE_SYNC
 			);
+			// Some callers might want to know if a user recently touched a DB.
+			// These writes do not need to block on all datacenters receiving them.
+			foreach ( $this->shutdownTimestamps as $dbName => $timestamp ) {
+				$this->store->set(
+					$this->getTouchedKey( $this->store, $dbName ),
+					$timestamp,
+					BagOStuff::TTL_DAY
+				);
+			}
 			$this->store->unlock( $this->key );
 		} else {
 			$ok = false;
@@ -173,6 +180,24 @@ class ChronologyProtector {
 		}
 
 		return [];
+	}
+
+	/**
+	 * @param string $dbName DB master name (e.g. "db1052")
+	 * @return float|bool UNIX timestamp when this user last touched the DB or false
+	 * @since 1.28
+	 */
+	public function getTouched( $dbName ) {
+		return $this->store->get( $this->getTouchedKey( $this->store, $dbName ) );
+	}
+
+	/**
+	 * @param BagOStuff $store
+	 * @param string $dbName
+	 * @return string
+	 */
+	private function getTouchedKey( BagOStuff $store, $dbName ) {
+		return $store->makeGlobalKey( __CLASS__, 'mtime', $this->clientId, $dbName );
 	}
 
 	/**
