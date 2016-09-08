@@ -246,7 +246,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		$summary = parent::getDefinitionSummary( $context );
 		$summary[] = [
 			'pages' => $this->getPages( $context ),
-			// Includes SHA1 of content
+			// Includes meta data of current revisions
 			'titleInfo' => $this->getTitleInfo( $context ),
 		];
 		return $summary;
@@ -262,7 +262,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		// For user modules, don't needlessly load if there are no non-empty pages
 		if ( $this->getGroup() === 'user' ) {
 			foreach ( $revisions as $revision ) {
-				if ( $revision['rev_len'] > 0 ) {
+				if ( $revision['page_len'] > 0 ) {
 					// At least one non-empty page, module should be loaded
 					return false;
 				}
@@ -279,7 +279,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	/**
 	 * Get the information about the wiki pages for a given context.
 	 * @param ResourceLoaderContext $context
-	 * @return array Keyed by page name. Contains arrays with 'rev_len' and 'rev_sha1' keys
+	 * @return array Keyed by page name
 	 */
 	protected function getTitleInfo( ResourceLoaderContext $context ) {
 		$dbr = $this->getDB();
@@ -298,21 +298,19 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			}
 
 			if ( !$batch->isEmpty() ) {
-				$res = $dbr->select( [ 'page', 'revision' ],
+				$res = $dbr->select( 'page',
 					// Include page_touched to allow purging if cache is poisoned (T117587, T113916)
-					[ 'page_namespace', 'page_title', 'page_touched', 'rev_len', 'rev_sha1' ],
+					[ 'page_namespace', 'page_title', 'page_touched', 'page_len', 'page_latest' ],
 					$batch->constructSet( 'page', $dbr ),
-					__METHOD__,
-					[],
-					[ 'revision' => [ 'INNER JOIN', [ 'page_latest=rev_id' ] ] ]
+					__METHOD__
 				);
 				foreach ( $res as $row ) {
 					// Avoid including ids or timestamps of revision/page tables so
 					// that versions are not wasted
 					$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 					$this->titleInfo[$key][$title->getPrefixedText()] = [
-						'rev_len' => $row->rev_len,
-						'rev_sha1' => $row->rev_sha1,
+						'page_len' => $row->page_len,
+						'page_latest' => $row->page_latest,
 						'page_touched' => $row->page_touched,
 					];
 				}
