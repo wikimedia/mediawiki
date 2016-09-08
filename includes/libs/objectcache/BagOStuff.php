@@ -410,35 +410,21 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 		}
 
 		$expiry = min( $expiry ?: INF, self::TTL_DAY );
-
-		$this->clearLastError();
-		$timestamp = microtime( true ); // starting UNIX timestamp
-		if ( $this->add( "{$key}:lock", 1, $expiry ) ) {
-			$locked = true;
-		} elseif ( $this->getLastError() || $timeout <= 0 ) {
-			$locked = false; // network partition or non-blocking
-		} else {
-			// Estimate the RTT (us); use 1ms minimum for sanity
-			$uRTT = max( 1e3, ceil( 1e6 * ( microtime( true ) - $timestamp ) ) );
-			$sleep = 2 * $uRTT; // rough time to do get()+set()
-
-			$attempts = 0; // failed attempts
-			do {
-				if ( ++$attempts >= 3 && $sleep <= 5e5 ) {
-					// Exponentially back off after failed attempts to avoid network spam.
-					// About 2*$uRTT*(2^n-1) us of "sleep" happen for the next n attempts.
-					$sleep *= 2;
-				}
-				usleep( $sleep ); // back off
+		$loop = new WaitConditionLoop(
+			function () use ( $key, $timeout, $expiry ) {
 				$this->clearLastError();
-				$locked = $this->add( "{$key}:lock", 1, $expiry );
-				if ( $this->getLastError() ) {
-					$locked = false; // network partition
-					break;
+				if ( $this->add( "{$key}:lock", 1, $expiry ) ) {
+					return true; // locked!
+				} elseif ( $this->getLastError() ) {
+					return WaitConditionLoop::CONDITION_ABORTED; // network partition?
 				}
-			} while ( !$locked && ( microtime( true ) - $timestamp ) < $timeout );
-		}
 
+				return WaitConditionLoop::CONDITION_CONTINUE;
+			},
+			$timeout
+		);
+
+		$locked = ( $loop->invoke() === $loop::CONDITION_REACHED );
 		if ( $locked ) {
 			$this->locks[$key] = [ 'class' => $rclass, 'depth' => 1 ];
 		}
