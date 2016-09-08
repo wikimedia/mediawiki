@@ -2709,9 +2709,11 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$session->clear();
 		$user = $this->getMock( 'User', [ 'addToDatabase' ] );
 		$user->expects( $this->once() )->method( 'addToDatabase' )
-			->will( $this->returnCallback( function () use ( $username ) {
-				$status = \User::newFromName( $username )->addToDatabase();
+			->will( $this->returnCallback( function () use ( $username, &$user ) {
+				$oldUser = \User::newFromName( $username );
+				$status = $oldUser->addToDatabase();
 				$this->assertTrue( $status->isOK(), 'sanity check' );
+				$user->setId( $oldUser->getId() );
 				return \Status::newFatal( 'userexists' );
 			} ) );
 		$user->setName( $username );
