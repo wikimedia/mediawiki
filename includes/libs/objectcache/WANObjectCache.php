@@ -121,6 +121,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	const TTL_LAGGED = 30;
 	/** Idiom for delete() for "no hold-off" */
 	const HOLDOFF_NONE = 0;
+	/** Idiom for getWithSetCallback() for "no minimum required as-of timestamp" */
+	const MIN_TIMESTAMP_NONE = 0.0;
 
 	/** Tiny negative float to use when CTL comes up >= 0 due to clock skew */
 	const TINY_NEGATIVE = -0.000001;
@@ -804,6 +806,10 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *      versions are stored alongside older versions concurrently. Avoid storing class objects
 	 *      however, as this reduces compatibility (due to serialization).
 	 *      Default: null.
+	 *   - minAsOf: Reject values if they were generated before this UNIX timestamp.
+	 *      This is useful if the source of a key is suspected of having possibly changed
+	 *      recently, and the caller wants any such changes to be reflected.
+	 *      Default: WANObjectCache::MIN_TIMESTAMP_NONE.
 	 *   - hotTTR: Expected time-till-refresh for keys that average ~1 hit/second.
 	 *      This should be greater than "ageNew". Keys with higher hit rates will regenerate
 	 *      more often. This is useful when a popular key is changed but the cache purge was
@@ -832,8 +838,6 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		}
 
 		if ( $value === false ) {
-			unset( $opts['minTime'] ); // not a public feature
-
 			// Fetch the value over the network
 			if ( isset( $opts['version'] ) ) {
 				$version = $opts['version'];
@@ -871,7 +875,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 						$ttl,
 						$callback,
 						// Regenerate value if not newer than $key
-						[ 'version' => null, 'minTime' => $asOf ] + $opts
+						[ 'version' => null, 'minAsOf' => $asOf ] + $opts
 					);
 				}
 			} else {
@@ -908,7 +912,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$busyValue = isset( $opts['busyValue'] ) ? $opts['busyValue'] : null;
 		$popWindow = isset( $opts['hotTTR'] ) ? $opts['hotTTR'] : self::HOT_TTR;
 		$ageNew = isset( $opts['ageNew'] ) ? $opts['ageNew'] : self::AGE_NEW;
-		$minTime = isset( $opts['minTime'] ) ? $opts['minTime'] : 0.0;
+		$minTime = isset( $opts['minAsOf'] ) ? $opts['minAsOf'] : self::MIN_TIMESTAMP_NONE;
 		$versioned = isset( $opts['version'] );
 
 		// Get the current key value
