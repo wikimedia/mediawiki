@@ -994,7 +994,7 @@ class LoadBalancer {
 
 	/**
 	 * Get the current master position for chronology control purposes
-	 * @return mixed
+	 * @return DBMasterPos|bool Returns false if not applicable
 	 */
 	public function getMasterPos() {
 		# If this entire request was served from a replica DB without opening a connection to the

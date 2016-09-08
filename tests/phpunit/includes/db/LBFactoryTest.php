@@ -159,7 +159,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 		$mockDB->expects( $this->any() )
-			->method( 'doneWrites' )->will( $this->returnValue( true ) );
+			->method( 'lastDoneWrites' )->will( $this->returnValue( true ) );
 		$mockDB->expects( $this->any() )
 			->method( 'getMasterPos' )->will( $this->returnValue( $mPos ) );
 
