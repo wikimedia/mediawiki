@@ -17,6 +17,8 @@
  *
  * @file
  */
+
+use MediaWiki\Auth\AuthManager;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -574,6 +576,7 @@ class SkinTemplate extends Skin {
 		$title = $this->getTitle();
 		$request = $this->getRequest();
 		$pageurl = $title->getLocalURL();
+		$authManager = AuthManager::singleton();
 
 		/* set up the default links for the personal toolbar */
 		$personal_urls = [];
@@ -652,17 +655,25 @@ class SkinTemplate extends Skin {
 				'href' => $href,
 				'active' => $active
 			];
-			$personal_urls['logout'] = [
-				'text' => $this->msg( 'pt-userlogout' )->text(),
-				'href' => self::makeSpecialUrl( 'Userlogout',
-					// userlogout link must always contain an & character, otherwise we might not be able
-					// to detect a buggy precaching proxy (bug 17790)
-					$title->isSpecial( 'Preferences' ) ? 'noreturnto' : $returnto
-				),
-				'active' => false
-			];
+
+			// if we can't set the user, we can't unset it either
+			if ( $request->getSession()->canSetUser() ) {
+				$personal_urls['logout'] = [
+					'text' => $this->msg( 'pt-userlogout' )->text(),
+					'href' => self::makeSpecialUrl( 'Userlogout',
+						// userlogout link must always contain an & character, otherwise we might not be able
+						// to detect a buggy precaching proxy (bug 17790)
+						$title->isSpecial( 'Preferences' ) ? 'noreturnto' : $returnto ),
+					'active' => false
+				];
+			}
 		} else {
 			$useCombinedLoginLink = $this->useCombinedLoginLink();
+			if ( !$authManager->canCreateAccounts() || !$authManager->canAuthenticateNow() ) {
+				// don't show combined login/signup link if one of those is actually not available
+				$useCombinedLoginLink = false;
+			}
+
 			$loginlink = $this->getUser()->isAllowed( 'createaccount' ) && $useCombinedLoginLink
 				? 'nav-login-createaccount'
 				: 'pt-login';
@@ -699,11 +710,17 @@ class SkinTemplate extends Skin {
 				];
 			}
 
-			if ( $this->getUser()->isAllowed( 'createaccount' ) && !$useCombinedLoginLink ) {
+			if (
+				$authManager->canCreateAccounts()
+				&& $this->getUser()->isAllowed( 'createaccount' )
+				&& !$useCombinedLoginLink
+			) {
 				$personal_urls['createaccount'] = $createaccount_url;
 			}
 
-			$personal_urls['login'] = $login_url;
+			if ( $authManager->canAuthenticateNow() ) {
+				$personal_urls['login'] = $login_url;
+			}
 		}
 
 		Hooks::run( 'PersonalUrls', [ &$personal_urls, &$title, $this ] );

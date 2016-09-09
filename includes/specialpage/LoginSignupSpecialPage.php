@@ -223,11 +223,16 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$this->setHeaders();
 		$this->checkPermissions();
 
-		// Make sure it's possible to log in
-		if ( !$this->isSignup() && !$session->canSetUser() ) {
-			throw new ErrorPageError( 'cannotloginnow-title', 'cannotloginnow-text', [
+		// Make sure the system configuration allows log in / sign up
+		if ( !$this->isSignup() && !$authManager->canAuthenticateNow() ) {
+			if ( !$session->canSetUser() ) {
+				throw new ErrorPageError( 'cannotloginnow-title', 'cannotloginnow-text', [
 					$session->getProvider()->describe( RequestContext::getMain()->getLanguage() )
 				] );
+			}
+			throw new ErrorPageError( 'cannotlogin-title', 'cannotlogin-text' );
+		} elseif ( $this->isSignup() && !$authManager->canCreateAccounts() ) {
+			throw new ErrorPageError( 'cannotcreateaccount-title', 'cannotcreateaccount-text' );
 		}
 
 		/*
