@@ -2607,6 +2607,7 @@
 	"pageinfo-article-id": "Назнака на страницата",
 	"pageinfo-language": "Јазик на содржината на страницата",
 	"pageinfo-content-model": "Модел на содржината на страницата",
+	"pageinfo-content-model-change": "смени",
 	"pageinfo-robot-policy": "Индексирање со роботи",
 	"pageinfo-robot-index": "Дозволено",
 	"pageinfo-robot-noindex": "Недозволено",

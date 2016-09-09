@@ -2651,6 +2651,7 @@
 	"pageinfo-article-id": "Sid-ID",
 	"pageinfo-language": "Språk för sidinnehåll",
 	"pageinfo-content-model": "Sidinnehållsmodell",
+	"pageinfo-content-model-change": "ändra",
 	"pageinfo-robot-policy": "Indexering av robotar",
 	"pageinfo-robot-index": "Tillåten",
 	"pageinfo-robot-noindex": "Inte tillåten",

@@ -2673,6 +2673,7 @@
 	"pageinfo-article-id": "页面ID",
 	"pageinfo-language": "页面内容语言",
 	"pageinfo-content-model": "页面内容类型",
+	"pageinfo-content-model-change": "更改",
 	"pageinfo-robot-policy": "爬虫索引",
 	"pageinfo-robot-index": "允许",
 	"pageinfo-robot-noindex": "不允许",

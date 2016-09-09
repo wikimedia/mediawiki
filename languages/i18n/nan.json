@@ -387,7 +387,6 @@
 	"yourpasswordagain": "Têng phah bi̍t-bé:",
 	"createacct-yourpasswordagain": "Khak-jīn bi̍t-bé",
 	"createacct-yourpasswordagain-ph": "Koh phah chi̍t-pái bi̍t-bé",
-	"remembermypassword": "Tī chit ê liû-lám-khì kì góa ê teng-ji̍p chu-liāu.(siōng chē kì $1 {{PLURAL:$1|kang|kang}})",
 	"userlogin-remembermypassword": "Kì-lo̍k goá teng-ji̍p--ê chu-liāu",
 	"userlogin-signwithsecure": "用安全連線",
 	"yourdomainname": "你的網域：",

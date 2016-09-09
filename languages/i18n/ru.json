@@ -2674,6 +2674,7 @@
 	"pageinfo-article-id": "Идентификатор страницы",
 	"pageinfo-language": "Язык страницы",
 	"pageinfo-content-model": "Модель содержимого страницы",
+	"pageinfo-content-model-change": "изменить",
 	"pageinfo-robot-policy": "Индексация поисковыми роботами",
 	"pageinfo-robot-index": "Разрешено",
 	"pageinfo-robot-noindex": "Не разрешено",

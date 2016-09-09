@@ -2610,6 +2610,7 @@
 	"pageinfo-article-id": "ID stránky",
 	"pageinfo-language": "Jazyk obsahu stránky",
 	"pageinfo-content-model": "Model obsahu stránky",
+	"pageinfo-content-model-change": "změnit",
 	"pageinfo-robot-policy": "Indexování roboty",
 	"pageinfo-robot-index": "Dovoleno",
 	"pageinfo-robot-noindex": "Zakázáno",

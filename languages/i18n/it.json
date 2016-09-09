@@ -2674,6 +2674,7 @@
 	"pageinfo-article-id": "ID della pagina",
 	"pageinfo-language": "Lingua del contenuto della pagina",
 	"pageinfo-content-model": "Modello del contenuto della pagina",
+	"pageinfo-content-model-change": "cambia",
 	"pageinfo-robot-policy": "Indicizzazione per i robot",
 	"pageinfo-robot-index": "Consentito",
 	"pageinfo-robot-noindex": "Non consentito",

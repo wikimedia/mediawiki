@@ -2574,6 +2574,7 @@
 	"pageinfo-article-id": "ID strani",
 	"pageinfo-language": "Jezik vsebine strani",
 	"pageinfo-content-model": "Model vsebine strani",
+	"pageinfo-content-model-change": "spremeni",
 	"pageinfo-robot-policy": "Robotsko indeksiranje",
 	"pageinfo-robot-index": "Dovoljeno",
 	"pageinfo-robot-noindex": "Nedovoljeno",
