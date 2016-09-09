@@ -23,8 +23,11 @@ class WebRequestTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideDetectServer
 	 * @covers WebRequest::detectServer
+	 * @covers WebRequest::detectProtocol
 	 */
 	public function testDetectServer( $expected, $input, $description ) {
+		$this->setMwGlobals( 'wgAssumeProxiesUseDefaultProtocolPorts', true );
+
 		$_SERVER = $input;
 		$result = WebRequest::detectServer();
 		$this->assertEquals( $expected, $result, $description );
@@ -62,6 +65,24 @@ class WebRequestTest extends MediaWikiTestCase {
 					'HTTPS' => 'off',
 				],
 				'Secure off'
+			],
+			[
+				'https://x',
+				[
+					'HTTP_HOST' => 'x',
+					'HTTP_X_FORWARDED_PROTO' => 'https',
+				],
+				'Forwarded HTTPS'
+			],
+			[
+				'https://x',
+				[
+					'HTTP_HOST' => 'x',
+					'HTTPS' => 'off',
+					'SERVER_PORT' => '81',
+					'HTTP_X_FORWARDED_PROTO' => 'https',
+				],
+				'Forwarded HTTPS'
 			],
 			[
 				'http://y',
@@ -102,6 +123,217 @@ class WebRequestTest extends MediaWikiTestCase {
 				'Possible lighttpd environment per bug 14977 comment 13',
 			],
 		];
+	}
+
+	protected function mockWebRequest( $data = [] ) {
+		// Cannot use PHPUnit getMockBuilder() as it does not support
+		// overriding protected properties afterwards
+		$reflection = new ReflectionClass( 'WebRequest' );
+		$req = $reflection->newInstanceWithoutConstructor();
+
+		$prop = $reflection->getProperty( 'data' );
+		$prop->setAccessible( true );
+		$prop->setValue( $req, $data );
+
+		return $req;
+	}
+
+	/**
+	 * @covers WebRequest::getElapsedTime
+	 */
+	public function testGetElapsedTime() {
+		$req = new FauxRequest();
+		$this->assertGreaterThanOrEqual( 0.0, $req->getElapsedTime() );
+		$this->assertEquals( 0.0, $req->getElapsedTime(), '', /*delta*/ 0.2 );
+	}
+
+	/**
+	 * @covers WebRequest::getVal
+	 * @covers WebRequest::getGPCVal
+	 * @covers WebRequest::normalizeUnicode
+	 */
+	public function testGetValNormal() {
+		// Assert that WebRequest normalises GPC data using UtfNormal\Validator
+		$input = "a \x00 null";
+		$normal = "a \xef\xbf\xbd null";
+		$req = new FauxRequest( [ 'x' => $input, 'y' => [ $input, $input ] ] );
+		$this->assertSame( $normal, $req->getVal( 'x' ) );
+		$this->assertNotSame( $input, $req->getVal( 'x' ) );
+		$this->assertSame( [ $normal, $normal ], $req->getArray( 'y' ) );
+	}
+
+	/**
+	 * @covers WebRequest::getVal
+	 * @covers WebRequest::getGPCVal
+	 */
+	public function testGetVal() {
+		$req = new FauxRequest( [ 'x' => 'Value', 'y' => [ 'a' ], 'crlf' => "A\r\nb" ] );
+		$this->assertSame( 'Value', $req->getVal( 'x' ), 'Simple value' );
+		$this->assertSame( null, $req->getVal( 'z' ), 'Not found' );
+		$this->assertSame( null, $req->getVal( 'y' ), 'Array is ignored' );
+		$this->assertSame( "A\r\nb", $req->getVal( 'crlf' ), 'CRLF' );
+	}
+
+	/**
+	 * @covers WebRequest::getRawVal
+	 */
+	public function testGetRawVal() {
+		$req = new FauxRequest( [
+			'x' => 'Value',
+			'y' => [ 'a' ],
+			'crlf' => "A\r\nb"
+		] );
+		$this->assertSame( 'Value', $req->getRawVal( 'x' ) );
+		$this->assertSame( null, $req->getRawVal( 'z' ), 'Not found' );
+		$this->assertSame( null, $req->getRawVal( 'y' ), 'Array is ignored' );
+		$this->assertSame( "A\r\nb", $req->getRawVal( 'crlf' ), 'CRLF' );
+	}
+
+	/**
+	 * @covers WebRequest::getArray
+	 */
+	public function testGetArray() {
+		$req = new FauxRequest( [ 'x' => 'Value', 'y' => [ 'a', 'b' ] ] );
+		$this->assertSame( [ 'Value' ], $req->getArray( 'x' ), 'Value becomes array' );
+		$this->assertSame( null, $req->getArray( 'z' ), 'Not found' );
+		$this->assertSame( [ 'a', 'b' ], $req->getArray( 'y' ) );
+	}
+
+	/**
+	 * @covers WebRequest::getIntArray
+	 */
+	public function testGetIntArray() {
+		$req = new FauxRequest( [ 'x' => [ 'Value' ], 'y' => [ '0', '4.2', '-2' ] ] );
+		$this->assertSame( [ 0 ], $req->getIntArray( 'x' ), 'Text becomes 0' );
+		$this->assertSame( null, $req->getIntArray( 'z' ), 'Not found' );
+		$this->assertSame( [ 0, 4, -2 ], $req->getIntArray( 'y' ) );
+	}
+
+	/**
+	 * @covers WebRequest::getInt
+	 */
+	public function testGetInt() {
+		$req = new FauxRequest( [
+			'x' => 'Value',
+			'y' => [ 'a' ],
+			'zero' => '0',
+			'answer' => '4.2',
+			'neg' => '-2',
+		] );
+		$this->assertSame( 0, $req->getInt( 'x' ), 'Text' );
+		$this->assertSame( 0, $req->getInt( 'y' ), 'Array' );
+		$this->assertSame( 0, $req->getInt( 'z' ), 'Not found' );
+		$this->assertSame( 0, $req->getInt( 'zero' ) );
+		$this->assertSame( 4, $req->getInt( 'answer' ) );
+		$this->assertSame( -2, $req->getInt( 'neg' ) );
+	}
+
+	/**
+	 * @covers WebRequest::getIntOrNull
+	 */
+	public function testGetIntOrNull() {
+		$req = new FauxRequest( [
+			'x' => 'Value',
+			'y' => [ 'a' ],
+			'zero' => '0',
+			'answer' => '4.2',
+			'neg' => '-2',
+		] );
+		$this->assertSame( null, $req->getIntOrNull( 'x' ), 'Text' );
+		$this->assertSame( null, $req->getIntOrNull( 'y' ), 'Array' );
+		$this->assertSame( null, $req->getIntOrNull( 'z' ), 'Not found' );
+		$this->assertSame( 0, $req->getIntOrNull( 'zero' ) );
+		$this->assertSame( 4, $req->getIntOrNull( 'answer' ) );
+		$this->assertSame( -2, $req->getIntOrNull( 'neg' ) );
+	}
+
+	/**
+	 * @covers WebRequest::getFloat
+	 */
+	public function testGetFloat() {
+		$req = new FauxRequest( [
+			'x' => 'Value',
+			'y' => [ 'a' ],
+			'zero' => '0',
+			'answer' => '4.2',
+			'neg' => '-2',
+		] );
+		$this->assertSame( 0.0, $req->getFloat( 'x' ), 'Text' );
+		$this->assertSame( 0.0, $req->getFloat( 'y' ), 'Array' );
+		$this->assertSame( 0.0, $req->getFloat( 'z' ), 'Not found' );
+		$this->assertSame( 0.0, $req->getFloat( 'zero' ) );
+		$this->assertSame( 4.2, $req->getFloat( 'answer' ) );
+		$this->assertSame( -2.0, $req->getFloat( 'neg' ) );
+	}
+
+	/**
+	 * @covers WebRequest::getBool
+	 */
+	public function testGetBool() {
+		$req = new FauxRequest( [
+			'x' => 'Value',
+			'y' => [ 'a' ],
+			'zero' => '0',
+			'f' => 'false',
+			't' => 'true',
+		] );
+		$this->assertSame( true, $req->getBool( 'x' ), 'Text' );
+		$this->assertSame( false, $req->getBool( 'y' ), 'Array' );
+		$this->assertSame( false, $req->getBool( 'z' ), 'Not found' );
+		$this->assertSame( false, $req->getBool( 'zero' ) );
+		$this->assertSame( true, $req->getBool( 'f' ) );
+		$this->assertSame( true, $req->getBool( 't' ) );
+	}
+
+	/**
+	 * @covers WebRequest::getFuzzyBool
+	 */
+	public function testGetFuzzyBool() {
+		$req = new FauxRequest( [ 'x' => 'Value', 'f' => 'false', 't' => 'true' ] );
+		$this->assertSame( true, $req->getFuzzyBool( 'x' ), 'Text' );
+		$this->assertSame( false, $req->getFuzzyBool( 'z' ), 'Not found' );
+		$this->assertSame( false, $req->getFuzzyBool( 'f' ) );
+		$this->assertSame( true, $req->getFuzzyBool( 't' ) );
+	}
+
+	/**
+	 * @covers WebRequest::getCheck
+	 */
+	public function testGetCheck() {
+		$req = new FauxRequest( [ 'x' => 'Value', 'zero' => '0' ] );
+		$this->assertSame( false, $req->getCheck( 'z' ), 'Not found' );
+		$this->assertSame( true, $req->getCheck( 'x' ), 'Text' );
+		$this->assertSame( true, $req->getCheck( 'zero' ) );
+	}
+
+	/**
+	 * @covers WebRequest::getText
+	 */
+	public function testGetText() {
+		// FauxRequest overrides getText
+		$req = $this->mockWebRequest( [ 'crlf' => "Va\r\nlue" ] );
+		$this->assertSame( "Va\nlue", $req->getText( 'crlf' ), 'CR stripped' );
+	}
+
+	/**
+	 * @covers WebRequest::getValues
+	 */
+	public function testGetValues() {
+		$values = [ 'x' => 'Value', 'y' => '' ];
+		// FauxRequest overrides getValues
+		$req = $this->mockWebRequest( $values );
+		$this->assertSame( $values, $req->getValues() );
+		$this->assertSame( [ 'x' => 'Value' ], $req->getValues( 'x' ), 'Specific keys' );
+	}
+
+	/**
+	 * @covers WebRequest::getValueNames
+	 */
+	public function testGetValueNames() {
+		// FauxRequest overrides getValues
+		$req = new FauxRequest( [ 'x' => 'Value', 'y' => '' ] );
+		$this->assertSame( [ 'x', 'y' ], $req->getValueNames() );
+		$this->assertSame( [ 'x' ], $req->getValueNames( [ 'y' ] ), 'Exclude keys' );
 	}
 
 	/**
@@ -343,6 +575,7 @@ class WebRequestTest extends MediaWikiTestCase {
 				[ 'en-gb' => 1, 'en-us' => '1' ],
 				'Two equally prefered English variants'
 			],
+			[ '_', [], 'Invalid input' ],
 		];
 	}
 
