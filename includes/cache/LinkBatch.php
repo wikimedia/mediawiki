@@ -40,7 +40,11 @@ class LinkBatch {
 	 */
 	protected $caller;
 
-	function __construct( $arr = [] ) {
+	/**
+	 * LinkBatch constructor.
+	 * @param LinkTarget[] $arr Initial items to be added to the batch
+	 */
+	public function __construct( $arr = [] ) {
 		foreach ( $arr as $item ) {
 			$this->addObj( $item );
 		}
