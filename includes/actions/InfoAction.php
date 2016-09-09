@@ -631,14 +631,15 @@ class InfoAction extends FormlessAction {
 					$more = null;
 				}
 
+				$templateListFormatter = new TemplatesOnThisPageFormatter(
+					$this->getContext(),
+					$linkRenderer
+				);
+
 				$pageInfo['header-properties'][] = [
 					$this->msg( 'pageinfo-templates' )
 						->numParams( $pageCounts['transclusion']['from'] ),
-					Linker::formatTemplates(
-						$transcludedTemplates,
-						false,
-						false,
-						$more )
+					$templateListFormatter->format( $transcludedTemplates, false, $more )
 				];
 			}
 
@@ -654,14 +655,15 @@ class InfoAction extends FormlessAction {
 					$more = null;
 				}
 
+				$templateListFormatter = new TemplatesOnThisPageFormatter(
+					$this->getContext(),
+					$linkRenderer
+				);
+
 				$pageInfo['header-properties'][] = [
 					$this->msg( 'pageinfo-transclusions' )
 						->numParams( $pageCounts['transclusion']['to'] ),
-					Linker::formatTemplates(
-						$transcludedTargets,
-						false,
-						false,
-						$more )
+					$templateListFormatter->format( $transcludedTargets, false, $more )
 				];
 			}
 		}

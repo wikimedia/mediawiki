@@ -1919,6 +1919,8 @@ class Linker {
 	}
 
 	/**
+	 * @deprecated since 1.28, use TemplatesOnThisPageFormatter directly
+	 *
 	 * Returns HTML for the "templates used on this page" list.
 	 *
 	 * Make an HTML list of templates, and then add a "More..." link at
@@ -1937,87 +1939,24 @@ class Linker {
 	public static function formatTemplates( $templates, $preview = false,
 		$section = false, $more = null
 	) {
-		global $wgLang;
+		wfDeprecated( __METHOD__, '1.28' );
 
-		$outText = '';
-		if ( count( $templates ) > 0 ) {
-			# Do a batch existence check
-			$batch = new LinkBatch;
-			foreach ( $templates as $title ) {
-				$batch->addObj( $title );
-			}
-			$batch->execute();
-
-			# Construct the HTML
-			$outText = '<div class="mw-templatesUsedExplanation">';
-			if ( $preview ) {
-				$outText .= wfMessage( 'templatesusedpreview' )->numParams( count( $templates ) )
-					->parseAsBlock();
-			} elseif ( $section ) {
-				$outText .= wfMessage( 'templatesusedsection' )->numParams( count( $templates ) )
-					->parseAsBlock();
-			} else {
-				$outText .= wfMessage( 'templatesused' )->numParams( count( $templates ) )
-					->parseAsBlock();
-			}
-			$outText .= "</div><ul>\n";
-
-			usort( $templates, 'Title::compare' );
-			foreach ( $templates as $titleObj ) {
-				$protected = '';
-				$restrictions = $titleObj->getRestrictions( 'edit' );
-				if ( $restrictions ) {
-					// Check backwards-compatible messages
-					$msg = null;
-					if ( $restrictions === [ 'sysop' ] ) {
-						$msg = wfMessage( 'template-protected' );
-					} elseif ( $restrictions === [ 'autoconfirmed' ] ) {
-						$msg = wfMessage( 'template-semiprotected' );
-					}
-					if ( $msg && !$msg->isDisabled() ) {
-						$protected = $msg->parse();
-					} else {
-						// Construct the message from restriction-level-*
-						// e.g. restriction-level-sysop, restriction-level-autoconfirmed
-						$msgs = [];
-						foreach ( $restrictions as $r ) {
-							$msgs[] = wfMessage( "restriction-level-$r" )->parse();
-						}
-						$protected = wfMessage( 'parentheses' )
-							->rawParams( $wgLang->commaList( $msgs ) )->escaped();
-					}
-				}
-				if ( $titleObj->quickUserCan( 'edit' ) ) {
-					$editLink = self::link(
-						$titleObj,
-						wfMessage( 'editlink' )->escaped(),
-						[],
-						[ 'action' => 'edit' ]
-					);
-				} else {
-					$editLink = self::link(
-						$titleObj,
-						wfMessage( 'viewsourcelink' )->escaped(),
-						[],
-						[ 'action' => 'edit' ]
-					);
-				}
-				$outText .= '<li>' . self::link( $titleObj )
-					. wfMessage( 'word-separator' )->escaped()
-					. wfMessage( 'parentheses' )->rawParams( $editLink )->escaped()
-					. wfMessage( 'word-separator' )->escaped()
-					. $protected . '</li>';
-			}
-
-			if ( $more instanceof Title ) {
-				$outText .= '<li>' . self::link( $more, wfMessage( 'moredotdotdot' ) ) . '</li>';
-			} elseif ( $more ) {
-				$outText .= "<li>$more</li>";
-			}
-
-			$outText .= '</ul>';
+		$type = false;
+		if ( $preview ) {
+			$type = 'preview';
+		} elseif ( $section ) {
+			$type = 'section';
 		}
-		return $outText;
+
+		if ( $more instanceof Message ) {
+			$more = $more->toString();
+		}
+
+		$formatter = new TemplatesOnThisPageFormatter(
+			RequestContext::getMain(),
+			MediaWikiServices::getInstance()->getLinkRenderer()
+		);
+		return $formatter->format( $templates, $type, $more );
 	}
 
 	/**
