@@ -520,7 +520,7 @@ class WebRequest {
 	 * @return int
 	 */
 	public function getInt( $name, $default = 0 ) {
-		return intval( $this->getVal( $name, $default ) );
+		return intval( $this->getRawVal( $name, $default ) );
 	}
 
 	/**
@@ -532,7 +532,7 @@ class WebRequest {
 	 * @return int|null
 	 */
 	public function getIntOrNull( $name ) {
-		$val = $this->getVal( $name );
+		$val = $this->getRawVal( $name );
 		return is_numeric( $val )
 			? intval( $val )
 			: null;
@@ -549,7 +549,7 @@ class WebRequest {
 	 * @return float
 	 */
 	public function getFloat( $name, $default = 0.0 ) {
-		return floatval( $this->getVal( $name, $default ) );
+		return floatval( $this->getRawVal( $name, $default ) );
 	}
 
 	/**
@@ -562,7 +562,7 @@ class WebRequest {
 	 * @return bool
 	 */
 	public function getBool( $name, $default = false ) {
-		return (bool)$this->getVal( $name, $default );
+		return (bool)$this->getRawVal( $name, $default );
 	}
 
 	/**
@@ -575,7 +575,8 @@ class WebRequest {
 	 * @return bool
 	 */
 	public function getFuzzyBool( $name, $default = false ) {
-		return $this->getBool( $name, $default ) && strcasecmp( $this->getVal( $name ), 'false' ) !== 0;
+		return $this->getBool( $name, $default )
+			&& strcasecmp( $this->getRawVal( $name ), 'false' ) !== 0;
 	}
 
 	/**
@@ -589,7 +590,7 @@ class WebRequest {
 	public function getCheck( $name ) {
 		# Checkboxes and buttons are only present when clicked
 		# Presence connotes truth, absence false
-		return $this->getVal( $name, null ) !== null;
+		return $this->getRawVal( $name, null ) !== null;
 	}
 
 	/**
