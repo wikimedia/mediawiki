@@ -83,6 +83,9 @@ class WebRequest {
 	/** @var bool Whether this HTTP request is "safe" (even if it is an HTTP post) */
 	protected $markedAsSafe = false;
 
+	/**
+	 * @codeCoverageIgnore
+	 */
 	public function __construct() {
 		$this->requestTime = isset( $_SERVER['REQUEST_TIME_FLOAT'] )
 			? $_SERVER['REQUEST_TIME_FLOAT'] : microtime( true );
@@ -351,7 +354,7 @@ class WebRequest {
 	 * @return array|string Cleaned-up version of the given
 	 * @private
 	 */
-	function normalizeUnicode( $data ) {
+	public function normalizeUnicode( $data ) {
 		if ( is_array( $data ) ) {
 			foreach ( $data as $key => $val ) {
 				$data[$key] = $this->normalizeUnicode( $val );
@@ -641,6 +644,7 @@ class WebRequest {
 	 * Get the values passed in the query string.
 	 * No transformation is performed on the values.
 	 *
+	 * @codeCoverageIgnore
 	 * @return array
 	 */
 	public function getQueryValues() {
@@ -651,6 +655,7 @@ class WebRequest {
 	 * Return the contents of the Query with no decoding. Use when you need to
 	 * know exactly what was sent, e.g. for an OAuth signature over the elements.
 	 *
+	 * @codeCoverageIgnore
 	 * @return string
 	 */
 	public function getRawQueryString() {
