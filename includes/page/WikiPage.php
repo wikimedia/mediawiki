@@ -3235,9 +3235,12 @@ class WikiPage implements Page, IDBAccessObject {
 			$flags |= EDIT_FORCE_BOT;
 		}
 
+		$targetContent = $target->getContent();
+		$changingContentModel = $targetContent->getModel() !== $current->getContentModel();
+
 		// Actually store the edit
 		$status = $this->doEditContent(
-			$target->getContent(),
+			$targetContent,
 			$summary,
 			$flags,
 			$target->getId(),
@@ -3285,6 +3288,22 @@ class WikiPage implements Page, IDBAccessObject {
 					htmlspecialchars( $fromP ),
 					htmlspecialchars( $current->getUserText() )
 			] ];
+		}
+
+		if ( $changingContentModel ) {
+			// If the content model changed during the rollback,
+			// make sure it gets logged to Special:Log/contentmodel
+			$log = new ManualLogEntry( 'contentmodel', 'change' );
+			$log->setPerformer( $guser );
+			$log->setTarget( $this->mTitle );
+			$log->setComment( $summary );
+			$log->setParameters( [
+				'4::oldmodel' => $current->getContentModel(),
+				'5::newmodel' => $targetContent->getModel(),
+			] );
+
+			$logId = $log->insert( $dbw );
+			$log->publish( $logId );
 		}
 
 		$revId = $statusRev->getId();
