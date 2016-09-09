@@ -751,12 +751,12 @@ class Title implements LinkTarget {
 	/**
 	 * Callback for usort() to do title sorts by (namespace, title)
 	 *
-	 * @param Title $a
-	 * @param Title $b
+	 * @param LinkTarget $a
+	 * @param LinkTarget $b
 	 *
 	 * @return int Result of string comparison, or namespace comparison
 	 */
-	public static function compare( $a, $b ) {
+	public static function compare( LinkTarget $a, LinkTarget $b ) {
 		if ( $a->getNamespace() == $b->getNamespace() ) {
 			return strcmp( $a->getText(), $b->getText() );
 		} else {
