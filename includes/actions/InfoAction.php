@@ -202,6 +202,7 @@ class InfoAction extends FormlessAction {
 		$title = $this->getTitle();
 		$id = $title->getArticleID();
 		$config = $this->context->getConfig();
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
 		$pageCounts = $this->pageCounts( $this->page );
 
@@ -279,9 +280,18 @@ class InfoAction extends FormlessAction {
 			. ' ' . $this->msg( 'parentheses', $pageLang )->escaped() ];
 
 		// Content model of the page
+		$modelHtml = htmlspecialchars( ContentHandler::getLocalizedName( $title->getContentModel() ) );
+		// If the user can change it, add a link to Special:ChangeContentModel
+		if ( $user->isAllowed( 'editcontentmodel' ) ) {
+			$modelHtml .= ' ' . $this->msg( 'parentheses' )->rawParams( $linkRenderer->makeLink(
+				SpecialPage::getTitleValueFor( 'ChangeContentModel', $title->getPrefixedText() ),
+				$this->msg( 'pageinfo-content-model-change' )->text()
+			) )->escaped();
+		}
+
 		$pageInfo['header-basic'][] = [
 			$this->msg( 'pageinfo-content-model' ),
-			htmlspecialchars( ContentHandler::getLocalizedName( $title->getContentModel() ) )
+			$modelHtml
 		];
 
 		// Search engine status

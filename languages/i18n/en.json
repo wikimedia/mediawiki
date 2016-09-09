@@ -2810,6 +2810,7 @@
 	"pageinfo-article-id": "Page ID",
 	"pageinfo-language": "Page content language",
 	"pageinfo-content-model": "Page content model",
+	"pageinfo-content-model-change": "change",
 	"pageinfo-robot-policy": "Indexing by robots",
 	"pageinfo-robot-index": "Allowed",
 	"pageinfo-robot-noindex": "Disallowed",
