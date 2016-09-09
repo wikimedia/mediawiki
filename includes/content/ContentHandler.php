@@ -1017,7 +1017,13 @@ abstract class ContentHandler {
 		try {
 			$this->checkModelID( $cur_content->getModel() );
 			$this->checkModelID( $undo_content->getModel() );
-			$this->checkModelID( $undoafter_content->getModel() );
+			if ( $current->getId() !== $undo->getId() ) {
+				// If we are undoing the most recent revision,
+				// its ok to revert content model changes. However
+				// if we are undoing a revision in the middle, then
+				// doing that will be confusing.
+				$this->checkModelID( $undoafter_content->getModel() );
+			}
 		} catch ( MWException $e ) {
 			// If the revisions have different content models
 			// just return false
