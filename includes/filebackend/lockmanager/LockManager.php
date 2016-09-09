@@ -103,17 +103,17 @@ abstract class LockManager {
 	 */
 	final public function lockByType( array $pathsByType, $timeout = 0 ) {
 		$pathsByType = $this->normalizePathsByType( $pathsByType );
-		$msleep = [ 0, 50, 100, 300, 500 ]; // retry backoff times
-		$start = microtime( true );
-		do {
-			$status = $this->doLockByType( $pathsByType );
-			$elapsed = microtime( true ) - $start;
-			if ( $status->isOK() || $elapsed >= $timeout || $elapsed < 0 ) {
-				break; // success, timeout, or clock set back
-			}
-			usleep( 1e3 * ( next( $msleep ) ?: 1000 ) ); // use 1 sec after enough times
-			$elapsed = microtime( true ) - $start;
-		} while ( $elapsed < $timeout && $elapsed >= 0 );
+
+		$status = null;
+		$loop = new WaitConditionLoop(
+			function () use ( &$status, $pathsByType ) {
+				$status = $this->doLockByType( $pathsByType );
+
+				return $status->isOK() ?: WaitConditionLoop::CONDITION_CONTINUE;
+			},
+			$timeout
+		);
+		$loop->invoke();
 
 		return $status;
 	}
