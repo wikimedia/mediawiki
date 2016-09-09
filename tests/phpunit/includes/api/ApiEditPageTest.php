@@ -513,4 +513,57 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertEquals( "testing-nontext", $page->getContentModel() );
 		$this->assertEquals( $data, $page->getContent()->serialize() );
 	}
+
+	/**
+	 * This test verifies that after changing the content model
+	 * of a page, undoing that edit via the API will also
+	 * undo the content model change.
+	 */
+	public function testUndoAfterContentModelChange() {
+		$name = 'Help:' . __FUNCTION__;
+		$uploader = self::$users['uploader']->getUser();
+		$sysop = self::$users['sysop']->getUser();
+		$apiResult = $this->doApiRequestWithToken( [
+			'action' => 'edit',
+			'title' => $name,
+			'text' => 'some text',
+		], null, $sysop )[0];
+
+		// Check success
+		$this->assertArrayHasKey( 'edit', $apiResult );
+		$this->assertArrayHasKey( 'result', $apiResult['edit'] );
+		$this->assertEquals( 'Success', $apiResult['edit']['result'] );
+		$this->assertArrayHasKey( 'contentmodel', $apiResult['edit'] );
+		// Content model is wikitext
+		$this->assertEquals( 'wikitext', $apiResult['edit']['contentmodel'] );
+
+		// Convert the page to JSON
+		$apiResult = $this->doApiRequestWithToken( [
+			'action' => 'edit',
+			'title' => $name,
+			'text' => '{}',
+			'contentmodel' => 'json',
+		], null, $uploader )[0];
+
+		// Check success
+		$this->assertArrayHasKey( 'edit', $apiResult );
+		$this->assertArrayHasKey( 'result', $apiResult['edit'] );
+		$this->assertEquals( 'Success', $apiResult['edit']['result'] );
+		$this->assertArrayHasKey( 'contentmodel', $apiResult['edit'] );
+		$this->assertEquals( 'json', $apiResult['edit']['contentmodel'] );
+
+		$apiResult = $this->doApiRequestWithToken( [
+			'action' => 'edit',
+			'title' => $name,
+			'undo' => $apiResult['edit']['newrevid']
+		], null, $sysop )[0];
+
+		// Check success
+		$this->assertArrayHasKey( 'edit', $apiResult );
+		$this->assertArrayHasKey( 'result', $apiResult['edit'] );
+		$this->assertEquals( 'Success', $apiResult['edit']['result'] );
+		$this->assertArrayHasKey( 'contentmodel', $apiResult['edit'] );
+		// Check that the contentmodel is back to wikitext now.
+		$this->assertEquals( 'wikitext', $apiResult['edit']['contentmodel'] );
+	}
 }
