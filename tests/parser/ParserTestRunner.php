@@ -223,6 +223,11 @@ class ParserTestRunner {
 		$setup['wgHtml5'] = true;
 		$setup['wgDisableLangConversion'] = false;
 		$setup['wgDisableTitleConversion'] = false;
+		$setup['wgEnableMagicLinks'] = [
+			'ISBN' => true,
+			'PMID' => true,
+			'RFC' => true,
+		];
 
 		// "extra language links"
 		// see https://gerrit.wikimedia.org/r/111390
@@ -992,6 +997,10 @@ class ParserTestRunner {
 			'wgThumbLimits' => [ self::getOptionValue( 'thumbsize', $opts, 180 ) ],
 			'wgDefaultLanguageVariant' => $variant,
 			'wgLinkHolderBatchSize' => $linkHolderBatchSize,
+			// Set as a JSON object like:
+			// wgEnableMagicLinks={"ISBN":false, "PMID":false, "RFC":false}
+			'wgEnableMagicLinks' => self::getOptionValue( 'wgEnableMagicLinks', $opts, [] )
+				+ [ 'ISBN' => true, 'PMID' => true, 'RFC' => true ],
 		];
 
 		if ( $config ) {

@@ -1665,6 +1665,7 @@ function wfClientAcceptsGzip( $force = false ) {
  * @return string
  */
 function wfEscapeWikiText( $text ) {
+	global $wgEnableMagicLinks;
 	static $repl = null, $repl2 = null;
 	if ( $repl === null ) {
 		$repl = [
@@ -1682,8 +1683,9 @@ function wfEscapeWikiText( $text ) {
 			'__' => '_&#95;', '://' => '&#58;//',
 		];
 
+		$magicLinks = array_keys( array_filter( $wgEnableMagicLinks ) );
 		// We have to catch everything "\s" matches in PCRE
-		foreach ( [ 'ISBN', 'RFC', 'PMID' ] as $magic ) {
+		foreach ( $magicLinks as $magic ) {
 			$repl["$magic "] = "$magic&#32;";
 			$repl["$magic\t"] = "$magic&#9;";
 			$repl["$magic\r"] = "$magic&#13;";
