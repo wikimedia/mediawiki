@@ -226,6 +226,7 @@ class FauxRequest extends WebRequest {
 	}
 
 	/**
+	 * @codeCoverageIgnore
 	 * @param array $extWhitelist
 	 * @return bool
 	 */
@@ -234,6 +235,7 @@ class FauxRequest extends WebRequest {
 	}
 
 	/**
+	 * @codeCoverageIgnore
 	 * @return string
 	 */
 	protected function getRawIP() {
