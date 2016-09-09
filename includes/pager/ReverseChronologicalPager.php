@@ -29,6 +29,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	public $mDefaultDirection = IndexPager::DIR_DESCENDING;
 	public $mYear;
 	public $mMonth;
+	public $mDay;
 
 	function getNavigationBar() {
 		if ( !$this->isNavigationBarShown() ) {
