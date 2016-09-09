@@ -410,6 +410,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *      and its as-of time to the callback. This is useful if adaptiveTTL() is used
 	 *      on the old value's as-of time when it is verified as still being correct.
 	 *      Default: 0.
+	 * @note Options added in 1.28: staleTTL
 	 * @return bool Success
 	 */
 	final public function set( $key, $value, $ttl = 0, array $opts = [] ) {
@@ -830,6 +831,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *   - ageNew: Consider popularity refreshes only once a key reaches this age in seconds.
 	 *      Default: WANObjectCache::AGE_NEW.
 	 * @return mixed Value found or written to the key
+	 * @note Options added in 1.28: version, busyValue, hotTTR, ageNew, pcGroup, minAsOf
 	 * @note Callable type hints are not used to avoid class-autoloading
 	 */
 	final public function getWithSetCallback( $key, $ttl, $callback, array $opts = [] ) {
