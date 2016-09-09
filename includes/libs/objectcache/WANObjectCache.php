@@ -404,6 +404,12 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *      with this TTL and flag it as stale. This is only useful if the reads for
 	 *      this key use getWithSetCallback() with "lockTSE" set.
 	 *      Default: WANObjectCache::TSE_NONE
+	 *   - staleTTL : Seconds to keep the key around if it is stale. The get()/getMulti()
+	 *      methods return such stale values with a $curTTL of 0, and getWithSetCallback()
+	 *      will call the regeneration callback in such cases, passing in the old value
+	 *      and its as-of time to the callback. This is useful if adaptiveTTL() is used
+	 *      on the old value's as-of time when it is verified as still being correct.
+	 *      Default: 0.
 	 * @return bool Success
 	 */
 	final public function set( $key, $value, $ttl = 0, array $opts = [] ) {
@@ -411,6 +417,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$lockTSE = isset( $opts['lockTSE'] ) ? $opts['lockTSE'] : self::TSE_NONE;
 		$age = isset( $opts['since'] ) ? max( 0, $now - $opts['since'] ) : 0;
 		$lag = isset( $opts['lag'] ) ? $opts['lag'] : 0;
+		$staleTTL = isset( $opts['staleTTL'] ) ? $opts['staleTTL'] : 0;
 
 		// Do not cache potentially uncommitted data as it might get rolled back
 		if ( !empty( $opts['pending'] ) ) {
@@ -452,7 +459,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 				: $wrapped;
 		};
 
-		return $this->cache->merge( self::VALUE_KEY_PREFIX . $key, $func, $ttl, 1 );
+		return $this->cache->merge( self::VALUE_KEY_PREFIX . $key, $func, $ttl + $staleTTL, 1 );
 	}
 
 	/**
