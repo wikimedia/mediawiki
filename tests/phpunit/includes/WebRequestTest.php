@@ -135,6 +135,10 @@ class WebRequestTest extends MediaWikiTestCase {
 		$prop->setAccessible( true );
 		$prop->setValue( $req, $data );
 
+		$prop = $reflection->getProperty( 'requestTime' );
+		$prop->setAccessible( true );
+		$prop->setValue( $req, microtime( true ) );
+
 		return $req;
 	}
 
@@ -142,7 +146,7 @@ class WebRequestTest extends MediaWikiTestCase {
 	 * @covers WebRequest::getElapsedTime
 	 */
 	public function testGetElapsedTime() {
-		$req = new FauxRequest();
+		$req = $this->mockWebRequest();
 		$this->assertGreaterThanOrEqual( 0.0, $req->getElapsedTime() );
 		$this->assertEquals( 0.0, $req->getElapsedTime(), '', /*delta*/ 0.2 );
 	}
@@ -156,7 +160,7 @@ class WebRequestTest extends MediaWikiTestCase {
 		// Assert that WebRequest normalises GPC data using UtfNormal\Validator
 		$input = "a \x00 null";
 		$normal = "a \xef\xbf\xbd null";
-		$req = new FauxRequest( [ 'x' => $input, 'y' => [ $input, $input ] ] );
+		$req = $this->mockWebRequest( [ 'x' => $input, 'y' => [ $input, $input ] ] );
 		$this->assertSame( $normal, $req->getVal( 'x' ) );
 		$this->assertNotSame( $input, $req->getVal( 'x' ) );
 		$this->assertSame( [ $normal, $normal ], $req->getArray( 'y' ) );
@@ -167,7 +171,7 @@ class WebRequestTest extends MediaWikiTestCase {
 	 * @covers WebRequest::getGPCVal
 	 */
 	public function testGetVal() {
-		$req = new FauxRequest( [ 'x' => 'Value', 'y' => [ 'a' ], 'crlf' => "A\r\nb" ] );
+		$req = $this->mockWebRequest( [ 'x' => 'Value', 'y' => [ 'a' ], 'crlf' => "A\r\nb" ] );
 		$this->assertSame( 'Value', $req->getVal( 'x' ), 'Simple value' );
 		$this->assertSame( null, $req->getVal( 'z' ), 'Not found' );
 		$this->assertSame( null, $req->getVal( 'y' ), 'Array is ignored' );
@@ -178,7 +182,7 @@ class WebRequestTest extends MediaWikiTestCase {
 	 * @covers WebRequest::getRawVal
 	 */
 	public function testGetRawVal() {
-		$req = new FauxRequest( [
+		$req = $this->mockWebRequest( [
 			'x' => 'Value',
 			'y' => [ 'a' ],
 			'crlf' => "A\r\nb"
@@ -193,7 +197,7 @@ class WebRequestTest extends MediaWikiTestCase {
 	 * @covers WebRequest::getArray
 	 */
 	public function testGetArray() {
-		$req = new FauxRequest( [ 'x' => 'Value', 'y' => [ 'a', 'b' ] ] );
+		$req = $this->mockWebRequest( [ 'x' => 'Value', 'y' => [ 'a', 'b' ] ] );
 		$this->assertSame( [ 'Value' ], $req->getArray( 'x' ), 'Value becomes array' );
 		$this->assertSame( null, $req->getArray( 'z' ), 'Not found' );
 		$this->assertSame( [ 'a', 'b' ], $req->getArray( 'y' ) );
@@ -203,7 +207,7 @@ class WebRequestTest extends MediaWikiTestCase {
 	 * @covers WebRequest::getIntArray
 	 */
 	public function testGetIntArray() {
-		$req = new FauxRequest( [ 'x' => [ 'Value' ], 'y' => [ '0', '4.2', '-2' ] ] );
+		$req = $this->mockWebRequest( [ 'x' => [ 'Value' ], 'y' => [ '0', '4.2', '-2' ] ] );
 		$this->assertSame( [ 0 ], $req->getIntArray( 'x' ), 'Text becomes 0' );
 		$this->assertSame( null, $req->getIntArray( 'z' ), 'Not found' );
 		$this->assertSame( [ 0, 4, -2 ], $req->getIntArray( 'y' ) );
@@ -213,7 +217,7 @@ class WebRequestTest extends MediaWikiTestCase {
 	 * @covers WebRequest::getInt
 	 */
 	public function testGetInt() {
-		$req = new FauxRequest( [
+		$req = $this->mockWebRequest( [
 			'x' => 'Value',
 			'y' => [ 'a' ],
 			'zero' => '0',
@@ -232,7 +236,7 @@ class WebRequestTest extends MediaWikiTestCase {
 	 * @covers WebRequest::getIntOrNull
 	 */
 	public function testGetIntOrNull() {
-		$req = new FauxRequest( [
+		$req = $this->mockWebRequest( [
 			'x' => 'Value',
 			'y' => [ 'a' ],
 			'zero' => '0',
@@ -251,7 +255,7 @@ class WebRequestTest extends MediaWikiTestCase {
 	 * @covers WebRequest::getFloat
 	 */
 	public function testGetFloat() {
-		$req = new FauxRequest( [
+		$req = $this->mockWebRequest( [
 			'x' => 'Value',
 			'y' => [ 'a' ],
 			'zero' => '0',
@@ -270,7 +274,7 @@ class WebRequestTest extends MediaWikiTestCase {
 	 * @covers WebRequest::getBool
 	 */
 	public function testGetBool() {
-		$req = new FauxRequest( [
+		$req = $this->mockWebRequest( [
 			'x' => 'Value',
 			'y' => [ 'a' ],
 			'zero' => '0',
@@ -285,22 +289,43 @@ class WebRequestTest extends MediaWikiTestCase {
 		$this->assertSame( true, $req->getBool( 't' ) );
 	}
 
+	public static function provideFuzzyBool() {
+		return [
+			[ 'Text', true ],
+			[ '', false, '(empty string)' ],
+			[ '0', false ],
+			[ '1', true ],
+			[ 'false', false ],
+			[ 'true', true ],
+			[ 'False', false ],
+			[ 'True', true ],
+			[ 'FALSE', false ],
+			[ 'TRUE', true ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideFuzzyBool
+	 * @covers WebRequest::getFuzzyBool
+	 */
+	public function testGetFuzzyBool( $value, $expected, $message = null ) {
+		$req = $this->mockWebRequest( [ 'x' => $value ] );
+		$this->assertSame( $expected, $req->getFuzzyBool( 'x' ), $message ?: "Value: '$value'" );
+	}
+
 	/**
 	 * @covers WebRequest::getFuzzyBool
 	 */
-	public function testGetFuzzyBool() {
-		$req = new FauxRequest( [ 'x' => 'Value', 'f' => 'false', 't' => 'true' ] );
-		$this->assertSame( true, $req->getFuzzyBool( 'x' ), 'Text' );
+	public function testGetFuzzyBoolDefault() {
+		$req = $this->mockWebRequest();
 		$this->assertSame( false, $req->getFuzzyBool( 'z' ), 'Not found' );
-		$this->assertSame( false, $req->getFuzzyBool( 'f' ) );
-		$this->assertSame( true, $req->getFuzzyBool( 't' ) );
 	}
 
 	/**
 	 * @covers WebRequest::getCheck
 	 */
 	public function testGetCheck() {
-		$req = new FauxRequest( [ 'x' => 'Value', 'zero' => '0' ] );
+		$req = $this->mockWebRequest( [ 'x' => 'Value', 'zero' => '0' ] );
 		$this->assertSame( false, $req->getCheck( 'z' ), 'Not found' );
 		$this->assertSame( true, $req->getCheck( 'x' ), 'Text' );
 		$this->assertSame( true, $req->getCheck( 'zero' ) );
@@ -310,7 +335,7 @@ class WebRequestTest extends MediaWikiTestCase {
 	 * @covers WebRequest::getText
 	 */
 	public function testGetText() {
-		// FauxRequest overrides getText
+		// Avoid FauxRequest (overrides getText)
 		$req = $this->mockWebRequest( [ 'crlf' => "Va\r\nlue" ] );
 		$this->assertSame( "Va\nlue", $req->getText( 'crlf' ), 'CR stripped' );
 	}
@@ -320,7 +345,7 @@ class WebRequestTest extends MediaWikiTestCase {
 	 */
 	public function testGetValues() {
 		$values = [ 'x' => 'Value', 'y' => '' ];
-		// FauxRequest overrides getValues
+		// Avoid FauxRequest (overrides getValues)
 		$req = $this->mockWebRequest( $values );
 		$this->assertSame( $values, $req->getValues() );
 		$this->assertSame( [ 'x' => 'Value' ], $req->getValues( 'x' ), 'Specific keys' );
@@ -330,8 +355,7 @@ class WebRequestTest extends MediaWikiTestCase {
 	 * @covers WebRequest::getValueNames
 	 */
 	public function testGetValueNames() {
-		// FauxRequest overrides getValues
-		$req = new FauxRequest( [ 'x' => 'Value', 'y' => '' ] );
+		$req = $this->mockWebRequest( [ 'x' => 'Value', 'y' => '' ] );
 		$this->assertSame( [ 'x', 'y' ], $req->getValueNames() );
 		$this->assertSame( [ 'x' ], $req->getValueNames( [ 'y' ] ), 'Exclude keys' );
 	}
