@@ -387,22 +387,23 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @param integer $ttl Seconds to live. Special values are:
 	 *   - WANObjectCache::TTL_INDEFINITE: Cache forever
 	 * @param array $opts Options map:
-	 *   - lag     : Seconds of replica DB lag. Typically, this is either the replica DB lag
-	 *               before the data was read or, if applicable, the replica DB lag before
-	 *               the snapshot-isolated transaction the data was read from started.
-	 *               Default: 0 seconds
-	 *   - since   : UNIX timestamp of the data in $value. Typically, this is either
-	 *               the current time the data was read or (if applicable) the time when
-	 *               the snapshot-isolated transaction the data was read from started.
-	 *               Default: 0 seconds
+	 *   - lag : Seconds of replica DB lag. Typically, this is either the replica DB lag
+	 *      before the data was read or, if applicable, the replica DB lag before
+	 *      the snapshot-isolated transaction the data was read from started.
+	 *      Use false to indicate that replication is not running.
+	 *      Default: 0 seconds
+	 *   - since : UNIX timestamp of the data in $value. Typically, this is either
+	 *      the current time the data was read or (if applicable) the time when
+	 *      the snapshot-isolated transaction the data was read from started.
+	 *      Default: 0 seconds
 	 *   - pending : Whether this data is possibly from an uncommitted write transaction.
-	 *               Generally, other threads should not see values from the future and
-	 *               they certainly should not see ones that ended up getting rolled back.
-	 *               Default: false
+	 *      Generally, other threads should not see values from the future and
+	 *      they certainly should not see ones that ended up getting rolled back.
+	 *      Default: false
 	 *   - lockTSE : if excessive replication/snapshot lag is detected, then store the value
-	 *               with this TTL and flag it as stale. This is only useful if the reads for
-	 *               this key use getWithSetCallback() with "lockTSE" set.
-	 *               Default: WANObjectCache::TSE_NONE
+	 *      with this TTL and flag it as stale. This is only useful if the reads for
+	 *      this key use getWithSetCallback() with "lockTSE" set.
+	 *      Default: WANObjectCache::TSE_NONE
 	 * @return bool Success
 	 */
 	final public function set( $key, $value, $ttl = 0, array $opts = [] ) {
@@ -899,8 +900,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @param string $key
 	 * @param integer $ttl
 	 * @param callback $callback
-	 * @param array $opts Options map for getWithSetCallback() which also includes:
-	 *   - minTime: Treat values older than this UNIX timestamp as not existing. Default: null.
+	 * @param array $opts Options map for getWithSetCallback()
 	 * @param float &$asOf Cache generation timestamp of returned value [returned]
 	 * @return mixed
 	 * @note Callable type hints are not used to avoid class-autoloading
