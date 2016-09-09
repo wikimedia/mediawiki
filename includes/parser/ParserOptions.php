@@ -216,6 +216,21 @@ class ParserOptions {
 	private $mExtraKey = '';
 
 	/**
+	 * Are magic ISBN links enabled?
+	 */
+	private $mMagicISBNLinks = true;
+
+	/**
+	 * Are magic PMID links enabled?
+	 */
+	private $mMagicPMIDLinks = true;
+
+	/**
+	 * Are magic RFC links enabled?
+	 */
+	private $mMagicRFCLinks = true;
+
+	/**
 	 * Function to be called when an option is accessed.
 	 */
 	private $onAccessCallback = null;
@@ -419,6 +434,28 @@ class ParserOptions {
 		return $this->getUserLangObj()->getCode();
 	}
 
+	/**
+	 * @since 1.28
+	 * @return bool
+	 */
+	public function getMagicISBNLinks() {
+		return $this->mMagicISBNLinks;
+	}
+
+	/**
+	 * @since 1.28
+	 * @return bool
+	 */
+	public function getMagicPMIDLinks() {
+		return $this->mMagicPMIDLinks;
+	}
+	/**
+	 * @since 1.28
+	 * @return bool
+	 */
+	public function getMagicRFCLinks() {
+		return $this->mMagicRFCLinks;
+	}
 	public function setInterwikiMagic( $x ) {
 		return wfSetVar( $this->mInterwikiMagic, $x );
 	}
@@ -559,6 +596,27 @@ class ParserOptions {
 	}
 
 	/**
+	 * @since 1.28
+	 */
+	public function setMagicISBNLinks( $x ) {
+		return wfSetVar( $this->mMagicISBNLinks, $x );
+	}
+
+	/**
+	 * @since 1.28
+	 */
+	public function setMagicPMIDLinks( $x ) {
+		return wfSetVar( $this->mMagicPMIDLinks, $x );
+	}
+
+	/**
+	 * @since 1.28
+	 */
+	public function setMagicRFCLinks( $x ) {
+		return wfSetVar( $this->mMagicRFCLinks, $x );
+	}
+
+	/**
 	 * Set the redirect target.
 	 *
 	 * Note that setting or changing this does not *make* the page a redirect
@@ -667,7 +725,8 @@ class ParserOptions {
 			$wgAllowExternalImagesFrom, $wgEnableImageWhitelist, $wgAllowSpecialInclusion,
 			$wgMaxArticleSize, $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth,
 			$wgCleanSignatures, $wgExternalLinkTarget, $wgExpensiveParserFunctionLimit,
-			$wgMaxGeneratedPPNodeCount, $wgDisableLangConversion, $wgDisableTitleConversion;
+			$wgMaxGeneratedPPNodeCount, $wgDisableLangConversion, $wgDisableTitleConversion,
+			$wgEnableMagicLinks;
 
 		// *UPDATE* ParserOptions::matches() if any of this changes as needed
 		$this->mInterwikiMagic = $wgInterwikiMagic;
@@ -685,6 +744,9 @@ class ParserOptions {
 		$this->mExternalLinkTarget = $wgExternalLinkTarget;
 		$this->mDisableContentConversion = $wgDisableLangConversion;
 		$this->mDisableTitleConversion = $wgDisableLangConversion || $wgDisableTitleConversion;
+		$this->mMagicISBNLinks = $wgEnableMagicLinks['ISBN'];
+		$this->mMagicPMIDLinks = $wgEnableMagicLinks['PMID'];
+		$this->mMagicRFCLinks = $wgEnableMagicLinks['RFC'];
 
 		$this->mUser = $user;
 		$this->mNumberHeadings = $user->getOption( 'numberheadings' );
