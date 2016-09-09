@@ -137,6 +137,14 @@
 
 	Map.prototype = {
 		/**
+		 * Obtain all registered keys
+		 *
+		 * @return {Object}
+		 */
+		entries: function () {
+			return this.values;
+		},
+		/**
 		 * Get the value of one or more keys.
 		 *
 		 * If called with no arguments, all values are returned.
@@ -171,7 +179,8 @@
 			}
 
 			if ( selection === undefined ) {
-				return this.values;
+				mw.log.warn( 'Use of `get` in this way is deprecated. Please use `entries`.' );
+				return this.entries();
 			}
 
 			// Invalid selection key
@@ -202,6 +211,16 @@
 		},
 
 		/**
+		 * Check if a key exists
+		 *
+		 * @param {string} key to check
+		 * @return {boolean} True if the key(s) exist
+		 */
+		has: function ( key ) {
+			return typeof key === 'string' && hasOwn.call( this.values, key );
+		},
+
+		/**
 		 * Check if one or more keys exist.
 		 *
 		 * @param {Mixed} selection Key or array of keys to check
@@ -211,14 +230,15 @@
 			var s;
 
 			if ( $.isArray( selection ) ) {
+				mw.log.warn( 'Use of `exists` in this way is deprecated. Please use `has`.' );
 				for ( s = 0; s < selection.length; s++ ) {
-					if ( typeof selection[ s ] !== 'string' || !hasOwn.call( this.values, selection[ s ] ) ) {
+					if ( typeof selection[ s ] !== 'string' || !this.has( selection[ s ] ) ) {
 						return false;
 					}
 				}
 				return true;
 			}
-			return typeof selection === 'string' && hasOwn.call( this.values, selection );
+			return this.has( selection );
 		}
 	};
 
