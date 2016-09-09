@@ -1395,6 +1395,7 @@ $wgAutoloadLocalClasses = [
 	'TempFSFile' => __DIR__ . '/includes/filebackend/TempFSFile.php',
 	'TempFileRepo' => __DIR__ . '/includes/filerepo/FileRepo.php',
 	'TemplateParser' => __DIR__ . '/includes/TemplateParser.php',
+	'TemplatesOnThisPageFormatter' => __DIR__ . '/includes/TemplatesOnThisPageFormatter.php',
 	'TestFileOpPerformance' => __DIR__ . '/maintenance/fileOpPerfTest.php',
 	'TextContent' => __DIR__ . '/includes/content/TextContent.php',
 	'TextContentHandler' => __DIR__ . '/includes/content/TextContentHandler.php',
