@@ -4353,6 +4353,18 @@ $wgEnableScaryTranscluding = false;
  */
 $wgTranscludeCacheExpiry = 3600;
 
+/**
+ * Enable the magic links feature of automatically turning ISBN xxx,
+ * PMID xxx, RFC xxx into links
+ *
+ * @since 1.28
+ */
+$wgEnableMagicLinks = [
+	'ISBN' => true,
+	'PMID' => true,
+	'RFC' => true
+];
+
 /** @} */ # end of parser settings }
 
 /************************************************************************//**

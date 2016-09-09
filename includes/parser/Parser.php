@@ -1439,11 +1439,17 @@ class Parser {
 		} elseif ( isset( $m[5] ) && $m[5] !== '' ) {
 			# RFC or PMID
 			if ( substr( $m[0], 0, 3 ) === 'RFC' ) {
+				if ( !$this->mOptions->getMagicRFCLinks() ) {
+					return $m[0];
+				}
 				$keyword = 'RFC';
 				$urlmsg = 'rfcurl';
 				$cssClass = 'mw-magiclink-rfc';
 				$id = $m[5];
 			} elseif ( substr( $m[0], 0, 4 ) === 'PMID' ) {
+				if ( !$this->mOptions->getMagicPMIDLinks() ) {
+					return $m[0];
+				}
 				$keyword = 'PMID';
 				$urlmsg = 'pubmedurl';
 				$cssClass = 'mw-magiclink-pmid';
@@ -1454,7 +1460,9 @@ class Parser {
 			}
 			$url = wfMessage( $urlmsg, $id )->inContentLanguage()->text();
 			return Linker::makeExternalLink( $url, "{$keyword} {$id}", true, $cssClass, [], $this->mTitle );
-		} elseif ( isset( $m[6] ) && $m[6] !== '' ) {
+		} elseif ( isset( $m[6] ) && $m[6] !== ''
+			&& $this->mOptions->getMagicISBNLinks()
+		) {
 			# ISBN
 			$isbn = $m[6];
 			$space = self::SPACE_NOT_NL; #  non-newline space
