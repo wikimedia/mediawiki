@@ -21,6 +21,7 @@
  */
 namespace MediaWiki\Linker;
 
+use IContextSource;
 use LinkCache;
 use TitleFormatter;
 use User;
@@ -92,5 +93,21 @@ class LinkRendererFactory {
 		}
 
 		return $linkRenderer;
+	}
+
+	/**
+	 * @since 1.30
+	 * @param IContextSource $context
+	 * @return UserLinkHelper
+	 */
+	public function createUserLinkHelperFromContext( IContextSource $context ) {
+		$currentUser = $context->getUser();
+
+		return new UserLinkHelper(
+			$this->createForUser( $currentUser ),
+			$context,
+			$currentUser,
+			$context->getConfig()->get( 'DisableAnonTalk' )
+		);
 	}
 }
