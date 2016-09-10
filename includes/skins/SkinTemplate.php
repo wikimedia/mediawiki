@@ -180,6 +180,7 @@ class SkinTemplate extends Skin {
 					'text' => $ilLangName,
 					'title' => $ilTitle,
 					'class' => $class,
+					'link-class' => 'interlanguage-link-target',
 					'lang' => $ilInterwikiCodeBCP47,
 					'hreflang' => $ilInterwikiCodeBCP47,
 				];
