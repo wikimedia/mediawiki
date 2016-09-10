@@ -26,6 +26,25 @@ class FauxRequestTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( '', $req->getText( 'z' ) );
 	}
 
+	// Integration test for parent method.
+	public function testGetVal() {
+		$req = new FauxRequest( [ 'crlf' => "A\r\nb" ] );
+		$this->assertSame( "A\r\nb", $req->getVal( 'crlf' ), 'CRLF' );
+	}
+
+	// Integration test for parent method.
+	public function testGetRawVal() {
+		$req = new FauxRequest( [
+			'x' => 'Value',
+			'y' => [ 'a' ],
+			'crlf' => "A\r\nb"
+		] );
+		$this->assertSame( 'Value', $req->getRawVal( 'x' ) );
+		$this->assertSame( null, $req->getRawVal( 'z' ), 'Not found' );
+		$this->assertSame( null, $req->getRawVal( 'y' ), 'Array is ignored' );
+		$this->assertSame( "A\r\nb", $req->getRawVal( 'crlf' ), 'CRLF' );
+	}
+
 	/**
 	 * @covers FauxRequest::getValues
 	 */
