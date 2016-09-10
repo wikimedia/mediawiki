@@ -35,6 +35,9 @@
 	 * @constructor
 	 * @param {string|mw.Uri} url URL pointing to another wiki's `api.php` endpoint.
 	 * @param {Object} [options] See mw.Api.
+	 * @param {Object} [options.anonymous=false] Perform all requests anonymously. Use this option if
+	 *     the target wiki may otherwise not accept cross-origin requests, or if you don't need to
+	 *     perform write actions or read restricted information and want to avoid the overhead.
 	 *
 	 * @author Bartosz Dziewoński
 	 * @author Jon Robson
@@ -45,13 +48,14 @@
 		}
 
 		this.apiUrl = String( url );
+		this.anonymous = options && options.anonymous;
 
 		options = $.extend( /*deep=*/ true,
 			{
 				ajax: {
 					url: this.apiUrl,
 					xhrFields: {
-						withCredentials: true
+						withCredentials: this.anonymous ? false : true
 					}
 				},
 				parameters: {
@@ -76,7 +80,11 @@
 	 * @return {string}
 	 */
 	CoreForeignApi.prototype.getOrigin = function () {
-		var origin = location.protocol + '//' + location.hostname;
+		var origin;
+		if ( this.anonymous ) {
+			return '*';
+		}
+		origin = location.protocol + '//' + location.hostname;
 		if ( location.port ) {
 			origin += ':' + location.port;
 		}
