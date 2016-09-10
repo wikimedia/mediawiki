@@ -60,7 +60,7 @@ class RevDelRevisionList extends RevDelList {
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );
 		$queryInfo = [
-			'tables' => [ 'revision', 'user' ],
+			'tables' => [ 'revision', 'page', 'user' ],
 			'fields' => array_merge( Revision::selectFields(), Revision::selectUserFields() ),
 			'conds' => [
 				'rev_page' => $this->title->getArticleID(),
