@@ -167,3 +167,32 @@ $magicWords = [
 	'index'                     => [ '1', '__اشاریہ__', '__INDEX__' ],
 	'noindex'                   => [ '1', '__نااشاریہ__', '__NOINDEX__' ],
 ];
+
+$datePreferences = [
+	'default',
+	'dmy',
+	'ymd',
+	'hijri',
+	'ISO 8601',
+	'jMY',
+];
+
+$defaultDateFormat = 'dmy';
+
+$dateFormats = [
+	'dmy time' => 'H:i',
+	'dmy date' => 'j xg Yء', # Urdu sign of year
+	'dmy both' => 'H:i، j xg Yء', # Urdu sign of year and comma
+
+	'ymd time' => 'H:i',
+	'ymd date' => 'Yء xg j', # Urdu sign of year
+	'ymd both' => 'H:i، Yء xg j', # Urdu sign of year and comma
+
+	'hijri time' => 'H:i',
+	'hijri date' => 'xmj xmF xmYھ', # Urdu sign of hijri year
+	'hijri both' => 'H:i، xmj xmF xmYھ', # Urdu sign of hijri year and comma
+
+	'jMY time' => 'H:i',
+	'jMY date' => 'j M Yء', # Urdu sign of year
+	'jMY both' => 'H:i، j M Yء', # Urdu sign of year and comma
+];
