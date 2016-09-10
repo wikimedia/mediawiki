@@ -20,6 +20,7 @@
  * @file
  */
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Linker\UserLinkHelper;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -974,6 +975,21 @@ class Linker {
 	}
 
 	/**
+	 * Get a UserLinkHelper object for supporting deprecated
+	 * functions that have been moved there
+	 *
+	 * @return UserLinkHelper
+	 */
+	private static function getUserLinkHelper() {
+		return new UserLinkHelper(
+			MediaWikiServices::getInstance()->getLinkRenderer(),
+			RequestContext::getMain()
+		);
+	}
+
+	/**
+	 * @deprecated since 1.28, use UserLinkHelper
+	 *
 	 * Make user link (or user contributions for unregistered users)
 	 * @param int $userId User id in database.
 	 * @param string $userName User name in database.
@@ -982,26 +998,12 @@ class Linker {
 	 * @since 1.16.3. $altUserName was added in 1.19.
 	 */
 	public static function userLink( $userId, $userName, $altUserName = false ) {
-		$classes = 'mw-userlink';
-		if ( $userId == 0 ) {
-			$page = SpecialPage::getTitleFor( 'Contributions', $userName );
-			if ( $altUserName === false ) {
-				$altUserName = IP::prettifyIP( $userName );
-			}
-			$classes .= ' mw-anonuserlink'; // Separate link class for anons (bug 43179)
-		} else {
-			$page = Title::makeTitle( NS_USER, $userName );
-		}
-
-		// Wrap the output with <bdi> tags for directionality isolation
-		return self::link(
-			$page,
-			'<bdi>' . htmlspecialchars( $altUserName !== false ? $altUserName : $userName ) . '</bdi>',
-			[ 'class' => $classes ]
-		);
+		return self::getUserLinkHelper()->makeUserLink( $userId, $userName, $altUserName );
 	}
 
 	/**
+	 * @deprecated since 1.28, use UserLinkHelper
+	 *
 	 * Generate standard user tool links (talk, contributions, block link, etc.)
 	 *
 	 * @since 1.16.3
@@ -1017,52 +1019,16 @@ class Linker {
 	public static function userToolLinks(
 		$userId, $userText, $redContribsWhenNoEdits = false, $flags = 0, $edits = null
 	) {
-		global $wgUser, $wgDisableAnonTalk, $wgLang;
-		$talkable = !( $wgDisableAnonTalk && 0 == $userId );
-		$blockable = !( $flags & self::TOOL_LINKS_NOBLOCK );
-		$addEmailLink = $flags & self::TOOL_LINKS_EMAIL && $userId;
-
-		$items = [];
-		if ( $talkable ) {
-			$items[] = self::userTalkLink( $userId, $userText );
-		}
-		if ( $userId ) {
-			// check if the user has an edit
-			$attribs = [];
-			if ( $redContribsWhenNoEdits ) {
-				if ( intval( $edits ) === 0 && $edits !== 0 ) {
-					$user = User::newFromId( $userId );
-					$edits = $user->getEditCount();
-				}
-				if ( $edits === 0 ) {
-					$attribs['class'] = 'new';
-				}
-			}
-			$contribsPage = SpecialPage::getTitleFor( 'Contributions', $userText );
-
-			$items[] = self::link( $contribsPage, wfMessage( 'contribslink' )->escaped(), $attribs );
-		}
-		if ( $blockable && $wgUser->isAllowed( 'block' ) ) {
-			$items[] = self::blockLink( $userId, $userText );
+		if ( $redContribsWhenNoEdits ) {
+			$flags |= UserLinkHelper::TOOL_LINKS_REDCONTRIBS;
 		}
 
-		if ( $addEmailLink && $wgUser->canSendEmail() ) {
-			$items[] = self::emailLink( $userId, $userText );
-		}
-
-		Hooks::run( 'UserToolLinksEdit', [ $userId, $userText, &$items ] );
-
-		if ( $items ) {
-			return wfMessage( 'word-separator' )->escaped()
-				. '<span class="mw-usertoollinks">'
-				. wfMessage( 'parentheses' )->rawParams( $wgLang->pipeList( $items ) )->escaped()
-				. '</span>';
-		} else {
-			return '';
-		}
+		return self::getUserLinkHelper()->makeUserToolLinks( $userId, $userText, $flags, $edits );
 	}
 
 	/**
+	 * @deprecated since 1.28, use UserLinkHelper
+	 *
 	 * Alias for userToolLinks( $userId, $userText, true );
 	 * @since 1.16.3
 	 * @param int $userId User identifier
@@ -1071,42 +1037,44 @@ class Linker {
 	 * @return string
 	 */
 	public static function userToolLinksRedContribs( $userId, $userText, $edits = null ) {
-		return self::userToolLinks( $userId, $userText, true, 0, $edits );
+		return self::getUserLinkHelper()->makeUserToolLinks(
+			$userId, $userText, UserLinkHelper::TOOL_LINKS_REDCONTRIBS, $edits
+		);
 	}
 
 	/**
+	 * @deprecated since 1.28, use UserLinkHelper
+	 *
 	 * @since 1.16.3
 	 * @param int $userId User id in database.
 	 * @param string $userText User name in database.
 	 * @return string HTML fragment with user talk link
 	 */
 	public static function userTalkLink( $userId, $userText ) {
-		$userTalkPage = Title::makeTitle( NS_USER_TALK, $userText );
-		$userTalkLink = self::link( $userTalkPage, wfMessage( 'talkpagelinktext' )->escaped() );
-		return $userTalkLink;
+		return self::getUserLinkHelper()->makeUserTalkLink( $userText );
 	}
 
 	/**
+	 * @deprecated since 1.28, use UserLinkHelper
+	 *
 	 * @since 1.16.3
 	 * @param int $userId Userid
 	 * @param string $userText User name in database.
 	 * @return string HTML fragment with block link
 	 */
 	public static function blockLink( $userId, $userText ) {
-		$blockPage = SpecialPage::getTitleFor( 'Block', $userText );
-		$blockLink = self::link( $blockPage, wfMessage( 'blocklink' )->escaped() );
-		return $blockLink;
+		return self::getUserLinkHelper()->makeBlockLink( $userText );
 	}
 
 	/**
+	 * @deprecated since 1.28, use UserLinkHelper
+	 *
 	 * @param int $userId Userid
 	 * @param string $userText User name in database.
 	 * @return string HTML fragment with e-mail user link
 	 */
 	public static function emailLink( $userId, $userText ) {
-		$emailPage = SpecialPage::getTitleFor( 'Emailuser', $userText );
-		$emailLink = self::link( $emailPage, wfMessage( 'emaillink' )->escaped() );
-		return $emailLink;
+		return self::getUserLinkHelper()->makeEmailLink( $userText );
 	}
 
 	/**
