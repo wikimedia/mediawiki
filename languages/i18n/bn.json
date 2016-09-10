@@ -29,7 +29,8 @@
 			"Macofe",
 			"Bodhisattwa",
 			"Matma Rex",
-			"আজিজ"
+			"আজিজ",
+			"Kayser Ahmad"
 		]
 	},
 	"tog-underline": "সংযোগগুলির নিচে দাগ দেখানো হোক:",
@@ -419,6 +420,7 @@
 	"createacct-yourpasswordagain-ph": "আবারও পাসওয়ার্ড লিখুন",
 	"userlogin-remembermypassword": "আমাকে প্রবেশ অবস্থায় রাখো",
 	"userlogin-signwithsecure": "নিরাপদ সংযোগ ব্যবহার করুন",
+	"cannotlogin-title": "প্রবেশ করতে পারবেন না",
 	"cannotloginnow-title": "এখন প্রবেশ করা যাবে না",
 	"cannotloginnow-text": "$1 ব্যবহার করার সময় প্রবেশ করা সম্ভব নয়।",
 	"yourdomainname": "আপনার ডোমেইন:",
@@ -1198,6 +1200,7 @@
 	"grant-editprotected": "সংরক্ষিত পাতা সম্পাদনা করুন",
 	"grant-privateinfo": "ব্যক্তিগত তথ্যে প্রবেশাধিকার",
 	"grant-sendemail": "অন্য ব্যবহারকারীকে ইমেইল পাঠান",
+	"grant-uploadeditmovefile": "ফাইল আপলোড, প্রতিস্থাপন এবং স্থানান্তর",
 	"grant-uploadfile": "নতুন ফাইল আপলোড করুন",
 	"grant-basic": "মৌলিক অধিকার",
 	"grant-viewdeleted": "অপসারিত ফাইল ও পাতাগুলি দেখুন",
@@ -2509,6 +2512,7 @@
 	"pageinfo-article-id": "পাতার আইডি",
 	"pageinfo-language": "পাতার তথ্যের ভাষা",
 	"pageinfo-content-model": "পাতার বিষয়বস্তুর মডেল",
+	"pageinfo-content-model-change": "পরিবর্তন",
 	"pageinfo-robot-policy": "রোবটের মাধ্যমে ইন্ডেক্স করা হচ্ছে",
 	"pageinfo-robot-index": "অনুমোদিত",
 	"pageinfo-robot-noindex": "অনুনমোদিন",

@@ -478,6 +478,7 @@
 	"createacct-yourpasswordagain-ph": "Wprowadź hasło jeszcze raz",
 	"userlogin-remembermypassword": "Nie wylogowuj mnie",
 	"userlogin-signwithsecure": "Użyj bezpiecznego połączenia",
+	"cannotlogin-text": "Logowanie nie jest możliwe.",
 	"cannotloginnow-title": "W tej chwili nie można się teraz zalogować",
 	"cannotloginnow-text": "Podczas korzystania z $1 nie można się zalogować.",
 	"yourdomainname": "Twoja domena:",
