@@ -138,6 +138,7 @@ changes to languages because of Phabricator reports.
   MediaWiki\Linker\LinkRenderer. In addition, the LinkBegin and LinkEnd hooks
   were replaced by HtmlPageLinkRendererBegin and HtmlPageLinkRendererEnd
   respectively. See docs/hooks.txt for the specific changes needed for those hooks.
+* Linker::formatSize() was deprecated. Use Language::formatSize() directly.
 * Aliases for Linker methods, deprecated since 1.21, were removed from Skin:
   * Skin::commentBlock() (use Linker::commentBlock() instead)
   * Skin::generateRollback() (use Linker::generateRollback() instead)
