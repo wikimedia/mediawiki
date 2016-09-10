@@ -431,16 +431,18 @@ class LocalFile extends File {
 	private function loadFieldsWithTimestamp( $dbr, $fname ) {
 		$fieldMap = false;
 
-		$row = $dbr->selectRow( 'image', $this->getLazyCacheFields( 'img_' ),
-			[ 'img_name' => $this->getName(), 'img_timestamp' => $this->getTimestamp() ],
-			$fname );
+		$row = $dbr->selectRow( 'image', $this->getLazyCacheFields( 'img_' ), [
+				'img_name' => $this->getName(),
+				'img_timestamp' => $dbr->timestamp( $this->getTimestamp() )
+			], $fname );
 		if ( $row ) {
 			$fieldMap = $this->unprefixRow( $row, 'img_' );
 		} else {
 			# File may have been uploaded over in the meantime; check the old versions
-			$row = $dbr->selectRow( 'oldimage', $this->getLazyCacheFields( 'oi_' ),
-				[ 'oi_name' => $this->getName(), 'oi_timestamp' => $this->getTimestamp() ],
-				$fname );
+			$row = $dbr->selectRow( 'oldimage', $this->getLazyCacheFields( 'oi_' ), [
+					'oi_name' => $this->getName(),
+					'oi_timestamp' => $dbr->timestamp( $this->getTimestamp() )
+				], $fname );
 			if ( $row ) {
 				$fieldMap = $this->unprefixRow( $row, 'oi_' );
 			}
