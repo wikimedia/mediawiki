@@ -2971,7 +2971,7 @@ abstract class DatabaseBase implements IDatabase {
 		$this->assertOpen();
 
 		$this->runOnTransactionPreCommitCallbacks();
-		$writeTime = $this->pendingWriteQueryDuration();
+		$writeTime = $this->pendingWriteQueryDuration( self::ESTIMATE_DB_APPLY );
 		$this->doCommit( $fname );
 		if ( $this->mTrxDoneWrites ) {
 			$this->mDoneWrites = microtime( true );
