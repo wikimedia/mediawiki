@@ -178,15 +178,6 @@ class LoadBalancer {
 	}
 
 	/**
-	 * Get or set arbitrary data used by the parent object, usually an LBFactory
-	 * @param mixed $x
-	 * @return mixed
-	 */
-	public function parentInfo( $x = null ) {
-		return wfSetVar( $this->mParentInfo, $x );
-	}
-
-	/**
 	 * @param array $loads
 	 * @param bool|string $wiki Wiki to get non-lagged for
 	 * @param int $maxLag Restrict the maximum allowed lag to this many seconds

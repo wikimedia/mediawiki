@@ -95,7 +95,6 @@ class LBFactorySimple extends LBFactory {
 	public function getMainLB( $wiki = false ) {
 		if ( !isset( $this->mainLB ) ) {
 			$this->mainLB = $this->newMainLB( $wiki );
-			$this->mainLB->parentInfo( [ 'id' => 'main' ] );
 			$this->chronProt->initLB( $this->mainLB );
 		}
 
@@ -125,7 +124,6 @@ class LBFactorySimple extends LBFactory {
 	public function getExternalLB( $cluster, $wiki = false ) {
 		if ( !isset( $this->extLBs[$cluster] ) ) {
 			$this->extLBs[$cluster] = $this->newExternalLB( $cluster, $wiki );
-			$this->extLBs[$cluster]->parentInfo( [ 'id' => "ext-$cluster" ] );
 			$this->chronProt->initLB( $this->extLBs[$cluster] );
 		}
 
