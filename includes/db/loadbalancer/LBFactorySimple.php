@@ -133,15 +133,13 @@ class LBFactorySimple extends LBFactory {
 	}
 
 	private function newLoadBalancer( array $servers ) {
-		$lb = new LoadBalancer( [
-			'servers' => $servers,
-			'loadMonitor' => $this->loadMonitorClass,
-			'readOnlyReason' => $this->readOnlyReason,
-			'trxProfiler' => $this->trxProfiler,
-			'srvCache' => $this->srvCache,
-			'wanCache' => $this->wanCache
-		] );
-
+		$lb = new LoadBalancer( array_merge(
+			$this->baseLoadBalancerParams(),
+			[
+				'servers' => $servers,
+				'loadMonitor' => $this->loadMonitorClass,
+			]
+		) );
 		$this->initLoadBalancer( $lb );
 
 		return $lb;
