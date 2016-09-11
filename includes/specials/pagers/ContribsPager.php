@@ -73,7 +73,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		// Most of this code will use the 'contributions' group DB, which can map to replica DBs
 		// with extra user based indexes or partioning by user. The additional metadata
 		// queries should use a regular replica DB since the lookup pattern is not all by user.
-		$this->mDbSecondary = wfGetDB( DB_SLAVE ); // any random replica DB
+		$this->mDbSecondary = wfGetDB( DB_REPLICA ); // any random replica DB
 		$this->mDb = wfGetDB( DB_REPLICA, 'contributions' );
 	}
 
