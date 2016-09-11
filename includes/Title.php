@@ -91,7 +91,13 @@ class Title implements LinkTarget {
 	 * @var bool|string ID of the page's content model, i.e. one of the
 	 *   CONTENT_MODEL_XXX constants
 	 */
-	public $mContentModel = false;
+	private $mContentModel = false;
+
+	/**
+	 * @var bool If a content model was forced via setContentModel()
+	 *   this will be true to avoid having other code paths reset it
+	 */
+	private $mForcedContentModel = false;
 
 	/** @var int Estimated number of revisions; null of not loaded */
 	private $mEstimateRevisions;
@@ -467,9 +473,9 @@ class Title implements LinkTarget {
 			if ( isset( $row->page_latest ) ) {
 				$this->mLatestID = (int)$row->page_latest;
 			}
-			if ( isset( $row->page_content_model ) ) {
+			if ( !$this->mForcedContentModel && isset( $row->page_content_model ) ) {
 				$this->mContentModel = strval( $row->page_content_model );
-			} else {
+			} elseif ( !$this->mForcedContentModel ) {
 				$this->mContentModel = false; # initialized lazily in getContentModel()
 			}
 			if ( isset( $row->page_lang ) ) {
@@ -483,7 +489,9 @@ class Title implements LinkTarget {
 			$this->mLength = 0;
 			$this->mRedirect = false;
 			$this->mLatestID = 0;
-			$this->mContentModel = false; # initialized lazily in getContentModel()
+			if ( !$this->mForcedContentModel ) {
+				$this->mContentModel = false; # initialized lazily in getContentModel()
+			}
 		}
 	}
 
@@ -921,8 +929,9 @@ class Title implements LinkTarget {
 	 * @return string Content model id
 	 */
 	public function getContentModel( $flags = 0 ) {
-		if ( ( !$this->mContentModel || $flags === Title::GAID_FOR_UPDATE ) &&
-			$this->getArticleID( $flags )
+		if ( !$this->mForcedContentModel
+			&& ( !$this->mContentModel || $flags === Title::GAID_FOR_UPDATE )
+			&& $this->getArticleID( $flags )
 		) {
 			$linkCache = LinkCache::singleton();
 			$linkCache->addLinkObj( $this ); # in case we already had an article ID
@@ -944,6 +953,22 @@ class Title implements LinkTarget {
 	 */
 	public function hasContentModel( $id ) {
 		return $this->getContentModel() == $id;
+	}
+
+	/**
+	 * Set a proposed content model for the page for permissions
+	 * checking. This does not actually change the content model
+	 * of a title!
+	 *
+	 * Additionally, you should make sure you've checked
+	 * ContentHandler::canBeUsedOn() first.
+	 *
+	 * @since 1.28
+	 * @param string $model CONTENT_MODEL_XXX constant
+	 */
+	public function setContentModel( $model ) {
+		$this->mContentModel = $model;
+		$this->mForcedContentModel = true;
 	}
 
 	/**
