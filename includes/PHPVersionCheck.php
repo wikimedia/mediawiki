@@ -32,22 +32,24 @@
 function wfEntryPointCheck( $entryPoint ) {
 	$mwVersion = '1.28';
 	$minimumVersionPHP = '5.5.9';
+	$minimumVersionPHPa = '5.5.5';
 	$phpVersion = PHP_VERSION;
 	$minimumVersionHHVM = '3.6.5';
-
-	if ( !function_exists( 'version_compare' )
-		|| version_compare( $phpVersion, $minimumVersionPHP ) < 0
-	) {
-		wfPHPVersionError(
-			$entryPoint, $mwVersion, $minimumVersionPHP, $phpVersion, 'PHP', $php_only = 'true'
-		);
-	}
+	$minimumVersionHHVMa = '3.6.1';
 
 	if ( !function_exists( 'version_compare' )
 		|| defined( 'HHVM_VERSION' ) && version_compare( HHVM_VERSION, $minimumVersionHHVM ) < 0
 	) {
 		wfPHPVersionError(
-			$entryPoint, $mwVersion, $minimumVersionHHVM, HHVM_VERSION, 'HHVM', $php_only = 'false'
+			$entryPoint, $mwVersion, $minimumVersionHHVM, $minimumVersionHHVMa, 'HHVM', $php_only = false
+		);
+	}
+
+	if ( !function_exists( 'version_compare' )
+		|| version_compare( $minimumVersionPHPa, $minimumVersionPHP ) < 0
+	) {
+		wfPHPVersionError(
+			$entryPoint, $mwVersion, $minimumVersionPHP, $phpVersion, 'PHP', $php_only = true
 		);
 	}
 
@@ -198,7 +200,7 @@ function wfPHPVersionError(
 	$longText = "Error: You might be using an older $phpOrhhvmText version. \n"
 		. "MediaWiki $mwVersion needs $phpOrhhvmText $minimumVersionPHPorHHVM or higher.\n\n"
 		. "Check if you have a newer php executable with a different name, such as php5.\n\n";
-	if ( $phpImpl === 'zend' || $phpImpl === 'true' || $phpImpl === 'php' ) {
+	if ( $phpImpl ) {
 		$longHtml = <<<HTML
 				Please consider <a href="http://www.php.net/downloads.php">upgrading your copy of PHP</a>.
 				PHP versions less than 5.5.0 are no longer supported by the PHP Group and will not receive
