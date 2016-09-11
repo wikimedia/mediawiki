@@ -947,6 +947,21 @@ class Title implements LinkTarget {
 	}
 
 	/**
+	 * Set a proposed content model for the page for permissions
+	 * checking. This does not actually change the content model
+	 * of a title!
+	 *
+	 * Additionally, you should make sure you've checked
+	 * ContentHandler::canBeUsedOn() first.
+	 *
+	 * @since 1.28
+	 * @param string $model CONTENT_MODEL_XXX constant
+	 */
+	public function setContentModel( $model ) {
+		$this->mContentModel = $model;
+	}
+
+	/**
 	 * Get the namespace text
 	 *
 	 * @return string Namespace text
