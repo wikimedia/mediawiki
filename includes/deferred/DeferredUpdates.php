@@ -146,13 +146,15 @@ class DeferredUpdates {
 	}
 
 	/**
+	 * Immediately run/queue a list of updates
+	 *
 	 * @param DeferrableUpdate[] &$queue List of DeferrableUpdate objects
 	 * @param string $mode Use "enqueue" to use the job queue when possible
 	 * @param integer $stage Class constant (PRESEND, POSTSEND) (since 1.28)
 	 * @throws ErrorPageError Happens on top-level calls
 	 * @throws Exception Happens on second-level calls
 	 */
-	public static function execute( array &$queue, $mode, $stage ) {
+	protected static function execute( array &$queue, $mode, $stage ) {
 		$services = MediaWikiServices::getInstance();
 		$stats = $services->getStatsdDataFactory();
 		$lbFactory = $services->getDBLoadBalancerFactory();
