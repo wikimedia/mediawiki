@@ -74,7 +74,7 @@ class UploadStashCleanup extends Maintenance {
 			// this could be done some other, more direct/efficient way, but using
 			// UploadStash's own methods means it's less likely to fall accidentally
 			// out-of-date someday
-			$stash = new UploadStash( $repo, new User() );
+			$stash = new UploadStash( $repo );
 
 			$i = 0;
 			foreach ( $keys as $key ) {
