@@ -35,12 +35,7 @@ class LBFactorySingle extends LBFactory {
 	public function __construct( array $conf ) {
 		parent::__construct( $conf );
 
-		$this->lb = new LoadBalancerSingle( [
-			'readOnlyReason' => $this->readOnlyReason,
-			'trxProfiler' => $this->trxProfiler,
-			'srvCache' => $this->srvCache,
-			'wanCache' => $this->wanCache
-		] + $conf );
+		$this->lb = new LoadBalancerSingle( $conf + $this->baseLoadBalancerParams() );
 	}
 
 	/**
