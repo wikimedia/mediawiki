@@ -1838,8 +1838,18 @@ class EditPage {
 			} elseif ( !$wgUser->isAllowed( 'editcontentmodel' ) ) {
 				$status->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL );
 				return $status;
-
 			}
+			// Make sure the user can edit the page under the new content
+			// model too.
+			$titleWithNewContentModel = clone $this->mTitle;
+			$titleWithNewContentModel->setContentModel( $this->contentModel );
+			if ( !$titleWithNewContentModel->userCan( 'editcontentmodel', $wgUser )
+				|| !$titleWithNewContentModel->userCan( 'edit', $wgUser )
+			) {
+				$status->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL );
+				return $status;
+			}
+
 			$changingContentModel = true;
 			$oldContentModel = $this->mTitle->getContentModel();
 		}
