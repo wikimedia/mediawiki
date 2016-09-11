@@ -311,15 +311,14 @@ class LBFactoryMulti extends LBFactory {
 	 * @return LoadBalancer
 	 */
 	private function newLoadBalancer( $template, $loads, $groupLoads, $readOnlyReason ) {
-		$lb = new LoadBalancer( [
-			'servers' => $this->makeServerArray( $template, $loads, $groupLoads ),
-			'loadMonitor' => $this->loadMonitorClass,
-			'readOnlyReason' => $readOnlyReason,
-			'trxProfiler' => $this->trxProfiler,
-			'srvCache' => $this->srvCache,
-			'wanCache' => $this->wanCache
-		] );
-
+		$lb = new LoadBalancer( array_merge(
+			$this->baseLoadBalancerParams(),
+			[
+				'servers' => $this->makeServerArray( $template, $loads, $groupLoads ),
+				'loadMonitor' => $this->loadMonitorClass,
+				'readOnlyReason' => $readOnlyReason
+			]
+		) );
 		$this->initLoadBalancer( $lb );
 
 		return $lb;
