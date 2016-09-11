@@ -642,7 +642,11 @@ final class SessionBackend {
 			] );
 			$this->user->setToken();
 			if ( !wfReadOnly() ) {
-				$this->user->saveSettings();
+				// Promise that the token set here will be valid; save it at end of request
+				$user = $this->user;
+				\DeferredUpdates::addCallableUpdate( function () use ( $user ) {
+					$user->saveSettings();
+				} );
 			}
 			$this->metaDirty = true;
 		}
