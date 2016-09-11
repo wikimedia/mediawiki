@@ -20,6 +20,8 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
+
 class PurgeJobUtils {
 	/**
 	 * Invalidate the cache of a list of pages from a single namespace.
@@ -35,6 +37,8 @@ class PurgeJobUtils {
 		}
 
 		$dbw->onTransactionPreCommitOrIdle( function() use ( $dbw, $namespace, $dbkeys ) {
+			$services = MediaWikiServices::getInstance();
+			$lbFactory = $services->getDBLoadBalancerFactory();
 			// Determine which pages need to be updated.
 			// This is necessary to prevent the job queue from smashing the DB with
 			// large numbers of concurrent invalidations of the same page.
@@ -50,22 +54,24 @@ class PurgeJobUtils {
 				__METHOD__
 			);
 
-			if ( $ids === [] ) {
+			if ( !$ids ) {
 				return;
 			}
 
-			// Do the update.
-			// We still need the page_touched condition, in case the row has changed since
-			// the non-locking select above.
-			$dbw->update(
-				'page',
-				[ 'page_touched' => $now ],
-				[
-					'page_id' => $ids,
-					'page_touched < ' . $dbw->addQuotes( $now )
-				],
-				__METHOD__
-			);
+			$batchSize = $services->getMainConfig()->get( 'UpdateRowsPerQuery' );
+			$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
+			foreach ( array_chunk( $ids, $batchSize ) as $idBatch ) {
+				$dbw->update(
+					'page',
+					[ 'page_touched' => $now ],
+					[
+						'page_id' => $idBatch,
+						'page_touched < ' . $dbw->addQuotes( $now ) // handle races
+					],
+					__METHOD__
+				);
+				$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+			}
 		} );
 	}
 }
