@@ -58,6 +58,9 @@ class ViewAction extends FormlessAction {
 				$touched = null;
 			}
 
+			// If a page was purged on HTTP GET, relect that timestamp to avoid sending 304s
+			$touched = max( $touched, $this->page->getLastPurgeTimestamp() );
+
 			// Send HTTP 304 if the IMS matches or otherwise set expiry/last-modified headers
 			if ( $touched && $this->getOutput()->checkLastModified( $touched ) ) {
 				wfDebug( __METHOD__ . ": done 304\n" );
