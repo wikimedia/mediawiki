@@ -74,6 +74,10 @@ class LoadBalancer {
 	private $trxRoundId = false;
 	/** @var array[] Map of (name => callable) */
 	private $trxRecurringCallbacks = [];
+	/** @var string Local Wiki ID and default for selectDB() calls */
+	private $localDomain;
+	/** @var callable Exception logger */
+	private $errorLogger;
 
 	/** @var integer Warn when this many connection are held */
 	const CONN_HELD_WARN_THRESHOLD = 10;
@@ -97,6 +101,8 @@ class LoadBalancer {
 	 *  - waitTimeout : Maximum time to wait for replicas for consistency [optional]
 	 *  - srvCache : BagOStuff object [optional]
 	 *  - wanCache : WANObjectCache object [optional]
+	 *  - localDomain: The wiki ID of the "local"/"current" wiki [optional]
+	 *  - errorLogger: Callback that takes an Exception and logs it [optional]
 	 * @throws MWException
 	 */
 	public function __construct( array $params ) {
@@ -107,6 +113,7 @@ class LoadBalancer {
 		$this->mWaitTimeout = isset( $params['waitTimeout'] )
 			? $params['waitTimeout']
 			: self::POS_WAIT_TIMEOUT;
+		$this->localDomain = isset( $params['localDomain'] ) ? $params['localDomain'] : '';
 
 		$this->mReadIndex = -1;
 		$this->mWriteIndex = -1;
@@ -161,6 +168,12 @@ class LoadBalancer {
 		} else {
 			$this->trxProfiler = new TransactionProfiler();
 		}
+
+		$this->errorLogger = isset( $params['errorLogger'] )
+			? $params['errorLogger']
+			: function ( Exception $e ) {
+				trigger_error( E_WARNING, $e->getMessage() );
+			};
 	}
 
 	/**
@@ -240,16 +253,9 @@ class LoadBalancer {
 	 * @return bool|int|string
 	 */
 	public function getReaderIndex( $group = false, $wiki = false ) {
-		global $wgDBtype;
-
-		# @todo FIXME: For now, only go through all this for mysql databases
-		if ( $wgDBtype != 'mysql' ) {
-			return $this->getWriterIndex();
-		}
-
 		if ( count( $this->mServers ) == 1 ) {
 			# Skip the load balancing if there's only one server
-			return 0;
+			return $this->getWriterIndex();
 		} elseif ( $group === false && $this->mReadIndex >= 0 ) {
 			# Shortcut if generic reader exists already
 			return $this->mReadIndex;
@@ -273,7 +279,7 @@ class LoadBalancer {
 			throw new MWException( "Empty server array given to LoadBalancer" );
 		}
 
-		# Scale the configured load ratios according to the dynamic load (if the load monitor supports it)
+		# Scale the configured load ratios according to the dynamic load if supported
 		$this->getLoadMonitor()->scaleLoads( $nonErrorLoads, $group, $wiki );
 
 		$laggedReplicaMode = false;
@@ -532,7 +538,7 @@ class LoadBalancer {
 				' with invalid server index' );
 		}
 
-		if ( $wiki === wfWikiID() ) {
+		if ( $wiki === $this->localDomain ) {
 			$wiki = false;
 		}
 
@@ -581,8 +587,7 @@ class LoadBalancer {
 		if ( $this->connsOpened > $oldConnsOpened ) {
 			$host = $conn->getServer();
 			$dbname = $conn->getDBname();
-			$trxProf = Profiler::instance()->getTransactionProfiler();
-			$trxProf->recordConnection( $host, $dbname, $masterOnly );
+			$this->trxProfiler->recordConnection( $host, $dbname, $masterOnly );
 		}
 
 		if ( $masterOnly ) {
@@ -668,6 +673,8 @@ class LoadBalancer {
 	 * @return DBConnRef
 	 */
 	public function getLazyConnectionRef( $db, $groups = [], $wiki = false ) {
+		$wiki = ( $wiki !== false ) ? $wiki : $this->localDomain;
+
 		return new DBConnRef( $this, [ $db, $groups, $wiki ] );
 	}
 
@@ -738,7 +745,8 @@ class LoadBalancer {
 	 * @return DatabaseBase
 	 */
 	private function openForeignConnection( $i, $wiki ) {
-		list( $dbName, $prefix ) = wfSplitWikiID( $wiki );
+		list( $dbName, $prefix ) = explode( '-', $wiki, 2 ) + [ '', '' ];
+
 		if ( isset( $this->mConns['foreignUsed'][$i][$wiki] ) ) {
 			// Reuse an already-used connection
 			$conn = $this->mConns['foreignUsed'][$i][$wiki];
@@ -1075,7 +1083,7 @@ class LoadBalancer {
 				try {
 					$conn->commit( $fname, $conn::FLUSHING_ALL_PEERS );
 				} catch ( DBError $e ) {
-					MWExceptionHandler::logException( $e );
+					call_user_func( $this->errorLogger, $e );
 					$failures[] = "{$conn->getServer()}: {$e->getMessage()}";
 				}
 				if ( $restore && $conn->getLBInfo( 'master' ) ) {
@@ -1175,7 +1183,7 @@ class LoadBalancer {
 				try {
 					$conn->flushSnapshot( $fname );
 				} catch ( DBError $e ) {
-					MWExceptionHandler::logException( $e );
+					call_user_func( $this->errorLogger, $e );
 					$failures[] = "{$conn->getServer()}: {$e->getMessage()}";
 				}
 				$conn->setTrxEndCallbackSuppression( false );
@@ -1210,7 +1218,7 @@ class LoadBalancer {
 						$conn->flushSnapshot( $fname );
 					}
 				} catch ( DBError $e ) {
-					MWExceptionHandler::logException( $e );
+					call_user_func( $this->errorLogger, $e );
 					$failures[] = "{$conn->getServer()}: {$e->getMessage()}";
 				}
 				if ( $restore ) {
@@ -1718,5 +1726,17 @@ class LoadBalancer {
 				$conn->setTransactionListener( $name, $callback );
 			}
 		);
+	}
+
+	/**
+	 * Set a new table prefix for the existing local wiki ID for testing
+	 *
+	 * @param string $prefix
+	 * @since 1.28
+	 */
+	public function setDomainPrefix( $prefix ) {
+		list( $dbName, ) = explode( '-', $this->localDomain, 2 );
+
+		$this->localDomain = "{$dbName}-{$prefix}";
 	}
 }

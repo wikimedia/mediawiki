@@ -17,16 +17,22 @@ class DBConnRef implements IDatabase {
 	/** @var array|null */
 	private $params;
 
+	const FLD_INDEX = 0;
+	const FLD_GROUP = 1;
+	const FLD_WIKI = 2;
+
 	/**
 	 * @param LoadBalancer $lb
-	 * @param DatabaseBase|array $conn Connection or (server index, group, wiki ID) array
+	 * @param DatabaseBase|array $conn Connection or (server index, group, wiki ID)
 	 */
 	public function __construct( LoadBalancer $lb, $conn ) {
 		$this->lb = $lb;
 		if ( $conn instanceof DatabaseBase ) {
 			$this->conn = $conn;
-		} else {
+		} elseif ( count( $conn ) >= 3 && $conn[self::FLD_WIKI] !== false ) {
 			$this->params = $conn;
+		} else {
+			throw new InvalidArgumentException( "Missing lazy connection arguments." );
 		}
 	}
 
@@ -136,6 +142,11 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function getWikiID() {
+		if ( $this->conn === null ) {
+			// Avoid triggering a connection
+			return $this->params[self::FLD_WIKI];
+		}
+
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
