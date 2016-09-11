@@ -45,11 +45,12 @@ abstract class DataUpdate implements DeferrableUpdate {
 	 * Convenience method, calls doUpdate() on every DataUpdate in the array.
 	 *
 	 * @param DataUpdate[] $updates A list of DataUpdate instances
-	 * @param string $mode Use "enqueue" to use the job queue when possible [Default: run]
 	 * @throws Exception
 	 * @deprecated Since 1.28 Use DeferredUpdates::execute()
 	 */
-	public static function runUpdates( array $updates, $mode = 'run' ) {
-		DeferredUpdates::execute( $updates, $mode, DeferredUpdates::ALL );
+	public static function runUpdates( array $updates ) {
+		foreach ( $updates as $update ) {
+			$update->doUpdate();
+		}
 	}
 }
