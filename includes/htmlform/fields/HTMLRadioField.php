@@ -27,7 +27,7 @@ class HTMLRadioField extends HTMLFormField {
 		}
 
 		if ( !is_string( $value ) && !is_int( $value ) ) {
-			return false;
+			return $this->msg( 'htmlform-required' )->parse();
 		}
 
 		$validOptions = HTMLFormField::flattenOptions( $this->getOptions() );
