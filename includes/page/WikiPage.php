@@ -1119,6 +1119,9 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		$this->mTitle->invalidateCache();
+
+		// Clear file cache
+		HTMLFileCache::clearFileCache( $this->getTitle() );
 		// Send purge after above page_touched update was committed
 		DeferredUpdates::addUpdate(
 			new CdnCacheUpdate( $this->mTitle->getCdnUrls() ),
