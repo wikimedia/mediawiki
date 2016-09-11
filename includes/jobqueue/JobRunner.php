@@ -504,6 +504,7 @@ class JobRunner implements LoggerAwareInterface {
 	private function commitMasterChanges( LBFactory $lbFactory, Job $job, $fnameTrxOwner ) {
 		global $wgJobSerialCommitThreshold;
 
+		$time = false;
 		$lb = $lbFactory->getMainLB( wfWikiID() );
 		if ( $wgJobSerialCommitThreshold !== false && $lb->getServerCount() > 1 ) {
 			// Generally, there is one master connection to the local DB
@@ -527,7 +528,7 @@ class JobRunner implements LoggerAwareInterface {
 			return;
 		}
 
-		$ms = intval( 1000 * $dbwSerial->pendingWriteQueryDuration() );
+		$ms = intval( 1000 * $time );
 		$msg = $job->toString() . " COMMIT ENQUEUED [{$ms}ms of writes]";
 		$this->logger->info( $msg );
 		$this->debugCallback( $msg );

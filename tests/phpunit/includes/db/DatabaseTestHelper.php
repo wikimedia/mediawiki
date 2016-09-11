@@ -174,6 +174,11 @@ class DatabaseTestHelper extends DatabaseBase {
 		return true;
 	}
 
+	function ping( &$rtt = null ) {
+		$rtt = 0.0;
+		return true;
+	}
+
 	protected function closeConnection() {
 		return false;
 	}
