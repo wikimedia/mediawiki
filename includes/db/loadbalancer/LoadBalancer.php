@@ -446,13 +446,13 @@ class LoadBalancer {
 	 * Get any open connection to a given server index, local or foreign
 	 * Returns false if there is no connection open
 	 *
-	 * @param int $i
+	 * @param int $i Server index
 	 * @return DatabaseBase|bool False on failure
 	 */
 	public function getAnyOpenConnection( $i ) {
-		foreach ( $this->mConns as $conns ) {
-			if ( !empty( $conns[$i] ) ) {
-				return reset( $conns[$i] );
+		foreach ( $this->mConns as $connsByServer ) {
+			if ( !empty( $connsByServer[$i] ) ) {
+				return reset( $connsByServer[$i] );
 			}
 		}
 
@@ -843,7 +843,7 @@ class LoadBalancer {
 		}
 
 		// Let the handle know what the cluster master is (e.g. "db1052")
-		$masterName = $this->getServerName( 0 );
+		$masterName = $this->getServerName( $this->getWriterIndex() );
 		$server['clusterMasterHost'] = $masterName;
 
 		// Log when many connection are made on requests
@@ -994,12 +994,12 @@ class LoadBalancer {
 
 	/**
 	 * Get the current master position for chronology control purposes
-	 * @return mixed
+	 * @return DBMasterPos|bool Returns false if not applicable
 	 */
 	public function getMasterPos() {
 		# If this entire request was served from a replica DB without opening a connection to the
 		# master (however unlikely that may be), then we can fetch the position from the replica DB.
-		$masterConn = $this->getAnyOpenConnection( 0 );
+		$masterConn = $this->getAnyOpenConnection( $this->getWriterIndex() );
 		if ( !$masterConn ) {
 			$serverCount = count( $this->mServers );
 			for ( $i = 1; $i < $serverCount; $i++ ) {
@@ -1044,28 +1044,29 @@ class LoadBalancer {
 
 	/**
 	 * Close a connection
+	 *
 	 * Using this function makes sure the LoadBalancer knows the connection is closed.
 	 * If you use $conn->close() directly, the load balancer won't update its state.
+	 *
 	 * @param DatabaseBase $conn
 	 */
-	public function closeConnection( $conn ) {
-		$done = false;
-		foreach ( $this->mConns as $i1 => $conns2 ) {
-			foreach ( $conns2 as $i2 => $conns3 ) {
-				foreach ( $conns3 as $i3 => $candidateConn ) {
-					if ( $conn === $candidateConn ) {
-						$conn->close();
-						unset( $this->mConns[$i1][$i2][$i3] );
-						--$this->connsOpened;
-						$done = true;
-						break;
-					}
+	public function closeConnection( DatabaseBase $conn ) {
+		$serverIndex = $conn->getLBInfo( 'serverIndex' ); // second index level of mConns
+		foreach ( $this->mConns as $type => $connsByServer ) {
+			if ( !isset( $connsByServer[$serverIndex] ) ) {
+				continue;
+			}
+
+			foreach ( $connsByServer[$serverIndex] as $i => $trackedConn ) {
+				if ( $conn === $trackedConn ) {
+					unset( $this->mConns[$type][$serverIndex][$i] );
+					--$this->connsOpened;
+					break 2;
 				}
 			}
 		}
-		if ( !$done ) {
-			$conn->close();
-		}
+
+		$conn->close();
 	}
 
 	/**
@@ -1355,19 +1356,12 @@ class LoadBalancer {
 	 * @return bool
 	 */
 	public function hasMasterChanges() {
-		$masterIndex = $this->getWriterIndex();
-		foreach ( $this->mConns as $conns2 ) {
-			if ( empty( $conns2[$masterIndex] ) ) {
-				continue;
-			}
-			/** @var DatabaseBase $conn */
-			foreach ( $conns2[$masterIndex] as $conn ) {
-				if ( $conn->writesOrCallbacksPending() ) {
-					return true;
-				}
-			}
-		}
-		return false;
+		$pending = 0;
+		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( &$pending ) {
+			$pending |= $conn->writesOrCallbacksPending();
+		} );
+
+		return (bool)$pending;
 	}
 
 	/**
@@ -1377,16 +1371,10 @@ class LoadBalancer {
 	 */
 	public function lastMasterChangeTimestamp() {
 		$lastTime = false;
-		$masterIndex = $this->getWriterIndex();
-		foreach ( $this->mConns as $conns2 ) {
-			if ( empty( $conns2[$masterIndex] ) ) {
-				continue;
-			}
-			/** @var DatabaseBase $conn */
-			foreach ( $conns2[$masterIndex] as $conn ) {
-				$lastTime = max( $lastTime, $conn->lastDoneWrites() );
-			}
-		}
+		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( &$lastTime ) {
+			$lastTime = max( $lastTime, $conn->lastDoneWrites() );
+		} );
+
 		return $lastTime;
 	}
 
@@ -1408,22 +1396,14 @@ class LoadBalancer {
 	/**
 	 * Get the list of callers that have pending master changes
 	 *
-	 * @return array
+	 * @return string[] List of method names
 	 * @since 1.27
 	 */
 	public function pendingMasterChangeCallers() {
 		$fnames = [];
-
-		$masterIndex = $this->getWriterIndex();
-		foreach ( $this->mConns as $conns2 ) {
-			if ( empty( $conns2[$masterIndex] ) ) {
-				continue;
-			}
-			/** @var DatabaseBase $conn */
-			foreach ( $conns2[$masterIndex] as $conn ) {
-				$fnames = array_merge( $fnames, $conn->pendingWriteCallers() );
-			}
-		}
+		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( &$fnames ) {
+			$fnames = array_merge( $fnames, $conn->pendingWriteCallers() );
+		} );
 
 		return $fnames;
 	}
