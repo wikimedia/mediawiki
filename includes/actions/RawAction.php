@@ -48,7 +48,7 @@ class RawAction extends FormlessAction {
 	}
 
 	function onView() {
-		global $wgSquidMaxage, $wgForcedRawSMaxage;
+		global $wgSquidMaxage, $wgForcedRawSMaxage, $wgUseXVO;
 
 		$this->getOutput()->disable();
 		$request = $this->getRequest();
