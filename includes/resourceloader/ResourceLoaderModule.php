@@ -486,9 +486,11 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 					]
 				);
 
-				$dbw->onTransactionResolution( function () use ( &$scopeLock ) {
-					ScopedCallback::consume( $scopeLock ); // release after commit
-				} );
+				if ( $dbw->trxLevel() ) {
+					$dbw->onTransactionResolution( function () use ( &$scopeLock ) {
+						ScopedCallback::consume( $scopeLock ); // release after commit
+					} );
+				}
 			}
 		} catch ( Exception $e ) {
 			wfDebugLog( 'resourceloader', __METHOD__ . ": failed to update DB: $e" );
