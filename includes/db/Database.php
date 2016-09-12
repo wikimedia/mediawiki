@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @defgroup Database Database
  *
@@ -24,12 +23,14 @@
  * @file
  * @ingroup Database
  */
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Database abstraction object
  * @ingroup Database
  */
-abstract class DatabaseBase implements IDatabase {
+abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	/** Number of times to re-try an operation in case of deadlock */
 	const DEADLOCK_TRIES = 4;
 	/** Minimum time to wait before retry, in microseconds */
@@ -64,6 +65,10 @@ abstract class DatabaseBase implements IDatabase {
 
 	/** @var BagOStuff APC cache */
 	protected $srvCache;
+	/** @var LoggerInterface */
+	protected $connLogger;
+	/** @var LoggerInterface */
+	protected $queryLogger;
 
 	/** @var resource Database connection */
 	protected $mConn = null;
@@ -218,6 +223,183 @@ abstract class DatabaseBase implements IDatabase {
 	protected $profiler;
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
+
+	/**
+	 * Constructor.
+	 *
+	 * FIXME: It is possible to construct a Database object with no associated
+	 * connection object, by specifying no parameters to __construct(). This
+	 * feature is deprecated and should be removed.
+	 *
+	 * DatabaseBase subclasses should not be constructed directly in external
+	 * code. DatabaseBase::factory() should be used instead.
+	 *
+	 * @param array $params Parameters passed from DatabaseBase::factory()
+	 */
+	function __construct( array $params ) {
+		global $wgDBprefix, $wgDBmwschema;
+
+		$this->srvCache = ObjectCache::getLocalServerInstance( 'hash' );
+
+		$server = $params['host'];
+		$user = $params['user'];
+		$password = $params['password'];
+		$dbName = $params['dbname'];
+		$flags = $params['flags'];
+		$tablePrefix = $params['tablePrefix'];
+		$schema = $params['schema'];
+		$foreign = $params['foreign'];
+
+		$this->cliMode = isset( $params['cliMode'] )
+			? $params['cliMode']
+			: ( PHP_SAPI === 'cli' );
+
+		$this->mFlags = $flags;
+		if ( $this->mFlags & DBO_DEFAULT ) {
+			if ( $this->cliMode ) {
+				$this->mFlags &= ~DBO_TRX;
+			} else {
+				$this->mFlags |= DBO_TRX;
+			}
+		}
+
+		$this->mSessionVars = $params['variables'];
+
+		/** Get the default table prefix*/
+		if ( $tablePrefix === 'get from global' ) {
+			$this->mTablePrefix = $wgDBprefix;
+		} else {
+			$this->mTablePrefix = $tablePrefix;
+		}
+
+		/** Get the database schema*/
+		if ( $schema === 'get from global' ) {
+			$this->mSchema = $wgDBmwschema;
+		} else {
+			$this->mSchema = $schema;
+		}
+
+		$this->mForeign = $foreign;
+
+		$this->profiler = isset( $params['profiler'] )
+			? $params['profiler']
+			: Profiler::instance(); // @TODO: remove global state
+		$this->trxProfiler = isset( $params['trxProfiler'] )
+			? $params['trxProfiler']
+			: new TransactionProfiler();
+		$this->connLogger = isset( $params['connLogger'] )
+			? $params['connLogger']
+			: new \Psr\Log\NullLogger();
+		$this->queryLogger = isset( $params['queryLogger'] )
+			? $params['queryLogger']
+			: new \Psr\Log\NullLogger();
+
+		if ( $user ) {
+			$this->open( $server, $user, $password, $dbName );
+		}
+	}
+
+	/**
+	 * Given a DB type, construct the name of the appropriate child class of
+	 * DatabaseBase. This is designed to replace all of the manual stuff like:
+	 *    $class = 'Database' . ucfirst( strtolower( $dbType ) );
+	 * as well as validate against the canonical list of DB types we have
+	 *
+	 * This factory function is mostly useful for when you need to connect to a
+	 * database other than the MediaWiki default (such as for external auth,
+	 * an extension, et cetera). Do not use this to connect to the MediaWiki
+	 * database. Example uses in core:
+	 * @see LoadBalancer::reallyOpenConnection()
+	 * @see ForeignDBRepo::getMasterDB()
+	 * @see WebInstallerDBConnect::execute()
+	 *
+	 * @since 1.18
+	 *
+	 * @param string $dbType A possible DB type
+	 * @param array $p An array of options to pass to the constructor.
+	 *    Valid options are: host, user, password, dbname, flags, tablePrefix, schema, driver
+	 * @throws MWException If the database driver or extension cannot be found
+	 * @return DatabaseBase|null DatabaseBase subclass or null
+	 */
+	final public static function factory( $dbType, $p = [] ) {
+		global $wgCommandLineMode;
+
+		$canonicalDBTypes = [
+			'mysql' => [ 'mysqli', 'mysql' ],
+			'postgres' => [],
+			'sqlite' => [],
+			'oracle' => [],
+			'mssql' => [],
+		];
+
+		$driver = false;
+		$dbType = strtolower( $dbType );
+		if ( isset( $canonicalDBTypes[$dbType] ) && $canonicalDBTypes[$dbType] ) {
+			$possibleDrivers = $canonicalDBTypes[$dbType];
+			if ( !empty( $p['driver'] ) ) {
+				if ( in_array( $p['driver'], $possibleDrivers ) ) {
+					$driver = $p['driver'];
+				} else {
+					throw new MWException( __METHOD__ .
+						" cannot construct Database with type '$dbType' and driver '{$p['driver']}'" );
+				}
+			} else {
+				foreach ( $possibleDrivers as $posDriver ) {
+					if ( extension_loaded( $posDriver ) ) {
+						$driver = $posDriver;
+						break;
+					}
+				}
+			}
+		} else {
+			$driver = $dbType;
+		}
+		if ( $driver === false ) {
+			throw new MWException( __METHOD__ .
+				" no viable database extension found for type '$dbType'" );
+		}
+
+		// Determine schema defaults. Currently Microsoft SQL Server uses $wgDBmwschema,
+		// and everything else doesn't use a schema (e.g. null)
+		// Although postgres and oracle support schemas, we don't use them (yet)
+		// to maintain backwards compatibility
+		$defaultSchemas = [
+			'mssql' => 'get from global',
+		];
+
+		$class = 'Database' . ucfirst( $driver );
+		if ( class_exists( $class ) && is_subclass_of( $class, 'DatabaseBase' ) ) {
+			// Resolve some defaults for b/c
+			$p['host'] = isset( $p['host'] ) ? $p['host'] : false;
+			$p['user'] = isset( $p['user'] ) ? $p['user'] : false;
+			$p['password'] = isset( $p['password'] ) ? $p['password'] : false;
+			$p['dbname'] = isset( $p['dbname'] ) ? $p['dbname'] : false;
+			$p['flags'] = isset( $p['flags'] ) ? $p['flags'] : 0;
+			$p['variables'] = isset( $p['variables'] ) ? $p['variables'] : [];
+			$p['tablePrefix'] = isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global';
+			if ( !isset( $p['schema'] ) ) {
+				$p['schema'] = isset( $defaultSchemas[$dbType] ) ? $defaultSchemas[$dbType] : null;
+			}
+			$p['foreign'] = isset( $p['foreign'] ) ? $p['foreign'] : false;
+			$p['cliMode'] = $wgCommandLineMode;
+
+			$conn = new $class( $p );
+			if ( isset( $p['connLogger'] ) ) {
+				$conn->connLogger = $p['connLogger'];
+			}
+			if ( isset( $p['queryLogger'] ) ) {
+				$conn->queryLogger = $p['queryLogger'];
+			}
+		} else {
+			$conn = null;
+		}
+
+		return $conn;
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
+		$this->quertLogger = $logger;
+	}
 
 	public function getServerInfo() {
 		return $this->getServerVersion();
@@ -553,76 +735,6 @@ abstract class DatabaseBase implements IDatabase {
 	abstract function strencode( $s );
 
 	/**
-	 * Constructor.
-	 *
-	 * FIXME: It is possible to construct a Database object with no associated
-	 * connection object, by specifying no parameters to __construct(). This
-	 * feature is deprecated and should be removed.
-	 *
-	 * DatabaseBase subclasses should not be constructed directly in external
-	 * code. DatabaseBase::factory() should be used instead.
-	 *
-	 * @param array $params Parameters passed from DatabaseBase::factory()
-	 */
-	function __construct( array $params ) {
-		global $wgDBprefix, $wgDBmwschema;
-
-		$this->srvCache = ObjectCache::getLocalServerInstance( 'hash' );
-
-		$server = $params['host'];
-		$user = $params['user'];
-		$password = $params['password'];
-		$dbName = $params['dbname'];
-		$flags = $params['flags'];
-		$tablePrefix = $params['tablePrefix'];
-		$schema = $params['schema'];
-		$foreign = $params['foreign'];
-
-		$this->cliMode = isset( $params['cliMode'] )
-			? $params['cliMode']
-			: ( PHP_SAPI === 'cli' );
-
-		$this->mFlags = $flags;
-		if ( $this->mFlags & DBO_DEFAULT ) {
-			if ( $this->cliMode ) {
-				$this->mFlags &= ~DBO_TRX;
-			} else {
-				$this->mFlags |= DBO_TRX;
-			}
-		}
-
-		$this->mSessionVars = $params['variables'];
-
-		/** Get the default table prefix*/
-		if ( $tablePrefix === 'get from global' ) {
-			$this->mTablePrefix = $wgDBprefix;
-		} else {
-			$this->mTablePrefix = $tablePrefix;
-		}
-
-		/** Get the database schema*/
-		if ( $schema === 'get from global' ) {
-			$this->mSchema = $wgDBmwschema;
-		} else {
-			$this->mSchema = $schema;
-		}
-
-		$this->mForeign = $foreign;
-
-		$this->profiler = isset( $params['profiler'] )
-			? $params['profiler']
-			: Profiler::instance(); // @TODO: remove global state
-		$this->trxProfiler = isset( $params['trxProfiler'] )
-			? $params['trxProfiler']
-			: new TransactionProfiler();
-
-		if ( $user ) {
-			$this->open( $server, $user, $password, $dbName );
-		}
-
-	}
-
-	/**
 	 * Called by serialize. Throw an exception when DB connection is serialized.
 	 * This causes problems on some database engines because the connection is
 	 * not restored on unserialize.
@@ -630,96 +742,6 @@ abstract class DatabaseBase implements IDatabase {
 	public function __sleep() {
 		throw new MWException( 'Database serialization may cause problems, since ' .
 			'the connection is not restored on wakeup.' );
-	}
-
-	/**
-	 * Given a DB type, construct the name of the appropriate child class of
-	 * DatabaseBase. This is designed to replace all of the manual stuff like:
-	 *    $class = 'Database' . ucfirst( strtolower( $dbType ) );
-	 * as well as validate against the canonical list of DB types we have
-	 *
-	 * This factory function is mostly useful for when you need to connect to a
-	 * database other than the MediaWiki default (such as for external auth,
-	 * an extension, et cetera). Do not use this to connect to the MediaWiki
-	 * database. Example uses in core:
-	 * @see LoadBalancer::reallyOpenConnection()
-	 * @see ForeignDBRepo::getMasterDB()
-	 * @see WebInstallerDBConnect::execute()
-	 *
-	 * @since 1.18
-	 *
-	 * @param string $dbType A possible DB type
-	 * @param array $p An array of options to pass to the constructor.
-	 *    Valid options are: host, user, password, dbname, flags, tablePrefix, schema, driver
-	 * @throws MWException If the database driver or extension cannot be found
-	 * @return DatabaseBase|null DatabaseBase subclass or null
-	 */
-	final public static function factory( $dbType, $p = [] ) {
-		global $wgCommandLineMode;
-
-		$canonicalDBTypes = [
-			'mysql' => [ 'mysqli', 'mysql' ],
-			'postgres' => [],
-			'sqlite' => [],
-			'oracle' => [],
-			'mssql' => [],
-		];
-
-		$driver = false;
-		$dbType = strtolower( $dbType );
-		if ( isset( $canonicalDBTypes[$dbType] ) && $canonicalDBTypes[$dbType] ) {
-			$possibleDrivers = $canonicalDBTypes[$dbType];
-			if ( !empty( $p['driver'] ) ) {
-				if ( in_array( $p['driver'], $possibleDrivers ) ) {
-					$driver = $p['driver'];
-				} else {
-					throw new MWException( __METHOD__ .
-						" cannot construct Database with type '$dbType' and driver '{$p['driver']}'" );
-				}
-			} else {
-				foreach ( $possibleDrivers as $posDriver ) {
-					if ( extension_loaded( $posDriver ) ) {
-						$driver = $posDriver;
-						break;
-					}
-				}
-			}
-		} else {
-			$driver = $dbType;
-		}
-		if ( $driver === false ) {
-			throw new MWException( __METHOD__ .
-				" no viable database extension found for type '$dbType'" );
-		}
-
-		// Determine schema defaults. Currently Microsoft SQL Server uses $wgDBmwschema,
-		// and everything else doesn't use a schema (e.g. null)
-		// Although postgres and oracle support schemas, we don't use them (yet)
-		// to maintain backwards compatibility
-		$defaultSchemas = [
-			'mssql' => 'get from global',
-		];
-
-		$class = 'Database' . ucfirst( $driver );
-		if ( class_exists( $class ) && is_subclass_of( $class, 'DatabaseBase' ) ) {
-			// Resolve some defaults for b/c
-			$p['host'] = isset( $p['host'] ) ? $p['host'] : false;
-			$p['user'] = isset( $p['user'] ) ? $p['user'] : false;
-			$p['password'] = isset( $p['password'] ) ? $p['password'] : false;
-			$p['dbname'] = isset( $p['dbname'] ) ? $p['dbname'] : false;
-			$p['flags'] = isset( $p['flags'] ) ? $p['flags'] : 0;
-			$p['variables'] = isset( $p['variables'] ) ? $p['variables'] : [];
-			$p['tablePrefix'] = isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global';
-			if ( !isset( $p['schema'] ) ) {
-				$p['schema'] = isset( $defaultSchemas[$dbType] ) ? $defaultSchemas[$dbType] : null;
-			}
-			$p['foreign'] = isset( $p['foreign'] ) ? $p['foreign'] : false;
-			$p['cliMode'] = $wgCommandLineMode;
-
-			return new $class( $p );
-		} else {
-			return null;
-		}
 	}
 
 	protected function installErrorHandler() {
@@ -912,7 +934,7 @@ abstract class DatabaseBase implements IDatabase {
 		}
 
 		if ( $this->debug() ) {
-			wfDebugLog( 'queries', sprintf( "%s: %s", $this->mDBname, $commentedSql ) );
+			$this->queryLogger->info( sprintf( "%s: %s", $this->mDBname, $commentedSql ) );
 		}
 
 		# Avoid fatals if close() was called
@@ -933,7 +955,7 @@ abstract class DatabaseBase implements IDatabase {
 			if ( $this->reconnect() ) {
 				wfDebug( "Reconnected\n" );
 				$msg = __METHOD__ . ": lost connection to {$this->getServer()}; reconnected";
-				wfDebugLog( 'DBPerformance', "$msg:\n" . wfBacktrace( true ) );
+				$this->queryLogger->warning( "$msg:\n" . wfBacktrace( true ) );
 
 				if ( !$recoverable ) {
 					# Callers may catch the exception and continue to use the DB
