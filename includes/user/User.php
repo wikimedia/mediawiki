@@ -3613,31 +3613,69 @@ class User implements IDBAccessObject {
 	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
 	 */
 	public function clearAllNotifications() {
-		if ( wfReadOnly() ) {
-			return;
-		}
-
-		// Do nothing if not allowed to edit the watchlist
-		if ( !$this->isAllowed( 'editmywatchlist' ) ) {
-			return;
-		}
-
 		global $wgUseEnotif, $wgShowUpdatedMarker;
+		// Do nothing if not allowed to edit the watchlist
+		if ( wfReadOnly() || !$this->isAllowed( 'editmywatchlist' ) ) {
+			return;
+		}
+
 		if ( !$wgUseEnotif && !$wgShowUpdatedMarker ) {
 			$this->setNewtalk( false );
 			return;
 		}
+
 		$id = $this->getId();
-		if ( $id != 0 ) {
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->update( 'watchlist',
-				[ /* SET */ 'wl_notificationtimestamp' => null ],
-				[ /* WHERE */ 'wl_user' => $id, 'wl_notificationtimestamp IS NOT NULL' ],
-				__METHOD__
-			);
-			// We also need to clear here the "you have new message" notification for the own user_talk page;
-			// it's cleared one page view later in WikiPage::doViewUpdates().
+		if ( !$id ) {
+			return;
 		}
+
+		$dbw = wfGetDB( DB_MASTER );
+		$asOfTimes = array_unique( $dbw->selectFieldValues(
+			'watchlist',
+			'wl_notificationtimestamp',
+			[ 'wl_user' => $id, 'wl_notificationtimestamp IS NOT NULL' ],
+			__METHOD__,
+			[ 'ORDER BY' => 'wl_notificationtimestamp DESC', 'LIMIT' => 500 ]
+		) );
+		if ( !$asOfTimes ) {
+			return;
+		}
+		// Immediately update the most recent touched rows, which hopefully covers what
+		// the user sees on the watchlist page before pressing "mark all pages visited"....
+		$dbw->update(
+			'watchlist',
+			[ 'wl_notificationtimestamp' => null ],
+			[ 'wl_user' => $id, 'wl_notificationtimestamp' => $asOfTimes ],
+			__METHOD__
+		);
+		// ...and finish the older ones in a post-send update with lag checks...
+		DeferredUpdates::addUpdate( new AutoCommitUpdate(
+			$dbw,
+			__METHOD__,
+			function () use ( $dbw, $id ) {
+				global $wgUpdateRowsPerQuery;
+
+				$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+				$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
+				$asOfTimes = array_unique( $dbw->selectFieldValues(
+					'watchlist',
+					'wl_notificationtimestamp',
+					[ 'wl_user' => $id, 'wl_notificationtimestamp IS NOT NULL' ],
+					__METHOD__
+				) );
+				foreach ( array_chunk( $asOfTimes, $wgUpdateRowsPerQuery ) as $asOfTimeBatch ) {
+					$dbw->update(
+						'watchlist',
+						[ 'wl_notificationtimestamp' => null ],
+						[ 'wl_user' => $id, 'wl_notificationtimestamp' => $asOfTimeBatch ],
+						__METHOD__
+					);
+					$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+				}
+			}
+		) );
+		// We also need to clear here the "you have new message" notification for the own
+		// user_talk page; it's cleared one page view later in WikiPage::doViewUpdates().
 	}
 
 	/**
