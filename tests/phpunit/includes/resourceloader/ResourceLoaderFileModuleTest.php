@@ -102,6 +102,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	 */
 	public function testTemplateDependencies( $module, $expected ) {
 		$rl = new ResourceLoaderFileModule( $module );
+		$rl->setName( 'testing' );
 		$this->assertEquals( $rl->getDependencies(), $expected );
 	}
 
@@ -164,6 +165,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		];
 
 		$module = new ResourceLoaderFileModule( $baseParams );
+		$module->setName( 'testing' );
 
 		$this->assertEquals(
 			[
@@ -201,10 +203,12 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 			'localBasePath' => $basePath,
 			'styles' => [ 'test.css' ],
 		] );
+		$testModule->setName( 'testing' );
 		$expectedModule = new ResourceLoaderFileModule( [
 			'localBasePath' => $basePath,
 			'styles' => [ 'expected.css' ],
 		] );
+		$expectedModule->setName( 'testing' );
 
 		$contextLtr = $this->getResourceLoaderContext( 'en', 'ltr' );
 		$contextRtl = $this->getResourceLoaderContext( 'he', 'rtl' );
@@ -260,6 +264,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	 */
 	public function testGetTemplates( $module, $expected ) {
 		$rl = new ResourceLoaderFileModule( $module );
+		$rl->setName( 'testing' );
 
 		$this->assertEquals( $rl->getTemplates(), $expected );
 	}
@@ -270,6 +275,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 			'localBasePath' => $basePath,
 			'styles' => [ 'bom.css' ],
 			] );
+		$testModule->setName( 'testing' );
 		$this->assertEquals(
 			substr( file_get_contents( "$basePath/bom.css" ), 0, 10 ),
 			"\xef\xbb\xbf.efbbbf",
