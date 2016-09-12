@@ -320,10 +320,10 @@ abstract class BaseTemplate extends QuickTemplate {
 	 *
 	 * If a "data" key is present, it must be an array, where the keys represent
 	 * the data-xxx properties with their provided values. For example,
-	 *  $item['data'] = array(
+	 *  $item['data'] = [
 	 *  	 'foo' => 1,
 	 *  	 'bar' => 'baz',
-	 *  );
+	 *  ];
 	 * will render as element properties:
 	 *  data-foo='1' data-bar='baz'
 	 *
@@ -333,7 +333,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 *   a link in. This should be an array of arrays containing a 'tag' and
 	 *   optionally an 'attributes' key. If you only have one element you don't
 	 *   need to wrap it in another array. eg: To use <a><span>...</span></a>
-	 *   in all links use array( 'text-wrapper' => array( 'tag' => 'span' ) )
+	 *   in all links use [ 'text-wrapper' => [ 'tag' => 'span' ] ]
 	 *   for your options.
 	 *   - 'link-class' key can be used to specify additional classes to apply
 	 *   to all links.

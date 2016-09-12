@@ -62,7 +62,7 @@ class UserNotLoggedIn extends ErrorPageError {
 	 * @param string $titleMsg A message key to set the page title.
 	 *        Optional, default: 'exception-nologin'
 	 * @param array $params Parameters to wfMessage().
-	 *        Optional, default: array()
+	 *        Optional, default: []
 	 */
 	public function __construct(
 		$reasonMsg = 'exception-nologin-text',

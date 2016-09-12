@@ -1169,7 +1169,7 @@ abstract class Skin extends ContextSource {
 	 *
 	 * BaseTemplate::getSidebar can be used to simplify the format and id generation in new skins.
 	 *
-	 * The format of the returned array is array( heading => content, ... ), where:
+	 * The format of the returned array is [ heading => content, ... ], where:
 	 * - heading is the heading of a navigation portlet. It is either:
 	 *   - magic string to be handled by the skins ('SEARCH' / 'LANGUAGES' / 'TOOLBOX' / ...)
 	 *   - a message name (e.g. 'navigation'), the message should be HTML-escaped by the skin

@@ -1273,9 +1273,9 @@ MESSAGE;
 	 * Values considered empty:
 	 *
 	 * - null
-	 * - array()
+	 * - []
 	 * - new XmlJsCode( '{}' )
-	 * - new stdClass() // (object) array()
+	 * - new stdClass() // (object) []
 	 *
 	 * @param Array $array
 	 */
