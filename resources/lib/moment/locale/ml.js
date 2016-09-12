@@ -3,13 +3,15 @@
 // author : Floyd Pink : https://github.com/floydpink
 
 (function (factory) {
-    if (typeof define === 'function' && define.amd) {
+    // Comment out broken wrapper, see T145382
+    /*if (typeof define === 'function' && define.amd) {
         define(['moment'], factory); // AMD
     } else if (typeof exports === 'object') {
         module.exports = factory(require('../moment')); // Node
     } else {
         factory((typeof global !== 'undefined' ? global : this).moment); // node or other global
-    }
+    }*/
+    factory(this.moment);
 }(function (moment) {
     return moment.defineLocale('ml', {
         months : 'ജനുവരി_ഫെബ്രുവരി_മാർച്ച്_ഏപ്രിൽ_മേയ്_ജൂൺ_ജൂലൈ_ഓഗസ്റ്റ്_സെപ്റ്റംബർ_ഒക്ടോബർ_നവംബർ_ഡിസംബർ'.split('_'),
