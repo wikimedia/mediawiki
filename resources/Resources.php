@@ -1282,6 +1282,7 @@ return [
 		],
 		'dependencies' => [
 			'oojs-ui-core',
+			'oojs-ui-widgets',
 			'oojs-ui-windows',
 			'oojs-ui.styles.icons-content',
 			'oojs-ui.styles.icons-editing-advanced',
