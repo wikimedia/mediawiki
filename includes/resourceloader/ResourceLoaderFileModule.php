@@ -177,26 +177,26 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *         // Scripts to always include
 	 *         'scripts' => [file path string or array of file path strings],
 	 *         // Scripts to include in specific language contexts
-	 *         'languageScripts' => array(
+	 *         'languageScripts' => [
 	 *             [language code] => [file path string or array of file path strings],
-	 *         ),
+	 *         ],
 	 *         // Scripts to include in specific skin contexts
-	 *         'skinScripts' => array(
+	 *         'skinScripts' => [
 	 *             [skin name] => [file path string or array of file path strings],
-	 *         ),
+	 *         ],
 	 *         // Scripts to include in debug contexts
 	 *         'debugScripts' => [file path string or array of file path strings],
 	 *         // Modules which must be loaded before this module
 	 *         'dependencies' => [module name string or array of module name strings],
-	 *         'templates' => array(
+	 *         'templates' => [
 	 *             [template alias with file.ext] => [file path to a template file],
-	 *         ),
+	 *         ],
 	 *         // Styles to always load
 	 *         'styles' => [file path string or array of file path strings],
 	 *         // Styles to include in specific skin contexts
-	 *         'skinStyles' => array(
+	 *         'skinStyles' => [
 	 *             [skin name] => [file path string or array of file path strings],
-	 *         ),
+	 *         ],
 	 *         // Messages to always load
 	 *         'messages' => [array of message key strings],
 	 *         // Group which this module should be loaded together with

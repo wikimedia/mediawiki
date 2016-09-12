@@ -59,7 +59,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * Below is a description for the $options array:
 	 * @par Construction options:
 	 * @code
-	 *     array(
+	 *     [
 	 *         // Base path to prepend to all local paths in $options. Defaults to $IP
 	 *         'localBasePath' => [base path],
 	 *         // Path to JSON file that contains any of the settings below
@@ -72,33 +72,33 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 *         'selectorWithoutVariant' => [CSS selector template, variables: {prefix} {name}],
 	 *         'selectorWithVariant' => [CSS selector template, variables: {prefix} {name} {variant}],
 	 *         // List of variants that may be used for the image files
-	 *         'variants' => array(
-	 *             [theme name] => array(
-	 *                 [variant name] => array(
+	 *         'variants' => [
+	 *             [theme name] => [
+	 *                 [variant name] => [
 	 *                     'color' => [color string, e.g. '#ffff00'],
 	 *                     'global' => [boolean, if true, this variant is available
 	 *                                  for all images of this type],
-	 *                 ),
+	 *                 ],
 	 *                 ...
-	 *             ),
+	 *             ],
 	 *             ...
-	 *         ),
+	 *         ],
 	 *         // List of image files and their options
-	 *         'images' => array(
-	 *             [theme name] => array(
-	 *                 [icon name] => array(
+	 *         'images' => [
+	 *             [theme name] => [
+	 *                 [icon name] => [
 	 *                     'file' => [file path string or array whose values are file path strings
 	 *                                    and whose keys are 'default', 'ltr', 'rtl', a single
 	 *                                    language code like 'en', or a list of language codes like
 	 *                                    'en,de,ar'],
 	 *                     'variants' => [array of variant name strings, variants
 	 *                                    available for this image],
-	 *                 ),
+	 *                 ],
 	 *                 ...
-	 *             ),
+	 *             ],
 	 *             ...
-	 *         ),
-	 *     )
+	 *         ],
+	 *     ]
 	 * @endcode
 	 * @throws InvalidArgumentException
 	 */

@@ -43,12 +43,12 @@
  *
  * @par Example:
  * @code
- * $magicWords = array();
+ * $magicWords = [];
  *
- * $magicWords['en'] = array(
- * 	'magicwordkey' => array( 0, 'case_insensitive_magic_word' ),
- * 	'magicwordkey2' => array( 1, 'CASE_sensitive_magic_word2' ),
- * );
+ * $magicWords['en'] = [
+ * 	'magicwordkey' => [ 0, 'case_insensitive_magic_word' ],
+ * 	'magicwordkey2' => [ 1, 'CASE_sensitive_magic_word2' ],
+ * ];
  * @endcode
  *
  * For magic words which are also Parser variables, add a MagicWordwgVariableIDs

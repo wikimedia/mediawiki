@@ -3042,14 +3042,14 @@ class EditPage {
 	 * subclasses may reorganize the form.
 	 * Note that you do not need to worry about the label's for=, it will be
 	 * inferred by the id given to the input. You can remove them both by
-	 * passing array( 'id' => false ) to $userInputAttrs.
+	 * passing [ 'id' => false ] to $userInputAttrs.
 	 *
 	 * @param string $summary The value of the summary input
 	 * @param string $labelText The html to place inside the label
 	 * @param array $inputAttrs Array of attrs to use on the input
 	 * @param array $spanLabelAttrs Array of attrs to use on the span inside the label
 	 *
-	 * @return array An array in the format array( $label, $input )
+	 * @return array An array in the format [ $label, $input ]
 	 */
 	function getSummaryInput( $summary = "", $labelText = null,
 		$inputAttrs = null, $spanLabelAttrs = null

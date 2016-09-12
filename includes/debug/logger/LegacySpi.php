@@ -25,9 +25,9 @@ namespace MediaWiki\Logger;
  *
  * Usage:
  * @code
- * $wgMWLoggerDefaultSpi = array(
+ * $wgMWLoggerDefaultSpi = [
  *   'class' => '\\MediaWiki\\Logger\\LegacySpi',
- * );
+ * ];
  * @endcode
  *
  * @see \MediaWiki\Logger\LoggerFactory

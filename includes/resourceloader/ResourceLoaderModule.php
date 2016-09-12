@@ -789,10 +789,10 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 *
 	 * @code
 	 *     $summary = parent::getDefinitionSummary( $context );
-	 *     $summary[] = array(
+	 *     $summary[] = [
 	 *         'foo' => 123,
 	 *         'bar' => 'quux',
-	 *     );
+	 *     ];
 	 *     return $summary;
 	 * @endcode
 	 *
