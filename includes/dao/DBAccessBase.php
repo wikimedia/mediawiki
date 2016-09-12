@@ -53,12 +53,12 @@ abstract class DBAccessBase implements IDBAccessObject {
 	 * @param int $id Which connection to use
 	 * @param array $groups Query groups
 	 *
-	 * @return DatabaseBase
+	 * @return IDatabase
 	 */
 	protected function getConnection( $id, $groups = [] ) {
 		$loadBalancer = wfGetLB( $this->wiki );
 
-		return $loadBalancer->getConnection( $id, $groups, $this->wiki );
+		return $loadBalancer->getConnectionRef( $id, $groups, $this->wiki );
 	}
 
 	/**
@@ -66,12 +66,14 @@ abstract class DBAccessBase implements IDBAccessObject {
 	 *
 	 * @see LoadBalancer::reuseConnection()
 	 *
+	 * @deprecated since 1.28 Connections obtained using getConnection()
+	 *                        don't need to be manually released
 	 * @since 1.21
 	 *
-	 * @param DatabaseBase $db The database connection to release.
+	 * @param IDatabase $db The database connection to release.
 	 */
-	protected function releaseConnection( DatabaseBase $db ) {
-		if ( $this->wiki !== false ) {
+	protected function releaseConnection( IDatabase $db ) {
+		if ( $this->wiki !== false && $db instanceof DatabaseBase ) {
 			$loadBalancer = $this->getLoadBalancer();
 			$loadBalancer->reuseConnection( $db );
 		}
