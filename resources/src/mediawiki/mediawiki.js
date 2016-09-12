@@ -1695,6 +1695,35 @@
 				} );
 			}
 
+			/**
+			 * Make a versioned key for a specific module.
+			 *
+			 * @private
+			 * @param {string} module Module name
+			 * @return {string|null} Module key in format '`[name]@[version]`',
+			 *  or null if the module does not exist
+			 */
+			function getModuleKey( module ) {
+				return hasOwn.call( registry, module ) ?
+					( module + '@' + registry[ module ].version ) : null;
+			}
+
+			/**
+			 * @private
+			 * @param {string} key Module name or '`[name]@[version]`'
+			 * @return {Object}
+			 */
+			function splitModuleKey( key ) {
+				var index = key.indexOf( '@' );
+				if ( index === -1 ) {
+					return { name: key };
+				}
+				return {
+					name: key.slice( 0, index ),
+					version: key.slice( index )
+				};
+			}
+
 			/* Public Members */
 			return {
 				/**
@@ -1878,7 +1907,10 @@
 				 * When #load() or #using() requests one or more modules, the server
 				 * response contain calls to this function.
 				 *
-				 * @param {string} module Name of module
+				 * @param {string} module Name of module and current module version. Formatted
+				 *  as '`[name]@[version]`". This version should match the requested version
+				 *  (from #batchRequest and #registry). This avoids race conditions (T117587).
+				 *  For back-compat with MediaWiki 1.27 and earlier, the version may be omitted.
 				 * @param {Function|Array|string} [script] Function with module code, list of URLs
 				 *  to load via `<script src>`, or string of module code for `$.globalEval()`.
 				 * @param {Object} [style] Should follow one of the following patterns:
@@ -1899,24 +1931,34 @@
 				 * @param {Object} [templates] List of key/value pairs to be added to mw#templates.
 				 */
 				implement: function ( module, script, style, messages, templates ) {
+					var split = splitModuleKey( module ),
+						name = split.name,
+						version = split.version;
 					// Automatically register module
-					if ( !hasOwn.call( registry, module ) ) {
-						mw.loader.register( module );
+					if ( !hasOwn.call( registry, name ) ) {
+						mw.loader.register( name );
 					}
 					// Check for duplicate implementation
-					if ( hasOwn.call( registry, module ) && registry[ module ].script !== undefined ) {
-						throw new Error( 'module already implemented: ' + module );
+					if ( hasOwn.call( registry, name ) && registry[ name ].script !== undefined ) {
+						throw new Error( 'module already implemented: ' + name );
+					}
+					if ( version ) {
+						// Without this reset, if there is a version mismatch between the
+						// requested and received module version, then mw.loader.store would
+						// cache the response under the requested key. Thus poisoning the cache
+						// indefinitely with a stale value. (T117587)
+						registry[ name ].version = version;
 					}
 					// Attach components
-					registry[ module ].script = script || null;
-					registry[ module ].style = style || null;
-					registry[ module ].messages = messages || null;
-					registry[ module ].templates = templates || null;
+					registry[ name ].script = script || null;
+					registry[ name ].style = style || null;
+					registry[ name ].messages = messages || null;
+					registry[ name ].templates = templates || null;
 					// The module may already have been marked as erroneous
-					if ( $.inArray( registry[ module ].state, [ 'error', 'missing' ] ) === -1 ) {
-						registry[ module ].state = 'loaded';
-						if ( allReady( registry[ module ].dependencies ) ) {
-							execute( module );
+					if ( $.inArray( registry[ name ].state, [ 'error', 'missing' ] ) === -1 ) {
+						registry[ name ].state = 'loaded';
+						if ( allReady( registry[ name ].dependencies ) ) {
+							execute( name );
 						}
 					}
 				},
@@ -2149,7 +2191,7 @@
 
 					MODULE_SIZE_MAX: 100 * 1000,
 
-					// The contents of the store, mapping '[module name]@[version]' keys
+					// The contents of the store, mapping '[name]@[version]' keys
 					// to module implementations.
 					items: {},
 
@@ -2186,17 +2228,6 @@
 							mw.config.get( 'wgResourceLoaderStorageVersion' ),
 							mw.config.get( 'wgUserLanguage' )
 						].join( ':' );
-					},
-
-					/**
-					 * Get a key for a specific module. The key format is '[name]@[version]'.
-					 *
-					 * @param {string} module Module name
-					 * @return {string|null} Module key or null if module does not exist
-					 */
-					getModuleKey: function ( module ) {
-						return hasOwn.call( registry, module ) ?
-							( module + '@' + registry[ module ].version ) : null;
 					},
 
 					/**
@@ -2272,7 +2303,7 @@
 							return false;
 						}
 
-						key = mw.loader.store.getModuleKey( module );
+						key = getModuleKey( module );
 						if ( key in mw.loader.store.items ) {
 							mw.loader.store.stats.hits++;
 							return mw.loader.store.items[ key ];
@@ -2294,7 +2325,7 @@
 							return false;
 						}
 
-						key = mw.loader.store.getModuleKey( module );
+						key = getModuleKey( module );
 
 						if (
 							// Already stored a copy of this exact version
@@ -2314,7 +2345,7 @@
 
 						try {
 							args = [
-								JSON.stringify( module ),
+								JSON.stringify( key ),
 								typeof descriptor.script === 'function' ?
 									String( descriptor.script ) :
 									JSON.stringify( descriptor.script ),
@@ -2354,7 +2385,7 @@
 
 						for ( key in mw.loader.store.items ) {
 							module = key.slice( 0, key.indexOf( '@' ) );
-							if ( mw.loader.store.getModuleKey( module ) !== key ) {
+							if ( getModuleKey( module ) !== key ) {
 								mw.loader.store.stats.expired++;
 								delete mw.loader.store.items[ key ];
 							} else if ( mw.loader.store.items[ key ].length > mw.loader.store.MODULE_SIZE_MAX ) {
