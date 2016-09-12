@@ -5,13 +5,15 @@
 // author : Oerd Cukalla : https://github.com/oerd (fixes)
 
 (function (factory) {
-    if (typeof define === 'function' && define.amd) {
+    // Comment out broken wrapper, see T145382
+    /*if (typeof define === 'function' && define.amd) {
         define(['moment'], factory); // AMD
     } else if (typeof exports === 'object') {
         module.exports = factory(require('../moment')); // Node
     } else {
         factory((typeof global !== 'undefined' ? global : this).moment); // node or other global
-    }
+    }*/
+    factory(this.moment);
 }(function (moment) {
     return moment.defineLocale('sq', {
         months : 'Janar_Shkurt_Mars_Prill_Maj_Qershor_Korrik_Gusht_Shtator_Tetor_Nëntor_Dhjetor'.split('_'),
