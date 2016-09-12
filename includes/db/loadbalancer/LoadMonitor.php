@@ -20,19 +20,21 @@
  * @file
  * @ingroup Database
  */
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * An interface for database load monitoring
  *
  * @ingroup Database
  */
-interface LoadMonitor {
+interface LoadMonitor extends LoggerAwareInterface {
 	/**
 	 * Construct a new LoadMonitor with a given LoadBalancer parent
 	 *
 	 * @param LoadBalancer $parent
 	 */
-	public function __construct( $parent );
+	public function __construct( LoadBalancer $parent );
 
 	/**
 	 * Perform pre-connection load ratio adjustment.
@@ -62,7 +64,10 @@ interface LoadMonitor {
 }
 
 class LoadMonitorNull implements LoadMonitor {
-	public function __construct( $parent ) {
+	public function __construct( LoadBalancer $parent ) {
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
 	}
 
 	public function scaleLoads( &$loads, $group = false, $wiki = false ) {
