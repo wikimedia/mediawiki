@@ -185,7 +185,9 @@ class ParserTestsMaintenance extends Maintenance {
 		if ( $recorderLB ) {
 			$recorderLB->closeAll();
 		}
-		return $ok ? 0 : 1;
+		if ( !$ok ) {
+			exit( 1 );
+		}
 	}
 }
 
