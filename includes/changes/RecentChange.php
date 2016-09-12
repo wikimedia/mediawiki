@@ -336,9 +336,13 @@ class RecentChange {
 			$title = $this->getTitle();
 
 			// Never send an RC notification email about categorization changes
-			if ( $this->mAttribs['rc_type'] != RC_CATEGORIZE ) {
-				if ( Hooks::run( 'AbortEmailNotification', [ $editor, $title, $this ] ) ) {
-					# @todo FIXME: This would be better as an extension hook
+			if (
+				$this->mAttribs['rc_type'] != RC_CATEGORIZE &&
+				Hooks::run( 'AbortEmailNotification', [ $editor, $title, $this ] )
+			) {
+				// @FIXME: This would be better as an extension hook
+				// Send emails or email jobs once this row is safely committed
+				$dbw->onTransactionIdle( function () use ( $editor, $title ) {
 					$enotif = new EmailNotification();
 					$enotif->notifyOnPageChange(
 						$editor,
@@ -349,7 +353,7 @@ class RecentChange {
 						$this->mAttribs['rc_last_oldid'],
 						$this->mExtra['pageStatus']
 					);
-				}
+				} );
 			}
 		}
 
