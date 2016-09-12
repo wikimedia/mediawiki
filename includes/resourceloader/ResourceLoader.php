@@ -1009,6 +1009,7 @@ MESSAGE;
 		foreach ( $modules as $name => $module ) {
 			try {
 				$content = $module->getModuleContent( $context );
+				$implementKey = $name . '@' . $module->getVersionHash( $context );
 				$strContent = '';
 
 				// Append output
@@ -1020,7 +1021,7 @@ MESSAGE;
 							$strContent = $scripts;
 						} elseif ( is_array( $scripts ) ) {
 							// ...except when $scripts is an array of URLs
-							$strContent = self::makeLoaderImplementScript( $name, $scripts, [], [], [] );
+							$strContent = self::makeLoaderImplementScript( $implementKey, $scripts, [], [], [] );
 						}
 						break;
 					case 'styles':
@@ -1046,7 +1047,7 @@ MESSAGE;
 							}
 						}
 						$strContent = self::makeLoaderImplementScript(
-							$name,
+							$implementKey,
 							$scripts,
 							isset( $content['styles'] ) ? $content['styles'] : [],
 							isset( $content['messagesBlob'] ) ? new XmlJsCode( $content['messagesBlob'] ) : [],
@@ -1125,7 +1126,7 @@ MESSAGE;
 	/**
 	 * Return JS code that calls mw.loader.implement with given module properties.
 	 *
-	 * @param string $name Module name
+	 * @param string $name Module name or implement key (format "`[name]@[version]`")
 	 * @param string|array|XmlJsCode $scripts JavaScript code to be wrapped in a closure,
 	 *  list of URLs to JavaScript files, or raw JavaScript code as XmlJsCode.
 	 * @param mixed $styles Array of CSS strings keyed by media type, or an array of lists of URLs
