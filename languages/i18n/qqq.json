@@ -961,6 +961,8 @@
 	"invalid-content-data": "Error message indicating that the page's content can not be saved because it is invalid. This may occurr for content types with internal consistency constraints.",
 	"content-not-allowed-here": "Error message indicating that the desired content model is not supported in given localtion.\n* $1 - the human readable name of the content model: {{msg-mw|Content-model-wikitext}}, {{msg-mw|Content-model-javascript}}, {{msg-mw|Content-model-css}} or {{msg-mw|Content-model-text}}\n* $2 - the title of the page in question",
 	"editwarning-warning": "Uses {{msg-mw|Prefs-editing}}",
+	"editpage-invalidcontentmodel-title": "Title of error page shown when using an unrecognized content model on EditPage",
+	"editpage-invalidcontentmodel-text": "Error message shown when using an unrecognized content model on EditPage. $1 is the user's invalid input",
 	"editpage-notsupportedcontentformat-title": "Title of error page shown when using an incompatible format on EditPage.\n\nUsed as title for the following error message:\n* {{msg-mw|Editpage-notsupportedcontentformat-text}}.",
 	"editpage-notsupportedcontentformat-text": "Error message shown when using an incompatible format on EditPage.\n\nThe title for this error is {{msg-mw|Editpage-notsupportedcontentformat-title}}.\n\nParameters:\n* $1 - the format id\n* $2 - the content model name",
 	"content-model-wikitext": "Name for the wikitext content model, used when decribing what type of content a page contains.\n\nThis message is substituted in:\n*{{msg-mw|Bad-target-model}}\n*{{msg-mw|Content-not-allowed-here}}",
