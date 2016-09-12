@@ -3,13 +3,15 @@
 // author : Anatoly Mironov : https://github.com/mirontoli
 
 (function (factory) {
-    if (typeof define === 'function' && define.amd) {
+    // Comment out broken wrapper, see T145382
+    /*if (typeof define === 'function' && define.amd) {
         define(['moment'], factory); // AMD
     } else if (typeof exports === 'object') {
         module.exports = factory(require('../moment')); // Node
     } else {
         factory((typeof global !== 'undefined' ? global : this).moment); // node or other global
-    }
+    }*/
+    factory(this.moment);
 }(function (moment) {
     return moment.defineLocale('cv', {
         months : 'кăрлач_нарăс_пуш_ака_май_çĕртме_утă_çурла_авăн_юпа_чӳк_раштав'.split('_'),
