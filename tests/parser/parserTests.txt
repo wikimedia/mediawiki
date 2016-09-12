@@ -3055,6 +3055,28 @@ a
 | c</pre>
 !!end
 
+!! test
+2g. Indented table markup mixed with indented pre content (proposed in bug 6200)
+!! wikitext
+ <table>
+ <tr>
+ <td>
+ Text that should be rendered preformatted
+ </td>
+ </tr>
+ </table>
+!! html
+ <table>
+ <tr>
+ <td>
+<pre>Text that should be rendered preformatted
+</pre>
+ </td>
+ </tr>
+ </table>
+
+!! end
+
 !!test
 3a. Indent-Pre and block tags (single-line html)
 !! wikitext
@@ -6392,26 +6414,55 @@ parsoid=wt2html,html2html
 <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"ho\">ha&lt;/div>"}},"i":0}}]}'>ho">ha</span>
 !! end
 
+## We don't support roundtripping of these attributes in Parsoid.
+## Selective serialization takes care of preventing dirty diffs.
+## But, on edits, we dirty-diff the invalid attribute text.
 !! test
-Indented table markup mixed with indented pre content (proposed in bug 6200)
+Invalid text in table attributes should be discarded
+!! options
+parsoid=wt2html
 !! wikitext
- <table>
- <tr>
- <td>
- Text that should be rendered preformatted
- </td>
- </tr>
- </table>
-!! html
- <table>
- <tr>
- <td>
-<pre>Text that should be rendered preformatted
-</pre>
- </td>
- </tr>
- </table>
+{| <span>boo</span> style='border:1px solid black'
+|  <span>boo</span> style='color:blue'  | 1
+|<span>boo</span> style='color:blue'| 2
+|}
+!! html/php
+<table style="border:1px solid black">
+<tr>
+<td style="color:blue"> 1
+</td>
+<td style="color:blue"> 2
+</td></tr></table>
 
+!! html/parsoid
+<table style="border:1px solid black">
+<tr>
+<td style="color:blue"> 1</td>
+<td style="color:blue"> 2</td>
+</tr>
+</table>
+!! end
+
+!! test
+Invalid text in table attributes should be preserved by selective serializer
+!! options
+parsoid={
+  "modes": ["selser"],
+  "changes": [
+    ["td:first-child", "text", "abc"],
+    ["td + td", "text", "xyz"]
+  ]
+}
+!! wikitext
+{| <span>boo</span> style='border:1px solid black'
+|  <span>boo</span> style='color:blue'  | 1
+|<span>boo</span> style='color:blue'| 2
+|}
+!! wikitext/edited
+{| <span>boo</span> style='border:1px solid black'
+|  <span>boo</span> style='color:blue'  |abc
+|<span>boo</span> style='color:blue'|xyz
+|}
 !! end
 
 !! test
@@ -7998,6 +8049,20 @@ title=[[User:test]]
 [[/123]]
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./User:Test/123" title="User:Test/123" data-parsoid='{"stx":"simple","a":{"href":"./User:Test/123"},"sa":{"href":"/123"}}'>/123</a></p>
+!! end
+
+!! test
+Ensure that transclusion titles are not url-decoded
+!! options
+subpage title=[[Test]]
+parsoid=wt2html
+!! wikitext
+{{Bar%C3%A9}} {{/Bar%C3%A9}}
+!! html/php
+<p>{{Bar%C3%A9}} {{/Bar%C3%A9}}
+</p>
+!! html/parsoid
+<p>{{Bar%C3%A9}} {{/Bar%C3%A9}}</p>
 !! end
 
 !! test
@@ -19388,9 +19453,11 @@ subpage title=[[Subpage test/L1/L2/L3]]
 parsoid=wt2html
 !! wikitext
 {{../../../../More than parent}}
-!! html
+!! html/php
 <p>{{../../../../More than parent}}
 </p>
+!! html/parsoid
+<p>{{../../../../More than parent}}</p>
 !! end
 
 !! test
@@ -27241,7 +27308,9 @@ Thumbnail output
 unclosed internal link XSS (T137264)
 !! wikitext
 [[#%3Cscript%3Ealert(1)%3C/script%3E|
-!! html
+!! html/php
 <p>[[#&lt;script&gt;alert(1)&lt;/script&gt;|
 </p>
+!! html/parsoid
+<p>[[#%3Cscript%3Ealert(1)%3C/script%3E|</p>
 !! end
