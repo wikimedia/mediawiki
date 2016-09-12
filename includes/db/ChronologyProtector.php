@@ -20,14 +20,19 @@
  * @file
  * @ingroup Database
  */
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+use MediaWiki\Logger\LoggerFactory;
 
 /**
  * Class for ensuring a consistent ordering of events as seen by the user, despite replication.
  * Kind of like Hawking's [[Chronology Protection Agency]].
  */
-class ChronologyProtector {
+class ChronologyProtector implements LoggerAwareInterface{
 	/** @var BagOStuff */
 	protected $store;
+	/** @var LoggerInterface */
+	protected $logger;
 
 	/** @var string Storage key name */
 	protected $key;
@@ -67,6 +72,11 @@ class ChronologyProtector {
 		$this->clientId = md5( $client['ip'] . "\n" . $client['agent'] );
 		$this->key = $store->makeGlobalKey( __CLASS__, $this->clientId );
 		$this->waitForPosTime = $posTime;
+		$this->logger = LoggerFactory::getInstance( 'DBReplication' );
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
 	}
 
 	/**
@@ -106,7 +116,7 @@ class ChronologyProtector {
 		$masterName = $lb->getServerName( $lb->getWriterIndex() );
 		if ( !empty( $this->startupPositions[$masterName] ) ) {
 			$pos = $this->startupPositions[$masterName];
-			wfDebugLog( 'replication', __METHOD__ . ": LB for '$masterName' set to pos $pos\n" );
+			$this->logger->info( __METHOD__ . ": LB for '$masterName' set to pos $pos\n" );
 			$lb->waitFor( $pos );
 		}
 	}
@@ -129,10 +139,10 @@ class ChronologyProtector {
 		$masterName = $lb->getServerName( $lb->getWriterIndex() );
 		if ( $lb->getServerCount() > 1 ) {
 			$pos = $lb->getMasterPos();
-			wfDebugLog( 'replication', __METHOD__ . ": LB for '$masterName' has pos $pos\n" );
+			$this->logger->info( __METHOD__ . ": LB for '$masterName' has pos $pos\n" );
 			$this->shutdownPositions[$masterName] = $pos;
 		} else {
-			wfDebugLog( 'replication', __METHOD__ . ": DB '$masterName' touched\n" );
+			$this->logger->info( __METHOD__ . ": DB '$masterName' touched\n" );
 		}
 		$this->shutdownTouchDBs[$masterName] = 1;
 	}
@@ -165,8 +175,7 @@ class ChronologyProtector {
 			return []; // nothing to save
 		}
 
-		wfDebugLog( 'replication',
-			__METHOD__ . ": saving master pos for " .
+		$this->logger->info( __METHOD__ . ": saving master pos for " .
 			implode( ', ', array_keys( $this->shutdownPositions ) ) . "\n"
 		);
 
@@ -193,16 +202,14 @@ class ChronologyProtector {
 		if ( !$ok ) {
 			$bouncedPositions = $this->shutdownPositions;
 			// Raced out too many times or stash is down
-			wfDebugLog( 'replication',
-				__METHOD__ . ": failed to save master pos for " .
+			$this->logger->warning( __METHOD__ . ": failed to save master pos for " .
 				implode( ', ', array_keys( $this->shutdownPositions ) ) . "\n"
 			);
 		} elseif ( $mode === 'sync' &&
 			$store->getQoS( $store::ATTR_SYNCWRITES ) < $store::QOS_SYNCWRITES_BE
 		) {
 			// Positions may not be in all datacenters, force LBFactory to play it safe
-			wfDebugLog( 'replication',
-				__METHOD__ . ": store does not report ability to sync replicas. " );
+			$this->logger->info( __METHOD__ . ": store may not support synchronous writes." );
 			$bouncedPositions = $this->shutdownPositions;
 		} else {
 			$bouncedPositions = [];
@@ -267,10 +274,10 @@ class ChronologyProtector {
 			}
 
 			$this->startupPositions = $data ? $data['positions'] : [];
-			wfDebugLog( 'replication', __METHOD__ . ": key is {$this->key} (read)\n" );
+			$this->logger->info( __METHOD__ . ": key is {$this->key} (read)\n" );
 		} else {
 			$this->startupPositions = [];
-			wfDebugLog( 'replication', __METHOD__ . ": key is {$this->key} (unread)\n" );
+			$this->logger->info( __METHOD__ . ": key is {$this->key} (unread)\n" );
 		}
 	}
 
