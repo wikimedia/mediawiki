@@ -20,14 +20,15 @@
  * @file
  * @ingroup Database
  */
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 
 /**
- * Database load balancing object
+ * Database load balancing, tracking, and transaction management object
  *
- * @todo document
  * @ingroup Database
  */
-class LoadBalancer {
+class LoadBalancer implements LoggerAwareInterface {
 	/** @var array[] Map of (server index => server config array) */
 	private $mServers;
 	/** @var array[] Map of (local/foreignUsed/foreignFree => server index => DatabaseBase array) */
@@ -40,11 +41,9 @@ class LoadBalancer {
 	private $mAllowLagged;
 	/** @var integer Seconds to spend waiting on replica DB lag to resolve */
 	private $mWaitTimeout;
-	/** @var array LBFactory information */
-	private $mParentInfo;
-
 	/** @var string The LoadMonitor subclass name */
 	private $mLoadMonitorClass;
+
 	/** @var LoadMonitor */
 	private $mLoadMonitor;
 	/** @var BagOStuff */
@@ -53,6 +52,14 @@ class LoadBalancer {
 	private $wanCache;
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
+	/** @var LoggerInterface */
+	protected $replLogger;
+	/** @var LoggerInterface */
+	protected $connLogger;
+	/** @var LoggerInterface */
+	protected $queryLogger;
+	/** @var LoggerInterface */
+	protected $perfLogger;
 
 	/** @var bool|DatabaseBase Database connection that caused a problem */
 	private $mErrorConnection;
@@ -79,6 +86,9 @@ class LoadBalancer {
 	/** @var callable Exception logger */
 	private $errorLogger;
 
+	/** @var boolean */
+	private $disabled = false;
+
 	/** @var integer Warn when this many connection are held */
 	const CONN_HELD_WARN_THRESHOLD = 10;
 	/** @var integer Default 'max lag' when unspecified */
@@ -87,11 +97,6 @@ class LoadBalancer {
 	const POS_WAIT_TIMEOUT = 10;
 	/** @var integer Seconds to cache master server read-only status */
 	const TTL_CACHE_READONLY = 5;
-
-	/**
-	 * @var boolean
-	 */
-	private $disabled = false;
 
 	/**
 	 * @param array $params Array with keys:
@@ -103,11 +108,15 @@ class LoadBalancer {
 	 *  - wanCache : WANObjectCache object [optional]
 	 *  - localDomain: The wiki ID of the "local"/"current" wiki [optional]
 	 *  - errorLogger: Callback that takes an Exception and logs it [optional]
-	 * @throws MWException
+	 *  - connLogger : LoggerInterface object [optional]
+	 *  - queryLogger : LoggerInterface object [optional]
+	 *  - replLogger : LoggerInterface object [optional]
+	 *  - perfLogger : LoggerInterface object [optional]
+	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $params ) {
 		if ( !isset( $params['servers'] ) ) {
-			throw new MWException( __CLASS__ . ': missing servers parameter' );
+			throw new InvalidArgumentException( __CLASS__ . ': missing servers parameter' );
 		}
 		$this->mServers = $params['servers'];
 		$this->mWaitTimeout = isset( $params['waitTimeout'] )
@@ -116,7 +125,6 @@ class LoadBalancer {
 		$this->localDomain = isset( $params['localDomain'] ) ? $params['localDomain'] : '';
 
 		$this->mReadIndex = -1;
-		$this->mWriteIndex = -1;
 		$this->mConns = [
 			'local' => [],
 			'foreignUsed' => [],
@@ -174,6 +182,14 @@ class LoadBalancer {
 			: function ( Exception $e ) {
 				trigger_error( E_WARNING, $e->getMessage() );
 			};
+
+		foreach ( [ 'replLogger', 'connLogger', 'queryLogger', 'perfLogger' ] as $key ) {
+			$this->$key = isset( $params[$key] ) ? $params[$key] : new \Psr\Log\NullLogger();
+		}
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
+		$this->replLogger = $logger;
 	}
 
 	/**
@@ -185,6 +201,7 @@ class LoadBalancer {
 		if ( !isset( $this->mLoadMonitor ) ) {
 			$class = $this->mLoadMonitorClass;
 			$this->mLoadMonitor = new $class( $this );
+			$this->mLoadMonitor->setLogger( $this->replLogger );
 		}
 
 		return $this->mLoadMonitor;
@@ -211,10 +228,10 @@ class LoadBalancer {
 
 				$host = $this->getServerName( $i );
 				if ( $lag === false && !is_infinite( $maxServerLag ) ) {
-					wfDebugLog( 'replication', "Server $host (#$i) is not replicating?" );
+					$this->replLogger->error( "Server $host (#$i) is not replicating?" );
 					unset( $loads[$i] );
 				} elseif ( $lag > $maxServerLag ) {
-					wfDebugLog( 'replication', "Server $host (#$i) has >= $lag seconds of lag" );
+					$this->replLogger->warning( "Server $host (#$i) has >= $lag seconds of lag" );
 					unset( $loads[$i] );
 				}
 			}
@@ -267,7 +284,7 @@ class LoadBalancer {
 				$nonErrorLoads = $this->mGroupLoads[$group];
 			} else {
 				# No loads for this group, return false and the caller can use some other group
-				wfDebugLog( 'connect', __METHOD__ . ": no loads for group $group\n" );
+				$this->connLogger->info( __METHOD__ . ": no loads for group $group\n" );
 
 				return false;
 			}
@@ -308,7 +325,7 @@ class LoadBalancer {
 				}
 				if ( $i === false && count( $currentLoads ) != 0 ) {
 					# All replica DBs lagged. Switch to read-only mode
-					wfDebugLog( 'replication', "All replica DBs lagged. Switch to read-only mode" );
+					$this->replLogger->error( "All replica DBs lagged. Switch to read-only mode" );
 					$i = ArrayUtils::pickRandom( $currentLoads );
 					$laggedReplicaMode = true;
 				}
@@ -318,17 +335,17 @@ class LoadBalancer {
 				# pickRandom() returned false
 				# This is permanent and means the configuration or the load monitor
 				# wants us to return false.
-				wfDebugLog( 'connect', __METHOD__ . ": pickRandom() returned false" );
+				$this->connLogger->debug( __METHOD__ . ": pickRandom() returned false" );
 
 				return false;
 			}
 
 			$serverName = $this->getServerName( $i );
-			wfDebugLog( 'connect', __METHOD__ . ": Using reader #$i: $serverName..." );
+			$this->connLogger->debug( __METHOD__ . ": Using reader #$i: $serverName..." );
 
 			$conn = $this->openConnection( $i, $wiki );
 			if ( !$conn ) {
-				wfDebugLog( 'connect', __METHOD__ . ": Failed connecting to $i/$wiki" );
+				$this->connLogger->warning( __METHOD__ . ": Failed connecting to $i/$wiki" );
 				unset( $nonErrorLoads[$i] );
 				unset( $currentLoads[$i] );
 				$i = false;
@@ -347,7 +364,7 @@ class LoadBalancer {
 
 		# If all servers were down, quit now
 		if ( !count( $nonErrorLoads ) ) {
-			wfDebugLog( 'connect', "All servers down" );
+			$this->connLogger->error( "All servers down" );
 		}
 
 		if ( $i !== false ) {
@@ -364,8 +381,8 @@ class LoadBalancer {
 				}
 			}
 			$serverName = $this->getServerName( $i );
-			wfDebugLog( 'connect', __METHOD__ .
-				": using server $serverName for group '$group'\n" );
+			$this->connLogger->debug(
+				__METHOD__ . ": using server $serverName for group '$group'\n" );
 		}
 
 		return $i;
@@ -472,7 +489,7 @@ class LoadBalancer {
 		/** @var DBMasterPos $knownReachedPos */
 		$knownReachedPos = $this->srvCache->get( $key );
 		if ( $knownReachedPos && $knownReachedPos->hasReached( $this->mWaitForPos ) ) {
-			wfDebugLog( 'replication', __METHOD__ .
+			$this->replLogger->debug( __METHOD__ .
 				": replica DB $server known to be caught up (pos >= $knownReachedPos).\n" );
 			return true;
 		}
@@ -481,13 +498,13 @@ class LoadBalancer {
 		$conn = $this->getAnyOpenConnection( $index );
 		if ( !$conn ) {
 			if ( !$open ) {
-				wfDebugLog( 'replication', __METHOD__ . ": no connection open for $server\n" );
+				$this->replLogger->debug( __METHOD__ . ": no connection open for $server\n" );
 
 				return false;
 			} else {
 				$conn = $this->openConnection( $index, '' );
 				if ( !$conn ) {
-					wfDebugLog( 'replication', __METHOD__ . ": failed to connect to $server\n" );
+					$this->replLogger->warning( __METHOD__ . ": failed to connect to $server\n" );
 
 					return false;
 				}
@@ -497,18 +514,18 @@ class LoadBalancer {
 			}
 		}
 
-		wfDebugLog( 'replication', __METHOD__ . ": Waiting for replica DB $server to catch up...\n" );
+		$this->replLogger->info( __METHOD__ . ": Waiting for replica DB $server to catch up...\n" );
 		$timeout = $timeout ?: $this->mWaitTimeout;
 		$result = $conn->masterPosWait( $this->mWaitForPos, $timeout );
 
 		if ( $result == -1 || is_null( $result ) ) {
 			// Timed out waiting for replica DB, use master instead
 			$msg = __METHOD__ . ": Timed out waiting on $server pos {$this->mWaitForPos}";
-			wfDebugLog( 'replication', "$msg\n" );
-			wfDebugLog( 'DBPerformance', "$msg:\n" . wfBacktrace( true ) );
+			$this->replLogger->warning( "$msg\n" );
+			$this->perfLogger->warning( "$msg:\n" . wfBacktrace( true ) );
 			$ok = false;
 		} else {
-			wfDebugLog( 'replication', __METHOD__ . ": Done\n" );
+			$this->replLogger->info( __METHOD__ . ": Done\n" );
 			$ok = true;
 			// Remember that the DB reached this point
 			$this->srvCache->set( $key, $this->mWaitForPos, BagOStuff::TTL_DAY );
@@ -703,10 +720,10 @@ class LoadBalancer {
 			$conn = $this->reallyOpenConnection( $server, false );
 			$serverName = $this->getServerName( $i );
 			if ( $conn->isOpen() ) {
-				wfDebugLog( 'connect', "Connected to database $i at $serverName\n" );
+				$this->connLogger->debug( "Connected to database $i at $serverName\n" );
 				$this->mConns['local'][$i][0] = $conn;
 			} else {
-				wfDebugLog( 'connect', "Failed to connect to database $i at $serverName\n" );
+				$this->connLogger->warning( "Failed to connect to database $i at $serverName\n" );
 				$this->mErrorConnection = $conn;
 				$conn = false;
 			}
@@ -847,12 +864,16 @@ class LoadBalancer {
 
 		// Log when many connection are made on requests
 		if ( ++$this->connsOpened >= self::CONN_HELD_WARN_THRESHOLD ) {
-			wfDebugLog( 'DBPerformance', __METHOD__ . ": " .
+			$this->perfLogger->warning( __METHOD__ . ": " .
 				"{$this->connsOpened}+ connections made (master=$masterName)\n" .
 				wfBacktrace( true ) );
 		}
 
-		# Create object
+		// Set loggers
+		$server['connLogger'] = $this->connLogger;
+		$server['queryLogger'] = $this->queryLogger;
+
+		// Create a live connection object
 		try {
 			$db = DatabaseBase::factory( $server['type'], $server );
 		} catch ( DBConnectionError $e ) {
@@ -1687,11 +1708,11 @@ class LoadBalancer {
 		$result = $conn->masterPosWait( $pos, $timeout );
 		if ( $result == -1 || is_null( $result ) ) {
 			$msg = __METHOD__ . ": Timed out waiting on {$conn->getServer()} pos {$pos}";
-			wfDebugLog( 'replication', "$msg\n" );
-			wfDebugLog( 'DBPerformance', "$msg:\n" . wfBacktrace( true ) );
+			$this->replLogger->warning( "$msg\n" );
+			$this->perfLogger->warning( "$msg:\n" . wfBacktrace( true ) );
 			$ok = false;
 		} else {
-			wfDebugLog( 'replication', __METHOD__ . ": Done\n" );
+			$this->replLogger->info( __METHOD__ . ": Done\n" );
 			$ok = true;
 		}
 

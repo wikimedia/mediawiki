@@ -21,9 +21,9 @@
  * @ingroup Database
  */
 
+use Psr\Log\LoggerInterface;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Services\DestructibleService;
-use Psr\Log\LoggerInterface;
 use MediaWiki\Logger\LoggerFactory;
 
 /**
@@ -37,6 +37,8 @@ abstract class LBFactory implements DestructibleService {
 	protected $trxProfiler;
 	/** @var LoggerInterface */
 	protected $trxLogger;
+	/** @var LoggerInterface */
+	protected $replLogger;
 	/** @var BagOStuff */
 	protected $srvCache;
 	/** @var WANObjectCache */
@@ -78,6 +80,7 @@ abstract class LBFactory implements DestructibleService {
 			$this->wanCache = WANObjectCache::newEmpty();
 		}
 		$this->trxLogger = LoggerFactory::getInstance( 'DBTransaction' );
+		$this->replLogger = LoggerFactory::getInstance( 'DBReplication' );
 		$this->ticket = mt_rand();
 	}
 
@@ -622,14 +625,18 @@ abstract class LBFactory implements DestructibleService {
 
 	/**
 	 * Base parameters to LoadBalancer::__construct()
+	 * @return array
 	 */
 	final protected function baseLoadBalancerParams() {
 		return [
+			'localDomain' => wfWikiID(),
 			'readOnlyReason' => $this->readOnlyReason,
-			'trxProfiler' => $this->trxProfiler,
 			'srvCache' => $this->srvCache,
 			'wanCache' => $this->wanCache,
-			'localDomain' => wfWikiID(),
+			'trxProfiler' => $this->trxProfiler,
+			'queryLogger' => LoggerFactory::getInstance( 'DBQuery' ),
+			'connLogger' => LoggerFactory::getInstance( 'DBConnection' ),
+			'replLogger' => LoggerFactory::getInstance( 'DBReplication' ),
 			'errorLogger' => [ MWExceptionHandler::class, 'logException' ]
 		];
 	}
@@ -650,5 +657,4 @@ abstract class LBFactory implements DestructibleService {
 	public function closeAll() {
 		$this->forEachLBCallMethod( 'closeAll', [] );
 	}
-
 }
