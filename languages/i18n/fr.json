@@ -147,7 +147,8 @@
 			"Matma Rex",
 			"Dcausse",
 			"Lucas",
-			"Mabroukb"
+			"Mabroukb",
+			"Pymouss"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -1176,7 +1177,7 @@
 	"prefs-emailconfirm-label": "Confirmation du courriel :",
 	"youremail": "Courriel :",
 	"username": "{{GENDER:$1|Nom d'utilisateur|Nom d'utilisatrice}} :",
-	"prefs-memberingroups": "{{GENDER:$2|Membre}} {{PLURAL:$1|du groupe|des groupes}} :",
+	"prefs-memberingroups": "{{GENDER:$2|Membre}} {{PLURAL:$1|du groupe|des groupes}}:",
 	"prefs-registration": "Date d'inscription :",
 	"yourrealname": "Nom réel :",
 	"yourlanguage": "Langue :",

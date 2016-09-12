@@ -1446,7 +1446,7 @@
 	"withoutinterwiki-legend": "Prefiks",
 	"withoutinterwiki-submit": "Vis",
 	"fewestrevisions": "Sidene med færrast endringar",
-	"nbytes": "$1 {{PLURAL:$1|byte|byte}}",
+	"nbytes": "$1 {{PLURAL:$1|byte}}",
 	"ncategories": "$1 {{PLURAL:$1|kategori|kategoriar}}",
 	"ninterwikis": "{{PLURAL:$1|éin interwiki|$1 interwikiar}}",
 	"nlinks": "{{PLURAL:$1|Éi lenkje|$1 lenkjer}}",

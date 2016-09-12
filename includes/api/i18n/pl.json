@@ -144,6 +144,7 @@
 	"apihelp-managetags-param-reason": "Opcjonalny powód utworzenia, usunięcia, włączenia lub wyłączenia znacznika.",
 	"apihelp-managetags-param-ignorewarnings": "Czy zignorować ostrzeżenia, które pojawiają się w trakcie operacji.",
 	"apihelp-mergehistory-description": "Łączenie historii edycji.",
+	"apihelp-mergehistory-param-reason": "Powód łączenia historii.",
 	"apihelp-move-description": "Przenieś stronę.",
 	"apihelp-move-param-reason": "Powód zmiany nazwy.",
 	"apihelp-move-param-movetalk": "Zmień nazwę strony dyskusji, jeśli istnieje.",

@@ -407,6 +407,8 @@
 	"createacct-yourpasswordagain-ph": "Увядзіце пароль зноў",
 	"userlogin-remembermypassword": "Запомніць мяне",
 	"userlogin-signwithsecure": "Скарыстацца бясьпечным злучэньнем",
+	"cannotlogin-title": "Немагчыма ўвайсьці",
+	"cannotlogin-text": "Уваход у сыстэму немагчымы.",
 	"cannotloginnow-title": "Цяпер немагчыма ўвайсьці",
 	"cannotloginnow-text": "Уваход у сыстэму немагчымы пры выкарыстаньні $1.",
 	"yourdomainname": "Ваш дамэн:",
