@@ -5,6 +5,12 @@
  */
 class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 
+	protected static function expandVariables( $text ) {
+		return strtr( $text, [
+			'{blankVer}' => ResourceLoaderTestCase::BLANK_VERSION
+		] );
+	}
+
 	protected static function makeContext( $extraQuery = [] ) {
 		$conf = new HashConfig( [
 			'ResourceLoaderSources' => [],
@@ -165,7 +171,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 			. '<script>(window.RLQ=window.RLQ||[]).push(function(){'
 			. 'mw.config.set({"key":"value"});'
 			. 'mw.loader.state({"test.exempt":"ready","test.private.top":"loading","test.styles.pure":"ready","test.styles.private":"ready","test.scripts.top":"loading"});'
-			. 'mw.loader.implement("test.private.top",function($,jQuery,require,module){},{"css":[]});'
+			. 'mw.loader.implement("test.private.top@{blankVer}",function($,jQuery,require,module){},{"css":[]});'
 			. 'mw.loader.load(["test.top"]);'
 			. 'mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.scripts.top\u0026only=scripts\u0026skin=fallback");'
 			. '});</script>' . "\n"
@@ -173,6 +179,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 			. '<style>.private{}</style>' . "\n"
 			. '<script async="" src="/w/load.php?debug=false&amp;lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback"></script>';
 		// @codingStandardsIgnoreEnd
+		$expected = self::expandVariables( $expected );
 
 		$this->assertEquals( $expected, $client->getHeadHtml() );
 	}
@@ -197,11 +204,12 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 
 		// @codingStandardsIgnoreStart Generic.Files.LineLength
 		$expected = '<script>(window.RLQ=window.RLQ||[]).push(function(){'
-			. 'mw.loader.implement("test.private.bottom",function($,jQuery,require,module){},{"css":[]});'
+			. 'mw.loader.implement("test.private.bottom@{blankVer}",function($,jQuery,require,module){},{"css":[]});'
 			. 'mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.scripts\u0026only=scripts\u0026skin=fallback");'
 			. 'mw.loader.load(["test"]);'
 			. '});</script>';
 		// @codingStandardsIgnoreEnd
+		$expected = self::expandVariables( $expected );
 
 		$this->assertEquals( $expected, $client->getBodyHtml() );
 	}
@@ -225,7 +233,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 				'context' => [],
 				'modules' => [ 'test.private.top' ],
 				'only' => ResourceLoaderModule::TYPE_COMBINED,
-				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.implement("test.private.top",function($,jQuery,require,module){},{"css":[]});});</script>',
+				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.implement("test.private.top@{blankVer}",function($,jQuery,require,module){},{"css":[]});});</script>',
 			],
 			[
 				'context' => [],
@@ -273,6 +281,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 		$context = self::makeContext( $extraQuery );
 		$context->getResourceLoader()->register( self::makeSampleModules() );
 		$actual = ResourceLoaderClientHtml::makeLoad( $context, $modules, $type );
+		$expected = self::expandVariables( $expected );
 		$this->assertEquals( $expected, (string)$actual );
 	}
 }

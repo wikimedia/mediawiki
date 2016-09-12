@@ -4,6 +4,11 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
 abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
+	// Version hash for a blank file module.
+	// Result of ResourceLoader::makeHash(), ResourceLoaderTestModule
+	// and ResourceLoaderFileModule::getDefinitionSummary().
+	const BLANK_VERSION = '09p30q0';
+
 	/**
 	 * @param string $lang
 	 * @param string $dir
