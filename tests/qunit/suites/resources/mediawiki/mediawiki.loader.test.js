@@ -1,5 +1,12 @@
 ( function ( mw, $ ) {
-	QUnit.module( 'mediawiki (mw.loader)' );
+	QUnit.module( 'mediawiki (mw.loader)', QUnit.newMwEnvironment( {
+		setup: function () {
+			mw.loader.store.enabled = false;
+		},
+		teardown: function () {
+			mw.loader.store.enabled = false;
+		}
+	} ) );
 
 	mw.loader.addSource(
 		'testloader',
@@ -617,6 +624,62 @@
 			assert.strictEqual( done, true, 'script ran' );
 			assert.strictEqual( mw.loader.getState( 'testRaceLoadMe' ), 'ready', 'state' );
 		} );
+	} );
+
+	QUnit.test( 'Stale response caching - T117587', function ( assert ) {
+		var count = 0;
+		mw.loader.store.enabled = true;
+		mw.loader.register( 'test.stale', 'v2' );
+		assert.strictEqual( mw.loader.store.get( 'test.stale' ), false, 'Not in store' );
+
+		mw.loader.implement( 'test.stale@v1', function () {
+			count++
+		} );
+
+		return mw.loader.using( 'test.stale' )
+			.then( function () {
+				assert.strictEqual( count, 1 );
+				assert.strictEqual( mw.loader.getState( 'test.stale' ), 'ready' );
+				assert.ok( mw.loader.store.get( 'test.stale' ), 'In store' );
+			} )
+			.then( function () {
+				// Reset run time, but keep mw.loader.store
+				mw.loader.moduleRegistry[ 'test.stale' ].script = undefined;
+				mw.loader.moduleRegistry[ 'test.stale' ].state = 'registered';
+				mw.loader.moduleRegistry[ 'test.stale' ].version = 'v2';
+
+				// Module was stored correctly as v1
+				// On future navigations, it will be ignored until evicted
+				assert.strictEqual( mw.loader.store.get( 'test.stale' ), false, 'Not in store' );
+			} );
+	} );
+
+	QUnit.test( 'Stale response caching - backcompat', function ( assert ) {
+		var count = 0;
+		mw.loader.store.enabled = true;
+		mw.loader.register( 'test.stalebc', 'v2' );
+		assert.strictEqual( mw.loader.store.get( 'test.stalebc' ), false, 'Not in store' );
+
+		mw.loader.implement( 'test.stalebc@v1', function () {
+			count++
+		} );
+
+		return mw.loader.using( 'test.stalebc' )
+			.then( function () {
+				assert.strictEqual( count, 1 );
+				assert.strictEqual( mw.loader.getState( 'test.stalebc' ), 'ready' );
+				assert.ok( mw.loader.store.get( 'test.stalebc' ), 'In store' );
+			} )
+			.then( function () {
+				// Reset run time, but keep mw.loader.store
+				mw.loader.moduleRegistry[ 'test.stalebc' ].script = undefined;
+				mw.loader.moduleRegistry[ 'test.stalebc' ].state = 'registered';
+				mw.loader.moduleRegistry[ 'test.stalebc' ].version = 'v2';
+
+				// Legacy behaviour is storing under the expected version,
+				// which woudl lead to whitewashing and stale values (T117587).
+				assert.ok( mw.loader.store.get( 'test.stalebc' ), 'In store' );
+			} );
 	} );
 
 	QUnit.test( 'require()', 6, function ( assert ) {
