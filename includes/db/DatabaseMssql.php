@@ -1216,7 +1216,7 @@ class DatabaseMssql extends Database {
 		}
 
 		// we want this to be compatible with the output of parent::makeSelectOptions()
-		return [ $startOpts, '', $tailOpts, '' ];
+		return [ $startOpts, '', $tailOpts, '', '' ];
 	}
 
 	/**
