@@ -34,6 +34,8 @@ class WaitConditionLoop {
 	private $timeout;
 	/** @var float Seconds */
 	private $lastWaitTime;
+	/** @var integer|null */
+	private $rusageMode;
 
 	const CONDITION_REACHED = 1;
 	const CONDITION_CONTINUE = 0; // evaluates as falsey
@@ -50,6 +52,12 @@ class WaitConditionLoop {
 		$this->condition = $condition;
 		$this->timeout = $timeout;
 		$this->busyCallbacks =& $busyCallbacks;
+
+		if ( defined( 'HHVM_VERSION' ) && PHP_OS === 'Linux' ) {
+			$this->rusageMode = 2; // RUSAGE_THREAD
+		} elseif ( function_exists( 'getrusage' ) ) {
+			$this->rusageMode = 0; // RUSAGE_SELF
+		}
 	}
 
 	/**
@@ -139,17 +147,13 @@ class WaitConditionLoop {
 	 * @return float Returns 0.0 if not supported (Windows on PHP < 7)
 	 */
 	protected function getCpuTime() {
-		$time = 0.0;
+		if ( $this->rusageMode === null ) {
+			return microtime( true ); // assume worst case (all time is CPU)
+		}
 
-		if ( defined( 'HHVM_VERSION' ) && PHP_OS === 'Linux' ) {
-			$ru = getrusage( 2 /* RUSAGE_THREAD */ );
-		} else {
-			$ru = getrusage( 0 /* RUSAGE_SELF */ );
-		}
-		if ( $ru ) {
-			$time += $ru['ru_utime.tv_sec'] + $ru['ru_utime.tv_usec'] / 1e6;
-			$time += $ru['ru_stime.tv_sec'] + $ru['ru_stime.tv_usec'] / 1e6;
-		}
+		$ru = getrusage( $this->rusageMode );
+		$time = $ru['ru_utime.tv_sec'] + $ru['ru_utime.tv_usec'] / 1e6;
+		$time += $ru['ru_stime.tv_sec'] + $ru['ru_stime.tv_usec'] / 1e6;
 
 		return $time;
 	}
