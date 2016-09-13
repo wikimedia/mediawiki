@@ -358,7 +358,7 @@ function wfRandomString( $length = 32 ) {
  *
  * ;:@$!*(),/~
  *
- * However, IIS7 redirects fail when the url contains a colon (Bug 22709),
+ * However, IIS7 redirects fail when the url contains a colon (see T24709),
  * so no fancy : for IIS7.
  *
  * %2F in the page titles seems to fatally break for some reason.
@@ -617,7 +617,7 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
  * This is the basic structure used (brackets contain keys for $urlParts):
  * [scheme][delimiter][user]:[pass]@[host]:[port][path]?[query]#[fragment]
  *
- * @todo Need to integrate this into wfExpandUrl (bug 32168)
+ * @todo Need to integrate this into wfExpandUrl (see T34168)
  *
  * @since 1.19
  * @param array $urlParts URL parts, as output from wfParseUrl
@@ -670,7 +670,7 @@ function wfAssembleUrl( $urlParts ) {
  * '/a/./b/../c/' becomes '/a/c/'.  For details on the algorithm, please see
  * RFC3986 section 5.2.4.
  *
- * @todo Need to integrate this into wfExpandUrl (bug 32168)
+ * @todo Need to integrate this into wfExpandUrl (see T34168)
  *
  * @param string $urlPath URL path, potentially containing dot-segments
  * @return string URL path with all dot-segments removed
@@ -850,11 +850,11 @@ function wfParseUrl( $url ) {
 		return false;
 	}
 
-	/* Provide an empty host for eg. file:/// urls (see bug 28627) */
+	/* Provide an empty host for eg. file:/// urls (see T30627) */
 	if ( !isset( $bits['host'] ) ) {
 		$bits['host'] = '';
 
-		// bug 45069
+		// See T47069
 		if ( isset( $bits['path'] ) ) {
 			/* parse_url loses the third / for file:///c:/ urls (but not on variants) */
 			if ( substr( $bits['path'], 0, 1 ) !== '/' ) {
@@ -2306,7 +2306,7 @@ function wfEscapeShellArg( /*...*/ ) {
 			// Refs:
 			//  * http://web.archive.org/web/20020708081031/http://mailman.lyra.org/pipermail/scite-interest/2002-March/000436.html
 			//  * http://technet.microsoft.com/en-us/library/cc723564.aspx
-			//  * Bug #13518
+			//  * T15518
 			//  * CR r63214
 			// Double the backslashes before any double quotes. Escape the double quotes.
 			// @codingStandardsIgnoreEnd
