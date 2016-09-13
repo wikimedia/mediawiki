@@ -22,6 +22,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		}
 
 		$wanCache = TestingAccessWrapper::newFromObject( $this->cache );
+		/** @noinspection PhpUndefinedFieldInspection */
 		$this->internalCache = $wanCache->cache;
 	}
 
@@ -29,13 +30,14 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 	 * @dataProvider provideSetAndGet
 	 * @covers WANObjectCache::set()
 	 * @covers WANObjectCache::get()
+	 * @covers WANObjectCache::makeKey()
 	 * @param mixed $value
 	 * @param integer $ttl
 	 */
 	public function testSetAndGet( $value, $ttl ) {
 		$curTTL = null;
 		$asOf = null;
-		$key = wfRandomString();
+		$key = $this->cache->makeKey( 'x', wfRandomString() );
 
 		$this->cache->get( $key, $curTTL, [], $asOf );
 		$this->assertNull( $curTTL, "Current TTL is null" );
@@ -71,9 +73,10 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers WANObjectCache::get()
+	 * @covers WANObjectCache::makeGlobalKey()
 	 */
 	public function testGetNotExists() {
-		$key = wfRandomString();
+		$key = $this->cache->makeGlobalKey( 'y', wfRandomString(), 'p' );
 		$curTTL = null;
 		$value = $this->cache->get( $key, $curTTL );
 
@@ -165,7 +168,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$priorAsOf = null;
 		$wasSet = 0;
 		$func = function( $old, &$ttl, &$opts, $asOf )
-			use ( &$wasSet, &$priorValue, &$priorAsOf, $value )
+		use ( &$wasSet, &$priorValue, &$priorAsOf, $value )
 		{
 			++$wasSet;
 			$priorValue = $old;
@@ -188,9 +191,9 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 		$wasSet = 0;
 		$v = $cache->getWithSetCallback( $key, 30, $func, [
-			'lowTTL' => 0,
-			'lockTSE' => 5,
-		] + $extOpts );
+				'lowTTL' => 0,
+				'lockTSE' => 5,
+			] + $extOpts );
 		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertEquals( 0, $wasSet, "Value not regenerated" );
 
@@ -241,6 +244,153 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 	}
 
 	public static function getWithSetCallback_provider() {
+		return [
+			[ [], false ],
+			[ [ 'version' => 1 ], true ]
+		];
+	}
+
+	/**
+	 * @dataProvider getMultiWithSetCallback_provider
+	 * @covers WANObjectCache::geMultitWithSetCallback()
+	 * @covers WANObjectCache::makeMultiKeys()
+	 * @param array $extOpts
+	 * @param bool $versioned
+	 */
+	public function testGetMultiWithSetCallback( array $extOpts, $versioned ) {
+		$cache = $this->cache;
+
+		$keyA = wfRandomString();
+		$keyB = wfRandomString();
+		$keyC = wfRandomString();
+		$cKey1 = wfRandomString();
+		$cKey2 = wfRandomString();
+
+		$priorValue = null;
+		$priorAsOf = null;
+		$wasSet = 0;
+		$genFunc = function( $id ) use ( &$wasSet, &$priorValue, &$priorAsOf ) {
+			return function ( $old, &$ttl, &$opts, $asOf )
+			use ( $id, &$wasSet, &$priorValue, &$priorAsOf ) {
+				++$wasSet;
+				$priorValue = $old;
+				$priorAsOf = $asOf;
+				$ttl = 20; // override with another value
+				return "@$id$";
+			};
+		};
+
+		$wasSet = 0;
+		$keyedIds = new ArrayIterator( [ $keyA => 3353 ] );
+		$value = "@3353$";
+		$v = $cache->getMultiWithSetCallback(
+			$keyedIds, 30, $genFunc, [ 'lockTSE' => 5 ] + $extOpts );
+		$this->assertEquals( $value, $v[$keyA], "Value returned" );
+		$this->assertEquals( 1, $wasSet, "Value regenerated" );
+		$this->assertFalse( $priorValue, "No prior value" );
+		$this->assertNull( $priorAsOf, "No prior value" );
+
+		$curTTL = null;
+		$cache->get( $keyA, $curTTL );
+		$this->assertLessThanOrEqual( 20, $curTTL, 'Current TTL between 19-20 (overriden)' );
+		$this->assertGreaterThanOrEqual( 19, $curTTL, 'Current TTL between 19-20 (overriden)' );
+
+		$wasSet = 0;
+		$value = "@efef$";
+		$keyedIds = new ArrayIterator( [ $keyB => 'efef' ] );
+		$v = $cache->getMultiWithSetCallback(
+			$keyedIds, 30, $genFunc, [ 'lowTTL' => 0, 'lockTSE' => 5, ] + $extOpts );
+		$this->assertEquals( $value, $v[$keyB], "Value returned" );
+		$this->assertEquals( 1, $wasSet, "Value regenerated" );
+		$v = $cache->getMultiWithSetCallback(
+			$keyedIds, 30, $genFunc, [ 'lowTTL' => 0, 'lockTSE' => 5, ] + $extOpts );
+		$this->assertEquals( $value, $v[$keyB], "Value returned" );
+		$this->assertEquals( 1, $wasSet, "Value not regenerated" );
+
+		$priorTime = microtime( true );
+		usleep( 1 );
+		$wasSet = 0;
+		$keyedIds = new ArrayIterator( [ $keyB => 'efef' ] );
+		$v = $cache->getMultiWithSetCallback(
+			$keyedIds, 30, $genFunc, [ 'checkKeys' => [ $cKey1, $cKey2 ] ] + $extOpts
+		);
+		$this->assertEquals( $value, $v[$keyB], "Value returned" );
+		$this->assertEquals( 1, $wasSet, "Value regenerated due to check keys" );
+		$this->assertEquals( $value, $priorValue, "Has prior value" );
+		$this->assertType( 'float', $priorAsOf, "Has prior value" );
+		$t1 = $cache->getCheckKeyTime( $cKey1 );
+		$this->assertGreaterThanOrEqual( $priorTime, $t1, 'Check keys generated on miss' );
+		$t2 = $cache->getCheckKeyTime( $cKey2 );
+		$this->assertGreaterThanOrEqual( $priorTime, $t2, 'Check keys generated on miss' );
+
+		$priorTime = microtime( true );
+		$value = "@43636$";
+		$wasSet = 0;
+		$keyedIds = new ArrayIterator( [ $keyC => 43636 ] );
+		$v = $cache->getMultiWithSetCallback(
+			$keyedIds, 30, $genFunc, [ 'checkKeys' => [ $cKey1, $cKey2 ] ] + $extOpts
+		);
+		$this->assertEquals( $value, $v[$keyC], "Value returned" );
+		$this->assertEquals( 1, $wasSet, "Value regenerated due to still-recent check keys" );
+		$t1 = $cache->getCheckKeyTime( $cKey1 );
+		$this->assertLessThanOrEqual( $priorTime, $t1, 'Check keys did not change again' );
+		$t2 = $cache->getCheckKeyTime( $cKey2 );
+		$this->assertLessThanOrEqual( $priorTime, $t2, 'Check keys did not change again' );
+
+		$curTTL = null;
+		$v = $cache->get( $keyC, $curTTL, [ $cKey1, $cKey2 ] );
+		if ( $versioned ) {
+			$this->assertEquals( $value, $v[$cache::VFLD_DATA], "Value returned" );
+		} else {
+			$this->assertEquals( $value, $v, "Value returned" );
+		}
+		$this->assertLessThanOrEqual( 0, $curTTL, "Value has current TTL < 0 due to check keys" );
+
+		$wasSet = 0;
+		$key = wfRandomString();
+		$keyedIds = new ArrayIterator( [ $key => 242424 ] );
+		$v = $cache->getMultiWithSetCallback(
+			$keyedIds, 30, $genFunc, [ 'pcTTL' => 5 ] + $extOpts );
+		$this->assertEquals( "@{$keyedIds[$key]}$", $v[$key], "Value returned" );
+		$cache->delete( $key );
+		$keyedIds = new ArrayIterator( [ $key => 242424 ] );
+		$v = $cache->getMultiWithSetCallback(
+			$keyedIds, 30, $genFunc, [ 'pcTTL' => 5 ] + $extOpts );
+		$this->assertEquals( "@{$keyedIds[$key]}$", $v[$key], "Value still returned after deleted" );
+		$this->assertEquals( 1, $wasSet, "Value process cached while deleted" );
+
+		$calls = 0;
+		$ids = [ 1, 2, 3, 4, 5, 6 ];
+		$keyFunc = function ( $id, WANObjectCache $wanCache ) {
+			return $wanCache->makeKey( 'test', $id );
+		};
+		$keyedIds = $cache->makeMultiKeys( $ids, $keyFunc );
+		$genFunc = function( $id ) use ( &$calls ) {
+			return function ( $oldValue, &$ttl, array &$setops ) use ( &$calls, $id ) {
+				++$calls;
+
+				return "val-{$id}";
+			};
+		};
+		$values = $cache->getMultiWithSetCallback( $keyedIds, 10, $genFunc );
+
+		$this->assertEquals(
+			[ "val-1", "val-2", "val-3", "val-4", "val-5", "val-6" ],
+			array_values( $values ),
+			"Correct values in correct order"
+		);
+		$this->assertEquals(
+			array_map( $keyFunc, $ids, array_fill( 0, count( $ids ), $this->cache ) ),
+			array_keys( $values ),
+			"Correct keys in correct order"
+		);
+		$this->assertEquals( count( $ids ), $calls );
+
+		$cache->getMultiWithSetCallback( $keyedIds, 10, $genFunc );
+		$this->assertEquals( count( $ids ), $calls, "Values cached" );
+	}
+
+	public static function getMultiWithSetCallback_provider() {
 		return [
 			[ [], false ],
 			[ [ 'version' => 1 ], true ]
@@ -777,9 +927,14 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideAdaptiveTTL
 	 * @covers WANObjectCache::adaptiveTTL()
+	 * @param float $ago
+	 * @param int $maxTTL
+	 * @param int $minTTL
+	 * @param float $factor
+	 * @param int $adaptiveTTL
 	 */
 	public function testAdaptiveTTL( $ago, $maxTTL, $minTTL, $factor, $adaptiveTTL ) {
-		$mtime = is_int( $ago ) ? time() - $ago : $ago;
+		$mtime = is_int( $ago ) ?  time() - $ago : $ago;
 		$margin = 5;
 		$ttl = $this->cache->adaptiveTTL( $mtime, $maxTTL, $minTTL, $factor );
 
