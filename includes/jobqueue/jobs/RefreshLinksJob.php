@@ -88,7 +88,8 @@ class RefreshLinksJob extends Job {
 			// enqueued will be reflected in backlink page parses when the leaf jobs run.
 			if ( !isset( $params['range'] ) ) {
 				try {
-					wfGetLBFactory()->waitForReplication( [
+					$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+					$lbFactory->waitForReplication( [
 						'wiki'    => wfWikiID(),
 						'timeout' => self::LAG_WAIT_TIMEOUT
 					] );
@@ -128,13 +129,18 @@ class RefreshLinksJob extends Job {
 	 * @return bool
 	 */
 	protected function runForTitle( Title $title ) {
-		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$services = MediaWikiServices::getInstance();
+		$stats = $services->getStatsdDataFactory();
+		$lbFactory = $services->getDBLoadBalancerFactory();
+		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
 
 		$page = WikiPage::factory( $title );
 		$page->loadPageData( WikiPage::READ_LATEST );
 
 		// Serialize links updates by page ID so they see each others' changes
-		$scopedLock = LinksUpdate::acquirePageLock( wfGetDB( DB_MASTER ), $page->getId(), 'job' );
+		$dbw = $lbFactory->getMainLB()->getConnection( DB_MASTER );
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$scopedLock = LinksUpdate::acquirePageLock( $dbw, $page->getId(), 'job' );
 		// Get the latest ID *after* acquirePageLock() flushed the transaction.
 		// This is used to detect edits/moves after loadPageData() but before the scope lock.
 		// The works around the chicken/egg problem of determining the scope lock key.
@@ -241,10 +247,7 @@ class RefreshLinksJob extends Job {
 			$parserOutput
 		);
 
-		$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$ticket = $factory->getEmptyTransactionTicket( __METHOD__ );
 		foreach ( $updates as $key => $update ) {
-			$update->setTransactionTicket( $ticket );
 			// FIXME: This code probably shouldn't be here?
 			// Needed by things like Echo notifications which need
 			// to know which user caused the links update
@@ -264,6 +267,7 @@ class RefreshLinksJob extends Job {
 		}
 
 		foreach ( $updates as $update ) {
+			$update->setTransactionTicket( $ticket );
 			$update->doUpdate();
 		}
 
