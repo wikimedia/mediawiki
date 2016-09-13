@@ -115,8 +115,9 @@ class MapCacheLRU {
 	 * @return mixed The cached value if found or the result of $callback otherwise
 	 */
 	public function getWithSetCallback( $key, callable $callback ) {
-		$value = $this->get( $key );
-		if ( $value === null ) {
+		if ( $this->has( $key ) ) {
+			$value = $this->get( $key );
+		} else {
 			$value = call_user_func( $callback );
 			if ( $value !== false ) {
 				$this->set( $key, $value );
