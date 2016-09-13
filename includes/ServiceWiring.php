@@ -39,6 +39,7 @@
 
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\Linker\BatchLinkExistenceLookup;
 use MediaWiki\MediaWikiServices;
 
 return [
@@ -186,6 +187,10 @@ return [
 		} else {
 			return $services->getLinkRendererFactory()->createForUser( $wgUser );
 		}
+	},
+
+	'BatchLinkExistenceLookup' => function( MediaWikiServices $services ) {
+		return new BatchLinkExistenceLookup();
 	},
 
 	'GenderCache' => function( MediaWikiServices $services ) {

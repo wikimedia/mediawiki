@@ -24,6 +24,7 @@
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Linker\MessageExistenceLookup;
 
 /**
  * Represents a title within MediaWiki.
@@ -4235,6 +4236,8 @@ class Title implements LinkTarget {
 	}
 
 	/**
+	 * @deprecated since 1.28 Use Title::isKnown instead
+	 *
 	 * Should links to this title be shown as potentially viewable (i.e. as
 	 * "bluelinks"), even if there's no record by this title in the page
 	 * table?
@@ -4243,53 +4246,10 @@ class Title implements LinkTarget {
 	 * misleadingly named.  You probably just want to call isKnown(), which
 	 * calls this function internally.
 	 *
-	 * (ISSUE: Most of these checks are cheap, but the file existence check
-	 * can potentially be quite expensive.  Including it here fixes a lot of
-	 * existing code, but we might want to add an optional parameter to skip
-	 * it and any other expensive checks.)
-	 *
 	 * @return bool
 	 */
 	public function isAlwaysKnown() {
-		$isKnown = null;
-
-		/**
-		 * Allows overriding default behavior for determining if a page exists.
-		 * If $isKnown is kept as null, regular checks happen. If it's
-		 * a boolean, this value is returned by the isKnown method.
-		 *
-		 * @since 1.20
-		 *
-		 * @param Title $title
-		 * @param bool|null $isKnown
-		 */
-		Hooks::run( 'TitleIsAlwaysKnown', [ $this, &$isKnown ] );
-
-		if ( !is_null( $isKnown ) ) {
-			return $isKnown;
-		}
-
-		if ( $this->isExternal() ) {
-			return true;  // any interwiki link might be viewable, for all we know
-		}
-
-		switch ( $this->mNamespace ) {
-			case NS_MEDIA:
-			case NS_FILE:
-				// file exists, possibly in a foreign repo
-				return (bool)wfFindFile( $this );
-			case NS_SPECIAL:
-				// valid special page
-				return SpecialPageFactory::exists( $this->getDBkey() );
-			case NS_MAIN:
-				// selflink, possibly with fragment
-				return $this->mDbkeyform == '';
-			case NS_MEDIAWIKI:
-				// known system message
-				return $this->hasSourceText() !== false;
-			default:
-				return false;
-		}
+		return $this->isKnown();
 	}
 
 	/**
@@ -4304,7 +4264,14 @@ class Title implements LinkTarget {
 	 * @return bool
 	 */
 	public function isKnown() {
-		return $this->isAlwaysKnown() || $this->exists();
+		$batchLookup = MediaWikiServices::getInstance()
+			->getBatchLinkExistenceLookup();
+		$exists = $batchLookup->add( $this );
+		if ( $exists == $batchLookup::EXISTS || $exists == $batchLookup::BROKEN ) {
+			return $exists;
+		}
+		$batchLookup->lookup();
+		return $batchLookup->exists( $this );
 	}
 
 	/**
@@ -4318,16 +4285,7 @@ class Title implements LinkTarget {
 		}
 
 		if ( $this->mNamespace == NS_MEDIAWIKI ) {
-			// If the page doesn't exist but is a known system message, default
-			// message content will be displayed, same for language subpages-
-			// Use always content language to avoid loading hundreds of languages
-			// to get the link color.
-			global $wgContLang;
-			list( $name, ) = MessageCache::singleton()->figureMessage(
-				$wgContLang->lcfirst( $this->getText() )
-			);
-			$message = wfMessage( $name )->inLanguage( $wgContLang )->useDatabase( false );
-			return $message->exists();
+			return ( new MessageExistenceLookup() )->exists( $this );
 		}
 
 		return false;
