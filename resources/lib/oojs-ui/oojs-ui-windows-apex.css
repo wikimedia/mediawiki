@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.8
+ * OOjs UI v0.17.9
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-08-16T21:13:53Z
+ * Date: 2016-09-13T18:30:06Z
  */
 .oo-ui-actionWidget.oo-ui-pendingElement-pending {
 	background-image: /* @embed */ url(themes/apex/images/textures/pending.gif);
@@ -116,12 +116,12 @@
 .oo-ui-messageDialog-title {
 	font-size: 1.5em;
 	line-height: 1em;
-	color: #000000;
+	color: #000;
 }
 .oo-ui-messageDialog-message {
 	font-size: 0.9em;
 	line-height: 1.25em;
-	color: #666666;
+	color: #666;
 }
 .oo-ui-messageDialog-message-verbose {
 	font-size: 1.1em;
@@ -329,7 +329,7 @@
 }
 .oo-ui-processDialog-errors-title {
 	font-size: 1.5em;
-	color: #000000;
+	color: #000;
 	margin-bottom: 2em;
 }
 .oo-ui-processDialog-error {
@@ -379,7 +379,7 @@
 	        transition: opacity 250ms ease;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog > .oo-ui-window-frame {
-	background-color: #ffffff;
+	background-color: #fff;
 	opacity: 0;
 	-webkit-transform: scale(0.5);
 	   -moz-transform: scale(0.5);
@@ -404,7 +404,7 @@
 	bottom: 1em;
 	max-height: 100%;
 	max-height: calc(100% - 2em);
-	border: 1px solid #cccccc;
+	border: 1px solid #ccc;
 	border-radius: 0.5em;
 	box-shadow: 0 0.2em 1em rgba(0, 0, 0, 0.3);
 }

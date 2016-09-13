@@ -4,20 +4,18 @@
 	"intro": "@import '../../../../src/styles/common';",
 	"variants": {
 		"invert": {
-			"color": "#ffffff",
+			"color": "#fff",
 			"global": true
 		},
 		"progressive": {
-			"color": "#347bff"
+			"color": "#36c",
+			"global": true
 		},
 		"constructive": {
-			"color": "#347bff"
-		},
-		"constructive-deprecated": {
-			"color": "#00af89"
+			"color": "#36c"
 		},
 		"destructive": {
-			"color": "#d11d13"
+			"color": "#c33"
 		},
 		"warning": {
 			"color": "#ff5d00"
@@ -28,8 +26,8 @@
 		"advanced": { "file": "images/icons/advanced.svg" },
 		"alert": { "file": "images/icons/alert.svg", "variants": [ "warning" ] },
 		"cancel": { "file": "images/icons/cancel.svg", "variants": [ "destructive" ] },
-		"check": { "file": "images/icons/check.svg", "variants": [ "constructive-deprecated", "constructive", "progressive", "destructive" ] },
-		"circle": { "file": "images/icons/circle.svg", "variants": [ "constructive-deprecated", "constructive", "progressive" ] },
+		"check": { "file": "images/icons/check.svg", "variants": [ "constructive", "progressive", "destructive" ] },
+		"circle": { "file": "images/icons/circle.svg", "variants": [ "constructive", "progressive" ] },
 		"close": { "file": {
 			"ltr": "images/icons/close-ltr.svg",
 			"rtl": "images/icons/close-rtl.svg"
@@ -68,7 +66,7 @@
 			"rtl": "images/icons/search-rtl.svg"
 		} },
 		"settings": { "file": "images/icons/settings.svg" },
-		"tag": { "file": "images/icons/tag.svg", "variants": [ "destructive", "warning", "constructive", "progressive" ] },
+		"tag": { "file": "images/icons/tag.svg", "variants": [ "destructive", "warning", "constructive" ] },
 		"undo": { "file": {
 			"ltr": "images/icons/arched-arrow-rtl.svg",
 			"rtl": "images/icons/arched-arrow-ltr.svg"

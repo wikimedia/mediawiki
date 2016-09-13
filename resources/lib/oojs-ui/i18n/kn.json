@@ -4,7 +4,8 @@
 			"Vikassy",
 			"Nayvik",
 			"Omshivaprakash",
-			"Pavanaja"
+			"Pavanaja",
+			"Yogesh"
 		]
 	},
 	"ooui-outline-control-move-down": "ವಸ್ತುವನ್ನು ಕೆಳಗೆ ಸರಿಸು",
@@ -18,5 +19,8 @@
 	"ooui-dialog-process-error": "ಏನೋ ಎಡವಟ್ಟಾಗಿದೆ....",
 	"ooui-dialog-process-dismiss": "ತೆಗೆದುಹಾಕು",
 	"ooui-dialog-process-retry": "ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ",
-	"ooui-dialog-process-continue": "ಮುಂದುವರೆಸು"
+	"ooui-dialog-process-continue": "ಮುಂದುವರೆಸು",
+	"ooui-selectfile-button-select": "ಕಡತವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+	"ooui-selectfile-placeholder": "ಕಡತವು ಆಯ್ಕೆಯಾಗಿಲ್ಲ",
+	"ooui-selectfile-dragdrop-placeholder": "ಇಲ್ಲಿ ಕಡತವನ್ನು ಬಿಡಿ"
 }

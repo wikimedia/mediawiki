@@ -13,8 +13,12 @@
 	"ooui-toolgroup-collapse": "Mens",
 	"ooui-dialog-message-accept": "D'acòrdi",
 	"ooui-dialog-message-reject": "Anullar",
+	"ooui-dialog-process-error": "Quicòm a trucat",
 	"ooui-dialog-process-dismiss": "Regetar",
 	"ooui-dialog-process-retry": "Ensajatz tornamai",
 	"ooui-dialog-process-continue": "Contunhar",
-	"ooui-selectfile-placeholder": "Cap de fichièr pas seleccionat"
+	"ooui-selectfile-button-select": "Seleccionar un fichièr",
+	"ooui-selectfile-not-supported": "Lo tipe de fichièr es pas compatible",
+	"ooui-selectfile-placeholder": "Cap de fichièr pas seleccionat",
+	"ooui-selectfile-dragdrop-placeholder": "Depausar lo fichièr aicí"
 }

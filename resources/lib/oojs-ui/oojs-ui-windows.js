@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.8
+ * OOjs UI v0.17.9
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-08-16T21:13:48Z
+ * Date: 2016-09-13T18:30:02Z
  */
 ( function ( OO ) {
 
@@ -183,6 +183,7 @@ OO.ui.ActionWidget.prototype.toggle = function () {
 	return this;
 };
 
+/* eslint-disable no-unused-vars */
 /**
  * ActionSets manage the behavior of the {@link OO.ui.ActionWidget action widgets} that comprise them.
  * Actions can be made available for specific contexts (modes) and circumstances
@@ -283,6 +284,7 @@ OO.ui.ActionSet = function OoUiActionSet( config ) {
 	this.changing = false;
 	this.changed = false;
 };
+/* eslint-enable no-unused-vars */
 
 /* Setup */
 
@@ -1545,7 +1547,7 @@ OO.ui.WindowManager.prototype.toggleGlobalEvents = function ( on ) {
 		$body = $( this.getElementDocument().body ),
 		// We could have multiple window managers open so only modify
 		// the body css at the bottom of the stack
-		stackDepth = $body.data( 'windowManagerGlobalEvents' ) || 0 ;
+		stackDepth = $body.data( 'windowManagerGlobalEvents' ) || 0;
 
 	on = on === undefined ? !!this.globalEvents : !!on;
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><style>* { fill: #ffffff }</style>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><style>* { fill: #fff }</style>
     <g id="help">
         <path id="circle" d="M12 2.085c-5.477 0-9.915 4.438-9.915 9.916 0 5.48 4.438 9.92 9.916 9.92 5.48 0 9.92-4.44 9.92-9.913 0-5.477-4.44-9.915-9.913-9.915zm.002 18a8.084 8.084 0 1 1 0-16.168 8.084 8.084 0 0 1 0 16.168z"/>
         <g id="question-mark">

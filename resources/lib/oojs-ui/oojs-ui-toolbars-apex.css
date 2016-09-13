@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.8
+ * OOjs UI v0.17.9
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-08-16T21:13:53Z
+ * Date: 2016-09-13T18:30:06Z
  */
 .oo-ui-popupTool .oo-ui-popupWidget-popup,
 .oo-ui-popupTool .oo-ui-popupWidget-anchor {
@@ -69,7 +69,7 @@
 	border-color: rgba(0, 0, 0, 0.1);
 }
 .oo-ui-toolGroup.oo-ui-widget-enabled .oo-ui-tool-link .oo-ui-tool-title {
-	color: #000000;
+	color: #000;
 }
 .oo-ui-barToolGroup > .oo-ui-iconElement-icon,
 .oo-ui-barToolGroup > .oo-ui-labelElement-label {
@@ -127,11 +127,11 @@
 	border-color: rgba(0, 0, 0, 0.2);
 	box-shadow: inset 0 0.0875em 0.0875em 0 rgba(0, 0, 0, 0.07);
 	background-color: #f8fbfd;
-	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #f1f7fb), color-stop(100%, #ffffff));
-	background-image: -webkit-linear-gradient(top, #f1f7fb 0, #ffffff 100%);
-	background-image:    -moz-linear-gradient(top, #f1f7fb 0, #ffffff 100%);
-	background-image:         linear-gradient(to bottom, #f1f7fb 0, #ffffff 100%);
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff1f7fb', endColorstr='#ffffffff' )";
+	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #f1f7fb), color-stop(100%, #fff));
+	background-image: -webkit-linear-gradient(top, #f1f7fb 0, #fff 100%);
+	background-image:    -moz-linear-gradient(top, #f1f7fb 0, #fff 100%);
+	background-image:         linear-gradient(to bottom, #f1f7fb 0, #fff 100%);
+	-ms-filter: 'progid:DXImageTransform.Microsoft.gradient( startColorstr=\'#fff1f7fb\', endColorstr=\'#ffffffff\' )';
 }
 .oo-ui-barToolGroup.oo-ui-widget-enabled > .oo-ui-toolGroup-tools > .oo-ui-tool.oo-ui-tool-active.oo-ui-widget-enabled + .oo-ui-tool-active.oo-ui-widget-enabled {
 	border-left-color: rgba(0, 0, 0, 0.1);
@@ -140,7 +140,7 @@
 	outline: 0;
 }
 .oo-ui-barToolGroup.oo-ui-widget-enabled > .oo-ui-toolGroup-tools > .oo-ui-tool.oo-ui-widget-disabled > .oo-ui-tool-link .oo-ui-tool-title {
-	color: #cccccc;
+	color: #ccc;
 }
 .oo-ui-barToolGroup.oo-ui-widget-enabled > .oo-ui-toolGroup-tools > .oo-ui-tool.oo-ui-widget-disabled > .oo-ui-tool-link .oo-ui-iconElement-icon {
 	opacity: 0.2;
@@ -155,7 +155,7 @@
 	outline: 0;
 }
 .oo-ui-barToolGroup.oo-ui-widget-disabled > .oo-ui-toolGroup-tools > .oo-ui-tool > .oo-ui-tool-link .oo-ui-tool-title {
-	color: #cccccc;
+	color: #ccc;
 }
 .oo-ui-barToolGroup.oo-ui-widget-disabled > .oo-ui-toolGroup-tools > .oo-ui-tool > .oo-ui-tool-link .oo-ui-iconElement-icon {
 	opacity: 0.2;
@@ -273,17 +273,17 @@
 	border-bottom-right-radius: 0;
 	box-shadow: inset 0 0.0875em 0.0875em 0 rgba(0, 0, 0, 0.07);
 	background-color: #f8fbfd;
-	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #f1f7fb), color-stop(100%, #ffffff));
-	background-image: -webkit-linear-gradient(top, #f1f7fb 0, #ffffff 100%);
-	background-image:    -moz-linear-gradient(top, #f1f7fb 0, #ffffff 100%);
-	background-image:         linear-gradient(to bottom, #f1f7fb 0, #ffffff 100%);
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff1f7fb', endColorstr='#ffffffff' )";
+	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #f1f7fb), color-stop(100%, #fff));
+	background-image: -webkit-linear-gradient(top, #f1f7fb 0, #fff 100%);
+	background-image:    -moz-linear-gradient(top, #f1f7fb 0, #fff 100%);
+	background-image:         linear-gradient(to bottom, #f1f7fb 0, #fff 100%);
+	-ms-filter: 'progid:DXImageTransform.Microsoft.gradient( startColorstr=\'#fff1f7fb\', endColorstr=\'#ffffffff\' )';
 }
 .oo-ui-popupToolGroup .oo-ui-toolGroup-tools {
 	top: 2.5em;
 	margin: 0 -1px;
-	border: 1px solid #cccccc;
-	background-color: #ffffff;
+	border: 1px solid #ccc;
+	background-color: #fff;
 	box-shadow: 0 0.3125em 1.25em rgba(0, 0, 0, 0.25);
 }
 .oo-ui-popupToolGroup .oo-ui-tool-link {
@@ -302,7 +302,7 @@
 	line-height: 2em;
 }
 .oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-accel {
-	color: #888888;
+	color: #888;
 }
 .oo-ui-listToolGroup .oo-ui-tool {
 	display: block;
@@ -325,11 +325,11 @@
 	border-color: rgba(0, 0, 0, 0.1);
 	box-shadow: inset 0 0.0875em 0.0875em 0 rgba(0, 0, 0, 0.07);
 	background-color: #f8fbfd;
-	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #f1f7fb), color-stop(100%, #ffffff));
-	background-image: -webkit-linear-gradient(top, #f1f7fb 0, #ffffff 100%);
-	background-image:    -moz-linear-gradient(top, #f1f7fb 0, #ffffff 100%);
-	background-image:         linear-gradient(to bottom, #f1f7fb 0, #ffffff 100%);
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff1f7fb', endColorstr='#ffffffff' )";
+	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #f1f7fb), color-stop(100%, #fff));
+	background-image: -webkit-linear-gradient(top, #f1f7fb 0, #fff 100%);
+	background-image:    -moz-linear-gradient(top, #f1f7fb 0, #fff 100%);
+	background-image:         linear-gradient(to bottom, #f1f7fb 0, #fff 100%);
+	-ms-filter: 'progid:DXImageTransform.Microsoft.gradient( startColorstr=\'#fff1f7fb\', endColorstr=\'#ffffffff\' )';
 }
 .oo-ui-listToolGroup .oo-ui-tool-active.oo-ui-widget-enabled + .oo-ui-tool-active.oo-ui-widget-enabled {
 	border-top-color: rgba(0, 0, 0, 0.1);
@@ -344,16 +344,16 @@
 	opacity: 1;
 }
 .oo-ui-listToolGroup .oo-ui-tool.oo-ui-widget-disabled .oo-ui-tool-link .oo-ui-tool-title {
-	color: #cccccc;
+	color: #ccc;
 }
 .oo-ui-listToolGroup .oo-ui-tool.oo-ui-widget-disabled .oo-ui-tool-link .oo-ui-tool-accel {
-	color: #dddddd;
+	color: #ddd;
 }
 .oo-ui-listToolGroup .oo-ui-tool.oo-ui-widget-disabled .oo-ui-tool-link .oo-ui-iconElement-icon {
 	opacity: 0.2;
 }
 .oo-ui-listToolGroup.oo-ui-widget-disabled {
-	color: #cccccc;
+	color: #ccc;
 }
 .oo-ui-listToolGroup.oo-ui-widget-disabled .oo-ui-indicatorElement-indicator,
 .oo-ui-listToolGroup.oo-ui-widget-disabled .oo-ui-iconElement-icon {
@@ -387,10 +387,10 @@
 	background-image: none;
 }
 .oo-ui-menuToolGroup .oo-ui-tool-active .oo-ui-tool-link .oo-ui-iconElement-icon {
-	background-image: url("themes/apex/images/icons/check.png");
-	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/apex/images/icons/check.svg");
-	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/apex/images/icons/check.svg");
-	background-image:      -o-linear-gradient(transparent, transparent), url("themes/apex/images/icons/check.png");
+	background-image: url('themes/apex/images/icons/check.png');
+	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url('themes/apex/images/icons/check.svg');
+	background-image:         linear-gradient(transparent, transparent), /* @embed */ url('themes/apex/images/icons/check.svg');
+	background-image:      -o-linear-gradient(transparent, transparent), url('themes/apex/images/icons/check.png');
 	background-size: contain;
 	background-position: center center;
 	background-repeat: no-repeat;
@@ -399,13 +399,13 @@
 	background-color: #e1f3ff;
 }
 .oo-ui-menuToolGroup .oo-ui-tool.oo-ui-widget-disabled .oo-ui-tool-link .oo-ui-tool-title {
-	color: #cccccc;
+	color: #ccc;
 }
 .oo-ui-menuToolGroup .oo-ui-tool.oo-ui-widget-disabled .oo-ui-tool-link .oo-ui-iconElement-icon {
 	opacity: 0.2;
 }
 .oo-ui-menuToolGroup.oo-ui-widget-disabled {
-	color: #cccccc;
+	color: #ccc;
 	border-color: rgba(0, 0, 0, 0.05);
 }
 .oo-ui-menuToolGroup.oo-ui-widget-disabled .oo-ui-indicatorElement-indicator,
@@ -419,11 +419,14 @@
 	line-height: 1;
 	position: relative;
 }
-.oo-ui-toolbar-actions {
-	float: right;
-}
-.oo-ui-toolbar-actions .oo-ui-toolbar {
-	display: inline-block;
+.oo-ui-toolbar-tools,
+.oo-ui-toolbar-actions,
+.oo-ui-toolbar-shadow {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
 }
 .oo-ui-toolbar-tools {
 	display: inline;
@@ -435,14 +438,11 @@
 .oo-ui-toolbar-tools .oo-ui-tool {
 	white-space: normal;
 }
-.oo-ui-toolbar-tools,
-.oo-ui-toolbar-actions,
-.oo-ui-toolbar-shadow {
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	   -moz-user-select: none;
-	    -ms-user-select: none;
-	        user-select: none;
+.oo-ui-toolbar-actions {
+	float: right;
+}
+.oo-ui-toolbar-actions .oo-ui-toolbar {
+	display: inline-block;
 }
 .oo-ui-toolbar-actions .oo-ui-popupWidget {
 	-webkit-touch-callout: default;
@@ -459,13 +459,13 @@
 	pointer-events: none;
 }
 .oo-ui-toolbar-bar {
-	border-bottom: 1px solid #cccccc;
+	border-bottom: 1px solid #ccc;
 	background-color: #f8fbfd;
-	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #ffffff), color-stop(100%, #f1f7fb));
-	background-image: -webkit-linear-gradient(top, #ffffff 0, #f1f7fb 100%);
-	background-image:    -moz-linear-gradient(top, #ffffff 0, #f1f7fb 100%);
-	background-image:         linear-gradient(to bottom, #ffffff 0, #f1f7fb 100%);
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffffff', endColorstr='#fff1f7fb' )";
+	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #fff), color-stop(100%, #f1f7fb));
+	background-image: -webkit-linear-gradient(top, #fff 0, #f1f7fb 100%);
+	background-image:    -moz-linear-gradient(top, #fff 0, #f1f7fb 100%);
+	background-image:         linear-gradient(to bottom, #fff 0, #f1f7fb 100%);
+	-ms-filter: 'progid:DXImageTransform.Microsoft.gradient( startColorstr=\'#ffffffff\', endColorstr=\'#fff1f7fb\' )';
 }
 .oo-ui-toolbar-bar .oo-ui-toolbar-bar {
 	border: 0;

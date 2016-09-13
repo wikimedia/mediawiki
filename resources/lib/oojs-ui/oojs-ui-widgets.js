@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.8
+ * OOjs UI v0.17.9
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-08-16T21:13:48Z
+ * Date: 2016-09-13T18:30:02Z
  */
 ( function ( OO ) {
 
@@ -2170,7 +2170,7 @@ OO.ui.BookletLayout.prototype.selectFirstSelectablePage = function () {
  *     };
  *
  *     var card1 = new CardOneLayout( 'one' ),
- *         card2 = new CardLayout( 'two', { label: 'Card two' } );
+ *         card2 = new OO.ui.CardLayout( 'two', { label: 'Card two' } );
  *
  *     card2.$element.append( '<p>Second card</p>' );
  *
@@ -2709,7 +2709,7 @@ OO.ui.ToggleButtonWidget = function OoUiToggleButtonWidget( config ) {
 	OO.ui.ToggleButtonWidget.parent.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.ButtonElement.call( this, config );
+	OO.ui.mixin.ButtonElement.call( this, $.extend( {}, config, { active: this.active } ) );
 	OO.ui.mixin.IconElement.call( this, config );
 	OO.ui.mixin.IndicatorElement.call( this, config );
 	OO.ui.mixin.LabelElement.call( this, config );
@@ -3057,7 +3057,7 @@ OO.inheritClass( OO.ui.OutlineOptionWidget, OO.ui.DecoratedOptionWidget );
 
 /* Static Properties */
 
-OO.ui.OutlineOptionWidget.static.highlightable = false;
+OO.ui.OutlineOptionWidget.static.highlightable = true;
 
 OO.ui.OutlineOptionWidget.static.scrollIntoViewOnSelect = true;
 
@@ -3099,6 +3099,22 @@ OO.ui.OutlineOptionWidget.prototype.getLevel = function () {
 };
 
 /**
+ * @inheritdoc
+ */
+OO.ui.OutlineOptionWidget.prototype.setPressed = function ( state ) {
+	OO.ui.OutlineOptionWidget.parent.prototype.setPressed.call( this, state );
+	if ( this.constructor.static.pressable ) {
+		this.pressed = !!state;
+		if ( this.pressed ) {
+			this.setFlags( 'progressive' );
+		} else if ( !this.selected ) {
+			this.clearFlags();
+		}
+	}
+	return this;
+};
+
+/**
  * Set movability.
  *
  * Movability is used by {@link OO.ui.OutlineControlsWidget outline controls}.
@@ -3123,6 +3139,22 @@ OO.ui.OutlineOptionWidget.prototype.setMovable = function ( movable ) {
 OO.ui.OutlineOptionWidget.prototype.setRemovable = function ( removable ) {
 	this.removable = !!removable;
 	this.updateThemeClasses();
+	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.OutlineOptionWidget.prototype.setSelected = function ( state ) {
+	OO.ui.OutlineOptionWidget.parent.prototype.setSelected.call( this, state );
+	if ( this.constructor.static.selectable ) {
+		this.selected = !!state;
+		if ( this.selected ) {
+			this.setFlags( 'progressive' );
+		} else {
+			this.clearFlags();
+		}
+	}
 	return this;
 };
 
@@ -3629,6 +3661,7 @@ OO.ui.CapsuleMultiselectWidget = function OoUiCapsuleMultiselectWidget( config )
 	}
 	this.menu.connect( this, {
 		choose: 'onMenuChoose',
+		toggle: 'onMenuToggle',
 		add: 'onMenuItemsChange',
 		remove: 'onMenuItemsChange'
 	} );
@@ -4175,6 +4208,16 @@ OO.ui.CapsuleMultiselectWidget.prototype.onMenuChoose = function ( item ) {
 };
 
 /**
+ * Handle menu toggle events.
+ *
+ * @private
+ * @param {boolean} isVisible Menu toggle event
+ */
+OO.ui.CapsuleMultiselectWidget.prototype.onMenuToggle = function ( isVisible ) {
+	this.$element.toggleClass( 'oo-ui-capsuleMultiselectWidget-open', isVisible );
+};
+
+/**
  * Handle menu item change events.
  *
  * @private
@@ -4480,13 +4523,6 @@ OO.ui.SelectFileWidget.prototype.updateUI = function () {
 					.addClass( 'oo-ui-selectFileWidget-fileName' )
 					.text( this.currentFile.name )
 			);
-			if ( this.currentFile.type !== '' ) {
-				$label = $label.add(
-					$( '<span>' )
-						.addClass( 'oo-ui-selectFileWidget-fileType' )
-						.text( this.currentFile.type )
-				);
-			}
 			this.setLabel( $label );
 
 			if ( this.showDropTarget ) {
@@ -5166,11 +5202,11 @@ OO.ui.NumberInputWidget.prototype.validateNumber = function ( value ) {
 		return false;
 	}
 
-	/*jshint bitwise: false */
+	/* eslint-disable no-bitwise */
 	if ( this.isInteger && ( n | 0 ) !== n ) {
 		return false;
 	}
-	/*jshint bitwise: true */
+	/* eslint-enable no-bitwise */
 
 	if ( n < this.min || n > this.max ) {
 		return false;

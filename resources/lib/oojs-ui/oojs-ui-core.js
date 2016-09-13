@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.8
+ * OOjs UI v0.17.9
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-08-16T21:13:48Z
+ * Date: 2016-09-13T18:30:02Z
  */
 ( function ( OO ) {
 
@@ -747,9 +747,7 @@ OO.ui.Element.static.unsafeInfuse = function ( idOrNode, domPromise ) {
 	// pick up dynamic state, like focus, value of form inputs, scroll position, etc.
 	state = cls.static.gatherPreInfuseState( $elem[ 0 ], data );
 	// rebuild widget
-	// jscs:disable requireCapitalizedConstructors
 	obj = new cls( data );
-	// jscs:enable requireCapitalizedConstructors
 	// now replace old DOM with this new DOM.
 	if ( top ) {
 		// An efficient constructor might be able to reuse the entire DOM tree of the original element,
@@ -1584,12 +1582,8 @@ OO.ui.Widget.prototype.updateDisabled = function () {
  * @class
  *
  * @constructor
- * @param {Object} [config] Configuration options
  */
-OO.ui.Theme = function OoUiTheme( config ) {
-	// Configuration initialization
-	config = config || {};
-};
+OO.ui.Theme = function OoUiTheme() {};
 
 /* Setup */
 
@@ -1809,7 +1803,7 @@ OO.ui.mixin.ButtonElement = function OoUiMixinButtonElement( config ) {
 	// Properties
 	this.$button = null;
 	this.framed = null;
-	this.active = false;
+	this.active = config.active !== undefined && config.active;
 	this.onMouseUpHandler = this.onMouseUp.bind( this );
 	this.onMouseDownHandler = this.onMouseDown.bind( this );
 	this.onKeyDownHandler = this.onKeyDown.bind( this );
@@ -6367,7 +6361,10 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 		keypress: this.menu.onKeyPressHandler,
 		blur: this.menu.clearKeyPressBuffer.bind( this.menu )
 	} );
-	this.menu.connect( this, { select: 'onMenuSelect' } );
+	this.menu.connect( this, {
+		select: 'onMenuSelect',
+		toggle: 'onMenuToggle'
+	} );
 
 	// Initialization
 	this.$handle
@@ -6421,6 +6418,16 @@ OO.ui.DropdownWidget.prototype.onMenuSelect = function ( item ) {
 	}
 
 	this.setLabel( selectedLabel );
+};
+
+/**
+ * Handle menu toggle events.
+ *
+ * @private
+ * @param {boolean} isVisible Menu toggle event
+ */
+OO.ui.DropdownWidget.prototype.onMenuToggle = function ( isVisible ) {
+	this.$element.toggleClass( 'oo-ui-dropdownWidget-open', isVisible );
 };
 
 /**
@@ -7168,7 +7175,6 @@ OO.ui.mixin.FloatableElement.prototype.togglePositioning = function ( positionin
  */
 OO.ui.mixin.FloatableElement.prototype.isElementInViewport = function ( $element, $container ) {
 	var elemRect, contRect,
-		topEdgeInBounds = false,
 		leftEdgeInBounds = false,
 		bottomEdgeInBounds = false,
 		rightEdgeInBounds = false;
@@ -7185,9 +7191,8 @@ OO.ui.mixin.FloatableElement.prototype.isElementInViewport = function ( $element
 		contRect = $container[ 0 ].getBoundingClientRect();
 	}
 
-	if ( elemRect.top >= contRect.top && elemRect.top <= contRect.bottom ) {
-		topEdgeInBounds = true;
-	}
+	// For completeness, if we still cared about topEdgeInBounds, that'd be:
+	// elemRect.top >= contRect.top && elemRect.top <= contRect.bottom
 	if ( elemRect.left >= contRect.left && elemRect.left <= contRect.right ) {
 		leftEdgeInBounds = true;
 	}
@@ -9808,12 +9813,12 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	// Initialization
 	this.$element
 		.addClass( 'oo-ui-fieldLayout' )
+		.toggleClass( 'oo-ui-fieldLayout-disabled', this.fieldWidget.isDisabled() )
 		.append( this.$help, this.$body );
 	this.$body.addClass( 'oo-ui-fieldLayout-body' );
 	this.$messages.addClass( 'oo-ui-fieldLayout-messages' );
 	this.$field
 		.addClass( 'oo-ui-fieldLayout-field' )
-		.toggleClass( 'oo-ui-fieldLayout-disable', this.fieldWidget.isDisabled() )
 		.append( this.fieldWidget.$element );
 
 	this.setErrors( config.errors || [] );
@@ -10095,7 +10100,7 @@ OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 
 	// Mixin constructors
 	OO.ui.mixin.IconElement.call( this, config );
-	OO.ui.mixin.LabelElement.call( this, config );
+	OO.ui.mixin.LabelElement.call( this, $.extend( {}, config, { $label: $( '<legend>' ) } ) );
 	OO.ui.mixin.GroupElement.call( this, config );
 
 	if ( config.help ) {
@@ -10118,7 +10123,7 @@ OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 	// Initialization
 	this.$element
 		.addClass( 'oo-ui-fieldsetLayout' )
-		.prepend( this.$help, this.$icon, this.$label, this.$group );
+		.prepend( this.$label, this.$help, this.$icon, this.$group );
 	if ( Array.isArray( config.items ) ) {
 		this.addItems( config.items );
 	}
@@ -10130,6 +10135,10 @@ OO.inheritClass( OO.ui.FieldsetLayout, OO.ui.Layout );
 OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.mixin.IconElement );
 OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.mixin.LabelElement );
 OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.mixin.GroupElement );
+
+/* Static Properties */
+
+OO.ui.FieldsetLayout.static.tagName = 'fieldset';
 
 /**
  * FormLayouts are used to wrap {@link OO.ui.FieldsetLayout FieldsetLayouts} when you intend to use browser-based
