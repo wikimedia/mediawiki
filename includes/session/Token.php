@@ -73,7 +73,7 @@ class Token {
 
 	/**
 	 * Get the string representation of the token at a timestamp
-	 * @param int timestamp
+	 * @param int $timestamp
 	 * @return string
 	 */
 	protected function toStringAtTimestamp( $timestamp ) {
