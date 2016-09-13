@@ -15,6 +15,7 @@ use LoadBalancer;
 use MediaHandlerFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\Linker\BatchLinkExistenceLookup;
 use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceContainer;
 use MediaWiki\Services\NoSuchServiceException;
@@ -580,6 +581,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getLinkRenderer() {
 		return $this->getService( 'LinkRenderer' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return BatchLinkExistenceLookup
+	 */
+	public function getBatchLinkExistenceLookup() {
+		return $this->getService( 'BatchLinkExistenceLookup' );
 	}
 
 	/**
