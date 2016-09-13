@@ -160,6 +160,8 @@ class DeferredUpdates {
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$method = RequestContext::getMain()->getRequest()->getMethod();
 
+		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
+
 		/** @var ErrorPageError $reportableError */
 		$reportableError = null;
 		/** @var DeferrableUpdate[] $updates Snapshot of queue */
@@ -182,7 +184,13 @@ class DeferredUpdates {
 			// Order will be DataUpdate followed by generic DeferrableUpdate tasks
 			$updatesByType = [ 'data' => [], 'generic' => [] ];
 			foreach ( $updates as $du ) {
-				$updatesByType[$du instanceof DataUpdate ? 'data' : 'generic'][] = $du;
+				if ( $du instanceof DataUpdate ) {
+					$du->setTransactionTicket( $ticket );
+					$updatesByType['data'][] = $du;
+				} else {
+					$updatesByType['generic'][] = $du;
+				}
+
 				$name = ( $du instanceof DeferrableCallback )
 					? get_class( $du ) . '-' . $du->getOrigin()
 					: get_class( $du );
