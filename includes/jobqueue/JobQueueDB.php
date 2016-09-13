@@ -20,6 +20,7 @@
  * @file
  * @author Aaron Schulz
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Class to handle job queues stored in the DB
@@ -526,7 +527,8 @@ class JobQueueDB extends JobQueue {
 	 * @return void
 	 */
 	protected function doWaitForBackups() {
-		wfWaitForSlaves( false, $this->wiki, $this->cluster ?: false );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory->waitForReplication( [ 'wiki' => $this->wiki, 'cluster' => $this->cluster ] );
 	}
 
 	/**
@@ -755,9 +757,10 @@ class JobQueueDB extends JobQueue {
 	 * @return DBConnRef
 	 */
 	protected function getDB( $index ) {
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$lb = ( $this->cluster !== false )
-			? wfGetLBFactory()->getExternalLB( $this->cluster, $this->wiki )
-			: wfGetLB( $this->wiki );
+			? $lbFactory->getExternalLB( $this->cluster, $this->wiki )
+			: $lbFactory->getMainLB( $this->wiki );
 
 		return $lb->getConnectionRef( $index, [], $this->wiki );
 	}
