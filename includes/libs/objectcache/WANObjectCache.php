@@ -88,6 +88,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/** @var int ERR_* constant for the "last error" registry */
 	protected $lastRelayError = self::ERR_NONE;
 
+	/** @var mixed[] Temporary warm-up cache */
+	private $warmupCache = [];
+
 	/** Max time expected to pass between delete() and DB commit finishing */
 	const MAX_COMMIT_DELAY = 3;
 	/** Max replication+snapshot lag before applying TTL_LAGGED or disallowing set() */
@@ -284,7 +287,14 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		}
 
 		// Fetch all of the raw values
-		$wrappedValues = $this->cache->getMulti( array_merge( $valueKeys, $checkKeysFlat ) );
+		$keysGet = array_merge( $valueKeys, $checkKeysFlat );
+		if ( $this->warmupCache ) {
+			$wrappedValues = array_intersect_key( $this->warmupCache, array_flip( $keysGet ) );
+			$keysGet = array_diff( $keysGet, array_keys( $wrappedValues ) ); // remaining
+		} else {
+			$wrappedValues = [];
+		}
+		$wrappedValues += $this->cache->getMulti( $keysGet );
 		// Time used to compare/init "check" keys (derived after getMulti() to be pessimistic)
 		$now = microtime( true );
 
@@ -1017,6 +1027,90 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
+	 * Method to fetch/regenerate multiple cache keys at once
+	 *
+	 * This works the same as getWithSetCallback() except:
+	 *   - a) The $keys argument expects the result of WANObjectCache::makeMultiKeys()
+	 *   - b) The $callbackFactory argument expects a callback taking the following arguments:
+	 *          - The ID of an entitiy to query
+	 *          - This WANObjectCache instance; useful for calling makeKey()/makeGlobalKey()
+	 *        The callback should yield another callback which actually renegerates the cache
+	 *        for the entity. The latter callback is the same as those for getWithSetCallback().
+	 *   - c) The return value is a map of (cache key => value) in the order of $keyedIds
+	 *
+	 * @see WANObjectCache::getWithSetCallback()
+	 *
+	 * Example usage:
+	 * @code
+	 *     $rows = $cache->getMultiWithSetCallback(
+	 *         // Map of cache keys to entitiy IDs
+	 *         $cache->makeMultiKeys(
+	 *             $this->fileVersionIds(),
+	 *             function ( $id, WANObjectCache $cache ) {
+	 *                 return $cache->makeKey( 'file-version', $id );
+	 *             }
+	 *         ),
+	 *         // Time-to-live (in seconds)
+	 *         $cache::TTL_DAY,
+	 *         // Generator function that yields the $id-specific callback
+	 *         function ( $id ) {
+	 *             // Function that derives the new key value
+	 *             return function ( $oldValue, &$ttl, array &$setOpts ) use ( $id ) {
+	 *                 $dbr = wfGetDB( DB_REPLICA );
+	 *                 // Account for any snapshot/replica DB lag
+	 *                 $setOpts += Database::getCacheSetOptions( $dbr );
+	 *
+	 *                 // Load the row for this file
+	 *                 $row = $dbr->selectRow( 'file', '*', [ 'id' => $id ], __METHOD__ );
+	 *
+	 *                 return $row ? (array)$row : false;
+	 *             }
+	 *         },
+	 *         [
+	 *             // Process cache for 30 seconds
+	 *             'pcTTL' => 30,
+	 *             // Use a dedicated 500 item cache (initialized on-the-fly)
+	 *             'pcGroup' => 'file-versions:500'
+	 *         ]
+	 *     );
+	 *     $files = array_map( [ __CLASS__, 'newFromRow' ], $rows );
+	 * @endcode
+	 *
+	 * @param ArrayIterator $keyedIds Result of WANObjectCache::makeMultiKeys()
+	 * @param integer $ttl Seconds to live for key updates
+	 * @param callable $callbackFactory Callback the yields entity regeneration callback
+	 * @param array $opts Options map
+	 * @return array Map of (cache key => value) in the same order as $ids/$keys
+	 * @since 1.28
+	 */
+	final public function getMultiWithSetCallback(
+		ArrayIterator $keyedIds, $ttl, callable $callbackFactory, array $opts = []
+	) {
+		$keysWarmUp = iterator_to_array( $keyedIds, true );
+		$checkKeys = isset( $opts['checkKeys'] ) ? $opts['checkKeys'] : [];
+		foreach ( $checkKeys as $i => $checkKeyOrKeys ) {
+			if ( is_int( $i ) ) {
+				$keysWarmUp[] = $checkKeyOrKeys;
+			} else {
+				$keysWarmUp = array_merge( $keysWarmUp, $checkKeyOrKeys );
+			}
+		}
+
+		$this->warmupCache = $this->cache->getMulti( $keysWarmUp );
+		$this->warmupCache += array_fill_keys( $keysWarmUp, false );
+
+		$values = [];
+		foreach ( $keyedIds as $key => $id ) {
+			$callback = $callbackFactory( $id );
+			$values[$key] = $this->getWithSetCallback( $key, $ttl, $callback, $opts );
+		}
+
+		$this->warmupCache = [];
+
+		return $values;
+	}
+
+	/**
 	 * @see BagOStuff::makeKey()
 	 * @param string ... Key component
 	 * @return string
@@ -1034,6 +1128,21 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 */
 	public function makeGlobalKey() {
 		return call_user_func_array( [ $this->cache, __FUNCTION__ ], func_get_args() );
+	}
+
+	/**
+	 * @param array $entities List of entity IDs
+	 * @param callable $keyFunc Callback yielding a key from (entity ID, this WANObjectCache)
+	 * @return ArrayIterator Iterator yielding (cache key => entity ID) in $entities order
+	 * @since 1.28
+	 */
+	public function makeMultiKeys( array $entities, callable $keyFunc ) {
+		$map = [];
+		foreach ( $entities as $entity ) {
+			$map[$keyFunc( $entity, $this )] = $entity;
+		}
+
+		return new ArrayIterator( $map );
 	}
 
 	/**
