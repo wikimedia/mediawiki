@@ -29,13 +29,14 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 	 * @dataProvider provideSetAndGet
 	 * @covers WANObjectCache::set()
 	 * @covers WANObjectCache::get()
+	 * @covers WANObjectCache::makeKey()
 	 * @param mixed $value
 	 * @param integer $ttl
 	 */
 	public function testSetAndGet( $value, $ttl ) {
 		$curTTL = null;
 		$asOf = null;
-		$key = wfRandomString();
+		$key = $this->cache->makeKey( 'x', wfRandomString() );
 
 		$this->cache->get( $key, $curTTL, [], $asOf );
 		$this->assertNull( $curTTL, "Current TTL is null" );
@@ -71,9 +72,10 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers WANObjectCache::get()
+	 * @covers WANObjectCache::makeGlobalKey()
 	 */
 	public function testGetNotExists() {
-		$key = wfRandomString();
+		$key = $this->cache->makeGlobalKey( 'y', wfRandomString(), 'p' );
 		$curTTL = null;
 		$value = $this->cache->get( $key, $curTTL );
 
@@ -241,6 +243,141 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 	}
 
 	public static function getWithSetCallback_provider() {
+		return [
+			[ [], false ],
+			[ [ 'version' => 1 ], true ]
+		];
+	}
+
+	/**
+	 * @dataProvider getMultiWithSetCallback_provider
+	 * @covers WANObjectCache::getWithSetCallback()
+	 * @covers WANObjectCache::doGetWithSetCallback()
+	 * @param array $extOpts
+	 * @param bool $versioned
+	 */
+	public function testGetMultiWithSetCallback( array $extOpts, $versioned ) {
+		$cache = $this->cache;
+
+		$key = wfRandomString();
+		$value = wfRandomString();
+		$cKey1 = wfRandomString();
+		$cKey2 = wfRandomString();
+
+		$priorValue = null;
+		$priorAsOf = null;
+		$wasSet = 0;
+		$func = function( $old, &$ttl, &$opts, $asOf )
+		use ( &$wasSet, &$priorValue, &$priorAsOf, $value )
+		{
+			++$wasSet;
+			$priorValue = $old;
+			$priorAsOf = $asOf;
+			$ttl = 20; // override with another value
+			return $value;
+		};
+
+		$wasSet = 0;
+		$keyedIds = new ArrayIterator( [ $key => mt_rand() ] );
+		$v = $cache->getMultiWithSetCallback( $keyedIds, 30, $func, [ 'lockTSE' => 5 ] + $extOpts );
+		$this->assertEquals( $value, $v[$key], "Value returned" );
+		$this->assertEquals( 1, $wasSet, "Value regenerated" );
+		$this->assertFalse( $priorValue, "No prior value" );
+		$this->assertNull( $priorAsOf, "No prior value" );
+
+		$curTTL = null;
+		$cache->get( $key, $curTTL );
+		$this->assertLessThanOrEqual( 20, $curTTL, 'Current TTL between 19-20 (overriden)' );
+		$this->assertGreaterThanOrEqual( 19, $curTTL, 'Current TTL between 19-20 (overriden)' );
+
+		$wasSet = 0;
+		$keyedIds = new ArrayIterator( [ $key => mt_rand() ] );
+		$v = $cache->getMultiWithSetCallback( $keyedIds, 30, $func, [
+				'lowTTL' => 0,
+				'lockTSE' => 5,
+			] + $extOpts );
+		$this->assertEquals( $value, $v[$key], "Value returned" );
+		$this->assertEquals( 0, $wasSet, "Value not regenerated" );
+
+		$priorTime = microtime( true );
+		usleep( 1 );
+		$wasSet = 0;
+		$keyedIds = new ArrayIterator( [ $key => mt_rand() ] );
+		$v = $cache->getMultiWithSetCallback(
+			$keyedIds, 30, $func, [ 'checkKeys' => [ $cKey1, $cKey2 ] ] + $extOpts
+		);
+		$this->assertEquals( $value, $v[$key], "Value returned" );
+		$this->assertEquals( 1, $wasSet, "Value regenerated due to check keys" );
+		$this->assertEquals( $value, $priorValue, "Has prior value" );
+		$this->assertType( 'float', $priorAsOf, "Has prior value" );
+		$t1 = $cache->getCheckKeyTime( $cKey1 );
+		$this->assertGreaterThanOrEqual( $priorTime, $t1, 'Check keys generated on miss' );
+		$t2 = $cache->getCheckKeyTime( $cKey2 );
+		$this->assertGreaterThanOrEqual( $priorTime, $t2, 'Check keys generated on miss' );
+
+		$priorTime = microtime( true );
+		$wasSet = 0;
+		$keyedIds = new ArrayIterator( [ $key => mt_rand() ] );
+		$v = $cache->getMultiWithSetCallback(
+			$keyedIds, 30, $func, [ 'checkKeys' => [ $cKey1, $cKey2 ] ] + $extOpts
+		);
+		$this->assertEquals( $value, $v[$key], "Value returned" );
+		$this->assertEquals( 1, $wasSet, "Value regenerated due to still-recent check keys" );
+		$t1 = $cache->getCheckKeyTime( $cKey1 );
+		$this->assertLessThanOrEqual( $priorTime, $t1, 'Check keys did not change again' );
+		$t2 = $cache->getCheckKeyTime( $cKey2 );
+		$this->assertLessThanOrEqual( $priorTime, $t2, 'Check keys did not change again' );
+
+		$curTTL = null;
+		$v = $cache->get( $key, $curTTL, [ $cKey1, $cKey2 ] );
+		if ( $versioned ) {
+			$this->assertEquals( $value, $v[$cache::VFLD_DATA], "Value returned" );
+		} else {
+			$this->assertEquals( $value, $v, "Value returned" );
+		}
+		$this->assertLessThanOrEqual( 0, $curTTL, "Value has current TTL < 0 due to check keys" );
+
+		$wasSet = 0;
+		$key = wfRandomString();
+		$keyedIds = new ArrayIterator( [ $key => mt_rand() ] );
+		$v = $cache->getMultiWithSetCallback( $keyedIds, 30, $func, [ 'pcTTL' => 5 ] + $extOpts );
+		$this->assertEquals( $value, $v[$key], "Value returned" );
+		$cache->delete( $key );
+		$keyedIds = new ArrayIterator( [ $key => mt_rand() ] );
+		$v = $cache->getMultiWithSetCallback( $keyedIds, 30, $func, [ 'pcTTL' => 5 ] + $extOpts );
+		$this->assertEquals( $value, $v[$key], "Value still returned after deleted" );
+		$this->assertEquals( 1, $wasSet, "Value process cached while deleted" );
+
+		$calls = 0;
+		$ids = [ 1, 2, 3, 4, 5, 6 ];
+		$keyFunc = function ( $id ) use ( $cache ) {
+			return $cache->makeKey( 'test', $id );
+		};
+		$keyedIds = $cache->makeMultiKeys( $ids, $keyFunc );
+		$valFunc = function () use ( $keyedIds, &$calls ) {
+			++$calls;
+
+			return "val-{$keyedIds->current()}";
+		};
+		$values = $cache->getMultiWithSetCallback( $keyedIds, 10, $valFunc );
+
+		$this->assertEquals(
+			[ "val-1", "val-2", "val-3", "val-4", "val-5", "val-6" ],
+			array_values( $values ),
+			"Correct values in correct order"
+		);
+		$this->assertEquals(
+			array_map( $keyFunc, $ids ),
+			array_keys( $values ),
+			"Correct keys in correct order"
+		);
+		$this->assertEquals( count( $ids ), $calls );
+
+		$cache->getMultiWithSetCallback( $keyedIds, 10, $valFunc );
+		$this->assertEquals( count( $ids ), $calls, "Values cached" );
+	}
+
+	public static function getMultiWithSetCallback_provider() {
 		return [
 			[ [], false ],
 			[ [ 'version' => 1 ], true ]
