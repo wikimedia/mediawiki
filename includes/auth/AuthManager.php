@@ -606,6 +606,7 @@ class AuthManager implements LoggerAwareInterface {
 
 			$user = User::newFromName( $res->username, 'usable' );
 			if ( !$user ) {
+				$provider = $this->getAuthenticationProvider( $state['primary'] );
 				throw new \DomainException(
 					get_class( $provider ) . " returned an invalid username: {$res->username}"
 				);
@@ -681,6 +682,7 @@ class AuthManager implements LoggerAwareInterface {
 			$this->logger->info( 'Login for {user} succeeded', [
 				'user' => $user->getName(),
 			] );
+			/** @var RememberMeAuthenticationRequest $req */
 			$req = AuthenticationRequest::getRequestByClass(
 				$beginReqs, RememberMeAuthenticationRequest::class
 			);
@@ -1398,7 +1400,7 @@ class AuthManager implements LoggerAwareInterface {
 					'creator' => $creator->getName(),
 				] );
 				$status = $user->addToDatabase();
-				if ( !$status->isOk() ) {
+				if ( !$status->isOK() ) {
 					// @codeCoverageIgnoreStart
 					$ret = AuthenticationResponse::newFail( $status->getMessage() );
 					$this->callMethodOnProviders( 7, 'postAccountCreation', [ $user, $creator, $ret ] );
@@ -1429,6 +1431,7 @@ class AuthManager implements LoggerAwareInterface {
 					);
 					$logEntry->setPerformer( $isAnon ? $user : $creator );
 					$logEntry->setTarget( $user->getUserPage() );
+					/** @var CreationReasonAuthenticationRequest $req */
 					$req = AuthenticationRequest::getRequestByClass(
 						$state['reqs'], CreationReasonAuthenticationRequest::class
 					);
@@ -1601,7 +1604,7 @@ class AuthManager implements LoggerAwareInterface {
 			$this->logger->debug( __METHOD__ . ': name "{username}" is not creatable', [
 				'username' => $username,
 			] );
-			$session->set( 'AuthManager::AutoCreateBlacklist', 'noname', 600 );
+			$session->set( 'AuthManager::AutoCreateBlacklist', 'noname' );
 			$user->setId( 0 );
 			$user->loadFromId();
 			return Status::newFatal( 'noname' );
@@ -1614,7 +1617,7 @@ class AuthManager implements LoggerAwareInterface {
 				'username' => $username,
 				'ip' => $anon->getName(),
 			] );
-			$session->set( 'AuthManager::AutoCreateBlacklist', 'authmanager-autocreate-noperm', 600 );
+			$session->set( 'AuthManager::AutoCreateBlacklist', 'authmanager-autocreate-noperm' );
 			$session->persist();
 			$user->setId( 0 );
 			$user->loadFromId();
@@ -1649,7 +1652,7 @@ class AuthManager implements LoggerAwareInterface {
 					'username' => $username,
 					'reason' => $ret->getWikiText( null, null, 'en' ),
 				] );
-				$session->set( 'AuthManager::AutoCreateBlacklist', $status, 600 );
+				$session->set( 'AuthManager::AutoCreateBlacklist', $status );
 				$user->setId( 0 );
 				$user->loadFromId();
 				return $ret;
@@ -1678,7 +1681,7 @@ class AuthManager implements LoggerAwareInterface {
 		$trxProfiler->setSilenced( true );
 		try {
 			$status = $user->addToDatabase();
-			if ( !$status->isOk() ) {
+			if ( !$status->isOK() ) {
 				// Double-check for a race condition (T70012). We make use of the fact that when
 				// addToDatabase fails due to the user already existing, the user object gets loaded.
 				if ( $user->getId() ) {
