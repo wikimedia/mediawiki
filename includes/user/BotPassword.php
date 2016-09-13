@@ -411,11 +411,13 @@ class BotPassword implements IDBAccessObject {
 	 */
 	public static function canonicalizeLoginData( $username, $password ) {
 		$sep = BotPassword::getSeparator();
-		if ( strpos( $username, $sep ) !== false ) {
-			// the separator is not valid in usernames so this must be a bot login
-			return [ $username, $password, false ];
+		// the strlen check helps minimize the password information obtainable from timing
+		if ( strlen( $password ) >= 32 && strpos( $username, $sep ) !== false ) {
+			// the separator is not valid in new usernames but might appear in legacy ones
+			if ( preg_match( '/^[0-9a-w]{32,}$/', $password ) ) {
+				return [ $username, $password, true ];
+			}
 		} elseif ( strlen( $password ) > 32 && strpos( $password, $sep ) !== false ) {
-			// the strlen check helps minimize the password information obtainable from timing
 			$segments = explode( $sep, $password );
 			$password = array_pop( $segments );
 			$appId = implode( $sep, $segments );
