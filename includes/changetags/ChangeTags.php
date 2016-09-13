@@ -30,6 +30,11 @@ class ChangeTags {
 	const MAX_DELETE_USES = 5000;
 
 	/**
+	 * @var string[]
+	 */
+	private static $coreTags = [ 'mw-contentmodelchange' ];
+
+	/**
 	 * Creates HTML for the given tags
 	 *
 	 * @param string $tags Comma-separated list of tags
@@ -1126,25 +1131,26 @@ class ChangeTags {
 	}
 
 	/**
-	 * Lists those tags which extensions report as being "active".
+	 * Lists those tags which core or extensions report as being "active".
 	 *
 	 * @return array
 	 * @since 1.25
 	 */
 	public static function listExtensionActivatedTags() {
+		// core active tags
+		$tags = self::$coreTags;
 		if ( !Hooks::isRegistered( 'ChangeTagsListActive' ) ) {
-			return [];
+			return $tags;
 		}
 		return ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'active-tags' ),
 			WANObjectCache::TTL_MINUTE * 5,
-			function ( $oldValue, &$ttl, array &$setOpts ) {
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags ) {
 				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
 
 				// Ask extensions which tags they consider active
-				$extensionActive = [];
-				Hooks::run( 'ChangeTagsListActive', [ &$extensionActive ] );
-				return $extensionActive;
+				Hooks::run( 'ChangeTagsListActive', [ &$tags ] );
+				return $tags;
 			},
 			[
 				'checkKeys' => [ wfMemcKey( 'active-tags' ) ],
@@ -1201,7 +1207,7 @@ class ChangeTags {
 	}
 
 	/**
-	 * Lists tags defined by extensions using the ListDefinedTags hook.
+	 * Lists tags defined by core or extensions using the ListDefinedTags hook.
 	 * Extensions need only define those tags they deem to be in active use.
 	 *
 	 * Tries memcached first.
@@ -1210,16 +1216,17 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function listExtensionDefinedTags() {
+		// core defined tags
+		$tags = self::$coreTags;
 		if ( !Hooks::isRegistered( 'ListDefinedTags' ) ) {
-			return [];
+			return $tags;
 		}
 		return ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'valid-tags-hook' ),
 			WANObjectCache::TTL_MINUTE * 5,
-			function ( $oldValue, &$ttl, array &$setOpts ) {
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags ) {
 				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
 
-				$tags = [];
 				Hooks::run( 'ListDefinedTags', [ &$tags ] );
 				return array_filter( array_unique( $tags ) );
 			},
