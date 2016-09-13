@@ -3706,4 +3706,15 @@ class WikiPage implements Page, IDBAccessObject {
 		Hooks::run( 'WikiPageDeletionUpdates', [ $this, $content, &$updates ] );
 		return $updates;
 	}
+
+	/**
+	 * Whether this content displayed on this page
+	 * comes from the local database
+	 *
+	 * @since 1.28
+	 * @return bool
+	 */
+	public function isLocal() {
+		return true;
+	}
 }
