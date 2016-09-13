@@ -1662,11 +1662,11 @@ class LoadBalancer {
 	 *
 	 * @param IDatabase $conn Replica DB
 	 * @param DBMasterPos|bool $pos Master position; default: current position
-	 * @param integer $timeout Timeout in seconds
+	 * @param integer|null $timeout Timeout in seconds [optional]
 	 * @return bool Success
 	 * @since 1.27
 	 */
-	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = 10 ) {
+	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = null ) {
 		if ( $this->getServerCount() == 1 || !$conn->getLBInfo( 'replica' ) ) {
 			return true; // server is not a replica DB
 		}
@@ -1676,6 +1676,7 @@ class LoadBalancer {
 			return false; // something is misconfigured
 		}
 
+		$timeout = $timeout ?: $this->mWaitTimeout;
 		$result = $conn->masterPosWait( $pos, $timeout );
 		if ( $result == -1 || is_null( $result ) ) {
 			$msg = __METHOD__ . ": Timed out waiting on {$conn->getServer()} pos {$pos}";
