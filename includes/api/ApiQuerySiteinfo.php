@@ -275,6 +275,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['allcentralidlookupproviders'] = $providerIds;
 
 		$data['interwikimagic'] = (bool)$config->get( 'InterwikiMagic' );
+		$data['magiclinks'] = $config->get( 'EnableMagicLinks' );
 
 		Hooks::run( 'APIQuerySiteInfoGeneralInfo', [ $this, &$data ] );
 
