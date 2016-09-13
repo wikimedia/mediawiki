@@ -33,6 +33,9 @@ use MediaWiki\MediaWikiServices;
  * @since 1.27
  */
 class CategoryMembershipChangeJob extends Job {
+	/** @var integer|null */
+	private $ticket;
+
 	const ENQUEUE_FUDGE_SEC = 60;
 
 	public function __construct( Title $title, array $params ) {
@@ -43,14 +46,18 @@ class CategoryMembershipChangeJob extends Job {
 	}
 
 	public function run() {
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lb = $lbFactory->getMainLB();
+		$dbw = $lb->getConnection( DB_MASTER );
+
+		$this->ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
+
 		$page = WikiPage::newFromID( $this->params['pageId'], WikiPage::READ_LATEST );
 		if ( !$page ) {
 			$this->setLastError( "Could not find page #{$this->params['pageId']}" );
 			return false; // deleted?
 		}
 
-		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		$dbw = $lb->getConnection( DB_MASTER );
 		// Use a named lock so that jobs for this page see each others' changes
 		$lockKey = "CategoryMembershipUpdates:{$page->getId()}";
 		$scopedLock = $dbw->getScopedLockAndFlush( $lockKey, __METHOD__, 10 );
@@ -59,7 +66,7 @@ class CategoryMembershipChangeJob extends Job {
 			return false;
 		}
 
-		$dbr = wfGetDB( DB_REPLICA, [ 'recentchanges' ] );
+		$dbr = $lb->getConnection( DB_REPLICA, [ 'recentchanges' ] );
 		// Wait till the replica DB is caught up so that jobs for this page see each others' changes
 		if ( !$lb->safeWaitForMasterPos( $dbr ) ) {
 			$this->setLastError( "Timed out while waiting for replica DB to catch up" );
@@ -120,7 +127,6 @@ class CategoryMembershipChangeJob extends Job {
 		);
 
 		// Apply all category updates in revision timestamp order
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		foreach ( $res as $row ) {
 			$this->notifyUpdatesForRevision( $lbFactory, $page, Revision::newFromRow( $row ) );
 		}
@@ -162,8 +168,6 @@ class CategoryMembershipChangeJob extends Job {
 			return; // nothing to do
 		}
 
-		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
-
 		$catMembChange = new CategoryMembershipChange( $title, $newRev );
 		$catMembChange->checkTemplateLinks();
 
@@ -174,7 +178,7 @@ class CategoryMembershipChangeJob extends Job {
 			$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryName );
 			$catMembChange->triggerCategoryAddedNotification( $categoryTitle );
 			if ( $insertCount++ && ( $insertCount % $batchSize ) == 0 ) {
-				$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+				$lbFactory->commitAndWaitForReplication( __METHOD__, $this->ticket );
 			}
 		}
 
@@ -182,7 +186,7 @@ class CategoryMembershipChangeJob extends Job {
 			$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryName );
 			$catMembChange->triggerCategoryRemovedNotification( $categoryTitle );
 			if ( $insertCount++ && ( $insertCount++ % $batchSize ) == 0 ) {
-				$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+				$lbFactory->commitAndWaitForReplication( __METHOD__, $this->ticket );
 			}
 		}
 	}
