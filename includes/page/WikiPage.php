@@ -1599,9 +1599,14 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function doEditContent(
 		Content $content, $summary, $flags = 0, $baseRevId = false,
-		User $user = null, $serialFormat = null, $tags = null
+		User $user = null, $serialFormat = null, $tags = []
 	) {
 		global $wgUser, $wgUseAutomaticEditSummaries;
+
+		// Old default parameter for $tags was null
+		if ( $tags === null ) {
+			$tags = [];
+		}
 
 		// Low-level sanity check
 		if ( $this->mTitle->getText() === '' ) {
@@ -1641,6 +1646,10 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$old_revision = $this->getRevision(); // current revision
 		$old_content = $this->getContent( Revision::RAW ); // current revision's content
+
+		if ( $old_content && $old_content->getModel() !== $content->getModel() ) {
+			$tags[] = 'mwcontentmodelchange';
+		}
 
 		// Provide autosummaries if one is not provided and autosummaries are enabled
 		if ( $wgUseAutomaticEditSummaries && ( $flags & EDIT_AUTOSUMMARY ) && $summary == '' ) {
