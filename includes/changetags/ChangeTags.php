@@ -1132,6 +1132,9 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function listExtensionActivatedTags() {
+		if ( !Hooks::isRegistered( 'ChangeTagsListActive' ) ) {
+			return [];
+		}
 		return ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'active-tags' ),
 			WANObjectCache::TTL_MINUTE * 5,
@@ -1207,6 +1210,9 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function listExtensionDefinedTags() {
+		if ( !Hooks::isRegistered( 'ListDefinedTags' ) ) {
+			return [];
+		}
 		return ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'valid-tags-hook' ),
 			WANObjectCache::TTL_MINUTE * 5,
