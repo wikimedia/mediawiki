@@ -2268,7 +2268,7 @@
 	"seconds-ago": "$1 {{PLURAL:$1|સેકંડ|સેકંડો}} ago",
 	"monday-at": "$1 પર સોમવાર",
 	"tuesday-at": "$1 પર મંગળવાર",
-	"wednesday-at": "$1 પર બુધવાર",
+	"wednesday-at": "બુધવારે $1 વાગ્યે",
 	"thursday-at": "$1 પર ગુરુવાર",
 	"friday-at": "$1 પર શુક્રવાર",
 	"saturday-at": "$1 પર શનિવાર",

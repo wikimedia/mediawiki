@@ -376,6 +376,7 @@
 	"createacct-yourpasswordagain-ph": "پټنوم مو بيا وټاپئ",
 	"userlogin-remembermypassword": "غونډال کې مې ننوتلی وساته",
 	"userlogin-signwithsecure": "خوندي اړيکتيا کارول",
+	"cannotcreateaccount-title": "گڼونونه نه شي جوړېدای",
 	"yourdomainname": "ستاسې شپول:",
 	"password-change-forbidden": "تاسې په دې ويکي باندې خپل پټنوم نه شی بدلولی.",
 	"login": "ننوتل",

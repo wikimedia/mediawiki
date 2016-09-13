@@ -1890,7 +1890,7 @@
 	"usercreated": "{{GENDER:$3|Registrado|Registrada}} el $1 a las $2",
 	"newpages": "Páginas nuevas",
 	"newpages-submit": "Mostrar",
-	"newpages-username": "Nombre de usuario",
+	"newpages-username": "Nombre de usuario:",
 	"ancientpages": "Páginas más antiguas",
 	"move": "Trasladar",
 	"movethispage": "Trasladar esta página",

@@ -74,7 +74,8 @@
 			"Reke",
 			"Kly",
 			"Cosine02",
-			"一個正常人"
+			"一個正常人",
+			"Wehwei"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -465,8 +466,11 @@
 	"createacct-yourpasswordagain-ph": "再次輸入密碼",
 	"userlogin-remembermypassword": "記住我的登入狀態",
 	"userlogin-signwithsecure": "使用安全連線",
+	"cannotlogin-title": "無法登入",
+	"cannotlogin-text": "無法登入",
 	"cannotloginnow-title": "現在無法登入",
 	"cannotloginnow-text": "使用 $1 時無法登入。",
+	"cannotcreateaccount-title": "無法建立帳號",
 	"yourdomainname": "您的網域：",
 	"password-change-forbidden": "您不可變更此 Wiki 上的密碼。",
 	"externaldberror": "這可能是由於資料庫驗證錯誤，或是不允許您更新外部帳號。",
@@ -2644,6 +2648,7 @@
 	"pageinfo-article-id": "頁面 ID",
 	"pageinfo-language": "頁面內容語言",
 	"pageinfo-content-model": "頁面內容模型",
+	"pageinfo-content-model-change": "變更",
 	"pageinfo-robot-policy": "由機器人建立索引",
 	"pageinfo-robot-index": "允許",
 	"pageinfo-robot-noindex": "不允許",
@@ -3318,7 +3323,7 @@
 	"tags-actions-header": "操作",
 	"tags-active-yes": "是",
 	"tags-active-no": "否",
-	"tags-source-extension": "由擴充套件定義",
+	"tags-source-extension": "由軟體定義",
 	"tags-source-manual": "由使用者與機器人手動套用",
 	"tags-source-none": "不再使用",
 	"tags-edit": "編輯",

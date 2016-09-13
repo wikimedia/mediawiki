@@ -2439,7 +2439,7 @@
 	"allmessagesdefault": "متن پیش‌فرض پیغام",
 	"allmessagescurrent": "متن کنونی پیغام",
 	"allmessagestext": "این فهرستی از پیغام‌های سامانه‌ای موجود در فضای نام مدیاویکی است.\nچنانچه مایل به مشارکت در محلی‌سازی مدیاویکی هستید لطفاً [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation محلی‌سازی مدیاویکی] و [https://translatewiki.net translatewiki.net] را ببینید.",
-	"allmessagesnotsupportedDB": "این صفحه نمی‌تواند استفاده شود به این دلیل که <bdi>'''$wgUseDatabaseMessages'''</bdi> غیرفعال شده‌است.",
+	"allmessagesnotsupportedDB": "این صفحه نمی‌تواند استفاده شود به این دلیل که <strong>‎$wgUseDatabaseMessages</strong> غیرفعال شده است.",
 	"allmessages-filter-legend": "پالایه",
 	"allmessages-filter": "پالودن بر اساس وضعیت شخصی‌سازی:",
 	"allmessages-filter-unmodified": "تغییر نیافته",
