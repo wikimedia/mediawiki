@@ -288,6 +288,7 @@ class LinkHolderArray {
 		$linkCache = LinkCache::singleton();
 		$output = $this->parent->getOutput();
 		$linkRenderer = $this->parent->getLinkRenderer();
+		$batchLookup = $this->parent->getExistenceLookup();
 
 		$dbr = wfGetDB( DB_REPLICA );
 
@@ -296,9 +297,8 @@ class LinkHolderArray {
 
 		$linkcolour_ids = [];
 
-		# Generate query
-		$lb = new LinkBatch();
-		$lb->setCaller( __METHOD__ );
+		# Entries that will be batch looked-up
+		$toLookup = [];
 
 		foreach ( $this->internals as $ns => $entries ) {
 			foreach ( $entries as $entry ) {
@@ -308,57 +308,51 @@ class LinkHolderArray {
 
 				# Skip invalid entries.
 				# Result will be ugly, but prevents crash.
-				if ( is_null( $title ) ) {
+				if ( $title === null ) {
 					continue;
 				}
 
-				# Check if it's a static known link, e.g. interwiki
-				if ( $title->isAlwaysKnown() ) {
-					$colours[$pdbk] = '';
-				} elseif ( $ns == NS_SPECIAL ) {
-					$colours[$pdbk] = 'new';
-				} else {
+				$exists = $batchLookup->add( $title );
+				# Check if it's a fast known link, e.g. interwiki
+				if ( $exists == $batchLookup::EXISTS ) {
 					$id = $linkCache->getGoodLinkID( $pdbk );
 					if ( $id != 0 ) {
+						# Local link
 						$colours[$pdbk] = $linkRenderer->getLinkClasses( $title );
-						$output->addLink( $title, $id );
 						$linkcolour_ids[$id] = $pdbk;
-					} elseif ( $linkCache->isBadLink( $pdbk ) ) {
-						$colours[$pdbk] = 'new';
 					} else {
-						# Not in the link cache, add it to the query
-						$lb->addObj( $title );
+						# Foreign link, so no colours
+						$colours[$pdbk] = '';
 					}
+				# Fast broken link
+				} elseif ( $exists == $batchLookup::BROKEN ) {
+					$colours[$pdbk] = 'new';
+				} else {
+					$toLookup[] = $entry;
 				}
 			}
 		}
-		if ( !$lb->isEmpty() ) {
-			$fields = array_merge(
-				LinkCache::getSelectFields(),
-				[ 'page_namespace', 'page_title' ]
-			);
-
-			$res = $dbr->select(
-				'page',
-				$fields,
-				$lb->constructSet( 'page', $dbr ),
-				__METHOD__
-			);
-
-			# Fetch data and form into an associative array
-			# non-existent = broken
-			foreach ( $res as $s ) {
-				$title = Title::makeTitle( $s->page_namespace, $s->page_title );
-				$pdbk = $title->getPrefixedDBkey();
-				$linkCache->addGoodLinkObjFromRow( $title, $s );
-				$output->addLink( $title, $s->page_id );
-				$colours[$pdbk] = $linkRenderer->getLinkClasses( $title );
-				// add id to the extension todolist
-				$linkcolour_ids[$s->page_id] = $pdbk;
+		$batchLookup->lookup();
+		foreach ( $toLookup as $entry ) {
+			/** @var Title $title */
+			$title = $entry['title'];
+			$pdbk = $entry['pdbk'];
+			if ( $batchLookup->exists( $title ) ) {
+				$id = $linkCache->getGoodLinkID( $pdbk );
+				if ( $id != 0 ) {
+					# Local link
+					$colours[$pdbk] = $linkRenderer->getLinkClasses( $title );
+					$linkcolour_ids[$id] = $pdbk;
+				} else {
+					# Foreign link, so no colours
+					$colours[$pdbk] = '';
+				}
+			} else {
+				$colours[$pdbk] = 'new';
 			}
-			unset( $res );
 		}
-		if ( count( $linkcolour_ids ) ) {
+
+		if ( $linkcolour_ids ) {
 			// pass an array of page_ids to an extension
 			Hooks::run( 'GetLinkColours', [ $linkcolour_ids, &$colours ] );
 		}
@@ -386,9 +380,6 @@ class LinkHolderArray {
 					$displayText = null;
 				} else {
 					$displayText = new HtmlArmor( $displayText );
-				}
-				if ( !isset( $colours[$pdbk] ) ) {
-					$colours[$pdbk] = 'new';
 				}
 				$attribs = [];
 				if ( $colours[$pdbk] == 'new' ) {
