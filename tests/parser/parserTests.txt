@@ -35,7 +35,8 @@
 #
 # You can also set the following parser properties via test options:
 #  wgEnableUploads, wgAllowExternalImages, wgMaxTocLevel,
-#  wgLinkHolderBatchSize, wgRawHtml, wgInterwikiMagic
+#  wgLinkHolderBatchSize, wgRawHtml, wgInterwikiMagic,
+#  wgEnableMagicLinks
 #
 # For testing purposes, temporary articles can created:
 # !!article / NAMESPACE:TITLE / !!text / ARTICLE TEXT / !!endarticle
@@ -10539,6 +10540,21 @@ X[//tools.ietf.org/html/rfc1234 foo]
 !! html/parsoid
 <p>X<a rel="mw:WikiLink" href="./Special:BookSources/0978739256" title="Special:BookSources/0978739256">foo</a></p>
 <p>X<a rel="mw:ExtLink" href="//tools.ietf.org/html/rfc1234">foo</a></p>
+!! end
+
+!! test
+Magic links: All disabled (T47942)
+!! options
+wgEnableMagicLinks={"ISBN":false, "PMID":false, "RFC":false}
+!! wikitext
+ISBN 0-306-40615-2
+PMID 1234
+RFC 4321
+!! html/php
+<p>ISBN 0-306-40615-2
+PMID 1234
+RFC 4321
+</p>
 !! end
 
 ###
