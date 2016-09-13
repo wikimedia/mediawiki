@@ -477,8 +477,8 @@ class ChangeTags {
 			// to be removed, a tag must not be defined by an extension, or equivalently it
 			// has to be either explicitly defined or not defined at all
 			// (assuming no edge case of a tag both explicitly-defined and extension-defined)
-			$extensionDefinedTags = self::listExtensionDefinedTags();
-			$intersect = array_intersect( $tagsToRemove, $extensionDefinedTags );
+			$softwareDefinedTags = self::listSoftwareDefinedTags();
+			$intersect = array_intersect( $tagsToRemove, $softwareDefinedTags );
 			if ( $intersect ) {
 				return self::restrictedTagError( 'tags-update-remove-not-allowed-one',
 					'tags-update-remove-not-allowed-multi', $intersect );
@@ -1075,8 +1075,8 @@ class ChangeTags {
 			return Status::newFatal( 'tags-delete-too-many-uses', $tag, self::MAX_DELETE_USES );
 		}
 
-		$extensionDefined = self::listExtensionDefinedTags();
-		if ( in_array( $tag, $extensionDefined ) ) {
+		$softwareDefined = self::listSoftwareDefinedTags();
+		if ( in_array( $tag, $softwareDefined ) ) {
 			// extension-defined tags can't be deleted unless the extension
 			// specifically allows it
 			$status = Status::newFatal( 'tags-delete-not-allowed' );
@@ -1136,7 +1136,7 @@ class ChangeTags {
 	 * @return array
 	 * @since 1.25
 	 */
-	public static function listExtensionActivatedTags() {
+	public static function listSoftwareActivatedTags() {
 		// core active tags
 		$tags = self::$coreTags;
 		if ( !Hooks::isRegistered( 'ChangeTagsListActive' ) ) {
@@ -1161,6 +1161,16 @@ class ChangeTags {
 	}
 
 	/**
+	 * @see listSoftwareActivatedTags
+	 * @deprecated since 1.28 call listSoftwareActivatedTags directly
+	 * @return array
+	 */
+	public static function listExtensionActivatedTags() {
+		wfDeprecated( __METHOD__, '1.28' );
+		return self::listSoftwareActivatedTags();
+	}
+
+	/**
 	 * Basically lists defined tags which count even if they aren't applied to anything.
 	 * It returns a union of the results of listExplicitlyDefinedTags() and
 	 * listExtensionDefinedTags().
@@ -1169,7 +1179,7 @@ class ChangeTags {
 	 */
 	public static function listDefinedTags() {
 		$tags1 = self::listExplicitlyDefinedTags();
-		$tags2 = self::listExtensionDefinedTags();
+		$tags2 = self::listSoftwareDefinedTags();
 		return array_values( array_unique( array_merge( $tags1, $tags2 ) ) );
 	}
 
@@ -1215,7 +1225,7 @@ class ChangeTags {
 	 * @return string[] Array of strings: tags
 	 * @since 1.25
 	 */
-	public static function listExtensionDefinedTags() {
+	public static function listSoftwareDefinedTags() {
 		// core defined tags
 		$tags = self::$coreTags;
 		if ( !Hooks::isRegistered( 'ListDefinedTags' ) ) {
@@ -1236,6 +1246,17 @@ class ChangeTags {
 				'pcTTL' => WANObjectCache::TTL_PROC_LONG
 			]
 		);
+	}
+
+	/**
+	 * Call listSoftwareDefinedTags directly
+	 *
+	 * @see listSoftwareDefinedTags
+	 * @deprecated since 1.28
+	 */
+	public static function listExtensionDefinedTags() {
+		wfDeprecated( __METHOD__, '1.28' );
+		return self::listSoftwareDefinedTags();
 	}
 
 	/**

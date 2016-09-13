@@ -34,14 +34,14 @@ class SpecialTags extends SpecialPage {
 	protected $explicitlyDefinedTags;
 
 	/**
-	 * @var array List of extension defined tags
+	 * @var array List of software defined tags
 	 */
-	protected $extensionDefinedTags;
+	protected $softwareDefinedTags;
 
 	/**
-	 * @var array List of extension activated tags
+	 * @var array List of software activated tags
 	 */
-	protected $extensionActivatedTags;
+	protected $softwareActivatedTags;
 
 	function __construct() {
 		parent::__construct( 'Tags' );
@@ -124,11 +124,11 @@ class SpecialTags extends SpecialPage {
 		// Used in #doTagRow()
 		$this->explicitlyDefinedTags = array_fill_keys(
 			ChangeTags::listExplicitlyDefinedTags(), true );
-		$this->extensionDefinedTags = array_fill_keys(
-			ChangeTags::listExtensionDefinedTags(), true );
+		$this->softwareDefinedTags = array_fill_keys(
+			ChangeTags::listSoftwareDefinedTags(), true );
 
 		// List all defined tags, even if they were never applied
-		$definedTags = array_keys( $this->explicitlyDefinedTags + $this->extensionDefinedTags );
+		$definedTags = array_keys( $this->explicitlyDefinedTags + $this->softwareDefinedTags );
 
 		// Show header only if there exists atleast one tag
 		if ( !$tagStats && !$definedTags ) {
@@ -149,8 +149,8 @@ class SpecialTags extends SpecialPage {
 		);
 
 		// Used in #doTagRow()
-		$this->extensionActivatedTags = array_fill_keys(
-			ChangeTags::listExtensionActivatedTags(), true );
+		$this->softwareActivatedTags = array_fill_keys(
+			ChangeTags::listSoftwareActivatedTags(), true );
 
 		// Insert tags that have been applied at least once
 		foreach ( $tagStats as $tag => $hitcount ) {
@@ -200,9 +200,10 @@ class SpecialTags extends SpecialPage {
 		$newRow .= Xml::tags( 'td', null, $desc );
 
 		$sourceMsgs = [];
-		$isExtension = isset( $this->extensionDefinedTags[$tag] );
+		$isSoftware = isset( $this->softwareDefinedTags[$tag] );
 		$isExplicit = isset( $this->explicitlyDefinedTags[$tag] );
-		if ( $isExtension ) {
+		if ( $isSoftware ) {
+			// TODO: Rename this message
 			$sourceMsgs[] = $this->msg( 'tags-source-extension' )->escaped();
 		}
 		if ( $isExplicit ) {
@@ -213,7 +214,7 @@ class SpecialTags extends SpecialPage {
 		}
 		$newRow .= Xml::tags( 'td', null, implode( Xml::element( 'br' ), $sourceMsgs ) );
 
-		$isActive = $isExplicit || isset( $this->extensionActivatedTags[$tag] );
+		$isActive = $isExplicit || isset( $this->softwareActivatedTags[$tag] );
 		$activeMsg = ( $isActive ? 'tags-active-yes' : 'tags-active-no' );
 		$newRow .= Xml::tags( 'td', null, $this->msg( $activeMsg )->escaped() );
 
@@ -357,9 +358,9 @@ class SpecialTags extends SpecialPage {
 		$preText .= $this->msg( 'tags-delete-explanation-warning', $tag )->parseAsBlock();
 
 		// see if the tag is in use
-		$this->extensionActivatedTags = array_fill_keys(
-			ChangeTags::listExtensionActivatedTags(), true );
-		if ( isset( $this->extensionActivatedTags[$tag] ) ) {
+		$this->softwareActivatedTags = array_fill_keys(
+			ChangeTags::listSoftwareActivatedTags(), true );
+		if ( isset( $this->softwareActivatedTags[$tag] ) ) {
 			$preText .= $this->msg( 'tags-delete-explanation-active', $tag )->parseAsBlock();
 		}
 
