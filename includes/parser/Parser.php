@@ -905,6 +905,15 @@ class Parser {
 	}
 
 	/**
+	 * @since 1.28
+	 * @return \MediaWiki\Linker\BatchLinkExistenceLookup
+	 */
+	public function getExistenceLookup() {
+		return MediaWikiServices::getInstance()
+			->getBatchLinkExistenceLookup();
+	}
+
+	/**
 	 * Replaces all occurrences of HTML-style comments and the given tags
 	 * in the text with a random marker and returns the next text. The output
 	 * parameter $matches will be an associative array filled with data in
@@ -2350,22 +2359,14 @@ class Parser {
 				continue;
 			}
 
-			# Some titles, such as valid special pages or files in foreign repos, should
-			# be shown as bluelinks even though they're not included in the page table
-			# @todo FIXME: isAlwaysKnown() can be expensive for file links; we should really do
-			# batch file existence checks for NS_FILE and NS_MEDIA
-			if ( $iw == '' && $nt->isAlwaysKnown() ) {
-				$this->mOutput->addLink( $nt );
-				$s .= $this->makeKnownLinkHolder( $nt, $text, $trail, $prefix );
-			} else {
-				# Links will be added to the output link list after checking
-				$s .= $holders->makeHolder( $nt, $text, [], $trail, $prefix );
-			}
+			$s .= $holders->makeHolder( $nt, $text, [], $trail, $prefix );
 		}
 		return $holders;
 	}
 
 	/**
+	 * @deprecated since 1.28, unused
+	 *
 	 * Render a forced-blue link inline; protect against double expansion of
 	 * URLs if we're in a mode that prepends full URL prefixes to internal links.
 	 * Since this little disaster has to split off the trail text to avoid
