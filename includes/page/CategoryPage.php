@@ -43,18 +43,6 @@ class CategoryPage extends Article {
 		return new WikiCategoryPage( $title );
 	}
 
-	/**
-	 * Constructor from a page id
-	 * @param int $id Article ID to load
-	 * @return CategoryPage|null
-	 */
-	public static function newFromID( $id ) {
-		$t = Title::newFromID( $id );
-		# @todo FIXME: Doesn't inherit right
-		return $t == null ? null : new self( $t );
-		# return $t == null ? null : new static( $t ); // PHP 5.3
-	}
-
 	function view() {
 		$request = $this->getContext()->getRequest();
 		$diff = $request->getVal( 'diff' );
