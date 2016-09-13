@@ -29,6 +29,9 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class RefreshLinks extends Maintenance {
+	/** @var int|bool */
+	protected $namespace = false;
+
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Refresh link tables' );
@@ -39,6 +42,7 @@ class RefreshLinks extends Maintenance {
 		$this->addOption( 'e', 'Last page id to refresh', false, true );
 		$this->addOption( 'dfn-chunk-size', 'Maximum number of existent IDs to check per ' .
 			'query, default 100000', false, true );
+		$this->addOption( 'namespace', 'Only fix pages in this namespace', false, true );
 		$this->addArg( 'start', 'Page_id to start from, default 1', false );
 		$this->setBatchSize( 100 );
 	}
@@ -51,6 +55,12 @@ class RefreshLinks extends Maintenance {
 		$start = (int)$this->getArg( 0 ) ?: null;
 		$end = (int)$this->getOption( 'e' ) ?: null;
 		$dfnChunkSize = (int)$this->getOption( 'dfn-chunk-size', 100000 );
+		$ns = $this->getOption( 'namespace' );
+		if ( $ns === null ) {
+			$this->namespace = false;
+		} else {
+			$this->namespace = (int)$ns;
+		}
 		if ( !$this->hasOption( 'dfn-only' ) ) {
 			$new = $this->getOption( 'new-only', false );
 			$redir = $this->getOption( 'redirects-only', false );
@@ -60,6 +70,12 @@ class RefreshLinks extends Maintenance {
 		} else {
 			$this->deleteLinksFromNonexistent( $start, $end, $this->mBatchSize, $dfnChunkSize );
 		}
+	}
+
+	private function namespaceCond() {
+		return $this->namespace !== false
+			? [ 'page_namespace' => $this->namespace ]
+			: [];
 	}
 
 	/**
@@ -92,7 +108,7 @@ class RefreshLinks extends Maintenance {
 				"page_is_redirect=1",
 				"rd_from IS NULL",
 				self::intervalCond( $dbr, 'page_id', $start, $end ),
-			];
+			] + $this->namespaceCond();
 
 			$res = $dbr->select(
 				[ 'page', 'redirect' ],
@@ -121,7 +137,7 @@ class RefreshLinks extends Maintenance {
 				[
 					'page_is_new' => 1,
 					self::intervalCond( $dbr, 'page_id', $start, $end ),
-				],
+				] + $this->namespaceCond(),
 				__METHOD__
 			);
 			$num = $res->numRows();
@@ -141,7 +157,7 @@ class RefreshLinks extends Maintenance {
 			}
 		} else {
 			if ( !$end ) {
-				$maxPage = $dbr->selectField( 'page', 'max(page_id)', false );
+				$maxPage = $dbr->selectField( 'page', 'max(page_id)', $this->namespaceCond() );
 				$maxRD = $dbr->selectField( 'redirect', 'max(rd_from)', false );
 				$end = max( $maxPage, $maxRD );
 			}
@@ -265,7 +281,8 @@ class RefreshLinks extends Maintenance {
 			$nextStart = $dbr->selectField(
 				'page',
 				'page_id',
-				self::intervalCond( $dbr, 'page_id', $start, $end ),
+				[ self::intervalCond( $dbr, 'page_id', $start, $end ) ]
+				+ $this->namespaceCond(),
 				__METHOD__,
 				[ 'ORDER BY' => 'page_id', 'OFFSET' => $chunkSize ]
 			);
