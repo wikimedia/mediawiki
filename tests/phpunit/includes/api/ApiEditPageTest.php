@@ -25,6 +25,12 @@ class ApiEditPageTest extends ApiTestCase {
 			'wgContLang' => $wgContLang,
 		] );
 
+		// Make sure 'user' can edit content model
+		$this->mergeMwGlobalArrayValue(
+			'wgGroupPermissions',
+			[ 'user' => [ 'editcontentmodel' => true ] ]
+		);
+
 		$wgExtraNamespaces[12312] = 'Dummy';
 		$wgExtraNamespaces[12313] = 'Dummy_talk';
 		$wgExtraNamespaces[12314] = 'DummyNonText';
