@@ -3663,6 +3663,8 @@
 	"tag-filter": "[[Special:Tags|Tag]] filter:",
 	"tag-filter-submit": "Filter",
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2)",
+	"tag-contentmodelchange": "content model change",
+	"tag-contentmodelchange-description": "Edits that [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel change the content model] of a page",
 	"tags-title": "Tags",
 	"tags-intro": "This page lists the tags that the software may mark an edit with, and their meaning.",
 	"tags-tag": "Tag name",

@@ -3847,6 +3847,8 @@
 	"tag-filter": "Caption of a filter shown on lists of changes (e.g. [[Special:Log]], [[Special:Contributions]], [[Special:Newpages]], [[Special:Recentchanges]], [[Special:Recentchangeslinked]], page histories)",
 	"tag-filter-submit": "Caption of the submit button displayed next to the tag filter on lists of changes (e.g. [[Special:Log]], [[Special:Contributions]], [[Special:Newpages]], [[Special:Recentchanges]], [[Special:Recentchangeslinked]], page histories)\n\n{{Identical|Filter}}",
 	"tag-list-wrapper": "Wrapper for the list of tags shown on recent changes, watchlists, history pages and diffs.\n\nParameters:\n* $1 - number of distinct tags for given edit\n* $2 - comma-separated list of tags for given edit",
+	"tag-contentmodelchange": "Change tag for edits that change the content model of a page",
+	"tag-contentmodelchange-description": "Description for \"content model change\" change tag",
 	"tags-title": "The title of [[Special:Tags]].\n{{Identical|Tag}}",
 	"tags-intro": "Explanation on top of [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].",
 	"tags-tag": "Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].",
