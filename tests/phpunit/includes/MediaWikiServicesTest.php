@@ -3,6 +3,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\Linker\BatchLinkExistenceLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Services\DestructibleService;
 use MediaWiki\Services\SalvageableService;
@@ -321,6 +322,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'LinkCache' => [ 'LinkCache', LinkCache::class ],
 			'LinkRenderer' => [ 'LinkRenderer', LinkRenderer::class ],
 			'LinkRendererFactory' => [ 'LinkRendererFactory', LinkRendererFactory::class ],
+			'BatchLinkExistenceLookup' => [ 'BatchLinkExistenceLookup', BatchLinkExistenceLookup::class ],
 			'_MediaWikiTitleCodec' => [ '_MediaWikiTitleCodec', MediaWikiTitleCodec::class ],
 			'MimeAnalyzer' => [ 'MimeAnalyzer', MimeAnalyzer::class ],
 			'TitleFormatter' => [ 'TitleFormatter', TitleFormatter::class ],
