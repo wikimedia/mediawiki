@@ -1009,6 +1009,7 @@ $wgAutoloadLocalClasses = [
 	'OrphanStats' => __DIR__ . '/maintenance/storage/orphanStats.php',
 	'Orphans' => __DIR__ . '/maintenance/orphans.php',
 	'OutputPage' => __DIR__ . '/includes/OutputPage.php',
+	'PHPVersionCheck' => __DIR__ . '/includes/PHPVersionCheck.php',
 	'PNGHandler' => __DIR__ . '/includes/media/PNG.php',
 	'PNGMetadataExtractor' => __DIR__ . '/includes/media/PNGMetadataExtractor.php',
 	'PPCustomFrame_DOM' => __DIR__ . '/includes/parser/Preprocessor_DOM.php',
