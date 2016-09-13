@@ -1207,6 +1207,9 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function listExtensionDefinedTags() {
+		if ( !Hooks::isRegistered( 'ListDefinedTags' ) ) {
+			return [];
+		}
 		return ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'valid-tags-hook' ),
 			WANObjectCache::TTL_MINUTE * 5,
