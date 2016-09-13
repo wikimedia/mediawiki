@@ -280,7 +280,6 @@ class JobRunner implements LoggerAwareInterface {
 			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 			$status = false;
 			$error = get_class( $e ) . ': ' . $e->getMessage();
-			MWExceptionHandler::logException( $e );
 		}
 		// Always attempt to call teardown() even if Job throws exception.
 		try {
