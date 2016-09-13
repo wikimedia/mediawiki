@@ -1008,9 +1008,17 @@ class EditPage {
 		// May be overridden by revision.
 		$this->contentFormat = $request->getText( 'format', $this->contentFormat );
 
-		if ( !ContentHandler::getForModelID( $this->contentModel )
-			->isSupportedFormat( $this->contentFormat )
-		) {
+		try {
+			$handler = ContentHandler::getForModelID( $this->contentModel );
+		} catch ( MWUnknownContentModelException $e ) {
+			throw new ErrorPageError(
+				'editpage-invalidcontentmodel-title',
+				'editpage-invalidcontentmodel-text',
+				[ $this->contentModel ]
+			);
+		}
+
+		if ( !$handler->isSupportedFormat( $this->contentFormat ) ) {
 			throw new ErrorPageError(
 				'editpage-notsupportedcontentformat-title',
 				'editpage-notsupportedcontentformat-text',
