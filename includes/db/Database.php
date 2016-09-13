@@ -332,13 +332,6 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	/**
-	 * @return TransactionProfiler
-	 */
-	protected function getTransactionProfiler() {
-		return $this->trxProfiler;
-	}
-
-	/**
 	 * @param TransactionProfiler $profiler
 	 * @since 1.27
 	 */
@@ -914,7 +907,7 @@ abstract class DatabaseBase implements IDatabase {
 		# Keep track of whether the transaction has write queries pending
 		if ( $this->mTrxLevel && !$this->mTrxDoneWrites && $isWrite ) {
 			$this->mTrxDoneWrites = true;
-			$this->getTransactionProfiler()->transactionWritingIn(
+			$this->trxProfiler->transactionWritingIn(
 				$this->mServer, $this->mDBname, $this->mTrxShortId );
 		}
 
@@ -1008,7 +1001,7 @@ abstract class DatabaseBase implements IDatabase {
 			$this->mRTTEstimate = $queryRuntime;
 		}
 
-		$this->getTransactionProfiler()->recordQueryCompletion(
+		$this->trxProfiler->recordQueryCompletion(
 			$queryProf, $startTime, $isWrite, $this->affectedRows()
 		);
 		MWDebug::query( $sql, $fname, $isMaster, $queryRuntime );
@@ -3014,7 +3007,7 @@ abstract class DatabaseBase implements IDatabase {
 		$this->doCommit( $fname );
 		if ( $this->mTrxDoneWrites ) {
 			$this->mDoneWrites = microtime( true );
-			$this->getTransactionProfiler()->transactionWritingOut(
+			$this->trxProfiler->transactionWritingOut(
 				$this->mServer, $this->mDBname, $this->mTrxShortId, $writeTime );
 		}
 
@@ -3058,7 +3051,7 @@ abstract class DatabaseBase implements IDatabase {
 		$this->doRollback( $fname );
 		$this->mTrxAtomicLevels = [];
 		if ( $this->mTrxDoneWrites ) {
-			$this->getTransactionProfiler()->transactionWritingOut(
+			$this->trxProfiler->transactionWritingOut(
 				$this->mServer, $this->mDBname, $this->mTrxShortId );
 		}
 
