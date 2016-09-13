@@ -909,11 +909,8 @@ class SkinTemplate extends Skin {
 			$content_navigation['namespaces'][$talkId]['context'] = 'talk';
 
 			if ( $userCanRead ) {
-				$isForeignFile = $title->inNamespace( NS_FILE ) && $this->canUseWikiPage() &&
-					$this->getWikiPage() instanceof WikiFilePage && !$this->getWikiPage()->isLocal();
-
-				// Adds view view link
-				if ( $title->exists() || $isForeignFile ) {
+				// Adds "view" view link
+				if ( $title->isKnown() ) {
 					$content_navigation['views']['view'] = $this->tabAction(
 						$isTalk ? $talkPage : $subjectPage,
 						[ "$skname-view-view", 'view' ],
@@ -923,7 +920,11 @@ class SkinTemplate extends Skin {
 					$content_navigation['views']['view']['redundant'] = true;
 				}
 
+				$isForeignFile = $title->inNamespace( NS_FILE ) && $this->canUseWikiPage() &&
+					$this->getWikiPage() instanceof WikiFilePage && !$this->getWikiPage()->isLocal();
+
 				// If it is a non-local file, show a link to the file in its own repository
+				// @todo abstract this for remote content that isn't a file
 				if ( $isForeignFile ) {
 					$file = $this->getWikiPage()->getFile();
 					$content_navigation['views']['view-foreign'] = [
@@ -981,7 +982,7 @@ class SkinTemplate extends Skin {
 							'href' => $title->getLocalURL( 'action=edit&section=new' )
 						];
 					}
-				// Checks if the page has some kind of viewable content
+				// Checks if the page has some kind of viewable source content
 				} elseif ( $title->hasSourceText() ) {
 					// Adds view source view link
 					$content_navigation['views']['viewsource'] = [
