@@ -244,8 +244,9 @@ class BotPasswordTest extends MediaWikiTestCase {
 		return [
 			[ 'user', 'pass', false ],
 			[ 'user', 'abc@def', false ],
+			[ 'legacy@user', 'pass', false ],
 			[ 'user@bot', '12345678901234567890123456789012',
-				[ 'user@bot', '12345678901234567890123456789012', false ] ],
+				[ 'user@bot', '12345678901234567890123456789012', true ] ],
 			[ 'user', 'bot@12345678901234567890123456789012',
 				[ 'user@bot', '12345678901234567890123456789012', true ] ],
 			[ 'user', 'bot@12345678901234567890123456789012345',
