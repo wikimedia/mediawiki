@@ -439,10 +439,6 @@ abstract class LBFactory implements DestructibleService {
 			'ifWritesSince' => null
 		];
 
-		foreach ( $this->replicationWaitCallbacks as $callback ) {
-			$callback();
-		}
-
 		// Figure out which clusters need to be checked
 		/** @var LoadBalancer[] $lbs */
 		$lbs = [];
@@ -474,6 +470,12 @@ abstract class LBFactory implements DestructibleService {
 				continue; // no writes since the last wait
 			}
 			$masterPositions[$i] = $lb->getMasterPos();
+		}
+
+		// Run any listener callbacks *after* getting the DB positions. The more
+		// time spent in the callbacks, the less time is spent in waitForAll().
+		foreach ( $this->replicationWaitCallbacks as $callback ) {
+			$callback();
 		}
 
 		$failed = [];
