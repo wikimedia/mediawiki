@@ -39,6 +39,7 @@
 
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\Linker\MultiExistenceLookup;
 use MediaWiki\MediaWikiServices;
 
 return [
@@ -186,6 +187,10 @@ return [
 		} else {
 			return $services->getLinkRendererFactory()->createForUser( $wgUser );
 		}
+	},
+
+	'LinkTargetExistenceLookup' => function( MediaWikiServices $services ) {
+		return new MultiExistenceLookup();
 	},
 
 	'GenderCache' => function( MediaWikiServices $services ) {
