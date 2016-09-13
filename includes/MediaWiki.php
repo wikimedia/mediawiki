@@ -648,7 +648,11 @@ class MediaWiki {
 		);
 
 		foreach ( $clusterHosts as $clusterHost ) {
-			$infoHost = array_intersect_key( wfParseUrl( $clusterHost ), $relevantKeys );
+			$parseUrl = wfParseUrl( $clusterHost );
+			if ( !$parseUrl ) {
+				continue;
+			}
+			$infoHost = array_intersect_key( $parseUrl, $relevantKeys );
 			if ( $infoCandidate === $infoHost ) {
 				return true;
 			}
