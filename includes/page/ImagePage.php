@@ -53,18 +53,6 @@ class ImagePage extends Article {
 	}
 
 	/**
-	 * Constructor from a page id
-	 * @param int $id Article ID to load
-	 * @return ImagePage|null
-	 */
-	public static function newFromID( $id ) {
-		$t = Title::newFromID( $id );
-		# @todo FIXME: Doesn't inherit right
-		return $t == null ? null : new self( $t );
-		# return $t == null ? null : new static( $t ); // PHP 5.3
-	}
-
-	/**
 	 * @param File $file
 	 * @return void
 	 */

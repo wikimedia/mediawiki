@@ -99,9 +99,7 @@ class Article implements Page {
 	 */
 	public static function newFromID( $id ) {
 		$t = Title::newFromID( $id );
-		# @todo FIXME: Doesn't inherit right
-		return $t == null ? null : new self( $t );
-		# return $t == null ? null : new static( $t ); // PHP 5.3
+		return $t == null ? null : new static( $t );
 	}
 
 	/**
