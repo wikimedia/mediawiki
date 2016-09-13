@@ -460,7 +460,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return bool
 	 */
 	public function hasViewableContent() {
-		return $this->exists() || $this->mTitle->isAlwaysKnown();
+		return $this->mTitle->isKnown();
 	}
 
 	/**
