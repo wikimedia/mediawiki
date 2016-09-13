@@ -31,7 +31,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	const AUDIENCE_PUBLIC = 1;
 	const AUDIENCE_RAW = 2;
 
-	/** @var CentralIdLookup[][] */
+	/** @var CentralIdLookup[] */
 	private static $instances = [];
 
 	/** @var string */
