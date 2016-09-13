@@ -2138,8 +2138,16 @@ class Article implements Page {
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::doPurge
 	 */
-	public function doPurge() {
-		return $this->mPage->doPurge();
+	public function doPurge( $flags = WikiPage::PURGE_ALL ) {
+		return $this->mPage->doPurge( $flags );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getLastPurgeTimestamp
+	 */
+	public function getLastPurgeTimestamp() {
+		return $this->mPage->getLastPurgeTimestamp();
 	}
 
 	/**

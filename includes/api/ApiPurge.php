@@ -55,7 +55,12 @@ class ApiPurge extends ApiBase {
 			ApiQueryBase::addTitleInfo( $r, $title );
 			$page = WikiPage::factory( $title );
 			if ( !$user->pingLimiter( 'purge' ) ) {
-				$page->doPurge(); // Directly purge and skip the UI part of purge().
+				$flags = WikiPage::PURGE_ALL;
+				if ( !$this->getRequest()->wasPosted() ) {
+					$flags ^= WikiPage::PURGE_GLOBAL_PCACHE; // skip DB_MASTER write
+				}
+				// Directly purge and skip the UI part of purge()
+				$page->doPurge( $flags );
 				$r['purged'] = true;
 			} else {
 				$error = $this->parseMsg( [ 'actionthrottledtext' ] );
