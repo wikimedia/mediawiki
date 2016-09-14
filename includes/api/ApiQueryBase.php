@@ -347,9 +347,12 @@ abstract class ApiQueryBase extends ApiBase {
 	 *    'options' => ...,
 	 *    'join_conds' => ...
 	 *  ]
+	 * @param array|null &$hookData If set, the ApiQueryBaseBeforeQuery and
+	 *  ApiQueryBaseAfterQuery hooks will be called, and the
+	 *  ApiQueryBaseProcessRow hook will be expected.
 	 * @return ResultWrapper
 	 */
-	protected function select( $method, $extraQuery = [] ) {
+	protected function select( $method, $extraQuery = [], array &$hookData = null ) {
 
 		$tables = array_merge(
 			$this->tables,
@@ -372,9 +375,36 @@ abstract class ApiQueryBase extends ApiBase {
 			isset( $extraQuery['join_conds'] ) ? (array)$extraQuery['join_conds'] : []
 		);
 
+		if ( $hookData !== null ) {
+			Hooks::run( 'ApiQueryBaseBeforeQuery',
+				[ $this, &$tables, &$fields, &$where, &$options, &$join_conds, &$hookData ]
+			);
+		}
+
 		$res = $this->getDB()->select( $tables, $fields, $where, $method, $options, $join_conds );
 
+		if ( $hookData !== null ) {
+			Hooks::run( 'ApiQueryBaseAfterQuery', [ $this, $res, &$hookData ] );
+		}
+
 		return $res;
+	}
+
+	/**
+	 * Call the ApiQueryBaseProcessRow hook
+	 *
+	 * Generally, a module that passed $hookData to self::select() will call
+	 * this just before calling ApiResult::addValue(), and treat a false return
+	 * here in the same way it treats a false return from addValue().
+	 *
+	 * @since 1.28
+	 * @param object $row Database row
+	 * @param array &$data Data to be added to the result
+	 * @param array &$hookData Hook data from ApiQueryBase::select()
+	 * @return bool Return false if row processing should end with continuation
+	 */
+	protected function processRow( $row, array &$data, array &$hookData ) {
+		return Hooks::run( 'ApiQueryBaseProcessRow', [ $this, $row, &$data, &$hookData ] );
 	}
 
 	/**
