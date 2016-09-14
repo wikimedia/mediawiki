@@ -28,7 +28,6 @@
 /**
  * Basic database interface for live and lazy-loaded DB handles
  *
- * @todo: loosen up DB classes from MWException
  * @note: IDatabase and DBConnRef should be updated to reflect any changes
  * @ingroup Database
  */
