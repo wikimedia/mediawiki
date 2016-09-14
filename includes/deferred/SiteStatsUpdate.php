@@ -17,25 +17,24 @@
  *
  * @file
  */
+use Wikimedia\Assert\Assert;
 
 /**
  * Class for handling updates to the site_stats table
  */
-class SiteStatsUpdate implements DeferrableUpdate {
+class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 	/** @var int */
 	protected $edits = 0;
-
 	/** @var int */
 	protected $pages = 0;
-
 	/** @var int */
 	protected $articles = 0;
-
 	/** @var int */
 	protected $users = 0;
-
 	/** @var int */
 	protected $images = 0;
+
+	private static $counters = [ 'edits', 'pages', 'articles', 'users', 'images' ];
 
 	// @todo deprecate this constructor
 	function __construct( $views, $edits, $good, $pages = 0, $users = 0 ) {
@@ -45,6 +44,15 @@ class SiteStatsUpdate implements DeferrableUpdate {
 		$this->users = $users;
 	}
 
+	public function merge( MergeableUpdate $update ) {
+		/** @var SiteStatsUpdate $update */
+		Assert::parameterType( __CLASS__, $update, '$update' );
+
+		foreach ( self::$counters as $field ) {
+			$this->$field += $update->$field;
+		}
+	}
+
 	/**
 	 * @param array $deltas
 	 * @return SiteStatsUpdate
@@ -52,8 +60,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 	public static function factory( array $deltas ) {
 		$update = new self( 0, 0, 0 );
 
-		$fields = [ 'views', 'edits', 'pages', 'articles', 'users', 'images' ];
-		foreach ( $fields as $field ) {
+		foreach ( self::$counters as $field ) {
 			if ( isset( $deltas[$field] ) && $deltas[$field] ) {
 				$update->$field = $deltas[$field];
 			}
