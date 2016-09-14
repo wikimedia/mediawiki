@@ -27,7 +27,7 @@
  * Call LBFactory::disableBackend() to start using this, and
  * LBFactory::enableBackend() to return to normal behavior
  */
-class LBFactoryFake extends LBFactory {
+class LBFactoryFake extends LBFactoryMW {
 	public function newMainLB( $wiki = false ) {
 		throw new DBAccessError;
 	}

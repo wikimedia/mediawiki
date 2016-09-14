@@ -83,7 +83,7 @@
  *
  * @ingroup Database
  */
-class LBFactoryMulti extends LBFactory {
+class LBFactoryMulti extends LBFactoryMW {
 	/** @var array A map of database names to section names */
 	private $sectionsByDB;
 

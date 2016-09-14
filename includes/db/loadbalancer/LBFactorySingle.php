@@ -24,7 +24,7 @@
 /**
  * An LBFactory class that always returns a single database object.
  */
-class LBFactorySingle extends LBFactory {
+class LBFactorySingle extends LBFactoryMW {
 	/** @var LoadBalancerSingle */
 	private $lb;
 
