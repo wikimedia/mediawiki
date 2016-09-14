@@ -493,15 +493,23 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function getContentModel() {
 		if ( $this->exists() ) {
-			// look at the revision's actual content model
-			$rev = $this->getRevision();
+			$cache = ObjectCache::getMainWANInstance();
 
-			if ( $rev !== null ) {
-				return $rev->getContentModel();
-			} else {
-				$title = $this->mTitle->getPrefixedDBkey();
-				wfWarn( "Page $title exists but has no (visible) revisions!" );
-			}
+			return $cache->getWithSetCallback(
+				$cache->makeKey( 'page', 'content-model', $this->getLatest() ),
+				$cache::TTL_MONTH,
+				function () {
+					$rev = $this->getRevision();
+					if ( $rev ) {
+						// Look at the revision's actual content model
+						return $rev->getContentModel();
+					} else {
+						$title = $this->mTitle->getPrefixedDBkey();
+						wfWarn( "Page $title exists but has no (visible) revisions!" );
+						return $this->mTitle->getContentModel();
+					}
+				}
+			);
 		}
 
 		// use the default model for this page
