@@ -27,7 +27,7 @@ use Psr\Log\LoggerInterface;
  *
  * @ingroup Database
  */
-class LoadBalancer {
+class LoadBalancer implements ILoadBalancer {
 	/** @var array[] Map of (server index => server config array) */
 	private $mServers;
 	/** @var array[] Map of (local/foreignUsed/foreignFree => server index => DatabaseBase array) */
@@ -97,22 +97,6 @@ class LoadBalancer {
 	/** @var integer Seconds to cache master server read-only status */
 	const TTL_CACHE_READONLY = 5;
 
-	/**
-	 * @param array $params Array with keys:
-	 *  - servers : Required. Array of server info structures.
-	 *  - loadMonitor : Name of a class used to fetch server lag and load.
-	 *  - readOnlyReason : Reason the master DB is read-only if so [optional]
-	 *  - waitTimeout : Maximum time to wait for replicas for consistency [optional]
-	 *  - srvCache : BagOStuff object [optional]
-	 *  - wanCache : WANObjectCache object [optional]
-	 *  - localDomain: The wiki ID of the "local"/"current" wiki [optional]
-	 *  - errorLogger: Callback that takes an Exception and logs it [optional]
-	 *  - connLogger : LoggerInterface object [optional]
-	 *  - queryLogger : LoggerInterface object [optional]
-	 *  - replLogger : LoggerInterface object [optional]
-	 *  - perfLogger : LoggerInterface object [optional]
-	 * @throws InvalidArgumentException
-	 */
 	public function __construct( array $params ) {
 		if ( !isset( $params['servers'] ) ) {
 			throw new InvalidArgumentException( __CLASS__ . ': missing servers parameter' );
@@ -253,17 +237,6 @@ class LoadBalancer {
 		return ArrayUtils::pickRandom( $loads );
 	}
 
-	/**
-	 * Get the index of the reader connection, which may be a replica DB
-	 * This takes into account load ratios and lag times. It should
-	 * always return a consistent index during a given invocation
-	 *
-	 * Side effect: opens connections to databases
-	 * @param string|bool $group Query group, or false for the generic reader
-	 * @param string|bool $wiki Wiki ID, or false for the current wiki
-	 * @throws MWException
-	 * @return bool|int|string
-	 */
 	public function getReaderIndex( $group = false, $wiki = false ) {
 		if ( count( $this->mServers ) == 1 ) {
 			# Skip the load balancing if there's only one server
@@ -383,12 +356,6 @@ class LoadBalancer {
 		return $i;
 	}
 
-	/**
-	 * Set the master wait position
-	 * If a DB_REPLICA connection has been opened already, waits
-	 * Otherwise sets a variable telling it to wait if such a connection is opened
-	 * @param DBMasterPos $pos
-	 */
 	public function waitFor( $pos ) {
 		$this->mWaitForPos = $pos;
 		$i = $this->mReadIndex;
@@ -431,12 +398,6 @@ class LoadBalancer {
 		return $ok;
 	}
 
-	/**
-	 * Set the master wait position and wait for ALL replica DBs to catch up to it
-	 * @param DBMasterPos $pos
-	 * @param int $timeout Max seconds to wait; default is mWaitTimeout
-	 * @return bool Success (able to connect and no timeouts reached)
-	 */
 	public function waitForAll( $pos, $timeout = null ) {
 		$this->mWaitForPos = $pos;
 		$serverCount = count( $this->mServers );
@@ -451,13 +412,6 @@ class LoadBalancer {
 		return $ok;
 	}
 
-	/**
-	 * Get any open connection to a given server index, local or foreign
-	 * Returns false if there is no connection open
-	 *
-	 * @param int $i Server index
-	 * @return DatabaseBase|bool False on failure
-	 */
 	public function getAnyOpenConnection( $i ) {
 		foreach ( $this->mConns as $connsByServer ) {
 			if ( !empty( $connsByServer[$i] ) ) {
@@ -533,17 +487,6 @@ class LoadBalancer {
 		return $ok;
 	}
 
-	/**
-	 * Get a connection by index
-	 * This is the main entry point for this class.
-	 *
-	 * @param int $i Server index
-	 * @param array|string|bool $groups Query group(s), or false for the generic reader
-	 * @param string|bool $wiki Wiki ID, or false for the current wiki
-	 *
-	 * @throws MWException
-	 * @return DatabaseBase
-	 */
 	public function getConnection( $i, $groups = [], $wiki = false ) {
 		if ( $i === null || $i === false ) {
 			throw new MWException( 'Attempt to call ' . __METHOD__ .
@@ -610,14 +553,6 @@ class LoadBalancer {
 		return $conn;
 	}
 
-	/**
-	 * Mark a foreign connection as being available for reuse under a different
-	 * DB name or prefix. This mechanism is reference-counted, and must be called
-	 * the same number of times as getConnection() to work.
-	 *
-	 * @param DatabaseBase $conn
-	 * @throws MWException
-	 */
 	public function reuseConnection( $conn ) {
 		$serverIndex = $conn->getLBInfo( 'serverIndex' );
 		$refCount = $conn->getLBInfo( 'foreignPoolRefCount' );
@@ -667,6 +602,7 @@ class LoadBalancer {
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
 	 * @param string|bool $wiki Wiki ID, or false for the current wiki
 	 * @return DBConnRef
+	 * @since 1.22
 	 */
 	public function getConnectionRef( $db, $groups = [], $wiki = false ) {
 		return new DBConnRef( $this, $this->getConnection( $db, $groups, $wiki ) );
@@ -683,6 +619,7 @@ class LoadBalancer {
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
 	 * @param string|bool $wiki Wiki ID, or false for the current wiki
 	 * @return DBConnRef
+	 * @since 1.22
 	 */
 	public function getLazyConnectionRef( $db, $groups = [], $wiki = false ) {
 		$wiki = ( $wiki !== false ) ? $wiki : $this->localDomain;
@@ -690,20 +627,6 @@ class LoadBalancer {
 		return new DBConnRef( $this, [ $db, $groups, $wiki ] );
 	}
 
-	/**
-	 * Open a connection to the server given by the specified index
-	 * Index must be an actual index into the array.
-	 * If the server is already open, returns it.
-	 *
-	 * On error, returns false, and the connection which caused the
-	 * error will be available via $this->mErrorConnection.
-	 *
-	 * @note If disable() was called on this LoadBalancer, this method will throw a DBAccessError.
-	 *
-	 * @param int $i Server index
-	 * @param string|bool $wiki Wiki ID, or false for the current wiki
-	 * @return DatabaseBase|bool Returns false on errors
-	 */
 	public function openConnection( $i, $wiki = false ) {
 		if ( $wiki !== false ) {
 			$conn = $this->openForeignConnection( $i, $wiki );
@@ -929,49 +852,22 @@ class LoadBalancer {
 		return false; /* not reached */
 	}
 
-	/**
-	 * @return int
-	 * @since 1.26
-	 */
 	public function getWriterIndex() {
 		return 0;
 	}
 
-	/**
-	 * Returns true if the specified index is a valid server index
-	 *
-	 * @param string $i
-	 * @return bool
-	 */
 	public function haveIndex( $i ) {
 		return array_key_exists( $i, $this->mServers );
 	}
 
-	/**
-	 * Returns true if the specified index is valid and has non-zero load
-	 *
-	 * @param string $i
-	 * @return bool
-	 */
 	public function isNonZeroLoad( $i ) {
 		return array_key_exists( $i, $this->mServers ) && $this->mLoads[$i] != 0;
 	}
 
-	/**
-	 * Get the number of defined servers (not the number of open connections)
-	 *
-	 * @return int
-	 */
 	public function getServerCount() {
 		return count( $this->mServers );
 	}
 
-	/**
-	 * Get the host name or IP address of the server with the specified index
-	 * Prefer a readable name if available.
-	 * @param string $i
-	 * @return string
-	 */
 	public function getServerName( $i ) {
 		if ( isset( $this->mServers[$i]['hostName'] ) ) {
 			$name = $this->mServers[$i]['hostName'];
@@ -984,11 +880,6 @@ class LoadBalancer {
 		return ( $name != '' ) ? $name : 'localhost';
 	}
 
-	/**
-	 * Return the server info structure for a given index, or false if the index is invalid.
-	 * @param int $i
-	 * @return array|bool
-	 */
 	public function getServerInfo( $i ) {
 		if ( isset( $this->mServers[$i] ) ) {
 			return $this->mServers[$i];
@@ -997,20 +888,10 @@ class LoadBalancer {
 		}
 	}
 
-	/**
-	 * Sets the server info structure for the given index. Entry at index $i
-	 * is created if it doesn't exist
-	 * @param int $i
-	 * @param array $serverInfo
-	 */
 	public function setServerInfo( $i, array $serverInfo ) {
 		$this->mServers[$i] = $serverInfo;
 	}
 
-	/**
-	 * Get the current master position for chronology control purposes
-	 * @return DBMasterPos|bool Returns false if not applicable
-	 */
 	public function getMasterPos() {
 		# If this entire request was served from a replica DB without opening a connection to the
 		# master (however unlikely that may be), then we can fetch the position from the replica DB.
@@ -1041,9 +922,6 @@ class LoadBalancer {
 		$this->disabled = true;
 	}
 
-	/**
-	 * Close all open connections
-	 */
 	public function closeAll() {
 		$this->forEachOpenConnection( function ( DatabaseBase $conn ) {
 			$conn->close();
@@ -1057,15 +935,7 @@ class LoadBalancer {
 		$this->connsOpened = 0;
 	}
 
-	/**
-	 * Close a connection
-	 *
-	 * Using this function makes sure the LoadBalancer knows the connection is closed.
-	 * If you use $conn->close() directly, the load balancer won't update its state.
-	 *
-	 * @param DatabaseBase $conn
-	 */
-	public function closeConnection( DatabaseBase $conn ) {
+	public function closeConnection( IDatabase $conn ) {
 		$serverIndex = $conn->getLBInfo( 'serverIndex' ); // second index level of mConns
 		foreach ( $this->mConns as $type => $connsByServer ) {
 			if ( !isset( $connsByServer[$serverIndex] ) ) {
@@ -1084,11 +954,6 @@ class LoadBalancer {
 		$conn->close();
 	}
 
-	/**
-	 * Commit transactions on all open connections
-	 * @param string $fname Caller name
-	 * @throws DBExpectedError
-	 */
 	public function commitAll( $fname = __METHOD__ ) {
 		$failures = [];
 
@@ -1215,11 +1080,6 @@ class LoadBalancer {
 		}
 	}
 
-	/**
-	 * Issue COMMIT on all master connections where writes where done
-	 * @param string $fname Caller name
-	 * @throws DBExpectedError
-	 */
 	public function commitMasterChanges( $fname = __METHOD__ ) {
 		$failures = [];
 
@@ -1323,9 +1183,9 @@ class LoadBalancer {
 	}
 
 	/**
-	 * @param DatabaseBase $conn
+	 * @param IDatabase $conn
 	 */
-	private function applyTransactionRoundFlags( DatabaseBase $conn ) {
+	private function applyTransactionRoundFlags( IDatabase $conn ) {
 		if ( $conn->getFlag( DBO_DEFAULT ) ) {
 			// DBO_TRX is controlled entirely by CLI mode presence with DBO_DEFAULT.
 			// Force DBO_TRX even in CLI mode since a commit round is expected soon.
@@ -1337,9 +1197,9 @@ class LoadBalancer {
 	}
 
 	/**
-	 * @param DatabaseBase $conn
+	 * @param IDatabase $conn
 	 */
-	private function undoTransactionRoundFlags( DatabaseBase $conn ) {
+	private function undoTransactionRoundFlags( IDatabase $conn ) {
 		if ( $conn->getFlag( DBO_DEFAULT ) ) {
 			$conn->restoreFlags( $conn::RESTORE_PRIOR );
 		}
@@ -1423,11 +1283,6 @@ class LoadBalancer {
 		return $fnames;
 	}
 
-	/**
-	 * @note This method will trigger a DB connection if not yet done
-	 * @param string|bool $wiki Wiki ID, or false for the current wiki
-	 * @return bool Whether the generic connection for reads is highly "lagged"
-	 */
 	public function getLaggedReplicaMode( $wiki = false ) {
 		// No-op if there is only one DB (also avoids recursion)
 		if ( !$this->laggedReplicaMode && $this->getServerCount() > 1 ) {
@@ -1475,11 +1330,11 @@ class LoadBalancer {
 	/**
 	 * @note This method may trigger a DB connection if not yet done
 	 * @param string|bool $wiki Wiki ID, or false for the current wiki
-	 * @param DatabaseBase|null DB master connection; used to avoid loops [optional]
+	 * @param IDatabase|null DB master connection; used to avoid loops [optional]
 	 * @return string|bool Reason the master is read-only or false if it is not
 	 * @since 1.27
 	 */
-	public function getReadOnlyReason( $wiki = false, DatabaseBase $conn = null ) {
+	public function getReadOnlyReason( $wiki = false, IDatabase $conn = null ) {
 		if ( $this->readOnlyReason !== false ) {
 			return $this->readOnlyReason;
 		} elseif ( $this->getLaggedReplicaMode( $wiki ) ) {
@@ -1499,10 +1354,10 @@ class LoadBalancer {
 
 	/**
 	 * @param string $wiki Wiki ID, or false for the current wiki
-	 * @param DatabaseBase|null DB master connectionl used to avoid loops [optional]
+	 * @param IDatabase|null DB master connectionl used to avoid loops [optional]
 	 * @return bool
 	 */
-	private function masterRunningReadOnly( $wiki, DatabaseBase $conn = null ) {
+	private function masterRunningReadOnly( $wiki, IDatabase $conn = null ) {
 		$cache = $this->wanCache;
 		$masterServer = $this->getServerName( $this->getWriterIndex() );
 
@@ -1524,11 +1379,6 @@ class LoadBalancer {
 		);
 	}
 
-	/**
-	 * Disables/enables lag checks
-	 * @param null|bool $mode
-	 * @return bool
-	 */
 	public function allowLagged( $mode = null ) {
 		if ( $mode === null ) {
 			return $this->mAllowLagged;
@@ -1538,9 +1388,6 @@ class LoadBalancer {
 		return $this->mAllowLagged;
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function pingAll() {
 		$success = true;
 		$this->forEachOpenConnection( function ( DatabaseBase $conn ) use ( &$success ) {
@@ -1552,11 +1399,6 @@ class LoadBalancer {
 		return $success;
 	}
 
-	/**
-	 * Call a function with each open connection object
-	 * @param callable $callback
-	 * @param array $params
-	 */
 	public function forEachOpenConnection( $callback, array $params = [] ) {
 		foreach ( $this->mConns as $connsByServer ) {
 			foreach ( $connsByServer as $serverConns ) {
@@ -1607,16 +1449,6 @@ class LoadBalancer {
 		}
 	}
 
-	/**
-	 * Get the hostname and lag time of the most-lagged replica DB
-	 *
-	 * This is useful for maintenance scripts that need to throttle their updates.
-	 * May attempt to open connections to replica DBs on the default DB. If there is
-	 * no lag, the maximum lag will be reported as -1.
-	 *
-	 * @param bool|string $wiki Wiki ID, or false for the default database
-	 * @return array ( host, max lag, index of max lagged host )
-	 */
 	public function getMaxLag( $wiki = false ) {
 		$maxLag = -1;
 		$host = '';
@@ -1638,16 +1470,6 @@ class LoadBalancer {
 		return [ $host, $maxLag, $maxIndex ];
 	}
 
-	/**
-	 * Get an estimate of replication lag (in seconds) for each server
-	 *
-	 * Results are cached for a short time in memcached/process cache
-	 *
-	 * Values may be "false" if replication is too broken to estimate
-	 *
-	 * @param string|bool $wiki
-	 * @return int[] Map of (server index => float|int|bool)
-	 */
 	public function getLagTimes( $wiki = false ) {
 		if ( $this->getServerCount() <= 1 ) {
 			return [ 0 => 0 ]; // no replication = no lag
@@ -1657,20 +1479,6 @@ class LoadBalancer {
 		return $this->getLoadMonitor()->getLagTimes( array_keys( $this->mServers ), $wiki );
 	}
 
-	/**
-	 * Get the lag in seconds for a given connection, or zero if this load
-	 * balancer does not have replication enabled.
-	 *
-	 * This should be used in preference to Database::getLag() in cases where
-	 * replication may not be in use, since there is no way to determine if
-	 * replication is in use at the connection level without running
-	 * potentially restricted queries such as SHOW SLAVE STATUS. Using this
-	 * function instead of Database::getLag() avoids a fatal error in this
-	 * case on many installations.
-	 *
-	 * @param IDatabase $conn
-	 * @return int|bool Returns false on error
-	 */
 	public function safeGetLag( IDatabase $conn ) {
 		if ( $this->getServerCount() == 1 ) {
 			return 0;
@@ -1718,6 +1526,7 @@ class LoadBalancer {
 	 * Clear the cache for slag lag delay times
 	 *
 	 * This is only used for testing
+	 * @since 1.26
 	 */
 	public function clearLagTimeCache() {
 		$this->getLoadMonitor()->clearCaches();
