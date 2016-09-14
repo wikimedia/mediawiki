@@ -45,7 +45,7 @@ return [
 	'DBLoadBalancerFactory' => function( MediaWikiServices $services ) {
 		$config = $services->getMainConfig()->get( 'LBFactoryConf' );
 
-		$class = LBFactory::getLBFactoryClass( $config );
+		$class = LBFactoryMW::getLBFactoryClass( $config );
 		if ( !isset( $config['readOnlyReason'] ) ) {
 			// TODO: replace the global wfConfiguredReadOnlyReason() with a service.
 			$config['readOnlyReason'] = wfConfiguredReadOnlyReason();

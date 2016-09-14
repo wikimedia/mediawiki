@@ -96,17 +96,17 @@ class ChronologyProtector implements LoggerAwareInterface{
 	}
 
 	/**
-	 * Initialise a LoadBalancer to give it appropriate chronology protection.
+	 * Initialise a ILoadBalancer to give it appropriate chronology protection.
 	 *
 	 * If the stash has a previous master position recorded, this will try to
 	 * make sure that the next query to a replica DB of that master will see changes up
 	 * to that position by delaying execution. The delay may timeout and allow stale
 	 * data if no non-lagged replica DBs are available.
 	 *
-	 * @param LoadBalancer $lb
+	 * @param ILoadBalancer $lb
 	 * @return void
 	 */
-	public function initLB( LoadBalancer $lb ) {
+	public function initLB( ILoadBalancer $lb ) {
 		if ( !$this->enabled || $lb->getServerCount() <= 1 ) {
 			return; // non-replicated setup or disabled
 		}
@@ -122,13 +122,13 @@ class ChronologyProtector implements LoggerAwareInterface{
 	}
 
 	/**
-	 * Notify the ChronologyProtector that the LoadBalancer is about to shut
+	 * Notify the ChronologyProtector that the ILoadBalancer is about to shut
 	 * down. Saves replication positions.
 	 *
-	 * @param LoadBalancer $lb
+	 * @param ILoadBalancer $lb
 	 * @return void
 	 */
-	public function shutdownLB( LoadBalancer $lb ) {
+	public function shutdownLB( ILoadBalancer $lb ) {
 		if ( !$this->enabled ) {
 			return; // not enabled
 		} elseif ( !$lb->hasOrMadeRecentMasterChanges( INF ) ) {

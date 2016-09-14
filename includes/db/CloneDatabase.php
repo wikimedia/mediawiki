@@ -129,7 +129,10 @@ class CloneDatabase {
 	 */
 	public static function changePrefix( $prefix ) {
 		global $wgDBprefix;
-		wfGetLBFactory()->forEachLB( function( LoadBalancer $lb ) use ( $prefix ) {
+
+		$lbFactory = wfGetLBFactory();
+		$lbFactory->setDomainPrefix( $prefix );
+		$lbFactory->forEachLB( function( LoadBalancer $lb ) use ( $prefix ) {
 			$lb->setDomainPrefix( $prefix );
 			$lb->forEachOpenConnection( function ( IDatabase $db ) use ( $prefix ) {
 				$db->tablePrefix( $prefix );
