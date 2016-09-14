@@ -24,7 +24,7 @@
 /**
  * A simple single-master LBFactory that gets its configuration from the b/c globals
  */
-class LBFactorySimple extends LBFactory {
+class LBFactorySimple extends LBFactoryMW {
 	/** @var LoadBalancer */
 	private $mainLB;
 	/** @var LoadBalancer[] */
