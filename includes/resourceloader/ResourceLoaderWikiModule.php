@@ -296,12 +296,12 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		sort( $pageNames );
 		$key = implode( '|', $pageNames );
 		if ( !isset( $this->titleInfo[$key] ) ) {
-			$this->titleInfo[$key] = self::fetchTitleInfo( $dbr, $pageNames, __METHOD__ );
+			$this->titleInfo[$key] = static::fetchTitleInfo( $dbr, $pageNames, __METHOD__ );
 		}
 		return $this->titleInfo[$key];
 	}
 
-	private static function fetchTitleInfo( IDatabase $db, array $pages, $fname = __METHOD__ ) {
+	protected static function fetchTitleInfo( IDatabase $db, array $pages, $fname = __METHOD__ ) {
 		$titleInfo = [];
 		$batch = new LinkBatch;
 		foreach ( $pages as $titleText ) {
@@ -353,7 +353,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 				}
 			}
 		}
-		$allInfo = self::fetchTitleInfo( $db, array_keys( $allPages ), __METHOD__ );
+		$allInfo = static::fetchTitleInfo( $db, array_keys( $allPages ), __METHOD__ );
 		foreach ( $wikiModules as $module ) {
 			$pages = $module->getPages( $context );
 			$info = array_intersect_key( $allInfo, $pages );
