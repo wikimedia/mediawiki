@@ -261,7 +261,7 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		if ( !count( $nonErrorLoads ) ) {
-			throw new MWException( "Empty server array given to LoadBalancer" );
+			throw new InvalidArgumentException( "Empty server array given to LoadBalancer" );
 		}
 
 		# Scale the configured load ratios according to the dynamic load if supported
@@ -489,7 +489,7 @@ class LoadBalancer implements ILoadBalancer {
 
 	public function getConnection( $i, $groups = [], $wiki = false ) {
 		if ( $i === null || $i === false ) {
-			throw new MWException( 'Attempt to call ' . __METHOD__ .
+			throw new InvalidArgumentException( 'Attempt to call ' . __METHOD__ .
 				' with invalid server index' );
 		}
 
@@ -578,7 +578,7 @@ class LoadBalancer implements ILoadBalancer {
 			$wiki = $dbName;
 		}
 		if ( $this->mConns['foreignUsed'][$serverIndex][$wiki] !== $conn ) {
-			throw new MWException( __METHOD__ . ": connection not found, has " .
+			throw new InvalidArgumentException( __METHOD__ . ": connection not found, has " .
 				"the connection been freed already?" );
 		}
 		$conn->setLBInfo( 'foreignPoolRefCount', --$refCount );
@@ -768,7 +768,7 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		if ( !is_array( $server ) ) {
-			throw new MWException( 'You must update your load-balancing configuration. ' .
+			throw new InvalidArgumentException( 'You must update your load-balancing configuration. ' .
 				'See DefaultSettings.php entry for $wgDBservers.' );
 		}
 
