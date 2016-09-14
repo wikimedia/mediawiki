@@ -604,6 +604,14 @@ class MediaWiki {
 			// OutputPage::output() is fairly slow; run it in $postCommitWork to mask
 			// the latency of syncing DB positions accross all datacenters synchronously
 			$flags = $lbFactory::SHUTDOWN_CHRONPROT_SYNC;
+			if ( $lbFactory->hasOrMadeRecentMasterChanges( INF ) ) {
+				$cpPosTime = microtime( true );
+				// Set a cookie in case the DB position store cannot sync accross datacenters.
+				// This will at least cover the common case of the user staying on the domain.
+				$expires = time() + ChronologyProtector::POSITION_TTL;
+				$options = [ 'prefix' => '' ];
+				$request->response()->setCookie( 'cpPosTime', $cpPosTime, $expires, $options );
+			}
 		}
 		// Record ChronologyProtector positions for DBs affected in this request at this point
 		$lbFactory->shutdown( $flags, $postCommitWork );
