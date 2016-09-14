@@ -60,7 +60,7 @@ class CategoryMembershipChangeJob extends Job {
 
 		// Use a named lock so that jobs for this page see each others' changes
 		$lockKey = "CategoryMembershipUpdates:{$page->getId()}";
-		$scopedLock = $dbw->getScopedLockAndFlush( $lockKey, __METHOD__, 10 );
+		$scopedLock = $dbw->getScopedLockAndFlush( $lockKey, __METHOD__, 3 );
 		if ( !$scopedLock ) {
 			$this->setLastError( "Could not acquire lock '$lockKey'" );
 			return false;
