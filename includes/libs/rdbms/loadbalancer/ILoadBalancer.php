@@ -37,7 +37,7 @@ interface ILoadBalancer {
 	 *  - waitTimeout : Maximum time to wait for replicas for consistency [optional]
 	 *  - srvCache : BagOStuff object [optional]
 	 *  - wanCache : WANObjectCache object [optional]
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $params );
 
@@ -49,7 +49,7 @@ interface ILoadBalancer {
 	 * Side effect: opens connections to databases
 	 * @param string|bool $group Query group, or false for the generic reader
 	 * @param string|bool $wiki Wiki ID, or false for the current wiki
-	 * @throws MWException
+	 * @throws DBError
 	 * @return bool|int|string
 	 */
 	public function getReaderIndex( $group = false, $wiki = false );
@@ -98,7 +98,7 @@ interface ILoadBalancer {
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
 	 * @param string|bool $wiki Wiki ID, or false for the current wiki
 	 *
-	 * @throws MWException
+	 * @throws DBError
 	 * @return IDatabase
 	 */
 	public function getConnection( $i, $groups = [], $wiki = false );
@@ -109,7 +109,7 @@ interface ILoadBalancer {
 	 * the same number of times as getConnection() to work.
 	 *
 	 * @param IDatabase $conn
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 */
 	public function reuseConnection( $conn );
 

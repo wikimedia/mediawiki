@@ -445,7 +445,7 @@ interface IDatabase {
 	 * Closes a database connection.
 	 * if it is open : commits any open transactions
 	 *
-	 * @throws MWException
+	 * @throws DBError
 	 * @return bool Operation success. true if already closed.
 	 */
 	public function close();
@@ -474,7 +474,7 @@ interface IDatabase {
 	 *     comment (you can use __METHOD__ or add some extra info)
 	 * @param bool $tempIgnore Whether to avoid throwing an exception on errors...
 	 *     maybe best to catch the exception instead?
-	 * @throws MWException
+	 * @throws DBError
 	 * @return bool|ResultWrapper True for a successful write query, ResultWrapper object
 	 *     for a successful read query, or false on failure if $tempIgnore set
 	 */
@@ -890,7 +890,7 @@ interface IDatabase {
 	 *    - LIST_OR:    ORed WHERE clause (without the WHERE)
 	 *    - LIST_SET:   Comma separated with field names, like a SET clause
 	 *    - LIST_NAMES: Comma separated field names
-	 * @throws MWException|DBUnexpectedError
+	 * @throws DBError
 	 * @return string
 	 */
 	public function makeList( $a, $mode = LIST_COMMA );
@@ -1486,7 +1486,7 @@ interface IDatabase {
 	 *
 	 * @param string $prefix Only show tables with this prefix, e.g. mw_
 	 * @param string $fname Calling function name
-	 * @throws MWException
+	 * @throws DBError
 	 * @return array
 	 */
 	public function listTables( $prefix = null, $fname = __METHOD__ );
