@@ -64,12 +64,12 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	/**
 	 * Set and return the mOffset timestamp such that we can get all revisions with
 	 * a timestamp up to the specified parameters.
-	 * @param int $year [optional] Year up to which we want revisions. Default is current year.
-	 * @param int $month [optional] Month up to which we want revisions. Default is end of year.
+	 * @param int $year Year up to which we want revisions
+	 * @param int $month Month up to which we want revisions
 	 * @param int $day [optional] Day up to which we want revisions. Default is end of month.
-	 * @return string Timestamp
+	 * @return string|null Timestamp or null if year and month are false/invalid
 	 */
-	function getDateCond( $year = -1, $month = -1, $day = -1 ) {
+	function getDateCond( $year, $month, $day = -1 ) {
 		$year = intval( $year );
 		$month = intval( $month );
 		$day = intval( $day );
@@ -77,6 +77,11 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		// Basic validity checks for year and month
 		$this->mYear = $year > 0 ? $year : false;
 		$this->mMonth = ( $month > 0 && $month < 13 ) ? $month : false;
+
+		// If year and month are false, don't update the mOffset
+		if ( !$this->mYear && !$this->mMonth ) {
+			return;
+		}
 
 		// Given an optional year, month, and day, we need to generate a timestamp
 		// to use as "WHERE rev_timestamp <= result"
