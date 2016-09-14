@@ -111,8 +111,9 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		$this->prepareQuery();
 
+		$hookData = [];
 		// Do the actual query.
-		$res = $this->select( __METHOD__ );
+		$res = $this->select( __METHOD__, [], $hookData );
 
 		if ( $this->fld_sizediff ) {
 			$revIds = [];
@@ -139,7 +140,8 @@ class ApiQueryContributions extends ApiQueryBase {
 			}
 
 			$vals = $this->extractRowInfo( $row );
-			$fit = $this->getResult()->addValue( [ 'query', $this->getModuleName() ], null, $vals );
+			$fit = $this->processRow( $row, $vals, $hookData ) &&
+				$this->getResult()->addValue( [ 'query', $this->getModuleName() ], null, $vals );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue', $this->continueStr( $row ) );
 				break;

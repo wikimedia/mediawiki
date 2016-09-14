@@ -313,7 +313,8 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 		$count = 0;
 		$generated = [];
-		$res = $this->select( __METHOD__ );
+		$hookData = [];
+		$res = $this->select( __METHOD__, [], $hookData );
 
 		foreach ( $res as $row ) {
 			if ( ++$count > $this->limit ) {
@@ -350,7 +351,8 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 					}
 				}
 
-				$fit = $this->addPageSubItem( $row->rev_page, $rev, 'rev' );
+				$fit = $this->processRow( $row, $rev, $hookData ) &&
+					$this->addPageSubItem( $row->rev_page, $rev, 'rev' );
 				if ( !$fit ) {
 					if ( $enumRevMode ) {
 						$this->setContinueEnumParameter( 'continue',

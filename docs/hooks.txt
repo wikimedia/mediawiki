@@ -464,6 +464,35 @@ $moduleManager: ApiModuleManager Module manager instance
 action=query submodule. Use this to extend core API modules.
 &$module: Module object
 
+'ApiQueryBaseAfterQuery': Called for (some) API query modules after the
+database query has returned.
+$module: ApiQueryBase module in question
+$result: ResultWrapper|bool returned from the IDatabase::select()
+&$hookData: array that was passed to the 'ApiQueryBaseBeforeQuery' hook and
+ will be passed to the 'ApiQueryBaseProcessRow' hook, intended for inter-hook
+ communication.
+
+'ApiQueryBaseBeforeQuery': Called for (some) API query modules before a
+database query is made. WARNING: It would be very easy to misuse this hook and
+break the module! Any joins added *must* join on a unique key of the target
+table unless you really know what you're doing.
+$module: ApiQueryBase module in question
+&$tables: array of tables to be queried
+&$fields: array of columns to select
+&$conds: array of WHERE conditionals for query
+&$query_options: array of options for the database request
+&$join_conds: join conditions for the tables
+&$hookData: array that will be passed to the 'ApiQueryBaseAfterQuery' and
+ 'ApiQueryBaseProcessRow' hooks, intended for inter-hook communication.
+
+'ApiQueryBaseProcessRow': Called for (some) API query modules as each row of
+the database result is processed. Return false to stop processing the result set.
+$module: ApiQueryBase module in question
+$row: stdClass Database result row
+&$data: array to be included in the ApiResult.
+&$hookData: array that was be passed to the 'ApiQueryBaseBeforeQuery' and
+ 'ApiQueryBaseAfterQuery' hooks, intended for inter-hook communication.
+
 'APIQueryGeneratorAfterExecute': After calling the executeGenerator() method of
 an action=query submodule. Use this to extend core API modules.
 &$module: Module object

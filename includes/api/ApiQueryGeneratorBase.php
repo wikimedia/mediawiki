@@ -46,6 +46,15 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 	}
 
 	/**
+	 * Indicate whether the module is in generator mode
+	 * @since 1.28
+	 * @return bool
+	 */
+	public function isInGeneratorMode() {
+		return $this->mGeneratorPageSet !== null;
+	}
+
+	/**
 	 * Get the PageSet object to work on.
 	 * If this module is generator, the pageSet object is different from other module's
 	 * @return ApiPageSet
