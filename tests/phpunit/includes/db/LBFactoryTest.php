@@ -159,26 +159,18 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$mockDB = $this->getMockBuilder( 'DatabaseMysql' )
 			->disableOriginalConstructor()
 			->getMock();
-		$mockDB->expects( $this->any() )
-			->method( 'writesOrCallbacksPending' )->will( $this->returnValue( true ) );
-		$mockDB->expects( $this->any() )
-			->method( 'lastDoneWrites' )->will( $this->returnValue( $now ) );
-		$mockDB->expects( $this->any() )
-			->method( 'getMasterPos' )->will( $this->returnValue( $mPos ) );
+		$mockDB->method( 'writesOrCallbacksPending' )->willReturn( true );
+		$mockDB->method( 'lastDoneWrites' )->willReturn( $now );
+		$mockDB->method( 'getMasterPos' )->willReturn( $mPos );
 
 		$lb = $this->getMockBuilder( 'LoadBalancer' )
 			->disableOriginalConstructor()
 			->getMock();
-		$lb->expects( $this->any() )
-			->method( 'getConnection' )->will( $this->returnValue( $mockDB ) );
-		$lb->expects( $this->any() )
-			->method( 'getServerCount' )->will( $this->returnValue( 2 ) );
-		$lb->expects( $this->any() )
-			->method( 'parentInfo' )->will( $this->returnValue( [ 'id' => "main-DEFAULT" ] ) );
-		$lb->expects( $this->any() )
-			->method( 'getAnyOpenConnection' )->will( $this->returnValue( $mockDB ) );
-		$lb->expects( $this->any() )
-			->method( 'hasOrMadeRecentMasterChanges' )->will( $this->returnCallback(
+		$lb->method( 'getConnection' )->willReturn( $mockDB );
+		$lb->method( 'getServerCount' )->willReturn( 2 );
+		$lb->method( 'parentInfo' )->willReturn( [ 'id' => "main-DEFAULT" ] );
+		$lb->method( 'getAnyOpenConnection' )->willReturn( $mockDB );
+		$lb->method( 'hasOrMadeRecentMasterChanges' )->will( $this->returnCallback(
 				function () use ( $mockDB ) {
 					$p = 0;
 					$p |= call_user_func( [ $mockDB, 'writesOrCallbacksPending' ] );
@@ -187,8 +179,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 					return (bool)$p;
 				}
 			) );
-		$lb->expects( $this->any() )
-			->method( 'getMasterPos' )->will( $this->returnValue( $mPos ) );
+		$lb->method( 'getMasterPos' )->willReturn( $mPos );
 
 		$bag = new HashBagOStuff();
 		$cp = new ChronologyProtector(

@@ -169,15 +169,11 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 			->setMethods( [ 'fetchRow', 'query' ] )
 			->getMock();
 
-		$db->expects( $this->any() )
-			->method( 'query' )
+		$db->method( 'query' )
 			->with( $this->anything() )
-			->will(
-				$this->returnValue( null )
-			);
+			->willReturn( null );
 
-		$db->expects( $this->any() )
-			->method( 'fetchRow' )
+		$db->method( 'fetchRow' )
 			->with( $this->anything() )
 			->will( $this->onConsecutiveCalls(
 				[ 'Tables_in_' => 'view1' ],
@@ -361,13 +357,11 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 				'getLagDetectionMethod', 'getHeartbeatData', 'getMasterServerInfo' ] )
 			->getMock();
 
-		$db->expects( $this->any() )
-			->method( 'getLagDetectionMethod' )
-			->will( $this->returnValue( 'pt-heartbeat' ) );
+		$db->method( 'getLagDetectionMethod' )
+			->willReturn( 'pt-heartbeat' );
 
-		$db->expects( $this->any() )
-			->method( 'getMasterServerInfo' )
-			->will( $this->returnValue( [ 'serverId' => 172, 'asOf' => time() ] ) );
+		$db->method( 'getMasterServerInfo' )
+			->willReturn( [ 'serverId' => 172, 'asOf' => time() ] );
 
 		// Fake the current time.
 		list( $nowSecFrac, $nowSec ) = explode( ' ', microtime() );
@@ -381,10 +375,9 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 		$ptTimeISO = $ptDateTime->format( 'Y-m-d\TH:i:s' );
 		$ptTimeISO .= ltrim( number_format( $ptSecFrac, 6 ), '0' );
 
-		$db->expects( $this->any() )
-			->method( 'getHeartbeatData' )
+		$db->method( 'getHeartbeatData' )
 			->with( [ 'server_id' => 172 ] )
-			->will( $this->returnValue( [ $ptTimeISO, $now ] ) );
+			->willReturn( [ $ptTimeISO, $now ] );
 
 		$db->setLBInfo( 'clusterMasterHost', 'db1052' );
 		$lagEst = $db->getLag();
