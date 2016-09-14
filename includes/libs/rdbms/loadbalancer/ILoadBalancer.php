@@ -35,8 +35,10 @@ interface ILoadBalancer {
 	 *  - loadMonitor : Name of a class used to fetch server lag and load.
 	 *  - readOnlyReason : Reason the master DB is read-only if so [optional]
 	 *  - waitTimeout : Maximum time to wait for replicas for consistency [optional]
-	 *  - srvCache : BagOStuff object [optional]
+	 *  - srvCache : BagOStuff object for server cache [optional]
+	 *  - memCache : BagOStuff object for cluster memory cache [optional]
 	 *  - wanCache : WANObjectCache object [optional]
+	 *  - hostname : the name of the current server [optional]
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $params );

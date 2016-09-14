@@ -72,7 +72,7 @@ class ChronologyProtector implements LoggerAwareInterface{
 		$this->clientId = md5( $client['ip'] . "\n" . $client['agent'] );
 		$this->key = $store->makeGlobalKey( __CLASS__, $this->clientId );
 		$this->waitForPosTime = $posTime;
-		$this->logger = LoggerFactory::getInstance( 'DBReplication' );
+		$this->logger = new \Psr\Log\NullLogger();
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -265,10 +265,11 @@ class ChronologyProtector implements LoggerAwareInterface{
 
 				if ( $result == $loop::CONDITION_REACHED ) {
 					$msg = "expected and found pos time {$this->waitForPosTime} ({$waitedMs}ms)";
+					$this->logger->debug( $msg );
 				} else {
 					$msg = "expected but missed pos time {$this->waitForPosTime} ({$waitedMs}ms)";
+					$this->logger->info( $msg );
 				}
-				wfDebugLog( 'replication', $msg );
 			} else {
 				$data = $this->store->get( $this->key );
 			}
