@@ -597,7 +597,7 @@ abstract class LBFactory implements DestructibleService {
 				'ip' => $request->getIP(),
 				'agent' => $request->getHeader( 'User-Agent' ),
 			],
-			$request->getFloat( 'cpPosTime', null )
+			$request->getFloat( 'cpPosTime', $request->getCookie( 'cpPosTime', '' ) )
 		);
 		if ( PHP_SAPI === 'cli' ) {
 			$chronProt->setEnabled( false );
