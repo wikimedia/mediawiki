@@ -21,7 +21,6 @@
  * @ingroup Database
  */
 use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerInterface;
 
 /**
  * An interface for database load monitoring
@@ -32,52 +31,35 @@ interface LoadMonitor extends LoggerAwareInterface {
 	/**
 	 * Construct a new LoadMonitor with a given LoadBalancer parent
 	 *
-	 * @param LoadBalancer $parent
+	 * @param BagOStuff $sCache Server local memory cache
+	 * @param BagOStuff $cCache Server local memory cache
+	 * @param ILoadBalancer $parent LoadBalancer this instance serves
 	 */
-	public function __construct( LoadBalancer $parent );
+	public function __construct( ILoadBalancer $parent, BagOStuff $sCache, BagOStuff $cCache );
 
 	/**
 	 * Perform pre-connection load ratio adjustment.
-	 * @param array &$loads
+	 * @param int[] &$loads
 	 * @param string|bool $group The selected query group. Default: false
-	 * @param string|bool $wiki Default: false
+	 * @param string|bool $domain Default: false
 	 */
-	public function scaleLoads( &$loads, $group = false, $wiki = false );
+	public function scaleLoads( &$loads, $group = false, $domain = false );
 
 	/**
 	 * Get an estimate of replication lag (in seconds) for each server
 	 *
 	 * Values may be "false" if replication is too broken to estimate
 	 *
-	 * @param array $serverIndexes
-	 * @param string $wiki
+	 * @param integer[] $serverIndexes
+	 * @param string $domain
 	 *
 	 * @return array Map of (server index => float|int|bool)
 	 */
-	public function getLagTimes( $serverIndexes, $wiki );
+	public function getLagTimes( $serverIndexes, $domain );
 
 	/**
 	 * Clear any process and persistent cache of lag times
 	 * @since 1.27
 	 */
 	public function clearCaches();
-}
-
-class LoadMonitorNull implements LoadMonitor {
-	public function __construct( LoadBalancer $parent ) {
-	}
-
-	public function setLogger( LoggerInterface $logger ) {
-	}
-
-	public function scaleLoads( &$loads, $group = false, $wiki = false ) {
-	}
-
-	public function getLagTimes( $serverIndexes, $wiki ) {
-		return array_fill_keys( $serverIndexes, 0 );
-	}
-
-	public function clearCaches() {
-
-	}
 }
