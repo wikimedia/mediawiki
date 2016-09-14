@@ -56,9 +56,10 @@ production.
   the mw.Api instance seems to be for the local wiki.
 * After a client performs an action which alters a database that has replica databases,
   MediaWiki will wait for the replica databases to synchronize with the master database
-  while it renders the HTML output. However, if the output is a redirect, it will instead
-  alter the redirect URL to include a ?cpPosTime parameter that triggers the database
-  synchronization when the URL is followed by the client.
+  while it renders the HTML output. However, if the output is a redirect to another wiki
+  on the wiki farm with a different domain, MediaWiki will instead alter the redirect
+  URL to include a ?cpPosTime parameter that triggers the database synchronization when
+  the URL is followed by the client. The same-domain case uses a new cpPosTime cookie.
 
 === External library changes in 1.28 ===
 
