@@ -283,6 +283,8 @@
 			this[ this.needToken() ? 'postWithEditToken' : 'post' ]( data, {
 				// Use FormData (if we got here, we know that it's available)
 				contentType: 'multipart/form-data',
+				// No timeout (default from mw.Api is 30 seconds)
+				timeout: 0,
 				// Provide upload progress notifications
 				xhr: function () {
 					var xhr = $.ajaxSettings.xhr();
