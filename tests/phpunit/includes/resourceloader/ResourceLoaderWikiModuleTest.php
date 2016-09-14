@@ -138,4 +138,83 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 			],
 		];
 	}
+
+	/**
+	 * @covers ResourceLoaderWikiModule::getTitleInfo
+	 */
+	public function testGetTitleInfo() {
+		$pages = [
+			'MediaWiki:Common.css' => [ 'type' => 'styles' ],
+			'mediawiki: fallback.css' => [ 'type' => 'styles' ],
+		];
+		$titleInfo = [
+			'MediaWiki:Common.css' => [ 'page_len' => 1234 ],
+			'MediaWiki:Fallback.css' => [ 'page_len' => 0 ],
+		];
+		$expected = $titleInfo;
+
+		$module = $this->getMockBuilder( 'TestResourceLoaderWikiModule' )
+			->setMethods( [ 'getPages' ] )
+			->getMock();
+		$module->method( 'getPages' )->willReturn( $pages );
+		// Can't mock static methods
+		$module::$returnFetchTitleInfo = $titleInfo;
+
+		$context = $this->getMockBuilder( 'ResourceLoaderContext' )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$module = TestingAccessWrapper::newFromObject( $module );
+		$this->assertEquals( $expected, $module->getTitleInfo( $context ), 'Title info' );
+	}
+
+	/**
+	 * @covers ResourceLoaderWikiModule::getTitleInfo
+	 * @covers ResourceLoaderWikiModule::setTitleInfo
+	 * @covers ResourceLoaderWikiModule::preloadTitleInfo
+	 */
+	public function testGetPreloadedTitleInfo() {
+		$pages = [
+			'MediaWiki:Common.css' => [ 'type' => 'styles' ],
+			// Regression against T145673. It's impossible to statically declare page names in
+			// a canonical way since the canonical prefix is localised. As such, the preload
+			// cache computed the right cache key, but failed to find the results when
+			// doing an intersect on the canonical result, producing an empty array.
+			'mediawiki: fallback.css' => [ 'type' => 'styles' ],
+		];
+		$titleInfo = [
+			'MediaWiki:Common.css' => [ 'page_len' => 1234 ],
+			'MediaWiki:Fallback.css' => [ 'page_len' => 0 ],
+		];
+		$expected = $titleInfo;
+
+		$module = $this->getMockBuilder( 'TestResourceLoaderWikiModule' )
+			->setMethods( [ 'getPages' ] )
+			->getMock();
+		$module->method( 'getPages' )->willReturn( $pages );
+		// Can't mock static methods
+		$module::$returnFetchTitleInfo = $titleInfo;
+
+		$rl = new EmptyResourceLoader();
+		$rl->register( 'testmodule', $module );
+		$context = new ResourceLoaderContext( $rl, new FauxRequest() );
+
+		TestResourceLoaderWikiModule::preloadTitleInfo(
+			$context,
+			wfGetDB( DB_REPLICA ),
+			[ 'testmodule' ]
+		);
+
+		$module = TestingAccessWrapper::newFromObject( $module );
+		$this->assertEquals( $expected, $module->getTitleInfo( $context ), 'Title info' );
+	}
+}
+
+class TestResourceLoaderWikiModule extends ResourceLoaderWikiModule {
+	public static $returnFetchTitleInfo = null;
+	protected static function fetchTitleInfo( IDatabase $db, array $pages, $fname = null ) {
+		$ret = self::$returnFetchTitleInfo;
+		self::$returnFetchTitleInfo = null;
+		return $ret;
+	}
 }
