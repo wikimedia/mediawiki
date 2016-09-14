@@ -962,7 +962,7 @@ class DatabaseSqlite extends Database {
 			$this->addQuotes( $oldName ) . " AND type='table'", $fname );
 		$obj = $this->fetchObject( $res );
 		if ( !$obj ) {
-			throw new MWException( "Couldn't retrieve structure for table $oldName" );
+			throw new RuntimeException( "Couldn't retrieve structure for table $oldName" );
 		}
 		$sql = $obj->sql;
 		$sql = preg_replace(
