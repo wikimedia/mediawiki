@@ -248,7 +248,7 @@ class ChronologyProtector implements LoggerAwareInterface{
 		if ( $this->wait ) {
 			// If there is an expectation to see master positions with a certain min
 			// timestamp, then block until they appear, or until a timeout is reached.
-			if ( $this->waitForPosTime ) {
+			if ( $this->waitForPosTime > 0.0 ) {
 				$data = null;
 				$loop = new WaitConditionLoop(
 					function () use ( &$data ) {

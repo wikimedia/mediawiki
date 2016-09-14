@@ -574,22 +574,32 @@ class MediaWiki {
 		wfDebug( __METHOD__ . ': pre-send deferred updates completed' );
 
 		// Decide when clients block on ChronologyProtector DB position writes
-		if (
+		$urlDomainDistance = (
 			$request->wasPosted() &&
 			$output->getRedirect() &&
-			$lbFactory->hasOrMadeRecentMasterChanges( INF ) &&
-			self::isWikiClusterURL( $output->getRedirect(), $context )
-		) {
+			$lbFactory->hasOrMadeRecentMasterChanges( INF )
+		) ? self::getUrlDomainDistance( $output->getRedirect(), $context ) : false;
+
+		if ( $urlDomainDistance === 'local' || $urlDomainDistance === 'remote' ) {
 			// OutputPage::output() will be fast; $postCommitWork will not be useful for
 			// masking the latency of syncing DB positions accross all datacenters synchronously.
 			// Instead, make use of the RTT time of the client follow redirects.
 			$flags = $lbFactory::SHUTDOWN_CHRONPROT_ASYNC;
+			$cpPosTime = microtime( true );
 			// Client's next request should see 1+ positions with this DBMasterPos::asOf() time
-			$safeUrl = $lbFactory->appendPreShutdownTimeAsQuery(
-				$output->getRedirect(),
-				microtime( true )
-			);
-			$output->redirect( $safeUrl );
+			if ( $urlDomainDistance === 'local' ) {
+				// Client will stay on this domain, so set an unobtrusive cookie
+				$expires = time() + ChronologyProtector::POSITION_TTL;
+				$options = [ 'prefix' => '' ];
+				$request->response()->setCookie( 'cpPosTime', $cpPosTime, $expires, $options );
+			} else {
+				// Cookies may not work across wiki domains, so use a URL parameter
+				$safeUrl = $lbFactory->appendPreShutdownTimeAsQuery(
+					$output->getRedirect(),
+					$cpPosTime
+				);
+				$output->redirect( $safeUrl );
+			}
 		} else {
 			// OutputPage::output() is fairly slow; run it in $postCommitWork to mask
 			// the latency of syncing DB positions accross all datacenters synchronously
@@ -629,9 +639,9 @@ class MediaWiki {
 	/**
 	 * @param string $url
 	 * @param IContextSource $context
-	 * @return bool Whether $url is to something on this wiki farm
+	 * @return string|bool Either "local" or "remote" if in the farm, "external" otherwise
 	 */
-	private function isWikiClusterURL( $url, IContextSource $context ) {
+	private function getUrlDomainDistance( $url, IContextSource $context ) {
 		static $relevantKeys = [ 'host' => true, 'port' => true ];
 
 		$infoCandidate = wfParseUrl( $url );
@@ -647,14 +657,14 @@ class MediaWiki {
 			$context->getConfig()->get( 'LocalVirtualHosts' )
 		);
 
-		foreach ( $clusterHosts as $clusterHost ) {
+		foreach ( $clusterHosts as $i => $clusterHost ) {
 			$parseUrl = wfParseUrl( $clusterHost );
 			if ( !$parseUrl ) {
 				continue;
 			}
 			$infoHost = array_intersect_key( $parseUrl, $relevantKeys );
 			if ( $infoCandidate === $infoHost ) {
-				return true;
+				return ( $i === 0 ) ? 'local' : 'remote';
 			}
 		}
 
