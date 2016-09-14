@@ -340,8 +340,8 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 				if ( in_array( $p['driver'], $possibleDrivers ) ) {
 					$driver = $p['driver'];
 				} else {
-					throw new MWException( __METHOD__ .
-						" cannot construct Database with type '$dbType' and driver '{$p['driver']}'" );
+					throw new InvalidArgumentException( __METHOD__ .
+						" type '$dbType' does not support driver '{$p['driver']}'" );
 				}
 			} else {
 				foreach ( $possibleDrivers as $posDriver ) {
@@ -740,7 +740,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	 * not restored on unserialize.
 	 */
 	public function __sleep() {
-		throw new MWException( 'Database serialization may cause problems, since ' .
+		throw new RuntimeException( 'Database serialization may cause problems, since ' .
 			'the connection is not restored on wakeup.' );
 	}
 
@@ -807,7 +807,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 			$closed = $this->closeConnection();
 			$this->mConn = false;
 		} elseif ( $this->mTrxIdleCallbacks || $this->mTrxEndCallbacks ) { // sanity
-			throw new MWException( "Transaction callbacks still pending." );
+			throw new RuntimeException( "Transaction callbacks still pending." );
 		} else {
 			$closed = true;
 		}
@@ -1736,7 +1736,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 					unset( $value[$nullKey] );
 				}
 				if ( count( $value ) == 0 && !$includeNull ) {
-					throw new MWException( __METHOD__ . ": empty input for field $field" );
+					throw new InvalidArgumentException( __METHOD__ . ": empty input for field $field" );
 				} elseif ( count( $value ) == 0 ) {
 					// only check if $field is null
 					$list .= "$field IS NULL";
@@ -3132,12 +3132,12 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	public function duplicateTableStructure( $oldName, $newName, $temporary = false,
 		$fname = __METHOD__
 	) {
-		throw new MWException(
+		throw new RuntimeException(
 			'DatabaseBase::duplicateTableStructure is not implemented in descendant class' );
 	}
 
 	function listTables( $prefix = null, $fname = __METHOD__ ) {
-		throw new MWException( 'DatabaseBase::listTables is not implemented in descendant class' );
+		throw new RuntimeException( 'DatabaseBase::listTables is not implemented in descendant class' );
 	}
 
 	/**
@@ -3161,7 +3161,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	 * @since 1.22
 	 */
 	public function listViews( $prefix = null, $fname = __METHOD__ ) {
-		throw new MWException( 'DatabaseBase::listViews is not implemented in descendant class' );
+		throw new RuntimeException( 'DatabaseBase::listViews is not implemented in descendant class' );
 	}
 
 	/**
@@ -3173,7 +3173,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	 * @since 1.22
 	 */
 	public function isView( $name ) {
-		throw new MWException( 'DatabaseBase::isView is not implemented in descendant class' );
+		throw new RuntimeException( 'DatabaseBase::isView is not implemented in descendant class' );
 	}
 
 	public function timestamp( $ts = 0 ) {
@@ -3368,7 +3368,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 		MediaWiki\restoreWarnings();
 
 		if ( false === $fp ) {
-			throw new MWException( "Could not open \"{$filename}\".\n" );
+			throw new RuntimeException( "Could not open \"{$filename}\".\n" );
 		}
 
 		if ( !$fname ) {

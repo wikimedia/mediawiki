@@ -110,7 +110,7 @@ class LBFactorySimple extends LBFactory {
 	protected function newExternalLB( $cluster, $wiki = false ) {
 		global $wgExternalServers;
 		if ( !isset( $wgExternalServers[$cluster] ) ) {
-			throw new MWException( __METHOD__ . ": Unknown cluster \"$cluster\"" );
+			throw new InvalidArgumentException( __METHOD__ . ": Unknown cluster \"$cluster\"" );
 		}
 
 		return $this->newLoadBalancer( $wgExternalServers[$cluster] );
