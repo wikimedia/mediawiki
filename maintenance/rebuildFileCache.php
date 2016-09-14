@@ -74,10 +74,10 @@ class RebuildFileCache extends Maintenance {
 		$overwrite = $this->getOption( 'overwrite', false );
 		$start = ( $start > 0 )
 			? $start
-			: $dbr->selectField( 'page', 'MIN(page_id)', false, __FUNCTION__ );
+			: $dbr->selectField( 'page', 'MIN(page_id)', false, __METHOD__ );
 		$end = ( $end > 0 )
 			? $end
-			: $dbr->selectField( 'page', 'MAX(page_id)', false, __FUNCTION__ );
+			: $dbr->selectField( 'page', 'MAX(page_id)', false, __METHOD__ );
 		if ( !$start ) {
 			$this->error( "Nothing to do.", true );
 		}
@@ -93,9 +93,11 @@ class RebuildFileCache extends Maintenance {
 		// Go through each page and save the output
 		while ( $blockEnd <= $end ) {
 			// Get the pages
-			$res = $dbr->select( 'page', [ 'page_namespace', 'page_title', 'page_id' ],
+			$res = $dbr->select( 'page',
+				[ 'page_namespace', 'page_title', 'page_id' ],
 				[ 'page_namespace' => MWNamespace::getContentNamespaces(),
 					"page_id BETWEEN $blockStart AND $blockEnd" ],
+				__METHOD__,
 				[ 'ORDER BY' => 'page_id ASC', 'USE INDEX' => 'PRIMARY' ]
 			);
 
@@ -119,7 +121,7 @@ class RebuildFileCache extends Maintenance {
 
 				// If the article is cacheable, then load it
 				if ( $article->isFileCacheable() ) {
-					$cache = HTMLFileCache::newFromTitle( $title, 'view' );
+					$cache = new HTMLFileCache( $title, 'view' );
 					if ( $cache->isCacheGood() ) {
 						if ( $overwrite ) {
 							$rebuilt = true;
