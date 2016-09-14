@@ -28,11 +28,11 @@ class LoadMonitorNull implements LoadMonitor {
 	public function setLogger( LoggerInterface $logger ) {
 	}
 
-	public function scaleLoads( &$loads, $group = false, $wiki = false ) {
+	public function scaleLoads( &$loads, $group = false, $domain = false ) {
 
 	}
 
-	public function getLagTimes( $serverIndexes, $wiki ) {
+	public function getLagTimes( $serverIndexes, $domain ) {
 		return array_fill_keys( $serverIndexes, 0 );
 	}
 
