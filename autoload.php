@@ -311,6 +311,7 @@ $wgAutoloadLocalClasses = [
 	'DBReplicationWaitError' => __DIR__ . '/includes/db/DatabaseError.php',
 	'DBSiteStore' => __DIR__ . '/includes/site/DBSiteStore.php',
 	'DBTransactionError' => __DIR__ . '/includes/db/DatabaseError.php',
+	'DBTransactionSizeError' => __DIR__ . '/includes/db/DatabaseError.php',
 	'DBUnexpectedError' => __DIR__ . '/includes/db/DatabaseError.php',
 	'DataUpdate' => __DIR__ . '/includes/deferred/DataUpdate.php',
 	'Database' => __DIR__ . '/includes/db/Database.php',
