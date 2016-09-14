@@ -21,6 +21,8 @@
  * @ingroup Cache
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Page view caching in the file system.
  * The only cacheable actions are "view" and "history". Also special pages
@@ -31,6 +33,7 @@
 class HTMLFileCache extends FileCacheBase {
 	const MODE_NORMAL = 0; // normal cache mode
 	const MODE_OUTAGE = 1; // fallback cache for DB outages
+	const MODE_REBUILD = 2; // background cache rebuild mode
 
 	/**
 	 * Construct an HTMLFileCache object from a Title and an action
@@ -52,6 +55,7 @@ class HTMLFileCache extends FileCacheBase {
 	 */
 	public function __construct( $title, $action ) {
 		parent::__construct();
+
 		$allowedTypes = self::cacheablePageActions();
 		if ( !in_array( $action, $allowedTypes ) ) {
 			throw new MWException( 'Invalid file cache type given.' );
@@ -96,16 +100,15 @@ class HTMLFileCache extends FileCacheBase {
 	/**
 	 * Check if pages can be cached for this request/user
 	 * @param IContextSource $context
-	 * @param integer $mode One of the HTMLFileCache::MODE_* constants
+	 * @param integer $mode One of the HTMLFileCache::MODE_* constants (since 1.28)
 	 * @return bool
 	 */
 	public static function useFileCache( IContextSource $context, $mode = self::MODE_NORMAL ) {
-		global $wgUseFileCache, $wgDebugToolbar, $wgContLang;
+		$config = MediaWikiServices::getInstance()->getMainConfig();
 
-		if ( !$wgUseFileCache ) {
+		if ( !$config->get( 'UseFileCache' ) && $mode !== self::MODE_REBUILD ) {
 			return false;
-		}
-		if ( $wgDebugToolbar ) {
+		} elseif ( $config->get( 'DebugToolbar' ) ) {
 			wfDebug( "HTML file cache skipped. \$wgDebugToolbar on\n" );
 
 			return false;
@@ -133,7 +136,7 @@ class HTMLFileCache extends FileCacheBase {
 		$ulang = $context->getLanguage();
 
 		// Check that there are no other sources of variation
-		if ( $user->getId() || !$ulang->equals( $wgContLang ) ) {
+		if ( $user->getId() || $ulang->getCode() !== $config->get( 'LanguageCode' ) ) {
 			return false;
 		}
 
@@ -154,7 +157,7 @@ class HTMLFileCache extends FileCacheBase {
 	 * @return void
 	 */
 	public function loadFromFileCache( IContextSource $context, $mode = self::MODE_NORMAL ) {
-		global $wgMimeType, $wgLanguageCode;
+		$config = MediaWikiServices::getInstance()->getMainConfig();
 
 		wfDebug( __METHOD__ . "()\n" );
 		$filename = $this->cachePath();
@@ -165,8 +168,8 @@ class HTMLFileCache extends FileCacheBase {
 		}
 
 		$context->getOutput()->sendCacheControl();
-		header( "Content-Type: $wgMimeType; charset=UTF-8" );
-		header( "Content-Language: $wgLanguageCode" );
+		header( "Content-Type: {$config->get( 'MimeType' )}; charset=UTF-8" );
+		header( "Content-Language: {$config->get( 'LanguageCode' )}" );
 		if ( $this->useGzip() ) {
 			if ( wfClientAcceptsGzip() ) {
 				header( 'Content-Encoding: gzip' );
@@ -185,13 +188,17 @@ class HTMLFileCache extends FileCacheBase {
 	/**
 	 * Save this cache object with the given text.
 	 * Use this as an ob_start() handler.
+	 *
+	 * Normally this is only registed as a handler if $wgUseFileCache is on.
+	 * If can be explicitly called by rebuildFileCache.php when it takes over
+	 * handling file caching itself, disabling any automatic handling the the
+	 * process.
+	 *
 	 * @param string $text
-	 * @return bool Whether $wgUseFileCache is enabled
+	 * @return string|bool The annotated $text or false on error
 	 */
 	public function saveToFileCache( $text ) {
-		global $wgUseFileCache;
-
-		if ( !$wgUseFileCache || strlen( $text ) < 512 ) {
+		if ( strlen( $text ) < 512 ) {
 			// Disabled or empty/broken output (OOM and PHP errors)
 			return $text;
 		}
@@ -234,9 +241,9 @@ class HTMLFileCache extends FileCacheBase {
 	 * @return bool Whether $wgUseFileCache is enabled
 	 */
 	public static function clearFileCache( Title $title ) {
-		global $wgUseFileCache;
+		$config = MediaWikiServices::getInstance()->getMainConfig();
 
-		if ( !$wgUseFileCache ) {
+		if ( !$config->get( 'UseFileCache' ) ) {
 			return false;
 		}
 
