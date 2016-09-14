@@ -34,6 +34,11 @@ class SpecialBlankpage extends UnlistedSpecialPage {
 
 	public function execute( $par ) {
 		$this->setHeaders();
+
+		$this->getOutput()->addHTML( '<p>$this->msg: ' . $this->msg( 'fileexists' )->text() . '</p>' );
+
+		$this->getOutput()->addHTML( '<p>wfMessage ' . wfMessage( 'fileexists' )->text() . '</p>' );
+
 		$this->getOutput()->addWikiMsg( 'intentionallyblankpage' );
 	}
 }
