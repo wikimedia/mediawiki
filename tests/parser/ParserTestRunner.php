@@ -1517,7 +1517,10 @@ class ParserTestRunner {
 			throw new MWException( "duplicate article '$name' at $file:$line\n" );
 		}
 
-		$page->doEditContent( ContentHandler::makeContent( $text, $title ), '', EDIT_NEW );
+		$status = $page->doEditContent( ContentHandler::makeContent( $text, $title ), '', EDIT_NEW );
+		if ( !$status->isOK() ) {
+			throw new MWException( $status->getWikiText( false, false, 'en' ) );
+		}
 
 		// The RepoGroup cache is invalidated by the creation of file redirects
 		if ( $title->getNamespace() === NS_IMAGE ) {
