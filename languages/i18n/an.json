@@ -14,7 +14,8 @@
 			"Macofe",
 			"Carlos Cristia",
 			"MarcoAurelio",
-			"Matma Rex"
+			"Matma Rex",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Subrayar os vinclos:",
@@ -338,7 +339,6 @@
 	"yourpassword": "Clau d'acceso:",
 	"yourpasswordagain": "Torne a escribir a clau:",
 	"createacct-yourpasswordagain": "Confirma a clau",
-	"remembermypassword": "Remerar o mío nombre d'usuario y a clau entre sesions en iste navegador (como muito por $1 {{PLURAL:$1|día|días}})",
 	"yourdomainname": "Dominio:",
 	"externaldberror": "Bi habió una error d'autenticación externa d'a base de datos u bien no tiene premisos ta esviellar a suya cuenta externa.",
 	"login": "Encetar sesión",
@@ -436,8 +436,6 @@
 	"passwordreset-emailtext-user": "L'usuario $1 en {{SITENAME}} ha demandau un recordatorio d'a información d'a suya cuenta en {{SITENAME}} ($4). {{PLURAL:$3|A cuenta d'usuario siguient ye asociata|As cuentas d'usuario siguients son asociatas}} a ista adreza de correu-e:\n\n$2\n\n{{PLURAL:$3|Ista clau d'acceso temporal circumducirá|Istas claus d'acceso temporals circumducirán}} en {{PLURAL:$5|un día|$5 días}}. Habría de connectar-se agora y trigar una nueva clau. Si ista demanda no dimana de vusté, u ya se'n ha acordau d'a suya clau inicial y ya no deseya modificar-la, puet ignorar iste mensache y continar emplegando a suya viella clau.",
 	"passwordreset-emailelement": "Nombre de usuario: \n$1\n\nClau d'acceso temporal: \n$2",
 	"passwordreset-emailsentemail": "S'ha ninviau un recordatorio por correu-e.",
-	"passwordreset-emailsent-capture": "Se le ha ninviau un recordatorio por correu electronico, que s'amuestra contino.",
-	"passwordreset-emailerror-capture": "S'ha chenerau un recordatorio por correu electronico, que s'amuestra contino, pero o ninvío ta l'usuario ha fallau: $1",
 	"changeemail": "Cambiar l'adreza de correu-e",
 	"changeemail-header": "Cambiar l'adreza de correu-e d'a cuenta",
 	"changeemail-no-info": "Debe identificar-se como usuario ta poder acceder dreitament ta ista pachina.",
@@ -468,6 +466,7 @@
 	"minoredit": "He feito una edición menor",
 	"watchthis": "Cosirar ista pachina",
 	"savearticle": "Alzar pachina",
+	"publishchanges": "Publicar os cambeos",
 	"preview": "Previsualización",
 	"showpreview": "Amostrar previsualización",
 	"showdiff": "Amostrar cambeos",
@@ -570,7 +569,6 @@
 	"undo-failure": "No se puet desfer a edición pues un atro usuario ha feito una edición intermeya.",
 	"undo-norev": "No s'ha puesto desfer a edición porque no existiba u ya s'heba borrato.",
 	"undo-summary": "Desfeita a edición $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|desc.]])",
-	"cantcreateaccounttitle": "No se puede creyar a cuenta",
 	"cantcreateaccount-text": "A creyación de cuentas dende ixa adreza IP ('''$1''') estió bloqueyata por [[User:$3|$3]].\n\nA razón indicada por $3 ye ''$2''",
 	"viewpagelogs": "Veyer os rechistros d'ista pachina",
 	"nohistory": "Ista pachina no tiene un historial d'edicions.",
@@ -2640,6 +2638,5 @@
 	"special-characters-group-lao": "Laosiano",
 	"special-characters-group-khmer": "Khmer",
 	"mw-widgets-dateinput-placeholder-day": "AAAA-MM-DD",
-	"mw-widgets-dateinput-placeholder-month": "AAAA-MM",
-	"api-error-blacklisted": "Trigue un titol diferent, mas descriptivo."
+	"mw-widgets-dateinput-placeholder-month": "AAAA-MM"
 }
