@@ -668,6 +668,28 @@ class Message implements MessageSpecifier, Serializable {
 	}
 
 	/**
+	 * Add parameters that should not be parsed as wikitext, but still
+	 * be escaped by the parser
+	 *
+	 * @since 1.28
+	 *
+	 * @param string|string[] $param,... wikitext parameters, or a single argument that is
+	 * an array of wikitext parameters.
+	 *
+	 * @return Message $this
+	 */
+	public function escapeWikitextParams( /*...*/ ) {
+		$params = func_get_args();
+		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
+			$params = $params[0];
+		}
+		foreach ( $params as $param ) {
+			$this->parameters[] = self::escapewikitextParam( $param );
+		}
+		return $this;
+	}
+
+	/**
 	 * Set the language and the title from a context object
 	 *
 	 * @since 1.19
@@ -1058,6 +1080,17 @@ class Message implements MessageSpecifier, Serializable {
 	}
 
 	/**
+	 * @since 1.28
+	 *
+	 * @param $wikitext
+	 *
+	 * @return string[] Array with a single "escapewikitext" key
+	 */
+	public static function escapewikitextParam( $wikitext ) {
+		return [ 'escapewikitext' => $wikitext ];
+	}
+
+	/**
 	 * Substitutes any parameters into the message text.
 	 *
 	 * @since 1.17
@@ -1108,6 +1141,8 @@ class Message implements MessageSpecifier, Serializable {
 				return [ 'before', $this->getLanguage()->formatBitrate( $param['bitrate'] ) ];
 			} elseif ( isset( $param['plaintext'] ) ) {
 				return [ 'after', $this->formatPlaintext( $param['plaintext'] ) ];
+			} elseif ( isset( $param['escapewikitext'] ) ) {
+				return [ 'before', $this->escapeWikitext( $param['escapewikitext'] ) ];
 			} else {
 				$warning = 'Invalid parameter for message "' . $this->getKey() . '": ' .
 					htmlspecialchars( serialize( $param ) );
@@ -1217,6 +1252,14 @@ class Message implements MessageSpecifier, Serializable {
 			return htmlspecialchars( $plaintext, ENT_QUOTES );
 
 		}
+	}
+
+	/**
+	 * @param $wikitext
+	 * @return string
+	 */
+	protected function escapeWikitext( $wikitext ) {
+		return MessageCache::singleton()->getParser()->escapeWikitext( $wikitext );
 	}
 }
 

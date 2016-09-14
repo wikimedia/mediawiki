@@ -475,6 +475,36 @@ class MessageTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	public static function provideEscapeWikitextParams() {
+		return [
+			[
+				'Test &#91;&#91;foobar&#93;&#93;',
+				'Test $1',
+				[ Message::escapewikitextParam( '[[foobar]]' ) ],
+			],
+			[
+				'Test &#123;&#123;foobar&#125;&#125;',
+				'Test $1',
+				[ Message::escapewikitextParam( '{{foobar}}' ) ],
+			],
+			[
+				'Test https&#58;//www.example.org/',
+				'Test $1',
+				[ Message::escapewikitextParam( 'https://www.example.org/' ) ],
+			],
+		];
+	}
+
+	/**
+	 * @covers Message::escapeWikitext
+	 * @dataProvider provideEscapeWikitextParams
+	 */
+	public function testEscapeWikitextParams( $expect, $msg, $params ) {
+		$msg = new RawMessage( $msg );
+		$actual = $msg->inLanguage( 'en' )->params( $params )->parse();
+		$this->assertEquals( $expect, $actual );
+	}
+
 	public static function provideParser() {
 		return [
 			[
