@@ -65,6 +65,7 @@
 
 		// Initialize
 		this.api = config.api || new mw.Api();
+		this.searchCache = {};
 	}
 
 	/* Setup */
@@ -269,7 +270,13 @@
 	 * @return {jQuery.Promise} Resolves with an array of categories
 	 */
 	CSP.searchCategories = function ( input, searchType ) {
-		var deferred = $.Deferred();
+		var deferred = $.Deferred(),
+			cacheKey = input + searchType.toString();
+
+		// Check cache
+		if ( this.searchCache[ cacheKey ] !== undefined ) {
+			return this.searchCache[ cacheKey ];
+		}
 
 		switch ( searchType ) {
 			case CategorySelector.SearchType.OpenSearch:
@@ -363,12 +370,10 @@
 					var categories = [];
 
 					$.each( res.query.pages, function ( index, page ) {
-						if ( !page.missing ) {
-							if ( $.isArray( page.categories ) ) {
-								categories.push.apply( categories, page.categories.map( function ( category ) {
-									return category.title;
-								} ) );
-							}
+						if ( !page.missing && $.isArray( page.categories ) ) {
+							categories.push.apply( categories, page.categories.map( function ( category ) {
+								return category.title;
+							} ) );
 						}
 					} );
 
@@ -379,6 +384,9 @@
 			default:
 				throw new Error( 'Unknown searchType' );
 		}
+
+		// Cache the result
+		this.searchCache[ cacheKey ] = deferred.promise();
 
 		return deferred.promise();
 	};
