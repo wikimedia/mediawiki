@@ -264,6 +264,12 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			}
 		}
 
+		// MySQL (or at least 5.5.5-10.0.23-MariaDB) chooses a really bad query
+		// plan if it thinks there will be more matching rows in the linktable
+		// than are in page. Use STRAIGHT_JOIN here to force it to use the
+		// intended, fast plan. See T145079 for details.
+		$this->addOption( 'STRAIGHT_JOIN' );
+
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
 		$res = $this->select( __METHOD__ );
