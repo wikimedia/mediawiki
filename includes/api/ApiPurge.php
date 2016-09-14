@@ -37,6 +37,12 @@ class ApiPurge extends ApiBase {
 	 * Purges the cache of a page
 	 */
 	public function execute() {
+		$main = $this->getMain();
+		if ( !$main->isInternalMode() && !$main->getRequest()->wasPosted() ) {
+			$this->logFeatureUsage( 'purge-via-GET' );
+			$this->setWarning( 'Use of action=purge via GET is deprecated. Use POST instead.' );
+		}
+
 		$params = $this->extractRequestParams();
 
 		$continuationManager = new ApiContinuationManager( $this, [], [] );
@@ -156,6 +162,18 @@ class ApiPurge extends ApiBase {
 	public function mustBePosted() {
 		// Anonymous users are not allowed a non-POST request
 		return !$this->getUser()->isAllowed( 'purge' );
+	}
+
+	protected function getHelpFlags() {
+		$flags = parent::getHelpFlags();
+
+		// Claim that we must be posted for the purposes of help and paraminfo.
+		// @todo Remove this when self::mustBePosted() is updated for T145649
+		if ( !in_array( 'mustbeposted', $flags, true ) ) {
+			$flags[] = 'mustbeposted';
+		}
+
+		return $flags;
 	}
 
 	public function getAllowedParams( $flags = 0 ) {
