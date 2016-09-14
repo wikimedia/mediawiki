@@ -31,11 +31,11 @@ interface LoadMonitor extends LoggerAwareInterface {
 	/**
 	 * Construct a new LoadMonitor with a given LoadBalancer parent
 	 *
+	 * @param ILoadBalancer $lb LoadBalancer this instance serves
 	 * @param BagOStuff $sCache Server local memory cache
-	 * @param BagOStuff $cCache Server local memory cache
-	 * @param ILoadBalancer $parent LoadBalancer this instance serves
+	 * @param WANObjectCache $cCache Server local memory cache
 	 */
-	public function __construct( ILoadBalancer $parent, BagOStuff $sCache, BagOStuff $cCache );
+	public function __construct( ILoadBalancer $lb, BagOStuff $sCache, BagOStuff $cCache );
 
 	/**
 	 * Perform pre-connection load ratio adjustment.
