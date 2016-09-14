@@ -37,10 +37,10 @@ class LoadMonitorMySQL implements LoadMonitor {
 	/** @var LoggerInterface */
 	protected $replLogger;
 
-	public function __construct( ILoadBalancer $parent, BagOStuff $sCache, BagOStuff $cCache ) {
-		$this->parent = $parent;
-		$this->srvCache = $sCache;
-		$this->mainCache = $cCache;
+	public function __construct( ILoadBalancer $lb, BagOStuff $srvCache, BagOStuff $cache ) {
+		$this->parent = $lb;
+		$this->srvCache = $srvCache;
+		$this->mainCache = $cache;
 		$this->replLogger = new \Psr\Log\NullLogger();
 	}
 
