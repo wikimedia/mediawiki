@@ -24,8 +24,6 @@
 /**
  * LBFactory class that throws an error on any attempt to use it.
  * This will typically be done via wfGetDB().
- * Call LBFactory::disableBackend() to start using this, and
- * LBFactory::enableBackend() to return to normal behavior
  */
 class LBFactoryFake extends LBFactory {
 	public function newMainLB( $wiki = false ) {
