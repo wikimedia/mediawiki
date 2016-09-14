@@ -60,71 +60,14 @@ class MWExceptionHandler {
 	 * @param Exception|Throwable $e
 	 */
 	protected static function report( $e ) {
-		global $wgShowExceptionDetails;
-
-		$cmdLine = MWException::isCommandLine();
-
-		if ( $e instanceof MWException ) {
-			try {
-				// Try and show the exception prettily, with the normal skin infrastructure
-				$e->report();
-			} catch ( Exception $e2 ) {
-				// Exception occurred from within exception handler
-				// Show a simpler message for the original exception,
-				// don't try to invoke report()
-				$message = "MediaWiki internal error.\n\n";
-
-				if ( $wgShowExceptionDetails ) {
-					$message .= 'Original exception: ' . self::getLogMessage( $e ) .
-						"\nBacktrace:\n" . self::getRedactedTraceAsString( $e ) .
-						"\n\nException caught inside exception handler: " . self::getLogMessage( $e2 ) .
-						"\nBacktrace:\n" . self::getRedactedTraceAsString( $e2 );
-				} else {
-					$message .= "Exception caught inside exception handler.\n\n" .
-						"Set \$wgShowExceptionDetails = true; at the bottom of LocalSettings.php " .
-						"to show detailed debugging information.";
-				}
-
-				$message .= "\n";
-
-				if ( $cmdLine ) {
-					self::printError( $message );
-				} else {
-					echo nl2br( htmlspecialchars( $message ) ) . "\n";
-				}
-			}
-		} else {
-			if ( !$wgShowExceptionDetails ) {
-				$message = self::getPublicLogMessage( $e );
-			} else {
-				$message = self::getLogMessage( $e ) .
-					"\nBacktrace:\n" .
-					self::getRedactedTraceAsString( $e ) . "\n";
-			}
-
-			if ( $cmdLine ) {
-				self::printError( $message );
-			} else {
-				echo nl2br( htmlspecialchars( $message ) ) . "\n";
-			}
-
-		}
-	}
-
-	/**
-	 * Print a message, if possible to STDERR.
-	 * Use this in command line mode only (see isCommandLine)
-	 *
-	 * @param string $message Failure text
-	 */
-	public static function printError( $message ) {
-		# NOTE: STDERR may not be available, especially if php-cgi is used from the
-		# command line (bug #15602). Try to produce meaningful output anyway. Using
-		# echo may corrupt output to STDOUT though.
-		if ( defined( 'STDERR' ) ) {
-			fwrite( STDERR, $message );
-		} else {
-			echo $message;
+		try {
+			// Try and show the exception prettily, with the normal skin infrastructure
+			MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_PRETTY );
+		} catch ( Exception $e2 ) {
+			// Exception occurred from within exception handler
+			// Show a simpler message for the original exception,
+			// don't try to invoke report()
+			MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_PRETTY, $e2 );
 		}
 	}
 
