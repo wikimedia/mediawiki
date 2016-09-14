@@ -60,6 +60,9 @@ production.
   on the wiki farm with a different domain, MediaWiki will instead alter the redirect
   URL to include a ?cpPosTime parameter that triggers the database synchronization when
   the URL is followed by the client. The same-domain case uses a new cpPosTime cookie.
+* Added new hooks, 'ApiQueryBaseBeforeQuery', 'ApiQueryBaseAfterQuery', and
+  'ApiQueryBaseProcessRow', to make it easier for extensions to add 'prop' and
+  'show' parameters to existing API query modules.
 
 === External library changes in 1.28 ===
 
@@ -118,6 +121,12 @@ production.
   interact with ApiParse and ApiExpandTemplates.
 * (T139565) SECURITY: API: Generate head items in the context of the given title
 * (T115333) SECURITY: Check read permission when loading page content in ApiParse
+* Added new hooks, 'ApiQueryBaseBeforeQuery', 'ApiQueryBaseAfterQuery', and
+  'ApiQueryBaseProcessRow', to make it easier for extensions to add 'prop' and
+  'show' parameters to existing API query modules. A query module can enable
+  these hooks by passing an array for $hookData to ApiQueryBase::select() and
+  by calling ApiQueryBase->processRow() before adding a row's data to the
+  result.
 * ApiBase::makeHelpArrayToString() was removed (deprecated since 1.25)
 * ApiBase::makeHelpMsgParameters() was removed (deprecated since 1.25)
 * ApiBase::makeHelpMsg() was removed (deprecated since 1.25)

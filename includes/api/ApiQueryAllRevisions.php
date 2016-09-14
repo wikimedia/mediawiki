@@ -166,7 +166,8 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		$orderby[] = "rev_id $sort";
 		$this->addOption( 'ORDER BY', $orderby );
 
-		$res = $this->select( __METHOD__ );
+		$hookData = [];
+		$res = $this->select( __METHOD__, [], $hookData );
 		$pageMap = []; // Maps rev_page to array index
 		$count = 0;
 		$nextIndex = 0;
@@ -210,12 +211,12 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 					];
 					ApiResult::setIndexedTagName( $a['revisions'], 'rev' );
 					ApiQueryBase::addTitleInfo( $a, $title );
-					$fit = $result->addValue( [ 'query', $this->getModuleName() ], $index, $a );
+					$fit = $this->processRow( $row, $a['revisions'][0], $hookData ) &&
+						$result->addValue( [ 'query', $this->getModuleName() ], $index, $a );
 				} else {
 					$index = $pageMap[$row->rev_page];
-					$fit = $result->addValue(
-						[ 'query', $this->getModuleName(), $index, 'revisions' ],
-						null, $rev );
+					$fit = $this->processRow( $row, $rev, $hookData ) &&
+						$result->addValue( [ 'query', $this->getModuleName(), $index, 'revisions' ], null, $rev );
 				}
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'continue', "$row->rev_timestamp|$row->rev_id" );
