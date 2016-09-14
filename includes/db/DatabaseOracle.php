@@ -369,7 +369,7 @@ class DatabaseOracle extends Database {
 	protected function doQuery( $sql ) {
 		wfDebug( "SQL: [$sql]\n" );
 		if ( !StringUtils::isUtf8( $sql ) ) {
-			throw new MWException( "SQL encoding is invalid\n$sql" );
+			throw new InvalidArgumentException( "SQL encoding is invalid\n$sql" );
 		}
 
 		// handle some oracle specifics
