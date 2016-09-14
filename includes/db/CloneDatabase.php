@@ -129,8 +129,9 @@ class CloneDatabase {
 	 */
 	public static function changePrefix( $prefix ) {
 		global $wgDBprefix;
-		wfGetLBFactory()->forEachLB( function( $lb ) use ( $prefix ) {
-			$lb->forEachOpenConnection( function ( $db ) use ( $prefix ) {
+		wfGetLBFactory()->forEachLB( function( LoadBalancer $lb ) use ( $prefix ) {
+			$lb->setDomainPrefix( $prefix );
+			$lb->forEachOpenConnection( function ( DatabaseBase $db ) use ( $prefix ) {
 				$db->tablePrefix( $prefix );
 			} );
 		} );

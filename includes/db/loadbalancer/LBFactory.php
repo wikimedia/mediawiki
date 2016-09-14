@@ -149,7 +149,7 @@ abstract class LBFactory implements DestructibleService {
 	 * @deprecated since 1.27, use LBFactory::destroy()
 	 */
 	public static function destroyInstance() {
-		self::singleton()->destroy();
+		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->destroy();
 	}
 
 	/**
@@ -641,6 +641,20 @@ abstract class LBFactory implements DestructibleService {
 				$lb->waitForAll( $unsavedPositions[$masterName] );
 			}
 		} );
+	}
+
+	/**
+	 * Base parameters to LoadBalancer::__construct()
+	 */
+	final protected function baseLoadBalancerParams() {
+		return [
+			'readOnlyReason' => $this->readOnlyReason,
+			'trxProfiler' => $this->trxProfiler,
+			'srvCache' => $this->srvCache,
+			'wanCache' => $this->wanCache,
+			'localDomain' => wfWikiID(),
+			'errorLogger' => [ MWExceptionHandler::class, 'logException' ]
+		];
 	}
 
 	/**
