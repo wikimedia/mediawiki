@@ -19,6 +19,8 @@
  * @ingroup Database
  */
 
+use Psr\Log\LoggerInterface;
+
 /**
  * Basic MySQL load monitor with no external dependencies
  * Uses memcached to cache the replication lag for a short time
@@ -32,12 +34,18 @@ class LoadMonitorMySQL implements LoadMonitor {
 	protected $srvCache;
 	/** @var BagOStuff */
 	protected $mainCache;
+	/** @var LoggerInterface */
+	protected $replLogger;
 
-	public function __construct( $parent ) {
+	public function __construct( LoadBalancer $parent ) {
 		$this->parent = $parent;
-
 		$this->srvCache = ObjectCache::getLocalServerInstance( 'hash' );
 		$this->mainCache = ObjectCache::getLocalClusterInstance();
+		$this->replLogger = new \Psr\Log\NullLogger();
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
+		$this->replLogger = $logger;
 	}
 
 	public function scaleLoads( &$loads, $group = false, $wiki = false ) {
@@ -58,7 +66,7 @@ class LoadMonitorMySQL implements LoadMonitor {
 		# (a) Check the local APC cache
 		$value = $this->srvCache->get( $key );
 		if ( $value && $value['timestamp'] > ( microtime( true ) - $ttl ) ) {
-			wfDebugLog( 'replication', __METHOD__ . ": got lag times ($key) from local cache" );
+			$this->replLogger->debug( __METHOD__ . ": got lag times ($key) from local cache" );
 			return $value['lagTimes']; // cache hit
 		}
 		$staleValue = $value ?: false;
@@ -67,7 +75,7 @@ class LoadMonitorMySQL implements LoadMonitor {
 		$value = $this->mainCache->get( $key );
 		if ( $value && $value['timestamp'] > ( microtime( true ) - $ttl ) ) {
 			$this->srvCache->set( $key, $value, $staleTTL );
-			wfDebugLog( 'replication', __METHOD__ . ": got lag times ($key) from main cache" );
+			$this->replLogger->debug( __METHOD__ . ": got lag times ($key) from main cache" );
 
 			return $value['lagTimes']; // cache hit
 		}
@@ -104,14 +112,14 @@ class LoadMonitorMySQL implements LoadMonitor {
 			if ( !$conn ) {
 				$lagTimes[$i] = false;
 				$host = $this->parent->getServerName( $i );
-				wfDebugLog( 'replication', __METHOD__ . ": host $host (#$i) is unreachable" );
+				$this->replLogger->error( __METHOD__ . ": host $host (#$i) is unreachable" );
 				continue;
 			}
 
 			$lagTimes[$i] = $conn->getLag();
 			if ( $lagTimes[$i] === false ) {
 				$host = $this->parent->getServerName( $i );
-				wfDebugLog( 'replication', __METHOD__ . ": host $host (#$i) is not replicating?" );
+				$this->replLogger->error( __METHOD__ . ": host $host (#$i) is not replicating?" );
 			}
 
 			if ( $close ) {
@@ -127,7 +135,7 @@ class LoadMonitorMySQL implements LoadMonitor {
 		$value = [ 'lagTimes' => $lagTimes, 'timestamp' => microtime( true ) ];
 		$this->mainCache->set( $key, $value, $staleTTL );
 		$this->srvCache->set( $key, $value, $staleTTL );
-		wfDebugLog( 'replication', __METHOD__ . ": re-calculated lag times ($key)" );
+		$this->replLogger->info( __METHOD__ . ": re-calculated lag times ($key)" );
 
 		return $value['lagTimes'];
 	}
