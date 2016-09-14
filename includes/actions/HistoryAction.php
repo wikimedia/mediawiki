@@ -105,8 +105,7 @@ class HistoryAction extends FormlessAction {
 		$config = $this->context->getConfig();
 
 		# Fill in the file cache if not set already
-		$useFileCache = $config->get( 'UseFileCache' );
-		if ( $useFileCache && HTMLFileCache::useFileCache( $this->getContext() ) ) {
+		if ( HTMLFileCache::useFileCache( $this->getContext() ) ) {
 			$cache = new HTMLFileCache( $this->getTitle(), 'history' );
 			if ( !$cache->isCacheGood( /* Assume up to date */ ) ) {
 				ob_start( [ &$cache, 'saveToFileCache' ] );
