@@ -528,6 +528,24 @@ class MediaWiki {
 				$e->report(); // display the GUI error
 			}
 		} catch ( Exception $e ) {
+			$context = $this->context;
+			if (
+				$e instanceof DBConnectionError &&
+				$context->hasTitle() &&
+				$context->getTitle()->canExist() &&
+				$context->getRequest()->getVal( 'action', 'view' ) === 'view' &&
+				HTMLFileCache::useFileCache( $this->context, HTMLFileCache::MODE_OUTAGE )
+			) {
+				// Try to use any (even stale) file during outages...
+				$cache = new HTMLFileCache( $context->getTitle(), 'view' );
+				if ( $cache->isCached() ) {
+					$cache->loadFromFileCache( $context, HTMLFileCache::MODE_OUTAGE );
+					print MWExceptionRenderer::getHTML( $e );
+					exit;
+				}
+
+			}
+
 			MWExceptionHandler::handleException( $e );
 		}
 
@@ -819,24 +837,22 @@ class MediaWiki {
 			}
 		}
 
-		if ( $this->config->get( 'UseFileCache' ) && $title->getNamespace() >= 0 ) {
-			if ( HTMLFileCache::useFileCache( $this->context ) ) {
-				// Try low-level file cache hit
-				$cache = new HTMLFileCache( $title, $action );
-				if ( $cache->isCacheGood( /* Assume up to date */ ) ) {
-					// Check incoming headers to see if client has this cached
-					$timestamp = $cache->cacheTimestamp();
-					if ( !$output->checkLastModified( $timestamp ) ) {
-						$cache->loadFromFileCache( $this->context );
-					}
-					// Do any stats increment/watchlist stuff
-					// Assume we're viewing the latest revision (this should always be the case with file cache)
-					$this->context->getWikiPage()->doViewUpdates( $this->context->getUser() );
-					// Tell OutputPage that output is taken care of
-					$output->disable();
-
-					return;
+		if ( $title->canExist() && HTMLFileCache::useFileCache( $this->context ) ) {
+			// Try low-level file cache hit
+			$cache = new HTMLFileCache( $title, $action );
+			if ( $cache->isCacheGood( /* Assume up to date */ ) ) {
+				// Check incoming headers to see if client has this cached
+				$timestamp = $cache->cacheTimestamp();
+				if ( !$output->checkLastModified( $timestamp ) ) {
+					$cache->loadFromFileCache( $this->context );
 				}
+				// Do any stats increment/watchlist stuff, assuming user is viewing the
+				// latest revision (which should always be the case for file cache)
+				$this->context->getWikiPage()->doViewUpdates( $this->context->getUser() );
+				// Tell OutputPage that output is taken care of
+				$output->disable();
+
+				return;
 			}
 		}
 
