@@ -1636,6 +1636,3 @@ SQL;
 		return Wikimedia\base_convert( substr( sha1( $lockName ), 0, 15 ), 16, 10 );
 	}
 } // end DatabasePostgres class
-
-class PostgresBlob extends Blob {
-}
