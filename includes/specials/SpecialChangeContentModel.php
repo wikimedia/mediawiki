@@ -221,6 +221,22 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		# Truncate for whole multibyte characters.
 		$reason = $wgContLang->truncate( $reason, 255 );
 
+		// Run edit filters
+		$derivativeContext = new DerivativeContext( $this->getContext() );
+		$derivativeContext->setTitle( $this->title );
+		$derivativeContext->setWikiPage( $page );
+		$status = new Status();
+		if ( !Hooks::run( 'EditFilterMergedContent',
+				[ $derivativeContext, $newContent, $status, $reason,
+				$user, false ] )
+		) {
+			if ( $status->isGood() ) {
+				// TODO: extensions should really specify an error message
+				$status->fatal( 'hookaborted' );
+			}
+			return $status;
+		}
+
 		$status = $page->doEditContent(
 			$newContent,
 			$reason,
