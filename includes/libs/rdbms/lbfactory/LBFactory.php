@@ -1,6 +1,6 @@
 <?php
 /**
- * Generator of database load balancing objects.
+ * Generator and manager of database load balancing objects
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,23 +22,26 @@
  */
 
 use Psr\Log\LoggerInterface;
-use MediaWiki\MediaWikiServices;
-use MediaWiki\Services\DestructibleService;
-use MediaWiki\Logger\LoggerFactory;
 
 /**
  * An interface for generating database load balancers
  * @ingroup Database
  */
-abstract class LBFactory implements DestructibleService {
+abstract class LBFactory {
 	/** @var ChronologyProtector */
 	protected $chronProt;
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
 	/** @var LoggerInterface */
-	protected $trxLogger;
-	/** @var LoggerInterface */
 	protected $replLogger;
+	/** @var LoggerInterface */
+	protected $connLogger;
+	/** @var LoggerInterface */
+	protected $queryLogger;
+	/** @var LoggerInterface */
+	protected $perfLogger;
+	/** @var callable Error logger */
+	protected $errorLogger;
 	/** @var BagOStuff */
 	protected $srvCache;
 	/** @var BagOStuff */
@@ -46,6 +49,10 @@ abstract class LBFactory implements DestructibleService {
 	/** @var WANObjectCache */
 	protected $wanCache;
 
+	/** @var string Local domain */
+	protected $domain;
+	/** @var string Local hostname of the app server */
+	protected $hostname;
 	/** @var mixed */
 	protected $ticket;
 	/** @var string|bool String if a requested DBO_TRX transaction round is active */
@@ -59,38 +66,44 @@ abstract class LBFactory implements DestructibleService {
 	const SHUTDOWN_CHRONPROT_ASYNC = 1; // save DB positions, but don't wait on remote DCs
 	const SHUTDOWN_CHRONPROT_SYNC = 2; // save DB positions, waiting on all DCs
 
+	private static $loggerFields =
+		[ 'replLogger', 'connLogger', 'queryLogger', 'perfLogger' ];
+
 	/**
-	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf)
+	 * @TODO: document base params here
 	 * @param array $conf
-	 * @TODO: inject objects via dependency framework
 	 */
 	public function __construct( array $conf ) {
+		$this->domain = isset( $conf['domain'] ) ? $conf['domain'] : '';
 		if ( isset( $conf['readOnlyReason'] ) && is_string( $conf['readOnlyReason'] ) ) {
 			$this->readOnlyReason = $conf['readOnlyReason'];
 		}
-		// Use APC/memcached style caching, but avoids loops with CACHE_DB (T141804)
-		$sCache = ObjectCache::getLocalServerInstance();
-		if ( $sCache->getQoS( $sCache::ATTR_EMULATION ) > $sCache::QOS_EMULATION_SQL ) {
-			$this->srvCache = $sCache;
-		} else {
-			$this->srvCache = new EmptyBagOStuff();
+
+		$this->srvCache = isset( $conf['srvCache'] ) ? $conf['srvCache'] : new EmptyBagOStuff();
+		$this->memCache = isset( $conf['memCache'] ) ? $conf['memCache'] : new EmptyBagOStuff();
+		$this->wanCache = isset( $conf['wanCache'] )
+			? $conf['wanCache']
+			: WANObjectCache::newEmpty();
+
+		foreach ( self::$loggerFields as $key ) {
+			$this->$key = isset( $conf[$key] ) ? $conf[$key] : new \Psr\Log\NullLogger();
 		}
-		$cCache = ObjectCache::getLocalClusterInstance();
-		if ( $cCache->getQoS( $cCache::ATTR_EMULATION ) > $cCache::QOS_EMULATION_SQL ) {
-			$this->memCache = $cCache;
-		} else {
-			$this->memCache = new EmptyBagOStuff();
-		}
-		$wCache = ObjectCache::getMainWANInstance();
-		if ( $wCache->getQoS( $wCache::ATTR_EMULATION ) > $wCache::QOS_EMULATION_SQL ) {
-			$this->wanCache = $wCache;
-		} else {
-			$this->wanCache = WANObjectCache::newEmpty();
-		}
-		$this->trxProfiler = Profiler::instance()->getTransactionProfiler();
-		$this->trxLogger = LoggerFactory::getInstance( 'DBTransaction' );
-		$this->replLogger = LoggerFactory::getInstance( 'DBReplication' );
-		$this->chronProt = $this->newChronologyProtector();
+		$this->errorLogger = isset( $conf['errorLogger'] )
+			? $conf['errorLogger']
+			: function ( Exception $e ) {
+				trigger_error( E_WARNING, $e->getMessage() );
+			};
+		$this->hostname = isset( $conf['hostname'] )
+			? $conf['hostname']
+			: gethostname();
+
+		$this->chronProt = isset( $conf['chronProt'] )
+			? $conf['chronProt']
+			: $this->newChronologyProtector();
+		$this->trxProfiler = isset( $conf['trxProfiler'] )
+			? $conf['trxProfiler']
+			: new TransactionProfiler();
+
 		$this->ticket = mt_rand();
 	}
 
@@ -105,79 +118,21 @@ abstract class LBFactory implements DestructibleService {
 	}
 
 	/**
-	 * Disables all access to the load balancer, will cause all database access
-	 * to throw a DBAccessError
-	 */
-	public static function disableBackend() {
-		MediaWikiServices::disableStorageBackend();
-	}
-
-	/**
-	 * Get an LBFactory instance
-	 *
-	 * @deprecated since 1.27, use MediaWikiServices::getDBLoadBalancerFactory() instead.
-	 *
-	 * @return LBFactory
-	 */
-	public static function singleton() {
-		return MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-	}
-
-	/**
-	 * Returns the LBFactory class to use and the load balancer configuration.
-	 *
-	 * @todo instead of this, use a ServiceContainer for managing the different implementations.
-	 *
-	 * @param array $config (e.g. $wgLBFactoryConf)
-	 * @return string Class name
-	 */
-	public static function getLBFactoryClass( array $config ) {
-		// For configuration backward compatibility after removing
-		// underscores from class names in MediaWiki 1.23.
-		$bcClasses = [
-			'LBFactory_Simple' => 'LBFactorySimple',
-			'LBFactory_Single' => 'LBFactorySingle',
-			'LBFactory_Multi' => 'LBFactoryMulti',
-		];
-
-		$class = $config['class'];
-
-		if ( isset( $bcClasses[$class] ) ) {
-			$class = $bcClasses[$class];
-			wfDeprecated(
-				'$wgLBFactoryConf must be updated. See RELEASE-NOTES for details',
-				'1.23'
-			);
-		}
-
-		return $class;
-	}
-
-	/**
-	 * Shut down, close connections and destroy the cached instance.
-	 *
-	 * @deprecated since 1.27, use LBFactory::destroy()
-	 */
-	public static function destroyInstance() {
-		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->destroy();
-	}
-
-	/**
 	 * Create a new load balancer object. The resulting object will be untracked,
 	 * not chronology-protected, and the caller is responsible for cleaning it up.
 	 *
-	 * @param bool|string $wiki Wiki ID, or false for the current wiki
-	 * @return LoadBalancer
+	 * @param bool|string $domain Wiki ID, or false for the current wiki
+	 * @return ILoadBalancer
 	 */
-	abstract public function newMainLB( $wiki = false );
+	abstract public function newMainLB( $domain = false );
 
 	/**
 	 * Get a cached (tracked) load balancer object.
 	 *
-	 * @param bool|string $wiki Wiki ID, or false for the current wiki
-	 * @return LoadBalancer
+	 * @param bool|string $domain Wiki ID, or false for the current wiki
+	 * @return ILoadBalancer
 	 */
-	abstract public function getMainLB( $wiki = false );
+	abstract public function getMainLB( $domain = false );
 
 	/**
 	 * Create a new load balancer for external storage. The resulting object will be
@@ -185,19 +140,19 @@ abstract class LBFactory implements DestructibleService {
 	 * cleaning it up.
 	 *
 	 * @param string $cluster External storage cluster, or false for core
-	 * @param bool|string $wiki Wiki ID, or false for the current wiki
-	 * @return LoadBalancer
+	 * @param bool|string $domain Wiki ID, or false for the current wiki
+	 * @return ILoadBalancer
 	 */
-	abstract protected function newExternalLB( $cluster, $wiki = false );
+	abstract protected function newExternalLB( $cluster, $domain = false );
 
 	/**
 	 * Get a cached (tracked) load balancer for external storage
 	 *
 	 * @param string $cluster External storage cluster, or false for core
-	 * @param bool|string $wiki Wiki ID, or false for the current wiki
-	 * @return LoadBalancer
+	 * @param bool|string $domain Wiki ID, or false for the current wiki
+	 * @return ILoadBalancer
 	 */
-	abstract public function getExternalLB( $cluster, $wiki = false );
+	abstract public function getExternalLB( $cluster, $domain = false );
 
 	/**
 	 * Execute a function for each tracked load balancer
@@ -232,9 +187,9 @@ abstract class LBFactory implements DestructibleService {
 	 * @param string $methodName
 	 * @param array $args
 	 */
-	private function forEachLBCallMethod( $methodName, array $args = [] ) {
+	protected function forEachLBCallMethod( $methodName, array $args = [] ) {
 		$this->forEachLB(
-			function ( LoadBalancer $loadBalancer, $methodName, array $args ) {
+			function ( ILoadBalancer $loadBalancer, $methodName, array $args ) {
 				call_user_func_array( [ $loadBalancer, $methodName ], $args );
 			},
 			[ $methodName, $args ]
@@ -316,7 +271,7 @@ abstract class LBFactory implements DestructibleService {
 		// Run all post-commit callbacks
 		/** @var Exception $e */
 		$e = null; // first callback exception
-		$this->forEachLB( function ( LoadBalancer $lb ) use ( &$e ) {
+		$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$e ) {
 			$ex = $lb->runMasterPostTrxCallbacks( IDatabase::TRIGGER_COMMIT );
 			$e = $e ?: $ex;
 		} );
@@ -338,7 +293,7 @@ abstract class LBFactory implements DestructibleService {
 		$this->forEachLBCallMethod( 'suppressTransactionEndCallbacks' );
 		$this->forEachLBCallMethod( 'rollbackMasterChanges', [ $fname ] );
 		// Run all post-rollback callbacks
-		$this->forEachLB( function ( LoadBalancer $lb ) {
+		$this->forEachLB( function ( ILoadBalancer $lb ) {
 			$lb->runMasterPostTrxCallbacks( IDatabase::TRIGGER_ROLLBACK );
 		} );
 	}
@@ -348,7 +303,7 @@ abstract class LBFactory implements DestructibleService {
 	 */
 	private function logIfMultiDbTransaction() {
 		$callersByDB = [];
-		$this->forEachLB( function ( LoadBalancer $lb ) use ( &$callersByDB ) {
+		$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$callersByDB ) {
 			$masterName = $lb->getServerName( $lb->getWriterIndex() );
 			$callers = $lb->pendingMasterChangeCallers();
 			if ( $callers ) {
@@ -362,7 +317,7 @@ abstract class LBFactory implements DestructibleService {
 			foreach ( $callersByDB as $db => $callers ) {
 				$msg .= "$db: " . implode( '; ', $callers ) . "\n";
 			}
-			$this->trxLogger->info( $msg );
+			$this->queryLogger->info( $msg );
 		}
 	}
 
@@ -373,7 +328,7 @@ abstract class LBFactory implements DestructibleService {
 	 */
 	public function hasMasterChanges() {
 		$ret = false;
-		$this->forEachLB( function ( LoadBalancer $lb ) use ( &$ret ) {
+		$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$ret ) {
 			$ret = $ret || $lb->hasMasterChanges();
 		} );
 
@@ -387,20 +342,11 @@ abstract class LBFactory implements DestructibleService {
 	 */
 	public function laggedReplicaUsed() {
 		$ret = false;
-		$this->forEachLB( function ( LoadBalancer $lb ) use ( &$ret ) {
+		$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$ret ) {
 			$ret = $ret || $lb->laggedReplicaUsed();
 		} );
 
 		return $ret;
-	}
-
-	/**
-	 * @return bool
-	 * @since 1.27
-	 * @deprecated Since 1.28; use laggedReplicaUsed()
-	 */
-	public function laggedSlaveUsed() {
-		return $this->laggedReplicaUsed();
 	}
 
 	/**
@@ -411,7 +357,7 @@ abstract class LBFactory implements DestructibleService {
 	 */
 	public function hasOrMadeRecentMasterChanges( $age = null ) {
 		$ret = false;
-		$this->forEachLB( function ( LoadBalancer $lb ) use ( $age, &$ret ) {
+		$this->forEachLB( function ( ILoadBalancer $lb ) use ( $age, &$ret ) {
 			$ret = $ret || $lb->hasOrMadeRecentMasterChanges( $age );
 		} );
 		return $ret;
@@ -450,14 +396,14 @@ abstract class LBFactory implements DestructibleService {
 		];
 
 		// Figure out which clusters need to be checked
-		/** @var LoadBalancer[] $lbs */
+		/** @var ILoadBalancer[] $lbs */
 		$lbs = [];
 		if ( $opts['cluster'] !== false ) {
 			$lbs[] = $this->getExternalLB( $opts['cluster'] );
 		} elseif ( $opts['wiki'] !== false ) {
 			$lbs[] = $this->getMainLB( $opts['wiki'] );
 		} else {
-			$this->forEachLB( function ( LoadBalancer $lb ) use ( &$lbs ) {
+			$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$lbs ) {
 				$lbs[] = $lb;
 			} );
 			if ( !$lbs ) {
@@ -533,7 +479,7 @@ abstract class LBFactory implements DestructibleService {
 	 */
 	public function getEmptyTransactionTicket( $fname ) {
 		if ( $this->hasMasterChanges() ) {
-			$this->trxLogger->error( __METHOD__ . ": $fname does not have outer scope." );
+			$this->queryLogger->error( __METHOD__ . ": $fname does not have outer scope." );
 			return null;
 		}
 
@@ -553,15 +499,14 @@ abstract class LBFactory implements DestructibleService {
 	 */
 	public function commitAndWaitForReplication( $fname, $ticket, array $opts = [] ) {
 		if ( $ticket !== $this->ticket ) {
-			$logger = LoggerFactory::getInstance( 'DBPerformance' );
-			$logger->error( __METHOD__ . ": cannot commit; $fname does not have outer scope." );
+			$this->perfLogger->error( __METHOD__ . ": $fname does not have outer scope." );
 			return;
 		}
 
 		// The transaction owner and any caller with the empty transaction ticket can commit
 		// so that getEmptyTransactionTicket() callers don't risk seeing DBTransactionError.
 		if ( $this->trxRoundId !== false && $fname !== $this->trxRoundId ) {
-			$this->trxLogger->info( "$fname: committing on behalf of {$this->trxRoundId}." );
+			$this->queryLogger->info( "$fname: committing on behalf of {$this->trxRoundId}." );
 			$fnameEffective = $this->trxRoundId;
 		} else {
 			$fnameEffective = $fname;
@@ -600,22 +545,17 @@ abstract class LBFactory implements DestructibleService {
 	 * @return ChronologyProtector
 	 */
 	protected function newChronologyProtector() {
-		$request = RequestContext::getMain()->getRequest();
 		$chronProt = new ChronologyProtector(
-			ObjectCache::getMainStashInstance(),
+			$this->memCache,
 			[
-				'ip' => $request->getIP(),
-				'agent' => $request->getHeader( 'User-Agent' ),
+				'ip' => isset( $_SERVER[ 'REMOTE_ADDR' ] ) ? $_SERVER[ 'REMOTE_ADDR' ] : '',
+				'agent' => isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : ''
 			],
-			$request->getFloat( 'cpPosTime', $request->getCookie( 'cpPosTime', '' ) )
+			isset( $_GET['cpPosTime'] ) ? $_GET['cpPosTime'] : null
 		);
 		$chronProt->setLogger( $this->replLogger );
 		if ( PHP_SAPI === 'cli' ) {
 			$chronProt->setEnabled( false );
-		} elseif ( $request->getHeader( 'ChronologyProtection' ) === 'false' ) {
-			// Request opted out of using position wait logic. This is useful for requests
-			// done by the job queue or background ETL that do not have a meaningful session.
-			$chronProt->setWaitEnabled( false );
 		}
 
 		return $chronProt;
@@ -632,7 +572,7 @@ abstract class LBFactory implements DestructibleService {
 		ChronologyProtector $cp, $workCallback, $mode
 	) {
 		// Record all the master positions needed
-		$this->forEachLB( function ( LoadBalancer $lb ) use ( $cp ) {
+		$this->forEachLB( function ( ILoadBalancer $lb ) use ( $cp ) {
 			$cp->shutdownLB( $lb );
 		} );
 		// Write them to the persistent stash. Try to do something useful by running $work
@@ -646,7 +586,7 @@ abstract class LBFactory implements DestructibleService {
 		// replica DBs to catch up before responding. Even if there are several DCs, this increases
 		// the chance that the user will see their own changes immediately afterwards. As long
 		// as the sticky DC cookie applies (same domain), this is not even an issue.
-		$this->forEachLB( function ( LoadBalancer $lb ) use ( $unsavedPositions ) {
+		$this->forEachLB( function ( ILoadBalancer $lb ) use ( $unsavedPositions ) {
 			$masterName = $lb->getServerName( $lb->getWriterIndex() );
 			if ( isset( $unsavedPositions[$masterName] ) ) {
 				$lb->waitForAll( $unsavedPositions[$masterName] );
@@ -660,50 +600,38 @@ abstract class LBFactory implements DestructibleService {
 	 */
 	final protected function baseLoadBalancerParams() {
 		return [
-			'localDomain' => wfWikiID(),
+			'localDomain' => $this->domain,
 			'readOnlyReason' => $this->readOnlyReason,
 			'srvCache' => $this->srvCache,
-			'memCache' => $this->memCache,
 			'wanCache' => $this->wanCache,
 			'trxProfiler' => $this->trxProfiler,
-			'queryLogger' => LoggerFactory::getInstance( 'DBQuery' ),
-			'connLogger' => LoggerFactory::getInstance( 'DBConnection' ),
-			'replLogger' => LoggerFactory::getInstance( 'DBReplication' ),
-			'errorLogger' => [ MWExceptionHandler::class, 'logException' ],
-			'hostname' => wfHostname()
+			'queryLogger' => $this->queryLogger,
+			'connLogger' => $this->connLogger,
+			'replLogger' => $this->replLogger,
+			'errorLogger' => $this->errorLogger,
+			'hostname' => $this->hostname
 		];
 	}
 
 	/**
-	 * @param LoadBalancer $lb
+	 * @param ILoadBalancer $lb
 	 */
-	protected function initLoadBalancer( LoadBalancer $lb ) {
+	protected function initLoadBalancer( ILoadBalancer $lb ) {
 		if ( $this->trxRoundId !== false ) {
 			$lb->beginMasterChanges( $this->trxRoundId ); // set DBO_TRX
 		}
 	}
 
 	/**
-	 * Append ?cpPosTime parameter to a URL for ChronologyProtector purposes if needed
+	 * Define a new local domain (for testing)
 	 *
-	 * Note that unlike cookies, this works accross domains
+	 * Caller should make sure no local connection are open to the old local domain
 	 *
-	 * @param string $url
-	 * @param float $time UNIX timestamp just before shutdown() was called
-	 * @return string
+	 * @param string $domain
 	 * @since 1.28
 	 */
-	public function appendPreShutdownTimeAsQuery( $url, $time ) {
-		$usedCluster = 0;
-		$this->forEachLB( function ( LoadBalancer $lb ) use ( &$usedCluster ) {
-			$usedCluster |= ( $lb->getServerCount() > 1 );
-		} );
-
-		if ( !$usedCluster ) {
-			return $url; // no master/replica clusters touched
-		}
-
-		return wfAppendQuery( $url, [ 'cpPosTime' => $time ] );
+	public function setDomainPrefix( $domain ) {
+		$this->domain = $domain;
 	}
 
 	/**

@@ -43,7 +43,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		];
 
 		$this->hideDeprecated( '$wgLBFactoryConf must be updated. See RELEASE-NOTES for details' );
-		$result = LBFactory::getLBFactoryClass( $config );
+		$result = LBFactoryMW::getLBFactoryClass( $config );
 
 		$this->assertEquals( $expected, $result );
 	}
