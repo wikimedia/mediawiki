@@ -41,6 +41,8 @@ abstract class LBFactory implements DestructibleService {
 	protected $replLogger;
 	/** @var BagOStuff */
 	protected $srvCache;
+	/** @var BagOStuff */
+	protected $memCache;
 	/** @var WANObjectCache */
 	protected $wanCache;
 
@@ -69,11 +71,17 @@ abstract class LBFactory implements DestructibleService {
 		$this->chronProt = $this->newChronologyProtector();
 		$this->trxProfiler = Profiler::instance()->getTransactionProfiler();
 		// Use APC/memcached style caching, but avoids loops with CACHE_DB (T141804)
-		$cache = ObjectCache::getLocalServerInstance();
-		if ( $cache->getQoS( $cache::ATTR_EMULATION ) > $cache::QOS_EMULATION_SQL ) {
-			$this->srvCache = $cache;
+		$sCache = ObjectCache::getLocalServerInstance();
+		if ( $sCache->getQoS( $sCache::ATTR_EMULATION ) > $sCache::QOS_EMULATION_SQL ) {
+			$this->srvCache = $sCache;
 		} else {
 			$this->srvCache = new EmptyBagOStuff();
+		}
+		$cCache = ObjectCache::getLocalClusterInstance();
+		if ( $cCache->getQoS( $cCache::ATTR_EMULATION ) > $cCache::QOS_EMULATION_SQL ) {
+			$this->memCache = $cCache;
+		} else {
+			$this->memCache = new EmptyBagOStuff();
 		}
 		$wCache = ObjectCache::getMainWANInstance();
 		if ( $wCache->getQoS( $wCache::ATTR_EMULATION ) > $wCache::QOS_EMULATION_SQL ) {
@@ -655,6 +663,7 @@ abstract class LBFactory implements DestructibleService {
 			'localDomain' => wfWikiID(),
 			'readOnlyReason' => $this->readOnlyReason,
 			'srvCache' => $this->srvCache,
+			'memCache' => $this->memCache,
 			'wanCache' => $this->wanCache,
 			'trxProfiler' => $this->trxProfiler,
 			'queryLogger' => LoggerFactory::getInstance( 'DBQuery' ),

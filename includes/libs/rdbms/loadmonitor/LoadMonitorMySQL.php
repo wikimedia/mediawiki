@@ -28,8 +28,8 @@ use Psr\Log\LoggerInterface;
  * @ingroup Database
  */
 class LoadMonitorMySQL implements LoadMonitor {
-	/** @var LoadBalancer */
-	public $parent;
+	/** @var ILoadBalancer */
+	protected $parent;
 	/** @var BagOStuff */
 	protected $srvCache;
 	/** @var BagOStuff */
@@ -37,10 +37,10 @@ class LoadMonitorMySQL implements LoadMonitor {
 	/** @var LoggerInterface */
 	protected $replLogger;
 
-	public function __construct( LoadBalancer $parent ) {
+	public function __construct( ILoadBalancer $parent, BagOStuff $sCache, BagOStuff $cCache ) {
 		$this->parent = $parent;
-		$this->srvCache = ObjectCache::getLocalServerInstance( 'hash' );
-		$this->mainCache = ObjectCache::getLocalClusterInstance();
+		$this->srvCache = $sCache;
+		$this->mainCache = $cCache;
 		$this->replLogger = new \Psr\Log\NullLogger();
 	}
 
@@ -150,7 +150,8 @@ class LoadMonitorMySQL implements LoadMonitor {
 		$writerIndex = $this->parent->getWriterIndex();
 		// Lag is per-server, not per-DB, so key on the master DB name
 		return $this->srvCache->makeGlobalKey(
-			'lag-times', $this->parent->getServerName( $writerIndex )
+			'lag-times',
+			$this->parent->getServerName( $writerIndex )
 		);
 	}
 }
