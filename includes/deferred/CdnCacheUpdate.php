@@ -43,7 +43,8 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 		/** @var CdnCacheUpdate $update */
 		Assert::parameterType( __CLASS__, $update, '$update' );
 
-		$this->urls = array_merge( $this->urls, $update->urls );
+		$this->urls = array_unique(
+			array_merge( $this->urls, $update->urls ) );
 	}
 
 	/**

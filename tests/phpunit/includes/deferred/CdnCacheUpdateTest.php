@@ -19,7 +19,22 @@ class CdnCacheUpdateTest extends MediaWikiTestCase {
 		$update2 = new CdnCacheUpdate( $urls2 );
 		DeferredUpdates::addUpdate( $update2 );
 
+		$deferred = TestingAccessWrapper::newFromClass( 'DeferredUpdates' );
+		$this->assertEquals( 1, count( $deferred->postSendUpdates['CdnCacheUpdate'] ),
+			'CdnCacheUpdate deferred updates are merged' );
+
 		$wrapper = TestingAccessWrapper::newFromObject( $update1 );
-		$this->assertEquals( array_merge( $urls1, $urls2 ), $wrapper->urls );
+		$frequencies = array_count_values( $wrapper->urls );
+		$dupes = array_filter( $frequencies, function( $f ) {
+			return $f !== 1;
+		} );
+		$this->assertEquals( [], $dupes, "There must be no duplicate URLs" );
+		$this->assertEquals( array_unique( array_merge( $urls1, $urls2 ) ), $wrapper->urls );
+
+		$this->assertEquals( 0, count( $deferred->preSendUpdates ),
+			'CdnCacheUpdate is not in preSendUpdates' );
+		$this->assertEquals( $update1, $deferred->postSendUpdates['CdnCacheUpdate'],
+			'The first update is in the deferred queue' );
+
 	}
 }
