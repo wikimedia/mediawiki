@@ -9,6 +9,7 @@
  *
  * @group Database
  * @group Parser
+ * @group ParserTests
  *
  * @todo covers tags
  */

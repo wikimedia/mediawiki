@@ -18,7 +18,7 @@ class ParserTestFileSuite extends PHPUnit_Framework_TestSuite {
 
 		foreach ( $this->ptFileInfo['tests'] as $test ) {
 			$this->addTest( new ParserIntegrationTest( $runner, $fileName, $test ),
-				[ 'Database', 'Parser' ] );
+				[ 'Database', 'Parser', 'ParserTests' ] );
 		}
 	}
 
