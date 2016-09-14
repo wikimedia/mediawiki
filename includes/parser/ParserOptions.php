@@ -596,27 +596,6 @@ class ParserOptions {
 	}
 
 	/**
-	 * @since 1.28
-	 */
-	public function setMagicISBNLinks( $x ) {
-		return wfSetVar( $this->mMagicISBNLinks, $x );
-	}
-
-	/**
-	 * @since 1.28
-	 */
-	public function setMagicPMIDLinks( $x ) {
-		return wfSetVar( $this->mMagicPMIDLinks, $x );
-	}
-
-	/**
-	 * @since 1.28
-	 */
-	public function setMagicRFCLinks( $x ) {
-		return wfSetVar( $this->mMagicRFCLinks, $x );
-	}
-
-	/**
 	 * Set the redirect target.
 	 *
 	 * Note that setting or changing this does not *make* the page a redirect
