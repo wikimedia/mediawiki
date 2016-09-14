@@ -19,14 +19,9 @@ class ReverseChronologicalPagerTest extends MediaWikiLangTestCase {
 
 		$currYear = $timestamp->format( 'Y' );
 		$currMonth = $timestamp->format( 'n' );
-		$currYearTimestamp = $db->timestamp( $currYear + 1 . '0101000000' );
 
 		// Test that getDateCond sets and returns mOffset
-		$this->assertEquals( $pager->getDateCond( 2006 ), $pager->mOffset );
-
-		// Test year
-		$pager->getDateCond( 2006 );
-		$this->assertEquals( $pager->mOffset, $db->timestamp( '20070101000000' ) );
+		$this->assertEquals( $pager->getDateCond( 2006, 6 ), $pager->mOffset );
 
 		// Test year and month
 		$pager->getDateCond( 2006, 6 );
@@ -44,21 +39,13 @@ class ReverseChronologicalPagerTest extends MediaWikiLangTestCase {
 		$pager->getDateCond( 2006, 6, 30 );
 		$this->assertEquals( $pager->mOffset, $db->timestamp( '20060701000000' ) );
 
-		// Test invalid year (should use current year)
-		$pager->getDateCond( -1337 );
-		$this->assertEquals( $pager->mOffset, $currYearTimestamp );
-
-		// Test invalid month
+		// Test invalid month (should use end of year)
 		$pager->getDateCond( 2006, -1 );
 		$this->assertEquals( $pager->mOffset, $db->timestamp( '20070101000000' ) );
 
-		// Test invalid day
+		// Test invalid day (should use end of month)
 		$pager->getDateCond( 2006, 6, 1337 );
 		$this->assertEquals( $pager->mOffset, $db->timestamp( '20060701000000' ) );
-
-		// Test no year or month (should use end of current year)
-		$pager->getDateCond();
-		$this->assertEquals( $pager->mOffset, $currYearTimestamp );
 
 		// Test last day of year
 		$pager->getDateCond( 2006, 12, 31 );
