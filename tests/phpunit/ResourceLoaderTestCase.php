@@ -22,9 +22,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 			->setConstructorArgs( [ $resourceLoader, $request ] )
 			->setMethods( [ 'getDirection' ] )
 			->getMock();
-		$ctx->expects( $this->any() )->method( 'getDirection' )->will(
-			$this->returnValue( $dir )
-		);
+		$ctx->method( 'getDirection' )->willReturn( $dir );
 		return $ctx;
 	}
 
