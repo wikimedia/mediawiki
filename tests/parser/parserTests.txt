@@ -284,7 +284,7 @@ Blank input
 !! test
 Simple paragraph
 !! wikitext
-This is a simple paragraph.
+This is a simple paragraph. BOOM!
 !! html
 <p>This is a simple paragraph.
 </p>
