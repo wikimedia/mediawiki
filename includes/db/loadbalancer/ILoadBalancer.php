@@ -25,7 +25,6 @@
 /**
  * Interface for database load balancing object that manages IDatabase handles
  *
- * @todo: loosen up DB classes from MWException
  * @since 1.28
  * @ingroup Database
  */
