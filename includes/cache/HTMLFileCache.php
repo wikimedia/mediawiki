@@ -29,6 +29,9 @@
  * @ingroup Cache
  */
 class HTMLFileCache extends FileCacheBase {
+	const MODE_NORMAL = 0; // normal cache mode
+	const MODE_OUTAGE = 1; // fallback cache for DB outages
+
 	/**
 	 * Construct an HTMLFileCache object from a Title and an action
 	 *
@@ -93,10 +96,12 @@ class HTMLFileCache extends FileCacheBase {
 	/**
 	 * Check if pages can be cached for this request/user
 	 * @param IContextSource $context
+	 * @param integer $mode One of the HTMLFileCache::MODE_* constants
 	 * @return bool
 	 */
-	public static function useFileCache( IContextSource $context ) {
+	public static function useFileCache( IContextSource $context, $mode = self::MODE_NORMAL ) {
 		global $wgUseFileCache, $wgDebugToolbar, $wgContLang;
+
 		if ( !$wgUseFileCache ) {
 			return false;
 		}
@@ -121,15 +126,23 @@ class HTMLFileCache extends FileCacheBase {
 
 			return false;
 		}
+
 		$user = $context->getUser();
 		// Check for non-standard user language; this covers uselang,
 		// and extensions for auto-detecting user language.
 		$ulang = $context->getLanguage();
 
 		// Check that there are no other sources of variation
-		if ( $user->getId() || $user->getNewtalk() || !$ulang->equals( $wgContLang ) ) {
+		if ( $user->getId() || !$ulang->equals( $wgContLang ) ) {
 			return false;
 		}
+
+		if ( $mode === self::MODE_NORMAL ) {
+			if ( $user->getNewtalk() ) {
+				return false;
+			}
+		}
+
 		// Allow extensions to disable caching
 		return Hooks::run( 'HTMLFileCache::useFileCache', [ $context ] );
 	}
@@ -145,6 +158,7 @@ class HTMLFileCache extends FileCacheBase {
 		wfDebug( __METHOD__ . "()\n" );
 		$filename = $this->cachePath();
 
+		$context->getTitle()->resetArticleID( 0 ); // avoid DB errors sendCacheControl()
 		$context->getOutput()->sendCacheControl();
 		header( "Content-Type: $wgMimeType; charset=UTF-8" );
 		header( "Content-Language: $wgLanguageCode" );
