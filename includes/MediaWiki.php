@@ -528,11 +528,12 @@ class MediaWiki {
 			}
 		} catch ( Exception $e ) {
 			$context = $this->context;
+			$action = $context->getRequest()->getVal( 'action', 'view' );
 			if (
 				$e instanceof DBConnectionError &&
 				$context->hasTitle() &&
 				$context->getTitle()->canExist() &&
-				$context->getRequest()->getVal( 'action', 'view' ) === 'view' &&
+				in_array( $action, [ 'view', 'history' ] , true ) &&
 				HTMLFileCache::useFileCache( $this->context, HTMLFileCache::MODE_OUTAGE )
 			) {
 				// Try to use any (even stale) file during outages...

@@ -1932,12 +1932,13 @@ class Article implements Page {
 
 	/**
 	 * Check if the page can be cached
+	 * @param integer $mode One of the HTMLFileCache::MODE_* constants (since 1.28)
 	 * @return bool
 	 */
-	public function isFileCacheable() {
+	public function isFileCacheable( $mode = HTMLFileCache::MODE_NORMAL ) {
 		$cacheable = false;
 
-		if ( HTMLFileCache::useFileCache( $this->getContext() ) ) {
+		if ( HTMLFileCache::useFileCache( $this->getContext(), $mode ) ) {
 			$cacheable = $this->mPage->getId()
 				&& !$this->mRedirectedFrom && !$this->getTitle()->isRedirect();
 			// Extension may have reason to disable file caching on some pages.

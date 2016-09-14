@@ -29,6 +29,8 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class RebuildFileCache extends Maintenance {
+	private $enabled = true;
+
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Build file cache for content pages' );
@@ -39,22 +41,27 @@ class RebuildFileCache extends Maintenance {
 	}
 
 	public function finalSetup() {
-		global $wgDebugToolbar;
+		global $wgDebugToolbar, $wgUseFileCache, $wgReadOnly;
 
+		$this->enabled = $wgUseFileCache;
+		// Script will handle capturing output and saving it itself
+		$wgUseFileCache = false;
 		// Debug toolbar makes content uncacheable so we disable it.
 		// Has to be done before Setup.php initialize MWDebug
 		$wgDebugToolbar = false;
+		//  Avoid DB writes (like enotif/counters)
+		$wgReadOnly = 'Building cache'; // avoid DB writes (like enotif/counters)
+
 		parent::finalSetup();
 	}
 
 	public function execute() {
-		global $wgUseFileCache, $wgReadOnly, $wgRequestTime;
-		global $wgOut;
-		if ( !$wgUseFileCache ) {
+		global $wgRequestTime;
+
+		if ( !$this->enabled ) {
 			$this->error( "Nothing to do -- \$wgUseFileCache is disabled.", true );
 		}
 
-		$wgReadOnly = 'Building cache'; // avoid DB writes (like enotif/counters)
 
 		$start = $this->getOption( 'start', "0" );
 		if ( !ctype_digit( $start ) ) {
@@ -90,6 +97,7 @@ class RebuildFileCache extends Maintenance {
 		$blockEnd = $start + $this->mBatchSize - 1;
 
 		$dbw = $this->getDB( DB_MASTER );
+		$mainContext = RequestContext::getMain();
 		// Go through each page and save the output
 		while ( $blockEnd <= $end ) {
 			// Get the pages
@@ -104,7 +112,6 @@ class RebuildFileCache extends Maintenance {
 			$this->beginTransaction( $dbw, __METHOD__ ); // for any changes
 			foreach ( $res as $row ) {
 				$rebuilt = false;
-				$wgRequestTime = microtime( true ); # bug 22852
 
 				$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
 				if ( null == $title ) {
@@ -112,39 +119,52 @@ class RebuildFileCache extends Maintenance {
 					continue; // broken title?
 				}
 
-				$context = new RequestContext;
+				$context = new RequestContext();
 				$context->setTitle( $title );
 				$article = Article::newFromTitle( $title, $context );
 				$context->setWikiPage( $article->getPage() );
 
-				$wgOut = $context->getOutput(); // set display title
-
 				// If the article is cacheable, then load it
-				if ( $article->isFileCacheable() ) {
-					$cache = new HTMLFileCache( $title, 'view' );
-					if ( $cache->isCacheGood() ) {
+				if ( $article->isFileCacheable( HTMLFileCache::MODE_SCRIPT ) ) {
+					$viewCache = new HTMLFileCache( $title, 'view' );
+					$historyCache = new HTMLFileCache( $title, 'history' );
+					if ( $viewCache->isCacheGood() && $historyCache->isCacheGood() ) {
 						if ( $overwrite ) {
 							$rebuilt = true;
 						} else {
-							$this->output( "Page {$row->page_id} already cached\n" );
+							$this->output( "Page '$title' (id {$row->page_id}) already cached\n" );
 							continue; // done already!
 						}
 					}
-					ob_start( [ &$cache, 'saveToFileCache' ] ); // save on ob_end_clean()
-					$wgUseFileCache = false; // hack, we don't want $article fiddling with filecache
-					$article->view();
+
 					MediaWiki\suppressWarnings(); // header notices
-					$wgOut->output();
+					// Cache ?action=view
+					$wgRequestTime = microtime( true ); # bug 22852
+					ob_start();
+					$article->view();
+					$context->getOutput()->output();
+					$context->getOutput()->clearHTML();
+					$viewHtml = ob_get_clean();
+					$viewCache->saveToFileCache( $viewHtml );
+					// Cache ?action=history
+					$wgRequestTime = microtime( true ); # bug 22852
+					ob_start();
+					Action::factory( 'history', $article, $context )->show();
+					$context->getOutput()->output();
+					$context->getOutput()->clearHTML();
+					$historyHtml = ob_get_clean();
+					$historyCache->saveToFileCache( $historyHtml );
 					MediaWiki\restoreWarnings();
-					$wgUseFileCache = true;
-					ob_end_clean(); // clear buffer
+
 					if ( $rebuilt ) {
-						$this->output( "Re-cached page {$row->page_id}\n" );
+						$this->output( "Re-cached page '$title' (id {$row->page_id})..." );
 					} else {
-						$this->output( "Cached page {$row->page_id}\n" );
+						$this->output( "Cached page '$title' (id {$row->page_id})..." );
 					}
+					$this->output( "[v: " . strlen( $viewHtml ) . " bytes; " .
+						"h: " . strlen( $historyHtml ) . " bytes]\n" );
 				} else {
-					$this->output( "Page {$row->page_id} not cacheable\n" );
+					$this->output( "Page '$title' (id {$row->page_id}) not cacheable\n" );
 				}
 			}
 			$this->commitTransaction( $dbw, __METHOD__ ); // commit any changes (just for sanity)
