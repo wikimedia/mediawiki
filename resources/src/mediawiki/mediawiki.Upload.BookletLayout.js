@@ -346,7 +346,7 @@
 				return this.upload.getApi()
 					.then( function ( api ) {
 						// 'amenableparser' will expand templates and parser functions server-side.
-						// We still do the rest of wikitext parsing here (throught jqueryMsg).
+						// We still do the rest of wikitext parsing here (through jqueryMsg).
 						return api.loadMessagesIfMissing( [ error.message.key ], { amenableparser: true } )
 							.then( function () {
 								if ( !mw.message( error.message.key ).exists() ) {
