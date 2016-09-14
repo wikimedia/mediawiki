@@ -8,10 +8,10 @@
  * @since 1.22
  */
 class DBConnRef implements IDatabase {
-	/** @var LoadBalancer */
+	/** @var ILoadBalancer */
 	private $lb;
 
-	/** @var DatabaseBase|null */
+	/** @var IDatabase|null Live connection handle */
 	private $conn;
 
 	/** @var array|null */
@@ -22,13 +22,13 @@ class DBConnRef implements IDatabase {
 	const FLD_WIKI = 2;
 
 	/**
-	 * @param LoadBalancer $lb
-	 * @param DatabaseBase|array $conn Connection or (server index, group, wiki ID)
+	 * @param ILoadBalancer $lb
+	 * @param IDatabase|array $conn Connection or (server index, group, wiki ID)
 	 */
-	public function __construct( LoadBalancer $lb, $conn ) {
+	public function __construct( ILoadBalancer $lb, $conn ) {
 		$this->lb = $lb;
-		if ( $conn instanceof DatabaseBase ) {
-			$this->conn = $conn;
+		if ( $conn instanceof IDatabase ) {
+			$this->conn = $conn; // live handle
 		} elseif ( count( $conn ) >= 3 && $conn[self::FLD_WIKI] !== false ) {
 			$this->params = $conn;
 		} else {
