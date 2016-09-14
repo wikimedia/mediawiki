@@ -26,7 +26,7 @@
  * @ingroup Database
  */
 class DBError extends Exception {
-	/** @var IDatabase */
+	/** @var IDatabase|null */
 	public $db;
 
 	/**
@@ -47,7 +47,22 @@ class DBError extends Exception {
  * @ingroup Database
  * @since 1.23
  */
-class DBExpectedError extends DBError {
+class DBExpectedError extends DBError implements MessageSpecifier {
+	/** @var string[] Message parameters */
+	protected $params;
+
+	function __construct( IDatabase $db = null, $error, array $params = [] ) {
+		parent::__construct( $db, $error );
+		$this->params = $params;
+	}
+
+	public function getKey() {
+		return 'databaseerror-text';
+	}
+
+	public function getParams() {
+		return $this->params;
+	}
 }
 
 /**
@@ -121,6 +136,15 @@ class DBReadOnlyError extends DBExpectedError {
  * @ingroup Database
  */
 class DBTransactionError extends DBExpectedError {
+}
+
+/**
+ * @ingroup Database
+ */
+class DBTransactionSizeError extends DBTransactionError {
+	function getKey() {
+		return 'transaction-duration-limit-exceeded';
+	}
 }
 
 /**
