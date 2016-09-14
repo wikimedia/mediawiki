@@ -209,7 +209,7 @@ class MWExceptionRenderer {
 	 * @param Exception $e
 	 * @return string Html to output
 	 */
-	private static function getHTML( Exception $e ) {
+	public static function getHTML( Exception $e ) {
 		if ( self::showBackTrace( $e ) ) {
 			$html = "<div class=\"errorbox\"><p>" .
 				nl2br( htmlspecialchars( MWExceptionHandler::getLogMessage( $e ) ) ) .
