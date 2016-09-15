@@ -784,7 +784,8 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		if ( !is_array( $server ) ) {
-			throw new InvalidArgumentException( 'You must update your load-balancing configuration. ' .
+			throw new InvalidArgumentException(
+				'You must update your load-balancing configuration. ' .
 				'See DefaultSettings.php entry for $wgDBservers.' );
 		}
 
@@ -1034,10 +1035,10 @@ class LoadBalancer implements ILoadBalancer {
 			// If this fails, then all DB transactions will be rollback back together.
 			$time = $conn->pendingWriteQueryDuration( $conn::ESTIMATE_DB_APPLY );
 			if ( $limit > 0 && $time > $limit ) {
-				throw new DBTransactionError(
+				throw new DBTransactionSizeError(
 					$conn,
 					"Transaction spent $time second(s) in writes, exceeding the $limit limit.",
-					wfMessage( 'transaction-duration-limit-exceeded', $time, $limit )->text()
+					[ $time, $limit ]
 				);
 			}
 			// If a connection sits idle while slow queries execute on another, that connection

@@ -134,15 +134,13 @@ class MWExceptionRenderer {
 	 */
 	private static function useOutputPage( Exception $e ) {
 		// Can the extension use the Message class/wfMessage to get i18n-ed messages?
-		$useMessageCache = ( $GLOBALS['wgLang'] instanceof Language );
 		foreach ( $e->getTrace() as $frame ) {
 			if ( isset( $frame['class'] ) && $frame['class'] === 'LocalisationCache' ) {
-				$useMessageCache = false;
+				return false;
 			}
 		}
 
 		return (
-			$useMessageCache &&
 			!empty( $GLOBALS['wgFullyInitialised'] ) &&
 			!empty( $GLOBALS['wgOut'] ) &&
 			!defined( 'MEDIAWIKI_INSTALL' )
@@ -172,6 +170,10 @@ class MWExceptionRenderer {
 			if ( $hookResult ) {
 				$wgOut->addHTML( $hookResult );
 			} else {
+				// Show any custom GUI message before the details
+				if ( $e instanceof MessageSpecifier ) {
+					$wgOut->addHtml( Message::newFromSpecifier( $e )->escaped() );
+				}
 				$wgOut->addHTML( self::getHTML( $e ) );
 			}
 
@@ -209,14 +211,14 @@ class MWExceptionRenderer {
 	 */
 	private static function getHTML( Exception $e ) {
 		if ( self::showBackTrace( $e ) ) {
-			return '<p>' .
+			$html = "<div class=\"errorbox\"><p>" .
 				nl2br( htmlspecialchars( MWExceptionHandler::getLogMessage( $e ) ) ) .
 				'</p><p>Backtrace:</p><p>' .
 				nl2br( htmlspecialchars( MWExceptionHandler::getRedactedTraceAsString( $e ) ) ) .
-				"</p>\n";
+				"</p></div>\n";
 		} else {
 			$logId = WebRequest::getRequestId();
-			return "<div class=\"errorbox\">" .
+			$html = "<div class=\"errorbox\">" .
 				'[' . $logId . '] ' .
 				gmdate( 'Y-m-d H:i:s' ) . ": " .
 				self::msg( "internalerror-fatal-exception",
@@ -229,6 +231,8 @@ class MWExceptionRenderer {
 			"at the bottom of LocalSettings.php to show detailed " .
 			"debugging information. -->";
 		}
+
+		return $html;
 	}
 
 	/**
