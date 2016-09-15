@@ -2726,12 +2726,17 @@ class OutputPage extends ContextSource {
 			);
 			$this->rlExemptStyleModules = $exemptGroups;
 
-			// Manually handled by getBottomScripts()
-			$userModule = $rl->getModule( 'user' );
-			$userState = $userModule->isKnownEmpty( $context ) && !$this->isUserJsPreview()
-				? 'ready'
-				: 'loading';
-			$this->rlUserModuleState = $exemptStates['user'] = $userState;
+			$isUserModuleFiltered = !$this->filterModules( [ 'user' ] );
+			// If this page filters out 'user', makeResourceLoaderLink will drop it.
+			// Avoid indefinite "loading" state or untrue "ready" state (T145368).
+			if ( !$isUserModuleFiltered ) {
+				// Manually handled by getBottomScripts()
+				$userModule = $rl->getModule( 'user' );
+				$userState = $userModule->isKnownEmpty( $context ) && !$this->isUserJsPreview()
+					? 'ready'
+					: 'loading';
+				$this->rlUserModuleState = $exemptStates['user'] = $userState;
+			}
 
 			$rlClient = new ResourceLoaderClientHtml( $context, $this->getTarget() );
 			$rlClient->setConfig( $this->getJSVars() );
