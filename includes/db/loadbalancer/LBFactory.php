@@ -55,6 +55,11 @@ abstract class LBFactory implements DestructibleService {
 	/** @var callable[] */
 	protected $replicationWaitCallbacks = [];
 
+	/** @var bool */
+	protected $cliMode;
+	/** @var string */
+	protected $agent;
+
 	const SHUTDOWN_NO_CHRONPROT = 0; // don't save DB positions at all
 	const SHUTDOWN_CHRONPROT_ASYNC = 1; // save DB positions, but don't wait on remote DCs
 	const SHUTDOWN_CHRONPROT_SYNC = 2; // save DB positions, waiting on all DCs
@@ -65,6 +70,8 @@ abstract class LBFactory implements DestructibleService {
 	 * @TODO: inject objects via dependency framework
 	 */
 	public function __construct( array $conf ) {
+		global $wgCommandLineMode;
+
 		if ( isset( $conf['readOnlyReason'] ) && is_string( $conf['readOnlyReason'] ) ) {
 			$this->readOnlyReason = $conf['readOnlyReason'];
 		}
@@ -92,6 +99,8 @@ abstract class LBFactory implements DestructibleService {
 		$this->replLogger = LoggerFactory::getInstance( 'DBReplication' );
 		$this->chronProt = $this->newChronologyProtector();
 		$this->ticket = mt_rand();
+		$this->cliMode = isset( $params['cliMode'] ) ? $params['cliMode'] : $wgCommandLineMode;
+		$this->agent = RequestContext::getMain()->getRequest()->getIP();
 	}
 
 	/**
@@ -670,7 +679,9 @@ abstract class LBFactory implements DestructibleService {
 			'connLogger' => LoggerFactory::getInstance( 'DBConnection' ),
 			'replLogger' => LoggerFactory::getInstance( 'DBReplication' ),
 			'errorLogger' => [ MWExceptionHandler::class, 'logException' ],
-			'hostname' => wfHostname()
+			'hostname' => wfHostname(),
+			'cliMode' => $this->cliMode,
+			'agent' => $this->agent
 		];
 	}
 
@@ -712,5 +723,13 @@ abstract class LBFactory implements DestructibleService {
 	 */
 	public function closeAll() {
 		$this->forEachLBCallMethod( 'closeAll', [] );
+	}
+
+	/**
+	 * @param string $agent Agent name for query profiling
+	 * @since 1.28
+	 */
+	public function setAgentName( $agent ) {
+		$this->agent = $agent;
 	}
 }
