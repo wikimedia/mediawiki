@@ -879,6 +879,7 @@
 	"apihelp-php-description": "Extraer los datos de salida en formato serializado PHP.",
 	"apihelp-rawfm-description": "Extraer los datos de salida, incluidos los elementos de depuración, en formato JSON (embellecido en HTML).",
 	"apihelp-xml-param-xslt": "Si se especifica, añade la página nombrada como una hoja de estilo XSL. El valor debe ser un título en el espacio de nombres {{ns:mediawiki}} que termine en <code>.xsl</code>.",
+	"apihelp-xml-param-includexmlnamespace": "Si se especifica, añade un espacio de nombres XML.",
 	"api-help-main-header": "Módulo principal",
 	"api-help-flag-deprecated": "Este módulo está en desuso.",
 	"api-help-flag-readrights": "Este módulo requiere permisos de lectura.",

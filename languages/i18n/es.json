@@ -1012,7 +1012,7 @@
 	"mergehistory": "Fusionar historiales",
 	"mergehistory-header": "Esta página te permite fusionar revisiones del historial de una página origen con los de otra más reciente.\nAsegúrate de que los cambios mantendrán la continuidad histórica de la página.",
 	"mergehistory-box": "Fusionar los historiales de dos páginas:",
-	"mergehistory-from": "Página origen:",
+	"mergehistory-from": "Página de origen:",
 	"mergehistory-into": "Página destino:",
 	"mergehistory-list": "Historial de ediciones fusionable",
 	"mergehistory-merge": "Las siguientes revisiones de [[:$1]] pueden fusionarse con las de [[:$2]].\nUsa la columna de casillas para fusionar sólo las revisiones creadas en y antes de la fecha especificada.\nTen en cuenta que si cambias de página, se borrará la selección actual de esta columna.",
