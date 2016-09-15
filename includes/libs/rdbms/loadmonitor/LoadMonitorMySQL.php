@@ -26,8 +26,30 @@
  * @ingroup Database
  */
 class LoadMonitorMySQL extends LoadMonitor {
-	public function scaleLoads( &$loads, $group = false, $domain = false ) {
-		// @TODO: maybe use Threads_running/Threads_created ratio to guess load
-		// and Queries/Uptime to guess if a server is warming up the buffer pool
+	protected function getWeightScale( $index, IDatabase $conn = null, $lastWeight ) {
+		if ( !$conn ) {
+			return .9 * $lastWeight; // lower weight some
+		}
+
+		$weight = 1.0;
+		$res = $conn->query( 'SHOW STATUS', false );
+		$s = $res ? $conn->fetchObject( $res ) : false;
+		if ( $s === false ) {
+			$host = $this->parent->getServerName( $index );
+			$this->replLogger->error( __METHOD__ . ": host $host is not queryable" );
+		} else {
+			// http://dev.mysql.com/doc/refman/5.7/en/server-status-variables.html
+			if ( $s->Innodb_buffer_pool_pages_total > 0 ) {
+				$ratio = $s->Innodb_buffer_pool_pages_data / $s->Innodb_buffer_pool_pages_total;
+			} elseif ( $s->Qcache_total_blocks > 0 ) {
+				$ratio = 1.0 - $s->Qcache_free_blocks / $s->Qcache_total_blocks;
+			} else {
+				$ratio = 1.0;
+			}
+			// Stop caring once $ratio >= .5
+			$weight *= min( 2 * $ratio, 1.0 );
+		}
+
+		return $weight;
 	}
 }
