@@ -504,6 +504,19 @@ if ( !class_exists( 'AutoLoader' ) ) {
 // Reset the global service locator, so any services that have already been created will be
 // re-created while taking into account any custom settings and extensions.
 MediaWikiServices::resetGlobalInstance( new GlobalVarConfig(), 'quick' );
+// Apply $wgSharedDB table aliases for the local LB (all non-foreign DB connections)
+if ( $wgSharedDB && $wgSharedTables ) {
+	MediaWikiServices::getInstance()->getDBLoadBalancer()->setTableAliases(
+		array_fill_keys(
+			$wgSharedTables,
+			[
+				'dbname' => $wgSharedDB,
+				'schema' => $wgSharedSchema,
+				'prefix' => $wgSharedPrefix
+			]
+		)
+	);
+}
 
 // Define a constant that indicates that the bootstrapping of the service locator
 // is complete.
