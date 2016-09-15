@@ -219,7 +219,11 @@ class ResourceLoaderContext {
 	 */
 	public function msg() {
 		return call_user_func_array( 'wfMessage', func_get_args() )
-			->inLanguage( $this->getLanguage() );
+			->inLanguage( $this->getLanguage() )
+			// Use a dummy title because there is no real title
+			// for this endpoint, and the cache won't vary on it
+			// anyways.
+			->title( Title::newFromText( 'Dwimmerlaik' ) );
 	}
 
 	/**
