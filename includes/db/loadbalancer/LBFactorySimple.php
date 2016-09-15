@@ -102,10 +102,10 @@ class LBFactorySimple extends LBFactory {
 	}
 
 	/**
-	 * @throws MWException
 	 * @param string $cluster
 	 * @param bool|string $wiki
 	 * @return LoadBalancer
+	 * @throws InvalidArgumentException
 	 */
 	protected function newExternalLB( $cluster, $wiki = false ) {
 		global $wgExternalServers;
