@@ -345,14 +345,6 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 				" no viable database extension found for type '$dbType'" );
 		}
 
-		// Determine schema defaults. Currently Microsoft SQL Server uses $wgDBmwschema,
-		// and everything else doesn't use a schema (e.g. null)
-		// Although postgres and oracle support schemas, we don't use them (yet)
-		// to maintain backwards compatibility
-		$defaultSchemas = [
-			'mssql' => 'get from global',
-		];
-
 		$class = 'Database' . ucfirst( $driver );
 		if ( class_exists( $class ) && is_subclass_of( $class, 'IDatabase' ) ) {
 			// Resolve some defaults for b/c
@@ -363,9 +355,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 			$p['flags'] = isset( $p['flags'] ) ? $p['flags'] : 0;
 			$p['variables'] = isset( $p['variables'] ) ? $p['variables'] : [];
 			$p['tablePrefix'] = isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : '';
-			if ( !isset( $p['schema'] ) ) {
-				$p['schema'] = isset( $defaultSchemas[$dbType] ) ? $defaultSchemas[$dbType] : null;
-			}
+			$p['schema'] = isset( $p['schema'] ) ? $p['schema'] : null;
 			$p['foreign'] = isset( $p['foreign'] ) ? $p['foreign'] : false;
 			$p['cliMode'] = $wgCommandLineMode;
 
