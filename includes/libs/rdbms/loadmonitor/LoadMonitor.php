@@ -37,7 +37,9 @@ class LoadMonitor implements ILoadMonitor {
 	/** @var LoggerInterface */
 	protected $replLogger;
 
-	public function __construct( ILoadBalancer $lb, BagOStuff $srvCache, BagOStuff $cache ) {
+	public function __construct(
+		ILoadBalancer $lb, BagOStuff $srvCache, BagOStuff $cache, array $options = []
+	) {
 		$this->parent = $lb;
 		$this->srvCache = $srvCache;
 		$this->mainCache = $cache;
@@ -48,16 +50,35 @@ class LoadMonitor implements ILoadMonitor {
 		$this->replLogger = $logger;
 	}
 
-	public function scaleLoads( &$loads, $group = false, $domain = false ) {
+	public function scaleLoads( array &$weightByServer, $group = false, $domain = false ) {
+		$states = $this->getServerStates( $weightByServer, $domain );
+		$factorsByServer = $states['weightScales'];
+		foreach ( $weightByServer as $i => $weight ) {
+			if ( $weight >= 1 ) { // sanity
+				// Scale from 10% to 100% of nominal weight
+				$coefficient = max( $factorsByServer[$i], .10 );
+
+				$weightByServer[$i] = (int)max( $weight * $coefficient, 1 );
+			}
+		}
 	}
 
-	public function getLagTimes( $serverIndexes, $domain ) {
+	public function getLagTimes( array $serverIndexes, $domain ) {
+		$states = $this->getServerStates( $serverIndexes, $domain );
+
+		return $states['lagTimes'];
+	}
+
+	protected function getServerStates( array $serverIndexes, $domain ) {
 		if ( count( $serverIndexes ) == 1 && reset( $serverIndexes ) == 0 ) {
 			# Single server only, just return zero without caching
-			return [ 0 => 0 ];
+			return [
+				'lagTimes' => [ $this->parent->getWriterIndex() => 0 ],
+				'weightScales' => [ $this->parent->getWriterIndex() => 1 ]
+			];
 		}
 
-		$key = $this->getLagTimeCacheKey();
+		$key = $this->getCacheKey();
 		# Randomize TTLs to reduce stampedes (4.0 - 5.0 sec)
 		$ttl = mt_rand( 4e6, 5e6 ) / 1e6;
 		# Keep keys around longer as fallbacks
@@ -67,7 +88,7 @@ class LoadMonitor implements ILoadMonitor {
 		$value = $this->srvCache->get( $key );
 		if ( $value && $value['timestamp'] > ( microtime( true ) - $ttl ) ) {
 			$this->replLogger->debug( __METHOD__ . ": got lag times ($key) from local cache" );
-			return $value['lagTimes']; // cache hit
+			return $value; // cache hit
 		}
 		$staleValue = $value ?: false;
 
@@ -77,7 +98,7 @@ class LoadMonitor implements ILoadMonitor {
 			$this->srvCache->set( $key, $value, $staleTTL );
 			$this->replLogger->debug( __METHOD__ . ": got lag times ($key) from main cache" );
 
-			return $value['lagTimes']; // cache hit
+			return $value; // cache hit
 		}
 		$staleValue = $value ?: $staleValue;
 
@@ -91,13 +112,15 @@ class LoadMonitor implements ILoadMonitor {
 			} );
 		} elseif ( $staleValue ) {
 			# Could not acquire lock but an old cache exists, so use it
-			return $staleValue['lagTimes'];
+			return $staleValue;
 		}
 
 		$lagTimes = [];
+		$weightScales = [];
 		foreach ( $serverIndexes as $i ) {
 			if ( $i == $this->parent->getWriterIndex() ) {
 				$lagTimes[$i] = 0; // master always has no lag
+				$weightScales[$i] = 1.0; // nominal weight
 				continue;
 			}
 
@@ -109,17 +132,22 @@ class LoadMonitor implements ILoadMonitor {
 				$close = true; // new connection
 			}
 
+			$lastWeight = isset( $staleValue['weightScales'][$i] )
+				? $staleValue['weightScales'][$i]
+				: 1.0;
+			$weightScales[$i] = $this->getWeightScale( $i, $conn ?: null, $lastWeight );
+
 			if ( !$conn ) {
 				$lagTimes[$i] = false;
 				$host = $this->parent->getServerName( $i );
-				$this->replLogger->error( __METHOD__ . ": host $host (#$i) is unreachable" );
+				$this->replLogger->error( __METHOD__ . ": host $host is unreachable" );
 				continue;
 			}
 
 			$lagTimes[$i] = $conn->getLag();
 			if ( $lagTimes[$i] === false ) {
 				$host = $this->parent->getServerName( $i );
-				$this->replLogger->error( __METHOD__ . ": host $host (#$i) is not replicating?" );
+				$this->replLogger->error( __METHOD__ . ": host $host is not replicating?" );
 			}
 
 			if ( $close ) {
@@ -132,26 +160,39 @@ class LoadMonitor implements ILoadMonitor {
 		}
 
 		# Add a timestamp key so we know when it was cached
-		$value = [ 'lagTimes' => $lagTimes, 'timestamp' => microtime( true ) ];
+		$value = [
+			'lagTimes' => $lagTimes,
+			'weightScales' => $weightScales,
+			'timestamp' => microtime( true )
+		];
 		$this->mainCache->set( $key, $value, $staleTTL );
 		$this->srvCache->set( $key, $value, $staleTTL );
 		$this->replLogger->info( __METHOD__ . ": re-calculated lag times ($key)" );
 
-		return $value['lagTimes'];
+		return $value;
+	}
+
+	/**
+	 * @param integer $index Server index
+	 * @param IDatabase|null $conn Connection handle or null on connection failure
+	 * @param float $lastWeight
+	 * @return float
+	 */
+	protected function getWeightScale( $index, IDatabase $conn = null, $lastWeight ) {
+		return $conn ? ( .1 + .9 * $lastWeight ) : .9 * $lastWeight;
 	}
 
 	public function clearCaches() {
-		$key = $this->getLagTimeCacheKey();
+		$key = $this->getCacheKey();
 		$this->srvCache->delete( $key );
 		$this->mainCache->delete( $key );
 	}
 
-	private function getLagTimeCacheKey() {
-		$writerIndex = $this->parent->getWriterIndex();
+	private function getCacheKey() {
 		// Lag is per-server, not per-DB, so key on the master DB name
 		return $this->srvCache->makeGlobalKey(
 			'lag-times',
-			$this->parent->getServerName( $writerIndex )
+			$this->parent->getServerName( $this->parent->getWriterIndex() )
 		);
 	}
 }
