@@ -1031,9 +1031,23 @@ MESSAGE;
 						$strContent = isset( $styles['css'] ) ? implode( '', $styles['css'] ) : '';
 						break;
 					default:
+						$scripts = isset( $content['scripts'] ) ? $content['scripts'] : '';
+						if ( is_string( $scripts ) ) {
+							if ( $name === 'site' || $name === 'user' ) {
+								// Legacy scripts that run in the global scope without a closure.
+								// mw.loader.implement will use globalEval if scripts is a string.
+								// Minify manually here, because general response minification is
+								// not effective due it being a string literal, not a function.
+								if ( !ResourceLoader::inDebugMode() ) {
+									$scripts = self::filter( 'minify-js', $scripts ); // T107377
+								}
+							} else {
+								$scripts = new XmlJsCode( $scripts );
+							}
+						}
 						$strContent = self::makeLoaderImplementScript(
 							$name,
-							isset( $content['scripts'] ) ? $content['scripts'] : '',
+							$scripts,
 							isset( $content['styles'] ) ? $content['styles'] : [],
 							isset( $content['messagesBlob'] ) ? new XmlJsCode( $content['messagesBlob'] ) : [],
 							isset( $content['templates'] ) ? $content['templates'] : []
@@ -1112,7 +1126,8 @@ MESSAGE;
 	 * Return JS code that calls mw.loader.implement with given module properties.
 	 *
 	 * @param string $name Module name
-	 * @param mixed $scripts List of URLs to JavaScript files or String of JavaScript code
+	 * @param string|array|XmlJsCode $scripts JavaScript code to be wrapped in a closure,
+	 *  list of URLs to JavaScript files, or raw JavaScript code as XmlJsCode.
 	 * @param mixed $styles Array of CSS strings keyed by media type, or an array of lists of URLs
 	 *   to CSS files keyed by media type
 	 * @param mixed $messages List of messages associated with this module. May either be an
@@ -1123,22 +1138,13 @@ MESSAGE;
 	 * @throws MWException
 	 * @return string
 	 */
-	public static function makeLoaderImplementScript(
+	protected static function makeLoaderImplementScript(
 		$name, $scripts, $styles, $messages, $templates
 	) {
-		if ( is_string( $scripts ) ) {
-			// Site and user module are a legacy scripts that run in the global scope (no closure).
-			// Transportation as string instructs mw.loader.implement to use globalEval.
-			if ( $name === 'site' || $name === 'user' ) {
-				// Minify manually because the general makeModuleResponse() minification won't be
-				// effective here due to the script being a string instead of a function. (T107377)
-				if ( !ResourceLoader::inDebugMode() ) {
-					$scripts = self::filter( 'minify-js', $scripts );
-				}
-			} else {
-				$scripts = new XmlJsCode( "function ( $, jQuery, require, module ) {\n{$scripts}\n}" );
-			}
-		} elseif ( !is_array( $scripts ) ) {
+
+		if ( $scripts instanceof XmlJsCode ) {
+			$scripts = new XmlJsCode( "function ( $, jQuery, require, module ) {\n{$scripts->value}\n}" );
+		} elseif ( !is_string( $scripts ) && !is_array( $scripts ) ) {
 			throw new MWException( 'Invalid scripts error. Array of URLs or string of code expected.' );
 		}
 		// mw.loader.implement requires 'styles', 'messages' and 'templates' to be objects (not
