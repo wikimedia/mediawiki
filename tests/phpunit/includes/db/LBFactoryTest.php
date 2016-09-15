@@ -97,7 +97,10 @@ class LBFactoryTest extends MediaWikiTestCase {
 			]
 		] );
 
-		$factory = new LBFactorySimple( [ 'loadMonitorClass' => 'LoadMonitorNull' ] );
+		$factory = new LBFactorySimple( [
+			'servers' => $wgDBserver,
+			'loadMonitorClass' => 'LoadMonitorNull'
+		] );
 		$lb = $factory->getMainLB();
 
 		$dbw = $lb->getConnection( DB_MASTER );
