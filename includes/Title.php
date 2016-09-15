@@ -3258,7 +3258,7 @@ class Title implements LinkTarget {
 	 * This clears some fields in this object, and clears any associated
 	 * keys in the "bad links" section of the link cache.
 	 *
-	 * - This is called from WikiPage::doEdit() and WikiPage::insertOn() to allow
+	 * - This is called from WikiPage::doEditContent() and WikiPage::insertOn() to allow
 	 * loading of the new page_id. It's also called from
 	 * WikiPage::doDeleteArticleReal()
 	 *
