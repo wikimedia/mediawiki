@@ -412,18 +412,25 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	 *   - false to disable debugging
 	 *   - omitted or null to do nothing
 	 *
-	 * @return bool|null Previous value of the flag
+	 * @return bool Previous value of the flag
+	 * @deprecated since 1.28; use setFlag()
 	 */
 	public function debug( $debug = null ) {
-		return wfSetBit( $this->mFlags, DBO_DEBUG, $debug );
+		$res = $this->getFlag( DBO_DEBUG );
+		if ( $debug !== null ) {
+			$debug ? $this->setFlag( DBO_DEBUG ) : $this->clearFlag( DBO_DEBUG );
+		}
+
+		return $res;
 	}
 
 	public function bufferResults( $buffer = null ) {
-		if ( is_null( $buffer ) ) {
-			return !(bool)( $this->mFlags & DBO_NOBUFFER );
-		} else {
-			return !wfSetBit( $this->mFlags, DBO_NOBUFFER, !$buffer );
+		$res = !$this->getFlag( DBO_NOBUFFER );
+		if ( $buffer !== null ) {
+			$buffer ? $this->clearFlag( DBO_NOBUFFER ) : $this->setFlag( DBO_NOBUFFER );
 		}
+
+		return $res;
 	}
 
 	/**
@@ -439,7 +446,12 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	 * @return bool The previous value of the flag.
 	 */
 	protected function ignoreErrors( $ignoreErrors = null ) {
-		return wfSetBit( $this->mFlags, DBO_IGNORE, $ignoreErrors );
+		$res = $this->getFlag( DBO_IGNORE );
+		if ( $ignoreErrors !== null ) {
+			$ignoreErrors ? $this->setFlag( DBO_IGNORE ) : $this->clearFlag( DBO_IGNORE );
+		}
+
+		return $res;
 	}
 
 	public function trxLevel() {
@@ -451,11 +463,17 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	}
 
 	public function tablePrefix( $prefix = null ) {
-		return wfSetVar( $this->mTablePrefix, $prefix );
+		$old = $this->mTablePrefix;
+		$this->mTablePrefix = $prefix;
+
+		return $old;
 	}
 
 	public function dbSchema( $schema = null ) {
-		return wfSetVar( $this->mSchema, $schema );
+		$old = $this->mSchema;
+		$this->mSchema = $schema;
+
+		return $old;
 	}
 
 	/**
