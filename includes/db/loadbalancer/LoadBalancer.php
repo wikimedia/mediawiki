@@ -84,6 +84,9 @@ class LoadBalancer implements ILoadBalancer {
 	private $trxRecurringCallbacks = [];
 	/** @var string Local Wiki ID and default for selectDB() calls */
 	private $localDomain;
+	/** @var string Current server name */
+	private $host;
+
 	/** @var callable Exception logger */
 	private $errorLogger;
 
@@ -176,6 +179,10 @@ class LoadBalancer implements ILoadBalancer {
 		foreach ( [ 'replLogger', 'connLogger', 'queryLogger', 'perfLogger' ] as $key ) {
 			$this->$key = isset( $params[$key] ) ? $params[$key] : new \Psr\Log\NullLogger();
 		}
+
+		$this->host = isset( $params['hostname'] )
+			? $params['hostname']
+			: ( gethostname() ?: 'unknown' );
 	}
 
 	/**
@@ -357,7 +364,7 @@ class LoadBalancer implements ILoadBalancer {
 			}
 			$serverName = $this->getServerName( $i );
 			$this->connLogger->debug(
-				__METHOD__ . ": using server $serverName for group '$group'\n" );
+				__METHOD__ . ": using server $serverName for group '$group'" );
 		}
 
 		return $i;
@@ -446,7 +453,7 @@ class LoadBalancer implements ILoadBalancer {
 		$knownReachedPos = $this->srvCache->get( $key );
 		if ( $knownReachedPos && $knownReachedPos->hasReached( $this->mWaitForPos ) ) {
 			$this->replLogger->debug( __METHOD__ .
-				": replica DB $server known to be caught up (pos >= $knownReachedPos).\n" );
+				": replica DB $server known to be caught up (pos >= $knownReachedPos)." );
 			return true;
 		}
 
@@ -454,13 +461,13 @@ class LoadBalancer implements ILoadBalancer {
 		$conn = $this->getAnyOpenConnection( $index );
 		if ( !$conn ) {
 			if ( !$open ) {
-				$this->replLogger->debug( __METHOD__ . ": no connection open for $server\n" );
+				$this->replLogger->debug( __METHOD__ . ": no connection open for $server" );
 
 				return false;
 			} else {
 				$conn = $this->openConnection( $index, '' );
 				if ( !$conn ) {
-					$this->replLogger->warning( __METHOD__ . ": failed to connect to $server\n" );
+					$this->replLogger->warning( __METHOD__ . ": failed to connect to $server" );
 
 					return false;
 				}
@@ -470,18 +477,17 @@ class LoadBalancer implements ILoadBalancer {
 			}
 		}
 
-		$this->replLogger->info( __METHOD__ . ": Waiting for replica DB $server to catch up...\n" );
+		$this->replLogger->info( __METHOD__ . ": Waiting for replica DB $server to catch up..." );
 		$timeout = $timeout ?: $this->mWaitTimeout;
 		$result = $conn->masterPosWait( $this->mWaitForPos, $timeout );
 
 		if ( $result == -1 || is_null( $result ) ) {
 			// Timed out waiting for replica DB, use master instead
 			$msg = __METHOD__ . ": Timed out waiting on $server pos {$this->mWaitForPos}";
-			$this->replLogger->warning( "$msg\n" );
-			$this->perfLogger->warning( "$msg:\n" . wfBacktrace( true ) );
+			$this->replLogger->warning( "$msg" );
 			$ok = false;
 		} else {
-			$this->replLogger->info( __METHOD__ . ": Done\n" );
+			$this->replLogger->info( __METHOD__ . ": Done" );
 			$ok = true;
 			// Remember that the DB reached this point
 			$this->srvCache->set( $key, $this->mWaitForPos, BagOStuff::TTL_DAY );
@@ -592,9 +598,10 @@ class LoadBalancer implements ILoadBalancer {
 		if ( $refCount <= 0 ) {
 			$this->mConns['foreignFree'][$serverIndex][$wiki] = $conn;
 			unset( $this->mConns['foreignUsed'][$serverIndex][$wiki] );
-			wfDebug( __METHOD__ . ": freed connection $serverIndex/$wiki\n" );
+			$this->connLogger->debug( __METHOD__ . ": freed connection $serverIndex/$wiki" );
 		} else {
-			wfDebug( __METHOD__ . ": reference count for $serverIndex/$wiki reduced to $refCount\n" );
+			$this->connLogger->debug( __METHOD__ .
+				": reference count for $serverIndex/$wiki reduced to $refCount" );
 		}
 	}
 
@@ -692,13 +699,13 @@ class LoadBalancer implements ILoadBalancer {
 		if ( isset( $this->mConns['foreignUsed'][$i][$wiki] ) ) {
 			// Reuse an already-used connection
 			$conn = $this->mConns['foreignUsed'][$i][$wiki];
-			wfDebug( __METHOD__ . ": reusing connection $i/$wiki\n" );
+			$this->connLogger->debug( __METHOD__ . ": reusing connection $i/$wiki" );
 		} elseif ( isset( $this->mConns['foreignFree'][$i][$wiki] ) ) {
 			// Reuse a free connection for the same wiki
 			$conn = $this->mConns['foreignFree'][$i][$wiki];
 			unset( $this->mConns['foreignFree'][$i][$wiki] );
 			$this->mConns['foreignUsed'][$i][$wiki] = $conn;
-			wfDebug( __METHOD__ . ": reusing free connection $i/$wiki\n" );
+			$this->connLogger->debug( __METHOD__ . ": reusing free connection $i/$wiki" );
 		} elseif ( !empty( $this->mConns['foreignFree'][$i] ) ) {
 			// Reuse a connection from another wiki
 			$conn = reset( $this->mConns['foreignFree'][$i] );
@@ -708,14 +715,15 @@ class LoadBalancer implements ILoadBalancer {
 			// DatabaseMysqlBase::open() already handle this on connection.
 			if ( $dbName !== '' && !$conn->selectDB( $dbName ) ) {
 				$this->mLastError = "Error selecting database $dbName on server " .
-					$conn->getServer() . " from client host " . wfHostname() . "\n";
+					$conn->getServer() . " from client host {$this->host}";
 				$this->mErrorConnection = $conn;
 				$conn = false;
 			} else {
 				$conn->tablePrefix( $prefix );
 				unset( $this->mConns['foreignFree'][$i][$oldWiki] );
 				$this->mConns['foreignUsed'][$i][$wiki] = $conn;
-				wfDebug( __METHOD__ . ": reusing free connection from $oldWiki for $wiki\n" );
+				$this->connLogger->debug( __METHOD__ .
+					": reusing free connection from $oldWiki for $wiki" );
 			}
 		} else {
 			// Open a new connection
@@ -725,13 +733,13 @@ class LoadBalancer implements ILoadBalancer {
 			$server['foreign'] = true;
 			$conn = $this->reallyOpenConnection( $server, $dbName );
 			if ( !$conn->isOpen() ) {
-				wfDebug( __METHOD__ . ": error opening connection for $i/$wiki\n" );
+				$this->connLogger->warning( __METHOD__ . ": connection error for $i/$wiki" );
 				$this->mErrorConnection = $conn;
 				$conn = false;
 			} else {
 				$conn->tablePrefix( $prefix );
 				$this->mConns['foreignUsed'][$i][$wiki] = $conn;
-				wfDebug( __METHOD__ . ": opened new connection for $i/$wiki\n" );
+				$this->connLogger->debug( __METHOD__ . ": opened new connection for $i/$wiki" );
 			}
 		}
 
@@ -766,8 +774,9 @@ class LoadBalancer implements ILoadBalancer {
 	 *
 	 * @param array $server
 	 * @param bool $dbNameOverride
-	 * @throws MWException
 	 * @return DatabaseBase
+	 * @throws DBAccessError
+	 * @throws MWException
 	 */
 	protected function reallyOpenConnection( $server, $dbNameOverride = false ) {
 		if ( $this->disabled ) {
@@ -790,8 +799,7 @@ class LoadBalancer implements ILoadBalancer {
 		// Log when many connection are made on requests
 		if ( ++$this->connsOpened >= self::CONN_HELD_WARN_THRESHOLD ) {
 			$this->perfLogger->warning( __METHOD__ . ": " .
-				"{$this->connsOpened}+ connections made (master=$masterName)\n" .
-				wfBacktrace( true ) );
+				"{$this->connsOpened}+ connections made (master=$masterName)" );
 		}
 
 		// Set loggers
@@ -838,7 +846,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		if ( !is_object( $conn ) ) {
 			// No last connection, probably due to all servers being too busy
-			wfLogDBError(
+			$this->connLogger->error(
 				"LB failure with no last connection. Connection error: {last_error}",
 				$context
 			);
@@ -847,7 +855,7 @@ class LoadBalancer implements ILoadBalancer {
 			throw new DBConnectionError( null, $this->mLastError );
 		} else {
 			$context['db_server'] = $conn->getProperty( 'mServer' );
-			wfLogDBError(
+			$this->connLogger->warning(
 				"Connection error: {last_error} ({db_server})",
 				$context
 			);
@@ -1028,6 +1036,7 @@ class LoadBalancer implements ILoadBalancer {
 			if ( $limit > 0 && $time > $limit ) {
 				throw new DBTransactionError(
 					$conn,
+					"Transaction spent $time second(s) in writes, exceeding the $limit limit.",
 					wfMessage( 'transaction-duration-limit-exceeded', $time, $limit )->text()
 				);
 			}
@@ -1132,7 +1141,7 @@ class LoadBalancer implements ILoadBalancer {
 				// This happens if onTransactionIdle() callbacks leave callbacks on *another* DB
 				// (which finished its callbacks already). Warn and recover in this case. Let the
 				// callbacks run in the final commitMasterChanges() in LBFactory::shutdown().
-				wfWarn( __METHOD__ . ": did not expect writes/callbacks pending." );
+				$this->queryLogger->error( __METHOD__ . ": found writes/callbacks pending." );
 				return;
 			} elseif ( $conn->trxLevel() ) {
 				// This happens for single-DB setups where DB_REPLICA uses the master DB,
@@ -1518,11 +1527,10 @@ class LoadBalancer implements ILoadBalancer {
 		$result = $conn->masterPosWait( $pos, $timeout );
 		if ( $result == -1 || is_null( $result ) ) {
 			$msg = __METHOD__ . ": Timed out waiting on {$conn->getServer()} pos {$pos}";
-			$this->replLogger->warning( "$msg\n" );
-			$this->perfLogger->warning( "$msg:\n" . wfBacktrace( true ) );
+			$this->replLogger->warning( "$msg" );
 			$ok = false;
 		} else {
-			$this->replLogger->info( __METHOD__ . ": Done\n" );
+			$this->replLogger->info( __METHOD__ . ": Done" );
 			$ok = true;
 		}
 

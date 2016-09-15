@@ -68,8 +68,6 @@ abstract class LBFactory implements DestructibleService {
 		if ( isset( $conf['readOnlyReason'] ) && is_string( $conf['readOnlyReason'] ) ) {
 			$this->readOnlyReason = $conf['readOnlyReason'];
 		}
-		$this->chronProt = $this->newChronologyProtector();
-		$this->trxProfiler = Profiler::instance()->getTransactionProfiler();
 		// Use APC/memcached style caching, but avoids loops with CACHE_DB (T141804)
 		$sCache = ObjectCache::getLocalServerInstance();
 		if ( $sCache->getQoS( $sCache::ATTR_EMULATION ) > $sCache::QOS_EMULATION_SQL ) {
@@ -89,8 +87,10 @@ abstract class LBFactory implements DestructibleService {
 		} else {
 			$this->wanCache = WANObjectCache::newEmpty();
 		}
+		$this->trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$this->trxLogger = LoggerFactory::getInstance( 'DBTransaction' );
 		$this->replLogger = LoggerFactory::getInstance( 'DBReplication' );
+		$this->chronProt = $this->newChronologyProtector();
 		$this->ticket = mt_rand();
 	}
 
@@ -610,6 +610,7 @@ abstract class LBFactory implements DestructibleService {
 			],
 			$request->getFloat( 'cpPosTime', $request->getCookie( 'cpPosTime', '' ) )
 		);
+		$chronProt->setLogger( $this->replLogger );
 		if ( PHP_SAPI === 'cli' ) {
 			$chronProt->setEnabled( false );
 		} elseif ( $request->getHeader( 'ChronologyProtection' ) === 'false' ) {
@@ -669,7 +670,8 @@ abstract class LBFactory implements DestructibleService {
 			'queryLogger' => LoggerFactory::getInstance( 'DBQuery' ),
 			'connLogger' => LoggerFactory::getInstance( 'DBConnection' ),
 			'replLogger' => LoggerFactory::getInstance( 'DBReplication' ),
-			'errorLogger' => [ MWExceptionHandler::class, 'logException' ]
+			'errorLogger' => [ MWExceptionHandler::class, 'logException' ],
+			'hostname' => wfHostname()
 		];
 	}
 
