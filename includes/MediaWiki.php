@@ -726,6 +726,11 @@ class MediaWiki {
 
 		$output = $this->context->getOutput();
 		$request = $this->context->getRequest();
+		// Add a comment for easy SHOW PROCESSLIST interpretation
+		$agent = $this->context->getUser();
+		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->setAgentName(
+			mb_strlen( $agent ) > 15 ? mb_substr( $agent, 0, 15 ) . '...' : $agent
+		);
 
 		// Send Ajax requests to the Ajax dispatcher.
 		if ( $this->config->get( 'UseAjax' ) && $request->getVal( 'action' ) === 'ajax' ) {
