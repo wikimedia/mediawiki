@@ -553,8 +553,17 @@ abstract class Maintenance {
 	 * Set triggers like when to try to run deferred updates
 	 * @since 1.28
 	 */
-	public function setTriggers() {
+	public function setAgentAndTriggers() {
+		if ( function_exists( 'posix_getpwuid' ) ) {
+			$agent = '@' . posix_getpwuid( posix_geteuid() )['name'];
+		} else {
+			$agent = wfHostname();
+		}
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		// Add a comment for easy SHOW PROCESSLIST interpretation
+		$lbFactory->setAgentName(
+			mb_strlen( $agent ) > 15 ? mb_substr( $agent, 0, 15 ) . '...' : $agent
+		);
 		self::setLBFactoryTriggers( $lbFactory );
 	}
 
