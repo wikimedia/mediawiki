@@ -439,7 +439,7 @@ class MWDebug {
 
 		if ( $wgDebugComments ) {
 			$html .= "<!-- Debug output:\n" .
-				htmlspecialchars( implode( "\n", self::$debug ) ) .
+				htmlspecialchars( implode( "\n", self::$debug ), ENT_NOQUOTES ) .
 				"\n\n-->";
 		}
 
