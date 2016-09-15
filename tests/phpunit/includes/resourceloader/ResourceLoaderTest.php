@@ -281,7 +281,6 @@ mw.example();
 				'name' => 'test.example',
 				'scripts' => [],
 				'styles' => [ 'css' => [ '.mw-example {}' ] ],
-				'messages' => new XmlJsCode( '{}' ),
 
 				'expected' => 'mw.loader.implement( "test.example", [], {
     "css": [
@@ -320,17 +319,9 @@ mw.example();
 
 				'name' => 'user',
 				'scripts' => 'mw.example( 1 );',
+				'wrap' => false,
 
 				'expected' => 'mw.loader.implement( "user", "mw.example( 1 );" );',
-			] ],
-			[ [
-				'title' => 'Implement unwrapped user script',
-				'debug' => false,
-
-				'name' => 'user',
-				'scripts' => 'mw.example( 1 );',
-
-				'expected' => 'mw.loader.implement("user","mw.example(1);");',
 			] ],
 		];
 	}
@@ -342,17 +333,20 @@ mw.example();
 	 */
 	public function testMakeLoaderImplementScript( $case ) {
 		$case += [
-			'styles' => [], 'templates' => [], 'messages' => new XmlJsCode( '{}' ),
-			'debug' => true
+			'wrap' => true,
+			'styles' => [], 'templates' => [], 'messages' => new XmlJsCode( '{}' )
 		];
 		ResourceLoader::clearCache();
-		$this->setMwGlobals( 'wgResourceLoaderDebug', $case['debug'] );
+		$this->setMwGlobals( 'wgResourceLoaderDebug', true );
 
+		$rl = TestingAccessWrapper::newFromClass( 'ResourceLoader' );
 		$this->assertEquals(
 			$case['expected'],
-			ResourceLoader::makeLoaderImplementScript(
+			$rl->makeLoaderImplementScript(
 				$case['name'],
-				$case['scripts'],
+				( $case['wrap'] && is_string( $case['scripts'] ) )
+					? new XmlJsCode( $case['scripts'] )
+					: $case['scripts'],
 				$case['styles'],
 				$case['messages'],
 				$case['templates']
@@ -365,7 +359,8 @@ mw.example();
 	 */
 	public function testMakeLoaderImplementScriptInvalid() {
 		$this->setExpectedException( 'MWException', 'Invalid scripts error' );
-		ResourceLoader::makeLoaderImplementScript(
+		$rl = TestingAccessWrapper::newFromClass( 'ResourceLoader' );
+		$rl->makeLoaderImplementScript(
 			'test', // name
 			123, // scripts
 			null, // styles
