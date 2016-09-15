@@ -165,6 +165,11 @@ return [
 		],
 		'scripts' => 'resources/lib/jquery/jquery.appear.js',
 	],
+	'jquery.arrowSteps' => [
+		'scripts' => 'resources/src/jquery/jquery.arrowSteps.js',
+		'styles' => 'resources/src/jquery/jquery.arrowSteps.css',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'jquery.async' => [
 		'scripts' => 'resources/lib/jquery/jquery.async.js',
 	],
