@@ -67,7 +67,7 @@ class LBFactorySimple extends LBFactory {
 			: [];
 		$this->loadMonitorClass = isset( $conf['loadMonitorClass'] )
 			? $conf['loadMonitorClass']
-			: null;
+			: 'LoadMonitor';
 	}
 
 	/**
@@ -124,7 +124,7 @@ class LBFactorySimple extends LBFactory {
 			$this->baseLoadBalancerParams(),
 			[
 				'servers' => $servers,
-				'loadMonitor' => $this->loadMonitorClass,
+				'loadMonitor' => [ 'class' => $this->loadMonitorClass ],
 			]
 		) );
 		$this->initLoadBalancer( $lb );

@@ -32,7 +32,7 @@ class LoadBalancer implements ILoadBalancer {
 	private $mServers;
 	/** @var array[] Map of (local/foreignUsed/foreignFree => server index => IDatabase array) */
 	private $mConns;
-	/** @var array Map of (server index => weight) */
+	/** @var float[] Map of (server index => weight) */
 	private $mLoads;
 	/** @var array[] Map of (group => server index => weight) */
 	private $mGroupLoads;
@@ -40,13 +40,13 @@ class LoadBalancer implements ILoadBalancer {
 	private $mAllowLagged;
 	/** @var integer Seconds to spend waiting on replica DB lag to resolve */
 	private $mWaitTimeout;
-	/** @var string The LoadMonitor subclass name */
-	private $mLoadMonitorClass;
+	/** @var array The LoadMonitor configuration */
+	private $loadMonitorConfig;
 	/** @var array[] $aliases Map of (table => (dbname, schema, prefix) map) */
 	private $tableAliases = [];
 
 	/** @var ILoadMonitor */
-	private $mLoadMonitor;
+	private $loadMonitor;
 	/** @var BagOStuff */
 	private $srvCache;
 	/** @var BagOStuff */
@@ -150,14 +150,9 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		if ( isset( $params['loadMonitor'] ) ) {
-			$this->mLoadMonitorClass = $params['loadMonitor'];
+			$this->loadMonitorConfig = $params['loadMonitor'];
 		} else {
-			$master = reset( $params['servers'] );
-			if ( isset( $master['type'] ) && $master['type'] === 'mysql' ) {
-				$this->mLoadMonitorClass = 'LoadMonitorMySQL';
-			} else {
-				$this->mLoadMonitorClass = 'LoadMonitorNull';
-			}
+			$this->loadMonitorConfig = [ 'class' => 'LoadMonitorNull' ];
 		}
 
 		foreach ( $params['servers'] as $i => $server ) {
@@ -217,13 +212,14 @@ class LoadBalancer implements ILoadBalancer {
 	 * @return ILoadMonitor
 	 */
 	private function getLoadMonitor() {
-		if ( !isset( $this->mLoadMonitor ) ) {
-			$class = $this->mLoadMonitorClass;
-			$this->mLoadMonitor = new $class( $this, $this->srvCache, $this->memCache );
-			$this->mLoadMonitor->setLogger( $this->replLogger );
+		if ( !isset( $this->loadMonitor ) ) {
+			$class = $this->loadMonitorConfig['class'];
+			$this->loadMonitor = new $class(
+				$this, $this->srvCache, $this->memCache, $this->loadMonitorConfig );
+			$this->loadMonitor->setLogger( $this->replLogger );
 		}
 
-		return $this->mLoadMonitor;
+		return $this->loadMonitor;
 	}
 
 	/**
