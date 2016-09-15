@@ -49,10 +49,13 @@ abstract class LBFactory {
 	/** @var WANObjectCache */
 	protected $wanCache;
 
-	/** @var string Local domain */
-	protected $domain;
 	/** @var string Local hostname of the app server */
 	protected $hostname;
+	/** @var array Web request information about the client */
+	protected $requestInfo;
+
+	/** @var string Local domain */
+	protected $domain;
 	/** @var mixed */
 	protected $ticket;
 	/** @var string|bool String if a requested DBO_TRX transaction round is active */
@@ -99,10 +102,16 @@ abstract class LBFactory {
 
 		$this->chronProt = isset( $conf['chronProt'] )
 			? $conf['chronProt']
-			: $this->newChronologyProtector();
+			: null;
 		$this->trxProfiler = isset( $conf['trxProfiler'] )
 			? $conf['trxProfiler']
 			: new TransactionProfiler();
+
+		$this->requestInfo = [
+			'IPAddress' => isset( $_SERVER[ 'REMOTE_ADDR' ] ) ? $_SERVER[ 'REMOTE_ADDR' ] : '',
+			'UserAgent' => isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : '',
+			'ChronologyProtection' => 'true'
+		];
 
 		$this->ticket = mt_rand();
 	}
@@ -172,10 +181,11 @@ abstract class LBFactory {
 	public function shutdown(
 		$mode = self::SHUTDOWN_CHRONPROT_SYNC, callable $workCallback = null
 	) {
+		$chronProt = $this->getChronologyProtector();
 		if ( $mode === self::SHUTDOWN_CHRONPROT_SYNC ) {
-			$this->shutdownChronologyProtector( $this->chronProt, $workCallback, 'sync' );
+			$this->shutdownChronologyProtector( $chronProt, $workCallback, 'sync' );
 		} elseif ( $mode === self::SHUTDOWN_CHRONPROT_ASYNC ) {
-			$this->shutdownChronologyProtector( $this->chronProt, null, 'async' );
+			$this->shutdownChronologyProtector( $chronProt, null, 'async' );
 		}
 
 		$this->commitMasterChanges( __METHOD__ ); // sanity
@@ -527,7 +537,7 @@ abstract class LBFactory {
 	 * @since 1.28
 	 */
 	public function getChronologyProtectorTouched( $dbName ) {
-		return $this->chronProt->getTouched( $dbName );
+		return $this->getChronologyProtector()->getTouched( $dbName );
 	}
 
 	/**
@@ -538,27 +548,38 @@ abstract class LBFactory {
 	 * @since 1.27
 	 */
 	public function disableChronologyProtection() {
-		$this->chronProt->setEnabled( false );
+		$this->getChronologyProtector()->setEnabled( false );
 	}
 
 	/**
 	 * @return ChronologyProtector
 	 */
-	protected function newChronologyProtector() {
-		$chronProt = new ChronologyProtector(
+	protected function getChronologyProtector() {
+		if ( $this->chronProt ) {
+			return $this->chronProt;
+		}
+
+		$this->chronProt = new ChronologyProtector(
 			$this->memCache,
 			[
-				'ip' => isset( $_SERVER[ 'REMOTE_ADDR' ] ) ? $_SERVER[ 'REMOTE_ADDR' ] : '',
-				'agent' => isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : ''
+				'ip' => $this->requestInfo['IPAddress'],
+				'agent' => $this->requestInfo['UserAgent'],
 			],
 			isset( $_GET['cpPosTime'] ) ? $_GET['cpPosTime'] : null
 		);
-		$chronProt->setLogger( $this->replLogger );
+		$this->chronProt->setLogger( $this->replLogger );
 		if ( PHP_SAPI === 'cli' ) {
-			$chronProt->setEnabled( false );
+			$this->chronProt->setEnabled( false );
+		} elseif ( $this->requestInfo['ChronologyProtection'] === 'false' ) {
+			// Request opted out of using position wait logic. This is useful for requests
+			// done by the job queue or background ETL that do not have a meaningful session.
+			$this->chronProt->setWaitEnabled( false );
 		}
 
-		return $chronProt;
+		$this->replLogger->debug( __METHOD__ . ': using request info ' .
+			json_encode( $this->requestInfo, JSON_PRETTY_PRINT ) );
+
+		return $this->chronProt;
 	}
 
 	/**
@@ -640,5 +661,43 @@ abstract class LBFactory {
 	 */
 	public function closeAll() {
 		$this->forEachLBCallMethod( 'closeAll', [] );
+	}
+
+	/**
+	 * Append ?cpPosTime parameter to a URL for ChronologyProtector purposes if needed
+	 *
+	 * Note that unlike cookies, this works accross domains
+	 *
+	 * @param string $url
+	 * @param float $time UNIX timestamp just before shutdown() was called
+	 * @return string
+	 * @since 1.28
+	 */
+	public function appendPreShutdownTimeAsQuery( $url, $time ) {
+		$usedCluster = 0;
+		$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$usedCluster ) {
+			$usedCluster |= ( $lb->getServerCount() > 1 );
+		} );
+
+		if ( !$usedCluster ) {
+			return $url; // no master/replica clusters touched
+		}
+
+		return strpos( $url, '?' ) === false ? "$url?cpPosTime=$time" : "$url&cpPosTime=$time";
+	}
+
+	/**
+	 * @param array $info Map of fields, including:
+	 *   - IPAddress : IP address
+	 *   - UserAgent : User-Agent HTTP header
+	 *   - ChronologyProtection : cookie/header value specifying ChronologyProtector usage
+	 * @since 1.28
+	 */
+	public function setRequestInfo( array $info ) {
+		$this->requestInfo = $info + $this->requestInfo;
+	}
+
+	function __destruct() {
+		$this->destroy();
 	}
 }

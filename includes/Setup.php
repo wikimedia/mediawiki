@@ -504,8 +504,9 @@ if ( !class_exists( 'AutoLoader' ) ) {
 // Reset the global service locator, so any services that have already been created will be
 // re-created while taking into account any custom settings and extensions.
 MediaWikiServices::resetGlobalInstance( new GlobalVarConfig(), 'quick' );
-// Apply $wgSharedDB table aliases for the local LB (all non-foreign DB connections)
+
 if ( $wgSharedDB && $wgSharedTables ) {
+	// Apply $wgSharedDB table aliases for the local LB (all non-foreign DB connections)
 	MediaWikiServices::getInstance()->getDBLoadBalancer()->setTableAliases(
 		array_fill_keys(
 			$wgSharedTables,
@@ -661,6 +662,12 @@ if ( !$wgDBerrorLogTZ ) {
 
 // initialize the request object in $wgRequest
 $wgRequest = RequestContext::getMain()->getRequest(); // BackCompat
+// Set user IP/agent information for causal consistency purposes
+MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->setRequestInfo( [
+	'IPAddress' => $wgRequest->getIP(),
+	'UserAgent' => $wgRequest->getHeader( 'User-Agent' ),
+	'ChronologyProtection' => $wgRequest->getHeader( 'ChronologyProtection' )
+] );
 
 // Useful debug output
 if ( $wgCommandLineMode ) {
