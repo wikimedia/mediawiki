@@ -3405,6 +3405,8 @@
 	"tag-filter": "Фильтр [[Special:Tags|меток]]:",
 	"tag-filter-submit": "Отфильтровать",
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|1=Метка|Метки}}]]: $2)",
+	"tag-mw-contentmodelchange": "изменение модели содержимого",
+	"tag-mw-contentmodelchange-description": "Правки, которые [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel изменяют модель содержимого] страницы",
 	"tags-title": "Метки",
 	"tags-intro": "На этой странице приведён список меток, которыми программное обеспечение отмечает правки, а также значения этих меток.",
 	"tags-tag": "Имя метки",
