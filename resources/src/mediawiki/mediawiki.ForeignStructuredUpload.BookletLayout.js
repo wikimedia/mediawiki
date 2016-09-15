@@ -205,6 +205,51 @@
 		this.emit( 'uploadValid', valid );
 	};
 
+	// @todo jsdoc
+	// @todo make sure this is only run on blur or something, not every keystroke (too much API requests)
+	// @todo show an error message
+	mw.ForeignStructuredUpload.BookletLayout.prototype.validateFilename = function ( filename ) {
+		var uploadName, extension, title;
+
+		if ( filename === '' || this.getFile() === null ) {
+			return false;
+		}
+
+		// build the title object for the given filename input
+		uploadName = this.getFile().name;
+		extension = uploadName.lastIndexOf( '.' ) >= 0 ? uploadName.slice( uploadName.lastIndexOf( '.' ) ) : '';
+		title = mw.Title.newFromText(
+			filename + extension,
+			mw.config.get( 'wgNamespaceIds' ).file
+		);
+
+		if ( title === null ) {
+			return false;
+		}
+
+		return this.upload.getApi().then( function ( api ) {
+			return api.get( {
+				action: 'query',
+				prop: 'info',
+				titles: title.getPrefixedDb()
+			} ).then(
+				function ( result ) {
+					// if the filename does not yet exist, there'll be an entry
+					// with id '-1'. If there is no such entry (-1 is undefined)
+					// the page exists and this filename is not valid, it is
+					// taken already
+					return result.query.pages[ -1 ] !== undefined;
+				},
+				function () {
+					// API call failed - this could be a connection hiccup...
+					// Let's just ignore this validation step and turn this failure
+					// into a successful resolve ;)
+					return $.Deferred().resolve( true );
+				}
+			);
+		} );
+	};
+
 	/**
 	 * @inheritdoc
 	 */
@@ -221,7 +266,7 @@
 
 		this.filenameWidget = new OO.ui.TextInputWidget( {
 			required: true,
-			validate: /.+/
+			validate: this.validateFilename.bind( this )
 		} );
 		this.descriptionWidget = new OO.ui.TextInputWidget( {
 			required: true,
@@ -293,6 +338,10 @@
 	mw.ForeignStructuredUpload.BookletLayout.prototype.onInfoFormChange = function () {
 		var layout = this,
 			validityPromises = [];
+
+		this.filenameWidget.getValidity().done( function ( valid ) {
+			console.log('valid', valid); // @todo
+		} )
 
 		validityPromises.push( this.filenameWidget.getValidity() );
 		if ( this.descriptionField.isVisible() ) {
