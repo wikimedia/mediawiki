@@ -37,7 +37,7 @@ abstract class LBFactoryMW extends LBFactory implements DestructibleService {
 	 * @TODO: inject objects via dependency framework
 	 */
 	public function __construct( array $conf ) {
-		global $wgCommandLineMode, $wgSQLMode, $wgDBmysql5;
+		global $wgCommandLineMode, $wgSQLMode, $wgDBmysql5, $wgDBtype, $wgDBmwschema;
 
 		$defaults = [
 			'localDomain' => wfWikiID(),
@@ -66,9 +66,20 @@ abstract class LBFactoryMW extends LBFactory implements DestructibleService {
 		$this->agent = isset( $params['agent'] ) ? $params['agent'] : '';
 		$this->cliMode = isset( $params['cliMode'] ) ? $params['cliMode'] : $wgCommandLineMode;
 
+		// Determine schema defaults. Currently Microsoft SQL Server uses $wgDBmwschema,
+		// and everything else doesn't use a schema (e.g. null)
+		// Although postgres and oracle support schemas, we don't use them (yet)
+		// to maintain backwards compatibility
+		$schema = ( $wgDBtype === 'mssql' ) ? $wgDBmwschema : null;
+
 		if ( isset( $conf['serverTemplate'] ) ) { // LBFactoryMulti
+			$conf['serverTemplate']['schema'] = $schema;
 			$conf['serverTemplate']['sqlMode'] = $wgSQLMode;
 			$conf['serverTemplate']['utf8Mode'] = $wgDBmysql5;
+		} elseif ( isset( $conf['servers'] ) ) { // LBFactorySimple
+			foreach ( $conf['servers'] as $i => $server ) {
+				$conf['servers'][$i]['schema'] = $schema;
+			}
 		}
 
 		parent::__construct( $conf + $defaults );
