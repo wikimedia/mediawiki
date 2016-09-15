@@ -267,7 +267,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 
 		$this->srvCache = isset( $params['srvCache'] )
 			? $params['srvCache']
-			: new EmptyBagOStuff();
+			: new HashBagOStuff();
 
 		$this->profiler = isset( $params['profiler'] )
 			? $params['profiler']
