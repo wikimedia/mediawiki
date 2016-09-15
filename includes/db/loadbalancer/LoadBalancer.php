@@ -82,7 +82,7 @@ class LoadBalancer implements ILoadBalancer {
 	private $trxRoundId = false;
 	/** @var array[] Map of (name => callable) */
 	private $trxRecurringCallbacks = [];
-	/** @var string Local Wiki ID and default for selectDB() calls */
+	/** @var string Local Domain ID and default for selectDB() calls */
 	private $localDomain;
 	/** @var string Current server name */
 	private $host;
@@ -202,12 +202,12 @@ class LoadBalancer implements ILoadBalancer {
 
 	/**
 	 * @param array $loads
-	 * @param bool|string $wiki Wiki to get non-lagged for
+	 * @param bool|string $domain Domain to get non-lagged for
 	 * @param int $maxLag Restrict the maximum allowed lag to this many seconds
 	 * @return bool|int|string
 	 */
-	private function getRandomNonLagged( array $loads, $wiki = false, $maxLag = INF ) {
-		$lags = $this->getLagTimes( $wiki );
+	private function getRandomNonLagged( array $loads, $domain = false, $maxLag = INF ) {
+		$lags = $this->getLagTimes( $domain );
 
 		# Unset excessively lagged servers
 		foreach ( $lags as $i => $lag ) {
@@ -251,7 +251,7 @@ class LoadBalancer implements ILoadBalancer {
 		return ArrayUtils::pickRandom( $loads );
 	}
 
-	public function getReaderIndex( $group = false, $wiki = false ) {
+	public function getReaderIndex( $group = false, $domain = false ) {
 		if ( count( $this->mServers ) == 1 ) {
 			# Skip the load balancing if there's only one server
 			return $this->getWriterIndex();
@@ -279,7 +279,7 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		# Scale the configured load ratios according to the dynamic load if supported
-		$this->getLoadMonitor()->scaleLoads( $nonErrorLoads, $group, $wiki );
+		$this->getLoadMonitor()->scaleLoads( $nonErrorLoads, $group, $domain );
 
 		$laggedReplicaMode = false;
 
@@ -299,11 +299,11 @@ class LoadBalancer implements ILoadBalancer {
 					# avoid lagged servers so as to avoid just blocking in that method.
 					$ago = microtime( true ) - $this->mWaitForPos->asOfTime();
 					# Aim for <= 1 second of waiting (being too picky can backfire)
-					$i = $this->getRandomNonLagged( $currentLoads, $wiki, $ago + 1 );
+					$i = $this->getRandomNonLagged( $currentLoads, $domain, $ago + 1 );
 				}
 				if ( $i === false ) {
 					# Any server with less lag than it's 'max lag' param is preferable
-					$i = $this->getRandomNonLagged( $currentLoads, $wiki );
+					$i = $this->getRandomNonLagged( $currentLoads, $domain );
 				}
 				if ( $i === false && count( $currentLoads ) != 0 ) {
 					# All replica DBs lagged. Switch to read-only mode
@@ -325,9 +325,9 @@ class LoadBalancer implements ILoadBalancer {
 			$serverName = $this->getServerName( $i );
 			$this->connLogger->debug( __METHOD__ . ": Using reader #$i: $serverName..." );
 
-			$conn = $this->openConnection( $i, $wiki );
+			$conn = $this->openConnection( $i, $domain );
 			if ( !$conn ) {
-				$this->connLogger->warning( __METHOD__ . ": Failed connecting to $i/$wiki" );
+				$this->connLogger->warning( __METHOD__ . ": Failed connecting to $i/$domain" );
 				unset( $nonErrorLoads[$i] );
 				unset( $currentLoads[$i] );
 				$i = false;
@@ -336,7 +336,7 @@ class LoadBalancer implements ILoadBalancer {
 
 			// Decrement reference counter, we are finished with this connection.
 			// It will be incremented for the caller later.
-			if ( $wiki !== false ) {
+			if ( $domain !== false ) {
 				$this->reuseConnection( $conn );
 			}
 
@@ -500,14 +500,14 @@ class LoadBalancer implements ILoadBalancer {
 		return $ok;
 	}
 
-	public function getConnection( $i, $groups = [], $wiki = false ) {
+	public function getConnection( $i, $groups = [], $domain = false ) {
 		if ( $i === null || $i === false ) {
 			throw new InvalidArgumentException( 'Attempt to call ' . __METHOD__ .
 				' with invalid server index' );
 		}
 
-		if ( $wiki === $this->localDomain ) {
-			$wiki = false;
+		if ( $domain === $this->localDomain ) {
+			$domain = false;
 		}
 
 		$groups = ( $groups === false || $groups === [] )
@@ -522,7 +522,7 @@ class LoadBalancer implements ILoadBalancer {
 		} else {
 			# Try to find an available server in any the query groups (in order)
 			foreach ( $groups as $group ) {
-				$groupIndex = $this->getReaderIndex( $group, $wiki );
+				$groupIndex = $this->getReaderIndex( $group, $domain );
 				if ( $groupIndex !== false ) {
 					$i = $groupIndex;
 					break;
@@ -536,7 +536,7 @@ class LoadBalancer implements ILoadBalancer {
 			# Try the general server pool if $groups are unavailable.
 			$i = in_array( false, $groups, true )
 				? false // don't bother with this if that is what was tried above
-				: $this->getReaderIndex( false, $wiki );
+				: $this->getReaderIndex( false, $domain );
 			# Couldn't find a working server in getReaderIndex()?
 			if ( $i === false ) {
 				$this->mLastError = 'No working replica DB server: ' . $this->mLastError;
@@ -546,7 +546,7 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		# Now we have an explicit index into the servers array
-		$conn = $this->openConnection( $i, $wiki );
+		$conn = $this->openConnection( $i, $domain );
 		if ( !$conn ) {
 			return $this->reportConnectionError();
 		}
@@ -560,7 +560,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		if ( $masterOnly ) {
 			# Make master-requested DB handles inherit any read-only mode setting
-			$conn->setLBInfo( 'readOnlyReason', $this->getReadOnlyReason( $wiki, $conn ) );
+			$conn->setLBInfo( 'readOnlyReason', $this->getReadOnlyReason( $domain, $conn ) );
 		}
 
 		return $conn;
@@ -586,22 +586,22 @@ class LoadBalancer implements ILoadBalancer {
 		$dbName = $conn->getDBname();
 		$prefix = $conn->tablePrefix();
 		if ( strval( $prefix ) !== '' ) {
-			$wiki = "$dbName-$prefix";
+			$domain = "$dbName-$prefix";
 		} else {
-			$wiki = $dbName;
+			$domain = $dbName;
 		}
-		if ( $this->mConns['foreignUsed'][$serverIndex][$wiki] !== $conn ) {
+		if ( $this->mConns['foreignUsed'][$serverIndex][$domain] !== $conn ) {
 			throw new InvalidArgumentException( __METHOD__ . ": connection not found, has " .
 				"the connection been freed already?" );
 		}
 		$conn->setLBInfo( 'foreignPoolRefCount', --$refCount );
 		if ( $refCount <= 0 ) {
-			$this->mConns['foreignFree'][$serverIndex][$wiki] = $conn;
-			unset( $this->mConns['foreignUsed'][$serverIndex][$wiki] );
-			$this->connLogger->debug( __METHOD__ . ": freed connection $serverIndex/$wiki" );
+			$this->mConns['foreignFree'][$serverIndex][$domain] = $conn;
+			unset( $this->mConns['foreignUsed'][$serverIndex][$domain] );
+			$this->connLogger->debug( __METHOD__ . ": freed connection $serverIndex/$domain" );
 		} else {
 			$this->connLogger->debug( __METHOD__ .
-				": reference count for $serverIndex/$wiki reduced to $refCount" );
+				": reference count for $serverIndex/$domain reduced to $refCount" );
 		}
 	}
 
@@ -614,12 +614,12 @@ class LoadBalancer implements ILoadBalancer {
 	 *
 	 * @param int $db
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
-	 * @param string|bool $wiki Wiki ID, or false for the current wiki
+	 * @param string|bool $domain Domain ID, or false for the current domain
 	 * @return DBConnRef
 	 * @since 1.22
 	 */
-	public function getConnectionRef( $db, $groups = [], $wiki = false ) {
-		return new DBConnRef( $this, $this->getConnection( $db, $groups, $wiki ) );
+	public function getConnectionRef( $db, $groups = [], $domain = false ) {
+		return new DBConnRef( $this, $this->getConnection( $db, $groups, $domain ) );
 	}
 
 	/**
@@ -631,19 +631,19 @@ class LoadBalancer implements ILoadBalancer {
 	 *
 	 * @param int $db
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
-	 * @param string|bool $wiki Wiki ID, or false for the current wiki
+	 * @param string|bool $domain Domain ID, or false for the current domain
 	 * @return DBConnRef
 	 * @since 1.22
 	 */
-	public function getLazyConnectionRef( $db, $groups = [], $wiki = false ) {
-		$wiki = ( $wiki !== false ) ? $wiki : $this->localDomain;
+	public function getLazyConnectionRef( $db, $groups = [], $domain = false ) {
+		$domain = ( $domain !== false ) ? $domain : $this->localDomain;
 
-		return new DBConnRef( $this, [ $db, $groups, $wiki ] );
+		return new DBConnRef( $this, [ $db, $groups, $domain ] );
 	}
 
-	public function openConnection( $i, $wiki = false ) {
-		if ( $wiki !== false ) {
-			$conn = $this->openForeignConnection( $i, $wiki );
+	public function openConnection( $i, $domain = false ) {
+		if ( $domain !== false ) {
+			$conn = $this->openForeignConnection( $i, $domain );
 		} elseif ( isset( $this->mConns['local'][$i][0] ) ) {
 			$conn = $this->mConns['local'][$i][0];
 		} else {
@@ -677,7 +677,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * Open a connection to a foreign DB, or return one if it is already open.
 	 *
 	 * Increments a reference count on the returned connection which locks the
-	 * connection to the requested wiki. This reference count can be
+	 * connection to the requested domain. This reference count can be
 	 * decremented by calling reuseConnection().
 	 *
 	 * If a connection is open to the appropriate server already, but with the wrong
@@ -690,26 +690,26 @@ class LoadBalancer implements ILoadBalancer {
 	 * @note If disable() was called on this LoadBalancer, this method will throw a DBAccessError.
 	 *
 	 * @param int $i Server index
-	 * @param string $wiki Wiki ID to open
+	 * @param string $domain Domain ID to open
 	 * @return DatabaseBase
 	 */
-	private function openForeignConnection( $i, $wiki ) {
-		list( $dbName, $prefix ) = explode( '-', $wiki, 2 ) + [ '', '' ];
+	private function openForeignConnection( $i, $domain ) {
+		list( $dbName, $prefix ) = explode( '-', $domain, 2 ) + [ '', '' ];
 
-		if ( isset( $this->mConns['foreignUsed'][$i][$wiki] ) ) {
+		if ( isset( $this->mConns['foreignUsed'][$i][$domain] ) ) {
 			// Reuse an already-used connection
-			$conn = $this->mConns['foreignUsed'][$i][$wiki];
-			$this->connLogger->debug( __METHOD__ . ": reusing connection $i/$wiki" );
-		} elseif ( isset( $this->mConns['foreignFree'][$i][$wiki] ) ) {
-			// Reuse a free connection for the same wiki
-			$conn = $this->mConns['foreignFree'][$i][$wiki];
-			unset( $this->mConns['foreignFree'][$i][$wiki] );
-			$this->mConns['foreignUsed'][$i][$wiki] = $conn;
-			$this->connLogger->debug( __METHOD__ . ": reusing free connection $i/$wiki" );
+			$conn = $this->mConns['foreignUsed'][$i][$domain];
+			$this->connLogger->debug( __METHOD__ . ": reusing connection $i/$domain" );
+		} elseif ( isset( $this->mConns['foreignFree'][$i][$domain] ) ) {
+			// Reuse a free connection for the same domain
+			$conn = $this->mConns['foreignFree'][$i][$domain];
+			unset( $this->mConns['foreignFree'][$i][$domain] );
+			$this->mConns['foreignUsed'][$i][$domain] = $conn;
+			$this->connLogger->debug( __METHOD__ . ": reusing free connection $i/$domain" );
 		} elseif ( !empty( $this->mConns['foreignFree'][$i] ) ) {
-			// Reuse a connection from another wiki
+			// Reuse a connection from another domain
 			$conn = reset( $this->mConns['foreignFree'][$i] );
-			$oldWiki = key( $this->mConns['foreignFree'][$i] );
+			$oldDomain = key( $this->mConns['foreignFree'][$i] );
 
 			// The empty string as a DB name means "don't care".
 			// DatabaseMysqlBase::open() already handle this on connection.
@@ -720,10 +720,10 @@ class LoadBalancer implements ILoadBalancer {
 				$conn = false;
 			} else {
 				$conn->tablePrefix( $prefix );
-				unset( $this->mConns['foreignFree'][$i][$oldWiki] );
-				$this->mConns['foreignUsed'][$i][$wiki] = $conn;
+				unset( $this->mConns['foreignFree'][$i][$oldDomain] );
+				$this->mConns['foreignUsed'][$i][$domain] = $conn;
 				$this->connLogger->debug( __METHOD__ .
-					": reusing free connection from $oldWiki for $wiki" );
+					": reusing free connection from $oldDomain for $domain" );
 			}
 		} else {
 			// Open a new connection
@@ -733,13 +733,13 @@ class LoadBalancer implements ILoadBalancer {
 			$server['foreign'] = true;
 			$conn = $this->reallyOpenConnection( $server, $dbName );
 			if ( !$conn->isOpen() ) {
-				$this->connLogger->warning( __METHOD__ . ": connection error for $i/$wiki" );
+				$this->connLogger->warning( __METHOD__ . ": connection error for $i/$domain" );
 				$this->mErrorConnection = $conn;
 				$conn = false;
 			} else {
 				$conn->tablePrefix( $prefix );
-				$this->mConns['foreignUsed'][$i][$wiki] = $conn;
-				$this->connLogger->debug( __METHOD__ . ": opened new connection for $i/$wiki" );
+				$this->mConns['foreignUsed'][$i][$domain] = $conn;
+				$this->connLogger->debug( __METHOD__ . ": opened new connection for $i/$domain" );
 			}
 		}
 
@@ -1300,12 +1300,12 @@ class LoadBalancer implements ILoadBalancer {
 		return $fnames;
 	}
 
-	public function getLaggedReplicaMode( $wiki = false ) {
+	public function getLaggedReplicaMode( $domain = false ) {
 		// No-op if there is only one DB (also avoids recursion)
 		if ( !$this->laggedReplicaMode && $this->getServerCount() > 1 ) {
 			try {
 				// See if laggedReplicaMode gets set
-				$conn = $this->getConnection( DB_REPLICA, false, $wiki );
+				$conn = $this->getConnection( DB_REPLICA, false, $domain );
 				$this->reuseConnection( $conn );
 			} catch ( DBConnectionError $e ) {
 				// Avoid expensive re-connect attempts and failures
@@ -1318,12 +1318,12 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	/**
-	 * @param bool $wiki
+	 * @param bool $domain
 	 * @return bool
 	 * @deprecated 1.28; use getLaggedReplicaMode()
 	 */
-	public function getLaggedSlaveMode( $wiki = false ) {
-		return $this->getLaggedReplicaMode( $wiki );
+	public function getLaggedSlaveMode( $domain = false ) {
+		return $this->getLaggedReplicaMode( $domain );
 	}
 
 	/**
@@ -1346,15 +1346,15 @@ class LoadBalancer implements ILoadBalancer {
 
 	/**
 	 * @note This method may trigger a DB connection if not yet done
-	 * @param string|bool $wiki Wiki ID, or false for the current wiki
+	 * @param string|bool $domain Domain ID, or false for the current domain
 	 * @param IDatabase|null DB master connection; used to avoid loops [optional]
 	 * @return string|bool Reason the master is read-only or false if it is not
 	 * @since 1.27
 	 */
-	public function getReadOnlyReason( $wiki = false, IDatabase $conn = null ) {
+	public function getReadOnlyReason( $domain = false, IDatabase $conn = null ) {
 		if ( $this->readOnlyReason !== false ) {
 			return $this->readOnlyReason;
-		} elseif ( $this->getLaggedReplicaMode( $wiki ) ) {
+		} elseif ( $this->getLaggedReplicaMode( $domain ) ) {
 			if ( $this->allReplicasDownMode ) {
 				return 'The database has been automatically locked ' .
 					'until the replica database servers become available';
@@ -1362,7 +1362,7 @@ class LoadBalancer implements ILoadBalancer {
 				return 'The database has been automatically locked ' .
 					'while the replica database servers catch up to the master.';
 			}
-		} elseif ( $this->masterRunningReadOnly( $wiki, $conn ) ) {
+		} elseif ( $this->masterRunningReadOnly( $domain, $conn ) ) {
 			return 'The database master is running in read-only mode.';
 		}
 
@@ -1370,21 +1370,21 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	/**
-	 * @param string $wiki Wiki ID, or false for the current wiki
+	 * @param string $domain Domain ID, or false for the current domain
 	 * @param IDatabase|null DB master connectionl used to avoid loops [optional]
 	 * @return bool
 	 */
-	private function masterRunningReadOnly( $wiki, IDatabase $conn = null ) {
+	private function masterRunningReadOnly( $domain, IDatabase $conn = null ) {
 		$cache = $this->wanCache;
 		$masterServer = $this->getServerName( $this->getWriterIndex() );
 
 		return (bool)$cache->getWithSetCallback(
 			$cache->makeGlobalKey( __CLASS__, 'server-read-only', $masterServer ),
 			self::TTL_CACHE_READONLY,
-			function () use ( $wiki, $conn ) {
+			function () use ( $domain, $conn ) {
 				$this->trxProfiler->setSilenced( true );
 				try {
-					$dbw = $conn ?: $this->getConnection( DB_MASTER, [], $wiki );
+					$dbw = $conn ?: $this->getConnection( DB_MASTER, [], $domain );
 					$readOnly = (int)$dbw->serverIsReadOnly();
 				} catch ( DBError $e ) {
 					$readOnly = 0;
@@ -1466,7 +1466,7 @@ class LoadBalancer implements ILoadBalancer {
 		}
 	}
 
-	public function getMaxLag( $wiki = false ) {
+	public function getMaxLag( $domain = false ) {
 		$maxLag = -1;
 		$host = '';
 		$maxIndex = 0;
@@ -1475,7 +1475,7 @@ class LoadBalancer implements ILoadBalancer {
 			return [ $host, $maxLag, $maxIndex ]; // no replication = no lag
 		}
 
-		$lagTimes = $this->getLagTimes( $wiki );
+		$lagTimes = $this->getLagTimes( $domain );
 		foreach ( $lagTimes as $i => $lag ) {
 			if ( $this->mLoads[$i] > 0 && $lag > $maxLag ) {
 				$maxLag = $lag;
@@ -1487,13 +1487,13 @@ class LoadBalancer implements ILoadBalancer {
 		return [ $host, $maxLag, $maxIndex ];
 	}
 
-	public function getLagTimes( $wiki = false ) {
+	public function getLagTimes( $domain = false ) {
 		if ( $this->getServerCount() <= 1 ) {
 			return [ 0 => 0 ]; // no replication = no lag
 		}
 
 		# Send the request to the load monitor
-		return $this->getLoadMonitor()->getLagTimes( array_keys( $this->mServers ), $wiki );
+		return $this->getLoadMonitor()->getLagTimes( array_keys( $this->mServers ), $domain );
 	}
 
 	public function safeGetLag( IDatabase $conn ) {
@@ -1570,7 +1570,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	/**
-	 * Set a new table prefix for the existing local wiki ID for testing
+	 * Set a new table prefix for the existing local domain ID for testing
 	 *
 	 * @param string $prefix
 	 * @since 1.28
