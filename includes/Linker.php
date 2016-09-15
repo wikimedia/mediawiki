@@ -1988,6 +1988,8 @@ class Linker {
 	}
 
 	/**
+	 * @deprecated since 1.28, use Language::formatSize() directly
+	 *
 	 * Format a size in bytes for output, using an appropriate
 	 * unit (B, KB, MB or GB) according to the magnitude in question
 	 *
@@ -1996,6 +1998,8 @@ class Linker {
 	 * @return string
 	 */
 	public static function formatSize( $size ) {
+		wfDeprecated( __METHOD__, '1.28' );
+
 		global $wgLang;
 		return htmlspecialchars( $wgLang->formatSize( $size ) );
 	}

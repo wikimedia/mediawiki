@@ -476,7 +476,12 @@ class DummyLinker {
 		return Linker::formatHiddenCategories( $hiddencats );
 	}
 
+	/**
+	 * @deprecated since 1.28, use Language::formatSize() directly
+	 */
 	public function formatSize( $size ) {
+		wfDeprecated( __METHOD__, '1.28' );
+
 		return Linker::formatSize( $size );
 	}
 
