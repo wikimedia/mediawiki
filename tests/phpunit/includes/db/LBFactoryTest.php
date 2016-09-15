@@ -58,9 +58,21 @@ class LBFactoryTest extends MediaWikiTestCase {
 	}
 
 	public function testLBFactorySimpleServer() {
-		$this->setMwGlobals( 'wgDBservers', false );
+		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype;
 
-		$factory = new LBFactorySimple( [] );
+		$servers = [
+			[
+				'host'      => $wgDBserver,
+				'dbname'    => $wgDBname,
+				'user'      => $wgDBuser,
+				'password'  => $wgDBpassword,
+				'type'      => $wgDBtype,
+				'load'      => 0,
+				'flags'     => DBO_TRX // REPEATABLE-READ for consistency
+			],
+		];
+
+		$factory = new LBFactorySimple( [ 'servers' => $servers ] );
 		$lb = $factory->getMainLB();
 
 		$dbw = $lb->getConnection( DB_MASTER );
@@ -76,28 +88,31 @@ class LBFactoryTest extends MediaWikiTestCase {
 	public function testLBFactorySimpleServers() {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype;
 
-		$this->setMwGlobals( 'wgDBservers', [
+		$servers = [
 			[ // master
-				'host'		=> $wgDBserver,
-				'dbname'    => $wgDBname,
-				'user'		=> $wgDBuser,
-				'password'	=> $wgDBpassword,
-				'type'		=> $wgDBtype,
-				'load'      => 0,
-				'flags'     => DBO_TRX // REPEATABLE-READ for consistency
+				'host'     => $wgDBserver,
+				'dbname'   => $wgDBname,
+				'user'     => $wgDBuser,
+				'password' => $wgDBpassword,
+				'type'     => $wgDBtype,
+				'load'     => 0,
+				'flags'    => DBO_TRX // REPEATABLE-READ for consistency
 			],
 			[ // emulated slave
-				'host'		=> $wgDBserver,
-				'dbname'    => $wgDBname,
-				'user'		=> $wgDBuser,
-				'password'	=> $wgDBpassword,
-				'type'		=> $wgDBtype,
-				'load'      => 100,
-				'flags'     => DBO_TRX // REPEATABLE-READ for consistency
+				'host'     => $wgDBserver,
+				'dbname'   => $wgDBname,
+				'user'     => $wgDBuser,
+				'password' => $wgDBpassword,
+				'type'     => $wgDBtype,
+				'load'     => 100,
+				'flags'    => DBO_TRX // REPEATABLE-READ for consistency
 			]
-		] );
+		];
 
-		$factory = new LBFactorySimple( [ 'loadMonitorClass' => 'LoadMonitorNull' ] );
+		$factory = new LBFactorySimple( [
+			'servers' => $servers,
+			'loadMonitorClass' => 'LoadMonitorNull'
+		] );
 		$lb = $factory->getMainLB();
 
 		$dbw = $lb->getConnection( DB_MASTER );
