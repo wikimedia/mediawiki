@@ -239,18 +239,14 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	 * @param array $params Parameters passed from DatabaseBase::factory()
 	 */
 	function __construct( array $params ) {
-		global $wgDBprefix, $wgDBmwschema;
-
-		$this->srvCache = ObjectCache::getLocalServerInstance( 'hash' );
-
 		$server = $params['host'];
 		$user = $params['user'];
 		$password = $params['password'];
 		$dbName = $params['dbname'];
 		$flags = $params['flags'];
-		$tablePrefix = $params['tablePrefix'];
-		$schema = $params['schema'];
-		$foreign = $params['foreign'];
+
+		$this->mSchema = $params['schema'];
+		$this->mTablePrefix = $params['tablePrefix'];
 
 		$this->cliMode = isset( $params['cliMode'] )
 			? $params['cliMode']
@@ -267,21 +263,11 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 
 		$this->mSessionVars = $params['variables'];
 
-		/** Get the default table prefix*/
-		if ( $tablePrefix === 'get from global' ) {
-			$this->mTablePrefix = $wgDBprefix;
-		} else {
-			$this->mTablePrefix = $tablePrefix;
-		}
+		$this->mForeign = $params['foreign'];
 
-		/** Get the database schema*/
-		if ( $schema === 'get from global' ) {
-			$this->mSchema = $wgDBmwschema;
-		} else {
-			$this->mSchema = $schema;
-		}
-
-		$this->mForeign = $foreign;
+		$this->srvCache = isset( $params['srvCache'] )
+			? $params['srvCache']
+			: new EmptyBagOStuff();
 
 		$this->profiler = isset( $params['profiler'] )
 			? $params['profiler']
@@ -378,7 +364,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 			$p['dbname'] = isset( $p['dbname'] ) ? $p['dbname'] : false;
 			$p['flags'] = isset( $p['flags'] ) ? $p['flags'] : 0;
 			$p['variables'] = isset( $p['variables'] ) ? $p['variables'] : [];
-			$p['tablePrefix'] = isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global';
+			$p['tablePrefix'] = isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : '';
 			if ( !isset( $p['schema'] ) ) {
 				$p['schema'] = isset( $defaultSchemas[$dbType] ) ? $defaultSchemas[$dbType] : null;
 			}

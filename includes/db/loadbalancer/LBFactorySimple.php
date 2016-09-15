@@ -46,7 +46,7 @@ class LBFactorySimple extends LBFactory {
 	 * @return LoadBalancer
 	 */
 	public function newMainLB( $wiki = false ) {
-		global $wgDBservers;
+		global $wgDBservers, $wgDBprefix, $wgDBmwschema;
 
 		if ( is_array( $wgDBservers ) ) {
 			$servers = $wgDBservers;
@@ -56,7 +56,11 @@ class LBFactorySimple extends LBFactory {
 				} else {
 					$server['replica'] = true;
 				}
-				$server += [ 'flags' => DBO_DEFAULT ];
+				$server += [
+					'schema' => $wgDBmwschema,
+					'tablePrefix' => $wgDBprefix,
+					'flags' => DBO_DEFAULT
+				];
 			}
 		} else {
 			global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype, $wgDebugDumpSql;
@@ -78,6 +82,8 @@ class LBFactorySimple extends LBFactory {
 				'user' => $wgDBuser,
 				'password' => $wgDBpassword,
 				'dbname' => $wgDBname,
+				'schema' => $wgDBmwschema,
+				'tablePrefix' => $wgDBprefix,
 				'type' => $wgDBtype,
 				'load' => 1,
 				'flags' => $flags,
