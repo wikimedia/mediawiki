@@ -21,15 +21,13 @@
  * @ingroup Database
  */
 
-use MediaWiki\MediaWikiServices;
-use MediaWiki\Services\DestructibleService;
 use MediaWiki\Logger\LoggerFactory;
 
 /**
  * Legacy MediaWiki-specific class for generating database load balancers
  * @ingroup Database
  */
-abstract class LBFactoryMW extends LBFactory implements DestructibleService {
+abstract class LBFactoryMW extends LBFactory {
 	/** @noinspection PhpMissingParentConstructorInspection */
 	/**
 	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf)
@@ -37,6 +35,15 @@ abstract class LBFactoryMW extends LBFactory implements DestructibleService {
 	 * @TODO: inject objects via dependency framework
 	 */
 	public function __construct( array $conf ) {
+		parent::__construct( self::applyDefaultConfig( $conf ) );
+	}
+
+	/**
+	 * @param array $conf
+	 * @return array
+	 * @TODO: inject objects via dependency framework
+	 */
+	public static function applyDefaultConfig( array $conf ) {
 		global $wgCommandLineMode, $wgSQLMode, $wgDBmysql5, $wgDBname, $wgDBprefix;
 
 		$defaults = [
@@ -48,7 +55,9 @@ abstract class LBFactoryMW extends LBFactory implements DestructibleService {
 			'queryLogger' => LoggerFactory::getInstance( 'wfLogDBError' ),
 			'connLogger' => LoggerFactory::getInstance( 'wfLogDBError' ),
 			'perfLogger' => LoggerFactory::getInstance( 'DBPerformance' ),
-			'errorLogger' => [ MWExceptionHandler::class, 'logException' ]
+			'errorLogger' => [ MWExceptionHandler::class, 'logException' ],
+			'cliMode' => $wgCommandLineMode,
+			'agent' => ''
 		];
 		// Use APC/memcached style caching, but avoids loops with CACHE_DB (T141804)
 		$sCache = ObjectCache::getLocalServerInstance();
@@ -64,15 +73,12 @@ abstract class LBFactoryMW extends LBFactory implements DestructibleService {
 			$defaults['wanCache'] = $wCache;
 		}
 
-		$this->agent = isset( $params['agent'] ) ? $params['agent'] : '';
-		$this->cliMode = isset( $params['cliMode'] ) ? $params['cliMode'] : $wgCommandLineMode;
-
 		if ( isset( $conf['serverTemplate'] ) ) { // LBFactoryMulti
 			$conf['serverTemplate']['sqlMode'] = $wgSQLMode;
 			$conf['serverTemplate']['utf8Mode'] = $wgDBmysql5;
 		}
 
-		parent::__construct( $conf + $defaults );
+		return $conf + $defaults;
 	}
 
 	/**
@@ -103,58 +109,5 @@ abstract class LBFactoryMW extends LBFactory implements DestructibleService {
 		}
 
 		return $class;
-	}
-
-	/**
-	 * @return bool
-	 * @since 1.27
-	 * @deprecated Since 1.28; use laggedReplicaUsed()
-	 */
-	public function laggedSlaveUsed() {
-		return $this->laggedReplicaUsed();
-	}
-
-	protected function newChronologyProtector() {
-		$request = RequestContext::getMain()->getRequest();
-		$chronProt = new ChronologyProtector(
-			ObjectCache::getMainStashInstance(),
-			[
-				'ip' => $request->getIP(),
-				'agent' => $request->getHeader( 'User-Agent' ),
-			],
-			$request->getFloat( 'cpPosTime', $request->getCookie( 'cpPosTime', '' ) )
-		);
-		if ( PHP_SAPI === 'cli' ) {
-			$chronProt->setEnabled( false );
-		} elseif ( $request->getHeader( 'ChronologyProtection' ) === 'false' ) {
-			// Request opted out of using position wait logic. This is useful for requests
-			// done by the job queue or background ETL that do not have a meaningful session.
-			$chronProt->setWaitEnabled( false );
-		}
-
-		return $chronProt;
-	}
-
-	/**
-	 * Append ?cpPosTime parameter to a URL for ChronologyProtector purposes if needed
-	 *
-	 * Note that unlike cookies, this works accross domains
-	 *
-	 * @param string $url
-	 * @param float $time UNIX timestamp just before shutdown() was called
-	 * @return string
-	 * @since 1.28
-	 */
-	public function appendPreShutdownTimeAsQuery( $url, $time ) {
-		$usedCluster = 0;
-		$this->forEachLB( function ( LoadBalancer $lb ) use ( &$usedCluster ) {
-			$usedCluster |= ( $lb->getServerCount() > 1 );
-		} );
-
-		if ( !$usedCluster ) {
-			return $url; // no master/replica clusters touched
-		}
-
-		return wfAppendQuery( $url, [ 'cpPosTime' => $time ] );
 	}
 }
