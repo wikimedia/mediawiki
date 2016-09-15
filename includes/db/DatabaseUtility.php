@@ -78,7 +78,7 @@ class ResultWrapper implements Iterator {
 	/** @var resource */
 	public $result;
 
-	/** @var DatabaseBase */
+	/** @var IDatabase */
 	protected $db;
 
 	/** @var int */
@@ -90,7 +90,7 @@ class ResultWrapper implements Iterator {
 	/**
 	 * Create a new result object from a result resource and a Database object
 	 *
-	 * @param DatabaseBase $database
+	 * @param IDatabase $database
 	 * @param resource|ResultWrapper $result
 	 */
 	function __construct( $database, $result ) {

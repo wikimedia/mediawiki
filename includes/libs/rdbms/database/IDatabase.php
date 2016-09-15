@@ -158,6 +158,14 @@ interface IDatabase {
 	public function setLBInfo( $name, $value = null );
 
 	/**
+	 * Set a lazy-connecting DB handle to the master DB (for replication status purposes)
+	 *
+	 * @param IDatabase $conn
+	 * @since 1.27
+	 */
+	public function setLazyMasterHandle( IDatabase $conn );
+
+	/**
 	 * Returns true if this database does an implicit sort when doing GROUP BY
 	 *
 	 * @return bool

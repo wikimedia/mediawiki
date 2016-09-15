@@ -26,7 +26,7 @@ class PostgresField implements Field {
 		$has_default, $default;
 
 	/**
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @param string $table
 	 * @param string $field
 	 * @return null|PostgresField
@@ -140,7 +140,7 @@ class SavepointPostgres {
 	protected $didbegin;
 
 	/**
-	 * @param DatabaseBase $dbw
+	 * @param IDatabase $dbw
 	 * @param int $id
 	 */
 	public function __construct( $dbw, $id ) {
@@ -276,7 +276,7 @@ class DatabasePostgres extends Database {
 	 * @param string $password
 	 * @param string $dbName
 	 * @throws DBConnectionError|Exception
-	 * @return DatabaseBase|null
+	 * @return resource|bool|null
 	 */
 	function open( $server, $user, $password, $dbName ) {
 		# Test for Postgres support, to avoid suppressed fatal error
