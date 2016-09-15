@@ -777,7 +777,6 @@ class DatabaseMssql extends Database {
 	 * @return bool
 	 * @throws DBUnexpectedError
 	 * @throws Exception
-	 * @throws MWException
 	 */
 	function update( $table, $values, $conds, $fname = __METHOD__, $options = [] ) {
 		$table = $this->tableName( $table );
@@ -814,7 +813,7 @@ class DatabaseMssql extends Database {
 	 * @param array $binaryColumns Contains a list of column names that are binary types
 	 *      This is a custom parameter only present for MS SQL.
 	 *
-	 * @throws MWException|DBUnexpectedError
+	 * @throws DBUnexpectedError
 	 * @return string
 	 */
 	public function makeList( $a, $mode = LIST_COMMA, $binaryColumns = [] ) {
@@ -1075,7 +1074,7 @@ class DatabaseMssql extends Database {
 	 * Throws an exception if it is invalid.
 	 * Reference: http://msdn.microsoft.com/en-us/library/aa224033%28v=SQL.80%29.aspx
 	 * @param string $identifier
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 * @return string
 	 */
 	private function escapeIdentifier( $identifier ) {

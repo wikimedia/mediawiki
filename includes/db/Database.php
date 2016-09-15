@@ -69,6 +69,8 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	protected $connLogger;
 	/** @var LoggerInterface */
 	protected $queryLogger;
+	/** @var callback Error logging callback */
+	protected $errorLogger;
 
 	/** @var resource Database connection */
 	protected $mConn = null;
@@ -318,7 +320,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	 * @param string $dbType A possible DB type
 	 * @param array $p An array of options to pass to the constructor.
 	 *    Valid options are: host, user, password, dbname, flags, tablePrefix, schema, driver
-	 * @throws MWException If the database driver or extension cannot be found
+	 * @throws InvalidArgumentException If the database driver or extension cannot be found
 	 * @return DatabaseBase|null DatabaseBase subclass or null
 	 */
 	final public static function factory( $dbType, $p = [] ) {
@@ -355,7 +357,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 			$driver = $dbType;
 		}
 		if ( $driver === false ) {
-			throw new MWException( __METHOD__ .
+			throw new InvalidArgumentException( __METHOD__ .
 				" no viable database extension found for type '$dbType'" );
 		}
 
@@ -390,6 +392,11 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 			if ( isset( $p['queryLogger'] ) ) {
 				$conn->queryLogger = $p['queryLogger'];
 			}
+			if ( isset( $p['errorLogger'] ) ) {
+				$conn->errorLogger = $p['errorLogger'];
+			} else {
+				$conn->errorLogger = [ MWExceptionHandler::class, 'logException' ];
+			}
 		} else {
 			$conn = null;
 		}
@@ -398,7 +405,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
-		$this->quertLogger = $logger;
+		$this->queryLogger = $logger;
 	}
 
 	public function getServerInfo() {
@@ -747,7 +754,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	protected function installErrorHandler() {
 		$this->mPHPError = false;
 		$this->htmlErrors = ini_set( 'html_errors', '0' );
-		set_error_handler( [ $this, 'connectionErrorHandler' ] );
+		set_error_handler( [ $this, 'connectionerrorLogger' ] );
 	}
 
 	/**
@@ -772,12 +779,12 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	 * @param int $errno
 	 * @param string $errstr
 	 */
-	public function connectionErrorHandler( $errno, $errstr ) {
+	public function connectionerrorLogger( $errno, $errstr ) {
 		$this->mPHPError = $errstr;
 	}
 
 	/**
-	 * Create a log context to pass to wfLogDBError or other logging functions.
+	 * Create a log context to pass to PSR logging functions.
 	 *
 	 * @param array $extras Additional data to add to context
 	 * @return array
@@ -796,11 +803,6 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	public function close() {
 		if ( $this->mConn ) {
 			if ( $this->trxLevel() ) {
-				if ( !$this->mTrxAutomatic ) {
-					wfWarn( "Transaction still in progress (from {$this->mTrxFname}), " .
-						" performing implicit commit before closing connection!" );
-				}
-
 				$this->commit( __METHOD__, self::FLUSHING_INTERNAL );
 			}
 
@@ -954,7 +956,8 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 			if ( $this->reconnect() ) {
 				$msg = __METHOD__ . ": lost connection to {$this->getServer()}; reconnected";
 				$this->connLogger->warning( $msg );
-				$this->queryLogger->warning( "$msg:\n" . wfBacktrace( true ) );
+				$this->queryLogger->warning(
+					"$msg:\n" . ( new RuntimeException() )->getTraceAsString() );
 
 				if ( !$recoverable ) {
 					# Callers may catch the exception and continue to use the DB
@@ -1103,7 +1106,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 			$this->queryLogger->debug( "SQL ERROR (ignored): $error\n" );
 		} else {
 			$sql1line = mb_substr( str_replace( "\n", "\\n", $sql ), 0, 5 * 1024 );
-			wfLogDBError(
+			$this->queryLogger->error(
 				"{fname}\t{db_server}\t{errno}\t{error}\t{sql1line}",
 				$this->getLogContext( [
 					'method' => __METHOD__,
@@ -2812,7 +2815,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 						$this->clearFlag( DBO_TRX ); // restore auto-commit
 					}
 				} catch ( Exception $ex ) {
-					MWExceptionHandler::logException( $ex );
+					call_user_func( $this->errorLogger, $ex );
 					$e = $e ?: $ex;
 					// Some callbacks may use startAtomic/endAtomic, so make sure
 					// their transactions are ended so other callbacks don't fail
@@ -2846,7 +2849,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 					list( $phpCallback ) = $callback;
 					call_user_func( $phpCallback );
 				} catch ( Exception $ex ) {
-					MWExceptionHandler::logException( $ex );
+					call_user_func( $this->errorLogger, $ex );
 					$e = $e ?: $ex;
 				}
 			}
@@ -2879,7 +2882,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 				list( $phpCallback ) = $callback;
 				$phpCallback( $trigger, $this );
 			} catch ( Exception $ex ) {
-				MWExceptionHandler::logException( $ex );
+				call_user_func( $this->errorLogger, $ex );
 				$e = $e ?: $ex;
 			}
 		}
@@ -2943,15 +2946,13 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 			} else {
 				// @TODO: make this an exception at some point
 				$msg = "$fname: Implicit transaction already active (from {$this->mTrxFname}).";
-				wfLogDBError( $msg );
-				wfWarn( $msg );
+				$this->queryLogger->error( $msg );
 				return; // join the main transaction set
 			}
 		} elseif ( $this->getFlag( DBO_TRX ) && $mode !== self::TRANSACTION_INTERNAL ) {
 			// @TODO: make this an exception at some point
 			$msg = "$fname: Implicit transaction expected (DBO_TRX set).";
-			wfLogDBError( $msg );
-			wfWarn( $msg );
+			$this->queryLogger->error( $msg );
 			return; // let any writes be in the main transaction
 		}
 
@@ -3010,13 +3011,12 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 			}
 		} else {
 			if ( !$this->mTrxLevel ) {
-				wfWarn( "$fname: No transaction to commit, something got out of sync." );
+				$this->queryLogger->error( "$fname: No transaction to commit, something got out of sync." );
 				return; // nothing to do
 			} elseif ( $this->mTrxAutomatic ) {
 				// @TODO: make this an exception at some point
 				$msg = "$fname: Explicit commit of implicit transaction.";
-				wfLogDBError( $msg );
-				wfWarn( $msg );
+				$this->queryLogger->error( $msg );
 				return; // wait for the main transaction set commit round
 			}
 		}
@@ -3057,7 +3057,8 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 			}
 		} else {
 			if ( !$this->mTrxLevel ) {
-				wfWarn( "$fname: No transaction to rollback, something got out of sync." );
+				$this->queryLogger->error(
+					"$fname: No transaction to rollback, something got out of sync." );
 				return; // nothing to do
 			} elseif ( $this->getFlag( DBO_TRX ) ) {
 				throw new DBUnexpectedError(
@@ -3126,7 +3127,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	 * @param string $newName Name of table to be created
 	 * @param bool $temporary Whether the new table should be temporary
 	 * @param string $fname Calling function name
-	 * @throws MWException
+	 * @throws RuntimeException
 	 * @return bool True if operation was successful
 	 */
 	public function duplicateTableStructure( $oldName, $newName, $temporary = false,
@@ -3156,7 +3157,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	 *
 	 * @param string $prefix Only show VIEWs with this prefix, eg. unit_test_
 	 * @param string $fname Name of calling function
-	 * @throws MWException
+	 * @throws RuntimeException
 	 * @return array
 	 * @since 1.22
 	 */
@@ -3168,7 +3169,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	 * Differentiates between a TABLE and a VIEW
 	 *
 	 * @param string $name Name of the database-structure to test.
-	 * @throws MWException
+	 * @throws RuntimeException
 	 * @return bool
 	 * @since 1.22
 	 */
@@ -3357,8 +3358,8 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	 *   generated dynamically using $filename
 	 * @param bool|callable $inputCallback Optional function called for each
 	 *   complete line sent
-	 * @throws Exception|MWException
 	 * @return bool|string
+	 * @throws Exception
 	 */
 	public function sourceFile(
 		$filename, $lineCallback = false, $resultCallback = false, $fname = false, $inputCallback = false

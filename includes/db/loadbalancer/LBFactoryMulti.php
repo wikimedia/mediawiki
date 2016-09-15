@@ -164,7 +164,7 @@ class LBFactoryMulti extends LBFactory {
 
 	/**
 	 * @param array $conf
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $conf ) {
 		parent::__construct( $conf );
@@ -264,7 +264,7 @@ class LBFactoryMulti extends LBFactory {
 	/**
 	 * @param string $cluster
 	 * @param bool|string $wiki
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 * @return LoadBalancer
 	 */
 	protected function newExternalLB( $cluster, $wiki = false ) {

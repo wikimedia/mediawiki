@@ -950,12 +950,12 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
-	 * @throws MWException
 	 * @param string $oldName
 	 * @param string $newName
 	 * @param bool $temporary
 	 * @param string $fname
 	 * @return bool|ResultWrapper
+	 * @throws RuntimeException
 	 */
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = __METHOD__ ) {
 		$res = $this->query( "SELECT sql FROM sqlite_master WHERE tbl_name=" .
