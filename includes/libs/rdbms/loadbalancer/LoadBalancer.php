@@ -86,6 +86,8 @@ class LoadBalancer implements ILoadBalancer {
 	private $localDomain;
 	/** @var string Current server name */
 	private $host;
+	/** @var bool */
+	private $cliMode;
 
 	/** @var callable Exception logger */
 	private $errorLogger;
@@ -173,7 +175,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->errorLogger = isset( $params['errorLogger'] )
 			? $params['errorLogger']
 			: function ( Exception $e ) {
-				trigger_error( E_WARNING, $e->getMessage() );
+				trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_WARNING );
 			};
 
 		foreach ( [ 'replLogger', 'connLogger', 'queryLogger', 'perfLogger' ] as $key ) {
@@ -183,6 +185,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->host = isset( $params['hostname'] )
 			? $params['hostname']
 			: ( gethostname() ?: 'unknown' );
+		$this->cliMode = isset( $params['cliMode'] ) ? $params['cliMode'] : PHP_SAPI === 'cli';
 	}
 
 	/**
@@ -807,6 +810,8 @@ class LoadBalancer implements ILoadBalancer {
 		$server['connLogger'] = $this->connLogger;
 		$server['queryLogger'] = $this->queryLogger;
 		$server['trxProfiler'] = $this->trxProfiler;
+		$server['cliMode'] = $this->cliMode;
+		$server['errorLogger'] = $this->errorLogger;
 
 		// Create a live connection object
 		try {

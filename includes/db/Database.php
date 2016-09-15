@@ -324,8 +324,6 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	 * @throws InvalidArgumentException If the database driver or extension cannot be found
 	 */
 	final public static function factory( $dbType, $p = [] ) {
-		global $wgCommandLineMode;
-
 		$canonicalDBTypes = [
 			'mysql' => [ 'mysqli', 'mysql' ],
 			'postgres' => [],
@@ -383,7 +381,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 				$p['schema'] = isset( $defaultSchemas[$dbType] ) ? $defaultSchemas[$dbType] : null;
 			}
 			$p['foreign'] = isset( $p['foreign'] ) ? $p['foreign'] : false;
-			$p['cliMode'] = $wgCommandLineMode;
+			$p['cliMode'] = isset( $p['cliMode'] ) ? $p['cliMode'] : PHP_SAPI === 'cli';
 
 			$conn = new $class( $p );
 			if ( isset( $p['connLogger'] ) ) {
@@ -395,7 +393,9 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 			if ( isset( $p['errorLogger'] ) ) {
 				$conn->errorLogger = $p['errorLogger'];
 			} else {
-				$conn->errorLogger = [ MWExceptionHandler::class, 'logException' ];
+				$conn->errorLogger = function ( Exception $e ) {
+					trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_WARNING );
+				};
 			}
 		} else {
 			$conn = null;
