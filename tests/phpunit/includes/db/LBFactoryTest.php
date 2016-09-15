@@ -58,9 +58,21 @@ class LBFactoryTest extends MediaWikiTestCase {
 	}
 
 	public function testLBFactorySimpleServer() {
-		$this->setMwGlobals( 'wgDBservers', false );
+		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype;
 
-		$factory = new LBFactorySimple( [] );
+		$wgDBservers = [
+			[
+				'host'		=> $wgDBserver,
+				'dbname'    => $wgDBname,
+				'user'		=> $wgDBuser,
+				'password'	=> $wgDBpassword,
+				'type'		=> $wgDBtype,
+				'load'      => 0,
+				'flags'     => DBO_TRX // REPEATABLE-READ for consistency
+			],
+		];
+
+		$factory = new LBFactorySimple( [ 'servers' => $wgDBservers ] );
 		$lb = $factory->getMainLB();
 
 		$dbw = $lb->getConnection( DB_MASTER );
@@ -76,7 +88,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 	public function testLBFactorySimpleServers() {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype;
 
-		$this->setMwGlobals( 'wgDBservers', [
+		$wgDBservers = [
 			[ // master
 				'host'		=> $wgDBserver,
 				'dbname'    => $wgDBname,
@@ -95,9 +107,12 @@ class LBFactoryTest extends MediaWikiTestCase {
 				'load'      => 100,
 				'flags'     => DBO_TRX // REPEATABLE-READ for consistency
 			]
-		] );
+		];
 
-		$factory = new LBFactorySimple( [ 'loadMonitorClass' => 'LoadMonitorNull' ] );
+		$factory = new LBFactorySimple( [
+			'servers' => $wgDBservers,
+			'loadMonitorClass' => 'LoadMonitorNull'
+		] );
 		$lb = $factory->getMainLB();
 
 		$dbw = $lb->getConnection( DB_MASTER );
