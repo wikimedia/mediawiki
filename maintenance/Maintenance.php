@@ -1091,7 +1091,7 @@ abstract class Maintenance {
 				$wgLBFactoryConf['serverTemplate']['user'] = $wgDBuser;
 				$wgLBFactoryConf['serverTemplate']['password'] = $wgDBpassword;
 			}
-			LBFactory::destroyInstance();
+			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->destroy();
 		}
 
 		// Per-script profiling; useful for debugging
