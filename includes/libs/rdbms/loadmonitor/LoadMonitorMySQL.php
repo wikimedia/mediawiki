@@ -19,139 +19,15 @@
  * @ingroup Database
  */
 
-use Psr\Log\LoggerInterface;
-
 /**
  * Basic MySQL load monitor with no external dependencies
  * Uses memcached to cache the replication lag for a short time
  *
  * @ingroup Database
  */
-class LoadMonitorMySQL implements LoadMonitor {
-	/** @var ILoadBalancer */
-	protected $parent;
-	/** @var BagOStuff */
-	protected $srvCache;
-	/** @var BagOStuff */
-	protected $mainCache;
-	/** @var LoggerInterface */
-	protected $replLogger;
-
-	public function __construct( ILoadBalancer $lb, BagOStuff $srvCache, BagOStuff $cache ) {
-		$this->parent = $lb;
-		$this->srvCache = $srvCache;
-		$this->mainCache = $cache;
-		$this->replLogger = new \Psr\Log\NullLogger();
-	}
-
-	public function setLogger( LoggerInterface $logger ) {
-		$this->replLogger = $logger;
-	}
-
-	public function scaleLoads( &$loads, $group = false, $wiki = false ) {
-	}
-
-	public function getLagTimes( $serverIndexes, $wiki ) {
-		if ( count( $serverIndexes ) == 1 && reset( $serverIndexes ) == 0 ) {
-			# Single server only, just return zero without caching
-			return [ 0 => 0 ];
-		}
-
-		$key = $this->getLagTimeCacheKey();
-		# Randomize TTLs to reduce stampedes (4.0 - 5.0 sec)
-		$ttl = mt_rand( 4e6, 5e6 ) / 1e6;
-		# Keep keys around longer as fallbacks
-		$staleTTL = 60;
-
-		# (a) Check the local APC cache
-		$value = $this->srvCache->get( $key );
-		if ( $value && $value['timestamp'] > ( microtime( true ) - $ttl ) ) {
-			$this->replLogger->debug( __METHOD__ . ": got lag times ($key) from local cache" );
-			return $value['lagTimes']; // cache hit
-		}
-		$staleValue = $value ?: false;
-
-		# (b) Check the shared cache and backfill APC
-		$value = $this->mainCache->get( $key );
-		if ( $value && $value['timestamp'] > ( microtime( true ) - $ttl ) ) {
-			$this->srvCache->set( $key, $value, $staleTTL );
-			$this->replLogger->debug( __METHOD__ . ": got lag times ($key) from main cache" );
-
-			return $value['lagTimes']; // cache hit
-		}
-		$staleValue = $value ?: $staleValue;
-
-		# (c) Cache key missing or expired; regenerate and backfill
-		if ( $this->mainCache->lock( $key, 0, 10 ) ) {
-			# Let this process alone update the cache value
-			$cache = $this->mainCache;
-			/** @noinspection PhpUnusedLocalVariableInspection */
-			$unlocker = new ScopedCallback( function () use ( $cache, $key ) {
-				$cache->unlock( $key );
-			} );
-		} elseif ( $staleValue ) {
-			# Could not acquire lock but an old cache exists, so use it
-			return $staleValue['lagTimes'];
-		}
-
-		$lagTimes = [];
-		foreach ( $serverIndexes as $i ) {
-			if ( $i == $this->parent->getWriterIndex() ) {
-				$lagTimes[$i] = 0; // master always has no lag
-				continue;
-			}
-
-			$conn = $this->parent->getAnyOpenConnection( $i );
-			if ( $conn ) {
-				$close = false; // already open
-			} else {
-				$conn = $this->parent->openConnection( $i, $wiki );
-				$close = true; // new connection
-			}
-
-			if ( !$conn ) {
-				$lagTimes[$i] = false;
-				$host = $this->parent->getServerName( $i );
-				$this->replLogger->error( __METHOD__ . ": host $host (#$i) is unreachable" );
-				continue;
-			}
-
-			$lagTimes[$i] = $conn->getLag();
-			if ( $lagTimes[$i] === false ) {
-				$host = $this->parent->getServerName( $i );
-				$this->replLogger->error( __METHOD__ . ": host $host (#$i) is not replicating?" );
-			}
-
-			if ( $close ) {
-				# Close the connection to avoid sleeper connections piling up.
-				# Note that the caller will pick one of these DBs and reconnect,
-				# which is slightly inefficient, but this only matters for the lag
-				# time cache miss cache, which is far less common that cache hits.
-				$this->parent->closeConnection( $conn );
-			}
-		}
-
-		# Add a timestamp key so we know when it was cached
-		$value = [ 'lagTimes' => $lagTimes, 'timestamp' => microtime( true ) ];
-		$this->mainCache->set( $key, $value, $staleTTL );
-		$this->srvCache->set( $key, $value, $staleTTL );
-		$this->replLogger->info( __METHOD__ . ": re-calculated lag times ($key)" );
-
-		return $value['lagTimes'];
-	}
-
-	public function clearCaches() {
-		$key = $this->getLagTimeCacheKey();
-		$this->srvCache->delete( $key );
-		$this->mainCache->delete( $key );
-	}
-
-	private function getLagTimeCacheKey() {
-		$writerIndex = $this->parent->getWriterIndex();
-		// Lag is per-server, not per-DB, so key on the master DB name
-		return $this->srvCache->makeGlobalKey(
-			'lag-times',
-			$this->parent->getServerName( $writerIndex )
-		);
+class LoadMonitorMySQL extends LoadMonitor {
+	public function scaleLoads( &$loads, $group = false, $domain = false );
+		// @TODO: maybe use Threads_running/Threads_created ratio to guess load
+		// and Queries/Uptime to guess if a server is warming up the buffer pool
 	}
 }
