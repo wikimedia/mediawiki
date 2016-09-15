@@ -46,7 +46,13 @@ class LBFactorySimple extends LBFactory {
 	 * @return LoadBalancer
 	 */
 	public function newMainLB( $wiki = false ) {
-		global $wgDBservers;
+		global $wgDBservers, $wgDBprefix, $wgDBmwschema;
+
+		// Determine schema defaults. Currently Microsoft SQL Server uses $wgDBmwschema,
+		// and everything else doesn't use a schema (e.g. null)
+		// Although postgres and oracle support schemas, we don't use them (yet)
+		// to maintain backwards compatibility
+		$schema = $wgDBtype === 'mssql' ? $wgDBmwschema : null;
 
 		if ( is_array( $wgDBservers ) ) {
 			$servers = $wgDBservers;
@@ -56,7 +62,11 @@ class LBFactorySimple extends LBFactory {
 				} else {
 					$server['replica'] = true;
 				}
-				$server += [ 'flags' => DBO_DEFAULT ];
+				$server += [
+					'schema' => $schema,
+					'tablePrefix' => $wgDBprefix,
+					'flags' => DBO_DEFAULT
+				];
 			}
 		} else {
 			global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype, $wgDebugDumpSql;
@@ -78,6 +88,8 @@ class LBFactorySimple extends LBFactory {
 				'user' => $wgDBuser,
 				'password' => $wgDBpassword,
 				'dbname' => $wgDBname,
+				'schema' => $schema,
+				'tablePrefix' => $wgDBprefix,
 				'type' => $wgDBtype,
 				'load' => 1,
 				'flags' => $flags,

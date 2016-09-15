@@ -239,18 +239,14 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	 * @param array $params Parameters passed from DatabaseBase::factory()
 	 */
 	function __construct( array $params ) {
-		global $wgDBprefix, $wgDBmwschema;
-
-		$this->srvCache = ObjectCache::getLocalServerInstance( 'hash' );
-
 		$server = $params['host'];
 		$user = $params['user'];
 		$password = $params['password'];
 		$dbName = $params['dbname'];
 		$flags = $params['flags'];
-		$tablePrefix = $params['tablePrefix'];
-		$schema = $params['schema'];
-		$foreign = $params['foreign'];
+
+		$this->mSchema = $params['schema'];
+		$this->mTablePrefix = $params['tablePrefix'];
 
 		$this->cliMode = isset( $params['cliMode'] )
 			? $params['cliMode']
@@ -267,21 +263,11 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 
 		$this->mSessionVars = $params['variables'];
 
-		/** Get the default table prefix*/
-		if ( $tablePrefix === 'get from global' ) {
-			$this->mTablePrefix = $wgDBprefix;
-		} else {
-			$this->mTablePrefix = $tablePrefix;
-		}
+		$this->mForeign = $params['foreign'];
 
-		/** Get the database schema*/
-		if ( $schema === 'get from global' ) {
-			$this->mSchema = $wgDBmwschema;
-		} else {
-			$this->mSchema = $schema;
-		}
-
-		$this->mForeign = $foreign;
+		$this->srvCache = isset( $params['srvCache'] )
+			? $params['srvCache']
+			: new EmptyBagOStuff();
 
 		$this->profiler = isset( $params['profiler'] )
 			? $params['profiler']
@@ -361,14 +347,6 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 				" no viable database extension found for type '$dbType'" );
 		}
 
-		// Determine schema defaults. Currently Microsoft SQL Server uses $wgDBmwschema,
-		// and everything else doesn't use a schema (e.g. null)
-		// Although postgres and oracle support schemas, we don't use them (yet)
-		// to maintain backwards compatibility
-		$defaultSchemas = [
-			'mssql' => 'get from global',
-		];
-
 		$class = 'Database' . ucfirst( $driver );
 		if ( class_exists( $class ) && is_subclass_of( $class, 'IDatabase' ) ) {
 			// Resolve some defaults for b/c
@@ -378,10 +356,8 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 			$p['dbname'] = isset( $p['dbname'] ) ? $p['dbname'] : false;
 			$p['flags'] = isset( $p['flags'] ) ? $p['flags'] : 0;
 			$p['variables'] = isset( $p['variables'] ) ? $p['variables'] : [];
-			$p['tablePrefix'] = isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global';
-			if ( !isset( $p['schema'] ) ) {
-				$p['schema'] = isset( $defaultSchemas[$dbType] ) ? $defaultSchemas[$dbType] : null;
-			}
+			$p['tablePrefix'] = isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : '';
+			$p['schema'] = isset( $p[$dbType] ) ? $p[$dbType] : null;
 			$p['foreign'] = isset( $p['foreign'] ) ? $p['foreign'] : false;
 			$p['cliMode'] = $wgCommandLineMode;
 

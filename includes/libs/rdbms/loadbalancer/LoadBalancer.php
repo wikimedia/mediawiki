@@ -803,6 +803,7 @@ class LoadBalancer implements ILoadBalancer {
 				"{$this->connsOpened}+ connections made (master=$masterName)" );
 		}
 
+		$server['srvCache'] = $this->srvCache;
 		// Set loggers
 		$server['connLogger'] = $this->connLogger;
 		$server['queryLogger'] = $this->queryLogger;
