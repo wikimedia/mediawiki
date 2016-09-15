@@ -154,6 +154,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers WikiPage::doEdit
+	 * @deprecated since 1.21. Should be removed when WikiPage::doEdit() gets removed
 	 */
 	public function testDoEdit() {
 		$this->hideDeprecated( "WikiPage::doEdit" );
