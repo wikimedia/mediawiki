@@ -1719,4 +1719,19 @@ interface IDatabase {
 	 * @since 1.27
 	 */
 	public function isReadOnly();
+
+	/**
+	 * Make certain table names use their own database, schema, and table prefix
+	 * when passed into SQL queries pre-escaped and without a qualified database name
+	 *
+	 * For example, "user" can be converted to "myschema.mydbname.user" for convenience.
+	 * Appearances like `user`, somedb.user, somedb.someschema.user will used literally.
+	 *
+	 * Calling this twice will completely clear any old table aliases. Also, note that
+	 * callers are responsible for making sure the schemas and databases actually exist.
+	 *
+	 * @param array[] $aliases Map of (table => (dbname, schema, prefix) map)
+	 * @since 1.28
+	 */
+	public function setTableAliases( array $aliases );
 }

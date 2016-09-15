@@ -68,21 +68,26 @@ class DatabaseTest extends MediaWikiTestCase {
 	}
 
 	private function getSharedTableName( $table, $database, $prefix, $format = 'quoted' ) {
-		global $wgSharedDB, $wgSharedTables, $wgSharedPrefix;
+		global $wgSharedDB, $wgSharedTables, $wgSharedPrefix, $wgSharedSchema;
 
-		$oldName = $wgSharedDB;
-		$oldTables = $wgSharedTables;
-		$oldPrefix = $wgSharedPrefix;
-
-		$wgSharedDB = $database;
-		$wgSharedTables = [ $table ];
-		$wgSharedPrefix = $prefix;
+		$this->db->setTableAliases( [
+			$table => [
+				'dbname' => $database,
+				'schema' => null,
+				'prefix' => $prefix
+			]
+		] );
 
 		$ret = $this->db->tableName( $table, $format );
 
-		$wgSharedDB = $oldName;
-		$wgSharedTables = $oldTables;
-		$wgSharedPrefix = $oldPrefix;
+		$this->db->setTableAliases( array_fill_keys(
+			$wgSharedDB ? $wgSharedTables : [],
+			[
+				'dbname' => $wgSharedDB,
+				'schema' => $wgSharedSchema,
+				'prefix' => $wgSharedPrefix
+			]
+		) );
 
 		return $ret;
 	}
