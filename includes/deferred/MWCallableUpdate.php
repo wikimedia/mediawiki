@@ -19,7 +19,7 @@ class MWCallableUpdate implements DeferrableUpdate, DeferrableCallback {
 		$this->fname = $fname;
 
 		if ( $dbw && $dbw->trxLevel() ) {
-			$dbw->onTransactionResolution( [ $this, 'cancelOnRollback' ] );
+			$dbw->onTransactionResolution( [ $this, 'cancelOnRollback' ], $fname );
 		}
 	}
 

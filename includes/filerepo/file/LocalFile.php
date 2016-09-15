@@ -313,9 +313,12 @@ class LocalFile extends File {
 			return;
 		}
 
-		$this->repo->getMasterDB()->onTransactionPreCommitOrIdle( function() use ( $key ) {
-			ObjectCache::getMainWANInstance()->delete( $key );
-		} );
+		$this->repo->getMasterDB()->onTransactionPreCommitOrIdle(
+			function () use ( $key ) {
+				ObjectCache::getMainWANInstance()->delete( $key );
+			},
+			__METHOD__
+		);
 	}
 
 	/**
@@ -2002,12 +2005,15 @@ class LocalFile extends File {
 			}
 			// Release the lock *after* commit to avoid row-level contention.
 			// Make sure it triggers on rollback() as well as commit() (T132921).
-			$dbw->onTransactionResolution( function () use ( $logger ) {
-				$status = $this->releaseFileLock();
-				if ( !$status->isGood() ) {
-					$logger->error( "Failed to unlock '{file}'", [ 'file' => $this->name ] );
-				}
-			} );
+			$dbw->onTransactionResolution(
+				function () use ( $logger ) {
+					$status = $this->releaseFileLock();
+					if ( !$status->isGood() ) {
+						$logger->error( "Failed to unlock '{file}'", [ 'file' => $this->name ] );
+					}
+				},
+				__METHOD__
+			);
 			// Callers might care if the SELECT snapshot is safely fresh
 			$this->lockedOwnTrx = $makesTransaction;
 		}

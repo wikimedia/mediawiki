@@ -2358,7 +2358,8 @@ class User implements IDBAccessObject {
 			wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle(
 				function() use ( $cache, $key ) {
 					$cache->delete( $key );
-				}
+				},
+				__METHOD__
 			);
 		}
 	}
@@ -4927,9 +4928,12 @@ class User implements IDBAccessObject {
 	 * Deferred version of incEditCountImmediate()
 	 */
 	public function incEditCount() {
-		wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle( function() {
-			$this->incEditCountImmediate();
-		} );
+		wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle(
+			function () {
+				$this->incEditCountImmediate();
+			},
+			__METHOD__
+		);
 	}
 
 	/**

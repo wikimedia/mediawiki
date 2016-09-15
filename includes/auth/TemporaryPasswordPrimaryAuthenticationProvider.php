@@ -304,10 +304,13 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 
 		if ( $sendMail ) {
 			// Send email after DB commit
-			$dbw->onTransactionIdle( function () use ( $req ) {
-				/** @var TemporaryPasswordAuthenticationRequest $req */
-				$this->sendPasswordResetEmail( $req );
-			} );
+			$dbw->onTransactionIdle(
+				function () use ( $req ) {
+					/** @var TemporaryPasswordAuthenticationRequest $req */
+					$this->sendPasswordResetEmail( $req );
+				},
+				__METHOD__
+			);
 		}
 	}
 
@@ -375,9 +378,12 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 
 		if ( $mailpassword ) {
 			// Send email after DB commit
-			wfGetDB( DB_MASTER )->onTransactionIdle( function () use ( $user, $creator, $req ) {
-				$this->sendNewAccountEmail( $user, $creator, $req->password );
-			} );
+			wfGetDB( DB_MASTER )->onTransactionIdle(
+				function () use ( $user, $creator, $req ) {
+					$this->sendNewAccountEmail( $user, $creator, $req->password );
+				},
+				__METHOD__
+			);
 		}
 
 		return $mailpassword ? 'byemail' : null;

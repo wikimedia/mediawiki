@@ -444,15 +444,15 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function onTransactionResolution( callable $callback ) {
+	public function onTransactionResolution( callable $callback, $fname = __METHOD__ ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function onTransactionIdle( callable $callback ) {
+	public function onTransactionIdle( callable $callback, $fname = __METHOD__ ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function onTransactionPreCommitOrIdle( callable $callback ) {
+	public function onTransactionPreCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

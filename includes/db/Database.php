@@ -85,7 +85,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	protected $mTrxPreCommitCallbacks = [];
 	/** @var array[] List of (callable, method name) */
 	protected $mTrxEndCallbacks = [];
-	/** @var array[] Map of (name => (callable, method name)) */
+	/** @var callable[] Map of (name => callable) */
 	protected $mTrxRecurringCallbacks = [];
 	/** @var bool Whether to suppress triggering of transaction end callbacks */
 	protected $mTrxEndCallbacksSuppressed = false;
@@ -2671,23 +2671,23 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 		return false;
 	}
 
-	final public function onTransactionResolution( callable $callback ) {
+	final public function onTransactionResolution( callable $callback, $fname = __METHOD__ ) {
 		if ( !$this->mTrxLevel ) {
 			throw new DBUnexpectedError( $this, "No transaction is active." );
 		}
-		$this->mTrxEndCallbacks[] = [ $callback, wfGetCaller() ];
+		$this->mTrxEndCallbacks[] = [ $callback, $fname ];
 	}
 
-	final public function onTransactionIdle( callable $callback ) {
-		$this->mTrxIdleCallbacks[] = [ $callback, wfGetCaller() ];
+	final public function onTransactionIdle( callable $callback, $fname = __METHOD__ ) {
+		$this->mTrxIdleCallbacks[] = [ $callback, $fname ];
 		if ( !$this->mTrxLevel ) {
 			$this->runOnTransactionIdleCallbacks( self::TRIGGER_IDLE );
 		}
 	}
 
-	final public function onTransactionPreCommitOrIdle( callable $callback ) {
+	final public function onTransactionPreCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
 		if ( $this->mTrxLevel ) {
-			$this->mTrxPreCommitCallbacks[] = [ $callback, wfGetCaller() ];
+			$this->mTrxPreCommitCallbacks[] = [ $callback, $fname ];
 		} else {
 			// If no transaction is active, then make one for this callback
 			$this->startAtomic( __METHOD__ );
@@ -2703,7 +2703,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 
 	final public function setTransactionListener( $name, callable $callback = null ) {
 		if ( $callback ) {
-			$this->mTrxRecurringCallbacks[$name] = [ $callback, wfGetCaller() ];
+			$this->mTrxRecurringCallbacks[$name] = $callback;
 		} else {
 			unset( $this->mTrxRecurringCallbacks[$name] );
 		}
@@ -2818,9 +2818,8 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 		/** @var Exception $e */
 		$e = null; // first exception
 
-		foreach ( $this->mTrxRecurringCallbacks as $callback ) {
+		foreach ( $this->mTrxRecurringCallbacks as $phpCallback ) {
 			try {
-				list( $phpCallback ) = $callback;
 				$phpCallback( $trigger, $this );
 			} catch ( Exception $ex ) {
 				call_user_func( $this->errorLogger, $ex );
@@ -3527,15 +3526,18 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 				// There is a good chance an exception was thrown, causing any early return
 				// from the caller. Let any error handler get a chance to issue rollback().
 				// If there isn't one, let the error bubble up and trigger server-side rollback.
-				$this->onTransactionResolution( function () use ( $lockKey, $fname ) {
-					$this->unlock( $lockKey, $fname );
-				} );
+				$this->onTransactionResolution(
+					function () use ( $lockKey, $fname ) {
+						$this->unlock( $lockKey, $fname );
+					},
+					$fname
+				);
 			} else {
 				$this->unlock( $lockKey, $fname );
 			}
 		} );
 
-		$this->commit( __METHOD__, self::FLUSHING_INTERNAL );
+		$this->commit( $fname, self::FLUSHING_INTERNAL );
 
 		return $unlocker;
 	}

@@ -273,15 +273,20 @@ class UserRightsProxy {
 	 * Replaces User::touchUser()
 	 */
 	function invalidateCache() {
-		$this->db->update( 'user',
+		$this->db->update(
+			'user',
 			[ 'user_touched' => $this->db->timestamp() ],
 			[ 'user_id' => $this->id ],
-			__METHOD__ );
+			__METHOD__
+		);
 
 		$wikiId = $this->db->getWikiID();
 		$userId = $this->id;
-		$this->db->onTransactionPreCommitOrIdle( function() use ( $wikiId, $userId ) {
-			User::purge( $wikiId, $userId );
-		} );
+		$this->db->onTransactionPreCommitOrIdle(
+			function () use ( $wikiId, $userId ) {
+				User::purge( $wikiId, $userId );
+			},
+			__METHOD__
+		);
 	}
 }

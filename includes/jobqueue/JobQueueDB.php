@@ -186,7 +186,8 @@ class JobQueueDB extends JobQueue {
 		$dbw->onTransactionIdle(
 			function () use ( $dbw, $jobs, $flags, $method ) {
 				$this->doBatchPushInternal( $dbw, $jobs, $flags, $method );
-			}
+			},
+			__METHOD__
 		);
 	}
 
@@ -494,15 +495,18 @@ class JobQueueDB extends JobQueue {
 		// jobs to become no-ops without any actual jobs that made them redundant.
 		$dbw = $this->getMasterDB();
 		$cache = $this->dupCache;
-		$dbw->onTransactionIdle( function () use ( $cache, $params, $key, $dbw ) {
-			$timestamp = $cache->get( $key ); // current last timestamp of this job
-			if ( $timestamp && $timestamp >= $params['rootJobTimestamp'] ) {
-				return true; // a newer version of this root job was enqueued
-			}
+		$dbw->onTransactionIdle(
+			function () use ( $cache, $params, $key, $dbw ) {
+				$timestamp = $cache->get( $key ); // current last timestamp of this job
+				if ( $timestamp && $timestamp >= $params['rootJobTimestamp'] ) {
+					return true; // a newer version of this root job was enqueued
+				}
 
-			// Update the timestamp of the last root job started at the location...
-			return $cache->set( $key, $params['rootJobTimestamp'], JobQueueDB::ROOTJOB_TTL );
-		} );
+				// Update the timestamp of the last root job started at the location...
+				return $cache->set( $key, $params['rootJobTimestamp'], JobQueueDB::ROOTJOB_TTL );
+			},
+			__METHOD__
+		);
 
 		return true;
 	}

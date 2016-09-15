@@ -23,7 +23,7 @@ class AutoCommitUpdate implements DeferrableUpdate, DeferrableCallback {
 		$this->callback = $callback;
 
 		if ( $this->dbw->trxLevel() ) {
-			$this->dbw->onTransactionResolution( [ $this, 'cancelOnRollback' ] );
+			$this->dbw->onTransactionResolution( [ $this, 'cancelOnRollback' ], $fname );
 		}
 	}
 

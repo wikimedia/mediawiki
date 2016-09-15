@@ -36,42 +36,45 @@ class PurgeJobUtils {
 			return;
 		}
 
-		$dbw->onTransactionIdle( function() use ( $dbw, $namespace, $dbkeys ) {
-			$services = MediaWikiServices::getInstance();
-			$lbFactory = $services->getDBLoadBalancerFactory();
-			// Determine which pages need to be updated.
-			// This is necessary to prevent the job queue from smashing the DB with
-			// large numbers of concurrent invalidations of the same page.
-			$now = $dbw->timestamp();
-			$ids = $dbw->selectFieldValues(
-				'page',
-				'page_id',
-				[
-					'page_namespace' => $namespace,
-					'page_title' => $dbkeys,
-					'page_touched < ' . $dbw->addQuotes( $now )
-				],
-				__METHOD__
-			);
-
-			if ( !$ids ) {
-				return;
-			}
-
-			$batchSize = $services->getMainConfig()->get( 'UpdateRowsPerQuery' );
-			$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
-			foreach ( array_chunk( $ids, $batchSize ) as $idBatch ) {
-				$dbw->update(
+		$dbw->onTransactionIdle(
+			function () use ( $dbw, $namespace, $dbkeys ) {
+				$services = MediaWikiServices::getInstance();
+				$lbFactory = $services->getDBLoadBalancerFactory();
+				// Determine which pages need to be updated.
+				// This is necessary to prevent the job queue from smashing the DB with
+				// large numbers of concurrent invalidations of the same page.
+				$now = $dbw->timestamp();
+				$ids = $dbw->selectFieldValues(
 					'page',
-					[ 'page_touched' => $now ],
+					'page_id',
 					[
-						'page_id' => $idBatch,
-						'page_touched < ' . $dbw->addQuotes( $now ) // handle races
+						'page_namespace' => $namespace,
+						'page_title' => $dbkeys,
+						'page_touched < ' . $dbw->addQuotes( $now )
 					],
 					__METHOD__
 				);
-				$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
-			}
-		} );
+
+				if ( !$ids ) {
+					return;
+				}
+
+				$batchSize = $services->getMainConfig()->get( 'UpdateRowsPerQuery' );
+				$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
+				foreach ( array_chunk( $ids, $batchSize ) as $idBatch ) {
+					$dbw->update(
+						'page',
+						[ 'page_touched' => $now ],
+						[
+							'page_id' => $idBatch,
+							'page_touched < ' . $dbw->addQuotes( $now ) // handle races
+						],
+						__METHOD__
+					);
+					$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+				}
+			},
+			__METHOD__
+		);
 	}
 }

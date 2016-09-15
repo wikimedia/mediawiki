@@ -25,6 +25,7 @@ class DatabaseTest extends MediaWikiTestCase {
 		}
 		$this->db->restoreFlags( IDatabase::RESTORE_INITIAL );
 	}
+
 	/**
 	 * @covers DatabaseBase::dropTable
 	 */
@@ -231,7 +232,7 @@ class DatabaseTest extends MediaWikiTestCase {
 
 	private function dropFunctions() {
 		$this->db->query( 'DROP FUNCTION IF EXISTS mw_test_function'
-				. ( $this->db->getType() == 'postgres' ? '()' : '' )
+			. ( $this->db->getType() == 'postgres' ? '()' : '' )
 		);
 	}
 
@@ -247,26 +248,35 @@ class DatabaseTest extends MediaWikiTestCase {
 		$db->setFlag( DBO_TRX );
 		$called = false;
 		$flagSet = null;
-		$db->onTransactionIdle( function() use ( $db, &$flagSet, &$called ) {
-			$called = true;
-			$flagSet = $db->getFlag( DBO_TRX );
-		} );
+		$db->onTransactionIdle(
+			function () use ( $db, &$flagSet, &$called ) {
+				$called = true;
+				$flagSet = $db->getFlag( DBO_TRX );
+			},
+			__METHOD__
+		);
 		$this->assertFalse( $flagSet, 'DBO_TRX off in callback' );
 		$this->assertTrue( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
 		$this->assertTrue( $called, 'Callback reached' );
 
 		$db->clearFlag( DBO_TRX );
 		$flagSet = null;
-		$db->onTransactionIdle( function() use ( $db, &$flagSet ) {
-			$flagSet = $db->getFlag( DBO_TRX );
-		} );
+		$db->onTransactionIdle(
+			function () use ( $db, &$flagSet ) {
+				$flagSet = $db->getFlag( DBO_TRX );
+			},
+			__METHOD__
+		);
 		$this->assertFalse( $flagSet, 'DBO_TRX off in callback' );
 		$this->assertFalse( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
 
 		$db->clearFlag( DBO_TRX );
-		$db->onTransactionIdle( function() use ( $db ) {
-			$db->setFlag( DBO_TRX );
-		} );
+		$db->onTransactionIdle(
+			function () use ( $db ) {
+				$db->setFlag( DBO_TRX );
+			},
+			__METHOD__
+		);
 		$this->assertFalse( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
 	}
 
@@ -276,7 +286,7 @@ class DatabaseTest extends MediaWikiTestCase {
 		$db->clearFlag( DBO_TRX );
 		$db->begin( __METHOD__ );
 		$called = false;
-		$db->onTransactionResolution( function() use ( $db, &$called ) {
+		$db->onTransactionResolution( function () use ( $db, &$called ) {
 			$called = true;
 			$db->setFlag( DBO_TRX );
 		} );
@@ -287,7 +297,7 @@ class DatabaseTest extends MediaWikiTestCase {
 		$db->clearFlag( DBO_TRX );
 		$db->begin( __METHOD__ );
 		$called = false;
-		$db->onTransactionResolution( function() use ( $db, &$called ) {
+		$db->onTransactionResolution( function () use ( $db, &$called ) {
 			$called = true;
 			$db->setFlag( DBO_TRX );
 		} );
@@ -302,7 +312,7 @@ class DatabaseTest extends MediaWikiTestCase {
 	public function testTransactionListener() {
 		$db = $this->db;
 
-		$db->setTransactionListener( 'ping', function() use ( $db, &$called ) {
+		$db->setTransactionListener( 'ping', function () use ( $db, &$called ) {
 			$called = true;
 		} );
 
