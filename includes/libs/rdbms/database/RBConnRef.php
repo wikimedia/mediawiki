@@ -81,6 +81,10 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function setLazyMasterHandle( IDatabase $conn ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	public function implicitGroupby() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}

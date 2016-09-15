@@ -30,7 +30,7 @@ use Psr\Log\LoggerInterface;
 class LoadBalancer implements ILoadBalancer {
 	/** @var array[] Map of (server index => server config array) */
 	private $mServers;
-	/** @var array[] Map of (local/foreignUsed/foreignFree => server index => DatabaseBase array) */
+	/** @var array[] Map of (local/foreignUsed/foreignFree => server index => IDatabase array) */
 	private $mConns;
 	/** @var array Map of (server index => weight) */
 	private $mLoads;
@@ -62,7 +62,7 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var LoggerInterface */
 	protected $perfLogger;
 
-	/** @var bool|DatabaseBase Database connection that caused a problem */
+	/** @var bool|IDatabase Database connection that caused a problem */
 	private $mErrorConnection;
 	/** @var integer The generic (not query grouped) replica DB index (of $mServers) */
 	private $mReadIndex;
@@ -608,7 +608,7 @@ class LoadBalancer implements ILoadBalancer {
 	/**
 	 * Get a database connection handle reference
 	 *
-	 * The handle's methods wrap simply wrap those of a DatabaseBase handle
+	 * The handle's methods wrap simply wrap those of a IDatabase handle
 	 *
 	 * @see LoadBalancer::getConnection() for parameter information
 	 *
@@ -625,7 +625,7 @@ class LoadBalancer implements ILoadBalancer {
 	/**
 	 * Get a database connection handle reference without connecting yet
 	 *
-	 * The handle's methods wrap simply wrap those of a DatabaseBase handle
+	 * The handle's methods wrap simply wrap those of a IDatabase handle
 	 *
 	 * @see LoadBalancer::getConnection() for parameter information
 	 *
@@ -691,7 +691,7 @@ class LoadBalancer implements ILoadBalancer {
 	 *
 	 * @param int $i Server index
 	 * @param string $wiki Wiki ID to open
-	 * @return DatabaseBase
+	 * @return IDatabase
 	 */
 	private function openForeignConnection( $i, $wiki ) {
 		list( $dbName, $prefix ) = explode( '-', $wiki, 2 ) + [ '', '' ];
@@ -774,7 +774,7 @@ class LoadBalancer implements ILoadBalancer {
 	 *
 	 * @param array $server
 	 * @param bool $dbNameOverride
-	 * @return DatabaseBase
+	 * @return IDatabase
 	 * @throws DBAccessError
 	 * @throws MWException
 	 */
@@ -805,6 +805,7 @@ class LoadBalancer implements ILoadBalancer {
 		// Set loggers
 		$server['connLogger'] = $this->connLogger;
 		$server['queryLogger'] = $this->queryLogger;
+		$server['trxProfiler'] = $this->trxProfiler;
 
 		// Create a live connection object
 		try {
@@ -819,7 +820,6 @@ class LoadBalancer implements ILoadBalancer {
 		$db->setLazyMasterHandle(
 			$this->getLazyConnectionRef( DB_MASTER, [], $db->getWikiID() )
 		);
-		$db->setTransactionProfiler( $this->trxProfiler );
 
 		if ( $server['serverIndex'] === $this->getWriterIndex() ) {
 			if ( $this->trxRoundId !== false ) {
@@ -938,7 +938,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function closeAll() {
-		$this->forEachOpenConnection( function ( DatabaseBase $conn ) {
+		$this->forEachOpenConnection( function ( IDatabase $conn ) {
 			$conn->close();
 		} );
 
@@ -975,7 +975,7 @@ class LoadBalancer implements ILoadBalancer {
 		$restore = ( $this->trxRoundId !== false );
 		$this->trxRoundId = false;
 		$this->forEachOpenConnection(
-			function ( DatabaseBase $conn ) use ( $fname, $restore, &$failures ) {
+			function ( IDatabase $conn ) use ( $fname, $restore, &$failures ) {
 				try {
 					$conn->commit( $fname, $conn::FLUSHING_ALL_PEERS );
 				} catch ( DBError $e ) {
@@ -1020,7 +1020,7 @@ class LoadBalancer implements ILoadBalancer {
 	 */
 	public function approveMasterChanges( array $options ) {
 		$limit = isset( $options['maxWriteDuration'] ) ? $options['maxWriteDuration'] : 0;
-		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( $limit ) {
+		$this->forEachOpenMasterConnection( function ( IDatabase $conn ) use ( $limit ) {
 			// If atomic sections or explicit transactions are still open, some caller must have
 			// caught an exception but failed to properly rollback any changes. Detect that and
 			// throw and error (causing rollback).
@@ -1102,7 +1102,7 @@ class LoadBalancer implements ILoadBalancer {
 		$restore = ( $this->trxRoundId !== false );
 		$this->trxRoundId = false;
 		$this->forEachOpenMasterConnection(
-			function ( DatabaseBase $conn ) use ( $fname, $restore, &$failures ) {
+			function ( IDatabase $conn ) use ( $fname, $restore, &$failures ) {
 				try {
 					if ( $conn->writesOrCallbacksPending() ) {
 						$conn->commit( $fname, $conn::FLUSHING_ALL_PEERS );
@@ -1176,7 +1176,7 @@ class LoadBalancer implements ILoadBalancer {
 		$restore = ( $this->trxRoundId !== false );
 		$this->trxRoundId = false;
 		$this->forEachOpenMasterConnection(
-			function ( DatabaseBase $conn ) use ( $fname, $restore ) {
+			function ( IDatabase $conn ) use ( $fname, $restore ) {
 				if ( $conn->writesOrCallbacksPending() ) {
 					$conn->rollback( $fname, $conn::FLUSHING_ALL_PEERS );
 				}
@@ -1228,7 +1228,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @since 1.28
 	 */
 	public function flushReplicaSnapshots( $fname = __METHOD__ ) {
-		$this->forEachOpenReplicaConnection( function ( DatabaseBase $conn ) {
+		$this->forEachOpenReplicaConnection( function ( IDatabase $conn ) {
 			$conn->flushSnapshot( __METHOD__ );
 		} );
 	}
@@ -1248,7 +1248,7 @@ class LoadBalancer implements ILoadBalancer {
 	 */
 	public function hasMasterChanges() {
 		$pending = 0;
-		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( &$pending ) {
+		$this->forEachOpenMasterConnection( function ( IDatabase $conn ) use ( &$pending ) {
 			$pending |= $conn->writesOrCallbacksPending();
 		} );
 
@@ -1262,7 +1262,7 @@ class LoadBalancer implements ILoadBalancer {
 	 */
 	public function lastMasterChangeTimestamp() {
 		$lastTime = false;
-		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( &$lastTime ) {
+		$this->forEachOpenMasterConnection( function ( IDatabase $conn ) use ( &$lastTime ) {
 			$lastTime = max( $lastTime, $conn->lastDoneWrites() );
 		} );
 
@@ -1292,7 +1292,7 @@ class LoadBalancer implements ILoadBalancer {
 	 */
 	public function pendingMasterChangeCallers() {
 		$fnames = [];
-		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( &$fnames ) {
+		$this->forEachOpenMasterConnection( function ( IDatabase $conn ) use ( &$fnames ) {
 			$fnames = array_merge( $fnames, $conn->pendingWriteCallers() );
 		} );
 
@@ -1406,7 +1406,7 @@ class LoadBalancer implements ILoadBalancer {
 
 	public function pingAll() {
 		$success = true;
-		$this->forEachOpenConnection( function ( DatabaseBase $conn ) use ( &$success ) {
+		$this->forEachOpenConnection( function ( IDatabase $conn ) use ( &$success ) {
 			if ( !$conn->ping() ) {
 				$success = false;
 			}
@@ -1436,7 +1436,7 @@ class LoadBalancer implements ILoadBalancer {
 		$masterIndex = $this->getWriterIndex();
 		foreach ( $this->mConns as $connsByServer ) {
 			if ( isset( $connsByServer[$masterIndex] ) ) {
-				/** @var DatabaseBase $conn */
+				/** @var IDatabase $conn */
 				foreach ( $connsByServer[$masterIndex] as $conn ) {
 					$mergedParams = array_merge( [ $conn ], $params );
 					call_user_func_array( $callback, $mergedParams );
@@ -1548,7 +1548,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	/**
-	 * Set a callback via DatabaseBase::setTransactionListener() on
+	 * Set a callback via IDatabase::setTransactionListener() on
 	 * all current and future master connections of this load balancer
 	 *
 	 * @param string $name Callback name
@@ -1562,7 +1562,7 @@ class LoadBalancer implements ILoadBalancer {
 			unset( $this->trxRecurringCallbacks[$name] );
 		}
 		$this->forEachOpenMasterConnection(
-			function ( DatabaseBase $conn ) use ( $name, $callback ) {
+			function ( IDatabase $conn ) use ( $name, $callback ) {
 				$conn->setTransactionListener( $name, $callback );
 			}
 		);

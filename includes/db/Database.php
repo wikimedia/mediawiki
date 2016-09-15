@@ -231,7 +231,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	 * connection object, by specifying no parameters to __construct(). This
 	 * feature is deprecated and should be removed.
 	 *
-	 * DatabaseBase subclasses should not be constructed directly in external
+	 * IDatabase classes should not be constructed directly in external
 	 * code. DatabaseBase::factory() should be used instead.
 	 *
 	 * @param array $params Parameters passed from DatabaseBase::factory()
@@ -301,7 +301,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 
 	/**
 	 * Given a DB type, construct the name of the appropriate child class of
-	 * DatabaseBase. This is designed to replace all of the manual stuff like:
+	 * IDatabase. This is designed to replace all of the manual stuff like:
 	 *    $class = 'Database' . ucfirst( strtolower( $dbType ) );
 	 * as well as validate against the canonical list of DB types we have
 	 *
@@ -318,8 +318,8 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	 * @param string $dbType A possible DB type
 	 * @param array $p An array of options to pass to the constructor.
 	 *    Valid options are: host, user, password, dbname, flags, tablePrefix, schema, driver
-	 * @throws MWException If the database driver or extension cannot be found
-	 * @return DatabaseBase|null DatabaseBase subclass or null
+	 * @return IDatabase|null If the database driver or extension cannot be found
+	 * @throws MWException
 	 */
 	final public static function factory( $dbType, $p = [] ) {
 		global $wgCommandLineMode;
@@ -368,7 +368,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 		];
 
 		$class = 'Database' . ucfirst( $driver );
-		if ( class_exists( $class ) && is_subclass_of( $class, 'DatabaseBase' ) ) {
+		if ( class_exists( $class ) && is_subclass_of( $class, 'IDatabase' ) ) {
 			// Resolve some defaults for b/c
 			$p['host'] = isset( $p['host'] ) ? $p['host'] : false;
 			$p['user'] = isset( $p['user'] ) ? $p['user'] : false;
@@ -398,7 +398,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
-		$this->quertLogger = $logger;
+		$this->queryLogger = $logger;
 	}
 
 	public function getServerInfo() {
@@ -494,12 +494,6 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 		}
 	}
 
-	/**
-	 * Set a lazy-connecting DB handle to the master DB (for replication status purposes)
-	 *
-	 * @param IDatabase $conn
-	 * @since 1.27
-	 */
 	public function setLazyMasterHandle( IDatabase $conn ) {
 		$this->lazyMasterHandle = $conn;
 	}
@@ -995,9 +989,9 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 		# generalizeSQL() will probably cut down the query to reasonable
 		# logging size most of the time. The substr is really just a sanity check.
 		if ( $isMaster ) {
-			$queryProf = 'query-m: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
+			$queryProf = 'query-m: ' . substr( self::generalizeSQL( $sql ), 0, 255 );
 		} else {
-			$queryProf = 'query: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
+			$queryProf = 'query: ' . substr( self::generalizeSQL( $sql ), 0, 255 );
 		}
 
 		# Include query transaction state
@@ -1132,7 +1126,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	 *
 	 * @return array
 	 */
-	protected function prepare( $sql, $func = 'DatabaseBase::prepare' ) {
+	protected function prepare( $sql, $func = __METHOD__ ) {
 		/* MySQL doesn't support prepared statements (yet), so just
 		 * pack up the query for reference. We'll manually replace
 		 * the bits later.
@@ -1705,7 +1699,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 
 	public function makeList( $a, $mode = LIST_COMMA ) {
 		if ( !is_array( $a ) ) {
-			throw new DBUnexpectedError( $this, 'DatabaseBase::makeList called with incorrect parameters' );
+			throw new DBUnexpectedError( $this, __METHOD__ . ' called with incorrect parameters' );
 		}
 
 		$first = true;
@@ -2417,8 +2411,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 		$fname = __METHOD__
 	) {
 		if ( !$conds ) {
-			throw new DBUnexpectedError( $this,
-				'DatabaseBase::deleteJoin() called with empty $conds' );
+			throw new DBUnexpectedError( $this, __METHOD__ . ' called with empty $conds' );
 		}
 
 		$delTable = $this->tableName( $delTable );
@@ -2442,7 +2435,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	public function textFieldSize( $table, $field ) {
 		$table = $this->tableName( $table );
 		$sql = "SHOW COLUMNS FROM $table LIKE \"$field\";";
-		$res = $this->query( $sql, 'DatabaseBase::textFieldSize' );
+		$res = $this->query( $sql, __METHOD__ );
 		$row = $this->fetchObject( $res );
 
 		$m = [];
@@ -2470,7 +2463,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 
 	public function delete( $table, $conds, $fname = __METHOD__ ) {
 		if ( !$conds ) {
-			throw new DBUnexpectedError( $this, 'DatabaseBase::delete() called with no conditions' );
+			throw new DBUnexpectedError( $this, __METHOD__ . ' called with no conditions' );
 		}
 
 		$table = $this->tableName( $table );
@@ -3132,12 +3125,11 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	public function duplicateTableStructure( $oldName, $newName, $temporary = false,
 		$fname = __METHOD__
 	) {
-		throw new RuntimeException(
-			'DatabaseBase::duplicateTableStructure is not implemented in descendant class' );
+		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
 
 	function listTables( $prefix = null, $fname = __METHOD__ ) {
-		throw new RuntimeException( 'DatabaseBase::listTables is not implemented in descendant class' );
+		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
 
 	/**
@@ -3161,7 +3153,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	 * @since 1.22
 	 */
 	public function listViews( $prefix = null, $fname = __METHOD__ ) {
-		throw new RuntimeException( 'DatabaseBase::listViews is not implemented in descendant class' );
+		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
 
 	/**
@@ -3173,7 +3165,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	 * @since 1.22
 	 */
 	public function isView( $name ) {
-		throw new RuntimeException( 'DatabaseBase::isView is not implemented in descendant class' );
+		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
 
 	public function timestamp( $ts = 0 ) {

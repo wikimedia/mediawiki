@@ -50,7 +50,7 @@ class ORAResult {
 	}
 
 	/**
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @param resource $stmt A valid OCI statement identifier
 	 * @param bool $unique
 	 */
@@ -265,7 +265,7 @@ class DatabaseOracle extends Database {
 	 * @param string $password
 	 * @param string $dbName
 	 * @throws DBConnectionError
-	 * @return DatabaseBase|null
+	 * @return resource|bool|null
 	 */
 	function open( $server, $user, $password, $dbName ) {
 		global $wgDBOracleDRCP;
