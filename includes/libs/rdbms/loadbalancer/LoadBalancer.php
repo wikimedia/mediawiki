@@ -776,7 +776,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @param bool $dbNameOverride
 	 * @return IDatabase
 	 * @throws DBAccessError
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 */
 	protected function reallyOpenConnection( $server, $dbNameOverride = false ) {
 		if ( $this->disabled ) {
