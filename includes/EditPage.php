@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * The edit page/HTML interface (split from Article)
@@ -747,8 +748,7 @@ class EditPage {
 		$this->showTextbox( $text, 'wpTextbox1', [ 'readonly' ] );
 		$wgOut->addHTML( $this->editFormTextAfterContent );
 
-		$wgOut->addHTML( Html::rawElement( 'div', [ 'class' => 'templatesUsed' ],
-			Linker::formatTemplates( $this->getTemplates() ) ) );
+		$wgOut->addHTML( $this->makeTemplatesOnThisPageList( $this->getTemplates() ) );
 
 		$wgOut->addModules( 'mediawiki.action.edit.collapsibleFooter' );
 
@@ -2752,8 +2752,7 @@ class EditPage {
 
 		$wgOut->addHTML( $this->editFormTextAfterTools . "\n" );
 
-		$wgOut->addHTML( Html::rawElement( 'div', [ 'class' => 'templatesUsed' ],
-			Linker::formatTemplates( $this->getTemplates(), $this->preview, $this->section != '' ) ) );
+		$wgOut->addHTML( $this->makeTemplatesOnThisPageList( $this->getTemplates() ) );
 
 		$wgOut->addHTML( Html::rawElement( 'div', [ 'class' => 'hiddencats' ],
 			Linker::formatHiddenCategories( $this->page->getHiddenCategories() ) ) );
@@ -2799,6 +2798,32 @@ class EditPage {
 		if ( !$wgUser->getOption( 'previewontop' ) ) {
 			$this->displayPreviewArea( $previewOutput, false );
 		}
+
+	}
+
+	/**
+	 * Wrapper around TemplatesOnThisPageFormatter to make
+	 * a "templates on this page" list.
+	 *
+	 * @param Title[] $templates
+	 * @return string HTML
+	 */
+	protected function makeTemplatesOnThisPageList( array $templates ) {
+		$templateListFormatter = new TemplatesOnThisPageFormatter(
+			$this->context, MediaWikiServices::getInstance()->getLinkRenderer()
+		);
+
+		// preview if preview, else section if section, else false
+		$type = false;
+		if ( $this->preview ) {
+			$type = 'preview';
+		} elseif ( $this->section != '' ) {
+			$type = 'section';
+		}
+
+		return Html::rawElement( 'div', [ 'class' => 'templatesUsed' ],
+			$templateListFormatter->format( $templates, $type )
+		);
 
 	}
 
