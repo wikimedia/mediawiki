@@ -34,16 +34,19 @@ interface ILoadMonitor extends LoggerAwareInterface {
 	 * @param ILoadBalancer $lb LoadBalancer this instance serves
 	 * @param BagOStuff $sCache Local server memory cache
 	 * @param BagOStuff $cCache Local cluster memory cache
+	 * @param array $options Options map
 	 */
-	public function __construct( ILoadBalancer $lb, BagOStuff $sCache, BagOStuff $cCache );
+	public function __construct(
+		ILoadBalancer $lb, BagOStuff $sCache, BagOStuff $cCache, array $options = []
+	);
 
 	/**
 	 * Perform pre-connection load ratio adjustment.
-	 * @param int[] &$loads
+	 * @param int[] &$weightByServer Map of (server index => integer weight)
 	 * @param string|bool $group The selected query group. Default: false
 	 * @param string|bool $domain Default: false
 	 */
-	public function scaleLoads( &$loads, $group = false, $domain = false );
+	public function scaleLoads( array &$weightByServer, $group = false, $domain = false );
 
 	/**
 	 * Get an estimate of replication lag (in seconds) for each server
@@ -55,7 +58,7 @@ interface ILoadMonitor extends LoggerAwareInterface {
 	 *
 	 * @return array Map of (server index => float|int|bool)
 	 */
-	public function getLagTimes( $serverIndexes, $domain );
+	public function getLagTimes( array $serverIndexes, $domain );
 
 	/**
 	 * Clear any process and persistent cache of lag times

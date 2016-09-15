@@ -32,7 +32,7 @@ class LoadBalancer implements ILoadBalancer {
 	private $mServers;
 	/** @var array[] Map of (local/foreignUsed/foreignFree => server index => IDatabase array) */
 	private $mConns;
-	/** @var array Map of (server index => weight) */
+	/** @var float[] Map of (server index => weight) */
 	private $mLoads;
 	/** @var array[] Map of (group => server index => weight) */
 	private $mGroupLoads;
