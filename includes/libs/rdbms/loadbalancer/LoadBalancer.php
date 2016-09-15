@@ -42,6 +42,8 @@ class LoadBalancer implements ILoadBalancer {
 	private $mWaitTimeout;
 	/** @var string The LoadMonitor subclass name */
 	private $mLoadMonitorClass;
+	/** @var array[] $aliases Map of (table => (dbname, schema, prefix) map) */
+	private $tableAliases = [];
 
 	/** @var LoadMonitor */
 	private $mLoadMonitor;
@@ -822,6 +824,7 @@ class LoadBalancer implements ILoadBalancer {
 		$db->setLazyMasterHandle(
 			$this->getLazyConnectionRef( DB_MASTER, [], $db->getWikiID() )
 		);
+		$db->setTableAliases( $this->tableAliases );
 
 		if ( $server['serverIndex'] === $this->getWriterIndex() ) {
 			if ( $this->trxRoundId !== false ) {
@@ -1568,6 +1571,23 @@ class LoadBalancer implements ILoadBalancer {
 				$conn->setTransactionListener( $name, $callback );
 			}
 		);
+	}
+
+	/**
+	 * Make certain table names use their own database, schema, and table prefix
+	 * when passed into SQL queries pre-escaped and without a qualified database name
+	 *
+	 * For example, "user" can be converted to "myschema.mydbname.user" for convenience.
+	 * Appearances like `user`, somedb.user, somedb.someschema.user will used literally.
+	 *
+	 * Calling this twice will completely clear any old table aliases. Also, note that
+	 * callers are responsible for making sure the schemas and databases actually exist.
+	 *
+	 * @param array[] $aliases Map of (table => (dbname, schema, prefix) map)
+	 * @since 1.28
+	 */
+	public function setTableAliases( array $aliases ) {
+		$this->tableAliases = $aliases;
 	}
 
 	/**

@@ -60,6 +60,8 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	protected $mPassword;
 	/** @var string */
 	protected $mDBname;
+	/** @var array[] $aliases Map of (table => (dbname, schema, prefix) map) */
+	protected $tableAliases = [];
 	/** @var bool */
 	protected $cliMode;
 
@@ -94,8 +96,6 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	protected $mSchema;
 	/** @var integer */
 	protected $mFlags;
-	/** @var bool */
-	protected $mForeign;
 	/** @var array */
 	protected $mLBInfo = [];
 	/** @var bool|null */
@@ -262,8 +262,6 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 		}
 
 		$this->mSessionVars = $params['variables'];
-
-		$this->mForeign = $params['foreign'];
 
 		$this->srvCache = isset( $params['srvCache'] )
 			? $params['srvCache']
@@ -1862,7 +1860,6 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	 * @return string Full database name
 	 */
 	public function tableName( $name, $format = 'quoted' ) {
-		global $wgSharedDB, $wgSharedPrefix, $wgSharedTables, $wgSharedSchema;
 		# Skip the entire process when we have a string quoted on both ends.
 		# Note that we check the end so that we will still quote any use of
 		# use of `database`.table. But won't break things if someone wants
@@ -1899,14 +1896,14 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 			$schema = null;
 		} else {
 			list( $table ) = $dbDetails;
-			if ( $wgSharedDB !== null # We have a shared database
-				&& $this->mForeign == false # We're not working on a foreign database
-				&& !$this->isQuotedIdentifier( $table ) # Prevent shared tables listing '`table`'
-				&& in_array( $table, $wgSharedTables ) # A shared table is selected
-			) {
-				$database = $wgSharedDB;
-				$schema = $wgSharedSchema === null ? $this->mSchema : $wgSharedSchema;
-				$prefix = $wgSharedPrefix === null ? $this->mTablePrefix : $wgSharedPrefix;
+			if ( isset( $this->tableAliases[$table] ) ) {
+				$database = $this->tableAliases[$table]['dbname'];
+				$schema = is_string( $this->tableAliases[$table]['schema'] )
+					? $this->tableAliases[$table]['schema']
+					: $this->mSchema;
+				$prefix = is_string( $this->tableAliases[$table]['prefix'] )
+					? $this->tableAliases[$table]['prefix']
+					: $this->mTablePrefix;
 			} else {
 				$database = null;
 				$schema = $this->mSchema; # Default schema
@@ -1917,7 +1914,9 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 		# Quote $table and apply the prefix if not quoted.
 		# $tableName might be empty if this is called from Database::replaceVars()
 		$tableName = "{$prefix}{$table}";
-		if ( $format == 'quoted' && !$this->isQuotedIdentifier( $tableName ) && $tableName !== '' ) {
+		if ( $format == 'quoted'
+			&& !$this->isQuotedIdentifier( $tableName ) && $tableName !== ''
+		) {
 			$tableName = $this->addIdentifierQuotes( $tableName );
 		}
 
@@ -3684,6 +3683,10 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 		$reason = $this->getLBInfo( 'readOnlyReason' );
 
 		return is_string( $reason ) ? $reason : false;
+	}
+
+	public function setTableAliases( array $aliases ) {
+		$this->tableAliases = $aliases;
 	}
 
 	/**
