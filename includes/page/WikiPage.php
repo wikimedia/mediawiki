@@ -621,15 +621,18 @@ class WikiPage implements Page, IDBAccessObject {
 			// happened after the first S1 SELECT.
 			// http://dev.mysql.com/doc/refman/5.0/en/set-transaction.html#isolevel_repeatable-read
 			$flags = Revision::READ_LOCKING;
+			$revision = Revision::newFromPageId( $this->getId(), $latest, $flags );
 		} elseif ( $this->mDataLoadedFrom == self::READ_LATEST ) {
 			// Bug T93976: if page_latest was loaded from the master, fetch the
 			// revision from there as well, as it may not exist yet on a replica DB.
 			// Also, this keeps the queries in the same REPEATABLE-READ snapshot.
 			$flags = Revision::READ_LATEST;
+			$revision = Revision::newFromPageId( $this->getId(), $latest, $flags );
 		} else {
-			$flags = 0;
+			$dbr = wfGetDB( DB_REPLICA );
+			$revision = Revision::newKnownCurrent( $dbr, $this->getId(), $latest );
 		}
-		$revision = Revision::newFromPageId( $this->getId(), $latest, $flags );
+
 		if ( $revision ) { // sanity
 			$this->setLastEdit( $revision );
 		}
