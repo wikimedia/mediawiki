@@ -26,8 +26,45 @@
  * @ingroup Database
  */
 class LoadMonitorMySQL extends LoadMonitor {
-	public function scaleLoads( &$loads, $group = false, $domain = false ) {
-		// @TODO: maybe use Threads_running/Threads_created ratio to guess load
-		// and Queries/Uptime to guess if a server is warming up the buffer pool
+	/** @var float What buffer pool use ratio counts as "warm" (e.g. 0.5 for 50% usage) */
+	private $warmCacheRatio;
+
+	public function __construct(
+		ILoadBalancer $lb, BagOStuff $srvCache, BagOStuff $cache, array $options = []
+	) {
+		parent::__construct( $lb, $srvCache, $cache, $options );
+
+		$this->warmCacheRatio = isset( $options['warmCacheRatio'] )
+			? $options['warmCacheRatio']
+			: 0.0;
+	}
+
+	protected function getWeightScale( $index, IDatabase $conn = null ) {
+		if ( !$conn ) {
+			return 0.0;
+		}
+
+		$weight = 1.0;
+		if ( $this->warmCacheRatio > 0 ) {
+			$res = $conn->query( 'SHOW STATUS', false );
+			$s = $res ? $conn->fetchObject( $res ) : false;
+			if ( $s === false ) {
+				$host = $this->parent->getServerName( $index );
+				$this->replLogger->error( __METHOD__ . ": could not get status for $host" );
+			} else {
+				// http://dev.mysql.com/doc/refman/5.7/en/server-status-variables.html
+				if ( $s->Innodb_buffer_pool_pages_total > 0 ) {
+					$ratio = $s->Innodb_buffer_pool_pages_data / $s->Innodb_buffer_pool_pages_total;
+				} elseif ( $s->Qcache_total_blocks > 0 ) {
+					$ratio = 1.0 - $s->Qcache_free_blocks / $s->Qcache_total_blocks;
+				} else {
+					$ratio = 1.0;
+				}
+				// Stop caring once $ratio >= $this->warmCacheRatio
+				$weight *= min( $ratio / $this->warmCacheRatio, 1.0 );
+			}
+		}
+
+		return $weight;
 	}
 }

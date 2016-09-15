@@ -21,18 +21,20 @@
 use Psr\Log\LoggerInterface;
 
 class LoadMonitorNull implements ILoadMonitor {
-	public function __construct( ILoadBalancer $lb, BagOStuff $sCache, BagOStuff $cCache ) {
+	public function __construct(
+		ILoadBalancer $lb, BagOStuff $sCache, BagOStuff $cCache, array $options = []
+	) {
 
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
 	}
 
-	public function scaleLoads( &$loads, $group = false, $domain = false ) {
+	public function scaleLoads( array &$loads, $group = false, $domain = false ) {
 
 	}
 
-	public function getLagTimes( $serverIndexes, $domain ) {
+	public function getLagTimes( array $serverIndexes, $domain ) {
 		return array_fill_keys( $serverIndexes, 0 );
 	}
 
