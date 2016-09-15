@@ -43,15 +43,47 @@ use MediaWiki\MediaWikiServices;
 
 return [
 	'DBLoadBalancerFactory' => function( MediaWikiServices $services ) {
-		$config = $services->getMainConfig()->get( 'LBFactoryConf' );
+		$mainConfig = $services->getMainConfig();
 
-		$class = LBFactoryMW::getLBFactoryClass( $config );
-		if ( !isset( $config['readOnlyReason'] ) ) {
+		$lbConf = $mainConfig->get( 'LBFactoryConf' );
+		if ( !isset( $lbConf['readOnlyReason'] ) ) {
 			// TODO: replace the global wfConfiguredReadOnlyReason() with a service.
-			$config['readOnlyReason'] = wfConfiguredReadOnlyReason();
+			$lbConf['readOnlyReason'] = wfConfiguredReadOnlyReason();
 		}
 
-		return new $class( $config );
+		$class = LBFactoryMW::getLBFactoryClass( $lbConf );
+		if ( $class === 'LBFactorySimple' ) {
+			if ( is_array( $mainConfig->get( 'DBservers' ) ) ) {
+				foreach ( $mainConfig->get( 'DBservers' ) as $i => $server ) {
+					$lbConf['servers'][$i] = $server + [
+						'schema' => $mainConfig->get( 'DBmwschema' ),
+						'tablePrefix' => $mainConfig->get( 'DBprefix' ),
+						'flags' => DBO_DEFAULT,
+					];
+				}
+			} else {
+				$flags = DBO_DEFAULT;
+				$flags |= $mainConfig->get( 'DebugDumpSql' ) ? DBO_DEBUG : 0;
+				$flags |= $mainConfig->get( 'DBssl' ) ? DBO_SSL : 0;
+				$flags |= $mainConfig->get( 'DBcompress' ) ? DBO_COMPRESS : 0;
+				$lbConf['servers'] = [
+					[
+						'host' => $mainConfig->get( 'DBserver' ),
+						'user' => $mainConfig->get( 'DBuser' ),
+						'password' => $mainConfig->get( 'DBpassword' ),
+						'dbname' => $mainConfig->get( 'DBname' ),
+						'schema' => $mainConfig->get( 'DBmwschema' ),
+						'tablePrefix' => $mainConfig->get( 'DBprefix' ),
+						'type' => $mainConfig->get( 'DBtype' ),
+						'load' => 1,
+						'flags' => $flags,
+					]
+				];
+			}
+			$lbConf['externalServers'] = $mainConfig->get( 'ExternalServers' );
+		}
+
+		return new $class( $lbConf );
 	},
 
 	'DBLoadBalancer' => function( MediaWikiServices $services ) {
