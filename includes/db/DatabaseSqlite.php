@@ -59,7 +59,7 @@ class DatabaseSqlite extends Database {
 	 * @param array $p
 	 */
 	function __construct( array $p ) {
-		global $wgSharedDB, $wgSQLiteDataDir;
+		global $wgSQLiteDataDir;
 
 		$this->dbDir = isset( $p['dbDirectory'] ) ? $p['dbDirectory'] : $wgSQLiteDataDir;
 
@@ -76,8 +76,13 @@ class DatabaseSqlite extends Database {
 			// Super doesn't open when $user is false, but we can work with $dbName
 			if ( $p['dbname'] && !$this->isOpen() ) {
 				if ( $this->open( $p['host'], $p['user'], $p['password'], $p['dbname'] ) ) {
-					if ( $wgSharedDB ) {
-						$this->attachDatabase( $wgSharedDB );
+					$done = [];
+					foreach ( $this->tableAliases as $params ) {
+						if ( isset( $done[$params['dbname']] ) ) {
+							continue;
+						}
+						$this->attachDatabase( $params['dbname'] );
+						$done[$params['dbname']] = 1;
 					}
 				}
 			}
