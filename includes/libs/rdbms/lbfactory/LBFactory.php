@@ -62,6 +62,11 @@ abstract class LBFactory {
 	/** @var callable[] */
 	protected $replicationWaitCallbacks = [];
 
+	/** @var bool Whether this PHP instance is for a CLI script */
+	protected $cliMode;
+	/** @var string Agent name for query profiling */
+	protected $agent;
+
 	const SHUTDOWN_NO_CHRONPROT = 0; // don't save DB positions at all
 	const SHUTDOWN_CHRONPROT_ASYNC = 1; // save DB positions, but don't wait on remote DCs
 	const SHUTDOWN_CHRONPROT_SYNC = 2; // save DB positions, waiting on all DCs
@@ -75,6 +80,7 @@ abstract class LBFactory {
 	 */
 	public function __construct( array $conf ) {
 		$this->domain = isset( $conf['domain'] ) ? $conf['domain'] : '';
+
 		if ( isset( $conf['readOnlyReason'] ) && is_string( $conf['readOnlyReason'] ) ) {
 			$this->readOnlyReason = $conf['readOnlyReason'];
 		}
@@ -105,6 +111,8 @@ abstract class LBFactory {
 			: new TransactionProfiler();
 
 		$this->ticket = mt_rand();
+		$this->cliMode = isset( $params['cliMode'] ) ? $params['cliMode'] : PHP_SAPI === 'cli';
+		$this->agent = isset( $params['agent'] ) ? $params['agent'] : '';
 	}
 
 	/**
@@ -609,7 +617,9 @@ abstract class LBFactory {
 			'connLogger' => $this->connLogger,
 			'replLogger' => $this->replLogger,
 			'errorLogger' => $this->errorLogger,
-			'hostname' => $this->hostname
+			'hostname' => $this->hostname,
+			'cliMode' => $this->cliMode,
+			'agent' => $this->agent
 		];
 	}
 
@@ -640,5 +650,13 @@ abstract class LBFactory {
 	 */
 	public function closeAll() {
 		$this->forEachLBCallMethod( 'closeAll', [] );
+	}
+
+	/**
+	 * @param string $agent Agent name for query profiling
+	 * @since 1.28
+	 */
+	public function setAgentName( $agent ) {
+		$this->agent = $agent;
 	}
 }
