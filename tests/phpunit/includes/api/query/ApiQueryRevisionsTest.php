@@ -15,7 +15,11 @@ class ApiQueryRevisionsTest extends ApiTestCase {
 		$pageName = 'Help:' . __METHOD__;
 		$title = Title::newFromText( $pageName );
 		$page = WikiPage::factory( $title );
-		$page->doEdit( 'Some text', 'inserting content' );
+
+		$page->doEditContent(
+			ContentHandler::makeContent( 'Some text', $page->getTitle() ),
+			'inserting content'
+		);
 
 		$apiResult = $this->doApiRequest( [
 			'action' => 'query',

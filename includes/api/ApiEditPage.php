@@ -532,7 +532,7 @@ class ApiEditPage extends ApiBase {
 
 			case EditPage::AS_END:
 			default:
-				// $status came from WikiPage::doEdit()
+				// $status came from WikiPage::doEditContent()
 				$errors = $status->getErrorsArray();
 				$this->dieUsageMsg( $errors[0] ); // TODO: Add new errors to message map
 				break;
