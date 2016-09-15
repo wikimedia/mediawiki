@@ -28,7 +28,6 @@ use MediaWiki\Logger\LoggerFactory;
  * @ingroup Database
  */
 abstract class LBFactoryMW extends LBFactory {
-	/** @noinspection PhpMissingParentConstructorInspection */
 	/**
 	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf)
 	 * @param array $conf
@@ -44,7 +43,8 @@ abstract class LBFactoryMW extends LBFactory {
 	 * @TODO: inject objects via dependency framework
 	 */
 	public static function applyDefaultConfig( array $conf ) {
-		global $wgCommandLineMode, $wgSQLMode, $wgDBmysql5, $wgDBname, $wgDBprefix;
+		global $wgDBtype, $wgSQLMode, $wgDBmysql5, $wgDBname, $wgDBprefix, $wgDBmwschema;
+		global $wgCommandLineMode;
 
 		$defaults = [
 			'localDomain' => new DatabaseDomain( $wgDBname, null, $wgDBprefix ),
@@ -73,9 +73,20 @@ abstract class LBFactoryMW extends LBFactory {
 			$defaults['wanCache'] = $wCache;
 		}
 
+		// Determine schema defaults. Currently Microsoft SQL Server uses $wgDBmwschema,
+		// and everything else doesn't use a schema (e.g. null)
+		// Although postgres and oracle support schemas, we don't use them (yet)
+		// to maintain backwards compatibility
+		$schema = ( $wgDBtype === 'mssql' ) ? $wgDBmwschema : null;
+
 		if ( isset( $conf['serverTemplate'] ) ) { // LBFactoryMulti
+			$conf['serverTemplate']['schema'] = $schema;
 			$conf['serverTemplate']['sqlMode'] = $wgSQLMode;
 			$conf['serverTemplate']['utf8Mode'] = $wgDBmysql5;
+		} elseif ( isset( $conf['servers'] ) ) { // LBFactorySimple
+			foreach ( $conf['servers'] as $i => $server ) {
+				$conf['servers'][$i]['schema'] = $schema;
+			}
 		}
 
 		return $conf + $defaults;
