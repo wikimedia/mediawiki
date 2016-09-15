@@ -51,12 +51,20 @@ return [
 			$lbConf['readOnlyReason'] = wfConfiguredReadOnlyReason();
 		}
 
+		// Determine schema defaults. Currently Microsoft SQL Server uses $wgDBmwschema,
+		// and everything else doesn't use a schema (e.g. null)
+		// Although postgres and oracle support schemas, we don't use them (yet)
+		// to maintain backwards compatibility
+		$schema = ( $mainConfig->get( 'DBtype' ) === 'mssql' )
+			? $mainConfig->get( 'DBmwschema' )
+			: null;
+
 		$class = LBFactoryMW::getLBFactoryClass( $lbConf );
 		if ( $class === 'LBFactorySimple' ) {
 			if ( is_array( $mainConfig->get( 'DBservers' ) ) ) {
 				foreach ( $mainConfig->get( 'DBservers' ) as $i => $server ) {
 					$lbConf['servers'][$i] = $server + [
-						'schema' => $mainConfig->get( 'DBmwschema' ),
+						'schema' => $schema,
 						'tablePrefix' => $mainConfig->get( 'DBprefix' ),
 						'flags' => DBO_DEFAULT,
 					];
@@ -72,7 +80,7 @@ return [
 						'user' => $mainConfig->get( 'DBuser' ),
 						'password' => $mainConfig->get( 'DBpassword' ),
 						'dbname' => $mainConfig->get( 'DBname' ),
-						'schema' => $mainConfig->get( 'DBmwschema' ),
+						'schema' => $schema,
 						'tablePrefix' => $mainConfig->get( 'DBprefix' ),
 						'type' => $mainConfig->get( 'DBtype' ),
 						'load' => 1,
