@@ -62,8 +62,10 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	protected $mDBname;
 	/** @var array[] $aliases Map of (table => (dbname, schema, prefix) map) */
 	protected $tableAliases = [];
-	/** @var bool */
+	/** @var bool Whether this PHP instance is for a CLI script */
 	protected $cliMode;
+	/** @var string Agent name for query profiling */
+	protected $agent;
 
 	/** @var BagOStuff APC cache */
 	protected $srvCache;
@@ -251,6 +253,9 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 		$this->cliMode = isset( $params['cliMode'] )
 			? $params['cliMode']
 			: ( PHP_SAPI === 'cli' );
+		$this->agent = isset( $params['agent'] )
+			? str_replace( '/', '-', $params['agent'] ) // escape for comment
+			: '';
 
 		$this->mFlags = $flags;
 		if ( $this->mFlags & DBO_DEFAULT ) {
@@ -308,8 +313,6 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	 * @throws InvalidArgumentException If the database driver or extension cannot be found
 	 */
 	final public static function factory( $dbType, $p = [] ) {
-		global $wgCommandLineMode;
-
 		$canonicalDBTypes = [
 			'mysql' => [ 'mysqli', 'mysql' ],
 			'postgres' => [],
@@ -367,7 +370,6 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 				$p['schema'] = isset( $defaultSchemas[$dbType] ) ? $defaultSchemas[$dbType] : null;
 			}
 			$p['foreign'] = isset( $p['foreign'] ) ? $p['foreign'] : false;
-			$p['cliMode'] = $wgCommandLineMode;
 
 			$conn = new $class( $p );
 			if ( isset( $p['connLogger'] ) ) {
@@ -379,7 +381,9 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 			if ( isset( $p['errorLogger'] ) ) {
 				$conn->errorLogger = $p['errorLogger'];
 			} else {
-				$conn->errorLogger = [ MWExceptionHandler::class, 'logException' ];
+				$conn->errorLogger = function ( Exception $e ) {
+					trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_WARNING );
+				};
 			}
 		} else {
 			$conn = null;
@@ -831,8 +835,6 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	}
 
 	public function query( $sql, $fname = __METHOD__, $tempIgnore = false ) {
-		global $wgUser;
-
 		$priorWritesPending = $this->writesOrCallbacksPending();
 		$this->mLastQuery = $sql;
 
@@ -846,20 +848,9 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 			$this->mDoneWrites = microtime( true );
 		}
 
-		# Add a comment for easy SHOW PROCESSLIST interpretation
-		if ( is_object( $wgUser ) && $wgUser->isItemLoaded( 'name' ) ) {
-			$userName = $wgUser->getName();
-			if ( mb_strlen( $userName ) > 15 ) {
-				$userName = mb_substr( $userName, 0, 15 ) . '...';
-			}
-			$userName = str_replace( '/', '', $userName );
-		} else {
-			$userName = '';
-		}
-
 		// Add trace comment to the begin of the sql string, right after the operator.
 		// Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (bug 42598)
-		$commentedSql = preg_replace( '/\s|$/', " /* $fname $userName */ ", $sql, 1 );
+		$commentedSql = preg_replace( '/\s|$/', " /* $fname {$this->agent} */ ", $sql, 1 );
 
 		# Start implicit transactions that wrap the request if DBO_TRX is enabled
 		if ( !$this->mTrxLevel && $this->getFlag( DBO_TRX )
