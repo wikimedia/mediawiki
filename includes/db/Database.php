@@ -682,43 +682,6 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	}
 
 	/**
-	 * Return a path to the DBMS-specific SQL file if it exists,
-	 * otherwise default SQL file
-	 *
-	 * @param string $filename
-	 * @return string
-	 */
-	private function getSqlFilePath( $filename ) {
-		global $IP;
-		$dbmsSpecificFilePath = "$IP/maintenance/" . $this->getType() . "/$filename";
-		if ( file_exists( $dbmsSpecificFilePath ) ) {
-			return $dbmsSpecificFilePath;
-		} else {
-			return "$IP/maintenance/$filename";
-		}
-	}
-
-	/**
-	 * Return a path to the DBMS-specific schema file,
-	 * otherwise default to tables.sql
-	 *
-	 * @return string
-	 */
-	public function getSchemaPath() {
-		return $this->getSqlFilePath( 'tables.sql' );
-	}
-
-	/**
-	 * Return a path to the DBMS-specific update key file,
-	 * otherwise default to update-keys.sql
-	 *
-	 * @return string
-	 */
-	public function getUpdateKeysPath() {
-		return $this->getSqlFilePath( 'update-keys.sql' );
-	}
-
-	/**
 	 * Get information about an index into an object
 	 * @param string $table Table name
 	 * @param string $index Index name
@@ -3378,25 +3341,6 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 		fclose( $fp );
 
 		return $error;
-	}
-
-	/**
-	 * Get the full path of a patch file. Originally based on archive()
-	 * from updaters.inc. Keep in mind this always returns a patch, as
-	 * it fails back to MySQL if no DB-specific patch can be found
-	 *
-	 * @param string $patch The name of the patch, like patch-something.sql
-	 * @return string Full path to patch file
-	 */
-	public function patchPath( $patch ) {
-		global $IP;
-
-		$dbType = $this->getType();
-		if ( file_exists( "$IP/maintenance/$dbType/archives/$patch" ) ) {
-			return "$IP/maintenance/$dbType/archives/$patch";
-		} else {
-			return "$IP/maintenance/archives/$patch";
-		}
 	}
 
 	public function setSchemaVars( $vars ) {
