@@ -2333,9 +2333,10 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getText
+	 * @deprecated since 1.21 use WikiPage::getContent() instead
 	 */
 	public function getText( $audience = Revision::FOR_PUBLIC, User $user = null ) {
-		ContentHandler::deprecated( __METHOD__, '1.21' );
+		wfDeprecated( __METHOD__, '1.21' );
 		return $this->mPage->getText( $audience, $user );
 	}
 
