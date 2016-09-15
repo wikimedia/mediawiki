@@ -198,8 +198,9 @@ class TransactionProfiler implements LoggerAwareInterface {
 		$elapsed = ( $eTime - $sTime );
 
 		if ( $isWrite && $n > $this->expect['maxAffected'] ) {
-			$this->logger->info( "Query affected $n row(s):\n" . $query . "\n" .
-				wfBacktrace( true ) );
+			$this->logger->info(
+				"Query affected $n row(s):\n" . $query . "\n" .
+				( new RuntimeException() )->getTraceAsString() );
 		}
 
 		// Report when too many writes/queries happen...
@@ -322,7 +323,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 
 		$this->logger->info(
 			"Expectation ($expect <= $n) by $by not met$actual:\n$query\n" .
-			wfBacktrace( true )
+			( new RuntimeException() )->getTraceAsString()
 		);
 	}
 }
