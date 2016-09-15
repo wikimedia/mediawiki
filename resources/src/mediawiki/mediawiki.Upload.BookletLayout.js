@@ -312,6 +312,8 @@
 					deferred.reject( errorMessage );
 				} );
 			} );
+		}, function ( errorMessage ) {
+			deferred.reject( errorMessage );
 		} );
 
 		return deferred.promise();

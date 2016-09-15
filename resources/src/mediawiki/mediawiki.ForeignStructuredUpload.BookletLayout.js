@@ -309,6 +309,84 @@
 		} );
 	};
 
+	/**
+	 * @param {mw.Title} filename
+	 * @return {jQuery.Promise} Resolves (on success) or rejects with OO.ui.Error
+	 */
+	mw.ForeignStructuredUpload.BookletLayout.prototype.validateFilename = function ( filename ) {
+		return this.upload.getApi().then( function ( api ) {
+			return api.get( {
+				action: 'query',
+				prop: 'info',
+				titles: filename.getPrefixedDb(),
+				formatversion: 2
+			} ).then(
+				function ( result ) {
+					// if the file already exists, reject right away, before
+					// ever firing finishStashUpload()
+					if ( !result.query.pages[ 0 ].missing ) {
+						return $.Deferred().reject( new OO.ui.Error(
+							$( '<p>' ).msg( 'fileexists', filename.getPrefixedDb() ),
+							{ recoverable: false }
+						) );
+					}
+				},
+				function () {
+					// API call failed - this could be a connection hiccup...
+					// Let's just ignore this validation step and turn this
+					// failure into a successful resolve ;)
+					return $.Deferred().resolve();
+				}
+			);
+		} );
+	};
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.ForeignStructuredUpload.BookletLayout.prototype.uploadFile = function () {
+		var deferred = mw.ForeignStructuredUpload.BookletLayout.parent.prototype.uploadFile.call( this );
+
+		/*
+		 * In saveFile, we'll want to add a filename validation check before
+		 * actually moving on with the upload. However, we can not just chain
+		 * a new .then() callback on the promise: saveFile() can be called
+		 * multiple times, and if the first validation fails, the chain would
+		 * never be able to continue.
+		 * We also can't attach the callback here, because we don't want it to
+		 * fire here already, we only want it to validate when the filename has
+		 * been chosen and we're ready to complete the upload.
+		 * So we'll store the original promise and re-use it every time
+		 * saveFile() is called (instead of stacking up multiple validation
+		 * callbacks)
+		 */
+		this.originalUploadPromise = this.uploadPromise;
+
+		return deferred;
+	};
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.ForeignStructuredUpload.BookletLayout.prototype.saveFile = function () {
+		var title = mw.Title.newFromText(
+				this.getFilename(),
+				mw.config.get( 'wgNamespaceIds' ).file
+			);
+
+		/*
+		 * Before (attempting to) complete the upload, we'll want to doublecheck
+		 * if the filename we're trying to upload under doesn't exist here.
+		 *
+		 * We'll chain something onto this.uploadPromise, before
+		 * finishStashUpload() is called, so that we can reject in time should
+		 * it turn out that the filename is not available.
+		 */
+		this.uploadPromise = this.originalUploadPromise.then( this.validateFilename.bind( this, title ) );
+
+		return mw.ForeignStructuredUpload.BookletLayout.parent.prototype.saveFile.call( this );
+	};
+
 	/* Getters */
 
 	/**
