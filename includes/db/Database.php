@@ -3118,7 +3118,9 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	}
 
 	public function timestamp( $ts = 0 ) {
-		return wfTimestamp( TS_MW, $ts );
+		$t = new ConvertableTimestamp( $ts );
+		// Let errors bubble up avoid putting garbage in the DB
+		return $t->getTimestamp( TS_MW );
 	}
 
 	public function timestampOrNull( $ts = null ) {
@@ -3607,9 +3609,17 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	}
 
 	public function decodeExpiry( $expiry, $format = TS_MW ) {
-		return ( $expiry == '' || $expiry == 'infinity' || $expiry == $this->getInfinity() )
-			? 'infinity'
-			: wfTimestamp( $format, $expiry );
+		if ( $expiry == '' || $expiry == 'infinity' || $expiry == $this->getInfinity() ) {
+			return 'infinity';
+		}
+
+		try {
+			$t = new ConvertableTimestamp( $expiry );
+
+			return $t->getTimestamp( $format );
+		} catch ( TimestampException $e ) {
+			return false;
+		}
 	}
 
 	public function setBigSelects( $value = true ) {
