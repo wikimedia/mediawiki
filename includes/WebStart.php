@@ -163,3 +163,9 @@ EOT;
 	echo $content;
 	die();
 }
+
+// Add a comment for easy SHOW PROCESSLIST interpretation
+\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->setAgentName(
+	// Use custom ellipses to avoid wfMessage()
+	$wgContLang->truncate( RequestContext::getMain()->getUser()->getName(), 15, '~' )
+);
