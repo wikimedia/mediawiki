@@ -517,6 +517,7 @@ class MediaWiki {
 	 */
 	public function run() {
 		try {
+			$this->setDBProfilingAgent();
 			try {
 				$this->main();
 			} catch ( ErrorPageError $e ) {
@@ -531,6 +532,15 @@ class MediaWiki {
 		}
 
 		$this->doPostOutputShutdown( 'normal' );
+	}
+
+	private function setDBProfilingAgent() {
+		$services = MediaWikiServices::getInstance();
+		// Add a comment for easy SHOW PROCESSLIST interpretation
+		$name = $this->context->getUser()->getName();
+		$services->getDBLoadBalancerFactory()->setAgentName(
+			mb_strlen( $name ) > 15 ? mb_substr( $name, 0, 15 ) . '...' : $name
+		);
 	}
 
 	/**

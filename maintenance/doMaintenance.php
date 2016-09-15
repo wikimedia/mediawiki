@@ -104,7 +104,7 @@ $maintenance->checkRequiredExtensions();
 
 // A good time when no DBs have writes pending is around lag checks.
 // This avoids having long running scripts just OOM and lose all the updates.
-$maintenance->setTriggers();
+$maintenance->setAgentAndTriggers();
 
 // Do the work
 $maintenance->execute();
