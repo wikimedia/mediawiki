@@ -1098,7 +1098,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 */
 	function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname = __METHOD__ ) {
 		if ( !$conds ) {
-			throw new DBUnexpectedError( $this, 'DatabaseBase::deleteJoin() called with empty $conds' );
+			throw new DBUnexpectedError( $this, __METHOD__ . ' called with empty $conds' );
 		}
 
 		$delTable = $this->tableName( $delTable );

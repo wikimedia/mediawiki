@@ -43,13 +43,13 @@ class CloneDatabase {
 	/**
 	 * Constructor
 	 *
-	 * @param DatabaseBase $db A database subclass
+	 * @param IDatabase $db A database subclass
 	 * @param array $tablesToClone An array of tables to clone, unprefixed
 	 * @param string $newTablePrefix Prefix to assign to the tables
 	 * @param string $oldTablePrefix Prefix on current tables, if not $wgDBprefix
 	 * @param bool $dropCurrentTables
 	 */
-	public function __construct( DatabaseBase $db, array $tablesToClone,
+	public function __construct( IDatabase $db, array $tablesToClone,
 		$newTablePrefix, $oldTablePrefix = '', $dropCurrentTables = true
 	) {
 		$this->db = $db;
@@ -131,7 +131,7 @@ class CloneDatabase {
 		global $wgDBprefix;
 		wfGetLBFactory()->forEachLB( function( LoadBalancer $lb ) use ( $prefix ) {
 			$lb->setDomainPrefix( $prefix );
-			$lb->forEachOpenConnection( function ( DatabaseBase $db ) use ( $prefix ) {
+			$lb->forEachOpenConnection( function ( IDatabase $db ) use ( $prefix ) {
 				$db->tablePrefix( $prefix );
 			} );
 		} );

@@ -81,7 +81,7 @@ class DatabaseMssql extends Database {
 	 * @param string $password
 	 * @param string $dbName
 	 * @throws DBConnectionError
-	 * @return bool|DatabaseBase|null
+	 * @return bool|resource|null
 	 */
 	public function open( $server, $user, $password, $dbName ) {
 		# Test for driver support, to avoid suppressed fatal error
@@ -819,8 +819,7 @@ class DatabaseMssql extends Database {
 	 */
 	public function makeList( $a, $mode = LIST_COMMA, $binaryColumns = [] ) {
 		if ( !is_array( $a ) ) {
-			throw new DBUnexpectedError( $this,
-				'DatabaseBase::makeList called with incorrect parameters' );
+			throw new DBUnexpectedError( $this, __METHOD__ . ' called with incorrect parameters' );
 		}
 
 		if ( $mode != LIST_NAMES ) {
