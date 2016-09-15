@@ -37,6 +37,8 @@ abstract class LBFactoryMW extends LBFactory implements DestructibleService {
 	 * @TODO: inject objects via dependency framework
 	 */
 	public function __construct( array $conf ) {
+		global $wgCommandLineMode;
+
 		$defaults = [
 			'domain' => wfWikiID(),
 			'hostname' => wfHostname(),
@@ -60,6 +62,11 @@ abstract class LBFactoryMW extends LBFactory implements DestructibleService {
 		if ( $wCache->getQoS( $wCache::ATTR_EMULATION ) > $wCache::QOS_EMULATION_SQL ) {
 			$defaults['wanCache'] = $wCache;
 		}
+
+		$this->agent = isset( $params['agent'] )
+			? $params['agent']
+			: RequestContext::getMain()->getRequest()->getIP();
+		$this->cliMode = isset( $params['cliMode'] ) ? $params['cliMode'] : $wgCommandLineMode;
 
 		parent::__construct( $conf + $defaults );
 	}
