@@ -20,7 +20,7 @@
  */
 use Psr\Log\LoggerInterface;
 
-class LoadMonitorNull implements LoadMonitor {
+class LoadMonitorNull implements ILoadMonitor {
 	public function __construct( ILoadBalancer $lb, BagOStuff $sCache, BagOStuff $cCache ) {
 
 	}
