@@ -65,6 +65,13 @@ class WinCacheBagOStuff extends BagOStuff {
 	}
 
 	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
-		return $this->mergeViaCas( $key, $callback, $exptime, $attempts );
+		if ( wincache_lock( $key ) ) { // optimize with FIFO lock
+			$ok = $this->mergeViaLock( $key, $callback, $exptime, $attempts, $flags );
+			wincache_unlock( $key );
+		} else {
+			$ok = false;
+		}
+
+		return $ok;
 	}
 }
