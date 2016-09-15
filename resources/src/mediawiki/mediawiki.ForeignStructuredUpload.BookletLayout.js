@@ -309,6 +309,56 @@
 		} );
 	};
 
+	/**
+	 * @inheritdoc
+	 */
+	mw.ForeignStructuredUpload.BookletLayout.prototype.saveFile = function () {
+		var layout = this;
+
+		/*
+		 * Before (attempting to) complete the upload, we'll want to doublecheck
+		 * if the filename we're trying to upload under doesn't exist here.
+		 *
+		 * We'll chain something onto this.uploadPromise, before
+		 * finishStashUpload() is called, so that we can reject in time should
+		 * it turn out that the filename is not available.
+		 */
+		this.uploadPromise = this.uploadPromise.then( function () {
+			var title = mw.Title.newFromText(
+					layout.getFilename(),
+					mw.config.get( 'wgNamespaceIds' ).file
+				);
+
+			return layout.upload.getApi().then( function ( api ) {
+				return api.get( {
+					action: 'query',
+					prop: 'info',
+					titles: title.getPrefixedDb(),
+					formatversion: 2
+				} ).then(
+					function ( result ) {
+						// if the file already exists, reject right away, before
+						// ever firing finishStashUpload()
+						if ( !result.query.pages[ 0 ].missing ) {
+							return $.Deferred().reject( new OO.ui.Error(
+								$( '<p>' ).msg( 'fileexists', title.getPrefixedDb() ),
+								{ recoverable: false }
+							) );
+						}
+					},
+					function () {
+						// API call failed - this could be a connection hiccup...
+						// Let's just ignore this validation step and turn this
+						// failure into a successful resolve ;)
+						return $.Deferred().resolve();
+					}
+				);
+			} );
+		} );
+
+		return mw.ForeignStructuredUpload.BookletLayout.parent.prototype.saveFile.call( this );
+	};
+
 	/* Getters */
 
 	/**
