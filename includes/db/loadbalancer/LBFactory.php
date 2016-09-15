@@ -138,7 +138,6 @@ abstract class LBFactory implements DestructibleService {
 			'LBFactory_Simple' => 'LBFactorySimple',
 			'LBFactory_Single' => 'LBFactorySingle',
 			'LBFactory_Multi' => 'LBFactoryMulti',
-			'LBFactory_Fake' => 'LBFactoryFake',
 		];
 
 		$class = $config['class'];

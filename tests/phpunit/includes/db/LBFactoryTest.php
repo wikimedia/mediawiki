@@ -54,7 +54,6 @@ class LBFactoryTest extends MediaWikiTestCase {
 			[ 'LBFactorySimple', 'LBFactory_Simple' ],
 			[ 'LBFactorySingle', 'LBFactory_Single' ],
 			[ 'LBFactoryMulti', 'LBFactory_Multi' ],
-			[ 'LBFactoryFake', 'LBFactory_Fake' ],
 		];
 	}
 

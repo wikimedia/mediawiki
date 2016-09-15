@@ -654,7 +654,6 @@ $wgAutoloadLocalClasses = [
 	'KkConverter' => __DIR__ . '/languages/classes/LanguageKk.php',
 	'KuConverter' => __DIR__ . '/languages/classes/LanguageKu.php',
 	'LBFactory' => __DIR__ . '/includes/db/loadbalancer/LBFactory.php',
-	'LBFactoryFake' => __DIR__ . '/includes/db/loadbalancer/LBFactoryFake.php',
 	'LBFactoryMulti' => __DIR__ . '/includes/db/loadbalancer/LBFactoryMulti.php',
 	'LBFactorySimple' => __DIR__ . '/includes/db/loadbalancer/LBFactorySimple.php',
 	'LBFactorySingle' => __DIR__ . '/includes/db/loadbalancer/LBFactorySingle.php',
