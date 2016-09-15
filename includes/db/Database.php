@@ -2907,7 +2907,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 		$this->mTrxAutomatic = ( $mode === self::TRANSACTION_INTERNAL );
 		$this->mTrxAutomaticAtomic = false;
 		$this->mTrxAtomicLevels = [];
-		$this->mTrxShortId = wfRandomString( 12 );
+		$this->mTrxShortId = sprintf( "%06x" , mt_rand( 0, 0xffffff ) );
 		$this->mTrxWriteDuration = 0.0;
 		$this->mTrxWriteQueryCount = 0;
 		$this->mTrxWriteAdjDuration = 0.0;
