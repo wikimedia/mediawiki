@@ -427,4 +427,22 @@ class DatabaseTest extends MediaWikiTestCase {
 		$this->assertEquals( $origSsl, $db->getFlag( DBO_SSL ) );
 		$this->assertEquals( $origTrx, $db->getFlag( DBO_TRX ) );
 	}
+
+	/**
+	 * @covers DatabaseBase::tablePrefix()
+	 * @covers DatabaseBase::dbSchema()
+	 */
+	public function testMutators() {
+		$old = $this->db->tablePrefix();
+		$this->assertEquals( $old, $this->db->tablePrefix(), "Prefix unchanged" );
+		$this->assertEquals( $old, $this->db->tablePrefix( 'xxx' ) );
+		$this->assertEquals( 'xxx', $this->db->tablePrefix(), "Prefix set" );
+		$this->db->tablePrefix( $old );
+
+		$old = $this->db->dbSchema();
+		$this->assertEquals( $old, $this->db->dbSchema(), "Schema unchanged" );
+		$this->assertEquals( $old, $this->db->dbSchema( 'xxx' ) );
+		$this->assertEquals( 'xxx', $this->db->dbSchema(), "Schema set" );
+		$this->db->dbSchema( $old );
+	}
 }

@@ -466,14 +466,18 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 
 	public function tablePrefix( $prefix = null ) {
 		$old = $this->mTablePrefix;
-		$this->mTablePrefix = $prefix;
+		if ( $prefix !== null ) {
+			$this->mTablePrefix = $prefix;
+		}
 
 		return $old;
 	}
 
 	public function dbSchema( $schema = null ) {
 		$old = $this->mSchema;
-		$this->mSchema = $schema;
+		if ( $schema !== null ) {
+			$this->mSchema = $schema;
+		}
 
 		return $old;
 	}
