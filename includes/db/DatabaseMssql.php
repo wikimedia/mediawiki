@@ -42,18 +42,6 @@ class DatabaseMssql extends DatabaseBase {
 
 	protected $mPort;
 
-	public function cascadingDeletes() {
-		return true;
-	}
-
-	public function cleanupTriggers() {
-		return false;
-	}
-
-	public function realTimestamps() {
-		return false;
-	}
-
 	public function implicitGroupby() {
 		return false;
 	}
