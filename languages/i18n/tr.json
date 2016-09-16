@@ -87,7 +87,8 @@
 			"Hbseren",
 			"Kumkumuk",
 			"Basak",
-			"Ece Alpdeniz"
+			"Ece Alpdeniz",
+			"Superyetkin"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çiz:",
@@ -2519,7 +2520,7 @@
 	"spam_blanking": "Tüm revizyonlar $1 sayfasına bağlantı içeriyor, boşaltılıyor",
 	"spam_deleting": "Tüm revizyonlar $1 sayfasına bağlantı içeriyor, siliniyor",
 	"simpleantispam-label": "Anti-spam denetimi.\nBunu <strong>doldurmayın</strong>!",
-	"pageinfo-title": "Bilgi için \"$1\"",
+	"pageinfo-title": "\"$1\" sayfa bilgisi",
 	"pageinfo-not-current": "Üzgünüz, eski sürümler için bu bilgileri sağlamamız mümkün değildir.",
 	"pageinfo-header-basic": "Temel bilgiler",
 	"pageinfo-header-edits": "Düzenleme geçmişi",

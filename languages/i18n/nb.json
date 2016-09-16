@@ -1110,7 +1110,7 @@
 	"prefs-help-prefershttps": "Denne preferansen vil virke etter neste innlogging.",
 	"prefswarning-warning": "Du har gjort endringer i dine innstillinger som ikke er lagret ennå.\nDersom du forlater denne siden utenk å klikke på \"$1\" blir ikke innstillingene dine oppdatert.",
 	"prefs-tabs-navigation-hint": "Tips: Du kan bruke venstre- og høyrepiltastene for å navigere mellom fanene i fanelisten",
-	"userrights": "Rettighets&shy;kontroll",
+	"userrights": "Bruker&shy;rettighets&shy;kontroll",
 	"userrights-lookup-user": "Ordne brukergrupper",
 	"userrights-user-editname": "Fyll inn et brukernavn:",
 	"editusergroup": "Endre {{GENDER:$1|brukergrupper}}",

@@ -41,6 +41,7 @@
 	"tog-watchdefault": "Dodaj stranice i datoteke koje uređujem na moj spisak praćenih članaka",
 	"tog-watchmoves": "Dodaj stranice i datoteke koje premjestim na moj spisak praćenih članaka",
 	"tog-watchdeletion": "Dodaj stranice i datoteke koje izbrišem na moj spisak praćenih članaka",
+	"tog-watchuploads": "Dodaj datoteke koje postavim na moj spisak praćenja",
 	"tog-watchrollback": "Sve stranice za koje sam izvršio povrat izmjena stavi na spisak praćenja",
 	"tog-minordefault": "Označi sve izmjene manjim isprva",
 	"tog-previewontop": "Prikaži pregled iznad okvira za uređivanje",
