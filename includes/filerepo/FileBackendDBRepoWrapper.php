@@ -50,8 +50,10 @@ class FileBackendDBRepoWrapper extends FileBackend {
 	protected $dbs;
 
 	public function __construct( array $config ) {
-		$config['name'] = $config['backend']->getName();
-		$config['wikiId'] = $config['backend']->getWikiId();
+		/** @var FileBackend $backend */
+		$backend = $config['backend'];
+		$config['name'] = $backend->getName();
+		$config['wikiId'] = $backend->getWikiId();
 		parent::__construct( $config );
 		$this->backend = $config['backend'];
 		$this->repoName = $config['repoName'];
@@ -256,7 +258,7 @@ class FileBackendDBRepoWrapper extends FileBackend {
 		return $this->translateSrcParams( __FUNCTION__, $params );
 	}
 
-	public function getScopedLocksForOps( array $ops, Status $status ) {
+	public function getScopedLocksForOps( array $ops, StatusValue $status ) {
 		return $this->backend->getScopedLocksForOps( $ops, $status );
 	}
 
