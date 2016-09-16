@@ -95,11 +95,11 @@ abstract class FileJournal {
 	 *     newSha1 : The final base 36 SHA-1 of the file
 	 *   Note that 'false' should be used as the SHA-1 for non-existing files.
 	 * @param string $batchId UUID string that identifies the operation batch
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function logChangeBatch( array $entries, $batchId ) {
 		if ( !count( $entries ) ) {
-			return Status::newGood();
+			return StatusValue::newGood();
 		}
 
 		return $this->doLogChangeBatch( $entries, $batchId );
@@ -110,7 +110,7 @@ abstract class FileJournal {
 	 *
 	 * @param array $entries List of file operations (each an array of parameters)
 	 * @param string $batchId UUID string that identifies the operation batch
-	 * @return Status
+	 * @return StatusValue
 	 */
 	abstract protected function doLogChangeBatch( array $entries, $batchId );
 
@@ -186,7 +186,7 @@ abstract class FileJournal {
 	/**
 	 * Purge any old log entries
 	 *
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function purgeOldLogs() {
 		return $this->doPurgeOldLogs();
@@ -194,7 +194,7 @@ abstract class FileJournal {
 
 	/**
 	 * @see FileJournal::purgeOldLogs()
-	 * @return Status
+	 * @return StatusValue
 	 */
 	abstract protected function doPurgeOldLogs();
 }
@@ -208,10 +208,10 @@ class NullFileJournal extends FileJournal {
 	 * @see FileJournal::doLogChangeBatch()
 	 * @param array $entries
 	 * @param string $batchId
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function doLogChangeBatch( array $entries, $batchId ) {
-		return Status::newGood();
+		return StatusValue::newGood();
 	}
 
 	/**
@@ -243,9 +243,9 @@ class NullFileJournal extends FileJournal {
 
 	/**
 	 * @see FileJournal::doPurgeOldLogs()
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function doPurgeOldLogs() {
-		return Status::newGood();
+		return StatusValue::newGood();
 	}
 }

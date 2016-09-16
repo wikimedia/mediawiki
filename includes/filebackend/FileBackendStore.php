@@ -106,19 +106,19 @@ abstract class FileBackendStore extends FileBackend {
 	 *   - content     : the raw file contents
 	 *   - dst         : destination storage path
 	 *   - headers     : HTTP header name/value map
-	 *   - async       : Status will be returned immediately if supported.
-	 *                   If the status is OK, then its value field will be
+	 *   - async       : StatusValue will be returned immediately if supported.
+	 *                   If the StatusValue is OK, then its value field will be
 	 *                   set to a FileBackendStoreOpHandle object.
 	 *   - dstExists   : Whether a file exists at the destination (optimization).
 	 *                   Callers can use "false" if no existing file is being changed.
 	 *
 	 * @param array $params
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function createInternal( array $params ) {
 		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		if ( strlen( $params['content'] ) > $this->maxFileSizeInternal() ) {
-			$status = Status::newFatal( 'backend-fail-maxsize',
+			$status = $this->newStatus( 'backend-fail-maxsize',
 				$params['dst'], $this->maxFileSizeInternal() );
 		} else {
 			$status = $this->doCreateInternal( $params );
@@ -134,7 +134,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackendStore::createInternal()
 	 * @param array $params
-	 * @return Status
+	 * @return StatusValue
 	 */
 	abstract protected function doCreateInternal( array $params );
 
@@ -147,19 +147,19 @@ abstract class FileBackendStore extends FileBackend {
 	 *   - src         : source path on disk
 	 *   - dst         : destination storage path
 	 *   - headers     : HTTP header name/value map
-	 *   - async       : Status will be returned immediately if supported.
-	 *                   If the status is OK, then its value field will be
+	 *   - async       : StatusValue will be returned immediately if supported.
+	 *                   If the StatusValue is OK, then its value field will be
 	 *                   set to a FileBackendStoreOpHandle object.
 	 *   - dstExists   : Whether a file exists at the destination (optimization).
 	 *                   Callers can use "false" if no existing file is being changed.
 	 *
 	 * @param array $params
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function storeInternal( array $params ) {
 		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		if ( filesize( $params['src'] ) > $this->maxFileSizeInternal() ) {
-			$status = Status::newFatal( 'backend-fail-maxsize',
+			$status = $this->newStatus( 'backend-fail-maxsize',
 				$params['dst'], $this->maxFileSizeInternal() );
 		} else {
 			$status = $this->doStoreInternal( $params );
@@ -175,7 +175,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackendStore::storeInternal()
 	 * @param array $params
-	 * @return Status
+	 * @return StatusValue
 	 */
 	abstract protected function doStoreInternal( array $params );
 
@@ -189,14 +189,14 @@ abstract class FileBackendStore extends FileBackend {
 	 *   - dst                 : destination storage path
 	 *   - ignoreMissingSource : do nothing if the source file does not exist
 	 *   - headers             : HTTP header name/value map
-	 *   - async               : Status will be returned immediately if supported.
-	 *                           If the status is OK, then its value field will be
+	 *   - async               : StatusValue will be returned immediately if supported.
+	 *                           If the StatusValue is OK, then its value field will be
 	 *                           set to a FileBackendStoreOpHandle object.
 	 *   - dstExists           : Whether a file exists at the destination (optimization).
 	 *                           Callers can use "false" if no existing file is being changed.
 	 *
 	 * @param array $params
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function copyInternal( array $params ) {
 		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
@@ -212,7 +212,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackendStore::copyInternal()
 	 * @param array $params
-	 * @return Status
+	 * @return StatusValue
 	 */
 	abstract protected function doCopyInternal( array $params );
 
@@ -223,12 +223,12 @@ abstract class FileBackendStore extends FileBackend {
 	 * $params include:
 	 *   - src                 : source storage path
 	 *   - ignoreMissingSource : do nothing if the source file does not exist
-	 *   - async               : Status will be returned immediately if supported.
-	 *                           If the status is OK, then its value field will be
+	 *   - async               : StatusValue will be returned immediately if supported.
+	 *                           If the StatusValue is OK, then its value field will be
 	 *                           set to a FileBackendStoreOpHandle object.
 	 *
 	 * @param array $params
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function deleteInternal( array $params ) {
 		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
@@ -241,7 +241,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackendStore::deleteInternal()
 	 * @param array $params
-	 * @return Status
+	 * @return StatusValue
 	 */
 	abstract protected function doDeleteInternal( array $params );
 
@@ -255,14 +255,14 @@ abstract class FileBackendStore extends FileBackend {
 	 *   - dst                 : destination storage path
 	 *   - ignoreMissingSource : do nothing if the source file does not exist
 	 *   - headers             : HTTP header name/value map
-	 *   - async               : Status will be returned immediately if supported.
-	 *                           If the status is OK, then its value field will be
+	 *   - async               : StatusValue will be returned immediately if supported.
+	 *                           If the StatusValue is OK, then its value field will be
 	 *                           set to a FileBackendStoreOpHandle object.
 	 *   - dstExists           : Whether a file exists at the destination (optimization).
 	 *                           Callers can use "false" if no existing file is being changed.
 	 *
 	 * @param array $params
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function moveInternal( array $params ) {
 		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
@@ -279,7 +279,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackendStore::moveInternal()
 	 * @param array $params
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function doMoveInternal( array $params ) {
 		unset( $params['async'] ); // two steps, won't work here :)
@@ -303,12 +303,12 @@ abstract class FileBackendStore extends FileBackend {
 	 * $params include:
 	 *   - src           : source storage path
 	 *   - headers       : HTTP header name/value map
-	 *   - async         : Status will be returned immediately if supported.
-	 *                     If the status is OK, then its value field will be
+	 *   - async         : StatusValue will be returned immediately if supported.
+	 *                     If the StatusValue is OK, then its value field will be
 	 *                     set to a FileBackendStoreOpHandle object.
 	 *
 	 * @param array $params
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function describeInternal( array $params ) {
 		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
@@ -317,7 +317,7 @@ abstract class FileBackendStore extends FileBackend {
 			$this->clearCache( [ $params['src'] ] );
 			$this->deleteFileCache( $params['src'] ); // persistent cache
 		} else {
-			$status = Status::newGood(); // nothing to do
+			$status = $this->newStatus(); // nothing to do
 		}
 
 		return $status;
@@ -326,10 +326,10 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackendStore::describeInternal()
 	 * @param array $params
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function doDescribeInternal( array $params ) {
-		return Status::newGood();
+		return $this->newStatus();
 	}
 
 	/**
@@ -337,15 +337,15 @@ abstract class FileBackendStore extends FileBackend {
 	 * Do not call this function from places outside FileBackend and FileOp.
 	 *
 	 * @param array $params
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function nullInternal( array $params ) {
-		return Status::newGood();
+		return $this->newStatus();
 	}
 
 	final public function concatenate( array $params ) {
 		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		// Try to lock the source files for the scope of this function
 		$scopeLockS = $this->getScopedFileLocks( $params['srcs'], LockManager::LOCK_UW, $status );
@@ -366,10 +366,10 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackendStore::concatenate()
 	 * @param array $params
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function doConcatenate( array $params ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 		$tmpPath = $params['dst']; // convenience
 		unset( $params['latest'] ); // sanity
 
@@ -438,7 +438,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	final protected function doPrepare( array $params ) {
 		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) {
@@ -465,15 +465,15 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param string $container
 	 * @param string $dir
 	 * @param array $params
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function doPrepareInternal( $container, $dir, array $params ) {
-		return Status::newGood();
+		return $this->newStatus();
 	}
 
 	final protected function doSecure( array $params ) {
 		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) {
@@ -500,15 +500,15 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param string $container
 	 * @param string $dir
 	 * @param array $params
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function doSecureInternal( $container, $dir, array $params ) {
-		return Status::newGood();
+		return $this->newStatus();
 	}
 
 	final protected function doPublish( array $params ) {
 		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) {
@@ -535,15 +535,15 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param string $container
 	 * @param string $dir
 	 * @param array $params
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function doPublishInternal( $container, $dir, array $params ) {
-		return Status::newGood();
+		return $this->newStatus();
 	}
 
 	final protected function doClean( array $params ) {
 		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		// Recursive: first delete all empty subdirs recursively
 		if ( !empty( $params['recursive'] ) && !$this->directoriesAreVirtual() ) {
@@ -591,10 +591,10 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param string $container
 	 * @param string $dir
 	 * @param array $params
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function doCleanInternal( $container, $dir, array $params ) {
-		return Status::newGood();
+		return $this->newStatus();
 	}
 
 	final public function fileExists( array $params ) {
@@ -842,7 +842,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	final public function streamFile( array $params ) {
 		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		// Always set some fields for subclass convenience
 		$params['options'] = isset( $params['options'] ) ? $params['options'] : [];
@@ -863,10 +863,10 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackendStore::streamFile()
 	 * @param array $params
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function doStreamFile( array $params ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		$flags = 0;
 		$flags |= !empty( $params['headless'] ) ? StreamFile::STREAM_HEADLESS : 0;
@@ -992,7 +992,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * An exception is thrown if an unsupported operation is requested.
 	 *
 	 * @param array $ops Same format as doOperations()
-	 * @return array List of FileOp objects
+	 * @return FileOp[] List of FileOp objects
 	 * @throws FileBackendError
 	 */
 	final public function getOperationsInternal( array $ops ) {
@@ -1052,7 +1052,7 @@ abstract class FileBackendStore extends FileBackend {
 		];
 	}
 
-	public function getScopedLocksForOps( array $ops, Status $status ) {
+	public function getScopedLocksForOps( array $ops, StatusValue $status ) {
 		$paths = $this->getPathsToLockForOpsInternal( $this->getOperationsInternal( $ops ) );
 
 		return $this->getScopedFileLocks( $paths, 'mixed', $status );
@@ -1060,7 +1060,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	final protected function doOperationsInternal( array $ops, array $opts ) {
 		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		// Fix up custom header name/value pairs...
 		$ops = array_map( [ $this, 'sanitizeOpHeaders' ], $ops );
@@ -1106,7 +1106,7 @@ abstract class FileBackendStore extends FileBackend {
 			$subStatus = FileOpBatch::attempt( $performOps, $opts, $this->fileJournal );
 		} else {
 			// If we could not even stat some files, then bail out...
-			$subStatus = Status::newFatal( 'backend-fail-internal', $this->name );
+			$subStatus = $this->newStatus( 'backend-fail-internal', $this->name );
 			foreach ( $ops as $i => $op ) { // mark each op as failed
 				$subStatus->success[$i] = false;
 				++$subStatus->failCount;
@@ -1115,7 +1115,7 @@ abstract class FileBackendStore extends FileBackend {
 				" stat failure; aborted operations: " . FormatJson::encode( $ops ) );
 		}
 
-		// Merge errors into status fields
+		// Merge errors into StatusValue fields
 		$status->merge( $subStatus );
 		$status->success = $subStatus->success; // not done in merge()
 
@@ -1127,7 +1127,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	final protected function doQuickOperationsInternal( array $ops ) {
 		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		// Fix up custom header name/value pairs...
 		$ops = array_map( [ $this, 'sanitizeOpHeaders' ], $ops );
@@ -1184,13 +1184,13 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * Execute a list of FileBackendStoreOpHandle handles in parallel.
-	 * The resulting Status object fields will correspond
+	 * The resulting StatusValue object fields will correspond
 	 * to the order in which the handles where given.
 	 *
 	 * @param FileBackendStoreOpHandle[] $fileOpHandles
 	 *
 	 * @throws FileBackendError
-	 * @return array Map of Status objects
+	 * @return array Map of StatusValue objects
 	 */
 	final public function executeOpHandlesInternal( array $fileOpHandles ) {
 		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
@@ -1216,7 +1216,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param FileBackendStoreOpHandle[] $fileOpHandles
 	 *
 	 * @throws FileBackendError
-	 * @return Status[] List of corresponding Status objects
+	 * @return StatusValue[] List of corresponding StatusValue objects
 	 */
 	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {
 		if ( count( $fileOpHandles ) ) {
@@ -1844,7 +1844,7 @@ abstract class FileBackendStore extends FileBackend {
  * FileBackendStore helper class for performing asynchronous file operations.
  *
  * For example, calling FileBackendStore::createInternal() with the "async"
- * param flag may result in a Status that contains this object as a value.
+ * param flag may result in a StatusValue that contains this object as a value.
  * This class is largely backend-specific and is mostly just "magic" to be
  * passed to FileBackendStore::executeOpHandlesInternal().
  */
