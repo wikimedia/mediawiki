@@ -35,7 +35,7 @@ class ScopedLock {
 	/** @var LockManager */
 	protected $manager;
 
-	/** @var Status */
+	/** @var StatusValue */
 	protected $status;
 
 	/** @var array Map of lock types to resource paths */
@@ -44,9 +44,9 @@ class ScopedLock {
 	/**
 	 * @param LockManager $manager
 	 * @param array $pathsByType Map of lock types to path lists
-	 * @param Status $status
+	 * @param StatusValue $status
 	 */
-	protected function __construct( LockManager $manager, array $pathsByType, Status $status ) {
+	protected function __construct( LockManager $manager, array $pathsByType, StatusValue $status ) {
 		$this->manager = $manager;
 		$this->pathsByType = $pathsByType;
 		$this->status = $status;
@@ -55,19 +55,19 @@ class ScopedLock {
 	/**
 	 * Get a ScopedLock object representing a lock on resource paths.
 	 * Any locks are released once this object goes out of scope.
-	 * The status object is updated with any errors or warnings.
+	 * The StatusValue object is updated with any errors or warnings.
 	 *
 	 * @param LockManager $manager
 	 * @param array $paths List of storage paths or map of lock types to path lists
 	 * @param int|string $type LockManager::LOCK_* constant or "mixed" and $paths
 	 *   can be a map of types to paths (since 1.22). Otherwise $type should be an
 	 *   integer and $paths should be a list of paths.
-	 * @param Status $status
+	 * @param StatusValue $status
 	 * @param int $timeout Timeout in seconds (0 means non-blocking) (since 1.22)
 	 * @return ScopedLock|null Returns null on failure
 	 */
 	public static function factory(
-		LockManager $manager, array $paths, $type, Status $status, $timeout = 0
+		LockManager $manager, array $paths, $type, StatusValue $status, $timeout = 0
 	) {
 		$pathsByType = is_integer( $type ) ? [ $type => $paths ] : $paths;
 		$lockStatus = $manager->lockByType( $pathsByType, $timeout );
@@ -80,7 +80,7 @@ class ScopedLock {
 	}
 
 	/**
-	 * Release a scoped lock and set any errors in the attatched Status object.
+	 * Release a scoped lock and set any errors in the attatched StatusValue object.
 	 * This is useful for early release of locks before function scope is destroyed.
 	 * This is the same as setting the lock object to null.
 	 *
@@ -98,7 +98,7 @@ class ScopedLock {
 		$wasOk = $this->status->isOK();
 		$this->status->merge( $this->manager->unlockByType( $this->pathsByType ) );
 		if ( $wasOk ) {
-			// Make sure status is OK, despite any unlockFiles() fatals
+			// Make sure StatusValue is OK, despite any unlockFiles() fatals
 			$this->status->setResult( true, $this->status->value );
 		}
 	}
