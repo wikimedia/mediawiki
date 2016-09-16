@@ -120,6 +120,8 @@ class JobQueueGroup {
 	 * @return void
 	 */
 	public function push( $jobs ) {
+		global $wgJobTypesExcludedFromDefaultQueue;
+
 		$jobs = is_array( $jobs ) ? $jobs : [ $jobs ];
 		if ( !count( $jobs ) ) {
 			return;
@@ -149,7 +151,7 @@ class JobQueueGroup {
 			'true',
 			15
 		);
-		if ( array_intersect( array_keys( $jobsByType ), $this->getDefaultQueueTypes() ) ) {
+		if ( array_diff( array_keys( $jobsByType ), $wgJobTypesExcludedFromDefaultQueue ) ) {
 			$cache->set(
 				$cache->makeGlobalKey( 'jobqueue', $this->wiki, 'hasjobs', self::TYPE_DEFAULT ),
 				'true',
