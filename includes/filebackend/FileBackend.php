@@ -104,6 +104,9 @@ abstract class FileBackend {
 	/** @var FileJournal */
 	protected $fileJournal;
 
+	/** @var callable */
+	protected $statusWrapper;
+
 	/** Bitfield flags for supported features */
 	const ATTR_HEADERS = 1; // files can be tagged with standard HTTP headers
 	const ATTR_METADATA = 2; // files can be stored with metadata key/values
@@ -156,6 +159,10 @@ abstract class FileBackend {
 		$this->concurrency = isset( $config['concurrency'] )
 			? (int)$config['concurrency']
 			: 50;
+		// @TODO: inject this
+		$this->statusWrapper = function ( StatusValue $sv ) {
+			return Status::wrap( $sv );
+		};
 	}
 
 	/**
@@ -359,20 +366,20 @@ abstract class FileBackend {
 	 * during the operation. The 'failCount', 'successCount', and 'success' members
 	 * will reflect each operation attempted.
 	 *
-	 * The status will be "OK" unless:
+	 * The StatusValue will be "OK" unless:
 	 *   - a) unexpected operation errors occurred (network partitions, disk full...)
 	 *   - b) significant operation errors occurred and 'force' was not set
 	 *
 	 * @param array $ops List of operations to execute in order
 	 * @param array $opts Batch operation options
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function doOperations( array $ops, array $opts = [] ) {
 		if ( empty( $opts['bypassReadOnly'] ) && $this->isReadOnly() ) {
-			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
+			return $this->newStatus( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
 		if ( !count( $ops ) ) {
-			return Status::newGood(); // nothing to do
+			return $this->newStatus(); // nothing to do
 		}
 
 		$ops = $this->resolveFSFileObjects( $ops );
@@ -402,7 +409,7 @@ abstract class FileBackend {
 	 *
 	 * @param array $op Operation
 	 * @param array $opts Operation options
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function doOperation( array $op, array $opts = [] ) {
 		return $this->doOperations( [ $op ], $opts );
@@ -416,7 +423,7 @@ abstract class FileBackend {
 	 *
 	 * @param array $params Operation parameters
 	 * @param array $opts Operation options
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function create( array $params, array $opts = [] ) {
 		return $this->doOperation( [ 'op' => 'create' ] + $params, $opts );
@@ -430,7 +437,7 @@ abstract class FileBackend {
 	 *
 	 * @param array $params Operation parameters
 	 * @param array $opts Operation options
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function store( array $params, array $opts = [] ) {
 		return $this->doOperation( [ 'op' => 'store' ] + $params, $opts );
@@ -444,7 +451,7 @@ abstract class FileBackend {
 	 *
 	 * @param array $params Operation parameters
 	 * @param array $opts Operation options
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function copy( array $params, array $opts = [] ) {
 		return $this->doOperation( [ 'op' => 'copy' ] + $params, $opts );
@@ -458,7 +465,7 @@ abstract class FileBackend {
 	 *
 	 * @param array $params Operation parameters
 	 * @param array $opts Operation options
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function move( array $params, array $opts = [] ) {
 		return $this->doOperation( [ 'op' => 'move' ] + $params, $opts );
@@ -472,7 +479,7 @@ abstract class FileBackend {
 	 *
 	 * @param array $params Operation parameters
 	 * @param array $opts Operation options
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function delete( array $params, array $opts = [] ) {
 		return $this->doOperation( [ 'op' => 'delete' ] + $params, $opts );
@@ -486,7 +493,7 @@ abstract class FileBackend {
 	 *
 	 * @param array $params Operation parameters
 	 * @param array $opts Operation options
-	 * @return Status
+	 * @return StatusValue
 	 * @since 1.21
 	 */
 	final public function describe( array $params, array $opts = [] ) {
@@ -597,20 +604,20 @@ abstract class FileBackend {
 	 * @par Return value:
 	 * This returns a Status, which contains all warnings and fatals that occurred
 	 * during the operation. The 'failCount', 'successCount', and 'success' members
-	 * will reflect each operation attempted for the given files. The status will be
+	 * will reflect each operation attempted for the given files. The StatusValue will be
 	 * considered "OK" as long as no fatal errors occurred.
 	 *
 	 * @param array $ops Set of operations to execute
 	 * @param array $opts Batch operation options
-	 * @return Status
+	 * @return StatusValue
 	 * @since 1.20
 	 */
 	final public function doQuickOperations( array $ops, array $opts = [] ) {
 		if ( empty( $opts['bypassReadOnly'] ) && $this->isReadOnly() ) {
-			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
+			return $this->newStatus( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
 		if ( !count( $ops ) ) {
-			return Status::newGood(); // nothing to do
+			return $this->newStatus(); // nothing to do
 		}
 
 		$ops = $this->resolveFSFileObjects( $ops );
@@ -638,7 +645,7 @@ abstract class FileBackend {
 	 * @see FileBackend::doQuickOperations()
 	 *
 	 * @param array $op Operation
-	 * @return Status
+	 * @return StatusValue
 	 * @since 1.20
 	 */
 	final public function doQuickOperation( array $op ) {
@@ -652,7 +659,7 @@ abstract class FileBackend {
 	 * @see FileBackend::doQuickOperation()
 	 *
 	 * @param array $params Operation parameters
-	 * @return Status
+	 * @return StatusValue
 	 * @since 1.20
 	 */
 	final public function quickCreate( array $params ) {
@@ -666,7 +673,7 @@ abstract class FileBackend {
 	 * @see FileBackend::doQuickOperation()
 	 *
 	 * @param array $params Operation parameters
-	 * @return Status
+	 * @return StatusValue
 	 * @since 1.20
 	 */
 	final public function quickStore( array $params ) {
@@ -680,7 +687,7 @@ abstract class FileBackend {
 	 * @see FileBackend::doQuickOperation()
 	 *
 	 * @param array $params Operation parameters
-	 * @return Status
+	 * @return StatusValue
 	 * @since 1.20
 	 */
 	final public function quickCopy( array $params ) {
@@ -694,7 +701,7 @@ abstract class FileBackend {
 	 * @see FileBackend::doQuickOperation()
 	 *
 	 * @param array $params Operation parameters
-	 * @return Status
+	 * @return StatusValue
 	 * @since 1.20
 	 */
 	final public function quickMove( array $params ) {
@@ -708,7 +715,7 @@ abstract class FileBackend {
 	 * @see FileBackend::doQuickOperation()
 	 *
 	 * @param array $params Operation parameters
-	 * @return Status
+	 * @return StatusValue
 	 * @since 1.20
 	 */
 	final public function quickDelete( array $params ) {
@@ -722,7 +729,7 @@ abstract class FileBackend {
 	 * @see FileBackend::doQuickOperation()
 	 *
 	 * @param array $params Operation parameters
-	 * @return Status
+	 * @return StatusValue
 	 * @since 1.21
 	 */
 	final public function quickDescribe( array $params ) {
@@ -739,7 +746,7 @@ abstract class FileBackend {
 	 *   - srcs        : ordered source storage paths (e.g. chunk1, chunk2, ...)
 	 *   - dst         : file system path to 0-byte temp file
 	 *   - parallelize : try to do operations in parallel when possible
-	 * @return Status
+	 * @return StatusValue
 	 */
 	abstract public function concatenate( array $params );
 
@@ -759,11 +766,11 @@ abstract class FileBackend {
 	 *   - noAccess       : try to deny file access (since 1.20)
 	 *   - noListing      : try to deny file listing (since 1.20)
 	 *   - bypassReadOnly : allow writes in read-only mode (since 1.20)
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function prepare( array $params ) {
 		if ( empty( $params['bypassReadOnly'] ) && $this->isReadOnly() ) {
-			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
+			return $this->newStatus( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
@@ -790,11 +797,11 @@ abstract class FileBackend {
 	 *   - noAccess       : try to deny file access
 	 *   - noListing      : try to deny file listing
 	 *   - bypassReadOnly : allow writes in read-only mode (since 1.20)
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function secure( array $params ) {
 		if ( empty( $params['bypassReadOnly'] ) && $this->isReadOnly() ) {
-			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
+			return $this->newStatus( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
@@ -822,12 +829,12 @@ abstract class FileBackend {
 	 *   - access         : try to allow file access
 	 *   - listing        : try to allow file listing
 	 *   - bypassReadOnly : allow writes in read-only mode (since 1.20)
-	 * @return Status
+	 * @return StatusValue
 	 * @since 1.20
 	 */
 	final public function publish( array $params ) {
 		if ( empty( $params['bypassReadOnly'] ) && $this->isReadOnly() ) {
-			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
+			return $this->newStatus( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
@@ -849,11 +856,11 @@ abstract class FileBackend {
 	 *   - dir            : storage directory
 	 *   - recursive      : recursively delete empty subdirectories first (since 1.20)
 	 *   - bypassReadOnly : allow writes in read-only mode (since 1.20)
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function clean( array $params ) {
 		if ( empty( $params['bypassReadOnly'] ) && $this->isReadOnly() ) {
-			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
+			return $this->newStatus( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
@@ -1020,7 +1027,7 @@ abstract class FileBackend {
 	 *   - headless : only include the body (and headers from "headers") (since 1.28)
 	 *   - latest   : use the latest available data
 	 *   - allowOB  : preserve any output buffers (since 1.28)
-	 * @return Status
+	 * @return StatusValue
 	 */
 	abstract public function streamFile( array $params );
 
@@ -1250,7 +1257,7 @@ abstract class FileBackend {
 	 * @param array $paths Storage paths
 	 * @param int $type LockManager::LOCK_* constant
 	 * @param int $timeout Timeout in seconds (0 means non-blocking) (since 1.24)
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function lockFiles( array $paths, $type, $timeout = 0 ) {
 		$paths = array_map( 'FileBackend::normalizeStoragePath', $paths );
@@ -1263,7 +1270,7 @@ abstract class FileBackend {
 	 *
 	 * @param array $paths Storage paths
 	 * @param int $type LockManager::LOCK_* constant
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function unlockFiles( array $paths, $type ) {
 		$paths = array_map( 'FileBackend::normalizeStoragePath', $paths );
@@ -1274,20 +1281,20 @@ abstract class FileBackend {
 	/**
 	 * Lock the files at the given storage paths in the backend.
 	 * This will either lock all the files or none (on failure).
-	 * On failure, the status object will be updated with errors.
+	 * On failure, the StatusValue object will be updated with errors.
 	 *
 	 * Once the return value goes out scope, the locks will be released and
-	 * the status updated. Unlock fatals will not change the status "OK" value.
+	 * the StatusValue updated. Unlock fatals will not change the StatusValue "OK" value.
 	 *
 	 * @see ScopedLock::factory()
 	 *
 	 * @param array $paths List of storage paths or map of lock types to path lists
 	 * @param int|string $type LockManager::LOCK_* constant or "mixed"
-	 * @param Status $status Status to update on lock/unlock
+	 * @param StatusValue $status StatusValue to update on lock/unlock
 	 * @param int $timeout Timeout in seconds (0 means non-blocking) (since 1.24)
 	 * @return ScopedLock|null Returns null on failure
 	 */
-	final public function getScopedFileLocks( array $paths, $type, Status $status, $timeout = 0 ) {
+	final public function getScopedFileLocks( array $paths, $type, StatusValue $status, $timeout = 0 ) {
 		if ( $type === 'mixed' ) {
 			foreach ( $paths as &$typePaths ) {
 				$typePaths = array_map( 'FileBackend::normalizeStoragePath', $typePaths );
@@ -1311,11 +1318,11 @@ abstract class FileBackend {
 	 * @see FileBackend::doOperations()
 	 *
 	 * @param array $ops List of file operations to FileBackend::doOperations()
-	 * @param Status $status Status to update on lock/unlock
+	 * @param StatusValue $status StatusValue to update on lock/unlock
 	 * @return ScopedLock|null
 	 * @since 1.20
 	 */
-	abstract public function getScopedLocksForOps( array $ops, Status $status );
+	abstract public function getScopedLocksForOps( array $ops, StatusValue $status );
 
 	/**
 	 * Get the root storage path of this backend.
@@ -1529,6 +1536,33 @@ abstract class FileBackend {
 		}
 
 		return $path;
+	}
+
+	/**
+	 * Yields the result of the status wrapper callback on either:
+	 *   - StatusValue::newGood() if this method is called without parameters
+	 *   - StatusValue::newFatal() with all parameters to this method if passed in
+	 *
+	 * @param ... string
+	 * @return StatusValue
+	 */
+	final protected function newStatus() {
+		$args = func_get_args();
+		if ( count( $args ) ) {
+			$sv = call_user_func_array( [ 'StatusValue', 'newFatal' ], $args );
+		} else {
+			$sv = StatusValue::newGood();
+		}
+
+		return $this->wrapStatus( $sv );
+	}
+
+	/**
+	 * @param StatusValue $sv
+	 * @return StatusValue Modified status or StatusValue subclass
+	 */
+	final protected function wrapStatus( StatusValue $sv ) {
+		return $this->statusWrapper ? call_user_func( $this->statusWrapper, $sv ) : $sv;
 	}
 }
 

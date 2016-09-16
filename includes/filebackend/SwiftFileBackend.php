@@ -26,7 +26,7 @@
 /**
  * @brief Class for an OpenStack Swift (or Ceph RGW) based file backend.
  *
- * Status messages should avoid mentioning the Swift account name.
+ * StatusValue messages should avoid mentioning the Swift account name.
  * Likewise, error suppression should be used to avoid path disclosure.
  *
  * @ingroup FileBackend
@@ -252,7 +252,7 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	protected function doCreateInternal( array $params ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		list( $dstCont, $dstRel ) = $this->resolveStoragePathReal( $params['dst'] );
 		if ( $dstRel === null ) {
@@ -279,7 +279,7 @@ class SwiftFileBackend extends FileBackendStore {
 		] ];
 
 		$method = __METHOD__;
-		$handler = function ( array $request, Status $status ) use ( $method, $params ) {
+		$handler = function ( array $request, StatusValue $status ) use ( $method, $params ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $request['response'];
 			if ( $rcode === 201 ) {
 				// good
@@ -301,7 +301,7 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	protected function doStoreInternal( array $params ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		list( $dstCont, $dstRel ) = $this->resolveStoragePathReal( $params['dst'] );
 		if ( $dstRel === null ) {
@@ -343,7 +343,7 @@ class SwiftFileBackend extends FileBackendStore {
 		] ];
 
 		$method = __METHOD__;
-		$handler = function ( array $request, Status $status ) use ( $method, $params ) {
+		$handler = function ( array $request, StatusValue $status ) use ( $method, $params ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $request['response'];
 			if ( $rcode === 201 ) {
 				// good
@@ -365,7 +365,7 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	protected function doCopyInternal( array $params ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
 		if ( $srcRel === null ) {
@@ -391,7 +391,7 @@ class SwiftFileBackend extends FileBackendStore {
 		] ];
 
 		$method = __METHOD__;
-		$handler = function ( array $request, Status $status ) use ( $method, $params ) {
+		$handler = function ( array $request, StatusValue $status ) use ( $method, $params ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $request['response'];
 			if ( $rcode === 201 ) {
 				// good
@@ -413,7 +413,7 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	protected function doMoveInternal( array $params ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
 		if ( $srcRel === null ) {
@@ -448,7 +448,7 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		$method = __METHOD__;
-		$handler = function ( array $request, Status $status ) use ( $method, $params ) {
+		$handler = function ( array $request, StatusValue $status ) use ( $method, $params ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $request['response'];
 			if ( $request['method'] === 'PUT' && $rcode === 201 ) {
 				// good
@@ -472,7 +472,7 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	protected function doDeleteInternal( array $params ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
 		if ( $srcRel === null ) {
@@ -488,7 +488,7 @@ class SwiftFileBackend extends FileBackendStore {
 		] ];
 
 		$method = __METHOD__;
-		$handler = function ( array $request, Status $status ) use ( $method, $params ) {
+		$handler = function ( array $request, StatusValue $status ) use ( $method, $params ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $request['response'];
 			if ( $rcode === 204 ) {
 				// good
@@ -512,7 +512,7 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	protected function doDescribeInternal( array $params ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
 		if ( $srcRel === null ) {
@@ -546,7 +546,7 @@ class SwiftFileBackend extends FileBackendStore {
 		] ];
 
 		$method = __METHOD__;
-		$handler = function ( array $request, Status $status ) use ( $method, $params ) {
+		$handler = function ( array $request, StatusValue $status ) use ( $method, $params ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $request['response'];
 			if ( $rcode === 202 ) {
 				// good
@@ -568,7 +568,7 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	protected function doPrepareInternal( $fullCont, $dir, array $params ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		// (a) Check if container already exists
 		$stat = $this->getContainerStat( $fullCont );
@@ -591,7 +591,7 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	protected function doSecureInternal( $fullCont, $dir, array $params ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 		if ( empty( $params['noAccess'] ) ) {
 			return $status; // nothing to do
 		}
@@ -615,7 +615,7 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	protected function doPublishInternal( $fullCont, $dir, array $params ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		$stat = $this->getContainerStat( $fullCont );
 		if ( is_array( $stat ) ) {
@@ -636,7 +636,7 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	protected function doCleanInternal( $fullCont, $dir, array $params ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		// Only containers themselves can be removed, all else is virtual
 		if ( $dir != '' ) {
@@ -719,7 +719,7 @@ class SwiftFileBackend extends FileBackendStore {
 		// Find prior metadata headers
 		$postHeaders += $this->getMetadataHeaders( $objHdrs );
 
-		$status = Status::newGood();
+		$status = $this->newStatus();
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scopeLockS = $this->getScopedFileLocks( [ $path ], LockManager::LOCK_UW, $status );
 		if ( $status->isOK() ) {
@@ -1043,7 +1043,7 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	protected function doStreamFile( array $params ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		$flags = !empty( $params['headless'] ) ? StreamFile::STREAM_HEADLESS : 0;
 
@@ -1254,7 +1254,7 @@ class SwiftFileBackend extends FileBackendStore {
 	/**
 	 * @param FileBackendStoreOpHandle[] $fileOpHandles
 	 *
-	 * @return Status[]
+	 * @return StatusValue[]
 	 */
 	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {
 		$statuses = [];
@@ -1262,7 +1262,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$auth = $this->getAuthentication();
 		if ( !$auth ) {
 			foreach ( $fileOpHandles as $index => $fileOpHandle ) {
-				$statuses[$index] = Status::newFatal( 'backend-fail-connect', $this->name );
+				$statuses[$index] = $this->newStatus( 'backend-fail-connect', $this->name );
 			}
 
 			return $statuses;
@@ -1280,7 +1280,7 @@ class SwiftFileBackend extends FileBackendStore {
 				$req['headers'] = $this->authTokenHeaders( $auth ) + $req['headers'];
 				$httpReqsByStage[$stage][$index] = $req;
 			}
-			$statuses[$index] = Status::newGood();
+			$statuses[$index] = $this->newStatus();
 		}
 
 		// Run all requests for the first stage, then the next, and so on
@@ -1325,10 +1325,10 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param array $writeGrps A list of the possible criteria for a request to have
 	 * access to write to a container. Each item is of the following format:
 	 *   - account:user       : Grants access if the request is by the given user
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function setContainerAccess( $container, array $readGrps, array $writeGrps ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 		$auth = $this->getAuthentication();
 
 		if ( !$auth ) {
@@ -1411,10 +1411,10 @@ class SwiftFileBackend extends FileBackendStore {
 	 *
 	 * @param string $container Container name
 	 * @param array $params
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function createContainer( $container, array $params ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		$auth = $this->getAuthentication();
 		if ( !$auth ) {
@@ -1456,10 +1456,10 @@ class SwiftFileBackend extends FileBackendStore {
 	 *
 	 * @param string $container Container name
 	 * @param array $params
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function deleteContainer( $container, array $params ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		$auth = $this->getAuthentication();
 		if ( !$auth ) {
@@ -1497,12 +1497,12 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param string|null $after
 	 * @param string|null $prefix
 	 * @param string|null $delim
-	 * @return Status With the list as value
+	 * @return StatusValue With the list as value
 	 */
 	private function objectListing(
 		$fullCont, $type, $limit, $after = null, $prefix = null, $delim = null
 	) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		$auth = $this->getAuthentication();
 		if ( !$auth ) {
@@ -1739,17 +1739,17 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * Log an unexpected exception for this backend.
-	 * This also sets the Status object to have a fatal error.
+	 * This also sets the StatusValue object to have a fatal error.
 	 *
-	 * @param Status|null $status
+	 * @param StatusValue|null $status
 	 * @param string $func
 	 * @param array $params
 	 * @param string $err Error string
 	 * @param int $code HTTP status
-	 * @param string $desc HTTP status description
+	 * @param string $desc HTTP StatusValue description
 	 */
 	public function onError( $status, $func, array $params, $err = '', $code = 0, $desc = '' ) {
-		if ( $status instanceof Status ) {
+		if ( $status instanceof StatusValue ) {
 			$status->fatal( 'backend-fail-internal', $this->name );
 		}
 		if ( $code == 401 ) { // possibly a stale token

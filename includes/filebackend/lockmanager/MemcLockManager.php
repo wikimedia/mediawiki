@@ -126,7 +126,7 @@ class MemcLockManager extends QuorumLockManager {
 	 * @param string $lockSrv
 	 * @param array $paths
 	 * @param string $type
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function doGetLocksOnServer( $lockSrv, array $paths, $type ) {
 		$status = Status::newGood();
@@ -202,7 +202,7 @@ class MemcLockManager extends QuorumLockManager {
 	 * @param string $lockSrv
 	 * @param array $paths
 	 * @param string $type
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function doFreeLocksOnServer( $lockSrv, array $paths, $type ) {
 		$status = Status::newGood();
@@ -254,7 +254,7 @@ class MemcLockManager extends QuorumLockManager {
 
 	/**
 	 * @see QuorumLockManager::releaseAllLocks()
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function releaseAllLocks() {
 		return Status::newGood(); // not supported

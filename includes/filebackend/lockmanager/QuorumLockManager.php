@@ -124,7 +124,7 @@ abstract class QuorumLockManager extends LockManager {
 	 *
 	 * @param int $bucket
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final protected function doLockingRequestBucket( $bucket, array $pathsByType ) {
 		$status = Status::newGood();
@@ -166,7 +166,7 @@ abstract class QuorumLockManager extends LockManager {
 	 *
 	 * @param int $bucket
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final protected function doUnlockingRequestBucket( $bucket, array $pathsByType ) {
 		$status = Status::newGood();
@@ -189,7 +189,7 @@ abstract class QuorumLockManager extends LockManager {
 				}
 			}
 		}
-		// Set a bad status if the quorum was not met.
+		// Set a bad StatusValue if the quorum was not met.
 		// Assumes the same "up" servers as during the acquire step.
 		$status->setResult( $yesVotes >= $quorum );
 
@@ -222,7 +222,7 @@ abstract class QuorumLockManager extends LockManager {
 	 *
 	 * @param string $lockSrv
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
-	 * @return Status
+	 * @return StatusValue
 	 */
 	abstract protected function getLocksOnServer( $lockSrv, array $pathsByType );
 
@@ -233,7 +233,7 @@ abstract class QuorumLockManager extends LockManager {
 	 *
 	 * @param string $lockSrv
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
-	 * @return Status
+	 * @return StatusValue
 	 */
 	abstract protected function freeLocksOnServer( $lockSrv, array $pathsByType );
 
@@ -242,7 +242,7 @@ abstract class QuorumLockManager extends LockManager {
 	 *
 	 * Subclasses must effectively implement this or freeLocksOnServer().
 	 *
-	 * @return Status
+	 * @return StatusValue
 	 */
 	abstract protected function releaseAllLocks();
 }

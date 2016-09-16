@@ -44,7 +44,7 @@ class MemoryFileBackend extends FileBackendStore {
 	}
 
 	protected function doCreateInternal( array $params ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		$dst = $this->resolveHashKey( $params['dst'] );
 		if ( $dst === null ) {
@@ -62,7 +62,7 @@ class MemoryFileBackend extends FileBackendStore {
 	}
 
 	protected function doStoreInternal( array $params ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		$dst = $this->resolveHashKey( $params['dst'] );
 		if ( $dst === null ) {
@@ -89,7 +89,7 @@ class MemoryFileBackend extends FileBackendStore {
 	}
 
 	protected function doCopyInternal( array $params ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		$src = $this->resolveHashKey( $params['src'] );
 		if ( $src === null ) {
@@ -122,7 +122,7 @@ class MemoryFileBackend extends FileBackendStore {
 	}
 
 	protected function doDeleteInternal( array $params ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		$src = $this->resolveHashKey( $params['src'] );
 		if ( $src === null ) {
