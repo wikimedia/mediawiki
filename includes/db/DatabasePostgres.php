@@ -239,24 +239,12 @@ class DatabasePostgres extends DatabaseBase {
 		return true;
 	}
 
-	function realTimestamps() {
-		return true;
-	}
-
 	function implicitGroupby() {
 		return false;
 	}
 
 	function implicitOrderby() {
 		return false;
-	}
-
-	function searchableIPs() {
-		return true;
-	}
-
-	function functionalIndexes() {
-		return true;
 	}
 
 	function hasConstraint( $name ) {
