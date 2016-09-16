@@ -3727,4 +3727,30 @@ class WikiPage implements Page, IDBAccessObject {
 	public function isLocal() {
 		return true;
 	}
+
+	/**
+	 * The display name for the site this content
+	 * come from. If a subclass overrides isLocal(),
+	 * this could return something other than the
+	 * current site name
+	 *
+	 * @since 1.28
+	 * @return string
+	 */
+	public function getWikiDisplayName() {
+		global $wgSitename;
+		return $wgSitename;
+	}
+
+	/**
+	 * Get the source URL for the content on this page,
+	 * typically the canonical URL, but may be a remote
+	 * link if the content comes from another site
+	 *
+	 * @since 1.28
+	 * @return string
+	 */
+	public function getSourceURL() {
+		return $this->getTitle()->getCanonicalURL();
+	}
 }
