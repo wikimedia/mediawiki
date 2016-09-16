@@ -40,7 +40,7 @@ abstract class LBFactoryMW extends LBFactory implements DestructibleService {
 		global $wgCommandLineMode;
 
 		$defaults = [
-			'domain' => wfWikiID(),
+			'localDomain' => wfWikiID(),
 			'hostname' => wfHostname(),
 			'trxProfiler' => Profiler::instance()->getTransactionProfiler(),
 			'replLogger' => LoggerFactory::getInstance( 'DBReplication' ),

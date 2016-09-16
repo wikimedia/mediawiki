@@ -50,7 +50,7 @@ abstract class LBFactory {
 	protected $wanCache;
 
 	/** @var string Local domain */
-	protected $domain;
+	protected $localDomain;
 	/** @var string Local hostname of the app server */
 	protected $hostname;
 	/** @var mixed */
@@ -79,7 +79,7 @@ abstract class LBFactory {
 	 * @param array $conf
 	 */
 	public function __construct( array $conf ) {
-		$this->domain = isset( $conf['domain'] ) ? $conf['domain'] : '';
+		$this->localDomain = isset( $conf['localDomain'] ) ? $conf['localDomain'] : '';
 
 		if ( isset( $conf['readOnlyReason'] ) && is_string( $conf['readOnlyReason'] ) ) {
 			$this->readOnlyReason = $conf['readOnlyReason'];
@@ -608,7 +608,7 @@ abstract class LBFactory {
 	 */
 	final protected function baseLoadBalancerParams() {
 		return [
-			'localDomain' => $this->domain,
+			'localDomain' => $this->localDomain,
 			'readOnlyReason' => $this->readOnlyReason,
 			'srvCache' => $this->srvCache,
 			'wanCache' => $this->wanCache,
@@ -641,7 +641,7 @@ abstract class LBFactory {
 	 * @since 1.28
 	 */
 	public function setDomainPrefix( $domain ) {
-		$this->domain = $domain;
+		$this->localDomain = $domain;
 	}
 
 	/**
