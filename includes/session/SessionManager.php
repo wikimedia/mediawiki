@@ -193,6 +193,7 @@ final class SessionManager implements SessionManagerInterface {
 		} else {
 			$session = $this->getSessionFromInfo( $info, $request );
 		}
+		\Hooks::run( 'SessionForRequest', [ $session ] );
 		return $session;
 	}
 
