@@ -227,14 +227,6 @@ class DatabasePostgres extends DatabaseBase {
 		return 'postgres';
 	}
 
-	function cascadingDeletes() {
-		return true;
-	}
-
-	function cleanupTriggers() {
-		return true;
-	}
-
 	function strictIPs() {
 		return true;
 	}
@@ -246,6 +238,7 @@ class DatabasePostgres extends DatabaseBase {
 	function implicitOrderby() {
 		return false;
 	}
+
 
 	function hasConstraint( $name ) {
 		$sql = "SELECT 1 FROM pg_catalog.pg_constraint c, pg_catalog.pg_namespace n " .

@@ -42,14 +42,6 @@ class DatabaseMssql extends DatabaseBase {
 
 	protected $mPort;
 
-	public function cascadingDeletes() {
-		return true;
-	}
-
-	public function cleanupTriggers() {
-		return false;
-	}
-
 	public function strictIPs() {
 		return false;
 	}

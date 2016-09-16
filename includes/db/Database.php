@@ -49,22 +49,6 @@ abstract class DatabaseBase extends Database {
 	}
 
 	/**
-	 * Returns true if this database supports (and uses) cascading deletes
-	 *
-	 * @return bool
-	 */
-	public function cascadingDeletes() {
-		return false;
-	}
-	/**
-	 * Returns true if this database supports (and uses) triggers (e.g. on the page table)
-	 *
-	 * @return bool
-	 */
-	public function cleanupTriggers() {
-		return false;
-	}
-	/**
 	 * Returns true if this database is strict about what can be put into an IP field.
 	 * Specifically, it uses a NULL value instead of an empty string.
 	 *
