@@ -736,7 +736,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	public function testDropTable() {
 		$this->database->setExistingTables( [ 'table' ] );
 		$this->database->dropTable( 'table', __METHOD__ );
-		$this->assertLastSql( 'DROP TABLE table' );
+		$this->assertLastSql( 'DROP TABLE table CASCADE' );
 	}
 
 	/**

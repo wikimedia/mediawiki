@@ -204,7 +204,7 @@ class SavepointPostgres {
 /**
  * @ingroup Database
  */
-class DatabasePostgres extends Database {
+class DatabasePostgres extends DatabaseBase {
 	/** @var resource */
 	protected $mLastResult = null;
 

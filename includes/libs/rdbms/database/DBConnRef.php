@@ -145,13 +145,17 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function getWikiID() {
+	public function getDomainID() {
 		if ( $this->conn === null ) {
 			// Avoid triggering a connection
 			return $this->params[self::FLD_WIKI];
 		}
 
 		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function getWikiID() {
+		return $this->getDomainID();
 	}
 
 	public function getType() {
