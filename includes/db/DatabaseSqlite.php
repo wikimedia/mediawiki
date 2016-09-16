@@ -25,7 +25,7 @@
 /**
  * @ingroup Database
  */
-class DatabaseSqlite extends Database {
+class DatabaseSqlite extends DatabaseBase {
 	/** @var bool Whether full text is enabled */
 	private static $fulltextEnabled = null;
 
@@ -1039,6 +1039,23 @@ class DatabaseSqlite extends Database {
 		}
 
 		return $endArray;
+	}
+
+	/**
+	 * Override due to no CASCADE support
+	 *
+	 * @param string $tableName
+	 * @param string $fName
+	 * @return bool|ResultWrapper
+	 * @throws DBReadOnlyError
+	 */
+	public function dropTable( $tableName, $fName = __METHOD__ ) {
+		if ( !$this->tableExists( $tableName, $fName ) ) {
+			return false;
+		}
+		$sql = "DROP TABLE " . $this->tableName( $tableName );
+
+		return $this->query( $sql, $fName );
 	}
 
 	/**
