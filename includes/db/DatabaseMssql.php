@@ -165,7 +165,7 @@ class DatabaseMssql extends Database {
 	 * @throws DBUnexpectedError
 	 */
 	protected function doQuery( $sql ) {
-		if ( $this->debug() ) {
+		if ( $this->getFlag( DBO_DEBUG ) ) {
 			wfDebug( "SQL: [$sql]\n" );
 		}
 		$this->offset = 0;
