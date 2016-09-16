@@ -61,7 +61,7 @@ class PostgreSqlLockManager extends DBLockManager {
 
 	/**
 	 * @see QuorumLockManager::releaseAllLocks()
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function releaseAllLocks() {
 		$status = Status::newGood();
