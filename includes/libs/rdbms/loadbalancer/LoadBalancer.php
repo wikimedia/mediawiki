@@ -45,7 +45,7 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var array[] $aliases Map of (table => (dbname, schema, prefix) map) */
 	private $tableAliases = [];
 
-	/** @var LoadMonitor */
+	/** @var ILoadMonitor */
 	private $mLoadMonitor;
 	/** @var BagOStuff */
 	private $srvCache;
@@ -190,7 +190,7 @@ class LoadBalancer implements ILoadBalancer {
 	/**
 	 * Get a LoadMonitor instance
 	 *
-	 * @return LoadMonitor
+	 * @return ILoadMonitor
 	 */
 	private function getLoadMonitor() {
 		if ( !isset( $this->mLoadMonitor ) ) {
