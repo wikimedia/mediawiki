@@ -3031,10 +3031,13 @@ class WikiPage implements Page, IDBAccessObject {
 		$logEntry->setComment( $reason );
 		$logid = $logEntry->insert();
 
-		$dbw->onTransactionPreCommitOrIdle( function () use ( $dbw, $logEntry, $logid ) {
-			// Bug 56776: avoid deadlocks (especially from FileDeleteForm)
-			$logEntry->publish( $logid );
-		} );
+		$dbw->onTransactionPreCommitOrIdle(
+			function () use ( $dbw, $logEntry, $logid ) {
+				// Bug 56776: avoid deadlocks (especially from FileDeleteForm)
+				$logEntry->publish( $logid );
+			},
+			__METHOD__
+		);
 
 		$dbw->endAtomic( __METHOD__ );
 
@@ -3672,7 +3675,8 @@ class WikiPage implements Page, IDBAccessObject {
 						$cat->refreshCounts();
 					}
 				}
-			}
+			},
+			__METHOD__
 		);
 	}
 

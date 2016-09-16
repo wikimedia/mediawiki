@@ -342,18 +342,21 @@ class RecentChange {
 			) {
 				// @FIXME: This would be better as an extension hook
 				// Send emails or email jobs once this row is safely committed
-				$dbw->onTransactionIdle( function () use ( $editor, $title ) {
-					$enotif = new EmailNotification();
-					$enotif->notifyOnPageChange(
-						$editor,
-						$title,
-						$this->mAttribs['rc_timestamp'],
-						$this->mAttribs['rc_comment'],
-						$this->mAttribs['rc_minor'],
-						$this->mAttribs['rc_last_oldid'],
-						$this->mExtra['pageStatus']
-					);
-				} );
+				$dbw->onTransactionIdle(
+					function () use ( $editor, $title ) {
+						$enotif = new EmailNotification();
+						$enotif->notifyOnPageChange(
+							$editor,
+							$title,
+							$this->mAttribs['rc_timestamp'],
+							$this->mAttribs['rc_comment'],
+							$this->mAttribs['rc_minor'],
+							$this->mAttribs['rc_last_oldid'],
+							$this->mExtra['pageStatus']
+						);
+					},
+					__METHOD__
+				);
 			}
 		}
 

@@ -120,10 +120,13 @@ abstract class RevDelList extends RevisionListBase {
 		}
 
 		$dbw->startAtomic( __METHOD__ );
-		$dbw->onTransactionResolution( function () {
-			// Release locks on commit or error
-			$this->releaseItemLocks();
-		} );
+		$dbw->onTransactionResolution(
+			function () {
+				// Release locks on commit or error
+				$this->releaseItemLocks();
+			},
+			__METHOD__
+		);
 
 		$missing = array_flip( $this->ids );
 		$this->clearFileOps();

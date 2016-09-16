@@ -1284,10 +1284,11 @@ interface IDatabase {
 	 *   - How the transaction ended (IDatabase::TRIGGER_COMMIT or IDatabase::TRIGGER_ROLLBACK)
 	 *
 	 * @param callable $callback
+	 * @param string $fname Caller name
 	 * @return mixed
 	 * @since 1.28
 	 */
-	public function onTransactionResolution( callable $callback );
+	public function onTransactionResolution( callable $callback, $fname = __METHOD__ );
 
 	/**
 	 * Run a callback as soon as there is no transaction pending.
@@ -1306,9 +1307,10 @@ interface IDatabase {
 	 *   - How the transaction ended (IDatabase::TRIGGER_COMMIT or IDatabase::TRIGGER_IDLE)
 	 *
 	 * @param callable $callback
+	 * @param string $fname Caller name
 	 * @since 1.20
 	 */
-	public function onTransactionIdle( callable $callback );
+	public function onTransactionIdle( callable $callback, $fname = __METHOD__ );
 
 	/**
 	 * Run a callback before the current transaction commits or now if there is none.
@@ -1322,9 +1324,10 @@ interface IDatabase {
 	 * Updates will execute in the order they were enqueued.
 	 *
 	 * @param callable $callback
+	 * @param string $fname Caller name
 	 * @since 1.22
 	 */
-	public function onTransactionPreCommitOrIdle( callable $callback );
+	public function onTransactionPreCommitOrIdle( callable $callback, $fname = __METHOD__ );
 
 	/**
 	 * Run a callback each time any transaction commits or rolls back

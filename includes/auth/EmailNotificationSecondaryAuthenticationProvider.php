@@ -51,15 +51,18 @@ class EmailNotificationSecondaryAuthenticationProvider
 			&& !$this->manager->getAuthenticationSessionData( 'no-email' )
 		) {
 			// TODO show 'confirmemail_oncreate'/'confirmemail_sendfailed' message
-			wfGetDB( DB_MASTER )->onTransactionIdle( function () use ( $user ) {
-				$user = $user->getInstanceForUpdate();
-				$status = $user->sendConfirmationMail();
-				$user->saveSettings();
-				if ( !$status->isGood() ) {
-					$this->logger->warning( 'Could not send confirmation email: ' .
-						$status->getWikiText( false, false, 'en' ) );
-				}
-			} );
+			wfGetDB( DB_MASTER )->onTransactionIdle(
+				function () use ( $user ) {
+					$user = $user->getInstanceForUpdate();
+					$status = $user->sendConfirmationMail();
+					$user->saveSettings();
+					if ( !$status->isGood() ) {
+						$this->logger->warning( 'Could not send confirmation email: ' .
+							$status->getWikiText( false, false, 'en' ) );
+					}
+				},
+				__METHOD__
+			);
 		}
 
 		return AuthenticationResponse::newPass();
