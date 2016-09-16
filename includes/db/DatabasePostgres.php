@@ -1545,10 +1545,6 @@ SQL;
 		return $field . '::text';
 	}
 
-	public function getSearchEngine() {
-		return 'SearchPostgres';
-	}
-
 	public function streamStatementEnd( &$sql, &$newLine ) {
 		# Allow dollar quoting for function declarations
 		if ( substr( $newLine, 0, 4 ) == '$mw$' ) {
