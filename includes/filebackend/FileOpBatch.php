@@ -45,17 +45,17 @@ class FileOpBatch {
 	 *   - nonJournaled : Don't log this operation batch in the file journal.
 	 *   - concurrency  : Try to do this many operations in parallel when possible.
 	 *
-	 * The resulting Status will be "OK" unless:
+	 * The resulting StatusValue will be "OK" unless:
 	 *   - a) unexpected operation errors occurred (network partitions, disk full...)
 	 *   - b) significant operation errors occurred and 'force' was not set
 	 *
 	 * @param FileOp[] $performOps List of FileOp operations
 	 * @param array $opts Batch operation options
 	 * @param FileJournal $journal Journal to log operations to
-	 * @return Status
+	 * @return StatusValue
 	 */
 	public static function attempt( array $performOps, array $opts, FileJournal $journal ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 
 		$n = count( $performOps );
 		if ( $n > self::MAX_BATCH_SIZE ) {
@@ -119,7 +119,9 @@ class FileOpBatch {
 		if ( count( $entries ) ) {
 			$subStatus = $journal->logChangeBatch( $entries, $batchId );
 			if ( !$subStatus->isOK() ) {
-				return $subStatus; // abort
+				$status->merge( $subStatus );
+
+				return $status; // abort
 			}
 		}
 
@@ -142,9 +144,9 @@ class FileOpBatch {
 	 * This will abort remaining ops on failure.
 	 *
 	 * @param array $pPerformOps Batches of file ops (batches use original indexes)
-	 * @param Status $status
+	 * @param StatusValue $status
 	 */
-	protected static function runParallelBatches( array $pPerformOps, Status $status ) {
+	protected static function runParallelBatches( array $pPerformOps, StatusValue $status ) {
 		$aborted = false; // set to true on unexpected errors
 		foreach ( $pPerformOps as $performOpsBatch ) {
 			/** @var FileOp[] $performOpsBatch */
