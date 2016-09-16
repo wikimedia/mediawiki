@@ -25,7 +25,7 @@
  *
  * @ingroup Media
  */
-class WikiFilePage extends WikiPage {
+class WikiFilePage extends WikiPage implements RemoteWikiPage {
 	/** @var File */
 	protected $mFile = false;
 	/** @var LocalRepo */
@@ -223,5 +223,21 @@ class WikiFilePage extends WikiPage {
 		);
 
 		return TitleArray::newFromResult( $res );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return string
+	 */
+	public function getRemoteWikiDisplayName() {
+		return $this->getFile()->getRepo()->getDisplayName();
+	}
+
+	/**
+	 * @since 1.28
+	 * @return string
+	 */
+	public function getRemoteURL() {
+		return $this->getFile()->getDescriptionUrl();
 	}
 }

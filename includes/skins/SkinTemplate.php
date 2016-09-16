@@ -920,19 +920,18 @@ class SkinTemplate extends Skin {
 					$content_navigation['views']['view']['redundant'] = true;
 				}
 
-				$isForeignFile = $title->inNamespace( NS_FILE ) && $this->canUseWikiPage() &&
-					$this->getWikiPage() instanceof WikiFilePage && !$this->getWikiPage()->isLocal();
+				$page = $this->canUseWikiPage() ? $this->getWikiPage() : false;
+				$isRemoteContent = $page && !$page->isLocal() && $page instanceof RemoteWikiPage;
 
 				// If it is a non-local file, show a link to the file in its own repository
 				// @todo abstract this for remote content that isn't a file
-				if ( $isForeignFile ) {
-					$file = $this->getWikiPage()->getFile();
+				if ( $isRemoteContent ) {
 					$content_navigation['views']['view-foreign'] = [
 						'class' => '',
 						'text' => wfMessageFallback( "$skname-view-foreign", 'view-foreign' )->
 							setContext( $this->getContext() )->
-							params( $file->getRepo()->getDisplayName() )->text(),
-						'href' => $file->getDescriptionUrl(),
+							params( $page->getRemoteWikiDisplayName() )->text(),
+						'href' => $page->getRemoteURL(),
 						'primary' => false,
 					];
 				}
@@ -956,9 +955,9 @@ class SkinTemplate extends Skin {
 							&& $title->getDefaultMessageText() !== false
 						)
 					) {
-						$msgKey = $isForeignFile ? 'edit-local' : 'edit';
+						$msgKey = $isRemoteContent ? 'edit-local' : 'edit';
 					} else {
-						$msgKey = $isForeignFile ? 'create-local' : 'create';
+						$msgKey = $isRemoteContent ? 'create-local' : 'create';
 					}
 					$content_navigation['views']['edit'] = [
 						'class' => ( $isEditing && ( $section !== 'new' || !$showNewSection )
@@ -968,7 +967,7 @@ class SkinTemplate extends Skin {
 						'text' => wfMessageFallback( "$skname-view-$msgKey", $msgKey )
 							->setContext( $this->getContext() )->text(),
 						'href' => $title->getLocalURL( $this->editUrlOptions() ),
-						'primary' => !$isForeignFile, // don't collapse this in vector
+						'primary' => !$isRemoteContent, // don't collapse this in vector
 					];
 
 					// section link
