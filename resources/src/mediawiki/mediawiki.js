@@ -1879,8 +1879,8 @@
 				 * response contain calls to this function.
 				 *
 				 * @param {string} module Name of module
-				 * @param {Function|Array} [script] Function with module code or Array of URLs to
-				 *  be used as the src attribute of a new `<script>` tag.
+				 * @param {Function|Array|string} [script] Function with module code, list of URLs
+				 *  to load via `<script src>`, or string of module code for `$.globalEval()`.
 				 * @param {Object} [style] Should follow one of the following patterns:
 				 *
 				 *     { "css": [css, ..] }
