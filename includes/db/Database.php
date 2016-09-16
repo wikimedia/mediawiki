@@ -640,6 +640,25 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 		return $this->mTrxLevel ? $this->mTrxWriteCallers : [];
 	}
 
+	protected function pendingWriteAndCallbackCallers() {
+		if ( !$this->mTrxLevel ) {
+			return [];
+		}
+
+		$fnames = $this->mTrxWriteCallers;
+		foreach ( [
+			$this->mTrxIdleCallbacks,
+			$this->mTrxPreCommitCallbacks,
+			$this->mTrxEndCallbacks
+		] as $callbacks ) {
+			foreach ( $callbacks as $callback ) {
+				$fnames[] = $callback[1];
+			}
+		}
+
+		return $fnames;
+	}
+
 	public function isOpen() {
 		return $this->mOpened;
 	}
@@ -3051,9 +3070,10 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	public function flushSnapshot( $fname = __METHOD__ ) {
 		if ( $this->writesOrCallbacksPending() || $this->explicitTrxActive() ) {
 			// This only flushes transactions to clear snapshots, not to write data
+			$fnames = implode( ', ', $this->pendingWriteAndCallbackCallers() );
 			throw new DBUnexpectedError(
 				$this,
-				"$fname: Cannot COMMIT to clear snapshot because writes are pending."
+				"$fname: Cannot COMMIT to clear snapshot because writes are pending ($fnames)."
 			);
 		}
 
@@ -3520,9 +3540,10 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	public function getScopedLockAndFlush( $lockKey, $fname, $timeout ) {
 		if ( $this->writesOrCallbacksPending() ) {
 			// This only flushes transactions to clear snapshots, not to write data
+			$fnames = implode( ', ', $this->pendingWriteAndCallbackCallers() );
 			throw new DBUnexpectedError(
 				$this,
-				"$fname: Cannot COMMIT to clear snapshot because writes are pending."
+				"$fname: Cannot COMMIT to clear snapshot because writes are pending ($fnames)."
 			);
 		}
 
@@ -3659,18 +3680,11 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 		if ( $this->mTrxLevel && $this->mTrxDoneWrites ) {
 			trigger_error( "Uncommitted DB writes (transaction from {$this->mTrxFname})." );
 		}
-		$danglingCallbacks = array_merge(
-			$this->mTrxIdleCallbacks,
-			$this->mTrxPreCommitCallbacks,
-			$this->mTrxEndCallbacks
-		);
-		if ( $danglingCallbacks ) {
-			$callers = [];
-			foreach ( $danglingCallbacks as $callbackInfo ) {
-				$callers[] = $callbackInfo[1];
-			}
-			$callers = implode( ', ', $callers );
-			trigger_error( "DB transaction callbacks still pending (from $callers)." );
+
+		$danglingWriters = $this->pendingWriteAndCallbackCallers();
+		if ( $danglingWriters ) {
+			$fnames = implode( ', ', $danglingWriters );
+			trigger_error( "DB transaction writes or callbacks still pending ($fnames)." );
 		}
 	}
 }
