@@ -93,9 +93,9 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	protected $mTrxEndCallbacksSuppressed = false;
 
 	/** @var string */
-	protected $mTablePrefix;
+	protected $mTablePrefix = '';
 	/** @var string */
-	protected $mSchema;
+	protected $mSchema = '';
 	/** @var integer */
 	protected $mFlags;
 	/** @var array */
@@ -367,7 +367,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 			$p['variables'] = isset( $p['variables'] ) ? $p['variables'] : [];
 			$p['tablePrefix'] = isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : '';
 			if ( !isset( $p['schema'] ) ) {
-				$p['schema'] = isset( $defaultSchemas[$dbType] ) ? $defaultSchemas[$dbType] : null;
+				$p['schema'] = isset( $defaultSchemas[$dbType] ) ? $defaultSchemas[$dbType] : '';
 			}
 			$p['foreign'] = isset( $p['foreign'] ) ? $p['foreign'] : false;
 
@@ -466,14 +466,18 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 
 	public function tablePrefix( $prefix = null ) {
 		$old = $this->mTablePrefix;
-		$this->mTablePrefix = $prefix;
+		if ( $prefix !== null ) {
+			$this->mTablePrefix = $prefix;
+		}
 
 		return $old;
 	}
 
 	public function dbSchema( $schema = null ) {
 		$old = $this->mSchema;
-		$this->mSchema = $schema;
+		if ( $schema !== null ) {
+			$this->mSchema = $schema;
+		}
 
 		return $old;
 	}
@@ -699,7 +703,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 	}
 
 	public function getWikiID() {
-		if ( $this->mTablePrefix ) {
+		if ( $this->mTablePrefix != '' ) {
 			return "{$this->mDBname}-{$this->mTablePrefix}";
 		} else {
 			return $this->mDBname;
@@ -1884,7 +1888,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 			# In dbs that support it, $database may actually be the schema
 			# but that doesn't affect any of the functionality here
 			$prefix = '';
-			$schema = null;
+			$schema = '';
 		} else {
 			list( $table ) = $dbDetails;
 			if ( isset( $this->tableAliases[$table] ) ) {
