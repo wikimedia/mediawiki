@@ -87,7 +87,7 @@ abstract class LockManager {
 	 * @param array $paths List of resource names
 	 * @param int $type LockManager::LOCK_* constant
 	 * @param int $timeout Timeout in seconds (0 means non-blocking) (since 1.21)
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function lock( array $paths, $type = self::LOCK_EX, $timeout = 0 ) {
 		return $this->lockByType( [ $type => $paths ], $timeout );
@@ -98,7 +98,7 @@ abstract class LockManager {
 	 *
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
 	 * @param int $timeout Timeout in seconds (0 means non-blocking) (since 1.21)
-	 * @return Status
+	 * @return StatusValue
 	 * @since 1.22
 	 */
 	final public function lockByType( array $pathsByType, $timeout = 0 ) {
@@ -123,7 +123,7 @@ abstract class LockManager {
 	 *
 	 * @param array $paths List of paths
 	 * @param int $type LockManager::LOCK_* constant
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function unlock( array $paths, $type = self::LOCK_EX ) {
 		return $this->unlockByType( [ $type => $paths ] );
@@ -133,7 +133,7 @@ abstract class LockManager {
 	 * Unlock the resources at the given abstract paths
 	 *
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
-	 * @return Status
+	 * @return StatusValue
 	 * @since 1.22
 	 */
 	final public function unlockByType( array $pathsByType ) {
@@ -187,7 +187,7 @@ abstract class LockManager {
 	/**
 	 * @see LockManager::lockByType()
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
-	 * @return Status
+	 * @return StatusValue
 	 * @since 1.22
 	 */
 	protected function doLockByType( array $pathsByType ) {
@@ -214,14 +214,14 @@ abstract class LockManager {
 	 *
 	 * @param array $paths List of paths
 	 * @param int $type LockManager::LOCK_* constant
-	 * @return Status
+	 * @return StatusValue
 	 */
 	abstract protected function doLock( array $paths, $type );
 
 	/**
 	 * @see LockManager::unlockByType()
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
-	 * @return Status
+	 * @return StatusValue
 	 * @since 1.22
 	 */
 	protected function doUnlockByType( array $pathsByType ) {
@@ -238,7 +238,7 @@ abstract class LockManager {
 	 *
 	 * @param array $paths List of paths
 	 * @param int $type LockManager::LOCK_* constant
-	 * @return Status
+	 * @return StatusValue
 	 */
 	abstract protected function doUnlock( array $paths, $type );
 }

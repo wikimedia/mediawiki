@@ -239,14 +239,14 @@ abstract class FileOp {
 	/**
 	 * Check preconditions of the operation without writing anything.
 	 * This must update $predicates for each path that the op can change
-	 * except when a failing status object is returned.
+	 * except when a failing StatusValue object is returned.
 	 *
 	 * @param array $predicates
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function precheck( array &$predicates ) {
 		if ( $this->state !== self::STATE_NEW ) {
-			return Status::newFatal( 'fileop-fail-state', self::STATE_NEW, $this->state );
+			return StatusValue::newFatal( 'fileop-fail-state', self::STATE_NEW, $this->state );
 		}
 		$this->state = self::STATE_CHECKED;
 		$status = $this->doPrecheck( $predicates );
@@ -259,22 +259,22 @@ abstract class FileOp {
 
 	/**
 	 * @param array $predicates
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function doPrecheck( array &$predicates ) {
-		return Status::newGood();
+		return StatusValue::newGood();
 	}
 
 	/**
 	 * Attempt the operation
 	 *
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function attempt() {
 		if ( $this->state !== self::STATE_CHECKED ) {
-			return Status::newFatal( 'fileop-fail-state', self::STATE_CHECKED, $this->state );
+			return StatusValue::newFatal( 'fileop-fail-state', self::STATE_CHECKED, $this->state );
 		} elseif ( $this->failed ) { // failed precheck
-			return Status::newFatal( 'fileop-fail-attempt-precheck' );
+			return StatusValue::newFatal( 'fileop-fail-attempt-precheck' );
 		}
 		$this->state = self::STATE_ATTEMPTED;
 		if ( $this->doOperation ) {
@@ -284,23 +284,23 @@ abstract class FileOp {
 				$this->logFailure( 'attempt' );
 			}
 		} else { // no-op
-			$status = Status::newGood();
+			$status = StatusValue::newGood();
 		}
 
 		return $status;
 	}
 
 	/**
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function doAttempt() {
-		return Status::newGood();
+		return StatusValue::newGood();
 	}
 
 	/**
 	 * Attempt the operation in the background
 	 *
-	 * @return Status
+	 * @return StatusValue
 	 */
 	final public function attemptAsync() {
 		$this->async = true;
@@ -350,13 +350,13 @@ abstract class FileOp {
 	/**
 	 * Check for errors with regards to the destination file already existing.
 	 * Also set the destExists, overwriteSameCase and sourceSha1 member variables.
-	 * A bad status will be returned if there is no chance it can be overwritten.
+	 * A bad StatusValue will be returned if there is no chance it can be overwritten.
 	 *
 	 * @param array $predicates
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function precheckDestExistence( array $predicates ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 		// Get hash of source file/string and the destination file
 		$this->sourceSha1 = $this->getSourceSha1Base36(); // FS file or data string
 		if ( $this->sourceSha1 === null ) { // file in storage?
@@ -476,7 +476,7 @@ class CreateFileOp extends FileOp {
 	}
 
 	protected function doPrecheck( array &$predicates ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 		// Check if the source data is too big
 		if ( strlen( $this->getParam( 'content' ) ) > $this->backend->maxFileSizeInternal() ) {
 			$status->fatal( 'backend-fail-maxsize',
@@ -509,7 +509,7 @@ class CreateFileOp extends FileOp {
 			return $this->backend->createInternal( $this->setFlags( $this->params ) );
 		}
 
-		return Status::newGood();
+		return StatusValue::newGood();
 	}
 
 	protected function getSourceSha1Base36() {
@@ -535,7 +535,7 @@ class StoreFileOp extends FileOp {
 	}
 
 	protected function doPrecheck( array &$predicates ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 		// Check if the source file exists on the file system
 		if ( !is_file( $this->params['src'] ) ) {
 			$status->fatal( 'backend-fail-notexists', $this->params['src'] );
@@ -573,7 +573,7 @@ class StoreFileOp extends FileOp {
 			return $this->backend->storeInternal( $this->setFlags( $this->params ) );
 		}
 
-		return Status::newGood();
+		return StatusValue::newGood();
 	}
 
 	protected function getSourceSha1Base36() {
@@ -606,7 +606,7 @@ class CopyFileOp extends FileOp {
 	}
 
 	protected function doPrecheck( array &$predicates ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 		// Check if the source file exists
 		if ( !$this->fileExists( $this->params['src'], $predicates ) ) {
 			if ( $this->getParam( 'ignoreMissingSource' ) ) {
@@ -642,7 +642,7 @@ class CopyFileOp extends FileOp {
 
 	protected function doAttempt() {
 		if ( $this->overwriteSameCase ) {
-			$status = Status::newGood(); // nothing to do
+			$status = StatusValue::newGood(); // nothing to do
 		} elseif ( $this->params['src'] === $this->params['dst'] ) {
 			// Just update the destination file headers
 			$headers = $this->getParam( 'headers' ) ?: [];
@@ -680,7 +680,7 @@ class MoveFileOp extends FileOp {
 	}
 
 	protected function doPrecheck( array &$predicates ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 		// Check if the source file exists
 		if ( !$this->fileExists( $this->params['src'], $predicates ) ) {
 			if ( $this->getParam( 'ignoreMissingSource' ) ) {
@@ -720,7 +720,7 @@ class MoveFileOp extends FileOp {
 		if ( $this->overwriteSameCase ) {
 			if ( $this->params['src'] === $this->params['dst'] ) {
 				// Do nothing to the destination (which is also the source)
-				$status = Status::newGood();
+				$status = StatusValue::newGood();
 			} else {
 				// Just delete the source as the destination file needs no changes
 				$status = $this->backend->deleteInternal( $this->setFlags(
@@ -760,7 +760,7 @@ class DeleteFileOp extends FileOp {
 	}
 
 	protected function doPrecheck( array &$predicates ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 		// Check if the source file exists
 		if ( !$this->fileExists( $this->params['src'], $predicates ) ) {
 			if ( $this->getParam( 'ignoreMissingSource' ) ) {
@@ -809,7 +809,7 @@ class DescribeFileOp extends FileOp {
 	}
 
 	protected function doPrecheck( array &$predicates ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 		// Check if the source file exists
 		if ( !$this->fileExists( $this->params['src'], $predicates ) ) {
 			$status->fatal( 'backend-fail-notexists', $this->params['src'] );
