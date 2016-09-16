@@ -304,6 +304,8 @@ class RebuildRecentchanges extends Maintenance {
 			]
 		);
 
+		$field = $dbw->fieldInfo( 'recentchanges', 'rc_cur_id' );
+
 		$inserted = 0;
 		foreach ( $res as $row ) {
 			$dbw->insert(
@@ -323,7 +325,7 @@ class RebuildRecentchanges extends Maintenance {
 					'rc_last_oldid' => 0,
 					'rc_type' => RC_LOG,
 					'rc_source' => $dbw->addQuotes( RecentChange::SRC_LOG ),
-					'rc_cur_id' => $dbw->cascadingDeletes()
+					'rc_cur_id' => $field->isNullable()
 						? $row->page_id
 						: (int)$row->page_id, // NULL => 0,
 					'rc_log_type' => $row->log_type,

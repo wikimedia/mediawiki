@@ -3017,10 +3017,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Now that it's safely backed up, delete it
 		$dbw->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
-
-		if ( !$dbw->cascadingDeletes() ) {
-			$dbw->delete( 'revision', [ 'rev_page' => $id ], __METHOD__ );
-		}
+		$dbw->delete( 'revision', [ 'rev_page' => $id ], __METHOD__ );
 
 		// Log the deletion, if the page was suppressed, put it in the suppression log instead
 		$logtype = $suppress ? 'suppress' : 'delete';
