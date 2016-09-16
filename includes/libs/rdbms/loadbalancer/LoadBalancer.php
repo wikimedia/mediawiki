@@ -1607,7 +1607,10 @@ class LoadBalancer implements ILoadBalancer {
 	 */
 	public function setDomainPrefix( $prefix ) {
 		list( $dbName, ) = explode( '-', $this->localDomain, 2 );
-
 		$this->localDomain = "{$dbName}-{$prefix}";
+
+		$this->forEachOpenConnection( function ( IDatabase $db ) use ( $prefix ) {
+			$db->tablePrefix( $prefix );
+		} );
 	}
 }

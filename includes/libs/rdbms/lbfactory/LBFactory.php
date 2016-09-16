@@ -633,15 +633,18 @@ abstract class LBFactory {
 	}
 
 	/**
-	 * Define a new local domain (for testing)
+	 * Set a new table prefix for the existing local domain ID for testing
 	 *
-	 * Caller should make sure no local connection are open to the old local domain
-	 *
-	 * @param string $domain
+	 * @param string $prefix
 	 * @since 1.28
 	 */
-	public function setDomainPrefix( $domain ) {
-		$this->localDomain = $domain;
+	public function setDomainPrefix( $prefix ) {
+		list( $dbName, ) = explode( '-', $this->localDomain, 2 );
+		$this->localDomain = "{$dbName}-{$prefix}";
+
+		$this->forEachLB( function( LoadBalancer $lb ) use ( $prefix ) {
+			$lb->setDomainPrefix( $prefix );
+		} );
 	}
 
 	/**
