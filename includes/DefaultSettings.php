@@ -1836,13 +1836,6 @@ $wgDBmwschema = null;
 $wgSQLiteDataDir = '';
 
 /**
- * Make all database connections secretly go to localhost. Fool the load balancer
- * thinking there is an arbitrarily large cluster of servers to connect to.
- * Useful for debugging.
- */
-$wgAllDBsAreLocalhost = false;
-
-/**
  * Shared database for multiple wikis. Commonly used for storing a user table
  * for single sign-on. The server for this database must be the same as for the
  * main database.
