@@ -71,6 +71,14 @@ class LegacyLogger extends AbstractLogger {
 	];
 
 	/**
+	 * @var array
+	 */
+	protected static $dbChannels = [
+		'DBQuery' => true,
+		'DBConnection' => true
+	];
+
+	/**
 	 * @param string $channel
 	 */
 	public function __construct( $channel ) {
@@ -83,11 +91,22 @@ class LegacyLogger extends AbstractLogger {
 	 * @param string|int $level
 	 * @param string $message
 	 * @param array $context
+	 * @return null
 	 */
 	public function log( $level, $message, array $context = [] ) {
-		if ( self::shouldEmit( $this->channel, $message, $level, $context ) ) {
-			$text = self::format( $this->channel, $message, $context );
-			$destination = self::destination( $this->channel, $message, $context );
+		if ( isset( self::$dbChannels[$this->channel] )
+			&& isset( self::$levelMapping[$level] )
+			&& self::$levelMapping[$level] >= LogLevel::ERROR
+		) {
+			// Format and write DB errors to the legacy locations
+			$effectiveChannel = 'wfLogDBError';
+		} else {
+			$effectiveChannel = $this->channel;
+		}
+
+		if ( self::shouldEmit( $effectiveChannel, $message, $level, $context ) ) {
+			$text = self::format( $effectiveChannel, $message, $context );
+			$destination = self::destination( $effectiveChannel, $message, $context );
 			self::emit( $text, $destination );
 		}
 		if ( !isset( $context['private'] ) || !$context['private'] ) {
@@ -298,6 +317,7 @@ class LegacyLogger extends AbstractLogger {
 	 * @param string $channel
 	 * @param string $message
 	 * @param array $context
+	 * @return null
 	 */
 	protected static function formatAsWfDebugLog( $channel, $message, $context ) {
 		$time = wfTimestamp( TS_DB );
@@ -432,7 +452,6 @@ class LegacyLogger extends AbstractLogger {
 	*
 	* @param string $text
 	* @param string $file Filename
-	* @throws MWException
 	*/
 	public static function emit( $text, $file ) {
 		if ( substr( $file, 0, 4 ) == 'udp:' ) {
