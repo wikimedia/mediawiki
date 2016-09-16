@@ -1057,16 +1057,6 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	/**
-	 * Get search engine class. All subclasses of this
-	 * need to implement this if they wish to use searching.
-	 *
-	 * @return string
-	 */
-	public function getSearchEngine() {
-		return 'SearchMySQL';
-	}
-
-	/**
 	 * @param bool $value
 	 */
 	public function setBigSelects( $value = true ) {

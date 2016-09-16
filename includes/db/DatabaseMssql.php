@@ -1266,13 +1266,6 @@ class DatabaseMssql extends Database {
 	}
 
 	/**
-	 * @return string
-	 */
-	public function getSearchEngine() {
-		return "SearchMssql";
-	}
-
-	/**
 	 * Returns an associative array for fields that are of type varbinary, binary, or image
 	 * $table can be either a raw table name or passed through tableName() first
 	 * @param string $table
