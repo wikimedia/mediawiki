@@ -148,7 +148,7 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	final protected function doOperationsInternal( array $ops, array $opts ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		$mbe = $this->backends[$this->masterIndex]; // convenience
 
@@ -233,10 +233,10 @@ class FileBackendMultiWrite extends FileBackend {
 	 * Check that a set of files are consistent across all internal backends
 	 *
 	 * @param array $paths List of storage paths
-	 * @return Status
+	 * @return StatusValue
 	 */
 	public function consistencyCheck( array $paths ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 		if ( $this->syncChecks == 0 || count( $this->backends ) <= 1 ) {
 			return $status; // skip checks
 		}
@@ -305,10 +305,10 @@ class FileBackendMultiWrite extends FileBackend {
 	 * Check that a set of file paths are usable across all internal backends
 	 *
 	 * @param array $paths List of storage paths
-	 * @return Status
+	 * @return StatusValue
 	 */
 	public function accessibilityCheck( array $paths ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 		if ( count( $this->backends ) <= 1 ) {
 			return $status; // skip checks
 		}
@@ -331,10 +331,10 @@ class FileBackendMultiWrite extends FileBackend {
 	 *
 	 * @param array $paths List of storage paths
 	 * @param string|bool $resyncMode False, True, or "conservative"; see __construct()
-	 * @return Status
+	 * @return StatusValue
 	 */
 	public function resyncFiles( array $paths, $resyncMode = true ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		$mBackend = $this->backends[$this->masterIndex];
 		foreach ( $paths as $path ) {
@@ -502,8 +502,8 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	protected function doQuickOperationsInternal( array $ops ) {
-		$status = Status::newGood();
-		// Do the operations on the master backend; setting Status fields...
+		$status = $this->newStatus();
+		// Do the operations on the master backend; setting StatusValue fields...
 		$realOps = $this->substOpBatchPaths( $ops, $this->backends[$this->masterIndex] );
 		$masterStatus = $this->backends[$this->masterIndex]->doQuickOperations( $realOps );
 		$status->merge( $masterStatus );
@@ -553,10 +553,10 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * @param string $method One of (doPrepare,doSecure,doPublish,doClean)
 	 * @param array $params Method arguments
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function doDirectoryOp( $method, array $params ) {
-		$status = Status::newGood();
+		$status = $this->newStatus();
 
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 		$masterStatus = $this->backends[$this->masterIndex]->$method( $realParams );
@@ -736,7 +736,7 @@ class FileBackendMultiWrite extends FileBackend {
 		return $this->backends[$index]->preloadFileStat( $realParams );
 	}
 
-	public function getScopedLocksForOps( array $ops, Status $status ) {
+	public function getScopedLocksForOps( array $ops, StatusValue $status ) {
 		$realOps = $this->substOpBatchPaths( $ops, $this->backends[$this->masterIndex] );
 		$fileOps = $this->backends[$this->masterIndex]->getOperationsInternal( $realOps );
 		// Get the paths to lock from the master backend
