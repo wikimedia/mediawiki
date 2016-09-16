@@ -46,7 +46,7 @@ class LBFactorySimple extends LBFactoryMW {
 	 * @return LoadBalancer
 	 */
 	public function newMainLB( $wiki = false ) {
-		global $wgDBservers, $wgDBprefix, $wgDBmwschema;
+		global $wgDBservers, $wgDBprefix, $wgDBmwschema, $wgSQLMode, $wgDBmysql5;
 
 		if ( is_array( $wgDBservers ) ) {
 			$servers = $wgDBservers;
@@ -59,7 +59,9 @@ class LBFactorySimple extends LBFactoryMW {
 				$server += [
 					'schema' => $wgDBmwschema,
 					'tablePrefix' => $wgDBprefix,
-					'flags' => DBO_DEFAULT
+					'flags' => DBO_DEFAULT,
+					'sqlMode' => $wgSQLMode,
+					'utf8Mode' => $wgDBmysql5
 				];
 			}
 		} else {
@@ -87,7 +89,9 @@ class LBFactorySimple extends LBFactoryMW {
 				'type' => $wgDBtype,
 				'load' => 1,
 				'flags' => $flags,
-				'master' => true
+				'master' => true,
+				'sqlMode' => $wgSQLMode,
+				'utf8Mode' => $wgDBmysql5
 			] ];
 		}
 

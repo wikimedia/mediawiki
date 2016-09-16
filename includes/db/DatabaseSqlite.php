@@ -1042,6 +1042,23 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
+	 * Override due to no CASCADE support
+	 *
+	 * @param string $tableName
+	 * @param string $fName
+	 * @return bool|ResultWrapper
+	 * @throws DBReadOnlyError
+	 */
+	public function dropTable( $tableName, $fName = __METHOD__ ) {
+		if ( !$this->tableExists( $tableName, $fName ) ) {
+			return false;
+		}
+		$sql = "DROP TABLE " . $this->tableName( $tableName );
+
+		return $this->query( $sql, $fName );
+	}
+
+	/**
 	 * @return string
 	 */
 	public function __toString() {
