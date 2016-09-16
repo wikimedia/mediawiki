@@ -175,47 +175,6 @@ class DatabaseTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function testFillPreparedEmpty() {
-		$sql = $this->db->fillPrepared(
-			'SELECT * FROM interwiki', [] );
-		$this->assertEquals(
-			"SELECT * FROM interwiki",
-			$sql );
-	}
-
-	public function testFillPreparedQuestion() {
-		$sql = $this->db->fillPrepared(
-			'SELECT * FROM cur WHERE cur_namespace=? AND cur_title=?',
-			[ 4, "Snicker's_paradox" ] );
-
-		$check = "SELECT * FROM cur WHERE cur_namespace='4' AND cur_title='Snicker''s_paradox'";
-		if ( $this->db->getType() === 'mysql' ) {
-			$check = "SELECT * FROM cur WHERE cur_namespace='4' AND cur_title='Snicker\'s_paradox'";
-		}
-		$this->assertEquals( $check, $sql );
-	}
-
-	public function testFillPreparedBang() {
-		$sql = $this->db->fillPrepared(
-			'SELECT user_id FROM ! WHERE user_name=?',
-			[ '"user"', "Slash's Dot" ] );
-
-		$check = "SELECT user_id FROM \"user\" WHERE user_name='Slash''s Dot'";
-		if ( $this->db->getType() === 'mysql' ) {
-			$check = "SELECT user_id FROM \"user\" WHERE user_name='Slash\'s Dot'";
-		}
-		$this->assertEquals( $check, $sql );
-	}
-
-	public function testFillPreparedRaw() {
-		$sql = $this->db->fillPrepared(
-			"SELECT * FROM cur WHERE cur_title='This_\\&_that,_WTF\\?\\!'",
-			[ '"user"', "Slash's Dot" ] );
-		$this->assertEquals(
-			"SELECT * FROM cur WHERE cur_title='This_&_that,_WTF?!'",
-			$sql );
-	}
-
 	public function testStoredFunctions() {
 		if ( !in_array( wfGetDB( DB_MASTER )->getType(), [ 'mysql', 'postgres' ] ) ) {
 			$this->markTestSkipped( 'MySQL or Postgres required' );
