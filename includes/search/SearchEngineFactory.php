@@ -5,7 +5,6 @@
  * Allows to create engine of the specific type.
  */
 class SearchEngineFactory {
-
 	/**
 	 * Configuration for SearchEngine classes.
 	 * @var SearchEngineConfig
@@ -33,10 +32,32 @@ class SearchEngineFactory {
 			$class = $configType;
 		} else {
 			$dbr = wfGetDB( DB_REPLICA );
-			$class = $dbr->getSearchEngine();
+			$class = self::getSearchEngineClass( $dbr );
 		}
 
 		$search = new $class( $dbr );
 		return $search;
+	}
+
+	/**
+	 * @param IDatabase $db
+	 * @return string SearchEngine subclass name
+	 * @since 1.28
+	 */
+	public static function getSearchEngineClass( IDatabase $db ) {
+		switch ( $db->getType() ) {
+			case 'sqlite':
+				return 'SearchSqlite';
+			case 'mysql':
+				return 'SearchMySQL';
+			case 'postgres':
+				return 'SearchPostgres';
+			case 'mssql':
+				return 'SearchMssql';
+			case 'oracle':
+				return 'SearchOracle';
+			default:
+				return 'SearchEngineDummy';
+		}
 	}
 }

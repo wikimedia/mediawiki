@@ -30,7 +30,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			$this->markTestSkipped( "MySQL or SQLite with FTS3 only" );
 		}
 
-		$searchType = $this->db->getSearchEngine();
+		$searchType = SearchEngineFactory::getSearchEngineClass( $this->db );
 		$this->setMwGlobals( [
 			'wgSearchType' => $searchType
 		] );
