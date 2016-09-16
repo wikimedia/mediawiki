@@ -104,17 +104,18 @@
 		/**
 		 * Get date user registered, if available
 		 *
-		 * @return {Date|boolean|null} Date user registered, or false for anonymous users, or
-		 *  null when data is not available
+		 * @return {boolean|null|Date} False for anonymous users, null if data is
+		 *  unavailable, or Date for when the user registered.
 		 */
 		getRegistration: function () {
-			var registration = mw.config.get( 'wgUserRegistration' );
 			if ( mw.user.isAnon() ) {
 				return false;
 			}
+			var registration = mw.config.get( 'wgUserRegistration' );
+			// Registration may be unavailable if the user signed up before MediaWiki
+			// began tracking this.
+			return !registration ? null : new Date( registration );
 			if ( registration === null ) {
-				// Information may not be available if they signed up before
-				// MW began storing this.
 				return null;
 			}
 			return new Date( registration );
