@@ -227,14 +227,6 @@ class DatabasePostgres extends DatabaseBase {
 		return 'postgres';
 	}
 
-	function cascadingDeletes() {
-		return true;
-	}
-
-	function cleanupTriggers() {
-		return true;
-	}
-
 	function strictIPs() {
 		return true;
 	}

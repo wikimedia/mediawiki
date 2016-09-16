@@ -176,14 +176,6 @@ class DatabaseOracle extends DatabaseBase {
 		return 'oracle';
 	}
 
-	function cascadingDeletes() {
-		return true;
-	}
-
-	function cleanupTriggers() {
-		return true;
-	}
-
 	function strictIPs() {
 		return true;
 	}
