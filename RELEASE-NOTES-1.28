@@ -171,6 +171,7 @@ changes to languages because of Phabricator reports.
   phpunit.php: --regex and --keep-uploads. Instead of --regex, use --filter.
   Instead of --keep-uploads, use the same option to parserTests.php, but you
   must specify a directory with --upload-dir.
+* The 'jquery.arrowSteps' ResourceLoader module is now deprecated.
 
 == Compatibility ==
 
