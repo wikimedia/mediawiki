@@ -48,10 +48,10 @@ class DBFileJournal extends FileJournal {
 	 * @see FileJournal::logChangeBatch()
 	 * @param array $entries
 	 * @param string $batchId
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function doLogChangeBatch( array $entries, $batchId ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 
 		try {
 			$dbw = $this->getMasterDB();
@@ -151,11 +151,11 @@ class DBFileJournal extends FileJournal {
 
 	/**
 	 * @see FileJournal::purgeOldLogs()
-	 * @return Status
+	 * @return StatusValue
 	 * @throws DBError
 	 */
 	protected function doPurgeOldLogs() {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 		if ( $this->ttlDays <= 0 ) {
 			return $status; // nothing to do
 		}

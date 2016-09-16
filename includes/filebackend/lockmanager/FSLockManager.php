@@ -62,7 +62,7 @@ class FSLockManager extends LockManager {
 	 * @see LockManager::doLock()
 	 * @param array $paths
 	 * @param int $type
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function doLock( array $paths, $type ) {
 		$status = Status::newGood();
@@ -87,7 +87,7 @@ class FSLockManager extends LockManager {
 	 * @see LockManager::doUnlock()
 	 * @param array $paths
 	 * @param int $type
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function doUnlock( array $paths, $type ) {
 		$status = Status::newGood();
@@ -104,7 +104,7 @@ class FSLockManager extends LockManager {
 	 *
 	 * @param string $path
 	 * @param int $type
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function doSingleLock( $path, $type ) {
 		$status = Status::newGood();
@@ -149,7 +149,7 @@ class FSLockManager extends LockManager {
 	 *
 	 * @param string $path
 	 * @param int $type
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function doSingleUnlock( $path, $type ) {
 		$status = Status::newGood();
@@ -192,7 +192,7 @@ class FSLockManager extends LockManager {
 	/**
 	 * @param string $path
 	 * @param array $handlesToClose
-	 * @return Status
+	 * @return StatusValue
 	 */
 	private function closeLockHandles( $path, array $handlesToClose ) {
 		$status = Status::newGood();
@@ -210,7 +210,7 @@ class FSLockManager extends LockManager {
 
 	/**
 	 * @param string $path
-	 * @return Status
+	 * @return StatusValue
 	 */
 	private function pruneKeyLockFiles( $path ) {
 		$status = Status::newGood();
