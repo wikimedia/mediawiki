@@ -44,8 +44,8 @@ abstract class LBFactoryMW extends LBFactory implements DestructibleService {
 			'hostname' => wfHostname(),
 			'trxProfiler' => Profiler::instance()->getTransactionProfiler(),
 			'replLogger' => LoggerFactory::getInstance( 'DBReplication' ),
-			'queryLogger' => LoggerFactory::getInstance( 'wfLogDBError' ),
-			'connLogger' => LoggerFactory::getInstance( 'wfLogDBError' ),
+			'queryLogger' => LoggerFactory::getInstance( 'DBQuery' ),
+			'connLogger' => LoggerFactory::getInstance( 'DBConnection' ),
 			'perfLogger' => LoggerFactory::getInstance( 'DBPerformance' ),
 			'errorLogger' => [ MWExceptionHandler::class, 'logException' ]
 		];
