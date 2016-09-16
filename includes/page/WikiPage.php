@@ -121,6 +121,11 @@ class WikiPage implements Page, IDBAccessObject {
 			throw new MWException( "Invalid or virtual namespace $ns given." );
 		}
 
+		$page = null;
+		if ( !Hooks::run( 'WikiPageFactory', [ $title, &$page ] ) ) {
+			return $page;
+		}
+
 		switch ( $ns ) {
 			case NS_FILE:
 				$page = new WikiFilePage( $title );
