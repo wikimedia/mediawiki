@@ -1517,10 +1517,6 @@ class DatabaseOracle extends DatabaseBase {
 		return 'CAST ( ' . $field . ' AS VARCHAR2 )';
 	}
 
-	public function getSearchEngine() {
-		return 'SearchOracle';
-	}
-
 	public function getInfinity() {
 		return '31-12-2030 12:00:00.000000';
 	}

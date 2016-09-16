@@ -214,10 +214,8 @@ abstract class DatabaseBase extends Database {
 	}
 
 	/**
-	 * Get search engine class. All subclasses of this need to implement this
-	 * if they wish to use searching.
-	 *
 	 * @return string
+	 * @deprecated since 1.27; use SearchEngineFactory::getSearchEngineClass()
 	 */
 	public function getSearchEngine() {
 		return 'SearchEngineDummy';
