@@ -37,7 +37,7 @@ abstract class LBFactoryMW extends LBFactory implements DestructibleService {
 	 * @TODO: inject objects via dependency framework
 	 */
 	public function __construct( array $conf ) {
-		global $wgCommandLineMode;
+		global $wgCommandLineMode, $wgSQLMode, $wgDBmysql5;
 
 		$defaults = [
 			'domain' => wfWikiID(),
@@ -65,6 +65,11 @@ abstract class LBFactoryMW extends LBFactory implements DestructibleService {
 
 		$this->agent = isset( $params['agent'] ) ? $params['agent'] : '';
 		$this->cliMode = isset( $params['cliMode'] ) ? $params['cliMode'] : $wgCommandLineMode;
+
+		if ( isset( $conf['serverTemplate'] ) ) { // LBFactoryMulti
+			$conf['serverTemplate']['sqlMode'] = $wgSQLMode;
+			$conf['serverTemplate']['utf8Mode'] = $wgDBmysql5;
+		}
 
 		parent::__construct( $conf + $defaults );
 	}

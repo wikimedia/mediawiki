@@ -445,8 +445,7 @@ abstract class LBFactory {
 		$failed = [];
 		foreach ( $lbs as $i => $lb ) {
 			if ( $masterPositions[$i] ) {
-				// The DBMS may not support getMasterPos() or the whole
-				// load balancer might be fake (e.g. $wgAllDBsAreLocalhost).
+				// The DBMS may not support getMasterPos()
 				if ( !$lb->waitForAll( $masterPositions[$i], $opts['timeout'] ) ) {
 					$failed[] = $lb->getServerName( $lb->getWriterIndex() );
 				}

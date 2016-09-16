@@ -46,6 +46,11 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	protected $sslCAPath;
 	/** @var string[]|null */
 	protected $sslCiphers;
+	/** @var string sql_mode value to send on connection */
+	protected $sqlMode;
+	/** @var bool Use experimental UTF-8 transmission encoding */
+	protected $utf8Mode;
+
 	/** @var string|null */
 	private $serverVersion = null;
 
@@ -82,6 +87,8 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 				$this->$var = $params[$var];
 			}
 		}
+		$this->sqlMode = isset( $params['sqlMode'] ) ? $params['sqlMode'] : '';
+		$this->utf8Mode = !empty( $params['utf8Mode'] );
 	}
 
 	/**
@@ -100,13 +107,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @return bool
 	 */
 	function open( $server, $user, $password, $dbName ) {
-		global $wgAllDBsAreLocalhost, $wgSQLMode;
-
 		# Close/unset connection handle
 		$this->close();
 
-		# Debugging hack -- fake cluster
-		$realServer = $wgAllDBsAreLocalhost ? 'localhost' : $server;
 		$this->mServer = $server;
 		$this->mUser = $user;
 		$this->mPassword = $password;
@@ -114,7 +117,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 		$this->installErrorHandler();
 		try {
-			$this->mConn = $this->mysqlConnect( $realServer );
+			$this->mConn = $this->mysqlConnect( $this->mServer );
 		} catch ( Exception $ex ) {
 			$this->restoreErrorHandler();
 			throw $ex;
@@ -126,14 +129,14 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			if ( !$error ) {
 				$error = $this->lastError();
 			}
-			wfLogDBError(
+			$this->queryLogger->error(
 				"Error connecting to {db_server}: {error}",
 				$this->getLogContext( [
 					'method' => __METHOD__,
 					'error' => $error,
 				] )
 			);
-			wfDebug( "DB connection error\n" .
+			$this->queryLogger->debug( "DB connection error\n" .
 				"Server: $server, User: $user, Password: " .
 				substr( $password, 0, 3 ) . "..., error: " . $error . "\n" );
 
@@ -145,14 +148,14 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			$success = $this->selectDB( $dbName );
 			MediaWiki\restoreWarnings();
 			if ( !$success ) {
-				wfLogDBError(
+				$this->queryLogger->error(
 					"Error selecting database {db_name} on server {db_server}",
 					$this->getLogContext( [
 						'method' => __METHOD__,
 					] )
 				);
-				wfDebug( "Error selecting database $dbName on server {$this->mServer} " .
-					"from client host " . wfHostname() . "\n" );
+				$this->queryLogger->debug(
+					"Error selecting database $dbName on server {$this->mServer}" );
 
 				$this->reportConnectionError( "Error selecting database $dbName" );
 			}
@@ -166,8 +169,8 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		// Abstract over any insane MySQL defaults
 		$set = [ 'group_concat_max_len = 262144' ];
 		// Set SQL mode, default is turning them all off, can be overridden or skipped with null
-		if ( is_string( $wgSQLMode ) ) {
-			$set[] = 'sql_mode = ' . $this->addQuotes( $wgSQLMode );
+		if ( is_string( $this->sqlMode ) ) {
+			$set[] = 'sql_mode = ' . $this->addQuotes( $this->sqlMode );
 		}
 		// Set any custom settings defined by site config
 		// (e.g. https://dev.mysql.com/doc/refman/4.1/en/innodb-parameters.html)
@@ -183,7 +186,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			// Use doQuery() to avoid opening implicit transactions (DBO_TRX)
 			$success = $this->doQuery( 'SET ' . implode( ', ', $set ) );
 			if ( !$success ) {
-				wfLogDBError(
+				$this->queryLogger->error(
 					'Error setting MySQL variables on server {db_server} (check $wgSQLMode)',
 					$this->getLogContext( [
 						'method' => __METHOD__,
@@ -204,9 +207,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @return bool
 	 */
 	protected function connectInitCharset() {
-		global $wgDBmysql5;
-
-		if ( $wgDBmysql5 ) {
+		if ( $this->utf8Mode ) {
 			// Tell the server we're communicating with it in UTF-8.
 			// This may engage various charset conversions.
 			return $this->mysqlSetCharset( 'utf8' );
@@ -657,7 +658,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			// Standard method: use master server ID (works with stock pt-heartbeat)
 			$masterInfo = $this->getMasterServerInfo();
 			if ( !$masterInfo ) {
-				wfLogDBError(
+				$this->queryLogger->error(
 					"Unable to query master of {db_server} for server ID",
 					$this->getLogContext( [
 						'method' => __METHOD__
@@ -680,7 +681,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			return max( $nowUnix - $timeUnix, 0.0 );
 		}
 
-		wfLogDBError(
+		$this->queryLogger->error(
 			"Unable to find pt-heartbeat row for {db_server}",
 			$this->getLogContext( [
 				'method' => __METHOD__
@@ -984,7 +985,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			return true;
 		}
 
-		wfDebug( __METHOD__ . " failed to acquire lock\n" );
+		$this->queryLogger->debug( __METHOD__ . " failed to acquire lock\n" );
 
 		return false;
 	}
@@ -1006,7 +1007,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			return true;
 		}
 
-		wfDebug( __METHOD__ . " failed to release lock\n" );
+		$this->queryLogger->debug( __METHOD__ . " failed to release lock\n" );
 
 		return false;
 	}
