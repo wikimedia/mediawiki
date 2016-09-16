@@ -126,7 +126,7 @@ abstract class DatabaseMysqlBase extends Database {
 			if ( !$error ) {
 				$error = $this->lastError();
 			}
-			wfLogDBError(
+			$this->queryLogger->error(
 				"Error connecting to {db_server}: {error}",
 				$this->getLogContext( [
 					'method' => __METHOD__,
@@ -145,7 +145,7 @@ abstract class DatabaseMysqlBase extends Database {
 			$success = $this->selectDB( $dbName );
 			MediaWiki\restoreWarnings();
 			if ( !$success ) {
-				wfLogDBError(
+				$this->queryLogger->error(
 					"Error selecting database {db_name} on server {db_server}",
 					$this->getLogContext( [
 						'method' => __METHOD__,
@@ -183,7 +183,7 @@ abstract class DatabaseMysqlBase extends Database {
 			// Use doQuery() to avoid opening implicit transactions (DBO_TRX)
 			$success = $this->doQuery( 'SET ' . implode( ', ', $set ) );
 			if ( !$success ) {
-				wfLogDBError(
+				$this->queryLogger->error(
 					'Error setting MySQL variables on server {db_server} (check $wgSQLMode)',
 					$this->getLogContext( [
 						'method' => __METHOD__,
@@ -657,7 +657,7 @@ abstract class DatabaseMysqlBase extends Database {
 			// Standard method: use master server ID (works with stock pt-heartbeat)
 			$masterInfo = $this->getMasterServerInfo();
 			if ( !$masterInfo ) {
-				wfLogDBError(
+				$this->queryLogger->error(
 					"Unable to query master of {db_server} for server ID",
 					$this->getLogContext( [
 						'method' => __METHOD__
@@ -680,7 +680,7 @@ abstract class DatabaseMysqlBase extends Database {
 			return max( $nowUnix - $timeUnix, 0.0 );
 		}
 
-		wfLogDBError(
+		$this->queryLogger->error(
 			"Unable to find pt-heartbeat row for {db_server}",
 			$this->getLogContext( [
 				'method' => __METHOD__

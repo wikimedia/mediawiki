@@ -998,7 +998,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 		$this->trxProfiler->recordQueryCompletion(
 			$queryProf, $startTime, $isWrite, $this->affectedRows()
 		);
-		MWDebug::query( $sql, $fname, $isMaster, $queryRuntime );
+		$this->queryLogger->debug( $commentedSql );
 
 		return $ret;
 	}
