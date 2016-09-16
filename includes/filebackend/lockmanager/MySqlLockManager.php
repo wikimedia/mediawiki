@@ -35,7 +35,7 @@ class MySqlLockManager extends DBLockManager {
 	 * @param string $lockSrv
 	 * @param array $paths
 	 * @param string $type
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function doGetLocksOnServer( $lockSrv, array $paths, $type ) {
 		$status = Status::newGood();
@@ -105,7 +105,7 @@ class MySqlLockManager extends DBLockManager {
 
 	/**
 	 * @see QuorumLockManager::releaseAllLocks()
-	 * @return Status
+	 * @return StatusValue
 	 */
 	protected function releaseAllLocks() {
 		$status = Status::newGood();
