@@ -131,7 +131,7 @@ class ORAResult {
 /**
  * @ingroup Database
  */
-class DatabaseOracle extends Database {
+class DatabaseOracle extends DatabaseBase {
 	/** @var resource */
 	protected $mLastResult = null;
 

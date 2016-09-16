@@ -25,7 +25,7 @@
 /**
  * @ingroup Database
  */
-class DatabaseSqlite extends Database {
+class DatabaseSqlite extends DatabaseBase {
 	/** @var bool Whether full text is enabled */
 	private static $fulltextEnabled = null;
 
