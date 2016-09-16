@@ -835,13 +835,6 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
-	 * @return string
-	 */
-	public function getSearchEngine() {
-		return "SearchSqlite";
-	}
-
-	/**
 	 * No-op version of deadlockLoop
 	 *
 	 * @return mixed
