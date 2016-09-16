@@ -224,4 +224,20 @@ class WikiFilePage extends WikiPage {
 
 		return TitleArray::newFromResult( $res );
 	}
+
+	/**
+	 * @since 1.28
+	 * @return string
+	 */
+	public function getWikiDisplayName() {
+		return $this->getFile()->getRepo()->getDisplayName();
+	}
+
+	/**
+	 * @since 1.28
+	 * @return string
+	 */
+	public function getSourceURL() {
+		return $this->getFile()->getDescriptionUrl();
+	}
 }
