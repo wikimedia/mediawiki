@@ -3743,6 +3743,10 @@ $content: the Content to generate updates for (or null, if the Content could not
 due to an error)
 &$updates: the array of DataUpdate objects. Hook function may want to add to it.
 
+'WikiPageFactory': Override WikiPage class used for a title
+$title: Title of the page
+&$page: Variable to set the created WikiPage to.
+
 'XmlDumpWriterOpenPage': Called at the end of XmlDumpWriter::openPage, to allow
 extra metadata to be added.
 $obj: The XmlDumpWriter object.
