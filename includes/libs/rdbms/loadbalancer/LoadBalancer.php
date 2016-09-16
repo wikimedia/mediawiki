@@ -515,7 +515,7 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		if ( $domain === $this->localDomain ) {
-			$domain = false;
+			$domain = false; // local connection requested
 		}
 
 		$groups = ( $groups === false || $groups === [] )
@@ -627,6 +627,8 @@ class LoadBalancer implements ILoadBalancer {
 	 * @since 1.22
 	 */
 	public function getConnectionRef( $db, $groups = [], $domain = false ) {
+		$domain = ( $domain !== false ) ? $domain : $this->localDomain;
+
 		return new DBConnRef( $this, $this->getConnection( $db, $groups, $domain ) );
 	}
 
@@ -650,6 +652,10 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function openConnection( $i, $domain = false ) {
+		if ( $domain === $this->localDomain ) {
+			$domain = false; // local connection requested
+		}
+
 		if ( $domain !== false ) {
 			$conn = $this->openForeignConnection( $i, $domain );
 		} elseif ( isset( $this->mConns['local'][$i][0] ) ) {
@@ -1607,7 +1613,10 @@ class LoadBalancer implements ILoadBalancer {
 	 */
 	public function setDomainPrefix( $prefix ) {
 		list( $dbName, ) = explode( '-', $this->localDomain, 2 );
-
 		$this->localDomain = "{$dbName}-{$prefix}";
+
+		$this->forEachOpenConnection( function ( IDatabase $db ) use ( $prefix ) {
+			$db->tablePrefix( $prefix );
+		} );
 	}
 }
