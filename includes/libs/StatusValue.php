@@ -246,8 +246,8 @@ class StatusValue {
 	 * Note, due to the lack of tools for comparing IStatusMessage objects, this
 	 * function will not work when using such an object as the search parameter.
 	 *
-	 * @param IStatusMessage|string $source Message key or object to search for
-	 * @param IStatusMessage|string $dest Replacement message key or object
+	 * @param MessageSpecifier|string $source Message key or object to search for
+	 * @param MessageSpecifier|string $dest Replacement message key or object
 	 * @return bool Return true if the replacement was done, false otherwise.
 	 */
 	public function replaceMessage( $source, $dest ) {
