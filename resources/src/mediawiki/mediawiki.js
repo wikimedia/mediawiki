@@ -66,48 +66,20 @@
 	}() );
 
 	/**
-	 * Create an object that can be read from or written to from methods that allow
+	 * Create an object that can be read from or written to via methods that allow
 	 * interaction both with single and multiple properties at once.
 	 *
-	 *     @example
-	 *
-	 *     var collection, query, results;
-	 *
-	 *     // Create your address book
-	 *     collection = new mw.Map();
-	 *
-	 *     // This data could be coming from an external source (eg. API/AJAX)
-	 *     collection.set( {
-	 *         'John Doe': 'john@example.org',
-	 *         'Jane Doe': 'jane@example.org',
-	 *         'George van Halen': 'gvanhalen@example.org'
-	 *     } );
-	 *
-	 *     wanted = ['John Doe', 'Jane Doe', 'Daniel Jackson'];
-	 *
-	 *     // You can detect missing keys first
-	 *     if ( !collection.exists( wanted ) ) {
-	 *         // One or more are missing (in this case: "Daniel Jackson")
-	 *         mw.log( 'One or more names were not found in your address book' );
-	 *     }
-	 *
-	 *     // Or just let it give you what it can. Optionally fill in from a default.
-	 *     results = collection.get( wanted, 'nobody@example.com' );
-	 *     mw.log( results['Jane Doe'] ); // "jane@example.org"
-	 *     mw.log( results['Daniel Jackson'] ); // "nobody@example.com"
-	 *
+	 * @private
 	 * @class mw.Map
 	 *
 	 * @constructor
-	 * @param {Object|boolean} [values] The value-baring object to be mapped. Defaults to an
-	 *  empty object.
-	 *  For backwards-compatibility with mw.config, this can also be `true` in which case values
-	 *  are copied to the Window object as global variables (T72470). Values are copied in
-	 *  one direction only. Changes to globals are not reflected in the map.
+	 * @param {boolean} [global=false] Whether to synchronise =values to the global
+	 *  window object (for backwards-compatibility with mw.config; T72470). Values are
+	 *  copied in one direction only. Changes to globals do not reflect in the map.
 	 */
-	function Map( values ) {
-		if ( values === true ) {
-			this.values = {};
+	function Map( global ) {
+		this.internalValues = {};
+		if ( global === true ) {
 
 			// Override #set to also set the global variable
 			this.set = function ( selection, value ) {
@@ -125,11 +97,16 @@
 				}
 				return false;
 			};
-
-			return;
 		}
 
-		this.values = values || {};
+		// Deprecated since MediaWiki 1.28
+		log.deprecate(
+			this,
+			'values',
+			this.internalValues,
+			'mw.Map#values is deprecated. Use mw.Map#get() instead.',
+			'Map-values'
+		);
 	}
 
 	/**
@@ -142,8 +119,8 @@
 	 * @param {Mixed} value
 	 */
 	function setGlobalMapValue( map, key, value ) {
-		map.values[ key ] = value;
-		mw.log.deprecate(
+		map.internalValues[ key ] = value;
+		log.deprecate(
 				window,
 				key,
 				value,
@@ -153,6 +130,8 @@
 	}
 
 	Map.prototype = {
+		constructor: Map,
+
 		/**
 		 * Get the value of one or more keys.
 		 *
@@ -162,7 +141,7 @@
 		 * @param {Mixed} [fallback=null] Value for keys that don't exist.
 		 * @return {Mixed|Object| null} If selection was a string, returns the value,
 		 *  If selection was an array, returns an object of key/values.
-		 *  If no selection is passed, the 'values' container is returned. (Beware that,
+		 *  If no selection is passed, the internal container is returned. (Beware that,
 		 *  as is the default in JavaScript, the object is returned by reference.)
 		 */
 		get: function ( selection, fallback ) {
@@ -181,14 +160,14 @@
 			}
 
 			if ( typeof selection === 'string' ) {
-				if ( !hasOwn.call( this.values, selection ) ) {
+				if ( !hasOwn.call( this.internalValues, selection ) ) {
 					return fallback;
 				}
-				return this.values[ selection ];
+				return this.internalValues[ selection ];
 			}
 
 			if ( selection === undefined ) {
-				return this.values;
+				return this.internalValues;
 			}
 
 			// Invalid selection key
@@ -207,12 +186,12 @@
 
 			if ( $.isPlainObject( selection ) ) {
 				for ( s in selection ) {
-					this.values[ s ] = selection[ s ];
+					this.internalValues[ s ] = selection[ s ];
 				}
 				return true;
 			}
 			if ( typeof selection === 'string' && arguments.length > 1 ) {
-				this.values[ selection ] = value;
+				this.internalValues[ selection ] = value;
 				return true;
 			}
 			return false;
@@ -229,13 +208,13 @@
 
 			if ( $.isArray( selection ) ) {
 				for ( s = 0; s < selection.length; s++ ) {
-					if ( typeof selection[ s ] !== 'string' || !hasOwn.call( this.values, selection[ s ] ) ) {
+					if ( typeof selection[ s ] !== 'string' || !hasOwn.call( this.internalValues, selection[ s ] ) ) {
 						return false;
 					}
 				}
 				return true;
 			}
-			return typeof selection === 'string' && hasOwn.call( this.values, selection );
+			return typeof selection === 'string' && hasOwn.call( this.internalValues, selection );
 		}
 	};
 
@@ -475,11 +454,14 @@
 		 * @param {string} key Name of property to create in `obj`
 		 * @param {Mixed} val The value this property should return when accessed
 		 * @param {string} [msg] Optional text to include in the deprecation message
+		 * @param {string} [logName=key] Optional custom name for the feature.
+		 *  This is used instead of `key` in the message and `mw.deprecate` tracking.
 		 */
 		log.deprecate = !Object.defineProperty ? function ( obj, key, val ) {
 			obj[ key ] = val;
-		} : function ( obj, key, val, msg ) {
-			msg = 'Use of "' + key + '" is deprecated.' + ( msg ? ( ' ' + msg ) : '' );
+		} : function ( obj, key, val, msg, logName ) {
+			logName = logName || key;
+			msg = 'Use of "' + logName + '" is deprecated.' + ( msg ? ( ' ' + msg ) : '' );
 			var logged = new StringSet();
 			function uniqueTrace() {
 				var trace = new Error().stack;
@@ -494,14 +476,14 @@
 				enumerable: true,
 				get: function () {
 					if ( uniqueTrace() ) {
-						mw.track( 'mw.deprecate', key );
+						mw.track( 'mw.deprecate', logName );
 						mw.log.warn( msg );
 					}
 					return val;
 				},
 				set: function ( newVal ) {
 					if ( uniqueTrace() ) {
-						mw.track( 'mw.deprecate', key );
+						mw.track( 'mw.deprecate', logName );
 						mw.log.warn( msg );
 					}
 					val = newVal;
