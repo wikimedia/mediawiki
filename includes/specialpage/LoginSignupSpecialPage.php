@@ -359,7 +359,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				$this->authAction = $this->isSignup() ? AuthManager::ACTION_CREATE_CONTINUE
 					: AuthManager::ACTION_LOGIN_CONTINUE;
 				$this->authRequests = $response->neededRequests;
-				$this->mainLoginForm( $response->neededRequests, $response->message, 'warning' );
+				$this->mainLoginForm( $response->neededRequests, $response->message, $response->messageType );
 				break;
 			default:
 				throw new LogicException( 'invalid AuthenticationResponse' );
@@ -499,7 +499,13 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		$form = $this->getAuthForm( $requests, $this->authAction, $msg, $msgtype );
 		$form->prepareForm();
-		$formHtml = $form->getHTML( $msg ? Status::newFatal( $msg ) : false );
+		$submitStatus = Status::newGood();
+		if ( $msg && $msgtype === 'warning' ) {
+			$submitStatus->warning( $msg );
+		} elseif ( $msg && $msgtype === 'error' ) {
+			$submitStatus->fatal( $msg );
+		}
+		$formHtml = $form->getHTML( $submitStatus );
 
 		$out->addHTML( $this->getPageHtml( $formHtml ) );
 	}

@@ -106,6 +106,26 @@ class Status {
 	}
 
 	/**
+	 * Splits this Status object into two new Status objects, one which contains only
+	 * the error messages, and one that contains the warnings, only. The returned array is
+	 * defined as:
+	 * array(
+	 * 	0 => object(Status) # the Status with error messages, only
+	 * 	1 => object(Status) # The Status with warning messages, only
+	 * )
+	 *
+	 * @return array
+	 */
+	public function splitByErrorType() {
+		list( $errorsOnlyStatusValue, $warningsOnlyStatusValue ) = $this->sv->splitByErrorType();
+		$errorsOnlyStatus = new Status( $errorsOnlyStatusValue );
+		$warningsOnlyStatus = new Status( $warningsOnlyStatusValue );
+		$errorsOnlyStatus->cleanCallback = $warningsOnlyStatus->cleanCallback = $this->cleanCallback;
+
+		return [ $errorsOnlyStatus, $warningsOnlyStatus ];
+	}
+
+	/**
 	 * Change operation result
 	 *
 	 * @param bool $ok Whether the operation completed
@@ -314,6 +334,7 @@ class Status {
 
 	/**
 	 * Return the message for a single error.
+	 *
 	 * @param mixed $error With an array & two values keyed by
 	 * 'message' and 'params', use those keys-value pairs.
 	 * Otherwise, if its an array, just use the first value as the
