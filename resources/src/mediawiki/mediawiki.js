@@ -11,7 +11,7 @@
 ( function ( $ ) {
 	'use strict';
 
-	var mw, StringSet, log,
+	var mw, StringSet, StringMap, log,
 		hasOwn = Object.prototype.hasOwnProperty,
 		slice = Array.prototype.slice,
 		trackCallbacks = $.Callbacks( 'memory' ),
@@ -48,6 +48,7 @@
 		return hash;
 	}
 
+	// <https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Set>
 	StringSet = window.Set || ( function () {
 		/**
 		 * @private
@@ -60,9 +61,39 @@
 			this.set[ value ] = true;
 		};
 		StringSet.prototype.has = function ( value ) {
-			return this.set.hasOwnProperty( value );
+			return hasOwn.call( this.set, value );
 		};
 		return StringSet;
+	}() );
+
+	// <https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map>
+	StringMap = window.Map || ( function () {
+		/**
+		 * @private
+		 * @class
+		 */
+		function StringMap() {
+			this.values = {};
+		}
+		/** @return {Mixed|undefined} */
+		StringMap.prototype.get = function ( key ) {
+			return this.values[ key ];
+		};
+		/** @return {boolean} */
+		StringMap.prototype.has = function ( key ) {
+			return typeof key === 'string' && hasOwn.call( this.values, key );
+		};
+		/** @chainable */
+		StringMap.prototype.set = function ( key, value ) {
+			this.values[ key ] = value;
+			return this;
+		};
+		StringMap.prototype.forEach = function ( callback ) {
+			for ( var key in this.values ) {
+				callback( this.values[ key ], key );
+			}
+		};
+		return StringMap;
 	}() );
 
 	/**
@@ -78,35 +109,25 @@
 	 *  copied in one direction only. Changes to globals do not reflect in the map.
 	 */
 	function Map( global ) {
-		this.internalValues = {};
+		this.internalMap = new StringMap();
 		if ( global === true ) {
-
 			// Override #set to also set the global variable
 			this.set = function ( selection, value ) {
 				var s;
 
 				if ( $.isPlainObject( selection ) ) {
 					for ( s in selection ) {
-						setGlobalMapValue( this, s, selection[ s ] );
+						setMapGlobal( this, s, selection[ s ] );
 					}
 					return true;
 				}
 				if ( typeof selection === 'string' && arguments.length ) {
-					setGlobalMapValue( this, selection, value );
+					setMapGlobal( this, selection, value );
 					return true;
 				}
 				return false;
 			};
 		}
-
-		// Deprecated since MediaWiki 1.28
-		log.deprecate(
-			this,
-			'values',
-			this.internalValues,
-			'mw.Map#values is deprecated. Use mw.Map#get() instead.',
-			'Map-values'
-		);
 	}
 
 	/**
@@ -118,8 +139,8 @@
 	 * @param {string} key
 	 * @param {Mixed} value
 	 */
-	function setGlobalMapValue( map, key, value ) {
-		map.internalValues[ key ] = value;
+	function setMapGlobal( map, key, value ) {
+		map.internalMap.set( key, value );
 		log.deprecate(
 				window,
 				key,
@@ -141,33 +162,36 @@
 		 * @param {Mixed} [fallback=null] Value for keys that don't exist.
 		 * @return {Mixed|Object| null} If selection was a string, returns the value,
 		 *  If selection was an array, returns an object of key/values.
-		 *  If no selection is passed, the internal container is returned. (Beware that,
-		 *  as is the default in JavaScript, the object is returned by reference.)
+		 *  If no selection is passed, a new object with all key/values is returned.
 		 */
 		get: function ( selection, fallback ) {
-			var results, i;
+			var results, i, key;
 			// If we only do this in the `return` block, it'll fail for the
 			// call to get() from the mutli-selection block.
 			fallback = arguments.length > 1 ? fallback : null;
 
 			if ( $.isArray( selection ) ) {
-				selection = slice.call( selection );
 				results = {};
 				for ( i = 0; i < selection.length; i++ ) {
-					results[ selection[ i ] ] = this.get( selection[ i ], fallback );
+					results[ selection[ i ] ] = !this.internalMap.has( selection[ i ] )
+						? fallback
+						: this.internalMap.get( selection[ i ] );
 				}
 				return results;
 			}
 
 			if ( typeof selection === 'string' ) {
-				if ( !hasOwn.call( this.internalValues, selection ) ) {
-					return fallback;
-				}
-				return this.internalValues[ selection ];
+				return !this.internalMap.has( selection )
+					? fallback
+					: this.internalMap.get( selection );
 			}
 
 			if ( selection === undefined ) {
-				return this.internalValues;
+				results = {};
+				this.internalMap.forEach( function ( value, key ) {
+					results[ key ] = value;
+				} );
+				return results;
 			}
 
 			// Invalid selection key
@@ -186,12 +210,12 @@
 
 			if ( $.isPlainObject( selection ) ) {
 				for ( s in selection ) {
-					this.internalValues[ s ] = selection[ s ];
+					this.internalMap.set( s, selection[ s ] );
 				}
 				return true;
 			}
 			if ( typeof selection === 'string' && arguments.length > 1 ) {
-				this.internalValues[ selection ] = value;
+				this.internalMap.set( selection, value );
 				return true;
 			}
 			return false;
@@ -204,17 +228,17 @@
 		 * @return {boolean} True if the key(s) exist
 		 */
 		exists: function ( selection ) {
-			var s;
+			var i;
 
 			if ( $.isArray( selection ) ) {
-				for ( s = 0; s < selection.length; s++ ) {
-					if ( typeof selection[ s ] !== 'string' || !hasOwn.call( this.internalValues, selection[ s ] ) ) {
+				for ( i = 0; i < selection.length; i++ ) {
+					if ( !this.internalMap.has( selection[ i ] ) ) {
 						return false;
 					}
 				}
 				return true;
 			}
-			return typeof selection === 'string' && hasOwn.call( this.internalValues, selection );
+			return this.internalMap.has( selection );
 		}
 	};
 
