@@ -494,12 +494,20 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		$form = $this->getAuthForm( $requests, $this->authAction, $msg, $msgtype );
 		$form->prepareForm();
+
 		$submitStatus = Status::newGood();
 		if ( $msg && $msgtype === 'warning' ) {
 			$submitStatus->warning( $msg );
 		} elseif ( $msg && $msgtype === 'error' ) {
 			$submitStatus->fatal( $msg );
 		}
+
+		// warning header for non-standard workflows (e.g. security reauthentication)
+		if ( !$this->isSignup() && $this->getUser()->isLoggedIn() ) {
+			$reauthMessage = $this->securityLevel ? 'userlogin-reauth' : 'userlogin-loggedin';
+			$submitStatus->warning( $reauthMessage, $this->getUser()->getName() );
+		}
+
 		$formHtml = $form->getHTML( $submitStatus );
 
 		$out->addHTML( $this->getPageHtml( $formHtml ) );
@@ -620,13 +628,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$form->setName( 'userlogin' . ( $this->isSignup() ? '2' : '' ) );
 		if ( $this->isSignup() ) {
 			$form->setId( 'userlogin2' );
-		}
-
-		// warning header for non-standard workflows (e.g. security reauthentication)
-		if ( !$this->isSignup() && $this->getUser()->isLoggedIn() ) {
-			$reauthMessage = $this->securityLevel ? 'userlogin-reauth' : 'userlogin-loggedin';
-			$form->addHeaderText( Html::rawElement( 'div', [ 'class' => 'warningbox' ],
-				$this->msg( $reauthMessage )->params( $this->getUser()->getName() )->parse() ) );
 		}
 
 		$form->suppressDefaultSubmit();
