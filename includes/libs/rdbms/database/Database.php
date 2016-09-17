@@ -112,6 +112,8 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	protected $htmlErrors;
 	/** @var string */
 	protected $delimiter = ';';
+	/** @var DatabaseDomain */
+	protected $currentDomain;
 
 	/**
 	 * Either 1 if a transaction is active or 0 otherwise.
@@ -288,6 +290,10 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		if ( $user ) {
 			$this->open( $server, $user, $password, $dbName );
 		}
+
+		$this->currentDomain = ( $this->mDBname != '' )
+			? new DatabaseDomain( $this->mDBname, null, $this->mTablePrefix )
+			: DatabaseDomain::newUnspecified();
 	}
 
 	/**
@@ -442,6 +448,9 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		$old = $this->mTablePrefix;
 		if ( $prefix !== null ) {
 			$this->mTablePrefix = $prefix;
+			$this->currentDomain = ( $this->mDBname != '' )
+				? new DatabaseDomain( $this->mDBname, null, $this->mTablePrefix )
+				: DatabaseDomain::newUnspecified();
 		}
 
 		return $old;
@@ -621,11 +630,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	}
 
 	public function getDomainID() {
-		if ( $this->mTablePrefix != '' ) {
-			return "{$this->mDBname}-{$this->mTablePrefix}";
-		} else {
-			return $this->mDBname;
-		}
+		return $this->currentDomain->getId();
 	}
 
 	final public function getWikiID() {

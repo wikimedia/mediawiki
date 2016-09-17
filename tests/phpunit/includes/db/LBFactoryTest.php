@@ -216,4 +216,146 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$cp->shutdownLB( $lb );
 		$cp->shutdown();
 	}
+
+	private function newLBFactoryMulti( array $baseOverride = [], array $serverOverride = [] ) {
+		global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype;
+
+		return new LBFactoryMulti( $baseOverride + [
+			'sectionsByDB' => [],
+			'sectionLoads' => [
+				'DEFAULT' => [
+					'test-db1' => 1,
+				],
+			],
+			'serverTemplate' => $serverOverride + [
+				'dbname' => $wgDBname,
+				'user' => $wgDBuser,
+				'password' => $wgDBpassword,
+				'type' => $wgDBtype,
+				'flags' => DBO_DEFAULT
+			],
+			'hostsByName' => [
+				'test-db1' => $wgDBserver,
+			],
+			'loadMonitorClass' => 'LoadMonitorNull',
+			'localDomain' => wfWikiID()
+		] );
+	}
+
+	public function testNiceDomains() {
+		global $wgDBname;
+
+		$factory = $this->newLBFactoryMulti();
+		$lb = $factory->getMainLB();
+
+		$db = $lb->getConnectionRef( DB_MASTER );
+		$this->assertEquals(
+			$wgDBname,
+			$db->getDomainID()
+		);
+		unset( $db );
+
+		/** @var DatabaseBase $db */
+		$db = $lb->getConnection( DB_MASTER, [], '' );
+
+		$this->assertEquals(
+			'',
+			$db->getDomainID()
+		);
+
+		$this->assertEquals(
+			$db->addIdentifierQuotes( 'page' ),
+			$db->tableName( 'page' ),
+			"Correct full table name"
+		);
+
+		$this->assertEquals(
+			$db->addIdentifierQuotes( $wgDBname ) . '.' . $db->addIdentifierQuotes( 'page' ),
+			$db->tableName( "$wgDBname.page" ),
+			"Correct full table name"
+		);
+
+		$this->assertEquals(
+			$db->addIdentifierQuotes( 'nice_db' ) . '.' . $db->addIdentifierQuotes( 'page' ),
+			$db->tableName( 'nice_db.page' ),
+			"Correct full table name"
+		);
+
+		$factory->setDomainPrefix( 'my_' );
+		$this->assertEquals(
+			'',
+			$db->getDomainID()
+		);
+		$this->assertEquals(
+			$db->addIdentifierQuotes( 'my_page' ),
+			$db->tableName( 'page' ),
+			"Correct full table name"
+		);
+		$this->assertEquals(
+			$db->addIdentifierQuotes( 'other_nice_db' ) . '.' . $db->addIdentifierQuotes( 'page' ),
+			$db->tableName( 'other_nice_db.page' ),
+			"Correct full table name"
+		);
+
+		$factory->closeAll();
+		$factory->destroy();
+	}
+
+	public function testTrickyDomain() {
+		$dbname = 'unittest-domain';
+		$factory = $this->newLBFactoryMulti(
+			[ 'localDomain' => $dbname ], [ 'dbname' => $dbname ] );
+		$lb = $factory->getMainLB();
+		/** @var DatabaseBase $db */
+		$db = $lb->getConnection( DB_MASTER, [], '' );
+
+		$this->assertEquals(
+			'',
+			$db->getDomainID()
+		);
+
+		$this->assertEquals(
+			$db->addIdentifierQuotes( 'page' ),
+			$db->tableName( 'page' ),
+			"Correct full table name"
+		);
+
+		$this->assertEquals(
+			$db->addIdentifierQuotes( $dbname ) . '.' . $db->addIdentifierQuotes( 'page' ),
+			$db->tableName( "$dbname.page" ),
+			"Correct full table name"
+		);
+
+		$this->assertEquals(
+			$db->addIdentifierQuotes( 'nice_db' ) . '.' . $db->addIdentifierQuotes( 'page' ),
+			$db->tableName( 'nice_db.page' ),
+			"Correct full table name"
+		);
+
+		$factory->setDomainPrefix( 'my_' );
+
+		$this->assertEquals(
+			$db->addIdentifierQuotes( 'my_page' ),
+			$db->tableName( 'page' ),
+			"Correct full table name"
+		);
+		$this->assertEquals(
+			$db->addIdentifierQuotes( 'other_nice_db' ) . '.' . $db->addIdentifierQuotes( 'page' ),
+			$db->tableName( 'other_nice_db.page' ),
+			"Correct full table name"
+		);
+
+		\MediaWiki\suppressWarnings();
+		$this->assertFalse( $db->selectDB( 'garbage-db' ) );
+		\MediaWiki\restoreWarnings();
+
+		$this->assertEquals(
+			$db->addIdentifierQuotes( 'garbage-db' ) . '.' . $db->addIdentifierQuotes( 'page' ),
+			$db->tableName( 'garbage-db.page' ),
+			"Correct full table name"
+		);
+
+		$factory->closeAll();
+		$factory->destroy();
+	}
 }

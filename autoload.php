@@ -318,6 +318,7 @@ $wgAutoloadLocalClasses = [
 	'DataUpdate' => __DIR__ . '/includes/deferred/DataUpdate.php',
 	'Database' => __DIR__ . '/includes/libs/rdbms/database/Database.php',
 	'DatabaseBase' => __DIR__ . '/includes/libs/rdbms/database/DatabaseBase.php',
+	'DatabaseDomain' => __DIR__ . '/includes/libs/rdbms/database/DatabaseDomain.php',
 	'DatabaseInstaller' => __DIR__ . '/includes/installer/DatabaseInstaller.php',
 	'DatabaseLag' => __DIR__ . '/maintenance/lag.php',
 	'DatabaseLogEntry' => __DIR__ . '/includes/logging/LogEntry.php',
