@@ -223,7 +223,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	/** @var int[] Prior mFlags values */
 	private $priorFlags = [];
 
-	/** @var Profiler */
+	/** @var object|string Class name or object With profileIn/profileOut methods */
 	protected $profiler;
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
@@ -272,9 +272,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 			? $params['srvCache']
 			: new HashBagOStuff();
 
-		$this->profiler = isset( $params['profiler'] )
-			? $params['profiler']
-			: Profiler::instance(); // @TODO: remove global state
+		$this->profiler = isset( $params['profiler'] ) ? $params['profiler'] : null;
 		$this->trxProfiler = isset( $params['trxProfiler'] )
 			? $params['trxProfiler']
 			: new TransactionProfiler();
@@ -496,14 +494,6 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	 */
 	public function getLazyMasterHandle() {
 		return $this->lazyMasterHandle;
-	}
-
-	/**
-	 * @param TransactionProfiler $profiler
-	 * @since 1.27
-	 */
-	public function setTransactionProfiler( TransactionProfiler $profiler ) {
-		$this->trxProfiler = $profiler;
 	}
 
 	public function implicitGroupby() {
@@ -892,9 +882,13 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		$queryProf .= $this->mTrxShortId ? " [TRX#{$this->mTrxShortId}]" : "";
 
 		$startTime = microtime( true );
-		$this->profiler->profileIn( $queryProf );
+		if ( $this->profiler ) {
+			call_user_func( [ $this->profiler, 'profileIn' ], $queryProf );
+		}
 		$ret = $this->doQuery( $commentedSql );
-		$this->profiler->profileOut( $queryProf );
+		if ( $this->profiler ) {
+			call_user_func( [ $this->profiler, 'profileOut' ], $queryProf );
+		}
 		$queryRuntime = max( microtime( true ) - $startTime, 0.0 );
 
 		unset( $queryProfSection ); // profile out (if set)
