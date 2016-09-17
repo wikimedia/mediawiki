@@ -42,6 +42,7 @@ abstract class LBFactoryMW extends LBFactory implements DestructibleService {
 		$defaults = [
 			'localDomain' => wfWikiID(),
 			'hostname' => wfHostname(),
+			'profiler' => Profiler::instance(),
 			'trxProfiler' => Profiler::instance()->getTransactionProfiler(),
 			'replLogger' => LoggerFactory::getInstance( 'DBReplication' ),
 			'queryLogger' => LoggerFactory::getInstance( 'wfLogDBError' ),

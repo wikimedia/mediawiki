@@ -30,6 +30,8 @@ use Psr\Log\LoggerInterface;
 abstract class LBFactory {
 	/** @var ChronologyProtector */
 	protected $chronProt;
+	/** @var object|string Class name or object With profileIn/profileOut methods */
+	protected $profiler;
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
 	/** @var LoggerInterface */
@@ -106,6 +108,8 @@ abstract class LBFactory {
 		$this->chronProt = isset( $conf['chronProt'] )
 			? $conf['chronProt']
 			: $this->newChronologyProtector();
+
+		$this->profiler = isset( $params['profiler'] ) ? $params['profiler'] : null;
 		$this->trxProfiler = isset( $conf['trxProfiler'] )
 			? $conf['trxProfiler']
 			: new TransactionProfiler();
@@ -611,6 +615,7 @@ abstract class LBFactory {
 			'readOnlyReason' => $this->readOnlyReason,
 			'srvCache' => $this->srvCache,
 			'wanCache' => $this->wanCache,
+			'profiler' => $this->profiler,
 			'trxProfiler' => $this->trxProfiler,
 			'queryLogger' => $this->queryLogger,
 			'connLogger' => $this->connLogger,
