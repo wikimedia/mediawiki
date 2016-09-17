@@ -49,7 +49,7 @@ abstract class LBFactory {
 	/** @var WANObjectCache */
 	protected $wanCache;
 
-	/** @var string Local domain */
+	/** @var DatabaseDomain Local domain */
 	protected $localDomain;
 	/** @var string Local hostname of the app server */
 	protected $hostname;
@@ -79,7 +79,9 @@ abstract class LBFactory {
 	 * @param array $conf
 	 */
 	public function __construct( array $conf ) {
-		$this->localDomain = isset( $conf['localDomain'] ) ? $conf['localDomain'] : '';
+		$this->localDomain = isset( $conf['localDomain'] )
+			? DatabaseDomain::newFromId( $conf['localDomain'] )
+			: DatabaseDomain::newUnspecified();
 
 		if ( isset( $conf['readOnlyReason'] ) && is_string( $conf['readOnlyReason'] ) ) {
 			$this->readOnlyReason = $conf['readOnlyReason'];
@@ -638,8 +640,11 @@ abstract class LBFactory {
 	 * @since 1.28
 	 */
 	public function setDomainPrefix( $prefix ) {
-		list( $dbName, ) = explode( '-', $this->localDomain, 2 );
-		$this->localDomain = "{$dbName}-{$prefix}";
+		$this->localDomain = new DatabaseDomain(
+			$this->localDomain->getDatabase(),
+			null,
+			$prefix
+		);
 
 		$this->forEachLB( function( LoadBalancer $lb ) use ( $prefix ) {
 			$lb->setDomainPrefix( $prefix );
