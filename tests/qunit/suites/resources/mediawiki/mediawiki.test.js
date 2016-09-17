@@ -65,10 +65,13 @@
 		);
 	} );
 
-	QUnit.test( 'mw.Map', 35, function ( assert ) {
+	QUnit.test( 'mw.Map', function ( assert ) {
 		var arry, conf, funky, globalConf, nummy, someValues;
 
+		this.suppressWarnings();
 		conf = new mw.Map();
+		this.restoreWarnings();
+
 		// Dummy variables
 		funky = function () {};
 		arry = [];
@@ -126,15 +129,15 @@
 			lorem: 'ipsum'
 		}, 'Map.get returns multiple values correctly as an object' );
 
-		assert.deepEqual( conf, new mw.Map( conf.values ), 'new mw.Map maps over existing values-bearing object' );
-
 		assert.deepEqual( conf.get( [ 'foo', 'notExist' ] ), {
 			foo: 'bar',
 			notExist: null
 		}, 'Map.get return includes keys that were not found as null values' );
 
 		// Interacting with globals and accessing the values object
+		this.suppressWarnings();
 		assert.strictEqual( conf.get(), conf.values, 'Map.get returns the entire values object by reference (if called without arguments)' );
+		this.restoreWarnings();
 
 		conf.set( 'globalMapChecker', 'Hi' );
 
@@ -170,11 +173,7 @@
 		}
 	} );
 
-	QUnit.test( 'mw.config', 1, function ( assert ) {
-		assert.ok( mw.config instanceof mw.Map, 'mw.config instance of mw.Map' );
-	} );
-
-	QUnit.test( 'mw.message & mw.messages', 100, function ( assert ) {
+	QUnit.test( 'mw.message & mw.messages', function ( assert ) {
 		var goodbye, hello;
 
 		// Convenience method for asserting the same result for multiple formats
@@ -189,7 +188,6 @@
 		}
 
 		assert.ok( mw.messages, 'messages defined' );
-		assert.ok( mw.messages instanceof mw.Map, 'mw.messages instance of mw.Map' );
 		assert.ok( mw.messages.set( 'hello', 'Hello <b>awesome</b> world' ), 'mw.messages.set: Register' );
 
 		hello = mw.message( 'hello' );

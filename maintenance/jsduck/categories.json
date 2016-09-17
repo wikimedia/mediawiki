@@ -6,7 +6,6 @@
 				"name": "Base",
 				"classes": [
 					"mw",
-					"mw.Map",
 					"mw.Message",
 					"mw.loader",
 					"mw.loader.store",
