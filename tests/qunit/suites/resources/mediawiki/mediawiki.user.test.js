@@ -22,7 +22,7 @@
 	QUnit.test( 'getters (anonymous)', function ( assert ) {
 		// Forge an anonymous user
 		mw.config.set( 'wgUserName', null );
-		delete mw.config.values.wgUserId;
+		mw.config.set( 'wgUserId', null );
 
 		assert.strictEqual( mw.user.getName(), null, 'getName()' );
 		assert.strictEqual( mw.user.isAnon(), true, 'isAnon()' );

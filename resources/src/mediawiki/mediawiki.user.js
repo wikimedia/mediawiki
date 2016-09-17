@@ -89,7 +89,7 @@
 		 * @return {number} Current user's id, or 0 if user is anonymous
 		 */
 		getId: function () {
-			return mw.config.get( 'wgUserId', 0 );
+			return mw.config.get( 'wgUserId' ) || 0;
 		},
 
 		/**
