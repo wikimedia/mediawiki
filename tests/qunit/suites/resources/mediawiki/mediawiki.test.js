@@ -68,9 +68,7 @@
 	QUnit.test( 'mw.Map', function ( assert ) {
 		var arry, conf, funky, globalConf, nummy, someValues;
 
-		this.suppressWarnings();
 		conf = new mw.Map();
-		this.restoreWarnings();
 
 		// Dummy variables
 		funky = function () {};
@@ -108,16 +106,20 @@
 		assert.strictEqual( conf.set( arry, 'Arry' ), false, 'Map.set returns boolean false if key was invalid (Array)' );
 		assert.strictEqual( conf.set( nummy, 'Nummy' ), false, 'Map.set returns boolean false if key was invalid (Number)' );
 
+		conf.set( String( nummy ), 'I used to be a number' );
+
 		assert.strictEqual( conf.get( funky ), null, 'Map.get ruturns null if selection was invalid (Function)' );
 		assert.strictEqual( conf.get( nummy ), null, 'Map.get ruturns null if selection was invalid (Number)' );
 
-		conf.set( String( nummy ), 'I used to be a number' );
-
 		assert.strictEqual( conf.exists( 'doesNotExist' ), false, 'Map.exists where property does not exist' );
 		assert.strictEqual( conf.exists( 'undef' ), true, 'Map.exists where value is `undefined`' );
-		assert.strictEqual( conf.exists( nummy ), false, 'Map.exists where key is invalid but looks like an existing key' );
+		assert.strictEqual( conf.exists( [ 'undef', 'example' ] ), true, 'Map.exists with multiple keys (all existing)' );
+		assert.strictEqual( conf.exists( [ 'example', 'doesNotExist' ] ), false, 'Map.exists with multiple keys (some non-existing)' );
+		assert.strictEqual( conf.exists( [] ), true, 'Map.exists with no keys' );
+		assert.strictEqual( conf.exists( nummy ), false, 'Map.exists with invalid key that looks like an existing key' );
 
 		// Multiple values at once
+		conf = new mw.Map();
 		someValues = {
 			foo: 'bar',
 			lorem: 'ipsum',
@@ -134,11 +136,9 @@
 			notExist: null
 		}, 'Map.get return includes keys that were not found as null values' );
 
-		// Interacting with globals and accessing the values object
-		this.suppressWarnings();
-		assert.strictEqual( conf.get(), conf.values, 'Map.get returns the entire values object by reference (if called without arguments)' );
-		this.restoreWarnings();
+		assert.deepEqual( conf.get(), someValues, 'Map.get() returns an object with all values' );
 
+		// Interacting with globals
 		conf.set( 'globalMapChecker', 'Hi' );
 
 		assert.ok( ( 'globalMapChecker' in window ) === false, 'Map does not its store values in the window object by default' );
