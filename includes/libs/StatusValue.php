@@ -83,10 +83,10 @@ class StatusValue {
 	 * Splits this StatusValue object into two new StatusValue objects, one which contains only
 	 * the error messages, and one that contains the warnings, only. The returned array is
 	 * defined as:
-	 * array(
-	 * 	0 => object(StatusValue) # the StatusValue with error messages, only
-	 * 	1 => object(StatusValue) # The StatusValue with warning messages, only
-	 * )
+	 * [
+	 *     0 => object(StatusValue) # the StatusValue with error messages, only
+	 * 	   1 => object(StatusValue) # The StatusValue with warning messages, only
+	 * ]
 	 *
 	 * @return array
 	 */
