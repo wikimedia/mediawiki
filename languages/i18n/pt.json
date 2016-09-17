@@ -1451,6 +1451,8 @@
 	"file-thumbnail-no": "O nome do ficheiro começa por <strong>$1</strong>.\nParece ser uma imagem de tamanho reduzido (uma ''miniatura'' ou ''thumbnail)''.\nSe tiver a imagem original de maior dimensão, envie-a em vez desta. Se não, altere o nome do ficheiro, por favor.",
 	"fileexists-forbidden": "Já existe um ficheiro com este nome, e não pode ser reescrito.\nSe ainda pretende carregar o seu ficheiro volte atrás e use outro nome, por favor. [[File:$1|thumb|center|$1]]",
 	"fileexists-shared-forbidden": "Já existe um ficheiro com este nome no repositório de ficheiros partilhados.\nCaso deseje, mesmo assim, carregar o seu ficheiro, volte atrás e envie-o com um novo nome. [[File:$1|thumb|center|$1]]",
+	"fileexists-no-change": "O ficheiro carregado é um duplicado exato da versão atual de <strong>[[:$1]]</strong>.",
+	"fileexists-duplicate-version": "O ficheiro carregado é um duplicado exato {{PLURAL:$2|de uma versão anterior|de uma das versões anteriores}} de <strong>[[:$1]]</strong>.",
 	"file-exists-duplicate": "Este ficheiro é um duplicado {{PLURAL:$1|do seguinte|dos seguintes}}:",
 	"file-deleted-duplicate": "Um ficheiro idêntico a este ([[:$1]]) foi eliminado anteriormente.\nVerifique o motivo da eliminação do ficheiro antes de prosseguir com o re-envio.",
 	"file-deleted-duplicate-notitle": "Um ficheiro idêntico já foi eliminado e o seu título suprimido. Devia pedir a alguém capaz de ver os dados dos ficheiros eliminados para verificar a situação antes de carregá-lo novamente.",
