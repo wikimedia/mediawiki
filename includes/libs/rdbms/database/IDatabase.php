@@ -302,6 +302,13 @@ interface IDatabase {
 	/**
 	 * @return string
 	 */
+	public function getDomainID();
+
+	/**
+	 * Alias for getDomainID()
+	 *
+	 * @return string
+	 */
 	public function getWikiID();
 
 	/**
