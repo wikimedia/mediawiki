@@ -1924,7 +1924,7 @@ abstract class DatabaseBase implements IDatabase, LoggerAwareInterface {
 		}
 
 		# Quote $database and merge it with the table name if needed
-		if ( $database !== null ) {
+		if ( strlen( $database ) ) {
 			if ( $format == 'quoted' && !$this->isQuotedIdentifier( $database ) ) {
 				$database = $this->addIdentifierQuotes( $database );
 			}
