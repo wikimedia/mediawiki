@@ -84,8 +84,10 @@ class LoadBalancer implements ILoadBalancer {
 	private $trxRoundId = false;
 	/** @var array[] Map of (name => callable) */
 	private $trxRecurringCallbacks = [];
-	/** @var string Local Domain ID and default for selectDB() calls */
+	/** @var DatabaseDomain Local Domain ID and default for selectDB() calls */
 	private $localDomain;
+	/** @var string Alternate ID string for the domain instead of DatabaseDomain::getId() */
+	private $localDomainIdAlias;
 	/** @var string Current server name */
 	private $host;
 	/** @var bool Whether this PHP instance is for a CLI script */
@@ -113,10 +115,18 @@ class LoadBalancer implements ILoadBalancer {
 			throw new InvalidArgumentException( __CLASS__ . ': missing servers parameter' );
 		}
 		$this->mServers = $params['servers'];
+
+		$this->localDomain = isset( $params['localDomain'] )
+			? DatabaseDomain::newFromId( $params['localDomain'] )
+			: DatabaseDomain::newUnspecified();
+		// In case a caller assumes that the domain ID is simply <db>-<prefix>, which is almost
+		// always true, gracefully handle the case when they fail to account for escaping.
+		$this->localDomainIdAlias =
+			$this->localDomain->getDatabase() . '-' . $this->localDomain->getTablePrefix();
+
 		$this->mWaitTimeout = isset( $params['waitTimeout'] )
 			? $params['waitTimeout']
 			: self::POS_WAIT_TIMEOUT;
-		$this->localDomain = isset( $params['localDomain'] ) ? $params['localDomain'] : '';
 
 		$this->mReadIndex = -1;
 		$this->mConns = [
@@ -514,7 +524,7 @@ class LoadBalancer implements ILoadBalancer {
 				' with invalid server index' );
 		}
 
-		if ( $domain === $this->localDomain ) {
+		if ( $this->localDomain->equals( $domain ) || $domain === $this->localDomainIdAlias ) {
 			$domain = false; // local connection requested
 		}
 
@@ -652,7 +662,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function openConnection( $i, $domain = false ) {
-		if ( $domain === $this->localDomain ) {
+		if ( $this->localDomain->equals( $domain ) || $domain === $this->localDomainIdAlias ) {
 			$domain = false; // local connection requested
 		}
 
@@ -708,7 +718,9 @@ class LoadBalancer implements ILoadBalancer {
 	 * @return IDatabase
 	 */
 	private function openForeignConnection( $i, $domain ) {
-		list( $dbName, $prefix ) = explode( '-', $domain, 2 ) + [ '', '' ];
+		$domainInstance = DatabaseDomain::newFromId( $domain );
+		$dbName = $domainInstance->getDatabase();
+		$prefix = $domainInstance->getTablePrefix();
 
 		if ( isset( $this->mConns['foreignUsed'][$i][$domain] ) ) {
 			// Reuse an already-used connection
@@ -1612,8 +1624,11 @@ class LoadBalancer implements ILoadBalancer {
 	 * @since 1.28
 	 */
 	public function setDomainPrefix( $prefix ) {
-		list( $dbName, ) = explode( '-', $this->localDomain, 2 );
-		$this->localDomain = "{$dbName}-{$prefix}";
+		$this->localDomain = new DatabaseDomain(
+			$this->localDomain->getDatabase(),
+			null,
+			$prefix
+		);
 
 		$this->forEachOpenConnection( function ( IDatabase $db ) use ( $prefix ) {
 			$db->tablePrefix( $prefix );

@@ -621,11 +621,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	}
 
 	public function getDomainID() {
-		if ( $this->mTablePrefix != '' ) {
-			return "{$this->mDBname}-{$this->mTablePrefix}";
-		} else {
-			return $this->mDBname;
-		}
+		return DatabaseDomain::newFromId( $this->mDBname, null, $this->mTablePrefix )->getId();
 	}
 
 	final public function getWikiID() {
