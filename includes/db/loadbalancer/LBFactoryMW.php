@@ -37,10 +37,10 @@ abstract class LBFactoryMW extends LBFactory implements DestructibleService {
 	 * @TODO: inject objects via dependency framework
 	 */
 	public function __construct( array $conf ) {
-		global $wgCommandLineMode, $wgSQLMode, $wgDBmysql5;
+		global $wgCommandLineMode, $wgSQLMode, $wgDBmysql5, $wgDBname, $wgDBprefix;
 
 		$defaults = [
-			'localDomain' => wfWikiID(),
+			'localDomain' => new DatabaseDomain( $wgDBname, null, $wgDBprefix ),
 			'hostname' => wfHostname(),
 			'trxProfiler' => Profiler::instance()->getTransactionProfiler(),
 			'replLogger' => LoggerFactory::getInstance( 'DBReplication' ),
