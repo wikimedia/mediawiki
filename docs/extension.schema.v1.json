@@ -887,6 +887,10 @@
 			"type": "array",
 			"description": "Parser test suite files to be run by parserTests.php when no specific filename is passed to it"
 		},
+		"ServiceWiringFiles": {
+			"type": "array",
+			"description": "List of service wiring files to be loaded by the default instance of MediaWikiServices"
+		},
 		"load_composer_autoloader": {
 			"type": "boolean",
 			"description": "Load the composer autoloader for this extension, if one is present"
