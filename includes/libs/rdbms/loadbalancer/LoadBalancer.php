@@ -53,6 +53,8 @@ class LoadBalancer implements ILoadBalancer {
 	private $memCache;
 	/** @var WANObjectCache */
 	private $wanCache;
+	/** @var object|string Class name or object With profileIn/profileOut methods */
+	protected $profiler;
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
 	/** @var LoggerInterface */
@@ -184,6 +186,7 @@ class LoadBalancer implements ILoadBalancer {
 		} else {
 			$this->wanCache = WANObjectCache::newEmpty();
 		}
+		$this->profiler = isset( $params['profiler'] ) ? $params['profiler'] : null;
 		if ( isset( $params['trxProfiler'] ) ) {
 			$this->trxProfiler = $params['trxProfiler'];
 		} else {
@@ -837,6 +840,7 @@ class LoadBalancer implements ILoadBalancer {
 		// Set loggers
 		$server['connLogger'] = $this->connLogger;
 		$server['queryLogger'] = $this->queryLogger;
+		$server['profiler'] = $this->profiler;
 		$server['trxProfiler'] = $this->trxProfiler;
 		$server['cliMode'] = $this->cliMode;
 		$server['errorLogger'] = $this->errorLogger;
