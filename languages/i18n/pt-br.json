@@ -99,7 +99,8 @@
 			"Anderson Costa",
 			"LucyDiniz",
 			"Tusca",
-			"Cristofer Alves"
+			"Cristofer Alves",
+			"Tark"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -1322,8 +1323,8 @@
 	"rightslogtext": "Este é um registro de mudanças nos privilégios de usuários.",
 	"action-read": "ler esta página",
 	"action-edit": "editar esta página",
-	"action-createpage": "criar esta páginas",
-	"action-createtalk": "criar esta páginas de discussão",
+	"action-createpage": "criar esta página",
+	"action-createtalk": "criar esta página de discussão",
 	"action-createaccount": "criar esta conta de usuário",
 	"action-autocreateaccount": "Criar uma conta de usuário externa automaticamente",
 	"action-history": "Ver o histórico desta página",

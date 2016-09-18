@@ -1215,6 +1215,7 @@
 	"deleteotherreason": "အခြားသော/နောက်ထပ် အကြောင်းပြချက် -",
 	"deletereasonotherlist": "အခြား အကြောင်းပြချက်",
 	"delete-edit-reasonlist": "ဖျက်ပစ်ရသော အကြောင်းရင်းများကို တည်းဖြတ်ရန်",
+	"deleting-backlinks-warning": "<strong>သတိပေးချက်။</strong> သင်ဖျက်ပစ်တော့မည့် စာမျက်နှာအား [[Special:WhatLinksHere/{{FULLPAGENAME}}|အခြားစာမျက်နှာများမှ]] ချိတ်ဆက်ထားခြင်း သို့မဟုတ် ထည့်သွင်းထားခြင်း ရှိနေသည်။",
 	"rollbacklink": "နောက်ပြန် ပြန်သွားရန်",
 	"rollbacklinkcount": "{{PLURAL:$1|တည်းဖြတ်မှု|တည်းဖြတ်မှုများ}} $1 ကို နောက်ပြန်ပြင်ရန်",
 	"protectlogpage": "ကာကွယ်မှုများ၏ မှတ်တမ်း",

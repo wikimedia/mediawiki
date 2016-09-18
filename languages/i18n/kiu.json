@@ -113,7 +113,7 @@
 	"hidden-categories": "{{PLURAL:$1|Kategoriya wedariyaiye|Kategoriyê wedariyaey}}",
 	"hidden-category-category": "Kategoriyê wedariyaey",
 	"category-subcat-count": "{{PLURAL:$2|Na kategoriye de ana kategoriya bınêne esta.|Na kategoriye de $2 ra pêro pia, {{PLURAL:$1|ana kategoriya bınêne esta|ani $1 kategoriyê bınêni estê.}}, be $2 ra pia.}}",
-	"category-subcat-count-limited": "Na kategoriye de {{PLURAL:$1|ana kategoriya bınêne esta|ani $1 kategoriyê bınêni estê}}.",
+	"category-subcat-count-limited": "Na kategoriya de {{PLURAL:$1|ana kategoriya bınêne esta|ani $1 kategoriyê bınêni estê}}.",
 	"category-article-count": "{{PLURAL:$2|Na kategoriye de teyna ana pele esta.|Na kategoriye de $2 ra pêro pia, {{PLURAL:$1|ana pele esta|ani $1 peli estê.}}, be $2 ra pêro pia}}",
 	"category-article-count-limited": "{{PLURAL:$1|Ana pele kategoriya peyêne dera|Ani $1 peli kategoriya peyêne derê}}.",
 	"category-file-count": "{{PLURAL:$2|Na kategoriye de teyna ana dosya esta.|Na kategoriye de $2 ra pêro pia, {{PLURAL:$1|ana dosya esta|ani $1 dosyey estê.}}}}",

@@ -101,7 +101,8 @@
 			"Matteocng",
 			"Einreiher",
 			"Anto",
-			"Saracrovetto"
+			"Saracrovetto",
+			"Tosky"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -657,7 +658,7 @@
 	"passwordreset": "Reimposta password",
 	"passwordreset-text-one": "Compila questo modulo per reimpostare la tua password.",
 	"passwordreset-text-many": "{{PLURAL:$1|Compila uno dei campi per ricevere una password temporanea tramite email.}}",
-	"passwordreset-disabled": "La reimpostazione delle password è stata disabilitata su questa wiki",
+	"passwordreset-disabled": "La reimpostazione delle password è stata disabilitata per questo wiki",
 	"passwordreset-emaildisabled": "Le funzionalità di posta elettronica sono state disabilitate su questa wiki.",
 	"passwordreset-username": "Nome utente:",
 	"passwordreset-domain": "Dominio:",
