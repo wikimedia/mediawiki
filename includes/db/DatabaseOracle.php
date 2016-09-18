@@ -188,20 +188,12 @@ class DatabaseOracle extends DatabaseBase {
 		return true;
 	}
 
-	function realTimestamps() {
-		return true;
-	}
-
 	function implicitGroupby() {
 		return false;
 	}
 
 	function implicitOrderby() {
 		return false;
-	}
-
-	function searchableIPs() {
-		return true;
 	}
 
 	/**

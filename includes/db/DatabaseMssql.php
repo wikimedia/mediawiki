@@ -54,20 +54,12 @@ class DatabaseMssql extends DatabaseBase {
 		return false;
 	}
 
-	public function realTimestamps() {
-		return false;
-	}
-
 	public function implicitGroupby() {
 		return false;
 	}
 
 	public function implicitOrderby() {
 		return false;
-	}
-
-	public function functionalIndexes() {
-		return true;
 	}
 
 	public function unionSupportsOrderAndLimit() {
