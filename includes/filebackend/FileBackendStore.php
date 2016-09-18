@@ -869,17 +869,22 @@ abstract class FileBackendStore extends FileBackend {
 		$status = $this->newStatus();
 
 		$flags = 0;
-		$flags |= !empty( $params['headless'] ) ? StreamFile::STREAM_HEADLESS : 0;
-		$flags |= !empty( $params['allowOB'] ) ? StreamFile::STREAM_ALLOW_OB : 0;
+		$flags |= !empty( $params['headless'] ) ? HTTPFileStreamer::STREAM_HEADLESS : 0;
+		$flags |= !empty( $params['allowOB'] ) ? HTTPFileStreamer::STREAM_ALLOW_OB : 0;
 
 		$fsFile = $this->getLocalReference( $params );
-
 		if ( $fsFile ) {
-			$res = StreamFile::stream( $fsFile->getPath(),
-				$params['headers'], true, $params['options'], $flags );
+			$streamer = new HTTPFileStreamer(
+				$fsFile->getPath(),
+				[
+					'obResetFunc' => $this->obResetFunc,
+					'streamMimeFunc' => $this->streamMimeFunc
+				]
+			);
+			$res = $streamer->stream( $params['headers'], true, $params['options'], $flags );
 		} else {
 			$res = false;
-			StreamFile::send404Message( $params['src'], $flags );
+			HTTPFileStreamer::send404Message( $params['src'], $flags );
 		}
 
 		if ( !$res ) {
