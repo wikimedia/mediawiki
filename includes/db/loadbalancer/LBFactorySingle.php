@@ -35,6 +35,10 @@ class LBFactorySingle extends LBFactory {
 	public function __construct( array $conf ) {
 		parent::__construct( $conf );
 
+		if ( !isset( $conf['connection'] ) ) {
+			throw new InvalidArgumentException( "Missing 'connection' argument." );
+		}
+
 		$this->lb = new LoadBalancerSingle( array_merge( $this->baseLoadBalancerParams(), $conf ) );
 	}
 
@@ -78,49 +82,5 @@ class LBFactorySingle extends LBFactory {
 	 */
 	public function forEachLB( $callback, array $params = [] ) {
 		call_user_func_array( $callback, array_merge( [ $this->lb ], $params ) );
-	}
-}
-
-/**
- * Helper class for LBFactorySingle.
- */
-class LoadBalancerSingle extends LoadBalancer {
-	/** @var IDatabase */
-	private $db;
-
-	/**
-	 * @param array $params
-	 */
-	public function __construct( array $params ) {
-		$this->db = $params['connection'];
-
-		parent::__construct( [
-			'servers' => [
-				[
-					'type' => $this->db->getType(),
-					'host' => $this->db->getServer(),
-					'dbname' => $this->db->getDBname(),
-					'load' => 1,
-				]
-			],
-			'trxProfiler' => isset( $params['trxProfiler'] ) ? $params['trxProfiler'] : null,
-			'srvCache' => isset( $params['srvCache'] ) ? $params['srvCache'] : null,
-			'wanCache' => isset( $params['wanCache'] ) ? $params['wanCache'] : null
-		] );
-
-		if ( isset( $params['readOnlyReason'] ) ) {
-			$this->db->setLBInfo( 'readOnlyReason', $params['readOnlyReason'] );
-		}
-	}
-
-	/**
-	 *
-	 * @param string $server
-	 * @param bool $dbNameOverride
-	 *
-	 * @return IDatabase
-	 */
-	protected function reallyOpenConnection( $server, $dbNameOverride = false ) {
-		return $this->db;
 	}
 }
