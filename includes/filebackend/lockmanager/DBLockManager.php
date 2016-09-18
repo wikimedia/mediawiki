@@ -36,7 +36,7 @@
  * @since 1.19
  */
 abstract class DBLockManager extends QuorumLockManager {
-	/** @var array[] Map of DB names to server config */
+	/** @var array[]|IDatabase[] Map of (DB names => server config or IDatabase) */
 	protected $dbServers; // (DB name => server config array)
 	/** @var BagOStuff */
 	protected $statusCache;
@@ -63,19 +63,15 @@ abstract class DBLockManager extends QuorumLockManager {
 	 *                     - flags       : DB flags (see DatabaseBase)
 	 *   - dbsByBucket : Array of 1-16 consecutive integer keys, starting from 0,
 	 *                   each having an odd-numbered list of DB names (peers) as values.
-	 *                   Any DB named 'localDBMaster' will automatically use the DB master
-	 *                   settings for this wiki (without the need for a dbServers entry).
-	 *                   Only use 'localDBMaster' if the domain is a valid wiki ID.
 	 *   - lockExpiry  : Lock timeout (seconds) for dropped connections. [optional]
 	 *                   This tells the DB server how long to wait before assuming
 	 *                   connection failure and releasing all the locks for a session.
+	 *   - srvCache    : A BagOStuff instance using APC or the like.
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
 
-		$this->dbServers = isset( $config['dbServers'] )
-			? $config['dbServers']
-			: []; // likely just using 'localDBMaster'
+		$this->dbServers = $config['dbServers'];
 		// Sanitize srvsByBucket config to prevent PHP errors
 		$this->srvsByBucket = array_filter( $config['dbsByBucket'], 'is_array' );
 		$this->srvsByBucket = array_values( $this->srvsByBucket ); // consecutive
@@ -90,19 +86,25 @@ abstract class DBLockManager extends QuorumLockManager {
 			? 60 // pick a safe-ish number to match DB timeout default
 			: $this->lockExpiry; // cover worst case
 
-		foreach ( $this->srvsByBucket as $bucket ) {
-			if ( count( $bucket ) > 1 ) { // multiple peers
-				// Tracks peers that couldn't be queried recently to avoid lengthy
-				// connection timeouts. This is useless if each bucket has one peer.
-				$this->statusCache = ObjectCache::getLocalServerInstance();
-				break;
-			}
-		}
+		// Tracks peers that couldn't be queried recently to avoid lengthy
+		// connection timeouts. This is useless if each bucket has one peer.
+		$this->statusCache = isset( $config['srvCache'] )
+			? $config['srvCache']
+			: new HashBagOStuff();
 
-		$this->session = wfRandomString( 31 );
+		$random = [];
+		for ( $i = 1; $i <= 5; ++$i ) {
+			$random[] = mt_rand( 0, 0xFFFFFFF );
+		}
+		$this->session = substr( md5( implode( '-', $random ) ), 0, 31 );
 	}
 
-	// @todo change this code to work in one batch
+	/**
+	 * @TODO change this code to work in one batch
+	 * @param string $lockSrv
+	 * @param array $pathsByType
+	 * @return StatusValue
+	 */
 	protected function getLocksOnServer( $lockSrv, array $pathsByType ) {
 		$status = StatusValue::newGood();
 		foreach ( $pathsByType as $type => $paths ) {
@@ -148,44 +150,32 @@ abstract class DBLockManager extends QuorumLockManager {
 	 */
 	protected function getConnection( $lockDb ) {
 		if ( !isset( $this->conns[$lockDb] ) ) {
-			if ( $lockDb === 'localDBMaster' ) {
-				$lb = $this->getLocalLB();
-				$db = $lb->getConnection( DB_MASTER, [], $this->domain );
-				# Do not mess with settings if the LoadBalancer is the main singleton
-				# to avoid clobbering the settings of handles from wfGetDB( DB_MASTER ).
-				$init = ( wfGetLB() !== $lb );
-			} elseif ( isset( $this->dbServers[$lockDb] ) ) {
+			if ( $this->dbServers[$lockDb] instanceof IDatabase ) {
+				// Direct injected connection hande for $lockDB
+				$db = $this->dbServers[$lockDb];
+			} elseif ( is_array( $this->dbServers[$lockDb] ) ) {
+				// Parameters to construct a new database connection
 				$config = $this->dbServers[$lockDb];
 				$db = DatabaseBase::factory( $config['type'], $config );
-				$init = true;
 			} else {
 				throw new UnexpectedValueException( "No server called '$lockDb'." );
 			}
 
-			if ( $init ) {
-				$db->clearFlag( DBO_TRX );
-				# If the connection drops, try to avoid letting the DB rollback
-				# and release the locks before the file operations are finished.
-				# This won't handle the case of DB server restarts however.
-				$options = [];
-				if ( $this->lockExpiry > 0 ) {
-					$options['connTimeout'] = $this->lockExpiry;
-				}
-				$db->setSessionOptions( $options );
-				$this->initConnection( $lockDb, $db );
+			$db->clearFlag( DBO_TRX );
+			# If the connection drops, try to avoid letting the DB rollback
+			# and release the locks before the file operations are finished.
+			# This won't handle the case of DB server restarts however.
+			$options = [];
+			if ( $this->lockExpiry > 0 ) {
+				$options['connTimeout'] = $this->lockExpiry;
 			}
+			$db->setSessionOptions( $options );
+			$this->initConnection( $lockDb, $db );
 
 			$this->conns[$lockDb] = $db;
 		}
 
 		return $this->conns[$lockDb];
-	}
-
-	/**
-	 * @return LoadBalancer
-	 */
-	protected function getLocalLB() {
-		return wfGetLBFactory()->getMainLB( $this->domain );
 	}
 
 	/**
@@ -206,7 +196,7 @@ abstract class DBLockManager extends QuorumLockManager {
 	 * @return bool
 	 */
 	protected function cacheCheckFailures( $lockDb ) {
-		return ( $this->statusCache && $this->safeDelay > 0 )
+		return ( $this->safeDelay > 0 )
 			? !$this->statusCache->get( $this->getMissKey( $lockDb ) )
 			: true;
 	}
@@ -218,7 +208,7 @@ abstract class DBLockManager extends QuorumLockManager {
 	 * @return bool Success
 	 */
 	protected function cacheRecordFailure( $lockDb ) {
-		return ( $this->statusCache && $this->safeDelay > 0 )
+		return ( $this->safeDelay > 0 )
 			? $this->statusCache->set( $this->getMissKey( $lockDb ), 1, $this->safeDelay )
 			: true;
 	}
@@ -230,7 +220,6 @@ abstract class DBLockManager extends QuorumLockManager {
 	 * @return string
 	 */
 	protected function getMissKey( $lockDb ) {
-		$lockDb = ( $lockDb === 'localDBMaster' ) ? wfWikiID() : $lockDb; // non-relative
 		return 'dblockmanager:downservers:' . str_replace( ' ', '_', $lockDb );
 	}
 
