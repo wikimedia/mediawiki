@@ -27,28 +27,21 @@ use MediaWiki\Logger\LoggerFactory;
  * Legacy MediaWiki-specific class for generating database load balancers
  * @ingroup Database
  */
-abstract class LBFactoryMW extends LBFactory {
+abstract class LBFactoryMW {
 	/**
-	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf)
-	 * @param array $conf
-	 * @TODO: inject objects via dependency framework
-	 */
-	public function __construct( array $conf ) {
-		parent::__construct( self::applyDefaultConfig( $conf ) );
-	}
-
-	/**
-	 * @param array $conf
+	 * @param array $lbConf Config for LBFactory::__construct()
+	 * @param Config $mainConfig Main config object from MediaWikiServices
 	 * @return array
-	 * @TODO: inject objects via dependency framework
 	 */
-	public static function applyDefaultConfig( array $conf ) {
-		global $wgDBtype, $wgSQLMode, $wgDBmysql5, $wgDBname, $wgDBprefix, $wgDBmwschema;
+	public static function applyDefaultConfig( array $lbConf, Config $mainConfig ) {
 		global $wgCommandLineMode;
 
-		$defaults = [
-			'localDomain' => new DatabaseDomain( $wgDBname, null, $wgDBprefix ),
-			'hostname' => wfHostname(),
+		$lbConf += [
+			'localDomain' => new DatabaseDomain(
+				$mainConfig->get( 'DBname' ),
+				null,
+				$mainConfig->get( 'DBprefix' )
+			),
 			'profiler' => Profiler::instance(),
 			'trxProfiler' => Profiler::instance()->getTransactionProfiler(),
 			'replLogger' => LoggerFactory::getInstance( 'DBReplication' ),
@@ -57,39 +50,71 @@ abstract class LBFactoryMW extends LBFactory {
 			'perfLogger' => LoggerFactory::getInstance( 'DBPerformance' ),
 			'errorLogger' => [ MWExceptionHandler::class, 'logException' ],
 			'cliMode' => $wgCommandLineMode,
-			'agent' => ''
+			'hostname' => wfHostname(),
+			// TODO: replace the global wfConfiguredReadOnlyReason() with a service.
+			'readOnlyReason' => wfConfiguredReadOnlyReason(),
 		];
-		// Use APC/memcached style caching, but avoids loops with CACHE_DB (T141804)
-		$sCache = ObjectCache::getLocalServerInstance();
-		if ( $sCache->getQoS( $sCache::ATTR_EMULATION ) > $sCache::QOS_EMULATION_SQL ) {
-			$defaults['srvCache'] = $sCache;
-		}
-		$cCache = ObjectCache::getLocalClusterInstance();
-		if ( $cCache->getQoS( $cCache::ATTR_EMULATION ) > $cCache::QOS_EMULATION_SQL ) {
-			$defaults['memCache'] = $cCache;
-		}
-		$wCache = ObjectCache::getMainWANInstance();
-		if ( $wCache->getQoS( $wCache::ATTR_EMULATION ) > $wCache::QOS_EMULATION_SQL ) {
-			$defaults['wanCache'] = $wCache;
-		}
 
-		// Determine schema defaults. Currently Microsoft SQL Server uses $wgDBmwschema,
-		// and everything else doesn't use a schema (e.g. null)
-		// Although postgres and oracle support schemas, we don't use them (yet)
-		// to maintain backwards compatibility
-		$schema = ( $wgDBtype === 'mssql' ) ? $wgDBmwschema : null;
-
-		if ( isset( $conf['serverTemplate'] ) ) { // LBFactoryMulti
-			$conf['serverTemplate']['schema'] = $schema;
-			$conf['serverTemplate']['sqlMode'] = $wgSQLMode;
-			$conf['serverTemplate']['utf8Mode'] = $wgDBmysql5;
-		} elseif ( isset( $conf['servers'] ) ) { // LBFactorySimple
-			foreach ( $conf['servers'] as $i => $server ) {
-				$conf['servers'][$i]['schema'] = $schema;
+		if ( $lbConf['class'] === 'LBFactorySimple' ) {
+			if ( isset( $lbConf['servers'] ) ) {
+				// Server array is already explicitly configured; leave alone
+			} elseif ( is_array( $mainConfig->get( 'DBservers' ) ) ) {
+				foreach ( $mainConfig->get( 'DBservers' ) as $i => $server ) {
+					$lbConf['servers'][$i] = $server + [
+						'schema' => $mainConfig->get( 'DBmwschema' ),
+						'tablePrefix' => $mainConfig->get( 'DBprefix' ),
+						'flags' => DBO_DEFAULT,
+						'sqlMode' => $mainConfig->get( 'SQLMode' ),
+						'utf8Mode' => $mainConfig->get( 'DBmysql5' )
+					];
+				}
+			} else {
+				$flags = DBO_DEFAULT;
+				$flags |= $mainConfig->get( 'DebugDumpSql' ) ? DBO_DEBUG : 0;
+				$flags |= $mainConfig->get( 'DBssl' ) ? DBO_SSL : 0;
+				$flags |= $mainConfig->get( 'DBcompress' ) ? DBO_COMPRESS : 0;
+				$lbConf['servers'] = [
+					[
+						'host' => $mainConfig->get( 'DBserver' ),
+						'user' => $mainConfig->get( 'DBuser' ),
+						'password' => $mainConfig->get( 'DBpassword' ),
+						'dbname' => $mainConfig->get( 'DBname' ),
+						'schema' => $mainConfig->get( 'DBmwschema' ),
+						'tablePrefix' => $mainConfig->get( 'DBprefix' ),
+						'type' => $mainConfig->get( 'DBtype' ),
+						'load' => 1,
+						'flags' => $flags,
+						'sqlMode' => $mainConfig->get( 'SQLMode' ),
+						'utf8Mode' => $mainConfig->get( 'DBmysql5' )
+					]
+				];
+			}
+			if ( !isset( $lbConf['externalServers'] ) ) {
+				$lbConf['externalServers'] = $mainConfig->get( 'ExternalServers' );
+			}
+		} elseif ( $lbConf['class'] === 'LBFactoryMulti' ) {
+			if ( isset( $lbConf['serverTemplate'] ) ) {
+				$lbConf['serverTemplate']['schema'] = $mainConfig->get( 'DBmwschema' );
+				$lbConf['serverTemplate']['sqlMode'] = $mainConfig->get( 'SQLMode' );
+				$lbConf['serverTemplate']['utf8Mode'] = $mainConfig->get( 'DBmysql5' );
 			}
 		}
 
-		return $conf + $defaults;
+		// Use APC/memcached style caching, but avoids loops with CACHE_DB (T141804)
+		$sCache = ObjectCache::getLocalServerInstance();
+		if ( $sCache->getQoS( $sCache::ATTR_EMULATION ) > $sCache::QOS_EMULATION_SQL ) {
+			$lbConf['srvCache'] = $sCache;
+		}
+		$cCache = ObjectCache::getLocalClusterInstance();
+		if ( $cCache->getQoS( $cCache::ATTR_EMULATION ) > $cCache::QOS_EMULATION_SQL ) {
+			$lbConf['memCache'] = $cCache;
+		}
+		$wCache = ObjectCache::getMainWANInstance();
+		if ( $wCache->getQoS( $wCache::ATTR_EMULATION ) > $wCache::QOS_EMULATION_SQL ) {
+			$lbConf['wanCache'] = $wCache;
+		}
+
+		return $lbConf;
 	}
 
 	/**
