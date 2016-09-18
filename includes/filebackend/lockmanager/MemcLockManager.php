@@ -90,7 +90,7 @@ class MemcLockManager extends QuorumLockManager {
 
 	// @todo Change this code to work in one batch
 	protected function getLocksOnServer( $lockSrv, array $pathsByType ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 
 		$lockedPaths = [];
 		foreach ( $pathsByType as $type => $paths ) {
@@ -112,7 +112,7 @@ class MemcLockManager extends QuorumLockManager {
 
 	// @todo Change this code to work in one batch
 	protected function freeLocksOnServer( $lockSrv, array $pathsByType ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 
 		foreach ( $pathsByType as $type => $paths ) {
 			$status->merge( $this->doFreeLocksOnServer( $lockSrv, $paths, $type ) );
@@ -129,7 +129,7 @@ class MemcLockManager extends QuorumLockManager {
 	 * @return StatusValue
 	 */
 	protected function doGetLocksOnServer( $lockSrv, array $paths, $type ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 
 		$memc = $this->getCache( $lockSrv );
 		$keys = array_map( [ $this, 'recordKeyForPath' ], $paths ); // lock records
@@ -205,7 +205,7 @@ class MemcLockManager extends QuorumLockManager {
 	 * @return StatusValue
 	 */
 	protected function doFreeLocksOnServer( $lockSrv, array $paths, $type ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 
 		$memc = $this->getCache( $lockSrv );
 		$keys = array_map( [ $this, 'recordKeyForPath' ], $paths ); // lock records
@@ -257,7 +257,7 @@ class MemcLockManager extends QuorumLockManager {
 	 * @return StatusValue
 	 */
 	protected function releaseAllLocks() {
-		return Status::newGood(); // not supported
+		return StatusValue::newGood(); // not supported
 	}
 
 	/**

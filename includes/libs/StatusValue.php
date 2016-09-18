@@ -58,7 +58,7 @@ class StatusValue {
 	 * Factory function for fatal errors
 	 *
 	 * @param string|MessageSpecifier $message Message key or object
-	 * @return StatusValue
+	 * @return static
 	 */
 	public static function newFatal( $message /*, parameters...*/ ) {
 		$params = func_get_args();
@@ -71,7 +71,7 @@ class StatusValue {
 	 * Factory function for good results
 	 *
 	 * @param mixed $value
-	 * @return StatusValue
+	 * @return static
 	 */
 	public static function newGood( $value = null ) {
 		$result = new static();

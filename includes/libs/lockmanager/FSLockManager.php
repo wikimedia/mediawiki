@@ -70,7 +70,7 @@ class FSLockManager extends LockManager {
 	 * @return StatusValue
 	 */
 	protected function doLock( array $paths, $type ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 
 		$lockedPaths = []; // files locked in this attempt
 		foreach ( $paths as $path ) {
@@ -95,7 +95,7 @@ class FSLockManager extends LockManager {
 	 * @return StatusValue
 	 */
 	protected function doUnlock( array $paths, $type ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 
 		foreach ( $paths as $path ) {
 			$status->merge( $this->doSingleUnlock( $path, $type ) );
@@ -112,7 +112,7 @@ class FSLockManager extends LockManager {
 	 * @return StatusValue
 	 */
 	protected function doSingleLock( $path, $type ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 
 		if ( isset( $this->locksHeld[$path][$type] ) ) {
 			++$this->locksHeld[$path][$type];
@@ -157,7 +157,7 @@ class FSLockManager extends LockManager {
 	 * @return StatusValue
 	 */
 	protected function doSingleUnlock( $path, $type ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 
 		if ( !isset( $this->locksHeld[$path] ) ) {
 			$status->warning( 'lockmanager-notlocked', $path );
@@ -200,7 +200,7 @@ class FSLockManager extends LockManager {
 	 * @return StatusValue
 	 */
 	private function closeLockHandles( $path, array $handlesToClose ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 		foreach ( $handlesToClose as $handle ) {
 			if ( !flock( $handle, LOCK_UN ) ) {
 				$status->fatal( 'lockmanager-fail-releaselock', $path );
@@ -218,7 +218,7 @@ class FSLockManager extends LockManager {
 	 * @return StatusValue
 	 */
 	private function pruneKeyLockFiles( $path ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 		if ( !isset( $this->locksHeld[$path] ) ) {
 			# No locks are held for the lock file anymore
 			if ( !unlink( $this->getLockPath( $path ) ) ) {

@@ -191,7 +191,7 @@ abstract class LockManager {
 	 * @since 1.22
 	 */
 	protected function doLockByType( array $pathsByType ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 		$lockedByType = []; // map of (type => paths)
 		foreach ( $pathsByType as $type => $paths ) {
 			$status->merge( $this->doLock( $paths, $type ) );
@@ -225,7 +225,7 @@ abstract class LockManager {
 	 * @since 1.22
 	 */
 	protected function doUnlockByType( array $pathsByType ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 		foreach ( $pathsByType as $type => $paths ) {
 			$status->merge( $this->doUnlock( $paths, $type ) );
 		}
@@ -241,18 +241,4 @@ abstract class LockManager {
 	 * @return StatusValue
 	 */
 	abstract protected function doUnlock( array $paths, $type );
-}
-
-/**
- * Simple version of LockManager that does nothing
- * @since 1.19
- */
-class NullLockManager extends LockManager {
-	protected function doLock( array $paths, $type ) {
-		return Status::newGood();
-	}
-
-	protected function doUnlock( array $paths, $type ) {
-		return Status::newGood();
-	}
 }
