@@ -1278,35 +1278,46 @@
 				registry[ module ].state = 'executing';
 
 				runScript = function () {
-					var script, markModuleReady, nestedAddScript, legacyWait,
+					var script, markModuleReady, nestedAddScript, legacyWait, implicitDependencies,
 						// Expand to include dependencies since we have to exclude both legacy modules
 						// and their dependencies from the legacyWait (to prevent a circular dependency).
 						legacyModules = resolve( mw.config.get( 'wgResourceLoaderLegacyModules', [] ) );
-					try {
-						script = registry[ module ].script;
-						markModuleReady = function () {
-							registry[ module ].state = 'ready';
-							handlePending( module );
-						};
-						nestedAddScript = function ( arr, callback, i ) {
-							// Recursively call queueModuleScript() in its own callback
-							// for each element of arr.
-							if ( i >= arr.length ) {
-								// We're at the end of the array
-								callback();
-								return;
-							}
 
-							queueModuleScript( arr[ i ], module ).always( function () {
-								nestedAddScript( arr, callback, i + 1 );
-							} );
-						};
+					script = registry[ module ].script;
+					markModuleReady = function () {
+						registry[ module ].state = 'ready';
+						handlePending( module );
+					};
+					nestedAddScript = function ( arr, callback, i ) {
+						// Recursively call queueModuleScript() in its own callback
+						// for each element of arr.
+						if ( i >= arr.length ) {
+							// We're at the end of the array
+							callback();
+							return;
+						}
 
-						legacyWait = ( $.inArray( module, legacyModules ) !== -1 )
-							? $.Deferred().resolve()
-							: mw.loader.using( legacyModules );
+						queueModuleScript( arr[ i ], module ).always( function () {
+							nestedAddScript( arr, callback, i + 1 );
+						} );
+					};
 
-						legacyWait.always( function () {
+					implicitDependencies = ( $.inArray( module, legacyModules ) !== -1 )
+						? []
+						: legacyModules;
+
+					if ( module === 'user' ) {
+						// Implicit dependency on the site module. Not real dependency because
+						// it should run after 'site' regardless of whether it succeeds or fails.
+						implicitDependencies.push( 'site' );
+					}
+
+					legacyWait = implicitDependencies.length
+						? mw.loader.using( implicitDependencies )
+						: $.Deferred().resolve();
+
+					legacyWait.always( function () {
+						try {
 							if ( $.isArray( script ) ) {
 								nestedAddScript( script, markModuleReady, 0 );
 							} else if ( typeof script === 'function' ) {
@@ -1319,29 +1330,21 @@
 								// Site and user modules are legacy scripts that run in the global scope.
 								// This is transported as a string instead of a function to avoid needing
 								// to use string manipulation to undo the function wrapper.
-								if ( module === 'user' ) {
-									// Implicit dependency on the site module. Not real dependency because
-									// it should run after 'site' regardless of whether it succeeds or fails.
-									mw.loader.using( 'site' ).always( function () {
-										$.globalEval( script );
-										markModuleReady();
-									} );
-								} else {
-									$.globalEval( script );
-									markModuleReady();
-								}
+								$.globalEval( script );
+								markModuleReady();
+
 							} else {
 								// Module without script
 								markModuleReady();
 							}
-						} );
-					} catch ( e ) {
-						// This needs to NOT use mw.log because these errors are common in production mode
-						// and not in debug mode, such as when a symbol that should be global isn't exported
-						registry[ module ].state = 'error';
-						mw.track( 'resourceloader.exception', { exception: e, module: module, source: 'module-execute' } );
-						handlePending( module );
-					}
+						} catch ( e ) {
+							// This needs to NOT use mw.log because these errors are common in production mode
+							// and not in debug mode, such as when a symbol that should be global isn't exported
+							registry[ module ].state = 'error';
+							mw.track( 'resourceloader.exception', { exception: e, module: module, source: 'module-execute' } );
+							handlePending( module );
+						}
+					} );
 				};
 
 				// Add localizations to message system
