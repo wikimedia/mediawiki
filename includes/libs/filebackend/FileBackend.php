@@ -159,8 +159,11 @@ abstract class FileBackend {
 		$this->concurrency = isset( $config['concurrency'] )
 			? (int)$config['concurrency']
 			: 50;
-		// @TODO: dependency inject this
-		$this->statusWrapper = [ 'Status', 'wrap' ];
+		$this->statusWrapper = isset( $config['statusWrapper'] )
+			? $config['statusWrapper']
+			: function ( $status ) {
+				return $status;
+			};
 	}
 
 	/**
@@ -1564,22 +1567,4 @@ abstract class FileBackend {
 	final protected function wrapStatus( StatusValue $sv ) {
 		return $this->statusWrapper ? call_user_func( $this->statusWrapper, $sv ) : $sv;
 	}
-}
-
-/**
- * Generic file backend exception for checked and unexpected (e.g. config) exceptions
- *
- * @ingroup FileBackend
- * @since 1.23
- */
-class FileBackendException extends Exception {
-}
-
-/**
- * File backend exception for checked exceptions (e.g. I/O errors)
- *
- * @ingroup FileBackend
- * @since 1.22
- */
-class FileBackendError extends FileBackendException {
 }
