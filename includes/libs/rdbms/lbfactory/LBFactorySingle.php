@@ -43,6 +43,16 @@ class LBFactorySingle extends LBFactory {
 	}
 
 	/**
+	 * @param IDatabase $db Live connection handle
+	 * @param array $params Parameter map to LBFactorySingle::__constructs()
+	 * @return LBFactorySingle
+	 * @since 1.28
+	 */
+	public static function newFromConnection( IDatabase $db, array $params = [] ) {
+		return new static( [ 'connection' => $db ] + $params );
+	}
+
+	/**
 	 * @param bool|string $wiki
 	 * @return LoadBalancerSingle
 	 */
