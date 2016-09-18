@@ -1,6 +1,6 @@
 <?php
 /**
- * Advanced generator of database load balancing objects for wiki farms.
+ * Advanced generator of database load balancing objects for database farms.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@
  */
 
 /**
- * A multi-wiki, multi-master factory for Wikimedia and similar installations.
+ * A multi-database, multi-master factory for Wikimedia and similar installations.
  * Ignores the old configuration globals.
  *
  * Template override precedence (highest => lowest):
@@ -83,7 +83,7 @@
  *
  * @ingroup Database
  */
-class LBFactoryMulti extends LBFactoryMW {
+class LBFactoryMulti extends LBFactory {
 	/** @var array A map of database names to section names */
 	private $sectionsByDB;
 
@@ -94,9 +94,8 @@ class LBFactoryMulti extends LBFactoryMW {
 	private $sectionLoads;
 
 	/**
-	 * @var array A server info associative array as documented for
-	 * $wgDBservers. The host, hostName and load entries will be
-	 * overridden
+	 * @var array[] Server info associative array
+	 * @note The host, hostName and load entries will be overridden
 	 */
 	private $serverTemplate;
 
@@ -157,7 +156,7 @@ class LBFactoryMulti extends LBFactoryMW {
 	private $loadMonitorClass;
 
 	/** @var string */
-	private $lastWiki;
+	private $lastDomain;
 
 	/** @var string */
 	private $lastSection;
@@ -178,7 +177,7 @@ class LBFactoryMulti extends LBFactoryMW {
 
 		foreach ( $required as $key ) {
 			if ( !isset( $conf[$key] ) ) {
-				throw new InvalidArgumentException( __CLASS__ . ": $key is required in configuration" );
+				throw new InvalidArgumentException( __CLASS__ . ": $key is required." );
 			}
 			$this->$key = $conf[$key];
 		}
@@ -191,32 +190,32 @@ class LBFactoryMulti extends LBFactoryMW {
 	}
 
 	/**
-	 * @param bool|string $wiki
+	 * @param bool|string $domain
 	 * @return string
 	 */
-	private function getSectionForWiki( $wiki = false ) {
-		if ( $this->lastWiki === $wiki ) {
+	private function getSectionForDomain( $domain = false ) {
+		if ( $this->lastDomain === $domain ) {
 			return $this->lastSection;
 		}
-		list( $dbName, ) = $this->getDBNameAndPrefix( $wiki );
+		list( $dbName, ) = $this->getDBNameAndPrefix( $domain );
 		if ( isset( $this->sectionsByDB[$dbName] ) ) {
 			$section = $this->sectionsByDB[$dbName];
 		} else {
 			$section = 'DEFAULT';
 		}
 		$this->lastSection = $section;
-		$this->lastWiki = $wiki;
+		$this->lastDomain = $domain;
 
 		return $section;
 	}
 
 	/**
-	 * @param bool|string $wiki
+	 * @param bool|string $domain
 	 * @return LoadBalancer
 	 */
-	public function newMainLB( $wiki = false ) {
-		list( $dbName, ) = $this->getDBNameAndPrefix( $wiki );
-		$section = $this->getSectionForWiki( $wiki );
+	public function newMainLB( $domain = false ) {
+		list( $dbName, ) = $this->getDBNameAndPrefix( $domain );
+		$section = $this->getSectionForDomain( $domain );
 		if ( isset( $this->groupLoadsByDB[$dbName] ) ) {
 			$groupLoads = $this->groupLoadsByDB[$dbName];
 		} else {
@@ -224,7 +223,8 @@ class LBFactoryMulti extends LBFactoryMW {
 		}
 
 		if ( isset( $this->groupLoadsBySection[$section] ) ) {
-			$groupLoads = array_merge_recursive( $groupLoads, $this->groupLoadsBySection[$section] );
+			$groupLoads = array_merge_recursive(
+				$groupLoads, $this->groupLoadsBySection[$section] );
 		}
 
 		$readOnlyReason = $this->readOnlyReason;
@@ -247,13 +247,13 @@ class LBFactoryMulti extends LBFactoryMW {
 	}
 
 	/**
-	 * @param bool|string $wiki
+	 * @param DatabaseDomain|string|bool $domain Domain ID, or false for the current domain
 	 * @return LoadBalancer
 	 */
-	public function getMainLB( $wiki = false ) {
-		$section = $this->getSectionForWiki( $wiki );
+	public function getMainLB( $domain = false ) {
+		$section = $this->getSectionForDomain( $domain );
 		if ( !isset( $this->mainLBs[$section] ) ) {
-			$lb = $this->newMainLB( $wiki );
+			$lb = $this->newMainLB( $domain );
 			$this->getChronologyProtector()->initLB( $lb );
 			$this->mainLBs[$section] = $lb;
 		}
@@ -263,11 +263,11 @@ class LBFactoryMulti extends LBFactoryMW {
 
 	/**
 	 * @param string $cluster
-	 * @param bool|string $wiki
+	 * @param DatabaseDomain|string|bool $domain Domain ID, or false for the current domain
 	 * @throws InvalidArgumentException
 	 * @return LoadBalancer
 	 */
-	protected function newExternalLB( $cluster, $wiki = false ) {
+	protected function newExternalLB( $cluster, $domain = false ) {
 		if ( !isset( $this->externalLoads[$cluster] ) ) {
 			throw new InvalidArgumentException( __METHOD__ . ": Unknown cluster \"$cluster\"" );
 		}
@@ -289,12 +289,12 @@ class LBFactoryMulti extends LBFactoryMW {
 
 	/**
 	 * @param string $cluster External storage cluster, or false for core
-	 * @param bool|string $wiki Wiki ID, or false for the current wiki
+	 * @param DatabaseDomain|string|bool $domain Domain ID, or false for the current domain
 	 * @return LoadBalancer
 	 */
-	public function getExternalLB( $cluster, $wiki = false ) {
+	public function getExternalLB( $cluster, $domain = false ) {
 		if ( !isset( $this->extLBs[$cluster] ) ) {
-			$this->extLBs[$cluster] = $this->newExternalLB( $cluster, $wiki );
+			$this->extLBs[$cluster] = $this->newExternalLB( $cluster, $domain );
 			$this->getChronologyProtector()->initLB( $this->extLBs[$cluster] );
 		}
 
@@ -390,18 +390,15 @@ class LBFactoryMulti extends LBFactoryMW {
 	}
 
 	/**
-	 * Get the database name and prefix based on the wiki ID
-	 * @param bool|string $wiki
-	 * @return array
+	 * @param DatabaseDomain|string|bool $domain Domain ID, or false for the current domain
+	 * @return array [database name, table prefix]
 	 */
-	private function getDBNameAndPrefix( $wiki = false ) {
-		if ( $wiki === false ) {
-			global $wgDBname, $wgDBprefix;
+	private function getDBNameAndPrefix( $domain = false ) {
+		$domain = ( $domain === false )
+			? $this->localDomain
+			: DatabaseDomain::newFromId( $domain );
 
-			return [ $wgDBname, $wgDBprefix ];
-		} else {
-			return wfSplitWikiID( $wiki );
-		}
+		return [ $domain->getDatabase(), $domain->getTablePrefix() ];
 	}
 
 	/**
