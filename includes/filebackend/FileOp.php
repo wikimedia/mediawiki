@@ -21,6 +21,7 @@
  * @ingroup FileBackend
  * @author Aaron Schulz
  */
+use Psr\Log\LoggerInterface;
 
 /**
  * FileBackend helper class for representing operations.
@@ -39,6 +40,8 @@ abstract class FileOp {
 
 	/** @var FileBackendStore */
 	protected $backend;
+	/** @var LoggerInterface */
+	protected $logger;
 
 	/** @var int */
 	protected $state = self::STATE_NEW;
@@ -74,10 +77,14 @@ abstract class FileOp {
 	 *
 	 * @param FileBackendStore $backend
 	 * @param array $params
+	 * @param LoggerInterface $logger PSR logger instance
 	 * @throws FileBackendError
 	 */
-	final public function __construct( FileBackendStore $backend, array $params ) {
+	final public function __construct(
+		FileBackendStore $backend, array $params, LoggerInterface $logger
+	) {
 		$this->backend = $backend;
+		$this->logger = $logger;
 		list( $required, $optional, $paths ) = $this->allowedParams();
 		foreach ( $required as $name ) {
 			if ( isset( $params[$name] ) ) {
@@ -454,7 +461,7 @@ abstract class FileOp {
 		$params = $this->params;
 		$params['failedAction'] = $action;
 		try {
-			wfDebugLog( 'FileOperation', get_class( $this ) .
+			$this->logger->error( get_class( $this ) .
 				" failed (batch #{$this->batchId}): " . FormatJson::encode( $params ) );
 		} catch ( Exception $e ) {
 			// bad config? debug log error?

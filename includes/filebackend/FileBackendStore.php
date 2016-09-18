@@ -1020,7 +1020,7 @@ abstract class FileBackendStore extends FileBackend {
 				// Get params for this operation
 				$params = $operation;
 				// Append the FileOp class
-				$performOps[] = new $class( $this, $params );
+				$performOps[] = new $class( $this, $params, $this->logger );
 			} else {
 				throw new FileBackendError( "Operation '$opName' is not supported." );
 			}
