@@ -104,7 +104,7 @@ abstract class DBLockManager extends QuorumLockManager {
 
 	// @todo change this code to work in one batch
 	protected function getLocksOnServer( $lockSrv, array $pathsByType ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 		foreach ( $pathsByType as $type => $paths ) {
 			$status->merge( $this->doGetLocksOnServer( $lockSrv, $paths, $type ) );
 		}
@@ -115,7 +115,7 @@ abstract class DBLockManager extends QuorumLockManager {
 	abstract protected function doGetLocksOnServer( $lockSrv, array $paths, $type );
 
 	protected function freeLocksOnServer( $lockSrv, array $pathsByType ) {
-		return Status::newGood();
+		return StatusValue::newGood();
 	}
 
 	/**
