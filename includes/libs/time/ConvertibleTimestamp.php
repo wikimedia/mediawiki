@@ -224,7 +224,7 @@ class ConvertibleTimestamp {
 	}
 
 	/**
-	 * Calculate the difference between two ConvertableTimestamp objects.
+	 * Calculate the difference between two ConvertibleTimestamp objects.
 	 *
 	 * @param ConvertibleTimestamp $relativeTo Base time to calculate difference from
 	 * @return DateInterval|bool The DateInterval object representing the
