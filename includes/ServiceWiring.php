@@ -57,6 +57,9 @@ return [
 		if ( $class === 'LBFactorySimple' ) {
 			if ( is_array( $mainConfig->get( 'DBservers' ) ) ) {
 				foreach ( $mainConfig->get( 'DBservers' ) as $i => $server ) {
+					if ( $server['type'] === 'sqlite' ) {
+						$server += [ 'dbDirectory' => $mainConfig->get( 'SQLiteDataDir' ) ];
+					}
 					$lbConf['servers'][$i] = $server + [
 						'schema' => $mainConfig->get( 'DBmwschema' ),
 						'tablePrefix' => $mainConfig->get( 'DBprefix' ),
@@ -70,22 +73,25 @@ return [
 				$flags |= $mainConfig->get( 'DebugDumpSql' ) ? DBO_DEBUG : 0;
 				$flags |= $mainConfig->get( 'DBssl' ) ? DBO_SSL : 0;
 				$flags |= $mainConfig->get( 'DBcompress' ) ? DBO_COMPRESS : 0;
-				$lbConf['servers'] = [
-					[
-						'host' => $mainConfig->get( 'DBserver' ),
-						'user' => $mainConfig->get( 'DBuser' ),
-						'password' => $mainConfig->get( 'DBpassword' ),
-						'dbname' => $mainConfig->get( 'DBname' ),
-						'schema' => $mainConfig->get( 'DBmwschema' ),
-						'tablePrefix' => $mainConfig->get( 'DBprefix' ),
-						'type' => $mainConfig->get( 'DBtype' ),
-						'load' => 1,
-						'flags' => $flags,
-						'sqlMode' => $mainConfig->get( 'SQLMode' ),
-						'utf8Mode' => $mainConfig->get( 'DBmysql5' )
-					]
+				$server = [
+					'host' => $mainConfig->get( 'DBserver' ),
+					'user' => $mainConfig->get( 'DBuser' ),
+					'password' => $mainConfig->get( 'DBpassword' ),
+					'dbname' => $mainConfig->get( 'DBname' ),
+					'schema' => $mainConfig->get( 'DBmwschema' ),
+					'tablePrefix' => $mainConfig->get( 'DBprefix' ),
+					'type' => $mainConfig->get( 'DBtype' ),
+					'load' => 1,
+					'flags' => $flags,
+					'sqlMode' => $mainConfig->get( 'SQLMode' ),
+					'utf8Mode' => $mainConfig->get( 'DBmysql5' )
 				];
+				if ( $server['type'] === 'sqlite' ) {
+					$server[ 'dbDirectory'] = $mainConfig->get( 'SQLiteDataDir' );
+				}
+				$lbConf['servers'] = [ $server ];
 			}
+
 			$lbConf['externalServers'] = $mainConfig->get( 'ExternalServers' );
 		}
 
