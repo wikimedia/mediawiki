@@ -59,9 +59,11 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @param array $p
 	 */
 	function __construct( array $p ) {
-		global $wgSQLiteDataDir;
+		if ( !isset( $p['dbDirectory'] ) ) {
+			throw new InvalidArgumentException( "Missing 'dbDirectory' parameter." );
+		}
 
-		$this->dbDir = isset( $p['dbDirectory'] ) ? $p['dbDirectory'] : $wgSQLiteDataDir;
+		$this->dbDir = $p['dbDirectory'];
 
 		if ( isset( $p['dbFilePath'] ) ) {
 			parent::__construct( $p );
@@ -93,7 +95,7 @@ class DatabaseSqlite extends DatabaseBase {
 			!in_array( $this->trxMode, [ 'DEFERRED', 'IMMEDIATE', 'EXCLUSIVE' ] )
 		) {
 			$this->trxMode = null;
-			wfWarn( "Invalid SQLite transaction mode provided." );
+			$this->queryLogger->warning( "Invalid SQLite transaction mode provided." );
 		}
 
 		$this->lockMgr = new FSLockManager( [ 'lockDirectory' => "{$this->dbDir}/locks" ] );
@@ -178,7 +180,7 @@ class DatabaseSqlite extends DatabaseBase {
 		}
 
 		if ( !$this->mConn ) {
-			wfDebug( "DB connection error: $err\n" );
+			$this->queryLogger->debug( "DB connection error: $err\n" );
 			throw new DBConnectionError( $this, $err );
 		}
 
@@ -724,9 +726,9 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @return string User-friendly database information
 	 */
 	public function getServerInfo() {
-		return wfMessage( self::getFulltextSearchModule()
-			? 'sqlite-has-fts'
-			: 'sqlite-no-fts', $this->getServerVersion() )->text();
+		return self::getFulltextSearchModule()
+			? "{$this->getServerVersion()} with fulltext search enabled"
+			: "{$this->getServerVersion()} with fulltext search disabled";
 	}
 
 	/**
@@ -806,7 +808,7 @@ class DatabaseSqlite extends DatabaseBase {
 			// There is an additional bug regarding sorting this data after insert
 			// on older versions of sqlite shipped with ubuntu 12.04
 			// https://phabricator.wikimedia.org/T74367
-			wfDebugLog(
+			$this->queryLogger->debug(
 				__CLASS__,
 				__FUNCTION__ .
 					': Quoting value containing null byte. ' .
@@ -972,7 +974,8 @@ class DatabaseSqlite extends DatabaseBase {
 		);
 		if ( $temporary ) {
 			if ( preg_match( '/^\\s*CREATE\\s+VIRTUAL\\s+TABLE\b/i', $sql ) ) {
-				wfDebug( "Table $oldName is virtual, can't create a temporary duplicate.\n" );
+				$this->queryLogger->debug(
+					"Table $oldName is virtual, can't create a temporary duplicate.\n" );
 			} else {
 				$sql = str_replace( 'CREATE TABLE', 'CREATE TEMPORARY TABLE', $sql );
 			}
