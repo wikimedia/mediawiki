@@ -21,6 +21,7 @@
  * @ingroup FileBackend
  * @author Aaron Schulz
  */
+use \MediaWiki\Logger\LoggerFactory;
 
 /**
  * Class to handle file backend registration
@@ -168,6 +169,8 @@ class FileBackendGroup {
 			$config['wanCache'] = ObjectCache::getMainWANInstance();
 			$config['mimeCallback'] = [ $this, 'guessMimeInternal' ];
 			$config['statusWrapper'] = [ 'Status', 'wrap' ];
+			$config['logger'] = LoggerFactory::getInstance( 'FileOperation' );
+			$config['profiler'] = Profiler::instance();
 
 			$this->backends[$name]['instance'] = new $class( $config );
 		}

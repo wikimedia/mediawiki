@@ -28,6 +28,8 @@
  * @ingroup FileBackend
  * @author Aaron Schulz
  */
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * @brief Base class for all file backend classes (including multi-write backends).
@@ -36,16 +38,21 @@
  * Outside callers can assume that all backends will have these functions.
  *
  * All "storage paths" are of the format "mwstore://<backend>/<container>/<path>".
- * The "backend" portion is unique name for MediaWiki to refer to a backend, while
+ * The "backend" portion is unique name for the application to refer to a backend, while
  * the "container" portion is a top-level directory of the backend. The "path" portion
  * is a relative path that uses UNIX file system (FS) notation, though any particular
  * backend may not actually be using a local filesystem. Therefore, the relative paths
  * are only virtual.
  *
- * Backend contents are stored under wiki-specific container names by default.
- * Global (qualified) backends are achieved by configuring the "wiki ID" to a constant.
+ * Backend contents are stored under "domain"-specific container names by default.
+ * A domain is simply a logical umbrella for entities, such as those belonging to a certain
+ * application or portion of a website, for example. A domain can be local or global.
+ * Global (qualified) backends are achieved by configuring the "domain ID" to a constant.
+ * Global domains are simpler, but local domains can be used by choosing a domain ID based on
+ * the current context, such as which language of a website is being used.
+ *
  * For legacy reasons, the FSFileBackend class allows manually setting the paths of
- * containers to ones that do not respect the "wiki ID".
+ * containers to ones that do not respect the "domain ID".
  *
  * In key/value (object) stores, containers are the only hierarchy (the rest is emulated).
  * FS-based backends are somewhat more restrictive due to the existence of real
@@ -82,12 +89,12 @@
  * @ingroup FileBackend
  * @since 1.19
  */
-abstract class FileBackend {
+abstract class FileBackend implements LoggerAwareInterface {
 	/** @var string Unique backend name */
 	protected $name;
 
-	/** @var string Unique wiki name */
-	protected $wikiId;
+	/** @var string Unique domain name */
+	protected $domainId;
 
 	/** @var string Read-only explanation message */
 	protected $readOnly;
@@ -100,9 +107,12 @@ abstract class FileBackend {
 
 	/** @var LockManager */
 	protected $lockManager;
-
 	/** @var FileJournal */
 	protected $fileJournal;
+	/** @var LoggerInterface */
+	protected $logger;
+	/** @var object|string Class name or object With profileIn/profileOut methods */
+	protected $profiler;
 
 	/** @var callable */
 	protected $statusWrapper;
@@ -121,7 +131,7 @@ abstract class FileBackend {
 	 *                   This should consist of alphanumberic, '-', and '_' characters.
 	 *                   This name should not be changed after use (e.g. with journaling).
 	 *                   Note that the name is *not* used in actual container names.
-	 *   - wikiId      : Prefix to container names that is unique to this backend.
+	 *   - domainId    : Prefix to container names that is unique to this backend.
 	 *                   It should only consist of alphanumberic, '-', and '_' characters.
 	 *                   This ID is what avoids collisions if multiple logical backends
 	 *                   use the same storage system, so this should be set carefully.
@@ -134,15 +144,19 @@ abstract class FileBackend {
 	 *   - parallelize : When to do file operations in parallel (when possible).
 	 *                   Allowed values are "implicit", "explicit" and "off".
 	 *   - concurrency : How many file operations can be done in parallel.
+	 *   - logger      : Optional PSR logger object.
+	 *   - profiler    : Optional class name or object With profileIn/profileOut methods.
 	 * @throws FileBackendException
 	 */
 	public function __construct( array $config ) {
 		$this->name = $config['name'];
-		$this->wikiId = $config['wikiId']; // e.g. "my_wiki-en_"
+		$this->domainId = isset( $config['domainId'] )
+			? $config['domainId'] // e.g. "my_wiki-en_"
+			: $config['wikiId']; // b/c alias
 		if ( !preg_match( '!^[a-zA-Z0-9-_]{1,255}$!', $this->name ) ) {
 			throw new FileBackendException( "Backend name '{$this->name}' is invalid." );
-		} elseif ( !is_string( $this->wikiId ) ) {
-			throw new FileBackendException( "Backend wiki ID not provided for '{$this->name}'." );
+		} elseif ( !is_string( $this->domainId ) ) {
+			throw new FileBackendException( "Backend domain ID not provided for '{$this->name}'." );
 		}
 		$this->lockManager = isset( $config['lockManager'] )
 			? $config['lockManager']
@@ -159,7 +173,13 @@ abstract class FileBackend {
 		$this->concurrency = isset( $config['concurrency'] )
 			? (int)$config['concurrency']
 			: 50;
+		$this->profiler = isset( $params['profiler'] ) ? $params['profiler'] : null;
+		$this->logger = isset( $config['logger'] ) ? $config['logger'] : new \Psr\Log\NullLogger();
 		$this->statusWrapper = isset( $config['statusWrapper'] ) ? $config['statusWrapper'] : null;
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
 	}
 
 	/**
@@ -174,14 +194,22 @@ abstract class FileBackend {
 	}
 
 	/**
-	 * Get the wiki identifier used for this backend (possibly empty).
-	 * Note that this might *not* be in the same format as wfWikiID().
+	 * Get the domain identifier used for this backend (possibly empty).
 	 *
+	 * @return string
+	 * @since 1.28
+	 */
+	final public function getDomainId() {
+		return $this->domainId;
+	}
+
+	/**
+	 * Alias to getDomainId()
 	 * @return string
 	 * @since 1.20
 	 */
 	final public function getWikiId() {
-		return $this->wikiId;
+		return $this->getDomainId();
 	}
 
 	/**
@@ -1562,5 +1590,18 @@ abstract class FileBackend {
 	 */
 	final protected function wrapStatus( StatusValue $sv ) {
 		return $this->statusWrapper ? call_user_func( $this->statusWrapper, $sv ) : $sv;
+	}
+
+	/**
+	 * @param string $section
+	 * @return ScopedCallback|null
+	 */
+	protected function scopedProfileSection( $section ) {
+		if ( $this->profiler ) {
+			call_user_func( [ $this->profiler, 'profileIn' ], $section );
+			return new ScopedCallback( [ $this->profiler, 'profileOut' ] );
+		}
+
+		return null;
 	}
 }
