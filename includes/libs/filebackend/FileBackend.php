@@ -110,6 +110,10 @@ abstract class FileBackend implements LoggerAwareInterface {
 	protected $profiler;
 
 	/** @var callable */
+	protected $obResetFunc;
+	/** @var callable */
+	protected $streamMimeFunc;
+	/** @var callable */
 	protected $statusWrapper;
 
 	/** Bitfield flags for supported features */
@@ -122,25 +126,27 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * This should only be called from within FileBackendGroup.
 	 *
 	 * @param array $config Parameters include:
-	 *   - name        : The unique name of this backend.
-	 *                   This should consist of alphanumberic, '-', and '_' characters.
-	 *                   This name should not be changed after use (e.g. with journaling).
-	 *                   Note that the name is *not* used in actual container names.
-	 *   - wikiId      : Prefix to container names that is unique to this backend.
-	 *                   It should only consist of alphanumberic, '-', and '_' characters.
-	 *                   This ID is what avoids collisions if multiple logical backends
-	 *                   use the same storage system, so this should be set carefully.
+	 *   - name : The unique name of this backend.
+	 *      This should consist of alphanumberic, '-', and '_' characters.
+	 *      This name should not be changed after use (e.g. with journaling).
+	 *      Note that the name is *not* used in actual container names.
+	 *   - wikiId : Prefix to container names that is unique to this backend.
+	 *      It should only consist of alphanumberic, '-', and '_' characters.
+	 *      This ID is what avoids collisions if multiple logical backends
+	 *      use the same storage system, so this should be set carefully.
 	 *   - lockManager : LockManager object to use for any file locking.
-	 *                   If not provided, then no file locking will be enforced.
+	 *      If not provided, then no file locking will be enforced.
 	 *   - fileJournal : FileJournal object to use for logging changes to files.
-	 *                   If not provided, then change journaling will be disabled.
-	 *   - readOnly    : Write operations are disallowed if this is a non-empty string.
-	 *                   It should be an explanation for the backend being read-only.
+	 *      If not provided, then change journaling will be disabled.
+	 *   - readOnly : Write operations are disallowed if this is a non-empty string.
+	 *      It should be an explanation for the backend being read-only.
 	 *   - parallelize : When to do file operations in parallel (when possible).
-	 *                   Allowed values are "implicit", "explicit" and "off".
+	 *      Allowed values are "implicit", "explicit" and "off".
 	 *   - concurrency : How many file operations can be done in parallel.
-	 *   - logger      : Optional PSR logger object.
-	 *   - profiler    : Optional class name or object With profileIn/profileOut methods.
+	 *   - obResetFunc : alternative callback to clear the output buffer
+	 *   - streamMimeFunc : alternative method to determine the content type from the path
+	 *   - logger : Optional PSR logger object.
+	 *   - profiler : Optional class name or object With profileIn/profileOut methods.
 	 * @throws FileBackendException
 	 */
 	public function __construct( array $config ) {
@@ -168,9 +174,12 @@ abstract class FileBackend implements LoggerAwareInterface {
 		$this->concurrency = isset( $config['concurrency'] )
 			? (int)$config['concurrency']
 			: 50;
+		$this->obResetFunc = isset( $params['obResetFunc'] ) ? $params['obResetFunc'] : null;
+		$this->streamMimeFunc = isset( $params['streamMimeFunc'] ) ? $params['streamMimeFunc'] : null;
+		$this->statusWrapper = isset( $config['statusWrapper'] ) ? $config['statusWrapper'] : null;
+
 		$this->profiler = isset( $params['profiler'] ) ? $params['profiler'] : null;
 		$this->logger = isset( $config['logger'] ) ? $config['logger'] : new \Psr\Log\NullLogger();
-		$this->statusWrapper = isset( $config['statusWrapper'] ) ? $config['statusWrapper'] : null;
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
