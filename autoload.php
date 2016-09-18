@@ -557,6 +557,7 @@ $wgAutoloadLocalClasses = [
 	'HTMLTextFieldWithButton' => __DIR__ . '/includes/htmlform/fields/HTMLTextFieldWithButton.php',
 	'HTMLTitleTextField' => __DIR__ . '/includes/htmlform/fields/HTMLTitleTextField.php',
 	'HTMLUserTextField' => __DIR__ . '/includes/htmlform/fields/HTMLUserTextField.php',
+	'HTTPFileStreamer' => __DIR__ . '/includes/libs/filebackend/HTTPFileStreamer.php',
 	'HWLDFWordAccumulator' => __DIR__ . '/includes/diff/DairikiDiff.php',
 	'HashBagOStuff' => __DIR__ . '/includes/libs/objectcache/HashBagOStuff.php',
 	'HashConfig' => __DIR__ . '/includes/config/HashConfig.php',

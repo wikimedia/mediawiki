@@ -158,16 +158,18 @@ class FileBackendGroup {
 		if ( !isset( $this->backends[$name]['instance'] ) ) {
 			$class = $this->backends[$name]['class'];
 			$config = $this->backends[$name]['config'];
-			$config['wikiId'] = isset( $config['wikiId'] )
-				? $config['wikiId']
-				: wfWikiID(); // e.g. "my_wiki-en_"
+			$config += [
+				'wikiId' => wfWikiID(), // e.g. "my_wiki-en_"
+				'mimeCallback' => [ $this, 'guessMimeInternal' ],
+				'obResetFunc' => 'wfResetOutputBuffers',
+				'streamMimeFunc' => [ 'StreamFile', 'contentTypeFromPath' ]
+			];
 			$config['lockManager'] =
 				LockManagerGroup::singleton( $config['wikiId'] )->get( $config['lockManager'] );
 			$config['fileJournal'] = isset( $config['fileJournal'] )
 				? FileJournal::factory( $config['fileJournal'], $name )
 				: FileJournal::factory( [ 'class' => 'NullFileJournal' ], $name );
 			$config['wanCache'] = ObjectCache::getMainWANInstance();
-			$config['mimeCallback'] = [ $this, 'guessMimeInternal' ];
 			$config['statusWrapper'] = [ 'Status', 'wrap' ];
 			$config['logger'] = LoggerFactory::getInstance( 'FileOperation' );
 			$config['profiler'] = Profiler::instance();
