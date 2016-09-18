@@ -25,9 +25,9 @@
  */
 class StreamFile {
 	// Do not send any HTTP headers unless requested by caller (e.g. body only)
-	const STREAM_HEADLESS = 1;
+	const STREAM_HEADLESS = HTTPFileStreamer::STREAM_HEADLESS;
 	// Do not try to tear down any PHP output buffers
-	const STREAM_ALLOW_OB = 2;
+	const STREAM_ALLOW_OB = HTTPFileStreamer::STREAM_ALLOW_OB;
 
 	/**
 	 * Stream a file to the browser, adding all the headings and fun stuff.
@@ -45,115 +45,19 @@ class StreamFile {
 	public static function stream(
 		$fname, $headers = [], $sendErrors = true, $optHeaders = [], $flags = 0
 	) {
-		$section = new ProfileSection( __METHOD__ );
-
 		if ( FileBackend::isStoragePath( $fname ) ) { // sanity
-			throw new MWException( __FUNCTION__ . " given storage path '$fname'." );
+			throw new InvalidArgumentException( __FUNCTION__ . " given storage path '$fname'." );
 		}
 
-		// Don't stream it out as text/html if there was a PHP error
-		if ( ( ( $flags & self::STREAM_HEADLESS ) == 0 || $headers ) && headers_sent() ) {
-			echo "Headers already sent, terminating.\n";
-			return false;
-		}
+		$streamer = new HTTPFileStreamer(
+			$fname,
+			[
+				'obResetFunc' => 'wfResetOutputBuffers',
+				'streamMimeFunc' => [ __CLASS__, 'contentTypeFromPath' ]
+			]
+		);
 
-		$headerFunc = ( $flags & self::STREAM_HEADLESS )
-			? function ( $header ) {
-				 // no-op
-			}
-			: function ( $header ) {
-				is_int( $header ) ? HttpStatus::header( $header ) : header( $header );
-			};
-
-		MediaWiki\suppressWarnings();
-		$info = stat( $fname );
-		MediaWiki\restoreWarnings();
-
-		if ( !is_array( $info ) ) {
-			if ( $sendErrors ) {
-				self::send404Message( $fname, $flags );
-			}
-			return false;
-		}
-
-		// Send Last-Modified HTTP header for client-side caching
-		$headerFunc( 'Last-Modified: ' . wfTimestamp( TS_RFC2822, $info['mtime'] ) );
-
-		if ( ( $flags & self::STREAM_ALLOW_OB ) == 0 ) {
-			// Cancel output buffering and gzipping if set
-			wfResetOutputBuffers();
-		}
-
-		$type = self::contentTypeFromPath( $fname );
-		if ( $type && $type != 'unknown/unknown' ) {
-			$headerFunc( "Content-type: $type" );
-		} else {
-			// Send a content type which is not known to Internet Explorer, to
-			// avoid triggering IE's content type detection. Sending a standard
-			// unknown content type here essentially gives IE license to apply
-			// whatever content type it likes.
-			$headerFunc( 'Content-type: application/x-wiki' );
-		}
-
-		// Don't send if client has up to date cache
-		if ( isset( $optHeaders['if-modified-since'] ) ) {
-			$modsince = preg_replace( '/;.*$/', '', $optHeaders['if-modified-since'] );
-			if ( wfTimestamp( TS_UNIX, $info['mtime'] ) <= strtotime( $modsince ) ) {
-				ini_set( 'zlib.output_compression', 0 );
-				$headerFunc( 304 );
-				return true; // ok
-			}
-		}
-
-		// Send additional headers
-		foreach ( $headers as $header ) {
-			header( $header ); // always use header(); specifically requested
-		}
-
-		if ( isset( $optHeaders['range'] ) ) {
-			$range = self::parseRange( $optHeaders['range'], $info['size'] );
-			if ( is_array( $range ) ) {
-				$headerFunc( 206 );
-				$headerFunc( 'Content-Length: ' . $range[2] );
-				$headerFunc( "Content-Range: bytes {$range[0]}-{$range[1]}/{$info['size']}" );
-			} elseif ( $range === 'invalid' ) {
-				if ( $sendErrors ) {
-					$headerFunc( 416 );
-					$headerFunc( 'Cache-Control: no-cache' );
-					$headerFunc( 'Content-Type: text/html; charset=utf-8' );
-					$headerFunc( 'Content-Range: bytes */' . $info['size'] );
-				}
-				return false;
-			} else { // unsupported Range request (e.g. multiple ranges)
-				$range = null;
-				$headerFunc( 'Content-Length: ' . $info['size'] );
-			}
-		} else {
-			$range = null;
-			$headerFunc( 'Content-Length: ' . $info['size'] );
-		}
-
-		if ( is_array( $range ) ) {
-			$handle = fopen( $fname, 'rb' );
-			if ( $handle ) {
-				$ok = true;
-				fseek( $handle, $range[0] );
-				$remaining = $range[2];
-				while ( $remaining > 0 && $ok ) {
-					$bytes = min( $remaining, 8 * 1024 );
-					$data = fread( $handle, $bytes );
-					$remaining -= $bytes;
-					$ok = ( $data !== false );
-					print $data;
-				}
-			} else {
-				return false;
-			}
-		} else {
-			return readfile( $fname ) !== false; // faster
-		}
-
-		return true;
+		return $streamer->stream( $headers, $sendErrors, $optHeaders, $flags );
 	}
 
 	/**
@@ -164,19 +68,7 @@ class StreamFile {
 	 * @since 1.24
 	 */
 	public static function send404Message( $fname, $flags = 0 ) {
-		if ( ( $flags & self::STREAM_HEADLESS ) == 0 ) {
-			HttpStatus::header( 404 );
-			header( 'Cache-Control: no-cache' );
-			header( 'Content-Type: text/html; charset=utf-8' );
-		}
-		$encFile = htmlspecialchars( $fname );
-		$encScript = htmlspecialchars( $_SERVER['SCRIPT_NAME'] );
-		echo "<!DOCTYPE html><html><body>
-			<h1>File not found</h1>
-			<p>Although this PHP script ($encScript) exists, the file requested for output
-			($encFile) does not.</p>
-			</body></html>
-			";
+		HTTPFileStreamer::send404Message( $fname, $flags );
 	}
 
 	/**
@@ -188,30 +80,7 @@ class StreamFile {
 	 * @since 1.24
 	 */
 	public static function parseRange( $range, $size ) {
-		$m = [];
-		if ( preg_match( '#^bytes=(\d*)-(\d*)$#', $range, $m ) ) {
-			list( , $start, $end ) = $m;
-			if ( $start === '' && $end === '' ) {
-				$absRange = [ 0, $size - 1 ];
-			} elseif ( $start === '' ) {
-				$absRange = [ $size - $end, $size - 1 ];
-			} elseif ( $end === '' ) {
-				$absRange = [ $start, $size - 1 ];
-			} else {
-				$absRange = [ $start, $end ];
-			}
-			if ( $absRange[0] >= 0 && $absRange[1] >= $absRange[0] ) {
-				if ( $absRange[0] < $size ) {
-					$absRange[1] = min( $absRange[1], $size - 1 ); // stop at EOF
-					$absRange[2] = $absRange[1] - $absRange[0] + 1;
-					return $absRange;
-				} elseif ( $absRange[0] == 0 && $size == 0 ) {
-					return 'unrecognized'; // the whole file should just be sent
-				}
-			}
-			return 'invalid';
-		}
-		return 'unrecognized';
+		return HTTPFileStreamer::parseRange( $range, $size );
 	}
 
 	/**
