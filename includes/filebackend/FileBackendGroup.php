@@ -167,6 +167,7 @@ class FileBackendGroup {
 				: FileJournal::factory( [ 'class' => 'NullFileJournal' ], $name );
 			$config['wanCache'] = ObjectCache::getMainWANInstance();
 			$config['mimeCallback'] = [ $this, 'guessMimeInternal' ];
+			$config['statusWrapper'] = [ 'Status', 'wrap' ];
 
 			$this->backends[$name]['instance'] = new $class( $config );
 		}
