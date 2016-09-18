@@ -69,8 +69,10 @@ class DatabaseSqlite extends DatabaseBase {
 			// Super doesn't open when $user is false, but we can work with $dbName,
 			// which is derived from the file path in this case.
 			$this->openFile( $p['dbFilePath'] );
+			$lockDomain = md5( $p['dbFilePath'] );
 		} else {
 			$this->mDBname = $p['dbname'];
+			$lockDomain = $this->mDBname;
 			// Stock wiki mode using standard file names per DB.
 			parent::__construct( $p );
 			// Super doesn't open when $user is false, but we can work with $dbName
@@ -96,7 +98,10 @@ class DatabaseSqlite extends DatabaseBase {
 			wfWarn( "Invalid SQLite transaction mode provided." );
 		}
 
-		$this->lockMgr = new FSLockManager( [ 'lockDirectory' => "{$this->dbDir}/locks" ] );
+		$this->lockMgr = new FSLockManager( [
+			'domain' => $lockDomain,
+			'lockDirectory' => "{$this->dbDir}/locks"
+		] );
 	}
 
 	/**

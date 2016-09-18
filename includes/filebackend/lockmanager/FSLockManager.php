@@ -41,10 +41,14 @@ class FSLockManager extends LockManager {
 		self::LOCK_EX => self::LOCK_EX
 	];
 
-	protected $lockDir; // global dir for all servers
+	/** @var string Global dir for all servers */
+	protected $lockDir;
 
 	/** @var array Map of (locked key => lock file handle) */
 	protected $handles = [];
+
+	/** @var bool */
+	protected $isWindows;
 
 	/**
 	 * Construct a new instance from configuration.
@@ -56,6 +60,7 @@ class FSLockManager extends LockManager {
 		parent::__construct( $config );
 
 		$this->lockDir = $config['lockDirectory'];
+		$this->isWindows = ( strtoupper( substr( PHP_OS, 0, 3 ) ) === 'WIN' );
 	}
 
 	/**
@@ -119,11 +124,11 @@ class FSLockManager extends LockManager {
 			} else {
 				MediaWiki\suppressWarnings();
 				$handle = fopen( $this->getLockPath( $path ), 'a+' );
-				MediaWiki\restoreWarnings();
 				if ( !$handle ) { // lock dir missing?
-					wfMkdirParents( $this->lockDir );
+					mkdir( $this->lockDir, 0777, true );
 					$handle = fopen( $this->getLockPath( $path ), 'a+' ); // try again
 				}
+				MediaWiki\restoreWarnings();
 			}
 			if ( $handle ) {
 				// Either a shared or exclusive lock
@@ -173,7 +178,7 @@ class FSLockManager extends LockManager {
 			}
 			// Unlock handles to release locks and delete
 			// any lock files that end up with no locks on them...
-			if ( wfIsWindows() ) {
+			if ( $this->isWindows ) {
 				// Windows: for any process, including this one,
 				// calling unlink() on a locked file will fail
 				$status->merge( $this->closeLockHandles( $path, $handlesToClose ) );
