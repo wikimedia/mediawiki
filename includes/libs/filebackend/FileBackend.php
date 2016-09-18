@@ -28,6 +28,8 @@
  * @ingroup FileBackend
  * @author Aaron Schulz
  */
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * @brief Base class for all file backend classes (including multi-write backends).
@@ -82,12 +84,12 @@
  * @ingroup FileBackend
  * @since 1.19
  */
-abstract class FileBackend {
+abstract class FileBackend implements LoggerAwareInterface {
 	/** @var string Unique backend name */
 	protected $name;
 
 	/** @var string Unique wiki name */
-	protected $wikiId;
+	protected $domainId;
 
 	/** @var string Read-only explanation message */
 	protected $readOnly;
@@ -100,9 +102,12 @@ abstract class FileBackend {
 
 	/** @var LockManager */
 	protected $lockManager;
-
 	/** @var FileJournal */
 	protected $fileJournal;
+	/** @var LoggerInterface */
+	protected $logger;
+	/** @var object|string Class name or object With profileIn/profileOut methods */
+	protected $profiler;
 
 	/** @var callable */
 	protected $statusWrapper;
@@ -134,14 +139,18 @@ abstract class FileBackend {
 	 *   - parallelize : When to do file operations in parallel (when possible).
 	 *                   Allowed values are "implicit", "explicit" and "off".
 	 *   - concurrency : How many file operations can be done in parallel.
+	 *   - logger      : Optional PSR logger object.
+	 *   - profiler    : Optional class name or object With profileIn/profileOut methods.
 	 * @throws FileBackendException
 	 */
 	public function __construct( array $config ) {
 		$this->name = $config['name'];
-		$this->wikiId = $config['wikiId']; // e.g. "my_wiki-en_"
+		$this->domainId = isset( $config['domainId'] )
+			? $config['domainId'] // e.g. "my_wiki-en_"
+			: $config['wikiId']; // b/c alias
 		if ( !preg_match( '!^[a-zA-Z0-9-_]{1,255}$!', $this->name ) ) {
 			throw new FileBackendException( "Backend name '{$this->name}' is invalid." );
-		} elseif ( !is_string( $this->wikiId ) ) {
+		} elseif ( !is_string( $this->domainId ) ) {
 			throw new FileBackendException( "Backend wiki ID not provided for '{$this->name}'." );
 		}
 		$this->lockManager = isset( $config['lockManager'] )
@@ -159,7 +168,13 @@ abstract class FileBackend {
 		$this->concurrency = isset( $config['concurrency'] )
 			? (int)$config['concurrency']
 			: 50;
+		$this->profiler = isset( $params['profiler'] ) ? $params['profiler'] : null;
+		$this->logger = isset( $config['logger'] ) ? $config['logger'] : new \Psr\Log\NullLogger();
 		$this->statusWrapper = isset( $config['statusWrapper'] ) ? $config['statusWrapper'] : null;
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
 	}
 
 	/**
@@ -174,14 +189,25 @@ abstract class FileBackend {
 	}
 
 	/**
-	 * Get the wiki identifier used for this backend (possibly empty).
+	 * Get the domain identifier used for this backend (possibly empty).
+	 *
+	 * @return string
+	 * @since 1.28
+	 */
+	final public function getDomainId() {
+		return $this->domainId;
+	}
+
+	/**
+	 * Alias to getDomainId()
+	 *
 	 * Note that this might *not* be in the same format as wfWikiID().
 	 *
 	 * @return string
 	 * @since 1.20
 	 */
 	final public function getWikiId() {
-		return $this->wikiId;
+		return $this->getDomainId();
 	}
 
 	/**
@@ -1562,5 +1588,18 @@ abstract class FileBackend {
 	 */
 	final protected function wrapStatus( StatusValue $sv ) {
 		return $this->statusWrapper ? call_user_func( $this->statusWrapper, $sv ) : $sv;
+	}
+
+	/**
+	 * @param string $section
+	 * @return ScopedCallback|null
+	 */
+	protected function scopedProfileSection( $section ) {
+		if ( $this->profiler ) {
+			call_user_func( [ $this->profiler, 'profileIn' ], $section );
+			return new ScopedCallback( [ $this->profiler, 'profileOut' ] );
+		}
+
+		return null;
 	}
 }

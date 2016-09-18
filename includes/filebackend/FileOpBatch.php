@@ -164,6 +164,7 @@ class FileOpBatch {
 			$statuses = [];
 			$opHandles = [];
 			// Get the backend; all sub-batch ops belong to a single backend
+			/** @var FileBackendStore $backend */
 			$backend = reset( $performOpsBatch )->getBackend();
 			// Get the operation handles or actually do it if there is just one.
 			// If attemptAsync() returns a StatusValue, it was either due to an error

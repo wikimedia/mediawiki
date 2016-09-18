@@ -121,7 +121,7 @@ class FileBackendMultiWrite extends FileBackend {
 			unset( $config['readOnly'] ); // use proxy backend setting
 			unset( $config['fileJournal'] ); // use proxy backend journal
 			unset( $config['lockManager'] ); // lock under proxy backend
-			$config['wikiId'] = $this->wikiId; // use the proxy backend wiki ID
+			$config['wikiId'] = $this->domainId; // use the proxy backend wiki ID
 			if ( !empty( $config['isMultiMaster'] ) ) {
 				if ( $this->masterIndex >= 0 ) {
 					throw new FileBackendError( 'More than one master backend defined.' );
