@@ -44,7 +44,7 @@ abstract class QuorumLockManager extends LockManager {
 	}
 
 	protected function doLockByType( array $pathsByType ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 
 		$pathsToLock = []; // (bucket => type => paths)
 		// Get locks that need to be acquired (buckets => locks)...
@@ -83,7 +83,7 @@ abstract class QuorumLockManager extends LockManager {
 	}
 
 	protected function doUnlockByType( array $pathsByType ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 
 		$pathsToUnlock = []; // (bucket => type => paths)
 		foreach ( $pathsByType as $type => $paths ) {
@@ -127,7 +127,7 @@ abstract class QuorumLockManager extends LockManager {
 	 * @return StatusValue
 	 */
 	final protected function doLockingRequestBucket( $bucket, array $pathsByType ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 
 		$yesVotes = 0; // locks made on trustable servers
 		$votesLeft = count( $this->srvsByBucket[$bucket] ); // remaining peers
@@ -169,7 +169,7 @@ abstract class QuorumLockManager extends LockManager {
 	 * @return StatusValue
 	 */
 	final protected function doUnlockingRequestBucket( $bucket, array $pathsByType ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 
 		$yesVotes = 0; // locks freed on trustable servers
 		$votesLeft = count( $this->srvsByBucket[$bucket] ); // remaining peers

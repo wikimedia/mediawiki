@@ -79,7 +79,7 @@ class RedisLockManager extends QuorumLockManager {
 	}
 
 	protected function getLocksOnServer( $lockSrv, array $pathsByType ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 
 		$pathList = call_user_func_array( 'array_merge', array_values( $pathsByType ) );
 
@@ -172,7 +172,7 @@ LUA;
 	}
 
 	protected function freeLocksOnServer( $lockSrv, array $pathsByType ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 
 		$pathList = call_user_func_array( 'array_merge', array_values( $pathsByType ) );
 
@@ -242,7 +242,7 @@ LUA;
 	}
 
 	protected function releaseAllLocks() {
-		return Status::newGood(); // not supported
+		return StatusValue::newGood(); // not supported
 	}
 
 	protected function isServerUp( $lockSrv ) {
