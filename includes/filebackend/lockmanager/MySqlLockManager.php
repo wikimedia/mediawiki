@@ -38,7 +38,7 @@ class MySqlLockManager extends DBLockManager {
 	 * @return StatusValue
 	 */
 	protected function doGetLocksOnServer( $lockSrv, array $paths, $type ) {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 
 		$db = $this->getConnection( $lockSrv ); // checked in isServerUp()
 
@@ -108,7 +108,7 @@ class MySqlLockManager extends DBLockManager {
 	 * @return StatusValue
 	 */
 	protected function releaseAllLocks() {
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 
 		foreach ( $this->conns as $lockDb => $db ) {
 			if ( $db->trxLevel() ) { // in transaction
