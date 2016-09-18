@@ -1914,7 +1914,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			// Does nothing
 		], [ 'force' => 1 ] );
 
-		$this->assertNotEquals( [], $status->errors, "Operation had warnings" );
+		$this->assertNotEquals( [], $status->getErrors(), "Operation had warnings" );
 		$this->assertEquals( true, $status->isOK(), "Operation batch succeeded" );
 		$this->assertEquals( 8, count( $status->success ),
 			"Operation batch has correct success array" );
@@ -2371,25 +2371,25 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		for ( $i = 0; $i < 25; $i++ ) {
 			$status = $this->backend->lockFiles( $paths, LockManager::LOCK_EX );
-			$this->assertEquals( print_r( [], true ), print_r( $status->errors, true ),
+			$this->assertEquals( print_r( [], true ), print_r( $status->getErrors(), true ),
 				"Locking of files succeeded ($backendName) ($i)." );
 			$this->assertEquals( true, $status->isOK(),
 				"Locking of files succeeded with OK status ($backendName) ($i)." );
 
 			$status = $this->backend->lockFiles( $paths, LockManager::LOCK_SH );
-			$this->assertEquals( print_r( [], true ), print_r( $status->errors, true ),
+			$this->assertEquals( print_r( [], true ), print_r( $status->getErrors(), true ),
 				"Locking of files succeeded ($backendName) ($i)." );
 			$this->assertEquals( true, $status->isOK(),
 				"Locking of files succeeded with OK status ($backendName) ($i)." );
 
 			$status = $this->backend->unlockFiles( $paths, LockManager::LOCK_SH );
-			$this->assertEquals( print_r( [], true ), print_r( $status->errors, true ),
+			$this->assertEquals( print_r( [], true ), print_r( $status->getErrors(), true ),
 				"Locking of files succeeded ($backendName) ($i)." );
 			$this->assertEquals( true, $status->isOK(),
 				"Locking of files succeeded with OK status ($backendName) ($i)." );
 
 			$status = $this->backend->unlockFiles( $paths, LockManager::LOCK_EX );
-			$this->assertEquals( print_r( [], true ), print_r( $status->errors, true ),
+			$this->assertEquals( print_r( [], true ), print_r( $status->getErrors(), true ),
 				"Locking of files succeeded ($backendName). ($i)" );
 			$this->assertEquals( true, $status->isOK(),
 				"Locking of files succeeded with OK status ($backendName) ($i)." );
@@ -2397,25 +2397,25 @@ class FileBackendTest extends MediaWikiTestCase {
 			# # Flip the acquire/release ordering around ##
 
 			$status = $this->backend->lockFiles( $paths, LockManager::LOCK_SH );
-			$this->assertEquals( print_r( [], true ), print_r( $status->errors, true ),
+			$this->assertEquals( print_r( [], true ), print_r( $status->getErrors(), true ),
 				"Locking of files succeeded ($backendName) ($i)." );
 			$this->assertEquals( true, $status->isOK(),
 				"Locking of files succeeded with OK status ($backendName) ($i)." );
 
 			$status = $this->backend->lockFiles( $paths, LockManager::LOCK_EX );
-			$this->assertEquals( print_r( [], true ), print_r( $status->errors, true ),
+			$this->assertEquals( print_r( [], true ), print_r( $status->getErrors(), true ),
 				"Locking of files succeeded ($backendName) ($i)." );
 			$this->assertEquals( true, $status->isOK(),
 				"Locking of files succeeded with OK status ($backendName) ($i)." );
 
 			$status = $this->backend->unlockFiles( $paths, LockManager::LOCK_EX );
-			$this->assertEquals( print_r( [], true ), print_r( $status->errors, true ),
+			$this->assertEquals( print_r( [], true ), print_r( $status->getErrors(), true ),
 				"Locking of files succeeded ($backendName). ($i)" );
 			$this->assertEquals( true, $status->isOK(),
 				"Locking of files succeeded with OK status ($backendName) ($i)." );
 
 			$status = $this->backend->unlockFiles( $paths, LockManager::LOCK_SH );
-			$this->assertEquals( print_r( [], true ), print_r( $status->errors, true ),
+			$this->assertEquals( print_r( [], true ), print_r( $status->getErrors(), true ),
 				"Locking of files succeeded ($backendName) ($i)." );
 			$this->assertEquals( true, $status->isOK(),
 				"Locking of files succeeded with OK status ($backendName) ($i)." );
@@ -2425,7 +2425,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$sl = $this->backend->getScopedFileLocks( $paths, LockManager::LOCK_EX, $status );
 		$this->assertInstanceOf( 'ScopedLock', $sl,
 			"Scoped locking of files succeeded ($backendName)." );
-		$this->assertEquals( [], $status->errors,
+		$this->assertEquals( [], $status->getErrors(),
 			"Scoped locking of files succeeded ($backendName)." );
 		$this->assertEquals( true, $status->isOK(),
 			"Scoped locking of files succeeded with OK status ($backendName)." );
@@ -2433,7 +2433,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		ScopedLock::release( $sl );
 		$this->assertEquals( null, $sl,
 			"Scoped unlocking of files succeeded ($backendName)." );
-		$this->assertEquals( [], $status->errors,
+		$this->assertEquals( [], $status->getErrors(),
 			"Scoped unlocking of files succeeded ($backendName)." );
 		$this->assertEquals( true, $status->isOK(),
 			"Scoped unlocking of files succeeded with OK status ($backendName)." );
@@ -2647,7 +2647,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 	}
 
-	function assertGoodStatus( $status, $msg ) {
-		$this->assertEquals( print_r( [], 1 ), print_r( $status->errors, 1 ), $msg );
+	function assertGoodStatus( StatusValue $status, $msg ) {
+		$this->assertEquals( print_r( [], 1 ), print_r( $status->getErrors(), 1 ), $msg );
 	}
 }
