@@ -42,6 +42,9 @@ class ForeignDBViaLBRepo extends LocalRepo {
 	/** @var array */
 	protected $fileFromRowFactory = [ 'ForeignDBFile', 'newFromRow' ];
 
+	/** @var bool */
+	protected $hasSharedCache;
+
 	/**
 	 * @param array|null $info
 	 */

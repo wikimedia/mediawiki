@@ -1480,8 +1480,10 @@ class LocalFile extends File {
 						);
 
 						if ( isset( $status->value['revision'] ) ) {
+							/** @var $rev Revision */
+							$rev = $status->value['revision'];
 							// Associate new page revision id
-							$logEntry->setAssociatedRevId( $status->value['revision']->getId() );
+							$logEntry->setAssociatedRevId( $rev->getId() );
 						}
 						// This relies on the resetArticleID() call in WikiPage::insertOn(),
 						// which is triggered on $descTitle by doEditContent() above.
@@ -2692,7 +2694,7 @@ class LocalFileRestoreBatch {
 				// Even if some files could be copied, fail entirely as that is the
 				// easiest thing to do without data loss
 				$this->cleanupFailedBatch( $storeStatus, $storeBatch );
-				$status->ok = false;
+				$status->setOk( false );
 				$this->file->unlock();
 
 				return $status;
@@ -2952,7 +2954,7 @@ class LocalFileMoveBatch {
 		if ( !$statusDb->isGood() ) {
 			$destFile->unlock();
 			$this->file->unlock();
-			$statusDb->ok = false;
+			$statusDb->setOK( false );
 
 			return $statusDb;
 		}
@@ -2971,7 +2973,7 @@ class LocalFileMoveBatch {
 				$this->file->unlock();
 				wfDebugLog( 'imagemove', "Error in moving files: "
 					. $statusMove->getWikiText( false, false, 'en' ) );
-				$statusMove->ok = false;
+				$statusMove->setOK( false );
 
 				return $statusMove;
 			}

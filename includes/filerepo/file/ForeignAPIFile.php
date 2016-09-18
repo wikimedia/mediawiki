@@ -28,7 +28,10 @@
  * @ingroup FileAbstraction
  */
 class ForeignAPIFile extends File {
+	/** @var bool */
 	private $mExists;
+	/** @var array */
+	private $mInfo = [];
 
 	protected $repoClass = 'ForeignApiRepo';
 
@@ -244,7 +247,7 @@ class ForeignAPIFile extends File {
 	public function getUser( $type = 'text' ) {
 		if ( $type == 'text' ) {
 			return isset( $this->mInfo['user'] ) ? strval( $this->mInfo['user'] ) : null;
-		} elseif ( $type == 'id' ) {
+		} else {
 			return 0; // What makes sense here, for a remote user?
 		}
 	}
@@ -344,9 +347,6 @@ class ForeignAPIFile extends File {
 		return $files;
 	}
 
-	/**
-	 * @see File::purgeCache()
-	 */
 	function purgeCache( $options = [] ) {
 		$this->purgeThumbnails( $options );
 		$this->purgeDescriptionPage();

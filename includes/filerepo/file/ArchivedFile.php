@@ -425,6 +425,7 @@ class ArchivedFile {
 	 */
 	function pageCount() {
 		if ( !isset( $this->pageCount ) ) {
+			// @FIXME: callers expect File objects
 			if ( $this->getHandler() && $this->handler->isMultiPage( $this ) ) {
 				$this->pageCount = $this->handler->pageCount( $this );
 			} else {
