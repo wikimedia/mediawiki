@@ -46,7 +46,9 @@ class ScopedLock {
 	 * @param array $pathsByType Map of lock types to path lists
 	 * @param StatusValue $status
 	 */
-	protected function __construct( LockManager $manager, array $pathsByType, StatusValue $status ) {
+	protected function __construct(
+		LockManager $manager, array $pathsByType, StatusValue $status
+	) {
 		$this->manager = $manager;
 		$this->pathsByType = $pathsByType;
 		$this->status = $status;
