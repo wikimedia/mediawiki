@@ -1299,7 +1299,7 @@ class ApiMain extends ApiBase {
 		}
 
 		if ( $module->isWriteMode()
-			&& in_array( 'bot', $this->getUser()->getGroups() )
+			&& $this->getUser()->isBot()
 			&& wfGetLB()->getServerCount() > 1
 		) {
 			$this->checkBotReadOnly();
