@@ -300,11 +300,11 @@ class DatabaseSqlite extends DatabaseBase {
 		$res = $this->mConn->query( $sql );
 		if ( $res === false ) {
 			return false;
-		} else {
-			$r = $res instanceof ResultWrapper ? $res->result : $res;
-			$this->mAffectedRows = $r->rowCount();
-			$res = new ResultWrapper( $this, $r->fetchAll() );
 		}
+
+		$r = $res instanceof ResultWrapper ? $res->result : $res;
+		$this->mAffectedRows = $r->rowCount();
+		$res = new ResultWrapper( $this, $r->fetchAll() );
 
 		return $res;
 	}
@@ -1053,4 +1053,4 @@ class DatabaseSqlite extends DatabaseBase {
 		return 'SQLite ' . (string)$this->mConn->getAttribute( PDO::ATTR_SERVER_VERSION );
 	}
 
-} // end DatabaseSqlite class
+}

@@ -1,5 +1,6 @@
 <?php
 class MssqlResultWrapper extends ResultWrapper {
+	/** @var integer|null */
 	private $mSeekTo = null;
 
 	/**

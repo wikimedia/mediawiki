@@ -4,35 +4,19 @@
  * doesn't go anywhere near an actual database.
  */
 class FakeResultWrapper extends ResultWrapper {
-	/** @var array */
-	public $result = [];
-
-	/** @var null And it's going to stay that way :D */
-	protected $db = null;
-
-	/** @var int */
-	protected $pos = 0;
-
-	/** @var array|stdClass|bool */
-	protected $currentRow = null;
+	/** @var $result stdClass[] */
 
 	/**
-	 * @param array $array
+	 * @param stdClass[] $rows
 	 */
-	function __construct( $array ) {
-		$this->result = $array;
+	function __construct( array $rows ) {
+		parent::__construct( null, $rows );
 	}
 
-	/**
-	 * @return int
-	 */
 	function numRows() {
 		return count( $this->result );
 	}
 
-	/**
-	 * @return array|bool
-	 */
 	function fetchRow() {
 		if ( $this->pos < count( $this->result ) ) {
 			$this->currentRow = $this->result[$this->pos];
@@ -54,10 +38,6 @@ class FakeResultWrapper extends ResultWrapper {
 	function free() {
 	}
 
-	/**
-	 * Callers want to be able to access fields with $this->fieldName
-	 * @return bool|stdClass
-	 */
 	function fetchObject() {
 		$this->fetchRow();
 		if ( $this->currentRow ) {
@@ -72,9 +52,6 @@ class FakeResultWrapper extends ResultWrapper {
 		$this->currentRow = null;
 	}
 
-	/**
-	 * @return bool|stdClass
-	 */
 	function next() {
 		return $this->fetchObject();
 	}

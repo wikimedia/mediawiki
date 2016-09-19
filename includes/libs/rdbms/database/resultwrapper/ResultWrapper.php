@@ -1,30 +1,43 @@
 <?php
 /**
- * Result wrapper for grabbing data queried by someone else
+ * Result wrapper for grabbing data queried from an IDatabase object
+ *
+ * Note that using the Iterator methods in combination with the non-Iterator
+ * DB result iteration functions may cause rows to be skipped or repeated.
+ *
+ * By default, this will use the iteration methods of the IDatabase handle if provided.
+ * Subclasses can override methods to make it solely work on the result resource instead.
+ * If no database is provided, and the subclass does not override the DB iteration methods,
+ * then a RuntimeException will be thrown when iteration is attempted.
+ *
+ * The result resource field should not be accessed from non-Database related classes.
+ * It is database class specific and is stored here to associate iterators with queries.
+ *
  * @ingroup Database
  */
 class ResultWrapper implements Iterator {
-	/** @var resource */
+	/** @var resource|array|null Optional underlying result handle for subclass usage */
 	public $result;
 
-	/** @var IDatabase */
+	/** @var IDatabase|null */
 	protected $db;
 
 	/** @var int */
 	protected $pos = 0;
-
-	/** @var object|null */
+	/** @var stdClass|null */
 	protected $currentRow = null;
 
 	/**
-	 * Create a new result object from a result resource and a Database object
+	 * Create a row iterator from a result resource and an optional Database object
 	 *
-	 * @param IDatabase $database
-	 * @param resource|ResultWrapper $result
+	 * Only Database-related classes should construct ResultWrapper. Other code may
+	 * use the FakeResultWrapper subclass for convenience or compatibility shims, however.
+	 *
+	 * @param IDatabase|null $db Optional database handle
+	 * @param ResultWrapper|array|resource $result Optional underlying result handle
 	 */
-	function __construct( $database, $result ) {
-		$this->db = $database;
-
+	public function __construct( IDatabase $db = null, $result ) {
+		$this->db = $db;
 		if ( $result instanceof ResultWrapper ) {
 			$this->result = $result->result;
 		} else {
@@ -37,8 +50,8 @@ class ResultWrapper implements Iterator {
 	 *
 	 * @return int
 	 */
-	function numRows() {
-		return $this->db->numRows( $this );
+	public function numRows() {
+		return $this->getDB()->numRows( $this );
 	}
 
 	/**
@@ -49,8 +62,8 @@ class ResultWrapper implements Iterator {
 	 * @return stdClass|bool
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
-	function fetchObject() {
-		return $this->db->fetchObject( $this );
+	public function fetchObject() {
+		return $this->getDB()->fetchObject( $this );
 	}
 
 	/**
@@ -60,17 +73,8 @@ class ResultWrapper implements Iterator {
 	 * @return array|bool
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
-	function fetchRow() {
-		return $this->db->fetchRow( $this );
-	}
-
-	/**
-	 * Free a result object
-	 */
-	function free() {
-		$this->db->freeResult( $this );
-		unset( $this->result );
-		unset( $this->db );
+	public function fetchRow() {
+		return $this->getDB()->fetchRow( $this );
 	}
 
 	/**
@@ -79,19 +83,39 @@ class ResultWrapper implements Iterator {
 	 *
 	 * @param int $row
 	 */
-	function seek( $row ) {
-		$this->db->dataSeek( $this, $row );
+	public function seek( $row ) {
+		$this->getDB()->dataSeek( $this, $row );
 	}
 
-	/*
-	 * ======= Iterator functions =======
-	 * Note that using these in combination with the non-iterator functions
-	 * above may cause rows to be skipped or repeated.
+	/**
+	 * Free a result object
+	 *
+	 * This either saves memory in PHP (buffered queries) or on the server (unbuffered queries).
+	 * In general, queries are not large enough in result sets for this to be worth calling.
 	 */
+	public function free() {
+		if ( $this->db ) {
+			$this->db->freeResult( $this );
+			$this->db = null;
+		}
+		$this->result = null;
+	}
+
+	/**
+	 * @return IDatabase
+	 * @throws RuntimeException
+	 */
+	private function getDB() {
+		if ( !$this->db ) {
+			throw new RuntimeException( get_class( $this ) . ' needs a DB handle for iteration.' );
+		}
+
+		return $this->db;
+	}
 
 	function rewind() {
 		if ( $this->numRows() ) {
-			$this->db->dataSeek( $this, 0 );
+			$this->getDB()->dataSeek( $this, 0 );
 		}
 		$this->pos = 0;
 		$this->currentRow = null;
@@ -125,9 +149,6 @@ class ResultWrapper implements Iterator {
 		return $this->currentRow;
 	}
 
-	/**
-	 * @return bool
-	 */
 	function valid() {
 		return $this->current() !== false;
 	}
