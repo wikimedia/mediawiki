@@ -56,7 +56,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	private static $useTemporaryTables = true;
 	private static $reuseDB = false;
 	private static $dbSetup = false;
-	private static $oldTablePrefix = false;
+	private static $oldTablePrefix = '';
 
 	/**
 	 * Original value of PHP's error_reporting setting.

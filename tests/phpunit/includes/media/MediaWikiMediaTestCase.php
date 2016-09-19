@@ -26,7 +26,8 @@ abstract class MediaWikiMediaTestCase extends MediaWikiTestCase {
 		$this->backend = new FSFileBackend( [
 			'name' => 'localtesting',
 			'wikiId' => wfWikiID(),
-			'containerPaths' => $containers
+			'containerPaths' => $containers,
+			'tmpDirectory' => $this->getNewTempDirectory()
 		] );
 		$this->repo = new FSRepo( $this->getRepoOptions() );
 	}

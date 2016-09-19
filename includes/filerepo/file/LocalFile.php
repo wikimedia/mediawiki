@@ -1179,7 +1179,8 @@ class LocalFile extends File {
 			) {
 				$props = $this->repo->getFileProps( $srcPath );
 			} else {
-				$props = FSFile::getPropsFromPath( $srcPath );
+				$mwProps = new MWFileProps( MimeMagic::singleton() );
+				$props = $mwProps->getPropsFromPath( $srcPath, true );
 			}
 		}
 

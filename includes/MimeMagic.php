@@ -1046,6 +1046,7 @@ class MimeMagic {
 			}
 		}
 
+		$type = null;
 		// Check for entry for full MIME type
 		if ( $mime ) {
 			$type = $this->findMediaType( $mime );
