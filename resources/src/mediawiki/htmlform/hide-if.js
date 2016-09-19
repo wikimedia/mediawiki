@@ -239,7 +239,20 @@
 				test = v[ 1 ];
 				// The .toggle() method works mostly the same for jQuery objects and OO.ui.Widget
 				func = function () {
-					self.toggle( !test() );
+					var shouldHide = test();
+					self.toggle( !shouldHide );
+					if ( !( self instanceof jQuery ) ) {
+						// self is a OO.ui.FieldLayout
+						// It may be impossible to submit a form with hidden required fields
+						if ( self.fieldWidget.setRequired ) {
+							if ( shouldHide ) {
+								self.wasRequired = self.fieldWidget.isRequired();
+								self.fieldWidget.setRequired( false );
+							} else if ( self.wasRequired !== undefined ) {
+								self.fieldWidget.setRequired( self.wasRequired );
+							}
+						}
+					}
 				};
 				for ( i = 0; i < fields.length; i++ ) {
 					// The .on() method works mostly the same for jQuery objects and OO.ui.Widget
