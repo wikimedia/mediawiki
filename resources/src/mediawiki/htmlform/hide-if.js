@@ -237,7 +237,35 @@
 				test = v[ 1 ];
 				// The .toggle() method works mostly the same for jQuery objects and OO.ui.Widget
 				func = function () {
-					self.toggle( !test() );
+					var shouldHide = test();
+					self.toggle( !shouldHide );
+
+					// It is impossible to submit a form with hidden fields failing validation, e.g. one that
+					// is required. However, validity is not checked for disabled fields, as these are not
+					// submitted with the form. So we should also disable fields when hiding them.
+					if ( self instanceof jQuery ) {
+						self.find( 'input, textarea, select' ).each( function () {
+							var $this = $( this );
+							if ( shouldHide ) {
+								if ( $this.data( 'was-disabled' ) === undefined ) {
+									$this.data( 'was-disabled', $this.prop( 'disabled' ) );
+								}
+								$this.prop( 'disabled', true );
+							} else {
+								$this.prop( 'disabled', $this.data( 'was-disabled' ) );
+							}
+						} );
+					} else {
+						// self is a OO.ui.FieldLayout
+						if ( shouldHide ) {
+							if ( self.wasDisabled === undefined ) {
+								self.wasDisabled = self.fieldWidget.isDisabled();
+							}
+							self.fieldWidget.setDisabled( false );
+						} else if ( self.wasDisabled !== undefined ) {
+							self.fieldWidget.setDisabled( self.wasDisabled );
+						}
+					}
 				};
 				for ( i = 0; i < fields.length; i++ ) {
 					// The .on() method works mostly the same for jQuery objects and OO.ui.Widget
