@@ -46,13 +46,12 @@
  * @since 1.16
  */
 class Html {
-	// List of void elements from HTML5, section 8.1.2 as of 2011-08-12
+	// List of void elements from HTML5, section 8.1.2 as of 2016-09-19
 	private static $voidElements = [
 		'area',
 		'base',
 		'br',
 		'col',
-		'command',
 		'embed',
 		'hr',
 		'img',
@@ -339,7 +338,6 @@ class Html {
 				'height' => '150',
 				'width' => '300',
 			],
-			'command' => [ 'type' => 'command' ],
 			'form' => [
 				'action' => 'GET',
 				'autocomplete' => 'on',

@@ -514,10 +514,6 @@ class HtmlTest extends MediaWikiTestCase {
 			'canvas', [ 'width' => 300 ]
 		];
 
-		$cases[] = [ '<command/>',
-			'command', [ 'type' => 'command' ]
-		];
-
 		$cases[] = [ '<form></form>',
 			'form', [ 'action' => 'GET' ]
 		];
