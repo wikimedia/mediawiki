@@ -3601,8 +3601,6 @@
 	"htmlform-title-not-exists": "$1 n’existe pas",
 	"htmlform-user-not-exists": "<strong>$1</strong> n’existe pas.",
 	"htmlform-user-not-valid": "<strong>$1</strong> n’est pas un nom d’utilisateur valide.",
-	"sqlite-has-fts": "$1 avec recherche en texte intégral prise en charge",
-	"sqlite-no-fts": "$1 sans recherche en texte intégral prise en charge",
 	"logentry-delete-delete": "$1 {{GENDER:$2|a supprimé}} la page $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|a restauré}} la page $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|a modifié}} la visibilité {{PLURAL:$5|d'un événement du journal|de $5 événements du journal}} sur $3: $4",

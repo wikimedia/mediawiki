@@ -3430,8 +3430,6 @@
 	"htmlform-title-not-exists": "$1 문서는 존재하지 않습니다.",
 	"htmlform-user-not-exists": "<strong>$1</strong> 문서는 존재하지 않습니다.",
 	"htmlform-user-not-valid": "<strong>$1</strong>은 올바른 사용자 이름이 아닙니다.",
-	"sqlite-has-fts": "$1 (본문 전체 검색 지원)",
-	"sqlite-no-fts": "$1 (본문 전체 검색 지원 제외)",
 	"logentry-delete-delete": "$1님이 $3 문서를 {{GENDER:$2|삭제했습니다}}",
 	"logentry-delete-restore": "$1님이 $3 문서를 {{GENDER:$2|되살렸습니다}}",
 	"logentry-delete-event": "$1님이 $3의 {{PLURAL:$1|기록 $5개}}에 대해 보이기 설정을 {{GENDER:$2|바꾸었습니다}}: $4",

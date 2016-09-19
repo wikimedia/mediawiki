@@ -2895,8 +2895,6 @@
 	"htmlform-no": "Ora",
 	"htmlform-yes": "Iya",
 	"htmlform-chosen-placeholder": "Pilih pilihan",
-	"sqlite-has-fts": "$1 mawa sengkuyungan golèkan tèks jangkep",
-	"sqlite-no-fts": "$1 tanpa sengkuyungan golèkan tèks jangkep",
 	"logentry-delete-delete": "$1 {{GENDER:$2|mbusak}} kaca $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|mbalèkaké}} kaca $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|ngganti}} parupané {{PLURAL:$5|sak prastawa log|$5 prastawa log}} ana ing $3: $4",

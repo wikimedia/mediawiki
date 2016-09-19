@@ -3362,8 +3362,6 @@
 	"htmlform-title-not-exists": "$1 ne obstaja.",
 	"htmlform-user-not-exists": "<strong>$1</strong> ne obstaja.",
 	"htmlform-user-not-valid": "<strong>$1</strong> ni veljavno uporabniško ime.",
-	"sqlite-has-fts": "$1 s podporo iskanju polnih besedil",
-	"sqlite-no-fts": "$1 brez podpore iskanju polnih besedil",
 	"logentry-delete-delete": "$1 je {{GENDER:$2|izbrisal|izbrisala|izbrisal(-a)}} stran $3",
 	"logentry-delete-restore": "$1 je {{GENDER:$2|obnovil|obnovila|obnovil(-a)}} stran $3",
 	"logentry-delete-event": "$1 je {{GENDER:$2|spremenil|spremenila|spremenil(-a)}} vidljivost $5 {{PLURAL:$5|dnevniškega dogodka|dnevniških dogodkov}} na $3: $4",

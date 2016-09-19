@@ -3434,8 +3434,6 @@
 	"htmlform-title-not-exists": "$1 finns inte.",
 	"htmlform-user-not-exists": "<strong>$1</strong> finns inte.",
 	"htmlform-user-not-valid": "<strong>$1</strong> är inte ett giltigt användarnamn.",
-	"sqlite-has-fts": "$1 med stöd för fulltextsökning",
-	"sqlite-no-fts": "$1 utan stöd för fulltextsökning",
 	"logentry-delete-delete": "$1 {{GENDER:$2|raderade}} sidan $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|återställde}} sidan $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|ändrade}} synligheten för {{PLURAL:$5|en logghändelse|$5 logghändelser}} på $3: $4",

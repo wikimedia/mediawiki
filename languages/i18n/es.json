@@ -3507,8 +3507,6 @@
 	"htmlform-title-not-exists": "$1 no existe.",
 	"htmlform-user-not-exists": "<strong>$1</strong> no existe.",
 	"htmlform-user-not-valid": "<strong>$1</strong> no es un nombre de usuario válido.",
-	"sqlite-has-fts": "$1 con soporte para búsqueda de texto completo",
-	"sqlite-no-fts": "$1 sin soporte para búsqueda de texto completo",
 	"logentry-delete-delete": "$1 {{GENDER:$2|borró}} la página $3",
 	"logentry-delete-restore": "$1 restauró la página «$3»",
 	"logentry-delete-event": "$1 {{GENDER:$2|modificó}} la visibilidad de {{PLURAL:$5|un evento|$5 eventos}} del registro en $3: $4",

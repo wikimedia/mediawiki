@@ -3531,8 +3531,6 @@
 	"htmlform-title-not-exists": "$1 не существует.",
 	"htmlform-user-not-exists": "<strong>$1</strong> не существует.",
 	"htmlform-user-not-valid": "<strong>$1</strong> — недопустимое имя учётной записи.",
-	"sqlite-has-fts": "$1 с поддержкой полнотекстового поиска",
-	"sqlite-no-fts": "$1 без поддержки полнотекстового поиска",
 	"logentry-delete-delete": "$1 {{GENDER:$2|удалил|удалила}} страницу $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|восстановил|восстановила}} страницу $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|изменил|изменила}} видимость {{PLURAL:$5|$5 записи|$5 записей|1=записи}} журнала для $3: $4",

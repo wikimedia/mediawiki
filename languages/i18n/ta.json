@@ -3196,8 +3196,6 @@
 	"htmlform-title-not-exists": "$1 இ்டம்பெறவில்லை.",
 	"htmlform-user-not-exists": "<strong>$1</strong> இ்டம்பெறவில்லை.",
 	"htmlform-user-not-valid": "<strong>$1</strong> என்பது செல்லுபடியான பயனர் பெயர் அல்ல.",
-	"sqlite-has-fts": "$1முழு-உரை தேடல் ஆதரவுடன்",
-	"sqlite-no-fts": "$1 முழு-உரை தேடல் ஆதரவு இல்லாமல்",
 	"logentry-delete-delete": "$3 பக்கத்தை $1 {{GENDER:$2|நீக்கினார்}}",
 	"logentry-delete-restore": "$3 பக்கத்தை $1 {{GENDER:$2|மீட்டமைத்தார்}}",
 	"logentry-delete-event": "$3 :$4 இல் {{PLURAL:$5| ஒரு நிகழ்வு குறிப்பேட்டின்| $5  நிகழ்வுகள் குறிப்பேடுகளின்}} காட்சித்தன்மை $1 மாற்றினார்",

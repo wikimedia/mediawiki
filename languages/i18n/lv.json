@@ -2593,8 +2593,6 @@
 	"htmlform-chosen-placeholder": "Izvēlieties iespēju",
 	"htmlform-cloner-create": "Pievienot vairāk",
 	"htmlform-cloner-delete": "Noņemt",
-	"sqlite-has-fts": "$1 ar pilnteksta meklēšanas atbalstu",
-	"sqlite-no-fts": "$1 bez pilnteksta meklēšanas atbalsta",
 	"logentry-delete-delete": "$1 {{GENDER:$2|izdzēsa}} lapu $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|atjaunoja}} lapu $3",
 	"revdelete-content-hid": "saturs slēpts",

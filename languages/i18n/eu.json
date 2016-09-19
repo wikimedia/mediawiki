@@ -3018,8 +3018,6 @@
 	"htmlform-title-not-exists": "$1 ez da existitzen.",
 	"htmlform-user-not-exists": "<strong>$1</strong> ez da existitzen.",
 	"htmlform-user-not-valid": "<strong>$1</strong> erabiltzaile izena ezin da erabili.",
-	"sqlite-has-fts": "$1 testu osoan bilatzeko laguntzarekin",
-	"sqlite-no-fts": "$1 testu osoan bilatzeko laguntzarik gabe",
 	"logentry-delete-delete": "$1 {{GENDER:$2|wikilariak}} «$3» orria ezabatu du",
 	"logentry-delete-restore": "$1(e)k $3 orrialdea {{GENDER:$2|berrezarri}} du",
 	"logentry-delete-event": "$1 wikilariak ikusgaitasuna {{{{GENDER:$2|}}|aldatu}} {{PLURAL:$5|dio erregistroko sarrera bati|die erregistroko $5 sarrerari}}, $3 orrian: $4",

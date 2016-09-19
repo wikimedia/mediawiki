@@ -3063,8 +3063,6 @@
 	"htmlform-cloner-create": "अधिकं योज्यताम्",
 	"htmlform-cloner-delete": "निष्कास्यताम्",
 	"htmlform-cloner-required": "न्यूनातिन्यूनम् एकं मूल्यम् अपेक्ष्यते ।",
-	"sqlite-has-fts": "$1 अन्वेषणसमर्थपूर्णपाठेन सह",
-	"sqlite-no-fts": "$1 अन्वेषणसमर्थपूर्णपाठेन विना",
 	"logentry-delete-delete": "$1 {{GENDER:$2|अपाकृतं}} पृष्ठं $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|पुनस्स्थापितं}} पृष्ठं $3",
 	"logentry-delete-event": "$3: $4 इत्यत्र {{PLURAL:$5|संरक्षिताऽऽवलेः घटनायाः|$5 संरक्षिताऽऽवलीनां घटनानां}} दर्शनीयता $1 द्वारा {{GENDER:$2|परिवर्तिता}}",

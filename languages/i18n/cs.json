@@ -3443,8 +3443,6 @@
 	"htmlform-title-not-exists": "Stránka $1 neexistuje.",
 	"htmlform-user-not-exists": "Uživatel <strong>$1</strong> neexistuje.",
 	"htmlform-user-not-valid": "<strong>$1</strong> není platné uživatelské jméno.",
-	"sqlite-has-fts": "$1 s podporou plnotextového vyhledávání",
-	"sqlite-no-fts": "$1 bez podpory plnotextového vyhledávání",
 	"logentry-delete-delete": "$1 {{GENDER:$2|smazal|smazala}} stránku $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|obnovil|obnovila}} stránku $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|změnil|změnila}} viditelnost {{PLURAL:$5|protokolovacího záznamu|$5 protokolovacích záznamů}} ke stránce $3: $4",

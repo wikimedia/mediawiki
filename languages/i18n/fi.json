@@ -3405,8 +3405,6 @@
 	"htmlform-title-not-exists": "Sivua $1 ei ole olemassa.",
 	"htmlform-user-not-exists": "Käyttäjää <strong>$1</strong> ei ole olemassa.",
 	"htmlform-user-not-valid": "<strong>$1</strong> ei ole kelvollinen käyttäjänimi.",
-	"sqlite-has-fts": "$1, jossa on tuki kokotekstihaulle",
-	"sqlite-no-fts": "$1, jossa ei ole tukea kokotekstihaulle",
 	"logentry-delete-delete": "$1 {{GENDER:$2|poisti}} sivun $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|palautti}} sivun $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|muutti}} {{PLURAL:$5|lokitapahtuman|$5 lokitapahtuman}} näkyvyyttä kohteessa $3: $4",

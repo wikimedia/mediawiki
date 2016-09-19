@@ -3441,8 +3441,6 @@
 	"htmlform-title-not-exists": "$1 ne ekzistas.",
 	"htmlform-user-not-exists": "<strong>$1</strong> ne ekzistas.",
 	"htmlform-user-not-valid": "<strong>$1</strong> ne estas valida salutnomo.",
-	"sqlite-has-fts": "$1 kun tut-teksta subteno",
-	"sqlite-no-fts": "$1 sen tut-teksta subteno",
 	"logentry-delete-delete": "$1 forigis paĝon $3",
 	"logentry-delete-restore": "$1 restarigis paĝon $3",
 	"logentry-delete-event": "$1 ŝanĝis videblecon de {{PLURAL:$5|protokola evento|$5 protokolaj eventoj}} je $3: $4",

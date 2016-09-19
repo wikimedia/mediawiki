@@ -3451,8 +3451,6 @@
 	"htmlform-title-not-exists": "$1 არ არსებობს.",
 	"htmlform-user-not-exists": "<strong>$1</strong> არ არსებობს.",
 	"htmlform-user-not-valid": "<strong>$1</strong> არ არის სწორი მომხმარებლის სახელი.",
-	"sqlite-has-fts": "$1 სრული ტექსტის ძიების მხარდაჭერით",
-	"sqlite-no-fts": "$1 სრული ტექსტის ძიების მხარდაჭერის გარეშე",
 	"logentry-delete-delete": "მომხმარებელმა $1 {{GENDER:$2|წაშალა}} გვერდი: „$3“",
 	"logentry-delete-restore": "მომხმარებელმა $1 {{GENDER:$2|აღადგინა}} გვერდი $3",
 	"logentry-delete-event": "მომხმარებელმა $1 {{GENDER:$2|შეცვალა}} {{PLURAL:$5|ჟურნალის ჩანაწერის|$5 ჟურნალის ჩანაწერების}} ხილვადობა $3-ზე: $4",
