@@ -268,6 +268,11 @@ EOT;
 		return $this->getConnection();
 	}
 
+	/**
+	 * @param $dir
+	 * @param $db
+	 * @return Status
+	 */
 	protected function makeStubDBFile( $dir, $db ) {
 		$file = DatabaseSqlite::generateFileName( $dir, $db );
 		if ( file_exists( $file ) ) {
