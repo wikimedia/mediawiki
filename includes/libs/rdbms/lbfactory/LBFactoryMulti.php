@@ -25,62 +25,6 @@
  * A multi-database, multi-master factory for Wikimedia and similar installations.
  * Ignores the old configuration globals.
  *
- * Template override precedence (highest => lowest):
- *   - templateOverridesByServer
- *   - masterTemplateOverrides
- *   - templateOverridesBySection/templateOverridesByCluster
- *   - externalTemplateOverrides
- *   - serverTemplate
- * Overrides only work on top level keys (so nested values will not be merged).
- *
- * Configuration:
- *     sectionsByDB                A map of database names to section names.
- *
- *     sectionLoads                A 2-d map. For each section, gives a map of server names to
- *                                 load ratios. For example:
- *                                 [
- *                                     'section1' => [
- *                                         'db1' => 100,
- *                                         'db2' => 100
- *                                     ]
- *                                 ]
- *
- *     serverTemplate              A server info associative array as documented for $wgDBservers.
- *                                 The host, hostName and load entries will be overridden.
- *
- *     groupLoadsBySection         A 3-d map giving server load ratios for each section and group.
- *                                 For example:
- *                                 [
- *                                     'section1' => [
- *                                         'group1' => [
- *                                             'db1' => 100,
- *                                             'db2' => 100
- *                                         ]
- *                                     ]
- *                                 ]
- *
- *     groupLoadsByDB              A 3-d map giving server load ratios by DB name.
- *
- *     hostsByName                 A map of hostname to IP address.
- *
- *     externalLoads               A map of external storage cluster name to server load map.
- *
- *     externalTemplateOverrides   A set of server info keys overriding serverTemplate for external
- *                                 storage.
- *
- *     templateOverridesByServer   A 2-d map overriding serverTemplate and
- *                                 externalTemplateOverrides on a server-by-server basis. Applies
- *                                 to both core and external storage.
- *     templateOverridesBySection  A 2-d map overriding the server info by section.
- *     templateOverridesByCluster  A 2-d map overriding the server info by external storage cluster.
- *
- *     masterTemplateOverrides     An override array for all master servers.
- *
- *     loadMonitorClass            Name of the LoadMonitor class to always use.
- *
- *     readOnlyBySection           A map of section name to read-only message.
- *                                 Missing or false for read/write.
- *
  * @ingroup Database
  */
 class LBFactoryMulti extends LBFactory {
@@ -141,8 +85,6 @@ class LBFactoryMulti extends LBFactory {
 	 */
 	private $readOnlyBySection = [];
 
-	// Other stuff
-
 	/** @var array Load balancer factory configuration */
 	private $conf;
 
@@ -162,8 +104,60 @@ class LBFactoryMulti extends LBFactory {
 	private $lastSection;
 
 	/**
-	 * @param array $conf
-	 * @throws InvalidArgumentException
+	 * @see LBFactory::__construct()
+	 *
+	 * Template override precedence (highest => lowest):
+	 *   - templateOverridesByServer
+	 *   - masterTemplateOverrides
+	 *   - templateOverridesBySection/templateOverridesByCluster
+	 *   - externalTemplateOverrides
+	 *   - serverTemplate
+	 * Overrides only work on top level keys (so nested values will not be merged).
+	 *
+	 * Server configuration maps should be of the format Database::factory() requires.
+	 * Additionally, a 'max lag' key should also be set on server maps, indicating how stale the
+	 * data can be before the load balancer tries to avoid using it. The map can have 'is static'
+	 * set to disable blocking  replication sync checks (intended for archive servers with
+	 * unchanging data).
+	 *
+	 * @param array $conf Parameters of LBFactory::__construct() as well as:
+	 *   - sectionsByDB                Map of database names to section names.
+	 *   - sectionLoads                2-d map. For each section, gives a map of server names to
+	 *                                 load ratios. For example:
+	 *                                 [
+	 *                                     'section1' => [
+	 *                                         'db1' => 100,
+	 *                                         'db2' => 100
+	 *                                     ]
+	 *                                 ]
+	 *   - serverTemplate              Server configuration map intended for Database::factory().
+	 *                                 Note that "host", "hostName" and "load" entries will be
+	 *                                 overridden by "sectionLoads" and "hostsByName".
+	 *   - groupLoadsBySection         3-d map giving server load ratios for each section/group.
+	 *                                 For example:
+	 *                                 [
+	 *                                     'section1' => [
+	 *                                         'group1' => [
+	 *                                             'db1' => 100,
+	 *                                             'db2' => 100
+	 *                                         ]
+	 *                                     ]
+	 *                                 ]
+	 *   - groupLoadsByDB              3-d map giving server load ratios by DB name.
+	 *   - hostsByName                 Map of hostname to IP address.
+	 *   - externalLoads               Map of external storage cluster name to server load map.
+	 *   - externalTemplateOverrides   Set of server configuration maps overriding
+	 *                                 "serverTemplate" for external storage.
+	 *   - templateOverridesByServer   2-d map overriding "serverTemplate" and
+	 *                                 "externalTemplateOverrides" on a server-by-server basis.
+	 *                                 Applies to both core and external storage.
+	 *   - templateOverridesBySection  2-d map overriding the server configuration maps by section.
+	 *   - templateOverridesByCluster  2-d map overriding the server configuration maps by external
+	 *                                 storage cluster.
+	 *   - masterTemplateOverrides     Server configuration map overrides for all master servers.
+	 *   - loadMonitorClass            Name of the LoadMonitor class to always use.
+	 *   - readOnlyBySection           A map of section name to read-only message.
+	 *                                 Missing or false for read/write.
 	 */
 	public function __construct( array $conf ) {
 		parent::__construct( $conf );

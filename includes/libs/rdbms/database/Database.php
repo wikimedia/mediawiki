@@ -231,16 +231,12 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	protected $trxProfiler;
 
 	/**
-	 * Constructor.
-	 *
-	 * FIXME: It is possible to construct a Database object with no associated
-	 * connection object, by specifying no parameters to __construct(). This
-	 * feature is deprecated and should be removed.
+	 * Constructor and database handle and attempt to connect to the DB server
 	 *
 	 * IDatabase classes should not be constructed directly in external
-	 * code. DatabaseBase::factory() should be used instead.
+	 * code. Database::factory() should be used instead.
 	 *
-	 * @param array $params Parameters passed from DatabaseBase::factory()
+	 * @param array $params Parameters passed from Database::factory()
 	 */
 	function __construct( array $params ) {
 		$server = $params['host'];
@@ -285,39 +281,60 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 			? $params['queryLogger']
 			: new \Psr\Log\NullLogger();
 
-		if ( $user ) {
-			$this->open( $server, $user, $password, $dbName );
+		if ( !$user ) {
+			throw new InvalidArgumentException( "No database user provided." );
 		}
 
+		$this->open( $server, $user, $password, $dbName );
+		// Set the domain object after open() sets the relevant fields
 		$this->currentDomain = ( $this->mDBname != '' )
 			? new DatabaseDomain( $this->mDBname, null, $this->mTablePrefix )
 			: DatabaseDomain::newUnspecified();
 	}
 
 	/**
-	 * Given a DB type, construct the name of the appropriate child class of
-	 * IDatabase. This is designed to replace all of the manual stuff like:
-	 *    $class = 'Database' . ucfirst( strtolower( $dbType ) );
-	 * as well as validate against the canonical list of DB types we have
+	 * Construct a Database subclass instance given a database type and parameters
 	 *
-	 * This factory function is mostly useful for when you need to connect to a
-	 * database other than the MediaWiki default (such as for external auth,
-	 * an extension, et cetera). Do not use this to connect to the MediaWiki
-	 * database. Example uses in core:
-	 * @see LoadBalancer::reallyOpenConnection()
-	 * @see ForeignDBRepo::getMasterDB()
-	 * @see WebInstallerDBConnect::execute()
+	 * This also connects to the database immediately upon object construction
 	 *
-	 * @since 1.18
-	 *
-	 * @param string $dbType A possible DB type
-	 * @param array $p An array of options to pass to the constructor.
-	 *    Valid options are: host, user, password, dbname, flags, tablePrefix, schema, driver
-	 * @return IDatabase|null If the database driver or extension cannot be found
+	 * @param string $dbType A possible DB type (sqlite, mysql, postgres)
+	 * @param array $p Parameter map with keys:
+	 *   - host : The hostname of the DB server
+	 *   - user : The name of the database user the client operates under
+	 *   - password : The password for the database user
+	 *   - dbname : The name of the database to use where queries do not specify one.
+	 *      The database must exist or an error might be thrown. Setting this to the empty string
+	 *      will avoid any such errors and make the handle have no implicit database scope. This is
+	 *      useful for queries like SHOW STATUS, CREATE DATABASE, or DROP DATABASE. Note that a
+	 *      "database" in Postgres is rougly equivalent to an entire MySQL server. This the domain
+	 *      in which user names and such are defined, e.g. users are database-specific in Postgres.
+	 *   - schema : The database schema to use (if supported). A "schema" in Postgres is roughly
+	 *      equivalent to a "database" in MySQL. Note that MySQL and SQLite do not use schemas.
+	 *   - tablePrefix : Optional table prefix that is implicitly added on to all table names
+	 *      recognized in queries. This can be used in place of schemas for handle site farms.
+	 *   - flags : Optional bitfield of DBO_* constants that define connection, protocol,
+	 *      buffering, and transaction behavior. It is STRONGLY adviced to leave the DBO_DEFAULT
+	 *      flag in place UNLESS this this database simply acts as a key/value store.
+	 *   - driver: Optional name of a specific DB client driver. For MySQL, there is the old
+	 *      'mysql' driver and the newer 'mysqli' driver.
+	 *   - variables: Optional map of session variables to set after connecting. This can be
+	 *      used to adjust lock timeouts or encoding modes and the like.
+	 *   - connLogger: Optional PSR logging interface instance.
+	 *   - queryLogger: Optional PSR logging interface instance.
+	 *   - profiler: Optional class name or object with profileIn()/profileOut() methods.
+	 *      These will be called in query(), using a simplified version of the SQL that also
+	 *      includes the agent as a SQL comment.
+	 *   - trxProfiler: Optional TransactionProfiler instance.
+	 *   - errorLogger: Optional callback that takes an Exception and logs it.
+	 *   - cliMode: Whether to consider the execution context that of a CLI script.
+	 *   - agent: Optional name used to identify the end-user in query profiling/logging.
+	 *   - srvCache: Optional BagOStuff instance to an APC-style cache.
+	 * @return Database|null If the database driver or extension cannot be found
 	 * @throws InvalidArgumentException If the database driver or extension cannot be found
+	 * @since 1.18
 	 */
 	final public static function factory( $dbType, $p = [] ) {
-		$canonicalDBTypes = [
+		static $canonicalDBTypes = [
 			'mysql' => [ 'mysqli', 'mysql' ],
 			'postgres' => [],
 			'sqlite' => [],
