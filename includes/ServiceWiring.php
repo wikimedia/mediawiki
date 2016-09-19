@@ -43,53 +43,15 @@ use MediaWiki\MediaWikiServices;
 
 return [
 	'DBLoadBalancerFactory' => function( MediaWikiServices $services ) {
-		$mainConfig = $services->getMainConfig();
+		$config = $services->getMainConfig()->get( 'LBFactoryConf' );
 
-		$lbConf = $mainConfig->get( 'LBFactoryConf' );
-		$lbConf += [
-			'localDomain' => new DatabaseDomain(
-				$mainConfig->get( 'DBname' ), null, $mainConfig->get( 'DBprefix' ) ),
+		$class = LBFactoryMW::getLBFactoryClass( $config );
+		if ( !isset( $config['readOnlyReason'] ) ) {
 			// TODO: replace the global wfConfiguredReadOnlyReason() with a service.
-			'readOnlyReason' => wfConfiguredReadOnlyReason(),
-		];
-
-		$class = LBFactoryMW::getLBFactoryClass( $lbConf );
-		if ( $class === 'LBFactorySimple' ) {
-			if ( is_array( $mainConfig->get( 'DBservers' ) ) ) {
-				foreach ( $mainConfig->get( 'DBservers' ) as $i => $server ) {
-					$lbConf['servers'][$i] = $server + [
-						'schema' => $mainConfig->get( 'DBmwschema' ),
-						'tablePrefix' => $mainConfig->get( 'DBprefix' ),
-						'flags' => DBO_DEFAULT,
-						'sqlMode' => $mainConfig->get( 'SQLMode' ),
-						'utf8Mode' => $mainConfig->get( 'DBmysql5' )
-					];
-				}
-			} else {
-				$flags = DBO_DEFAULT;
-				$flags |= $mainConfig->get( 'DebugDumpSql' ) ? DBO_DEBUG : 0;
-				$flags |= $mainConfig->get( 'DBssl' ) ? DBO_SSL : 0;
-				$flags |= $mainConfig->get( 'DBcompress' ) ? DBO_COMPRESS : 0;
-				$lbConf['servers'] = [
-					[
-						'host' => $mainConfig->get( 'DBserver' ),
-						'user' => $mainConfig->get( 'DBuser' ),
-						'password' => $mainConfig->get( 'DBpassword' ),
-						'dbname' => $mainConfig->get( 'DBname' ),
-						'schema' => $mainConfig->get( 'DBmwschema' ),
-						'tablePrefix' => $mainConfig->get( 'DBprefix' ),
-						'type' => $mainConfig->get( 'DBtype' ),
-						'load' => 1,
-						'flags' => $flags,
-						'sqlMode' => $mainConfig->get( 'SQLMode' ),
-						'utf8Mode' => $mainConfig->get( 'DBmysql5' )
-					]
-				];
-			}
-			$lbConf['externalServers'] = $mainConfig->get( 'ExternalServers' );
+			$config['readOnlyReason'] = wfConfiguredReadOnlyReason();
 		}
 
-		return new $class( LBFactoryMW::applyDefaultConfig( $lbConf ) );
+		return new $class( $config );
 	},
 
 	'DBLoadBalancer' => function( MediaWikiServices $services ) {
