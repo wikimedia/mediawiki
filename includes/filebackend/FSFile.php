@@ -112,37 +112,30 @@ class FSFile {
 		$info['fileExists'] = $this->exists();
 
 		if ( $info['fileExists'] ) {
+			$info['size'] = $this->getSize(); // bytes
+			$info['sha1'] = $this->getSha1Base36();
+			// @TODO: replace the code below with bare FileInfo use so this can go in /libs
 			$magic = MimeMagic::singleton();
-
-			# get the file extension
-			if ( $ext === true ) {
-				$ext = self::extensionFromPath( $this->path );
-			}
 
 			# MIME type according to file contents
 			$info['file-mime'] = $magic->guessMimeType( $this->path, false );
-			# logical MIME type
+			# Logical MIME type
+			$ext = ( $ext === true ) ? FileBackend::extensionFromPath( $this->path ) : $ext;
 			$info['mime'] = $magic->improveTypeFromExtension( $info['file-mime'], $ext );
 
 			list( $info['major_mime'], $info['minor_mime'] ) = File::splitMime( $info['mime'] );
 			$info['media_type'] = $magic->getMediaType( $this->path, $info['mime'] );
 
-			# Get size in bytes
-			$info['size'] = $this->getSize();
-
 			# Height, width and metadata
 			$handler = MediaHandler::getHandler( $info['mime'] );
 			if ( $handler ) {
-				$tempImage = (object)[]; // XXX (hack for File object)
-				/** @noinspection PhpParamsInspection */
-				$info['metadata'] = $handler->getMetadata( $tempImage, $this->path );
-				/** @noinspection PhpParamsInspection */
-				$gis = $handler->getImageSize( $tempImage, $this->path, $info['metadata'] );
+				$info['metadata'] = $handler->getMetadata( $this, $this->path );
+				/** @noinspection PhpMethodParametersCountMismatchInspection */
+				$gis = $handler->getImageSize( $this, $this->path, $info['metadata'] );
 				if ( is_array( $gis ) ) {
 					$info = $this->extractImageSizeInfo( $gis ) + $info;
 				}
 			}
-			$info['sha1'] = $this->getSha1Base36();
 		}
 
 		return $info;
@@ -153,7 +146,11 @@ class FSFile {
 	 *
 	 * Resulting array fields include:
 	 *   - fileExists
+	 *   - size
+	 *   - file-mime (as major/minor)
 	 *   - mime (as major/minor)
+	 *   - major_mime
+	 *   - minor_mime
 	 *   - media_type (value to be used with the MEDIATYPE_xxx constants)
 	 *   - metadata (handler specific)
 	 *   - sha1 (in base 36)
@@ -166,6 +163,10 @@ class FSFile {
 	public static function placeholderProps() {
 		$info = [];
 		$info['fileExists'] = false;
+		$info['size'] = 0;
+		$info['file-mime'] = null;
+		$info['major_mime'] = null;
+		$info['minor_mime'] = null;
 		$info['mime'] = null;
 		$info['media_type'] = MEDIATYPE_UNKNOWN;
 		$info['metadata'] = '';

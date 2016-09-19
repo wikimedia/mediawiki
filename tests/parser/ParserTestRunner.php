@@ -348,7 +348,8 @@ class ParserTestRunner {
 			$backend = new FSFileBackend( [
 				'name' => 'local-backend',
 				'wikiId' => wfWikiID(),
-				'basePath' => $this->uploadDir
+				'basePath' => $this->uploadDir,
+				'tmpDirectory' => wfTempDir()
 			] );
 		} elseif ( $this->fileBackendName ) {
 			global $wgFileBackends;
@@ -379,7 +380,7 @@ class ParserTestRunner {
 
 		return new RepoGroup(
 			[
-				'class' => 'LocalRepo',
+				'class' => 'MockLocalRepo',
 				'name' => 'local',
 				'url' => 'http://example.com/images',
 				'hashLevels' => 2,
