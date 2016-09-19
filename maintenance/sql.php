@@ -44,6 +44,8 @@ class MwSql extends Maintenance {
 	}
 
 	public function execute() {
+		global $IP;
+
 		// We wan't to allow "" for the wikidb, meaning don't call select_db()
 		$wiki = $this->hasOption( 'wikidb' ) ? $this->getOption( 'wikidb' ) : false;
 		// Get the appropriate load balancer (for this wiki)
@@ -66,12 +68,13 @@ class MwSql extends Maintenance {
 				}
 			}
 			if ( $index === null ) {
-				$this->error( "No replica DB server configured with the name '$server'.", 1 );
+				$this->error( "No replica DB server configured with the name '$replicaDB'.", 1 );
 			}
 		} else {
 			$index = DB_MASTER;
 		}
-		// Get a DB handle (with this wiki's DB selected) from the appropriate load balancer
+
+		/** @var Database $db DB handle for the appropriate cluster/wiki */
 		$db = $lb->getConnection( $index, [], $wiki );
 		if ( $replicaDB != '' && $db->getLBInfo( 'master' ) !== null ) {
 			$this->error( "The server selected ({$db->getServer()}) is not a replica DB.", 1 );
@@ -98,14 +101,15 @@ class MwSql extends Maintenance {
 			return;
 		}
 
-		$useReadline = function_exists( 'readline_add_history' )
-			&& Maintenance::posix_isatty( 0 /*STDIN*/ );
-
-		if ( $useReadline ) {
-			global $IP;
+		if (
+			function_exists( 'readline_add_history' ) &&
+			Maintenance::posix_isatty( 0 /*STDIN*/ )
+		) {
 			$historyFile = isset( $_ENV['HOME'] ) ?
 				"{$_ENV['HOME']}/.mwsql_history" : "$IP/maintenance/.mwsql_history";
 			readline_read_history( $historyFile );
+		} else {
+			$historyFile = null;
 		}
 
 		$wholeLine = '';
@@ -126,10 +130,10 @@ class MwSql extends Maintenance {
 				$prompt = '    -> ';
 				continue;
 			}
-			if ( $useReadline ) {
+			if ( $historyFile ) {
 				# Delimiter is eated by streamStatementEnd, we add it
 				# up in the history (bug 37020)
-				readline_add_history( $wholeLine . $db->getDelimiter() );
+				readline_add_history( $wholeLine . ';' );
 				readline_write_history( $historyFile );
 			}
 			$this->sqlDoQuery( $db, $wholeLine, $doDie );
@@ -139,7 +143,7 @@ class MwSql extends Maintenance {
 		wfWaitForSlaves();
 	}
 
-	protected function sqlDoQuery( $db, $line, $dieOnError ) {
+	protected function sqlDoQuery( IDatabase $db, $line, $dieOnError ) {
 		try {
 			$res = $db->query( $line );
 			$this->sqlPrintResult( $res, $db );
@@ -151,7 +155,7 @@ class MwSql extends Maintenance {
 	/**
 	 * Print the results, callback for $db->sourceStream()
 	 * @param ResultWrapper $res The results object
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 */
 	public function sqlPrintResult( $res, $db ) {
 		if ( !$res ) {
