@@ -1046,11 +1046,14 @@ class DatabaseSqlite extends DatabaseBase {
 		return $this->query( $sql, $fName );
 	}
 
+	protected function requiresDatabaseUser() {
+		return false; // just a file
+	}
+
 	/**
 	 * @return string
 	 */
 	public function __toString() {
 		return 'SQLite ' . (string)$this->mConn->getAttribute( PDO::ATTR_SERVER_VERSION );
 	}
-
 }
