@@ -245,7 +245,7 @@ if ( $count > 0 ) {
 		if ( isset( $options['dry'] ) ) {
 			echo " publishing {$file} by '" . $wgUser->getName() . "', comment '$commentText'... ";
 		} else {
-			$props = FSFile::getPropsFromPath( $file );
+			$props = MimeMagic::singleton()->getPropsFromPath( $file, true );
 			$flags = 0;
 			$publishOptions = [];
 			$handler = MediaHandler::getHandler( $props['mime'] );

@@ -446,7 +446,8 @@ abstract class UploadBase {
 			return $status;
 		}
 
-		$this->mFileProps = FSFile::getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
+		$this->mFileProps = MimeMagic::singleton()->
+			getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
 		$mime = $this->mFileProps['mime'];
 
 		if ( $wgVerifyMimeType ) {
@@ -504,7 +505,8 @@ abstract class UploadBase {
 		# getTitle() sets some internal parameters like $this->mFinalExtension
 		$this->getTitle();
 
-		$this->mFileProps = FSFile::getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
+		$this->mFileProps = MimeMagic::singleton()->
+			getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
 
 		# check MIME type, if desired
 		$mime = $this->mFileProps['file-mime'];
