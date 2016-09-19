@@ -735,7 +735,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @see https://www.percona.com/doc/percona-toolkit/2.1/pt-heartbeat.html
 	 */
 	protected function getHeartbeatData( array $conds ) {
-		$whereSQL = $this->makeList( $conds, LIST_AND );
+		$whereSQL = $this->makeList( $conds, self::LIST_AND );
 		// Use ORDER BY for channel based queries since that field might not be UNIQUE.
 		// Note: this would use "TIMESTAMPDIFF(MICROSECOND,ts,UTC_TIMESTAMP(6))" but the
 		// percision field is not supported in MySQL <= 5.5.
@@ -1107,7 +1107,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		$sql = "DELETE $delTable FROM $delTable, $joinTable WHERE $delVar=$joinVar ";
 
 		if ( $conds != '*' ) {
-			$sql .= ' AND ' . $this->makeList( $conds, LIST_AND );
+			$sql .= ' AND ' . $this->makeList( $conds, self::LIST_AND );
 		}
 
 		return $this->query( $sql, $fname );
@@ -1141,7 +1141,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			$rowTuples[] = '(' . $this->makeList( $row ) . ')';
 		}
 		$sql .= implode( ',', $rowTuples );
-		$sql .= " ON DUPLICATE KEY UPDATE " . $this->makeList( $set, LIST_SET );
+		$sql .= " ON DUPLICATE KEY UPDATE " . $this->makeList( $set, self::LIST_SET );
 
 		return (bool)$this->query( $sql, $fname );
 	}

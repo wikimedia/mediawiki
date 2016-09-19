@@ -63,6 +63,17 @@ interface IDatabase {
 	/** @var string Estimate time to apply (scanning, applying) */
 	const ESTIMATE_DB_APPLY = 'apply';
 
+	/** @var int Combine list with comma delimeters */
+	const LIST_COMMA = 0;
+	/** @var int Combine list with AND clauses */
+	const LIST_AND = 1;
+	/** @var int Convert map into a SET clause */
+	const LIST_SET = 2;
+	/** @var int Treat as field name and do not apply value escaping */
+	const LIST_NAMES = 3;
+	/** @var int Combine list with OR clauses */
+	const LIST_OR = 4;
+
 	/**
 	 * A string describing the current software version, and possibly
 	 * other details in a user-friendly way. Will be listed on Special:Version, etc.
@@ -897,18 +908,29 @@ interface IDatabase {
 	/**
 	 * Makes an encoded list of strings from an array
 	 *
+	 * These can be used to make conjuctions or disjuctions on SQL condition strings
+	 * derived from an array (see IDatabase::select() $conds documentation).
+	 *
+	 * Example usage:
+	 * @code
+	 *     $sql = $db->makeList( [
+	 *         'rev_user' => $id,
+	 *         $db->makeList( [ 'rev_minor' => 1, 'rev_len' < 500 ], $db::LIST_OR ] )
+	 *     ], $db::LIST_AND );
+	 * @endcode
+	 * This would set $sql to "rev_user = '$id' AND (rev_minor = '1' OR rev_len < '500')"
+	 *
 	 * @param array $a Containing the data
-	 * @param int $mode Constant
-	 *    - LIST_COMMA: Comma separated, no field names
-	 *    - LIST_AND:   ANDed WHERE clause (without the WHERE). See the
-	 *      documentation for $conds in IDatabase::select().
-	 *    - LIST_OR:    ORed WHERE clause (without the WHERE)
-	 *    - LIST_SET:   Comma separated with field names, like a SET clause
-	 *    - LIST_NAMES: Comma separated field names
+	 * @param int $mode IDatabase class constant:
+	 *    - IDatabase::LIST_COMMA: Comma separated, no field names
+	 *    - IDatabase::LIST_AND:   ANDed WHERE clause (without the WHERE).
+	 *    - IDatabase::LIST_OR:    ORed WHERE clause (without the WHERE)
+	 *    - IDatabase::LIST_SET:   Comma separated with field names, like a SET clause
+	 *    - IDatabase::LIST_NAMES: Comma separated field names
 	 * @throws DBError
 	 * @return string
 	 */
-	public function makeList( $a, $mode = LIST_COMMA );
+	public function makeList( $a, $mode = self::LIST_COMMA );
 
 	/**
 	 * Build a partial where clause from a 2-d array such as used for LinkBatch.
