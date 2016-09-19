@@ -28,6 +28,17 @@
 define( 'DB_SLAVE', -1 );
 
 /**@{
+ * Obsolete IDatabase::makeList() constants
+ * These are also available as Database class constants
+ */
+define( 'LIST_COMMA', IDatabase::LIST_COMMA );
+define( 'LIST_AND', IDatabase::LIST_AND );
+define( 'LIST_SET', IDatabase::LIST_SET );
+define( 'LIST_NAMES', IDatabase::LIST_NAMES );
+define( 'LIST_OR', IDatabase::LIST_OR );
+/**@}*/
+
+/**@{
  * Virtual namespaces; don't appear in the page database
  */
 define( 'NS_MEDIA', -2 );
