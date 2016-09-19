@@ -94,8 +94,8 @@ abstract class LBFactoryMW {
 				}
 				$lbConf['servers'] = [ $server ];
 			}
-			if ( !isset( $lbConf['externalServers'] ) ) {
-				$lbConf['externalServers'] = $mainConfig->get( 'ExternalServers' );
+			if ( !isset( $lbConf['externalClusters'] ) ) {
+				$lbConf['externalClusters'] = $mainConfig->get( 'ExternalServers' );
 			}
 		} elseif ( $lbConf['class'] === 'LBFactoryMulti' ) {
 			if ( isset( $lbConf['serverTemplate'] ) ) {

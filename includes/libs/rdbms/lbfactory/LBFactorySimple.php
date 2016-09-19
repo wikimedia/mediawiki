@@ -87,7 +87,7 @@ class LBFactorySimple extends LBFactory {
 	 */
 	protected function newExternalLB( $cluster, $domain = false ) {
 		if ( !isset( $this->externalClusters[$cluster] ) ) {
-			throw new InvalidArgumentException( __METHOD__ . ": Unknown cluster \"$cluster\"" );
+			throw new InvalidArgumentException( __METHOD__ . ": Unknown cluster \"$cluster\"." );
 		}
 
 		return $this->newLoadBalancer( $this->externalClusters[$cluster] );
