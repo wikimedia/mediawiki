@@ -2085,7 +2085,7 @@ $wgExternalStores = [];
  * Create a cluster named 'cluster1' containing three servers:
  * @code
  * $wgExternalServers = [
- *     'cluster1' => [ 'srv28', 'srv29', 'srv30' ]
+ *     'cluster1' => <array in the same format as $wgDBservers>
  * ];
  * @endcode
  *
