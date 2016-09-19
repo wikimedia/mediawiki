@@ -30,25 +30,6 @@
  */
 abstract class DatabaseBase extends Database {
 	/**
-	 * Boolean, controls output of large amounts of debug information.
-	 * @param bool|null $debug
-	 *   - true to enable debugging
-	 *   - false to disable debugging
-	 *   - omitted or null to do nothing
-	 *
-	 * @return bool Previous value of the flag
-	 * @deprecated since 1.28; use setFlag()
-	 */
-	public function debug( $debug = null ) {
-		$res = $this->getFlag( DBO_DEBUG );
-		if ( $debug !== null ) {
-			$debug ? $this->setFlag( DBO_DEBUG ) : $this->clearFlag( DBO_DEBUG );
-		}
-
-		return $res;
-	}
-
-	/**
 	 * Get search engine class. All subclasses of this need to implement this
 	 * if they wish to use searching.
 	 *
