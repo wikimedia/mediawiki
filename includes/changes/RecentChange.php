@@ -297,7 +297,8 @@ class RecentChange {
 		}
 
 		# If our database is strict about IP addresses, use NULL instead of an empty string
-		if ( $dbw->strictIPs() && $this->mAttribs['rc_ip'] == '' ) {
+		$strictIPs = in_array( $dbw->getType(), [ 'oracle', 'postgres' ] ); // legacy
+		if ( $strictIPs && $this->mAttribs['rc_ip'] == '' ) {
 			unset( $this->mAttribs['rc_ip'] );
 		}
 

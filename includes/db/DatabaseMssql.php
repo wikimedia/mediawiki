@@ -50,7 +50,7 @@ class DatabaseMssql extends DatabaseBase {
 		return false;
 	}
 
-	public function strictIPs() {
+	public function realTimestamps() {
 		return false;
 	}
 
