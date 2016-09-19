@@ -93,18 +93,17 @@ class FSFile {
 	 *   - fileExists
 	 *   - size (filesize in bytes)
 	 *   - mime (as major/minor)
-	 *   - media_type (value to be used with the MEDIATYPE_xxx constants)
+	 *   - file-mime (as major/minor)
 	 *   - metadata (handler specific)
 	 *   - sha1 (in base 36)
 	 *   - width
 	 *   - height
 	 *   - bits (bitrate)
-	 *   - file-mime
 	 *   - major_mime
 	 *   - minor_mime
 	 *
 	 * @param string|bool $ext The file extension, or true to extract it from the filename.
-	 *             Set it to false to ignore the extension.
+	 *             Set it to false to ignore the extension. Currently unused.
 	 * @return array
 	 */
 	public function getProps( $ext = true ) {
@@ -113,35 +112,19 @@ class FSFile {
 
 		if ( $info['fileExists'] ) {
 			$info['size'] = $this->getSize(); // bytes
-
-			// @TODO: replace the below with bare FileInfo use so this can go in /libs
-			$magic = MimeMagic::singleton();
-
-			if ( $ext === true ) {
-				$ext = self::extensionFromPath( $this->path );
-			}
-
-			# MIME type according to file contents
-			$info['file-mime'] = $magic->guessMimeType( $this->path, false );
-			# logical MIME type
-			$info['mime'] = $magic->improveTypeFromExtension( $info['file-mime'], $ext );
-
-			list( $info['major_mime'], $info['minor_mime'] ) = File::splitMime( $info['mime'] );
-			$info['media_type'] = $magic->getMediaType( $this->path, $info['mime'] );
-
-			# Height, width and metadata
-			$handler = MediaHandler::getHandler( $info['mime'] );
-			if ( $handler ) {
-				$tempImage = (object)[]; // XXX (hack for File object)
-				/** @noinspection PhpParamsInspection */
-				$info['metadata'] = $handler->getMetadata( $tempImage, $this->path );
-				/** @noinspection PhpParamsInspection */
-				$gis = $handler->getImageSize( $tempImage, $this->path, $info['metadata'] );
-				if ( is_array( $gis ) ) {
-					$info = $this->extractImageSizeInfo( $gis ) + $info;
-				}
-			}
 			$info['sha1'] = $this->getSha1Base36();
+
+			$mime = mime_content_type( $this->path );
+			# MIME type according to file contents
+			$info['file-mime'] = ( $mime === false ) ? 'unknown/unknown' : $mime;
+			# logical MIME type
+			$info['mime'] = $mime;
+
+			if ( strpos( $mime, '/' ) !== false ) {
+				list( $info['major_mime'], $info['minor_mime'] ) = explode( '/', $mime, 2 );
+			} else {
+				list( $info['major_mime'], $info['minor_mime'] ) = [ $mime, 'unknown' ];
+			}
 		}
 
 		return $info;
@@ -153,7 +136,6 @@ class FSFile {
 	 * Resulting array fields include:
 	 *   - fileExists
 	 *   - mime (as major/minor)
-	 *   - media_type (value to be used with the MEDIATYPE_xxx constants)
 	 *   - metadata (handler specific)
 	 *   - sha1 (in base 36)
 	 *   - width
@@ -166,7 +148,6 @@ class FSFile {
 		$info = [];
 		$info['fileExists'] = false;
 		$info['mime'] = null;
-		$info['media_type'] = MEDIATYPE_UNKNOWN;
 		$info['metadata'] = '';
 		$info['sha1'] = '';
 		$info['width'] = 0;

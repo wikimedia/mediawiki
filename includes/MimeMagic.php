@@ -380,13 +380,13 @@ class MimeMagic {
 	 *   - fileExists
 	 *   - size (filesize in bytes)
 	 *   - mime (as major/minor)
+	 *   - file-mime (as major/minor)
 	 *   - media_type (value to be used with the MEDIATYPE_xxx constants)
 	 *   - metadata (handler specific)
 	 *   - sha1 (in base 36)
 	 *   - width
 	 *   - height
 	 *   - bits (bitrate)
-	 *   - file-mime
 	 *   - major_mime
 	 *   - minor_mime
 	 *
@@ -405,13 +405,10 @@ class MimeMagic {
 			$path = $fsFile->getPath();
 			$magic = MimeMagic::singleton();
 
-			if ( $ext === true ) {
-				$ext = FileBackend::extensionFromPath( $path );
-			}
-
 			# MIME type according to file contents
 			$info['file-mime'] = $magic->guessMimeType( $path, false );
 			# logical MIME type
+			$ext = ( $ext === true ) ? FileBackend::extensionFromPath( $path ) : $ext;
 			$info['mime'] = $magic->improveTypeFromExtension( $info['file-mime'], $ext );
 
 			list( $info['major_mime'], $info['minor_mime'] ) = File::splitMime( $info['mime'] );
