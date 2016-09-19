@@ -257,7 +257,7 @@ class MWExceptionRenderer {
 	 * @param Exception|Throwable $e
 	 * @return string
 	 */
-	private function getText( $e ) {
+	private static function getText( $e ) {
 		if ( self::showBackTrace( $e ) ) {
 			return MWExceptionHandler::getLogMessage( $e ) .
 				"\nBacktrace:\n" .
