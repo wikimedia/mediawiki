@@ -380,13 +380,13 @@ class MimeMagic {
 	 *   - fileExists
 	 *   - size (filesize in bytes)
 	 *   - mime (as major/minor)
+	 *   - file-mime (as major/minor)
 	 *   - media_type (value to be used with the MEDIATYPE_xxx constants)
 	 *   - metadata (handler specific)
 	 *   - sha1 (in base 36)
 	 *   - width
 	 *   - height
 	 *   - bits (bitrate)
-	 *   - file-mime
 	 *   - major_mime
 	 *   - minor_mime
 	 *
@@ -397,9 +397,15 @@ class MimeMagic {
 	 * @since 1.28
 	 */
 	public function getPropsFromPath( $path, $ext ) {
-		$fsFile = new FSFile( $path );
+		$info = FSFile::placeholderProps() + [
+			'width' => 0,
+			'height' => 0,
+			'bits' => 0,
+			'media_type' => null,
+			'metadata' => [],
+		];
 
-		$info = FSFile::placeholderProps();
+		$fsFile = new FSFile( $path );
 		$info['fileExists'] = $fsFile->exists();
 		if ( $info['fileExists'] ) {
 			$info['size'] = $fsFile->getSize(); // bytes
