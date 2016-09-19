@@ -62,6 +62,8 @@ abstract class LBFactoryMW {
 				foreach ( $mainConfig->get( 'DBservers' ) as $i => $server ) {
 					if ( $server['type'] === 'sqlite' ) {
 						$server += [ 'dbDirectory' => $mainConfig->get( 'SQLiteDataDir' ) ];
+					} elseif ( $server['type'] === 'postgres' ) {
+						$server += [ 'port' => $mainConfig->get( 'DBport' ) ];
 					}
 					$lbConf['servers'][$i] = $server + [
 						'schema' => $mainConfig->get( 'DBmwschema' ),
@@ -91,6 +93,8 @@ abstract class LBFactoryMW {
 				];
 				if ( $server['type'] === 'sqlite' ) {
 					$server[ 'dbDirectory'] = $mainConfig->get( 'SQLiteDataDir' );
+				} elseif ( $server['type'] === 'postgres' ) {
+					$server['port'] = $mainConfig->get( 'DBport' );
 				}
 				$lbConf['servers'] = [ $server ];
 			}
