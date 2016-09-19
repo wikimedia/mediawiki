@@ -2694,7 +2694,7 @@ class LocalFileRestoreBatch {
 				// Even if some files could be copied, fail entirely as that is the
 				// easiest thing to do without data loss
 				$this->cleanupFailedBatch( $storeStatus, $storeBatch );
-				$status->setOk( false );
+				$status->setOK( false );
 				$this->file->unlock();
 
 				return $status;
