@@ -28,11 +28,11 @@ class MWExceptionRenderer {
 	const AS_PRETTY = 2; // show as HTML
 
 	/**
-	 * @param Exception $e Original exception
+	 * @param Exception|Throwable $e Original exception
 	 * @param integer $mode MWExceptionExposer::AS_* constant
-	 * @param Exception|null $eNew New exception from attempting to show the first
+	 * @param Exception|Throwable|null $eNew New exception from attempting to show the first
 	 */
-	public static function output( Exception $e, $mode, Exception $eNew = null ) {
+	public static function output( $e, $mode, $eNew = null ) {
 		global $wgMimeType;
 
 		if ( $e instanceof DBConnectionError ) {
@@ -88,12 +88,12 @@ class MWExceptionRenderer {
 	 *
 	 * Called by MWException for b/c
 	 *
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 * @param string $name Class name of the exception
 	 * @param array $args Arguments to pass to the callback functions
 	 * @return string|null String to output or null if any hook has been called
 	 */
-	public static function runHooks( Exception $e, $name, $args = [] ) {
+	public static function runHooks( $e, $name, $args = [] ) {
 		global $wgExceptionHooks;
 
 		if ( !isset( $wgExceptionHooks ) || !is_array( $wgExceptionHooks ) ) {
@@ -129,10 +129,10 @@ class MWExceptionRenderer {
 	}
 
 	/**
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 * @return bool Should the exception use $wgOut to output the error?
 	 */
-	private static function useOutputPage( Exception $e ) {
+	private static function useOutputPage( $e ) {
 		// Can the extension use the Message class/wfMessage to get i18n-ed messages?
 		foreach ( $e->getTrace() as $frame ) {
 			if ( isset( $frame['class'] ) && $frame['class'] === 'LocalisationCache' ) {
@@ -150,9 +150,9 @@ class MWExceptionRenderer {
 	/**
 	 * Output the exception report using HTML
 	 *
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 */
-	private static function reportHTML( Exception $e ) {
+	private static function reportHTML( $e ) {
 		global $wgOut, $wgSitename;
 
 		if ( self::useOutputPage( $e ) ) {
@@ -206,10 +206,10 @@ class MWExceptionRenderer {
 	 * backtrace to the error, otherwise show a message to ask to set it to true
 	 * to show that information.
 	 *
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 * @return string Html to output
 	 */
-	public static function getHTML( Exception $e ) {
+	public static function getHTML( $e ) {
 		if ( self::showBackTrace( $e ) ) {
 			$html = "<div class=\"errorbox\"><p>" .
 				nl2br( htmlspecialchars( MWExceptionHandler::getLogMessage( $e ) ) ) .
@@ -254,10 +254,10 @@ class MWExceptionRenderer {
 	}
 
 	/**
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 * @return string
 	 */
-	private function getText( Exception $e ) {
+	private function getText( $e ) {
 		if ( self::showBackTrace( $e ) ) {
 			return MWExceptionHandler::getLogMessage( $e ) .
 				"\nBacktrace:\n" .
@@ -269,10 +269,10 @@ class MWExceptionRenderer {
 	}
 
 	/**
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 * @return bool
 	 */
-	private static function showBackTrace( Exception $e ) {
+	private static function showBackTrace( $e ) {
 		global $wgShowExceptionDetails, $wgShowDBErrorBacktrace;
 
 		return (
@@ -324,9 +324,9 @@ class MWExceptionRenderer {
 	}
 
 	/**
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 */
-	private static function reportOutageHTML( Exception $e ) {
+	private static function reportOutageHTML( $e ) {
 		global $wgShowDBErrorBacktrace, $wgShowHostnames, $wgShowSQLErrors;
 
 		$sorry = htmlspecialchars( self::msg(
