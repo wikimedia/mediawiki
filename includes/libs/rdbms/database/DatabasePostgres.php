@@ -43,8 +43,8 @@ class DatabasePostgres extends DatabaseBase {
 	private $mCoreSchema;
 
 	public function __construct( array $params ) {
-		parent::__construct( $params );
 		$this->port = isset( $params['port'] ) ? $params['port'] : false;
+		parent::__construct( $params );
 	}
 
 	function getType() {
