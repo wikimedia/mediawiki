@@ -71,13 +71,14 @@ class TiffHandler extends ExifBitmapHandler {
 	}
 
 	/**
-	 * @param File $image
+	 * @param File|FSFile $image
 	 * @param string $filename
 	 * @throws MWException
 	 * @return string
 	 */
 	function getMetadata( $image, $filename ) {
 		global $wgShowEXIF;
+
 		if ( $wgShowEXIF ) {
 			try {
 				$meta = BitmapMetadataHandler::Tiff( $filename );
