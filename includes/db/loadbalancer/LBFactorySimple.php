@@ -24,16 +24,11 @@
 /**
  * A simple single-master LBFactory that gets its configuration from the b/c globals
  */
-class LBFactorySimple extends LBFactory {
+class LBFactorySimple extends LBFactoryMW {
 	/** @var LoadBalancer */
 	private $mainLB;
 	/** @var LoadBalancer[] */
 	private $extLBs = [];
-
-	/** @var array[] Map of (server index => server config) */
-	private $servers = [];
-	/** @var array[] Map of (cluster => (server index => server config)) */
-	private $externalClusters = [];
 
 	/** @var string */
 	private $loadMonitorClass;
@@ -41,39 +36,76 @@ class LBFactorySimple extends LBFactory {
 	public function __construct( array $conf ) {
 		parent::__construct( $conf );
 
-		$this->servers = isset( $conf['servers'] ) ? $conf['servers'] : [];
-		foreach ( $this->servers as $i => $server ) {
-			if ( $i == 0 ) {
-				$this->servers[$i]['master'] = true;
-			} else {
-				$this->servers[$i]['replica'] = true;
-			}
-		}
-
-		$this->externalClusters = isset( $conf['externalClusters'] )
-			? $conf['externalClusters']
-			: [];
 		$this->loadMonitorClass = isset( $conf['loadMonitorClass'] )
 			? $conf['loadMonitorClass']
 			: null;
 	}
 
 	/**
-	 * @param bool|string $domain
+	 * @param bool|string $wiki
 	 * @return LoadBalancer
 	 */
-	public function newMainLB( $domain = false ) {
-		return $this->newLoadBalancer( $this->servers );
+	public function newMainLB( $wiki = false ) {
+		global $wgDBservers, $wgDBprefix, $wgDBmwschema, $wgSQLMode, $wgDBmysql5;
+
+		if ( is_array( $wgDBservers ) ) {
+			$servers = $wgDBservers;
+			foreach ( $servers as $i => &$server ) {
+				if ( $i == 0 ) {
+					$server['master'] = true;
+				} else {
+					$server['replica'] = true;
+				}
+				$server += [
+					'schema' => $wgDBmwschema,
+					'tablePrefix' => $wgDBprefix,
+					'flags' => DBO_DEFAULT,
+					'sqlMode' => $wgSQLMode,
+					'utf8Mode' => $wgDBmysql5
+				];
+			}
+		} else {
+			global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype, $wgDebugDumpSql;
+			global $wgDBssl, $wgDBcompress;
+
+			$flags = DBO_DEFAULT;
+			if ( $wgDebugDumpSql ) {
+				$flags |= DBO_DEBUG;
+			}
+			if ( $wgDBssl ) {
+				$flags |= DBO_SSL;
+			}
+			if ( $wgDBcompress ) {
+				$flags |= DBO_COMPRESS;
+			}
+
+			$servers = [ [
+				'host' => $wgDBserver,
+				'user' => $wgDBuser,
+				'password' => $wgDBpassword,
+				'dbname' => $wgDBname,
+				'schema' => $wgDBmwschema,
+				'tablePrefix' => $wgDBprefix,
+				'type' => $wgDBtype,
+				'load' => 1,
+				'flags' => $flags,
+				'master' => true,
+				'sqlMode' => $wgSQLMode,
+				'utf8Mode' => $wgDBmysql5
+			] ];
+		}
+
+		return $this->newLoadBalancer( $servers );
 	}
 
 	/**
-	 * @param bool|string $domain
+	 * @param bool|string $wiki
 	 * @return LoadBalancer
 	 */
-	public function getMainLB( $domain = false ) {
+	public function getMainLB( $wiki = false ) {
 		if ( !isset( $this->mainLB ) ) {
-			$this->mainLB = $this->newMainLB( $domain );
-			$this->getChronologyProtector()->initLB( $this->mainLB );
+			$this->mainLB = $this->newMainLB( $wiki );
+			$this->chronProt->initLB( $this->mainLB );
 		}
 
 		return $this->mainLB;
@@ -81,27 +113,28 @@ class LBFactorySimple extends LBFactory {
 
 	/**
 	 * @param string $cluster
-	 * @param bool|string $domain
+	 * @param bool|string $wiki
 	 * @return LoadBalancer
 	 * @throws InvalidArgumentException
 	 */
-	protected function newExternalLB( $cluster, $domain = false ) {
-		if ( !isset( $this->externalClusters[$cluster] ) ) {
+	protected function newExternalLB( $cluster, $wiki = false ) {
+		global $wgExternalServers;
+		if ( !isset( $wgExternalServers[$cluster] ) ) {
 			throw new InvalidArgumentException( __METHOD__ . ": Unknown cluster \"$cluster\"" );
 		}
 
-		return $this->newLoadBalancer( $this->externalClusters[$cluster] );
+		return $this->newLoadBalancer( $wgExternalServers[$cluster] );
 	}
 
 	/**
 	 * @param string $cluster
-	 * @param bool|string $domain
+	 * @param bool|string $wiki
 	 * @return array
 	 */
-	public function getExternalLB( $cluster, $domain = false ) {
+	public function getExternalLB( $cluster, $wiki = false ) {
 		if ( !isset( $this->extLBs[$cluster] ) ) {
-			$this->extLBs[$cluster] = $this->newExternalLB( $cluster, $domain );
-			$this->getChronologyProtector()->initLB( $this->extLBs[$cluster] );
+			$this->extLBs[$cluster] = $this->newExternalLB( $cluster, $wiki );
+			$this->chronProt->initLB( $this->extLBs[$cluster] );
 		}
 
 		return $this->extLBs[$cluster];

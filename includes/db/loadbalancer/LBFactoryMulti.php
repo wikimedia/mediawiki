@@ -254,7 +254,7 @@ class LBFactoryMulti extends LBFactoryMW {
 		$section = $this->getSectionForWiki( $wiki );
 		if ( !isset( $this->mainLBs[$section] ) ) {
 			$lb = $this->newMainLB( $wiki );
-			$this->getChronologyProtector()->initLB( $lb );
+			$this->chronProt->initLB( $lb );
 			$this->mainLBs[$section] = $lb;
 		}
 
@@ -295,7 +295,7 @@ class LBFactoryMulti extends LBFactoryMW {
 	public function getExternalLB( $cluster, $wiki = false ) {
 		if ( !isset( $this->extLBs[$cluster] ) ) {
 			$this->extLBs[$cluster] = $this->newExternalLB( $cluster, $wiki );
-			$this->getChronologyProtector()->initLB( $this->extLBs[$cluster] );
+			$this->chronProt->initLB( $this->extLBs[$cluster] );
 		}
 
 		return $this->extLBs[$cluster];

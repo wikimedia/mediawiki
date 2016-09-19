@@ -147,6 +147,9 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
+		$lbFactory->expects( $this->once() )
+			->method( 'destroy' );
+
 		$newServices->redefineService(
 			'DBLoadBalancerFactory',
 			function() use ( $lbFactory ) {
@@ -161,11 +164,12 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 
 		try {
 			MediaWikiServices::getInstance()->getService( 'DBLoadBalancerFactory' );
-			$this->fail( 'DBLoadBalancerFactory should have been disabled' );
+			$this->fail( 'DBLoadBalancerFactory shoudl have been disabled' );
 		}
 		catch ( ServiceDisabledException $ex ) {
 			// ok, as expected
-		} catch ( Throwable $ex ) {
+		}
+		catch ( Throwable $ex ) {
 			$this->fail( 'ServiceDisabledException expected, caught ' . get_class( $ex ) );
 		}
 
