@@ -100,7 +100,8 @@ abstract class MediaHandler {
 	 * @note If this is a multipage file, return the width and height of the
 	 *  first page.
 	 *
-	 * @param File $image The image object, or false if there isn't one
+	 * @param File|FSFile $image The image object, or false if there isn't one.
+	 *   Warning, FSFile::getPropsFromPath might pass an FSFile instead of File (!)
 	 * @param string $path The filename
 	 * @return array Follow the format of PHP getimagesize() internal function.
 	 *   See http://www.php.net/getimagesize. MediaWiki will only ever use the
@@ -113,8 +114,8 @@ abstract class MediaHandler {
 	/**
 	 * Get handler-specific metadata which will be saved in the img_metadata field.
 	 *
-	 * @param File $image The image object, or false if there isn't one.
-	 *   Warning, FSFile::getPropsFromPath might pass an (object)array() instead (!)
+	 * @param File|FSFile $image The image object, or false if there isn't one.
+	 *   Warning, FSFile::getPropsFromPath might pass an FSFile instead of File (!)
 	 * @param string $path The filename
 	 * @return string A string of metadata in php serialized form (Run through serialize())
 	 */
