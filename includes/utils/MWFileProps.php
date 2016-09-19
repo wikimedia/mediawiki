@@ -112,4 +112,34 @@ class MWFileProps {
 
 		return $info;
 	}
+
+	/**
+	 * Empty place holder props for non-existing files
+	 *
+	 * Resulting array fields include:
+	 *   - fileExists
+	 *   - size (filesize in bytes)
+	 *   - mime (as major/minor)
+	 *   - media_type (value to be used with the MEDIATYPE_xxx constants)
+	 *   - metadata (handler specific)
+	 *   - sha1 (in base 36)
+	 *   - width
+	 *   - height
+	 *   - bits (bitrate)
+	 *   - file-mime
+	 *   - major_mime
+	 *   - minor_mime
+	 *
+	 * @return array
+	 * @since 1.28
+	 */
+	public function newPlaceholderProps() {
+		return FSFile::placeholderProps() + [
+			'metadata' => '',
+			'width' => 0,
+			'height' => 0,
+			'bits' => 0,
+			'media_type' => MEDIATYPE_UNKNOWN
+		];
+	}
 }
