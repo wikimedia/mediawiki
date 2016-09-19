@@ -1540,11 +1540,11 @@ class FileRepo {
 	 */
 	public function getFileProps( $virtualUrl ) {
 		$fsFile = $this->getLocalReference( $virtualUrl );
+		$mwProps = new MWFileProps( MimeMagic::singleton() );
 		if ( $fsFile ) {
-			$mwProps = new MWFileProps( MimeMagic::singleton() );
 			$props = $mwProps->getPropsFromPath( $fsFile->getPath(), true );
 		} else {
-			$props = FSFile::placeholderProps();
+			$props = $mwProps->newPlaceholderProps();
 		}
 
 		return $props;
