@@ -21,207 +21,31 @@
  * @ingroup Database
  */
 
-class PostgresField implements Field {
-	private $name, $tablename, $type, $nullable, $max_length, $deferred, $deferrable, $conname,
-		$has_default, $default;
-
-	/**
-	 * @param IDatabase $db
-	 * @param string $table
-	 * @param string $field
-	 * @return null|PostgresField
-	 */
-	static function fromText( $db, $table, $field ) {
-		$q = <<<SQL
-SELECT
- attnotnull, attlen, conname AS conname,
- atthasdef,
- adsrc,
- COALESCE(condeferred, 'f') AS deferred,
- COALESCE(condeferrable, 'f') AS deferrable,
- CASE WHEN typname = 'int2' THEN 'smallint'
-  WHEN typname = 'int4' THEN 'integer'
-  WHEN typname = 'int8' THEN 'bigint'
-  WHEN typname = 'bpchar' THEN 'char'
- ELSE typname END AS typname
-FROM pg_class c
-JOIN pg_namespace n ON (n.oid = c.relnamespace)
-JOIN pg_attribute a ON (a.attrelid = c.oid)
-JOIN pg_type t ON (t.oid = a.atttypid)
-LEFT JOIN pg_constraint o ON (o.conrelid = c.oid AND a.attnum = ANY(o.conkey) AND o.contype = 'f')
-LEFT JOIN pg_attrdef d on c.oid=d.adrelid and a.attnum=d.adnum
-WHERE relkind = 'r'
-AND nspname=%s
-AND relname=%s
-AND attname=%s;
-SQL;
-
-		$table = $db->tableName( $table, 'raw' );
-		$res = $db->query(
-			sprintf( $q,
-				$db->addQuotes( $db->getCoreSchema() ),
-				$db->addQuotes( $table ),
-				$db->addQuotes( $field )
-			)
-		);
-		$row = $db->fetchObject( $res );
-		if ( !$row ) {
-			return null;
-		}
-		$n = new PostgresField;
-		$n->type = $row->typname;
-		$n->nullable = ( $row->attnotnull == 'f' );
-		$n->name = $field;
-		$n->tablename = $table;
-		$n->max_length = $row->attlen;
-		$n->deferrable = ( $row->deferrable == 't' );
-		$n->deferred = ( $row->deferred == 't' );
-		$n->conname = $row->conname;
-		$n->has_default = ( $row->atthasdef === 't' );
-		$n->default = $row->adsrc;
-
-		return $n;
-	}
-
-	function name() {
-		return $this->name;
-	}
-
-	function tableName() {
-		return $this->tablename;
-	}
-
-	function type() {
-		return $this->type;
-	}
-
-	function isNullable() {
-		return $this->nullable;
-	}
-
-	function maxLength() {
-		return $this->max_length;
-	}
-
-	function is_deferrable() {
-		return $this->deferrable;
-	}
-
-	function is_deferred() {
-		return $this->deferred;
-	}
-
-	function conname() {
-		return $this->conname;
-	}
-
-	/**
-	 * @since 1.19
-	 * @return bool|mixed
-	 */
-	function defaultValue() {
-		if ( $this->has_default ) {
-			return $this->default;
-		} else {
-			return false;
-		}
-	}
-}
-
-/**
- * Manage savepoints within a transaction
- * @ingroup Database
- * @since 1.19
- */
-class SavepointPostgres {
-	/** @var DatabasePostgres Establish a savepoint within a transaction */
-	protected $dbw;
-	protected $id;
-	protected $didbegin;
-
-	/**
-	 * @param IDatabase $dbw
-	 * @param int $id
-	 */
-	public function __construct( $dbw, $id ) {
-		$this->dbw = $dbw;
-		$this->id = $id;
-		$this->didbegin = false;
-		/* If we are not in a transaction, we need to be for savepoint trickery */
-		if ( !$dbw->trxLevel() ) {
-			$dbw->begin( "FOR SAVEPOINT", DatabasePostgres::TRANSACTION_INTERNAL );
-			$this->didbegin = true;
-		}
-	}
-
-	public function __destruct() {
-		if ( $this->didbegin ) {
-			$this->dbw->rollback();
-			$this->didbegin = false;
-		}
-	}
-
-	public function commit() {
-		if ( $this->didbegin ) {
-			$this->dbw->commit();
-			$this->didbegin = false;
-		}
-	}
-
-	protected function query( $keyword, $msg_ok, $msg_failed ) {
-		if ( $this->dbw->doQuery( $keyword . " " . $this->id ) !== false ) {
-		} else {
-			wfDebug( sprintf( $msg_failed, $this->id ) );
-		}
-	}
-
-	public function savepoint() {
-		$this->query( "SAVEPOINT",
-			"Transaction state: savepoint \"%s\" established.\n",
-			"Transaction state: establishment of savepoint \"%s\" FAILED.\n"
-		);
-	}
-
-	public function release() {
-		$this->query( "RELEASE",
-			"Transaction state: savepoint \"%s\" released.\n",
-			"Transaction state: release of savepoint \"%s\" FAILED.\n"
-		);
-	}
-
-	public function rollback() {
-		$this->query( "ROLLBACK TO",
-			"Transaction state: savepoint \"%s\" rolled back.\n",
-			"Transaction state: rollback of savepoint \"%s\" FAILED.\n"
-		);
-	}
-
-	public function __toString() {
-		return (string)$this->id;
-	}
-}
-
 /**
  * @ingroup Database
  */
 class DatabasePostgres extends DatabaseBase {
+	/** @var int|bool */
+	protected $port;
+
 	/** @var resource */
 	protected $mLastResult = null;
-
 	/** @var int The number of rows affected as an integer */
 	protected $mAffectedRows = null;
 
 	/** @var int */
 	private $mInsertId = null;
-
 	/** @var float|string */
 	private $numericVersion = null;
-
 	/** @var string Connect string to open a PostgreSQL connection */
 	private $connectString;
-
 	/** @var string */
 	private $mCoreSchema;
+
+	public function __construct( array $params ) {
+		parent::__construct( $params );
+		$this->port = isset( $params['port'] ) ? $params['port'] : false;
+	}
 
 	function getType() {
 		return 'postgres';
@@ -277,14 +101,11 @@ class DatabasePostgres extends DatabaseBase {
 			);
 		}
 
-		global $wgDBport;
-
 		if ( !strlen( $user ) ) { # e.g. the class is being loaded
 			return null;
 		}
 
 		$this->mServer = $server;
-		$port = $wgDBport;
 		$this->mUser = $user;
 		$this->mPassword = $password;
 		$this->mDBname = $dbName;
@@ -297,14 +118,14 @@ class DatabasePostgres extends DatabaseBase {
 		if ( $server != false && $server != '' ) {
 			$connectVars['host'] = $server;
 		}
-		if ( $port != false && $port != '' ) {
-			$connectVars['port'] = $port;
+		if ( (int)$this->port > 0 ) {
+			$connectVars['port'] = (int)$this->port;
 		}
 		if ( $this->mFlags & DBO_SSL ) {
 			$connectVars['sslmode'] = 1;
 		}
 
-		$this->connectString = $this->makeConnectionString( $connectVars, PGSQL_CONNECT_FORCE_NEW );
+		$this->connectString = $this->makeConnectionString( $connectVars );
 		$this->close();
 		$this->installErrorHandler();
 
@@ -318,18 +139,18 @@ class DatabasePostgres extends DatabaseBase {
 		$phpError = $this->restoreErrorHandler();
 
 		if ( !$this->mConn ) {
-			wfDebug( "DB connection error\n" );
-			wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " .
+			$this->queryLogger->debug( "DB connection error\n" );
+			$this->queryLogger->debug(
+				"Server: $server, Database: $dbName, User: $user, Password: " .
 				substr( $password, 0, 3 ) . "...\n" );
-			wfDebug( $this->lastError() . "\n" );
+			$this->queryLogger->debug( $this->lastError() . "\n" );
 			throw new DBConnectionError( $this, str_replace( "\n", ' ', $phpError ) );
 		}
 
 		$this->mOpened = true;
 
-		global $wgCommandLineMode;
 		# If called from the command-line (e.g. importDump), only show errors
-		if ( $wgCommandLineMode ) {
+		if ( $this->cliMode ) {
 			$this->doQuery( "SET client_min_messages = 'ERROR'" );
 		}
 
@@ -341,8 +162,7 @@ class DatabasePostgres extends DatabaseBase {
 			$this->query( "SET bytea_output = 'escape'", __METHOD__ ); // PHP bug 53127
 		}
 
-		global $wgDBmwschema;
-		$this->determineCoreSchema( $wgDBmwschema );
+		$this->determineCoreSchema( $this->mSchema );
 
 		return $this->mConn;
 	}
@@ -413,7 +233,7 @@ class DatabasePostgres extends DatabaseBase {
 			PGSQL_DIAG_SOURCE_FUNCTION
 		];
 		foreach ( $diags as $d ) {
-			wfDebug( sprintf( "PgSQL ERROR(%d): %s\n",
+			$this->queryLogger->debug( sprintf( "PgSQL ERROR(%d): %s\n",
 				$d, pg_result_error_field( $this->mLastResult, $d ) ) );
 		}
 	}
@@ -720,20 +540,16 @@ __INDEXATTR__;
 		return $res->numRows() > 0;
 	}
 
-	/**
-	 * Change the FOR UPDATE option as necessary based on the join conditions. Then pass
-	 * to the parent function to get the actual SQL text.
-	 *
-	 * In Postgres when using FOR UPDATE, only the main table and tables that are inner joined
-	 * can be locked. That means tables in an outer join cannot be FOR UPDATE locked. Trying to do
-	 * so causes a DB error. This wrapper checks which tables can be locked and adjusts it accordingly.
-	 *
-	 * MySQL uses "ORDER BY NULL" as an optimization hint, but that syntax is illegal in PostgreSQL.
-	 * @see DatabaseBase::selectSQLText
-	 */
-	function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
-		$options = [], $join_conds = []
+	function selectSQLText(
+		$table, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
+		// Change the FOR UPDATE option as necessary based on the join conditions. Then pass
+		// to the parent function to get the actual SQL text.
+		// In Postgres when using FOR UPDATE, only the main table and tables that are inner joined
+		// can be locked. That means tables in an outer join cannot be FOR UPDATE locked. Trying to
+		// do so causes a DB error. This wrapper checks which tables can be locked and adjusts it
+		// accordingly.
+		// MySQL uses "ORDER BY NULL" as an optimization hint, but that is illegal in PostgreSQL.
 		if ( is_array( $options ) ) {
 			$forUpdateKey = array_search( 'FOR UPDATE', $options, true );
 			if ( $forUpdateKey !== false && $join_conds ) {
@@ -789,13 +605,13 @@ __INDEXATTR__;
 		}
 
 		// If IGNORE is set, we use savepoints to emulate mysql's behavior
-		$savepoint = null;
+		$savepoint = $olde = null;
+		$numrowsinserted = 0;
 		if ( in_array( 'IGNORE', $options ) ) {
-			$savepoint = new SavepointPostgres( $this, 'mw' );
+			$savepoint = new SavepointPostgres( $this, 'mw', $this->queryLogger );
 			$olde = error_reporting( 0 );
 			// For future use, we may want to track the number of actual inserts
 			// Right now, insert (all writes) simply return true/false
-			$numrowsinserted = 0;
 		}
 
 		$sql = "INSERT INTO $table (" . implode( ',', $keys ) . ') VALUES ';
@@ -904,11 +720,11 @@ __INDEXATTR__;
 		 * If IGNORE is set, we use savepoints to emulate mysql's behavior
 		 * Ignore LOW PRIORITY option, since it is MySQL-specific
 		 */
-		$savepoint = null;
+		$savepoint = $olde = null;
+		$numrowsinserted = 0;
 		if ( in_array( 'IGNORE', $insertOptions ) ) {
-			$savepoint = new SavepointPostgres( $this, 'mw' );
+			$savepoint = new SavepointPostgres( $this, 'mw', $this->queryLogger );
 			$olde = error_reporting( 0 );
-			$numrowsinserted = 0;
 			$savepoint->savepoint();
 		}
 
@@ -1028,7 +844,9 @@ __INDEXATTR__;
 		return $this->lastErrno() == '40P01';
 	}
 
-	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = __METHOD__ ) {
+	function duplicateTableStructure(
+		$oldName, $newName, $temporary = false, $fname = __METHOD__
+	) {
 		$newName = $this->addIdentifierQuotes( $newName );
 		$oldName = $this->addIdentifierQuotes( $oldName );
 
@@ -1038,7 +856,8 @@ __INDEXATTR__;
 
 	function listTables( $prefix = null, $fname = __METHOD__ ) {
 		$eschema = $this->addQuotes( $this->getCoreSchema() );
-		$result = $this->query( "SELECT tablename FROM pg_tables WHERE schemaname = $eschema", $fname );
+		$result = $this->query(
+			"SELECT tablename FROM pg_tables WHERE schemaname = $eschema", $fname );
 		$endArray = [];
 
 		foreach ( $result as $table ) {
@@ -1053,7 +872,9 @@ __INDEXATTR__;
 	}
 
 	function timestamp( $ts = 0 ) {
-		return wfTimestamp( TS_POSTGRES, $ts );
+		$ct = new ConvertableTimestamp( $ts );
+
+		return $ct->getTimestamp( TS_POSTGRES );
 	}
 
 	/**
@@ -1070,7 +891,7 @@ __INDEXATTR__;
 	 * @since 1.19
 	 * @param string $text Postgreql array returned in a text form like {a,b}
 	 * @param string $output
-	 * @param int $limit
+	 * @param int|bool $limit
 	 * @param int $offset
 	 * @return string
 	 */
@@ -1200,7 +1021,8 @@ __INDEXATTR__;
 		if ( $this->schemaExists( $desiredSchema ) ) {
 			if ( in_array( $desiredSchema, $this->getSchemas() ) ) {
 				$this->mCoreSchema = $desiredSchema;
-				wfDebug( "Schema \"" . $desiredSchema . "\" already in the search path\n" );
+				$this->queryLogger->debug(
+					"Schema \"" . $desiredSchema . "\" already in the search path\n" );
 			} else {
 				/**
 				 * Prepend our schema (e.g. 'mediawiki') in front
@@ -1212,11 +1034,13 @@ __INDEXATTR__;
 					$this->addIdentifierQuotes( $desiredSchema ) );
 				$this->setSearchPath( $search_path );
 				$this->mCoreSchema = $desiredSchema;
-				wfDebug( "Schema \"" . $desiredSchema . "\" added to the search path\n" );
+				$this->queryLogger->debug(
+					"Schema \"" . $desiredSchema . "\" added to the search path\n" );
 			}
 		} else {
 			$this->mCoreSchema = $this->getCurrentSchema();
-			wfDebug( "Schema \"" . $desiredSchema . "\" not found, using current \"" .
+			$this->queryLogger->debug(
+				"Schema \"" . $desiredSchema . "\" not found, using current \"" .
 				$this->mCoreSchema . "\"\n" );
 		}
 		/* Commit SET otherwise it will be rollbacked on error or IGNORE SELECT */
@@ -1607,7 +1431,7 @@ SQL;
 			return true;
 		}
 
-		wfDebug( __METHOD__ . " failed to release lock\n" );
+		$this->queryLogger->debug( __METHOD__ . " failed to release lock\n" );
 
 		return false;
 	}
@@ -1619,4 +1443,4 @@ SQL;
 	private function bigintFromLockName( $lockName ) {
 		return Wikimedia\base_convert( substr( sha1( $lockName ), 0, 15 ), 16, 10 );
 	}
-} // end DatabasePostgres class
+}
