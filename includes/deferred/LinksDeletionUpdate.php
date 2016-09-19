@@ -108,87 +108,81 @@ class LinksDeletionUpdate extends DataUpdate implements EnqueueableDataUpdate {
 			}
 		}
 
-		// If using cascading deletes, we can skip some explicit deletes
-		if ( !$dbw->cascadingDeletes() ) {
-			// Delete outgoing links
-			$this->batchDeleteByPK(
-				'pagelinks',
-				[ 'pl_from' => $id ],
-				[ 'pl_from', 'pl_namespace', 'pl_title' ],
-				$batchSize
-			);
-			$this->batchDeleteByPK(
-				'imagelinks',
-				[ 'il_from' => $id ],
-				[ 'il_from', 'il_to' ],
-				$batchSize
-			);
-			$this->batchDeleteByPK(
-				'categorylinks',
-				[ 'cl_from' => $id ],
-				[ 'cl_from', 'cl_to' ],
-				$batchSize
-			);
-			$this->batchDeleteByPK(
-				'templatelinks',
-				[ 'tl_from' => $id ],
-				[ 'tl_from', 'tl_namespace', 'tl_title' ],
-				$batchSize
-			);
-			$this->batchDeleteByPK(
-				'externallinks',
-				[ 'el_from' => $id ],
-				[ 'el_id' ],
-				$batchSize
-			);
-			$this->batchDeleteByPK(
-				'langlinks',
-				[ 'll_from' => $id ],
-				[ 'll_from', 'll_lang' ],
-				$batchSize
-			);
-			$this->batchDeleteByPK(
-				'iwlinks',
-				[ 'iwl_from' => $id ],
-				[ 'iwl_from', 'iwl_prefix', 'iwl_title' ],
-				$batchSize
-			);
-			// Delete any redirect entry or page props entries
-			$dbw->delete( 'redirect', [ 'rd_from' => $id ], __METHOD__ );
-			$dbw->delete( 'page_props', [ 'pp_page' => $id ], __METHOD__ );
-		}
+		$this->batchDeleteByPK(
+			'pagelinks',
+			[ 'pl_from' => $id ],
+			[ 'pl_from', 'pl_namespace', 'pl_title' ],
+			$batchSize
+		);
+		$this->batchDeleteByPK(
+			'imagelinks',
+			[ 'il_from' => $id ],
+			[ 'il_from', 'il_to' ],
+			$batchSize
+		);
+		$this->batchDeleteByPK(
+			'categorylinks',
+			[ 'cl_from' => $id ],
+			[ 'cl_from', 'cl_to' ],
+			$batchSize
+		);
+		$this->batchDeleteByPK(
+			'templatelinks',
+			[ 'tl_from' => $id ],
+			[ 'tl_from', 'tl_namespace', 'tl_title' ],
+			$batchSize
+		);
+		$this->batchDeleteByPK(
+			'externallinks',
+			[ 'el_from' => $id ],
+			[ 'el_id' ],
+			$batchSize
+		);
+		$this->batchDeleteByPK(
+			'langlinks',
+			[ 'll_from' => $id ],
+			[ 'll_from', 'll_lang' ],
+			$batchSize
+		);
+		$this->batchDeleteByPK(
+			'iwlinks',
+			[ 'iwl_from' => $id ],
+			[ 'iwl_from', 'iwl_prefix', 'iwl_title' ],
+			$batchSize
+		);
 
-		// If using cleanup triggers, we can skip some manual deletes
-		if ( !$dbw->cleanupTriggers() ) {
-			// Find recentchanges entries to clean up...
-			$rcIdsForTitle = $dbw->selectFieldValues(
-				'recentchanges',
-				'rc_id',
-				[
-					'rc_type != ' . RC_LOG,
-					'rc_namespace' => $title->getNamespace(),
-					'rc_title' => $title->getDBkey(),
-					'rc_timestamp < ' .
-						$dbw->addQuotes( $dbw->timestamp( $this->timestamp ) )
-				],
-				__METHOD__
-			);
-			$rcIdsForPage = $dbw->selectFieldValues(
-				'recentchanges',
-				'rc_id',
-				[ 'rc_type != ' . RC_LOG, 'rc_cur_id' => $id ],
-				__METHOD__
-			);
+		// Delete any redirect entry or page props entries
+		$dbw->delete( 'redirect', [ 'rd_from' => $id ], __METHOD__ );
+		$dbw->delete( 'page_props', [ 'pp_page' => $id ], __METHOD__ );
 
-			// T98706: delete by PK to avoid lock contention with RC delete log insertions
-			$rcIdBatches = array_chunk( array_merge( $rcIdsForTitle, $rcIdsForPage ), $batchSize );
-			foreach ( $rcIdBatches as $rcIdBatch ) {
-				$dbw->delete( 'recentchanges', [ 'rc_id' => $rcIdBatch ], __METHOD__ );
-				if ( count( $rcIdBatches ) > 1 ) {
-					$lbFactory->commitAndWaitForReplication(
-						__METHOD__, $this->ticket, [ 'wiki' => $dbw->getWikiID() ]
-					);
-				}
+		// Find recentchanges entries to clean up...
+		$rcIdsForTitle = $dbw->selectFieldValues(
+			'recentchanges',
+			'rc_id',
+			[
+				'rc_type != ' . RC_LOG,
+				'rc_namespace' => $title->getNamespace(),
+				'rc_title' => $title->getDBkey(),
+				'rc_timestamp < ' .
+					$dbw->addQuotes( $dbw->timestamp( $this->timestamp ) )
+			],
+			__METHOD__
+		);
+		$rcIdsForPage = $dbw->selectFieldValues(
+			'recentchanges',
+			'rc_id',
+			[ 'rc_type != ' . RC_LOG, 'rc_cur_id' => $id ],
+			__METHOD__
+		);
+
+		// T98706: delete by PK to avoid lock contention with RC delete log insertions
+		$rcIdBatches = array_chunk( array_merge( $rcIdsForTitle, $rcIdsForPage ), $batchSize );
+		foreach ( $rcIdBatches as $rcIdBatch ) {
+			$dbw->delete( 'recentchanges', [ 'rc_id' => $rcIdBatch ], __METHOD__ );
+			if ( count( $rcIdBatches ) > 1 ) {
+				$lbFactory->commitAndWaitForReplication(
+					__METHOD__, $this->ticket, [ 'wiki' => $dbw->getWikiID() ]
+				);
 			}
 		}
 
