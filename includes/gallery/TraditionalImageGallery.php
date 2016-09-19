@@ -238,8 +238,8 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	}
 
 	/**
-	 * How much padding such the thumb have between image and inner div that
-	 * that contains the border. This is both for verical and horizontal
+	 * How much padding the thumb has between the image and the inner div
+	 * that contains the border. This is for both vertical and horizontal
 	 * padding. (However, it is cut in half in the vertical direction).
 	 * @return int
 	 */
