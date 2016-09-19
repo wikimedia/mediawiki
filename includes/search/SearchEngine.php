@@ -267,36 +267,59 @@ abstract class SearchEngine {
 
 	/**
 	 * Parse some common prefixes: all (search everything)
-	 * or namespace names
+	 * or namespace names and set the list of namespaces
+	 * of this class accordingly.
 	 *
 	 * @param string $query
 	 * @return string
 	 */
 	function replacePrefixes( $query ) {
+		$queryAndNs = self::parseNamespacePrefixes( $query, $this->namespaces );
+		if ( $queryAndNs === null ) {
+			return $query;
+		}
+		$this->namespaces = $queryAndNs[1];
+		return $queryAndNs[0];
+	}
+
+	/**
+	 * Parse some common prefixes: all (search everything)
+	 * or namespace names
+	 *
+	 * @param string $query
+	 * @param array|null $defaultNamespace default list of namespaces to return when the parsed query contains
+	 * invalid namespaces, defaults to [ NS_MAIN ].
+	 * @return false|array false is no namespace was extracted, an array with the parsed query at index 0
+	 * and an array of namespaces at index 1 (where null means all namespaces).
+	 */
+	public static function parseNamespacePrefixes( $query, $defaultNamespaces = [ NS_MAIN ] ) {
 		global $wgContLang;
 
 		$parsed = $query;
 		if ( strpos( $query, ':' ) === false ) { // nothing to do
-			return $parsed;
+			return false;
 		}
+		$extractedNamespace = $defaultNamespaces;
 
 		$allkeyword = wfMessage( 'searchall' )->inContentLanguage()->text() . ":";
 		if ( strncmp( $query, $allkeyword, strlen( $allkeyword ) ) == 0 ) {
-			$this->namespaces = null;
+			$extractedNamespace = null;
 			$parsed = substr( $query, strlen( $allkeyword ) );
 		} elseif ( strpos( $query, ':' ) !== false ) {
+			// TODO: should we unify with PrefixSearch::extractNamespace ?
 			$prefix = str_replace( ' ', '_', substr( $query, 0, strpos( $query, ':' ) ) );
 			$index = $wgContLang->getNsIndex( $prefix );
 			if ( $index !== false ) {
-				$this->namespaces = [ $index ];
+				$extractedNamespace = [ $index ];
 				$parsed = substr( $query, strlen( $prefix ) + 1 );
 			}
 		}
+
 		if ( trim( $parsed ) == '' ) {
 			$parsed = $query; // prefix was the whole query
 		}
 
-		return $parsed;
+		return [ $parsed, $extractedNamespace ];
 	}
 
 	/**
