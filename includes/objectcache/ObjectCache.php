@@ -183,8 +183,25 @@ class ObjectCache {
 			$params['reportDupes'] = isset( $params['reportDupes'] )
 				? $params['reportDupes']
 				: true;
+			// Do b/c logic for SqlBagOStuff
+			if ( is_subclass_of( $class, SqlBagOStuff::class ) ) {
+				if ( isset( $params['server'] ) && !isset( $params['servers'] ) ) {
+					$params['servers'] = [ $params['server'] ];
+					unset( $param['server'] );
+				}
+				// In the past it was not required to set 'dbDirectory' in $wgObjectCaches
+				if ( isset( $params['servers'] ) ) {
+					foreach ( $params['servers'] as &$server ) {
+						if ( $server['type'] === 'sqlite' && !isset( $server['dbDirectory'] ) ) {
+							$server['dbDirectory'] = MediaWikiServices::getInstance()
+								->getMainConfig()->get( 'SQLiteDataDir' );
+						}
+					}
+				}
+			}
+
 			// Do b/c logic for MemcachedBagOStuff
-			if ( is_subclass_of( $class, 'MemcachedBagOStuff' ) ) {
+			if ( is_subclass_of( $class, MemcachedBagOStuff::class ) ) {
 				if ( !isset( $params['servers'] ) ) {
 					$params['servers'] = $GLOBALS['wgMemCachedServers'];
 				}
