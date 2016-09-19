@@ -2692,7 +2692,7 @@ class LocalFileRestoreBatch {
 				// Even if some files could be copied, fail entirely as that is the
 				// easiest thing to do without data loss
 				$this->cleanupFailedBatch( $storeStatus, $storeBatch );
-				$status->ok = false;
+				$status->setOK( false );
 				$this->file->unlock();
 
 				return $status;
@@ -2952,7 +2952,7 @@ class LocalFileMoveBatch {
 		if ( !$statusDb->isGood() ) {
 			$destFile->unlock();
 			$this->file->unlock();
-			$statusDb->ok = false;
+			$statusDb->setOK( false );
 
 			return $statusDb;
 		}
@@ -2971,7 +2971,7 @@ class LocalFileMoveBatch {
 				$this->file->unlock();
 				wfDebugLog( 'imagemove', "Error in moving files: "
 					. $statusMove->getWikiText( false, false, 'en' ) );
-				$statusMove->ok = false;
+				$statusMove->setOK( false );
 
 				return $statusMove;
 			}

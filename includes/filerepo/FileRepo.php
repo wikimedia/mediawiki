@@ -825,7 +825,7 @@ class FileRepo {
 
 		$status = $this->storeBatch( [ [ $srcPath, $dstZone, $dstRel ] ], $flags );
 		if ( $status->successCount == 0 ) {
-			$status->ok = false;
+			$status->setOK( false );
 		}
 
 		return $status;
@@ -1166,7 +1166,7 @@ class FileRepo {
 		$status = $this->publishBatch(
 			[ [ $src, $dstRel, $archiveRel, $options ] ], $flags );
 		if ( $status->successCount == 0 ) {
-			$status->ok = false;
+			$status->setOK( false );
 		}
 		if ( isset( $status->value[0] ) ) {
 			$status->value = $status->value[0];

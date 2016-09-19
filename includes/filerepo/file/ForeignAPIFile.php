@@ -344,9 +344,6 @@ class ForeignAPIFile extends File {
 		return $files;
 	}
 
-	/**
-	 * @see File::purgeCache()
-	 */
 	function purgeCache( $options = [] ) {
 		$this->purgeThumbnails( $options );
 		$this->purgeDescriptionPage();
