@@ -48,15 +48,20 @@ class TempFSFile extends FSFile {
 	 * Temporary files may be purged when the file object falls out of scope.
 	 *
 	 * @param string $prefix
-	 * @param string $extension
+	 * @param string $extension Optional file extension
+	 * @param string|null $tmpDirectory Optional parent directory
 	 * @return TempFSFile|null
 	 */
-	public static function factory( $prefix, $extension = '' ) {
+	public static function factory( $prefix, $extension = '', $tmpDirectory = null ) {
 		$ext = ( $extension != '' ) ? ".{$extension}" : '';
 
 		$attempts = 5;
 		while ( $attempts-- ) {
-			$path = wfTempDir() . '/' . $prefix . wfRandomString( 12 ) . $ext;
+			$hex = sprintf( '%06x%06x', mt_rand( 0, 0xffffff ), mt_rand( 0, 0xffffff ) );
+			if ( !is_string( $tmpDirectory ) ) {
+				$tmpDirectory = self::getUsableTempDirectory();
+			}
+			$path = wfTempDir() . '/' . $prefix . $hex . $ext;
 			MediaWiki\suppressWarnings();
 			$newFileHandle = fopen( $path, 'x' );
 			MediaWiki\restoreWarnings();
@@ -71,6 +76,40 @@ class TempFSFile extends FSFile {
 
 		// Give up
 		return null;
+	}
+
+	/**
+	 * @return string Filesystem path to a temporary directory
+	 * @throws RuntimeException
+	 */
+	public static function getUsableTempDirectory() {
+		$tmpDir = array_map( 'getenv', [ 'TMPDIR', 'TMP', 'TEMP' ] );
+		$tmpDir[] = sys_get_temp_dir();
+		$tmpDir[] = ini_get( 'upload_tmp_dir' );
+		foreach ( $tmpDir as $tmp ) {
+			if ( $tmp != '' && is_dir( $tmp ) && is_writable( $tmp ) ) {
+				return $tmp;
+			}
+		}
+
+		// PHP on Windows will detect C:\Windows\Temp as not writable even though PHP can write to
+		// it so create a directory within that called 'mwtmp' with a suffix of the user running
+		// the current process.
+		// The user is included as if various scripts are run by different users they will likely
+		// not be able to access each others temporary files.
+		if ( strtoupper( substr( PHP_OS, 0, 3 ) ) === 'WIN' ) {
+			$tmp = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'mwtmp-' . get_current_user();
+			if ( !file_exists( $tmp ) ) {
+				mkdir( $tmp );
+			}
+			if ( is_dir( $tmp ) && is_writable( $tmp ) ) {
+				return $tmp;
+			}
+		}
+
+		throw new RuntimeException(
+			'No writable temporary directory could be found. ' .
+			'Please explicitly specify a writable directory in configuration.' );
 	}
 
 	/**

@@ -50,15 +50,11 @@ class MockFSFile extends FSFile {
 		return wfTimestamp( TS_MW );
 	}
 
-	public function getMimeType() {
-		return 'text/mock';
-	}
-
 	public function getProps( $ext = true ) {
 		return [
 			'fileExists' => $this->exists(),
 			'size' => $this->getSize(),
-			'file-mime' => $this->getMimeType(),
+			'file-mime' => 'text/mock',
 			'sha1' => $this->getSha1Base36(),
 		];
 	}

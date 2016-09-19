@@ -86,15 +86,6 @@ class FSFile {
 	}
 
 	/**
-	 * Guess the MIME type from the file contents alone
-	 *
-	 * @return string
-	 */
-	public function getMimeType() {
-		return MimeMagic::singleton()->guessMimeType( $this->path, false );
-	}
-
-	/**
 	 * Get an associative array containing information about
 	 * a file with the given storage path.
 	 *
@@ -117,8 +108,6 @@ class FSFile {
 	 * @return array
 	 */
 	public function getProps( $ext = true ) {
-		wfDebug( __METHOD__ . ": Getting file info for $this->path\n" );
-
 		$info = self::placeholderProps();
 		$info['fileExists'] = $this->exists();
 
@@ -131,7 +120,7 @@ class FSFile {
 			}
 
 			# MIME type according to file contents
-			$info['file-mime'] = $this->getMimeType();
+			$info['file-mime'] = $magic->guessMimeType( $this->path, false );
 			# logical MIME type
 			$info['mime'] = $magic->improveTypeFromExtension( $info['file-mime'], $ext );
 
@@ -145,17 +134,15 @@ class FSFile {
 			$handler = MediaHandler::getHandler( $info['mime'] );
 			if ( $handler ) {
 				$tempImage = (object)[]; // XXX (hack for File object)
+				/** @noinspection PhpParamsInspection */
 				$info['metadata'] = $handler->getMetadata( $tempImage, $this->path );
+				/** @noinspection PhpParamsInspection */
 				$gis = $handler->getImageSize( $tempImage, $this->path, $info['metadata'] );
 				if ( is_array( $gis ) ) {
 					$info = $this->extractImageSizeInfo( $gis ) + $info;
 				}
 			}
 			$info['sha1'] = $this->getSha1Base36();
-
-			wfDebug( __METHOD__ . ": $this->path loaded, {$info['size']} bytes, {$info['mime']}.\n" );
-		} else {
-			wfDebug( __METHOD__ . ": $this->path NOT FOUND!\n" );
 		}
 
 		return $info;
