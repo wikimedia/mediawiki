@@ -848,7 +848,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		// Create a live connection object
 		try {
-			$db = DatabaseBase::factory( $server['type'], $server );
+			$db = Database::factory( $server['type'], $server );
 		} catch ( DBConnectionError $e ) {
 			// FIXME: This is probably the ugliest thing I have ever done to
 			// PHP. I'm half-expecting it to segfault, just out of disgust. -- TS
