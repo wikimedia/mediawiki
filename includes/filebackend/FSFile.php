@@ -112,37 +112,30 @@ class FSFile {
 		$info['fileExists'] = $this->exists();
 
 		if ( $info['fileExists'] ) {
+			$info['size'] = $this->getSize(); // bytes
+			$info['sha1'] = $this->getSha1Base36();
+			// @TODO: replace the code below with bare FileInfo use so this can go in /libs
 			$magic = MimeMagic::singleton();
-
-			# get the file extension
-			if ( $ext === true ) {
-				$ext = self::extensionFromPath( $this->path );
-			}
 
 			# MIME type according to file contents
 			$info['file-mime'] = $magic->guessMimeType( $this->path, false );
-			# logical MIME type
+			# Logical MIME type
+			$ext = ( $ext === true ) ? FileBackend::extensionFromPath( $this->path ) : $ext;
 			$info['mime'] = $magic->improveTypeFromExtension( $info['file-mime'], $ext );
 
 			list( $info['major_mime'], $info['minor_mime'] ) = File::splitMime( $info['mime'] );
 			$info['media_type'] = $magic->getMediaType( $this->path, $info['mime'] );
 
-			# Get size in bytes
-			$info['size'] = $this->getSize();
-
 			# Height, width and metadata
 			$handler = MediaHandler::getHandler( $info['mime'] );
 			if ( $handler ) {
-				$tempImage = (object)[]; // XXX (hack for File object)
-				/** @noinspection PhpParamsInspection */
-				$info['metadata'] = $handler->getMetadata( $tempImage, $this->path );
-				/** @noinspection PhpParamsInspection */
-				$gis = $handler->getImageSize( $tempImage, $this->path, $info['metadata'] );
+				$info['metadata'] = $handler->getMetadata( $this, $this->path );
+				/** @noinspection PhpMethodParametersCountMismatchInspection */
+				$gis = $handler->getImageSize( $this, $this->path, $info['metadata'] );
 				if ( is_array( $gis ) ) {
 					$info = $this->extractImageSizeInfo( $gis ) + $info;
 				}
 			}
-			$info['sha1'] = $this->getSha1Base36();
 		}
 
 		return $info;
