@@ -1539,9 +1539,15 @@ class FileRepo {
 	 * @return array
 	 */
 	public function getFileProps( $virtualUrl ) {
-		$path = $this->resolveToStoragePath( $virtualUrl );
+		$fsFile = $this->getLocalReference( $virtualUrl );
+		if ( $fsFile ) {
+			$mwProps = new MWFileProps( MimeMagic::singleton() );
+			$props = $mwProps->getPropsFromPath( $fsFile->getPath(), true );
+		} else {
+			$props = FSFile::placeholderProps();
+		}
 
-		return $this->backend->getFileProps( [ 'src' => $path ] );
+		return $props;
 	}
 
 	/**

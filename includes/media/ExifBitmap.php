@@ -165,7 +165,7 @@ class ExifBitmapHandler extends BitmapHandler {
 	 * Wrapper for base classes ImageHandler::getImageSize() that checks for
 	 * rotation reported from metadata and swaps the sizes to match.
 	 *
-	 * @param File $image
+	 * @param File|FSFile $image
 	 * @param string $path
 	 * @return array
 	 */
