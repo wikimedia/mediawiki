@@ -373,6 +373,88 @@ class MimeMagic {
 	}
 
 	/**
+	 * Get an associative array containing information about
+	 * a file with the given storage path.
+	 *
+	 * Resulting array fields include:
+	 *   - fileExists
+	 *   - size (filesize in bytes)
+	 *   - mime (as major/minor)
+	 *   - media_type (value to be used with the MEDIATYPE_xxx constants)
+	 *   - metadata (handler specific)
+	 *   - sha1 (in base 36)
+	 *   - width
+	 *   - height
+	 *   - bits (bitrate)
+	 *   - file-mime
+	 *   - major_mime
+	 *   - minor_mime
+	 *
+	 * @param string $path Filesystem path to a file
+	 * @param string|bool $ext The file extension, or true to extract it from the filename.
+	 *             Set it to false to ignore the extension.
+	 * @return array
+	 * @since 1.28
+	 */
+	public function getPropsFromPath( $path, $ext ) {
+		$fsFile = new FSFile( $path );
+		$info = $fsFile->getProps( $ext );
+
+		if ( $info['fileExists'] ) {
+			// Enhance FSFile's mime type detection
+			$path = $fsFile->getPath();
+			$magic = MimeMagic::singleton();
+
+			if ( $ext === true ) {
+				$ext = FileBackend::extensionFromPath( $path );
+			}
+
+			# MIME type according to file contents
+			$info['file-mime'] = $magic->guessMimeType( $path, false );
+			# logical MIME type
+			$info['mime'] = $magic->improveTypeFromExtension( $info['file-mime'], $ext );
+
+			list( $info['major_mime'], $info['minor_mime'] ) = File::splitMime( $info['mime'] );
+			$info['media_type'] = $magic->getMediaType( $path, $info['mime'] );
+
+			# Height, width and metadata
+			$handler = MediaHandler::getHandler( $info['mime'] );
+			if ( $handler ) {
+				$tempImage = (object)[]; // XXX (hack for File object)
+				/** @noinspection PhpParamsInspection */
+				$info['metadata'] = $handler->getMetadata( $tempImage, $path );
+				/** @noinspection PhpParamsInspection */
+				$gis = $handler->getImageSize( $tempImage, $path, $info['metadata'] );
+				if ( is_array( $gis ) ) {
+					$info = $this->extractImageSizeInfo( $gis ) + $info;
+				}
+			}
+		}
+
+		return $info;
+	}
+
+	/**
+	 * Exract image size information
+	 *
+	 * @param array $gis
+	 * @return array
+	 */
+	protected function extractImageSizeInfo( array $gis ) {
+		$info = [];
+		# NOTE: $gis[2] contains a code for the image type. This is no longer used.
+		$info['width'] = $gis[0];
+		$info['height'] = $gis[1];
+		if ( isset( $gis['bits'] ) ) {
+			$info['bits'] = $gis['bits'];
+		} else {
+			$info['bits'] = 0;
+		}
+
+		return $info;
+	}
+
+	/**
 	 * Adds to the list mapping MIME to file extensions.
 	 * As an extension author, you are encouraged to submit patches to
 	 * MediaWiki's core to add new MIME types to mime.types.
@@ -1046,6 +1128,7 @@ class MimeMagic {
 			}
 		}
 
+		$type = null;
 		// Check for entry for full MIME type
 		if ( $mime ) {
 			$type = $this->findMediaType( $mime );

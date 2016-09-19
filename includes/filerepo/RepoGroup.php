@@ -451,7 +451,7 @@ class RepoGroup {
 
 			return $repo->getFileProps( $fileName );
 		} else {
-			return FSFile::getPropsFromPath( $fileName );
+			return MimeMagic::singleton()->getPropsFromPath( $fileName, true );
 		}
 	}
 
