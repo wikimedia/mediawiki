@@ -334,8 +334,7 @@ abstract class DatabaseInstaller {
 
 		$connection = $status->value;
 		$services->redefineService( 'DBLoadBalancerFactory', function() use ( $connection ) {
-			return new LBFactorySingle( [
-				'connection' => $connection ] );
+			return LBFactorySingle::newFromConnection( $connection );
 		} );
 
 	}
