@@ -319,6 +319,7 @@ EOT;
 		'type' => 'sqlite',
 		'dbname' => 'wikicache',
 		'tablePrefix' => '',
+		'dbDirectory' => \$wgSQLiteDataDir,
 		'flags' => 0
 	]
 ];";
