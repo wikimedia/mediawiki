@@ -130,7 +130,7 @@ class UploadFromChunks extends UploadFromFile {
 		// Get the file extension from the last chunk
 		$ext = FileBackend::extensionFromPath( $this->mVirtualTempPath );
 		// Get a 0-byte temp file to perform the concatenation at
-		$tmpFile = TempFSFile::factory( 'chunkedupload_', $ext );
+		$tmpFile = TempFSFile::factory( 'chunkedupload_', $ext, wfTempDir() );
 		$tmpPath = false; // fail in concatenate()
 		if ( $tmpFile ) {
 			// keep alive with $this
