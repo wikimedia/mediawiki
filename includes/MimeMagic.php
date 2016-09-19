@@ -863,10 +863,8 @@ class MimeMagic {
 			$mime = "application/x-opc+zip";
 			# TODO: remove the block below, as soon as improveTypeFromExtension is used everywhere
 			if ( $ext !== true && $ext !== false ) {
-				/** This is the mode used by getPropsFromPath
-				 * These MIME's are stored in the database, where we don't really want
-				 * x-opc+zip, because we use it only for internal purposes
-				 */
+				// These MIME's are stored in the database, where we don't really want
+				// x-opc+zip, because we use it only for internal purposes
 				if ( $this->isMatchingExtension( $ext, $mime ) ) {
 					/* A known file extension for an OPC file,
 					 * find the proper mime type for that file extension

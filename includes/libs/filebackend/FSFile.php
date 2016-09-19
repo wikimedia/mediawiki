@@ -93,18 +93,13 @@ class FSFile {
 	 *   - fileExists
 	 *   - size (filesize in bytes)
 	 *   - mime (as major/minor)
-	 *   - media_type (value to be used with the MEDIATYPE_xxx constants)
-	 *   - metadata (handler specific)
+	 *   - file-mime (as major/minor)
 	 *   - sha1 (in base 36)
-	 *   - width
-	 *   - height
-	 *   - bits (bitrate)
-	 *   - file-mime
 	 *   - major_mime
 	 *   - minor_mime
 	 *
 	 * @param string|bool $ext The file extension, or true to extract it from the filename.
-	 *             Set it to false to ignore the extension.
+	 *             Set it to false to ignore the extension. Currently unused.
 	 * @return array
 	 */
 	public function getProps( $ext = true ) {
@@ -114,27 +109,17 @@ class FSFile {
 		if ( $info['fileExists'] ) {
 			$info['size'] = $this->getSize(); // bytes
 			$info['sha1'] = $this->getSha1Base36();
-			// @TODO: replace the code below with bare FileInfo use so this can go in /libs
-			$magic = MimeMagic::singleton();
 
+			$mime = mime_content_type( $this->path );
 			# MIME type according to file contents
-			$info['file-mime'] = $magic->guessMimeType( $this->path, false );
-			# Logical MIME type
-			$ext = ( $ext === true ) ? FileBackend::extensionFromPath( $this->path ) : $ext;
-			$info['mime'] = $magic->improveTypeFromExtension( $info['file-mime'], $ext );
+			$info['file-mime'] = ( $mime === false ) ? 'unknown/unknown' : $mime;
+			# logical MIME type
+			$info['mime'] = $mime;
 
-			list( $info['major_mime'], $info['minor_mime'] ) = File::splitMime( $info['mime'] );
-			$info['media_type'] = $magic->getMediaType( $this->path, $info['mime'] );
-
-			# Height, width and metadata
-			$handler = MediaHandler::getHandler( $info['mime'] );
-			if ( $handler ) {
-				$info['metadata'] = $handler->getMetadata( $this, $this->path );
-				/** @noinspection PhpMethodParametersCountMismatchInspection */
-				$gis = $handler->getImageSize( $this, $this->path, $info['metadata'] );
-				if ( is_array( $gis ) ) {
-					$info = $this->extractImageSizeInfo( $gis ) + $info;
-				}
+			if ( strpos( $mime, '/' ) !== false ) {
+				list( $info['major_mime'], $info['minor_mime'] ) = explode( '/', $mime, 2 );
+			} else {
+				list( $info['major_mime'], $info['minor_mime'] ) = [ $mime, 'unknown' ];
 			}
 		}
 
@@ -146,17 +131,12 @@ class FSFile {
 	 *
 	 * Resulting array fields include:
 	 *   - fileExists
-	 *   - size
-	 *   - file-mime (as major/minor)
+	 *   - size (filesize in bytes)
 	 *   - mime (as major/minor)
+	 *   - file-mime (as major/minor)
+	 *   - sha1 (in base 36)
 	 *   - major_mime
 	 *   - minor_mime
-	 *   - media_type (value to be used with the MEDIATYPE_xxx constants)
-	 *   - metadata (handler specific)
-	 *   - sha1 (in base 36)
-	 *   - width
-	 *   - height
-	 *   - bits (bitrate)
 	 *
 	 * @return array
 	 */
@@ -168,12 +148,8 @@ class FSFile {
 		$info['major_mime'] = null;
 		$info['minor_mime'] = null;
 		$info['mime'] = null;
-		$info['media_type'] = MEDIATYPE_UNKNOWN;
 		$info['metadata'] = '';
 		$info['sha1'] = '';
-		$info['width'] = 0;
-		$info['height'] = 0;
-		$info['bits'] = 0;
 
 		return $info;
 	}
