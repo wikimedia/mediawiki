@@ -179,6 +179,15 @@ class SqlBagOStuff extends BagOStuff {
 				$info = $this->serverInfos[$serverIndex];
 				$type = isset( $info['type'] ) ? $info['type'] : 'mysql';
 				$host = isset( $info['host'] ) ? $info['host'] : '[unknown]';
+
+				// b/c: In the past it was not required to set 'dbDirectory' in the
+				// $wgObjectCaches definitions.
+				if ( $info['type'] === 'sqlite' && !isset( $info['dbDirectory'] ) ) {
+					// XXX: Log a warning?
+					$dir = MediaWikiServices::getInstance()->getMainConfig()->get( 'SQLiteDataDir' );
+					$info['dbDirectory'] = $dir;
+				}
+
 				$this->logger->debug( __CLASS__ . ": connecting to $host" );
 				// Use a blank trx profiler to ignore expections as this is a cache
 				$info['trxProfiler'] = new TransactionProfiler();
