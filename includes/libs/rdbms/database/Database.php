@@ -1163,7 +1163,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		}
 		if ( isset( $options['HAVING'] ) ) {
 			$having = is_array( $options['HAVING'] )
-				? $this->makeList( $options['HAVING'], LIST_AND )
+				? $this->makeList( $options['HAVING'], self::LIST_AND )
 				: $options['HAVING'];
 			$sql .= ' HAVING ' . $having;
 		}
@@ -1233,7 +1233,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 
 		if ( !empty( $conds ) ) {
 			if ( is_array( $conds ) ) {
-				$conds = $this->makeList( $conds, LIST_AND );
+				$conds = $this->makeList( $conds, self::LIST_AND );
 			}
 			$sql = "SELECT $startOpts $vars $from $useIndex $ignoreIndex WHERE $conds $preLimitTail";
 		} else {
@@ -1467,16 +1467,16 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	function update( $table, $values, $conds, $fname = __METHOD__, $options = [] ) {
 		$table = $this->tableName( $table );
 		$opts = $this->makeUpdateOptions( $options );
-		$sql = "UPDATE $opts $table SET " . $this->makeList( $values, LIST_SET );
+		$sql = "UPDATE $opts $table SET " . $this->makeList( $values, self::LIST_SET );
 
 		if ( $conds !== [] && $conds !== '*' ) {
-			$sql .= " WHERE " . $this->makeList( $conds, LIST_AND );
+			$sql .= " WHERE " . $this->makeList( $conds, self::LIST_AND );
 		}
 
 		return $this->query( $sql, $fname );
 	}
 
-	public function makeList( $a, $mode = LIST_COMMA ) {
+	public function makeList( $a, $mode = self::LIST_COMMA ) {
 		if ( !is_array( $a ) ) {
 			throw new DBUnexpectedError( $this, __METHOD__ . ' called with incorrect parameters' );
 		}
@@ -1486,9 +1486,9 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 
 		foreach ( $a as $field => $value ) {
 			if ( !$first ) {
-				if ( $mode == LIST_AND ) {
+				if ( $mode == self::LIST_AND ) {
 					$list .= ' AND ';
-				} elseif ( $mode == LIST_OR ) {
+				} elseif ( $mode == self::LIST_OR ) {
 					$list .= ' OR ';
 				} else {
 					$list .= ',';
@@ -1497,11 +1497,13 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 				$first = false;
 			}
 
-			if ( ( $mode == LIST_AND || $mode == LIST_OR ) && is_numeric( $field ) ) {
+			if ( ( $mode == self::LIST_AND || $mode == self::LIST_OR ) && is_numeric( $field ) ) {
 				$list .= "($value)";
-			} elseif ( ( $mode == LIST_SET ) && is_numeric( $field ) ) {
+			} elseif ( $mode == self::LIST_SET && is_numeric( $field ) ) {
 				$list .= "$value";
-			} elseif ( ( $mode == LIST_AND || $mode == LIST_OR ) && is_array( $value ) ) {
+			} elseif (
+				( $mode == self::LIST_AND || $mode == self::LIST_OR ) && is_array( $value )
+			) {
 				// Remove null from array to be handled separately if found
 				$includeNull = false;
 				foreach ( array_keys( $value, null, true ) as $nullKey ) {
@@ -1509,7 +1511,8 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 					unset( $value[$nullKey] );
 				}
 				if ( count( $value ) == 0 && !$includeNull ) {
-					throw new InvalidArgumentException( __METHOD__ . ": empty input for field $field" );
+					throw new InvalidArgumentException(
+						__METHOD__ . ": empty input for field $field" );
 				} elseif ( count( $value ) == 0 ) {
 					// only check if $field is null
 					$list .= "$field IS NULL";
@@ -1534,17 +1537,19 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 					}
 				}
 			} elseif ( $value === null ) {
-				if ( $mode == LIST_AND || $mode == LIST_OR ) {
+				if ( $mode == self::LIST_AND || $mode == self::LIST_OR ) {
 					$list .= "$field IS ";
-				} elseif ( $mode == LIST_SET ) {
+				} elseif ( $mode == self::LIST_SET ) {
 					$list .= "$field = ";
 				}
 				$list .= 'NULL';
 			} else {
-				if ( $mode == LIST_AND || $mode == LIST_OR || $mode == LIST_SET ) {
+				if (
+					$mode == self::LIST_AND || $mode == self::LIST_OR || $mode == self::LIST_SET
+				) {
 					$list .= "$field = ";
 				}
-				$list .= $mode == LIST_NAMES ? $value : $this->addQuotes( $value );
+				$list .= $mode == self::LIST_NAMES ? $value : $this->addQuotes( $value );
 			}
 		}
 
@@ -1558,12 +1563,12 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 			if ( count( $sub ) ) {
 				$conds[] = $this->makeList(
 					[ $baseKey => $base, $subKey => array_keys( $sub ) ],
-					LIST_AND );
+					self::LIST_AND );
 			}
 		}
 
 		if ( $conds ) {
-			return $this->makeList( $conds, LIST_OR );
+			return $this->makeList( $conds, self::LIST_OR );
 		} else {
 			// Nothing to search for...
 			return false;
@@ -1884,7 +1889,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 						$tableClause .= ' ' . $ignore;
 					}
 				}
-				$on = $this->makeList( (array)$conds, LIST_AND );
+				$on = $this->makeList( (array)$conds, self::LIST_AND );
 				if ( $on != '' ) {
 					$tableClause .= ' ON (' . $on . ')';
 				}
@@ -2153,10 +2158,10 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 					foreach ( $index as $column ) {
 						$rowKey[$column] = $row[$column];
 					}
-					$clauses[] = $this->makeList( $rowKey, LIST_AND );
+					$clauses[] = $this->makeList( $rowKey, self::LIST_AND );
 				}
 			}
-			$where = [ $this->makeList( $clauses, LIST_OR ) ];
+			$where = [ $this->makeList( $clauses, self::LIST_OR ) ];
 		} else {
 			$where = false;
 		}
@@ -2198,7 +2203,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		$joinTable = $this->tableName( $joinTable );
 		$sql = "DELETE FROM $delTable WHERE $delVar IN (SELECT $joinVar FROM $joinTable ";
 		if ( $conds != '*' ) {
-			$sql .= 'WHERE ' . $this->makeList( $conds, LIST_AND );
+			$sql .= 'WHERE ' . $this->makeList( $conds, self::LIST_AND );
 		}
 		$sql .= ')';
 
@@ -2239,7 +2244,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 
 		if ( $conds != '*' ) {
 			if ( is_array( $conds ) ) {
-				$conds = $this->makeList( $conds, LIST_AND );
+				$conds = $this->makeList( $conds, self::LIST_AND );
 			}
 			$sql .= ' WHERE ' . $conds;
 		}
@@ -2317,7 +2322,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 
 		if ( $conds != '*' ) {
 			if ( is_array( $conds ) ) {
-				$conds = $this->makeList( $conds, LIST_AND );
+				$conds = $this->makeList( $conds, self::LIST_AND );
 			}
 			$sql .= " WHERE $conds";
 		}
@@ -2368,7 +2373,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 
 	public function conditional( $cond, $trueVal, $falseVal ) {
 		if ( is_array( $cond ) ) {
-			$cond = $this->makeList( $cond, LIST_AND );
+			$cond = $this->makeList( $cond, self::LIST_AND );
 		}
 
 		return " (CASE WHEN $cond THEN $trueVal ELSE $falseVal END) ";

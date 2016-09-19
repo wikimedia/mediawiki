@@ -22,14 +22,3 @@ define( 'DBO_COMPRESS', 512 );
 define( 'DB_REPLICA', -1 );     # Read from a replica (or only server)
 define( 'DB_MASTER', -2 );    # Write to master (or only server)
 /**@}*/
-
-/**@{
- * Flags for IDatabase::makeList()
- * These are also available as Database class constants
- */
-define( 'LIST_COMMA', 0 );
-define( 'LIST_AND', 1 );
-define( 'LIST_SET', 2 );
-define( 'LIST_NAMES', 3 );
-define( 'LIST_OR', 4 );
-/**@}*/
