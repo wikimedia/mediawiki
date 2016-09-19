@@ -2,7 +2,11 @@
 /**
  * MySQL version of DBLockManager that supports shared locks.
  *
- * All lock servers must have the innodb table defined in locking/filelocks.sql.
+ * Do NOT use this on connection handles that are also being used for anything
+ * else as the transaction isolation will be wrong and all the other changes will
+ * get rolled back when the locks release!
+ *
+ * All lock servers must have the innodb table defined in maintenance/locking/filelocks.sql.
  * All locks are non-blocking, which avoids deadlocks.
  *
  * @ingroup LockManager
@@ -46,7 +50,7 @@ class MySqlLockManager extends DBLockManager {
 			$keys[] = $key;
 			$data[] = [ 'fls_key' => $key, 'fls_session' => $this->session ];
 			if ( !isset( $this->locksHeld[$path][self::LOCK_EX] ) ) {
-				$checkEXKeys[] = $key;
+				$checkEXKeys[] = $key; // this has no EX lock on $key itself
 			}
 		}
 
@@ -54,13 +58,16 @@ class MySqlLockManager extends DBLockManager {
 		$db->insert( 'filelocks_shared', $data, __METHOD__, [ 'IGNORE' ] );
 		# Actually do the locking queries...
 		if ( $type == self::LOCK_SH ) { // reader locks
-			$blocked = false;
 			# Bail if there are any existing writers...
 			if ( count( $checkEXKeys ) ) {
-				$blocked = $db->selectField( 'filelocks_exclusive', '1',
+				$blocked = $db->selectField(
+					'filelocks_exclusive',
+					'1',
 					[ 'fle_key' => $checkEXKeys ],
 					__METHOD__
 				);
+			} else {
+				$blocked = false;
 			}
 			# Other prospective writers that haven't yet updated filelocks_exclusive
 			# will recheck filelocks_shared after doing so and bail due to this entry.
@@ -69,7 +76,9 @@ class MySqlLockManager extends DBLockManager {
 			# Bail if there are any existing writers...
 			# This may detect readers, but the safe check for them is below.
 			# Note: if two writers come at the same time, both bail :)
-			$blocked = $db->selectField( 'filelocks_shared', '1',
+			$blocked = $db->selectField(
+				'filelocks_shared',
+				'1',
 				[ 'fls_key' => $keys, "fls_session != $encSession" ],
 				__METHOD__
 			);
@@ -82,7 +91,9 @@ class MySqlLockManager extends DBLockManager {
 				# Block new readers/writers...
 				$db->insert( 'filelocks_exclusive', $data, __METHOD__ );
 				# Bail if there are any existing readers...
-				$blocked = $db->selectField( 'filelocks_shared', '1',
+				$blocked = $db->selectField(
+					'filelocks_shared',
+					'1',
 					[ 'fls_key' => $keys, "fls_session != $encSession" ],
 					__METHOD__
 				);
