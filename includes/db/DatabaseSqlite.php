@@ -59,10 +59,6 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @param array $p
 	 */
 	function __construct( array $p ) {
-		global $wgSQLiteDataDir;
-
-		$this->dbDir = isset( $p['dbDirectory'] ) ? $p['dbDirectory'] : $wgSQLiteDataDir;
-
 		if ( isset( $p['dbFilePath'] ) ) {
 			parent::__construct( $p );
 			// Standalone .sqlite file mode.
@@ -70,7 +66,10 @@ class DatabaseSqlite extends DatabaseBase {
 			// which is derived from the file path in this case.
 			$this->openFile( $p['dbFilePath'] );
 			$lockDomain = md5( $p['dbFilePath'] );
+		} elseif ( !isset( $p['dbDirectory'] ) ) {
+			throw new InvalidArgumentException( "Need 'dbDirectory' or 'dbFilePath' parameter." );
 		} else {
+			$this->dbDir = $p['dbDirectory'];
 			$this->mDBname = $p['dbname'];
 			$lockDomain = $this->mDBname;
 			// Stock wiki mode using standard file names per DB.
@@ -95,7 +94,7 @@ class DatabaseSqlite extends DatabaseBase {
 			!in_array( $this->trxMode, [ 'DEFERRED', 'IMMEDIATE', 'EXCLUSIVE' ] )
 		) {
 			$this->trxMode = null;
-			wfWarn( "Invalid SQLite transaction mode provided." );
+			$this->queryLogger->warning( "Invalid SQLite transaction mode provided." );
 		}
 
 		$this->lockMgr = new FSLockManager( [
@@ -183,7 +182,7 @@ class DatabaseSqlite extends DatabaseBase {
 		}
 
 		if ( !$this->mConn ) {
-			wfDebug( "DB connection error: $err\n" );
+			$this->queryLogger->debug( "DB connection error: $err\n" );
 			throw new DBConnectionError( $this, $err );
 		}
 
@@ -726,15 +725,6 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
-	 * @return string User-friendly database information
-	 */
-	public function getServerInfo() {
-		return wfMessage( self::getFulltextSearchModule()
-			? 'sqlite-has-fts'
-			: 'sqlite-no-fts', $this->getServerVersion() )->text();
-	}
-
-	/**
 	 * Get information about a given field
 	 * Returns false if the field does not exist.
 	 *
@@ -811,12 +801,11 @@ class DatabaseSqlite extends DatabaseBase {
 			// There is an additional bug regarding sorting this data after insert
 			// on older versions of sqlite shipped with ubuntu 12.04
 			// https://phabricator.wikimedia.org/T74367
-			wfDebugLog(
-				__CLASS__,
+			$this->queryLogger->debug(
 				__FUNCTION__ .
-					': Quoting value containing null byte. ' .
-					'For consistency all binary data should have been ' .
-					'first processed with self::encodeBlob()'
+				': Quoting value containing null byte. ' .
+				'For consistency all binary data should have been ' .
+				'first processed with self::encodeBlob()'
 			);
 			return "x'" . bin2hex( $s ) . "'";
 		} else {
@@ -977,7 +966,8 @@ class DatabaseSqlite extends DatabaseBase {
 		);
 		if ( $temporary ) {
 			if ( preg_match( '/^\\s*CREATE\\s+VIRTUAL\\s+TABLE\b/i', $sql ) ) {
-				wfDebug( "Table $oldName is virtual, can't create a temporary duplicate.\n" );
+				$this->queryLogger->debug(
+					"Table $oldName is virtual, can't create a temporary duplicate.\n" );
 			} else {
 				$sql = str_replace( 'CREATE TABLE', 'CREATE TEMPORARY TABLE', $sql );
 			}
