@@ -135,17 +135,18 @@ class RepoGroup {
 		}
 
 		# Check the cache
+		$dbkey = $title->getDBkey();
 		if ( empty( $options['ignoreRedirect'] )
 			&& empty( $options['private'] )
 			&& empty( $options['bypassCache'] )
 		) {
 			$time = isset( $options['time'] ) ? $options['time'] : '';
-			$dbkey = $title->getDBkey();
 			if ( $this->cache->has( $dbkey, $time, 60 ) ) {
 				return $this->cache->get( $dbkey, $time );
 			}
 			$useCache = true;
 		} else {
+			$time = false;
 			$useCache = false;
 		}
 
