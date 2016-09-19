@@ -3416,8 +3416,6 @@
 	"htmlform-title-not-exists": "$1 forefinnes ikke.",
 	"htmlform-user-not-exists": "<strong>$1</strong> eksisterer ikke.",
 	"htmlform-user-not-valid": "<strong>$1</strong> er ikke et gyldig brukernavn.",
-	"sqlite-has-fts": "$1 med støtte for fulltekstsøk",
-	"sqlite-no-fts": "$1 uten støtte for fulltekstsøk",
 	"logentry-delete-delete": "$1 {{GENDER:$2|slettet}} siden $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|gjenopprettet}} siden $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|endret}} synligheten av {{PLURAL:$5|en logghendelse|$5 logghendelser}} på $3: $4",

@@ -3343,8 +3343,6 @@
 	"htmlform-title-not-exists": "$1 neegzistuoja.",
 	"htmlform-user-not-exists": "<strong>$1</strong> neegzistuoja.",
 	"htmlform-user-not-valid": "<strong>$1</strong> nėra tinkamas naudotojo vardas.",
-	"sqlite-has-fts": "$1 su visatekstės paieškos palaikymu",
-	"sqlite-no-fts": "$1 be visatekstės paieškos palaikymo",
 	"logentry-delete-delete": "$1 {{GENDER:$2|ištrynė}} puslapį $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|atkūrė}} puslapį $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|pakeitė}} matomumą {{PLURAL:$5|žurnalo įvykio|$5 žurnalo įvykių}} $3: $4",

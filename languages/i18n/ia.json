@@ -3356,8 +3356,6 @@
 	"htmlform-title-not-exists": "$1 non existe.",
 	"htmlform-user-not-exists": "<strong>$1</strong> non existe.",
 	"htmlform-user-not-valid": "<strong>$1</strong> non es un nomine de usator valide.",
-	"sqlite-has-fts": "$1 con supporto de recerca de texto integre",
-	"sqlite-no-fts": "$1 sin supporto de recerca de texto integre",
 	"logentry-delete-delete": "$1 {{GENDER:$2|deleva}} le pagina $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|restaurava}} le pagina $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|cambiava}} le visibilitate de {{PLURAL:$5|un entrata|$5 entratas}} de registro in $3: $4",

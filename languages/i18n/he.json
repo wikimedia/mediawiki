@@ -3477,8 +3477,6 @@
 	"htmlform-title-not-exists": "$1 אינו קיים.",
 	"htmlform-user-not-exists": "<strong>$1</strong> אינו קיים.",
 	"htmlform-user-not-valid": "<strong>$1</strong> אינו שם משתמש תקין.",
-	"sqlite-has-fts": "$1 עם תמיכה בחיפוש בטקסט מלא",
-	"sqlite-no-fts": "$1 ללא תמיכה בחיפוש בטקסט מלא",
 	"logentry-delete-delete": "$1 {{GENDER:$2|מחק|מחקה}} את הדף $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|שחזר|שחזרה}} את הדף $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|שינה|שינתה}} את מצב התצוגה של {{PLURAL:$5|פעולת יומן|$5 פעולות יומן}} של $3: $4",

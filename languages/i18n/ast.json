@@ -3367,8 +3367,6 @@
 	"htmlform-title-not-exists": "$1 nun esiste.",
 	"htmlform-user-not-exists": "<strong>$1</strong> nun esiste.",
 	"htmlform-user-not-valid": "<strong>$1</strong> nun ye un nome d'usuariu válidu.",
-	"sqlite-has-fts": "$1 con sofitu pa busca de testu completu",
-	"sqlite-no-fts": "$1 ensin sofitu pa busca de testu completu",
 	"logentry-delete-delete": "$1 {{GENDER:$2|desanició}} la páxina $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|restauró}} la páxina $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|camudó}} la visibilidá {{PLURAL:$5|d'un socesu del rexistru|de $5 socesos del rexistru}} en $3: $4",

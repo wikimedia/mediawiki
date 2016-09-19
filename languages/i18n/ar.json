@@ -3533,8 +3533,6 @@
 	"htmlform-title-not-exists": "$1 غير موجود.",
 	"htmlform-user-not-exists": "<strong>$1</strong> غير موجود",
 	"htmlform-user-not-valid": "اسم المستخدم <strong>$1</strong> غير صالح.",
-	"sqlite-has-fts": "$1 بدعم البحث في كامل النص",
-	"sqlite-no-fts": "$1 بدون دعم البحث في كامل النص",
 	"logentry-delete-delete": "{{GENDER:$2|حذف|حذفت}} $1 صفحة $3",
 	"logentry-delete-restore": "{{GENDER:$2|استعاد|استعادت}} $1 صفحة $3",
 	"logentry-delete-event": "{{GENDER:$2|غيّر|غيّرت}} $1 إمكانية مشاهدة {{PLURAL:$5||حدث|حدثين|$5 أحداث|$5 حدثًا|$5 حدث}} في سجل $3: $4",

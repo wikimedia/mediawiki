@@ -3215,8 +3215,6 @@
 	"htmlform-title-not-exists": "$1 gëtt et net.",
 	"htmlform-user-not-exists": "<strong>$1</strong> gëtt et net.",
 	"htmlform-user-not-valid": "<strong>$1</strong> ass kee valabele Benotzernumm.",
-	"sqlite-has-fts": "$1 ënnerstëtzt d'Volltextsich",
-	"sqlite-no-fts": "$1 ënnerstëtzt d'Volltextsich net",
 	"logentry-delete-delete": "$1 {{GENDER:$2|huet}} d'Säit $3 geläscht",
 	"logentry-delete-restore": "$1 {{GENDER:$2|huet}} d'Säit $3 restauréiert",
 	"logentry-delete-event": "$1 huet d'Visibilitéit vun {{PLURAL:$5|engem Evenement|$5 Evenementer}} am Logbuch op $3:$4 {{GENDER:$2|geännert}}",

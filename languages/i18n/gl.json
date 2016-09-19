@@ -3378,8 +3378,6 @@
 	"htmlform-title-not-exists": "\"$1\" non existe.",
 	"htmlform-user-not-exists": "\"<strong>$1</strong>\" non existe.",
 	"htmlform-user-not-valid": "\"<strong>$1</strong>\" non é un nome de usuario válido.",
-	"sqlite-has-fts": "$1 con soporte para procuras de texto completo",
-	"sqlite-no-fts": "$1 sen soporte para procuras de texto completo",
 	"logentry-delete-delete": "$1 {{GENDER:$2|borrou}} a páxina \"$3\"",
 	"logentry-delete-restore": "$1 {{GENDER:$2|restaurou}} a páxina \"$3\"",
 	"logentry-delete-event": "$1 {{GENDER:$2|mudou}} a visibilidade {{PLURAL:$5|dunha entrada|de $5 entradas}} do rexistro de $3: $4",

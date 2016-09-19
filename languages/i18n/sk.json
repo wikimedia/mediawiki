@@ -3249,8 +3249,6 @@
 	"htmlform-cloner-create": "Pridať ďalšie",
 	"htmlform-cloner-delete": "Odstrániť",
 	"htmlform-cloner-required": "Je povinná najmenej jedna hodnota.",
-	"sqlite-has-fts": "$1 s podporou vyhľadávania v plnom texte",
-	"sqlite-no-fts": "$1 bez podpory vyhľadávania v plnom texte",
 	"logentry-delete-delete": "$1 zmazal stránku $3",
 	"logentry-delete-restore": "$1 obnovil stránku $3",
 	"logentry-delete-event": "$1 zmenil viditeľnosť {{PLURAL:$5|záznamu udalostí|$5 záznamov udalostí}} k stránke $3: $4",

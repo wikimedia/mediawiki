@@ -3338,8 +3338,6 @@
 	"htmlform-title-not-exists": "$1 a no l'existe.",
 	"htmlform-user-not-exists": "'''$1''' o no l'existe.",
 	"htmlform-user-not-valid": "<strong>$1</strong> o no l'è un nomme utente vallido.",
-	"sqlite-has-fts": "$1 co-a poscibilitæ de riçerca completa into testo",
-	"sqlite-no-fts": "$1 sença a poscibilitæ de riçerca completa into testo",
 	"logentry-delete-delete": "$1 {{GENDER:$2|o l'ha scassou}} a paggina $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|o|a}} l'ha ripristinou a paggina $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|o|a}} l'ha modificou a vixibilitæ de {{PLURAL:$5|un'açion do registro|$5 açioin do registro}} de \"$3\": $4",

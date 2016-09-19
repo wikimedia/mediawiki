@@ -3455,8 +3455,6 @@
 	"htmlform-title-not-exists": "$1 وجود ندارد.",
 	"htmlform-user-not-exists": "<strong>$1</strong> وجود ندارد.",
 	"htmlform-user-not-valid": "حساب کاربری <strong>$1</strong> معتبر نیست.",
-	"sqlite-has-fts": "$1 با پشتیبانی از جستجو در متن کامل",
-	"sqlite-no-fts": "$1 بدون پشتیبانی از جستجو در متن کامل",
 	"logentry-delete-delete": "$1 صفحهٔ $3 را {{GENDER:$2|حذف کرد}}",
 	"logentry-delete-restore": "$1 صفحهٔ $3 را {{GENDER:$2|احیا کرد}}",
 	"logentry-delete-event": "$1 پیدایی {{PLURAL:$5|یک مورد سیاهه|$5 مورد سیاهه}} را در $3 {{GENDER:$2|تغییر داد}}: $4",

@@ -2999,8 +2999,6 @@
 	"htmlform-cloner-create": "Ouzhpennañ muioc'h",
 	"htmlform-cloner-delete": "Dilemel",
 	"htmlform-cloner-required": "Un dalvoudenn a zo ret da vihanañ.",
-	"sqlite-has-fts": "$1 gant enklask eus an destenn a-bezh embreget",
-	"sqlite-no-fts": "$1 hep enklask eus an destenn a-bezh embreget",
 	"logentry-delete-delete": "Diverket eo bet ar bajenn $3 gant $1",
 	"logentry-delete-restore": "Assavet eo bet ar bajenn $3 gant $1",
 	"logentry-delete-event": "Kemmet eo bet gwelusted {{PLURAL:$5|un darvoud eus ar marilh|$5 darvoud eus ar marilh}} d'an $3 gant $1 : $4",

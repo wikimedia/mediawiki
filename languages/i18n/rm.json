@@ -2644,8 +2644,6 @@
 	"htmlform-submit": "Trametter",
 	"htmlform-reset": "Revocar las midadas",
 	"htmlform-selectorother-other": "Auters",
-	"sqlite-has-fts": "$1 cun sustegn per la retschertga da text integrala",
-	"sqlite-no-fts": "$1 senza sustegn per la retschertga da text integrala",
 	"logentry-delete-delete": "$1 {{GENDER:$2|ha stizzà}} la pagina $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|ha restaurà}} la pagina $3",
 	"logentry-delete-event": "$1 ha midà la visibilitad da{{PLURAL:$5|d ina occurrenza en il protocol| $5 occurrenzas en il protocol}} da '''$3''': $4",

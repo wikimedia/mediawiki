@@ -3332,8 +3332,6 @@
 	"htmlform-title-not-exists": "Awan ti $1.",
 	"htmlform-user-not-exists": "Awan ti <strong>$1</strong>.",
 	"htmlform-user-not-valid": "Saan nga umiso a nagan ti agar-aramat ti <strong>$1</strong>.",
-	"sqlite-has-fts": "Ti $1 nga addaan iti suporta ti panagbiruk ti napno a teksto",
-	"sqlite-no-fts": "Ti $1 nga awan iti suporta ti panagbiruk ti napno a teksto",
 	"logentry-delete-delete": "{{GENDER:$2|Inikkat}} ni $1 ti panid ti $3",
 	"logentry-delete-restore": "Ni $1 ket {{GENDER:$2|insublina}} ti panid ti $3",
 	"logentry-delete-event": "Ni $1 ket {{GENDER:$2|binaliwanna}} ti panagkita {{PLURAL:$5|iti listaan ti pasamak |dagiti $5 a listaan ti pasamak }} iti $3: $4",

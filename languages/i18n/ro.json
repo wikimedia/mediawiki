@@ -3285,8 +3285,6 @@
 	"htmlform-title-not-exists": "$1 nu există.",
 	"htmlform-user-not-exists": "<strong>$1</strong> nu există.",
 	"htmlform-user-not-valid": "<strong>$1</strong> nu este un nume de utilizator valid.",
-	"sqlite-has-fts": "$1 cu suport de căutare în tot textul",
-	"sqlite-no-fts": "$1 fără suport de căutare în tot textul",
 	"logentry-delete-delete": "$1 {{GENDER:$2|a șters}} pagina $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|a restaurat}} pagina $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|a schimbat}} vizibilitatea {{PLURAL:$5|unui eveniment din jurnal|a $5 evenimente din jurnal|a $5 de evenimente din jurnal}} pentru $3: $4",

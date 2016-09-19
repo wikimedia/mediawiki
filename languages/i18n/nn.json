@@ -2913,8 +2913,6 @@
 	"htmlform-no": "Nei",
 	"htmlform-yes": "Ja",
 	"htmlform-chosen-placeholder": "Vel ein",
-	"sqlite-has-fts": "$1 med støtte for fulltekstsøk",
-	"sqlite-no-fts": "$1 utan støtte for fulltekstsøk",
 	"logentry-delete-delete": "$1 {{GENDER:$2|sletta}} sida $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|attoppretta}} sida $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|endra}} synlegdomen av {{PLURAL:$5|éi loggoppføring|$5 loggoppføringar}} på $3: $4",

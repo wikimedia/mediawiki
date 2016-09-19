@@ -3109,8 +3109,6 @@
 	"htmlform-cloner-create": "Tilføj flere",
 	"htmlform-cloner-delete": "Fjern",
 	"htmlform-cloner-required": "Der kræves mindst en værdi.",
-	"sqlite-has-fts": "$1 med fuld-tekst søgnings support",
-	"sqlite-no-fts": "$1 uden fuld-tekst søgnings support",
 	"logentry-delete-delete": "$1 {{GENDER:$2|slettede}} siden $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|gendannede}} siden $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|ændrede}} synligheden af {{PLURAL:$5|en loghændelse|$5 loghændelser}} for siden $3: $4",

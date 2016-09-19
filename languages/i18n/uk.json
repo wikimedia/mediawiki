@@ -3569,8 +3569,6 @@
 	"htmlform-title-not-exists": "$1 не існує.",
 	"htmlform-user-not-exists": "<strong>$1</strong> не існує.",
 	"htmlform-user-not-valid": "<strong>$1</strong> не є дійсним іменем користувача.",
-	"sqlite-has-fts": "$1 з підтримкою повнотекстового пошуку",
-	"sqlite-no-fts": "$1 без підтримки повнотекстового пошуку",
 	"logentry-delete-delete": "$1 {{GENDER:$2|вилучив|вилучила}} сторінку $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|відновив|відновила}} сторінку $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|змінив|змінила}} видимість {{PLURAL:$5 запису журналу|$5 записів журналу}} на $3: $4",

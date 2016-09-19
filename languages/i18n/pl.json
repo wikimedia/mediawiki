@@ -3444,8 +3444,6 @@
 	"htmlform-title-not-exists": "$1 nie istnieje.",
 	"htmlform-user-not-exists": "<strong>$1</strong> nie istnieje.",
 	"htmlform-user-not-valid": "<strong>$1</strong> nie jest prawidłową nazwą użytkownika.",
-	"sqlite-has-fts": "$1 z obsługą pełnotekstowego wyszukiwania",
-	"sqlite-no-fts": "$1 bez obsługi pełnotekstowego wyszukiwania",
 	"logentry-delete-delete": "$1 {{GENDER:$2|usunął|usunęła}} stronę $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|odtworzył|odtworzyła}} stronę $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w rejestrze $3, wykonano następujące operacje: $4",

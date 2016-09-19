@@ -3526,8 +3526,6 @@
 	"htmlform-title-not-exists": "$1 не постои.",
 	"htmlform-user-not-exists": "<strong>$1</strong> не постои.",
 	"htmlform-user-not-valid": "<strong>$1</strong> не претставува важечко корисничко име.",
-	"sqlite-has-fts": "$1 со поддршка за пребарување по цели текстови",
-	"sqlite-no-fts": "$1 без поддршка за пребарување по цели текстови",
 	"logentry-delete-delete": "$1 {{GENDER:$2|ја избриша}} страницата $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|ја возобнови}} страницата $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|ја измени}} видливоста на {{PLURAL:$5|настан во дневникот|$5 настани во дневникот}} на $3: $4",

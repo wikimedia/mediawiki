@@ -3049,8 +3049,6 @@
 	"htmlform-chosen-placeholder": "एकटा विकल्प चुनु",
 	"htmlform-cloner-create": "आर जोडु",
 	"htmlform-cloner-delete": "हटाउ",
-	"sqlite-has-fts": "$1 पूर्ण-पाठ खोज सहायता युक्त",
-	"sqlite-no-fts": "$1 बिन पूर्ण-पाठ खोज सहायताक",
 	"logentry-delete-delete": "$1 पृष्ठ $3 {{GENDER:$2|मेटौलक}}",
 	"logentry-delete-restore": "$1 {{GENDER:$2|restored}} page $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|changed}} एकर दृश्य{{PLURAL:$5| एकटा वृत्तलेख|$5 वृत्तलेख}}  $3: $4 केँ",

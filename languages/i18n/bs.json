@@ -3236,8 +3236,6 @@
 	"htmlform-title-not-exists": "$1 ne postoji.",
 	"htmlform-user-not-exists": "<strong>$1</strong> ne postoji.",
 	"htmlform-user-not-valid": "<strong>$1</strong> nije ispravno korisničko ime.",
-	"sqlite-has-fts": "$1 sa podrškom pretrage cijelog teksta",
-	"sqlite-no-fts": "$1 bez podrške pretrage cijelog teksta",
 	"logentry-delete-delete": "$1 {{GENDER:$2|obrisao|obrisala}} je stranicu $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|vratio|vratila}} je stranicu $3",
 	"logentry-delete-event": "$1 je {{GENDER:$2|promijenio|promijenila}} vidljivost {{PLURAL:$5|događaja|$5 događaja}} u evidenciji na $3: $4",
