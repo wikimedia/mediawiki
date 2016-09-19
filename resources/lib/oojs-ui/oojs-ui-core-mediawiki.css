@@ -524,7 +524,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-fieldsetLayout.oo-ui-labelElement > .oo-ui-labelElement-label {
 	color: inherit;
-	display: table;
+	display: inline-table;
 	box-sizing: border-box;
 	max-width: 100%;
 	padding: 0;
@@ -544,7 +544,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-fieldsetLayout + .oo-ui-formLayout {
 	margin-top: 2em;
 }
-.oo-ui-fieldsetLayout > .oo-ui-labelElement-label {
+.oo-ui-fieldsetLayout.oo-ui-labelElement > .oo-ui-labelElement-label {
 	margin-bottom: 0.5em;
 	font-size: 1.1em;
 	font-weight: bold;
