@@ -23,7 +23,51 @@
  */
 
 /**
- * Interface for database load balancing object that manages IDatabase handles
+ * Database cluster connection, tracking, load balancing, and transaction manager interface
+ *
+ * A "cluster" is considered to be one master database and zero or more replica databases.
+ * Typically, the replica DBs replicate from the master asynchronously. The first node in the
+ * "servers" configuration array is always considered the "master". However, this class can still
+ * be used when all or some of the "replica" DBs are multi-master peers of the master or even
+ * when all the DBs are non-replicating clones of each other holding read-only data. Thus, the
+ * role of "master" is in some cases merely nominal.
+ *
+ * By default, each DB server uses DBO_DEFAULT for its 'flags' setting, unless explicitly set
+ * otherwise in configuration. DBO_DEFAULT behavior depends on whether 'cliMode' is set:
+ *   - In CLI mode, the flag has no effect with regards to LoadBalancer.
+ *   - In non-CLI mode, the flag causes implicit transactions to be used; the first query on
+ *     a database starts a transaction on that database. The transactions are meant to remain
+ *     pending until either commitMasterChanges() or rollbackMasterChanges() is called. The
+ *     application must have some point where it calls commitMasterChanges() near the end of
+ *     the PHP request.
+ * Every iteration of beginMasterChanges()/commitMasterChanges() is called a "transaction round".
+ * Rounds are useful on the master DB connections because they make single-DB (and by and large
+ * multi-DB) updates in web requests all-or-nothing. Also, transactions on replica DBs are useful
+ * when REPEATABLE-READ or SERIALIZABLE isolation is used because all foriegn keys and constraints
+ * hold across separate queries in the DB transaction since the data appears within a consistent
+ * point-in-time snapshot.
+ *
+ * The typical caller will use LoadBalancer::getConnection( DB_* ) to yield a live database
+ * connection handle. The choice of which DB server to use is based on pre-defined loads for
+ * weighted random selection, adjustments thereof by LoadMonitor, and the amount of replication
+ * lag on each DB server. Lag checks might cause problems in certain setups, so they should be
+ * tuned in the server configuration maps as follows:
+ *   - Master + N Replica(s): set 'max lag' to an appropriate threshold for avoiding any database
+ *      lagged by this much or more. If all DBs are this lagged, then the load balancer considers
+ *      the cluster to be read-only.
+ *   - Galera Cluster: Seconds_Behind_Master will be 0, so there probably is nothing to tune.
+ *      Note that lag is still possible depending on how wsrep-sync-wait is set server-side.
+ *   - Read-only archive clones: set 'is static' in the server configuration maps. This will
+ *      treat all such DBs as having 0 lag.
+ *   - SQL load balancing proxy: any proxy should handle lag checks on its own, so the 'max lag'
+ *     parameter should probably be set to INF in the server configuration maps. This will make
+ *     the load balancer ignore whatever it detects as the lag of the logical replica is (which
+ *     would probably just randomly bounce around).
+ *
+ * If using a SQL proxy service, it would probably be best to have two proxy hosts for the
+ * load balancer to talk to. One would be the 'host' of the master server entry and another for
+ * the (logical) replica server entry. The proxy could map the load balancer's "replica" DB to
+ * any number of physical replica DBs.
  *
  * @since 1.28
  * @ingroup Database
