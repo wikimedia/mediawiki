@@ -3640,6 +3640,8 @@
 	"log-action-filter-move": "Тып пераносу:",
 	"log-action-filter-newusers": "Тып стварэньня рахунку:",
 	"log-action-filter-patrol": "Тып патруляваньня:",
+	"log-action-filter-protect": "Тып абароны:",
+	"log-action-filter-rights": "Тып зьмены правоў:",
 	"log-action-filter-all": "Усе",
 	"log-action-filter-block-block": "Заблякаваць",
 	"log-action-filter-block-reblock": "Зьмяненьне блякаваньня",
