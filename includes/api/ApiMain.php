@@ -258,7 +258,6 @@ class ApiMain extends ApiBase {
 		$this->mResult = new ApiResult( $this->getConfig()->get( 'APIMaxResultSize' ) );
 		$this->mErrorFormatter = new ApiErrorFormatter_BackCompat( $this->mResult );
 		$this->mResult->setErrorFormatter( $this->mErrorFormatter );
-		$this->mResult->setMainForContinuation( $this );
 		$this->mContinuationManager = null;
 		$this->mEnableWrite = $enableWrite;
 
@@ -1816,119 +1815,6 @@ class ApiMain extends ApiBase {
 			$this->getRequest()->getHeader( 'User-agent' )
 		);
 	}
-
-	/************************************************************************//**
-	 * @name   Deprecated
-	 * @{
-	 */
-
-	/**
-	 * Sets whether the pretty-printer should format *bold* and $italics$
-	 *
-	 * @deprecated since 1.25
-	 * @param bool $help
-	 */
-	public function setHelp( $help = true ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		$this->mPrinter->setHelp( $help );
-	}
-
-	/**
-	 * Override the parent to generate help messages for all available modules.
-	 *
-	 * @deprecated since 1.25
-	 * @return string
-	 */
-	public function makeHelpMsg() {
-		wfDeprecated( __METHOD__, '1.25' );
-
-		$this->setHelp();
-		$cacheHelpTimeout = $this->getConfig()->get( 'APICacheHelpTimeout' );
-
-		return ObjectCache::getMainWANInstance()->getWithSetCallback(
-			wfMemcKey(
-				'apihelp',
-				$this->getModuleName(),
-				str_replace( ' ', '_', SpecialVersion::getVersion( 'nodb' ) )
-			),
-			$cacheHelpTimeout > 0 ? $cacheHelpTimeout : WANObjectCache::TTL_UNCACHEABLE,
-			[ $this, 'reallyMakeHelpMsg' ]
-		);
-	}
-
-	/**
-	 * @deprecated since 1.25
-	 * @return mixed|string
-	 */
-	public function reallyMakeHelpMsg() {
-		wfDeprecated( __METHOD__, '1.25' );
-		$this->setHelp();
-
-		// Use parent to make default message for the main module
-		$msg = parent::makeHelpMsg();
-
-		$asterisks = str_repeat( '*** ', 14 );
-		$msg .= "\n\n$asterisks Modules  $asterisks\n\n";
-
-		foreach ( $this->mModuleMgr->getNames( 'action' ) as $name ) {
-			$module = $this->mModuleMgr->getModule( $name );
-			$msg .= self::makeHelpMsgHeader( $module, 'action' );
-
-			$msg2 = $module->makeHelpMsg();
-			if ( $msg2 !== false ) {
-				$msg .= $msg2;
-			}
-			$msg .= "\n";
-		}
-
-		$msg .= "\n$asterisks Permissions $asterisks\n\n";
-		foreach ( self::$mRights as $right => $rightMsg ) {
-			$rightsMsg = $this->msg( $rightMsg['msg'], $rightMsg['params'] )
-				->useDatabase( false )
-				->inLanguage( 'en' )
-				->text();
-			$groups = User::getGroupsWithPermission( $right );
-			$msg .= '* ' . $right . " *\n  $rightsMsg" .
-				"\nGranted to:\n  " . str_replace( '*', 'all', implode( ', ', $groups ) ) . "\n\n";
-		}
-
-		$msg .= "\n$asterisks Formats  $asterisks\n\n";
-		foreach ( $this->mModuleMgr->getNames( 'format' ) as $name ) {
-			$module = $this->mModuleMgr->getModule( $name );
-			$msg .= self::makeHelpMsgHeader( $module, 'format' );
-			$msg2 = $module->makeHelpMsg();
-			if ( $msg2 !== false ) {
-				$msg .= $msg2;
-			}
-			$msg .= "\n";
-		}
-
-		$credits = $this->msg( 'api-credits' )->useDatabase( 'false' )->inLanguage( 'en' )->text();
-		$credits = str_replace( "\n", "\n   ", $credits );
-		$msg .= "\n*** Credits: ***\n   $credits\n";
-
-		return $msg;
-	}
-
-	/**
-	 * @deprecated since 1.25
-	 * @param ApiBase $module
-	 * @param string $paramName What type of request is this? e.g. action,
-	 *    query, list, prop, meta, format
-	 * @return string
-	 */
-	public static function makeHelpMsgHeader( $module, $paramName ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		$modulePrefix = $module->getModulePrefix();
-		if ( strval( $modulePrefix ) !== '' ) {
-			$modulePrefix = "($modulePrefix) ";
-		}
-
-		return "* $paramName={$module->getModuleName()} $modulePrefix*";
-	}
-
-	/**@}*/
-
 }
 
 /**

@@ -406,12 +406,12 @@ class ApiResult implements ApiSerializable {
 		$arr = &$this->path( $path, ( $flags & ApiResult::ADD_ON_TOP ) ? 'prepend' : 'append' );
 
 		if ( $this->checkingSize && !( $flags & ApiResult::NO_SIZE_CHECK ) ) {
-			// self::valueSize needs the validated value. Then flag
+			// self::size needs the validated value. Then flag
 			// to not re-validate later.
 			$value = self::validateValue( $value );
 			$flags |= ApiResult::NO_VALIDATE;
 
-			$newsize = $this->size + self::valueSize( $value );
+			$newsize = $this->size + self::size( $value );
 			if ( $this->maxSize !== false && $newsize > $this->maxSize ) {
 				/// @todo Add i18n message when replacing calls to ->setWarning()
 				$msg = new ApiRawMessage( 'This result was truncated because it would otherwise ' .
@@ -462,7 +462,7 @@ class ApiResult implements ApiSerializable {
 		}
 		$ret = self::unsetValue( $this->path( $path, 'dummy' ), $name );
 		if ( $this->checkingSize && !( $flags & ApiResult::NO_SIZE_CHECK ) ) {
-			$newsize = $this->size - self::valueSize( $ret );
+			$newsize = $this->size - self::size( $ret );
 			$this->size = max( $newsize, 0 );
 		}
 		return $ret;
@@ -1085,17 +1085,15 @@ class ApiResult implements ApiSerializable {
 	/**
 	 * Get the 'real' size of a result item. This means the strlen() of the item,
 	 * or the sum of the strlen()s of the elements if the item is an array.
-	 * @note Once the deprecated public self::size is removed, we can rename
-	 *       this back to a less awkward name.
 	 * @param mixed $value Validated value (see self::validateValue())
 	 * @return int
 	 */
-	private static function valueSize( $value ) {
+	private static function size( $value ) {
 		$s = 0;
 		if ( is_array( $value ) ) {
 			foreach ( $value as $k => $v ) {
 				if ( !self::isMetadataKey( $k ) ) {
-					$s += self::valueSize( $v );
+					$s += self::size( $v );
 				}
 			}
 		} elseif ( is_scalar( $value ) ) {
@@ -1202,310 +1200,6 @@ class ApiResult implements ApiSerializable {
 
 	/**@}*/
 
-	/************************************************************************//**
-	 * @name   Deprecated
-	 * @{
-	 */
-
-	/**
-	 * Formerly used to enable/disable "raw mode".
-	 * @deprecated since 1.25, you shouldn't have been using it in the first place
-	 * @since 1.23 $flag parameter added
-	 * @param bool $flag Set the raw mode flag to this state
-	 */
-	public function setRawMode( $flag = true ) {
-		wfDeprecated( __METHOD__, '1.25' );
-	}
-
-	/**
-	 * Returns true, the equivalent of "raw mode" is always enabled now
-	 * @deprecated since 1.25, you shouldn't have been using it in the first place
-	 * @return bool
-	 */
-	public function getIsRawMode() {
-		wfDeprecated( __METHOD__, '1.25' );
-		return true;
-	}
-
-	/**
-	 * Get the result's internal data array (read-only)
-	 * @deprecated since 1.25, use $this->getResultData() instead
-	 * @return array
-	 */
-	public function getData() {
-		wfDeprecated( __METHOD__, '1.25' );
-		return $this->getResultData( null, [
-			'BC' => [],
-			'Types' => [],
-			'Strip' => 'all',
-		] );
-	}
-
-	/**
-	 * Disable size checking in addValue(). Don't use this unless you
-	 * REALLY know what you're doing. Values added while size checking
-	 * was disabled will not be counted (ever)
-	 * @deprecated since 1.24, use ApiResult::NO_SIZE_CHECK
-	 */
-	public function disableSizeCheck() {
-		wfDeprecated( __METHOD__, '1.24' );
-		$this->checkingSize = false;
-	}
-
-	/**
-	 * Re-enable size checking in addValue()
-	 * @deprecated since 1.24, use ApiResult::NO_SIZE_CHECK
-	 */
-	public function enableSizeCheck() {
-		wfDeprecated( __METHOD__, '1.24' );
-		$this->checkingSize = true;
-	}
-
-	/**
-	 * Alias for self::setValue()
-	 *
-	 * @since 1.21 int $flags replaced boolean $override
-	 * @deprecated since 1.25, use self::setValue() instead
-	 * @param array $arr To add $value to
-	 * @param string $name Index of $arr to add $value at
-	 * @param mixed $value
-	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP.
-	 *    This parameter used to be boolean, and the value of OVERRIDE=1 was
-	 *    specifically chosen so that it would be backwards compatible with the
-	 *    new method signature.
-	 */
-	public static function setElement( &$arr, $name, $value, $flags = 0 ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		self::setValue( $arr, $name, $value, $flags );
-	}
-
-	/**
-	 * Adds a content element to an array.
-	 * Use this function instead of hardcoding the '*' element.
-	 * @deprecated since 1.25, use self::setContentValue() instead
-	 * @param array $arr To add the content element to
-	 * @param mixed $value
-	 * @param string $subElemName When present, content element is created
-	 *  as a sub item of $arr. Use this parameter to create elements in
-	 *  format "<elem>text</elem>" without attributes.
-	 */
-	public static function setContent( &$arr, $value, $subElemName = null ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		if ( is_array( $value ) ) {
-			throw new InvalidArgumentException( __METHOD__ . ': Bad parameter' );
-		}
-		if ( is_null( $subElemName ) ) {
-			self::setContentValue( $arr, 'content', $value );
-		} else {
-			if ( !isset( $arr[$subElemName] ) ) {
-				$arr[$subElemName] = [];
-			}
-			self::setContentValue( $arr[$subElemName], 'content', $value );
-		}
-	}
-
-	/**
-	 * Set indexed tag name on all subarrays of $arr
-	 *
-	 * Does not set the tag name for $arr itself.
-	 *
-	 * @deprecated since 1.25, use self::setIndexedTagNameRecursive() instead
-	 * @param array $arr
-	 * @param string $tag Tag name
-	 */
-	public function setIndexedTagName_recursive( &$arr, $tag ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		if ( !is_array( $arr ) ) {
-			return;
-		}
-		if ( !is_string( $tag ) ) {
-			throw new InvalidArgumentException( 'Bad tag name' );
-		}
-		foreach ( $arr as $k => &$v ) {
-			if ( !self::isMetadataKey( $k ) && is_array( $v ) ) {
-				$v[self::META_INDEXED_TAG_NAME] = $tag;
-				$this->setIndexedTagName_recursive( $v, $tag );
-			}
-		}
-	}
-
-	/**
-	 * Alias for self::addIndexedTagName()
-	 * @deprecated since 1.25, use $this->addIndexedTagName() instead
-	 * @param array $path Path to the array, like addValue()'s $path
-	 * @param string $tag
-	 */
-	public function setIndexedTagName_internal( $path, $tag ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		$this->addIndexedTagName( $path, $tag );
-	}
-
-	/**
-	 * Alias for self::addParsedLimit()
-	 * @deprecated since 1.25, use $this->addParsedLimit() instead
-	 * @param string $moduleName
-	 * @param int $limit
-	 */
-	public function setParsedLimit( $moduleName, $limit ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		$this->addParsedLimit( $moduleName, $limit );
-	}
-
-	/**
-	 * Set the ApiMain for use by $this->beginContinuation()
-	 * @since 1.25
-	 * @deprecated for backwards compatibility only, do not use
-	 * @param ApiMain $main
-	 */
-	public function setMainForContinuation( ApiMain $main ) {
-		$this->mainForContinuation = $main;
-	}
-
-	/**
-	 * Parse a 'continue' parameter and return status information.
-	 *
-	 * This must be balanced by a call to endContinuation().
-	 *
-	 * @since 1.24
-	 * @deprecated since 1.25, use ApiContinuationManager instead
-	 * @param string|null $continue
-	 * @param ApiBase[] $allModules
-	 * @param array $generatedModules
-	 * @return array
-	 */
-	public function beginContinuation(
-		$continue, array $allModules = [], array $generatedModules = []
-	) {
-		wfDeprecated( __METHOD__, '1.25' );
-		if ( $this->mainForContinuation->getContinuationManager() ) {
-			throw new UnexpectedValueException(
-				__METHOD__ . ': Continuation already in progress from ' .
-				$this->mainForContinuation->getContinuationManager()->getSource()
-			);
-		}
-
-		// Ugh. If $continue doesn't match that in the request, temporarily
-		// replace the request when creating the ApiContinuationManager.
-		if ( $continue === null ) {
-			$continue = '';
-		}
-		if ( $this->mainForContinuation->getVal( 'continue', '' ) !== $continue ) {
-			$oldCtx = $this->mainForContinuation->getContext();
-			$newCtx = new DerivativeContext( $oldCtx );
-			$newCtx->setRequest( new DerivativeRequest(
-				$oldCtx->getRequest(),
-				[ 'continue' => $continue ] + $oldCtx->getRequest()->getValues(),
-				$oldCtx->getRequest()->wasPosted()
-			) );
-			$this->mainForContinuation->setContext( $newCtx );
-			$reset = new ScopedCallback(
-				[ $this->mainForContinuation, 'setContext' ],
-				[ $oldCtx ]
-			);
-		}
-		$manager = new ApiContinuationManager(
-			$this->mainForContinuation, $allModules, $generatedModules
-		);
-		$reset = null;
-
-		$this->mainForContinuation->setContinuationManager( $manager );
-
-		return [
-			$manager->isGeneratorDone(),
-			$manager->getRunModules(),
-		];
-	}
-
-	/**
-	 * @since 1.24
-	 * @deprecated since 1.25, use ApiContinuationManager instead
-	 * @param ApiBase $module
-	 * @param string $paramName
-	 * @param string|array $paramValue
-	 */
-	public function setContinueParam( ApiBase $module, $paramName, $paramValue ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		if ( $this->mainForContinuation->getContinuationManager() ) {
-			$this->mainForContinuation->getContinuationManager()->addContinueParam(
-				$module, $paramName, $paramValue
-			);
-		}
-	}
-
-	/**
-	 * @since 1.24
-	 * @deprecated since 1.25, use ApiContinuationManager instead
-	 * @param ApiBase $module
-	 * @param string $paramName
-	 * @param string|array $paramValue
-	 */
-	public function setGeneratorContinueParam( ApiBase $module, $paramName, $paramValue ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		if ( $this->mainForContinuation->getContinuationManager() ) {
-			$this->mainForContinuation->getContinuationManager()->addGeneratorContinueParam(
-				$module, $paramName, $paramValue
-			);
-		}
-	}
-
-	/**
-	 * Close continuation, writing the data into the result
-	 * @since 1.24
-	 * @deprecated since 1.25, use ApiContinuationManager instead
-	 * @param string $style 'standard' for the new style since 1.21, 'raw' for
-	 *   the style used in 1.20 and earlier.
-	 */
-	public function endContinuation( $style = 'standard' ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		if ( !$this->mainForContinuation->getContinuationManager() ) {
-			return;
-		}
-
-		if ( $style === 'raw' ) {
-			$data = $this->mainForContinuation->getContinuationManager()->getRawContinuation();
-			if ( $data ) {
-				$this->addValue( null, 'query-continue', $data, self::ADD_ON_TOP | self::NO_SIZE_CHECK );
-			}
-		} else {
-			$this->mainForContinuation->getContinuationManager()->setContinuationIntoResult( $this );
-		}
-	}
-
-	/**
-	 * No-op, this is now checked on insert.
-	 * @deprecated since 1.25
-	 */
-	public function cleanUpUTF8() {
-		wfDeprecated( __METHOD__, '1.25' );
-	}
-
-	/**
-	 * Get the 'real' size of a result item. This means the strlen() of the item,
-	 * or the sum of the strlen()s of the elements if the item is an array.
-	 * @deprecated since 1.25, no external users known and there doesn't seem
-	 *  to be any case for such use over just checking the return value from the
-	 *  add/set methods.
-	 * @param mixed $value
-	 * @return int
-	 */
-	public static function size( $value ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		return self::valueSize( self::validateValue( $value ) );
-	}
-
-	/**
-	 * Converts a Status object to an array suitable for addValue
-	 * @deprecated since 1.25, use ApiErrorFormatter::arrayFromStatus()
-	 * @param Status $status
-	 * @param string $errorType
-	 * @return array
-	 */
-	public function convertStatusToArray( $status, $errorType = 'error' ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		return $this->errorFormatter->arrayFromStatus( $status, $errorType );
-	}
-
-	/**@}*/
 }
 
 /**

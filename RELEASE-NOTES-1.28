@@ -114,6 +114,36 @@ production.
   interact with ApiParse and ApiExpandTemplates.
 * (T139565) SECURITY: API: Generate head items in the context of the given title
 * (T115333) SECURITY: Check read permission when loading page content in ApiParse
+* ApiBase::makeHelpArrayToString() was removed (deprecated since 1.25)
+* ApiBase::makeHelpMsgParameters() was removed (deprecated since 1.25)
+* ApiBase::makeHelpMsg() was removed (deprecated since 1.25)
+* ApiFormatBase::formatHTML() was removed (deprecated since 1.25)
+* ApiFormatBase::getNeedsRawData() was removed (deprecated since 1.25)
+* ApiFormatBase::getWantsHelp() was removed (deprecated since 1.25)
+* ApiFormatBase::setBufferResult() was removed (deprecated since 1.25)
+* ApiFormatBase::setHelp() was removed (deprecated since 1.25)
+* ApiFormatBase::setUnescapeAmps() was removed (deprecated since 1.25)
+* ApiMain::makeHelpMsgHeader() was removed (deprecated since 1.25)
+* ApiMain::reallyMakeHelpMsg() was removed (deprecated since 1.25)
+* ApiMain::setHelp() was removed (deprecated since 1.25)
+* ApiResult::beginContinuation() was removed (deprecated since 1.25)
+* ApiResult::cleanUpUTF8() was removed (deprecated since 1.25)
+* ApiResult::convertStatusToArray() was removed (deprecated since 1.25)
+* ApiResult::disableSizeCheck() was removed (deprecated since 1.24)
+* ApiResult::enableSizeCheck() was removed (deprecated since 1.24)
+* ApiResult::endContinuation() was removed (deprecated since 1.25)
+* ApiResult::getData() was removed (deprecated since 1.25)
+* ApiResult::getIsRawMode() was removed (deprecated since 1.25)
+* ApiResult::setContent() was removed (deprecated since 1.25)
+* ApiResult::setContinueParam() was removed (deprecated since 1.25)
+* ApiResult::setElement() was removed (deprecated since 1.25)
+* ApiResult::setGeneratorContinueParam() was removed (deprecated since 1.25)
+* ApiResult::setIndexedTagName_internal() was removed (deprecated since 1.25)
+* ApiResult::setIndexedTagName_recursive() was removed (deprecated since 1.25)
+* ApiResult::setMainForContinuation() was removed (deprecated since 1.25)
+* ApiResult::setParsedLimit() was removed (deprecated since 1.25)
+* ApiResult::setRawMode() was removed (deprecated since 1.25)
+* ApiResult::size() was removed (deprecated since 1.25)
 
 === Languages updated in 1.28 ===
 

@@ -495,61 +495,6 @@ class ApiQuery extends ApiBase {
 		return $result;
 	}
 
-	/**
-	 * Override the parent to generate help messages for all available query modules.
-	 * @deprecated since 1.25
-	 * @return string
-	 */
-	public function makeHelpMsg() {
-		wfDeprecated( __METHOD__, '1.25' );
-
-		// Use parent to make default message for the query module
-		$msg = parent::makeHelpMsg();
-
-		$querySeparator = str_repeat( '--- ', 12 );
-		$moduleSeparator = str_repeat( '*** ', 14 );
-		$msg .= "\n$querySeparator Query: Prop  $querySeparator\n\n";
-		$msg .= $this->makeHelpMsgHelper( 'prop' );
-		$msg .= "\n$querySeparator Query: List  $querySeparator\n\n";
-		$msg .= $this->makeHelpMsgHelper( 'list' );
-		$msg .= "\n$querySeparator Query: Meta  $querySeparator\n\n";
-		$msg .= $this->makeHelpMsgHelper( 'meta' );
-		$msg .= "\n\n$moduleSeparator Modules: continuation  $moduleSeparator\n\n";
-
-		return $msg;
-	}
-
-	/**
-	 * For all modules of a given group, generate help messages and join them together
-	 * @deprecated since 1.25
-	 * @param string $group Module group
-	 * @return string
-	 */
-	private function makeHelpMsgHelper( $group ) {
-		$moduleDescriptions = [];
-
-		$moduleNames = $this->mModuleMgr->getNames( $group );
-		sort( $moduleNames );
-		foreach ( $moduleNames as $name ) {
-			/**
-			 * @var $module ApiQueryBase
-			 */
-			$module = $this->mModuleMgr->getModule( $name );
-
-			$msg = ApiMain::makeHelpMsgHeader( $module, $group );
-			$msg2 = $module->makeHelpMsg();
-			if ( $msg2 !== false ) {
-				$msg .= $msg2;
-			}
-			if ( $module instanceof ApiQueryGeneratorBase ) {
-				$msg .= "Generator:\n  This module may be used as a generator\n";
-			}
-			$moduleDescriptions[] = $msg;
-		}
-
-		return implode( "\n", $moduleDescriptions );
-	}
-
 	public function isReadMode() {
 		// We need to make an exception for certain meta modules that should be
 		// accessible even without the 'read' right. Restrict the exception as

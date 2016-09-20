@@ -56,15 +56,6 @@ class ApiFormatJson extends ApiFormatBase {
 		return 'application/json';
 	}
 
-	/**
-	 * @deprecated since 1.25
-	 */
-	public function getWantsHelp() {
-		wfDeprecated( __METHOD__, '1.25' );
-		// Help is always ugly in JSON
-		return false;
-	}
-
 	public function execute() {
 		$params = $this->extractRequestParams();
 
