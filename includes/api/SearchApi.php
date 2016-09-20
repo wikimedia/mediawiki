@@ -104,7 +104,8 @@ trait SearchApi {
 		$searchEngine = MediaWikiServices::getInstance()->newSearchEngine();
 		$params = [];
 		foreach ( $configs as $paramName => $paramConfig ) {
-			$profiles = $searchEngine->getProfiles( $paramConfig['profile-type'] );
+			$profiles = $searchEngine->getProfiles( $paramConfig['profile-type'],
+				$this->getContext()->getUser() );
 			if ( !$profiles ) {
 				continue;
 			}
@@ -188,4 +189,9 @@ trait SearchApi {
 	 *  containing 'help-message' and 'profile-type' keys.
 	 */
 	abstract public function getSearchProfileParams();
+
+	/**
+	 * @return IContextSource
+	 */
+	abstract public function getContext();
 }
