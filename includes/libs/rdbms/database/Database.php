@@ -3494,6 +3494,22 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	}
 
 	/**
+	 * Make sure that copies do not share the same client binding handle
+	 * @throws DBConnectionError
+	 */
+	public function __clone() {
+		$this->connLogger->debug(
+			"Cloning databases is not recomended:" .
+			( new RuntimeException() )->getTraceAsString()
+		);
+		// Open a new connection resource without messing with the old one
+		$this->mOpened = false;
+		$this->mConn = false;
+		$this->open( $this->mServer, $this->mUser, $this->mPassword, $this->mDBname );
+		$this->lastPing = microtime( true );
+	}
+
+	/**
 	 * Called by serialize. Throw an exception when DB connection is serialized.
 	 * This causes problems on some database engines because the connection is
 	 * not restored on unserialize.
@@ -3504,7 +3520,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	}
 
 	/**
-	 * Run a few simple sanity checks
+	 * Run a few simple sanity checks and close dangling connections
 	 */
 	public function __destruct() {
 		if ( $this->mTrxLevel && $this->mTrxDoneWrites ) {
@@ -3515,6 +3531,13 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		if ( $danglingWriters ) {
 			$fnames = implode( ', ', $danglingWriters );
 			trigger_error( "DB transaction writes or callbacks still pending ($fnames)." );
+		}
+
+		if ( $this->mConn ) {
+			// Avoid connection leaks for sanity
+			$this->closeConnection();
+			$this->mConn = false;
+			$this->mOpened = false;
 		}
 	}
 }
