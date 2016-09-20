@@ -937,6 +937,8 @@ class LoadBalancer implements ILoadBalancer {
 
 	public function closeAll() {
 		$this->forEachOpenConnection( function ( IDatabase $conn ) {
+			$host = $conn->getServer();
+			$this->connLogger->debug( "Closing connection to database '$host'." );
 			$conn->close();
 		} );
 
@@ -957,6 +959,8 @@ class LoadBalancer implements ILoadBalancer {
 
 			foreach ( $connsByServer[$serverIndex] as $i => $trackedConn ) {
 				if ( $conn === $trackedConn ) {
+					$host = $this->getServerName( $i );
+					$this->connLogger->debug( "Closing connection to database $i at '$host'." );
 					unset( $this->mConns[$type][$serverIndex][$i] );
 					--$this->connsOpened;
 					break 2;
