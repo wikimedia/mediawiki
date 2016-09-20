@@ -268,7 +268,7 @@ class FileBackendTest extends MediaWikiTestCase {
 	public static function provider_testStore() {
 		$cases = [];
 
-		$tmpName = TempFSFile::factory( "unittests_", 'txt' )->getPath();
+		$tmpName = TempFSFile::factory( "unittests_", 'txt', wfTempDir() )->getPath();
 		$toPath = self::baseStorePath() . '/unittest-cont1/e/fun/obj1.txt';
 		$op = [ 'op' => 'store', 'src' => $tmpName, 'dst' => $toPath ];
 		$cases[] = [ $op ];
@@ -1786,9 +1786,9 @@ class FileBackendTest extends MediaWikiTestCase {
 		$fileBContents = 'g-jmq3gpqgt3qtg q3GT ';
 		$fileCContents = 'eigna[ogmewt 3qt g3qg flew[ag';
 
-		$tmpNameA = TempFSFile::factory( "unittests_", 'txt' )->getPath();
-		$tmpNameB = TempFSFile::factory( "unittests_", 'txt' )->getPath();
-		$tmpNameC = TempFSFile::factory( "unittests_", 'txt' )->getPath();
+		$tmpNameA = TempFSFile::factory( "unittests_", 'txt', wfTempDir() )->getPath();
+		$tmpNameB = TempFSFile::factory( "unittests_", 'txt', wfTempDir() )->getPath();
+		$tmpNameC = TempFSFile::factory( "unittests_", 'txt', wfTempDir() )->getPath();
 		$this->addTmpFiles( [ $tmpNameA, $tmpNameB, $tmpNameC ] );
 		file_put_contents( $tmpNameA, $fileAContents );
 		file_put_contents( $tmpNameB, $fileBContents );
