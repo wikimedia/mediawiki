@@ -9,11 +9,12 @@ class ApiOpenSearchTest extends MediaWikiTestCase {
 			->method( 'getSearchTypes' )
 			->will( $this->returnValue( [ 'the one ring' ] ) );
 
+		$api = $this->createApi();
 		$engine = $this->replaceSearchEngine();
 		$engine->expects( $this->any() )
 			->method( 'getProfiles' )
 			->will( $this->returnValueMap( [
-				[ SearchEngine::COMPLETION_PROFILE_TYPE, [
+				[ SearchEngine::COMPLETION_PROFILE_TYPE, $api->getUser(), [
 					[
 						'name' => 'normal',
 						'desc-message' => 'normal-message',
@@ -26,7 +27,6 @@ class ApiOpenSearchTest extends MediaWikiTestCase {
 				] ],
 			] ) );
 
-		$api = $this->createApi();
 		$params = $api->getAllowedParams();
 
 		$this->assertArrayNotHasKey( 'offset', $params );

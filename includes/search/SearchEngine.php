@@ -672,10 +672,11 @@ abstract class SearchEngine {
 	 * - default: set to true if this profile is the default
 	 *
 	 * @since 1.28
-	 * @param $profileType the type of profiles
+	 * @param string $profileType the type of profiles
+	 * @param User|null $user the user requesting the list of profiles
 	 * @return array|null the list of profiles or null if none available
 	 */
-	public function getProfiles( $profileType ) {
+	public function getProfiles( $profileType, User $user = null ) {
 		return null;
 	}
 
