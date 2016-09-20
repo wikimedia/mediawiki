@@ -991,7 +991,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			return true;
 		}
 
-		$this->queryLogger->debug( __METHOD__ . " failed to acquire lock\n" );
+		$this->queryLogger->debug( __METHOD__ . " failed to acquire lock '$lockName'\n" );
 
 		return false;
 	}
@@ -1013,7 +1013,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			return true;
 		}
 
-		$this->queryLogger->debug( __METHOD__ . " failed to release lock\n" );
+		$this->queryLogger->debug( __METHOD__ . " failed to release lock '$lockName'\n" );
 
 		return false;
 	}
