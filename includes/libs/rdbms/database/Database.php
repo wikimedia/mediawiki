@@ -271,6 +271,9 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		$this->connLogger = $params['connLogger'];
 		$this->queryLogger = $params['queryLogger'];
 
+		// Set initial dummy domain until open() sets the final DB/prefix
+		$this->currentDomain = DatabaseDomain::newUnspecified();
+
 		if ( $user ) {
 			$this->open( $server, $user, $password, $dbName );
 		} elseif ( $this->requiresDatabaseUser() ) {
@@ -278,9 +281,10 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		}
 
 		// Set the domain object after open() sets the relevant fields
-		$this->currentDomain = ( $this->mDBname != '' )
-			? new DatabaseDomain( $this->mDBname, null, $this->mTablePrefix )
-			: DatabaseDomain::newUnspecified();
+		if ( $this->mDBname != '' ) {
+			// Domains with server scope but a table prefix are not used by IDatabase classes
+			$this->currentDomain = new DatabaseDomain( $this->mDBname, null, $this->mTablePrefix );
+		}
 	}
 
 	/**
