@@ -67,13 +67,6 @@ class OutputPage extends ContextSource {
 	 */
 	public $mBodytext = '';
 
-	/**
-	 * Holds the debug lines that will be output as comments in page source if
-	 * $wgDebugComments is enabled. See also $wgShowDebug.
-	 * @deprecated since 1.20; use MWDebug class instead.
-	 */
-	public $mDebugtext = '';
-
 	/** @var string Stores contents of "<title>" tag */
 	private $mHTMLtitle = '';
 
