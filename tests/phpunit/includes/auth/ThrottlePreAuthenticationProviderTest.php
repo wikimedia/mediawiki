@@ -12,7 +12,10 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 		$provider = new ThrottlePreAuthenticationProvider();
 		$providerPriv = \TestingAccessWrapper::newFromObject( $provider );
 		$config = new \HashConfig( [
-			'AccountCreationThrottle' => 123,
+			'AccountCreationThrottle' => [ [
+				'count' => 123,
+				'seconds' => 86400,
+			] ],
 			'PasswordAttemptThrottle' => [ [
 				'count' => 5,
 				'seconds' => 300,
@@ -38,7 +41,10 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 		] );
 		$providerPriv = \TestingAccessWrapper::newFromObject( $provider );
 		$config = new \HashConfig( [
-			'AccountCreationThrottle' => 123,
+			'AccountCreationThrottle' => [ [
+				'count' => 123,
+				'seconds' => 86400,
+			] ],
 			'PasswordAttemptThrottle' => [ [
 				'count' => 5,
 				'seconds' => 300,
@@ -122,18 +128,18 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 		}
 
 		$this->assertEquals(
-			\StatusValue::newGood(),
-			$provider->testForAccountCreation( $user, $creator, [] ),
+			true,
+			$provider->testForAccountCreation( $user, $creator, [] )->isOK(),
 			'attempt #1'
 		);
 		$this->assertEquals(
-			\StatusValue::newGood(),
-			$provider->testForAccountCreation( $user, $creator, [] ),
+			true,
+			$provider->testForAccountCreation( $user, $creator, [] )->isOK(),
 			'attempt #2'
 		);
 		$this->assertEquals(
-			$succeed ? \StatusValue::newGood() : \StatusValue::newFatal( 'acct_creation_throttle_hit', 2 ),
-			$provider->testForAccountCreation( $user, $creator, [] ),
+			$succeed ? true : false,
+			$provider->testForAccountCreation( $user, $creator, [] )->isOK(),
 			'attempt #3'
 		);
 	}
