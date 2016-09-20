@@ -80,8 +80,26 @@ abstract class LBFactory {
 		[ 'replLogger', 'connLogger', 'queryLogger', 'perfLogger' ];
 
 	/**
-	 * @TODO: document base params here
-	 * @param array $conf
+	 * Construct a manager of ILoadBalancer objects
+	 *
+	 * Sub-classes will extend the required keys in $conf with additional parameters
+	 *
+	 * @param $conf $params Array with keys:
+	 *  - localDomain: A DatabaseDomain or domain ID string.
+	 *  - readOnlyReason : Reason the master DB is read-only if so [optional]
+	 *  - srvCache : BagOStuff object for server cache [optional]
+	 *  - memCache : BagOStuff object for cluster memory cache [optional]
+	 *  - wanCache : WANObjectCache object [optional]
+	 *  - hostname : The name of the current server [optional]
+	 *  - cliMode: Whether the execution context is a CLI script. [optional]
+	 *  - profiler : Class name or instance with profileIn()/profileOut() methods. [optional]
+	 *  - trxProfiler: TransactionProfiler instance. [optional]
+	 *  - replLogger: PSR-3 logger instance. [optional]
+	 *  - connLogger: PSR-3 logger instance. [optional]
+	 *  - queryLogger: PSR-3 logger instance. [optional]
+	 *  - perfLogger: PSR-3 logger instance. [optional]
+	 *  - errorLogger : Callback that takes an Exception and logs it. [optional]
+	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $conf ) {
 		$this->localDomain = isset( $conf['localDomain'] )
@@ -106,8 +124,6 @@ abstract class LBFactory {
 			: function ( Exception $e ) {
 				trigger_error( E_WARNING, get_class( $e ) . ': ' . $e->getMessage() );
 			};
-
-		$this->chronProt = isset( $conf['chronProt'] ) ? $conf['chronProt'] : null;
 
 		$this->profiler = isset( $params['profiler'] ) ? $params['profiler'] : null;
 		$this->trxProfiler = isset( $conf['trxProfiler'] )

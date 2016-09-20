@@ -38,6 +38,18 @@ class LBFactorySimple extends LBFactory {
 	/** @var string */
 	private $loadMonitorClass;
 
+	/**
+	 * @see LBFactory::__construct()
+	 * @param array $conf Parameters of LBFactory::__construct() as well as:
+	 *   - servers : list of server configuration maps to Database::factory().
+	 *      Additionally, the server maps should have a 'load' key, which is used to decide
+	 *      how often clients connect to one server verses the others. A 'max lag' key should
+	 *      also be set on server maps, indicating how stale the data can be before the load
+	 *      balancer tries to avoid using it. The map can have 'is static' set to disable blocking
+	 *      replication sync checks (intended for archive servers with unchanging data).
+	 *   - externalClusters : map of cluster names to server arrays. The servers arrays have the
+	 *      same format as "servers" above.
+	 */
 	public function __construct( array $conf ) {
 		parent::__construct( $conf );
 
