@@ -20294,6 +20294,17 @@ language=sr variant=sr-ec
 </p>
 !! end
 
+!! test
+Don't break template parsing if language converter markup is in the parameter.
+!! options
+language=sr variant=sr-ec
+!! wikitext
+{{echo|-{R|foo}-}}
+!! html/php
+<p>foo
+</p>
+!! end
+
 # FIXME: This test is currently broken in the PHP parser (bug 52661)
 !! test
 Don't break image parsing if language converter markup is in the caption.
