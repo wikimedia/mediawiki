@@ -61,11 +61,11 @@ interface ILoadBalancer {
 	 *
 	 * Side effect: opens connections to databases
 	 * @param string|bool $group Query group, or false for the generic reader
-	 * @param string|bool $wiki Wiki ID, or false for the current wiki
+	 * @param string|bool $domain Domain ID, or false for the current domain
 	 * @throws DBError
 	 * @return bool|int|string
 	 */
-	public function getReaderIndex( $group = false, $wiki = false );
+	public function getReaderIndex( $group = false, $domain = false );
 
 	/**
 	 * Set the master wait position
@@ -109,12 +109,12 @@ interface ILoadBalancer {
 	 *
 	 * @param int $i Server index
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
-	 * @param string|bool $wiki Wiki ID, or false for the current wiki
+	 * @param string|bool $domain Domain ID, or false for the current domain
 	 *
 	 * @throws DBError
 	 * @return IDatabase
 	 */
-	public function getConnection( $i, $groups = [], $wiki = false );
+	public function getConnection( $i, $groups = [], $domain = false );
 
 	/**
 	 * Mark a foreign connection as being available for reuse under a different
@@ -135,10 +135,10 @@ interface ILoadBalancer {
 	 *
 	 * @param int $db
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
-	 * @param string|bool $wiki Wiki ID, or false for the current wiki
+	 * @param string|bool $domain Domain ID, or false for the current domain
 	 * @return DBConnRef
 	 */
-	public function getConnectionRef( $db, $groups = [], $wiki = false );
+	public function getConnectionRef( $db, $groups = [], $domain = false );
 
 	/**
 	 * Get a database connection handle reference without connecting yet
@@ -149,10 +149,10 @@ interface ILoadBalancer {
 	 *
 	 * @param int $db
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
-	 * @param string|bool $wiki Wiki ID, or false for the current wiki
+	 * @param string|bool $domain Domain ID, or false for the current domain
 	 * @return DBConnRef
 	 */
-	public function getLazyConnectionRef( $db, $groups = [], $wiki = false );
+	public function getLazyConnectionRef( $db, $groups = [], $domain = false );
 
 	/**
 	 * Open a connection to the server given by the specified index
@@ -165,10 +165,10 @@ interface ILoadBalancer {
 	 * @note If disable() was called on this LoadBalancer, this method will throw a DBAccessError.
 	 *
 	 * @param int $i Server index
-	 * @param string|bool $wiki Wiki ID, or false for the current wiki
+	 * @param string|bool $domain Domain ID, or false for the current domain
 	 * @return IDatabase|bool Returns false on errors
 	 */
-	public function openConnection( $i, $wiki = false );
+	public function openConnection( $i, $domain = false );
 
 	/**
 	 * @return int
@@ -363,10 +363,10 @@ interface ILoadBalancer {
 
 	/**
 	 * @note This method will trigger a DB connection if not yet done
-	 * @param string|bool $wiki Wiki ID, or false for the current wiki
+	 * @param string|bool $domain Domain ID, or false for the current domain
 	 * @return bool Whether the generic connection for reads is highly "lagged"
 	 */
-	public function getLaggedReplicaMode( $wiki = false );
+	public function getLaggedReplicaMode( $domain = false );
 
 	/**
 	 * @note This method will never cause a new DB connection
@@ -376,11 +376,11 @@ interface ILoadBalancer {
 
 	/**
 	 * @note This method may trigger a DB connection if not yet done
-	 * @param string|bool $wiki Wiki ID, or false for the current wiki
+	 * @param string|bool $domain Domain ID, or false for the current domain
 	 * @param IDatabase|null DB master connection; used to avoid loops [optional]
 	 * @return string|bool Reason the master is read-only or false if it is not
 	 */
-	public function getReadOnlyReason( $wiki = false, IDatabase $conn = null );
+	public function getReadOnlyReason( $domain = false, IDatabase $conn = null );
 
 	/**
 	 * Disables/enables lag checks
@@ -422,10 +422,10 @@ interface ILoadBalancer {
 	 * May attempt to open connections to replica DBs on the default DB. If there is
 	 * no lag, the maximum lag will be reported as -1.
 	 *
-	 * @param bool|string $wiki Wiki ID, or false for the default database
+	 * @param bool|string $domain Domain ID, or false for the default database
 	 * @return array ( host, max lag, index of max lagged host )
 	 */
-	public function getMaxLag( $wiki = false );
+	public function getMaxLag( $domain = false );
 
 	/**
 	 * Get an estimate of replication lag (in seconds) for each server
@@ -434,10 +434,10 @@ interface ILoadBalancer {
 	 *
 	 * Values may be "false" if replication is too broken to estimate
 	 *
-	 * @param string|bool $wiki
+	 * @param string|bool $domain
 	 * @return int[] Map of (server index => float|int|bool)
 	 */
-	public function getLagTimes( $wiki = false );
+	public function getLagTimes( $domain = false );
 
 	/**
 	 * Get the lag in seconds for a given connection, or zero if this load
