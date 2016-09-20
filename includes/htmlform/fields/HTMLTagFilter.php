@@ -5,27 +5,39 @@
 class HTMLTagFilter extends HTMLFormField {
 	protected $tagFilter;
 
-	function getTableRow( $value ) {
-		$this->tagFilter = ChangeTags::buildTagFilterSelector( $value );
-		if ( $this->tagFilter ) {
-			return parent::getTableRow( $value );
-		}
-		return '';
+	public function hasVisibleOutput() {
+		return (bool) $this->getTagFilter();
 	}
 
-	function getDiv( $value ) {
-		$this->tagFilter = ChangeTags::buildTagFilterSelector( $value );
-		if ( $this->tagFilter ) {
-			return parent::getDiv( $value );
+	/**
+	 * Returns the HTML of the tag filter, if there's one. If $v is null, the tag filter isn't
+	 * cached for a second call, otherwise calling this function again will return the previously
+	 * created tag filter (even if the second call's $value is different or null).
+	 *
+	 * @param null $v The pre-selected value
+	 * @param bool $ooui See ChangeTags::buildTagFilterSelector() $ooui
+	 * @return array
+	 */
+	protected function getTagFilter( $v = null, $ooui = false ) {
+		if ( $this->tagFilter !==  null && $v === null ) {
+			return ChangeTags::buildTagFilterSelector();
+		} else if ( $this->tagFilter === null ) {
+			$this->tagFilter = ChangeTags::buildTagFilterSelector( $v, false, null, $ooui );
 		}
-		return '';
+		return $this->tagFilter;
 	}
 
-	function getInputHTML( $value ) {
-		if ( $this->tagFilter ) {
+	public function getInputHTML( $value ) {
+		if ( $this->getTagFilter( $value, false ) ) {
 			// we only need the select field, HTMLForm should handle the label
-			return $this->tagFilter[1];
+			return $this->getTagFilter( $value )[1];
 		}
-		return '';
+	}
+
+	public function getInputOOUI( $value ) {
+		if ( $this->getTagFilter( $value, true ) ) {
+			// we only need the select field, HTMLForm should handle the label
+			return $this->getTagFilter( $value )[1];
+		}
 	}
 }
