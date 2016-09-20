@@ -406,16 +406,6 @@ class LoadBalancer implements ILoadBalancer {
 		}
 	}
 
-	/**
-	 * Set the master wait position and wait for a "generic" replica DB to catch up to it
-	 *
-	 * This can be used a faster proxy for waitForAll()
-	 *
-	 * @param DBMasterPos $pos
-	 * @param int $timeout Max seconds to wait; default is mWaitTimeout
-	 * @return bool Success (able to connect and no timeouts reached)
-	 * @since 1.26
-	 */
 	public function waitForOne( $pos, $timeout = null ) {
 		$this->mWaitForPos = $pos;
 
@@ -630,38 +620,12 @@ class LoadBalancer implements ILoadBalancer {
 		}
 	}
 
-	/**
-	 * Get a database connection handle reference
-	 *
-	 * The handle's methods wrap simply wrap those of a IDatabase handle
-	 *
-	 * @see LoadBalancer::getConnection() for parameter information
-	 *
-	 * @param int $db
-	 * @param array|string|bool $groups Query group(s), or false for the generic reader
-	 * @param string|bool $domain Domain ID, or false for the current domain
-	 * @return DBConnRef
-	 * @since 1.22
-	 */
 	public function getConnectionRef( $db, $groups = [], $domain = false ) {
 		$domain = ( $domain !== false ) ? $domain : $this->localDomain;
 
 		return new DBConnRef( $this, $this->getConnection( $db, $groups, $domain ) );
 	}
 
-	/**
-	 * Get a database connection handle reference without connecting yet
-	 *
-	 * The handle's methods wrap simply wrap those of a IDatabase handle
-	 *
-	 * @see LoadBalancer::getConnection() for parameter information
-	 *
-	 * @param int $db
-	 * @param array|string|bool $groups Query group(s), or false for the generic reader
-	 * @param string|bool $domain Domain ID, or false for the current domain
-	 * @return DBConnRef
-	 * @since 1.22
-	 */
 	public function getLazyConnectionRef( $db, $groups = [], $domain = false ) {
 		$domain = ( $domain !== false ) ? $domain : $this->localDomain;
 
@@ -966,12 +930,6 @@ class LoadBalancer implements ILoadBalancer {
 		return false;
 	}
 
-	/**
-	 * Disable this load balancer. All connections are closed, and any attempt to
-	 * open a new connection will result in a DBAccessError.
-	 *
-	 * @since 1.27
-	 */
 	public function disable() {
 		$this->closeAll();
 		$this->disabled = true;
@@ -1036,11 +994,6 @@ class LoadBalancer implements ILoadBalancer {
 		}
 	}
 
-	/**
-	 * Perform all pre-commit callbacks that remain part of the atomic transactions
-	 * and disable any post-commit callbacks until runMasterPostTrxCallbacks()
-	 * @since 1.28
-	 */
 	public function finalizeMasterChanges() {
 		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) {
 			// Any error should cause all DB transactions to be rolled back together
@@ -1051,13 +1004,6 @@ class LoadBalancer implements ILoadBalancer {
 		} );
 	}
 
-	/**
-	 * Perform all pre-commit checks for things like replication safety
-	 * @param array $options Includes:
-	 *   - maxWriteDuration : max write query duration time in seconds
-	 * @throws DBTransactionError
-	 * @since 1.28
-	 */
 	public function approveMasterChanges( array $options ) {
 		$limit = isset( $options['maxWriteDuration'] ) ? $options['maxWriteDuration'] : 0;
 		$this->forEachOpenMasterConnection( function ( IDatabase $conn ) use ( $limit ) {
@@ -1091,19 +1037,6 @@ class LoadBalancer implements ILoadBalancer {
 		} );
 	}
 
-	/**
-	 * Flush any master transaction snapshots and set DBO_TRX (if DBO_DEFAULT is set)
-	 *
-	 * The DBO_TRX setting will be reverted to the default in each of these methods:
-	 *   - commitMasterChanges()
-	 *   - rollbackMasterChanges()
-	 *   - commitAll()
-	 * This allows for custom transaction rounds from any outer transaction scope.
-	 *
-	 * @param string $fname
-	 * @throws DBExpectedError
-	 * @since 1.28
-	 */
 	public function beginMasterChanges( $fname = __METHOD__ ) {
 		if ( $this->trxRoundId !== false ) {
 			throw new DBTransactionError(
@@ -1167,12 +1100,6 @@ class LoadBalancer implements ILoadBalancer {
 		}
 	}
 
-	/**
-	 * Issue all pending post-COMMIT/ROLLBACK callbacks
-	 * @param integer $type IDatabase::TRIGGER_* constant
-	 * @return Exception|null The first exception or null if there were none
-	 * @since 1.28
-	 */
 	public function runMasterPostTrxCallbacks( $type ) {
 		$e = null; // first exception
 		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( $type, &$e ) {
@@ -1206,12 +1133,6 @@ class LoadBalancer implements ILoadBalancer {
 		return $e;
 	}
 
-	/**
-	 * Issue ROLLBACK only on master, only if queries were done on connection
-	 * @param string $fname Caller name
-	 * @throws DBExpectedError
-	 * @since 1.23
-	 */
 	public function rollbackMasterChanges( $fname = __METHOD__ ) {
 		$restore = ( $this->trxRoundId !== false );
 		$this->trxRoundId = false;
@@ -1227,11 +1148,6 @@ class LoadBalancer implements ILoadBalancer {
 		);
 	}
 
-	/**
-	 * Suppress all pending post-COMMIT/ROLLBACK callbacks
-	 * @return Exception|null The first exception or null if there were none
-	 * @since 1.28
-	 */
 	public function suppressTransactionEndCallbacks() {
 		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) {
 			$conn->setTrxEndCallbackSuppression( true );
@@ -1261,31 +1177,16 @@ class LoadBalancer implements ILoadBalancer {
 		}
 	}
 
-	/**
-	 * Commit all replica DB transactions so as to flush any REPEATABLE-READ or SSI snapshot
-	 *
-	 * @param string $fname Caller name
-	 * @since 1.28
-	 */
 	public function flushReplicaSnapshots( $fname = __METHOD__ ) {
 		$this->forEachOpenReplicaConnection( function ( IDatabase $conn ) {
 			$conn->flushSnapshot( __METHOD__ );
 		} );
 	}
 
-	/**
-	 * @return bool Whether a master connection is already open
-	 * @since 1.24
-	 */
 	public function hasMasterConnection() {
 		return $this->isOpen( $this->getWriterIndex() );
 	}
 
-	/**
-	 * Determine if there are pending changes in a transaction by this thread
-	 * @since 1.23
-	 * @return bool
-	 */
 	public function hasMasterChanges() {
 		$pending = 0;
 		$this->forEachOpenMasterConnection( function ( IDatabase $conn ) use ( &$pending ) {
@@ -1295,11 +1196,6 @@ class LoadBalancer implements ILoadBalancer {
 		return (bool)$pending;
 	}
 
-	/**
-	 * Get the timestamp of the latest write query done by this thread
-	 * @since 1.25
-	 * @return float|bool UNIX timestamp or false
-	 */
 	public function lastMasterChangeTimestamp() {
 		$lastTime = false;
 		$this->forEachOpenMasterConnection( function ( IDatabase $conn ) use ( &$lastTime ) {
@@ -1309,14 +1205,6 @@ class LoadBalancer implements ILoadBalancer {
 		return $lastTime;
 	}
 
-	/**
-	 * Check if this load balancer object had any recent or still
-	 * pending writes issued against it by this PHP thread
-	 *
-	 * @param float $age How many seconds ago is "recent" [defaults to mWaitTimeout]
-	 * @return bool
-	 * @since 1.25
-	 */
 	public function hasOrMadeRecentMasterChanges( $age = null ) {
 		$age = ( $age === null ) ? $this->mWaitTimeout : $age;
 
@@ -1324,12 +1212,6 @@ class LoadBalancer implements ILoadBalancer {
 			|| $this->lastMasterChangeTimestamp() > microtime( true ) - $age );
 	}
 
-	/**
-	 * Get the list of callers that have pending master changes
-	 *
-	 * @return string[] List of method names
-	 * @since 1.27
-	 */
 	public function pendingMasterChangeCallers() {
 		$fnames = [];
 		$this->forEachOpenMasterConnection( function ( IDatabase $conn ) use ( &$fnames ) {
@@ -1365,11 +1247,6 @@ class LoadBalancer implements ILoadBalancer {
 		return $this->getLaggedReplicaMode( $domain );
 	}
 
-	/**
-	 * @note This method will never cause a new DB connection
-	 * @return bool Whether any generic connection used for reads was highly "lagged"
-	 * @since 1.28
-	 */
 	public function laggedReplicaUsed() {
 		return $this->laggedReplicaMode;
 	}
@@ -1383,13 +1260,6 @@ class LoadBalancer implements ILoadBalancer {
 		return $this->laggedReplicaUsed();
 	}
 
-	/**
-	 * @note This method may trigger a DB connection if not yet done
-	 * @param string|bool $domain Domain ID, or false for the current domain
-	 * @param IDatabase|null DB master connection; used to avoid loops [optional]
-	 * @return string|bool Reason the master is read-only or false if it is not
-	 * @since 1.27
-	 */
 	public function getReadOnlyReason( $domain = false, IDatabase $conn = null ) {
 		if ( $this->readOnlyReason !== false ) {
 			return $this->readOnlyReason;
@@ -1466,12 +1336,6 @@ class LoadBalancer implements ILoadBalancer {
 		}
 	}
 
-	/**
-	 * Call a function with each open connection object to a master
-	 * @param callable $callback
-	 * @param array $params
-	 * @since 1.28
-	 */
 	public function forEachOpenMasterConnection( $callback, array $params = [] ) {
 		$masterIndex = $this->getWriterIndex();
 		foreach ( $this->mConns as $connsByServer ) {
@@ -1485,12 +1349,6 @@ class LoadBalancer implements ILoadBalancer {
 		}
 	}
 
-	/**
-	 * Call a function with each open replica DB connection object
-	 * @param callable $callback
-	 * @param array $params
-	 * @since 1.28
-	 */
 	public function forEachOpenReplicaConnection( $callback, array $params = [] ) {
 		foreach ( $this->mConns as $connsByServer ) {
 			foreach ( $connsByServer as $i => $serverConns ) {
@@ -1543,17 +1401,6 @@ class LoadBalancer implements ILoadBalancer {
 		}
 	}
 
-	/**
-	 * Wait for a replica DB to reach a specified master position
-	 *
-	 * This will connect to the master to get an accurate position if $pos is not given
-	 *
-	 * @param IDatabase $conn Replica DB
-	 * @param DBMasterPos|bool $pos Master position; default: current position
-	 * @param integer $timeout Timeout in seconds
-	 * @return bool Success
-	 * @since 1.27
-	 */
 	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = 10 ) {
 		if ( $this->getServerCount() == 1 || !$conn->getLBInfo( 'replica' ) ) {
 			return true; // server is not a replica DB
@@ -1577,24 +1424,10 @@ class LoadBalancer implements ILoadBalancer {
 		return $ok;
 	}
 
-	/**
-	 * Clear the cache for slag lag delay times
-	 *
-	 * This is only used for testing
-	 * @since 1.26
-	 */
 	public function clearLagTimeCache() {
 		$this->getLoadMonitor()->clearCaches();
 	}
 
-	/**
-	 * Set a callback via IDatabase::setTransactionListener() on
-	 * all current and future master connections of this load balancer
-	 *
-	 * @param string $name Callback name
-	 * @param callable|null $callback
-	 * @since 1.28
-	 */
 	public function setTransactionListener( $name, callable $callback = null ) {
 		if ( $callback ) {
 			$this->trxRecurringCallbacks[$name] = $callback;
@@ -1608,29 +1441,10 @@ class LoadBalancer implements ILoadBalancer {
 		);
 	}
 
-	/**
-	 * Make certain table names use their own database, schema, and table prefix
-	 * when passed into SQL queries pre-escaped and without a qualified database name
-	 *
-	 * For example, "user" can be converted to "myschema.mydbname.user" for convenience.
-	 * Appearances like `user`, somedb.user, somedb.someschema.user will used literally.
-	 *
-	 * Calling this twice will completely clear any old table aliases. Also, note that
-	 * callers are responsible for making sure the schemas and databases actually exist.
-	 *
-	 * @param array[] $aliases Map of (table => (dbname, schema, prefix) map)
-	 * @since 1.28
-	 */
 	public function setTableAliases( array $aliases ) {
 		$this->tableAliases = $aliases;
 	}
 
-	/**
-	 * Set a new table prefix for the existing local domain ID for testing
-	 *
-	 * @param string $prefix
-	 * @since 1.28
-	 */
 	public function setDomainPrefix( $prefix ) {
 		$this->localDomain = new DatabaseDomain(
 			$this->localDomain->getDatabase(),
