@@ -94,6 +94,13 @@ class LegacyLogger extends AbstractLogger {
 	 * @return null
 	 */
 	public function log( $level, $message, array $context = [] ) {
+		if ( $this->channel === 'DBQuery' && isset( $context['method'] )
+			&& isset( $context['master'] ) && isset( $context['runtime'] )
+		) {
+			MWDebug::query( $message, $context['method'], $context['master'], $context['runtime'] );
+			return; // only send profiling data to MWDebug profiling
+		}
+
 		if ( isset( self::$dbChannels[$this->channel] )
 			&& isset( self::$levelMapping[$level] )
 			&& self::$levelMapping[$level] >= LogLevel::ERROR
@@ -109,11 +116,7 @@ class LegacyLogger extends AbstractLogger {
 			$destination = self::destination( $effectiveChannel, $message, $context );
 			self::emit( $text, $destination );
 		}
-		if ( $this->channel === 'DBQuery' && isset( $context['method'] )
-			&& isset( $context['master'] ) && isset( $context['runtime'] )
-		) {
-			MWDebug::query( $message, $context['method'], $context['master'], $context['runtime'] );
-		} elseif ( !isset( $context['private'] ) || !$context['private'] ) {
+		if ( !isset( $context['private'] ) || !$context['private'] ) {
 			// Add to debug toolbar if not marked as "private"
 			MWDebug::debugMsg( $message, [ 'channel' => $this->channel ] + $context );
 		}
