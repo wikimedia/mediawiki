@@ -3735,7 +3735,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @param Content|null $content Optional Content object for determining the
 	 *   necessary updates.
-	 * @return DataUpdate[]
+	 * @return DeferrableUpdate[]
 	 */
 	public function getDeletionUpdates( Content $content = null ) {
 		if ( !$content ) {
