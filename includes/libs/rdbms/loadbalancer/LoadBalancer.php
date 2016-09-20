@@ -1460,4 +1460,9 @@ class LoadBalancer implements ILoadBalancer {
 			$db->tablePrefix( $prefix );
 		} );
 	}
+
+	function __destruct() {
+		// Avoid connection leaks for sanity
+		$this->closeAll();
+	}
 }
