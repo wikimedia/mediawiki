@@ -281,6 +281,8 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 			? $params['queryLogger']
 			: new \Psr\Log\NullLogger();
 
+		$this->currentDomain = DatabaseDomain::newUnspecified();
+
 		if ( $user ) {
 			$this->open( $server, $user, $password, $dbName );
 		} elseif ( $this->requiresDatabaseUser() ) {
