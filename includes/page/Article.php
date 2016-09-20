@@ -335,7 +335,7 @@ class Article implements Page {
 	function fetchContent() {
 		// BC cruft!
 
-		ContentHandler::deprecated( __METHOD__, '1.21' );
+		wfDeprecated( __METHOD__, '1.21' );
 
 		if ( $this->mContentLoaded && $this->mContent ) {
 			return $this->mContent;
