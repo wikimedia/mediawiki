@@ -5427,11 +5427,30 @@ $wgDeleteRevisionsLimit = 0;
 $wgHideUserContribLimit = 1000;
 
 /**
- * Number of accounts each IP address may create, 0 to disable.
+ * Number of accounts each IP address may create per specified period(s).
+ *
+ * @par Example:
+ * @code
+ * $wgAccountCreationThrottle = [
+ *  // no more than 100 per month
+ *  [
+ *   'count' => 100,
+ *   'seconds' => 30*86400,
+ *  ],
+ *  // no more than 10 per day
+ *  [
+ *   'count' => 10,
+ *   'seconds' => 86400,
+ *  ],
+ * ];
+ * @endcode
  *
  * @warning Requires $wgMainCacheType to be enabled
  */
-$wgAccountCreationThrottle = 0;
+$wgAccountCreationThrottle = [ [
+	'count' => 0,
+	'seconds' => 86400,
+] ];
 
 /**
  * Edits matching these regular expressions in body text
