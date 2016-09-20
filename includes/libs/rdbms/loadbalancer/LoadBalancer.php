@@ -23,7 +23,7 @@
 use Psr\Log\LoggerInterface;
 
 /**
- * Database load balancing, tracking, and transaction management object
+ * Database connection, tracking, load balancing, and transaction manager for a cluster
  *
  * @ingroup Database
  */
@@ -801,14 +801,18 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		$server['srvCache'] = $this->srvCache;
-		// Set loggers
+		// Set loggers and profilers
 		$server['connLogger'] = $this->connLogger;
 		$server['queryLogger'] = $this->queryLogger;
+		$server['errorLogger'] = $this->errorLogger;
 		$server['profiler'] = $this->profiler;
 		$server['trxProfiler'] = $this->trxProfiler;
+		// Use the same agent and PHP mode for all DB handles
 		$server['cliMode'] = $this->cliMode;
-		$server['errorLogger'] = $this->errorLogger;
 		$server['agent'] = $this->agent;
+		// Use DBO_DEFAULT flags by default for LoadBalancer managed databases. Assume that the
+		// application calls LoadBalancer::commitMasterChanges() before the PHP script completes.
+		$server['flags'] = isset( $server['flags'] ) ? $server['flags'] : DBO_DEFAULT;
 
 		// Create a live connection object
 		try {
@@ -821,7 +825,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		$db->setLBInfo( $server );
 		$db->setLazyMasterHandle(
-			$this->getLazyConnectionRef( DB_MASTER, [], $db->getWikiID() )
+			$this->getLazyConnectionRef( DB_MASTER, [], $db->getDomainID() )
 		);
 		$db->setTableAliases( $this->tableAliases );
 
@@ -1386,11 +1390,20 @@ class LoadBalancer implements ILoadBalancer {
 
 	public function getLagTimes( $domain = false ) {
 		if ( $this->getServerCount() <= 1 ) {
-			return [ 0 => 0 ]; // no replication = no lag
+			return [ $this->getWriterIndex() => 0 ]; // no replication = no lag
 		}
 
-		# Send the request to the load monitor
-		return $this->getLoadMonitor()->getLagTimes( array_keys( $this->mServers ), $domain );
+		$knownLagTimes = []; // map of (server index => 0 seconds)
+		$indexesWithLag = [];
+		foreach ( $this->mServers as $i => $server ) {
+			if ( empty( $server['is static'] ) ) {
+				$indexesWithLag[] = $i; // DB server might have replication lag
+			} else {
+				$knownLagTimes[$i] = 0; // DB server is a non-replicating and read-only archive
+			}
+		}
+
+		return $this->getLoadMonitor()->getLagTimes( $indexesWithLag, $domain ) + $knownLagTimes;
 	}
 
 	public function safeGetLag( IDatabase $conn ) {
