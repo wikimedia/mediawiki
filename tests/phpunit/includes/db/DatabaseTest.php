@@ -359,24 +359,26 @@ class DatabaseTest extends MediaWikiTestCase {
 		$origTrx = $db->getFlag( DBO_TRX );
 		$origSsl = $db->getFlag( DBO_SSL );
 
-		if ( $origTrx ) {
-			$db->clearFlag( DBO_TRX, $db::REMEMBER_PRIOR );
-		} else {
-			$db->setFlag( DBO_TRX, $db::REMEMBER_PRIOR );
-		}
+		$origTrx
+			? $db->clearFlag( DBO_TRX, $db::REMEMBER_PRIOR )
+			: $db->setFlag( DBO_TRX, $db::REMEMBER_PRIOR );
 		$this->assertEquals( !$origTrx, $db->getFlag( DBO_TRX ) );
 
-		if ( $origSsl ) {
-			$db->clearFlag( DBO_SSL, $db::REMEMBER_PRIOR );
-		} else {
-			$db->setFlag( DBO_SSL, $db::REMEMBER_PRIOR );
-		}
+		$origSsl
+			? $db->clearFlag( DBO_SSL, $db::REMEMBER_PRIOR )
+			: $db->setFlag( DBO_SSL, $db::REMEMBER_PRIOR );
 		$this->assertEquals( !$origSsl, $db->getFlag( DBO_SSL ) );
 
-		$db2 = clone $db;
-		$db2->restoreFlags( $db::RESTORE_INITIAL );
-		$this->assertEquals( $origTrx, $db2->getFlag( DBO_TRX ) );
-		$this->assertEquals( $origSsl, $db2->getFlag( DBO_SSL ) );
+		$db->restoreFlags( $db::RESTORE_INITIAL );
+		$this->assertEquals( $origTrx, $db->getFlag( DBO_TRX ) );
+		$this->assertEquals( $origSsl, $db->getFlag( DBO_SSL ) );
+
+		$origTrx
+			? $db->clearFlag( DBO_TRX, $db::REMEMBER_PRIOR )
+			: $db->setFlag( DBO_TRX, $db::REMEMBER_PRIOR );
+		$origSsl
+			? $db->clearFlag( DBO_SSL, $db::REMEMBER_PRIOR )
+			: $db->setFlag( DBO_SSL, $db::REMEMBER_PRIOR );
 
 		$db->restoreFlags();
 		$this->assertEquals( $origSsl, $db->getFlag( DBO_SSL ) );
