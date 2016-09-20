@@ -203,6 +203,8 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 
 	/** @var array Map of (name => 1) for locks obtained via lock() */
 	private $mNamedLocksHeld = [];
+	/** @var array Map of (table name => 1) for TEMPORARY tables */
+	private $mSessionTempTables = [];
 
 	/** @var IDatabase|null Lazy handle to the master DB this server replicates from */
 	private $lazyMasterHandle;
@@ -787,11 +789,40 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		return !in_array( $verb, [ 'BEGIN', 'COMMIT', 'ROLLBACK', 'SHOW', 'SET' ], true );
 	}
 
+	/**
+	 * @param string $sql A SQL query
+	 * @return bool Whether $sql is SQL for creating/dropping a new TEMPORARY table
+	 */
+	protected function registerTempTableOperation( $sql ) {
+		if ( preg_match(
+			'/^(CREATE|DROP)\s+TEMPORARY\s+TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?[`"\']?(\w+)[`"\']?/i',
+			$sql,
+			$matches
+		) ) {
+			list( , $verb, $table ) = $matches;
+			if ( $verb === 'CREATE' ) {
+				$this->mSessionTempTables[$table] = 1;
+			} else {
+				unset( $this->mSessionTempTables[$table] );
+			}
+
+			return true;
+		} elseif ( preg_match(
+			'/^(?:INSERT\s+(?:\w+\s+)?INTO|UPDATE|DELETE\s+FROM)\s+[`"\']?(\w+)[`"\']?/i',
+			$sql,
+			$matches
+		) ) {
+			return isset( $this->mSessionTempTables[$matches[1]] );
+		}
+
+		return false;
+	}
+
 	public function query( $sql, $fname = __METHOD__, $tempIgnore = false ) {
 		$priorWritesPending = $this->writesOrCallbacksPending();
 		$this->mLastQuery = $sql;
 
-		$isWrite = $this->isWriteQuery( $sql );
+		$isWrite = $this->isWriteQuery( $sql ) && !$this->registerTempTableOperation( $sql );
 		if ( $isWrite ) {
 			$reason = $this->getReadOnlyReason();
 			if ( $reason !== false ) {
@@ -837,7 +868,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 			$lastError = $this->lastError();
 			$lastErrno = $this->lastErrno();
 			# Update state tracking to reflect transaction loss due to disconnection
-			$this->handleTransactionLoss();
+			$this->handleSessionLoss();
 			if ( $this->reconnect() ) {
 				$msg = __METHOD__ . ": lost connection to {$this->getServer()}; reconnected";
 				$this->connLogger->warning( $msg );
@@ -866,7 +897,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 					$tempIgnore = false; // not recoverable
 				}
 				# Update state tracking to reflect transaction loss
-				$this->handleTransactionLoss();
+				$this->handleSessionLoss();
 			}
 
 			$this->reportQueryError(
@@ -979,10 +1010,12 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		return true;
 	}
 
-	private function handleTransactionLoss() {
+	private function handleSessionLoss() {
 		$this->mTrxLevel = 0;
 		$this->mTrxIdleCallbacks = []; // bug 65263
 		$this->mTrxPreCommitCallbacks = []; // bug 65263
+		$this->mSessionTempTables = [];
+		$this->mNamedLocksHeld = [];
 		try {
 			// Handle callbacks in mTrxEndCallbacks
 			$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
