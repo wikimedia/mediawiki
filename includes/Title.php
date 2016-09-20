@@ -1079,7 +1079,7 @@ class Title implements LinkTarget {
 	/**
 	 * Returns true if the title is inside one of the specified namespaces.
 	 *
-	 * @param int $namespaces,... The namespaces to check for
+	 * @param int|int[] $namespaces,... The namespaces to check for
 	 * @return bool
 	 * @since 1.19
 	 */
