@@ -258,6 +258,11 @@ class ApiQuery extends ApiBase {
 		// Write the continuation data into the result
 		$this->setContinuationManager( null );
 		if ( $this->mParams['rawcontinue'] ) {
+			$data = $continuationManager->getRawNonContinuation();
+			if ( $data ) {
+				$this->getResult()->addValue( null, 'query-noncontinue', $data,
+					ApiResult::ADD_ON_TOP | ApiResult::NO_SIZE_CHECK );
+			}
 			$data = $continuationManager->getRawContinuation();
 			if ( $data ) {
 				$this->getResult()->addValue( null, 'query-continue', $data,

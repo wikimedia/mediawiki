@@ -31,6 +31,7 @@ class ApiContinuationManager {
 
 	private $continuationData = [];
 	private $generatorContinuationData = [];
+	private $generatorNonContinuationData = [];
 
 	private $generatorParams = [];
 	private $generatorDone = false;
@@ -143,6 +144,26 @@ class ApiContinuationManager {
 	}
 
 	/**
+	 * Set the non-continuation parameter for the generator module
+	 *
+	 * In case the generator isn't going to be continued, this sets the fields
+	 * to return.
+	 *
+	 * @since 1.28
+	 * @param ApiBase $module
+	 * @param string $paramName
+	 * @param string|array $paramValue
+	 */
+	public function addGeneratorNonContinueParam( ApiBase $module, $paramName, $paramValue ) {
+		$name = $module->getModuleName();
+		$paramName = $module->encodeParamName( $paramName );
+		if ( is_array( $paramValue ) ) {
+			$paramValue = implode( '|', $paramValue );
+		}
+		$this->generatorNonContinuationData[$name][$paramName] = $paramValue;
+	}
+
+	/**
 	 * Set the continuation parameter for the generator module
 	 * @param ApiBase $module
 	 * @param string $paramName
@@ -163,6 +184,15 @@ class ApiContinuationManager {
 	 */
 	public function getRawContinuation() {
 		return array_merge_recursive( $this->continuationData, $this->generatorContinuationData );
+	}
+
+	/**
+	 * Fetch raw non-continuation data
+	 * @since 1.28
+	 * @return array
+	 */
+	public function getRawNonContinuation() {
+		return $this->generatorNonContinuationData;
 	}
 
 	/**
@@ -192,8 +222,13 @@ class ApiContinuationManager {
 			foreach ( $continuationData as $module => $kvp ) {
 				$data += $kvp;
 			}
-			$data += $this->generatorParams;
-			$generatorKeys = implode( '|', array_keys( $this->generatorParams ) );
+			$generatorParams = [];
+			foreach ( $this->generatorNonContinuationData as $kvp ) {
+				$generatorParams += $kvp;
+			}
+			$generatorParams += $this->generatorParams;
+			$data += $generatorParams;
+			$generatorKeys = implode( '|', array_keys( $generatorParams ) );
 		} elseif ( $this->generatorContinuationData ) {
 			// All the generator-using modules are complete, but the
 			// generator isn't. Continue the generator and restart the

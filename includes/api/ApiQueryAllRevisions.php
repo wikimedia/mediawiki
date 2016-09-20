@@ -172,6 +172,13 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		$nextIndex = 0;
 		$generated = [];
 		foreach ( $res as $row ) {
+			if ( $count === 0 && $resultPageSet !== null ) {
+				// Set the non-continue since the list of all revisions is
+				// prone to having entries added at the start frequently.
+				$this->getContinuationManager()->addGeneratorNonContinueParam(
+					$this, 'continue', "$row->rev_timestamp|$row->rev_id"
+				);
+			}
 			if ( ++$count > $this->limit ) {
 				// We've had enough
 				$this->setContinueEnumParameter( 'continue', "$row->rev_timestamp|$row->rev_id" );
