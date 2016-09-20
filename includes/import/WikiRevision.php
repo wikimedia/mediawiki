@@ -319,7 +319,7 @@ class WikiRevision {
 	 * @deprecated Since 1.21, use getContent() instead.
 	 */
 	function getText() {
-		ContentHandler::deprecated( __METHOD__, '1.21' );
+		wfDeprecated( __METHOD__, '1.21' );
 
 		return $this->text;
 	}
