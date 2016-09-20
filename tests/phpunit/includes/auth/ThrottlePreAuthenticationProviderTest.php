@@ -132,7 +132,7 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 			'attempt #2'
 		);
 		$this->assertEquals(
-			$succeed ? \StatusValue::newGood() : \StatusValue::newFatal( 'acct_creation_throttle_hit', 2 ),
+			$succeed ? \StatusValue::newGood() : \StatusValue::newFatal( 'acct_creation_throttle_hit', 2, 24.0 ),
 			$provider->testForAccountCreation( $user, $creator, [] ),
 			'attempt #3'
 		);
