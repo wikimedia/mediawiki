@@ -219,7 +219,7 @@ class Preprocessor_DOM extends Preprocessor {
 
 		$stack = new PPDStack;
 
-		$searchBase = "[{<\n"; # }
+		$searchBase = "[{<\n-"; # }
 		// For fast reverse searches
 		$revText = strrev( $text );
 		$lengthText = strlen( $text );
@@ -298,7 +298,10 @@ class Preprocessor_DOM extends Preprocessor {
 						break;
 					}
 				} else {
-					$curChar = $text[$i];
+					$curChar = $curTwoChar = $text[$i];
+					if ( ( $i + 1 ) < $lengthText ) {
+						$curTwoChar .= $text[$i + 1];
+					}
 					if ( $curChar == '|' ) {
 						$found = 'pipe';
 					} elseif ( $curChar == '=' ) {
@@ -311,11 +314,20 @@ class Preprocessor_DOM extends Preprocessor {
 						} else {
 							$found = 'line-start';
 						}
+					} elseif ( $curTwoChar == $currentClosing ) {
+						$found = 'close';
+						$curChar = $curTwoChar;
 					} elseif ( $curChar == $currentClosing ) {
 						$found = 'close';
+					} elseif ( isset( $this->rules[$curTwoChar] ) ) {
+						$curChar = $curTwoChar;
+						$found = 'open';
+						$rule = $this->rules[$curChar];
 					} elseif ( isset( $this->rules[$curChar] ) ) {
 						$found = 'open';
 						$rule = $this->rules[$curChar];
+					} else if ( $curChar == '-' ) {
+						$found = 'dash';
 					} else {
 						# Some versions of PHP have a strcspn which stops on null characters
 						# Ignore and continue
@@ -595,7 +607,10 @@ class Preprocessor_DOM extends Preprocessor {
 				// input pointer.
 			} elseif ( $found == 'open' ) {
 				# count opening brace characters
-				$count = strspn( $text, $curChar, $i );
+				$count = strlen( $curChar );
+				if ( $count === 1 ) {
+					$count = strspn( $text, $curChar, $i );
+				}
 
 				# we need to add to stack only if opening brace count is enough for one of the rules
 				if ( $count >= $rule['min'] ) {
@@ -620,7 +635,10 @@ class Preprocessor_DOM extends Preprocessor {
 				$piece = $stack->top;
 				# lets check if there are enough characters for closing brace
 				$maxCount = $piece->count;
-				$count = strspn( $text, $curChar, $i, $maxCount );
+				$count = strlen( $curChar );
+				if ( $count === 1 ) {
+					$count = strspn( $text, $curChar, $i, $maxCount );
+				}
 
 				# check for maximum matching characters (if there are 5 closing
 				# characters, we will probably need only 3 - depending on the rules)
@@ -715,6 +733,9 @@ class Preprocessor_DOM extends Preprocessor {
 				$findEquals = false; // shortcut for getFlags()
 				$stack->getCurrentPart()->eqpos = strlen( $accum );
 				$accum .= '=';
+				++$i;
+			} elseif ( $found == 'dash' ) {
+				$accum .= '-';
 				++$i;
 			}
 		}
