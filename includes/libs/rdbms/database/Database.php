@@ -3516,5 +3516,11 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 			$fnames = implode( ', ', $danglingWriters );
 			trigger_error( "DB transaction writes or callbacks still pending ($fnames)." );
 		}
+
+		if ( $this->mConn ) {
+			// Avoid connection leaks for sanity
+			$this->closeConnection();
+			$this->mConn = false;
+		}
 	}
 }
