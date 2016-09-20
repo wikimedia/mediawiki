@@ -3525,7 +3525,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	 * @throws DBConnectionError
 	 */
 	public function __clone() {
-		$this->connLogger->debug(
+		$this->connLogger->warning(
 			"Cloning " . get_class( $this ) . " is not recomended; forking connection:\n" .
 			( new RuntimeException() )->getTraceAsString()
 		);
