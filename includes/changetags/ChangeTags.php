@@ -571,7 +571,7 @@ class ChangeTags {
 			// This function is from revision deletion logic and has nothing to do with
 			// change tags, but it appears to be the only other place in core where we
 			// perform logged actions on log items.
-			$logEntry->setTarget( RevDelLogList::suggestTarget( 0, [ $log_id ] ) );
+			$logEntry->setTarget( RevDelLogList::suggestTarget( null, [ $log_id ] ) );
 		}
 
 		if ( !$logEntry->getTarget() ) {
@@ -1038,7 +1038,7 @@ class ChangeTags {
 		// let's not allow error results, as the actual tag deletion succeeded
 		if ( !$status->isOK() ) {
 			wfDebug( 'ChangeTagAfterDelete error condition downgraded to warning' );
-			$status->ok = true;
+			$status->setOK( true );
 		}
 
 		// clear the memcache of defined tags
