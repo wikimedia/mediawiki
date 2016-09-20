@@ -26,7 +26,7 @@ production.
   https://www.mediawiki.org/beacon with basic information about the local
   MediaWiki installation. This data includes, for example, the type of system,
   PHP version, and chosen database backend. This behavior is off by default.
-* When $EditSubmitButtonLabelPublish is true, MediaWiki will label the button
+* When $wgEditSubmitButtonLabelPublish is true, MediaWiki will label the button
   to store-to-database-and-show-to-others as "Publish page"/"Publish changes";
   if false, the default, they will be "Save page"/"Save changes".
 * The 'editcontentmodel' permission is now granted to all logged-in users ('user').
