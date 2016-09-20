@@ -146,7 +146,7 @@ abstract class LBFactory {
 	/**
 	 * Disables all load balancers. All connections are closed, and any attempt to
 	 * open a new connection will result in a DBAccessError.
-	 * @see LoadBalancer::disable()
+	 * @see ILoadBalancer::disable()
 	 */
 	public function destroy() {
 		$this->shutdown( self::SHUTDOWN_NO_CHRONPROT );
@@ -686,7 +686,7 @@ abstract class LBFactory {
 			$prefix
 		);
 
-		$this->forEachLB( function( LoadBalancer $lb ) use ( $prefix ) {
+		$this->forEachLB( function( ILoadBalancer $lb ) use ( $prefix ) {
 			$lb->setDomainPrefix( $prefix );
 		} );
 	}

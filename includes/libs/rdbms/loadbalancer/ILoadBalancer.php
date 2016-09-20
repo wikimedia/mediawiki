@@ -482,4 +482,25 @@ interface ILoadBalancer {
 	 * @param callable|null $callback
 	 */
 	public function setTransactionListener( $name, callable $callback = null );
+
+	/**
+	 * Set a new table prefix for the existing local domain ID for testing
+	 *
+	 * @param string $prefix
+	 */
+	public function setDomainPrefix( $prefix );
+
+	/**
+	 * Make certain table names use their own database, schema, and table prefix
+	 * when passed into SQL queries pre-escaped and without a qualified database name
+	 *
+	 * For example, "user" can be converted to "myschema.mydbname.user" for convenience.
+	 * Appearances like `user`, somedb.user, somedb.someschema.user will used literally.
+	 *
+	 * Calling this twice will completely clear any old table aliases. Also, note that
+	 * callers are responsible for making sure the schemas and databases actually exist.
+	 *
+	 * @param array[] $aliases Map of (table => (dbname, schema, prefix) map)
+	 */
+	public function setTableAliases( array $aliases );
 }
