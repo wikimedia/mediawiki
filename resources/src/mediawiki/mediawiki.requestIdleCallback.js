@@ -24,8 +24,12 @@
 	 * @member mw
 	 * @param {Function} callback
 	 */
+	mw.requestIdleCallback = mw.requestIdleCallbackInternal;
+	/*
+	// XXX: Polyfill disabled due to https://bugs.chromium.org/p/chromium/issues/detail?id=647870
 	mw.requestIdleCallback = window.requestIdleCallback
 		// Bind because it throws TypeError if context is not window
 		? window.requestIdleCallback.bind( window )
 		: mw.requestIdleCallbackInternal;
+	*/
 }( mediaWiki ) );
