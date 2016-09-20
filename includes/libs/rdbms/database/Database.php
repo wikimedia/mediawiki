@@ -243,19 +243,15 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		$user = $params['user'];
 		$password = $params['password'];
 		$dbName = $params['dbname'];
-		$flags = $params['flags'];
 
 		$this->mSchema = $params['schema'];
 		$this->mTablePrefix = $params['tablePrefix'];
 
-		$this->cliMode = isset( $params['cliMode'] )
-			? $params['cliMode']
-			: ( PHP_SAPI === 'cli' );
-		$this->agent = isset( $params['agent'] )
-			? str_replace( '/', '-', $params['agent'] ) // escape for comment
-			: '';
+		$this->cliMode = $params['cliMode'];
+		// Agent name is added to SQL queries in a comment, so make sure it can't break out
+		$this->agent = str_replace( '/', '-', $params['agent'] );
 
-		$this->mFlags = $flags;
+		$this->mFlags = $params['flags'];
 		if ( $this->mFlags & DBO_DEFAULT ) {
 			if ( $this->cliMode ) {
 				$this->mFlags &= ~DBO_TRX;
@@ -270,16 +266,10 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 			? $params['srvCache']
 			: new HashBagOStuff();
 
-		$this->profiler = isset( $params['profiler'] ) ? $params['profiler'] : null;
-		$this->trxProfiler = isset( $params['trxProfiler'] )
-			? $params['trxProfiler']
-			: new TransactionProfiler();
-		$this->connLogger = isset( $params['connLogger'] )
-			? $params['connLogger']
-			: new \Psr\Log\NullLogger();
-		$this->queryLogger = isset( $params['queryLogger'] )
-			? $params['queryLogger']
-			: new \Psr\Log\NullLogger();
+		$this->profiler = $params['profiler'];
+		$this->trxProfiler = $params['trxProfiler'];
+		$this->connLogger = $params['connLogger'];
+		$this->queryLogger = $params['queryLogger'];
 
 		if ( $user ) {
 			$this->open( $server, $user, $password, $dbName );
@@ -381,22 +371,25 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 			$p['variables'] = isset( $p['variables'] ) ? $p['variables'] : [];
 			$p['tablePrefix'] = isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : '';
 			$p['schema'] = isset( $p['schema'] ) ? $p['schema'] : '';
-			$p['foreign'] = isset( $p['foreign'] ) ? $p['foreign'] : false;
-
-			$conn = new $class( $p );
-			if ( isset( $p['connLogger'] ) ) {
-				$conn->connLogger = $p['connLogger'];
+			$p['cliMode'] = isset( $p['cliMode'] ) ? $p['cliMode'] : ( PHP_SAPI === 'cli' );
+			$p['agent'] = isset( $p['agent'] ) ? $p['agent'] : '';
+			if ( !isset( $p['connLogger'] ) ) {
+				$p['connLogger'] = new \Psr\Log\NullLogger();
 			}
-			if ( isset( $p['queryLogger'] ) ) {
-				$conn->queryLogger = $p['queryLogger'];
+			if ( !isset( $p['queryLogger'] ) ) {
+				$p['queryLogger'] = new \Psr\Log\NullLogger();
 			}
-			if ( isset( $p['errorLogger'] ) ) {
-				$conn->errorLogger = $p['errorLogger'];
-			} else {
-				$conn->errorLogger = function ( Exception $e ) {
+			$p['profiler'] = isset( $p['profiler'] ) ? $p['profiler'] : null;
+			if ( !isset( $p['trxProfiler'] ) ) {
+				$p['trxProfiler'] = new TransactionProfiler();
+			}
+			if ( !isset( $p['errorLogger'] ) ) {
+				$p['errorLogger'] = function ( Exception $e ) {
 					trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_WARNING );
 				};
 			}
+
+			$conn = new $class( $p );
 		} else {
 			$conn = null;
 		}
