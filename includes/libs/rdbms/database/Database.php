@@ -204,7 +204,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	/** @var array Map of (name => 1) for locks obtained via lock() */
 	private $mNamedLocksHeld = [];
 	/** @var array Map of (table name => 1) for TEMPORARY tables */
-	private $mSessionTempTables = [];
+	protected $mSessionTempTables = [];
 
 	/** @var IDatabase|null Lazy handle to the master DB this server replicates from */
 	private $lazyMasterHandle;
@@ -1400,6 +1400,11 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	}
 
 	public function tableExists( $table, $fname = __METHOD__ ) {
+		$tableRaw = $this->tableName( $table, 'raw' );
+		if ( isset( $this->mSessionTempTables[$tableRaw] ) ) {
+			return true; // already known to exists
+		}
+
 		$table = $this->tableName( $table );
 		$old = $this->ignoreErrors( true );
 		$res = $this->query( "SELECT 1 FROM $table LIMIT 1", $fname );
