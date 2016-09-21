@@ -283,6 +283,8 @@
 			this[ this.needToken() ? 'postWithEditToken' : 'post' ]( data, {
 				// Use FormData (if we got here, we know that it's available)
 				contentType: 'multipart/form-data',
+				// Don't timeout, file uploads could take awhile
+				timeout: false,
 				// Provide upload progress notifications
 				xhr: function () {
 					var xhr = $.ajaxSettings.xhr();
