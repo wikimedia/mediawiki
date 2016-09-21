@@ -33,6 +33,12 @@ class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 	function __construct() {
 		$this->profiler = new ProfilerStub( [] );
 		$this->trxProfiler = new TransactionProfiler();
+		$this->cliMode = isset( $opts['cliMode'] ) ? $opts['cliMode'] : true;
+		$this->connLogger = new \Psr\Log\NullLogger();
+		$this->queryLogger = new \Psr\Log\NullLogger();
+		$this->errorLogger = function ( Exception $e ) {
+			wfWarn( get_class( $e ) . ": {$e->getMessage()}" );
+		};
 		$this->currentDomain = DatabaseDomain::newUnspecified();
 	}
 
