@@ -336,6 +336,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		JobQueueGroup::destroySingletons();
 		ObjectCache::clear();
+		MediaWikiServices::getInstance()->getMainObjectStash()->clear();
+		MediaWikiServices::getInstance()->getLocalServerObjectCache()->clear();
+		MediaWikiServices::getInstance()->getMainWANObjectCache()->clearProcessCache();
 		FileBackendGroup::destroySingleton();
 
 		// TODO: move global state into MediaWikiServices
@@ -584,11 +587,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @param object $object
 	 */
 	protected function setService( $name, $object ) {
-		// If we did not yet override the service locator, so so now.
-		if ( MediaWikiServices::getInstance() === self::$serviceLocator ) {
-			$this->overrideMwServices();
-		}
-
 		MediaWikiServices::getInstance()->disableService( $name );
 		MediaWikiServices::getInstance()->redefineService(
 			$name,
