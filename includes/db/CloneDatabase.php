@@ -23,6 +23,7 @@
  * @file
  * @ingroup Database
  */
+use MediaWiki\MediaWikiServices;
 
 class CloneDatabase {
 	/** @var string Table prefix for cloning */
@@ -40,16 +41,19 @@ class CloneDatabase {
 	/** @var bool Whether to use temporary tables or not */
 	private $useTemporaryTables = true;
 
+	/** @var Database */
+	private $db;
+
 	/**
 	 * Constructor
 	 *
-	 * @param IDatabase $db A database subclass
+	 * @param Database $db A database subclass
 	 * @param array $tablesToClone An array of tables to clone, unprefixed
 	 * @param string $newTablePrefix Prefix to assign to the tables
 	 * @param string $oldTablePrefix Prefix on current tables, if not $wgDBprefix
 	 * @param bool $dropCurrentTables
 	 */
-	public function __construct( IDatabase $db, array $tablesToClone,
+	public function __construct( Database $db, array $tablesToClone,
 		$newTablePrefix, $oldTablePrefix = '', $dropCurrentTables = true
 	) {
 		$this->db = $db;
@@ -130,7 +134,7 @@ class CloneDatabase {
 	public static function changePrefix( $prefix ) {
 		global $wgDBprefix;
 
-		$lbFactory = wfGetLBFactory();
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$lbFactory->setDomainPrefix( $prefix );
 		$wgDBprefix = $prefix;
 	}
