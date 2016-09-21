@@ -292,6 +292,8 @@
 	"talk": "讨论",
 	"views": "视图",
 	"toolbox": "工具",
+	"tool-link-userrights": "更改{{GENDER:$1|用户}}组",
+	"tool-link-emailuser": "电邮联系该{{GENDER:$1|用户}}",
 	"userpage": "查看用户页面",
 	"projectpage": "查看项目页面",
 	"imagepage": "查看文件页面",

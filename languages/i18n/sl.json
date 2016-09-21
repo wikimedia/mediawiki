@@ -211,6 +211,8 @@
 	"talk": "Pogovor",
 	"views": "Pogled",
 	"toolbox": "Orodja",
+	"tool-link-userrights": "Spremeni {{GENDER:$1|uporabnikove|uporabničine}} skupine",
+	"tool-link-emailuser": "Pošlji e-pošto {{GENDER:$1|uporabniku|uporabnici}}",
 	"userpage": "Prikaži uporabnikovo stran",
 	"projectpage": "Prikaži projektno stran",
 	"imagepage": "Pokaži stran z datoteko",

@@ -301,6 +301,7 @@
 	"talk": "Discussione",
 	"views": "Visite",
 	"toolbox": "Strumenti",
+	"tool-link-emailuser": "Invia una email a questo {{GENDER:$1|utente}}",
 	"userpage": "Visualizza la pagina utente",
 	"projectpage": "Visualizza la pagina di servizio",
 	"imagepage": "Visualizza la pagina del file",
