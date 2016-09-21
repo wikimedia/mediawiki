@@ -644,6 +644,7 @@ class LoadBalancer implements ILoadBalancer {
 		} else {
 			$server = $this->mServers[$i];
 			$server['serverIndex'] = $i;
+			var_dump(1);
 			$conn = $this->reallyOpenConnection( $server, false );
 			$serverName = $this->getServerName( $i );
 			if ( $conn->isOpen() ) {
