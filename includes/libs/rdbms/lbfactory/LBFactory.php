@@ -410,14 +410,14 @@ abstract class LBFactory {
 	 * This makes sense when lag being waiting on is caused by the code that does this check.
 	 * In that case, setting "ifWritesSince" can avoid the overhead of waiting for clusters
 	 * that were not changed since the last wait check. To forcefully wait on a specific cluster
-	 * for a given wiki, use the 'wiki' parameter. To forcefully wait on an "external" cluster,
+	 * for a given domain, use the 'domain' parameter. To forcefully wait on an "external" cluster,
 	 * use the "cluster" parameter.
 	 *
 	 * Never call this function after a large DB write that is *still* in a transaction.
 	 * It only makes sense to call this after the possible lag inducing changes were committed.
 	 *
 	 * @param array $opts Optional fields that include:
-	 *   - wiki : wait on the load balancer DBs that handles the given wiki
+	 *   - domain : wait on the load balancer DBs that handles the given domain ID
 	 *   - cluster : wait on the given external load balancer DBs
 	 *   - timeout : Max wait time. Default: ~60 seconds
 	 *   - ifWritesSince: Only wait if writes were done since this UNIX timestamp
@@ -426,19 +426,23 @@ abstract class LBFactory {
 	 */
 	public function waitForReplication( array $opts = [] ) {
 		$opts += [
-			'wiki' => false,
+			'domain' => false,
 			'cluster' => false,
 			'timeout' => 60,
 			'ifWritesSince' => null
 		];
+
+		if ( !$opts['domain'] && isset( $opts['wiki'] ) ) {
+			$opts['domain'] = $opts['wiki']; // b/c
+		}
 
 		// Figure out which clusters need to be checked
 		/** @var ILoadBalancer[] $lbs */
 		$lbs = [];
 		if ( $opts['cluster'] !== false ) {
 			$lbs[] = $this->getExternalLB( $opts['cluster'] );
-		} elseif ( $opts['wiki'] !== false ) {
-			$lbs[] = $this->getMainLB( $opts['wiki'] );
+		} elseif ( $opts['domain'] !== false ) {
+			$lbs[] = $this->getMainLB( $opts['domain'] );
 		} else {
 			$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$lbs ) {
 				$lbs[] = $lb;
