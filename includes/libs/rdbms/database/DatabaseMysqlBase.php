@@ -519,6 +519,10 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	function tableExists( $table, $fname = __METHOD__ ) {
+		if ( isset( $this->mSessionTempTables[$table] ) ) {
+			return true; // already known to exists and won't show in SHOW TABLES anyway
+		}
+
 		$table = $this->tableName( $table, 'raw' );
 		$encLike = $this->buildLike( $table );
 
