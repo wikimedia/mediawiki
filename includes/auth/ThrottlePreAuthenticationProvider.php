@@ -76,10 +76,12 @@ class ThrottlePreAuthenticationProvider extends AbstractPreAuthenticationProvide
 		];
 
 		if ( !empty( $this->throttleSettings['accountCreationThrottle'] ) ) {
+			$allMultipliers = $this->config->get( 'ThrottleGroupMultipliers' );
 			$this->accountCreationThrottle = new Throttler(
 				$this->throttleSettings['accountCreationThrottle'], [
 					'type' => 'acctcreate',
 					'cache' => $this->cache,
+					'multipliers' => $allMultipliers['createaccount']
 				]
 			);
 		}
@@ -105,6 +107,7 @@ class ThrottlePreAuthenticationProvider extends AbstractPreAuthenticationProvide
 			return \StatusValue::newGood();
 		}
 
+		$this->accountCreationThrottle->setGroups( $creator->getGroups() );
 		$result = $this->accountCreationThrottle->increase( null, $ip, __METHOD__ );
 		if ( $result ) {
 			return \StatusValue::newFatal( 'acct_creation_throttle_hit', $result['count'] );
