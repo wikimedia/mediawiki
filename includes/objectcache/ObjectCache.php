@@ -278,6 +278,7 @@ class ObjectCache {
 	 * @return BagOStuff
 	 * @throws InvalidArgumentException
 	 * @since 1.27
+	 * @deprecated Since 1.28; use MediaWikiServices::getLocalServerObjectCache
 	 */
 	public static function getLocalServerInstance( $fallback = CACHE_NONE ) {
 		if ( function_exists( 'apc_fetch' ) ) {
@@ -371,11 +372,14 @@ class ObjectCache {
 	 *
 	 * @since 1.27
 	 * @return BagOStuff
+	 * @deprecated Since 1.28 Use MediaWikiServices::getLocalClusterCache
 	 */
 	public static function getLocalClusterInstance() {
 		global $wgMainCacheType;
 
 		return self::getInstance( $wgMainCacheType );
+		// @TODO:
+		// return MediaWikiServices::getInstance()->getLocalClusterObjectCache();
 	}
 
 	/**
@@ -383,11 +387,14 @@ class ObjectCache {
 	 *
 	 * @since 1.26
 	 * @return WANObjectCache
+	 * @deprecated Since 1.28 Use MediaWikiServices::getMainWANCache()
 	 */
 	public static function getMainWANInstance() {
 		global $wgMainWANCache;
 
 		return self::getWANInstance( $wgMainWANCache );
+		// @TODO:
+		// return MediaWikiServices::getInstance()->getMainWANObjectCache();
 	}
 
 	/**
@@ -407,11 +414,14 @@ class ObjectCache {
 	 *
 	 * @return BagOStuff
 	 * @since 1.26
+	 * @deprecated Since 1.28 Use MediaWikiServices::getMainObjectStash
 	 */
 	public static function getMainStashInstance() {
 		global $wgMainStash;
 
 		return self::getInstance( $wgMainStash );
+		// @TODO:
+		// return MediaWikiServices::getInstance()->getMainObjectStash();
 	}
 
 	/**
