@@ -130,7 +130,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			wfDebug( "writable external store\n" );
 		}
 
-		$db = $lb->getConnection( DB_REPLICA, [], $wiki );
+		$db = $lb->getConnectionRef( DB_REPLICA, [], $wiki );
 		$db->clearFlag( DBO_TRX ); // sanity
 
 		return $db;
@@ -146,7 +146,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : false;
 		$lb = $this->getLoadBalancer( $cluster );
 
-		$db = $lb->getConnection( DB_MASTER, [], $wiki );
+		$db = $lb->getConnectionRef( DB_MASTER, [], $wiki );
 		$db->clearFlag( DBO_TRX ); // sanity
 
 		return $db;
