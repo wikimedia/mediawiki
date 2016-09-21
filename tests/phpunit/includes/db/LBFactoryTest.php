@@ -272,6 +272,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 
 		/** @var DatabaseBase $db */
 		$db = $lb->getConnection( DB_MASTER, [], '' );
+		$lb->reuseConnection( $db ); // don't care
 
 		$this->assertEquals(
 			'',
@@ -323,6 +324,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$lb = $factory->getMainLB();
 		/** @var DatabaseBase $db */
 		$db = $lb->getConnection( DB_MASTER, [], '' );
+		$lb->reuseConnection( $db ); // don't care
 
 		$this->assertEquals(
 			'',
