@@ -1122,4 +1122,16 @@ class MysqlUpdater extends DatabaseUpdater {
 			'Making rev_page_id index non-unique'
 		);
 	}
+
+	public function getSchemaVars() {
+		$vars = [];
+		$vars['wgDBTableOptions'] = str_replace( 'TYPE', 'ENGINE', $GLOBALS['wgDBTableOptions'] );
+		$vars['wgDBTableOptions'] = str_replace(
+			'CHARSET=mysql4',
+			'CHARSET=binary',
+			$vars['wgDBTableOptions']
+		);
+
+		return $vars;
+	}
 }
