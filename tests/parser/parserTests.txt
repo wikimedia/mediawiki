@@ -20305,19 +20305,20 @@ language=sr variant=sr-ec
 </p>
 !! end
 
-# FIXME: This test is currently broken in the PHP parser (bug 52661)
 !! test
 Don't break image parsing if language converter markup is in the caption.
 !! options
 language=sr
 !! wikitext
 [[File:Foobar.jpg|-{R|caption}-]]
+!! html/php
+<p><a href="/wiki/%D0%94%D0%B0%D1%82%D0%BE%D1%82%D0%B5%D0%BA%D0%B0:Foobar.jpg" class="image" title="caption"><img alt="caption" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
+</p>
 !! html/parsoid
 <p><a href="/wiki/File:Foobar.jpg" class="image" title="caption"><img alt="caption" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
 </p>
 !! end
 
-# FIXME: This test is currently broken in the PHP parser (bug 52661)
 !! test
 Don't break list handling if language converter markup is in the item.
 !! options
@@ -20325,14 +20326,12 @@ language=zh variant=zh-cn
 !! wikitext
 ;-{zh-cn:AAA;zh-tw:BBB}-
 !! html/php
-<dl><dt><span class="error">在手动语言转换规则中检测到错误</span></dd></dl>
-
+<dl><dt>AAA</dd></dl>
 !! html/parsoid
 <dl><dt>AAA
 </dt></dl>
 !! end
 
-# FIXME: This test is currently broken in the PHP parser (bug 52661)
 !! test
 Don't break table handling if language converter markup is in the cell.
 !! options
@@ -20346,7 +20345,7 @@ language=sr variant=sr-ec
 <table>
 
 <tr>
-<td>Б}-
+<td> B
 </td></tr></table>
 
 !! html/parsoid
