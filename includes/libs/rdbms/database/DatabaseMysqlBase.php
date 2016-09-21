@@ -519,6 +519,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	function tableExists( $table, $fname = __METHOD__ ) {
+		$table = $this->tableName( $table, 'raw' );
 		$encLike = $this->buildLike( $table );
 
 		return $this->query( "SHOW TABLES $encLike", $fname )->numRows() > 0;
