@@ -139,15 +139,15 @@ abstract class FileBackend {
 	 *   - concurrency : How many file operations can be done in parallel.
 	 *   - tmpDirectory : Directory to use for temporary files. If this is not set or null,
 	 *                    then the backend will try to discover a usable temporary directory.
-	 * @throws FileBackendException
+	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $config ) {
 		$this->name = $config['name'];
 		$this->wikiId = $config['wikiId']; // e.g. "my_wiki-en_"
 		if ( !preg_match( '!^[a-zA-Z0-9-_]{1,255}$!', $this->name ) ) {
-			throw new FileBackendException( "Backend name '{$this->name}' is invalid." );
+			throw new InvalidArgumentException( "Backend name '{$this->name}' is invalid." );
 		} elseif ( !is_string( $this->wikiId ) ) {
-			throw new FileBackendException( "Backend wiki ID not provided for '{$this->name}'." );
+			throw new InvalidArgumentException( "Backend wiki ID not provided for '{$this->name}'." );
 		}
 		$this->lockManager = isset( $config['lockManager'] )
 			? $config['lockManager']
@@ -1498,7 +1498,7 @@ abstract class FileBackend {
 
 		$type = strtolower( $type );
 		if ( !in_array( $type, [ 'inline', 'attachment' ] ) ) {
-			throw new FileBackendError( "Invalid Content-Disposition type '$type'." );
+			throw new InvalidArgumentException( "Invalid Content-Disposition type '$type'." );
 		}
 		$parts[] = $type;
 
