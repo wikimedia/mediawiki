@@ -3513,7 +3513,8 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 			// Open a new connection resource without messing with the old one
 			$this->mOpened = false;
 			$this->mConn = false;
-			$this->mTrxLevel = 0; // no trx anymore
+			$this->mTrxEndCallbacks = []; // don't copy
+			$this->handleSessionLoss(); // no trx or locks anymore
 			$this->open( $this->mServer, $this->mUser, $this->mPassword, $this->mDBname );
 			$this->lastPing = microtime( true );
 		}
