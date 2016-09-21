@@ -582,6 +582,38 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.28
+	 * @return \BagOStuff
+	 */
+	public function getMainObjectStash() {
+		return $this->getService( 'MainObjectStash' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return \WANObjectCache
+	 */
+	public function getMainWANObjectCache() {
+		return $this->getService( 'MainWANObjectCache' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return \BagOStuff
+	 */
+	public function getLocalClusterObjectCache() {
+		return $this->getService( 'LocalClusterObjectCache' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return \BagOStuff
+	 */
+	public function getLocalServerObjectCache() {
+		return $this->getService( 'LocalServerObjectCache' );
+	}
+
+	/**
+	 * @since 1.28
 	 * @return VirtualRESTServiceClient
 	 */
 	public function getVirtualRESTServiceClient() {
