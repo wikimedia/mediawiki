@@ -991,7 +991,7 @@ __INDEXATTR__;
 	}
 
 	/**
-	 * Determine default schema for MediaWiki core
+	 * Determine default schema for the current application
 	 * Adjust this session schema search path if desired schema exists
 	 * and is not alread there.
 	 *
@@ -1036,7 +1036,7 @@ __INDEXATTR__;
 	}
 
 	/**
-	 * Return schema name fore core MediaWiki tables
+	 * Return schema name for core application tables
 	 *
 	 * @since 1.19
 	 * @return string Core schema name
