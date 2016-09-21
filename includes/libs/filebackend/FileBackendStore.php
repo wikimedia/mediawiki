@@ -58,6 +58,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackend::__construct()
 	 * Additional $config params include:
+	 *   - srvCache     : BagOStuff cache to APC/XCache or the like.
 	 *   - wanCache     : WANObjectCache object to use for persistent caching.
 	 *   - mimeCallback : Callback that takes (storage path, content, file system path) and
 	 *                    returns the MIME type of the file or 'unknown/unknown'. The file
@@ -70,6 +71,7 @@ abstract class FileBackendStore extends FileBackend {
 		$this->mimeCallback = isset( $config['mimeCallback'] )
 			? $config['mimeCallback']
 			: null;
+		$this->srvCache = new EmptyBagOStuff(); // disabled by default
 		$this->memCache = WANObjectCache::newEmpty(); // disabled by default
 		$this->cheapCache = new ProcessCacheLRU( self::CACHE_CHEAP_SIZE );
 		$this->expensiveCache = new ProcessCacheLRU( self::CACHE_EXPENSIVE_SIZE );
