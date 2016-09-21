@@ -114,18 +114,18 @@ class FileBackendGroup {
 	 *
 	 * @param array $configs
 	 * @param string|null $readOnlyReason
-	 * @throws FileBackendException
+	 * @throws InvalidArgumentException
 	 */
 	protected function register( array $configs, $readOnlyReason = null ) {
 		foreach ( $configs as $config ) {
 			if ( !isset( $config['name'] ) ) {
-				throw new FileBackendException( "Cannot register a backend with no name." );
+				throw new InvalidArgumentException( "Cannot register a backend with no name." );
 			}
 			$name = $config['name'];
 			if ( isset( $this->backends[$name] ) ) {
-				throw new FileBackendException( "Backend with name `{$name}` already registered." );
+				throw new LogicException( "Backend with name `{$name}` already registered." );
 			} elseif ( !isset( $config['class'] ) ) {
-				throw new FileBackendException( "Backend with name `{$name}` has no class." );
+				throw new InvalidArgumentException( "Backend with name `{$name}` has no class." );
 			}
 			$class = $config['class'];
 
@@ -147,11 +147,11 @@ class FileBackendGroup {
 	 *
 	 * @param string $name
 	 * @return FileBackend
-	 * @throws FileBackendException
+	 * @throws InvalidArgumentException
 	 */
 	public function get( $name ) {
 		if ( !isset( $this->backends[$name] ) ) {
-			throw new FileBackendException( "No backend defined with the name `$name`." );
+			throw new InvalidArgumentException( "No backend defined with the name `$name`." );
 		}
 		// Lazy-load the actual backend instance
 		if ( !isset( $this->backends[$name]['instance'] ) ) {
@@ -180,11 +180,11 @@ class FileBackendGroup {
 	 *
 	 * @param string $name
 	 * @return array
-	 * @throws FileBackendException
+	 * @throws InvalidArgumentException
 	 */
 	public function config( $name ) {
 		if ( !isset( $this->backends[$name] ) ) {
-			throw new FileBackendException( "No backend defined with the name `$name`." );
+			throw new InvalidArgumentException( "No backend defined with the name `$name`." );
 		}
 		$class = $this->backends[$name]['class'];
 
