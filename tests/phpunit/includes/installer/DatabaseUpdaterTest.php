@@ -21,6 +21,7 @@ class FakeDatabase extends DatabaseBase {
 	public $lastInsertData;
 
 	function __construct() {
+		$this->currentDomain = DatabaseDomain::newUnspecified();
 	}
 
 	function clearFlag( $arg, $remember = self::REMEMBER_NOTHING ) {
