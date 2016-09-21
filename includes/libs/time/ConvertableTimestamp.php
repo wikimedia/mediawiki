@@ -162,6 +162,22 @@ class ConvertableTimestamp {
 	}
 
 	/**
+	 * Convert a timestamp string to a given format.
+	 *
+	 * @param int $style Constant Output format for timestamp
+	 * @param string|bool $ts Timestamp, or false for now
+	 * @return string|bool Formatted timestamp or false on failure
+	 */
+	public static function convert( $style = TS_UNIX, $ts = false ) {
+		try {
+			$ct = new static( $ts );
+			return $ct->getTimestamp( $style );
+		} catch ( TimestampException $e ) {
+			return false;
+		}
+	}
+
+	/**
 	 * Get the timestamp represented by this object in a certain form.
 	 *
 	 * Convert the internal timestamp to the specified format and then

@@ -72,6 +72,22 @@ class ConvertableTimestampTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * @dataProvider provideValidTimestamps
+	 * @covers ConvertableTimestamp::convert
+	 */
+	public function testConvert( $format, $expected, $original ) {
+		$this->assertSame( $expected, ConvertableTimestamp::convert( $format, $original ) );
+	}
+
+	/**
+	 * Format an invalid timestamp.
+	 * @covers ConvertableTimestamp::convert
+	 */
+	public function testConvertInvalid() {
+		$this->assertSame( false, ConvertableTimestamp::convert( 'Not a timestamp' ) );
+	}
+
+	/**
 	 * Test an out of range timestamp
 	 * @dataProvider provideOutOfRangeTimestamps
 	 * @expectedException TimestampException
