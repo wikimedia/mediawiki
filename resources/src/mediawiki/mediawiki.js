@@ -1680,7 +1680,7 @@
 				if ( !implementations.length ) {
 					return;
 				}
-				mw.requestIdleCallbackInternal( function iterate( deadline ) {
+				mw.requestIdleCallback( function iterate( deadline ) {
 					while ( implementations[ 0 ] && deadline.timeRemaining() > 5 ) {
 						try {
 							$.globalEval( implementations.shift() );
@@ -1690,7 +1690,7 @@
 						}
 					}
 					if ( implementations[ 0 ] ) {
-						mw.requestIdleCallbackInternal( iterate );
+						mw.requestIdleCallback( iterate );
 					}
 				} );
 			}
