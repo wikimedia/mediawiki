@@ -783,8 +783,8 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
-	 * @param Blob|string $s
-	 * @return string
+	 * @param string|int|null|bool|Blob $s
+	 * @return string|int
 	 */
 	function addQuotes( $s ) {
 		if ( $s instanceof Blob ) {

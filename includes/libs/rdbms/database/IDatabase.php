@@ -1015,8 +1015,8 @@ interface IDatabase {
 	/**
 	 * Adds quotes and backslashes.
 	 *
-	 * @param string|Blob $s
-	 * @return string
+	 * @param string|int|null|bool|Blob $s
+	 * @return string|int
 	 */
 	public function addQuotes( $s );
 

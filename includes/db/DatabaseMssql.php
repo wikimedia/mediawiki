@@ -1085,8 +1085,8 @@ class DatabaseMssql extends DatabaseBase {
 	}
 
 	/**
-	 * @param string|Blob $s
-	 * @return string
+	 * @param string|int|null|bool|Blob $s
+	 * @return string|int
 	 */
 	public function addQuotes( $s ) {
 		if ( $s instanceof MssqlBlob ) {

@@ -1232,8 +1232,8 @@ SQL;
 	}
 
 	/**
-	 * @param null|bool|Blob $s
-	 * @return int|string
+	 * @param string|int|null|bool|Blob $s
+	 * @return string|int
 	 */
 	function addQuotes( $s ) {
 		if ( is_null( $s ) ) {
