@@ -62,7 +62,7 @@ class FileBackendGroup {
 	 * Register file backends from the global variables
 	 */
 	protected function initFromGlobals() {
-		global $wgLocalFileRepo, $wgForeignFileRepos, $wgFileBackends;
+		global $wgLocalFileRepo, $wgForeignFileRepos, $wgFileBackends, $wgDirectoryMode;
 
 		// Register explicitly defined backends
 		$this->register( $wgFileBackends, wfConfiguredReadOnlyReason() );
@@ -87,9 +87,6 @@ class FileBackendGroup {
 			$transcodedDir = isset( $info['transcodedDir'] )
 				? $info['transcodedDir']
 				: "{$directory}/transcoded";
-			$fileMode = isset( $info['fileMode'] )
-				? $info['fileMode']
-				: 0644;
 			// Get the FS backend configuration
 			$autoBackends[] = [
 				'name' => $backendName,
@@ -102,7 +99,8 @@ class FileBackendGroup {
 					"{$repoName}-deleted" => $deletedDir,
 					"{$repoName}-temp" => "{$directory}/temp"
 				],
-				'fileMode' => $fileMode,
+				'fileMode' => isset( $info['fileMode'] ) ? $info['fileMode'] : 0644,
+				'directoryMode' => $wgDirectoryMode,
 			];
 		}
 
