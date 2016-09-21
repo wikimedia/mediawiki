@@ -1473,6 +1473,11 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function setDomainPrefix( $prefix ) {
+		if ( $this->mConns['foreignUsed'] ) {
+			// Do not switch connections to explicit foreign domains unless marked as free
+			throw new DBUnexpectedError( null, "Foriegn domain connections are still in use." );
+		}
+
 		$this->localDomain = new DatabaseDomain(
 			$this->localDomain->getDatabase(),
 			null,
