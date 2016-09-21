@@ -20262,19 +20262,18 @@ language=sr variant=sr-ec
 </p>
 !! end
 
-# FIXME: This test is currently broken in the PHP parser (bug 52661)
 !! test
 Don't break image parsing if language converter markup is in the caption.
 !! options
 language=sr
 !! wikitext
 [[File:Foobar.jpg|-{R|caption}-]]
+!! html/php
 !! html/parsoid
 <p><a href="/wiki/File:Foobar.jpg" class="image" title="caption"><img alt="caption" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
 </p>
 !! end
 
-# FIXME: This test is currently broken in the PHP parser (bug 52661)
 !! test
 Don't break list handling if language converter markup is in the item.
 !! options
@@ -20283,13 +20282,12 @@ language=zh variant=zh-cn
 ;-{zh-cn:AAA;zh-tw:BBB}-
 !! html/php
 <dl><dt><span class="error">在手动语言转换规则中检测到错误</span></dd></dl>
-
+xxx
 !! html/parsoid
 <dl><dt>AAA
 </dt></dl>
 !! end
 
-# FIXME: This test is currently broken in the PHP parser (bug 52661)
 !! test
 Don't break table handling if language converter markup is in the cell.
 !! options
@@ -20300,6 +20298,7 @@ language=sr variant=sr-ec
 | -{R|B}-
 |}
 !! html/php
+xxxx
 <table>
 
 <tr>
