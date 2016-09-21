@@ -150,11 +150,12 @@ class FileDeleteForm {
 	 * @param string $reason Reason of the deletion
 	 * @param bool $suppress Whether to mark all deleted versions as restricted
 	 * @param User $user User object performing the request
+	 * @param array $tags Tags to apply to the deletion action
 	 * @throws MWException
 	 * @return bool|Status
 	 */
 	public static function doDelete( &$title, &$file, &$oldimage, $reason,
-		$suppress, User $user = null
+		$suppress, User $user = null, $tags = []
 	) {
 		if ( $user === null ) {
 			global $wgUser;
@@ -178,6 +179,7 @@ class FileDeleteForm {
 				$logEntry->setPerformer( $user );
 				$logEntry->setTarget( $title );
 				$logEntry->setComment( $logComment );
+				$logEntry->setTags( $tags );
 				$logid = $logEntry->insert();
 				$logEntry->publish( $logid );
 
@@ -192,7 +194,8 @@ class FileDeleteForm {
 			$dbw->startAtomic( __METHOD__ );
 			// delete the associated article first
 			$error = '';
-			$deleteStatus = $page->doDeleteArticleReal( $reason, $suppress, 0, false, $error, $user );
+			$deleteStatus = $page->doDeleteArticleReal( $reason, $suppress, 0, false, $error,
+				$user, $tags );
 			// doDeleteArticleReal() returns a non-fatal error status if the page
 			// or revision is missing, so check for isOK() rather than isGood()
 			if ( $deleteStatus->isOK() ) {
