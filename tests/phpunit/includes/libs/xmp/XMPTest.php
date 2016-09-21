@@ -4,11 +4,14 @@
  * @group Media
  * @covers XMPReader
  */
-class XMPTest extends MediaWikiTestCase {
+class XMPTest extends PHPUnit_Framework_TestCase  {
 
 	protected function setUp() {
 		parent::setUp();
-		$this->checkPHPExtension( 'exif' ); # Requires libxml to do XMP parsing
+		# Requires libxml to do XMP parsing
+		if ( !extension_loaded( 'exif' ) ) {
+			$this->markTestSkipped( "PHP extension 'exif' is not loaded, skipping." );
+		}
 	}
 
 	/**
@@ -33,7 +36,7 @@ class XMPTest extends MediaWikiTestCase {
 	}
 
 	public static function provideXMPParse() {
-		$xmpPath = __DIR__ . '/../../data/xmp/';
+		$xmpPath = __DIR__ . '/../../../data/xmp/';
 		$data = [];
 
 		// $xmpFiles format: array of arrays with first arg file base name,
@@ -86,7 +89,7 @@ class XMPTest extends MediaWikiTestCase {
 	 * @covers XMPReader::parseExtended
 	 */
 	public function testExtendedXMP() {
-		$xmpPath = __DIR__ . '/../../data/xmp/';
+		$xmpPath = __DIR__ . '/../../../data/xmp/';
 		$standardXMP = file_get_contents( $xmpPath . 'xmpExt.xmp' );
 		$extendedXMP = file_get_contents( $xmpPath . 'xmpExt2.xmp' );
 
@@ -118,7 +121,7 @@ class XMPTest extends MediaWikiTestCase {
 	 * @covers XMPReader::parseExtended
 	 */
 	public function testExtendedXMPWithWrongGUID() {
-		$xmpPath = __DIR__ . '/../../data/xmp/';
+		$xmpPath = __DIR__ . '/../../../data/xmp/';
 		$standardXMP = file_get_contents( $xmpPath . 'xmpExt.xmp' );
 		$extendedXMP = file_get_contents( $xmpPath . 'xmpExt2.xmp' );
 
@@ -149,7 +152,7 @@ class XMPTest extends MediaWikiTestCase {
 	 * @covers XMPReader::parseExtended
 	 */
 	public function testExtendedXMPMissingPacket() {
-		$xmpPath = __DIR__ . '/../../data/xmp/';
+		$xmpPath = __DIR__ . '/../../../data/xmp/';
 		$standardXMP = file_get_contents( $xmpPath . 'xmpExt.xmp' );
 		$extendedXMP = file_get_contents( $xmpPath . 'xmpExt2.xmp' );
 
@@ -180,7 +183,7 @@ class XMPTest extends MediaWikiTestCase {
 	public function testCheckParseSafety() {
 
 		// Test for detection
-		$xmpPath = __DIR__ . '/../../data/xmp/';
+		$xmpPath = __DIR__ . '/../../../data/xmp/';
 		$file = fopen( $xmpPath . 'doctype-included.xmp', 'rb' );
 		$valid = false;
 		$reader = new XMPReader();

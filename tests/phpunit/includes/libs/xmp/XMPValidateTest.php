@@ -5,7 +5,7 @@ use Psr\Log\NullLogger;
 /**
  * @group Media
  */
-class XMPValidateTest extends MediaWikiTestCase {
+class XMPValidateTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider provideDates
