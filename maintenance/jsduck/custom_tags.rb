@@ -30,23 +30,6 @@ class CommonTag < JsDuck::Tag::Tag
   end
 end
 
-class SourceTag < CommonTag
-  def initialize
-    @tagname = :source
-    @pattern = 'source'
-    super
-  end
-
-  def to_html(context)
-    context[@tagname].map do |source|
-      <<-EOHTML
-        <h3 class='pa'>Source</h3>
-        #{source[:doc]}
-      EOHTML
-    end.join
-  end
-end
-
 class SeeTag < CommonTag
   def initialize
     @tagname = :see
