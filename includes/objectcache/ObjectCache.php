@@ -322,23 +322,41 @@ class ObjectCache {
 	 * @since 1.26
 	 * @param string $id A key in $wgWANObjectCaches.
 	 * @return WANObjectCache
-	 * @throws InvalidArgumentException
+	 * @throws UnexpectedValueException
 	 */
 	public static function newWANCacheFromId( $id ) {
-		global $wgWANObjectCaches;
+		global $wgWANObjectCaches, $wgObjectCaches;
 
 		if ( !isset( $wgWANObjectCaches[$id] ) ) {
-			throw new InvalidArgumentException( "Invalid object cache type \"$id\" requested. " .
-				"It is not present in \$wgWANObjectCaches." );
+			throw new UnexpectedValueException(
+				"Cache type \"$id\" requested is not present in \$wgWANObjectCaches." );
 		}
 
 		$params = $wgWANObjectCaches[$id];
+		if ( !isset( $wgObjectCaches[$params['cacheId']] ) ) {
+			throw new UnexpectedValueException(
+				"Cache type \"{$params['cacheId']}\" is not present in \$wgObjectCaches." );
+		}
+		$params['store'] = $wgObjectCaches[$params['cacheId']];
+
+		return self::newWANCacheFromParams( $params );
+	}
+
+	/**
+	 * Create a new cache object of the specified type.
+	 *
+	 * @since 1.28
+	 * @param array $params
+	 * @return WANObjectCache
+	 * @throws UnexpectedValueException
+	 */
+	public static function newWANCacheFromParams( array $params ) {
 		foreach ( $params['channels'] as $action => $channel ) {
 			$params['relayers'][$action] = MediaWikiServices::getInstance()->getEventRelayerGroup()
 				->getRelayer( $channel );
 			$params['channels'][$action] = $channel;
 		}
-		$params['cache'] = self::newFromId( $params['cacheId'] );
+		$params['cache'] = self::newFromParams( $params['store'] );
 		if ( isset( $params['loggroup'] ) ) {
 			$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] );
 		} else {
