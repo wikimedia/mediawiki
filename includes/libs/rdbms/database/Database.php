@@ -2001,6 +2001,8 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		}
 		if ( $s === null ) {
 			return 'NULL';
+		} elseif ( is_bool( $s ) ) {
+			return (int)$s;
 		} else {
 			# This will also quote numeric values. This should be harmless,
 			# and protects against weird problems that occur when they really
