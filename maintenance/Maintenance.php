@@ -1241,7 +1241,7 @@ abstract class Maintenance {
 	 * @param integer $db DB index (DB_REPLICA/DB_MASTER)
 	 * @param array $groups; default: empty array
 	 * @param string|bool $wiki; default: current wiki
-	 * @return IDatabase
+	 * @return Database
 	 */
 	protected function getDB( $db, $groups = [], $wiki = false ) {
 		if ( is_null( $this->mDb ) ) {

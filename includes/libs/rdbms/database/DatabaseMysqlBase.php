@@ -1270,21 +1270,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	/**
-	 * @return array
-	 */
-	protected function getDefaultSchemaVars() {
-		$vars = parent::getDefaultSchemaVars();
-		$vars['wgDBTableOptions'] = str_replace( 'TYPE', 'ENGINE', $GLOBALS['wgDBTableOptions'] );
-		$vars['wgDBTableOptions'] = str_replace(
-			'CHARSET=mysql4',
-			'CHARSET=binary',
-			$vars['wgDBTableOptions']
-		);
-
-		return $vars;
-	}
-
-	/**
 	 * Get status information from SHOW STATUS in an associative array
 	 *
 	 * @param string $which

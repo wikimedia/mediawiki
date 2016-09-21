@@ -80,6 +80,11 @@ class MwSql extends Maintenance {
 			$this->error( "The server selected ({$db->getServer()}) is not a replica DB.", 1 );
 		}
 
+		if ( $index === DB_MASTER ) {
+			$updater = DatabaseUpdater::newForDB( $db, $this );
+			$db->setSchemaVars( $updater->getSchemaVars() );
+		}
+
 		if ( $this->hasArg( 0 ) ) {
 			$file = fopen( $this->getArg( 0 ), 'r' );
 			if ( !$file ) {
