@@ -329,13 +329,15 @@ class XMPValidate implements LoggerAwareInterface {
 			// We know that if we got to this step, year, month day hour and min must be set
 			// by virtue of regex not failing.
 
-			$unix = wfTimestamp( TS_UNIX, $res[1] . $res[2] . $res[3] . $res[4] . $res[5] . $res[6] );
+			$unix = ( new ConvertableTimestamp(
+				$res[1] . $res[2] . $res[3] . $res[4] . $res[5] . $res[6]
+			) )->getTimestamp( TS_UNIX );
 			$offset = intval( substr( $res[7], 1, 2 ) ) * 60 * 60;
 			$offset += intval( substr( $res[7], 4, 2 ) ) * 60;
 			if ( substr( $res[7], 0, 1 ) === '-' ) {
 				$offset = -$offset;
 			}
-			$val = wfTimestamp( TS_EXIF, $unix + $offset );
+			$val = ( new ConvertableTimestamp( $unix + $offset ) )->getTimestamp( TS_EXIF );
 
 			if ( $stripSeconds ) {
 				// If seconds weren't specified, remove the trailing ':00'.
