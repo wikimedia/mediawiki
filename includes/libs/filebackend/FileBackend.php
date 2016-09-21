@@ -174,7 +174,9 @@ abstract class FileBackend implements LoggerAwareInterface {
 		$this->concurrency = isset( $config['concurrency'] )
 			? (int)$config['concurrency']
 			: 50;
-		$this->obResetFunc = isset( $params['obResetFunc'] ) ? $params['obResetFunc'] : null;
+		$this->obResetFunc = isset( $params['obResetFunc'] )
+			? $params['obResetFunc']
+			: [ $this, 'resetOutputBuffer' ];
 		$this->streamMimeFunc = isset( $params['streamMimeFunc'] ) ? $params['streamMimeFunc'] : null;
 		$this->statusWrapper = isset( $config['statusWrapper'] ) ? $config['statusWrapper'] : null;
 
@@ -1610,5 +1612,15 @@ abstract class FileBackend implements LoggerAwareInterface {
 		}
 
 		return null;
+	}
+
+	protected function resetOutputBuffer() {
+		while ( ob_get_status() ) {
+			if ( !ob_end_clean() ) {
+				// Could not remove output buffer handler; abort now
+				// to avoid getting in some kind of infinite loop.
+				break;
+			}
+		}
 	}
 }

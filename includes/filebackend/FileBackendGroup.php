@@ -168,6 +168,7 @@ class FileBackendGroup {
 				? FileJournal::factory( $config['fileJournal'], $name )
 				: FileJournal::factory( [ 'class' => 'NullFileJournal' ], $name );
 			$config['wanCache'] = ObjectCache::getMainWANInstance();
+			$config['srvCache'] = ObjectCache::getLocalServerInstance( 'hash' );
 			$config['statusWrapper'] = [ 'Status', 'wrap' ];
 			$config['logger'] = LoggerFactory::getInstance( 'FileOperation' );
 			$config['profiler'] = Profiler::instance();
