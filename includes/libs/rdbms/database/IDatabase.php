@@ -945,6 +945,16 @@ interface IDatabase {
 	public function makeWhereFrom2d( $data, $baseKey, $subKey );
 
 	/**
+	 * Return aggregated value alias
+	 *
+	 * @param array $valuedata
+	 * @param string $valuename
+	 *
+	 * @return string
+	 */
+	public function aggregateValue( $valuedata, $valuename = 'value' );
+
+	/**
 	 * @param string $field
 	 * @return string
 	 */
@@ -991,6 +1001,13 @@ interface IDatabase {
 	public function buildGroupConcatField(
 		$delim, $table, $field, $conds = '', $join_conds = []
 	);
+
+	/**
+	 * @param string $field Field or column to cast
+	 * @return string
+	 * @since 1.28
+	 */
+	public function buildStringCast( $field );
 
 	/**
 	 * Change the current database
