@@ -287,6 +287,8 @@
 	"talk": "Diskussion",
 	"views": "Ansichten",
 	"toolbox": "Werkzeuge",
+	"tool-link-userrights": "{{GENDER:$1|Benutzergruppen}} ändern",
+	"tool-link-emailuser": "E-Mail an {{GENDER:$1|diesen Benutzer|diese Benutzerin}} senden",
 	"userpage": "Benutzerseite anzeigen",
 	"projectpage": "Projektseite anzeigen",
 	"imagepage": "Dateiseite anzeigen",

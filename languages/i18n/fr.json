@@ -347,6 +347,8 @@
 	"talk": "Discussion",
 	"views": "Affichages",
 	"toolbox": "Outils",
+	"tool-link-userrights": "Modifier les groupes de {{GENDER:$1|l’utilisateur|l’utilisatrice}}",
+	"tool-link-emailuser": "Envoyer un courriel à {{GENDER:$1|l’utilisateur|l’utilisatrice}}",
 	"userpage": "Voir la page utilisateur",
 	"projectpage": "Voir la page du projet",
 	"imagepage": "Voir la page du fichier",

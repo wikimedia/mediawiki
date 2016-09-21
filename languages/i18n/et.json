@@ -168,7 +168,7 @@
 	"newwindow": "(avaneb uues aknas)",
 	"cancel": "Loobu",
 	"moredotdotdot": "Veel...",
-	"morenotlisted": "See loend pole täielik.",
+	"morenotlisted": "See loend võib olla ebatäielik.",
 	"mypage": "Minu lehekülg",
 	"mytalk": "Arutelu",
 	"anontalk": "Arutelu",
@@ -3143,7 +3143,7 @@
 	"tags-actions-header": "Toimingud",
 	"tags-active-yes": "Jah",
 	"tags-active-no": "Ei",
-	"tags-source-extension": "Määratletud tarkvaralisas",
+	"tags-source-extension": "Määratletud tarkvaraliselt",
 	"tags-source-manual": "Kasutaja või robot rakendab käsitsi",
 	"tags-source-none": "Pole enam kasutuses",
 	"tags-edit": "muuda",
@@ -3255,8 +3255,6 @@
 	"htmlform-title-not-exists": "Lehekülge $1 pole olemas.",
 	"htmlform-user-not-exists": "Kasutajat <strong>$1</strong> pole olemas.",
 	"htmlform-user-not-valid": "<strong>$1</strong> pole sobiv kasutajanimi.",
-	"sqlite-has-fts": "$1 koos täistekstiotsingu toega",
-	"sqlite-no-fts": "$1 ilma täistekstiotsingu toeta",
 	"logentry-delete-delete": "$1 {{GENDER:$2|kustutas}} lehekülje $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|taastas}} lehekülje $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|muutis}} leheküljel $3 {{PLURAL:$5|ühe|$5}} logisündmuse nähtavust: $4",
@@ -3505,5 +3503,6 @@
 	"mw-widgets-dateinput-placeholder-month": "AAAA-KK",
 	"mw-widgets-titleinput-description-new-page": "lehekülge pole veel",
 	"mw-widgets-titleinput-description-redirect": "ümbersuunamine leheküljele \"$1\"",
-	"randomrootpage": "Juhuslik juurlehekülg"
+	"randomrootpage": "Juhuslik juurlehekülg",
+	"userjsispublic": "Pea silmas, et JavaScripti alamleheküljed ei tohiks sisaldada konfidentsiaalseid andmeid, kuna neid näevad teised kasutajad."
 }
