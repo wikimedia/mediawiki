@@ -105,12 +105,43 @@ class ThrottlePreAuthenticationProvider extends AbstractPreAuthenticationProvide
 			return \StatusValue::newGood();
 		}
 
+		// apply multiplier to throttle limit based on groups the user is in
+		$multiplier = $this->getMultiplier( $creator->getGroups() );
+		$this->accountCreationThrottle->setMultiplier( $multiplier );
 		$result = $this->accountCreationThrottle->increase( null, $ip, __METHOD__ );
 		if ( $result ) {
 			return \StatusValue::newFatal( 'acct_creation_throttle_hit', $result['count'] );
 		}
 
 		return \StatusValue::newGood();
+	}
+
+	/**
+	 * Return the largest multiplier among the groups the user is in,
+	 * or 0 if it is one of the multipliers
+	 *
+	 * @return int
+	 * @since 1.28
+	 */
+	public function getMultiplier( $groups ) {
+		$allMultipliers = $this->config->get( 'ThrottleGroupMultipliers' );
+		$groupMultipliers = $allMultipliers['createaccount'];
+		if ( !$groups || !$groupMultipliers ) {
+			return 1;
+		}
+		$effectiveGroupMultipliers = [];
+		foreach ( $groups as $group ) {
+			if ( isset( $groupMultipliers[$group] ) ) {
+				$effectiveGroupMultipliers[] = $groupMultipliers[$group];
+			}
+		}
+		if ( !$effectiveGroupMultipliers ) {
+			return 1;
+		}
+		if ( in_array( 0, $effectiveGroupMultipliers ) ) {
+			return 0;
+		}
+		return max( $effectiveGroupMultipliers );
 	}
 
 	public function testForAuthentication( array $reqs ) {

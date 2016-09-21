@@ -49,6 +49,8 @@ class Throttler implements LoggerAwareInterface {
 	protected $logger;
 	/** @var int|float */
 	protected $warningLimit;
+	/** @var int */
+	protected $multiplier = 1;
 
 	/**
 	 * @param array $conditions An array of arrays describing throttling conditions.
@@ -96,6 +98,18 @@ class Throttler implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Provide multiplier for number of allowed actions per period
+	 * This allows to relax the limits based on some circumstances
+	 * (e.g. groups the user is in).
+	 *
+	 * @param int $multiplier
+	 * @since 1.28
+	 */
+	public function setMultiplier( $multiplier ) {
+		$this->multiplier = $multiplier;
+	}
+
+	/**
 	 * Increase the throttle counter and return whether the attempt should be throttled.
 	 *
 	 * Should be called before an authentication attempt.
@@ -117,10 +131,11 @@ class Throttler implements LoggerAwareInterface {
 		$userKey = $username ? md5( $username ) : null;
 		foreach ( $this->conditions as $index => $throttleCondition ) {
 			$ipKey = isset( $throttleCondition['allIPs'] ) ? null : $ip;
-			$count = $throttleCondition['count'];
+			$count = $this->multiplier * $throttleCondition['count'];
 			$expiry = $throttleCondition['seconds'];
 
 			// a limit of 0 is used as a disable flag in some throttling configuration settings
+			// or if the multiplier is 0 which should make the user exempt
 			// throttling the whole world is probably a bad idea
 			if ( !$count || $userKey === null && $ipKey === null ) {
 				continue;

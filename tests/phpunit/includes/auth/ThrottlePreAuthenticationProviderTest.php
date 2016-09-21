@@ -17,6 +17,9 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 				'count' => 5,
 				'seconds' => 300,
 			] ],
+			'ThrottleGroupMultipliers' => [
+				'createaccount' => [],
+			],
 		] );
 		$provider->setConfig( $config );
 		$this->assertSame( [
@@ -43,6 +46,9 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 				'count' => 5,
 				'seconds' => 300,
 			] ],
+			'ThrottleGroupMultipliers' => [
+				'createaccount' => [],
+			],
 		] );
 		$provider->setConfig( $config );
 		$this->assertSame( [
@@ -56,6 +62,7 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 		$provider->setConfig( new \HashConfig( [
 			'AccountCreationThrottle' => [ [ 'count' => 1, 'seconds' => 1 ] ],
 			'PasswordAttemptThrottle' => [ [ 'count' => 1, 'seconds' => 1 ] ],
+			'ThrottleGroupMultipliers' => [ 'createaccount' => [] ],
 		] ) );
 		$accountCreationThrottle = \TestingAccessWrapper::newFromObject(
 			$providerPriv->accountCreationThrottle );
@@ -107,6 +114,7 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 		$provider->setConfig( new \HashConfig( [
 			'AccountCreationThrottle' => null,
 			'PasswordAttemptThrottle' => null,
+			'ThrottleGroupMultipliers' => [ 'createaccount' => [] ],
 		] ) );
 		$provider->setManager( AuthManager::singleton() );
 
@@ -146,6 +154,31 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 		];
 	}
 
+	/**
+	 * @dataProvider provideGetMultiplier
+	 */
+	public function testGetMultiplier( $multipliers, $expected ) {
+		$provider = new ThrottlePreAuthenticationProvider( [
+			'accountCreationThrottle' => [ [ 'count' => 2, 'seconds' => 86400 ] ],
+			'cache' => new \HashBagOStuff(),
+		] );
+		$provider->setConfig( new \HashConfig( [
+			'AccountCreationThrottle' => null,
+			'PasswordAttemptThrottle' => null,
+			'ThrottleGroupMultipliers' => [ 'createaccount' => $multipliers ],
+		] ) );
+		$this->assertSame( $provider->getMultiplier( [ 'group1', 'group2' ] ), $expected );
+	}
+
+	public function provideGetMultiplier() {
+		return [
+			[ [ 'group1' => 0, 'group2' => 3 ], 0 ],
+			[ [ 'group1' => 5, 'group2' => 3, 'group3' => 0 ], 5 ],
+			[ [], 1 ],
+			[ [ 'group3' => 0 ], 1 ],
+		];
+	}
+
 	public function testTestForAuthentication() {
 		$provider = new ThrottlePreAuthenticationProvider( [
 			'passwordAttemptThrottle' => [ [ 'count' => 2, 'seconds' => 86400 ] ],
@@ -155,6 +188,7 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 		$provider->setConfig( new \HashConfig( [
 			'AccountCreationThrottle' => null,
 			'PasswordAttemptThrottle' => null,
+			'ThrottleGroupMultipliers' => [ 'createaccount' => [] ],
 		] ) );
 		$provider->setManager( AuthManager::singleton() );
 
@@ -201,6 +235,7 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 		$provider->setConfig( new \HashConfig( [
 			'AccountCreationThrottle' => null,
 			'PasswordAttemptThrottle' => null,
+			'ThrottleGroupMultipliers' => [ 'createaccount' => [] ],
 		] ) );
 		$provider->setManager( AuthManager::singleton() );
 		$provider->postAuthentication( \User::newFromName( 'SomeUser' ),
@@ -215,6 +250,7 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 		$provider->setConfig( new \HashConfig( [
 			'AccountCreationThrottle' => null,
 			'PasswordAttemptThrottle' => null,
+			'ThrottleGroupMultipliers' => [ 'createaccount' => [] ],
 		] ) );
 		$provider->setManager( AuthManager::singleton() );
 		$provider->postAuthentication( \User::newFromName( 'SomeUser' ),
