@@ -134,14 +134,8 @@ class SwiftFileBackend extends FileBackendStore {
 		// Process cache for container info
 		$this->containerStatCache = new ProcessCacheLRU( 300 );
 		// Cache auth token information to avoid RTTs
-		if ( !empty( $config['cacheAuthInfo'] ) ) {
-			if ( PHP_SAPI === 'cli' ) {
-				// Preferrably memcached
-				$this->srvCache = ObjectCache::getLocalClusterInstance();
-			} else {
-				// Look for APC, XCache, WinCache, ect...
-				$this->srvCache = ObjectCache::getLocalServerInstance( CACHE_NONE );
-			}
+		if ( !empty( $config['cacheAuthInfo'] ) && isset( $config['srvCache'] ) ) {
+			$this->srvCache = $config['srvCache'];
 		} else {
 			$this->srvCache = new EmptyBagOStuff();
 		}
@@ -576,7 +570,7 @@ class SwiftFileBackend extends FileBackendStore {
 			return $status; // already there
 		} elseif ( $stat === null ) {
 			$status->fatal( 'backend-fail-internal', $this->name );
-			wfDebugLog( 'SwiftBackend', __METHOD__ . ': cannot get container stat' );
+			$this->logger->error( __METHOD__ . ': cannot get container stat' );
 
 			return $status;
 		}
@@ -608,7 +602,7 @@ class SwiftFileBackend extends FileBackendStore {
 			$status->fatal( 'backend-fail-usable', $params['dir'] );
 		} else {
 			$status->fatal( 'backend-fail-internal', $this->name );
-			wfDebugLog( 'SwiftBackend', __METHOD__ . ': cannot get container stat' );
+			$this->logger->error( __METHOD__ . ': cannot get container stat' );
 		}
 
 		return $status;
@@ -629,7 +623,7 @@ class SwiftFileBackend extends FileBackendStore {
 			$status->fatal( 'backend-fail-usable', $params['dir'] );
 		} else {
 			$status->fatal( 'backend-fail-internal', $this->name );
-			wfDebugLog( 'SwiftBackend', __METHOD__ . ': cannot get container stat' );
+			$this->logger->error( __METHOD__ . ': cannot get container stat' );
 		}
 
 		return $status;
@@ -649,7 +643,7 @@ class SwiftFileBackend extends FileBackendStore {
 			return $status; // ok, nothing to do
 		} elseif ( !is_array( $stat ) ) {
 			$status->fatal( 'backend-fail-internal', $this->name );
-			wfDebugLog( 'SwiftBackend', __METHOD__ . ': cannot get container stat' );
+			$this->logger->error( __METHOD__ . ': cannot get container stat' );
 
 			return $status;
 		}
@@ -704,8 +698,8 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
-		wfDebugLog( 'SwiftBackend', __METHOD__ . ": $path was not stored with SHA-1 metadata." );
+		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
+		$this->logger->error( __METHOD__ . ": $path was not stored with SHA-1 metadata." );
 
 		$objHdrs['x-object-meta-sha1base36'] = false;
 
@@ -745,7 +739,7 @@ class SwiftFileBackend extends FileBackendStore {
 			}
 		}
 
-		wfDebugLog( 'SwiftBackend', __METHOD__ . ": unable to set SHA-1 metadata for $path" );
+		$this->logger->error( __METHOD__ . ": unable to set SHA-1 metadata for $path" );
 
 		return $objHdrs; // failed
 	}
@@ -848,14 +842,14 @@ class SwiftFileBackend extends FileBackendStore {
 			return $dirs; // nothing more
 		}
 
-		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
+		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 
 		$prefix = ( $dir == '' ) ? null : "{$dir}/";
 		// Non-recursive: only list dirs right under $dir
 		if ( !empty( $params['topOnly'] ) ) {
 			$status = $this->objectListing( $fullCont, 'names', $limit, $after, $prefix, '/' );
 			if ( !$status->isOK() ) {
-				throw new FileBackendError( "Iterator page I/O error: {$status->getMessage()}" );
+				throw new FileBackendError( "Iterator page I/O error." );
 			}
 			$objects = $status->value;
 			foreach ( $objects as $object ) { // files and directories
@@ -874,7 +868,7 @@ class SwiftFileBackend extends FileBackendStore {
 			$status = $this->objectListing( $fullCont, 'names', $limit, $after, $prefix );
 
 			if ( !$status->isOK() ) {
-				throw new FileBackendError( "Iterator page I/O error: {$status->getMessage()}" );
+				throw new FileBackendError( "Iterator page I/O error." );
 			}
 
 			$objects = $status->value;
@@ -928,7 +922,7 @@ class SwiftFileBackend extends FileBackendStore {
 			return $files; // nothing more
 		}
 
-		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
+		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 
 		$prefix = ( $dir == '' ) ? null : "{$dir}/";
 		// $objects will contain a list of unfiltered names or CF_Object items
@@ -950,7 +944,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		// Reformat this list into a list of (name, stat array or null) entries
 		if ( !$status->isOK() ) {
-			throw new FileBackendError( "Iterator page I/O error: {$status->getMessage()}" );
+			throw new FileBackendError( "Iterator page I/O error." );
 		}
 
 		$objects = $status->value;
@@ -1079,7 +1073,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		if ( empty( $params['allowOB'] ) ) {
 			// Cancel output buffering and gzipping if set
-			wfResetOutputBuffers();
+			call_user_func( $this->obResetFunc );
 		}
 
 		$handle = fopen( 'php://output', 'wb' );
@@ -1109,6 +1103,7 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	protected function doGetLocalCopyMulti( array $params ) {
+		/** @var TempFSFile[] $tmpFiles */
 		$tmpFiles = [];
 
 		$auth = $this->getAuthentication();
@@ -1216,14 +1211,14 @@ class SwiftFileBackend extends FileBackendStore {
 				) );
 				// See http://s3.amazonaws.com/doc/s3-developer-guide/RESTAuthentication.html.
 				// Note: adding a newline for empty CanonicalizedAmzHeaders does not work.
-				return wfAppendQuery(
-					str_replace( '/swift/v1', '', // S3 API is the rgw default
-						$this->storageUrl( $auth ) . $spath ),
-					[
+				// Note: S3 API is the rgw default; remove the /swift/ URL bit.
+				return str_replace( '/swift/v1', '', $this->storageUrl( $auth ) . $spath ) .
+					'?' .
+					http_build_query( [
 						'Signature' => $signature,
 						'Expires' => $expires,
-						'AWSAccessKeyId' => $this->rgwS3AccessKey ]
-				);
+						'AWSAccessKeyId' => $this->rgwS3AccessKey
+					] );
 			}
 		}
 
@@ -1257,6 +1252,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @return StatusValue[]
 	 */
 	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {
+		/** @var $statuses StatusValue[] */
 		$statuses = [];
 
 		$auth = $this->getAuthentication();
@@ -1271,6 +1267,7 @@ class SwiftFileBackend extends FileBackendStore {
 		// Split the HTTP requests into stages that can be done concurrently
 		$httpReqsByStage = []; // map of (stage => index => HTTP request)
 		foreach ( $fileOpHandles as $index => $fileOpHandle ) {
+			/** @var SwiftFileOpHandle $fileOpHandle */
 			$reqs = $fileOpHandle->httpOp;
 			// Convert the 'url' parameter to an actual URL using $auth
 			foreach ( $reqs as $stage => &$req ) {
@@ -1348,7 +1345,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		if ( $rcode != 204 && $rcode !== 202 ) {
 			$status->fatal( 'backend-fail-internal', $this->name );
-			wfDebugLog( 'SwiftBackend', __METHOD__ . ': unexpected rcode value (' . $rcode . ')' );
+			$this->logger->error( __METHOD__ . ': unexpected rcode value (' . $rcode . ')' );
 		}
 
 		return $status;
@@ -1363,7 +1360,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @return array|bool|null False on 404, null on failure
 	 */
 	protected function getContainerStat( $container, $bypassCache = false ) {
-		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
+		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 
 		if ( $bypassCache ) { // purge cache
 			$this->containerStatCache->clear( $container );
@@ -1755,7 +1752,7 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( $code == 401 ) { // possibly a stale token
 			$this->srvCache->delete( $this->getCredsCacheKey( $this->swiftUser ) );
 		}
-		wfDebugLog( 'SwiftBackend',
+		$this->logger->error(
 			"HTTP $code ($desc) in '{$func}' (given '" . FormatJson::encode( $params ) . "')" .
 			( $err ? ": $err" : "" )
 		);
