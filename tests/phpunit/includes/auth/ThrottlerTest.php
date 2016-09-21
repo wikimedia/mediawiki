@@ -234,4 +234,27 @@ class ThrottlerTest extends \MediaWikiTestCase {
 		$result = $throttler->increase( 'OtherUser', '1.2.3.4' );
 		$this->assertSame( [ 'throttleIndex' => 0, 'count' => 1, 'wait' => 10 ], $result );
 	}
+
+	/**
+	 * @dataProvider provideGetMultiplier
+	 */
+	public function testGetMultiplier( $multipliers, $expected ) {
+		$cache = new \HashBagOStuff();
+		$throttler = new Throttler(
+			[ [ 'count' => 1, 'seconds' => 10 ] ],
+			[ 'cache' => $cache, 'multipliers' => $multipliers ]
+			);
+		$throttler->setGroups( [ 'group1', 'group2' ] );
+		$this->assertSame( $throttler->getMultiplier(), $expected );
+		
+	}
+
+	public function provideGetMultiplier() {
+		return [
+			[ [ 'group1' => 0, 'group2' => 3 ], 0 ],
+			[ [ 'group1' => 5, 'group2' => 3, 'group3' => 0 ], 5 ],
+			[ [], 1],
+			[ [ 'group3' => 0 ], 1 ],
+		];
+	}
 }

@@ -49,6 +49,10 @@ class Throttler implements LoggerAwareInterface {
 	protected $logger;
 	/** @var int|float */
 	protected $warningLimit;
+	/** @var array */
+	protected $groupMultipliers;
+	/** @var array|null */
+	protected $groups = null;
 
 	/**
 	 * @param array $conditions An array of arrays describing throttling conditions.
@@ -61,7 +65,7 @@ class Throttler implements LoggerAwareInterface {
 	 */
 	public function __construct( array $conditions = null, array $params = [] ) {
 		$invalidParams = array_diff_key( $params,
-			array_fill_keys( [ 'type', 'cache', 'warningLimit' ], true ) );
+			array_fill_keys( [ 'type', 'cache', 'warningLimit', 'multipliers' ], true ) );
 		if ( $invalidParams ) {
 			throw new \InvalidArgumentException( 'unrecognized parameters: '
 				. implode( ', ', array_keys( $invalidParams ) ) );
@@ -84,6 +88,7 @@ class Throttler implements LoggerAwareInterface {
 		}
 
 		$this->type = $params['type'];
+		$this->groupMultipliers = isset( $params['multipliers'] ) ? $params['multipliers'] : [];
 		$this->conditions = static::normalizeThrottleConditions( $conditions );
 		$this->cache = $params['cache'];
 		$this->warningLimit = $params['warningLimit'];
@@ -93,6 +98,42 @@ class Throttler implements LoggerAwareInterface {
 
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
+	}
+
+	/**
+	 * Provide user groups of user being throttled
+	 *
+	 * @param array $groups
+	 * @since 1.28
+	 */
+	public function setGroups( array $groups ) {
+		$this->groups = $groups;
+	}
+
+	/**
+	 * Return the largest multiplier among the groups the user is in,
+	 * or 0 if it is one of the multipliers
+	 *
+	 * @return int
+	 * @since 1.28
+	 */
+	public function getMultiplier() {
+		if ( $this->groups === null || !$this->groupMultipliers ) {
+			return 1;
+		}
+		$effectiveGroupMultipliers = [];
+		foreach ( $this->groups as $group ) {
+			if ( isset( $this->groupMultipliers[$group] ) ) {
+				$effectiveGroupMultipliers[] = $this->groupMultipliers[$group];
+			}
+		}
+		if ( !$effectiveGroupMultipliers ) {
+			return 1;
+		}
+		if ( in_array( 0, $effectiveGroupMultipliers ) ) {
+			return 0;
+		}
+		return max( $effectiveGroupMultipliers );
 	}
 
 	/**
@@ -117,10 +158,11 @@ class Throttler implements LoggerAwareInterface {
 		$userKey = $username ? md5( $username ) : null;
 		foreach ( $this->conditions as $index => $throttleCondition ) {
 			$ipKey = isset( $throttleCondition['allIPs'] ) ? null : $ip;
-			$count = $throttleCondition['count'];
+			$count = $this->getMultiplier() * $throttleCondition['count'];
 			$expiry = $throttleCondition['seconds'];
 
 			// a limit of 0 is used as a disable flag in some throttling configuration settings
+			// or if the multiplier is 0 which should make the user exempt
 			// throttling the whole world is probably a bad idea
 			if ( !$count || $userKey === null && $ipKey === null ) {
 				continue;
