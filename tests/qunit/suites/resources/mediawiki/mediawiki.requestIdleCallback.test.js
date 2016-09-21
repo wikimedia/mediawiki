@@ -95,8 +95,9 @@
 	if ( window.requestIdleCallback ) {
 		QUnit.test( 'native', function ( assert ) {
 			var done = assert.async();
-			// Remove polyfill
+			// Remove polyfill and clock stub
 			mw.requestIdleCallback.restore();
+			this.clock.restore();
 			mw.requestIdleCallback( function () {
 				assert.expect( 0 );
 				done();
