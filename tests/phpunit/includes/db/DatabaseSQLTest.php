@@ -827,4 +827,42 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 			],
 		];
 	}
+
+	public function testSessionTempTables() {
+		$temp1 = $this->database->tableName( 'tmp_table_1' );
+		$temp2 = $this->database->tableName( 'tmp_table_2' );
+		$temp3 = $this->database->tableName( 'tmp_table_3' );
+
+		$this->database->query( "CREATE TEMPORARY TABLE $temp1 LIKE orig_tbl", __METHOD__ );
+		$this->database->query( "CREATE TEMPORARY TABLE $temp2 LIKE orig_tbl", __METHOD__ );
+		$this->database->query( "CREATE TEMPORARY TABLE $temp3 LIKE orig_tbl", __METHOD__ );
+
+		$this->assertTrue( $this->database->tableExists( "tmp_table_1", __METHOD__ ) );
+		$this->assertTrue( $this->database->tableExists( "tmp_table_2", __METHOD__ ) );
+		$this->assertTrue( $this->database->tableExists( "tmp_table_3", __METHOD__ ) );
+
+		$this->database->dropTable( 'tmp_table_1', __METHOD__ );
+		$this->database->dropTable( 'tmp_table_2', __METHOD__ );
+		$this->database->dropTable( 'tmp_table_3', __METHOD__ );
+
+		$this->assertFalse( $this->database->tableExists( "tmp_table_1", __METHOD__ ) );
+		$this->assertFalse( $this->database->tableExists( "tmp_table_2", __METHOD__ ) );
+		$this->assertFalse( $this->database->tableExists( "tmp_table_3", __METHOD__ ) );
+
+		$this->database->query( "CREATE TEMPORARY TABLE tmp_table_1 LIKE orig_tbl", __METHOD__ );
+		$this->database->query( "CREATE TEMPORARY TABLE 'tmp_table_2' LIKE orig_tbl", __METHOD__ );
+		$this->database->query( "CREATE TEMPORARY TABLE `tmp_table_3` LIKE orig_tbl", __METHOD__ );
+
+		$this->assertTrue( $this->database->tableExists( "tmp_table_1", __METHOD__ ) );
+		$this->assertTrue( $this->database->tableExists( "tmp_table_2", __METHOD__ ) );
+		$this->assertTrue( $this->database->tableExists( "tmp_table_3", __METHOD__ ) );
+
+		$this->database->query( "DROP TEMPORARY TABLE tmp_table_1 LIKE orig_tbl", __METHOD__ );
+		$this->database->query( "DROP TEMPORARY TABLE 'tmp_table_2' LIKE orig_tbl", __METHOD__ );
+		$this->database->query( "DROP TABLE `tmp_table_3` LIKE orig_tbl", __METHOD__ );
+
+		$this->assertFalse( $this->database->tableExists( "tmp_table_1", __METHOD__ ) );
+		$this->assertFalse( $this->database->tableExists( "tmp_table_2", __METHOD__ ) );
+		$this->assertFalse( $this->database->tableExists( "tmp_table_3", __METHOD__ ) );
+	}
 }

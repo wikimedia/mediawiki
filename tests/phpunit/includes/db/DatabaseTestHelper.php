@@ -94,6 +94,11 @@ class DatabaseTestHelper extends DatabaseBase {
 	}
 
 	public function tableExists( $table, $fname = __METHOD__ ) {
+		$tableRaw = $this->tableName( $table, 'raw' );
+		if ( isset( $this->mSessionTempTables[$tableRaw] ) ) {
+			return true; // already known to exist
+		}
+
 		$this->checkFunctionName( $fname );
 
 		return in_array( $table, (array)$this->tablesExists );
