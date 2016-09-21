@@ -5019,9 +5019,15 @@ class Parser {
 				// FIXME: Doing recursiveTagParse at this stage, and the trim before
 				// splitting on '|' is a bit odd, and different from makeImage.
 				$matches[3] = $this->recursiveTagParse( trim( $matches[3] ) );
-				$parameterMatches = StringUtils::explode( '|', $matches[3] );
+				$placeholder = Parser::MARKER_PREFIX . wfRandomString( 16 );
+				$separator = '|';
+				$replacer = new DoubleReplacer( $separator, $placeholder );
+				// Protect LanguageConverter markup
+				$cleaned = StringUtils::delimiterReplaceCallback( '-{', '}-', $replacer->cb(), $matches[3] );
+				$parameterMatches = StringUtils::explode( $separator, $cleaned );
 
 				foreach ( $parameterMatches as $parameterMatch ) {
+					$parameterMatch = str_replace( $placeholder, $separator, $parameterMatch );
 					list( $magicName, $match ) = $mwArray->matchVariableStartToEnd( $parameterMatch );
 					if ( $magicName ) {
 						$paramName = $paramMap[$magicName];
@@ -5036,6 +5042,10 @@ class Parser {
 							$addr = self::EXT_LINK_ADDR;
 							$prots = $this->mUrlProtocols;
 							// check to see if link matches an absolute url, if not then it must be a wiki link.
+							if ( preg_match( '/^-{R|(.*)}-$/', $linkValue ) ) {
+								# Language converter protects certain markup.
+								$linkValue = substr( $linkValue, 4, -2 );
+							}
 							if ( preg_match( "/^($prots)$addr$chars*$/u", $linkValue ) ) {
 								$link = $linkValue;
 							} else {
