@@ -118,13 +118,20 @@ class ObjectCache {
 	 *
 	 * @param string $id A key in $wgObjectCaches.
 	 * @return BagOStuff
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 */
 	public static function newFromId( $id ) {
 		global $wgObjectCaches;
 
 		if ( !isset( $wgObjectCaches[$id] ) ) {
-			throw new MWException( "Invalid object cache type \"$id\" requested. " .
+			// Always recognize these ones
+			if ( $id === CACHE_NONE ) {
+				return new EmptyBagOStuff();
+			} elseif ( $id === 'hash' ) {
+				return new HashBagOStuff();
+			}
+
+			throw new InvalidArgumentException( "Invalid object cache type \"$id\" requested. " .
 				"It is not present in \$wgObjectCaches." );
 		}
 
@@ -160,7 +167,7 @@ class ObjectCache {
 	 *  - loggroup: Alias to set 'logger' key with LoggerFactory group.
 	 *  - .. Other parameters passed to factory or class.
 	 * @return BagOStuff
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 */
 	public static function newFromParams( $params ) {
 		if ( isset( $params['loggroup'] ) ) {
@@ -187,7 +194,7 @@ class ObjectCache {
 			if ( is_subclass_of( $class, SqlBagOStuff::class ) ) {
 				if ( isset( $params['server'] ) && !isset( $params['servers'] ) ) {
 					$params['servers'] = [ $params['server'] ];
-					unset( $param['server'] );
+					unset( $params['server'] );
 				}
 				// In the past it was not required to set 'dbDirectory' in $wgObjectCaches
 				if ( isset( $params['servers'] ) ) {
@@ -217,7 +224,7 @@ class ObjectCache {
 			}
 			return new $class( $params );
 		} else {
-			throw new MWException( "The definition of cache type \""
+			throw new InvalidArgumentException( "The definition of cache type \""
 				. print_r( $params, true ) . "\" lacks both "
 				. "factory and class parameters." );
 		}
@@ -270,7 +277,7 @@ class ObjectCache {
 	 *
 	 * @param int|string|array $fallback Fallback cache or parameter map with 'fallback'
 	 * @return BagOStuff
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 * @since 1.27
 	 */
 	public static function getLocalServerInstance( $fallback = CACHE_NONE ) {
@@ -315,13 +322,13 @@ class ObjectCache {
 	 * @since 1.26
 	 * @param string $id A key in $wgWANObjectCaches.
 	 * @return WANObjectCache
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 */
 	public static function newWANCacheFromId( $id ) {
 		global $wgWANObjectCaches;
 
 		if ( !isset( $wgWANObjectCaches[$id] ) ) {
-			throw new MWException( "Invalid object cache type \"$id\" requested. " .
+			throw new InvalidArgumentException( "Invalid object cache type \"$id\" requested. " .
 				"It is not present in \$wgWANObjectCaches." );
 		}
 
