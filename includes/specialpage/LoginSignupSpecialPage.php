@@ -508,7 +508,11 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 
 		// warning header for non-standard workflows (e.g. security reauthentication)
-		if ( !$this->isSignup() && $this->getUser()->isLoggedIn() ) {
+		if (
+			!$this->isSignup() &&
+			$this->getUser()->isLoggedIn() &&
+			$this->authAction !== AuthManager::ACTION_LOGIN_CONTINUE
+		) {
 			$reauthMessage = $this->securityLevel ? 'userlogin-reauth' : 'userlogin-loggedin';
 			$submitStatus->warning( $reauthMessage, $this->getUser()->getName() );
 		}
