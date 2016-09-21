@@ -1667,34 +1667,6 @@
 				}
 			}
 
-			/**
-			 * Evaluate a batch of load.php responses retrieved from mw.loader.store.
-			 *
-			 * @private
-			 * @param {string[]} implementations Array containing pieces of JavaScript code in the
-			 *  form of calls to mw.loader#implement().
-			 * @param {Function} cb Callback in case of failure
-			 * @param {Error} cb.err
-			 */
-			function batchEval( implementations, cb ) {
-				if ( !implementations.length ) {
-					return;
-				}
-				mw.requestIdleCallback( function iterate( deadline ) {
-					while ( implementations[ 0 ] && deadline.timeRemaining() > 5 ) {
-						try {
-							$.globalEval( implementations.shift() );
-						} catch ( err ) {
-							cb( err );
-							return;
-						}
-					}
-					if ( implementations[ 0 ] ) {
-						mw.requestIdleCallback( iterate );
-					}
-				} );
-			}
-
 			/* Public Members */
 			return {
 				/**
@@ -1719,7 +1691,7 @@
 				 * @protected
 				 */
 				work: function () {
-					var q, batch, implementations, sourceModules;
+					var q, batch, concatSource, origBatch;
 
 					batch = [];
 
@@ -1736,9 +1708,9 @@
 						}
 					}
 
-					// Now that the queue has been processed into a batch, clear the queue.
-					// This MUST happen before we initiate any eval or network request. Otherwise,
-					// it is possible for a cached script to instantly trigger the same work queue
+					// Now that the queue has been processed into a batch, clear up the queue.
+					// This MUST happen before we initiate any network request. Else it's possible
+					// that a script will be locally cached, instantly load, and work the queue
 					// again; all before we've cleared it causing each request to include modules
 					// which are already loaded.
 					queue = [];
@@ -1749,35 +1721,39 @@
 
 					mw.loader.store.init();
 					if ( mw.loader.store.enabled ) {
-						implementations = [];
-						sourceModules = [];
+						concatSource = [];
+						origBatch = batch;
 						batch = $.grep( batch, function ( module ) {
-							var implementation = mw.loader.store.get( module );
-							if ( implementation ) {
-								implementations.push( implementation );
-								sourceModules.push( module );
+							var source = mw.loader.store.get( module );
+							if ( source ) {
+								concatSource.push( source );
 								return false;
 							}
 							return true;
 						} );
-						batchEval( implementations, function ( err ) {
+						try {
+							$.globalEval( concatSource.join( ';' ) );
+						} catch ( err ) {
 							// Not good, the cached mw.loader.implement calls failed! This should
 							// never happen, barring ResourceLoader bugs, browser bugs and PEBKACs.
 							// Depending on how corrupt the string is, it is likely that some
 							// modules' implement() succeeded while the ones after the error will
 							// never run and leave their modules in the 'loading' state forever.
+
 							// Since this is an error not caused by an individual module but by
 							// something that infected the implement call itself, don't take any
 							// risks and clear everything in this cache.
 							mw.loader.store.clear();
+							// Re-add the ones still pending back to the batch and let the server
+							// repopulate these modules to the cache.
+							// This means that at most one module will be useless (the one that had
+							// the error) instead of all of them.
 							mw.track( 'resourceloader.exception', { exception: err, source: 'store-eval' } );
-
-							// Re-add the failed ones that are still pending back to the batch
-							var failed = $.grep( sourceModules, function ( module ) {
+							origBatch = $.grep( origBatch, function ( module ) {
 								return registry[ module ].state === 'loading';
 							} );
-							batchRequest( failed );
-						} );
+							batch = batch.concat( origBatch );
+						}
 					}
 
 					batchRequest( batch );
