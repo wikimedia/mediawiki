@@ -1189,6 +1189,13 @@ class ParserTestRunner {
 		// Create a user
 		$user = User::createNew( 'WikiSysop' );
 
+		// For consistency when running tests with different tidy
+		// configurations, explicitly disable tidy for uploads:
+		// recordUpload2 will eventually call $wikiPage->doEditContent in
+		// filerepo/file/LocalFile.php, which parses the comment text
+		// applying the current tidy configuration.
+		MWTidy::setInstance( false );
+
 		// Register the uploads in the database
 
 		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Foobar.jpg' ) );
@@ -1313,6 +1320,8 @@ class ParserTestRunner {
 			'sha1' => Wikimedia\base_convert( '', 16, 36, 31 ),
 			'fileExists' => true
 		], $this->db->timestamp( '20010115123600' ), $user );
+
+		MWTidy::destroySingleton();
 
 		return $this->createTeardownObject( $teardown, $nextTeardown );
 	}
@@ -1517,7 +1526,13 @@ class ParserTestRunner {
 			throw new MWException( "duplicate article '$name' at $file:$line\n" );
 		}
 
+		// For consistency when running tests with different tidy
+		// configurations, explicitly disable tidy here; otherwise
+		// the inherited local tidy configuration will be used when
+		// parsing the comment text for this revision.
+		MWTidy::setInstance( false );
 		$status = $page->doEditContent( ContentHandler::makeContent( $text, $title ), '', EDIT_NEW );
+		MWTidy::destroySingleton();
 		if ( !$status->isOK() ) {
 			throw new MWException( $status->getWikiText( false, false, 'en' ) );
 		}
