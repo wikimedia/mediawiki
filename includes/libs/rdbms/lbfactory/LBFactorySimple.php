@@ -108,7 +108,7 @@ class LBFactorySimple extends LBFactory {
 	/**
 	 * @param string $cluster
 	 * @param bool|string $domain
-	 * @return array
+	 * @return LoadBalancer
 	 */
 	public function getExternalLB( $cluster, $domain = false ) {
 		if ( !isset( $this->extLBs[$cluster] ) ) {
