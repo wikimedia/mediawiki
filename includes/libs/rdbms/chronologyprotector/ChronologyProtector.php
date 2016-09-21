@@ -22,7 +22,6 @@
  */
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
-use MediaWiki\Logger\LoggerFactory;
 
 /**
  * Class for ensuring a consistent ordering of events as seen by the user, despite replication.
