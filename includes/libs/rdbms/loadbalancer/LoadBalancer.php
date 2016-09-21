@@ -1303,6 +1303,9 @@ class LoadBalancer implements ILoadBalancer {
 				try {
 					$dbw = $conn ?: $this->getConnection( DB_MASTER, [], $domain );
 					$readOnly = (int)$dbw->serverIsReadOnly();
+					if ( !$conn ) {
+						$this->reuseConnection( $dbw );
+					}
 				} catch ( DBError $e ) {
 					$readOnly = 0;
 				}
@@ -1411,7 +1414,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function safeGetLag( IDatabase $conn ) {
-		if ( $this->getServerCount() == 1 ) {
+		if ( $this->getServerCount() <= 1 ) {
 			return 0;
 		} else {
 			return $conn->getLag();
@@ -1419,23 +1422,30 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = 10 ) {
-		if ( $this->getServerCount() == 1 || !$conn->getLBInfo( 'replica' ) ) {
+		if ( $this->getServerCount() <= 1 || !$conn->getLBInfo( 'replica' ) ) {
 			return true; // server is not a replica DB
 		}
 
-		$pos = $pos ?: $this->getConnection( DB_MASTER )->getMasterPos();
-		if ( !( $pos instanceof DBMasterPos ) ) {
-			return false; // something is misconfigured
+		if ( !$pos ) {
+			// Get the current master position
+			$dbw = $this->getConnection( DB_MASTER );
+			$pos = $dbw->getMasterPos();
+			$this->reuseConnection( $dbw );
 		}
 
-		$result = $conn->masterPosWait( $pos, $timeout );
-		if ( $result == -1 || is_null( $result ) ) {
-			$msg = __METHOD__ . ": Timed out waiting on {$conn->getServer()} pos {$pos}";
-			$this->replLogger->warning( "$msg" );
-			$ok = false;
+		if ( $pos instanceof DBMasterPos ) {
+			$result = $conn->masterPosWait( $pos, $timeout );
+			if ( $result == -1 || is_null( $result ) ) {
+				$msg = __METHOD__ . ": Timed out waiting on {$conn->getServer()} pos {$pos}";
+				$this->replLogger->warning( "$msg" );
+				$ok = false;
+			} else {
+				$this->replLogger->info( __METHOD__ . ": Done" );
+				$ok = true;
+			}
 		} else {
-			$this->replLogger->info( __METHOD__ . ": Done" );
-			$ok = true;
+			$ok = false; // something is misconfigured
+			$this->replLogger->error( "Could not get master pos for {$conn->getServer()}." );
 		}
 
 		return $ok;
