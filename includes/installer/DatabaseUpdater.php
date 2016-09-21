@@ -170,14 +170,14 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * @param DatabaseBase $db
+	 * @param Database $db
 	 * @param bool $shared
 	 * @param Maintenance $maintenance
 	 *
 	 * @throws MWException
 	 * @return DatabaseUpdater
 	 */
-	public static function newForDB( &$db, $shared = false, $maintenance = null ) {
+	public static function newForDB( Database $db, $shared = false, $maintenance = null ) {
 		$type = $db->getType();
 		if ( in_array( $type, Installer::getDBTypes() ) ) {
 			$class = ucfirst( $type ) . 'Updater';
@@ -403,12 +403,28 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Get appropriate schema variables in the current database connection.
+	 *
+	 * This should be called after any request data has been imported, but before
+	 * any write operations to the database. The result should be passed to the DB
+	 * setSchemaVars() method.
+	 *
+	 * @return array
+	 * @since 1.28
+	 */
+	public function getSchemaVars() {
+		return []; // DB-type specific
+	}
+
+	/**
 	 * Do all the updates
 	 *
 	 * @param array $what What updates to perform
 	 */
 	public function doUpdates( $what = [ 'core', 'extensions', 'stats' ] ) {
 		global $wgVersion;
+
+		$this->db->setSchemaVars( $this->getSchemaVars() );
 
 		$what = array_flip( $what );
 		$this->skipSchema = isset( $what['noschema'] ) || $this->fileHandle !== null;
