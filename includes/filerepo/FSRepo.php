@@ -66,6 +66,7 @@ class FSRepo extends FileRepo {
 					"{$repoName}-deleted" => $deletedDir
 				],
 				'fileMode' => $fileMode,
+				'tmpDirectory' => wfTempDir()
 			] );
 			// Update repo config to use this backend
 			$info['backend'] = $backend;

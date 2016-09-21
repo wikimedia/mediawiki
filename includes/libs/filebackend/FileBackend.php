@@ -98,6 +98,9 @@ abstract class FileBackend {
 	/** @var int How many operations can be done in parallel */
 	protected $concurrency;
 
+	/** @var string Temporary file directory */
+	protected $tmpDirectory;
+
 	/** @var LockManager */
 	protected $lockManager;
 
@@ -134,6 +137,7 @@ abstract class FileBackend {
 	 *   - parallelize : When to do file operations in parallel (when possible).
 	 *                   Allowed values are "implicit", "explicit" and "off".
 	 *   - concurrency : How many file operations can be done in parallel.
+	 *   - tmpDirectory : Directory to use for temporary files.
 	 * @throws FileBackendException
 	 */
 	public function __construct( array $config ) {
@@ -160,6 +164,7 @@ abstract class FileBackend {
 			? (int)$config['concurrency']
 			: 50;
 		$this->statusWrapper = isset( $config['statusWrapper'] ) ? $config['statusWrapper'] : null;
+		$this->tmpDirectory = isset( $config['tmpDirectory'] ) ? $config['tmpDirectory'] : null;
 	}
 
 	/**

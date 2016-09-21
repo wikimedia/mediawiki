@@ -1127,7 +1127,7 @@ class SwiftFileBackend extends FileBackendStore {
 			// Get source file extension
 			$ext = FileBackend::extensionFromPath( $path );
 			// Create a new temporary file...
-			$tmpFile = TempFSFile::factory( 'localcopy_', $ext );
+			$tmpFile = TempFSFile::factory( 'localcopy_', $ext, $this->tmpDirectory );
 			if ( $tmpFile ) {
 				$handle = fopen( $tmpFile->getPath(), 'wb' );
 				if ( $handle ) {
