@@ -274,27 +274,18 @@ class ObjectCache {
 	 *     // From $wgObjectCaches via newFromParams()
 	 *     ObjectCache::getLocalServerInstance( [ 'fallback' => $fallbackType ] );
 	 *
-	 * @param int|string|array $fallback Fallback cache or parameter map with 'fallback'
+	 * @param int|string $fallback Fallback cache or parameter map with 'fallback'
 	 * @return BagOStuff
 	 * @throws InvalidArgumentException
 	 * @since 1.27
+	 * @deprecated Since 1.28; use MediaWikiServices::getLocalServerObjectCache
 	 */
 	public static function getLocalServerInstance( $fallback = CACHE_NONE ) {
-		if ( function_exists( 'apc_fetch' ) ) {
-			$id = 'apc';
-		} elseif ( function_exists( 'xcache_get' ) && wfIniGetBool( 'xcache.var_size' ) ) {
-			$id = 'xcache';
-		} elseif ( function_exists( 'wincache_ucache_get' ) ) {
-			$id = 'wincache';
-		} else {
-			if ( is_array( $fallback ) ) {
-				$id = isset( $fallback['fallback'] ) ? $fallback['fallback'] : CACHE_NONE;
-			} else {
-				$id = $fallback;
-			}
-		}
+		$cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
 
-		return self::getInstance( $id );
+		return ( $cache instanceof EmptyBagOStuff )
+			? self::getInstance( $fallback )
+			: $cache;
 	}
 
 	/**
@@ -383,11 +374,10 @@ class ObjectCache {
 	 *
 	 * @since 1.26
 	 * @return WANObjectCache
+	 * @deprecated Since 1.28 Use MediaWikiServices::getMainWANCache()
 	 */
 	public static function getMainWANInstance() {
-		global $wgMainWANCache;
-
-		return self::getWANInstance( $wgMainWANCache );
+		return MediaWikiServices::getInstance()->getMainWANObjectCache();
 	}
 
 	/**
@@ -407,11 +397,10 @@ class ObjectCache {
 	 *
 	 * @return BagOStuff
 	 * @since 1.26
+	 * @deprecated Since 1.28 Use MediaWikiServices::getMainObjectStash
 	 */
 	public static function getMainStashInstance() {
-		global $wgMainStash;
-
-		return self::getInstance( $wgMainStash );
+		return MediaWikiServices::getInstance()->getMainObjectStash();
 	}
 
 	/**
