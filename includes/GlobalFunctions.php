@@ -2003,13 +2003,11 @@ require_once __DIR__ . '/libs/time/defines.php';
  * @return string|bool String / false The same date in the format specified in $outputtype or false
  */
 function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
-	try {
-		$timestamp = new MWTimestamp( $ts );
-		return $timestamp->getTimestamp( $outputtype );
-	} catch ( TimestampException $e ) {
+	$ret = MWTimestamp::convert( $outputtype, $ts );
+	if ( $ret === false ) {
 		wfDebug( "wfTimestamp() fed bogus time value: TYPE=$outputtype; VALUE=$ts\n" );
-		return false;
 	}
+	return $ret;
 }
 
 /**
@@ -2035,7 +2033,7 @@ function wfTimestampOrNull( $outputtype = TS_UNIX, $ts = null ) {
  */
 function wfTimestampNow() {
 	# return NOW
-	return wfTimestamp( TS_MW, time() );
+	return MWTimestamp::convert( TS_MW, 0 );
 }
 
 /**
