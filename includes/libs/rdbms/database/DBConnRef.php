@@ -316,6 +316,10 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function aggregateValue( $valuedata, $valuename = 'value' ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	public function bitNot( $field ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
@@ -335,6 +339,10 @@ class DBConnRef implements IDatabase {
 	public function buildGroupConcatField(
 		$delim, $table, $field, $conds = '', $join_conds = []
 	) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function buildStringCast( $field ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

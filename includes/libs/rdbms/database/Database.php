@@ -210,12 +210,6 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	private $lazyMasterHandle;
 
 	/**
-	 * @since 1.21
-	 * @var resource File handle for upgrade
-	 */
-	protected $fileHandle = null;
-
-	/**
 	 * @since 1.22
 	 * @var string[] Process cache of VIEWs names in the database
 	 */
@@ -470,15 +464,6 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		return $old;
 	}
 
-	/**
-	 * Set the filehandle to copy write statements to.
-	 *
-	 * @param resource $fh File handle
-	 */
-	public function setFileHandle( $fh ) {
-		$this->fileHandle = $fh;
-	}
-
 	public function getLBInfo( $name = null ) {
 		if ( is_null( $name ) ) {
 			return $this->mLBInfo;
@@ -654,7 +639,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	protected function installErrorHandler() {
 		$this->mPHPError = false;
 		$this->htmlErrors = ini_set( 'html_errors', '0' );
-		set_error_handler( [ $this, 'connectionerrorLogger' ] );
+		set_error_handler( [ $this, 'connectionErrorLogger' ] );
 	}
 
 	/**
@@ -676,10 +661,12 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	}
 
 	/**
+	 * This method should not be used outside of Database classes
+	 *
 	 * @param int $errno
 	 * @param string $errstr
 	 */
-	public function connectionerrorLogger( $errno, $errstr ) {
+	public function connectionErrorLogger( $errno, $errstr ) {
 		$this->mPHPError = $errstr;
 	}
 
@@ -736,7 +723,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	 */
 	abstract protected function closeConnection();
 
-	function reportConnectionError( $error = 'Unknown error' ) {
+	public function reportConnectionError( $error = 'Unknown error' ) {
 		$myError = $this->lastError();
 		if ( $myError ) {
 			$error = $myError;
@@ -1112,7 +1099,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	 * @return array
 	 * @see DatabaseBase::select()
 	 */
-	public function makeSelectOptions( $options ) {
+	protected function makeSelectOptions( $options ) {
 		$preLimitTail = $postLimitTail = '';
 		$startOpts = '';
 
@@ -1201,7 +1188,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	 * @see DatabaseBase::select()
 	 * @since 1.21
 	 */
-	public function makeGroupByWithHaving( $options ) {
+	protected function makeGroupByWithHaving( $options ) {
 		$sql = '';
 		if ( isset( $options['GROUP BY'] ) ) {
 			$gb = is_array( $options['GROUP BY'] )
@@ -1227,7 +1214,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	 * @see DatabaseBase::select()
 	 * @since 1.21
 	 */
-	public function makeOrderBy( $options ) {
+	protected function makeOrderBy( $options ) {
 		if ( isset( $options['ORDER BY'] ) ) {
 			$ob = is_array( $options['ORDER BY'] )
 				? implode( ',', $options['ORDER BY'] )
@@ -1512,7 +1499,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		return implode( ' ', $opts );
 	}
 
-	function update( $table, $values, $conds, $fname = __METHOD__, $options = [] ) {
+	public function update( $table, $values, $conds, $fname = __METHOD__, $options = [] ) {
 		$table = $this->tableName( $table );
 		$opts = $this->makeUpdateOptions( $options );
 		$sql = "UPDATE $opts $table SET " . $this->makeList( $values, self::LIST_SET );
@@ -1623,14 +1610,6 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		}
 	}
 
-	/**
-	 * Return aggregated value alias
-	 *
-	 * @param array $valuedata
-	 * @param string $valuename
-	 *
-	 * @return string
-	 */
 	public function aggregateValue( $valuedata, $valuename = 'value' ) {
 		return $valuename;
 	}
@@ -1659,11 +1638,6 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
 	}
 
-	/**
-	 * @param string $field Field or column to cast
-	 * @return string
-	 * @since 1.28
-	 */
 	public function buildStringCast( $field ) {
 		return $field;
 	}
@@ -1836,7 +1810,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	 * @param string|bool $alias Alias (optional)
 	 * @return string SQL name for aliased table. Will not alias a table to its own name
 	 */
-	public function tableNameWithAlias( $name, $alias = false ) {
+	protected function tableNameWithAlias( $name, $alias = false ) {
 		if ( !$alias || $alias == $name ) {
 			return $this->tableName( $name );
 		} else {
@@ -1850,7 +1824,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	 * @param array $tables [ [alias] => table ]
 	 * @return string[] See tableNameWithAlias()
 	 */
-	public function tableNamesWithAlias( $tables ) {
+	protected function tableNamesWithAlias( $tables ) {
 		$retval = [];
 		foreach ( $tables as $alias => $table ) {
 			if ( is_numeric( $alias ) ) {
@@ -1870,7 +1844,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	 * @param string|bool $alias Alias (optional)
 	 * @return string SQL name for aliased field. Will not alias a field to its own name
 	 */
-	public function fieldNameWithAlias( $name, $alias = false ) {
+	protected function fieldNameWithAlias( $name, $alias = false ) {
 		if ( !$alias || (string)$alias === (string)$name ) {
 			return $name;
 		} else {
@@ -1884,7 +1858,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	 * @param array $fields [ [alias] => field ]
 	 * @return string[] See fieldNameWithAlias()
 	 */
-	public function fieldNamesWithAlias( $fields ) {
+	protected function fieldNamesWithAlias( $fields ) {
 		$retval = [];
 		foreach ( $fields as $alias => $field ) {
 			if ( is_numeric( $alias ) ) {
@@ -2341,7 +2315,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		return $this->insert( $destTable, $rows, $fname, $insertOptions );
 	}
 
-	public function nativeInsertSelect( $destTable, $srcTable, $varMap, $conds,
+	protected function nativeInsertSelect( $destTable, $srcTable, $varMap, $conds,
 		$fname = __METHOD__,
 		$insertOptions = [], $selectOptions = []
 	) {
@@ -2403,7 +2377,8 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	 */
 	public function limitResult( $sql, $limit, $offset = false ) {
 		if ( !is_numeric( $limit ) ) {
-			throw new DBUnexpectedError( $this, "Invalid non-numeric limit passed to limitResult()\n" );
+			throw new DBUnexpectedError( $this,
+				"Invalid non-numeric limit passed to limitResult()\n" );
 		}
 
 		return "$sql LIMIT "
@@ -2454,11 +2429,10 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	}
 
 	/**
-	 * Determines if the given query error was a connection drop
-	 * STUB
+	 * Do no use the class outside of Database/DBError classes
 	 *
 	 * @param integer|string $errno
-	 * @return bool
+	 * @return bool Whether the given query error was a connection drop
 	 */
 	public function wasConnectionError( $errno ) {
 		return false;
@@ -2949,7 +2923,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
 
-	function listTables( $prefix = null, $fname = __METHOD__ ) {
+	public function listTables( $prefix = null, $fname = __METHOD__ ) {
 		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
 
@@ -3083,7 +3057,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	 * @return array|null ('lag': seconds or false on error, 'since': UNIX timestamp of BEGIN)
 	 * @since 1.27
 	 */
-	public function getTransactionLagStatus() {
+	protected function getTransactionLagStatus() {
 		return $this->mTrxLevel
 			? [ 'lag' => $this->mTrxReplicaLag, 'since' => $this->trxTimestamp() ]
 			: null;
@@ -3095,7 +3069,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	 * @return array ('lag': seconds or false on error, 'since': UNIX timestamp of estimate)
 	 * @since 1.27
 	 */
-	public function getApproximateLagStatus() {
+	protected function getApproximateLagStatus() {
 		return [
 			'lag'   => $this->getLBInfo( 'replica' ) ? $this->getLag() : 0,
 			'since' => microtime( true )
@@ -3141,7 +3115,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		return 0;
 	}
 
-	function maxListLen() {
+	public function maxListLen() {
 		return 0;
 	}
 
