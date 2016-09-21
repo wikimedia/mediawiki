@@ -54,8 +54,6 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 * @throws DBConnectionError
 	 */
 	protected function mysqlConnect( $realServer ) {
-		global $wgDBmysql5;
-
 		# Avoid suppressed fatal error, which is very hard to track down
 		if ( !function_exists( 'mysqli_init' ) ) {
 			throw new DBConnectionError( $this, "MySQLi functions missing,"
@@ -101,7 +99,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 			$realServer = 'p:' . $realServer;
 		}
 
-		if ( $wgDBmysql5 ) {
+		if ( $this->utf8Mode ) {
 			// Tell the server we're communicating with it in UTF-8.
 			// This may engage various charset conversions.
 			$mysqli->options( MYSQLI_SET_CHARSET_NAME, 'utf8' );
