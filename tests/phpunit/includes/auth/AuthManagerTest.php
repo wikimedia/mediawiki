@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\UserInfo;
 use Psr\Log\LogLevel;
@@ -2352,6 +2353,18 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$wgGroupPermissions['*']['createaccount'] = true;
 		$wgGroupPermissions['*']['autocreateaccount'] = false;
 
+		$services = MediaWikiServices::getInstance();
+		$oldCache = $services->getLocalClusterObjectCache();
+		$services->disableService( 'LocalClusterObjectCache' );
+		$services->redefineService( 'LocalClusterObjectCache', function() {
+			return new \HashBagOStuff();
+		} );
+		$cacheRestorer = new \ScopedCallback( function () use ( $services, $oldCache ) {
+			$services->disableService( 'LocalClusterObjectCache' );
+			$services->redefineService( 'LocalClusterObjectCache', function () use ( $oldCache ) {
+				return $oldCache;
+			} );
+		} );
 		\ObjectCache::$instances[__METHOD__] = new \HashBagOStuff();
 		$this->setMwGlobals( [ 'wgMainCacheType' => __METHOD__ ] );
 
