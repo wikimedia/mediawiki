@@ -168,6 +168,7 @@ class FileBackendGroup {
 			$config['wanCache'] = ObjectCache::getMainWANInstance();
 			$config['mimeCallback'] = [ $this, 'guessMimeInternal' ];
 			$config['statusWrapper'] = [ 'Status', 'wrap' ];
+			$config['tmpDirectory'] = wfTempDir();
 
 			$this->backends[$name]['instance'] = new $class( $config );
 		}
@@ -222,7 +223,7 @@ class FileBackendGroup {
 		if ( !$type && $fsPath ) {
 			$type = $magic->guessMimeType( $fsPath, false );
 		} elseif ( !$type && strlen( $content ) ) {
-			$tmpFile = TempFSFile::factory( 'mime_' );
+			$tmpFile = TempFSFile::factory( 'mime_', '', wfTempDir() );
 			file_put_contents( $tmpFile->getPath(), $content );
 			$type = $magic->guessMimeType( $tmpFile->getPath(), false );
 		}
