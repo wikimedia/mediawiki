@@ -351,7 +351,7 @@ class MultiHttpClient {
 				// In PHP 5.2 and later, '@' is interpreted as a file upload if POSTFIELDS
 				// is an array, but not if it's a string. So convert $req['body'] to a string
 				// for safety.
-				$req['body'] = wfArrayToCgi( $req['body'] );
+				$req['body'] = http_build_query( $req['body'] );
 			}
 			curl_setopt( $ch, CURLOPT_POSTFIELDS, $req['body'] );
 		} else {
