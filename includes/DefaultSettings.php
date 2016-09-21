@@ -5600,6 +5600,23 @@ $wgRateLimits = [
 $wgRateLimitsExcludedIPs = [];
 
 /**
+ * Array of strings mapped to arrays of strings mapped to nonnegative integers
+ *
+ * @par Example:
+ * You could have a group of account creators with 10 times the normal limit.
+ * @code
+ *     $wgThrottleGroupMultipliers = [
+ *         'createaccount' => [
+ *              'accountcreator' => 10
+ *         ]
+ *     ]
+ * @endcode
+ */
+$wgThrottleGroupMultipliers = [
+	'createaccount' => [],
+];
+
+/**
  * Log IP addresses in the recentchanges table; can be accessed only by
  * extensions (e.g. CheckUser) or a DB admin
  * Used for retroactive autoblocks
