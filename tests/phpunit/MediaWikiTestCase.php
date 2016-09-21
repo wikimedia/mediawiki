@@ -535,7 +535,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$this->restoreLoggers();
 
 		if ( self::$serviceLocator && MediaWikiServices::getInstance() !== self::$serviceLocator ) {
+			$lbf = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 			MediaWikiServices::forceGlobalInstance( self::$serviceLocator );
+			// Carry over the LBFactory/LoadBalancer to avoid exhausting the max connection
+			// limit and wasting time connecting and reconning again and again
+			$this->setService( 'DBLoadBalancerFactory', $lbf );
+			$this->setService( 'DBLoadBalancer', $lbf->getMainLB() );
 		}
 
 		// TODO: move global state into MediaWikiServices
