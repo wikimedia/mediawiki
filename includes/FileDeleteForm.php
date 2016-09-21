@@ -125,7 +125,7 @@ class FileDeleteForm {
 					$status->getWikiText( 'filedeleteerror-short', 'filedeleteerror-long' )
 					. '</div>' );
 			}
-			if ( $status->ok ) {
+			if ( $status->isOK() ) {
 				$wgOut->setPageTitle( wfMessage( 'actioncomplete' ) );
 				$wgOut->addHTML( $this->prepareMessage( 'filedelete-success' ) );
 				// Return to the main page if we just deleted all versions of the
