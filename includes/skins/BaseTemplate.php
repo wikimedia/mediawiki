@@ -55,7 +55,6 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @return array
 	 */
 	function getToolbox() {
-
 		$toolbox = [];
 		if ( isset( $this->data['nav_urls']['whatlinkshere'] )
 			&& $this->data['nav_urls']['whatlinkshere']
@@ -69,6 +68,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			$toolbox['recentchangeslinked'] = $this->data['nav_urls']['recentchangeslinked'];
 			$toolbox['recentchangeslinked']['msg'] = 'recentchangeslinked-toolbox';
 			$toolbox['recentchangeslinked']['id'] = 't-recentchangeslinked';
+			$toolbox['recentchangeslinked']['rel'] = 'nofollow';
 		}
 		if ( isset( $this->data['feeds'] ) && $this->data['feeds'] ) {
 			$toolbox['feeds']['id'] = 'feedlinks';
