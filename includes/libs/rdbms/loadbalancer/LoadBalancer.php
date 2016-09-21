@@ -136,9 +136,10 @@ class LoadBalancer implements ILoadBalancer {
 
 		$this->mReadIndex = -1;
 		$this->mConns = [
-			'local' => [],
+			'local'       => [],
 			'foreignUsed' => [],
-			'foreignFree' => [] ];
+			'foreignFree' => []
+		];
 		$this->mLoads = [];
 		$this->mWaitForPos = false;
 		$this->mErrorConnection = false;
@@ -598,21 +599,18 @@ class LoadBalancer implements ILoadBalancer {
 			return;
 		}
 
-		$dbName = $conn->getDBname();
-		$prefix = $conn->tablePrefix();
-		if ( strval( $prefix ) !== '' ) {
-			$domain = "$dbName-$prefix";
-		} else {
-			$domain = $dbName;
-		}
+		$domain = $conn->getDomainID();
 		if ( $this->mConns['foreignUsed'][$serverIndex][$domain] !== $conn ) {
-			throw new InvalidArgumentException( __METHOD__ . ": connection not found, has " .
-				"the connection been freed already?" );
+			throw new InvalidArgumentException( __METHOD__ .
+				": connection not found, has the connection been freed already?" );
 		}
 		$conn->setLBInfo( 'foreignPoolRefCount', --$refCount );
 		if ( $refCount <= 0 ) {
 			$this->mConns['foreignFree'][$serverIndex][$domain] = $conn;
 			unset( $this->mConns['foreignUsed'][$serverIndex][$domain] );
+			if ( !$this->mConns['foreignUsed'][$serverIndex] ) {
+				unset( $this->mConns[ 'foreignUsed' ][$serverIndex] ); // clean up
+			}
 			$this->connLogger->debug( __METHOD__ . ": freed connection $serverIndex/$domain" );
 		} else {
 			$this->connLogger->debug( __METHOD__ .
@@ -707,11 +705,10 @@ class LoadBalancer implements ILoadBalancer {
 			// Reuse a connection from another domain
 			$conn = reset( $this->mConns['foreignFree'][$i] );
 			$oldDomain = key( $this->mConns['foreignFree'][$i] );
-
 			// The empty string as a DB name means "don't care".
 			// DatabaseMysqlBase::open() already handle this on connection.
-			if ( $dbName !== '' && !$conn->selectDB( $dbName ) ) {
-				$this->mLastError = "Error selecting database $dbName on server " .
+			if ( strlen( $dbName ) && !$conn->selectDB( $dbName ) ) {
+				$this->mLastError = "Error selecting database '$dbName' on server " .
 					$conn->getServer() . " from client host {$this->host}";
 				$this->mErrorConnection = $conn;
 				$conn = false;
@@ -770,7 +767,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @access private
 	 *
 	 * @param array $server
-	 * @param bool $dbNameOverride
+	 * @param string|bool $dbNameOverride Use "" to not select any database
 	 * @return IDatabase
 	 * @throws DBAccessError
 	 * @throws InvalidArgumentException
@@ -1473,6 +1470,17 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function setDomainPrefix( $prefix ) {
+		if ( $this->mConns['foreignUsed'] ) {
+			// Do not switch connections to explicit foreign domains unless marked as free
+			$domains = [];
+			foreach ( $this->mConns['foreignUsed'] as $i => $connsByDomain ) {
+				$domains = array_merge( $domains, array_keys( $connsByDomain ) );
+			}
+			$domains = implode( ', ', $domains );
+			throw new DBUnexpectedError( null,
+				"Foreign domain connections are still in use ($domains)." );
+		}
+
 		$this->localDomain = new DatabaseDomain(
 			$this->localDomain->getDatabase(),
 			null,
