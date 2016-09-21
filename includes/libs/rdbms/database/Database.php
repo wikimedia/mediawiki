@@ -204,7 +204,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	/** @var array Map of (name => 1) for locks obtained via lock() */
 	private $mNamedLocksHeld = [];
 	/** @var array Map of (table name => 1) for TEMPORARY tables */
-	private $mSessionTempTables = [];
+	protected $mSessionTempTables = [];
 
 	/** @var IDatabase|null Lazy handle to the master DB this server replicates from */
 	private $lazyMasterHandle;
@@ -795,16 +795,19 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	 */
 	protected function registerTempTableOperation( $sql ) {
 		if ( preg_match(
-			'/^(CREATE|DROP)\s+TEMPORARY\s+TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?[`"\']?(\w+)[`"\']?/i',
+			'/^CREATE\s+TEMPORARY\s+TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?[`"\']?(\w+)[`"\']?/i',
 			$sql,
 			$matches
 		) ) {
-			list( , $verb, $table ) = $matches;
-			if ( $verb === 'CREATE' ) {
-				$this->mSessionTempTables[$table] = 1;
-			} else {
-				unset( $this->mSessionTempTables[$table] );
-			}
+			$this->mSessionTempTables[$matches[1]] = 1;
+
+			return true;
+		} elseif ( preg_match(
+			'/^DROP\s+(?:TEMPORARY\s+)?TABLE\s+(?:IF\s+EXISTS\s+)?[`"\']?(\w+)[`"\']?/i',
+			$sql,
+			$matches
+		) ) {
+			unset( $this->mSessionTempTables[$matches[1]] );
 
 			return true;
 		} elseif ( preg_match(
@@ -1400,6 +1403,11 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	}
 
 	public function tableExists( $table, $fname = __METHOD__ ) {
+		$tableRaw = $this->tableName( $table, 'raw' );
+		if ( isset( $this->mSessionTempTables[$tableRaw] ) ) {
+			return true; // already known to exist
+		}
+
 		$table = $this->tableName( $table );
 		$old = $this->ignoreErrors( true );
 		$res = $this->query( "SELECT 1 FROM $table LIMIT 1", $fname );
