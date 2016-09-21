@@ -968,8 +968,8 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @since 1.20
 	 */
 	public function lockIsFree( $lockName, $method ) {
-		$lockName = $this->addQuotes( $this->makeLockName( $lockName ) );
-		$result = $this->query( "SELECT IS_FREE_LOCK($lockName) AS lockstatus", $method );
+		$encName = $this->addQuotes( $this->makeLockName( $lockName ) );
+		$result = $this->query( "SELECT IS_FREE_LOCK($encName) AS lockstatus", $method );
 		$row = $this->fetchObject( $result );
 
 		return ( $row->lockstatus == 1 );
@@ -982,8 +982,8 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @return bool
 	 */
 	public function lock( $lockName, $method, $timeout = 5 ) {
-		$lockName = $this->addQuotes( $this->makeLockName( $lockName ) );
-		$result = $this->query( "SELECT GET_LOCK($lockName, $timeout) AS lockstatus", $method );
+		$encName = $this->addQuotes( $this->makeLockName( $lockName ) );
+		$result = $this->query( "SELECT GET_LOCK($encName, $timeout) AS lockstatus", $method );
 		$row = $this->fetchObject( $result );
 
 		if ( $row->lockstatus == 1 ) {
@@ -1004,8 +1004,8 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @return bool
 	 */
 	public function unlock( $lockName, $method ) {
-		$lockName = $this->addQuotes( $this->makeLockName( $lockName ) );
-		$result = $this->query( "SELECT RELEASE_LOCK($lockName) as lockstatus", $method );
+		$encName = $this->addQuotes( $this->makeLockName( $lockName ) );
+		$result = $this->query( "SELECT RELEASE_LOCK($encName) as lockstatus", $method );
 		$row = $this->fetchObject( $result );
 
 		if ( $row->lockstatus == 1 ) {
