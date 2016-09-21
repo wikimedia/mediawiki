@@ -821,7 +821,7 @@ abstract class HTMLFormField {
 	/**
 	 * Determine the help text to display
 	 * @since 1.20
-	 * @return string HTML
+	 * @return string|null HTML
 	 */
 	public function getHelpText() {
 		$helptext = null;
