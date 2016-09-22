@@ -18,6 +18,7 @@ use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceContainer;
 use MediaWiki\Services\NoSuchServiceException;
 use MWException;
+use MimeAnalyzer;
 use ObjectCache;
 use ProxyLookup;
 use SearchEngine;
@@ -528,6 +529,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getMediaHandlerFactory() {
 		return $this->getService( 'MediaHandlerFactory' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return MimeAnalyzer
+	 */
+	public function getMimeAnalyzer() {
+		return $this->getService( 'MimeAnalyzer' );
 	}
 
 	/**
