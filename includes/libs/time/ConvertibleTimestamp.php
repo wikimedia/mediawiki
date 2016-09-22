@@ -28,7 +28,7 @@
  *
  * @since 1.28
  */
-class ConvertableTimestamp {
+class ConvertibleTimestamp {
 	/**
 	 * Standard gmdate() formats for the different timestamp types.
 	 */
@@ -226,11 +226,11 @@ class ConvertableTimestamp {
 	/**
 	 * Calculate the difference between two ConvertableTimestamp objects.
 	 *
-	 * @param ConvertableTimestamp $relativeTo Base time to calculate difference from
+	 * @param ConvertibleTimestamp $relativeTo Base time to calculate difference from
 	 * @return DateInterval|bool The DateInterval object representing the
 	 *   difference between the two dates or false on failure
 	 */
-	public function diff( ConvertableTimestamp $relativeTo ) {
+	public function diff( ConvertibleTimestamp $relativeTo ) {
 		return $this->timestamp->diff( $relativeTo->timestamp );
 	}
 

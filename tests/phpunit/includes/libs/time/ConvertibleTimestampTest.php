@@ -3,22 +3,22 @@
 /**
  * Tests timestamp parsing and output.
  */
-class ConvertableTimestampTest extends PHPUnit_Framework_TestCase {
+class ConvertibleTimestampTest extends PHPUnit_Framework_TestCase {
 	/**
-	 * @covers ConvertableTimestamp::__construct
+	 * @covers ConvertibleTimestamp::__construct
 	 */
 	public function testConstructWithNoTimestamp() {
-		$timestamp = new ConvertableTimestamp();
+		$timestamp = new ConvertibleTimestamp();
 		$this->assertInternalType( 'string', $timestamp->getTimestamp() );
 		$this->assertNotEmpty( $timestamp->getTimestamp() );
 		$this->assertNotEquals( false, strtotime( $timestamp->getTimestamp( TS_MW ) ) );
 	}
 
 	/**
-	 * @covers ConvertableTimestamp::__toString
+	 * @covers ConvertibleTimestamp::__toString
 	 */
 	public function testToString() {
-		$timestamp = new ConvertableTimestamp( '1406833268' ); // Equivalent to 20140731190108
+		$timestamp = new ConvertibleTimestamp( '1406833268' ); // Equivalent to 20140731190108
 		$this->assertEquals( '1406833268', $timestamp->__toString() );
 	}
 
@@ -33,11 +33,11 @@ class ConvertableTimestampTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider provideValidTimestampDifferences
-	 * @covers ConvertableTimestamp::diff
+	 * @covers ConvertibleTimestamp::diff
 	 */
 	public function testDiff( $timestamp1, $timestamp2, $expected ) {
-		$timestamp1 = new ConvertableTimestamp( $timestamp1 );
-		$timestamp2 = new ConvertableTimestamp( $timestamp2 );
+		$timestamp1 = new ConvertibleTimestamp( $timestamp1 );
+		$timestamp2 = new ConvertibleTimestamp( $timestamp2 );
 		$diff = $timestamp1->diff( $timestamp2 );
 		$this->assertEquals( $expected, $diff->format( '%D %H %I %S' ) );
 	}
@@ -45,66 +45,66 @@ class ConvertableTimestampTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * Test parsing of valid timestamps and outputing to MW format.
 	 * @dataProvider provideValidTimestamps
-	 * @covers ConvertableTimestamp::getTimestamp
+	 * @covers ConvertibleTimestamp::getTimestamp
 	 */
 	public function testValidParse( $format, $original, $expected ) {
-		$timestamp = new ConvertableTimestamp( $original );
+		$timestamp = new ConvertibleTimestamp( $original );
 		$this->assertEquals( $expected, $timestamp->getTimestamp( TS_MW ) );
 	}
 
 	/**
 	 * Test outputting valid timestamps to different formats.
 	 * @dataProvider provideValidTimestamps
-	 * @covers ConvertableTimestamp::getTimestamp
+	 * @covers ConvertibleTimestamp::getTimestamp
 	 */
 	public function testValidOutput( $format, $expected, $original ) {
-		$timestamp = new ConvertableTimestamp( $original );
+		$timestamp = new ConvertibleTimestamp( $original );
 		$this->assertEquals( $expected, (string)$timestamp->getTimestamp( $format ) );
 	}
 
 	/**
 	 * Test an invalid timestamp.
 	 * @expectedException TimestampException
-	 * @covers ConvertableTimestamp
+	 * @covers ConvertibleTimestamp
 	 */
 	public function testInvalidParse() {
-		new ConvertableTimestamp( "This is not a timestamp." );
+		new ConvertibleTimestamp( "This is not a timestamp." );
 	}
 
 	/**
 	 * @dataProvider provideValidTimestamps
-	 * @covers ConvertableTimestamp::convert
+	 * @covers ConvertibleTimestamp::convert
 	 */
 	public function testConvert( $format, $expected, $original ) {
-		$this->assertSame( $expected, ConvertableTimestamp::convert( $format, $original ) );
+		$this->assertSame( $expected, ConvertibleTimestamp::convert( $format, $original ) );
 	}
 
 	/**
 	 * Format an invalid timestamp.
-	 * @covers ConvertableTimestamp::convert
+	 * @covers ConvertibleTimestamp::convert
 	 */
 	public function testConvertInvalid() {
-		$this->assertSame( false, ConvertableTimestamp::convert( 'Not a timestamp', 0 ) );
+		$this->assertSame( false, ConvertibleTimestamp::convert( 'Not a timestamp', 0 ) );
 	}
 
 	/**
 	 * Test an out of range timestamp
 	 * @dataProvider provideOutOfRangeTimestamps
 	 * @expectedException TimestampException
-	 * @covers ConvertableTimestamp
+	 * @covers       ConvertibleTimestamp
 	 */
 	public function testOutOfRangeTimestamps( $format, $input ) {
-		$timestamp = new ConvertableTimestamp( $input );
+		$timestamp = new ConvertibleTimestamp( $input );
 		$timestamp->getTimestamp( $format );
 	}
 
 	/**
 	 * Test requesting an invalid output format.
 	 * @expectedException TimestampException
-	 * @covers ConvertableTimestamp::getTimestamp
+	 * @covers ConvertibleTimestamp::getTimestamp
 	 */
 	public function testInvalidOutput() {
-		$timestamp = new ConvertableTimestamp( '1343761268' );
+		$timestamp = new ConvertibleTimestamp( '1343761268' );
 		$timestamp->getTimestamp( 98 );
 	}
 

@@ -2972,7 +2972,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	}
 
 	public function timestamp( $ts = 0 ) {
-		$t = new ConvertableTimestamp( $ts );
+		$t = new ConvertibleTimestamp( $ts );
 		// Let errors bubble up to avoid putting garbage in the DB
 		return $t->getTimestamp( TS_MW );
 	}
@@ -3459,7 +3459,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		}
 
 		try {
-			$t = new ConvertableTimestamp( $expiry );
+			$t = new ConvertibleTimestamp( $expiry );
 
 			return $t->getTimestamp( $format );
 		} catch ( TimestampException $e ) {

@@ -860,7 +860,7 @@ __INDEXATTR__;
 	}
 
 	function timestamp( $ts = 0 ) {
-		$ct = new ConvertableTimestamp( $ts );
+		$ct = new ConvertibleTimestamp( $ts );
 
 		return $ct->getTimestamp( TS_POSTGRES );
 	}

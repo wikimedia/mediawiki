@@ -28,7 +28,7 @@
  *
  * @since 1.20
  */
-class MWTimestamp extends ConvertableTimestamp {
+class MWTimestamp extends ConvertibleTimestamp {
 	/**
 	 * Get a timestamp instance in GMT
 	 *
