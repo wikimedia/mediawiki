@@ -1100,6 +1100,7 @@ $wgAutoloadLocalClasses = [
 	'ProtectedPagesPager' => __DIR__ . '/includes/specials/SpecialProtectedpages.php',
 	'ProtectedTitlesPager' => __DIR__ . '/includes/specials/pagers/ProtectedTitlesPager.php',
 	'ProtectionForm' => __DIR__ . '/includes/ProtectionForm.php',
+	'ProxyLookup' => __DIR__ . '/includes/ProxyLookup.php',
 	'PruneFileCache' => __DIR__ . '/maintenance/pruneFileCache.php',
 	'PublishStashedFileJob' => __DIR__ . '/includes/jobqueue/jobs/PublishStashedFileJob.php',
 	'PurgeAction' => __DIR__ . '/includes/actions/PurgeAction.php',

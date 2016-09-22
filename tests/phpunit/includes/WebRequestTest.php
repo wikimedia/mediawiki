@@ -10,12 +10,10 @@ class WebRequestTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		$this->oldServer = $_SERVER;
-		IP::clearCaches();
 	}
 
 	protected function tearDown() {
 		$_SERVER = $this->oldServer;
-		IP::clearCaches();
 
 		parent::tearDown();
 	}
@@ -367,7 +365,6 @@ class WebRequestTest extends MediaWikiTestCase {
 	public function testGetIP( $expected, $input, $squid, $xffList, $private, $description ) {
 		$_SERVER = $input;
 		$this->setMwGlobals( [
-			'wgSquidServersNoPurge' => $squid,
 			'wgUsePrivateIPs' => $private,
 			'wgHooks' => [
 				'IsTrustedProxy' => [
@@ -378,6 +375,8 @@ class WebRequestTest extends MediaWikiTestCase {
 				]
 			]
 		] );
+
+		$this->setService( 'ProxyLookup', new ProxyLookup( [], $squid ) );
 
 		$request = new WebRequest();
 		$result = $request->getIP();
@@ -564,6 +563,7 @@ class WebRequestTest extends MediaWikiTestCase {
 			'wgUsePrivateIPs' => false,
 			'wgHooks' => [],
 		] );
+		$this->setService( 'ProxyLookup', new ProxyLookup( [], [] ) );
 
 		$request = new WebRequest();
 		# Next call throw an exception about lacking an IP

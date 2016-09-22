@@ -23,6 +23,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\SessionManager;
@@ -1222,7 +1223,8 @@ HTML;
 		# Append XFF
 		$forwardedFor = $this->getHeader( 'X-Forwarded-For' );
 		if ( $forwardedFor !== false ) {
-			$isConfigured = IP::isConfiguredProxy( $ip );
+			$proxyLookup = MediaWikiServices::getInstance()->getProxyLookup();
+			$isConfigured = $proxyLookup->isConfiguredProxy( $ip );
 			$ipchain = array_map( 'trim', explode( ',', $forwardedFor ) );
 			$ipchain = array_reverse( $ipchain );
 			array_unshift( $ipchain, $ip );
@@ -1235,14 +1237,14 @@ HTML;
 			foreach ( $ipchain as $i => $curIP ) {
 				$curIP = IP::sanitizeIP( IP::canonicalize( $curIP ) );
 				if ( !$curIP || !isset( $ipchain[$i + 1] ) || $ipchain[$i + 1] === 'unknown'
-					|| !IP::isTrustedProxy( $curIP )
+					|| !$proxyLookup->isTrustedProxy( $curIP )
 				) {
 					break; // IP is not valid/trusted or does not point to anything
 				}
 				if (
 					IP::isPublic( $ipchain[$i + 1] ) ||
 					$wgUsePrivateIPs ||
-					IP::isConfiguredProxy( $curIP ) // bug 48919; treat IP as sane
+					$proxyLookup->isConfiguredProxy( $curIP ) // bug 48919; treat IP as sane
 				) {
 					// Follow the next IP according to the proxy
 					$nextIP = IP::canonicalize( $ipchain[$i + 1] );
