@@ -318,6 +318,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'LinkRenderer' => [ 'LinkRenderer', LinkRenderer::class ],
 			'LinkRendererFactory' => [ 'LinkRendererFactory', LinkRendererFactory::class ],
 			'_MediaWikiTitleCodec' => [ '_MediaWikiTitleCodec', MediaWikiTitleCodec::class ],
+			'MimeAnalyzer' => [ 'MimeAnalyzer', MimeAnalyzer::class ],
 			'TitleFormatter' => [ 'TitleFormatter', TitleFormatter::class ],
 			'TitleParser' => [ 'TitleParser', TitleParser::class ],
 			'VirtualRESTServiceClient' => [ 'VirtualRESTServiceClient', VirtualRESTServiceClient::class ],
