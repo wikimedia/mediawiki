@@ -164,6 +164,14 @@ return [
 		);
 	},
 
+	'ProxyLookup' => function( MediaWikiServices $services ) {
+		$mainConfig = $services->getMainConfig();
+		return new ProxyLookup(
+			$mainConfig->get( 'SquidServers' ),
+			$mainConfig->get( 'SquidServersNoPurge' )
+		);
+	},
+
 	'LinkCache' => function( MediaWikiServices $services ) {
 		return new LinkCache(
 			$services->getTitleFormatter(),

@@ -19,6 +19,9 @@
  *
  * @file
  */
+
+use MediaWiki\MediaWikiServices;
+
 class Block {
 	/** @var string */
 	public $mReason;
@@ -1120,6 +1123,7 @@ class Block {
 		}
 
 		$conds = [];
+		$proxyLookup = MediaWikiServices::getInstance()->getProxyLookup();
 		foreach ( array_unique( $ipChain ) as $ipaddr ) {
 			# Discard invalid IP addresses. Since XFF can be spoofed and we do not
 			# necessarily trust the header given to us, make sure that we are only
@@ -1130,7 +1134,7 @@ class Block {
 				continue;
 			}
 			# Don't check trusted IPs (includes local squids which will be in every request)
-			if ( IP::isTrustedProxy( $ipaddr ) ) {
+			if ( $proxyLookup->isTrustedProxy( $ipaddr ) ) {
 				continue;
 			}
 			# Check both the original IP (to check against single blocks), as well as build
