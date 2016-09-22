@@ -427,16 +427,6 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
-	 * Index names have DB scope
-	 *
-	 * @param string $index
-	 * @return string
-	 */
-	protected function indexName( $index ) {
-		return $index;
-	}
-
-	/**
 	 * This must be called after nextSequenceVal
 	 *
 	 * @return int
