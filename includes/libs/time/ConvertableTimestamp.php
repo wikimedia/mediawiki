@@ -178,6 +178,16 @@ class ConvertableTimestamp {
 	}
 
 	/**
+	 * Get the current time in the given format
+	 *
+	 * @param int $style Constant Output format for timestamp
+	 * @return string
+	 */
+	public static function now( $style = TS_MW ) {
+		return static::convert( $style, time() );
+	}
+
+	/**
 	 * Get the timestamp represented by this object in a certain form.
 	 *
 	 * Convert the internal timestamp to the specified format and then
