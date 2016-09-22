@@ -3458,13 +3458,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 			return 'infinity';
 		}
 
-		try {
-			$t = new ConvertibleTimestamp( $expiry );
-
-			return $t->getTimestamp( $format );
-		} catch ( TimestampException $e ) {
-			return false;
-		}
+		return ConvertibleTimestamp::convert( $format, $expiry );
 	}
 
 	public function setBigSelects( $value = true ) {
