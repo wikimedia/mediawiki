@@ -597,6 +597,13 @@ class LoadBalancer implements ILoadBalancer {
 			 * should be ignored
 			 */
 			return;
+		} elseif ( $conn instanceof DBConnRef ) {
+			// DBConnRef already handles calling reuseConnection() and only passes the live
+			// Database instance to this method. Any caller passing in a DBConnRef is broken.
+			$this->connLogger->error( __METHOD__ . ": got DBConnRef instance.\n" .
+				( new RuntimeException() )->getTraceAsString() );
+
+			return;
 		}
 
 		$domain = $conn->getDomainID();
