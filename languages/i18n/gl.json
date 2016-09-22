@@ -222,6 +222,8 @@
 	"talk": "Conversa",
 	"views": "Vistas",
 	"toolbox": "Ferramentas",
+	"tool-link-userrights": "Modificar os grupos {{GENDER:$1|do usuario|da usuaria}}",
+	"tool-link-emailuser": "Enviar un correo electrónico {{GENDER:$1|ó usuario|á usuaria}}",
 	"userpage": "Ver a páxina {{GENDER:{{BASEPAGENAME}}|do usuario|da usuaria}}",
 	"projectpage": "Ver a páxina do proxecto",
 	"imagepage": "Ver a páxina do ficheiro",

@@ -15,7 +15,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Мария Олесова",
-			"Ай-Куо"
+			"Ай-Куо",
+			"Туллук"
 		]
 	},
 	"tog-underline": "Сигэлэри аннынан тардыы:",
@@ -42,7 +43,7 @@
 	"tog-enotifminoredits": "Кыра да уларытыы киирдэҕинэ эл. почтанан биллэрээр",
 	"tog-enotifrevealaddr": "Мин почтам аадырыһын биллэриилэргэ көрдөр",
 	"tog-shownumberswatching": "Сирэйи кэтээн көрөр дьон ахсаанын көрдөр",
-	"tog-oldsig": "Билиҥҥи илии баттааһын:",
+	"tog-oldsig": "Билигин туттар илии баттааһынын",
 	"tog-fancysig": "Бэйэ илии баттааһына (сигэтэ суох)",
 	"tog-uselivepreview": "Хайдах буолуохтааҕын тутатына эрдэ көрүүнү туттуу",
 	"tog-forceeditsummary": "Тугу уларыппытым туһунан суруйбатахпына сэрэт",
@@ -402,7 +403,6 @@
 	"yourpasswordagain": "Киирии тылгын хатылаа:",
 	"createacct-yourpasswordagain": "Киирии тылгын бигэргэт",
 	"createacct-yourpasswordagain-ph": "Киирии тылгын хатылаа",
-	"remembermypassword": "Миигин бу көмпүүтэргэ сигээ ($1 {{PLURAL:$1|күн|күнтэн ордуга суох}})",
 	"userlogin-remembermypassword": "Тиһиликтэн тахсыма",
 	"userlogin-signwithsecure": "Бигэ холбонуу",
 	"cannotloginnow-title": "Сип-билигин киирэр кыах суох",
@@ -3151,6 +3151,7 @@
 	"tag-filter": "[[Special:Tags|Бэлиэлэр]] фильтрдара:",
 	"tag-filter-submit": "Фильтр",
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Тиэк|Тиэктэр}}]]: $2)",
+	"tag-mw-contentmodelchange": "Иһинээҕи киэбин уларытыы сурунаала",
 	"tags-title": "Бэлиэлэр (тиэктэр)",
 	"tags-intro": "Бу сирэйгэ бырагыраамма уларытыылары бэлиэтиир анал бэлиэлэрин (тиэктэрин) тиһиктэрэ уонна ол бэлиэлэр суолталара көстөр.",
 	"tags-tag": "Бэлиэ (тиэк) аата",
@@ -3274,8 +3275,6 @@
 	"htmlform-title-not-exists": "$1 суох.",
 	"htmlform-user-not-exists": "<strong>$1</strong> суох.",
 	"htmlform-user-not-valid": "<strong>$1</strong> — маннык аат сатаммат.",
-	"sqlite-has-fts": "$1 толору тиэкистээх көрдөөһүнү өйүүр",
-	"sqlite-no-fts": "$1 толору тиэкистээх көрдөөһүнү өйөөбөт",
 	"logentry-delete-delete": "$3 сирэйи $1 соппут",
 	"logentry-delete-restore": "$3 сирэйи $1 сөргүппүт",
 	"logentry-delete-event": "Сурунаал $5 суругун көстүүтүн манна $3 $1 уларыппыт: $4",

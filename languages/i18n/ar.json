@@ -266,6 +266,8 @@
 	"talk": "نقاش",
 	"views": "معاينة",
 	"toolbox": "أدوات",
+	"tool-link-userrights": "تغيير مجموعات {{GENDER:$1|المستخدم|المستخدمة}}",
+	"tool-link-emailuser": "أرسل رسالة {{GENDER:$1|لهذا المستخدم|لهذه المستخدمة}}",
 	"userpage": "طالع صفحة المستخدم",
 	"projectpage": "طالع صفحة المشروع",
 	"imagepage": "طالع صفحة الملف",
