@@ -11,7 +11,7 @@
 ( function ( $ ) {
 	'use strict';
 
-	var mw,
+	var mw, StringSet,
 		hasOwn = Object.prototype.hasOwnProperty,
 		slice = Array.prototype.slice,
 		trackCallbacks = $.Callbacks( 'memory' ),
@@ -47,6 +47,24 @@
 
 		return hash;
 	}
+
+	StringSet = window.Set || ( function () {
+		/**
+		 * @private
+		 * @class
+		 */
+		function StringSet() {
+			this.set = {};
+		}
+
+		StringSet.prototype.add = function ( value ) {
+			this.set[ value ] = true;
+		};
+
+		StringSet.prototype.has = function ( value ) {
+			return this.set.hasOwnProperty( value );
+		};
+	}() );
 
 	/**
 	 * Create an object that can be read from or written to from methods that allow
@@ -660,32 +678,16 @@
 			log.deprecate = !Object.defineProperty ? function ( obj, key, val ) {
 				obj[ key ] = val;
 			} : function ( obj, key, val, msg ) {
-				/*globals Set */
 				msg = 'Use of "' + key + '" is deprecated.' + ( msg ? ( ' ' + msg ) : '' );
-				var logged, loggedIsSet, uniqueTrace;
-				if ( window.Set ) {
-					logged = new Set();
-					loggedIsSet = true;
-				} else {
-					logged = {};
-					loggedIsSet = false;
-				}
-				uniqueTrace = function () {
+				var logged = new StringSet();
+				function uniqueTrace() {
 					var trace = new Error().stack;
-					if ( loggedIsSet ) {
-						if ( logged.has( trace ) ) {
-							return false;
-						}
-						logged.add( trace );
-						return true;
-					} else {
-						if ( logged.hasOwnProperty( trace ) ) {
-							return false;
-						}
-						logged[ trace ] = 1;
-						return true;
+					if ( logged.has( trace ) ) {
+						return false;
 					}
-				};
+					logged.add( trace );
+					return true;
+				}
 				Object.defineProperty( obj, key, {
 					configurable: true,
 					enumerable: true,
@@ -1106,8 +1108,8 @@
 			 *  dependencies, such that later modules depend on earlier modules. The array
 			 *  contains the module names. If the array contains already some module names,
 			 *  this function appends its result to the pre-existing array.
-			 * @param {Object} [unresolved] Hash used to track the current dependency
-			 *  chain; used to report loops in the dependency graph.
+			 * @param {StringSet} [unresolved] Used to track the current dependency
+			 *  chain, and to report loops in the dependency graph.
 			 * @throws {Error} If any unregistered module or a dependency loop is encountered
 			 */
 			function sortDependencies( module, resolved, unresolved ) {
@@ -1144,13 +1146,13 @@
 				}
 				// Create unresolved if not passed in
 				if ( !unresolved ) {
-					unresolved = {};
+					unresolved = new StringSet();
 				}
 				// Tracks down dependencies
 				deps = registry[ module ].dependencies;
 				for ( i = 0; i < deps.length; i++ ) {
 					if ( $.inArray( deps[ i ], resolved ) === -1 ) {
-						if ( unresolved[ deps[ i ] ] ) {
+						if ( unresolved.has( deps[ i ] ) ) {
 							throw new Error( mw.format(
 								'Circular reference detected: $1 -> $2',
 								module,
@@ -1158,8 +1160,7 @@
 							) );
 						}
 
-						// Add to unresolved
-						unresolved[ module ] = true;
+						unresolved.add(  module );
 						sortDependencies( deps[ i ], resolved, unresolved );
 					}
 				}
