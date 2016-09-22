@@ -57,9 +57,11 @@ class StatusTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * Test 'ok' and 'errors' getters.
 	 *
+	 * @covers Status::__get
 	 */
-	public function testOkAndErrors() {
+	public function testOkAndErrorsGetters() {
 		$status = Status::newGood( 'foo' );
 		$this->assertTrue( $status->ok );
 		$status = Status::newFatal( 'foo', 1, 2 );
@@ -74,6 +76,19 @@ class StatusTest extends MediaWikiLangTestCase {
 			],
 			$status->errors
 		);
+	}
+
+	/**
+	 * Test 'ok' setter.
+	 *
+	 * @covers Status::__set
+	 */
+	public function testOkSetter() {
+		$status = new Status();
+		$status->ok = false;
+		$this->assertFalse( $status->isOK() );
+		$status->ok = true;
+		$this->assertTrue( $status->isOK() );
 	}
 
 	/**
@@ -98,11 +113,12 @@ class StatusTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideIsOk
-	 * @covers Status::isOk
+	 * @covers Status::setOK
+	 * @covers Status::isOK
 	 */
 	public function testIsOk( $ok ) {
 		$status = new Status();
-		$status->ok = $ok;
+		$status->setOK( $ok );
 		$this->assertEquals( $ok, $status->isOK() );
 	}
 
@@ -128,7 +144,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	 */
 	public function testIsGood( $ok, $errors, $expected ) {
 		$status = new Status();
-		$status->ok = $ok;
+		$status->setOK( $ok );
 		foreach ( $errors as $error ) {
 			$status->warning( $error );
 		}
@@ -171,6 +187,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	 * @covers Status::error
 	 * @covers Status::getErrorsArray
 	 * @covers Status::getStatusArray
+	 * @covers Status::getErrors
 	 */
 	public function testErrorWithMessage( $mockDetails ) {
 		$status = new Status();
@@ -361,7 +378,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		];
 
 		$status = new Status();
-		$status->ok = false;
+		$status->setOK( false );
 		$testCases['GoodButNoError'] = [
 			$status,
 			"Internal error: Status::getWikiText: Invalid result object: no error text but not OK\n",
@@ -475,7 +492,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		];
 
 		$status = new Status();
-		$status->ok = false;
+		$status->setOK( false );
 		$testCases['GoodButNoError'] = [
 			$status,
 			[ "Status::getMessage: Invalid result object: no error text but not OK\n" ],
@@ -647,8 +664,8 @@ class StatusTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideErrorsWarningsOnly
-	 * @covers Status::getErrorsOnlyStatus
-	 * @covers Status::getWarningsOnlyStatus
+	 * @covers Status::splitByErrorType
+	 * @covers StatusValue::splitByErrorType
 	 */
 	public function testGetErrorsWarningsOnlyStatus( $errorText, $warningText, $type, $errorResult,
 		$warningResult
