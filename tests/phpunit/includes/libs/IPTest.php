@@ -44,7 +44,7 @@ class IPTest extends PHPUnit_Framework_TestCase {
 	public function testisIPAddress() {
 		$this->assertTrue( IP::isIPAddress( '::' ), 'RFC 4291 IPv6 Unspecified Address' );
 		$this->assertTrue( IP::isIPAddress( '::1' ), 'RFC 4291 IPv6 Loopback Address' );
-		$this->assertTrue( IP::isIPAddress( '74.24.52.13/20', 'IPv4 range' ) );
+		$this->assertTrue( IP::isIPAddress( '74.24.52.13/20' ), 'IPv4 range' );
 		$this->assertTrue( IP::isIPAddress( 'fc:100:a:d:1:e:ac:0/24' ), 'IPv6 range' );
 		$this->assertTrue( IP::isIPAddress( 'fc::100:a:d:1:e:ac/96' ), 'IPv6 range with "::"' );
 
@@ -99,7 +99,7 @@ class IPTest extends PHPUnit_Framework_TestCase {
 
 		$this->assertTrue( IP::isIPv6( 'fc::100' ), 'IPv6 with "::" and 2 words' );
 		$this->assertTrue( IP::isIPv6( 'fc::100:a' ), 'IPv6 with "::" and 3 words' );
-		$this->assertTrue( IP::isIPv6( 'fc::100:a:d', 'IPv6 with "::" and 4 words' ) );
+		$this->assertTrue( IP::isIPv6( 'fc::100:a:d' ), 'IPv6 with "::" and 4 words' );
 		$this->assertTrue( IP::isIPv6( 'fc::100:a:d:1' ), 'IPv6 with "::" and 5 words' );
 		$this->assertTrue( IP::isIPv6( 'fc::100:a:d:1:e' ), 'IPv6 with "::" and 6 words' );
 		$this->assertTrue( IP::isIPv6( 'fc::100:a:d:1:e:ac' ), 'IPv6 with "::" and 7 words' );
