@@ -25,8 +25,6 @@
  */
 class DBAccessError extends DBUnexpectedError {
 	public function __construct() {
-		parent::__construct( "Mediawiki tried to access the database via wfGetDB(). " .
-			"This is not allowed, because database access has been disabled." );
+		parent::__construct( "Database access has been disabled." );
 	}
 }
-

@@ -84,15 +84,14 @@ interface IDatabase {
 	public function getServerInfo();
 
 	/**
-	 * Turns buffering of SQL result sets on (true) or off (false). Default is
-	 * "on".
+	 * Turns buffering of SQL result sets on (true) or off (false). Default is "on".
 	 *
 	 * Unbuffered queries are very troublesome in MySQL:
 	 *
 	 *   - If another query is executed while the first query is being read
 	 *     out, the first query is killed. This means you can't call normal
-	 *     MediaWiki functions while you are reading an unbuffered query result
-	 *     from a normal wfGetDB() connection.
+	 *     Database functions while you are reading an unbuffered query result
+	 *     from a normal Database connection.
 	 *
 	 *   - Unbuffered queries cause the MySQL server to use large amounts of
 	 *     memory and to hold broad locks which block other queries.
@@ -657,7 +656,7 @@ interface IDatabase {
 	 *
 	 *   - OFFSET: Skip this many rows at the start of the result set. OFFSET
 	 *     with LIMIT can theoretically be used for paging through a result set,
-	 *     but this is discouraged in MediaWiki for performance reasons.
+	 *     but this is discouraged for performance reasons.
 	 *
 	 *   - LIMIT: Integer: return at most this many rows. The rows are sorted
 	 *     and then the first rows are taken until the limit is reached. LIMIT
@@ -1404,10 +1403,7 @@ interface IDatabase {
 	 * The goal of this function is to create an atomic section of SQL queries
 	 * without having to start a new transaction if it already exists.
 	 *
-	 * Atomic sections are more strict than transactions. With transactions,
-	 * attempting to begin a new transaction when one is already running results
-	 * in MediaWiki issuing a brief warning and doing an implicit commit. All
-	 * atomic levels *must* be explicitly closed using IDatabase::endAtomic(),
+	 * All atomic levels *must* be explicitly closed using IDatabase::endAtomic(),
 	 * and any database transactions cannot be began or committed until all atomic
 	 * levels are closed. There is no such thing as implicitly opening or closing
 	 * an atomic section.

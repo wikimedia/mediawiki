@@ -17,7 +17,7 @@ class MssqlResultWrapper extends ResultWrapper {
 			$result = sqlsrv_fetch_object( $res );
 		}
 
-		// MediaWiki expects us to return boolean false when there are no more rows instead of null
+		// Return boolean false when there are no more rows instead of null
 		if ( $result === null ) {
 			return false;
 		}
@@ -39,7 +39,7 @@ class MssqlResultWrapper extends ResultWrapper {
 			$result = sqlsrv_fetch_array( $res );
 		}
 
-		// MediaWiki expects us to return boolean false when there are no more rows instead of null
+		// Return boolean false when there are no more rows instead of null
 		if ( $result === null ) {
 			return false;
 		}
