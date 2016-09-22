@@ -131,7 +131,7 @@
 				key,
 				value,
 				// Deprecation notice for mw.config globals (T58550, T72470)
-				map === mw.config && 'Use mw.config instead.'
+				map === mw.config && 'Use mw.config.get( \'' + key + '\' ) instead.'
 		);
 	}
 
