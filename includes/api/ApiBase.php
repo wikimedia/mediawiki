@@ -1135,7 +1135,9 @@ abstract class ApiBase extends ContextSource {
 						if ( !is_array( $value ) && !$multi ) {
 							$value = [ $value ];
 						}
-						$tagsStatus = ChangeTags::canAddTagsAccompanyingChange( $value );
+						$tagsStatus = $this->getChangeTagsContext()->canAddTagsAccompanyingChange(
+							$value, null, $this->getContext()->getLanguage()
+						);
 						if ( !$tagsStatus->isGood() ) {
 							$this->dieStatus( $tagsStatus );
 						}
