@@ -195,7 +195,7 @@ class FSFileBackend extends FileBackendStore {
 		}
 
 		if ( !empty( $params['async'] ) ) { // deferred
-			$tempFile = TempFSFile::factory( 'create_', 'tmp' );
+			$tempFile = TempFSFile::factory( 'create_', 'tmp', $this->tmpDirectory );
 			if ( !$tempFile ) {
 				$status->fatal( 'backend-fail-create', $params['dst'] );
 
@@ -653,7 +653,7 @@ class FSFileBackend extends FileBackendStore {
 			} else {
 				// Create a new temporary file with the same extension...
 				$ext = FileBackend::extensionFromPath( $src );
-				$tmpFile = TempFSFile::factory( 'localcopy_', $ext );
+				$tmpFile = TempFSFile::factory( 'localcopy_', $ext, $this->tmpDirectory );
 				if ( !$tmpFile ) {
 					$tmpFiles[$src] = null;
 				} else {
