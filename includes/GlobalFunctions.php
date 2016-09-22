@@ -1656,6 +1656,8 @@ function wfClientAcceptsGzip( $force = false ) {
 }
 
 /**
+ * @deprecated since 1.28, use Parser::escapeWikitext() directly
+ *
  * Escapes the given text so that it may be output using addWikiText()
  * without any linking, formatting, etc. making its way through. This
  * is achieved by substituting certain characters with HTML entities.
@@ -1665,47 +1667,8 @@ function wfClientAcceptsGzip( $force = false ) {
  * @return string
  */
 function wfEscapeWikiText( $text ) {
-	global $wgEnableMagicLinks;
-	static $repl = null, $repl2 = null;
-	if ( $repl === null ) {
-		$repl = [
-			'"' => '&#34;', '&' => '&#38;', "'" => '&#39;', '<' => '&#60;',
-			'=' => '&#61;', '>' => '&#62;', '[' => '&#91;', ']' => '&#93;',
-			'{' => '&#123;', '|' => '&#124;', '}' => '&#125;', ';' => '&#59;',
-			"\n#" => "\n&#35;", "\r#" => "\r&#35;",
-			"\n*" => "\n&#42;", "\r*" => "\r&#42;",
-			"\n:" => "\n&#58;", "\r:" => "\r&#58;",
-			"\n " => "\n&#32;", "\r " => "\r&#32;",
-			"\n\n" => "\n&#10;", "\r\n" => "&#13;\n",
-			"\n\r" => "\n&#13;", "\r\r" => "\r&#13;",
-			"\n\t" => "\n&#9;", "\r\t" => "\r&#9;", // "\n\t\n" is treated like "\n\n"
-			"\n----" => "\n&#45;---", "\r----" => "\r&#45;---",
-			'__' => '_&#95;', '://' => '&#58;//',
-		];
-
-		$magicLinks = array_keys( array_filter( $wgEnableMagicLinks ) );
-		// We have to catch everything "\s" matches in PCRE
-		foreach ( $magicLinks as $magic ) {
-			$repl["$magic "] = "$magic&#32;";
-			$repl["$magic\t"] = "$magic&#9;";
-			$repl["$magic\r"] = "$magic&#13;";
-			$repl["$magic\n"] = "$magic&#10;";
-			$repl["$magic\f"] = "$magic&#12;";
-		}
-
-		// And handle protocols that don't use "://"
-		global $wgUrlProtocols;
-		$repl2 = [];
-		foreach ( $wgUrlProtocols as $prot ) {
-			if ( substr( $prot, -1 ) === ':' ) {
-				$repl2[] = preg_quote( substr( $prot, 0, -1 ), '/' );
-			}
-		}
-		$repl2 = $repl2 ? '/\b(' . implode( '|', $repl2 ) . '):/i' : '/^(?!)/';
-	}
-	$text = substr( strtr( "\n$text", $repl ), 1 );
-	$text = preg_replace( $repl2, '$1&#58;', $text );
-	return $text;
+	global $wgParser;
+	return $wgParser->escapeWikitext( $text );
 }
 
 /**
