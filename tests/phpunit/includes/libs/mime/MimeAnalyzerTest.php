@@ -1,11 +1,20 @@
 <?php
 class MimeMagicTest extends PHPUnit_Framework_TestCase {
-
-	/** @var MimeMagic */
-	private $mimeMagic;
+	/** @var MimeAnalyzer */
+	private $mimeAnalyzer;
 
 	function setUp() {
-		$this->mimeMagic = MimeMagic::singleton();
+		$this->mimeAnalyzer = new MimeAnalyzer( [
+			'infoFile' => __DIR__ . "/libs/mime/mime.info",
+			'typeFile' => __DIR__ . "/libs/mime/mime.types",
+			'xmlTypes' => [
+				'http://www.w3.org/2000/svg:svg' => 'image/svg+xml',
+				'svg' => 'image/svg+xml',
+				'http://www.lysator.liu.se/~alla/dia/:diagram' => 'application/x-dia-diagram',
+				'http://www.w3.org/1999/xhtml:html' => 'text/html', // application/xhtml+xml?
+				'html' => 'text/html', // application/xhtml+xml?
+			]
+		] );
 		parent::setUp();
 	}
 
@@ -16,7 +25,7 @@ class MimeMagicTest extends PHPUnit_Framework_TestCase {
 	 * @param string $expectedMime MIME type after taking extension into account
 	 */
 	function testImproveTypeFromExtension( $ext, $oldMime, $expectedMime ) {
-		$actualMime = $this->mimeMagic->improveTypeFromExtension( $oldMime, $ext );
+		$actualMime = $this->mimeAnalyzer->improveTypeFromExtension( $oldMime, $ext );
 		$this->assertEquals( $expectedMime, $actualMime );
 	}
 
@@ -45,7 +54,7 @@ class MimeMagicTest extends PHPUnit_Framework_TestCase {
 	 */
 	function testOggRecognize() {
 		$oggFile = __DIR__ . '/../data/media/say-test.ogg';
-		$actualType = $this->mimeMagic->getMediaType( $oggFile, 'application/ogg' );
+		$actualType = $this->mimeAnalyzer->getMediaType( $oggFile, 'application/ogg' );
 		$this->assertEquals( $actualType, MEDIATYPE_AUDIO );
 	}
 }
