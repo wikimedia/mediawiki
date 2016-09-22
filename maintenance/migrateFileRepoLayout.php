@@ -104,7 +104,7 @@ class MigrateFileRepoLayout extends Maintenance {
 					$status = $be->prepare( [
 						'dir' => dirname( $dpath ), 'bypassReadOnly' => 1 ] );
 					if ( !$status->isOK() ) {
-						$this->error( print_r( $status->getErrorsArray(), true ) );
+						$this->error( print_r( $status->getErrors(), true ) );
 					}
 
 					$batch[] = [ 'op' => 'copy', 'overwrite' => true,
@@ -137,7 +137,7 @@ class MigrateFileRepoLayout extends Maintenance {
 					$status = $be->prepare( [
 						'dir' => dirname( $dpath ), 'bypassReadOnly' => 1 ] );
 					if ( !$status->isOK() ) {
-						$this->error( print_r( $status->getErrorsArray(), true ) );
+						$this->error( print_r( $status->getErrors(), true ) );
 					}
 					$batch[] = [ 'op' => 'copy', 'overwrite' => true,
 						'src' => $spath, 'dst' => $dpath, 'img' => $ofile->getArchiveName() ];
@@ -195,7 +195,7 @@ class MigrateFileRepoLayout extends Maintenance {
 				$status = $be->prepare( [
 					'dir' => dirname( $dpath ), 'bypassReadOnly' => 1 ] );
 				if ( !$status->isOK() ) {
-					$this->error( print_r( $status->getErrorsArray(), true ) );
+					$this->error( print_r( $status->getErrors(), true ) );
 				}
 
 				$batch[] = [ 'op' => 'copy', 'src' => $spath, 'dst' => $dpath,
@@ -227,7 +227,7 @@ class MigrateFileRepoLayout extends Maintenance {
 
 		$status = $be->doOperations( $ops, [ 'bypassReadOnly' => 1 ] );
 		if ( !$status->isOK() ) {
-			$this->output( print_r( $status->getErrorsArray(), true ) );
+			$this->output( print_r( $status->getErrors(), true ) );
 		}
 
 		$this->output( "Batch done\n\n" );
