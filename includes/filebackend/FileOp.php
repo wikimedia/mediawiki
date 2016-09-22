@@ -83,7 +83,7 @@ abstract class FileOp {
 			if ( isset( $params[$name] ) ) {
 				$this->params[$name] = $params[$name];
 			} else {
-				throw new FileBackendError( "File operation missing parameter '$name'." );
+				throw new InvalidArgumentException( "File operation missing parameter '$name'." );
 			}
 		}
 		foreach ( $optional as $name ) {

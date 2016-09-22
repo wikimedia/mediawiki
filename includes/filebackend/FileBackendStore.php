@@ -1197,9 +1197,10 @@ abstract class FileBackendStore extends FileBackend {
 
 		foreach ( $fileOpHandles as $fileOpHandle ) {
 			if ( !( $fileOpHandle instanceof FileBackendStoreOpHandle ) ) {
-				throw new FileBackendError( "Given a non-FileBackendStoreOpHandle object." );
+				throw new InvalidArgumentException( "Got a non-FileBackendStoreOpHandle object." );
 			} elseif ( $fileOpHandle->backend->getName() !== $this->getName() ) {
-				throw new FileBackendError( "Given a FileBackendStoreOpHandle for the wrong backend." );
+				throw new InvalidArgumentException(
+					"Got a FileBackendStoreOpHandle for the wrong backend." );
 			}
 		}
 		$res = $this->doExecuteOpHandlesInternal( $fileOpHandles );
@@ -1220,7 +1221,7 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {
 		if ( count( $fileOpHandles ) ) {
-			throw new FileBackendError( "This backend supports no asynchronous operations." );
+			throw new LogicException( "Backend does not support asynchronous operations." );
 		}
 
 		return [];
