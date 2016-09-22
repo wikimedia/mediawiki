@@ -1853,8 +1853,9 @@ class EditPage {
 		}
 
 		if ( $this->changeTags ) {
-			$changeTagsStatus = ChangeTags::canAddTagsAccompanyingChange(
-				$this->changeTags, $wgUser );
+			$changeTagsContext = new ChangeTagsContext( $this->context->getConfig() );
+			$changeTagsStatus = $changeTagsContext->canAddTagsAccompanyingChange(
+				$this->changeTags, $wgUser, $this->context->getLanguage() );
 			if ( !$changeTagsStatus->isOK() ) {
 				$changeTagsStatus->value = self::AS_CHANGE_TAG_ERROR;
 				return $changeTagsStatus;

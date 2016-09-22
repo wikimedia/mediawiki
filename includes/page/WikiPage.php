@@ -1621,7 +1621,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   database.
 	 * @param array|null $tags Change tags to apply to this edit
 	 * Callers are responsible for permission checks
-	 * (with ChangeTags::canAddTagsAccompanyingChange)
+	 * (with ChangeTagsContext::canAddTagsAccompanyingChange)
 	 *
 	 * @throws MWException
 	 * @return Status Possible errors:
@@ -3147,7 +3147,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param User $user The user performing the rollback
 	 * @param array|null $tags Change tags to apply to the rollback
 	 * Callers are responsible for permission checks
-	 * (with ChangeTags::canAddTagsAccompanyingChange)
+	 * (with ChangeTagsContext::canAddTagsAccompanyingChange)
 	 *
 	 * @return array Array of errors, each error formatted as
 	 *   array(messagekey, param1, param2, ...).
@@ -3196,7 +3196,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param User $guser The user performing the rollback
 	 * @param array|null $tags Change tags to apply to the rollback
 	 * Callers are responsible for permission checks
-	 * (with ChangeTags::canAddTagsAccompanyingChange)
+	 * (with ChangeTagsContext::canAddTagsAccompanyingChange)
 	 *
 	 * @return array
 	 */

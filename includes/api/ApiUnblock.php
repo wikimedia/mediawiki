@@ -65,7 +65,11 @@ class ApiUnblock extends ApiBase {
 
 		// Check if user can add tags
 		if ( !is_null( $params['tags'] ) ) {
-			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			$ableToTag = $this->getChangeTagsContext()->canAddTagsAccompanyingChange(
+				$params['tags'],
+				$user,
+				$this->getContext()->getLanguage()
+			);
 			if ( !$ableToTag->isOK() ) {
 				$this->dieStatus( $ableToTag );
 			}

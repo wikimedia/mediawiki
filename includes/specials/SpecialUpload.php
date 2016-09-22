@@ -545,8 +545,9 @@ class SpecialUpload extends SpecialPage {
 		}
 
 		if ( $changeTags ) {
-			$changeTagsStatus = ChangeTags::canAddTagsAccompanyingChange(
-				$changeTags, $this->getUser() );
+			$changeTagsContext = new ChangeTagsContext( $this->getConfig() );
+			$changeTagsStatus = $changeTagsContext->canAddTagsAccompanyingChange(
+				$changeTags, $this->getUser(), $this->getLanguage() );
 			if ( !$changeTagsStatus->isOK() ) {
 				$this->showUploadError( $this->getOutput()->parse( $changeTagsStatus->getWikiText() ) );
 
