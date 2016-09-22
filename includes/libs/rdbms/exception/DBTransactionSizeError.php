@@ -20,20 +20,10 @@
  */
 
 /**
- * Database error base class
  * @ingroup Database
  */
-class DBError extends Exception {
-	/** @var IDatabase|null */
-	public $db;
-
-	/**
-	 * Construct a database error
-	 * @param IDatabase $db Object which threw the error
-	 * @param string $error A simple error message to be used for debugging
-	 */
-	function __construct( IDatabase $db = null, $error ) {
-		$this->db = $db;
-		parent::__construct( $error );
+class DBTransactionSizeError extends DBTransactionError {
+	function getKey() {
+		return 'transaction-duration-limit-exceeded';
 	}
 }

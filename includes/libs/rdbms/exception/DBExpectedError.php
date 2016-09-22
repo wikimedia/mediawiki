@@ -20,20 +20,26 @@
  */
 
 /**
- * Database error base class
+ * Base class for the more common types of database errors. These are known to occur
+ * frequently, so we try to give friendly error messages for them.
+ *
  * @ingroup Database
+ * @since 1.23
  */
-class DBError extends Exception {
-	/** @var IDatabase|null */
-	public $db;
+class DBExpectedError extends DBError implements MessageSpecifier {
+	/** @var string[] Message parameters */
+	protected $params;
 
-	/**
-	 * Construct a database error
-	 * @param IDatabase $db Object which threw the error
-	 * @param string $error A simple error message to be used for debugging
-	 */
-	function __construct( IDatabase $db = null, $error ) {
-		$this->db = $db;
-		parent::__construct( $error );
+	function __construct( IDatabase $db = null, $error, array $params = [] ) {
+		parent::__construct( $db, $error );
+		$this->params = $params;
+	}
+
+	public function getKey() {
+		return 'databaseerror-text';
+	}
+
+	public function getParams() {
+		return $this->params;
 	}
 }
