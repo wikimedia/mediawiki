@@ -20,20 +20,19 @@
  */
 
 /**
- * Database error base class
  * @ingroup Database
  */
-class DBError extends Exception {
-	/** @var IDatabase|null */
-	public $db;
-
+class DBConnectionError extends DBExpectedError {
 	/**
-	 * Construct a database error
-	 * @param IDatabase $db Object which threw the error
-	 * @param string $error A simple error message to be used for debugging
+	 * @param IDatabase $db Object throwing the error
+	 * @param string $error Error text
 	 */
-	function __construct( IDatabase $db = null, $error ) {
-		$this->db = $db;
-		parent::__construct( $error );
+	function __construct( IDatabase $db = null, $error = 'unknown error' ) {
+		$msg = 'Cannot access the database';
+		if ( trim( $error ) != '' ) {
+			$msg .= ": $error";
+		}
+
+		parent::__construct( $db, $msg );
 	}
 }

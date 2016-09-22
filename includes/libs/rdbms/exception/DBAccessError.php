@@ -20,20 +20,13 @@
  */
 
 /**
- * Database error base class
+ * Exception class for attempted DB access
  * @ingroup Database
  */
-class DBError extends Exception {
-	/** @var IDatabase|null */
-	public $db;
-
-	/**
-	 * Construct a database error
-	 * @param IDatabase $db Object which threw the error
-	 * @param string $error A simple error message to be used for debugging
-	 */
-	function __construct( IDatabase $db = null, $error ) {
-		$this->db = $db;
-		parent::__construct( $error );
+class DBAccessError extends DBUnexpectedError {
+	public function __construct() {
+		parent::__construct( "Mediawiki tried to access the database via wfGetDB(). " .
+			"This is not allowed, because database access has been disabled." );
 	}
 }
+
