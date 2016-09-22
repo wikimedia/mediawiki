@@ -1249,19 +1249,24 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		$useIndexes = ( isset( $options['USE INDEX'] ) && is_array( $options['USE INDEX'] ) )
 			? $options['USE INDEX']
 			: [];
-		$ignoreIndexes = ( isset( $options['IGNORE INDEX'] ) && is_array( $options['IGNORE INDEX'] ) )
+		$ignoreIndexes = (
+			isset( $options['IGNORE INDEX'] ) &&
+			is_array( $options['IGNORE INDEX'] )
+		)
 			? $options['IGNORE INDEX']
 			: [];
 
 		if ( is_array( $table ) ) {
 			$from = ' FROM ' .
-				$this->tableNamesWithIndexClauseOrJOIN( $table, $useIndexes, $ignoreIndexes, $join_conds );
+				$this->tableNamesWithIndexClauseOrJOIN(
+					$table, $useIndexes, $ignoreIndexes, $join_conds );
 		} elseif ( $table != '' ) {
 			if ( $table[0] == ' ' ) {
 				$from = ' FROM ' . $table;
 			} else {
 				$from = ' FROM ' .
-					$this->tableNamesWithIndexClauseOrJOIN( [ $table ], $useIndexes, $ignoreIndexes, [] );
+					$this->tableNamesWithIndexClauseOrJOIN(
+						[ $table ], $useIndexes, $ignoreIndexes, [] );
 			}
 		} else {
 			$from = '';
@@ -1274,7 +1279,8 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 			if ( is_array( $conds ) ) {
 				$conds = $this->makeList( $conds, self::LIST_AND );
 			}
-			$sql = "SELECT $startOpts $vars $from $useIndex $ignoreIndex WHERE $conds $preLimitTail";
+			$sql = "SELECT $startOpts $vars $from $useIndex $ignoreIndex " .
+				"WHERE $conds $preLimitTail";
 		} else {
 			$sql = "SELECT $startOpts $vars $from $useIndex $ignoreIndex $preLimitTail";
 		}
@@ -1915,7 +1921,8 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 					}
 				}
 				if ( isset( $ignore_index[$alias] ) ) { // has IGNORE INDEX?
-					$ignore = $this->ignoreIndexClause( implode( ',', (array)$ignore_index[$alias] ) );
+					$ignore = $this->ignoreIndexClause(
+						implode( ',', (array)$ignore_index[$alias] ) );
 					if ( $ignore != '' ) {
 						$tableClause .= ' ' . $ignore;
 					}
@@ -2349,7 +2356,8 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 			$srcTable = $this->tableName( $srcTable );
 		}
 
-		$sql = "INSERT $insertOptions INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ')' .
+		$sql = "INSERT $insertOptions" .
+			" INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ')' .
 			" SELECT $startOpts " . implode( ',', $varMap ) .
 			" FROM $srcTable $useIndex $ignoreIndex ";
 
@@ -2806,7 +2814,8 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 			}
 		} else {
 			if ( !$this->mTrxLevel ) {
-				$this->queryLogger->error( "$fname: No transaction to commit, something got out of sync." );
+				$this->queryLogger->error(
+					"$fname: No transaction to commit, something got out of sync." );
 				return; // nothing to do
 			} elseif ( $this->mTrxAutomatic ) {
 				// @TODO: make this an exception at some point
@@ -3159,7 +3168,11 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	 * @throws Exception
 	 */
 	public function sourceFile(
-		$filename, $lineCallback = false, $resultCallback = false, $fname = false, $inputCallback = false
+		$filename,
+		$lineCallback = false,
+		$resultCallback = false,
+		$fname = false,
+		$inputCallback = false
 	) {
 		MediaWiki\suppressWarnings();
 		$fp = fopen( $filename, 'r' );
@@ -3174,7 +3187,8 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		}
 
 		try {
-			$error = $this->sourceStream( $fp, $lineCallback, $resultCallback, $fname, $inputCallback );
+			$error = $this->sourceStream(
+				$fp, $lineCallback, $resultCallback, $fname, $inputCallback );
 		} catch ( Exception $e ) {
 			fclose( $fp );
 			throw $e;
@@ -3202,8 +3216,12 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	 * @param bool|callable $inputCallback Optional function called for each complete query sent
 	 * @return bool|string
 	 */
-	public function sourceStream( $fp, $lineCallback = false, $resultCallback = false,
-		$fname = __METHOD__, $inputCallback = false
+	public function sourceStream(
+		$fp,
+		$lineCallback = false,
+		$resultCallback = false,
+		$fname = __METHOD__,
+		$inputCallback = false
 	) {
 		$cmd = '';
 
@@ -3233,7 +3251,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 			if ( $done || feof( $fp ) ) {
 				$cmd = $this->replaceVars( $cmd );
 
-				if ( ( $inputCallback && call_user_func( $inputCallback, $cmd ) ) || !$inputCallback ) {
+				if ( !$inputCallback || call_user_func( $inputCallback, $cmd ) ) {
 					$res = $this->query( $cmd, $fname );
 
 					if ( $resultCallback ) {
@@ -3263,7 +3281,8 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	public function streamStatementEnd( &$sql, &$newLine ) {
 		if ( $this->delimiter ) {
 			$prev = $newLine;
-			$newLine = preg_replace( '/' . preg_quote( $this->delimiter, '/' ) . '$/', '', $newLine );
+			$newLine = preg_replace(
+				'/' . preg_quote( $this->delimiter, '/' ) . '$/', '', $newLine );
 			if ( $newLine != $prev ) {
 				return true;
 			}
