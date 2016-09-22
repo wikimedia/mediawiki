@@ -19,6 +19,7 @@ use MediaWiki\Services\ServiceContainer;
 use MediaWiki\Services\NoSuchServiceException;
 use MWException;
 use ObjectCache;
+use ProxyLookup;
 use SearchEngine;
 use SearchEngineConfig;
 use SearchEngineFactory;
@@ -527,6 +528,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getMediaHandlerFactory() {
 		return $this->getService( 'MediaHandlerFactory' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return ProxyLookup
+	 */
+	public function getProxyLookup() {
+		return $this->getService( 'ProxyLookup' );
 	}
 
 	/**
