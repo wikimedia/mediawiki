@@ -190,6 +190,15 @@ return [
 		);
 	},
 
+	'MimeAnalyzer' => function( MediaWikiServices $services ) {
+		return new MimeMagic(
+			MimeMagic::applyDefaultParameters(
+				[],
+				$services->getMainConfig()
+			)
+		);
+	},
+
 	'ProxyLookup' => function( MediaWikiServices $services ) {
 		$mainConfig = $services->getMainConfig();
 		return new ProxyLookup(
