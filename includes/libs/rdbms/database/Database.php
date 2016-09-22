@@ -2435,7 +2435,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	}
 
 	/**
-	 * Do no use the class outside of Database/DBError classes
+	 * Do not use this method outside of Database/DBError classes
 	 *
 	 * @param integer|string $errno
 	 * @return bool Whether the given query error was a connection drop
@@ -3263,8 +3263,8 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	/**
 	 * Called by sourceStream() to check if we've reached a statement end
 	 *
-	 * @param string $sql SQL assembled so far
-	 * @param string $newLine New line about to be added to $sql
+	 * @param string &$sql SQL assembled so far
+	 * @param string &$newLine New line about to be added to $sql
 	 * @return bool Whether $newLine contains end of the statement
 	 */
 	public function streamStatementEnd( &$sql, &$newLine ) {
