@@ -2033,7 +2033,7 @@ function wfTimestampOrNull( $outputtype = TS_UNIX, $ts = null ) {
  */
 function wfTimestampNow() {
 	# return NOW
-	return MWTimestamp::convert( TS_MW, time() );
+	return MWTimestamp::now( TS_MW );
 }
 
 /**
