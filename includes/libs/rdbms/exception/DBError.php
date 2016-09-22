@@ -110,9 +110,8 @@ class DBQueryError extends DBExpectedError {
 				"Function: $fname\n" .
 				"Error: $errno $error\n";
 		} else {
-			$message = "A database error has occurred. Did you forget to run " .
-				"maintenance/update.php after upgrading?  See: " .
-				"https://www.mediawiki.org/wiki/Manual:Upgrading#Run_the_update_script\n" .
+			$message = "A database query error has occurred. Did you forget to run " .
+				"your application's database schema updater after upgrading? \n" .
 				"Query: $sql\n" .
 				"Function: $fname\n" .
 				"Error: $errno $error\n";
@@ -166,8 +165,7 @@ class DBUnexpectedError extends DBError {
  */
 class DBAccessError extends DBUnexpectedError {
 	public function __construct() {
-		parent::__construct( "Mediawiki tried to access the database via wfGetDB(). " .
-			"This is not allowed, because database access has been disabled." );
+		parent::__construct( "Access to the database has been disabled." );
 	}
 }
 
