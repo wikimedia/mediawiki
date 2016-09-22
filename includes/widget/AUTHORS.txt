@@ -2,6 +2,7 @@ Authors (alphabetically)
 
 Alex Monk <krenair@wikimedia.org>
 Bartosz Dziewoński <bdziewonski@wikimedia.org>
+Brad Jorsch <bjorsch@wikimedia.org>
 Ed Sanders <esanders@wikimedia.org>
 Florian Schmidt <florian.schmidt.welzow@t-online.de>
 James D. Forrester <jforrester@wikimedia.org>
