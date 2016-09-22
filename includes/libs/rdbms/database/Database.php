@@ -266,6 +266,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		$this->trxProfiler = $params['trxProfiler'];
 		$this->connLogger = $params['connLogger'];
 		$this->queryLogger = $params['queryLogger'];
+		$this->errorLogger = $params['errorLogger'];
 
 		// Set initial dummy domain until open() sets the final DB/prefix
 		$this->currentDomain = DatabaseDomain::newUnspecified();
