@@ -1074,7 +1074,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @param string $prefix Prefix to use for test tables
 	 * @return bool True if tables were cloned, false if only the prefix was changed
 	 */
-	protected static function setupDatabaseWithTestPrefix( DatabaseBase $db, $prefix ) {
+	protected static function setupDatabaseWithTestPrefix( IDatabase $db, $prefix ) {
 		$tablesCloned = self::listTables( $db );
 		$dbClone = new CloneDatabase( $db, $tablesCloned, $prefix );
 		$dbClone->useTemporaryTables( self::$useTemporaryTables );

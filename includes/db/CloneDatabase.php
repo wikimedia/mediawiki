@@ -53,7 +53,7 @@ class CloneDatabase {
 	 * @param string $oldTablePrefix Prefix on current tables, if not $wgDBprefix
 	 * @param bool $dropCurrentTables
 	 */
-	public function __construct( Database $db, array $tablesToClone,
+	public function __construct( IDatabase $db, array $tablesToClone,
 		$newTablePrefix, $oldTablePrefix = '', $dropCurrentTables = true
 	) {
 		$this->db = $db;
