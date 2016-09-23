@@ -33,10 +33,11 @@
 // ----------------------------------------------------------------------------
 
 .button-colors( @bgColor, @highlightColor, @activeColor ) {
-	background: @bgColor;
+	background-color: @bgColor;
 
 	&:hover {
 		background-color: @highlightColor;
+		border-color: @highlightColor;
 	}
 
 	&:focus {
@@ -55,6 +56,7 @@
 	&.is-on,
 	&.mw-ui-checked {
 		background-color: @activeColor;
+		border-color: @activeColor;
 		box-shadow: none;
 	}
 }
@@ -80,7 +82,7 @@
 		// make sure disabled buttons don't have hover and active states
 		&:hover,
 		&:active {
-			background: @bgColor;
+			background-color: @bgColor;
 			box-shadow: none;
 		}
 	}
@@ -91,7 +93,7 @@
 	// border of the same color as background so that light background and
 	// dark background buttons are the same height and width
 	border: 1px solid @bgColor;
-	text-shadow: 0 1px rgba(0, 0, 0, .1);
+	text-shadow: 0 1px rgba( 0, 0, 0, 0.1 );
 
 	&:disabled {
 		background-color: @colorGray13;
