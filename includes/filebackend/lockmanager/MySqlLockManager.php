@@ -15,11 +15,6 @@ class MySqlLockManager extends DBLockManager {
 		self::LOCK_EX => self::LOCK_EX
 	];
 
-	protected function getLocalLB() {
-		// Use a separate connection so releaseAllLocks() doesn't rollback the main trx
-		return wfGetLBFactory()->newMainLB( $this->domain );
-	}
-
 	protected function initConnection( $lockDb, IDatabase $db ) {
 		# Let this transaction see lock rows from other transactions
 		$db->query( "SET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;" );
