@@ -556,7 +556,6 @@
 	"botpasswords-label-delete": "Șterge",
 	"botpasswords-label-resetpassword": "Resetează parola",
 	"botpasswords-label-grants": "Permisiuni aplicabile:",
-	"botpasswords-label-restrictions": "Restricții de utilizare:",
 	"botpasswords-label-grants-column": "Permise",
 	"botpasswords-bad-appid": "Numele de robot „$1” nu este valid.",
 	"resetpass_forbidden": "Parolele nu pot fi schimbate.",

@@ -629,7 +629,6 @@
 	"botpasswords-label-resetpassword": "Redefinir a sua senha",
 	"botpasswords-label-grants": "Permissões aplicáveis",
 	"botpasswords-help-grants": "Cada permissão da acesso à lista permissões de usuários que um usuário já tenha. Veja o [[Special:ListGrants|Lista de Permissões]] para mais informações.",
-	"botpasswords-label-restrictions": "Restrições de uso:",
 	"botpasswords-label-grants-column": "Concedido",
 	"botpasswords-bad-appid": "O nome de robô \"$1\" não é válido.",
 	"botpasswords-insert-failed": "Falha ao adicionar o nome de robô \"$1\". Ele já foi adicionado?",

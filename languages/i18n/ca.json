@@ -579,7 +579,6 @@
 	"botpasswords-label-delete": "Suprimeix",
 	"botpasswords-label-resetpassword": "Reinicia la contrasenya",
 	"botpasswords-label-grants": "Permisos aplicables:",
-	"botpasswords-label-restrictions": "Restriccions d'ús:",
 	"botpasswords-label-grants-column": "Concedit",
 	"botpasswords-bad-appid": "El nom del bot «$1» no és vàlid.",
 	"botpasswords-insert-failed": "No s'ha pogut afegir el nom del bot «$1». Ja hi estava afegit?",

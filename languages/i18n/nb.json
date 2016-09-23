@@ -575,7 +575,6 @@
 	"botpasswords-label-resetpassword": "Tilbakestill passord",
 	"botpasswords-label-grants": "Tilgjengelige tildelinger:",
 	"botpasswords-help-grants": "Hver tildeling gir tilgang til opplistede brukerrettigheter som brukerkontoen allerede har. Se [[Special:ListGrants|tildelingstabellen]] for mer informasjon.",
-	"botpasswords-label-restrictions": "Bruksbegrensninger:",
 	"botpasswords-label-grants-column": "Bevilget",
 	"botpasswords-bad-appid": "Robotnavnet \"$1\" er ikke gyldig.",
 	"botpasswords-insert-failed": "Kunne ikke legge til robotnavnet \"$1\". Har det allerede blitt lagt til?",

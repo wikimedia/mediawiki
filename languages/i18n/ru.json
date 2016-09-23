@@ -623,7 +623,6 @@
 	"botpasswords-label-resetpassword": "Сбросить пароль",
 	"botpasswords-label-grants": "Применимые разрешения:",
 	"botpasswords-help-grants": "Каждое разрешение даёт доступ к перечисленным правам участника, которые уже есть у учётной записи участника. См. [[Special:ListGrants|таблицу разрешений]] для получения дополнительной информации.",
-	"botpasswords-label-restrictions": "Ограничения на использование:",
 	"botpasswords-label-grants-column": "Разрешено",
 	"botpasswords-bad-appid": "Имя бота «$1» является недопустимым.",
 	"botpasswords-insert-failed": "Не удалось добавить бота с именем «$1». Возможно, он был уже добавлен?",

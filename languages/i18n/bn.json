@@ -554,7 +554,6 @@
 	"botpasswords-label-delete": "অপসারণ",
 	"botpasswords-label-resetpassword": "পাসওয়ার্ড পুনঃস্থাপন",
 	"botpasswords-label-grants": "প্রয়োগযোগ্য মঞ্জুরি:",
-	"botpasswords-label-restrictions": "ব্যবহারের সীমাবদ্ধতা:",
 	"botpasswords-label-grants-column": "অনুমোদিত",
 	"botpasswords-bad-appid": "\"$1\" বট নামটি সঠিক নয়।",
 	"botpasswords-insert-failed": "\"$1\" নামের বট যুক্ত করা যায়নি। আগে থেকেই তালিকায় রয়েছে?",

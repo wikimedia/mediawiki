@@ -573,7 +573,6 @@
 	"botpasswords-label-resetpassword": "Rekomencigi la pasvorton",
 	"botpasswords-label-grants": "Uzeblaj permesdonoj:",
 	"botpasswords-help-grants": "Ĉiu permesdono provizas aliron al listitaj uzantaj permisoj, kiujn uzantkonto jam havas. Vidu la [[Special:ListGrants|tabelon de permesdonoj]] por pli da informo.",
-	"botpasswords-label-restrictions": "Limigoj de uzado:",
 	"botpasswords-label-grants-column": "Permeso donita",
 	"botpasswords-bad-appid": "La robota nomo \"$1\" estas malvalida.",
 	"botpasswords-insert-failed": "Aldono de la robota nomo \"$1\" ne sukcesis. Ĉu ĝi jam estis aldonita?",

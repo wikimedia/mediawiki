@@ -613,7 +613,6 @@
 	"botpasswords-label-delete": "Usuń",
 	"botpasswords-label-resetpassword": "Zresetuj hasło",
 	"botpasswords-label-grants": "Zastosowane uprawnienia:",
-	"botpasswords-label-restrictions": "Ograniczenia użytkowania:",
 	"botpasswords-label-grants-column": "Przyznane",
 	"botpasswords-bad-appid": "Nazwa bota \"$1\" nie jest prawidłowa.",
 	"botpasswords-insert-failed": "Nie udało się dodać robota o nazwie \"$1\". Czy był już wcześniej dodany?",

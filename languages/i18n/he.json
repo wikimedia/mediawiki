@@ -564,7 +564,6 @@
 	"botpasswords-label-resetpassword": "איפוס ססמה",
 	"botpasswords-label-grants": "זיכיונות מתאימים",
 	"botpasswords-help-grants": "כל זיכיון נותן גישה להרשאות משתמש רשומות שיש לחשבון המשתמש. עיינו ב[[Special:ListGrants|טבלת הזיכיונות]] למידע נוסף.",
-	"botpasswords-label-restrictions": "הגבלות שימוש:",
 	"botpasswords-label-grants-column": "ניתן זיכיון",
 	"botpasswords-bad-appid": "שם הבוט \"$1\" אינו תקין.",
 	"botpasswords-insert-failed": "הוספת שם הבוט \"$1\" נכשלה. האם הוא כבר נוסף?",

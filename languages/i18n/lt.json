@@ -562,7 +562,6 @@
 	"botpasswords-label-resetpassword": "Atstatyti slaptažodį",
 	"botpasswords-label-grants": "Taikomi leidimai:",
 	"botpasswords-help-grants": "Kiekvienas leidimas suteikia prieigą prie išvardintų naudotojo leidimų, kuriuos paskyra jau turi.\nŽiūrėkite [[Special:ListGrants|leidimų lentelę]], norėdami rasti daugiau informacijos.",
-	"botpasswords-label-restrictions": "Naudojimo apribojimai:",
 	"botpasswords-label-grants-column": "Leidžiama",
 	"botpasswords-bad-appid": "Boto vardas \"$1\" nėra tinkamas.",
 	"botpasswords-insert-failed": "Nepavyko pridėti boto vardo \"$1\". Gal jis jau pridėtas?",
