@@ -171,7 +171,7 @@ class DatabaseSqlite extends DatabaseBase {
 
 		$this->dbPath = $fileName;
 		try {
-			if ( $this->mFlags & DBO_PERSISTENT ) {
+			if ( $this->mFlags & self::DBO_PERSISTENT ) {
 				$this->mConn = new PDO( "sqlite:$fileName", '', '',
 					[ PDO::ATTR_PERSISTENT => true ] );
 			} else {

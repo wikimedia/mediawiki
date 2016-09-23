@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @defgroup Database Database
  *
@@ -73,6 +72,27 @@ interface IDatabase {
 	const LIST_NAMES = 3;
 	/** @var int Combine list with OR clauses */
 	const LIST_OR = 4;
+
+	/** @var int Enable debug logging */
+	const DBO_DEBUG = 1;
+	/** @var int Disable query buffering (only one result set can be iterated at a time) */
+	const DBO_NOBUFFER = 2;
+	/** @var int Ignore query errors (internal use only!) */
+	const DBO_IGNORE = 4;
+	/** @var int Autoatically start transaction on first query (work with ILoadBalancer rounds) */
+	const DBO_TRX = 8;
+	/** @var int Use DBO_TRX in non-CLI mode */
+	const DBO_DEFAULT = 16;
+	/** @var int Use DB persistent connections if possible */
+	const DBO_PERSISTENT = 32;
+	/** @var int DBA session mode; mostly for Oracle */
+	const DBO_SYSDBA = 64;
+	/** @var int Schema file mode; mostly for Oracle */
+	const DBO_DDLMODE = 128;
+	/** @var int Enable SSL/TLS in connection protocol */
+	const DBO_SSL = 256;
+	/** @var int Enable compression in connection protocol */
+	const DBO_COMPRESS = 512;
 
 	/**
 	 * A string describing the current software version, and possibly

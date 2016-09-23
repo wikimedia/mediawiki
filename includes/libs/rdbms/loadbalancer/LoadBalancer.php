@@ -530,10 +530,10 @@ class LoadBalancer implements ILoadBalancer {
 			? [ false ] // check one "group": the generic pool
 			: (array)$groups;
 
-		$masterOnly = ( $i == DB_MASTER || $i == $this->getWriterIndex() );
+		$masterOnly = ( $i == self::DB_MASTER || $i == $this->getWriterIndex() );
 		$oldConnsOpened = $this->connsOpened; // connections open now
 
-		if ( $i == DB_MASTER ) {
+		if ( $i == self::DB_MASTER ) {
 			$i = $this->getWriterIndex();
 		} else {
 			# Try to find an available server in any the query groups (in order)
@@ -547,7 +547,7 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		# Operation-based index
-		if ( $i == DB_REPLICA ) {
+		if ( $i == self::DB_REPLICA ) {
 			$this->mLastError = 'Unknown error'; // reset error string
 			# Try the general server pool if $groups are unavailable.
 			$i = in_array( false, $groups, true )
@@ -589,7 +589,7 @@ class LoadBalancer implements ILoadBalancer {
 			/**
 			 * This can happen in code like:
 			 *   foreach ( $dbs as $db ) {
-			 *     $conn = $lb->getConnection( DB_REPLICA, [], $db );
+			 *     $conn = $lb->getConnection( $lb::DB_REPLICA, [], $db );
 			 *     ...
 			 *     $lb->reuseConnection( $conn );
 			 *   }
@@ -816,7 +816,7 @@ class LoadBalancer implements ILoadBalancer {
 		$server['agent'] = $this->agent;
 		// Use DBO_DEFAULT flags by default for LoadBalancer managed databases. Assume that the
 		// application calls LoadBalancer::commitMasterChanges() before the PHP script completes.
-		$server['flags'] = isset( $server['flags'] ) ? $server['flags'] : DBO_DEFAULT;
+		$server['flags'] = isset( $server['flags'] ) ? $server['flags'] : IDatabase::DBO_DEFAULT;
 
 		// Create a live connection object
 		try {
@@ -829,7 +829,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		$db->setLBInfo( $server );
 		$db->setLazyMasterHandle(
-			$this->getLazyConnectionRef( DB_MASTER, [], $db->getDomainID() )
+			$this->getLazyConnectionRef( self::DB_MASTER, [], $db->getDomainID() )
 		);
 		$db->setTableAliases( $this->tableAliases );
 
@@ -1170,10 +1170,10 @@ class LoadBalancer implements ILoadBalancer {
 	 * @param IDatabase $conn
 	 */
 	private function applyTransactionRoundFlags( IDatabase $conn ) {
-		if ( $conn->getFlag( DBO_DEFAULT ) ) {
+		if ( $conn->getFlag( $conn::DBO_DEFAULT ) ) {
 			// DBO_TRX is controlled entirely by CLI mode presence with DBO_DEFAULT.
 			// Force DBO_TRX even in CLI mode since a commit round is expected soon.
-			$conn->setFlag( DBO_TRX, $conn::REMEMBER_PRIOR );
+			$conn->setFlag( $conn::DBO_TRX, $conn::REMEMBER_PRIOR );
 			// If config has explicitly requested DBO_TRX be either on or off by not
 			// setting DBO_DEFAULT, then respect that. Forcing no transactions is useful
 			// for things like blob stores (ExternalStore) which want auto-commit mode.
@@ -1184,7 +1184,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @param IDatabase $conn
 	 */
 	private function undoTransactionRoundFlags( IDatabase $conn ) {
-		if ( $conn->getFlag( DBO_DEFAULT ) ) {
+		if ( $conn->getFlag( $conn::DBO_DEFAULT ) ) {
 			$conn->restoreFlags( $conn::RESTORE_PRIOR );
 		}
 	}
@@ -1238,7 +1238,7 @@ class LoadBalancer implements ILoadBalancer {
 		if ( !$this->laggedReplicaMode && $this->getServerCount() > 1 ) {
 			try {
 				// See if laggedReplicaMode gets set
-				$conn = $this->getConnection( DB_REPLICA, false, $domain );
+				$conn = $this->getConnection( self::DB_REPLICA, false, $domain );
 				$this->reuseConnection( $conn );
 			} catch ( DBConnectionError $e ) {
 				// Avoid expensive re-connect attempts and failures
@@ -1305,7 +1305,7 @@ class LoadBalancer implements ILoadBalancer {
 			function () use ( $domain, $conn ) {
 				$this->trxProfiler->setSilenced( true );
 				try {
-					$dbw = $conn ?: $this->getConnection( DB_MASTER, [], $domain );
+					$dbw = $conn ?: $this->getConnection( self::DB_MASTER, [], $domain );
 					$readOnly = (int)$dbw->serverIsReadOnly();
 					if ( !$conn ) {
 						$this->reuseConnection( $dbw );
@@ -1432,7 +1432,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		if ( !$pos ) {
 			// Get the current master position
-			$dbw = $this->getConnection( DB_MASTER );
+			$dbw = $this->getConnection( self::DB_MASTER );
 			$pos = $dbw->getMasterPos();
 			$this->reuseConnection( $dbw );
 		}

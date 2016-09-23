@@ -248,11 +248,11 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		$this->agent = str_replace( '/', '-', $params['agent'] );
 
 		$this->mFlags = $params['flags'];
-		if ( $this->mFlags & DBO_DEFAULT ) {
+		if ( $this->mFlags & self::DBO_DEFAULT ) {
 			if ( $this->cliMode ) {
-				$this->mFlags &= ~DBO_TRX;
+				$this->mFlags &= ~self::DBO_TRX;
 			} else {
-				$this->mFlags |= DBO_TRX;
+				$this->mFlags |= self::DBO_TRX;
 			}
 		}
 
@@ -407,9 +407,11 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	}
 
 	public function bufferResults( $buffer = null ) {
-		$res = !$this->getFlag( DBO_NOBUFFER );
+		$res = !$this->getFlag( self::DBO_NOBUFFER );
 		if ( $buffer !== null ) {
-			$buffer ? $this->clearFlag( DBO_NOBUFFER ) : $this->setFlag( DBO_NOBUFFER );
+			$buffer
+				? $this->clearFlag( self::DBO_NOBUFFER )
+				: $this->setFlag( self::DBO_NOBUFFER );
 		}
 
 		return $res;
@@ -428,9 +430,11 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	 * @return bool The previous value of the flag.
 	 */
 	protected function ignoreErrors( $ignoreErrors = null ) {
-		$res = $this->getFlag( DBO_IGNORE );
+		$res = $this->getFlag( self::DBO_IGNORE );
 		if ( $ignoreErrors !== null ) {
-			$ignoreErrors ? $this->setFlag( DBO_IGNORE ) : $this->clearFlag( DBO_IGNORE );
+			$ignoreErrors
+				? $this->setFlag( self::DBO_IGNORE )
+				: $this->clearFlag( self::DBO_IGNORE );
 		}
 
 		return $res;
@@ -828,7 +832,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		$commentedSql = preg_replace( '/\s|$/', " /* $fname {$this->agent} */ ", $sql, 1 );
 
 		# Start implicit transactions that wrap the request if DBO_TRX is enabled
-		if ( !$this->mTrxLevel && $this->getFlag( DBO_TRX )
+		if ( !$this->mTrxLevel && $this->getFlag( self::DBO_TRX )
 			&& $this->isTransactableQuery( $sql )
 		) {
 			$this->begin( __METHOD__ . " ($fname)", self::TRANSACTION_INTERNAL );
@@ -842,7 +846,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 				$this->mServer, $this->mDBname, $this->mTrxShortId );
 		}
 
-		if ( $this->getFlag( DBO_DEBUG ) ) {
+		if ( $this->getFlag( self::DBO_DEBUG ) ) {
 			$this->queryLogger->debug( "{$this->mDBname} {$commentedSql}" );
 		}
 
@@ -2586,7 +2590,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 			return;
 		}
 
-		$autoTrx = $this->getFlag( DBO_TRX ); // automatic begin() enabled?
+		$autoTrx = $this->getFlag( self::DBO_TRX ); // automatic begin() enabled?
 		/** @var Exception $e */
 		$e = null; // first exception
 		do { // callbacks may add callbacks :)
@@ -2599,12 +2603,12 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 			foreach ( $callbacks as $callback ) {
 				try {
 					list( $phpCallback ) = $callback;
-					$this->clearFlag( DBO_TRX ); // make each query its own transaction
+					$this->clearFlag( self::DBO_TRX ); // make each query its own transaction
 					call_user_func_array( $phpCallback, [ $trigger ] );
 					if ( $autoTrx ) {
-						$this->setFlag( DBO_TRX ); // restore automatic begin()
+						$this->setFlag( self::DBO_TRX ); // restore automatic begin()
 					} else {
-						$this->clearFlag( DBO_TRX ); // restore auto-commit
+						$this->clearFlag( self::DBO_TRX ); // restore auto-commit
 					}
 				} catch ( Exception $ex ) {
 					call_user_func( $this->errorLogger, $ex );
@@ -2688,7 +2692,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 			$this->begin( $fname, self::TRANSACTION_INTERNAL );
 			// If DBO_TRX is set, a series of startAtomic/endAtomic pairs will result
 			// in all changes being in one transaction to keep requests transactional.
-			if ( !$this->getFlag( DBO_TRX ) ) {
+			if ( !$this->getFlag( self::DBO_TRX ) ) {
 				$this->mTrxAutomaticAtomic = true;
 			}
 		}
@@ -2740,7 +2744,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 				$this->queryLogger->error( $msg );
 				return; // join the main transaction set
 			}
-		} elseif ( $this->getFlag( DBO_TRX ) && $mode !== self::TRANSACTION_INTERNAL ) {
+		} elseif ( $this->getFlag( self::DBO_TRX ) && $mode !== self::TRANSACTION_INTERNAL ) {
 			// @TODO: make this an exception at some point
 			$msg = "$fname: Implicit transaction expected (DBO_TRX set).";
 			$this->queryLogger->error( $msg );
@@ -2852,7 +2856,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 				$this->queryLogger->error(
 					"$fname: No transaction to rollback, something got out of sync." );
 				return; // nothing to do
-			} elseif ( $this->getFlag( DBO_TRX ) ) {
+			} elseif ( $this->getFlag( self::DBO_TRX ) ) {
 				throw new DBUnexpectedError(
 					$this,
 					"$fname: Expected mass rollback of all peer databases (DBO_TRX set)."
@@ -3019,7 +3023,7 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		}
 
 		// This will reconnect if possible or return false if not
-		$this->clearFlag( DBO_TRX, self::REMEMBER_PRIOR );
+		$this->clearFlag( self::DBO_TRX, self::REMEMBER_PRIOR );
 		$ok = ( $this->query( self::PING_QUERY, __METHOD__, true ) !== false );
 		$this->restoreFlags( self::RESTORE_PRIOR );
 
