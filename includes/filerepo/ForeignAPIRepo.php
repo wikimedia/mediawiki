@@ -532,8 +532,8 @@ class ForeignAPIRepo extends FileRepo {
 		$status = $req->execute();
 
 		if ( $status->isOK() ) {
-			$mtime = wfTimestampOrNull( TS_UNIX, $req->getResponseHeader( 'Last-Modified' ) );
-			$mtime = $mtime ?: false;
+			$lmod = $req->getResponseHeader( 'Last-Modified' );
+			$mtime = $lmod ? wfTimestamp( TS_UNIX, $lmod ) : false;
 
 			return $req->getContent();
 		} else {
