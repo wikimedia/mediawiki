@@ -213,27 +213,6 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 			$db->listViews( '' ) );
 	}
 
-	/**
-	 * @covers DatabaseMysqlBase::isView
-	 * @dataProvider provideViewExistanceChecks
-	 */
-	function testIsView( $isView, $viewName ) {
-		$db = $this->getMockForViews();
-
-		switch ( $isView ) {
-			case true:
-				$this->assertTrue( $db->isView( $viewName ),
-					"$viewName should be considered a view" );
-			break;
-
-			case false:
-				$this->assertFalse( $db->isView( $viewName ),
-					"$viewName has not been defined as a view" );
-			break;
-		}
-
-	}
-
 	function provideViewExistanceChecks() {
 		return [
 			// format: whether it is a view, view name
