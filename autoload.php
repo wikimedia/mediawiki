@@ -585,6 +585,7 @@ $wgAutoloadLocalClasses = [
 	'IJobSpecification' => __DIR__ . '/includes/jobqueue/JobSpecification.php',
 	'ILoadBalancer' => __DIR__ . '/includes/libs/rdbms/loadbalancer/ILoadBalancer.php',
 	'ILoadMonitor' => __DIR__ . '/includes/libs/rdbms/loadmonitor/ILoadMonitor.php',
+	'IMaintainableDatabase' => __DIR__ . '/includes/libs/rdbms/database/IMaintainableDatabase.php',
 	'IP' => __DIR__ . '/includes/libs/IP.php',
 	'IPSet' => __DIR__ . '/includes/compat/IPSetCompat.php',
 	'IPTC' => __DIR__ . '/includes/media/IPTC.php',
