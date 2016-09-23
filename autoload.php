@@ -1256,6 +1256,7 @@ $wgAutoloadLocalClasses = [
 	'SectionProfileCallback' => __DIR__ . '/includes/profiler/SectionProfiler.php',
 	'SectionProfiler' => __DIR__ . '/includes/profiler/SectionProfiler.php',
 	'SevenZipStream' => __DIR__ . '/maintenance/7zip.inc',
+	'ShellExec' => __DIR__ . '/includes/ShellExec.php',
 	'ShiConverter' => __DIR__ . '/languages/classes/LanguageShi.php',
 	'ShortPagesPage' => __DIR__ . '/includes/specials/SpecialShortpages.php',
 	'ShowJobs' => __DIR__ . '/maintenance/showJobs.php',

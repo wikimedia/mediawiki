@@ -23,6 +23,7 @@ use ProxyLookup;
 use SearchEngine;
 use SearchEngineConfig;
 use SearchEngineFactory;
+use ShellExec;
 use SiteLookup;
 use SiteStore;
 use WatchedItemStore;
@@ -536,6 +537,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getProxyLookup() {
 		return $this->getService( 'ProxyLookup' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return ShellExec
+	 */
+	public function getShellExec() {
+		return $this->getService( 'ShellExec' );
 	}
 
 	/**

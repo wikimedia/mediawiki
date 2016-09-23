@@ -321,7 +321,8 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'TitleFormatter' => [ 'TitleFormatter', TitleFormatter::class ],
 			'TitleParser' => [ 'TitleParser', TitleParser::class ],
 			'VirtualRESTServiceClient' => [ 'VirtualRESTServiceClient', VirtualRESTServiceClient::class ],
-			'ProxyLookup' => [ 'ProxyLookup', ProxyLookup::class ]
+			'ProxyLookup' => [ 'ProxyLookup', ProxyLookup::class ],
+			'ShellExec' => [ 'ShellExec', ShellExec::class ],
 		];
 	}
 

@@ -172,6 +172,27 @@ return [
 		);
 	},
 
+	'ShellExec' => function( MediaWikiServices $services ) {
+		$mainConfig = $services->getMainConfig();
+		$profiler = Profiler::instance();
+		$shellExec = new ShellExec(
+			[
+				'time' => $mainConfig->get( 'MaxShellTime' ),
+				'walltime' => $mainConfig->get( 'MaxShellWallClockTime' ),
+				'memory' => $mainConfig->get( 'MaxShellMemory' ),
+				'filesize' => $mainConfig->get( 'MaxShellFileSize' ),
+			],
+			$mainConfig->get( 'ShellLocale' ),
+			$mainConfig->get( 'ShellCgroup' ),
+			[ $profiler, 'scopedProfileIn' ]
+		);
+		$shellExec->setLogger(
+			\MediaWiki\Logger\LoggerFactory::getInstance( 'exec' )
+		);
+
+		return $shellExec;
+	},
+
 	'LinkCache' => function( MediaWikiServices $services ) {
 		return new LinkCache(
 			$services->getTitleFormatter(),
