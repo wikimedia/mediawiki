@@ -211,12 +211,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var IDatabase|null Lazy handle to the master DB this server replicates from */
 	private $lazyMasterHandle;
 
-	/**
-	 * @since 1.22
-	 * @var string[] Process cache of VIEWs names in the database
-	 */
-	protected $allViews = null;
-
 	/** @var float UNIX timestamp */
 	protected $lastPing = 0.0;
 
@@ -500,7 +494,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @see setLazyMasterHandle()
 	 * @since 1.27
 	 */
-	public function getLazyMasterHandle() {
+	protected function getLazyMasterHandle() {
 		return $this->lazyMasterHandle;
 	}
 
@@ -2867,27 +2861,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
 
-	/**
-	 * Reset the views process cache set by listViews()
-	 * @since 1.22
-	 */
-	final public function clearViewsCache() {
-		$this->allViews = null;
-	}
-
 	public function listViews( $prefix = null, $fname = __METHOD__ ) {
-		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
-	}
-
-	/**
-	 * Differentiates between a TABLE and a VIEW
-	 *
-	 * @param string $name Name of the database-structure to test.
-	 * @throws RuntimeException
-	 * @return bool
-	 * @since 1.22
-	 */
-	public function isView( $name ) {
 		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
 
