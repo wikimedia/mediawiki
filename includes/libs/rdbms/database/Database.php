@@ -27,10 +27,12 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Database abstraction object
+ * Relational database abstraction object
+ *
  * @ingroup Database
+ * @since 1.28
  */
-abstract class Database implements IDatabase, LoggerAwareInterface {
+abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAwareInterface {
 	/** Number of times to re-try an operation in case of deadlock */
 	const DEADLOCK_TRIES = 4;
 	/** Minimum time to wait before retry, in microseconds */
@@ -1677,25 +1679,6 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		return $this->mServer;
 	}
 
-	/**
-	 * Format a table name ready for use in constructing an SQL query
-	 *
-	 * This does two important things: it quotes the table names to clean them up,
-	 * and it adds a table prefix if only given a table name with no quotes.
-	 *
-	 * All functions of this object which require a table name call this function
-	 * themselves. Pass the canonical name to such functions. This is only needed
-	 * when calling query() directly.
-	 *
-	 * @note This function does not sanitize user input. It is not safe to use
-	 *   this function to escape user input.
-	 * @param string $name Database table name
-	 * @param string $format One of:
-	 *   quoted - Automatically pass the table name through addIdentifierQuotes()
-	 *            so that it can be used in a query.
-	 *   raw - Do not add identifier quotes to the table name
-	 * @return string Full database name
-	 */
 	public function tableName( $name, $format = 'quoted' ) {
 		# Skip the entire process when we have a string quoted on both ends.
 		# Note that we check the end so that we will still quote any use of
@@ -1776,17 +1759,6 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		return $tableName;
 	}
 
-	/**
-	 * Fetch a number of table names into an array
-	 * This is handy when you need to construct SQL for joins
-	 *
-	 * Example:
-	 * extract( $dbr->tableNames( 'user', 'watchlist' ) );
-	 * $sql = "SELECT wl_namespace,wl_title FROM $watchlist,$user
-	 *         WHERE wl_user=user_id AND wl_user=$nameWithQuotes";
-	 *
-	 * @return array
-	 */
 	public function tableNames() {
 		$inArray = func_get_args();
 		$retVal = [];
@@ -1798,17 +1770,6 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		return $retVal;
 	}
 
-	/**
-	 * Fetch a number of table names into an zero-indexed numerical array
-	 * This is handy when you need to construct SQL for joins
-	 *
-	 * Example:
-	 * list( $user, $watchlist ) = $dbr->tableNamesN( 'user', 'watchlist' );
-	 * $sql = "SELECT wl_namespace,wl_title FROM $watchlist,$user
-	 *         WHERE wl_user=user_id AND wl_user=$nameWithQuotes";
-	 *
-	 * @return array
-	 */
 	public function tableNamesN() {
 		$inArray = func_get_args();
 		$retVal = [];
@@ -2242,13 +2203,6 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		$this->query( $sql, $fname );
 	}
 
-	/**
-	 * Returns the size of a text field, or -1 for "unlimited"
-	 *
-	 * @param string $table
-	 * @param string $field
-	 * @return int
-	 */
 	public function textFieldSize( $table, $field ) {
 		$table = $this->tableName( $table );
 		$sql = "SHOW COLUMNS FROM $table LIKE \"$field\";";
@@ -2447,30 +2401,6 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		return false;
 	}
 
-	/**
-	 * Perform a deadlock-prone transaction.
-	 *
-	 * This function invokes a callback function to perform a set of write
-	 * queries. If a deadlock occurs during the processing, the transaction
-	 * will be rolled back and the callback function will be called again.
-	 *
-	 * Avoid using this method outside of Job or Maintenance classes.
-	 *
-	 * Usage:
-	 *   $dbw->deadlockLoop( callback, ... );
-	 *
-	 * Extra arguments are passed through to the specified callback function.
-	 * This method requires that no transactions are already active to avoid
-	 * causing premature commits or exceptions.
-	 *
-	 * Returns whatever the callback function returned on its successful,
-	 * iteration, or false on error, for example if the retry limit was
-	 * reached.
-	 *
-	 * @return mixed
-	 * @throws DBUnexpectedError
-	 * @throws Exception
-	 */
 	public function deadlockLoop() {
 		$args = func_get_args();
 		$function = array_shift( $args );
@@ -2945,18 +2875,6 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		$this->allViews = null;
 	}
 
-	/**
-	 * Lists all the VIEWs in the database
-	 *
-	 * For caching purposes the list of all views should be stored in
-	 * $this->allViews. The process cache can be cleared with clearViewsCache()
-	 *
-	 * @param string $prefix Only show VIEWs with this prefix, eg. unit_test_
-	 * @param string $fname Name of calling function
-	 * @throws RuntimeException
-	 * @return array
-	 * @since 1.22
-	 */
 	public function listViews( $prefix = null, $fname = __METHOD__ ) {
 		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
@@ -3143,22 +3061,6 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 	public function setSessionOptions( array $options ) {
 	}
 
-	/**
-	 * Read and execute SQL commands from a file.
-	 *
-	 * Returns true on success, error string or exception on failure (depending
-	 * on object's error ignore settings).
-	 *
-	 * @param string $filename File name to open
-	 * @param bool|callable $lineCallback Optional function called before reading each line
-	 * @param bool|callable $resultCallback Optional function called for each MySQL result
-	 * @param bool|string $fname Calling function name or false if name should be
-	 *   generated dynamically using $filename
-	 * @param bool|callable $inputCallback Optional function called for each
-	 *   complete line sent
-	 * @return bool|string
-	 * @throws Exception
-	 */
 	public function sourceFile(
 		$filename,
 		$lineCallback = false,
@@ -3195,19 +3097,6 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		$this->mSchemaVars = $vars;
 	}
 
-	/**
-	 * Read and execute commands from an open file handle.
-	 *
-	 * Returns true on success, error string or exception on failure (depending
-	 * on object's error ignore settings).
-	 *
-	 * @param resource $fp File handle
-	 * @param bool|callable $lineCallback Optional function called before reading each query
-	 * @param bool|callable $resultCallback Optional function called for each MySQL result
-	 * @param string $fname Calling function name
-	 * @param bool|callable $inputCallback Optional function called for each complete query sent
-	 * @return bool|string
-	 */
 	public function sourceStream(
 		$fp,
 		$lineCallback = false,
