@@ -656,21 +656,15 @@ class ChangeTags {
 	 * Build a text box to select a change tag
 	 *
 	 * @param string $selected Tag to select by default
-	 * @param bool $fullForm Affects return value, see below
-	 * @param Title $title Title object to send the form to. Used only if $fullForm is true.
 	 * @param bool $ooui Use an OOUI TextInputWidget as selector instead of a non-OOUI input field
 	 *        You need to call OutputPage::enableOOUI() yourself.
-	 * @return string|array
-	 *        - if $fullForm is false: an array of (label, selector).
-	 *        - if $fullForm is true: HTML of entire form built around the selector.
+	 * @return array an array of (label, selector)
 	 */
-	public static function buildTagFilterSelector( $selected = '',
-		$fullForm = false, Title $title = null, $ooui = false
-	) {
+	public static function buildTagFilterSelector( $selected = '', $ooui = false ) {
 		global $wgUseTagFilter;
 
 		if ( !$wgUseTagFilter || !count( self::listDefinedTags() ) ) {
-			return $fullForm ? '' : [];
+			return [];
 		}
 
 		$data = [
@@ -697,24 +691,7 @@ class ChangeTags {
 			);
 		}
 
-		if ( !$fullForm ) {
-			return $data;
-		}
-
-		$html = implode( '&#160;', $data );
-		$html .= "\n" .
-			Xml::element(
-				'input',
-				[ 'type' => 'submit', 'value' => wfMessage( 'tag-filter-submit' )->text() ]
-			);
-		$html .= "\n" . Html::hidden( 'title', $title->getPrefixedText() );
-		$html = Xml::tags(
-			'form',
-			[ 'action' => $title->getLocalURL(), 'class' => 'mw-tagfilter-form', 'method' => 'get' ],
-			$html
-		);
-
-		return $html;
+		return $data;
 	}
 
 	/**
