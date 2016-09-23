@@ -18,6 +18,7 @@
  * @file
  * @author Aaron Schulz
  */
+use Psr\Log\LoggerInterface;
 
 /**
  * Version of PoolCounter that uses Redis
@@ -55,6 +56,8 @@ class PoolCounterRedis extends PoolCounter {
 	protected $ring;
 	/** @var RedisConnectionPool */
 	protected $pool;
+	/** @var LoggerInterface */
+	protected $logger;
 	/** @var array (server label => host) map */
 	protected $serversByLabel;
 	/** @var string SHA-1 of the key */
@@ -87,6 +90,7 @@ class PoolCounterRedis extends PoolCounter {
 
 		$conf['redisConfig']['serializer'] = 'none'; // for use with Lua
 		$this->pool = RedisConnectionPool::singleton( $conf['redisConfig'] );
+		$this->logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'redis' );
 
 		$this->keySha1 = sha1( $this->key );
 		$met = ini_get( 'max_execution_time' ); // usually 0 in CLI mode
@@ -107,7 +111,7 @@ class PoolCounterRedis extends PoolCounter {
 			$servers = $this->ring->getLocations( $this->key, 3 );
 			ArrayUtils::consistentHashSort( $servers, $this->key );
 			foreach ( $servers as $server ) {
-				$conn = $this->pool->getConnection( $this->serversByLabel[$server] );
+				$conn = $this->pool->getConnection( $this->serversByLabel[$server], $this->logger );
 				if ( $conn ) {
 					break;
 				}
