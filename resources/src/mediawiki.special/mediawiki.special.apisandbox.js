@@ -962,6 +962,39 @@
 								.text( data )
 								.appendTo( $result );
 						}
+						if ( data[ 'continue' ] ) {
+							$result.append(
+								$( '<div>' ).append(
+									new OO.ui.ButtonWidget( {
+										label: mw.message( 'apisandbox-continue' ).text()
+									} ).on( 'click', function () {
+										$.each( pages, function ( _, page ) {
+											var key,
+												params = {};
+											page.getQueryParams( params, {} );
+											$.each( params, function ( k ) {
+												// This is a hack. Normally the client would have to keep track of which are the
+												// original parameters and which are from continuing, and only keep the former,
+												// but with the possibility of the user clicking around in the GUI between
+												// requests that is too much of a moving target.
+												if ( k.match( /continue$/ ) ) {
+													delete params[ k ];
+												}
+											} );
+											for ( i = 0; i < page.paramInfo.parameters.length; i++ ) {
+												key = ( page.prefix || '' ) + ( page.paramInfo.prefix || '' )
+													+ page.paramInfo.parameters[ i ].name;
+												if ( key in data[ 'continue' ] ) {
+													params[ key ] = data[ 'continue' ][ key ];
+												}
+											}
+											page.loadQueryParams( params );
+										} );
+										ApiSandbox.sendRequest();
+									} ).$element
+								)
+							);
+						}
 						if ( typeof loadTime === 'number' ) {
 							$result.append(
 								$( '<div>' ).append(
