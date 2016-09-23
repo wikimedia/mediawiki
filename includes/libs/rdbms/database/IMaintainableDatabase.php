@@ -180,9 +180,6 @@ interface IMaintainableDatabase extends IDatabase {
 	/**
 	 * Lists all the VIEWs in the database
 	 *
-	 * For caching purposes the list of all views should be stored in
-	 * $this->allViews. The process cache can be cleared with clearViewsCache()
-	 *
 	 * @param string $prefix Only show VIEWs with this prefix, eg. unit_test_
 	 * @param string $fname Name of calling function
 	 * @throws RuntimeException
