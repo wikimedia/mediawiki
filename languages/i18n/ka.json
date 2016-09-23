@@ -556,7 +556,6 @@
 	"botpasswords-label-resetpassword": "პაროლის აღდგენა",
 	"botpasswords-label-grants": "გამოყენებადი ნებართვები:",
 	"botpasswords-help-grants": "ყოველი ნებართვა იძლევა წვდომას ჩამოთვლილ მომხმარებელთა უფლებებზე, რომელიც მომხმარებელს აქვს. იხილეთ [[Special:ListGrants|ნებართვების ცხრილი]] მეტი ინფორმაციისთვის.",
-	"botpasswords-label-restrictions": "გამოყენების შეზღუდვები:",
 	"botpasswords-label-grants-column": "მინიჭებულია",
 	"botpasswords-bad-appid": "ბოტის სახელი \"$1\" არ არის მართებული.",
 	"botpasswords-insert-failed": "ბოტის სახელის $1\" დამატება შეუძლებელია. უკვე დამატებულია?",

@@ -575,7 +575,6 @@
 	"botpasswords-label-resetpassword": "Setel ulang kata sandi",
 	"botpasswords-label-grants": "Akses yang dapat diberikan:",
 	"botpasswords-help-grants": "Tiap izin memberikan akses ke hak-hak pengguna yang telah dimiliki suatu akun pengguna. Lihat [[Special:ListGrants|tabel izin]] untuk informasi lebih lanjut.",
-	"botpasswords-label-restrictions": "Batasan penggunaan:",
 	"botpasswords-label-grants-column": "Izin diberikan",
 	"botpasswords-bad-appid": "Nama bot \"$1\" tidak valid.",
 	"botpasswords-insert-failed": "Gagal menambah nama bot \"$1\". Apakah sudah ditambahkan sebelum ini?",

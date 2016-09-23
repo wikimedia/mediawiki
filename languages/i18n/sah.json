@@ -527,7 +527,6 @@
 	"botpasswords-label-resetpassword": "Аһарыгы саҥаттан",
 	"botpasswords-label-grants": "Туттуллар көҥүллэр:",
 	"botpasswords-help-grants": " Кыттааччы учуоттуур суруйуутугар баар ыйыллыбыт кыттааччы быраабыгар киирэргэ кыах биэрэр. к. [[Special:ListGrants|көҥүллэр табылыыссаларын]] эбии информацияны ылар туһугар.",
-	"botpasswords-label-restrictions": "Туттарга хааччахтаах:",
 	"botpasswords-label-grants-column": "Көҥүллэннэ",
 	"botpasswords-bad-appid": "Маннык аат «$1» сатаммат.",
 	"botpasswords-insert-failed": "«$1» диэн ааттаах оруобаты эбэр табыллыбата. Баҕар хайыы-үйэ эбиллибитэ буолаарай?",

@@ -601,7 +601,6 @@
 	"botpasswords-label-resetpassword": "Återställ lösenordet",
 	"botpasswords-label-grants": "Tillgängliga beviljanden:",
 	"botpasswords-help-grants": "Varje beviljande ger åtkomst till listade användarrättigheter som ett användarkonto redan har. Se [[Special:ListGrants|tabellen över beviljanden]] för mer information.",
-	"botpasswords-label-restrictions": "Användningsbegränsningar:",
 	"botpasswords-label-grants-column": "Beviljas",
 	"botpasswords-bad-appid": "Botnamnet \"$1\" är inte giltigt.",
 	"botpasswords-insert-failed": "Kunde inte lägga till botnamnet \"$1\". Har det redan lagts till?",

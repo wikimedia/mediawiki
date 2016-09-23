@@ -554,7 +554,6 @@
 	"botpasswords-label-resetpassword": "Скінуць пароль",
 	"botpasswords-label-grants": "Прыдатныя дазволы:",
 	"botpasswords-help-grants": "Кожны дазвол дае доступ да правоў удзельніка, якія ўжо прызначаны ўліковаму запісу удзельніка. Глядзіце [[Special:ListGrants|табліцу дазволаў]] для атрымання дадатковых зьвестак.",
-	"botpasswords-label-restrictions": "Абмежаванні на выкарыстанне:",
 	"botpasswords-label-grants-column": "Дазволена",
 	"botpasswords-bad-appid": "Назва робата \"$1\" недапушчальная.",
 	"botpasswords-insert-failed": "Не ўдалося дадаць робату назву \"$1\". Магчыма, яна ўжо дададзена?",

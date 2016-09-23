@@ -576,7 +576,6 @@
 	"botpasswords-label-delete": "Poista",
 	"botpasswords-label-resetpassword": "Hanki uusi salasana",
 	"botpasswords-label-grants": "Valittavissa olevat toimintaoikeudet:",
-	"botpasswords-label-restrictions": "Käyttörajoitukset:",
 	"botpasswords-label-grants-column": "Myönnetään",
 	"botpasswords-bad-appid": "Botin nimi \"$1\" ei kelpaa.",
 	"botpasswords-insert-failed": "Botin nimen \"$1\" lisääminen epäonnsitui. Onko se jo lisätty?",

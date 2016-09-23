@@ -562,7 +562,6 @@
 	"botpasswords-label-resetpassword": "Resetovat heslo",
 	"botpasswords-label-grants": "Použitelná oprávnění:",
 	"botpasswords-help-grants": "Každé přidělení dává přístup k uvedeným uživatelským oprávněním, která uživatelský účet již má. Viz [[Special:ListGrants|table of grants]] pro více informací.",
-	"botpasswords-label-restrictions": "Omezení užití:",
 	"botpasswords-label-grants-column": "Přiděleno",
 	"botpasswords-bad-appid": "Název bota „$1“ není platný.",
 	"botpasswords-insert-failed": "Nepodařilo se přidat název bota „$1“. Nebyl už přidán?",

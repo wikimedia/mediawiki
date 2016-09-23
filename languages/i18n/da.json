@@ -573,7 +573,6 @@
 	"botpasswords-label-delete": "Slet",
 	"botpasswords-label-resetpassword": "Nulstil adgangskode",
 	"botpasswords-label-grants": "Tilgængelige bevillinger:",
-	"botpasswords-label-restrictions": "Begrænsninger for brug:",
 	"resetpass_forbidden": "Adgangskoder kan ikke ændres",
 	"resetpass-no-info": "Du skal være logget på for at komme direkte til denne side.",
 	"resetpass-submit-loggedin": "Skift adgangskode",

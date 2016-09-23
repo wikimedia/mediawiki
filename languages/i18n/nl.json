@@ -600,7 +600,6 @@
 	"botpasswords-label-resetpassword": "Het wachtwoord opnieuw instellen",
 	"botpasswords-label-grants": "Van toepassing zijnde rechten:",
 	"botpasswords-help-grants": "Iedere toestemming geeft toegang tot de opgegeven gebruikersrechten die de gebruiker al heeft. Zie [[Special:ListGrants|overzicht van rechten]] voor meer informatie.",
-	"botpasswords-label-restrictions": "Gebruiksbeperkingen:",
 	"botpasswords-label-grants-column": "Toegewezen",
 	"botpasswords-bad-appid": "De botnaam \"$1\" is niet geldig.",
 	"botpasswords-insert-failed": "Toevoegen van botnaam \"$1\" mislukt. Is deze misschien al toegevoegd?",

@@ -598,7 +598,6 @@
 	"botpasswords-label-resetpassword": "Скинути пароль",
 	"botpasswords-label-grants": "Придатні дозволи:",
 	"botpasswords-help-grants": "Кожен дозвіл дає доступ до перелічених прав користувача, які вже є у облікового запису користувача. Див. [[Special:ListGrants|таблицю дозволів]] для отримання додаткової інформації.",
-	"botpasswords-label-restrictions": "Обмеження на використання:",
 	"botpasswords-label-grants-column": "Дозволено",
 	"botpasswords-bad-appid": "Ім'я бота «$1» є недопустимим.",
 	"botpasswords-insert-failed": "Не вдалось додати бота з іменем «$1». Можливо, він вже був доданий?",

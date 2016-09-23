@@ -594,7 +594,6 @@
 	"botpasswords-label-delete": "Eliminar",
 	"botpasswords-label-resetpassword": "Redefinir palavra-passe",
 	"botpasswords-label-grants": "Permissões aplicáveis:",
-	"botpasswords-label-restrictions": "Restrições de uso:",
 	"botpasswords-label-grants-column": "Concedido",
 	"botpasswords-bad-appid": "O nome do robô \"$1\" não é válido.",
 	"botpasswords-insert-failed": "Falhou ao adicionar o nome do robô \"$1\". Já foi adicionado?",

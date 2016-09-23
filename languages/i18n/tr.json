@@ -608,7 +608,6 @@
 	"botpasswords-label-delete": "Sil",
 	"botpasswords-label-resetpassword": "Şifreyi sıfırla",
 	"botpasswords-label-grants": "Geçerli ayrıcalıklar:",
-	"botpasswords-label-restrictions": "Kullanım kısıtlamaları:",
 	"botpasswords-label-grants-column": "Verilen",
 	"botpasswords-bad-appid": "Bot ismi \"$1\" geçerli değil.",
 	"botpasswords-insert-failed": "Bot adı \"$1\" eklenemedi. Zaten eklenmiş olmalı?",
