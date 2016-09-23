@@ -156,10 +156,20 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		}
 
 		$this->title = Title::newFromText( $data['pagetitle'] );
+		$titleWithNewContentModel = clone $this->title;
+		$titleWithNewContentModel->setContentModel( $data['model'] );
 		$user = $this->getUser();
-		// Check permissions and make sure the user has permission to edit the specific page
-		$errors = $this->title->getUserPermissionsErrors( 'editcontentmodel', $user );
-		$errors = wfMergeErrorArrays( $errors, $this->title->getUserPermissionsErrors( 'edit', $user ) );
+		// Check permissions and make sure the user has permission to:
+		$errors = wfMergeErrorArrays(
+			// edit the contentmodel of the page
+			$this->title->getUserPermissionsErrors( 'editcontentmodel', $user ),
+			// edit the page under the old content model
+			$this->title->getUserPermissionsErrors( 'edit', $user ),
+			// edit the contentmodel under the new content model
+			$titleWithNewContentModel->getUserPermissionsErrors( 'editcontentmodel', $user ),
+			// edit the page under the new content model
+			$titleWithNewContentModel->getUserPermissionsErrors( 'edit', $user )
+		);
 		if ( $errors ) {
 			$out = $this->getOutput();
 			$wikitext = $out->formatPermissionsErrorMessage( $errors );
