@@ -26,7 +26,7 @@
  */
 
 /**
- * Basic database interface for live and lazy-loaded DB handles
+ * Basic database interface for live and lazy-loaded relation database handles
  *
  * @note: IDatabase and DBConnRef should be updated to reflect any changes
  * @ingroup Database
