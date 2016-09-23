@@ -594,98 +594,98 @@ class CoreParserFunctions {
 		if ( is_null( $t ) ) {
 			return '';
 		}
-		return $parser->escapeWikitext( $t->getText() );
+		return wfEscapeWikiText( $t->getText() );
 	}
-	public static function pagenamee( Parser $parser, $title = null ) {
+	public static function pagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
 		if ( is_null( $t ) ) {
 			return '';
 		}
-		return $parser->escapeWikitext( $t->getPartialURL() );
+		return wfEscapeWikiText( $t->getPartialURL() );
 	}
-	public static function fullpagename( Parser $parser, $title = null ) {
+	public static function fullpagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
 		if ( is_null( $t ) || !$t->canTalk() ) {
 			return '';
 		}
-		return $parser->escapeWikitext( $t->getPrefixedText() );
+		return wfEscapeWikiText( $t->getPrefixedText() );
 	}
-	public static function fullpagenamee( Parser $parser, $title = null ) {
+	public static function fullpagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
 		if ( is_null( $t ) || !$t->canTalk() ) {
 			return '';
 		}
-		return $parser->escapeWikitext( $t->getPrefixedURL() );
+		return wfEscapeWikiText( $t->getPrefixedURL() );
 	}
-	public static function subpagename( Parser $parser, $title = null ) {
+	public static function subpagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
 		if ( is_null( $t ) ) {
 			return '';
 		}
-		return $parser->escapeWikitext( $t->getSubpageText() );
+		return wfEscapeWikiText( $t->getSubpageText() );
 	}
-	public static function subpagenamee( Parser $parser, $title = null ) {
+	public static function subpagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
 		if ( is_null( $t ) ) {
 			return '';
 		}
-		return $parser->escapeWikitext( $t->getSubpageUrlForm() );
+		return wfEscapeWikiText( $t->getSubpageUrlForm() );
 	}
-	public static function rootpagename( Parser $parser, $title = null ) {
+	public static function rootpagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
 		if ( is_null( $t ) ) {
 			return '';
 		}
-		return $parser->escapeWikitext( $t->getRootText() );
+		return wfEscapeWikiText( $t->getRootText() );
 	}
-	public static function rootpagenamee( Parser $parser, $title = null ) {
+	public static function rootpagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
 		if ( is_null( $t ) ) {
 			return '';
 		}
-		return $parser->escapeWikitext( wfUrlencode( str_replace( ' ', '_', $t->getRootText() ) ) );
+		return wfEscapeWikiText( wfUrlencode( str_replace( ' ', '_', $t->getRootText() ) ) );
 	}
-	public static function basepagename( Parser $parser, $title = null ) {
+	public static function basepagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
 		if ( is_null( $t ) ) {
 			return '';
 		}
-		return $parser->escapeWikitext( $t->getBaseText() );
+		return wfEscapeWikiText( $t->getBaseText() );
 	}
-	public static function basepagenamee( Parser $parser, $title = null ) {
+	public static function basepagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
 		if ( is_null( $t ) ) {
 			return '';
 		}
-		return $parser->escapeWikitext( wfUrlencode( str_replace( ' ', '_', $t->getBaseText() ) ) );
+		return wfEscapeWikiText( wfUrlencode( str_replace( ' ', '_', $t->getBaseText() ) ) );
 	}
-	public static function talkpagename( Parser $parser, $title = null ) {
+	public static function talkpagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
 		if ( is_null( $t ) || !$t->canTalk() ) {
 			return '';
 		}
-		return $parser->escapeWikitext( $t->getTalkPage()->getPrefixedText() );
+		return wfEscapeWikiText( $t->getTalkPage()->getPrefixedText() );
 	}
-	public static function talkpagenamee( Parser $parser, $title = null ) {
+	public static function talkpagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
 		if ( is_null( $t ) || !$t->canTalk() ) {
 			return '';
 		}
-		return $parser->escapeWikitext( $t->getTalkPage()->getPrefixedURL() );
+		return wfEscapeWikiText( $t->getTalkPage()->getPrefixedURL() );
 	}
-	public static function subjectpagename( Parser $parser, $title = null ) {
+	public static function subjectpagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
 		if ( is_null( $t ) ) {
 			return '';
 		}
-		return $parser->escapeWikitext( $t->getSubjectPage()->getPrefixedText() );
+		return wfEscapeWikiText( $t->getSubjectPage()->getPrefixedText() );
 	}
-	public static function subjectpagenamee( Parser $parser, $title = null ) {
+	public static function subjectpagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
 		if ( is_null( $t ) ) {
 			return '';
 		}
-		return $parser->escapeWikitext( $t->getSubjectPage()->getPrefixedURL() );
+		return wfEscapeWikiText( $t->getSubjectPage()->getPrefixedURL() );
 	}
 
 	/**
