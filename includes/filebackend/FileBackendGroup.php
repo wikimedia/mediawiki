@@ -172,6 +172,15 @@ class FileBackendGroup {
 			$config['tmpDirectory'] = wfTempDir();
 			$config['logger'] = LoggerFactory::getInstance( 'FileOperation' );
 			$config['profiler'] = Profiler::instance();
+			if ( $class === 'FileBackendMultiWrite' ) {
+				foreach ( $config['backends'] as $index => $beConfig ) {
+					if ( isset( $beConfig['template'] ) ) {
+						// Config is just a modified version of a registered backend's.
+						// This should only be used when that config is used only by this backend.
+						$config['backends'][$index] += $this->config( $beConfig['template'] );
+					}
+				}
+			}
 
 			$this->backends[$name]['instance'] = new $class( $config );
 		}
