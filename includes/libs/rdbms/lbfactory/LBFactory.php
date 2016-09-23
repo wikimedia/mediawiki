@@ -519,7 +519,9 @@ abstract class LBFactory {
 	 */
 	public function getEmptyTransactionTicket( $fname ) {
 		if ( $this->hasMasterChanges() ) {
-			$this->queryLogger->error( __METHOD__ . ": $fname does not have outer scope." );
+			$this->queryLogger->error( __METHOD__ . ": $fname does not have outer scope.\n" .
+				( new RuntimeException() )->getTraceAsString() );
+
 			return null;
 		}
 
@@ -539,7 +541,9 @@ abstract class LBFactory {
 	 */
 	public function commitAndWaitForReplication( $fname, $ticket, array $opts = [] ) {
 		if ( $ticket !== $this->ticket ) {
-			$this->perfLogger->error( __METHOD__ . ": $fname does not have outer scope." );
+			$this->perfLogger->error( __METHOD__ . ": $fname does not have outer scope.\n" .
+				( new RuntimeException() )->getTraceAsString() );
+
 			return;
 		}
 
