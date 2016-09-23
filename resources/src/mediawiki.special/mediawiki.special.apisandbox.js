@@ -10,7 +10,8 @@
 		suppressErrors = true,
 		updatingBooklet = false,
 		pages = {},
-		moduleInfoCache = {};
+		moduleInfoCache = {},
+		baseRequestParams;
 
 	WidgetMethods = {
 		textInputWidget: {
@@ -803,12 +804,14 @@
 
 		/**
 		 * Submit button handler
+		 * @param {Object} [params] Use this set of params instead of those in the form fields.
+		 *   The form fields will be updated to match.
 		 */
-		sendRequest: function () {
+		sendRequest: function ( params ) {
 			var page, subpages, i, query, $result, $focus,
 				progress, $progressText, progressLoading,
 				deferreds = [],
-				params = {},
+				paramsAreForced,
 				displayParams = {},
 				checkPages = [ pages.main ];
 
@@ -821,8 +824,14 @@
 
 			suppressErrors = false;
 
+			paramsAreForced = !!params;
+			params = params || {};
+
 			while ( checkPages.length ) {
 				page = checkPages.shift();
+				if ( paramsAreForced ) {
+					page.loadQueryParams( params );
+				}
 				deferreds.push( page.apiCheckValid() );
 				page.getQueryParams( params, displayParams );
 				subpages = page.getSubpages();
@@ -831,6 +840,11 @@
 						checkPages.push( pages[ subpages[ i ].key ] );
 					}
 				}
+			}
+
+			if ( !paramsAreForced ) {
+				// forced params means we are continuing a query; the base query should be preserved
+				baseRequestParams = $.extend( {}, params );
 			}
 
 			$.when.apply( $, deferreds ).done( function () {
@@ -940,7 +954,7 @@
 							);
 					} )
 					.done( function ( data, jqXHR ) {
-						var m, loadTime, button,
+						var m, loadTime, button, clear,
 							ct = jqXHR.getResponseHeader( 'Content-Type' );
 
 						$result.empty();
@@ -961,6 +975,35 @@
 								.addClass( 'api-pretty-content' )
 								.text( data )
 								.appendTo( $result );
+						}
+						if ( data[ 'continue' ] ) {
+							$result.append(
+								$( '<div>' ).append(
+									new OO.ui.ButtonWidget( {
+										label: mw.message( 'apisandbox-continue' ).text()
+									} ).on( 'click', function () {
+										ApiSandbox.sendRequest( $.extend( {}, baseRequestParams, data[ 'continue' ] ) );
+									} ).$element,
+									( clear = new OO.ui.ButtonWidget( {
+										label: mw.message( 'apisandbox-continue-clear' ).text()
+									} ).on( 'click', function () {
+										$.each( pages, function ( _, page ) {
+											page.loadQueryParams( baseRequestParams );
+										} );
+										clear.setDisabled( true );
+										booklet.setPage( '|results|' );
+									} ).setDisabled( !paramsAreForced ) ).$element,
+									new OO.ui.PopupButtonWidget( {
+										framed: false,
+										icon: 'info',
+										popup: {
+											$content: $( '<div>' ).append( mw.message( 'apisandbox-continue-help' ).parse() ),
+											padded: true,
+											align: 'forwards'
+										}
+									} ).$element
+								)
+							);
 						}
 						if ( typeof loadTime === 'number' ) {
 							$result.append(
