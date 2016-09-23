@@ -21,6 +21,7 @@
  * @ingroup Database
  * @author Aaron Schulz
  */
+require_once __DIR__ . '/../defines.php';
 
 /**
  * Database cluster connection, tracking, load balancing, and transaction manager interface
@@ -73,6 +74,11 @@
  * @ingroup Database
  */
 interface ILoadBalancer {
+	/** @var integer Request a master DB connection */
+	const DB_MASTER = DB_MASTER;
+	/** @var integer Request a replica DB connection */
+	const DB_REPLICA = DB_REPLICA;
+
 	/**
 	 * Construct a manager of IDatabase connection objects
 	 *
