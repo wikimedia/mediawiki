@@ -714,6 +714,12 @@ class ManualLogEntry extends LogEntryBase {
 					$rc = $this->getRecentChange( $newId );
 
 					if ( $to === 'rc' || $to === 'rcandudp' ) {
+						// save RC, passing tags so they are applied there
+						$tags = $this->getTags();
+						if ( is_null( $tags ) ) {
+							$tags = [];
+						}
+						$rc->addTags( $tags );
 						$rc->save( 'pleasedontudp' );
 					}
 
@@ -726,14 +732,6 @@ class ManualLogEntry extends LogEntryBase {
 						$rc->getAttribute( 'rc_patrolled' ) === 1
 					) {
 						PatrolLog::record( $rc, true, $this->getPerformer() );
-					}
-
-					// Add change tags to the log entry and (if applicable) the associated revision
-					$tags = $this->getTags();
-					if ( !is_null( $tags ) ) {
-						$rcId = $rc->getAttribute( 'rc_id' );
-						$revId = $this->getAssociatedRevId(); // Use null if $revId is 0
-						ChangeTags::addTags( $tags, $rcId, $revId > 0 ? $revId : null, $newId );
 					}
 				}
 			},
