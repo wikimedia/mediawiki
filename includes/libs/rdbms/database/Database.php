@@ -30,7 +30,7 @@ use Psr\Log\LoggerInterface;
  * Database abstraction object
  * @ingroup Database
  */
-abstract class Database implements IDatabase, LoggerAwareInterface {
+abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAwareInterface {
 	/** Number of times to re-try an operation in case of deadlock */
 	const DEADLOCK_TRIES = 4;
 	/** Minimum time to wait before retry, in microseconds */
