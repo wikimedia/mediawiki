@@ -74,9 +74,6 @@ class FileBackendMultiWrite extends FileBackend {
 	 *                        - class         : The name of the backend class
 	 *                        - isMultiMaster : This must be set for one backend.
 	 *                        - readAffinity  : Use this for reads without 'latest' set.
-	 *                        - template:     : If given a backend name, this will use
-	 *                                          the config of that backend as a template.
-	 *                                          Values specified here take precedence.
 	 *   - syncChecks     : Integer bitfield of internal backend sync checks to perform.
 	 *                      Possible bits include the FileBackendMultiWrite::CHECK_* constants.
 	 *                      There are constants for SIZE, TIME, and SHA1.
@@ -107,11 +104,6 @@ class FileBackendMultiWrite extends FileBackend {
 		// to keep these backends hidden from outside the proxy.
 		$namesUsed = [];
 		foreach ( $config['backends'] as $index => $config ) {
-			if ( isset( $config['template'] ) ) {
-				// Config is just a modified version of a registered backend's.
-				// This should only be used when that config is used only by this backend.
-				$config = $config + FileBackendGroup::singleton()->config( $config['template'] );
-			}
 			$name = $config['name'];
 			if ( isset( $namesUsed[$name] ) ) { // don't break FileOp predicates
 				throw new LogicException( "Two or more backends defined with the name $name." );

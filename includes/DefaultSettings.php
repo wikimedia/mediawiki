@@ -616,6 +616,11 @@ $wgUploadDialog = [
  * Additional parameters are specific to the file backend class used.
  * These settings should be global to all wikis when possible.
  *
+ * FileBackendMultiWrite::__construct() is augmented with a 'template' option that
+ * can be used in any of the values of the 'backends' array. Its value is the name of
+ * another backend in $wgFileBackends. When set, it pre-fills the array with all of the
+ * configuration of the named backend. Explicitly set values in the array take precedence.
+ *
  * There are two particularly important aspects about each backend:
  *   - a) Whether it is fully qualified or wiki-relative.
  *        By default, the paths of files are relative to the current wiki,
