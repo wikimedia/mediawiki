@@ -43,8 +43,6 @@ abstract class DBLockManager extends QuorumLockManager {
 
 	protected $lockExpiry; // integer number of seconds
 	protected $safeDelay; // integer number of seconds
-
-	protected $session = 0; // random integer
 	/** @var IDatabase[] Map Database connections (DB name => Database) */
 	protected $conns = [];
 
@@ -91,12 +89,6 @@ abstract class DBLockManager extends QuorumLockManager {
 		$this->statusCache = isset( $config['srvCache'] )
 			? $config['srvCache']
 			: new HashBagOStuff();
-
-		$random = [];
-		for ( $i = 1; $i <= 5; ++$i ) {
-			$random[] = mt_rand( 0, 0xFFFFFFF );
-		}
-		$this->session = substr( md5( implode( '-', $random ) ), 0, 31 );
 	}
 
 	/**

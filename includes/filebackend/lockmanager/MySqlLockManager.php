@@ -15,6 +15,12 @@ class MySqlLockManager extends DBLockManager {
 		self::LOCK_EX => self::LOCK_EX
 	];
 
+	public function __construct( array $config ) {
+		parent::__construct( $config );
+
+		$this->session = substr( $this->session, 0, 31 ); // fit to field
+	}
+
 	protected function initConnection( $lockDb, IDatabase $db ) {
 		# Let this transaction see lock rows from other transactions
 		$db->query( "SET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;" );
