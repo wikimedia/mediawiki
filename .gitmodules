@@ -514,3 +514,7 @@
 	path = extensions/ContentTranslation
 	url = https://github.com/wikimedia/mediawiki-extensions-ContentTranslation
 	branch = REL1_27
+[submodule "extensions/MassEditRegex"]
+	path = extensions/MassEditRegex
+	url = https://github.com/wikimedia/mediawiki-extensions-MassEditRegex
+	branch = REL1_27
