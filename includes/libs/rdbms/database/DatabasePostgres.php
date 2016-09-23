@@ -109,7 +109,7 @@ class DatabasePostgres extends DatabaseBase {
 		if ( (int)$this->port > 0 ) {
 			$connectVars['port'] = (int)$this->port;
 		}
-		if ( $this->mFlags & DBO_SSL ) {
+		if ( $this->mFlags & self::DBO_SSL ) {
 			$connectVars['sslmode'] = 1;
 		}
 

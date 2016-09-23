@@ -59,10 +59,10 @@ class DatabaseMysql extends DatabaseMysqlBase {
 		}
 
 		$connFlags = 0;
-		if ( $this->mFlags & DBO_SSL ) {
+		if ( $this->mFlags & self::DBO_SSL ) {
 			$connFlags |= MYSQL_CLIENT_SSL;
 		}
-		if ( $this->mFlags & DBO_COMPRESS ) {
+		if ( $this->mFlags & self::DBO_COMPRESS ) {
 			$connFlags |= MYSQL_CLIENT_COMPRESS;
 		}
 
@@ -81,7 +81,7 @@ class DatabaseMysql extends DatabaseMysqlBase {
 			if ( $i > 1 ) {
 				usleep( 1000 );
 			}
-			if ( $this->mFlags & DBO_PERSISTENT ) {
+			if ( $this->mFlags & self::DBO_PERSISTENT ) {
 				$conn = mysql_pconnect( $realServer, $this->mUser, $this->mPassword, $connFlags );
 			} else {
 				# Create a new connection...

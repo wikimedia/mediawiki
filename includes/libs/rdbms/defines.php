@@ -1,24 +1,27 @@
 <?php
 
+require_once __DIR__ . '/database/IDatabase.php';
+require_once __DIR__ . '/loadbalancer/ILoadBalancer.php';
+
 /**@{
  * Database related constants
  */
-define( 'DBO_DEBUG', 1 );
-define( 'DBO_NOBUFFER', 2 );
-define( 'DBO_IGNORE', 4 );
-define( 'DBO_TRX', 8 ); // automatically start transaction on first query
-define( 'DBO_DEFAULT', 16 );
-define( 'DBO_PERSISTENT', 32 );
-define( 'DBO_SYSDBA', 64 ); // for oracle maintenance
-define( 'DBO_DDLMODE', 128 ); // when using schema files: mostly for Oracle
-define( 'DBO_SSL', 256 );
-define( 'DBO_COMPRESS', 512 );
+define( 'DBO_DEBUG', IDatabase::DBO_DEBUG );
+define( 'DBO_NOBUFFER', IDatabase::DBO_NOBUFFER );
+define( 'DBO_IGNORE', IDatabase::DBO_IGNORE );
+define( 'DBO_TRX', IDatabase::DBO_TRX );
+define( 'DBO_DEFAULT', IDatabase::DBO_DEFAULT );
+define( 'DBO_PERSISTENT', IDatabase::DBO_PERSISTENT );
+define( 'DBO_SYSDBA', IDatabase::DBO_SYSDBA );
+define( 'DBO_DDLMODE', IDatabase::DBO_DDLMODE );
+define( 'DBO_SSL', IDatabase::DBO_SSL );
+define( 'DBO_COMPRESS', IDatabase::DBO_COMPRESS );
 /**@}*/
 
 /**@{
  * Valid database indexes
  * Operation-based indexes
  */
-define( 'DB_REPLICA', -1 );     # Read from a replica (or only server)
-define( 'DB_MASTER', -2 );    # Write to master (or only server)
+define( 'DB_REPLICA', ILoadBalancer::DB_REPLICA );
+define( 'DB_MASTER', ILoadBalancer::DB_MASTER );
 /**@}*/

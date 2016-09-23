@@ -82,7 +82,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		$mysqli = mysqli_init();
 
 		$connFlags = 0;
-		if ( $this->mFlags & DBO_SSL ) {
+		if ( $this->mFlags & self::DBO_SSL ) {
 			$connFlags |= MYSQLI_CLIENT_SSL;
 			$mysqli->ssl_set(
 				$this->sslKeyPath,
@@ -92,10 +92,10 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 				$this->sslCiphers
 			);
 		}
-		if ( $this->mFlags & DBO_COMPRESS ) {
+		if ( $this->mFlags & self::DBO_COMPRESS ) {
 			$connFlags |= MYSQLI_CLIENT_COMPRESS;
 		}
-		if ( $this->mFlags & DBO_PERSISTENT ) {
+		if ( $this->mFlags & self::DBO_PERSISTENT ) {
 			$realServer = 'p:' . $realServer;
 		}
 
