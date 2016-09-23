@@ -178,16 +178,12 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 
 		$db->method( 'query' )
 			->with( $this->anything() )
-			->willReturn( null );
+			->willReturn( new FakeResultWrapper( [
+				(object)[ 'Tables_in_' => 'view1' ],
+				(object)[ 'Tables_in_' => 'view2' ],
+				(object)[ 'Tables_in_' => 'myview' ]
+			] ) );
 
-		$db->method( 'fetchRow' )
-			->with( $this->anything() )
-			->will( $this->onConsecutiveCalls(
-				[ 'Tables_in_' => 'view1' ],
-				[ 'Tables_in_' => 'view2' ],
-				[ 'Tables_in_' => 'myview' ],
-				false  # no more rows
-			) );
 		return $db;
 	}
 	/**
@@ -196,9 +192,6 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 	function testListviews() {
 		$db = $this->getMockForViews();
 
-		// The first call populate an internal cache of views
-		$this->assertEquals( [ 'view1', 'view2', 'myview' ],
-			$db->listViews() );
 		$this->assertEquals( [ 'view1', 'view2', 'myview' ],
 			$db->listViews() );
 
@@ -211,42 +204,6 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 			$db->listViews( 'UNUSED_PREFIX' ) );
 		$this->assertEquals( [ 'view1', 'view2', 'myview' ],
 			$db->listViews( '' ) );
-	}
-
-	/**
-	 * @covers DatabaseMysqlBase::isView
-	 * @dataProvider provideViewExistanceChecks
-	 */
-	function testIsView( $isView, $viewName ) {
-		$db = $this->getMockForViews();
-
-		switch ( $isView ) {
-			case true:
-				$this->assertTrue( $db->isView( $viewName ),
-					"$viewName should be considered a view" );
-			break;
-
-			case false:
-				$this->assertFalse( $db->isView( $viewName ),
-					"$viewName has not been defined as a view" );
-			break;
-		}
-
-	}
-
-	function provideViewExistanceChecks() {
-		return [
-			// format: whether it is a view, view name
-			[ true, 'view1' ],
-			[ true, 'view2' ],
-			[ true, 'myview' ],
-
-			[ false, 'user' ],
-
-			[ false, 'view10' ],
-			[ false, 'my' ],
-			[ false, 'OH_MY_GOD' ],  # they killed kenny!
-		];
 	}
 
 	/**
