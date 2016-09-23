@@ -583,6 +583,7 @@ $wgAutoloadLocalClasses = [
 	'IEUrlExtension' => __DIR__ . '/includes/libs/IEUrlExtension.php',
 	'IExpiringStore' => __DIR__ . '/includes/libs/objectcache/IExpiringStore.php',
 	'IJobSpecification' => __DIR__ . '/includes/jobqueue/JobSpecification.php',
+	'ILBFactory' => __DIR__ . '/includes/libs/rdbms/lbfactory/ILBFactory.php',
 	'ILoadBalancer' => __DIR__ . '/includes/libs/rdbms/loadbalancer/ILoadBalancer.php',
 	'ILoadMonitor' => __DIR__ . '/includes/libs/rdbms/loadmonitor/ILoadMonitor.php',
 	'IP' => __DIR__ . '/includes/libs/IP.php',
