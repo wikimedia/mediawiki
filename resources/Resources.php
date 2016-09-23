@@ -1858,6 +1858,7 @@ return [
 			'apisandbox-results-fixtoken-fail',
 			'apisandbox-alert-page',
 			'apisandbox-alert-field',
+			'apisandbox-continue',
 			'blanknamespace',
 		],
 	],
