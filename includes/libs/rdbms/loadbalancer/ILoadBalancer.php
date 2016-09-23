@@ -216,6 +216,7 @@ interface ILoadBalancer {
 	 * @param int $i Server index
 	 * @param string|bool $domain Domain ID, or false for the current domain
 	 * @return IDatabase|bool Returns false on errors
+	 * @throws DBAccessError
 	 */
 	public function openConnection( $i, $domain = false );
 

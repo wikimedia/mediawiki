@@ -516,6 +516,15 @@ class LoadBalancer implements ILoadBalancer {
 		return $ok;
 	}
 
+	/**
+	 * @see ILoadBalancer::getConnection()
+	 *
+	 * @param int $i
+	 * @param array $groups
+	 * @param bool $domain
+	 * @return Database
+	 * @throws DBConnectionError
+	 */
 	public function getConnection( $i, $groups = [], $domain = false ) {
 		if ( $i === null || $i === false ) {
 			throw new InvalidArgumentException( 'Attempt to call ' . __METHOD__ .
@@ -556,15 +565,18 @@ class LoadBalancer implements ILoadBalancer {
 			# Couldn't find a working server in getReaderIndex()?
 			if ( $i === false ) {
 				$this->mLastError = 'No working replica DB server: ' . $this->mLastError;
-
-				return $this->reportConnectionError();
+				// Throw an exception
+				$this->reportConnectionError();
+				return null; // not reached
 			}
 		}
 
 		# Now we have an explicit index into the servers array
 		$conn = $this->openConnection( $i, $domain );
 		if ( !$conn ) {
-			return $this->reportConnectionError();
+			// Throw an exception
+			$this->reportConnectionError();
+			return null; // not reached
 		}
 
 		# Profile any new connections that happen
@@ -637,6 +649,14 @@ class LoadBalancer implements ILoadBalancer {
 		return new DBConnRef( $this, [ $db, $groups, $domain ] );
 	}
 
+	/**
+	 * @see ILoadBalancer::openConnection()
+	 *
+	 * @param int $i
+	 * @param bool $domain
+	 * @return bool|Database
+	 * @throws DBAccessError
+	 */
 	public function openConnection( $i, $domain = false ) {
 		if ( $this->localDomain->equals( $domain ) || $domain === $this->localDomainIdAlias ) {
 			$domain = false; // local connection requested
@@ -691,7 +711,7 @@ class LoadBalancer implements ILoadBalancer {
 	 *
 	 * @param int $i Server index
 	 * @param string $domain Domain ID to open
-	 * @return IDatabase
+	 * @return Database
 	 */
 	private function openForeignConnection( $i, $domain ) {
 		$domainInstance = DatabaseDomain::newFromId( $domain );
@@ -775,7 +795,7 @@ class LoadBalancer implements ILoadBalancer {
 	 *
 	 * @param array $server
 	 * @param string|bool $dbNameOverride Use "" to not select any database
-	 * @return IDatabase
+	 * @return Database
 	 * @throws DBAccessError
 	 * @throws InvalidArgumentException
 	 */
@@ -847,10 +867,9 @@ class LoadBalancer implements ILoadBalancer {
 
 	/**
 	 * @throws DBConnectionError
-	 * @return bool
 	 */
 	private function reportConnectionError() {
-		$conn = $this->mErrorConnection; // The connection which caused the error
+		$conn = $this->mErrorConnection; // the connection which caused the error
 		$context = [
 			'method' => __METHOD__,
 			'last_error' => $this->mLastError,
@@ -875,8 +894,6 @@ class LoadBalancer implements ILoadBalancer {
 			// throws DBConnectionError
 			$conn->reportConnectionError( "{$this->mLastError} ({$context['db_server']})" );
 		}
-
-		return false; /* not reached */
 	}
 
 	public function getWriterIndex() {
