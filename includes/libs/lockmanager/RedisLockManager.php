@@ -20,7 +20,6 @@
  * @file
  * @ingroup LockManager
  */
-use Psr\Log\LoggerInterface;
 
 /**
  * Manage locks using redis servers.
@@ -52,11 +51,6 @@ class RedisLockManager extends QuorumLockManager {
 	/** @var array Map server names to hostname/IP and port numbers */
 	protected $lockServers = [];
 
-	/** @var LoggerInterface */
-	protected $logger;
-	/** @var string Random UUID */
-	protected $session = '';
-
 	/**
 	 * Construct a new instance from configuration.
 	 *
@@ -77,9 +71,6 @@ class RedisLockManager extends QuorumLockManager {
 
 		$config['redisConfig']['serializer'] = 'none';
 		$this->redisPool = RedisConnectionPool::singleton( $config['redisConfig'] );
-
-		$this->session = wfRandomString( 32 );
-		$this->logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'redis' );
 	}
 
 	protected function getLocksOnServer( $lockSrv, array $pathsByType ) {

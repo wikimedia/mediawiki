@@ -3,6 +3,7 @@
  * @defgroup LockManager Lock management
  * @ingroup FileBackend
  */
+use Psr\Log\LoggerInterface;
 
 /**
  * Resource locking handling.
@@ -43,6 +44,9 @@
  * @since 1.19
  */
 abstract class LockManager {
+	/** @var LoggerInterface */
+	protected $logger;
+
 	/** @var array Mapping of lock types to the type actually used */
 	protected $lockTypeMap = [
 		self::LOCK_SH => self::LOCK_SH,
@@ -55,6 +59,9 @@ abstract class LockManager {
 
 	protected $domain; // string; domain (usually wiki ID)
 	protected $lockTTL; // integer; maximum time locks can be held
+
+	/** @var string Random 32-char hex number */
+	protected $session;
 
 	/** Lock types; stronger locks have higher values */
 	const LOCK_SH = 1; // shared lock (for reads)
@@ -79,6 +86,14 @@ abstract class LockManager {
 			$met = ini_get( 'max_execution_time' ); // this is 0 in CLI mode
 			$this->lockTTL = max( 5 * 60, 2 * (int)$met );
 		}
+
+		$random = [];
+		for ( $i = 1; $i <= 5; ++$i ) {
+			$random[] = mt_rand( 0, 0xFFFFFFF );
+		}
+		$this->session = md5( implode( '-', $random ) );
+
+		$this->logger = isset( $config['logger'] ) ? $config['logger'] : new \Psr\Log\NullLogger();
 	}
 
 	/**
