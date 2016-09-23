@@ -60,9 +60,9 @@
  *   - Read-only archive clones: set 'is static' in the server configuration maps. This will
  *      treat all such DBs as having 0 lag.
  *   - SQL load balancing proxy: any proxy should handle lag checks on its own, so the 'max lag'
- *     parameter should probably be set to INF in the server configuration maps. This will make
- *     the load balancer ignore whatever it detects as the lag of the logical replica is (which
- *     would probably just randomly bounce around).
+ *      parameter should probably be set to INF in the server configuration maps. This will make
+ *      the load balancer ignore whatever it detects as the lag of the logical replica is (which
+ *      would probably just randomly bounce around).
  *
  * If using a SQL proxy service, it would probably be best to have two proxy hosts for the
  * load balancer to talk to. One would be the 'host' of the master server entry and another for
