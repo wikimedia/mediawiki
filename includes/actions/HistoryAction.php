@@ -139,6 +139,10 @@ class HistoryAction extends FormlessAction {
 
 		// Fail nicely if article doesn't exist.
 		if ( !$this->page->exists() ) {
+			global $wgSend404Code;
+			if ( $wgSend404Code ) {
+				$out->setStatusCode( 404 );
+			}
 			$out->addWikiMsg( 'nohistory' );
 			# show deletion/move log if there is an entry
 			LogEventsList::showLogExtract(
