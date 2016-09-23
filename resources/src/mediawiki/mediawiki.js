@@ -11,7 +11,7 @@
 ( function ( $ ) {
 	'use strict';
 
-	var mw, StringSet,
+	var mw, StringSet, log,
 		hasOwn = Object.prototype.hasOwnProperty,
 		slice = Array.prototype.slice,
 		trackCallbacks = $.Callbacks( 'memory' ),
@@ -433,6 +433,86 @@
 		}
 	};
 
+	log = ( function () {
+		// Also update the restoration of methods in mediawiki.log.js
+		// when adding or removing methods here.
+		var log = function () {},
+			console = window.console;
+
+		/**
+		 * @class mw.log
+		 * @singleton
+		 */
+
+		/**
+		 * Write a message to the console's warning channel.
+		 * Actions not supported by the browser console are silently ignored.
+		 *
+		 * @param {...string} msg Messages to output to console
+		 */
+		log.warn = console && console.warn && Function.prototype.bind ?
+			Function.prototype.bind.call( console.warn, console ) :
+			$.noop;
+
+		/**
+		 * Write a message to the console's error channel.
+		 *
+		 * Most browsers provide a stacktrace by default if the argument
+		 * is a caught Error object.
+		 *
+		 * @since 1.26
+		 * @param {Error|...string} msg Messages to output to console
+		 */
+		log.error = console && console.error && Function.prototype.bind ?
+			Function.prototype.bind.call( console.error, console ) :
+			$.noop;
+
+		/**
+		 * Create a property in a host object that, when accessed, will produce
+		 * a deprecation warning in the console.
+		 *
+		 * @param {Object} obj Host object of deprecated property
+		 * @param {string} key Name of property to create in `obj`
+		 * @param {Mixed} val The value this property should return when accessed
+		 * @param {string} [msg] Optional text to include in the deprecation message
+		 */
+		log.deprecate = !Object.defineProperty ? function ( obj, key, val, msg ) {
+			obj[ key ] = val;
+		} : function ( obj, key, val, msg ) {
+			msg = 'Use of "' + key + '" is deprecated.' + ( msg ? ( ' ' + msg ) : '' );
+			var logged = new StringSet();
+			function uniqueTrace() {
+				var trace = new Error().stack;
+				if ( logged.has( trace ) ) {
+					return false;
+				}
+				logged.add( trace );
+				return true;
+			}
+			Object.defineProperty( obj, key, {
+				configurable: true,
+				enumerable: true,
+				get: function () {
+					if ( uniqueTrace() ) {
+						mw.track( 'mw.deprecate', key );
+						mw.log.warn( msg );
+					}
+					return val;
+				},
+				set: function ( newVal ) {
+					if ( uniqueTrace() ) {
+						mw.track( 'mw.deprecate', key );
+						mw.log.warn( msg );
+					}
+					val = newVal;
+				}
+			} );
+
+		};
+
+		return log;
+	}() );
+
 	/**
 	 * @class mw
 	 */
@@ -627,89 +707,11 @@
 		},
 
 		/**
-		 * Dummy placeholder for {@link mw.log}
+		 * No-op dummy placeholder for {@link mw.log} in debug mode.
 		 *
 		 * @method
 		 */
-		log: ( function () {
-			// Also update the restoration of methods in mediawiki.log.js
-			// when adding or removing methods here.
-			var log = function () {},
-				console = window.console;
-
-			/**
-			 * @class mw.log
-			 * @singleton
-			 */
-
-			/**
-			 * Write a message to the console's warning channel.
-			 * Actions not supported by the browser console are silently ignored.
-			 *
-			 * @param {...string} msg Messages to output to console
-			 */
-			log.warn = console && console.warn && Function.prototype.bind ?
-				Function.prototype.bind.call( console.warn, console ) :
-				$.noop;
-
-			/**
-			 * Write a message to the console's error channel.
-			 *
-			 * Most browsers provide a stacktrace by default if the argument
-			 * is a caught Error object.
-			 *
-			 * @since 1.26
-			 * @param {Error|...string} msg Messages to output to console
-			 */
-			log.error = console && console.error && Function.prototype.bind ?
-				Function.prototype.bind.call( console.error, console ) :
-				$.noop;
-
-			/**
-			 * Create a property in a host object that, when accessed, will produce
-			 * a deprecation warning in the console with backtrace.
-			 *
-			 * @param {Object} obj Host object of deprecated property
-			 * @param {string} key Name of property to create in `obj`
-			 * @param {Mixed} val The value this property should return when accessed
-			 * @param {string} [msg] Optional text to include in the deprecation message
-			 */
-			log.deprecate = !Object.defineProperty ? function ( obj, key, val ) {
-				obj[ key ] = val;
-			} : function ( obj, key, val, msg ) {
-				msg = 'Use of "' + key + '" is deprecated.' + ( msg ? ( ' ' + msg ) : '' );
-				var logged = new StringSet();
-				function uniqueTrace() {
-					var trace = new Error().stack;
-					if ( logged.has( trace ) ) {
-						return false;
-					}
-					logged.add( trace );
-					return true;
-				}
-				Object.defineProperty( obj, key, {
-					configurable: true,
-					enumerable: true,
-					get: function () {
-						if ( uniqueTrace() ) {
-							mw.track( 'mw.deprecate', key );
-							mw.log.warn( msg );
-						}
-						return val;
-					},
-					set: function ( newVal ) {
-						if ( uniqueTrace() ) {
-							mw.track( 'mw.deprecate', key );
-							mw.log.warn( msg );
-						}
-						val = newVal;
-					}
-				} );
-
-			};
-
-			return log;
-		}() ),
+		log: log,
 
 		/**
 		 * Client for ResourceLoader server end point.
@@ -867,7 +869,7 @@
 					// Cache
 					marker = document.querySelector( 'meta[name="ResourceLoaderDynamicStyles"]' );
 					if ( !marker ) {
-						mw.log( 'Create <meta name="ResourceLoaderDynamicStyles"> dynamically' );
+						log( 'Create <meta name="ResourceLoaderDynamicStyles"> dynamically' );
 						marker = $( '<meta>' ).attr( 'name', 'ResourceLoaderDynamicStyles' ).appendTo( 'head' )[ 0 ];
 					}
 				}
@@ -1338,8 +1340,8 @@
 								markModuleReady();
 							}
 						} catch ( e ) {
-							// This needs to NOT use mw.log because these errors are common in production mode
-							// and not in debug mode, such as when a symbol that should be global isn't exported
+							// Use mw.track instead of mw.log because these errors are common in production mode
+							// (e.g. undefined variable), and mw.log is only enabled in debug mode.
 							registry[ module ].state = 'error';
 							mw.track( 'resourceloader.exception', { exception: e, module: module, source: 'module-execute' } );
 							handlePending( module );
@@ -2679,14 +2681,13 @@
 	 * reference, so that debugging tools loaded later are supported (e.g. Firebug Lite in IE).
 	 *
 	 * @private
-	 * @method log_
 	 * @param {string} topic Stream name passed by mw.track
 	 * @param {Object} data Data passed by mw.track
 	 * @param {Error} [data.exception]
 	 * @param {string} data.source Error source
 	 * @param {string} [data.module] Name of module which caused the error
 	 */
-	function log( topic, data ) {
+	function logError( topic, data ) {
 		var msg,
 			e = data.exception,
 			source = data.source,
@@ -2711,8 +2712,8 @@
 	}
 
 	// Subscribe to error streams
-	mw.trackSubscribe( 'resourceloader.exception', log );
-	mw.trackSubscribe( 'resourceloader.assert', log );
+	mw.trackSubscribe( 'resourceloader.exception', logError );
+	mw.trackSubscribe( 'resourceloader.assert', logError );
 
 	/**
 	 * Fired when all modules associated with the page have finished loading.
