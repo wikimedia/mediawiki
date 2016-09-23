@@ -1311,10 +1311,10 @@ class Linker {
 				:? # ignore optional leading colon
 				([^\]|]+) # 1. link target; page names cannot include ] or |
 				(?:\|
-					# 2. a pipe-separated substring; only the last is captured
-					# Stop matching at | and ]] without relying on backtracking.
-					((?:]?[^\]|])*+)
-				)*
+					# 2. link text
+					# Stop matching at ]] without relying on backtracking.
+					((?:]?[^\]])*+)
+				)?
 				\]\]
 				([^[]*) # 3. link trail (the text up until the next link)
 			/x',
