@@ -1313,14 +1313,16 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @return array
 	 */
-	public static function listTables( $db ) {
+	public static function listTables( DatabaseBase $db ) {
 		$prefix = $db->tablePrefix();
 		$tables = $db->listTables( $prefix, __METHOD__ );
 
 		if ( $db->getType() === 'mysql' ) {
-			# bug 43571: cannot clone VIEWs under MySQL
-			$views = $db->listViews( $prefix, __METHOD__ );
-			$tables = array_diff( $tables, $views );
+			if ( !isset( $db->viewListCache ) ) {
+				$db->viewListCache = $db->listViews( null, __METHOD__ );
+			}
+			// T45571: cannot clone VIEWs under MySQL
+			$tables = array_diff( $tables, $db->viewListCache );
 		}
 		array_walk( $tables, [ __CLASS__, 'unprefixTable' ], $prefix );
 
