@@ -20,6 +20,7 @@
  * @file
  * @ingroup Deployment
  */
+use MediaWiki\MediaWikiServices;
 
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
 
@@ -456,6 +457,8 @@ abstract class DatabaseUpdater {
 	 * @param bool $passSelf Whether to pass this object we calling external functions
 	 */
 	private function runUpdates( array $updates, $passSelf ) {
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
 		$updatesDone = [];
 		$updatesSkipped = [];
 		foreach ( $updates as $params ) {
@@ -470,7 +473,7 @@ abstract class DatabaseUpdater {
 			flush();
 			if ( $ret !== false ) {
 				$updatesDone[] = $origParams;
-				wfGetLBFactory()->waitForReplication();
+				$lbFactory->waitForReplication();
 			} else {
 				$updatesSkipped[] = [ $func, $params, $origParams ];
 			}
