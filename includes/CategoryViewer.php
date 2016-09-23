@@ -19,6 +19,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 class CategoryViewer extends ContextSource {
 	/** @var int */
@@ -317,10 +318,19 @@ class CategoryViewer extends ContextSource {
 
 			$res = $dbr->select(
 				[ 'page', 'categorylinks', 'category' ],
-				[ 'page_id', 'page_title', 'page_namespace', 'page_len',
-					'page_is_redirect', 'cl_sortkey', 'cat_id', 'cat_title',
-					'cat_subcats', 'cat_pages', 'cat_files',
-					'cl_sortkey_prefix', 'cl_collation' ],
+				array_merge(
+					LinkCache::getSelectFields(),
+					[
+						'cl_sortkey',
+						'cat_id',
+						'cat_title',
+						'cat_subcats',
+						'cat_pages',
+						'cat_files',
+						'cl_sortkey_prefix',
+						'cl_collation'
+					]
+				),
 				array_merge( [ 'cl_to' => $this->title->getDBkey() ], $extraConds ),
 				__METHOD__,
 				[
@@ -338,10 +348,13 @@ class CategoryViewer extends ContextSource {
 			);
 
 			Hooks::run( 'CategoryViewer::doCategoryQuery', [ $type, $res ] );
+			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 
 			$count = 0;
 			foreach ( $res as $row ) {
 				$title = Title::newFromRow( $row );
+				$linkCache->addGoodLinkObjFromRow( $title, $row );
+
 				if ( $row->cl_collation === '' ) {
 					// Hack to make sure that while updating from 1.16 schema
 					// and db is inconsistent, that the sky doesn't fall.
