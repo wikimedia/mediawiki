@@ -1230,7 +1230,6 @@ abstract class Database implements IDatabase, LoggerAwareInterface {
 		return '';
 	}
 
-	// See IDatabase::select for the docs for this function
 	public function select( $table, $vars, $conds = '', $fname = __METHOD__,
 		$options = [], $join_conds = [] ) {
 		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
