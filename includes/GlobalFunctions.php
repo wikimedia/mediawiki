@@ -2194,12 +2194,11 @@ function wfIniGetBool( $setting ) {
 }
 
 /**
- * Windows-compatible version of escapeshellarg()
- * Windows doesn't recognise single-quotes in the shell, but the escapeshellarg()
- * function puts single quotes in regardless of OS.
+ * Version of escapeshellarg() that works better on Windows.
  *
- * Also fixes the locale problems on Linux in PHP 5.2.6+ (bug backported to
- * earlier distro releases of PHP)
+ * Originally, this fixed the incorrect use of single quotes on Windows
+ * (https://bugs.php.net/bug.php?id=26285) and the locale problems on Linux in
+ * PHP 5.2.6+ (bug backported to earlier distro releases of PHP).
  *
  * @param string ... strings to escape and glue together, or a single array of strings parameter
  * @return string
