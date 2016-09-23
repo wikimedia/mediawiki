@@ -516,6 +516,15 @@ class LoadBalancer implements ILoadBalancer {
 		return $ok;
 	}
 
+	/**
+	 * @see ILoadBalancer::getConnection()
+	 *
+	 * @param int $i
+	 * @param array $groups
+	 * @param bool $domain
+	 * @return bool|Database
+	 * @throws DBConnectionError
+	 */
 	public function getConnection( $i, $groups = [], $domain = false ) {
 		if ( $i === null || $i === false ) {
 			throw new InvalidArgumentException( 'Attempt to call ' . __METHOD__ .
@@ -637,6 +646,14 @@ class LoadBalancer implements ILoadBalancer {
 		return new DBConnRef( $this, [ $db, $groups, $domain ] );
 	}
 
+	/**
+	 * @see ILoadBalancer::openConnection()
+	 *
+	 * @param int $i
+	 * @param bool $domain
+	 * @return bool|Database
+	 * @throws DBAccessError
+	 */
 	public function openConnection( $i, $domain = false ) {
 		if ( $this->localDomain->equals( $domain ) || $domain === $this->localDomainIdAlias ) {
 			$domain = false; // local connection requested
@@ -691,7 +708,7 @@ class LoadBalancer implements ILoadBalancer {
 	 *
 	 * @param int $i Server index
 	 * @param string $domain Domain ID to open
-	 * @return IDatabase
+	 * @return Database
 	 */
 	private function openForeignConnection( $i, $domain ) {
 		$domainInstance = DatabaseDomain::newFromId( $domain );
@@ -775,7 +792,7 @@ class LoadBalancer implements ILoadBalancer {
 	 *
 	 * @param array $server
 	 * @param string|bool $dbNameOverride Use "" to not select any database
-	 * @return IDatabase
+	 * @return Database
 	 * @throws DBAccessError
 	 * @throws InvalidArgumentException
 	 */
