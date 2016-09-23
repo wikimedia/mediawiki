@@ -214,6 +214,10 @@ class DeferredUpdates {
 						$firstKey = key( self::$executeContext['subqueue'] );
 						unset( self::$executeContext['subqueue'][$firstKey] );
 
+						if ( $subUpdate instanceof DataUpdate ) {
+							$subUpdate->setTransactionTicket( $ticket );
+						}
+
 						$guiError = self::runUpdate( $subUpdate, $lbFactory, $stage );
 						$reportableError = $reportableError ?: $guiError;
 					}
