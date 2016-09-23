@@ -21,7 +21,7 @@
  */
 
 /**
- * Class for asserting that a callback happens when an dummy object leaves scope
+ * Class for asserting that a callback happens when a dummy object leaves scope
  *
  * @since 1.21
  */
