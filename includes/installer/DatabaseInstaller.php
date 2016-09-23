@@ -167,7 +167,7 @@ abstract class DatabaseInstaller {
 	 *
 	 * @param string $sourceFileMethod
 	 * @param string $stepName
-	 * @param string $archiveTableMustNotExist
+	 * @param bool $archiveTableMustNotExist
 	 * @return Status
 	 */
 	private function stepApplySourceFile(
@@ -355,7 +355,7 @@ abstract class DatabaseInstaller {
 			$up->doUpdates();
 		} catch ( Exception $e ) {
 			echo "\nAn error occurred:\n";
-			echo $e->getText();
+			echo $e->getMessage();
 			$ret = false;
 		}
 		$up->purgeCache();
