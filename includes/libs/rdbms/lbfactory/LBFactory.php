@@ -157,6 +157,11 @@ abstract class LBFactory {
 	 * Create a new load balancer object. The resulting object will be untracked,
 	 * not chronology-protected, and the caller is responsible for cleaning it up.
 	 *
+	 * This method is for only advanced usage and callers should almost always use
+	 * getMainLB() instead. This method can be useful when a table is used as a key/value
+	 * store. In that cases, one might want to query it in autocommit mode (DBO_TRX off)
+	 * but still use DBO_TRX transaction rounds on other tables.
+	 *
 	 * @param bool|string $domain Domain ID, or false for the current domain
 	 * @return ILoadBalancer
 	 */
@@ -175,11 +180,16 @@ abstract class LBFactory {
 	 * untracked, not chronology-protected, and the caller is responsible for
 	 * cleaning it up.
 	 *
+	 * This method is for only advanced usage and callers should almost always use
+	 * getExternalLB() instead. This method can be useful when a table is used as a
+	 * key/value store. In that cases, one might want to query it in autocommit mode
+	 * (DBO_TRX off) but still use DBO_TRX transaction rounds on other tables.
+	 *
 	 * @param string $cluster External storage cluster, or false for core
 	 * @param bool|string $domain Domain ID, or false for the current domain
 	 * @return ILoadBalancer
 	 */
-	abstract protected function newExternalLB( $cluster, $domain = false );
+	abstract public function newExternalLB( $cluster, $domain = false );
 
 	/**
 	 * Get a cached (tracked) load balancer for external storage

@@ -261,7 +261,7 @@ class LBFactoryMulti extends LBFactory {
 	 * @throws InvalidArgumentException
 	 * @return LoadBalancer
 	 */
-	protected function newExternalLB( $cluster, $domain = false ) {
+	public function newExternalLB( $cluster, $domain = false ) {
 		if ( !isset( $this->externalLoads[$cluster] ) ) {
 			throw new InvalidArgumentException( __METHOD__ . ": Unknown cluster \"$cluster\"" );
 		}
