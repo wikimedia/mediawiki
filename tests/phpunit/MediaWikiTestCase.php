@@ -1178,19 +1178,21 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * Gets master database connections for all of the ExternalStoreDB
 	 * stores configured in $wgDefaultExternalStore.
 	 *
-	 * @return array Array of DatabaseBase master connections
+	 * @return DatabaseBase[] Array of DatabaseBase master connections
 	 */
 
 	protected static function getExternalStoreDatabaseConnections() {
 		global $wgDefaultExternalStore;
 
+		/** @var ExternalStoreDB $externalStoreDB */
 		$externalStoreDB = ExternalStore::getStoreObject( 'DB' );
 		$defaultArray = (array) $wgDefaultExternalStore;
 		$dbws = [];
 		foreach ( $defaultArray as $url ) {
 			if ( strpos( $url, 'DB://' ) === 0 ) {
 				list( $proto, $cluster ) = explode( '://', $url, 2 );
-				$dbw = $externalStoreDB->getMaster( $cluster );
+				$lb = $externalStoreDB->getLoadBalancer( $cluster );
+				$dbw = $lb->getConnection( DB_MASTER );
 				$dbws[] = $dbw;
 			}
 		}
