@@ -176,7 +176,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 		// Run post-commit hooks without DBO_TRX
 		$this->getDB()->onTransactionIdle(
 			function () {
-				Hooks::run( 'LinksUpdateComplete', [ &$this ] );
+				Hooks::run( 'LinksUpdateComplete', [ &$this, $this->ticket ] );
 			},
 			__METHOD__
 		);

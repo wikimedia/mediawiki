@@ -1974,6 +1974,7 @@ $insertions: an array of links to insert
 'LinksUpdateComplete': At the end of LinksUpdate::doUpdate() when updating,
 including delete and insert, has completed for all link tables
 &$linksUpdate: the LinksUpdate object
+$ticket: prior result of LBFactory::getEmptyTransactionTicket()
 
 'LinksUpdateConstructed': At the end of LinksUpdate() is construction.
 &$linksUpdate: the LinksUpdate object
