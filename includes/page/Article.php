@@ -2091,10 +2091,11 @@ class Article implements Page {
 	 * @see WikiPage::doDeleteArticleReal
 	 */
 	public function doDeleteArticleReal(
-		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', User $user = null
+		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', User $user = null,
+		$tags = []
 	) {
 		return $this->mPage->doDeleteArticleReal(
-			$reason, $suppress, $u1, $u2, $error, $user
+			$reason, $suppress, $u1, $u2, $error, $user, $tags
 		);
 	}
 
