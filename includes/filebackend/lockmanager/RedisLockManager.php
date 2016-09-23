@@ -20,6 +20,7 @@
  * @file
  * @ingroup LockManager
  */
+use Psr\Log\LoggerInterface;
 
 /**
  * Manage locks using redis servers.
@@ -51,6 +52,8 @@ class RedisLockManager extends QuorumLockManager {
 	/** @var array Map server names to hostname/IP and port numbers */
 	protected $lockServers = [];
 
+	/** @var LoggerInterface */
+	protected $logger;
 	/** @var string Random UUID */
 	protected $session = '';
 
@@ -76,6 +79,7 @@ class RedisLockManager extends QuorumLockManager {
 		$this->redisPool = RedisConnectionPool::singleton( $config['redisConfig'] );
 
 		$this->session = wfRandomString( 32 );
+		$this->logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'redis' );
 	}
 
 	protected function getLocksOnServer( $lockSrv, array $pathsByType ) {
@@ -84,7 +88,7 @@ class RedisLockManager extends QuorumLockManager {
 		$pathList = call_user_func_array( 'array_merge', array_values( $pathsByType ) );
 
 		$server = $this->lockServers[$lockSrv];
-		$conn = $this->redisPool->getConnection( $server );
+		$conn = $this->redisPool->getConnection( $server, $this->logger );
 		if ( !$conn ) {
 			foreach ( $pathList as $path ) {
 				$status->fatal( 'lockmanager-fail-acquirelock', $path );
@@ -177,7 +181,7 @@ LUA;
 		$pathList = call_user_func_array( 'array_merge', array_values( $pathsByType ) );
 
 		$server = $this->lockServers[$lockSrv];
-		$conn = $this->redisPool->getConnection( $server );
+		$conn = $this->redisPool->getConnection( $server, $this->logger );
 		if ( !$conn ) {
 			foreach ( $pathList as $path ) {
 				$status->fatal( 'lockmanager-fail-releaselock', $path );
@@ -246,7 +250,9 @@ LUA;
 	}
 
 	protected function isServerUp( $lockSrv ) {
-		return (bool)$this->redisPool->getConnection( $this->lockServers[$lockSrv] );
+		$conn = $this->redisPool->getConnection( $this->lockServers[$lockSrv], $this->logger );
+
+		return (bool)$conn;
 	}
 
 	/**

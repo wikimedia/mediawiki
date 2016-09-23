@@ -20,6 +20,7 @@
  * @file
  * @author Aaron Schulz
  */
+use Psr\Log\LoggerInterface;
 
 /**
  * Class to handle tracking information about all queues using PhpRedis
@@ -33,6 +34,8 @@
 class JobQueueAggregatorRedis extends JobQueueAggregator {
 	/** @var RedisConnectionPool */
 	protected $redisPool;
+	/** @var LoggerInterface */
+	protected $logger;
 	/** @var array List of Redis server addresses */
 	protected $servers;
 
@@ -52,6 +55,7 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 			: [ $params['redisServer'] ]; // b/c
 		$params['redisConfig']['serializer'] = 'none';
 		$this->redisPool = RedisConnectionPool::singleton( $params['redisConfig'] );
+		$this->logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'redis' );
 	}
 
 	protected function doNotifyQueueEmpty( $wiki, $type ) {
@@ -104,7 +108,7 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 	protected function getConnection() {
 		$conn = false;
 		foreach ( $this->servers as $server ) {
-			$conn = $this->redisPool->getConnection( $server );
+			$conn = $this->redisPool->getConnection( $server, $this->logger );
 			if ( $conn ) {
 				break;
 			}

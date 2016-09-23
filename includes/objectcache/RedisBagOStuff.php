@@ -351,7 +351,7 @@ class RedisBagOStuff extends BagOStuff {
 
 		while ( ( $tag = array_shift( $candidates ) ) !== null ) {
 			$server = $this->serverTagMap[$tag];
-			$conn = $this->redisPool->getConnection( $server );
+			$conn = $this->redisPool->getConnection( $server, $this->logger );
 			if ( !$conn ) {
 				continue;
 			}

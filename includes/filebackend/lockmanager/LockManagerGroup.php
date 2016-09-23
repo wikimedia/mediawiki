@@ -21,6 +21,7 @@
  * @ingroup LockManager
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Logger\LoggerFactory;
 
 /**
  * Class to handle file lock manager registration
@@ -124,6 +125,8 @@ class LockManagerGroup {
 				$config['dbServers']['localDBMaster'] = $dbw;
 				$config['srvCache'] = ObjectCache::getLocalServerInstance( 'hash' );
 			}
+			$config['logger'] = LoggerFactory::getInstance( 'LockManager' );
+
 			$this->managers[$name]['instance'] = new $class( $config );
 		}
 
