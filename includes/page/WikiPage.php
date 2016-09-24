@@ -3553,7 +3553,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// NOTE: stub for backwards-compatibility. assumes the given text is
 		// wikitext. will break horribly if it isn't.
 
-		ContentHandler::deprecated( __METHOD__, '1.21' );
+		wfDeprecated( __METHOD__, '1.21' );
 
 		$handler = ContentHandler::getForModelID( CONTENT_MODEL_WIKITEXT );
 		$oldContent = is_null( $oldtext ) ? null : $handler->unserializeContent( $oldtext );
