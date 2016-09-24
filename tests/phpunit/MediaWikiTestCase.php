@@ -1070,11 +1070,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * Clones all tables in the given database (whatever database that connection has
 	 * open), to versions with the test prefix.
 	 *
-	 * @param DatabaseBase $db Database to use
+	 * @param IDatabase $db Database to use
 	 * @param string $prefix Prefix to use for test tables
 	 * @return bool True if tables were cloned, false if only the prefix was changed
 	 */
-	protected static function setupDatabaseWithTestPrefix( DatabaseBase $db, $prefix ) {
+	protected static function setupDatabaseWithTestPrefix( IDatabase $db, $prefix ) {
 		$tablesCloned = self::listTables( $db );
 		$dbClone = new CloneDatabase( $db, $tablesCloned, $prefix );
 		$dbClone->useTemporaryTables( self::$useTemporaryTables );
@@ -1123,12 +1123,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @note this method only works when first called. Subsequent calls have no effect,
 	 * even if using different parameters.
 	 *
-	 * @param DatabaseBase $db The database connection
+	 * @param IDatabase $db The database connection
 	 * @param string $prefix The prefix to use for the new table set (aka schema).
 	 *
 	 * @throws MWException If the database table prefix is already $prefix
 	 */
-	public static function setupTestDB( DatabaseBase $db, $prefix ) {
+	public static function setupTestDB( IDatabase $db, $prefix ) {
 		if ( self::$dbSetup ) {
 			return;
 		}

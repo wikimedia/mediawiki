@@ -41,19 +41,19 @@ class CloneDatabase {
 	/** @var bool Whether to use temporary tables or not */
 	private $useTemporaryTables = true;
 
-	/** @var Database */
+	/** @var IDatabase */
 	private $db;
 
 	/**
 	 * Constructor
 	 *
-	 * @param Database $db A database subclass
+	 * @param IDatabase $db A database implementation
 	 * @param array $tablesToClone An array of tables to clone, unprefixed
 	 * @param string $newTablePrefix Prefix to assign to the tables
 	 * @param string $oldTablePrefix Prefix on current tables, if not $wgDBprefix
 	 * @param bool $dropCurrentTables
 	 */
-	public function __construct( Database $db, array $tablesToClone,
+	public function __construct( IDatabase $db, array $tablesToClone,
 		$newTablePrefix, $oldTablePrefix = '', $dropCurrentTables = true
 	) {
 		$this->db = $db;
