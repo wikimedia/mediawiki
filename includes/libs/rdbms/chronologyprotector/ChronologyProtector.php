@@ -27,7 +27,7 @@ use Psr\Log\LoggerInterface;
  * Class for ensuring a consistent ordering of events as seen by the user, despite replication.
  * Kind of like Hawking's [[Chronology Protection Agency]].
  */
-class ChronologyProtector implements LoggerAwareInterface{
+class ChronologyProtector implements LoggerAwareInterface {
 	/** @var BagOStuff */
 	protected $store;
 	/** @var LoggerInterface */
