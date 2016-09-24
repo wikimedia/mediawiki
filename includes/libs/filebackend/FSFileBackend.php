@@ -27,7 +27,7 @@
  *
  * All "containers" each map to a directory under the backend's base directory.
  * For backwards-compatibility, some container paths can be set to custom paths.
- * The wiki ID will not be used in any custom paths, so this should be avoided.
+ * The domain ID will not be used in any custom paths, so this should be avoided.
  *
  * Having directories with thousands of files will diminish performance.
  * Sharding can be accomplished by using FileRepo-style hash paths.
