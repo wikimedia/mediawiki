@@ -50,12 +50,26 @@
 	vertical-align: middle;
 
 	// Content styling
-	.button-colors( #fff, @colorGray12, @colorGray7 );
+	.button-colors( @colorGray15, #fff, #d9d9d9 );
 	text-align: center;
 	font-weight: bold;
 
 	// Interaction styling
 	cursor: pointer;
+
+	&:focus {
+		outline-width: 0;
+
+		// Remove the inner border and padding in Firefox.
+		&::-moz-focus-inner {
+			border-color: transparent;
+			padding: 0;
+		}
+	}
+
+	&:not( :disabled ) {
+		.transition( ~'background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms' );
+	}
 
 	&:disabled {
 		text-shadow: none;
@@ -130,31 +144,9 @@
 	//
 	// Styleguide 2.1.1.
 	&.mw-ui-progressive,
+	&.mw-ui-constructive, // deprecated; consolidated with `progressive`, see T110555
 	&.mw-ui-primary {
-		.button-colors( @colorProgressive, @colorProgressiveHighlight, @colorProgressiveActive );
-
-		&.mw-ui-quiet {
-			.button-colors-quiet( @colorProgressive, @colorProgressiveHighlight, @colorProgressiveActive );
-		}
-	}
-
-	// Constructive buttons (deprecated, consolidated with `progressive` – see T110555)
-	//
-	// Use constructive buttons for actions which result in a final action in the process that results
-	// in a change of state.
-	// e.g. save changes button
-	//
-	// Markup:
-	// <div>
-	//   <button class="mw-ui-button mw-ui-constructive">.mw-ui-constructive</button>
-	// </div>
-	// <div>
-	//   <button class="mw-ui-button mw-ui-constructive" disabled>.mw-ui-constructive</button>
-	// </div>
-	//
-	// Styleguide 2.1.2.
-	&.mw-ui-constructive {
-		.button-colors( @colorProgressive, @colorProgressiveHighlight, @colorProgressiveActive );
+		.button-colors-primary( @colorProgressive, @colorProgressiveHighlight, @colorProgressiveActive );
 
 		&.mw-ui-quiet {
 			.button-colors-quiet( @colorProgressive, @colorProgressiveHighlight, @colorProgressiveActive );
@@ -174,9 +166,9 @@
 	//   <button class="mw-ui-button mw-ui-destructive" disabled>.mw-ui-destructive</button>
 	// </div>
 	//
-	// Styleguide 2.1.3.
+	// Styleguide 2.1.2.
 	&.mw-ui-destructive {
-		.button-colors( @colorDestructive, @colorDestructiveHighlight, @colorDestructiveActive );
+		.button-colors-primary( @colorDestructive, @colorDestructiveHighlight, @colorDestructiveActive );
 
 		&.mw-ui-quiet {
 			.button-colors-quiet( @colorDestructive, @colorDestructiveHighlight, @colorDestructiveActive );
@@ -211,7 +203,7 @@
 	//   <button class="mw-ui-button mw-ui-progressive mw-ui-quiet" disabled>.mw-ui-progressive</button>
 	// </div>
 	//
-	// Styleguide 2.1.4.
+	// Styleguide 2.1.3.
 	&.mw-ui-quiet {
 		background: transparent;
 		border: 0;
