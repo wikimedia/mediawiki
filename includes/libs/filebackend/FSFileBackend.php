@@ -592,7 +592,7 @@ class FSFileBackend extends FileBackendStore {
 	 * @param string $fullCont
 	 * @param string $dirRel
 	 * @param array $params
-	 * @return array|null
+	 * @return array|FSFileBackendDirList|null
 	 */
 	public function getDirectoryListInternal( $fullCont, $dirRel, array $params ) {
 		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
