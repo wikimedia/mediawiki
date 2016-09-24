@@ -445,7 +445,7 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function getSlavePos() {
+	public function getReplicaPos() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

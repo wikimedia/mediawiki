@@ -811,7 +811,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			// with an old master hostname. Such calls make MASTER_POS_WAIT() return null. Try
 			// to detect this and treat the replica DB as having reached the position; a proper master
 			// switchover already requires that the new master be caught up before the switch.
-			$replicationPos = $this->getSlavePos();
+			$replicationPos = $this->getReplicaPos();
 			if ( $replicationPos && !$replicationPos->channelsMatch( $pos ) ) {
 				$this->lastKnownReplicaPos = $replicationPos;
 				$status = 0;
@@ -829,7 +829,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 *
 	 * @return MySQLMasterPos|bool
 	 */
-	function getSlavePos() {
+	function getReplicaPos() {
 		$res = $this->query( 'SHOW SLAVE STATUS', __METHOD__ );
 		$row = $this->fetchObject( $res );
 

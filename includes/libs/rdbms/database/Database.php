@@ -2436,7 +2436,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return 0;
 	}
 
-	public function getSlavePos() {
+	public function getReplicaPos() {
 		# Stub
 		return false;
 	}

@@ -1322,7 +1322,7 @@ interface IDatabase {
 	 *
 	 * @return DBMasterPos|bool False if this is not a replica DB.
 	 */
-	public function getSlavePos();
+	public function getReplicaPos();
 
 	/**
 	 * Get the position of this master

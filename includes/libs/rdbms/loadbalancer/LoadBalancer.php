@@ -945,7 +945,7 @@ class LoadBalancer implements ILoadBalancer {
 			for ( $i = 1; $i < $serverCount; $i++ ) {
 				$conn = $this->getAnyOpenConnection( $i );
 				if ( $conn ) {
-					return $conn->getSlavePos();
+					return $conn->getReplicaPos();
 				}
 			}
 		} else {
