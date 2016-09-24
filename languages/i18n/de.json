@@ -3861,5 +3861,8 @@
 	"unlinkaccounts-success": "Das Benutzerkonto wurde getrennt.",
 	"authenticationdatachange-ignored": "Die Änderung der Authentifizierungsdaten wurde nicht bearbeitet. Vielleicht wurde kein Anbieter konfiguriert?",
 	"userjsispublic": "Bitte beachten: JavaScript-Unterseiten sollten keine vertraulichen Daten enthalten, da sie von anderen Benutzern eingesehen werden können.",
-	"usercssispublic": "Bitte beachten: CSS-Unterseiten sollten keine vertraulichen Daten enthalten, da sie von anderen Benutzern eingesehen werden können."
+	"usercssispublic": "Bitte beachten: CSS-Unterseiten sollten keine vertraulichen Daten enthalten, da sie von anderen Benutzern eingesehen werden können.",
+	"restrictionsfield-badip": "Ungültige IP-Adresse oder ungültiger IP-Adressbereich: $1",
+	"restrictionsfield-label": "Erlaubte IP-Adressbereiche:",
+	"restrictionsfield-help": "Eine IP-Adresse oder ein CIDR-Bereich pro Zeile. Um alles zu aktivieren, verwende<br><code>0.0.0.0/0</code><br><code>::/0</code>"
 }

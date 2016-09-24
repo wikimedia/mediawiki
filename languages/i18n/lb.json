@@ -216,6 +216,7 @@
 	"talk": "Diskussioun",
 	"views": "Affichagen",
 	"toolbox": "Geschirkëscht",
+	"tool-link-userrights": "{{GENDER:$1|Benotzer}}gruppen änneren",
 	"tool-link-emailuser": "{{GENDER:$1|Dëser Benotzerin|Dësem Benotzer}} eng Mail schécken",
 	"userpage": "Benotzersäit",
 	"projectpage": "Meta-Text",
@@ -490,7 +491,7 @@
 	"eauthentsent": "Eng Confirmatiouns-E-Mail gouf un déi Adress geschéckt déi Dir uginn hutt.\n\nIer iergendeng E-Mail vun anere Benotzer op dee Kont geschéckt ka ginn, musst Dir als éischt d'Instructiounen an der Confirmatiouns-E-Mail befollegen, fir ze bestätegen datt de Kont wierklech Ären eegenen ass.",
 	"throttled-mailpassword": "An {{PLURAL:$1|der leschter Stonn|de leschte(n) $1 Stonnen}} eng E-Mail verschéckt fir d'Passwuert zréckzesetzen.\nFir de Mëssbrauch vun dëser Funktioun ze verhënneren kann nëmmen all {{PLURAL:$1|Stonn|$1 Stonnen}} sou eng Mail verschéckt ginn.",
 	"mailerror": "Feeler beim Schécke vun der E-Mail: $1",
-	"acct_creation_throttle_hit": "Visiteure vun dëser Wiki déi Är IP-Adress hu {{PLURAL:$1|schonn $1 Benotzerkont|scho(nn) $1 Benotzerkonten}} an de leschten Deeg opgemaach, dëst ass déi maximal Zuel déi an dësem Zäitraum erlaabt ass.\nDofir kënne Visiteure déi dës IP-Adress benotzen den Ament keng Benotzerkonten opmaachen.",
+	"acct_creation_throttle_hit": "Visiteure vun dëser Wiki déi Är IP-Adress hu {{PLURAL:$1|schonn $1 Benotzerkont|scho(nn) $1 Benotzerkonten}} an de leschten $2 Deeg opgemaach, dëst ass déi maximal Zuel déi an dësem Zäitraum erlaabt ass.\nDofir kënne Visiteure déi dës IP-Adress benotzen den Ament keng Benotzerkonten opmaachen.",
 	"emailauthenticated": "Är E-Mail-Adress gouf den $2 ëm $3 Auer bestätegt.",
 	"emailnotauthenticated": "Är E-Mail Adress gouf nach net confirméiert.\nDowéinst gëtt fir keng vun dëse Funktiounen E-Maile geschéckt.",
 	"noemailprefs": "Gitt eng E-Mailadress bei Ären Astellungen un, fir datt déi Funktioune funktionéieren.",
@@ -3478,5 +3479,7 @@
 	"cannotlink-no-provider-title": "Et gëtt keng Benotzerkonte fir ze verlinken",
 	"linkaccounts": "Benotzerkonte verbannen",
 	"linkaccounts-submit": "Benotzerkonte verbannen",
-	"userjsispublic": "DEnkt drun: Op JavaScript-Ënnersäite solle keng vertraulech Informatioune stoe well se vun anere Benotzer kënne gesi ginn."
+	"userjsispublic": "DEnkt drun: Op JavaScript-Ënnersäite solle keng vertraulech Informatioune stoe well se vun anere Benotzer kënne gesi ginn.",
+	"restrictionsfield-badip": "Net valabel IP-Adress oder Beräich: $1",
+	"restrictionsfield-label": "Zougeloossen IP-Beräicher:"
 }

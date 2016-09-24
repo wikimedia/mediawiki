@@ -3857,5 +3857,8 @@
 	"unlinkaccounts-success": "账户已取消链接。",
 	"authenticationdatachange-ignored": "身份验证数据更改未处理。也许没有配置的提供者？",
 	"userjsispublic": "请注意：JavaScript子页面不应包含机密数据，因为它们可以被其他用户查看。",
-	"usercssispublic": "请注意：CSS子页面不应包含机密数据，因为它们可以被其他用户查看。"
+	"usercssispublic": "请注意：CSS子页面不应包含机密数据，因为它们可以被其他用户查看。",
+	"restrictionsfield-badip": "无效的IP地址或段：$1",
+	"restrictionsfield-label": "允许的IP段：",
+	"restrictionsfield-help": "每行一个IP地址或CIDR段。要启用所有，可使用<br><code>0.0.0.0/0</code><br><code>::/0</code>"
 }

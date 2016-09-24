@@ -3178,7 +3178,7 @@
 	"version-libraries-description": "Aprašymas",
 	"version-libraries-authors": "Autoriai",
 	"redirect": "Nukreiptas iš failo, naudotojo, versijos arba žurnalo įrašo ID",
-	"redirect-summary": "Šis specialus puslapis peradresuoja į failą (nurodant failo pavadinimą), puslapį (nurodant versijos ID ar puslapio ID), naudotojo puslapį (nurodant skaitinį naudotojo ID), arba žurnalo įrašą (nurodant žurnalo įrašo ID).\nNaudojimas: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], [[{{#Special:Redirect}}/user/101]], arba[[{{#Special:Redirect}}/logid/186]].",
+	"redirect-summary": "Šis specialus puslapis peradresuoja į failą (nurodant failo pavadinimą), puslapį (nurodant versijos ID ar puslapio ID), naudotojo puslapį (nurodant skaitinį naudotojo ID), arba žurnalo įrašą (nurodant žurnalo įrašo ID). Naudojimas:\n[[{{#Special:Redirect}}/file/Example.jpg]],\n[[{{#Special:Redirect}}/page/64308]],[[{{#Special:Redirect}}/revision/328429]], [[{{#Special:Redirect}}/user/101]], arba\n[[{{#Special:Redirect}}/logid/186]].",
 	"redirect-submit": "Eiti",
 	"redirect-lookup": "Peržvalgos:",
 	"redirect-value": "Vertė:",

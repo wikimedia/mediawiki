@@ -12,7 +12,8 @@
 			"Obaid Raza",
 			"Macofe",
 			"Matma Rex",
-			"Saanvel"
+			"Saanvel",
+			"Satdeep gill"
 		]
 	},
 	"tog-underline": "حوڑ تھلے لین:",
@@ -350,7 +351,6 @@
 	"yourpasswordagain": "کنجی فیر لکھو:",
 	"createacct-yourpasswordagain": "کنجی پکی کرو",
 	"createacct-yourpasswordagain-ph": "کنجی فیر پاؤ",
-	"remembermypassword": "اس براؤزر تے میرا ورتن ناں یاد رکھو ($1 {{PLURAL:$1|دن|دناں}} واسطے)",
 	"userlogin-remembermypassword": "مینوں لاگ ان رکھو",
 	"yourdomainname": "تواڈا علاقہ:",
 	"externaldberror": "ڈیٹابیس چ توانوں پہچاننے چ کوئی مسئلہ ہویا اے یا فیر تسی اپنا بارلا کھاتا نئیں بدل سکدے۔",
@@ -456,8 +456,6 @@
 	"passwordreset-emailtext-user": "ورتنوالے $1 نے {{سائیٹناں}} تے تواڈے کھاتے بارے پچھیا اے {{SITENAME}} لئی ($4)۔ تھلے دتا گیا ورتن {{PLURAL:$3|کھاتہ|کھاتے}} ایس ای-میل نال جڑدا اے۔\n\n$2\n\n{{PLURAL:$3|ایہ عارضی کنجی|اے عارضی کنجیاں}} مک جائیگا {{PLURAL:$5|اک دن|$5 دن}}۔ تسیں ہن لاکان ہوو تے نویں کنجی چنو۔ اگر کسے ہور نے اے چٹھی پیجی یا توانوں اپنی پہلی کنجی یاد آگئی اے تے تسیں اونوں بدلنا نئیں چاندے تے تسیں ایس سنیعے نوں پھل جاؤ تے پرانی کنجی نال ای کم چلاؤ۔",
 	"passwordreset-emailelement": "ورتن ناں: \n$1\n\nعارضی کنجی: \n$2",
 	"passwordreset-emailsentemail": "یاد کران واسطے اک ای-میل پیج دتی گئی اے۔",
-	"passwordreset-emailsent-capture": "اک یاد کران والی ای-میل پیج دتی گئی اے، جیہڑی تھلے دسی گئی اے۔",
-	"passwordreset-emailerror-capture": "اک یادکراؤ ای-میل بنائی گئی اے، جیہڑی کہ تھلے دسی گئی اے، پر ورتن والے تک پیجنا نئیں ہوسکیا:$1",
 	"changeemail": "ای-میل پتہ بدلو",
 	"changeemail-header": "کھاتے دا ای-میل پتہ بدلو",
 	"changeemail-no-info": "تسی لاگ ان ہوکے ای اس صفحے نوں ویکھ سکدے او۔",
@@ -488,6 +486,7 @@
 	"minoredit": "اے نکا جیا کم اے",
 	"watchthis": "اس صفے تے اکھ رکھو",
 	"savearticle": "کم بچاؤ",
+	"savechanges": "کم بچاؤ",
 	"preview": "وکھاؤ",
 	"showpreview": "کچا کم ویکھو",
 	"showdiff": "تبدیلیاں وکھاؤ",
@@ -589,7 +588,6 @@
 	"undo-failure": "تبدیلی واپس نئیں ہوسکدی وشکار ہویاں تبدیلیاں ہون دی وجہ توں۔",
 	"undo-norev": "تبدیلی واپس نئیں ہوسکدی کیوں جے ایہ ہے ای نئیں یا مٹا دتی گئی اے۔",
 	"undo-summary": "$1 دی کیتی ہوئی ریوین [[Special:Contributions/$2|$2]] ([[User talk:$2|گل]]) واپس کرو",
-	"cantcreateaccounttitle": "کھاتہ نئیں کھول سکدے",
 	"cantcreateaccount-text": "کھاتہ بنانا ایس آئی پی پتے  ('''$1''')  لئی  [[User:$3|$3]] نے روک دتی اے۔\n$3 نے ''$2'' وجہ دسی اے۔",
 	"viewpagelogs": "صفحے دے لاگ ویکھو",
 	"nohistory": "اس صفحے دی پرانی لکھائی دی کوئی تاریخ نئیں۔",
@@ -2548,8 +2546,6 @@
 	"htmlform-submit": "رکھو",
 	"htmlform-reset": "تبدیلیاں واپس",
 	"htmlform-selectorother-other": "ہور",
-	"sqlite-has-fts": "$1 پوری لکھت کھوج مدد نال",
-	"sqlite-no-fts": "$1 بنا کسے لکھت مدد دے",
 	"logentry-delete-delete": "$1 {{GENDER:$2|مٹایا}} صفہ $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|بچایا}} صفہ $3",
 	"logentry-delete-event": "$1 پلٹے وکھالہ {{PLURAL:$5|اک لاگ ایونٹ|$5 لاگ ایونٹس}} تے $3: $4",
@@ -2648,6 +2644,5 @@
 	"special-characters-group-gujarati": "گجراتی",
 	"special-characters-group-thai": "تھائی",
 	"special-characters-group-lao": "لاؤ",
-	"special-characters-group-khmer": "کھیمر",
-	"api-error-blacklisted": "مہربانی کرکے وکھری سرخی چنو۔"
+	"special-characters-group-khmer": "کھیمر"
 }
