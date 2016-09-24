@@ -518,3 +518,7 @@
 	path = extensions/MassEditRegex
 	url = https://github.com/wikimedia/mediawiki-extensions-MassEditRegex
 	branch = REL1_27
+[submodule "extensions/HideSection"]
+	path = extensions/HideSection
+	url = https://github.com/labster/HideSection.git
+	branch = master
