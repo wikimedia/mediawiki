@@ -155,9 +155,14 @@ class EmailConfirmation extends UnlistedSpecialPage {
 			return;
 		}
 
+		Profiler::instance()->getTransactionProfiler()->setSilenced( true );
 		$user->confirmEmail();
 		$user->saveSettings();
-		$message = $this->getUser()->isLoggedIn() ? 'confirmemail_loggedin' : 'confirmemail_success';
+		Profiler::instance()->getTransactionProfiler()->setSilenced( false );
+
+		$message = $this->getUser()->isLoggedIn()
+			? 'confirmemail_loggedin'
+			: 'confirmemail_success';
 		$this->getOutput()->addWikiMsg( $message );
 
 		if ( !$this->getUser()->isLoggedIn() ) {
