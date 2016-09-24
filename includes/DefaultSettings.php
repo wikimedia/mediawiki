@@ -6022,7 +6022,7 @@ $wgTrxProfilerLimits = [
 	'JobRunner' => [
 		'readQueryTime' => 30,
 		'writeQueryTime' => 5,
-		'maxAffected' => 1000
+		'maxAffected' => 500 // ballpark of $wgUpdateRowsPerQuery
 	],
 	// Command-line scripts
 	'Maintenance' => [
