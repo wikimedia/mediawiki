@@ -69,7 +69,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 		$from = $request->getVal( 'from', null );
 		$to = $request->getVal( 'to', null );
 		$namespace = $request->getInt( 'namespace' );
-		$hideredirects = $request->getBool( 'hideredirects', false );
+		$showredirects = $request->getBool( 'showredirects', false );
 
 		$namespaces = $this->getLanguage()->getNamespaces();
 
@@ -81,11 +81,11 @@ class SpecialAllPages extends IncludableSpecialPage {
 		$out->addModuleStyles( 'mediawiki.special' );
 
 		if ( $par !== null ) {
-			$this->showChunk( $namespace, $par, $to, $hideredirects );
+			$this->showChunk( $namespace, $par, $to, $showredirects );
 		} elseif ( $from !== null && $to === null ) {
-			$this->showChunk( $namespace, $from, $to, $hideredirects );
+			$this->showChunk( $namespace, $from, $to, $showredirects );
 		} else {
-			$this->showToplevel( $namespace, $from, $to, $hideredirects );
+			$this->showToplevel( $namespace, $from, $to, $showredirects );
 		}
 	}
 
@@ -95,10 +95,10 @@ class SpecialAllPages extends IncludableSpecialPage {
 	 * @param int $namespace A namespace constant (default NS_MAIN).
 	 * @param string $from DbKey we are starting listing at.
 	 * @param string $to DbKey we are ending listing at.
-	 * @param bool $hideRedirects Dont show redirects  (default false)
+	 * @param bool $showRedirects Show redirects  (default false)
 	 */
 	protected function outputHTMLForm( $namespace = NS_MAIN,
-		$from = '', $to = '', $hideRedirects = false
+		$from = '', $to = '', $showRedirects = false
 	) {
 		$fields = [
 			'from' => [
@@ -125,12 +125,12 @@ class SpecialAllPages extends IncludableSpecialPage {
 				'all' => null,
 				'value' => $namespace,
 			],
-			'hideredirects' => [
+			'showredirects' => [
 				'type' => 'check',
-				'name' => 'hideredirects',
-				'id' => 'hidredirects',
-				'label-message' => 'allpages-hide-redirects',
-				'value' => $hideRedirects,
+				'name' => 'showredirects',
+				'id' => 'showredirects',
+				'label-message' => 'allpages-show-redirects',
+				'value' => $showRedirects,
 			],
 		];
 		$form = HTMLForm::factory( 'table', $fields, $this->getContext() );
@@ -145,24 +145,24 @@ class SpecialAllPages extends IncludableSpecialPage {
 	 * @param int $namespace (default NS_MAIN)
 	 * @param string $from List all pages from this name
 	 * @param string $to List all pages to this name
-	 * @param bool $hideredirects Dont show redirects (default false)
+	 * @param bool $showredirects Show redirects (default false)
 	 */
-	function showToplevel( $namespace = NS_MAIN, $from = '', $to = '', $hideredirects = false ) {
+	function showToplevel( $namespace = NS_MAIN, $from = '', $to = '', $showredirects = false ) {
 		$from = Title::makeTitleSafe( $namespace, $from );
 		$to = Title::makeTitleSafe( $namespace, $to );
 		$from = ( $from && $from->isLocal() ) ? $from->getDBkey() : null;
 		$to = ( $to && $to->isLocal() ) ? $to->getDBkey() : null;
 
-		$this->showChunk( $namespace, $from, $to, $hideredirects );
+		$this->showChunk( $namespace, $from, $to, $showredirects );
 	}
 
 	/**
 	 * @param int $namespace Namespace (Default NS_MAIN)
 	 * @param string $from List all pages from this name (default false)
 	 * @param string $to List all pages to this name (default false)
-	 * @param bool $hideredirects Dont show redirects (default false)
+	 * @param bool $showredirects Show redirects (default false)
 	 */
-	function showChunk( $namespace = NS_MAIN, $from = false, $to = false, $hideredirects = false ) {
+	function showChunk( $namespace = NS_MAIN, $from = false, $to = false, $showredirects = false ) {
 		$output = $this->getOutput();
 
 		$fromList = $this->getNamespaceKeyAndText( $namespace, $from );
@@ -183,7 +183,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 
 			$dbr = wfGetDB( DB_REPLICA );
 			$filterConds = [ 'page_namespace' => $namespace ];
-			if ( $hideredirects ) {
+			if ( $showredirects ) {
 				$filterConds['page_is_redirect'] = 0;
 			}
 
@@ -277,8 +277,8 @@ class SpecialAllPages extends IncludableSpecialPage {
 				$query['namespace'] = $namespace;
 			}
 
-			if ( $hideredirects ) {
-				$query['hideredirects'] = $hideredirects;
+			if ( $showredirects ) {
+				$query['showredirects'] = $showredirects;
 			}
 
 			$navLinks[] = Linker::linkKnown(
@@ -300,8 +300,8 @@ class SpecialAllPages extends IncludableSpecialPage {
 				$query['namespace'] = $namespace;
 			}
 
-			if ( $hideredirects ) {
-				$query['hideredirects'] = $hideredirects;
+			if ( $showredirects ) {
+				$query['showredirects'] = $showredirects;
 			}
 
 			$navLinks[] = Linker::linkKnown(
@@ -312,7 +312,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 			);
 		}
 
-		$this->outputHTMLForm( $namespace, $from, $to, $hideredirects );
+		$this->outputHTMLForm( $namespace, $from, $to, $showredirects );
 
 		if ( count( $navLinks ) ) {
 			// Add pagination links
