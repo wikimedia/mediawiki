@@ -2244,7 +2244,7 @@ class OutputPage extends ContextSource {
 				$response->header( "Content-Type: text/html; charset=utf-8" );
 				if ( $config->get( 'DebugRedirects' ) ) {
 					$url = htmlspecialchars( $redirect );
-					print "<html>\n<head>\n<title>Redirect</title>\n</head>\n<body>\n";
+					print "<!DOCTYPE html>\n<html>\n<head>\n<title>Redirect</title>\n</head>\n<body>\n";
 					print "<p>Location: <a href=\"$url\">$url</a></p>\n";
 					print "</body>\n</html>\n";
 				} else {
