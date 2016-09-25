@@ -98,6 +98,7 @@ class RedisLockManager extends QuorumLockManager {
 
 		try {
 			static $script =
+			/** @lang Lua */
 <<<LUA
 			local failed = {}
 			-- Load input params (e.g. session, ttl, time of request)
@@ -191,6 +192,7 @@ LUA;
 
 		try {
 			static $script =
+			/** @lang Lua */
 <<<LUA
 			local failed = {}
 			-- Load input params (e.g. session)
