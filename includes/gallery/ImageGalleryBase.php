@@ -239,13 +239,16 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param string $alt Alt text for the image
 	 * @param string $link Override image link (optional)
 	 * @param array $handlerOpts Array of options for image handler (aka page number)
+	 * @param array $imageParameters Array of extra options for image html generation (since 1.28)
 	 */
-	function add( $title, $html = '', $alt = '', $link = '', $handlerOpts = [] ) {
+	function add( $title, $html = '', $alt = '', $link = '', $handlerOpts = [],
+		$imageParameters = []
+	) {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();
 		}
-		$this->mImages[] = [ $title, $html, $alt, $link, $handlerOpts ];
+		$this->mImages[] = [ $title, $html, $alt, $link, $handlerOpts, $imageParameters ];
 		wfDebug( 'ImageGallery::add ' . $title->getText() . "\n" );
 	}
 
@@ -258,13 +261,16 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param string $alt Alt text for the image
 	 * @param string $link Override image link (optional)
 	 * @param array $handlerOpts Array of options for image handler (aka page number)
+	 * @param array $imageParameters Array of options for image html generation (since 1.28)
 	 */
-	function insert( $title, $html = '', $alt = '', $link = '', $handlerOpts = [] ) {
+	function insert( $title, $html = '', $alt = '', $link = '', $handlerOpts = [],
+		$imageParameters = []
+	) {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();
 		}
-		array_unshift( $this->mImages, [ &$title, $html, $alt, $link, $handlerOpts ] );
+		array_unshift( $this->mImages, [ &$title, $html, $alt, $link, $handlerOpts, $imageParameters ] );
 	}
 
 	/**
