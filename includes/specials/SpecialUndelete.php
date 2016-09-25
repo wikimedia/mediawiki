@@ -39,6 +39,8 @@ class PageArchive {
 	/** @var Config */
 	protected $config;
 
+	protected $params = array();
+
 	function __construct( $title, Config $config = null ) {
 		if ( is_null( $title ) ) {
 			throw new MWException( __METHOD__ . ' given a null title.' );
@@ -432,6 +434,7 @@ class PageArchive {
 		$logEntry->setTarget( $this->title );
 		$logEntry->setComment( $reason );
 		$logEntry->setTags( $tags );
+		$logEntry->setParameters( $this->params );
 
 		Hooks::run( 'ArticleUndeleteLogEntry', [ $this, &$logEntry, $user ] );
 
@@ -675,6 +678,7 @@ class PageArchive {
 
 				$revision->insertOn( $dbw );
 				$restored++;
+				$this->params[ 'rev' . $row->ar_rev_id ] = $row->ar_page_id;
 
 				Hooks::run( 'ArticleRevisionUndeleted',
 					[ &$this->title, $revision, $row->ar_page_id ] );
