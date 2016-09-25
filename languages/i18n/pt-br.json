@@ -100,7 +100,8 @@
 			"LucyDiniz",
 			"Tusca",
 			"Cristofer Alves",
-			"Tark"
+			"Tark",
+			"O Andarilho"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -128,7 +129,7 @@
 	"tog-enotifminoredits": "Notificar-me por email também sobre edições menores de páginas ou arquivos",
 	"tog-enotifrevealaddr": "Revelar meu endereço de email nas mensagens de notificação",
 	"tog-shownumberswatching": "Mostrar o número de usuários que estão vigiando",
-	"tog-oldsig": "Assinatura existente:",
+	"tog-oldsig": "Sua Assinatura Existente:",
 	"tog-fancysig": "Tratar assinatura como wikitexto (sem link automático)",
 	"tog-uselivepreview": "Utilizar pré-visualização em tempo real",
 	"tog-forceeditsummary": "Avisar-me ao introduzir um sumário de edição vazio",
@@ -145,7 +146,7 @@
 	"tog-showhiddencats": "Exibir categorias ocultas",
 	"tog-norollbackdiff": "Omitir diferenças após desfazer edições em bloco",
 	"tog-useeditwarning": "Avisar-me quando eu deixar uma janela de edição sem ter salvo as alterações",
-	"tog-prefershttps": "Usar sempre uma conexão segura quando estiver conectado",
+	"tog-prefershttps": "Usar sempre uma conexão segura enquanto estiver conectado",
 	"underline-always": "Sempre",
 	"underline-never": "Nunca",
 	"underline-default": "Padrão do navegador/skin",
@@ -241,7 +242,7 @@
 	"newwindow": "(abre numa nova janela)",
 	"cancel": "Cancelar",
 	"moredotdotdot": "Mais...",
-	"morenotlisted": "Esta lista não está completa.",
+	"morenotlisted": "Esta lista está incompleta.",
 	"mypage": "Página",
 	"mytalk": "Discussão",
 	"anontalk": "Discussão",
