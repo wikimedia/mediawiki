@@ -139,6 +139,9 @@ class TraditionalImageGallery extends ImageGalleryBase {
 						'custom-url-link' => $link
 					];
 
+					// $pair[5] are extra image html generation options
+					$imageParameters = $imageParameters + $pair[5];
+
 					// In the absence of both alt text and caption, fall back on
 					// providing screen readers with the filename as alt text
 					if ( $alt == '' && $text == '' ) {
