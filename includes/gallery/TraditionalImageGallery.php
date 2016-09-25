@@ -132,12 +132,15 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					/** @var MediaTransformOutput $thumb */
 					$vpad = $this->getVPad( $this->mHeights, $thumb->getHeight() );
 
-					$imageParameters = [
+					$imageParameters = $pair[5] + [
 						'desc-link' => true,
 						'desc-query' => $descQuery,
 						'alt' => $alt,
 						'custom-url-link' => $link
 					];
+
+					// $pair[5] are extra image html generation options
+#					$imageParameters = $imageParameters + $pair[5];
 
 					// In the absence of both alt text and caption, fall back on
 					// providing screen readers with the filename as alt text
