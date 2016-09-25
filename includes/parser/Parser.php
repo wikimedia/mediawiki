@@ -4952,6 +4952,7 @@ class Parser {
 			$paramMap = [
 				'img_alt' => 'gallery-internal-alt',
 				'img_link' => 'gallery-internal-link',
+				'img_border' => 'gallery-internal-border',
 			];
 			if ( $handler ) {
 				$paramMap = $paramMap + $handler->getParamMap();
@@ -4966,6 +4967,7 @@ class Parser {
 			$alt = '';
 			$link = '';
 			$handlerOptions = [];
+			$imageParameters = [];
 			if ( isset( $matches[3] ) ) {
 				// look for an |alt= definition while trying not to break existing
 				// captions with multiple pipes (|) in it, until a more sensible grammar
@@ -5000,6 +5002,9 @@ class Parser {
 								}
 							}
 							break;
+						case 'gallery-internal-border':
+							$imageParameters['img-class'] = 'thumbborder';
+							break;
 						default:
 							// Must be a handler specific parameter.
 							if ( $handler->validateParam( $paramName, $match ) ) {
@@ -5020,7 +5025,7 @@ class Parser {
 				$label = substr( $label, 1 );
 			}
 
-			$ig->add( $title, $label, $alt, $link, $handlerOptions );
+			$ig->add( $title, $label, $alt, $link, $handlerOptions, $imageParameters );
 		}
 		$html = $ig->toHTML();
 		Hooks::run( 'AfterParserFetchFileAndTitle', [ $this, $ig, &$html ] );
