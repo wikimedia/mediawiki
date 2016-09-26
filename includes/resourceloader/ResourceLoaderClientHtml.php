@@ -261,9 +261,11 @@ class ResourceLoaderClientHtml {
 		// Change "client-nojs" class to client-js. This allows easy toggling of UI components.
 		// This happens synchronously on every page view to avoid flashes of wrong content.
 		// See also #getDocumentAttributes() and /resources/src/startup.js.
+		// When doing this we should be sure that async loading is supported to avoid unexpected rendering issues.
+		// The UCMini browser although claiming support with async attribute doesn't seem to work so we also have to browser sniff.
 		$chunks[] = Html::inlineScript(
-			'document.documentElement.className = document.documentElement.className'
-			. '.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );'
+			'if ( "async" in document.createElement("script") && navigator.userAgent.indexOf( "U; " ) === -1 ) { document.documentElement.className = document.documentElement.className'
+			. '.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" ); }'
 		);
 
 		// Inline RLQ: Set page variables
