@@ -26,7 +26,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideSelect
-	 * @covers DatabaseBase::select
+	 * @covers Database::select
 	 */
 	public function testSelect( $sql, $sqlText ) {
 		$this->database->select(
@@ -132,7 +132,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideUpdate
-	 * @covers DatabaseBase::update
+	 * @covers Database::update
 	 */
 	public function testUpdate( $sql, $sqlText ) {
 		$this->database->update(
@@ -184,7 +184,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideDelete
-	 * @covers DatabaseBase::delete
+	 * @covers Database::delete
 	 */
 	public function testDelete( $sql, $sqlText ) {
 		$this->database->delete(
@@ -217,7 +217,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideUpsert
-	 * @covers DatabaseBase::upsert
+	 * @covers Database::upsert
 	 */
 	public function testUpsert( $sql, $sqlText ) {
 		$this->database->upsert(
@@ -253,7 +253,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideDeleteJoin
-	 * @covers DatabaseBase::deleteJoin
+	 * @covers Database::deleteJoin
 	 */
 	public function testDeleteJoin( $sql, $sqlText ) {
 		$this->database->deleteJoin(
@@ -300,7 +300,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideInsert
-	 * @covers DatabaseBase::insert
+	 * @covers Database::insert
 	 */
 	public function testInsert( $sql, $sqlText ) {
 		$this->database->insert(
@@ -353,7 +353,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideInsertSelect
-	 * @covers DatabaseBase::insertSelect
+	 * @covers Database::insertSelect
 	 */
 	public function testInsertSelect( $sql, $sqlTextNative, $sqlSelect, $sqlInsert ) {
 		$this->database->insertSelect(
@@ -440,7 +440,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideReplace
-	 * @covers DatabaseBase::replace
+	 * @covers Database::replace
 	 */
 	public function testReplace( $sql, $sqlText ) {
 		$this->database->replace(
@@ -555,7 +555,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideNativeReplace
-	 * @covers DatabaseBase::nativeReplace
+	 * @covers Database::nativeReplace
 	 */
 	public function testNativeReplace( $sql, $sqlText ) {
 		$this->database->nativeReplace(
@@ -582,7 +582,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideConditional
-	 * @covers DatabaseBase::conditional
+	 * @covers Database::conditional
 	 */
 	public function testConditional( $sql, $sqlText ) {
 		$this->assertEquals( trim( $this->database->conditional(
@@ -623,7 +623,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideBuildConcat
-	 * @covers DatabaseBase::buildConcat
+	 * @covers Database::buildConcat
 	 */
 	public function testBuildConcat( $stringList, $sqlText ) {
 		$this->assertEquals( trim( $this->database->buildConcat(
@@ -646,7 +646,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideBuildLike
-	 * @covers DatabaseBase::buildLike
+	 * @covers Database::buildLike
 	 */
 	public function testBuildLike( $array, $sqlText ) {
 		$this->assertEquals( trim( $this->database->buildLike(
@@ -677,7 +677,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideUnionQueries
-	 * @covers DatabaseBase::unionQueries
+	 * @covers Database::unionQueries
 	 */
 	public function testUnionQueries( $sql, $sqlText ) {
 		$this->assertEquals( trim( $this->database->unionQueries(
@@ -713,7 +713,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers DatabaseBase::commit
+	 * @covers Database::commit
 	 */
 	public function testTransactionCommit() {
 		$this->database->begin( __METHOD__ );
@@ -722,7 +722,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers DatabaseBase::rollback
+	 * @covers Database::rollback
 	 */
 	public function testTransactionRollback() {
 		$this->database->begin( __METHOD__ );
@@ -731,7 +731,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers DatabaseBase::dropTable
+	 * @covers Database::dropTable
 	 */
 	public function testDropTable() {
 		$this->database->setExistingTables( [ 'table' ] );
@@ -740,7 +740,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers DatabaseBase::dropTable
+	 * @covers Database::dropTable
 	 */
 	public function testDropNonExistingTable() {
 		$this->assertFalse(
@@ -750,7 +750,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideMakeList
-	 * @covers DatabaseBase::makeList
+	 * @covers Database::makeList
 	 */
 	public function testMakeList( $list, $mode, $sqlText ) {
 		$this->assertEquals( trim( $this->database->makeList(
