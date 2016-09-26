@@ -88,8 +88,8 @@ class LocalPasswordPrimaryAuthenticationProvider
 			'user_id', 'user_password', 'user_password_expires',
 		];
 
-		$dbw = wfGetDB( DB_MASTER );
-		$row = $dbw->selectRow(
+		$dbr = wfGetDB( DB_REPLICA );
+		$row = $dbr->selectRow(
 			'user',
 			$fields,
 			[ 'user_name' => $username ],
@@ -99,6 +99,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 			return AuthenticationResponse::newAbstain();
 		}
 
+		$oldRow = clone $row;
 		// Check for *really* old password hashes that don't even have a type
 		// The old hash format was just an md5 hex hash, with no type information
 		if ( preg_match( '/^[0-9a-f]{32}$/', $row->user_password ) ) {
@@ -132,12 +133,18 @@ class LocalPasswordPrimaryAuthenticationProvider
 		// @codeCoverageIgnoreStart
 		if ( $this->getPasswordFactory()->needsUpdate( $pwhash ) ) {
 			$pwhash = $this->getPasswordFactory()->newFromPlaintext( $req->password );
-			$dbw->update(
-				'user',
-				[ 'user_password' => $pwhash->toString() ],
-				[ 'user_id' => $row->user_id ],
-				__METHOD__
-			);
+			\DeferredUpdates::addCallableUpdate( function () use ( $pwhash, $oldRow ) {
+				$dbw = wfGetDB( DB_MASTER );
+				$dbw->update(
+					'user',
+					[ 'user_password' => $pwhash->toString() ],
+					[
+						'user_id' => $oldRow->user_id,
+						'user_password' => $oldRow->user_password
+					],
+					__METHOD__
+				);
+			} );
 		}
 		// @codeCoverageIgnoreEnd
 
@@ -152,8 +159,8 @@ class LocalPasswordPrimaryAuthenticationProvider
 			return false;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
-		$row = $dbw->selectRow(
+		$dbr = wfGetDB( DB_REPLICA );
+		$row = $dbr->selectRow(
 			'user',
 			[ 'user_password' ],
 			[ 'user_name' => $username ],
