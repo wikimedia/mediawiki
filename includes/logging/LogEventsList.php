@@ -310,7 +310,7 @@ class LogEventsList extends ContextSource {
 			return '';
 		}
 		$html = '';
-		$html .= xml::label( wfMessage( 'log-action-filter-' . $types[0] )->text(),
+		$html .= Xml::label( wfMessage( 'log-action-filter-' . $types[0] )->text(),
 			'action-filter-' .$types[0] ) . "\n";
 		$select = new XmlSelect( 'subtype' );
 		$select->addOption( wfMessage( 'log-action-filter-all' )->text(), '' );
@@ -319,7 +319,7 @@ class LogEventsList extends ContextSource {
 			$select->addOption( wfMessage( $msgKey )->text(), $value );
 		}
 		$select->setDefault( $action );
-		$html .= $select->getHtml();
+		$html .= $select->getHTML();
 		return $html;
 	}
 

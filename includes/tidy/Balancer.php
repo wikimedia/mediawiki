@@ -729,7 +729,7 @@ class BalanceStack implements IteratorAggregate {
 			$this->config['tidyCompat'] && !$isComment &&
 			$this->currentNode->isA( BalanceSets::$tidyPWrapSet )
 		) {
-			$this->insertHTMLELement( 'mw:p-wrap', [] );
+			$this->insertHTMLElement( 'mw:p-wrap', [] );
 			return $this->insertText( $value );
 		} else {
 			$this->currentNode->appendChild( $value );

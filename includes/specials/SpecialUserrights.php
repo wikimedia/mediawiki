@@ -156,7 +156,7 @@ class UserrightsPage extends SpecialPage {
 		if ( $request->getCheck( 'success' ) && $this->mFetchedUser !== null ) {
 			$out->addModules( [ 'mediawiki.special.userrights' ] );
 			$out->addModuleStyles( 'mediawiki.notification.convertmessagebox.styles' );
-			$out->addHtml(
+			$out->addHTML(
 				Html::rawElement(
 					'div',
 					[

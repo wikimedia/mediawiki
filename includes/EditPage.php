@@ -4263,7 +4263,7 @@ HTML
 	protected function safeUnicodeOutput( $text ) {
 		return $this->checkUnicodeCompliantBrowser()
 			? $text
-			: $this->makesafe( $text );
+			: $this->makeSafe( $text );
 	}
 
 	/**

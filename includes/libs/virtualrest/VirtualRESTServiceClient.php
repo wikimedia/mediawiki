@@ -304,7 +304,7 @@ class VirtualRESTServiceClient {
 	 */
 	private function getInstance( $prefix ) {
 		if ( !isset( $this->instances[$prefix] ) ) {
-			throw new RunTimeException( "No service registered at prefix '{$prefix}'." );
+			throw new RuntimeException( "No service registered at prefix '{$prefix}'." );
 		}
 
 		if ( !( $this->instances[$prefix] instanceof VirtualRESTService ) ) {

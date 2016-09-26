@@ -59,7 +59,7 @@ class SpecialPreferences extends SpecialPage {
 			$session->remove( 'specialPreferencesSaveSuccess' );
 			$out->addModuleStyles( 'mediawiki.notification.convertmessagebox.styles' );
 
-			$out->addHtml(
+			$out->addHTML(
 				Html::rawElement(
 					'div',
 					[
