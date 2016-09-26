@@ -14,6 +14,15 @@ interface SearchIndexField {
 	const INDEX_TYPE_DATETIME = 4;
 	const INDEX_TYPE_NESTED = 5;
 	const INDEX_TYPE_BOOL = 6;
+
+	/**
+	 * SHORT_TEXT is meant to be used with short text made of mostly ascii
+	 * technical information. Generally a language agnostic analysis chain
+	 * is used and aggressive splitting to increase recall.
+	 * E.g suited for mime/type
+	 */
+	const INDEX_TYPE_SHORT_TEXT = 7;
+
 	/**
 	 * Generic field flags.
 	 */
