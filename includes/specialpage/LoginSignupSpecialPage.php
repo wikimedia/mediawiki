@@ -294,11 +294,18 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			return;
 		}
 
-		$status = $this->trySubmit();
+		if ( $this->canBypassForm() ) {
+			$response = $this->performAuthenticationStep( $this->authAction,
+				$this->authRequests );
+			$status = Status::newGood( $response );
+		} else {
 
-		if ( !$status || !$status->isGood() ) {
-			$this->mainLoginForm( $this->authRequests, $status ? $status->getMessage() : '', 'error' );
-			return;
+			$status = $this->trySubmit();
+
+			if ( !$status || !$status->isGood() ) {
+				$this->mainLoginForm( $this->authRequests, $status ? $status->getMessage() : '', 'error' );
+				return;
+			}
 		}
 
 		/** @var AuthenticationResponse $response */
@@ -364,6 +371,22 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			default:
 				throw new LogicException( 'invalid AuthenticationResponse' );
 		}
+	}
+
+	private function canBypassForm() {
+		if ( $this->isContinued() ) {
+			return false;
+		}
+		foreach ( $this->authRequests as $req ) {
+			$fieldInfo = $req->getFieldInfo();
+			foreach ( $fieldInfo as $field ) {
+				if ( isset( $field['type'] ) && $field['type'] &&
+					( !isset( $field['skippable'] ) || !$field['skippable'] ) ) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	/**
