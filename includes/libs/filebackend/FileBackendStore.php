@@ -675,6 +675,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::getFileStat()
+	 * @param array $params
 	 */
 	abstract protected function doGetFileStat( array $params );
 
@@ -727,6 +728,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::getFileXAttributes()
+	 * @param array $params
 	 * @return bool|string
 	 */
 	protected function doGetFileXAttributes( array $params ) {
