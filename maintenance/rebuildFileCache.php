@@ -96,7 +96,6 @@ class RebuildFileCache extends Maintenance {
 		$blockEnd = $start + $this->mBatchSize - 1;
 
 		$dbw = $this->getDB( DB_MASTER );
-		$mainContext = RequestContext::getMain();
 		// Go through each page and save the output
 		while ( $blockEnd <= $end ) {
 			// Get the pages

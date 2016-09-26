@@ -191,8 +191,6 @@ class ApiAuthManagerHelper {
 	 * @return array
 	 */
 	public function formatAuthenticationResponse( AuthenticationResponse $res ) {
-		$params = $this->module->extractRequestParams();
-
 		$ret = [
 			'status' => $res->status,
 		];
