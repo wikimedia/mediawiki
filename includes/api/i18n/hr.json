@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ex13"
+		]
+	},
+	"apihelp-block-description": "Blokiraj suradnika.",
+	"apihelp-block-param-user": "Suradničko ime, IP adresa ili opseg koje želite blokirati."
+}

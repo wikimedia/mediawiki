@@ -261,6 +261,7 @@
 	"talk": "토론",
 	"views": "보기",
 	"toolbox": "도구",
+	"tool-link-userrights": "{{GENDER:$1|사용자}} 그룹 변경",
 	"tool-link-emailuser": "이 {{GENDER:$1|사용자}}에게 이메일 보내기",
 	"userpage": "사용자 문서 보기",
 	"projectpage": "프로젝트 문서 보기",
@@ -3811,5 +3812,7 @@
 	"unlinkaccounts-success": "계정의 연결이 해제되었습니다.",
 	"authenticationdatachange-ignored": "인증 데이터 변경을 처리하지 못했습니다. 제공자를 설정하지 않으셨습니까?",
 	"userjsispublic": "주목해 주십시오: 자바스크립트의 하위 문서들은 다른 사용자들이 볼 수 있기 때문에 기밀 데이터를 포함해서는 안 됩니다.",
-	"usercssispublic": "주목해 주십시오: CSS의 하위 문서들은 다른 사용자들이 볼 수 있기 때문에 기밀 데이터를 포함해서는 안 됩니다."
+	"usercssispublic": "주목해 주십시오: CSS의 하위 문서들은 다른 사용자들이 볼 수 있기 때문에 기밀 데이터를 포함해서는 안 됩니다.",
+	"restrictionsfield-badip": "유효하지 않은 IP 주소나 대역: $1",
+	"restrictionsfield-label": "허용된 IP 대역:"
 }

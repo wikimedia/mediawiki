@@ -3469,6 +3469,7 @@
 	"htmlform-cloner-create": "Weitere hinzufügen",
 	"htmlform-cloner-delete": "Entfernen",
 	"htmlform-cloner-required": "Es ist mindestens ein Wert erforderlich.",
+	"htmlform-date-toolow": "Der angegebene Wert liegt vor dem frühesten erlaubten Datum $1.",
 	"htmlform-title-badnamespace": "[[:$1]] ist nicht im Namensraum „{{ns:$2}}“.",
 	"htmlform-title-not-creatable": "„$1“ ist kein erstellbarer Seitentitel",
 	"htmlform-title-not-exists": "$1 ist nicht vorhanden.",

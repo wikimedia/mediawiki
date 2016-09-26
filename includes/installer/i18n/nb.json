@@ -7,7 +7,8 @@
 			"Danmichaelo",
 			"Jeblad",
 			"Macofe",
-			"SuperPotato"
+			"SuperPotato",
+			"Jon Harald Søby"
 		]
 	},
 	"config-desc": "Installasjonsprogrammet for MediaWiki",
@@ -55,7 +56,7 @@
 	"config-env-hhvm": "HHVM $1 er installert.",
 	"config-unicode-using-intl": "Bruker [http://pecl.php.net/intl intl PECL-utvidelsen] for Unicode-normalisering.",
 	"config-unicode-pure-php-warning": "'''Advarsel''': [http://pecl.php.net/intl intl PECL-utvidelsen] er ikke tilgjengelig for å håndtere Unicode-normaliseringen, faller tilbake til en langsommere ren-PHP-implementasjon.\nOm du kjører et nettsted med høy trafikk bør du lese litt om [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode-normalisering].",
-	"config-unicode-update-warning": "'''Advarsel''': Den installerte versjonen av Unicode-normalisereren bruker en eldre versjon av [http://site.icu-project.org/ ICU-prosjektets] bibliotek.\nDu bør [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations oppgradere] om du er bekymret for å bruke Unicode.",
+	"config-unicode-update-warning": "<strong>Advarsel:</strong> Den installerte versjonen av Unicode-normalisereren bruker en eldre versjon av [http://site.icu-project.org/ ICU-prosjektets] bibliotek.\nDu bør [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations oppgradere] om du er bekymret for å bruke Unicode.",
 	"config-no-db": "Fant ingen passende databasedriver! Du må installere en databasedriver for PHP.\nFølgende {{PLURAL:$2|databasetype|databasetyper}} støttes: $1\n\nOm du kompilerte PHP selv, rekonfigurer den med en aktivert databaseklient, for eksempel ved å bruke <code>./configure --with-mysql</code>.\nOm du installerte PHP fra en Debian- eller Ubuntu-pakke, må du også installere for eksempel <code>php5-mysql</code>-pakken.",
 	"config-outdated-sqlite": "'''Advarsel''': Du har SQLite $1, som er en eldre versjon enn minimumskravet SQLite $2. SQLite vil ikke være tilgjengelig.",
 	"config-no-fts3": "'''Advarsel''': SQLite er kompilert uten [//sqlite.org/fts3.html FTS3-modulen], søkefunksjoner vil ikke være tilgjengelig på dette bakstykket.",
@@ -184,7 +185,7 @@
 	"config-ns-site-name": "Samme som wikinavnet: $1",
 	"config-ns-other": "Annet (spesifiser)",
 	"config-ns-other-default": "MyWiki",
-	"config-project-namespace-help": "Etter Wikipedias eksempel holder mange wikier deres sider med retningslinjer atskilt fra sine innholdssider, i et «'''prosjektnavnerom'''».\nAlle sidetitler i dette navnerommet starter med et gitt prefiks som du kan angi her.\nTradisjonelt er dette prefikset avledet fra navnet på wikien, men det kan ikke innholde punkttegn som «#» eller «:».",
+	"config-project-namespace-help": "Etter Wikipedias eksempel holder mange wikier deres sider med retningslinjer atskilt fra sine innholdssider, i et «'''prosjektnavnerom'''».\nAlle sidetitler i dette navnerommet starter med et gitt prefiks som du kan angi her.\nVanligvis er dette prefikset avledet fra navnet på wikien, men det kan ikke innholde punkttegn som «#» eller «:».",
 	"config-ns-invalid": "Det angitte navnerommet «<nowiki>$1</nowiki>» er ugyldig.\nAngi et annet prosjektnavnerom.",
 	"config-ns-conflict": "Det angitte navnerommet «<nowiki>$1</nowiki>» er i konflikt med et standard MediaWiki-navnerom.\nAngi et annet prosjekt-navnerom.",
 	"config-admin-box": "Administratorkonto",
@@ -204,6 +205,8 @@
 	"config-subscribe": "Abonner på [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce e-postlisten for utgivelsesannonseringer].",
 	"config-subscribe-help": "Dette er en lav-volums e-postliste brukt til utgivelsesannonseringer, herunder viktige sikkerhetsannonseringer.\nDu bør abonnere på den og oppdatere MediaWikiinstallasjonen din når nye versjoner kommer ut.",
 	"config-subscribe-noemail": "Du prøvde å abonnere på epost-meldinger om nye versjoner uten å oppgi en epost-adresse. Vær vennlig å oppgi en epost-adresse om du ønsker dette abonnementet.",
+	"config-pingback": "Del data om denne installasjonen med MediaWiki-utviklerne.",
+	"config-pingback-help": "Om du velger denne vil MediaWiki periodisk pinge https://www.mediawiki.org med grunnleggende data om denne MediaWiki-instansen. Disse dataene inkluderer for eksempel systemtypen, PHP-versjonen og hvilket databasebakstykke som er valgt. Wikimedia Foundation deler disse dataene med MediaWiki-utviklerne for å bestemme framtidige utviklingstiltak. Følgende data vil bli sendt for ditt system:\n<pre>$1</pre>",
 	"config-almost-done": "Du er nesten ferdig!\nDu kan velge å hoppe over de siste konfigurasjonstrinnene og installere wikien med en gang.",
 	"config-optional-continue": "Still meg flere spørsmål.",
 	"config-optional-skip": "Jeg er lei, bare installer wikien.",
@@ -306,11 +309,12 @@
 	"config-install-extension-tables": "Oppretter tabeller for aktiviserte utvidelser",
 	"config-install-mainpage-failed": "Kunne ikke sette inn hovedside: $1",
 	"config-install-done": "<strong>Gratulrerer!</strong>\nDu har lykkes i å installere MediaWiki.\n\nInstallasjonsprogrammet har generert en <code>LocalSettings.php</code>-fil.\nDen inneholder alle dine konfigureringer.\n\nDu må laste den ned og legge den på hovedfolderen for din wiki-installasjon (der index.php ligger). Nedlastingen skulle ha startet automatisk.\n\nHvis ingen nedlasting ble tilbudt, eller du avbrøt den, kan du få den i gang ved å klikke på lenken under:\n\n$3\n\n<strong>OBS:</strong> Hvis du ikke gjør dette nå, vil den genererte konfigurasjonsfilen ikke være tilgjengelig for deg senere.\n\nNår dette er gjort, kan du <strong>[$2 gå inn i wikien]</strong>.",
+	"config-install-done-path": "<strong>Gratulerer!</strong>\nDu har installert MediaWiki.\n\nInstallereren har generert en <code>LocalSettings.php</code>-fil.\nDen inneholder all konfigurasjonen for wikien.\n\nDu må laste den ned og legge den i <code>$4</code>. Nedlastingen skal ha startet automatisk.\n\nOm nedlastingen ikke ble startet, eller om du avbrøt den, kan du starte på nytt ved å klikke lenken nedenfor:\n\n$3\n\n<strong>Merk:</strong> Om du ikke gjør dette nå vil den genererte konfigurasjonen ikke være tilgjengelig senere.\n\nNår dette er gjort kan du <strong>[$2 gå til wikien din]</strong>.",
 	"config-download-localsettings": "Last ned <code>LocalSettings.php</code>",
 	"config-help": "hjelp",
 	"config-help-tooltip": "klikk for å utvide",
 	"config-nofile": "Filen \"$1\" ble ikke funnet. Kan den være blitt slettet?",
 	"config-extension-link": "Visste du at wikien din kan brukes sammen med en mengde [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions utvidelser]?\n\nDu kan sjekke gjennom [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category utvidelser per kategori] eller [https://www.mediawiki.org/wiki/Extension_Matrix utvidelsesmatrisen] for å se den komplette listen av utvidelser.",
-	"mainpagetext": "'''MediaWiki-programvaren er nå installert.'''",
+	"mainpagetext": "<strong>MediaWiki har blitt installert.</strong>",
 	"mainpagedocfooter": "Sjekk [https://meta.wikimedia.org/wiki/Help:Contents brukerveiledningen] for å få informasjon om hvordan du bruker wiki-programvaren.\n\n==Hvordan komme igang==\n*[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Innstillingsliste]\n*[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Ofte stilte spørsmål om MediaWiki]\n*[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-postliste]\n*[https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Tilpass MediaWiki for ditt språk]\n*[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Lær deg å beskytte deg mot spam på wikien din]"
 }
