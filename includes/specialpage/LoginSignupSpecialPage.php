@@ -294,6 +294,11 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			return;
 		}
 
+		if ( $this->canBypassForm() ) {
+			$this->setRequest( [], true );
+			$this->getRequest()->setVal( $this->getTokenName(), $this->getToken() );
+		}
+
 		$status = $this->trySubmit();
 
 		if ( !$status || !$status->isGood() ) {
@@ -364,6 +369,29 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			default:
 				throw new LogicException( 'invalid AuthenticationResponse' );
 		}
+	}
+
+	private function canBypassForm() {
+		if ( $this->isContinued() ) {
+			return false;
+		}
+		$button_found = false;
+		$fields = AuthenticationRequest::mergeFieldInfo($this->authRequests);
+		foreach ( $fields as $field ) {
+			if ( isset( $field['type'] ) && ( $field['type']  !== 'null' ) &&
+				( !isset( $field['skippable'] ) || !$field['skippable'] ) ) {
+				if ( $field['type'] === 'button' ) {
+					if ( $button_found ) {
+						return false;
+					} else {
+						$button_found = true;
+					}
+				} else {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	/**
