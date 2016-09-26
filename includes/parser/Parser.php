@@ -20,7 +20,6 @@
  * @file
  * @ingroup Parser
  */
-use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 
 /**
