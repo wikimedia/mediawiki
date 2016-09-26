@@ -1530,6 +1530,7 @@
 	"upload-dialog-disabled": "File uploads using this dialog are disabled on this wiki.",
 	"upload-dialog-title": "Upload file",
 	"upload-dialog-button-cancel": "Cancel",
+	"upload-dialog-button-back": "Back",
 	"upload-dialog-button-done": "Done",
 	"upload-dialog-button-save": "Save",
 	"upload-dialog-button-upload": "Upload",
