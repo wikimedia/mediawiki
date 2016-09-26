@@ -24,8 +24,6 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Query module to perform full text search within wiki titles and content
  *

@@ -251,7 +251,7 @@ class Parser {
 	protected $mProfiler;
 
 	/**
-	 * @var \MediaWiki\Linker\LinkRenderer
+	 * @var LinkRenderer
 	 */
 	protected $mLinkRenderer;
 
@@ -887,10 +887,10 @@ class Parser {
 	}
 
 	/**
-	 * Get a \MediaWiki\Linker\LinkRenderer instance to make links with
+	 * Get a LinkRenderer instance to make links with
 	 *
 	 * @since 1.28
-	 * @return \MediaWiki\Linker\LinkRenderer
+	 * @return LinkRenderer
 	 */
 	public function getLinkRenderer() {
 		if ( !$this->mLinkRenderer ) {

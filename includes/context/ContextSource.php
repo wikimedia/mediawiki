@@ -19,7 +19,6 @@
  * @file
  */
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
-use MediaWiki\MediaWikiServices;
 
 /**
  * The simplest way of implementing IContextSource is to hold a RequestContext as a
