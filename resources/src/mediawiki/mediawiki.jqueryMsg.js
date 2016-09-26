@@ -1126,11 +1126,22 @@
 			} else {
 				$el = $( '<a>' );
 				if ( typeof arg === 'function' ) {
-					$el.attr( 'href', '#' )
-					.click( function ( e ) {
-						e.preventDefault();
-					} )
-					.click( arg );
+					$el
+						// Restore accessibility features, which normally only work on links with 'href'
+						.attr( 'tabindex', '0' )
+						.css( 'cursor', 'pointer' )
+						// Use 'mousedown' rather than 'click' because we want to handle middle-click too,
+						// and browsers don't fire the 'click' event for it.
+						.mousedown( function ( e ) {
+							arg.call( this, e );
+							e.preventDefault();
+						} )
+						.keypress( function ( e ) {
+							// 13 = Enter; 32 = Space
+							if ( e.which === 32 || e.which === 13 ) {
+								arg.call( this, e );
+							}
+						} );
 				} else {
 					$el.attr( 'href', textify( arg ) );
 				}
