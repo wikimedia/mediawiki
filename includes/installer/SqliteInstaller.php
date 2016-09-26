@@ -184,7 +184,7 @@ class SqliteInstaller extends DatabaseInstaller {
 		$dbName = $this->getVar( 'wgDBname' );
 		try {
 			# @todo FIXME: Need more sensible constructor parameters, e.g. single associative array
-			$db = DatabaseBase::factory( 'sqlite', [ 'dbname' => $dbName, 'dbDirectory' => $dir ] );
+			$db = Database::factory( 'sqlite', [ 'dbname' => $dbName, 'dbDirectory' => $dir ] );
 			$status->value = $db;
 		} catch ( DBConnectionError $e ) {
 			$status->fatal( 'config-sqlite-connection-error', $e->getMessage() );
@@ -239,7 +239,7 @@ class SqliteInstaller extends DatabaseInstaller {
 
 		# Create the global cache DB
 		try {
-			$conn = DatabaseBase::factory( 'sqlite', [ 'dbname' => 'wikicache', 'dbDirectory' => $dir ] );
+			$conn = Database::factory( 'sqlite', [ 'dbname' => 'wikicache', 'dbDirectory' => $dir ] );
 			# @todo: don't duplicate objectcache definition, though it's very simple
 			$sql =
 <<<EOT

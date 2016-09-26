@@ -117,7 +117,7 @@ class DatabaseSqlite extends DatabaseBase {
 		$p['schema'] = false;
 		$p['tablePrefix'] = '';
 
-		return DatabaseBase::factory( 'sqlite', $p );
+		return Database::factory( 'sqlite', $p );
 	}
 
 	/**

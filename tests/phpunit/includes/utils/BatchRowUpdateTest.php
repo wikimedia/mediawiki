@@ -129,7 +129,7 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 		$db = $this->mockDb();
 		$db->expects( $this->once() )
 			->method( 'select' )
-			// only testing second parameter of DatabaseBase::select
+			// only testing second parameter of Database::select
 			->with( 'some_table', $columns )
 			->will( $this->returnValue( new ArrayIterator( [] ) ) );
 
@@ -164,7 +164,7 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 
 	/**
 	 * Slightly hackish to use reflection, but asserting different parameters
-	 * to consecutive calls of DatabaseBase::select in phpunit is error prone
+	 * to consecutive calls of Database::select in phpunit is error prone
 	 *
 	 * @dataProvider provider_readerSelectConditions
 	 */
@@ -214,7 +214,7 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 	protected function consecutivelyReturnFromSelect( array $results ) {
 		$retvals = [];
 		foreach ( $results as $rows ) {
-			// The DatabaseBase::select method returns iterators, so we do too.
+			// The Database::select method returns iterators, so we do too.
 			$retvals[] = $this->returnValue( new ArrayIterator( $rows ) );
 		}
 

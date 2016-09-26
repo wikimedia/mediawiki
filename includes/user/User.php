@@ -1435,8 +1435,8 @@ class User implements IDBAccessObject {
 	 * based on comparing $this->mTouched with the user_touched field.
 	 *
 	 * @param DatabaseBase $db
-	 * @param array $conditions WHERE conditions for use with DatabaseBase::update
-	 * @return array WHERE conditions for use with DatabaseBase::update
+	 * @param array $conditions WHERE conditions for use with Database::update
+	 * @return array WHERE conditions for use with Database::update
 	 */
 	protected function makeUpdateConditions( DatabaseBase $db, array $conditions ) {
 		if ( $this->mTouched ) {

@@ -212,7 +212,7 @@ class MssqlInstaller extends DatabaseInstaller {
 		}
 
 		try {
-			$db = DatabaseBase::factory( 'mssql', [
+			$db = Database::factory( 'mssql', [
 				'host' => $this->getVar( 'wgDBserver' ),
 				'user' => $user,
 				'password' => $password,
@@ -457,7 +457,7 @@ class MssqlInstaller extends DatabaseInstaller {
 			}
 
 			try {
-				DatabaseBase::factory( 'mssql', [
+				Database::factory( 'mssql', [
 					'host' => $this->getVar( 'wgDBserver' ),
 					'user' => $user,
 					'password' => $password,
