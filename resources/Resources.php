@@ -1083,6 +1083,7 @@ return [
 			'resources/src/mediawiki/htmlform/autocomplete.js',
 			'resources/src/mediawiki/htmlform/autoinfuse.js',
 			'resources/src/mediawiki/htmlform/checkmatrix.js',
+			'resources/src/mediawiki/htmlform/datetime.js',
 			'resources/src/mediawiki/htmlform/cloner.js',
 			'resources/src/mediawiki/htmlform/hide-if.js',
 			'resources/src/mediawiki/htmlform/multiselect.js',
