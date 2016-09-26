@@ -58,6 +58,7 @@ class ResetPasswordSecondaryAuthenticationProvider extends AbstractSecondaryAuth
 
 	/**
 	 * Try to reset the password
+	 * @param \User $user
 	 * @param AuthenticationRequest[] $reqs
 	 * @return AuthenticationResponse
 	 */

@@ -43,7 +43,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * Change the form descriptor that determines how a field will look in the authentication form.
 	 * Called from fieldInfoToFormDescriptor().
 	 * @param AuthenticationRequest[] $requests
-	 * @param string $fieldInfo Field information array (union of all
+	 * @param array $fieldInfo Field information array (union of all
 	 *    AuthenticationRequest::getFieldInfo() responses).
 	 * @param array $formDescriptor HTMLForm descriptor. The special key 'weight' can be set to
 	 *    change the order of the fields.
@@ -205,6 +205,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	/**
 	 * Return custom message key.
 	 * Allows subclasses to customize messages.
+	 * @param string $defaultKey
 	 * @return string
 	 */
 	protected function messageKey( $defaultKey ) {
@@ -668,6 +669,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * Maps an authentication field configuration for a single field (as returned by
 	 * AuthenticationRequest::getFieldInfo()) to a HTMLForm field descriptor.
 	 * @param array $singleFieldInfo
+	 * @param string $fieldName
 	 * @return array
 	 */
 	protected static function mapSingleFieldInfo( $singleFieldInfo, $fieldName ) {
