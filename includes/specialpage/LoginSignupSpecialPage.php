@@ -294,11 +294,18 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			return;
 		}
 
-		$status = $this->trySubmit();
+		if ( $this->canBypassForm() ) {
+			$response = $this->performAuthenticationStep( $this->authAction,
+				$this->authRequests );
+			$status = Status::newGood( $response );
+		} else {
 
-		if ( !$status || !$status->isGood() ) {
-			$this->mainLoginForm( $this->authRequests, $status ? $status->getMessage() : '', 'error' );
-			return;
+			$status = $this->trySubmit();
+
+			if ( !$status || !$status->isGood() ) {
+				$this->mainLoginForm( $this->authRequests, $status ? $status->getMessage() : '', 'error' );
+				return;
+			}
 		}
 
 		/** @var AuthenticationResponse $response */
@@ -364,6 +371,34 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			default:
 				throw new LogicException( 'invalid AuthenticationResponse' );
 		}
+	}
+
+	private function canBypassForm() {
+		$requiredCount = 0;
+		foreach ( $this->authRequests as $req ) {
+			if ( $req->required === AuthenticationRequest::REQUIRED ) {
+				if ( $requiredCount > 0 ) {
+					return false;
+				}
+				$requiredCount = $requiredCount + 1;
+				if ( $this->containsInteractiveFields( $req ) ) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	private function containsInteractiveFields( $req ) {
+		$fieldInfo = $req->getFieldInfo();
+		foreach ( $fieldInfo as $field ) {
+			$type = $field['type'];
+			if ( $type === 'string' || $type === 'password' || $type === 'select' ||
+				$type === 'checkbox' || $type === 'multiselect' ) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
