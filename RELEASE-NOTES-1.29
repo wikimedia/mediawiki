@@ -88,6 +88,8 @@ production.
 * (T160519) CACHE_ANYTHING will not be CACHE_ACCEL if no accelerator is installed.
 * (T109140) (T122209) SECURITY: Special:UserLogin and Special:Search allow redirect
   to interwiki links.
+* (T144845) SECURITY: XSS in SearchHighlighter::highlightText() when
+  $wgAdvancedSearchHighlighting is true.
 
 === Action API changes in 1.29 ===
 * Submitting sensitive authentication request parameters to action=login,
