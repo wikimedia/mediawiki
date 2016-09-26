@@ -85,7 +85,6 @@ class ApiCSPReport extends ApiBase {
 	 */
 	private function getFlags( $report ) {
 		$reportOnly = $this->getParameter( 'reportonly' );
-		$userAgent = $this->getRequest()->getHeader( 'user-agent' );
 		$source = $this->getParameter( 'source' );
 		$falsePositives = $this->getConfig()->get( 'CSPFalsePositiveUrls' );
 

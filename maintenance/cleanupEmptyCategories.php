@@ -147,7 +147,6 @@ TEXT
 			} else {
 				$where = [];
 			}
-			$i = 0;
 
 			$this->output( "Removing empty categories without description pages...\n" );
 			while ( true ) {
