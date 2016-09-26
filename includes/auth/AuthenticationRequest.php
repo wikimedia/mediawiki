@@ -108,6 +108,8 @@ abstract class AuthenticationRequest {
 	 *  - optional: (bool) If set and truthy, the field may be left empty
 	 *  - sensitive: (bool) If set and truthy, the field is considered sensitive. Code using the
 	 *      request should avoid exposing the value of the field.
+	 *  - skippable: (bool) If set and truthy, the presence of this field does
+	 *      not prevent the display of the login form from being skipped
 	 *
 	 * All AuthenticationRequests are populated from the same data, so most of the time you'll
 	 * want to prefix fields names with something unique to the extension/provider (although
