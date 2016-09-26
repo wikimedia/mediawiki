@@ -164,7 +164,7 @@ class ChangesFeed {
 
 	/**
 	 * Generate the feed items given a row from the database, printing the feed.
-	 * @param object $rows DatabaseBase resource with recentchanges rows
+	 * @param object $rows IDatabase resource with recentchanges rows
 	 * @param ChannelFeed $feed
 	 */
 	public static function generateFeed( $rows, &$feed ) {
@@ -178,7 +178,7 @@ class ChangesFeed {
 
 	/**
 	 * Generate the feed items given a row from the database.
-	 * @param object $rows DatabaseBase resource with recentchanges rows
+	 * @param object $rows IDatabase resource with recentchanges rows
 	 * @return array
 	 */
 	public static function buildItems( $rows ) {

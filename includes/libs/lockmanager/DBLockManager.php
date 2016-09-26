@@ -148,7 +148,7 @@ abstract class DBLockManager extends QuorumLockManager {
 			} elseif ( is_array( $this->dbServers[$lockDb] ) ) {
 				// Parameters to construct a new database connection
 				$config = $this->dbServers[$lockDb];
-				$db = DatabaseBase::factory( $config['type'], $config );
+				$db = Database::factory( $config['type'], $config );
 			} else {
 				throw new UnexpectedValueException( "No server called '$lockDb'." );
 			}

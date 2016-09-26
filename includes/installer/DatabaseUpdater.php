@@ -101,11 +101,11 @@ abstract class DatabaseUpdater {
 	/**
 	 * Constructor
 	 *
-	 * @param DatabaseBase $db To perform updates on
+	 * @param Database $db To perform updates on
 	 * @param bool $shared Whether to perform updates on shared tables
 	 * @param Maintenance $maintenance Maintenance object which created us
 	 */
-	protected function __construct( DatabaseBase &$db, $shared, Maintenance $maintenance = null ) {
+	protected function __construct( Database &$db, $shared, Maintenance $maintenance = null ) {
 		$this->db = $db;
 		$this->db->setFlag( DBO_DDLMODE ); // For Oracle's handling of schema files
 		$this->shared = $shared;

@@ -29,7 +29,7 @@
  * Fake class around abstract class so we can call concrete methods.
  */
 class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
-	// From DatabaseBase
+	// From Database
 	function __construct() {
 		$this->profiler = new ProfilerStub( [] );
 		$this->trxProfiler = new TransactionProfiler();
@@ -89,7 +89,6 @@ class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 
 	}
 
-	// From interface DatabaseType
 	function insertId() {
 	}
 

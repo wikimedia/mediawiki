@@ -128,7 +128,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Either a short hexidecimal string if a transaction is active or ""
 	 *
 	 * @var string
-	 * @see DatabaseBase::mTrxLevel
+	 * @see Database::mTrxLevel
 	 */
 	protected $mTrxShortId = '';
 	/**
@@ -137,7 +137,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * point (possibly more up-to-date since the first SELECT defines the snapshot).
 	 *
 	 * @var float|null
-	 * @see DatabaseBase::mTrxLevel
+	 * @see Database::mTrxLevel
 	 */
 	private $mTrxTimestamp = null;
 	/** @var float Lag estimate at the time of BEGIN */
@@ -147,21 +147,21 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Used to provide additional context for error reporting.
 	 *
 	 * @var string
-	 * @see DatabaseBase::mTrxLevel
+	 * @see Database::mTrxLevel
 	 */
 	private $mTrxFname = null;
 	/**
 	 * Record if possible write queries were done in the last transaction started
 	 *
 	 * @var bool
-	 * @see DatabaseBase::mTrxLevel
+	 * @see Database::mTrxLevel
 	 */
 	private $mTrxDoneWrites = false;
 	/**
 	 * Record if the current transaction was started implicitly due to DBO_TRX being set.
 	 *
 	 * @var bool
-	 * @see DatabaseBase::mTrxLevel
+	 * @see Database::mTrxLevel
 	 */
 	private $mTrxAutomatic = false;
 	/**
@@ -171,7 +171,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	private $mTrxAtomicLevels = [];
 	/**
-	 * Record if the current transaction was started implicitly by DatabaseBase::startAtomic
+	 * Record if the current transaction was started implicitly by Database::startAtomic
 	 *
 	 * @var bool
 	 */
@@ -1101,7 +1101,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param array $options Associative array of options to be turned into
 	 *   an SQL query, valid keys are listed in the function.
 	 * @return array
-	 * @see DatabaseBase::select()
+	 * @see Database::select()
 	 */
 	protected function makeSelectOptions( $options ) {
 		$preLimitTail = $postLimitTail = '';
@@ -1189,7 +1189,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * @param array $options Associative array of options
 	 * @return string
-	 * @see DatabaseBase::select()
+	 * @see Database::select()
 	 * @since 1.21
 	 */
 	protected function makeGroupByWithHaving( $options ) {
@@ -1215,7 +1215,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * @param array $options Associative array of options
 	 * @return string
-	 * @see DatabaseBase::select()
+	 * @see Database::select()
 	 * @since 1.21
 	 */
 	protected function makeOrderBy( $options ) {
@@ -1420,7 +1420,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Helper for DatabaseBase::insert().
+	 * Helper for Database::insert().
 	 *
 	 * @param array $options
 	 * @return string
@@ -1482,7 +1482,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Make UPDATE options array for DatabaseBase::makeUpdateOptions
+	 * Make UPDATE options array for Database::makeUpdateOptions
 	 *
 	 * @param array $options
 	 * @return array
@@ -1502,9 +1502,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Make UPDATE options for the DatabaseBase::update function
+	 * Make UPDATE options for the Database::update function
 	 *
-	 * @param array $options The options passed to DatabaseBase::update
+	 * @param array $options The options passed to Database::update
 	 * @return string
 	 */
 	protected function makeUpdateOptions( $options ) {
@@ -2701,7 +2701,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Issues the BEGIN command to the database server.
 	 *
-	 * @see DatabaseBase::begin()
+	 * @see Database::begin()
 	 * @param string $fname
 	 */
 	protected function doBegin( $fname ) {
@@ -2760,7 +2760,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Issues the COMMIT command to the database server.
 	 *
-	 * @see DatabaseBase::commit()
+	 * @see Database::commit()
 	 * @param string $fname
 	 */
 	protected function doCommit( $fname ) {
@@ -2807,7 +2807,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Issues the ROLLBACK command to the database server.
 	 *
-	 * @see DatabaseBase::rollback()
+	 * @see Database::rollback()
 	 * @param string $fname
 	 */
 	protected function doRollback( $fname ) {
@@ -2884,7 +2884,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * necessary. Boolean values are passed through as is, to indicate success
 	 * of write queries or failure.
 	 *
-	 * Once upon a time, DatabaseBase::query() returned a bare MySQL result
+	 * Once upon a time, Database::query() returned a bare MySQL result
 	 * resource, and it was necessary to call this function to convert it to
 	 * a wrapper. Nowadays, raw database objects are never exposed to external
 	 * callers, so this is unnecessary in external code.
