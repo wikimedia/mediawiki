@@ -155,6 +155,7 @@ class PoolCounterRedis extends PoolCounter {
 
 		// @codingStandardsIgnoreStart Generic.Files.LineLength
 		static $script =
+		/** @lang Lua */
 <<<LUA
 		local kSlots,kSlotsNextRelease,kWakeup,kWaiting = unpack(KEYS)
 		local rMaxWorkers,rExpiry,rSlot,rSlotTime,rAwakeAll,rTime = unpack(ARGV)
@@ -291,6 +292,7 @@ LUA;
 	 */
 	protected function initAndPopPoolSlotList( RedisConnRef $conn, $now ) {
 		static $script =
+		/** @lang Lua */
 <<<LUA
 		local kSlots,kSlotsNextRelease,kSlotWaits = unpack(KEYS)
 		local rMaxWorkers,rMaxQueue,rTimeout,rExpiry,rSess,rTime = unpack(ARGV)
@@ -359,6 +361,7 @@ LUA;
 	 */
 	protected function registerAcquisitionTime( RedisConnRef $conn, $slot, $now ) {
 		static $script =
+		/** @lang Lua */
 <<<LUA
 		local kSlots,kSlotsNextRelease,kSlotWaits = unpack(KEYS)
 		local rSlot,rExpiry,rSess,rTime = unpack(ARGV)

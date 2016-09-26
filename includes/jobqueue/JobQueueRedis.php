@@ -254,6 +254,7 @@ class JobQueueRedis extends JobQueue {
 			$args[] = (string)$this->serialize( $item );
 		}
 		static $script =
+		/** @lang Lua */
 <<<LUA
 		local kUnclaimed, kSha1ById, kIdBySha1, kDelayed, kData, kQwJobs = unpack(KEYS)
 		-- First argument is the queue ID
@@ -343,6 +344,7 @@ LUA;
 	 */
 	protected function popAndAcquireBlob( RedisConnRef $conn ) {
 		static $script =
+		/** @lang Lua */
 <<<LUA
 		local kUnclaimed, kSha1ById, kIdBySha1, kClaimed, kAttempts, kData = unpack(KEYS)
 		local rTime = unpack(ARGV)
@@ -390,6 +392,7 @@ LUA;
 		$conn = $this->getConnection();
 		try {
 			static $script =
+			/** @lang Lua */
 <<<LUA
 			local kClaimed, kAttempts, kData = unpack(KEYS)
 			local id = unpack(ARGV)
