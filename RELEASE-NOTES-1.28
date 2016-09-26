@@ -18,6 +18,8 @@ This is not a release yet!
 * (T154872) Fix incorrect ar_usertext_timestamp index names in new 1.28 installs.
 * (T109140) (T122209) SECURITY: Special:UserLogin and Special:Search allow redirect
   to interwiki links.
+* (T144845) SECURITY: XSS in SearchHighlighter::highlightText() when
+  $wgAdvancedSearchHighlighting is true.
 
 == MediaWiki 1.28 ==
 
