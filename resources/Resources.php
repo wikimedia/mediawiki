@@ -1269,6 +1269,7 @@ return [
 		'messages' => [
 			'upload-dialog-title',
 			'upload-dialog-button-cancel',
+			'upload-dialog-button-back',
 			'upload-dialog-button-done',
 			'upload-dialog-button-save',
 			'upload-dialog-button-upload',

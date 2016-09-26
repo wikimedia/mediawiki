@@ -1715,6 +1715,7 @@
 	"upload-dialog-disabled": "Message shown when the upload dialog functionality is disabled. (This doesn't mean that uploads in general are disabled, only this specific method of uploading.)",
 	"upload-dialog-title": "Title of the upload dialog box\n{{Identical|Upload file}}",
 	"upload-dialog-button-cancel": "Button to cancel the dialog\n{{Identical|Cancel}}",
+	"upload-dialog-button-back": "Button to go back the dialog\n{{Identical|Back}}",
 	"upload-dialog-button-done": "Button to close the dialog once upload is complete\n{{Identical|Done}}",
 	"upload-dialog-button-save": "Button to save the file after upload finishes and metadata is filled out, part 2 of a multi-step upload form\n{{Identical|Save}}",
 	"upload-dialog-button-upload": "Button to initiate upload, part 1 of a multi-step upload form\n{{Identical|Upload}}",
