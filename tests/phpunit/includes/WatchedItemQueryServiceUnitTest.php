@@ -6,10 +6,10 @@
 class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|DatabaseBase
+	 * @return PHPUnit_Framework_MockObject_MockObject|Database
 	 */
 	private function getMockDb() {
-		$mock = $this->getMockBuilder( DatabaseBase::class )
+		$mock = $this->getMockBuilder( Database::class )
 			->disableOriginalConstructor()
 			->getMock();
 

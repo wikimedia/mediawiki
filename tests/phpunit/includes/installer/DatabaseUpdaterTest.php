@@ -16,7 +16,7 @@ class DatabaseUpdaterTest extends MediaWikiTestCase {
 	}
 }
 
-class FakeDatabase extends DatabaseBase {
+class FakeDatabase extends Database {
 	public $lastInsertTable;
 	public $lastInsertData;
 
@@ -70,7 +70,7 @@ class FakeDatabase extends DatabaseBase {
 	 * member variables.
 	 * If no more rows are available, false is returned.
 	 *
-	 * @param ResultWrapper|stdClass $res Object as returned from DatabaseBase::query(), etc.
+	 * @param ResultWrapper|stdClass $res Object as returned from Database::query(), etc.
 	 * @return stdClass|bool
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
@@ -83,7 +83,7 @@ class FakeDatabase extends DatabaseBase {
 	 * form. Fields are retrieved with $row['fieldname'].
 	 * If no more rows are available, false is returned.
 	 *
-	 * @param ResultWrapper $res Result object as returned from DatabaseBase::query(), etc.
+	 * @param ResultWrapper $res Result object as returned from Database::query(), etc.
 	 * @return array|bool
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */

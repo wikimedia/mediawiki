@@ -42,7 +42,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	/**
 	 * Primary database
 	 *
-	 * @var DatabaseBase
+	 * @var Database
 	 * @since 1.18
 	 */
 	protected $db;
@@ -1070,11 +1070,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * Clones all tables in the given database (whatever database that connection has
 	 * open), to versions with the test prefix.
 	 *
-	 * @param DatabaseBase $db Database to use
+	 * @param Database $db Database to use
 	 * @param string $prefix Prefix to use for test tables
 	 * @return bool True if tables were cloned, false if only the prefix was changed
 	 */
-	protected static function setupDatabaseWithTestPrefix( DatabaseBase $db, $prefix ) {
+	protected static function setupDatabaseWithTestPrefix( Database $db, $prefix ) {
 		$tablesCloned = self::listTables( $db );
 		$dbClone = new CloneDatabase( $db, $tablesCloned, $prefix );
 		$dbClone->useTemporaryTables( self::$useTemporaryTables );
@@ -1123,12 +1123,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @note this method only works when first called. Subsequent calls have no effect,
 	 * even if using different parameters.
 	 *
-	 * @param DatabaseBase $db The database connection
+	 * @param Database $db The database connection
 	 * @param string $prefix The prefix to use for the new table set (aka schema).
 	 *
 	 * @throws MWException If the database table prefix is already $prefix
 	 */
-	public static function setupTestDB( DatabaseBase $db, $prefix ) {
+	public static function setupTestDB( Database $db, $prefix ) {
 		if ( self::$dbSetup ) {
 			return;
 		}
@@ -1139,7 +1139,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 
 		// TODO: the below should be re-written as soon as LBFactory, LoadBalancer,
-		// and DatabaseBase no longer use global state.
+		// and Database no longer use global state.
 
 		self::$dbSetup = true;
 
@@ -1178,7 +1178,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * Gets master database connections for all of the ExternalStoreDB
 	 * stores configured in $wgDefaultExternalStore.
 	 *
-	 * @return DatabaseBase[] Array of DatabaseBase master connections
+	 * @return Database[] Array of Database master connections
 	 */
 
 	protected static function getExternalStoreDatabaseConnections() {
@@ -1192,7 +1192,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			if ( strpos( $url, 'DB://' ) === 0 ) {
 				list( $proto, $cluster ) = explode( '://', $url, 2 );
 				// Avoid getMaster() because setupDatabaseWithTestPrefix()
-				// requires DatabaseBase instead of plain DBConnRef/IDatabase
+				// requires Database instead of plain DBConnRef/IDatabase
 				$lb = $externalStoreDB->getLoadBalancer( $cluster );
 				$dbw = $lb->getConnection( DB_MASTER );
 				$dbws[] = $dbw;
@@ -1226,7 +1226,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	/**
 	 * Empty all tables so they can be repopulated for tests
 	 *
-	 * @param DatabaseBase $db|null Database to reset
+	 * @param Database $db|null Database to reset
 	 * @param array $tablesUsed Tables to reset
 	 */
 	private function resetDB( $db, $tablesUsed ) {
@@ -1309,11 +1309,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	/**
 	 * @since 1.18
 	 *
-	 * @param DatabaseBase $db
+	 * @param Database $db
 	 *
 	 * @return array
 	 */
-	public static function listTables( DatabaseBase $db ) {
+	public static function listTables( Database $db ) {
 		$prefix = $db->tablePrefix();
 		$tables = $db->listTables( $prefix, __METHOD__ );
 

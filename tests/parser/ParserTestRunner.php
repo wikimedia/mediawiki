@@ -49,7 +49,7 @@ class ParserTestRunner {
 
 	/**
 	 * Our connection to the database
-	 * @var DatabaseBase
+	 * @var Database
 	 */
 	private $db;
 
