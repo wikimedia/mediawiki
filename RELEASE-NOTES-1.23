@@ -13,6 +13,8 @@ This is not a release yet!
   in the POST body instead.
 * (T109140) (T122209) SECURITY: Special:UserLogin and Special:Search allow redirect
   to interwiki links.
+* (T144845) SECURITY: XSS in SearchHighlighter::highlightText() when
+  $wgAdvancedSearchHighlighting is true.
 
 == MediaWiki 1.23.15 ==
 
