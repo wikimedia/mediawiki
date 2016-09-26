@@ -102,6 +102,10 @@ abstract class AuthenticationRequest {
 	 *  - label: (Message) Text suitable for a label in an HTML form
 	 *  - help: (Message) Text suitable as a description of what the field is
 	 *  - optional: (bool) If set and truthy, the field may be left empty
+	 *  - skippable: (bool) If set and truthy, the client is free to hide this
+	 *      field from the user to streamline the workflow. If all fields are
+	 *      skippable (except possibly a single button), no user interaction is
+	 *      required at all.
 	 *
 	 * @return array As above
 	 */
