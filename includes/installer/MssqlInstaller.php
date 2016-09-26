@@ -212,7 +212,7 @@ class MssqlInstaller extends DatabaseInstaller {
 		}
 
 		try {
-			$db = DatabaseBase::factory( 'mssql', [
+			$db = Database::factory( 'mssql', [
 				'host' => $this->getVar( 'wgDBserver' ),
 				'user' => $user,
 				'password' => $password,
@@ -261,7 +261,7 @@ class MssqlInstaller extends DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return false;
 		}
-		/** @var $conn DatabaseBase */
+		/** @var $conn Database */
 		$conn = $status->value;
 
 		// We need the server-level ALTER ANY LOGIN permission to create new accounts
@@ -457,7 +457,7 @@ class MssqlInstaller extends DatabaseInstaller {
 			}
 
 			try {
-				DatabaseBase::factory( 'mssql', [
+				Database::factory( 'mssql', [
 					'host' => $this->getVar( 'wgDBserver' ),
 					'user' => $user,
 					'password' => $password,
@@ -491,7 +491,7 @@ class MssqlInstaller extends DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
-		/** @var DatabaseBase $conn */
+		/** @var Database $conn */
 		$conn = $status->value;
 		$dbName = $this->getVar( 'wgDBname' );
 		$schemaName = $this->getVar( 'wgDBmwschema' );

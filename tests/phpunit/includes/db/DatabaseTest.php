@@ -27,7 +27,7 @@ class DatabaseTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers DatabaseBase::dropTable
+	 * @covers Database::dropTable
 	 */
 	public function testAddQuotesNull() {
 		$check = "NULL";
@@ -266,7 +266,7 @@ class DatabaseTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers DatabaseBase::setTransactionListener()
+	 * @covers Database::setTransactionListener()
 	 */
 	public function testTransactionListener() {
 		$db = $this->db;
@@ -298,7 +298,7 @@ class DatabaseTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers DatabaseBase::flushSnapshot()
+	 * @covers Database::flushSnapshot()
 	 */
 	public function testFlushSnapshot() {
 		$db = $this->db;
@@ -350,9 +350,9 @@ class DatabaseTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers DatabaseBase::getFlag(
-	 * @covers DatabaseBase::setFlag()
-	 * @covers DatabaseBase::restoreFlags()
+	 * @covers Database::getFlag(
+	 * @covers Database::setFlag()
+	 * @covers Database::restoreFlags()
 	 */
 	public function testFlagSetting() {
 		$db = $this->db;
@@ -390,8 +390,8 @@ class DatabaseTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers DatabaseBase::tablePrefix()
-	 * @covers DatabaseBase::dbSchema()
+	 * @covers Database::tablePrefix()
+	 * @covers Database::dbSchema()
 	 */
 	public function testMutators() {
 		$old = $this->db->tablePrefix();

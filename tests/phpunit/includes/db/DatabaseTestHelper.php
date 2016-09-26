@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Helper for testing the methods from the DatabaseBase class
+ * Helper for testing the methods from the Database class
  * @since 1.22
  */
-class DatabaseTestHelper extends DatabaseBase {
+class DatabaseTestHelper extends Database {
 
 	/**
 	 * __CLASS__ of the test suite,
@@ -14,7 +14,7 @@ class DatabaseTestHelper extends DatabaseBase {
 
 	/**
 	 * Array of lastSqls passed to query(),
-	 * This is an array since some methods in DatabaseBase can do more than one
+	 * This is an array since some methods in Database can do more than one
 	 * query. Cleared when calling getLastSqls().
 	 */
 	protected $lastSqls = [];
