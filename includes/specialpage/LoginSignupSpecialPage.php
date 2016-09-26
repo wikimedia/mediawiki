@@ -294,6 +294,14 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			return;
 		}
 
+		if ( $this->canBypassForm( $button_name ) ) {
+			$this->setRequest( [], true );
+			$this->getRequest()->setVal( $this->getTokenName(), $this->getToken() );
+			if ( $button_name ) {
+				$this->getRequest()->setVal( $button_name, true );
+			}
+		}
+
 		$status = $this->trySubmit();
 
 		if ( !$status || !$status->isGood() ) {
@@ -364,6 +372,41 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			default:
 				throw new LogicException( 'invalid AuthenticationResponse' );
 		}
+	}
+
+	/**
+	 * Determine if they form can be bypassed: no more than one button and no
+	 * other user input fields that are not marked as skippable.
+	 *
+	 * @param string|null &$button_name if the form has a single button, returns
+	 *   the name of the button; otherwise, returns null
+	 * @return bool
+	 */
+	private function canBypassForm( &$button_name ) {
+		$button_name = null;
+		if ( $this->isContinued() ) {
+			return false;
+		}
+		$fields = AuthenticationRequest::mergeFieldInfo( $this->authRequests );
+		foreach ( $fields as $fieldname => $field ) {
+			if ( !isset( $field['type'] ) ) {
+				return false;
+			}
+			if ( !empty( $field['skippable'] ) ) {
+				continue;
+			}
+			if ( $field['type'] === 'button' ) {
+				if ( $button_name !== null ) {
+					$button_name = null;
+					return false;
+				} else {
+					$button_name = $fieldname;
+				}
+			} elseif ( $field['type'] !== 'null' ) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
