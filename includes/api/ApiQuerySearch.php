@@ -235,7 +235,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 						$vals = [
 							'namespace' => $result->getInterwikiNamespaceText(),
 							'title' => $title->getText(),
-							'url' => $title->getFullUrl(),
+							'url' => $title->getFullURL(),
 						];
 
 						// Add item to results and see whether it fits

@@ -272,7 +272,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 				'high' => 'MAX( cl_timestamp )'
 			],
 			[
-				'cl_to' => $this->category->getDBKey(),
+				'cl_to' => $this->category->getDBkey(),
 			],
 			__METHOD__,
 			[

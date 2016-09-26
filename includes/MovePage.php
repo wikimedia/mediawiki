@@ -446,7 +446,7 @@ class MovePage {
 			$status = $newpage->doDeleteArticleReal(
 				$overwriteMessage,
 				/* $suppress */ false,
-				$nt->getArticleId(),
+				$nt->getArticleID(),
 				/* $commit */ false,
 				$errs,
 				$user
