@@ -91,6 +91,11 @@ class RecentChange {
 	public $counter = -1;
 
 	/**
+	 * @var array List of tags to apply
+	 */
+	private $tags = [];
+
+	/**
 	 * @var array Array of change types
 	 */
 	private static $changeTypes = [
@@ -325,6 +330,11 @@ class RecentChange {
 
 		# Notify extensions
 		Hooks::run( 'RecentChange_save', [ &$this ] );
+
+		if ( count( $this->tags ) ) {
+			ChangeTags::addTags( $this->tags, $this->mAttribs['rc_id'],
+				$this->mAttribs['rc_this_oldid'], $this->mAttribs['rc_logid'], null );
+		}
 
 		# Notify external application via UDP
 		if ( !$noudp ) {
@@ -610,13 +620,10 @@ class RecentChange {
 
 		DeferredUpdates::addCallableUpdate(
 			function () use ( $rc, $tags ) {
+				$rc->addTags( $tags );
 				$rc->save();
 				if ( $rc->mAttribs['rc_patrolled'] ) {
 					PatrolLog::record( $rc, true, $rc->getPerformer() );
-				}
-				if ( count( $tags ) ) {
-					ChangeTags::addTags( $tags, $rc->mAttribs['rc_id'],
-						$rc->mAttribs['rc_this_oldid'], null, null );
 				}
 			},
 			DeferredUpdates::POSTSEND,
@@ -686,13 +693,10 @@ class RecentChange {
 
 		DeferredUpdates::addCallableUpdate(
 			function () use ( $rc, $tags ) {
+				$rc->addTags( $tags );
 				$rc->save();
 				if ( $rc->mAttribs['rc_patrolled'] ) {
 					PatrolLog::record( $rc, true, $rc->getPerformer() );
-				}
-				if ( count( $tags ) ) {
-					ChangeTags::addTags( $tags, $rc->mAttribs['rc_id'],
-						$rc->mAttribs['rc_this_oldid'], null, null );
 				}
 			},
 			DeferredUpdates::POSTSEND,
@@ -1025,5 +1029,17 @@ class RecentChange {
 		MediaWiki\restoreWarnings();
 
 		return $unserializedParams;
+	}
+
+	/**
+	 * Tags to append to the recent change,
+	 * and associated revision/log
+	 *
+	 * @since 1.28
+	 *
+	 * @param array $tags
+	 */
+	public function addTags( $tags ) {
+		$this->tags = array_merge( $tags, $this->tags );
 	}
 }
