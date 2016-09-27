@@ -42,8 +42,6 @@ in the load balancer, usually indicating a replication environment.' );
 		$user = $dbw->tableName( 'user' );
 		$revision = $dbw->tableName( 'revision' );
 
-		$dbver = $dbw->getServerVersion();
-
 		// Autodetect mode...
 		if ( $this->hasOption( 'background' ) ) {
 			$backgroundMode = true;

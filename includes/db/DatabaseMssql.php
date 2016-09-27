@@ -771,7 +771,7 @@ class DatabaseMssql extends DatabaseBase {
 
 		$this->mScrollableCursor = false;
 		try {
-			$ret = $this->query( $sql );
+			$this->query( $sql );
 		} catch ( Exception $e ) {
 			$this->mScrollableCursor = true;
 			throw $e;
