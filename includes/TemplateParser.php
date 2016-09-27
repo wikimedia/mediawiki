@@ -186,10 +186,10 @@ class TemplateParser {
 	 * @code
 	 *     echo $templateParser->processTemplate(
 	 *         'ExampleTemplate',
-	 *         array(
+	 *         [
 	 *             'username' => $user->getName(),
 	 *             'message' => 'Hello!'
-	 *         )
+	 *         ]
 	 *     );
 	 * @endcode
 	 * @param string $templateName The name of the template

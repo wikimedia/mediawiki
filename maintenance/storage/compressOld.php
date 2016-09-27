@@ -384,7 +384,7 @@ class CompressOld extends Maintenance {
 
 					if ( $text === false ) {
 						$this->error( "\nError, unable to get text in old_id $oldid" );
-						# $dbw->delete( 'old', array( 'old_id' => $oldid ) );
+						# $dbw->delete( 'old', [ 'old_id' => $oldid ] );
 					}
 
 					if ( $extdb == "" && $j == 0 ) {

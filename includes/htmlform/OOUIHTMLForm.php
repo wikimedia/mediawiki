@@ -202,8 +202,8 @@ class OOUIHTMLForm extends HTMLForm {
 			} else {
 				$errors = $elements->getErrorsByType( $elementsType );
 				foreach ( $errors as &$error ) {
-					// Input:  array( 'message' => 'foo', 'errors' => array( 'a', 'b', 'c' ) )
-					// Output: array( 'foo', 'a', 'b', 'c' )
+					// Input:  [ 'message' => 'foo', 'errors' => [ 'a', 'b', 'c' ] ]
+					// Output: [ 'foo', 'a', 'b', 'c' ]
 					$error = array_merge( [ $error['message'] ], $error['params'] );
 				}
 			}
