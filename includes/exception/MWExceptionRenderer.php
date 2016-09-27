@@ -134,8 +134,12 @@ class MWExceptionRenderer {
 	 */
 	private static function useOutputPage( $e ) {
 		// Can the extension use the Message class/wfMessage to get i18n-ed messages?
+		// Don't even bother with OutputPage if the exception occurred in ResourceLoader,
+		// it won't have Title context set so the Skin system (and probably most of MediaWiki)
+		// won't work.
+		$badClasses = [ 'LocalisationCache', 'ResourceLoader' ];
 		foreach ( $e->getTrace() as $frame ) {
-			if ( isset( $frame['class'] ) && $frame['class'] === 'LocalisationCache' ) {
+			if ( isset( $frame['class'] )  && in_array( $frame['class'], $badClasses ) ) {
 				return false;
 			}
 		}
