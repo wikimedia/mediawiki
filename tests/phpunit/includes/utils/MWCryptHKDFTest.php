@@ -37,7 +37,7 @@ class MWCryptHKDFTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Test vectors from Appendix A on http://tools.ietf.org/html/rfc5869
+	 * Test vectors from Appendix A on https://tools.ietf.org/html/rfc5869
 	 */
 	public static function providerRfc5869() {
 

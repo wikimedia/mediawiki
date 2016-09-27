@@ -387,7 +387,7 @@
 			// - atext   : defined in RFC 5322 section 3.2.3
 			// - ldh-str : defined in RFC 1034 section 3.5
 			//
-			// (see STD 68 / RFC 5234 http://tools.ietf.org/html/std68)
+			// (see STD 68 / RFC 5234 https://tools.ietf.org/html/std68)
 			// First, define the RFC 5322 'atext' which is pretty easy:
 			// atext = ALPHA / DIGIT / ; Printable US-ASCII
 			//     "!" / "#" /    ; characters not including
