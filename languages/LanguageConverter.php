@@ -1086,11 +1086,11 @@ class LanguageConverter {
 			//  -{zh-hans:<span style="font-size:120%;">xxx</span>;zh-hant:\
 			// 	<span style="font-size:120%;">yyy</span>;}-
 			// we should split it as:
-			//  array(
+			//  [
 			// 	  [0] => 'zh-hans:<span style="font-size:120%;">xxx</span>'
 			// 	  [1] => 'zh-hant:<span style="font-size:120%;">yyy</span>'
 			// 	  [2] => ''
-			// 	 )
+			//  ]
 			$pat = '/;\s*(?=';
 			foreach ( $this->mVariants as $variant ) {
 				// zh-hans:xxx;zh-hant:yyy

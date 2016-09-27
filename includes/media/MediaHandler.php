@@ -463,16 +463,16 @@ abstract class MediaHandler {
 	/**
 	 * Get an array structure that looks like this:
 	 *
-	 * array(
-	 *    'visible' => array(
+	 * [
+	 *    'visible' => [
 	 *       'Human-readable name' => 'Human readable value',
 	 *       ...
-	 *    ),
-	 *    'collapsed' => array(
+	 *    ],
+	 *    'collapsed' => [
 	 *       'Human-readable name' => 'Human readable value',
 	 *       ...
-	 *    )
-	 * )
+	 *    ]
+	 * ]
 	 * The UI will format this into a table where the visible fields are always
 	 * visible, and the collapsed fields are optionally visible.
 	 *
@@ -843,11 +843,11 @@ abstract class MediaHandler {
 	/**
 	 * Gets configuration for the file warning message. Return value of
 	 * the following structure:
-	 *   array(
+	 *   [
 	 *     // Required, module with messages loaded for the client
 	 *     'module' => 'example.filewarning.messages',
 	 *     // Required, array of names of messages
-	 *     'messages' => array(
+	 *     'messages' => [
 	 *       // Required, main warning message
 	 *       'main' => 'example-filewarning-main',
 	 *       // Optional, header for warning dialog
@@ -856,10 +856,10 @@ abstract class MediaHandler {
 	 *       'footer' => 'example-filewarning-footer',
 	 *       // Optional, text for more-information link (see below)
 	 *       'info' => 'example-filewarning-info',
-	 *     ),
+	 *     ],
 	 *     // Optional, link for more information
 	 *     'link' => 'http://example.com',
-	 *   )
+	 *   ]
 	 *
 	 * Returns null if no warning is necessary.
 	 * @param File $file

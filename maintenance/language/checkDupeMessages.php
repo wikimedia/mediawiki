@@ -96,7 +96,7 @@ if ( $run ) {
 
 		if ( !strcmp( $runMode, 'php' ) ) {
 			print "<?php\n";
-			print '$dupeMessages = array(' . "\n";
+			print '$dupeMessages = [' . "\n";
 		}
 		foreach ( $wgMessages[$langCodeC] as $key => $value ) {
 			foreach ( $wgMessages[$langCode] as $ckey => $cvalue ) {
@@ -118,7 +118,7 @@ if ( $run ) {
 			}
 		}
 		if ( !strcmp( $runMode, 'php' ) ) {
-			print ");\n";
+			print "];\n";
 		}
 		if ( !strcmp( $runMode, 'text' ) ) {
 			if ( $count == 1 ) {
