@@ -1,7 +1,6 @@
 <?php
 
 use HtmlFormatter\HtmlFormatter;
-use MediaWiki\Logger\LoggerFactory;
 
 /**
  * Class allowing to explore structure of parsed wikitext.
