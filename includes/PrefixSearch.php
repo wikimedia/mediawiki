@@ -182,12 +182,18 @@ abstract class PrefixSearch {
 		) ) {
 			return $this->titles( $this->defaultSearchBackend( $namespaces, $search, $limit, $offset ) );
 		}
-		return $this->strings( $this->handleResultFromHook( $srchres, $namespaces, $search, $limit ) );
+		return $this->strings( $this->handleResultFromHook( $srchres, $namespaces, $search, $limit, $offset ) );
 	}
 
-	private function handleResultFromHook( $srchres, $namespaces, $search, $limit ) {
-		$rescorer = new SearchExactMatchRescorer();
-		return $rescorer->rescore( $search, $namespaces, $srchres, $limit );
+	private function handleResultFromHook( $srchres, $namespaces, $search, $limit, $offset ) {
+		if ( $offset === 0 ) {
+			// Only perform exact db match if offset === 0
+			// This is still far from perfect but at least avoid returning the
+			// same title afain and again while scrolling if it matches the db.
+			$rescorer = new SearchExactMatchRescorer();
+			$srchres = $rescorer->rescore( $search, $namespaces, $srchres, $limit );
+		}
+		return $srchres;
 	}
 
 	/**

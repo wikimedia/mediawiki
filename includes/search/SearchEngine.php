@@ -547,13 +547,20 @@ abstract class SearchEngine {
 			return $sugg->getSuggestedTitle()->getPrefixedText();
 		} );
 
-		// Rescore results with an exact title match
-		// NOTE: in some cases like cross-namespace redirects
-		// (frequently used as shortcuts e.g. WP:WP on huwiki) some
-		// backends like Cirrus will return no results. We should still
-		// try an exact title match to workaround this limitation
-		$rescorer = new SearchExactMatchRescorer();
-		$rescoredResults = $rescorer->rescore( $search, $this->namespaces, $results, $this->limit );
+		if ( $this->offset === 0 ) {
+			// Rescore results with an exact title match
+			// NOTE: in some cases like cross-namespace redirects
+			// (frequently used as shortcuts e.g. WP:WP on huwiki) some
+			// backends like Cirrus will return no results. We should still
+			// try an exact title match to workaround this limitation
+			$rescorer = new SearchExactMatchRescorer();
+			$rescoredResults = $rescorer->rescore( $search, $this->namespaces, $results, $this->limit );
+		} else {
+			// No need to rescore if offset is not 0
+			// The exact match must have been returned at position 0
+			// if it existed.
+			$rescoredResults = $results;
+		}
 
 		if ( count( $rescoredResults ) > 0 ) {
 			$found = array_search( $rescoredResults[0], $results );
