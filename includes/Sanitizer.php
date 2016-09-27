@@ -1867,7 +1867,7 @@ class Sanitizer {
 			list( /* $whole */, $protocol, $host, $rest ) = $matches;
 
 			// Characters that will be ignored in IDNs.
-			// http://tools.ietf.org/html/3454#section-3.1
+			// https://tools.ietf.org/html/rfc3454#section-3.1
 			// Strip them before further processing so blacklists and such work.
 			$strip = "/
 				\\s|          # general whitespace
