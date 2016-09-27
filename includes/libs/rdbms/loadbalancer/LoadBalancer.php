@@ -1024,7 +1024,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function finalizeMasterChanges() {
-		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) {
+		$this->forEachOpenMasterConnection( function ( Database $conn ) {
 			// Any error should cause all DB transactions to be rolled back together
 			$conn->setTrxEndCallbackSuppression( false );
 			$conn->runOnTransactionPreCommitCallbacks();
@@ -1077,7 +1077,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		$failures = [];
 		$this->forEachOpenMasterConnection(
-			function ( DatabaseBase $conn ) use ( $fname, &$failures ) {
+			function ( Database $conn ) use ( $fname, &$failures ) {
 				$conn->setTrxEndCallbackSuppression( true );
 				try {
 					$conn->flushSnapshot( $fname );
@@ -1131,7 +1131,7 @@ class LoadBalancer implements ILoadBalancer {
 
 	public function runMasterPostTrxCallbacks( $type ) {
 		$e = null; // first exception
-		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( $type, &$e ) {
+		$this->forEachOpenMasterConnection( function ( Database $conn ) use ( $type, &$e ) {
 			$conn->setTrxEndCallbackSuppression( false );
 			if ( $conn->writesOrCallbacksPending() ) {
 				// This happens if onTransactionIdle() callbacks leave callbacks on *another* DB
@@ -1178,7 +1178,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function suppressTransactionEndCallbacks() {
-		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) {
+		$this->forEachOpenMasterConnection( function ( Database $conn ) {
 			$conn->setTrxEndCallbackSuppression( true );
 		} );
 	}

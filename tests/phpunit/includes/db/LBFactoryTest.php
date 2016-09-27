@@ -270,7 +270,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		);
 		unset( $db );
 
-		/** @var DatabaseBase $db */
+		/** @var Database $db */
 		$db = $lb->getConnection( DB_MASTER, [], '' );
 		$lb->reuseConnection( $db ); // don't care
 
@@ -322,7 +322,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$factory = $this->newLBFactoryMulti(
 			[ 'localDomain' => $dbname ], [ 'dbname' => $dbname ] );
 		$lb = $factory->getMainLB();
-		/** @var DatabaseBase $db */
+		/** @var Database $db */
 		$db = $lb->getConnection( DB_MASTER, [], '' );
 		$lb->reuseConnection( $db ); // don't care
 

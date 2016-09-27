@@ -200,7 +200,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * @param DatabaseBase $connection
+	 * @param Database $connection
 	 *
 	 * @throws MWException
 	 */
