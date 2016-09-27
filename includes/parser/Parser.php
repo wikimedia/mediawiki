@@ -1604,7 +1604,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	public function doQuotes( $text ) {
+	public static function doQuotes( $text ) {
 		$arr = preg_split( "/(''+)/", $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 		$countarr = count( $arr );
 		if ( $countarr == 1 ) {
@@ -5710,9 +5710,9 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	public function guessSectionNameFromWikiText( $text ) {
+	public static function guessSectionNameFromWikiText( $text ) {
 		# Strip out wikitext links(they break the anchor)
-		$text = $this->stripSectionName( $text );
+		$text = self::stripSectionName( $text );
 		$text = Sanitizer::normalizeSectionNameWhitespace( $text );
 		return '#' . Sanitizer::escapeId( $text, 'noninitial' );
 	}
@@ -5725,9 +5725,9 @@ class Parser {
 	 * @param string $text The section name
 	 * @return string An anchor
 	 */
-	public function guessLegacySectionNameFromWikiText( $text ) {
+	public static function guessLegacySectionNameFromWikiText( $text ) {
 		# Strip out wikitext links(they break the anchor)
-		$text = $this->stripSectionName( $text );
+		$text = self::stripSectionName( $text );
 		$text = Sanitizer::normalizeSectionNameWhitespace( $text );
 		return '#' . Sanitizer::escapeId( $text, [ 'noninitial', 'legacy' ] );
 	}
@@ -5746,7 +5746,8 @@ class Parser {
 	 * for use in a Section anchor
 	 * @return string Filtered text string
 	 */
-	public function stripSectionName( $text ) {
+	public static function stripSectionName( $text ) {
+		static $urlProtocols = wfUrlProtocols();
 		# Strip internal link markup
 		$text = preg_replace( '/\[\[:?([^[|]+)\|([^[]+)\]\]/', '$2', $text );
 		$text = preg_replace( '/\[\[:?([^[]+)\|?\]\]/', '$1', $text );
@@ -5755,10 +5756,10 @@ class Parser {
 		# @todo FIXME: Not tolerant to blank link text
 		# I.E. [https://www.mediawiki.org] will render as [1] or something depending
 		# on how many empty links there are on the page - need to figure that out.
-		$text = preg_replace( '/\[(?i:' . $this->mUrlProtocols . ')([^ ]+?) ([^[]+)\]/', '$2', $text );
+		$text = preg_replace( '/\[(?i:' . $urlProtocols . ')([^ ]+?) ([^[]+)\]/', '$2', $text );
 
 		# Parse wikitext quotes (italics & bold)
-		$text = $this->doQuotes( $text );
+		$text = self::doQuotes( $text );
 
 		# Strip HTML tags
 		$text = StringUtils::delimiterReplace( '<', '>', '', $text );
