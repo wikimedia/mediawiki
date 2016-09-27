@@ -108,6 +108,14 @@ class WikitextContentHandler extends TextContentHandler {
 		return true;
 	}
 
+	/**
+	 * Get file handler
+	 * @return FileContentHandler
+	 */
+	protected function getFileHandler() {
+		return new FileContentHandler();
+	}
+
 	public function getFieldsForSearchIndex( SearchEngine $engine ) {
 		$fields = parent::getFieldsForSearchIndex( $engine );
 
@@ -122,32 +130,10 @@ class WikitextContentHandler extends TextContentHandler {
 			$engine->makeSearchFieldMapping( 'opening_text', SearchIndexField::INDEX_TYPE_TEXT );
 		$fields['opening_text']->setFlag( SearchIndexField::FLAG_SCORING |
 		                                  SearchIndexField::FLAG_NO_HIGHLIGHT );
-
-		// FIXME: this really belongs in separate file handler but files
-		// do not have separate handler. Sadness.
-		$fields['file_text'] =
-			$engine->makeSearchFieldMapping( 'file_text', SearchIndexField::INDEX_TYPE_TEXT );
+		// Until we have full first-class content handler for files, we invoke it explicitly here
+		$fields = array_merge( $fields, $this->getFileHandler()->getFieldsForSearchIndex( $engine ) );
 
 		return $fields;
-	}
-
-	/**
-	 * Extract text of the file
-	 * TODO: probably should go to file handler?
-	 * @param Title $title
-	 * @return string|null
-	 */
-	protected function getFileText( Title $title ) {
-		$file = wfLocalFile( $title );
-		if ( $file && $file->exists() ) {
-			$handler = $file->getHandler();
-			if ( !$handler ) {
-				return null;
-			}
-			return $handler->getEntireText( $file );
-		}
-
-		return null;
 	}
 
 	public function getDataForSearchIndex( WikiPage $page, ParserOutput $parserOutput,
@@ -162,12 +148,10 @@ class WikitextContentHandler extends TextContentHandler {
 		$fields['auxiliary_text'] = $structure->getAuxiliaryText();
 		$fields['defaultsort'] = $structure->getDefaultSort();
 
-		$title = $page->getTitle();
-		if ( NS_FILE == $title->getNamespace() ) {
-			$fileText = $this->getFileText( $title );
-			if ( $fileText ) {
-				$fields['file_text'] = $fileText;
-			}
+		// Until we have full first-class content handler for files, we invoke it explicitly here
+		if ( NS_FILE == $page->getTitle()->getNamespace() ) {
+			$fields = array_merge( $fields,
+					$this->getFileHandler()->getDataForSearchIndex( $page, $parserOutput, $engine ) );
 		}
 		return $fields;
 	}
