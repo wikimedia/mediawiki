@@ -41,6 +41,7 @@ $wgAutoloadClasses += [
 	'ParserTestResult' => "$testDir/parser/ParserTestResult.php",
 	'ParserTestResultNormalizer' => "$testDir/parser/ParserTestResultNormalizer.php",
 	'PhpunitTestRecorder' => "$testDir/parser/PhpunitTestRecorder.php",
+	'TestFileEditor' => "$testDir/parser/TestFileEditor.php",
 	'TestFileReader' => "$testDir/parser/TestFileReader.php",
 	'TestRecorder' => "$testDir/parser/TestRecorder.php",
 	'TidySupport' => "$testDir/parser/TidySupport.php",
