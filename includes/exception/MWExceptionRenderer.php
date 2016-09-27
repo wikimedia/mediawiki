@@ -96,9 +96,14 @@ class MWExceptionRenderer {
 			}
 		}
 
+		// Don't even bother with OutputPage if there's no Title context set,
+		// (e.g. we're in RL code on load.php) - the Skin system (and probably
+		// most of MediaWiki) won't work.
+
 		return (
 			!empty( $GLOBALS['wgFullyInitialised'] ) &&
 			!empty( $GLOBALS['wgOut'] ) &&
+			RequestContext::getMain()->getTitle() &&
 			!defined( 'MEDIAWIKI_INSTALL' )
 		);
 	}
