@@ -305,7 +305,11 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		$titleInfo = [];
 		$batch = new LinkBatch;
 		foreach ( $pages as $titleText ) {
-			$batch->addObj( Title::newFromText( $titleText ) );
+			$title = Title::newFromText( $titleText );
+			if ( $title ) {
+				// Page name may be invalid if user-provided (e.g. gadgets)
+				$batch->addObj( Title::newFromText( $titleText ) );
+			}
 		}
 		if ( !$batch->isEmpty() ) {
 			$res = $db->select( 'page',
@@ -359,8 +363,16 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			// Before we intersect, map the names to canonical form (T145673).
 			$intersect = [];
 			foreach ( $pages as $page => $unused ) {
-				$title = Title::newFromText( $page )->getPrefixedText();
-				$intersect[$title] = 1;
+				$title = Title::newFromText( $page );
+				if ( $title ) {
+					$intersect[ $title->getPrefixedText() ] = 1;
+				} else {
+					// Page name may be invalid if user-provided (e.g. gadgets)
+					$rl->getLogger()->info(
+						'Invalid wiki page title "{title}" in ' . __METHOD__,
+						[ 'title' => $page ]
+					);
+				}
 			}
 			$info = array_intersect_key( $allInfo, $intersect );
 
