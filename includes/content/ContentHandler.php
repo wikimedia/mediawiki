@@ -706,7 +706,7 @@ abstract class ContentHandler {
 		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
 			// Parse mediawiki messages with correct target language
 			list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $title->getText() );
-			$pageLang = wfGetLangObj( $lang );
+			$pageLang = Language::factory( $lang );
 		}
 
 		Hooks::run( 'PageContentLanguage', [ $title, &$pageLang, $wgLang ] );
