@@ -1577,7 +1577,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @deprecated since 1.21: use doEditContent() instead.
 	 */
 	public function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) {
-		ContentHandler::deprecated( __METHOD__, '1.21' );
+		wfDeprecated( __METHOD__, '1.21' );
 
 		$content = ContentHandler::makeContent( $text, $this->getTitle() );
 
