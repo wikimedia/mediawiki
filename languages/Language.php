@@ -2303,7 +2303,7 @@ class Language {
 
 	/**
 	 * Takes a number of seconds and returns an array with a set of corresponding intervals.
-	 * For example 65 will be turned into array( minutes => 1, seconds => 5 ).
+	 * For example 65 will be turned into [ minutes => 1, seconds => 5 ].
 	 *
 	 * @since 1.20
 	 *
