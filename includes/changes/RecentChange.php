@@ -1037,9 +1037,13 @@ class RecentChange {
 	 *
 	 * @since 1.28
 	 *
-	 * @param array $tags
+	 * @param string|array $tags
 	 */
 	public function addTags( $tags ) {
-		$this->tags = array_merge( $tags, $this->tags );
+		if ( is_string( $tags ) ) {
+			$this->tags[] = $tags;
+		} else {
+			$this->tags = array_merge( $tags, $this->tags );
+		}
 	}
 }
