@@ -751,7 +751,7 @@
 	"expensive-parserfunction-warning": "Atenție: Această pagină conține prea multe apelări costisitoare ale funcțiilor parser.\n\nAr trebui să existe mai puțin de $2 {{PLURAL:$2|apelare|apelări}}, acolo există {{PLURAL:$1|$1 apelare|$1 apelări}}.",
 	"expensive-parserfunction-category": "Pagini cu prea multe apelări costisitoare de funcții parser",
 	"post-expand-template-inclusion-warning": "Atenție: Formatele incluse sunt prea mari.\nUnele formate nu vor fi incluse.",
-	"post-expand-template-inclusion-category": "Paginile în care este inclus formatul are o dimensiune prea mare",
+	"post-expand-template-inclusion-category": "Pagini în care formatele incluse au o dimensiune prea mare",
 	"post-expand-template-argument-warning": "Atenție: Această pagină conține cel puțin un argument al unui format care are o mărime prea mare atunci când este expandat.\nAcsete argumente au fost omise.",
 	"post-expand-template-argument-category": "Pagini care conțin formate cu argumente omise",
 	"parser-template-loop-warning": "Buclă de formate detectată: [[$1]]",

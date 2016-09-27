@@ -1481,6 +1481,7 @@
 	"upload-dialog-disabled": "Načítání souborů pomocí tohoto dialogu je na této wiki vypnuto.",
 	"upload-dialog-title": "Načtení souboru",
 	"upload-dialog-button-cancel": "Storno",
+	"upload-dialog-button-back": "Zpět",
 	"upload-dialog-button-done": "Hotovo",
 	"upload-dialog-button-save": "Uložit",
 	"upload-dialog-button-upload": "Načíst",
@@ -3828,5 +3829,8 @@
 	"unlinkaccounts-success": "Propojení účtu bylo zrušeno.",
 	"authenticationdatachange-ignored": "Změna autentizačních údajů nebyla zpracována. Možná není nakonfigurován žádný poskytovatel?",
 	"userjsispublic": "Uvědomte si prosím, že podstránky s JavaScriptem by neměly obsahovat tajné údaje, protože jsou viditelné ostatním uživatelům.",
-	"usercssispublic": "Uvědomte si prosím, že podstránky s CSS by neměly obsahovat tajné údaje, protože jsou viditelné ostatním uživatelům."
+	"usercssispublic": "Uvědomte si prosím, že podstránky s CSS by neměly obsahovat tajné údaje, protože jsou viditelné ostatním uživatelům.",
+	"restrictionsfield-badip": "Neplatná IP adresa nebo rozsah: $1",
+	"restrictionsfield-label": "Povolené rozsahy IP adres:",
+	"restrictionsfield-help": "Jedna IP adresa nebo CIDR rozsah na řádek. Všechno povolíte pomocí<br><code>0.0.0.0/0</code><br><code>::/0</code>"
 }

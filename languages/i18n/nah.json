@@ -11,7 +11,8 @@
 			"아라",
 			"Fitoschido",
 			"Taresi",
-			"Macofe"
+			"Macofe",
+			"Akapochtli"
 		]
 	},
 	"tog-underline": "Mokìnxòîkuilòtzàswis tzòwilistìn:",
@@ -151,7 +152,7 @@
 	"returnto": "Ximocuepa īhuīc $1.",
 	"tagline": "Īhuīcpa {{SITENAME}}",
 	"help": "Tēpalēhuiliztli",
-	"search": "Mà motèmo",
+	"search": "Nican tictemoz",
 	"searchbutton": "Tictēmōz",
 	"go": "Xiyauh",
 	"searcharticle": "Xiyauh",
@@ -181,7 +182,7 @@
 	"unprotectthispage": "Xicpatla inīn tlaīxtli ītlapiyaliz",
 	"newpage": "Yancuic tlaīxtli",
 	"talkpage": "Xictlahto inīn tlaīxtli ītechcopa",
-	"talkpagelinktext": "Nenônòtzalistli",
+	"talkpagelinktext": "Nenonotzaliztli",
 	"specialpage": "Nònkuâkìskàtlaìxtlapalli",
 	"personaltools": "In tlein nitēquitiltilia",
 	"articlepage": "Xiquitta in tlamantlaīxtli",
@@ -294,7 +295,6 @@
 	"userlogin-yourname": "Tequihuihcātōcāitl",
 	"yourpassword": "Motlahtōlichtacāyo",
 	"yourpasswordagain": "Motlahtōlichtacāyo occeppa",
-	"remembermypassword": "Ticpiyāz motlacalaquiliz inīn chīuhpōhualhuazco (īxquich {{PLURAL:$1|tōnalli}})",
 	"yourdomainname": "Moāxcāyō",
 	"login": "Xicalaqui",
 	"nav-login-createaccount": "Ximocalaqui / ximomachiyōmaca",

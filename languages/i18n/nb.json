@@ -1792,7 +1792,7 @@
 	"listusers": "Brukerliste",
 	"listusers-editsonly": "Vis bare brukere med redigeringer",
 	"listusers-creationsort": "Sorter etter opprettelsesdato",
-	"listusers-desc": "Sorter i avtakende rekkefølge",
+	"listusers-desc": "Sorter i synkende rekkefølge",
 	"usereditcount": "{{PLURAL:$1|én redigering|$1 redigeringer}}",
 	"usercreated": "{{GENDER:$3|Opprettet}} $2 $1",
 	"newpages": "Nye sider",

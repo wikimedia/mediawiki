@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Aftabuzzaman",
-			"Bodhisattwa"
+			"Bodhisattwa",
+			"আজিজ"
 		]
 	},
+	"apihelp-main-param-format": "আউটপুটের বিন্যাস",
 	"apihelp-block-description": "ব্যবহারকারীকে বাধা দিন।",
 	"apihelp-createaccount-param-name": "ব্যবহারকারী নাম।",
 	"apihelp-delete-description": "একটি পাতা মুছে ফেলুন।",
