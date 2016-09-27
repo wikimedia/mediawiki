@@ -3496,7 +3496,7 @@ HTML
 	 * @param string $format Output format, valid values are any function of a Message object
 	 * @return string
 	 */
-	public static function getCopyrightWarning( $title, $format = 'plain' ) {
+	public static function getCopyrightWarning( $title, $format = 'plain', $langcode = null ) {
 		global $wgRightsText;
 		if ( $wgRightsText ) {
 			$copywarnMsg = [ 'copyrightwarning',
@@ -3509,8 +3509,12 @@ HTML
 		// Allow for site and per-namespace customization of contribution/copyright notice.
 		Hooks::run( 'EditPageCopyrightWarning', [ $title, &$copywarnMsg ] );
 
+		$msg = call_user_func_array( 'wfMessage', $copywarnMsg )->title( $title );
+		if ( $langcode ) {
+			$msg->inLanguage( $langcode );
+		}
 		return "<div id=\"editpage-copywarn\">\n" .
-			call_user_func_array( 'wfMessage', $copywarnMsg )->title( $title )->$format() . "\n</div>";
+			$msg->$format() . "\n</div>";
 	}
 
 	/**
