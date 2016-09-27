@@ -28,12 +28,12 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->getMock();
 		if ( $expectedConnectionType !== null ) {
 			$mock->expects( $this->any() )
-				->method( 'getConnection' )
+				->method( 'getConnectionRef' )
 				->with( $expectedConnectionType )
 				->will( $this->returnValue( $mockDb ) );
 		} else {
 			$mock->expects( $this->any() )
-				->method( 'getConnection' )
+				->method( 'getConnectionRef' )
 				->will( $this->returnValue( $mockDb ) );
 		}
 		$mock->expects( $this->any() )
