@@ -1481,6 +1481,7 @@
 	"upload-dialog-disabled": "אין אפשרות להעלות קבצים באמצעות תיבת הדו־שיח הזאת באתר זה.",
 	"upload-dialog-title": "העלאת קובץ",
 	"upload-dialog-button-cancel": "ביטול",
+	"upload-dialog-button-back": "חזרה",
 	"upload-dialog-button-done": "בוצע",
 	"upload-dialog-button-save": "שמירה",
 	"upload-dialog-button-upload": "העלאה",

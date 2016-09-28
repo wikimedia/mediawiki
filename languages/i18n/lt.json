@@ -1468,6 +1468,7 @@
 	"upload-foreign-cant-upload": "Šis vikis nėra sukonfigūruotas failų įkėlimui į nurodytą išorinę failų talpyklą.",
 	"upload-dialog-title": "Įkelti failą",
 	"upload-dialog-button-cancel": "Atšaukti",
+	"upload-dialog-button-back": "Atgal",
 	"upload-dialog-button-done": "Atlikta",
 	"upload-dialog-button-save": "Išsaugoti",
 	"upload-dialog-button-upload": "Įkelti",

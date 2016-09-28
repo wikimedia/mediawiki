@@ -3482,7 +3482,7 @@
 	"logentry-newusers-autocreate": "Uzantokonto $1 estis {{GENDER:$2|kreita}} aŭtomate",
 	"logentry-protect-move_prot": "$1 {{GENDER:$2|movis}} protektajn agordojn el $4 al $3",
 	"logentry-protect-unprotect": "$1 {{GENDER:$2|forigis}} protekton el $3",
-	"logentry-protect-protect": "$1 {{GENDER:$2|protektis}} $3 $4",
+	"logentry-protect-protect": "$1 {{GENDER:$2|protektis}} la paĝon $3 $4",
 	"logentry-protect-protect-cascade": "$1 {{GENDER:$2|protektis}} $3 $4 [rikure]",
 	"logentry-protect-modify": "$1 {{GENDER:$2|ŝanĝis}} la nivelon de protekto de $3 $4",
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|ŝanĝis}} la nivelon de protekto de $3 $4 [rikure]",

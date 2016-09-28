@@ -2,11 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Sindhu",
-			"Aursani"
+			"Aursani",
+			"Mehtab ahmed"
 		]
 	},
 	"config-information": "معلومات",
-	"config-localsettings-badkey": "توهان جي ڏنل ڪنجي غيردرست آهي.",
+	"config-localsettings-badkey": "توهان جي سنواري ڏنل ڪنجي غيردرست آهي.",
 	"config-your-language": "توهان جي ٻولي:",
 	"config-wiki-language": "وڪِي ٻولي:",
 	"config-back": "پوئتي ←",
@@ -26,6 +27,5 @@
 	"config-page-existingwiki": "موجوده وڪِي",
 	"config-restart": "ها، وري کان شروع ڪريو",
 	"config-env-php": "PHP $1 تنصيب ٿي چڪو",
-	"config-env-hhvm": "HHVM $1 تنصيب ٿي چڪو.",
-	"config-xml-bad": "PHP جو XML ماڊيول کٽل آهي. ذريعات‌وڪيءَ کي ان ماڊيول ۾  فنڪشنس گھربل آهن ۽ اها موجوده ترتيب يا ڪنفيگيوريشن ۾ ڪم نہ ڪندي. \nتوهان کي گھرجي تہ php-xml RPM پيڪيج تنصيب ڪريو."
+	"config-env-hhvm": "HHVM $1 تنصيب ٿي چڪو."
 }

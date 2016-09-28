@@ -1481,6 +1481,7 @@
 	"upload-foreign-cant-upload": "Tätä wikiä ei ole konfiguroitu tallentamaan tiedostoja pyydettyyn ulkoiseen tiedostovarastoon.",
 	"upload-dialog-title": "Tiedoston tallennus",
 	"upload-dialog-button-cancel": "Peru",
+	"upload-dialog-button-back": "Takaisin",
 	"upload-dialog-button-done": "Valmis",
 	"upload-dialog-button-save": "Tallenna",
 	"upload-dialog-button-upload": "Tallenna",
@@ -3782,5 +3783,7 @@
 	"linkaccounts-submit": "Linkitä tunnuksia",
 	"unlinkaccounts": "Poista tunnusten linkityksiä",
 	"unlinkaccounts-success": "Tunnuksen linkitys poistettiin.",
-	"authenticationdatachange-ignored": "Varmennustietojen muutosta ei käsitelty. Ehkä palveluntarjoajaa ei määritelty?"
+	"authenticationdatachange-ignored": "Varmennustietojen muutosta ei käsitelty. Ehkä palveluntarjoajaa ei määritelty?",
+	"restrictionsfield-badip": "Virheellinen IP-osoite tai alue: $1",
+	"restrictionsfield-label": "Sallitut IP-alueet:"
 }

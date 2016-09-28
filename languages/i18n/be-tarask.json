@@ -3369,6 +3369,8 @@
 	"htmlform-cloner-delete": "Выдаліць",
 	"htmlform-cloner-required": "Патрабуецца як мінімум яшчэ адно значэньне.",
 	"htmlform-date-placeholder": "ГГГГ-ММ-ДД",
+	"htmlform-time-placeholder": "ГГ:ХХ:СС",
+	"htmlform-datetime-placeholder": "ГГГГ-ММ-ДД ГГ:ХХ:СС",
 	"htmlform-title-badnamespace": "[[:$1]] знаходзіцца не ў прасторы назваў «{{ns:$2}}».",
 	"htmlform-title-not-creatable": "«$1» — немагчымы загаловак для старонкі",
 	"htmlform-title-not-exists": "$1 не існуе.",
