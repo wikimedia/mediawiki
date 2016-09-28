@@ -68,8 +68,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	private function initServices() {
 		if ( !$this->titleParser ) {
-			$lang = $this->getContext()->getLanguage();
-			$this->titleParser = new MediaWikiTitleCodec( $lang, GenderCache::singleton() );
+			$this->titleParser = MediaWikiServices::getInstance()->getTitleParser();
 		}
 	}
 
@@ -205,7 +204,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			}
 		}
 
-		GenderCache::singleton()->doTitlesArray( $titles );
+		MediaWikiServices::getInstance()->getGenderCache()->doTitlesArray( $titles );
 
 		$list = [];
 		/** @var Title $title */
@@ -355,7 +354,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				}
 			}
 
-			GenderCache::singleton()->doTitlesArray( $titles );
+			MediaWikiServices::getInstance()->getGenderCache()->doTitlesArray( $titles );
 
 			foreach ( $titles as $title ) {
 				$list[] = $title->getPrefixedText();
@@ -431,20 +430,22 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		}
 
 		$user = $this->getUser();
-		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$badItems = $this->badItems;
+		DeferredUpdates::addCallableUpdate( function () use ( $user, $badItems ) {
+			$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+			foreach ( $badItems as $row ) {
+				list( $title, $namespace, $dbKey ) = $row;
+				$action = $title ? 'cleaning up' : 'deleting';
+				wfDebug( "User {$user->getName()} has broken watchlist item " .
+					"ns($namespace):$dbKey, $action.\n" );
 
-		foreach ( $this->badItems as $row ) {
-			list( $title, $namespace, $dbKey ) = $row;
-			$action = $title ? 'cleaning up' : 'deleting';
-			wfDebug( "User {$user->getName()} has broken watchlist item ns($namespace):$dbKey, $action.\n" );
-
-			$store->removeWatch( $user, new TitleValue( (int)$namespace, $dbKey ) );
-
-			// Can't just do an UPDATE instead of DELETE/INSERT due to unique index
-			if ( $title ) {
-				$user->addWatch( $title );
+				$store->removeWatch( $user, new TitleValue( (int)$namespace, $dbKey ) );
+				// Can't just do an UPDATE instead of DELETE/INSERT due to unique index
+				if ( $title ) {
+					$user->addWatch( $title );
+				}
 			}
-		}
+		} );
 	}
 
 	/**
