@@ -178,6 +178,8 @@ abstract class LBFactory implements ILBFactory {
 				"$fname: transaction round '{$this->trxRoundId}' still running."
 			);
 		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$scope = $this->getScopedPHPBehaviorForCommit(); // try to ignore client aborts
 		// Run pre-commit callbacks and suppress post-commit callbacks, aborting on failure
 		$this->forEachLBCallMethod( 'finalizeMasterChanges' );
 		$this->trxRoundId = false;
@@ -514,6 +516,23 @@ abstract class LBFactory implements ILBFactory {
 
 	public function setRequestInfo( array $info ) {
 		$this->requestInfo = $info + $this->requestInfo;
+	}
+
+	/**
+	 * Make PHP ignore user aborts/disconnects until the returned
+	 * value leaves scope. This returns null and does nothing in CLI mode.
+	 *
+	 * @return ScopedCallback|null
+	 */
+	final protected function getScopedPHPBehaviorForCommit() {
+		if ( PHP_SAPI != 'cli' ) { // http://bugs.php.net/bug.php?id=47540
+			$old = ignore_user_abort( true ); // avoid half-finished operations
+			return new ScopedCallback( function () use ( $old ) {
+				ignore_user_abort( $old );
+			} );
+		}
+
+		return null;
 	}
 
 	function __destruct() {

@@ -136,9 +136,9 @@ interface ILBFactory {
 	public function flushReplicaSnapshots( $fname = __METHOD__ );
 
 	/**
-	 * Commit on all connections. Done for two reasons:
-	 * 1. To commit changes to the masters.
-	 * 2. To release the snapshot on all connections, master and replica DB.
+	 * Commit open transactions on all connections. This is useful for two main cases:
+	 *   - a) To commit changes to the masters.
+	 *   - b) To release the snapshot on all connections, master and replica DBs.
 	 * @param string $fname Caller name
 	 * @param array $options Options map:
 	 *   - maxWriteDuration: abort if more than this much time was spent in write queries
