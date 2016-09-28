@@ -165,10 +165,15 @@ class SpecialLog extends SpecialPage {
 
 	private function show( FormOptions $opts, array $extraConds ) {
 		# Create a LogPager item to get the results and a LogEventsList item to format them...
+		$flags = LogEventsList::USE_CHECKBOXES;
+		$showTagEditUI = ChangeTags::showTagEditingUI( $this->getUser() );
+		if ( $showTagEditUI ) {
+			$flags |= LogEventsList::SHOW_TAG_EDITING_UI;
+		}
 		$loglist = new LogEventsList(
 			$this->getContext(),
 			null,
-			LogEventsList::USE_CHECKBOXES
+			$flags
 		);
 
 		$pager = new LogPager(
@@ -213,7 +218,8 @@ class SpecialLog extends SpecialPage {
 					$this->getActionButtons(
 						$loglist->beginLogEventsList() .
 							$logBody .
-							$loglist->endLogEventsList()
+							$loglist->endLogEventsList(),
+							$showTagEditUI
 					) .
 					$pager->getNavigationBar()
 			);
@@ -222,10 +228,8 @@ class SpecialLog extends SpecialPage {
 		}
 	}
 
-	private function getActionButtons( $formcontents ) {
-		$user = $this->getUser();
-		$canRevDelete = $user->isAllowedAll( 'deletedhistory', 'deletelogentry' );
-		$showTagEditUI = ChangeTags::showTagEditingUI( $user );
+	private function getActionButtons( $formcontents, $showTagEditUI ) {
+		$canRevDelete = $this->getUser()->isAllowedAll( 'deletedhistory', 'deletelogentry' );
 		# If the user doesn't have the ability to delete log entries nor edit tags,
 		# don't bother showing them the button(s).
 		if ( !$canRevDelete && !$showTagEditUI ) {
