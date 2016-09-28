@@ -149,30 +149,11 @@ class FileBackendGroup {
 	 * @throws InvalidArgumentException
 	 */
 	public function get( $name ) {
-		if ( !isset( $this->backends[$name] ) ) {
-			throw new InvalidArgumentException( "No backend defined with the name `$name`." );
-		}
 		// Lazy-load the actual backend instance
 		if ( !isset( $this->backends[$name]['instance'] ) ) {
-			$class = $this->backends[$name]['class'];
-			$config = $this->backends[$name]['config'];
-			$config += [
-				'wikiId' => wfWikiID(), // e.g. "my_wiki-en_"
-				'mimeCallback' => [ $this, 'guessMimeInternal' ],
-				'obResetFunc' => 'wfResetOutputBuffers',
-				'streamMimeFunc' => [ 'StreamFile', 'contentTypeFromPath' ]
-			];
-			$config['lockManager'] =
-				LockManagerGroup::singleton( $config['wikiId'] )->get( $config['lockManager'] );
-			$config['fileJournal'] = isset( $config['fileJournal'] )
-				? FileJournal::factory( $config['fileJournal'], $name )
-				: FileJournal::factory( [ 'class' => 'NullFileJournal' ], $name );
-			$config['wanCache'] = ObjectCache::getMainWANInstance();
-			$config['srvCache'] = ObjectCache::getLocalServerInstance( 'hash' );
-			$config['statusWrapper'] = [ 'Status', 'wrap' ];
-			$config['tmpDirectory'] = wfTempDir();
-			$config['logger'] = LoggerFactory::getInstance( 'FileOperation' );
-			$config['profiler'] = Profiler::instance();
+			$config = $this->config( $name );
+
+			$class = $config['class'];
 			if ( $class === 'FileBackendMultiWrite' ) {
 				foreach ( $config['backends'] as $index => $beConfig ) {
 					if ( isset( $beConfig['template'] ) ) {
@@ -193,7 +174,7 @@ class FileBackendGroup {
 	 * Get the config array for a backend object with a given name
 	 *
 	 * @param string $name
-	 * @return array
+	 * @return array Parameters to FileBackend::__construct()
 	 * @throws InvalidArgumentException
 	 */
 	public function config( $name ) {
@@ -202,7 +183,27 @@ class FileBackendGroup {
 		}
 		$class = $this->backends[$name]['class'];
 
-		return [ 'class' => $class ] + $this->backends[$name]['config'];
+		$config = $this->backends[$name]['config'];
+		$config['class'] = $class;
+		$config += [ // set defaults
+			'wikiId' => wfWikiID(), // e.g. "my_wiki-en_"
+			'mimeCallback' => [ $this, 'guessMimeInternal' ],
+			'obResetFunc' => 'wfResetOutputBuffers',
+			'streamMimeFunc' => [ 'StreamFile', 'contentTypeFromPath' ],
+			'tmpDirectory' => wfTempDir(),
+			'statusWrapper' => [ 'Status', 'wrap' ],
+			'wanCache' => ObjectCache::getMainWANInstance(),
+			'srvCache' => ObjectCache::getLocalServerInstance( 'hash' ),
+			'logger' => LoggerFactory::getInstance( 'FileOperation' ),
+			'profiler' => Profiler::instance()
+		];
+		$config['lockManager'] =
+			LockManagerGroup::singleton( $config['wikiId'] )->get( $config['lockManager'] );
+		$config['fileJournal'] = isset( $config['fileJournal'] )
+			? FileJournal::factory( $config['fileJournal'], $name )
+			: FileJournal::factory( [ 'class' => 'NullFileJournal' ], $name );
+
+		return $config;
 	}
 
 	/**
