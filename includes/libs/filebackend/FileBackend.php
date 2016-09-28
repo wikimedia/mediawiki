@@ -185,15 +185,15 @@ abstract class FileBackend implements LoggerAwareInterface {
 		$this->concurrency = isset( $config['concurrency'] )
 			? (int)$config['concurrency']
 			: 50;
-		$this->obResetFunc = isset( $params['obResetFunc'] )
-			? $params['obResetFunc']
+		$this->obResetFunc = isset( $config['obResetFunc'] )
+			? $config['obResetFunc']
 			: [ $this, 'resetOutputBuffer' ];
-		$this->streamMimeFunc = isset( $params['streamMimeFunc'] )
-			? $params['streamMimeFunc']
+		$this->streamMimeFunc = isset( $config['streamMimeFunc'] )
+			? $config['streamMimeFunc']
 			: null;
 		$this->statusWrapper = isset( $config['statusWrapper'] ) ? $config['statusWrapper'] : null;
 
-		$this->profiler = isset( $params['profiler'] ) ? $params['profiler'] : null;
+		$this->profiler = isset( $config['profiler'] ) ? $config['profiler'] : null;
 		$this->logger = isset( $config['logger'] ) ? $config['logger'] : new \Psr\Log\NullLogger();
 		$this->statusWrapper = isset( $config['statusWrapper'] ) ? $config['statusWrapper'] : null;
 		$this->tmpDirectory = isset( $config['tmpDirectory'] ) ? $config['tmpDirectory'] : null;
@@ -1620,7 +1620,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	protected function scopedProfileSection( $section ) {
 		if ( $this->profiler ) {
 			call_user_func( [ $this->profiler, 'profileIn' ], $section );
-			return new ScopedCallback( [ $this->profiler, 'profileOut' ] );
+			return new ScopedCallback( [ $this->profiler, 'profileOut' ], [ $section ] );
 		}
 
 		return null;
