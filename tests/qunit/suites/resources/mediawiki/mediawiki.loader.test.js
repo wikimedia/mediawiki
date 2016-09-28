@@ -5,6 +5,11 @@
 		},
 		teardown: function () {
 			mw.loader.store.enabled = false;
+			// Teardown for StringSet shim test
+			if ( this.nativeSet ) {
+				window.Set = this.nativeSet;
+				mw.redefineFallbacksForTest();
+			}
 		}
 	} ) );
 
@@ -133,7 +138,8 @@
 		} );
 	} );
 
-	QUnit.test( '.using() Error: Circular dependency', function ( assert ) {
+	// Covers mw.loader#sortDependencies (with native Set if available)
+	QUnit.test( '.using() Error: Circular dependency [StringSet default]', function ( assert ) {
 		var done = assert.async();
 
 		mw.loader.register( [
@@ -142,6 +148,36 @@
 			[ 'test.circle3', '0', [ 'test.circle1' ] ]
 		] );
 		mw.loader.using( 'test.circle3' ).then(
+			function done() {
+				assert.ok( false, 'Unexpected resolution, expected error.' );
+			},
+			function fail( e ) {
+				assert.ok( /Circular/.test( String( e ) ), 'Detect circular dependency' );
+			}
+		)
+		.always( done );
+	} );
+
+	// @covers mw.loader#sortDependencies (with fallback shim)
+	QUnit.test( '.using() Error: Circular dependency [StringSet shim]', function ( assert ) {
+		var done = assert.async();
+
+		if ( !window.Set ) {
+			assert.expect( 0 );
+			done();
+			return;
+		}
+
+		this.nativeSet = window.Set;
+		window.Set = undefined;
+		mw.redefineFallbacksForTest();
+
+		mw.loader.register( [
+			[ 'test.shim.circle1', '0', [ 'test.shim.circle2' ] ],
+			[ 'test.shim.circle2', '0', [ 'test.shim.circle3' ] ],
+			[ 'test.shim.circle3', '0', [ 'test.shim.circle1' ] ]
+		] );
+		mw.loader.using( 'test.shim.circle3' ).then(
 			function done() {
 				assert.ok( false, 'Unexpected resolution, expected error.' );
 			},
