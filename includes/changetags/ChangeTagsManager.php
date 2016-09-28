@@ -42,6 +42,11 @@ class ChangeTagsManager {
 	protected $ignoreWarnings;
 
 	/**
+	 * @var Title
+	 */
+	protected $target = null;
+
+	/**
 	 * @param ChangeTagsContext $context
 	 * @param User $performer
 	 * @param bool $ignoreWarnings
@@ -52,6 +57,16 @@ class ChangeTagsManager {
 		$this->context = $context;
 		$this->performer = $performer;
 		$this->ignoreWarnings = $ignoreWarnings;
+	}
+
+	/**
+	 * Specify which target page to set for logging.
+	 *
+	 * @param Title $target
+	 * @since 1.28
+	 */
+	public function setTarget( Title $target ) {
+		$this->target = $target;
 	}
 
 	/**
@@ -93,6 +108,7 @@ class ChangeTagsManager {
 		ChangeTagsContext::purgeStoredTagsCache();
 
 		// log it
+		$this->setTarget( Title::newFromText( 'Special:Tags' ) );
 		$logId = $this->logTagManagementAction( 'activate', $tag, $reason );
 		return Status::newGood( $logId );
 	}
@@ -133,6 +149,7 @@ class ChangeTagsManager {
 		ChangeTagsContext::purgeStoredTagsCache();
 
 		// log it
+		$this->setTarget( Title::newFromText( 'Special:Tags' ) );
 		$logId = $this->logTagManagementAction( 'deactivate', $tag, $reason );
 		return Status::newGood( $logId );
 	}
@@ -175,6 +192,7 @@ class ChangeTagsManager {
 		ChangeTagsContext::purgeStoredTagsCache();
 
 		// log it
+		$this->setTarget( Title::newFromText( 'Special:Tags' ) );
 		$logId = $this->logTagManagementAction( 'create', $tag, $reason );
 		return Status::newGood( $logId );
 	}
@@ -217,9 +235,26 @@ class ChangeTagsManager {
 		}
 
 		// log it
+		$this->setTarget( Title::newFromText( 'Special:Tags' ) );
 		$logId = $this->logTagManagementAction( 'delete', $tag, $reason, $hitcount );
 		$deleteResult->value = $logId;
 		return $deleteResult;
+	}
+
+	public function logExternalDefinition( $tag, $reason = '' ) {
+		$this->logTagManagementAction( 'define', $tag, $reason );
+	}
+
+	public function logExternalActivation( $tag, $reason = '' ) {
+		$this->logTagManagementAction( 'activate', $tag, $reason );
+	}
+
+	public function logExternalDeactivation( $tag, $reason = '' ) {
+		$this->logTagManagementAction( 'deactivate', $tag, $reason );
+	}
+
+	public function logExternalUndefinition( $tag, $reason = '' ) {
+		$this->logTagManagementAction( 'undefine', $tag, $reason );
 	}
 
 	/**
@@ -234,14 +269,15 @@ class ChangeTagsManager {
 	 * @since 1.25
 	 */
 	protected function logTagManagementAction( $action, $tag, $reason, $tagCount = null ) {
+		if ( $this->target === null ) {
+			throw new MWException( 'No target was specified!' );
+		}
 
 		$dbw = wfGetDB( DB_MASTER );
 
 		$logEntry = new ManualLogEntry( 'managetags', $action );
 		$logEntry->setPerformer( $this->performer );
-		// target page is not relevant, but it has to be set, so we just put in
-		// the title of Special:Tags
-		$logEntry->setTarget( Title::newFromText( 'Special:Tags' ) );
+		$logEntry->setTarget( $this->target );
 		$logEntry->setComment( $reason );
 
 		$params = [ '4::tag' => $tag ];
