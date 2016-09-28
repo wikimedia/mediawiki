@@ -236,8 +236,9 @@ class SpecialTags extends SpecialPage {
 		// actions
 		$actionLinks = [];
 
+		$manager = new ChangeTagsManager( null, true );
 		// delete
-		if ( $showDeleteActions && ChangeTags::canDeleteTag( $tag )->isOK() ) {
+		if ( $showDeleteActions && $manager->canDeleteTag( $tag )->isOK() ) {
 			$actionLinks[] = $linkRenderer->makeKnownLink(
 				$this->getPageTitle( 'delete' ),
 				$this->msg( 'tags-delete' )->text(),
@@ -248,7 +249,7 @@ class SpecialTags extends SpecialPage {
 		if ( $showManageActions ) { // we've already checked that the user had the requisite userright
 
 			// activate
-			if ( ChangeTags::canActivateTag( $tag )->isOK() ) {
+			if ( $manager->canActivateTag( $tag )->isOK() ) {
 				$actionLinks[] = $linkRenderer->makeKnownLink(
 					$this->getPageTitle( 'activate' ),
 					$this->msg( 'tags-activate' )->text(),
@@ -257,7 +258,7 @@ class SpecialTags extends SpecialPage {
 			}
 
 			// deactivate
-			if ( ChangeTags::canDeactivateTag( $tag )->isOK() ) {
+			if ( $manager->canDeactivateTag( $tag )->isOK() ) {
 				$actionLinks[] = $linkRenderer->makeKnownLink(
 					$this->getPageTitle( 'deactivate' ),
 					$this->msg( 'tags-deactivate' )->text(),
@@ -280,8 +281,8 @@ class SpecialTags extends SpecialPage {
 
 		$tag = trim( strval( $data['Tag'] ) );
 		$ignoreWarnings = isset( $data['IgnoreWarnings'] ) && $data['IgnoreWarnings'] === '1';
-		$status = ChangeTags::createTagWithChecks( $tag, $data['Reason'],
-			$context->getUser(), $ignoreWarnings );
+		$manager = new ChangeTagsManager( $context->getUser(), $ignoreWarnings );
+		$status = $manager->createTagWithChecks( $tag, $data['Reason'] );
 
 		if ( $status->isGood() ) {
 			$out->redirect( $this->getPageTitle()->getLocalURL() );
@@ -340,7 +341,8 @@ class SpecialTags extends SpecialPage {
 		$out->addBacklinkSubtitle( $this->getPageTitle() );
 
 		// is the tag actually able to be deleted?
-		$canDeleteResult = ChangeTags::canDeleteTag( $tag, $user );
+		$manager = new ChangeTagsManager( $user );
+		$canDeleteResult = $manager->canDeleteTag( $tag );
 		if ( !$canDeleteResult->isGood() ) {
 			$out->addWikiText( "<div class=\"error\">\n" . $canDeleteResult->getWikiText() .
 				"\n</div>" );
@@ -402,7 +404,8 @@ class SpecialTags extends SpecialPage {
 
 		// is it possible to do this?
 		$func = $activate ? 'canActivateTag' : 'canDeactivateTag';
-		$result = ChangeTags::$func( $tag, $user );
+		$manager = new ChangeTagsManager( $user );
+		$result = $manager->$func( $tag );
 		if ( !$result->isGood() ) {
 			$out->addWikiText( "<div class=\"error\">\n" . $result->getWikiText() .
 				"\n</div>" );
@@ -443,8 +446,9 @@ class SpecialTags extends SpecialPage {
 		$out = $context->getOutput();
 
 		$tag = $data['HiddenTag'];
-		$status = call_user_func( [ 'ChangeTags', "{$form->tagAction}TagWithChecks" ],
-			$tag, $data['Reason'], $context->getUser(), true );
+		$manager = new ChangeTagsManager( $context->getUser(), true );
+		$status = call_user_func( [ $manager, "{$form->tagAction}TagWithChecks" ],
+			$tag, $data['Reason'] );
 
 		if ( $status->isGood() ) {
 			$out->redirect( $this->getPageTitle()->getLocalURL() );

@@ -227,6 +227,7 @@ $wgAutoloadLocalClasses = [
 	'ChangeTagsList' => __DIR__ . '/includes/changetags/ChangeTagsList.php',
 	'ChangeTagsLogItem' => __DIR__ . '/includes/changetags/ChangeTagsLogItem.php',
 	'ChangeTagsLogList' => __DIR__ . '/includes/changetags/ChangeTagsLogList.php',
+	'ChangeTagsManager' => __DIR__ . '/includes/changetags/ChangeTagsManager.php',
 	'ChangeTagsRevisionItem' => __DIR__ . '/includes/changetags/ChangeTagsRevisionItem.php',
 	'ChangeTagsRevisionList' => __DIR__ . '/includes/changetags/ChangeTagsRevisionList.php',
 	'ChangeTagsUpdater' => __DIR__ . '/includes/changetags/ChangeTagsUpdater.php',
