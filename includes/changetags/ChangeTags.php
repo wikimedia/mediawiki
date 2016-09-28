@@ -311,12 +311,12 @@ class ChangeTags {
 	}
 
 	/**
-	 * @see ChangeTagsContext::canAddTagsAccompanyingChange
+	 * @deprecated since 1.28, use ChangeTagsUpdater::canAddTagsAccompanyingChange
 	 * @since 1.25
-	 * @todo deprecate
 	 */
 	public static function canAddTagsAccompanyingChange( array $tags,
 		User $user = null ) {
+		wfDeprecated( __METHOD__, '1.28' );
 		$changeTagsContext = new ChangeTagsContext( RequestContext::getMain()->getConfig() );
 		$lang = RequestContext::getMain()->getLanguage();
 		$manager = new ChangeTagsUpdater( $changeTagsContext, $user, $lang );
