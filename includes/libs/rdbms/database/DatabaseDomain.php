@@ -51,7 +51,6 @@ class DatabaseDomain {
 			throw new InvalidArgumentException( "Prefix must be a string." );
 		}
 		$this->prefix = $prefix;
-		$this->equivalentString = $this->convertToString();
 	}
 
 	/**
@@ -105,7 +104,7 @@ class DatabaseDomain {
 			);
 		}
 
-		return ( $this->equivalentString === $other );
+		return ( $this->getId() === $other );
 	}
 
 	/**
@@ -133,6 +132,9 @@ class DatabaseDomain {
 	 * @return string
 	 */
 	public function getId() {
+		if ( !$this->equivalentString ) {
+			$this->equivalentString = $this->convertToString();
+		}
 		return $this->equivalentString;
 	}
 
