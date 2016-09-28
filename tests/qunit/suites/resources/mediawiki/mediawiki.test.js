@@ -65,7 +65,7 @@
 		);
 	} );
 
-	QUnit.test( 'mw.Map', function ( assert ) {
+	function testMwMap( assert ) {
 		var arry, conf, funky, globalConf, nummy, someValues;
 
 		conf = new mw.Map();
@@ -171,7 +171,29 @@
 		if ( QUnit.config.noglobals ) {
 			QUnit.config.pollution.push( 'anotherGlobalMapChecker' );
 		}
+	}
+
+	QUnit.test( 'mw.Map', function ( assert ) {
+		if ( window.Map ) {
+			assert.strictEqual( new mw.Map().internalMap.constructor, window.Map, 'Use native Map' );
+		}
+		testMwMap.call( this, assert );
 	} );
+
+	if ( window.Map ) {
+		QUnit.test( 'mw.Map (StringMap fallback)', function ( assert ) {
+			var original = window.Map;
+			window.Map = null;
+			mw.redefineFallbacksForTest();
+
+			assert.equal( new mw.Map().internalMap.constructor.name, 'StringMap', 'Use StringMap fallback' );
+			testMwMap.call( this, assert );
+
+			// Restore
+			window.Map = original;
+			mw.redefineFallbacksForTest();
+		} );
+	}
 
 	QUnit.test( 'mw.message & mw.messages', function ( assert ) {
 		var goodbye, hello;

@@ -48,53 +48,55 @@
 		return hash;
 	}
 
-	// <https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Set>
-	StringSet = window.Set || ( function () {
-		/**
-		 * @private
-		 * @class
-		 */
-		function StringSet() {
-			this.set = {};
-		}
-		StringSet.prototype.add = function ( value ) {
-			this.set[ value ] = true;
-		};
-		StringSet.prototype.has = function ( value ) {
-			return hasOwn.call( this.set, value );
-		};
-		return StringSet;
-	}() );
-
-	// <https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map>
-	StringMap = window.Map || ( function () {
-		/**
-		 * @private
-		 * @class
-		 */
-		function StringMap() {
-			this.values = {};
-		}
-		/** @return {Mixed|undefined} */
-		StringMap.prototype.get = function ( key ) {
-			return this.values[ key ];
-		};
-		/** @return {boolean} */
-		StringMap.prototype.has = function ( key ) {
-			return typeof key === 'string' && hasOwn.call( this.values, key );
-		};
-		/** @chainable */
-		StringMap.prototype.set = function ( key, value ) {
-			this.values[ key ] = value;
-			return this;
-		};
-		StringMap.prototype.forEach = function ( callback ) {
-			for ( var key in this.values ) {
-				callback( this.values[ key ], key );
+	function defineFallbacks() {
+		// <https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Set>
+		StringSet = window.Set || ( function () {
+			/**
+			 * @private
+			 * @class
+			 */
+			function StringSet() {
+				this.set = {};
 			}
-		};
-		return StringMap;
-	}() );
+			StringSet.prototype.add = function ( value ) {
+				this.set[ value ] = true;
+			};
+			StringSet.prototype.has = function ( value ) {
+				return hasOwn.call( this.set, value );
+			};
+			return StringSet;
+		}() );
+
+		// <https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map>
+		StringMap = window.Map || ( function () {
+			/**
+			 * @private
+			 * @class
+			 */
+			function StringMap() {
+				this.values = {};
+			}
+			/** @return {Mixed|undefined} */
+			StringMap.prototype.get = function ( key ) {
+				return this.values[ key ];
+			};
+			/** @return {boolean} */
+			StringMap.prototype.has = function ( key ) {
+				return typeof key === 'string' && hasOwn.call( this.values, key );
+			};
+			/** @chainable */
+			StringMap.prototype.set = function ( key, value ) {
+				this.values[ key ] = value;
+				return this;
+			};
+			StringMap.prototype.forEach = function ( callback ) {
+				for ( var key in this.values ) {
+					callback( this.values[ key ], key );
+				}
+			};
+			return StringMap;
+		}() );
+	}
 
 	/**
 	 * Create an object that can be read from or written to via methods that allow
@@ -436,6 +438,8 @@
 		}
 	};
 
+	defineFallbacks();
+
 	log = ( function () {
 		// Also update the restoration of methods in mediawiki.log.js
 		// when adding or removing methods here.
@@ -529,6 +533,12 @@
 	 * @class mw
 	 */
 	mw = {
+		redefineFallbacksForTest: function () {
+			if ( !window.QUnit ) {
+				throw new Error( 'Reset not allowed outside unit tests' );
+			}
+			defineFallbacks();
+		},
 
 		/**
 		 * Get the current time, measured in milliseconds since January 1, 1970 (UTC).
