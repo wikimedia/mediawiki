@@ -52,23 +52,25 @@
 		/* eslint-enable no-bitwise */
 	}
 
-	// <https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Set>
-	StringSet = window.Set || ( function () {
-		/**
-		 * @private
-		 * @class
-		 */
-		function StringSet() {
-			this.set = {};
-		}
-		StringSet.prototype.add = function ( value ) {
-			this.set[ value ] = true;
-		};
-		StringSet.prototype.has = function ( value ) {
-			return hasOwn.call( this.set, value );
-		};
-		return StringSet;
-	}() );
+	function defineFallbacks() {
+		// <https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Set>
+		StringSet = window.Set || ( function () {
+			/**
+			 * @private
+			 * @class
+			 */
+			function StringSet() {
+				this.set = {};
+			}
+			StringSet.prototype.add = function ( value ) {
+				this.set[ value ] = true;
+			};
+			StringSet.prototype.has = function ( value ) {
+				return hasOwn.call( this.set, value );
+			};
+			return StringSet;
+		}() );
+	}
 
 	/**
 	 * Create an object that can be read from or written to via methods that allow
@@ -413,6 +415,8 @@
 		}
 	};
 
+	defineFallbacks();
+
 	/* eslint-disable no-console */
 	log = ( function () {
 		// Also update the restoration of methods in mediawiki.log.js
@@ -508,6 +512,12 @@
 	 * @class mw
 	 */
 	mw = {
+		redefineFallbacksForTest: function () {
+			if ( !window.QUnit ) {
+				throw new Error( 'Reset not allowed outside unit tests' );
+			}
+			defineFallbacks();
+		},
 
 		/**
 		 * Get the current time, measured in milliseconds since January 1, 1970 (UTC).
