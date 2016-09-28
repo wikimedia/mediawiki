@@ -30,7 +30,7 @@
  */
 class CollationEt extends IcuCollation {
 	public function __construct() {
-		parent::__construct( 'et' );
+		parent::__construct( 'et', 'xx-uca-et' );
 	}
 
 	private static function mangle( $string ) {

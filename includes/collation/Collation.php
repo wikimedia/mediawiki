@@ -20,23 +20,22 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @since 1.16.3
  * @author Tim Starling
  */
 abstract class Collation {
-	private static $instance;
-
 	/**
+	 * @deprecated since 1.28 use MediaWikiServices instead
+	 *
 	 * @since 1.16.3
 	 * @return Collation
 	 */
 	public static function singleton() {
-		if ( !self::$instance ) {
-			global $wgCategoryCollation;
-			self::$instance = self::factory( $wgCategoryCollation );
-		}
-		return self::$instance;
+		wfDeprecated( __METHOD__, '1.28' );
+		return MediaWikiServices::getInstance()->getCollation();
 	}
 
 	/**
@@ -54,9 +53,9 @@ abstract class Collation {
 			case 'identity':
 				return new IdentityCollation;
 			case 'uca-default':
-				return new IcuCollation( 'root' );
+				return new IcuCollation( 'root', $collationName );
 			case 'uca-default-u-kn':
-				return new IcuCollation( 'root-u-kn' );
+				return new IcuCollation( 'root-u-kn', $collationName );
 			case 'xx-uca-ckb':
 				return new CollationCkb;
 			case 'xx-uca-et':
@@ -64,7 +63,7 @@ abstract class Collation {
 			default:
 				$match = [];
 				if ( preg_match( '/^uca-([a-z@=-]+)$/', $collationName, $match ) ) {
-					return new IcuCollation( $match[1] );
+					return new IcuCollation( $match[1], $collationName );
 				}
 
 				# Provide a mechanism for extensions to hook in.
@@ -78,6 +77,19 @@ abstract class Collation {
 				// If all else fails...
 				throw new MWException( __METHOD__ . ": unknown collation type \"$collationName\"" );
 		}
+	}
+
+	/**
+	 * Returns the name of the collation, falls back
+	 * to class name for subclasses that haven't updated
+	 * to implement this
+	 *
+	 * @since 1.28
+	 * @return string
+	 */
+	public function getName() {
+		wfWarn( __METHOD__ . ': does not implement Collation::getName()' );
+		return get_class( $this );
 	}
 
 	/**

@@ -304,6 +304,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'SiteLookup' => [ 'SiteLookup', SiteLookup::class ],
 			'StatsdDataFactory' => [ 'StatsdDataFactory', StatsdDataFactory::class ],
 			'InterwikiLookup' => [ 'InterwikiLookup', InterwikiLookup::class ],
+			'Collation' => [ 'Collation', Collation::class ],
 			'EventRelayerGroup' => [ 'EventRelayerGroup', EventRelayerGroup::class ],
 			'SearchEngineFactory' => [ 'SearchEngineFactory', SearchEngineFactory::class ],
 			'SearchEngineConfig' => [ 'SearchEngineConfig', SearchEngineConfig::class ],

@@ -27,6 +27,10 @@
  * @since 1.28
  */
 class NumericUppercaseCollation extends UppercaseCollation {
+	public function getName() {
+		return 'numeric';
+	}
+
 	public function getSortKey( $string ) {
 		$sortkey = parent::getSortKey( $string );
 

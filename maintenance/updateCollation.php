@@ -26,6 +26,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Maintenance script that will find all rows in the categorylinks table
  * whose collation is out-of-date.
@@ -67,8 +69,6 @@ TEXT
 	}
 
 	public function execute() {
-		global $wgCategoryCollation;
-
 		$dbw = $this->getDB( DB_MASTER );
 		$dbr = $this->getDB( DB_REPLICA );
 		$force = $this->getOption( 'force' );
@@ -78,8 +78,8 @@ TEXT
 			$collationName = $this->getOption( 'target-collation' );
 			$collation = Collation::factory( $collationName );
 		} else {
-			$collationName = $wgCategoryCollation;
-			$collation = Collation::singleton();
+			$collation = MediaWikiServices::getInstance()->getCollation();
+			$collationName = $collation->getName();
 		}
 
 		// Collation sanity check: in some cases the constructor will work,

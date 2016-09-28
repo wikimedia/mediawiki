@@ -1,6 +1,7 @@
 <?php
 namespace MediaWiki;
 
+use Collation;
 use Config;
 use ConfigFactory;
 use EventRelayerGroup;
@@ -439,6 +440,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getInterwikiLookup() {
 		return $this->getService( 'InterwikiLookup' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return Collation
+	 */
+	public function getCollation() {
+		return $this->getService( 'Collation' );
 	}
 
 	/**

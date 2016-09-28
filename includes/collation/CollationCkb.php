@@ -28,7 +28,7 @@
 class CollationCkb extends IcuCollation {
 	public function __construct() {
 		// This will set $locale and collators, which affect the actual sorting order
-		parent::__construct( 'fa' );
+		parent::__construct( 'fa', 'xx-uca-ckb' );
 		// Override the 'fa' language set by parent constructor, which affects #getFirstLetterData()
 		$this->digitTransformLanguage = Language::factory( 'ckb' );
 	}

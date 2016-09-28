@@ -24,6 +24,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A query module to enumerate pages that belong to a category.
  *
@@ -150,7 +152,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				$this->addWhereRange( 'cl_from', $dir, null, null );
 			} else {
 				if ( $params['startsortkeyprefix'] !== null ) {
-					$startsortkey = Collation::singleton()->getSortKey( $params['startsortkeyprefix'] );
+					$collation = MediaWikiServices::getInstance()->getCollation();
+					$startsortkey = $collation->getSortKey( $params['startsortkeyprefix'] );
 				} elseif ( $params['starthexsortkey'] !== null ) {
 					if ( !$this->validateHexSortkey( $params['starthexsortkey'] ) ) {
 						$this->dieUsage( 'The starthexsortkey provided is not valid', 'bad_starthexsortkey' );
@@ -160,7 +163,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					$startsortkey = $params['startsortkey'];
 				}
 				if ( $params['endsortkeyprefix'] !== null ) {
-					$endsortkey = Collation::singleton()->getSortKey( $params['endsortkeyprefix'] );
+					$collation = MediaWikiServices::getInstance()->getCollation();
+					$endsortkey = $collation->getSortKey( $params['endsortkeyprefix'] );
 				} elseif ( $params['endhexsortkey'] !== null ) {
 					if ( !$this->validateHexSortkey( $params['endhexsortkey'] ) ) {
 						$this->dieUsage( 'The endhexsortkey provided is not valid', 'bad_endhexsortkey' );

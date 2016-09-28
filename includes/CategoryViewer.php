@@ -98,7 +98,7 @@ class CategoryViewer extends ContextSource {
 		$this->limit = $context->getConfig()->get( 'CategoryPagingLimit' );
 		$this->cat = Category::newFromTitle( $title );
 		$this->query = $query;
-		$this->collation = Collation::singleton();
+		$this->collation = MediaWikiServices::getInstance()->getCollation();
 		unset( $this->query['title'] );
 	}
 

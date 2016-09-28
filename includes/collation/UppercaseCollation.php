@@ -30,6 +30,10 @@ class UppercaseCollation extends Collation {
 		$this->lang = Language::factory( 'en' );
 	}
 
+	public function getName() {
+		return 'uppercase';
+	}
+
 	public function getSortKey( $string ) {
 		return $this->lang->uc( $string );
 	}

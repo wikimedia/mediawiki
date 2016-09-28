@@ -28,6 +28,10 @@
  */
 class IdentityCollation extends Collation {
 
+	public function getName() {
+		return 'identity';
+	}
+
 	public function getSortKey( $string ) {
 		return $string;
 	}

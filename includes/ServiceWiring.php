@@ -103,6 +103,12 @@ return [
 		);
 	},
 
+	'Collation' => function( MediaWikiServices $services ) {
+		return Collation::factory(
+			$services->getMainConfig()->get( 'CategoryCollation' )
+		);
+	},
+
 	'StatsdDataFactory' => function( MediaWikiServices $services ) {
 		return new BufferingStatsdDataFactory(
 			rtrim( $services->getMainConfig()->get( 'StatsdMetricPrefix' ), '.' )

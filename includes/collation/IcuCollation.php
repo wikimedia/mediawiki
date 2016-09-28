@@ -42,6 +42,9 @@ class IcuCollation extends Collation {
 	/** @var array */
 	private $firstLetterData;
 
+	/** @var string */
+	private $collationName;
+
 	/**
 	 * Unified CJK blocks.
 	 *
@@ -182,12 +185,12 @@ class IcuCollation extends Collation {
 	 */
 	const RECORD_LENGTH = 14;
 
-	public function __construct( $locale ) {
+	public function __construct( $locale, $collationName ) {
 		if ( !extension_loaded( 'intl' ) ) {
 			throw new MWException( 'An ICU collation was requested, ' .
 				'but the intl extension is not available.' );
 		}
-
+		$this->collationName = $collationName;
 		$this->locale = $locale;
 		// Drop everything after the '@' in locale's name
 		$localeParts = explode( '@', $locale );
@@ -209,6 +212,13 @@ class IcuCollation extends Collation {
 			$this->mainCollator->setAttribute( Collator::NUMERIC_COLLATION, Collator::ON );
 			$this->primaryCollator->setAttribute( Collator::NUMERIC_COLLATION, Collator::ON );
 		}
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getName() {
+		return $this->collationName;
 	}
 
 	public function getSortKey( $string ) {
