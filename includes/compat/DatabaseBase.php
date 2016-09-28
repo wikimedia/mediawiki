@@ -28,6 +28,6 @@
  * Database abstraction object
  * @ingroup Database
  */
-abstract class DatabaseBase extends Database {
+interface DatabaseBase extends IDatabase {
 	// Backwards-compatibility alias for type-hints
 }
