@@ -47,14 +47,12 @@ class ApiManageTags extends ApiBase {
 		}
 
 		$result = $this->getResult();
+		$manager = new ChangeTagsManager( $user, $params['ignorewarnings'] );
+		if ( $params['tags'] ) {
+			$manager->setChangeTagsForLogging( $params['tags'] );
+		}
 		$funcName = "{$params['operation']}TagWithChecks";
-		$status = ChangeTags::$funcName(
-			$params['tag'],
-			$params['reason'],
-			$user,
-			$params['ignorewarnings'],
-			$params['tags'] ?: []
-		);
+		$status = $manager->$funcName( $params['tag'], $params['reason'] );
 
 		if ( !$status->isOK() ) {
 			$this->dieStatus( $status );
