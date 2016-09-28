@@ -333,7 +333,7 @@ class RecentChange {
 
 		if ( count( $this->tags ) ) {
 			ChangeTags::addTags( $this->tags, $this->mAttribs['rc_id'],
-				$this->mAttribs['rc_this_oldid'], $this->mAttribs['rc_logid'], null );
+				$this->mAttribs['rc_this_oldid'], $this->mAttribs['rc_logid'], null, $this );
 		}
 
 		# Notify external application via UDP
