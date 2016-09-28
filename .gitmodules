@@ -522,3 +522,7 @@
 	path = extensions/HideSection
 	url = https://github.com/labster/HideSection.git
 	branch = master
+[submodule "extensions/DynamicPageList3"]
+	path = extensions/DynamicPageList3
+	url = https://github.com/Alexia/DynamicPageList
+	branch = REL1_27
