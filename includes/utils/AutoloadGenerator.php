@@ -290,6 +290,8 @@ EOD;
 		foreach ( glob( $this->basepath . '/*.php' ) as $file ) {
 			$this->readFile( $file );
 		}
+		$this->forceClassPath( 'DatabaseBase',
+			$this->basepath . '/includes/compat/DatabaseBase.php' );
 	}
 }
 

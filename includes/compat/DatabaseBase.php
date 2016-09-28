@@ -1,7 +1,5 @@
 <?php
 /**
- * @defgroup Database Database
- *
  * This file deals with database interface functions
  * and query specifics/optimisations.
  *
@@ -24,10 +22,5 @@
  * @ingroup Database
  */
 
-/**
- * Database abstraction object
- * @ingroup Database
- */
-abstract class DatabaseBase extends Database {
-	// Backwards-compatibility alias for type-hints
-}
+// Backwards-compatibility alias for type-hints
+class_alias( Database::class, 'DatabaseBase' );
