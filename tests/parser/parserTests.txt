@@ -16707,11 +16707,11 @@ Expansion of multi-line templates in attribute values (bug 6255 sanity check 2)
 !! end
 
 !! test
-evil <math>-wiki-tags without Extension:Math enabled
+Tags which are hidden from Tidy cannot pass through the Sanitizer
 !! wikitext
-<math><img src="some evil external link"><script>some_evil_javascript();</script></math>
+<mw:toc><script>alert();</script></mw:toc>
 !! html+tidy
-<p>&lt;math&gt;&lt;img src="some evil external link"&gt;&lt;script&gt;some_evil_javascript();&lt;/script&gt;&lt;/math&gt;</p>
+<p>&lt;mw:toc&gt;&lt;script&gt;alert();&lt;/script&gt;&lt;/mw:toc&gt;</p>
 !! end
 
 ###
