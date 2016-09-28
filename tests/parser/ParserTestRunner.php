@@ -60,11 +60,6 @@ class ParserTestRunner {
 	private $dbClone;
 
 	/**
-	 * @var DjVuSupport
-	 */
-	private $djVuSupport;
-
-	/**
 	 * @var TidySupport
 	 */
 	private $tidySupport;
@@ -138,7 +133,6 @@ class ParserTestRunner {
 		$this->runDisabled = !empty( $options['run-disabled'] );
 		$this->runParsoid = !empty( $options['run-parsoid'] );
 
-		$this->djVuSupport = new DjVuSupport();
 		$this->tidySupport = new TidySupport( !empty( $options['use-tidy-config'] ) );
 		if ( !$this->tidySupport->isEnabled() ) {
 			$this->recorder->warning(
@@ -456,7 +450,6 @@ class ParserTestRunner {
 		}
 		$this->setupDone[$funcName] = true;
 		return function () use ( $funcName ) {
-			wfDebug( "markSetupDone unmarked $funcName" );
 			$this->setupDone[$funcName] = false;
 		};
 	}
@@ -752,14 +745,6 @@ class ParserTestRunner {
 		$user = $context->getUser();
 		$options = ParserOptions::newFromContext( $context );
 
-		if ( isset( $opts['djvu'] ) ) {
-			if ( !$this->djVuSupport->isEnabled() ) {
-				$this->recorder->skipped( $test,
-					'djvu binaries do not exist or are not executable' );
-				return false;
-			}
-		}
-
 		if ( isset( $opts['tidy'] ) ) {
 			if ( !$this->tidySupport->isEnabled() ) {
 				$this->recorder->skipped( $test, 'tidy extension is not installed' );
@@ -1028,7 +1013,6 @@ class ParserTestRunner {
 		};
 
 		// Set content language. This invalidates the magic word cache and title services
-		wfDebug( "Setting up language $langCode" );
 		$lang = Language::factory( $langCode );
 		$setup['wgContLang'] = $lang;
 		$reset = function () {
