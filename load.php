@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 // This endpoint is supposed to be independent of request cookies and other
 // details of the session. Enforce this constraint with respect to session use.
@@ -34,6 +35,12 @@ require __DIR__ . '/includes/WebStart.php';
 if ( !$wgRequest->checkUrlExtension() ) {
 	return;
 }
+
+// Don't initialise ChronologyProtector from object cache, and
+// don't wait for unrelated MediaWiki writes when querying ResourceLoader.
+MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->setRequestInfo( [
+	'ChronologyProtection' => 'false',
+] );
 
 // Set up ResourceLoader
 $resourceLoader = new ResourceLoader(
