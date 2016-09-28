@@ -37,7 +37,7 @@ require_once __DIR__ . '/Maintenance.php';
 class RefreshImageMetadata extends Maintenance {
 
 	/**
-	 * @var DatabaseBase
+	 * @var Database
 	 */
 	protected $dbw;
 
@@ -197,7 +197,7 @@ class RefreshImageMetadata extends Maintenance {
 	}
 
 	/**
-	 * @param DatabaseBase $dbw
+	 * @param Database $dbw
 	 * @return array
 	 */
 	function getConditions( $dbw ) {

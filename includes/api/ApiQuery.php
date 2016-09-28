@@ -168,7 +168,7 @@ class ApiQuery extends ApiBase {
 	 * @param string $name Name to assign to the database connection
 	 * @param int $db One of the DB_* constants
 	 * @param array $groups Query groups
-	 * @return DatabaseBase
+	 * @return Database
 	 */
 	public function getNamedDB( $name, $db, $groups ) {
 		if ( !array_key_exists( $name, $this->mNamedDB ) ) {

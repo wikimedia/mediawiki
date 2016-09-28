@@ -182,7 +182,7 @@ class MssqlInstaller extends DatabaseInstaller {
 			return $status;
 		}
 		/**
-		 * @var $conn DatabaseBase
+		 * @var $conn Database
 		 */
 		$conn = $status->value;
 
@@ -240,7 +240,7 @@ class MssqlInstaller extends DatabaseInstaller {
 			return;
 		}
 		/**
-		 * @var $conn DatabaseBase
+		 * @var $conn Database
 		 */
 		$conn = $status->value;
 		$conn->selectDB( $this->getVar( 'wgDBname' ) );

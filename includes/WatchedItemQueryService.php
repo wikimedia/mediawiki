@@ -55,7 +55,7 @@ class WatchedItemQueryService {
 	}
 
 	/**
-	 * @return DatabaseBase
+	 * @return Database
 	 * @throws MWException
 	 */
 	private function getConnection() {

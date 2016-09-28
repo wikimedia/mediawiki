@@ -454,7 +454,7 @@ class LocalRepo extends FileRepo {
 
 	/**
 	 * Get a connection to the replica DB
-	 * @return DatabaseBase
+	 * @return Database
 	 */
 	function getSlaveDB() {
 		return wfGetDB( DB_REPLICA );
@@ -462,7 +462,7 @@ class LocalRepo extends FileRepo {
 
 	/**
 	 * Get a connection to the master DB
-	 * @return DatabaseBase
+	 * @return Database
 	 */
 	function getMasterDB() {
 		return wfGetDB( DB_MASTER );

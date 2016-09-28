@@ -56,7 +56,7 @@ class Orphans extends Maintenance {
 
 	/**
 	 * Lock the appropriate tables for the script
-	 * @param DatabaseBase $db
+	 * @param Database $db
 	 * @param string $extraTable The name of any extra tables to lock (eg: text)
 	 */
 	private function lockTables( $db, $extraTable = [] ) {

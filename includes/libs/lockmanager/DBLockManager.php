@@ -58,7 +58,7 @@ abstract class DBLockManager extends QuorumLockManager {
 	 *                     - user        : DB user
 	 *                     - password    : DB user password
 	 *                     - tablePrefix : DB table prefix
-	 *                     - flags       : DB flags (see DatabaseBase)
+	 *                     - flags       : DB flags; bitfield of IDatabase::DBO_* constants
 	 *   - dbsByBucket : Array of 1-16 consecutive integer keys, starting from 0,
 	 *                   each having an odd-numbered list of DB names (peers) as values.
 	 *   - lockExpiry  : Lock timeout (seconds) for dropped connections. [optional]
