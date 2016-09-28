@@ -85,6 +85,13 @@ class TestFileReader {
 			$this->sectionData['options'] = '';
 		}
 
+		if ( $result == false && $tidy !== false ) {
+			// Tidy only
+			$result = $tidy;
+			$tidy = false;
+			$this->sectionData['options'] .= ' tidy';
+		}
+
 		if ( !isset( $this->sectionData['config'] ) ) {
 			$this->sectionData['config'] = '';
 		}
