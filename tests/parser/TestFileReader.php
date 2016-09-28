@@ -25,6 +25,7 @@ class TestFileReader {
 	private $section = null;
 	/** String|null: current test section being analyzed */
 	private $sectionData = [];
+	private $sectionLineNum = [];
 	private $lineNum = 0;
 	private $runDisabled;
 	private $runParsoid;
@@ -113,14 +114,20 @@ class TestFileReader {
 			'result' => ParserTestRunner::chomp( $this->sectionData[$result] ),
 			'options' => ParserTestRunner::chomp( $this->sectionData['options'] ),
 			'config' => ParserTestRunner::chomp( $this->sectionData['config'] ),
+			'line' => $this->sectionLineNum['test'],
+			'file' => $this->file,
+			'resultSection' => $result,
 		];
 		$test['desc'] = $test['test'];
 		$this->tests[] = $test;
 
 		if ( $tidy !== false ) {
+			// Additional tidy test
+			$test['isSubtest'] = true;
 			$test['options'] .= " tidy";
 			$test['desc'] .= ' (with tidy)';
 			$test['result'] = ParserTestRunner::chomp( $this->sectionData[$tidy] );
+			$test['resultSection'] = $tidy;
 			$this->tests[] = $test;
 		}
 	}
@@ -206,6 +213,7 @@ class TestFileReader {
 						. "at line {$this->lineNum} of $this->file\n" );
 				}
 
+				$this->sectionLineNum[$this->section] = $this->lineNum;
 				$this->sectionData[$this->section] = '';
 
 				continue;
