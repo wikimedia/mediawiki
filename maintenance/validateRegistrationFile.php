@@ -2,14 +2,19 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use Composer\Spdx\SpdxLicenses;
+use JsonSchema\Validator;
+
 class ValidateRegistrationFile extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addArg( 'path', 'Path to extension.json/skin.json file.', true );
 	}
 	public function execute() {
-		if ( !class_exists( 'JsonSchema\Validato' ) ) {
+		if ( !class_exists( Validator::class ) ) {
 			$this->error( 'The JsonSchema library cannot be found, please install it through composer.', 1 );
+		} elseif ( !class_exists( SpdxLicenses::class ) ) {
+			$this->error( 'The spdx-licenses library cannot be found, please install it through composer.', 1 );
 		}
 
 		$path = $this->getArg( 0 );
@@ -38,13 +43,26 @@ class ValidateRegistrationFile extends Maintenance {
 			$this->output( "Warning: $path is using a deprecated schema, and should be updated to "
 				. ExtensionRegistry::MANIFEST_VERSION . "\n" );
 		}
-		$validator = new JsonSchema\Validator;
+
+		$licenseError = false;
+		if ( isset( $data->{'license-name'} ) ) {
+			$licenses = new SpdxLicenses();
+			$valid = $licenses->validate( $data->{'license-name'} );
+			if ( !$valid ) {
+				$licenseError = '[license-name] Invalid SPDX license identifier, see <https://spdx.org/licenses/>';
+			}
+		}
+
+		$validator = new Validator;
 		$validator->check( $data, (object) [ '$ref' => 'file://' . $schemaPath ] );
-		if ( $validator->isValid() ) {
+		if ( $validator->isValid() && !$licenseError ) {
 			$this->output( "$path validates against the version $version schema!\n" );
 		} else {
 			foreach ( $validator->getErrors() as $error ) {
 				$this->output( "[{$error['property']}] {$error['message']}\n" );
+			}
+			if ( $licenseError ) {
+				$this->output( "$licenseError\n" );
 			}
 			$this->error( "$path does not validate.", 1 );
 		}
