@@ -1935,7 +1935,7 @@
 	"booksources-search": "Search",
 	"booksources-text": "Below is a list of links to other sites that sell new and used books, and may also have further information about books you are looking for:",
 	"booksources-invalid-isbn": "The given ISBN does not appear to be valid; check for errors copying from the original source.",
-	"rfcurl": "//tools.ietf.org/html/rfc$1",
+	"rfcurl": "https://tools.ietf.org/html/rfc$1",
 	"pubmedurl": "//www.ncbi.nlm.nih.gov/pubmed/$1?dopt=Abstract",
 	"specialloguserlabel": "Performer:",
 	"speciallogtitlelabel": "Target (title or {{ns:user}}:username for user):",
