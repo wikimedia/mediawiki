@@ -44,6 +44,7 @@
 		"zordius/lightncandy": "0.23"
 	},
 	"require-dev": {
+		"composer/spdx-licenses": "1.1.4",
 		"jakub-onderka/php-parallel-lint": "0.9.2",
 		"justinrainbow/json-schema": "~3.0",
 		"mediawiki/mediawiki-codesniffer": "0.7.2",

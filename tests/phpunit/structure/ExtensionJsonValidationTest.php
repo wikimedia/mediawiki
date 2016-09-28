@@ -16,6 +16,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use Composer\Spdx\SpdxLicenses;
+use JsonSchema\Validator;
+
 /**
  * Validates all loaded extensions and skins using the ExtensionRegistry
  * against the extension.json schema in the docs/ folder.
@@ -24,7 +27,7 @@ class ExtensionJsonValidationTest extends PHPUnit_Framework_TestCase {
 
 	public function setUp() {
 		parent::setUp();
-		if ( !class_exists( 'JsonSchema\Uri\UriRetriever' ) ) {
+		if ( !class_exists( Validator::class ) ) {
 			$this->markTestSkipped(
 				'The JsonSchema library cannot be found,' .
 				' please install it through composer to run extension.json validation tests.'
@@ -75,15 +78,31 @@ class ExtensionJsonValidationTest extends PHPUnit_Framework_TestCase {
 			"$path is using a non-supported schema version"
 		);
 
-		$validator = new JsonSchema\Validator;
+		$licenseError = false;
+		if ( class_exists( SpdxLicenses::class ) && isset( $data->{'license-name'} )
+			// Check it's a string, if not, schema validation will display an error
+			&& is_string( $data->{'license-name'} )
+		) {
+			$licenses = new SpdxLicenses();
+			$valid = $licenses->validate( $data->{'license-name'} );
+			if ( !$valid ) {
+				$licenseError = '[license-name] Invalid SPDX license identifier, '
+					. 'see <https://spdx.org/licenses/>';
+			}
+		}
+
+		$validator = new Validator;
 		$validator->check( $data, (object) [ '$ref' => 'file://' . $schemaPath ] );
-		if ( $validator->isValid() ) {
+		if ( $validator->isValid() && !$licenseError ) {
 			// All good.
 			$this->assertTrue( true );
 		} else {
 			$out = "$path did pass validation.\n";
 			foreach ( $validator->getErrors() as $error ) {
 				$out .= "[{$error['property']}] {$error['message']}\n";
+			}
+			if ( $licenseError ) {
+				$out .= "$licenseError\n";
 			}
 			$this->assertTrue( false, $out );
 		}
