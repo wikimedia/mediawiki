@@ -24,7 +24,7 @@
 /**
  * @ingroup Database
  */
-class DatabasePostgres extends DatabaseBase {
+class DatabasePostgres extends Database {
 	/** @var int|bool */
 	protected $port;
 

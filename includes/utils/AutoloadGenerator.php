@@ -160,6 +160,7 @@ class AutoloadGenerator {
 	 *
 	 * @param {string} $commandName Command name to include in comment
 	 * @param {string} $filename of PHP file to put autoload information in.
+	 * @return string
 	 */
 	protected function generatePHPAutoload( $commandName, $filename ) {
 		// No existing JSON file found; update/generate PHP file
@@ -290,6 +291,10 @@ EOD;
 		foreach ( glob( $this->basepath . '/*.php' ) as $file ) {
 			$this->readFile( $file );
 		}
+
+		// Legacy aliases
+		$this->forceClassPath( 'DatabaseBase',
+			$this->basepath . '/includes/libs/rdbms/database/Database.php' );
 	}
 }
 
