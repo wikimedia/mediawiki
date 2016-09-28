@@ -26,7 +26,7 @@ use MediaWiki\Logger\LoggerFactory;
 
 /**
  * Object passed around to modules which contains information about the state
- * of a specific loader request
+ * of a specific loader request.
  */
 class ResourceLoaderContext {
 	protected $resourceLoader;
@@ -62,26 +62,33 @@ class ResourceLoaderContext {
 		$this->request = $request;
 		$this->logger = $resourceLoader->getLogger();
 
+		// Future developers: Avoid use of getVal() in this class, which performs
+		// expensive UTF normalisation by default. Use getRawVal() instead.
+		// Values here are either one of a finite number of internal IDs,
+		// or previously-stored user input (e.g. titles, user names) that were passed
+		// to this endpoint by ResourceLoader itself from the canonical value.
+		// Values do not come directly from user input and need not match.
+
 		// List of modules
-		$modules = $request->getVal( 'modules' );
+		$modules = $request->getRawVal( 'modules' );
 		$this->modules = $modules ? self::expandModuleNames( $modules ) : [];
 
 		// Various parameters
-		$this->user = $request->getVal( 'user' );
+		$this->user = $request->getRawVal( 'user' );
 		$this->debug = $request->getFuzzyBool(
 			'debug',
 			$resourceLoader->getConfig()->get( 'ResourceLoaderDebug' )
 		);
-		$this->only = $request->getVal( 'only', null );
-		$this->version = $request->getVal( 'version', null );
+		$this->only = $request->getRawVal( 'only', null );
+		$this->version = $request->getRawVal( 'version', null );
 		$this->raw = $request->getFuzzyBool( 'raw' );
 
 		// Image requests
-		$this->image = $request->getVal( 'image' );
-		$this->variant = $request->getVal( 'variant' );
-		$this->format = $request->getVal( 'format' );
+		$this->image = $request->getRawVal( 'image' );
+		$this->variant = $request->getRawVal( 'variant' );
+		$this->format = $request->getRawVal( 'format' );
 
-		$this->skin = $request->getVal( 'skin' );
+		$this->skin = $request->getRawVal( 'skin' );
 		$skinnames = Skin::getSkinNames();
 		// If no skin is specified, or we don't recognize the skin, use the default skin
 		if ( !$this->skin || !isset( $skinnames[$this->skin] ) ) {
@@ -171,7 +178,7 @@ class ResourceLoaderContext {
 		if ( $this->language === null ) {
 			// Must be a valid language code after this point (T64849)
 			// Only support uselang values that follow built-in conventions (T102058)
-			$lang = $this->getRequest()->getVal( 'lang', '' );
+			$lang = $this->getRequest()->getRawVal( 'lang', '' );
 			// Stricter version of RequestContext::sanitizeLangCode()
 			if ( !Language::isValidBuiltInCode( $lang ) ) {
 				wfDebug( "Invalid user language code\n" );
@@ -187,7 +194,7 @@ class ResourceLoaderContext {
 	 */
 	public function getDirection() {
 		if ( $this->direction === null ) {
-			$this->direction = $this->getRequest()->getVal( 'dir' );
+			$this->direction = $this->getRequest()->getRawVal( 'dir' );
 			if ( !$this->direction ) {
 				// Determine directionality based on user language (bug 6100)
 				$this->direction = Language::factory( $this->getLanguage() )->getDir();
