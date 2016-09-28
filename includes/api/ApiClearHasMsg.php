@@ -30,7 +30,13 @@
 class ApiClearHasMsg extends ApiBase {
 	public function execute() {
 		$user = $this->getUser();
-		$user->setNewtalk( false );
+		if ( $this->getRequest()->wasPosted() ) {
+			$user->setNewtalk( false );
+		} else {
+			DeferredUpdates::addCallableUpdate( function () use ( $user ) {
+				$user->setNewtalk( false );
+			} );
+		}
 		$this->getResult()->addValue( null, $this->getModuleName(), 'success' );
 	}
 
