@@ -3681,6 +3681,10 @@ Nested definition lists using html syntax
 <dl><dt>x</dt>
 <dd>a</dd>
 <dd>b</dd></dl>
+!! html
+<dl><dt>x</dt>
+<dd>a</dd>
+<dd>b</dd></dl>
 
 !! end
 

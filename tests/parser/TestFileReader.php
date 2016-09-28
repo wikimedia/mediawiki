@@ -25,6 +25,7 @@ class TestFileReader {
 	private $section = null;
 	/** String|null: current test section being analyzed */
 	private $sectionData = [];
+	private $sectionLineNum = [];
 	private $lineNum = 0;
 	private $runDisabled;
 	private $runParsoid;
@@ -77,44 +78,83 @@ class TestFileReader {
 		// "input" and "result" are old section names allowed
 		// for backwards-compatibility.
 		$input = $this->checkSection( [ 'wikitext', 'input' ], false );
-		$result = $this->checkSection( [ 'html/php', 'html/*', 'html', 'result' ], false );
+		$nonTidySection = $this->checkSection(
+			[ 'html/php', 'html/*', 'html', 'result' ], false );
 		// Some tests have "with tidy" and "without tidy" variants
-		$tidy = $this->checkSection( [ 'html/php+tidy', 'html+tidy' ], false );
+		$tidySection = $this->checkSection( [ 'html/php+tidy', 'html+tidy' ], false );
 
-		if ( !isset( $this->sectionData['options'] ) ) {
-			$this->sectionData['options'] = '';
+		// Remove trailing newline
+		$data = array_map( 'ParserTestRunner::chomp', $this->sectionData );
+
+		// Apply defaults
+		$data += [
+			'options' => '',
+			'config' => ''
+		];
+
+		if ( $input === false ) {
+			throw new MWException( "Test at {$this->file}:{$this->sectionLineNum['test']} " .
+				"lacks input section" );
 		}
 
-		if ( !isset( $this->sectionData['config'] ) ) {
-			$this->sectionData['config'] = '';
-		}
-
-		$isDisabled = preg_match( '/\\bdisabled\\b/i', $this->sectionData['options'] ) &&
-			!$this->runDisabled;
-		$isParsoidOnly = preg_match( '/\\bparsoid\\b/i', $this->sectionData['options'] ) &&
-			$result == 'html' &&
-			!$this->runParsoid;
-		$isFiltered = !preg_match( $this->regex, $this->sectionData['test'] );
-		if ( $input == false || $result == false || $isDisabled || $isParsoidOnly || $isFiltered ) {
-			// Disabled test
+		if ( preg_match( '/\\bdisabled\\b/i', $data['options'] ) &&	!$this->runDisabled ) {
+			// Disabled
 			return;
 		}
 
-		$test = [
-			'test' => ParserTestRunner::chomp( $this->sectionData['test'] ),
-			'input' => ParserTestRunner::chomp( $this->sectionData[$input] ),
-			'result' => ParserTestRunner::chomp( $this->sectionData[$result] ),
-			'options' => ParserTestRunner::chomp( $this->sectionData['options'] ),
-			'config' => ParserTestRunner::chomp( $this->sectionData['config'] ),
-		];
-		$test['desc'] = $test['test'];
-		$this->tests[] = $test;
+		if ( $tidySection === false && $nonTidySection === false ) {
+			if ( isset( $data['html/parsoid'] ) || isset( $data['wikitext/edited'] ) ) {
+				// Parsoid only
+				return;
+			} else {
+				throw new MWException( "Test at {$this->file}:{$this->sectionLineNum['test']} " .
+					"lacks result section" );
+			}
+		}
 
-		if ( $tidy !== false ) {
-			$test['options'] .= " tidy";
-			$test['desc'] .= ' (with tidy)';
-			$test['result'] = ParserTestRunner::chomp( $this->sectionData[$tidy] );
-			$this->tests[] = $test;
+		if ( preg_match( '/\\bparsoid\\b/i', $data['options'] ) && $nonTidySection === 'html'
+			&& !$this->runParsoid
+		) {
+			// A test which normally runs on Parsoid but can optionally be run with MW
+			return;
+		}
+
+		if ( !preg_match( $this->regex, $data['test'] ) ) {
+			// Filtered test
+			return;
+		}
+
+		$commonInfo = [
+			'test' => $data['test'],
+			'desc' => $data['test'],
+			'input' => $data[$input],
+			'options' => $data['options'],
+			'config' => $data['config'],
+		];
+
+		if ( $nonTidySection !== false ) {
+			// Add non-tidy test
+			$this->tests[] = [
+				'result' => $data[$nonTidySection],
+			] + $commonInfo;
+
+			if ( $tidySection !== false ) {
+				// Add tidy subtest
+				$this->tests[] = [
+					'desc' => $data['test'] . ' (with tidy)',
+					'result' => $data[$tidySection],
+					'options' => $data['options'] . ' tidy',
+				] + $commonInfo;
+			}
+		} elseif ( $tidySection !== false ) {
+			// No need to override desc when there is no subtest
+			$this->tests[] = [
+				'result' => $data[$tidySection],
+				'options' => $data['options'] . ' tidy'
+			] + $commonInfo;
+		} else {
+			throw new MWException( "Test at {$this->file}:{$this->sectionLineNum['test']} " .
+				"lacks result section" );
 		}
 	}
 
@@ -199,6 +239,7 @@ class TestFileReader {
 						. "at line {$this->lineNum} of $this->file\n" );
 				}
 
+				$this->sectionLineNum[$this->section] = $this->lineNum;
 				$this->sectionData[$this->section] = '';
 
 				continue;
@@ -214,6 +255,7 @@ class TestFileReader {
 	 * Clear section name and its data
 	 */
 	private function clearSection() {
+		$this->sectionLineNum = [];
 		$this->sectionData = [];
 		$this->section = null;
 
