@@ -1524,7 +1524,7 @@ class ParserTestRunner {
 		}
 
 		// The RepoGroup cache is invalidated by the creation of file redirects
-		if ( $title->getNamespace() === NS_IMAGE ) {
+		if ( $title->inNamespace( NS_FILE ) ) {
 			RepoGroup::singleton()->clearCache( $title );
 		}
 	}

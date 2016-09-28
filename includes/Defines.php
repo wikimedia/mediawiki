@@ -77,8 +77,13 @@ define( 'NS_CATEGORY_TALK', 15 );
  * When writing code that should be compatible with older MediaWiki
  * versions, either stick to the old names or define the new constants
  * yourself, if they're not defined already.
+ *
+ * @deprecated since 1.14
  */
 define( 'NS_IMAGE', NS_FILE );
+/**
+ * @deprecated since 1.14
+ */
 define( 'NS_IMAGE_TALK', NS_FILE_TALK );
 /**@}*/
 
