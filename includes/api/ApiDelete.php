@@ -61,7 +61,12 @@ class ApiDelete extends ApiBase {
 		// If change tagging was requested, check that the user is allowed to tag,
 		// and the tags are valid
 		if ( count( $params['tags'] ) ) {
-			$tagStatus = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			$changeTagsUpdater = new ChangeTagsUpdater(
+				$this->getChangeTagsContext(),
+				$user,
+				$this->getContext()->getLanguage()
+			);
+			$tagStatus = $changeTagsUpdater->canAddTagsAccompanyingChange( $params['tags'] );
 			if ( !$tagStatus->isOK() ) {
 				$this->dieStatus( $tagStatus );
 			}

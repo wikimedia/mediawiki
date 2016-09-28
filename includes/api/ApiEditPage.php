@@ -374,14 +374,9 @@ class ApiEditPage extends ApiBase {
 			$requestArray['wpWatchthis'] = '';
 		}
 
-		// Apply change tags
+		// Apply change tags (permission check done in EditPage)
 		if ( count( $params['tags'] ) ) {
-			$tagStatus = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
-			if ( $tagStatus->isOK() ) {
-				$requestArray['wpChangeTags'] = implode( ',', $params['tags'] );
-			} else {
-				$this->dieStatus( $tagStatus );
-			}
+			$requestArray['wpChangeTags'] = implode( ',', $params['tags'] );
 		}
 
 		// Pass through anything else we might have been given, to support extensions

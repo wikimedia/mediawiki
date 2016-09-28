@@ -811,7 +811,13 @@ class ApiUpload extends ApiBase {
 		}
 
 		if ( $this->mParams['tags'] ) {
-			$status = ChangeTags::canAddTagsAccompanyingChange( $this->mParams['tags'], $this->getUser() );
+			$changeTagsUpdater = new ChangeTagsUpdater(
+				$this->getChangeTagsContext(),
+				$this->getUser(),
+				$this->getContext()->getLanguage()
+			);
+			$ableToTag = $changeTagsUpdater->canAddTagsAccompanyingChange(
+				$this->mParams['tags'] );
 			if ( !$status->isOK() ) {
 				$this->dieStatus( $status );
 			}
