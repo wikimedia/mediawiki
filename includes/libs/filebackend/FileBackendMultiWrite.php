@@ -575,11 +575,14 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	public function concatenate( array $params ) {
+		$status = $this->newStatus();
 		// We are writing to an FS file, so we don't need to do this per-backend
 		$index = $this->getReadIndexFromParams( $params );
 		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
 
-		return $this->backends[$index]->concatenate( $realParams );
+		$status->merge( $this->backends[$index]->concatenate( $realParams ) );
+
+		return $status;
 	}
 
 	public function fileExists( array $params ) {
