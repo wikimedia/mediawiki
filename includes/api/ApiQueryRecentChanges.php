@@ -372,6 +372,13 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		/* Iterate through the rows, adding data extracted from them to our query result. */
 		foreach ( $res as $row ) {
+			if ( $count === 0 && $resultPageSet !== null ) {
+				// Set the non-continue since the list of recentchanges is
+				// prone to having entries added at the start frequently.
+				$this->getContinuationManager()->addGeneratorNonContinueParam(
+					$this, 'continue', "$row->rc_timestamp|$row->rc_id"
+				);
+			}
 			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that there are
 				// additional pages to be had. Stop here...
