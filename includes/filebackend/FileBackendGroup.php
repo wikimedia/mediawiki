@@ -22,6 +22,7 @@
  * @author Aaron Schulz
  */
 use \MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Class to handle file backend registration
@@ -167,7 +168,7 @@ class FileBackendGroup {
 			$config['fileJournal'] = isset( $config['fileJournal'] )
 				? FileJournal::factory( $config['fileJournal'], $name )
 				: FileJournal::factory( [ 'class' => 'NullFileJournal' ], $name );
-			$config['wanCache'] = ObjectCache::getMainWANInstance();
+			$config['wanCache'] = MediaWikiServices::getInstance()->getMainWANObjectCache();
 			$config['srvCache'] = ObjectCache::getLocalServerInstance( 'hash' );
 			$config['statusWrapper'] = [ 'Status', 'wrap' ];
 			$config['tmpDirectory'] = wfTempDir();
