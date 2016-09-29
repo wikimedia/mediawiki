@@ -25,6 +25,7 @@
  * @file
  * @ingroup Media
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Handler for images that need to be transformed
@@ -509,7 +510,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * @return string|bool Representing the IM version; false on error
 	 */
 	protected function getMagickVersion() {
-		$cache = ObjectCache::getLocalServerInstance( CACHE_NONE );
+		$cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
 		return $cache->getWithSetCallback(
 			'imagemagick-version',
 			$cache::TTL_HOUR,

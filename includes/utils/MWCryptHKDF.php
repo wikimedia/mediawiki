@@ -29,6 +29,7 @@
  * @author Chris Steipp
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 class MWCryptHKDF {
 
@@ -160,7 +161,7 @@ class MWCryptHKDF {
 	 * @throws MWException
 	 */
 	protected static function singleton() {
-		global $wgHKDFAlgorithm, $wgHKDFSecret, $wgSecretKey, $wgMainCacheType;
+		global $wgHKDFAlgorithm, $wgHKDFSecret, $wgSecretKey;
 
 		$secret = $wgHKDFSecret ?: $wgSecretKey;
 		if ( !$secret ) {
@@ -174,8 +175,12 @@ class MWCryptHKDF {
 		$context[] = getmypid();
 		$context[] = gethostname();
 
-		// Setup salt cache. Use APC, or fallback to the main cache if it isn't setup
-		$cache = ObjectCache::getLocalServerInstance( $wgMainCacheType );
+		// Setup salt cache
+		$cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
+		if ( $cache instanceof EmptyBagOStuff ) {
+			// Use APC, or fallback to the main cache if it isn't setup
+			$cache = ObjectCache::getLocalClusterInstance();
+		}
 
 		if ( is_null( self::$singleton ) ) {
 			self::$singleton = new self( $secret, $wgHKDFAlgorithm, $cache, $context );
