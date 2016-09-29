@@ -57,7 +57,7 @@ class PopulateContentModel extends Maintenance {
 		}
 	}
 
-	private function updatePageRows( DatabaseBase $dbw, $pageIds, $model ) {
+	private function updatePageRows( Database $dbw, $pageIds, $model ) {
 		$count = count( $pageIds );
 		$this->output( "Setting $count rows to $model..." );
 		$dbw->update(
@@ -70,7 +70,7 @@ class PopulateContentModel extends Maintenance {
 		$this->output( "done.\n" );
 	}
 
-	protected function populatePage( DatabaseBase $dbw, $ns ) {
+	protected function populatePage( Database $dbw, $ns ) {
 		$toSave = [];
 		$lastId = 0;
 		$nsCondition = $ns === 'all' ? [] : [ 'page_namespace' => $ns ];
@@ -102,7 +102,7 @@ class PopulateContentModel extends Maintenance {
 		}
 	}
 
-	private function updateRevisionOrArchiveRows( DatabaseBase $dbw, $ids, $model, $table ) {
+	private function updateRevisionOrArchiveRows( Database $dbw, $ids, $model, $table ) {
 		$prefix = $table === 'archive' ? 'ar' : 'rev';
 		$model_column = "{$prefix}_content_model";
 		$format_column = "{$prefix}_content_format";
@@ -120,7 +120,7 @@ class PopulateContentModel extends Maintenance {
 		$this->output( "done.\n" );
 	}
 
-	protected function populateRevisionOrArchive( DatabaseBase $dbw, $table, $ns ) {
+	protected function populateRevisionOrArchive( Database $dbw, $table, $ns ) {
 		$prefix = $table === 'archive' ? 'ar' : 'rev';
 		$model_column = "{$prefix}_content_model";
 		$format_column = "{$prefix}_content_format";

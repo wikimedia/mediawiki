@@ -53,7 +53,7 @@ abstract class DBAccessBase implements IDBAccessObject {
 	 * @param int $id Which connection to use
 	 * @param array $groups Query groups
 	 *
-	 * @return DatabaseBase
+	 * @return Database
 	 */
 	protected function getConnection( $id, $groups = [] ) {
 		$loadBalancer = wfGetLB( $this->wiki );

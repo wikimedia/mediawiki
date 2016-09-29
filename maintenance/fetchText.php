@@ -71,7 +71,7 @@ class FetchText extends Maintenance {
 
 	/**
 	 * May throw a database error if, say, the server dies during query.
-	 * @param DatabaseBase $db
+	 * @param Database $db
 	 * @param int $id The old_id
 	 * @return string
 	 */

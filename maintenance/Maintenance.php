@@ -1316,7 +1316,7 @@ abstract class Maintenance {
 
 	/**
 	 * Lock the search index
-	 * @param DatabaseBase &$db
+	 * @param Database &$db
 	 */
 	private function lockSearchindex( $db ) {
 		$write = [ 'searchindex' ];
@@ -1334,7 +1334,7 @@ abstract class Maintenance {
 
 	/**
 	 * Unlock the tables
-	 * @param DatabaseBase &$db
+	 * @param Database &$db
 	 */
 	private function unlockSearchindex( $db ) {
 		$db->unlockTables( __CLASS__ . '::' . __METHOD__ );
@@ -1343,7 +1343,7 @@ abstract class Maintenance {
 	/**
 	 * Unlock and lock again
 	 * Since the lock is low-priority, queued reads will be able to complete
-	 * @param DatabaseBase &$db
+	 * @param Database &$db
 	 */
 	private function relockSearchindex( $db ) {
 		$this->unlockSearchindex( $db );
@@ -1354,7 +1354,7 @@ abstract class Maintenance {
 	 * Perform a search index update with locking
 	 * @param int $maxLockTime The maximum time to keep the search index locked.
 	 * @param string $callback The function that will update the function.
-	 * @param DatabaseBase $dbw
+	 * @param Database $dbw
 	 * @param array $results
 	 */
 	public function updateSearchIndex( $maxLockTime, $callback, $dbw, $results ) {
@@ -1390,7 +1390,7 @@ abstract class Maintenance {
 
 	/**
 	 * Update the searchindex table for a given pageid
-	 * @param DatabaseBase $dbw A database write handle
+	 * @param Database $dbw A database write handle
 	 * @param int $pageId The page ID to update.
 	 * @return null|string
 	 */

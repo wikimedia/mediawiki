@@ -86,7 +86,7 @@ class TextPassDumper extends BackupDumper {
 	protected $checkpointFiles = [];
 
 	/**
-	 * @var DatabaseBase
+	 * @var Database
 	 */
 	protected $db;
 

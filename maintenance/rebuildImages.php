@@ -40,7 +40,7 @@ require_once __DIR__ . '/Maintenance.php';
 class ImageBuilder extends Maintenance {
 
 	/**
-	 * @var DatabaseBase
+	 * @var Database
 	 */
 	protected $dbw;
 

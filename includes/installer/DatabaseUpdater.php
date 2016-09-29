@@ -57,7 +57,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * Handle to the database subclass
 	 *
-	 * @var DatabaseBase
+	 * @var Database
 	 */
 	protected $db;
 
@@ -192,7 +192,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * Get a database connection to run updates
 	 *
-	 * @return DatabaseBase
+	 * @return Database
 	 */
 	public function getDB() {
 		return $this->db;

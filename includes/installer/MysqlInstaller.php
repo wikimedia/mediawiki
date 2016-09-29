@@ -124,7 +124,7 @@ class MysqlInstaller extends DatabaseInstaller {
 			return $status;
 		}
 		/**
-		 * @var $conn DatabaseBase
+		 * @var $conn Database
 		 */
 		$conn = $status->value;
 
@@ -168,7 +168,7 @@ class MysqlInstaller extends DatabaseInstaller {
 			return;
 		}
 		/**
-		 * @var $conn DatabaseBase
+		 * @var $conn Database
 		 */
 		$conn = $status->value;
 		$conn->selectDB( $this->getVar( 'wgDBname' ) );
@@ -226,7 +226,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		$status = $this->getConnection();
 
 		/**
-		 * @var $conn DatabaseBase
+		 * @var $conn Database
 		 */
 		$conn = $status->value;
 

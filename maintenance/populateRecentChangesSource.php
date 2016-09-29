@@ -83,7 +83,7 @@ class PopulateRecentChangesSource extends LoggedUpdateMaintenance {
 		return __CLASS__;
 	}
 
-	protected function buildUpdateCondition( DatabaseBase $dbw ) {
+	protected function buildUpdateCondition( Database $dbw ) {
 		$rcNew = $dbw->addQuotes( RC_NEW );
 		$rcSrcNew = $dbw->addQuotes( RecentChange::SRC_NEW );
 		$rcEdit = $dbw->addQuotes( RC_EDIT );

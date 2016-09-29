@@ -139,7 +139,7 @@ class BacklinkCache {
 	/**
 	 * Get the replica DB connection to the database
 	 * When non existing, will initialize the connection.
-	 * @return DatabaseBase
+	 * @return Database
 	 */
 	protected function getDB() {
 		if ( !isset( $this->db ) ) {

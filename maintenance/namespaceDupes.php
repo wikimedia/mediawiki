@@ -37,7 +37,7 @@ require_once __DIR__ . '/Maintenance.php';
 class NamespaceConflictChecker extends Maintenance {
 
 	/**
-	 * @var DatabaseBase
+	 * @var Database
 	 */
 	protected $db;
 

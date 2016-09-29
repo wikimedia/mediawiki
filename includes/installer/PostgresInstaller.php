@@ -114,7 +114,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			return $status;
 		}
 		/**
-		 * @var $conn DatabaseBase
+		 * @var $conn Database
 		 */
 		$conn = $status->value;
 
@@ -181,7 +181,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		if ( $status->isOK() ) {
 			/**
-			 * @var $conn DatabaseBase
+			 * @var $conn Database
 			 */
 			$conn = $status->value;
 			$conn->clearFlag( DBO_TRX );
@@ -233,7 +233,7 @@ class PostgresInstaller extends DatabaseInstaller {
 				$status = $this->openPgConnection( 'create-schema' );
 				if ( $status->isOK() ) {
 					/**
-					 * @var $conn DatabaseBase
+					 * @var $conn Database
 					 */
 					$conn = $status->value;
 					$safeRole = $conn->addIdentifierQuotes( $this->getVar( 'wgDBuser' ) );
@@ -287,7 +287,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			return false;
 		}
 		/**
-		 * @var $conn DatabaseBase
+		 * @var $conn Database
 		 */
 		$conn = $status->value;
 		$superuser = $this->getVar( '_InstallUser' );
@@ -588,7 +588,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		}
 
 		/**
-		 * @var $conn DatabaseBase
+		 * @var $conn Database
 		 */
 		$conn = $status->value;
 
@@ -638,7 +638,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			return $status;
 		}
 		/**
-		 * @var $conn DatabaseBase
+		 * @var $conn Database
 		 */
 		$conn = $status->value;
 
