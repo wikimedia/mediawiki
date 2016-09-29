@@ -131,6 +131,14 @@ class MovePage {
 				ContentHandler::getLocalizedName( $this->oldTitle->getContentModel() ),
 				ContentHandler::getLocalizedName( $this->newTitle->getContentModel() )
 			);
+		} elseif (
+			!ContentHandler::getForTitle( $this->oldTitle )->canBeUsedOn( $this->newTitle )
+		) {
+			$status->fatal(
+				'content-not-allowed-here',
+				ContentHandler::getLocalizedName( $this->oldTitle->getContentModel() ),
+				$this->newTitle->getPrefixedText()
+			);
 		}
 
 		// Image-specific checks
