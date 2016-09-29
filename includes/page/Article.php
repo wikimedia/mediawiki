@@ -2114,7 +2114,7 @@ class Article implements Page {
 	 * @deprecated since 1.21: use doEditContent() instead.
 	 */
 	public function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) {
-		ContentHandler::deprecated( __METHOD__, '1.21' );
+		wfDeprecated( __METHOD__, '1.21' );
 		return $this->mPage->doEdit( $text, $summary, $flags, $baseRevId, $user );
 	}
 
