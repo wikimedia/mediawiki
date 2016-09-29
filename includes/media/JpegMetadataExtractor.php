@@ -155,7 +155,7 @@ class JpegMetadataExtractor {
 			} else {
 				// segment we don't care about, so skip
 				$size = wfUnpack( "nint", fread( $fh, 2 ), 2 );
-				if ( $size['int'] <= 2 ) {
+				if ( $size['int'] < 2 ) {
 					throw new MWException( "invalid marker size in jpeg" );
 				}
 				fseek( $fh, $size['int'] - 2, SEEK_CUR );
@@ -173,8 +173,12 @@ class JpegMetadataExtractor {
 	 */
 	private static function jpegExtractMarker( &$fh ) {
 		$size = wfUnpack( "nint", fread( $fh, 2 ), 2 );
-		if ( $size['int'] <= 2 ) {
+		if ( $size['int'] < 2 ) {
 			throw new MWException( "invalid marker size in jpeg" );
+		}
+		if ( $size['int'] === 2 ) {
+			// fread( ..., 0 ) generates a warning
+			return '';
 		}
 		$segment = fread( $fh, $size['int'] - 2 );
 		if ( strlen( $segment ) !== $size['int'] - 2 ) {
