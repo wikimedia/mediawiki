@@ -27,6 +27,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 use Liuggio\StatsdClient\Sender\SocketSender;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Session\SessionManager;
+use Wikimedia\ScopedCallback;
 
 // Hide compatibility functions from Doxygen
 /// @cond

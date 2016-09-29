@@ -19,6 +19,7 @@
  *
  * @file
  */
+use Wikimedia\ScopedCallback;
 
 /**
  * Gives access to properties of a page.

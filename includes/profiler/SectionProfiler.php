@@ -21,6 +21,7 @@
  * @ingroup Profiler
  * @author Aaron Schulz
  */
+use Wikimedia\ScopedCallback;
 
 /**
  * Custom PHP profiler for parser/DB type section names that xhprof/xdebug can't handle
