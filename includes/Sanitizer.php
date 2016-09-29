@@ -1015,6 +1015,7 @@ class Sanitizer {
 				| url\s*\(
 				| image\s*\(
 				| image-set\s*\(
+				| attr\s*\([^)]+[\s,]+url
 			!ix', $value ) ) {
 			return '/* insecure input */';
 		}
