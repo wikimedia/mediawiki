@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * ExtensionRegistry class
  *
@@ -86,7 +88,7 @@ class ExtensionRegistry {
 		// we don't want to fail here if $wgObjectCaches is not configured
 		// properly for APC setup
 		try {
-			$this->cache = ObjectCache::getLocalServerInstance();
+			$this->cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
 		} catch ( MWException $e ) {
 			$this->cache = new EmptyBagOStuff();
 		}

@@ -278,14 +278,14 @@ class ObjectCache {
 	 * @return BagOStuff
 	 * @throws InvalidArgumentException
 	 * @since 1.27
-	 * @deprecated Since 1.28; use MediaWikiServices::getLocalServerObjectCache
 	 */
 	public static function getLocalServerInstance( $fallback = CACHE_NONE ) {
 		$cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
+		if ( $cache instanceof EmptyBagOStuff ) {
+			$cache = self::getInstance( $fallback );
+		}
 
-		return ( $cache instanceof EmptyBagOStuff )
-			? self::getInstance( $fallback )
-			: $cache;
+		return $cache;
 	}
 
 	/**

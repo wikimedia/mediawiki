@@ -21,6 +21,7 @@
  * @author Aaron Schulz
  */
 use Wikimedia\Assert\Assert;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Class for getting statistically unique IDs
@@ -368,7 +369,7 @@ class UIDGenerator {
 		// Counter values would not survive accross script instances in CLI mode.
 		$cache = null;
 		if ( ( $flags & self::QUICK_VOLATILE ) && PHP_SAPI !== 'cli' ) {
-			$cache = ObjectCache::getLocalServerInstance();
+			$cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
 		}
 		if ( $cache ) {
 			$counter = $cache->incrWithInit( $bucket, $cache::TTL_INDEFINITE, $count, $count );

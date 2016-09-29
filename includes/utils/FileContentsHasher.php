@@ -27,11 +27,13 @@ class FileContentsHasher {
 	/** @var FileContentsHasher */
 	private static $instance;
 
+	const MAX_KEYS = 300;
+
 	/**
 	 * Constructor.
 	 */
 	public function __construct() {
-		$this->cache = ObjectCache::getLocalServerInstance( 'hash' );
+		$this->cache = new HashBagOStuff( [ 'maxKeys' => self::MAX_KEYS ] );
 	}
 
 	/**

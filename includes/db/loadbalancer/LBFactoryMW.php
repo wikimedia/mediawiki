@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Legacy MediaWiki-specific class for generating database load balancers
@@ -110,7 +111,7 @@ abstract class LBFactoryMW {
 		}
 
 		// Use APC/memcached style caching, but avoids loops with CACHE_DB (T141804)
-		$sCache = ObjectCache::getLocalServerInstance();
+		$sCache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
 		if ( $sCache->getQoS( $sCache::ATTR_EMULATION ) > $sCache::QOS_EMULATION_SQL ) {
 			$lbConf['srvCache'] = $sCache;
 		}
@@ -118,7 +119,7 @@ abstract class LBFactoryMW {
 		if ( $cCache->getQoS( $cCache::ATTR_EMULATION ) > $cCache::QOS_EMULATION_SQL ) {
 			$lbConf['memCache'] = $cCache;
 		}
-		$wCache = ObjectCache::getMainWANInstance();
+		$wCache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		if ( $wCache->getQoS( $wCache::ATTR_EMULATION ) > $wCache::QOS_EMULATION_SQL ) {
 			$lbConf['wanCache'] = $wCache;
 		}
