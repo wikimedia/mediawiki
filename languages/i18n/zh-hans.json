@@ -1540,6 +1540,7 @@
 	"upload-dialog-disabled": "使用此对话框的文件上传在此wiki已禁用。",
 	"upload-dialog-title": "上传文件",
 	"upload-dialog-button-cancel": "取消",
+	"upload-dialog-button-back": "返回",
 	"upload-dialog-button-done": "完成",
 	"upload-dialog-button-save": "保存",
 	"upload-dialog-button-upload": "上传",

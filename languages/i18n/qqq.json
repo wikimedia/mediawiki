@@ -334,7 +334,7 @@
 	"navigation": "This is shown as a section header in the sidebar of most skins.\n\n{{Identical|Navigation}}",
 	"and": "The translation for \"and\" appears in the [[Special:Version]] page, between the last two items of a list. If a comma is needed, add it at the beginning without a gap between it and the \"&\". &amp;#32; is a blank space, one character long. Please leave it as it is.\n\nThis can also appear in the credits page if the credits feature is enabled,for example [{{canonicalurl:Support|action=credits}} the credits of the support page]. (To view any credits page type <nowiki>&action=credits</nowiki> at the end of any URL in the address bar.)\n{{Identical|And}}",
 	"qbfind": "Alternative for \"search\" as used in Cologne Blue skin.\n{{Identical|Find}}",
-	"qbbrowse": "Heading in sidebar menu in CologneBlue skin as seen in http://i.imgur.com/I08Y3jW.png\n{{Identical|Browse}}",
+	"qbbrowse": "Heading in sidebar menu in CologneBlue skin as seen in [[File:CologneBlue sidebar qqx.png]]\n{{Identical|Browse}}",
 	"qbedit": "Heading in sidebar menu in CologneBlue skin as seen in http://i.imgur.com/I08Y3jW.png\n{{Identical|Edit}}",
 	"qbpageoptions": "Heading in sidebar menu in CologneBlue skin as seen in http://i.imgur.com/I08Y3jW.png\n{{Identical|This page}}",
 	"qbmyoptions": "Heading in the Cologne Blue skin user menu containing links to user (talk) page, preferences, watchlist, etc.\n{{Identical|My pages}}",

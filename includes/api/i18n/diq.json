@@ -3,7 +3,8 @@
 		"authors": [
 			"Gorizon",
 			"Mirzali",
-			"Kumkumuk"
+			"Kumkumuk",
+			"Asmen"
 		]
 	},
 	"apihelp-main-param-action": "Performansa kamci aksiyon",
@@ -20,7 +21,7 @@
 	"apihelp-disabled-description": "Eno modul aktiv niyo.",
 	"apihelp-edit-description": "Vıraze û pelan bıvurne.",
 	"apihelp-edit-param-text": "Zerreki pele",
-	"apihelp-edit-param-minor": "Vuriyayışa werdi",
+	"apihelp-edit-param-minor": "Vurriyayışê werdiy",
 	"apihelp-edit-param-notminor": "Vurnayışo qıckek niyo.",
 	"apihelp-edit-param-bot": "Nê vurnayışi zey boti nişan ke.",
 	"apihelp-edit-example-edit": "Şeker bıvurne",

@@ -1679,7 +1679,7 @@
 	"statistics-edits-average": "Media de edicións por páxina",
 	"statistics-users": "[[Special:ListUsers|Usuarios]] rexistrados",
 	"statistics-users-active": "Usuarios activos",
-	"statistics-users-active-desc": "Usuarios que teñen levado a cabo unha acción {{PLURAL:$1|no último día|nos últimos $1 días}}",
+	"statistics-users-active-desc": "Usuarios que levaron a cabo unha acción {{PLURAL:$1|no último día|nos últimos $1 días}}",
 	"pageswithprop": "Páxinas cunha propiedade de páxina",
 	"pageswithprop-legend": "Páxinas cunha propiedade de páxina",
 	"pageswithprop-text": "Esta páxina lista aquelas páxinas que utilizan unha propiedade de páxina determinada.",
