@@ -18,6 +18,7 @@
  * @file
  * @ingroup Language
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Base class for language conversion.
@@ -550,7 +551,7 @@ class LanguageConverter {
 			$variant = $this->getPreferredVariant();
 		}
 
-		$cache = ObjectCache::newAccelerator( CACHE_NONE );
+		$cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
 		$key = wfMemcKey( 'languageconverter', 'namespace-text', $index, $variant );
 		$nsVariantText = $cache->get( $key );
 		if ( $nsVariantText !== false ) {
