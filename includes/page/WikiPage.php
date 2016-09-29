@@ -1675,7 +1675,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// Trigger pre-save hook (using provided edit summary)
 		$hookStatus = Status::newGood( [] );
 		$hook_args = [ &$this, &$user, &$content, &$summary,
-							$flags & EDIT_MINOR, null, null, &$flags, &$hookStatus ];
+							$flags & EDIT_MINOR, null, null, &$flags, &$hookStatus, &$tags ];
 		// Check if the hook rejected the attempted save
 		if ( !Hooks::run( 'PageContentSave', $hook_args )
 			|| !ContentHandler::runLegacyHooks( 'ArticleSave', $hook_args )

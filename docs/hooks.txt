@@ -2316,8 +2316,11 @@ $user: the user (object) saving the article
 $content: the new article content, as a Content object
 $summary: the article summary (comment)
 $isminor: minor flag
-$iswatch: watch flag
-$section: section #
+$isWatch: (No longer used)
+$section: (No longer used)
+$flags: Flags passed to WikiPage::doEditContent()
+$hookStatus: hook status (to abort the edit)
+$tags: change tags to apply to the edit
 
 'PageContentSaveComplete': After an article has been updated.
 $wikiPage: WikiPage modified
