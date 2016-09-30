@@ -489,25 +489,31 @@
 				logged.add( trace );
 				return true;
 			}
-			Object.defineProperty( obj, key, {
-				configurable: true,
-				enumerable: true,
-				get: function () {
-					if ( uniqueTrace() ) {
-						mw.track( 'mw.deprecate', key );
-						mw.log.warn( msg );
+			// Support: Safari 5.0
+			// Throws "not supported on DOM Objects" when used on document or window objects.
+			// Safari 4.0 doesn't have this method, and it was fixed in Safari 5.1.
+			try {
+				Object.defineProperty( obj, key, {
+					configurable: true,
+					enumerable: true,
+					get: function () {
+						if ( uniqueTrace() ) {
+							mw.track( 'mw.deprecate', key );
+							mw.log.warn( msg );
+						}
+						return val;
+					},
+					set: function ( newVal ) {
+						if ( uniqueTrace() ) {
+							mw.track( 'mw.deprecate', key );
+							mw.log.warn( msg );
+						}
+						val = newVal;
 					}
-					return val;
-				},
-				set: function ( newVal ) {
-					if ( uniqueTrace() ) {
-						mw.track( 'mw.deprecate', key );
-						mw.log.warn( msg );
-					}
-					val = newVal;
-				}
-			} );
-
+				} );
+			} catch ( err ) {
+				obj[ key ] = val;
+			}
 		};
 
 		return log;
