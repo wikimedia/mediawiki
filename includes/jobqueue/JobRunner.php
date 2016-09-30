@@ -262,7 +262,10 @@ class JobRunner implements LoggerAwareInterface {
 	private function executeJob( Job $job, LBFactory $lbFactory, $stats, $popTime ) {
 		$jType = $job->getType();
 		$msg = $job->toString() . " STARTING";
-		$this->logger->debug( $msg );
+		$this->logger->debug( $msg, [
+			# Job type is part of toString() but we need it here to ease processing
+			'job_type' => $job->getType()
+		] );
 		$this->debugCallback( $msg );
 
 		// Run the job...
@@ -318,12 +321,25 @@ class JobRunner implements LoggerAwareInterface {
 		}
 
 		if ( $status === false ) {
+			$msg = $job->toString() . " t={job_duration} error={job_error}";
+			$this->logger->error( $msg, [
+				# Job type is part of toString() but we need it here to ease processing
+				'job_type' => $job->getType(),
+				'job_duration' => $timeMs,
+				'job_error' => $error,
+			] );
+
 			$msg = $job->toString() . " t=$timeMs error={$error}";
-			$this->logger->error( $msg );
 			$this->debugCallback( $msg );
 		} else {
+			$msg = $job->toString() . " t={job_duration} good";
+			$this->logger->info( $msg, [
+				# Job type is part of toString() but we need it here to ease processing
+				'job_type' => $job->getType(),
+				'job_duration' => $timeMs,
+			] );
+
 			$msg = $job->toString() . " t=$timeMs good";
-			$this->logger->info( $msg );
 			$this->debugCallback( $msg );
 		}
 
@@ -471,7 +487,12 @@ class JobRunner implements LoggerAwareInterface {
 		if ( $maxBytes && $usedBytes >= 0.95 * $maxBytes ) {
 			$msg = "Detected excessive memory usage ($usedBytes/$maxBytes).";
 			$this->debugCallback( $msg );
-			$this->logger->error( $msg );
+
+			$msg = "Detected excessive memory usage ({used_bytes}/{max_bytes}).";
+			$this->logger->error( $msg, [
+				'used_bytes' => $usedBytes,
+				'max_bytes' => $maxBytes,
+			] );
 
 			return false;
 		}
@@ -528,8 +549,15 @@ class JobRunner implements LoggerAwareInterface {
 		}
 
 		$ms = intval( 1000 * $time );
+
+		$msg = $job->toString() . " COMMIT ENQUEUED [{job_commit_write_ms}ms of writes]";
+		$this->logger->info( $msg, [
+			# Job type is part of toString() but we need it here to ease processing
+			'job_type' => $job->getType(),
+			'job_commit_write_ms' => $ms,
+		] );
+
 		$msg = $job->toString() . " COMMIT ENQUEUED [{$ms}ms of writes]";
-		$this->logger->info( $msg );
 		$this->debugCallback( $msg );
 
 		// Wait for an exclusive lock to commit
