@@ -1,0 +1,8 @@
+Code-Review+1: C. Scott Ananian <cananian@wikimedia.org>
+Code-Review+2: Subramanya Sastry <ssastry@wikimedia.org>
+Verified+2: jenkins-bot
+Submitted-by: jenkins-bot
+Submitted-at: Fri, 30 Sep 2016 00:11:34 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/313186
+Project: mediawiki/core
+Branch: refs/heads/master
