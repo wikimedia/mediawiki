@@ -62,7 +62,15 @@ class MWExceptionHandler {
 	protected static function report( $e ) {
 		try {
 			// Try and show the exception prettily, with the normal skin infrastructure
-			MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_PRETTY );
+			if ( $e instanceof MWException ) {
+				// Delegate to MWException until all subclasses are handled by
+				// MWExceptionRenderer and MWException::report() has been
+				// removed.
+				$e->report();
+			} else {
+				MWExceptionRenderer::output(
+					$e, MWExceptionRenderer::AS_PRETTY );
+			}
 		} catch ( Exception $e2 ) {
 			// Exception occurred from within exception handler
 			// Show a simpler message for the original exception,
