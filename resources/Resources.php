@@ -1020,7 +1020,6 @@ return [
 			'feedback-cancel',
 			'feedback-close',
 			'feedback-dialog-title',
-			'feedback-error-title',
 			'feedback-error1',
 			'feedback-error2',
 			'feedback-error3',
