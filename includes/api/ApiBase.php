@@ -2746,16 +2746,6 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Get the result data array (read-only)
-	 * @deprecated since 1.25, use $this->getResult() methods instead
-	 * @return array
-	 */
-	public function getResultData() {
-		wfDeprecated( __METHOD__, '1.25' );
-		return $this->getResult()->getData();
-	}
-
-	/**
 	 * Call wfTransactionalTimeLimit() if this request was POSTed
 	 * @since 1.26
 	 */
