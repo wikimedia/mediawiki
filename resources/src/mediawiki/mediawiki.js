@@ -489,25 +489,28 @@
 				logged.add( trace );
 				return true;
 			}
-			Object.defineProperty( obj, key, {
-				configurable: true,
-				enumerable: true,
-				get: function () {
-					if ( uniqueTrace() ) {
-						mw.track( 'mw.deprecate', key );
-						mw.log.warn( msg );
+			try {
+				Object.defineProperty( obj, key, {
+					configurable: true,
+					enumerable: true,
+					get: function () {
+						if ( uniqueTrace() ) {
+							mw.track( 'mw.deprecate', key );
+							mw.log.warn( msg );
+						}
+						return val;
+					},
+					set: function ( newVal ) {
+						if ( uniqueTrace() ) {
+							mw.track( 'mw.deprecate', key );
+							mw.log.warn( msg );
+						}
+						val = newVal;
 					}
-					return val;
-				},
-				set: function ( newVal ) {
-					if ( uniqueTrace() ) {
-						mw.track( 'mw.deprecate', key );
-						mw.log.warn( msg );
-					}
-					val = newVal;
-				}
-			} );
-
+				} );
+			} catch ( er ) {
+				obj[ key ] = val;
+			}
 		};
 
 		return log;
