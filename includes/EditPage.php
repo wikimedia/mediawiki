@@ -4155,7 +4155,7 @@ HTML
 			'name' => 'wpSave',
 			'tabindex' => ++$tabindex,
 		] + Linker::tooltipAndAccesskeyAttribs( 'save' );
-		$buttons['save'] = Html::submitButton( $buttonLabel, $attribs, [ 'mw-ui-constructive' ] );
+		$buttons['save'] = Html::submitButton( $buttonLabel, $attribs, [ 'mw-ui-progressive' ] );
 
 		++$tabindex; // use the same for preview and live preview
 		$attribs = [

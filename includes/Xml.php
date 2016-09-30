@@ -452,7 +452,7 @@ class Xml {
 
 	/**
 	 * Convenience function to build an HTML submit button
-	 * When $wgUseMediaWikiUIEverywhere is true it will default to a constructive button
+	 * When $wgUseMediaWikiUIEverywhere is true it will default to a progressive button
 	 * @param string $value Label text for the button
 	 * @param array $attribs Optional custom attributes
 	 * @return string HTML
@@ -467,7 +467,7 @@ class Xml {
 		// some submit forms
 		// might need to be mw-ui-destructive (e.g. delete a page)
 		if ( $wgUseMediaWikiUIEverywhere ) {
-			$baseAttrs['class'] = 'mw-ui-button mw-ui-constructive';
+			$baseAttrs['class'] = 'mw-ui-button mw-ui-progressive';
 		}
 		// Any custom attributes will take precendence of anything in baseAttrs e.g. override the class
 		$attribs = $attribs + $baseAttrs;

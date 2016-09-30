@@ -599,7 +599,7 @@
 					fullscreenButton.$element,
 					new OO.ui.ButtonWidget( {
 						label: mw.message( 'apisandbox-submit' ).text(),
-						flags: [ 'primary', 'constructive' ]
+						flags: [ 'primary', 'progressive' ]
 					} ).on( 'click', ApiSandbox.sendRequest ).$element,
 					new OO.ui.ButtonWidget( {
 						label: mw.message( 'apisandbox-reset' ).text(),
@@ -1421,7 +1421,7 @@
 							dynamicParamNameWidget,
 							new OO.ui.ButtonWidget( {
 								icon: 'add',
-								flags: 'constructive'
+								flags: 'progressive'
 							} ).on( 'click', addDynamicParamWidget ),
 							{
 								label: mw.message( 'apisandbox-dynamic-parameters-add-label' ).text(),

@@ -224,7 +224,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 					'name' => 'op',
 					'value' => 'create',
 					'label-message' => 'botpasswords-label-create',
-					'flags' => [ 'primary', 'constructive' ],
+					'flags' => [ 'primary', 'progressive' ],
 				] );
 			}
 

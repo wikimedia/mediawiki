@@ -462,7 +462,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				'name' => 'wpMove',
 				'value' => $this->msg( 'movepagebtn' )->text(),
 				'label' => $this->msg( 'movepagebtn' )->text(),
-				'flags' => [ 'constructive', 'primary' ],
+				'flags' => [ 'primary', 'progressive' ],
 				'type' => 'submit',
 			] ),
 			[

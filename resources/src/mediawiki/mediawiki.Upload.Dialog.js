@@ -84,7 +84,7 @@
 			modes: 'insert'
 		},
 		{
-			flags: [ 'primary', 'constructive' ],
+			flags: [ 'primary', 'progressive' ],
 			label: mw.msg( 'upload-dialog-button-save' ),
 			action: 'save',
 			modes: 'info'

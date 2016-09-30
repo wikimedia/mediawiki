@@ -216,12 +216,12 @@
 		{
 			action: 'submit',
 			label: mw.msg( 'feedback-submit' ),
-			flags: [ 'primary', 'constructive' ]
+			flags: [ 'primary', 'progressive' ]
 		},
 		{
 			action: 'external',
 			label: mw.msg( 'feedback-external-bug-report-button' ),
-			flags: 'constructive'
+			flags: 'progressive'
 		},
 		{
 			action: 'cancel',

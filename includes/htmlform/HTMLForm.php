@@ -176,7 +176,7 @@ class HTMLForm extends ContextSource {
 	protected $mFieldTree;
 	protected $mShowReset = false;
 	protected $mShowSubmit = true;
-	protected $mSubmitFlags = [ 'constructive', 'primary' ];
+	protected $mSubmitFlags = [ 'primary', 'progressive' ];
 	protected $mShowCancel = false;
 	protected $mCancelTarget;
 
