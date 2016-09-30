@@ -8,7 +8,7 @@
  *
  */
 
-$fallback = 'ru';
+$fallback = 'fi'; // T146744#2678472
 
 $linkTrail = '/^([a-zčČšŠžŽäÄöÖ]+)(.*)$/sDu';
 
