@@ -1083,6 +1083,7 @@
 										booklet.setPage( '|results|' );
 									} ).setDisabled( !paramsAreForced ) ).$element,
 									new OO.ui.PopupButtonWidget( {
+										$overlay: $( '#mw-apisandbox-ui' ),
 										framed: false,
 										icon: 'info',
 										popup: {
