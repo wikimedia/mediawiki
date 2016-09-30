@@ -103,7 +103,7 @@ class LegacyLogger extends AbstractLogger {
 
 		if ( isset( self::$dbChannels[$this->channel] )
 			&& isset( self::$levelMapping[$level] )
-			&& self::$levelMapping[$level] >= LogLevel::ERROR
+			&& self::$levelMapping[$level] >= self::$levelMapping[LogLevel::ERROR]
 		) {
 			// Format and write DB errors to the legacy locations
 			$effectiveChannel = 'wfLogDBError';
