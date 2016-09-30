@@ -68,6 +68,9 @@ abstract class LockManager {
 	const LOCK_UW = 2; // shared lock (for reads used to write elsewhere)
 	const LOCK_EX = 3; // exclusive lock (for writes)
 
+	/** @var int Max expected lock expiry in any context */
+	const MAX_LOCK_TTL = 7200; // 2 hours
+
 	/**
 	 * Construct a new instance from configuration
 	 *
@@ -86,6 +89,11 @@ abstract class LockManager {
 			$met = ini_get( 'max_execution_time' ); // this is 0 in CLI mode
 			$this->lockTTL = max( 5 * 60, 2 * (int)$met );
 		}
+
+		// Upper bound on how long to keep lock structures around. This is useful when setting
+		// TTLs, as the "lockTTL" value may vary based on CLI mode and app server group. This is
+		// a "safe" value that can be used to avoid clobbering other locks that use high TTLs.
+		$this->lockTTL = min( $this->lockTTL, self::MAX_LOCK_TTL );
 
 		$random = [];
 		for ( $i = 1; $i <= 5; ++$i ) {
