@@ -94,6 +94,9 @@ class LegacyLogger extends AbstractLogger {
 	 * @return null
 	 */
 	public function log( $level, $message, array $context = [] ) {
+		if ( is_string( $level ) ) {
+			$level = self::$levelMapping[$level];
+		}
 		if ( $this->channel === 'DBQuery' && isset( $context['method'] )
 			&& isset( $context['master'] ) && isset( $context['runtime'] )
 		) {
@@ -102,8 +105,7 @@ class LegacyLogger extends AbstractLogger {
 		}
 
 		if ( isset( self::$dbChannels[$this->channel] )
-			&& isset( self::$levelMapping[$level] )
-			&& self::$levelMapping[$level] >= self::$levelMapping[LogLevel::ERROR]
+			&& $level >= self::$levelMapping[LogLevel::ERROR]
 		) {
 			// Format and write DB errors to the legacy locations
 			$effectiveChannel = 'wfLogDBError';
@@ -127,13 +129,17 @@ class LegacyLogger extends AbstractLogger {
 	 *
 	 * @param string $channel
 	 * @param string $message
-	 * @param string|int $level \Psr\Log\LogEvent constant or Monlog level int
+	 * @param string|int $level \Psr\Log\LogEvent constant or Monolog level int
 	 * @param array $context
 	 * @return bool True if message should be sent to disk/network, false
 	 * otherwise
 	 */
 	public static function shouldEmit( $channel, $message, $level, $context ) {
 		global $wgDebugLogFile, $wgDBerrorLog, $wgDebugLogGroups;
+
+		if ( is_string( $level ) ) {
+			$level = self::$levelMapping[$level];
+		}
 
 		if ( $channel === 'wfLogDBError' ) {
 			// wfLogDBError messages are emitted if a database log location is
@@ -162,9 +168,6 @@ class LegacyLogger extends AbstractLogger {
 				}
 
 				if ( isset( $logConfig['level'] ) ) {
-					if ( is_string( $level ) ) {
-						$level = self::$levelMapping[$level];
-					}
 					$shouldEmit = $level >= self::$levelMapping[$logConfig['level']];
 				}
 			} else {
