@@ -24,10 +24,10 @@
 use MediaWiki\Logger\LoggerFactory;
 
 /**
- * Legacy MediaWiki-specific class for generating database load balancers
+ * MediaWiki-specific class for generating database load balancers
  * @ingroup Database
  */
-abstract class LBFactoryMW {
+abstract class MWLBFactory {
 	/**
 	 * @param array $lbConf Config for LBFactory::__construct()
 	 * @param Config $mainConfig Main config object from MediaWikiServices

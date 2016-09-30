@@ -45,11 +45,11 @@ return [
 	'DBLoadBalancerFactory' => function( MediaWikiServices $services ) {
 		$mainConfig = $services->getMainConfig();
 
-		$lbConf = LBFactoryMW::applyDefaultConfig(
+		$lbConf = MWLBFactory::applyDefaultConfig(
 			$mainConfig->get( 'LBFactoryConf' ),
 			$mainConfig
 		);
-		$class = LBFactoryMW::getLBFactoryClass( $lbConf );
+		$class = MWLBFactory::getLBFactoryClass( $lbConf );
 
 		return new $class( $lbConf );
 	},
