@@ -206,6 +206,7 @@ changes to languages because of Phabricator reports.
 * IP::isConfiguredProxy() and IP::isTrustedProxy() were removed. Callers should
   migrate to using the same functions on a ProxyLookup instance, obtainable from
   MediaWikiServices.
+* (T146469) 'runJobs' logs now have context attached to them.
 
 == Compatibility ==
 
