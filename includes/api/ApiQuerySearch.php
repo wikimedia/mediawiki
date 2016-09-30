@@ -75,6 +75,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		// Create search engine instance and set options
 		$search = $this->buildSearchEngine( $params );
 		$search->setFeatureData( 'rewrite', (bool)$params['enablerewrites'] );
+		$search->setFeatureData( 'interwiki', (bool) $interwiki );
 
 		$query = $search->transformSearchTerm( $query );
 		$query = $search->replacePrefixes( $query );
