@@ -102,7 +102,7 @@ class RedisLockManager extends QuorumLockManager {
 <<<LUA
 			local failed = {}
 			-- Load input params (e.g. session, ttl, time of request)
-			local rSession, rTTL, rTime = unpack(ARGV)
+			local rSession, rTTL, rMaxTTL, rTime = unpack(ARGV)
 			-- Check that all the locks can be acquired
 			for i,requestKey in ipairs(KEYS) do
 				local _, _, rType, resourceKey = string.find(requestKey,"(%w+):(%w+)$")
@@ -133,7 +133,7 @@ class RedisLockManager extends QuorumLockManager {
 					local _, _, rType, resourceKey = string.find(requestKey,"(%w+):(%w+)$")
 					redis.call('hSet',resourceKey,rType .. ':' .. rSession,rTime + rTTL)
 					-- In addition to invalidation logic, be sure to garbage collect
-					redis.call('expire',resourceKey,rTTL)
+					redis.call('expire',resourceKey,rMaxTTL)
 				end
 			end
 			return failed
@@ -144,7 +144,8 @@ LUA;
 					[
 						$this->session, // ARGV[1]
 						$this->lockTTL, // ARGV[2]
-						time() // ARGV[3]
+						self::MAX_LOCK_TTL, // ARGV[3]
+						time() // ARGV[4]
 					]
 				),
 				count( $pathsByKey ) # number of first argument(s) that are keys
