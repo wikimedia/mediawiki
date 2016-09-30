@@ -33,6 +33,7 @@
 	 * @cfg {boolean} [showRedlink] Show red link to exact match if it doesn't exist
 	 * @cfg {boolean} [showImages] Show page images
 	 * @cfg {boolean} [showDescriptions] Show page descriptions
+	 * @cfg {boolean} [excludeCurrentPage] Exclude the current page from suggestions
 	 * @cfg {boolean} [validateTitle=true] Whether the input must be a valid title (if set to true,
 	 *  the widget will marks itself red for invalid inputs, including an empty query).
 	 * @cfg {Object} [cache] Result cache which implements a 'set' method, taking keyed values as an argument
@@ -54,6 +55,7 @@
 		this.showRedlink = !!config.showRedlink;
 		this.showImages = !!config.showImages;
 		this.showDescriptions = !!config.showDescriptions;
+		this.excludeCurrentPage = !!config.excludeCurrentPage;
 		this.validateTitle = config.validateTitle !== undefined ? config.validateTitle : true;
 		this.cache = config.cache;
 
@@ -162,6 +164,7 @@
 	 */
 	mw.widgets.TitleWidget.prototype.getOptionsFromData = function ( data ) {
 		var i, len, index, pageExists, pageExistsExact, suggestionPage, page, redirect, redirects,
+			currentPageName = new mw.Title( mw.config.get( 'wgRelevantPageName' ) ).getPrefixedText(),
 			items = [],
 			titles = [],
 			titleObj = mw.Title.newFromText( this.getQueryValue() ),
@@ -178,6 +181,10 @@
 
 		for ( index in data.pages ) {
 			suggestionPage = data.pages[ index ];
+			// When excludeCurrentPage is set, don't list the current page unless the user has type the full title
+			if ( this.excludeCurrentPage && suggestionPage.title === currentPageName && suggestionPage.title !== titleObj.getPrefixedText() ) {
+				continue;
+			}
 			pageData[ suggestionPage.title ] = {
 				missing: suggestionPage.missing !== undefined,
 				redirect: suggestionPage.redirect !== undefined,
