@@ -1217,12 +1217,14 @@
 
 				pendingRequests.push( function () {
 					if ( moduleName && hasOwn.call( registry, moduleName ) ) {
+						// Emulate runScript() part of execute()
 						window.require = mw.loader.require;
 						window.module = registry[ moduleName ].module;
 					}
 					addScript( src ).always( function () {
-						// Clear environment
-						delete window.require;
+						// 'module.exports' should not persist after the file is executed to
+						// avoid leakage to unrelated code. 'require' should be kept, however,
+						// as asynchronous access to 'require' is allowed and expected. (T144879)
 						delete window.module;
 						r.resolve();
 
