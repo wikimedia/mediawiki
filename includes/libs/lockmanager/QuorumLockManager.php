@@ -33,7 +33,7 @@ abstract class QuorumLockManager extends LockManager {
 	protected $srvsByBucket = []; // (bucket index => (lsrv1, lsrv2, ...))
 
 	/** @var array Map of degraded buckets */
-	protected $degradedBuckets = []; // (buckey index => UNIX timestamp)
+	protected $degradedBuckets = []; // (bucket index => UNIX timestamp)
 
 	final protected function doLock( array $paths, $type ) {
 		return $this->doLockByType( [ $type => $paths ] );
