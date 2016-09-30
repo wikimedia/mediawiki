@@ -1000,7 +1000,8 @@
 										icon: 'info',
 										popup: {
 											$content: $( '<div>' ).append( mw.message( 'apisandbox-continue-help' ).parse() ),
-											padded: true
+											padded: true,
+											$container: $( 'body' )
 										}
 									} ).$element
 								)
