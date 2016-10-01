@@ -5,6 +5,7 @@ global $wgAutoloadLocalClasses;
 
 $wgAutoloadLocalClasses = [
 	'APCBagOStuff' => __DIR__ . '/includes/libs/objectcache/APCBagOStuff.php',
+	'APCUBagOStuff' => __DIR__ . '/includes/libs/objectcache/APCUBagOStuff.php',
 	'AbstractContent' => __DIR__ . '/includes/content/AbstractContent.php',
 	'Action' => __DIR__ . '/includes/actions/Action.php',
 	'ActiveUsersPager' => __DIR__ . '/includes/specials/pagers/ActiveUsersPager.php',
