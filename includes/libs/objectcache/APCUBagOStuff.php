@@ -1,6 +1,6 @@
 <?php
 /**
- * Object caching using PHP's APC accelerator.
+ * Object caching using PHP's APCU accelerator.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,20 +22,20 @@
  */
 
 /**
- * This is a wrapper for APC's shared memory functions
+ * This is a wrapper for APCU's shared memory functions
  *
  * @ingroup Cache
  */
-class APCBagOStuff extends BagOStuff {
+class APCUBagOStuff extends BagOStuff {
 
 	/**
-	 * @var bool If true, trust the APC implementation to serialize and
+	 * @var bool If true, trust the APCU implementation to serialize and
 	 * deserialize objects correctly. If false, (de-)serialize in PHP.
 	 */
 	protected $nativeSerialize;
 
 	/**
-	 * @var string String to append to each APC key. This may be changed
+	 * @var string String to append to each APCU key. This may be changed
 	 *  whenever the handling of values is changed, to prevent existing code
 	 *  from encountering older values which it cannot handle.
 	 */
@@ -45,7 +45,7 @@ class APCBagOStuff extends BagOStuff {
 	 * Constructor
 	 *
 	 * Available parameters are:
-	 *   - nativeSerialize:     If true, pass objects to apc_store(), and trust it
+	 *   - nativeSerialize:     If true, pass objects to apcU_store(), and trust it
 	 *                          to serialize them correctly. If false, serialize
 	 *                          all values in PHP.
 	 *
@@ -75,7 +75,7 @@ class APCBagOStuff extends BagOStuff {
 	}
 
 	protected function doGet( $key, $flags = 0 ) {
-		$val = apc_fetch( $key . self::KEY_SUFFIX );
+		$val = apcu_fetch( $key . self::KEY_SUFFIX );
 
 		if ( is_string( $val ) && !$this->nativeSerialize ) {
 			$val = $this->isInteger( $val )
@@ -91,22 +91,30 @@ class APCBagOStuff extends BagOStuff {
 			$value = serialize( $value );
 		}
 
-		apc_store( $key . self::KEY_SUFFIX, $value, $exptime );
+		apcu_store( $key . self::KEY_SUFFIX, $value, $exptime );
 
 		return true;
 	}
 
 	public function delete( $key ) {
-		apc_delete( $key . self::KEY_SUFFIX );
+		apcu_delete( $key . self::KEY_SUFFIX );
 
 		return true;
 	}
 
 	public function incr( $key, $value = 1 ) {
-		return apc_inc( $key . self::KEY_SUFFIX, $value );
+		if ( apcu_exists( $key . self::KEY_SUFFIX ) ) {
+			return apcu_inc( $key . self::KEY_SUFFIX, $value );
+		} else {
+			return apcu_set( $key . self::KEY_SUFFIX, $value );
+		}
 	}
 
 	public function decr( $key, $value = 1 ) {
-		return apc_dec( $key . self::KEY_SUFFIX, $value );
+		if ( apcu_exists( $key . self::KEY_SUFFIX ) ) {
+			return apcu_dec( $key . self::KEY_SUFFIX, $value );
+		} else {
+			return apcu_set( $key . self::KEY_SUFFIX, $value );
+		}
 	}
 }
