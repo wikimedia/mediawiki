@@ -81,6 +81,8 @@ CREATE UNIQUE INDEX /*i*/ufg_user_group ON /*_*/user_former_groups (ufg_user,ufg
 -- of the "you have new messages" box
 -- Changed user_id column to user_id to avoid clashing with user_id function
 CREATE TABLE /*_*/user_newtalk (
+  -- Primary key
+   un_id int NOT NULL PRIMARY KEY IDENTITY,
    user_id INT         NOT NULL REFERENCES /*_*/mwuser(user_id) ON DELETE CASCADE,
    user_ip NVARCHAR(40) NOT NULL DEFAULT '',
    user_last_timestamp varchar(14) DEFAULT NULL,
@@ -93,6 +95,8 @@ CREATE INDEX /*i*/un_user_ip ON /*_*/user_newtalk (user_ip);
 -- replaces old user.user_options nvarchar(max)
 --
 CREATE TABLE /*_*/user_properties (
+        -- Primary key
+        up_id int NOT NULL PRIMARY KEY IDENTITY,
 	up_user INT NOT NULL REFERENCES /*_*/mwuser(user_id) ON DELETE CASCADE,
 	up_property NVARCHAR(255) NOT NULL,
 	up_value NVARCHAR(MAX),
@@ -621,6 +625,8 @@ CREATE INDEX /*i*/img_media_mime ON /*_*/image (img_media_type,img_major_mime,im
 -- this table at re-upload time.
 --
 CREATE TABLE /*_*/oldimage (
+  -- Primary key
+  oi_id int NOT NULL PRIMARY KEY IDENTITY,
   -- Base filename: key to image.img_name
   -- Not a FK because deleting images removes them from image
   oi_name nvarchar(255) NOT NULL default '',
@@ -936,6 +942,8 @@ CREATE UNIQUE INDEX /*i*/iw_prefix ON /*_*/interwiki (iw_prefix);
 -- Used for caching expensive grouped queries
 --
 CREATE TABLE /*_*/querycache (
+  -- Primary key
+  qc_id int NOT NULL PRIMARY KEY IDENTITY,
   -- A key name, generally the base name of of the special page.
   qc_type nvarchar(32) NOT NULL,
 
@@ -1112,6 +1120,8 @@ CREATE INDEX /*i*/rd_ns_title ON /*_*/redirect (rd_namespace,rd_title,rd_from);
 
 -- Used for caching expensive grouped queries that need two links (for example double-redirects)
 CREATE TABLE /*_*/querycachetwo (
+  -- Primary key
+  qcc_id int NOT NULL PRIMARY KEY IDENTITY,
   -- A key name, generally the base name of of the special page.
   qcc_type nvarchar(32) NOT NULL,
 
@@ -1236,6 +1246,8 @@ CREATE TABLE /*_*/valid_tag (
 
 -- Table for storing localisation data
 CREATE TABLE /*_*/l10n_cache (
+  -- Primary key
+  lc_id int NOT NULL PRIMARY KEY IDENTITY,
   -- Language code
   lc_lang nvarchar(32) NOT NULL,
   -- Cache key

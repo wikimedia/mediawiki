@@ -182,6 +182,8 @@ CREATE UNIQUE INDEX /*i*/ufg_user_group ON /*_*/user_former_groups (ufg_user,ufg
 -- of the "you have new messages" box
 --
 CREATE TABLE /*_*/user_newtalk (
+  -- Primary key
+  un_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
   -- Key to user.user_id
   user_id int unsigned NOT NULL default 0,
   -- If the user is an anonymous user their IP address is stored here
@@ -207,6 +209,9 @@ CREATE INDEX /*i*/un_user_ip ON /*_*/user_newtalk (user_ip);
 --    saved options since it's a sane table structure.
 --
 CREATE TABLE /*_*/user_properties (
+  -- Primary key
+  up_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
+
   -- Foreign key to user.user_id
   up_user int NOT NULL,
 
@@ -903,6 +908,8 @@ CREATE INDEX /*i*/img_media_mime ON /*_*/image (img_media_type,img_major_mime,im
 -- this table at re-upload time.
 --
 CREATE TABLE /*_*/oldimage (
+  -- Primary key
+  oi_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   -- Base filename: key to image.img_name
   oi_name varchar(255) binary NOT NULL default '',
 
@@ -1219,6 +1226,8 @@ CREATE UNIQUE INDEX /*i*/iw_prefix ON /*_*/interwiki (iw_prefix);
 -- Used for caching expensive grouped queries
 --
 CREATE TABLE /*_*/querycache (
+  -- Primary key
+  qc_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
   -- A key name, generally the base name of of the special page.
   qc_type varbinary(32) NOT NULL,
 
@@ -1392,6 +1401,8 @@ CREATE INDEX /*i*/rd_ns_title ON /*_*/redirect (rd_namespace,rd_title,rd_from);
 
 -- Used for caching expensive grouped queries that need two links (for example double-redirects)
 CREATE TABLE /*_*/querycachetwo (
+  -- Primary key
+  qcc_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
   -- A key name, generally the base name of of the special page.
   qcc_type varbinary(32) NOT NULL,
 
@@ -1515,6 +1526,8 @@ CREATE TABLE /*_*/valid_tag (
 
 -- Table for storing localisation data
 CREATE TABLE /*_*/l10n_cache (
+  -- Primary key
+  lc_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
   -- Language code
   lc_lang varbinary(32) NOT NULL,
   -- Cache key

@@ -46,7 +46,9 @@ CREATE TABLE &mw_prefix.user_former_groups (
 ALTER TABLE &mw_prefix.user_former_groups ADD CONSTRAINT &mw_prefix.user_former_groups_fk1 FOREIGN KEY (ufg_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 CREATE UNIQUE INDEX &mw_prefix.user_former_groups_u01 ON &mw_prefix.user_former_groups (ufg_user,ufg_group);
 
+CREATE SEQUENCE user_newtalk_un_id_seq;
 CREATE TABLE &mw_prefix.user_newtalk (
+  un_id          NUMBER NOT NULL,
   user_id  NUMBER DEFAULT 0 NOT NULL,
   user_ip  VARCHAR2(40)        NULL,
   user_last_timestamp         TIMESTAMP(6) WITH TIME ZONE
@@ -55,7 +57,9 @@ ALTER TABLE &mw_prefix.user_newtalk ADD CONSTRAINT &mw_prefix.user_newtalk_fk1 F
 CREATE INDEX &mw_prefix.user_newtalk_i01 ON &mw_prefix.user_newtalk (user_id);
 CREATE INDEX &mw_prefix.user_newtalk_i02 ON &mw_prefix.user_newtalk (user_ip);
 
+CREATE SEQUENCE user_properties_up_id_seq;
 CREATE TABLE &mw_prefix.user_properties (
+  up_id          NUMBER NOT NULL,
   up_user NUMBER NOT NULL,
   up_property VARCHAR2(255) NOT NULL,
   up_value CLOB
@@ -310,7 +314,9 @@ CREATE INDEX &mw_prefix.image_i03 ON &mw_prefix.image (img_timestamp);
 CREATE INDEX &mw_prefix.image_i04 ON &mw_prefix.image (img_sha1);
 
 
+CREATE SEQUENCE oldimage_oi_id_seq;
 CREATE TABLE &mw_prefix.oldimage (
+  oi_id          NUMBER NOT NULL,
   oi_name          VARCHAR2(255)         DEFAULT 0 NOT NULL,
   oi_archive_name  VARCHAR2(255),
   oi_size          NUMBER      DEFAULT 0 NOT NULL,
@@ -466,7 +472,9 @@ CREATE TABLE &mw_prefix.interwiki (
 );
 CREATE UNIQUE INDEX &mw_prefix.interwiki_u01 ON &mw_prefix.interwiki (iw_prefix);
 
+CREATE SEQUENCE querycache_qc_id_seq;
 CREATE TABLE &mw_prefix.querycache (
+  qc_id          NUMBER NOT NULL,
   qc_type       VARCHAR2(32)      NOT NULL,
   qc_value      NUMBER  DEFAULT 0 NOT NULL,
   qc_namespace  NUMBER  DEFAULT 0 NOT NULL,
@@ -560,7 +568,9 @@ CREATE TABLE &mw_prefix.redirect (
 ALTER TABLE &mw_prefix.redirect ADD CONSTRAINT &mw_prefix.redirect_fk1 FOREIGN KEY (rd_from) REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 CREATE INDEX &mw_prefix.redirect_i01 ON &mw_prefix.redirect (rd_namespace,rd_title,rd_from);
 
+CREATE SEQUENCE querycachetwo_qcc_id_seq;
 CREATE TABLE &mw_prefix.querycachetwo (
+  qcc_id          NUMBER NOT NULL,
   qcc_type          VARCHAR2(32)     NOT NULL,
   qcc_value         NUMBER  DEFAULT 0 NOT NULL,
   qcc_namespace     NUMBER  DEFAULT 0 NOT NULL,
@@ -655,7 +665,9 @@ ALTER TABLE &mw_prefix.valid_tag ADD CONSTRAINT &mw_prefix.valid_tag_pk PRIMARY 
 CREATE INDEX &mw_prefix.si_title_idx ON &mw_prefix.searchindex(si_title) INDEXTYPE IS ctxsys.context;
 CREATE INDEX &mw_prefix.si_text_idx ON &mw_prefix.searchindex(si_text) INDEXTYPE IS ctxsys.context;
 
+CREATE SEQUENCE l10n_cache_lc_id_seq;
 CREATE TABLE &mw_prefix.l10n_cache (
+  lc_id          NUMBER NOT NULL,
   lc_lang varchar2(32) NOT NULL,
   lc_key varchar2(255) NOT NULL,
   lc_value clob NOT NULL

@@ -25,6 +25,12 @@ DROP SEQUENCE IF EXISTS category_cat_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS archive_ar_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS externallinks_el_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS sites_site_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS l10n_cache_lc_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS oldimage_oi_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS querycache_qc_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS querycachetwo_qcc_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS user_newtalk_un_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS user_properties_up_id_seq CASCADE;
 DROP FUNCTION IF EXISTS page_deleted() CASCADE;
 DROP FUNCTION IF EXISTS ts2_page_title() CASCADE;
 DROP FUNCTION IF EXISTS ts2_page_text() CASCADE;
@@ -67,7 +73,9 @@ CREATE TABLE user_former_groups (
 );
 CREATE UNIQUE INDEX ufg_user_group ON user_former_groups (ufg_user, ufg_group);
 
+CREATE SEQUENCE user_newtalk_un_id_seq;
 CREATE TABLE user_newtalk (
+  un_id             INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('user_newtalk_un_id_seq'),
   user_id              INTEGER      NOT NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   user_ip              TEXT             NULL,
   user_last_timestamp  TIMESTAMPTZ
@@ -329,7 +337,9 @@ CREATE INDEX img_size_idx      ON image (img_size);
 CREATE INDEX img_timestamp_idx ON image (img_timestamp);
 CREATE INDEX img_sha1          ON image (img_sha1);
 
+CREATE SEQUENCE oldimage_oi_id_seq;
 CREATE TABLE oldimage (
+  oi_id             INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('oldimage_oi_id_seq'),
   oi_name          TEXT         NOT NULL,
   oi_archive_name  TEXT         NOT NULL,
   oi_size          INTEGER      NOT NULL,
@@ -472,7 +482,9 @@ CREATE TABLE interwiki (
 );
 
 
+CREATE SEQUENCE querycache_qc_id_seq;
 CREATE TABLE querycache (
+  qc_id             INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('querycache_qc_id_seq'),
   qc_type       TEXT      NOT NULL,
   qc_value      INTEGER   NOT NULL,
   qc_namespace  SMALLINT  NOT NULL,
@@ -485,7 +497,9 @@ CREATE TABLE querycache_info (
   qci_timestamp  TIMESTAMPTZ NULL
 );
 
+CREATE SEQUENCE querycachetwo_qcc_id_seq;
 CREATE TABLE querycachetwo (
+  qcc_id             INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('querycachetwo_qcc_id_seq'),
   qcc_type          TEXT     NOT NULL,
   qcc_value         INTEGER  NOT NULL  DEFAULT 0,
   qcc_namespace     INTEGER  NOT NULL  DEFAULT 0,
@@ -679,7 +693,9 @@ CREATE TABLE valid_tag (
   vt_tag TEXT NOT NULL PRIMARY KEY
 );
 
+CREATE SEQUENCE user_properties_up_id_seq;
 CREATE TABLE user_properties (
+  up_id             INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('user_properties_up_id_seq'),
   up_user     INTEGER      NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   up_property TEXT     NOT NULL,
   up_value    TEXT
@@ -687,7 +703,9 @@ CREATE TABLE user_properties (
 CREATE UNIQUE INDEX user_properties_user_property ON user_properties (up_user,up_property);
 CREATE INDEX user_properties_property ON user_properties (up_property);
 
+CREATE SEQUENCE l10n_cache_lc_id_seq;
 CREATE TABLE l10n_cache (
+  lc_id             INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('l10n_cache_lc_id_seq'),
   lc_lang   TEXT  NOT NULL,
   lc_key    TEXT  NOT NULL,
   lc_value  BYTEA NOT NULL
