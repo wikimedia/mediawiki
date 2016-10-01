@@ -58,7 +58,7 @@ class SectionProfiler {
 
 	/**
 	 * @param string $section
-	 * @return ScopedCallback
+	 * @return SectionProfileCallback
 	 */
 	public function scopedProfileIn( $section ) {
 		$this->profileInInternal( $section );
