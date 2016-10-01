@@ -90,7 +90,7 @@
 	"tog-enotifminoredits": "문서나 파일의 사소한 편집도 이메일로 알림",
 	"tog-enotifrevealaddr": "알림 메일에 내 이메일 주소를 밝히기",
 	"tog-shownumberswatching": "주시하는 사용자 수 보이기",
-	"tog-oldsig": "현재 서명:",
+	"tog-oldsig": "당신의 기존 서명:",
 	"tog-fancysig": "서명을 위키텍스트로 취급 (자동으로 링크를 걸지 않음)",
 	"tog-uselivepreview": "실시간 미리 보기 사용하기",
 	"tog-forceeditsummary": "편집 요약을 쓰지 않았을 때 내게 물어보기",
@@ -1450,6 +1450,8 @@
 	"file-thumbnail-no": "파일 이름이 <strong>$1</strong>으로 시작합니다.\n이 파일은 그림의 크기를 줄인 (섬네일) 파일인 것 같습니다.\n더 해상도가 좋은 파일이 있다면 그 파일을 올리거나 아니면 올리려는 파일 이름을 바꾸세요.",
 	"fileexists-forbidden": "같은 이름의 파일이 이미 있고, 덮어쓸 수 없습니다.\n그래도 파일을 올리시려면, 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다.\n[[File:$1|thumb|center|$1]]",
 	"fileexists-shared-forbidden": "같은 이름의 파일이 이미 위키미디어 공용에 있습니다.\n그래도 파일을 올리려면 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다.\n[[File:$1|thumb|center|$1]]",
+	"fileexists-no-change": "업로드한 항목은 <strong>[[:$1]]</strong>의 현재 판과 완전히 중복입니다.",
+	"fileexists-duplicate-version": "업로드한 항목은 <strong>[[:$1]]</strong>의 {{PLURAL:$2|과거의 판}}과 완전히 중복입니다.",
 	"file-exists-duplicate": "현재 올리고 있는 {{PLURAL:$1|파일}}이 아래 파일과 중복됩니다:",
 	"file-deleted-duplicate": "이 파일과 같은 파일 ([[:$1]])이 이전에 삭제된 적이 있습니다. 파일을 다시 올리기 전에 문서의 삭제 기록을 확인해 주시기 바랍니다.",
 	"file-deleted-duplicate-notitle": "이 파일과 같은 파일이 이전에 삭제된 적이 있으며, 제목은 숨겨져 있습니다.\n다시 올리기 전에 상확은 검토하기 위해 숨겨진 파일 데이터를 볼 수 있는 누군가에게 물어봐야 합니다.",
@@ -3818,5 +3820,6 @@
 	"userjsispublic": "주목해 주십시오: 자바스크립트의 하위 문서들은 다른 사용자들이 볼 수 있기 때문에 기밀 데이터를 포함해서는 안 됩니다.",
 	"usercssispublic": "주목해 주십시오: CSS의 하위 문서들은 다른 사용자들이 볼 수 있기 때문에 기밀 데이터를 포함해서는 안 됩니다.",
 	"restrictionsfield-badip": "유효하지 않은 IP 주소나 대역: $1",
-	"restrictionsfield-label": "허용된 IP 대역:"
+	"restrictionsfield-label": "허용된 IP 대역:",
+	"restrictionsfield-help": "줄 단위의 하나의 IP 주소 또는 CIDR 대역입니다. 모든 곳에 적용하려면, 다음을 사용하세요<br><code>0.0.0.0/0</code><br><code>::/0</code>"
 }

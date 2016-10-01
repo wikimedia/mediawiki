@@ -3444,6 +3444,8 @@
 	"htmlform-cloner-delete": "Usuń",
 	"htmlform-cloner-required": "Wymagana jest co najmniej jedna wartość.",
 	"htmlform-date-placeholder": "RRRR-MM-DD",
+	"htmlform-time-placeholder": "GG:MM:SS",
+	"htmlform-datetime-placeholder": "RRRR-MM-DD GG:MM:SS",
 	"htmlform-title-badnamespace": "[[:$1]] nie znajduje się w przestrzeni nazw „{{ns:$2}}”.",
 	"htmlform-title-not-creatable": "Nie można użyć „$1” do utworzenia tytułu strony",
 	"htmlform-title-not-exists": "$1 nie istnieje.",
@@ -3801,5 +3803,7 @@
 	"linkaccounts-success-text": "Konto zostało połączone.",
 	"linkaccounts-submit": "Połącz konta",
 	"unlinkaccounts": "Odłącz konta",
-	"unlinkaccounts-success": "Konta zostały odłączone."
+	"unlinkaccounts-success": "Konta zostały odłączone.",
+	"restrictionsfield-badip": "Nieprawidłowy adres IP lub zakres adresów: $1",
+	"restrictionsfield-label": "Dozwolone zakresy adresów IP:"
 }

@@ -494,6 +494,7 @@
 	"createacct-yourpasswordagain-ph": "Inserisci nuovamente la password",
 	"userlogin-remembermypassword": "Mantienimi collegato",
 	"userlogin-signwithsecure": "Usa una connessione sicura",
+	"cannotlogin-title": "Non è possibile effettuare l'accesso",
 	"cannotlogin-text": "L'accesso non è possibile.",
 	"cannotloginnow-title": "Impossibile accedere ora",
 	"cannotloginnow-text": "L'accesso non è possibile quando si sta usando $1.",

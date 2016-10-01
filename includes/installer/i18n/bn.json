@@ -6,7 +6,8 @@
 			"Aftab1995",
 			"Tauhid16",
 			"Aftabuzzaman",
-			"Hasive"
+			"Hasive",
+			"আজিজ"
 		]
 	},
 	"config-desc": "মিডিয়াউইকির জন্য ইন্সটলার",
@@ -94,7 +95,9 @@
 	"config-admin-name": "আপনার ব্যবহারকারী নাম:",
 	"config-admin-password": "পাসওয়ার্ড:",
 	"config-admin-password-confirm": "পাসওয়ার্ড আবারও প্রবেশ করান:",
+	"config-admin-help": "এখানে আপনার পছন্দের ব্যবহারকারী নাম লিখুন, উদাহরণস্বরূপ \"আজিজ\"। এই নামটি উইকিতে প্রবেশের সময় ব্যবহার করতে হবে।",
 	"config-admin-name-blank": "একটি প্রশাসক ব্যবহারকারী নাম প্রবেশ করান",
+	"config-admin-name-invalid": "উল্লেখিত ব্যবহারকারী নাম \"<nowiki>$1</nowiki>\" অবৈধ। একটি ভিন্ন নাম উল্লেখ করুন।",
 	"config-admin-password-blank": "প্রশাসক অ্যাকাউন্টের জন্য পাসওয়ার্ড প্রবেশ করান।",
 	"config-admin-password-mismatch": "আপনি যে দুটি পাসওয়ার্ড দিয়েছেন তারা পরস্পর মেলেনি।",
 	"config-admin-email": "ইমেইল ঠিকানা:",

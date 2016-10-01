@@ -1402,6 +1402,7 @@
 	"upload-options": "Optioune vum Eroplueden",
 	"watchthisupload": "Dëse Fichier iwwerwaachen",
 	"filewasdeleted": "E Fichier mat dësem Numm gouf schonn eemol eropgelueden an duerno nees geläscht. Kuckt w.e.g op $1 no, ier Dir dee Fichier nach eng Kéier eropluet.",
+	"filename-thumb-name": "Dësen Numm gesäit aus wéi den Numm vun engem Miniaturbild. Luet w.e.g. keng Miniatur-Biller zréck op déi selwecht Wiki. Sollt et sech ëm een anert Bild handelen da sicht w.e.g. e Fichiersnumm dee méi verständlech ass an den net sou ufänkt wéi e Miniaturbild.",
 	"filename-bad-prefix": "Den Numm vum Fichier fänkt mat '''„$1“''' un. Dësen Numm krut en automatesch vun der Kamera a seet näischt iwwer dat aus, wat drop ass. Gitt dem Fichier w.e.g. en Numm, deen den Inhalt besser beschreift, an deen net verwiesselt ka ginn.",
 	"upload-proto-error": "Falsche Protokoll",
 	"upload-proto-error-text": "D'URL muss mat <code>http://</code> oder <code>ftp://</code> ufänken.",
