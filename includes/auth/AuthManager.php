@@ -1696,7 +1696,7 @@ class AuthManager implements LoggerAwareInterface {
 				} else {
 					$this->logger->error( __METHOD__ . ': {username} failed with message {message}', [
 						'username' => $username,
-						'message' => $status->getWikiText( null, null, 'en' )
+						'msg' => $status->getWikiText( null, null, 'en' )
 					] );
 					$user->setId( 0 );
 					$user->loadFromId();
