@@ -118,6 +118,7 @@ class OracleUpdater extends DatabaseUpdater {
 				'patch-add-rc_name_type_patrolled_timestamp_index.sql' ],
 			[ 'addField', 'change_tag', 'ct_id', 'patch-change_tag-ct_id.sql' ],
 			[ 'addField', 'tag_summary', 'ts_id', 'patch-tag_summary-ts_id.sql' ],
+			[ 'addField', 'l10n_cache', 'lc_id', 'patch-l10n_cache-lc_id.sql' ],
 
 			// KEEP THIS AT THE BOTTOM!!
 			[ 'doRebuildDuplicateFunction' ],

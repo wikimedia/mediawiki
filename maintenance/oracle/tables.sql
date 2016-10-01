@@ -660,10 +660,12 @@ CREATE INDEX &mw_prefix.si_title_idx ON &mw_prefix.searchindex(si_title) INDEXTY
 CREATE INDEX &mw_prefix.si_text_idx ON &mw_prefix.searchindex(si_text) INDEXTYPE IS ctxsys.context;
 
 CREATE TABLE &mw_prefix.l10n_cache (
+  lc_id          NUMBER NOT NULL,
   lc_lang varchar2(32) NOT NULL,
   lc_key varchar2(255) NOT NULL,
   lc_value clob NOT NULL
 );
+ALTER TABLE &mw_prefix.l10n_cache ADD CONSTRAINT &mw_prefix.l10n_cache_pk PRIMARY KEY (lc_id);
 CREATE INDEX &mw_prefix.l10n_cache_u01 ON &mw_prefix.l10n_cache (lc_lang, lc_key);
 
 CREATE TABLE &mw_prefix.module_deps (

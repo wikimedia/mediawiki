@@ -27,6 +27,7 @@ DROP SEQUENCE IF EXISTS externallinks_el_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS sites_site_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS change_tag_ct_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS tag_summary_ts_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS l10n_cache_lc_id_seq CASCADE;
 DROP FUNCTION IF EXISTS page_deleted() CASCADE;
 DROP FUNCTION IF EXISTS ts2_page_title() CASCADE;
 DROP FUNCTION IF EXISTS ts2_page_text() CASCADE;
@@ -693,7 +694,9 @@ CREATE TABLE user_properties (
 CREATE UNIQUE INDEX user_properties_user_property ON user_properties (up_user,up_property);
 CREATE INDEX user_properties_property ON user_properties (up_property);
 
+CREATE SEQUENCE l10n_cache_lc_id_seq;
 CREATE TABLE l10n_cache (
+  lc_id             INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('l10n_cache_lc_id_seq'),
   lc_lang   TEXT  NOT NULL,
   lc_key    TEXT  NOT NULL,
   lc_value  BYTEA NOT NULL
