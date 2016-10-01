@@ -116,6 +116,7 @@ class OracleUpdater extends DatabaseUpdater {
 			// 1.28
 			[ 'addIndex', 'recentchanges', 'rc_name_type_patrolled_timestamp',
 				'patch-add-rc_name_type_patrolled_timestamp_index.sql' ],
+			[ 'addField', 'l10n_cache', 'lc_id', 'patch-l10n_cache-lc_id.sql' ],
 
 			// KEEP THIS AT THE BOTTOM!!
 			[ 'doRebuildDuplicateFunction' ],

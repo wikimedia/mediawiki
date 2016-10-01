@@ -68,6 +68,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addSequence', 'archive', false, 'archive_ar_id_seq' ],
 			[ 'addSequence', 'externallinks', false, 'externallinks_el_id_seq' ],
 			[ 'addSequence', 'watchlist', false, 'watchlist_wl_id_seq' ],
+			[ 'addSequence', 'l10n_cache', false, 'l10n_cache_lc_id_seq' ],
 
 			# new tables
 			[ 'addTable', 'category', 'patch-category.sql' ],
@@ -168,6 +169,8 @@ class PostgresUpdater extends DatabaseUpdater {
 				"INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('archive_ar_id_seq')" ],
 			[ 'addPgField', 'externallinks', 'el_id',
 				"INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('externallinks_el_id_seq')" ],
+			[ 'addPgField', 'l10n_cache', 'lc_id',
+				"INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('l10n_cache_lc_id_seq')" ],
 			[ 'addPgField', 'uploadstash', 'us_props', "BYTEA" ],
 
 			# type changes

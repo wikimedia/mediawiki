@@ -655,7 +655,9 @@ ALTER TABLE &mw_prefix.valid_tag ADD CONSTRAINT &mw_prefix.valid_tag_pk PRIMARY 
 CREATE INDEX &mw_prefix.si_title_idx ON &mw_prefix.searchindex(si_title) INDEXTYPE IS ctxsys.context;
 CREATE INDEX &mw_prefix.si_text_idx ON &mw_prefix.searchindex(si_text) INDEXTYPE IS ctxsys.context;
 
+CREATE SEQUENCE l10n_cache_lc_id_seq;
 CREATE TABLE &mw_prefix.l10n_cache (
+  lc_id          NUMBER NOT NULL,
   lc_lang varchar2(32) NOT NULL,
   lc_key varchar2(255) NOT NULL,
   lc_value clob NOT NULL

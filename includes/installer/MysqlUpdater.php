@@ -288,6 +288,7 @@ class MysqlUpdater extends DatabaseUpdater {
 				'patch-add-rc_name_type_patrolled_timestamp_index.sql' ],
 			[ 'doRevisionPageRevIndexNonUnique' ],
 			[ 'doNonUniquePlTlIl' ],
+			[ 'addField', 'l10n_cache', 'lc_id', 'patch-l10n_cache-lc_id.sql' ],
 		];
 	}
 

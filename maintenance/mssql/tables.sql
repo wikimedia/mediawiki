@@ -1236,6 +1236,8 @@ CREATE TABLE /*_*/valid_tag (
 
 -- Table for storing localisation data
 CREATE TABLE /*_*/l10n_cache (
+  -- Primary key
+  lc_id int NOT NULL PRIMARY KEY IDENTITY,
   -- Language code
   lc_lang nvarchar(32) NOT NULL,
   -- Cache key
