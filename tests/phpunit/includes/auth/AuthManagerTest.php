@@ -2674,7 +2674,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$this->assertEquals( 0, $session->getUser()->getId() );
 		$this->assertSame( [
 			[ LogLevel::INFO, 'creating new user ({username}) - from: {from}' ],
-			[ LogLevel::ERROR, '{username} failed with message {message}' ],
+			[ LogLevel::ERROR, '{username} failed with message {msg}' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
 		$this->assertSame( null, $session->get( 'AuthManager::AutoCreateBlacklist' ) );
