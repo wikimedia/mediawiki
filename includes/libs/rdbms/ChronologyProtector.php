@@ -22,6 +22,7 @@
  */
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use Wikimedia\WaitConditionLoop;
 
 /**
  * Class for ensuring a consistent ordering of events as seen by the user, despite replication.

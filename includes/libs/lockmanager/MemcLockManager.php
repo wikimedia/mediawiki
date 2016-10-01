@@ -20,6 +20,7 @@
  * @file
  * @ingroup LockManager
  */
+use Wikimedia\WaitConditionLoop;
 
 /**
  * Manage locks using memcached servers.

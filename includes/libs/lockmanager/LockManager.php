@@ -4,6 +4,7 @@
  * @ingroup FileBackend
  */
 use Psr\Log\LoggerInterface;
+use Wikimedia\WaitConditionLoop;
 
 /**
  * Resource locking handling.
