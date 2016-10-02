@@ -77,7 +77,23 @@ final class PasswordFactory {
 		return $this->default;
 	}
 
+	/**.
+	 * @param array $config Mapping of $type => $options
+	 * @param string $default Default type
+	 */
+	public function __construct( array $config = [], $default = '' ) {
+		foreach ( $config as $type => $options ) {
+			$this->register( $type, $options );
+		}
+
+		if ( $default !== '' )  {
+			$this->setDefaultType( $default );
+		}
+	}
+
 	/**
+	 * @deprecated since 1.31 Initialize settings using the constructor
+	 *
 	 * Initialize the internal static variables using the global variables
 	 *
 	 * @param Config $config Configuration object to load data from
