@@ -23,6 +23,8 @@ production.
 * ApiBase::$messageMap is no longer public. Code attempting to access it will
   result in a PHP fatal error.
 * $wgUserEmailUseReplyTo is now true by default to work around restrictive DMARC policies.
+* Subpages are now enabled by default in the Template namespace. Set
+  $wgNamespacesWithSubpages[NS_TEMPLATE] to false to keep the old behavior.
 
 === New features in 1.29 ===
 * (T5233) A cookie can now be set when a user is autoblocked, to track that user if
