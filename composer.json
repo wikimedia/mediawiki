@@ -16,7 +16,7 @@
 		"wiki": "https://www.mediawiki.org/"
 	},
 	"require": {
-		"composer/semver": "1.4.1",
+		"composer/semver": "1.4.2",
 		"cssjanus/cssjanus": "1.1.2",
 		"ext-ctype": "*",
 		"ext-iconv": "*",
