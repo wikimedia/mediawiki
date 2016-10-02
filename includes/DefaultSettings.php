@@ -5163,8 +5163,8 @@ $wgGroupPermissions['bureaucrat']['noratelimit'] = true;
 // Permission to export pages including linked pages regardless of $wgExportMaxLinkDepth
 # $wgGroupPermissions['bureaucrat']['override-export-depth'] = true;
 
-# $wgGroupPermissions['sysop']['deletelogentry'] = true;
-# $wgGroupPermissions['sysop']['deleterevision'] = true;
+$wgGroupPermissions['sysop']['deletelogentry'] = true;
+$wgGroupPermissions['sysop']['deleterevision'] = true;
 // To hide usernames from users and Sysops
 # $wgGroupPermissions['suppress']['hideuser'] = true;
 // To hide revisions/log items from users and Sysops

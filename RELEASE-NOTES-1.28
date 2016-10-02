@@ -33,6 +33,9 @@ production.
   instead of just administrators ('sysop'). Documentation for this feature is
   available at <https://www.mediawiki.org/wiki/Help:ChangeContentModel>.
 * $wgRevisionCacheExpiry is now set to one week by default instead of being disabled.
+* $wgGroupPermissions['sysop']['deletelogentry'] is now set to true by default.
+* $wgGroupPermissions['sysop']['deleterevision'] is now set to true by default.
+
 
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.
