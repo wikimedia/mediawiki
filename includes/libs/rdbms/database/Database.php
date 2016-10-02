@@ -25,6 +25,7 @@
  */
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Relational database abstraction object

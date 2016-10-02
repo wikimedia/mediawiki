@@ -70,6 +70,7 @@ production.
 ==== New external libraries ====
 * Added wikimedia/scoped-callback v1.0.0
 * Added wikimedia/wait-condition-loop v1.0.1
+* Added wikimedia/timestamp v1.0.0
 
 ==== Removed and replaced external libraries ====
 

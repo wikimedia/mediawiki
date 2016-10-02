@@ -295,6 +295,8 @@ EOD;
 		// Legacy aliases
 		$this->forceClassPath( 'DatabaseBase',
 			$this->basepath . '/includes/libs/rdbms/database/Database.php' );
+		$this->forceClassPath( 'TimestampException',
+			$this->basepath . '/includes/compat/Timestamp.php' );
 	}
 }
 
