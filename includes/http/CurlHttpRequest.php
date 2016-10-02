@@ -108,7 +108,7 @@ class CurlHttpRequest extends MWHttpRequest {
 		if ( $this->followRedirects && $this->canFollowRedirects() ) {
 			MediaWiki\suppressWarnings();
 			if ( !curl_setopt( $curlHandle, CURLOPT_FOLLOWLOCATION, true ) ) {
-				wfDebug( __METHOD__ . ": Couldn't set CURLOPT_FOLLOWLOCATION. " .
+				$this->logger->debug( __METHOD__ . ": Couldn't set CURLOPT_FOLLOWLOCATION. " .
 					"Probably open_basedir is set.\n" );
 				// Continue the processing. If it were in curl_setopt_array,
 				// processing would have halted on its entry
@@ -149,13 +149,13 @@ class CurlHttpRequest extends MWHttpRequest {
 	public function canFollowRedirects() {
 		$curlVersionInfo = curl_version();
 		if ( $curlVersionInfo['version_number'] < 0x071304 ) {
-			wfDebug( "Cannot follow redirects with libcurl < 7.19.4 due to CVE-2009-0037\n" );
+			$this->logger->debug( "Cannot follow redirects with libcurl < 7.19.4 due to CVE-2009-0037\n" );
 			return false;
 		}
 
 		if ( version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
 			if ( strval( ini_get( 'open_basedir' ) ) !== '' ) {
-				wfDebug( "Cannot follow redirects when open_basedir is set\n" );
+				$this->logger->debug( "Cannot follow redirects when open_basedir is set\n" );
 				return false;
 			}
 		}

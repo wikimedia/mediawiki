@@ -18,6 +18,11 @@
  * @file
  */
 
+use MediaWiki\Logger\LoggerFactory;
+use Psr\Log\LoggerInterface;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\NullLogger;
+
 /**
  * This wrapper class will call out to curl (if available) or fallback
  * to regular PHP if necessary for handling internal HTTP requests.
@@ -25,7 +30,7 @@
  * Renamed from HttpRequest to MWHttpRequest to avoid conflict with
  * PHP's HTTP extension.
  */
-class MWHttpRequest {
+class MWHttpRequest implements LoggerAwareInterface {
 	const SUPPORTS_FILE_POSTS = false;
 
 	protected $content;
@@ -68,6 +73,11 @@ class MWHttpRequest {
 	protected $profileName;
 
 	/**
+	 * @var LoggerInterface;
+	 */
+	protected $logger;
+
+	/**
 	 * @param string $url Url to use. If protocol-relative, will be expanded to an http:// URL
 	 * @param array $options (optional) extra params to pass (see Http::request())
 	 * @param string $caller The method making this request, for profiling
@@ -80,6 +90,12 @@ class MWHttpRequest {
 
 		$this->url = wfExpandUrl( $url, PROTO_HTTP );
 		$this->parsedUrl = wfParseUrl( $this->url );
+
+		if ( isset( $options['logger'] ) ) {
+			$this->logger = $options['logger'];
+		} else {
+			$this->logger = new NullLogger();
+		}
 
 		if ( !$this->parsedUrl || !Http::isValidURI( $this->url ) ) {
 			$this->status = Status::newFatal( 'http-invalid-url', $url );
@@ -125,6 +141,13 @@ class MWHttpRequest {
 	}
 
 	/**
+	 * @param LoggerInterface $logger
+	 */
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
+	}
+
+	/**
 	 * Simple function to test if we can make any sort of requests at all, using
 	 * cURL or fopen()
 	 * @return bool
@@ -148,6 +171,14 @@ class MWHttpRequest {
 		} elseif ( Http::$httpEngine == 'curl' && !function_exists( 'curl_init' ) ) {
 			throw new MWException( __METHOD__ . ': curl (http://php.net/curl) is not installed, but' .
 				' Http::$httpEngine is set to "curl"' );
+		}
+
+		if ( !is_array( $options ) ) {
+			$options = [];
+		}
+
+		if ( !isset( $options['logger'] ) ) {
+			$options['logger'] = LoggerFactory::getInstance( 'http' );
 		}
 
 		switch ( Http::$httpEngine ) {

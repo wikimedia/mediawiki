@@ -17,7 +17,6 @@
  *
  * @file
  */
-use MediaWiki\Logger\LoggerFactory;
 
 class PhpHttpRequest extends MWHttpRequest {
 
@@ -212,7 +211,7 @@ class PhpHttpRequest extends MWHttpRequest {
 			$url = $this->getResponseHeader( "Location" );
 
 			if ( !Http::isValidURI( $url ) ) {
-				wfDebug( __METHOD__ . ": insecure redirection\n" );
+				$this->logger->debug( __METHOD__ . ": insecure redirection\n" );
 				break;
 			}
 		} while ( true );
@@ -224,7 +223,7 @@ class PhpHttpRequest extends MWHttpRequest {
 
 		if ( $fh === false ) {
 			if ( $this->fopenErrors ) {
-				LoggerFactory::getInstance( 'http' )->warning( __CLASS__
+				$this->logger->warning( __CLASS__
 					. ': error opening connection: {errstr1}', $this->fopenErrors );
 			}
 			$this->status->fatal( 'http-request-error' );
