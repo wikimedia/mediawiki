@@ -24,6 +24,7 @@
  *
  * @file
  */
+use Wikimedia\Timestamp\TimestampException;
 
 /**
  * Handles the backend logic of merging the histories of two
