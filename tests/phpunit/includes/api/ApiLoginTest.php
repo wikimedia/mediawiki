@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group API
  * @group Database
@@ -232,8 +234,7 @@ class ApiLoginTest extends ApiTestCase {
 		$this->assertNotEquals( 0, $centralId, 'sanity check' );
 
 		$password = 'ngfhmjm64hv0854493hsj5nncjud2clk';
-		$passwordFactory = new PasswordFactory();
-		$passwordFactory->init( RequestContext::getMain()->getConfig() );
+		$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
 		// A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
 		$passwordHash = $passwordFactory->newFromPlaintext( $password );
 

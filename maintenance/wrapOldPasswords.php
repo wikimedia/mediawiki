@@ -22,6 +22,8 @@
  */
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Maintenance script to wrap all passwords of a certain type in a specified layered
  * type that wraps around the old type.
@@ -46,8 +48,7 @@ class WrapOldPasswords extends Maintenance {
 			$this->error( '$wgAuth does not allow local passwords. Aborting.', true );
 		}
 
-		$passwordFactory = new PasswordFactory();
-		$passwordFactory->init( RequestContext::getMain()->getConfig() );
+		$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
 
 		$typeInfo = $passwordFactory->getTypes();
 		$layeredType = $this->getOption( 'type' );

@@ -18,6 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\BotPasswordSessionProvider;
 
 /**
@@ -249,8 +250,7 @@ class BotPassword implements IDBAccessObject {
 			return PasswordFactory::newInvalidPassword();
 		}
 
-		$passwordFactory = new \PasswordFactory();
-		$passwordFactory->init( \RequestContext::getMain()->getConfig() );
+		$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
 		try {
 			return $passwordFactory->newFromCiphertext( $password );
 		} catch ( PasswordError $ex ) {
