@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group AuthManager
  * @group Database
@@ -126,8 +128,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 
 		$dbw = wfGetDB( DB_MASTER );
 
-		$passwordFactory = new \PasswordFactory();
-		$passwordFactory->init( \RequestContext::getMain()->getConfig() );
+		$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
 		// A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
 		$passwordFactory->setDefaultType( 'A' );
 		$pwhash = $passwordFactory->newFromPlaintext( 'password' )->toString();

@@ -19,6 +19,7 @@ use MediaWiki\Services\ServiceContainer;
 use MediaWiki\Services\NoSuchServiceException;
 use MWException;
 use ObjectCache;
+use PasswordFactory;
 use ProxyLookup;
 use SearchEngine;
 use SearchEngineConfig;
@@ -595,6 +596,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getVirtualRESTServiceClient() {
 		return $this->getService( 'VirtualRESTServiceClient' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return PasswordFactory
+	 */
+	public function getPasswordFactory() {
+		return $this->getService( 'PasswordFactory' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 
 /**
@@ -57,8 +58,7 @@ class BotPasswordTest extends MediaWikiTestCase {
 	}
 
 	public function addDBData() {
-		$passwordFactory = new \PasswordFactory();
-		$passwordFactory->init( \RequestContext::getMain()->getConfig() );
+		$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
 		$passwordHash = $passwordFactory->newFromPlaintext( 'foobaz' );
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -346,8 +346,7 @@ class BotPasswordTest extends MediaWikiTestCase {
 	 * @param string|null $password
 	 */
 	public function testSave( $password ) {
-		$passwordFactory = new \PasswordFactory();
-		$passwordFactory->init( \RequestContext::getMain()->getConfig() );
+		$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
 
 		$bp = BotPassword::newUnsaved( [
 			'centralId' => 42,

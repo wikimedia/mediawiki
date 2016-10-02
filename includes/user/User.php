@@ -5034,8 +5034,7 @@ class User implements IDBAccessObject {
 	 */
 	public static function crypt( $password, $salt = false ) {
 		wfDeprecated( __METHOD__, '1.24' );
-		$passwordFactory = new PasswordFactory();
-		$passwordFactory->init( RequestContext::getMain()->getConfig() );
+		$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
 		$hash = $passwordFactory->newFromPlaintext( $password );
 		return $hash->toString();
 	}
@@ -5065,8 +5064,7 @@ class User implements IDBAccessObject {
 			}
 		}
 
-		$passwordFactory = new PasswordFactory();
-		$passwordFactory->init( RequestContext::getMain()->getConfig() );
+		$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
 		$hash = $passwordFactory->newFromCiphertext( $hash );
 		return $hash->equals( $password );
 	}
@@ -5243,14 +5241,12 @@ class User implements IDBAccessObject {
 	/**
 	 * Lazily instantiate and return a factory object for making passwords
 	 *
-	 * @deprecated since 1.27, create a PasswordFactory directly instead
+	 * @deprecated since 1.27, Get it from MediaWikiServices instead
 	 * @return PasswordFactory
 	 */
 	public static function getPasswordFactory() {
 		wfDeprecated( __METHOD__, '1.27' );
-		$ret = new PasswordFactory();
-		$ret->init( RequestContext::getMain()->getConfig() );
-		return $ret;
+		return MediaWikiServices::getInstance()->getPasswordFactory();
 	}
 
 	/**

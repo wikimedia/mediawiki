@@ -53,8 +53,10 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 	 */
 	protected function getPasswordFactory() {
 		if ( $this->passwordFactory === null ) {
-			$this->passwordFactory = new PasswordFactory();
-			$this->passwordFactory->init( $this->config );
+			$this->passwordFactory = new PasswordFactory(
+				$this->config->get( 'PasswordConfig' ),
+				$this->config->get( 'PasswordDefault' )
+			);
 		}
 		return $this->passwordFactory;
 	}
