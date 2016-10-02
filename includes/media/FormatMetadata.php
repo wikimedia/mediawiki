@@ -24,6 +24,7 @@
  * @see http://exif.org/Exif2-2.PDF The Exif 2.2 specification
  * @file
  */
+use Wikimedia\Timestamp\TimestampException;
 
 /**
  * Format Image metadata values into a human readable form.

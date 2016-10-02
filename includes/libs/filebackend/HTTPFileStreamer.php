@@ -19,6 +19,7 @@
  *
  * @file
  */
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Functions related to the output of file content

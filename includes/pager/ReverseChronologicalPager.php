@@ -20,6 +20,7 @@
  * @file
  * @ingroup Pager
  */
+use Wikimedia\Timestamp\TimestampException;
 
 /**
  * IndexPager with a formatted navigation bar
