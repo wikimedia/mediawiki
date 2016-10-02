@@ -5164,7 +5164,7 @@ $wgGroupPermissions['bureaucrat']['noratelimit'] = true;
 # $wgGroupPermissions['bureaucrat']['override-export-depth'] = true;
 
 # $wgGroupPermissions['sysop']['deletelogentry'] = true;
-# $wgGroupPermissions['sysop']['deleterevision'] = true;
+$wgGroupPermissions['sysop']['deleterevision'] = true;
 // To hide usernames from users and Sysops
 # $wgGroupPermissions['suppress']['hideuser'] = true;
 // To hide revisions/log items from users and Sysops
