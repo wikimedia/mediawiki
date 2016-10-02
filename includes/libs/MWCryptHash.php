@@ -52,7 +52,6 @@ class MWCryptHash {
 		foreach ( $preference as $algorithm ) {
 			if ( in_array( $algorithm, $algos ) ) {
 				self::$algo = $algorithm;
-				wfDebug( __METHOD__ . ': Using the ' . self::$algo . " hash algorithm.\n" );
 
 				return self::$algo;
 			}
