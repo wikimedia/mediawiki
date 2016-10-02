@@ -31,6 +31,7 @@ use Wikimedia\Rdbms\LikeMatch;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DBMasterPos;
 use Wikimedia\Rdbms\Blob;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Relational database abstraction object
