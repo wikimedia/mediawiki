@@ -371,12 +371,14 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$css = count( $classes ) ? ' class="' . implode( ' ', $classes ) . '"' : '';
 
 		# Display the old title if the namespace/title has been changed
+
 		$oldTitleText = '';
 		$oldTitle = Title::makeTitle( $result->rc_namespace, $result->rc_title );
 
 		if ( !$title->equals( $oldTitle ) ) {
 			$oldTitleText = $oldTitle->getPrefixedText();
-			$oldTitleText = $this->msg( 'rc-old-title' )->params( $oldTitleText )->escaped();
+			$oldTitleText = Html::rawElement( 'span', [ 'class' => 'mw-newpages-oldtitle' ],
+			$this->msg( 'rc-old-title' )->params( $oldTitleText )->escaped() );
 		}
 
 		return "<li{$css}>{$time} {$dm}{$plink} {$hist} {$dm}{$length} "
