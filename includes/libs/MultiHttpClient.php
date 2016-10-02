@@ -184,14 +184,12 @@ class MultiHttpClient {
 		unset( $req ); // don't assign over this by accident
 
 		$indexes = array_keys( $reqs );
-		if ( function_exists( 'curl_multi_setopt' ) ) { // PHP 5.5
-			if ( isset( $opts['usePipelining'] ) ) {
-				curl_multi_setopt( $chm, CURLMOPT_PIPELINING, (int)$opts['usePipelining'] );
-			}
-			if ( isset( $opts['maxConnsPerHost'] ) ) {
-				// Keep these sockets around as they may be needed later in the request
-				curl_multi_setopt( $chm, CURLMOPT_MAXCONNECTS, (int)$opts['maxConnsPerHost'] );
-			}
+		if ( isset( $opts['usePipelining'] ) ) {
+			curl_multi_setopt( $chm, CURLMOPT_PIPELINING, (int)$opts['usePipelining'] );
+		}
+		if ( isset( $opts['maxConnsPerHost'] ) ) {
+			// Keep these sockets around as they may be needed later in the request
+			curl_multi_setopt( $chm, CURLMOPT_MAXCONNECTS, (int)$opts['maxConnsPerHost'] );
 		}
 
 		// @TODO: use a per-host rolling handle window (e.g. CURLMOPT_MAX_HOST_CONNECTIONS)
@@ -258,10 +256,8 @@ class MultiHttpClient {
 		unset( $req ); // don't assign over this by accident
 
 		// Restore the default settings
-		if ( function_exists( 'curl_multi_setopt' ) ) { // PHP 5.5
-			curl_multi_setopt( $chm, CURLMOPT_PIPELINING, (int)$this->usePipelining );
-			curl_multi_setopt( $chm, CURLMOPT_MAXCONNECTS, (int)$this->maxConnsPerHost );
-		}
+		curl_multi_setopt( $chm, CURLMOPT_PIPELINING, (int)$this->usePipelining );
+		curl_multi_setopt( $chm, CURLMOPT_MAXCONNECTS, (int)$this->maxConnsPerHost );
 
 		return $reqs;
 	}
@@ -292,12 +288,7 @@ class MultiHttpClient {
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
 
 		$url = $req['url'];
-		// PHP_QUERY_RFC3986 is PHP 5.4+ only
-		$query = str_replace(
-			[ '+', '%7E' ],
-			[ '%20', '~' ],
-			http_build_query( $req['query'], '', '&' )
-		);
+		$query = http_build_query( $req['query'], '', '&', PHP_QUERY_RFC3986 );
 		if ( $query != '' ) {
 			$url .= strpos( $req['url'], '?' ) === false ? "?$query" : "&$query";
 		}
@@ -422,10 +413,8 @@ class MultiHttpClient {
 	protected function getCurlMulti() {
 		if ( !$this->multiHandle ) {
 			$cmh = curl_multi_init();
-			if ( function_exists( 'curl_multi_setopt' ) ) { // PHP 5.5
-				curl_multi_setopt( $cmh, CURLMOPT_PIPELINING, (int)$this->usePipelining );
-				curl_multi_setopt( $cmh, CURLMOPT_MAXCONNECTS, (int)$this->maxConnsPerHost );
-			}
+			curl_multi_setopt( $cmh, CURLMOPT_PIPELINING, (int)$this->usePipelining );
+			curl_multi_setopt( $cmh, CURLMOPT_MAXCONNECTS, (int)$this->maxConnsPerHost );
 			$this->multiHandle = $cmh;
 		}
 		return $this->multiHandle;
