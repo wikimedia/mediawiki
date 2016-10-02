@@ -3,6 +3,7 @@ namespace MediaWiki;
 
 use Config;
 use ConfigFactory;
+use CryptRand;
 use EventRelayerGroup;
 use GenderCache;
 use GlobalVarConfig;
@@ -520,6 +521,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getWatchedItemQueryService() {
 		return $this->getService( 'WatchedItemQueryService' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return CryptRand
+	 */
+	public function getCryptRand() {
+		return $this->getService( 'CryptRand' );
 	}
 
 	/**
