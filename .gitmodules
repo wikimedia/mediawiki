@@ -526,3 +526,7 @@
 	path = extensions/DynamicPageList3
 	url = https://github.com/Alexia/DynamicPageList
 	branch = REL1_27
+[submodule "extensions/WikiTextLoggedInOut"]
+	path = extensions/WikiTextLoggedInOut
+	url = https://github.com/wikimedia/mediawiki-extensions-WikiTextLoggedInOut
+	branch = REL1_27
