@@ -58,6 +58,7 @@ production.
 === External library changes in 1.29 ===
 
 ==== Upgraded external libraries ====
+* Added wikimedia/timestamp v1.0.0.
 * Updated QUnit from v1.22.0 to v1.23.1.
 * Updated cssjanus from v1.1.2 to 1.1.3.
 * Updated psr/log from v1.0.0 to v1.0.2.
