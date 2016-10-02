@@ -38,6 +38,7 @@ use MimeAnalyzer;
 use ObjectCache;
 use Parser;
 use ParserCache;
+use PasswordFactory;
 use ProxyLookup;
 use SearchEngine;
 use SearchEngineConfig;
@@ -879,6 +880,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getContentLanguage() {
 		return $this->getService( 'ContentLanguage' );
+	}
+
+	/**
+	 * @since 1.32
+	 * @return PasswordFactory
+	 */
+	public function getPasswordFactory() {
+		return $this->getService( 'PasswordFactory' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

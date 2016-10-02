@@ -1,7 +1,4 @@
 <?php
-
-use MediaWiki\MediaWikiServices;
-
 /**
  * Maintenance script to wrap all old-style passwords in a layered type
  *
@@ -23,7 +20,10 @@ use MediaWiki\MediaWikiServices;
  * @file
  * @ingroup Maintenance
  */
+
 require_once __DIR__ . '/Maintenance.php';
+
+use MediaWiki\MediaWikiServices;
 
 /**
  * Maintenance script to wrap all passwords of a certain type in a specified layered
@@ -43,8 +43,7 @@ class WrapOldPasswords extends Maintenance {
 	}
 
 	public function execute() {
-		$passwordFactory = new PasswordFactory();
-		$passwordFactory->init( RequestContext::getMain()->getConfig() );
+		$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
 
 		$typeInfo = $passwordFactory->getTypes();
 		$layeredType = $this->getOption( 'type' );

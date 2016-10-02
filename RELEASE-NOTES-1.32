@@ -337,6 +337,8 @@ because of Phabricator reports.
 * The wfUseMW function, soft-deprecated in 1.26, is now hard deprecated.
 * All MagicWord static methods are now deprecated.  Use the MagicWordFactory
   methods instead.
+* PasswordFactory::init is deprecated. To get a password factory with the
+  standard configuration, use MediaWikiServices::getPasswordFactory.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into

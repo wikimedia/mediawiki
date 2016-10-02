@@ -367,6 +367,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'ConfigRepository' => [ 'ConfigRepository', \MediaWiki\Config\ConfigRepository::class ],
 			'MagicWordFactory' => [ 'MagicWordFactory', MagicWordFactory::class ],
 			'ContentLanguage' => [ 'ContentLanguage', Language::class ],
+			'PasswordFactory' => [ 'PasswordFactory', PasswordFactory::class ],
 		];
 	}
 
