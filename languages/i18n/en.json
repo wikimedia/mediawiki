@@ -993,7 +993,7 @@
 	"searchprofile-advanced-tooltip": "Search in custom namespaces",
 	"search-result-size": "$1 ({{PLURAL:$2|1 word|$2 words}})",
 	"search-result-category-size": "{{PLURAL:$1|1 member|$1 members}} ({{PLURAL:$2|1 subcategory|$2 subcategories}}, {{PLURAL:$3|1 file|$3 files}})",
-	"search-redirect": "(redirect $1)",
+	"search-redirect": "(redirect from $1)",
 	"search-section": "(section $1)",
 	"search-category": "(category $1)",
 	"search-file-match": "(matches file content)",
