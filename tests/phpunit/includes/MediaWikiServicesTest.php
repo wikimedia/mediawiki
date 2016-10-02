@@ -345,6 +345,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'RevisionLookup' => [ 'RevisionLookup', RevisionLookup::class ],
 			'HttpRequestFactory' => [ 'HttpRequestFactory', HttpRequestFactory::class ],
 			'CommentStore' => [ 'CommentStore', CommentStore::class ],
+			'PasswordFactory' => [ 'PasswordFactory', PasswordFactory::class ],
 		];
 	}
 

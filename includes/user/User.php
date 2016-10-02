@@ -5611,14 +5611,12 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Lazily instantiate and return a factory object for making passwords
 	 *
-	 * @deprecated since 1.27, create a PasswordFactory directly instead
+	 * @deprecated since 1.27, Get it from MediaWikiServices instead
 	 * @return PasswordFactory
 	 */
 	public static function getPasswordFactory() {
 		wfDeprecated( __METHOD__, '1.27' );
-		$ret = new PasswordFactory();
-		$ret->init( RequestContext::getMain()->getConfig() );
-		return $ret;
+		return MediaWikiServices::getInstance()->getPasswordFactory();
 	}
 
 	/**
