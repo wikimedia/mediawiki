@@ -21,6 +21,7 @@
  * @ingroup FileBackend
  * @author Aaron Schulz
  */
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @brief Base class for all backends using particular storage medium.
