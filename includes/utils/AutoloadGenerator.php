@@ -429,7 +429,9 @@ class ClassCollector {
 					}
 				} elseif ( $token === ')' ) {
 					// End of function call
-					$this->classes[] = $this->alias['name'];
+					if ( $this->alias['name'] ) {
+						$this->classes[] = $this->alias['name'];
+					}
 					$this->alias = null;
 					$this->startToken = null;
 				}
