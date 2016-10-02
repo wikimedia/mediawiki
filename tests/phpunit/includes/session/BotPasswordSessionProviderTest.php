@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Session;
 
+use MediaWiki\MediaWikiServices;
 use Psr\Log\LogLevel;
 use MediaWikiTestCase;
 use Wikimedia\TestingAccessWrapper;
@@ -63,8 +64,7 @@ class BotPasswordSessionProviderTest extends MediaWikiTestCase {
 	}
 
 	public function addDBDataOnce() {
-		$passwordFactory = new \PasswordFactory();
-		$passwordFactory->init( \RequestContext::getMain()->getConfig() );
+		$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
 		$passwordHash = $passwordFactory->newFromPlaintext( 'foobaz' );
 
 		$sysop = static::getTestSysop()->getUser();
