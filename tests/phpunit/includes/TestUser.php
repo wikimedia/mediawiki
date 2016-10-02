@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Wraps the user object, so we can also retain full access to properties
  * like password if we log in via the API.
@@ -140,8 +142,7 @@ class TestUser {
 			throw new MWException( "Passed User has an ID but is not in the database?" );
 		}
 
-		$passwordFactory = new PasswordFactory();
-		$passwordFactory->init( RequestContext::getMain()->getConfig() );
+		$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
 		if ( !$passwordFactory->newFromCiphertext( $row->user_password )->equals( $password ) ) {
 			$passwordHash = $passwordFactory->newFromPlaintext( $password );
 			$dbw->update(
