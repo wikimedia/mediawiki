@@ -35,11 +35,6 @@ class MWExceptionRenderer {
 	public static function output( $e, $mode, $eNew = null ) {
 		global $wgMimeType;
 
-		if ( $e instanceof DBConnectionError ) {
-			self::reportOutageHTML( $e );
-			return;
-		}
-
 		if ( defined( 'MW_API' ) ) {
 			// Unhandled API exception, we can't be sure that format printer is alive
 			self::header( 'MediaWiki-API-Error: internal_api_error_' . get_class( $e ) );
@@ -47,9 +42,13 @@ class MWExceptionRenderer {
 		} elseif ( self::isCommandLine() ) {
 			self::printError( self::getText( $e ) );
 		} elseif ( $mode === self::AS_PRETTY ) {
-			self::statusHeader( 500 );
-			self::header( "Content-Type: $wgMimeType; charset=utf-8" );
-			self::reportHTML( $e );
+			if ( $e instanceof DBConnectionError ) {
+				self::reportOutageHTML( $e );
+			} else {
+				self::statusHeader( 500 );
+				self::header( "Content-Type: $wgMimeType; charset=utf-8" );
+				self::reportHTML( $e );
+			}
 		} else {
 			if ( $eNew ) {
 				$message = "MediaWiki internal error.\n\n";

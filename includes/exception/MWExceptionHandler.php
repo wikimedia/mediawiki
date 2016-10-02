@@ -68,14 +68,13 @@ class MWExceptionHandler {
 				// removed.
 				$e->report();
 			} else {
-				MWExceptionRenderer::output(
-					$e, MWExceptionRenderer::AS_PRETTY );
+				MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_PRETTY );
 			}
 		} catch ( Exception $e2 ) {
 			// Exception occurred from within exception handler
 			// Show a simpler message for the original exception,
 			// don't try to invoke report()
-			MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_PRETTY, $e2 );
+			MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_RAW, $e2 );
 		}
 	}
 
