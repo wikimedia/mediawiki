@@ -4,6 +4,20 @@
  * @covers PasswordFactory
  */
 class PasswordFactoryTest extends MediaWikiTestCase {
+	public function testConstruct() {
+		$pf = new PasswordFactory();
+		$this->assertEquals( [ '' ], array_keys( $pf->getTypes() ) );
+		$this->assertEquals( '', $pf->getDefaultType() );
+
+		$pf = new PasswordFactory( [
+			'foo' => [ 'class' => 'FooPassword' ],
+			'bar' => [ 'class' => 'BarPassword', 'baz' => 'boom' ],
+		], 'foo' );
+		$this->assertEquals( [ '', 'foo', 'bar' ], array_keys( $pf->getTypes() ) );
+		$this->assertArraySubset( [ 'class' => 'BarPassword', 'baz' => 'boom' ], $pf->getTypes()['bar'] );
+		$this->assertEquals( 'foo', $pf->getDefaultType() );
+	}
+
 	public function testRegister() {
 		$pf = new PasswordFactory;
 		$pf->register( 'foo', [ 'class' => InvalidPassword::class ] );
