@@ -376,7 +376,11 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		if ( !$title->equals( $oldTitle ) ) {
 			$oldTitleText = $oldTitle->getPrefixedText();
-			$oldTitleText = $this->msg( 'rc-old-title' )->params( $oldTitleText )->escaped();
+			$oldTitleText = Html::rawElement(
+				'span',
+				[ 'class' => 'mw-newpages-oldtitle' ],
+				$this->msg( 'rc-old-title' )->params( $oldTitleText )->escaped()
+			);
 		}
 
 		return "<li{$css}>{$time} {$dm}{$plink} {$hist} {$dm}{$length} "
