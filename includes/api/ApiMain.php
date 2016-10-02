@@ -26,6 +26,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\Timestamp\TimestampException;
 
 /**
  * This is the main API class, used for both external and internal processing.

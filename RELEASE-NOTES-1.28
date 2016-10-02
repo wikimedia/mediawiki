@@ -70,6 +70,7 @@ production.
 ==== New external libraries ====
 * Added wikimedia/scoped-callback v1.0.0
 * Added wikimedia/wait-condition-loop v1.0.1
+* Added wikimedia/timestamp v1.0.0
 
 ==== Removed and replaced external libraries ====
 
@@ -208,6 +209,8 @@ changes to languages because of Phabricator reports.
 * IP::isConfiguredProxy() and IP::isTrustedProxy() were removed. Callers should
   migrate to using the same functions on a ProxyLookup instance, obtainable from
   MediaWikiServices.
+* Catching \TimestampException will no longer work, you need to catch
+  \Wikimedia\Timestamp\TimestampException instead.
 
 == Compatibility ==
 
