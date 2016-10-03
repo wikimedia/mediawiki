@@ -693,7 +693,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @deprecated since 1.21, getContent() should be used instead.
 	 */
 	public function getText( $audience = Revision::FOR_PUBLIC, User $user = null ) {
-		ContentHandler::deprecated( __METHOD__, '1.21' );
+		wfDeprecated( __METHOD__, '1.21' );
 
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
