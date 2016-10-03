@@ -944,7 +944,7 @@
 	"searchprofile-advanced-tooltip": "Iskanje v imenskih prostorih po meri",
 	"search-result-size": "$1 ({{PLURAL:$2|1 beseda|2 besedi|$2 besede|$2 besed|$2 besed}})",
 	"search-result-category-size": "$1 {{PLURAL:$1|član|člana|člani|članov}} ($1 {{PLURAL:$2|podkategorija|podkategoriji|podkategorije|podkategorij}}, $1 {{PLURAL:$3|datoteka|datoteki|datoteke|datotek}})",
-	"search-redirect": "(preusmeritev $1)",
+	"search-redirect": "(preusmeritev s strani $1)",
 	"search-section": "(razdelek $1)",
 	"search-category": "(kategorija $1)",
 	"search-file-match": "(ujema se z vsebino datoteke)",
