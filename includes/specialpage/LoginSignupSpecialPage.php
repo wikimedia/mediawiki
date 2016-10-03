@@ -704,7 +704,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		if ( !$this->isSignup() && $this->showExtraInformation() ) {
 			$passwordReset = new PasswordReset( $this->getConfig(), AuthManager::singleton() );
-			if ( $passwordReset->isAllowed( $this->getUser() ) ) {
+			if ( $passwordReset->isAllowed( $this->getUser() )->isGood() ) {
 				$form->addFooterText( Html::rawElement(
 					'div',
 					[ 'class' => 'mw-ui-vform-field mw-form-related-link-container' ],
