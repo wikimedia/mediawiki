@@ -6,6 +6,7 @@ MediaWiki 1.28 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.28 ===
+* $wgSend404Code now affects status code of action=history if the page is not there.
 * BREAKING CHANGE: $wgHTTPProxy is now *required* for all external requests
   made by MediaWiki via a proxy. Relying on the http_proxy environment
   variable is no longer supported.
@@ -75,6 +76,7 @@ production.
 ==== Removed and replaced external libraries ====
 
 === Bug fixes in 1.28 ===
+* (T146496) action=history pages should return 404 HTTP error code if the page does not exist
 * (T137264) SECURITY: XSS in unclosed internal links
 * (T133147) SECURITY: Escape '<' and ']]>' in inline <style> blocks
 * (T133147) SECURITY: Require login to preview user CSS pages
