@@ -10121,6 +10121,7 @@ OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 	}
 
 	// Initialization
+	this.$group.addClass( 'oo-ui-fieldsetLayout-group' );
 	this.$element
 		.addClass( 'oo-ui-fieldsetLayout' )
 		.prepend( this.$label, this.$help, this.$icon, this.$group );

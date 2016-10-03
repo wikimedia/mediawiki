@@ -529,6 +529,10 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 	max-width: 100%;
 	padding: 0;
 	white-space: normal;
+	float: left;
+}
+.oo-ui-fieldsetLayout-group {
+	clear: both;
 }
 .oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-help {
 	float: right;
