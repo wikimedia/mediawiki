@@ -199,7 +199,26 @@ class MWException extends Exception {
 	 * It will be either HTML or plain text based on isCommandLine().
 	 */
 	public function report() {
-		MWExceptionRenderer::output( $this, MWExceptionRenderer::AS_PRETTY );
+		global $wgMimeType;
+
+		if ( defined( 'MW_API' ) ) {
+			// Unhandled API exception, we can't be sure that format printer is alive
+			self::header( 'MediaWiki-API-Error: internal_api_error_' . get_class( $this ) );
+			wfHttpError( 500, 'Internal Server Error', $this->getText() );
+		} elseif ( self::isCommandLine() ) {
+			$message = $this->getText();
+			// T17602: STDERR may not be available
+			if ( defined( 'STDERR' ) ) {
+				fwrite( STDERR, $message );
+			} else {
+				echo $message;
+			}
+		} else {
+			self::statusHeader( 500 );
+			self::header( "Content-Type: $wgMimeType; charset=utf-8" );
+
+			$this->reportHTML();
+		}
 	}
 
 	/**
