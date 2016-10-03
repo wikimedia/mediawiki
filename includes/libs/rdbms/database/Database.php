@@ -3037,10 +3037,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function sourceFile(
 		$filename,
-		$lineCallback = false,
-		$resultCallback = false,
+		callable $lineCallback = null,
+		callable $resultCallback = null,
 		$fname = false,
-		$inputCallback = false
+		callable $inputCallback = null
 	) {
 		MediaWiki\suppressWarnings();
 		$fp = fopen( $filename, 'r' );
@@ -3073,10 +3073,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function sourceStream(
 		$fp,
-		$lineCallback = false,
-		$resultCallback = false,
+		callable $lineCallback = null,
+		callable $resultCallback = null,
 		$fname = __METHOD__,
-		$inputCallback = false
+		callable $inputCallback = null
 	) {
 		$cmd = '';
 
