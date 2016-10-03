@@ -116,22 +116,6 @@
 					]
 				};
 				break;
-			case 'error1':
-			case 'error2':
-			case 'error3':
-			case 'error4':
-				dialogConfig = {
-					title: mw.msg( 'feedback-error-title' ),
-					message: mw.msg( 'feedback-' + status ),
-					actions: [
-						{
-							action: 'accept',
-							label: mw.msg( 'feedback-close' ),
-							flags: 'primary'
-						}
-					]
-				};
-				break;
 		}
 
 		// Show the message dialog
@@ -422,13 +406,33 @@
 				}, function () {
 					fb.status = 'error4';
 					mw.log.warn( 'Feedback report failed because MessagePoster could not be fetched' );
-				} ).always( function () {
+				} ).then( function () {
 					fb.close();
+				}, function () {
+					return fb.getErrorMessage();
 				} );
 			}, this );
 		}
 		// Fallback to parent handler
 		return mw.Feedback.Dialog.parent.prototype.getActionProcess.call( this, action );
+	};
+
+	/**
+	 * Returns an error message for the current status.
+	 *
+	 * @private
+	 *
+	 * @return {OO.ui.Error}
+	 */
+	mw.Feedback.Dialog.prototype.getErrorMessage = function () {
+		switch ( this.status ) {
+			case 'error1':
+			case 'error2':
+			case 'error3':
+			case 'error4':
+				// Messages: feedback-error1, feedback-error2, feedback-error3, feedback-error4
+				return new OO.ui.Error( mw.msg( 'feedback-' + this.status ) );
+		}
 	};
 
 	/**
