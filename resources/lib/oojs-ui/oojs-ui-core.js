@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.9
+ * OOjs UI v0.17.10
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-09-13T18:30:02Z
+ * Date: 2016-10-03T18:59:01Z
  */
 ( function ( OO ) {
 
@@ -10121,6 +10121,7 @@ OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 	}
 
 	// Initialization
+	this.$group.addClass( 'oo-ui-fieldsetLayout-group' );
 	this.$element
 		.addClass( 'oo-ui-fieldsetLayout' )
 		.prepend( this.$label, this.$help, this.$icon, this.$group );
