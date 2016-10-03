@@ -300,6 +300,13 @@ class LocalSettingsGenerator {
 				$cacheType = 'CACHE_NONE';
 		}
 
+		if ( $cacheType === 'CACHE_ACCEL' ) {
+			$sessionCacheType = 'CACHE_DB';
+			$sessionCacheTypeNone = '';
+		} else {
+			$sessionCacheTypeNone = '#';
+		}
+
 		$mcservers = $this->buildMemcachedServerList();
 
 		return "<?php
@@ -363,6 +370,9 @@ ${serverSetting}
 ## Shared memory settings
 \$wgMainCacheType = $cacheType;
 \$wgMemCachedServers = $mcservers;
+
+# T147161
+{$sessionCacheTypeNone}\$wgSessionCacheType = $sessionCacheType;
 
 ## To enable image uploads, make sure the 'images' directory
 ## is writable, then set this to true:
