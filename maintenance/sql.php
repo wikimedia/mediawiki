@@ -91,7 +91,7 @@ class MwSql extends Maintenance {
 				$this->error( "Unable to open input file", true );
 			}
 
-			$error = $db->sourceStream( $file, false, [ $this, 'sqlPrintResult' ] );
+			$error = $db->sourceStream( $file, null, [ $this, 'sqlPrintResult' ] );
 			if ( $error !== true ) {
 				$this->error( $error, true );
 			} else {

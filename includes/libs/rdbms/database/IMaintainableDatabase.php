@@ -96,21 +96,21 @@ interface IMaintainableDatabase extends IDatabase {
 	 * on object's error ignore settings).
 	 *
 	 * @param string $filename File name to open
-	 * @param bool|callable $lineCallback Optional function called before reading each line
-	 * @param bool|callable $resultCallback Optional function called for each MySQL result
+	 * @param callable|null $lineCallback Optional function called before reading each line
+	 * @param callable|null $resultCallback Optional function called for each MySQL result
 	 * @param bool|string $fname Calling function name or false if name should be
 	 *   generated dynamically using $filename
-	 * @param bool|callable $inputCallback Optional function called for each
+	 * @param callable|null $inputCallback Optional function called for each
 	 *   complete line sent
 	 * @return bool|string
 	 * @throws Exception
 	 */
 	public function sourceFile(
 		$filename,
-		$lineCallback = false,
-		$resultCallback = false,
+		callable $lineCallback = null,
+		callable $resultCallback = null,
 		$fname = false,
-		$inputCallback = false
+		callable $inputCallback = null
 	);
 
 	/**
@@ -120,18 +120,18 @@ interface IMaintainableDatabase extends IDatabase {
 	 * on object's error ignore settings).
 	 *
 	 * @param resource $fp File handle
-	 * @param bool|callable $lineCallback Optional function called before reading each query
-	 * @param bool|callable $resultCallback Optional function called for each MySQL result
+	 * @param callable|null $lineCallback Optional function called before reading each query
+	 * @param callable|null $resultCallback Optional function called for each MySQL result
 	 * @param string $fname Calling function name
-	 * @param bool|callable $inputCallback Optional function called for each complete query sent
+	 * @param callable|null $inputCallback Optional function called for each complete query sent
 	 * @return bool|string
 	 */
 	public function sourceStream(
 		$fp,
-		$lineCallback = false,
-		$resultCallback = false,
+		callable $lineCallback = null,
+		callable $resultCallback = null,
 		$fname = __METHOD__,
-		$inputCallback = false
+		callable $inputCallback = null
 	);
 
 	/**
