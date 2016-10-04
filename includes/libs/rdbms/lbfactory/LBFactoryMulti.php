@@ -95,7 +95,7 @@ class LBFactoryMulti extends LBFactory {
 	private $extLBs = [];
 
 	/** @var string */
-	private $loadMonitorClass;
+	private $loadMonitorClass = 'LoadMonitor';
 
 	/** @var string */
 	private $lastDomain;
