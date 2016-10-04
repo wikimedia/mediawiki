@@ -2422,7 +2422,7 @@ $parser: Newly-cloned Parser object
 &$parser: Parser object being cleared
 
 'ParserGetVariableValueSwitch': Called when the parser need the value of a
-custom magic word
+custom magic word. Deprecated: Use Parser::setVariableHook to set callback.
 &$parser: Parser object
 &$varCache: array to store the value in case of multiples calls of the
   same magic word
