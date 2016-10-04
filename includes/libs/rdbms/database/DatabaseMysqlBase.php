@@ -129,14 +129,14 @@ abstract class DatabaseMysqlBase extends Database {
 			if ( !$error ) {
 				$error = $this->lastError();
 			}
-			$this->queryLogger->error(
+			$this->connLogger->error(
 				"Error connecting to {db_server}: {error}",
 				$this->getLogContext( [
 					'method' => __METHOD__,
 					'error' => $error,
 				] )
 			);
-			$this->queryLogger->debug( "DB connection error\n" .
+			$this->connLogger->debug( "DB connection error\n" .
 				"Server: $server, User: $user, Password: " .
 				substr( $password, 0, 3 ) . "..., error: " . $error . "\n" );
 
