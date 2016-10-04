@@ -1694,9 +1694,9 @@ class AuthManager implements LoggerAwareInterface {
 					$status = Status::newGood();
 					$status->warning( 'userexists' );
 				} else {
-					$this->logger->error( __METHOD__ . ': {username} failed with message {message}', [
+					$this->logger->error( __METHOD__ . ': {username} failed with message {msg}', [
 						'username' => $username,
-						'message' => $status->getWikiText( null, null, 'en' )
+						'msg' => $status->getWikiText( null, null, 'en' )
 					] );
 					$user->setId( 0 );
 					$user->loadFromId();
