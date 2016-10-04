@@ -30,187 +30,16 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 class MWCryptHKDF {
 
 	/**
-	 * Singleton instance for public use
-	 */
-	protected static $singleton = null;
-
-	/**
-	 * The persistant cache
-	 */
-	protected $cache = null;
-
-	/**
-	 * Cache key we'll use for our salt
-	 */
-	protected $cacheKey = null;
-
-	/**
-	 * The hash algorithm being used
-	 */
-	protected $algorithm = null;
-
-	/**
-	 * binary string, the salt for the HKDF
-	 */
-	protected $salt;
-
-	/**
-	 * The pseudorandom key
-	 */
-	private $prk;
-
-	/**
-	 * The secret key material. This must be kept secret to preserve
-	 * the security properties of this RNG.
-	 */
-	private $skm;
-
-	/**
-	 * The last block (K(i)) of the most recent expanded key
-	 */
-	protected $lastK;
-
-	/**
-	 * a "context information" string CTXinfo (which may be null)
-	 * See http://eprint.iacr.org/2010/264.pdf Section 4.1
-	 */
-	protected $context = [];
-
-	/**
-	 * Round count is computed based on the hash'es output length,
-	 * which neither php nor openssl seem to provide easily.
-	 */
-	public static $hashLength = [
-		'md5' => 16,
-		'sha1' => 20,
-		'sha224' => 28,
-		'sha256' => 32,
-		'sha384' => 48,
-		'sha512' => 64,
-		'ripemd128' => 16,
-		'ripemd160' => 20,
-		'ripemd256' => 32,
-		'ripemd320' => 40,
-		'whirlpool' => 64,
-	];
-
-	/**
-	 * @param string $secretKeyMaterial
-	 * @param string $algorithm Name of hashing algorithm
-	 * @param BagOStuff $cache
-	 * @param string|array $context Context to mix into HKDF context
-	 * @throws MWException
-	 */
-	public function __construct( $secretKeyMaterial, $algorithm, $cache, $context ) {
-		if ( strlen( $secretKeyMaterial ) < 16 ) {
-			throw new MWException( "MWCryptHKDF secret was too short." );
-		}
-		$this->skm = $secretKeyMaterial;
-		$this->algorithm = $algorithm;
-		$this->cache = $cache;
-		$this->salt = ''; // Initialize a blank salt, see getSaltUsingCache()
-		$this->prk = '';
-		$this->context = is_array( $context ) ? $context : [ $context ];
-
-		// To prevent every call from hitting the same memcache server, pick
-		// from a set of keys to use. mt_rand is only use to pick a random
-		// server, and does not affect the security of the process.
-		$this->cacheKey = wfMemcKey( 'HKDF', mt_rand( 0, 16 ) );
-	}
-
-	/**
-	 * Save the last block generated, so the next user will compute a different PRK
-	 * from the same SKM. This should keep things unpredictable even if an attacker
-	 * is able to influence CTXinfo.
-	 */
-	function __destruct() {
-		if ( $this->lastK ) {
-			$this->cache->set( $this->cacheKey, $this->lastK );
-		}
-	}
-
-	/**
-	 * MW specific salt, cached from last run
-	 * @return string Binary string
-	 */
-	protected function getSaltUsingCache() {
-		if ( $this->salt == '' ) {
-			$lastSalt = $this->cache->get( $this->cacheKey );
-			if ( $lastSalt === false ) {
-				// If we don't have a previous value to use as our salt, we use
-				// 16 bytes from MWCryptRand, which will use a small amount of
-				// entropy from our pool. Note, "XTR may be deterministic or keyed
-				// via an optional “salt value”  (i.e., a non-secret random
-				// value)..." - http://eprint.iacr.org/2010/264.pdf. However, we
-				// use a strongly random value since we can.
-				$lastSalt = MWCryptRand::generate( 16 );
-			}
-			// Get a binary string that is hashLen long
-			$this->salt = hash( $this->algorithm, $lastSalt, true );
-		}
-		return $this->salt;
-	}
-
-	/**
 	 * Return a singleton instance, based on the global configs.
-	 * @return self
-	 * @throws MWException
+	 * @return CryptHKDF
 	 */
 	protected static function singleton() {
-		global $wgHKDFAlgorithm, $wgHKDFSecret, $wgSecretKey, $wgMainCacheType;
-
-		$secret = $wgHKDFSecret ?: $wgSecretKey;
-		if ( !$secret ) {
-			throw new MWException( "Cannot use MWCryptHKDF without a secret." );
-		}
-
-		// In HKDF, the context can be known to the attacker, but this will
-		// keep simultaneous runs from producing the same output.
-		$context = [];
-		$context[] = microtime();
-		$context[] = getmypid();
-		$context[] = gethostname();
-
-		// Setup salt cache. Use APC, or fallback to the main cache if it isn't setup
-		$cache = ObjectCache::getLocalServerInstance( $wgMainCacheType );
-
-		if ( is_null( self::$singleton ) ) {
-			self::$singleton = new self( $secret, $wgHKDFAlgorithm, $cache, $context );
-		}
-
-		return self::$singleton;
-	}
-
-	/**
-	 * Produce $bytes of secure random data. As a side-effect,
-	 * $this->lastK is set to the last hashLen block of key material.
-	 * @param int $bytes Number of bytes of data
-	 * @param string $context Context to mix into CTXinfo
-	 * @return string Binary string of length $bytes
-	 */
-	protected function realGenerate( $bytes, $context = '' ) {
-
-		if ( $this->prk === '' ) {
-			$salt = $this->getSaltUsingCache();
-			$this->prk = self::HKDFExtract(
-				$this->algorithm,
-				$salt,
-				$this->skm
-			);
-		}
-
-		$CTXinfo = implode( ':', array_merge( $this->context, [ $context ] ) );
-
-		return self::HKDFExpand(
-			$this->algorithm,
-			$this->prk,
-			$CTXinfo,
-			$bytes,
-			$this->lastK
-		);
+		return MediaWikiServices::getInstance()->getCryptHKDF();
 	}
 
 	/**
@@ -243,62 +72,7 @@ class MWCryptHKDF {
 	 * @return string Cryptographically secure pseudorandom binary string
 	 */
 	public static function HKDF( $hash, $ikm, $salt, $info, $L ) {
-		$prk = self::HKDFExtract( $hash, $salt, $ikm );
-		$okm = self::HKDFExpand( $hash, $prk, $info, $L );
-		return $okm;
-	}
-
-	/**
-	 * Extract the PRK, PRK = HMAC(XTS, SKM)
-	 * Note that the hmac is keyed with XTS (the salt),
-	 * and the SKM (source key material) is the "data".
-	 *
-	 * @param string $hash The hashing function to use (e.g., sha256)
-	 * @param string $salt The salt to add to the ikm, to get the prk
-	 * @param string $ikm The input keying material
-	 * @return string Binary string (pseudorandm key) used as input to HKDFExpand
-	 */
-	private static function HKDFExtract( $hash, $salt, $ikm ) {
-		return hash_hmac( $hash, $ikm, $salt, true );
-	}
-
-	/**
-	 * Expand the key with the given context
-	 *
-	 * @param string $hash Hashing Algorithm
-	 * @param string $prk A pseudorandom key of at least HashLen octets
-	 *    (usually, the output from the extract step)
-	 * @param string $info Optional context and application specific information
-	 *    (can be a zero-length string)
-	 * @param int $bytes Length of output keying material in bytes
-	 *    (<= 255*HashLen)
-	 * @param string &$lastK Set by this function to the last block of the expansion.
-	 *    In MediaWiki, this is used to seed future Extractions.
-	 * @return string Cryptographically secure random string $bytes long
-	 * @throws MWException
-	 */
-	private static function HKDFExpand( $hash, $prk, $info, $bytes, &$lastK = '' ) {
-		$hashLen = MWCryptHKDF::$hashLength[$hash];
-		$rounds = ceil( $bytes / $hashLen );
-		$output = '';
-
-		if ( $bytes > 255 * $hashLen ) {
-			throw new MWException( "Too many bytes requested from HDKFExpand" );
-		}
-
-		// K(1) = HMAC(PRK, CTXinfo || 1);
-		// K(i) = HMAC(PRK, K(i-1) || CTXinfo || i); 1 < i <= t;
-		for ( $counter = 1; $counter <= $rounds; ++$counter ) {
-			$lastK = hash_hmac(
-				$hash,
-				$lastK . $info . chr( $counter ),
-				$prk,
-				true
-			);
-			$output .= $lastK;
-		}
-
-		return substr( $output, 0, $bytes );
+		return CryptHKDF::HKDF( $hash, $ikm, $salt, $info, $L );
 	}
 
 	/**
@@ -309,7 +83,7 @@ class MWCryptHKDF {
 	 * @return string Binary string of length $bytes
 	 */
 	public static function generate( $bytes, $context ) {
-		return self::singleton()->realGenerate( $bytes, $context );
+		return self::singleton()->generate( $bytes, $context );
 	}
 
 	/**
@@ -322,7 +96,7 @@ class MWCryptHKDF {
 	 */
 	public static function generateHex( $chars, $context = '' ) {
 		$bytes = ceil( $chars / 2 );
-		$hex = bin2hex( self::singleton()->realGenerate( $bytes, $context ) );
+		$hex = bin2hex( self::singleton()->generate( $bytes, $context ) );
 		return substr( $hex, 0, $chars );
 	}
 
