@@ -352,7 +352,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} else {
 			$driver = $dbType;
 		}
-		if ( $driver === false ) {
+		if ( $driver === false || $driver === '' ) {
 			throw new InvalidArgumentException( __METHOD__ .
 				" no viable database extension found for type '$dbType'" );
 		}
