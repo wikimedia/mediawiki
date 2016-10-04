@@ -160,7 +160,7 @@ class RequestContext implements IContextSource, MutableContext {
 	/**
 	 * Set the Title object
 	 *
-	 * @param Title $title
+	 * @param Title|null $title
 	 */
 	public function setTitle( Title $title = null ) {
 		$this->title = $title;
