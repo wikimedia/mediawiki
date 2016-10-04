@@ -291,6 +291,7 @@ $wgAutoloadLocalClasses = [
 	'CopyJobQueue' => __DIR__ . '/maintenance/copyJobQueue.php',
 	'CoreParserFunctions' => __DIR__ . '/includes/parser/CoreParserFunctions.php',
 	'CoreTagHooks' => __DIR__ . '/includes/parser/CoreTagHooks.php',
+	'CoreVariables' => __DIR__ . '/includes/parser/CoreVariables.php',
 	'CoreVersionChecker' => __DIR__ . '/includes/registration/CoreVersionChecker.php',
 	'CreateAndPromote' => __DIR__ . '/maintenance/createAndPromote.php',
 	'CreateFileOp' => __DIR__ . '/includes/libs/filebackend/fileop/CreateFileOp.php',
