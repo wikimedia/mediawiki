@@ -36,6 +36,14 @@ class WikiProcessor {
 	 */
 	public function __invoke( array $record ) {
 		global $wgVersion;
+
+		if ( isset( $record['context']['message'] ) ) {
+			// some log aggregators such as Logstash will merge the log context into the main
+			// metadata (where 'message' is the log message) and end up overwriting the message
+			wfLogWarning( __METHOD__ . ": 'message' key overwritten in log context. Message was: "
+				. $record['message'] );
+		}
+
 		$record['extra'] = array_merge(
 			$record['extra'],
 			[
