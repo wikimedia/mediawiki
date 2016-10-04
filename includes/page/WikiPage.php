@@ -2397,41 +2397,6 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Edit an article without doing all that other stuff
-	 * The article must already exist; link tables etc
-	 * are not updated, caches are not flushed.
-	 *
-	 * @param Content $content Content submitted
-	 * @param User $user The relevant user
-	 * @param string $comment Comment submitted
-	 * @param bool $minor Whereas it's a minor modification
-	 * @param string $serialFormat Format for storing the content in the database
-	 */
-	public function doQuickEditContent(
-		Content $content, User $user, $comment = '', $minor = false, $serialFormat = null
-	) {
-
-		$serialized = $content->serialize( $serialFormat );
-
-		$dbw = wfGetDB( DB_MASTER );
-		$revision = new Revision( [
-			'title'      => $this->getTitle(), // for determining the default content model
-			'page'       => $this->getId(),
-			'user_text'  => $user->getName(),
-			'user'       => $user->getId(),
-			'text'       => $serialized,
-			'length'     => $content->getSize(),
-			'comment'    => $comment,
-			'minor_edit' => $minor ? 1 : 0,
-		] ); // XXX: set the content object?
-		$revision->insertOn( $dbw );
-		$this->updateRevisionOn( $dbw, $revision );
-
-		Hooks::run( 'NewRevisionFromEditComplete', [ $this, $revision, false, $user ] );
-
-	}
-
-	/**
 	 * Update the article's restriction field, and leave a log entry.
 	 * This works for protection both existing and non-existing pages.
 	 *
