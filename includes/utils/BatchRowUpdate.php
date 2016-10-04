@@ -112,15 +112,8 @@ class BatchRowUpdate {
 	 *
 	 * @param callable $output A callback taking a single string
 	 *  parameter to output
-	 *
-	 * @throws MWException
 	 */
-	public function setOutput( $output ) {
-		if ( !is_callable( $output ) ) {
-			throw new MWException(
-				'Provided $output param is required to be callable.'
-			);
-		}
+	public function setOutput( callable $output ) {
 		$this->output = $output;
 	}
 
