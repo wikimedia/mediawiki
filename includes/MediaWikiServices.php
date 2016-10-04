@@ -3,6 +3,7 @@ namespace MediaWiki;
 
 use Config;
 use ConfigFactory;
+use CryptHKDF;
 use CryptRand;
 use EventRelayerGroup;
 use GenderCache;
@@ -529,6 +530,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getCryptRand() {
 		return $this->getService( 'CryptRand' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return CryptHKDF
+	 */
+	public function getCryptHKDF() {
+		return $this->getService( 'CryptHKDF' );
 	}
 
 	/**
