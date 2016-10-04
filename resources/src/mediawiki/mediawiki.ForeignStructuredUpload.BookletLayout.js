@@ -309,6 +309,50 @@
 		} );
 	};
 
+	/**
+	 * @param {mw.Title} filename
+	 * @return {jQuery.Promise} Resolves (on success) or rejects with OO.ui.Error
+	 */
+	mw.ForeignStructuredUpload.BookletLayout.prototype.validateFilename = function ( filename ) {
+		return ( new mw.Api() ).get( {
+			action: 'query',
+			prop: 'info',
+			titles: filename.getPrefixedDb(),
+			formatversion: 2
+		} ).then(
+			function ( result ) {
+				// if the file already exists, reject right away, before
+				// ever firing finishStashUpload()
+				if ( !result.query.pages[ 0 ].missing ) {
+					return $.Deferred().reject( new OO.ui.Error(
+						$( '<p>' ).msg( 'fileexists', filename.getPrefixedDb() ),
+						{ recoverable: false }
+					) );
+				}
+			},
+			function () {
+				// API call failed - this could be a connection hiccup...
+				// Let's just ignore this validation step and turn this
+				// failure into a successful resolve ;)
+				return $.Deferred().resolve();
+			}
+		);
+	};
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.ForeignStructuredUpload.BookletLayout.prototype.saveFile = function () {
+		var title = mw.Title.newFromText(
+				this.getFilename(),
+				mw.config.get( 'wgNamespaceIds' ).file
+			);
+
+		return this.uploadPromise
+			.then( this.validateFilename.bind( this, title ) )
+			.then( mw.ForeignStructuredUpload.BookletLayout.parent.prototype.saveFile.bind( this ) );
+	};
+
 	/* Getters */
 
 	/**
