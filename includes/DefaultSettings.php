@@ -5533,13 +5533,7 @@ $wgApplyIpBlocksToXff = false;
  * elapses.
  *
  * @par Example:
- * To set a generic maximum of 4 hits in 60 seconds:
- * @code
- *     $wgRateLimits = [ 4, 60 ];
- * @endcode
- *
- * @par Example:
- * You could also limit per action and then type of users.
+ * Limits per configured per action and then type of users.
  * @code
  *     $wgRateLimits = [
  *         'edit' => [
@@ -5548,8 +5542,20 @@ $wgApplyIpBlocksToXff = false;
  *             'newbie' => [ x, y ], // each new autoconfirmed accounts; overrides 'user'
  *             'ip' => [ x, y ], // each anon and recent account
  *             'subnet' => [ x, y ], // ... within a /24 subnet in IPv4 or /64 in IPv6
+ *             'groupName' => [ x, y ], // by group membership
  *         ]
- *     ]
+ *     ];
+ * @endcode
+ *
+ * @par Normally, the 'noratelimit' right allows a user to bypass any rate
+ * limit checks. This can be disabled on a per-action basis by setting the
+ * special '&can-bypass' key to false in that action's configuration.
+ * @code
+ *     $wgRateLimits = [
+ *         'some-action' => [
+ *             '&can-bypass' => false,
+ *             'user' => [ x, y ],
+ *     ];
  * @endcode
  *
  * @warning Requires that $wgMainCacheType is set to something persistent

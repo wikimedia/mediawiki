@@ -1802,12 +1802,13 @@ class User implements IDBAccessObject {
 			return false;
 		}
 
+		$limits = $wgRateLimits[$action] + [ '&can-bypass' => true ];
+
 		// Some groups shouldn't trigger the ping limiter, ever
-		if ( !$this->isPingLimitable() ) {
+		if ( $limits['&can-bypass'] && !$this->isPingLimitable() ) {
 			return false;
 		}
 
-		$limits = $wgRateLimits[$action];
 		$keys = [];
 		$id = $this->getId();
 		$userLimit = false;
