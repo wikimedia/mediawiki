@@ -28,6 +28,7 @@ class ComposerJsonTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers ComposerJson::__construct
 	 * @covers ComposerJson::getRequiredDependencies
 	 */
 	public function testGetRequiredDependencies() {
