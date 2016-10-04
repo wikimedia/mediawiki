@@ -184,6 +184,29 @@ return [
 		);
 	},
 
+	'CryptHKDF' => function( MediaWikiServices $services ) {
+		$config = $services->getMainConfig();
+
+		$secret = $config->get( 'HKDFSecret' ) ?: $config->get( 'SecretKey' );
+		if ( !$secret ) {
+			throw new RuntimeException( "Cannot use MWCryptHKDF without a secret." );
+		}
+
+		// In HKDF, the context can be known to the attacker, but this will
+		// keep simultaneous runs from producing the same output.
+		$context = [ microtime(), getmypid(), gethostname() ];
+
+		// Setup salt cache. Use APC, or fallback to the main cache if it isn't setup
+		$cache = $services->getLocalServerObjectCache();
+		if ( $cache instanceof EmptyBagOStuff ) {
+			$cache = ObjectCache::getLocalClusterInstance();
+		}
+
+		return new CryptHKDF( $secret, $config->get( 'HKDFAlgorithm' ),
+			$cache, $context, $services->getCryptRand()
+		);
+	},
+
 	'MediaHandlerFactory' => function( MediaWikiServices $services ) {
 		return new MediaHandlerFactory(
 			$services->getMainConfig()->get( 'MediaHandlers' )
