@@ -20,6 +20,7 @@
  * @file
  * @ingroup Cache
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * MediaWiki message cache structure version.
@@ -154,9 +155,9 @@ class MessageCache {
 		$this->mExpiry = $expiry;
 
 		if ( $wgUseLocalMessageCache ) {
-			$this->localCache = ObjectCache::getLocalServerInstance( CACHE_NONE );
+			$this->localCache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
 		} else {
-			$this->localCache = wfGetCache( CACHE_NONE );
+			$this->localCache = new EmptyBagOStuff();
 		}
 
 		$this->wanCache = ObjectCache::getMainWANInstance();

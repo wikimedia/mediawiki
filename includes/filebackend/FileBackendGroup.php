@@ -22,6 +22,7 @@
  * @author Aaron Schulz
  */
 use \MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Class to handle file backend registration
@@ -192,7 +193,7 @@ class FileBackendGroup {
 			'streamMimeFunc' => [ 'StreamFile', 'contentTypeFromPath' ],
 			'tmpDirectory' => wfTempDir(),
 			'statusWrapper' => [ 'Status', 'wrap' ],
-			'wanCache' => ObjectCache::getMainWANInstance(),
+			'wanCache' => MediaWikiServices::getInstance()->getMainWANObjectCache(),
 			'srvCache' => ObjectCache::getLocalServerInstance( 'hash' ),
 			'logger' => LoggerFactory::getInstance( 'FileOperation' ),
 			'profiler' => Profiler::instance()
