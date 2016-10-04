@@ -157,6 +157,7 @@ class HTMLFileCache extends FileCacheBase {
 	 * @return void
 	 */
 	public function loadFromFileCache( IContextSource $context, $mode = self::MODE_NORMAL ) {
+		global $wgContLang;
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 
 		wfDebug( __METHOD__ . "()\n" );
@@ -167,10 +168,9 @@ class HTMLFileCache extends FileCacheBase {
 			$context->getTitle()->resetArticleID( 0 );
 		}
 
-		$contLang = $config->get( 'ContLang' );
 		$context->getOutput()->sendCacheControl();
 		header( "Content-Type: {$config->get( 'MimeType' )}; charset=UTF-8" );
-		header( "Content-Language: {$contLang->getHtmlCode()}" );
+		header( "Content-Language: {$wgContLang->getHtmlCode()}" );
 		if ( $this->useGzip() ) {
 			if ( wfClientAcceptsGzip() ) {
 				header( 'Content-Encoding: gzip' );
