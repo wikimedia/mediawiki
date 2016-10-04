@@ -92,6 +92,9 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers WikiPage::doEditContent
+	 * @covers WikiPage::doModify
+	 * @covers WikiPage::doCreate
+	 * @covers WikiPage::doEditUpdates
 	 */
 	public function testDoEditContent() {
 		$page = $this->newPage( "WikiPageTest_testDoEditContent" );
@@ -211,30 +214,6 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$res->free();
 
 		$this->assertEquals( 2, $n, 'pagelinks should contain two links from the page' );
-	}
-
-	/**
-	 * @covers WikiPage::doQuickEditContent
-	 */
-	public function testDoQuickEditContent() {
-		global $wgUser;
-
-		$page = $this->createPage(
-			"WikiPageTest_testDoQuickEditContent",
-			"original text",
-			CONTENT_MODEL_WIKITEXT
-		);
-
-		$content = ContentHandler::makeContent(
-			"quick text",
-			$page->getTitle(),
-			CONTENT_MODEL_WIKITEXT
-		);
-		$page->doQuickEditContent( $content, $wgUser, "testing q" );
-
-		# ---------------------
-		$page = new WikiPage( $page->getTitle() );
-		$this->assertTrue( $content->equals( $page->getContent() ) );
 	}
 
 	/**

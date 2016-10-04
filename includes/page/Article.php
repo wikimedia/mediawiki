@@ -2156,18 +2156,6 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
-	 * @see WikiPage::doQuickEditContent
-	 */
-	public function doQuickEditContent(
-		Content $content, User $user, $comment = '', $minor = false, $serialFormat = null
-	) {
-		return $this->mPage->doQuickEditContent(
-			$content, $user, $comment, $minor, $serialFormat
-		);
-	}
-
-	/**
-	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::doViewUpdates
 	 */
 	public function doViewUpdates( User $user, $oldid = 0 ) {
