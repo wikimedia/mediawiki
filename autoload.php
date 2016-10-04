@@ -295,6 +295,7 @@ $wgAutoloadLocalClasses = [
 	'CreateAndPromote' => __DIR__ . '/maintenance/createAndPromote.php',
 	'CreateFileOp' => __DIR__ . '/includes/libs/filebackend/fileop/CreateFileOp.php',
 	'CreditsAction' => __DIR__ . '/includes/actions/CreditsAction.php',
+	'CryptRand' => __DIR__ . '/includes/libs/CryptRand.php',
 	'CssContent' => __DIR__ . '/includes/content/CssContent.php',
 	'CssContentHandler' => __DIR__ . '/includes/content/CssContentHandler.php',
 	'CsvStatsOutput' => __DIR__ . '/maintenance/language/StatOutputs.php',
