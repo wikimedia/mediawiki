@@ -142,6 +142,7 @@ class Parser {
 	public $mFunctionHooks = [];
 	public $mFunctionSynonyms = [ 0 => [], 1 => [] ];
 	public $mFunctionTagHooks = [];
+	private $mVariableHooks = [];
 	public $mStripList = [];
 	public $mDefaultStripList = [];
 	public $mVarCache = [];
@@ -327,6 +328,7 @@ class Parser {
 
 		CoreParserFunctions::register( $this );
 		CoreTagHooks::register( $this );
+		CoreVariables::register( $this );
 		$this->initialiseVariables();
 
 		Hooks::run( 'ParserFirstCallInit', [ &$this ] );
@@ -2452,9 +2454,6 @@ class Parser {
 	 * @return string
 	 */
 	public function getVariableValue( $index, $frame = false ) {
-		global $wgContLang, $wgSitename, $wgServer, $wgServerName;
-		global $wgArticlePath, $wgScriptPath, $wgStylePath;
-
 		if ( is_null( $this->mTitle ) ) {
 			// If no title set, bad things are going to happen
 			// later. Title should always be set since this
@@ -2474,321 +2473,25 @@ class Parser {
 			}
 		}
 
-		$ts = wfTimestamp( TS_UNIX, $this->mOptions->getTimestamp() );
-		Hooks::run( 'ParserGetVariableValueTs', [ &$this, &$ts ] );
+		if ( isset( $this->mVariableHooks[$index] ) ) {
+			$callback = $this->mVariableHooks[$index];
 
-		$pageLang = $this->getFunctionLang();
+			# Workaround for PHP bug 35229 and similar
+			if ( !is_callable( $callback ) ) {
+				throw new MWException( "Variable hook for $index is not callable\n" );
+			}
 
-		switch ( $index ) {
-			case '!':
-				$value = '|';
-				break;
-			case 'currentmonth':
-				$value = $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'm' ) );
-				break;
-			case 'currentmonth1':
-				$value = $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'n' ) );
-				break;
-			case 'currentmonthname':
-				$value = $pageLang->getMonthName( MWTimestamp::getInstance( $ts )->format( 'n' ) );
-				break;
-			case 'currentmonthnamegen':
-				$value = $pageLang->getMonthNameGen( MWTimestamp::getInstance( $ts )->format( 'n' ) );
-				break;
-			case 'currentmonthabbrev':
-				$value = $pageLang->getMonthAbbreviation( MWTimestamp::getInstance( $ts )->format( 'n' ) );
-				break;
-			case 'currentday':
-				$value = $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'j' ) );
-				break;
-			case 'currentday2':
-				$value = $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'd' ) );
-				break;
-			case 'localmonth':
-				$value = $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'm' ) );
-				break;
-			case 'localmonth1':
-				$value = $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'n' ) );
-				break;
-			case 'localmonthname':
-				$value = $pageLang->getMonthName( MWTimestamp::getLocalInstance( $ts )->format( 'n' ) );
-				break;
-			case 'localmonthnamegen':
-				$value = $pageLang->getMonthNameGen( MWTimestamp::getLocalInstance( $ts )->format( 'n' ) );
-				break;
-			case 'localmonthabbrev':
-				$value = $pageLang->getMonthAbbreviation( MWTimestamp::getLocalInstance( $ts )->format( 'n' ) );
-				break;
-			case 'localday':
-				$value = $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'j' ) );
-				break;
-			case 'localday2':
-				$value = $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'd' ) );
-				break;
-			case 'pagename':
-				$value = wfEscapeWikiText( $this->mTitle->getText() );
-				break;
-			case 'pagenamee':
-				$value = wfEscapeWikiText( $this->mTitle->getPartialURL() );
-				break;
-			case 'fullpagename':
-				$value = wfEscapeWikiText( $this->mTitle->getPrefixedText() );
-				break;
-			case 'fullpagenamee':
-				$value = wfEscapeWikiText( $this->mTitle->getPrefixedURL() );
-				break;
-			case 'subpagename':
-				$value = wfEscapeWikiText( $this->mTitle->getSubpageText() );
-				break;
-			case 'subpagenamee':
-				$value = wfEscapeWikiText( $this->mTitle->getSubpageUrlForm() );
-				break;
-			case 'rootpagename':
-				$value = wfEscapeWikiText( $this->mTitle->getRootText() );
-				break;
-			case 'rootpagenamee':
-				$value = wfEscapeWikiText( wfUrlencode( str_replace(
-					' ',
-					'_',
-					$this->mTitle->getRootText()
-				) ) );
-				break;
-			case 'basepagename':
-				$value = wfEscapeWikiText( $this->mTitle->getBaseText() );
-				break;
-			case 'basepagenamee':
-				$value = wfEscapeWikiText( wfUrlencode( str_replace(
-					' ',
-					'_',
-					$this->mTitle->getBaseText()
-				) ) );
-				break;
-			case 'talkpagename':
-				if ( $this->mTitle->canTalk() ) {
-					$talkPage = $this->mTitle->getTalkPage();
-					$value = wfEscapeWikiText( $talkPage->getPrefixedText() );
-				} else {
-					$value = '';
-				}
-				break;
-			case 'talkpagenamee':
-				if ( $this->mTitle->canTalk() ) {
-					$talkPage = $this->mTitle->getTalkPage();
-					$value = wfEscapeWikiText( $talkPage->getPrefixedURL() );
-				} else {
-					$value = '';
-				}
-				break;
-			case 'subjectpagename':
-				$subjPage = $this->mTitle->getSubjectPage();
-				$value = wfEscapeWikiText( $subjPage->getPrefixedText() );
-				break;
-			case 'subjectpagenamee':
-				$subjPage = $this->mTitle->getSubjectPage();
-				$value = wfEscapeWikiText( $subjPage->getPrefixedURL() );
-				break;
-			case 'pageid': // requested in bug 23427
-				$pageid = $this->getTitle()->getArticleID();
-				if ( $pageid == 0 ) {
-					# 0 means the page doesn't exist in the database,
-					# which means the user is previewing a new page.
-					# The vary-revision flag must be set, because the magic word
-					# will have a different value once the page is saved.
-					$this->mOutput->setFlag( 'vary-revision' );
-					wfDebug( __METHOD__ . ": {{PAGEID}} used in a new page, setting vary-revision...\n" );
-				}
-				$value = $pageid ? $pageid : null;
-				break;
-			case 'revisionid':
-				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned.
-				$this->mOutput->setFlag( 'vary-revision-id' );
-				wfDebug( __METHOD__ . ": {{REVISIONID}} used, setting vary-revision-id...\n" );
-				$value = $this->mRevisionId;
-				if ( !$value && $this->mOptions->getSpeculativeRevIdCallback() ) {
-					$value = call_user_func( $this->mOptions->getSpeculativeRevIdCallback() );
-					$this->mOutput->setSpeculativeRevIdUsed( $value );
-				}
-				break;
-			case 'revisionday':
-				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned. This is for null edits.
-				$this->mOutput->setFlag( 'vary-revision' );
-				wfDebug( __METHOD__ . ": {{REVISIONDAY}} used, setting vary-revision...\n" );
-				$value = intval( substr( $this->getRevisionTimestamp(), 6, 2 ) );
-				break;
-			case 'revisionday2':
-				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned. This is for null edits.
-				$this->mOutput->setFlag( 'vary-revision' );
-				wfDebug( __METHOD__ . ": {{REVISIONDAY2}} used, setting vary-revision...\n" );
-				$value = substr( $this->getRevisionTimestamp(), 6, 2 );
-				break;
-			case 'revisionmonth':
-				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned. This is for null edits.
-				$this->mOutput->setFlag( 'vary-revision' );
-				wfDebug( __METHOD__ . ": {{REVISIONMONTH}} used, setting vary-revision...\n" );
-				$value = substr( $this->getRevisionTimestamp(), 4, 2 );
-				break;
-			case 'revisionmonth1':
-				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned. This is for null edits.
-				$this->mOutput->setFlag( 'vary-revision' );
-				wfDebug( __METHOD__ . ": {{REVISIONMONTH1}} used, setting vary-revision...\n" );
-				$value = intval( substr( $this->getRevisionTimestamp(), 4, 2 ) );
-				break;
-			case 'revisionyear':
-				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned. This is for null edits.
-				$this->mOutput->setFlag( 'vary-revision' );
-				wfDebug( __METHOD__ . ": {{REVISIONYEAR}} used, setting vary-revision...\n" );
-				$value = substr( $this->getRevisionTimestamp(), 0, 4 );
-				break;
-			case 'revisiontimestamp':
-				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned. This is for null edits.
-				$this->mOutput->setFlag( 'vary-revision' );
-				wfDebug( __METHOD__ . ": {{REVISIONTIMESTAMP}} used, setting vary-revision...\n" );
-				$value = $this->getRevisionTimestamp();
-				break;
-			case 'revisionuser':
-				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned for null edits.
-				$this->mOutput->setFlag( 'vary-user' );
-				wfDebug( __METHOD__ . ": {{REVISIONUSER}} used, setting vary-user...\n" );
-				$value = $this->getRevisionUser();
-				break;
-			case 'revisionsize':
-				$value = $this->getRevisionSize();
-				break;
-			case 'namespace':
-				$value = str_replace( '_', ' ', $wgContLang->getNsText( $this->mTitle->getNamespace() ) );
-				break;
-			case 'namespacee':
-				$value = wfUrlencode( $wgContLang->getNsText( $this->mTitle->getNamespace() ) );
-				break;
-			case 'namespacenumber':
-				$value = $this->mTitle->getNamespace();
-				break;
-			case 'talkspace':
-				$value = $this->mTitle->canTalk()
-					? str_replace( '_', ' ', $this->mTitle->getTalkNsText() )
-					: '';
-				break;
-			case 'talkspacee':
-				$value = $this->mTitle->canTalk() ? wfUrlencode( $this->mTitle->getTalkNsText() ) : '';
-				break;
-			case 'subjectspace':
-				$value = str_replace( '_', ' ', $this->mTitle->getSubjectNsText() );
-				break;
-			case 'subjectspacee':
-				$value = ( wfUrlencode( $this->mTitle->getSubjectNsText() ) );
-				break;
-			case 'currentdayname':
-				$value = $pageLang->getWeekdayName( (int)MWTimestamp::getInstance( $ts )->format( 'w' ) + 1 );
-				break;
-			case 'currentyear':
-				$value = $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'Y' ), true );
-				break;
-			case 'currenttime':
-				$value = $pageLang->time( wfTimestamp( TS_MW, $ts ), false, false );
-				break;
-			case 'currenthour':
-				$value = $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'H' ), true );
-				break;
-			case 'currentweek':
-				# @bug 4594 PHP5 has it zero padded, PHP4 does not, cast to
-				# int to remove the padding
-				$value = $pageLang->formatNum( (int)MWTimestamp::getInstance( $ts )->format( 'W' ) );
-				break;
-			case 'currentdow':
-				$value = $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'w' ) );
-				break;
-			case 'localdayname':
-				$value = $pageLang->getWeekdayName(
-					(int)MWTimestamp::getLocalInstance( $ts )->format( 'w' ) + 1
-				);
-				break;
-			case 'localyear':
-				$value = $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'Y' ), true );
-				break;
-			case 'localtime':
-				$value = $pageLang->time(
-					MWTimestamp::getLocalInstance( $ts )->format( 'YmdHis' ),
-					false,
-					false
-				);
-				break;
-			case 'localhour':
-				$value = $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'H' ), true );
-				break;
-			case 'localweek':
-				# @bug 4594 PHP5 has it zero padded, PHP4 does not, cast to
-				# int to remove the padding
-				$value = $pageLang->formatNum( (int)MWTimestamp::getLocalInstance( $ts )->format( 'W' ) );
-				break;
-			case 'localdow':
-				$value = $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'w' ) );
-				break;
-			case 'numberofarticles':
-				$value = $pageLang->formatNum( SiteStats::articles() );
-				break;
-			case 'numberoffiles':
-				$value = $pageLang->formatNum( SiteStats::images() );
-				break;
-			case 'numberofusers':
-				$value = $pageLang->formatNum( SiteStats::users() );
-				break;
-			case 'numberofactiveusers':
-				$value = $pageLang->formatNum( SiteStats::activeUsers() );
-				break;
-			case 'numberofpages':
-				$value = $pageLang->formatNum( SiteStats::pages() );
-				break;
-			case 'numberofadmins':
-				$value = $pageLang->formatNum( SiteStats::numberingroup( 'sysop' ) );
-				break;
-			case 'numberofedits':
-				$value = $pageLang->formatNum( SiteStats::edits() );
-				break;
-			case 'currenttimestamp':
-				$value = wfTimestamp( TS_MW, $ts );
-				break;
-			case 'localtimestamp':
-				$value = MWTimestamp::getLocalInstance( $ts )->format( 'YmdHis' );
-				break;
-			case 'currentversion':
-				$value = SpecialVersion::getVersion();
-				break;
-			case 'articlepath':
-				return $wgArticlePath;
-			case 'sitename':
-				return $wgSitename;
-			case 'server':
-				return $wgServer;
-			case 'servername':
-				return $wgServerName;
-			case 'scriptpath':
-				return $wgScriptPath;
-			case 'stylepath':
-				return $wgStylePath;
-			case 'directionmark':
-				return $pageLang->getDirMark();
-			case 'contentlanguage':
-				global $wgLanguageCode;
-				return $wgLanguageCode;
-			case 'cascadingsources':
-				$value = CoreParserFunctions::cascadingsources( $this );
-				break;
-			default:
-				$ret = null;
-				Hooks::run(
-					'ParserGetVariableValueSwitch',
-					[ &$this, &$this->mVarCache, &$index, &$ret, &$frame ]
-				);
+			$arg = [ $this ];
+			$value = call_user_func_array( $callback, $arg );
+		} else {
+			// backward compatibility for extension not migrated
+			$ret = null;
+			Hooks::run(
+				'ParserGetVariableValueSwitch',
+				[ &$this, &$this->mVarCache, &$index, &$ret, &$frame ]
+			);
 
-				return $ret;
+			return $ret;
 		}
 
 		if ( $index ) {
@@ -4835,6 +4538,26 @@ class Parser {
 		if ( !in_array( $tag, $this->mStripList ) ) {
 			$this->mStripList[] = $tag;
 		}
+
+		return $old;
+	}
+
+	/**
+	 * Create a variable, e.g. "{{PAGENAME}}".
+	 * @param $variable
+	 * @param $callback
+	 * @throws MWException
+	 * @return null|callback
+	 * @since 1.28
+	 */
+	function setVariableHook( $variable, $callback ) {
+		$variable = strtolower( $variable );
+		if ( preg_match( '/[<>\r\n]/', $variable, $m ) ) {
+			throw new MWException( "Invalid character {$m[0]} in setVariableHook('$variable', ...) call" );
+		}
+		$old = isset( $this->mVariableHooks[$variable] ) ?
+			$this->mVariableHooks[$variable] : null;
+		$this->mVariableHooks[$variable] = $callback;
 
 		return $old;
 	}
