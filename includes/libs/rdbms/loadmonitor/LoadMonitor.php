@@ -58,7 +58,8 @@ class LoadMonitor implements ILoadMonitor {
 	}
 
 	public function scaleLoads( array &$weightByServer, $group = false, $domain = false ) {
-		$states = $this->getServerStates( $weightByServer, $domain );
+		$serverIndexes = array_keys( $weightByServer );
+		$states = $this->getServerStates( $serverIndexes, $domain );
 		$coefficientsByServer = $states['weightScales'];
 		foreach ( $weightByServer as $i => $weight ) {
 			$weightByServer[$i] = $weight * $coefficientsByServer[$i];
