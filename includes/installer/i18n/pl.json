@@ -71,7 +71,7 @@
 	"config-unicode-using-intl": "Korzystanie z [http://pecl.php.net/intl rozszerzenia intl PECL] do normalizacji Unicode.",
 	"config-unicode-pure-php-warning": "<strong>Uwaga:<strong> [http://pecl.php.net/intl Rozszerzenie intl PECL] do obsługi normalizacji Unicode nie jest dostępne. Użyta zostanie mało wydajna zwykła implementacja w PHP.\nJeśli prowadzisz stronę o dużym natężeniu ruchu, powinieneś zapoznać się z informacjami o [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations normalizacji Unicode].",
 	"config-unicode-update-warning": "<strong>Uwaga:</strong> zainstalowana wersja normalizacji Unicode korzysta z nieaktualnej biblioteki [http://site.icu-project.org/ projektu ICU].\nPowinieneś [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations wykonać aktualizację], jeśli chcesz korzystać w pełni z Unicode.",
-	"config-no-db": "Nie można odnaleźć właściwego sterownika bazy danych! Musisz zainstalować sterownik bazy danych dla PHP.\nMożna użyć {{PLURAL:$2|następującego typu bazy|następujących typów baz}} danych: $1.\n\nJeśli skompilowałeś PHP samodzielnie, skonfiguruj go ponownie z włączonym klientem bazy danych, na przykład za pomocą polecenia <code>./configure --with-mysqli</code>.\nJeśli zainstalowałeś PHP jako pakiet Debiana lub Ubuntu, musisz również zainstalować np. moduł <code>php5-mysql</code>.",
+	"config-no-db": "Nie można odnaleźć właściwego sterownika bazy danych! Musisz zainstalować sterownik bazy danych dla PHP.\nMożna użyć {{PLURAL:$2|następującego typu bazy|następujących typów baz} danych: $1.\n\nJeśli skompilowałeś PHP samodzielnie, skonfiguruj je ponownie z włączonym klientem bazy danych, na przykład za pomocą polecenia <code>./configure --with-mysqli</code>.\nJeśli zainstalowałeś PHP jako pakiet Debiana lub Ubuntu, musisz również zainstalować np. moduł <code>php5-mysql</code>.",
 	"config-outdated-sqlite": "'''Ostrzeżenie''': masz SQLite  $1, która jest niższa od minimalnej wymaganej wersji  $2 . SQLite będzie niedostępne.",
 	"config-no-fts3": "'''Uwaga''' – SQLite został skompilowany bez [//sqlite.org/fts3.html modułu FTS3] – funkcje wyszukiwania nie będą dostępne.",
 	"config-pcre-old": "<strong>Błąd krytyczny:</strong> Wymagany jest PCRE w wersji $1 lub nowszej.\nTwój plik wykonywalny PHP jest powiązany z wersją PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Więcej informacji].",
@@ -264,7 +264,7 @@
 	"config-cc-not-chosen": "Wybierz, którą chcesz licencję Creative Commons i kliknij „proceed”.",
 	"config-advanced-settings": "Konfiguracja zaawansowana",
 	"config-cache-options": "Ustawienia buforowania obiektów:",
-	"config-cache-help": "Buforowanie obiektów jest używane do przyspieszenia MediaWiki przez trzymanie w pamięci podręcznej często używanych danych.\nŚrednie oraz duże witryny są wysoce zachęcane by je włączyć, ale małe witryny również dostrzegą korzyści.",
+	"config-cache-help": "Buforowanie obiekto jest używane aby przyspieszyć MediaWiki przez trzymanie w pamięci podręcznej często używanych danych.\nŚrednie oraz duże witryny są wysoce zachęcane by je włączyć, a małe witryny także dostrzegą korzyści.",
 	"config-cache-none": "Brak buforowania (wszystkie funkcje będą działać, ale mogą wystąpić kłopoty z wydajnością na dużych witrynach wiki)",
 	"config-cache-accel": "Buforowania obiektów PHP (APC, XCache lub WinCache)",
 	"config-cache-memcached": "Użyj Memcached (wymaga dodatkowej instalacji i konfiguracji)",
@@ -286,7 +286,7 @@
 	"config-install-begin": "Po naciśnięciu \"{{int:config-continue}}\", rozpocznie się instalacja MediaWiki.\nJeśli nadal chcesz dokonać zmian, naciśnij \"{{int:config-back}}\".",
 	"config-install-step-done": "gotowe",
 	"config-install-step-failed": "nieudane",
-	"config-install-extensions": "Dołączanie rozszerzeń",
+	"config-install-extensions": "Włącznie z rozszerzeniami",
 	"config-install-database": "Konfigurowanie bazy danych",
 	"config-install-schema": "Tworzenie schematu",
 	"config-install-pg-schema-not-exist": "Schemat PostgreSQL nie istnieje.",
@@ -325,7 +325,7 @@
 	"config-help": "pomoc",
 	"config-help-tooltip": "kliknij, aby rozwinąć",
 	"config-nofile": "Nie udało się odnaleźć pliku \"$1\". Czy nie został usunięty?",
-	"config-extension-link": "Czy wiesz, że twoja wiki obsługuje [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions rozszerzenia]?\n\nMożesz przejrzeć [https://www.mediawiki.org/wiki/Category:Extensions_by_category rozszerzenia według kategorii] lub [https://www.mediawiki.org/wiki/Extension_Matrix Extension Matrix], aby zobaczyć pełną listę rozszerzeń.",
+	"config-extension-link": "Czy wiesz, że twoja wiki obsługuje [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions/pl rozszerzenia]?\n\nMożesz przejrzeć [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category rozszerzenia według kategorii] lub [https://www.mediawiki.org/wiki/Extension_Matrix Extension Matrix] aby zobaczyć pełną listę rozszerzeń.",
 	"mainpagetext": "<strong>Instalacja MediaWiki powiodła się.</strong>",
-	"mainpagedocfooter": "Zobacz [https://meta.wikimedia.org/wiki/Help:Contents/pl przewodnik użytkownika], aby uzyskać informacje o działaniu oprogramowania wiki.\n\n== Na początek ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista ustawień konfiguracyjnych]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Komunikaty o nowych wersjach MediaWiki (lista dyskusyjna)]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Przetłumacz MediaWiki na swój język]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Dowiedz się, jak walczyć ze spamem na swojej wiki]"
+	"mainpagedocfooter": "Zobacz [https://meta.wikimedia.org/wiki/Help:Contents przewodnik użytkownika], aby uzyskać informacje o działaniu oprogramowania wiki.\n\n== Na początek ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings/pl Lista ustawień konfiguracyjnych]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/pl MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Komunikaty o nowych wersjach MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Przetłumacz MediaWiki na swój język]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam \nDowiedz się, jak walczyć ze spamem na swojej wiki]"
 }
