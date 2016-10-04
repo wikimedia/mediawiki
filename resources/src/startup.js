@@ -66,6 +66,8 @@ function isCompatible( str ) {
 		&& !(
 			ua.match( /webOS\/1\.[0-4]/ ) ||
 			ua.match( /PlayStation/i ) ||
+			// UC Mini
+			( ua.match( /Mozilla\/5\.0 \(X11/i ) && ua.match( /Gecko\/$/ ) ) ||
 			ua.match( /SymbianOS|Series60|NetFront|Opera Mini|S40OviBrowser|MeeGo/ ) ||
 			( ua.match( /Glass/ ) && ua.match( /Android/ ) )
 		)

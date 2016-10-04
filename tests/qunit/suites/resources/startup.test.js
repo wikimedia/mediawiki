@@ -47,6 +47,8 @@
 			// Android
 			'Mozilla/5.0 (Linux; U; Android 2.1; en-us; Nexus One Build/ERD62) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17',
 
+			// UC Mini speed mode off
+			'Mozilla/5.0 (Linux; U; Android 6.0.1; en-US; Nexus_5 Build/MMB29S) AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1 UCBrowser/10.7.6.805 Mobile',
 			/* Grade C */
 
 			// Internet Explorer < 9
@@ -128,7 +130,9 @@
 			// Google Glass
 			'Mozilla/5.0 (Linux; U; Android 4.0.4; en-us; Glass 1 Build/IMM76L; XE11) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30',
 			// MeeGo
-			'Mozilla/5.0 (MeeGo; NokiaN9) AppleWebKit/534.13 (KHTML, like Gecko) NokiaBrowser/8.5.0 Mobile Safari/534.13'
+			'Mozilla/5.0 (MeeGo; NokiaN9) AppleWebKit/534.13 (KHTML, like Gecko) NokiaBrowser/8.5.0 Mobile Safari/534.13',
+			// UCMini (speed mode on)
+			'Mozilla/5.0 (X11; U; Linux i686; zh-CN; r:1.2.3.4) Gecko/'
 		]
 	};
 
