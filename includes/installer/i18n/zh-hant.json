@@ -257,7 +257,7 @@
 	"config-cache-options": "物件快取設定：",
 	"config-cache-help": "物件快取是用來增進 MediaWiki 速度的一項功能，透過快取經常使用的資料。\n中型到大型的網站我們會建議開啟這個選項，對小型的網站也有一定程度的效果。",
 	"config-cache-none": "不快取 (不會影響功能，但在大型 Wiki 網站可能會有處理速度的問題)",
-	"config-cache-accel": "使用 PHP 物件快取 (APC、XCache 或 WinCache)",
+	"config-cache-accel": "使用 PHP 物件快取 (APC、APCu、XCache 或 WinCache)",
 	"config-cache-memcached": "使用 Memcached (需要額外安裝與設定)",
 	"config-memcached-servers": "Memcached 伺服器：",
 	"config-memcached-help": "請列出 Memcached 伺服器的 IP 位址。\n每一行只指定一個位置並且要註明使用的埠號，例如：\n 127.0.0.1:11211\n 192.168.1.25:1234",

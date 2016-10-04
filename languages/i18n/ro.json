@@ -3371,7 +3371,6 @@
 	"feedback-external-bug-report-button": "Semnalare problemă tehnică",
 	"feedback-dialog-title": "Trimitere păreri",
 	"feedback-dialog-intro": "Puteți folosi formularul simplificat de mai jos pentru a vă trimite părerile. Comentariul dumneavoastră va fi adăugat în pagina „$1”, alături de numele dumneavoastră de utilizator.",
-	"feedback-error-title": "Eroare",
 	"feedback-error1": "Eroare: Rezultat necunoscut de la API",
 	"feedback-error2": "Eroare: editarea nu a reușit",
 	"feedback-error3": "Eroare: Niciun răspuns de la API",

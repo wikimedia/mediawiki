@@ -3599,7 +3599,6 @@
 	"feedback-external-bug-report-button": "Enviar una tarea técnica",
 	"feedback-dialog-title": "Enviar comentarios",
 	"feedback-dialog-intro": "Puedes usar el formulario sencillo debajo para enviar tus comentarios. Ellos se agregarán a la página \"$1\", junto con tu nombre de usuario.",
-	"feedback-error-title": "Error",
 	"feedback-error1": "Error: No se reconoce resultado de API",
 	"feedback-error2": "Error: Falló la edición",
 	"feedback-error3": "Error: No hay respuesta de la API",

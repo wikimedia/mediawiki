@@ -3510,7 +3510,6 @@
 	"feedback-external-bug-report-button": "Registrer en teknisk sak",
 	"feedback-dialog-title": "Send tilbakemelding",
 	"feedback-dialog-intro": "Bruk det enkle skjemaet under om du vil gi tilbakemelding. Kommentaren din vil bli lagt ut på siden «$1» sammen med brukernavnet ditt.",
-	"feedback-error-title": "Feil",
 	"feedback-error1": "Feil: Ukjent resultat fra API",
 	"feedback-error2": "Feil: Redigering feilet",
 	"feedback-error3": "Feil: Ingen respons fra API",

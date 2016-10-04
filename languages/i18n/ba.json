@@ -3388,7 +3388,6 @@
 	"feedback-external-bug-report-button": "Техник эш еберергә",
 	"feedback-dialog-title": "Баһалама ебәрергә",
 	"feedback-dialog-intro": "Баһалама ебәреү өсөн түбәндәге форманы файҙаланығыҙ. Һеҙҙең исем менән комментарий «$1» битендә буласаҡ.",
-	"feedback-error-title": "Хата",
 	"feedback-error1": "Хата: API-нан беленмәгән хата",
 	"feedback-error2": "Хата: Мөхәррирләү хатаһы",
 	"feedback-error3": "Хата: API-нан яуап юҡ",

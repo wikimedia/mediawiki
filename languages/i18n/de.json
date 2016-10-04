@@ -3565,7 +3565,6 @@
 	"feedback-external-bug-report-button": "Eine technische Aufgabe einreichen",
 	"feedback-dialog-title": "Rückmeldung senden",
 	"feedback-dialog-intro": "Du kannst das einfache Formular unten verwenden, um deine Rückmeldung einzureichen. Dein Kommentar wird zusammen mit deinem Benutzernamen zur Seite „$1“ hinzugefügt.",
-	"feedback-error-title": "Fehler",
 	"feedback-error1": "Fehler: Unbekanntes Ergebnis der API",
 	"feedback-error2": "Fehler: Bearbeitung gescheitert",
 	"feedback-error3": "Fehler: Keine Antwort von der API",

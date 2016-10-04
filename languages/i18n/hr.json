@@ -3153,7 +3153,6 @@
 	"feedback-external-bug-report-button": "Arhiviraj tehnički zadatak",
 	"feedback-dialog-title": "Slanje povratnih informacija",
 	"feedback-dialog-intro": "Da biste poslali povratnu informaciju, rabite jednostavan obrazac. Vaš će komentar biti dodan na stranici \"$1\" s Vašim suradničkim imenom.",
-	"feedback-error-title": "Pogrješka",
 	"feedback-error1": "Pogreška: neprepoznati rezultat API funkcije",
 	"feedback-error2": "Pogreška: uređivanje nije uspjelo",
 	"feedback-error3": "Pogreška: nema odgovora API funkcije",

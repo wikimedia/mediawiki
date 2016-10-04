@@ -3423,7 +3423,6 @@
 	"feedback-external-bug-report-button": "Užpildyti techninę užduotį",
 	"feedback-dialog-title": "Pateikti atsiliepimą",
 	"feedback-dialog-intro": "Galite naudoti lengvą formą esančia žemiau, kad pateiktumėte savo atsiliepimus. Jūsų komentaras bus pridėtas prie puslapio \"$1\", kartu su jūsų vartotojo vardu.",
-	"feedback-error-title": "Klaida",
 	"feedback-error1": "Klaida: Neatpažįstamas rezultatas iš API",
 	"feedback-error2": "Klaida: Redagavimas nepavyko",
 	"feedback-error3": "Klaida: Jokio atsakymo iš API",

@@ -3320,7 +3320,6 @@
 	"feedback-external-bug-report-button": "Založiť technickú úlohu",
 	"feedback-dialog-title": "Odoslať názor",
 	"feedback-dialog-intro": "Pomocou formulára nižšie môžete odoslať svoj názor. Váš komentár sa spolu s vašim použivateľským menom pridá na stránku „$1“.",
-	"feedback-error-title": "Chyba",
 	"feedback-error1": "Chyba: Nerozpoznaný výsledok z API",
 	"feedback-error2": "Chyba: Úprava sa nepodarila",
 	"feedback-error3": "Chyba: Žiadna odpoveď z API",

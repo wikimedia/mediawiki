@@ -3486,7 +3486,6 @@
 	"feedback-external-bug-report-button": "Lähetä tekninen tehtävä",
 	"feedback-dialog-title": "Lähetä palautetta",
 	"feedback-dialog-intro": "Voit käyttää tätä helppoa lomaketta palautteesi lähettämiseen. Kommenttisi lisätään sivulle \"$1\" käyttäjätunnuksesi kera.",
-	"feedback-error-title": "Virhe",
 	"feedback-error1": "Virhe: Ohjelmointirajapinnan vastausta ei tunnistettu",
 	"feedback-error2": "Virhe: Muokkaus epäonnistui",
 	"feedback-error3": "Virhe: Ohjelmointirajapinta ei vastaa",

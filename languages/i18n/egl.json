@@ -836,7 +836,7 @@
 	"searchprofile-advanced-tooltip": "Sērca int i spâsi di nòm fât só mzûra.",
 	"search-result-size": "$1 ({{PLURAL:$2|'na parôla|$2 parôli}})",
 	"search-result-category-size": "{{PLURAL:$1|1 utèint|$1 utèint}} ({{PLURAL:$2|1 sotcategoréia|$2 sotcategoréi}},{{PLURAL:$3|1 file|$3 files}})",
-	"search-redirect": "(redirect $1)",
+	"search-redirect": "(redirect from $1)",
 	"search-section": "(sesiòun $1)",
 	"search-category": "(categoréia $1)",
 	"search-file-match": "(relasiòun dèinter al file)",

@@ -3324,7 +3324,6 @@
 	"feedback-external-bug-report-button": "Podnesi tehnički zadatak",
 	"feedback-dialog-title": "Pošalji povratne informacije",
 	"feedback-dialog-intro": "Možete koristiti jednostavni formular ispod kako biste poslali povratne informacije. Vaš komentar će biti dodan stranici \"$1\" zajedno s vašim korisničkim imenom.",
-	"feedback-error-title": "Greška",
 	"feedback-error1": "Greška: Neprepoznati rezultat od API",
 	"feedback-error2": "Greška: Uređivanje nije uspjelo",
 	"feedback-error3": "Greška: Nema odgovora od API",

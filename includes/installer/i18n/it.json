@@ -19,7 +19,8 @@
 			"Macofe",
 			"Matteocng",
 			"Einreiher",
-			"Tosky"
+			"Tosky",
+			"Selven"
 		]
 	},
 	"config-desc": "Programma di installazione per MediaWiki",
@@ -77,6 +78,7 @@
 	"config-memory-bad": "''Attenzione:''' Il valore di <code>memory_limit</code> di PHP è $1.\nProbabilmente è troppo basso.\nL'installazione potrebbe non riuscire!",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] è installato",
 	"config-apc": "[http://www.php.net/apc APC] è installato",
+	"config-apcu": "[http://www.php.net/apc APC] è installato",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] è installato",
 	"config-no-cache-apcu": "'''Attenzione:''' [http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] o [http://www.iis.net/download/WinCacheForPhp WinCache] non sono stati trovati.\nLa caching degli oggetti non è attivata.",
 	"config-mod-security": "<strong>Attenzione:</strong> Il tuo server web ha il [http://modsecurity.org/ mod_security] abilitato. Se non correttamente configurato, può creare problemi a MediaWiki o ad altro software che permette agli utenti di pubblicare contenuto.\nFai riferimento alla [http://modsecurity.org/documentation/ documentazione sul mod_security] o contatta il supporto tecnico del tuo provider di hosting se si verificano errori.",
@@ -214,6 +216,7 @@
 	"config-subscribe-help": "Si tratta di una mailing list a basso traffico dedicata agli annunci di nuove versioni, compresi importanti segnalazioni riguardanti la sicurezza.\nÈ consigliato iscriversi e aggiornare la propria installazione di MediaWiki quando una nuova versione viene resa pubblica.",
 	"config-subscribe-noemail": "Hai provato ad iscriverti alla mailing list dedicata agli annunci delle nuove versioni senza fornire un indirizzo email.\nInserire un indirizzo email se si desidera effettuare l'iscrizione alla mailing list.",
 	"config-pingback": "Condividi i dati su questa installazione con gli sviluppatori di MediaWiki.",
+	"config-pingback-help": "Se si seleziona questa opzione, MediaWiki contatterà periodicamente https://www.mediawiki.org con i dati base su questa istanza MediaWiki. In questa categoria di dati rientrano, per esempio, il tipo di sistema, la versione di PHP e database di backend scelto. La Wikimedia Foundation condivide questi dati con gli sviluppatori Mediawiki per aiutarla a guidare i futuri sforzi di sviluppo. Per il tuo sistema saranno inviati i seguenti dati:\n<pre>$1</pre>",
 	"config-almost-done": "Hai quasi finito!\nAdesso puoi saltare la rimanente parte della configurazione e semplicemente installare il wiki.",
 	"config-optional-continue": "Fammi altre domande.",
 	"config-optional-skip": "Sono già stanco, installa solo il wiki.",
@@ -262,7 +265,7 @@
 	"config-cache-options": "Impostazioni per la cache di oggetti:",
 	"config-cache-help": "La memorizzazione di oggetti nella cache è utilizzata per migliorare la velocità di MediaWiki attraverso l'allocazione nella cache dei dati utilizzati di frequente.\nPer siti di dimensioni medie e grandi, è caldamente consigliato attivare la cache, ma anche per piccoli siti se ne vedranno i benefici.",
 	"config-cache-none": "Nessuna memorizzazione in cache (nessuna funzionalità viene impedita, ma sui siti wiki più grandi la velocità potrebbe risentirne)",
-	"config-cache-accel": "Mettere in cache oggetti PHP (APC, XCache o WinCache)",
+	"config-cache-accel": "Mettere in cache oggetti PHP (APC, APCu, XCache o WinCache)",
 	"config-cache-memcached": "Usa Memcached (richiede ulteriori attività di installazione e configurazione)",
 	"config-memcached-servers": "Server di memcached:",
 	"config-memcached-help": "Elenco di indirizzi IP da utilizzare per Memcached.\nDovresti specificarne uno per riga e indicare la porta da utilizzare. Per esempio:\n 127.0.0.1:11211\n 192.168.1.25:1234",
@@ -316,6 +319,7 @@
 	"config-install-extension-tables": "Creazione delle tabelle per le estensioni attivate",
 	"config-install-mainpage-failed": "Impossibile inserire la pagina principale: $1",
 	"config-install-done": "<strong>Complimenti!</strong>\nHai installato MediaWiki.\n\nIl programma di installazione ha generato un file <code>LocalSettings.php</code> che contiene tutte le impostazioni.\n\nDevi scaricarlo ed inserirlo nella directory base del tuo wiki (la stessa dove è presente index.php). Il download dovrebbe partire automaticamente.\n\nSe il download non si avvia, o se è stato annullato, puoi riavviarlo cliccando sul collegamento di seguito:\n\n$3\n\n<strong>Nota:</strong> se esci ora dall'installazione senza scaricare il file di configurazione che è stato generato, questo poi non sarà più disponibile in seguito.\n\nQuando hai fatto, puoi <strong>[$2 entrare nel tuo wiki]</strong>.",
+	"config-install-done-path": "<strong>Complimenti!</strong>\nHai installato MediaWiki.\n\nIl programma di installazione ha generato un file <code>LocalSettings.php</code> che contiene tutte le impostazioni.\n\nDevi scaricarlo ed inserirlo in <code>$4</code>. Il download dovrebbe partire automaticamente.\n\nSe il download non si avvia, o se è stato annullato, puoi riavviarlo cliccando sul collegamento seguente:\n\n$3\n\n<strong>Nota:</strong> se esci ora dall'installazione senza scaricare il file di configurazione che è stato generato, questo poi non sarà più disponibile in seguito.\n\nQuando hai fatto, puoi <strong>[$2 entrare nel tuo wiki]</strong>.",
 	"config-download-localsettings": "Scarica <code>LocalSettings.php</code>",
 	"config-help": "aiuto",
 	"config-help-tooltip": "fai clic per espandere",
