@@ -40,6 +40,8 @@ class LoadMonitor implements ILoadMonitor {
 	/** @var float Moving average ratio (e.g. 0.1 for 10% weight to new weight) */
 	private $movingAveRatio;
 
+	const VERSION = 1;
+
 	public function __construct(
 		ILoadBalancer $lb, BagOStuff $srvCache, BagOStuff $cache, array $options = []
 	) {
@@ -199,6 +201,7 @@ class LoadMonitor implements ILoadMonitor {
 		// Lag is per-server, not per-DB, so key on the master DB name
 		return $this->srvCache->makeGlobalKey(
 			'lag-times',
+			self::VERSION,
 			$this->parent->getServerName( $this->parent->getWriterIndex() )
 		);
 	}
