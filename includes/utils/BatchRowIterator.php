@@ -82,11 +82,11 @@ class BatchRowIterator implements RecursiveIterator {
 	 * @param string|array $table      The name or names of the table to read from
 	 * @param string|array $primaryKey The name or names of the primary key columns
 	 * @param integer      $batchSize  The number of rows to fetch per iteration
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 */
 	public function __construct( IDatabase $db, $table, $primaryKey, $batchSize ) {
 		if ( $batchSize < 1 ) {
-			throw new MWException( 'Batch size must be at least 1 row.' );
+			throw new InvalidArgumentException( 'Batch size must be at least 1 row.' );
 		}
 		$this->db = $db;
 		$this->table = $table;
@@ -97,7 +97,7 @@ class BatchRowIterator implements RecursiveIterator {
 	}
 
 	/**
-	 * @param array $condition Query conditions suitable for use with
+	 * @param array $conditions Query conditions suitable for use with
 	 *  IDatabase::select
 	 */
 	public function addConditions( array $conditions ) {
@@ -105,7 +105,7 @@ class BatchRowIterator implements RecursiveIterator {
 	}
 
 	/**
-	 * @param array $condition Query join conditions suitable for use
+	 * @param array $conditions Query join conditions suitable for use
 	 *  with IDatabase::select
 	 */
 	public function addJoinConditions( array $conditions ) {
