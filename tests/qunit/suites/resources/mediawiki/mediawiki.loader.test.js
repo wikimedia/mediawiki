@@ -664,7 +664,7 @@
 		} );
 	} );
 
-	QUnit.test( 'require() in debug mode', 1, function ( assert ) {
+	QUnit.test( 'require() in debug mode', function ( assert ) {
 		var path = mw.config.get( 'wgScriptPath' );
 		mw.loader.register( [
 			[ 'test.require.define', '0' ],
@@ -674,9 +674,15 @@
 		mw.loader.implement( 'test.require.define', [ QUnit.fixurl( path + '/tests/qunit/data/defineCallMwLoaderTestCallback.js' ) ] );
 
 		return mw.loader.using( 'test.require.callback' ).then( function ( require ) {
-			var exported = require( 'test.require.callback' );
-			assert.strictEqual( exported, 'Require worked.Define worked.',
-				'module.exports worked in debug mode' );
+			var cb = require( 'test.require.callback' );
+			assert.strictEqual( cb.immediate, 'Defined.', 'module.exports and require work in debug mode' );
+			// Must use try-catch because cb.later() will throw if require is undefined,
+			// which doesn't work well inside Deferred.then() when using jQuery 1.x with QUnit
+			try {
+				assert.strictEqual( cb.later(), 'Defined.', 'require works asynchrously in debug mode' );
+			} catch ( e ) {
+				assert.equal( null, String( e ), 'require works asynchrously in debug mode' );
+			}
 		}, function () {
 			assert.ok( false, 'Error callback fired while loader.using "test.require.callback" module' );
 		} );
