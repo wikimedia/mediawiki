@@ -1419,6 +1419,7 @@
 						// Don't grey out the label when the field is disabled,
 						// it makes it too hard to read and our "disabled"
 						// isn't really disabled.
+						widgetField.onFieldDisable( false );
 						widgetField.onFieldDisable = doNothing;
 
 						if ( Util.apiBool( pi.parameters[ i ].deprecated ) ) {
