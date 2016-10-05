@@ -945,7 +945,7 @@
 	"searchprofile-advanced-tooltip": "Buscar nos espacios de nomes personalizaos",
 	"search-result-size": "$1 ({{PLURAL:$2|1 pallabra|$2 pallabres}})",
 	"search-result-category-size": "{{PLURAL:$1|1 miembru|$1 miembros}} ({{PLURAL:$2|1 subcategoría|$2 subcategories}}, {{PLURAL:$3|1 ficheru|$3 ficheros}})",
-	"search-redirect": "(redireición de $1)",
+	"search-redirect": "(redireición dende $1)",
 	"search-section": "(seición $1)",
 	"search-category": "(categoría $1)",
 	"search-file-match": "(casa col conteníu del ficheru)",

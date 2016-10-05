@@ -65,7 +65,8 @@
 			"Dars",
 			"Mix Gerder",
 			"E.belykh",
-			"Visem"
+			"Visem",
+			"MMH"
 		]
 	},
 	"tog-underline": "Підкреслювання посилань:",
@@ -674,7 +675,7 @@
 	"italic_tip": "Курсив",
 	"link_sample": "Назва посилання",
 	"link_tip": "Внутрішнє посилання",
-	"extlink_sample": "назва посилання http://www.example.com",
+	"extlink_sample": "http://www.example.com назва посилання",
 	"extlink_tip": "Зовнішнє посилання (не забудьте про префікс http://)",
 	"headline_sample": "Текст заголовка",
 	"headline_tip": "Заголовок 2-го рівня",
@@ -3648,7 +3649,6 @@
 	"feedback-external-bug-report-button": "Повідомити про технічну проблему",
 	"feedback-dialog-title": "Надіслати відгук",
 	"feedback-dialog-intro": "Для надсилання відгуку Ви можете скористатись простою формою внизу. Ваш коментар буде залишений на сторінці «$1», разом із Вашим іменем користувача (або IP-адресою).",
-	"feedback-error-title": "Помилка",
 	"feedback-error1": "Помилка: Невідомий результаті API",
 	"feedback-error2": "Помилка: Збій редагувань",
 	"feedback-error3": "Помилка: Немає відповіді від API",
