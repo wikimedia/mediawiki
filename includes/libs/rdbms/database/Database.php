@@ -23,6 +23,7 @@
  * @file
  * @ingroup Database
  */
+use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 
