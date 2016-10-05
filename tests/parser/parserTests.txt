@@ -14730,8 +14730,10 @@ Simple category
 cat
 !! wikitext
 [[Category:MediaWiki User's Guide]]
-!! html
+!! html/php
 cat=MediaWiki_User's_Guide sort=
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Category:MediaWiki_User's_Guide" data-parsoid='{"stx":"simple","a":{"href":"./Category:MediaWiki_User&#39;s_Guide"},"sa":{"href":"Category:MediaWiki User&#39;s Guide"}}'/>
 !! end
 
 !! test
@@ -14749,8 +14751,10 @@ Category with different sort key
 cat
 !! wikitext
 [[Category:MediaWiki User's Guide|Foo]]
-!! html
+!! html/php
 cat=MediaWiki_User's_Guide sort=Foo
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Category:MediaWiki_User's_Guide#Foo" data-parsoid='{"stx":"piped","a":{"href":"./Category:MediaWiki_User&#39;s_Guide"},"sa":{"href":"Category:MediaWiki User&#39;s Guide"}}'/>
 !! end
 
 !! test
@@ -14759,8 +14763,10 @@ Category with identical sort key
 cat
 !! wikitext
 [[Category:MediaWiki User's Guide|MediaWiki User's Guide]]
-!! html
+!! html/php
 cat=MediaWiki_User's_Guide sort=MediaWiki User's Guide
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Category:MediaWiki_User's_Guide#MediaWiki%20User's%20Guide" data-parsoid='{"stx":"piped","a":{"href":"./Category:MediaWiki_User&#39;s_Guide"},"sa":{"href":"Category:MediaWiki User&#39;s Guide"}}'/>
 !! end
 
 !! test
@@ -14785,22 +14791,15 @@ pst
 [[Category:Foo (bar)|Foo]]
 !! end
 
-## We used to, but no longer wt2wt this test since the default serializer
-## will normalize all categories to serialize on their own line.
-## This wikitext usage is going to be fairly uncommon in production and
-## selser will take care of preserving formatting in those scenarios.
 !! test
 Category with link tail
 !! options
 cat
 pst
-parsoid=wt2html
 !! wikitext
 123[[Category:Foo]]456
 !! html/php
 123[[Category:Foo]]456
-!! html/parsoid
-<p>123<link rel="mw:PageProp/Category" href="Category:Foo"/>456</p>
 !! end
 
 !! test
@@ -19864,17 +19863,17 @@ language=sr
 </p>
 !! end
 
-
 !! test
 Simple category in language variants
 !! options
 language=sr cat
 !! wikitext
 [[Category:МедиаWики Усер'с Гуиде]]
-!! html
+!! html/php
 cat=МедиаWики_Усер'с_Гуиде sort=
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Категорија:МедиаWики_Усер'с_Гуиде" data-parsoid='{"stx":"simple","a":{"href":"./Категорија:МедиаWики_Усер&#39;с_Гуиде"},"sa":{"href":"Category:МедиаWики Усер&#39;с Гуиде"}}'/>
 !! end
-
 
 !! article
 Category:分类
@@ -24824,9 +24823,16 @@ Improperly nested inline or quotes tags with whitespace in between
 Encapsulate protected attributes from wt
 !! wikitext
 <div typeof="mw:placeholder stuff" data-mw="whoo" data-parsoid="weird" data-parsoid-other="no" about="time" rel="mw:true">foo</div>
+
+{| typeof="mw:placeholder stuff" data-mw="whoo" data-parsoid="weird" data-parsoid-other="no" about="time" rel="mw:true"
+| ok
+|}
 !! html/parsoid
-<body><div data-x-typeof="mw:placeholder stuff" data-x-data-mw="whoo" data-x-data-parsoid="weird" data-x-data-parsoid-other="no" data-x-about="time" data-x-rel="mw:true">foo</div>
-</body>
+<div data-x-typeof="mw:placeholder stuff" data-x-data-mw="whoo" data-x-data-parsoid="weird" data-x-data-parsoid-other="no" data-x-about="time" data-x-rel="mw:true">foo</div>
+
+<table data-x-typeof="mw:placeholder stuff" data-x-data-mw="whoo" data-x-data-parsoid="weird" data-x-data-parsoid-other="no" data-x-about="time" data-x-rel="mw:true">
+<tbody><tr><td data-parsoid='{"autoInsertedEnd":true}'> ok</td></tr>
+</tbody></table>
 !!end
 
 ## Currently the p-wrapper is fragile in how it adds / removes transformations.
