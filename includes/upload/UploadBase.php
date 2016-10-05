@@ -1440,7 +1440,11 @@ abstract class UploadBase {
 			'http://www.w3.org/tr/rec-rdf-syntax/',
 		];
 
-		if ( !in_array( $namespace, $validNamespaces ) ) {
+		// Inkscape mangles namespace definitions created by Adobe Illustrator.
+		// This is nasty but harmless. (T144827)
+		$isBuggyInkscape = preg_match( '/^&(#38;)*ns_[a-z_]+;$/', $namespace );
+
+		if ( !( $isBuggyInkscape || in_array( $namespace, $validNamespaces ) ) ) {
 			wfDebug( __METHOD__ . ": Non-svg namespace '$namespace' in uploaded file.\n" );
 			/** @todo Return a status object to a closure in XmlTypeCheck, for MW1.21+ */
 			$this->mSVGNSError = $namespace;
