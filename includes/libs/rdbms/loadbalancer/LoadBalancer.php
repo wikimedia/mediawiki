@@ -615,9 +615,12 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		$domain = $conn->getDomainID();
-		if ( $this->mConns['foreignUsed'][$serverIndex][$domain] !== $conn ) {
+		if ( !isset( $this->mConns['foreignUsed'][$serverIndex][$domain] ) ) {
 			throw new InvalidArgumentException( __METHOD__ .
-				": connection not found, has the connection been freed already?" );
+				": connection $serverIndex/$domain not found; it may have already been freed." );
+		} elseif ( $this->mConns['foreignUsed'][$serverIndex][$domain] !== $conn ) {
+			throw new InvalidArgumentException( __METHOD__ .
+				": connection $serverIndex/$domain mismatched; it may have already been freed." );
 		}
 		$conn->setLBInfo( 'foreignPoolRefCount', --$refCount );
 		if ( $refCount <= 0 ) {
