@@ -29,28 +29,24 @@
  * @ingroup FileRepo
  */
 class LocalRepo extends FileRepo {
-	/** @var array */
+	/** @var callable */
 	protected $fileFactory = [ 'LocalFile', 'newFromTitle' ];
-
-	/** @var array */
+	/** @var callable */
 	protected $fileFactoryKey = [ 'LocalFile', 'newFromKey' ];
-
-	/** @var array */
+	/** @var callable */
 	protected $fileFromRowFactory = [ 'LocalFile', 'newFromRow' ];
-
-	/** @var array */
+	/** @var callable */
 	protected $oldFileFromRowFactory = [ 'OldLocalFile', 'newFromRow' ];
-
-	/** @var array */
+	/** @var callable */
 	protected $oldFileFactory = [ 'OldLocalFile', 'newFromTitle' ];
-
-	/** @var array */
+	/** @var callable */
 	protected $oldFileFactoryKey = [ 'OldLocalFile', 'newFromKey' ];
 
 	function __construct( array $info = null ) {
 		parent::__construct( $info );
 
-		$this->hasSha1Storage = isset( $info['storageLayout'] ) && $info['storageLayout'] === 'sha1';
+		$this->hasSha1Storage = isset( $info['storageLayout'] )
+			&& $info['storageLayout'] === 'sha1';
 
 		if ( $this->hasSha1Storage() ) {
 			$this->backend = new FileBackendDBRepoWrapper( [
@@ -93,7 +89,7 @@ class LocalRepo extends FileRepo {
 	 *
 	 * @param array $storageKeys
 	 *
-	 * @return FileRepoStatus
+	 * @return Status
 	 */
 	function cleanupDeletedBatch( array $storageKeys ) {
 		if ( $this->hasSha1Storage() ) {
@@ -454,7 +450,7 @@ class LocalRepo extends FileRepo {
 
 	/**
 	 * Get a connection to the replica DB
-	 * @return Database
+	 * @return IDatabase
 	 */
 	function getSlaveDB() {
 		return wfGetDB( DB_REPLICA );
@@ -462,7 +458,7 @@ class LocalRepo extends FileRepo {
 
 	/**
 	 * Get a connection to the master DB
-	 * @return Database
+	 * @return IDatabase
 	 */
 	function getMasterDB() {
 		return wfGetDB( DB_MASTER );
@@ -562,7 +558,7 @@ class LocalRepo extends FileRepo {
 	 *
 	 * @param string $function
 	 * @param array $args
-	 * @return FileRepoStatus
+	 * @return Status
 	 */
 	protected function skipWriteOperationIfSha1( $function, array $args ) {
 		$this->assertWritableRepo(); // fail out if read-only
