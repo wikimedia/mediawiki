@@ -40,7 +40,7 @@ class LoadMonitor implements ILoadMonitor {
 	/** @var float Moving average ratio (e.g. 0.1 for 10% weight to new weight) */
 	private $movingAveRatio;
 
-	const VERSION = 1;
+	const VERSION = 1; // cache key version
 
 	public function __construct(
 		ILoadBalancer $lb, BagOStuff $srvCache, BagOStuff $cache, array $options = []
@@ -59,12 +59,17 @@ class LoadMonitor implements ILoadMonitor {
 		$this->replLogger = $logger;
 	}
 
-	public function scaleLoads( array &$weightByServer, $group = false, $domain = false ) {
+	public function scaleLoads( array &$weightByServer, $domain ) {
 		$serverIndexes = array_keys( $weightByServer );
 		$states = $this->getServerStates( $serverIndexes, $domain );
 		$coefficientsByServer = $states['weightScales'];
 		foreach ( $weightByServer as $i => $weight ) {
-			$weightByServer[$i] = $weight * $coefficientsByServer[$i];
+			if ( isset( $coefficientsByServer[$i] ) ) {
+				$weightByServer[$i] = $weight * $coefficientsByServer[$i];
+			} else { // server recently added to config?
+				$host = $this->parent->getServerName( $i );
+				$this->replLogger->error( __METHOD__ . ": host $host not in cache" );
+			}
 		}
 	}
 
@@ -75,15 +80,16 @@ class LoadMonitor implements ILoadMonitor {
 	}
 
 	protected function getServerStates( array $serverIndexes, $domain ) {
-		if ( count( $serverIndexes ) == 1 && reset( $serverIndexes ) == 0 ) {
+		$writerIndex = $this->parent->getWriterIndex();
+		if ( count( $serverIndexes ) == 1 && reset( $serverIndexes ) == $writerIndex ) {
 			# Single server only, just return zero without caching
 			return [
-				'lagTimes' => [ $this->parent->getWriterIndex() => 0 ],
-				'weightScales' => [ $this->parent->getWriterIndex() => 1 ]
+				'lagTimes' => [ $writerIndex => 0 ],
+				'weightScales' => [ $writerIndex => 1.0 ]
 			];
 		}
 
-		$key = $this->getCacheKey();
+		$key = $this->getCacheKey( $serverIndexes );
 		# Randomize TTLs to reduce stampedes (4.0 - 5.0 sec)
 		$ttl = mt_rand( 4e6, 5e6 ) / 1e6;
 		# Keep keys around longer as fallbacks
@@ -191,18 +197,14 @@ class LoadMonitor implements ILoadMonitor {
 		return $conn ? 1.0 : 0.0;
 	}
 
-	public function clearCaches() {
-		$key = $this->getCacheKey();
-		$this->srvCache->delete( $key );
-		$this->mainCache->delete( $key );
-	}
-
-	private function getCacheKey() {
+	private function getCacheKey( array $serverIndexes ) {
+		sort( $serverIndexes );
 		// Lag is per-server, not per-DB, so key on the master DB name
 		return $this->srvCache->makeGlobalKey(
 			'lag-times',
 			self::VERSION,
-			$this->parent->getServerName( $this->parent->getWriterIndex() )
+			$this->parent->getServerName( $this->parent->getWriterIndex() ),
+			implode( '-', $serverIndexes )
 		);
 	}
 }
