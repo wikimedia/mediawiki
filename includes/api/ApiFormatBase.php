@@ -231,6 +231,7 @@ abstract class ApiFormatBase extends ApiBase {
 							$out->getModuleScripts(),
 							$out->getModuleStyles()
 						) ) ),
+						'continue' => $this->getResult()->getResultData( 'continue' ),
 						'time' => round( $time * 1000 ),
 					],
 					false, FormatJson::ALL_OK
