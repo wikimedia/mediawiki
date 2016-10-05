@@ -23,6 +23,7 @@
  * @file
  * @ingroup Database
  */
+use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 
@@ -384,6 +385,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$p['errorLogger'] = function ( Exception $e ) {
 					trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_WARNING );
 				};
+			}
+
+			if ( $dbType === 'sqlite' ) {
+				$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+				$p['dbDirectory'] = $mainConfig->get( 'SQLiteDataDir' );
 			}
 
 			$conn = new $class( $p );
