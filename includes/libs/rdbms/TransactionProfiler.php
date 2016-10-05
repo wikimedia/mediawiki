@@ -295,13 +295,15 @@ class TransactionProfiler implements LoggerAwareInterface {
 			}
 		}
 		if ( $slow ) {
-			$dbs = implode( ', ', array_keys( $this->dbTrxHoldingLocks[$name]['conns'] ) );
-			$msg = "Sub-optimal transaction on DB(s) [{$dbs}]:\n";
+			$trace = '';
 			foreach ( $this->dbTrxMethodTimes[$name] as $i => $info ) {
 				list( $query, $sTime, $end ) = $info;
-				$msg .= sprintf( "%d\t%.6f\t%s\n", $i, ( $end - $sTime ), $query );
+				$trace .= sprintf( "%d\t%.6f\t%s\n", $i, ( $end - $sTime ), $query );
 			}
-			$this->logger->info( $msg );
+			$this->logger->info( "Sub-optimal transaction on DB(s) [{dbs}]: \n{trace}", [
+				'dbs' => implode( ', ', array_keys( $this->dbTrxHoldingLocks[$name]['conns'] ) ),
+				'trace' => $trace
+			] );
 		}
 		unset( $this->dbTrxHoldingLocks[$name] );
 		unset( $this->dbTrxMethodTimes[$name] );
