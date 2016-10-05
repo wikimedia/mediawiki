@@ -41,12 +41,12 @@ interface ILoadMonitor extends LoggerAwareInterface {
 	);
 
 	/**
-	 * Perform pre-connection load ratio adjustment.
-	 * @param int[] &$weightByServer Map of (server index => integer weight)
-	 * @param string|bool $group The selected query group. Default: false
-	 * @param string|bool $domain Default: false
+	 * Perform load ratio adjustment before deciding which server to use
+	 *
+	 * @param int[] &$weightByServer Map of (server index => float weight)
+	 * @param string|bool $domain
 	 */
-	public function scaleLoads( array &$weightByServer, $group = false, $domain = false );
+	public function scaleLoads( array &$weightByServer, $domain );
 
 	/**
 	 * Get an estimate of replication lag (in seconds) for each server
@@ -55,14 +55,7 @@ interface ILoadMonitor extends LoggerAwareInterface {
 	 *
 	 * @param integer[] $serverIndexes
 	 * @param string $domain
-	 *
 	 * @return array Map of (server index => float|int|bool)
 	 */
 	public function getLagTimes( array $serverIndexes, $domain );
-
-	/**
-	 * Clear any process and persistent cache of lag times
-	 * @since 1.27
-	 */
-	public function clearCaches();
 }
