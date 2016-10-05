@@ -1361,6 +1361,15 @@ class ApiMain extends ApiBase {
 					break;
 			}
 		}
+		if ( isset( $params['assertuser'] ) ) {
+			$assertUser = User::newFromName( $params['assertuser'], false );
+			if ( !$assertUser || !$this->getUser()->equals( $assertUser ) ) {
+				$this->dieUsage(
+					'Assertion that the user is "' . $params['assertuser'] . '" failed',
+					'assertnameduserfailed'
+				);
+			}
+		}
 	}
 
 	/**
@@ -1660,6 +1669,9 @@ class ApiMain extends ApiBase {
 			],
 			'assert' => [
 				ApiBase::PARAM_TYPE => [ 'user', 'bot' ]
+			],
+			'assertuser' => [
+				ApiBase::PARAM_TYPE => 'user',
 			],
 			'requestid' => null,
 			'servedby' => false,
