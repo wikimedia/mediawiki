@@ -190,7 +190,7 @@ class ObjectCache {
 				? $params['reportDupes']
 				: true;
 			// Do b/c logic for SqlBagOStuff
-			if ( is_subclass_of( $class, SqlBagOStuff::class ) ) {
+			if ( is_subclass_of( $class, SqlBagOStuff::class ) || $class == SqlBagOStuff::class ) {
 				if ( isset( $params['server'] ) && !isset( $params['servers'] ) ) {
 					$params['servers'] = [ $params['server'] ];
 					unset( $params['server'] );
