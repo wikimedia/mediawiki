@@ -398,6 +398,40 @@ class UploadBaseTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider provideDetectScriptInSvg
+	 */
+	public function testDetectScriptInSvg( $svg, $expected, $message ) {
+		// This only checks some weird cases, most tests are in testCheckSvgScriptCallback() above
+		$result = $this->upload->detectScriptInSvg( $svg );
+		$this->assertSame( $expected, $result, $message );
+	}
+
+	public static function provideDetectScriptInSvg() {
+		return [
+			[
+				"$IP/tests/phpunit/data/upload/buggynamespace-original.svg",
+				false,
+				'SVG with a weird but valid namespace definition created by Adobe Illustrator'
+			],
+			[
+				"$IP/tests/phpunit/data/upload/buggynamespace-okay.svg",
+				false,
+				'SVG with a namespace definition created by Adobe Illustrator and mangled by Inkscape'
+			],
+			[
+				"$IP/tests/phpunit/data/upload/buggynamespace-okay2.svg",
+				false,
+				'SVG with a namespace definition created by Adobe Illustrator and mangled by Inkscape (twice)'
+			],
+			[
+				"$IP/tests/phpunit/data/upload/buggynamespace-bad.svg",
+				[ 'uploadscriptednamespace', 'i' ],
+				'SVG with a namespace definition using an undefined entity'
+			],
+		];
+	}
+
+	/**
 	 * @dataProvider provideCheckXMLEncodingMissmatch
 	 */
 	public function testCheckXMLEncodingMissmatch( $fileContents, $evil ) {
