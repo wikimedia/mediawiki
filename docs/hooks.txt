@@ -2019,9 +2019,10 @@ $user: $wgUser
 $request: $wgRequest
 $mediaWiki: The $mediawiki object
 
-'MediaWikiServices': Override services in the default MediaWikiServices instance.
-Extensions may use this to define, replace, or wrap existing services.
-However, the preferred way to define a new service is the $wgServiceWiringFiles array.
+'MediaWikiServices': Called when a global MediaWikiServices instance is
+initialized. Extensions may use this to define, replace, or wrap services.
+However, the preferred way to define a new service is
+the $wgServiceWiringFiles array.
 $services: MediaWikiServices
 
 'MessageCache::get': When fetching a message. Can be used to override the key

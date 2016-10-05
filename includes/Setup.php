@@ -23,6 +23,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * This file is not a valid entry point, perform no further processing unless
@@ -292,25 +293,6 @@ if ( $wgSkipSkin ) {
 	$wgSkipSkins[] = $wgSkipSkin;
 }
 
-// Register skins
-// Use a closure to avoid leaking into global state
-call_user_func( function () use ( $wgValidSkinNames ) {
-	$factory = SkinFactory::getDefaultInstance();
-	foreach ( $wgValidSkinNames as $name => $skin ) {
-		$factory->register( $name, $skin, function () use ( $name, $skin ) {
-			$class = "Skin$skin";
-			return new $class( $name );
-		} );
-	}
-	// Register a hidden "fallback" skin
-	$factory->register( 'fallback', 'Fallback', function () {
-		return new SkinFallback;
-	} );
-	// Register a hidden skin for api output
-	$factory->register( 'apioutput', 'ApiOutput', function () {
-		return new SkinApi;
-	} );
-} );
 $wgSkipSkins[] = 'fallback';
 $wgSkipSkins[] = 'apioutput';
 
@@ -518,6 +500,14 @@ if ( $wgDebugToolbar && !$wgCommandLineMode ) {
 if ( !class_exists( 'AutoLoader' ) ) {
 	require_once "$IP/includes/AutoLoader.php";
 }
+
+// Reset the global service locator, so any services that have already been created will be
+// re-created while taking into account any custom settings and extensions.
+MediaWikiServices::resetGlobalInstance( new GlobalVarConfig() );
+
+// Define a constant that indicates that the bootstrapping of the service locator
+// is complete.
+define( 'MW_SERVICE_BOOTSTRAP_COMPLETE', 1 );
 
 // Install a header callback to prevent caching of responses with cookies (T127993)
 if ( !$wgCommandLineMode ) {

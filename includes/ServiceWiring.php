@@ -40,9 +40,25 @@
 use MediaWiki\MediaWikiServices;
 
 return [
+	'DBLoadBalancerFactory' => function( MediaWikiServices $services ) {
+		$config = $services->getMainConfig()->get( 'LBFactoryConf' );
+
+		$class = LBFactory::getLBFactoryClass( $config );
+		if ( !isset( $config['readOnlyReason'] ) ) {
+			// TODO: replace the global wfConfiguredReadOnlyReason() with a service.
+			$config['readOnlyReason'] = wfConfiguredReadOnlyReason();
+		}
+
+		return new $class( $config );
+	},
+
+	'DBLoadBalancer' => function( MediaWikiServices $services ) {
+		// just return the default LB from the DBLoadBalancerFactory service
+		return $services->getDBLoadBalancerFactory()->getMainLB();
+	},
+
 	'SiteStore' => function( MediaWikiServices $services ) {
-		$loadBalancer = wfGetLB(); // TODO: use LB from MediaWikiServices
-		$rawSiteStore = new DBSiteStore( $loadBalancer );
+		$rawSiteStore = new DBSiteStore( $services->getDBLoadBalancer() );
 
 		// TODO: replace wfGetCache with a CacheFactory service.
 		// TODO: replace wfIsHHVM with a capabilities service.
@@ -92,7 +108,26 @@ return [
 	},
 
 	'SkinFactory' => function( MediaWikiServices $services ) {
-		return new SkinFactory();
+		$factory = new SkinFactory();
+
+		$names = $services->getMainConfig()->get( 'ValidSkinNames' );
+
+		foreach ( $names as $name => $skin ) {
+			$factory->register( $name, $skin, function () use ( $name, $skin ) {
+				$class = "Skin$skin";
+				return new $class( $name );
+			} );
+		}
+		// Register a hidden "fallback" skin
+		$factory->register( 'fallback', 'Fallback', function () {
+			return new SkinFallback;
+		} );
+		// Register a hidden skin for api output
+		$factory->register( 'apioutput', 'ApiOutput', function () {
+			return new SkinApi;
+		} );
+
+		return $factory;
 	},
 
 	///////////////////////////////////////////////////////////////////////////
