@@ -623,9 +623,11 @@ class Article implements Page {
 
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
-					} elseif ( !ContentHandler::runLegacyHooks( 'ArticleViewCustom',
-							[ $this->fetchContentObject(), $this->getTitle(), $outputPage ] ) ) {
-
+					} elseif ( !ContentHandler::runLegacyHooks(
+						'ArticleViewCustom',
+						[ $this->fetchContentObject(), $this->getTitle(), $outputPage ],
+						'1.21'
+					) ) {
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
 					}
