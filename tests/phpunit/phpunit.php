@@ -161,6 +161,10 @@ class PHPUnitMaintClass extends Maintenance {
 		// may break testing against floating point values
 		// treated with PHP's serialize()
 		ini_set( 'serialize_precision', 17 );
+
+		// TODO: we should call MediaWikiTestCase::prepareServices( new GlobalVarConfig() ) here.
+		// But PHPUnit may not be loaded yet, so we have to wait until just
+		// before PHPUnit_TextUI_Command::main() is executed at the end of this file.
 	}
 
 	public function execute() {
@@ -258,5 +262,10 @@ the containing component and check the spelling of the class name.\n";
 echo defined( 'HHVM_VERSION' ) ?
 	'Using HHVM ' . HHVM_VERSION . ' (' . PHP_VERSION . ")\n" :
 	'Using PHP ' . PHP_VERSION . "\n";
+
+// Prepare global services for unit tests.
+// FIXME: this should be done in the finalSetup() method,
+// but PHPUnit may not have been loaded at that point.
+MediaWikiTestCase::prepareServices( new GlobalVarConfig() );
 
 $wgPhpUnitClass::main();
