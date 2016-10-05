@@ -59,6 +59,29 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	/**
+	 * Tests the assertuser= functionality
+	 *
+	 * @covers ApiMain::checkAsserts
+	 */
+	public function testAssertUser() {
+		$user = $this->getTestUser()->getUser();
+		$this->doApiRequest( [
+			'action' => 'query',
+			'assertuser' => $user->getName(),
+		], null, null, $user );
+
+		try {
+			$this->doApiRequest( [
+				'action' => 'query',
+				'assertuser' => $user->getName() . 'X',
+			], null, null, $user );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( UsageException $e ) {
+			$this->assertEquals( $e->getCodeString(), 'assertnameduserfailed' );
+		}
+	}
+
+	/**
 	 * Test if all classes in the main module manager exists
 	 */
 	public function testClassNamesInModuleManager() {

@@ -22,6 +22,7 @@
 	"apihelp-main-param-smaxage": "{{doc-apihelp-param|main|smaxage}}",
 	"apihelp-main-param-maxage": "{{doc-apihelp-param|main|maxage}}",
 	"apihelp-main-param-assert": "{{doc-apihelp-param|main|assert}}",
+	"apihelp-main-param-assertuser": "{{doc-apihelp-param|main|assertuser}}",
 	"apihelp-main-param-requestid": "{{doc-apihelp-param|main|requestid}}",
 	"apihelp-main-param-servedby": "{{doc-apihelp-param|main|servedby}}",
 	"apihelp-main-param-curtimestamp": "{{doc-apihelp-param|main|curtimestamp}}",
