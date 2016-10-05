@@ -3,6 +3,7 @@
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Linker\LinkTarget;
 use Wikimedia\Assert\Assert;
+use Wikimedia\ScopedCallback;
 
 /**
  * Storage layer class for WatchedItems.
