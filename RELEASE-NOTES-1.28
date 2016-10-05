@@ -120,6 +120,7 @@ production.
   interact with ApiParse and ApiExpandTemplates.
 * (T139565) SECURITY: API: Generate head items in the context of the given title
 * (T115333) SECURITY: Check read permission when loading page content in ApiParse
+* ApiBase::getResultData() was removed (deprecated since 1.25)
 * ApiBase::makeHelpArrayToString() was removed (deprecated since 1.25)
 * ApiBase::makeHelpMsgParameters() was removed (deprecated since 1.25)
 * ApiBase::makeHelpMsg() was removed (deprecated since 1.25)
