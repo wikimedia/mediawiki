@@ -182,6 +182,10 @@ class SqlBagOStuff extends BagOStuff {
 				$this->logger->debug( __CLASS__ . ": connecting to $host" );
 				// Use a blank trx profiler to ignore expections as this is a cache
 				$info['trxProfiler'] = new TransactionProfiler();
+				if ( $type === 'sqlite' ) {
+					$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+					$info['dbDirectory'] = $mainConfig->get( 'SQLiteDataDir' );
+				}
 				$db = Database::factory( $type, $info );
 				$db->clearFlag( DBO_TRX );
 			} else {
