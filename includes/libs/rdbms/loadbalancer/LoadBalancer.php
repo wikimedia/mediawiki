@@ -301,7 +301,7 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		# Scale the configured load ratios according to the dynamic load if supported
-		$this->getLoadMonitor()->scaleLoads( $nonErrorLoads, $group, $domain );
+		$this->getLoadMonitor()->scaleLoads( $nonErrorLoads, $domain );
 
 		$laggedReplicaMode = false;
 
@@ -1469,10 +1469,6 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		return $ok;
-	}
-
-	public function clearLagTimeCache() {
-		$this->getLoadMonitor()->clearCaches();
 	}
 
 	public function setTransactionListener( $name, callable $callback = null ) {

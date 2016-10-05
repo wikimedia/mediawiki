@@ -30,7 +30,7 @@ class LoadMonitorNull implements ILoadMonitor {
 	public function setLogger( LoggerInterface $logger ) {
 	}
 
-	public function scaleLoads( array &$loads, $group = false, $domain = false ) {
+	public function scaleLoads( array &$loads, $domain = false ) {
 
 	}
 
