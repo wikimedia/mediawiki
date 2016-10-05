@@ -1456,7 +1456,7 @@
 	"upload-form-label-infoform-categories": "Категориялар",
 	"upload-form-label-infoform-date": "Дата",
 	"upload-form-label-own-work-message-generic-local": "Тейәлгән файл  {{SITENAME}} лицензия сәйәсәтенә ярашлы икәнен раҫлайым.",
-	"upload-form-label-not-own-work-message-generic-local": "{{SITENAME}} ҡағиҙәләренә ярашлы файлды тейәй алмаһағыҙ, диалог теҙерәһен ябығыҙ ҙа тейәү !с!н башҡа ысулды һайлағыҙ.",
+	"upload-form-label-not-own-work-message-generic-local": "{{SITENAME}} ҡағиҙәләренә ярашлы файлды тейәй алмаһағыҙ, диалог тәҙрәһен ябығыҙ ҙа тейәү өсөн башҡа ысулды һайлағыҙ.",
 	"upload-form-label-not-own-work-local-generic-local": "Ошонда эшләп ҡарағыҙ[[Special:Upload|килешеү буйынса тейәү бите]].",
 	"upload-form-label-own-work-message-generic-foreign": "Был файлды дөйөм репозиторийға күсереүемде аңлайым. Быны ҡулланыусы килешеүе һәм лицензия сәйәсәтенә ярашлы эшләүемде раҫлайым.",
 	"upload-form-label-not-own-work-message-generic-foreign": "{{SITENAME}} ҡағиҙәләренә ярашлы файлды тейәй алмаһағыҙ, диалог теҙерәһен ябығыҙ ҙа тейәү өсөн башҡа ысулды һайлағыҙ.",

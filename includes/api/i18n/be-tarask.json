@@ -53,6 +53,7 @@
 	"apihelp-createaccount-param-language": "Моўны код, які будзе выстаўлены ўдзельніку па змоўчаньні (неабавязкова, па змоўчаньні мова зьместу).",
 	"apihelp-createaccount-example-pass": "Стварэньне ўдзельніка <kbd>testuser</kbd> з паролем <kbd>test123</kbd>.",
 	"apihelp-createaccount-example-mail": "Стварэньне ўдзельніка <kbd>testmailuser</kbd> і адпраўка выпадковага паролю электроннай поштай.",
+	"apihelp-edit-param-text": "Зьмест старонкі.",
 	"apihelp-query+transcludedin-paramvalue-prop-title": "Назва кожнай старонкі.",
 	"apihelp-query+transcludedin-param-limit": "Колькі вяртаць.",
 	"apihelp-query+userinfo-paramvalue-prop-acceptlang": "Дублюе загаловак <code>Accept-Language</code>, адасланы кліентам у структураваным фармаце."
