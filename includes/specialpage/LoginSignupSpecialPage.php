@@ -1070,7 +1070,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 		if ( !$this->isSignup() && $this->showExtraInformation() ) {
 			$passwordReset = new PasswordReset( $this->getConfig(), AuthManager::singleton() );
-			if ( $passwordReset->isAllowed( $this->getUser() ) ) {
+			if ( $passwordReset->isAllowed( $this->getUser() )->isGood() ) {
 				$fieldDefinitions['passwordReset'] = [
 					'type' => 'info',
 					'raw' => true,
