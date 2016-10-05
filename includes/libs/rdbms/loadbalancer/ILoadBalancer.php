@@ -518,13 +518,6 @@ interface ILoadBalancer {
 	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = null );
 
 	/**
-	 * Clear the cache for slag lag delay times
-	 *
-	 * This is only used for testing
-	 */
-	public function clearLagTimeCache();
-
-	/**
 	 * Set a callback via IDatabase::setTransactionListener() on
 	 * all current and future master connections of this load balancer
 	 *
