@@ -283,7 +283,7 @@ class JobRunner implements LoggerAwareInterface {
 		}
 		// Always attempt to call teardown() even if Job throws exception.
 		try {
-			$job->teardown();
+			$job->teardown( $status );
 		} catch ( Exception $e ) {
 			MWExceptionHandler::logException( $e );
 		}
