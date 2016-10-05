@@ -114,6 +114,8 @@ production.
   indicated by a 'fromencoded' boolean alongside the existing 'from' parameter.
 * (T28680) action=paraminfo can now return info about all submodules of a
   module without listing them all explicitly.
+* (T146770) It is now possible to assert that the current user is a specific
+  named user, using the 'assertuser' parameter.
 
 === Action API internal changes in 1.28 ===
 * Added a new hook, 'ApiMakeParserOptions', to allow extensions to better
