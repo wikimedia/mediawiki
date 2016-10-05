@@ -89,8 +89,8 @@ class CachingSiteStore implements SiteStore {
 	 */
 	private function getCacheKey() {
 		if ( $this->cacheKey === null ) {
-			$type = 'SiteList#' . SiteList::getSerialVersionId();
-			$this->cacheKey = wfMemcKey( "sites/$type" );
+			$this->cacheKey = $this->cache->makeGlobalKey(
+				'SiteList', SiteList::getSerialVersionId() );
 		}
 
 		return $this->cacheKey;
