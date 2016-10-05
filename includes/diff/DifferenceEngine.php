@@ -620,7 +620,11 @@ class DifferenceEngine extends ContextSource {
 				}
 			} elseif ( !Hooks::run( 'ArticleContentViewCustom', [ $this->mNewContent, $this->mNewPage, $out ] ) ) {
 				// Handled by extension
-			} elseif ( !ContentHandler::runLegacyHooks( 'ArticleViewCustom', [ $this->mNewContent, $this->mNewPage, $out ] ) ) {
+			} elseif ( !ContentHandler::runLegacyHooks(
+				'ArticleViewCustom',
+				[ $this->mNewContent, $this->mNewPage, $out ],
+				'1.25'
+			) ) {
 				// NOTE: deprecated hook, B/C only
 				// Handled by extension
 			} else {

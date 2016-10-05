@@ -3416,7 +3416,7 @@ HTML
 		}
 
 		if ( $newContent ) {
-			ContentHandler::runLegacyHooks( 'EditPageGetDiffText', [ $this, &$newContent ] );
+			ContentHandler::runLegacyHooks( 'EditPageGetDiffText', [ $this, &$newContent ], '1.25' );
 			Hooks::run( 'EditPageGetDiffContent', [ $this, &$newContent ] );
 
 			$popts = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
@@ -3829,7 +3829,7 @@ HTML
 			}
 
 			$hook_args = [ $this, &$content ];
-			ContentHandler::runLegacyHooks( 'EditPageGetPreviewText', $hook_args );
+			ContentHandler::runLegacyHooks( 'EditPageGetPreviewText', $hook_args, '1.25' );
 			Hooks::run( 'EditPageGetPreviewContent', $hook_args );
 
 			$parserResult = $this->doPreviewParse( $content );
