@@ -530,3 +530,7 @@
 	path = extensions/WikiTextLoggedInOut
 	url = https://github.com/wikimedia/mediawiki-extensions-WikiTextLoggedInOut
 	branch = REL1_27
+[submodule "skins/Refreshed"]
+	path = skins/Refreshed
+	url = https://github.com/wikimedia/mediawiki-skins-Refreshed
+	branch = REL1_27
