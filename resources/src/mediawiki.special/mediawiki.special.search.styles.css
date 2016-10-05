@@ -31,7 +31,7 @@
 }
 .searchresult {
 	font-size: 95%;
-	width: 38em;
+	max-width: 38em;
 }
 .mw-search-results {
 	margin-left: 0;
