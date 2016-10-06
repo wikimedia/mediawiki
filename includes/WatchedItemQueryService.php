@@ -55,19 +55,11 @@ class WatchedItemQueryService {
 	}
 
 	/**
-	 * @return Database
+	 * @return IDatabase
 	 * @throws MWException
 	 */
 	private function getConnection() {
-		return $this->loadBalancer->getConnection( DB_REPLICA, [ 'watchlist' ] );
-	}
-
-	/**
-	 * @param Database $connection
-	 * @throws MWException
-	 */
-	private function reuseConnection( Database $connection ) {
-		$this->loadBalancer->reuseConnection( $connection );
+		return $this->loadBalancer->getConnectionRef( DB_REPLICA, [ 'watchlist' ] );
 	}
 
 	/**
@@ -181,8 +173,6 @@ class WatchedItemQueryService {
 			$joinConds
 		);
 
-		$this->reuseConnection( $db );
-
 		$items = [];
 		foreach ( $res as $row ) {
 			$items[] = [
@@ -257,8 +247,6 @@ class WatchedItemQueryService {
 			__METHOD__,
 			$dbOptions
 		);
-
-		$this->reuseConnection( $db );
 
 		$watchedItems = [];
 		foreach ( $res as $row ) {
