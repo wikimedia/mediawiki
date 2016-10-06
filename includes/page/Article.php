@@ -800,7 +800,8 @@ class Article implements Page {
 			// Give hooks a chance to customise the output
 			if ( ContentHandler::runLegacyHooks(
 				'ShowRawCssJs',
-				[ $this->mContentObject, $this->getTitle(), $outputPage ] )
+				[ $this->mContentObject, $this->getTitle(), $outputPage ] ),
+				'1.24'
 			) {
 				// If no legacy hooks ran, display the content of the parser output, including RL modules,
 				// but excluding metadata like categories and language links
