@@ -1396,6 +1396,11 @@ class Revision implements IDBAccessObject {
 	public function insertOn( $dbw ) {
 		global $wgDefaultExternalStore, $wgContentHandlerUseDB;
 
+		// We're inserting a new revision, so we have to use master anyway.
+		// If it's a null revision, it may have references to rows that
+		// are not in the replica yet (the text row).
+		$this->mQueryFlags |= self::READ_LATEST;
+
 		// Not allowed to have rev_page equal to 0, false, etc.
 		if ( !$this->mPage ) {
 			$title = $this->getTitle();
