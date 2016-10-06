@@ -4312,6 +4312,8 @@ class Title implements LinkTarget {
 			case NS_MEDIAWIKI:
 				// known system message
 				return $this->hasSourceText() !== false;
+			case NS_ISBN:
+				return SpecialBookSources::isValidISBN( $this->getDBkey() );
 			default:
 				return false;
 		}
