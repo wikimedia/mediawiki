@@ -1805,7 +1805,7 @@ abstract class File implements IDBAccessObject {
 	 * @param int $flags A bitwise combination of:
 	 *   File::DELETE_SOURCE    Delete the source file, i.e. move rather than copy
 	 * @param array $options Optional additional parameters
-	 * @return FileRepoStatus On success, the value member contains the
+	 * @return Status On success, the value member contains the
 	 *   archive name, or an empty string if it was a new file.
 	 *
 	 * STUB
@@ -1905,7 +1905,7 @@ abstract class File implements IDBAccessObject {
 	 * and logging are caller's responsibility
 	 *
 	 * @param Title $target New file name
-	 * @return FileRepoStatus
+	 * @return Status
 	 */
 	function move( $target ) {
 		$this->readOnlyError();
@@ -1922,7 +1922,7 @@ abstract class File implements IDBAccessObject {
 	 * @param string $reason
 	 * @param bool $suppress Hide content from sysops?
 	 * @param User|null $user
-	 * @return FileRepoStatus
+	 * @return Status
 	 * STUB
 	 * Overridden by LocalFile
 	 */

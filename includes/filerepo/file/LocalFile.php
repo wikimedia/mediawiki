@@ -1160,7 +1160,7 @@ class LocalFile extends File {
 	 * @param User|null $user User object or null to use $wgUser
 	 * @param string[] $tags Change tags to add to the log entry and page revision.
 	 *   (This doesn't check $user's permissions.)
-	 * @return FileRepoStatus On success, the value member contains the
+	 * @return Status On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
 	function upload( $src, $comment, $pageText, $flags = 0, $props = false,
@@ -1582,7 +1582,7 @@ class LocalFile extends File {
 	 * @param int $flags A bitwise combination of:
 	 *     File::DELETE_SOURCE    Delete the source file, i.e. move rather than copy
 	 * @param array $options Optional additional parameters
-	 * @return FileRepoStatus On success, the value member contains the
+	 * @return Status On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
 	function publish( $src, $flags = 0, array $options = [] ) {
@@ -1601,7 +1601,7 @@ class LocalFile extends File {
 	 * @param int $flags A bitwise combination of:
 	 *     File::DELETE_SOURCE    Delete the source file, i.e. move rather than copy
 	 * @param array $options Optional additional parameters
-	 * @return FileRepoStatus On success, the value member contains the
+	 * @return Status On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
 	function publishTo( $src, $dstRel, $flags = 0, array $options = [] ) {
@@ -1663,7 +1663,7 @@ class LocalFile extends File {
 	 * and logging are caller's responsibility
 	 *
 	 * @param Title $target New file name
-	 * @return FileRepoStatus
+	 * @return Status
 	 */
 	function move( $target ) {
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
@@ -1722,7 +1722,7 @@ class LocalFile extends File {
 	 * @param string $reason
 	 * @param bool $suppress
 	 * @param User|null $user
-	 * @return FileRepoStatus
+	 * @return Status
 	 */
 	function delete( $reason, $suppress = false, $user = null ) {
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
@@ -1780,7 +1780,7 @@ class LocalFile extends File {
 	 * @param bool $suppress
 	 * @param User|null $user
 	 * @throws MWException Exception on database or file store failure
-	 * @return FileRepoStatus
+	 * @return Status
 	 */
 	function deleteOld( $archiveName, $reason, $suppress = false, $user = null ) {
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
@@ -1816,7 +1816,7 @@ class LocalFile extends File {
 	 * @param array $versions Set of record ids of deleted items to restore,
 	 *   or empty to restore all revisions.
 	 * @param bool $unsuppress
-	 * @return FileRepoStatus
+	 * @return Status
 	 */
 	function restore( $versions = [], $unsuppress = false ) {
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
@@ -2346,7 +2346,7 @@ class LocalFileDeleteBatch {
 
 	/**
 	 * Run the transaction
-	 * @return FileRepoStatus
+	 * @return Status
 	 */
 	public function execute() {
 		$repo = $this->file->getRepo();
@@ -2494,7 +2494,7 @@ class LocalFileRestoreBatch {
 	 * rows and there's no need to keep the image row locked while it's acquiring those locks
 	 * The caller may have its own transaction open.
 	 * So we save the batch and let the caller call cleanup()
-	 * @return FileRepoStatus
+	 * @return Status
 	 */
 	public function execute() {
 		/** @var Language */
@@ -2795,7 +2795,7 @@ class LocalFileRestoreBatch {
 	/**
 	 * Delete unused files in the deleted zone.
 	 * This should be called from outside the transaction in which execute() was called.
-	 * @return FileRepoStatus
+	 * @return Status
 	 */
 	public function cleanup() {
 		if ( !$this->cleanupBatch ) {
@@ -2930,7 +2930,7 @@ class LocalFileMoveBatch {
 
 	/**
 	 * Perform the move.
-	 * @return FileRepoStatus
+	 * @return Status
 	 */
 	public function execute() {
 		$repo = $this->file->repo;
@@ -3002,7 +3002,7 @@ class LocalFileMoveBatch {
 	 * Verify the database updates and return a new FileRepoStatus indicating how
 	 * many rows would be updated.
 	 *
-	 * @return FileRepoStatus
+	 * @return Status
 	 */
 	protected function verifyDBUpdates() {
 		$repo = $this->file->repo;
