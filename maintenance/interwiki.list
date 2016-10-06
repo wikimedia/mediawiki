@@ -34,8 +34,9 @@ mozillawiki|http://wiki.mozilla.org/$1|0|https://wiki.mozilla.org/api.php
 mw|https://www.mediawiki.org/wiki/$1|0|https://www.mediawiki.org/w/api.php
 oeis|http://oeis.org/$1|0|
 openwiki|http://openwiki.com/ow.asp?$1|0|
+pmid|https://www.ncbi.nlm.nih.gov/pubmed/$1?dopt=Abstract|0|
 pythoninfo|http://wiki.python.org/moin/$1|0|
-rfc|http://www.rfc-editor.org/rfc/rfc$1.txt|0|
+rfc|https//tools.ietf.org/html/rfc$1|0|
 s23wiki|http://s23.org/wiki/$1|0|http://s23.org/w/api.php
 seattlewireless|http://seattlewireless.net/$1|0|
 senseislibrary|http://senseis.xmp.net/?$1|0|
