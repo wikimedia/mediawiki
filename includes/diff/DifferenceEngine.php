@@ -609,7 +609,7 @@ class DifferenceEngine extends ContextSource {
 				// This needs to be synchronised with Article::showCssOrJsPage(), which sucks
 				// Give hooks a chance to customise the output
 				// @todo standardize this crap into one function
-				if ( ContentHandler::runLegacyHooks( 'ShowRawCssJs', [ $this->mNewContent, $this->mNewPage, $out ] ) ) {
+				if ( ContentHandler::runLegacyHooks( 'ShowRawCssJs', [ $this->mNewContent, $this->mNewPage, $out ], '1.24' ) ) {
 					// NOTE: deprecated hook, B/C only
 					// use the content object's own rendering
 					$cnt = $this->mNewRev->getContent();
