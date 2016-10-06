@@ -614,6 +614,10 @@ class LoadBalancer implements ILoadBalancer {
 			return;
 		}
 
+		if ( $this->disabled ) {
+			return; // DBConnRef handle probably survived longer than the LoadBalancer
+		}
+
 		$domain = $conn->getDomainID();
 		if ( !isset( $this->mConns['foreignUsed'][$serverIndex][$domain] ) ) {
 			throw new InvalidArgumentException( __METHOD__ .
@@ -1533,6 +1537,6 @@ class LoadBalancer implements ILoadBalancer {
 
 	function __destruct() {
 		// Avoid connection leaks for sanity
-		$this->closeAll();
+		$this->disable();
 	}
 }
