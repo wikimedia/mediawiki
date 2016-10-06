@@ -105,10 +105,9 @@ class LoadBalancer implements ILoadBalancer {
 
 	/** @var integer Warn when this many connection are held */
 	const CONN_HELD_WARN_THRESHOLD = 10;
+
 	/** @var integer Default 'max lag' when unspecified */
 	const MAX_LAG_DEFAULT = 10;
-	/** @var integer Max time to wait for a replica DB to catch up (e.g. ChronologyProtector) */
-	const POS_WAIT_TIMEOUT = 10;
 	/** @var integer Seconds to cache master server read-only status */
 	const TTL_CACHE_READONLY = 5;
 
@@ -130,9 +129,7 @@ class LoadBalancer implements ILoadBalancer {
 			$this->localDomainIdAlias = $this->localDomain->getDatabase();
 		}
 
-		$this->mWaitTimeout = isset( $params['waitTimeout'] )
-			? $params['waitTimeout']
-			: self::POS_WAIT_TIMEOUT;
+		$this->mWaitTimeout = isset( $params['waitTimeout'] ) ? $params['waitTimeout'] : 10;
 
 		$this->mReadIndex = -1;
 		$this->mConns = [
@@ -477,7 +474,7 @@ class LoadBalancer implements ILoadBalancer {
 
 				return false;
 			} else {
-				$conn = $this->openConnection( $index, '' );
+				$conn = $this->openConnection( $index, self::DOMAIN_ANY );
 				if ( !$conn ) {
 					$this->replLogger->warning( __METHOD__ . ": failed to connect to $server" );
 
@@ -1455,7 +1452,7 @@ class LoadBalancer implements ILoadBalancer {
 			if ( $masterConn ) {
 				$pos = $masterConn->getMasterPos();
 			} else {
-				$masterConn = $this->openConnection( $this->getWriterIndex(), '' );
+				$masterConn = $this->openConnection( $this->getWriterIndex(), self::DOMAIN_ANY );
 				$pos = $masterConn->getMasterPos();
 				$this->closeConnection( $masterConn );
 			}

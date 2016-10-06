@@ -78,6 +78,9 @@ interface ILoadBalancer {
 	/** @var integer Request a master DB connection */
 	const DB_MASTER = -2;
 
+	/** @var string Domain specifier when no specific database needs to be selected */
+	const DOMAIN_ANY = '';
+
 	/**
 	 * Construct a manager of IDatabase connection objects
 	 *
