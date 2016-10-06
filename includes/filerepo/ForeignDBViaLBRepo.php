@@ -59,23 +59,22 @@ class ForeignDBViaLBRepo extends LocalRepo {
 	 * @return IDatabase
 	 */
 	function getMasterDB() {
-		return wfGetDB( DB_MASTER, [], $this->wiki );
+		return wfGetLB( $this->wiki )->getConnectionRef( DB_MASTER, [], $this->wiki );
 	}
 
 	/**
 	 * @return IDatabase
 	 */
 	function getSlaveDB() {
-		return wfGetDB( DB_REPLICA, [], $this->wiki );
+		return wfGetLB( $this->wiki )->getConnectionRef( DB_REPLICA, [], $this->wiki );
 	}
 
 	/**
 	 * @return Closure
 	 */
 	protected function getDBFactory() {
-		$wiki = $this->wiki;
-		return function( $index ) use ( $wiki ) {
-			return wfGetDB( $index, [], $wiki );
+		return function( $index ) {
+			return wfGetLB( $this->wiki )->getConnectionRef( $index, [], $this->wiki );
 		};
 	}
 
