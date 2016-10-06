@@ -1450,10 +1450,15 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		if ( !$pos ) {
-			// Get the current master position
-			$dbw = $this->getConnection( self::DB_MASTER );
-			$pos = $dbw->getMasterPos();
-			$this->reuseConnection( $dbw );
+			// Get the current master position, opening a connection if needed
+			$masterConn = $this->getAnyOpenConnection( $this->getWriterIndex() );
+			if ( $masterConn ) {
+				$pos = $masterConn->getMasterPos();
+			} else {
+				$masterConn = $this->openConnection( $this->getWriterIndex(), '' );
+				$pos = $masterConn->getMasterPos();
+				$this->closeConnection( $masterConn );
+			}
 		}
 
 		if ( $pos instanceof DBMasterPos ) {
