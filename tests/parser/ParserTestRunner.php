@@ -425,7 +425,7 @@ class ParserTestRunner {
 	 * @param ScopedCallback|null A ScopedCallback to consume
 	 * @return ScopedCallback
 	 */
-	protected function createTeardownObject( $teardown, $nextTeardown ) {
+	protected function createTeardownObject( $teardown, $nextTeardown = null ) {
 		return new ScopedCallback( function() use ( $teardown, $nextTeardown ) {
 			// Schedule teardown snippets in reverse order
 			$teardown = array_reverse( $teardown );
@@ -1502,7 +1502,14 @@ class ParserTestRunner {
 			throw new MWException( "duplicate article '$name' at $file:$line\n" );
 		}
 
+		// Use mock parser, to make debugging of actual parser tests simpler.
+		// But initialise the MessageCache clone first, don't let MessageCache
+		// get a reference to the mock object.
+		MessageCache::singleton()->getParser();
+		$restore = $this->executeSetupSnippets( [ 'wgParser' => new ParserTestMockParser ] );
 		$status = $page->doEditContent( ContentHandler::makeContent( $text, $title ), '', EDIT_NEW );
+		$restore();
+
 		if ( !$status->isOK() ) {
 			throw new MWException( $status->getWikiText( false, false, 'en' ) );
 		}
