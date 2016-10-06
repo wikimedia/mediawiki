@@ -2498,6 +2498,7 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.21, use prepareContentForEdit
 	 * @see WikiPage::prepareTextForEdit
 	 */
 	public function prepareTextForEdit( $text, $revid = null, User $user = null ) {
