@@ -214,8 +214,8 @@ changes to languages because of Phabricator reports.
 * IP::isConfiguredProxy() and IP::isTrustedProxy() were removed. Callers should
   migrate to using the same functions on a ProxyLookup instance, obtainable from
   MediaWikiServices.
-* The ArticleViewCustom, EditPageGetDiffText and EditPageGetPreviewText hooks will
-  now emit deprecation warnings if used.
+* The ArticleViewCustom, EditPageGetDiffText, EditPageGetPreviewText and ShowRawCssJs
+  hooks will now emit deprecation warnings if used.
 
 == Compatibility ==
 
