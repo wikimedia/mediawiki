@@ -2023,11 +2023,11 @@ class WikiPage implements Page, IDBAccessObject {
 					// Trigger post-create hook
 					$params = [ &$this, &$user, $content, $summary,
 						$flags & EDIT_MINOR, null, null, &$flags, $revision ];
-					ContentHandler::runLegacyHooks( 'ArticleInsertComplete', $params );
+					ContentHandler::runLegacyHooks( 'ArticleInsertComplete', $params, '1.21' );
 					Hooks::run( 'PageContentInsertComplete', $params );
 					// Trigger post-save hook
 					$params = array_merge( $params, [ &$status, $meta['baseRevId'] ] );
-					ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $params );
+					ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $params, '1.21' );
 					Hooks::run( 'PageContentSaveComplete', $params );
 
 				}
