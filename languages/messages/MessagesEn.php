@@ -74,6 +74,7 @@ $linkPrefixExtension = false;
  * parser features are available.
  */
 $namespaceNames = [
+	NS_ISBN             => 'ISBN',
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Special',
 	NS_MAIN             => '',
