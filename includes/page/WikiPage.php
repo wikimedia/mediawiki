@@ -1678,7 +1678,7 @@ class WikiPage implements Page, IDBAccessObject {
 							$flags & EDIT_MINOR, null, null, &$flags, &$hookStatus ];
 		// Check if the hook rejected the attempted save
 		if ( !Hooks::run( 'PageContentSave', $hook_args )
-			|| !ContentHandler::runLegacyHooks( 'ArticleSave', $hook_args )
+			|| !ContentHandler::runLegacyHooks( 'ArticleSave', $hook_args, '1.21' )
 		) {
 			if ( $hookStatus->isOK() ) {
 				// Hook returned false but didn't call fatal(); use generic message
