@@ -41,6 +41,7 @@ define( 'LIST_OR', IDatabase::LIST_OR );
 /**@{
  * Virtual namespaces; don't appear in the page database
  */
+define( 'NS_ISBN', -3 );
 define( 'NS_MEDIA', -2 );
 define( 'NS_SPECIAL', -1 );
 /**@}*/

@@ -113,6 +113,20 @@ class MediaWikiTest extends MediaWikiTestCase {
 				'title' => 'Foo_Bar',
 				'redirect' => false,
 			],
+			[
+				// ISBN virtual namespace (invalid)
+				'url' => 'http://example.org/wiki/ISBN:Invalid',
+				'query' => [],
+				'title' => 'Special:BookSources/Invalid',
+				'redirect' => 'http://example.org/wiki/Special:BookSources/Invalid',
+			],
+			[
+				// ISBN virtual namespace (valid)
+				'url' => 'http://example.org/wiki/ISBN:0-7475-3269-9',
+				'query' => [],
+				'title' => 'Special:BookSources/0-7475-3269-9',
+				'redirect' => 'http://example.org/wiki/Special:BookSources/0-7475-3269-9',
+			],
 		];
 	}
 
