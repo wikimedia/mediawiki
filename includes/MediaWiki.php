@@ -83,6 +83,10 @@ class MediaWiki {
 			if ( !is_null( $ret ) && $ret->getNamespace() == NS_MEDIA ) {
 				$ret = Title::makeTitle( NS_FILE, $ret->getDBkey() );
 			}
+			// NS_ISBN is a redirect to Special:Booksources
+			if ( !is_null( $ret ) && $ret->getNamespace() == NS_ISBN ) {
+				$ret = SpecialPage::getTitleFor( 'Booksources', $ret->getDBkey() );
+			}
 			// Check variant links so that interwiki links don't have to worry
 			// about the possible different language variants
 			if ( count( $wgContLang->getVariants() ) > 1

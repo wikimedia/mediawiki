@@ -4312,6 +4312,9 @@ class Title implements LinkTarget {
 			case NS_MEDIAWIKI:
 				// known system message
 				return $this->hasSourceText() !== false;
+			case NS_ISBN:
+				// Always exists, shows errors for invalid ISBNs on special page
+				return true;
 			default:
 				return false;
 		}

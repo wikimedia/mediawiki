@@ -2348,6 +2348,17 @@ class Parser {
 				$s .= $prefix . $this->armorLinks(
 					Linker::makeMediaLinkFile( $nt, $file, $text ) ) . $trail;
 				continue;
+			} elseif ( $ns == NS_ISBN ) {
+				$isbn = $nt->getDBkey();
+				$bookSourcesTitle = SpecialPage::getTitleValueFor( 'Booksources', $isbn );
+				if ( $wasblank ) {
+					// If it was blank originally, change it to ISBN ... (space instead of colon)
+					$text = "ISBN $isbn";
+				}
+				$s .= $prefix . $this->armorLinks(
+					$this->getLinkRenderer()->makeKnownLink( $bookSourcesTitle, $text )
+				) . $trail;
+				continue;
 			}
 
 			# Some titles, such as valid special pages or files in foreign repos, should
