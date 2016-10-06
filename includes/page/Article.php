@@ -347,7 +347,7 @@ class Article implements Page {
 
 		// @todo Get rid of mContent everywhere!
 		$this->mContent = ContentHandler::getContentText( $content );
-		ContentHandler::runLegacyHooks( 'ArticleAfterFetchContent', [ &$this, &$this->mContent ] );
+		ContentHandler::runLegacyHooks( 'ArticleAfterFetchContent', [ &$this, &$this->mContent ], '1.21' );
 
 		return $this->mContent;
 	}
@@ -424,7 +424,7 @@ class Article implements Page {
 		$this->mContentObject = $content;
 		$this->mRevIdFetched = $this->mRevision->getId();
 
-		Hooks::run( 'ArticleAfterFetchContentObject', [ &$this, &$this->mContentObject ] );
+		ContentHandler::runLegacyHooks( 'ArticleAfterFetchContentObject', [ &$this, &$this->mContentObject ], '1.21' );
 
 		return $this->mContentObject;
 	}

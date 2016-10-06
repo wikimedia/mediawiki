@@ -1678,7 +1678,7 @@ class WikiPage implements Page, IDBAccessObject {
 							$flags & EDIT_MINOR, null, null, &$flags, &$hookStatus ];
 		// Check if the hook rejected the attempted save
 		if ( !Hooks::run( 'PageContentSave', $hook_args )
-			|| !ContentHandler::runLegacyHooks( 'ArticleSave', $hook_args )
+			|| !ContentHandler::runLegacyHooks( 'ArticleSave', $hook_args, '1.21' )
 		) {
 			if ( $hookStatus->isOK() ) {
 				// Hook returned false but didn't call fatal(); use generic message
@@ -1903,7 +1903,7 @@ class WikiPage implements Page, IDBAccessObject {
 					// Trigger post-save hook
 					$params = [ &$this, &$user, $content, $summary, $flags & EDIT_MINOR,
 						null, null, &$flags, $revision, &$status, $meta['baseRevId'] ];
-					ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $params );
+					ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $params, '1.21' );
 					Hooks::run( 'PageContentSaveComplete', $params );
 				}
 			),
@@ -2023,11 +2023,11 @@ class WikiPage implements Page, IDBAccessObject {
 					// Trigger post-create hook
 					$params = [ &$this, &$user, $content, $summary,
 						$flags & EDIT_MINOR, null, null, &$flags, $revision ];
-					ContentHandler::runLegacyHooks( 'ArticleInsertComplete', $params );
+					ContentHandler::runLegacyHooks( 'ArticleInsertComplete', $params, '1.21' );
 					Hooks::run( 'PageContentInsertComplete', $params );
 					// Trigger post-save hook
 					$params = array_merge( $params, [ &$status, $meta['baseRevId'] ] );
-					ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $params );
+					ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $params, '1.21' );
 					Hooks::run( 'PageContentSaveComplete', $params );
 
 				}
