@@ -377,6 +377,7 @@ $wgMinUploadChunkSize = min(
  * @private
  */
 $wgCanonicalNamespaceNames = [
+	NS_ISBN             => 'ISBN',
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Special',
 	NS_TALK             => 'Talk',

@@ -10561,6 +10561,28 @@ RFC 4321
 </p>
 !! end
 
+!! test
+ISBN virtual namespace
+!! wikitext
+[[ISBN:0-306-40615-2]]
+
+[[ISBN:invalid]]
+
+[[ISBN:0-306-40615-2|ISBN:0-306-40615-2]]
+
+[[ISBN:0-306-40615-2|0-306-40615-2]]
+
+[[ISBN:0-306-40615-2|some other text]]
+!! html/php
+<p><a href="/wiki/Special:BookSources/0-306-40615-2" title="Special:BookSources/0-306-40615-2">ISBN 0-306-40615-2</a>
+</p><p><a href="/wiki/Special:BookSources/Invalid" title="Special:BookSources/Invalid">ISBN Invalid</a>
+</p><p><a href="/wiki/Special:BookSources/0-306-40615-2" title="Special:BookSources/0-306-40615-2">ISBN:0-306-40615-2</a>
+</p><p><a href="/wiki/Special:BookSources/0-306-40615-2" title="Special:BookSources/0-306-40615-2">0-306-40615-2</a>
+</p><p><a href="/wiki/Special:BookSources/0-306-40615-2" title="Special:BookSources/0-306-40615-2">some other text</a>
+</p>
+!! end
+
+
 ###
 ### Templates
 ####
