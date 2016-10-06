@@ -215,8 +215,8 @@ changes to languages because of Phabricator reports.
   migrate to using the same functions on a ProxyLookup instance, obtainable from
   MediaWikiServices.
 * The ArticleAfterFetchContent, ArticleInsertComplete, ArticleSave, ArticleSaveComplete,
-  ArticleViewCustom, EditPageGetDiffText, EditPageGetPreviewText and ShowRawCssJs hooks
-  will now emit deprecation warnings if used.
+  ArticleViewCustom, EditFilterMerged, EditPageGetDiffText, EditPageGetPreviewText and
+  ShowRawCssJs hooks will now emit deprecation warnings if used.
 
 == Compatibility ==
 
