@@ -1046,11 +1046,10 @@ class Revision implements IDBAccessObject {
 	 *   to the $audience parameter
 	 *
 	 * @deprecated since 1.21, use getContent() instead
-	 * @todo Replace usage in core
 	 * @return string
 	 */
 	public function getText( $audience = self::FOR_PUBLIC, User $user = null ) {
-		ContentHandler::deprecated( __METHOD__, '1.21' );
+		wfDeprecated( __METHOD__, '1.21' );
 
 		$content = $this->getContent( $audience, $user );
 		return ContentHandler::getContentText( $content ); # returns the raw content text, if applicable
