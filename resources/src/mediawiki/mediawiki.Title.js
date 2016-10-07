@@ -827,7 +827,14 @@
 			) {
 				return this.title;
 			}
-			return this.title[ 0 ].toUpperCase() + this.title.slice( 1 );
+			if ( this.title[ 0 ] === 'ß' ) {
+				// ß doesn't have an upper case form, and PHP's strtoupper maps it to itself,
+				// but some JS environments return 'SS'.
+				// Bug: T147646
+				return this.title[ 0 ] + this.title.slice( 1 );
+			} else {
+				return this.title[ 0 ].toUpperCase() + this.title.slice( 1 );
+			}
 		},
 
 		/**
