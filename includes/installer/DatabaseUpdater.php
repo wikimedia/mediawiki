@@ -634,7 +634,11 @@ abstract class DatabaseUpdater {
 	 * @param string $filename File name to open
 	 */
 	public function copyFile( $filename ) {
-		$this->db->sourceFile( $filename, false, false, false,
+		$this->db->sourceFile(
+			$filename,
+			null,
+			null,
+			null,
 			[ $this, 'appendLine' ]
 		);
 	}
