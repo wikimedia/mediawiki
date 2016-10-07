@@ -308,6 +308,12 @@
 		title = new mw.Title( 'article' );
 		assert.equal( title.toString(), 'Article', 'Default config: No sensitive namespaces by default. First-letter becomes uppercase' );
 
+		title = new mw.Title( 'ß' );
+		assert.equal( title.toString(), 'ß', 'Uppercasing matches PHP behaviour (ß -> ß, not SS)' );
+
+		title = new mw.Title( 'ǆ (digraph)' );
+		assert.equal( title.toString(), 'ǅ (digraph)', 'Uppercasing matches PHP behaviour (ǆ -> ǅ, not Ǆ)' );
+
 		// $wgCapitalLinks = false;
 		mw.config.set( 'wgCaseSensitiveNamespaces', [ 0, -2, 1, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15 ] );
 
