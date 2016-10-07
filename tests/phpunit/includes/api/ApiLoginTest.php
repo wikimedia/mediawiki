@@ -190,7 +190,6 @@ class ApiLoginTest extends ApiTestCase {
 		$this->assertArrayHasKey( "login", $data[0] );
 		$this->assertArrayHasKey( "result", $data[0]['login'] );
 		$this->assertEquals( "Success", $data[0]['login']['result'] );
-		$this->assertArrayHasKey( 'lgtoken', $data[0]['login'] );
 	}
 
 	public function testBotPassword() {
