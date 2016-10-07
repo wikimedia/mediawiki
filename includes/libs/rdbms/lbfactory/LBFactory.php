@@ -145,7 +145,7 @@ abstract class LBFactory implements ILBFactory {
 	/**
 	 * @see ILBFactory::getMainLB()
 	 * @param bool $domain
-	 * @return mixed
+	 * @return LoadBalancer
 	 */
 	abstract public function getMainLB( $domain = false );
 
@@ -161,7 +161,7 @@ abstract class LBFactory implements ILBFactory {
 	 * @see ILBFactory::getExternalLB()
 	 * @param string $cluster
 	 * @param bool $domain
-	 * @return mixed
+	 * @return LoadBalancer
 	 */
 	abstract public function getExternalLB( $cluster, $domain = false );
 
