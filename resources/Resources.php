@@ -1220,7 +1220,10 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.Title' => [
-		'scripts' => 'resources/src/mediawiki/mediawiki.Title.js',
+		'scripts' => [
+			'resources/src/mediawiki/mediawiki.Title.js',
+			'resources/src/mediawiki/mediawiki.Title.phpCharToUpper.js',
+		],
 		'dependencies' => [
 			'jquery.byteLength',
 			'mediawiki.util',
