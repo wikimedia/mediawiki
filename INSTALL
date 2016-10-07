@@ -21,7 +21,7 @@ If your PHP is configured as a CGI plug-in rather than an Apache module you may
 experience problems, as this configuration is not well tested.
 
 Support for rendering mathematical formulas requires installing the Math extension,
-see https://www.mediawiki.org/wiki/Extension:Math
+see https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:Math
 
 Don't forget to check the RELEASE-NOTES file...
 
@@ -30,7 +30,7 @@ Additional documentation is available online, which may include more detailed
 notes on particular operating systems and workarounds for difficult hosting
 environments:
 
-https://www.mediawiki.org/wiki/Manual:Installation_guide
+https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Installation_guide
 
 
 ******************* WARNING *******************
