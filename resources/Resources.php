@@ -30,6 +30,7 @@ return [
 	 * Special modules who have their own classes
 	 */
 	'startup' => [ 'class' => 'ResourceLoaderStartUpModule' ],
+	'startup.modern' => [ 'class' => 'ResourceLoaderStartUpModule' ],
 
 	// Scripts managed by the local wiki (stored in the MediaWiki namespace)
 	'site' => [ 'class' => 'ResourceLoaderSiteModule' ],
@@ -139,6 +140,13 @@ return [
 	],
 
 	/* jQuery */
+	'jquery@3' => [
+		'scripts' => [
+			'resources/lib/jquery@3/jquery.js',
+		],
+		'raw' => true,
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 
 	'jquery' => [
 		'scripts' => [

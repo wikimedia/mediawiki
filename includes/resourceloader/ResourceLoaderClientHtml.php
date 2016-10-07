@@ -324,7 +324,7 @@ class ResourceLoaderClientHtml {
 		// Pass-through a custom target from OutputPage (T143066).
 		$startupQuery = $this->target ? [ 'target' => $this->target ] : [];
 		$chunks[] = $this->getLoad(
-			'startup',
+			$this->target === 'mobile' ? 'startup.modern' : 'startup',
 			ResourceLoaderModule::TYPE_SCRIPTS,
 			$startupQuery
 		);

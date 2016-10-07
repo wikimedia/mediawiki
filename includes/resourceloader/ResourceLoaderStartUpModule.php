@@ -285,8 +285,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 *
 	 * @return array
 	 */
-	public static function getStartupModules() {
-		return [ 'jquery', 'mediawiki' ];
+	public static function getStartupModules( $modern = false ) {
+		return $modern ? [ 'jquery@3', 'mediawiki' ] : [ 'jquery', 'mediawiki' ];
 	}
 
 	public static function getLegacyModules() {
@@ -313,7 +313,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		$rl = $context->getResourceLoader();
 
 		$derivative = new DerivativeResourceLoaderContext( $context );
-		$derivative->setModules( self::getStartupModules() );
+		$derivative->setModules( self::getStartupModules( true ) );
 		$derivative->setOnly( 'scripts' );
 		// Must setModules() before makeVersionQuery()
 		$derivative->setVersion( $rl->makeVersionQuery( $derivative ) );
