@@ -361,9 +361,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->token = $params['token'];
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
+		$hookData = [];
 		$count = 0;
 		/* Perform the actual query. */
-		$res = $this->select( __METHOD__ );
+		$res = $this->select( __METHOD__, [], $hookData );
 
 		$revids = [];
 		$titles = [];
@@ -391,7 +392,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				$vals = $this->extractRowInfo( $row );
 
 				/* Add that row's data to our final output. */
-				$fit = $result->addValue( [ 'query', $this->getModuleName() ], null, $vals );
+				$fit = $this->processRow( $row, $vals, $hookData ) &&
+					$result->addValue( [ 'query', $this->getModuleName() ], null, $vals );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'continue', "$row->rc_timestamp|$row->rc_id" );
 					break;
