@@ -2228,7 +2228,7 @@
 	"ipb-unblock": "Atblokuoti naudotojo vardą arba IP adresą",
 	"ipb-blocklist": "Rodyti egzistuojančius blokavimus",
 	"ipb-blocklist-contribs": "{{GENDER:$1|$1}} indėlis",
-	"ipb-blocklist-duration-left": "$1 kairėje",
+	"ipb-blocklist-duration-left": "liko $1",
 	"unblockip": "Atblokuoti naudotoją",
 	"unblockiptext": "Naudokite šią formą, kad atkurtumėte redagavimo galimybę\nankščiau užblokuotam IP adresui ar naudotojui.",
 	"ipusubmit": "Atblokuoti šį adresą",

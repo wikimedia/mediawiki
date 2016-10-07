@@ -37,6 +37,7 @@
 	"apihelp-main-param-smaxage": "Fixer l’entête HTTP de contrôle de cache <code>s-maxage</code> à ce nombre de secondes. Les erreurs ne sont jamais mises en cache.",
 	"apihelp-main-param-maxage": "Fixer l’entête HTTP de contrôle de cache <code>max-age</code> à ce nombre de secondes. Les erreurs ne sont jamais mises en cache.",
 	"apihelp-main-param-assert": "Vérifier si l’utilisateur est connecté si positionné à <kbd>user</kbd>, ou s'il a le droit d'un utilisateur robot si positionné à <kbd>bot</kbd>.",
+	"apihelp-main-param-assertuser": "Vérifier que l’utilisateur courant est l’utilisateur nommé.",
 	"apihelp-main-param-requestid": "Toute valeur fournie ici sera incluse dans la réponse. Peut être utilisé pour distinguer des demandes.",
 	"apihelp-main-param-servedby": "Inclure le nom d’hôte qui a renvoyé la requête dans les résultats.",
 	"apihelp-main-param-curtimestamp": "Inclure l’horodatage actuel dans le résultat.",

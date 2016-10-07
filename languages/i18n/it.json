@@ -1901,6 +1901,8 @@
 	"apisandbox-results-fixtoken-fail": "Impossibile recuperare il token \"$1\".",
 	"apisandbox-alert-page": "I campi su questa pagina non sono validi.",
 	"apisandbox-alert-field": "Il valore di questo campo non è valido.",
+	"apisandbox-continue": "Continua",
+	"apisandbox-continue-clear": "Pulisci",
 	"booksources": "Fonti librarie",
 	"booksources-search-legend": "Ricerca di fonti librarie",
 	"booksources-isbn": "Codice ISBN:",

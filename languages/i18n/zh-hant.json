@@ -75,7 +75,8 @@
 			"Kly",
 			"Cosine02",
 			"一個正常人",
-			"Wehwei"
+			"Wehwei",
+			"1233thehongkonger"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -599,7 +600,6 @@
 	"botpasswords-label-resetpassword": "重設密碼",
 	"botpasswords-label-grants": "適用的權限：",
 	"botpasswords-help-grants": "每個授權會給予擁有該授權的使用者帳號列於該授權清單的使用者權限。 請參考 [[Special:ListGrants|授權表]] 取得更多資訊。",
-	"botpasswords-label-restrictions": "使用限制：",
 	"botpasswords-label-grants-column": "已授權",
 	"botpasswords-bad-appid": "機器人名稱 \"$1\" 無效。",
 	"botpasswords-insert-failed": "新增機器人名稱 \"$1\" 失敗，是否已新增過？",
@@ -1866,6 +1866,7 @@
 	"apisandbox-results-fixtoken-fail": "取得 \"$1\" 密鑰失敗。",
 	"apisandbox-alert-page": "此頁面上的欄位無效。",
 	"apisandbox-alert-field": "此欄位的值無效。",
+	"apisandbox-continue-clear": "清除",
 	"booksources": "圖書資源",
 	"booksources-search-legend": "尋找圖書資源",
 	"booksources-isbn": "國際標準書號：",
@@ -3514,7 +3515,6 @@
 	"feedback-external-bug-report-button": "回報技術問題",
 	"feedback-dialog-title": "送出意見回饋",
 	"feedback-dialog-intro": "您可以使用以下簡易表單傳送您的意見回饋。您的意見將會使用您的使用者名稱新增至頁面 \"$1\"。",
-	"feedback-error-title": "錯誤",
 	"feedback-error1": "錯誤：無法識別 API 回傳的結果",
 	"feedback-error2": "錯誤：編輯失敗",
 	"feedback-error3": "錯誤：API 沒有回應",

@@ -20,6 +20,7 @@
 	"apihelp-main-param-smaxage": "Fixar a cabeceira HTTP de control de caché <code>s-maxage</code> a esos segundos. Os erros nunca se gardan na caché.",
 	"apihelp-main-param-maxage": "Fixar a cabeceira HTTP de control de caché <code>max-age</code> a esos segundos. Os erros nunca se gardan na caché.",
 	"apihelp-main-param-assert": "Verificar se o usuario está conectado como <kbd>usuario</kbd> ou ten a marca de <kbd>bot</kbd>.",
+	"apihelp-main-param-assertuser": "Verificar que o usuario actual é o usuario nomeado.",
 	"apihelp-main-param-requestid": "Calquera valor dado aquí será incluído na resposta. Pode usarse para distingir peticións.",
 	"apihelp-main-param-servedby": "Inclúa o nome do servidor que servía a solicitude nos resultados.",
 	"apihelp-main-param-curtimestamp": "Incluir a marca de tempo actual no resultado.",

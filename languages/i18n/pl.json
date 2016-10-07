@@ -1866,6 +1866,8 @@
 	"apisandbox-results-fixtoken-fail": "Nie udało się pobrać tokena „$1”.",
 	"apisandbox-alert-page": "Pola na tej stronie są nieprawidłowe.",
 	"apisandbox-alert-field": "Wartość tego pola jest nieprawidłowa.",
+	"apisandbox-continue": "Kontynuuj",
+	"apisandbox-continue-clear": "Wyczyść",
 	"booksources": "Książki",
 	"booksources-search-legend": "Szukaj informacji o książkach",
 	"booksources-search": "Szukaj",

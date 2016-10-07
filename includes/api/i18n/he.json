@@ -21,6 +21,7 @@
 	"apihelp-main-param-smaxage": "הגדרת כותרת בקרת מטמון HTTP‏ <code>s-maxage</code> למספר כזה של שניות.",
 	"apihelp-main-param-maxage": "הגדרת כותרת בקרת מטמון HTTP‏ <code>max-age</code> למספר כזה של שניות.",
 	"apihelp-main-param-assert": "לוודא שהמשתמש נכנס אם זה מוגדר ל־<kbd>user</kbd>, או שיש לו הרשאת בוט אם זה <kbd>bot</kbd>.",
+	"apihelp-main-param-assertuser": "לוודא שהמשתמש הנוכחי הוא המשתמש ששמו ניתן.",
 	"apihelp-main-param-requestid": "כל ערך שיינתן כאן ייכלל בתשובה. אפשר להשתמש בזה כדי להבדיל בין בקשות.",
 	"apihelp-main-param-servedby": "לכלול את שם המארח ששירת את הבקשה בתוצאות.",
 	"apihelp-main-param-curtimestamp": "הכללת חותם־הזמן הנוכחי בתוצאה.",

@@ -1442,6 +1442,7 @@
 	"apisandbox-results": "Rezultāti",
 	"apisandbox-request-url-label": "Pieprasījuma URL:",
 	"apisandbox-request-time": "Pieprasījuma izpildes laiks: {{PLURAL:$1|$1 ms}}",
+	"apisandbox-continue-clear": "Notīrīt",
 	"booksources": "Grāmatu avoti",
 	"booksources-search-legend": "Meklēt grāmatu avotus",
 	"booksources-search": "Meklēt",

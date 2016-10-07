@@ -1810,6 +1810,8 @@
 	"apisandbox-results-fixtoken-fail": "Памылка пры атрыманьні токену «$1».",
 	"apisandbox-alert-page": "Палі на гэтай старонцы няслушныя.",
 	"apisandbox-alert-field": "Значэньне гэтага поля зьяўляецца няслушным.",
+	"apisandbox-continue": "Працягнуць",
+	"apisandbox-continue-clear": "Ачысьціць",
 	"booksources": "Крыніцы кніг",
 	"booksources-search-legend": "Пошук кніг",
 	"booksources-isbn": "ISBN:",

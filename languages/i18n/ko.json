@@ -1859,6 +1859,8 @@
 	"apisandbox-results-fixtoken-fail": "\"$1\" 토크을 가져오는데 실패했습니다.",
 	"apisandbox-alert-page": "이 문서에 있는 필드가 유효하지 않습니다.",
 	"apisandbox-alert-field": "이 필드의 값이 유효하지 않습니다.",
+	"apisandbox-continue": "계속",
+	"apisandbox-continue-clear": "지우기",
 	"booksources": "책 찾기",
 	"booksources-search-legend": "책 원본 검색",
 	"booksources-isbn": "ISBN:",

@@ -2331,7 +2331,7 @@
 	"days": "{{PLURAL:$1|$1 dag|$1 dagar}}",
 	"weeks": "{{PLURAL:$1|$1 veke|$1 veker}}",
 	"months": "{{PLURAL:$1|éin månad|$1 månader}}",
-	"years": "{{PLURAL:$1|éitt år|$1 år}}",
+	"years": "{{PLURAL:$1|eitt år|$1 år}}",
 	"ago": "$1 sidan",
 	"just-now": "akkurat no",
 	"hours-ago": "$1 {{PLURAL:$1|time|timar}} sidan",

@@ -1747,6 +1747,8 @@
 	"apisandbox-request-time": "Dauer vun der Ufro: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-alert-page": "Felder op dëser Säit sinn net valabel.",
 	"apisandbox-alert-field": "De wäert vun dësem Feld ass net valabel.",
+	"apisandbox-continue": "Virufueren",
+	"apisandbox-continue-clear": "Eidel maachen",
 	"booksources": "Bicherreferenzen",
 	"booksources-search-legend": "No Bicherreferenze sichen",
 	"booksources-search": "Sichen",

@@ -17,7 +17,8 @@
 			"Leeheonjin",
 			"Macofe",
 			"Matma Rex",
-			"Stranger195"
+			"Stranger195",
+			"Emem.calist"
 		]
 	},
 	"tog-underline": "Pagsasalungguhit ng link:",
@@ -393,7 +394,6 @@
 	"yourpasswordagain": "Password mo uli:",
 	"createacct-yourpasswordagain": "Tiyakin ang password",
 	"createacct-yourpasswordagain-ph": "Muling ilagay ang password",
-	"remembermypassword": "Tandaan ang paglagda ko sa kompyuter na ito (pinakamarami na ang $1 {{PLURAL:$1|araw|mga araw}})",
 	"userlogin-remembermypassword": "Panatilihin akong naka-login",
 	"userlogin-signwithsecure": "Gumamit ng ligtas na koneksyon",
 	"yourdomainname": "Dominyo mo:",
@@ -526,8 +526,6 @@
 	"passwordreset-emailtext-user": "Ang tagagamit na si $1 sa {{SITENAME}} ay humiling ng isang paalala ng iyong mga akawnt ng detalye para sa {{SITENAME}}\n($4). Ang sumusunod na pangtagagamit na {{PLURAL:$3|akawnt ay|mga akawnt ay}} may kaugnayan sa tirahang ito ng e-liham:\n\n$2\n\n{{PLURAL:$3|Ang pansamantalang hudyat na ito|Ang pansamantalang mga hudyat na ito}} mawawalan ng bias sa loob ng {{PLURAL:$5|isang araw|$5 mga araw}}.\nDapat kang lumagda at pumili ng isang hudyat ngayon. Kung ibang tao ang gumawa ng kahilingang ito, o kung naalala mo na ang iyong orihinal na hudyat, at hindi mo na nais palitan pa ito, maaari mong huwag nang pansinin ang mensaheng ito at magpatuloy sa paggamit ng iyong lumang hudyat.",
 	"passwordreset-emailelement": "Pangalan ng tagagamit: \n$1\n\nPansamantalang password: \n$2",
 	"passwordreset-emailsentemail": "Naipadala na ang isang e-liham na pampaalala.",
-	"passwordreset-emailsent-capture": "Naipadala na ang isang e-liham na paalala, na ipinapakita sa ibaba.",
-	"passwordreset-emailerror-capture": "Nalikha na ang isang e-liham na paalala, na ipinapakita sa ibaba, subalit nabigo ang pagpapadala sa tagagamit: $1",
 	"changeemail": "Baguhin ang direksiyong e-liham",
 	"changeemail-header": "Baguhin ang email address ng account",
 	"changeemail-no-info": "Kailangan mong lumagda upang tuwirang mapuntahan ang pahinang ito.",
@@ -677,7 +675,6 @@
 	"undo-failure": "Hindi matanggal ang pagbabago dahil sa magkakasalungat na panggitnang mga pagbabago.",
 	"undo-norev": "Hindi matanggal ang pagbabago dahil hindi ito umiiral o nabura na.",
 	"undo-summary": "Tanggalin ang pagbabagong $1 ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Usapan]])",
-	"cantcreateaccounttitle": "Hindi malikha ang account",
 	"cantcreateaccount-text": "Hinarang ni [[User:$3|$3]] ang paglikha ng acciybt mula sa IP address ('''$1''') na ito.\n\nAng dahilang ibinigay ni $3 ay ''$2''",
 	"viewpagelogs": "Tingnan ang mga pagtatala para sa pahinang ito",
 	"nohistory": "Walang kasaysayan ng pagbabago para sa pahinang ito.",
@@ -1489,6 +1486,8 @@
 	"apisandbox-results": "Kinalabasan",
 	"apisandbox-request-url-label": "Hilingin ang URL:",
 	"apisandbox-request-time": "Oras ng paghiling: $1",
+	"apisandbox-continue": "Ipagpatuloy",
+	"apisandbox-continue-clear": "Burado",
 	"booksources": "Mga mapagkukunang aklat",
 	"booksources-search-legend": "Maghanap ng mapagkukunang aklat",
 	"booksources-isbn": "ISBN:",
@@ -2913,8 +2912,6 @@
 	"htmlform-reset": "Bawiin ang mga pagbabago",
 	"htmlform-selectorother-other": "Iba pa",
 	"htmlform-title-not-exists": "Hindi nairal ang $1.",
-	"sqlite-has-fts": "$1 na may suportang paghahanap ng buong teksto",
-	"sqlite-no-fts": "$1 na walang suporta ng paghahanap ng buong teksto",
 	"logentry-delete-delete": "Binura ni $1 ang pahinang $3",
 	"logentry-delete-restore": "Ibinalik ni $1 ang pahinang $3",
 	"logentry-delete-event": "Binago ni $1 ang antas ng pagkanatatanaw ng {{PLURAL:$5|isang pangyayari sa talaan|$5 mga pangyayari sa talaan}} sa $3: $4",
@@ -2957,7 +2954,6 @@
 	"feedback-external-bug-report-button": "Mag-habla ng teknikal na gawain",
 	"feedback-dialog-title": "I-sumite ang katugunan",
 	"feedback-dialog-intro": "Maaari mo nang gamitin ang madaling pormularyo na nasa ibaba upang i-sumite ang iyong katugunan. Madadagdag ang iyong komento sa pahinang $1, kasama ang iyong ngalan-tagagamit.",
-	"feedback-error-title": "Kamalian",
 	"feedback-error1": "Kamalian: Hindi nakikilalang kinalabasan mula sa API",
 	"feedback-error2": "Kamalian: Nabigo ang pagpatnugot",
 	"feedback-error3": "Kamalian: Walang tugon mula sa API",
@@ -3047,6 +3043,5 @@
 	"special-characters-group-khmer": "Khmer",
 	"mw-widgets-dateinput-placeholder-day": "TTTT-BB-AA",
 	"mw-widgets-dateinput-placeholder-month": "TTTT-BB",
-	"api-error-blacklisted": "Paki pumili ng isang naiibang mapaglarawang pamagat.",
 	"randomrootpage": "Alin mang pinag-ugatang/pinagmulang pahina"
 }
