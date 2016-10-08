@@ -83,15 +83,6 @@ class MWUnknownContentModelException extends MWException {
  */
 abstract class ContentHandler {
 	/**
-	 * Switch for enabling deprecation warnings. Used by ContentHandler::deprecated()
-	 * and ContentHandler::runLegacyHooks().
-	 *
-	 * Once the ContentHandler code has settled in a bit, this should be set to true to
-	 * make extensions etc. show warnings when using deprecated functions and hooks.
-	 */
-	protected static $enableDeprecationWarnings = false;
-
-	/**
 	 * Convenience function for getting flat text from a Content object. This
 	 * should only be used in the context of backwards compatibility with code
 	 * that is not yet able to handle Content objects!
@@ -1137,25 +1128,6 @@ abstract class ContentHandler {
 	 */
 	public function supportsDirectApiEditing() {
 		return $this->supportsDirectEditing();
-	}
-
-	/**
-	 * Logs a deprecation warning, visible if $wgDevelopmentWarnings, but only if
-	 * self::$enableDeprecationWarnings is set to true.
-	 *
-	 * @param string $func The name of the deprecated function
-	 * @param string $version The version since the method is deprecated. Usually 1.21
-	 *   for ContentHandler related stuff.
-	 * @param string|bool $component : Component to which the function belongs.
-	 *   If false, it is assumed the function is in MediaWiki core.
-	 *
-	 * @see ContentHandler::$enableDeprecationWarnings
-	 * @see wfDeprecated
-	 */
-	public static function deprecated( $func, $version, $component = false ) {
-		if ( self::$enableDeprecationWarnings ) {
-			wfDeprecated( $func, $version, $component, 3 );
-		}
 	}
 
 	/**
