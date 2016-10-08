@@ -2075,7 +2075,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return object
 	 */
 	public function prepareTextForEdit( $text, $revid = null, User $user = null ) {
-		ContentHandler::deprecated( __METHOD__, '1.21' );
+		wfDeprecated( __METHOD__, '1.21' );
 		$content = ContentHandler::makeContent( $text, $this->getTitle() );
 		return $this->prepareContentForEdit( $content, $revid, $user );
 	}
