@@ -319,7 +319,7 @@ class Linker {
 	 * @return LinkTarget
 	 */
 	public static function normaliseSpecialPage( LinkTarget $target ) {
-		if ( $target->getNamespace() == NS_SPECIAL ) {
+		if ( $target->getNamespace() == NS_SPECIAL && !$target->isExternal() ) {
 			list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $target->getDBkey() );
 			if ( !$name ) {
 				return $target;
