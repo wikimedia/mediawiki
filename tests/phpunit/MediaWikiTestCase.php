@@ -242,7 +242,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		 * which we can't allow, as that would open a new connection for mysql.
 		 * Replace with a HashBag. They would not be going to persist anyway.
 		 */
-		$hashCache = [ 'class' => 'HashBagOStuff' ];
+		$hashCache = [ 'class' => 'HashBagOStuff', 'reportDupes' => false ];
 		$objectCaches = [
 				CACHE_DB => $hashCache,
 				CACHE_ACCEL => $hashCache,
