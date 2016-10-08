@@ -233,12 +233,12 @@ class Linker {
 		} else {
 			$text = $html; // null
 		}
-		if ( in_array( 'known', $options, true ) ) {
+		if ( in_array( 'noclasses', $options, true ) ) {
+			return $linkRenderer->makePreloadedLink( $target, $text, '', $customAttribs, $query );
+		} elseif ( in_array( 'known', $options, true ) ) {
 			return $linkRenderer->makeKnownLink( $target, $text, $customAttribs, $query );
 		} elseif ( in_array( 'broken', $options, true ) ) {
 			return $linkRenderer->makeBrokenLink( $target, $text, $customAttribs, $query );
-		} elseif ( in_array( 'noclasses', $options, true ) ) {
-			return $linkRenderer->makePreloadedLink( $target, $text, '', $customAttribs, $query );
 		} else {
 			return $linkRenderer->makeLink( $target, $text, $customAttribs, $query );
 		}
