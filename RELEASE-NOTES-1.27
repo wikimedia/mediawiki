@@ -20,6 +20,7 @@ was released.
   in the query string is now deprecated and outputs a warning. They should be
   submitted in the POST body instead.
 * (T158766) Avoid SQL error on MSSQL when using selectRowCount()
+* (T145635) Fix too long index error when installing with MSSQL.
 
 == MediaWiki 1.27.1 ==
 
