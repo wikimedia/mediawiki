@@ -217,6 +217,17 @@ abstract class Skin extends ContextSource {
 			}
 		}
 
+		// Footer links (used by SkinTemplate::prepareQuickTemplate)
+		foreach ( [
+			$this->footerLinkTitle( 'privacy', 'privacypage' ),
+			$this->footerLinkTitle( 'aboutsite', 'aboutpage' ),
+			$this->footerLinkTitle( 'disclaimers', 'disclaimerpage' ),
+		] as $title ) {
+			if ( $title ) {
+				$titles[] = $title;
+			}
+		}
+
 		Hooks::run( 'SkinPreloadExistence', [ &$titles, $this ] );
 
 		if ( $titles ) {
@@ -921,25 +932,34 @@ abstract class Skin extends ContextSource {
 	 * @return string HTML anchor
 	 */
 	public function footerLink( $desc, $page ) {
-		// if the link description has been set to "-" in the default language,
+		$title = $this->footerLinkTitle( $desc, $page );
+		if ( !$title ) {
+			return '';
+		}
+
+		return Linker::linkKnown(
+			$title,
+			$this->msg( $desc )->escaped()
+		);
+	}
+
+	/**
+	 * @param string $desc
+	 * @param string $page
+	 * @return Title|null
+	 */
+	private function footerLinkTitle( $desc, $page ) {
+		// If the link description has been set to "-" in the default language,
 		if ( $this->msg( $desc )->inContentLanguage()->isDisabled() ) {
 			// then it is disabled, for all languages.
-			return '';
-		} else {
-			// Otherwise, we display the link for the user, described in their
-			// language (which may or may not be the same as the default language),
-			// but we make the link target be the one site-wide page.
-			$title = Title::newFromText( $this->msg( $page )->inContentLanguage()->text() );
-
-			if ( !$title ) {
-				return '';
-			}
-
-			return Linker::linkKnown(
-				$title,
-				$this->msg( $desc )->escaped()
-			);
+			return null;
 		}
+		// Otherwise, we display the link for the user, described in their
+		// language (which may or may not be the same as the default language),
+		// but we make the link target be the one site-wide page.
+		$title = Title::newFromText( $this->msg( $page )->inContentLanguage()->text() );
+
+		return $title ?: null;
 	}
 
 	/**
