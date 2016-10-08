@@ -160,10 +160,14 @@ class LoadMonitor implements ILoadMonitor {
 				continue;
 			}
 
-			$lagTimes[$i] = $conn->getLag();
-			if ( $lagTimes[$i] === false ) {
-				$host = $this->parent->getServerName( $i );
-				$this->replLogger->error( __METHOD__ . ": host $host is not replicating?" );
+			if ( $conn->getLBInfo( 'is static' ) ) {
+				$lagTimes[$i] = 0;
+			} else {
+				$lagTimes[$i] = $conn->getLag();
+				if ( $lagTimes[$i] === false ) {
+					$host = $this->parent->getServerName( $i );
+					$this->replLogger->error( __METHOD__ . ": host $host is not replicating?" );
+				}
 			}
 
 			if ( $close ) {
