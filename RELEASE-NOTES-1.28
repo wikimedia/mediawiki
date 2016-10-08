@@ -12,6 +12,7 @@ This is not a release yet!
   circumstances was restored.
 * (T154672) Un-deprecate ArticleAfterFetchContentObject hook.
 * (T158766) Avoid SQL error on MSSQL when using selectRowCount()
+* (T145635) Fix too long index error when installing with MSSQL
 
 == MediaWiki 1.28 ==
 

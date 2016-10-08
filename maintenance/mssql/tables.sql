@@ -652,7 +652,6 @@ CREATE TABLE /*_*/oldimage (
 
 CREATE INDEX /*i*/oi_usertext_timestamp ON /*_*/oldimage (oi_user_text,oi_timestamp);
 CREATE INDEX /*i*/oi_name_timestamp ON /*_*/oldimage (oi_name,oi_timestamp);
-CREATE INDEX /*i*/oi_name_archive_name ON /*_*/oldimage (oi_name,oi_archive_name);
 CREATE INDEX /*i*/oi_sha1 ON /*_*/oldimage (oi_sha1);
 
 
