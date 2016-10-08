@@ -935,9 +935,12 @@ abstract class Skin extends ContextSource {
 				return '';
 			}
 
-			return Linker::linkKnown(
+			return Linker::link(
 				$title,
-				$this->msg( $desc )->escaped()
+				$this->msg( $desc )->escaped(),
+				[],
+				[],
+				[ 'known', 'noclasses' ]
 			);
 		}
 	}
