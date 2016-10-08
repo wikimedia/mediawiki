@@ -3300,16 +3300,27 @@ HTML
 			'id' => $name,
 			'cols' => $wgUser->getIntOption( 'cols' ),
 			'rows' => $wgUser->getIntOption( 'rows' ),
-			// The following classes can be used here:
-			// * mw-editfont-default
-			// * mw-editfont-monospace
-			// * mw-editfont-sans-serif
-			// * mw-editfont-serif
-			'class' => 'mw-editfont-' . $wgUser->getOption( 'editfont' ),
 			// Avoid PHP notices when appending preferences
 			// (appending allows customAttribs['style'] to still work).
 			'style' => ''
 		];
+
+		// The following classes can be used here:
+		// * mw-editfont-default
+		// * mw-editfont-monospace
+		// * mw-editfont-sans-serif
+		// * mw-editfont-serif
+		$class = 'mw-editfont-' . $wgUser->getOption( 'editfont' );
+
+		if ( isset( $attribs['class'] ) ) {
+			if ( is_string( $attribs['class'] ) ) {
+				$attribs['class'] .= ' ' . $class;
+			} elseif ( is_array( $attribs['class'] ) ) {
+				$attribs['class'][] = $class;
+			}
+		} else {
+			$attribs['class'] = $class;
+		}
 
 		$pageLang = $this->mTitle->getPageLanguage();
 		$attribs['lang'] = $pageLang->getHtmlCode();
