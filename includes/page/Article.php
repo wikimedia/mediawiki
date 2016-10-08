@@ -2511,6 +2511,7 @@ class Article implements Page {
 	 * @see WikiPage::prepareTextForEdit
 	 */
 	public function prepareTextForEdit( $text, $revid = null, User $user = null ) {
+		wfDeprecated( __METHOD__, '1.21' );
 		return $this->mPage->prepareTextForEdit( $text, $revid, $user );
 	}
 
