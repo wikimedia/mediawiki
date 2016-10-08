@@ -134,7 +134,7 @@
 	"category-file-count-limited": "The following {{PLURAL:$1|file is|$1 files are}} in the current category.",
 	"listingcontinuesabbrev": "cont.",
 	"index-category": "Indexed pages",
-	"noindex-category": "Noindexed pages",
+	"noindex-category": "Nonindexed pages",
 	"broken-file-category": "Pages with broken file links",
 	"categoryviewer-pagedlinks": "($1) ($2)",
 	"category-header-numerals": "$1–$2",
