@@ -27,8 +27,8 @@ SELECT * FROM /*_*/oldimage;--
 DROP TABLE /*_*/oldimage;--
 
 CREATE TABLE /*_*/oldimage (
-  oi_name nvarchar(255) NOT NULL default '',
-  oi_archive_name nvarchar(255) NOT NULL default '',
+  oi_name nvarchar(225) NOT NULL default '',
+  oi_archive_name nvarchar(225) NOT NULL default '',
   oi_size int NOT NULL default 0,
   oi_width int NOT NULL default 0,
   oi_height int NOT NULL default 0,
