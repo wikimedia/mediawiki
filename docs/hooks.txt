@@ -1243,7 +1243,7 @@ $out: OutputPage object
 $parserOutput: ParserOutput object
 $wikiPage: WikiPage object
 
-DifferenceEngineRenderRevisionShowFinalPatrolLink': An extension can hook into this hook
+'DifferenceEngineRenderRevisionShowFinalPatrolLink': An extension can hook into this hook
 point and return false to not show the final "mark as patrolled" link on the bottom
 of a page.
 This hook has no arguments.
