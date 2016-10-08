@@ -87,8 +87,8 @@ class PHPVersionCheck {
 				'implementation' => 'HHVM',
 				'version' => HHVM_VERSION,
 				'vendor' => 'Facebook',
-				'upstreamSupported' => '3.6.5',
-				'minSupported' => '3.6.5',
+				'upstreamSupported' => '3.15.5',
+				'minSupported' => '3.15.5',
 				'upgradeURL' => 'https://docs.hhvm.com/hhvm/installation/introduction',
 			);
 		} else {
