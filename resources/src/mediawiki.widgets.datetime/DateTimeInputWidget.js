@@ -51,6 +51,11 @@
 			calendar: {}
 		}, config );
 
+		// See InputWidget#reusePreInfuseDOM about config.$input
+		if ( config.$input ) {
+			config.$input.addClass( 'oo-ui-element-hidden' );
+		}
+
 		if ( $.isPlainObject( config.formatter ) && config.formatter.format === undefined ) {
 			config.formatter.format = '@' + config.type;
 		}
@@ -142,19 +147,6 @@
 			this.calendar.connect( this, {
 				change: 'onCalendarChange'
 			} );
-		}
-
-		// Our form input *should* be type="hidden". But if we're infusing from
-		// PHP, it's not.
-		if ( this.$input.attr( 'type' ) !== 'hidden' ) {
-			try {
-				this.$input.attr( 'type', 'hidden' );
-			} catch ( e ) {
-			}
-			// IE <= 8, and IE 9 in quirks mode, doesn't allow changing the
-			// type, so just hide the field with CSS. IE 9 in quirks mode
-			// doesn't even throw an error, so do that unconditionally. Sigh.
-			this.$input.css( 'display', 'none' );
 		}
 
 		// Initialization
