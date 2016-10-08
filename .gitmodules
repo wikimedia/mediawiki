@@ -410,10 +410,6 @@
 	path = extensions/MirahezeMagic
 	url = https://github.com/miraheze/MirahezeMagic
 	branch = master
-[submodule "extensions/EmbedVideo"]
-	path = extensions/EmbedVideo
-	url = https://github.com/Alexia/mediawiki-embedvideo.git
-	branch = master
 [submodule "extensions/Tabs"]
 	path = extensions/Tabs
 	url = https://github.com/wikimedia/mediawiki-extensions-Tabs
