@@ -623,11 +623,11 @@ CREATE INDEX /*i*/img_media_mime ON /*_*/image (img_media_type,img_major_mime,im
 CREATE TABLE /*_*/oldimage (
   -- Base filename: key to image.img_name
   -- Not a FK because deleting images removes them from image
-  oi_name nvarchar(255) NOT NULL default '',
+  oi_name nvarchar(225) NOT NULL default '',
 
   -- Filename of the archived file.
   -- This is generally a timestamp and '!' prepended to the base name.
-  oi_archive_name nvarchar(255) NOT NULL default '',
+  oi_archive_name nvarchar(225) NOT NULL default '',
 
   -- Other fields as in image...
   oi_size int NOT NULL default 0,
