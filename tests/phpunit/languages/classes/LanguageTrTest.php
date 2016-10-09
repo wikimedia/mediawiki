@@ -14,7 +14,7 @@ class LanguageTrTest extends LanguageClassesTestCase {
 	 *  - berm
 	 *  - []LuCkY[]
 	 *  - Emperyan
-	 * @see http://en.wikipedia.org/wiki/Dotted_and_dotless_I
+	 * @see https://en.wikipedia.org/wiki/Dotted_and_dotless_I
 	 * @dataProvider provideDottedAndDotlessI
 	 * @covers Language::ucfirst
 	 * @covers Language::lcfirst
@@ -49,7 +49,7 @@ class LanguageTrTest extends LanguageClassesTestCase {
 			[ 'lcfirst', 'i', 'lower', 'i' ],
 
 			# A real example taken from bug 28040 using
-			# http://tr.wikipedia.org/wiki/%C4%B0Phone
+			# https://tr.wikipedia.org/wiki/%C4%B0Phone
 			[ 'lcfirst', 'iPhone', 'lower', 'iPhone' ],
 
 			# next case is valid in Turkish but are different words if we

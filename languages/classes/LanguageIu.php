@@ -28,7 +28,7 @@
  *
  *
  * Based on:
- *   - http://commons.wikimedia.org/wiki/Image:Inuktitut.png
+ *   - https://commons.wikimedia.org/wiki/Image:Inuktitut.png
  *   - LanguageSr.php
  *
  * @ingroup Language

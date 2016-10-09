@@ -28,7 +28,7 @@
  *
  *
  * Based on:
- *   - http://en.wikipedia.org/wiki/Shilha_language
+ *   - https://en.wikipedia.org/wiki/Shilha_language
  *   - LanguageSr.php
  *
  * @ingroup Language

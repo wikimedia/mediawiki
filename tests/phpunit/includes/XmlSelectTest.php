@@ -50,7 +50,7 @@ class XmlSelectTest extends MediaWikiTestCase {
 			/**
 			 * Values are set following a 3-bit Gray code where two successive
 			 * values differ by only one value.
-			 * See http://en.wikipedia.org/wiki/Gray_code
+			 * See https://en.wikipedia.org/wiki/Gray_code
 			 */
 			#      $name   $id    $default
 			[ false, false, false, '<select></select>' ],

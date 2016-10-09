@@ -77,7 +77,7 @@ class WikiTextStructure {
 			$heading = $heading[ 'line' ];
 
 			// Some wikis wrap the brackets in a span:
-			// http://en.wikipedia.org/wiki/MediaWiki:Cite_reference_link
+			// https://en.wikipedia.org/wiki/MediaWiki:Cite_reference_link
 			$heading = preg_replace( '/<\/?span>/', '', $heading );
 			// Normalize [] so the following regexp would work.
 			$heading = preg_replace( [ '/&#91;/', '/&#93;/' ], [ '[', ']' ], $heading );
