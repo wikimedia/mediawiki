@@ -2682,7 +2682,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->mTrxTimestamp = microtime( true );
 		$this->mTrxFname = $fname;
 		$this->mTrxDoneWrites = false;
-		$this->mTrxAutomatic = ( $mode === self::TRANSACTION_INTERNAL );
 		$this->mTrxAutomaticAtomic = false;
 		$this->mTrxAtomicLevels = [];
 		$this->mTrxShortId = sprintf( '%06x', mt_rand( 0, 0xffffff ) );
@@ -2696,6 +2695,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// as lag itself just to be safe
 		$status = $this->getApproximateLagStatus();
 		$this->mTrxReplicaLag = $status['lag'] + ( microtime( true ) - $status['since'] );
+		// T147697: make explicitTrxActive() return true until begin() finishes. This way, no
+		// caller will think its OK to muck around with the transaction just because startAtomic()
+		// has not yet completed (e.g. setting mTrxAtomicLevels).
+		$this->mTrxAutomatic = ( $mode === self::TRANSACTION_INTERNAL );
 	}
 
 	/**
