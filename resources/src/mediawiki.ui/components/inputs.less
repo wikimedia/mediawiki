@@ -4,11 +4,6 @@
 @import "mediawiki.ui/variables";
 @import "mediawiki.ui/mixins";
 
-// Placeholder text styling helper
-.field-placeholder-styling() {
-	font-style: italic;
-	font-weight: normal;
-}
 // Text inputs
 //
 // Apply the mw-ui-input class to input and textarea fields.
@@ -27,43 +22,72 @@
 //
 // Styleguide 1.1.
 .mw-ui-input {
+	background-color: #fff;
 	.box-sizing( border-box );
 	display: block;
 	width: 100%;
 	border: 1px solid @colorFieldBorder;
 	border-radius: @borderRadius;
 	padding: 0.3em 0.3em 0.3em 0.6em;
+	// necessary for smooth transition
+	box-shadow: inset 0 0 0 0.1em #fff;
 	font-family: inherit;
 	font-size: inherit;
 	line-height: inherit;
 	vertical-align: middle;
 
-	// Placeholder text styling must be set individually for each browser @winter
-	&::-webkit-input-placeholder { // webkit
-		.field-placeholder-styling;
+	// Normalize & style placeholder text, see T139034
+	// Placeholder styles can't be grouped, otherwise they're ignored as invalid.
+
+	// Placeholder mixin
+	.mixin-placeholder() {
+		color: #72777d;
+		font-style: italic;
 	}
-	&::-moz-placeholder { // FF 4-18
-		.field-placeholder-styling;
+	// Firefox 4-18
+	&:-moz-placeholder { // stylelint-disable-line
+		.mixin-placeholder;
+		opacity: 1;
 	}
-	&:-moz-placeholder { // FF >= 19
-		.field-placeholder-styling;
+	// Firefox 19-
+	&::-moz-placeholder { // stylelint-disable-line
+		.mixin-placeholder;
+		opacity: 1;
 	}
-	&:-ms-input-placeholder { // IE >= 10
-		.field-placeholder-styling;
+	// Internet Explorer 10-11
+	&:-ms-input-placeholder { // stylelint-disable-line
+		.mixin-placeholder;
+	}
+	// WebKit, Blink, Edge
+	// Don't set `opacity < 1`, see https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/3901363/
+	&::-webkit-input-placeholder { // stylelint-disable-line
+		.mixin-placeholder;
+	}
+	// W3C Standard Selectors Level 4
+	&:placeholder-shown { // stylelint-disable-line
+		.mixin-placeholder;
 	}
 
-	// Remove red outline from inputs which have required field and invalid content.
-	// This is a Firefox only issue
+	// Firefox: Remove red outline when `required` attribute set and invalid content.
 	// See https://developer.mozilla.org/en-US/docs/Web/CSS/:invalid
-	// This should be above :focus so focus behaviour takes preference
+	// This should come before `:focus` so latter rules take preference.
 	&:invalid {
 		box-shadow: none;
+	}
+
+	&:hover {
+		border-color: #72777d;
 	}
 
 	&:focus {
 		border-color: @colorProgressive;
 		box-shadow: inset 0 0 0 1px @colorProgressive;
 		outline: 0;
+	}
+
+	// `:not()` is used exclusively for `transition`s as both are not supported by IE < 9.
+	&:not( :disabled ) {
+		.transition( ~'color 100ms, border-color 100ms, box-shadow 100ms' );
 	}
 
 	&:disabled {
@@ -76,7 +100,7 @@
 		// Correct the odd appearance in Chrome and Safari 5
 		-webkit-appearance: textfield;
 
-		// Remove proprietary clear button in IE 10-11
+		// Remove proprietary clear button in IE 10-11, Edge 12+
 		&::-ms-clear {
 			display: none;
 		}
