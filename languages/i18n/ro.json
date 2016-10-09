@@ -2125,6 +2125,7 @@
 	"sp-contributions-username": "Adresă IP sau nume de utilizator:",
 	"sp-contributions-toponly": "Afișează numai versiunile recente",
 	"sp-contributions-newonly": "Afișează numai modificările care au dus la crearea de pagini",
+	"sp-contributions-hideminor": "Ascunde modificările minore",
 	"sp-contributions-submit": "Căutare",
 	"whatlinkshere": "Ce trimite aici",
 	"whatlinkshere-title": "Pagini care conțin legături spre „$1”",

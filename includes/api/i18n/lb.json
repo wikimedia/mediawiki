@@ -5,6 +5,7 @@
 			"Macofe"
 		]
 	},
+	"apihelp-main-param-assertuser": "Iwwerpréifen ob den aktuelle Benotzer de Benotzer mat deem Numm ass.",
 	"apihelp-main-param-curtimestamp": "Den aktuellen Zäitstempel an d'Resultat integréieren.",
 	"apihelp-block-description": "E Benotzer spären.",
 	"apihelp-block-param-user": "Benotzernumm, IP-Adress oder IP-Beräich deen Dir späre wëllt.",

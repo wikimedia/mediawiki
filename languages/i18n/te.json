@@ -1652,7 +1652,7 @@
 	"listusers": "వాడుకరుల జాబితా",
 	"listusers-editsonly": "మార్పులు చేసిన వాడుకరులను మాత్రమే చూపించు",
 	"listusers-creationsort": "చేరిన తేదీ క్రమంలో చూపించు",
-	"listusers-desc": "అవోహణ క్రమంలో పేర్చు",
+	"listusers-desc": "అవరోహణ క్రమంలో పేర్చు",
 	"usereditcount": "$1 {{PLURAL:$1|మార్పు|మార్పులు}}",
 	"usercreated": "$1 న $2కి {{GENDER:$3|చేరారు}}",
 	"newpages": "కొత్త పేజీలు",

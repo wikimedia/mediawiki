@@ -2209,7 +2209,7 @@
 	"sp-contributions-newbies-title": "Bijdragen van nieuwe gebruikers",
 	"sp-contributions-blocklog": "blokkeerlogboek",
 	"sp-contributions-suppresslog": "onderdrukte gebruikersbijdragen",
-	"sp-contributions-deleted": "verwijderde {{GENDER:$1|bijdragen}}",
+	"sp-contributions-deleted": "verwijderde {{GENDER:$1|gebruiker}}sbijdragen",
 	"sp-contributions-uploads": "uploads",
 	"sp-contributions-logs": "logboeken",
 	"sp-contributions-talk": "overleg",

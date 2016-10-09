@@ -48,7 +48,8 @@
 			"Zciric",
 			"Psychoslave",
 			"Orikrin1998",
-			"Gamliel Fishkin"
+			"Gamliel Fishkin",
+			"Kastanoto"
 		]
 	},
 	"tog-underline": "Substrekado de ligiloj:",
@@ -247,6 +248,8 @@
 	"talk": "Diskuto",
 	"views": "Vidoj",
 	"toolbox": "Iloj",
+	"tool-link-userrights": "Ŝanĝi grupojn de ĉi tiu {{GENDER:$1|uzanto}}",
+	"tool-link-emailuser": "Sendi retpoŝton al ĉi tiu {{GENDER:$1|uzanto}}",
 	"userpage": "Vidi uzantopaĝon",
 	"projectpage": "Rigardi projektopaĝon",
 	"imagepage": "Vidi dosieropaĝon",
@@ -975,7 +978,7 @@
 	"searchprofile-advanced-tooltip": "Serĉi en specialaj nomspacoj",
 	"search-result-size": "$1 ({{PLURAL:$2|1 vorto|$2 vortoj}})",
 	"search-result-category-size": "{{PLURAL:$1|1 membro|$1 membroj}} ({{PLURAL:$2|1 subkategorio|$2 subkategorioj}}, {{PLURAL:$3|1 dosiero|$3 dosieroj}})",
-	"search-redirect": "(alidirektilo $1)",
+	"search-redirect": "(aldirekto el $1)",
 	"search-section": "(sekcio $1)",
 	"search-category": "(kategorio $1)",
 	"search-file-match": "(kongruas kun dosiera enhavo)",

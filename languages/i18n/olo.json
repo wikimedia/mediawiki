@@ -607,7 +607,7 @@
 	"searchprofile-everything-tooltip": "Eči kaikil sivuloil (dai paginois)",
 	"searchprofile-advanced-tooltip": "Eči nämmien nimitiloin keskes",
 	"search-result-size": "$1 ({{PLURAL:$2|1 sana|$2 sanua}})",
-	"search-redirect": "(siirretty $1)",
+	"search-redirect": "(siirretty sivus $1)",
 	"search-section": "(alalugu $1)",
 	"search-category": "(kategourii $1)",
 	"search-suggest": "Tarkoititgo: $1",

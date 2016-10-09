@@ -3137,7 +3137,7 @@
 	"scarytranscludefailed-httpstatus": "[Não foi possível obter a predefinição a partir de $1: HTTP $2]",
 	"scarytranscludetoolong": "[URL longa demais]",
 	"deletedwhileediting": "<strong>AVISO:</strong> Esta página foi eliminada depois de ter começado a editá-la!",
-	"confirmrecreate": "Depois de ter começado a editar esta página, {{GENDER:$2|o utilizador|a utilizadora|o(a) utilizador(a)}} [[User:$1|$1]] ([[User talk:$1|discussão]]) eliminou-a pelo seguinte motivo:\n: <em>$2</em>\nPor favor, confirme que quer realmente recriar esta página.",
+	"confirmrecreate": "Depois de ter começado a editar esta página, {{GENDER:$1|o utilizador|a utilizadora|o(a) utilizador(a)}} [[User:$1|$1]] ([[User talk:$1|discussão]]) eliminou-a pelo seguinte motivo:\n: <em>$2</em>\nPor favor, confirme que quer realmente recriar esta página.",
 	"confirmrecreate-noreason": "{{GENDER:$1|O utilizador|A utilizadora|O(a) utilizador(a)}} [[User:$1|$1]] ([[User talk:$1|discussão]]) eliminou esta página depois de ter começado a editá-la. Confirme que deseja recriar a página, por favor.",
 	"recreate": "Recriar",
 	"confirm_purge_button": "OK",
