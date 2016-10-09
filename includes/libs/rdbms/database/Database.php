@@ -2185,12 +2185,20 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$ok = $this->insert( $table, $rows, $fname, [ 'IGNORE' ] ) && $ok;
 		} catch ( Exception $e ) {
 			if ( $useTrx ) {
-				$this->rollback( $fname, self::FLUSHING_INTERNAL );
+				if ( $this->getType() === 'postgres' ) {
+					$this->rollback( $fname );
+				} else {
+					$this->rollback( $fname, self::FLUSHING_INTERNAL );
+				}
 			}
 			throw $e;
 		}
 		if ( $useTrx ) {
-			$this->commit( $fname, self::FLUSHING_INTERNAL );
+			if ( $this->getType() === 'postgres' ) {
+				$this->commit( $fname, self::TRANSACTION_INTERNAL );
+			} else {
+				$this->commit( $fname, self::FLUSHING_INTERNAL );
+			}
 		}
 
 		return $ok;
@@ -2486,12 +2494,24 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->mTrxPreCommitCallbacks[] = [ $callback, $fname ];
 		} else {
 			// If no transaction is active, then make one for this callback
-			$this->startAtomic( __METHOD__ );
+			if ( $this->getType() == 'postgres' ) {
+				$this->begin( __METHOD__, self::TRANSACTION_INTERNAL );
+			} else {
+				$this->startAtomic( __METHOD__ );
+			}
 			try {
 				call_user_func( $callback );
-				$this->endAtomic( __METHOD__ );
+				if ( $this->getType() == 'postgres' ) {
+					$this->commit( __METHOD__ );
+				} else {
+					$this->endAtomic( __METHOD__ );
+				}
 			} catch ( Exception $e ) {
-				$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
+				if ( $this->getType() == 'postgres' ) {
+					$this->rollback( __METHOD__ );
+				} else {
+					$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
+				}
 				throw $e;
 			}
 		}
@@ -2557,7 +2577,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					// Some callbacks may use startAtomic/endAtomic, so make sure
 					// their transactions are ended so other callbacks don't fail
 					if ( $this->trxLevel() ) {
-						$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
+						if ( $this->getType() == 'postgres' ) {
+							$this->rollback( __METHOD__ );
+						} else {
+							$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
+						}
 					}
 				}
 			}
@@ -2631,6 +2655,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	final public function startAtomic( $fname = __METHOD__ ) {
 		if ( !$this->mTrxLevel ) {
 			$this->begin( $fname, self::TRANSACTION_INTERNAL );
+			if ( $this->getType() == 'postgres' ) {
+				$this->mTrxAutomatic = true;
+			}
 			// If DBO_TRX is set, a series of startAtomic/endAtomic pairs will result
 			// in all changes being in one transaction to keep requests transactional.
 			if ( !$this->getFlag( self::DBO_TRX ) ) {
@@ -2661,7 +2688,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		try {
 			$res = call_user_func_array( $callback, [ $this, $fname ] );
 		} catch ( Exception $e ) {
-			$this->rollback( $fname, self::FLUSHING_INTERNAL );
+			if ( $this->getType() == 'postgres' ) {
+				$this->rollback( $fname );
+			} else {
+				$this->rollback( $fname, self::FLUSHING_INTERNAL );
+			}
 			throw $e;
 		}
 		$this->endAtomic( $fname );
@@ -2699,6 +2730,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->mTrxTimestamp = microtime( true );
 		$this->mTrxFname = $fname;
 		$this->mTrxDoneWrites = false;
+		if ( $this->getType() == 'postgres' ) {
+			$this->mTrxAutomatic = false;
+		}
 		$this->mTrxAutomaticAtomic = false;
 		$this->mTrxAtomicLevels = [];
 		$this->mTrxShortId = sprintf( '%06x', mt_rand( 0, 0xffffff ) );
@@ -2715,7 +2749,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// T147697: make explicitTrxActive() return true until begin() finishes. This way, no
 		// caller will think its OK to muck around with the transaction just because startAtomic()
 		// has not yet completed (e.g. setting mTrxAtomicLevels).
-		$this->mTrxAutomatic = ( $mode === self::TRANSACTION_INTERNAL );
+		if ( $this->getType() != 'postgres' ) {
+			$this->mTrxAutomatic = ( $mode === self::TRANSACTION_INTERNAL );
+		}
 	}
 
 	/**
