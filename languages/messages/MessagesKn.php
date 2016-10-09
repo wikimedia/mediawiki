@@ -7,11 +7,11 @@
  * @file
  *
  * @author Akoppad
- * @author Ashwath Mattur <ashwatham@gmail.com> http://en.wikipedia.org/wiki/User:Ashwatham
+ * @author Ashwath Mattur <ashwatham@gmail.com> https://en.wikipedia.org/wiki/User:Ashwatham
  * @author Dimension10
  * @author Dipin
  * @author HPN
- * @author Hari Prasad Nadig <hpnadig@gmail.com> http://en.wikipedia.org/wiki/User:Hpnadig
+ * @author Hari Prasad Nadig <hpnadig@gmail.com> https://en.wikipedia.org/wiki/User:Hpnadig
  * @author Kaganer
  * @author Ktkaushik
  * @author M G Harish

@@ -291,7 +291,7 @@ class Language {
 		# Since these are limited, this is safe even later changes to the registry --
 		# the only oddity is that it might change the type of the tag, and thus
 		# the results from the capturing groups.
-		# http://www.iana.org/assignments/language-subtag-registry
+		# https://www.iana.org/assignments/language-subtag-registry
 
 		$grandfathered = "en{$s}GB{$s}oed"
 			. "|i{$s}(?:ami|bnn|default|enochian|hak|klingon|lux|mingo|navajo|pwn|tao|tay|tsu)"
@@ -1623,7 +1623,7 @@ class Language {
 	 *
 	 * Based on a PHP-Nuke block by Sharjeel which is released under GNU/GPL license
 	 *
-	 * @see http://phpnuke.org/modules.php?name=News&file=article&sid=8234&mode=thread&order=0&thold=0
+	 * @see https://www.phpnuke.org/modules.php?name=News&file=article&sid=8234&mode=thread&order=0&thold=0
 	 *
 	 * @param string $ts
 	 *
@@ -1852,9 +1852,9 @@ class Language {
 	 * Algorithm to convert Gregorian dates to Thai solar dates,
 	 * Minguo dates or Minguo dates.
 	 *
-	 * Link: http://en.wikipedia.org/wiki/Thai_solar_calendar
-	 *       http://en.wikipedia.org/wiki/Minguo_calendar
-	 *       http://en.wikipedia.org/wiki/Japanese_era_name
+	 * Link: https://en.wikipedia.org/wiki/Thai_solar_calendar
+	 *       https://en.wikipedia.org/wiki/Minguo_calendar
+	 *       https://en.wikipedia.org/wiki/Japanese_era_name
 	 *
 	 * @param string $ts 14-character timestamp
 	 * @param string $cName Calender name
@@ -2593,7 +2593,7 @@ class Language {
 	public function iconv( $in, $out, $string ) {
 		# Even with //IGNORE iconv can whine about illegal characters in
 		# *input* string. We just ignore those too.
-		# REF: http://bugs.php.net/bug.php?id=37166
+		# REF: https://bugs.php.net/bug.php?id=37166
 		# REF: https://phabricator.wikimedia.org/T18885
 		MediaWiki\suppressWarnings();
 		$text = iconv( $in, $out . '//IGNORE', $string );
