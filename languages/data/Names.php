@@ -316,7 +316,7 @@ class Names {
 		'nv' => 'Diné bizaad', # Navajo
 		'ny' => 'Chi-Chewa', # Chichewa
 		'oc' => 'occitan', # Occitan
-		'olo' => 'Livvinкarjala', # Livvi-Karelian
+		'olo' => 'Livvinkarjala', # Livvi-Karelian
 		'om' => 'Oromoo', # Oromo
 		'or' => 'ଓଡ଼ିଆ', # Oriya
 		'os' => 'Ирон', # Ossetic, bug 29091
