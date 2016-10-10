@@ -93,11 +93,11 @@ class TemplatesOnThisPageFormatter {
 		}
 
 		if ( $more instanceof LinkTarget ) {
-			$outText .= Html::rawElement( 'li', $this->linkRenderer->makeLink(
+			$outText .= Html::rawElement( 'li', [], $this->linkRenderer->makeLink(
 				$more, $this->context->msg( 'moredotdotdot' )->text() ) );
 		} elseif ( $more ) {
 			// Documented as should already be escaped
-			$outText .= Html::rawElement( 'li', $more );
+			$outText .= Html::rawElement( 'li', [], $more );
 		}
 
 		$outText .= '</ul>';
