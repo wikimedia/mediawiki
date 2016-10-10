@@ -75,6 +75,7 @@
 	"config-memory-bad": "'''Varoitus:''' PHP:n <code>memory_limit</code> on $1.\nTämä on luultavasti liian alhainen.\nAsennus saattaa epäonnistua!",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] on asennettu",
 	"config-apc": "[http://www.php.net/apc APC] on asennettu.",
+	"config-apcu": "[http://www.php.net/apcu APCu] on asennettu",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] on asennettu",
 	"config-diff3-bad": "GNU diff3:a ei löytynyt.",
 	"config-git": "Löydetty Git versionhallintaohjelmisto: <code>$1</code>",

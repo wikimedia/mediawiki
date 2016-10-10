@@ -1392,6 +1392,7 @@
 	"upload-copy-upload-invalid-domain": "Примерци отпремања нису доступни на овом домену.",
 	"upload-dialog-title": "Отпремање датотека",
 	"upload-dialog-button-cancel": "Откажи",
+	"upload-dialog-button-back": "Назад",
 	"upload-dialog-button-done": "Готово",
 	"upload-dialog-button-save": "Сачувај",
 	"upload-dialog-button-upload": "Пошаљи",

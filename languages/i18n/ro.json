@@ -3047,7 +3047,7 @@
 	"autosumm-replace": "Pagină înlocuită cu „$1”",
 	"autoredircomment": "Redirecționat înspre [[$1]]",
 	"autosumm-new": "Pagină nouă: $1",
-	"autosumm-newblank": "A creat o pagină goală",
+	"autosumm-newblank": "Creat o pagină goală",
 	"size-bytes": "{{PLURAL:$1|un octet|$1 octeți|$1 de octeți}}",
 	"size-pixel": "$1 {{PLURAL:$1|pixel|pixeli|de pixeli}}",
 	"lag-warn-normal": "Modificările mai noi de $1 {{PLURAL:$1|secondă|seconde}} pot să nu apară în listă.",
