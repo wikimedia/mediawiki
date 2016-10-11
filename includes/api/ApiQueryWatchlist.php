@@ -106,13 +106,14 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$options['end'] = $params['end'];
 		}
 
+		$startFrom = null;
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
 			$continueTimestamp = $cont[0];
 			$continueId = (int)$cont[1];
 			$this->dieContinueUsageIf( $continueId != $cont[1] );
-			$options['startFrom'] = [ $continueTimestamp, $continueId ];
+			$startFrom = [ $continueTimestamp, $continueId ];
 		}
 
 		if ( $wlowner !== $user ) {
@@ -169,33 +170,24 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$options['notByUser'] = $params['excludeuser'];
 		}
 
-		$options['limit'] = $params['limit'] + 1;
+		$options['limit'] = $params['limit'];
+
+		Hooks::run( 'ApiQueryWatchlistPrepareWatchedItemQueryServiceOptions', [
+			$this, $params, &$options
+		] );
 
 		$ids = [];
 		$count = 0;
 		$watchedItemQuery = MediaWikiServices::getInstance()->getWatchedItemQueryService();
-		$items = $watchedItemQuery->getWatchedItemsWithRecentChangeInfo( $wlowner, $options );
+		$items = $watchedItemQuery->getWatchedItemsWithRecentChangeInfo( $wlowner, $options, $startFrom );
 
 		foreach ( $items as list ( $watchedItem, $recentChangeInfo ) ) {
 			/** @var WatchedItem $watchedItem */
-			if ( ++$count > $params['limit'] ) {
-				// We've reached the one extra which shows that there are
-				// additional pages to be had. Stop here...
-				$this->setContinueEnumParameter(
-					'continue',
-					$recentChangeInfo['rc_timestamp'] . '|' . $recentChangeInfo['rc_id']
-				);
-				break;
-			}
-
 			if ( is_null( $resultPageSet ) ) {
 				$vals = $this->extractOutputData( $watchedItem, $recentChangeInfo );
 				$fit = $this->getResult()->addValue( [ 'query', $this->getModuleName() ], null, $vals );
 				if ( !$fit ) {
-					$this->setContinueEnumParameter(
-						'continue',
-						$recentChangeInfo['rc_timestamp'] . '|' . $recentChangeInfo['rc_id']
-					);
+					$startFrom = [ $recentChangeInfo['rc_timestamp'], $recentChangeInfo['rc_id'] ];
 					break;
 				}
 			} else {
@@ -205,6 +197,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					$ids[] = intval( $recentChangeInfo['rc_cur_id'] );
 				}
 			}
+		}
+
+		if ( $startFrom !== null ) {
+			$this->setContinueEnumParameter( 'continue', implode( '|', $startFrom ) );
 		}
 
 		if ( is_null( $resultPageSet ) ) {
@@ -395,6 +391,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if ( $anyHidden && ( $recentChangeInfo['rc_deleted'] & Revision::DELETED_RESTRICTED ) ) {
 			$vals['suppressed'] = true;
 		}
+
+		Hooks::run( 'ApiQueryWatchlistExtractOutputData', [
+			$this, $watchedItem, $recentChangeInfo, &$vals
+		] );
 
 		return $vals;
 	}
