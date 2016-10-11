@@ -565,6 +565,18 @@ your callback to the $tokenFunctions array and return true (returning false
 makes no sense).
 &$tokenFunctions: array(action => callback)
 
+'ApiQueryWatchlistExtractOutputData': Extract row data for ApiQueryWatchlist.
+$module: ApiQueryWatchlist instance
+$watchedItem: WatchedItem instance
+$recentChangeInfo: Array of recent change info data
+&$vals: Associative array of data to be output for the row
+
+'ApiQueryWatchlistPrepareWatchedItemQueryServiceOptions': Populate the options
+to be passed from ApiQueryWatchlist to WatchedItemQueryService.
+$module: ApiQueryWatchlist instance
+$params: Array of parameters, as would be returned by $module->extractRequestParams()
+&$options: Array of options for WatchedItemQueryService::getWatchedItemsWithRecentChangeInfo()
+
 'ApiRsdServiceApis': Add or remove APIs from the RSD services list. Each service
 should have its own entry in the $apis array and have a unique name, passed as
 key for the array that represents the service data. In this data array, the
@@ -3734,6 +3746,10 @@ used to alter the SQL query which gets the list of wanted pages.
 'WatchArticleComplete': After a watch is added to an article.
 &$user: user that watched
 &$page: WikiPage object watched
+
+'WatchedItemQueryServiceExtensions': Create a WatchedItemQueryServiceExtension.
+&$extensions: Add WatchedItemQueryServiceExtension objects to this array
+$watchedItemQueryService: Service object
 
 'WatchlistEditorBeforeFormRender': Before building the Special:EditWatchlist
 form, used to manipulate the list of pages or preload data based on that list.
