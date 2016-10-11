@@ -667,6 +667,10 @@ class LoadBalancer implements ILoadBalancer {
 		} elseif ( isset( $this->mConns['local'][$i][0] ) ) {
 			$conn = $this->mConns['local'][$i][0];
 		} else {
+			if ( !isset( $this->mServers[$i] ) || !is_array( $this->mServers[$i] ) ) {
+				throw new InvalidArgumentException( "No server with index '$i'." );
+			}
+			// Open a new connection
 			$server = $this->mServers[$i];
 			$server['serverIndex'] = $i;
 			$conn = $this->reallyOpenConnection( $server, false );
@@ -747,6 +751,9 @@ class LoadBalancer implements ILoadBalancer {
 					": reusing free connection from $oldDomain for $domain" );
 			}
 		} else {
+			if ( !isset( $this->mServers[$i] ) || !is_array( $this->mServers[$i] ) ) {
+				throw new InvalidArgumentException( "No server with index '$i'." );
+			}
 			// Open a new connection
 			$server = $this->mServers[$i];
 			$server['serverIndex'] = $i;
@@ -799,15 +806,9 @@ class LoadBalancer implements ILoadBalancer {
 	 * @throws DBAccessError
 	 * @throws InvalidArgumentException
 	 */
-	protected function reallyOpenConnection( $server, $dbNameOverride = false ) {
+	protected function reallyOpenConnection( array $server, $dbNameOverride = false ) {
 		if ( $this->disabled ) {
 			throw new DBAccessError();
-		}
-
-		if ( !is_array( $server ) ) {
-			throw new InvalidArgumentException(
-				'You must update your load-balancing configuration. ' .
-				'See DefaultSettings.php entry for $wgDBservers.' );
 		}
 
 		if ( $dbNameOverride !== false ) {
