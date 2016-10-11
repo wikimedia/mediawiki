@@ -328,7 +328,7 @@ class BalanceElement {
 	/**
 	 * Parent of this element, or the string "flat" if this element has
 	 * already been flattened into its parent.
-	 * @var string|null $parent
+	 * @var BalanceElement|string|null $parent
 	 */
 	public $parent;
 
@@ -337,7 +337,7 @@ class BalanceElement {
 	 * child will be an actual BalanceElement object; the rest will
 	 * be strings, representing either text nodes or flattened
 	 * BalanceElement objects.
-	 * @var array $children
+	 * @var BalanceElement[]|string[] $children
 	 */
 	public $children;
 
@@ -465,6 +465,7 @@ class BalanceElement {
 	 * in its parent by that string.
 	 *
 	 * @param array $config Balancer configuration; see Balancer::__construct().
+	 * @return string
 	 *
 	 * @see __toString()
 	 */
@@ -653,7 +654,7 @@ class BalanceElement {
 class BalanceStack implements IteratorAggregate {
 	/**
 	 * Backing storage for the stack.
-	 * @var array $elements
+	 * @var BalanceElement[] $elements
 	 */
 	private $elements = [];
 	/**
@@ -717,6 +718,7 @@ class BalanceStack implements IteratorAggregate {
 	/**
 	 * Insert text at the appropriate place for inserting a node.
 	 * @param string $value
+	 * @param bool $isComment
 	 * @see https://html.spec.whatwg.org/multipage/syntax.html#appropriate-place-for-inserting-a-node
 	 */
 	public function insertText( $value, $isComment = false ) {
@@ -906,7 +908,7 @@ class BalanceStack implements IteratorAggregate {
 	/**
 	 * Return an iterator over this stack which visits the current node
 	 * first, and the root node last.
-	 * @return Iterator
+	 * @return \Iterator
 	 */
 	public function getIterator() {
 		return new ReverseArrayIterator( $this->elements );
@@ -1080,6 +1082,8 @@ class BalanceStack implements IteratorAggregate {
 	/**
 	 * Foster parent the given $elt in the stack of open elements.
 	 * @param BalanceElement|string $elt
+	 * @return BalanceElement|string
+	 *
 	 * @see https://html.spec.whatwg.org/multipage/syntax.html#foster-parent
 	 */
 	private function fosterParent( $elt ) {
@@ -1520,6 +1524,7 @@ class BalanceActiveFormattingElements {
 
 	/**
 	 * Determine whether an element is in the list of formatting elements.
+	 * @param BalanceElement $elt
 	 * @return boolean
 	 */
 	public function isInList( BalanceElement $elt ) {
@@ -1529,6 +1534,8 @@ class BalanceActiveFormattingElements {
 	/**
 	 * Find the element $elt in the list and remove it.
 	 * Used when parsing &lt;a&gt; in body mode.
+	 *
+	 * @param BalanceElement $elt
 	 */
 	public function remove( BalanceElement $elt ) {
 		if ( $this->head !== $elt && !$elt->prevAFE ) {
@@ -1597,6 +1604,9 @@ class BalanceActiveFormattingElements {
 
 	/**
 	 * Find element $a in the list and replace it with element $b
+	 *
+	 * @param BalanceElement $a
+	 * @param BalanceElement $b
 	 */
 	public function replace( BalanceElement $a, BalanceElement $b ) {
 		if ( $this->head !== $a && !$a->prevAFE ) {
@@ -1628,6 +1638,9 @@ class BalanceActiveFormattingElements {
 
 	/**
 	 * Find $a in the list and insert $b after it.
+
+	 * @param BalanceElement $a
+	 * @param BalanceElement $b
 	 */
 	public function insertAfter( BalanceElement $a, BalanceElement $b ) {
 		if ( $this->head !== $a && !$a->prevAFE ) {
@@ -1778,9 +1791,12 @@ class BalanceActiveFormattingElements {
  */
 class Balancer {
 	private $parseMode;
+	/** @var \Iterator */
 	private $bitsIterator;
 	private $allowedHtmlElements;
+	/** @var BalanceActiveFormattingElements */
 	private $afe;
+	/** @var BalanceStack */
 	private $stack;
 	private $strict;
 	private $allowComments;
@@ -1794,6 +1810,11 @@ class Balancer {
 	private $ignoreLinefeed;
 	private $inRCDATA;
 	private $inRAWTEXT;
+
+	/** @var callable|null */
+	private $processingCallback;
+	/** @var array */
+	private $processingArgs;
 
 	/**
 	 * Valid HTML5 comments.
@@ -2582,6 +2603,7 @@ class Balancer {
 			case 'tt':
 			case 'u':
 				$this->afe->reconstruct( $this->stack );
+				// FIXME: only takes one parameter
 				$this->afe->push( $this->stack->insertHTMLElement( $value, $attribs ), $attribs );
 				return true;
 
@@ -2591,6 +2613,7 @@ class Balancer {
 					$this->inBodyMode( 'endtag', 'nobr' );
 					$this->afe->reconstruct( $this->stack );
 				}
+				// FIXME: only takes one parameter
 				$this->afe->push( $this->stack->insertHTMLElement( $value, $attribs ), $attribs );
 				return true;
 
