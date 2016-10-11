@@ -1781,6 +1781,8 @@
 	"apisandbox-loading-results": "API ফলাফল গ্রহণ করা হচ্ছে...",
 	"apisandbox-request-url-label": "অনুরোধের URL:",
 	"apisandbox-request-time": "অনুরোধের সময়: {{PLURAL:$1|$1 মি.সে.}}",
+	"apisandbox-continue": "অব্যাহত",
+	"apisandbox-continue-clear": "পরিস্কার",
 	"booksources": "বইয়ের উৎস",
 	"booksources-search-legend": "বইয়ের উৎসের জন্য অনুসন্ধান করা হোক",
 	"booksources-isbn": "আইএসবিএন:",

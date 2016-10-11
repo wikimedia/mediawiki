@@ -628,7 +628,7 @@
 	"sectioneditnotsupported-text": "ये पृष्ठमी खण्ड सम्पादन असमर्थित",
 	"permissionserrors": "अधिकारमी त्रुटी",
 	"permissionserrorstext": "तइ काम अद्दाइ तम सित अधिकार आथिन, यिन {{PLURAL:$1|कारण|कारणअन}}ले अद्दा:",
-	"permissionserrorstext-withaction": "$2 कि लेखा तमलाईँ अनुमति नाइथिन , यिन {{PLURAL:$1|कारणले|कारणहरुले}} गद्दा :",
+	"permissionserrorstext-withaction": "$2 कि लेखा तमलाई अनुमति नाइथिन , यिन {{PLURAL:$1|कारणले|कारणहरू}}ले गद्दा :",
 	"moveddeleted-notice": "पानो मेटियाको छ।\nमेटियाका और सारियाका पानाहरूको सूची तल्तिर सन्दर्भखी लेखा दियाको छ।",
 	"log-fulllog": "पूरा लग हेर",
 	"edit-hook-aborted": "हुकले सम्पादन बन्द गरिदियो ।\nयेले कोइ कारण दिएन ।",

@@ -143,7 +143,7 @@
 	"period-pm": "PM",
 	"pagecategories": "{{PLURAL:$1|Kategorija|Kategorije}}",
 	"category_header": "Članci u kategoriji \"$1\"",
-	"subcategories": "Podkategorije",
+	"subcategories": "Potkategorije",
 	"category-media-header": "Datoteke u kategoriji \"$1\"",
 	"category-empty": "''Ova kategorija trenutno ne sadrži članke ni medije.''",
 	"hidden-categories": "{{PLURAL:$1|Sakrivena kategorija|Sakrivene kategorije}}",

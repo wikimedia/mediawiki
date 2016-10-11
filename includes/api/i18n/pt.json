@@ -86,7 +86,7 @@
 	"apihelp-query+filearchive-example-simple": "Mostrar lista de todos os ficheiros eliminados",
 	"apihelp-query+info-description": "Obter informação básica da página.",
 	"apihelp-query+recentchanges-example-simple": "Lista de mudanças recentes",
-	"apihelp-query+search-param-enablerewrites": "Habilitar rescrever a pesquisa interna. Alguns motores de busca podem rescrever a consulta para outra que acha dará melhores resultados, como a corrigir erros de ortografia.",
+	"apihelp-query+search-param-enablerewrites": "Ativar reescrita da consulta interna. Alguns motores de busca podem reescrever a consulta, substituindo-a por outra que consideram que dará melhores resultados, como acontece na correção de erros de ortografia.",
 	"apihelp-query+watchlist-param-owner": "Usado com $1token para aceder à lista de páginas vigiadas de outro utilizador.",
 	"apihelp-query+watchlist-param-token": "Uma chave de segurança (disponível nas [[Special:Preferences#mw-prefsection-watchlist|preferências]] do utilizador) para permitir acesso à lista de páginas vigiadas de outro utilizador.",
 	"apihelp-query+watchlistraw-param-owner": "Usado com $1token para aceder à lista de páginas vigiadas de outro utilizador.",

@@ -218,7 +218,7 @@
 	"category-file-count-limited": "W tej kategorii {{PLURAL:$1|jest 1 plik|są $1 pliki|jest $1 plików}}.",
 	"listingcontinuesabbrev": "cd.",
 	"index-category": "Strony indeksowane",
-	"noindex-category": "Strony nieindeksowane",
+	"noindex-category": "Strony niezindeksowane",
 	"broken-file-category": "Strony z odwołaniami do nieistniejących plików",
 	"about": "O {{GRAMMAR:MS.lp|{{SITENAME}}}}",
 	"article": "artykuł",
@@ -2102,6 +2102,7 @@
 	"changecontentmodel-success-text": "Typ zawartości [[:$1]] został zmieniony.",
 	"changecontentmodel-cannot-convert": "Zawartość [[:$1]] nie może być przekształcona do typu $2.",
 	"changecontentmodel-nodirectediting": "Model zawartości $1 nie obsługuje bezpośredniego edytowania",
+	"changecontentmodel-emptymodels-title": "Nie ma dostępnych modeli treści",
 	"changecontentmodel-emptymodels-text": "Zawartość [[:$1]] nie może być przekształcona do żadnego typu.",
 	"log-name-contentmodel": "Rejestr zmian modelu zawartości",
 	"log-description-contentmodel": "Wydarzenia związane z modelami zawartości stron",
@@ -3807,5 +3808,6 @@
 	"unlinkaccounts": "Odłącz konta",
 	"unlinkaccounts-success": "Konta zostały odłączone.",
 	"restrictionsfield-badip": "Nieprawidłowy adres IP lub zakres adresów: $1",
-	"restrictionsfield-label": "Dozwolone zakresy adresów IP:"
+	"restrictionsfield-label": "Dozwolone zakresy adresów IP:",
+	"restrictionsfield-help": "Jeden adres IP lub zakres CIDR w wierszu. Aby zaznaczyć wszystkie, użyj<br><code>0.0.0.0/0</code><br><code>::/0</code>"
 }
