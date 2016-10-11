@@ -6,15 +6,14 @@
 .mixin-mw-ui-anchor-styles( @mainColor ) {
 	color: @mainColor;
 
-	// Hover state
 	&:hover {
 		color: lighten( @mainColor, @colorLightenPercentage );
 	}
-	// Focus and active states
+
 	&:focus,
 	&:active {
 		color: darken( @mainColor, @colorDarkenPercentage );
-		outline: none; // outline fix
+		outline: 0;
 	}
 
 	// Quiet mode is gray at first
@@ -26,13 +25,13 @@
 /*
 Anchors
 
-The anchor base type can be applied to A elements when a basic context styling needs to be given to a link, without
-having to assign it as a button type. mw-ui-anchor only changes the text color, and should not be used in combination
-with other base classes, such as mw-ui-button.
+The anchor base type can be applied to `a` elements when a basic context styling needs to be given to a link, without
+having to assign it as a button type. `.mw-ui-anchor` only changes the text color, and should not be used in combination
+with other base classes, such as `.mw-ui-button`.
+
 
 Markup:
 <a href="#" class="mw-ui-anchor mw-ui-progressive">Progressive</a>
-<a href="#" class="mw-ui-anchor mw-ui-constructive">Constructive</a>
 <a href="#" class="mw-ui-anchor mw-ui-destructive">Destructive</a>
 
 .mw-ui-quiet - Quiet until interaction.
@@ -46,12 +45,13 @@ Styleguide 6.2.
 		.mixin-mw-ui-anchor-styles( @colorProgressive );
 	}
 
-	&.mw-ui-constructive {
-		.mixin-mw-ui-anchor-styles( @colorConstructive );
-	}
-
 	&.mw-ui-destructive {
 		.mixin-mw-ui-anchor-styles( @colorDestructive );
+	}
+
+	//`.mw-ui-constructive` is deprecated; consolidated with `progressive`, see T110555
+	&.mw-ui-constructive {
+		.mixin-mw-ui-anchor-styles( @colorConstructive );
 	}
 }
 
