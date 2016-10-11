@@ -569,6 +569,8 @@ class LogEventsList extends ContextSource {
 			'useRequestParams' => false,
 			'useMaster' => false,
 			'extraUrlParams' => false,
+			'spanId' => '',
+			'toggle' => '',
 		];
 		# The + operator appends elements of remaining keys from the right
 		# handed array to the left handed, whereas duplicated keys are NOT overwritten.
@@ -632,12 +634,23 @@ class LogEventsList extends ContextSource {
 				] );
 
 				if ( count( $msgKey ) == 1 ) {
-					$s .= $context->msg( $msgKey[0] )->parseAsBlock();
+					$msgText = $context->msg( $msgKey[0] )->parseAsBlock();
 				} else { // Process additional arguments
 					$args = $msgKey;
 					array_shift( $args );
-					$s .= $context->msg( $msgKey[0], $args )->parseAsBlock();
+					$msgText = $context->msg( $msgKey[0], $args )->parseAsBlock();
 				}
+				if ( $param['toggle'] ) {
+					// append toggle at the end of the message
+					$s .= Parser::stripOuterParagraph( $msgText );
+					$s .= $param['toggle'];
+				} else {
+					$s .= $msgText;
+				}
+			}
+			if ( $param['spanId'] ) {
+				// wrap log extract in specified span id
+				$s .= '<span id="' . $param['spanId'] . '" > ';
 			}
 			$s .= $loglist->beginLogEventsList() .
 				$logBody .
@@ -680,8 +693,13 @@ class LogEventsList extends ContextSource {
 			);
 		}
 
-		if ( $logBody && $msgKey[0] ) {
-			$s .= '</div>';
+		if ( $logBody ) {
+			if ( $param['spanId'] ) {
+				$s .= '</span>';
+			}
+			if ( $msgKey[0] ) {
+				$s .= '</div>';
+			}
 		}
 
 		if ( $wrap != '' ) { // Wrap message in html

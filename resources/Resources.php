@@ -2191,6 +2191,20 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.protectLogExcerptToggle' => [
+		'scripts'       => [
+			'resources/src/mediawiki/mediawiki.protectLogExcerptToggle.js'
+		],
+		'skinStyles' => [
+			'default' => [
+				'resources/src/mediawiki/mediawiki.toggle.css'
+			],
+		],
+		'messages'      => [
+			'log-toggle-protect-show', 'log-toggle-protect-hide',
+		],
+		'dependencies'  => [ 'jquery.accessKeyLabel' ],
+	],
 
 	'mediawiki.widgets' => [
 		'scripts' => [

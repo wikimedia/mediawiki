@@ -3024,8 +3024,20 @@ class EditPage {
 				# Then it must be protected based on static groups (regular)
 				$noticeMsg = 'protectedpagewarning';
 			}
+			// create a toggle to show/hide the log extract
+			$innerToggle = '<a class="toggle-text" title="' .
+				$this->context->msg( 'log-toggle-protect-title' )->escaped() . '" >' .
+				$this->context->msg( 'log-toggle-protect-show' )->escaped() . '</a>';
+			$toggle = ' <span id="mw-protectlogtoggle" class="logexcerpt-toggle"
+				style="display:none;">' .
+				$this->context->msg( 'parentheses' )->rawParams( $innerToggle )->escaped() .
+				'</span>';
+			// show the protection log extract with a toggle
 			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle, '',
-				[ 'lim' => 1, 'msgKey' => [ $noticeMsg ] ] );
+				[ 'lim' => 1, 'msgKey' => [ $noticeMsg ], 'toggle' => $toggle,
+					'spanId' => 'mw-protectlogexcerpt' ] );
+			// add module for toggle
+			$wgOut->addModules( 'mediawiki.protectLogExcerptToggle' );
 		}
 		if ( $this->mTitle->isCascadeProtected() ) {
 			# Is this page under cascading protection from some source pages?
