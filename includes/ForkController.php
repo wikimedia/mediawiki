@@ -19,6 +19,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Class for managing forking command line scripts.
@@ -150,7 +151,7 @@ class ForkController {
 	protected function prepareEnvironment() {
 		global $wgMemc;
 		// Don't share DB, storage, or memcached connections
-		wfGetLBFactory()->destroy();
+		MediaWikiServices::resetChildProcessServices();
 		FileBackendGroup::destroySingleton();
 		LockManagerGroup::destroySingletons();
 		JobQueueGroup::destroySingletons();
