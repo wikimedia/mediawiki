@@ -530,7 +530,3 @@
 	path = extensions/MediaWikiChat
 	url = https://github.com/wikimedia/mediawiki-extensions-MediaWikiChat
 	branch = REL1_27
-[submodule "extensions/ArticleRatings"]
-	path = extensions/ArticleRatings
-	url = https://github.com/wikimedia/mediawiki-extensions-ArticleRatings
-	branch = master
