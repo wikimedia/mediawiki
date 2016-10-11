@@ -3676,6 +3676,8 @@
 	"log-action-filter-managetags-delete": "Выдаленьне метак",
 	"log-action-filter-managetags-activate": "Актывацыя метак",
 	"log-action-filter-managetags-deactivate": "Дэактывацыя метак",
+	"log-action-filter-move-move": "Перанос безь перазапісу перанакіраваньняў",
+	"log-action-filter-move-move_redir": "Перанос зь перазапісам перанакіраваньняў",
 	"log-action-filter-newusers-autocreate": "Аўтаматычнае стварэньне",
 	"log-action-filter-patrol-autopatrol": "Аўтаматычнае патруляваньне",
 	"log-action-filter-protect-protect": "Абарона",

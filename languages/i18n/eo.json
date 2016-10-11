@@ -1964,7 +1964,7 @@
 	"emailccsubject": "Kopio de via mesaĝo al $1: $2",
 	"emailsent": "Retmesaĝo sendita",
 	"emailsenttext": "Via retmesaĝo estas sendita.",
-	"emailuserfooter": "Ĉi tiun retpoŝton estis sendita far $1 al $2 per la funkcio \"{{int:emailuser}}\" el {{SITENAME}}.",
+	"emailuserfooter": "Ĉi tiu retpoŝtmesaĝo estis {{GENDER:$1|sendita}} de $1 al {{GENDER:$2|$2}} per la funkcio \"{{int:emailuser}}\" ĉe {{SITENAME}}.",
 	"usermessage-summary": "Lasanta sisteman mesaĝon.",
 	"usermessage-editor": "Mesaĝanto de sistemo",
 	"watchlist": "Mia atentaro",
