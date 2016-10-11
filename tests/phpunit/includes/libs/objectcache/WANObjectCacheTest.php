@@ -252,7 +252,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider getMultiWithSetCallback_provider
-	 * @covers WANObjectCache::getMultitWithSetCallback()
+	 * @covers WANObjectCache::getMultiWithSetCallback()
 	 * @covers WANObjectCache::makeMultiKeys()
 	 * @param array $extOpts
 	 * @param bool $versioned
