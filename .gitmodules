@@ -533,4 +533,4 @@
 [submodule "extensions/ArticleRatings"]
 	path = extensions/ArticleRatings
 	url = https://github.com/wikimedia/mediawiki-extensions-ArticleRatings
-	branch = REL1_27
+	branch = master
