@@ -20,6 +20,7 @@
  */
 
 use Psr\Log\LoggerInterface;
+use Wikimedia\ScopedCallback;
 
 /**
  * Basic DB load monitor with no external dependencies

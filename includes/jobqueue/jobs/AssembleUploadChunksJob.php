@@ -20,6 +20,7 @@
  * @file
  * @ingroup Upload
  */
+use Wikimedia\ScopedCallback;
 
 /**
  * Assemble the segments of a chunked upload.

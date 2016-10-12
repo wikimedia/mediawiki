@@ -21,6 +21,7 @@
  * @ingroup Database
  */
 use Psr\Log\LoggerInterface;
+use Wikimedia\ScopedCallback;
 
 /**
  * Database connection, tracking, load balancing, and transaction manager for a cluster

@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Auth;
 
+use Wikimedia\ScopedCallback;
+
 /**
  * @group AuthManager
  * @group Database
@@ -70,7 +72,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 			} );
 		}
 
-		return new \ScopedCallback( function () {
+		return new ScopedCallback( function () {
 			\Hooks::clear( 'AlternateUserMailer' );
 			\Hooks::register( 'AlternateUserMailer', function () {
 				return false;
@@ -414,7 +416,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 
 		$dbw = wfGetDB( DB_MASTER );
 		$oldHash = $dbw->selectField( 'user', 'user_newpassword', [ 'user_name' => $cuser ] );
-		$cb = new \ScopedCallback( function () use ( $dbw, $cuser, $oldHash ) {
+		$cb = new ScopedCallback( function () use ( $dbw, $cuser, $oldHash ) {
 			$dbw->update( 'user', [ 'user_newpassword' => $oldHash ], [ 'user_name' => $cuser ] );
 		} );
 
@@ -451,7 +453,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		$changeReq->password = $newpass;
 		$resetMailer = $this->hookMailer();
 		$provider->providerChangeAuthenticationData( $changeReq );
-		\ScopedCallback::consume( $resetMailer );
+		ScopedCallback::consume( $resetMailer );
 
 		$loginReq->password = $oldpass;
 		$ret = $provider->beginPrimaryAuthentication( $loginReqs );
@@ -573,7 +575,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 			return false;
 		} );
 		$provider->providerChangeAuthenticationData( $req );
-		\ScopedCallback::consume( $resetMailer );
+		ScopedCallback::consume( $resetMailer );
 		$this->assertTrue( $mailed );
 
 		$priv = \TestingAccessWrapper::newFromObject( $provider );
@@ -723,7 +725,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		$this->assertSame( 'byemail', $provider->finishAccountCreation( $user, $creator, $res ) );
 		$this->assertTrue( $mailed );
 
-		\ScopedCallback::consume( $resetMailer );
+		ScopedCallback::consume( $resetMailer );
 		$this->assertTrue( $mailed );
 	}
 

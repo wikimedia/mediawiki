@@ -30,6 +30,7 @@
  */
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use Wikimedia\ScopedCallback;
 
 /**
  * @brief Base class for all file backend classes (including multi-write backends).

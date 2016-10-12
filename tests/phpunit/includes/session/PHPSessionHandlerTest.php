@@ -21,7 +21,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 			}
 			return false;
 		} );
-		$reset[] = new \ScopedCallback( 'restore_error_handler' );
+		$reset[] = new \Wikimedia\ScopedCallback( 'restore_error_handler' );
 
 		$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
 		$rProp->setAccessible( true );
@@ -30,7 +30,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 			$oldManager = $old->manager;
 			$oldStore = $old->store;
 			$oldLogger = $old->logger;
-			$reset[] = new \ScopedCallback(
+			$reset[] = new \Wikimedia\ScopedCallback(
 				[ PHPSessionHandler::class, 'install' ],
 				[ $oldManager, $oldStore, $oldLogger ]
 			);
@@ -49,7 +49,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 
 		$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
 		$rProp->setAccessible( true );
-		$reset = new \ScopedCallback( [ $rProp, 'setValue' ], [ $rProp->getValue() ] );
+		$reset = new \Wikimedia\ScopedCallback( [ $rProp, 'setValue' ], [ $rProp->getValue() ] );
 		$rProp->setValue( $handler );
 
 		$handler->setEnableFlags( 'enable' );
@@ -123,7 +123,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 		] );
 		PHPSessionHandler::install( $manager );
 		$wrap = \TestingAccessWrapper::newFromObject( $rProp->getValue() );
-		$reset[] = new \ScopedCallback(
+		$reset[] = new \Wikimedia\ScopedCallback(
 			[ $wrap, 'setEnableFlags' ],
 			[ $wrap->enable ? $wrap->warn ? 'warn' : 'enable' : 'disable' ]
 		);
@@ -326,7 +326,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 		\TestingAccessWrapper::newFromObject( $handler )->setEnableFlags( 'disable' );
 		$oldValue = $rProp->getValue();
 		$rProp->setValue( $handler );
-		$reset = new \ScopedCallback( [ $rProp, 'setValue' ], [ $oldValue ] );
+		$reset = new \Wikimedia\ScopedCallback( [ $rProp, 'setValue' ], [ $oldValue ] );
 
 		call_user_func_array( [ $handler, $method ], $args );
 	}

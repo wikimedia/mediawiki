@@ -1,5 +1,6 @@
 <?php
 use MediaWiki\Linker\LinkTarget;
+use Wikimedia\ScopedCallback;
 
 /**
  * @author Addshore
