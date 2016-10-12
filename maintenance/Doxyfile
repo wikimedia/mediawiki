@@ -4,10 +4,10 @@
 # doxygen (www.doxygen.org) for MediaWiki.
 #
 # Some placeholders have been added for MediaWiki usage:
-# {{OUTPUT_DIRECTORY}}
-# {{CURRENT_VERSION}}
-# {{STRIP_FROM_PATH}}
-# {{INPUT}}
+# OUTPUT_DIRECTORY = {{OUTPUT_DIRECTORY}}
+# CURRENT_VERSION  = {{CURRENT_VERSION}}
+# STRIP_FROM_PATH  = {{STRIP_FROM_PATH}}
+# INPUT            = {{INPUT}}
 #
 # To generate documentation run: php mwdocgen.php --no-extensions
 
