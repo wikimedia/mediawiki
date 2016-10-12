@@ -146,7 +146,13 @@
 					}
 					req = new mw.Api().get( params );
 					promiseAbortObject.abort = req.abort.bind( req ); // TODO ew
-					return req;
+					return req.then( function ( ret ) {
+						if ( ret.query === undefined ) {
+							ret = new mw.Api().get( { action: 'query', titles: query } );
+							promiseAbortObject.abort = ret.abort.bind( ret );
+						}
+						return ret;
+					} );
 				}
 			} ).promise( promiseAbortObject );
 		} else {
@@ -186,6 +192,7 @@
 				continue;
 			}
 			pageData[ suggestionPage.title ] = {
+				known: suggestionPage.known !== undefined,
 				missing: suggestionPage.missing !== undefined,
 				redirect: suggestionPage.redirect !== undefined,
 				disambiguation: OO.getProp( suggestionPage, 'pageprops', 'disambiguation' ) !== undefined,
@@ -205,6 +212,7 @@
 			for ( i = 0, len = redirects.length; i < len; i++ ) {
 				pageData[ redirects[ i ] ] = {
 					missing: false,
+					known: true,
 					redirect: true,
 					disambiguation: false,
 					description: mw.msg( 'mw-widgets-titleinput-description-redirect', suggestionPage.title ),
@@ -222,14 +230,21 @@
 		// If not found, run value through mw.Title to avoid treating a match as a
 		// mismatch where normalisation would make them matching (bug 48476)
 
-		pageExistsExact = titles.indexOf( this.getQueryValue() ) !== -1;
+		pageExistsExact = (
+			Object.prototype.hasOwnProperty.call( pageData, this.getQueryValue() ) &&
+			pageData[ this.getQueryValue() ].missing &&
+			pageData[ this.getQueryValue() ].known
+		);
 		pageExists = pageExistsExact || (
-			titleObj && titles.indexOf( titleObj.getPrefixedText() ) !== -1
+			titleObj &&
+			Object.prototype.hasOwnProperty.call( pageData, titleObj.getPrefixedText() ) &&
+			pageData[ titleObj.getPrefixedText() ].missing &&
+			pageData[ titleObj.getPrefixedText() ].known
 		);
 
 		if ( !pageExists ) {
 			pageData[ this.getQueryValue() ] = {
-				missing: true, redirect: false, disambiguation: false,
+				missing: true, known: false, redirect: false, disambiguation: false,
 				description: mw.msg( 'mw-widgets-titleinput-description-new-page' )
 			};
 		}
