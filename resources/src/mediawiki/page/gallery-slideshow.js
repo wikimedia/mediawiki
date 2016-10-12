@@ -130,7 +130,8 @@
 
 		toggle = new OO.ui.ButtonWidget( {
 			framed: false,
-			icon: 'imageGallery'
+			icon: 'imageGallery',
+			title: mw.msg( 'gallery-slideshow-toggle' )
 		} ).on( 'click', this.toggleThumbnails.bind( this ) );
 
 		interfaceElements = new OO.ui.PanelLayout( {

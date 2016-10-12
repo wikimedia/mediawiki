@@ -2918,6 +2918,7 @@
 	"newimages-showbots": "Show uploads by bots",
 	"newimages-hidepatrolled": "Hide patrolled uploads",
 	"noimages": "Nothing to see.",
+	"gallery-slideshow-toggle": "Toggle thumbnails",
 	"ilsubmit": "Search",
 	"bydate": "by date",
 	"sp-newimages-showfrom": "Show new files starting from $2, $1",

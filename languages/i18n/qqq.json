@@ -3102,6 +3102,7 @@
 	"newimages-showbots": "Used as label for a checkbox. When checked, [[Special:NewImages]] will also display uploads by users in the bots group.",
 	"newimages-hidepatrolled": "Used as label for a checkbox. When checked, [[Special:NewImages]] will not display patrolled uploads.\n\nCf. {{msg-mw|tog-hidepatrolled}} and {{msg-mw|apihelp-feedrecentchanges-param-hidepatrolled}}.",
 	"noimages": "This is shown on the special page [[Special:NewImages]], when there aren't any recently uploaded files.",
+	"gallery-slideshow-toggle": "Tooltip for the icon that toggles thumbnails on a slideshow  gallery.",
 	"ilsubmit": "Used as label for input box in the MIMESearch form on [[Special:MIMESearch]].\n\nSee also:\n* {{msg-mw|Mimesearch|page title}}\n* {{msg-mw|Mimetype|label for input box}}\n{{Identical|Search}}",
 	"bydate": "{{Identical|Date}}",
 	"sp-newimages-showfrom": "This is a link on [[Special:NewImages]] which takes you to a gallery of the newest files.\n* $1 is a date (example: ''19 March 2008'')\n* $2 is a time (example: ''12:15'')",
