@@ -3923,7 +3923,7 @@
 	"feedback-thanks": "Thanks! Your feedback has been posted to the page \"[$2 $1]\".",
 	"feedback-thanks-title": "Thank you!",
 	"feedback-useragent": "User agent:",
-	"searchsuggest-search": "Search",
+	"searchsuggest-search": "Search {{SITENAME}}",
 	"searchsuggest-containing": "containing...",
 	"api-error-autoblocked": "Your IP address has been blocked automatically, because it was used by a blocked user.",
 	"api-error-badaccess-groups": "You are not permitted to upload files to this wiki.",
