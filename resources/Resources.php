@@ -1725,6 +1725,9 @@ return [
 			'oojs-ui-core',
 			'oojs-ui-widgets',
 			'oojs-ui.styles.icons-media'
+		],
+		'messages' => [
+			'gallery-slideshow-toggle'
 		]
 	],
 	'mediawiki.page.ready' => [
