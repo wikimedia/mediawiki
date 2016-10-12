@@ -21,6 +21,7 @@
  * @ingroup Upload
  * @ingroup JobQueue
  */
+use Wikimedia\ScopedCallback;
 
 /**
  * Upload a file from the upload stash into the local file repo.

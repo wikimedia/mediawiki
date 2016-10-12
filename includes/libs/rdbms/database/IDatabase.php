@@ -23,6 +23,7 @@
  * @file
  * @ingroup Database
  */
+use Wikimedia\ScopedCallback;
 
 /**
  * Basic database interface for live and lazy-loaded relation database handles

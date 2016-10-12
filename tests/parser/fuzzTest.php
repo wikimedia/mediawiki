@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\ScopedCallback;
+
 require __DIR__ . '/../../maintenance/Maintenance.php';
 
 // Make RequestContext::resetMain() happy

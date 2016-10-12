@@ -20,6 +20,7 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ScopedCallback;
 
 /**
  * Update object handling the cleanup of links tables after a page was deleted.

@@ -21,6 +21,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ScopedCallback;
 
 /**
  * Prepare an edit in shared cache so that it can be reused on edit

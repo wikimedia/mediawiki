@@ -1,4 +1,5 @@
 <?php
+use Wikimedia\ScopedCallback;
 
 /**
  * The UnitTest must be either a class that inherits from MediaWikiTestCase

@@ -600,7 +600,7 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 	 *
 	 * Calls to save() or clear() will not be delayed.
 	 *
-	 * @return \ScopedCallback When this goes out of scope, a save will be triggered
+	 * @return \Wikimedia\ScopedCallback When this goes out of scope, a save will be triggered
 	 */
 	public function delaySave() {
 		return $this->backend->delaySave();

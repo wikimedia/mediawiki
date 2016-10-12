@@ -21,6 +21,7 @@
  * @author Aaron Schulz
  */
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ScopedCallback;
 
 /**
  * Class to handle job queues stored in the DB

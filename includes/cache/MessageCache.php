@@ -21,6 +21,7 @@
  * @ingroup Cache
  */
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ScopedCallback;
 
 /**
  * MediaWiki message cache structure version.

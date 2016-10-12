@@ -20,6 +20,7 @@
  * @file
  * @ingroup Parser
  */
+use Wikimedia\ScopedCallback;
 
 /**
  * @brief Set options of the Parser
