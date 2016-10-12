@@ -103,6 +103,11 @@ class ApiPurge extends ApiBase {
 						$updates = $content->getSecondaryDataUpdates(
 							$title, null, $forceRecursiveLinkUpdate, $p_result );
 						foreach ( $updates as $update ) {
+							# Some extensions, like EventBus, need to know the user
+							# that performed the purge action, so set it here
+							if ( $update instanceof LinksUpdate ) {
+								$update->setTriggeringUser( $user );
+							}
 							DeferredUpdates::addUpdate( $update, DeferredUpdates::PRESEND );
 						}
 
