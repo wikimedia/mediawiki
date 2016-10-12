@@ -292,24 +292,6 @@ class ObjectCache {
 	}
 
 	/**
-	 * @param array $params [optional] Array key 'fallback' for $fallback.
-	 * @param int|string $fallback Fallback cache, e.g. (CACHE_NONE, "hash") (since 1.24)
-	 * @return BagOStuff
-	 * @deprecated since 1.27
-	 */
-	public static function newAccelerator( $params = [], $fallback = null ) {
-		if ( $fallback === null ) {
-			if ( is_array( $params ) && isset( $params['fallback'] ) ) {
-				$fallback = $params['fallback'];
-			} elseif ( !is_array( $params ) ) {
-				$fallback = $params;
-			}
-		}
-
-		return self::getLocalServerInstance( $fallback );
-	}
-
-	/**
 	 * Create a new cache object of the specified type.
 	 *
 	 * @since 1.26
