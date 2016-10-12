@@ -7,249 +7,657 @@ following names for their contribution to the product.
 <!-- Please notice that the following can be found parsed under Special:Version/Credits -->
 
 == Contributors ==
+<!-- Updates to this list made with maintenance/updateCredits.php -->
 <!-- BEGIN CONTRIBUTOR LIST -->
+* aalekhN
 * Aaron Ball
 * Aaron Pramana
 * Aaron Schulz
+* Aarti Dwivedi
+* Aashaka Shah
+* abhinand
+* Abhishek Das
+* Adam Miller
+* Adam Roses Wight
+* addshore
+* Aditya Sastry
+* Adrian Heine
+* Adrian Lang
+* Ævar Arnfjörð Bjarmason
 * Agbad
 * Ahmad Sherif
+* Ajayrahul P
+* Alangi Derick
+* Albert221
 * Alejandro Mery
+* AlephNull
+* Alex Ivanov
+* Alex Shih-Han Lin
 * Alex Z.
+* Alexander Emsenhuber
+* Alexander I. Mashin
+* Alexander Lehmann
 * Alexander Monk
+* Alexander Sigachov
 * Alexandre Emsenhuber
+* Alexia E. Smith
 * Amalthea
 * Amir E. Aharoni
+* Amir Sarabadani
+* ananay
+* Anders Wegge Jakobsen
+* Andre Engels
+* Andrew Bogott
 * Andrew Dunbar
 * Andrew Garrett
+* Andrew Green
+* Andrew H
+* Andrew Harris
+* Andrew Otto
+* Andrius R
+* Angela Beesley Starling
+* ankur
 * Antoine Musso
 * Antonio Ospite
+* apexkid
+* April King
+* Aran Dunkley
+* Arash Boostani
+* Arcane21
+* Ariel Glenn
+* Arlo Breault
+* Arne Heizmann
 * Arthur Richards
 * Aryeh Gregor
+* Asher Feldman
 * Asier Lostalé
+* ayush_garg
 * Azliq7
 * Bagariavivek
+* Bahodir Mansurov
+* balloonguy
 * Bartosz Dziewoński
 * Beau
+* Ben Davis
+* Ben Hartshorne
+* Bene
+* Benjamin Lees
 * Benny Situ
 * Bergi
 * Bertrand Grondin
+* Bill Traynor
+* Billinghurst
+* billm
+* blotmandroid
+* Bogdan Stancescu
+* Boris Nagaev
 * Borislav Manolov
 * Brad Jorsch
+* Brandon Black
+* Brandon Harris
 * Brent G
+* Brent Garber
 * Brian Wolff
 * Brianna Laugher
 * Brion Vibber
 * Bryan Davis
 * Bryan Tong Minh
+* burthsceh
+* C. Scott Ananian
+* cacycle@gerrit.wikimedia.org
+* Calak
+* Camille Constans
+* Carl Fürstenberg
 * Carlin
 * Carsten Nielsen
+* Cblair91
+* cenarium
 * Chad Horohoe
 * Charles Melbye
+* Chiefwei
+* Chris McMahon
+* Chris Seaton
 * Chris Steipp
 * Christian Aistleitner
+* Christian List
 * Christian Neubauer
 * church of emacs
+* Cindy Cicalese
+* ckoerner
 * Conrad Irwin
 * cryptocoryne
 * Dan Barrett
 * Dan Collins
+* Dan Duvall
 * Dan Nessett
+* Dan Poltawski
+* dan-nl
+* Daniel A. R. Werner
 * Daniel Arnold
+* Daniel Cannon
+* Daniel De Marco
+* Daniel Evans
 * Daniel Friesen
 * Daniel Kinzler
 * Daniel Renfro
 * Daniel Werner
+* DanielRenfro
 * Danny B.
+* Darian Anthony Patrick
+* DaSch
 * David Baumgarten
+* David Chan
+* David E. Narváez
+* David Lynch
 * David McCabe
+* David Mudrák
+* dcausse
+* dennisroczek
 * Denny Vrandecic
+* Dereckson
 * Derk-Jan Hartman
+* Derric Atzrott
+* Derrick Coetzee
 * Dévai Tamás
+* Devi Krishnan
+* Diederik van Liere
 * Domas Mituzas
+* Douglas Gardner
+* DPStokesNZ
+* dr0ptp4kt
 * Ebrahim Byagowi
+* Ed Sanders
+* Edward Chernenko
 * Edward Z. Yang
+* Elisabeth Bauer
+* Elliott Eggleston
 * Elvis Stansvik
+* Emil Podlaszewski
+* Emmanuel Engelhart
+* Emmanuel Gil Peyrot
+* Emmet Hikory
 * Emufarmers
+* enigmaeth
+* Entlinkt
 * Eranroz
+* Eric Evans
+* Eric Schneider
+* Erich Lerch
+* Erick Guan
+* Erik Bernhardson
+* Erik Moeller
 * Erwin Dokter
 * Étienne Beaulé
+* Evan McIntire
+* Evan Prodromou
+* ExplosiveHippo
+* Faidon Liambotis
 * Federico Leva
+* Fenzik Joseph
+* firebus
 * Florian Schmidt
 * fomafix
 * Fran Rogers
+* Fred Emmott
 * FunPika
 * Gabriel Wicke
+* Gary Guo
+* gbt248
 * Geoffrey Mon
+* georggi
+* Gergő Tisza
 * Gero Scholz
+* gicode
+* Giftpflanze
+* Gilles Dubuc
 * Gilles van den Hoven
+* Giuseppe Lavagetto
+* gladoscc
+* glaisher
+* Greg Maxwell
 * Greg Sabino Mullane
+* Gregory Szorc
 * Grunny
+* Guillaume Blanchard
 * Guy Van den Broeck
 * Happy-melon
+* haritha28
 * Harry Burt
+* Hazard-SJ
+* Hector A Escobedo
+* Helder
+* Henning Snater
 * Hojjat
+* Huji
+* Hydriz
 * Ian Baker
 * Ilmari Karonen
+* Inez Korczyński
+* IoannisKydonis
 * Ireas
+* isarra
+* Ivan Lanin
 * Jack D. Pond
 * Jack Phoenix
 * Jackmcbarn
 * Jacob Block
+* Jacob Clark
+* jagori
+* Jakub Vrana
+* James Earl Douglas
 * James Forrester
+* Jan Berkel
+* Jan Drewniak
 * Jan Gerber
 * Jan Luca Naumann
 * Jan Paul Posma
+* Jan Zerebecki
+* Jared Flores
+* Jaroslav Škarvada
+* jarrettmunton
+* jarry1250
 * Jaska Zedlik
 * Jason Richey
+* jeblad
+* Jeff Janes
+* jeff303
+* Jens Frank
+* Jens Ohlig
+* Jérémie Roquet
 * Jeremy Baron
+* Jeremy Postlethwaite
+* jeremyb
 * Jeroen De Dauw
+* Jerome Jamnicky
+* Jesús Martínez Novo
+* jhobs
+* Jiabao
 * Jidanni
+* Jimmy Collins
 * Jimmy Xu
+* joakin
+* Joan Creus
+* Joel Natividad
+* Joerg
+* Johan Dahlin
 * John Du Hart
 * John N
 * Jon Harald Søby
+* Jon Robson
 * Jonathan Wiltshire
+* Jools Wills
+* jsahleen
+* Julian Ostrow
 * Juliano F. Ravasi
+* Juliusz Gonera
 * JuneHyeon Bae
 * Jure Kajzer
+* Justin Du
+* Kai_WMDE
+* kaligula
+* Kartik Mistry
 * Karun Dambiec
 * Katie Filbert
 * Kevin Israel
+* Kghbln
+* Kim Eik
 * Kim Hyun-Joon
+* kipod
+* kishanio
+* konarak
+* krishna keshav
+* Krzysztof Krzyzaniak
+* Krzysztof Zbudniewek
+* Kunal Grover
+* Kunal Mehta
+* Kwan Ting Chan
+* Laurence Parry
+* Lee Bousfield
+* Lee Daniel Crocker
 * Lee Worden
 * Lejonel
+* lekshmi
 * Leo Koppelkamm
 * Leon Liesener
 * Leon Weber
+* Leonardo Gregianin
+* Leons Petrazickis
 * Leslie Hoare
+* Leszek Manicki
+* lethosor
+* Lewis Cawte
+* Liam Edwards-Playne
 * liangent
+* Lisa Ridley
+* Ljudusika
+* Lojjik Braughler
 * Louperivois
+* Ltrlg
+* Luc Van Oostenryck
 * Lucas Garczewski
 * Luigi Corsaro
+* Luis Felipe Schenone
 * Luke Faraone
+* Lupin
 * Lupo
+* lwelling
+* m4tx
 * Madman
+* madurangasiriwardena
+* Magnus Manske
 * Manuel Menal
+* Manuel Schneider
+* Marc Ordinas i Llopis
 * Marc-André Pelletier
 * Marcin Cieślak
+* Marco Falke
 * Marco Schuster
+* MarcoAurelio
 * Marcus Buck
 * Marius Hoch
+* Mark Bergsma
+* Mark Clements
 * Mark Hershberger
 * Mark Holmquist
+* Marko Obrovac
+* Markus Glaser
+* Markus Krötzsch
 * Marooned
+* Martin Urbanec
+* Massaf
 * Matěj Grabovský
+* matejsuchanek
 * Mathias Ertl
 * mati
+* Matt Fitzpatrick
 * Matt Johnston
+* Matt Russell
+* Matthew Bowker
 * Matthew Britton
 * Matthew Flaschen
+* Matthias Jordan
 * Matthias Mullie
+* MatthiasDD
 * Max
 * Max Semenik
 * Max Sikström
+* mayankmadan
 * Meno25
 * merl
+* Merlijn S. van Deen
+* MGChecker
+* mgooley
+* mhutti1
 * Michael Dale
 * Michael De La Rue
+* Michael Holloway
 * Michael M.
 * Michael Newton
 * Michael Walsh
+* Michał Łazowik
+* Michał Roszka
+* Michał Zieliński
 * Mike Horvath
+* Minh Nguyễn
 * MinuteElectron
+* Misza13
+* mjbmr
 * moejoe0000
 * Mohamed Magdy
+* Molly White
+* Moriel Schottlender
 * Mormegil
+* Mr. E23
 * MrBlueSky
 * MrPete
+* Mukunda Modell
+* Mwalker
+* mwjames
 * mybugs.mail
 * MZMcBride
+* nadeesha
 * Nakon
+* Namit
 * Nathan Larson
 * Nathaniel Herman
 * Neil Kandalgaonkar
+* Nemo bis
 * nephele
+* Nicholas Pisarro, Jr
+* Nick Jenkins
+* nicoco007
 * Nicolas Dumazet
+* Nicolas Weeger
 * Nik
+* Nik Everett
 * Niklas Laxström
 * Nikola Kovacs
+* Nikola Smolenski
 * Nikolaos S. Karastathis
+* Nimish Gautam
 * Nischay Nahata
+* nischayn22
+* nomoa
+* nullspoon
+* Nuria Ruiz
 * Nx.devnull
+* Ocean behind ears
 * Olaf Lenz
 * Olivier Finlay Beaton
+* onei
+* opatel99
+* Oren Held
 * Ori Livneh
+* oskar.jauch@gmail.com
+* OverlordQ
+* Owen Davis
+* Paa Kwesi Imbeah
+* paladox
 * Patricio Molina
 * Patrick Reilly
+* Patrick Westerhoff
+* Pau Giner
 * Paul Copperman
 * Paul Oranje
+* Pavel Astakhov
+* Pavel Selitskas
+* Pcoombe
+* Perside Rosalie
 * Peter Gehres
+* Peter Hedenskog
+* Peter Potrowl
+* Petr Bena
+* Petr Kadlec
 * Petr Onderka
 * Philip Tzou
+* physikerwelt (Moritz Schubotz)
 * PieRRoMaN
+* Pikne
+* PiRSquared17
 * Platonides
+* Pmlineditor
+* pmolina
+* prageck
+* Pranav Ravichandran
+* PranavK
+* Prateek Saxena
+* Priyanka Dhanda
+* Prod
+* ptarjan
+* pubudu538
 * Purodha Blissenbach
+* quiddity
 * quietust
+* Quim Gil
+* rahul21
 * Raimond Spekking
+* Ramunas Geciauskas
 * Remember the dot
 * René Kijewski
+* Reza
 * rgcjonas
+* Ricordisamoa
+* rillke
+* River Tarnell
 * Roan Kattouw
+* Rob Church
+* Rob Lanphier
 * Rob Moen
+* Robert Hoenig
+* Robert Leverington
+* Robert Rohde
 * Robert Stojnić
 * Robert Treat
+* Robert Vogel
+* robin
 * Robin Pepermans
+* robinhood701
 * RockMFR
+* Rohan
+* Roman Nosov
+* Roman Tsukanov
+* root
 * Rotem Liss
+* Rowan Collins
+* Russ Nelson
 * Russell Blau
 * Rusty Burchfield
+* Ruud Koot
+* Ryan Bies
+* Ryan Finnie
 * Ryan Kaldari
 * Ryan Lane
 * Ryan Schmidt
 * S Page
 * Salvatore Ingala
 * Sam Reed
+* Sam Smith
 * Santhosh Thottingal
+* Schnark
+* Scimonster
+* scnd
 * Scott Colcord
 * se4598
+* Sean Colombo
+* Sean Pringle
+* Seb35
+* Sebastian Brückner
 * Sébastien Santoro
+* Sergio Santoro
+* Sethakill
+* Shahyar
+* Shane Gibbons
+* Shane King
 * Shinjiman
+* shirayuki
+* Sidhant Gupta
 * Siebrand Mazeland
 * Simon Walker
+* Smriti Singh
 * Solitarius
+* Sorawee Porncharoenwase
 * Søren Løvborg
 * Southparkfan
 * Soxred93
+* SPQRobin
 * SQL
 * Srikanth Lakshmanan
+* Stanislav Malyshev
 * Stefano Codari
+* Steinsplitter
+* Stephan Gambke
+* Stephan Muggli
+* Stephane Bisson
+* Stephen Liang
+* Steve Sanbeg
+* Steven Roddis
 * Str4nd
 * Subramanya Sastry
+* Sumit Asthana
 * svip
+* Swalling
 * Szymon Świerkosz
+* T.D. Corell
+* Tarquin
+* The Discoverer
 * The Evil IP address
+* theopolisme
+* Thiemo Mättig (WMDE)
 * This, that and the other
+* tholam
+* Thomas Arrow
 * Thomas Bleher
+* Thomas Dalton
 * Thomas Gries
+* ThomasV
+* Tim Hollmann
 * Tim Landscheidt
+* Tim Laqua
 * Tim Starling
 * Timo Tijhof
+* Tina Johnson
 * Tisane
+* tjlsangria
+* Tjones
+* TK-999
+* TMg
+* Tobias Gritschacher
+* Tom Arrow
+* Tom Gilder
+* Tom Maaswinkel
+* Tomasz Finc
+* Tomasz W. Kozlowski
+* Tomasz Wegrzanowski
+* tomek
+* Tony Thomas
+* Tpt
 * Trevor Parscal
+* TyA
+* Tychay
 * Tyler Anthony Romeo
+* Tyler Cipriani
+* Tyler Romeo
+* U-REDMOND\emadelw
+* Ubuntu
+* UltrasonicNXT
 * Umherirrender
+* utkarsh95
 * Van de Bugger
+* Viačeslav
+* Victor Porton
 * Victor Vasiliev
+* victorbarbu
 * Ville Stadista
+* vishnu
 * Vitaliy Filippov
 * Vivek Ghaisas
+* vlakoff
+* Volker E
 * Waldir Pimenta
+* wctaiwan
+* Wikinaut
+* Wil Mahan
 * William Demchick
+* withoutaname
+* WMDE-Fisch
+* X!
+* XP1
+* Yaron Koren
+* Yaroslav Melnychuk
 * Yesid Carrillo
+* Yogesh K S
+* Yongmin Hong
+* yoonghm
 * Yuri Astrakhan
 * Yusuke Matsubara
 * Yuvi Panda
 * Zachary Hauri
+* Zak Greant
+* Željko Filipin
+* Zhaofeng Li
+* Zhengzhu Feng
+* Zppix
+* محمد شعیب
 <!-- END CONTRIBUTOR LIST -->
 
 == Translators ==
