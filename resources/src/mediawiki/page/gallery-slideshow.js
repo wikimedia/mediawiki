@@ -268,6 +268,7 @@
 		// Show thumbnail stretched to the right size while the image loads
 		this.$thumbnail = imageLi.find( 'img' );
 		this.$img.attr( 'src', this.$thumbnail.attr( 'src' ) );
+		this.$img.attr( 'alt', this.$thumbnail.attr( 'alt' ) );
 		this.$imgLink.attr( 'href', imageLi.find( 'a' ).eq( 0 ).attr( 'href' ) );
 		this.setImageSize();
 
