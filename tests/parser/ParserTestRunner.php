@@ -26,6 +26,7 @@
  * @ingroup Testing
  */
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ScopedCallback;
 
 /**
  * @ingroup Testing
@@ -175,7 +176,7 @@ class ParserTestRunner {
 		// arrays: $setup and $teardown. The code snippets in the $setup array
 		// are executed at the end of the method, before it returns, and the
 		// code snippets in the $teardown array are executed in reverse order
-		// when the ScopedCallback object is consumed.
+		// when the Wikimedia\ScopedCallback object is consumed.
 
 		// Because it is a common operation to save, set and restore global
 		// variables, we have an additional convention: when the array key of

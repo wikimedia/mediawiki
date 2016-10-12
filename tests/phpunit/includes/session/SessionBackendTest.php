@@ -464,7 +464,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 		// Save happens when delay is consumed
 		$this->onSessionMetadataCalled = false;
 		$priv->metaDirty = true;
-		\ScopedCallback::consume( $delay );
+		\Wikimedia\ScopedCallback::consume( $delay );
 		$this->assertTrue( $this->onSessionMetadataCalled );
 
 		// Test multiple delays
@@ -475,11 +475,11 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$priv->metaDirty = true;
 		$priv->autosave();
 		$this->assertFalse( $this->onSessionMetadataCalled );
-		\ScopedCallback::consume( $delay3 );
+		\Wikimedia\ScopedCallback::consume( $delay3 );
 		$this->assertFalse( $this->onSessionMetadataCalled );
-		\ScopedCallback::consume( $delay1 );
+		\Wikimedia\ScopedCallback::consume( $delay1 );
 		$this->assertFalse( $this->onSessionMetadataCalled );
-		\ScopedCallback::consume( $delay2 );
+		\Wikimedia\ScopedCallback::consume( $delay2 );
 		$this->assertTrue( $this->onSessionMetadataCalled );
 	}
 
@@ -822,7 +822,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 			$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
 			$rProp->setAccessible( true );
 			$handler = \TestingAccessWrapper::newFromObject( $rProp->getValue() );
-			$resetHandler = new \ScopedCallback( function () use ( $handler ) {
+			$resetHandler = new \Wikimedia\ScopedCallback( function () use ( $handler ) {
 				session_write_close();
 				$handler->enable = false;
 			} );
@@ -862,7 +862,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 			$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
 			$rProp->setAccessible( true );
 			$handler = \TestingAccessWrapper::newFromObject( $rProp->getValue() );
-			$resetHandler = new \ScopedCallback( function () use ( $handler ) {
+			$resetHandler = new \Wikimedia\ScopedCallback( function () use ( $handler ) {
 				session_write_close();
 				$handler->enable = false;
 			} );
@@ -898,7 +898,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 			$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
 			$rProp->setAccessible( true );
 			$handler = \TestingAccessWrapper::newFromObject( $rProp->getValue() );
-			$resetHandler = new \ScopedCallback( function () use ( $handler ) {
+			$resetHandler = new \Wikimedia\ScopedCallback( function () use ( $handler ) {
 				session_write_close();
 				$handler->enable = false;
 			} );

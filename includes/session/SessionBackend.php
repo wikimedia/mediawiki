@@ -586,11 +586,11 @@ final class SessionBackend {
 	 *
 	 * Calls to save() will not be delayed.
 	 *
-	 * @return \ScopedCallback When this goes out of scope, a save will be triggered
+	 * @return \Wikimedia\ScopedCallback When this goes out of scope, a save will be triggered
 	 */
 	public function delaySave() {
 		$this->delaySave++;
-		return new \ScopedCallback( function () {
+		return new \Wikimedia\ScopedCallback( function () {
 			if ( --$this->delaySave <= 0 ) {
 				$this->delaySave = 0;
 				$this->save();
@@ -751,7 +751,7 @@ final class SessionBackend {
 	private function checkPHPSession() {
 		if ( !$this->checkPHPSessionRecursionGuard ) {
 			$this->checkPHPSessionRecursionGuard = true;
-			$reset = new \ScopedCallback( function () {
+			$reset = new \Wikimedia\ScopedCallback( function () {
 				$this->checkPHPSessionRecursionGuard = false;
 			} );
 

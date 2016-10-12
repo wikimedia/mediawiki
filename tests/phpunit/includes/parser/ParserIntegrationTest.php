@@ -1,4 +1,5 @@
 <?php
+use Wikimedia\ScopedCallback;
 
 /**
  * This is the TestCase subclass for running a single parser test via the

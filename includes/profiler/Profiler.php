@@ -21,6 +21,7 @@
  * @ingroup Profiler
  * @defgroup Profiler Profiler
  */
+use Wikimedia\ScopedCallback;
 
 /**
  * Profiler base class that defines the interface and some trivial

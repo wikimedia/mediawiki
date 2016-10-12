@@ -24,6 +24,7 @@
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\ScopedCallback;
 
 /**
  * Class for reading xmp data containing properties relevant to

@@ -880,7 +880,7 @@ final class SessionManager implements SessionManagerInterface {
 			$session->resetId();
 		}
 
-		\ScopedCallback::consume( $delay );
+		\Wikimedia\ScopedCallback::consume( $delay );
 		return $session;
 	}
 

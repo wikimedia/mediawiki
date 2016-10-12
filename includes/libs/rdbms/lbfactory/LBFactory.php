@@ -22,6 +22,7 @@
  */
 
 use Psr\Log\LoggerInterface;
+use Wikimedia\ScopedCallback;
 
 /**
  * An interface for generating database load balancers

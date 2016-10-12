@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Session\SessionManager;
+use Wikimedia\ScopedCallback;
 
 /**
  * @covers BotPassword

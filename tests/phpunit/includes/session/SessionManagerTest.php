@@ -62,7 +62,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$rProp->setAccessible( true );
 		$handler = \TestingAccessWrapper::newFromObject( $rProp->getValue() );
 		$oldEnable = $handler->enable;
-		$reset[] = new \ScopedCallback( function () use ( $handler, $oldEnable ) {
+		$reset[] = new \Wikimedia\ScopedCallback( function () use ( $handler, $oldEnable ) {
 			if ( $handler->enable ) {
 				session_write_close();
 			}

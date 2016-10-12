@@ -26,6 +26,7 @@ use MediaWiki\Session\Token;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthenticationRequest;
+use Wikimedia\ScopedCallback;
 
 /**
  * String Some punctuation to prevent editing from broken text-mangling proxies.
