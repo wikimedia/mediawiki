@@ -25,6 +25,7 @@
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ScopedCallback;
 
 /**
  * Group all the pieces relevant to the context of a request into one instance

@@ -184,7 +184,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$rProp = new \ReflectionProperty( AuthManager::class, 'instance' );
 		$rProp->setAccessible( true );
 		$old = $rProp->getValue();
-		$cb = new \ScopedCallback( [ $rProp, 'setValue' ], [ $old ] );
+		$cb = new \Wikimedia\ScopedCallback( [ $rProp, 'setValue' ], [ $old ] );
 		$rProp->setValue( null );
 
 		$singleton = AuthManager::singleton();
@@ -202,11 +202,11 @@ class AuthManagerTest extends \MediaWikiTestCase {
 
 		list( $provider, $reset ) = $this->getMockSessionProvider( false );
 		$this->assertFalse( $this->manager->canAuthenticateNow() );
-		\ScopedCallback::consume( $reset );
+		\Wikimedia\ScopedCallback::consume( $reset );
 
 		list( $provider, $reset ) = $this->getMockSessionProvider( true );
 		$this->assertTrue( $this->manager->canAuthenticateNow() );
-		\ScopedCallback::consume( $reset );
+		\Wikimedia\ScopedCallback::consume( $reset );
 	}
 
 	public function testNormalizeUsername() {
@@ -385,7 +385,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			$this->unhook( 'SecuritySensitiveOperationStatus' );
 		}
 
-		\ScopedCallback::consume( $reset );
+		\Wikimedia\ScopedCallback::consume( $reset );
 	}
 
 	public function onSecuritySensitiveOperationStatus( &$status, $operation, $session, $time ) {
@@ -585,7 +585,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$this->initializeManager();
 
 		$context = \RequestContext::getMain();
-		$reset = new \ScopedCallback( [ $context, 'setLanguage' ], [ $context->getLanguage() ] );
+		$reset = new \Wikimedia\ScopedCallback( [ $context, 'setLanguage' ], [ $context->getLanguage() ] );
 		$context->setLanguage( 'de' );
 		$this->setMwGlobals( 'wgContLang', \Language::factory( 'zh' ) );
 
@@ -712,7 +712,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		}
 		$this->unhook( 'UserLoggedIn' );
 		$this->assertNull( $this->request->getSession()->getSecret( 'AuthManager::authnState' ) );
-		\ScopedCallback::consume( $reset );
+		\Wikimedia\ScopedCallback::consume( $reset );
 		$this->initializeManager( true );
 
 		// CreatedAccountAuthenticationRequest
@@ -1449,11 +1449,11 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		];
 		$block = new \Block( $blockOptions );
 		$block->insert();
-		$scopeVariable = new \ScopedCallback( [ $block, 'delete' ] );
+		$scopeVariable = new \Wikimedia\ScopedCallback( [ $block, 'delete' ] );
 		$status = $this->manager->checkAccountCreatePermissions( new \User );
 		$this->assertFalse( $status->isOK() );
 		$this->assertTrue( $status->hasMessage( 'cantcreateaccount-range-text' ) );
-		\ScopedCallback::consume( $scopeVariable );
+		\Wikimedia\ScopedCallback::consume( $scopeVariable );
 
 		$this->setMwGlobals( [
 			'wgEnableDnsBlacklist' => true,

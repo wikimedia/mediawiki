@@ -29,6 +29,7 @@
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\ScopedCallback;
 use Wikimedia\WaitConditionLoop;
 
 /**

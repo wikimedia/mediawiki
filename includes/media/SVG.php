@@ -20,6 +20,7 @@
  * @file
  * @ingroup Media
  */
+use Wikimedia\ScopedCallback;
 
 /**
  * Handler for SVG images.

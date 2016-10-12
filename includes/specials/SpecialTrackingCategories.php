@@ -54,6 +54,9 @@ class SpecialTrackingCategories extends SpecialPage {
 		'expansion-depth-exceeded-category',
 		'restricted-displaytitle-ignored',
 		'deprecated-self-close-category',
+		'magiclinks-rfc-category',
+		'magiclinks-pmid-category',
+		'magiclinks-isbn-category',
 	];
 
 	function execute( $par ) {

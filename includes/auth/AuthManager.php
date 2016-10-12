@@ -2382,7 +2382,7 @@ class AuthManager implements LoggerAwareInterface {
 		$session->set( 'AuthManager:lastAuthTimestamp', time() );
 		$session->persist();
 
-		\ScopedCallback::consume( $delay );
+		\Wikimedia\ScopedCallback::consume( $delay );
 
 		\Hooks::run( 'UserLoggedIn', [ $user ] );
 	}

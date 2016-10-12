@@ -1,4 +1,6 @@
 <?php
+use Wikimedia\ScopedCallback;
+
 /**
  * Factory for handling the special page list and generating SpecialPage objects.
  *

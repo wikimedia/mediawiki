@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ScopedCallback;
 
 /**
  * Class the manages updates of *_link tables as well as similar extension-managed tables
