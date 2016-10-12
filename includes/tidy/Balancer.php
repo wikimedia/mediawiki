@@ -2603,8 +2603,7 @@ class Balancer {
 			case 'tt':
 			case 'u':
 				$this->afe->reconstruct( $this->stack );
-				// FIXME: only takes one parameter
-				$this->afe->push( $this->stack->insertHTMLElement( $value, $attribs ), $attribs );
+				$this->afe->push( $this->stack->insertHTMLElement( $value, $attribs ) );
 				return true;
 
 			case 'nobr':
@@ -2613,8 +2612,7 @@ class Balancer {
 					$this->inBodyMode( 'endtag', 'nobr' );
 					$this->afe->reconstruct( $this->stack );
 				}
-				// FIXME: only takes one parameter
-				$this->afe->push( $this->stack->insertHTMLElement( $value, $attribs ), $attribs );
+				$this->afe->push( $this->stack->insertHTMLElement( $value, $attribs ) );
 				return true;
 
 			case 'applet':
