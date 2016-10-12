@@ -72,8 +72,6 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param array $params
 	 */
 	function __construct( array $params ) {
-		parent::__construct( $params );
-
 		$this->lagDetectionMethod = isset( $params['lagDetectionMethod'] )
 			? $params['lagDetectionMethod']
 			: 'Seconds_Behind_Master';
@@ -89,6 +87,8 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 		$this->sqlMode = isset( $params['sqlMode'] ) ? $params['sqlMode'] : '';
 		$this->utf8Mode = !empty( $params['utf8Mode'] );
+
+		parent::__construct( $params );
 	}
 
 	/**
