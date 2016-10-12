@@ -103,6 +103,9 @@ class ApiPurge extends ApiBase {
 						$updates = $content->getSecondaryDataUpdates(
 							$title, null, $forceRecursiveLinkUpdate, $p_result );
 						foreach ( $updates as $update ) {
+							if ( $update instanceof LinksUpdate ) {
+								$update->setTriggeringUser( $user );
+							}
 							DeferredUpdates::addUpdate( $update, DeferredUpdates::PRESEND );
 						}
 
