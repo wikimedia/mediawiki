@@ -21,7 +21,7 @@
  * @ingroup DifferenceEngine
  */
 
-// Deprecated, use class constant instead
+/** @deprecated use class constant instead */
 define( 'MW_DIFF_VERSION', '1.11a' );
 
 /**
@@ -176,7 +176,7 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @param int $id Revision ID
 	 *
-	 * @return mixed URL or false
+	 * @return string|bool Link HTML or false
 	 */
 	public function deletedLink( $id ) {
 		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
