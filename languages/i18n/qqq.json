@@ -4411,5 +4411,7 @@
 	"usercssispublic": "A reminder to users that CSS subpages are not preferences but normal pages, and thus can be viewed by other users and the general public. This message is shown to a user whenever they are editing a subpage in their own user-space that ends in .css. See also {{msg-mw|userjsispublic}}",
 	"restrictionsfield-badip": "An error message shown when one entered an invalid IP address or range in a restrictions field (such as Special:BotPassword). $1 is the IP address.",
 	"restrictionsfield-label": "Field label shown for restriction fields (e.g. on Special:BotPassword).",
-	"restrictionsfield-help": "Placeholder text displayed in restriction fields (e.g. on Special:BotPassword)."
+	"restrictionsfield-help": "Placeholder text displayed in restriction fields (e.g. on Special:BotPassword).",
+	"edit-error-short": "Error message. Parameters:\n* $1 - the error details\nSee also:\n* {{msg-mw|edit-error-long}}",
+	"edit-error-long": "Error message. Parameters:\n* $1 - the error details\nSee also:\n* {{msg-mw|edit-error-short}}"
 }
