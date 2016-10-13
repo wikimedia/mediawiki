@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Vodnokon4e",
-			"StanProg"
+			"StanProg",
+			"Spas.Z.Spasov"
 		]
 	},
 	"apihelp-main-param-action": "Кое действие да се извърши.",
@@ -30,7 +31,7 @@
 	"apihelp-feedcontributions-param-year": "От година (и по-рано).",
 	"apihelp-feedcontributions-param-month": "От месец (и по-рано).",
 	"apihelp-feedcontributions-param-tagfilter": "Филтриране на приноси, които имат тези етикети.",
-	"apihelp-feedcontributions-param-deletedonly": "Покажи само изтритите редакции.",
+	"apihelp-feedcontributions-param-deletedonly": "Покажи само изтритите приноси.",
 	"apihelp-feedcontributions-param-newonly": "Показване само на редакции за създаване на страници.",
 	"apihelp-feedcontributions-param-hideminor": "Скриване на малки промени.",
 	"apihelp-feedcontributions-param-showsizediff": "Показване на размера на разликите между версиите.",

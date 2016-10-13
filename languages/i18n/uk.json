@@ -66,7 +66,8 @@
 			"Mix Gerder",
 			"E.belykh",
 			"Visem",
-			"MMH"
+			"MMH",
+			"Олександр"
 		]
 	},
 	"tog-underline": "Підкреслювання посилань:",
@@ -2757,6 +2758,7 @@
 	"newimages-showbots": "Показати завантаження ботами",
 	"newimages-hidepatrolled": "Приховати відпатрульовані завантаження",
 	"noimages": "Файли відсутні.",
+	"gallery-slideshow-toggle": "Перемикання мініатюр",
 	"ilsubmit": "Шукати",
 	"bydate": "за датою",
 	"sp-newimages-showfrom": "Показати нові зображення, починаючи з $2, $1",

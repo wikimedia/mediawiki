@@ -3328,6 +3328,7 @@
 	"tag-filter-submit": "Filtr",
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Znacznik|Znaczniki}}]]: $2)",
 	"tag-mw-contentmodelchange": "zmiana modelu zawartości",
+	"tag-mw-contentmodelchange-description": "Edycje, które [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel zmieniają model zawartości] strony",
 	"tags-title": "Znaczniki",
 	"tags-intro": "Na tej stronie znajduje się lista znaczników, którymi oprogramowanie może oznaczyć edycje, oraz ich opisy.",
 	"tags-tag": "Nazwa znacznika",

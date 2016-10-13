@@ -2153,7 +2153,7 @@
 	"contributions-title": "{{GENDER:$1|Naudotojo|Naudotojos}} $1 indėlis",
 	"mycontris": "Indėlis",
 	"anoncontribs": "Indėlis",
-	"contribsub2": "Dėl {{GENDER:$3|$1}} ($2)",
+	"contribsub2": "Naudotojas: {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Naudotojo paskyra „$1“ neužregistruota.",
 	"nocontribs": "Jokie keitimai neatitiko šių kriterijų.",
 	"uctop": "(dabartinis)",
