@@ -176,7 +176,7 @@
 				// maxLength is a strange property. Removing or setting the property to
 				// undefined directly doesn't work. Instead, it can only be unset internally
 				// by the browser when removing the associated attribute (Firefox/Chrome).
-				// http://code.google.com/p/chromium/issues/detail?id=136004
+				// https://bugs.chromium.org/p/chromium/issues/detail?id=136004
 				$el.removeAttr( 'maxlength' );
 
 			} else {

@@ -52,7 +52,7 @@ class LoadMonitorMySQL extends LoadMonitor {
 				$host = $this->parent->getServerName( $index );
 				$this->replLogger->error( __METHOD__ . ": could not get status for $host" );
 			} else {
-				// http://dev.mysql.com/doc/refman/5.7/en/server-status-variables.html
+				// https://dev.mysql.com/doc/refman/5.7/en/server-status-variables.html
 				if ( $s->Innodb_buffer_pool_pages_total > 0 ) {
 					$ratio = $s->Innodb_buffer_pool_pages_data / $s->Innodb_buffer_pool_pages_total;
 				} elseif ( $s->Qcache_total_blocks > 0 ) {

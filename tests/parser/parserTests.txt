@@ -1,5 +1,5 @@
 # MediaWiki Parser test cases
-# Some taken from http://meta.wikimedia.org/wiki/Parser_testing
+# Some taken from https://meta.wikimedia.org/wiki/Parser_testing
 # All (C) their respective authors and released under the GPL
 #
 # The syntax should be fairly self-explanatory.
@@ -524,7 +524,7 @@ http://fr.wikipedia.org/wiki/🍺
 !! end
 
 # Note that the html+tidy output removes the spaces after the <li>,
-# which is a bug (http://sourceforge.net/p/tidy/bugs/945/, etc).
+# which is a bug (https://sourceforge.net/p/tidy/bugs/945/, etc).
 # This is an issue for all tests with lists.  We intentionally do
 # *not* add html+tidy clauses for these, as we don't want to
 # document/test the broken behavior.  (Parsoid matches the non-tidy
@@ -1230,7 +1230,7 @@ Text-level semantic html elements in wikitext
 !! end
 
 # test cases taken from
-# http://www.w3.org/TR/html5/text-level-semantics.html#the-ruby-element
+# https://www.w3.org/TR/html5/text-level-semantics.html#the-ruby-element
 !! test
 Ruby markup (W3C-style)
 !! wikitext
@@ -1293,7 +1293,7 @@ Non-word characters don't terminate tag names (bug 17663, 40670, 52022)
 </p>
 !! end
 
-# There is a tidy bug here: http://sourceforge.net/p/tidy/bugs/946/
+# There is a tidy bug here: https://sourceforge.net/p/tidy/bugs/946/
 # If the non-word-character tag made it through the sanitizer, tidy
 # would munge it up.
 !! test
@@ -3840,7 +3840,7 @@ Definition Lists: Hacky use to indent tables (WS-insensitive)
 ## All Parsoid only definition list tests have this difference.
 ##
 ## See also: https://phabricator.wikimedia.org/T8569
-## and http://lists.wikimedia.org/pipermail/wikitext-l/2011-November/000483.html
+## and https://lists.wikimedia.org/pipermail/wikitext-l/2011-November/000483.html
 
 !! test
 Table / list interaction: indented table with lists in table contents
@@ -5194,7 +5194,7 @@ http://www.example.com/?title=AT%26T
 <p><a rel="mw:ExtLink" href="http://www.example.com/?title=AT%26T">http://www.example.com/?title=AT%26T</a></p>
 !! end
 
-# According to http://www.w3.org/TR/2011/WD-html5-20110525/Overview.html#parsing-urls a plain
+# According to https://www.w3.org/TR/2011/WD-html5-20110525/Overview.html#parsing-urls a plain
 # % is actually legal in HTML5. Any change in output would need testing though.
 !! test
 Bug 4781, 5267: %25 in URL
@@ -5781,7 +5781,7 @@ Plain ''italic'''s plain
 
 # This should not produce <table></table> as <table><tr><td></td></tr></table>
 # is the bare minimum required by the spec, see:
-# http://www.w3.org/TR/xhtml-modularization/dtd_module_defs.html#a_module_Basic_Tables
+# https://www.w3.org/TR/xhtml-modularization/dtd_module_defs.html#a_module_Basic_Tables
 # Parsoid team replies: empty table tags are legal in HTML5
 !! test
 A table with no data.
@@ -19098,7 +19098,7 @@ parsoid=wt2html,wt2wt,html2html
 <p><span typeof="mw:Entity">î</span><span typeof="mw:Entity">î</span></p>
 !! end
 
-# See: http://www.w3.org/TR/html5/syntax.html#character-references
+# See: https://www.w3.org/TR/html5/syntax.html#character-references
 # Note that U+000C (form feed) is not a valid XML character, so
 # it is banned even though allowed in HTML5.
 !! test

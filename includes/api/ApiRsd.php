@@ -75,7 +75,7 @@ class ApiRsd extends ApiBase {
 	 * compatible APIs, by hooking 'ApiRsdServiceApis' and adding more
 	 * elements to the array.
 	 *
-	 * See http://cyber.law.harvard.edu/blogs/gems/tech/rsd.html for
+	 * See https://cyber.harvard.edu/blogs/gems/tech/rsd.html for
 	 * the base RSD spec, and check WordPress and StatusNet sites for
 	 * in-production examples listing several blogging and micrblogging
 	 * APIs.

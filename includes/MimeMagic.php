@@ -850,7 +850,7 @@ class MimeMagic {
 			'text-web',
 			'text' ];
 
-		// http://lists.oasis-open.org/archives/office/200505/msg00006.html
+		// https://lists.oasis-open.org/archives/office/200505/msg00006.html
 		$types = '(?:' . implode( '|', $opendocTypes ) . ')';
 		$opendocRegex = "/^mimetype(application\/vnd\.oasis\.opendocument\.$types)/";
 

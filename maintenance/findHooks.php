@@ -8,7 +8,7 @@
  * - hooks names in code are the first parameter of wfRunHooks.
  *
  * if --online option is passed, the script will compare the hooks in the code
- * with the ones at http://www.mediawiki.org/wiki/Manual:Hooks
+ * with the ones at https://www.mediawiki.org/wiki/Manual:Hooks
  *
  * Any instance of wfRunHooks that doesn't meet these parameters will be noted.
  *

@@ -311,7 +311,7 @@ $wgAppleTouchIcon = false;
  * Value for the referrer policy meta tag.
  * One of 'never', 'default', 'origin', 'always'. Setting it to false just
  * prevents the meta tag from being output.
- * See http://www.w3.org/TR/referrer-policy/ for details.
+ * See https://www.w3.org/TR/referrer-policy/ for details.
  *
  * @since 1.25
  */
@@ -658,7 +658,7 @@ $wgLockManagers = [];
 
 /**
  * Show Exif data, on by default if available.
- * Requires PHP's Exif extension: http://www.php.net/manual/en/ref.exif.php
+ * Requires PHP's Exif extension: https://secure.php.net/manual/en/ref.exif.php
  *
  * @note FOR WINDOWS USERS:
  * To enable Exif functions, add the following line to the "Windows
@@ -1511,7 +1511,7 @@ $wgDjvuTxt = null;
  * For now we recommend you use djvudump instead. The djvuxml output is
  * probably more stable, so we'll switch back to it as soon as they fix
  * the efficiency problem.
- * http://sourceforge.net/tracker/index.php?func=detail&aid=1704049&group_id=32953&atid=406583
+ * https://sourceforge.net/tracker/index.php?func=detail&aid=1704049&group_id=32953&atid=406583
  *
  * @par Example:
  * @code
@@ -1973,7 +1973,7 @@ $wgDBerrorLog = false;
  * Defaults to the wiki timezone ($wgLocaltimezone).
  *
  * A list of usable timezones can found at:
- * http://php.net/manual/en/timezones.php
+ * https://secure.php.net/manual/en/timezones.php
  *
  * @par Examples:
  * @code
@@ -3110,7 +3110,7 @@ $wgForceUIMsgAsContentMsg = [];
  * timezone-nameinlowercase like timezone-utc.
  *
  * A list of usable timezones can found at:
- * http://php.net/manual/en/timezones.php
+ * https://secure.php.net/manual/en/timezones.php
  *
  * @par Examples:
  * @code
@@ -3178,7 +3178,7 @@ $wgHtml5 = true;
  *
  * If your wiki uses RDFa, set it to the correct value for RDFa+HTML5.
  * Correct current values are 'HTML+RDFa 1.0' or 'XHTML+RDFa 1.0'.
- * See also http://www.w3.org/TR/rdfa-in-html/#document-conformance
+ * See also https://www.w3.org/TR/rdfa-in-html/#document-conformance
  * @since 1.16
  */
 $wgHtml5Version = null;
@@ -4216,7 +4216,7 @@ $wgAllowImageTag = false;
 /**
  * Configuration for HTML postprocessing tool. Set this to a configuration
  * array to enable an external tool. Dave Raggett's "HTML Tidy" is typically
- * used. See http://www.w3.org/People/Raggett/tidy/
+ * used. See https://www.w3.org/People/Raggett/tidy/
  *
  * If this is null and $wgUseTidy is true, the deprecated configuration
  * parameters will be used instead.
@@ -6372,9 +6372,9 @@ $wgDisableInternalSearch = false;
  * To forward to Google you'd have something like:
  * @code
  * $wgSearchForwardUrl =
- *     'http://www.google.com/search?q=$1' .
- *     '&domains=http://example.com' .
- *     '&sitesearch=http://example.com' .
+ *     'https://www.google.com/search?q=$1' .
+ *     '&domains=https://example.com' .
+ *     '&sitesearch=https://example.com' .
  *     '&ie=utf-8&oe=utf-8';
  * @endcode
  */
@@ -6707,9 +6707,9 @@ $wgFeedDiffCutoff = 32768;
  * Should be a format as key (either 'rss' or 'atom') and an URL to the feed
  * as value.
  * @par Example:
- * Configure the 'atom' feed to http://example.com/somefeed.xml
+ * Configure the 'atom' feed to https://example.com/somefeed.xml
  * @code
- * $wgSiteFeed['atom'] = "http://example.com/somefeed.xml";
+ * $wgSiteFeed['atom'] = "https://example.com/somefeed.xml";
  * @endcode
  */
 $wgOverrideSiteFeed = [];
@@ -7118,7 +7118,7 @@ $wgAutoloadAttemptLowercase = true;
  *         'Foo Barstein',
  *     ],
  *     'version' => '1.9.0',
- *     'url' => 'http://example.org/example-extension/',
+ *     'url' => 'https://example.org/example-extension/',
  *     'descriptionmsg' => 'exampleextension-desc',
  *     'license-name' => 'GPL-2.0+',
  * ];
@@ -7145,7 +7145,7 @@ $wgAutoloadAttemptLowercase = true;
  * - author: A string or an array of strings. Authors can be linked using
  *    the regular wikitext link syntax. To have an internationalized version of
  *    "and others" show, add an element "...". This element can also be linked,
- *    for instance "[http://example ...]".
+ *    for instance "[https://example ...]".
  *
  * - descriptionmsg: A message key or an an array with message key and parameters:
  *    `'descriptionmsg' => 'exampleextension-desc',`
@@ -7363,7 +7363,7 @@ $wgCategoryPagingLimit = 200;
  *     all languages in a mediocre way. However, it is better than "uppercase".
  *
  * To use the uca-default collation, you must have PHP's intl extension
- * installed. See http://php.net/manual/en/intl.setup.php . The details of the
+ * installed. See https://secure.php.net/manual/en/intl.setup.php . The details of the
  * resulting collation will depend on the version of ICU installed on the
  * server.
  *
@@ -8032,7 +8032,7 @@ $wgShellCgroup = false;
 $wgPhpCli = '/usr/bin/php';
 
 /**
- * Locale for LC_CTYPE, to work around http://bugs.php.net/bug.php?id=45132
+ * Locale for LC_CTYPE, to work around https://bugs.php.net/bug.php?id=45132
  * For Unix-like operating systems, set this to to a locale that has a UTF-8
  * character set. Only the character set is relevant.
  */

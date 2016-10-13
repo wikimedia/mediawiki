@@ -636,8 +636,8 @@ class ApiMain extends ApiBase {
 	 * If the parameter and the header do match, the header is checked against $wgCrossSiteAJAXdomains
 	 * and $wgCrossSiteAJAXdomainExceptions, and if the origin qualifies, the appropriate CORS
 	 * headers are set.
-	 * http://www.w3.org/TR/cors/#resource-requests
-	 * http://www.w3.org/TR/cors/#resource-preflight-requests
+	 * https://www.w3.org/TR/cors/#resource-requests
+	 * https://www.w3.org/TR/cors/#resource-preflight-requests
 	 *
 	 * @return bool False if the caller should abort (403 case), true otherwise (all other cases)
 	 */
@@ -719,7 +719,7 @@ class ApiMain extends ApiBase {
 
 			$response->header( "Access-Control-Allow-Origin: $allowOrigin" );
 			$response->header( "Access-Control-Allow-Credentials: $allowCredentials" );
-			// http://www.w3.org/TR/resource-timing/#timing-allow-origin
+			// https://www.w3.org/TR/resource-timing/#timing-allow-origin
 			if ( $allowTiming !== false ) {
 				$response->header( "Timing-Allow-Origin: $allowTiming" );
 			}
