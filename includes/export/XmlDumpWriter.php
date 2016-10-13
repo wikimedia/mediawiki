@@ -51,7 +51,7 @@ class XmlDumpWriter {
 			 * you copy in the new xsd file.
 			 *
 			 * After it is reviewed, merged and deployed (sync-docroot), the index.html needs purging.
-			 * echo "http://www.mediawiki.org/xml/index.html" | mwscript purgeList.php --wiki=aawiki
+			 * echo "https://www.mediawiki.org/xml/index.html" | mwscript purgeList.php --wiki=aawiki
 			 */
 			'xsi:schemaLocation' => "http://www.mediawiki.org/xml/export-$ver/ " .
 				"http://www.mediawiki.org/xml/export-$ver.xsd",

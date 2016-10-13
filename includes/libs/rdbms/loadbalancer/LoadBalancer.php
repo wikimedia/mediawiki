@@ -1528,7 +1528,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @return ScopedCallback|null
 	 */
 	final protected function getScopedPHPBehaviorForCommit() {
-		if ( PHP_SAPI != 'cli' ) { // http://bugs.php.net/bug.php?id=47540
+		if ( PHP_SAPI != 'cli' ) { // https://bugs.php.net/bug.php?id=47540
 			$old = ignore_user_abort( true ); // avoid half-finished operations
 			return new ScopedCallback( function () use ( $old ) {
 				ignore_user_abort( $old );

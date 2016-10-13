@@ -134,19 +134,19 @@ class SanitizerTest extends MediaWikiTestCase {
 				'Self-closing closing div'
 			],
 			// Make sure special nested HTML5 semantics are not broken
-			// http://www.whatwg.org/html/text-level-semantics.html#the-kbd-element
+			// https://html.spec.whatwg.org/multipage/semantics.html#the-kbd-element
 			[
 				'<kbd><kbd>Shift</kbd>+<kbd>F3</kbd></kbd>',
 				'<kbd><kbd>Shift</kbd>+<kbd>F3</kbd></kbd>',
 				'Nested <kbd>.'
 			],
-			// http://www.whatwg.org/html/text-level-semantics.html#the-sub-and-sup-elements
+			// https://html.spec.whatwg.org/multipage/semantics.html#the-sub-and-sup-elements
 			[
 				'<var>x<sub><var>i</var></sub></var>, <var>y<sub><var>i</var></sub></var>',
 				'<var>x<sub><var>i</var></sub></var>, <var>y<sub><var>i</var></sub></var>',
 				'Nested <var>.'
 			],
-			// http://www.whatwg.org/html/text-level-semantics.html#the-dfn-element
+			// https://html.spec.whatwg.org/multipage/semantics.html#the-dfn-element
 			[
 				'<dfn><abbr title="Garage Door Opener">GDO</abbr></dfn>',
 				'<dfn><abbr title="Garage Door Opener">GDO</abbr></dfn>',

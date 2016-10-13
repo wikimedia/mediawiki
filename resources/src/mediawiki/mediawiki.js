@@ -2505,7 +2505,7 @@
 				 *  - this.Raw: The raw value is directly included.
 				 *  - this.Cdata: The raw value is directly included. An exception is
 				 *    thrown if it contains any illegal ETAGO delimiter.
-				 *    See <http://www.w3.org/TR/html401/appendix/notes.html#h-B.3.2>.
+				 *    See <https://www.w3.org/TR/html401/appendix/notes.html#h-B.3.2>.
 				 * @return {string} HTML
 				 */
 				element: function ( name, attrs, contents ) {

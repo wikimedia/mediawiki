@@ -176,7 +176,7 @@
 				// maxLength is a strange property. Removing or setting the property to
 				// undefined directly doesn't work. Instead, it can only be unset internally
 				// by the browser when removing the associated attribute (Firefox/Chrome).
-				// http://code.google.com/p/chromium/issues/detail?id=136004
+				// https://bugs.chromium.org/p/chromium/issues/detail?id=136004
 				$el.removeAttr( 'maxlength' );
 
 			} else {
@@ -203,7 +203,7 @@
 			// changed while text is being entered and keyup/change will not be fired yet
 			// (such as holding down a single key, fires keydown, and after each keydown,
 			// we can trim the previous one).
-			// See http://www.w3.org/TR/DOM-Level-3-Events/#events-keyboard-event-order for
+			// See https://www.w3.org/TR/DOM-Level-3-Events/#events-keyboard-event-order for
 			// the order and characteristics of the key events.
 			$el.on( eventKeys, function () {
 				var res = $.trimByteLength(

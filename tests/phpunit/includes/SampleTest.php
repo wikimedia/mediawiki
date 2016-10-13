@@ -32,7 +32,7 @@ class TestSample extends MediaWikiLangTestCase {
 	 * they run.  While MediaWiki isn't strictly an Agile Programming
 	 * project, you are encouraged to use the naming described under
 	 * "Agile Documentation" at
-	 * http://www.phpunit.de/manual/3.4/en/other-uses-for-tests.html
+	 * https://www.phpunit.de/manual/3.4/en/other-uses-for-tests.html
 	 */
 	public function testTitleObjectStringConversion() {
 		$title = Title::newFromText( "text" );
@@ -45,7 +45,7 @@ class TestSample extends MediaWikiLangTestCase {
 
 	/**
 	 * If you want to run a the same test with a variety of data, use a data provider.
-	 * see: http://www.phpunit.de/manual/3.4/en/writing-tests-for-phpunit.html
+	 * see: https://www.phpunit.de/manual/3.4/en/writing-tests-for-phpunit.html
 	 */
 	public static function provideTitles() {
 		return [
@@ -60,7 +60,7 @@ class TestSample extends MediaWikiLangTestCase {
 	// @codingStandardsIgnoreStart Generic.Files.LineLength
 	/**
 	 * @dataProvider provideTitles
-	 * See http://phpunit.de/manual/3.7/en/appendixes.annotations.html#appendixes.annotations.dataProvider
+	 * See https://phpunit.de/manual/3.7/en/appendixes.annotations.html#appendixes.annotations.dataProvider
 	 */
 	// @codingStandardsIgnoreEnd
 	public function testCreateBasicListOfTitles( $titleName, $ns, $text ) {
@@ -89,7 +89,7 @@ class TestSample extends MediaWikiLangTestCase {
 
 	/**
 	 * @depends testSetUpMainPageTitleForNextTest
-	 * See http://phpunit.de/manual/3.7/en/appendixes.annotations.html#appendixes.annotations.depends
+	 * See https://phpunit.de/manual/3.7/en/appendixes.annotations.html#appendixes.annotations.depends
 	 */
 	public function testCheckMainPageTitleIsConsideredLocal( $title ) {
 		$this->assertTrue( $title->isLocal() );
@@ -98,7 +98,7 @@ class TestSample extends MediaWikiLangTestCase {
 	// @codingStandardsIgnoreStart Generic.Files.LineLength
 	/**
 	 * @expectedException InvalidArgumentException
-	 * See http://phpunit.de/manual/3.7/en/appendixes.annotations.html#appendixes.annotations.expectedException
+	 * See https://phpunit.de/manual/3.7/en/appendixes.annotations.html#appendixes.annotations.expectedException
 	 */
 	// @codingStandardsIgnoreEnd
 	public function testTitleObjectFromObject() {

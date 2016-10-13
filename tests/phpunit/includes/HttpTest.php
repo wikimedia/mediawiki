@@ -188,7 +188,7 @@ class HttpTest extends MediaWikiTestCase {
 
 	/**
 	 * Constant values are from PHP 5.3.28 using cURL 7.24.0
-	 * @see http://php.net/manual/en/curl.constants.php
+	 * @see https://secure.php.net/manual/en/curl.constants.php
 	 *
 	 * All constant values are present so that developers don’t need to remember
 	 * to add them if added at a later date. The commented out constants were
