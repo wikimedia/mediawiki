@@ -3784,9 +3784,28 @@ class Parser {
 	 * @return string
 	 */
 	public function extensionSubstitution( $params, $frame ) {
+		static $errorStr = '<span class="error">';
+		static $errorLen = 20;
+
 		$name = $frame->expand( $params['name'] );
+		if ( substr( $name, 0, $errorLen ) === $errorStr ) {
+			// Probably expansion depth or node count exceeded. Just punt the
+			// error up.
+			return $name;
+		}
+
 		$attrText = !isset( $params['attr'] ) ? null : $frame->expand( $params['attr'] );
+		if ( substr( $attrText, 0, $errorLen ) === $errorStr ) {
+			// See above
+			return $attrText;
+		}
+
 		$content = !isset( $params['inner'] ) ? null : $frame->expand( $params['inner'] );
+		if ( substr( $content, 0, $errorLen ) === $errorStr ) {
+			// See above
+			return $content;
+		}
+
 		$marker = self::MARKER_PREFIX . "-$name-"
 			. sprintf( '%08X', $this->mMarkerIndex++ ) . self::MARKER_SUFFIX;
 
@@ -3844,6 +3863,10 @@ class Parser {
 				$output = "<$name$attrText/>";
 			} else {
 				$close = is_null( $params['close'] ) ? '' : $frame->expand( $params['close'] );
+				if ( substr( $close, 0, $errorLen ) === $errorStr ) {
+					// See above
+					return $close;
+				}
 				$output = "<$name$attrText>$content$close";
 			}
 		}
