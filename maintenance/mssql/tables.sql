@@ -577,13 +577,13 @@ CREATE TABLE /*_*/image (
   img_media_type varchar(16) default null,
 
   -- major part of a MIME media type as defined by IANA
-  -- see http://www.iana.org/assignments/media-types/
+  -- see https://www.iana.org/assignments/media-types/
   img_major_mime varchar(16) not null default 'unknown',
 
   -- minor part of a MIME media type as defined by IANA
   -- the minor parts are not required to adher to any standard
   -- but should be consistent throughout the database
-  -- see http://www.iana.org/assignments/media-types/
+  -- see https://www.iana.org/assignments/media-types/
   img_minor_mime nvarchar(100) NOT NULL default 'unknown',
 
   -- Description field as entered by the uploader.

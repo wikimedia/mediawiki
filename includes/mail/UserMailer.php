@@ -283,7 +283,7 @@ class UserMailer {
 			->getFullURL( '', false, PROTO_CANONICAL ) . '>';
 
 		// Line endings need to be different on Unix and Windows due to
-		// the bug described at http://trac.wordpress.org/ticket/2603
+		// the bug described at https://core.trac.wordpress.org/ticket/2603
 		$endl = PHP_EOL;
 
 		if ( is_array( $body ) ) {

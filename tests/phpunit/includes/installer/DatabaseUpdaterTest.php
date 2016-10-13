@@ -103,7 +103,7 @@ class FakeDatabase extends Database {
 
 	/**
 	 * Get the number of fields in a result object
-	 * @see http://www.php.net/mysql_num_fields
+	 * @see https://secure.php.net/mysql_num_fields
 	 *
 	 * @param mixed $res A SQL result
 	 * @return int
@@ -114,7 +114,7 @@ class FakeDatabase extends Database {
 
 	/**
 	 * Get a field name in a result object
-	 * @see http://www.php.net/mysql_field_name
+	 * @see https://secure.php.net/mysql_field_name
 	 *
 	 * @param mixed $res A SQL result
 	 * @param int $n
@@ -142,7 +142,7 @@ class FakeDatabase extends Database {
 
 	/**
 	 * Change the position of the cursor in a result object
-	 * @see http://www.php.net/mysql_data_seek
+	 * @see https://secure.php.net/mysql_data_seek
 	 *
 	 * @param mixed $res A SQL result
 	 * @param int $row
@@ -153,7 +153,7 @@ class FakeDatabase extends Database {
 
 	/**
 	 * Get the last error number
-	 * @see http://www.php.net/mysql_errno
+	 * @see https://secure.php.net/mysql_errno
 	 *
 	 * @return int
 	 */
@@ -163,7 +163,7 @@ class FakeDatabase extends Database {
 
 	/**
 	 * Get a description of the last error
-	 * @see http://www.php.net/mysql_error
+	 * @see https://secure.php.net/mysql_error
 	 *
 	 * @return string
 	 */
@@ -197,7 +197,7 @@ class FakeDatabase extends Database {
 
 	/**
 	 * Get the number of rows affected by the last write query
-	 * @see http://www.php.net/mysql_affected_rows
+	 * @see https://secure.php.net/mysql_affected_rows
 	 *
 	 * @return int
 	 */
@@ -217,7 +217,7 @@ class FakeDatabase extends Database {
 
 	/**
 	 * Returns a wikitext link to the DB's website, e.g.,
-	 *   return "[http://www.mysql.com/ MySQL]";
+	 *   return "[https://www.mysql.com/ MySQL]";
 	 * Should at least contain plain text, if for some reason
 	 * your database has no website.
 	 *

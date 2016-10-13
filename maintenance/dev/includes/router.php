@@ -1,7 +1,7 @@
 <?php
 /**
  * Router for the php cli-server built-in webserver.
- * http://www.php.net/manual/en/features.commandline.webserver.php
+ * https://secure.php.net/manual/en/features.commandline.webserver.php
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

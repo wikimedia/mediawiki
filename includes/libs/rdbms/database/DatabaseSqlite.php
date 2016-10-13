@@ -267,7 +267,7 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
-	 * Attaches external database to our connection, see http://sqlite.org/lang_attach.html
+	 * Attaches external database to our connection, see https://sqlite.org/lang_attach.html
 	 * for details.
 	 *
 	 * @param string $name Database name to be used in queries like

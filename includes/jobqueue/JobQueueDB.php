@@ -323,7 +323,7 @@ class JobQueueDB extends JobQueue {
 		$invertedDirection = false; // whether one job_random direction was already scanned
 		// This uses a replication safe method for acquiring jobs. One could use UPDATE+LIMIT
 		// instead, but that either uses ORDER BY (in which case it deadlocks in MySQL) or is
-		// not replication safe. Due to http://bugs.mysql.com/bug.php?id=6980, subqueries cannot
+		// not replication safe. Due to https://bugs.mysql.com/bug.php?id=6980, subqueries cannot
 		// be used here with MySQL.
 		do {
 			if ( $tinyQueue ) { // queue has <= MAX_OFFSET rows
@@ -397,7 +397,7 @@ class JobQueueDB extends JobQueue {
 		$row = false; // the row acquired
 		do {
 			if ( $dbw->getType() === 'mysql' ) {
-				// Per http://bugs.mysql.com/bug.php?id=6980, we can't use subqueries on the
+				// Per https://bugs.mysql.com/bug.php?id=6980, we can't use subqueries on the
 				// same table being changed in an UPDATE query in MySQL (gives Error: 1093).
 				// Oracle and Postgre have no such limitation. However, MySQL offers an
 				// alternative here by supporting ORDER BY + LIMIT for UPDATE queries.

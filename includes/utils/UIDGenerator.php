@@ -56,13 +56,13 @@ class UIDGenerator {
 		if ( !preg_match( '/^[0-9a-f]{12}$/i', $nodeId ) ) {
 			MediaWiki\suppressWarnings();
 			if ( wfIsWindows() ) {
-				// http://technet.microsoft.com/en-us/library/bb490913.aspx
+				// https://technet.microsoft.com/en-us/library/bb490913.aspx
 				$csv = trim( wfShellExec( 'getmac /NH /FO CSV' ) );
 				$line = substr( $csv, 0, strcspn( $csv, "\n" ) );
 				$info = str_getcsv( $line );
 				$nodeId = isset( $info[0] ) ? str_replace( '-', '', $info[0] ) : '';
 			} elseif ( is_executable( '/sbin/ifconfig' ) ) { // Linux/BSD/Solaris/OS X
-				// See http://linux.die.net/man/8/ifconfig
+				// See https://linux.die.net/man/8/ifconfig
 				$m = [];
 				preg_match( '/\s([0-9a-f]{2}(:[0-9a-f]{2}){5})\s/',
 					wfShellExec( '/sbin/ifconfig -a' ), $m );
@@ -517,7 +517,7 @@ class UIDGenerator {
 	protected function timeWaitUntil( array $time ) {
 		do {
 			$ct = self::millitime();
-			if ( $ct >= $time ) { // http://php.net/manual/en/language.operators.comparison.php
+			if ( $ct >= $time ) { // https://secure.php.net/manual/en/language.operators.comparison.php
 				return $ct; // current timestamp is higher than $time
 			}
 		} while ( ( ( $time[0] - $ct[0] ) * 1000 + ( $time[1] - $ct[1] ) ) <= 10 );
