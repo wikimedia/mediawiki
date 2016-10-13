@@ -1046,7 +1046,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * Example usage:
 	 * @code
 	 *     $rows = $cache->getMultiWithSetCallback(
-	 *         // Map of cache keys to entitiy IDs
+	 *         // Map of cache keys to entity IDs
 	 *         $cache->makeMultiKeys(
 	 *             $this->fileVersionIds(),
 	 *             function ( $id, WANObjectCache $cache ) {
