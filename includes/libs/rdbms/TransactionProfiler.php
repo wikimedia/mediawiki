@@ -80,11 +80,15 @@ class TransactionProfiler implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @param bool $value
+	 * @param bool $value New value
+	 * @return bool Old value
 	 * @since 1.28
 	 */
 	public function setSilenced( $value ) {
+		$old = $this->silenced;
 		$this->silenced = $value;
+
+		return $old;
 	}
 
 	/**

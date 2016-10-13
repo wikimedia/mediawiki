@@ -1324,7 +1324,7 @@ class LoadBalancer implements ILoadBalancer {
 			$cache->makeGlobalKey( __CLASS__, 'server-read-only', $masterServer ),
 			self::TTL_CACHE_READONLY,
 			function () use ( $domain, $conn ) {
-				$this->trxProfiler->setSilenced( true );
+				$old = $this->trxProfiler->setSilenced( true );
 				try {
 					$dbw = $conn ?: $this->getConnection( self::DB_MASTER, [], $domain );
 					$readOnly = (int)$dbw->serverIsReadOnly();
@@ -1334,7 +1334,7 @@ class LoadBalancer implements ILoadBalancer {
 				} catch ( DBError $e ) {
 					$readOnly = 0;
 				}
-				$this->trxProfiler->setSilenced( false );
+				$this->trxProfiler->setSilenced( $old );
 				return $readOnly;
 			},
 			[ 'pcTTL' => $cache::TTL_PROC_LONG, 'busyValue' => 0 ]

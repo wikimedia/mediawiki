@@ -45,9 +45,9 @@ class EmailInvalidation extends UnlistedSpecialPage {
 		$this->checkReadOnly();
 		$this->checkPermissions();
 
-		$trxProfiler->setSilenced( true );
+		$old = $trxProfiler->setSilenced( true );
 		$this->attemptInvalidate( $code );
-		$trxProfiler->setSilenced( false );
+		$trxProfiler->setSilenced( $old );
 	}
 
 	/**

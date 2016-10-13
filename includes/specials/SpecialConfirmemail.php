@@ -69,9 +69,9 @@ class EmailConfirmation extends UnlistedSpecialPage {
 				$this->getOutput()->addWikiMsg( 'confirmemail_noemail' );
 			}
 		} else {
-			$trxProfiler->setSilenced( true );
+			$old = $trxProfiler->setSilenced( true );
 			$this->attemptConfirm( $code );
-			$trxProfiler->setSilenced( false );
+			$trxProfiler->setSilenced( $old );
 		}
 	}
 
