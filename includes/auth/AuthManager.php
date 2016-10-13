@@ -1678,7 +1678,7 @@ class AuthManager implements LoggerAwareInterface {
 
 		// Ignore warnings about master connections/writes...hard to avoid here
 		$trxProfiler = \Profiler::instance()->getTransactionProfiler();
-		$trxProfiler->setSilenced( true );
+		$old = $trxProfiler->setSilenced( true );
 		try {
 			$status = $user->addToDatabase();
 			if ( !$status->isOK() ) {
@@ -1704,7 +1704,7 @@ class AuthManager implements LoggerAwareInterface {
 				return $status;
 			}
 		} catch ( \Exception $ex ) {
-			$trxProfiler->setSilenced( false );
+			$trxProfiler->setSilenced( $old );
 			$this->logger->error( __METHOD__ . ': {username} failed with exception {exception}', [
 				'username' => $username,
 				'exception' => $ex,
@@ -1743,7 +1743,7 @@ class AuthManager implements LoggerAwareInterface {
 			$logEntry->insert();
 		}
 
-		$trxProfiler->setSilenced( false );
+		$trxProfiler->setSilenced( $old );
 
 		if ( $login ) {
 			$this->setSessionDataForUser( $user );
