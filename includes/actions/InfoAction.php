@@ -690,7 +690,6 @@ class InfoAction extends FormlessAction {
 
 				$dbr = wfGetDB( DB_REPLICA );
 				$dbrWatchlist = wfGetDB( DB_REPLICA, 'watchlist' );
-
 				$setOpts += Database::getCacheSetOptions( $dbr, $dbrWatchlist );
 
 				$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();

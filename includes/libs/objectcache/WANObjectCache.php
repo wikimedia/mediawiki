@@ -939,12 +939,13 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$cValue = $this->get( $key, $curTTL, $checkKeys, $asOf ); // current value
 		$value = $cValue; // return value
 
-		// Determine if a regeneration is desired
+		$preCallbackTime = microtime( true );
+		// Determine if a cached value regeneration is needed or desired
 		if ( $value !== false
 			&& $curTTL > 0
 			&& $this->isValid( $value, $versioned, $asOf, $minTime )
 			&& !$this->worthRefreshExpiring( $curTTL, $lowTTL )
-			&& !$this->worthRefreshPopular( $asOf, $ageNew, $popWindow )
+			&& !$this->worthRefreshPopular( $asOf, $ageNew, $popWindow, $preCallbackTime )
 		) {
 			return $value;
 		}
@@ -1013,8 +1014,10 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		}
 
 		if ( $value !== false && $ttl >= 0 ) {
-			// Update the cache; this will fail if the key is tombstoned
 			$setOpts['lockTSE'] = $lockTSE;
+			// Use best known "since" timestamp if not provided
+			$setOpts += [ 'since' => $preCallbackTime ];
+			// Update the cache; this will fail if the key is tombstoned
 			$this->set( $key, $value, $ttl, $setOpts );
 		}
 
@@ -1336,10 +1339,11 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @param float $asOf UNIX timestamp of the value
 	 * @param integer $ageNew Age of key when this might recommend refreshing (seconds)
 	 * @param integer $timeTillRefresh Age of key when it should be refreshed if popular (seconds)
+	 * @param float $now The current UNIX timestamp
 	 * @return bool
 	 */
-	protected function worthRefreshPopular( $asOf, $ageNew, $timeTillRefresh ) {
-		$age = microtime( true ) - $asOf;
+	protected function worthRefreshPopular( $asOf, $ageNew, $timeTillRefresh, $now ) {
+		$age = $now - $asOf;
 		$timeOld = $age - $ageNew;
 		if ( $timeOld <= 0 ) {
 			return false;

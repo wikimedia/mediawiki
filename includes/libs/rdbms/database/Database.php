@@ -50,8 +50,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/** @var string SQL query */
 	protected $mLastQuery = '';
-	/** @var bool */
-	protected $mDoneWrites = false;
+	/** @var float|bool UNIX timestamp of last write query */
+	protected $mLastWriteTime = false;
 	/** @var string|bool */
 	protected $mPHPError = false;
 	/** @var string */
@@ -511,11 +511,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function doneWrites() {
-		return (bool)$this->mDoneWrites;
+		return (bool)$this->mLastWriteTime;
 	}
 
 	public function lastDoneWrites() {
-		return $this->mDoneWrites ?: false;
+		return $this->mLastWriteTime ?: false;
 	}
 
 	public function writesPending() {
@@ -820,7 +820,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				throw new DBReadOnlyError( $this, "Database is read-only: $reason" );
 			}
 			# Set a flag indicating that writes have been done
-			$this->mDoneWrites = microtime( true );
+			$this->mLastWriteTime = microtime( true );
 		}
 
 		// Add trace comment to the begin of the sql string, right after the operator.
@@ -2751,7 +2751,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$writeTime = $this->pendingWriteQueryDuration( self::ESTIMATE_DB_APPLY );
 		$this->doCommit( $fname );
 		if ( $this->mTrxDoneWrites ) {
-			$this->mDoneWrites = microtime( true );
+			$this->mLastWriteTime = microtime( true );
 			$this->trxProfiler->transactionWritingOut(
 				$this->mServer, $this->mDBname, $this->mTrxShortId, $writeTime );
 		}

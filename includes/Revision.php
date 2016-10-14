@@ -20,6 +20,7 @@
  * @file
  */
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @todo document
@@ -1902,7 +1903,7 @@ class Revision implements IDBAccessObject {
 	 * @since 1.28
 	 */
 	public static function newKnownCurrent( IDatabase $db, $pageId, $revId ) {
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		return $cache->getWithSetCallback(
 			// Page/rev IDs passed in from DB to reflect history merges
 			$cache->makeGlobalKey( 'revision', $db->getWikiID(), $pageId, $revId ),
