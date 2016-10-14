@@ -2390,10 +2390,14 @@ class OutputPage extends ContextSource {
 	/**
 	 * Output a standard permission error page
 	 *
-	 * @param array $errors Error message keys
+	 * @param array $errors Error message keys or [key, param...] arrays
 	 * @param string $action Action that was denied or null if unknown
 	 */
 	public function showPermissionsErrorPage( array $errors, $action = null ) {
+		foreach ( $errors as $key => $error ) {
+			$errors[$key] = (array)$error;
+		}
+
 		// For some action (read, edit, create and upload), display a "login to do this action"
 		// error if all of the following conditions are met:
 		// 1. the user is not logged in
