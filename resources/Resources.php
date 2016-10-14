@@ -1812,11 +1812,13 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.apisandbox.styles' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.apisandbox.top.css',
 	],
 	'mediawiki.special.apisandbox' => [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.apisandbox.css',
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.apisandbox.js',
+		'targets' => [ 'desktop', 'mobile' ],
 		'dependencies' => [
 			'mediawiki.api',
 			'mediawiki.jqueryMsg',
