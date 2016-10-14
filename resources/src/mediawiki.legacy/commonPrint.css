@@ -10,10 +10,9 @@
  * Hide all the elements irrelevant for printing
  */
 .noprint,
-div#jump-to-nav,
+#jump-to-nav,
 .mw-jump,
-div.top,
-div#column-one,
+#column-one,
 .mw-editsection,
 .mw-editsection-like,
 #footer-places,
@@ -21,12 +20,12 @@ div#column-one,
 .usermessage,
 .patrollink,
 .ns-0 .mw-redirectedfrom,
-div.magnify,
+.magnify,
 #mw-navigation,
 #siteNotice,
 /* Deprecated, changed in core */
-div#f-poweredbyico,
-div#f-copyrightico,
+#f-poweredbyico,
+#f-copyrightico,
 li#about,
 li#disclaimer,
 li#mobileview,
@@ -228,7 +227,7 @@ div.floatleft p {
 	font-style: italic;
 }
 
-div.center {
+.center {
 	text-align: center;
 }
 
@@ -246,7 +245,7 @@ div.thumb {
 div.thumbinner {
 	background-color: #fff;
 	border: 1pt solid #ccc;
-	padding: 3px !important;
+	padding: 3px;
 	font-size: 94%;
 	text-align: center;
 	/* new block formatting context,
@@ -262,7 +261,7 @@ html .thumbcaption {
 	border: none;
 	text-align: left;
 	line-height: 1.4em;
-	padding: 3px !important;
+	padding: 3px;
 	font-size: 94%;
 }
 
@@ -323,10 +322,6 @@ table.listing,
 table.listing td {
 	border: 1pt solid #000;
 	border-collapse: collapse;
-}
-
-a.sortheader {
-	margin: 0 0.3em;
 }
 
 /**
