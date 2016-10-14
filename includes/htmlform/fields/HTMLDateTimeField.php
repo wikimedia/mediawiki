@@ -126,6 +126,9 @@ class HTMLDateTimeField extends HTMLTextField {
 
 	protected function parseDate( $value ) {
 		$value = trim( $value );
+		if ( $value === '' ) {
+			return false;
+		}
 
 		if ( $this->mType === 'date' ) {
 			$value .= ' T00:00:00+0000';
@@ -138,7 +141,7 @@ class HTMLDateTimeField extends HTMLTextField {
 			$date = new DateTime( $value, new DateTimeZone( 'GMT' ) );
 			return $date->getTimestamp();
 		} catch ( Exception $ex ) {
-			return 0;
+			return false;
 		}
 	}
 
