@@ -29,10 +29,11 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * Get a Message object with its context set
 	 *
 	 * @param string $name Message name
+	 * @param ... $params Message params
 	 * @return Message
 	 */
-	public function getMsg( $name ) {
-		return $this->getSkin()->msg( $name );
+	public function getMsg( $name /* ... */ ) {
+		return call_user_func_array( [ $this->getSkin(), 'msg' ], func_get_args() );
 	}
 
 	function msg( $str ) {
