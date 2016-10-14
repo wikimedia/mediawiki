@@ -2390,7 +2390,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Output a standard permission error page
 	 *
-	 * @param array $errors Error message keys
+	 * @param array $errors Error message keys or [key, param...] arrays
 	 * @param string $action Action that was denied or null if unknown
 	 */
 	public function showPermissionsErrorPage( array $errors, $action = null ) {
