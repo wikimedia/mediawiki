@@ -29,11 +29,18 @@ class PermissionsError extends ErrorPageError {
 	public $permission, $errors;
 
 	/**
-	 * @param string $permission A permission name.
-	 * @param string[] $errors Error message keys
+	 * @param string|null $permission A permission name or null if unknown
+	 * @param array $errors Error message keys or [key, param...] arrays; must not be empty if
+	 *   $permission is null
+	 * @throws \InvalidArgumentException
 	 */
 	public function __construct( $permission, $errors = [] ) {
 		global $wgLang;
+
+		if ( $permission === null && !$errors ) {
+			throw new \InvalidArgumentException( __METHOD__ .
+				': $permission and $errors cannot both be empty' );
+		}
 
 		$this->permission = $permission;
 
