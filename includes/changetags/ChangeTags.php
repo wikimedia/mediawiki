@@ -669,7 +669,7 @@ class ChangeTags {
 	 *        You need to call OutputPage::enableOOUI() yourself.
 	 * @return array an array of (label, selector)
 	 */
-	public static function buildTagFilterSelector( $selected = '', $ooui = false ) {
+	public static function buildTagFilterSelector( $selected = '', $ooui = false, IContextSource $context = null) {
 		global $wgUseTagFilter;
 
 		if ( !$wgUseTagFilter || !count( self::listDefinedTags() ) ) {
@@ -680,9 +680,11 @@ class ChangeTags {
 			Html::rawElement(
 				'label',
 				[ 'for' => 'tagfilter' ],
-				wfMessage( 'tag-filter' )->parse()
+				$context->msg( 'tag-filter' )->parse()
 			)
 		];
+		if ( !$context ) {
+                        $context = RequestContext::getMain();
 
 		if ( $ooui ) {
 			$data[] = new OOUI\TextInputWidget( [
