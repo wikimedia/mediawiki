@@ -1006,7 +1006,7 @@ __INDEXATTR__;
 	 * @param string $desiredSchema
 	 */
 	function determineCoreSchema( $desiredSchema ) {
-		$this->begin( __METHOD__, self::TRANSACTION_EXPLICIT );
+		$this->begin( __METHOD__, self::TRANSACTION_INTERNAL );
 		if ( $this->schemaExists( $desiredSchema ) ) {
 			if ( in_array( $desiredSchema, $this->getSchemas() ) ) {
 				$this->mCoreSchema = $desiredSchema;
