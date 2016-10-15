@@ -22,6 +22,7 @@ matrix:
 
 services:
   - mysql
+  - postgres
 
 branches:
   # Test changes in master and arbitrary Travis CI branches only.
