@@ -607,8 +607,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 			return $status;
 		}
-		// $error = $conn->sourceFile( "$IP/maintenance/postgres/tables.sql" );
-		$error = $conn->sourceFile( $conn->getSchemaPath() );
+		$error = $conn->sourceFile( "$IP/maintenance/postgres/tables.sql" );
 		if ( $error !== true ) {
 			$conn->reportQueryError( $error, 0, '', __METHOD__ );
 			$conn->rollback( __METHOD__ );
