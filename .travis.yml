@@ -6,10 +6,6 @@
 # Wikimedia's production cluster. This Travis CI configuration is designed to
 # complement that setup by testing MediaWiki on travis
 #
-sudo: required
-
-dist: trusty
-
 language: php
 
 matrix:
