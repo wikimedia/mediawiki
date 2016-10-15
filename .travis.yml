@@ -28,7 +28,7 @@ before_install:
   - composer self-update --quiet --no-interaction
 
 install:
-  - if [ "$dbtype" == "postgres" ] then sudo /etc/init.d/postgresql stop sleep 3 sudo /etc/init.d/postgresql start sleep 3; fi
+  - if [ "$dbtype" == "postgres" ]; then sudo /etc/init.d/postgresql stop sleep 3 sudo /etc/init.d/postgresql start sleep 3; fi
 
 before_script:
   - composer install --prefer-source --quiet --no-interaction
