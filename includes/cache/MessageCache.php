@@ -227,17 +227,14 @@ class MessageCache {
 	 * or false if populating empty cache fails. Also returns true if MessageCache
 	 * is disabled.
 	 *
-	 * @param bool|string $code Language to which load messages
-	 * @param integer $mode Use MessageCache::FOR_UPDATE to skip process cache
+	 * @param string $code Language to which load messages
+	 * @param integer $mode Use MessageCache::FOR_UPDATE to skip process cache [optional]
 	 * @throws MWException
 	 * @return bool
 	 */
-	function load( $code = false, $mode = null ) {
+	protected function load( $code, $mode = null ) {
 		if ( !is_string( $code ) ) {
-			# This isn't really nice, so at least make a note about it and try to
-			# fall back
-			wfDebug( __METHOD__ . " called without providing a language code\n" );
-			$code = 'en';
+			throw new InvalidArgumentException( "Missing language code" );
 		}
 
 		# Don't do double loading...
@@ -864,6 +861,8 @@ class MessageCache {
 				}
 				$alreadyTried[ $langcode ] = true;
 			}
+		} else {
+			$uckey = null;
 		}
 
 		// Check the CDB cache
@@ -881,7 +880,8 @@ class MessageCache {
 					continue;
 				}
 
-				$message = $this->getMsgFromNamespace( $this->getMessagePageName( $code, $uckey ), $code );
+				$message = $this->getMsgFromNamespace(
+					$this->getMessagePageName( $code, $uckey ), $code );
 
 				if ( $message !== false ) {
 					return $message;
