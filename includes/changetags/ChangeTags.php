@@ -667,22 +667,28 @@ class ChangeTags {
 	 * @param string $selected Tag to select by default
 	 * @param bool $ooui Use an OOUI TextInputWidget as selector instead of a non-OOUI input field
 	 *        You need to call OutputPage::enableOOUI() yourself.
+         * @param IContextSource|null $context
+	 * @note Even though it takes null as a valid argument, an IContextSource is preferred
+	 *       in a new code, as the null value can change in the future
 	 * @return array an array of (label, selector)
 	 */
-	public static function buildTagFilterSelector( $selected = '', $ooui = false ) {
+	public static function buildTagFilterSelector( $selected = '', $ooui = false, IContextSource $context = null) {
 		global $wgUseTagFilter;
 
 		if ( !$wgUseTagFilter || !count( self::listDefinedTags() ) ) {
 			return [];
-		}
-
+		} 
+          	if ( !$context ) {
+                        $context = RequestContext::getMain();
+                }
 		$data = [
 			Html::rawElement(
 				'label',
 				[ 'for' => 'tagfilter' ],
-				wfMessage( 'tag-filter' )->parse()
+				$context->msg( 'tag-filter' )->parse()
 			)
 		];
+		
 
 		if ( $ooui ) {
 			$data[] = new OOUI\TextInputWidget( [
