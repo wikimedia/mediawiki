@@ -28,7 +28,7 @@ before_install:
   - composer self-update --quiet --no-interaction
 
 install:
-  - if [ "$dbtype" == "postgres" ] then sudo /etc/init.d/postgresql stop sleep 3 sudo /etc/init.d/postgresql start sleep 3
+  - if [ "$dbtype" == "postgres" ] then sudo /etc/init.d/postgresql stop sleep 3 sudo /etc/init.d/postgresql start sleep 3; fi
 
 before_script:
   - composer install --prefer-source --quiet --no-interaction
@@ -48,7 +48,7 @@ before_script:
   - echo '$wgShowDBErrorBacktrace = true;' >> LocalSettings.php
 
 script:
-  - php tests/phpunit/phpunit.php
+  - php -d zend.enable_gc=0 tests/phpunit/phpunit.php
 
 notifications:
   email: false
