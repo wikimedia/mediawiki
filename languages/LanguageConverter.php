@@ -48,7 +48,9 @@ class LanguageConverter {
 	];
 
 	public $mMainLanguageCode;
-	public $mVariants, $mVariantFallbacks, $mVariantNames;
+	public $mVariants;
+	public $mVariantFallbacks;
+	public $mVariantNames;
 	public $mTablesLoaded = false;
 	public $mTables;
 	// 'bidirectional' 'unidirectional' 'disable' for each variant
