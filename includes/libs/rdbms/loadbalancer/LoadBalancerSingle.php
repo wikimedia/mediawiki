@@ -75,7 +75,7 @@ class LoadBalancerSingle extends LoadBalancer {
 	 *
 	 * @return IDatabase
 	 */
-	protected function reallyOpenConnection( $server, $dbNameOverride = false ) {
+	protected function reallyOpenConnection( array $server, $dbNameOverride = false ) {
 		return $this->db;
 	}
 }
