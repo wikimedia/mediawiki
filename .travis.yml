@@ -25,15 +25,6 @@ matrix:
 services:
   - mysql
 
-branches:
-  # Test changes in master and arbitrary Travis CI branches only.
-  # The latter allows developers to enable Travis CI in their GitHub fork of
-  # wikimedia/mediawiki and then push changes they like to test to branches like
-  # "travis-ci/test-this-awesome-change".
-  only:
-    - master
-    - /^travis-ci\/.*$/
-
 before_install:
   - sudo apt-get install -qq djvulibre-bin tidy
   - composer self-update --quiet --no-interaction
