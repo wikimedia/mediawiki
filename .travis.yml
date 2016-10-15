@@ -11,17 +11,13 @@ language: php
 matrix:
   fast_finish: true
   include:
-    - env: dbtype=mysql
-      dbusers=travis
+    - env: dbtype=mysql dbusers=travis
       php: 5.5
-    - env: dbtype=postgres
-      dbusers=postgres
+    - env: dbtype=postgres dbusers=postgres
       php: 5.5
-    - env: dbtype=mysql
-      dbusers=travis
+    - env: dbtype=mysql dbusers=travis
       php: hhvm
-    - env: dbtype=mysql
-      dbusers=travis
+    - env: dbtype=mysql dbusers=travis
       php: 7
 
 services:
