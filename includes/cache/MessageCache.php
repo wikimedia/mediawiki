@@ -631,11 +631,11 @@ class MessageCache {
 		if ( $dest === 'all' ) {
 			$cacheKey = wfMemcKey( 'messages', $code );
 			$success = $this->mMemc->set( $cacheKey, $cache );
+			$this->setValidationHash( $code, $cache );
 		} else {
 			$success = true;
 		}
 
-		$this->setValidationHash( $code, $cache );
 		$this->saveToLocalCache( $code, $cache );
 
 		return $success;
