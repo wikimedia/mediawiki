@@ -30,8 +30,8 @@ before_install:
 install:
   - if [ "$dbtype" = postgres ]; then sudo /etc/init.d/postgresql stop; fi
   - if [ "$dbtype" = postgres ]; then sleep 3; fi
-  - if [ "$dbtype" = postgres ]; sudo /etc/init.d/postgresql start; fi
-  - if [ "$dbtype" = postgres ]; sleep 3; fi
+  - if [ "$dbtype" = postgres ]; then sudo /etc/init.d/postgresql start; fi
+  - if [ "$dbtype" = postgres ]; then sleep 3; fi
 
 before_script:
   - composer install --prefer-source --quiet --no-interaction
