@@ -3529,7 +3529,7 @@
 	"feedback-thanks": "감사합니다! \"[$2 $1]\" 문서에 의견을 남겼습니다.",
 	"feedback-thanks-title": "감사합니다!",
 	"feedback-useragent": "사용자 에이전트:",
-	"searchsuggest-search": "검색",
+	"searchsuggest-search": "{{SITENAME}} 검색",
 	"searchsuggest-containing": "다음 문자열 포함...",
 	"api-error-autoblocked": "사용자의 IP 주소는 차단된 사용자에 의해 사용되었으므로 자동으로 차단된 상태입니다.",
 	"api-error-badaccess-groups": "이 위키에 파일을 올릴 권한이 없습니다.",

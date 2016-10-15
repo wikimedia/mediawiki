@@ -31,7 +31,7 @@
 	"apihelp-edit-param-text": "Säiteninhalt.",
 	"apihelp-edit-param-minor": "Kleng Ännerung.",
 	"apihelp-edit-param-notminor": "Keng kleng Ännerung",
-	"apihelp-edit-param-bot": "Dës Ännerung als Bot-Ännerung markéieren.",
+	"apihelp-edit-param-bot": "Dës Ännerung als eng Bot-Ännerung markéieren.",
 	"apihelp-edit-param-createonly": "D'Säit net ännere wann et se scho gëtt.",
 	"apihelp-edit-param-watch": "D'Säit op dem aktuelle Benotzer seng Iwwerwaachungslëscht dobäisetzen.",
 	"apihelp-edit-example-edit": "Eng Säit änneren",

@@ -3307,7 +3307,7 @@
 	"feedback-thanks": "Merci! Äre Feedback gouf op der Säit \"[$2 $1]\" gespäichert.",
 	"feedback-thanks-title": "Merci!",
 	"feedback-useragent": "User Agent:",
-	"searchsuggest-search": "Sichen",
+	"searchsuggest-search": "Op {{SITENAME}} sichen",
 	"searchsuggest-containing": "mat ...",
 	"api-error-autoblocked": "Är IP-Adress gouf automatesch gespaart wëll se vun engem gespaarte Benotzer  benotzt gouf",
 	"api-error-badaccess-groups": "Et ass Iech net erlaabt fir Fichieren op dës Wiki eropzelueden.",
@@ -3524,5 +3524,7 @@
 	"linkaccounts-submit": "Benotzerkonte verbannen",
 	"userjsispublic": "DEnkt drun: Op JavaScript-Ënnersäite solle keng vertraulech Informatioune stoe well se vun anere Benotzer kënne gesi ginn.",
 	"restrictionsfield-badip": "Net valabel IP-Adress oder Beräich: $1",
-	"restrictionsfield-label": "Zougeloossen IP-Beräicher:"
+	"restrictionsfield-label": "Zougeloossen IP-Beräicher:",
+	"edit-error-short": "Feeler: $1",
+	"edit-error-long": "Feeler:\n\n$1"
 }

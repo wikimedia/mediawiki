@@ -126,7 +126,7 @@
 	"apihelp-emailuser-param-text": "Corpo do correo.",
 	"apihelp-emailuser-param-ccme": "Enviarme unha copia deste correo.",
 	"apihelp-emailuser-example-email": "Enviar un correo electrónico ó usuario <kbd>WikiSysop</kbd> co texto <kbd>Content</kbd>.",
-	"apihelp-expandtemplates-description": "Expandir tódolos modelos en wikitexto.",
+	"apihelp-expandtemplates-description": "Expandir tódolos modelos dentro do wikitexto.",
 	"apihelp-expandtemplates-param-title": "Título da páxina.",
 	"apihelp-expandtemplates-param-text": "Sintaxis wiki a converter.",
 	"apihelp-expandtemplates-param-revid": "ID de revisión, para <nowiki>{{REVISIONID}}</nowiki> e variables similares.",

@@ -250,7 +250,7 @@
 	"namespaces": "命名空间",
 	"variants": "变种",
 	"navigation-heading": "导航菜单",
-	"errorpagetitle": "出错",
+	"errorpagetitle": "错误",
 	"returnto": "返回至$1。",
 	"tagline": "来自{{SITENAME}}",
 	"help": "帮助",
@@ -392,7 +392,7 @@
 	"nosuchactiontext": "URL指定的操作无效。您可能输入了错误的URL地址，或是点击了错误的链接。这也可能表明{{SITENAME}}使用的软件存在漏洞。",
 	"nosuchspecialpage": "此特殊页面不存在",
 	"nospecialpagetext": "<strong>您请求了一个无效的特殊页面。</strong>\n\n有效的特殊页面的列表可以在[[Special:SpecialPages|{{int:specialpages}}]]找到。",
-	"error": "出错",
+	"error": "错误",
 	"databaseerror": "数据库错误",
 	"databaseerror-text": "出现数据库查询错误。这可能表示软件中存在漏洞。",
 	"databaseerror-textcl": "出现数据库查询错误。",
@@ -2776,6 +2776,7 @@
 	"newimages-showbots": "显示机器人上传",
 	"newimages-hidepatrolled": "隐藏已巡查的上传",
 	"noimages": "无可查看文件。",
+	"gallery-slideshow-toggle": "开启/关闭缩略图",
 	"ilsubmit": "搜索",
 	"bydate": "按日期",
 	"sp-newimages-showfrom": "从$1 $2开始显示新文件",
@@ -3582,7 +3583,7 @@
 	"feedback-thanks": "谢谢！您的反馈已发布至页面“[$2 $1]”。",
 	"feedback-thanks-title": "谢谢您！",
 	"feedback-useragent": "用户代理：",
-	"searchsuggest-search": "搜索",
+	"searchsuggest-search": "搜索{{SITENAME}}",
 	"searchsuggest-containing": "含有...",
 	"api-error-autoblocked": "您的IP地址已被自动封禁，因为它曾被一位已封禁用户使用。",
 	"api-error-badaccess-groups": "您没有将文件上传到此 wiki 的权限。",
@@ -3875,5 +3876,7 @@
 	"usercssispublic": "请注意：CSS子页面不应包含机密数据，因为它们可以被其他用户查看。",
 	"restrictionsfield-badip": "无效的IP地址或段：$1",
 	"restrictionsfield-label": "允许的IP段：",
-	"restrictionsfield-help": "每行一个IP地址或CIDR段。要启用所有，可使用<br><code>0.0.0.0/0</code><br><code>::/0</code>"
+	"restrictionsfield-help": "每行一个IP地址或CIDR段。要启用所有，可使用<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"edit-error-short": "错误：$1",
+	"edit-error-long": "错误：\n\n$1"
 }

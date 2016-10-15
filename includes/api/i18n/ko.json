@@ -88,7 +88,7 @@
 	"apihelp-edit-param-tags": "이 판에 적용할 태그를 변경합니다.",
 	"apihelp-edit-param-minor": "사소한 편집.",
 	"apihelp-edit-param-notminor": "사소하지 않은 편집.",
-	"apihelp-edit-param-bot": "이 편집을 봇으로 표시.",
+	"apihelp-edit-param-bot": "이 편집을 봇 편집으로 표시.",
 	"apihelp-edit-param-createonly": "이 페이지가 이미 존재하면 편집하지 않습니다.",
 	"apihelp-edit-param-nocreate": "페이지가 존재하지 않으면 오류를 출력합니다.",
 	"apihelp-edit-param-watch": "문서를 현재 사용자의 주시문서 목록에 추가합니다.",

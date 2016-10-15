@@ -3765,5 +3765,7 @@
 	"usercssispublic": "Pomnite: Podstrani CSS naj ne vsebujejo zaupnih podatkov, saj so vidne tudi drugim uporabnikom.",
 	"restrictionsfield-badip": "Neveljaven IP-naslov ali obseg: $1",
 	"restrictionsfield-label": "Dovoljeni IP-obsegi:",
-	"restrictionsfield-help": "En IP-naslov ali CIDR-območje na vrstico. Da omogočite vse, uporabite<br><code>0.0.0.0/0</code><br><code>::/0</code>"
+	"restrictionsfield-help": "En IP-naslov ali CIDR-območje na vrstico. Da omogočite vse, uporabite<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"edit-error-short": "Napaka: $1",
+	"edit-error-long": "Napake:\n\n$1"
 }

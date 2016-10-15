@@ -3486,7 +3486,7 @@
 	"feedback-thanks": "Grazas! Os seus comentarios publicáronse na páxina \"[$2 $1]\".",
 	"feedback-thanks-title": "Grazas!",
 	"feedback-useragent": "Axente de usuario:",
-	"searchsuggest-search": "Procurar",
+	"searchsuggest-search": "Procurar en {{SITENAME}}",
 	"searchsuggest-containing": "que conteña...",
 	"api-error-autoblocked": "A súa dirección IP foi bloqueada automaticamente porque foi usada por un usuario bloqueado.",
 	"api-error-badaccess-groups": "Non ten os permisos necesarios para cargar ficheiros neste wiki.",

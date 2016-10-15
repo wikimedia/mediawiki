@@ -2634,7 +2634,10 @@
 	"ilsubmit": "অনুসন্ধান",
 	"bydate": "তারিখ অনুযায়ী",
 	"sp-newimages-showfrom": "$2, $1 এর পরের নতুন ছবিগুলো দেখাও",
+	"seconds-abbrev": "$1 সে",
 	"minutes-abbrev": "$1 মিনিট",
+	"hours-abbrev": "$1 ঘ",
+	"days-abbrev": "$1 দিন",
 	"seconds": "{{PLURAL:$1|$1 সেকেন্ড|$1 সেকেন্ড}}",
 	"minutes": "{{PLURAL:$1|$1 মিনিট|$1 মিনিট}}",
 	"hours": "{{PLURAL:$1|$1 ঘণ্টা|$1 ঘণ্টা}}",
@@ -3408,7 +3411,7 @@
 	"feedback-thanks": "ধন্যবাদ! আপনার প্রতিক্রিয়া \"[$2 $1]\" পাতায় পোস্ট করা হয়েছে।",
 	"feedback-thanks-title": "আপনাকে ধন্যবাদ!",
 	"feedback-useragent": "ব্যবহারকারী এজেন্ট:",
-	"searchsuggest-search": "অনুসন্ধান",
+	"searchsuggest-search": "{{SITENAME}} অনুসন্ধান",
 	"searchsuggest-containing": "যা আছে...",
 	"api-error-badaccess-groups": "আপনার এই উইকিতে ফাইল আপলোডের অনুমতি নেই।",
 	"api-error-badtoken": "অভ্যন্তরীণ ত্রুটি: খারাপ টোকেন।",
@@ -3648,5 +3651,7 @@
 	"usercssispublic": "অনুগ্রহ করে লক্ষ্য করুন: সিএসএসের উপপাতাগুলিতে গোপনীয় তথ্য থাকা উচিত নয় যেহেতু অন্যান্য ব্যবহারকারীও এগুলি দেখতে পান।",
 	"restrictionsfield-badip": "আইপি ঠিকানা অথবা পরিসীমা অবৈধ: $1",
 	"restrictionsfield-label": "অনুমোদিত আইপি পরিসীমা:",
-	"restrictionsfield-help": "লাইন প্রতি একটি আইপি ঠিকানা বা CIDR পরিসীমা। সবকিছু সক্রিয় করতে<br><code>0.0.0.0/0</code><br><code>::/0</code><br>ব্যবহার করুন"
+	"restrictionsfield-help": "লাইন প্রতি একটি আইপি ঠিকানা বা CIDR পরিসীমা। সবকিছু সক্রিয় করতে<br><code>0.0.0.0/0</code><br><code>::/0</code><br>ব্যবহার করুন",
+	"edit-error-short": "ত্রুটি: $1",
+	"edit-error-long": "ত্রুটিসমূহ:\n\n$1"
 }

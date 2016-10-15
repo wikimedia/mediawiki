@@ -3550,7 +3550,7 @@
 	"feedback-thanks": "Děkujeme! Váš komentář byl přidán na stránku „[$2 $1]“.",
 	"feedback-thanks-title": "Děkujeme!",
 	"feedback-useragent": "Uživatelský agent:",
-	"searchsuggest-search": "Hledat",
+	"searchsuggest-search": "Hledat na {{GRAMMAR:6sg|{{SITENAME}}}}",
 	"searchsuggest-containing": "obsahující…",
 	"api-error-autoblocked": "Vaše IP adresa byla automaticky zablokována, protože ji používal zablokovaný uživatel.",
 	"api-error-badaccess-groups": "Nemáte povoleno nahrávat soubory na tuto wiki.",
