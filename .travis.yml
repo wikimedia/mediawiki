@@ -38,6 +38,7 @@ before_script:
       --dbuser travis
       --dbpass ""
       --scriptpath "/w"
+  - echo '$wgShowExceptionDetails = true;' >> LocalSettings.php
 
 script:
   - php tests/phpunit/phpunit.php
