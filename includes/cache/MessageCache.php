@@ -232,12 +232,9 @@ class MessageCache {
 	 * @throws MWException
 	 * @return bool
 	 */
-	function load( $code = false, $mode = null ) {
+	function load( $code, $mode = null ) {
 		if ( !is_string( $code ) ) {
-			# This isn't really nice, so at least make a note about it and try to
-			# fall back
-			wfDebug( __METHOD__ . " called without providing a language code\n" );
-			$code = 'en';
+			throw new InvalidArgumentException( "Missing language code" );
 		}
 
 		# Don't do double loading...
@@ -864,6 +861,8 @@ class MessageCache {
 				}
 				$alreadyTried[ $langcode ] = true;
 			}
+		} else {
+			$uckey = null;
 		}
 
 		// Check the CDB cache
@@ -881,7 +880,8 @@ class MessageCache {
 					continue;
 				}
 
-				$message = $this->getMsgFromNamespace( $this->getMessagePageName( $code, $uckey ), $code );
+				$message = $this->getMsgFromNamespace(
+					$this->getMessagePageName( $code, $uckey ), $code );
 
 				if ( $message !== false ) {
 					return $message;
