@@ -678,7 +678,7 @@ class MediaWiki {
 	 * @param IContextSource $context
 	 * @return string|bool Either "local" or "remote" if in the farm, false otherwise
 	 */
-	private function getUrlDomainDistance( $url, IContextSource $context ) {
+	private static function getUrlDomainDistance( $url, IContextSource $context ) {
 		static $relevantKeys = [ 'host' => true, 'port' => true ];
 
 		$infoCandidate = wfParseUrl( $url );

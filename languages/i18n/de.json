@@ -3880,5 +3880,7 @@
 	"usercssispublic": "Bitte beachten: CSS-Unterseiten sollten keine vertraulichen Daten enthalten, da sie von anderen Benutzern eingesehen werden können.",
 	"restrictionsfield-badip": "Ungültige IP-Adresse oder ungültiger IP-Adressbereich: $1",
 	"restrictionsfield-label": "Erlaubte IP-Adressbereiche:",
-	"restrictionsfield-help": "Eine IP-Adresse oder ein CIDR-Bereich pro Zeile. Um alles zu aktivieren, verwende<br><code>0.0.0.0/0</code><br><code>::/0</code>"
+	"restrictionsfield-help": "Eine IP-Adresse oder ein CIDR-Bereich pro Zeile. Um alles zu aktivieren, verwende<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"edit-error-short": "Fehler: $1",
+	"edit-error-long": "Fehler:\n\n$1"
 }

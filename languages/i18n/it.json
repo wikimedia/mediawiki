@@ -3579,7 +3579,7 @@
 	"feedback-thanks": "Grazie! Il tuo feedback è stato pubblicato alla pagina \"[$2 $1]\".",
 	"feedback-thanks-title": "Grazie!",
 	"feedback-useragent": "Agente utente:",
-	"searchsuggest-search": "Ricerca",
+	"searchsuggest-search": "Cerca all'interno di {{SITENAME}}",
 	"searchsuggest-containing": "contenente...",
 	"api-error-autoblocked": "Il tuo indirizzo IP è stato bloccato automaticamente, perché è stato utilizzato da un utente bloccato.",
 	"api-error-badaccess-groups": "Non sei autorizzato a caricare documenti su questa wiki.",

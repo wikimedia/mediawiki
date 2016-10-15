@@ -4,7 +4,8 @@
 			"Eitvys200",
 			"Mantak111",
 			"Zygimantus",
-			"Hugo.arg"
+			"Hugo.arg",
+			"Homo"
 		]
 	},
 	"config-desc": "MediaWiki diegimas",
@@ -128,7 +129,7 @@
 	"config-license": "Autorinės teisės ir licencija:",
 	"config-license-pd": "Viešas domenas",
 	"config-email-settings": "El. pašto nustatymai",
-	"config-email-watchlist": "Įjungti stebimų pranešimą",
+	"config-email-watchlist": "Įjungti stebimųjų pranešimą",
 	"config-email-auth": "Įjungti el. pašto autentifikavimą",
 	"config-upload-settings": "Vaizdų ir failų įkėlimai",
 	"config-upload-enable": "Įgalinti failų įkėlimus",

@@ -3709,7 +3709,7 @@
 	"feedback-thanks": "Merci ! Votre commentaire a été publié sur la page « [$2 $1] ».",
 	"feedback-thanks-title": "Merci !",
 	"feedback-useragent": "Agent utilisateur :",
-	"searchsuggest-search": "Rechercher",
+	"searchsuggest-search": "Rechercher sur {{SITENAME}}",
 	"searchsuggest-containing": "contenant...",
 	"api-error-autoblocked": "Votre adresse IP a été bloquée automatiquement, parce qu’elle a été utilisée par un utilisateur bloqué.",
 	"api-error-badaccess-groups": "Vous n'êtes pas autorisé à verser des fichiers sur ce wiki.",

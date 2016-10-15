@@ -122,7 +122,7 @@
 	"apihelp-emailuser-param-text": "E-Mail-Inhalt.",
 	"apihelp-emailuser-param-ccme": "Eine Kopie dieser E-Mail an mich senden.",
 	"apihelp-emailuser-example-email": "Eine E-Mail an den Benutzer <kbd>WikiSysop</kbd> mit dem Text <kbd>Content</kbd> senden.",
-	"apihelp-expandtemplates-description": "Alle Vorlagen im Wikitext expandieren.",
+	"apihelp-expandtemplates-description": "Alle Vorlagen innerhalb des Wikitextes expandieren.",
 	"apihelp-expandtemplates-param-title": "Titel der Seite.",
 	"apihelp-expandtemplates-param-text": "Zu konvertierender Wikitext.",
 	"apihelp-expandtemplates-param-revid": "Versionsnummer, die für die Anzeige von <nowiki>{{REVISIONID}}</nowiki> und ähnlichen Variablen verwendet wird.",

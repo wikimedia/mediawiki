@@ -3878,5 +3878,7 @@
 	"usercssispublic": "שימו לב: משתמשים אחרים יכולים לצפות בדפי ה־CSS שלכם, ולכן אין לכלול בהם מידע סודי.",
 	"restrictionsfield-badip": "כתובת או טווח כתובות IP בלתי תקין: $1",
 	"restrictionsfield-label": "טווחי כתובות IP מותרים:",
-	"restrictionsfield-help": "כתובת IP אחת או טווח CIDR אחד בשורה. כדי לאפשר את הכול, ניתן להשתמש ב:<br><code>0.0.0.0/0</code><br><code>::/0</code>"
+	"restrictionsfield-help": "כתובת IP אחת או טווח CIDR אחד בשורה. כדי לאפשר את הכול, ניתן להשתמש ב:<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"edit-error-short": "שגיאה: $1",
+	"edit-error-long": "שגיאות:\n\n$1"
 }
