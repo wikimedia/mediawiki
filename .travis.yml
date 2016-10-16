@@ -27,6 +27,7 @@ before_install:
   - sudo apt-get install -qq djvulibre-bin tidy
   - composer self-update --quiet --no-interaction
 
+
 install:
   - if [ "$dbtype" = postgres ]; then sudo /etc/init.d/postgresql stop; fi
   - if [ "$dbtype" = postgres ]; then sleep 3; fi
