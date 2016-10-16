@@ -63,7 +63,10 @@ class AddRFCAndPMIDInterwiki extends LoggedUpdateMaintenance {
 				[ 'iw_prefix' ],
 				[
 					'iw_prefix' => 'rfc',
-					'iw_url' => 'https://tools.ietf.org/html/rfc$1'
+					'iw_url' => 'https://tools.ietf.org/html/rfc$1',
+					'iw_api' => '',
+					'iw_wikiid' => '',
+					'iw_local' => 0,
 				],
 				__METHOD__
 			);
@@ -74,6 +77,9 @@ class AddRFCAndPMIDInterwiki extends LoggedUpdateMaintenance {
 			[
 				'iw_prefix' => 'pmid',
 				'iw_url' => 'https://www.ncbi.nlm.nih.gov/pubmed/$1?dopt=Abstract',
+				'iw_api' => '',
+				'iw_wikiid' => '',
+				'iw_local' => 0,
 			],
 			__METHOD__,
 			// If there's already a pmid interwiki link, don't
@@ -84,3 +90,6 @@ class AddRFCAndPMIDInterwiki extends LoggedUpdateMaintenance {
 		return true;
 	}
 }
+
+$maintClass = 'AddRFCAndPMIDInterwiki';
+require_once RUN_MAINTENANCE_IF_MAIN;
