@@ -133,7 +133,9 @@ class SpecialBookSources extends SpecialPage {
 			],
 		];
 
-		HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
+		$context = new DerivativeContext( $this->getContext() );
+		$context->setTitle( $this->getPageTitle() );
+		HTMLForm::factory( 'ooui', $formDescriptor, $context )
 			->setWrapperLegendMsg( 'booksources-search-legend' )
 			->setSubmitTextMsg( 'booksources-search' )
 			->setMethod( 'get' )
