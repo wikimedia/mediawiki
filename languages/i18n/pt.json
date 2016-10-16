@@ -2422,6 +2422,7 @@
 	"movelogpagetext": "Abaixo encontra-se uma lista de páginas movidas.",
 	"movesubpage": "{{PLURAL:$1|Subpágina|Subpáginas}}",
 	"movesubpagetext": "Esta página tem $1 {{PLURAL:$1|subpágina mostrada|subpáginas mostradas}} abaixo.",
+	"movesubpagetalktext": "A página de discussão correspondente tem $1 {{PLURAL:$1|subpágina|subpáginas}}, mostradas abaixo.",
 	"movenosubpage": "Esta página não tem subpáginas.",
 	"movereason": "Motivo:",
 	"revertmove": "reverter",
@@ -3816,5 +3817,7 @@
 	"usercssispublic": "Nota: As subpáginas de CSS não devem conter dados confidenciais porque podem ser vistas por outros utilizadores.",
 	"restrictionsfield-badip": "Endereço IP (ou gama de endereços IP) inválido: $1",
 	"restrictionsfield-label": "Gamas de endereços IP permitidas:",
-	"restrictionsfield-help": "Um endereço IP ou uma gama CIDR por linha. Para ativar todos,\nuse<br><code>0.0.0.0/0</code><br><code>::/0</code>"
+	"restrictionsfield-help": "Um endereço IP ou uma gama CIDR por linha. Para ativar todos,\nuse<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"edit-error-short": "Erro: $1",
+	"edit-error-long": "Erros:\n\n$1"
 }

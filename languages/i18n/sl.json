@@ -2364,6 +2364,7 @@
 	"movelogpagetext": "Prikazujem seznam prestavljenih strani.",
 	"movesubpage": "{{PLURAL:$1|Podstran|Podstrani}}",
 	"movesubpagetext": "Ta stran ima $1 {{PLURAL:$1|podstran prikazano|podstrani prikazane}} spodaj.",
+	"movesubpagetalktext": "Pripadajoča stran ima $1 {{PLURAL:$1|podstran, prikazano|podstrani, prikazani|podstrani, prikazane|podstrani, prikazanih}} spodaj.",
 	"movenosubpage": "Ta stran nima podstrani.",
 	"movereason": "Razlog:",
 	"revertmove": "vrni",

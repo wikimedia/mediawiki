@@ -3521,5 +3521,10 @@
 	"removecredentials-success": "Sinu autentimisandmed on eemaldatud.",
 	"credentialsform-provider": "Andmete tüüp:",
 	"credentialsform-account": "Konto nimi:",
-	"userjsispublic": "Pea silmas, et JavaScripti alamleheküljed ei tohiks sisaldada konfidentsiaalseid andmeid, kuna neid näevad teised kasutajad."
+	"userjsispublic": "Pea silmas, et JavaScripti alamleheküljed ei tohiks sisaldada konfidentsiaalseid andmeid, kuna neid näevad teised kasutajad.",
+	"restrictionsfield-badip": "Vigane IP-aadress või -aadressivahemik: $1",
+	"restrictionsfield-label": "Lubatud IP-aadressivahemikud:",
+	"restrictionsfield-help": "Üks IP-aadress või CIDR-vahemik rea kohta. Et lubada kõik, kasuta süntaksit <br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"edit-error-short": "Tõrge: $1",
+	"edit-error-long": "Tõrked:\n\n$1"
 }

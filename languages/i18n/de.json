@@ -2445,6 +2445,7 @@
 	"movelogpagetext": "Dies ist eine Liste aller verschobenen Seiten.",
 	"movesubpage": "{{PLURAL:$1|Unterseite|Unterseiten}}",
 	"movesubpagetext": "Diese Seite hat $1 {{PLURAL:$1|Unterseite|Unterseiten}}.",
+	"movesubpagetalktext": "Die dazugehörige Diskussionsseite hat {{PLURAL:$1|eine Unterseite, die unten angezeigt wird|$1 Unterseiten, die unten angezeigt werden}}.",
 	"movenosubpage": "Diese Seite hat keine Unterseiten.",
 	"movereason": "Grund:",
 	"revertmove": "zurück verschieben",

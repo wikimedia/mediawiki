@@ -2286,7 +2286,7 @@
 	"blocklist-userblocks": "پنهان کردن بسته‌شدن‌های حساب",
 	"blocklist-tempblocks": "پنهان کردن بستن‌های موقت",
 	"blocklist-addressblocks": "پنهان کردن تک آی‌پی‌های بسته شده",
-	"blocklist-rangeblocks": "پنهان کردنی قطع دسترسی بازه‌ها",
+	"blocklist-rangeblocks": "پنهان کردن قطع دسترسی بازه‌ها",
 	"blocklist-timestamp": "برچسب زمان",
 	"blocklist-target": "هدف",
 	"blocklist-expiry": "زمان سرآمدن",

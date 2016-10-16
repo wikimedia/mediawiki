@@ -3810,7 +3810,10 @@
 	"unlinkaccounts": "Odłącz konta",
 	"unlinkaccounts-success": "Konta zostały odłączone.",
 	"userjsispublic": "Uwaga: Podstrony z kodem JavaScript są widoczne publicznie i nie powinny zawierać poufnych danych.",
+	"usercssispublic": "Uwaga: Podstrony z kodem CSS są widoczne publicznie i nie powinny zawierać poufnych danych.",
 	"restrictionsfield-badip": "Nieprawidłowy adres IP lub zakres adresów: $1",
 	"restrictionsfield-label": "Dozwolone zakresy adresów IP:",
-	"restrictionsfield-help": "Jeden adres IP lub zakres CIDR w wierszu. Aby zaznaczyć wszystkie, użyj<br><code>0.0.0.0/0</code><br><code>::/0</code>"
+	"restrictionsfield-help": "Jeden adres IP lub zakres CIDR w wierszu. Aby zaznaczyć wszystkie, użyj<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"edit-error-short": "Błąd: $1",
+	"edit-error-long": "Błędy:\n\n$1"
 }

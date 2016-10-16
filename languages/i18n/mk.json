@@ -2382,6 +2382,7 @@
 	"movelogpagetext": "Подолу е наведен список на преместени страници.",
 	"movesubpage": "{{PLURAL:$1|Потстраница|Потстраници}}",
 	"movesubpagetext": "Оваа страница има $1 {{PLURAL:$1|потстраница прикажана|потстраници прикажани}} подолу.",
+	"movesubpagetalktext": "Оваа страница има $1 {{PLURAL:$1|потстраница прикажана|потстраници прикажани}} подолу.",
 	"movenosubpage": "Оваа страница нема потстраници.",
 	"movereason": "Причина:",
 	"revertmove": "врати",
@@ -2712,6 +2713,7 @@
 	"newimages-showbots": "Прикажувај подигања од ботови",
 	"newimages-hidepatrolled": "Сокриј испатролриани подигања",
 	"noimages": "Нема ништо.",
+	"gallery-slideshow-toggle": "Преод на минијатури",
 	"ilsubmit": "Барај",
 	"bydate": "по датум",
 	"sp-newimages-showfrom": "Прикажи нови податотеки од $2, $1",
@@ -3633,7 +3635,7 @@
 	"feedback-thanks": "Благодариме! Вашиот одѕив е објавен на страницата „[$2 $1]“.",
 	"feedback-thanks-title": "Ви благодариме!",
 	"feedback-useragent": "Кориснички вршител:",
-	"searchsuggest-search": "Пребарување",
+	"searchsuggest-search": "Пребарајте по {{SITENAME}}",
 	"searchsuggest-containing": "содржи...",
 	"api-error-autoblocked": "Вашата IP-адреса е автоматски блокирана бидејќи ја има користено блокиран корисник.",
 	"api-error-badaccess-groups": "Не ви е дозволено да подигате податотеки на ова вики.",
@@ -3928,5 +3930,7 @@
 	"usercssispublic": "Напомена: потстраниците со CSS не треба да содржат дсоверливи податоци бидејќи истите се видливи и за други корисници.",
 	"restrictionsfield-badip": "Неважечки IP-дијапазон на адреси: $1",
 	"restrictionsfield-label": "Допуштени IP-опсези:",
-	"restrictionsfield-help": "Една IP-адреса или CIDR-опсег по ред. За да овозможите сè, користете<br><code>0.0.0.0/0</code><br><code>::/0</code>"
+	"restrictionsfield-help": "Една IP-адреса или CIDR-опсег по ред. За да овозможите сè, користете<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"edit-error-short": "Грешка: $1",
+	"edit-error-long": "Грешки:\n\n$1"
 }

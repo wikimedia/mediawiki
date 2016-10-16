@@ -2448,6 +2448,7 @@
 	"movelogpagetext": "下面是所有页面移动的列表。",
 	"movesubpage": "{{PLURAL:$1|子页面}}",
 	"movesubpagetext": "该页面有$1个子页面在下面展示。",
+	"movesubpagetalktext": "相应讨论页有$1个{{PLURAL:$1|子页面}}在下面展示。",
 	"movenosubpage": "这个页面没有子页面。",
 	"movereason": "原因：",
 	"revertmove": "恢复",
