@@ -622,6 +622,36 @@ class PostgresInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
+	/**
+	 * Return a path to the DBMS-specific SQL file if it exists,
+	 * otherwise default SQL file
+	 *
+	 * @param IDatabase $db
+	 * @param string $filename
+	 * @return string
+	 */
+	private function getSqlFilePath( $db, $filename ) {
+		global $IP;
+
+		$dbmsSpecificFilePath = "$IP/maintenance/" . $db->getType() . "/$filename";
+		if ( file_exists( $dbmsSpecificFilePath ) ) {
+			return $dbmsSpecificFilePath;
+		} else {
+			return "$IP/maintenance/$filename";
+		}
+	}
+
+	/**
+	 * Return a path to the DBMS-specific schema file,
+	 * otherwise default to tables.sql
+	 *
+	 * @param IDatabase $db
+	 * @return string
+	 */
+	public function getSchemaPath( $db ) {
+		return $this->getSqlFilePath( $db, 'tables.sql' );
+	}
+
 	public function getGlobalDefaults() {
 		// The default $wgDBmwschema is null, which breaks Postgres and other DBMSes that require
 		// the use of a schema, so we need to set it here
