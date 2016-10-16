@@ -289,15 +289,18 @@ p.mw-delete-editreasons {
  * Reupload file warning
  * Page protection warning
  * incl. log entries for these warnings
+ * Cascade protection warning
  */
-div.mw-warning-with-logexcerpt {
+div.mw-warning-with-logexcerpt,
+div.mw-cascadeprotectedwarning {
 	padding: 3px;
 	margin-bottom: 3px;
 	border: 2px solid #2f6fab;
 	clear: both;
 }
 
-div.mw-warning-with-logexcerpt ul li {
+div.mw-warning-with-logexcerpt ul li,
+div.mw-cascadeprotectedwarning ul li {
 	font-size: 90%;
 }
 

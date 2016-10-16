@@ -3040,34 +3040,55 @@ ERROR;
 			# Is the title semi-protected?
 			if ( $this->mTitle->isSemiProtected() ) {
 				$noticeMsg = 'semiprotectedpagewarning';
+				$wrap = "<div class=\"mw-semiprotectedpagewarning\">\n$1</div>";
 			} else {
 				# Then it must be protected based on static groups (regular)
 				$noticeMsg = 'protectedpagewarning';
+				$wrap = "<div class=\"mw-protectedpagewarning\">\n$1</div>";
 			}
 			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle, '',
-				[ 'lim' => 1, 'msgKey' => [ $noticeMsg ] ] );
+				[
+					'lim' => 1,
+					'showIfEmpty' => false,
+					'msgKey' => [ $noticeMsg ],
+					'wrap' => $wrap,
+					'stripMsg' => true, // to fit box more closely
+					'collapsible' => true,
+					'collapsed' => true,
+				] );
 		}
 		if ( $this->mTitle->isCascadeProtected() ) {
 			# Is this page under cascading protection from some source pages?
 			/** @var Title[] $cascadeSources */
 			list( $cascadeSources, /* $restrictions */ ) = $this->mTitle->getCascadeProtectionSources();
-			$notice = "<div class='mw-cascadeprotectedwarning'>\n$1\n";
 			$cascadeSourcesCount = count( $cascadeSources );
 			if ( $cascadeSourcesCount > 0 ) {
 				# Explain, and list the titles responsible
+				$notice = "<div class='mw-cascadeprotectedwarning'>\n
+					<span class='mw-customtoggle-cascadeprotectedsources'>$1</span>";
+				$notice .= '<div class="mw-collapsible"
+					id="mw-customcollapsible-cascadeprotectedsources">';
+				$notice .= "\n";
 				foreach ( $cascadeSources as $page ) {
 					$notice .= '* [[:' . $page->getPrefixedText() . "]]\n";
 				}
+				$notice .= '</div>';
+			} else {
+				$notice = "<div class='mw-cascadeprotectedwarning'>\n$1\n";
 			}
 			$notice .= '</div>';
 			$wgOut->wrapWikiMsg( $notice, [ 'cascadeprotectedwarning', $cascadeSourcesCount ] );
 		}
 		if ( !$this->mTitle->exists() && $this->mTitle->getRestrictions( 'create' ) ) {
 			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle, '',
-				[ 'lim' => 1,
+				[
+					'lim' => 1,
 					'showIfEmpty' => false,
 					'msgKey' => [ 'titleprotectedwarning' ],
-					'wrap' => "<div class=\"mw-titleprotectedwarning\">\n$1</div>" ] );
+					'wrap' => "<div class=\"mw-titleprotectedwarning\">\n$1</div>",
+					'stripMsg' => true, // to fit box more closely
+					'collapsible' => true,
+				] );
 		}
 
 		if ( $this->contentLength === false ) {

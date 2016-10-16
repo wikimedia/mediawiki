@@ -554,6 +554,9 @@ class LogEventsList extends ContextSource {
 	 * - useRequestParams boolean Set true to use Pager-related parameters in the WebRequest
 	 * - useMaster boolean Use master DB
 	 * - extraUrlParams array|bool Additional url parameters for "full log" link (if it is shown)
+	 * - stripMsg bool Whether to parse rather than parse as block the message
+	 * - collapsible bool Whether to make the log extract collapsible by clicking on the message
+	 * - collapsed bool Whether to collapse the log extract by default
 	 * @return int Number of total log items (not limited by $lim)
 	 */
 	public static function showLogExtract(
@@ -569,6 +572,9 @@ class LogEventsList extends ContextSource {
 			'useRequestParams' => false,
 			'useMaster' => false,
 			'extraUrlParams' => false,
+			'stripMsg' => false,
+			'collapsible' => false,
+			'collapsed' => false,
 		];
 		# The + operator appends elements of remaining keys from the right
 		# handed array to the left handed, whereas duplicated keys are NOT overwritten.
@@ -632,11 +638,28 @@ class LogEventsList extends ContextSource {
 				] );
 
 				if ( count( $msgKey ) == 1 ) {
-					$s .= $context->msg( $msgKey[0] )->parseAsBlock();
+					$msgText = $context->msg( $msgKey[0] )->parseAsBlock();
 				} else { // Process additional arguments
 					$args = $msgKey;
 					array_shift( $args );
-					$s .= $context->msg( $msgKey[0], $args )->parseAsBlock();
+					$msgText = $context->msg( $msgKey[0], $args )->parseAsBlock();
+				}
+				if ( $param['stripMsg'] ) {
+					$msgText = Parser::stripOuterParagraph( $msgText );
+				}
+				if ( $param['collapsible'] ) {
+					$s .= '<div class ="mw-customtoggle-logexcerpt">';
+					$s .= $msgText;
+					$s .= '</div>';
+					if ( $param['collapsed'] ) {
+						$s .= '<div id ="mw-customcollapsible-logexcerpt"
+							class="mw-collapsible mw-collapsed">';
+					} else {
+						$s .= '<div id ="mw-customcollapsible-logexcerpt"
+							class="mw-collapsible">';
+					}
+				} else {
+					$s .= $msgText;
 				}
 			}
 			$s .= $loglist->beginLogEventsList() .
@@ -681,6 +704,9 @@ class LogEventsList extends ContextSource {
 		}
 
 		if ( $logBody && $msgKey[0] ) {
+			if ( $param['collapsible'] ) {
+				$s .= '</div>';
+			}
 			$s .= '</div>';
 		}
 
