@@ -3518,7 +3518,7 @@ function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
 	# Run the extension hook
 	$bad = false;
 	if ( !Hooks::run( 'BadImage', [ $name, &$bad ] ) ) {
-		return $bad;
+		return (bool)$bad;
 	}
 
 	$cache = ObjectCache::getLocalServerInstance( 'hash' );

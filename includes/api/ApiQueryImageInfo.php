@@ -58,6 +58,15 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'revdelUser' => $this->getUser(),
 		];
 
+		if ( isset( $params['badfilecontexttitle'] ) ) {
+			$badFileContextTitle = Title::newFromText( $params['badfilecontexttitle'] );
+			if ( !$badFileContextTitle ) {
+				$this->dieUsage( 'Invalid title in badfilecontexttitle parameter', 'invalid-title' );
+			}
+		} else {
+			$badFileContextTitle = false;
+		}
+
 		$pageIds = $this->getPageSet()->getGoodAndMissingTitlesByNamespace();
 		if ( !empty( $pageIds[NS_FILE] ) ) {
 			$titles = array_keys( $pageIds[NS_FILE] );
@@ -99,8 +108,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				$start = $title === $fromTitle ? $fromTimestamp : $params['start'];
 
 				if ( !isset( $images[$title] ) ) {
-					if ( isset( $prop['uploadwarning'] ) ) {
-						// Uploadwarning needs info about non-existing files
+					if ( isset( $prop['uploadwarning'] ) || isset( $prop['badfile'] ) ) {
+						// uploadwarning and badfile need info about non-existing files
 						$images[$title] = wfLocalFile( $title );
 					} else {
 						$result->addValue(
@@ -128,10 +137,12 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					break;
 				}
 
-				$fit = $result->addValue(
-					[ 'query', 'pages', intval( $pageId ) ],
-					'imagerepository', $img->getRepoName()
-				);
+				$info = [ 'imagerepository' => $img->getRepoName() ];
+				if ( isset( $prop['badfile'] ) ) {
+					$info['badfile'] = (bool)wfIsBadImage( $title, $badFileContextTitle );
+				}
+
+				$fit = $result->addValue( [ 'query', 'pages' ], intval( $pageId ), $info );
 				if ( !$fit ) {
 					if ( count( $pageIds[NS_FILE] ) == 1 ) {
 						// The user is screwed. imageinfo can't be solely
@@ -689,6 +700,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				ApiBase::PARAM_DFLT => '',
 				ApiBase::PARAM_TYPE => 'string',
 			],
+			'badfilecontexttitle' => [
+				ApiBase::PARAM_TYPE => 'string',
+			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			],
@@ -734,6 +748,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				'archivename' => 'apihelp-query+imageinfo-paramvalue-prop-archivename',
 				'bitdepth' => 'apihelp-query+imageinfo-paramvalue-prop-bitdepth',
 				'uploadwarning' => 'apihelp-query+imageinfo-paramvalue-prop-uploadwarning',
+				'badfile' => 'apihelp-query+imageinfo-paramvalue-prop-badfile',
 			],
 			array_flip( $filter )
 		);
