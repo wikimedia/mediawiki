@@ -783,32 +783,57 @@ class MovePageForm extends UnlistedSpecialPage {
 		LogEventsList::showLogExtract( $out, 'move', $title );
 	}
 
+	/**
+	 * Show subpages of the page being moved. Section is not shown if both current
+	 * namespace does not support subpages and no talk subpages were found.
+	 *
+	 * @param Title $title Page being moved.
+	 */
 	function showSubpages( $title ) {
-		if ( !MWNamespace::hasSubpages( $title->getNamespace() ) ) {
-			return;
-		}
-
+		$nsHasSubpages = MWNamespace::hasSubpages( $title->getNamespace() );
 		$subpages = $title->getSubpages();
 		$count = $subpages instanceof TitleArray ? $subpages->count() : 0;
 
-		$out = $this->getOutput();
-		$out->wrapWikiMsg( '== $1 ==', [ 'movesubpage', $count ] );
+		$titleIsTalk = $title->isTalkPage();
+		$subpagesTalk = $title->getTalkPage()->getSubpages();
+		$countTalk = $subpagesTalk instanceof TitleArray ? $subpagesTalk->count() : 0;
+		$totalCount = $count + $countTalk;
 
-		# No subpages.
-		if ( $count == 0 ) {
-			$out->addWikiMsg( 'movenosubpage' );
-
+		if ( !$nsHasSubpages && $countTalk == 0 ) {
 			return;
 		}
 
-		$out->addWikiMsg( 'movesubpagetext', $this->getLanguage()->formatNum( $count ) );
+		$this->getOutput()->wrapWikiMsg(
+			'== $1 ==',
+			[ 'movesubpage', ( $titleIsTalk ? $count : $totalCount ) ]
+		);
+
+		if ( $nsHasSubpages ) {
+			$this->showSubpagesList( $subpages, $count, 'movesubpagetext', true );
+		}
+
+		if ( !$titleIsTalk && $countTalk > 0 ) {
+			$this->showSubpagesList( $subpagesTalk, $countTalk, 'movesubpagetalktext' );
+		}
+	}
+
+	function showSubpagesList( $subpages, $pagecount, $wikiMsg, $noSubpageMsg = false ) {
+		$out = $this->getOutput();
+
+		# No subpages.
+		if ( $pagecount == 0 && $noSubpageMsg ) {
+			$out->addWikiMsg( 'movenosubpage' );
+			return;
+		}
+
+		$out->addWikiMsg( $wikiMsg, $this->getLanguage()->formatNum( $pagecount ) );
 		$out->addHTML( "<ul>\n" );
 
 		$linkBatch = new LinkBatch( $subpages );
 		$linkBatch->setCaller( __METHOD__ );
 		$linkBatch->execute();
-
 		$linkRenderer = $this->getLinkRenderer();
+
 		foreach ( $subpages as $subpage ) {
 			$link = $linkRenderer->makeLink( $subpage );
 			$out->addHTML( "<li>$link</li>\n" );
