@@ -12,12 +12,7 @@ class ComposerJson {
 	 * @param string $location
 	 */
 	public function __construct( $location ) {
-		$this->hash = md5_file( $location );
 		$this->contents = json_decode( file_get_contents( $location ), true );
-	}
-
-	public function getHash() {
-		return $this->hash;
 	}
 
 	/**
