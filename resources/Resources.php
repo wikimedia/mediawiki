@@ -1490,6 +1490,14 @@ return [
 			'mediawiki.icon',
 		],
 	],
+	'mediawiki.action.edit.collapsibleHeader' => [
+		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.collapsibleHeader.js',
+		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.collapsibleHeader.css',
+		'dependencies' => [
+			'jquery.makeCollapsible',
+			'mediawiki.icon',
+		],
+	],
 	'mediawiki.action.edit.preview' => [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.preview.js',
 		'dependencies' => [

@@ -17,10 +17,13 @@
 	 */
 
 	$( function () {
-		var editBox, scrollTop, $editForm;
+		var $editHeader, editBox, scrollTop, $editForm;
 
 		// Make sure edit summary does not exceed byte limit
 		$( '#wpSummary' ).byteLimit( 255 );
+
+		$editHeader = $( '#editheader' );
+		mw.hook( 'wikipage.editheader' ).fire( $editHeader );
 
 		// Restore the edit box scroll state following a preview operation,
 		// and set up a form submission handler to remember this state.

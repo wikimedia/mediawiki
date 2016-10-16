@@ -2610,15 +2610,20 @@ ERROR;
 			$previewOutput = $this->getPreviewText();
 		}
 
+		// wrap header
+		$wgOut->addHTML( '<div id="editheader">' );
+
 		Hooks::run( 'EditPage::showEditForm:initial', [ &$this, &$wgOut ] );
 
 		$this->setHeaders();
 
 		if ( $this->showHeader() === false ) {
+			$wgOut->addHTML( '</div>' );
 			return;
 		}
 
 		$wgOut->addHTML( $this->editFormPageTop );
+		$wgOut->addHTML( '</div>' );
 
 		if ( $wgUser->getOption( 'previewontop' ) ) {
 			$this->displayPreviewArea( $previewOutput, true );
@@ -3044,30 +3049,54 @@ ERROR;
 				# Then it must be protected based on static groups (regular)
 				$noticeMsg = 'protectedpagewarning';
 			}
-			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle, '',
-				[ 'lim' => 1, 'msgKey' => [ $noticeMsg ] ] );
+			$wgOut->addHTML( "<div id='mw-$noticeMsg' 
+				class='mw-warning-with-logexcerpt'>" );
+			$wgOut->wrapWikiMsg(
+				"<div id='mw-$noticeMsg-notice'>$1</div>",
+				[ $noticeMsg ]
+			);
+			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle, '', [
+					'lim' => 1,
+					'wrap' => "<div id='mw-$noticeMsg-log'>\n$1\n</div>",
+			] );
+			$wgOut->addHTML( "</div>" );
+			$wgOut->addModules( 'mediawiki.action.edit.collapsibleHeader' );
 		}
 		if ( $this->mTitle->isCascadeProtected() ) {
 			# Is this page under cascading protection from some source pages?
 			/** @var Title[] $cascadeSources */
 			list( $cascadeSources, /* $restrictions */ ) = $this->mTitle->getCascadeProtectionSources();
-			$notice = "<div class='mw-cascadeprotectedwarning'>\n$1\n";
 			$cascadeSourcesCount = count( $cascadeSources );
+			$notice = "<div id='mw-cascadeprotectedwarning' 
+				class='mw-warning-with-logexcerpt'>";
 			if ( $cascadeSourcesCount > 0 ) {
 				# Explain, and list the titles responsible
+				$notice .= "\n<div id='mw-cascadeprotectedwarning-warning'>$1</div>";
+				$notice .= "<div id='mw-cascadeprotectedwarning-list'>\n";
 				foreach ( $cascadeSources as $page ) {
 					$notice .= '* [[:' . $page->getPrefixedText() . "]]\n";
 				}
+				$notice .= '</div>';
+			} else {
+				$notice .= "\n$1\n";
 			}
 			$notice .= '</div>';
 			$wgOut->wrapWikiMsg( $notice, [ 'cascadeprotectedwarning', $cascadeSourcesCount ] );
+			$wgOut->addModules( 'mediawiki.action.edit.collapsibleHeader' );
 		}
 		if ( !$this->mTitle->exists() && $this->mTitle->getRestrictions( 'create' ) ) {
-			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle, '',
-				[ 'lim' => 1,
-					'showIfEmpty' => false,
-					'msgKey' => [ 'titleprotectedwarning' ],
-					'wrap' => "<div class=\"mw-titleprotectedwarning\">\n$1</div>" ] );
+			$wgOut->addHTML( "<div id='mw-titleprotectedwarning' 
+				class='mw-warning-with-logexcerpt'>" );
+			$wgOut->wrapWikiMsg(
+				"<div id='mw-titleprotectedwarning-notice'>$1</div>",
+				[ 'titleprotectedwarning' ]
+			);
+			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle, '', [
+					'lim' => 1,
+					'wrap' => "<div id='mw-titleprotectedwarning-log'>\n$1\n</div>",
+			] );
+			$wgOut->addHTML( "</div>" );
+			$wgOut->addModules( 'mediawiki.action.edit.collapsibleHeader' );
 		}
 
 		if ( $this->contentLength === false ) {
