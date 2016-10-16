@@ -1068,6 +1068,21 @@ __INDEXATTR__;
 	}
 
 	/**
+	 * Return a path to the DBMS-specific SQL file if it exists,
+	 * otherwise default SQL file
+	 *
+	 * @return string
+	 */
+	public function getSqlFilePath() {
+		global $IP;
+
+		$dbmsSpecificFilePath = "$IP/maintenance/postgres/tables.sql";
+		if ( file_exists( $dbmsSpecificFilePath ) ) {
+			return $dbmsSpecificFilePath;
+		}
+	}
+
+	/**
 	 * Query whether a given relation exists (in the given schema, or the
 	 * default mw one if not given)
 	 * @param string $table
