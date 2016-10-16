@@ -750,6 +750,7 @@
 	"apihelp-query+imageinfo-paramvalue-prop-archivename": "{{doc-apihelp-paramvalue|query+imageinfo|prop|archivename}}",
 	"apihelp-query+imageinfo-paramvalue-prop-bitdepth": "{{doc-apihelp-paramvalue|query+imageinfo|prop|bitdepth}}",
 	"apihelp-query+imageinfo-paramvalue-prop-uploadwarning": "{{doc-apihelp-paramvalue|query+imageinfo|prop|uploadwarning}}",
+	"apihelp-query+imageinfo-paramvalue-prop-badfile": "{{doc-apihelp-paramvalue|query+imageinfo|prop|badfile}}",
 	"apihelp-query+imageinfo-param-limit": "{{doc-apihelp-param|query+imageinfo|limit}}",
 	"apihelp-query+imageinfo-param-start": "{{doc-apihelp-param|query+imageinfo|start}}",
 	"apihelp-query+imageinfo-param-end": "{{doc-apihelp-param|query+imageinfo|end}}",

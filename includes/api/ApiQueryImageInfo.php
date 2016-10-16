@@ -128,9 +128,14 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					break;
 				}
 
+				$info = [ 'imagerepository' => $img->getRepoName() ];
+				if ( isset( $prop['badfile'] ) ) {
+					$info['badfile'] = wfIsBadImage( $img->getTitle() );
+				}
+
 				$fit = $result->addValue(
-					[ 'query', 'pages', intval( $pageId ) ],
-					'imagerepository', $img->getRepoName()
+					[ 'query', 'pages' ],
+					intval( $pageId ), $info
 				);
 				if ( !$fit ) {
 					if ( count( $pageIds[NS_FILE] ) == 1 ) {
@@ -734,6 +739,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				'archivename' => 'apihelp-query+imageinfo-paramvalue-prop-archivename',
 				'bitdepth' => 'apihelp-query+imageinfo-paramvalue-prop-bitdepth',
 				'uploadwarning' => 'apihelp-query+imageinfo-paramvalue-prop-uploadwarning',
+				'badfile' => 'apihelp-query+imageinfo-paramvalue-prop-badfile',
 			],
 			array_flip( $filter )
 		);

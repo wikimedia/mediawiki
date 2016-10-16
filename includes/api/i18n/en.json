@@ -803,6 +803,7 @@
 	"apihelp-query+imageinfo-paramvalue-prop-archivename": "Adds the filename of the archive version for non-latest versions.",
 	"apihelp-query+imageinfo-paramvalue-prop-bitdepth": "Adds the bit depth of the version.",
 	"apihelp-query+imageinfo-paramvalue-prop-uploadwarning": "Used by the Special:Upload page to get information about an existing file. Not intended for use outside MediaWiki core.",
+	"apihelp-query+imageinfo-paramvalue-prop-badfile": "Adds whether the file is on the [[MediaWiki:Bad image list]]",
 	"apihelp-query+imageinfo-param-limit": "How many file revisions to return per file.",
 	"apihelp-query+imageinfo-param-start": "Timestamp to start listing from.",
 	"apihelp-query+imageinfo-param-end": "Timestamp to stop listing at.",
