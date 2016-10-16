@@ -1782,7 +1782,9 @@ class OutputPage extends ContextSource {
 		}
 
 		// Include profiling data
-		$this->setLimitReportData( $parserOutput->getLimitReportData() );
+		if ( !$this->limitReportData ) {
+			$this->setLimitReportData( $parserOutput->getLimitReportData() );
+		}
 
 		// Link flags are ignored for now, but may in the future be
 		// used to mark individual language links.
@@ -2929,12 +2931,14 @@ class OutputPage extends ContextSource {
 			}
 		}
 
-		$chunks[] = ResourceLoader::makeInlineScript(
-			ResourceLoader::makeConfigSetScript(
-				[ 'wgPageParseReport' => $this->limitReportData ],
-				true
-			)
-		);
+		if ( $this->limitReportData ) {
+			$chunks[] = ResourceLoader::makeInlineScript(
+				ResourceLoader::makeConfigSetScript(
+					[ 'wgPageParseReport' => $this->limitReportData ],
+					true
+				)
+			);
+		}
 
 		return self::combineWrappedStrings( $chunks );
 	}
