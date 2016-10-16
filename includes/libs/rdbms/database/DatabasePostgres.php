@@ -1068,6 +1068,36 @@ __INDEXATTR__;
 	}
 
 	/**
+	 * Return a path to the DBMS-specific SQL file if it exists,
+	 * otherwise default SQL file
+	 *
+	 * @param IDatabase $db
+	 * @param string $filename
+	 * @return string
+	 */
+	private function getSqlFilePath( $db, $filename ) {
+		global $IP;
+
+		$dbmsSpecificFilePath = "$IP/maintenance/" . $db->getType() . "/$filename";
+		if ( file_exists( $dbmsSpecificFilePath ) ) {
+			return $dbmsSpecificFilePath;
+		} else {
+			return "$IP/maintenance/$filename";
+		}
+	}
+
+	/**
+	 * Return a path to the DBMS-specific schema file,
+	 * otherwise default to tables.sql
+	 *
+	 * @param IDatabase $db
+	 * @return string
+	 */
+	public function getSchemaPath( $db ) {
+		return $this->getSqlFilePath( $db, 'tables.sql' );
+	}
+
+	/**
 	 * Query whether a given relation exists (in the given schema, or the
 	 * default mw one if not given)
 	 * @param string $table
