@@ -2787,9 +2787,8 @@ ERROR;
 		$wgOut->addHTML( Html::rawElement( 'div', [ 'class' => 'hiddencats' ],
 			Linker::formatHiddenCategories( $this->page->getHiddenCategories() ) ) );
 
-		if ( $this->mParserOutput ) {
-			$wgOut->setLimitReportData( $this->mParserOutput->getLimitReportData() );
-		}
+		$wgOut->addHTML( Html::rawElement( 'div', [ 'class' => 'limitreport' ],
+			self::getPreviewLimitReport( $this->mParserOutput ) ) );
 
 		$wgOut->addModules( 'mediawiki.action.edit.collapsibleFooter' );
 
@@ -3567,12 +3566,47 @@ HTML
 			return '';
 		}
 
-		return ResourceLoader::makeInlineScript(
-			ResourceLoader::makeConfigSetScript(
-				[ 'wgPageParseReport' => $output->getLimitReportData() ],
-				true
-			)
+		$limitReport = Html::rawElement( 'div', [ 'class' => 'mw-limitReportExplanation' ],
+			wfMessage( 'limitreport-title' )->parseAsBlock()
 		);
+
+		// Show/hide animation doesn't work correctly on a table, so wrap it in a div.
+		$limitReport .= Html::openElement( 'div', [ 'class' => 'preview-limit-report-wrapper' ] );
+
+		$limitReport .= Html::openElement( 'table', [
+			'class' => 'preview-limit-report wikitable'
+		] ) .
+			Html::openElement( 'tbody' );
+
+		foreach ( $output->getLimitReportData()['limitreport'] as $key => $value ) {
+			if ( Hooks::run( 'ParserLimitReportFormat',
+				[ $key, &$value, &$limitReport, true, true ]
+			) ) {
+				$keyMsg = wfMessage( "limitreport-$key" );
+				$valueMsg = wfMessage(
+					[ "limitreport-$key-value-html", "limitreport-$key-value" ]
+				);
+				if ( !$valueMsg->exists() ) {
+					$valueMsg = new RawMessage( '$1' );
+				}
+				if ( !$keyMsg->isDisabled() && !$valueMsg->isDisabled() ) {
+					// If it's a value/limit array, convert it for $1/$2
+					if ( is_array( $value ) && isset( $value['value'] ) ) {
+						$value = [ $value['value'], $value['limit'] ];
+					}
+					$limitReport .= Html::openElement( 'tr' ) .
+						Html::rawElement( 'th', null, $keyMsg->parse() ) .
+						Html::rawElement( 'td', null, $valueMsg->params( $value )->parse() ) .
+						Html::closeElement( 'tr' );
+				}
+			}
+		}
+
+		$limitReport .= Html::closeElement( 'tbody' ) .
+			Html::closeElement( 'table' ) .
+			Html::closeElement( 'div' );
+
+		return $limitReport;
 	}
 
 	protected function showStandardInputs( &$tabindex = 2 ) {
