@@ -55,7 +55,6 @@ notifications:
   email: false
   irc:
     channels:
-      - "chat.freenode.net#mediawiki-core"
       - "chat.freenode.net#mediawiki-feed"
     on_success: change
     on_failure: change
