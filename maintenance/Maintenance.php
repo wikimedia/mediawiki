@@ -475,6 +475,7 @@ abstract class Maintenance {
 		$this->addOption( 'server', "The protocol and server name to use in URLs, e.g. " .
 			"http://en.wikipedia.org. This is sometimes necessary because " .
 			"server name detection may fail in command line scripts.", false, true );
+		$this->addOption( 'domain', "Domain name for the wiki being updated (only used for wiki families)", false, true );
 		$this->addOption( 'profiler', 'Profiler output format (usually "text")', false, true );
 
 		# Save generic options to display them separately in help
@@ -927,6 +928,11 @@ abstract class Maintenance {
 	 * Handle the special variables that are global to all scripts
 	 */
 	protected function loadSpecialVars() {
+		global $serverName;
+
+		if ( $this->hasOption( 'domain' ) ) {
+			$serverName = $this->getOption( 'domain' );
+		}
 		if ( $this->hasOption( 'dbuser' ) ) {
 			$this->mDbUser = $this->getOption( 'dbuser' );
 		}
