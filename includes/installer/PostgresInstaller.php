@@ -580,6 +580,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	}
 
 	public function createTables() {
+		global $IP;
 		$schema = $this->getVar( 'wgDBmwschema' );
 
 		$status = $this->getConnection();
@@ -606,7 +607,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 			return $status;
 		}
-		$error = $conn->sourceFile( $conn->getSchemaPath() );
+		$error = $conn->sourceFile( "$IP/maintenance/postgres/tables.sql" );
 		if ( $error !== true ) {
 			$conn->reportQueryError( $error, 0, '', __METHOD__ );
 			$conn->rollback( __METHOD__ );

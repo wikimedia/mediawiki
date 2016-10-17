@@ -11,45 +11,47 @@ language: php
 matrix:
   fast_finish: true
   include:
-    - env: dbtype=mysql
+    - env: dbtype=mysql dbusers=travis
       php: 5.5
-    - env: dbtype=postgres
+    - env: dbtype=postgres dbusers=postgres
       php: 5.5
-    - env: dbtype=mysql
+    - env: dbtype=mysql dbusers=travis
       php: hhvm
-    - env: dbtype=mysql
+    - env: dbtype=mysql dbusers=travis
       php: 7
 
 services:
   - mysql
 
-branches:
-  # Test changes in master and arbitrary Travis CI branches only.
-  # The latter allows developers to enable Travis CI in their GitHub fork of
-  # wikimedia/mediawiki and then push changes they like to test to branches like
-  # "travis-ci/test-this-awesome-change".
-  only:
-    - master
-    - /^travis-ci\/.*$/
-
 before_install:
   - sudo apt-get install -qq djvulibre-bin tidy
   - composer self-update --quiet --no-interaction
 
-before_script:
-  - composer install --prefer-source --quiet --no-interaction
-  - if [ "$dbtype" = postgres ]; then psql -c "CREATE DATABASE traviswiki WITH OWNER travis;" -U postgres; fi
+
+install:
+  - if [ "$dbtype" = postgres ]; then sudo /etc/init.d/postgresql stop; fi
+  - if [ "$dbtype" = postgres ]; then sleep 3; fi
+  - if [ "$dbtype" = postgres ]; then sudo /etc/init.d/postgresql start; fi
+  - if [ "$dbtype" = postgres ]; then sleep 3; fi
+  - composer install --prefer-source --quiet --no-interaction
+  - if [ "$dbtype" = postgres ]; then psql -c "CREATE DATABASE traviswiki;" -U postgres; fi
   - >
-      php maintenance/install.php traviswiki admin
-      --pass travis
-      --dbtype "$dbtype"
-      --dbname traviswiki
-      --dbuser travis
-      --dbpass ""
-      --scriptpath "/w"
+     php maintenance/install.php
+     --pass nyan TravisWiki admin
+     --dbtype "$dbtype"
+     --dbname traviswiki
+     --dbuser "$dbusers"
+     --scriptpath "/w"
+
+before_script:
+  - echo '$wgShowExceptionDetails = true;' >> LocalSettings.php
+  - echo '$wgShowSQLErrors = true;' >> LocalSettings.php
+  - echo '$wgDebugDumpSql = false;' >> LocalSettings.php
+  - echo '$wgShowDBErrorBacktrace = true;' >> LocalSettings.php
+  - php maintenance/update.php --quick
 
 script:
-  - php tests/phpunit/phpunit.php
+  - php -d zend.enable_gc=0 tests/phpunit/phpunit.php
 
 notifications:
   email: false
