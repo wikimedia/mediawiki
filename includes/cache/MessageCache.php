@@ -948,7 +948,15 @@ class MessageCache {
 
 		# Try the individual message cache
 		$titleKey = wfMemcKey( 'messages', 'individual', $title );
-		$entry = $this->wanCache->get( $titleKey );
+
+		$curTTL = null;
+		$entry = $this->wanCache->get(
+			$titleKey,
+			$curTTL,
+			[ wfMemcKey( 'messages', $code ) ]
+		);
+		$entry = ( $curTTL >= 0 ) ? $entry : null;
+
 		if ( $entry ) {
 			if ( substr( $entry, 0, 1 ) === ' ' ) {
 				$this->mCache[$code][$title] = $entry;
