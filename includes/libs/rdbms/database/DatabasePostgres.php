@@ -185,7 +185,7 @@ class DatabasePostgres extends Database {
 	 * @return bool
 	 */
 	protected function closeConnection() {
-		return pg_close( $this->mConn );
+		return $this->mConn ? pg_close( $this->mConn ) : true;
 	}
 
 	public function doQuery( $sql ) {
@@ -1033,7 +1033,7 @@ __INDEXATTR__;
 				$this->mCoreSchema . "\"\n" );
 		}
 		/* Commit SET otherwise it will be rollbacked on error or IGNORE SELECT */
-		$this->commit( __METHOD__ );
+		$this->commit( __METHOD__, self::FLUSHING_INTERNAL );
 	}
 
 	/**

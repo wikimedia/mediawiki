@@ -382,7 +382,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			}
 			if ( !isset( $p['errorLogger'] ) ) {
 				$p['errorLogger'] = function ( Exception $e ) {
-					trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_WARNING );
+					trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 				};
 			}
 
@@ -773,8 +773,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return bool
 	 */
 	protected function isTransactableQuery( $sql ) {
-		$verb = $this->getQueryVerb( $sql );
-		return !in_array( $verb, [ 'BEGIN', 'COMMIT', 'ROLLBACK', 'SHOW', 'SET' ], true );
+		return !in_array(
+			$this->getQueryVerb( $sql ),
+			[ 'BEGIN', 'COMMIT', 'ROLLBACK', 'SHOW', 'SET', 'CREATE', 'ALTER' ],
+			true
+		);
 	}
 
 	/**
@@ -2828,7 +2831,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$fnames = implode( ', ', $this->pendingWriteAndCallbackCallers() );
 			throw new DBUnexpectedError(
 				$this,
-				"$fname: Cannot COMMIT to clear snapshot because writes are pending ($fnames)."
+				"$fname: Cannot flush snapshot because writes are pending ($fnames)."
 			);
 		}
 
@@ -3249,7 +3252,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$fnames = implode( ', ', $this->pendingWriteAndCallbackCallers() );
 			throw new DBUnexpectedError(
 				$this,
-				"$fname: Cannot COMMIT to clear snapshot because writes are pending ($fnames)."
+				"$fname: Cannot flush pre-lock snapshot because writes are pending ($fnames)."
 			);
 		}
 
