@@ -496,6 +496,7 @@ class MessageCache {
 			if ( $text === false ) {
 				// Failed to fetch data; possible ES errors?
 				// Store a marker to fetch on-demand as a workaround...
+				// TODO Use a differnt marker
 				$entry = '!TOO BIG';
 				wfDebugLog(
 					'MessageCache',
@@ -510,6 +511,10 @@ class MessageCache {
 
 		$cache['VERSION'] = MSG_CACHE_VERSION;
 		ksort( $cache );
+
+		# Hash for validating local cache (APC). No need to take into account
+		# messages larger than $wgMaxMsgCacheEntrySize, since those are only
+		# stored and fetched from memcache.
 		$cache['HASH'] = md5( serialize( $cache ) );
 		$cache['EXPIRY'] = wfTimestamp( TS_MW, time() + $this->mExpiry );
 
@@ -568,7 +573,8 @@ class MessageCache {
 		}
 
 		ScopedCallback::consume( $scopedLock );
-		// Relay the purge to APC and other DCs
+		// Relay the purge. Touching this check key expires cache contents
+		// and local cache (APC) validation hash across all datacenters.
 		$this->wanCache->touchCheckKey( wfMemcKey( 'messages', $code ) );
 
 		// Also delete cached sidebar... just in case it is affected
