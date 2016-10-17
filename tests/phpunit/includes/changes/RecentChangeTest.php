@@ -1,4 +1,5 @@
 <?php
+use Wikimedia\ScopedCallback;
 
 /**
  * @group Database

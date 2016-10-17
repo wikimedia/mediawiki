@@ -26,6 +26,7 @@ use MediaWiki\Logger\LoggerFactory;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use Wikimedia\ScopedCallback;
 
 /**
  * Job queue runner utility methods
