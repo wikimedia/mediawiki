@@ -61,10 +61,12 @@ class DatabasePostgres extends Database {
 	}
 
 	function hasConstraint( $name ) {
+		$conn = $this->getBindingHandle();
+
 		$sql = "SELECT 1 FROM pg_catalog.pg_constraint c, pg_catalog.pg_namespace n " .
 			"WHERE c.connamespace = n.oid AND conname = '" .
-			pg_escape_string( $this->mConn, $name ) . "' AND n.nspname = '" .
-			pg_escape_string( $this->mConn, $this->getCoreSchema() ) . "'";
+			pg_escape_string( $conn, $name ) . "' AND n.nspname = '" .
+			pg_escape_string( $conn, $this->getCoreSchema() ) . "'";
 		$res = $this->doQuery( $sql );
 
 		return $this->numRows( $res );
@@ -185,19 +187,21 @@ class DatabasePostgres extends Database {
 	 * @return bool
 	 */
 	protected function closeConnection() {
-		return pg_close( $this->mConn );
+		return $this->mConn ? pg_close( $this->mConn ) : true;
 	}
 
 	public function doQuery( $sql ) {
+		$conn = $this->getBindingHandle();
+
 		$sql = mb_convert_encoding( $sql, 'UTF-8' );
 		// Clear previously left over PQresult
-		while ( $res = pg_get_result( $this->mConn ) ) {
+		while ( $res = pg_get_result( $conn ) ) {
 			pg_free_result( $res );
 		}
-		if ( pg_send_query( $this->mConn, $sql ) === false ) {
+		if ( pg_send_query( $conn, $sql ) === false ) {
 			throw new DBUnexpectedError( $this, "Unable to post new query to PostgreSQL\n" );
 		}
-		$this->mLastResult = pg_get_result( $this->mConn );
+		$this->mLastResult = pg_get_result( $conn );
 		$this->mAffectedRows = null;
 		if ( pg_result_error( $this->mLastResult ) ) {
 			return false;
@@ -281,10 +285,11 @@ class DatabasePostgres extends Database {
 
 		# @todo hashar: not sure if the following test really trigger if the object
 		#          fetching failed.
-		if ( pg_last_error( $this->mConn ) ) {
+		$conn = $this->getBindingHandle();
+		if ( pg_last_error( $conn ) ) {
 			throw new DBUnexpectedError(
 				$this,
-				'SQL error: ' . htmlspecialchars( pg_last_error( $this->mConn ) )
+				'SQL error: ' . htmlspecialchars( pg_last_error( $conn ) )
 			);
 		}
 
@@ -298,10 +303,12 @@ class DatabasePostgres extends Database {
 		MediaWiki\suppressWarnings();
 		$row = pg_fetch_array( $res );
 		MediaWiki\restoreWarnings();
-		if ( pg_last_error( $this->mConn ) ) {
+
+		$conn = $this->getBindingHandle();
+		if ( pg_last_error( $conn ) ) {
 			throw new DBUnexpectedError(
 				$this,
-				'SQL error: ' . htmlspecialchars( pg_last_error( $this->mConn ) )
+				'SQL error: ' . htmlspecialchars( pg_last_error( $conn ) )
 			);
 		}
 
@@ -315,10 +322,12 @@ class DatabasePostgres extends Database {
 		MediaWiki\suppressWarnings();
 		$n = pg_num_rows( $res );
 		MediaWiki\restoreWarnings();
-		if ( pg_last_error( $this->mConn ) ) {
+
+		$conn = $this->getBindingHandle();
+		if ( pg_last_error( $conn ) ) {
 			throw new DBUnexpectedError(
 				$this,
-				'SQL error: ' . htmlspecialchars( pg_last_error( $this->mConn ) )
+				'SQL error: ' . htmlspecialchars( pg_last_error( $conn ) )
 			);
 		}
 
@@ -1033,7 +1042,7 @@ __INDEXATTR__;
 				$this->mCoreSchema . "\"\n" );
 		}
 		/* Commit SET otherwise it will be rollbacked on error or IGNORE SELECT */
-		$this->commit( __METHOD__ );
+		$this->commit( __METHOD__, self::FLUSHING_INTERNAL );
 	}
 
 	/**
@@ -1051,7 +1060,8 @@ __INDEXATTR__;
 	 */
 	function getServerVersion() {
 		if ( !isset( $this->numericVersion ) ) {
-			$versionInfo = pg_version( $this->mConn );
+			$conn = $this->getBindingHandle();
+			$versionInfo = pg_version( $conn );
 			if ( version_compare( $versionInfo['client'], '7.4.0', 'lt' ) ) {
 				// Old client, abort install
 				$this->numericVersion = '7.3 or earlier';
@@ -1060,7 +1070,7 @@ __INDEXATTR__;
 				$this->numericVersion = $versionInfo['server'];
 			} else {
 				// Bug 16937: broken pgsql extension from PHP<5.3
-				$this->numericVersion = pg_parameter_status( $this->mConn, 'server_version' );
+				$this->numericVersion = pg_parameter_status( $conn, 'server_version' );
 			}
 		}
 
@@ -1229,7 +1239,7 @@ SQL;
 	function strencode( $s ) {
 		// Should not be called by us
 
-		return pg_escape_string( $this->mConn, $s );
+		return pg_escape_string( $this->getBindingHandle(), $s );
 	}
 
 	/**
@@ -1237,6 +1247,8 @@ SQL;
 	 * @return string|int
 	 */
 	function addQuotes( $s ) {
+		$conn = $this->getBindingHandle();
+
 		if ( is_null( $s ) ) {
 			return 'NULL';
 		} elseif ( is_bool( $s ) ) {
@@ -1245,12 +1257,12 @@ SQL;
 			if ( $s instanceof PostgresBlob ) {
 				$s = $s->fetch();
 			} else {
-				$s = pg_escape_bytea( $this->mConn, $s->fetch() );
+				$s = pg_escape_bytea( $conn, $s->fetch() );
 			}
 			return "'$s'";
 		}
 
-		return "'" . pg_escape_string( $this->mConn, $s ) . "'";
+		return "'" . pg_escape_string( $conn, $s ) . "'";
 	}
 
 	/**

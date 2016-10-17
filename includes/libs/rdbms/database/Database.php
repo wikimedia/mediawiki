@@ -78,7 +78,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var callback Error logging callback */
 	protected $errorLogger;
 
-	/** @var resource Database connection */
+	/** @var resource|null Database connection */
 	protected $mConn = null;
 	/** @var bool */
 	protected $mOpened = false;
@@ -382,7 +382,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			}
 			if ( !isset( $p['errorLogger'] ) ) {
 				$p['errorLogger'] = function ( Exception $e ) {
-					trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_WARNING );
+					trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 				};
 			}
 
@@ -773,8 +773,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return bool
 	 */
 	protected function isTransactableQuery( $sql ) {
-		$verb = $this->getQueryVerb( $sql );
-		return !in_array( $verb, [ 'BEGIN', 'COMMIT', 'ROLLBACK', 'SHOW', 'SET' ], true );
+		return !in_array(
+			$this->getQueryVerb( $sql ),
+			[ 'BEGIN', 'COMMIT', 'ROLLBACK', 'SHOW', 'SET', 'CREATE', 'ALTER' ],
+			true
+		);
 	}
 
 	/**
@@ -2828,7 +2831,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$fnames = implode( ', ', $this->pendingWriteAndCallbackCallers() );
 			throw new DBUnexpectedError(
 				$this,
-				"$fname: Cannot COMMIT to clear snapshot because writes are pending ($fnames)."
+				"$fname: Cannot flush snapshot because writes are pending ($fnames)."
 			);
 		}
 
@@ -3249,7 +3252,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$fnames = implode( ', ', $this->pendingWriteAndCallbackCallers() );
 			throw new DBUnexpectedError(
 				$this,
-				"$fname: Cannot COMMIT to clear snapshot because writes are pending ($fnames)."
+				"$fname: Cannot flush pre-lock snapshot because writes are pending ($fnames)."
 			);
 		}
 
@@ -3369,6 +3372,28 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
+	 * Get the underlying binding handle, mConn
+	 *
+	 * Makes sure that mConn is set (disconnects and ping() failure can unset it).
+	 * This catches broken callers than catch and ignore disconnection exceptions.
+	 * Unlike checking isOpen(), this is safe to call inside of open().
+	 *
+	 * @return resource|object
+	 * @throws DBUnexpectedError
+	 * @since 1.26
+	 */
+	protected function getBindingHandle() {
+		if ( !$this->mConn ) {
+			throw new DBUnexpectedError(
+				$this,
+				'DB connection was already closed or the connection dropped.'
+			);
+		}
+
+		return $this->mConn;
+	}
+
+	/**
 	 * @since 1.19
 	 * @return string
 	 */
@@ -3422,8 +3447,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( $this->mConn ) {
-			// Avoid connection leaks for sanity
+			// Avoid connection leaks for sanity. Normally, resources close at script completion.
+			// The connection might already be closed in zend/hhvm by now, so suppress warnings.
+			\MediaWiki\suppressWarnings();
 			$this->closeConnection();
+			\MediaWiki\restoreWarnings();
 			$this->mConn = false;
 			$this->mOpened = false;
 		}
