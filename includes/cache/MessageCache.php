@@ -946,28 +946,47 @@ class MessageCache {
 			return false;
 		}
 
-		# Try the individual message cache
+		// Try the individual message cache
 		$titleKey = wfMemcKey( 'messages', 'individual', $title );
-		$entry = $this->wanCache->get( $titleKey );
+
+		$curTTL = null;
+		$entry = $this->wanCache->get(
+			$titleKey,
+			$curTTL,
+			[ wfMemcKey( 'messages', $code ) ]
+		);
+		$entry = ( $curTTL >= 0 ) ? $entry : false;
+
 		if ( $entry ) {
 			if ( substr( $entry, 0, 1 ) === ' ' ) {
 				$this->mCache[$code][$title] = $entry;
-
-				// The message exists, so make sure a string
-				// is returned.
+				// The message exists, so make sure a string is returned
 				return (string)substr( $entry, 1 );
 			} elseif ( $entry === '!NONEXISTENT' ) {
 				$this->mCache[$code][$title] = '!NONEXISTENT';
 
 				return false;
 			} else {
-				# Corrupt/obsolete entry, delete it
+				// Corrupt/obsolete entry, delete it
 				$this->wanCache->delete( $titleKey );
 			}
 		}
 
-		# Try loading it from the database
-		$revision = Revision::newFromTitle( Title::makeTitle( NS_MEDIAWIKI, $title ) );
+		// Try loading it from the database
+		$dbr = wfGetDB( DB_REPLICA );
+		$cacheOpts = Database::getCacheSetOptions( $dbr );
+		// Use newKnownCurrent() to avoid querying revision/user tables
+		$titleObj = Title::makeTitle( NS_MEDIAWIKI, $title );
+		if ( $titleObj->getLatestRevID() ) {
+			$revision = Revision::newKnownCurrent(
+				$dbr,
+				$titleObj->getArticleID(),
+				$titleObj->getLatestRevID()
+			);
+		} else {
+			$revision = false;
+		}
+
 		if ( $revision ) {
 			$content = $revision->getContent();
 			if ( !$content ) {
@@ -994,7 +1013,7 @@ class MessageCache {
 					$message = false; // negative caching
 				} else {
 					$this->mCache[$code][$title] = ' ' . $message;
-					$this->wanCache->set( $titleKey, ' ' . $message, $this->mExpiry );
+					$this->wanCache->set( $titleKey, ' ' . $message, $this->mExpiry, $cacheOpts );
 				}
 			}
 		} else {
@@ -1003,7 +1022,7 @@ class MessageCache {
 
 		if ( $message === false ) { // negative caching
 			$this->mCache[$code][$title] = '!NONEXISTENT';
-			$this->wanCache->set( $titleKey, '!NONEXISTENT', $this->mExpiry );
+			$this->wanCache->set( $titleKey, '!NONEXISTENT', $this->mExpiry, $cacheOpts );
 		}
 
 		return $message;
