@@ -587,9 +587,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			return $status;
 		}
 
-		/**
-		 * @var $conn Database
-		 */
+		/** @var $conn DatabasePostgres */
 		$conn = $status->value;
 
 		if ( $conn->tableExists( 'archive' ) ) {
@@ -606,7 +604,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 			return $status;
 		}
-		$error = $conn->sourceFile( $conn->getSchemaPath() );
+		$error = $conn->sourceFile( $this->getSchemaPath( $conn ) );
 		if ( $error !== true ) {
 			$conn->reportQueryError( $error, 0, '', __METHOD__ );
 			$conn->rollback( __METHOD__ );
