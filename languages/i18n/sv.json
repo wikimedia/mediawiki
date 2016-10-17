@@ -2427,6 +2427,7 @@
 	"movelogpagetext": "Listan nedan visar sidor som flyttats.",
 	"movesubpage": "{{PLURAL:$1|Undersida|Undersidor}}",
 	"movesubpagetext": "Denna sida har $1 {{PLURAL:$1|undersida|undersidor}} som visas nedan.",
+	"movesubpagetalktext": "Den motsvarande diskussionssidan har $1 {{PLURAL:$1|undersida|undersidor}} som visas nedan.",
 	"movenosubpage": "Denna sida har inga undersidor.",
 	"movereason": "Anledning:",
 	"revertmove": "återställ",
@@ -3837,5 +3838,7 @@
 	"usercssispublic": "Observera: CSS-undersidor bör inte innehålla konfidentiella uppgifter eftersom de kan ses av andra användare.",
 	"restrictionsfield-badip": "Ogiltig IP-adress eller intervall: $1",
 	"restrictionsfield-label": "Tillåtna IP-intervall:",
-	"restrictionsfield-help": "En IP-adress eller CIDR-intervall per rad. För att aktivera allting, använd<br><code>0.0.0.0/0</code><br><code>::/0</code>"
+	"restrictionsfield-help": "En IP-adress eller CIDR-intervall per rad. För att aktivera allting, använd<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"edit-error-short": "Fel: $1",
+	"edit-error-long": "Fel:\n\n$1"
 }

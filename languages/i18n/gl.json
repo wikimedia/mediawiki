@@ -2374,6 +2374,7 @@
 	"movelogpagetext": "A continuación móstrase a lista con todas as páxinas trasladadas.",
 	"movesubpage": "{{PLURAL:$1|Subpáxina|Subpáxinas}}",
 	"movesubpagetext": "Esta páxina ten $1 {{PLURAL:$1|subpáxina|subpáxinas}}.",
+	"movesubpagetalktext": "A páxina de conversa correspondente ten $1 {{PLURAL:$1|subpáxina|subpáxinas}} mostradas abaixo.",
 	"movenosubpage": "Esta páxina non ten subpáxinas.",
 	"movereason": "Motivo:",
 	"revertmove": "reverter",
@@ -3781,5 +3782,7 @@
 	"usercssispublic": "Lembre: As subpáxinas CSS non deberían conter datos confidenciais porque outros usuarios poden velos.",
 	"restrictionsfield-badip": "Enderezo IP ou rango de IP non válido: $1",
 	"restrictionsfield-label": "Rangos de IP permitidos:",
-	"restrictionsfield-help": "Un único enderezo IP ou rango CIDR por liña. Para habilitalos todos, utilice<br><code>0.0.0.0/0</code><br><code>::/0</code>"
+	"restrictionsfield-help": "Un único enderezo IP ou rango CIDR por liña. Para habilitalos todos, utilice<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"edit-error-short": "Erro: $1",
+	"edit-error-long": "Erros:\n\n$1"
 }

@@ -3808,5 +3808,7 @@
 	"unlinkaccounts-success": "Tunnuksen linkitys poistettiin.",
 	"authenticationdatachange-ignored": "Varmennustietojen muutosta ei käsitelty. Ehkä palveluntarjoajaa ei määritelty?",
 	"restrictionsfield-badip": "Virheellinen IP-osoite tai alue: $1",
-	"restrictionsfield-label": "Sallitut IP-alueet:"
+	"restrictionsfield-label": "Sallitut IP-alueet:",
+	"edit-error-short": "$1",
+	"edit-error-long": "Virheet:\n\n$1"
 }

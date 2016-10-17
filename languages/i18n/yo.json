@@ -363,7 +363,6 @@
 	"yourpasswordagain": "Kọ ọ̀rọ̀ìpamọ́ lẹ́ẹ̀kansí:",
 	"createacct-yourpasswordagain": "Ẹ ṣe ìfidájú ọ̀rọ̀ìpamọ́",
 	"createacct-yourpasswordagain-ph": "Ẹ kọ ọ̀rọ̀ìpamọ́ lẹ́ẹ̀kan síi",
-	"remembermypassword": "Ṣè'rántí ìwọlé mi lórí kọ̀mpútà yìí (fún ó pẹ́ jù {{PLURAL:$1|ọjọ́|ọjọ́}} $1)",
 	"userlogin-remembermypassword": "Fi mí sí ìwọlé",
 	"userlogin-signwithsecure": "Lo ìsopọ̀ ẹ̀rọ tó ní àbò",
 	"yourdomainname": "Domain yín:",
@@ -1889,6 +1888,7 @@
 	"movelogpagetext": "Nísàlẹ̀ ni àtòjọ gbogbo àwọn ìyípòdà ojúewé.",
 	"movesubpage": "{{PLURAL:$1|Ojúewé abẹ́|Àwọn ojúewé abẹ́}}",
 	"movesubpagetext": "Ojúewé yìí ní {{PLURAL:$1|ojúewé abẹ́|àwọn ojúewé abẹ́}} $1 tó hàn nísàlẹ̀.",
+	"movesubpagetalktext": "Ojúewé ọ̀rọ̀ rẹ̀ ní {{PLURAL:$1|ojúewé abẹ́|àwọn ojúewé abẹ́}} $1 tó hàn nísàlẹ̀.",
 	"movenosubpage": "Ojúewé yìí kò ní àwọn abẹ́ojúewé.",
 	"movereason": "Ìdíẹ̀:",
 	"revertmove": "dápadà",
@@ -2552,8 +2552,6 @@
 	"htmlform-submit": "Fúnsílẹ̀",
 	"htmlform-reset": "Ìdápadà àwọn àtúnṣe",
 	"htmlform-selectorother-other": "Òmíràn",
-	"sqlite-has-fts": "$1 pẹ̀lú àtìlẹ́yìn àwárí ìkọ̀rọ̀ kíkún",
-	"sqlite-no-fts": "$1 láìní àtìlẹ́yìn àwárí ìkọ̀rọ̀ kíkún",
 	"logentry-delete-delete": "$1 pa ojúewé $3 rẹ́",
 	"logentry-delete-restore": "$1 dá ojúewé $3 padà",
 	"logentry-delete-event": "$1 ṣe àyípadà ìhànsí {{PLURAL:$5|ìṣẹ̀lẹ̀ àkọọ́lẹ̀ kan|àwọn ìṣẹ̀lẹ̀ àkọọ́lẹ̀ $5}} lórí $3: $4",
@@ -2668,5 +2666,7 @@
 	"special-characters-group-gujarati": "Gujarati",
 	"special-characters-group-thai": "Thai",
 	"special-characters-group-lao": "Lao",
-	"special-characters-group-khmer": "Khmer"
+	"special-characters-group-khmer": "Khmer",
+	"edit-error-short": "Àṣìṣe: $1",
+	"edit-error-long": "Àwọn àsìṣe:\n\n\n$1"
 }

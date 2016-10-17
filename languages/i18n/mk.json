@@ -2192,7 +2192,7 @@
 	"sp-contributions-newbies-title": "Придонеси на нови корисници",
 	"sp-contributions-blocklog": "Дневник на блокирања",
 	"sp-contributions-suppresslog": "притаени придонесите на {{GENDER:$1|корисникот|корисничката}}",
-	"sp-contributions-deleted": "избришани придонесите на {{GENDER:$1|корисникот|корисничката}}",
+	"sp-contributions-deleted": "избришани придонеси на {{GENDER:$1|корисникот}}",
 	"sp-contributions-uploads": "подигања",
 	"sp-contributions-logs": "дневници",
 	"sp-contributions-talk": "разговор",
