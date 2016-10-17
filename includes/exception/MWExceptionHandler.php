@@ -87,7 +87,12 @@ class MWExceptionHandler {
 	 * @param Exception|Throwable $e
 	 */
 	public static function rollbackMasterChangesAndLog( $e ) {
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$services = MediaWikiServices::getInstance();
+		if ( $services->isServiceDisabled( 'DBLoadBalancerFactory' ) ) {
+			return; // T147599
+		}
+
+		$lbFactory = $services->getDBLoadBalancerFactory();
 		if ( $lbFactory->hasMasterChanges() ) {
 			$logger = LoggerFactory::getInstance( 'Bug56269' );
 			$logger->warning(

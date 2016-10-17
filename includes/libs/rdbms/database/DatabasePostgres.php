@@ -1033,7 +1033,7 @@ __INDEXATTR__;
 				$this->mCoreSchema . "\"\n" );
 		}
 		/* Commit SET otherwise it will be rollbacked on error or IGNORE SELECT */
-		$this->commit( __METHOD__ );
+		$this->commit( __METHOD__, self::FLUSHING_INTERNAL );
 	}
 
 	/**

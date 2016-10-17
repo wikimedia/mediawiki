@@ -773,8 +773,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return bool
 	 */
 	protected function isTransactableQuery( $sql ) {
-		$verb = $this->getQueryVerb( $sql );
-		return !in_array( $verb, [ 'BEGIN', 'COMMIT', 'ROLLBACK', 'SHOW', 'SET' ], true );
+		return !in_array(
+			$this->getQueryVerb( $sql ),
+			[ 'BEGIN', 'COMMIT', 'ROLLBACK', 'SHOW', 'SET', 'CREATE', 'ALTER' ],
+			true
+		);
 	}
 
 	/**
