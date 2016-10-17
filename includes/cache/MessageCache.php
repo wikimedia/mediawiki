@@ -966,8 +966,11 @@ class MessageCache {
 			}
 		}
 
-		# Try loading it from the database
-		$revision = Revision::newFromTitle( Title::makeTitle( NS_MEDIAWIKI, $title ) );
+		# Try loading it from the database. Use READ_LATEST because we will
+		# cache both positive and negative results.
+		$revision = Revision::newFromTitle(
+			Title::makeTitle( NS_MEDIAWIKI, $title ), 0, Revision::READ_LATEST
+		);
 		if ( $revision ) {
 			$content = $revision->getContent();
 			if ( !$content ) {
