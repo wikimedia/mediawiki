@@ -683,7 +683,7 @@ abstract class DatabaseUpdater {
 		$this->output( "$msg ..." );
 
 		if ( !$isFullPath ) {
-			$path = $this->patchPath( $this->db, $path );
+			$path = $this->db->patchPath( $path );
 		}
 		if ( $this->fileHandle !== null ) {
 			$this->copyFile( $path );
@@ -693,26 +693,6 @@ abstract class DatabaseUpdater {
 		$this->output( "done.\n" );
 
 		return true;
-	}
-
-	/**
-	 * Get the full path of a patch file. Originally based on archive()
-	 * from updaters.inc. Keep in mind this always returns a patch, as
-	 * it fails back to MySQL if no DB-specific patch can be found
-	 *
-	 * @param IDatabase $db
-	 * @param string $patch The name of the patch, like patch-something.sql
-	 * @return string Full path to patch file
-	 */
-	public function patchPath( IDatabase $db, $patch ) {
-		global $IP;
-
-		$dbType = $db->getType();
-		if ( file_exists( "$IP/maintenance/$dbType/archives/$patch" ) ) {
-			return "$IP/maintenance/$dbType/archives/$patch";
-		} else {
-			return "$IP/maintenance/archives/$patch";
-		}
 	}
 
 	/**
@@ -1122,7 +1102,7 @@ abstract class DatabaseUpdater {
 		global $wgProfiler;
 
 		if ( !$this->doTable( 'profiling' ) ) {
-			return;
+			return true;
 		}
 
 		$profileToDb = false;
