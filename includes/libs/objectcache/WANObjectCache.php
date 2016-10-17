@@ -525,7 +525,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @param string $key Cache key
 	 * @param mixed $value
 	 * @param int $ttl Seconds to live. Special values are:
-	 *   - WANObjectCache::TTL_INDEFINITE: Cache forever
+	 *   - WANObjectCache::TTL_INDEFINITE: Cache forever (default)
 	 * @param array $opts Options map:
 	 *   - lag : Seconds of replica DB lag. Typically, this is either the replica DB lag
 	 *      before the data was read or, if applicable, the replica DB lag before
@@ -554,7 +554,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @note Options added in 1.28: staleTTL
 	 * @return bool Success
 	 */
-	final public function set( $key, $value, $ttl = 0, array $opts = [] ) {
+	final public function set( $key, $value, $ttl = self::TTL_INDEFINITE, array $opts = [] ) {
 		$now = $this->getCurrentTime();
 		$lockTSE = $opts['lockTSE'] ?? self::TSE_NONE;
 		$staleTTL = $opts['staleTTL'] ?? self::STALE_TTL_NONE;
