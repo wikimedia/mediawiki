@@ -103,13 +103,14 @@ class SpecialBlockList extends SpecialPage {
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $this->getPageTitle() ); // Remove subpage
 		$form = HTMLForm::factory( 'ooui', $fields, $context );
-		$form->setMethod( 'get' );
-		$form->setWrapperLegendMsg( 'ipblocklist-legend' );
-		$form->setSubmitTextMsg( 'ipblocklist-submit' );
-		$form->setSubmitProgressive();
-		$form->prepareForm();
+		$form->setMethod( 'get' )
+			->setFormIdentifier( 'blocklist' )
+			->setWrapperLegendMsg( 'ipblocklist-legend' )
+			->setSubmitTextMsg( 'ipblocklist-submit' )
+			->setSubmitProgressive()
+			->prepareForm()
+			->displayForm( '' );
 
-		$form->displayForm( '' );
 		$this->showList( $pager );
 	}
 
