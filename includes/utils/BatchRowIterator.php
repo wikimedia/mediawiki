@@ -78,6 +78,11 @@ class BatchRowIterator implements RecursiveIterator {
 	private $key;
 
 	/**
+	 * @var array Additional query options
+	 */
+	protected $options = [];
+
+	/**
 	 * @param IDatabase $db The database to read from
 	 * @param string|array $table      The name or names of the table to read from
 	 * @param string|array $primaryKey The name or names of the primary key columns
@@ -102,6 +107,14 @@ class BatchRowIterator implements RecursiveIterator {
 	 */
 	public function addConditions( array $conditions ) {
 		$this->conditions = array_merge( $this->conditions, $conditions );
+	}
+
+	/**
+	 * @param array $options Query options suitable for use with
+	 *  IDatabase::select
+	 */
+	public function addOptions( array $options ) {
+		$this->options = array_merge( $this->options, $options );
 	}
 
 	/**
@@ -199,7 +212,7 @@ class BatchRowIterator implements RecursiveIterator {
 			[
 				'LIMIT' => $this->batchSize,
 				'ORDER BY' => $this->orderBy,
-			],
+			] + $this->options,
 			$this->joinConditions
 		);
 
