@@ -66,9 +66,11 @@ class ContribsPager extends ReverseChronologicalPager {
 		$this->newOnly = !empty( $options['newOnly'] );
 		$this->hideMinor = !empty( $options['hideMinor'] );
 
-		$year = isset( $options['year'] ) ? $options['year'] : false;
-		$month = isset( $options['month'] ) ? $options['month'] : false;
-		$this->getDateCond( $year, $month );
+		// Date filtering: use timestamp if available
+		$this->start = !empty( $options['start'] ) ? $options['start'] : false;
+		$this->end = !empty( $options['end'] ) ? $options['end'] : false;
+
+
 
 		// Most of this code will use the 'contributions' group DB, which can map to replica DBs
 		// with extra user based indexes or partioning by user. The additional metadata
@@ -156,7 +158,9 @@ class ContribsPager extends ReverseChronologicalPager {
 		list( $tables, $index, $userCond, $join_cond ) = $this->getUserCond();
 
 		$user = $this->getUser();
-		$conds = array_merge( $userCond, $this->getNamespaceCond() );
+		$conds = array_merge( $userCond,
+			$this->getNamespaceCond(),
+			$this->getDateRangeCond( $this->start, $this->end ) );
 
 		// Paranoia: avoid brute force searches (bug 17342)
 		if ( !$user->isAllowed( 'deletedhistory' ) ) {
@@ -550,5 +554,36 @@ class ContribsPager extends ReverseChronologicalPager {
 	 */
 	public function getPreventClickjacking() {
 		return $this->preventClickjacking;
+	}
+
+	/**
+	 * Set and return a date range condition using timestamps provided by the user.
+	 * We want the revisions between the two timestamps.
+	 * Also supports only having a start or end timestamp.
+	 * @param string $startStamp Timestamp of the beginning of the date range
+	 * @param string $endStamp Timestamp of the end of the date range
+	 * @return array Conditions to fulfill date range
+	 */
+	function getDateRangeCond( $startStamp, $endStamp ) {
+		$rangeCond = [];
+
+		if ( $startStamp !== false ) {
+			$startDate = new DateTime( $startStamp );
+			$startTimestamp = new MWTimestamp( $startDate->getTimestamp() );
+			$startTimestamp->setTimezone( $this->getConfig()->get( 'Localtimezone' ) );
+			$startOffset = $this->mDb->timestamp( $startTimestamp->getTimestamp() );
+			$rangeCond[] = $this->mIndexField . '>=' . $this->mDb->addQuotes( $startOffset );
+		}
+
+		if ( $endStamp !== false ) {
+			$endDate = new DateTime( $endStamp );
+			$endDate = $endDate->modify( '+1 day' );
+			$endTimestamp = new MWTimestamp( $endDate->getTimestamp() );
+			$endTimestamp->setTimezone( $this->getConfig()->get( 'Localtimezone' ) );
+			$endOffset = $this->mDb->timestamp( $endTimestamp->getTimestamp() );
+			$rangeCond[] = $this->mIndexField . '<' . $this->mDb->addQuotes( $endOffset );
+		}
+
+		return $rangeCond;
 	}
 }
