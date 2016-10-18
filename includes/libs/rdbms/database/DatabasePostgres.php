@@ -92,10 +92,6 @@ class DatabasePostgres extends Database {
 			);
 		}
 
-		if ( !strlen( $user ) ) { # e.g. the class is being loaded
-			return null;
-		}
-
 		$this->mServer = $server;
 		$this->mUser = $user;
 		$this->mPassword = $password;
@@ -121,7 +117,8 @@ class DatabasePostgres extends Database {
 		$this->installErrorHandler();
 
 		try {
-			$this->mConn = pg_connect( $this->connectString );
+			// Use new connections to let LoadBalancer/LBFactory handle reuse
+			$this->mConn = pg_connect( $this->connectString, PGSQL_CONNECT_FORCE_NEW );
 		} catch ( Exception $ex ) {
 			$this->restoreErrorHandler();
 			throw $ex;
@@ -130,10 +127,11 @@ class DatabasePostgres extends Database {
 		$phpError = $this->restoreErrorHandler();
 
 		if ( !$this->mConn ) {
-			$this->queryLogger->debug( "DB connection error\n" );
 			$this->queryLogger->debug(
+				"DB connection error\n" .
 				"Server: $server, Database: $dbName, User: $user, Password: " .
-				substr( $password, 0, 3 ) . "...\n" );
+				substr( $password, 0, 3 ) . "...\n"
+			);
 			$this->queryLogger->debug( $this->lastError() . "\n" );
 			throw new DBConnectionError( $this, str_replace( "\n", ' ', $phpError ) );
 		}
@@ -380,9 +378,9 @@ class DatabasePostgres extends Database {
 			} else {
 				return pg_last_error();
 			}
-		} else {
-			return 'No database connection';
 		}
+
+		return $this->getLastPHPError() ?: 'No database connection';
 	}
 
 	function lastErrno() {

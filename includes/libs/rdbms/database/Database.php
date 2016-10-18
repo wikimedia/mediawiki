@@ -651,14 +651,22 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $this->htmlErrors !== false ) {
 			ini_set( 'html_errors', $this->htmlErrors );
 		}
+
+		return $this->getLastPHPError();
+	}
+
+	/**
+	 * @return string|bool Last PHP error for this DB (typically connection errors)
+	 */
+	protected function getLastPHPError() {
 		if ( $this->mPHPError ) {
 			$error = preg_replace( '!\[<a.*</a>\]!', '', $this->mPHPError );
 			$error = preg_replace( '!^.*?:\s?(.*)$!', '$1', $error );
 
 			return $error;
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	/**
