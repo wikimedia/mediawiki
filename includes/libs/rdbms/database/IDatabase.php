@@ -323,14 +323,6 @@ interface IDatabase {
 	public function getFlag( $flag );
 
 	/**
-	 * General read-only accessor
-	 *
-	 * @param string $name
-	 * @return string
-	 */
-	public function getProperty( $name );
-
-	/**
 	 * @return string
 	 */
 	public function getDomainID();

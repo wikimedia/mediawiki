@@ -887,7 +887,7 @@ class LoadBalancer implements ILoadBalancer {
 			// If all servers were busy, mLastError will contain something sensible
 			throw new DBConnectionError( null, $this->mLastError );
 		} else {
-			$context['db_server'] = $conn->getProperty( 'mServer' );
+			$context['db_server'] = $conn->getServer();
 			$this->connLogger->warning(
 				"Connection error: {last_error} ({db_server})",
 				$context

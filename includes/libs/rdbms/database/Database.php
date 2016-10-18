@@ -609,6 +609,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return !!( $this->mFlags & $flag );
 	}
 
+	/**
+	 * @param string $name Class field name
+	 * @return mixed
+	 * @deprecated Since 1.28
+	 */
 	public function getProperty( $name ) {
 		return $this->$name;
 	}
