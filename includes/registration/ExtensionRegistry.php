@@ -84,9 +84,8 @@ class ExtensionRegistry {
 	}
 
 	public function __construct() {
-		// We use a try/catch instead of the $fallback parameter because
-		// we don't want to fail here if $wgObjectCaches is not configured
-		// properly for APC setup
+		// We use a try/catch because we don't want to fail here
+		// if $wgObjectCaches is not configured properly for APC setup
 		try {
 			$this->cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
 		} catch ( MWException $e ) {
