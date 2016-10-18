@@ -128,6 +128,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	protected $targets = [ 'desktop' ];
 
+	protected $noflip = false;
+
 	/**
 	 * @var bool Whether getStyleURLsForDebug should return raw file paths,
 	 * or return load.php urls
@@ -277,6 +279,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				// Single booleans
 				case 'debugRaw':
 				case 'raw':
+				case 'noflip':
 					$this->{$member} = (bool)$option;
 					break;
 			}
@@ -913,7 +916,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return bool
 	 */
 	public function getFlip( $context ) {
-		return $context->getDirection() === 'rtl';
+		return $context->getDirection() === 'rtl' && !$this->noflip;
 	}
 
 	/**
