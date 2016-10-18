@@ -89,10 +89,12 @@ abstract class FormSpecialPage extends SpecialPage {
 	 * @return HTMLForm|null
 	 */
 	protected function getForm() {
+		$context = new DerivativeContext( $this->getContext() );
+		$context->setTitle( $this->getPageTitle() );
 		$form = HTMLForm::factory(
 			$this->getDisplayFormat(),
 			$this->getFormFields(),
-			$this->getContext(),
+			$context,
 			$this->getMessagePrefix()
 		);
 		$form->setSubmitCallback( [ $this, 'onSubmit' ] );
