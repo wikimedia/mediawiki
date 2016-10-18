@@ -1029,7 +1029,7 @@
 	"prefs-personal": "사용자 정보",
 	"prefs-rc": "최근 바뀜",
 	"prefs-watchlist": "주시문서 목록",
-	"prefs-editwatchlist": "주시목록 편집",
+	"prefs-editwatchlist": "주시문서 목록 편집",
 	"prefs-editwatchlist-label": "주시문서 목록의 항목을 편집합니다:",
 	"prefs-editwatchlist-edit": "주시문서의 제목을 보고 지우기",
 	"prefs-editwatchlist-raw": "주시문서 목록 직접 편집하기",
@@ -3822,5 +3822,7 @@
 	"usercssispublic": "주목해 주십시오: CSS의 하위 문서들은 다른 사용자들이 볼 수 있기 때문에 기밀 데이터를 포함해서는 안 됩니다.",
 	"restrictionsfield-badip": "유효하지 않은 IP 주소나 대역: $1",
 	"restrictionsfield-label": "허용된 IP 대역:",
-	"restrictionsfield-help": "줄 단위의 하나의 IP 주소 또는 CIDR 대역입니다. 모든 곳에 적용하려면, 다음을 사용하세요<br><code>0.0.0.0/0</code><br><code>::/0</code>"
+	"restrictionsfield-help": "줄 단위의 하나의 IP 주소 또는 CIDR 대역입니다. 모든 곳에 적용하려면, 다음을 사용하세요<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"edit-error-short": "오류: $1",
+	"edit-error-long": "오류:\n\n$1"
 }

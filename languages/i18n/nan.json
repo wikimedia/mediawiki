@@ -1085,7 +1085,7 @@
 	"tag-list-wrapper": "([[Special:Tags|$1 ê piau-chhiam]]: $2)",
 	"logentry-move-move": "$1 {{GENDER:$2|sóa}} $3 chit ia̍h khì $4",
 	"logentry-newusers-create": "已經{{GENDER:$2|開好}}用者口座 $1",
-	"searchsuggest-search": "Chhoē",
+	"searchsuggest-search": "Chhoē {{SITENAME}}",
 	"expandtemplates": "Khok-chhiong pang-bô͘",
 	"expand_templates_input": "Su-ji̍p bûn-jī:",
 	"expand_templates_output": "Kiat-kó:",

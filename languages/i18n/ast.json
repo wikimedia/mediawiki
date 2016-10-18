@@ -2365,6 +2365,7 @@
 	"movelogpagetext": "Esta ye la llista de páxines treslladaes.",
 	"movesubpage": "{{PLURAL:$1|Subpáxina|Subpáxines}}",
 	"movesubpagetext": "Esta páxina tien $1 {{PLURAL:$1|subpáxina|subpáxines}} que s'amuesen darréu.",
+	"movesubpagetalktext": "La páxina d'alderique correspondiente tien $1 {{PLURAL:$1|subpáxina|subpáxines}} que {{PLURAL:$1|s'amuesa|s'amuesen}} darréu.",
 	"movenosubpage": "Esta páxina nun tien subpáxines.",
 	"movereason": "Motivu:",
 	"revertmove": "revertir",
@@ -2690,6 +2691,7 @@
 	"newimages-showbots": "Ver les xubíes de los bots",
 	"newimages-hidepatrolled": "Despintar les entraes patrullaes",
 	"noimages": "Nun hai nada que ver.",
+	"gallery-slideshow-toggle": "Intercambiar les miniatures",
 	"ilsubmit": "Guetar",
 	"bydate": "por fecha",
 	"sp-newimages-showfrom": "Amosar los archivos nuevos emprimando dende'l $1 a les $2",
@@ -3474,7 +3476,7 @@
 	"feedback-thanks": "¡Gracies! La to opinión s'espublizó na páxina «[$2  $1]».",
 	"feedback-thanks-title": "¡Gracies!",
 	"feedback-useragent": "Axente d'usuariu:",
-	"searchsuggest-search": "Buscar",
+	"searchsuggest-search": "Buscar en {{SITENAME}}",
 	"searchsuggest-containing": "que contien...",
 	"api-error-autoblocked": "La to dirección IP bloquióse automáticamente porque la usó un usuariu bloquiáu.",
 	"api-error-badaccess-groups": "Nun tienes permisu pa xubir ficheros a esta wiki.",
@@ -3769,5 +3771,7 @@
 	"usercssispublic": "Atención: les subpáxines CSS nun tendríen de contener datos acutaos porque son visibles pa otros usuarios.",
 	"restrictionsfield-badip": "Direición o rangu IP inválidu: $1",
 	"restrictionsfield-label": "Rangos d'IP permitíos:",
-	"restrictionsfield-help": "Una única direición IP o rangu CIDR per llinia. P'activar toos, utiliza<br><code>0.0.0.0/0</code><br><code>::/0</code>"
+	"restrictionsfield-help": "Una única direición IP o rangu CIDR per llinia. P'activar toos, utiliza<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"edit-error-short": "Error: $1",
+	"edit-error-long": "Errores:\n\n$1"
 }

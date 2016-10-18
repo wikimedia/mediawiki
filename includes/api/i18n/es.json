@@ -570,6 +570,7 @@
 	"apihelp-query+exturlusage-param-prop": "Qué piezas de información incluir:",
 	"apihelp-query+exturlusage-paramvalue-prop-ids": "Añade el identificado de la página.",
 	"apihelp-query+exturlusage-paramvalue-prop-title": "Agrega el título y el identificador del espacio de nombres de la página.",
+	"apihelp-query+exturlusage-paramvalue-prop-url": "Añade el URL utilizado en la página.",
 	"apihelp-query+exturlusage-param-protocol": "Protocolo del URL. Si está vacío y se establece <var>$1query</var>, el protocolo es <kbd>http</kbd>. Deja vacío esto y <var>$1query</var> para listar todos los enlaces externos.",
 	"apihelp-query+exturlusage-param-limit": "Cuántas páginas se devolverán.",
 	"apihelp-query+exturlusage-example-simple": "Mostrar páginas que enlacen con <kbd>http://www.mediawiki.org</kbd>.",

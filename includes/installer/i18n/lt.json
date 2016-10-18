@@ -70,7 +70,7 @@
 	"config-db-install-account": "Vartotojo paskyra diegimui",
 	"config-db-username": "Duomenų bazės vartotojo vardas:",
 	"config-db-password": "Duomenų bazės slaptažodis:",
-	"config-db-wiki-account": "Vartotojo paskyra normaliai operacijai",
+	"config-db-wiki-account": "Naudotojo paskyra įprastai operacijai",
 	"config-db-prefix": "Duomenų bazės lentelės priešdėlis:",
 	"config-mysql-old": "MySQL $1 ar vėlesnė yra reikalinga. Jūs turite $2.",
 	"config-db-port": "Duomenų bazės prievadas:",

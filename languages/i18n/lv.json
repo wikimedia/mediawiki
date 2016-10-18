@@ -219,6 +219,7 @@
 	"talk": "Diskusija",
 	"views": "Apskates",
 	"toolbox": "Rīki",
+	"tool-link-emailuser": "Nosūtīt e-pastu {{GENDER:$1|šim dalībniekam|šai dalībniecei}}",
 	"userpage": "Skatīt dalībnieka lapu",
 	"projectpage": "Skatīt projekta lapu",
 	"imagepage": "Skatīt faila lapu",

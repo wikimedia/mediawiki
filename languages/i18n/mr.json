@@ -182,7 +182,7 @@
 	"category-file-count-limited": "खालील {{PLURAL:$1|संचिका|$1 संचिका}} या वर्गात आहेत.",
 	"listingcontinuesabbrev": "पुढे चला",
 	"index-category": "अनुक्रमित पाने",
-	"noindex-category": "विना-अनुक्रमित पाने",
+	"noindex-category": "अनुक्रमित नसलेली पाने",
 	"broken-file-category": "तुटलेल्या संचिका दुव्यांसह असलेली पाने",
 	"about": "च्या विषयी",
 	"article": "आशयाचे पान",
@@ -2248,6 +2248,7 @@
 	"movelogpagetext": "स्थानांतरित केलेल्या पानांची यादी.",
 	"movesubpage": "{{PLURAL:$1|उपपान|उपपाने}}",
 	"movesubpagetext": "या पानास $1 {{PLURAL:$1|उपपान|उपपाने}} असून ती पुढे दर्शवली आहेत:",
+	"movesubpagetalktext": "संबंधित चर्चा पानाची $1 {{PLURAL:$1|उपपान|उपपाने}} खाली दर्शविली आहेत.",
 	"movenosubpage": "या पानात उपपाने नाहीत.",
 	"movereason": "कारण:",
 	"revertmove": "पूर्वपदास न्या",
@@ -3265,7 +3266,7 @@
 	"feedback-thanks": " \"[$2 $1]\" या पानात आपला पश्चप्रदाय (फिडबॅक) टाकत आहोत.",
 	"feedback-thanks-title": "आपणास धन्यवाद!",
 	"feedback-useragent": "सदस्य प्रतिनीधी:",
-	"searchsuggest-search": "शोधा",
+	"searchsuggest-search": "शोधा {{SITENAME}}",
 	"searchsuggest-containing": ".......हे असलेले",
 	"api-error-badaccess-groups": "आपणास ह्या विकिवर संचिका चढवण्याची परवानगी नाही",
 	"api-error-badtoken": "अंतर्गत चूक: अयोग्य टोकन",
@@ -3386,5 +3387,7 @@
 	"randomrootpage": "अविशिष्ट मूळ पान",
 	"log-action-filter-suppress-block": "रोधामार्फत सदस्य दाबणे",
 	"changecredentials": "अधिकारपत्रे (क्रेडेंटियल्स)बदला",
-	"removecredentials": "अधिकारपत्रे (क्रेडेंटियल्स) हटवा"
+	"removecredentials": "अधिकारपत्रे (क्रेडेंटियल्स) हटवा",
+	"edit-error-short": "त्रुटी: $1",
+	"edit-error-long": "त्रुटी:$1"
 }

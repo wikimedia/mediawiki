@@ -722,7 +722,7 @@
 	"passwordreset-emailelement": "Nombre de {{GENDER:$1|usuario|usuaria}}: \n$1\n\nContraseña temporal: \n$2",
 	"passwordreset-emailsentemail": "Si esta dirección de correo electrónico está asociada a tu cuenta, entonces se enviará un correo electrónico para restablecer la contraseña.",
 	"passwordreset-emailsentusername": "Si existe una dirección de correo electrónico asociada a este nombre de usuario, entonces se enviará un correo para restablecer la contraseña.",
-	"passwordreset-emailsent-capture2": "{{PLURAL:$1|El e-mail de restablecimiento de contraseña ha sido enviado|Los e-mails de restablecimiento de contraseña han sido enviados}}. {{PLURAL:$1|El nombre de usuario y la contraseña se muestra|La lista de nombres de usuarios y contraseñas se muestra}} aquí.",
+	"passwordreset-emailsent-capture2": "{{PLURAL:$1|Se ha enviado el mensaje de restablecimiento de contraseña|Se han enviado los mensajes de restablecimiento de contraseña}}. {{PLURAL:$1|El nombre de usuario y la contraseña|La lista de nombres de usuarios y contraseñas}} se muestra aquí.",
 	"passwordreset-emailerror-capture2": "No fue posible mandar un correo electrónico {{GENDER:$2|al usuario|a la usuaria}}: $1 {{PLURAL:$3|El nombre de usuario y la contraseña|La lista de nombres de usuarios y contraseñas}} se muestra aquí.",
 	"passwordreset-nocaller": "Debe de proporcionarse un interlocutor",
 	"passwordreset-nosuchcaller": "La persona que llama no existe: $1",
@@ -3618,7 +3618,7 @@
 	"feedback-thanks": "¡Gracias! Tus comentarios se han publicado en la página \"[$2 $1]\".",
 	"feedback-thanks-title": "¡Muchas gracias!",
 	"feedback-useragent": "Agente de usuario:",
-	"searchsuggest-search": "Buscar",
+	"searchsuggest-search": "Buscar en {{SITENAME}}",
 	"searchsuggest-containing": "que contiene...",
 	"api-error-autoblocked": "Tu dirección IP ha sido bloqueada automáticamente porque fue utilizada por un usuario bloqueado.",
 	"api-error-badaccess-groups": "No puedes cargar archivos en este wiki.",
@@ -3912,6 +3912,6 @@
 	"authenticationdatachange-ignored": "El cambio den los datos de autentificacion no fue realizado. ¿Tal vez, no se configuró un proveedor?",
 	"userjsispublic": "Recuerda: las subpáginas JavaScript no deberían contener datos confidenciales, pues otros usuarios los pueden ver.",
 	"usercssispublic": "Recuerda: las subpáginas CSS no deberían contener datos confidenciales, pues otros usuarios los pueden ver.",
-	"restrictionsfield-badip": "Dirección IP o intervalo inválido: $1",
+	"restrictionsfield-badip": "Dirección o intervalo IP no válidos: $1",
 	"restrictionsfield-label": "Intervalos de IP permitidos:"
 }
