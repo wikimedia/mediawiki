@@ -87,6 +87,14 @@ class ResourceLoader implements LoggerAwareInterface {
 	 */
 	private $logger;
 
+	/**
+	 * Name => definition of modules that
+	 * are conditionally registered
+	 *
+	 * @var array
+	 */
+	protected $conditionalModules = [];
+
 	/** @var string JavaScript / CSS pragma to disable minification. **/
 	const FILTER_NOMIN = '/*@nomin*/';
 
@@ -260,6 +268,8 @@ class ResourceLoader implements LoggerAwareInterface {
 			$this->registerTestModules();
 		}
 
+		$this->registerConditionalModules();
+
 		$this->setMessageBlobStore( new MessageBlobStore( $this, $this->logger ) );
 	}
 
@@ -343,7 +353,12 @@ class ResourceLoader implements LoggerAwareInterface {
 				$this->modules[$name] = $info;
 			} elseif ( is_array( $info ) ) {
 				// New calling convention
-				$this->moduleInfos[$name] = $info;
+				if ( isset( $info['registrationDependencies'] ) ) {
+					// Defer, we'll re-evaluate once everything else is loaded
+					$this->conditionalModules[$name] = $info;
+				} else {
+					$this->moduleInfos[$name] = $info;
+				}
 			} else {
 				throw new MWException(
 					'ResourceLoader module info type error for module \'' . $name .
@@ -389,6 +404,31 @@ class ResourceLoader implements LoggerAwareInterface {
 			}
 		}
 
+	}
+
+	private function registerConditionalModules() {
+		if ( !$this->conditionalModules ) {
+			return;
+		}
+		$knownModules = array_keys( $this->moduleInfos );
+		$toRegister = [];
+		foreach ( $this->conditionalModules as $name => $info ) {
+			$registrationDependencies = $info['registrationDependencies'];
+			if ( !array_diff( $registrationDependencies, $knownModules ) ) {
+				// All dependencies are satisfied, yay
+				// Remove the dependencies to register() doesn't
+				// defer it again.
+				unset( $info['registrationDependencies'] );
+				$toRegister[$name] = $info;
+			} // else we just silently skip since it was conditional
+		}
+
+		// Discard the list of unfulfilled conditional modules
+		$this->conditionalModules = [];
+
+		if ( $toRegister ) {
+			$this->register( $toRegister );
+		}
 	}
 
 	/**
