@@ -258,6 +258,9 @@ class ExtensionRegistry {
 				case 'array_merge_recursive':
 					$GLOBALS[$key] = array_merge_recursive( $GLOBALS[$key], $val );
 					break;
+				case 'array_replace_recursive':
+					$GLOBALS[$key] = array_replace_recursive( $GLOBALS[$key], $val );
+					break;
 				case 'array_plus_2d':
 					$GLOBALS[$key] = wfArrayPlus2d( $GLOBALS[$key], $val );
 					break;
