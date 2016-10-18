@@ -514,6 +514,17 @@ Extra newlines between heading and content are swallowed
 !! end
 
 !! test
+Heading with line break in nowiki
+!! wikitext
+== A <nowiki>B
+C</nowiki> ==
+!! html
+<h2><span class="mw-headline" id="A_B.0AC">A B
+C</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: A B&#10;C">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+
+!! end
+
+!! test
 Parsing an URL
 !! wikitext
 http://fr.wikipedia.org/wiki/🍺

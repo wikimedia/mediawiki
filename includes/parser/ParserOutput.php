@@ -213,7 +213,7 @@ class ParserOutput extends CacheTime {
 	private $mMaxAdaptiveExpiry = INF;
 
 	const EDITSECTION_REGEX =
-		'#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
+		'#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#s';
 
 	// finalizeAdaptiveCacheExpiry() uses TTL = MAX( m * PARSE_TIME + b, MIN_AR_TTL)
 	// Current values imply that m=3933.333333 and b=-333.333333
