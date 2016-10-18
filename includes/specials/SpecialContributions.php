@@ -41,7 +41,9 @@ class SpecialContributions extends IncludableSpecialPage {
 			'mediawiki.special',
 			'mediawiki.special.changeslist',
 		] );
+		$out->addModules( 'mediawiki.special.contributions' );
 		$this->addHelpLink( 'Help:User contributions' );
+		$out->enableOOUI();
 
 		$this->opts = [];
 		$request = $this->getRequest();
@@ -134,6 +136,18 @@ class SpecialContributions extends IncludableSpecialPage {
 			$this->opts['month'] = $request->getIntOrNull( 'month' );
 		}
 
+		$this->opts['start'] = $request->getVal( 'start' );
+		$this->opts['end'] = $request->getVal( 'end' );
+		if (
+			$this->opts['start'] !== '' &&
+			$this->opts['end'] !== '' &&
+			$this->opts['start'] > $this->opts['end']
+		) {
+			$temp = $this->opts['start'];
+			$this->opts['start'] = $this->opts['end'];
+			$this->opts['end'] = $temp;
+		}
+
 		$feedType = $request->getVal( 'feed' );
 
 		$feedParams = [
@@ -190,8 +204,8 @@ class SpecialContributions extends IncludableSpecialPage {
 				'contribs' => $this->opts['contribs'],
 				'namespace' => $this->opts['namespace'],
 				'tagfilter' => $this->opts['tagfilter'],
-				'year' => $this->opts['year'],
-				'month' => $this->opts['month'],
+				'start' => $this->opts['start'],
+				'end' => $this->opts['end'],
 				'deletedOnly' => $this->opts['deletedOnly'],
 				'topOnly' => $this->opts['topOnly'],
 				'newOnly' => $this->opts['newOnly'],
@@ -432,12 +446,12 @@ class SpecialContributions extends IncludableSpecialPage {
 			$this->opts['contribs'] = 'user';
 		}
 
-		if ( !isset( $this->opts['year'] ) ) {
-			$this->opts['year'] = '';
+		if ( !isset( $this->opts['start'] ) ) {
+			$this->opts['start'] = '';
 		}
 
-		if ( !isset( $this->opts['month'] ) ) {
-			$this->opts['month'] = '';
+		if ( !isset( $this->opts['end'] ) ) {
+			$this->opts['end'] = '';
 		}
 
 		if ( $this->opts['contribs'] == 'newbie' ) {
@@ -476,8 +490,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			'deletedOnly',
 			'target',
 			'contribs',
-			'year',
-			'month',
+			'start',
+			'end',
 			'topOnly',
 			'newOnly',
 			'hideMinor',
@@ -652,15 +666,28 @@ class SpecialContributions extends IncludableSpecialPage {
 			implode( '', $filters )
 		);
 
-		$dateSelectionAndSubmit = Xml::tags( 'div', [],
-			Xml::dateMenu(
-				$this->opts['year'] === '' ? MWTimestamp::getInstance()->format( 'Y' ) : $this->opts['year'],
-				$this->opts['month']
-			) . ' ' .
-				Html::submitButton(
-					$this->msg( 'sp-contributions-submit' )->text(),
-					[ 'class' => 'mw-submit' ], [ 'mw-ui-progressive' ]
-				)
+		$dateRangeSelection = Html::rawElement( 'div',
+			[],
+			new \Mediawiki\Widget\DateInputWidget( [
+				'infusable' => true,
+				'label' => 'From date:', # TODO use i18n msg
+				'id' => 'mw-date-start',
+				'name' => 'start',
+				'value' => $this->opts['start'],
+			] ) . new \Mediawiki\Widget\DateInputWidget( [
+				'infusable' => true,
+				'label' => 'To date:',
+				'id' => 'mw-date-end',
+				'name' => 'end',
+				'value' => $this->opts['end'],
+			] )
+		);
+
+		$submit = Xml::tags( 'div', [],
+			Html::submitButton(
+				$this->msg( 'sp-contributions-submit' )->text(),
+				[ 'class' => 'mw-submit' ], [ 'mw-ui-progressive' ]
+			)
 		);
 
 		$form .= Xml::fieldset(
@@ -669,7 +696,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			$namespaceSelection .
 			$filterSelection .
 			$extraOptions .
-			$dateSelectionAndSubmit,
+			$dateRangeSelection .
+			$submit,
 			[ 'class' => 'mw-contributions-table' ]
 		);
 
