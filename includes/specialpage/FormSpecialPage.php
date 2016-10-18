@@ -107,14 +107,15 @@ abstract class FormSpecialPage extends SpecialPage {
 			$form->addHeaderText( $headerMsg->parseAsBlock() );
 		}
 
-		// Retain query parameters (uselang etc)
-		$params = array_diff_key(
-			$this->getRequest()->getQueryValues(), [ 'title' => null ] );
-		$form->addHiddenField( 'redirectparams', wfArrayToCgi( $params ) );
-
 		$form->addPreText( $this->preText() );
 		$form->addPostText( $this->postText() );
 		$this->alterForm( $form );
+		if ( $form->getMethod() == 'post' ) {
+			// Retain query parameters (uselang etc) on POST requests
+			$params = array_diff_key(
+				$this->getRequest()->getQueryValues(), [ 'title' => null ] );
+			$form->addHiddenField( 'redirectparams', wfArrayToCgi( $params ) );
+		}
 
 		// Give hooks a chance to alter the form, adding extra fields or text etc
 		Hooks::run( 'SpecialPageBeforeFormDisplay', [ $this->getName(), &$form ] );
