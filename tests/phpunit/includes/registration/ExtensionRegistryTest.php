@@ -252,6 +252,41 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 					'mwtestT100767' => false,
 				],
 			],
+			[
+				'test array_replace_recursive',
+				[
+					'mwtestJsonConfigs' => [
+						'JsonZeroConfig' => [
+							'namespace' => 480,
+							'nsName' => 'Zero',
+							'isLocal' => false,
+						],
+					],
+				],
+				[
+					'mwtestJsonConfigs' => [
+						'JsonZeroConfig' => [
+							'isLocal' => false,
+							'remote' => [
+								'username' => 'foo',
+							],
+						],
+						ExtensionRegistry::MERGE_STRATEGY => 'array_replace_recursive',
+					],
+				],
+				[
+					'mwtestJsonConfigs' => [
+						'JsonZeroConfig' => [
+							'namespace' => 480,
+							'nsName' => 'Zero',
+							'isLocal' => false,
+							'remote' => [
+								'username' => 'foo',
+							],
+						],
+					],
+				],
+			],
 		];
 	}
 }
