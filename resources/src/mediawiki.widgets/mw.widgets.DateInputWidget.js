@@ -183,6 +183,11 @@
 			.addClass( 'mw-widget-dateInputWidget' )
 			.append( this.$handle, this.textInput.$element, this.calendar.$element );
 
+		// config.overlay is the selector to be used for config.$overlay, specified from PHP
+		if ( config.overlay ) {
+			config.$overlay = $( config.overlay );
+		}
+
 		if ( config.$overlay ) {
 			this.calendar.setFloatableContainer( this.$element );
 			config.$overlay.append( this.calendar.$element );
@@ -219,6 +224,12 @@
 		this.updateUI();
 		this.textInput.toggle( false );
 		this.calendar.toggle( false );
+
+		// Hide unused <input> from PHP after infusion is done
+		// See InputWidget#reusePreInfuseDOM about config.$input
+		if ( config.$input ) {
+			config.$input.addClass( 'oo-ui-element-hidden' );
+		}
 	};
 
 	/* Inheritance */
