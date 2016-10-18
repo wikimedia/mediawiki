@@ -41,7 +41,9 @@ class SpecialContributions extends IncludableSpecialPage {
 			'mediawiki.special',
 			'mediawiki.special.changeslist',
 		] );
+		$out->addModules( 'mediawiki.special.contributions' );
 		$this->addHelpLink( 'Help:User contributions' );
+		$out->enableOOUI();
 
 		$this->opts = [];
 		$request = $this->getRequest();
@@ -134,6 +136,9 @@ class SpecialContributions extends IncludableSpecialPage {
 			$this->opts['month'] = $request->getIntOrNull( 'month' );
 		}
 
+		$this->opts['start'] = $request->getVal( 'start' );
+		$this->opts['end'] = $request->getVal( 'end' );
+
 		$feedType = $request->getVal( 'feed' );
 
 		$feedParams = [
@@ -192,6 +197,8 @@ class SpecialContributions extends IncludableSpecialPage {
 				'tagfilter' => $this->opts['tagfilter'],
 				'year' => $this->opts['year'],
 				'month' => $this->opts['month'],
+				'start' => $this->opts['start'],
+				'end' => $this->opts['end'],
 				'deletedOnly' => $this->opts['deletedOnly'],
 				'topOnly' => $this->opts['topOnly'],
 				'newOnly' => $this->opts['newOnly'],
@@ -440,6 +447,14 @@ class SpecialContributions extends IncludableSpecialPage {
 			$this->opts['month'] = '';
 		}
 
+		if ( !isset( $this->opts['start'] ) ) {
+			$this->opts['start'] = '';
+		}
+
+		if ( !isset( $this->opts['end'] ) ) {
+			$this->opts['end'] = '';
+		}
+
 		if ( $this->opts['contribs'] == 'newbie' ) {
 			$this->opts['target'] = '';
 		}
@@ -478,6 +493,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			'contribs',
 			'year',
 			'month',
+			'start',
+			'end',
 			'topOnly',
 			'newOnly',
 			'hideMinor',
@@ -663,13 +680,29 @@ class SpecialContributions extends IncludableSpecialPage {
 				)
 		);
 
+		$dateRangeSelection = new \Mediawiki\Widget\DateInputWidget( [
+			'infusable' => true,
+			'label' => 'From date:', # TODO use i18n msg
+			'id' => 'mw-date-start',
+			'name' => 'start',
+			'mustBeBefore' => '2016-01-01',
+			'value' => $this->opts['start'],
+		] ) . new \Mediawiki\Widget\DateInputWidget( [
+			'infusable' => true,
+			'label' => 'To date:',
+			'id' => 'mw-date-end',
+			'name' => 'end',
+			'value' => $this->opts['end'],
+		] );
+
 		$form .= Xml::fieldset(
 			$this->msg( 'sp-contributions-search' )->text(),
 			$targetSelection .
 			$namespaceSelection .
 			$filterSelection .
 			$extraOptions .
-			$dateSelectionAndSubmit,
+			$dateSelectionAndSubmit .
+			$dateRangeSelection,
 			[ 'class' => 'mw-contributions-table' ]
 		);
 
