@@ -465,7 +465,7 @@ abstract class DatabaseUpdater {
 		foreach ( $updates as $params ) {
 			$origParams = $params;
 			$func = array_shift( $params );
-			if ( !is_array( $func ) && method_exists( $this, $func ) ) {
+			if ( is_string( $func ) && method_exists( $this, $func ) ) {
 				$func = [ $this, $func ];
 			} elseif ( $passSelf ) {
 				array_unshift( $params, $this );
