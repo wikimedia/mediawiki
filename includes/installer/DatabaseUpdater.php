@@ -222,12 +222,11 @@ abstract class DatabaseUpdater {
 	 *
 	 * @since 1.17
 	 *
-	 * @param array $update The update to run. Format is the following:
-	 *                first item is the callback function, it also can be a
-	 *                simple string with the name of a function in this class,
-	 *                following elements are parameters to the function.
-	 *                Note that callback functions will receive this object as
-	 *                first parameter.
+	 * @param array $update The update to run. Format is [ $callback, $params... ]
+	 *   $callback is the method to call; either a DatabaseUpdater method name or a callable.
+	 *   Must be serializable (ie. no anonymous functions allowed). The rest of the parameters
+	 *   (if any) will be passed to the callback. The first parameter passed to the callback
+	 *   is always this object.
 	 */
 	public function addExtensionUpdate( array $update ) {
 		$this->extensionUpdates[] = $update;
