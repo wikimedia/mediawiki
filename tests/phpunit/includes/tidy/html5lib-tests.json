@@ -1242,6 +1242,64 @@
         "html": "<html><head></head><body><p><b><b><b><b></b></b></b></b></p><p><b><b><b>x</b></b></b></p></body></html>",
         "noQuirksBodyHtml": "<p><b><b><b><b></b></b></b></b></p><p><b><b><b>x</b></b></b></p>"
       }
+    },
+    {
+      "data": "<b><em><foo><foob><fooc><aside></b></em>",
+      "errors": [
+        "(1,35): adoption-agency-1.3",
+        "(1,40): adoption-agency-1.3",
+        "(1,40): expected-closing-tag-but-got-eof"
+      ],
+      "fragment": {
+        "name": "div"
+      },
+      "document": {
+        "props": {
+          "tags": {
+            "b": true,
+            "em": true,
+            "foo": true,
+            "foob": true,
+            "fooc": true,
+            "aside": true
+          }
+        },
+        "tree": [
+          {
+            "tag": "b",
+            "children": [
+              {
+                "tag": "em",
+                "children": [
+                  {
+                    "tag": "foo",
+                    "children": [
+                      {
+                        "tag": "foob",
+                        "children": [
+                          {
+                            "tag": "fooc"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "aside",
+            "children": [
+              {
+                "tag": "b"
+              }
+            ]
+          }
+        ],
+        "html": "<b><em><foo><foob><fooc></fooc></foob></foo></em></b><aside><b></b></aside>",
+        "noQuirksBodyHtml": "<b><em><foo><foob><fooc></fooc></foob></foo></em></b><aside><b></b></aside>"
+      }
     }
   ],
   "adoption02.dat": [
@@ -8114,7 +8172,8 @@
       "data": "FOO&#11111111111ZOO",
       "errors": [
         "(1,3): expected-doctype-but-got-chars",
-        "(1,13): illegal-codepoint-for-numeric-entity"
+        "(1,16): numeric-entity-without-semicolon",
+        "(1,16): illegal-codepoint-for-numeric-entity"
       ],
       "document": {
         "props": {
@@ -8150,7 +8209,8 @@
       "data": "FOO&#1111111111ZOO",
       "errors": [
         "(1,3): expected-doctype-but-got-chars",
-        "(1,13): illegal-codepoint-for-numeric-entity"
+        "(1,15): numeric-entity-without-semicolon",
+        "(1,15): illegal-codepoint-for-numeric-entity"
       ],
       "document": {
         "props": {
@@ -8186,7 +8246,8 @@
       "data": "FOO&#111111111111ZOO",
       "errors": [
         "(1,3): expected-doctype-but-got-chars",
-        "(1,13): illegal-codepoint-for-numeric-entity"
+        "(1,17): numeric-entity-without-semicolon",
+        "(1,17): illegal-codepoint-for-numeric-entity"
       ],
       "document": {
         "props": {
@@ -10688,8 +10749,7 @@
     {
       "data": "<plaintext><foo>",
       "errors": [
-        "16: End of file seen and there were open elements.",
-        "11: Unclosed element “plaintext”."
+        "(1,16): expected-closing-tag-but-got-eof"
       ],
       "fragment": {
         "name": "desc",
@@ -12080,7 +12140,7 @@
       "data": "<isindex>",
       "errors": [
         "(1,9): expected-doctype-but-got-start-tag",
-        "(1,9): deprecated-tag"
+        "(1,9): expected-closing-tag-but-got-eof"
       ],
       "document": {
         "props": {
@@ -12088,10 +12148,7 @@
             "html": true,
             "head": true,
             "body": true,
-            "form": true,
-            "hr": true,
-            "label": true,
-            "input": true
+            "isindex": true
           }
         },
         "tree": [
@@ -12105,47 +12162,22 @@
                 "tag": "body",
                 "children": [
                   {
-                    "tag": "form",
-                    "children": [
-                      {
-                        "tag": "hr"
-                      },
-                      {
-                        "tag": "label",
-                        "children": [
-                          {
-                            "text": "This is a searchable index. Enter search keywords: "
-                          },
-                          {
-                            "tag": "input",
-                            "attrs": [
-                              {
-                                "name": "name",
-                                "value": "isindex"
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "tag": "hr"
-                      }
-                    ]
+                    "tag": "isindex"
                   }
                 ]
               }
             ]
           }
         ],
-        "html": "<html><head></head><body><form><hr><label>This is a searchable index. Enter search keywords: <input name=\"isindex\"></label><hr></form></body></html>",
-        "noQuirksBodyHtml": "<form><hr><label>This is a searchable index. Enter search keywords: <input name=\"isindex\"></label><hr></form>"
+        "html": "<html><head></head><body><isindex></isindex></body></html>",
+        "noQuirksBodyHtml": "<isindex></isindex>"
       }
     },
     {
       "data": "<isindex name=\"A\" action=\"B\" prompt=\"C\" foo=\"D\">",
       "errors": [
         "(1,48): expected-doctype-but-got-start-tag",
-        "(1,48): deprecated-tag"
+        "(1,48): expected-closing-tag-but-got-eof"
       ],
       "document": {
         "props": {
@@ -12153,10 +12185,7 @@
             "html": true,
             "head": true,
             "body": true,
-            "form": true,
-            "hr": true,
-            "label": true,
-            "input": true
+            "isindex": true
           }
         },
         "tree": [
@@ -12170,40 +12199,23 @@
                 "tag": "body",
                 "children": [
                   {
-                    "tag": "form",
+                    "tag": "isindex",
                     "attrs": [
                       {
                         "name": "action",
                         "value": "B"
-                      }
-                    ],
-                    "children": [
-                      {
-                        "tag": "hr"
                       },
                       {
-                        "tag": "label",
-                        "children": [
-                          {
-                            "text": "C"
-                          },
-                          {
-                            "tag": "input",
-                            "attrs": [
-                              {
-                                "name": "foo",
-                                "value": "D"
-                              },
-                              {
-                                "name": "name",
-                                "value": "isindex"
-                              }
-                            ]
-                          }
-                        ]
+                        "name": "foo",
+                        "value": "D"
                       },
                       {
-                        "tag": "hr"
+                        "name": "name",
+                        "value": "A"
+                      },
+                      {
+                        "name": "prompt",
+                        "value": "C"
                       }
                     ]
                   }
@@ -12212,15 +12224,14 @@
             ]
           }
         ],
-        "html": "<html><head></head><body><form action=\"B\"><hr><label>C<input name=\"isindex\" foo=\"D\"></label><hr></form></body></html>",
-        "noQuirksBodyHtml": "<form action=\"B\"><hr><label>C<input name=\"isindex\" foo=\"D\"></label><hr></form>"
+        "html": "<html><head></head><body><isindex name=\"A\" action=\"B\" prompt=\"C\" foo=\"D\"></isindex></body></html>",
+        "noQuirksBodyHtml": "<isindex name=\"A\" action=\"B\" prompt=\"C\" foo=\"D\"></isindex>"
       }
     },
     {
       "data": "<form><isindex>",
       "errors": [
         "(1,6): expected-doctype-but-got-start-tag",
-        "(1,15): deprecated-tag",
         "(1,15): expected-closing-tag-but-got-eof"
       ],
       "document": {
@@ -12229,7 +12240,8 @@
             "html": true,
             "head": true,
             "body": true,
-            "form": true
+            "form": true,
+            "isindex": true
           }
         },
         "tree": [
@@ -12243,15 +12255,66 @@
                 "tag": "body",
                 "children": [
                   {
-                    "tag": "form"
+                    "tag": "form",
+                    "children": [
+                      {
+                        "tag": "isindex"
+                      }
+                    ]
                   }
                 ]
               }
             ]
           }
         ],
-        "html": "<html><head></head><body><form></form></body></html>",
-        "noQuirksBodyHtml": "<form></form>"
+        "html": "<html><head></head><body><form><isindex></isindex></form></body></html>",
+        "noQuirksBodyHtml": "<form><isindex></isindex></form>"
+      }
+    },
+    {
+      "data": "<!doctype html><isindex>x</isindex>x",
+      "errors": [],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "isindex": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "isindex",
+                    "children": [
+                      {
+                        "text": "x"
+                      }
+                    ]
+                  },
+                  {
+                    "text": "x"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body><isindex>x</isindex>x</body></html>",
+        "noQuirksBodyHtml": "<isindex>x</isindex>x"
       }
     }
   ],
@@ -12752,6 +12815,870 @@
       }
     }
   ],
+  "menuitem-element.dat": [
+    {
+      "data": "<menuitem>",
+      "errors": [
+        "10: Start tag seen without seeing a doctype first. Expected “<!DOCTYPE html>”."
+      ],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "menuitem": true
+          }
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "menuitem"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<html><head></head><body><menuitem></menuitem></body></html>",
+        "noQuirksBodyHtml": "<menuitem></menuitem>"
+      }
+    },
+    {
+      "data": "</menuitem>",
+      "errors": [
+        "11: End tag seen without seeing a doctype first. Expected “<!DOCTYPE html>”.",
+        "11: Stray end tag “menuitem”."
+      ],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true
+          }
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body"
+              }
+            ]
+          }
+        ],
+        "html": "<html><head></head><body></body></html>",
+        "noQuirksBodyHtml": ""
+      }
+    },
+    {
+      "data": "<!DOCTYPE html><body><menuitem>A",
+      "errors": [],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "menuitem": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "menuitem",
+                    "children": [
+                      {
+                        "text": "A"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body><menuitem>A</menuitem></body></html>",
+        "noQuirksBodyHtml": "<menuitem>A</menuitem>"
+      }
+    },
+    {
+      "data": "<!DOCTYPE html><body><menuitem>A<menuitem>B",
+      "errors": [],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "menuitem": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "menuitem",
+                    "children": [
+                      {
+                        "text": "A"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "menuitem",
+                    "children": [
+                      {
+                        "text": "B"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body><menuitem>A</menuitem><menuitem>B</menuitem></body></html>",
+        "noQuirksBodyHtml": "<menuitem>A</menuitem><menuitem>B</menuitem>"
+      }
+    },
+    {
+      "data": "<!DOCTYPE html><body><menuitem>A<menu>B</menu>",
+      "errors": [],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "menuitem": true,
+            "menu": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "menuitem",
+                    "children": [
+                      {
+                        "text": "A"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "menu",
+                    "children": [
+                      {
+                        "text": "B"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body><menuitem>A</menuitem><menu>B</menu></body></html>",
+        "noQuirksBodyHtml": "<menuitem>A</menuitem><menu>B</menu>"
+      }
+    },
+    {
+      "data": "<!DOCTYPE html><body><menuitem>A<hr>B",
+      "errors": [],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "menuitem": true,
+            "hr": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "menuitem",
+                    "children": [
+                      {
+                        "text": "A"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "hr"
+                  },
+                  {
+                    "text": "B"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body><menuitem>A</menuitem><hr>B</body></html>",
+        "noQuirksBodyHtml": "<menuitem>A</menuitem><hr>B"
+      }
+    },
+    {
+      "data": "<!DOCTYPE html><li><menuitem><li>",
+      "errors": [],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "li": true,
+            "menuitem": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "li",
+                    "children": [
+                      {
+                        "tag": "menuitem"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "li"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body><li><menuitem></menuitem></li><li></li></body></html>",
+        "noQuirksBodyHtml": "<li><menuitem></menuitem></li><li></li>"
+      }
+    },
+    {
+      "data": "<!DOCTYPE html><menuitem><p></menuitem>x",
+      "errors": [
+        "39: Stray end tag “menuitem”."
+      ],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "menuitem": true,
+            "p": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "menuitem",
+                    "children": [
+                      {
+                        "tag": "p",
+                        "children": [
+                          {
+                            "text": "x"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body><menuitem><p>x</p></menuitem></body></html>",
+        "noQuirksBodyHtml": "<menuitem><p>x</p></menuitem>"
+      }
+    },
+    {
+      "data": "<!DOCTYPE html><p><b></p><menuitem>",
+      "errors": [
+        "25: End tag “p” seen, but there were open elements.",
+        "21: Unclosed element “b”.",
+        "35: End of file seen and there were open elements."
+      ],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "p": true,
+            "b": true,
+            "menuitem": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "tag": "b"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "b",
+                    "children": [
+                      {
+                        "tag": "menuitem"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body><p><b></b></p><b><menuitem></menuitem></b></body></html>",
+        "noQuirksBodyHtml": "<p><b></b></p><b><menuitem></menuitem></b>"
+      }
+    },
+    {
+      "data": "<!DOCTYPE html><menuitem><asdf></menuitem>x",
+      "errors": [
+        "40: End tag “menuitem” seen, but there were open elements.",
+        "31: Unclosed element “asdf”."
+      ],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "menuitem": true,
+            "asdf": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "menuitem",
+                    "children": [
+                      {
+                        "tag": "asdf"
+                      }
+                    ]
+                  },
+                  {
+                    "text": "x"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body><menuitem><asdf></asdf></menuitem>x</body></html>",
+        "noQuirksBodyHtml": "<menuitem><asdf></asdf></menuitem>x"
+      }
+    },
+    {
+      "data": "<!DOCTYPE html></menuitem>",
+      "errors": [
+        "26: Stray end tag “menuitem”."
+      ],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body"
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body></body></html>",
+        "noQuirksBodyHtml": ""
+      }
+    },
+    {
+      "data": "<!DOCTYPE html><html></menuitem>",
+      "errors": [
+        "26: Stray end tag “menuitem”."
+      ],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body"
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body></body></html>",
+        "noQuirksBodyHtml": ""
+      }
+    },
+    {
+      "data": "<!DOCTYPE html><head></menuitem>",
+      "errors": [
+        "26: Stray end tag “menuitem”."
+      ],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body"
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body></body></html>",
+        "noQuirksBodyHtml": ""
+      }
+    },
+    {
+      "data": "<!DOCTYPE html><select><menuitem></select>",
+      "errors": [
+        "33: Stray start tag “menuitem”."
+      ],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "select": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "select"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body><select></select></body></html>",
+        "noQuirksBodyHtml": "<select></select>"
+      }
+    },
+    {
+      "data": "<!DOCTYPE html><option><menuitem>",
+      "errors": [],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "option": true,
+            "menuitem": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "option",
+                    "children": [
+                      {
+                        "tag": "menuitem"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body><option><menuitem></menuitem></option></body></html>",
+        "noQuirksBodyHtml": "<option><menuitem></menuitem></option>"
+      }
+    },
+    {
+      "data": "<!DOCTYPE html><menuitem><option>",
+      "errors": [],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "menuitem": true,
+            "option": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "menuitem",
+                    "children": [
+                      {
+                        "tag": "option"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body><menuitem><option></option></menuitem></body></html>",
+        "noQuirksBodyHtml": "<menuitem><option></option></menuitem>"
+      }
+    },
+    {
+      "data": "<!DOCTYPE html><menuitem></body>",
+      "errors": [],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "menuitem": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "menuitem"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body><menuitem></menuitem></body></html>",
+        "noQuirksBodyHtml": "<menuitem></menuitem>"
+      }
+    },
+    {
+      "data": "<!DOCTYPE html><menuitem></html>",
+      "errors": [],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "menuitem": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "menuitem"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body><menuitem></menuitem></body></html>",
+        "noQuirksBodyHtml": "<menuitem></menuitem>"
+      }
+    },
+    {
+      "data": "<!DOCTYPE html><menuitem><p>",
+      "errors": [],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "menuitem": true,
+            "p": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "menuitem",
+                    "children": [
+                      {
+                        "tag": "p"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body><menuitem><p></p></menuitem></body></html>",
+        "noQuirksBodyHtml": "<menuitem><p></p></menuitem>"
+      }
+    },
+    {
+      "data": "<!DOCTYPE html><menuitem><li>",
+      "errors": [],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "menuitem": true,
+            "li": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "menuitem",
+                    "children": [
+                      {
+                        "tag": "li"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body><menuitem><li></li></menuitem></body></html>",
+        "noQuirksBodyHtml": "<menuitem><li></li></menuitem>"
+      }
+    }
+  ],
   "namespace-sensitivity.dat": [
     {
       "data": "<body><table><tr><td><svg><td><foreignObject><span></td>Foo",
@@ -12833,6 +13760,834 @@
         ],
         "html": "<html><head></head><body>Foo<table><tbody><tr><td><svg><td><foreignObject><span></span></foreignObject></td></svg></td></tr></tbody></table></body></html>",
         "noQuirksBodyHtml": "Foo<table><tbody><tr><td><svg><td><foreignObject><span></span></foreignObject></td></svg></td></tr></tbody></table>"
+      }
+    }
+  ],
+  "noscript01.dat": [
+    {
+      "data": "<head><noscript><!doctype html><!--foo--></noscript>",
+      "errors": [
+        "Line: 1 Col: 6 Unexpected start tag (head). Expected DOCTYPE.",
+        "Line: 1 Col: 31 Unexpected DOCTYPE. Ignored."
+      ],
+      "script": "off",
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "noscript": true,
+            "body": true
+          },
+          "comment": true
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head",
+                "children": [
+                  {
+                    "tag": "noscript",
+                    "children": [
+                      {
+                        "comment": "foo"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "body"
+              }
+            ]
+          }
+        ],
+        "html": "<html><head><noscript><!--foo--></noscript></head><body></body></html>",
+        "noQuirksBodyHtml": "<noscript><!--foo--></noscript>"
+      }
+    },
+    {
+      "data": "<head><noscript><html class=\"foo\"><!--foo--></noscript>",
+      "errors": [
+        "Line: 1 Col: 6 Unexpected start tag (head). Expected DOCTYPE.",
+        "Line: 1 Col: 34 html needs to be the first start tag."
+      ],
+      "script": "off",
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "noscript": true,
+            "body": true
+          },
+          "comment": true
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "attrs": [
+              {
+                "name": "class",
+                "value": "foo"
+              }
+            ],
+            "children": [
+              {
+                "tag": "head",
+                "children": [
+                  {
+                    "tag": "noscript",
+                    "children": [
+                      {
+                        "comment": "foo"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "body"
+              }
+            ]
+          }
+        ],
+        "html": "<html class=\"foo\"><head><noscript><!--foo--></noscript></head><body></body></html>",
+        "noQuirksBodyHtml": "<noscript><!--foo--></noscript>"
+      }
+    },
+    {
+      "data": "<head><noscript></noscript>",
+      "errors": [
+        "(1,6): expected-doctype-but-got-tag"
+      ],
+      "script": "off",
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "noscript": true,
+            "body": true
+          }
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head",
+                "children": [
+                  {
+                    "tag": "noscript"
+                  }
+                ]
+              },
+              {
+                "tag": "body"
+              }
+            ]
+          }
+        ],
+        "html": "<html><head><noscript></noscript></head><body></body></html>",
+        "noQuirksBodyHtml": "<noscript></noscript>"
+      }
+    },
+    {
+      "data": "<head><noscript>   </noscript>",
+      "errors": [
+        "Line: 1 Col: 6 Unexpected start tag (head). Expected DOCTYPE."
+      ],
+      "script": "off",
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "noscript": true,
+            "body": true
+          },
+          "no_escape": true
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head",
+                "children": [
+                  {
+                    "tag": "noscript",
+                    "children": [
+                      {
+                        "text": "   ",
+                        "no_escape": true
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "body"
+              }
+            ]
+          }
+        ],
+        "html": "<html><head><noscript>   </noscript></head><body></body></html>",
+        "noQuirksBodyHtml": "<noscript>   </noscript>"
+      }
+    },
+    {
+      "data": "<head><noscript><!--foo--></noscript>",
+      "errors": [
+        "(1,6): expected-doctype-but-got-tag"
+      ],
+      "script": "off",
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "noscript": true,
+            "body": true
+          },
+          "comment": true
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head",
+                "children": [
+                  {
+                    "tag": "noscript",
+                    "children": [
+                      {
+                        "comment": "foo"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "body"
+              }
+            ]
+          }
+        ],
+        "html": "<html><head><noscript><!--foo--></noscript></head><body></body></html>",
+        "noQuirksBodyHtml": "<noscript><!--foo--></noscript>"
+      }
+    },
+    {
+      "data": "<head><noscript><basefont><!--foo--></noscript>",
+      "errors": [
+        "Line: 1 Col: 6 Unexpected start tag (head). Expected DOCTYPE."
+      ],
+      "script": "off",
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "noscript": true,
+            "basefont": true,
+            "body": true
+          },
+          "comment": true
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head",
+                "children": [
+                  {
+                    "tag": "noscript",
+                    "children": [
+                      {
+                        "tag": "basefont"
+                      },
+                      {
+                        "comment": "foo"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "body"
+              }
+            ]
+          }
+        ],
+        "html": "<html><head><noscript><basefont><!--foo--></noscript></head><body></body></html>",
+        "noQuirksBodyHtml": "<noscript><basefont><!--foo--></noscript>"
+      }
+    },
+    {
+      "data": "<head><noscript><bgsound><!--foo--></noscript>",
+      "errors": [
+        "Line: 1 Col: 6 Unexpected start tag (head). Expected DOCTYPE."
+      ],
+      "script": "off",
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "noscript": true,
+            "bgsound": true,
+            "body": true
+          },
+          "comment": true
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head",
+                "children": [
+                  {
+                    "tag": "noscript",
+                    "children": [
+                      {
+                        "tag": "bgsound"
+                      },
+                      {
+                        "comment": "foo"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "body"
+              }
+            ]
+          }
+        ],
+        "html": "<html><head><noscript><bgsound><!--foo--></noscript></head><body></body></html>",
+        "noQuirksBodyHtml": "<noscript><bgsound><!--foo--></noscript>"
+      }
+    },
+    {
+      "data": "<head><noscript><link><!--foo--></noscript>",
+      "errors": [
+        "Line: 1 Col: 6 Unexpected start tag (head). Expected DOCTYPE."
+      ],
+      "script": "off",
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "noscript": true,
+            "link": true,
+            "body": true
+          },
+          "comment": true
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head",
+                "children": [
+                  {
+                    "tag": "noscript",
+                    "children": [
+                      {
+                        "tag": "link"
+                      },
+                      {
+                        "comment": "foo"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "body"
+              }
+            ]
+          }
+        ],
+        "html": "<html><head><noscript><link><!--foo--></noscript></head><body></body></html>",
+        "noQuirksBodyHtml": "<noscript><link><!--foo--></noscript>"
+      }
+    },
+    {
+      "data": "<head><noscript><meta><!--foo--></noscript>",
+      "errors": [
+        "Line: 1 Col: 6 Unexpected start tag (head). Expected DOCTYPE."
+      ],
+      "script": "off",
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "noscript": true,
+            "meta": true,
+            "body": true
+          },
+          "comment": true
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head",
+                "children": [
+                  {
+                    "tag": "noscript",
+                    "children": [
+                      {
+                        "tag": "meta"
+                      },
+                      {
+                        "comment": "foo"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "body"
+              }
+            ]
+          }
+        ],
+        "html": "<html><head><noscript><meta><!--foo--></noscript></head><body></body></html>",
+        "noQuirksBodyHtml": "<noscript><meta><!--foo--></noscript>"
+      }
+    },
+    {
+      "data": "<head><noscript><noframes>XXX</noscript></noframes></noscript>",
+      "errors": [
+        "Line: 1 Col: 6 Unexpected start tag (head). Expected DOCTYPE."
+      ],
+      "script": "off",
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "noscript": true,
+            "noframes": true,
+            "body": true
+          },
+          "no_escape": true
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head",
+                "children": [
+                  {
+                    "tag": "noscript",
+                    "children": [
+                      {
+                        "tag": "noframes",
+                        "children": [
+                          {
+                            "text": "XXX</noscript>",
+                            "no_escape": true
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "body"
+              }
+            ]
+          }
+        ],
+        "html": "<html><head><noscript><noframes>XXX</noscript></noframes></noscript></head><body></body></html>",
+        "noQuirksBodyHtml": "<noscript><noframes>XXX</noscript></noframes></noscript>"
+      }
+    },
+    {
+      "data": "<head><noscript><style>XXX</style></noscript>",
+      "errors": [
+        "Line: 1 Col: 6 Unexpected start tag (head). Expected DOCTYPE."
+      ],
+      "script": "off",
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "noscript": true,
+            "style": true,
+            "body": true
+          },
+          "no_escape": true
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head",
+                "children": [
+                  {
+                    "tag": "noscript",
+                    "children": [
+                      {
+                        "tag": "style",
+                        "children": [
+                          {
+                            "text": "XXX",
+                            "no_escape": true
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "body"
+              }
+            ]
+          }
+        ],
+        "html": "<html><head><noscript><style>XXX</style></noscript></head><body></body></html>",
+        "noQuirksBodyHtml": "<noscript><style>XXX</style></noscript>"
+      }
+    },
+    {
+      "data": "<head><noscript></br><!--foo--></noscript>",
+      "errors": [
+        "Line: 1 Col: 6 Unexpected start tag (head). Expected DOCTYPE.",
+        "Line: 1 Col: 21 Element br not allowed in a inhead-noscript context",
+        "Line: 1 Col: 21 Unexpected end tag (br). Treated as br element.",
+        "Line: 1 Col: 42 Unexpected end tag (noscript). Ignored."
+      ],
+      "script": "off",
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "noscript": true,
+            "body": true,
+            "br": true
+          },
+          "comment": true
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head",
+                "children": [
+                  {
+                    "tag": "noscript"
+                  }
+                ]
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "br"
+                  },
+                  {
+                    "comment": "foo"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<html><head><noscript></noscript></head><body><br><!--foo--></body></html>",
+        "noQuirksBodyHtml": "<noscript><br><!--foo--></noscript>"
+      }
+    },
+    {
+      "data": "<head><noscript><head class=\"foo\"><!--foo--></noscript>",
+      "errors": [
+        "Line: 1 Col: 6 Unexpected start tag (head). Expected DOCTYPE.",
+        "Line: 1 Col: 34 Unexpected start tag (head)."
+      ],
+      "script": "off",
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "noscript": true,
+            "body": true
+          },
+          "comment": true
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head",
+                "children": [
+                  {
+                    "tag": "noscript",
+                    "children": [
+                      {
+                        "comment": "foo"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "body"
+              }
+            ]
+          }
+        ],
+        "html": "<html><head><noscript><!--foo--></noscript></head><body></body></html>",
+        "noQuirksBodyHtml": "<noscript><!--foo--></noscript>"
+      }
+    },
+    {
+      "data": "<head><noscript><noscript class=\"foo\"><!--foo--></noscript>",
+      "errors": [
+        "Line: 1 Col: 6 Unexpected start tag (head). Expected DOCTYPE.",
+        "Line: 1 Col: 34 Unexpected start tag (noscript)."
+      ],
+      "script": "off",
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "noscript": true,
+            "body": true
+          },
+          "comment": true
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head",
+                "children": [
+                  {
+                    "tag": "noscript",
+                    "children": [
+                      {
+                        "comment": "foo"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "body"
+              }
+            ]
+          }
+        ],
+        "html": "<html><head><noscript><!--foo--></noscript></head><body></body></html>",
+        "noQuirksBodyHtml": "<noscript><noscript class=\"foo\"><!--foo--></noscript></noscript>"
+      }
+    },
+    {
+      "data": "<head><noscript></p><!--foo--></noscript>",
+      "errors": [
+        "Line: 1 Col: 6 Unexpected start tag (head). Expected DOCTYPE.",
+        "Line: 1 Col: 20 Unexpected end tag (p). Ignored."
+      ],
+      "script": "off",
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "noscript": true,
+            "body": true
+          },
+          "comment": true
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head",
+                "children": [
+                  {
+                    "tag": "noscript",
+                    "children": [
+                      {
+                        "comment": "foo"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "body"
+              }
+            ]
+          }
+        ],
+        "html": "<html><head><noscript><!--foo--></noscript></head><body></body></html>",
+        "noQuirksBodyHtml": "<noscript><p></p><!--foo--></noscript>"
+      }
+    },
+    {
+      "data": "<head><noscript><p><!--foo--></noscript>",
+      "errors": [
+        "Line: 1 Col: 6 Unexpected start tag (head). Expected DOCTYPE.",
+        "Line: 1 Col: 19 Element p not allowed in a inhead-noscript context",
+        "Line: 1 Col: 40 Unexpected end tag (noscript). Ignored."
+      ],
+      "script": "off",
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "noscript": true,
+            "body": true,
+            "p": true
+          },
+          "comment": true
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head",
+                "children": [
+                  {
+                    "tag": "noscript"
+                  }
+                ]
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "comment": "foo"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<html><head><noscript></noscript></head><body><p><!--foo--></p></body></html>",
+        "noQuirksBodyHtml": "<noscript><p><!--foo--></p></noscript>"
+      }
+    },
+    {
+      "data": "<head><noscript>XXX<!--foo--></noscript></head>",
+      "errors": [
+        "Line: 1 Col: 6 Unexpected start tag (head). Expected DOCTYPE.",
+        "Line: 1 Col: 19 Unexpected non-space character. Expected inhead-noscript content",
+        "Line: 1 Col: 30 Unexpected end tag (noscript). Ignored.",
+        "Line: 1 Col: 37 Unexpected end tag (head). Ignored."
+      ],
+      "script": "off",
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "noscript": true,
+            "body": true
+          },
+          "comment": true
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head",
+                "children": [
+                  {
+                    "tag": "noscript"
+                  }
+                ]
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "text": "XXX"
+                  },
+                  {
+                    "comment": "foo"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<html><head><noscript></noscript></head><body>XXX<!--foo--></body></html>",
+        "noQuirksBodyHtml": "<noscript>XXX<!--foo--></noscript>"
+      }
+    },
+    {
+      "data": "<head><noscript>",
+      "errors": [
+        "(1,6): expected-doctype-but-got-tag",
+        "(1,6): eof-in-head-noscript"
+      ],
+      "script": "off",
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "noscript": true,
+            "body": true
+          }
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head",
+                "children": [
+                  {
+                    "tag": "noscript"
+                  }
+                ]
+              },
+              {
+                "tag": "body"
+              }
+            ]
+          }
+        ],
+        "html": "<html><head><noscript></noscript></head><body></body></html>",
+        "noQuirksBodyHtml": "<noscript></noscript>"
       }
     }
   ],
@@ -13990,8 +15745,7 @@
             "body": true,
             "pre": true
           },
-          "doctype": true,
-          "extraNL": true
+          "doctype": true
         },
         "tree": [
           {
@@ -14010,8 +15764,7 @@
                     "tag": "pre",
                     "children": [
                       {
-                        "text": "\nA",
-                        "extraNL": true
+                        "text": "\nA"
                       }
                     ]
                   }
@@ -14020,8 +15773,8 @@
             ]
           }
         ],
-        "html": "<!DOCTYPE html><html><head></head><body><pre>\n\nA</pre></body></html>",
-        "noQuirksBodyHtml": "<pre>\n\nA</pre>"
+        "html": "<!DOCTYPE html><html><head></head><body><pre>\nA</pre></body></html>",
+        "noQuirksBodyHtml": "<pre>\nA</pre>"
       }
     },
     {
@@ -14035,8 +15788,7 @@
             "body": true,
             "pre": true
           },
-          "doctype": true,
-          "extraNL": true
+          "doctype": true
         },
         "tree": [
           {
@@ -14055,8 +15807,7 @@
                     "tag": "pre",
                     "children": [
                       {
-                        "text": "\nA",
-                        "extraNL": true
+                        "text": "\nA"
                       }
                     ]
                   }
@@ -14065,8 +15816,8 @@
             ]
           }
         ],
-        "html": "<!DOCTYPE html><html><head></head><body><pre>\n\nA</pre></body></html>",
-        "noQuirksBodyHtml": "<pre>\n\nA</pre>"
+        "html": "<!DOCTYPE html><html><head></head><body><pre>\nA</pre></body></html>",
+        "noQuirksBodyHtml": "<pre>\nA</pre>"
       }
     },
     {
@@ -14765,7 +16516,8 @@
     {
       "data": "<html><ruby>a<rb>b<span></ruby></html>",
       "errors": [
-        "(1,6): expected-doctype-but-got-start-tag"
+        "(1,6): expected-doctype-but-got-start-tag",
+        "(1,31): unexpected-end-tag"
       ],
       "document": {
         "props": {
@@ -15034,7 +16786,8 @@
     {
       "data": "<html><ruby>a<rt>b<span></ruby></html>",
       "errors": [
-        "(1,6): expected-doctype-but-got-start-tag"
+        "(1,6): expected-doctype-but-got-start-tag",
+        "(1,31): unexpected-end-tag"
       ],
       "document": {
         "props": {
@@ -15585,7 +17338,8 @@
     {
       "data": "<html><ruby>a<rp>b<span></ruby></html>",
       "errors": [
-        "(1,6): expected-doctype-but-got-start-tag"
+        "(1,6): expected-doctype-but-got-start-tag",
+        "(1,31): unexpected-end-tag"
       ],
       "document": {
         "props": {
@@ -25374,8 +27128,7 @@
         "(1,11): unexpected-start-tag-in-select",
         "(1,27): unexpected-select-in-select",
         "(1,39): unexpected-end-tag",
-        "(1,48): unexpected-end-tag",
-        "(1,49): expected-closing-tag-but-got-eof"
+        "(1,48): unexpected-end-tag"
       ],
       "document": {
         "props": {
@@ -29576,8 +31329,7 @@
         "(1,11): unexpected-start-tag-in-select",
         "(1,27): unexpected-select-in-select",
         "(1,39): unexpected-end-tag",
-        "(1,48): unexpected-end-tag",
-        "(1,48): expected-closing-tag-but-got-eof"
+        "(1,48): unexpected-end-tag"
       ],
       "document": {
         "props": {
@@ -35074,6 +36826,234 @@
       }
     },
     {
+      "data": "<!DOCTYPE html><body><svg contentScriptType='' contentStyleType='' externalResourcesRequired='' filterRes=''></svg>",
+      "errors": [],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "svg svg": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "svg",
+                    "ns": "http://www.w3.org/2000/svg",
+                    "attrs": [
+                      {
+                        "name": "contentscripttype",
+                        "value": ""
+                      },
+                      {
+                        "name": "contentstyletype",
+                        "value": ""
+                      },
+                      {
+                        "name": "externalresourcesrequired",
+                        "value": ""
+                      },
+                      {
+                        "name": "filterres",
+                        "value": ""
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body><svg contentscripttype=\"\" contentstyletype=\"\" externalresourcesrequired=\"\" filterres=\"\"></svg></body></html>",
+        "noQuirksBodyHtml": "<svg contentScriptType=\"\" contentStyleType=\"\" externalResourcesRequired=\"\" filterres=\"\"></svg>"
+      }
+    },
+    {
+      "data": "<!DOCTYPE html><body><svg CONTENTSCRIPTTYPE='' CONTENTSTYLETYPE='' EXTERNALRESOURCESREQUIRED='' FILTERRES=''></svg>",
+      "errors": [],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "svg svg": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "svg",
+                    "ns": "http://www.w3.org/2000/svg",
+                    "attrs": [
+                      {
+                        "name": "contentscripttype",
+                        "value": ""
+                      },
+                      {
+                        "name": "contentstyletype",
+                        "value": ""
+                      },
+                      {
+                        "name": "externalresourcesrequired",
+                        "value": ""
+                      },
+                      {
+                        "name": "filterres",
+                        "value": ""
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body><svg contentscripttype=\"\" contentstyletype=\"\" externalresourcesrequired=\"\" filterres=\"\"></svg></body></html>",
+        "noQuirksBodyHtml": "<svg contentScriptType=\"\" contentStyleType=\"\" externalResourcesRequired=\"\" filterres=\"\"></svg>"
+      }
+    },
+    {
+      "data": "<!DOCTYPE html><body><svg contentscripttype='' contentstyletype='' externalresourcesrequired='' filterres=''></svg>",
+      "errors": [],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "svg svg": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "svg",
+                    "ns": "http://www.w3.org/2000/svg",
+                    "attrs": [
+                      {
+                        "name": "contentscripttype",
+                        "value": ""
+                      },
+                      {
+                        "name": "contentstyletype",
+                        "value": ""
+                      },
+                      {
+                        "name": "externalresourcesrequired",
+                        "value": ""
+                      },
+                      {
+                        "name": "filterres",
+                        "value": ""
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body><svg contentscripttype=\"\" contentstyletype=\"\" externalresourcesrequired=\"\" filterres=\"\"></svg></body></html>",
+        "noQuirksBodyHtml": "<svg contentScriptType=\"\" contentStyleType=\"\" externalResourcesRequired=\"\" filterres=\"\"></svg>"
+      }
+    },
+    {
+      "data": "<!DOCTYPE html><body><math contentScriptType='' contentStyleType='' externalResourcesRequired='' filterRes=''></math>",
+      "errors": [],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "math math": true
+          },
+          "doctype": true
+        },
+        "tree": [
+          {
+            "doctype": "html"
+          },
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "math",
+                    "ns": "http://www.w3.org/1998/Math/MathML",
+                    "attrs": [
+                      {
+                        "name": "contentscripttype",
+                        "value": ""
+                      },
+                      {
+                        "name": "contentstyletype",
+                        "value": ""
+                      },
+                      {
+                        "name": "externalresourcesrequired",
+                        "value": ""
+                      },
+                      {
+                        "name": "filterres",
+                        "value": ""
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<!DOCTYPE html><html><head></head><body><math contentscripttype=\"\" contentstyletype=\"\" externalresourcesrequired=\"\" filterres=\"\"></math></body></html>",
+        "noQuirksBodyHtml": "<math contentscripttype=\"\" contentstyletype=\"\" externalresourcesrequired=\"\" filterres=\"\"></math>"
+      }
+    },
+    {
       "data": "<!DOCTYPE html><body><svg><altGlyph /><altGlyphDef /><altGlyphItem /><animateColor /><animateMotion /><animateTransform /><clipPath /><feBlend /><feColorMatrix /><feComponentTransfer /><feComposite /><feConvolveMatrix /><feDiffuseLighting /><feDisplacementMap /><feDistantLight /><feFlood /><feFuncA /><feFuncB /><feFuncG /><feFuncR /><feGaussianBlur /><feImage /><feMerge /><feMergeNode /><feMorphology /><feOffset /><fePointLight /><feSpecularLighting /><feSpotLight /><feTile /><feTurbulence /><foreignObject /><glyphRef /><linearGradient /><radialGradient /><textPath /></svg>",
       "errors": [],
       "document": {
@@ -38207,6 +40187,7 @@
     {
       "data": "<!doctype html><script><!",
       "errors": [
+        "(1,25): expected-script-data-but-got-eof",
         "(1,25): expected-named-closing-tag-but-got-eof"
       ],
       "document": {
@@ -41382,7 +43363,7 @@
           }
         ],
         "html": "<!DOCTYPE html><html><head><noscript><!--<noscript></noscript></head><body>--&gt;</body></html>",
-        "noQuirksBodyHtml": "<noscript>&lt;!--&lt;noscript&gt;</noscript>--&gt;"
+        "noQuirksBodyHtml": "<noscript><!--<noscript></noscript>--></noscript>"
       }
     },
     {
@@ -41427,7 +43408,7 @@
           }
         ],
         "html": "<!DOCTYPE html><html><head><noscript><!--<noscript></noscript>--></noscript></head><body></body></html>",
-        "noQuirksBodyHtml": "<noscript>&lt;!--&lt;noscript&gt;</noscript>--&gt;"
+        "noQuirksBodyHtml": "<noscript><!--<noscript></noscript>--></noscript>"
       }
     },
     {
@@ -41487,7 +43468,7 @@
           }
         ],
         "html": "<!DOCTYPE html><html><head><noscript><!--</noscript></head><body>X<noscript>--></noscript></body></html>",
-        "noQuirksBodyHtml": "<noscript>&lt;!--</noscript>X<noscript>--&gt;</noscript>"
+        "noQuirksBodyHtml": "<noscript><!--</noscript>X<noscript>--></noscript>"
       }
     },
     {
@@ -41532,7 +43513,7 @@
           }
         ],
         "html": "<!DOCTYPE html><html><head><noscript><!--</noscript>X<noscript>--></noscript></head><body></body></html>",
-        "noQuirksBodyHtml": "<noscript>&lt;!--</noscript>X<noscript>--&gt;</noscript>"
+        "noQuirksBodyHtml": "<noscript><!--</noscript>X<noscript>--></noscript>"
       }
     },
     {
@@ -41583,7 +43564,7 @@
           }
         ],
         "html": "<!DOCTYPE html><html><head><noscript><iframe></noscript></head><body>X</body></html>",
-        "noQuirksBodyHtml": "<noscript>&lt;iframe&gt;</noscript>X"
+        "noQuirksBodyHtml": "<noscript><iframe></noscript>X</iframe></noscript>"
       }
     },
     {
@@ -41638,7 +43619,7 @@
           }
         ],
         "html": "<!DOCTYPE html><html><head><noscript></noscript></head><body><iframe></noscript>X</iframe></body></html>",
-        "noQuirksBodyHtml": "<noscript>&lt;iframe&gt;</noscript>X"
+        "noQuirksBodyHtml": "<noscript><iframe></noscript>X</iframe></noscript>"
       }
     },
     {
@@ -42904,6 +44885,7 @@
       "data": "<script><!",
       "errors": [
         "(1,8): expected-doctype-but-got-start-tag",
+        "(1,10): expected-script-data-but-got-eof",
         "(1,10): expected-named-closing-tag-but-got-eof"
       ],
       "document": {
@@ -45805,7 +47787,7 @@
           }
         ],
         "html": "<html><head><noscript><!--<noscript></noscript></head><body>--&gt;</body></html>",
-        "noQuirksBodyHtml": "<noscript>&lt;!--&lt;noscript&gt;</noscript>--&gt;"
+        "noQuirksBodyHtml": "<noscript><!--<noscript></noscript>--></noscript>"
       }
     },
     {
@@ -45848,7 +47830,7 @@
           }
         ],
         "html": "<html><head><noscript><!--<noscript></noscript>--></noscript></head><body></body></html>",
-        "noQuirksBodyHtml": "<noscript>&lt;!--&lt;noscript&gt;</noscript>--&gt;"
+        "noQuirksBodyHtml": "<noscript><!--<noscript></noscript>--></noscript>"
       }
     },
     {
@@ -45906,7 +47888,7 @@
           }
         ],
         "html": "<html><head><noscript><!--</noscript></head><body>X<noscript>--></noscript></body></html>",
-        "noQuirksBodyHtml": "<noscript>&lt;!--</noscript>X<noscript>--&gt;</noscript>"
+        "noQuirksBodyHtml": "<noscript><!--</noscript>X<noscript>--></noscript>"
       }
     },
     {
@@ -45949,7 +47931,7 @@
           }
         ],
         "html": "<html><head><noscript><!--</noscript>X<noscript>--></noscript></head><body></body></html>",
-        "noQuirksBodyHtml": "<noscript>&lt;!--</noscript>X<noscript>--&gt;</noscript>"
+        "noQuirksBodyHtml": "<noscript><!--</noscript>X<noscript>--></noscript>"
       }
     },
     {
@@ -45998,7 +47980,7 @@
           }
         ],
         "html": "<html><head><noscript><iframe></noscript></head><body>X</body></html>",
-        "noQuirksBodyHtml": "<noscript>&lt;iframe&gt;</noscript>X"
+        "noQuirksBodyHtml": "<noscript><iframe></noscript>X</iframe></noscript>"
       }
     },
     {
@@ -46050,7 +48032,7 @@
           }
         ],
         "html": "<html><head><noscript></noscript></head><body><iframe></noscript>X</iframe></body></html>",
-        "noQuirksBodyHtml": "<noscript>&lt;iframe&gt;</noscript>X"
+        "noQuirksBodyHtml": "<noscript><iframe></noscript>X</iframe></noscript>"
       }
     },
     {
@@ -48752,192 +50734,9 @@
       }
     },
     {
-      "data": "<!doctype html><form><isindex>",
-      "errors": [
-        "(1,30): deprecated-tag",
-        "(1,30): expected-closing-tag-but-got-eof"
-      ],
-      "document": {
-        "props": {
-          "tags": {
-            "html": true,
-            "head": true,
-            "body": true,
-            "form": true
-          },
-          "doctype": true
-        },
-        "tree": [
-          {
-            "doctype": "html"
-          },
-          {
-            "tag": "html",
-            "children": [
-              {
-                "tag": "head"
-              },
-              {
-                "tag": "body",
-                "children": [
-                  {
-                    "tag": "form"
-                  }
-                ]
-              }
-            ]
-          }
-        ],
-        "html": "<!DOCTYPE html><html><head></head><body><form></form></body></html>",
-        "noQuirksBodyHtml": "<form></form>"
-      }
-    },
-    {
-      "data": "<!doctype html><isindex action=\"POST\">",
-      "errors": [
-        "(1,38): deprecated-tag"
-      ],
-      "document": {
-        "props": {
-          "tags": {
-            "html": true,
-            "head": true,
-            "body": true,
-            "form": true,
-            "hr": true,
-            "label": true,
-            "input": true
-          },
-          "doctype": true
-        },
-        "tree": [
-          {
-            "doctype": "html"
-          },
-          {
-            "tag": "html",
-            "children": [
-              {
-                "tag": "head"
-              },
-              {
-                "tag": "body",
-                "children": [
-                  {
-                    "tag": "form",
-                    "attrs": [
-                      {
-                        "name": "action",
-                        "value": "POST"
-                      }
-                    ],
-                    "children": [
-                      {
-                        "tag": "hr"
-                      },
-                      {
-                        "tag": "label",
-                        "children": [
-                          {
-                            "text": "This is a searchable index. Enter search keywords: "
-                          },
-                          {
-                            "tag": "input",
-                            "attrs": [
-                              {
-                                "name": "name",
-                                "value": "isindex"
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "tag": "hr"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ],
-        "html": "<!DOCTYPE html><html><head></head><body><form action=\"POST\"><hr><label>This is a searchable index. Enter search keywords: <input name=\"isindex\"></label><hr></form></body></html>",
-        "noQuirksBodyHtml": "<form action=\"POST\"><hr><label>This is a searchable index. Enter search keywords: <input name=\"isindex\"></label><hr></form>"
-      }
-    },
-    {
-      "data": "<!doctype html><isindex prompt=\"this is isindex\">",
-      "errors": [
-        "(1,49): deprecated-tag"
-      ],
-      "document": {
-        "props": {
-          "tags": {
-            "html": true,
-            "head": true,
-            "body": true,
-            "form": true,
-            "hr": true,
-            "label": true,
-            "input": true
-          },
-          "doctype": true
-        },
-        "tree": [
-          {
-            "doctype": "html"
-          },
-          {
-            "tag": "html",
-            "children": [
-              {
-                "tag": "head"
-              },
-              {
-                "tag": "body",
-                "children": [
-                  {
-                    "tag": "form",
-                    "children": [
-                      {
-                        "tag": "hr"
-                      },
-                      {
-                        "tag": "label",
-                        "children": [
-                          {
-                            "text": "this is isindex"
-                          },
-                          {
-                            "tag": "input",
-                            "attrs": [
-                              {
-                                "name": "name",
-                                "value": "isindex"
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "tag": "hr"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ],
-        "html": "<!DOCTYPE html><html><head></head><body><form><hr><label>this is isindex<input name=\"isindex\"></label><hr></form></body></html>",
-        "noQuirksBodyHtml": "<form><hr><label>this is isindex<input name=\"isindex\"></label><hr></form>"
-      }
-    },
-    {
       "data": "<!doctype html><isindex type=\"hidden\">",
       "errors": [
-        "(1,38): deprecated-tag"
+        "(1,38): expected-closing-tag-but-got-eof"
       ],
       "document": {
         "props": {
@@ -48945,10 +50744,7 @@
             "html": true,
             "head": true,
             "body": true,
-            "form": true,
-            "hr": true,
-            "label": true,
-            "input": true
+            "isindex": true
           },
           "doctype": true
         },
@@ -48966,34 +50762,11 @@
                 "tag": "body",
                 "children": [
                   {
-                    "tag": "form",
-                    "children": [
+                    "tag": "isindex",
+                    "attrs": [
                       {
-                        "tag": "hr"
-                      },
-                      {
-                        "tag": "label",
-                        "children": [
-                          {
-                            "text": "This is a searchable index. Enter search keywords: "
-                          },
-                          {
-                            "tag": "input",
-                            "attrs": [
-                              {
-                                "name": "name",
-                                "value": "isindex"
-                              },
-                              {
-                                "name": "type",
-                                "value": "hidden"
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "tag": "hr"
+                        "name": "type",
+                        "value": "hidden"
                       }
                     ]
                   }
@@ -49002,76 +50775,8 @@
             ]
           }
         ],
-        "html": "<!DOCTYPE html><html><head></head><body><form><hr><label>This is a searchable index. Enter search keywords: <input name=\"isindex\" type=\"hidden\"></label><hr></form></body></html>",
-        "noQuirksBodyHtml": "<form><hr><label>This is a searchable index. Enter search keywords: <input name=\"isindex\" type=\"hidden\"></label><hr></form>"
-      }
-    },
-    {
-      "data": "<!doctype html><isindex name=\"foo\">",
-      "errors": [
-        "(1,35): deprecated-tag"
-      ],
-      "document": {
-        "props": {
-          "tags": {
-            "html": true,
-            "head": true,
-            "body": true,
-            "form": true,
-            "hr": true,
-            "label": true,
-            "input": true
-          },
-          "doctype": true
-        },
-        "tree": [
-          {
-            "doctype": "html"
-          },
-          {
-            "tag": "html",
-            "children": [
-              {
-                "tag": "head"
-              },
-              {
-                "tag": "body",
-                "children": [
-                  {
-                    "tag": "form",
-                    "children": [
-                      {
-                        "tag": "hr"
-                      },
-                      {
-                        "tag": "label",
-                        "children": [
-                          {
-                            "text": "This is a searchable index. Enter search keywords: "
-                          },
-                          {
-                            "tag": "input",
-                            "attrs": [
-                              {
-                                "name": "name",
-                                "value": "isindex"
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "tag": "hr"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ],
-        "html": "<!DOCTYPE html><html><head></head><body><form><hr><label>This is a searchable index. Enter search keywords: <input name=\"isindex\"></label><hr></form></body></html>",
-        "noQuirksBodyHtml": "<form><hr><label>This is a searchable index. Enter search keywords: <input name=\"isindex\"></label><hr></form>"
+        "html": "<!DOCTYPE html><html><head></head><body><isindex type=\"hidden\"></isindex></body></html>",
+        "noQuirksBodyHtml": "<isindex type=\"hidden\"></isindex>"
       }
     },
     {
@@ -55566,8 +57271,7 @@
     {
       "data": "<!DOCTYPE html><select><optgroup><option></optgroup><option><select><option>",
       "errors": [
-        "(1,68): unexpected-select-in-select",
-        "(1,76): expected-closing-tag-but-got-eof"
+        "(1,68): unexpected-select-in-select"
       ],
       "document": {
         "props": {
@@ -55884,75 +57588,6 @@
         ],
         "html": "<!DOCTYPE html><!-- XXX - XXX - XXX --><html><head></head><body></body></html>",
         "noQuirksBodyHtml": "<!-- XXX - XXX - XXX -->"
-      }
-    },
-    {
-      "data": "<isindex test=x name=x>",
-      "errors": [
-        "(1,23): expected-doctype-but-got-start-tag",
-        "(1,23): deprecated-tag"
-      ],
-      "document": {
-        "props": {
-          "tags": {
-            "html": true,
-            "head": true,
-            "body": true,
-            "form": true,
-            "hr": true,
-            "label": true,
-            "input": true
-          }
-        },
-        "tree": [
-          {
-            "tag": "html",
-            "children": [
-              {
-                "tag": "head"
-              },
-              {
-                "tag": "body",
-                "children": [
-                  {
-                    "tag": "form",
-                    "children": [
-                      {
-                        "tag": "hr"
-                      },
-                      {
-                        "tag": "label",
-                        "children": [
-                          {
-                            "text": "This is a searchable index. Enter search keywords: "
-                          },
-                          {
-                            "tag": "input",
-                            "attrs": [
-                              {
-                                "name": "name",
-                                "value": "isindex"
-                              },
-                              {
-                                "name": "test",
-                                "value": "x"
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "tag": "hr"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ],
-        "html": "<html><head></head><body><form><hr><label>This is a searchable index. Enter search keywords: <input name=\"isindex\" test=\"x\"></label><hr></form></body></html>",
-        "noQuirksBodyHtml": "<form><hr><label>This is a searchable index. Enter search keywords: <input name=\"isindex\" test=\"x\"></label><hr></form>"
       }
     },
     {
@@ -58346,8 +59981,7 @@
     {
       "data": "<option><option>",
       "errors": [
-        "(1,8): expected-doctype-but-got-start-tag",
-        "(1,16): expected-closing-tag-but-got-eof"
+        "(1,8): expected-doctype-but-got-start-tag"
       ],
       "document": {
         "props": {
@@ -58771,6 +60405,265 @@
         ],
         "html": "<html><head></head><body><math><annotation-xml encoding=\" text/html \"></annotation-xml></math><div></div></body></html>",
         "noQuirksBodyHtml": "<math><annotation-xml encoding=\" text/html \"><div></div></annotation-xml></math>"
+      }
+    },
+    {
+      "data": "<math><annotation-xml> </annotation-xml>",
+      "errors": [
+        "(1,6): expected-doctype-but-got-start-tag",
+        "(1,40): expected-closing-tag-but-got-eof"
+      ],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "math math": true,
+            "math annotation-xml": true
+          }
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "math",
+                    "ns": "http://www.w3.org/1998/Math/MathML",
+                    "children": [
+                      {
+                        "tag": "annotation-xml",
+                        "ns": "http://www.w3.org/1998/Math/MathML",
+                        "children": [
+                          {
+                            "text": " "
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<html><head></head><body><math><annotation-xml> </annotation-xml></math></body></html>",
+        "noQuirksBodyHtml": "<math><annotation-xml> </annotation-xml></math>"
+      }
+    },
+    {
+      "data": "<math><annotation-xml>c</annotation-xml>",
+      "errors": [
+        "(1,6): expected-doctype-but-got-start-tag",
+        "(1,40): expected-closing-tag-but-got-eof"
+      ],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "math math": true,
+            "math annotation-xml": true
+          }
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "math",
+                    "ns": "http://www.w3.org/1998/Math/MathML",
+                    "children": [
+                      {
+                        "tag": "annotation-xml",
+                        "ns": "http://www.w3.org/1998/Math/MathML",
+                        "children": [
+                          {
+                            "text": "c"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<html><head></head><body><math><annotation-xml>c</annotation-xml></math></body></html>",
+        "noQuirksBodyHtml": "<math><annotation-xml>c</annotation-xml></math>"
+      }
+    },
+    {
+      "data": "<math><annotation-xml><!--foo-->",
+      "errors": [
+        "(1,6): expected-doctype-but-got-start-tag",
+        "(1,32): expected-closing-tag-but-got-eof"
+      ],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "math math": true,
+            "math annotation-xml": true
+          },
+          "comment": true
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "math",
+                    "ns": "http://www.w3.org/1998/Math/MathML",
+                    "children": [
+                      {
+                        "tag": "annotation-xml",
+                        "ns": "http://www.w3.org/1998/Math/MathML",
+                        "children": [
+                          {
+                            "comment": "foo"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<html><head></head><body><math><annotation-xml><!--foo--></annotation-xml></math></body></html>",
+        "noQuirksBodyHtml": "<math><annotation-xml><!--foo--></annotation-xml></math>"
+      }
+    },
+    {
+      "data": "<math><annotation-xml></svg>x",
+      "errors": [
+        "(1,6): expected-doctype-but-got-start-tag",
+        "(1,28): unexpected-end-tag",
+        "(1,29): expected-closing-tag-but-got-eof"
+      ],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "math math": true,
+            "math annotation-xml": true
+          }
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "math",
+                    "ns": "http://www.w3.org/1998/Math/MathML",
+                    "children": [
+                      {
+                        "tag": "annotation-xml",
+                        "ns": "http://www.w3.org/1998/Math/MathML",
+                        "children": [
+                          {
+                            "text": "x"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<html><head></head><body><math><annotation-xml>x</annotation-xml></math></body></html>",
+        "noQuirksBodyHtml": "<math><annotation-xml>x</annotation-xml></math>"
+      }
+    },
+    {
+      "data": "<math><annotation-xml><svg>x",
+      "errors": [
+        "(1,6): expected-doctype-but-got-start-tag",
+        "(1,28): expected-closing-tag-but-got-eof"
+      ],
+      "document": {
+        "props": {
+          "tags": {
+            "html": true,
+            "head": true,
+            "body": true,
+            "math math": true,
+            "math annotation-xml": true,
+            "svg svg": true
+          }
+        },
+        "tree": [
+          {
+            "tag": "html",
+            "children": [
+              {
+                "tag": "head"
+              },
+              {
+                "tag": "body",
+                "children": [
+                  {
+                    "tag": "math",
+                    "ns": "http://www.w3.org/1998/Math/MathML",
+                    "children": [
+                      {
+                        "tag": "annotation-xml",
+                        "ns": "http://www.w3.org/1998/Math/MathML",
+                        "children": [
+                          {
+                            "tag": "svg",
+                            "ns": "http://www.w3.org/2000/svg",
+                            "children": [
+                              {
+                                "text": "x"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "html": "<html><head></head><body><math><annotation-xml><svg>x</svg></annotation-xml></math></body></html>",
+        "noQuirksBodyHtml": "<math><annotation-xml><svg>x</svg></annotation-xml></math>"
       }
     }
   ],
@@ -62055,47 +63948,6 @@
       }
     },
     {
-      "data": "<!DOCTYPE html><body><menuitem>A",
-      "errors": [],
-      "document": {
-        "props": {
-          "tags": {
-            "html": true,
-            "head": true,
-            "body": true,
-            "menuitem": true
-          },
-          "doctype": true
-        },
-        "tree": [
-          {
-            "doctype": "html"
-          },
-          {
-            "tag": "html",
-            "children": [
-              {
-                "tag": "head"
-              },
-              {
-                "tag": "body",
-                "children": [
-                  {
-                    "tag": "menuitem"
-                  },
-                  {
-                    "text": "A"
-                  }
-                ]
-              }
-            ]
-          }
-        ],
-        "html": "<!DOCTYPE html><html><head></head><body><menuitem>A</body></html>",
-        "noQuirksBodyHtml": "<menuitem>A"
-      }
-    },
-    {
       "data": "<!DOCTYPE html><body><embed>A",
       "errors": [],
       "document": {
@@ -64243,8 +66095,7 @@
             "body": true,
             "pre": true
           },
-          "doctype": true,
-          "extraNL": true
+          "doctype": true
         },
         "tree": [
           {
@@ -64263,8 +66114,7 @@
                     "tag": "pre",
                     "children": [
                       {
-                        "text": "\nfoo",
-                        "extraNL": true
+                        "text": "\nfoo"
                       }
                     ]
                   }
@@ -64273,8 +66123,8 @@
             ]
           }
         ],
-        "html": "<!DOCTYPE html><html><head></head><body><pre>\n\nfoo</pre></body></html>",
-        "noQuirksBodyHtml": "<pre>\n\nfoo</pre>"
+        "html": "<!DOCTYPE html><html><head></head><body><pre>\nfoo</pre></body></html>",
+        "noQuirksBodyHtml": "<pre>\nfoo</pre>"
       }
     },
     {
@@ -64480,8 +66330,7 @@
             "body": true,
             "pre": true
           },
-          "doctype": true,
-          "extraNL": true
+          "doctype": true
         },
         "tree": [
           {
@@ -64500,8 +66349,7 @@
                     "tag": "pre",
                     "children": [
                       {
-                        "text": "\nA",
-                        "extraNL": true
+                        "text": "\nA"
                       }
                     ]
                   }
@@ -64510,8 +66358,8 @@
             ]
           }
         ],
-        "html": "<!DOCTYPE html><html><head></head><body><pre>\n\nA</pre></body></html>",
-        "noQuirksBodyHtml": "<pre>\n\nA</pre>"
+        "html": "<!DOCTYPE html><html><head></head><body><pre>\nA</pre></body></html>",
+        "noQuirksBodyHtml": "<pre>\nA</pre>"
       }
     },
     {
@@ -64768,8 +66616,7 @@
             "body": true,
             "textarea": true
           },
-          "doctype": true,
-          "extraNL": true
+          "doctype": true
         },
         "tree": [
           {
@@ -64788,8 +66635,7 @@
                     "tag": "textarea",
                     "children": [
                       {
-                        "text": "\nfoo",
-                        "extraNL": true
+                        "text": "\nfoo"
                       }
                     ]
                   }
@@ -64798,8 +66644,8 @@
             ]
           }
         ],
-        "html": "<!DOCTYPE html><html><head></head><body><textarea>\n\nfoo</textarea></body></html>",
-        "noQuirksBodyHtml": "<textarea>\n\nfoo</textarea>"
+        "html": "<!DOCTYPE html><html><head></head><body><textarea>\nfoo</textarea></body></html>",
+        "noQuirksBodyHtml": "<textarea>\nfoo</textarea>"
       }
     },
     {
@@ -65962,7 +67808,7 @@
           }
         ],
         "html": "<html><head><noscript><!--</noscript></head><body>--&gt;</body></html>",
-        "noQuirksBodyHtml": "<noscript>&lt;!--</noscript>--&gt;"
+        "noQuirksBodyHtml": "<noscript><!--</noscript>--></noscript>"
       }
     },
     {
@@ -66005,7 +67851,7 @@
           }
         ],
         "html": "<html><head><noscript><!--</noscript>--></noscript></head><body></body></html>",
-        "noQuirksBodyHtml": "<noscript>&lt;!--</noscript>--&gt;"
+        "noQuirksBodyHtml": "<noscript><!--</noscript>--></noscript>"
       }
     }
   ],
@@ -69455,6 +71301,7 @@
         "(1,14): foster-parenting-character",
         "(1,20): foster-parenting-character",
         "(1,25): unexpected-end-tag",
+        "(1,25): unexpected-end-tag-in-special-element",
         "(1,26): foster-parenting-character"
       ],
       "document": {
@@ -73954,8 +75801,7 @@
     {
       "data": "</select><option>",
       "errors": [
-        "(1,9): XXX-undefined-error",
-        "(1,17): eof-in-select"
+        "(1,9): XXX-undefined-error"
       ],
       "fragment": {
         "name": "select"
@@ -73978,8 +75824,7 @@
     {
       "data": "<input><option>",
       "errors": [
-        "(1,7): unexpected-input-in-select",
-        "(1,15): eof-in-select"
+        "(1,7): unexpected-input-in-select"
       ],
       "fragment": {
         "name": "select"
@@ -74002,8 +75847,7 @@
     {
       "data": "<keygen><option>",
       "errors": [
-        "(1,8): unexpected-input-in-select",
-        "(1,16): eof-in-select"
+        "(1,8): unexpected-input-in-select"
       ],
       "fragment": {
         "name": "select"
@@ -74026,8 +75870,7 @@
     {
       "data": "<textarea><option>",
       "errors": [
-        "(1,10): unexpected-input-in-select",
-        "(1,18): eof-in-select"
+        "(1,10): unexpected-input-in-select"
       ],
       "fragment": {
         "name": "select"
@@ -76394,8 +78237,7 @@
         "(1,25): unexpected-select-in-select",
         "(1,59): unexpected-select-in-select",
         "(1,93): unexpected-select-in-select",
-        "(1,127): unexpected-select-in-select",
-        "(1,127): expected-closing-tag-but-got-eof"
+        "(1,127): unexpected-select-in-select"
       ],
       "document": {
         "props": {
@@ -77757,7 +79599,7 @@
           }
         ],
         "html": "<html><head></head><body><p id=\"status\"><noscript><strong>A</strong></noscript><span>B</span></p></body></html>",
-        "noQuirksBodyHtml": "<p id=\"status\"><noscript>&lt;strong&gt;A&lt;/strong&gt;</noscript><span>B</span></p>"
+        "noQuirksBodyHtml": "<p id=\"status\"><noscript><strong>A</strong></noscript><span>B</span></p>"
       }
     },
     {
@@ -77826,7 +79668,7 @@
           }
         ],
         "html": "<html><head></head><body><p id=\"status\"><noscript><strong>A</strong></noscript><span>B</span></p></body></html>",
-        "noQuirksBodyHtml": "<p id=\"status\"><noscript>&lt;strong&gt;A&lt;/strong&gt;</noscript><span>B</span></p>"
+        "noQuirksBodyHtml": "<p id=\"status\"><noscript><strong>A</strong></noscript><span>B</span></p>"
       }
     },
     {
@@ -78668,61 +80510,6 @@
         ],
         "html": "<b><em><foo><foob><foob><foob><foob><fooc><fooc><fooc><fooc><food></food></fooc></fooc></fooc></fooc></foob></foob></foob></foob></foo></em></b><aside><b></b></aside>",
         "noQuirksBodyHtml": "<b><em><foo><foob><foob><foob><foob><fooc><fooc><fooc><fooc><food></food></fooc></fooc></fooc></fooc></foob></foob></foob></foob></foo></em></b><aside><b></b></aside>"
-      }
-    },
-    {
-      "data": "<isindex action=\"x\">",
-      "errors": [],
-      "fragment": {
-        "name": "table"
-      },
-      "document": {
-        "props": {
-          "tags": {
-            "form": true,
-            "hr": true,
-            "label": true,
-            "input": true
-          }
-        },
-        "tree": [
-          {
-            "tag": "form",
-            "attrs": [
-              {
-                "name": "action",
-                "value": "x"
-              }
-            ],
-            "children": [
-              {
-                "tag": "hr"
-              },
-              {
-                "tag": "label",
-                "children": [
-                  {
-                    "text": "This is a searchable index. Enter search keywords: "
-                  },
-                  {
-                    "tag": "input",
-                    "attrs": [
-                      {
-                        "name": "name",
-                        "value": "isindex"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "tag": "hr"
-              }
-            ]
-          }
-        ],
-        "html": "<form action=\"x\"><hr><label>This is a searchable index. Enter search keywords: <input name=\"isindex\"></label><hr></form>",
-        "noQuirksBodyHtml": "<form action=\"x\"><hr><label>This is a searchable index. Enter search keywords: <input name=\"isindex\"></label><hr></form>"
       }
     },
     {
