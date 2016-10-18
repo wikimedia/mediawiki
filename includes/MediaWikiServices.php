@@ -183,7 +183,7 @@ class MediaWikiServices extends ServiceContainer {
 
 		$oldInstance = self::$instance;
 
-		self::$instance = self::newInstance( $bootstrapConfig );
+		self::$instance = self::newInstance( $bootstrapConfig, 'load' );
 		self::$instance->importWiring( $oldInstance, [ 'BootstrapConfig' ] );
 
 		if ( $quick === 'quick' ) {
