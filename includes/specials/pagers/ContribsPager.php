@@ -66,9 +66,16 @@ class ContribsPager extends ReverseChronologicalPager {
 		$this->newOnly = !empty( $options['newOnly'] );
 		$this->hideMinor = !empty( $options['hideMinor'] );
 
+		// Date filtering: use timestamp if available
+		$this->offset = isset( $options['offset'] ) ? $options['offset'] : false;
 		$year = isset( $options['year'] ) ? $options['year'] : false;
 		$month = isset( $options['month'] ) ? $options['month'] : false;
-		$this->getDateCond( $year, $month );
+
+		if ( $this->offset ) {
+			$this->getDateCondWithDateString( $this->offset );
+		} else {
+			$this->getDateCond( $year, $month );
+		}
 
 		// Most of this code will use the 'contributions' group DB, which can map to replica DBs
 		// with extra user based indexes or partioning by user. The additional metadata

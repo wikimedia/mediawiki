@@ -41,7 +41,9 @@ class SpecialContributions extends IncludableSpecialPage {
 			'mediawiki.special',
 			'mediawiki.special.changeslist',
 		] );
+		$out->addModules( 'mediawiki.special.contributions' );
 		$this->addHelpLink( 'Help:User contributions' );
+		$out->enableOOUI();
 
 		$this->opts = [];
 		$request = $this->getRequest();
@@ -134,6 +136,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			$this->opts['month'] = $request->getIntOrNull( 'month' );
 		}
 
+		$this->opts['offset'] = $request->getVal( 'offset' );
+
 		$feedType = $request->getVal( 'feed' );
 
 		$feedParams = [
@@ -192,6 +196,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				'tagfilter' => $this->opts['tagfilter'],
 				'year' => $this->opts['year'],
 				'month' => $this->opts['month'],
+				'offset' => $this->opts['offset'],
 				'deletedOnly' => $this->opts['deletedOnly'],
 				'topOnly' => $this->opts['topOnly'],
 				'newOnly' => $this->opts['newOnly'],
@@ -440,6 +445,10 @@ class SpecialContributions extends IncludableSpecialPage {
 			$this->opts['month'] = '';
 		}
 
+		if ( !isset( $this->opts['offset'] ) ) {
+			$this->opts['offset'] = '';
+		}
+
 		if ( $this->opts['contribs'] == 'newbie' ) {
 			$this->opts['target'] = '';
 		}
@@ -478,6 +487,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			'contribs',
 			'year',
 			'month',
+			'offset',
 			'topOnly',
 			'newOnly',
 			'hideMinor',
@@ -669,7 +679,13 @@ class SpecialContributions extends IncludableSpecialPage {
 			$namespaceSelection .
 			$filterSelection .
 			$extraOptions .
-			$dateSelectionAndSubmit,
+			$dateSelectionAndSubmit .
+			new \Mediawiki\Widget\DateInputWidget( [
+				'infusable' => true,
+			    'id' => 'mw-date-offset',
+			    'name' => 'offset',
+			    'value' => $this->opts['offset'],
+			] ),
 			[ 'class' => 'mw-contributions-table' ]
 		);
 
