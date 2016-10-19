@@ -14,7 +14,8 @@ class HTMLTagFilter extends HTMLFormField {
 	}
 
 	public function getDiv( $value ) {
-		$this->tagFilter = ChangeTags::buildTagFilterSelector( $value );
+		$this->tagFilter = ChangeTags::buildTagFilterSelector(
+			$value, false, $this->mParent->getContext() );
 		if ( $this->tagFilter ) {
 			return parent::getDiv( $value );
 		}
