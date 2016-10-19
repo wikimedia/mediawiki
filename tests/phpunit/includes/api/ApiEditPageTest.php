@@ -195,9 +195,9 @@ class ApiEditPageTest extends ApiTestCase {
 				'section' => '9999',
 				'text' => 'text',
 			] );
-			$this->fail( "Should have raised a UsageException" );
-		} catch ( UsageException $e ) {
-			$this->assertEquals( 'nosuchsection', $e->getCodeString() );
+			$this->fail( "Should have raised an ApiUsageException" );
+		} catch ( ApiUsageException $e ) {
+			$this->assertTrue( self::apiExceptionHasCode( $e, 'nosuchsection' ) );
 		}
 	}
 
@@ -333,8 +333,8 @@ class ApiEditPageTest extends ApiTestCase {
 			], null, self::$users['sysop']->getUser() );
 
 			$this->fail( 'redirect-appendonly error expected' );
-		} catch ( UsageException $ex ) {
-			$this->assertEquals( 'redirect-appendonly', $ex->getCodeString() );
+		} catch ( ApiUsageException $ex ) {
+			$this->assertTrue( self::apiExceptionHasCode( $ex, 'redirect-appendonly' ) );
 		}
 	}
 
@@ -369,8 +369,8 @@ class ApiEditPageTest extends ApiTestCase {
 			], null, self::$users['sysop']->getUser() );
 
 			$this->fail( 'edit conflict expected' );
-		} catch ( UsageException $ex ) {
-			$this->assertEquals( 'editconflict', $ex->getCodeString() );
+		} catch ( ApiUsageException $ex ) {
+			$this->assertTrue( self::apiExceptionHasCode( $ex, 'editconflict' ) );
 		}
 	}
 
@@ -474,7 +474,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 	public function testCheckDirectApiEditingDisallowed_forNonTextContent() {
 		$this->setExpectedException(
-			'UsageException',
+			'ApiUsageException',
 			'Direct editing via API is not supported for content model ' .
 				'testing used by Dummy:ApiEditPageTest_nonTextPageEdit'
 		);

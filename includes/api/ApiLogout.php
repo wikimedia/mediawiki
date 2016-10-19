@@ -45,9 +45,11 @@ class ApiLogout extends ApiBase {
 
 		// Make sure it's possible to log out
 		if ( !$session->canSetUser() ) {
-			$this->dieUsage(
-				'Cannot log out when using ' .
-					$session->getProvider()->describe( Language::factory( 'en' ) ),
+			$this->dieWithError(
+				[
+					'cannotlogoutnow-text',
+					$session->getProvider()->describe( $this->getErrorFormatter()->getLanguage() )
+				],
 				'cannotlogout'
 			);
 		}

@@ -99,11 +99,11 @@ class ApiQueryTest extends ApiTestCase {
 		$exceptionCaught = false;
 		try {
 			$this->assertEquals( $expected, $api->titlePartToKey( $titlePart, $namespace ) );
-		} catch ( UsageException $e ) {
+		} catch ( ApiUsageException $e ) {
 			$exceptionCaught = true;
 		}
 		$this->assertEquals( $expectException, $exceptionCaught,
-			'UsageException thrown by titlePartToKey' );
+			'ApiUsageException thrown by titlePartToKey' );
 	}
 
 	function provideTestTitlePartToKey() {

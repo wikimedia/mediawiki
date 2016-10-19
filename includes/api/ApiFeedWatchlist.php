@@ -56,11 +56,11 @@ class ApiFeedWatchlist extends ApiBase {
 			$params = $this->extractRequestParams();
 
 			if ( !$config->get( 'Feed' ) ) {
-				$this->dieUsage( 'Syndication feeds are not available', 'feed-unavailable' );
+				$this->dieWithError( 'feed-unavailable' );
 			}
 
 			if ( !isset( $feedClasses[$params['feedformat']] ) ) {
-				$this->dieUsage( 'Invalid subscription feed type', 'feed-invalid' );
+				$this->dieWithError( 'feed-invalid' );
 			}
 
 			// limit to the number of hours going from now back
@@ -151,15 +151,26 @@ class ApiFeedWatchlist extends ApiBase {
 			$msg = wfMessage( 'watchlist' )->inContentLanguage()->escaped();
 			$feed = new $feedClasses[$feedFormat] ( $feedTitle, $msg, $feedUrl );
 
-			if ( $e instanceof UsageException ) {
-				$errorCode = $e->getCodeString();
+			if ( $e instanceof ApiUsageException ) {
+				foreach ( $e->getStatusValue()->getErrors() as $error ) {
+					$msg = ApiMessage::create( $error )
+						->inLanguage( $this->getLanguage() );
+					$errorTitle = $this->msg( 'api-feed-error-title', $msg->getApiCode() );
+					$errorText = $msg->text();
+					$feedItems[] = new FeedItem( $errorTitle, $errorText, '', '', '' );
+				}
 			} else {
-				// Something is seriously wrong
-				$errorCode = 'internal_api_error';
+				if ( $e instanceof UsageException ) {
+					$errorCode = $e->getCodeString();
+				} else {
+					// Something is seriously wrong
+					$errorCode = 'internal_api_error';
+				}
+				$errorTitle = $this->msg( 'api-feed-error-title', $msg->getApiCode() );
+				$errorText = $e->getMessage();
+				$feedItems[] = new FeedItem( $errorTitle, $errorText, '', '', '' );
 			}
 
-			$errorText = $e->getMessage();
-			$feedItems[] = new FeedItem( "Error ($errorCode)", $errorText, '', '', '' );
 			ApiFormatFeedWrapper::setResult( $this->getResult(), $feed, $feedItems );
 		}
 	}
