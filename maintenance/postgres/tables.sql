@@ -513,7 +513,6 @@ CREATE TABLE transcache (
 );
 
 
-CREATE SEQUENCE logging_log_id_seq;
 CREATE TABLE logging (
   log_id          INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('logging_log_id_seq'),
   log_type        TEXT         NOT NULL,
