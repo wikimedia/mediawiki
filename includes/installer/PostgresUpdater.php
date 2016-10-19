@@ -610,8 +610,8 @@ END;
 	protected function addSequence( $table, $pkey, $ns ) {
 		if ( !$this->db->sequenceExists( $ns ) ) {
 			$this->output( "Creating sequence $ns\n" );
-			$this->db->query( "CREATE SEQUENCE $ns" );
-			if ( $pkey !== false ) {
+			$this->db->query( "CREATE SEQUENCE $ns; EXCEPTION WHEN duplicate_table THEN END" );
+			if ( $pkey !== false ) { 
 				$this->setDefault( $table, $pkey, '"nextval"(\'"' . $ns . '"\'::"regclass")' );
 			}
 		}
