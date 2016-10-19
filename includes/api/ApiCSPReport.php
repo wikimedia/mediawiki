@@ -137,8 +137,11 @@ class ApiCSPReport extends ApiBase {
 		}
 		$status = FormatJson::parse( $postBody, FormatJson::FORCE_ASSOC );
 		if ( !$status->isGood() ) {
-			list( $code, ) = $this->getErrorFromStatus( $status );
-			$this->error( $code, __METHOD__ );
+			$msg = $status->getErrors()[0]['message'];
+			if ( $msg instanceof Message ) {
+				$msg = $msg->getKey();
+			}
+			$this->error( $msg, __METHOD__ );
 		}
 
 		$report = $status->getValue();
@@ -176,7 +179,7 @@ class ApiCSPReport extends ApiBase {
 	 *
 	 * @param $code String error code
 	 * @param $method String method that made error
-	 * @throws UsageException Always
+	 * @throws ApiUsageException Always
 	 */
 	private function error( $code, $method ) {
 		$this->log->info( 'Error reading CSP report: ' . $code, [
@@ -184,7 +187,9 @@ class ApiCSPReport extends ApiBase {
 			'user-agent' => $this->getRequest()->getHeader( 'user-agent' )
 		] );
 		// 500 so it shows up in browser's developer console.
-		$this->dieUsage( "Error processing CSP report: $code", 'cspreport-' . $code, 500 );
+		$this->dieWithError(
+			[ 'apierror-csp-report', wfEscapeWikiText( $code ) ], 'cspreport-' . $code, [], 500
+		);
 	}
 
 	public function getAllowedParams() {

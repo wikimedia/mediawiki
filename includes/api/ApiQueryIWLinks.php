@@ -45,7 +45,14 @@ class ApiQueryIWLinks extends ApiQueryBase {
 		$prop = array_flip( (array)$params['prop'] );
 
 		if ( isset( $params['title'] ) && !isset( $params['prefix'] ) ) {
-			$this->dieUsageMsg( [ 'missingparam', 'prefix' ] );
+			$this->dieWithError(
+				[
+					'apierror-invalidparammix-mustusewith',
+					$this->encodeParamName( 'title' ),
+					$this->encodeParamName( 'prefix' ),
+				],
+				'invalidparammix'
+			);
 		}
 
 		// Handle deprecated param
