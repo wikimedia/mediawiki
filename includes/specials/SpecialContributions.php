@@ -492,7 +492,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			$form .= "\t" . Html::hidden( $name, $value ) . "\n";
 		}
 
-		$tagFilter = ChangeTags::buildTagFilterSelector( $this->opts['tagfilter'] );
+		$tagFilter = ChangeTags::buildTagFilterSelector(
+			$this->opts['tagfilter'], false, $this->getContext() );
 
 		if ( $tagFilter ) {
 			$filterSelection = Html::rawElement(
