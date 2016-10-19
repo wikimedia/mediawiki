@@ -155,10 +155,10 @@ class ApiPageSet extends ApiBase {
 			}
 			$generator = $dbSource->getModuleManager()->getModule( $generatorName, null, true );
 			if ( $generator === null ) {
-				$this->dieUsage( 'Unknown generator=' . $generatorName, 'badgenerator' );
+				$this->dieWithError( [ 'apierror-badgenerator-unknown', $generatorName ], 'badgenerator' );
 			}
 			if ( !$generator instanceof ApiQueryGeneratorBase ) {
-				$this->dieUsage( "Module $generatorName cannot be used as a generator", 'badgenerator' );
+				$this->dieWithError( [ 'apierror-badgenerator-notgenerator', $generatorName ], 'badgenerator' );
 			}
 			// Create a temporary pageset to store generator's output,
 			// add any additional fields generator may need, and execute pageset to populate titles/pageids
@@ -194,13 +194,27 @@ class ApiPageSet extends ApiBase {
 			}
 			if ( isset( $this->mParams['pageids'] ) ) {
 				if ( isset( $dataSource ) ) {
-					$this->dieUsage( "Cannot use 'pageids' at the same time as '$dataSource'", 'multisource' );
+					$this->dieWithError(
+						[
+							'apierror-invalidparammix-cannotusewith',
+							$this->encodeParamName( 'pageids' ),
+							$this->encodeParamName( $dataSource )
+						],
+						'multisource'
+					);
 				}
 				$dataSource = 'pageids';
 			}
 			if ( isset( $this->mParams['revids'] ) ) {
 				if ( isset( $dataSource ) ) {
-					$this->dieUsage( "Cannot use 'revids' at the same time as '$dataSource'", 'multisource' );
+					$this->dieWithError(
+						[
+							'apierror-invalidparammix-cannotusewith',
+							$this->encodeParamName( 'revids' ),
+							$this->encodeParamName( $dataSource )
+						],
+						'multisource'
+					);
 				}
 				$dataSource = 'revids';
 			}
@@ -216,9 +230,7 @@ class ApiPageSet extends ApiBase {
 						break;
 					case 'revids':
 						if ( $this->mResolveRedirects ) {
-							$this->setWarning( 'Redirect resolution cannot be used ' .
-								'together with the revids= parameter. Any redirects ' .
-								'the revids= point to have not been resolved.' );
+							$this->addWarning( 'apiwarn-redirectsandrevids' );
 						}
 						$this->mResolveRedirects = false;
 						$this->initFromRevIDs( $this->mParams['revids'] );

@@ -43,9 +43,7 @@ class ApiCheckToken extends ApiBase {
 		);
 
 		if ( substr( $token, -strlen( urldecode( Token::SUFFIX ) ) ) === urldecode( Token::SUFFIX ) ) {
-			$this->setWarning(
-				"Check that symbols such as \"+\" in the token are properly percent-encoded in the URL."
-			);
+			$this->addWarning( 'apiwarn-checktoken-percentencoding' );
 		}
 
 		if ( $tokenObj->match( $token, $maxage ) ) {

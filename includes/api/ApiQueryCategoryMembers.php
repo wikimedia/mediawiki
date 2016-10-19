@@ -65,7 +65,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 		$categoryTitle = $this->getTitleOrPageId( $params )->getTitle();
 		if ( $categoryTitle->getNamespace() != NS_CATEGORY ) {
-			$this->dieUsage( 'The category name you entered is not valid', 'invalidcategory' );
+			$this->dieWithError( 'apierror-invalidcategory' );
 		}
 
 		$prop = array_flip( $params['prop'] );
@@ -153,7 +153,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					$startsortkey = Collation::singleton()->getSortKey( $params['startsortkeyprefix'] );
 				} elseif ( $params['starthexsortkey'] !== null ) {
 					if ( !$this->validateHexSortkey( $params['starthexsortkey'] ) ) {
-						$this->dieUsage( 'The starthexsortkey provided is not valid', 'bad_starthexsortkey' );
+						$encParamName = $this->encodeParamName( 'starthexsortkey' );
+						$this->dieWithError( [ 'apierror-badparameter', $encParamName ], "badvalue_$encParamName" );
 					}
 					$startsortkey = hex2bin( $params['starthexsortkey'] );
 				} else {
@@ -163,7 +164,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					$endsortkey = Collation::singleton()->getSortKey( $params['endsortkeyprefix'] );
 				} elseif ( $params['endhexsortkey'] !== null ) {
 					if ( !$this->validateHexSortkey( $params['endhexsortkey'] ) ) {
-						$this->dieUsage( 'The endhexsortkey provided is not valid', 'bad_endhexsortkey' );
+						$encParamName = $this->encodeParamName( 'endhexsortkey' );
+						$this->dieWithError( [ 'apierror-badparameter', $encParamName ], "badvalue_$encParamName" );
 					}
 					$endsortkey = hex2bin( $params['endhexsortkey'] );
 				} else {
