@@ -93,7 +93,7 @@ class LogEventsList extends ContextSource {
 		// For B/C, we take strings, but make sure they are converted...
 		$types = ( $types === '' ) ? [] : (array)$types;
 
-		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter );
+		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter, false, $this->getContext() );
 
 		$html = Html::hidden( 'title', $title->getPrefixedDBkey() );
 

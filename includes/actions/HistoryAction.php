@@ -168,7 +168,7 @@ class HistoryAction extends FormlessAction {
 		$year = $request->getInt( 'year' );
 		$month = $request->getInt( 'month' );
 		$tagFilter = $request->getVal( 'tagfilter' );
-		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter );
+		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter, false, $this->getContext() );
 
 		/**
 		 * Option to show only revisions that have been (partially) hidden via RevisionDelete
