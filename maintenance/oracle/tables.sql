@@ -488,7 +488,6 @@ CREATE TABLE &mw_prefix.transcache (
 );
 CREATE UNIQUE INDEX &mw_prefix.transcache_u01 ON &mw_prefix.transcache (tc_url);
 
-
 CREATE SEQUENCE logging_log_id_seq;
 CREATE TABLE &mw_prefix.logging (
   log_id          NUMBER      NOT NULL,
