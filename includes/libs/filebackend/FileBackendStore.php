@@ -1098,9 +1098,9 @@ abstract class FileBackendStore extends FileBackend {
 
 		// Build the list of paths involved
 		$paths = [];
-		foreach ( $performOps as $op ) {
-			$paths = array_merge( $paths, $op->storagePathsRead() );
-			$paths = array_merge( $paths, $op->storagePathsChanged() );
+		foreach ( $performOps as $performOp ) {
+			$paths = array_merge( $paths, $performOp->storagePathsRead() );
+			$paths = array_merge( $paths, $performOp->storagePathsChanged() );
 		}
 
 		// Enlarge the cache to fit the stat entries of these files
