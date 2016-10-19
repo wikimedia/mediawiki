@@ -82,9 +82,10 @@ class JpegMetadataExtractor {
 				// this is just a sanity check
 				throw new MWException( 'Too many jpeg segments. Aborting' );
 			}
-			if ( $buffer !== "\xFF" ) {
-				throw new MWException( "Error reading jpeg file marker. " .
-					"Expected 0xFF but got " . bin2hex( $buffer ) );
+			while ( $buffer !== "\xFF" ) {
+				// In theory JPEG files are not allowed to contain anything between the sections,
+				// but in practice they sometimes do. It's customary to ignore the garbage data.
+				$buffer = fread( $fh, 1 );
 			}
 
 			$buffer = fread( $fh, 1 );
