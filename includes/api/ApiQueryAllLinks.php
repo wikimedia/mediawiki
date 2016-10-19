@@ -116,9 +116,13 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			$matches = array_intersect_key( $prop, $this->props + [ 'ids' => 1 ] );
 			if ( $matches ) {
 				$p = $this->getModulePrefix();
-				$this->dieUsage(
-					"Cannot use {$p}prop=" . implode( '|', array_keys( $matches ) ) . " with {$p}unique",
-					'params'
+				$this->dieWithError(
+					[
+						'apierror-invalidparammix-cannotusewith',
+						"{$p}prop=" . implode( '|', array_keys( $matches ) ),
+						"{$p}unique"
+					],
+					'invalidparammix'
 				);
 			}
 			$this->addOption( 'DISTINCT' );

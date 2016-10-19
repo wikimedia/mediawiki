@@ -37,21 +37,12 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 	}
 
 	public function execute() {
-		$user = $this->getUser();
 		// Before doing anything at all, let's check permissions
-		if ( !$user->isAllowed( 'deletedhistory' ) ) {
-			$this->dieUsage(
-				'You don\'t have permission to view deleted revision information',
-				'permissiondenied'
-			);
-		}
+		$this->checkUserRightsAny( 'deletedhistory' );
 
-		$this->setWarning(
-			'list=deletedrevs has been deprecated. Please use prop=deletedrevisions or ' .
-			'list=alldeletedrevisions instead.'
-		);
-		$this->logFeatureUsage( 'action=query&list=deletedrevs' );
+		$this->addDeprecation( 'apiwarn-deprecation-deletedrevs', 'action=query&list=deletedrevs' );
 
+		$user = $this->getUser();
 		$db = $this->getDB();
 		$params = $this->extractRequestParams( false );
 		$prop = array_flip( $params['prop'] );
@@ -70,9 +61,6 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		if ( isset( $prop['token'] ) ) {
 			$p = $this->getModulePrefix();
-			$this->setWarning(
-				"{$p}prop=token has been deprecated. Please use action=query&meta=tokens instead."
-			);
 		}
 
 		// If we're in a mode that breaks the same-origin policy, no tokens can
@@ -105,19 +93,19 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			// Ignore namespace and unique due to inability to know whether they were purposely set
 			foreach ( [ 'from', 'to', 'prefix', /*'namespace', 'unique'*/ ] as $p ) {
 				if ( !is_null( $params[$p] ) ) {
-					$this->dieUsage( "The '{$p}' parameter cannot be used in modes 1 or 2", 'badparams' );
+					$this->dieWithError( [ 'apierror-deletedrevs-param-not-1-2', $p ], 'badparams' );
 				}
 			}
 		} else {
 			foreach ( [ 'start', 'end' ] as $p ) {
 				if ( !is_null( $params[$p] ) ) {
-					$this->dieUsage( "The {$p} parameter cannot be used in mode 3", 'badparams' );
+					$this->dieWithError( [ 'apierror-deletedrevs-param-not-3', $p ], 'badparams' );
 				}
 			}
 		}
 
 		if ( !is_null( $params['user'] ) && !is_null( $params['excludeuser'] ) ) {
-			$this->dieUsage( 'user and excludeuser cannot be used together', 'badparams' );
+			$this->dieWithError( 'user and excludeuser cannot be used together', 'badparams' );
 		}
 
 		$this->addTables( 'archive' );
@@ -162,12 +150,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->addFields( [ 'ar_text', 'ar_flags', 'ar_text_id', 'old_text', 'old_flags' ] );
 
 			// This also means stricter restrictions
-			if ( !$user->isAllowedAny( 'undelete', 'deletedtext' ) ) {
-				$this->dieUsage(
-					'You don\'t have permission to view deleted revision content',
-					'permissiondenied'
-				);
-			}
+			$this->checkUserRightsAny( [ 'deletedtext', 'undelete' ] );
 		}
 		// Check limits
 		$userMax = $fld_content ? ApiBase::LIMIT_SML1 : ApiBase::LIMIT_BIG1;

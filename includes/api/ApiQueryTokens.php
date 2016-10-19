@@ -40,7 +40,7 @@ class ApiQueryTokens extends ApiQueryBase {
 		];
 
 		if ( $this->lacksSameOriginSecurity() ) {
-			$this->setWarning( 'Tokens may not be obtained when the same-origin policy is not applied' );
+			$this->addWarning( [ 'apiwarn-tokens-origin' ] );
 			return;
 		}
 
