@@ -62,14 +62,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'renameSequence', 'category_id_seq', 'category_cat_id_seq' ],
 
 			# new sequences if not renamed above
-			[ 'addSequence', 'logging', false, 'logging_log_id_seq' ],
-			[ 'addSequence', 'page_restrictions', false, 'page_restrictions_pr_id_seq' ],
-			[ 'addSequence', 'filearchive', 'fa_id', 'filearchive_fa_id_seq' ],
-			[ 'addSequence', 'archive', false, 'archive_ar_id_seq' ],
-			[ 'addSequence', 'externallinks', false, 'externallinks_el_id_seq' ],
-			[ 'addSequence', 'watchlist', false, 'watchlist_wl_id_seq' ],
-			[ 'addSequence', 'change_tag', false, 'change_tag_ct_id_seq' ],
-			[ 'addSequence', 'tag_summary', false, 'tag_summary_ts_id_seq' ],
 
 			# new tables
 			[ 'addTable', 'category', 'patch-category.sql' ],
