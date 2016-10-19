@@ -610,7 +610,12 @@ END;
 	protected function addSequence( $table, $pkey, $ns ) {
 		if ( !$this->db->sequenceExists( $ns ) ) {
 			$this->output( "Creating sequence $ns\n" );
-			$this->db->query( "CREATE SEQUENCE $ns" );
+			$this->db->query( "
+				IF EXISTS (SELECT 0 FROM pg_class where relname = '$ns' )
+				THEN
+				CREATE SEQUENCE $ns
+				END IF"
+			);
 			if ( $pkey !== false ) {
 				$this->setDefault( $table, $pkey, '"nextval"(\'"' . $ns . '"\'::"regclass")' );
 			}
