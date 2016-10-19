@@ -39,25 +39,18 @@ class ApiUnblock extends ApiBase {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
-		if ( is_null( $params['id'] ) && is_null( $params['user'] ) ) {
-			$this->dieUsageMsg( 'unblock-notarget' );
-		}
-		if ( !is_null( $params['id'] ) && !is_null( $params['user'] ) ) {
-			$this->dieUsageMsg( 'unblock-idanduser' );
-		}
+		$this->requireOnlyOneParameter( $params, 'id', 'user' );
 
 		if ( !$user->isAllowed( 'block' ) ) {
-			$this->dieUsageMsg( 'cantunblock' );
+			$this->dieWithError( 'apierror-permissiondenied-unblock', 'permissiondenied' );
 		}
 		# bug 15810: blocked admins should have limited access here
 		if ( $user->isBlocked() ) {
 			$status = SpecialBlock::checkUnblockSelf( $params['user'], $user );
 			if ( $status !== true ) {
-				$msg = $this->parseMsg( $status );
-				$this->dieUsage(
-					$msg['info'],
-					$msg['code'],
-					0,
+				$this->dieWithError(
+					$status,
+					null,
 					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
 				);
 			}
@@ -79,7 +72,7 @@ class ApiUnblock extends ApiBase {
 		$block = Block::newFromTarget( $data['Target'] );
 		$retval = SpecialUnblock::processUnblock( $data, $this->getContext() );
 		if ( $retval !== true ) {
-			$this->dieUsageMsg( $retval[0] );
+			$this->dieStatus( self::errorArrayToStatus( $retval ) );
 		}
 
 		$res['id'] = $block->getId();

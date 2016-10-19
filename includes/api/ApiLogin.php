@@ -72,10 +72,11 @@ class ApiLogin extends ApiBase {
 
 		try {
 			$this->requirePostedParameters( [ 'password', 'token' ] );
-		} catch ( UsageException $ex ) {
+		} catch ( ApiUsageException $ex ) {
 			// Make this a warning for now, upgrade to an error in 1.29.
-			$this->setWarning( $ex->getMessage() );
-			$this->logFeatureUsage( 'login-params-in-query-string' );
+			foreach ( $ex->getStatusValue()->getErrors() as $error ) {
+				$this->addDeprecation( $error, 'login-params-in-query-string' );
+			}
 		}
 
 		$params = $this->extractRequestParams();
@@ -146,15 +147,10 @@ class ApiLogin extends ApiBase {
 			switch ( $res->status ) {
 				case AuthenticationResponse::PASS:
 					if ( $this->getConfig()->get( 'EnableBotPasswords' ) ) {
-						$warn = 'Main-account login via action=login is deprecated and may stop working ' .
-							'without warning.';
-						$warn .= ' To continue login with action=login, see [[Special:BotPasswords]].';
-						$warn .= ' To safely continue using main-account login, see action=clientlogin.';
+						$this->addDeprecation( 'apiwarn-deprecation-login-botpw', 'main-account-login' );
 					} else {
-						$warn = 'Login via action=login is deprecated and may stop working without warning.';
-						$warn .= ' To safely log in, see action=clientlogin.';
+						$this->addDeprecation( 'apiwarn-deprecation-login-nobotpw', 'main-account-login' );
 					}
-					$this->setWarning( $warn );
 					$authRes = 'Success';
 					$loginType = 'AuthManager';
 					break;
@@ -194,16 +190,16 @@ class ApiLogin extends ApiBase {
 
 			case 'NeedToken':
 				$result['token'] = $token->toString();
-				$this->setWarning( 'Fetching a token via action=login is deprecated. ' .
-				   'Use action=query&meta=tokens&type=login instead.' );
-				$this->logFeatureUsage( 'action=login&!lgtoken' );
+				$this->addDeprecation( 'apiwarn-deprecation-login-token', 'action=login&!lgtoken' );
 				break;
 
 			case 'WrongToken':
 				break;
 
 			case 'Failed':
-				$result['reason'] = $message->useDatabase( 'false' )->inLanguage( 'en' )->text();
+				$result['reason'] = ApiErrorFormatter::stripMarkup(
+					$message->useDatabase( false )->inLanguage( 'en' )->text()
+				);
 				break;
 
 			case 'Aborted':

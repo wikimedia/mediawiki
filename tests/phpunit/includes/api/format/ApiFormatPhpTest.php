@@ -133,12 +133,10 @@ class ApiFormatPhpTest extends ApiFormatTestBase {
 			$printer->closePrinter();
 			ob_end_clean();
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( UsageException $ex ) {
+		} catch ( ApiUsageException $ex ) {
 			ob_end_clean();
-			$this->assertSame(
-				'This response cannot be represented using format=php. ' .
-					'See https://phabricator.wikimedia.org/T68776',
-				$ex->getMessage(),
+			$this->assertTrue(
+				$ex->getStatusValue()->hasMessage( 'apierror-formatphp' ),
 				'Expected exception'
 			);
 		}
