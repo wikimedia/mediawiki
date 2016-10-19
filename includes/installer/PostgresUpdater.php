@@ -607,15 +607,7 @@ END;
 		return $d;
 	}
 
-	protected function addSequence( $table, $pkey, $ns ) {
-		if ( !$this->db->sequenceExists( $ns ) ) {
-			$this->output( "Creating sequence $ns\n" );
-			$this->db->query( "CREATE SEQUENCE $ns" );
-			if ( $pkey !== false ) {
-				$this->setDefault( $table, $pkey, '"nextval"(\'"' . $ns . '"\'::"regclass")' );
-			}
-		}
-	}
+	protected function addSequence( $table, $pkey, $ns ) {}
 
 	protected function renameSequence( $old, $new ) {
 		if ( $this->db->sequenceExists( $new ) ) {

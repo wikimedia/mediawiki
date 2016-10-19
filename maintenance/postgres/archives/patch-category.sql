@@ -1,4 +1,3 @@
-
 CREATE SEQUENCE category_cat_id_seq;
 
 CREATE TABLE category (
