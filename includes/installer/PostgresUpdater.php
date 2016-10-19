@@ -608,7 +608,24 @@ END;
 	}
 
 	protected function addSequence( $table, $pkey, $ns ) {
-		if ( !$this->db->sequenceExists( $ns ) ) {
+		$types = 'S';
+		if ( !is_array( $types ) ) {
+			$types = [ $types ];
+		}
+		$table = $this->realTableName( $table, 'raw' );
+		$etable = $this->addQuotes( $table );
+		$eschema = $this->addQuotes( $schema );
+		$sql = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
+			. "WHERE c.relnamespace = n.oid AND c.relname = $ns AND n.nspname = false "
+			. "AND c.relkind IN ('" . implode( "','", $types ) . "')";
+		$res = $this->query( $sql );
+		$count = $res;
+		(bool)$count;
+		if ( $count === 0 ) {
+			$this->output( "...sequence $new already exists.\n" );
+
+			return;
+		} elseif ( !$this->db->sequenceExists( $ns ) ) {
 			$this->output( "Creating sequence $ns\n" );
 			$this->db->query( "CREATE SEQUENCE $ns" );
 			if ( $pkey !== false ) {
