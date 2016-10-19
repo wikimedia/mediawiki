@@ -9,7 +9,11 @@ class MockApi extends ApiBase {
 	public function __construct() {
 	}
 
-	public function setWarning( $warning ) {
+	public function getModulePath() {
+		return $this->getModuleName();
+	}
+
+	public function addWarning( $warning, $code = null, $data = null ) {
 		$this->warnings[] = $warning;
 	}
 

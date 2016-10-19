@@ -42,10 +42,10 @@ class ApiImport extends ApiBase {
 		$isUpload = false;
 		if ( isset( $params['interwikisource'] ) ) {
 			if ( !$user->isAllowed( 'import' ) ) {
-				$this->dieUsageMsg( 'cantimport' );
+				$this->dieWithError( 'apierror-cantimport' );
 			}
 			if ( !isset( $params['interwikipage'] ) ) {
-				$this->dieUsageMsg( [ 'missingparam', 'interwikipage' ] );
+				$this->dieWithError( [ 'apierror-missingparam', 'interwikipage' ] );
 			}
 			$source = ImportStreamSource::newFromInterwiki(
 				$params['interwikisource'],
@@ -56,7 +56,7 @@ class ApiImport extends ApiBase {
 		} else {
 			$isUpload = true;
 			if ( !$user->isAllowed( 'importupload' ) ) {
-				$this->dieUsageMsg( 'cantimport-upload' );
+				$this->dieWithError( 'apierror-cantimport-upload' );
 			}
 			$source = ImportStreamSource::newFromUpload( 'xml' );
 		}
@@ -83,7 +83,7 @@ class ApiImport extends ApiBase {
 		try {
 			$importer->doImport();
 		} catch ( Exception $e ) {
-			$this->dieUsageMsg( [ 'import-unknownerror', $e->getMessage() ] );
+			$this->dieWithError( [ 'apierror-import-unknownerror', wfEscapeWikiText( $e->getMessage() ) ] );
 		}
 
 		$resultData = $reporter->getData();

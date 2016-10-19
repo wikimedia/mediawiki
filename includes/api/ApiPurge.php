@@ -39,8 +39,7 @@ class ApiPurge extends ApiBase {
 	public function execute() {
 		$main = $this->getMain();
 		if ( !$main->isInternalMode() && !$main->getRequest()->wasPosted() ) {
-			$this->logFeatureUsage( 'purge-via-GET' );
-			$this->setWarning( 'Use of action=purge via GET is deprecated. Use POST instead.' );
+			$this->addDeprecation( 'apiwarn-deprecation-purge-get', 'purge-via-GET' );
 		}
 
 		$params = $this->extractRequestParams();
@@ -69,8 +68,7 @@ class ApiPurge extends ApiBase {
 				$page->doPurge( $flags );
 				$r['purged'] = true;
 			} else {
-				$error = $this->parseMsg( [ 'actionthrottledtext' ] );
-				$this->setWarning( $error['info'] );
+				$this->addWarning( 'apierror-ratelimited' );
 			}
 
 			if ( $forceLinkUpdate || $forceRecursiveLinkUpdate ) {
@@ -114,8 +112,7 @@ class ApiPurge extends ApiBase {
 						}
 					}
 				} else {
-					$error = $this->parseMsg( [ 'actionthrottledtext' ] );
-					$this->setWarning( $error['info'] );
+					$this->addWarning( 'apierror-ratelimited' );
 					$forceLinkUpdate = false;
 				}
 			}
