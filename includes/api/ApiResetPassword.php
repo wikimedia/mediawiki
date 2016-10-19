@@ -52,7 +52,7 @@ class ApiResetPassword extends ApiBase {
 
 	public function execute() {
 		if ( !$this->hasAnyRoutes() ) {
-			$this->dieUsage( 'No password reset routes are available.', 'moduledisabled' );
+			$this->dieWithError( 'apihelp-resetpassword-description-noroutes', 'moduledisabled' );
 		}
 
 		$params = $this->extractRequestParams() + [

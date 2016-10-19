@@ -170,8 +170,13 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 		if ( isset( $this->prop['preferencestoken'] ) ) {
 			$p = $this->getModulePrefix();
-			$this->setWarning(
-				"{$p}prop=preferencestoken has been deprecated. Please use action=query&meta=tokens instead."
+			$this->addDeprecation(
+				[
+					'apiwarn-deprecation-withreplacement',
+					"{$p}prop=preferencestoken",
+					'action=query&meta=tokens',
+				],
+				"meta=userinfo&{$p}prop=preferencestoken"
 			);
 		}
 		if ( isset( $this->prop['preferencestoken'] ) &&

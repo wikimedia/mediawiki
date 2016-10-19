@@ -53,8 +53,8 @@ class ApiMainTest extends ApiTestCase {
 				'assert' => $assert,
 			], null, null, $user );
 			$this->assertFalse( $error ); // That no error was expected
-		} catch ( UsageException $e ) {
-			$this->assertEquals( $e->getCodeString(), $error );
+		} catch ( ApiUsageException $e ) {
+			$this->assertTrue( self::apiExceptionHasCode( $e, $error ) );
 		}
 	}
 
@@ -76,8 +76,8 @@ class ApiMainTest extends ApiTestCase {
 				'assertuser' => $user->getName() . 'X',
 			], null, null, $user );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( UsageException $e ) {
-			$this->assertEquals( $e->getCodeString(), 'assertnameduserfailed' );
+		} catch ( ApiUsageException $e ) {
+			$this->assertTrue( self::apiExceptionHasCode( $e, 'assertnameduserfailed' ) );
 		}
 	}
 

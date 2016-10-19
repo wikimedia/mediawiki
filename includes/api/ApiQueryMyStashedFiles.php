@@ -36,7 +36,7 @@ class ApiQueryMyStashedFiles extends ApiQueryBase {
 		$user = $this->getUser();
 
 		if ( $user->isAnon() ) {
-			$this->dieUsage( 'The upload stash is only available to logged-in users.', 'stashnotloggedin' );
+			$this->dieWithError( 'apierror-mustbeloggedin-uploadstash', 'stashnotloggedin' );
 		}
 
 		// Note: If user is logged in but cannot upload, they can still see

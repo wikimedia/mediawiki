@@ -49,11 +49,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 	 */
 	public function executeGenerator( $resultPageSet ) {
 		if ( $resultPageSet->isResolvingRedirects() ) {
-			$this->dieUsage(
-				'Use "gapfilterredir=nonredirects" option instead of "redirects" ' .
-					'when using allpages as a generator',
-				'params'
-			);
+			$this->dieWithError( 'apierror-allpages-generator-redirects', 'params' );
 		}
 
 		$this->run( $resultPageSet );
@@ -156,7 +152,9 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 
 			$this->addOption( 'DISTINCT' );
 		} elseif ( isset( $params['prlevel'] ) ) {
-			$this->dieUsage( 'prlevel may not be used without prtype', 'params' );
+			$this->dieWithError(
+				[ 'apierror-invalidparammix-mustusewith', 'prlevel', 'prtype' ], 'invalidparammix'
+			);
 		}
 
 		if ( $params['filterlanglinks'] == 'withoutlanglinks' ) {

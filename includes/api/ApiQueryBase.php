@@ -421,7 +421,7 @@ abstract class ApiQueryBase extends ApiBase {
 
 			$likeQuery = LinkFilter::makeLikeArray( $query, $protocol );
 			if ( !$likeQuery ) {
-				$this->dieUsage( 'Invalid query', 'bad_query' );
+				$this->dieWithError( 'apierror-badquery' );
 			}
 
 			$likeQuery = LinkFilter::keepOneWildcard( $likeQuery );
@@ -547,7 +547,7 @@ abstract class ApiQueryBase extends ApiBase {
 		$t = Title::makeTitleSafe( $namespace, $titlePart . 'x' );
 		if ( !$t || $t->hasFragment() ) {
 			// Invalid title (e.g. bad chars) or contained a '#'.
-			$this->dieUsageMsg( [ 'invalidtitle', $titlePart ] );
+			$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $titlePart ) ] );
 		}
 		if ( $namespace != $t->getNamespace() || $t->isExternal() ) {
 			// This can happen in two cases. First, if you call titlePartToKey with a title part
@@ -555,7 +555,7 @@ abstract class ApiQueryBase extends ApiBase {
 			// difficult to handle such a case. Such cases cannot exist and are therefore treated
 			// as invalid user input. The second case is when somebody specifies a title interwiki
 			// prefix.
-			$this->dieUsageMsg( [ 'invalidtitle', $titlePart ] );
+			$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $titlePart ) ] );
 		}
 
 		return substr( $t->getDBkey(), 0, -1 );
@@ -573,7 +573,7 @@ abstract class ApiQueryBase extends ApiBase {
 		$t = Title::newFromText( $titlePart . 'x', $defaultNamespace );
 		if ( !$t || $t->hasFragment() || $t->isExternal() ) {
 			// Invalid title (e.g. bad chars) or contained a '#'.
-			$this->dieUsageMsg( [ 'invalidtitle', $titlePart ] );
+			$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $titlePart ) ] );
 		}
 
 		return [ $t->getNamespace(), substr( $t->getDBkey(), 0, -1 ) ];
