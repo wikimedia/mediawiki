@@ -427,7 +427,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			foreach ( $this->params['token'] as $t ) {
 				$val = call_user_func( $tokenFunctions[$t], $pageid, $title );
 				if ( $val === false ) {
-					$this->setWarning( "Action '$t' is not allowed for the current user" );
+					$this->addWarning( [ 'apiwarn-tokennotallowed', $t ] );
 				} else {
 					$pageInfo[$t . 'token'] = $val;
 				}

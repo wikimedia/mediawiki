@@ -93,7 +93,7 @@ class ApiAuthManagerHelper {
 	/**
 	 * Call $manager->securitySensitiveOperationStatus()
 	 * @param string $operation Operation being checked.
-	 * @throws UsageException
+	 * @throws ApiUsageException
 	 */
 	public function securitySensitiveOperation( $operation ) {
 		$status = AuthManager::singleton()->securitySensitiveOperationStatus( $operation );
@@ -102,14 +102,10 @@ class ApiAuthManagerHelper {
 				return;
 
 			case AuthManager::SEC_REAUTH:
-				$this->module->dieUsage(
-					'You have not authenticated recently in this session, please reauthenticate.', 'reauthenticate'
-				);
+				$this->module->dieWithError( 'apierror-reauthenticate' );
 
 			case AuthManager::SEC_FAIL:
-				$this->module->dieUsage(
-					'This action is not available as your identify cannot be verified.', 'cannotreauthenticate'
-				);
+				$this->module->dieWithError( 'apierror-cannotreauthenticate' );
 
 			default:
 				throw new UnexpectedValueException( "Unknown status \"$status\"" );

@@ -152,7 +152,7 @@ class FileDeleteForm {
 	 * @param User $user User object performing the request
 	 * @param array $tags Tags to apply to the deletion action
 	 * @throws MWException
-	 * @return bool|Status
+	 * @return Status
 	 */
 	public static function doDelete( &$title, &$file, &$oldimage, $reason,
 		$suppress, User $user = null, $tags = []

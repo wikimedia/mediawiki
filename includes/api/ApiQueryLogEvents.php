@@ -121,10 +121,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			}
 
 			if ( !$valid ) {
-				$valueName = $this->encodeParamName( 'action' );
-				$this->dieUsage(
-					"Unrecognized value for parameter '$valueName': {$logAction}",
-					"unknown_$valueName"
+				$encParamName = $this->encodeParamName( 'action' );
+				$this->dieWithError(
+					[ 'apierror-unrecognizedvalue', $encParamName, wfEscapeWikiText( $logAction ) ],
+					"unknown_$encParamName"
 				);
 			}
 
@@ -173,7 +173,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		if ( !is_null( $title ) ) {
 			$titleObj = Title::newFromText( $title );
 			if ( is_null( $titleObj ) ) {
-				$this->dieUsage( "Bad title value '$title'", 'param_title' );
+				$this->dieWithError( [ 'apierror-invalidtitla', $title ] );
 			}
 			$this->addWhereFld( 'log_namespace', $titleObj->getNamespace() );
 			$this->addWhereFld( 'log_title', $titleObj->getDBkey() );
@@ -187,12 +187,12 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		if ( !is_null( $prefix ) ) {
 			if ( $this->getConfig()->get( 'MiserMode' ) ) {
-				$this->dieUsage( 'Prefix search disabled in Miser Mode', 'prefixsearchdisabled' );
+				$this->dieWithError( 'apierror-prefixsearchdisabled' );
 			}
 
 			$title = Title::newFromText( $prefix );
 			if ( is_null( $title ) ) {
-				$this->dieUsage( "Bad title value '$prefix'", 'param_prefix' );
+				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $prefix ) ] );
 			}
 			$this->addWhereFld( 'log_namespace', $title->getNamespace() );
 			$this->addWhere( 'log_title ' . $db->buildLike( $title->getDBkey(), $db->anyString() ) );
