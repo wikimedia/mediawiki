@@ -66,14 +66,17 @@ class ApiParamInfo extends ApiBase {
 				if ( $submodules ) {
 					try {
 						$module = $this->getModuleFromPath( $path );
-					} catch ( UsageException $ex ) {
-						$this->setWarning( $ex->getMessage() );
+					} catch ( ApiUsageException $ex ) {
+						foreach ( $ex->getStatusValue()->getErrors() as $error ) {
+							$this->addWarning( $error );
+						}
+						continue;
 					}
 					$submodules = $this->listAllSubmodules( $module, $recursive );
 					if ( $submodules ) {
 						$modules = array_merge( $modules, $submodules );
 					} else {
-						$this->setWarning( "Module $path has no submodules" );
+						$this->addWarning( [ 'apierror-badmodule-nosubmodules', $path ], 'badmodule' );
 					}
 				} else {
 					$modules[] = $path;
@@ -108,8 +111,10 @@ class ApiParamInfo extends ApiBase {
 		foreach ( $modules as $m ) {
 			try {
 				$module = $this->getModuleFromPath( $m );
-			} catch ( UsageException $ex ) {
-				$this->setWarning( $ex->getMessage() );
+			} catch ( ApiUsageException $ex ) {
+				foreach ( $ex->getStatusValue()->getErrors() as $error ) {
+					$this->addWarning( $error );
+				}
 				continue;
 			}
 			$key = 'modules';

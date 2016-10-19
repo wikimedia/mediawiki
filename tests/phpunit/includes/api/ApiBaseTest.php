@@ -20,7 +20,7 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	/**
-	 * @expectedException UsageException
+	 * @expectedException ApiUsageException
 	 * @covers ApiBase::requireOnlyOneParameter
 	 */
 	public function testRequireOnlyOneParameterZero() {
@@ -32,7 +32,7 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	/**
-	 * @expectedException UsageException
+	 * @expectedException ApiUsageException
 	 * @covers ApiBase::requireOnlyOneParameter
 	 */
 	public function testRequireOnlyOneParameterTrue() {
@@ -58,10 +58,10 @@ class ApiBaseTest extends ApiTestCase {
 		$context->setRequest( new FauxRequest( $input !== null ? [ 'foo' => $input ] : [] ) );
 		$wrapper->mMainModule = new ApiMain( $context );
 
-		if ( $expected instanceof UsageException ) {
+		if ( $expected instanceof ApiUsageException ) {
 			try {
 				$wrapper->getParameterFromSettings( 'foo', $paramSettings, true );
-			} catch ( UsageException $ex ) {
+			} catch ( ApiUsageException $ex ) {
 				$this->assertEquals( $expected, $ex );
 			}
 		} else {
@@ -73,9 +73,7 @@ class ApiBaseTest extends ApiTestCase {
 
 	public static function provideGetParameterFromSettings() {
 		$warnings = [
-			'The value passed for \'foo\' contains invalid or non-normalized data. Textual data should ' .
-			'be valid, NFC-normalized Unicode without C0 control characters other than ' .
-			'HT (\\t), LF (\\n), and CR (\\r).'
+			[ 'apiwarn-badutf8', 'foo' ],
 		];
 
 		$c0 = '';
@@ -96,7 +94,7 @@ class ApiBaseTest extends ApiTestCase {
 			'String param, required, empty' => [
 				'',
 				[ ApiBase::PARAM_DFLT => 'default', ApiBase::PARAM_REQUIRED => true ],
-				new UsageException( 'The foo parameter must be set', 'nofoo' ),
+				ApiUsageException::newWithMessage( null, [ 'apierror-missingparam', 'foo' ] ),
 				[]
 			],
 			'Multi-valued parameter' => [

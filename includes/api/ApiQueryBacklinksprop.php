@@ -238,7 +238,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			if ( isset( $show['fragment'] ) && isset( $show['!fragment'] ) ||
 				isset( $show['redirect'] ) && isset( $show['!redirect'] )
 			) {
-				$this->dieUsageMsg( 'show' );
+				$this->dieWithError( 'apierror-show' );
 			}
 			$this->addWhereIf( "rd_fragment != $emptyString", isset( $show['fragment'] ) );
 			$this->addWhereIf(
