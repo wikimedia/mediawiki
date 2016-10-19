@@ -246,12 +246,6 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 		$this->incrTableUpdate( 'categorylinks', 'cl', $categoryDeletes,
 			$this->getCategoryInsertions( $existing ) );
 
-		# Invalidate all categories which were added, deleted or changed (set symmetric difference)
-		$categoryInserts = array_diff_assoc( $this->mCategories, $existing );
-		$categoryUpdates = $categoryInserts + $categoryDeletes;
-		$this->invalidateCategories( $categoryUpdates );
-		$this->updateCategoryCounts( $categoryInserts, $categoryDeletes );
-
 		# Page properties
 		$existing = $this->getExistingProperties();
 		$this->propertyDeletions = $this->getPropertyDeletions( $existing );
@@ -262,6 +256,12 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 		$this->propertyInsertions = array_diff_assoc( $this->mProperties, $existing );
 		$changed = $this->propertyDeletions + $this->propertyInsertions;
 		$this->invalidateProperties( $changed );
+
+		# Invalidate all categories which were added, deleted or changed (set symmetric difference)
+		$categoryInserts = array_diff_assoc( $this->mCategories, $existing );
+		$categoryUpdates = $categoryInserts + $categoryDeletes;
+		$this->invalidateCategories( $categoryUpdates );
+		$this->updateCategoryCounts( $categoryInserts, $categoryDeletes );
 
 		# Refresh links of all pages including this page
 		# This will be in a separate transaction
@@ -324,7 +324,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	/**
 	 * @param array $cats
 	 */
-	function invalidateCategories( $cats ) {
+	private function invalidateCategories( $cats ) {
 		PurgeJobUtils::invalidatePages( $this->getDB(), NS_CATEGORY, array_keys( $cats ) );
 	}
 
@@ -333,17 +333,31 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	 * @param array $added Associative array of category name => sort key
 	 * @param array $deleted Associative array of category name => sort key
 	 */
-	function updateCategoryCounts( $added, $deleted ) {
-		$a = WikiPage::factory( $this->mTitle );
-		$a->updateCategoryCounts(
-			array_keys( $added ), array_keys( $deleted )
-		);
+	private function updateCategoryCounts( array $added, array $deleted ) {
+		global $wgUpdateRowsPerQuery;
+
+		$wp = WikiPage::factory( $this->mTitle );
+		$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
+		foreach ( array_chunk( array_keys( $added ), $wgUpdateRowsPerQuery ) as $addBatch ) {
+			$wp->updateCategoryCounts( $addBatch, [], $this->mId );
+			$factory->commitAndWaitForReplication(
+				__METHOD__, $this->ticket, [ 'wiki' => $this->getDB()->getWikiID() ]
+			);
+		}
+
+		foreach ( array_chunk( array_keys( $deleted ), $wgUpdateRowsPerQuery ) as $deleteBatch ) {
+			$wp->updateCategoryCounts( [], $deleteBatch, $this->mId );
+			$factory->commitAndWaitForReplication(
+				__METHOD__, $this->ticket, [ 'wiki' => $this->getDB()->getWikiID() ]
+			);
+		}
 	}
 
 	/**
 	 * @param array $images
 	 */
-	function invalidateImageDescriptions( $images ) {
+	private function invalidateImageDescriptions( $images ) {
 		PurgeJobUtils::invalidatePages( $this->getDB(), NS_FILE, array_keys( $images ) );
 	}
 
