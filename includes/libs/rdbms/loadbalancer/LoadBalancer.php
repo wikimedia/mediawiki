@@ -553,7 +553,7 @@ class LoadBalancer implements ILoadBalancer {
 		if ( $i == self::DB_REPLICA ) {
 			$this->mLastError = 'Unknown error'; // reset error string
 			# Try the general server pool if $groups are unavailable.
-			$i = in_array( false, $groups, true )
+			$i = ( $groups === [ false ] )
 				? false // don't bother with this if that is what was tried above
 				: $this->getReaderIndex( false, $domain );
 			# Couldn't find a working server in getReaderIndex()?
