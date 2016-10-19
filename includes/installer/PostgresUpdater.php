@@ -61,6 +61,15 @@ class PostgresUpdater extends DatabaseUpdater {
 			# since r58263
 			[ 'renameSequence', 'category_id_seq', 'category_cat_id_seq' ],
 
+			[ 'dropSequence', 'logging', 'logging_log_id_seq' ],
+			[ 'dropSequence', 'page_restrictions', 'page_restrictions_pr_id_seq' ],
+			[ 'dropSequence', 'filearchive', 'filearchive_fa_id_seq' ],
+			[ 'dropSequence', 'archive', 'archive_ar_id_seq' ],
+			[ 'dropSequence', 'externallinks', 'externallinks_el_id_seq' ],
+			[ 'dropSequence', 'watchlist', 'watchlist_wl_id_seq' ],
+			[ 'dropSequence', 'change_tag', 'change_tag_ct_id_seq' ],
+			[ 'dropSequence', 'tag_summary', 'tag_summary_ts_id_seq' ],
+
 			# new sequences if not renamed above
 			[ 'addSequence', 'logging', false, 'logging_log_id_seq' ],
 			[ 'addSequence', 'page_restrictions', false, 'page_restrictions_pr_id_seq' ],
@@ -614,6 +623,13 @@ END;
 			if ( $pkey !== false ) {
 				$this->setDefault( $table, $pkey, '"nextval"(\'"' . $ns . '"\'::"regclass")' );
 			}
+		}
+	}
+
+	protected function dropSequence( $table, $ns ) {
+		if ( $this->db->sequenceExists( $ns ) ) {
+			$this->output( "Dropping sequence $ns\n" );
+			$this->db->query( "DROP SEQUENCE $ns" );
 		}
 	}
 
