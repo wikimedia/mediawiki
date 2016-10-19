@@ -35,7 +35,7 @@ class ApiChangeAuthenticationData extends ApiBase {
 
 	public function execute() {
 		if ( !$this->getUser()->isLoggedIn() ) {
-			$this->dieUsage( 'Must be logged in to change authentication data', 'notloggedin' );
+			$this->dieWithError( 'apierror-mustbeloggedin-changeauthenticationdata', 'notloggedin' );
 		}
 
 		$helper = new ApiAuthManagerHelper( $this );
@@ -50,7 +50,7 @@ class ApiChangeAuthenticationData extends ApiBase {
 			$this->getConfig()->get( 'ChangeCredentialsBlacklist' )
 		);
 		if ( count( $reqs ) !== 1 ) {
-			$this->dieUsage( 'Failed to create change request', 'badrequest' );
+			$this->dieWithError( 'apierror-changeauth-norequest', 'badrequest' );
 		}
 		$req = reset( $reqs );
 
