@@ -35,7 +35,8 @@
 			"פוילישער",
 			"DatGuy",
 			"IKhitron",
-			"Matma Rex"
+			"Matma Rex",
+			"Or"
 		]
 	},
 	"tog-underline": "סימון קישורים בקו תחתי:",
@@ -55,7 +56,7 @@
 	"tog-watchdeletion": "הוספת דפים וקבצים שאני {{GENDER:|מוחק|מוחקת}} לרשימת המעקב שלי",
 	"tog-watchuploads": "הוספת קבצים חדשים שאני מעלה לרשימת המעקב שלי",
 	"tog-watchrollback": "הוספת דפים שאני {{GENDER:|מבצע|מבצעת}} בהם שחזור מהיר לרשימת המעקב שלי",
-	"tog-minordefault": "סימון כל עריכה כמשנית כברירת מחדל",
+	"tog-minordefault": "סימון כל העריכות כמשניות בתור ברירת מחדל",
 	"tog-previewontop": "הצגת תצוגה מקדימה לפני תיבת העריכה",
 	"tog-previewonfirst": "הצגת תצוגה מקדימה בעריכה הראשונה",
 	"tog-enotifwatchlistpages": "לשלוח אליי דוא\"ל כאשר משתנה דף או קובץ ברשימת המעקב שלי",
@@ -184,8 +185,8 @@
 	"qbfind": "חיפוש",
 	"qbbrowse": "ניווט",
 	"qbedit": "עריכה",
-	"qbpageoptions": "אפשרויות דף",
-	"qbmyoptions": "האפשרויות שלי",
+	"qbpageoptions": "הדף הזה",
+	"qbmyoptions": "הדפים שלי",
 	"faq": "שאלות ותשובות",
 	"faqpage": "Project:שאלות ותשובות",
 	"actions": "פעולות",

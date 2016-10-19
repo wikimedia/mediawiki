@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Irus"
+		]
+	},
+	"apihelp-block-description": "Vimbela umsebenzisi",
+	"apihelp-block-param-user": "Igama lomsebenzisi, ikheli le-IP, noma ikheli le-IP uhla ukuvimba.",
+	"apihelp-block-param-reblock": "Uma umsebenzisi usevele ivinjiwe, isula block ekhona."
+}

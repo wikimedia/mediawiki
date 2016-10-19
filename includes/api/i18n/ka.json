@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Irus"
+		]
+	},
+	"apihelp-login-param-name": "მომხმარებლის სახელი",
+	"apihelp-login-param-password": "პაროლი",
+	"apihelp-login-param-domain": "ელ-ფოსტა (არასავალდებულო)",
+	"apihelp-login-example-login": "შესვლა"
+}

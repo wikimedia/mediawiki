@@ -150,7 +150,8 @@
 			"Copper12",
 			"Ivanhercaz",
 			"AlvaroMolina",
-			"Tokvo"
+			"Tokvo",
+			"Irus"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -3913,5 +3914,7 @@
 	"userjsispublic": "Recuerda: las subpáginas JavaScript no deberían contener datos confidenciales, pues otros usuarios los pueden ver.",
 	"usercssispublic": "Recuerda: las subpáginas CSS no deberían contener datos confidenciales, pues otros usuarios los pueden ver.",
 	"restrictionsfield-badip": "Dirección o intervalo IP no válidos: $1",
-	"restrictionsfield-label": "Intervalos de IP permitidos:"
+	"restrictionsfield-label": "Intervalos de IP permitidos:",
+	"edit-error-short": "Errore: $1",
+	"edit-error-long": "Errores:\n\n$1"
 }

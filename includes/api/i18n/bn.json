@@ -16,6 +16,7 @@
 	"apihelp-delete-example-simple": "<kbd>প্রধান পাতা</kbd> মুছে ফেলুন।",
 	"apihelp-edit-param-text": "পাতার বিষয়বস্তু।",
 	"apihelp-edit-param-minor": "অনুল্লেখ্য সম্পাদনা।",
+	"apihelp-edit-param-bot": "এই সম্পাদনাটি একটি বট সম্পাদনা হিসাবে চিহ্নিত করে।",
 	"apihelp-edit-param-createonly": "পাতাটি আগেই বিদ্যমান থাকলে সম্পদনা করবেন না।",
 	"apihelp-edit-param-contentmodel": "নতুন বিষয়বস্তুর, বিষয়বস্তু-মডেল।",
 	"apihelp-edit-example-edit": "একটি পাতা সম্পাদনা করুন",

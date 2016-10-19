@@ -21,7 +21,8 @@
 			"Striking Blue",
 			"Ильнар",
 			"Macofe",
-			"StasR"
+			"StasR",
+			"Irus"
 		]
 	},
 	"config-desc": "Инсталлятор MediaWiki",
@@ -134,7 +135,7 @@
 	"config-type-mssql": "Microsoft SQL Server",
 	"config-support-info": "MediaWiki поддерживает следующие СУБД:\n\n$1\n\nЕсли вы не видите своей системы хранения данных в этом списке, следуйте инструкциям, на которые есть ссылка выше, чтобы получить поддержку.",
 	"config-dbsupport-mysql": "* [{{int:version-db-mysql-url}} MySQL] — основная база данных для MediaWiki, которая поддерживается лучше всего. MediaWiki также работает с [{{int:version-db-mariadb-url}} MariaDB] и [{{int:version-db-percona-url}} Percona Server], которые являются MySQL-совместимым. ([http://www.php.net/manual/ru/mysql.installation.php инструкция, как собрать PHP с поддержкой MySQL])",
-	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] — популярная открытая СУБД, альтернатива MySQL\nМогут встречаться небольшие неисправленные ошибки, не рекомендуется для использования в рабочей системе. ([http://www.php.net/manual/ru/pgsql.installation.php инструкция, как собрать PHP с поддержкой PostgreSQL]).",
+	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] — популярная открытая СУБД, альтернатива MySQL. ([http://www.php.net/manual/ru/pgsql.installation.php инструкция, как собрать PHP с поддержкой PostgreSQL]).",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] — это легковесная система баз данных, имеющая очень хорошую поддержку. ([http://www.php.net/manual/ru/pdo.installation.php инструкция, как собрать PHP с поддержкой SQLite], работающей посредством PDO)",
 	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle] — это коммерческая база данных масштаба предприятия. ([http://www.php.net/manual/ru/oci8.installation.php Как собрать PHP с поддержкой OCI8])",
 	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] — это коммерческое база данных база данных для Windows масштаба предприятия. ([http://www.php.net/manual/ru/sqlsrv.installation.php Как собрать PHP с поддержкой SQLSRV])",

@@ -2421,6 +2421,7 @@
 	"movelogpagetext": "بالأسفل قائمة بالصفحات التي تم نقلها.",
 	"movesubpage": "{{PLURAL:$1||الصفحة الفرعية|الصفحتان الفرعيتان|الصفحات الفرعية}}",
 	"movesubpagetext": "لهذه الصفحة {{PLURAL:$1||صفحة فرعية واحدة معروضة|صفحتان فرعيتان معروضتان|$1 صفحات فرعية معروضة|$1 صفحة فرعية معروضة}} بالأسفل.",
+	"movesubpagetalktext": "صفحة النقاش المكافئة لديها $1 {{PLURAL:$1|صفحة فرعية|صفحات فرعية}} معروضة بالأسفل.",
 	"movenosubpage": "ليس لهذه الصفحة صفحات فرعية.",
 	"movereason": "السبب:",
 	"revertmove": "استرجع",
@@ -2747,6 +2748,7 @@
 	"newimages-showbots": "أظهر التحميلات بواسطة البوتات",
 	"newimages-hidepatrolled": "أخف المرفوعات المنظورة",
 	"noimages": "لا شيء للعرض.",
+	"gallery-slideshow-toggle": "تغيير الصور المصغرة",
 	"ilsubmit": "بحث",
 	"bydate": "حسب التاريخ",
 	"sp-newimages-showfrom": "أظهر الملفات الجديدة بدءا من $2، $1",
@@ -3641,7 +3643,7 @@
 	"feedback-thanks": "شكرا! أُرسلت ملاحظاتك لصفحة \"[$2 $1]\".",
 	"feedback-thanks-title": "شكرا لك!",
 	"feedback-useragent": "وكيل المستخدم:",
-	"searchsuggest-search": "بحث",
+	"searchsuggest-search": "ابحث في {{SITENAME}}",
 	"searchsuggest-containing": "يحتوي...",
 	"api-error-autoblocked": "عنوان الأيبي الخاص بك تم منعه تلقائيا، لأنه تم استخدامه بواسطة مستخدم ممنوع",
 	"api-error-badaccess-groups": "لا يسمح لك بتحميل الملفات إلى هذه الويكي.",
@@ -3934,5 +3936,7 @@
 	"usercssispublic": "من فضل لاحظ: صفحات الCSS الفرعية لا ينبغي أن تحتوي على بيانات سرية بما أنها يمكن رؤيتها بواسطة المستخدمين الآخرين.",
 	"restrictionsfield-badip": "عنوان أيبي أو نطاق غير صحيح: $1",
 	"restrictionsfield-label": "نطاقات الأيبي المسموح بها:",
-	"restrictionsfield-help": "عنوان أيبي أو نطاق CIDR واحد لكل سطر. لتفعيل كل شيء، استخدم<br><code>0.0.0.0/0</code><br><code>::/0</code>"
+	"restrictionsfield-help": "عنوان أيبي أو نطاق CIDR واحد لكل سطر. لتفعيل كل شيء، استخدم<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"edit-error-short": "خطأ: $1",
+	"edit-error-long": "الأخطاء:\n\n$1"
 }

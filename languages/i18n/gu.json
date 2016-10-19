@@ -2878,7 +2878,7 @@
 	"feedback-submit": "જમા કરો",
 	"feedback-thanks": "આભર! તમારા પ્રતિભાવને \"[$2 $1]\" પાના પર મુકાયા છે.",
 	"feedback-thanks-title": "આભાર !",
-	"searchsuggest-search": "શોધો",
+	"searchsuggest-search": "{{SITENAME}} શોધો",
 	"searchsuggest-containing": "આ શબ્દ ધરાવતા...",
 	"api-error-badaccess-groups": "આ વિકિ પર ફાઈલ ચઢાવવાની પરવાનગી તમને નથી.",
 	"api-error-badtoken": "આંતરીક ત્રુટી: ખરાબ ટોકન",

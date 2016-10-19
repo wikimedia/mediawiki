@@ -2386,6 +2386,7 @@
 	"movelogpagetext": "Toto je záznam všech přesunů stránek.",
 	"movesubpage": "{{PLURAL:$1|Podstránka|Podstránky}}",
 	"movesubpagetext": "Tato stránka má $1 {{PLURAL:$1|podstránku uvedenou|podstránky vypsané|podstránek vypsaných}} níže.",
+	"movesubpagetalktext": "Odpovídající diskusní stránka má {{PLURAL:$1|jednu, níže zobrazenou podstránku|$1, níže zobrazené podstránky|$1, níže zobrazených podstránek}}.",
 	"movenosubpage": "Tato stránka nemá žádné podstránky.",
 	"movereason": "Důvod:",
 	"revertmove": "vrátit",

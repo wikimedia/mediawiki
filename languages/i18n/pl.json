@@ -218,7 +218,7 @@
 	"category-file-count-limited": "W tej kategorii {{PLURAL:$1|jest 1 plik|są $1 pliki|jest $1 plików}}.",
 	"listingcontinuesabbrev": "cd.",
 	"index-category": "Strony indeksowane",
-	"noindex-category": "Strony niezindeksowane",
+	"noindex-category": "Strony nieindeksowane",
 	"broken-file-category": "Strony z odwołaniami do nieistniejących plików",
 	"about": "O {{GRAMMAR:MS.lp|{{SITENAME}}}}",
 	"article": "artykuł",

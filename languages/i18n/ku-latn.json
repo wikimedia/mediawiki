@@ -18,7 +18,8 @@
 			"Uygar",
 			"MikaelF",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"Stryn"
 		]
 	},
 	"tog-underline": "Xetekê di bin girêdanê de çêke:",
@@ -358,7 +359,6 @@
 	"yourpasswordagain": "Şîfreyê dîsa binivîse:",
 	"createacct-yourpasswordagain": "Şîfreyê bipejirîne",
 	"createacct-yourpasswordagain-ph": "Şîfreyê ji nû ve binivîse",
-	"remembermypassword": "Şifreya min di her têketina min de bîne bîra xwe (herî zêde $1 {{PLURAL:$1|rojekê|rojan}})",
 	"userlogin-remembermypassword": "Min têketî bihêle",
 	"userlogin-signwithsecure": "Girêdana parastî bikarbîne",
 	"yourdomainname": "Domainê te",
@@ -512,7 +512,7 @@
 	"preview": "Pêşdîtin",
 	"showpreview": "Pêşdîtinê nîşan bide",
 	"showdiff": "Guherandinan nîşan bide",
-	"anoneditwarning": "<strong>Hişyarî:<strong> Tu netêketî yî! Navnîşana IP'ya te wê di dîroka guherandina vê rûpelê de bê tomarkirin. Heke tu <strong>[$1 têkevî]</strong> an jî  <strong>[$2 hesabekî çêbikî]</strong>, li gel sûdên te yên din guhertinên ku tu bikî jî wê ji nasnavê te re bê atfkirin.",
+	"anoneditwarning": "<strong>Hişyarî:</strong> Tu netêketî yî! Navnîşana IP'ya te wê di dîroka guherandina vê rûpelê de bê tomarkirin. Heke tu <strong>[$1 têkevî]</strong> an jî <strong>[$2 hesabekî çêbikî]</strong>, li gel sûdên te yên din guhertinên ku tu bikî jî wê ji nasnavê te re bê atfkirin.",
 	"anonpreviewwarning": "''Tu ne têketî yî. Tomarkirin wê navnîşana IP'ya te di dîroka guhertinan de nîşan bide.''",
 	"missingsummary": "<span style=\"color:#990000;\">'''Zanibe:'''</span> Te nivîsekî kurt ji bo guherandinê ra nenivîsand. Eger tu niha carekî din li Tomar xê, guherandinê te vê nivîsekî kurt yê were tomarkirin.",
 	"missingcommenttext": "Ji kerema xwe kurteya naverokê li jêr binivisîne.",
@@ -595,7 +595,6 @@
 	"undo-success": "Ev guherandin dikare were şûndekirin. Ji kerema xwe ferqa piştî tomarkirinê bibîne, bê ka tu dixwazî vê guhertoyê tomar bikî an na. Ger te şaşîtiyek kir, ji kerema xwe derkeve.",
 	"undo-failure": "Ev guhertin ji ber guherandinên piştî wê re nikare were şûndekirin.",
 	"undo-summary": "Guhertoya $1 ya [[Special:Contributions/$2|$2]] ([[User talk:$2|gotûbêj]]) şûnde kir",
-	"cantcreateaccounttitle": "Hesab nikarîbû were çêkirin",
 	"cantcreateaccount-text": "Çêkirinê hesaban ji vê IP'yê ('''$1''') hatiye qedexekirin ji [[User:$3|$3]].\n\nSedema qedexekirina $3 ev e: ''$2''",
 	"viewpagelogs": "Guhertinên vê rûpelê bibîne",
 	"nohistory": "Dîroka guherandina vê rûpelê nîne.",
@@ -1847,7 +1846,6 @@
 	"feedback-back": "Paşve",
 	"feedback-cancel": "Betal bike",
 	"feedback-close": "Çêbû",
-	"feedback-error-title": "Çewtî",
 	"feedback-message": "Peyam:",
 	"feedback-subject": "Mijar:",
 	"feedback-submit": "Tomar bike",
