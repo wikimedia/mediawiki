@@ -40,7 +40,7 @@ class ApiContinuationManager {
 	 * @param ApiBase $module Module starting the continuation
 	 * @param ApiBase[] $allModules Contains ApiBase instances that will be executed
 	 * @param array $generatedModules Names of modules that depend on the generator
-	 * @throws UsageException
+	 * @throws ApiUsageException
 	 */
 	public function __construct(
 		ApiBase $module, array $allModules = [], array $generatedModules = []
@@ -57,10 +57,7 @@ class ApiContinuationManager {
 		if ( $continue !== '' ) {
 			$continue = explode( '||', $continue );
 			if ( count( $continue ) !== 2 ) {
-				throw new UsageException(
-					'Invalid continue param. You should pass the original value returned by the previous query',
-					'badcontinue'
-				);
+				throw ApiUsageException::newWithMessage( $module->getMain(), 'apierror-badcontinue' );
 			}
 			$this->generatorDone = ( $continue[0] === '-' );
 			$skip = explode( '|', $continue[1] );
