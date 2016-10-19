@@ -190,7 +190,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->errorLogger = isset( $params['errorLogger'] )
 			? $params['errorLogger']
 			: function ( Exception $e ) {
-				trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_WARNING );
+				trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 			};
 
 		foreach ( [ 'replLogger', 'connLogger', 'queryLogger', 'perfLogger' ] as $key ) {

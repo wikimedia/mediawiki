@@ -25,6 +25,7 @@
  * @file
  * @ingroup Maintenance
  */
+use MediaWiki\MediaWikiServices;
 
 if ( !defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 	echo "This file must be included after Maintenance.php\n";
@@ -113,12 +114,13 @@ $maintenance->execute();
 $maintenance->globals();
 
 // Perform deferred updates.
+$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+$lbFactory->commitMasterChanges( $maintClass );
 DeferredUpdates::doUpdates();
 
 // log profiling info
 wfLogProfilingData();
 
 // Commit and close up!
-$factory = wfGetLBFactory();
-$factory->commitMasterChanges( 'doMaintenance' );
-$factory->shutdown( $factory::SHUTDOWN_NO_CHRONPROT );
+$lbFactory->commitMasterChanges( 'doMaintenance' );
+$lbFactory->shutdown( $lbFactory::SHUTDOWN_NO_CHRONPROT );

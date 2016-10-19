@@ -97,7 +97,7 @@ abstract class LBFactory implements ILBFactory {
 		$this->errorLogger = isset( $conf['errorLogger'] )
 			? $conf['errorLogger']
 			: function ( Exception $e ) {
-				trigger_error( E_WARNING, get_class( $e ) . ': ' . $e->getMessage() );
+				trigger_error( E_USER_WARNING, get_class( $e ) . ': ' . $e->getMessage() );
 			};
 
 		$this->profiler = isset( $params['profiler'] ) ? $params['profiler'] : null;
