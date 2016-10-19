@@ -51,7 +51,14 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 		$params = $this->extractRequestParams();
 
 		if ( isset( $params['title'] ) && !isset( $params['lang'] ) ) {
-			$this->dieUsageMsg( [ 'missingparam', 'lang' ] );
+			$this->dieWithError(
+				[
+					'apierror-invalidparammix-mustusewith',
+					$this->encodeParamName( 'title' ),
+					$this->encodeParamName( 'lang' )
+				],
+				'nolang'
+			);
 		}
 
 		if ( !is_null( $params['continue'] ) ) {

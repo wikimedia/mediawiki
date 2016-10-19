@@ -445,10 +445,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$showHostnames = $this->getConfig()->get( 'ShowHostnames' );
 		if ( $includeAll ) {
 			if ( !$showHostnames ) {
-				$this->dieUsage(
-					'Cannot view all servers info unless $wgShowHostnames is true',
-					'includeAllDenied'
-				);
+				$this->dieWithError( 'apierror-siteinfo-includealldenied', 'includeAllDenied' );
 			}
 
 			$lags = $lb->getLagTimes();
