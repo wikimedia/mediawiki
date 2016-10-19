@@ -1233,7 +1233,7 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 			->with( 'watchlisttoken' )
 			->willReturn( '0123456789abcdef' );
 
-		$this->setExpectedException( UsageException::class, 'Incorrect watchlist token provided' );
+		$this->setExpectedException( ApiUsageException::class, 'Incorrect watchlist token provided' );
 		$queryService->getWatchedItemsWithRecentChangeInfo(
 			$user,
 			[ 'watchlistOwner' => $otherUser, 'watchlistOwnerToken' => $token ]

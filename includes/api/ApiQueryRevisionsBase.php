@@ -70,10 +70,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				&& $params['diffto'] != 'prev' && $params['diffto'] != 'next'
 			) {
 				$p = $this->getModulePrefix();
-				$this->dieUsage(
-					"{$p}diffto must be set to a non-negative number, \"prev\", \"next\" or \"cur\"",
-					'diffto'
-				);
+				$this->dieWithError( [ 'apierror-baddiffto', $p ], 'diffto' );
 			}
 			// Check whether the revision exists and is readable,
 			// DifferenceEngine returns a rather ambiguous empty
@@ -81,10 +78,10 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			if ( $params['diffto'] != 0 ) {
 				$difftoRev = Revision::newFromId( $params['diffto'] );
 				if ( !$difftoRev ) {
-					$this->dieUsageMsg( [ 'nosuchrevid', $params['diffto'] ] );
+					$this->dieWithError( [ 'apierror-nosuchrevid', $params['diffto'] ] );
 				}
 				if ( !$difftoRev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
-					$this->setWarning( "Couldn't diff to r{$difftoRev->getId()}: content is hidden" );
+					$this->addWarning( [ 'apiwarn-difftohidden', $difftoRev->getId() ] );
 					$params['diffto'] = null;
 				}
 			}
@@ -262,8 +259,8 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			if ( $content && $this->section !== false ) {
 				$content = $content->getSection( $this->section, false );
 				if ( !$content ) {
-					$this->dieUsage(
-						"There is no section {$this->section} in r" . $revision->getId(),
+					$this->dieWithError(
+						[ 'apierror-nosuchsection-what', $this->section, $this->msg( 'revid', $revision->getId() ) ],
 						'nosuchsection'
 					);
 				}
@@ -294,9 +291,10 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					$vals['parsetree'] = $xml;
 				} else {
 					$vals['badcontentformatforparsetree'] = true;
-					$this->setWarning( 'Conversion to XML is supported for wikitext only, ' .
-						$title->getPrefixedDBkey() .
-						' uses content model ' . $content->getModel() );
+					$this->addWarning(
+						[ 'apierror-parsetree-notwikitext-title', $title->getPrefixedText(), $content->getModel() ],
+						'parsetree-notwikitext'
+					);
 				}
 			}
 		}
@@ -315,9 +313,9 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 						ParserOptions::newFromContext( $this->getContext() )
 					);
 				} else {
-					$this->setWarning( 'Template expansion is supported for wikitext only, ' .
-						$title->getPrefixedDBkey() .
-						' uses content model ' . $content->getModel() );
+					$this->addWarning( [
+						'apierror-templateexpansion-notwikitext', $title->getPrefixedText(), $content->getModel()
+					] );
 					$vals['badcontentformat'] = true;
 					$text = false;
 				}
@@ -336,9 +334,8 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				$model = $content->getModel();
 
 				if ( !$content->isSupportedFormat( $format ) ) {
-					$name = $title->getPrefixedDBkey();
-					$this->setWarning( "The requested format {$this->contentFormat} is not " .
-						"supported for content model $model used by $name" );
+					$name = $title->getPrefixedText();
+					$this->addWarning( [ 'apierror-badformat', $this->contentFormat, $model, $name ] );
 					$vals['badcontentformat'] = true;
 					$text = false;
 				} else {
@@ -370,9 +367,8 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					if ( $this->contentFormat
 						&& !ContentHandler::getForModelID( $model )->isSupportedFormat( $this->contentFormat )
 					) {
-						$name = $title->getPrefixedDBkey();
-						$this->setWarning( "The requested format {$this->contentFormat} is not " .
-							"supported for content model $model used by $name" );
+						$name = $title->getPrefixedText();
+						$this->addWarning( [ 'apierror-badformat', $this->contentFormat, $model, $name ] );
 						$vals['diff']['badcontentformat'] = true;
 						$engine = null;
 					} else {

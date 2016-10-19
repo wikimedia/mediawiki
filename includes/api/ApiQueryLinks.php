@@ -94,7 +94,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			foreach ( $params[$this->titlesParam] as $t ) {
 				$title = Title::newFromText( $t );
 				if ( !$title ) {
-					$this->setWarning( "\"$t\" is not a valid title" );
+					$this->addWarning( [ 'apiwarn-invalidtitle', wfEscapeWikiText( $t ) ] );
 				} else {
 					$lb->addObj( $title );
 				}
