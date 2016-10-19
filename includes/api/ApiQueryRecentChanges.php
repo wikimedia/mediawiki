@@ -195,7 +195,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				|| ( isset( $show['patrolled'] ) && isset( $show['unpatrolled'] ) )
 				|| ( isset( $show['!patrolled'] ) && isset( $show['unpatrolled'] ) )
 			) {
-				$this->dieUsageMsg( 'show' );
+				$this->dieWithError( 'apierror-show' );
 			}
 
 			// Check permissions
@@ -204,10 +204,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				|| isset( $show['unpatrolled'] )
 			) {
 				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
-					$this->dieUsage(
-						'You need patrol or patrolmarks permission to request the patrolled flag',
-						'permissiondenied'
-					);
+					$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'permissiondenied' );
 				}
 			}
 
@@ -239,9 +236,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			);
 		}
 
-		if ( !is_null( $params['user'] ) && !is_null( $params['excludeuser'] ) ) {
-			$this->dieUsage( 'user and excludeuser cannot be used together', 'user-excludeuser' );
-		}
+		$this->requireMaxOneParameter( $params, 'user', 'excludeuser' );
 
 		if ( !is_null( $params['user'] ) ) {
 			$this->addWhereFld( 'rc_user_text', $params['user'] );
@@ -274,10 +269,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->initProperties( $prop );
 
 			if ( $this->fld_patrolled && !$user->useRCPatrol() && !$user->useNPPatrol() ) {
-				$this->dieUsage(
-					'You need patrol or patrolmarks permission to request the patrolled flag',
-					'permissiondenied'
-				);
+				$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'permissiondenied' );
 			}
 
 			/* Add fields to our query if they are specified as a needed parameter. */
@@ -571,7 +563,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				$val = call_user_func( $tokenFunctions[$t], $row->rc_cur_id,
 					$title, RecentChange::newFromRow( $row ) );
 				if ( $val === false ) {
-					$this->setWarning( "Action '$t' is not allowed for the current user" );
+					$this->addWarning( [ 'apiwarn-tokennotallowed', $t ] );
 				} else {
 					$vals[$t . 'token'] = $val;
 				}

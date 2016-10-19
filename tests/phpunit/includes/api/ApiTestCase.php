@@ -3,6 +3,8 @@
 abstract class ApiTestCase extends MediaWikiLangTestCase {
 	protected static $apiUrl;
 
+	protected static $errorFormatter = null;
+
 	/**
 	 * @var ApiTestContext
 	 */
@@ -194,6 +196,26 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		}
 
 		return $data[0]['tokens'];
+	}
+
+	protected static function getErrorFormatter() {
+		if ( self::$errorFormatter === null ) {
+			self::$errorFormatter = new ApiErrorFormatter(
+				new ApiResult( false ),
+				Language::factory( 'en' ),
+				'none'
+			);
+		}
+		return self::$errorFormatter;
+	}
+
+	public static function apiExceptionHasCode( ApiUsageException $ex, $code ) {
+		return (bool)array_filter(
+			self::getErrorFormatter()->arrayFromStatus( $ex->getStatusValue() ),
+			function ( $e ) use ( $code ) {
+				return is_array( $e ) && $e['code'] === $code;
+			}
+		);
 	}
 
 	public function testApiTestGroup() {

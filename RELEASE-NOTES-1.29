@@ -14,6 +14,14 @@ production.
   will still be blocked.
 * The resetpassword right and associated password reset capture feature has
   been removed.
+* The $error parameter to the EmailUser hook should be set to a Status object
+  or boolean false. This should be compatible with at least MediaWiki 1.23 if
+  not earlier. Returning a raw HTML string is now deprecated.
+* The $message parameter to the ApiCheckCanExecute hook should be set to an
+  ApiMessage. This is compatible with MediaWiki 1.27 and later. Returning a
+  code for ApiBase::parseMsg() will no longer work.
+* ApiBase::$messageMap is no longer public. Code attempting to access it will
+  result in a PHP fatal error.
 
 === New features in 1.29 ===
 * (T5233) A cookie can now be set when a user is autoblocked, to track that user if
@@ -37,8 +45,38 @@ production.
   body instead.
 * The capture option for action=resetpassword has been removed
 * action=clearhasmsg now requires a POST.
+* (T47843) API errors and warnings may be requested in non-English languages
+  using the new 'errorformat', 'errorlang', and 'errorsuselocal' parameters.
+* API error codes may have changed. Most notably, errors from modules using
+  parameter prefixes (e.g. all query submodules) will no longer be prefixed.
+* action=emailuser may return a "Warnings" status, and now returns 'warnings' and
+  'errors' subelements (as applicable) instead of 'message'.
+* action=imagerotate returns an 'errors' subelement rather than 'errormessage'.
+* action=move now reports errors when moving the talk page as an array under
+  key 'talkmove-errors', rather than using 'talkmove-error-code' and
+  'talkmove-error-info'. The format for subpage move errors has also changed.
+* action=rollback no longer returns a "messageHtml" property on errors. Use
+  errorformat=html if you're wanting HTML formatting of messages.
+* action=upload now reports optional stash failures as an array under key
+  'stasherrors' rather than a 'stashfailed' text string.
 
 === Action API internal changes in 1.29 ===
+* New methods were added to ApiBase to handle errors and warnings using i18n
+  keys. Methods for using hard-coded English messages were deprecated:
+  * ApiBase::dieUsage() was deprecated
+  * ApiBase::dieUsageMsg() was deprecated
+  * ApiBase::dieUsageMsgOrDebug() was deprecated
+  * ApiBase::getErrorFromStatus() was deprecated
+  * ApiBase::parseMsg() was deprecated
+  * ApiBase::setWarning() was deprecated
+* ApiBase::$messageMap is no longer public. Code attempting to access it will
+  result in a PHP fatal error.
+* The $message parameter to the ApiCheckCanExecute hook should be set to an
+  ApiMessage. This is compatible with MediaWiki 1.27 and later. Returning a
+  code for ApiBase::parseMsg() will no longer work.
+* UsageException is deprecated in favor of ApiUsageException. For the time
+  being ApiUsageException is a subclass of UsageException to allow things that
+  catch only UsageException to still function properly.
 
 === Languages updated in 1.29 ===
 
