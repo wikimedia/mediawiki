@@ -201,7 +201,3 @@ $magicWords = [
 	'language'                  => [ '0', '#SHPROOCH:', '#SPROCH:', '#SPRACHE:', '#LANGUAGE:' ],
 	'hiddencat'                 => [ '1', '__VERSHTOCHE_SAACHJRUPP__', '__VERSTECKTE_KATEGORIE__', '__WARTUNGSKATEGORIE__', '__HIDDENCAT__' ],
 ];
-
-$imageFiles = [
-	'button-italic'   => 'ksh/button_italic.png',
-];
