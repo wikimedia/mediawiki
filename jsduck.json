@@ -18,7 +18,6 @@
 		"resources/src/mediawiki.messagePoster",
 		"resources/src/mediawiki.rcfilters",
 		"resources/src/mediawiki.special",
-		"resources/src/mediawiki.toolbar",
 		"resources/src/mediawiki.widgets",
 		"resources/src/jquery/jquery.accessKeyLabel.js",
 		"resources/src/jquery/jquery.byteLength.js",

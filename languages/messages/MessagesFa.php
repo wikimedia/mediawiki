@@ -412,11 +412,3 @@ $dateFormats = [
 # Harakat are intentionally not included in the linkTrail. Their addition should
 # take place after enough tests.
 $linkTrail = "/^([ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهیآأئؤة‌]+)(.*)$/sDu";
-
-$imageFiles = [
-	'button-bold'     => 'fa/button_bold.png',
-	'button-italic'   => 'fa/button_italic.png',
-	'button-link'     => 'fa/button_link.png',
-	'button-headline' => 'fa/button_headline.png',
-	'button-nowiki'   => 'fa/button_nowiki.png',
-];

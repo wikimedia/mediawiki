@@ -352,8 +352,3 @@ $bookstoreList = [
 
 $separatorTransformTable = [ ',' => '.', '.' => ',' ];
 $linkTrail = '/^([äöüßa-z]+)(.*)$/sDu';
-
-$imageFiles = [
-	'button-bold'     => 'de/button_bold.png',
-	'button-italic'   => 'de/button_italic.png',
-];
