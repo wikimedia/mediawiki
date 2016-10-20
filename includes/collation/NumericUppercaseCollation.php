@@ -29,20 +29,20 @@
 class NumericUppercaseCollation extends UppercaseCollation {
 	public function getSortKey( $string ) {
 		$sortkey = parent::getSortKey( $string );
-
 		// For each sequence of digits, insert the digit '0' and then the length of the sequence
 		// (encoded in two bytes) before it. That's all folks, it sorts correctly now! The '0' ensures
 		// correct position (where digits would normally sort), then the length will be compared putting
 		// shorter numbers before longer ones; if identical, then the characters will be compared, which
 		// generates the correct results for numbers of equal length.
 		$sortkey = preg_replace_callback( '/\d+/', function ( $matches ) {
-			$len = strlen( $matches[0] );
+			// Strip any leading zeros
+			$number = ltrim( $matches[0], '0' );
+			$len = strlen( $number );
 			// This allows sequences of up to 65536 numeric characters to be handled correctly. One byte
 			// would allow only for 256, which doesn't feel future-proof.
 			$prefix = chr( floor( $len / 256 ) ) . chr( $len % 256 );
-			return '0' . $prefix . $matches[0];
+			return '0' . $prefix . $number;
 		}, $sortkey );
-
 		return $sortkey;
 	}
 
