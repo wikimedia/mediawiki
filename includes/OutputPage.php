@@ -2692,15 +2692,13 @@ class OutputPage extends ContextSource {
 			$exemptStates = [];
 			$moduleStyles = $this->getModuleStyles( /*filter*/ true );
 
-			// Batch preload getTitleInfo for isKnownEmpty() calls below
-			$exemptModules = array_filter( $moduleStyles,
-				function ( $name ) use ( $rl, &$exemptGroups ) {
-					$module = $rl->getModule( $name );
-					return $module && isset( $exemptGroups[ $module->getGroup() ] );
-				}
-			);
-			ResourceLoaderWikiModule::preloadTitleInfo(
-				$context, wfGetDB( DB_REPLICA ), $exemptModules );
+			// Preload getTitleInfo for isKnownEmpty calls below and in ResourceLoaderClientHtml
+			// Separate user-specific batch for improved cache-hit ratio.
+			$userBatch = [ 'user.styles', 'user' ];
+			$siteBatch = array_diff( $moduleStyles, $userBatch );
+			$dbr = wfGetDB( DB_REPLICA );
+			ResourceLoaderWikiModule::preloadTitleInfo( $context, $dbr, $siteBatch );
+			ResourceLoaderWikiModule::preloadTitleInfo( $context, $dbr, $userBatch );
 
 			// Filter out modules handled by buildExemptModules()
 			$moduleStyles = array_filter( $moduleStyles,

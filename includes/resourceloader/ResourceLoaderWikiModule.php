@@ -360,21 +360,22 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			}
 		}
 
-		$allPageNames = array_keys( $allPages );
-		sort( $allPageNames );
-		$hash = sha1( implode( '|', $allPageNames ) );
+		$pageNames = array_keys( $allPages );
+		sort( $pageNames );
+		$hash = sha1( implode( '|', $pageNames ) );
 
 		// Avoid Zend bug where "static::" does not apply LSB in the closure
 		$func = [ static::class, 'fetchTitleInfo' ];
+		$fname = __METHOD__;
 
 		$cache = ObjectCache::getMainWANInstance();
 		$allInfo = $cache->getWithSetCallback(
 			$cache->makeGlobalKey( 'resourceloader', 'titleinfo', $db->getWikiID(), $hash ),
 			$cache::TTL_HOUR,
-			function ( $curValue, &$ttl, array &$setOpts ) use ( $func, $allPageNames, $db ) {
+			function ( $curVal, &$ttl, array &$setOpts ) use ( $func, $pageNames, $db, $fname ) {
 				$setOpts += Database::getCacheSetOptions( $db );
 
-				return call_user_func( $func, $db, $allPageNames, __METHOD__ );
+				return call_user_func( $func, $db, $pageNames, $fname );
 			},
 			[ 'checkKeys' => [ $cache->makeGlobalKey( 'resourceloader', 'titleinfo', $db->getWikiID() ) ] ]
 		);
