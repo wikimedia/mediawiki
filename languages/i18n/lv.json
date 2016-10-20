@@ -2116,6 +2116,7 @@
 	"newimages-showbots": "Parādīt botu augšupielādētos failus",
 	"newimages-hidepatrolled": "Paslēpt pārbaudītās augšupielādes",
 	"noimages": "Nav nekā ko redzēt.",
+	"gallery-slideshow-toggle": "Pārslēgt sīktēlus",
 	"ilsubmit": "Meklēt",
 	"bydate": "<b>pēc datuma</b>",
 	"sp-newimages-showfrom": "Rādīt jaunos attēlus sākot no $1, $2",
@@ -2633,7 +2634,7 @@
 	"feedback-submit": "Iesniegt",
 	"feedback-thanks": "Paldies! Jūsu atsauksmes ir ievietotas lapā \"[$2  $1]\".",
 	"feedback-thanks-title": "Paldies!",
-	"searchsuggest-search": "Meklēt",
+	"searchsuggest-search": "Meklēt {{SITENAME}}",
 	"searchsuggest-containing": "Meklējamā frāze:",
 	"api-error-badaccess-groups": "Jums nav atļauts augšupielādēt failus šajā wiki.",
 	"api-error-copyuploaddisabled": "Augšupielāde no URL šajā serverī ir atspējota.",
@@ -2689,5 +2690,7 @@
 	"authmanager-realname-label": "Tavs īstais vārds",
 	"authmanager-realname-help": "Dalībnieka īstais vārds",
 	"authprovider-resetpass-skip-label": "Izlaist",
-	"specialpage-securitylevel-not-allowed-title": "Nav atļauts"
+	"specialpage-securitylevel-not-allowed-title": "Nav atļauts",
+	"edit-error-short": "Kļūda: $1",
+	"edit-error-long": "Kļūdas:\n\n$1"
 }

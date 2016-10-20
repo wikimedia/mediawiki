@@ -254,7 +254,7 @@
 	"config-upload-deleted": "Diretório para os ficheiros apagados:",
 	"config-upload-deleted-help": "Escolha um diretório onde serão arquivados os ficheiros apagados.\nO ideal é que este diretório não possa ser diretamente acedido a partir da internet.",
 	"config-logo": "URL do logótipo:",
-	"config-logo-help": "O tema padrão do MediaWiki inclui espaço para um logótipo de 135x160 pixels acima do menu da barra lateral.\nColoque na wiki uma imagem com estas dimensões e introduza aqui a URL dessa imagem.\n\nSe não pretende usar um logótipo, deixe este campo em branco.",
+	"config-logo-help": "O tema padrão do MediaWiki inclui espaço para um logótipo de 135x160 píxeis acima do menu da barra lateral.\nColoque na wiki uma imagem com estas dimensões e introduza aqui o URL dessa imagem.\n\nSe não pretende usar um logótipo, deixe este campo em branco.",
 	"config-instantcommons": "Ativar Instant Commons",
 	"config-instantcommons-help": "O [https://www.mediawiki.org/wiki/InstantCommons Instant Commons] é uma funcionalidade que permite que as wikis usem imagens, áudio e outros ficheiros multimédia disponíveis no sítio [https://commons.wikimedia.org/ Wikimedia Commons].\nPara poder usá-los, o MediaWiki necessita de acesso à Internet.\n\nPara mais informações sobre esta funcionalidade, incluindo instruções sobre como configurá-la para usar outras wikis em vez da Wikimedia Commons, consulte o [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos Manual Técnico].",
 	"config-cc-error": "O auxiliar de escolha de licenças da Creative Commons não produziu resultados.\nIntroduza o nome da licença manualmente.",

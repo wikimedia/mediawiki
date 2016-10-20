@@ -2374,7 +2374,7 @@
 	"movelogpagetext": "A continuación móstrase a lista con todas as páxinas trasladadas.",
 	"movesubpage": "{{PLURAL:$1|Subpáxina|Subpáxinas}}",
 	"movesubpagetext": "Esta páxina ten $1 {{PLURAL:$1|subpáxina|subpáxinas}}.",
-	"movesubpagetalktext": "A páxina de conversa correspondente ten $1 {{PLURAL:$1|subpáxina|subpáxinas}} mostradas abaixo.",
+	"movesubpagetalktext": "A páxina de conversa correspondente ten $1 {{PLURAL:$1|subpáxina, mostrada|subpáxinas, mostradas}} abaixo.",
 	"movenosubpage": "Esta páxina non ten subpáxinas.",
 	"movereason": "Motivo:",
 	"revertmove": "reverter",

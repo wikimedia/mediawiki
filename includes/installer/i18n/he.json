@@ -67,6 +67,7 @@
 	"config-memory-bad": "'''אזהרה:''' ערך האפשרות <code>memory_limit</code> של PHP הוא $1.\nזה כנראה נמוך מדי.\nההתקנה עשויה להיכשל!",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] מותקן",
 	"config-apc": "[http://www.php.net/apc APC] מותקן",
+	"config-apcu": "[http://www.php.net/apcu APCu] מותקן",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] מותקן",
 	"config-no-cache-apcu": "<strong>אזהרה:</strong> לא נמצא [http://www.php.net/apcu APCu]‏, [http://xcache.lighttpd.net/ XCache] או [http://www.iis.net/download/WinCacheForPhp WinCache].\nמטמון עצמים לא מופעל.",
 	"config-mod-security": "'''אזהרה''': בשרת הווב שלך מופעל [http://modsecurity.org/ mod_security]. אם הוא לא מוגדר טוב, זה יכול לגרום לבעיות במדיה־ויקי ובתכנה אחרת שמאפשרת למשתמשים לשלוח תוכן שרירותי.\nיש לקרוא את [http://modsecurity.org/documentation/ התיעוד של mod_security] או ליצור קשר עם אנשי התמיכה של שירותי האירוח שלכם אם מופיעות לך שגיאות אקראיות.",

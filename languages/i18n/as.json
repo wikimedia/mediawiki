@@ -19,7 +19,8 @@
 			"Macofe",
 			"IKHazarika",
 			"Dibya Dutta",
-			"Matma Rex"
+			"Matma Rex",
+			"চাণক্য কুমাৰ দাস"
 		]
 	},
 	"tog-underline": "সংযোগসমূহ অধোৰেখিত কৰক:",
@@ -1587,6 +1588,7 @@
 	"suppress": "অমনোযোগ",
 	"querypage-disabled": "কাৰ্য্যগত কাৰণত এই বিশেষ পৃষ্ঠাটো নিষ্ক্ৰিয় কৰা হৈছে।",
 	"apisandbox-results": "ফলাফল",
+	"apisandbox-continue": "অব্যাহত ৰাখক",
 	"booksources": "গ্ৰন্থৰ উৎস সমূহ",
 	"booksources-search-legend": "গ্ৰন্থ উৎস সন্ধান",
 	"booksources-search": "সন্ধান",
