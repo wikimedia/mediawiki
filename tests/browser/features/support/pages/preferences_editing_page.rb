@@ -11,6 +11,5 @@ class PreferencesEditingPage
   checkbox(:live_preview_check, id: 'mw-input-wpuselivepreview')
   checkbox(:preview_on_first_check, id: 'mw-input-wppreviewonfirst')
   checkbox(:preview_on_top_check, id: 'mw-input-wppreviewontop')
-  checkbox(:show_edit_toolbar_check, id: 'mw-input-wpshowtoolbar')
   checkbox(:unsaved_changes_check, id: 'mw-input-wpuseeditwarning')
 end
