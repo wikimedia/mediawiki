@@ -294,6 +294,16 @@ class InfoAction extends FormlessAction {
 			$modelHtml
 		];
 
+		if ( $title->inNamespace( NS_USER ) ) {
+			$pageUser = User::newFromName( $title->getRootText() );
+			if ( $pageUser && $pageUser->getId() && !$pageUser->isHidden() ) {
+				$pageInfo['header-basic'][] = [
+					$this->msg( 'pageinfo-user-id' ),
+					$pageUser->getId()
+				];
+			}
+		}
+
 		// Search engine status
 		$pOutput = new ParserOutput();
 		if ( isset( $pageProperties['noindex'] ) ) {
