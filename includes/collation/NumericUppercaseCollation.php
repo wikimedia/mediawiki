@@ -36,11 +36,13 @@ class NumericUppercaseCollation extends UppercaseCollation {
 		// shorter numbers before longer ones; if identical, then the characters will be compared, which
 		// generates the correct results for numbers of equal length.
 		$sortkey = preg_replace_callback( '/\d+/', function ( $matches ) {
-			$len = strlen( $matches[0] );
+			// Strip any leading zeros
+			$number = ltrim( $matches[0], '0' );
+			$len = strlen( $number );
 			// This allows sequences of up to 65536 numeric characters to be handled correctly. One byte
 			// would allow only for 256, which doesn't feel future-proof.
 			$prefix = chr( floor( $len / 256 ) ) . chr( $len % 256 );
-			return '0' . $prefix . $matches[0];
+			return '0' . $prefix . $number;
 		}, $sortkey );
 
 		return $sortkey;
