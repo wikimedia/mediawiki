@@ -815,22 +815,6 @@ class Language {
 	}
 
 	/**
-	 * @param string $image
-	 * @return array|null
-	 */
-	function getImageFile( $image ) {
-		return self::$dataCache->getSubitem( $this->mCode, 'imageFiles', $image );
-	}
-
-	/**
-	 * @return array
-	 * @since 1.24
-	 */
-	public function getImageFiles() {
-		return self::$dataCache->getItem( $this->mCode, 'imageFiles' );
-	}
-
-	/**
 	 * @return array
 	 */
 	public function getExtraUserToggles() {

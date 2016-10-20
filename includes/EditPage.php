@@ -2479,13 +2479,6 @@ ERROR;
 		$out->addModuleStyles( 'mediawiki.editfont.styles' );
 
 		$user = $this->context->getUser();
-		if ( $user->getOption( 'showtoolbar' ) ) {
-			// The addition of default buttons is handled by getEditToolbar() which
-			// has its own dependency on this module. The call here ensures the module
-			// is loaded in time (it has position "top") for other modules to register
-			// buttons (e.g. extensions, gadgets, user scripts).
-			$out->addModules( 'mediawiki.toolbar' );
-		}
 
 		if ( $user->getOption( 'uselivepreview' ) ) {
 			$out->addModules( 'mediawiki.action.edit.preview' );
@@ -2788,13 +2781,8 @@ ERROR;
 
 		$out->addHTML( $this->editFormTextTop );
 
-		$showToolbar = true;
 		if ( $this->wasDeletedSinceLastEdit() ) {
-			if ( $this->formtype == 'save' ) {
-				// Hide the toolbar and edit area, user can click preview to get it back
-				// Add an confirmation checkbox and explanation.
-				$showToolbar = false;
-			} else {
+			if ( $this->formtype !== 'save' ) {
 				$out->wrapWikiMsg( "<div class='error mw-deleted-while-editing'>\n$1\n</div>",
 					'deletedwhileediting' );
 			}
@@ -2932,7 +2920,7 @@ ERROR;
 			$out->addHTML( $editConflictHelper->getEditFormHtmlBeforeContent() );
 		}
 
-		if ( !$this->mTitle->isUserConfigPage() && $showToolbar && $user->getOption( 'showtoolbar' ) ) {
+		if ( !$this->mTitle->isUserConfigPage() ) {
 			$out->addHTML( self::getEditToolbar( $this->mTitle ) );
 		}
 
@@ -4088,145 +4076,20 @@ ERROR;
 	}
 
 	/**
-	 * Shows a bulletin board style toolbar for common editing functions.
-	 * It can be disabled in the user preferences.
+	 * Allow extensions to provide a toolbar.
 	 *
 	 * @param Title|null $title Title object for the page being edited (optional)
-	 * @return string
+	 * @return string|null
 	 */
 	public static function getEditToolbar( $title = null ) {
-		global $wgOut, $wgEnableUploads, $wgForeignFileRepos;
+		$startingToolbar = '<div id="toolbar"></div>';
+		$toolbar = $startingToolbar;
 
-		$imagesAvailable = $wgEnableUploads || count( $wgForeignFileRepos );
-		$showSignature = true;
-		if ( $title ) {
-			$showSignature = MWNamespace::wantSignatures( $title->getNamespace() );
-		}
-
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-
-		/**
-		 * $toolarray is an array of arrays each of which includes the
-		 * opening tag, the closing tag, optionally a sample text that is
-		 * inserted between the two when no selection is highlighted
-		 * and.  The tip text is shown when the user moves the mouse
-		 * over the button.
-		 *
-		 * Images are defined in ResourceLoaderEditToolbarModule.
-		 */
-		$toolarray = [
-			[
-				'id'     => 'mw-editbutton-bold',
-				'open'   => '\'\'\'',
-				'close'  => '\'\'\'',
-				'sample' => wfMessage( 'bold_sample' )->text(),
-				'tip'    => wfMessage( 'bold_tip' )->text(),
-			],
-			[
-				'id'     => 'mw-editbutton-italic',
-				'open'   => '\'\'',
-				'close'  => '\'\'',
-				'sample' => wfMessage( 'italic_sample' )->text(),
-				'tip'    => wfMessage( 'italic_tip' )->text(),
-			],
-			[
-				'id'     => 'mw-editbutton-link',
-				'open'   => '[[',
-				'close'  => ']]',
-				'sample' => wfMessage( 'link_sample' )->text(),
-				'tip'    => wfMessage( 'link_tip' )->text(),
-			],
-			[
-				'id'     => 'mw-editbutton-extlink',
-				'open'   => '[',
-				'close'  => ']',
-				'sample' => wfMessage( 'extlink_sample' )->text(),
-				'tip'    => wfMessage( 'extlink_tip' )->text(),
-			],
-			[
-				'id'     => 'mw-editbutton-headline',
-				'open'   => "\n== ",
-				'close'  => " ==\n",
-				'sample' => wfMessage( 'headline_sample' )->text(),
-				'tip'    => wfMessage( 'headline_tip' )->text(),
-			],
-			$imagesAvailable ? [
-				'id'     => 'mw-editbutton-image',
-				'open'   => '[[' . $contLang->getNsText( NS_FILE ) . ':',
-				'close'  => ']]',
-				'sample' => wfMessage( 'image_sample' )->text(),
-				'tip'    => wfMessage( 'image_tip' )->text(),
-			] : false,
-			$imagesAvailable ? [
-				'id'     => 'mw-editbutton-media',
-				'open'   => '[[' . $contLang->getNsText( NS_MEDIA ) . ':',
-				'close'  => ']]',
-				'sample' => wfMessage( 'media_sample' )->text(),
-				'tip'    => wfMessage( 'media_tip' )->text(),
-			] : false,
-			[
-				'id'     => 'mw-editbutton-nowiki',
-				'open'   => "<nowiki>",
-				'close'  => "</nowiki>",
-				'sample' => wfMessage( 'nowiki_sample' )->text(),
-				'tip'    => wfMessage( 'nowiki_tip' )->text(),
-			],
-			$showSignature ? [
-				'id'     => 'mw-editbutton-signature',
-				'open'   => wfMessage( 'sig-text', '~~~~' )->inContentLanguage()->text(),
-				'close'  => '',
-				'sample' => '',
-				'tip'    => wfMessage( 'sig_tip' )->text(),
-			] : false,
-			[
-				'id'     => 'mw-editbutton-hr',
-				'open'   => "\n----\n",
-				'close'  => '',
-				'sample' => '',
-				'tip'    => wfMessage( 'hr_tip' )->text(),
-			]
-		];
-
-		$script = '';
-		foreach ( $toolarray as $tool ) {
-			if ( !$tool ) {
-				continue;
-			}
-
-			$params = [
-				// Images are defined in ResourceLoaderEditToolbarModule
-				false,
-				// Note that we use the tip both for the ALT tag and the TITLE tag of the image.
-				// Older browsers show a "speedtip" type message only for ALT.
-				// Ideally these should be different, realistically they
-				// probably don't need to be.
-				$tool['tip'],
-				$tool['open'],
-				$tool['close'],
-				$tool['sample'],
-				$tool['id'],
-			];
-
-			$script .= Xml::encodeJsCall(
-				'mw.toolbar.addButton',
-				$params,
-				ResourceLoader::inDebugMode()
-			);
-		}
-
-		$toolbar = '<div id="toolbar"></div>';
-
-		if ( Hooks::run( 'EditPageBeforeEditToolbar', [ &$toolbar ] ) ) {
-			// Only add the old toolbar cruft to the page payload if the toolbar has not
-			// been over-written by a hook caller
-			$nonce = $wgOut->getCSPNonce();
-			$wgOut->addScript( Html::inlineScript(
-				ResourceLoader::makeInlineCodeWithModule( 'mediawiki.toolbar', $script ),
-				$nonce
-			) );
+		if ( !Hooks::run( 'EditPageBeforeEditToolbar', [ &$toolbar ] ) ) {
+			return null;
 		};
-
-		return $toolbar;
+		// Don't add a pointless `<div>` to the page unless a hook caller populated it
+		return ( $toolbar === $startingToolbar ) ? null : $toolbar;
 	}
 
 	/**

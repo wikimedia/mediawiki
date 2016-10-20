@@ -392,6 +392,26 @@ because of Phabricator reports.
   * ApiUsageException::getCodeString() (deprecated in 1.29)
   * ApiUsageException::getMessageArray() (deprecated in 1.29)
 * Class UsageException, deprecated in 1.29, has been removed.
+* MediaWiki no longer has a 'JavaScript-powered' wikitext toolbar built in. The
+  old "bulletin board style toolbar", known as "the 2006 wikitext editor", has
+  been removed, and instead sysadmins will be required to choose one (or more)
+  of the several extensions available for this purpose if they need the
+  functionality. The MediaWiki "tarball" releases have included the replacement
+  extension for this, the WikiEditor extension aka "the 2010 wikitext editor",
+  for many years now. As part of this, several parts of MediaWiki have been
+  removed or simplified:
+  * The user option 'showtoolbar' (shown as "Show edit toolbar") is no longer
+    available; if an extension adds a toolbar via the EditPageBeforeEditToolbar
+    hook, it will be shown; extensions should provide a specific user preference
+    to disable themselves as needed.
+  * The public methods Language::getImageFile() and ::getImageFiles(), and the
+    related specification of $imageFiles within individual languages' code file,
+    as well as the referenced static media assets, all of which were only used
+    inside MediaWiki itself for providing the icons for the old toolbar, have
+    been removed without explicit deprecation.
+  * The internal ResourceLoader module "mediawiki.toolbar", which is unused
+    except by MediaWiki itself and back-compatibility code, has been removed.
+  * The internal ResourceLoaderEditToolbarModule class has been removed.
 
 === Deprecations in 1.32 ===
 * HTMLForm::setSubmitProgressive() is deprecated. No need to call it. Submit

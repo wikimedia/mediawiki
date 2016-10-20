@@ -532,23 +532,6 @@ $linkTrail = '/^([a-z]+)(.*)$/sD';
 $linkPrefixCharset = 'a-zA-Z\\x{80}-\\x{10ffff}';
 
 /**
- * List of filenames for some ui images that can be overridden per language
- * basis if needed.
- */
-$imageFiles = [
-	'button-bold'     => 'en/button_bold.png',
-	'button-italic'   => 'en/button_italic.png',
-	'button-link'     => 'en/button_link.png',
-	'button-extlink'  => 'en/button_extlink.png',
-	'button-headline' => 'en/button_headline.png',
-	'button-image'    => 'en/button_image.png',
-	'button-media'    => 'en/button_media.png',
-	'button-nowiki'   => 'en/button_nowiki.png',
-	'button-sig'      => 'en/button_sig.png',
-	'button-hr'       => 'en/button_hr.png',
-];
-
-/**
  * A list of messages to preload for each request.
  * Here we add messages that are needed for a typical anonymous parser cache hit.
  */
