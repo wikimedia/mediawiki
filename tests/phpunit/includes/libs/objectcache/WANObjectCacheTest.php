@@ -1,6 +1,6 @@
 <?php
 
-class WANObjectCacheTest extends MediaWikiTestCase {
+class WANObjectCacheTest extends PHPUnit_Framework_TestCase  {
 	/** @var WANObjectCache */
 	private $cache;
 	/**@var BagOStuff */
@@ -9,17 +9,11 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		if ( $this->getCliArg( 'use-wanobjectcache' ) ) {
-			$name = $this->getCliArg( 'use-wanobjectcache' );
-
-			$this->cache = ObjectCache::getWANInstance( $name );
-		} else {
-			$this->cache = new WANObjectCache( [
-				'cache' => new HashBagOStuff(),
-				'pool' => 'testcache-hash',
-				'relayer' => new EventRelayerNull( [] )
-			] );
-		}
+		$this->cache = new WANObjectCache( [
+			'cache' => new HashBagOStuff(),
+			'pool' => 'testcache-hash',
+			'relayer' => new EventRelayerNull( [] )
+		] );
 
 		$wanCache = TestingAccessWrapper::newFromObject( $this->cache );
 		/** @noinspection PhpUndefinedFieldInspection */
@@ -147,6 +141,19 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 				$key, 100, $callback, [ 'pcTTL' => 5, 'pcGroup' => $groups[$i] ] );
 		}
 		$this->assertEquals( 9, $hit, "Values evicted" );
+
+		$key = reset( $keys );
+		// Get into cache
+		$this->cache->getWithSetCallback( $key, 100, $callback, [ 'pcTTL' => 5 ] );
+		$this->cache->getWithSetCallback( $key, 100, $callback, [ 'pcTTL' => 5 ] );
+		$this->assertEquals( 10, $hit, "Value cached" );
+		$outerCallback = function () use ( &$callback, $key ) {
+			$v = $this->cache->getWithSetCallback( $key, 100, $callback, [ 'pcTTL' => 5 ] );
+
+			return 43 + $v;
+		};
+		$this->cache->getWithSetCallback( $key, 100, $outerCallback );
+		$this->assertEquals( 11, $hit, "Nested callback value process cache skipped" );
 	}
 
 	/**
@@ -206,7 +213,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value regenerated due to check keys" );
 		$this->assertEquals( $value, $priorValue, "Has prior value" );
-		$this->assertType( 'float', $priorAsOf, "Has prior value" );
+		$this->assertInternalType( 'float', $priorAsOf, "Has prior value" );
 		$t1 = $cache->getCheckKeyTime( $cKey1 );
 		$this->assertGreaterThanOrEqual( $priorTime, $t1, 'Check keys generated on miss' );
 		$t2 = $cache->getCheckKeyTime( $cKey2 );
@@ -316,7 +323,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$this->assertEquals( $value, $v[$keyB], "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value regenerated due to check keys" );
 		$this->assertEquals( $value, $priorValue, "Has prior value" );
-		$this->assertType( 'float', $priorAsOf, "Has prior value" );
+		$this->assertInternalType( 'float', $priorAsOf, "Has prior value" );
 		$t1 = $cache->getCheckKeyTime( $cKey1 );
 		$this->assertGreaterThanOrEqual( $priorTime, $t1, 'Check keys generated on miss' );
 		$t2 = $cache->getCheckKeyTime( $cKey2 );
