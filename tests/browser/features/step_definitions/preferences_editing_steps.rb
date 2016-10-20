@@ -22,10 +22,6 @@ Then(/^I can select section editing via edit links$/) do
   expect(on(PreferencesEditingPage).edit_section_edit_link_element).to exist
 end
 
-Then(/^I can select show edit toolbar$/) do
-  expect(on(PreferencesEditingPage).show_edit_toolbar_check_element).to exist
-end
-
 Then(/^I can select show preview before edit box$/) do
   expect(on(PreferencesEditingPage).preview_on_top_check_element).to exist
 end

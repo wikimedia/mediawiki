@@ -38,10 +38,6 @@
 				]
 			},
 			{
-				"name": "Actions",
-				"classes": ["mw.toolbar"]
-			},
-			{
 				"name": "API",
 				"classes": ["mw.Api*", "mw.ForeignApi*"]
 			},
