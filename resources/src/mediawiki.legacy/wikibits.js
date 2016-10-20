@@ -102,14 +102,6 @@
 	mw.log.deprecate( win, 'checkboxClickHandler', $.noop, msg );
 
 	/**
-	 * Add a button to the default editor toolbar
-	 *
-	 * @deprecated since 1.17 Use mw.toolbar instead
-	 */
-	mw.log.deprecate( win, 'mwEditButtons', [], 'Use mw.toolbar instead.' );
-	mw.log.deprecate( win, 'mwCustomEditButtons', [], 'Use mw.toolbar instead.' );
-
-	/**
 	 * Spinner creation, injection and removal
 	 *
 	 * @deprecated since 1.18 Use jquery.spinner instead

@@ -4827,7 +4827,6 @@ $wgDefaultUserOptions = [
 	'rows' => 25,
 	'showhiddencats' => 0,
 	'shownumberswatching' => 1,
-	'showtoolbar' => 1,
 	'skin' => false,
 	'stubthreshold' => 0,
 	'thumbsize' => 5,
