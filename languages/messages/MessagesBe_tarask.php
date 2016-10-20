@@ -238,9 +238,3 @@ $separatorTransformTable = [
 ];
 
 $linkTrail = '/^([абвгґджзеёжзійклмнопрстуўфхцчшыьэюяćčłńśšŭźža-z]+)(.*)$/sDu';
-
-$imageFiles = [
-	'button-bold'     => 'be-tarask/button_bold.png',
-	'button-italic'   => 'be-tarask/button_italic.png',
-	'button-link'     => 'be-tarask/button_link.png',
-];
