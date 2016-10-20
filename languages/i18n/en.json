@@ -11,7 +11,6 @@
 	"tog-extendwatchlist": "Expand watchlist to show all changes, not just the most recent",
 	"tog-usenewrc": "Group changes by page in recent changes and watchlist",
 	"tog-numberheadings": "Auto-number headings",
-	"tog-showtoolbar": "Show edit toolbar",
 	"tog-editondblclick": "Edit pages on double click",
 	"tog-editsectiononrightclick": "Enable section editing by right clicking on section titles",
 	"tog-watchcreations": "Add pages I create and files I upload to my watchlist",

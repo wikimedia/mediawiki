@@ -840,11 +840,6 @@ class Preferences {
 			'section' => 'editing/editor',
 			'label-message' => 'tog-useeditwarning',
 		];
-		$defaultPreferences['showtoolbar'] = [
-			'type' => 'toggle',
-			'section' => 'editing/editor',
-			'label-message' => 'tog-showtoolbar',
-		];
 
 		$defaultPreferences['previewonfirst'] = [
 			'type' => 'toggle',
