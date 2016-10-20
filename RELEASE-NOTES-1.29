@@ -235,6 +235,11 @@ changes to languages because of Phabricator reports.
 * User::comparePasswords() (deprecated in 1.24) was removed.
 * ArchivedFile::getUserText() (deprecated in 1.23) was removed.
 * HTMLFileCache::newFromTitle() (deprecated in 1.24) was removed.
+* The "bulletin board style toolbar" in the edit form has been removed (T30856).
+  This old code from 2006, replaced by the WikiEditor extension in 2010, was only
+  shown to users if no other editor was installed. The basic edit form in core is
+  now just the plain edit box without a toolbar, the same as for users without
+  JavaScript.
 
 == Compatibility ==
 
