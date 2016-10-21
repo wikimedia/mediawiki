@@ -50,7 +50,7 @@
 	"apihelp-block-param-anononly": "Bloquer uniquement les utilisateurs anonymes (c’est-à-dire désactiver les modifications anonymes pour cette adresse IP).",
 	"apihelp-block-param-nocreate": "Empêcher la création de compte.",
 	"apihelp-block-param-autoblock": "Bloquer automatiquement la dernière adresse IP utilisée, et toute les adresses IP subséquentes depuis lesquelles ils ont essayé de se connecter.",
-	"apihelp-block-param-noemail": "Empêcher l’utilisateur d’envoyer des courriels via le wiki (nécessite le doit <code>blockemail</code>).",
+	"apihelp-block-param-noemail": "Empêcher l’utilisateur d’envoyer des courriels via le wiki (nécessite le droit <code>blockemail</code>).",
 	"apihelp-block-param-hidename": "Masque le nom de l’utilisateur dans le journal des blocages (nécessite le droit <code>hideuser</code>).",
 	"apihelp-block-param-allowusertalk": "Autoriser les utilisateurs à modifier leur propre page de discussion (dépend de <var>[[mw:Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
 	"apihelp-block-param-reblock": "Si l’utilisateur est déjà bloqué, écraser le blocage existant.",

@@ -493,6 +493,7 @@
 	"moveddeleted-notice": "Boggaan waa la tirtiray.\nTirtiraha iyo wareejinta gudagalaha boggaan waxaad ka arki kartaa hoostaan.",
 	"edit-conflict": "Wax bedel isku dhacay",
 	"edit-already-exists": "Bog cusub lama samayn karo, wuu jiraa bogaan.",
+	"duplicate-args-warning": "<strong>Digniin:</strong> [[:$1]] u yeeris [[:$2]] in ka badan hal qiimayn ee ku saabsan \"$3\" cabbiraad. Kaliya qiimihii ugu dambaysay baa la adeegsan doonaa.",
 	"post-expand-template-inclusion-warning": "'''Digniin:''' Aad oo u weyn yahay tusmo'da aad ku dartay.\nTusmooyinka qaar lagumo dari doono.",
 	"post-expand-template-inclusion-category": "Boggaga ku xad gudbay weyninka tusmo'da",
 	"post-expand-template-argument-warning": "'''Digniin:'''Boggaan waxaa ku jira ugu yaraan hal iyo wixii ka badan oo template ah, waxaana ku xiran kuwa kale.",

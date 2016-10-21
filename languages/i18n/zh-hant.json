@@ -3817,5 +3817,6 @@
 	"unlinkaccounts-success": "已取消連結帳號。",
 	"authenticationdatachange-ignored": "認証資料變更未被處理，可能未設定提供者？",
 	"userjsispublic": "請注意：JavaScript 子頁面可被其他使用者檢視，不應包含憑証資料。",
-	"usercssispublic": "請注意：CSS 子頁面可被其他使用者檢視，不應包含憑証資料。"
+	"usercssispublic": "請注意：CSS 子頁面可被其他使用者檢視，不應包含憑証資料。",
+	"edit-error-short": "錯誤：$1"
 }

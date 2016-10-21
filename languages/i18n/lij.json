@@ -3448,7 +3448,7 @@
 	"feedback-thanks": "Graççie! O to feedback o l'è stæto pubricou a-a paggina \"[$2 $1]\".",
 	"feedback-thanks-title": "Graççie!",
 	"feedback-useragent": "Agente utente:",
-	"searchsuggest-search": "Çerca",
+	"searchsuggest-search": "Çerca in {{SITENAME}}",
 	"searchsuggest-containing": "ch'o conten...",
 	"api-error-autoblocked": "O to adreçço IP o l'è stæto bloccou aotomaticamente, perché o l'è stæto doeuviou da un utente bloccou.",
 	"api-error-badaccess-groups": "No t'ê aotorizzou a caregâ di file insce questa wiki.",
