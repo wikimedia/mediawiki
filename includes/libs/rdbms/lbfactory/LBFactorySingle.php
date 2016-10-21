@@ -39,7 +39,9 @@ class LBFactorySingle extends LBFactory {
 			throw new InvalidArgumentException( "Missing 'connection' argument." );
 		}
 
-		$this->lb = new LoadBalancerSingle( array_merge( $this->baseLoadBalancerParams(), $conf ) );
+		$lb = new LoadBalancerSingle( array_merge( $this->baseLoadBalancerParams(), $conf ) );
+		$this->initLoadBalancer( $lb );
+		$this->lb = $lb;
 	}
 
 	/**
