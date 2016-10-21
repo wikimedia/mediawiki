@@ -3780,9 +3780,9 @@ class Language {
 				file_get_contents( $grammarDataFile ),
 				true
 			);
+
 			if ( $data === null ) {
 				throw new MWException( "Invalid grammar data for \"$languageCode\"." );
-				$data = [];
 			}
 
 			self::$grammarTransformations->set( $languageCode, $data );
