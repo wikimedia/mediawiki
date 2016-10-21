@@ -88,6 +88,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/** @var int ERR_* constant for the "last error" registry */
 	protected $lastRelayError = self::ERR_NONE;
 
+	/** @var integer Callback stack depth for getWithSetCallback() */
+	private $callbackDepth = 0;
 	/** @var mixed[] Temporary warm-up cache */
 	private $warmupCache = [];
 
@@ -847,8 +849,10 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	final public function getWithSetCallback( $key, $ttl, $callback, array $opts = [] ) {
 		$pcTTL = isset( $opts['pcTTL'] ) ? $opts['pcTTL'] : self::TTL_UNCACHEABLE;
 
-		// Try the process cache if enabled
-		if ( $pcTTL >= 0 ) {
+		// Try the process cache if enabled and the cache callback is not within a cache callback.
+		// Process cache use in nested callbacks is not lag-safe with regard to HOLDOFF_TTL since
+		// the in-memory value is further lagged than the shared one since it uses a blind TTL.
+		if ( $pcTTL >= 0 && $this->callbackDepth == 0 ) {
 			$group = isset( $opts['pcGroup'] ) ? $opts['pcGroup'] : self::PC_PRIMARY;
 			$procCache = $this->getProcessCache( $group );
 			$value = $procCache->get( $key );
@@ -995,7 +999,12 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 		// Generate the new value from the callback...
 		$setOpts = [];
-		$value = call_user_func_array( $callback, [ $cValue, &$ttl, &$setOpts, $asOf ] );
+		++$this->callbackDepth;
+		try {
+			$value = call_user_func_array( $callback, [ $cValue, &$ttl, &$setOpts, $asOf ] );
+		} finally {
+			--$this->callbackDepth;
+		}
 		// When delete() is called, writes are write-holed by the tombstone,
 		// so use a special INTERIM key to pass the new value around threads.
 		if ( ( $isTombstone && $lockTSE > 0 ) && $value !== false && $ttl >= 0 ) {
