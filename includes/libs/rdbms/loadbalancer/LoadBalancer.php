@@ -94,9 +94,11 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var string Current server name */
 	private $host;
 	/** @var bool Whether this PHP instance is for a CLI script */
-	protected $cliMode;
+	private $cliMode;
 	/** @var string Agent name for query profiling */
-	protected $agent;
+	private $agent;
+	/** @var bool[] Map of (section ID => true) for usage section IDs */
+	private $usageSections = [];
 
 	/** @var callable Exception logger */
 	private $errorLogger;
@@ -864,6 +866,10 @@ class LoadBalancer implements ILoadBalancer {
 			}
 		}
 
+		foreach ( $this->usageSections as $id => $unused ) {
+			$db->declareUsageSectionStart( $id );
+		}
+
 		return $db;
 	}
 
@@ -1520,6 +1526,40 @@ class LoadBalancer implements ILoadBalancer {
 		$this->forEachOpenConnection( function ( IDatabase $db ) use ( $prefix ) {
 			$db->tablePrefix( $prefix );
 		} );
+	}
+
+	public function declareUsageSectionStart( $id = null ) {
+		static $nextId = 1;
+		if ( $id === null ) {
+			$id = $nextId;
+			++$nextId;
+		}
+		// Handle existing connections
+		$this->forEachOpenConnection( function ( IDatabase $db ) use ( $id ) {
+			$db->declareUsageSectionStart( $id );
+		} );
+		// Remember to set this for new connections
+		$this->usageSections[$id] = true;
+
+		return $id;
+	}
+
+	public function declareUsageSectionEnd( $id ) {
+		$info = [ 'readQueries' => 0, 'writeQueries' => 0, 'cacheSetOptions' => null ];
+		$this->forEachOpenConnection( function ( IDatabase $db ) use ( $id, &$info ) {
+			$dbInfo = $db->declareUsageSectionEnd( $id );
+			$info['readQueries'] += $dbInfo['readQueries'];
+			$info['writeQueries'] += $dbInfo['writeQueries'];
+			$dbCacheOpts = $dbInfo['cacheSetOptions'];
+			if ( $dbCacheOpts ) {
+				$info['cacheSetOptions'] = $info['cacheSetOptions']
+					? Database::mergeCacheSetOptions( $info['cacheSetOptions'], $dbCacheOpts )
+					: $dbCacheOpts;
+			}
+		} );
+		unset( $this->usageSections[$id] );
+
+		return $info;
 	}
 
 	/**

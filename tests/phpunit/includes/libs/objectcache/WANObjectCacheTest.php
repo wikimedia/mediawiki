@@ -960,4 +960,35 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase  {
 			[ null, 86400, 800, .2, 800 ]
 		];
 	}
+
+	public function testDefaultCacheOptions() {
+		$wCache = clone $this->cache;
+		$key = wfRandomString();
+
+		$called = false;
+		$infos = [];
+		$wCache->setDefaultCacheSetOptionCallbacks(
+			function () use ( &$infos ) {
+				$infos['sometag'] = [ 'since' => 1999, 'lag' => 4, 'pending' => false ];
+
+				return 'sometag';
+			},
+			function ( $tag ) use ( &$infos, &$called ) {
+				$res = $infos[$tag];
+				unset( $infos[$tag] );
+				$called = true;
+
+				return $res;
+			}
+		);
+
+		$callback = function () {
+			return 42;
+		};
+
+		$value = $wCache->getWithSetCallback( $key, 5, $callback );
+
+		$this->assertEquals( 42, $value, 'Correct value' );
+		$this->assertTrue( $called, 'Options callback ran' );
+	}
 }
