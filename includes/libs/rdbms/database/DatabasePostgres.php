@@ -82,6 +82,7 @@ class DatabasePostgres extends Database {
 	 * @return resource|bool|null
 	 */
 	function open( $server, $user, $password, $dbName ) {
+		global $wgCommandLineMode;
 		# Test for Postgres support, to avoid suppressed fatal error
 		if ( !function_exists( 'pg_connect' ) ) {
 			throw new DBConnectionError(
@@ -139,7 +140,7 @@ class DatabasePostgres extends Database {
 		$this->mOpened = true;
 
 		# If called from the command-line (e.g. importDump), only show errors
-		if ( $this->cliMode ) {
+		if ( $wgCommandLineMode ) {
 			$this->doQuery( "SET client_min_messages = 'ERROR'" );
 		}
 
@@ -704,7 +705,7 @@ __INDEXATTR__;
 	 * @param array $selectOptions
 	 * @return bool
 	 */
-	function nativeInsertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
+	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
 		$insertOptions = [], $selectOptions = [] ) {
 		$destTable = $this->tableName( $destTable );
 

@@ -65,8 +65,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $mDBname;
 	/** @var array[] $aliases Map of (table => (dbname, schema, prefix) map) */
 	protected $tableAliases = [];
-	/** @var bool Whether this PHP instance is for a CLI script */
-	protected $cliMode;
 	/** @var string Agent name for query profiling */
 	protected $agent;
 
@@ -232,6 +230,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param array $params Parameters passed from Database::factory()
 	 */
 	function __construct( array $params ) {
+		global $wgCommandLineMode;
 		$server = $params['host'];
 		$user = $params['user'];
 		$password = $params['password'];
@@ -240,13 +239,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->mSchema = $params['schema'];
 		$this->mTablePrefix = $params['tablePrefix'];
 
-		$this->cliMode = $params['cliMode'];
 		// Agent name is added to SQL queries in a comment, so make sure it can't break out
 		$this->agent = str_replace( '/', '-', $params['agent'] );
 
 		$this->mFlags = $params['flags'];
 		if ( $this->mFlags & self::DBO_DEFAULT ) {
-			if ( $this->cliMode ) {
+			if ( $wgCommandLineMode ) {
 				$this->mFlags &= ~self::DBO_TRX;
 			} else {
 				$this->mFlags |= self::DBO_TRX;
@@ -369,7 +367,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$p['variables'] = isset( $p['variables'] ) ? $p['variables'] : [];
 			$p['tablePrefix'] = isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : '';
 			$p['schema'] = isset( $p['schema'] ) ? $p['schema'] : '';
-			$p['cliMode'] = isset( $p['cliMode'] ) ? $p['cliMode'] : ( PHP_SAPI === 'cli' );
 			$p['agent'] = isset( $p['agent'] ) ? $p['agent'] : '';
 			if ( !isset( $p['connLogger'] ) ) {
 				$p['connLogger'] = new \Psr\Log\NullLogger();
@@ -2249,46 +2246,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->query( $sql, $fname );
 	}
 
-	public function insertSelect(
-		$destTable, $srcTable, $varMap, $conds,
-		$fname = __METHOD__, $insertOptions = [], $selectOptions = []
-	) {
-		if ( $this->cliMode ) {
-			// For massive migrations with downtime, we don't want to select everything
-			// into memory and OOM, so do all this native on the server side if possible.
-			return $this->nativeInsertSelect(
-				$destTable,
-				$srcTable,
-				$varMap,
-				$conds,
-				$fname,
-				$insertOptions,
-				$selectOptions
-			);
-		}
-
-		// For web requests, do a locking SELECT and then INSERT. This puts the SELECT burden
-		// on only the master (without needing row-based-replication). It also makes it easy to
-		// know how big the INSERT is going to be.
-		$fields = [];
-		foreach ( $varMap as $dstColumn => $sourceColumnOrSql ) {
-			$fields[] = $this->fieldNameWithAlias( $sourceColumnOrSql, $dstColumn );
-		}
-		$selectOptions[] = 'FOR UPDATE';
-		$res = $this->select( $srcTable, implode( ',', $fields ), $conds, $fname, $selectOptions );
-		if ( !$res ) {
-			return false;
-		}
-
-		$rows = [];
-		foreach ( $res as $row ) {
-			$rows[] = (array)$row;
-		}
-
-		return $this->insert( $destTable, $rows, $fname, $insertOptions );
-	}
-
-	protected function nativeInsertSelect( $destTable, $srcTable, $varMap, $conds,
+	public function insertSelect( $destTable, $srcTable, $varMap, $conds,
 		$fname = __METHOD__,
 		$insertOptions = [], $selectOptions = []
 	) {
