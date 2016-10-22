@@ -229,24 +229,44 @@ class DatabasePostgres extends Database {
 		}
 	}
 
+	public function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
+		if ( $this->ignoreErrors() || $tempIgnore ) {
+			$this->queryLogger->debug( "SQL ERROR (ignored): $error\n" );
+		} else {
+			$sql1line = mb_substr( str_replace( "\n", "\\n", $sql ), 0, 5 * 1024 );
+			$this->queryLogger->error(
+				"{fname}\t{db_server}\t{errno}\t{error}\t{sql1line}",
+				$this->getLogContext( [
+					'method' => __METHOD__,
+					'errno' => $errno,
+					'error' => $error,
+					'sql1line' => $sql1line,
+					'fname' => $fname,
+				] )
+			);
+			$this->queryLogger->debug( "SQL ERROR: " . $error . "\n" );
+			throw new DBQueryError( $this, $error, $errno, $sql, $fname );
+		}
+	}
+/*
 	function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
 		if ( $tempIgnore ) {
 			/* Check for constraint violation */
-			if ( $errno === '23505' ) {
+/*			if ( $errno === '23505' ) {
 				parent::reportQueryError( $error, $errno, $sql, $fname, $tempIgnore );
 
 				return;
 			}
 		}
 		/* Transaction stays in the ERROR state until rolled back */
-		if ( $this->mTrxLevel ) {
+/*		if ( $this->mTrxLevel ) {
 			$ignore = $this->ignoreErrors( true );
 			$this->rollback( __METHOD__ );
 			$this->ignoreErrors( $ignore );
 		}
 		parent::reportQueryError( $error, $errno, $sql, $fname, false );
 	}
-
+*/
 	function queryIgnore( $sql, $fname = __METHOD__ ) {
 		return $this->query( $sql, $fname, true );
 	}
