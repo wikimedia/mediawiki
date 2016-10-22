@@ -128,6 +128,25 @@ abstract class MWLBFactory {
 	}
 
 	/**
+	 * @param LBFactory $lbf New LBFactory instance that will be bound to $services
+	 * @param MediaWikiServices $services
+	 */
+	public static function setCacheUsageCallbacks( LBFactory $lbf, MediaWikiServices $services ) {
+		// Account for lag and pending updates by default in cache generator callbacks
+		$wCache = $services->getMainWANObjectCache();
+		$wCache->setDefaultCacheSetOptionCallbacks(
+			function () use ( $lbf ) {
+				return $lbf->sowSectionUsageInfo();
+			},
+			function ( $id ) use ( $lbf ) {
+				$info = $lbf->reapSectionUsageInfo( $id );
+
+				return $info['cacheSetOptions'] ?: [];
+			}
+		);
+	}
+
+	/**
 	 * Returns the LBFactory class to use and the load balancer configuration.
 	 *
 	 * @todo instead of this, use a ServiceContainer for managing the different implementations.
