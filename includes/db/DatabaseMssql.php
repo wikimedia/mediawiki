@@ -710,12 +710,12 @@ class DatabaseMssql extends DatabaseBase {
 	 * @return null|ResultWrapper
 	 * @throws Exception
 	 */
-	public function nativeInsertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
+	public function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
 		$insertOptions = [], $selectOptions = []
 	) {
 		$this->mScrollableCursor = false;
 		try {
-			$ret = parent::nativeInsertSelect(
+			$ret = parent::insertSelect(
 				$destTable,
 				$srcTable,
 				$varMap,
