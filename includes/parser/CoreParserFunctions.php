@@ -745,6 +745,9 @@ class CoreParserFunctions {
 				$subcatCount = (int)$category->getSubcatCount();
 				$fileCount = (int)$category->getFileCount();
 				$pagesCount = $allCount - $subcatCount - $fileCount;
+			} else {
+				// We've reached the limit, returning error
+				return self::formatError();
 			}
 			$cache[$name]['pagesincategory_all'] = $allCount;
 			$cache[$name]['pagesincategory_pages'] = $pagesCount;
@@ -774,6 +777,9 @@ class CoreParserFunctions {
 
 		// fetch revision from cache/database and return the value
 		$rev = self::getCachedRevisionObject( $parser, $title );
+		if ( is_null( $rev ) ) {
+			return self::formatError();
+		}
 		$length = $rev ? $rev->getSize() : 0;
 		if ( $length === null ) {
 			// We've had bugs where rev_len was not being recorded for empty pages, see T135414
@@ -805,7 +811,7 @@ class CoreParserFunctions {
 			# multiple values in the future
 			return implode( $restrictions, ',' );
 		}
-		return '';
+		return self::formatError();
 	}
 
 	/**
@@ -834,7 +840,7 @@ class CoreParserFunctions {
 			}
 			return $expiry;
 		}
-		return '';
+		return self::formatError();
 	}
 
 	/**
@@ -1068,7 +1074,7 @@ class CoreParserFunctions {
 	 *
 	 * @param Parser $parser
 	 * @param Title $title
-	 * @return Revision
+	 * @return Revision|null
 	 * @since 1.23
 	 */
 	private static function getCachedRevisionObject( $parser, $title = null ) {
@@ -1147,7 +1153,7 @@ class CoreParserFunctions {
 			$parser->mOutput->addLink( $t, $id );
 			return $id;
 		}
-		return null;
+		return self::formatError();
 	}
 
 	/**
@@ -1164,7 +1170,7 @@ class CoreParserFunctions {
 		}
 		// fetch revision from cache/database and return the value
 		$rev = self::getCachedRevisionObject( $parser, $t );
-		return $rev ? $rev->getId() : '';
+		return $rev ? $rev->getId() : self::formatError();
 	}
 
 	/**
@@ -1181,7 +1187,7 @@ class CoreParserFunctions {
 		}
 		// fetch revision from cache/database and return the value
 		$rev = self::getCachedRevisionObject( $parser, $t );
-		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'j' ) : '';
+		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'j' ) : self::formatError();
 	}
 
 	/**
@@ -1198,7 +1204,7 @@ class CoreParserFunctions {
 		}
 		// fetch revision from cache/database and return the value
 		$rev = self::getCachedRevisionObject( $parser, $t );
-		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'd' ) : '';
+		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'd' ) : self::formatError();
 	}
 
 	/**
@@ -1215,7 +1221,7 @@ class CoreParserFunctions {
 		}
 		// fetch revision from cache/database and return the value
 		$rev = self::getCachedRevisionObject( $parser, $t );
-		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'm' ) : '';
+		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'm' ) : self::formatError();
 	}
 
 	/**
@@ -1232,7 +1238,7 @@ class CoreParserFunctions {
 		}
 		// fetch revision from cache/database and return the value
 		$rev = self::getCachedRevisionObject( $parser, $t );
-		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'n' ) : '';
+		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'n' ) : self::formatError();
 	}
 
 	/**
@@ -1249,7 +1255,7 @@ class CoreParserFunctions {
 		}
 		// fetch revision from cache/database and return the value
 		$rev = self::getCachedRevisionObject( $parser, $t );
-		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'Y' ) : '';
+		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'Y' ) : self::formatError();
 	}
 
 	/**
@@ -1266,7 +1272,7 @@ class CoreParserFunctions {
 		}
 		// fetch revision from cache/database and return the value
 		$rev = self::getCachedRevisionObject( $parser, $t );
-		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'YmdHis' ) : '';
+		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'YmdHis' ) : self::formatError();
 	}
 
 	/**
@@ -1283,7 +1289,7 @@ class CoreParserFunctions {
 		}
 		// fetch revision from cache/database and return the value
 		$rev = self::getCachedRevisionObject( $parser, $t );
-		return $rev ? $rev->getUserText() : '';
+		return $rev ? $rev->getUserText() : self::formatError();
 	}
 
 	/**
@@ -1313,7 +1319,16 @@ class CoreParserFunctions {
 			}
 			return implode( $names, '|' );
 		}
-		return '';
+		return self::formatError();
 	}
 
+	/**
+	 * Returns the error message when expensive function calls has exceeded.
+	 *
+	 * @return string HTML
+	 * @since 1.28
+	 */
+	public static function formatError() {
+		return '<span class="error">Expensive function call limit exceeded</span>';
+	}
 }
