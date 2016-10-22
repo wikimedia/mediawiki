@@ -3127,7 +3127,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$cmd = $this->replaceVars( $cmd );
 
 				if ( !$inputCallback || call_user_func( $inputCallback, $cmd ) ) {
-					$res = $this->query( $cmd, $fname );
+					$res = $this->doQuery( $cmd, $fname );
 
 					if ( $resultCallback ) {
 						call_user_func( $resultCallback, $res, $this );

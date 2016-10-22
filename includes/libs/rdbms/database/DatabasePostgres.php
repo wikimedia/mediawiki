@@ -143,12 +143,12 @@ class DatabasePostgres extends Database {
 			$this->doQuery( "SET client_min_messages = 'ERROR'" );
 		}
 
-		$this->query( "SET client_encoding='UTF8'", __METHOD__ );
-		$this->query( "SET datestyle = 'ISO, YMD'", __METHOD__ );
-		$this->query( "SET timezone = 'GMT'", __METHOD__ );
-		$this->query( "SET standard_conforming_strings = on", __METHOD__ );
+		$this->doQuery( "SET client_encoding='UTF8'", __METHOD__ );
+		$this->doQuery( "SET datestyle = 'ISO, YMD'", __METHOD__ );
+		$this->doQuery( "SET timezone = 'GMT'", __METHOD__ );
+		$this->doQuery( "SET standard_conforming_strings = on", __METHOD__ );
 		if ( $this->getServerVersion() >= 9.0 ) {
-			$this->query( "SET bytea_output = 'escape'", __METHOD__ ); // PHP bug 53127
+			$this->doQuery( "SET bytea_output = 'escape'", __METHOD__ ); // PHP bug 53127
 		}
 
 		$this->determineCoreSchema( $this->mSchema );
@@ -248,7 +248,7 @@ class DatabasePostgres extends Database {
 	}
 
 	function queryIgnore( $sql, $fname = __METHOD__ ) {
-		return $this->query( $sql, $fname, true );
+		return $this->doQuery( $sql, $fname, true );
 	}
 
 	/**
@@ -445,7 +445,7 @@ class DatabasePostgres extends Database {
 	 */
 	function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='$table'";
-		$res = $this->query( $sql, $fname );
+		$res = $this->doQuery( $sql, $fname );
 		if ( !$res ) {
 			return null;
 		}
@@ -506,7 +506,7 @@ class DatabasePostgres extends Database {
 					AND	i.indclass[s.g] = opcls.oid
 					AND	pg_am.oid = opcls.opcmethod
 __INDEXATTR__;
-		$res = $this->query( $sql, __METHOD__ );
+		$res = $this->doQuery( $sql, __METHOD__ );
 		$a = [];
 		if ( $res ) {
 			foreach ( $res as $row ) {
@@ -528,7 +528,7 @@ __INDEXATTR__;
 			" AND indexdef LIKE 'CREATE UNIQUE%(" .
 			$this->strencode( $this->indexName( $index ) ) .
 			")'";
-		$res = $this->query( $sql, $fname );
+		$res = $this->doQuery( $sql, $fname );
 		if ( !$res ) {
 			return null;
 		}
@@ -623,7 +623,7 @@ __INDEXATTR__;
 					}
 					$sql .= '(' . $this->makeList( $row ) . ')';
 				}
-				$res = (bool)$this->query( $sql, $fname, $savepoint );
+				$res = (bool)$this->doQuery( $sql, $fname, $savepoint );
 			} else {
 				$res = true;
 				$origsql = $sql;
@@ -635,7 +635,7 @@ __INDEXATTR__;
 						$savepoint->savepoint();
 					}
 
-					$tempres = (bool)$this->query( $tempsql, $fname, $savepoint );
+					$tempres = (bool)$this->doQuery( $tempsql, $fname, $savepoint );
 
 					if ( $savepoint ) {
 						$bar = pg_result_error( $this->mLastResult );
@@ -661,7 +661,7 @@ __INDEXATTR__;
 			}
 
 			$sql .= '(' . $this->makeList( $args ) . ')';
-			$res = (bool)$this->query( $sql, $fname, $savepoint );
+			$res = (bool)$this->doQuery( $sql, $fname, $savepoint );
 			if ( $savepoint ) {
 				$bar = pg_result_error( $this->mLastResult );
 				if ( $bar != false ) {
@@ -745,7 +745,7 @@ __INDEXATTR__;
 
 		$sql .= " $tailOpts";
 
-		$res = (bool)$this->query( $sql, $fname, $savepoint );
+		$res = (bool)$this->doQuery( $sql, $fname, $savepoint );
 		if ( $savepoint ) {
 			$bar = pg_result_error( $this->mLastResult );
 			if ( $bar != false ) {
@@ -792,7 +792,7 @@ __INDEXATTR__;
 	 */
 	function nextSequenceValue( $seqName ) {
 		$safeseq = str_replace( "'", "''", $seqName );
-		$res = $this->query( "SELECT nextval('$safeseq')" );
+		$res = $this->doQuery( "SELECT nextval('$safeseq')" );
 		$row = $this->fetchRow( $res );
 		$this->mInsertId = $row[0];
 
@@ -807,7 +807,7 @@ __INDEXATTR__;
 	 */
 	function currentSequenceValue( $seqName ) {
 		$safeseq = str_replace( "'", "''", $seqName );
-		$res = $this->query( "SELECT currval('$safeseq')" );
+		$res = $this->doQuery( "SELECT currval('$safeseq')" );
 		$row = $this->fetchRow( $res );
 		$currval = $row[0];
 
@@ -821,7 +821,7 @@ __INDEXATTR__;
 			FROM pg_class c, pg_attribute a, pg_type t
 			WHERE relname='$table' AND a.attrelid=c.oid AND
 				a.atttypid=t.oid and a.attname='$field'";
-		$res = $this->query( $sql );
+		$res = $this->doQuery( $sql );
 		$row = $this->fetchObject( $res );
 		if ( $row->ftype == 'varchar' ) {
 			$size = $row->size - 4;
@@ -846,13 +846,13 @@ __INDEXATTR__;
 		$newName = $this->addIdentifierQuotes( $newName );
 		$oldName = $this->addIdentifierQuotes( $oldName );
 
-		return $this->query( 'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . " TABLE $newName " .
+		return $this->doQuery( 'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . " TABLE $newName " .
 			"(LIKE $oldName INCLUDING DEFAULTS)", $fname );
 	}
 
 	function listTables( $prefix = null, $fname = __METHOD__ ) {
 		$eschema = $this->addQuotes( $this->getCoreSchema() );
-		$result = $this->query(
+		$result = $this->doQuery(
 			"SELECT tablename FROM pg_tables WHERE schemaname = $eschema", $fname );
 		$endArray = [];
 
@@ -943,7 +943,7 @@ __INDEXATTR__;
 	 * @return string Default schema for the current session
 	 */
 	function getCurrentSchema() {
-		$res = $this->query( "SELECT current_schema()", __METHOD__ );
+		$res = $this->doQuery( "SELECT current_schema()", __METHOD__ );
 		$row = $this->fetchRow( $res );
 
 		return $row[0];
@@ -960,7 +960,7 @@ __INDEXATTR__;
 	 * @return array List of actual schemas for the current sesson
 	 */
 	function getSchemas() {
-		$res = $this->query( "SELECT current_schemas(false)", __METHOD__ );
+		$res = $this->doQuery( "SELECT current_schemas(false)", __METHOD__ );
 		$row = $this->fetchRow( $res );
 		$schemas = [];
 
@@ -979,7 +979,7 @@ __INDEXATTR__;
 	 * @return array How to search for table names schemas for the current user
 	 */
 	function getSearchPath() {
-		$res = $this->query( "SHOW search_path", __METHOD__ );
+		$res = $this->doQuery( "SHOW search_path", __METHOD__ );
 		$row = $this->fetchRow( $res );
 
 		/* PostgreSQL returns SHOW values as strings */
@@ -995,7 +995,7 @@ __INDEXATTR__;
 	 * @param array $search_path List of schemas to be searched by default
 	 */
 	function setSearchPath( $search_path ) {
-		$this->query( "SET search_path = " . implode( ", ", $search_path ) );
+		$this->doQuery( "SET search_path = " . implode( ", ", $search_path ) );
 	}
 
 	/**
@@ -1096,7 +1096,7 @@ __INDEXATTR__;
 		$sql = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
 			. "WHERE c.relnamespace = n.oid AND c.relname = $etable AND n.nspname = $eschema "
 			. "AND c.relkind IN ('" . implode( "','", $types ) . "')";
-		$res = $this->query( $sql );
+		$res = $this->doQuery( $sql );
 		$count = $res ? $res->numRows() : 0;
 
 		return (bool)$count;
@@ -1125,7 +1125,7 @@ __INDEXATTR__;
 			  AND tgrelid=pg_class.oid
 			  AND nspname=%s AND relname=%s AND tgname=%s
 SQL;
-		$res = $this->query(
+		$res = $this->doQuery(
 			sprintf(
 				$q,
 				$this->addQuotes( $this->getCoreSchema() ),
@@ -1160,7 +1160,7 @@ SQL;
 			$this->addQuotes( $table ),
 			$this->addQuotes( $constraint )
 		);
-		$res = $this->query( $sql );
+		$res = $this->doQuery( $sql );
 		if ( !$res ) {
 			return null;
 		}
@@ -1380,7 +1380,7 @@ SQL;
 	 */
 	public function lockIsFree( $lockName, $method ) {
 		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
-		$result = $this->query( "SELECT (CASE(pg_try_advisory_lock($key))
+		$result = $this->doQuery( "SELECT (CASE(pg_try_advisory_lock($key))
 			WHEN 'f' THEN 'f' ELSE pg_advisory_unlock($key) END) AS lockstatus", $method );
 		$row = $this->fetchObject( $result );
 
@@ -1398,7 +1398,7 @@ SQL;
 		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
 		$loop = new WaitConditionLoop(
 			function () use ( $lockName, $key, $timeout, $method ) {
-				$res = $this->query( "SELECT pg_try_advisory_lock($key) AS lockstatus", $method );
+				$res = $this->doQuery( "SELECT pg_try_advisory_lock($key) AS lockstatus", $method );
 				$row = $this->fetchObject( $res );
 				if ( $row->lockstatus === 't' ) {
 					parent::lock( $lockName, $method, $timeout ); // record
@@ -1422,7 +1422,7 @@ SQL;
 	 */
 	public function unlock( $lockName, $method ) {
 		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
-		$result = $this->query( "SELECT pg_advisory_unlock($key) as lockstatus", $method );
+		$result = $this->doQuery( "SELECT pg_advisory_unlock($key) as lockstatus", $method );
 		$row = $this->fetchObject( $result );
 
 		if ( $row->lockstatus === 't' ) {
