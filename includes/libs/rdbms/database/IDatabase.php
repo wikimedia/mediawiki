@@ -1792,4 +1792,24 @@ interface IDatabase {
 	 * @since 1.28
 	 */
 	public function setTableAliases( array $aliases );
+
+	/**
+	 * Mark the beginning of a new section to track database usage information for
+	 *
+	 * @param string|integer Section ID
+	 */
+	public function sowSectionUsageInfo( $id );
+
+	/**
+	 * End a section started by sowSectionUsageInfo() and return the information map
+	 *
+	 * The map includes information about activity during the section:
+	 *   - readQueries: number of read queries issued.
+	 *   - writeQueries: number of write queries issued.
+	 *   - cacheSetOptions: result of getCacheSetOptions() before the first query.
+	 *      This is null if no actual queries took place in the section interval.
+	 * @param integer|string $id Section ID passed to sowSectionUsageInfo() earlier
+	 * @return array
+	 */
+	public function reapSectionUsageInfo( $id );
 }

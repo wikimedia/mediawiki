@@ -326,8 +326,9 @@ class ObjectCache {
 	 * @throws UnexpectedValueException
 	 */
 	public static function newWANCacheFromParams( array $params ) {
+		$services = MediaWikiServices::getInstance();
 		foreach ( $params['channels'] as $action => $channel ) {
-			$params['relayers'][$action] = MediaWikiServices::getInstance()->getEventRelayerGroup()
+			$params['relayers'][$action] = $services->getEventRelayerGroup()
 				->getRelayer( $channel );
 			$params['channels'][$action] = $channel;
 		}
@@ -338,8 +339,20 @@ class ObjectCache {
 			$params['logger'] = LoggerFactory::getInstance( 'objectcache' );
 		}
 		$class = $params['class'];
+		/** @var WANObjectCache $obj */
+		$obj = new $class( $params );
+		$obj->setDefaultCacheSetOptionCallbacks(
+			function () use ( $services ) {
+				return $services->getDBLoadBalancerFactory()->sowSectionUsageInfo();
+			},
+			function ( $id ) use ( $services ) {
+				$info = $services->getDBLoadBalancerFactory()->reapSectionUsageInfo( $id );
 
-		return new $class( $params );
+				return $info['cacheSetOptions'] ?: [];
+			}
+		);
+
+		return $obj;
 	}
 
 	/**
