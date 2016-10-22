@@ -80,6 +80,21 @@ class StatusValue {
 	}
 
 	/**
+	 * Recreates a (lossily) serialized StatusValue. See getSerializableRepresentation() for
+	 * caveats.
+	 * @param array $data
+	 */
+	public static function newFromSerializableRepresentation( array $data ) {
+		$result = new static();
+		$result->errors = $data['errors'];
+		$result->ok = $data['ok'];
+		$result->success = $data['success'];
+		$result->successCount = $data['successCount'];
+		$result->failCount = $data['failCount'];
+		return $result;
+	}
+
+	/**
 	 * Splits this StatusValue object into two new StatusValue objects, one which contains only
 	 * the error messages, and one that contains the warnings, only. The returned array is
 	 * defined as:
@@ -142,6 +157,28 @@ class StatusValue {
 	 */
 	public function getErrors() {
 		return $this->errors;
+	}
+
+
+	/**
+	 * Get a serializable representation of the StatusValue object.
+	 *
+	 * StatusValue itself cannot be fully serializable because the value can be anything;
+	 * subclasses might contain other non-serializable details. Making it a Serializable and
+	 * silently dropping the value would be confusing. Instead, this method (together with
+	 * newFromSerializableRepresentation) allows partial serialization.
+	 * The contents of the returned array should be considered opaque and not manipulated in any way.
+	 *
+	 * @return array
+	 */
+	public function getSerializableRepresentation() {
+		return [
+			'errors' => $this->errors,
+			'ok' => $this->ok,
+			'success' => $this->success,
+			'successCount' => $this->successCount,
+			'failCount' => $this->failCount,
+		];
 	}
 
 	/**
