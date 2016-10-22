@@ -609,10 +609,14 @@ END;
 
 	protected function addSequence( $table, $pkey, $ns ) {
 		if ( !$this->db->sequenceExists( $ns ) ) {
-			$this->output( "Creating sequence $ns\n" );
-			$this->db->query( "CREATE SEQUENCE $ns" );
-			if ( $pkey !== false ) {
-				$this->setDefault( $table, $pkey, '"nextval"(\'"' . $ns . '"\'::"regclass")' );
+			try {
+				$this->output( "Creating sequence $ns\n" );
+				$this->db->query( "CREATE SEQUENCE $ns" );
+				if ( $pkey !== false ) {
+					$this->setDefault( $table, $pkey, '"nextval"(\'"' . $ns . '"\'::"regclass")' );
+				}
+			} catch (Exception $e) {
+				$this->output( "...sequence $ns already exists.\n" );
 			}
 		}
 	}
