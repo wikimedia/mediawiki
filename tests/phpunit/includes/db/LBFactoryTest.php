@@ -240,32 +240,6 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$cp->shutdown();
 	}
 
-	private function newLBFactoryMulti( array $baseOverride = [], array $serverOverride = [] ) {
-		global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype, $wgSQLiteDataDir;
-
-		return new LBFactoryMulti( $baseOverride + [
-			'sectionsByDB' => [],
-			'sectionLoads' => [
-				'DEFAULT' => [
-					'test-db1' => 1,
-				],
-			],
-			'serverTemplate' => $serverOverride + [
-				'dbname' => $wgDBname,
-				'user' => $wgDBuser,
-				'password' => $wgDBpassword,
-				'type' => $wgDBtype,
-				'dbDirectory' => $wgSQLiteDataDir,
-				'flags' => DBO_DEFAULT
-			],
-			'hostsByName' => [
-				'test-db1' => $wgDBserver,
-			],
-			'loadMonitorClass' => 'LoadMonitorNull',
-			'localDomain' => wfWikiID()
-		] );
-	}
-
 	public function testNiceDomains() {
 		global $wgDBname, $wgDBtype;
 
@@ -412,6 +386,99 @@ class LBFactoryTest extends MediaWikiTestCase {
 
 		$factory->closeAll();
 		$factory->destroy();
+	}
+
+	/**
+	 * @covers LBFactory::declareUsageSectionStart()
+	 * @covers LBFactory::declareUsageSectionEnd()
+	 * @covers LoadBalancer::declareUsageSectionStart()
+	 * @covers LoadBalancer::declareUsageSectionEnd()
+	 */
+	public function testUsageInfo() {
+		$wallTime = microtime( true );
+
+		$mockDB = $this->getMockBuilder( 'DatabaseMysql' )
+			->disableOriginalConstructor()
+			->setMethods( [
+				'doQuery',
+				'affectedRows',
+				'getLag',
+				'assertOpen',
+				'getSessionLagStatus',
+				'getApproximateLagStatus'
+			] )
+			->getMock();
+		$mockDB->method( 'doQuery' )->willReturn( new FakeResultWrapper( [] ) );
+		$mockDB->method( 'affectedRows' )->willReturn( 0 );
+		$mockDB->method( 'getLag' )->willReturn( 3 );
+		$mockDB->method( 'getSessionLagStatus' )->willReturn( [
+			'lag' => 3, 'since' => $wallTime
+		] );
+		$mockDB->method( 'getApproximateLagStatus' )->willReturn( [
+			'lag' => 3, 'since' => $wallTime
+		] );
+		$mockDBProbe = TestingAccessWrapper::newFromObject( $mockDB );
+		$mockDBProbe->profiler = new ProfilerStub( [] );
+		$mockDBProbe->trxProfiler = new TransactionProfiler();
+		$mockDBProbe->connLogger = new \Psr\Log\NullLogger();
+		$mockDBProbe->queryLogger = new \Psr\Log\NullLogger();
+		$lbFactory = new LBFactorySingle( [
+			'connection' => $mockDB
+		] );
+		$mockDB->setLBInfo( 'replica', true );
+
+		$id = $lbFactory->declareUsageSectionStart( 'test' );
+		$mockDB->query( "SELECT 1" );
+		$mockDB->query( "SELECT 1" );
+		$mockDB->query( "SELECT 1" );
+		$info = $lbFactory->declareUsageSectionEnd( $id );
+
+		$this->assertEquals( 3, $info['readQueries'] );
+		$this->assertEquals( 0, $info['writeQueries'] );
+		$this->assertEquals( false, $info['cacheSetOptions']['pending'] );
+		$this->assertEquals( 3, $info['cacheSetOptions']['lag'] );
+		$this->assertGreaterThanOrEqual( $wallTime - 10, $info['cacheSetOptions']['since'] );
+		$this->assertLessThan( $wallTime + 10, $info['cacheSetOptions']['since'] );
+
+		$mockDB->begin();
+		$mockDB->query( "UPDATE x SET y=1" );
+		$id = $lbFactory->declareUsageSectionStart( 'k' );
+		$mockDB->query( "UPDATE x SET y=2" );
+		$mockDB->commit();
+		$info = $lbFactory->declareUsageSectionEnd( $id );
+
+		$this->assertEquals( 2, $info['readQueries'] ); // +1 for ping()
+		$this->assertEquals( 1, $info['writeQueries'] );
+		$this->assertEquals( true, $info['cacheSetOptions']['pending'] );
+		$this->assertEquals( 3, $info['cacheSetOptions']['lag'] );
+		$this->assertGreaterThanOrEqual( $wallTime - 10, $info['cacheSetOptions']['since'] );
+		$this->assertLessThan( $wallTime + 10, $info['cacheSetOptions']['since'] );
+	}
+
+	private function newLBFactoryMulti( array $baseOverride = [], array $serverOverride = [] ) {
+		global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype, $wgSQLiteDataDir;
+
+		return new LBFactoryMulti( $baseOverride + [
+				'sectionsByDB' => [],
+				'sectionLoads' => [
+					'DEFAULT' => [
+						'test-db1' => 1,
+					],
+				],
+				'serverTemplate' => $serverOverride + [
+						'dbname' => $wgDBname,
+						'user' => $wgDBuser,
+						'password' => $wgDBpassword,
+						'type' => $wgDBtype,
+						'dbDirectory' => $wgSQLiteDataDir,
+						'flags' => DBO_DEFAULT
+					],
+				'hostsByName' => [
+					'test-db1' => $wgDBserver,
+				],
+				'loadMonitorClass' => 'LoadMonitorNull',
+				'localDomain' => wfWikiID()
+			] );
 	}
 
 	private function quoteTable( Database $db, $table ) {

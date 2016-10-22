@@ -591,6 +591,14 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function declareUsageSectionStart( $id ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function declareUsageSectionEnd( $id ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	/**
 	 * Clean up the connection when out of scope
 	 */
