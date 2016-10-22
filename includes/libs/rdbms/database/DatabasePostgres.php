@@ -704,7 +704,7 @@ __INDEXATTR__;
 	 * @param array $selectOptions
 	 * @return bool
 	 */
-	function nativeInsertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
+	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
 		$insertOptions = [], $selectOptions = [] ) {
 		$destTable = $this->tableName( $destTable );
 
