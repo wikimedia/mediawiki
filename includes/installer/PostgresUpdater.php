@@ -72,6 +72,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addSequence', 'tag_summary', false, 'tag_summary_ts_id_seq' ],
 
 			# new tables
+			[ 'addSequence', 'category', false, 'category_cat_id_seq' ],
 			[ 'addTable', 'category', 'patch-category.sql' ],
 			[ 'addTable', 'page', 'patch-page.sql' ],
 			[ 'addTable', 'querycachetwo', 'patch-querycachetwo.sql' ],
@@ -609,10 +610,14 @@ END;
 
 	protected function addSequence( $table, $pkey, $ns ) {
 		if ( !$this->db->sequenceExists( $ns ) ) {
-			$this->output( "Creating sequence $ns\n" );
-			$this->db->query( "CREATE SEQUENCE $ns" );
-			if ( $pkey !== false ) {
-				$this->setDefault( $table, $pkey, '"nextval"(\'"' . $ns . '"\'::"regclass")' );
+			try {
+				$this->output( "Creating sequence $ns\n" );
+				$this->db->query( "CREATE SEQUENCE $ns" );
+				if ( $pkey !== false ) {
+					$this->setDefault( $table, $pkey, '"nextval"(\'"' . $ns . '"\'::"regclass")' );
+				}
+			} catch ( Exception $e ) {
+				$this->output( "...sequence $ns already exists.\n" );
 			}
 		}
 	}
