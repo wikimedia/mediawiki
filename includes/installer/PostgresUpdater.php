@@ -72,6 +72,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addSequence', 'tag_summary', false, 'tag_summary_ts_id_seq' ],
 
 			# new tables
+			[ 'addSequence', 'category', false, 'category_cat_id_seq' ],
 			[ 'addTable', 'category', 'patch-category.sql' ],
 			[ 'addTable', 'page', 'patch-page.sql' ],
 			[ 'addTable', 'querycachetwo', 'patch-querycachetwo.sql' ],
@@ -607,12 +608,39 @@ END;
 		return $d;
 	}
 
+	/**
+	 * Add a new table to the database
+	 *
+	 * @param string $name Name of the new table
+	 * @param string $patch Path to the patch file
+	 * @param bool $fullpath Whether to treat $patch path as a relative or not
+	 * @return bool False if this was skipped because schema changes are skipped
+	 */
+	protected function addTable( $name, $patch, $fullpath = false ) {
+		if ( !$this->doTable( $name ) ) {
+			return true;
+		}
+
+		// Fixes postgresql error
+		try {
+			return $this->applyPatch( $patch, $fullpath, "Creating $name table" );
+		} catch ( Exception $e ) {
+			$this->output( "...$name table already exists.\n" );
+		}
+
+		return true;
+	}
+
 	protected function addSequence( $table, $pkey, $ns ) {
 		if ( !$this->db->sequenceExists( $ns ) ) {
-			$this->output( "Creating sequence $ns\n" );
-			$this->db->query( "CREATE SEQUENCE $ns" );
-			if ( $pkey !== false ) {
-				$this->setDefault( $table, $pkey, '"nextval"(\'"' . $ns . '"\'::"regclass")' );
+			try {
+				$this->output( "Creating sequence $ns\n" );
+				$this->db->query( "CREATE SEQUENCE $ns" );
+				if ( $pkey !== false ) {
+					$this->setDefault( $table, $pkey, '"nextval"(\'"' . $ns . '"\'::"regclass")' );
+				}
+			} catch ( Exception $e ) {
+				$this->output( "...sequence $ns already exists.\n" );
 			}
 		}
 	}
@@ -676,14 +704,11 @@ END;
 	}
 
 	protected function addPgField( $table, $field, $type ) {
-		$fi = $this->db->fieldInfo( $table, $field );
-		if ( !is_null( $fi ) ) {
-			$this->output( "...column '$table.$field' already exists\n" );
-
-			return;
-		} else {
+		try {
 			$this->output( "Adding column '$table.$field'\n" );
 			$this->db->query( "ALTER TABLE $table ADD $field $type" );
+		} catch ( Exception $e ) {
+			$this->output( "...column '$table.$field' already exists\n" );
 		}
 	}
 
