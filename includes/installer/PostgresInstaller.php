@@ -237,7 +237,7 @@ class PostgresInstaller extends DatabaseInstaller {
 					 */
 					$conn = $status->value;
 					$safeRole = $conn->addIdentifierQuotes( $this->getVar( 'wgDBuser' ) );
-					$conn->query( "SET ROLE $safeRole" );
+					$conn->doQuery( "SET ROLE $safeRole" );
 				}
 
 				return $status;
@@ -484,7 +484,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			[ 'datname' => $dbName ], __METHOD__ );
 		if ( !$exists ) {
 			$safedb = $conn->addIdentifierQuotes( $dbName );
-			$conn->query( "CREATE DATABASE $safedb", __METHOD__ );
+			$conn->doQuery( "CREATE DATABASE $safedb", __METHOD__ );
 		}
 
 		return Status::newGood();
@@ -504,7 +504,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		$safeuser = $conn->addIdentifierQuotes( $this->getVar( 'wgDBuser' ) );
 		if ( !$conn->schemaExists( $schema ) ) {
 			try {
-				$conn->query( "CREATE SCHEMA $safeschema AUTHORIZATION $safeuser" );
+				$conn->doQuery( "CREATE SCHEMA $safeschema AUTHORIZATION $safeuser" );
 			} catch ( DBQueryError $e ) {
 				return Status::newFatal( 'config-install-pg-schema-failed',
 					$this->getVar( '_InstallUser' ), $schema );
@@ -551,7 +551,7 @@ class PostgresInstaller extends DatabaseInstaller {
 					$sql .= ' ROLE' . $conn->addIdentifierQuotes( $this->getVar( '_InstallUser' ) );
 				}
 
-				$conn->query( $sql, __METHOD__ );
+				$conn->doQuery( $sql, __METHOD__ );
 			} catch ( DBQueryError $e ) {
 				return Status::newFatal( 'config-install-user-create-failed',
 					$this->getVar( 'wgDBuser' ), $e->getMessage() );
@@ -660,7 +660,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			__METHOD__ );
 		if ( $exists ) {
 			try {
-				$conn->query( 'CREATE LANGUAGE plpgsql' );
+				$conn->doQuery( 'CREATE LANGUAGE plpgsql' );
 			} catch ( DBQueryError $e ) {
 				return Status::newFatal( 'config-pg-no-plpgsql', $this->getVar( 'wgDBname' ) );
 			}
