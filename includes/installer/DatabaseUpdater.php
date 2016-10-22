@@ -727,10 +727,11 @@ abstract class DatabaseUpdater {
 			return true;
 		}
 
-		if ( $this->db->tableExists( $name, __METHOD__ ) ) {
-			$this->output( "...$name table already exists.\n" );
-		} else {
+		// Fixes postgresql error
+		try {
 			return $this->applyPatch( $patch, $fullpath, "Creating $name table" );
+		} catch ( Exception $e ) {
+			$this->output( "...$name table already exists.\n" );
 		}
 
 		return true;
