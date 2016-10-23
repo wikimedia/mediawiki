@@ -830,7 +830,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$priorWritesPending = $this->writesOrCallbacksPending();
 		$this->mLastQuery = $sql;
 
-		$isWrite = $this->isWriteQuery( $sql ) && !$this->registerTempTableOperation( $sql );
+		$isWrite = $this->isWriteQuery( $sql );
 		if ( $isWrite ) {
 			$reason = $this->getReadOnlyReason();
 			if ( $reason !== false ) {
@@ -1022,8 +1022,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->mTrxLevel = 0;
 		$this->mTrxIdleCallbacks = []; // bug 65263
 		$this->mTrxPreCommitCallbacks = []; // bug 65263
-		$this->mSessionTempTables = [];
-		$this->mNamedLocksHeld = [];
 		try {
 			// Handle callbacks in mTrxEndCallbacks
 			$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
