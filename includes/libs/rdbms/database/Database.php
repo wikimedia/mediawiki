@@ -840,9 +840,23 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->mLastWriteTime = microtime( true );
 		}
 
+		global $wgUser;
+
+
+		if ( is_object( $wgUser ) && $wgUser->isItemLoaded( 'name' ) ) {
+			$userName = $wgUser->getName();
+			if ( mb_strlen( $userName ) > 15 ) {
+				$userName = mb_substr( $userName, 0, 15 ) . '...';
+			}
+			$userName = str_replace( '/', '', $userName );
+		} else {
+			$userName = '';
+		}
+
+
 		// Add trace comment to the begin of the sql string, right after the operator.
 		// Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (bug 42598)
-		$commentedSql = preg_replace( '/\s|$/', " /* $fname {$this->agent} */ ", $sql, 1 );
+		$commentedSql = preg_replace( '/\s|$/', " /* $fname $wgUser */ ", $sql, 1 );
 
 		# Start implicit transactions that wrap the request if DBO_TRX is enabled
 		if ( !$this->mTrxLevel && $this->getFlag( self::DBO_TRX )
