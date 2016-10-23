@@ -338,7 +338,7 @@ class Language {
 			// People think language codes are html safe, so enforce it.
 			// Ideally we should only allow a-zA-Z0-9-
 			// but, .+ and other chars are often used for {{int:}} hacks
-			// see bugs 37564, 37587, 36938
+			// see bugs T39564, T39587, T38938
 			$cache[$code] =
 				// Protect against path traversal
 				strcspn( $code, ":/\\\000&<>'\"" ) === strlen( $code )
