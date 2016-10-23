@@ -1096,7 +1096,7 @@ __INDEXATTR__;
 		$sql = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
 			. "WHERE c.relnamespace = n.oid AND c.relname = $etable AND n.nspname = $eschema "
 			. "AND c.relkind IN ('" . implode( "','", $types ) . "')";
-		$res = $this->query( $sql );
+		$res = $this->query( $sql, __METHOD__ );
 		$count = $res ? $res->numRows() : 0;
 
 		return (bool)$count;
