@@ -1013,7 +1013,6 @@ __INDEXATTR__;
 	 * @param string $desiredSchema
 	 */
 	function determineCoreSchema( $desiredSchema ) {
-		$this->begin( __METHOD__, self::TRANSACTION_INTERNAL );
 		if ( $this->schemaExists( $desiredSchema ) ) {
 			if ( in_array( $desiredSchema, $this->getSchemas() ) ) {
 				$this->mCoreSchema = $desiredSchema;
@@ -1040,7 +1039,6 @@ __INDEXATTR__;
 				$this->mCoreSchema . "\"\n" );
 		}
 		/* Commit SET otherwise it will be rollbacked on error or IGNORE SELECT */
-		$this->commit( __METHOD__, self::FLUSHING_INTERNAL );
 	}
 
 	/**
