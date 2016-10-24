@@ -28,7 +28,8 @@
 			"Purodha",
 			"Macofe",
 			"Adeliine",
-			"Metsavend"
+			"Metsavend",
+			"Cumbril"
 		]
 	},
 	"tog-underline": "Linkide allakriipsutus:",
@@ -1145,6 +1146,7 @@
 	"right-managechangetags": "Koostada ja (in)aktiveerida [[Special:Tags|märgiseid]]",
 	"right-applychangetags": "Rakendada [[Special:Tags|märgiseid]] enda muudatuste suhtes",
 	"right-changetags": "Lisada ja eemaldada käsitsi rakendatavaid [[Special:Tags|märgiseid]] üksikute redaktsioonide ja logisissekannete juures",
+	"right-deletechangetags": "Kustutada andmebaasist [[Eri:Märgised|märgiseid]]",
 	"grant-group-page-interaction": "Interaktsioon lehekülgedega",
 	"grant-group-file-interaction": "Interaktsioon meediafailidega",
 	"grant-group-watchlist-interaction": "Interaktsioon sinu jälgimisloendiga",

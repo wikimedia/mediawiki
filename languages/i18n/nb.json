@@ -3526,7 +3526,7 @@
 	"feedback-thanks": "Din tilbakemelding til siden \"[ $2  $1 ]\" er sendt. Takk skal du ha!",
 	"feedback-thanks-title": "Takk!",
 	"feedback-useragent": "Brukeragent",
-	"searchsuggest-search": "Søk",
+	"searchsuggest-search": "Søk i {{SITENAME}}",
 	"searchsuggest-containing": "inneholder …",
 	"api-error-autoblocked": "Din IP-adresse har blitt blokkert automatisk fordi den ble brukt av en blokkert bruker.",
 	"api-error-badaccess-groups": "Du har ikke tillatelse til å laste opp filer til denne wikien.",
