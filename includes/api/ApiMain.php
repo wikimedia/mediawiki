@@ -1008,6 +1008,7 @@ class ApiMain extends ApiBase {
 				ApiResult::setContentValue(
 					$errMessage,
 					'trace',
+					$e->getFile() . '(' . $e->getLine() . ')' . PHP_EOL .
 					MWExceptionHandler::getRedactedTraceAsString( $e )
 				);
 			}
