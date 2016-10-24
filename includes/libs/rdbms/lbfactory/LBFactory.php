@@ -153,18 +153,16 @@ abstract class LBFactory implements ILBFactory {
 	/**
 	 * @see ILBFactory::newExternalLB()
 	 * @param string $cluster
-	 * @param bool $domain
 	 * @return LoadBalancer
 	 */
-	abstract public function newExternalLB( $cluster, $domain = false );
+	abstract public function newExternalLB( $cluster );
 
 	/**
 	 * @see ILBFactory::getExternalLB()
 	 * @param string $cluster
-	 * @param bool $domain
 	 * @return LoadBalancer
 	 */
-	abstract public function getExternalLB( $cluster, $domain = false );
+	abstract public function getExternalLB( $cluster );
 
 	/**
 	 * Call a method of each tracked load balancer

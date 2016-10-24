@@ -55,36 +55,34 @@ class LBFactorySingle extends LBFactory {
 	}
 
 	/**
-	 * @param bool|string $wiki
+	 * @param bool|string $domain (unused)
 	 * @return LoadBalancerSingle
 	 */
-	public function newMainLB( $wiki = false ) {
+	public function newMainLB( $domain = false ) {
 		return $this->lb;
 	}
 
 	/**
-	 * @param bool|string $wiki
+	 * @param bool|string $domain (unused)
 	 * @return LoadBalancerSingle
 	 */
-	public function getMainLB( $wiki = false ) {
+	public function getMainLB( $domain = false ) {
 		return $this->lb;
 	}
 
 	/**
-	 * @param string $cluster External storage cluster, or false for core
-	 * @param bool|string $wiki Wiki ID, or false for the current wiki
+	 * @param string $cluster External storage cluster name (unused)
 	 * @return LoadBalancerSingle
 	 */
-	public function newExternalLB( $cluster, $wiki = false ) {
+	public function newExternalLB( $cluster ) {
 		return $this->lb;
 	}
 
 	/**
-	 * @param string $cluster External storage cluster, or false for core
-	 * @param bool|string $wiki Wiki ID, or false for the current wiki
+	 * @param string $cluster External storage cluster name (unused)
 	 * @return LoadBalancerSingle
 	 */
-	public function getExternalLB( $cluster, $wiki = false ) {
+	public function getExternalLB( $cluster ) {
 		return $this->lb;
 	}
 

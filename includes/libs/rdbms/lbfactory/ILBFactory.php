@@ -86,28 +86,25 @@ interface ILBFactory {
 
 	/**
 	 * Create a new load balancer for external storage. The resulting object will be
-	 * untracked, not chronology-protected, and the caller is responsible for
-	 * cleaning it up.
+	 * untracked, not chronology-protected, and the caller is responsible for cleaning it up.
 	 *
 	 * This method is for only advanced usage and callers should almost always use
 	 * getExternalLB() instead. This method can be useful when a table is used as a
 	 * key/value store. In that cases, one might want to query it in autocommit mode
 	 * (DBO_TRX off) but still use DBO_TRX transaction rounds on other tables.
 	 *
-	 * @param string $cluster External storage cluster, or false for core
-	 * @param bool|string $domain Domain ID, or false for the current domain
+	 * @param string $cluster External storage cluster name
 	 * @return ILoadBalancer
 	 */
-	public function newExternalLB( $cluster, $domain = false );
+	public function newExternalLB( $cluster );
 
 	/**
 	 * Get a cached (tracked) load balancer for external storage
 	 *
-	 * @param string $cluster External storage cluster, or false for core
-	 * @param bool|string $domain Domain ID, or false for the current domain
+	 * @param string $cluster External storage cluster name
 	 * @return ILoadBalancer
 	 */
-	public function getExternalLB( $cluster, $domain = false );
+	public function getExternalLB( $cluster );
 
 	/**
 	 * Execute a function for each tracked load balancer
