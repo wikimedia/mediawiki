@@ -121,6 +121,7 @@ This is not a release yet!
 * (T129738) SECURITY: Make blocks log users out if $wgBlockDisablesLogin is true
 * (T139670) Move 'UserGetRights' call before application of
   Session::getAllowedUserRights()
+* (T154356) Workaround PHP5 bug in PHPSessionHandler for SessionHandlerInterface methods.
 
 === Action API changes in 1.28 ===
 * Added 'maxarticlesize' property to action=query&meta=siteinfo which contains
