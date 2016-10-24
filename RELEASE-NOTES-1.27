@@ -21,6 +21,7 @@ was released.
   submitted in the POST body instead.
 * (T158766) Avoid SQL error on MSSQL when using selectRowCount()
 * (T145635) Fix too long index error when installing with MSSQL.
+* (T154356) Workaround PHP5 bug in PHPSessionHandler for SessionHandlerInterface methods.
 
 == MediaWiki 1.27.1 ==
 
