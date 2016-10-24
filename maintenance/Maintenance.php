@@ -104,7 +104,7 @@ abstract class Maintenance {
 
 	/**
 	 * Used by getDB() / setDB()
-	 * @var IDatabase
+	 * @var Database
 	 */
 	private $mDb = null;
 
@@ -726,6 +726,7 @@ abstract class Maintenance {
 
 		if ( is_array( $wgProfiler ) && isset( $wgProfiler['class'] ) ) {
 			$class = $wgProfiler['class'];
+			/** @var Profiler $profiler */
 			$profiler = new $class(
 				[ 'sampling' => 1, 'output' => [ $output ] ]
 					+ $wgProfiler
@@ -1182,6 +1183,7 @@ abstract class Maintenance {
 		$this->beginTransaction( $dbw, __METHOD__ );
 
 		# Get "active" text records from the revisions table
+		$cur = [];
 		$this->output( 'Searching for active text records in revisions table...' );
 		$res = $dbw->select( 'revision', 'rev_text_id', [], __METHOD__, [ 'DISTINCT' ] );
 		foreach ( $res as $row ) {

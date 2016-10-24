@@ -1087,7 +1087,7 @@ __INDEXATTR__;
 		if ( !is_array( $types ) ) {
 			$types = [ $types ];
 		}
-		if ( !$schema ) {
+		if ( $schema === false ) {
 			$schema = $this->getCoreSchema();
 		}
 		$table = $this->realTableName( $table, 'raw' );
@@ -1236,7 +1236,6 @@ SQL;
 
 	function strencode( $s ) {
 		// Should not be called by us
-
 		return pg_escape_string( $this->getBindingHandle(), $s );
 	}
 
