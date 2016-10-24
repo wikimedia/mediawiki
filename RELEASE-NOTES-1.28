@@ -5,6 +5,7 @@ This is not a release yet!
 
 * $wgRunJobsAsync is now false by default (T142751). This change only affects
   wikis with $wgJobRunRate > 0.
+* (T154356) Workaround PHP5 bug in PHPSessionHandler for SessionHandlerInterface methods.
 
 == MediaWiki 1.28 ==
 
