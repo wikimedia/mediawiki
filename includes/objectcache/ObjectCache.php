@@ -326,9 +326,9 @@ class ObjectCache {
 	 * @throws UnexpectedValueException
 	 */
 	public static function newWANCacheFromParams( array $params ) {
+		$erGroup = MediaWikiServices::getInstance()->getEventRelayerGroup();
 		foreach ( $params['channels'] as $action => $channel ) {
-			$params['relayers'][$action] = MediaWikiServices::getInstance()->getEventRelayerGroup()
-				->getRelayer( $channel );
+			$params['relayers'][$action] = $erGroup->getRelayer( $channel );
 			$params['channels'][$action] = $channel;
 		}
 		$params['cache'] = self::newFromParams( $params['store'] );
