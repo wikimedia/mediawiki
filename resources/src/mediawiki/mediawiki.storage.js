@@ -10,7 +10,14 @@
 	 */
 	mw.storage = {
 
-		localStorage: window.localStorage,
+		localStorage: ( function () {
+			// Catch exceptions to avoid fatal in Chrome's "Block data storage" mode
+			// which throws when accessing the localStorage property itself, as opposed
+			// to the standard behaviour of throwing on getItem/setItem. (T148998)
+			try {
+				return window.localStorage;
+			} catch ( e ) {}
+		}() ),
 
 		/**
 		 * Retrieve value from device storage.
