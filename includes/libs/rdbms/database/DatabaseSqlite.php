@@ -31,20 +31,18 @@ class DatabaseSqlite extends Database {
 
 	/** @var string Directory */
 	protected $dbDir;
-
 	/** @var string File name for SQLite database file */
 	protected $dbPath;
-
 	/** @var string Transaction mode */
 	protected $trxMode;
 
 	/** @var int The number of rows affected as an integer */
 	protected $mAffectedRows;
-
 	/** @var resource */
 	protected $mLastResult;
 
 	/** @var $mConn PDO */
+	protected $mConn;
 
 	/** @var FSLockManager (hopefully on the same server as the DB) */
 	protected $lockMgr;
@@ -144,7 +142,7 @@ class DatabaseSqlite extends Database {
 	 * @param string $dbName
 	 *
 	 * @throws DBConnectionError
-	 * @return PDO
+	 * @return bool
 	 */
 	function open( $server, $user, $pass, $dbName ) {
 		$this->close();
@@ -155,7 +153,7 @@ class DatabaseSqlite extends Database {
 		}
 		$this->openFile( $fileName );
 
-		return $this->mConn;
+		return (bool)$this->mConn;
 	}
 
 	/**
@@ -493,15 +491,12 @@ class DatabaseSqlite extends Database {
 	 * @param string $table
 	 * @param string $index
 	 * @param string $fname
-	 * @return array
+	 * @return array|false
 	 */
 	function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		$sql = 'PRAGMA index_info(' . $this->addQuotes( $this->indexName( $index ) ) . ')';
 		$res = $this->query( $sql, $fname );
-		if ( !$res ) {
-			return null;
-		}
-		if ( $res->numRows() == 0 ) {
+		if ( !$res || $res->numRows() == 0 ) {
 			return false;
 		}
 		$info = [];
