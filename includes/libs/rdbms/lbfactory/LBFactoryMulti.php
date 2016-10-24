@@ -255,13 +255,7 @@ class LBFactoryMulti extends LBFactory {
 		return $this->mainLBs[$section];
 	}
 
-	/**
-	 * @param string $cluster
-	 * @param DatabaseDomain|string|bool $domain Domain ID, or false for the current domain
-	 * @throws InvalidArgumentException
-	 * @return LoadBalancer
-	 */
-	public function newExternalLB( $cluster, $domain = false ) {
+	public function newExternalLB( $cluster ) {
 		if ( !isset( $this->externalLoads[$cluster] ) ) {
 			throw new InvalidArgumentException( __METHOD__ . ": Unknown cluster \"$cluster\"" );
 		}
@@ -281,14 +275,9 @@ class LBFactoryMulti extends LBFactory {
 		);
 	}
 
-	/**
-	 * @param string $cluster External storage cluster, or false for core
-	 * @param DatabaseDomain|string|bool $domain Domain ID, or false for the current domain
-	 * @return LoadBalancer
-	 */
-	public function getExternalLB( $cluster, $domain = false ) {
+	public function getExternalLB( $cluster ) {
 		if ( !isset( $this->extLBs[$cluster] ) ) {
-			$this->extLBs[$cluster] = $this->newExternalLB( $cluster, $domain );
+			$this->extLBs[$cluster] = $this->newExternalLB( $cluster );
 			$this->getChronologyProtector()->initLB( $this->extLBs[$cluster] );
 		}
 
