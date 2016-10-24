@@ -3759,6 +3759,7 @@ class Language {
 	 * but uses pairs of regexes and replacements instead of code.
 	 *
 	 * @return array[] Array of grammar transformations.
+	 * @throws MWException
 	 * @since 1.28
 	 */
 	public function getGrammarTransformations() {
