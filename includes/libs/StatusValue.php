@@ -160,7 +160,7 @@ class StatusValue {
 	 * @param mixed $value
 	 */
 	public function setResult( $ok, $value = null ) {
-		$this->ok = $ok;
+		$this->ok = (bool)$ok;
 		$this->value = $value;
 	}
 
