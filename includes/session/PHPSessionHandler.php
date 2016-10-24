@@ -163,11 +163,38 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 	}
 
 	/**
+	 * Workaround for PHP5 bug
+	 *
+	 * PHP5 has a bug in handling boolean return values for
+	 * SessionHandlerInterface methods, it expects 0 or -1 instead of true or
+	 * false. See <https://wiki.php.net/rfc/session.user.return-value>.
+	 *
+	 * PHP7 and HHVM are not affected.
+	 *
+	 * @todo When we drop support for Zend PHP 5, this can be removed.
+	 * @return bool|int
+	 * @codeCoverageIgnore
+	 */
+	protected static function returnSuccess() {
+		return defined( 'HHVM_VERSION' ) || version_compare( PHP_VERSION, '7.0.0', '>=' ) ? true : 0;
+	}
+
+	/**
+	 * Workaround for PHP5 bug
+	 * @see self::returnSuccess()
+	 * @return bool|int
+	 * @codeCoverageIgnore
+	 */
+	protected static function returnFailure() {
+		return defined( 'HHVM_VERSION' ) || version_compare( PHP_VERSION, '7.0.0', '>=' ) ? false : -1;
+	}
+
+	/**
 	 * Initialize the session (handler)
 	 * @private For internal use only
 	 * @param string $save_path Path used to store session files (ignored)
 	 * @param string $session_name Session name (ignored)
-	 * @return bool Success
+	 * @return bool|int Success (see self::returnSuccess())
 	 */
 	public function open( $save_path, $session_name ) {
 		if ( self::$instance !== $this ) {
@@ -176,20 +203,20 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 		if ( !$this->enable ) {
 			throw new \BadMethodCallException( 'Attempt to use PHP session management' );
 		}
-		return true;
+		return self::returnSuccess();
 	}
 
 	/**
 	 * Close the session (handler)
 	 * @private For internal use only
-	 * @return bool Success
+	 * @return bool|int Success (see self::returnSuccess())
 	 */
 	public function close() {
 		if ( self::$instance !== $this ) {
 			throw new \UnexpectedValueException( __METHOD__ . ': Wrong instance called!' );
 		}
 		$this->sessionFieldCache = [];
-		return true;
+		return self::returnSuccess();
 	}
 
 	/**
@@ -224,7 +251,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 	 * @param string $dataStr Session data. Not that you should ever call this
 	 *   directly, but note that this has the same issues with code injection
 	 *   via user-controlled data as does PHP's unserialize function.
-	 * @return bool Success
+	 * @return bool|int Success (see self::returnSuccess())
 	 */
 	public function write( $id, $dataStr ) {
 		if ( self::$instance !== $this ) {
@@ -243,14 +270,14 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 				[
 					'session' => $id,
 			] );
-			return true;
+			return self::returnSuccess();
 		}
 
 		// First, decode the string PHP handed us
 		$data = \Wikimedia\PhpSessionSerializer::decode( $dataStr );
 		if ( $data === null ) {
 			// @codeCoverageIgnoreStart
-			return false;
+			return self::returnFailure();
 			// @codeCoverageIgnoreEnd
 		}
 
@@ -323,14 +350,14 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 
 		$session->persist();
 
-		return true;
+		return self::returnSuccess();
 	}
 
 	/**
 	 * Destroy a session
 	 * @private For internal use only
 	 * @param string $id Session id
-	 * @return bool Success
+	 * @return bool|int Success (see self::returnSuccess())
 	 */
 	public function destroy( $id ) {
 		if ( self::$instance !== $this ) {
@@ -343,14 +370,15 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 		if ( $session ) {
 			$session->clear();
 		}
-		return true;
+		return self::returnSuccess();
 	}
 
 	/**
 	 * Execute garbage collection.
 	 * @private For internal use only
 	 * @param int $maxlifetime Maximum session life time (ignored)
-	 * @return bool Success
+	 * @return bool|int Success (see self::returnSuccess())
+	 * @codeCoverageIgnore See T135576
 	 */
 	public function gc( $maxlifetime ) {
 		if ( self::$instance !== $this ) {
@@ -358,6 +386,6 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 		}
 		$before = date( 'YmdHis', time() );
 		$this->store->deleteObjectsExpiringBefore( $before );
-		return true;
+		return self::returnSuccess();
 	}
 }
