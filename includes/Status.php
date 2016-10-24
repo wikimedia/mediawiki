@@ -113,7 +113,7 @@ class Status extends StatusValue {
 	 *     1 => object(Status) # The Status with warning messages, only
 	 * ]
 	 *
-	 * @return array
+	 * @return Status[]
 	 */
 	public function splitByErrorType() {
 		list( $errorsOnlyStatus, $warningsOnlyStatus ) = parent::splitByErrorType();
