@@ -1725,7 +1725,7 @@
 				}
 				return {
 					name: key.slice( 0, index ),
-					version: key.slice( index )
+					version: key.slice( index + 1 )
 				};
 			}
 
