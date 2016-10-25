@@ -768,18 +768,23 @@ __INDEXATTR__;
 	}
 
 	function tableName( $name, $format = 'quoted' ) {
-		# Replace reserved words with better ones
+		// Replace reserved words with better ones
+		// TODO: dependency inject these...
 		switch ( $name ) {
 			case 'user':
-				return $this->realTableName( 'mwuser', $format );
+				return parent::tableName( 'mwuser', $format );
 			case 'text':
-				return $this->realTableName( 'pagecontent', $format );
+				return parent::tableName( 'pagecontent', $format );
 			default:
-				return $this->realTableName( $name, $format );
+				return parent::tableName( $name, $format );
 		}
 	}
 
-	/* Don't cheat on installer */
+	/**
+	 * @param string $name
+	 * @param string $format
+	 * @return string Qualified and encoded (if requested) table name
+	 */
 	function realTableName( $name, $format = 'quoted' ) {
 		return parent::tableName( $name, $format );
 	}
@@ -1090,7 +1095,6 @@ __INDEXATTR__;
 		if ( $schema === false ) {
 			$schema = $this->getCoreSchema();
 		}
-		$table = $this->realTableName( $table, 'raw' );
 		$etable = $this->addQuotes( $table );
 		$eschema = $this->addQuotes( $schema );
 		$sql = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
