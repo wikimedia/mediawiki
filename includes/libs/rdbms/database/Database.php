@@ -1721,9 +1721,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} elseif ( count( $dbDetails ) == 2 ) {
 			list( $database, $table ) = $dbDetails;
 			# We don't want any prefix added in this case
+			$prefix = '';
 			# In dbs that support it, $database may actually be the schema
 			# but that doesn't affect any of the functionality here
-			$prefix = '';
 			$schema = '';
 		} else {
 			list( $table ) = $dbDetails;
@@ -1745,29 +1745,35 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		# Quote $table and apply the prefix if not quoted.
 		# $tableName might be empty if this is called from Database::replaceVars()
 		$tableName = "{$prefix}{$table}";
-		if ( $format == 'quoted'
-			&& !$this->isQuotedIdentifier( $tableName ) && $tableName !== ''
+		if ( $format === 'quoted'
+			&& !$this->isQuotedIdentifier( $tableName )
+			&& $tableName !== ''
 		) {
 			$tableName = $this->addIdentifierQuotes( $tableName );
 		}
 
-		# Quote $schema and merge it with the table name if needed
-		if ( strlen( $schema ) ) {
-			if ( $format == 'quoted' && !$this->isQuotedIdentifier( $schema ) ) {
-				$schema = $this->addIdentifierQuotes( $schema );
-			}
-			$tableName = $schema . '.' . $tableName;
-		}
-
-		# Quote $database and merge it with the table name if needed
-		if ( $database !== '' ) {
-			if ( $format == 'quoted' && !$this->isQuotedIdentifier( $database ) ) {
-				$database = $this->addIdentifierQuotes( $database );
-			}
-			$tableName = $database . '.' . $tableName;
-		}
+		# Quote $schema and $database and merge them with the table name if needed
+		$tableName = $this->prependDatabaseOrSchema( $schema, $tableName, $format );
+		$tableName = $this->prependDatabaseOrSchema( $database, $tableName, $format );
 
 		return $tableName;
+	}
+
+	/**
+	 * @param string|null $namespace Database or schema
+	 * @param string $relation Name of table, view, sequence, etc...
+	 * @param string $format One of (raw, quoted)
+	 * @return string Relation name with quoted and merged $namespace as needed
+	 */
+	private function prependDatabaseOrSchema( $namespace, $relation, $format ) {
+		if ( strlen( $namespace ) ) {
+			if ( $format === 'quoted' && !$this->isQuotedIdentifier( $namespace ) ) {
+				$namespace = $this->addIdentifierQuotes( $namespace );
+			}
+			$relation = $namespace . '.' . $relation;
+		}
+
+		return $relation;
 	}
 
 	public function tableNames() {

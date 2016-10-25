@@ -152,6 +152,8 @@ class DatabasePostgres extends Database {
 		}
 
 		$this->determineCoreSchema( $this->mSchema );
+		// The schema to be used is now in the search path; no need for explicit qualification
+		$this->mSchema = null;
 
 		return $this->mConn;
 	}
@@ -768,19 +770,33 @@ __INDEXATTR__;
 	}
 
 	function tableName( $name, $format = 'quoted' ) {
-		# Replace reserved words with better ones
-		switch ( $name ) {
-			case 'user':
-				return $this->realTableName( 'mwuser', $format );
-			case 'text':
-				return $this->realTableName( 'pagecontent', $format );
-			default:
-				return $this->realTableName( $name, $format );
-		}
+		// Replace reserved words with better ones
+		$name = $this->remappedTableName( $name );
+
+		return parent::tableName( $name, $format );
 	}
 
-	/* Don't cheat on installer */
-	function realTableName( $name, $format = 'quoted' ) {
+	/**
+	 * @param string $name
+	 * @return string Value of $name or remapped name if $name is a reserved keyword
+	 * @TODO: dependency inject these...
+	 */
+	public function remappedTableName( $name ) {
+		if ( $name === 'user' ) {
+			return 'mwuser';
+		} elseif ( $name === 'text' ) {
+			return 'pagecontent';
+		}
+
+		return $name;
+	}
+
+	/**
+	 * @param string $name
+	 * @param string $format
+	 * @return string Qualified and encoded (if requested) table name
+	 */
+	public function realTableName( $name, $format = 'quoted' ) {
 		return parent::tableName( $name, $format );
 	}
 
@@ -1090,7 +1106,6 @@ __INDEXATTR__;
 		if ( $schema === false ) {
 			$schema = $this->getCoreSchema();
 		}
-		$table = $this->realTableName( $table, 'raw' );
 		$etable = $this->addQuotes( $table );
 		$eschema = $this->addQuotes( $schema );
 		$sql = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
