@@ -3210,7 +3210,7 @@
 	"duplicate-defaultsort": "Advarsel: Standardsorteringen «$2» tar over for den tidligere sorteringen «$1».",
 	"duplicate-displaytitle": "<strong>Advarsel:</strong> Visningstittel \"$2\" erstatter tidligere visningstittel \"$1\".",
 	"restricted-displaytitle": "<strong>Advarsel:</strong> Visningstittelen «$1» ble ignorert siden den ikke tilsvarer sidens faktiske tittel.",
-	"invalid-indicator-name": "<p>Feil:</strong> Sidestatus-indikatornes <code>navn</code>-attributt kan ikke være tomt.",
+	"invalid-indicator-name": "<p>Feil:</strong> Sidestatus-indikatornes <code>name</code>-attributt kan ikke være tomt.",
 	"version": "Versjon",
 	"version-extensions": "Installerte utvidelser",
 	"version-skins": "Installerte drakter",
