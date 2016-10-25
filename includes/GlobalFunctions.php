@@ -1625,11 +1625,13 @@ function wfShowingResults( $offset, $limit ) {
 }
 
 /**
- * @todo document
- * @todo FIXME: We may want to blacklist some broken browsers
+ * Whether the client accept gzip encoding
  *
- * @param bool $force
- * @return bool Whereas client accept gzip compression
+ * Uses the Accept-Encoding header to check if the client supports gzip encoding.
+ * Use this when considering to send a gzip-encoded response to the client.
+ *
+ * @param bool $force Forces another check even if we already have a cached result.
+ * @return bool
  */
 function wfClientAcceptsGzip( $force = false ) {
 	static $result = null;
