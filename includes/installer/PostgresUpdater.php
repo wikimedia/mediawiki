@@ -975,7 +975,7 @@ END;
 	protected function rebuildTextSearch() {
 		if ( $this->updateRowExists( 'patch-textsearch_bug66650.sql' ) ) {
 			$this->output( "...bug 66650 already fixed or not applicable.\n" );
-			return true;
+			return;
 		};
 		$this->applyPatch( 'patch-textsearch_bug66650.sql', false,
 			'Rebuilding text search for bug 66650' );

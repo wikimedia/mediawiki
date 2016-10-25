@@ -9,7 +9,7 @@ class PostgresField implements Field {
 	 * @param string $field
 	 * @return null|PostgresField
 	 */
-	static function fromText( $db, $table, $field ) {
+	static function fromText( DatabasePostgres $db, $table, $field ) {
 		$q = <<<SQL
 SELECT
  attnotnull, attlen, conname AS conname,
@@ -34,7 +34,7 @@ AND relname=%s
 AND attname=%s;
 SQL;
 
-		$table = $db->tableName( $table, 'raw' );
+		$table = $db->remappedTableName( $table );
 		$res = $db->query(
 			sprintf( $q,
 				$db->addQuotes( $db->getCoreSchema() ),
