@@ -639,6 +639,8 @@
 		return mw.loader.using( 'test.stale' )
 			.then( function () {
 				assert.strictEqual( count, 1 );
+				// After implementing, registry contains version as implemented by the response.
+				assert.strictEqual( mw.loader.getVersion( 'test.stale' ), 'v1', 'Override version' );
 				assert.strictEqual( mw.loader.getState( 'test.stale' ), 'ready' );
 				assert.ok( mw.loader.store.get( 'test.stale' ), 'In store' );
 			} )
