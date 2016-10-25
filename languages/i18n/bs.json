@@ -1599,7 +1599,7 @@
 	"withoutinterwiki-legend": "Prefiks",
 	"withoutinterwiki-submit": "Prikaži",
 	"fewestrevisions": "Stranice sa najmanje izmjena",
-	"nbytes": "$1 {{PLURAL:$1|bajt|bajtova}}",
+	"nbytes": "$1 {{PLURAL:$1|bajt|bajta|bajtova}}",
 	"ncategories": "$1 {{PLURAL:$1|kategorija|kategorije}}",
 	"ninterwikis": "$1 {{PLURAL:$1|međujezična veza|međujezične veze}}",
 	"nlinks": "$1 {{PLURAL:$1|veza|veze}}",

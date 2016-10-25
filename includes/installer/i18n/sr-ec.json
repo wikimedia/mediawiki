@@ -52,7 +52,7 @@
 	"config-type-oracle": "Oracle",
 	"config-type-mssql": "Microsoft SQL Server",
 	"config-header-mysql": "MySQL подешавања",
-	"config-header-mssql": "Поставке Microsoft SQL Server-а",
+	"config-header-mssql": "Подешавања Microsoft SQL Server-а",
 	"config-invalid-db-type": "Неважећи тип базе података.",
 	"config-mssql-old": "Потребан је Microsoft SQL Server $1 или новији. Ви имате $2.",
 	"config-mysql-innodb": "InnoDB",

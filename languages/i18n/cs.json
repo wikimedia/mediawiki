@@ -2386,7 +2386,7 @@
 	"movelogpagetext": "Toto je záznam všech přesunů stránek.",
 	"movesubpage": "{{PLURAL:$1|Podstránka|Podstránky}}",
 	"movesubpagetext": "Tato stránka má $1 {{PLURAL:$1|podstránku uvedenou|podstránky vypsané|podstránek vypsaných}} níže.",
-	"movesubpagetalktext": "Odpovídající diskusní stránka má {{PLURAL:$1|jednu, níže zobrazenou podstránku|$1, níže zobrazené podstránky|$1, níže zobrazených podstránek}}.",
+	"movesubpagetalktext": "Odpovídající diskusní stránka má {{PLURAL:$1|jednu podstránku, zobrazenou|$1 podstránky, zobrazené|$1 podstránek, zobrazených}} níže.",
 	"movenosubpage": "Tato stránka nemá žádné podstránky.",
 	"movereason": "Důvod:",
 	"revertmove": "vrátit",
@@ -2658,6 +2658,7 @@
 	"pageinfo-category-pages": "Počet stránek",
 	"pageinfo-category-subcats": "Počet podkategorií",
 	"pageinfo-category-files": "Počet souborů",
+	"pageinfo-user-id": "ID uživatele",
 	"markaspatrolleddiff": "Označit jako prověřené",
 	"markaspatrolledtext": "Označit tuto stránku jako prověřenou",
 	"markaspatrolledtext-file": "Označit tuto verzi souboru jako prověřenou",
@@ -2714,6 +2715,7 @@
 	"newimages-showbots": "Zobrazit soubory načtené boty",
 	"newimages-hidepatrolled": "Skrýt prověřená načtení souborů",
 	"noimages": "Není co zobrazit.",
+	"gallery-slideshow-toggle": "Přepnout náhledy",
 	"ilsubmit": "Hledat",
 	"bydate": "podle data",
 	"sp-newimages-showfrom": "Zobrazit nové soubory počínaje od $2, $1",
@@ -3847,5 +3849,7 @@
 	"usercssispublic": "Uvědomte si prosím, že podstránky s CSS by neměly obsahovat tajné údaje, protože jsou viditelné ostatním uživatelům.",
 	"restrictionsfield-badip": "Neplatná IP adresa nebo rozsah: $1",
 	"restrictionsfield-label": "Povolené rozsahy IP adres:",
-	"restrictionsfield-help": "Jedna IP adresa nebo CIDR rozsah na řádek. Všechno povolíte pomocí<br><code>0.0.0.0/0</code><br><code>::/0</code>"
+	"restrictionsfield-help": "Jedna IP adresa nebo CIDR rozsah na řádek. Všechno povolíte pomocí<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"edit-error-short": "Chyba: $1",
+	"edit-error-long": "Chyby:\n\n$1"
 }
