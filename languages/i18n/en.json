@@ -3418,6 +3418,8 @@
 	"confirm-unwatch-top": "Remove this page from your watchlist?",
 	"confirm-rollback-button": "OK",
 	"confirm-rollback-top": "Revert edits to this page?",
+	"confirm-markpatrolled-button": "OK",
+	"confirm-markpatrolled-top": "(FIXME MarkpatrolledAction::preText) Mark this change as patrolled?",
 	"semicolon-separator": ";&#32;",
 	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",

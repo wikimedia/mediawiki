@@ -27,7 +27,7 @@
  *
  * @ingroup Actions
  */
-class MarkpatrolledAction extends FormlessAction {
+class MarkpatrolledAction extends FormAction {
 
 	public function getName() {
 		return 'markpatrolled';
@@ -37,7 +37,18 @@ class MarkpatrolledAction extends FormlessAction {
 		return '';
 	}
 
-	public function onView() {
+	public function onSubmit( $data ) {
+	}
+
+	/**
+	 * FIXME: Convert to put rcid and token into form as hidden fields.
+	 * Similar to proposed RollbackAction patch. Consider not overriding show(),
+	 * but using smaller methods provided by parent class.
+	 */
+	public function show() {
+		$this->setHeaders();
+		$this->checkCanExecute( $this->getUser() );
+
 		$request = $this->getRequest();
 
 		$rcId = $request->getInt( 'rcid' );
@@ -88,6 +99,22 @@ class MarkpatrolledAction extends FormlessAction {
 		$this->getOutput()->setPageTitle( $this->msg( 'markedaspatrolled' ) );
 		$this->getOutput()->addWikiMsg( 'markedaspatrolledtext', $rc->getTitle()->getPrefixedText() );
 		$this->getOutput()->returnToMain( null, $return );
+	}
+
+	protected function alterForm( HTMLForm $form ) {
+		$form->setSubmitTextMsg( 'confirm-markpatrolled-button' );
+	}
+
+	protected function preText() {
+		// TODO: Get rc object. Get rc->getTitle(). and rc_type (edit or new)
+		// Use message: Mark the selected revision as patrolled (like markedaspatrollednotify)
+		// or
+		// Use message: Mark this page as patrolled (like markaspatrolledtext)
+		return $this->msg( 'confirm-markpatrolled-top' )->parse();
+	}
+
+	public function onSuccess() {
+		// ..
 	}
 
 	public function doesWrites() {
