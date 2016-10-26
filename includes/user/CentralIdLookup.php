@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * The CentralIdLookup service allows for connecting local users with
  * cluster-wide IDs.
@@ -86,7 +88,13 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	 */
 	protected function checkAudience( $audience ) {
 		if ( $audience instanceof User ) {
-			return $audience;
+			if ( !$audience->isSafeToLoad() ) {
+				LoggerFactory::getInstance( 'centralid' )->warning( 'unsafe user passed to '
+					. __METHOD__ );
+				return new User;
+			} else {
+				return $audience;
+			}
 		}
 		if ( $audience === self::AUDIENCE_PUBLIC ) {
 			return new User;

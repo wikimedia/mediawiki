@@ -54,6 +54,12 @@ class CentralIdLookupTest extends MediaWikiTestCase {
 
 		$this->assertNull( $mock->checkAudience( CentralIdLookup::AUDIENCE_RAW ) );
 
+		$unsafeUser = $this->getMock( 'User' );
+		$unsafeUser->expects( $this->any() )->method( 'isSafeToLoad' )->willReturn( false );
+		$user = $mock->checkAudience( $unsafeUser );
+		$this->assertSame( 0, $user->getId() );
+		$this->assertNotSame( $unsafeUser, $user );
+
 		try {
 			$mock->checkAudience( 100 );
 			$this->fail( 'Expected exception not thrown' );
