@@ -23,6 +23,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Maintenance script that displays replication lag times.
  *
@@ -32,27 +34,35 @@ class GetLagTimes extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Dump replication lag times' );
+		$this->addOption( 'report', "Report the lag values to StatsD" );
 	}
 
 	public function execute() {
-		$lb = wfGetLB();
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 
-		if ( $lb->getServerCount() == 1 ) {
-			$this->error( "This script dumps replication lag times, but you don't seem to have\n"
-				. "a multi-host db server configuration." );
-		} else {
+		$lbs = $lbFactory->getAllMainLBs() + $lbFactory->getAllExternalLBs();
+		foreach ( $lbs as $cluster => $lb ) {
+			if ( $lb->getServerCount() <= 1 ) {
+				continue;
+			}
 			$lags = $lb->getLagTimes();
-			foreach ( $lags as $n => $lag ) {
-				$host = $lb->getServerName( $n );
+			foreach ( $lags as $serverIndex => $lag ) {
+				$host = $lb->getServerName( $serverIndex );
 				if ( IP::isValid( $host ) ) {
 					$ip = $host;
 					$host = gethostbyaddr( $host );
 				} else {
 					$ip = gethostbyname( $host );
 				}
+
 				$starLen = min( intval( $lag ), 40 );
 				$stars = str_repeat( '*', $starLen );
 				$this->output( sprintf( "%10s %20s %3d %s\n", $ip, $host, $lag, $stars ) );
+
+				if ( $this->hasOption( 'report' ) ) {
+					$stats->gauge( "loadbalancer.lag.$cluster.$host", $lag );
+				}
 			}
 		}
 	}
