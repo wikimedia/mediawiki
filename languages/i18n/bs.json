@@ -1971,7 +1971,7 @@
 	"restriction-level-all": "svi nivoi",
 	"undelete": "Pregled obrisanih stranica",
 	"undeletepage": "Pregled i vraćanje obrisanih stranica",
-	"undeletepagetitle": "<strong>Sljedeći sadržaj prikazuje obrisane izmjene stranice [[:$1|$1]]</strong>.",
+	"undeletepagetitle": "<strong>Sljedeći sadržaj prikazuje obrisane izmjene stranice [[:$1|$1]]<strong>.",
 	"viewdeletedpage": "Pregled obrisanih stranica",
 	"undeletepagetext": "{{PLURAL:$1|Slijedeća $1 stranica je obrisana|Slijedeće $1 stranice su obrisane|Slijedećih $1 je obrisano}} ali su još uvijek u arhivi i mogu biti vraćene.\nArhiva moše biti periodično čišćena.",
 	"undelete-fieldset-title": "Vraćanje izmjena",

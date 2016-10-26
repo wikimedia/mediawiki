@@ -1469,6 +1469,7 @@
 	"grant-basic": "Name for grant \"basic\".\n{{Related|Grant}}",
 	"grant-viewdeleted": "Name for grant \"viewdeleted\".\n{{Related|Grant}}",
 	"grant-viewmywatchlist": "Name for grant \"viewmywatchlist\".\n{{Related|Grant}}\n{{Identical|View your watchlist}}",
+	"grant-viewrestrictedlogs": "Name for grant \"viewrestrictedlogs\".\n{{Related|Grant}}",
 	"newuserlogpage": "{{doc-logpage}}\n\nPart of the \"Newuserlog\" extension. It is both the title of [[Special:Log/newusers]] and the link you can see in [[Special:RecentChanges]].",
 	"newuserlogpagetext": "Part of the \"Newuserlog\" extension. It is the description you can see on [[Special:Log/newusers]].",
 	"rightslog": "{{doc-logpage}}\n\nIn [[Special:Log]]",

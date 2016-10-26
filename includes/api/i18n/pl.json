@@ -198,7 +198,7 @@
 	"apihelp-options-param-resetkinds": "Lista typów opcji do zresetowania, jeżeli ustawiono opcję <var>$1reset</var>.",
 	"apihelp-options-param-change": "Lista zmian, w formacie nazwa=wartość (np. skin=vector). Wartość nie może zawierać znaku pionowej kreski. Jeżeli nie zostanie podana wartość (a nawet znak równości), np., optionname|otheroption|..., to opcja zostanie zresetowana do jej wartości domyślnej.",
 	"apihelp-options-param-optionname": "Nazwa opcji, która powinna być ustawiona na wartość <var>$1optionvalue</var>.",
-	"apihelp-options-param-optionvalue": "Wartość opcji, określona w <var>$1optionname</var>.",
+	"apihelp-options-param-optionvalue": "Wartość opcji, określona w <var>$1optionname</var>, może zawierać znaki pionowej kreski.",
 	"apihelp-options-example-reset": "Resetuj wszystkie preferencje.",
 	"apihelp-options-example-change": "Zmień preferencje <kbd>skin</kbd> (skórka) i <kbd>hideminor</kbd> (ukryj drobne edycje).",
 	"apihelp-options-example-complex": "Zresetuj wszystkie preferencje, a następnie ustaw <kbd>skin</kbd> i <kbd>nickname</kbd>.",

@@ -776,8 +776,6 @@
 	"invalid-content-data": "Enhavo estas malvalida",
 	"content-not-allowed-here": "Enhavo de $1 ne estas permesita en paĝo [[$2]]",
 	"editwarning-warning": "Forlaso de ĉi tiu paĝo kaŭzos al vi perdi iun ajn ŝanĝojn kiujn vi faris.\nSe vi estas ensalutinta, vi povas malŝalti ĉi tiun averton en la sekcio \"{{int:prefs-editing}}\" de viaj preferoj.",
-	"editpage-invalidcontentmodel-title": "Enhava modelo ne subtenata",
-	"editpage-invalidcontentmodel-text": "La enhava modelo \"$1\" ne estas subtenata.",
 	"editpage-notsupportedcontentformat-title": "Nesubtenata enhavoformo",
 	"editpage-notsupportedcontentformat-text": "La enhava aranĝo $1 ne estas subtenata de la enhava modelo $2.",
 	"content-model-wikitext": "vikiteksto",
@@ -1842,8 +1840,6 @@
 	"apisandbox-results-fixtoken-fail": "Malsukcese venigis ĵetonon je \"$1\".",
 	"apisandbox-alert-page": "Kampoj de ĉi tiu paĝo ne estas validaj.",
 	"apisandbox-alert-field": "La valoro de ĉi tiu kampo ne estas valida.",
-	"apisandbox-continue": "Daŭrigi",
-	"apisandbox-continue-clear": "Vakigi",
 	"booksources": "Librofontoj",
 	"booksources-search-legend": "Serĉi librofontojn",
 	"booksources-search": "Serĉi",
@@ -2663,7 +2659,6 @@
 	"pageinfo-category-pages": "Nombro de paĝoj",
 	"pageinfo-category-subcats": "Nombro de subkategorioj",
 	"pageinfo-category-files": "Nombro de dosieroj",
-	"pageinfo-user-id": "Identigilo de uzanto",
 	"markaspatrolleddiff": "Marki kiel patrolitan",
 	"markaspatrolledtext": "Marki ĉi tiun paĝon patrolita",
 	"markaspatrolledtext-file": "Marki ĉi tiu versio de dosiero kiel patrolita",
@@ -3542,7 +3537,7 @@
 	"feedback-thanks": "Dankon! Via opinio-esprimo estis afiŝita al la paĝo \"[$2 $1]\".",
 	"feedback-thanks-title": "Dankon!",
 	"feedback-useragent": "Klienta aplikaĵo:",
-	"searchsuggest-search": "Serĉi tra {{SITENAME}}",
+	"searchsuggest-search": "Serĉi",
 	"searchsuggest-containing": "enhavas...",
 	"api-error-autoblocked": "Via IPa adreso estis blokita aŭtomate, ĉar ĝi estis uzita far forbara uzanto.",
 	"api-error-badaccess-groups": "Vi ne havas permeson alŝuti dosierojn al tiu ĉi vikio.",
@@ -3834,7 +3829,5 @@
 	"unlinkaccounts-success": "La konto estis malligita.",
 	"authenticationdatachange-ignored": "La ŝanĝo de dateno pri aŭtentikigado ne estis traktita. Eble neniu provizanto estis agorda?",
 	"userjsispublic": "Bonvolu noti: subpaĝoj en JavaScript ne enhavu konfidenciajn datumojn ĉar ili estas videblaj por aliaj uzantoj.",
-	"usercssispublic": "Bonvolu noti: subpaĝoj en CSS ne enhavu konfidenciajn datumojn ĉar ili estas videblaj por aliaj uzantoj.",
-	"edit-error-short": "Eraro: $1",
-	"edit-error-long": "Eraroj\n\n$1"
+	"usercssispublic": "Bonvolu noti: subpaĝoj en CSS ne enhavu konfidenciajn datumojn ĉar ili estas videblaj por aliaj uzantoj."
 }
