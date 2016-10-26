@@ -108,6 +108,19 @@ class LBFactorySimple extends LBFactory {
 		return $this->extLBs[$cluster];
 	}
 
+	public function getAllMainLBs() {
+		return [ 'DEFAULT' => $this->getMainLB() ];
+	}
+
+	public function getAllExternalLBs() {
+		$lbs = [];
+		foreach ( $this->externalClusters as $cluster => $unused ) {
+			$lbs[$cluster] = $this->getExternalLB( $cluster );
+		}
+
+		return $lbs;
+	}
+
 	private function newLoadBalancer( array $servers ) {
 		$lb = new LoadBalancer( array_merge(
 			$this->baseLoadBalancerParams(),
