@@ -74,7 +74,7 @@ class Http {
 		} else {
 			$errors = $status->getErrorsByType( 'error' );
 			$logger = LoggerFactory::getInstance( 'http' );
-			$logger->warning( $status->getWikiText( false, false, 'en' ),
+			$logger->warning( Status::wrap( $status )->getWikiText( false, false, 'en' ),
 				[ 'error' => $errors, 'caller' => $caller, 'content' => $req->getContent() ] );
 			return false;
 		}

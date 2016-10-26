@@ -94,8 +94,7 @@ class PhpHttpRequest extends MWHttpRequest {
 	}
 
 	public function execute() {
-
-		parent::execute();
+		$this->prepare();
 
 		if ( is_array( $this->postData ) ) {
 			$this->postData = wfArrayToCgi( $this->postData );
@@ -227,12 +226,12 @@ class PhpHttpRequest extends MWHttpRequest {
 					. ': error opening connection: {errstr1}', $this->fopenErrors );
 			}
 			$this->status->fatal( 'http-request-error' );
-			return $this->status;
+			return Status::wrap( $this->status ); // TODO B/C; move this to callers
 		}
 
 		if ( $result['timed_out'] ) {
 			$this->status->fatal( 'http-timed-out', $this->url );
-			return $this->status;
+			return Status::wrap( $this->status ); // TODO B/C; move this to callers
 		}
 
 		// If everything went OK, or we received some error code
@@ -253,6 +252,6 @@ class PhpHttpRequest extends MWHttpRequest {
 		}
 		fclose( $fh );
 
-		return $this->status;
+		return Status::wrap( $this->status ); // TODO B/C; move this to callers
 	}
 }
