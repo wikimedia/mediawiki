@@ -107,6 +107,22 @@ interface ILBFactory {
 	public function getExternalLB( $cluster );
 
 	/**
+	 * Get cached (tracked) load balancers for all main database clusters
+	 *
+	 * @return LoadBalancer[] Map of (cluster name => LoadBalancer)
+	 * @since 1.29
+	 */
+	public function getAllMainLBs();
+
+	/**
+	 * Get cached (tracked) load balancers for all external database clusters
+	 *
+	 * @return LoadBalancer[] Map of (cluster name => LoadBalancer)
+	 * @since 1.29
+	 */
+	public function getAllExternalLBs();
+
+	/**
 	 * Execute a function for each tracked load balancer
 	 * The callback is called with the load balancer as the first parameter,
 	 * and $params passed as the subsequent parameters.

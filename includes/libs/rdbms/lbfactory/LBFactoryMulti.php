@@ -284,6 +284,26 @@ class LBFactoryMulti extends LBFactory {
 		return $this->extLBs[$cluster];
 	}
 
+	public function getAllMainLBs() {
+		$lbs = [];
+		foreach ( $this->sectionsByDB as $db => $section ) {
+			if ( !isset( $lbs[$section] ) ) {
+				$lbs[$section] = $this->getMainLB( $db );
+			}
+		}
+
+		return $lbs;
+	}
+
+	public function getAllExternalLBs() {
+		$lbs = [];
+		foreach ( $this->externalLoads as $cluster => $unused ) {
+			$lbs[$cluster] = $this->getExternalLB( $cluster );
+		}
+
+		return $lbs;
+	}
+
 	/**
 	 * Make a new load balancer object based on template and load array
 	 *
