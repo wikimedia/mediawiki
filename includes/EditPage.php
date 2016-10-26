@@ -2633,7 +2633,7 @@ ERROR;
 			return;
 		}
 
-	 	$this->showHeader();
+		$this->showEditFormHeader();
 
 		$wgOut->addHTML( $this->editFormPageTop );
 
@@ -2889,7 +2889,15 @@ ERROR;
 		}
 	}
 
+	/**
+	 * @deprecated since 1.28
+	 */
 	protected function showHeader() {
+		wfDeprecated( __METHOD__, '1.28' );
+		$this->showEditFormHeader();
+	}
+
+	protected function showEditFormHeader() {
 		global $wgOut, $wgUser, $wgMaxArticleSize, $wgLang;
 		global $wgAllowUserCss, $wgAllowUserJs;
 
