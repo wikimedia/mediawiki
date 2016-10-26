@@ -79,6 +79,20 @@ class LBFactorySingle extends LBFactory {
 	}
 
 	/**
+	 * @return LoadBalancerSingle[] Map of (cluster name => LoadBalancer)
+	 */
+	public function getAllMainLBs() {
+		return [ 'DEFAULT' => $this->lb ];
+	}
+
+	/**
+	 * @return LoadBalancerSingle[] Map of (cluster name => LoadBalancer)
+	 */
+	public function getAllExternalLBs() {
+		return [];
+	}
+
+	/**
 	 * @param string|callable $callback
 	 * @param array $params
 	 */
