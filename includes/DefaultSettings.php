@@ -5747,6 +5747,8 @@ $wgGrantPermissions['viewdeleted']['browsearchive'] = true;
 $wgGrantPermissions['viewdeleted']['deletedhistory'] = true;
 $wgGrantPermissions['viewdeleted']['deletedtext'] = true;
 
+$wgGrantPermissions['viewrestrictedlogs']['suppressionlog'] = true;
+
 $wgGrantPermissions['delete'] = $wgGrantPermissions['editpage'] +
 	$wgGrantPermissions['viewdeleted'];
 $wgGrantPermissions['delete']['delete'] = true;
@@ -5797,6 +5799,7 @@ $wgGrantPermissionGroups = [
 	'blockusers'          => 'administration',
 	'delete'              => 'administration',
 	'viewdeleted'         => 'administration',
+	'viewrestrictedlogs'  => 'administration',
 	'protect'             => 'administration',
 	'createaccount'       => 'administration',
 

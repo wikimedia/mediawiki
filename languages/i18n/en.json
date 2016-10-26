@@ -1285,6 +1285,7 @@
 	"grant-basic": "Basic rights",
 	"grant-viewdeleted": "View deleted files and pages",
 	"grant-viewmywatchlist": "View your watchlist",
+	"grant-viewrestrictedlogs": "View restricted log entries",
 	"newuserlogpage": "User creation log",
 	"newuserlogpagetext": "This is a log of user creations.",
 	"rightslog": "User rights log",
