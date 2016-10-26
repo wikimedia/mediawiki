@@ -2633,7 +2633,7 @@ ERROR;
 			return;
 		}
 
-	 	$this->showHeader();
+		$this->showEditFromHeader();
 
 		$wgOut->addHTML( $this->editFormPageTop );
 
@@ -2889,7 +2889,7 @@ ERROR;
 		}
 	}
 
-	protected function showHeader() {
+	protected function showEditFromHeader() {
 		global $wgOut, $wgUser, $wgMaxArticleSize, $wgLang;
 		global $wgAllowUserCss, $wgAllowUserJs;
 
