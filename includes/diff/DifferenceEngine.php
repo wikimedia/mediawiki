@@ -496,12 +496,11 @@ class DifferenceEngine extends ContextSource {
 						[
 							'action' => 'markpatrolled',
 							'rcid' => $linkInfo['rcid'],
-							'token' => $linkInfo['token'],
 						]
 					) . ']</span>';
 				// Allow extensions to change the markpatrolled link
 				Hooks::run( 'DifferenceEngineMarkPatrolledLink', [ $this,
-					&$this->mMarkPatrolledLink, $linkInfo['rcid'], $linkInfo['token'] ] );
+					&$this->mMarkPatrolledLink, $linkInfo['rcid'] ] );
 			}
 		}
 		return $this->mMarkPatrolledLink;
@@ -511,7 +510,7 @@ class DifferenceEngine extends ContextSource {
 	 * Returns an array of meta data needed to build a "mark as patrolled" link and
 	 * adds the mediawiki.page.patrol.ajax to the output.
 	 *
-	 * @return array|false An array of meta data for a patrol link (rcid & token)
+	 * @return array|false An array of meta data for a patrol link (rcid only)
 	 *  or false if no link is needed
 	 */
 	protected function getMarkPatrolledLinkInfo() {
@@ -561,10 +560,8 @@ class DifferenceEngine extends ContextSource {
 					$this->getOutput()->addModules( 'mediawiki.page.patrol.ajax' );
 				}
 
-				$token = $user->getEditToken( $rcid );
 				return [
 					'rcid' => $rcid,
-					'token' => $token,
 				];
 			}
 		}
