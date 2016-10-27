@@ -2893,7 +2893,7 @@ ERROR;
 		global $wgAllowUserCss, $wgAllowUserJs;
 
 		if ( $this->isConflict ) {
-			$wgOut->wrapWikiMsg( "<div class='mw-explainconflict'>\n$1\n</div>", 'explainconflict' );
+			$this->addExplainConflictHeader( $wgOut );
 			$this->editRevId = $this->page->getLatest();
 		} else {
 			if ( $this->section != '' && $this->section != 'new' ) {
@@ -4451,5 +4451,13 @@ HTML
 					'msgKey' => [ 'titleprotectedwarning' ],
 					'wrap' => "<div class=\"mw-titleprotectedwarning\">\n$1</div>" ] );
 		}
+	}
+
+	/**
+	 * @param OutputPage &$out
+	 * @since 1.29
+	 */
+	protected function addExplainConflictHeader( OutputPage &$out ) {
+		$out->wrapWikiMsg( "<div class='mw-explainconflict'>\n$1\n</div>", 'explainconflict' );
 	}
 }
