@@ -2890,7 +2890,6 @@ ERROR;
 	}
 
 	protected function showHeader() {
-		global $wgOut, $wgUser, $wgMaxArticleSize, $wgLang;
 		global $wgAllowUserCss, $wgAllowUserJs;
 
 		if ( $this->isConflict ) {
@@ -3022,65 +3021,10 @@ ERROR;
 			}
 		}
 
-		if ( $this->mTitle->isProtected( 'edit' ) &&
-			MWNamespace::getRestrictionLevels( $this->mTitle->getNamespace() ) !== [ '' ]
-		) {
-			# Is the title semi-protected?
-			if ( $this->mTitle->isSemiProtected() ) {
-				$noticeMsg = 'semiprotectedpagewarning';
-			} else {
-				# Then it must be protected based on static groups (regular)
-				$noticeMsg = 'protectedpagewarning';
-			}
-			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle, '',
-				[ 'lim' => 1, 'msgKey' => [ $noticeMsg ] ] );
-		}
-		if ( $this->mTitle->isCascadeProtected() ) {
-			# Is this page under cascading protection from some source pages?
-			/** @var Title[] $cascadeSources */
-			list( $cascadeSources, /* $restrictions */ ) = $this->mTitle->getCascadeProtectionSources();
-			$notice = "<div class='mw-cascadeprotectedwarning'>\n$1\n";
-			$cascadeSourcesCount = count( $cascadeSources );
-			if ( $cascadeSourcesCount > 0 ) {
-				# Explain, and list the titles responsible
-				foreach ( $cascadeSources as $page ) {
-					$notice .= '* [[:' . $page->getPrefixedText() . "]]\n";
-				}
-			}
-			$notice .= '</div>';
-			$wgOut->wrapWikiMsg( $notice, [ 'cascadeprotectedwarning', $cascadeSourcesCount ] );
-		}
-		if ( !$this->mTitle->exists() && $this->mTitle->getRestrictions( 'create' ) ) {
-			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle, '',
-				[ 'lim' => 1,
-					'showIfEmpty' => false,
-					'msgKey' => [ 'titleprotectedwarning' ],
-					'wrap' => "<div class=\"mw-titleprotectedwarning\">\n$1</div>" ] );
-		}
+		$this->addPageProtectionWarningHeaders();
 
-		if ( $this->contentLength === false ) {
-			$this->contentLength = strlen( $this->textbox1 );
-		}
+		$this->addLongPageWarningHeader();
 
-		if ( $this->tooBig || $this->contentLength > $wgMaxArticleSize * 1024 ) {
-			$wgOut->wrapWikiMsg( "<div class='error' id='mw-edit-longpageerror'>\n$1\n</div>",
-				[
-					'longpageerror',
-					$wgLang->formatNum( round( $this->contentLength / 1024, 3 ) ),
-					$wgLang->formatNum( $wgMaxArticleSize )
-				]
-			);
-		} else {
-			if ( !$this->context->msg( 'longpage-hint' )->isDisabled() ) {
-				$wgOut->wrapWikiMsg( "<div id='mw-edit-longpage-hint'>\n$1\n</div>",
-					[
-						'longpage-hint',
-						$wgLang->formatSize( strlen( $this->textbox1 ) ),
-						strlen( $this->textbox1 )
-					]
-				);
-			}
-		}
 		# Add header copyright warning
 		$this->showHeaderCopyrightWarning();
 	}
@@ -4438,6 +4382,74 @@ HTML
 
 		if ( $this->mTitle->isTalkPage() ) {
 			$wgOut->addWikiMsg( 'talkpagetext' );
+		}
+	}
+
+	protected function addLongPageWarningHeader() {
+		global $wgMaxArticleSize, $wgOut, $wgLang;
+
+		if ( $this->contentLength === false ) {
+			$this->contentLength = strlen( $this->textbox1 );
+		}
+
+		if ( $this->tooBig || $this->contentLength > $wgMaxArticleSize * 1024 ) {
+			$wgOut->wrapWikiMsg( "<div class='error' id='mw-edit-longpageerror'>\n$1\n</div>",
+				[
+					'longpageerror',
+					$wgLang->formatNum( round( $this->contentLength / 1024, 3 ) ),
+					$wgLang->formatNum( $wgMaxArticleSize )
+				]
+			);
+		} else {
+			if ( !$this->context->msg( 'longpage-hint' )->isDisabled() ) {
+				$wgOut->wrapWikiMsg( "<div id='mw-edit-longpage-hint'>\n$1\n</div>",
+					[
+						'longpage-hint',
+						$wgLang->formatSize( strlen( $this->textbox1 ) ),
+						strlen( $this->textbox1 )
+					]
+				);
+			}
+		}
+	}
+
+	protected function addPageProtectionWarningHeaders() {
+		global $wgOut;
+
+		if ( $this->mTitle->isProtected( 'edit' ) &&
+			MWNamespace::getRestrictionLevels( $this->mTitle->getNamespace() ) !== [ '' ]
+		) {
+			# Is the title semi-protected?
+			if ( $this->mTitle->isSemiProtected() ) {
+				$noticeMsg = 'semiprotectedpagewarning';
+			} else {
+				# Then it must be protected based on static groups (regular)
+				$noticeMsg = 'protectedpagewarning';
+			}
+			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle, '',
+				[ 'lim' => 1, 'msgKey' => [ $noticeMsg ] ] );
+		}
+		if ( $this->mTitle->isCascadeProtected() ) {
+			# Is this page under cascading protection from some source pages?
+			/** @var Title[] $cascadeSources */
+			list( $cascadeSources, /* $restrictions */ ) = $this->mTitle->getCascadeProtectionSources();
+			$notice = "<div class='mw-cascadeprotectedwarning'>\n$1\n";
+			$cascadeSourcesCount = count( $cascadeSources );
+			if ( $cascadeSourcesCount > 0 ) {
+				# Explain, and list the titles responsible
+				foreach ( $cascadeSources as $page ) {
+					$notice .= '* [[:' . $page->getPrefixedText() . "]]\n";
+				}
+			}
+			$notice .= '</div>';
+			$wgOut->wrapWikiMsg( $notice, [ 'cascadeprotectedwarning', $cascadeSourcesCount ] );
+		}
+		if ( !$this->mTitle->exists() && $this->mTitle->getRestrictions( 'create' ) ) {
+			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle, '',
+				[ 'lim' => 1,
+					'showIfEmpty' => false,
+					'msgKey' => [ 'titleprotectedwarning' ],
+					'wrap' => "<div class=\"mw-titleprotectedwarning\">\n$1</div>" ] );
 		}
 	}
 }
