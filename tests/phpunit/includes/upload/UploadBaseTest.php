@@ -398,6 +398,46 @@ class UploadBaseTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider provideDetectScriptInSvg
+	 */
+	public function testDetectScriptInSvg( $svg, $expected, $message ) {
+		// This only checks some weird cases, most tests are in testCheckSvgScriptCallback() above
+		$result = $this->upload->detectScriptInSvg( $svg, false );
+		$this->assertSame( $expected, $result, $message );
+	}
+
+	public static function provideDetectScriptInSvg() {
+		global $IP;
+		return [
+			[
+				"$IP/tests/phpunit/data/upload/buggynamespace-original.svg",
+				false,
+				'SVG with a weird but valid namespace definition created by Adobe Illustrator'
+			],
+			[
+				"$IP/tests/phpunit/data/upload/buggynamespace-okay.svg",
+				false,
+				'SVG with a namespace definition created by Adobe Illustrator and mangled by Inkscape'
+			],
+			[
+				"$IP/tests/phpunit/data/upload/buggynamespace-okay2.svg",
+				false,
+				'SVG with a namespace definition created by Adobe Illustrator and mangled by Inkscape (twice)'
+			],
+			[
+				"$IP/tests/phpunit/data/upload/buggynamespace-bad.svg",
+				[ 'uploadscriptednamespace', 'i' ],
+				'SVG with a namespace definition using an undefined entity'
+			],
+			[
+				"$IP/tests/phpunit/data/upload/buggynamespace-evilhtml.svg",
+				[ 'uploadscriptednamespace', 'http://www.w3.org/1999/xhtml' ],
+				'SVG with an html namespace encoded as an entity'
+			],
+		];
+	}
+
+	/**
 	 * @dataProvider provideCheckXMLEncodingMissmatch
 	 */
 	public function testCheckXMLEncodingMissmatch( $fileContents, $evil ) {
@@ -441,5 +481,12 @@ class UploadTestHandler extends UploadBase {
 			[ 'processing_instruction_handler' => 'UploadBase::checkSvgPICallback' ]
 		);
 		return [ $check->wellFormed, $check->filterMatch ];
+	}
+
+	/**
+	 * Same as parent function, but override visibility to 'public'.
+	 */
+	public function detectScriptInSvg( $filename, $partial ) {
+		return parent::detectScriptInSvg( $filename, $partial );
 	}
 }
