@@ -1175,8 +1175,12 @@ SQL;
 	 * @return bool
 	 */
 	function schemaExists( $schema ) {
-		$exists = $this->selectField( '"pg_catalog"."pg_namespace"', 1,
-			[ 'nspname' => $schema ], __METHOD__ );
+		if ( !strlen( $schema ) ) {
+			return false; // short-circuit
+		}
+
+		$exists = $this->selectField(
+			'"pg_catalog"."pg_namespace"', 1, [ 'nspname' => $schema ], __METHOD__ );
 
 		return (bool)$exists;
 	}
