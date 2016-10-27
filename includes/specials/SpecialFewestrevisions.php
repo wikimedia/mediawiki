@@ -89,13 +89,15 @@ class FewestrevisionsPage extends QueryPage {
 			);
 		}
 
+		$linkRenderer = $this->getLinkRenderer();
+
 		$text = htmlspecialchars( $wgContLang->convert( $nt->getPrefixedText() ) );
-		$plink = Linker::linkKnown( $nt, $text );
+		$plink = $linkRenderer->makeKnownLink( $nt, $text );
 
 		$nl = $this->msg( 'nrevisions' )->numParams( $result->value )->escaped();
 		$redirect = isset( $result->redirect ) && $result->redirect ?
 			' - ' . $this->msg( 'isredirect' )->escaped() : '';
-		$nlink = Linker::linkKnown(
+		$nlink = $linkRenderer->makeKnownLink(
 			$nt,
 			$nl,
 			[],

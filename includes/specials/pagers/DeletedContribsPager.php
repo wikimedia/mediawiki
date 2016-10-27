@@ -253,8 +253,10 @@ class DeletedContribsPager extends IndexPager {
 
 		$undelete = SpecialPage::getTitleFor( 'Undelete' );
 
+		$linkRenderer = $this->getLinkRenderer();
+
 		$logs = SpecialPage::getTitleFor( 'Log' );
-		$dellog = Linker::linkKnown(
+		$dellog = $linkRenderer->makeKnownLink(
 			$logs,
 			$this->messages['deletionlog'],
 			[],
@@ -264,7 +266,7 @@ class DeletedContribsPager extends IndexPager {
 			]
 		);
 
-		$reviewlink = Linker::linkKnown(
+		$reviewlink = $linkRenderer->makeKnownLink(
 			SpecialPage::getTitleFor( 'Undelete', $page->getPrefixedDBkey() ),
 			$this->messages['undeleteviewlink']
 		);
@@ -272,7 +274,7 @@ class DeletedContribsPager extends IndexPager {
 		$user = $this->getUser();
 
 		if ( $user->isAllowed( 'deletedtext' ) ) {
-			$last = Linker::linkKnown(
+			$last = $linkRenderer->makeKnownLink(
 				$undelete,
 				$this->messages['diff'],
 				[],
@@ -293,7 +295,7 @@ class DeletedContribsPager extends IndexPager {
 		if ( !$user->isAllowed( 'undelete' ) || !$rev->userCan( Revision::DELETED_TEXT, $user ) ) {
 			$link = $date; // unusable link
 		} else {
-			$link = Linker::linkKnown(
+			$link = $linkRenderer->makeKnownLink(
 				$undelete,
 				$date,
 				[ 'class' => 'mw-changeslist-date' ],
@@ -308,7 +310,7 @@ class DeletedContribsPager extends IndexPager {
 			$link = '<span class="history-deleted">' . $link . '</span>';
 		}
 
-		$pagelink = Linker::link(
+		$pagelink = $linkRenderer->makeLink(
 			$page,
 			null,
 			[ 'class' => 'mw-changeslist-title' ]

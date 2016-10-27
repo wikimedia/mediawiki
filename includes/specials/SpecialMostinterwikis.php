@@ -110,10 +110,12 @@ class MostinterwikisPage extends QueryPage {
 			);
 		}
 
+		$linkRenderer = $this->getLinkRenderer();
+
 		if ( $this->isCached() ) {
-			$link = Linker::link( $title );
+			$link = $linkRenderer->makeLink( $title );
 		} else {
-			$link = Linker::linkKnown( $title );
+			$link = $linkRenderer->makeKnownLink( $title );
 		}
 
 		$count = $this->msg( 'ninterwikis' )->numParams( $result->value )->escaped();

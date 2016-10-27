@@ -114,7 +114,7 @@ class MostlinkedTemplatesPage extends QueryPage {
 		}
 
 		return $this->getLanguage()->specialList(
-			Linker::link( $title ),
+			$this->getLinkRenderer()->makeLink( $title ),
 			$this->makeWlhLink( $title, $result )
 		);
 	}
@@ -130,7 +130,7 @@ class MostlinkedTemplatesPage extends QueryPage {
 		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedText() );
 		$label = $this->msg( 'ntransclusions' )->numParams( $result->value )->escaped();
 
-		return Linker::link( $wlh, $label );
+		return $this->getLinkRenderer()->makeLink( $wlh, $label );
 	}
 
 	protected function getGroupName() {

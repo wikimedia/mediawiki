@@ -76,13 +76,14 @@ abstract class WantedQueryPage extends QueryPage {
 	 */
 	public function formatResult( $skin, $result ) {
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
+		$linkRenderer = $this->getLinkRenderer();
 		if ( $title instanceof Title ) {
 			if ( $this->isCached() || $this->forceExistenceCheck() ) {
 				$pageLink = $this->existenceCheck( $title )
-					? '<del>' . Linker::link( $title ) . '</del>'
-					: Linker::link( $title );
+					? '<del>' . $linkRenderer->makeLink( $title ) . '</del>'
+					: $linkRenderer->makeLink( $title );
 			} else {
-				$pageLink = Linker::link(
+				$pageLink = $linkRenderer->makeLink(
 					$title,
 					null,
 					[],
@@ -125,6 +126,6 @@ abstract class WantedQueryPage extends QueryPage {
 	private function makeWlhLink( $title, $result ) {
 		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedText() );
 		$label = $this->msg( 'nlinks' )->numParams( $result->value )->escaped();
-		return Linker::link( $wlh, $label );
+		return $this->getLinkRenderer()->makeLink( $wlh, $label );
 	}
 }

@@ -124,6 +124,8 @@ class ImageHistoryList extends ContextSource {
 		$local = $this->current->isLocal();
 		$row = $selected = '';
 
+		$linkRenderer = $this->getLinkRenderer();
+
 		// Deletion link
 		if ( $local && ( $user->isAllowedAny( 'delete', 'deletedhistory' ) ) ) {
 			$row .= '<td>';
@@ -133,7 +135,7 @@ class ImageHistoryList extends ContextSource {
 				if ( !$iscur ) {
 					$q['oldimage'] = $img;
 				}
-				$row .= Linker::linkKnown(
+				$row .= $linkRenderer->makeKnownLink(
 					$this->title,
 					$this->msg( $iscur ? 'filehist-deleteall' : 'filehist-deleteone' )->escaped(),
 					[], $q
@@ -173,7 +175,7 @@ class ImageHistoryList extends ContextSource {
 			if ( $file->isDeleted( File::DELETED_FILE ) ) {
 				$row .= $this->msg( 'filehist-revert' )->escaped();
 			} else {
-				$row .= Linker::linkKnown(
+				$row .= $linkRenderer->makeKnownLink(
 					$this->title,
 					$this->msg( 'filehist-revert' )->escaped(),
 					[],
@@ -200,7 +202,7 @@ class ImageHistoryList extends ContextSource {
 				$this->preventClickjacking();
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				# Make a link to review the image
-				$url = Linker::linkKnown(
+				$url = $linkRenderer->makeKnownLink(
 					$revdel,
 					$lang->userTimeAndDate( $timestamp, $user ),
 					[],
