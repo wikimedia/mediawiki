@@ -87,6 +87,7 @@ class Revision implements IDBAccessObject {
 	const DELETED_USER = 4;
 	const DELETED_RESTRICTED = 8;
 	const SUPPRESSED_USER = 12; // convenience
+	const SUPPRESSED_ALL = 15; // convenience
 
 	// Audience options for accessors
 	const FOR_PUBLIC = 1;

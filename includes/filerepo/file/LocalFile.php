@@ -2234,12 +2234,7 @@ class LocalFileDeleteBatch {
 
 		// Bitfields to further suppress the content
 		if ( $this->suppress ) {
-			$bitfield = 0;
-			// This should be 15...
-			$bitfield |= Revision::DELETED_TEXT;
-			$bitfield |= Revision::DELETED_COMMENT;
-			$bitfield |= Revision::DELETED_USER;
-			$bitfield |= Revision::DELETED_RESTRICTED;
+			$bitfield = Revision::SUPPRESSED_ALL;
 		} else {
 			$bitfield = 'oi_deleted';
 		}
@@ -2259,7 +2254,6 @@ class LocalFileDeleteBatch {
 					'fa_deleted_timestamp' => $encTimestamp,
 					'fa_deleted_reason' => $encReason,
 					'fa_deleted' => $this->suppress ? $bitfield : 0,
-
 					'fa_name' => 'img_name',
 					'fa_archive_name' => 'NULL',
 					'fa_size' => 'img_size',
