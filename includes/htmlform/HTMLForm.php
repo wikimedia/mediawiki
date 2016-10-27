@@ -147,6 +147,7 @@ class HTMLForm extends ContextSource {
 		'namespaceselect' => 'HTMLSelectNamespace',
 		'namespaceselectwithbutton' => 'HTMLSelectNamespaceWithButton',
 		'tagfilter' => 'HTMLTagFilter',
+		'sizefilter' => 'HTMLSizeFilterField',
 		'submit' => 'HTMLSubmitField',
 		'hidden' => 'HTMLHiddenField',
 		'edittools' => 'HTMLEditTools',

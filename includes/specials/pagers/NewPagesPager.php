@@ -48,6 +48,15 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$username = $this->opts->getValue( 'username' );
 		$user = Title::makeTitleSafe( NS_USER, $username );
 
+		$size = abs( intval( $this->opts->getValue( 'size' ) ) );
+		if ( $size > 0 ) {
+			if ( $this->opts->getValue( 'size-mode' ) === 'max' ) {
+				$conds[] = 'page_len <= ' . $size;
+			} else {
+				$conds[] = 'page_len >= ' . $size;
+			}
+		}
+
 		$rcIndexes = [];
 
 		if ( $namespace !== false ) {
