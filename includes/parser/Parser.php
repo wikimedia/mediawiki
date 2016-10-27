@@ -1446,7 +1446,6 @@ class Parser {
 				$keyword = 'RFC';
 				$urlmsg = 'rfcurl';
 				$cssClass = 'mw-magiclink-rfc';
-				$trackingCategory = 'magiclinks-rfc-category';
 				$id = $m[5];
 			} elseif ( substr( $m[0], 0, 4 ) === 'PMID' ) {
 				if ( !$this->mOptions->getMagicPMIDLinks() ) {
@@ -1455,14 +1454,12 @@ class Parser {
 				$keyword = 'PMID';
 				$urlmsg = 'pubmedurl';
 				$cssClass = 'mw-magiclink-pmid';
-				$trackingCategory = 'magiclinks-pmid-category';
 				$id = $m[5];
 			} else {
 				throw new MWException( __METHOD__ . ': unrecognised match type "' .
 					substr( $m[0], 0, 20 ) . '"' );
 			}
 			$url = wfMessage( $urlmsg, $id )->inContentLanguage()->text();
-			$this->addTrackingCategory( $trackingCategory );
 			return Linker::makeExternalLink( $url, "{$keyword} {$id}", true, $cssClass, [], $this->mTitle );
 		} elseif ( isset( $m[6] ) && $m[6] !== ''
 			&& $this->mOptions->getMagicISBNLinks()
@@ -1476,7 +1473,6 @@ class Parser {
 				' ' => '',
 				'x' => 'X',
 			] );
-			$this->addTrackingCategory( 'magiclinks-isbn-category' );
 			return $this->getLinkRenderer()->makeKnownLink(
 				SpecialPage::getTitleFor( 'Booksources', $num ),
 				"ISBN $isbn",
