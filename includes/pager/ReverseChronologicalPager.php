@@ -150,7 +150,12 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		$timestamp = MWTimestamp::getInstance( "${ymd}000000" );
 		$timestamp->setTimezone( $this->getConfig()->get( 'Localtimezone' ) );
 
-		$this->mOffset = $this->mDb->timestamp( $timestamp->getTimestamp() );
+		try {
+			$this->mOffset = $this->mDb->timestamp( $timestamp->getTimestamp() );
+		} catch ( TimestampException $e ) {
+			// Invalid user provided timestamp (T149257)
+			return;
+		}
 		return $this->mOffset;
 	}
 }
