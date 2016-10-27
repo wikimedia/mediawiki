@@ -54,6 +54,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$opts->add( 'feed', '' );
 		$opts->add( 'tagfilter', '' );
 		$opts->add( 'invert', false );
+		$opts->add( 'size-mode', 'max' );
+		$opts->add( 'size', 0 );
 
 		$this->customFilters = [];
 		Hooks::run( 'SpecialNewPagesFilters', [ $this, &$this->customFilters ] );
@@ -214,6 +216,9 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$tagFilterVal = $this->opts->consumeValue( 'tagfilter' );
 		$nsinvert = $this->opts->consumeValue( 'invert' );
 
+		$size = $this->opts->consumeValue( 'size' );
+		$max = $this->opts->consumeValue( 'size-mode' ) === 'max';
+
 		// Check username input validity
 		$ut = Title::makeTitleSafe( NS_USER, $username );
 		$userText = $ut ? $ut->getText() : '';
@@ -253,6 +258,11 @@ class SpecialNewpages extends IncludableSpecialPage {
 				'id' => 'mw-np-username',
 				'size' => 30,
 				'cssclass' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
+			],
+			'size' => [
+				'type' => 'sizefilter',
+				'name' => 'size',
+				'default' => -$max * $size,
 			],
 		];
 
