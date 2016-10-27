@@ -99,8 +99,8 @@ table.toc td {
 .tocnumber {
 	padding-left: 0;
 	padding-right: 0.5em;
+	color: #222;
 }
-
 /* @noflip */
 .mw-content-ltr .tocnumber {
 	padding-left: 0;
