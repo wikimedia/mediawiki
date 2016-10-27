@@ -2885,24 +2885,9 @@ ERROR;
 		global $wgOut, $wgUser, $wgMaxArticleSize, $wgLang;
 		global $wgAllowUserCss, $wgAllowUserJs;
 
-		if ( $this->mTitle->isTalkPage() ) {
-			$wgOut->addWikiMsg( 'talkpagetext' );
-		}
+		$this->addTalkPageText();
 
-		// Add edit notices
-		$editNotices = $this->mTitle->getEditNotices( $this->oldid );
-		if ( count( $editNotices ) ) {
-			$wgOut->addHTML( implode( "\n", $editNotices ) );
-		} else {
-			$msg = $this->context->msg( 'editnotice-notext' );
-			if ( !$msg->isDisabled() ) {
-				$wgOut->addHTML(
-					'<div class="mw-editnotice-notext">'
-					. $msg->parseAsBlock()
-					. '</div>'
-				);
-			}
-		}
+		$this->addEditNotices();
 
 		if ( $this->isConflict ) {
 			$wgOut->wrapWikiMsg( "<div class='mw-explainconflict'>\n$1\n</div>", 'explainconflict' );
@@ -4434,5 +4419,31 @@ HTML
 		}
 		// reverse the transform that we made for reversibility reasons.
 		return strtr( $result, [ "&#x0" => "&#x" ] );
+	}
+
+	protected function addEditNotices() {
+		global $wgOut;
+
+		$editNotices = $this->mTitle->getEditNotices( $this->oldid );
+		if ( count( $editNotices ) ) {
+			$wgOut->addHTML( implode( "\n", $editNotices ) );
+		} else {
+			$msg = $this->context->msg( 'editnotice-notext' );
+			if ( !$msg->isDisabled() ) {
+				$wgOut->addHTML(
+					'<div class="mw-editnotice-notext">'
+					. $msg->parseAsBlock()
+					. '</div>'
+				);
+			}
+		}
+	}
+
+	protected function addTalkPageText() {
+		global $wgOut;
+
+		if ( $this->mTitle->isTalkPage() ) {
+			$wgOut->addWikiMsg( 'talkpagetext' );
+		}
 	}
 }
