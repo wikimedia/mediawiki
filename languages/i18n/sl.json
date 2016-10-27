@@ -1228,6 +1228,7 @@
 	"grant-basic": "Osnovne pravice",
 	"grant-viewdeleted": "Ogled izbrisanih datotek in strani",
 	"grant-viewmywatchlist": "Ogled svojega spiska nadzorov",
+	"grant-viewrestrictedlogs": "Ogled omejenih dnevniških vnosov",
 	"newuserlogpage": "Dnevnik registracij uporabnikov",
 	"newuserlogpagetext": "Prikazan je dnevnik nedavnih registracij novih uporabnikov.",
 	"rightslog": "Dnevnik uporabniških pravic",

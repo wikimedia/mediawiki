@@ -1951,7 +1951,7 @@
 	"contribsub2": "Za {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Suradnički račun \"$1\" nije registriran.",
 	"nocontribs": "Nema promjena koje udovoljavaju ovim kriterijima.",
-	"uctop": "(trenutno)",
+	"uctop": "(vrh)",
 	"month": "Od mjeseca (i ranije):",
 	"year": "Od godine (i ranije):",
 	"sp-contributions-newbies": "Prikaži samo doprinose novih suradnika",

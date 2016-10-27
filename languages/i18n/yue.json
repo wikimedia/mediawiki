@@ -27,7 +27,8 @@
 			"CRCHF",
 			"Shinjiman",
 			"Macofe",
-			"Jdforrester"
+			"Jdforrester",
+			"Tungakl"
 		]
 	},
 	"tog-underline": "連結加底線：",
@@ -2922,8 +2923,6 @@
 	"htmlform-chosen-placeholder": "揀個選項",
 	"htmlform-cloner-create": "加多啲",
 	"htmlform-cloner-delete": "拎走",
-	"sqlite-has-fts": "$1 有全文搜尋支援",
-	"sqlite-no-fts": "$1 冇全文搜尋支援",
 	"logentry-delete-delete": "$1 刪咗頁 $3",
 	"revdelete-restricted": "已經應用限制到操作員",
 	"revdelete-unrestricted": "已經拎走對於操作員嘅限制",
@@ -2935,12 +2934,11 @@
 	"feedback-back": "返轉頭",
 	"feedback-cancel": "取消",
 	"feedback-close": "搞掂",
-	"feedback-error-title": "出錯",
 	"feedback-message": "信息:",
 	"feedback-subject": "主旨:",
 	"feedback-submit": "遞交",
 	"feedback-thanks-title": "多謝！",
-	"searchsuggest-search": "搵嘢",
+	"searchsuggest-search": "搵{{SITENAME}}",
 	"searchsuggest-containing": "名單傳送緊...",
 	"api-error-unclassified": "發生未知嘅錯誤。",
 	"api-error-unknown-code": "未知嘅出錯：$1。",

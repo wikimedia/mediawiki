@@ -3189,7 +3189,7 @@
 	"notificationemail_subject_removed": "{{SITENAME}}注册的电子邮件地址已被移除",
 	"notificationemail_body_changed": "来自IP地址$1的人（可能是您）在{{SITENAME}}上更改了账户“$2”的电子邮件地址至“$3”。\n\n如果这不是您，请立即联系一位网站管理员。",
 	"notificationemail_body_removed": "来自IP地址$1的人（可能是您）在{{SITENAME}}上移除了账户“$2”的电子邮件地址。\n\n如果这不是您，请立即联系一位网站管理员。",
-	"scarytranscludedisabled": "[跨网站的编码转换不可用]",
+	"scarytranscludedisabled": "[跨wiki的页面嵌入已被禁用]",
 	"scarytranscludefailed": "[提取$1失败]",
 	"scarytranscludefailed-httpstatus": "[模板$1读取失败：HTTP $2]",
 	"scarytranscludetoolong": "[URL过长]",

@@ -1250,6 +1250,7 @@
 	"grant-basic": "הרשאות בסיסיות",
 	"grant-viewdeleted": "צפייה בקבצים ודפים שנמחקו",
 	"grant-viewmywatchlist": "צפייה ברשימת המעקב שלך",
+	"grant-viewrestrictedlogs": "צפייה בפריטי יומן מוגבלים",
 	"newuserlogpage": "יומן רישום משתמשים",
 	"newuserlogpagetext": "זהו יומן המכיל הרשמות של משתמשים.",
 	"rightslog": "יומן הרשאות",

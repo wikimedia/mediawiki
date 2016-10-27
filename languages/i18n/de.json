@@ -1306,6 +1306,7 @@
 	"grant-basic": "Basisrechte",
 	"grant-viewdeleted": "Gelöschte Dateien und Seiten ansehen",
 	"grant-viewmywatchlist": "Deine Beobachtungsliste ansehen",
+	"grant-viewrestrictedlogs": "Beschränkte Logbucheinträge ansehen",
 	"newuserlogpage": "Neuanmeldungs-Logbuch",
 	"newuserlogpagetext": "Dies ist ein Logbuch der neu erstellten Benutzerkonten.",
 	"rightslog": "Rechte-Logbuch",

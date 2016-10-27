@@ -1237,6 +1237,7 @@
 	"grant-basic": "Dereitos básicos",
 	"grant-viewdeleted": "Ver ficheiros e páxinas eliminados",
 	"grant-viewmywatchlist": "Ver a súa lista de vixilancia",
+	"grant-viewrestrictedlogs": "Ver as entradas de rexistro confidenciais",
 	"newuserlogpage": "Rexistro de creación de usuarios",
 	"newuserlogpagetext": "Este é un rexistro de creación de contas de usuario.",
 	"rightslog": "Rexistro de dereitos de usuario",
