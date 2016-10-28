@@ -1282,6 +1282,7 @@
 	"grant-basic": "الصلاحيات الأساسية",
 	"grant-viewdeleted": "عرض الملفات والصفحات المحذوفة",
 	"grant-viewmywatchlist": "عرض قائمة مراقبتك",
+	"grant-viewrestrictedlogs": "عرض مدخلات السجل المحظورة",
 	"newuserlogpage": "سجل إنشاء المستخدمين",
 	"newuserlogpagetext": "هذا سجل بعمليات إنشاء المستخدمين.",
 	"rightslog": "سجل صلاحيات المستخدمين",

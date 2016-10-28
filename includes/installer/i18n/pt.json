@@ -32,13 +32,13 @@
 	"config-session-error": "Erro ao iniciar a sessão: $1",
 	"config-session-expired": "Os seus dados de sessão parecem ter expirado.\nAs sessões estão configuradas para uma duração de $1.\nPode aumentar esta duração configurando <code>session.gc_maxlifetime</code> no php.ini.\nReinicie o processo de instalação.",
 	"config-no-session": "Os seus dados de sessão foram perdidos!\nVerifique o seu php.ini e certifique-se de que em <code>session.save_path</code> está definido um diretório apropriado.",
-	"config-your-language": "O seu idioma:",
+	"config-your-language": "A sua língua:",
 	"config-your-language-help": "Selecione o idioma que será usado durante o processo de instalação.",
-	"config-wiki-language": "Idioma da wiki:",
+	"config-wiki-language": "Língua da wiki:",
 	"config-wiki-language-help": "Selecione o idioma que será predominante na wiki.",
 	"config-back": "← Voltar",
 	"config-continue": "Continuar →",
-	"config-page-language": "Idioma",
+	"config-page-language": "Língua",
 	"config-page-welcome": "Bem-vindo(a) ao MediaWiki!",
 	"config-page-dbconnect": "Ligar à base de dados",
 	"config-page-upgrade": "Atualizar a instalação existente",
@@ -325,5 +325,5 @@
 	"config-nofile": "Não foi possível encontrar o ficheiro \"$1\". Terá sido apagado?",
 	"config-extension-link": "Sabia que a sua wiki suporta [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensões]?\n\nPode procurar [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensões por categoria].",
 	"mainpagetext": "<strong>MediaWiki instalado.</strong>",
-	"mainpagedocfooter": "Consulte o [https://meta.wikimedia.org/wiki/Help:Contents Guia de Utilizadores] para informações sobre o uso do software wiki.\n\n== Onde começar ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista de opções de configuração]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Perguntas e respostas frequentes sobre o MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Subscreva a lista de divulgação de novas versões do MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Regionalize o MediaWiki para seu idioma]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Aprenda a combater spam na sua wiki]"
+	"mainpagedocfooter": "Consulte o [https://meta.wikimedia.org/wiki/Help:Contents Guia de Utilizadores] para informações sobre o uso do software wiki.\n\n== Onde começar ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista de opções de configuração]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Perguntas e respostas frequentes sobre o MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Subscreva a lista de divulgação de novas versões do MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Regionalize o MediaWiki para a sua língua]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Aprenda a combater <i>spam</i> na sua wiki]"
 }

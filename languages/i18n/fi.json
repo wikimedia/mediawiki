@@ -3522,7 +3522,7 @@
 	"feedback-thanks": "Kiitos. Palautteesi on jätetty sivulle [$2 $1].",
 	"feedback-thanks-title": "Kiitos!",
 	"feedback-useragent": "User agent:",
-	"searchsuggest-search": "Hae {{SITENAME}}",
+	"searchsuggest-search": "Hae {{GRAMMAR:elative|{{SITENAME}}}}",
 	"searchsuggest-containing": "sisältää...",
 	"api-error-autoblocked": "Sinun IP-osoitteesi on estetty automaattisesti, koska sitä on käyttänyt estetty käyttäjätunnus.",
 	"api-error-badaccess-groups": "Sinulla ei ole oikeutta tallentaa tiedostoja tähän wikiin.",

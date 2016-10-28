@@ -3334,7 +3334,7 @@
 	"feedback-thanks": "Ďakujeme. Váš komentár bol odoslaný na stránku „[$2 $1]“.",
 	"feedback-thanks-title": "Ďakujeme",
 	"feedback-useragent": "Prehliadač:",
-	"searchsuggest-search": "Hľadať {{SITENAME}}",
+	"searchsuggest-search": "Hľadať",
 	"searchsuggest-containing": "obsahuje...",
 	"api-error-autoblocked": "Vaše IP adresa bola automaticky zablokovaná, pretože ju používal zablokovaný používateľ.",
 	"api-error-badaccess-groups": "Nemáte oprávnenie nahrávať súbory na tejto wiki.",
