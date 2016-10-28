@@ -554,7 +554,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				$this->msg( 'namespace' )->text(),
 				'namespace',
 				''
-			) .
+			) . '&#160;' .
 			Html::namespaceSelector(
 				[ 'selected' => $this->opts['namespace'], 'all' => '' ],
 				[
