@@ -903,6 +903,9 @@ CREATE INDEX /*i*/img_media_mime ON /*_*/image (img_media_type,img_major_mime,im
 -- this table at re-upload time.
 --
 CREATE TABLE /*_*/oldimage (
+  -- Primary key
+  oi_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
+
   -- Base filename: key to image.img_name
   oi_name varchar(255) binary NOT NULL default '',
 
