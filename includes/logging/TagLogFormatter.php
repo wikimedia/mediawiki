@@ -30,6 +30,34 @@
  * @since 1.25
  */
 class TagLogFormatter extends LogFormatter {
+
+	protected function getMessageParameters() {
+		$params = parent::getMessageParameters();
+
+		if ( isset( $params[3] ) && $params[3] ) {
+			$target = $this->entry->getTarget();
+			$oldid = $params[3];
+			$revision = $this->context->getLanguage()->formatNum( $oldid, true );
+
+			if ( $this->plaintext ) {
+				$revlink = $revision;
+			} elseif ( $target->exists() ) {
+				$query = [
+					'oldid' => $oldid,
+					'diff' => 'prev'
+				];
+				$revlink = Linker::link(
+					$target, htmlspecialchars( $revision ), [], $query );
+			} else {
+				$revlink = htmlspecialchars( $revision );
+			}
+
+			$params[3] = Message::rawParam( $revlink );
+		}
+
+		return $params;
+	}
+
 	protected function getMessageKey() {
 		$key = parent::getMessageKey();
 		$params = $this->getMessageParameters();
@@ -50,4 +78,5 @@ class TagLogFormatter extends LogFormatter {
 
 		return $key;
 	}
+
 }
