@@ -63,7 +63,7 @@ class ChangeTags {
 			if ( !$tag ) {
 				continue;
 			}
-			$description = self::tagDescription( $tag );
+			$description = self::tagDescription( $tag, $context );
 			if ( $description === false ) {
 				continue;
 			}
@@ -98,11 +98,12 @@ class ChangeTags {
 	 * we consider the tag hidden, and return false.
 	 *
 	 * @param string $tag Tag
+	 * @param IContextSource $context
 	 * @return string|bool Tag description or false if tag is to be hidden.
 	 * @since 1.25 Returns false if tag is to be hidden.
 	 */
-	public static function tagDescription( $tag ) {
-		$msg = wfMessage( "tag-$tag" );
+	public static function tagDescription( $tag, IContextSource $context ) {
+		$msg = $context->msg( "tag-$tag" );
 		if ( !$msg->exists() ) {
 			// No such message, so return the HTML-escaped tag name.
 			return htmlspecialchars( $tag );
