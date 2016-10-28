@@ -99,6 +99,38 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		];
 	}
 
+	public function testReplaceMsg() {
+		global $wgContLang;
+
+		$messageCache = MessageCache::singleton();
+		$message = 'go';
+		$uckey = $wgContLang->ucfirst( $message );
+		$oldText = $messageCache->get( $message ); // "Ausführen"
+
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->startAtomic( __METHOD__ ); // simulate request and block deferred updates
+		$messageCache->replace( $uckey, 'Allez!' );
+		$this->assertEquals( 'Allez!',
+			$messageCache->getMsgFromNamespace( $uckey, 'de' ),
+			'Updates are reflected in-process immediately' );
+		$this->assertEquals( 'Allez!',
+			$messageCache->get( $message ),
+			'Updates are reflected in-process immediately' );
+		$this->makePage( 'Go', 'de', 'Race!' );
+		$dbw->endAtomic( __METHOD__ );
+
+		$this->assertEquals( 0,
+			DeferredUpdates::pendingUpdatesCount(),
+			'Post-commit deferred update triggers a run of all updates' );
+
+		// (b) Make sure updates are reflected after the deferred update runs
+		$this->assertEquals( 'Race!', $messageCache->get( $message ), 'Correct final contents' );
+
+		$this->makePage( 'Go', 'de', $oldText );
+		$messageCache->replace( $uckey, $oldText ); // deferred update runs immediately
+		$this->assertEquals( $oldText, $messageCache->get( $message ), 'Content restored' );
+	}
+
 	/**
 	 * There's a fallback case where the message key is given as fully qualified -- this
 	 * should ignore the passed $lang and use the language from the key
