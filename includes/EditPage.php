@@ -3217,44 +3217,9 @@ HTML
 		global $wgOut, $wgUser;
 
 		$wikitext = $this->safeUnicodeOutput( $text );
-		if ( strval( $wikitext ) !== '' ) {
-			// Ensure there's a newline at the end, otherwise adding lines
-			// is awkward.
-			// But don't add a newline if the ext is empty, or Firefox in XHTML
-			// mode will show an extra newline. A bit annoying.
-			$wikitext .= "\n";
-		}
+		$wikitext = $this->addNewLineAtEnd( $wikitext );
 
-		$attribs = $customAttribs + [
-			'accesskey' => ',',
-			'id' => $name,
-			'cols' => $wgUser->getIntOption( 'cols' ),
-			'rows' => $wgUser->getIntOption( 'rows' ),
-			// Avoid PHP notices when appending preferences
-			// (appending allows customAttribs['style'] to still work).
-			'style' => ''
-		];
-
-		// The following classes can be used here:
-		// * mw-editfont-default
-		// * mw-editfont-monospace
-		// * mw-editfont-sans-serif
-		// * mw-editfont-serif
-		$class = 'mw-editfont-' . $wgUser->getOption( 'editfont' );
-
-		if ( isset( $attribs['class'] ) ) {
-			if ( is_string( $attribs['class'] ) ) {
-				$attribs['class'] .= ' ' . $class;
-			} elseif ( is_array( $attribs['class'] ) ) {
-				$attribs['class'][] = $class;
-			}
-		} else {
-			$attribs['class'] = $class;
-		}
-
-		$pageLang = $this->mTitle->getPageLanguage();
-		$attribs['lang'] = $pageLang->getHtmlCode();
-		$attribs['dir'] = $pageLang->getDir();
+		$attribs = $this->buildTextboxAttribs( $name, $customAttribs, $wgUser );
 
 		$wgOut->addHTML( Html::textarea( $name, $wikitext, $attribs ) );
 	}
@@ -4441,5 +4406,64 @@ HTML
 	 */
 	protected function addExplainConflictHeader( OutputPage &$out ) {
 		$out->wrapWikiMsg( "<div class='mw-explainconflict'>\n$1\n</div>", 'explainconflict' );
+	}
+
+	/**
+	 * @param string $name
+	 * @param mixed[] $customAttribs
+	 * @param User $wgUser
+	 * @return mixed[]
+	 * @since 1.29
+	 */
+	protected function buildTextboxAttribs( $name, array $customAttribs, User $wgUser ) {
+		$attribs = $customAttribs + [
+				'accesskey' => ',',
+				'id' => $name,
+				'cols' => $wgUser->getIntOption( 'cols' ),
+				'rows' => $wgUser->getIntOption( 'rows' ),
+				// Avoid PHP notices when appending preferences
+				// (appending allows customAttribs['style'] to still work).
+				'style' => ''
+			];
+
+		// The following classes can be used here:
+		// * mw-editfont-default
+		// * mw-editfont-monospace
+		// * mw-editfont-sans-serif
+		// * mw-editfont-serif
+		$class = 'mw-editfont-' . $wgUser->getOption( 'editfont' );
+
+		if ( isset( $attribs['class'] ) ) {
+			if ( is_string( $attribs['class'] ) ) {
+				$attribs['class'] .= ' ' . $class;
+			} elseif ( is_array( $attribs['class'] ) ) {
+				$attribs['class'][] = $class;
+			}
+		} else {
+			$attribs['class'] = $class;
+		}
+
+		$pageLang = $this->mTitle->getPageLanguage();
+		$attribs['lang'] = $pageLang->getHtmlCode();
+		$attribs['dir'] = $pageLang->getDir();
+
+		return $attribs;
+	}
+
+	/**
+	 * @param string $wikitext
+	 * @return string
+	 * @since 1.29
+	 */
+	protected function addNewLineAtEnd( $wikitext ) {
+		if ( strval( $wikitext ) !== '' ) {
+			// Ensure there's a newline at the end, otherwise adding lines
+			// is awkward.
+			// But don't add a newline if the text is empty, or Firefox in XHTML
+			// mode will show an extra newline. A bit annoying.
+			$wikitext .= "\n";
+			return $wikitext;
+		}
+		return $wikitext;
 	}
 }
