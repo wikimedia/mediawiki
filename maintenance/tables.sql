@@ -1649,9 +1649,9 @@ CREATE TABLE /*_*/l10n_cache (
   -- Cache key
   lc_key varchar(255) NOT NULL,
   -- Value
-  lc_value mediumblob NOT NULL
+  lc_value mediumblob NOT NULL,
+  PRIMARY KEY (lc_lang, lc_key)
 ) /*$wgDBTableOptions*/;
-CREATE INDEX /*i*/lc_lang_key ON /*_*/l10n_cache (lc_lang, lc_key);
 
 -- Table caching which local files a module depends on that aren't
 -- registered directly, used for fast retrieval of file dependency.
