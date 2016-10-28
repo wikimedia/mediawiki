@@ -30,7 +30,6 @@
 	 * @cfg {boolean} [relative=true] If a namespace is set, display titles relative to it
 	 * @cfg {boolean} [suggestions=true] Display search suggestions
 	 * @cfg {boolean} [showRedirectTargets=true] Show the targets of redirects
-	 * @cfg {boolean} [showRedlink] Show red link to exact match if it doesn't exist
 	 * @cfg {boolean} [showImages] Show page images
 	 * @cfg {boolean} [showDescriptions] Show page descriptions
 	 * @cfg {boolean} [excludeCurrentPage] Exclude the current page from suggestions
@@ -52,7 +51,6 @@
 		this.relative = config.relative !== undefined ? config.relative : true;
 		this.suggestions = config.suggestions !== undefined ? config.suggestions : true;
 		this.showRedirectTargets = config.showRedirectTargets !== false;
-		this.showRedlink = !!config.showRedlink;
 		this.showImages = !!config.showImages;
 		this.showDescriptions = !!config.showDescriptions;
 		this.excludeCurrentPage = !!config.excludeCurrentPage;
@@ -246,13 +244,6 @@
 			)
 		);
 
-		if ( !pageExists ) {
-			pageData[ this.getQueryValue() ] = {
-				missing: true, known: false, redirect: false, disambiguation: false,
-				description: mw.msg( 'mw-widgets-titleinput-description-new-page' )
-			};
-		}
-
 		if ( this.cache ) {
 			this.cache.set( pageData );
 		}
@@ -261,10 +252,7 @@
 		if ( pageExists && !pageExistsExact ) {
 			titles.unshift( this.getQueryValue() );
 		}
-		// Offer the exact text as a new page if the title is valid
-		if ( this.showRedlink && !pageExists && titleObj ) {
-			titles.push( this.getQueryValue() );
-		}
+
 		for ( i = 0, len = titles.length; i < len; i++ ) {
 			page = pageData[ titles[ i ] ] || {};
 			items.push( new mw.widgets.TitleOptionWidget( this.getOptionWidgetData( titles[ i ], page ) ) );
@@ -281,14 +269,18 @@
 	 * @return {Object} Data for option widget
 	 */
 	mw.widgets.TitleWidget.prototype.getOptionWidgetData = function ( title, data ) {
-		var mwTitle = new mw.Title( title );
+		var mwTitle = new mw.Title( title ),
+			description = data.description;
+		if ( data.missing && !description ) {
+			description = mw.msg( 'mw-widgets-titleinput-description-new-page' );
+		}
 		return {
 			data: this.namespace !== null && this.relative
 				? mwTitle.getRelativeText( this.namespace )
 				: title,
 			url: mwTitle.getUrl(),
 			imageUrl: this.showImages ? data.imageUrl : null,
-			description: this.showDescriptions ? data.description : null,
+			description: this.showDescriptions ? description : null,
 			missing: data.missing,
 			redirect: data.redirect,
 			disambiguation: data.disambiguation,
