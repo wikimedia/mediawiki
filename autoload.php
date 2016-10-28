@@ -859,6 +859,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Diff\\WordAccumulator' => __DIR__ . '/includes/diff/WordAccumulator.php',
 	'MediaWiki\\Interwiki\\ClassicInterwikiLookup' => __DIR__ . '/includes/interwiki/ClassicInterwikiLookup.php',
 	'MediaWiki\\Interwiki\\InterwikiLookup' => __DIR__ . '/includes/interwiki/InterwikiLookup.php',
+	'MediaWiki\\Interwiki\\InterwikiLookupAdapter' => __DIR__ . '/includes/interwiki/InterwikiLookupAdapter.php',
 	'MediaWiki\\Languages\\Data\\Names' => __DIR__ . '/languages/data/Names.php',
 	'MediaWiki\\Languages\\Data\\ZhConversion' => __DIR__ . '/languages/data/ZhConversion.php',
 	'MediaWiki\\Linker\\LinkRenderer' => __DIR__ . '/includes/linker/LinkRenderer.php',
