@@ -159,8 +159,10 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'addField', 'change_tag', 'ct_id', 'patch-change_tag-ct_id.sql' ],
 			[ 'addField', 'tag_summary', 'ts_id', 'patch-tag_summary-ts_id.sql' ],
 
-			// 1.29
-			[ 'addField', 'externallinks', 'el_index_60', 'patch-externallinks-el_index_60.sql' ],
+                        // 1.29
+                        [ 'addField', 'externallinks', 'el_index_60', 'patch-externallinks-el_index_60.sql' ],
+
+			[ 'dropIndex', 'l10n_cache', 'lc_lang_key', 'patch-l10n_cache-primary-key.sql' ],
 		];
 	}
 
