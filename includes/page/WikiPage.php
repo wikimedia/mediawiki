@@ -3551,107 +3551,103 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Update all the appropriate counts in the category table, given that
 	 * we've added the categories $added and deleted the categories $deleted.
 	 *
+	 * This should only be called from deferred updates or jobs to avoid contention.
+	 *
 	 * @param array $added The names of categories that were added
 	 * @param array $deleted The names of categories that were deleted
 	 * @param integer $id Page ID (this should be the original deleted page ID)
 	 */
 	public function updateCategoryCounts( array $added, array $deleted, $id = 0 ) {
 		$id = $id ?: $this->getId();
+		$ns = $this->getTitle()->getNamespace();
+
+		$addFields = [ 'cat_pages = cat_pages + 1' ];
+		$removeFields = [ 'cat_pages = cat_pages - 1' ];
+		if ( $ns == NS_CATEGORY ) {
+			$addFields[] = 'cat_subcats = cat_subcats + 1';
+			$removeFields[] = 'cat_subcats = cat_subcats - 1';
+		} elseif ( $ns == NS_FILE ) {
+			$addFields[] = 'cat_files = cat_files + 1';
+			$removeFields[] = 'cat_files = cat_files - 1';
+		}
+
 		$dbw = wfGetDB( DB_MASTER );
-		$method = __METHOD__;
-		// Do this at the end of the commit to reduce lock wait timeouts
-		$dbw->onTransactionPreCommitOrIdle(
-			function () use ( $dbw, $added, $deleted, $id, $method ) {
-				$ns = $this->getTitle()->getNamespace();
 
-				$addFields = [ 'cat_pages = cat_pages + 1' ];
-				$removeFields = [ 'cat_pages = cat_pages - 1' ];
-				if ( $ns == NS_CATEGORY ) {
-					$addFields[] = 'cat_subcats = cat_subcats + 1';
-					$removeFields[] = 'cat_subcats = cat_subcats - 1';
-				} elseif ( $ns == NS_FILE ) {
-					$addFields[] = 'cat_files = cat_files + 1';
-					$removeFields[] = 'cat_files = cat_files - 1';
+		if ( count( $added ) ) {
+			$existingAdded = $dbw->selectFieldValues(
+				'category',
+				'cat_title',
+				[ 'cat_title' => $added ],
+				__METHOD__
+			);
+
+			// For category rows that already exist, do a plain
+			// UPDATE instead of INSERT...ON DUPLICATE KEY UPDATE
+			// to avoid creating gaps in the cat_id sequence.
+			if ( count( $existingAdded ) ) {
+				$dbw->update(
+					'category',
+					$addFields,
+					[ 'cat_title' => $existingAdded ],
+					__METHOD__
+				);
+			}
+
+			$missingAdded = array_diff( $added, $existingAdded );
+			if ( count( $missingAdded ) ) {
+				$insertRows = [];
+				foreach ( $missingAdded as $cat ) {
+					$insertRows[] = [
+						'cat_title'   => $cat,
+						'cat_pages'   => 1,
+						'cat_subcats' => ( $ns == NS_CATEGORY ) ? 1 : 0,
+						'cat_files'   => ( $ns == NS_FILE ) ? 1 : 0,
+					];
 				}
+				$dbw->upsert(
+					'category',
+					$insertRows,
+					[ 'cat_title' ],
+					$addFields,
+					__METHOD__
+				);
+			}
+		}
 
-				if ( count( $added ) ) {
-					$existingAdded = $dbw->selectFieldValues(
-						'category',
-						'cat_title',
-						[ 'cat_title' => $added ],
-						$method
-					);
+		if ( count( $deleted ) ) {
+			$dbw->update(
+				'category',
+				$removeFields,
+				[ 'cat_title' => $deleted ],
+				__METHOD__
+			);
+		}
 
-					// For category rows that already exist, do a plain
-					// UPDATE instead of INSERT...ON DUPLICATE KEY UPDATE
-					// to avoid creating gaps in the cat_id sequence.
-					if ( count( $existingAdded ) ) {
-						$dbw->update(
-							'category',
-							$addFields,
-							[ 'cat_title' => $existingAdded ],
-							$method
-						);
-					}
+		foreach ( $added as $catName ) {
+			$cat = Category::newFromName( $catName );
+			Hooks::run( 'CategoryAfterPageAdded', [ $cat, $this ] );
+		}
 
-					$missingAdded = array_diff( $added, $existingAdded );
-					if ( count( $missingAdded ) ) {
-						$insertRows = [];
-						foreach ( $missingAdded as $cat ) {
-							$insertRows[] = [
-								'cat_title'   => $cat,
-								'cat_pages'   => 1,
-								'cat_subcats' => ( $ns == NS_CATEGORY ) ? 1 : 0,
-								'cat_files'   => ( $ns == NS_FILE ) ? 1 : 0,
-							];
-						}
-						$dbw->upsert(
-							'category',
-							$insertRows,
-							[ 'cat_title' ],
-							$addFields,
-							$method
-						);
-					}
-				}
+		foreach ( $deleted as $catName ) {
+			$cat = Category::newFromName( $catName );
+			Hooks::run( 'CategoryAfterPageRemoved', [ $cat, $this, $id ] );
+		}
 
-				if ( count( $deleted ) ) {
-					$dbw->update(
-						'category',
-						$removeFields,
-						[ 'cat_title' => $deleted ],
-						$method
-					);
-				}
-
-				foreach ( $added as $catName ) {
-					$cat = Category::newFromName( $catName );
-					Hooks::run( 'CategoryAfterPageAdded', [ $cat, $this ] );
-				}
-
-				foreach ( $deleted as $catName ) {
-					$cat = Category::newFromName( $catName );
-					Hooks::run( 'CategoryAfterPageRemoved', [ $cat, $this, $id ] );
-				}
-
-				// Refresh counts on categories that should be empty now, to
-				// trigger possible deletion. Check master for the most
-				// up-to-date cat_pages.
-				if ( count( $deleted ) ) {
-					$rows = $dbw->select(
-						'category',
-						[ 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files' ],
-						[ 'cat_title' => $deleted, 'cat_pages <= 0' ],
-						$method
-					);
-					foreach ( $rows as $row ) {
-						$cat = Category::newFromRow( $row );
-						$cat->refreshCounts();
-					}
-				}
-			},
-			__METHOD__
-		);
+		// Refresh counts on categories that should be empty now, to
+		// trigger possible deletion. Check master for the most
+		// up-to-date cat_pages.
+		if ( count( $deleted ) ) {
+			$rows = $dbw->select(
+				'category',
+				[ 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files' ],
+				[ 'cat_title' => $deleted, 'cat_pages <= 0' ],
+				__METHOD__
+			);
+			foreach ( $rows as $row ) {
+				$cat = Category::newFromRow( $row );
+				$cat->refreshCounts();
+			}
+		}
 	}
 
 	/**
