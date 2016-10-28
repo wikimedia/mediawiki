@@ -169,6 +169,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			// 1.30
 			[ 'modifyField', 'image', 'img_media_type', 'patch-add-3d.sql' ],
 			[ 'addTable', 'ip_changes', 'patch-ip_changes.sql' ],
+			[ 'dropIndex', 'l10n_cache', 'lc_lang_key', 'patch-l10n_cache-primary-key.sql' ],
 		];
 	}
 
