@@ -158,6 +158,8 @@ class SqliteUpdater extends DatabaseUpdater {
 				'patch-add-rc_name_type_patrolled_timestamp_index.sql' ],
 			[ 'addField', 'change_tag', 'ct_id', 'patch-change_tag-ct_id.sql' ],
 			[ 'addField', 'tag_summary', 'ts_id', 'patch-tag_summary-ts_id.sql' ],
+			// This table will be renamed from l10n_cache_tmp to l10n_cache.
+			[ 'addTable', 'l10n_cache_tmp', 'patch-l10n_cache-primary-key.sql' ],
 		];
 	}
 
