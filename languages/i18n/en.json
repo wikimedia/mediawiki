@@ -4094,7 +4094,6 @@
 	"mw-widgets-dateinput-no-date": "No date selected",
 	"mw-widgets-dateinput-placeholder-day": "YYYY-MM-DD",
 	"mw-widgets-dateinput-placeholder-month": "YYYY-MM",
-	"mw-widgets-titleinput-description-new-page": "page does not exist yet",
 	"mw-widgets-titleinput-description-redirect": "redirect to $1",
 	"sessionmanager-tie": "Cannot combine multiple request authentication types: $1.",
 	"sessionprovider-generic": "$1 sessions",

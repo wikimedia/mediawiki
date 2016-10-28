@@ -2227,7 +2227,6 @@ return [
 			'blanknamespace',
 			'namespacesall',
 			// TitleInputWidget
-			'mw-widgets-titleinput-description-new-page',
 			'mw-widgets-titleinput-description-redirect',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
