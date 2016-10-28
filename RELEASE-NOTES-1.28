@@ -40,6 +40,8 @@ production.
   away from. If you depend upon magic link functionality, it is requested that you comment
   on <https://www.mediawiki.org/wiki/Requests_for_comment/Future_of_magic_links> and
   explain your use case(s).
+* New config variable $wgCSPFalsePositiveUrls to control what URLs to ignore
+  in upcoming Content-Security-Policy feature's reporting.
 
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.
