@@ -294,6 +294,7 @@ class MysqlUpdater extends DatabaseUpdater {
 
 			// 1.29
 			[ 'addField', 'externallinks', 'el_index_60', 'patch-externallinks-el_index_60.sql' ],
+			[ 'dropIndex', 'l10n_cache', 'lc_lang_key', 'patch-l10n_cache-primary-key.sql' ],
 		];
 	}
 
