@@ -101,6 +101,11 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			}
 		}
 
+		// Make year a four digit year for further processing
+		if ( $year < 1000 ) {
+			$year += 2000;
+		}
+
 		if ( $this->mMonth ) {
 			$month = $this->mMonth;
 
