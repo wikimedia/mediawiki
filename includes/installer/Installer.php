@@ -1330,13 +1330,32 @@ abstract class Installer {
 	}
 
 	/**
+	 * Finds extensions file in the given path
+	 * and returns an array with all the information
+	 *
+	 * @param string path to extension JSON file
+	 * @return associative array with extension information
+	 */
+
+	public function getInfoJsonExtensionFile( $filePath ){
+		$extJSON = file_get_contents( $filePath );
+		$ext = FormatJSON::parse($extJSON);
+		if ($ext->isOK()){
+			$ext_arr = (array) $ext->getValue();
+			return $ext_arr;
+		}
+		return "";
+	}
+
+
+	/**
 	 * Finds extensions that follow the format /$directory/Name/Name.php,
 	 * and returns an array containing the value for 'Name' for each found extension.
 	 *
 	 * Reasonable values for $directory include 'extensions' (the default) and 'skins'.
 	 *
 	 * @param string $directory Directory to search in
-	 * @return array
+	 * @return associative array
 	 */
 	public function findExtensions( $directory = 'extensions' ) {
 		if ( $this->getVar( 'IP' ) === null ) {
@@ -1353,12 +1372,19 @@ abstract class Installer {
 
 		$dh = opendir( $extDir );
 		$exts = [];
-		while ( ( $file = readdir( $dh ) ) !== false ) {
-			if ( !is_dir( "$extDir/$file" ) ) {
+		while ( ( $name = readdir( $dh ) ) !== false ) {
+			if ( !is_dir( "$extDir/$name" ) ) {
 				continue;
 			}
-			if ( file_exists( "$extDir/$file/$jsonFile" ) || file_exists( "$extDir/$file/$file.php" ) ) {
-				$exts[] = $file;
+			if ( file_exists( "$extDir/$name/$jsonFile" )  ) {
+				$ext = $this->getInfoJsonExtensionFile( "$extDir/$name/$jsonFile" );
+				$exts[$name] = $ext ;
+			}
+			else if ( file_exists( "$extDir/$name/$name.php" ) ){
+				$exts[$name] = "" ;
+			}
+			else {
+				unset( $exts[$name] );
 			}
 		}
 		closedir( $dh );
@@ -1366,6 +1392,7 @@ abstract class Installer {
 
 		return $exts;
 	}
+
 
 	/**
 	 * Returns a default value to be used for $wgDefaultSkin: normally the one set in DefaultSettings,
