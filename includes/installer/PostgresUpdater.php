@@ -632,8 +632,8 @@ END;
 	protected function renameTable( $old, $new, $patch = false ) {
 		if ( $this->db->tableExists( $old ) ) {
 			$this->output( "Renaming table $old to $new\n" );
-			$old = $this->db->realTableName( $old, "quoted" );
-			$new = $this->db->realTableName( $new, "quoted" );
+			$old = $this->db->remappedTableName( $old );
+			$new = $this->db->remappedTableName( $new );
 			$this->db->query( "ALTER TABLE $old RENAME TO $new" );
 			if ( $patch !== false ) {
 				$this->applyPatch( $patch );
