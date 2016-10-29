@@ -69,7 +69,7 @@ class JobQueueDB extends JobQueue {
 	 * @return bool
 	 */
 	protected function doIsEmpty() {
-		$dbr = $this->getSlaveDB();
+		$dbr = $this->getReplicaDB();
 		try {
 			$found = $dbr->selectField( // unclaimed job
 				'job', '1', [ 'job_cmd' => $this->type, 'job_token' => '' ], __METHOD__
@@ -94,7 +94,7 @@ class JobQueueDB extends JobQueue {
 		}
 
 		try {
-			$dbr = $this->getSlaveDB();
+			$dbr = $this->getReplicaDB();
 			$size = (int)$dbr->selectField( 'job', 'COUNT(*)',
 				[ 'job_cmd' => $this->type, 'job_token' => '' ],
 				__METHOD__
@@ -123,7 +123,7 @@ class JobQueueDB extends JobQueue {
 			return $count;
 		}
 
-		$dbr = $this->getSlaveDB();
+		$dbr = $this->getReplicaDB();
 		try {
 			$count = (int)$dbr->selectField( 'job', 'COUNT(*)',
 				[ 'job_cmd' => $this->type, "job_token != {$dbr->addQuotes( '' )}" ],
@@ -154,7 +154,7 @@ class JobQueueDB extends JobQueue {
 			return $count;
 		}
 
-		$dbr = $this->getSlaveDB();
+		$dbr = $this->getReplicaDB();
 		try {
 			$count = (int)$dbr->selectField( 'job', 'COUNT(*)',
 				[
@@ -566,7 +566,7 @@ class JobQueueDB extends JobQueue {
 	 * @return Iterator
 	 */
 	protected function getJobIterator( array $conds ) {
-		$dbr = $this->getSlaveDB();
+		$dbr = $this->getReplicaDB();
 		try {
 			return new MappedIterator(
 				$dbr->select( 'job', self::selectFields(), $conds ),
@@ -594,7 +594,7 @@ class JobQueueDB extends JobQueue {
 	}
 
 	protected function doGetSiblingQueuesWithJobs( array $types ) {
-		$dbr = $this->getSlaveDB();
+		$dbr = $this->getReplicaDB();
 		// @note: this does not check whether the jobs are claimed or not.
 		// This is useful so JobQueueGroup::pop() also sees queues that only
 		// have stale jobs. This lets recycleAndDeleteStaleJobs() re-enqueue
@@ -611,7 +611,7 @@ class JobQueueDB extends JobQueue {
 	}
 
 	protected function doGetSiblingQueueSizes( array $types ) {
-		$dbr = $this->getSlaveDB();
+		$dbr = $this->getReplicaDB();
 		$res = $dbr->select( 'job', [ 'job_cmd', 'COUNT(*) AS count' ],
 			[ 'job_cmd' => $types ], __METHOD__, [ 'GROUP BY' => 'job_cmd' ] );
 
@@ -737,7 +737,7 @@ class JobQueueDB extends JobQueue {
 	 * @throws JobQueueConnectionError
 	 * @return DBConnRef
 	 */
-	protected function getSlaveDB() {
+	protected function getReplicaDB() {
 		try {
 			return $this->getDB( DB_REPLICA );
 		} catch ( DBConnectionError $e ) {
