@@ -47,7 +47,7 @@ class SavepointPostgres {
 		$this->didbegin = false;
 		/* If we are not in a transaction, we need to be for savepoint trickery */
 		if ( !$dbw->trxLevel() ) {
-			$dbw->begin( "FOR SAVEPOINT", DatabasePostgres::TRANSACTION_INTERNAL );
+			$dbw->begin( __CLASS__, DatabasePostgres::TRANSACTION_INTERNAL );
 			$this->didbegin = true;
 		}
 	}
@@ -61,7 +61,7 @@ class SavepointPostgres {
 
 	public function commit() {
 		if ( $this->didbegin ) {
-			$this->dbw->commit();
+			$this->dbw->commit( __CLASS__, DatabasePostgres::FLUSHING_INTERNAL );
 			$this->didbegin = false;
 		}
 	}
