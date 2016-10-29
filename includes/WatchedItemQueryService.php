@@ -442,11 +442,13 @@ class WatchedItemQueryService {
 
 		if ( isset( $options['start'] ) ) {
 			$after = $options['dir'] === self::DIR_OLDER ? '<=' : '>=';
-			$conds[] = 'rc_timestamp ' . $after . ' ' . $db->addQuotes( $options['start'] );
+			$conds[] = 'rc_timestamp ' . $after . ' ' .
+				$db->addQuotes( $db->timestamp( $options['start'] ) );
 		}
 		if ( isset( $options['end'] ) ) {
 			$before = $options['dir'] === self::DIR_OLDER ? '>=' : '<=';
-			$conds[] = 'rc_timestamp ' . $before . ' ' . $db->addQuotes( $options['end'] );
+			$conds[] = 'rc_timestamp ' . $before . ' ' .
+				$db->addQuotes( $db->timestamp( $options['end'] ) );
 		}
 
 		return $conds;
