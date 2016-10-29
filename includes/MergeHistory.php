@@ -90,7 +90,8 @@ class MergeHistory {
 					'revision',
 					'MAX(rev_timestamp)',
 					[
-						'rev_timestamp <= ' . $this->dbw->timestamp( $mwTimestamp ),
+						'rev_timestamp <= ' .
+							$this->dbw->addQuotes( $this->dbw->timestamp( $mwTimestamp ) ),
 						'rev_page' => $this->source->getArticleID()
 					],
 					__METHOD__
@@ -118,7 +119,8 @@ class MergeHistory {
 				$this->timestampLimit = $lasttimestamp;
 			}
 
-			$this->timeWhere = "rev_timestamp <= {$this->dbw->timestamp( $timeInsert )}";
+			$this->timeWhere = "rev_timestamp <= " .
+				$this->dbw->addQuotes( $this->dbw->timestamp( $timeInsert ) );
 		} catch ( TimestampException $ex ) {
 			// The timestamp we got is screwed up and merge cannot continue
 			// This should be detected by $this->isValidMerge()
