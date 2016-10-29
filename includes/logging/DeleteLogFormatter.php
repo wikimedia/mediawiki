@@ -39,6 +39,12 @@ class DeleteLogFormatter extends LogFormatter {
 				// logentry-suppress-event-legacy, logentry-suppress-revision-legacy
 				return "$key-legacy";
 			}
+		} elseif ( $this->entry->getSubtype() === 'restore' ) {
+			$rawParams = $this->entry->getParameters();
+			if ( !isset( $rawParams[':assoc:count'] ) ) {
+				// Message: logentry-delete-restore-nocount
+				return $key . '-nocount';
+			}
 		}
 
 		return $key;
@@ -96,6 +102,19 @@ class DeleteLogFormatter extends LogFormatter {
 			} else {
 				$this->parsedParametersDeleteLog = array_slice( $params, 0, 3 );
 				return $this->parsedParametersDeleteLog;
+			}
+		} elseif ( $subtype === 'restore' ) {
+			$rawParams = $this->entry->getParameters();
+			if ( isset( $rawParams[':assoc:count'] ) ) {
+				$countList = [];
+				foreach ( $rawParams[':assoc:count'] as $type => $count ) {
+					if ( $count ) {
+						// Messages: restore-count-revisions, restore-count-files
+						$countList[] = $this->context->msg( 'restore-count-' . $type )
+							->numParams( $count )->plain();
+					}
+				}
+				$params[3] = $this->context->getLanguage()->listToText( $countList );
 			}
 		}
 
@@ -275,6 +294,11 @@ class DeleteLogFormatter extends LogFormatter {
 			foreach ( $fields as $bit => $key ) {
 				$params[':assoc:old'][$key] = (bool)( $old & $bit );
 				$params[':assoc:new'][$key] = (bool)( $new & $bit );
+			}
+		} elseif ( $subtype === 'restore' ) {
+			$rawParams = $entry->getParameters();
+			if ( isset( $rawParams[':assoc:count'] ) ) {
+				$params[':assoc:count'] = $rawParams[':assoc:count'];
 			}
 		}
 
