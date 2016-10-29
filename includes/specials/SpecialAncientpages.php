@@ -64,6 +64,10 @@ class AncientPagesPage extends QueryPage {
 		return false;
 	}
 
+	public function preprocessResults( $db, $res ) {
+		$this->executeLBFromResultWrapper( $res );
+	}
+
 	/**
 	 * @param Skin $skin
 	 * @param object $result Result row

@@ -36,17 +36,7 @@ abstract class PageQueryPage extends QueryPage {
 	 * @param ResultWrapper $res
 	 */
 	public function preprocessResults( $db, $res ) {
-		if ( !$res->numRows() ) {
-			return;
-		}
-
-		$batch = new LinkBatch();
-		foreach ( $res as $row ) {
-			$batch->add( $row->namespace, $row->title );
-		}
-		$batch->execute();
-
-		$res->seek( 0 );
+		$this->executeLBFromResultWrapper( $res );
 	}
 
 	/**
