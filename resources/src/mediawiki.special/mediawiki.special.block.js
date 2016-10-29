@@ -7,19 +7,27 @@
 			$anonOnlyRow = $( '#mw-input-wpHardBlock' ).closest( 'tr' ),
 			$enableAutoblockRow = $( '#mw-input-wpAutoBlock' ).closest( 'tr' ),
 			$hideUser = $( '#mw-input-wpHideUser' ).closest( 'tr' ),
-			$watchUser = $( '#mw-input-wpWatch' ).closest( 'tr' );
+			$watchUser = $( '#mw-input-wpWatch' ).closest( 'tr' ),
+			$expiry = $( '#mw-input-wpExpiry' );
 
 		function updateBlockOptions( instant ) {
 			var blocktarget = $.trim( $blockTarget.val() ),
 				isEmpty = blocktarget === '',
 				isIp = mw.util.isIPAddress( blocktarget, true ),
-				isIpRange = isIp && blocktarget.match( /\/\d+$/ );
+				isIpRange = isIp && blocktarget.match( /\/\d+$/ ),
+				expiryValue = $expiry.val(),
+				isCustomExpiry = expiryValue === 'other',
+				isIndefinite = expiryValue === 'infinite',
+				isNonEmptyIp = isIp && !isEmpty;
 
-			if ( isIp && !isEmpty ) {
+			if ( isNonEmptyIp ) {
 				$enableAutoblockRow.goOut( instant );
-				$hideUser.goOut( instant );
 			} else {
 				$enableAutoblockRow.goIn( instant );
+			}
+			if ( isNonEmptyIp || !( isIndefinite || isCustomExpiry ) ) {
+				$hideUser.goOut( instant );
+			} else {
 				$hideUser.goIn( instant );
 			}
 			if ( !isIp && !isEmpty ) {
@@ -37,6 +45,7 @@
 		if ( $blockTarget.length ) {
 			// Bind functions so they're checked whenever stuff changes
 			$blockTarget.keyup( updateBlockOptions );
+			$expiry.change( updateBlockOptions );
 
 			// Call them now to set initial state (ie. Special:Block/Foobar?wpBlockExpiry=2+hours)
 			updateBlockOptions( /* instant= */ true );
