@@ -353,6 +353,7 @@ class MediaStatisticsPage extends QueryPage {
 	 * @param ResultWrapper $res
 	 */
 	public function preprocessResults( $dbr, $res ) {
+		$this->executeLBFromResultWrapper( $res );
 		$this->totalCount = $this->totalBytes = 0;
 		foreach ( $res as $row ) {
 			$mediaStats = $this->splitFakeTitle( $row->title );

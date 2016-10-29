@@ -76,4 +76,8 @@ class UnusedCategoriesPage extends QueryPage {
 	protected function getGroupName() {
 		return 'maintenance';
 	}
+
+	public function preprocessResults( $db, $res ) {
+		$this->executeLBFromResultWrapper( $res );
+	}
 }

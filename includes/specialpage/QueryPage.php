@@ -825,4 +825,28 @@ abstract class QueryPage extends SpecialPage {
 	function feedUrl() {
 		return $this->getPageTitle()->getFullURL();
 	}
+
+	/**
+	 * Creates a new LinkBatch object, adds all pages from the passed ResultWrapper (MUST include
+	 * title and optional the namespace field) and executes the batch. This operation will pre-cache
+	 * LinkCache information like page existence and information for stub color and redirect hints.
+	 *
+	 * @param ResultWrapper $res The ResultWrapper object to process. Needs to include the title
+	 *  field and namespace field, if the $ns parameter isn't set.
+	 * @param null $ns Use this namespace for the given titles in the ResultWrapper object,
+	 *  instead of the namespace value of $res.
+	 */
+	protected function executeLBFromResultWrapper( ResultWrapper $res, $ns = null ) {
+		if ( !$res->numRows() ) {
+			return;
+		}
+
+		$batch = new LinkBatch;
+		foreach ( $res as $row ) {
+			$batch->add( $ns !== null ? $row->namespace : $ns, $row->title );
+		}
+		$batch->execute();
+
+		$res->seek( 0 );
+	}
 }
