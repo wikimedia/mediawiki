@@ -21,7 +21,8 @@
 			"Nirjal stha",
 			"राम प्रसाद जोशी",
 			"Matma Rex",
-			"जनक राज भट्ट"
+			"जनक राज भट्ट",
+			"Suniltheblue"
 		]
 	},
 	"tog-underline": "रेखाङ्कित लिङ्क:",
@@ -3300,7 +3301,7 @@
 	"feedback-thanks": "धन्यवाद! तपाईंको प्रतिक्रिया पृष्ठमा नियुक्त गरिएको छ \"[ $2  $1 ]\"।",
 	"feedback-thanks-title": "धन्यवाद!",
 	"feedback-useragent": "प्रयोगकर्ता एजेन्ट:",
-	"searchsuggest-search": "खोज",
+	"searchsuggest-search": "{{SITENAME}} मा खोज्नुहोस्",
 	"searchsuggest-containing": "समावेश भएको...",
 	"api-error-badaccess-groups": "यस विकिमा तपाईंलाई फाइल अपलोड गर्ने अनुमति छैन।",
 	"api-error-badtoken": "आन्तरिक समस्याः खराब टोकन ।",

@@ -1083,7 +1083,7 @@
 	"version": "Pán-pún",
 	"specialpages": "Te̍k-sû-ia̍h",
 	"tag-filter": "[[Special:Tags|Piau-chhiam]] chhoē mi̍h:",
-	"tag-list-wrapper": "([[Special:Tags|$1 ê piau-chhiam]]: $2)",
+	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|piau-chhiam}}]]: $2)",
 	"logentry-move-move": "$1 {{GENDER:$2|sóa}} $3 chit ia̍h khì $4",
 	"logentry-newusers-create": "已經{{GENDER:$2|開好}}用者口座 $1",
 	"searchsuggest-search": "Chhoē {{SITENAME}}",

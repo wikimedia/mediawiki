@@ -1398,7 +1398,7 @@
 	"api-help-param-integer-minmax": "{{PLURAL:$1|值}}必须介于$2和$3之间。",
 	"api-help-param-upload": "必须被公布为使用multipart/form-data的一次文件上传。",
 	"api-help-param-multi-separate": "通过<kbd>|</kbd>或[[Special:ApiHelp/main#main/datatypes|替代物]]隔开各值。",
-	"api-help-param-multi-max": "值的最高数字是{{PLURAL:$1|$1}}（对于机器人则是{{PLURAL:$2|$2}}）。",
+	"api-help-param-multi-max": "值的最大数量是{{PLURAL:$1|$1}}（对于机器人则是{{PLURAL:$2|$2}}）。",
 	"api-help-param-default": "默认：$1",
 	"api-help-param-default-empty": "默认：<span class=\"apihelp-empty\">（空）</span>",
 	"api-help-param-token": "从[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]取回的“$1”令牌",

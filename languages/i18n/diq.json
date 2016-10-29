@@ -681,7 +681,7 @@
 	"semiprotectedpagewarning": "'''Diqet: No pel pawyeno, teyna serkari eşkeni bıvurni.'''\nWexta ke şıma no pel vurneni diqet bıkeri, log bivini:",
 	"cascadeprotectedwarning": "'''Diqet:''' Na pele kılit biya, tenya karberê idarekeri şenê ke naye bıvurnê, çıke na zerrey {{PLURAL:$1|na pela şipa-kılitkerdiye|nê pelanê şipanê-kılitkerdiyan}} dera:",
 	"titleprotectedwarning": "'''Diqet: Na pele kılit biya, [[Special:ListGroupRights|heqê xususiy]] lazımê ke naye vırazê.'''\nLoge peniye cor de este:",
-	"templatesused": "{{PLURAL:$1|Şablon|Şabloni}} ke na pela de xebtênê:",
+	"templatesused": "{{PLURAL:$1|Şablon|Şabloni}} ke ena perrer de karneyayê:",
 	"templatesusedpreview": "{{PLURAL:$1|Sablon|Sabloni}}  ke na verqayt de xebetnayê:",
 	"templatesusedsection": "{{PLURAL:$1|Template|Templateyan}}  ke na qısım de xebetniyenê:",
 	"template-protected": "(kılit biyo)",
