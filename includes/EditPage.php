@@ -1639,7 +1639,7 @@ class EditPage {
 				// being set. This is used by ConfirmEdit to display a captcha
 				// without any error message cruft.
 			} else {
-				$this->hookError = $this->formatStatusErrors( $status );
+				$this->hookError = $status->getWikiText();
 			}
 			// Use the existing $status->value if the hook set it
 			if ( !$status->value ) {
@@ -1649,33 +1649,13 @@ class EditPage {
 		} elseif ( !$status->isOK() ) {
 			# ...or the hook could be expecting us to produce an error
 			// FIXME this sucks, we should just use the Status object throughout
-			$this->hookError = $this->formatStatusErrors( $status );
+			$this->hookError = $status->getWikiText();
 			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR_EXPECTED;
 			return false;
 		}
 
 		return true;
-	}
-
-	/**
-	 * Wrap status errors in an errorbox for increased visiblity
-	 *
-	 * @param Status $status
-	 * @return string
-	 */
-	private function formatStatusErrors( Status $status ) {
-		$errmsg = $status->getHTML(
-			'edit-error-short',
-			'edit-error-long',
-			$this->context->getLanguage()
-		);
-		return <<<ERROR
-<div class="errorbox">
-{$errmsg}
-</div>
-<br clear="all" />
-ERROR;
 	}
 
 	/**
