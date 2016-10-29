@@ -3339,7 +3339,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( !$this->tableExists( $tableName, $fName ) ) {
 			return false;
 		}
-		$sql = "DROP TABLE " . $this->tableName( $tableName ) . " CASCADE";
+		$sql = "DROP TABLE IF EXISTS" . $this->tableName( $tableName ) . " CASCADE";
 
 		return $this->query( $sql, $fName );
 	}
