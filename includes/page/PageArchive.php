@@ -453,23 +453,10 @@ class PageArchive {
 
 		// Touch the log!
 
-		if ( $textRestored && $filesRestored ) {
-			$reason = wfMessage( 'undeletedrevisions-files' )
-				->numParams( $textRestored, $filesRestored )->inContentLanguage()->text();
-		} elseif ( $textRestored ) {
-			$reason = wfMessage( 'undeletedrevisions' )->numParams( $textRestored )
-				->inContentLanguage()->text();
-		} elseif ( $filesRestored ) {
-			$reason = wfMessage( 'undeletedfiles' )->numParams( $filesRestored )
-				->inContentLanguage()->text();
-		} else {
+		if ( !$textRestored && !$filesRestored ) {
 			wfDebug( "Undelete: nothing undeleted...\n" );
 
 			return false;
-		}
-
-		if ( trim( $comment ) != '' ) {
-			$reason .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $comment;
 		}
 
 		if ( $user === null ) {
@@ -480,15 +467,21 @@ class PageArchive {
 		$logEntry = new ManualLogEntry( 'delete', 'restore' );
 		$logEntry->setPerformer( $user );
 		$logEntry->setTarget( $this->title );
-		$logEntry->setComment( $reason );
+		$logEntry->setComment( $comment );
 		$logEntry->setTags( $tags );
+		$logEntry->setParameters( [
+			':assoc:count' => [
+				'revisions' => $textRestored,
+				'files' => $filesRestored,
+			],
+		] );
 
 		Hooks::run( 'ArticleUndeleteLogEntry', [ $this, &$logEntry, $user ] );
 
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );
 
-		return [ $textRestored, $filesRestored, $reason ];
+		return [ $textRestored, $filesRestored, $comment ];
 	}
 
 	/**
