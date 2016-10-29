@@ -44,6 +44,7 @@ class UnwatchedpagesPage extends QueryPage {
 	}
 
 	public function getQueryInfo() {
+		$dbw = wfGetDB( DB_REPLICA );
 		return [
 			'tables' => [ 'page', 'watchlist' ],
 			'fields' => [
@@ -54,7 +55,7 @@ class UnwatchedpagesPage extends QueryPage {
 			'conds' => [
 				'wl_title IS NULL',
 				'page_is_redirect' => 0,
-				"page_namespace != '" . NS_MEDIAWIKI . "'"
+				'page_namespace != ' . $dbw->addQuotes( NS_MEDIAWIKI ),
 			],
 			'join_conds' => [ 'watchlist' => [
 				'LEFT JOIN', [ 'wl_title = page_title',
