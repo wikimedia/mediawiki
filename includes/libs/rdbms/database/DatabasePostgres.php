@@ -48,19 +48,19 @@ class DatabasePostgres extends Database {
 		parent::__construct( $params );
 	}
 
-	function getType() {
+	public function getType() {
 		return 'postgres';
 	}
 
-	function implicitGroupby() {
+	public function implicitGroupby() {
 		return false;
 	}
 
-	function implicitOrderby() {
+	public function implicitOrderby() {
 		return false;
 	}
 
-	function hasConstraint( $name ) {
+	public function hasConstraint( $name ) {
 		$conn = $this->getBindingHandle();
 
 		$sql = "SELECT 1 FROM pg_catalog.pg_constraint c, pg_catalog.pg_namespace n " .
@@ -72,16 +72,7 @@ class DatabasePostgres extends Database {
 		return $this->numRows( $res );
 	}
 
-	/**
-	 * Usually aborts on failure
-	 * @param string $server
-	 * @param string $user
-	 * @param string $password
-	 * @param string $dbName
-	 * @throws DBConnectionError|Exception
-	 * @return resource|bool|null
-	 */
-	function open( $server, $user, $password, $dbName ) {
+	public function open( $server, $user, $password, $dbName ) {
 		# Test for Postgres support, to avoid suppressed fatal error
 		if ( !function_exists( 'pg_connect' ) ) {
 			throw new DBConnectionError(
@@ -153,7 +144,7 @@ class DatabasePostgres extends Database {
 
 		$this->determineCoreSchema( $this->mSchema );
 		// The schema to be used is now in the search path; no need for explicit qualification
-		$this->mSchema = null;
+		$this->mSchema = '';
 
 		return $this->mConn;
 	}
@@ -164,7 +155,7 @@ class DatabasePostgres extends Database {
 	 * @param string $db
 	 * @return bool
 	 */
-	function selectDB( $db ) {
+	public function selectDB( $db ) {
 		if ( $this->mDBname !== $db ) {
 			return (bool)$this->open( $this->mServer, $this->mUser, $this->mPassword, $db );
 		} else {
@@ -172,7 +163,11 @@ class DatabasePostgres extends Database {
 		}
 	}
 
-	function makeConnectionString( $vars ) {
+	/**
+	 * @param string[] $vars
+	 * @return string
+	 */
+	private function makeConnectionString( $vars ) {
 		$s = '';
 		foreach ( $vars as $name => $value ) {
 			$s .= "$name='" . str_replace( "'", "\\'", $value ) . "' ";
@@ -181,11 +176,6 @@ class DatabasePostgres extends Database {
 		return $s;
 	}
 
-	/**
-	 * Closes a database connection, if it is open
-	 * Returns success, true if already closed
-	 * @return bool
-	 */
 	protected function closeConnection() {
 		return $this->mConn ? pg_close( $this->mConn ) : true;
 	}
@@ -231,7 +221,7 @@ class DatabasePostgres extends Database {
 		}
 	}
 
-	function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
+	public function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
 		if ( $tempIgnore ) {
 			/* Check for constraint violation */
 			if ( $errno === '23505' ) {
@@ -249,15 +239,7 @@ class DatabasePostgres extends Database {
 		parent::reportQueryError( $error, $errno, $sql, $fname, false );
 	}
 
-	function queryIgnore( $sql, $fname = __METHOD__ ) {
-		return $this->query( $sql, $fname, true );
-	}
-
-	/**
-	 * @param stdClass|ResultWrapper $res
-	 * @throws DBUnexpectedError
-	 */
-	function freeResult( $res ) {
+	public function freeResult( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
@@ -269,12 +251,7 @@ class DatabasePostgres extends Database {
 		}
 	}
 
-	/**
-	 * @param ResultWrapper|stdClass $res
-	 * @return stdClass
-	 * @throws DBUnexpectedError
-	 */
-	function fetchObject( $res ) {
+	public function fetchObject( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
@@ -296,7 +273,7 @@ class DatabasePostgres extends Database {
 		return $row;
 	}
 
-	function fetchRow( $res ) {
+	public function fetchRow( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
@@ -315,7 +292,7 @@ class DatabasePostgres extends Database {
 		return $row;
 	}
 
-	function numRows( $res ) {
+	public function numRows( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
@@ -334,7 +311,7 @@ class DatabasePostgres extends Database {
 		return $n;
 	}
 
-	function numFields( $res ) {
+	public function numFields( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
@@ -342,7 +319,7 @@ class DatabasePostgres extends Database {
 		return pg_num_fields( $res );
 	}
 
-	function fieldName( $res, $n ) {
+	public function fieldName( $res, $n ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
@@ -356,16 +333,11 @@ class DatabasePostgres extends Database {
 	 *
 	 * @return int|null
 	 */
-	function insertId() {
+	public function insertId() {
 		return $this->mInsertId;
 	}
 
-	/**
-	 * @param mixed $res
-	 * @param int $row
-	 * @return bool
-	 */
-	function dataSeek( $res, $row ) {
+	public function dataSeek( $res, $row ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
@@ -373,7 +345,7 @@ class DatabasePostgres extends Database {
 		return pg_result_seek( $res, $row );
 	}
 
-	function lastError() {
+	public function lastError() {
 		if ( $this->mConn ) {
 			if ( $this->mLastResult ) {
 				return pg_result_error( $this->mLastResult );
@@ -385,7 +357,7 @@ class DatabasePostgres extends Database {
 		return $this->getLastPHPError() ?: 'No database connection';
 	}
 
-	function lastErrno() {
+	public function lastErrno() {
 		if ( $this->mLastResult ) {
 			return pg_result_error_field( $this->mLastResult, PGSQL_DIAG_SQLSTATE );
 		} else {
@@ -393,7 +365,7 @@ class DatabasePostgres extends Database {
 		}
 	}
 
-	function affectedRows() {
+	public function affectedRows() {
 		if ( !is_null( $this->mAffectedRows ) ) {
 			// Forced result for simulated queries
 			return $this->mAffectedRows;
@@ -419,7 +391,7 @@ class DatabasePostgres extends Database {
 	 * @param array $options
 	 * @return int
 	 */
-	function estimateRowCount( $table, $vars = '*', $conds = '',
+	public function estimateRowCount( $table, $vars = '*', $conds = '',
 		$fname = __METHOD__, $options = []
 	) {
 		$options['EXPLAIN'] = true;
@@ -436,16 +408,7 @@ class DatabasePostgres extends Database {
 		return $rows;
 	}
 
-	/**
-	 * Returns information about an index
-	 * If errors are explicitly ignored, returns NULL on failure
-	 *
-	 * @param string $table
-	 * @param string $index
-	 * @param string $fname
-	 * @return bool|null
-	 */
-	function indexInfo( $table, $index, $fname = __METHOD__ ) {
+	public function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='$table'";
 		$res = $this->query( $sql, $fname );
 		if ( !$res ) {
@@ -460,15 +423,7 @@ class DatabasePostgres extends Database {
 		return false;
 	}
 
-	/**
-	 * Returns is of attributes used in index
-	 *
-	 * @since 1.19
-	 * @param string $index
-	 * @param bool|string $schema
-	 * @return array
-	 */
-	function indexAttributes( $index, $schema = false ) {
+	public function indexAttributes( $index, $schema = false ) {
 		if ( $schema === false ) {
 			$schema = $this->getCoreSchema();
 		}
@@ -525,7 +480,7 @@ __INDEXATTR__;
 		return $a;
 	}
 
-	function indexUnique( $table, $index, $fname = __METHOD__ ) {
+	public function indexUnique( $table, $index, $fname = __METHOD__ ) {
 		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='{$table}'" .
 			" AND indexdef LIKE 'CREATE UNIQUE%(" .
 			$this->strencode( $this->indexName( $index ) ) .
@@ -538,7 +493,7 @@ __INDEXATTR__;
 		return $res->numRows() > 0;
 	}
 
-	function selectSQLText(
+	public function selectSQLText(
 		$table, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
 		// Change the FOR UPDATE option as necessary based on the join conditions. Then pass
@@ -580,7 +535,7 @@ __INDEXATTR__;
 	 * @param array|string $options String or array. Valid options: IGNORE
 	 * @return bool Success of insert operation. IGNORE always returns true.
 	 */
-	function insert( $table, $args, $fname = __METHOD__, $options = [] ) {
+	public function insert( $table, $args, $fname = __METHOD__, $options = [] ) {
 		if ( !count( $args ) ) {
 			return true;
 		}
@@ -706,8 +661,10 @@ __INDEXATTR__;
 	 * @param array $selectOptions
 	 * @return bool
 	 */
-	function nativeInsertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
-		$insertOptions = [], $selectOptions = [] ) {
+	public function nativeInsertSelect(
+		$destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
+		$insertOptions = [], $selectOptions = []
+	) {
 		$destTable = $this->tableName( $destTable );
 
 		if ( !is_array( $insertOptions ) ) {
@@ -769,7 +726,7 @@ __INDEXATTR__;
 		return $res;
 	}
 
-	function tableName( $name, $format = 'quoted' ) {
+	public function tableName( $name, $format = 'quoted' ) {
 		// Replace reserved words with better ones
 		$name = $this->remappedTableName( $name );
 
@@ -800,13 +757,7 @@ __INDEXATTR__;
 		return parent::tableName( $name, $format );
 	}
 
-	/**
-	 * Return the next in a sequence, save the value for retrieval via insertId()
-	 *
-	 * @param string $seqName
-	 * @return int|null
-	 */
-	function nextSequenceValue( $seqName ) {
+	public function nextSequenceValue( $seqName ) {
 		$safeseq = str_replace( "'", "''", $seqName );
 		$res = $this->query( "SELECT nextval('$safeseq')" );
 		$row = $this->fetchRow( $res );
@@ -821,7 +772,7 @@ __INDEXATTR__;
 	 * @param string $seqName
 	 * @return int
 	 */
-	function currentSequenceValue( $seqName ) {
+	public function currentSequenceValue( $seqName ) {
 		$safeseq = str_replace( "'", "''", $seqName );
 		$res = $this->query( "SELECT currval('$safeseq')" );
 		$row = $this->fetchRow( $res );
@@ -830,8 +781,7 @@ __INDEXATTR__;
 		return $currval;
 	}
 
-	# Returns the size of a text field, or -1 for "unlimited"
-	function textFieldSize( $table, $field ) {
+	public function textFieldSize( $table, $field ) {
 		$table = $this->tableName( $table );
 		$sql = "SELECT t.typname as ftype,a.atttypmod as size
 			FROM pg_class c, pg_attribute a, pg_type t
@@ -848,15 +798,15 @@ __INDEXATTR__;
 		return $size;
 	}
 
-	function limitResult( $sql, $limit, $offset = false ) {
+	public function limitResult( $sql, $limit, $offset = false ) {
 		return "$sql LIMIT $limit " . ( is_numeric( $offset ) ? " OFFSET {$offset} " : '' );
 	}
 
-	function wasDeadlock() {
+	public function wasDeadlock() {
 		return $this->lastErrno() == '40P01';
 	}
 
-	function duplicateTableStructure(
+	public function duplicateTableStructure(
 		$oldName, $newName, $temporary = false, $fname = __METHOD__
 	) {
 		$newName = $this->addIdentifierQuotes( $newName );
@@ -866,7 +816,7 @@ __INDEXATTR__;
 			"(LIKE $oldName INCLUDING DEFAULTS)", $fname );
 	}
 
-	function listTables( $prefix = null, $fname = __METHOD__ ) {
+	public function listTables( $prefix = null, $fname = __METHOD__ ) {
 		$eschema = $this->addQuotes( $this->getCoreSchema() );
 		$result = $this->query(
 			"SELECT tablename FROM pg_tables WHERE schemaname = $eschema", $fname );
@@ -883,7 +833,7 @@ __INDEXATTR__;
 		return $endArray;
 	}
 
-	function timestamp( $ts = 0 ) {
+	public function timestamp( $ts = 0 ) {
 		$ct = new ConvertibleTimestamp( $ts );
 
 		return $ct->getTimestamp( TS_POSTGRES );
@@ -907,7 +857,7 @@ __INDEXATTR__;
 	 * @param int $offset
 	 * @return string
 	 */
-	function pg_array_parse( $text, &$output, $limit = false, $offset = 1 ) {
+	private function pg_array_parse( $text, &$output, $limit = false, $offset = 1 ) {
 		if ( false === $limit ) {
 			$limit = strlen( $text ) - 1;
 			$output = [];
@@ -934,19 +884,10 @@ __INDEXATTR__;
 		return $output;
 	}
 
-	/**
-	 * Return aggregated value function call
-	 * @param array $valuedata
-	 * @param string $valuename
-	 * @return array
-	 */
 	public function aggregateValue( $valuedata, $valuename = 'value' ) {
 		return $valuedata;
 	}
 
-	/**
-	 * @return string Wikitext of a link to the server software's web site
-	 */
 	public function getSoftwareLink() {
 		return '[{{int:version-db-postgres-url}} PostgreSQL]';
 	}
@@ -958,7 +899,7 @@ __INDEXATTR__;
 	 * @since 1.19
 	 * @return string Default schema for the current session
 	 */
-	function getCurrentSchema() {
+	public function getCurrentSchema() {
 		$res = $this->query( "SELECT current_schema()", __METHOD__ );
 		$row = $this->fetchRow( $res );
 
@@ -975,7 +916,7 @@ __INDEXATTR__;
 	 * @since 1.19
 	 * @return array List of actual schemas for the current sesson
 	 */
-	function getSchemas() {
+	public function getSchemas() {
 		$res = $this->query( "SELECT current_schemas(false)", __METHOD__ );
 		$row = $this->fetchRow( $res );
 		$schemas = [];
@@ -994,7 +935,7 @@ __INDEXATTR__;
 	 * @since 1.19
 	 * @return array How to search for table names schemas for the current user
 	 */
-	function getSearchPath() {
+	public function getSearchPath() {
 		$res = $this->query( "SHOW search_path", __METHOD__ );
 		$row = $this->fetchRow( $res );
 
@@ -1010,7 +951,7 @@ __INDEXATTR__;
 	 *
 	 * @param array $search_path List of schemas to be searched by default
 	 */
-	function setSearchPath( $search_path ) {
+	private function setSearchPath( $search_path ) {
 		$this->query( "SET search_path = " . implode( ", ", $search_path ) );
 	}
 
@@ -1028,7 +969,7 @@ __INDEXATTR__;
 	 *
 	 * @param string $desiredSchema
 	 */
-	function determineCoreSchema( $desiredSchema ) {
+	private function determineCoreSchema( $desiredSchema ) {
 		$this->begin( __METHOD__, self::TRANSACTION_INTERNAL );
 		if ( $this->schemaExists( $desiredSchema ) ) {
 			if ( in_array( $desiredSchema, $this->getSchemas() ) ) {
@@ -1065,14 +1006,11 @@ __INDEXATTR__;
 	 * @since 1.19
 	 * @return string Core schema name
 	 */
-	function getCoreSchema() {
+	public function getCoreSchema() {
 		return $this->mCoreSchema;
 	}
 
-	/**
-	 * @return string Version information from the database
-	 */
-	function getServerVersion() {
+	public function getServerVersion() {
 		if ( !isset( $this->numericVersion ) ) {
 			$conn = $this->getBindingHandle();
 			$versionInfo = pg_version( $conn );
@@ -1099,7 +1037,7 @@ __INDEXATTR__;
 	 * @param bool|string $schema
 	 * @return bool
 	 */
-	function relationExists( $table, $types, $schema = false ) {
+	private function relationExists( $table, $types, $schema = false ) {
 		if ( !is_array( $types ) ) {
 			$types = [ $types ];
 		}
@@ -1118,22 +1056,21 @@ __INDEXATTR__;
 	}
 
 	/**
-	 * For backward compatibility, this function checks both tables and
-	 * views.
+	 * For backward compatibility, this function checks both tables and views.
 	 * @param string $table
 	 * @param string $fname
 	 * @param bool|string $schema
 	 * @return bool
 	 */
-	function tableExists( $table, $fname = __METHOD__, $schema = false ) {
+	public function tableExists( $table, $fname = __METHOD__, $schema = false ) {
 		return $this->relationExists( $table, [ 'r', 'v' ], $schema );
 	}
 
-	function sequenceExists( $sequence, $schema = false ) {
+	public function sequenceExists( $sequence, $schema = false ) {
 		return $this->relationExists( $sequence, 'S', $schema );
 	}
 
-	function triggerExists( $table, $trigger ) {
+	public function triggerExists( $table, $trigger ) {
 		$q = <<<SQL
 	SELECT 1 FROM pg_class, pg_namespace, pg_trigger
 		WHERE relnamespace=pg_namespace.oid AND relkind='r'
@@ -1156,7 +1093,7 @@ SQL;
 		return $rows;
 	}
 
-	function ruleExists( $table, $rule ) {
+	public function ruleExists( $table, $rule ) {
 		$exists = $this->selectField( 'pg_rules', 'rulename',
 			[
 				'rulename' => $rule,
@@ -1168,7 +1105,7 @@ SQL;
 		return $exists === $rule;
 	}
 
-	function constraintExists( $table, $constraint ) {
+	public function constraintExists( $table, $constraint ) {
 		$sql = sprintf( "SELECT 1 FROM information_schema.table_constraints " .
 			"WHERE constraint_schema = %s AND table_name = %s AND constraint_name = %s",
 			$this->addQuotes( $this->getCoreSchema() ),
@@ -1189,7 +1126,7 @@ SQL;
 	 * @param string $schema
 	 * @return bool
 	 */
-	function schemaExists( $schema ) {
+	public function schemaExists( $schema ) {
 		if ( !strlen( $schema ) ) {
 			return false; // short-circuit
 		}
@@ -1205,7 +1142,7 @@ SQL;
 	 * @param string $roleName
 	 * @return bool
 	 */
-	function roleExists( $roleName ) {
+	public function roleExists( $roleName ) {
 		$exists = $this->selectField( '"pg_catalog"."pg_roles"', 1,
 			[ 'rolname' => $roleName ], __METHOD__ );
 
@@ -1217,7 +1154,7 @@ SQL;
 	 * @var string $field
 	 * @return PostgresField|null
 	 */
-	function fieldInfo( $table, $field ) {
+	public function fieldInfo( $table, $field ) {
 		return PostgresField::fromText( $this, $table, $field );
 	}
 
@@ -1227,7 +1164,7 @@ SQL;
 	 * @param int $index Field number, starting from 0
 	 * @return string
 	 */
-	function fieldType( $res, $index ) {
+	public function fieldType( $res, $index ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
@@ -1235,15 +1172,11 @@ SQL;
 		return pg_field_type( $res, $index );
 	}
 
-	/**
-	 * @param string $b
-	 * @return Blob
-	 */
-	function encodeBlob( $b ) {
+	public function encodeBlob( $b ) {
 		return new PostgresBlob( pg_escape_bytea( $b ) );
 	}
 
-	function decodeBlob( $b ) {
+	public function decodeBlob( $b ) {
 		if ( $b instanceof PostgresBlob ) {
 			$b = $b->fetch();
 		} elseif ( $b instanceof Blob ) {
@@ -1253,16 +1186,12 @@ SQL;
 		return pg_unescape_bytea( $b );
 	}
 
-	function strencode( $s ) {
+	public function strencode( $s ) {
 		// Should not be called by us
 		return pg_escape_string( $this->getBindingHandle(), $s );
 	}
 
-	/**
-	 * @param string|int|null|bool|Blob $s
-	 * @return string|int
-	 */
-	function addQuotes( $s ) {
+	public function addQuotes( $s ) {
 		$conn = $this->getBindingHandle();
 
 		if ( is_null( $s ) ) {
@@ -1303,14 +1232,7 @@ SQL;
 		return $ins;
 	}
 
-	/**
-	 * Various select options
-	 *
-	 * @param array $options An associative array of options to be turned into
-	 *   an SQL query, valid keys are listed in the function.
-	 * @return array
-	 */
-	function makeSelectOptions( $options ) {
+	public function makeSelectOptions( $options ) {
 		$preLimitTail = $postLimitTail = '';
 		$startOpts = $useIndex = $ignoreIndex = '';
 
@@ -1345,15 +1267,15 @@ SQL;
 		return [ $startOpts, $useIndex, $preLimitTail, $postLimitTail, $ignoreIndex ];
 	}
 
-	function getDBname() {
+	public function getDBname() {
 		return $this->mDBname;
 	}
 
-	function getServer() {
+	public function getServer() {
 		return $this->mServer;
 	}
 
-	function buildConcat( $stringList ) {
+	public function buildConcat( $stringList ) {
 		return implode( ' || ', $stringList );
 	}
 
@@ -1365,11 +1287,6 @@ SQL;
 		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
 	}
 
-	/**
-	 * @param string $field Field or column to cast
-	 * @return string
-	 * @since 1.28
-	 */
 	public function buildStringCast( $field ) {
 		return $field . '::text';
 	}
@@ -1387,16 +1304,8 @@ SQL;
 		return parent::streamStatementEnd( $sql, $newLine );
 	}
 
-	/**
-	 * Check to see if a named lock is available. This is non-blocking.
-	 * See http://www.postgresql.org/docs/8.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
-	 *
-	 * @param string $lockName Name of lock to poll
-	 * @param string $method Name of method calling us
-	 * @return bool
-	 * @since 1.20
-	 */
 	public function lockIsFree( $lockName, $method ) {
+		// http://www.postgresql.org/docs/8.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
 		$result = $this->query( "SELECT (CASE(pg_try_advisory_lock($key))
 			WHEN 'f' THEN 'f' ELSE pg_advisory_unlock($key) END) AS lockstatus", $method );
@@ -1405,14 +1314,8 @@ SQL;
 		return ( $row->lockstatus === 't' );
 	}
 
-	/**
-	 * See http://www.postgresql.org/docs/8.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
-	 * @param string $lockName
-	 * @param string $method
-	 * @param int $timeout
-	 * @return bool
-	 */
 	public function lock( $lockName, $method, $timeout = 5 ) {
+		// http://www.postgresql.org/docs/8.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
 		$loop = new WaitConditionLoop(
 			function () use ( $lockName, $key, $timeout, $method ) {
@@ -1431,14 +1334,8 @@ SQL;
 		return ( $loop->invoke() === $loop::CONDITION_REACHED );
 	}
 
-	/**
-	 * See http://www.postgresql.org/docs/8.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKSFROM
-	 * PG DOCS: http://www.postgresql.org/docs/8.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
-	 * @param string $lockName
-	 * @param string $method
-	 * @return bool
-	 */
 	public function unlock( $lockName, $method ) {
+		// http://www.postgresql.org/docs/8.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
 		$result = $this->query( "SELECT pg_advisory_unlock($key) as lockstatus", $method );
 		$row = $this->fetchObject( $result );

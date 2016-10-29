@@ -1633,7 +1633,7 @@ interface IDatabase {
 	 * IDatabase::insert().
 	 *
 	 * @param string $b
-	 * @return string
+	 * @return string|Blob
 	 */
 	public function encodeBlob( $b );
 
