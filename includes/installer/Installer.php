@@ -1330,6 +1330,26 @@ abstract class Installer {
 	}
 
 	/**
+	 * Finds description message in the given file path
+	 * and returns a string with the description text
+	 *
+	 * @param string path to extension JSON file
+	 * @return string
+	 */
+
+	public function describeJsonExtension( $filePath ){
+		$extJSON = file_get_contents( $filePath );
+		$ext = FormatJSON::parse($extJSON);
+		if ($ext->isOK()){
+			$descr_obj = (array)$ext->getValue();
+			$descr = $descr_obj["descriptionmsg"];
+			return $descr;
+		}
+		return "";
+	}
+
+
+	/**
 	 * Finds extensions that follow the format /$directory/Name/Name.php,
 	 * and returns an array containing the value for 'Name' for each found extension.
 	 *
@@ -1353,12 +1373,16 @@ abstract class Installer {
 
 		$dh = opendir( $extDir );
 		$exts = [];
-		while ( ( $file = readdir( $dh ) ) !== false ) {
-			if ( !is_dir( "$extDir/$file" ) ) {
+		while ( ( $name = readdir( $dh ) ) !== false ) {
+			if ( !is_dir( "$extDir/$name" ) ) {
 				continue;
 			}
-			if ( file_exists( "$extDir/$file/$jsonFile" ) || file_exists( "$extDir/$file/$file.php" ) ) {
-				$exts[] = $file;
+			if ( file_exists( "$extDir/$name/$jsonFile" )  ) {
+				$descr = $this->describeJsonExtension( "$extDir/$name/$jsonFile" );
+				$exts[$name] = $descr ;
+			}
+			else if ( file_exists( "$extDir/$name/$name.php" ) ){
+				$exts[$name] = "" ;
 			}
 		}
 		closedir( $dh );
@@ -1366,6 +1390,7 @@ abstract class Installer {
 
 		return $exts;
 	}
+
 
 	/**
 	 * Returns a default value to be used for $wgDefaultSkin: normally the one set in DefaultSettings,
