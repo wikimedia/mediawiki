@@ -59,18 +59,7 @@ class MostlinkedCategoriesPage extends QueryPage {
 	 * @param ResultWrapper $res
 	 */
 	function preprocessResults( $db, $res ) {
-		if ( !$res->numRows() ) {
-			return;
-		}
-
-		$batch = new LinkBatch;
-		foreach ( $res as $row ) {
-			$batch->add( NS_CATEGORY, $row->title );
-		}
-		$batch->execute();
-
-		// Back to start for display
-		$res->seek( 0 );
+		$this->executeLBFromResultWrapper( $res , NS_CATEGORY );
 	}
 
 	/**
