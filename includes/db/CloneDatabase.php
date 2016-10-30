@@ -107,7 +107,7 @@ class CloneDatabase {
 
 			# Create new table
 			wfDebug( __METHOD__ . " duplicating $oldTableName to $newTableName\n" );
-			$this->db->duplicateTableStructure( $oldTableName, $newTableName, $this->useTemporaryTables );
+			$this->db->duplicateTableStructure( 'mediawiki.' . $oldTableName, 'mediawiki.' . $newTableName, $this->useTemporaryTables );
 		}
 	}
 
@@ -119,7 +119,7 @@ class CloneDatabase {
 		if ( $dropTables ) {
 			self::changePrefix( $this->newTablePrefix );
 			foreach ( $this->tablesToClone as $tbl ) {
-				$this->db->dropTable( $tbl );
+				$this->db->dropTable( 'mediawiki.' . $tbl );
 			}
 		}
 		self::changePrefix( $this->oldTablePrefix );
