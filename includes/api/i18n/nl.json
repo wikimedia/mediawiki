@@ -13,7 +13,8 @@
 			"Rangekill",
 			"Robin van der Vliet",
 			"Edoderoo",
-			"Lemondoge"
+			"Lemondoge",
+			"Hex"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentatie]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api E-maillijst]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-aankondigingen]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & verzoeken]\n</div>\n<strong>Status:</strong> Alle functies die op deze pagina worden weergegeven horen te werken. Aan de API wordt actief gewerkt, en deze kan gewijzigd worden. Abonneer u op  de [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ e-maillijst mediawiki-api-announce] voor meldingen over aanpassingen.\n\n<strong>Foutieve verzoeken:</strong> als de API foutieve verzoeken ontvangt, wordt er geantwoord met een HTTP-header met de sleutel \"MediaWiki-API-Error\" en daarna worden de waarde van de header en de foutcode op dezelfde waarde ingesteld. Zie [[mw:API:Errors_and_warnings|API: Errors and warnings]] voor meer informatie.\n\n<strong>Testen:</strong> u kunt [[Special:ApiSandbox|eenvoudig API-verzoeken testen]].",
@@ -125,9 +126,9 @@
 	"apihelp-options-description": "Voorkeuren van de huidige gebruiker wijzigen.\n\nAlleen opties die zijn geregistreerd in core of in een van de geïnstalleerde uitbreidingen, of opties met de toetsen aangeduid met <code>userjs-</code> (bedoeld om te worden gebruikt door gebruikersscripts), kunnen worden ingesteld.",
 	"apihelp-options-param-reset": "Zet de voorkeuren terug naar de standaard van de website.",
 	"apihelp-options-param-resetkinds": "Lijst van de optiestypes die opnieuw ingesteld worden wanneer de optie <var>$1reset</var> is ingesteld.",
-	"apihelp-options-param-change": "Lijst van wijzigingen, opgemaakt als <kbd>naam=waarde</kbd> (bijvoorbeeld <kbd>skin=vector</kbd>). De waarde kan geen sluistekens bevatten. Als er geen waarde wordt opgegeven (zelfs niet een is-gelijk teken), bijvoorbeeld, <kbd>optienaam|otheroption|...</kbd>, wordt de optie ingesteld op de standaardwaarde.",
+	"apihelp-options-param-change": "Lijst van wijzigingen, opgemaakt als <kbd>naam=waarde</kbd> (bijvoorbeeld <kbd>skin=vector</kbd>). Als er geen waarde wordt opgegeven (zelfs niet een is-gelijk teken), bijvoorbeeld <kbd>optienaam|andereoptie|...</kbd>, dan wordt de optie ingesteld op de standaardwaarde. Als een opgegeven waarde een sluisteken bevat (<kbd>|</kbd>), gebruik dan het [[Special:ApiHelp/main#main/datatypes|alternatieve scheidingsteken tussen meerdere waardes]] voor een juiste werking.",
 	"apihelp-options-param-optionname": "De naam van de optie die moet worden ingesteld op de waarde gegeven door <var>$1optiewaarde</var>.",
-	"apihelp-options-param-optionvalue": "De waarde voor de optie opgegeven door <var>$1optienaam</var>, kan sluistekens (verticale streepjes) bevatten.",
+	"apihelp-options-param-optionvalue": "De waarde voor de optie opgegeven door <var>$1optionname</var>.",
 	"apihelp-options-example-reset": "Alle voorkeuren opnieuw instellen.",
 	"apihelp-options-example-change": "Voorkeuren wijzigen voor <kbd>skin</kbd> en <kbd>hideminor</kbd>.",
 	"apihelp-parse-paramvalue-prop-categorieshtml": "Vraagt een HTML-versie van de categorieën op.",

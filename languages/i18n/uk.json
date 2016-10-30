@@ -3681,7 +3681,7 @@
 	"feedback-thanks": "Дякуємо! Ваші відгук розміщено на сторінці \"[$2 $1]\".",
 	"feedback-thanks-title": "Дякуємо!",
 	"feedback-useragent": "User Agent:",
-	"searchsuggest-search": "Пошук у {{grammar:prepositional|{{SITENAME}}}}",
+	"searchsuggest-search": "Пошук {{GRAMMAR:locative|{{SITENAME}}}}",
 	"searchsuggest-containing": "що містять...",
 	"api-error-autoblocked": "Вашу IP-адресу було заблоковано автоматично, тому що її використовував заблокований користувач.",
 	"api-error-badaccess-groups": "Вам не дозволено завантажувати файли до цього вікіпроекту.",
