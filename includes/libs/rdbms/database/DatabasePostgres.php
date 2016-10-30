@@ -812,7 +812,7 @@ __INDEXATTR__;
 		$newName = $this->addIdentifierQuotes( $newName );
 		$oldName = $this->addIdentifierQuotes( $oldName );
 
-		return $this->query( 'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . " TABLE $newName " .
+		return $this->query( 'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . " TABLE " . "mediawiki." . "$newName " .
 			"(LIKE $oldName INCLUDING DEFAULTS)", $fname );
 	}
 
