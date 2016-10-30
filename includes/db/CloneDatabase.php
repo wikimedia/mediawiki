@@ -119,7 +119,7 @@ class CloneDatabase {
 		if ( $dropTables ) {
 			self::changePrefix( $this->newTablePrefix );
 			foreach ( $this->tablesToClone as $tbl ) {
-				$this->db->dropTable( $tbl );
+				$this->db->dropTable( 'mediawiki.' . $tbl );
 			}
 		}
 		self::changePrefix( $this->oldTablePrefix );
