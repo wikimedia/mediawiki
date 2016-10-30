@@ -34,7 +34,7 @@ AND relname=%s
 AND attname=%s;
 SQL;
 
-		$table = $db->remappedTableName( $table );
+		$table = $db->tableName( $table, 'raw' );
 		$res = $db->query(
 			sprintf( $q,
 				$db->addQuotes( $db->getCoreSchema() ),

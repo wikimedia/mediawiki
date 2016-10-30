@@ -63,8 +63,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $mPassword;
 	/** @var string */
 	protected $mDBname;
-	/** @var array[] $aliases Map of (table => (dbname, schema, prefix) map) */
-	protected $tableAliases = [];
 	/** @var bool Whether this PHP instance is for a CLI script */
 	protected $cliMode;
 	/** @var string Agent name for query profiling */
@@ -101,6 +99,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $mSchema = '';
 	/** @var integer */
 	protected $mFlags;
+	/** @var bool */
+	protected $mForeign;
 	/** @var array */
 	protected $mLBInfo = [];
 	/** @var bool|null */
@@ -254,6 +254,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		$this->mSessionVars = $params['variables'];
+		$this->mForeign = $params['foreign'];
 
 		$this->srvCache = isset( $params['srvCache'] )
 			? $params['srvCache']
@@ -1691,6 +1692,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function tableName( $name, $format = 'quoted' ) {
+		global $wgSharedDB, $wgSharedPrefix, $wgSharedTables, $wgSharedSchema;
 		# Skip the entire process when we have a string quoted on both ends.
 		# Note that we check the end so that we will still quote any use of
 		# use of `database`.table. But won't break things if someone wants
@@ -1727,14 +1729,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$schema = '';
 		} else {
 			list( $table ) = $dbDetails;
-			if ( isset( $this->tableAliases[$table] ) ) {
-				$database = $this->tableAliases[$table]['dbname'];
-				$schema = is_string( $this->tableAliases[$table]['schema'] )
-					? $this->tableAliases[$table]['schema']
-					: $this->mSchema;
-				$prefix = is_string( $this->tableAliases[$table]['prefix'] )
-					? $this->tableAliases[$table]['prefix']
-					: $this->mTablePrefix;
+			if ( $wgSharedDB !== null # We have a shared database
+				&& $this->mForeign == false # We're not working on a foreign database
+				&& !$this->isQuotedIdentifier( $table ) # Prevent shared tables listing '`table`'
+				&& in_array( $table, $wgSharedTables ) # A shared table is selected
+			) {
+				$database = $wgSharedDB;
+				$schema = $wgSharedSchema === null ? $this->mSchema : $wgSharedSchema;
+				$prefix = $wgSharedPrefix === null ? $this->mTablePrefix : $wgSharedPrefix;
 			} else {
 				$database = '';
 				$schema = $this->mSchema; # Default schema
@@ -3377,10 +3379,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$reason = $this->getLBInfo( 'readOnlyReason' );
 
 		return is_string( $reason ) ? $reason : false;
-	}
-
-	public function setTableAliases( array $aliases ) {
-		$this->tableAliases = $aliases;
 	}
 
 	/**
