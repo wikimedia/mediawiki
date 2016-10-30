@@ -574,10 +574,6 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function setTableAliases( array $aliases ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	/**
 	 * Clean up the connection when out of scope
 	 */
