@@ -3801,11 +3801,10 @@ class Parser {
 			return $attrText;
 		}
 
+		// We can't safely check if the expansion for $content resulted in an
+		// error, because the content could happen to be the error string
+		// (T149622).
 		$content = !isset( $params['inner'] ) ? null : $frame->expand( $params['inner'] );
-		if ( substr( $content, 0, $errorLen ) === $errorStr ) {
-			// See above
-			return $content;
-		}
 
 		$marker = self::MARKER_PREFIX . "-$name-"
 			. sprintf( '%08X', $this->mMarkerIndex++ ) . self::MARKER_SUFFIX;
