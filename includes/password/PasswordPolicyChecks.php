@@ -164,4 +164,24 @@ class PasswordPolicyChecks {
 		return $status;
 	}
 
+	/**
+	 * @param bool $policyVal
+	 * @param User $user
+	 * @param string $password
+	 * @return Status
+	 */
+	public static function checkPasswordNotRealName( $policyVal, User $user, $password ) {
+		$status = Status::newGood();
+
+		// Check if Real Name is set to something other than ""
+		if ( $policyVal && $user->getRealName() ) {
+			// Make spaces optional
+			$realName = str_replace( ' ', ' ?', preg_quote( $user->getRealName(), '/' ) );
+			if ( preg_match( "/$realName/i", $password ) ) {
+				$status->fatal( 'passwordrealname' );
+			}
+		}
+		return $status;
+	}
+
 }
