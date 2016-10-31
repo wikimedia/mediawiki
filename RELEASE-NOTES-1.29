@@ -8,6 +8,7 @@ production.
 === Configuration changes in 1.29 ===
 
 === New features in 1.29 ===
+* Added TextContentHandler::getMerge3Format() to allow serialization format override
 
 === External library changes in 1.29 ===
 

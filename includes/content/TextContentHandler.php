@@ -70,7 +70,7 @@ class TextContentHandler extends ContentHandler {
 		$this->checkModelID( $myContent->getModel() );
 		$this->checkModelID( $yourContent->getModel() );
 
-		$format = $this->getDefaultFormat();
+		$format = $this->getMerge3Format();
 
 		$old = $this->serializeContent( $oldContent, $format );
 		$mine = $this->serializeContent( $myContent, $format );
@@ -89,6 +89,20 @@ class TextContentHandler extends ContentHandler {
 		$mergedContent = $this->unserializeContent( $result, $format );
 
 		return $mergedContent;
+	}
+
+	/**
+	 * The format used for the 3-way merge
+	 *
+	 * This default implementation will return the same format as
+	 * returned by the ContentHandler::getMergeFormat()
+	 *
+	 * @since 1.29
+	 *
+	 * @return string The name of the serialization format as a MIME type
+	 */
+	public function getMerge3Format() {
+		return $this->getDefaultFormat();
 	}
 
 	/**
