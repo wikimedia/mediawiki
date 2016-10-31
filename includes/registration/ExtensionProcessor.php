@@ -52,6 +52,7 @@ class ExtensionProcessor implements Processor {
 		'APIListModules',
 		'ValidSkinNames',
 		'FeedClasses',
+		'PasswordPolicy',
 	];
 
 	/**
@@ -74,6 +75,7 @@ class ExtensionProcessor implements Processor {
 		'wgCapitalLinkOverrides' => 'array_plus',
 		'wgRateLimits' => 'array_plus_2d',
 		'wgAuthManagerAutoConfig' => 'array_plus_2d',
+		'wgPasswordPolicy' => 'array_merge_recursive'
 	];
 
 	/**
