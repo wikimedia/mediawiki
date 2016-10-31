@@ -133,4 +133,10 @@ class PasswordPolicyChecksTest extends MediaWikiTestCase {
 		$this->assertTrue( $statusLong->isOK(), 'Password matches blacklist, not fatal' );
 	}
 
+	/**
+	 * @covers PasswordPolicyChecks::checkPasswordNotRealName
+	 */
+	public function testCheckPasswordNotRealName() {
+
+	}
 }
