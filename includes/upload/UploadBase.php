@@ -1507,6 +1507,7 @@ abstract class UploadBase {
 			# fragment links are allowed. For all other tags, only data:
 			# and fragment are allowed.
 			if ( $stripped == 'href'
+				&& $value !== ''
 				&& strpos( $value, 'data:' ) !== 0
 				&& strpos( $value, '#' ) !== 0
 			) {
