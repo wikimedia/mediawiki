@@ -646,6 +646,10 @@
 		"SkinOOUIThemes": {
 			"type": "object"
 		},
+		"PasswordPolicy": {
+			"type": "object",
+			"description": "Password policies"
+		},
 		"callback": {
 			"type": [
 				"array",
