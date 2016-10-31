@@ -1249,6 +1249,7 @@
 	"grant-basic": "Základní oprávnění",
 	"grant-viewdeleted": "Prohlížet si smazané soubory a stránky",
 	"grant-viewmywatchlist": "Prohlížet si váš seznam sledovaných stránek",
+	"grant-viewrestrictedlogs": "Prohlížet si tajné protokolovací záznamy",
 	"newuserlogpage": "Kniha nových uživatelů",
 	"newuserlogpagetext": "Toto je záznam nově zaregistrovaných uživatelů.",
 	"rightslog": "Kniha práv uživatelů",

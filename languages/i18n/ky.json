@@ -15,7 +15,8 @@
 			"아라",
 			"Askar Nazyrov",
 			"Macofe",
-			"Janatkg"
+			"Janatkg",
+			"Irus"
 		]
 	},
 	"tog-underline": "Шилтемелердин алдын сызуу:",
@@ -247,6 +248,7 @@
 	"privacypage": "Project:Купуялуулук саясаты",
 	"badaccess": "Кирүү катасы",
 	"badaccess-group0": "Сиз сураган аракетти аткара албайсыз.",
+	"badaccess-groups": "Аракети сиз запросили поциент нарын {{PLURAL:$2|топ|бир топтор}}: $1.",
 	"versionrequired": "MediaWiki'нин $1 версиясы керек",
 	"versionrequiredtext": "Бул барак менен иштөө үчүн MediaWiki $1 версиясы талап кылынат. Кара.[[Special:Version|version page]].",
 	"ok": "OK",
@@ -292,6 +294,7 @@
 	"nstab-template": "Калып",
 	"nstab-help": "Жардам",
 	"nstab-category": "Категория",
+	"mainpage-nstab": "Башбарак",
 	"nosuchaction": "Мындай аракет жок",
 	"nosuchspecialpage": "Мындай кызматтык барак жок",
 	"error": "Ката",
@@ -343,7 +346,6 @@
 	"yourpasswordagain": "Сырсөздү кайра терүү:",
 	"createacct-yourpasswordagain": "Сырсөздү тастыктаңыз",
 	"createacct-yourpasswordagain-ph": "Сырсөздү кайрадан териңиз",
-	"remembermypassword": "Бул браузерде колдонуучу атымды ($1 {{PLURAL:$1|күнгө}} чейин сактоо)",
 	"userlogin-remembermypassword": "Мени системге кирген боюнча калтыр",
 	"userlogin-signwithsecure": "Коопсуз байланышты колдонуу",
 	"yourdomainname": "Сиздин домен:",

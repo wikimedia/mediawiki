@@ -1289,6 +1289,7 @@
 	"grant-basic": "Grundläggande rättigheter",
 	"grant-viewdeleted": "Visa raderade filer och sidor",
 	"grant-viewmywatchlist": "Visa din bevakningslista",
+	"grant-viewrestrictedlogs": "Visa begränsade loggposter",
 	"newuserlogpage": "Logg över nya användare",
 	"newuserlogpagetext": "Detta är en logg över nya användarkonton.",
 	"rightslog": "Användarrättighetslogg",
