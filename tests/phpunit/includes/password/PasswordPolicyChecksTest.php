@@ -133,4 +133,40 @@ class PasswordPolicyChecksTest extends MediaWikiTestCase {
 		$this->assertTrue( $statusLong->isOK(), 'Password matches blacklist, not fatal' );
 	}
 
+	/**
+	 * @covers PasswordPolicyChecks::checkPasswordNotRealName
+	 */
+	public function testCheckPasswordNotRealName() {
+		$user = User::newFromName( 'user' );
+		$user->setRealName( 'Jane Doe' );
+
+		$statusOK = PasswordPolicyChecks::checkPasswordNotRealName(
+			true,
+			$user,
+			'password'
+		);
+		$this->assertTrue( $statusOK->isGood(), 'Password is not the users real name blacklist' );
+
+		$user = User::newFromName( 'user' );
+		$user->setRealName( 'Jane Doe' );
+
+		$statusLong = PasswordPolicyChecks::checkPasswordNotRealName(
+			true,
+			$user,
+			'Jane Doe'
+		);
+		$this->assertFalse( $statusLong->isGood(), 'Password matches real name.' );
+		$this->assertFalse( $statusLong->isOK(), 'Password matches real name, fatal' );
+
+		$user = User::newFromName( 'user' );
+		$user->setRealName( 'Jane Doe' );
+
+		$statusLong = PasswordPolicyChecks::checkPasswordNotRealName(
+			true,
+			$user,
+			'janedoe'
+		);
+		$this->assertFalse( $statusLong->isGood(), 'Password matches real name.' );
+		$this->assertFalse( $statusLong->isOK(), 'Password matches real name, fatal' );
+	}
 }
