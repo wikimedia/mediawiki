@@ -866,6 +866,7 @@ class FormatMetadata extends ContextSource {
 					// are included here as we really don't want
 					// commas inserted.
 					case 'ImageDescription':
+					case 'UserComment':
 					case 'Artist':
 					case 'Copyright':
 					case 'RelatedSoundFile':
