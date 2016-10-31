@@ -92,10 +92,10 @@ class ApiQueryMyStashedFiles extends ApiQueryBase {
 			];
 
 			if ( isset( $prop['size'] ) ) {
-				$item['size'] = (int) $row->us_size;
-				$item['width'] = (int) $row->us_image_width;
-				$item['height'] = (int) $row->us_image_height;
-				$item['bits'] = (int) $row->us_image_bits;
+				$item['size'] = (int)$row->us_size;
+				$item['width'] = (int)$row->us_image_width;
+				$item['height'] = (int)$row->us_image_height;
+				$item['bits'] = (int)$row->us_image_bits;
 			}
 
 			if ( isset( $prop['type'] ) ) {

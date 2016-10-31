@@ -92,7 +92,7 @@ class ExtensionJsonValidationTest extends PHPUnit_Framework_TestCase {
 		}
 
 		$validator = new Validator;
-		$validator->check( $data, (object) [ '$ref' => 'file://' . $schemaPath ] );
+		$validator->check( $data, (object)[ '$ref' => 'file://' . $schemaPath ] );
 		if ( $validator->isValid() && !$licenseError ) {
 			// All good.
 			$this->assertTrue( true );

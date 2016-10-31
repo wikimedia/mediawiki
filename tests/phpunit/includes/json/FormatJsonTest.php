@@ -146,7 +146,7 @@ class FormatJsonTest extends MediaWikiTestCase {
 	 * @return stdClass|string|bool|int|float|null
 	 */
 	public static function toObject( $value ) {
-		return !is_array( $value ) ? $value : (object) array_map( __METHOD__, $value );
+		return !is_array( $value ) ? $value : (object)array_map( __METHOD__, $value );
 	}
 
 	/**

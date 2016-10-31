@@ -58,7 +58,7 @@ class ValidateRegistrationFile extends Maintenance {
 		}
 
 		$validator = new Validator;
-		$validator->check( $data, (object) [ '$ref' => 'file://' . $schemaPath ] );
+		$validator->check( $data, (object)[ '$ref' => 'file://' . $schemaPath ] );
 		if ( $validator->isValid() && !$licenseError ) {
 			$this->output( "$path validates against the version $version schema!\n" );
 		} else {

@@ -655,7 +655,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		// make a best effort to get the value of fields which used to be fixed in the old login
 		// template but now might or might not exist depending on what providers are used
 		$request = $this->getRequest();
-		$data = (object) [
+		$data = (object)[
 			'mUsername' => $request->getText( 'wpName' ),
 			'mPassword' => $request->getText( 'wpPassword' ),
 			'mRetype' => $request->getText( 'wpRetype' ),

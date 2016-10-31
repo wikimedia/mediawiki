@@ -1190,7 +1190,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		/** @var ExternalStoreDB $externalStoreDB */
 		$externalStoreDB = ExternalStore::getStoreObject( 'DB' );
-		$defaultArray = (array) $wgDefaultExternalStore;
+		$defaultArray = (array)$wgDefaultExternalStore;
 		$dbws = [];
 		foreach ( $defaultArray as $url ) {
 			if ( strpos( $url, 'DB://' ) === 0 ) {
@@ -1217,7 +1217,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			return false;
 		}
 
-		$defaultArray = (array) $wgDefaultExternalStore;
+		$defaultArray = (array)$wgDefaultExternalStore;
 		foreach ( $defaultArray as $url ) {
 			if ( strpos( $url, 'DB://' ) === 0 ) {
 				return true;
