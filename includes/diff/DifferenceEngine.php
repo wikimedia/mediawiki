@@ -882,6 +882,10 @@ class DifferenceEngine extends ContextSource {
 			return $result;
 		};
 
+		/**
+		 * @param Status $status
+		 * @throws FatalError
+		 */
 		$error = function( $status ) {
 			throw new FatalError( $status->getWikiText() );
 		};
