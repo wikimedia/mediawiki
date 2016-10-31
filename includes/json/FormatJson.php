@@ -271,7 +271,7 @@ class FormatJson {
 	 */
 	public static function stripComments( $json ) {
 		// Ensure we have a string
-		$str = (string) $json;
+		$str = (string)$json;
 		$buffer = '';
 		$maxLen = strlen( $str );
 		$mark = 0;

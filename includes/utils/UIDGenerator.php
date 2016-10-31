@@ -554,9 +554,9 @@ class UIDGenerator {
 			$ts = ( 1000 * $sec + $msec ) * 10000 + (int)$offset + $delta;
 			$id_bin = str_pad( decbin( $ts % pow( 2, 60 ) ), 60, '0', STR_PAD_LEFT );
 		} elseif ( extension_loaded( 'gmp' ) ) {
-			$ts = gmp_add( gmp_mul( (string) $sec, '1000' ), (string) $msec ); // ms
+			$ts = gmp_add( gmp_mul( (string)$sec, '1000' ), (string)$msec ); // ms
 			$ts = gmp_add( gmp_mul( $ts, '10000' ), $offset ); // 100ns intervals
-			$ts = gmp_add( $ts, (string) $delta );
+			$ts = gmp_add( $ts, (string)$delta );
 			$ts = gmp_mod( $ts, gmp_pow( '2', '60' ) ); // wrap around
 			$id_bin = str_pad( gmp_strval( $ts, 2 ), 60, '0', STR_PAD_LEFT );
 		} elseif ( extension_loaded( 'bcmath' ) ) {

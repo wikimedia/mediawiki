@@ -81,7 +81,7 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 	 */
 	public function testReaderGetPrimaryKey( $message, array $expected, array $row ) {
 		$reader = new BatchRowIterator( $this->mockDb(), 'some_table', array_keys( $expected ), 8675309 );
-		$this->assertEquals( $expected, $reader->extractPrimaryKeys( (object) $row ), $message );
+		$this->assertEquals( $expected, $reader->extractPrimaryKeys( (object)$row ), $message );
 	}
 
 	public static function provider_readerSetFetchColumns() {
@@ -226,7 +226,7 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 		for ( $i = 0; $i < $numRows; $i += $batchSize ) {
 			$rows = [];
 			for ( $j = 0; $j < $batchSize && $i + $j < $numRows; $j++ ) {
-				$rows [] = (object) call_user_func( $rowGenerator );
+				$rows [] = (object)call_user_func( $rowGenerator );
 			}
 			$res[] = $rows;
 		}
