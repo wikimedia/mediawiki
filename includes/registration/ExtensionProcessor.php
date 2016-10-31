@@ -42,6 +42,7 @@ class ExtensionProcessor implements Processor {
 		'LogRestrictions',
 		'LogTypes',
 		'MediaHandlers',
+		'PasswordPolicy',
 		'RateLimits',
 		'RecentChangesFlags',
 		'RemoveCredentialsBlacklist',
@@ -70,6 +71,7 @@ class ExtensionProcessor implements Processor {
 		'wgGrantPermissions' => 'array_plus_2d',
 		'wgGroupPermissions' => 'array_plus_2d',
 		'wgHooks' => 'array_merge_recursive',
+		'wgPasswordPolicy' => 'array_merge_recursive'
 		'wgNamespaceContentModels' => 'array_plus',
 		'wgNamespaceProtection' => 'array_plus',
 		'wgNamespacesWithSubpages' => 'array_plus',
