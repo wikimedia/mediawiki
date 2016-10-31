@@ -173,13 +173,7 @@ class ApiAuthManagerHelper {
 		$this->module->getMain()->markParamsUsed( array_keys( $data ) );
 
 		if ( $sensitive ) {
-			try {
-				$this->module->requirePostedParameters( array_keys( $sensitive ), 'noprefix' );
-			} catch ( UsageException $ex ) {
-				// Make this a warning for now, upgrade to an error in 1.29.
-				$this->module->setWarning( $ex->getMessage() );
-				$this->module->logFeatureUsage( $this->module->getModuleName() . '-params-in-query-string' );
-			}
+			$this->module->requirePostedParameters( array_keys( $sensitive ), 'noprefix' );
 		}
 
 		return AuthenticationRequest::loadRequestsFromSubmission( $reqs, $data );

@@ -20,6 +20,10 @@ production.
 === Bug fixes in 1.29 ===
 
 === Action API changes in 1.29 ===
+* Submitting sensitive authentication request parameters to action=clientlogin,
+  action=createaccount, action=linkaccount, and action=changeauthenticationdata
+  in the query string is now an error. They should be submitted in the POST
+  body instead.
 
 === Action API internal changes in 1.29 ===
 
