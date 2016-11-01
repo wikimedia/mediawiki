@@ -1421,6 +1421,15 @@ sed abit.
 !! end
 
 !! test
+Don't parse <nowiki><span class="error"></nowiki> (T149622)
+!! wikitext
+<nowiki><span class="error"></nowiki>
+!! html/php
+<p>&lt;span class="error"&gt;
+</p>
+!! end
+
+!! test
 nowiki 3
 !! wikitext
 :There is not nowiki.
