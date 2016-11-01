@@ -25,6 +25,6 @@
  */
 class DBAccessError extends DBUnexpectedError {
 	public function __construct() {
-		parent::__construct( "Database access has been disabled." );
+		parent::__construct( null, "Database access has been disabled." );
 	}
 }
