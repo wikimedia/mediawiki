@@ -766,6 +766,7 @@ class Message implements MessageSpecifier, Serializable {
 	 */
 	public function useDatabase( $useDatabase ) {
 		$this->useDatabase = (bool)$useDatabase;
+		$this->message = null;
 		return $this;
 	}
 
@@ -1132,10 +1133,27 @@ class Message implements MessageSpecifier, Serializable {
 				return [ 'before', '[INVALID]' ];
 			}
 		} elseif ( $param instanceof Message ) {
+			// Match language, flags, etc. to the current message.
+			$msg = clone $param;
+			if ( $msg->language !== $this->language || $msg->useDatabase !== $this->useDatabase ) {
+				// Cache depends on these parameters
+				$msg->message = null;
+			}
+			$msg->interface = $this->interface;
+			$msg->language = $this->language;
+			$msg->useDatabase = $this->useDatabase;
+			$msg->title = $this->title;
+
+			// DWIM
+			if ( $format === 'block-parse' ) {
+				$format = 'parse';
+			}
+			$msg->format = $format;
+
 			// Message objects should not be before parameters because
 			// then they'll get double escaped. If the message needs to be
 			// escaped, it'll happen right here when we call toString().
-			return [ 'after', $param->toString( $format ) ];
+			return [ 'after', $msg->toString( $format ) ];
 		} else {
 			return [ 'before', $param ];
 		}
