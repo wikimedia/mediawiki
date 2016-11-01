@@ -1503,6 +1503,36 @@ abstract class Maintenance {
 	}
 
 	/**
+	 * Get the terminal size as a two-element array where the first element
+	 * is the width (number of columns) and the second element is the height
+	 * (number of rows).
+	 *
+	 * @return array
+	 */
+	public static function getTermSize() {
+		$default = [ 80, 50 ];
+		if ( wfIsWindows() ) {
+			return $default;
+		}
+		// It's possible to get the screen size with VT-100 terminal escapes,
+		// but reading the responses is not possible without setting raw mode
+		// (unless you want to require the user to press enter), and that
+		// requires an ioctl(), which we can't do. So we have to shell out to
+		// something that can do the relevant syscalls. There are a few
+		// options. Linux and Mac OS X both have "stty size" which does the
+		// job directly.
+		$retval = false;
+		$size = wfShellExec( 'stty size', $retval );
+		if ( $retval !== 0 ) {
+			return $default;
+		}
+		if ( !preg_match( '/^(\d+) (\d+)$/', $size, $m ) ) {
+			return $default;
+		}
+		return [ intval( $m[2] ), intval( $m[1] ) ];
+	}
+
+	/**
 	 * Call this to set up the autoloader to allow classes to be used from the
 	 * tests directory.
 	 */
