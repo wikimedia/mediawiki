@@ -1868,7 +1868,7 @@
 	"changecontentmodel-title-label": "Заглавие на страницата",
 	"changecontentmodel-reason-label": "Причина:",
 	"changecontentmodel-success-text": "Типът на съдържанието на [[:$1]] е успешно променен.",
-	"log-name-contentmodel": "Съдържанието на промяна на модела за списание",
+	"log-name-contentmodel": "Дневник на cъдържанието промяна модела",
 	"log-description-contentmodel": "Събития, отнасящи се до модели на съдържанието на страницата",
 	"logentry-contentmodel-change-revertlink": "връщане",
 	"logentry-contentmodel-change-revert": "връщане",
