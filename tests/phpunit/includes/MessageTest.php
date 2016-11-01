@@ -512,6 +512,34 @@ class MessageTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	/**
+	 * @covers Message::extractParam
+	 */
+	public function testMessageAsParam() {
+		$this->setMwGlobals( [
+			'wgScript' => '/wiki/index.php',
+			'wgArticlePath' => '/wiki/$1',
+		] );
+
+		$msg = new Message( 'returnto', [
+			new Message( 'apihelp-link', [
+				'foo', new Message( 'mainpage', [], Language::factory( 'en' ) )
+			], Language::factory( 'de' ) )
+		], Language::factory( 'es' ) );
+
+		$this->assertEquals(
+			'Volver a [[Special:ApiHelp/foo|Página principal]].',
+			$msg->text(),
+			'Process with ->text()'
+		);
+		$this->assertEquals(
+			'<p>Volver a <a href="/wiki/Special:ApiHelp/foo" title="Special:ApiHelp/foo">Página '
+				. "principal</a>.\n</p>",
+			$msg->parseAsBlock(),
+			'Process with ->parseAsBlock()'
+		);
+	}
+
 	public static function provideParser() {
 		return [
 			[
