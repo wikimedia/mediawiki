@@ -355,6 +355,7 @@ abstract class LBFactory implements ILBFactory {
 
 		if ( $failed ) {
 			throw new DBReplicationWaitError(
+				null,
 				"Could not wait for replica DBs to catch up to " .
 				implode( ', ', $failed )
 			);
