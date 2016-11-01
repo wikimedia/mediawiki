@@ -138,6 +138,8 @@ $datePreferenceMigrationMap = [
 	'short tdmy',
 ];
 
+$defaultDateFormat = 'dmy';
+
 $dateFormats = [
 	/*
 	'Default',
