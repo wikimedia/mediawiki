@@ -1658,8 +1658,6 @@
 	"activeusers-intro": "呢個係響最近$1日之內有一啲動作嘅用戶名單。",
 	"activeusers-count": "響{{PLURAL:$3|$3日}}之內嘅$1次{{PLURAL:$1|編輯}}",
 	"activeusers-from": "顯示用戶開始於:",
-	"activeusers-hidebots": "隱藏機械人",
-	"activeusers-hidesysops": "隱藏管理員",
 	"activeusers-noresult": "搵唔到用戶。",
 	"activeusers-submit": "顯示活躍用戶",
 	"listgrouprights": "用戶組權限",

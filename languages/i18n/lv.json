@@ -1497,8 +1497,6 @@
 	"activeusers-intro": "Šis ir to dalībnieku saraksts, kuri veikuši kādu darbību {{PLURAL:daudzskaitlī:$1|pēdējā|pēdējās}} $1 {{PLURAL:daudzskaitlī:$1|dienā|dienās}}.",
 	"activeusers-count": "$1 {{PLURAL:$1|darbību|darbība|darbības}} {{PLURAL:$3|pēdējās $3 dienās|pēdējā $3 dienā|pēdējās $3 dienās}}",
 	"activeusers-from": "Parādīt dalībniekus, sākot ar:",
-	"activeusers-hidebots": "Paslēpt botus",
-	"activeusers-hidesysops": "Paslēpt administratorus",
 	"activeusers-noresult": "Neviens dalībnieks nav atrasts.",
 	"activeusers-submit": "Parādīt aktīvos dalībniekus",
 	"listgrouprights": "Dalībnieku grupu tiesības",

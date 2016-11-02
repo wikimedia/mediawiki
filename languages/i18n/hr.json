@@ -1690,8 +1690,6 @@
 	"activeusers-intro": "Ovo je popis suradnika koji su napravili neku aktivnost u {{PLURAL:$1|posljednji $1 dan|posljednja $1 dana|posljednjih $1 dana}}.",
 	"activeusers-count": "{{PLURAL:$1|nedavna $1 izmjena|nedavne $1 izmjene|nedavnih $1 izmjena}} u {{PLURAL:$3|posljednji $3 dan|posljednja $3 dana|posljednjih $3 dana}}",
 	"activeusers-from": "Prikaži suradnike počevši od:",
-	"activeusers-hidebots": "Sakrij botove",
-	"activeusers-hidesysops": "Sakrij administratore",
 	"activeusers-noresult": "Niti jedan suradnik nije nađen.",
 	"activeusers-submit": "Prikaz aktivnih suradnika",
 	"listgrouprights": "Prava suradničkih skupina",

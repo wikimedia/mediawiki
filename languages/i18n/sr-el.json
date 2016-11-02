@@ -1695,8 +1695,6 @@
 	"activeusers-intro": "Ovo je spisak korisnika koji su bili aktivni {{PLURAL:$1|1=prethodni dan|u poslednja $1 dana|u poslednjih $1 dana}}.",
 	"activeusers-count": "$1 {{PLURAL:$1|radnja|radnje|radnji}} {{PLURAL:$3|prethodni dan|u poslednja $3 dana|u poslednjih $3 dana}}",
 	"activeusers-from": "Prikaži korisnike počev od:",
-	"activeusers-hidebots": "Sakrij botove",
-	"activeusers-hidesysops": "Sakrij administratore",
 	"activeusers-noresult": "Korisnik nije pronađen.",
 	"activeusers-submit": "Prikaži aktivne korisnike",
 	"listgrouprights": "Prava korisničkih grupa",

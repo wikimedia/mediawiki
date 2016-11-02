@@ -1825,8 +1825,6 @@
 	"activeusers-intro": "Toto je zoznam používateľov, ktorí $1 {{PLURAL:$1|za posledný 1 deň|za posledné $1 dni|za posledných $1 dní}} vykonali nejakú aktivitu.",
 	"activeusers-count": "$1 {{PLURAL:$1|operácia|operácie|operácií}} za {{PLURAL:$3|posledný deň|posledné $3 dni|posledných $3 dní}}",
 	"activeusers-from": "Zobraziť používateľov počínajúc:",
-	"activeusers-hidebots": "Skryť robotov",
-	"activeusers-hidesysops": "Skryť správcov",
 	"activeusers-noresult": "Neboli nájdení žiadni používatelia.",
 	"activeusers-submit": "Zobraziť aktívnych používateľov",
 	"listgrouprights": "Práva skupiny používateľov",

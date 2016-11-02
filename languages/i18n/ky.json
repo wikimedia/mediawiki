@@ -942,8 +942,6 @@
 	"listusers-noresult": "Колдонуучу табылган жок.",
 	"listusers-blocked": "(бөгөттөлгөн)",
 	"activeusers": "Активдүү колдонуучулардын тизмеси",
-	"activeusers-hidebots": "Ботторду жашыруу",
-	"activeusers-hidesysops": "Администраторлорду жашыруу",
 	"activeusers-noresult": "Колдонуучулар табылган жок.",
 	"listgrouprights-group": "Топ",
 	"listgrouprights-rights": "Укуктар",

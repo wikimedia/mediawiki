@@ -1934,8 +1934,6 @@
 	"activeusers-intro": "Detta är en lista på användare som har haft någon form av aktivitet inom de senaste $1 {{PLURAL:$1|dygnet|dygnen}}.",
 	"activeusers-count": "$1 {{PLURAL:$1|handling|handlingar}} {{PLURAL:$3|det senaste dygnet|de senaste $3 dygnen}}",
 	"activeusers-from": "Visa användare från och med:",
-	"activeusers-hidebots": "Dölj botar",
-	"activeusers-hidesysops": "Dölj administratörer",
 	"activeusers-noresult": "Inga användare funna.",
 	"activeusers-submit": "Visa aktiva användare",
 	"listgrouprights": "Behörigheter för användargrupper",

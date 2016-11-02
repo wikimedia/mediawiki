@@ -1898,8 +1898,6 @@
 	"activeusers-intro": "Ez a lap azon felhasználók listáját tartalmazza, akik végeztek valamilyen tevékenységet az elmúlt {{PLURAL:$1|egy|$1}} napban.",
 	"activeusers-count": "$1 szerkesztés az utolsó $3 napban",
 	"activeusers-from": "Szerkesztők listázása a következő névtől kezdve:",
-	"activeusers-hidebots": "Botok elrejtése",
-	"activeusers-hidesysops": "Adminisztrátorok elrejtése",
 	"activeusers-noresult": "Nem található ilyen szerkesztő.",
 	"activeusers-submit": "Aktív szerkesztők megjelenítése",
 	"listgrouprights": "Szerkesztői csoportok jogai",

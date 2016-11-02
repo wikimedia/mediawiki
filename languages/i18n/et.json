@@ -1775,8 +1775,6 @@
 	"activeusers-intro": "See on loetelu kasutajatest, kes on viimase $1 {{PLURAL:$1|päev|päeva}} jooksul midagi teinud.",
 	"activeusers-count": "$1 {{PLURAL:$1|toiming|toimingut}} viimase {{PLURAL:$3|päeva|$3 päeva}} jooksul",
 	"activeusers-from": "Näita kasutajaid alates:",
-	"activeusers-hidebots": "Peida robotid",
-	"activeusers-hidesysops": "Peida administraatorid",
 	"activeusers-noresult": "Kasutajaid ei leidunud.",
 	"activeusers-submit": "Kuva aktiivsed kasutajad",
 	"listgrouprights": "Kasutajarühma õigused",
