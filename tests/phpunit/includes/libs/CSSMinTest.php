@@ -129,8 +129,8 @@ class CSSMinTest extends MediaWikiTestCase {
 	 * @covers CSSMin::remap
 	 */
 	public function testRemapRemapping( $message, $input, $expectedOutput ) {
-		$localPath = __DIR__ . '/../../data/cssmin/';
-		$remotePath = 'http://localhost/w/';
+		$localPath = __DIR__ . '/../../data/cssmin';
+		$remotePath = 'http://localhost/w';
 
 		$realOutput = CSSMin::remap( $input, $localPath, $remotePath );
 		$this->assertEquals( $expectedOutput, $realOutput, "CSSMin::remap: $message" );

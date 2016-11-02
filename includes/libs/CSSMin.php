@@ -319,7 +319,7 @@ class CSSMin {
 							);
 
 							$url = $match['file'] . $match['query'];
-							$file = $local . $match['file'];
+							$file = "{$local}/{$match['file']}";
 							if (
 								!self::isRemoteUrl( $url ) && !self::isLocalUrl( $url )
 								&& file_exists( $file )
