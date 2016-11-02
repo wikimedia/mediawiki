@@ -169,6 +169,17 @@ class Message implements MessageSpecifier, Serializable {
 	const FORMAT_ESCAPED = 'escaped';
 
 	/**
+	 * Mapping from Message::listParam() types to Language methods.
+	 * @var array
+	 */
+	protected static $listTypeMap = [
+		'comma' => 'commaList',
+		'semicolon' => 'semicolonList',
+		'pipe' => 'pipeList',
+		'text' => 'listToText',
+	];
+
+	/**
 	 * In which language to get this message. True, which is the default,
 	 * means the current user language, false content language.
 	 *
@@ -1071,6 +1082,22 @@ class Message implements MessageSpecifier, Serializable {
 	}
 
 	/**
+	 * @since 1.29
+	 *
+	 * @param array $list
+	 * @param string $type 'comma', 'semicolon', 'pipe', 'text'
+	 * @return string[] Array with "list" and "type" keys.
+	 */
+	public static function listParam( array $list, $type = 'text' ) {
+		if ( !isset( self::$listTypeMap[$type] ) ) {
+			throw new InvalidArgumentException(
+				"Invalid type '$type'. Known types are: " . join( ', ', array_keys( self::$listTypeMap ) )
+			);
+		}
+		return [ 'list' => $list, 'type' => $type ];
+	}
+
+	/**
 	 * Substitutes any parameters into the message text.
 	 *
 	 * @since 1.17
@@ -1123,6 +1150,8 @@ class Message implements MessageSpecifier, Serializable {
 				return [ 'before', $this->getLanguage()->formatBitrate( $param['bitrate'] ) ];
 			} elseif ( isset( $param['plaintext'] ) ) {
 				return [ 'after', $this->formatPlaintext( $param['plaintext'], $format ) ];
+			} elseif ( isset( $param['list'] ) ) {
+				return $this->formatListParam( $param['list'], $param['type'], $format );
 			} else {
 				$warning = 'Invalid parameter for message "' . $this->getKey() . '": ' .
 					htmlspecialchars( serialize( $param ) );
@@ -1250,6 +1279,54 @@ class Message implements MessageSpecifier, Serializable {
 			return htmlspecialchars( $plaintext, ENT_QUOTES );
 
 		}
+	}
+
+	/**
+	 * Formats a list of parameters as a concatenated string.
+	 * @since 1.29
+	 * @param array $params
+	 * @param string $listType
+	 * @param string $format One of the FORMAT_* constants.
+	 * @return array Array with the parameter type (either "before" or "after") and the value.
+	 */
+	protected function formatListParam( array $params, $listType, $format ) {
+		if ( !isset( self::$listTypeMap[$listType] ) ) {
+			$warning = 'Invalid list type for message "' . $this->getKey() . '": ' .
+				htmlspecialchars( serialize( $param ) );
+			trigger_error( $warning, E_USER_WARNING );
+			$e = new Exception;
+			wfDebugLog( 'Bug58676', $warning . "\n" . $e->getTraceAsString() );
+			return [ 'before', '[INVALID]' ];
+		}
+		$func = self::$listTypeMap[$listType];
+
+		// Handle an empty list sensibly
+		if ( !$params ) {
+			return [ 'before', $this->getLanguage()->$func( [] ) ];
+		}
+
+		// First, determine what kinds of list items we have
+		$types = [];
+		$vars = [];
+		$list = [];
+		foreach ( $params as $n => $p ) {
+			list( $type, $value ) = $this->extractParam( $p, $format );
+			$types[$type] = true;
+			$list[] = $value;
+			$vars[] = '$' . ( $n + 1 );
+		}
+
+		// Easy case: all are 'before' or 'after', so just join the
+		// values and use the same type.
+		if ( count( $types ) === 1 ) {
+			return [ key( $types ), $this->getLanguage()->$func( $list ) ];
+		}
+
+		// Hard case: We need to process each value per its type, then
+		// return the concatenated values as 'after'. We handle this by turning
+		// the list into a RawMessage and processing that as a parameter.
+		$vars = $this->getLanguage()->$func( $vars );
+		return $this->extractParam( new RawMessage( $vars, $params ), $format );
 	}
 }
 
