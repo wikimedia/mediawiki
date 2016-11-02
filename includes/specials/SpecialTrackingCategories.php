@@ -54,6 +54,7 @@ class SpecialTrackingCategories extends SpecialPage {
 		'expansion-depth-exceeded-category',
 		'restricted-displaytitle-ignored',
 		'deprecated-self-close-category',
+		'isbn-invalid-category',
 	];
 
 	function execute( $par ) {
