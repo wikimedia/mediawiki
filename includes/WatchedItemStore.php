@@ -167,7 +167,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 * @param User $user
 	 * @param LinkTarget $target
 	 *
-	 * @return WatchedItem|null
+	 * @return WatchedItem|false
 	 */
 	private function getCached( User $user, LinkTarget $target ) {
 		return $this->cache->get( $this->getCacheKey( $user, $target ) );
@@ -495,7 +495,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 
 		$watchedItems = [];
 		foreach ( $res as $row ) {
-			// todo these could all be cached at some point?
+			// @todo: Should we add these to the process cache?
 			$watchedItems[] = new WatchedItem(
 				$user,
 				new TitleValue( (int)$row->wl_namespace, $row->wl_title ),
@@ -602,6 +602,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 		}
 
 		$rows = [];
+		$items = [];
 		foreach ( $targets as $target ) {
 			$rows[] = [
 				'wl_user' => $user->getId(),
@@ -609,6 +610,11 @@ class WatchedItemStore implements StatsdAwareInterface {
 				'wl_title' => $target->getDBkey(),
 				'wl_notificationtimestamp' => null,
 			];
+			$items[] = new WatchedItem(
+				$user,
+				$target,
+				null
+			);
 			$this->uncache( $user, $target );
 		}
 
@@ -617,6 +623,12 @@ class WatchedItemStore implements StatsdAwareInterface {
 			// Use INSERT IGNORE to avoid overwriting the notification timestamp
 			// if there's already an entry for this page
 			$dbw->insert( 'watchlist', $toInsert, __METHOD__, 'IGNORE' );
+		}
+		// Update process cache to ensure skin doesn't claim that the current
+		// page is unwatched in the response of action=watch itself (T28292).
+		// This would otherwise be re-queried from a slave by isWatched().
+		foreach ( $items as $item ) {
+			$this->cache( $user, $item );
 		}
 
 		return true;
