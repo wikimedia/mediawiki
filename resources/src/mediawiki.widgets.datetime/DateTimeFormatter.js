@@ -21,23 +21,21 @@
 	 *  Defaults to the current date and time (with 0 milliseconds).
 	 */
 	mw.widgets.datetime.DateTimeFormatter = function MwWidgetsDatetimeDateTimeFormatter( config ) {
-		var statick = this.constructor[ 'static' ];
-
-		statick.setupDefaults();
+		this.constructor.static.setupDefaults();
 
 		config = $.extend( {
 			format: '@default',
 			local: false,
-			fullZones: statick.fullZones,
-			shortZones: statick.shortZones
+			fullZones: this.constructor.static.fullZones,
+			shortZones: this.constructor.static.shortZones
 		}, config );
 
 		// Mixin constructors
 		OO.EventEmitter.call( this );
 
 		// Properties
-		if ( statick.formats[ config.format ] ) {
-			this.format = statick.formats[ config.format ];
+		if ( this.constructor.static.formats[ config.format ] ) {
+			this.format = this.constructor.static.formats[ config.format ];
 		} else {
 			this.format = config.format;
 		}
@@ -70,7 +68,7 @@
 	 * @inheritable
 	 * @property {Object}
 	 */
-	mw.widgets.datetime.DateTimeFormatter[ 'static' ].formats = {};
+	mw.widgets.datetime.DateTimeFormatter.static.formats = {};
 
 	/**
 	 * Default time zone indicators
@@ -79,7 +77,7 @@
 	 * @inheritable
 	 * @property {string[]}
 	 */
-	mw.widgets.datetime.DateTimeFormatter[ 'static' ].fullZones = null;
+	mw.widgets.datetime.DateTimeFormatter.static.fullZones = null;
 
 	/**
 	 * Default abbreviated time zone indicators
@@ -88,9 +86,9 @@
 	 * @inheritable
 	 * @property {string[]}
 	 */
-	mw.widgets.datetime.DateTimeFormatter[ 'static' ].shortZones = null;
+	mw.widgets.datetime.DateTimeFormatter.static.shortZones = null;
 
-	mw.widgets.datetime.DateTimeFormatter[ 'static' ].setupDefaults = function () {
+	mw.widgets.datetime.DateTimeFormatter.static.setupDefaults = function () {
 		if ( !this.fullZones ) {
 			this.fullZones = [
 				mw.msg( 'timezone-utc' ),

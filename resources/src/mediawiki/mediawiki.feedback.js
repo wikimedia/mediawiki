@@ -6,7 +6,6 @@
  * @author Moriel Schottlender, 2015
  * @since 1.19
  */
-/*jshint esversion:5 */
 /*global OO*/
 ( function ( mw, $ ) {
 	/**

@@ -1,4 +1,3 @@
-/*jshint -W024 */
 ( function ( mw, $ ) {
 	var repeat = function ( input, multiplier ) {
 		return new Array( multiplier + 1 ).join( input );

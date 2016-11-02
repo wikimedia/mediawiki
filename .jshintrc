@@ -15,6 +15,7 @@
 	// Relaxing
 	"laxbreak": true,
 	"multistr": true,
+	"-W024": false,
 
 	// Environment
 	"browser": true,

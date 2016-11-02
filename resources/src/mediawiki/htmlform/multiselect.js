@@ -98,7 +98,6 @@
 						modules.push.apply( modules, extraModules );
 					}
 					mw.loader.using( modules, function () {
-						/*jshint -W024*/
 						convertCheckboxesWidgetToCapsules( OO.ui.FieldLayout.static.infuse( $el ) );
 					} );
 				} else {
