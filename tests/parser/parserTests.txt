@@ -10570,6 +10570,17 @@ RFC 4321
 </p>
 !! end
 
+!! test
+ISBN parser function
+!! wikitext
+{{isbn:1234}}
+{{isbn:0-7475-3269-9}}
+!! html/php
+<p><span class="error"><strong>Error:</strong> Invalid ISBN "1234".</span>
+<a href="/wiki/Special:BookSources/0-7475-3269-9" title="Special:BookSources/0-7475-3269-9">ISBN 0-7475-3269-9</a>
+</p>
+!! end
+
 ###
 ### Templates
 ####

@@ -54,7 +54,7 @@ class CoreParserFunctions {
 			'talkpagename', 'talkpagenamee', 'subjectpagename',
 			'subjectpagenamee', 'pageid', 'revisionid', 'revisionday',
 			'revisionday2', 'revisionmonth', 'revisionmonth1', 'revisionyear',
-			'revisiontimestamp', 'revisionuser', 'cascadingsources',
+			'revisiontimestamp', 'revisionuser', 'cascadingsources', 'isbn',
 		];
 		foreach ( $noHashFunctions as $func ) {
 			$parser->setFunctionHook( $func, [ __CLASS__, $func ], Parser::SFH_NO_HASH );
@@ -1332,6 +1332,32 @@ class CoreParserFunctions {
 			return implode( $names, '|' );
 		}
 		return '';
+	}
+
+	/**
+	 * ISBN parser function to ease linking to Special:Booksources
+	 *
+	 * @param Parser $parser
+	 * @param string $isbn
+	 * @return array|string
+	 */
+	public static function isbn( Parser $parser, $isbn = '' ) {
+		if ( !SpecialBookSources::isValidISBN( $isbn ) ) {
+			$converter = $parser->getConverterLanguage()->getConverter();
+			return '<span class="error">' .
+				wfMessage( 'isbn-invalid' )
+					->params( $converter->markNoConversion( wfEscapeWikiText( $isbn ) ) )
+					->inContentLanguage()->text() .
+			'</span>';
+		}
+
+		return [
+			$parser->getLinkRenderer()->makeLink(
+				SpecialPage::getTitleFor( 'Booksources', $isbn ),
+				wfMessage( 'isbn-linktext' )->params( $isbn )->text()
+			),
+			'isHTML' => true
+		];
 	}
 
 }

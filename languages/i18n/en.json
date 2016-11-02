@@ -1937,6 +1937,8 @@
 	"booksources-invalid-isbn": "The given ISBN does not appear to be valid; check for errors copying from the original source.",
 	"rfcurl": "//tools.ietf.org/html/rfc$1",
 	"pubmedurl": "//www.ncbi.nlm.nih.gov/pubmed/$1?dopt=Abstract",
+	"isbn-invalid": "<strong>Error:</strong> Invalid ISBN \"$1\".",
+	"isbn-linktext": "ISBN $1",
 	"specialloguserlabel": "Performer:",
 	"speciallogtitlelabel": "Target (title or {{ns:user}}:username for user):",
 	"log": "Logs",
