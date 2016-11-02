@@ -187,18 +187,7 @@ class ExtensionRegistry {
 			if ( !is_array( $info ) ) {
 				throw new Exception( "$path is not a valid JSON file." );
 			}
-			if ( !isset( $info['manifest_version'] ) ) {
-				// For backwards-compatability, assume a version of 1
-				$info['manifest_version'] = 1;
-			}
-			$version = $info['manifest_version'];
-			if ( $version < self::OLDEST_MANIFEST_VERSION || $version > self::MANIFEST_VERSION ) {
-				throw new Exception( "$path: unsupported manifest_version: {$version}" );
-			}
-			$autoload = $this->processAutoLoader( dirname( $path ), $info );
-			// Set up the autoloader now so custom processors will work
-			$GLOBALS['wgAutoloadClasses'] += $autoload;
-			$autoloadClasses += $autoload;
+
 			// Check any constraints against MediaWiki core
 			$requires = $processor->getRequirements( $info );
 			if ( isset( $requires[self::MEDIAWIKI_CORE] )
@@ -210,6 +199,21 @@ class ExtensionRegistry {
 					. '.';
 				continue;
 			}
+
+			if ( !isset( $info['manifest_version'] ) ) {
+				// For backwards-compatability, assume a version of 1
+				$info['manifest_version'] = 1;
+			}
+			$version = $info['manifest_version'];
+			if ( $version < self::OLDEST_MANIFEST_VERSION || $version > self::MANIFEST_VERSION ) {
+				throw new Exception( "$path: unsupported manifest_version: {$version}" );
+			}
+
+			$autoload = $this->processAutoLoader( dirname( $path ), $info );
+			// Set up the autoloader now so custom processors will work
+			$GLOBALS['wgAutoloadClasses'] += $autoload;
+			$autoloadClasses += $autoload;
+
 			// Get extra paths for later inclusion
 			$autoloaderPaths = array_merge( $autoloaderPaths,
 				$processor->getExtraAutoloaderPaths( dirname( $path ), $info ) );
