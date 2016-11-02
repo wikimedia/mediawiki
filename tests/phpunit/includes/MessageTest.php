@@ -512,6 +512,108 @@ class MessageTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	public static function provideListParam() {
+		$lang = Language::factory( 'de' );
+		$msg1 = new Message( 'mainpage', [], $lang );
+		$msg2 = new RawMessage( "''link''", [], $lang );
+
+		return [
+			'Simple comma list' => [
+				[ 'a', 'b', 'c' ],
+				'comma',
+				'text',
+				'a, b, c'
+			],
+
+			'Simple semicolon list' => [
+				[ 'a', 'b', 'c' ],
+				'semicolon',
+				'text',
+				'a; b; c'
+			],
+
+			'Simple pipe list' => [
+				[ 'a', 'b', 'c' ],
+				'pipe',
+				'text',
+				'a | b | c'
+			],
+
+			'Simple text list' => [
+				[ 'a', 'b', 'c' ],
+				'text',
+				'text',
+				'a, b and c'
+			],
+
+			'Empty list' => [
+				[],
+				'comma',
+				'text',
+				''
+			],
+
+			'List with all "before" params, ->text()' => [
+				[ "''link''", Message::numParam( 12345678 ) ],
+				'semicolon',
+				'text',
+				'\'\'link\'\'; 12,345,678'
+			],
+
+			'List with all "before" params, ->parse()' => [
+				[ "''link''", Message::numParam( 12345678 ) ],
+				'semicolon',
+				'parse',
+				'<i>link</i>; 12,345,678'
+			],
+
+			'List with all "after" params, ->text()' => [
+				[ $msg1, $msg2, Message::rawParam( '[[foo]]' ) ],
+				'semicolon',
+				'text',
+				'Main Page; \'\'link\'\'; [[foo]]'
+			],
+
+			'List with all "after" params, ->parse()' => [
+				[ $msg1, $msg2, Message::rawParam( '[[foo]]' ) ],
+				'semicolon',
+				'parse',
+				'Main Page; <i>link</i>; [[foo]]'
+			],
+
+			'List with both "before" and "after" params, ->text()' => [
+				[ $msg1, $msg2, Message::rawParam( '[[foo]]' ), "''link''", Message::numParam( 12345678 ) ],
+				'semicolon',
+				'text',
+				'Main Page; \'\'link\'\'; [[foo]]; \'\'link\'\'; 12,345,678'
+			],
+
+			'List with both "before" and "after" params, ->parse()' => [
+				[ $msg1, $msg2, Message::rawParam( '[[foo]]' ), "''link''", Message::numParam( 12345678 ) ],
+				'semicolon',
+				'parse',
+				'Main Page; <i>link</i>; [[foo]]; <i>link</i>; 12,345,678'
+			],
+		];
+	}
+
+	/**
+	 * @covers Message::listParam
+	 * @covers Message::extractParam
+	 * @covers Message::formatListParam
+	 * @dataProvider provideListParam
+	 */
+	public function testListParam( $list, $type, $format, $expect ) {
+		$lang = Language::factory( 'en' );
+
+		$msg = new RawMessage( '$1' );
+		$msg->params( [ Message::listParam( $list, $type ) ] );
+		$this->assertEquals(
+			$expect,
+			$msg->inLanguage( $lang )->$format()
+		);
+	}
+
 	/**
 	 * @covers Message::extractParam
 	 */
