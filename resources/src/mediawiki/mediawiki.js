@@ -1782,6 +1782,7 @@
 							// Depending on how corrupt the string is, it is likely that some
 							// modules' implement() succeeded while the ones after the error will
 							// never run and leave their modules in the 'loading' state forever.
+							mw.loader.store.stats.failed++;
 
 							// Since this is an error not caused by an individual module but by
 							// something that infected the implement call itself, don't take any
@@ -2184,7 +2185,7 @@
 					items: {},
 
 					// Cache hit stats
-					stats: { hits: 0, misses: 0, expired: 0 },
+					stats: { hits: 0, misses: 0, expired: 0, failed: 0 },
 
 					/**
 					 * Construct a JSON-serializable object representing the content of the store.
