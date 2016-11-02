@@ -100,15 +100,14 @@ class HTMLDateTimeField extends HTMLTextField {
 		$date = $this->parseDate( $value );
 		if ( !$date ) {
 			// Messages: htmlform-date-invalid htmlform-time-invalid htmlform-datetime-invalid
-			return $this->msg( "htmlform-{$this->mType}-invalid" )->parseAsBlock();
+			return $this->msg( "htmlform-{$this->mType}-invalid" );
 		}
 
 		if ( isset( $this->mParams['min'] ) ) {
 			$min = $this->parseDate( $this->mParams['min'] );
 			if ( $min && $date < $min ) {
 				// Messages: htmlform-date-toolow htmlform-time-toolow htmlform-datetime-toolow
-				return $this->msg( "htmlform-{$this->mType}-toolow", $this->formatDate( $min ) )
-					->parseAsBlock();
+				return $this->msg( "htmlform-{$this->mType}-toolow", $this->formatDate( $min ) );
 			}
 		}
 
@@ -116,8 +115,7 @@ class HTMLDateTimeField extends HTMLTextField {
 			$max = $this->parseDate( $this->mParams['max'] );
 			if ( $max && $date > $max ) {
 				// Messages: htmlform-date-toohigh htmlform-time-toohigh htmlform-datetime-toohigh
-				return $this->msg( "htmlform-{$this->mType}-toohigh", $this->formatDate( $max ) )
-					->parseAsBlock();
+				return $this->msg( "htmlform-{$this->mType}-toohigh", $this->formatDate( $max ) );
 			}
 		}
 

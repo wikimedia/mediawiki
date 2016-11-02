@@ -296,7 +296,7 @@ abstract class HTMLFormField {
 	 * @param string|array $value The value the field was submitted with
 	 * @param array $alldata The data collected from the form
 	 *
-	 * @return bool|string True on success, or String error to display, or
+	 * @return bool|string|Message True on success, or String/Message error to display, or
 	 *   false to fail validation without displaying an error.
 	 */
 	public function validate( $value, $alldata ) {
@@ -308,7 +308,7 @@ abstract class HTMLFormField {
 			&& $this->mParams['required'] !== false
 			&& $value === ''
 		) {
-			return $this->msg( 'htmlform-required' )->parse();
+			return $this->msg( 'htmlform-required' );
 		}
 
 		if ( isset( $this->mValidationCallback ) ) {

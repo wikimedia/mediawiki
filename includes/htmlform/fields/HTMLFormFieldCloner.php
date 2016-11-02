@@ -224,7 +224,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			&& $this->mParams['required'] !== false
 			&& !$values
 		) {
-			return $this->msg( 'htmlform-cloner-required' )->parseAsBlock();
+			return $this->msg( 'htmlform-cloner-required' );
 		}
 
 		if ( isset( $values['nonjs'] ) ) {

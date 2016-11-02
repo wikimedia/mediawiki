@@ -94,7 +94,7 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 		} elseif ( in_array( strval( $value ), $this->autocomplete, true ) ) {
 			return true;
 		} elseif ( $this->mParams['require-match'] ) {
-			return $this->msg( 'htmlform-select-badoption' )->parse();
+			return $this->msg( 'htmlform-select-badoption' );
 		}
 
 		return true;

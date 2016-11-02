@@ -113,7 +113,7 @@ class HTMLButtonField extends HTMLFormField {
 	 * @param string $value
 	 * @param array $alldata
 	 *
-	 * @return bool
+	 * @return bool|string|Message
 	 */
 	public function validate( $value, $alldata ) {
 		return true;
