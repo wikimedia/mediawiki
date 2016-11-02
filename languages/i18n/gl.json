@@ -1881,8 +1881,6 @@
 	"activeusers-intro": "Esta é unha lista cos usuarios que tiveron algún tipo de actividade {{PLURAL:$1|no último día|nos últimos $1 días}}.",
 	"activeusers-count": "$1 {{PLURAL:$1|acción|accións}} {{PLURAL:$3|no último día|nos últimos $3 días}}",
 	"activeusers-from": "Mostrar os usuarios que comecen por:",
-	"activeusers-hidebots": "Agochar os bots",
-	"activeusers-hidesysops": "Agochar os administradores",
 	"activeusers-noresult": "Non se atopou ningún usuario.",
 	"activeusers-submit": "Mostrar usuarios activos",
 	"listgrouprights": "Dereitos dun usuario segundo o seu grupo",

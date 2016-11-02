@@ -1811,8 +1811,6 @@
 	"activeusers-intro": "Dëst ass eng Lëscht vun de Benotzer déi op iergend eng Manéier an de leschten $1 {{PLURAL:$1|Dag|Deeg}} aktiv waren.",
 	"activeusers-count": "$1 {{PLURAL:$1|Aktioun|Aktiounen}} {{PLURAL:$3|gëschter|an de leschten $3 Deeg}}",
 	"activeusers-from": "Benotzer weisen, ugefaange bei:",
-	"activeusers-hidebots": "Botte verstoppen",
-	"activeusers-hidesysops": "Administrateure verstoppen",
 	"activeusers-noresult": "Keng Benotzer fonnt.",
 	"activeusers-submit": "Aktiv Benotzer weisen",
 	"listgrouprights": "Rechter vun de Benotzergruppen",

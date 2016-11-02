@@ -1839,8 +1839,6 @@
 	"activeusers-intro": "এটি ব্যবহারকারী তালিকা যাদের $1 {{PLURAL:$1|দিনে|দিনে}} যেকোন কর্মকান্ড রয়েছে।",
 	"activeusers-count": "গত {{PLURAL:$3|কালে|$3 দিনে}} সর্বমোট {{PLURAL:$1|কর্মের}} সংখ্যা $1টি",
 	"activeusers-from": "ব্যবহারকারী দেখাও যাদের নাম এই অক্ষর দিয়ে শুরু:",
-	"activeusers-hidebots": "বট লুকাও",
-	"activeusers-hidesysops": "প্রশাসক লুকাও",
 	"activeusers-noresult": "কোনো ব্যবহারকারী পাওয়া যায়নি।",
 	"activeusers-submit": "সক্রিয় ব্যবহারকারী প্রদর্শন করুন",
 	"listgrouprights": "দলগত ব্যবহারকারী অধিকার",

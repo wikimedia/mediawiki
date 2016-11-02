@@ -1872,8 +1872,6 @@
 	"activeusers-intro": "Tai naudotojų sąrašas, kurie ką nors padarė per $1 {{PLURAL:$1|paskutinę dieną|paskutines dienas|paskutinių dienų}}.",
 	"activeusers-count": "$1 {{PLURAL:$1|keitimas|keitimai|keitimų}} per {{PLURAL:$3|paskutinę dieną|$3 paskutines dienas|$3 paskutinių dienų}}",
 	"activeusers-from": "Rodyti naudotojus, pradedant:",
-	"activeusers-hidebots": "Slėpti robotus",
-	"activeusers-hidesysops": "Slėpti administratorius",
 	"activeusers-noresult": "Nerasta jokių naudotojų.",
 	"activeusers-submit": "Rodyti aktyvius vartotojus",
 	"listgrouprights": "Naudotojų grupių teisės",

@@ -1871,8 +1871,6 @@
 	"activeusers-intro": "Seznam uporabnikov, ki so bili kakorkoli aktivni v {{PLURAL:$1|zadnjem $1 dnevu|zadnjih $1 dneh}}.",
 	"activeusers-count": "$1 {{PLURAL:$1|dejanje|dejanji|dejanja|dejanj}} v {{PLURAL:$3|preteklem dnevu|preteklih $3 dneh}}",
 	"activeusers-from": "Prikaži uporabnike začenši z:",
-	"activeusers-hidebots": "Skrij bote",
-	"activeusers-hidesysops": "Skrij administratorje",
 	"activeusers-noresult": "Noben uporabnik ni bil najden.",
 	"activeusers-submit": "Prikaži dejavne uporabnike",
 	"listgrouprights": "Pravice uporabniških skupin",

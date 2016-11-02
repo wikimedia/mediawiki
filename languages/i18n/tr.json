@@ -1857,8 +1857,6 @@
 	"activeusers-intro": "Bu, son $1 {{PLURAL:$1|günde|günde}} bir çeşit etkinlik göstermiş kullanıcıların listesidir.",
 	"activeusers-count": "Son {{PLURAL:$3|günde|$3 günde}} $1 {{PLURAL:$1|eylem|eylem}}",
 	"activeusers-from": "Şununla başlayan kullanıcıları görüntüle:",
-	"activeusers-hidebots": "Botları gizle",
-	"activeusers-hidesysops": "Yöneticileri gizle",
 	"activeusers-noresult": "Kullanıcı bulunamadı.",
 	"listgrouprights": "Kullanıcı grubu hakları",
 	"listgrouprights-summary": "Aşağıdaki bu vikide tanımlanan kullanıcı gruplarının, ilgili erişim haklarıyla birlikte listesidir.\nBireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|daha fazla bilgi]] olabilir.",

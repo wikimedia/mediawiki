@@ -1934,8 +1934,6 @@
 	"activeusers-intro": "此清單為最近 $1 天有活動的使用者。",
 	"activeusers-count": "最近 $3 天內有 $1 次動作",
 	"activeusers-from": "顯示使用者開始自：",
-	"activeusers-hidebots": "隱藏機器人",
-	"activeusers-hidesysops": "隱藏管理員",
 	"activeusers-noresult": "查無使用者。",
 	"activeusers-submit": "顯示活動中的使用者",
 	"listgrouprights": "使用者群組權限",

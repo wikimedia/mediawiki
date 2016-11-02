@@ -1955,8 +1955,6 @@
 	"activeusers-intro": "这是在过去$1{{PLURAL:$1|天}}有过某种活动的用户的列表。",
 	"activeusers-count": "过去$3天有$1次操作",
 	"activeusers-from": "显示用户开始于：",
-	"activeusers-hidebots": "隐藏机器人",
-	"activeusers-hidesysops": "隐藏管理员",
 	"activeusers-noresult": "找不到用户。",
 	"activeusers-submit": "显示活跃用户",
 	"listgrouprights": "用户组权限",

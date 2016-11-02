@@ -1739,8 +1739,6 @@
 	"activeusers-intro": "Ovo je spisak korisnika koji su imali neku aktivnost u {{PLURAL:$1|posljednji $1 dan|posljednja $1 dana|posljednjih $1 dana}}.",
 	"activeusers-count": "$1 {{PLURAL:$1|izmjena|izmjene|izmjena}} u {{PLURAL:$3|posljednji $3 dan|posljednja $3 dana|posljednjih $3 dana}}",
 	"activeusers-from": "Prikaži korisnike koji počinju sa:",
-	"activeusers-hidebots": "Sakrij botove",
-	"activeusers-hidesysops": "Sakrij administratore",
 	"activeusers-noresult": "Nije pronađen korisnik.",
 	"listgrouprights": "Prava korisničkih grupa",
 	"listgrouprights-summary": "Slijedi spisak korisničkih grupa na ovoj wiki, s njihovim pripadajućim pravima pristupa.\nMoguće je da o svakoj grupi postoje [[{{MediaWiki:Listgrouprights-helppage}}|dodatne informacije]].",
