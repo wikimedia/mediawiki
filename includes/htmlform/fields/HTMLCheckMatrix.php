@@ -65,7 +65,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		if ( count( $validValues ) == count( $value ) ) {
 			return true;
 		} else {
-			return $this->msg( 'htmlform-select-badoption' )->parse();
+			return $this->msg( 'htmlform-select-badoption' );
 		}
 	}
 

@@ -16,7 +16,7 @@ class HTMLSelectField extends HTMLFormField {
 		if ( in_array( strval( $value ), $validOptions, true ) ) {
 			return true;
 		} else {
-			return $this->msg( 'htmlform-select-badoption' )->parse();
+			return $this->msg( 'htmlform-select-badoption' );
 		}
 	}
 

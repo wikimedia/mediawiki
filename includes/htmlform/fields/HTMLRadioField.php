@@ -27,7 +27,7 @@ class HTMLRadioField extends HTMLFormField {
 		}
 
 		if ( !is_string( $value ) && !is_int( $value ) ) {
-			return $this->msg( 'htmlform-required' )->parse();
+			return $this->msg( 'htmlform-required' );
 		}
 
 		$validOptions = HTMLFormField::flattenOptions( $this->getOptions() );
@@ -35,7 +35,7 @@ class HTMLRadioField extends HTMLFormField {
 		if ( in_array( strval( $value ), $validOptions, true ) ) {
 			return true;
 		} else {
-			return $this->msg( 'htmlform-select-badoption' )->parse();
+			return $this->msg( 'htmlform-select-badoption' );
 		}
 	}
 

@@ -18,7 +18,7 @@ class HTMLIntField extends HTMLFloatField {
 		# input does not require its value to be numeric).  If you want a tidier
 		# value to, eg, save in the DB, clean it up with intval().
 		if ( !preg_match( '/^((\+|\-)?\d+)?$/', trim( $value ) ) ) {
-			return $this->msg( 'htmlform-int-invalid' )->parseAsBlock();
+			return $this->msg( 'htmlform-int-invalid' );
 		}
 
 		return true;
