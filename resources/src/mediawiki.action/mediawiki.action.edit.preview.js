@@ -245,7 +245,7 @@
 					$( '<span>' ).addClass( 'comment' ).html(
 						// There is no equivalent to rawParams
 						mw.message( 'parentheses' ).escaped()
-							.replace( '$1', parse.parsedsummary )
+							.replace( '$1', parse.parsedsummary.replace( /\$/g, '$$$$' ) )
 					)
 				);
 			}

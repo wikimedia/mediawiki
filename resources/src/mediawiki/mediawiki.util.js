@@ -87,7 +87,7 @@
 				// wfUrlencode replacements
 				.replace( /%3B/g, ';' )
 				.replace( /%40/g, '@' )
-				.replace( /%24/g, '$' )
+				.replace( /%24/g, '$$' ) // The pattern $$ inserts a single $
 				.replace( /%21/g, '!' )
 				.replace( /%2A/g, '*' )
 				.replace( /%28/g, '(' )
