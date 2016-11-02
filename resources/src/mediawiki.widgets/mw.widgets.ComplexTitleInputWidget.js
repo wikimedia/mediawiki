@@ -51,7 +51,6 @@
 	OO.inheritClass( mw.widgets.ComplexTitleInputWidget, OO.ui.Widget );
 
 	/* Static Methods */
-	/*jshint -W024*/
 
 	/**
 	 * @inheritdoc
@@ -84,8 +83,6 @@
 		);
 		return state;
 	};
-
-	/*jshint +W024*/
 
 	/* Methods */
 

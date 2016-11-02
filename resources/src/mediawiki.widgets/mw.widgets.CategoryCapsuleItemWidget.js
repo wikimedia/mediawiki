@@ -146,7 +146,6 @@
 		this.$label.replaceWith( this.$link );
 		this.setLabelElement( this.$link );
 
-		/*jshint -W024*/
 		if ( !this.constructor.static.pageExistenceCaches[ this.apiUrl ] ) {
 			this.constructor.static.pageExistenceCaches[ this.apiUrl ] =
 				new PageExistenceCache( new mw.ForeignApi( this.apiUrl ) );
@@ -156,7 +155,6 @@
 			.done( function ( exists ) {
 				widget.setMissing( !exists );
 			} );
-		/*jshint +W024*/
 	};
 
 	/* Setup */
@@ -165,7 +163,6 @@
 
 	/* Static Properties */
 
-	/*jshint -W024*/
 	/**
 	 * Map of API URLs to PageExistenceCache objects.
 	 *
@@ -176,7 +173,6 @@
 	mw.widgets.CategoryCapsuleItemWidget.static.pageExistenceCaches = {
 		'': new PageExistenceCache()
 	};
-	/*jshint +W024*/
 
 	/* Methods */
 

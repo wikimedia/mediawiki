@@ -4,8 +4,6 @@
  */
 ( function ( mw, $ ) {
 
-	/*jshint -W024*/
-
 	/**
 	 * Helper function for hide-if to find the nearby form field.
 	 *
