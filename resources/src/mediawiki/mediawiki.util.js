@@ -128,7 +128,8 @@
 					? util.wikiScript() + '?title=' + util.wikiUrlencode( title ) + '&' + query
 					: util.wikiScript() + '?' + query;
 			} else {
-				url = mw.config.get( 'wgArticlePath' ).replace( '$1', util.wikiUrlencode( title ) );
+				url = mw.config.get( 'wgArticlePath' )
+					.replace( '$1', util.wikiUrlencode( title ).replace( /\$/g, '$$$$' ) );
 			}
 
 			// Append the encoded fragment

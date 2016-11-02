@@ -150,6 +150,10 @@
 		href = mw.util.getUrl( 'Foo:Sandbox? 5+5=10! (test)/sub ' );
 		assert.equal( href, '/wiki/Foo:Sandbox%3F_5%2B5%3D10!_(test)/sub_', 'complex title' );
 
+		// T149767
+		href = mw.util.getUrl( 'My$$test$$$$$title' );
+		assert.equal( href, '/wiki/My$$test$$$$$title', 'title with multiple consecutive dollar signs' );
+
 		href = mw.util.getUrl();
 		assert.equal( href, '/wiki/Foobar', 'default title' );
 
