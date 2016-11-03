@@ -99,12 +99,18 @@
 			'Wget/1.10.1 (Red Hat modified)',
 			// Unknown
 			'I\'m an unknown browser',
+			'I\'m an unknown Glass browser',
 			// Empty
 			''
 		],
 		blacklisted: [
 			/* Grade C */
 
+			// PlayStation
+			'Mozilla/5.0 (PLAYSTATION 3; 1.10)',
+			'Mozilla/5.0 (PLAYSTATION 3; 3.55)',
+			'Mozilla/5.0 (PLAYSTATION 3 4.21) AppleWebKit/531.22.8 (KHTML, like Gecko)',
+			'Mozilla/5.0 (PlayStation 4 1.70) AppleWebKit/536.26 (KHTML, like Gecko)',
 			// Open WebOS < 1.5 (Palm Pre, Palm Pixi)
 			'Mozilla/5.0 (webOS/1.0; U; en-US) AppleWebKit/525.27.1 (KHTML, like Gecko) Version/1.0 Safari/525.27.1 Pre/1.0',
 			'Mozilla/5.0 (webOS/1.4.0; U; en-US) AppleWebKit/532.2 (KHTML, like Gecko) Version/1.0 Safari/532.2 Pixi/1.1 ',

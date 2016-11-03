@@ -64,10 +64,8 @@ function isCompatible( str ) {
 		// Hardcoded exceptions for browsers that pass the requirement but we don't want to
 		// support in the modern run-time.
 		&& !(
-			ua.match( /webOS\/1\.[0-4]/ ) ||
-			ua.match( /PlayStation/i ) ||
-			ua.match( /SymbianOS|Series60|NetFront|Opera Mini|S40OviBrowser|MeeGo/ ) ||
-			( ua.match( /Glass/ ) && ua.match( /Android/ ) )
+			ua.match( /webOS\/1\.[0-4]|SymbianOS|Series60|NetFront|Opera Mini|S40OviBrowser|MeeGo|Android.+Glass/ ) ||
+			ua.match( /PlayStation/i )
 		)
 	);
 }
