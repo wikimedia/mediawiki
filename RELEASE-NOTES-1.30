@@ -213,6 +213,7 @@ changes to languages because of Phabricator reports.
   page_restrictions.pr_user, tag_summary.ts_log_id, tag_summary.ts_rev_id and
   user_properties.up_user have all been made unsigned on MySQL.
 * DB_SLAVE is deprecated. DB_REPLICA should be used instead.
+* wfShellExec() and related functions are deprecated, use Shell::command().
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
