@@ -5,6 +5,9 @@ THIS IS NOT A RELEASE YET
 MediaWiki 1.28 is an alpha-quality branch and is not recommended for use in
 production.
 
+=== Changes since 1.28.0rc0 ===
+* (T149759) manifest_version: 2 was removed.
+
 === Configuration changes in 1.28 ===
 * $wgSend404Code now affects status code of action=history if the page is not there.
 * BREAKING CHANGE: $wgHTTPProxy is now *required* for all external requests
