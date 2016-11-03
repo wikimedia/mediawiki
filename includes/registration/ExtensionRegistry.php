@@ -21,7 +21,7 @@ class ExtensionRegistry {
 	/**
 	 * Version of the highest supported manifest version
 	 */
-	const MANIFEST_VERSION = 2;
+	const MANIFEST_VERSION = 1;
 
 	/**
 	 * Version of the oldest supported manifest version

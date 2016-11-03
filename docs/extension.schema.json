@@ -653,22 +653,20 @@
 			],
 			"description": "A function to be called right after MediaWiki processes this file"
 		},
-		"config_prefix": {
-			"type": "string",
-			"default": "wg",
-			"description": "Prefix to put in front of configuration settings when exporting them to $GLOBALS"
-		},
 		"config": {
 			"type": "object",
 			"description": "Configuration options for this extension",
+			"properties": {
+				"_prefix": {
+					"type": "string",
+					"default": "wg",
+					"description": "Prefix to put in front of configuration settings when exporting them to $GLOBALS"
+				}
+			},
 			"patternProperties": {
 				"^[a-zA-Z_\u007f-\u00ff][a-zA-Z0-9_\u007f-\u00ff]*$": {
-					"type": "object",
 					"properties": {
-						"value": {
-							"required": true
-						},
-						"merge_strategy": {
+						"_merge_strategy": {
 							"type": "string",
 							"enum": [
 								"array_merge_recursive",
@@ -678,15 +676,6 @@
 								"array_merge"
 							],
 							"default": "array_merge"
-						},
-						"path": {
-							"description": "Whether this should be interpreted as a filesystem path, relative to extension directory root",
-							"type": "boolean",
-							"default": false
-						},
-						"description": {
-							"type": ["string", "array"],
-							"description": "A description of the config setting, mostly for documentation/developers"
 						}
 					}
 				}
