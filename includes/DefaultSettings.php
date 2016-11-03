@@ -4363,9 +4363,9 @@ $wgTranscludeCacheExpiry = 3600;
  * @since 1.28
  */
 $wgEnableMagicLinks = [
-	'ISBN' => true,
-	'PMID' => true,
-	'RFC' => true
+	'ISBN' => false,
+	'PMID' => false,
+	'RFC' => false
 ];
 
 /** @} */ # end of parser settings }
