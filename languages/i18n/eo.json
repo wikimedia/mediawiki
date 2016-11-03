@@ -1904,6 +1904,7 @@
 	"activeusers-intro": "Jen listo de uzantoj kiu faris iom da agoj dum la lastaj $1 {{PLURAL:$1|tago|tagoj}}.",
 	"activeusers-count": "$1 {{PLURAL:$1|ago|agoj}} dum la {{PLURAL:$3|lasta tago|lastaj $3 tagoj}}",
 	"activeusers-from": "Montri uzantojn ekde:",
+	"activeusers-groups": "Montri uzantojn apartenantajn al grupoj:",
 	"activeusers-noresult": "Neniuj uzantoj trovitaj.",
 	"activeusers-submit": "Montri la agemajn uzantojn",
 	"listgrouprights": "Gruprajtoj de uzantoj",

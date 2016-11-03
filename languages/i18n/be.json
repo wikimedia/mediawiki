@@ -28,7 +28,8 @@
 			"Goshaproject",
 			"Nemo bis",
 			"SamGold",
-			"Liashko"
+			"Liashko",
+			"Mechanizatar"
 		]
 	},
 	"tog-underline": "Падкрэсліваць спасылкі:",
@@ -958,7 +959,7 @@
 	"searchprofile-advanced-tooltip": "Шукаць у дадатковых прасторах назваў",
 	"search-result-size": "$1 ({{PLURAL:$2|1 слова|$2 словы|$2 словаў}})",
 	"search-result-category-size": "{{PLURAL:$1|$1 элемент|$1 элемента|$1 элементаў}} ({{PLURAL:$2|$2 падкатэгорыя|$2 падкатэгорыі|$2 падкатэгорый}}, {{PLURAL:$3|$3 файл|$3 файла|$3 файлаў}})",
-	"search-redirect": "(перасылка $1)",
+	"search-redirect": "(перанакіраванне з $1)",
 	"search-section": "(падраздзел $1)",
 	"search-category": "(катэгорыя $1)",
 	"search-file-match": "(адпавядае змесціву файла)",
@@ -1862,8 +1863,6 @@
 	"activeusers-intro": "Гэта пералік удзельнікаў, якія нешта рабілі за апошнія $1 {{PLURAL:$1|дзень|дзён}}.",
 	"activeusers-count": "$1 {{PLURAL:$1|дзеянне|дзеянні|дзеянняў}} за апошні{{PLURAL:$3| дзень|я $3 дні|я $3 дзён}}",
 	"activeusers-from": "Паказ, пачынаючы з:",
-	"activeusers-hidebots": "Без робатаў",
-	"activeusers-hidesysops": "Без адміністратараў",
 	"activeusers-noresult": "Няма такіх удзельнікаў.",
 	"activeusers-submit": "Паказаць актыўных удзельнікаў",
 	"listgrouprights": "Дазволы для груп удзельнікаў",

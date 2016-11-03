@@ -1893,6 +1893,7 @@
 	"activeusers-intro": "Toto je seznam uživatelů, kteří byli nějak aktivní v {{PLURAL:$1|posledním dni|posledních $1 dnech}}.",
 	"activeusers-count": "$1 {{PLURAL:$1|akce|akce|akcí}} během {{PLURAL:$3|posledního dne|posledních $3 dnů}}",
 	"activeusers-from": "Zobrazit uživatele počínaje od:",
+	"activeusers-groups": "Zobrazit uživatele patřící do skupin:",
 	"activeusers-noresult": "Nenalezen žádný uživatel.",
 	"activeusers-submit": "Zobrazit aktivní uživatele",
 	"listgrouprights": "Práva skupin uživatelů",
