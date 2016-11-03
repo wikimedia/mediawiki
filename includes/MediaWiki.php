@@ -676,14 +676,14 @@ class MediaWiki {
 	/**
 	 * @param string $url
 	 * @param IContextSource $context
-	 * @return string|bool Either "local" or "remote" if in the farm, false otherwise
+	 * @return string Either "local", "remote" if in the farm, "external" otherwise
 	 */
 	private static function getUrlDomainDistance( $url, IContextSource $context ) {
 		static $relevantKeys = [ 'host' => true, 'port' => true ];
 
 		$infoCandidate = wfParseUrl( $url );
 		if ( $infoCandidate === false ) {
-			return false;
+			return 'external';
 		}
 
 		$infoCandidate = array_intersect_key( $infoCandidate, $relevantKeys );
@@ -705,7 +705,7 @@ class MediaWiki {
 			}
 		}
 
-		return false;
+		return 'external';
 	}
 
 	/**
