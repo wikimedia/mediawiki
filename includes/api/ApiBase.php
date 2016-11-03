@@ -2351,6 +2351,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param string $warning Warning message
 	 */
 	public function setWarning( $warning ) {
+		wfDeprecated( __METHOD__, '1.29' );
 		$msg = new ApiRawMessage( $warning, 'warning' );
 		$this->getErrorFormatter()->addWarning( $this->getModulePath(), $msg );
 	}
@@ -2369,6 +2370,7 @@ abstract class ApiBase extends ContextSource {
 	 * @throws ApiUsageException always
 	 */
 	public function dieUsage( $description, $errorCode, $httpRespCode = 0, $extradata = null ) {
+		wfDeprecated( __METHOD__, '1.29' );
 		$this->dieWithError(
 			new RawMessage( '$1', [ $description ] ),
 			$errorCode,
@@ -2388,6 +2390,7 @@ abstract class ApiBase extends ContextSource {
 	 * @throws MWException
 	 */
 	public function getErrorFromStatus( $status, &$extraData = null ) {
+		wfDeprecated( __METHOD__, '1.29' );
 		if ( $status->isGood() ) {
 			throw new MWException( 'Successful status passed to ApiBase::dieStatus' );
 		}
@@ -2596,6 +2599,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return [ 'code' => code, 'info' => info ]
 	 */
 	public function parseMsg( $error ) {
+		wfDeprecated( __METHOD__, '1.29' );
 		// Check whether someone passed the whole array, instead of one element as
 		// documented. This breaks if it's actually an array of fallback keys, but
 		// that's long-standing misbehavior introduced in r87627 to incorrectly
@@ -2625,6 +2629,7 @@ abstract class ApiBase extends ContextSource {
 	 * @throws ApiUsageException always
 	 */
 	public function dieUsageMsg( $error ) {
+		wfDeprecated( __METHOD__, '1.29' );
 		$this->dieWithError( $this->parseMsgInternal( $error ) );
 	}
 
@@ -2637,6 +2642,7 @@ abstract class ApiBase extends ContextSource {
 	 * @since 1.21
 	 */
 	public function dieUsageMsgOrDebug( $error ) {
+		wfDeprecated( __METHOD__, '1.29' );
 		$this->dieWithErrorOrDebug( $this->parseMsgInternal( $error ) );
 	}
 
