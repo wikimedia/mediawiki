@@ -18,6 +18,7 @@ production.
   canonical pretty URL when a non-pretty URL is used. It resulted in redirect
   loops in some clients and in some server configurations. This undoes a change
   made in MediaWiki 1.26.
+* (T149759) manifest_version: 2 was removed.
 
 === Configuration changes in 1.28 ===
 * $wgSend404Code now affects status code of action=history if the page is not there.
