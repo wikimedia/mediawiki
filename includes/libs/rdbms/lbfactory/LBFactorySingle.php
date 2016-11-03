@@ -70,20 +70,12 @@ class LBFactorySingle extends LBFactory {
 		return $this->lb;
 	}
 
-	/**
-	 * @param string $cluster External storage cluster name (unused)
-	 * @return LoadBalancerSingle
-	 */
 	public function newExternalLB( $cluster ) {
-		return $this->lb;
+		throw new BadMethodCallException( "Method is not supported." );
 	}
 
-	/**
-	 * @param string $cluster External storage cluster name (unused)
-	 * @return LoadBalancerSingle
-	 */
 	public function getExternalLB( $cluster ) {
-		return $this->lb;
+		throw new BadMethodCallException( "Method is not supported." );
 	}
 
 	/**
