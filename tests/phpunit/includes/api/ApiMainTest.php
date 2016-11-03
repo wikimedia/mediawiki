@@ -496,6 +496,10 @@ class ApiMainTest extends ApiTestCase {
 			MWExceptionHandler::getRedactedTraceAsString( $dbex )
 		)->inLanguage( 'en' )->useDatabase( false )->text();
 
+		MediaWiki\suppressWarnings();
+		$usageEx = new UsageException( 'Usage exception!', 'ue', 0, [ 'foo' => 'bar' ] );
+		MediaWiki\restoreWarnings();
+
 		$apiEx1 = new ApiUsageException( null,
 			StatusValue::newFatal( new ApiRawMessage( 'An error', 'sv-error1' ) ) );
 		TestingAccessWrapper::newFromObject( $apiEx1 )->modulePath = 'foo+bar';
@@ -541,7 +545,7 @@ class ApiMainTest extends ApiTestCase {
 				]
 			],
 			[
-				new UsageException( 'Usage exception!', 'ue', 0, [ 'foo' => 'bar' ] ),
+				$usageEx,
 				[ 'existing-error', 'ue' ],
 				[
 					'warnings' => [
