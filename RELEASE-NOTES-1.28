@@ -76,8 +76,6 @@ production.
 * Added wikimedia/scoped-callback v1.0.0
 * Added wikimedia/wait-condition-loop v1.0.1
 
-==== Removed and replaced external libraries ====
-
 === Bug fixes in 1.28 ===
 * (T146496) action=history pages should return 404 HTTP error code if the page does not exist
 * (T137264) SECURITY: XSS in unclosed internal links
