@@ -94,7 +94,7 @@ abstract class DatabaseMysqlBase extends Database {
 	/**
 	 * @return string
 	 */
-	function getType() {
+	public function getType() {
 		return 'mysql';
 	}
 
@@ -106,7 +106,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @throws Exception|DBConnectionError
 	 * @return bool
 	 */
-	function open( $server, $user, $password, $dbName ) {
+	public function open( $server, $user, $password, $dbName ) {
 		# Close/unset connection handle
 		$this->close();
 
@@ -237,7 +237,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param ResultWrapper|resource $res
 	 * @throws DBUnexpectedError
 	 */
-	function freeResult( $res ) {
+	public function freeResult( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
@@ -262,7 +262,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return stdClass|bool
 	 * @throws DBUnexpectedError
 	 */
-	function fetchObject( $res ) {
+	public function fetchObject( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
@@ -298,7 +298,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return array|bool
 	 * @throws DBUnexpectedError
 	 */
-	function fetchRow( $res ) {
+	public function fetchRow( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
@@ -362,7 +362,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param ResultWrapper|resource $res
 	 * @return int
 	 */
-	function numFields( $res ) {
+	public function numFields( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
@@ -383,7 +383,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param int $n
 	 * @return string
 	 */
-	function fieldName( $res, $n ) {
+	public function fieldName( $res, $n ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
@@ -428,7 +428,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param int $row
 	 * @return bool
 	 */
-	function dataSeek( $res, $row ) {
+	public function dataSeek( $res, $row ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
@@ -448,7 +448,7 @@ abstract class DatabaseMysqlBase extends Database {
 	/**
 	 * @return string
 	 */
-	function lastError() {
+	public function lastError() {
 		if ( $this->mConn ) {
 			# Even if it's non-zero, it can still be invalid
 			MediaWiki\suppressWarnings();
@@ -482,7 +482,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param string $fname
 	 * @return ResultWrapper
 	 */
-	function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
+	public function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
 		return $this->nativeReplace( $table, $rows, $fname );
 	}
 
@@ -518,7 +518,7 @@ abstract class DatabaseMysqlBase extends Database {
 		return (int)$rows;
 	}
 
-	function tableExists( $table, $fname = __METHOD__ ) {
+	public function tableExists( $table, $fname = __METHOD__ ) {
 		$table = $this->tableName( $table, 'raw' );
 		if ( isset( $this->mSessionTempTables[$table] ) ) {
 			return true; // already known to exist and won't show in SHOW TABLES anyway
@@ -534,7 +534,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param string $field
 	 * @return bool|MySQLField
 	 */
-	function fieldInfo( $table, $field ) {
+	public function fieldInfo( $table, $field ) {
 		$table = $this->tableName( $table );
 		$res = $this->query( "SELECT * FROM $table LIMIT 1", __METHOD__, true );
 		if ( !$res ) {
@@ -569,7 +569,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param string $fname
 	 * @return bool|array|null False or null on failure
 	 */
-	function indexInfo( $table, $index, $fname = __METHOD__ ) {
+	public function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		# SHOW INDEX works in MySQL 3.23.58, but SHOW INDEXES does not.
 		# SHOW INDEX should work for 3.x and up:
 		# http://dev.mysql.com/doc/mysql/en/SHOW_INDEX.html
@@ -598,7 +598,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param string $s
 	 * @return string
 	 */
-	function strencode( $s ) {
+	public function strencode( $s ) {
 		return $this->mysqlRealEscapeString( $s );
 	}
 
@@ -638,7 +638,7 @@ abstract class DatabaseMysqlBase extends Database {
 		return strlen( $name ) && $name[0] == '`' && substr( $name, -1, 1 ) == '`';
 	}
 
-	function getLag() {
+	public function getLag() {
 		if ( $this->getLagDetectionMethod() === 'pt-heartbeat' ) {
 			return $this->getLagFromPtHeartbeat();
 		} else {
@@ -768,7 +768,7 @@ abstract class DatabaseMysqlBase extends Database {
 		return [ $row ? $row->ts : null, microtime( true ) ];
 	}
 
-	public function getApproximateLagStatus() {
+	protected function getApproximateLagStatus() {
 		if ( $this->getLagDetectionMethod() === 'pt-heartbeat' ) {
 			// Disable caching since this is fast enough and we don't wan't
 			// to be *too* pessimistic by having both the cache TTL and the
@@ -786,7 +786,7 @@ abstract class DatabaseMysqlBase extends Database {
 		return $approxLag;
 	}
 
-	function masterPosWait( DBMasterPos $pos, $timeout ) {
+	public function masterPosWait( DBMasterPos $pos, $timeout ) {
 		if ( !( $pos instanceof MySQLMasterPos ) ) {
 			throw new InvalidArgumentException( "Position not an instance of MySQLMasterPos" );
 		}
@@ -839,7 +839,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 *
 	 * @return MySQLMasterPos|bool
 	 */
-	function getReplicaPos() {
+	public function getReplicaPos() {
 		$res = $this->query( 'SHOW SLAVE STATUS', __METHOD__ );
 		$row = $this->fetchObject( $res );
 
@@ -867,7 +867,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 *
 	 * @return MySQLMasterPos|bool
 	 */
-	function getMasterPos() {
+	public function getMasterPos() {
 		$res = $this->query( 'SHOW MASTER STATUS', __METHOD__ );
 		$row = $this->fetchObject( $res );
 
@@ -1108,7 +1108,9 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @throws DBUnexpectedError
 	 * @return bool|ResultWrapper
 	 */
-	function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname = __METHOD__ ) {
+	public function deleteJoin(
+		$delTable, $joinTable, $delVar, $joinVar, $conds, $fname = __METHOD__
+	) {
 		if ( !$conds ) {
 			throw new DBUnexpectedError( $this, __METHOD__ . ' called with empty $conds' );
 		}
@@ -1162,7 +1164,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 *
 	 * @return int
 	 */
-	function getServerUptime() {
+	public function getServerUptime() {
 		$vars = $this->getMysqlStatus( 'Uptime' );
 
 		return (int)$vars['Uptime'];
@@ -1173,7 +1175,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 *
 	 * @return bool
 	 */
-	function wasDeadlock() {
+	public function wasDeadlock() {
 		return $this->lastErrno() == 1213;
 	}
 
@@ -1182,11 +1184,11 @@ abstract class DatabaseMysqlBase extends Database {
 	 *
 	 * @return bool
 	 */
-	function wasLockTimeout() {
+	public function wasLockTimeout() {
 		return $this->lastErrno() == 1205;
 	}
 
-	function wasErrorReissuable() {
+	public function wasErrorReissuable() {
 		return $this->lastErrno() == 2013 || $this->lastErrno() == 2006;
 	}
 
@@ -1195,12 +1197,12 @@ abstract class DatabaseMysqlBase extends Database {
 	 *
 	 * @return bool
 	 */
-	function wasReadOnlyError() {
+	public function wasReadOnlyError() {
 		return $this->lastErrno() == 1223 ||
 			( $this->lastErrno() == 1290 && strpos( $this->lastError(), '--read-only' ) !== false );
 	}
 
-	function wasConnectionError( $errno ) {
+	public function wasConnectionError( $errno ) {
 		return $errno == 2013 || $errno == 2006;
 	}
 
@@ -1211,7 +1213,9 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param string $fname
 	 * @return bool
 	 */
-	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = __METHOD__ ) {
+	public function duplicateTableStructure(
+		$oldName, $newName, $temporary = false, $fname = __METHOD__
+	) {
 		$tmp = $temporary ? 'TEMPORARY ' : '';
 		$newName = $this->addIdentifierQuotes( $newName );
 		$oldName = $this->addIdentifierQuotes( $oldName );
@@ -1227,7 +1231,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param string $fname Calling function name
 	 * @return array
 	 */
-	function listTables( $prefix = null, $fname = __METHOD__ ) {
+	public function listTables( $prefix = null, $fname = __METHOD__ ) {
 		$result = $this->query( "SHOW TABLES", $fname );
 
 		$endArray = [];
@@ -1263,7 +1267,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param string $which
 	 * @return array
 	 */
-	function getMysqlStatus( $which = "%" ) {
+	private function getMysqlStatus( $which = "%" ) {
 		$res = $this->query( "SHOW STATUS LIKE '{$which}'" );
 		$status = [];
 
