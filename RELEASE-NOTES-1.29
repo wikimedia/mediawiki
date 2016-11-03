@@ -38,6 +38,8 @@ production.
 ==== Removed and replaced external libraries ====
 
 === Bug fixes in 1.29 ===
+* (T62604) Core parser functions returning a number now format the number according
+  to the page content language, not wiki content language.
 
 === Action API changes in 1.29 ===
 * Submitting sensitive authentication request parameters to action=clientlogin,
