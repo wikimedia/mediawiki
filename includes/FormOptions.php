@@ -53,7 +53,7 @@ class FormOptions implements ArrayAccess {
 	 */
 	const INTNULL = 3;
 	/** Array type, maps guessType() to WebRequest::getArray()
-	 * @since 1.28 */
+	 * @since 1.29 */
 	const ARR = 5;
 	/* @} */
 
