@@ -36,15 +36,23 @@ class ActiveUsersPager extends UsersPager {
 	protected $opts;
 
 	/**
-	 * @var string[]
+	 * @var array
 	 */
-	protected $groups;
+	protected $hideGroups = [];
+
+	/**
+	 * @var array
+	 */
+	protected $hideRights = [];
 
 	/**
 	 * @var array
 	 */
 	private $blockStatusByUid;
 
+    protected $group;
+
+    protected $right;
 	/**
 	 * @param IContextSource $context
 	 * @param FormOptions $opts
@@ -63,7 +71,24 @@ class ActiveUsersPager extends UsersPager {
 			}
 		}
 
-		$this->groups = $opts->getValue( 'groups' );
+
+        $this->group = $opts->getValue( 'groups' );
+
+        /*check for no selection of groups*/
+        if($this->group!=''){ 
+            $this->hideGroups[] = $this->group;
+        }
+
+        
+
+         $this->right = $opts->getValue( 'rights' );
+
+         /*check for no selection of rights*/
+        if($this->right!=''){
+            $this->hideRights[] = $this->right;
+        }
+
+		
 	}
 
 	function getIndexField() {
@@ -75,7 +100,6 @@ class ActiveUsersPager extends UsersPager {
 
 		$activeUserSeconds = $this->getConfig()->get( 'ActiveUserDays' ) * 86400;
 		$timestamp = $dbr->timestamp( wfTimestamp( TS_UNIX ) - $activeUserSeconds );
-		$tables = [ 'querycachetwo', 'user', 'recentchanges' ];
 		$conds = [
 			'qcc_type' => 'activeusers',
 			'qcc_namespace' => NS_USER,
@@ -88,11 +112,6 @@ class ActiveUsersPager extends UsersPager {
 		];
 		if ( $this->requestedUser != '' ) {
 			$conds[] = 'qcc_title >= ' . $dbr->addQuotes( $this->requestedUser );
-		}
-		if ( $this->groups !== [] ) {
-			$tables[] = 'user_groups';
-			$conds[] = 'ug_user = user_id';
-			$conds['ug_group'] = $this->groups;
 		}
 		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
 			$conds[] = 'NOT EXISTS (' . $dbr->selectSQLText(
@@ -107,7 +126,7 @@ class ActiveUsersPager extends UsersPager {
 		}
 
 		return [
-			'tables' => $tables,
+			'tables' => [ 'querycachetwo', 'user', 'recentchanges' ],
 			'fields' => [ 'user_name', 'user_id', 'recentedits' => 'COUNT(*)', 'qcc_title' ],
 			'options' => $options,
 			'conds' => $conds
@@ -150,8 +169,26 @@ class ActiveUsersPager extends UsersPager {
 		$list = [];
 		$user = User::newFromId( $row->user_id );
 
+		// User right filter
+		foreach ( $this->hideRights as $right ) {
+			// Calling User::getRights() within the loop so that
+			// if the hideRights() filter is empty, we don't have to
+			// trigger the lazy-init of the big userrights array in the
+			// User object
+			if ( in_array( $right, $user->getRights() ) ) {
+				return '';
+			}
+		}
+
+		// User group filter
+		// Note: This is a different loop than for user rights,
+		// because we're reusing it to build the group links
+		// at the same time
 		$groups_list = self::getGroups( intval( $row->user_id ), $this->userGroupCache );
 		foreach ( $groups_list as $group ) {
+			if ( in_array( $group, $this->hideGroups ) ) {
+				return '';
+			}
 			$list[] = self::buildGroupLink( $group, $userName );
 		}
 

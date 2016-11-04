@@ -49,6 +49,7 @@ class SpecialActiveUsers extends SpecialPage {
 		$this->outputHeader();
 
 		$opts = new FormOptions();
+        $options = new FormOptions();
 
 		$opts->add( 'username', '' );
 		$opts->add( 'groups', [] );
@@ -59,12 +60,14 @@ class SpecialActiveUsers extends SpecialPage {
 			$opts->setValue( 'username', $par );
 		}
 
-		$pager = new ActiveUsersPager( $this->getContext(), $opts );
+        $pager = new ActiveUsersPager( $this->getContext(), $opts );
 		$usersBody = $pager->getBody();
 
-		$this->buildForm();
+		$days = $this->getConfig()->get( 'ActiveUserDays' );
 
-		if ( $usersBody ) {
+        $this->buildForm();
+
+        if ( $usersBody ) {
 			$out->addHTML(
 				$pager->getNavigationBar() .
 				Html::rawElement( 'ul', [], $usersBody ) .
@@ -73,17 +76,26 @@ class SpecialActiveUsers extends SpecialPage {
 		} else {
 			$out->addWikiMsg( 'activeusers-noresult' );
 		}
-	}
 
-	/**
-	 * Generate and output the form
-	 */
+	
+}
+
 	protected function buildForm() {
 		$groups = User::getAllGroups();
 
 		foreach ( $groups as $group ) {
 			$msg = User::getGroupName( $group );
-			$options[$msg] = $group;
+			$options_r->add($msg,'','check');/* checkbox enables user to see what he/she has selected*/
+            
+		}
+
+       $rights = User::getAllRights();
+       $count=1;
+       foreach ( $right as $rights ) {
+			
+			$options_r->add($right.$count,'','check');/*for hiding bots*/
+            $count++;
+            
 		}
 
 		$formDescriptor = [
@@ -101,9 +113,18 @@ class SpecialActiveUsers extends SpecialPage {
 				'label-message' => 'activeusers-groups',
 				'options' => $options,
 			],
+
+            'rights'[
+                'type' => 'multiselect',
+				'dropdown' => true,
+				'flatlist' => true,
+				'name' => 'rights',
+				'label-message' => 'activeuser-rights',
+				'options' => $options_r,
+            ]
 		];
 
-		HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
 			// For the 'multiselect' field values to be preserved on submit
 			->setFormIdentifier( 'specialactiveusers' )
 			->setIntro( $this->getIntroText() )
@@ -116,11 +137,10 @@ class SpecialActiveUsers extends SpecialPage {
 			->displayForm( false );
 	}
 
-	/**
-	 * Return introductory message.
-	 * @return string
-	 */
-	protected function getIntroText() {
+		
+	
+
+    protected function getIntroText() {
 		$days = $this->getConfig()->get( 'ActiveUserDays' );
 
 		$intro = $this->msg( 'activeusers-intro' )->numParams( $days )->parse();
@@ -147,9 +167,7 @@ class SpecialActiveUsers extends SpecialPage {
 		}
 
 		return $intro;
+
+	
 	}
 
-	protected function getGroupName() {
-		return 'users';
-	}
-}
