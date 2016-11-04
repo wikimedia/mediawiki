@@ -4401,6 +4401,9 @@ HTML
 		return strtr( $result, [ "&#x0" => "&#x" ] );
 	}
 
+	/**
+	 * @since 1.29
+	 */
 	protected function addEditNotices() {
 		global $wgOut;
 
@@ -4419,6 +4422,9 @@ HTML
 		}
 	}
 
+	/**
+	 * @since 1.29
+	 */
 	protected function addTalkPageText() {
 		global $wgOut;
 
