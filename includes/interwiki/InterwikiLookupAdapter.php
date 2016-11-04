@@ -30,7 +30,7 @@ namespace MediaWiki\Interwiki;
 use Interwiki;
 use Site;
 use SiteLookup;
-use MediawikiSite;
+use MediaWikiSite;
 
 class InterwikiLookupAdapter implements InterwikiLookup {
 
@@ -155,7 +155,7 @@ class InterwikiLookupAdapter implements InterwikiLookup {
 		$interwikis = [];
 		foreach ( $site->getInterwikiIds() as $interwiki ) {
 			$url = $site->getPageUrl();
-			if ( $site instanceof MediawikiSite ) {
+			if ( $site instanceof MediaWikiSite ) {
 				$path = $site->getFileUrl( 'api.php' );
 			} else {
 				$path = '';
