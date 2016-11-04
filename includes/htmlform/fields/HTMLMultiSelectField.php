@@ -27,7 +27,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		}
 	}
 
-	function validate( $value, $alldata ) {
+	public function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
 		if ( $p !== true ) {
@@ -50,7 +50,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		}
 	}
 
-	function getInputHTML( $value ) {
+	public function getInputHTML( $value ) {
 		if ( isset( $this->mParams['dropdown'] ) ) {
 			$this->mParent->getOutput()->addModules( 'jquery.chosen' );
 		}
@@ -61,7 +61,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		return $html;
 	}
 
-	function formatOptions( $options, $value ) {
+	public function formatOptions( $options, $value ) {
 		$html = '';
 
 		$attribs = $this->getAttributes( [ 'disabled', 'tabindex' ] );
@@ -151,7 +151,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	 *
 	 * @return string
 	 */
-	function loadDataFromRequest( $request ) {
+	public function loadDataFromRequest( $request ) {
 		if ( $this->isSubmitAttempt( $request ) ) {
 			// Checkboxes are just not added to the request arrays if they're not checked,
 			// so it's perfectly possible for there not to be an entry at all
@@ -162,7 +162,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		}
 	}
 
-	function getDefault() {
+	public function getDefault() {
 		if ( isset( $this->mDefault ) ) {
 			return $this->mDefault;
 		} else {
@@ -170,7 +170,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		}
 	}
 
-	function filterDataForSubmit( $data ) {
+	public function filterDataForSubmit( $data ) {
 		$data = HTMLFormField::forceToStringRecursive( $data );
 		$options = HTMLFormField::flattenOptions( $this->getOptions() );
 

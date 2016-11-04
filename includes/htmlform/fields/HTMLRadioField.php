@@ -19,7 +19,7 @@ class HTMLRadioField extends HTMLFormField {
 		}
 	}
 
-	function validate( $value, $alldata ) {
+	public function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
 		if ( $p !== true ) {
@@ -47,13 +47,13 @@ class HTMLRadioField extends HTMLFormField {
 	 *
 	 * @return string
 	 */
-	function getInputHTML( $value ) {
+	public function getInputHTML( $value ) {
 		$html = $this->formatOptions( $this->getOptions(), strval( $value ) );
 
 		return $html;
 	}
 
-	function getInputOOUI( $value ) {
+	public function getInputOOUI( $value ) {
 		$options = [];
 		foreach ( $this->getOptions() as $label => $data ) {
 			$options[] = [
@@ -76,7 +76,7 @@ class HTMLRadioField extends HTMLFormField {
 		return true;
 	}
 
-	function formatOptions( $options, $value ) {
+	public function formatOptions( $options, $value ) {
 		global $wgUseMediaWikiUIEverywhere;
 
 		$html = '';

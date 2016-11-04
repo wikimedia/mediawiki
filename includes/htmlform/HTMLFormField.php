@@ -42,7 +42,7 @@ abstract class HTMLFormField {
 	 *
 	 * @return string Valid HTML.
 	 */
-	abstract function getInputHTML( $value );
+	abstract public function getInputHTML( $value );
 
 	/**
 	 * Same as getInputHTML, but returns an OOUI object.
@@ -51,7 +51,7 @@ abstract class HTMLFormField {
 	 * @param string $value
 	 * @return OOUI\Widget|false
 	 */
-	function getInputOOUI( $value ) {
+	public function getInputOOUI( $value ) {
 		return false;
 	}
 
@@ -74,7 +74,7 @@ abstract class HTMLFormField {
 	 *
 	 * @return Message
 	 */
-	function msg() {
+	public function msg() {
 		$args = func_get_args();
 
 		if ( $this->mParent ) {
@@ -266,7 +266,7 @@ abstract class HTMLFormField {
 	 * @param array $alldata The data collected from the form
 	 * @return bool
 	 */
-	function isHidden( $alldata ) {
+	public function isHidden( $alldata ) {
 		if ( !$this->mHideIf ) {
 			return false;
 		}
@@ -284,7 +284,7 @@ abstract class HTMLFormField {
 	 *
 	 * @return bool True to cancel the submission
 	 */
-	function cancelSubmit( $value, $alldata ) {
+	public function cancelSubmit( $value, $alldata ) {
 		return false;
 	}
 
@@ -299,7 +299,7 @@ abstract class HTMLFormField {
 	 * @return bool|string True on success, or String error to display, or
 	 *   false to fail validation without displaying an error.
 	 */
-	function validate( $value, $alldata ) {
+	public function validate( $value, $alldata ) {
 		if ( $this->isHidden( $alldata ) ) {
 			return true;
 		}
@@ -318,7 +318,7 @@ abstract class HTMLFormField {
 		return true;
 	}
 
-	function filter( $value, $alldata ) {
+	public function filter( $value, $alldata ) {
 		if ( isset( $this->mFilterCallback ) ) {
 			$value = call_user_func( $this->mFilterCallback, $value, $alldata, $this->mParent );
 		}
@@ -370,7 +370,7 @@ abstract class HTMLFormField {
 	 * @param WebRequest $request
 	 * @return string The value
 	 */
-	function loadDataFromRequest( $request ) {
+	public function loadDataFromRequest( $request ) {
 		if ( $request->getCheck( $this->mName ) ) {
 			return $request->getText( $this->mName );
 		} else {
@@ -386,7 +386,7 @@ abstract class HTMLFormField {
 	 * @since 1.22 The 'label' attribute no longer accepts raw HTML, use 'label-raw' instead
 	 * @throws MWException
 	 */
-	function __construct( $params ) {
+	public function __construct( $params ) {
 		$this->mParams = $params;
 
 		if ( isset( $params['parent'] ) && $params['parent'] instanceof HTMLForm ) {
@@ -472,7 +472,7 @@ abstract class HTMLFormField {
 	 *
 	 * @return string Complete HTML table row.
 	 */
-	function getTableRow( $value ) {
+	public function getTableRow( $value ) {
 		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
 		$inputHtml = $this->getInputHTML( $value );
 		$fieldType = get_class( $this );
@@ -903,7 +903,7 @@ abstract class HTMLFormField {
 	 * @since 1.28
 	 * @return string[]
 	 */
-	function getNotices() {
+	public function getNotices() {
 		$notices = [];
 
 		if ( isset( $this->mParams['notice-message'] ) ) {
@@ -924,11 +924,11 @@ abstract class HTMLFormField {
 	/**
 	 * @return string HTML
 	 */
-	function getLabel() {
+	public function getLabel() {
 		return is_null( $this->mLabel ) ? '' : $this->mLabel;
 	}
 
-	function getLabelHtml( $cellAttributes = [] ) {
+	public function getLabelHtml( $cellAttributes = [] ) {
 		# Don't output a for= attribute for labels with no associated input.
 		# Kind of hacky here, possibly we don't want these to be <label>s at all.
 		$for = [];
@@ -967,7 +967,7 @@ abstract class HTMLFormField {
 		return $html;
 	}
 
-	function getDefault() {
+	public function getDefault() {
 		if ( isset( $this->mDefault ) ) {
 			return $this->mDefault;
 		} else {
@@ -1036,7 +1036,7 @@ abstract class HTMLFormField {
 	 * @param array $array
 	 * @return array
 	 */
-	static function forceToStringRecursive( $array ) {
+	public static function forceToStringRecursive( $array ) {
 		if ( is_array( $array ) ) {
 			return array_map( [ __CLASS__, 'forceToStringRecursive' ], $array );
 		} else {

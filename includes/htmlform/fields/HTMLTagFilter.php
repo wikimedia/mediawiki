@@ -5,7 +5,7 @@
 class HTMLTagFilter extends HTMLFormField {
 	protected $tagFilter;
 
-	function getTableRow( $value ) {
+	public function getTableRow( $value ) {
 		$this->tagFilter = ChangeTags::buildTagFilterSelector( $value );
 		if ( $this->tagFilter ) {
 			return parent::getTableRow( $value );
@@ -13,7 +13,7 @@ class HTMLTagFilter extends HTMLFormField {
 		return '';
 	}
 
-	function getDiv( $value ) {
+	public function getDiv( $value ) {
 		$this->tagFilter = ChangeTags::buildTagFilterSelector( $value );
 		if ( $this->tagFilter ) {
 			return parent::getDiv( $value );
@@ -21,7 +21,7 @@ class HTMLTagFilter extends HTMLFormField {
 		return '';
 	}
 
-	function getInputHTML( $value ) {
+	public function getInputHTML( $value ) {
 		if ( $this->tagFilter ) {
 			// we only need the select field, HTMLForm should handle the label
 			return $this->tagFilter[1];

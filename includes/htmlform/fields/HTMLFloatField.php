@@ -4,11 +4,11 @@
  * A field that will contain a numeric value
  */
 class HTMLFloatField extends HTMLTextField {
-	function getSize() {
+	public function getSize() {
 		return isset( $this->mParams['size'] ) ? $this->mParams['size'] : 20;
 	}
 
-	function validate( $value, $alldata ) {
+	public function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
 		if ( $p !== true ) {

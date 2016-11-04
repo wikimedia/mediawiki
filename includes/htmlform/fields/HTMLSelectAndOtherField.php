@@ -11,7 +11,7 @@
  * @todo FIXME: If made 'required', only the text field should be compulsory.
  */
 class HTMLSelectAndOtherField extends HTMLSelectField {
-	function __construct( $params ) {
+	public function __construct( $params ) {
 		if ( array_key_exists( 'other', $params ) ) {
 			// Do nothing
 		} elseif ( array_key_exists( 'other-message', $params ) ) {
@@ -34,7 +34,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 
 	}
 
-	function getInputHTML( $value ) {
+	public function getInputHTML( $value ) {
 		$select = parent::getInputHTML( $value[1] );
 
 		$textAttribs = [
@@ -64,7 +64,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		return "$select<br />\n$textbox";
 	}
 
-	function getInputOOUI( $value ) {
+	public function getInputOOUI( $value ) {
 		return false;
 	}
 
@@ -73,7 +73,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	 *
 	 * @return array("<overall message>","<select value>","<text field value>")
 	 */
-	function loadDataFromRequest( $request ) {
+	public function loadDataFromRequest( $request ) {
 		if ( $request->getCheck( $this->mName ) ) {
 			$list = $request->getText( $this->mName );
 			$text = $request->getText( $this->mName . '-other' );
@@ -108,11 +108,11 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		return [ $final, $list, $text ];
 	}
 
-	function getSize() {
+	public function getSize() {
 		return isset( $this->mParams['size'] ) ? $this->mParams['size'] : 45;
 	}
 
-	function validate( $value, $alldata ) {
+	public function validate( $value, $alldata ) {
 		# HTMLSelectField forces $value to be one of the options in the select
 		# field, which is not useful here.  But we do want the validation further up
 		# the chain

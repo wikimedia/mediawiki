@@ -4,7 +4,7 @@
  * A field that must contain a number
  */
 class HTMLIntField extends HTMLFloatField {
-	function validate( $value, $alldata ) {
+	public function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
 		if ( $p !== true ) {

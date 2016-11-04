@@ -32,7 +32,7 @@ class HTMLRestrictionsField extends HTMLTextAreaField {
 	 * @param WebRequest $request
 	 * @return string|MWRestrictions Restrictions object or original string if invalid
 	 */
-	function loadDataFromRequest( $request ) {
+	public function loadDataFromRequest( $request ) {
 		if ( !$request->getCheck( $this->mName ) ) {
 			return $this->getDefault();
 		}
