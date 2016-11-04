@@ -145,6 +145,19 @@ class SpecialTrackingCategories extends SpecialPage {
 			ExtensionRegistry::getInstance()->getAttribute( 'TrackingCategories' ),
 			$this->getConfig()->get( 'TrackingCategories' ) // deprecated
 		);
+
+		// Only show magic link tracking categories if they are enabled
+		$enableMagicLinks = $this->getConfig()->get( 'EnableMagicLinks' );
+		if ( $enableMagicLinks['ISBN'] ) {
+			$categories[] = 'magiclink-tracking-isbn';
+		}
+		if ( $enableMagicLinks['RFC'] ) {
+			$categories[] = 'magiclink-tracking-rfc';
+		}
+		if ( $enableMagicLinks['PMID'] ) {
+			$categories[] = 'magiclink-tracking-pmid';
+		}
+
 		$trackingCategories = [];
 		foreach ( $categories as $catMsg ) {
 			/*
