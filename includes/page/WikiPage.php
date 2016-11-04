@@ -2485,13 +2485,13 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		if ( !$protect ) { // No protection at all means unprotection
-			$revCommentMsg = 'unprotectedarticle';
+			$revCommentMsg = 'unprotectedarticle-comment';
 			$logAction = 'unprotect';
 		} elseif ( $isProtected ) {
-			$revCommentMsg = 'modifiedarticleprotection';
+			$revCommentMsg = 'modifiedarticleprotection-comment';
 			$logAction = 'modify';
 		} else {
-			$revCommentMsg = 'protectedarticle';
+			$revCommentMsg = 'protectedarticle-comment';
 			$logAction = 'protect';
 		}
 
@@ -2675,16 +2675,14 @@ class WikiPage implements Page, IDBAccessObject {
 	public function insertProtectNullRevision( $revCommentMsg, array $limit,
 		array $expiry, $cascade, $reason, $user = null
 	) {
-		global $wgContLang;
 		$dbw = wfGetDB( DB_MASTER );
 
 		// Prepare a null revision to be added to the history
-		$editComment = $wgContLang->ucfirst(
-			wfMessage(
-				$revCommentMsg,
-				$this->mTitle->getPrefixedText()
-			)->inContentLanguage()->text()
-		);
+		$editComment = wfMessage(
+			$revCommentMsg,
+			$this->mTitle->getPrefixedText(),
+			$user ? $user->getName() : ''
+		)->inContentLanguage()->text();
 		if ( $reason ) {
 			$editComment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
 		}
