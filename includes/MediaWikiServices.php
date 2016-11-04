@@ -567,7 +567,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
-	 * @since 1.28
+	 * @since 1.29
 	 * @return Parser
 	 */
 	public function getParser() {

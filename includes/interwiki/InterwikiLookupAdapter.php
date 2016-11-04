@@ -21,7 +21,7 @@ namespace MediaWiki\Interwiki;
  *
  * @file
  *
- * @since 1.28
+ * @since 1.29
  * @ingroup InterwikiLookup
  *
  * @license GNU GPL v2+
