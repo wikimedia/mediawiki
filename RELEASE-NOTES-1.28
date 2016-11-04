@@ -34,6 +34,12 @@ production.
   instead of just administrators ('sysop'). Documentation for this feature is
   available at <https://www.mediawiki.org/wiki/Help:ChangeContentModel>.
 * $wgRevisionCacheExpiry is now set to one week by default instead of being disabled.
+* Magic links are now disabled by default, and can be re-enabled by modifying the value
+  of $wgEnableMagicLinks. Their usage is discouraged, but if they are manually enabled,
+  a tracking category will be added to help identify usage and make it easier to migrate
+  away from. If you depend upon magic link functionality, it is requested that you comment
+  on <https://www.mediawiki.org/wiki/Requests_for_comment/Future_of_magic_links> and
+  explain your use case(s).
 
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.
