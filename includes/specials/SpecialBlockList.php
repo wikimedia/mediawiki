@@ -105,6 +105,7 @@ class SpecialBlockList extends SpecialPage {
 		$form = HTMLForm::factory( 'ooui', $fields, $context );
 		$form
 			->setMethod( 'get' )
+			->setFormIdentifier( 'blocklist' )
 			->setWrapperLegendMsg( 'ipblocklist-legend' )
 			->setSubmitTextMsg( 'ipblocklist-submit' )
 			->setSubmitProgressive()
