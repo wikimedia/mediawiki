@@ -15,6 +15,7 @@ class TestSetup {
 		global $wgMainStash;
 		global $wgLanguageConverterCacheType, $wgUseDatabaseMessages;
 		global $wgLocaltimezone, $wgLocalisationCacheConf;
+		global $wgSearchType;
 		global $wgDevelopmentWarnings;
 		global $wgSessionProviders, $wgSessionPbkdf2Iterations;
 		global $wgJobTypeConf;
@@ -49,6 +50,9 @@ class TestSetup {
 		$wgLocaltimezone = 'UTC';
 
 		$wgLocalisationCacheConf['storeClass'] = 'LCStoreNull';
+
+		// Do not bother updating search tables
+		$wgSearchType = 'SearchEngineDummy';
 
 		// Generic MediaWiki\Session\SessionManager configuration for tests
 		// We use CookieSessionProvider because things might be expecting
