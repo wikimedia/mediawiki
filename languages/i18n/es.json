@@ -2008,6 +2008,7 @@
 	"activeusers-intro": "Esta es una lista de usuarios que han tenido alguna actividad en los últimos $1 {{PLURAL:$1|día|días}}.",
 	"activeusers-count": "$1 {{PLURAL:$1|acción|acciones}} en {{PLURAL:$3|el último día|los últimos $3 días}}",
 	"activeusers-from": "Mostrando a los usuarios empezando por:",
+	"activeusers-groups": "Mostrar los usuarios que pertenecen a los grupos:",
 	"activeusers-noresult": "No se encontraron usuarios.",
 	"activeusers-submit": "Mostrar usuarios activos",
 	"listgrouprights": "Permisos de los grupos de usuarios",
