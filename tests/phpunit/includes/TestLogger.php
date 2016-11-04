@@ -33,16 +33,18 @@ use Psr\Log\LogLevel;
  */
 class TestLogger extends \Psr\Log\AbstractLogger {
 	private $collect = false;
+	private $collectContext = false;
 	private $buffer = [];
 	private $filter = null;
 
 	/**
 	 * @param bool $collect Whether to collect logs
 	 * @param callable $filter Filter logs before collecting/printing. Signature is
-	 *  string|null function ( string $message, string $level );
+	 *  string|null function ( string $message, string $level, array $context );
 	 */
-	public function __construct( $collect = false, $filter = null ) {
+	public function __construct( $collect = false, $filter = null, $collectContext = false ) {
 		$this->collect = $collect;
+		$this->collectContext = $collectContext;
 		$this->filter = $filter;
 	}
 
@@ -56,7 +58,8 @@ class TestLogger extends \Psr\Log\AbstractLogger {
 
 	/**
 	 * Return the collected logs
-	 * @return array Array of array( string $level, string $message )
+	 * @return array Array of array( string $level, string $message ), or
+	 *   array( string $level, string $message, array $context ) if $collectContext was true.
 	 */
 	public function getBuffer() {
 		return $this->buffer;
@@ -73,14 +76,18 @@ class TestLogger extends \Psr\Log\AbstractLogger {
 		$message = trim( $message );
 
 		if ( $this->filter ) {
-			$message = call_user_func( $this->filter, $message, $level );
+			$message = call_user_func( $this->filter, $message, $level, $context );
 			if ( $message === null ) {
 				return;
 			}
 		}
 
 		if ( $this->collect ) {
-			$this->buffer[] = [ $level, $message ];
+			if ( $this->collectContext ) {
+				$this->buffer[] = [ $level, $message, $context ];
+			} else {
+				$this->buffer[] = [ $level, $message ];
+			}
 		} else {
 			switch ( $level ) {
 				case LogLevel::DEBUG:
