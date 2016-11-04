@@ -29,7 +29,7 @@
 class HTMLAutoCompleteSelectField extends HTMLTextField {
 	protected $autocomplete = [];
 
-	function __construct( $params ) {
+	public function __construct( $params ) {
 		$params += [
 			'require-match' => false,
 		];
@@ -63,7 +63,7 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 		}
 	}
 
-	function loadDataFromRequest( $request ) {
+	public function loadDataFromRequest( $request ) {
 		if ( $request->getCheck( $this->mName ) ) {
 			$val = $request->getText( $this->mName . '-select', 'other' );
 
@@ -80,7 +80,7 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 		}
 	}
 
-	function validate( $value, $alldata ) {
+	public function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
 		if ( $p !== true ) {
@@ -116,7 +116,7 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 		return $attribs;
 	}
 
-	function getInputHTML( $value ) {
+	public function getInputHTML( $value ) {
 		$oldClass = $this->mClass;
 		$this->mClass = (array)$this->mClass;
 
@@ -170,7 +170,7 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 	 * @param string $value
 	 * @return false
 	 */
-	function getInputOOUI( $value ) {
+	public function getInputOOUI( $value ) {
 		// To be implemented, for now override the function from HTMLTextField
 		return false;
 	}

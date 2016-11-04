@@ -9,11 +9,11 @@
  * size limits are represented using a negative integer.
  */
 class HTMLSizeFilterField extends HTMLIntField {
-	function getSize() {
+	public function getSize() {
 		return isset( $this->mParams['size'] ) ? $this->mParams['size'] : 9;
 	}
 
-	function getInputHTML( $value ) {
+	public function getInputHTML( $value ) {
 		$attribs = [];
 		if ( !empty( $this->mParams['disabled'] ) ) {
 			$attribs['disabled'] = 'disabled';
@@ -42,7 +42,7 @@ class HTMLSizeFilterField extends HTMLIntField {
 	}
 
 	// No OOUI yet
-	function getInputOOUI( $value ) {
+	public function getInputOOUI( $value ) {
 		return false;
 	}
 
@@ -51,7 +51,7 @@ class HTMLSizeFilterField extends HTMLIntField {
 	 *
 	 * @return string
 	 */
-	function loadDataFromRequest( $request ) {
+	public function loadDataFromRequest( $request ) {
 		$size = $request->getInt( $this->mName );
 		if ( !$size ) {
 			return $this->getDefault();

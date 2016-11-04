@@ -48,7 +48,7 @@ class OOUIHTMLForm extends HTMLForm {
 		return $field;
 	}
 
-	function getButtons() {
+	public function getButtons() {
 		$buttons = '';
 
 		// IE<8 has bugs with <button>, so we'll need to avoid them.
@@ -190,7 +190,7 @@ class OOUIHTMLForm extends HTMLForm {
 	 * @param string $elementsType
 	 * @return string
 	 */
-	function getErrorsOrWarnings( $elements, $elementsType ) {
+	public function getErrorsOrWarnings( $elements, $elementsType ) {
 		if ( !in_array( $elementsType, [ 'error', 'warning' ] ) ) {
 			throw new DomainException( $elementsType . ' is not a valid type.' );
 		}
@@ -230,7 +230,7 @@ class OOUIHTMLForm extends HTMLForm {
 		return '';
 	}
 
-	function getHeaderText( $section = null ) {
+	public function getHeaderText( $section = null ) {
 		if ( is_null( $section ) ) {
 			// We handle $this->mHeader elsewhere, in getBody()
 			return '';
@@ -239,7 +239,7 @@ class OOUIHTMLForm extends HTMLForm {
 		}
 	}
 
-	function getBody() {
+	public function getBody() {
 		$fieldset = parent::getBody();
 		// FIXME This only works for forms with no subsections
 		if ( $fieldset instanceof OOUI\FieldsetLayout ) {
@@ -273,7 +273,7 @@ class OOUIHTMLForm extends HTMLForm {
 		return $fieldset;
 	}
 
-	function wrapForm( $html ) {
+	public function wrapForm( $html ) {
 		$form = new OOUI\FormLayout( $this->getFormAttributes() + [
 			'classes' => [ 'mw-htmlform-ooui' ],
 			'content' => new OOUI\HtmlSnippet( $html ),

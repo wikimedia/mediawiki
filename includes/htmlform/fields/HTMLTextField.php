@@ -22,11 +22,11 @@ class HTMLTextField extends HTMLFormField {
 		}
 	}
 
-	function getSize() {
+	public function getSize() {
 		return isset( $this->mParams['size'] ) ? $this->mParams['size'] : 45;
 	}
 
-	function getSpellCheck() {
+	public function getSpellCheck() {
 		$val = isset( $this->mParams['spellcheck'] ) ? $this->mParams['spellcheck'] : null;
 		if ( is_bool( $val ) ) {
 			// "spellcheck" attribute literally requires "true" or "false" to work.
@@ -43,7 +43,7 @@ class HTMLTextField extends HTMLFormField {
 		return !( isset( $this->mParams['type'] ) && $this->mParams['type'] === 'password' );
 	}
 
-	function getInputHTML( $value ) {
+	public function getInputHTML( $value ) {
 		if ( !$this->isPersistent() ) {
 			$value = '';
 		}
@@ -119,7 +119,7 @@ class HTMLTextField extends HTMLFormField {
 		return $type;
 	}
 
-	function getInputOOUI( $value ) {
+	public function getInputOOUI( $value ) {
 		if ( !$this->isPersistent() ) {
 			$value = '';
 		}

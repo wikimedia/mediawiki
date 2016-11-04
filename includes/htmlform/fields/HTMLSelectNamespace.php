@@ -12,7 +12,7 @@ class HTMLSelectNamespace extends HTMLFormField {
 
 	}
 
-	function getInputHTML( $value ) {
+	public function getInputHTML( $value ) {
 		return Html::namespaceSelector(
 			[
 				'selected' => $value,

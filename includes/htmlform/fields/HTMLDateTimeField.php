@@ -75,7 +75,7 @@ class HTMLDateTimeField extends HTMLTextField {
 		return $ret;
 	}
 
-	function loadDataFromRequest( $request ) {
+	public function loadDataFromRequest( $request ) {
 		if ( !$request->getCheck( $this->mName ) ) {
 			return $this->getDefault();
 		}
@@ -85,7 +85,7 @@ class HTMLDateTimeField extends HTMLTextField {
 		return $date ? $this->formatDate( $date ) : $value;
 	}
 
-	function validate( $value, $alldata ) {
+	public function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
 		if ( $p !== true ) {
