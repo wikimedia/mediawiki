@@ -861,7 +861,6 @@ class Preferences {
 			'section' => 'editing/preview',
 			'label-message' => 'tog-uselivepreview',
 		];
-
 	}
 
 	/**
@@ -1614,7 +1613,6 @@ class PreferencesForm extends HTMLForm {
 	 * @return string
 	 */
 	function getButtons() {
-
 		$attrs = [ 'id' => 'mw-prefs-restoreprefs' ];
 
 		if ( !$this->getModifiedUser()->isAllowedAny( 'editmyprivateinfo', 'editmyoptions' ) ) {

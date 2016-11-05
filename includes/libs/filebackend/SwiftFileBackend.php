@@ -176,7 +176,6 @@ class SwiftFileBackend extends FileBackendStore {
 		return isset( $params['headers'] )
 			? $this->getCustomHeaders( $params['headers'] )
 			: [];
-
 	}
 
 	/**

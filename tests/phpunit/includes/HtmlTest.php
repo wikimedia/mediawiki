@@ -92,7 +92,6 @@ class HtmlTest extends MediaWikiTestCase {
 	 * @covers Html::expandAttributes
 	 */
 	public function testExpandAttributesSkipsNullAndFalse() {
-
 		# ## EMPTY ########
 		$this->assertEmpty(
 			Html::expandAttributes( [ 'foo' => null ] ),
@@ -190,7 +189,6 @@ class HtmlTest extends MediaWikiTestCase {
 			Html::expandAttributes( [ 'zero' => 0 ] ),
 			'Number 0 value needs no quotes'
 		);
-
 	}
 
 	/**

@@ -218,7 +218,6 @@ class HistoryAction extends FormlessAction {
 			$pager->getNavigationBar()
 		);
 		$out->preventClickjacking( $pager->getPreventClickjacking() );
-
 	}
 
 	/**

@@ -192,7 +192,6 @@ class MediaWikiServices extends ServiceContainer {
 		} else {
 			$oldInstance->destroy();
 		}
-
 	}
 
 	/**

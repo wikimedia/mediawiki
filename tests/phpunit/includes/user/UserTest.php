@@ -269,7 +269,6 @@ class UserTest extends MediaWikiTestCase {
 		// let the user have a few (3) edits
 		$page = WikiPage::factory( Title::newFromText( 'Help:UserTest_EditCount' ) );
 		for ( $i = 0; $i < 3; $i++ ) {
-
 			$page->doEditContent(
 				ContentHandler::makeContent( (string)$i, $page->getTitle() ),
 				'test',
@@ -505,7 +504,6 @@ class UserTest extends MediaWikiTestCase {
 	public function testGetId() {
 		$user = static::getTestUser()->getUser();
 		$this->assertTrue( $user->getId() > 0 );
-
 	}
 
 	/**

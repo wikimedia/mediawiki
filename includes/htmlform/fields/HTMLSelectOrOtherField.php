@@ -18,7 +18,6 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 			// Have 'other' always as first element
 			$this->mOptions = [ $msg => 'other' ] + $this->mOptions;
 		}
-
 	}
 
 	public function getInputHTML( $value ) {

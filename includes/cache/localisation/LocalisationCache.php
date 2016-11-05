@@ -549,7 +549,6 @@ class LocalisationCache {
 	 * @return array Array with a 'messages' key, or empty array if the file doesn't exist
 	 */
 	public function readJSONFile( $fileName ) {
-
 		if ( !is_readable( $fileName ) ) {
 			return [];
 		}
@@ -561,7 +560,6 @@ class LocalisationCache {
 
 		$data = FormatJson::decode( $json, true );
 		if ( $data === null ) {
-
 			throw new MWException( __METHOD__ . ": Invalid JSON file: $fileName" );
 		}
 
@@ -1036,7 +1034,6 @@ class LocalisationCache {
 			$blobStore = new MessageBlobStore();
 			$blobStore->clear();
 		}
-
 	}
 
 	/**

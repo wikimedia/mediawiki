@@ -328,7 +328,6 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 			AuthenticationResponse::newPass( $userName ),
 			$provider->beginPrimaryAuthentication( $reqs )
 		);
-
 	}
 
 	/**
@@ -645,7 +644,6 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		$this->assertNull( $provider->finishAccountCreation( $user, $user, $res2 ) );
 		$ret = $provider->beginPrimaryAuthentication( $reqs );
 		$this->assertEquals( AuthenticationResponse::PASS, $ret->status, 'new password is set' );
-
 	}
 
 }

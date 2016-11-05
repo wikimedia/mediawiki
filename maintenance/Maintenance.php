@@ -459,7 +459,6 @@ abstract class Maintenance {
 	 * Add the default parameters to the scripts
 	 */
 	protected function addDefaultParams() {
-
 		# Generic (non script dependant) options:
 
 		$this->addOption( 'help', 'Display this help message', false, false, 'h' );
@@ -546,7 +545,6 @@ abstract class Maintenance {
 				. "for this script to run: $joined. Please enable them and then try again.";
 			$this->error( $msg, 1 );
 		}
-
 	}
 
 	/**

@@ -90,7 +90,6 @@ class AjaxDispatcher {
 				# Or we could throw an exception:
 				# throw new MWException( __METHOD__ . ' called without any data (mode empty).' );
 		}
-
 	}
 
 	/**
@@ -156,6 +155,5 @@ class AjaxDispatcher {
 				}
 			}
 		}
-
 	}
 }

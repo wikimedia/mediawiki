@@ -194,14 +194,12 @@ class OldLocalFile extends LocalFile {
 		} else {
 			$this->fileExists = false;
 		}
-
 	}
 
 	/**
 	 * Load lazy file metadata from the DB
 	 */
 	protected function loadExtraFromDB() {
-
 		$this->extraDataLoaded = true;
 		$dbr = $this->repo->getSlaveDB();
 		$conds = [ 'oi_name' => $this->getName() ];
@@ -227,7 +225,6 @@ class OldLocalFile extends LocalFile {
 		} else {
 			throw new MWException( "Could not find data for image '{$this->archive_name}'." );
 		}
-
 	}
 
 	/**

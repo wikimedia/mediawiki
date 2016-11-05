@@ -388,7 +388,6 @@ class ResourceLoader implements LoggerAwareInterface {
 				}
 			}
 		}
-
 	}
 
 	/**
@@ -428,7 +427,6 @@ class ResourceLoader implements LoggerAwareInterface {
 			// Keep track of their names so that they can be loaded together
 			$this->testModuleNames[$id] = array_keys( $testModules[$id] );
 		}
-
 	}
 
 	/**
@@ -779,7 +777,6 @@ class ResourceLoader implements LoggerAwareInterface {
 
 		$this->errors = [];
 		echo $response;
-
 	}
 
 	/**
@@ -1142,7 +1139,6 @@ MESSAGE;
 	protected static function makeLoaderImplementScript(
 		$name, $scripts, $styles, $messages, $templates
 	) {
-
 		if ( $scripts instanceof XmlJsCode ) {
 			$scripts = new XmlJsCode( "function ( $, jQuery, require, module ) {\n{$scripts->value}\n}" );
 		} elseif ( !is_string( $scripts ) && !is_array( $scripts ) ) {

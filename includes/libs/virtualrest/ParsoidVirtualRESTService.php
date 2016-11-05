@@ -103,7 +103,6 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 				continue;
 			}
 			if ( $targetWiki !== 'local' ) {
-
 				throw new Exception( "Only 'local' target wiki is currently supported" );
 			}
 			if ( $reqType !== 'page' && $reqType !== 'transform' ) {
@@ -150,7 +149,6 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 	 * API.  We now translate these to the "real" Parsoid v3 API.
 	 */
 	public function onParsoid1Request( array $req, Closure $idGeneratorFunc ) {
-
 		$parts = explode( '/', $req['url'] );
 		list(
 			$targetWiki, // 'local'
@@ -221,7 +219,6 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 		}
 
 		return $req;
-
 	}
 
 }

@@ -695,7 +695,6 @@ class AuthManagerTest extends \MediaWikiTestCase {
 				$ex->getMessage()
 			);
 		}
-
 	}
 
 	public function testBeginAuthentication() {
@@ -3265,7 +3264,6 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$this->manager->removeAuthenticationSessionData( null );
 		$this->assertNull( $this->manager->getAuthenticationSessionData( 'foo' ) );
 		$this->assertNull( $this->manager->getAuthenticationSessionData( 'bar' ) );
-
 	}
 
 	public function testCanLinkAccounts() {

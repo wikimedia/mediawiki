@@ -9,7 +9,6 @@ class HTMLSelectNamespace extends HTMLFormField {
 		$this->mAllValue = array_key_exists( 'all', $params )
 			? $params['all']
 			: 'all';
-
 	}
 
 	public function getInputHTML( $value ) {

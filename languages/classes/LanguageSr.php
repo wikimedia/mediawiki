@@ -186,7 +186,6 @@ class SrConverter extends LanguageConverter {
 		} else {
 			return false;
 		}
-
 	}
 
 }

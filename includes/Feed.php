@@ -236,7 +236,6 @@ abstract class ChannelFeed extends FeedItem {
 			$wgOut->addVaryHeader( 'X-Forwarded-Proto' );
 		}
 		$wgOut->sendCacheControl();
-
 	}
 
 	/**

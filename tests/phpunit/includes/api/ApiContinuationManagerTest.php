@@ -195,7 +195,6 @@ class ApiContinuationManagerTest extends MediaWikiTestCase {
 				'Expected exception'
 			);
 		}
-
 	}
 
 }

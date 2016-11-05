@@ -1658,7 +1658,6 @@ class User implements IDBAccessObject {
 
 		// Extensions
 		Hooks::run( 'GetBlockedStatus', [ &$this ] );
-
 	}
 
 	/**
@@ -1690,7 +1689,6 @@ class User implements IDBAccessObject {
 	 * @return bool True if blacklisted.
 	 */
 	public function inDnsBlacklist( $ip, $bases ) {
-
 		$found = false;
 		// @todo FIXME: IPv6 ???  (http://bugs.php.net/bug.php?id=33170)
 		if ( IP::isIPv4( $ip ) ) {
