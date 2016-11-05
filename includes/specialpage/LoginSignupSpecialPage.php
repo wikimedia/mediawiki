@@ -763,10 +763,18 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$wgAuth->modifyUITemplate( $template, $action );
 
 		$oldTemplate = $template;
-		$hookName = $this->isSignup() ? 'UserCreateForm' : 'UserLoginForm';
-		Hooks::run( $hookName, [ &$template ] );
-		if ( $oldTemplate !== $template ) {
-			wfDeprecated( "reference in $hookName hook", '1.27' );
+
+		// Both Hooks::run are explicit here to make findHooks.php happy
+		if ( $this->isSignup() ) {
+			Hooks::run( 'UserCreateForm', [ &$template ] );
+			if ( $oldTemplate !== $template ) {
+				wfDeprecated( "reference in UserCreateForm hook", '1.27' );
+			}
+		} else {
+			Hooks::run( 'UserLoginForm', [ &$template ] );
+			if ( $oldTemplate !== $template ) {
+				wfDeprecated( "reference in UserLoginForm hook", '1.27' );
+			}
 		}
 
 		return $template;
