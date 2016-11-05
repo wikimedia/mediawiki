@@ -2413,7 +2413,7 @@
 	"unlockdbtext": "解锁数据库将会恢复所有用户编辑页面、修改参数、编辑监视列表以及其他需要更改数据库的操作。请确认您的决定。",
 	"lockconfirm": "是，我的确想要锁定数据库。",
 	"unlockconfirm": "是，我的确想要解锁数据库。",
-	"lockbtn": "数据库锁定",
+	"lockbtn": "锁定数据库",
 	"unlockbtn": "解锁数据库",
 	"locknoconfirm": "您没有勾选确认框。",
 	"lockdbsuccesssub": "数据库锁定成功",

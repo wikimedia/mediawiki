@@ -52,7 +52,8 @@
 			"01miki10",
 			"Matma Rex",
 			"BiscuitMan",
-			"Alluk."
+			"Alluk.",
+			"Tumm1"
 		]
 	},
 	"tog-underline": "Linkkien alleviivaus:",
@@ -60,7 +61,7 @@
 	"tog-hidepatrolled": "Piilota tarkastetut muutokset tuoreet muutokset -listasta",
 	"tog-newpageshidepatrolled": "Piilota tarkastetut sivut uusien sivujen listalta",
 	"tog-hidecategorization": "Piilota sivujen luokittelu",
-	"tog-extendwatchlist": "Laajenna tarkkailulista näyttämään kaikki tehdyt muutokset eikä vain viimeisimmät",
+	"tog-extendwatchlist": "Laajenna tarkkailulista näyttämään kaikki tehdyt muutokset, eikä vain viimeisimmät",
 	"tog-usenewrc": "Ryhmittele muutokset sivun mukaan tuoreiden muutosten listalla ja tarkkailulistalla",
 	"tog-numberheadings": "Numeroi otsikot automaattisesti",
 	"tog-showtoolbar": "Näytä työkalupalkki",

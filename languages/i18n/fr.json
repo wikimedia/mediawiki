@@ -3261,7 +3261,7 @@
 	"scarytranscludefailed": "[La récupération de modèle a échoué pour $1]",
 	"scarytranscludefailed-httpstatus": "[Échec de la récupération du modèle pour  $1 : HTTP  $2 ]",
 	"scarytranscludetoolong": "[L'URL est trop longue]",
-	"deletedwhileediting": "<strong>Attention</strong> : cette page a été supprimée après que vous avez commencé à la modifier !",
+	"deletedwhileediting": "<strong>Attention</strong> : cette page a été supprimée après que vous ayez commencé à la modifier !",
 	"confirmrecreate": "L’utilisat{{GENDER:$1|eur|rice}} [[User:$1|$1]] ([[User talk:$1|Discussion]]) a supprimé cette page, alors que vous aviez commencé à la modifier, pour le motif suivant :\n: <em>$2</em>\nVeuillez confirmer que vous désirez réellement recréer cette page.",
 	"confirmrecreate-noreason": "L’utilisat{{GENDER:$1|eur|rice}} [[User:$1|$1]] ([[User talk:$1|Discussion]]) a supprimé cette page, alors que vous aviez commencé à la modifier. Veuillez confirmer que vous désirez réellement recréer cette page.",
 	"recreate": "Recréer",
