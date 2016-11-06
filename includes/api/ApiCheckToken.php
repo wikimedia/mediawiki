@@ -22,11 +22,26 @@
  * @file
  */
 
+ use MediaWiki\Session\Token;
+
 /**
  * @since 1.25
  * @ingroup API
  */
 class ApiCheckToken extends ApiBase {
+
+     public function verifyToken($token) {
+        $suffix = Token::SUFFIX;
+        $suffixlength = strlen($suffix)-1;
+          if(substr($token, -$suffixlength) != $suffix)
+          {
+             return null;
+             }
+          else{
+             return 'valid token';
+          }  
+        
+       }
 
 	public function execute() {
 		$params = $this->extractRequestParams();
@@ -39,16 +54,23 @@ class ApiCheckToken extends ApiBase {
 		$tokenObj = ApiQueryTokens::getToken(
 			$this->getUser(), $this->getRequest()->getSession(), $salts[$params['type']]
 		);
+
+        //check if the token is a valid and contains suffix '+\\'
+        $tokenresult = self::verifyToken($token);
+
+        if($tokenresult == null){
+            $res['result'] = 'Warning';
+        }
 		if ( $tokenObj->match( $token, $maxage ) ) {
 			$res['result'] = 'valid';
-		} elseif ( $maxage !== null && $tokenObj->match( $token ) ) {
+		} elseif ( $maxage != null && $tokenObj->match( $token ) ) {
 			$res['result'] = 'expired';
 		} else {
 			$res['result'] = 'invalid';
 		}
 
 		$ts = MediaWiki\Session\Token::getTimestamp( $token );
-		if ( $ts !== null ) {
+		if ( $ts != null ) {
 			$mwts = new MWTimestamp();
 			$mwts->timestamp->setTimestamp( $ts );
 			$res['generated'] = $mwts->getTimestamp( TS_ISO_8601 );
@@ -79,4 +101,6 @@ class ApiCheckToken extends ApiBase {
 				=> 'apihelp-checktoken-example-simple',
 		];
 	}
+
+   
 }
