@@ -8462,6 +8462,24 @@ $wgCSPFalsePositiveUrls = [
 ];
 
 /**
+ *User 'my' rights
+ *
+ *Right 		Description 	  						Versions
+ *
+ *editmyusercss 	Edit your own user CSS files 	 				1.22+
+ *editmyuserjs 		Edit your own user JavaScript files 				1.22+
+ *editmywatchlist 	Edit your own watchlist. Note some actions will still 
+ *			add pages even without this right. 	 			1.22+
+ *
+ *viewmywatchlist 	View your own watchlist 					1.22+
+ *editmyprivateinfo 	Edit your own private data (e.g. email address, real name) 	1.22+
+ *viewmyprivateinfo 	View your own private data (e.g. email address, real name) 	1.22+
+ *editmyoptions 	Edit your own preferences 				 	1.22+
+ * 
+ *All user groups have access to these rights by default
+ */
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
