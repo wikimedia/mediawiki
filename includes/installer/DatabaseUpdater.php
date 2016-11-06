@@ -737,6 +737,22 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Modify table on the database
+	 *
+	 * @param string $name Name of the table
+	 * @param string $patch Path to the patch file
+	 * @param bool $fullpath Whether to treat $patch path as a relative or not
+	 * @return bool False if this was skipped because schema changes are skipped
+	 */
+	protected function modifyTable( $name, $patch, $fullpath = false ) {
+		if ( $this->db->tableExists( $name, __METHOD__ ) ) {
+			return $this->applyPatch( $patch, $fullpath, "Modifying $name table" );
+		}
+
+		return true;
+	}
+
+	/**
 	 * Add a new field to an existing table
 	 *
 	 * @param string $table Name of the table to modify
