@@ -39,7 +39,9 @@ class ApiCheckToken extends ApiBase {
 		$tokenObj = ApiQueryTokens::getToken(
 			$this->getUser(), $this->getRequest()->getSession(), $salts[$params['type']]
 		);
-		if ( $tokenObj->match( $token, $maxage ) ) {
+		if ( $tokenObj->match( $token[strlen($token)-1], urldecode( User::EDIT_TOKEN_SUFFIX ) ) {
+			$res['result'] = 'Warning';
+ 		elseif ( $tokenObj->match( $token, $maxage ) ) {
 			$res['result'] = 'valid';
 		} elseif ( $maxage !== null && $tokenObj->match( $token ) ) {
 			$res['result'] = 'expired';
