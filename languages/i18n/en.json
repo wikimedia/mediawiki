@@ -564,7 +564,7 @@
 	"botpasswords-label-delete": "Delete",
 	"botpasswords-label-resetpassword": "Reset the password",
 	"botpasswords-label-grants": "Applicable grants:",
-	"botpasswords-help-grants": "Each grant gives access to listed user rights that a user account already has. See the [[Special:ListGrants|table of grants]] for more information.",
+	"botpasswords-help-grants": "Grants can only allow a access to rights already held to the user account. Enabling a grant here does not provide new access to the user account. All rights must be earned through normal procedures which vary by wiki. See the [[Special:ListGrants|table of grants]] for more information.",
 	"botpasswords-label-grants-column": "Granted",
 	"botpasswords-bad-appid": "The bot name \"$1\" is not valid.",
 	"botpasswords-insert-failed": "Failed to add bot name \"$1\". Was it already added?",
