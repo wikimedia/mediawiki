@@ -795,7 +795,7 @@
 	"passwordreset-emailsentusername": "Used in [[Special:PasswordReset]].\n\nSee also:\n* {{msg-mw|Passwordreset-emailsent-capture}}\n* {{msg-mw|Passwordreset-emailerror-capture}}",
 	"passwordreset-emailsent-capture2": "Used in [[Special:PasswordReset]].\n\nParameters:\n* $1 - number of accounts notified\n\nSee also:\n* {{msg-mw|Passwordreset-emailsentemail}}\n* {{msg-mw|Passwordreset-emailsentusername}}\n* {{msg-mw|Passwordreset-emailerror-capture}}",
 	"passwordreset-emailerror-capture2": "Error message displayed in [[Special:PasswordReset]] when sending an email fails. Parameters:\n* $1 - error message\n* $2 - username, used for GENDER\n* $3 - number of accounts notified\n\nSee also:\n* {{msg-mw|Passwordreset-emailsentemail}}\n* {{msg-mw|Passwordreset-emailsentusername}}\n* {{msg-mw|Passwordreset-emailsent-capture}}\n* {{msg-mw|Passwordreset-emailerror-capture}}",
-	"passwordreset-nocaller": "Shown when a password reset was requested but the caller was not provided. This is an internal error.",
+	"passwordreset-nocaller": "Shown when a password reset was requested but the process failed due to an internal error related to missing details about the origin (caller) of the password reset request.",
 	"passwordreset-nosuchcaller": "Shown when a password reset was requested but the username of the caller could not be resolved to a user. This is an internal error.\n\nParameters:\n* $1 - username of the caller",
 	"passwordreset-ignored": "Shown when password reset was unsuccessful due to configuration problems.",
 	"passwordreset-invalideamil": "Returned when the email address is syntatically invalid.",
