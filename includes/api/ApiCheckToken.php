@@ -39,7 +39,7 @@ class ApiCheckToken extends ApiBase {
 		$tokenObj = ApiQueryTokens::getToken(
 			$this->getUser(), $this->getRequest()->getSession(), $salts[$params['type']]
 		);
-		if ( $tokenObj->match( $token[strlen($token)-1], urldecode( User::EDIT_TOKEN_SUFFIX ) ) {
+		if ( $tokenObj->match( $token[strlen($token)-1], urldecode( User::EDIT_TOKEN_SUFFIX ) ) ) {
 			$res['result'] = 'Warning';
                 }
  		elseif ( $tokenObj->match( $token, $maxage ) ) {
