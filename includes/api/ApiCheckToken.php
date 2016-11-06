@@ -28,6 +28,18 @@
  */
 class ApiCheckToken extends ApiBase {
 
+     public function verifyToken($token){
+        $suffix=User::EDIT_TOKEN_SUFFIX;
+        $suffixlength=strlen($suffix);
+          if(substr( $token, -$suffixLength ) !== $suffix)){
+             return NULL;
+             }
+          else{
+             return 'valid token';
+          }  
+        
+       }
+
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$token = $params['token'];
@@ -39,6 +51,13 @@ class ApiCheckToken extends ApiBase {
 		$tokenObj = ApiQueryTokens::getToken(
 			$this->getUser(), $this->getRequest()->getSession(), $salts[$params['type']]
 		);
+
+        //check if the token is a valid and contains suffix '+\\'
+        $tokenresult=verifyToken($token);
+
+        if($tokenresult == NULL){
+            $res['result'] = 'Warning';
+        }
 		if ( $tokenObj->match( $token, $maxage ) ) {
 			$res['result'] = 'valid';
 		} elseif ( $maxage !== null && $tokenObj->match( $token ) ) {
@@ -79,4 +98,6 @@ class ApiCheckToken extends ApiBase {
 				=> 'apihelp-checktoken-example-simple',
 		];
 	}
+
+   
 }
