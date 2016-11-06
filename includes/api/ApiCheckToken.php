@@ -22,16 +22,19 @@
  * @file
  */
 
+ use MediaWiki\user\User;
+
 /**
  * @since 1.25
  * @ingroup API
  */
 class ApiCheckToken extends ApiBase {
 
-     public function verifyToken($token){
-        $suffix=User::EDIT_TOKEN_SUFFIX;
-        $suffixlength=strlen($suffix);
-          if(substr( $token, -$suffixLength ) !== $suffix)){
+     public function verifyToken($token) {
+        $suffix = User::EDIT_TOKEN_SUFFIX;
+        $suffixlength = strlen($suffix);
+          if(substr( $token, -$suffixLength ) !== $suffix))
+          {
              return NULL;
              }
           else{
@@ -53,7 +56,7 @@ class ApiCheckToken extends ApiBase {
 		);
 
         //check if the token is a valid and contains suffix '+\\'
-        $tokenresult=verifyToken($token);
+        $tokenresult = self::verifyToken($token);
 
         if($tokenresult == NULL){
             $res['result'] = 'Warning';
