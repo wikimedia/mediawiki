@@ -4165,7 +4165,7 @@
 	"authmanager-authn-autocreate-failed": "Auto-creation of a local account failed: $1",
 	"authmanager-change-not-supported": "The supplied credentials cannot be changed, as nothing would use them.",
 	"authmanager-create-disabled": "Account creation is disabled.",
-	"authmanager-create-from-login": "To create your account, please fill in the fields below.",
+	"authmanager-create-from-login": "To create your account, please fill in the fields.",
 	"authmanager-create-not-in-progress": "Account creation is not in progress or session data has been lost. Please start again from the beginning.",
 	"authmanager-create-no-primary": "The supplied credentials could not be used for account creation.",
 	"authmanager-link-no-primary": "The supplied credentials could not be used for account linking.",
