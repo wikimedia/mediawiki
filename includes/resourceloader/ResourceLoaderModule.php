@@ -330,14 +330,13 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Where on the HTML page should this module's JS be loaded?
-	 *  - 'top': in the "<head>"
-	 *  - 'bottom': at the bottom of the "<body>"
+	 * From where in the page HTML should this module be loaded?
 	 *
+	 * @deprecated since 1.29 Obsolete. All modules load async from `<head>`.
 	 * @return string
 	 */
 	public function getPosition() {
-		return 'bottom';
+		return 'top';
 	}
 
 	/**

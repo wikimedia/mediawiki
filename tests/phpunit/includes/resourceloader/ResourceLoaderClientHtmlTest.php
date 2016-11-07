@@ -114,22 +114,22 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 				'test.scripts.mixed.user.empty' => 'ready',
 			],
 			'general' => [
-				'top' => [ 'test.top' ],
-				'bottom' => [ 'test' ],
+				'test',
+				'test.top',
 			],
 			'styles' => [
 				'test.styles.mixed',
 				'test.styles.pure',
 			],
 			'scripts' => [
-				'top' => [ 'test.scripts.top' ],
-				'bottom' => [ 'test.scripts' ],
+				'test.scripts',
+				'test.scripts.top',
 			],
 			'embed' => [
 				'styles' => [ 'test.styles.private' ],
 				'general' => [
-					'top' => [ 'test.private.top' ],
-					'bottom' => [ 'test.private.bottom' ],
+					'test.private.bottom',
+					'test.private.top',
 				],
 			],
 		];
@@ -202,13 +202,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 			'test.scripts',
 		] );
 
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
-		$expected = '<script>(window.RLQ=window.RLQ||[]).push(function(){'
-			. 'mw.loader.implement("test.private.bottom@{blankVer}",function($,jQuery,require,module){},{"css":[]});'
-			. 'mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.scripts\u0026only=scripts\u0026skin=fallback");'
-			. 'mw.loader.load(["test"]);'
-			. '});</script>';
-		// @codingStandardsIgnoreEnd
+		$expected = '';
 		$expected = self::expandVariables( $expected );
 
 		$this->assertEquals( $expected, $client->getBodyHtml() );
