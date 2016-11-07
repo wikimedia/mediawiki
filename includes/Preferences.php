@@ -244,7 +244,7 @@ class Preferences {
 
 		$defaultPreferences['usergroups'] = [
 			'type' => 'info',
-			'label' => $context->msg( 'prefs-memberingroups' )->numParams(
+			'label-raw' => $context->msg( 'prefs-memberingroups' )->numParams(
 				count( $userGroups ) )->params( $userName )->parse(),
 			'default' => $context->msg( 'prefs-memberingroups-type' )
 				->rawParams( $lang->commaList( $userGroups ), $lang->commaList( $userMembers ) )
