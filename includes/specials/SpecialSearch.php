@@ -234,11 +234,6 @@ class SpecialSearch extends SpecialPage {
 
 			return;
 		}
-		# No match, generate an edit URL
-		$title = Title::newFromText( $term );
-		if ( !is_null( $title ) ) {
-			Hooks::run( 'SpecialSearchNogomatch', [ &$title ] );
-		}
 		$this->showResults( $term );
 	}
 
