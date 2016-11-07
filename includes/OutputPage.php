@@ -1214,8 +1214,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add new language links
 	 *
-	 * @param array $newLinkArray Associative array mapping language code to the page
-	 *                      name
+	 * @param array $newLinkArray Array of Interwiki Prefixed (non DB key) Titles (e.g. 'fr:Test page')
 	 */
 	public function addLanguageLinks( array $newLinkArray ) {
 		$this->mLanguageLinks += $newLinkArray;
@@ -1224,8 +1223,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Reset the language links and add new language links
 	 *
-	 * @param array $newLinkArray Associative array mapping language code to the page
-	 *                      name
+	 * @param array $newLinkArray Array of Interwiki Prefixed (non DB key) Titles (e.g. 'fr:Test page')
 	 */
 	public function setLanguageLinks( array $newLinkArray ) {
 		$this->mLanguageLinks = $newLinkArray;
