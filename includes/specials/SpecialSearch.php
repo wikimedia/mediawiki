@@ -471,25 +471,6 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	/**
-	 * Decide if the suggested query should be run, and it's results returned
-	 * instead of the provided $textMatches
-	 *
-	 * @param SearchResultSet $textMatches The results of a users query
-	 * @return bool
-	 */
-	protected function shouldRunSuggestedQuery( SearchResultSet $textMatches ) {
-		if ( !$this->runSuggestion ||
-			!$textMatches->hasSuggestion() ||
-			$textMatches->numRows() > 0 ||
-			$textMatches->searchContainedSyntax()
-		) {
-			return false;
-		}
-
-		return $this->getConfig()->get( 'SearchRunSuggestedQuery' );
-	}
-
-	/**
 	 * Generates HTML shown to the user when we have a suggestion about a query
 	 * that might give more results than their current query.
 	 */
@@ -1330,24 +1311,6 @@ class SpecialSearch extends SpecialPage {
 		$parts = explode( ':', $term );
 		if ( count( $parts ) > 1 ) {
 			return $wgContLang->getNsIndex( $parts[0] ) == NS_FILE;
-		}
-
-		return false;
-	}
-
-	/**
-	 * Check if query starts with all: prefix
-	 *
-	 * @param string $term The string to check
-	 * @return bool
-	 */
-	protected function startsWithAll( $term ) {
-
-		$allkeyword = $this->msg( 'searchall' )->inContentLanguage()->text();
-
-		$parts = explode( ':', $term );
-		if ( count( $parts ) > 1 ) {
-			return $parts[0] == $allkeyword;
 		}
 
 		return false;
