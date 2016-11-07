@@ -422,7 +422,12 @@ class SpecialSearch extends SpecialPage {
 				$out->addHTML( '<div class="error">' .
 					$textStatus->getMessage( 'search-error' ) . '</div>' );
 			} else {
-				$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
+				if ( !$this->offset) {
+					// If we have an offset the create link was rendered earlier in this function.
+					// This class needs a good de-spaghettification, but for now this will
+					// do the job.
+					$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
+				}
 				$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>",
 					[ $hasOtherResults ? 'search-nonefound-thiswiki' : 'search-nonefound',
 							wfEscapeWikiText( $term )
