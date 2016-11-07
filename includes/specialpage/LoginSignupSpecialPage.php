@@ -156,7 +156,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			[
 				'returnto' => $this->mReturnTo,
 				'returntoquery' => $this->mReturnToQuery,
-				'uselang' => $this->mLanguage,
+				'uselang' => $this->mLanguage ?: null,
 				'fromhttp' => $wgSecureLogin && $this->mFromHTTP ? '1' : null,
 			]
 		);
@@ -619,7 +619,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$form = HTMLForm::factory( 'vform', $formDescriptor, $context );
 
 		$form->addHiddenField( 'authAction', $this->authAction );
-		if ( $wgLoginLanguageSelector ) {
+		if ( $wgLoginLanguageSelector && $this->mLanguage ) {
 			$form->addHiddenField( 'uselang', $this->mLanguage );
 		}
 		$form->addHiddenField( 'force', $this->securityLevel );
