@@ -69,6 +69,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		if ( ( $wgEnotifWatchlist || $wgShowUpdatedMarker )
 			&& $request->getVal( 'reset' )
 			&& $request->wasPosted()
+			&& $user->matchEditToken( $request->getVal( 'token' ) )
 		) {
 			$user->clearAllNotifications();
 			$output->redirect( $this->getPageTitle()->getFullURL( $opts->getChangedValues() ) );
@@ -496,6 +497,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				'action' => $this->getPageTitle()->getLocalURL(),
 				'id' => 'mw-watchlist-resetbutton' ) ) . "\n" .
 			Xml::submitButton( $this->msg( 'enotif_reset' )->text(), array( 'name' => 'dummy' ) ) . "\n" .
+			Html::hidden( 'token', $user->getEditToken() ) . "\n" .
 			Html::hidden( 'reset', 'all' ) . "\n";
 			foreach ( $nondefaults as $key => $value ) {
 				$form .= Html::hidden( $key, $value ) . "\n";

@@ -17,6 +17,8 @@ This is not a release yet!
   $wgAdvancedSearchHighlighting is true.
 * (T125177) SECURITY: API parameters may now be marked as "sensitive" to keep
   their values out of the logs.
+* (T150044) SECURITY: "Mark all pages visited" on the watchlist now requires a CSRF
+  token.
 
 == MediaWiki 1.23.15 ==
 
