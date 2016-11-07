@@ -65,7 +65,9 @@ function isCompatible( str ) {
 		// support in the modern run-time.
 		&& !(
 			ua.match( /webOS\/1\.[0-4]|SymbianOS|Series60|NetFront|Opera Mini|S40OviBrowser|MeeGo|Android.+Glass/ ) ||
-			ua.match( /PlayStation/i )
+			ua.match( /PlayStation/i ) ||
+			// UC Mini
+			( ua.match( /^Mozilla\/5\.0 .+ Gecko\/$/ ) )
 		)
 	);
 }
