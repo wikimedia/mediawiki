@@ -615,7 +615,7 @@
 	"botpasswords-label-delete": "Löschen",
 	"botpasswords-label-resetpassword": "Passwort zurücksetzen",
 	"botpasswords-label-grants": "Anwendbare Berechtigungen:",
-	"botpasswords-help-grants": "Jede Berechtigung gibt Zugriff auf gelistete Benutzerrechte, die ein Benutzerkonto bereits hat. Siehe die [[Special:ListGrants|Tabelle]] für weitere Informationen.",
+	"botpasswords-help-grants": "Berechtigungen erlauben den Zugriff auf Rechte, die bereits dein Benutzerkonto besitzt. Das Aktivieren einer Berechtigung hier bietet keinen Zugriff auf Rechte, die dein Benutzerkonto ansonsten nicht hat. Siehe die [[Special:ListGrants|Berechtigungstabelle]] für weitere Informationen.",
 	"botpasswords-label-grants-column": "Gewährt",
 	"botpasswords-bad-appid": "Der Botname „$1“ ist nicht gültig.",
 	"botpasswords-insert-failed": "Der Botname „$1“ konnte nicht hinzugefügt werden. Wurde er bereits hinzugefügt?",

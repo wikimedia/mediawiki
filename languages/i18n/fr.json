@@ -675,7 +675,7 @@
 	"botpasswords-label-delete": "Supprimer",
 	"botpasswords-label-resetpassword": "Réinitialiser le mot de passe",
 	"botpasswords-label-grants": "Droits applicables :",
-	"botpasswords-help-grants": "Chaque droit accordé donne accès à la liste des droits utilisateurs dont l’utilisateur dispose déjà. Voyez le [[Special:ListGrants|tableau des droits]] pour plus d’informations.",
+	"botpasswords-help-grants": "Les autorisations permettent d’accéder aux droits déjà accordés à votre compte utilisateur. Activer une autorisation ici ne fournit l’accès à aucun droit que votre compte utilisateur n’aurait pas par ailleurs. Voyez le [[Special:ListGrants|tableau des autorisations]] pour plus d’information.",
 	"botpasswords-label-grants-column": "Accordé",
 	"botpasswords-bad-appid": "Le nom de robot « $1 » n’est pas valide.",
 	"botpasswords-insert-failed": "Échec de l’ajout du nom de robot « $1 ». A-t-il déjà été ajouté ?",

@@ -539,7 +539,7 @@
 	"botpasswords-label-delete": "Izbriši",
 	"botpasswords-label-resetpassword": "Ponastavi geslo",
 	"botpasswords-label-grants": "Veljavne pravice:",
-	"botpasswords-help-grants": "Vsaka pravica dodeli dostop do navedenih uporabniških pravic, ki jih uporabniški račun že ima. Za več informacij si oglejte [[Special:ListGrants|tabelo pravic]].",
+	"botpasswords-help-grants": "Pravice omogočajo dostop do pravic, ki jih vaš uporabniški račun že ima. Tukajšnja omogočitev pravice ne podeli dostopa do katere koli pravice, ki je vaš uporabniški račun drugače še nima. Za več informacij si oglejte [[Special:ListGrants|tabelo pravic]].",
 	"botpasswords-label-grants-column": "Odobreno",
 	"botpasswords-bad-appid": "Ime bota »$1« ni veljavno.",
 	"botpasswords-insert-failed": "Dodajanje imena bota »$1« ni uspelo. Ste ga že dodali?",

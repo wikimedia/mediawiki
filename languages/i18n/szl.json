@@ -371,7 +371,6 @@
 	"yourpasswordagain": "Naszkryflej ausdruk zaś",
 	"createacct-yourpasswordagain": "Potwjyrdź hasło",
 	"createacct-yourpasswordagain-ph": "Wszkryflej hasło jeszcze roz",
-	"remembermypassword": "Pamjyntej můj ausdruk na tym kůmputrze (nojdalij bez $1 {{PLURAL:$1|dźyń|dńůw}})",
 	"userlogin-remembermypassword": "Ńy wylogůwywuj mje",
 	"userlogin-signwithsecure": "Użyj bezpjecznygo połůnczyńa",
 	"yourdomainname": "Twoja domyna",
@@ -1284,8 +1283,6 @@
 	"listusersfrom": "Pokaž užytkowńikůw začynojůnc uod:",
 	"listusers-submit": "Uobejrzij",
 	"listusers-noresult": "Ńy znejdźůno žodnygo užytkowńika.",
-	"activeusers-hidebots": "Schrůń boty",
-	"activeusers-hidesysops": "Schrůń adminy",
 	"activeusers-noresult": "Niy szło znŏjść żŏdnych używŏczōw",
 	"listgrouprights": "Uprawńyńo grup użytkowńikůw",
 	"listgrouprights-summary": "Půńiży znojdowo śe spis grup użytkowńikůw zdefińjowanych na tyj wiki, s wyszczygůlńyńym przidźelůnych im prow dostympu.\nSprowdź zajta [[{{MediaWiki:Listgrouprights-helppage}}|s dodatkowymi informacjami]] uo uprowńyńach użytkowńikůw.",
@@ -2153,6 +2150,6 @@
 	"logentry-upload-upload": "$1 {{GENDER:$2|posłoł|posłała}} $3",
 	"rightsnone": "podstawowo",
 	"revdelete-summary": "uopis pomjyńań",
-	"searchsuggest-search": "Sznupej",
+	"searchsuggest-search": "Sznupej we {{SITENAME}}",
 	"expand_templates_ok": "OK"
 }

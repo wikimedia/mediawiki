@@ -413,7 +413,7 @@
 	"apihelp-query+allfileusages-param-dir": "Dirección na cal listar.",
 	"apihelp-query+allfileusages-example-B": "Lista títulos de ficheiro, incluíndo os   eliminados, cos IDs de páxina dos que proveñen, comezando en <kbd>B</kbd>.",
 	"apihelp-query+allfileusages-example-unique": "Listar títulos únicos de ficheiros.",
-	"apihelp-query+allfileusages-example-unique-generator": "Obter todos os títulos de ficheiro, marcando os eliminados.",
+	"apihelp-query+allfileusages-example-unique-generator": "Obter todos os títulos de ficheiro, marcando os que faltan.",
 	"apihelp-query+allfileusages-example-generator": "Obtén as páxinas que conteñen os ficheiros.",
 	"apihelp-query+allimages-description": "Enumerar tódalas imaxes secuencialmente.",
 	"apihelp-query+allimages-param-sort": "Propiedade pola que ordenar.",

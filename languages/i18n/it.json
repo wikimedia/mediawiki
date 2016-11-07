@@ -629,7 +629,7 @@
 	"botpasswords-label-delete": "Cancella",
 	"botpasswords-label-resetpassword": "Reimposta la password",
 	"botpasswords-label-grants": "Assegnazioni applicabili:",
-	"botpasswords-help-grants": "Ogni assegnazione dà accesso ai diritti utente elencati che un'utenza ha già. Vedi la [[Special:ListGrants|tabella delle assegnazioni]] per ulteriori informazioni.",
+	"botpasswords-help-grants": "Le assegnazioni consentono l'accesso a diritti che la tua utenza possiede già. Attivare un'assegnazione qui non fornisce l'accesso ad alcun diritto che la tua utenza altrimenti non avrebbe. Vedi la [[Special:ListGrants|tabella delle assegnazioni]] per ulteriori informazioni.",
 	"botpasswords-label-grants-column": "Assegnazioni",
 	"botpasswords-bad-appid": "Il nome bot \"$1\" non è valido.",
 	"botpasswords-insert-failed": "Impossibile aggiungere il nome bot \"$1\". È stato già aggiunto?",
