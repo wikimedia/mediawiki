@@ -1926,8 +1926,8 @@ $code: language of the preferred translations
 in various places to allow extensions to define the effective language
 links for a page.
 $title: The page's Title.
-&$links: Associative array mapping language codes to prefixed links of the
-  form "language:title".
+&$links: Array with elements of the form "language:title" in the order
+  that they will be output.
 &$linkFlags: Associative array mapping prefixed links to arrays of flags.
   Currently unused, but planned to provide support for marking individual
   language links in the UI, e.g. for featured articles.
