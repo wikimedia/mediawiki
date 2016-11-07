@@ -36,7 +36,6 @@
  * Safe for calls on local wikis are:
  * - Option getters:
  *   - getGroup()
- *   - getPosition()
  *   - getPages()
  * - Basic methods that strictly involve the foreign database
  *   - getDB()
@@ -44,8 +43,6 @@
  *   - getTitleInfo()
  */
 class ResourceLoaderWikiModule extends ResourceLoaderModule {
-	/** @var string Position on the page to load this module at */
-	protected $position = 'bottom';
 
 	// Origin defaults to users with sitewide authority
 	protected $origin = self::ORIGIN_USER_SITEWIDE;
@@ -72,7 +69,6 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 		foreach ( $options as $member => $option ) {
 			switch ( $member ) {
-				case 'position':
 				case 'styles':
 				case 'scripts':
 				case 'group':
@@ -433,13 +429,6 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			$key = $cache->makeGlobalKey( 'resourceloader', 'titleinfo', $wikiId );
 			$cache->touchCheckKey( $key );
 		}
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getPosition() {
-		return $this->position;
 	}
 
 	/**

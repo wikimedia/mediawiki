@@ -67,13 +67,6 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	/**
 	 * @return string
 	 */
-	public function getPosition() {
-		return 'top';
-	}
-
-	/**
-	 * @return string
-	 */
 	public function getGroup() {
 		return 'private';
 	}
