@@ -238,7 +238,6 @@ class Xml {
 			Xml::label( $msg->text(), $attrs['id'] ),
 			Xml::tags( 'select', $attrs, $options )
 		];
-
 	}
 
 	/**

@@ -289,7 +289,6 @@ abstract class BaseTemplate extends QuickTemplate {
 		if ( $content !== '' ) {
 			echo "<div class='after-portlet after-portlet-$name'>$content</div>";
 		}
-
 	}
 
 	/**

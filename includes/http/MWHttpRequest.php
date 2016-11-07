@@ -362,7 +362,6 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 * @return Status
 	 */
 	public function execute() {
-
 		$this->content = "";
 
 		if ( strtoupper( $this->method ) == "HEAD" ) {
@@ -378,7 +377,6 @@ class MWHttpRequest implements LoggerAwareInterface {
 		if ( !isset( $this->reqHeaders['User-Agent'] ) ) {
 			$this->setUserAgent( Http::userAgent() );
 		}
-
 	}
 
 	/**
@@ -387,7 +385,6 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 * found in an array in the member variable headerList.
 	 */
 	protected function parseHeader() {
-
 		$lastname = "";
 
 		foreach ( $this->headerList as $header ) {
@@ -404,7 +401,6 @@ class MWHttpRequest implements LoggerAwareInterface {
 		}
 
 		$this->parseCookies();
-
 	}
 
 	/**
@@ -538,7 +534,6 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 * Parse the cookies in the response headers and store them in the cookie jar.
 	 */
 	protected function parseCookies() {
-
 		if ( !$this->cookieJar ) {
 			$this->cookieJar = new CookieJar;
 		}
@@ -549,7 +544,6 @@ class MWHttpRequest implements LoggerAwareInterface {
 				$this->cookieJar->parseCookieResponseHeader( $cookie, $url['host'] );
 			}
 		}
-
 	}
 
 	/**

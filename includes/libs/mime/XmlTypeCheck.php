@@ -175,7 +175,6 @@ class XmlTypeCheck {
 	}
 
 	private function validate( $reader ) {
-
 		// First, move through anything that isn't an element, and
 		// handle any processing instructions with the callback
 		do {
@@ -240,7 +239,6 @@ class XmlTypeCheck {
 					// NOTATION, or XML_DECLARATION
 					// xml_parse didn't send these to the filter, so we won't.
 			}
-
 		} while ( $this->readNext( $reader ) );
 
 		if ( $this->stackDepth !== 0 ) {
@@ -248,7 +246,6 @@ class XmlTypeCheck {
 		} elseif ( $this->wellFormed === null ) {
 			$this->wellFormed = true;
 		}
-
 	}
 
 	/**

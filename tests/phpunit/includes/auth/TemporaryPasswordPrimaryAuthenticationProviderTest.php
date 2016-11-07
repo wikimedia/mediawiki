@@ -347,7 +347,6 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 			'wrongpassword',
 			$ret->message->getKey()
 		);
-
 	}
 
 	/**

@@ -770,7 +770,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 
 		return $template;
-
 	}
 
 	public function onAuthChangeFormFields(

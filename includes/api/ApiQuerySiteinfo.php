@@ -576,7 +576,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		ApiResult::setIndexedTagName( $data, 'library' );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
-
 	}
 
 	protected function appendExtensions( $property ) {

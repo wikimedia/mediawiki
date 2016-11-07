@@ -455,7 +455,6 @@ class SpecialSearch extends SpecialPage {
 		$out->addHTML( "</div>" );
 
 		Hooks::run( 'SpecialSearchResultsAppend', [ $this, $out, $term ] );
-
 	}
 
 	/**
@@ -752,7 +751,6 @@ class SpecialSearch extends SpecialPage {
 	 * @return string
 	 */
 	protected function showHit( SearchResult $result, $terms, $position ) {
-
 		if ( $result->isBrokenTitle() ) {
 			return '';
 		}
@@ -972,7 +970,6 @@ class SpecialSearch extends SpecialPage {
 	 * @return string
 	 */
 	protected function showInterwikiHit( $result, $lastInterwiki, $query ) {
-
 		if ( $result->isBrokenTitle() ) {
 			return '';
 		}
@@ -1342,7 +1339,6 @@ class SpecialSearch extends SpecialPage {
 	 * @return bool
 	 */
 	protected function startsWithAll( $term ) {
-
 		$allkeyword = $this->msg( 'searchall' )->inContentLanguage()->text();
 
 		$parts = explode( ':', $term );

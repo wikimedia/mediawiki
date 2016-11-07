@@ -215,7 +215,6 @@ class ImagePage extends Article {
 			'filepage', // always show the local local Filepage.css, bug 29277
 			'mediawiki.action.view.filepage', // Add MediaWiki styles for a file page
 		] );
-
 	}
 
 	/**

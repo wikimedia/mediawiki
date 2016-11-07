@@ -102,7 +102,6 @@ class FormatMetadata extends ContextSource {
 		unset( $tags['ResolutionUnit'] );
 
 		foreach ( $tags as $tag => &$vals ) {
-
 			// This seems ugly to wrap non-array's in an array just to unwrap again,
 			// especially when most of the time it is not an array
 			if ( !is_array( $tags[$tag] ) ) {
@@ -165,7 +164,6 @@ class FormatMetadata extends ContextSource {
 			}
 
 			foreach ( $vals as &$val ) {
-
 				switch ( $tag ) {
 					case 'Compression':
 						switch ( $val ) {
@@ -1683,7 +1681,6 @@ class FormatMetadata extends ContextSource {
 	protected function getExtendedMetadataFromHook( File $file, array $extendedMetadata,
 		&$maxCacheTime
 	) {
-
 		Hooks::run( 'GetExtendedMetadata', [
 			&$extendedMetadata,
 			$file,
@@ -1807,7 +1804,6 @@ class FormatMetadata extends ContextSource {
 				$field['value'] = $this->resolveMultivalueValue( $field['value'] );
 			}
 		}
-
 	}
 
 	/**

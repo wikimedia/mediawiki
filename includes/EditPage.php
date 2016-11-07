@@ -1044,7 +1044,6 @@ class EditPage {
 
 		// Allow extensions to modify form data
 		Hooks::run( 'EditPage::importFormData', [ $this, $request ] );
-
 	}
 
 	/**
@@ -2237,7 +2236,6 @@ class EditPage {
 	 * @return bool
 	 */
 	private function mergeChangesIntoContent( &$editContent ) {
-
 		$db = wfGetDB( DB_MASTER );
 
 		// This is the revision the editor started from
@@ -2813,7 +2811,6 @@ class EditPage {
 		if ( !$wgUser->getOption( 'previewontop' ) ) {
 			$this->displayPreviewArea( $previewOutput, false );
 		}
-
 	}
 
 	/**
@@ -2839,7 +2836,6 @@ class EditPage {
 		return Html::rawElement( 'div', [ 'class' => 'templatesUsed' ],
 			$templateListFormatter->format( $templates, $type )
 		);
-
 	}
 
 	/**

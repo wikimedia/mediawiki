@@ -104,6 +104,5 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends \PHPUnit_Fram
 		$authManager->setAuthenticationSessionData( 'no-email', true );
 		$provider->setManager( $authManager );
 		$provider->beginSecondaryAccountCreation( $userNotExpectsConfirmation, $creator, [] );
-
 	}
 }

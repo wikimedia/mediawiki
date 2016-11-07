@@ -733,7 +733,6 @@ class ParserOptions {
 		$this->mThumbSize = $user->getOption( 'thumbsize' );
 		$this->mStubThreshold = $user->getStubThreshold();
 		$this->mUserLang = $lang;
-
 	}
 
 	/**

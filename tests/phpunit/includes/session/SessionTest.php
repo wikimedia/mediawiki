@@ -299,7 +299,6 @@ class SessionTest extends MediaWikiTestCase {
 
 		$session->resetAllTokens();
 		$this->assertArrayNotHasKey( 'wsTokenSecrets', $backend->data );
-
 	}
 
 	/**

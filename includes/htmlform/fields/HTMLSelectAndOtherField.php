@@ -31,7 +31,6 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			$this->mOptions = [ $params['other'] => 'other' ] + $this->mOptions;
 		}
 		$this->mFlatOptions = self::flattenOptions( $this->getOptions() );
-
 	}
 
 	public function getInputHTML( $value ) {

@@ -1713,7 +1713,6 @@ class OutputPage extends ContextSource {
 		$popts->setTidy( $oldTidy );
 
 		$this->addParserOutput( $parserOutput );
-
 	}
 
 	/**

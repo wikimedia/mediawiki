@@ -1412,7 +1412,6 @@ class Title implements LinkTarget {
 			$fragment,
 			$this->getInterwiki()
 		);
-
 	}
 
 	/**
@@ -2926,7 +2925,6 @@ class Title implements LinkTarget {
 
 			# Cycle through all the restrictions.
 			foreach ( $rows as $row ) {
-
 				// Don't take care of restrictions types that aren't allowed
 				if ( !in_array( $row->pr_type, $restrictionTypes ) ) {
 					continue;
@@ -4600,7 +4598,6 @@ class Title implements LinkTarget {
 			: $wgExemptFromUserRobotsControl;
 
 		return !in_array( $this->mNamespace, $bannedNamespaces );
-
 	}
 
 	/**

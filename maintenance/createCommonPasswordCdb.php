@@ -109,7 +109,6 @@ class GenerateCommonPassword extends Maintenance {
 		} catch ( \Cdb\Exception $e ) {
 			$this->error( "Error writing cdb file: " . $e->getMessage(), 2 );
 		}
-
 	}
 }
 

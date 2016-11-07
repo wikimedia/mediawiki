@@ -25,7 +25,6 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 			$this->revs[] = Title::newFromText( self::$page )
 				->getLatestRevID( Title::GAID_FOR_UPDATE );
 		}
-
 	}
 
 	public function testHidingRevisions() {

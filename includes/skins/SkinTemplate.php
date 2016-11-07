@@ -196,7 +196,6 @@ class SkinTemplate extends Skin {
 	}
 
 	protected function setupTemplateForOutput() {
-
 		$request = $this->getRequest();
 		$user = $this->getUser();
 		$title = $this->getTitle();
@@ -257,7 +256,6 @@ class SkinTemplate extends Skin {
 		if ( $oldContext ) {
 			$this->setContext( $oldContext );
 		}
-
 	}
 
 	/**
@@ -1171,7 +1169,6 @@ class SkinTemplate extends Skin {
 	 * @return array
 	 */
 	private function buildContentActionUrls( $content_navigation ) {
-
 		// content_actions has been replaced with content_navigation for backwards
 		// compatibility and also for skins that just want simple tabs content_actions
 		// is now built by flattening the content_navigation arrays into one

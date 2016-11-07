@@ -264,7 +264,6 @@ class TestFileReader {
 		$this->sectionLineNum = [];
 		$this->sectionData = [];
 		$this->section = null;
-
 	}
 
 	/**

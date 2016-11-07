@@ -138,7 +138,6 @@ class SessionProviderTest extends MediaWikiTestCase {
 				$ex->getMessage()
 			);
 		}
-
 	}
 
 	public function testHashToSessionId() {

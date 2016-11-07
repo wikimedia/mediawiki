@@ -357,7 +357,6 @@ class CSSMin {
 		}, $source );
 
 		return $source;
-
 	}
 
 	/**
