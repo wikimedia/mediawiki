@@ -140,6 +140,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$opts = new FormOptions();
 
 		$opts->add( 'hideminor', false );
+		$opts->add( 'hidemajor', false );
 		$opts->add( 'hidebots', false );
 		$opts->add( 'hidehumans', false );
 		$opts->add( 'hideanons', false );
@@ -235,7 +236,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		// Toggles
 		if ( $opts['hideminor'] ) {
-			$conds['rc_minor'] = 0;
+			$conds[] = 'rc_minor = 0';
+		}
+		if ( $opts['hidemajor'] ) {
+			$conds[] = 'rc_minor = 1';
 		}
 		if ( $opts['hidebots'] ) {
 			$conds['rc_bot'] = 0;
