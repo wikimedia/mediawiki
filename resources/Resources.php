@@ -1811,6 +1811,42 @@ return [
 
 	/* MediaWiki Special pages */
 
+	'mediawiki.rcfilters.filters' => [
+		'scripts' => [
+			'resources/src/mediawiki.rcfilters/mw.rcfilters.js',
+			'resources/src/mediawiki.rcfilters/dm/mw.rcfilters.dm.FilterItem.js',
+			'resources/src/mediawiki.rcfilters/dm/mw.rcfilters.dm.FiltersViewModel.js',
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FiltersListWidget.js',
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterGroupWidget.js',
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterItemWidget.js',
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterCapsuleMultiselectWidget.js',
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterWrapperWidget.js',
+			'resources/src/mediawiki.rcfilters/mw.rcfilters.Controller.js',
+			'resources/src/mediawiki.rcfilters/mw.rcfilters.init.js',
+		],
+		'styles' => [
+			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.less',
+			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.FilterItemWidget.less',
+			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.FilterGroupWidget.less',
+			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.FiltersListWidget.less',
+			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.FilterWrapperWidget.less',
+			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.FilterCapsuleMultiselectWidget.less',
+		],
+		'messages' => [
+			'rcfilters-activefilters',
+			'rcfilters-search-placeholder',
+			'rcfilters-filterlist-title',
+			'rcfilters-filterlist-noresults',
+			'rcfilters-filtergroup-authorship',
+			'rcfilters-filter-editsbyself-label',
+			'rcfilters-filter-editsbyself-description',
+			'rcfilters-filter-editsbyother-label',
+			'rcfilters-filter-editsbyother-description',
+		],
+		'dependencies' => [
+			'oojs-ui',
+		],
+	],
 	'mediawiki.special' => [
 		'position' => 'top',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.css',
