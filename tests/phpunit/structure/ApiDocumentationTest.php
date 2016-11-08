@@ -137,6 +137,8 @@ class ApiDocumentationTest extends MediaWikiTestCase {
 
 		// Messages for examples.
 		foreach ( $module->getExamplesMessages() as $qs => $msg ) {
+			$this->assertStringStartsNotWith( 'api.php?', $qs,
+				"Query string must not begin with 'api.php?'" );
 			$this->checkMessage( $msg, "Example $qs" );
 		}
 	}
