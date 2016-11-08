@@ -1,0 +1,31 @@
+.mw-rcfilters-ui-filterWrapperWidget {
+	width: 100%;
+
+	.oo-ui-capsuleMultiselectWidget {
+		max-width: none;
+
+		&.oo-ui-widget-enabled .oo-ui-capsuleMultiselectWidget-handle {
+			background-color: #F8F9FA;
+			border: 1px solid #A2A9B1;
+			min-height: 5.5em;
+			padding: 0.75em;
+
+		}
+	}
+
+	&-popup {
+		// We have to override OOUI's definition, which is set
+		// on the inline style of the popup
+		margin-top: 2em !important;
+		max-width: 650px;
+	}
+
+	&-search {
+		max-width: none;
+		margin-top: -0.5em;
+	}
+
+	&-capsule-invalid-filter {
+		background: red;
+	}
+}
