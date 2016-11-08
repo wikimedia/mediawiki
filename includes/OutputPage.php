@@ -295,9 +295,6 @@ class OutputPage extends ContextSource {
 	 */
 	private $copyrightUrl;
 
-	/** @var array Profiling data */
-	private $limitReportData = [];
-
 	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
@@ -1776,14 +1773,9 @@ class OutputPage extends ContextSource {
 			}
 		}
 
-		// Enable OOUI if requested via ParserOutput
+		// enable OOUI if requested via ParserOutput
 		if ( $parserOutput->getEnableOOUI() ) {
 			$this->enableOOUI();
-		}
-
-		// Include profiling data
-		if ( !$this->limitReportData ) {
-			$this->setLimitReportData( $parserOutput->getLimitReportData() );
 		}
 
 		// Link flags are ignored for now, but may in the future be
@@ -2963,15 +2955,6 @@ class OutputPage extends ContextSource {
 			}
 		}
 
-		if ( $this->limitReportData ) {
-			$chunks[] = ResourceLoader::makeInlineScript(
-				ResourceLoader::makeConfigSetScript(
-					[ 'wgPageParseReport' => $this->limitReportData ],
-					true
-				)
-			);
-		}
-
 		return self::combineWrappedStrings( $chunks );
 	}
 
@@ -3872,13 +3855,5 @@ class OutputPage extends ContextSource {
 			'oojs-ui.styles.textures',
 			'mediawiki.widgets.styles',
 		] );
-	}
-
-	/**
-	 * @param array $data Data from ParserOutput::getLimitReportData()
-	 * @since 1.28
-	 */
-	public function setLimitReportData( array $data ) {
-		$this->limitReportData = $data;
 	}
 }
