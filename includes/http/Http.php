@@ -51,6 +51,8 @@ class Http {
 	 *    - userAgent           A user agent, if you want to override the default
 	 *                          MediaWiki/$wgVersion
 	 *    - logger              A \Psr\Logger\LoggerInterface instance for debug logging
+	 *    - username            Username for HTTP Basic Authentication
+	 *    - password            Password for HTTP basic Authentication
 	 * @param string $caller The method making this request, for profiling
 	 * @return string|bool (bool)false on failure or a string on success
 	 */
