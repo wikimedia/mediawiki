@@ -88,9 +88,9 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		$attribs = $this->getAttributes( [ 'disabled', 'tabindex' ] );
 
 		// Build the column headers
-		$headerContents = Html::rawElement( 'td', [], '&#160;' );
+		$headerContents = Html::rawElement( 'tr', [], '&#160;' );
 		foreach ( $columns as $columnLabel => $columnTag ) {
-			$headerContents .= Html::rawElement( 'td', [], $columnLabel );
+			$headerContents .= Html::rawElement( 'tr', [], $columnLabel );
 		}
 		$tableContents .= Html::rawElement( 'tr', [], "\n$headerContents\n" );
 
@@ -109,7 +109,6 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 				];
 				$rowLabel .= ' ' . Html::element( 'span', $tooltipAttribs, '' );
 			}
-			$rowContents = Html::rawElement( 'td', [], $rowLabel );
 			foreach ( $columns as $columnTag ) {
 				$thisTag = "$columnTag-$rowTag";
 				// Construct the checkbox
@@ -127,11 +126,12 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 				}
 
 				$checkbox = $this->getOneCheckbox( $checked, $attribs + $thisAttribs );
+                $rowContents = Html::rawElement( 'td', [], $checkbox );
 
 				$rowContents .= Html::rawElement(
 					'td',
 					[],
-					$checkbox
+					$rowLabel
 				);
 			}
 			$tableContents .= Html::rawElement( 'tr', [], "\n$rowContents\n" );
