@@ -119,6 +119,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 
 		$opts->add( 'hideminor', $user->getBoolOption( 'watchlisthideminor' ) );
+		$opts->add( 'hidemajor', false );
 		$opts->add( 'hidebots', $user->getBoolOption( 'watchlisthidebots' ) );
 		$opts->add( 'hideanons', $user->getBoolOption( 'watchlisthideanons' ) );
 		$opts->add( 'hideliu', $user->getBoolOption( 'watchlisthideliu' ) );
