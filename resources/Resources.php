@@ -1806,6 +1806,26 @@ return [
 
 	/* MediaWiki Special pages */
 
+	'mediawiki.rcfilters.filters' => [
+		'scripts' => [
+			'resources/src/mediawiki.rcfilters/mw.rcfilters.js',
+			'resources/src/mediawiki.rcfilters/dm/mw.rcfilters.dm.FilterItem.js',
+			'resources/src/mediawiki.rcfilters/dm/mw.rcfilters.dm.FiltersViewModel.js',
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FiltersListWidget.js',
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterGroupWidget.js',
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterItemWidget.js',
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterWrapperWidget.js',
+			'resources/src/mediawiki.rcfilters/mw.rcfilters.Controller.js',
+			'resources/src/mediawiki.rcfilters/mw.rcfilters.init.js',
+		],
+		'styles' => [
+			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.less',
+		],
+		'dependencies' => [
+			'oojs-ui',
+		],
+		'position' => 'top',
+	],
 	'mediawiki.special' => [
 		'position' => 'top',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.css',
