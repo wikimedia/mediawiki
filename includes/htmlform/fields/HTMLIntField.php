@@ -11,7 +11,7 @@ class HTMLIntField extends HTMLFloatField {
 			return $p;
 		}
 
-		# http://www.w3.org/TR/html5/infrastructure.html#signed-integers
+		# https://www.w3.org/TR/html5/infrastructure.html#signed-integers
 		# with the addition that a leading '+' sign is ok. Note that leading zeros
 		# are fine, and will be left in the input, which is useful for things like
 		# phone numbers when you know that they are integers (the HTML5 type=tel

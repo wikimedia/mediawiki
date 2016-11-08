@@ -274,7 +274,7 @@ abstract class DatabaseMysqlBase extends Database {
 		// Unfortunately, mysql_fetch_object does not reset the last errno.
 		// Only check for CR_SERVER_LOST and CR_UNKNOWN_ERROR, as
 		// these are the only errors mysql_fetch_object can cause.
-		// See http://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
+		// See https://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
 		if ( $errno == 2000 || $errno == 2013 ) {
 			throw new DBUnexpectedError(
 				$this,
@@ -310,7 +310,7 @@ abstract class DatabaseMysqlBase extends Database {
 		// Unfortunately, mysql_fetch_array does not reset the last errno.
 		// Only check for CR_SERVER_LOST and CR_UNKNOWN_ERROR, as
 		// these are the only errors mysql_fetch_array can cause.
-		// See http://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
+		// See https://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
 		if ( $errno == 2000 || $errno == 2013 ) {
 			throw new DBUnexpectedError(
 				$this,
@@ -345,7 +345,7 @@ abstract class DatabaseMysqlBase extends Database {
 		// Unfortunately, mysql_num_rows does not reset the last errno.
 		// We are not checking for any errors here, since
 		// these are no errors mysql_num_rows can cause.
-		// See http://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
+		// See https://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
 		// See https://phabricator.wikimedia.org/T44430
 		return $n;
 	}
@@ -572,7 +572,7 @@ abstract class DatabaseMysqlBase extends Database {
 	public function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		# SHOW INDEX works in MySQL 3.23.58, but SHOW INDEXES does not.
 		# SHOW INDEX should work for 3.x and up:
-		# http://dev.mysql.com/doc/mysql/en/SHOW_INDEX.html
+		# https://dev.mysql.com/doc/mysql/en/SHOW_INDEX.html
 		$table = $this->tableName( $table );
 		$index = $this->indexName( $index );
 
@@ -1013,7 +1013,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 	/**
 	 * FROM MYSQL DOCS:
-	 * http://dev.mysql.com/doc/refman/5.0/en/miscellaneous-functions.html#function_release-lock
+	 * https://dev.mysql.com/doc/refman/5.0/en/miscellaneous-functions.html#function_release-lock
 	 * @param string $lockName
 	 * @param string $method
 	 * @return bool
@@ -1034,7 +1034,7 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	private function makeLockName( $lockName ) {
-		// http://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_get-lock
+		// https://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_get-lock
 		// Newer version enforce a 64 char length limit.
 		return ( strlen( $lockName ) > 64 ) ? sha1( $lockName ) : $lockName;
 	}

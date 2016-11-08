@@ -31,7 +31,7 @@ use Cdb\Writer;
  * space. The performance advantage is greater when the DBA extension is
  * available than it is with the PHP port.
  *
- * See Cdb.php and http://cr.yp.to/cdb.html
+ * See Cdb.php and https://cr.yp.to/cdb.html
  */
 class LCStoreCDB implements LCStore {
 

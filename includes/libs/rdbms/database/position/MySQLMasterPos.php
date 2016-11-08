@@ -117,8 +117,8 @@ class MySQLMasterPos implements DBMasterPos {
 	}
 
 	/**
-	 * @see http://dev.mysql.com/doc/refman/5.7/en/show-master-status.html
-	 * @see http://dev.mysql.com/doc/refman/5.7/en/show-slave-status.html
+	 * @see https://dev.mysql.com/doc/refman/5.7/en/show-master-status.html
+	 * @see https://dev.mysql.com/doc/refman/5.7/en/show-slave-status.html
 	 * @return array|bool (binlog, (integer file number, integer position)) or false
 	 */
 	protected function getBinlogCoordinates() {

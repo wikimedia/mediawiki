@@ -349,7 +349,7 @@ class UploadBaseTest extends MediaWikiTestCase {
 			],
 			[
 				// This currently doesn't seem to work in any browsers, but in case
-				// http://www.w3.org/TR/css3-images/ is implemented for SVG files
+				// https://www.w3.org/TR/css3-images/ is implemented for SVG files
 				'<svg xmlns="http://www.w3.org/2000/svg"> <rect width="100" height="100" style="background-image:image(\'sprites.svg#xywh=40,0,20,20\')"/> </svg>',
 				true,
 				true,

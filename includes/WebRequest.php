@@ -113,7 +113,7 @@ class WebRequest {
 	 */
 	public static function getPathInfo( $want = 'all' ) {
 		global $wgUsePathInfo;
-		// PATH_INFO is mangled due to http://bugs.php.net/bug.php?id=31892
+		// PATH_INFO is mangled due to https://bugs.php.net/bug.php?id=31892
 		// And also by Apache 2.x, double slashes are converted to single slashes.
 		// So we will use REQUEST_URI if possible.
 		$matches = [];
@@ -175,7 +175,7 @@ class WebRequest {
 		} elseif ( $wgUsePathInfo ) {
 			if ( isset( $_SERVER['ORIG_PATH_INFO'] ) && $_SERVER['ORIG_PATH_INFO'] != '' ) {
 				// Mangled PATH_INFO
-				// http://bugs.php.net/bug.php?id=31892
+				// https://bugs.php.net/bug.php?id=31892
 				// Also reported when ini_get('cgi.fix_pathinfo')==false
 				$matches['title'] = substr( $_SERVER['ORIG_PATH_INFO'], 1 );
 
@@ -379,7 +379,7 @@ class WebRequest {
 	 */
 	private function getGPCVal( $arr, $name, $default ) {
 		# PHP is so nice to not touch input data, except sometimes:
-		# http://us2.php.net/variables.external#language.variables.external.dot-in-names
+		# https://secure.php.net/variables.external#language.variables.external.dot-in-names
 		# Work around PHP *feature* to avoid *bugs* elsewhere.
 		$name = strtr( $name, '.', '_' );
 		if ( isset( $arr[$name] ) ) {

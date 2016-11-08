@@ -1690,7 +1690,7 @@ class User implements IDBAccessObject {
 	 */
 	public function inDnsBlacklist( $ip, $bases ) {
 		$found = false;
-		// @todo FIXME: IPv6 ???  (http://bugs.php.net/bug.php?id=33170)
+		// @todo FIXME: IPv6 ???  (https://bugs.php.net/bug.php?id=33170)
 		if ( IP::isIPv4( $ip ) ) {
 			// Reverse IP, bug 21255
 			$ipReversed = implode( '.', array_reverse( explode( '.', $ip ) ) );

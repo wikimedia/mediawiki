@@ -40,7 +40,7 @@ use Wikimedia\ScopedCallback;
  */
 
 // hash_equals function only exists in PHP >= 5.6.0
-// http://php.net/hash_equals
+// https://secure.php.net/hash_equals
 if ( !function_exists( 'hash_equals' ) ) {
 	/**
 	 * Check whether a user-provided string is equal to a fixed-length secret string
@@ -2138,7 +2138,7 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
  */
 function wfRecursiveRemoveDir( $dir ) {
 	wfDebug( __FUNCTION__ . "( $dir )\n" );
-	// taken from http://de3.php.net/manual/en/function.rmdir.php#98622
+	// taken from https://secure.php.net/manual/en/function.rmdir.php#98622
 	if ( is_dir( $dir ) ) {
 		$objects = scandir( $dir );
 		foreach ( $objects as $object ) {
@@ -2231,8 +2231,8 @@ function wfEscapeShellArg( /*...*/ ) {
 			// Escaping for an MSVC-style command line parser and CMD.EXE
 			// @codingStandardsIgnoreStart For long URLs
 			// Refs:
-			//  * http://web.archive.org/web/20020708081031/http://mailman.lyra.org/pipermail/scite-interest/2002-March/000436.html
-			//  * http://technet.microsoft.com/en-us/library/cc723564.aspx
+			//  * https://web.archive.org/web/20020708081031/http://mailman.lyra.org/pipermail/scite-interest/2002-March/000436.html
+			//  * https://technet.microsoft.com/en-us/library/cc723564.aspx
 			//  * T15518
 			//  * CR r63214
 			// Double the backslashes before any double quotes. Escape the double quotes.
@@ -2332,7 +2332,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = [],
 		if ( wfIsWindows() ) {
 			/* Surrounding a set in quotes (method used by wfEscapeShellArg) makes the quotes themselves
 			 * appear in the environment variable, so we must use carat escaping as documented in
-			 * http://technet.microsoft.com/en-us/library/cc723564.aspx
+			 * https://technet.microsoft.com/en-us/library/cc723564.aspx
 			 * Note however that the quote isn't listed there, but is needed, and the parentheses
 			 * are listed there but doesn't appear to need it.
 			 */
@@ -2550,7 +2550,7 @@ function wfShellExecWithStderr( $cmd, &$retval = null, $environ = [], $limits = 
 }
 
 /**
- * Workaround for http://bugs.php.net/bug.php?id=45132
+ * Workaround for https://bugs.php.net/bug.php?id=45132
  * escapeshellarg() destroys non-ASCII characters if LANG is not a UTF-8 locale
  */
 function wfInitShellLocale() {
@@ -2802,7 +2802,7 @@ function wfUseMW( $req_ver ) {
 /**
  * Return the final portion of a pathname.
  * Reimplemented because PHP5's "basename()" is buggy with multibyte text.
- * http://bugs.php.net/bug.php?id=33898
+ * https://bugs.php.net/bug.php?id=33898
  *
  * PHP's basename() only considers '\' a pathchar on Windows and Netware.
  * We'll consider it so always, as we don't want '\s' in our Unix paths either.

@@ -898,7 +898,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		if ( false === $ret ) {
 			# Deadlocks cause the entire transaction to abort, not just the statement.
-			# http://dev.mysql.com/doc/refman/5.7/en/innodb-error-handling.html
+			# https://dev.mysql.com/doc/refman/5.7/en/innodb-error-handling.html
 			# https://www.postgresql.org/docs/9.1/static/explicit-locking.html
 			if ( $this->wasDeadlock() ) {
 				if ( $this->explicitTrxActive() || $priorWritesPending ) {

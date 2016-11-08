@@ -1208,7 +1208,7 @@ class SwiftFileBackend extends FileBackendStore {
 					$this->rgwS3SecretKey,
 					true // raw
 				) );
-				// See http://s3.amazonaws.com/doc/s3-developer-guide/RESTAuthentication.html.
+				// See https://s3.amazonaws.com/doc/s3-developer-guide/RESTAuthentication.html.
 				// Note: adding a newline for empty CanonicalizedAmzHeaders does not work.
 				// Note: S3 API is the rgw default; remove the /swift/ URL bit.
 				return str_replace( '/swift/v1', '', $this->storageUrl( $auth ) . $spath ) .
@@ -1304,7 +1304,7 @@ class SwiftFileBackend extends FileBackendStore {
 	/**
 	 * Set read/write permissions for a Swift container.
 	 *
-	 * @see http://swift.openstack.org/misc.html#acls
+	 * @see http://docs.openstack.org/developer/swift/misc.html#acls
 	 *
 	 * In general, we don't allow listings to end-users. It's not useful, isn't well-defined
 	 * (lists are truncated to 10000 item with no way to page), and is just a performance risk.

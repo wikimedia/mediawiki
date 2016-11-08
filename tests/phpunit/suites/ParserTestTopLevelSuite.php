@@ -108,7 +108,7 @@ class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
 			$testsName = $extensionName . '__' . basename( $fileName, '.txt' );
 			$parserTestClassName = ucfirst( $testsName );
 
-			// Official spec for class names: http://php.net/manual/en/language.oop5.basic.php
+			// Official spec for class names: https://secure.php.net/manual/en/language.oop5.basic.php
 			// Prepend 'ParserTest_' to be paranoid about it not starting with a number
 			$parserTestClassName = 'ParserTest_' .
 				preg_replace( '/[^a-zA-Z0-9_\x7f-\xff]/', '_', $parserTestClassName );

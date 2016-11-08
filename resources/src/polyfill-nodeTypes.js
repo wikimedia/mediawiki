@@ -1,6 +1,6 @@
 /**
  * Adds window.Node with node types according to:
- * http://www.w3.org/TR/DOM-Level-2-Core/core.html#ID-1950641247
+ * https://www.w3.org/TR/DOM-Level-2-Core/core.html#ID-1950641247
  */
 
 window.Node = window.Node || {

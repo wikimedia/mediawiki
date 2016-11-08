@@ -841,7 +841,7 @@ __INDEXATTR__;
 
 	/**
 	 * Posted by cc[plus]php[at]c2se[dot]com on 25-Mar-2009 09:12
-	 * to http://www.php.net/manual/en/ref.pgsql.php
+	 * to https://secure.php.net/manual/en/ref.pgsql.php
 	 *
 	 * Parsing a postgres array can be a tricky problem, he's my
 	 * take on this, it handles multi-dimensional arrays plus

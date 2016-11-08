@@ -102,7 +102,7 @@ class WebRequestUpload {
 
 	/**
 	 * Return the upload error. See link for explanation
-	 * http://www.php.net/manual/en/features.file-upload.errors.php
+	 * https://secure.php.net/manual/en/features.file-upload.errors.php
 	 *
 	 * @return int One of the UPLOAD_ constants, 0 if non-existent
 	 */

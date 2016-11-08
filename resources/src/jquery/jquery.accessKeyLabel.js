@@ -97,7 +97,7 @@ function getAccessKeyLabel( element ) {
 		return '';
 	}
 	// use accessKeyLabel if possible
-	// http://www.whatwg.org/specs/web-apps/current-work/multipage/editing.html#dom-accesskeylabel
+	// https://html.spec.whatwg.org/multipage/interaction.html#dom-accesskeylabel
 	if ( !useTestPrefix && element.accessKeyLabel ) {
 		return element.accessKeyLabel;
 	}
