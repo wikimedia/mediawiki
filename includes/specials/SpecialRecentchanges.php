@@ -80,6 +80,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$opts->add( 'from', '' );
 
 		$opts->add( 'hideminor', $user->getBoolOption( 'hideminor' ) );
+		$opts->add( 'hidemajor', false );
 		$opts->add( 'hidebots', true );
 		$opts->add( 'hideanons', false );
 		$opts->add( 'hideliu', false );
