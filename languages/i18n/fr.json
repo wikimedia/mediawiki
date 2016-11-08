@@ -3946,7 +3946,7 @@
 	"authmanager-authn-autocreate-failed": "La création automatique d’un compte local a échoué : $1",
 	"authmanager-change-not-supported": "Les informations d’identification fournies ne peuvent pas être modifiées, car rien ne les utiliserait.",
 	"authmanager-create-disabled": "La création de compte est désactivée.",
-	"authmanager-create-from-login": "Pour créer votre compte, veuillez remplir les champs ci-dessous.",
+	"authmanager-create-from-login": "Pour créer votre compte, veuillez remplir les champs.",
 	"authmanager-create-not-in-progress": "La création de compte n’est pas en cours, ou les données de session ont été perdues. Veuillez recommencer depuis le début.",
 	"authmanager-create-no-primary": "Les informations d’identification fournies n’ont pas pu être utilisées pour la création de compte.",
 	"authmanager-link-no-primary": "Les informations d’identification fournies n’ont pas pu être utilisées pour lier un compte.",

@@ -1082,7 +1082,7 @@
 	"apihelp-query+tags-paramvalue-prop-active": "Se a etiqueta aínda está a ser usada.",
 	"apihelp-query+tags-example-simple": "Listar as marcas dispoñibles",
 	"apihelp-query+templates-description": "Devolve todas as páxinas incluídas na páxina indicada.",
-	"apihelp-query+templates-param-namespace": "Mostrar modelos só neste espazo de nomes.",
+	"apihelp-query+templates-param-namespace": "Mostrar os modelos só nestes espazos de nomes.",
 	"apihelp-query+templates-param-limit": "Número de modelos a devolver.",
 	"apihelp-query+templates-param-templates": "Listar só eses modelos. Útil para verificar se unha páxina concreta ten un modelo determinado.",
 	"apihelp-query+templates-param-dir": "Dirección na cal listar.",

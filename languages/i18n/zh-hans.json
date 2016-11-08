@@ -3819,7 +3819,7 @@
 	"authmanager-authn-autocreate-failed": "所有账户的自动创建失败：$1",
 	"authmanager-change-not-supported": "提供的凭据不能被更改，因为没有东西会使用它们。",
 	"authmanager-create-disabled": "账户创建已停用。",
-	"authmanager-create-from-login": "要创建您的账户，请填写下方的字段。",
+	"authmanager-create-from-login": "要创建您的账户，请填写字段。",
 	"authmanager-create-not-in-progress": "账户创建尚未进行，或会话数据丢失。请从头重新开始。",
 	"authmanager-create-no-primary": "提供的凭据不能用于账户创建。",
 	"authmanager-link-no-primary": "提供的证书不能用于账户链接。",

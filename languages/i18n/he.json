@@ -2687,6 +2687,8 @@
 	"patrol-log-header": "יומן זה מציג גרסאות שנבדקו.",
 	"log-show-hide-patrol": "$1 יומן שינויים בדוקים",
 	"log-show-hide-tag": "$1 יומן תגיות",
+	"confirm-markpatrolled-button": "אישור",
+	"confirm-markpatrolled-top": "לסמן את גרסה $3 של $2 כבדוקה?",
 	"deletedrevision": "מחיקת גרסה ישנה ($1)",
 	"filedeleteerror-short": "שגיאה במחיקת הקובץ: $1",
 	"filedeleteerror-long": "שגיאות שאירעו בעת מחיקת הקובץ:\n\n$1",

@@ -3707,7 +3707,7 @@
 	"authmanager-authn-autocreate-failed": "Samodejno ustvarjanje lokalnega računa je spodletelo: $1",
 	"authmanager-change-not-supported": "Navedenih poverilnic nismo mogli spremeniti, saj jih ne bi nič uporabljalo.",
 	"authmanager-create-disabled": "Ustvarjanje računov je onemogočeno.",
-	"authmanager-create-from-login": "Da ustvarite svoj račun, prosimo, izpolnite spodnja polja.",
+	"authmanager-create-from-login": "Da ustvarite svoj račun, prosimo, izpolnite polja.",
 	"authmanager-create-not-in-progress": "Ustvarjanje računa ni v teku ali pa smo izgubili podatke seje. Prosimo, pričnite znova od začetka.",
 	"authmanager-create-no-primary": "Navedenih poverilnic ne moremo uporabiti za ustvarjanje računa.",
 	"authmanager-link-no-primary": "Navedenih poverilnic ne moremo uporabiti za povezovanje računa.",

@@ -28,7 +28,7 @@
 	"apihelp-edit-param-text": "Contengut de la pagina.",
 	"apihelp-edit-param-minor": "Modificacion menora.",
 	"apihelp-edit-param-notminor": "Modificacion pas menora.",
-	"apihelp-edit-param-bot": "Marcar aquesta modificacion coma robòt.",
+	"apihelp-edit-param-bot": "Marcar aquesta modificacion coma efectuada per un robòt.",
 	"apihelp-edit-example-edit": "Modificar una pagina",
 	"apihelp-edit-example-prepend": "Prefixar una pagina per <kbd>_&#95;NOTOC_&#95;</kbd>",
 	"apihelp-emailuser-description": "Mandar un corrièr electronic un l’utilizaire.",

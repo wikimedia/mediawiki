@@ -3723,7 +3723,7 @@
 	"authmanager-authn-autocreate-failed": "A creación automatica dunha conta local fallou: $1",
 	"authmanager-change-not-supported": "As credenciais proporcionadas non se poden modificar, xa que ninguén as utilizará.",
 	"authmanager-create-disabled": "A creación de contas está desactivada.",
-	"authmanager-create-from-login": "Para crear a súa conta, complete os campos a continuación.",
+	"authmanager-create-from-login": "Para crear a súa conta, complete os campos.",
 	"authmanager-create-not-in-progress": "O proceso de creación da conta non está en progreso ou perdéronse os datos da sesión. Empece de novo desde o principio.",
 	"authmanager-create-no-primary": "As credenciais subministradas non poden usarse para a creación da conta.",
 	"authmanager-link-no-primary": "As credenciais subministradas non poden usarse para a ligazón da conta.",
