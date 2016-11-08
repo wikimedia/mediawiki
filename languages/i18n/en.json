@@ -1360,6 +1360,8 @@
 	"recentchanges-legend-unpatrolled": "{{int:recentchanges-label-unpatrolled}}",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "Show",
+	"rcfilters-filterlist-title": "Filters",
+	"rcfilters-filtergroup-authorship": "Edit authorship",
 	"rcnotefrom": "Below {{PLURAL:$5|is the change|are the changes}} since <strong>$3, $4</strong> (up to <strong>$1</strong> shown).",
 	"rclistfrom": "Show new changes starting from $2, $3",
 	"rcshowhideminor": "$1 minor edits",
