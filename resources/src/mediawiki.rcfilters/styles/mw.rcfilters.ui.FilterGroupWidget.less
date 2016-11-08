@@ -1,0 +1,20 @@
+.mw-rcfilters-ui-filterGroupWidget {
+	padding-bottom: 0.5em;
+
+	&-title {
+		// TODO: Unify colors with official design palette
+		background: #eaecf0;
+		padding: 0.5em 0.75em;
+		color: #555a5d;
+	}
+
+	&-invalid-notice {
+		padding: 0.5em;
+		font-style: italic;
+		display: none;
+
+		.mw-rcfilters-ui-filterGroupWidget-invalid & {
+			display: block;
+		}
+	}
+}
