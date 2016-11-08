@@ -423,25 +423,10 @@ class CategoryViewer extends ContextSource {
 	}
 
 	/**
-	 * Return pretty name which is display name if given and different from prefix text or
-	 * the unprefixed page name.
-	 *
-	 * @return string HTML safe name.
-	 */
-	function getPrettyPageNameHtml() {
-		$displayTitle = $this->getOutput()->getPageTitle();
-		if ( $displayTitle === $this->getTitle()->getPrefixedText() ) {
-			return htmlspecialchars( $this->getTitle()->getText() );
-		} else {
-			return $displayTitle;
-		}
-	}
-
-	/**
 	 * @return string
 	 */
 	function getPagesSection() {
-		$name = $this->getPrettyPageNameHtml();
+		$ti = wfEscapeWikiText( $this->title->getText() );
 		# Don't show articles section if there are none.
 		$r = '';
 
@@ -457,7 +442,7 @@ class CategoryViewer extends ContextSource {
 
 		if ( $rescnt > 0 ) {
 			$r = "<div id=\"mw-pages\">\n";
-			$r .= '<h2>' . $this->msg( 'category_header' )->rawParams( $name )->parse() . "</h2>\n";
+			$r .= '<h2>' . $this->msg( 'category_header', $ti )->parse() . "</h2>\n";
 			$r .= $countmsg;
 			$r .= $this->getSectionPagingLinks( 'page' );
 			$r .= $this->formatList( $this->articles, $this->articles_start_char );
@@ -471,7 +456,6 @@ class CategoryViewer extends ContextSource {
 	 * @return string
 	 */
 	function getImageSection() {
-		$name = $this->getPrettyPageNameHtml();
 		$r = '';
 		$rescnt = $this->showGallery ? $this->gallery->count() : count( $this->imgsNoGallery );
 		$dbcnt = $this->cat->getFileCount();
@@ -481,7 +465,10 @@ class CategoryViewer extends ContextSource {
 		if ( $rescnt > 0 ) {
 			$r .= "<div id=\"mw-category-media\">\n";
 			$r .= '<h2>' .
-				$this->msg( 'category-media-header' )->rawParams( $name )->parse() .
+				$this->msg(
+					'category-media-header',
+					wfEscapeWikiText( $this->title->getText() )
+				)->text() .
 				"</h2>\n";
 			$r .= $countmsg;
 			$r .= $this->getSectionPagingLinks( 'file' );
