@@ -1,0 +1,19 @@
+.mw-rcfilters-ui-filterGroupWidget {
+	padding-bottom: 0.5em;
+
+	&-title {
+		background: #EAECF0;
+		padding: 0.5em 0.75em;
+		color: #555A5F;
+	}
+
+	&-invalid-notice {
+		padding: 0.5em;
+		font-style: italic;
+		display: none;
+
+		.mw-rcfilters-ui-filterGroupWidget-invalid & {
+			display: block;
+		}
+	}
+}
