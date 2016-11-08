@@ -145,6 +145,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$opts->add( 'hideliu', false );
 		$opts->add( 'hidepatrolled', false );
 		$opts->add( 'hidemyself', false );
+		$opts->add( 'editauthorship', 'all' );
 
 		if ( $config->get( 'RCWatchCategoryMembership' ) ) {
 			$opts->add( 'hidecategorization', false );
@@ -247,13 +248,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				$conds[] = 'rc_user != 0';
 			}
 		}
-		if ( $opts['hidemyself'] ) {
-			if ( $user->getId() ) {
-				$conds[] = 'rc_user != ' . $dbr->addQuotes( $user->getId() );
-			} else {
-				$conds[] = 'rc_user_text != ' . $dbr->addQuotes( $user->getName() );
-			}
-		}
+
+		$this->processEditAuthorship( $opts, $dbr, $conds );
+
 		if ( $this->getConfig()->get( 'RCWatchCategoryMembership' )
 			&& $opts['hidecategorization'] === true
 		) {
@@ -484,5 +481,27 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 	protected function getGroupName() {
 		return 'changes';
+	}
+
+	private function processEditAuthorship( $opts, $dbr, &$conds ) {
+		if ( $this->getUser()->getId() ) {
+			$userColumn = 'rc_user';
+			$userValue = $dbr->addQuotes( $this->getUser()->getId() );
+		} else {
+			$userColumn = 'rc_user_text';
+			$userValue = $dbr->addQuotes( $this->getUser()->getName() );
+		}
+
+		// case 1: show only MY edits
+		if ( $opts['editauthorship'] === 'me' ) {
+			$conds[] = $userColumn . ' = ' . $userValue;
+		}
+
+		// case 2: show only edits by OTHER people
+		if ( $opts['editauthorship'] === 'others' || $opts['hidemyself'] ) {
+			$conds[] = $userColumn . ' != ' . $userValue;
+		}
+
+		// case 3: all other parameters combinations result in no filtering on user
 	}
 }
