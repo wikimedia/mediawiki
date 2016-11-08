@@ -301,6 +301,11 @@ class User implements IDBAccessObject {
 	/** @var integer User::READ_* constant bitfield used to load data */
 	protected $queryFlagsUsed = self::READ_NORMAL;
 
+	/** @var string Indicates type of block (used for eventlogging)
+	 * Permitted values: 'cookie-block', 'proxy-block', 'openproxy-block', 'xff-block'
+	 */
+	public $blockTrigger = false;
+
 	public static $idCacheByName = [];
 
 	/**
@@ -1640,6 +1645,7 @@ class User implements IDBAccessObject {
 				if ( $blockIsValid && $useBlockCookie ) {
 					// Use the block.
 					$block = $tmpBlock;
+					$this->blockTrigger = 'cookie-block';
 				} else {
 					// If the block is not valid, clear the block cookie (but don't delete it,
 					// because it needs to be cleared from LocalStorage as well and an empty string
@@ -1657,11 +1663,13 @@ class User implements IDBAccessObject {
 				$block->setBlocker( wfMessage( 'proxyblocker' )->text() );
 				$block->mReason = wfMessage( 'proxyblockreason' )->text();
 				$block->setTarget( $ip );
+				$this->blockTrigger = 'proxy-block';
 			} elseif ( $this->isAnon() && $this->isDnsBlacklisted( $ip ) ) {
 				$block = new Block;
 				$block->setBlocker( wfMessage( 'sorbs' )->text() );
 				$block->mReason = wfMessage( 'sorbsreason' )->text();
 				$block->setTarget( $ip );
+				$this->blockTrigger = 'openproxy-block';
 			}
 		}
 
@@ -1680,6 +1688,7 @@ class User implements IDBAccessObject {
 				# Mangle the reason to alert the user that the block
 				# originated from matching the X-Forwarded-For header.
 				$block->mReason = wfMessage( 'xffblockreason', $block->mReason )->text();
+				$this->blockTrigger = 'xff-block';
 			}
 		}
 
@@ -1694,6 +1703,7 @@ class User implements IDBAccessObject {
 			$this->mBlockedby = '';
 			$this->mHideName = 0;
 			$this->mAllowUsertalk = false;
+			$this->blockTrigger = false;
 		}
 
 		// Extensions
