@@ -29,30 +29,29 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		'rows',
 		'columns'
 	];
-
+  
 	public function __construct( $params ) {
-		$missing = array_diff( self::$requiredParams, array_keys( $params ) );
+		$missing = array_diff( self::$requiredParams, array_keys( $params )
 		if ( $missing ) {
 			throw new HTMLFormFieldRequiredOptionsException( $this, $missing );
 		}
 		parent::__construct( $params );
 	}
-
+                                      
 	function validate( $value, $alldata ) {
 		$rows = $this->mParams['rows'];
 		$columns = $this->mParams['columns'];
-
+          
 		// Make sure user-defined validation callback is run
 		$p = parent::validate( $value, $alldata );
 		if ( $p !== true ) {
 			return $p;
 		}
-
 		// Make sure submitted value is an array
 		if ( !is_array( $value ) ) {
 			return false;
 		}
-
+          
 		// If all options are valid, array_intersect of the valid options
 		// and the provided options will return the provided options.
 		$validOptions = [];
@@ -68,17 +67,17 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 			return $this->msg( 'htmlform-select-badoption' )->parse();
 		}
 	}
-
+                                      
 	/**
-	 * Build a table containing a matrix of checkbox options.
-	 * The value of each option is a combination of the row tag and column tag.
-	 * mParams['rows'] is an array with row labels as keys and row tags as values.
-	 * mParams['columns'] is an array with column labels as keys and column tags as values.
-	 *
-	 * @param array $value Array of the options that should be checked
-	 *
-	 * @return string
-	 */
+	* Build a table containing a matrix of checkbox options.
+	* The value of each option is a combination of the row tag and column tag.
+	* mParams['rows'] is an array with row labels as keys and row tags as values.
+	* mParams['columns'] is an array with column labels as keys and column tags as values.
+	*
+	* @param array $value Array of the options that should be checked
+	*
+	* @return string
+	*/
 	function getInputHTML( $value ) {
 		$html = '';
 		$tableContents = '';
@@ -88,9 +87,9 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		$attribs = $this->getAttributes( [ 'disabled', 'tabindex' ] );
 
 		// Build the column headers
-		$headerContents = Html::rawElement( 'td', [], '&#160;' );
+		$headerContents = Html::rawElement( 'tr', [], '&#160;' );
 		foreach ( $columns as $columnLabel => $columnTag ) {
-			$headerContents .= Html::rawElement( 'td', [], $columnLabel );
+			$headerContents .= Html::rawElement( 'tr', [], $columnLabel );
 		}
 		$tableContents .= Html::rawElement( 'tr', [], "\n$headerContents\n" );
 
@@ -109,7 +108,6 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 				];
 				$rowLabel .= ' ' . Html::element( 'span', $tooltipAttribs, '' );
 			}
-			$rowContents = Html::rawElement( 'td', [], $rowLabel );
 			foreach ( $columns as $columnTag ) {
 				$thisTag = "$columnTag-$rowTag";
 				// Construct the checkbox
@@ -125,18 +123,19 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 					$checked = true;
 					$thisAttribs['disabled'] = 1;
 				}
-
+                          
 				$checkbox = $this->getOneCheckbox( $checked, $attribs + $thisAttribs );
 
+				$rowContents = Html::rawElement( 'td', [], $checkbox );
 				$rowContents .= Html::rawElement(
 					'td',
 					[],
-					$checkbox
+					$rowLabel
 				);
 			}
 			$tableContents .= Html::rawElement( 'tr', [], "\n$rowContents\n" );
 		}
-
+        
 		// Put it all in a table
 		$html .= Html::rawElement( 'table',
 				[ 'class' => 'mw-htmlform-matrix' ],
@@ -144,7 +143,6 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 
 		return $html;
 	}
-
 	protected function getOneCheckbox( $checked, $attribs ) {
 		if ( $this->mParent instanceof OOUIHTMLForm ) {
 			return new OOUI\CheckboxInputWidget( [
@@ -164,44 +162,40 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 			return $checkbox;
 		}
 	}
-
 	protected function isTagForcedOff( $tag ) {
 		return isset( $this->mParams['force-options-off'] )
 			&& in_array( $tag, $this->mParams['force-options-off'] );
 	}
-
 	protected function isTagForcedOn( $tag ) {
 		return isset( $this->mParams['force-options-on'] )
 			&& in_array( $tag, $this->mParams['force-options-on'] );
 	}
-
+          
 	/**
-	 * Get the complete table row for the input, including help text,
-	 * labels, and whatever.
-	 * We override this function since the label should always be on a separate
-	 * line above the options in the case of a checkbox matrix, i.e. it's always
-	 * a "vertical-label".
-	 *
-	 * @param string $value The value to set the input to
-	 *
-	 * @return string Complete HTML table row
-	 */
+	* Get the complete table row for the input, including help text,
+	* labels, and whatever.
+	* We override this function since the label should always be on a separate
+	* line above the options in the case of a checkbox matrix, i.e. it's always
+	* a "vertical-label".
+	*
+	* @param string $value The value to set the input to
+	*
+	* @return string Complete HTML table row
+	*/
 	function getTableRow( $value ) {
 		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
 		$inputHtml = $this->getInputHTML( $value );
 		$fieldType = get_class( $this );
 		$helptext = $this->getHelpTextHtmlTable( $this->getHelpText() );
 		$cellAttributes = [ 'colspan' => 2 ];
-
 		$hideClass = '';
 		$hideAttributes = [];
 		if ( $this->mHideIf ) {
 			$hideAttributes['data-hide-if'] = FormatJson::encode( $this->mHideIf );
 			$hideClass = 'mw-htmlform-hide-if';
 		}
-
 		$label = $this->getLabelHtml( $cellAttributes );
-
+          
 		$field = Html::rawElement(
 			'td',
 			[ 'class' => 'mw-input' ] + $cellAttributes,
@@ -210,7 +204,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 
 		$html = Html::rawElement( 'tr',
 			[ 'class' => "mw-htmlform-vertical-label $hideClass" ] + $hideAttributes,
-			$label );
+				$label );
 		$html .= Html::rawElement( 'tr',
 			[ 'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass $hideClass" ] +
 				$hideAttributes,
@@ -220,10 +214,10 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 	}
 
 	/**
-	 * @param WebRequest $request
-	 *
-	 * @return array
-	 */
+	* @param WebRequest $request
+	*
+	* @return array
+	*/
 	function loadDataFromRequest( $request ) {
 		if ( $this->isSubmitAttempt( $request ) ) {
 			// Checkboxes are just not added to the request arrays if they're not checked,
@@ -234,7 +228,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 			return $this->getDefault();
 		}
 	}
-
+          
 	function getDefault() {
 		if ( isset( $this->mDefault ) ) {
 			return $this->mDefault;
@@ -260,7 +254,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 				}
 			}
 		}
-
+          
 		return $res;
 	}
 }
