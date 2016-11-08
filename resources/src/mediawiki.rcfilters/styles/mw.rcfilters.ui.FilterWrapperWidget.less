@@ -1,0 +1,33 @@
+.mw-rcfilters-ui-filterWrapperWidget {
+	width: 100%;
+
+	.oo-ui-capsuleMultiselectWidget {
+		max-width: none;
+
+		&.oo-ui-widget-enabled .oo-ui-capsuleMultiselectWidget-handle {
+			// TODO: Unify colors with official design palette
+			background-color: #f8f9fa;
+			border: 1px solid #a2a9b1;
+			min-height: 5.5em;
+			padding: 0.75em;
+
+		}
+	}
+
+	&-popup {
+		// We have to override OOUI's definition, which is set
+		// on the inline style of the popup
+		margin-top: 2em !important;
+		max-width: 650px;
+	}
+
+	&-search {
+		max-width: none;
+		margin-top: -0.5em;
+	}
+
+	&-capsule-invalid-filter {
+		// TODO: Unify colors with official design palette
+		background: red;
+	}
+}
