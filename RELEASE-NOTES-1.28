@@ -211,7 +211,6 @@ changes to languages because of Phabricator reports.
   * Skin::linkKnown() (use MediaWiki\Linker\LinkRenderer instead)
   * Skin::userLink() (use Linker::userLink() instead)
   * Skin::userToolLinks() (use Linker::userToolLinks() instead)
-* The 'ParserLimitReportFormat' hook was removed.
 * Disabled "bug 2702" HTML tidying of parsed UI messages on wikis where Tidy is
   disabled.
 * DifferenceEngine::generateDiffBody() was removed (deprecated since 1.21).
