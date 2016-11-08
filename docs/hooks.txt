@@ -1200,7 +1200,6 @@ wrapped in a span element which has class="patrollink".
 $differenceEngine: DifferenceEngine object
 &$markAsPatrolledLink: The "mark as patrolled" link HTML (string)
 $rcid: Recent change ID (rc_id) for this change (int)
-$token: Patrol token; $rcid is used in generating this variable
 
 'DifferenceEngineMarkPatrolledRCID': Allows extensions to possibly change the rcid parameter.
 For example the rcid might be set to zero due to the user being the same as the

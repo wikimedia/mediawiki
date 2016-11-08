@@ -1184,10 +1184,6 @@ class Article implements Page {
 			return false;
 		}
 
-		$rcid = $rc->getAttribute( 'rc_id' );
-
-		$token = $user->getEditToken( $rcid );
-
 		$outputPage->preventClickjacking();
 		if ( $wgEnableAPI && $wgEnableWriteAPI && $user->isAllowed( 'writeapi' ) ) {
 			$outputPage->addModules( 'mediawiki.page.patrol.ajax' );
@@ -1199,8 +1195,7 @@ class Article implements Page {
 			[],
 			[
 				'action' => 'markpatrolled',
-				'rcid' => $rcid,
-				'token' => $token,
+				'rcid' => $rc->getAttribute( 'rc_id' ),
 			]
 		);
 
