@@ -3871,7 +3871,7 @@ HTML
 			$wgOut->addParserOutputMetadata( $parserOutput );
 
 			if ( count( $parserOutput->getWarnings() ) ) {
-				$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );
+				$note .= "\n\n <p class='error'>" . implode( "\n\n", $parserOutput->getWarnings() )."</p>";
 			}
 
 		} catch ( MWContentSerializationException $ex ) {
