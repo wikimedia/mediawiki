@@ -457,7 +457,9 @@ class MovePage {
 				$nt->getArticleID(),
 				/* $commit */ false,
 				$errs,
-				$user
+				$user,
+				[],
+				'delete_redir'
 			);
 
 			if ( !$status->isGood() ) {
