@@ -5,6 +5,20 @@ THIS IS NOT A RELEASE YET
 MediaWiki 1.28 is an alpha-quality branch and is not recommended for use in
 production.
 
+=== Changes since 1.28.0rc0 ===
+* (T142210) The changes to move the parser "NewPP limit report" from a HTML
+  comment to a machine-readable JavaScript config option 'wgPageParseReport'
+  have been undone. They caused the human-readable limit report to be shown
+  incompletely or not at all. ParserOutput::setLimitReportData() and
+  getLimitReportData() behave as they did in MediaWiki 1.27 again.
+* (T149510) Value of {{DISPLAYTITLE:}} parser function will not be used for
+  the text of subheadings on a category page when creating it. This wasn't
+  working correctly.
+* (T106793) MediaWiki will no longer try to perform a HTTP redirect to the
+  canonical pretty URL when a non-pretty URL is used. It resulted in redirect
+  loops in some clients and in some server configurations. This undoes a change
+  made in MediaWiki 1.26.
+
 === Configuration changes in 1.28 ===
 * $wgSend404Code now affects status code of action=history if the page is not there.
 * BREAKING CHANGE: $wgHTTPProxy is now *required* for all external requests
