@@ -2439,6 +2439,8 @@ ERROR;
 		$displayTitle = isset( $this->mParserOutput ) ? $this->mParserOutput->getDisplayTitle() : false;
 		if ( $displayTitle === false ) {
 			$displayTitle = $contextTitle->getPrefixedText();
+		} else {
+			$wgOut->setDisplayTitle( $displayTitle );
 		}
 		$out->setPageTitle( $this->context->msg( $msg, $displayTitle ) );
 
