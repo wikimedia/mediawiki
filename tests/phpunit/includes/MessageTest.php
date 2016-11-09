@@ -256,6 +256,35 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expect, $msg->__toString() );
 	}
 
+	public static function provideToString_raw() {
+		return [
+			[ '<span>foo</span>', '<span>foo</span>', 'parse' ],
+			[ '<span>foo</span>', '&lt;span&gt;foo&lt;/span&gt;', 'escaped' ],
+			[ '<span>foo</span>', '<span>foo</span>', 'plain' ],
+			[ '<script>alert(1)</script>', '&lt;script&gt;alert(1)&lt;/script&gt;', 'parse' ],
+			[ '<script>alert(1)</script>', '&lt;script&gt;alert(1)&lt;/script&gt;', 'escaped' ],
+			[ '<script>alert(1)</script>', '<script>alert(1)</script>', 'plain' ],
+		];
+	}
+
+	/**
+	 * @covers Message::toString
+	 * @covers Message::__toString
+	 * @dataProvider provideToString_raw
+	 */
+	public function testToString_raw( $key, $expect, $format ) {
+		// make the message behave like RawMessage and use the key as-is
+		$msg = $this->getMockBuilder( Message::class )->setMethods( [ 'fetchMessage' ] )
+			->setConstructorArgs( [ $key ] )
+			->getMock();
+		$msg->expects( $this->any() )->method( 'fetchMessage' )->willReturn( $key );
+		/** @var Message $msg */
+		$msg->$format();
+		$this->assertEquals( $expect, $msg->toString() );
+		$this->assertEquals( $expect, $msg->__toString() );
+		$this->assertEquals( $expect, $msg->toString() );
+	}
+
 	/**
 	 * @covers Message::inLanguage
 	 */
