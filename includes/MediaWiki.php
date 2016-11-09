@@ -313,8 +313,6 @@ class MediaWiki {
 	 * - Normalise empty title:
 	 *   /wiki/ -> /wiki/Main
 	 *   /w/index.php?title= -> /wiki/Main
-	 * - Normalise non-standard title urls:
-	 *   /w/index.php?title=Foo_Bar -> /wiki/Foo_Bar
 	 * - Don't redirect anything with query parameters other than 'title' or 'action=view'.
 	 *
 	 * @param Title $title
@@ -327,6 +325,8 @@ class MediaWiki {
 
 		if ( $request->getVal( 'action', 'view' ) != 'view'
 			|| $request->wasPosted()
+			|| ( $request->getVal( 'title' ) !== null
+				&& $title->getPrefixedDBkey() == $request->getVal( 'title' ) )
 			|| count( $request->getValueNames( [ 'action', 'title' ] ) )
 			|| !Hooks::run( 'TestCanonicalRedirect', [ $request, $title, $output ] )
 		) {
@@ -341,19 +341,7 @@ class MediaWiki {
 		}
 		// Redirect to canonical url, make it a 301 to allow caching
 		$targetUrl = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
-
-		if ( $targetUrl != $request->getFullRequestURL() ) {
-			$output->setCdnMaxage( 1200 );
-			$output->redirect( $targetUrl, '301' );
-			return true;
-		}
-
-		// If there is no title, or the title is in a non-standard encoding, we demand
-		// a redirect. If cgi somehow changed the 'title' query to be non-standard while
-		// the url is standard, the server is misconfigured.
-		if ( $request->getVal( 'title' ) === null
-			|| $title->getPrefixedDBkey() != $request->getVal( 'title' )
-		) {
+		if ( $targetUrl == $request->getFullRequestURL() ) {
 			$message = "Redirect loop detected!\n\n" .
 				"This means the wiki got confused about what page was " .
 				"requested; this sometimes happens when moving a wiki " .
@@ -375,7 +363,9 @@ class MediaWiki {
 			}
 			throw new HttpError( 500, $message );
 		}
-		return false;
+		$output->setSquidMaxage( 1200 );
+		$output->redirect( $targetUrl, '301' );
+		return true;
 	}
 
 	/**
