@@ -24,7 +24,8 @@
 			"Dgstranz",
 			"Copper12",
 			"Irus",
-			"Hamilton Abreu"
+			"Hamilton Abreu",
+			"Pompilos"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentación]]\n* [[mw:API:FAQ|Preguntas frecuentes]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de correo]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anuncios de la API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Errores y peticiones]\n</div>\n<strong>Estado:</strong> Todas las características que se muestran en esta página deberían funcionar, pero la API aún se encuentra en desarrollo activo y puede cambiar en cualquier momento. Suscríbete a [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la lista de correo de mediawiki-api-announce] para estar al día de las actualizaciones.\n\n<strong>Solicitudes erróneas:</strong> Cuando se envían solicitudes erróneas a la API, se envía una cabecera HTTP con la clave \"MediaWiki-API-Error\". El valor de la cabecera y el código de error devuelto tomarán el mismo valor. Para más información, véase [[mw:API:Errors_and_warnings|API: Errores y advertencias]].\n\n<strong>Pruebas:</strong> para facilitar las pruebas de solicitudes a la API, consulta [[Special:ApiSandbox]].",
@@ -110,7 +111,7 @@
 	"apihelp-edit-param-tags": "Cambia las etiquetas para aplicarlas a la revisión.",
 	"apihelp-edit-param-minor": "Edición menor.",
 	"apihelp-edit-param-notminor": "Edición no menor.",
-	"apihelp-edit-param-bot": "Marcar esta edición como de bot.",
+	"apihelp-edit-param-bot": "Marcar esta edición como edición de bot.",
 	"apihelp-edit-param-basetimestamp": "Marca de tiempo de la revisión base, usada para detectar conflictos de edición. Se puede obtener mediante [[Special:ApiHelp/query+revisions|action=query&prop=revisions&rvprop=timestamp]]",
 	"apihelp-edit-param-starttimestamp": "Marca de tiempo de cuando empezó el proceso de edición, usada para detectar conflictos de edición. Se puede obtener un valor apropiado usando <var>[[Special:ApiHelp/main|curtimestamp]]</var> cuando comiences el proceso de edición (por ejemplo, al cargar el contenido de la página por editar).",
 	"apihelp-edit-param-recreate": "Reemplazar los errores acerca de la página de haber sido eliminados en el ínterin.",
@@ -681,7 +682,7 @@
 	"apihelp-query+langlinks-param-url": "Obtener la URL completa o no (no se puede usar con <var>$1prop</var>).",
 	"apihelp-query+langlinks-param-prop": "Qué propiedades adicionales obtener para cada enlace interlingüe:",
 	"apihelp-query+langlinks-paramvalue-prop-url": "Añade el URL completo.",
-	"apihelp-query+langlinks-paramvalue-prop-autonym": "Añade el nombre del idioma nativo.",
+	"apihelp-query+langlinks-paramvalue-prop-autonym": "Añade el nombre nativo del idioma.",
 	"apihelp-query+langlinks-param-lang": "Devolver solo enlaces de idioma con este código de idioma.",
 	"apihelp-query+langlinks-param-dir": "La dirección en que ordenar la lista.",
 	"apihelp-query+links-param-limit": "Cuántos enlaces se devolverán.",

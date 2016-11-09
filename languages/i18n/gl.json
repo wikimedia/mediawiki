@@ -2670,6 +2670,8 @@
 	"patrol-log-header": "Este é un rexistro das revisións patrulladas.",
 	"log-show-hide-patrol": "$1 o rexistro de patrullas",
 	"log-show-hide-tag": "$1 rexistro de etiquetas",
+	"confirm-markpatrolled-button": "OK",
+	"confirm-markpatrolled-top": "Marcar a revisión $3 de $2 como patrullada?",
 	"deletedrevision": "A revisión vella $1 foi borrada.",
 	"filedeleteerror-short": "Erro ao eliminar o ficheiro: $1",
 	"filedeleteerror-long": "Atopáronse erros ao eliminar o ficheiro:\n\n$1",

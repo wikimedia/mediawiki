@@ -108,7 +108,7 @@
 	"apihelp-edit-param-sectiontitle": "新段落的标题。",
 	"apihelp-edit-param-text": "页面内容。",
 	"apihelp-edit-param-summary": "编辑摘要。当$1section=new且未设置$1sectiontitle时，还包括小节标题。",
-	"apihelp-edit-param-tags": "更改标签以应用修订。",
+	"apihelp-edit-param-tags": "应用到此修订的更改标签。",
 	"apihelp-edit-param-minor": "小编辑。",
 	"apihelp-edit-param-notminor": "不是小编辑。",
 	"apihelp-edit-param-bot": "标记此编辑为机器人编辑。",

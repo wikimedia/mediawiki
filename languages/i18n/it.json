@@ -2753,6 +2753,7 @@
 	"patrol-log-header": "Di seguito sono elencate le verifiche delle modifiche.",
 	"log-show-hide-patrol": "$1 registro delle modifiche verificate",
 	"log-show-hide-tag": "$1 registro delle etichette",
+	"confirm-markpatrolled-button": "OK",
 	"deletedrevision": "Cancellata la vecchia versione di $1.",
 	"filedeleteerror-short": "Errore nella cancellazione del file: $1",
 	"filedeleteerror-long": "Si sono verificati degli errori nel tentativo di cancellare il file:\n\n$1",

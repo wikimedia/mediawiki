@@ -2121,7 +2121,7 @@
 	"modifiedarticleprotection": "غير مستوى حماية \"[[$1]]\"",
 	"unprotectedarticle": "أزال الحماية من \"[[$1]]\"",
 	"movedarticleprotection": "نقل إعدادات الحماية من \"[[$2]]\" إلى \"[[$1]]\"",
-	"protectedarticle-comment": "{{الجنس:$2|محمي}} [[$1]]",
+	"protectedarticle-comment": "{{GENDER:$2|محمي}} \"[[$1]]\"",
 	"protect-title": "ضبط حماية \"$1\"",
 	"protect-title-notallowed": "عرض مستوى حماية \"$1\"",
 	"prot_1movedto2": "نُقلت [[$1]] إلى [[$2]]",

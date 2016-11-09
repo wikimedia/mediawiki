@@ -62,7 +62,8 @@
 			"Ellif",
 			"HDNua",
 			"Ykhwong",
-			"Matma Rex"
+			"Matma Rex",
+			"Tursetic"
 		]
 	},
 	"tog-underline": "링크에 밑줄:",
@@ -3755,7 +3756,7 @@
 	"authmanager-authn-autocreate-failed": "로컬 계정 자동 생성 실패: $1",
 	"authmanager-change-not-supported": "지정된 자격 증명을 사용하고 있는 곳이 없어서 변경할 수 없습니다.",
 	"authmanager-create-disabled": "계정 만들기가 금지되어 있습니다.",
-	"authmanager-create-from-login": "계정을 만드려면, 칸들을 채워 주십시오.",
+	"authmanager-create-from-login": "계정을 만들려면 빈칸을 채워 주십시오.",
 	"authmanager-create-not-in-progress": "계정 만들기가 진행 중이 아니거나 세션 데이터를 분실했습니다. 처음부터 다시 시작해 주십시오.",
 	"authmanager-create-no-primary": "제공된 자격 증명은 계정 생성에 쓰일 수 없습니다.",
 	"authmanager-link-no-primary": "제공된 자격 증명은 계정을 연결하는 데 쓰일 수 없습니다.",

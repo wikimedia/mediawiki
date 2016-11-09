@@ -2712,6 +2712,7 @@
 	"patrol-log-header": "這是已巡查的修訂版本的日誌。",
 	"log-show-hide-patrol": "$1 巡查日誌",
 	"log-show-hide-tag": "$1 標籤日誌",
+	"confirm-markpatrolled-button": "確定",
 	"deletedrevision": "已刪除舊修訂 $1",
 	"filedeleteerror-short": "刪除檔案發生錯誤：$1",
 	"filedeleteerror-long": "刪除檔案時發生錯誤：\n\n$1",
