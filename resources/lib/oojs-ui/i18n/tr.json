@@ -10,7 +10,8 @@
 			"TurkishStyles",
 			"Sayginer",
 			"Meelo",
-			"McAang"
+			"McAang",
+			"Uğurkent"
 		]
 	},
 	"ooui-outline-control-move-down": "Ögeyi aşağı taşı",
@@ -25,5 +26,7 @@
 	"ooui-dialog-process-dismiss": "Kapat",
 	"ooui-dialog-process-retry": "Tekrar dene",
 	"ooui-dialog-process-continue": "Devam et",
+	"ooui-selectfile-button-select": "Dosya seç",
+	"ooui-selectfile-not-supported": "Dosya seçimi desteklenmiyor",
 	"ooui-selectfile-placeholder": "Herhangi bir dosya seçilmedi"
 }
