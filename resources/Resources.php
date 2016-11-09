@@ -1867,6 +1867,7 @@ return [
 			'apisandbox-continue',
 			'apisandbox-continue-clear',
 			'apisandbox-continue-help',
+			'api-format-prettyprint-status',
 			'blanknamespace',
 		],
 	],

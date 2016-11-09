@@ -572,11 +572,7 @@ class ApiMain extends ApiBase {
 
 		$response = $this->getRequest()->response();
 		$headerStr = 'MediaWiki-API-Error: ' . $errCode;
-		if ( $e->getCode() === 0 ) {
-			$response->header( $headerStr );
-		} else {
-			$response->header( $headerStr, true, $e->getCode() );
-		}
+		$response->header( $headerStr );
 
 		// Reset and print just the error message
 		ob_clean();
@@ -585,7 +581,7 @@ class ApiMain extends ApiBase {
 		$this->createErrorPrinter();
 
 		try {
-			$this->printResult( true );
+			$this->printResult( $e->getCode() );
 		} catch ( UsageException $ex ) {
 			// The error printer itself is failing. Try suppressing its request
 			// parameters and redo.
@@ -595,7 +591,10 @@ class ApiMain extends ApiBase {
 			$this->mPrinter = null;
 			$this->createErrorPrinter();
 			$this->mPrinter->forceDefaultParams();
-			$this->printResult( true );
+			if ( $e->getCode() ) {
+				$response->statusHeader( 200 ); // Reset in case the fallback doesn't want a non-200
+			}
+			$this->printResult( $e->getCode() );
 		}
 	}
 
@@ -1441,7 +1440,7 @@ class ApiMain extends ApiBase {
 			MWDebug::appendDebugInfoToApiResult( $this->getContext(), $this->getResult() );
 
 			// Print result data
-			$this->printResult( false );
+			$this->printResult();
 		}
 	}
 
@@ -1621,15 +1620,18 @@ class ApiMain extends ApiBase {
 	/**
 	 * Print results using the current printer
 	 *
-	 * @param bool $isError
+	 * @param int $httpCode HTTP status code, or 0 to not change
 	 */
-	protected function printResult( $isError ) {
+	protected function printResult( $httpCode = 0 ) {
 		if ( $this->getConfig()->get( 'DebugAPI' ) !== false ) {
 			$this->setWarning( 'SECURITY WARNING: $wgDebugAPI is enabled' );
 		}
 
 		$printer = $this->mPrinter;
 		$printer->initPrinter( false );
+		if ( $httpCode ) {
+			$printer->setHttpStatus( $httpCode );
+		}
 		$printer->execute();
 		$printer->closePrinter();
 	}
