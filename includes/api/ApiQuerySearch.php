@@ -107,10 +107,25 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				$matches = $search->searchText( $query );
 			}
 		}
-		if ( is_null( $matches ) ) {
+
+		if ( $matches instanceof Status ) {
+			$status = $matches;
+			$matches = $status->getValue();
+		} else {
+			$status = null;
+		}
+
+		if ( $status ) {
+			if ( $status->isOK() ) {
+				$this->getMain()->getErrorFormatter()->addMessagesFromStatus(
+					$this->getModuleName(),
+					$status
+				);
+			} else {
+				$this->dieUsage( $matches->getWikiText( false, false, 'en' ), 'search-error' );
+			}
+		} elseif ( is_null( $matches ) ) {
 			$this->dieUsage( "{$what} search is disabled", "search-{$what}-disabled" );
-		} elseif ( $matches instanceof Status && !$matches->isGood() ) {
-			$this->dieUsage( $matches->getWikiText( false, false, 'en' ), 'search-error' );
 		}
 
 		if ( $resultPageSet === null ) {
