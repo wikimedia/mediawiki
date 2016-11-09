@@ -3876,9 +3876,7 @@ HTML
 			$this->mParserOutput = $parserOutput;
 			$wgOut->addParserOutputMetadata( $parserOutput );
 
-			if ( count( $parserOutput->getWarnings() ) ) {
-				$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );
-			}
+			$note .= $this->addWarningsToHtml( $parserOutput->getWarnings() );
 
 		} catch ( MWContentSerializationException $ex ) {
 			$m = $this->context->msg(
@@ -4218,6 +4216,20 @@ HTML
 		$editPage = $this;
 		Hooks::run( 'EditPageBeforeEditChecks', [ &$editPage, &$checkboxes, &$tabindex ], '1.29' );
 		return $checkboxes;
+	}
+
+	/**
+	 * Returns a note of HTML containing warnings
+	 *
+	 * @param string[] $note Previewtext note
+	 *
+	 * @return string HTML
+	 */
+	public function addWarningsToHtml( $warnings ) {
+		if ( !$warnings !== [] ) {
+			$note = "\n\n".'<div class="warning">' . implode( "\n\n", $warnings ) . '</div>';
+		}
+		return $note;
 	}
 
 	/**
