@@ -2598,9 +2598,20 @@ class EditPage {
 
 		$this->setHeaders();
 
-		if ( $this->showHeader() === false ) {
+		$this->addTalkPageText();
+		$this->addEditNotices();
+
+		if ( !$this->isConflict &&
+			$this->section != '' &&
+			!$this->isSectionEditSupported() ) {
+			// We use $this->section to much before this and getVal('wgSection') directly in other places
+			// at this point we can't reset $this->section to '' to fallback to non-section editing.
+			// Someone is welcome to try refactoring though
+			$wgOut->showErrorPage( 'sectioneditnotsupported-title', 'sectioneditnotsupported-text' );
 			return;
 		}
+
+	 	$this->showHeader();
 
 		$wgOut->addHTML( $this->editFormPageTop );
 
@@ -2854,29 +2865,14 @@ class EditPage {
 		}
 	}
 
-	/**
-	 * @return bool
-	 */
 	protected function showHeader() {
 		global $wgOut, $wgUser, $wgMaxArticleSize, $wgLang;
 		global $wgAllowUserCss, $wgAllowUserJs;
-
-		$this->addTalkPageText();
-
-		$this->addEditNotices();
 
 		if ( $this->isConflict ) {
 			$wgOut->wrapWikiMsg( "<div class='mw-explainconflict'>\n$1\n</div>", 'explainconflict' );
 			$this->editRevId = $this->page->getLatest();
 		} else {
-			if ( $this->section != '' && !$this->isSectionEditSupported() ) {
-				// We use $this->section to much before this and getVal('wgSection') directly in other places
-				// at this point we can't reset $this->section to '' to fallback to non-section editing.
-				// Someone is welcome to try refactoring though
-				$wgOut->showErrorPage( 'sectioneditnotsupported-title', 'sectioneditnotsupported-text' );
-				return false;
-			}
-
 			if ( $this->section != '' && $this->section != 'new' ) {
 				if ( !$this->summary && !$this->preview && !$this->diff ) {
 					$sectionTitle = self::extractSectionTitle( $this->textbox1 ); // FIXME: use Content object
@@ -3063,8 +3059,6 @@ class EditPage {
 		}
 		# Add header copyright warning
 		$this->showHeaderCopyrightWarning();
-
-		return true;
 	}
 
 	/**
