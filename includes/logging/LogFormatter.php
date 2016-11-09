@@ -230,6 +230,10 @@ class LogFormatter {
 						$text = wfMessage( 'deletedarticle' )
 							->rawParams( $target )->inContentLanguage()->escaped();
 						break;
+					case 'delete_redir':
+						$text = wfMessage( 'deletedarticle_redir' )
+							->rawParams( $target )->inContentLanguage()->escaped();
+						break;
 					case 'restore':
 						$text = wfMessage( 'undeletedarticle' )
 							->rawParams( $target )->inContentLanguage()->escaped();
