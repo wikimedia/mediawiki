@@ -2866,6 +2866,7 @@ class EditPage {
 	}
 
 	protected function showHeader() {
+		global $wgOut, $wgUser;
 		global $wgAllowUserCss, $wgAllowUserJs;
 
 		if ( $this->isConflict ) {
