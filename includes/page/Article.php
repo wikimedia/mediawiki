@@ -702,10 +702,13 @@ class Article implements Page {
 	 * @param ParserOutput $pOutput
 	 */
 	public function adjustDisplayTitle( ParserOutput $pOutput ) {
+		$out = $this->getContext()->getOutput();
+
 		# Adjust the title if it was set by displaytitle, -{T|}- or language conversion
 		$titleText = $pOutput->getTitleText();
 		if ( strval( $titleText ) !== '' ) {
-			$this->getContext()->getOutput()->setPageTitle( $titleText );
+			$out->setPageTitle( $titleText );
+			$out->setDisplayTitle( $titleText );
 		}
 	}
 
