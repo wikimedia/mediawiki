@@ -229,6 +229,8 @@ changes to languages because of Phabricator reports.
   ShowRawCssJs hooks will now emit deprecation warnings if used.
 * (T68404) CSS3 attr() function with url type is no longer allowed
   in inline styles.
+* Database::getSearchEngine() is deprecated, use SearchEngineFactory::getSearchEngineClass
+  instead.
 
 == Compatibility ==
 
