@@ -3774,9 +3774,7 @@ HTML
 			$this->mParserOutput = $parserOutput;
 			$wgOut->addParserOutputMetadata( $parserOutput );
 
-			if ( count( $parserOutput->getWarnings() ) ) {
-				$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );
-			}
+			$this->addWarningsToHtml( $note, $parserOutput->getWarnings() );
 
 		} catch ( MWContentSerializationException $ex ) {
 			$m = $this->context->msg(
@@ -3998,6 +3996,18 @@ HTML
 
 		return $toolbar;
 	}
+
+        /**
+         * Returns an note of html containing warnings
+         *
+         * @return string
+         */
+	public function addWarningsToHtml( $note, $warnings ) {
+		if ( count( $warnings ) ) {
+  			$note .= "\n\n<div class='error'>" . implode( "\n\n", $warnings ) . "</div>";
+  		}
+		return $note;
+  	}
 
 	/**
 	 * Returns an array of html code of the following checkboxes:
