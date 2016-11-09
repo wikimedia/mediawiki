@@ -853,9 +853,10 @@ class Message implements MessageSpecifier, Serializable {
 	 */
 	public function __toString() {
 		if ( $this->format !== 'parse' ) {
-			$ex = new LogicException( __METHOD__ . ' using implicit format: ' . $this->format );
+			$ex = new LogicException( __METHOD__ . ' ignoring implicit format: ' . $this->format );
 			\MediaWiki\Logger\LoggerFactory::getInstance( 'message-format' )->warning(
 				$ex->getMessage(), [ 'exception' => $ex, 'format' => $this->format, 'key' => $this->key ] );
+			$this->format = 'parse';
 		}
 
 		// PHP doesn't allow __toString to throw exceptions and will
