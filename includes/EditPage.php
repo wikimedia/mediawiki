@@ -3779,9 +3779,7 @@ HTML
 			$this->mParserOutput = $parserOutput;
 			$wgOut->addParserOutputMetadata( $parserOutput );
 
-			if ( count( $parserOutput->getWarnings() ) ) {
-				$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );
-			}
+			$note = $this->addWarningsToHtml( $note, $parserOutput->getWarnings() );
 
 		} catch ( MWContentSerializationException $ex ) {
 			$m = $this->context->msg(
@@ -4007,6 +4005,21 @@ HTML
 		Hooks::run( 'EditPageBeforeEditToolbar', [ &$toolbar ] );
 
 		return $toolbar;
+	}
+
+	/**
+	 * Returns a note of html containing warnings
+	 *
+	 * @param string $note Previewtext note
+	 * @param array $warnings Array of warnings
+	 *
+	 * @return string
+	 */
+	public function addWarningsToHtml( $note, $warnings ) {
+		if ( count( $warnings ) ) {
+			$note .= "\n\n<div class='error'>" . implode( "\n\n", $warnings ) . "</div>";
+		}
+		return $note;
 	}
 
 	/**
