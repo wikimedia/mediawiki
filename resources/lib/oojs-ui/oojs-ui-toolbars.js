@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.10
+ * OOjs UI v0.18.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-10-03T18:59:01Z
+ * Date: 2016-11-09T00:52:37Z
  */
 ( function ( OO ) {
 
@@ -320,6 +320,7 @@ OO.ui.Toolbar = function OoUiToolbar( toolFactory, toolGroupFactory, config ) {
 	this.$bar = $( '<div>' );
 	this.$actions = $( '<div>' );
 	this.initialized = false;
+	this.narrowThreshold = null;
 	this.onWindowResizeHandler = this.onWindowResize.bind( this );
 
 	// Events
@@ -402,8 +403,22 @@ OO.ui.Toolbar.prototype.onPointerDown = function ( e ) {
 OO.ui.Toolbar.prototype.onWindowResize = function () {
 	this.$element.toggleClass(
 		'oo-ui-toolbar-narrow',
-		this.$bar.width() <= this.narrowThreshold
+		this.$bar.width() <= this.getNarrowThreshold()
 	);
+};
+
+/**
+ * Get the (lazily-computed) width threshold for applying the oo-ui-toolbar-narrow
+ * class.
+ *
+ * @private
+ * @return {number} Width threshold in pixels
+ */
+OO.ui.Toolbar.prototype.getNarrowThreshold = function () {
+	if ( this.narrowThreshold === null ) {
+		this.narrowThreshold = this.$group.width() + this.$actions.width();
+	}
+	return this.narrowThreshold;
 };
 
 /**
@@ -413,7 +428,6 @@ OO.ui.Toolbar.prototype.onWindowResize = function () {
 OO.ui.Toolbar.prototype.initialize = function () {
 	if ( !this.initialized ) {
 		this.initialized = true;
-		this.narrowThreshold = this.$group.width() + this.$actions.width();
 		$( this.getElementWindow() ).on( 'resize', this.onWindowResizeHandler );
 		this.onWindowResize();
 	}
@@ -1896,6 +1910,8 @@ OO.ui.PopupToolGroup.prototype.onHandleMouseKeyDown = function ( e ) {
  *
  * When active, the popup is visible. A mouseup event anywhere in the document will trigger
  * deactivation.
+ *
+ * @param {boolean} value The active state to set
  */
 OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 	var containerWidth, containerLeft;

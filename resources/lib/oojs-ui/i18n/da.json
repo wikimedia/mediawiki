@@ -21,5 +21,6 @@
 	"ooui-dialog-message-reject": "Afbryd",
 	"ooui-dialog-process-error": "Noget gik galt",
 	"ooui-dialog-process-retry": "Prøv igen",
-	"ooui-dialog-process-continue": "Fortsæt"
+	"ooui-dialog-process-continue": "Fortsæt",
+	"ooui-selectfile-button-select": "Vælg en fil"
 }

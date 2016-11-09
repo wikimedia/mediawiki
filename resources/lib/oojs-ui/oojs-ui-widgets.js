@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.10
+ * OOjs UI v0.18.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-10-03T18:59:01Z
+ * Date: 2016-11-09T00:52:37Z
  */
 ( function ( OO ) {
 
@@ -85,7 +85,7 @@ OO.ui.mixin.DraggableElement.static.cancelButtonMouseDownEvents = false;
  * Respond to mousedown event.
  *
  * @private
- * @param {jQuery.Event} e jQuery event
+ * @param {jQuery.Event} e Drag event
  */
 OO.ui.mixin.DraggableElement.prototype.onDragMouseDown = function ( e ) {
 	this.wasHandleUsed =
@@ -99,7 +99,8 @@ OO.ui.mixin.DraggableElement.prototype.onDragMouseDown = function ( e ) {
  * Respond to dragstart event.
  *
  * @private
- * @param {jQuery.Event} e jQuery event
+ * @param {jQuery.Event} e Drag event
+ * @return {boolean} False if the event is cancelled
  * @fires dragstart
  */
 OO.ui.mixin.DraggableElement.prototype.onDragStart = function ( e ) {
@@ -149,7 +150,7 @@ OO.ui.mixin.DraggableElement.prototype.onDragEnd = function () {
  * Handle drop event.
  *
  * @private
- * @param {jQuery.Event} e jQuery event
+ * @param {jQuery.Event} e Drop event
  * @fires drop
  */
 OO.ui.mixin.DraggableElement.prototype.onDrop = function ( e ) {
@@ -161,6 +162,7 @@ OO.ui.mixin.DraggableElement.prototype.onDrop = function ( e ) {
  * In order for drag/drop to work, the dragover event must
  * return false and stop propogation.
  *
+ * @param {jQuery.Event} e Drag event
  * @private
  */
 OO.ui.mixin.DraggableElement.prototype.onDragOver = function ( e ) {
@@ -3103,13 +3105,10 @@ OO.ui.OutlineOptionWidget.prototype.getLevel = function () {
  */
 OO.ui.OutlineOptionWidget.prototype.setPressed = function ( state ) {
 	OO.ui.OutlineOptionWidget.parent.prototype.setPressed.call( this, state );
-	if ( this.constructor.static.pressable ) {
-		this.pressed = !!state;
-		if ( this.pressed ) {
-			this.setFlags( 'progressive' );
-		} else if ( !this.selected ) {
-			this.clearFlags();
-		}
+	if ( this.pressed ) {
+		this.setFlags( 'progressive' );
+	} else if ( !this.selected ) {
+		this.clearFlags();
 	}
 	return this;
 };
@@ -3147,13 +3146,10 @@ OO.ui.OutlineOptionWidget.prototype.setRemovable = function ( removable ) {
  */
 OO.ui.OutlineOptionWidget.prototype.setSelected = function ( state ) {
 	OO.ui.OutlineOptionWidget.parent.prototype.setSelected.call( this, state );
-	if ( this.constructor.static.selectable ) {
-		this.selected = !!state;
-		if ( this.selected ) {
-			this.setFlags( 'progressive' );
-		} else {
-			this.clearFlags();
-		}
+	if ( this.selected ) {
+		this.setFlags( 'progressive' );
+	} else {
+		this.clearFlags();
 	}
 	return this;
 };
@@ -3496,6 +3492,8 @@ OO.ui.CapsuleItemWidget.prototype.onClick = function () {
 
 /**
  * Handle keyDown event for the entire capsule
+ *
+ * @param {jQuery.Event} e Key down event
  */
 OO.ui.CapsuleItemWidget.prototype.onKeyDown = function ( e ) {
 	var element = this.getElementGroup();
@@ -3573,6 +3571,7 @@ OO.ui.CapsuleItemWidget.prototype.focus = function () {
  *
  * @constructor
  * @param {Object} [config] Configuration options
+ * @cfg {string} [placeholder] Placeholder text
  * @cfg {boolean} [allowArbitrary=false] Allow data items to be added even if not present in the menu.
  * @cfg {Object} [menu] (required) Configuration options to pass to the
  *  {@link OO.ui.MenuSelectWidget menu select widget}.
@@ -3599,8 +3598,11 @@ OO.ui.CapsuleMultiselectWidget = function OoUiCapsuleMultiselectWidget( config )
 	}, config );
 
 	// Properties (must be set before mixin constructor calls)
-	this.$input = config.popup ? null : $( '<input>' );
 	this.$handle = $( '<div>' );
+	this.$input = config.popup ? null : $( '<input>' );
+	if ( config.placeholder !== undefined && config.placeholder !== '' ) {
+		this.$input.attr( 'placeholder', config.placeholder );
+	}
 
 	// Mixin constructors
 	OO.ui.mixin.GroupElement.call( this, config );
@@ -3676,7 +3678,6 @@ OO.ui.CapsuleMultiselectWidget = function OoUiCapsuleMultiselectWidget( config )
 			role: 'combobox',
 			'aria-autocomplete': 'list'
 		} );
-		this.updateInputSize();
 	}
 	if ( config.data ) {
 		this.setItemsFromData( config.data );
@@ -3695,6 +3696,14 @@ OO.ui.CapsuleMultiselectWidget = function OoUiCapsuleMultiselectWidget( config )
 		this.$content.append( this.$input );
 		this.$overlay.append( this.menu.$element );
 	}
+
+	// Input size needs to be calculated after everything else is rendered
+	setTimeout( function () {
+		if ( this.$input ) {
+			this.updateInputSize();
+		}
+	}.bind( this ) );
+
 	this.onMenuItemsChange();
 };
 
@@ -3911,9 +3920,12 @@ OO.ui.CapsuleMultiselectWidget.prototype.addItems = function ( items ) {
  * @param {Object} item
  */
 OO.ui.CapsuleMultiselectWidget.prototype.editItem = function ( item ) {
+	this.addItemFromLabel( this.$input.val() );
+	this.clearInput();
 	this.$input.val( item.label );
 	this.updateInputSize();
 	this.focus();
+	this.menu.updateItemVisibility(); // Hack, we shouldn't be calling this method directly
 	this.removeItems( [ item ] );
 };
 
@@ -4149,11 +4161,31 @@ OO.ui.CapsuleMultiselectWidget.prototype.onKeyDown = function ( e ) {
  */
 OO.ui.CapsuleMultiselectWidget.prototype.updateInputSize = function () {
 	var $lastItem, direction, contentWidth, currentWidth, bestWidth;
-	if ( !this.isDisabled() ) {
+	if ( this.$input && !this.isDisabled() ) {
 		this.$input.css( 'width', '1em' );
 		$lastItem = this.$group.children().last();
 		direction = OO.ui.Element.static.getDir( this.$handle );
-		contentWidth = this.$input[ 0 ].scrollWidth;
+
+		// Get the width of the input with the placeholder text as
+		// the value and save it so that we don't keep recalculating
+		if (
+			this.contentWidthWithPlaceholder === undefined &&
+			this.$input.val() === '' &&
+			this.$input.attr( 'placeholder' ) !== undefined
+		) {
+			this.$input.val( this.$input.attr( 'placeholder' ) );
+			this.contentWidthWithPlaceholder = this.$input[ 0 ].scrollWidth;
+			this.$input.val( '' );
+
+		}
+
+		// Always keep the input wide enough for the placeholder text
+		contentWidth = Math.max(
+			this.$input[ 0 ].scrollWidth,
+			// undefined arguments in Math.max lead to NaN
+			( this.contentWidthWithPlaceholder === undefined ) ?
+				0 : this.contentWidthWithPlaceholder
+		);
 		currentWidth = this.$input.width();
 
 		if ( contentWidth < currentWidth ) {
@@ -4161,13 +4193,14 @@ OO.ui.CapsuleMultiselectWidget.prototype.updateInputSize = function () {
 			return;
 		}
 
-		if ( !$lastItem.length ) {
+		if ( $lastItem.length === 0 ) {
 			bestWidth = this.$content.innerWidth();
 		} else {
 			bestWidth = direction === 'ltr' ?
 				this.$content.innerWidth() - $lastItem.position().left - $lastItem.outerWidth() :
 				$lastItem.position().left;
 		}
+
 		// Some safety margin for sanity, because I *really* don't feel like finding out where the few
 		// pixels this is off by are coming from.
 		bestWidth -= 10;
