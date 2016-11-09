@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.10
+ * OOjs UI v0.18.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-10-03T18:59:01Z
+ * Date: 2016-11-09T00:52:37Z
  */
 ( function ( OO ) {
 
@@ -804,7 +804,6 @@ OO.ui.Error.prototype.getMessageText = function () {
  *  that must be resolved before proceeding, or a function to execute. See #createStep for more information. see #createStep for more information
  * @param {Object} [context=null] Execution context of the function. The context is ignored if the step is
  *  a number or promise.
- * @return {Object} Step object, with `callback` and `context` properties
  */
 OO.ui.Process = function ( step, context ) {
 	// Properties
@@ -1026,6 +1025,7 @@ OO.ui.WindowManager = function OoUiWindowManager( config ) {
 	this.preparingToClose = null;
 	this.currentWindow = null;
 	this.globalEvents = false;
+	this.$returnFocusTo = null;
 	this.$ariaHidden = null;
 	this.onWindowResizeTimeout = null;
 	this.onWindowResizeHandler = this.onWindowResize.bind( this );
@@ -1142,6 +1142,7 @@ OO.ui.WindowManager.prototype.afterWindowResize = function () {
 /**
  * Check if window is opening.
  *
+ * @param {OO.ui.Window} win Window to check
  * @return {boolean} Window is opening
  */
 OO.ui.WindowManager.prototype.isOpening = function ( win ) {
@@ -1151,6 +1152,7 @@ OO.ui.WindowManager.prototype.isOpening = function ( win ) {
 /**
  * Check if window is closing.
  *
+ * @param {OO.ui.Window} win Window to check
  * @return {boolean} Window is closing
  */
 OO.ui.WindowManager.prototype.isClosing = function ( win ) {
@@ -1160,6 +1162,7 @@ OO.ui.WindowManager.prototype.isClosing = function ( win ) {
 /**
  * Check if window is opened.
  *
+ * @param {OO.ui.Window} win Window to check
  * @return {boolean} Window is opened
  */
 OO.ui.WindowManager.prototype.isOpened = function ( win ) {
@@ -1283,6 +1286,7 @@ OO.ui.WindowManager.prototype.getCurrentWindow = function () {
  *
  * @param {OO.ui.Window|string} win Window object or symbolic name of window to open
  * @param {Object} [data] Window opening data
+ * @param {jQuery} [data.$returnFocusTo] Element to which the window will return focus when closed.
  * @return {jQuery.Promise} An `opening` promise resolved when the window is done opening.
  *  See {@link #event-opening 'opening' event}  for more information about `opening` promises.
  * @fires opening
@@ -1290,6 +1294,7 @@ OO.ui.WindowManager.prototype.getCurrentWindow = function () {
 OO.ui.WindowManager.prototype.openWindow = function ( win, data ) {
 	var manager = this,
 		opening = $.Deferred();
+	data = data || {};
 
 	// Argument handling
 	if ( typeof win === 'string' ) {
@@ -1319,6 +1324,7 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data ) {
 				manager.toggleGlobalEvents( true );
 				manager.toggleAriaIsolation( true );
 			}
+			manager.$returnFocusTo = data.$returnFocusTo || $( document.activeElement );
 			manager.currentWindow = win;
 			manager.opening = opening;
 			manager.preparingToOpen = null;
@@ -1412,6 +1418,7 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
 								manager.toggleGlobalEvents( false );
 								manager.toggleAriaIsolation( false );
 							}
+							manager.$returnFocusTo[ 0 ].focus();
 							manager.closing = null;
 							manager.currentWindow = null;
 							closing.resolve( data );
@@ -1447,6 +1454,9 @@ OO.ui.WindowManager.prototype.addWindows = function ( windows ) {
 			name = windows[ i ].constructor.static.name;
 			if ( typeof name !== 'string' ) {
 				throw new Error( 'Cannot add window' );
+			}
+			if ( !name ) {
+				OO.ui.warnDeprecation( 'OO.ui.WindowManager#addWindows: Windows must have a `name` static property defined.' );
 			}
 			list[ name ] = windows[ i ];
 		}
@@ -1514,6 +1524,7 @@ OO.ui.WindowManager.prototype.clearWindows = function () {
  *
  * Fullscreen mode will be used if the dialog is too wide to fit in the screen.
  *
+ * @param {OO.ui.Window} win Window to update, should be the current window
  * @chainable
  */
 OO.ui.WindowManager.prototype.updateWindowSize = function ( win ) {
@@ -1852,17 +1863,20 @@ OO.ui.Window.prototype.getSizeProperties = function () {
 OO.ui.Window.prototype.withoutSizeTransitions = function ( callback ) {
 	// Temporarily resize the frame so getBodyHeight() can use scrollHeight measurements.
 	// Disable transitions first, otherwise we'll get values from when the window was animating.
-	var oldTransition,
-		styleObj = this.$frame[ 0 ].style;
-	oldTransition = styleObj.transition || styleObj.OTransition || styleObj.MsTransition ||
-		styleObj.MozTransition || styleObj.WebkitTransition;
-	styleObj.transition = styleObj.OTransition = styleObj.MsTransition =
-		styleObj.MozTransition = styleObj.WebkitTransition = 'none';
+	// We need to build the transition CSS properties using these specific properties since
+	// Firefox doesn't return anything useful when asked just for 'transition'.
+	var oldTransition = this.$frame.css( 'transition-property' ) + ' ' +
+		this.$frame.css( 'transition-duration' ) + ' ' +
+		this.$frame.css( 'transition-timing-function' ) + ' ' +
+		this.$frame.css( 'transition-delay' );
+
+	this.$frame.css( 'transition', 'none' );
 	callback();
-	// Force reflow to make sure the style changes done inside callback really are not transitioned
+
+	// Force reflow to make sure the style changes done inside callback
+	// really are not transitioned
 	this.$frame.height();
-	styleObj.transition = styleObj.OTransition = styleObj.MsTransition =
-		styleObj.MozTransition = styleObj.WebkitTransition = oldTransition;
+	this.$frame.css( 'transition', oldTransition );
 };
 
 /**
