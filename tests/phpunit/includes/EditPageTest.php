@@ -613,6 +613,28 @@ hello
 		return array_merge( $tests, $testsWithAdam, $testsWithBerta );
 	}
 
+	public function provideAddWarningsToHtml() {
+		return [
+			// Test 1: Check no warning class added to html when no warnings
+			[ 'Hello', [], false ],
+			// Test 2: Check warning class added to html when there is a warning
+			[ 'Hello', [ 'warning' ], true ]
+		];
+	}
+
+	/**
+	 * @dataProvider provideAddWarningsToHtml
+	 * @covers EditPage::addWarningsToHtml
+	 */
+	public function testAddWarningsToHtml( $note, $warnings, $expected ) {
+		$title = Title::newFromText( 'Dummy:AddWarningsToHtmlForEditPage' );
+		$article = new Article( $title );
+		$ep = new EditPage( $article );
+		$newNote = $ep->addWarningsToHtml( $note, $warnings );
+		$needle = "class='error'";
+		$this->assertContains( $needle, $newNote );
+	}
+
 	/**
 	 * @dataProvider provideAutoMerge
 	 * @covers EditPage
