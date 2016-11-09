@@ -464,6 +464,12 @@ table.wikitable > caption {
 	margin-bottom: 1em;
 }
 
+.previewnote .warning {
+	font-size: inherit;
+	text-indent: 3em;
+	margin-bottom: 0.5em;
+}
+
 .previewnote p {
 	text-indent: 3em;
 	margin: 0.8em 0;
