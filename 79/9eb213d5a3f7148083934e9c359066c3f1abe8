@@ -1,0 +1,9 @@
+Code-Review-1: Jforrester <jforrester@wikimedia.org>
+Code-Review-1: Krinkle <krinklemail@gmail.com>
+Code-Review+2: Bartosz Dziewoński <matma.rex@gmail.com>
+Verified+2: jenkins-bot
+Submitted-by: jenkins-bot
+Submitted-at: Wed, 09 Nov 2016 01:27:38 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/309575
+Project: mediawiki/core
+Branch: refs/heads/master
