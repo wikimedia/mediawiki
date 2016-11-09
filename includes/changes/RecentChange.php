@@ -762,6 +762,7 @@ class RecentChange {
 		# # Get pageStatus for email notification
 		switch ( $type . '-' . $action ) {
 			case 'delete-delete':
+			case 'delete-delete_redir':
 				$pageStatus = 'deleted';
 				break;
 			case 'move-move':
