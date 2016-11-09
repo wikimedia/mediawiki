@@ -5,17 +5,17 @@
  */
 class ApiMessageTest extends MediaWikiTestCase {
 
-	private function compareMessages( $msg, $msg2 ) {
+	private function compareMessages( Message $msg, Message $msg2 ) {
 		$this->assertSame( $msg->getKey(), $msg2->getKey(), 'getKey' );
 		$this->assertSame( $msg->getKeysToTry(), $msg2->getKeysToTry(), 'getKeysToTry' );
 		$this->assertSame( $msg->getParams(), $msg2->getParams(), 'getParams' );
-		$this->assertSame( $msg->getFormat(), $msg2->getFormat(), 'getFormat' );
 		$this->assertSame( $msg->getLanguage(), $msg2->getLanguage(), 'getLanguage' );
 
 		$msg = TestingAccessWrapper::newFromObject( $msg );
 		$msg2 = TestingAccessWrapper::newFromObject( $msg2 );
 		$this->assertSame( $msg->interface, $msg2->interface, 'interface' );
 		$this->assertSame( $msg->useDatabase, $msg2->useDatabase, 'useDatabase' );
+		$this->assertSame( $msg->format, $msg2->format, 'format' );
 		$this->assertSame(
 			$msg->title ? $msg->title->getFullText() : null,
 			$msg2->title ? $msg2->title->getFullText() : null,

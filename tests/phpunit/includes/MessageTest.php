@@ -236,11 +236,14 @@ class MessageTest extends MediaWikiLangTestCase {
 
 	public static function provideToString() {
 		return [
-			[ 'mainpage', 'Main Page' ],
-			[ 'i-dont-exist-evar', '⧼i-dont-exist-evar⧽' ],
-			[ 'i-dont-exist-evar', '⧼i-dont-exist-evar⧽', 'escaped' ],
-			[ 'script>alert(1)</script', '⧼script&gt;alert(1)&lt;/script⧽', 'escaped' ],
-			[ 'script>alert(1)</script', '⧼script&gt;alert(1)&lt;/script⧽' ],
+			// key, transformation, transformed, transformed implicitly
+			[ 'mainpage', 'plain', 'Main Page', 'Main Page' ],
+			[ 'i-dont-exist-evar', 'plain', '⧼i-dont-exist-evar⧽', '⧼i-dont-exist-evar⧽' ],
+			[ 'i-dont-exist-evar', 'escaped', '⧼i-dont-exist-evar⧽', '⧼i-dont-exist-evar⧽' ],
+			[ 'script>alert(1)</script', 'escaped', '⧼script&gt;alert(1)&lt;/script⧽',
+				'⧼script&gt;alert(1)&lt;/script⧽' ],
+			[ 'script>alert(1)</script', 'plain', '⧼script&gt;alert(1)&lt;/script⧽',
+				'⧼script&gt;alert(1)&lt;/script⧽' ],
 		];
 	}
 
@@ -249,21 +252,26 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @covers Message::__toString
 	 * @dataProvider provideToString
 	 */
-	public function testToString( $key, $expect, $format = 'plain' ) {
+	public function testToString( $key, $format, $expect, $expectImplicit ) {
 		$msg = new Message( $key );
-		$msg->$format();
+		$this->assertEquals( $expect, $msg->$format() );
 		$this->assertEquals( $expect, $msg->toString() );
-		$this->assertEquals( $expect, $msg->__toString() );
+		$this->assertEquals( $expectImplicit, $msg->__toString() );
+		$this->assertEquals( $expect, $msg->toString() );
 	}
 
 	public static function provideToString_raw() {
 		return [
-			[ '<span>foo</span>', '<span>foo</span>', 'parse' ],
-			[ '<span>foo</span>', '&lt;span&gt;foo&lt;/span&gt;', 'escaped' ],
-			[ '<span>foo</span>', '<span>foo</span>', 'plain' ],
-			[ '<script>alert(1)</script>', '&lt;script&gt;alert(1)&lt;/script&gt;', 'parse' ],
-			[ '<script>alert(1)</script>', '&lt;script&gt;alert(1)&lt;/script&gt;', 'escaped' ],
-			[ '<script>alert(1)</script>', '<script>alert(1)</script>', 'plain' ],
+			[ '<span>foo</span>', 'parse', '<span>foo</span>', '<span>foo</span>' ],
+			[ '<span>foo</span>', 'escaped', '&lt;span&gt;foo&lt;/span&gt;',
+			  '<span>foo</span>' ],
+			[ '<span>foo</span>', 'plain', '<span>foo</span>', '<span>foo</span>' ],
+			[ '<script>alert(1)</script>', 'parse', '&lt;script&gt;alert(1)&lt;/script&gt;',
+				'&lt;script&gt;alert(1)&lt;/script&gt;' ],
+			[ '<script>alert(1)</script>', 'escaped', '&lt;script&gt;alert(1)&lt;/script&gt;',
+				'&lt;script&gt;alert(1)&lt;/script&gt;' ],
+			[ '<script>alert(1)</script>', 'plain', '<script>alert(1)</script>',
+			  '&lt;script&gt;alert(1)&lt;/script&gt;' ],
 		];
 	}
 
@@ -272,16 +280,16 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @covers Message::__toString
 	 * @dataProvider provideToString_raw
 	 */
-	public function testToString_raw( $key, $expect, $format ) {
+	public function testToString_raw( $key, $format, $expect, $expectImplicit ) {
 		// make the message behave like RawMessage and use the key as-is
 		$msg = $this->getMockBuilder( Message::class )->setMethods( [ 'fetchMessage' ] )
 			->setConstructorArgs( [ $key ] )
 			->getMock();
 		$msg->expects( $this->any() )->method( 'fetchMessage' )->willReturn( $key );
 		/** @var Message $msg */
-		$msg->$format();
+		$this->assertEquals( $expect, $msg->$format() );
 		$this->assertEquals( $expect, $msg->toString() );
-		$this->assertEquals( $expect, $msg->__toString() );
+		$this->assertEquals( $expectImplicit, $msg->__toString() );
 		$this->assertEquals( $expect, $msg->toString() );
 	}
 
