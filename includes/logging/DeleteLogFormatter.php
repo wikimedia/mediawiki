@@ -122,6 +122,7 @@ class DeleteLogFormatter extends LogFormatter {
 
 		switch ( $this->entry->getSubtype() ) {
 			case 'delete': // Show undelete link
+			case 'delete_redir':
 				if ( $user->isAllowed( 'undelete' ) ) {
 					$message = 'undeletelink';
 				} else {

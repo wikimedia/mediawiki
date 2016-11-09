@@ -7507,6 +7507,7 @@ $wgLogActionsHandlers = [
 	'contentmodel/change' => 'ContentModelLogFormatter',
 	'contentmodel/new' => 'ContentModelLogFormatter',
 	'delete/delete' => 'DeleteLogFormatter',
+	'delete/delete_redir' => 'DeleteLogFormatter',
 	'delete/event' => 'DeleteLogFormatter',
 	'delete/restore' => 'DeleteLogFormatter',
 	'delete/revision' => 'DeleteLogFormatter',
@@ -7558,6 +7559,7 @@ $wgActionFilteredLogs = [
 	],
 	'delete' => [
 		'delete' => [ 'delete' ],
+		'delete_redir' => [ 'delete_redir' ],
 		'restore' => [ 'restore' ],
 		'event' => [ 'event' ],
 		'revision' => [ 'revision' ],
