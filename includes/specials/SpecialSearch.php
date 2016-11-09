@@ -295,12 +295,12 @@ class SpecialSearch extends SpecialPage {
 		$textStatus = null;
 		if ( $textMatches instanceof Status ) {
 			$textStatus = $textMatches;
-			$textMatches = null;
+			$textMatches = $textStatus->getValue();
 		}
 
 		// did you mean... suggestions
 		$didYouMeanHtml = '';
-		if ( $showSuggestion && $textMatches && !$textStatus ) {
+		if ( $showSuggestion && $textMatches ) {
 			if ( $textMatches->hasRewrittenQuery() ) {
 				$didYouMeanHtml = $this->getDidYouMeanRewrittenHtml( $term, $textMatches );
 			} elseif ( $textMatches->hasSuggestion() ) {
@@ -360,6 +360,24 @@ class SpecialSearch extends SpecialPage {
 
 		$out->addHTML( "<div class='searchresults'>" );
 
+		if ( $textStatus && $textStatus->getErrors() ) {
+			list( $error, $warning ) = $textStatus->splitByErrorType();
+			if ( $error->getErrors() ) {
+				$out->addHTML( Html::rawElement(
+					'div',
+					[ 'class' => 'errorbox' ],
+					$error->getHTML( 'search-error' )
+				) );
+			}
+			if ( $warning->getErrors() ) {
+				$out->addHTML( Html::rawElement(
+					'div',
+					[ 'class' => 'warningbox' ],
+					$warning->getHTML( 'search-warning' )
+				) );
+			}
+		}
+
 		// prev/next links
 		$prevnext = null;
 		if ( $num || $this->offset ) {
@@ -388,7 +406,8 @@ class SpecialSearch extends SpecialPage {
 			}
 			$titleMatches->free();
 		}
-		if ( $textMatches && !$textStatus ) {
+
+		if ( $textMatches ) {
 			// output appropriate heading
 			if ( $numTextMatches > 0 && $numTitleMatches > 0 ) {
 				$out->addHTML( '<div class="mw-search-visualclear"></div>' );
@@ -413,7 +432,7 @@ class SpecialSearch extends SpecialPage {
 			$textMatches->hasInterwikiResults( SearchResultSet::INLINE_RESULTS );
 
 		if ( $num === 0 ) {
-			if ( $textStatus ) {
+			if ( $textStatus && !$textStatus->isOK() ) {
 				$out->addHTML( '<div class="error">' .
 					$textStatus->getMessage( 'search-error' ) . '</div>' );
 			} else {
