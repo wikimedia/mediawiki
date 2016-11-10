@@ -4412,16 +4412,16 @@ HTML
 	/**
 	 * @param string $name
 	 * @param mixed[] $customAttribs
-	 * @param User $wgUser
+	 * @param User $user
 	 * @return mixed[]
 	 * @since 1.29
 	 */
-	protected function buildTextboxAttribs( $name, array $customAttribs, User $wgUser ) {
+	protected function buildTextboxAttribs( $name, array $customAttribs, User $user ) {
 		$attribs = $customAttribs + [
 				'accesskey' => ',',
 				'id' => $name,
-				'cols' => $wgUser->getIntOption( 'cols' ),
-				'rows' => $wgUser->getIntOption( 'rows' ),
+				'cols' => $user->getIntOption( 'cols' ),
+				'rows' => $user->getIntOption( 'rows' ),
 				// Avoid PHP notices when appending preferences
 				// (appending allows customAttribs['style'] to still work).
 				'style' => ''
@@ -4432,7 +4432,7 @@ HTML
 		// * mw-editfont-monospace
 		// * mw-editfont-sans-serif
 		// * mw-editfont-serif
-		$class = 'mw-editfont-' . $wgUser->getOption( 'editfont' );
+		$class = 'mw-editfont-' . $user->getOption( 'editfont' );
 
 		if ( isset( $attribs['class'] ) ) {
 			if ( is_string( $attribs['class'] ) ) {
