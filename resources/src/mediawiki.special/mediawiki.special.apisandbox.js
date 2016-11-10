@@ -26,7 +26,11 @@
 			},
 			apiCheckValid: function () {
 				var that = this;
-				return this.isValid().done( function ( ok ) {
+				return this.getValidity().then( function () {
+					return $.Deferred().resolve( true ).promise();
+				}, function () {
+					return $.Deferred().resolve( false ).promise();
+				} ).done( function ( ok ) {
 					ok = ok || suppressErrors;
 					that.setIcon( ok ? null : 'alert' );
 					that.setIconTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
@@ -35,9 +39,12 @@
 		},
 
 		dateTimeInputWidget: {
-			isValid: function () {
-				var ok = !Util.apiBool( this.paramInfo.required ) || this.getApiValue() !== '';
-				return $.Deferred().resolve( ok ).promise();
+			getValidity: function () {
+				if ( !Util.apiBool( this.paramInfo.required ) || this.getApiValue() !== '' ) {
+					return $.Deferred().resolve().promise();
+				} else {
+					return $.Deferred().reject().promise();
+				}
 			}
 		},
 
@@ -372,7 +379,7 @@
 					} );
 					widget.setIcon = widget.input.setIcon.bind( widget.input );
 					widget.setIconTitle = widget.input.setIconTitle.bind( widget.input );
-					widget.isValid = widget.input.isValid.bind( widget.input );
+					widget.getValidity = widget.input.getValidity.bind( widget.input );
 					widget.paramInfo = pi;
 					$.extend( widget, WidgetMethods.textInputWidget );
 					if ( Util.apiBool( pi.enforcerange ) ) {
@@ -388,7 +395,7 @@
 					} );
 					widget.setIcon = widget.input.setIcon.bind( widget.input );
 					widget.setIconTitle = widget.input.setIconTitle.bind( widget.input );
-					widget.isValid = widget.input.isValid.bind( widget.input );
+					widget.getValidity = widget.input.getValidity.bind( widget.input );
 					widget.input.setValidation( function ( value ) {
 						return value === 'max' || widget.validateNumber( value );
 					} );
