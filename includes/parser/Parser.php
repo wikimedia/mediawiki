@@ -547,18 +547,32 @@ class Parser {
 			$limitReport = str_replace( [ '-', '&' ], [ '‐', '&amp;' ], $limitReport );
 			$text .= "\n<!-- \n$limitReport-->\n";
 
-			// Add on template profiling data
+			// Add on template profiling data in human/machine readable way
 			$dataByFunc = $this->mProfiler->getFunctionStats();
 			uasort( $dataByFunc, function ( $a, $b ) {
 				return $a['real'] < $b['real']; // descending order
 			} );
-			$profileReport = "Transclusion expansion time report (%,ms,calls,template)\n";
+			$profileReport = [];
 			foreach ( array_slice( $dataByFunc, 0, 10 ) as $item ) {
-				$profileReport .= sprintf( "%6.2f%% %8.3f %6d - %s\n",
+				$profileReport[] = sprintf( "%6.2f%% %8.3f %6d %s",
 					$item['%real'], $item['real'], $item['calls'],
 					htmlspecialchars( $item['name'] ) );
 			}
-			$text .= "\n<!-- \n$profileReport-->\n";
+			$text .= "<!--\nTransclusion expansion time report (%,ms,calls,template)\n";
+			$text .= implode( "\n", $profileReport ) . "\n-->\n";
+
+			$this->mOutput->setLimitReportData( 'limitreport-timingprofile', $profileReport );
+
+			// Add other cache related metadata
+			if ( $wgShowHostnames ) {
+				$this->mOutput->setLimitReportData( 'cachereport-origin', wfHostname() );
+			}
+			$this->mOutput->setLimitReportData( 'cachereport-timestamp',
+				$this->mOutput->getCacheTime() );
+			$this->mOutput->setLimitReportData( 'cachereport-ttl',
+				$this->mOutput->getCacheExpiry() );
+			$this->mOutput->setLimitReportData( 'cachereport-transientcontent',
+				$this->mOutput->hasDynamicContent() );
 
 			if ( $this->mGeneratedPPNodeCount > $this->mOptions->getMaxGeneratedPPNodeCount() / 10 ) {
 				wfDebugLog( 'generated-pp-node-count', $this->mGeneratedPPNodeCount . ' ' .
