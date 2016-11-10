@@ -1954,6 +1954,13 @@ class Parser {
 	 * @return string
 	 */
 	public static function normalizeLinkUrl( $url ) {
+		# Try to normalize internationalized domain names
+		$parsed = wfParseUrl( $url );
+		if ( $parsed && isset( $parsed['host'] ) ) {
+			$parsed['host'] = idn_to_utf8( $parsed['host'] );
+			$url = wfAssembleUrl( $parsed );
+		}
+
 		# First, make sure unsafe characters are encoded
 		$url = preg_replace_callback( '/[\x00-\x20"<>\[\\\\\]^`{|}\x7F-\xFF]/',
 			function ( $m ) {
@@ -1985,6 +1992,19 @@ class Parser {
 		# (we assume no userinfo or encoded colons in the host)
 		$ret = self::normalizeUrlComponent(
 			substr( $url, 0, $end ), '"#%<>[\]^`{|}/?' ) . $ret;
+
+		# Try to normalize internationalized domain names
+		$parsed = wfParseUrl( $ret );
+		if ( !$parsed ) {
+			# Couldn't parse?
+			return $ret;
+		}
+
+		if ( isset( $parsed['host'] ) ) {
+			$parsed['host'] = idn_to_utf8( $parsed['host'] );
+		}
+
+		$ret = wfAssembleUrl( $parsed );
 
 		return $ret;
 	}

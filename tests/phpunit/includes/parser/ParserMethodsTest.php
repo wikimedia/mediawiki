@@ -184,6 +184,16 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 				'http://example.org/%23%2F%3F%26%3D%2B%3B?%23%2F%3F%26%3D%2B%3B#%23%2F%3F%26%3D%2B%3B',
 				'http://example.org/%23%2F%3F&=+;?%23/?%26%3D%2B%3B#%23/?&=+;',
 			],
+			[
+				'International domain name is normalized and urlencoded',
+				'http://xn--kbenhavn-54a.eu/',
+				'http://k%C3%B8benhavn.eu/',
+			],
+			[
+				'International domain name in unicode is just urlencoded',
+				'http://københavn.eu/',
+				'http://k%C3%B8benhavn.eu/',
+			]
 		];
 	}
 
