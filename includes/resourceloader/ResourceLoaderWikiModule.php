@@ -162,11 +162,12 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			return null;
 		}
 
-		$revision = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
+		$revision = Revision::newKnownCurrent( wfGetDB( DB_REPLICA ), $title->getArticleID(),
+			$title->getLatestRevID() );
 		if ( !$revision ) {
 			return null;
 		}
-
+		$revision->setTitle( $title );
 		$content = $revision->getContent( Revision::RAW );
 
 		if ( !$content ) {
