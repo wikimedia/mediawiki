@@ -153,7 +153,8 @@
 			"Tokvo",
 			"Irus",
 			"Sophivorus",
-			"Pompilos"
+			"Pompilos",
+			"Igv"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -2802,6 +2803,7 @@
 	"log-show-hide-patrol": "$1 registro de verificación",
 	"log-show-hide-tag": "$1 registro de etiquetas",
 	"confirm-markpatrolled-button": "Aceptar",
+	"confirm-markpatrolled-top": "marcar la revisión $3 de $2 como revisada?",
 	"deletedrevision": "Borrada revisión antigua $1",
 	"filedeleteerror-short": "Error al borrar el archivo: $1",
 	"filedeleteerror-long": "Se han producido errores mientras se borraba el archivo:\n\n$1",
@@ -3863,7 +3865,7 @@
 	"authmanager-authn-autocreate-failed": "Falló la creación automática de una cuenta local: $1",
 	"authmanager-change-not-supported": "Las credenciales proporcionadas no se pueden cambiar, ya que no hay nada que fuera a hacer uso de ellas.",
 	"authmanager-create-disabled": "Está desactivada la creación de cuentas.",
-	"authmanager-create-from-login": "Para crear tu cuenta, completa los campos a continuación.",
+	"authmanager-create-from-login": "Para crear su cuenta, por favor, complete los campos.",
 	"authmanager-create-not-in-progress": "El proceso de creación de la cuenta no está en progreso o se perdieron los datos de la sesión. Empieza de nuevo desde el principio.",
 	"authmanager-create-no-primary": "Las credenciales suministradas no pueden usarse para la creación de la cuenta.",
 	"authmanager-link-no-primary": "Las credenciales proporcionadas no se han podido utilizar para enlazar cuentas.",

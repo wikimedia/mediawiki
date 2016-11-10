@@ -39,7 +39,8 @@
 			"Iliev",
 			"Spas.Z.Spasov",
 			"АдмиралАнимЕ",
-			"Irus"
+			"Irus",
+			"Kareyac"
 		]
 	},
 	"tog-underline": "Подчертаване на препратките:",
@@ -2430,6 +2431,7 @@
 	"patrol-log-header": "Тази страница съдържа дневник на проверените версии.",
 	"log-show-hide-patrol": "$1 на Дневника на патрула",
 	"log-show-hide-tag": "$1 на дневника на отбелязванията",
+	"confirm-markpatrolled-button": "Добре",
 	"deletedrevision": "Изтрита стара версия $1",
 	"filedeleteerror-short": "Грешка при изтриване на файл: $1",
 	"filedeleteerror-long": "Възникнаха грешки при изтриването на файла:\n\n$1",

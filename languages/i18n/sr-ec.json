@@ -2524,6 +2524,8 @@
 	"patrol-log-header": "Ово је дневник патролираних измена.",
 	"log-show-hide-patrol": "$1 дневник патролирања",
 	"log-show-hide-tag": "$1 дневник ознака",
+	"confirm-markpatrolled-button": "У реду",
+	"confirm-markpatrolled-top": "Означити измену $3 странице $2 патролираном?",
 	"deletedrevision": "Обрисана стара измена $1.",
 	"filedeleteerror-short": "Грешка при брисању датотеке: $1",
 	"filedeleteerror-long": "Дошло је до грешака при брисању датотеке:\n\n$1",

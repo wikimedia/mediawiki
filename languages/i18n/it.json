@@ -2754,6 +2754,7 @@
 	"log-show-hide-patrol": "$1 registro delle modifiche verificate",
 	"log-show-hide-tag": "$1 registro delle etichette",
 	"confirm-markpatrolled-button": "OK",
+	"confirm-markpatrolled-top": "Segna versione $3 di $2 come verificata?",
 	"deletedrevision": "Cancellata la vecchia versione di $1.",
 	"filedeleteerror-short": "Errore nella cancellazione del file: $1",
 	"filedeleteerror-long": "Si sono verificati degli errori nel tentativo di cancellare il file:\n\n$1",

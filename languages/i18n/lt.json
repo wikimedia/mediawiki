@@ -2650,6 +2650,7 @@
 	"patrol-log-header": "Tai patvirtintų versijų sąrašas.",
 	"log-show-hide-patrol": "$1 patvirtinimų sąrašą",
 	"log-show-hide-tag": "$1 žymės žurnalas",
+	"confirm-markpatrolled-button": "GERAI",
 	"deletedrevision": "Ištrinta sena versija $1",
 	"filedeleteerror-short": "Klaida trinant rinkmeną: $1",
 	"filedeleteerror-long": "Įvyko klaidų trinant failą:\n\n$1",
