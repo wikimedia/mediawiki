@@ -976,6 +976,14 @@
 							if ( data.modules.length ) {
 								mw.loader.load( data.modules );
 							}
+							if ( data.status && data.status !== 200 ) {
+								$( '<div>' )
+									.addClass( 'api-pretty-header api-pretty-status' )
+									.append(
+										mw.message( 'api-format-prettyprint-status', data.status, data.statustext ).parse()
+									)
+									.appendTo( $result );
+							}
 							$result.append( Util.parseHTML( data.html ) );
 							loadTime = data.time;
 						} else if ( ( m = data.match( /<pre[ >][\s\S]*<\/pre>/ ) ) ) {
