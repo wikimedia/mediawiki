@@ -9,18 +9,25 @@
 /**
  * Hide all the elements irrelevant for printing
  */
+/* General hide-in-print class */
 .noprint,
-#jump-to-nav,
+/* Various content classes, in alphabetical order */
+.magnify,
+.mw-cite-backlink,
 .mw-jump,
-#column-one,
 .mw-editsection,
 .mw-editsection-like,
-#footer-places,
 .mw-hidden-catlinks,
-.usermessage,
-.patrollink,
+.noexcerpt,
 .ns-0 .mw-redirectedfrom,
-.magnify,
+.patrollink,
+.play-btn-large,
+.usermessage,
+/* Various content ids, in alphabetical order */
+#column-one,
+#coordinates .image,
+#footer-places,
+#jump-to-nav,
 #mw-navigation,
 #siteNotice,
 /* Deprecated, changed in core */
@@ -33,16 +40,74 @@ li#privacy {
 	display: none;
 }
 
+
 /**
  * Generic HTML elements
  */
 body {
 	background: #fff;
 	color: #000;
+	/* We just set `serif` on specific elements */
+	font-family: sans-serif;
 	margin: 0;
 	padding: 0;
 }
+/* stylelint-disable */
+/* Show branding only for English Wikipedia */
+body:lang(en):before {
+	content: ' ';
+	background-image: url(https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia_wordmark@2x.png);
+	background-size: 120px 20px;
+	background-repeat: no-repeat;
+	display: block;
+	height: 20px;
+	border-bottom: 3pt solid #ccc;
+}
+/* stylelint-enable */
 
+/* Links */
+a,
+a.external,
+a.new,
+a.stub {
+	background: none !important;
+	/* MSIE/Win doesn't understand 'inherit' */
+	color: #000 !important;
+	padding: 0 !important;
+	text-decoration: none !important;
+}
+
+/* Expand URLs for printing */
+.mw-body a.external.text:after,
+.mw-body a.external.autonumber:after {
+	content: ' (' attr( href ) ')';
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
+/* Expand protocol-relative URLs for printing */
+.mw-body a.external.text[href^='//']:after,
+.mw-body a.external.autonumber[href^='//']:after {
+	content: ' (https:' attr( href ) ')';
+}
+
+/* Reference brackets */
+.reference a {
+	font-size: 12pt;
+	color: #666;
+}
+
+dt {
+	font-weight: bold;
+}
+
+/* Headers
+ * They should be closer to the next <p> than the <p> before
+ * h1 = 26pt
+ * h2 = 18pt
+ * h3 = 14pt
+ * h4, h5, h6 = 12pt
+ */
 h1,
 h2,
 h3,
@@ -54,32 +119,49 @@ h6 {
 	page-break-after: avoid;
 }
 
-dt {
-	font-weight: bold;
+.firstHeading {
+	margin-bottom: 5px;
+	/* Charter is an open source serif typeface specfically designed for legibility and reading */
+	font-family: 'Charter', serif;
+	font-size: 26pt;
+	font-weight: normal;
+	line-height: 32pt;
 }
 
-ul {
-	list-style-type: square;
+h2 {
+	page-break-before: avoid;
+	font-family: sans-serif;
+	font-size: 18pt;
+	line-height: 24pt;
+	margin-bottom: 0.25em;
+	border-bottom: 2pt solid #000;
+	overflow: hidden;
+}
+
+h3 {
+	page-break-before: avoid;
+	margin: 30px 0 0 0;
+	font-size: 14pt;
+	line-height: 20pt;
+}
+
+h4,
+h5,
+h6 {
+	page-break-before: avoid;
+	margin: 30px 0 0 0;
+	font-size: 12pt;
+	line-height: 15pt;
 }
 
 p {
 	margin: 1em 0;
-	line-height: 1.2em;
+	font-family: 'Charter', serif;
+	font-size: 12pt;
+	line-height: 1.5;
 	/* Pagination */
 	orphans: 3;
 	widows: 3;
-}
-
-pre,
-.mw-code {
-	background: #fff;
-	color: #000;
-	border: 1pt dashed #000;
-	padding: 1em 0;
-	font-size: 8pt;
-	white-space: pre;
-	word-wrap: break-word;
-	overflow: auto;
 }
 
 img,
@@ -95,12 +177,52 @@ img {
 	vertical-align: middle;
 }
 
+pre,
+.mw-code {
+	background: #fff;
+	color: #000;
+	border: 1pt dashed #000;
+	padding: 1em 0;
+	font-size: 8pt;
+	white-space: pre;
+	word-wrap: break-word;
+	overflow: auto;
+}
+
+sup {
+	position: relative;
+	top: -0.4em;
+	vertical-align: baseline;
+}
+
+ul {
+	list-style-type: square;
+	margin: 0.3em 0 0 1.6em;
+	padding: 0;
+}
+
 /**
  * MediaWiki-specific elements
  */
 #globalWrapper {
 	width: 100% !important;
 	min-width: 0 !important;
+}
+
+/* Article title separator - print element from classic editorial practices */
+#siteSub {
+	color: #333;
+	font-size: 13pt;
+	padding-bottom: 5px;
+}
+
+#siteSub:after {
+	content: ' ';
+	background: #666;
+	display: block;
+	width: 50px;
+	height: 1pt;
+	margin-top: 1.25em;
 }
 
 .mw-body {
@@ -122,7 +244,7 @@ img {
 }
 
 #toc {
-	background-color: #f9f9f9;
+	background: #f9f9f9;
 	border: 1pt solid #aaa;
 	padding: 5px;
 	display: table;
@@ -161,54 +283,42 @@ img {
 }
 
 /**
- * Links
+ * Infobox
  */
-a {
-	background: none !important;
-	padding: 0 !important;
+.infobox {
+	background: #fff;
+	color: #000;
+	float: right;
+	clear: right;
+	margin: 0.5em 0 0.5em 1em;
+	border: 1pt solid #aaa;
+	border-spacing: 3px;
+	border-radius: 2px;
+	padding: 0.2em;
+	font-size: 13pt;
+	line-height: 1.5;
 }
 
-/* Expand URLs for printing */
-.mw-body a.external.text:after,
-.mw-body a.external.autonumber:after {
-	content: " (" attr( href ) ")";
-	word-break: break-all;
-	word-wrap: break-word;
+.infobox a {
+	border-bottom: 0;
 }
 
-/* Expand protocol-relative URLs for printing */
-.mw-body a.external.text[href^='//']:after,
-.mw-body a.external.autonumber[href^='//']:after {
-	content: " (https:" attr( href ) ")";
-}
-
-/* MSIE/Win doesn't understand 'inherit' */
-a,
-a.external,
-a.new,
-a.stub {
-	color: #000 !important;
-	text-decoration: none !important;
-}
-
-/* Continue ... */
-a,
-a.external,
-a.new,
-a.stub {
-	color: inherit !important;
-	text-decoration: inherit !important;
+.infobox td,
+.infobox th {
+	text-align: left;
+	vertical-align: top;
 }
 
 /**
- * Floating divs
+ * Floating divs (and Thumbnails)
  */
 /* @noflip */
-div.floatright {
+div.floatright,
+div.tright {
 	float: right;
 	clear: right;
 	position: relative;
-	margin: 0.5em 0 0.8em 1.4em;
+	margin: 0.5em 0 1.3em 1.4em;
 }
 
 div.floatright p {
@@ -216,11 +326,11 @@ div.floatright p {
 }
 
 /* @noflip */
-div.floatleft {
+div.floatleft,
+div.tleft {
 	float: left;
 	clear: left;
-	position: relative;
-	margin: 0.5em 1.4em 0.8em 0;
+	margin: 0.5em 1.4em 1.3em 0;
 }
 
 div.floatleft p {
@@ -244,9 +354,10 @@ div.thumb {
 
 div.thumbinner {
 	background-color: #fff;
+	color: #666;
 	border: 1pt solid #ccc;
-	padding: 3px;
-	font-size: 94%;
+	padding: 5px;
+	font-size: 12pt;
 	text-align: center;
 	/* new block formatting context,
 	 * to clear background from floating content  */
@@ -260,27 +371,46 @@ html .thumbimage {
 html .thumbcaption {
 	border: none;
 	text-align: left;
-	line-height: 1.4em;
+	line-height: 1.4;
 	padding: 3px;
 	font-size: 94%;
 }
 
-/* @noflip */
-div.tright {
-	float: right;
-	clear: right;
-	margin: 0.5em 0 0.8em 1.4em;
-}
-
-/* @noflip */
-div.tleft {
-	float: left;
-	clear: left;
-	margin: 0.5em 1.4em 0.8em 0;
-}
-
 img.thumbborder {
-	border: 1pt solid #ddd;
+	border: 1pt solid #ccc;
+}
+
+/**
+ * Gallery
+ */
+ul.gallery {
+	margin: 2px;
+	padding: 2px;
+	display: block;
+}
+
+.gallerybox {
+	vertical-align: top;
+	display: -moz-inline-box;
+	display: inline-block;
+}
+
+.gallerybox div.thumb {
+	background: #fff;
+	margin: 2px;
+	border: 1pt solid #ccc;
+	text-align: center;
+}
+
+#content .gallerybox div.thumb {
+	background: #fff;
+}
+
+.gallerytext {
+	font-size: 10pt;
+	padding: 2px 4px;
+	word-wrap: break-word;
+	overflow: hidden;
 }
 
 /**
@@ -290,9 +420,15 @@ img.thumbborder {
 table.wikitable,
 table.mw_metadata {
 	background: #fff;
+	color: #000;
 	margin: 1em 0;
 	border: 1pt solid #aaa;
 	border-collapse: collapse;
+}
+
+table.wikitable caption {
+	padding: 5px;
+	font-size: 13pt;
 }
 
 table.wikitable > tr > th,
@@ -302,7 +438,7 @@ table.wikitable > * > tr > td,
 .mw_metadata th,
 .mw_metadata td {
 	border: 1pt solid #aaa;
-	padding: 0.2em;
+	padding: 0.2em 0.4em;
 }
 
 table.wikitable > tr > th,
@@ -336,16 +472,71 @@ table.listing td {
 .catlinks li {
 	display: inline-block;
 	line-height: 1.15em;
-	padding: 0 .4em;
-	border-left: 1pt solid #aaa;
 	margin: 0.1em 0;
+	border-left: 1pt solid #aaa;
+	padding: 0 0.4em;
 }
 
 .catlinks li:first-child {
-	padding-left: .2em;
 	border-left: 0;
+	padding-left: 0.2em;
 }
 
+/**
+ * References
+ */
+.refbegin ul li,
+.references li {
+	color: #666;
+	font-size: 13pt;
+	padding: 5px 0;
+}
+
+/**
+ * Footer
+ */
 .printfooter {
 	padding: 1em 0;
+	font-size: 10pt;
+}
+
+#footer {
+	margin-top: 12px;
+	border-top: 1pt solid #eee;
+	padding-top: 5px;
+}
+
+/* stylelint-disable */
+#footer-info:after {
+	content: ' ';
+	background-image: url(https://upload.wikimedia.org/wikipedia/commons/6/60/Wmf_logo_horiz_K.svg);
+	background-repeat: no-repeat;
+	background-size: auto 30px;
+	display: block;
+	height: 30px;
+	margin-top: 20px;
+}
+/* stylelint-enable */
+
+#footer-info {
+	margin: 0;
+	padding: 0;
+}
+
+#footer-info li {
+	list-style: none;
+	color: #999;
+	display: block;
+	padding-bottom: 10px;
+	font-size: 10pt;
+}
+
+#footer-info li:first-child {
+	font-size: 12pt;
+	font-weight: bold;
+	color: #000;
+}
+
+#footer-info li a {
+	color: #999;
 }
