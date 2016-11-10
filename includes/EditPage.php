@@ -4402,10 +4402,10 @@ HTML
 	}
 
 	/**
-	 * @param OutputPage &$out
+	 * @param OutputPage $out
 	 * @since 1.29
 	 */
-	protected function addExplainConflictHeader( OutputPage &$out ) {
+	protected function addExplainConflictHeader( OutputPage $out ) {
 		$out->wrapWikiMsg( "<div class='mw-explainconflict'>\n$1\n</div>", 'explainconflict' );
 	}
 
