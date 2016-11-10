@@ -3368,7 +3368,7 @@ PageArchive object has been created but before any further processing is done.
 &$archive: PageArchive object
 $title: Title object of the page that we're viewing
 
-'UndeleteForm::undelete': Called un UndeleteForm::undelete, after checking that
+'UndeleteForm::undelete': Called in UndeleteForm::undelete, after checking that
 the site is not in read-only mode, that the Title object is not null and after
 a PageArchive object has been constructed but before performing any further
 processing.
