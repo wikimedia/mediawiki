@@ -42,9 +42,20 @@ class DatabasePostgres extends Database {
 	private $connectString;
 	/** @var string */
 	private $mCoreSchema;
+	/** @var string[] Map of (reserved table name => alternate table name) */
+	private $keywordTableMap = [];
 
+	/**
+	 * @see Database::__construct()
+	 * @param array $params Additional parameters include:
+	 *   - keywordTableMap : Map of reserved table names to alternative table names to use
+	 */
 	public function __construct( array $params ) {
 		$this->port = isset( $params['port'] ) ? $params['port'] : false;
+		$this->keywordTableMap = isset( $params['keywordTableMap'] )
+			? $params['keywordTableMap']
+			: [];
+
 		parent::__construct( $params );
 	}
 
@@ -736,16 +747,9 @@ __INDEXATTR__;
 	/**
 	 * @param string $name
 	 * @return string Value of $name or remapped name if $name is a reserved keyword
-	 * @TODO: dependency inject these...
 	 */
 	public function remappedTableName( $name ) {
-		if ( $name === 'user' ) {
-			return 'mwuser';
-		} elseif ( $name === 'text' ) {
-			return 'pagecontent';
-		}
-
-		return $name;
+		return isset( $this->keywordTableMap[$name] ) ? $this->keywordTableMap[$name] : $name;
 	}
 
 	/**
