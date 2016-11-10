@@ -299,6 +299,9 @@ class OutputPage extends ContextSource {
 	 */
 	private $copyrightUrl;
 
+	/** @var array Profiling data */
+	private $limitReportJSData = [];
+
 	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
@@ -1804,9 +1807,14 @@ class OutputPage extends ContextSource {
 			}
 		}
 
-		// enable OOUI if requested via ParserOutput
+		// Enable OOUI if requested via ParserOutput
 		if ( $parserOutput->getEnableOOUI() ) {
 			$this->enableOOUI();
+		}
+
+		// Include parser limit report
+		if ( !$this->limitReportJSData ) {
+			$this->limitReportJSData = $parserOutput->getLimitReportJSData();
 		}
 
 		// Link flags are ignored for now, but may in the future be
@@ -3003,6 +3011,14 @@ class OutputPage extends ContextSource {
 				// Load normally
 				$chunks[] = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_COMBINED );
 			}
+		}
+
+		if ( $this->limitReportJSData ) {
+			$chunks[] = ResourceLoader::makeInlineScript(
+				ResourceLoader::makeConfigSetScript(
+					[ 'wgPageParseReport' => $this->limitReportJSData ]
+				)
+			);
 		}
 
 		return self::combineWrappedStrings( $chunks );
