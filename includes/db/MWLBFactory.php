@@ -66,7 +66,11 @@ abstract class MWLBFactory {
 					if ( $server['type'] === 'sqlite' ) {
 						$server += [ 'dbDirectory' => $mainConfig->get( 'SQLiteDataDir' ) ];
 					} elseif ( $server['type'] === 'postgres' ) {
-						$server += [ 'port' => $mainConfig->get( 'DBport' ) ];
+						$server += [
+							'port' => $mainConfig->get( 'DBport' ),
+							// Work around the reserved word usage in MediaWiki schema
+							'keywordTableMap' => [ 'user' => 'mwuser', 'text' => 'pagecontent' ]
+						];
 					}
 					if ( in_array( $server['type'], $typesWithSchema, true ) ) {
 						$server += [ 'schema' => $mainConfig->get( 'DBmwschema' ) ];
@@ -105,6 +109,8 @@ abstract class MWLBFactory {
 					$server[ 'dbDirectory'] = $mainConfig->get( 'SQLiteDataDir' );
 				} elseif ( $server['type'] === 'postgres' ) {
 					$server['port'] = $mainConfig->get( 'DBport' );
+					// Work around the reserved word usage in MediaWiki schema
+					$server['keywordTableMap'] = [ 'user' => 'mwuser', 'text' => 'pagecontent' ];
 				}
 				$lbConf['servers'] = [ $server ];
 			}
