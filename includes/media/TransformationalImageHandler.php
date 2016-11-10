@@ -511,21 +511,22 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 */
 	protected function getMagickVersion() {
 		$cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
+		$method = __METHOD__;
 		return $cache->getWithSetCallback(
 			'imagemagick-version',
 			$cache::TTL_HOUR,
-			function () {
+			function () use ( $method ) {
 				global $wgImageMagickConvertCommand;
 
 				$cmd = wfEscapeShellArg( $wgImageMagickConvertCommand ) . ' -version';
-				wfDebug( __METHOD__ . ": Running convert -version\n" );
+				wfDebug( $method . ": Running convert -version\n" );
 				$retval = '';
 				$return = wfShellExec( $cmd, $retval );
 				$x = preg_match(
 					'/Version: ImageMagick ([0-9]*\.[0-9]*\.[0-9]*)/', $return, $matches
 				);
 				if ( $x != 1 ) {
-					wfDebug( __METHOD__ . ": ImageMagick version check failed\n" );
+					wfDebug( $method . ": ImageMagick version check failed\n" );
 					return false;
 				}
 
