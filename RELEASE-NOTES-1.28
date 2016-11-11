@@ -201,6 +201,8 @@ changes to languages because of Phabricator reports.
 * (T146744) Livvi-Karelian (olo) namespace messages created thanks to translator Ilja.mos.
 * Karelian (krl), thanks to translators Flrn, Ilja.mos, Likopiän tyttö, Mashoi7, Matma Rex,
   Ontoi, Theunitedstatesofme, and Varvana.
+* Gorontalo (gor), thanks to translators Ilham, Lukman Tomayahu, Marwan Mohamad, Matma Rex,
+  NoiX180, and Zhoelyakin.
 
 === Other changes in 1.28 ===
 * (T128697) Improved handling of large diffs.
