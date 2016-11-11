@@ -2712,7 +2712,7 @@ Templates: Handle empty comment-and-ws-only lines correctly
 <!--should be ignored-->
  <!--should be ignored as well-->
 bar}}
-!! html
+!! html/php
 <p>foo
 bar
 </p>
@@ -2731,6 +2731,12 @@ Templates: Handle comments in the target
 {{echo<!-- should be ignored -->|foo}}
 
 {{<!-- should be ignored -->echo|foo}}
+!!html
+<p>foo
+</p><p>foo
+</p><p>foo
+</p><p>foo
+</p>
 !!html/parsoid
 <p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo\n&lt;!-- should be ignored -->\n","href":"./Template:Echo"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</p>
 
