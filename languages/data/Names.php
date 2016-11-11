@@ -174,6 +174,7 @@ class Names {
 		'gom' => 'गोंयची कोंकणी / Gõychi Konknni', # Goan Konkani
 		'gom-deva' => 'गोंयची कोंकणी', # Goan Konkani (Devanagari script)
 		'gom-latn' => 'Gõychi Konknni', # Goan Konkani (Latin script)
+		'gor' => 'Bahasa Hulontalo', # Gorontalo
 		'got' => '𐌲𐌿𐍄𐌹𐍃𐌺', # Gothic
 		'grc' => 'Ἀρχαία ἑλληνικὴ', # Ancient Greek
 		'gsw' => 'Alemannisch', # Alemannic
