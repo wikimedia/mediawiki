@@ -8,7 +8,7 @@
  *
  */
 
-$fallback = 'pt';
+$fallback = 'es'; // T150540
 
 $namespaceNames = [
 	NS_MEDIA            => 'Media',
