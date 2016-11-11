@@ -199,6 +199,8 @@ changes to languages because of Phabricator reports.
   Saiddzone Saimawnkham, Saosukham, and Sengwan.
 * Czech (cs) and Slovak (sk) set as reciprocal fallbacks.
 * (T146744) Livvi-Karelian (olo) namespace messages created thanks to translator Ilja.mos.
+* Karelian (krl), thanks to translators Flrn, Ilja.mos, Likopiän tyttö, Mashoi7, Matma Rex,
+  Ontoi, Theunitedstatesofme, and Varvana.
 
 === Other changes in 1.28 ===
 * (T128697) Improved handling of large diffs.
