@@ -2712,10 +2712,12 @@ Templates: Handle empty comment-and-ws-only lines correctly
 <!--should be ignored-->
  <!--should be ignored as well-->
 bar}}
-!! html
+!! html/php
 <p>foo
 bar
 </p>
+!! html/parsoid
+<p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo\n&lt;!--should be ignored-->\n &lt;!--should be ignored as well-->\nbar"}},"i":0}}]}'>foo <!--should be ignored--> <!--should be ignored as well--> bar</p>
 !! end
 
 !! test
@@ -2731,7 +2733,13 @@ Templates: Handle comments in the target
 {{echo<!-- should be ignored -->|foo}}
 
 {{<!-- should be ignored -->echo|foo}}
-!!html/parsoid
+!! html/php
+<p>foo
+</p><p>foo
+</p><p>foo
+</p><p>foo
+</p>
+!! html/parsoid
 <p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo\n&lt;!-- should be ignored -->\n","href":"./Template:Echo"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</p>
 
 <p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo&lt;!-- should be ignored -->\n","href":"./Template:Echo"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</p>
@@ -2755,7 +2763,13 @@ Templates: Handle comments in parameter names (bug 67657)
 {{echo|1<!-- should be ignored -->=foo}}
 
 {{echo|<!-- should be ignored -->1=foo}}
-!!html/parsoid
+!! html/php
+<p>foo
+</p><p>foo
+</p><p>foo
+</p><p>foo
+</p>
+!! html/parsoid
 <p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo","key":{"wt":"1\n&lt;!-- should be ignored -->"}}},"i":0}}]}'>foo</p>
 
 <p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo","key":{"wt":"&lt;!-- should be ignored -->\n1"}}},"i":0}}]}'>foo</p>
@@ -2769,11 +2783,11 @@ Templates: Handle comments in parameter names (bug 67657)
 Templates: Other wikitext in parameter names (bug 67657)
 !! wikitext
 {{echo|''1''=foo}}
-!!html/parsoid
-<p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"&#39;&#39;1&#39;&#39;":{"wt":"foo"}},"i":0}}]}'>{{{1}}}</p>
-!!html/php
+!! html/php
 <p>{{{1}}}
 </p>
+!! html/parsoid
+<p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"&#39;&#39;1&#39;&#39;":{"wt":"foo"}},"i":0}}]}'>{{{1}}}</p>
 !!end
 
 #--------------------------------------------------------------------
