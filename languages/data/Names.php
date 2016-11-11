@@ -241,6 +241,7 @@ class Names {
 		'krc' => 'къарачай-малкъар', # Karachay-Balkar
 		'kri' => 'Krio', # Krio
 		'krj' => 'Kinaray-a', # Kinaray-a
+		'krl' => 'karjal', # Karelian
 		'ks' => 'कॉशुर / کٲشُر', # Kashmiri (multiple scripts - defaults to Perso-Arabic)
 		'ks-arab' => 'کٲشُر', # Kashmiri (Perso-Arabic script)
 		'ks-deva' => 'कॉशुर', # Kashmiri (Devanagari script)
