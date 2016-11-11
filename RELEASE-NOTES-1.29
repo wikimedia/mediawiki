@@ -136,6 +136,7 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Phabricator reports.
 
+
 * Based as always on linguistic studies on intelligibility and language
   knowledge by geography, language fallbacks have been expanded. When a
   translation is missing in the user's preferred interface language, the
@@ -147,6 +148,7 @@ changes to languages because of Phabricator reports.
   ca ↔ oc; hsb ↔ dsb; io → eo; mdf → ru; pnt → el; roa-tara → it; rup → ro;
   sh → bs, sr-el, hr.
 * (T155957) Talk Namespaces for Javanese language (jv) have been updated.
+* Galician (gl) now fallbacks to Spanish (es) (T150540).
 
 ==== No fallback for Ukrainian ====
 * (T39314) The fallback from Ukrainian to Russian was removed. The Ukrainian
