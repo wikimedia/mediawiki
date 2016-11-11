@@ -199,6 +199,8 @@ changes to languages because of Phabricator reports.
   Saiddzone Saimawnkham, Saosukham, and Sengwan.
 * Czech (cs) and Slovak (sk) set as reciprocal fallbacks.
 * (T146744) Livvi-Karelian (olo) namespace messages created thanks to translator Ilja.mos.
+* Gorontalo (gor), thanks to translators Ilham, Lukman Tomayahu, Marwan Mohamad, Matma Rex,
+  NoiX180, and Zhoelyakin.
 
 === Other changes in 1.28 ===
 * (T128697) Improved handling of large diffs.
