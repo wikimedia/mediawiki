@@ -3407,6 +3407,7 @@ HTML
 	 *
 	 * @param Title $title
 	 * @param string $format Output format, valid values are any function of a Message object
+	 * @param Language|string $langcode Language code or Language object.
 	 * @return string
 	 */
 	public static function getCopyrightWarning( $title, $format = 'plain', $langcode = null ) {
