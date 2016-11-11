@@ -3534,7 +3534,7 @@ HTML
 		global $wgOut;
 
 		if ( Hooks::run( 'EditPageBeforeConflictDiff', [ &$this, &$wgOut ] ) ) {
-			$stats = $wgOut->getContext()->getStats();
+			$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 			$stats->increment( 'edit.failures.conflict' );
 			// Only include 'standard' namespaces to avoid creating unknown numbers of statsd metrics
 			if (
@@ -3673,7 +3673,7 @@ HTML
 		global $wgOut, $wgRawHtml, $wgLang;
 		global $wgAllowUserCss, $wgAllowUserJs;
 
-		$stats = $wgOut->getContext()->getStats();
+		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 
 		if ( $wgRawHtml && !$this->mTokenOk ) {
 			// Could be an offsite preview attempt. This is very unsafe if
