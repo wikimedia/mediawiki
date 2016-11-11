@@ -3667,7 +3667,7 @@
 	"log-action-filter-upload-overwrite": "Kelti iš naujo",
 	"authmanager-authn-not-in-progress": "Autentifikavimas nevyksta arba buvo prarasti sesijos duomenys. Prašome pradėti iš naujo.",
 	"authmanager-create-disabled": "Paskyros kūrimas yra išjungtas.",
-	"authmanager-create-from-login": "Norėdami sukurti paskyrą užpildykite laukelius žemiau.",
+	"authmanager-create-from-login": "Norėdami sukurti savo paskyrą užpildykite laukelius žemiau.",
 	"authmanager-create-not-in-progress": "Paskyros kūrimas nevyksta arba buvo prarasti sesijos duomenys. Prašome pradėti iš naujo.",
 	"authmanager-link-not-in-progress": "Paskyrų susiejimas nevyksta arba buvo prarasti sesijos duomenys. Prašome pradėti iš naujo.",
 	"authmanager-authplugin-setpass-failed-title": "Slaptažodžio keitimas nepavyko",

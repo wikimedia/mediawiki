@@ -1347,6 +1347,7 @@
 	"api-format-title": "תוצאה של API של מדיה־ויקי",
 	"api-format-prettyprint-header": "זהו ייצוג ב־HTML של תסדיר $1. תסדיר HTML טוב לתיקון שגיאות, אבל אינו מתאים ליישומים.\n\nיש לציין את הפרמטר <var>format</var> כדי לשנות את תסדיר הפלט. כדי לראות ייצוג של תסדיר $1 לא ב־HTML יש לרשום <kbd>format=$2</kbd>.\n\nר' את [[mw:API|התיעוד המלא]], או את [[Special:ApiHelp/main|העזרה של API]] למידע נוסף.",
 	"api-format-prettyprint-header-only-html": "זה ייצוג HTML שמיועד לניפוי שגיאות ואינו מתאים לשימוש ביישומים.\n\nר' את [[mw:API|התיעוד המלא]] או את [[Special:ApiHelp/main|העזרה של API]] למידע נוסף.",
+	"api-format-prettyprint-status": "התשובה הזאת הייתה מוחזרת עם סטטוס ה־HTTP מס' $1 עם הטקסט $2.",
 	"api-pageset-param-titles": "רשימת כותרות.",
 	"api-pageset-param-pageids": "רשימת מזהי דף לעבוד עליהם.",
 	"api-pageset-param-revids": "רשימת מזהי גרסה לעבוד עליהם.",

@@ -18,7 +18,8 @@
 			"Айсар",
 			"Гизатуллина",
 			"MaxSem",
-			"Irus"
+			"Irus",
+			"MaxBioHazard"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Документация]]\n* [[mw:API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почтовая рассылка]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> Все отображаемые на этой странице функции должны работать, однако API находится в статусе активной разработки и может измениться в любой момент. Подпишитесь на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом «MediaWiki-API-Error», после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:API:Errors_and_warnings|API: Ошибки и предупреждения]].\n\n<strong>Тестирование:</strong> для удобства тестирования API-запросов, см. [[Special:ApiSandbox]].",
@@ -102,7 +103,7 @@
 	"apihelp-edit-param-tags": "Изменить теги для подачи заявки на пересмотр.",
 	"apihelp-edit-param-minor": "Незначительное изменение (малая правка).",
 	"apihelp-edit-param-notminor": "Значительное изменение (обычная, не «малая», правка).",
-	"apihelp-edit-param-bot": "Пометьте этот редактировать как изменить скрипт.",
+	"apihelp-edit-param-bot": "Пометить правку как сделанную ботом.",
 	"apihelp-edit-param-recreate": "Возвращает сообщение об ошибке не, если страница тем временем был удален.",
 	"apihelp-edit-param-createonly": "Не редактировать страницу, если она уже существует.",
 	"apihelp-edit-param-nocreate": "Выбрасывать ошибку, если страницы не существует.",
@@ -127,7 +128,7 @@
 	"apihelp-emailuser-param-text": "Содержание письма",
 	"apihelp-emailuser-param-ccme": "Отправить копию этого сообщения мне.",
 	"apihelp-emailuser-example-email": "Отправить письмо пользователю <kbd>WikiSysop</kbd> с текстом <kbd>Content</kbd>.",
-	"apihelp-expandtemplates-description": "Расширяет все шаблоны в тексте.",
+	"apihelp-expandtemplates-description": "Разворачивает все шаблоны в wikitext.",
 	"apihelp-expandtemplates-param-title": "Заголовок страницы.",
 	"apihelp-expandtemplates-param-text": "Викитекст для конвертирования",
 	"apihelp-expandtemplates-param-revid": "Идентификатор ревизии, для <nowiki>{{REVISIONID}}</nowiki> и подобные переменные.",
@@ -145,8 +146,10 @@
 	"apihelp-feedcontributions-description": "Возвращает вклад пользователей корма.",
 	"apihelp-feedcontributions-param-feedformat": "Биреү форматы",
 	"apihelp-feedcontributions-param-user": "Что пользователи, чтобы получить взносы.",
+	"apihelp-feedcontributions-param-namespace": "По какому пространству имён фильтровать вклад.",
 	"apihelp-feedcontributions-param-year": "От года (и ранее).",
 	"apihelp-feedcontributions-param-month": "От месяца (и ранее).",
+	"apihelp-feedcontributions-param-tagfilter": "Взносы фильтра, которые имеют эти теги.",
 	"apihelp-feedcontributions-param-deletedonly": "Показать только удалённые правки.",
 	"apihelp-feedcontributions-param-toponly": "Показать только правки, являющиеся последними версиями.",
 	"apihelp-feedcontributions-param-newonly": "Показывать только правки, являющиеся созданием страниц.",

@@ -540,7 +540,7 @@
 	"botpasswords-label-delete": "Läschen",
 	"botpasswords-label-resetpassword": "D'Passwuert zrécksetzen",
 	"botpasswords-label-grants": "Applikabel Rechter:",
-	"botpasswords-help-grants": "All Berechtegung gëtt Zougang op déi Benotzerrechter déi e Benotzerkont schonn huet. Kuckt d'[[Special:ListGrants|Tabell vun de Berechtigunge]] fir méi Informatiounen.",
+	"botpasswords-help-grants": "Berechtegunge ginn Zougang op déi Benotzerrechter déi Äre Benotzerkont schonn huet. D'Aktivéiere vun enger Berechtegung hei gëtt Iech keen Zougang op Rechter déi Äre Benotzerkont net scho souwisou huet. Kuckt d'[[Special:ListGrants|Tabell vun de Berechtigunge]] fir méi Informatiounen.",
 	"botpasswords-label-grants-column": "Accordéiert",
 	"botpasswords-bad-appid": "Den Numm vum Bot \"$1\" ass net valabel.",
 	"botpasswords-insert-failed": "De Botnumm \"$1\" konnt net dobäigesat ginn. Gouf e schonn derbäigesat?",

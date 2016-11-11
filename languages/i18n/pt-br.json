@@ -101,7 +101,8 @@
 			"Tusca",
 			"Cristofer Alves",
 			"Tark",
-			"O Andarilho"
+			"O Andarilho",
+			"Bruno.S.Alves 270"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -301,6 +302,7 @@
 	"talk": "Discussão",
 	"views": "Visualizações",
 	"toolbox": "Ferramentas",
+	"tool-link-userrights": "Editar grupos {{GENDER:$1|usuário}}",
 	"userpage": "Ver página de usuário",
 	"projectpage": "Ver página de projeto",
 	"imagepage": "Ver página do arquivo",

@@ -2021,7 +2021,7 @@
 	"activeusers-noresult": "Aucun utilisateur trouvé.",
 	"activeusers-submit": "Afficher les utilisateurs actifs",
 	"listgrouprights": "Droits des groupes d'utilisateurs",
-	"listgrouprights-summary": "Cette page contient une liste des groupes définis sur ce wiki ainsi que les droits d'accès qui leur sont associés.\nDes [[{{MediaWiki:Listgrouprights-helppage}}|informations additionnelles]] peuvent exister au sujet des droits individuels.",
+	"listgrouprights-summary": "Cette page contient une liste des groupes définis sur ce wiki ainsi que les droits d'accès qui leur sont associés.\nDes [[{{MediaWiki:Listgrouprights-helppage}}|renseignements complémentaires]] peuvent exister au sujet des droits individuels.",
 	"listgrouprights-key": "Légende :\n*<span class=\"listgrouprights-granted\">Droit octroyé</span>\n*<span class=\"listgrouprights-revoked\">Droit révoqué</span>",
 	"listgrouprights-group": "Groupe",
 	"listgrouprights-rights": "Droits associés",

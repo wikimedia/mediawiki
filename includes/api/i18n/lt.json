@@ -261,5 +261,6 @@
 	"apihelp-query+watchlist-paramvalue-type-new": "Puslapio sukūrimai.",
 	"apihelp-stashedit-param-title": "Puslapio pavadinimas buvo redaguotas.",
 	"apihelp-stashedit-param-sectiontitle": "Naujo skyriaus pavadinimas.",
-	"apihelp-stashedit-param-text": "Puslapio turinys."
+	"apihelp-stashedit-param-text": "Puslapio turinys.",
+	"api-format-prettyprint-status": "Šis atsakymas būtų gražintas su HTTP statusu $1 $2."
 }
