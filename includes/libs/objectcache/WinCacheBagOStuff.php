@@ -29,16 +29,7 @@
  */
 class WinCacheBagOStuff extends BagOStuff {
 	protected function doGet( $key, $flags = 0 ) {
-		$casToken = null;
-
-		return $this->getWithToken( $key, $casToken, $flags );
-	}
-
-	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
 		$val = wincache_ucache_get( $key );
-
-		$casToken = $val;
-
 		if ( is_string( $val ) ) {
 			$val = unserialize( $val );
 		}
@@ -52,10 +43,6 @@ class WinCacheBagOStuff extends BagOStuff {
 		/* wincache_ucache_set returns an empty array on success if $value
 		   was an array, bool otherwise */
 		return ( is_array( $result ) && $result === [] ) || $result;
-	}
-
-	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
-		return wincache_ucache_cas( $key, $casToken, serialize( $value ) );
 	}
 
 	public function delete( $key ) {
