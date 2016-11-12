@@ -3646,7 +3646,7 @@
 	"mediastatistics": "Estatísticas multimédia",
 	"mediastatistics-summary": "Estatísticas sobre os tipos de ficheiros carregados. Inclui apenas a versão mais recente do ficheiro. Versões antigas ou eliminadas são excluídas.",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 byte|$1 bytes}} ($2; $3%)",
-	"mediastatistics-bytespertype": "Tamanho total dos ficheiros para esta secção: {{PLURAL:$1|$1 byte|$1 bytes}} ($2; $3%).",
+	"mediastatistics-bytespertype": "Tamanho total dos ficheiros desta secção: {{PLURAL:$1|$1 byte|$1 bytes}} ($2; $3%).",
 	"mediastatistics-allbytes": "Tamanho total de todos os ficheiros: {{PLURAL:$1|$1 byte|$1 bytes}} ($2).",
 	"mediastatistics-table-mimetype": "Tipo MIME",
 	"mediastatistics-table-extensions": "Extensões possíveis",

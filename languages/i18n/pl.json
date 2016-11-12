@@ -1933,7 +1933,7 @@
 	"activeusers": "Lista aktywnych użytkowników",
 	"activeusers-intro": "Poniżej znajduje się lista użytkowników, którzy byli aktywni w ciągu {{PLURAL:$1|ostatniego dnia|ostatnich $1 dni}}.",
 	"activeusers-count": "w ciągu {{PLURAL:$3|ostatniego dnia|ostatnich $3 dni}} {{GENDER:$2|wykonał|wykonała|wykonał}} $1 {{PLURAL:$1|operację|operacje|operacji}}",
-	"activeusers-from": "Pokaż użytkowników zaczynając od:",
+	"activeusers-from": "Wyświetl użytkowników, zaczynając od:",
 	"activeusers-groups": "Wyświetl użytkowników należących do grup:",
 	"activeusers-noresult": "Nie odnaleziono żadnego użytkownika.",
 	"activeusers-submit": "Wyświetl aktywnych użytkowników",
