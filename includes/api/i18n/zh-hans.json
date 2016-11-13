@@ -959,7 +959,7 @@
 	"apihelp-query+recentchanges-paramvalue-prop-patrolled": "将可巡查编辑标记为已巡查或未巡查。",
 	"apihelp-query+recentchanges-paramvalue-prop-loginfo": "添加日志信息（日志ID、日志类型等）至日志记录。",
 	"apihelp-query+recentchanges-paramvalue-prop-tags": "列举条目的标签。",
-	"apihelp-query+recentchanges-paramvalue-prop-sha1": "Adds the content checksum for entries associated with a revision.",
+	"apihelp-query+recentchanges-paramvalue-prop-sha1": "为与某一修订版本有关的记录添加内容校验和。",
 	"apihelp-query+recentchanges-param-token": "请改用<kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd>。",
 	"apihelp-query+recentchanges-param-show": "只显示满足这些标准的项目。例如，要只查看由登录用户做出的小编辑，设置$1show=minor|!anon。",
 	"apihelp-query+recentchanges-param-limit": "返回总计更新数。",
