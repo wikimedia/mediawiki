@@ -87,6 +87,8 @@ class SpecialTrackingCategories extends SpecialPage {
 		}
 		$batch->execute();
 
+		Hooks::run( 'SpecialTrackingCategories::preprocess', [ $this, $trackingCategories ] );
+
 		foreach ( $trackingCategories as $catMsg => $data ) {
 			$allMsgs = [];
 			$catDesc = $catMsg . '-desc';
@@ -97,11 +99,15 @@ class SpecialTrackingCategories extends SpecialPage {
 			);
 
 			foreach ( $data['cats'] as $catTitle ) {
-				$catTitleText = Linker::link(
+				$html = Linker::link(
 					$catTitle,
 					htmlspecialchars( $catTitle->getText() )
 				);
-				$allMsgs[] = $catTitleText;
+
+				Hooks::run( 'SpecialTrackingCategories::generateCatLink',
+					[ $this, $catTitle, &$html ] );
+
+				$allMsgs[] = $html;
 			}
 
 			# Extra message, when no category was found
