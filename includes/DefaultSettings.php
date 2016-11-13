@@ -5648,7 +5648,7 @@ $wgPutIPinRC = true;
 $wgQueryPageDefaultLimit = 50;
 
 /**
- * Limit password attempts to X attempts per Y seconds per IP per account.
+ * Limit password attempts to X attempts per Y seconds per IP and per account-IP.
  *
  * Value is an array of arrays. Each sub-array must have a key for count
  * (ie count of how many attempts before throttle) and a key for seconds.
