@@ -239,9 +239,7 @@
 		goodbye = mw.message( 'goodbye' );
 		assert.strictEqual( goodbye.exists(), false, 'Message.exists returns false for nonexistent messages' );
 
-		assertMultipleFormats( [ 'goodbye' ], [ 'plain', 'text' ], '<goodbye>', 'Message.toString returns <key> if key does not exist' );
-		// bug 30684
-		assertMultipleFormats( [ 'goodbye' ], [ 'parse', 'escaped' ], '&lt;goodbye&gt;', 'Message.toString returns properly escaped &lt;key&gt; if key does not exist' );
+		assertMultipleFormats( [ 'good<>bye' ], [ 'plain', 'text', 'parse', 'escaped' ], '⧼good&lt;&gt;bye⧽', 'Message.toString returns ⧽key⧽ if key does not exist' );
 
 		assert.ok( mw.messages.set( 'plural-test-msg', 'There {{PLURAL:$1|is|are}} $1 {{PLURAL:$1|result|results}}' ), 'mw.messages.set: Register' );
 		assertMultipleFormats( [ 'plural-test-msg', 6 ], [ 'text', 'parse', 'escaped' ], 'There are 6 results', 'plural get resolved' );

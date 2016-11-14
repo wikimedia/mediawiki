@@ -808,6 +808,7 @@ class Message implements MessageSpecifier, Serializable {
 			// message key is user-controlled.
 			// '⧼' is used instead of '<' to side-step any
 			// double-escaping issues.
+			// (Keep synchronised with mw.Message#toString in JS.)
 			return '⧼' . htmlspecialchars( $this->key ) . '⧽';
 		}
 
