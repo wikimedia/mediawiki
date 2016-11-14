@@ -22,9 +22,12 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 	protected $rc;
 
 	/** helper to test SpecialRecentchanges::buildMainQueryConds() */
-	private function assertConditions( $expected, $requestOptions = null, $message = '' ) {
+	private function assertConditions( $expected, $requestOptions = null, $message = '', $user = null ) {
 		$context = new RequestContext;
 		$context->setRequest( new FauxRequest( $requestOptions ) );
+		if ( $user ) {
+			$context->setUser( $user );
+		}
 
 		# setup the rc object
 		$this->rc = new SpecialRecentChanges();
@@ -128,5 +131,83 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 			[ NS_MAIN, NS_TALK ],
 			[ NS_TALK, NS_MAIN ],
 		];
+	}
+
+	public function testRcHidemyselfFilter() {
+		$user = $this->getTestUser()->getUser();
+		$this->assertConditions(
+			[ # expected
+				'rc_bot' => 0,
+				0 => "rc_user != '{$user->getId()}'",
+				1 => "rc_type != '6'",
+			],
+			[
+				'hidemyself' => 1,
+			],
+			"rc conditions: hidemyself=1 (logged in)",
+			$user
+		);
+
+		$user = User::newFromName( '10.11.12.13', false );
+		$this->assertConditions(
+			[ # expected
+				'rc_bot' => 0,
+				0 => "rc_user_text != '10.11.12.13'",
+				1 => "rc_type != '6'",
+			],
+			[
+				'hidemyself' => 1,
+			],
+			"rc conditions: hidemyself=1 (anon)",
+			$user
+		);
+	}
+
+	public function testRcHidebyothersFilter() {
+		$user = $this->getTestUser()->getUser();
+		$this->assertConditions(
+			[ # expected
+				'rc_bot' => 0,
+				0 => "rc_user = '{$user->getId()}'",
+				1 => "rc_type != '6'",
+			],
+			[
+				'hidebyothers' => 1,
+			],
+			"rc conditions: hidebyothers=1 (logged in)",
+			$user
+		);
+
+		$user = User::newFromName( '10.11.12.13', false );
+		$this->assertConditions(
+			[ # expected
+				'rc_bot' => 0,
+				0 => "rc_user_text = '10.11.12.13'",
+				1 => "rc_type != '6'",
+			],
+			[
+				'hidebyothers' => 1,
+			],
+			"rc conditions: hidebyothers=1 (anon)",
+			$user
+		);
+	}
+
+	public function testRcHidemyselfHidebyothersFilter() {
+		$user = $this->getTestUser()->getUser();
+		$this->assertConditions(
+			[ # expected
+				'rc_bot' => 0,
+				0 => "rc_user != '{$user->getId()}'",
+				1 => "rc_user = '{$user->getId()}'",
+				2 => "rc_type != '6'",
+			],
+			[
+				'hidemyself' => 1,
+				'hidebyothers' => 1,
+			],
+			"rc conditions: hidemyself=1 hidebyothers=1 (logged in)",
+			$user
+		);
 	}
 }
