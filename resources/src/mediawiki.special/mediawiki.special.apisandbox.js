@@ -1346,16 +1346,24 @@
 								if ( pi.parameters[ i ].highmax !== undefined ) {
 									dl.append( $( '<dd>', {
 										addClass: 'info',
-										append: Util.parseHTML( mw.message(
-											'api-help-param-limit2', pi.parameters[ i ].max, pi.parameters[ i ].highmax
-										).parse() )
+										append: [
+											Util.parseHTML( mw.message(
+												'api-help-param-limit2', pi.parameters[ i ].max, pi.parameters[ i ].highmax
+											).parse() ),
+											' ',
+											Util.parseHTML( mw.message( 'apisandbox-param-limit' ).parse() )
+										]
 									} ) );
 								} else {
 									dl.append( $( '<dd>', {
 										addClass: 'info',
-										append: Util.parseHTML( mw.message(
-											'api-help-param-limit', pi.parameters[ i ].max
-										).parse() )
+										append: [
+											Util.parseHTML( mw.message(
+												'api-help-param-limit', pi.parameters[ i ].max
+											).parse() ),
+											' ',
+											Util.parseHTML( mw.message( 'apisandbox-param-limit' ).parse() )
+										]
 									} ) );
 								}
 								break;
