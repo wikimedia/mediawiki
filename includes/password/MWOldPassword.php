@@ -36,14 +36,8 @@ class MWOldPassword extends ParameterizedPassword {
 	}
 
 	public function crypt( $plaintext ) {
-		global $wgPasswordSalt;
-
-		if ( $wgPasswordSalt && count( $this->args ) === 1 ) {
-			$this->hash = md5( $this->args[0] . '-' . md5( $plaintext ) );
-		} else {
-			$this->args = [];
-			$this->hash = md5( $plaintext );
-		}
+		$this->args = [];
+		$this->hash = md5( $plaintext );
 
 		if ( !is_string( $this->hash ) || strlen( $this->hash ) < 32 ) {
 			throw new PasswordError( 'Error when hashing password.' );
