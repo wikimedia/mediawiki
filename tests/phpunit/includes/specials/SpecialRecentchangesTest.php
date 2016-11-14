@@ -267,4 +267,18 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 			"rc conditions: hidelog=1"
 		);
 	}
+
+	public function testRcHidehumans() {
+		$this->assertConditions(
+			[ # expected
+				'rc_bot' => 1,
+				"rc_type != '6'",
+			],
+			[
+				'hidebots' => 0,
+				'hidehumans' => 1,
+			],
+			"rc conditions: hidebots=0 hidehumans=1"
+		);
+	}
 }
