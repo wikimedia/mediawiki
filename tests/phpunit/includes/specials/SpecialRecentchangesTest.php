@@ -225,4 +225,46 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 			$user
 		);
 	}
+
+	public function testRcHidepageedits() {
+		$this->assertConditions(
+			[ # expected
+				'rc_bot' => 0,
+				"rc_type != '6'",
+				"rc_type != '0'",
+			],
+			[
+				'hidepageedits' => 1,
+			],
+			"rc conditions: hidepageedits=1"
+		);
+	}
+
+	public function testRcHidenewpages() {
+		$this->assertConditions(
+			[ # expected
+				'rc_bot' => 0,
+				"rc_type != '6'",
+				"rc_type != '1'",
+			],
+			[
+				'hidenewpages' => 1,
+			],
+			"rc conditions: hidenewpages=1"
+		);
+	}
+
+	public function testRcHidelog() {
+		$this->assertConditions(
+			[ # expected
+				'rc_bot' => 0,
+				"rc_type != '6'",
+				"rc_type != '3'",
+			],
+			[
+				'hidelog' => 1,
+			],
+			"rc conditions: hidelog=1"
+		);
+	}
 }
