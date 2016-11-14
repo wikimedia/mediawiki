@@ -149,6 +149,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		if ( $config->get( 'RCWatchCategoryMembership' ) ) {
 			$opts->add( 'hidecategorization', false );
 		}
+		$opts->add( 'hidepageedits', false );
+		$opts->add( 'hidenewpages', false );
+		$opts->add( 'hidelog', false );
 
 		$opts->add( 'namespace', '', FormOptions::INTNULL );
 		$opts->add( 'invert', false );
@@ -258,6 +261,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			&& $opts['hidecategorization'] === true
 		) {
 			$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_CATEGORIZE );
+		}
+		if ( $opts['hidepageedits'] ) {
+			$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_EDIT );
+		}
+		if ( $opts['hidenewpages'] ) {
+			$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_NEW );
+		}
+		if ( $opts['hidelog'] ) {
+			$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_LOG );
 		}
 
 		// Namespace filtering
