@@ -145,6 +145,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$opts->add( 'hideliu', false );
 		$opts->add( 'hidepatrolled', false );
 		$opts->add( 'hidemyself', false );
+		$opts->add( 'hidebyothers', false );
 
 		if ( $config->get( 'RCWatchCategoryMembership' ) ) {
 			$opts->add( 'hidecategorization', false );
@@ -247,6 +248,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				$conds[] = 'rc_user != 0';
 			}
 		}
+
 		if ( $opts['hidemyself'] ) {
 			if ( $user->getId() ) {
 				$conds[] = 'rc_user != ' . $dbr->addQuotes( $user->getId() );
@@ -254,6 +256,14 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				$conds[] = 'rc_user_text != ' . $dbr->addQuotes( $user->getName() );
 			}
 		}
+		if ( $opts['hidebyothers'] ) {
+			if ( $user->getId() ) {
+				$conds[] = 'rc_user = ' . $dbr->addQuotes( $user->getId() );
+			} else {
+				$conds[] = 'rc_user_text = ' . $dbr->addQuotes( $user->getName() );
+			}
+		}
+
 		if ( $this->getConfig()->get( 'RCWatchCategoryMembership' )
 			&& $opts['hidecategorization'] === true
 		) {
