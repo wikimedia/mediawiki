@@ -141,6 +141,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		$opts->add( 'hideminor', false );
 		$opts->add( 'hidebots', false );
+		$opts->add( 'hidehumans', false );
 		$opts->add( 'hideanons', false );
 		$opts->add( 'hideliu', false );
 		$opts->add( 'hidepatrolled', false );
@@ -233,6 +234,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		}
 		if ( $opts['hidebots'] ) {
 			$conds['rc_bot'] = 0;
+		}
+		if ( $opts['hidehumans'] ) {
+			$conds[] = 'rc_bot = 1';
 		}
 		if ( $user->useRCPatrol() && $opts['hidepatrolled'] ) {
 			$conds['rc_patrolled'] = 0;
