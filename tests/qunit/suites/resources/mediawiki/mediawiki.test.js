@@ -239,9 +239,7 @@
 		goodbye = mw.message( 'goodbye' );
 		assert.strictEqual( goodbye.exists(), false, 'Message.exists returns false for nonexistent messages' );
 
-		assertMultipleFormats( [ 'goodbye' ], [ 'plain', 'text' ], '<goodbye>', 'Message.toString returns <key> if key does not exist' );
-		// bug 30684
-		assertMultipleFormats( [ 'goodbye' ], [ 'parse', 'escaped' ], '&lt;goodbye&gt;', 'Message.toString returns properly escaped &lt;key&gt; if key does not exist' );
+		assertMultipleFormats( [ 'good<>bye' ], [ 'plain', 'text', 'parse', 'escaped' ], '⧼good&lt;&gt;bye⧽', 'Message.toString returns ⧽key⧽ if key does not exist' );
 
 		assert.ok( mw.messages.set( 'plural-test-msg', 'There {{PLURAL:$1|is|are}} $1 {{PLURAL:$1|result|results}}' ), 'mw.messages.set: Register' );
 		assertMultipleFormats( [ 'plural-test-msg', 6 ], [ 'text', 'parse', 'escaped' ], 'There are 6 results', 'plural get resolved' );
@@ -320,7 +318,7 @@
 	QUnit.test( 'mw.msg', 14, function ( assert ) {
 		assert.ok( mw.messages.set( 'hello', 'Hello <b>awesome</b> world' ), 'mw.messages.set: Register' );
 		assert.equal( mw.msg( 'hello' ), 'Hello <b>awesome</b> world', 'Gets message with default options (existing message)' );
-		assert.equal( mw.msg( 'goodbye' ), '<goodbye>', 'Gets message with default options (nonexistent message)' );
+		assert.equal( mw.msg( 'goodbye' ), '⧼goodbye⧽', 'Gets message with default options (nonexistent message)' );
 
 		assert.ok( mw.messages.set( 'plural-item', 'Found $1 {{PLURAL:$1|item|items}}' ), 'mw.messages.set: Register' );
 		assert.equal( mw.msg( 'plural-item', 5 ), 'Found 5 items', 'Apply plural for count 5' );
