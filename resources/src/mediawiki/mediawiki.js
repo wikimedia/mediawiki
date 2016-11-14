@@ -325,12 +325,15 @@
 			var text;
 
 			if ( !this.exists() ) {
-				// Use <key> as text if key does not exist
-				if ( this.format === 'escaped' || this.format === 'parse' ) {
-					// format 'escaped' and 'parse' need to have the brackets and key html escaped
-					return mw.html.escape( '<' + this.key + '>' );
-				}
-				return '<' + this.key + '>';
+				// Use ⧼key⧽ as text if key does not exist
+				// Err on the side of safety, ensure that the output
+				// is always html safe in the event the message key is
+				// missing, since in that case its highly likely the
+				// message key is user-controlled.
+				// '⧼' is used instead of '<' to side-step any
+				// double-escaping issues.
+				// (Keep synchronised with Message::toString() in PHP.)
+				return '⧼' + mw.html.escape( this.key ) + '⧽';
 			}
 
 			if ( this.format === 'plain' || this.format === 'text' || this.format === 'parse' ) {
