@@ -49,7 +49,8 @@
 			"Mbrt",
 			"Beeyan",
 			"Bonaditya",
-			"Irus"
+			"Irus",
+			"Presidenvolksraad"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -447,8 +448,8 @@
 	"createacct-yourpasswordagain-ph": "Masukkan lagi kata sandi",
 	"userlogin-remembermypassword": "Biarkan saya tetap masuk",
 	"userlogin-signwithsecure": "Gunakan server aman",
-	"cannotlogin-title": "Tidak dapat masuk",
-	"cannotlogin-text": "Login ini tidak mungkin.",
+	"cannotlogin-title": "Tidak dapat log masuk",
+	"cannotlogin-text": "Log masuk tidak mungkin.",
 	"cannotloginnow-title": "Tidak dapat masuk log saat ini",
 	"cannotloginnow-text": "Masuk log tidak memungkinkan ketika menggunakan $1.",
 	"cannotcreateaccount-title": "Akun tak dapat dibuat",
@@ -1491,7 +1492,7 @@
 	"upload-http-error": "Kesalahan HTTP terjadi: $1",
 	"upload-copy-upload-invalid-domain": "Unggahan salinan tidak tersedia dari domain ini.",
 	"upload-foreign-cant-upload": "Wiki ini tidak diatur untuk mengunggah berkas ke gudang penyimpangan asing.",
-	"upload-dialog-disabled": "Upload file menggunakan dialog ini dinonaktifkan pada wiki ini.",
+	"upload-dialog-disabled": "Unggah berkas menggunakan dialog ini dinonaktifkan pada wiki ini.",
 	"upload-dialog-title": "Unggah berkas",
 	"upload-dialog-button-cancel": "Batalkan",
 	"upload-dialog-button-done": "Selesai",

@@ -2994,7 +2994,7 @@
 	"exif-compression-6": "JPEG (旧式)",
 	"exif-copyrighted-true": "著作権あり",
 	"exif-copyrighted-false": "著作権情報未設定",
-	"exif-photometricinterpretation-0": "黒と白 (白が0)",
+	"exif-photometricinterpretation-0": "黒と白（白が0）",
 	"exif-photometricinterpretation-1": "黒と白（黒が0）",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC エンコード)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (ITU エンコード)",
