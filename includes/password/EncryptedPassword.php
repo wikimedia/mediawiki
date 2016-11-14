@@ -43,7 +43,7 @@ class EncryptedPassword extends ParameterizedPassword {
 
 		if ( $this->hash ) {
 			$underlyingPassword = $this->factory->newFromCiphertext( openssl_decrypt(
-					base64_decode( $this->hash ), $this->params['cipher'],
+					$this->hash, $this->params['cipher'],
 					$secret, 0, base64_decode( $this->args[0] )
 				) );
 		} else {
@@ -51,7 +51,11 @@ class EncryptedPassword extends ParameterizedPassword {
 		}
 
 		$underlyingPassword->crypt( $password );
-		$iv = MWCryptRand::generate( openssl_cipher_iv_length( $this->params['cipher'] ), true );
+		if ( count( $this->args ) ) {
+			$iv = base64_decode( $this->args[0] );
+		} else {
+			$iv = MWCryptRand::generate( openssl_cipher_iv_length( $this->params['cipher'] ), true );
+		}
 
 		$this->hash = openssl_encrypt(
 			$underlyingPassword->toString(), $this->params['cipher'], $secret, 0, $iv );
