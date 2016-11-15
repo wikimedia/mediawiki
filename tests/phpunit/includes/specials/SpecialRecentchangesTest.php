@@ -363,4 +363,144 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 			$user
 		);
 	}
+
+	public function testFilterUserExpLevel() {
+		$this->setMwGlobals( [
+			'wgExperiencedUserEdits' => 10,
+			'wgExperiencedUserMemberSince' => 4,
+			'wgMoreExperiencedUserEdits' => 500,
+			'wgMoreExperiencedUserMemberSince' => 30,
+		] );
+
+		$this->createUsers( [
+			'Newcomer1' => [ 'edits' => 2, 'days' => 2 ],
+			'Newcomer2' => [ 'edits' => 12, 'days' => 3 ],
+			'Newcomer3' => [ 'edits' => 8, 'days' => 5 ],
+			'Experienced1' => [ 'edits' => 15, 'days' => 10 ],
+			'Experienced2' => [ 'edits' => 450, 'days' => 20 ],
+			'Experienced3' => [ 'edits' => 460, 'days' => 33 ],
+			'Experienced4' => [ 'edits' => 525, 'days' => 28 ],
+			'MoreExperienced1' => [ 'edits' => 538, 'days' => 33 ],
+		] );
+
+		// newcomers only
+		$this->assertArrayEquals(
+			[ 'Newcomer1', 'Newcomer2', 'Newcomer3' ],
+			$this->fetchUsers( [ 'userExpLevel' => 'newcomer' ] )
+		);
+
+		// newcomers and experienced
+		$this->assertArrayEquals(
+			[
+				'Newcomer1', 'Newcomer2', 'Newcomer3',
+				'Experienced1', 'Experienced2', 'Experienced3', 'Experienced4',
+			],
+			$this->fetchUsers( [ 'userExpLevel' => 'newcomer,experienced' ] )
+		);
+
+		// newcomers and more experienced
+		$this->assertArrayEquals(
+			[
+				'Newcomer1', 'Newcomer2', 'Newcomer3',
+				'MoreExperienced1',
+			],
+			$this->fetchUsers( [ 'userExpLevel' => 'newcomer,moreexperienced' ] )
+		);
+
+		// experienced only
+		$this->assertArrayEquals(
+			[ 'Experienced1', 'Experienced2', 'Experienced3', 'Experienced4' ],
+			$this->fetchUsers( [ 'userExpLevel' => 'experienced' ] )
+		);
+
+		// more experienced only
+		$this->assertArrayEquals(
+			[ 'MoreExperienced1' ],
+			$this->fetchUsers( [ 'userExpLevel' => 'moreexperienced' ] )
+		);
+
+		// experienced and more experienced
+		$this->assertArrayEquals(
+			[
+				'Experienced1', 'Experienced2', 'Experienced3', 'Experienced4',
+				'MoreExperienced1',
+			],
+			$this->fetchUsers( [ 'userExpLevel' => 'experienced,moreexperienced' ] )
+		);
+
+		// newcomers, experienced, and more experienced
+		$this->assertArrayEquals(
+			[
+				'Newcomer1', 'Newcomer2', 'Newcomer3',
+				'Experienced1', 'Experienced2', 'Experienced3', 'Experienced4',
+				'MoreExperienced1',
+			],
+			$this->fetchUsers( [ 'userExpLevel' => 'newcomer,experienced,moreexperienced' ] )
+		);
+
+		// 'all'
+		$this->assertArrayEquals(
+			[
+				'Newcomer1', 'Newcomer2', 'Newcomer3',
+				'Experienced1', 'Experienced2', 'Experienced3', 'Experienced4',
+				'MoreExperienced1',
+			],
+			$this->fetchUsers( [ 'userExpLevel' => 'all' ] )
+		);
+	}
+
+	private function createUsers( $specs ) {
+		$dbw = wfGetDB( DB_MASTER );
+		foreach ( $specs as $name => $spec ) {
+			User::createNew(
+				$name,
+				[
+					'editcount' => $spec['edits'],
+					'registration' => $dbw->timestamp( $this->daysAgo( $spec['days'] ) ),
+					'email' => 'ut',
+				]
+			);
+		}
+	}
+
+	private function fetchUsers( $filters ) {
+		$specialRC = TestingAccessWrapper::newFromObject( new SpecialRecentChanges() );
+
+		$tables = [];
+		$fields = [];
+		$conds = [];
+		$query_options = [];
+		$join_conds = [];
+
+		$conds = $specialRC->filterOnUserExperienceLevel(
+			$tables,
+			$fields,
+			$conds,
+			$query_options,
+			$join_conds,
+			$filters
+		);
+
+		if ( !$conds ) {
+			$conds = [];
+		}
+
+		$result = wfGetDB( DB_MASTER )->select(
+			'user',
+			'user_name',
+			array_filter( $conds ) + [ 'user_email' => 'ut' ]
+		);
+
+		$usernames = [];
+		foreach ( $result as $row ) {
+			$usernames[] = $row->user_name;
+		}
+
+		return $usernames;
+	}
+
+	private function daysAgo( $days ) {
+		$secondsPerDay = 86400;
+		return time() - $days * $secondsPerDay;
+	}
 }
