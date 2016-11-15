@@ -136,6 +136,7 @@
 	function getFailableParserFn( options ) {
 		return function ( args ) {
 			var fallback,
+				// eslint-disable-next-line new-cap
 				parser = new mw.jqueryMsg.parser( options ),
 				key = args[ 0 ],
 				argsArray = $.isArray( args[ 1 ] ) ? args[ 1 ] : slice.call( args, 1 );
@@ -212,10 +213,11 @@
 		}
 
 		return function () {
+			var failableResult;
 			if ( !failableParserFn ) {
 				failableParserFn = getFailableParserFn( options );
 			}
-			var failableResult = failableParserFn( arguments );
+			failableResult = failableParserFn( arguments );
 			if ( format === 'text' || format === 'escaped' ) {
 				return failableResult.text();
 			} else {
@@ -250,10 +252,11 @@
 		var failableParserFn;
 
 		return function () {
+			var $target;
 			if ( !failableParserFn ) {
 				failableParserFn = getFailableParserFn( options );
 			}
-			var $target = this.empty();
+			$target = this.empty();
 			appendWithoutParsing( $target, failableParserFn( arguments ) );
 			return $target;
 		};
@@ -272,6 +275,7 @@
 		this.settings.onlyCurlyBraceTransform = ( this.settings.format === 'text' || this.settings.format === 'escaped' );
 		this.astCache = {};
 
+		// eslint-disable-next-line new-cap
 		this.emitter = new mw.jqueryMsg.htmlEmitter( this.settings.language, this.settings.magic );
 	};
 
@@ -935,8 +939,8 @@
 	 * htmlEmitter - object which primarily exists to emit HTML from parser ASTs
 	 */
 	mw.jqueryMsg.htmlEmitter = function ( language, magic ) {
-		this.language = language;
 		var jmsg = this;
+		this.language = language;
 		$.each( magic, function ( key, val ) {
 			jmsg[ key.toLowerCase() ] = function () {
 				return val;
@@ -1275,7 +1279,7 @@
 		 * @return {number|string} Formatted number
 		 */
 		formatnum: function ( nodes ) {
-			var isInteger = ( nodes[ 1 ] && nodes[ 1 ] === 'R' ) ? true : false,
+			var isInteger = !!nodes[ 1 ] && nodes[ 1 ] === 'R',
 				number = nodes[ 0 ];
 
 			return this.language.convertNumber( number, isInteger );
@@ -1371,6 +1375,6 @@
 		return function () {
 			return reusableParent.msg( this.key, this.parameters ).contents().detach();
 		};
-	} )();
+	}() );
 
 }( mediaWiki, jQuery ) );

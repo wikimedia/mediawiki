@@ -168,11 +168,12 @@
 	 * @deprecated since 1.17 Use mw.loader instead. Warnings added in 1.25.
 	 */
 	function importScriptURI( url ) {
+		var s;
 		if ( loadedScripts[ url ] ) {
 			return null;
 		}
 		loadedScripts[ url ] = true;
-		var s = document.createElement( 'script' );
+		s = document.createElement( 'script' );
 		s.setAttribute( 'src', url );
 		document.getElementsByTagName( 'head' )[ 0 ].appendChild( s );
 		return s;

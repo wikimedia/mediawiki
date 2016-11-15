@@ -4,7 +4,7 @@
  * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
-/*global moment */
+/* global moment */
 ( function ( $, mw ) {
 
 	/**
@@ -87,6 +87,8 @@
 	 *     calendar uses relative positioning.
 	 */
 	mw.widgets.DateInputWidget = function MWWDateInputWidget( config ) {
+		var placeholderDateFormat, mustBeAfter, mustBeBefore;
+
 		// Config initialization
 		config = $.extend( {
 			precision: 'day',
@@ -99,7 +101,6 @@
 			}
 		}
 
-		var placeholderDateFormat, mustBeAfter, mustBeBefore;
 		if ( config.placeholderDateFormat ) {
 			placeholderDateFormat = config.placeholderDateFormat;
 		} else if ( config.inputFormat ) {
@@ -412,6 +413,8 @@
 	 * @return {string} Format string
 	 */
 	mw.widgets.DateInputWidget.prototype.getDisplayFormat = function () {
+		var localeData, llll, lll, ll, format;
+
 		if ( this.displayFormat !== undefined ) {
 			return this.displayFormat;
 		}
@@ -430,11 +433,11 @@
 			// We try to construct it as 'llll - (lll - ll)' and hope for the best.
 			// This seems to work well for many languages (maybe even all?).
 
-			var localeData = moment.localeData( moment.locale() ),
-				llll = localeData.longDateFormat( 'llll' ),
-				lll = localeData.longDateFormat( 'lll' ),
-				ll = localeData.longDateFormat( 'll' ),
-				format = llll.replace( lll.replace( ll, '' ), '' );
+			localeData = moment.localeData( moment.locale() );
+			llll = localeData.longDateFormat( 'llll' );
+			lll = localeData.longDateFormat( 'lll' );
+			ll = localeData.longDateFormat( 'll' );
+			format = llll.replace( lll.replace( ll, '' ), '' );
 
 			return format;
 		}

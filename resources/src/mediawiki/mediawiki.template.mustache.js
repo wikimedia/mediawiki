@@ -1,4 +1,4 @@
-/*global Mustache */
+/* global Mustache */
 ( function ( mw, $ ) {
 	// Register mustache compiler
 	mw.template.registerCompiler( 'mustache', {

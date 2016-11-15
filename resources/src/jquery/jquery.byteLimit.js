@@ -3,6 +3,17 @@
  */
 ( function ( $ ) {
 
+	var eventKeys = [
+		'keyup.byteLimit',
+		'keydown.byteLimit',
+		'change.byteLimit',
+		'mouseup.byteLimit',
+		'cut.byteLimit',
+		'paste.byteLimit',
+		'focus.byteLimit',
+		'blur.byteLimit'
+	].join( ' ' );
+
 	/**
 	 * Utility function to trim down a string, based on byteLimit
 	 * and given a safe start position. It supports insertion anywhere
@@ -93,17 +104,6 @@
 			trimmed: newVal !== inpParts.join( '' )
 		};
 	};
-
-	var eventKeys = [
-		'keyup.byteLimit',
-		'keydown.byteLimit',
-		'change.byteLimit',
-		'mouseup.byteLimit',
-		'cut.byteLimit',
-		'paste.byteLimit',
-		'focus.byteLimit',
-		'blur.byteLimit'
-	].join( ' ' );
 
 	/**
 	 * Enforces a byte limit on an input field, so that UTF-8 entries are counted as well,

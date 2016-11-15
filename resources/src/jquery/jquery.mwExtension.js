@@ -40,10 +40,11 @@
 			return false;
 		},
 		compareArray: function ( arrThis, arrAgainst ) {
+			var i;
 			if ( arrThis.length !== arrAgainst.length ) {
 				return false;
 			}
-			for ( var i = 0; i < arrThis.length; i++ ) {
+			for ( i = 0; i < arrThis.length; i++ ) {
 				if ( $.isArray( arrThis[ i ] ) ) {
 					if ( !$.compareArray( arrThis[ i ], arrAgainst[ i ] ) ) {
 						return false;
@@ -124,4 +125,4 @@
 		return str.replace( /([\\{}()|.?*+\-\^$\[\]])/g, '\\$1' );
 	}, 'Use mediawiki.RegExp instead.' );
 
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

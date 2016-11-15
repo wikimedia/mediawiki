@@ -7,14 +7,14 @@
 ( function ( $, mw ) {
 
 	var interwikiPrefixesPromise = new mw.Api().get( {
-			action: 'query',
-			meta: 'siteinfo',
-			siprop: 'interwikimap'
-		} ).then( function ( data ) {
-			return $.map( data.query.interwikimap, function ( interwiki ) {
-				return interwiki.prefix;
-			} );
+		action: 'query',
+		meta: 'siteinfo',
+		siprop: 'interwikimap'
+	} ).then( function ( data ) {
+		return $.map( data.query.interwikimap, function ( interwiki ) {
+			return interwiki.prefix;
 		} );
+	} );
 
 	/**
 	 * Mixin for title widgets
@@ -275,9 +275,9 @@
 			description = mw.msg( 'mw-widgets-titleinput-description-new-page' );
 		}
 		return {
-			data: this.namespace !== null && this.relative
-				? mwTitle.getRelativeText( this.namespace )
-				: title,
+			data: this.namespace !== null && this.relative ?
+				mwTitle.getRelativeText( this.namespace ) :
+				title,
 			url: mwTitle.getUrl(),
 			imageUrl: this.showImages ? data.imageUrl : null,
 			description: this.showDescriptions ? description : null,
