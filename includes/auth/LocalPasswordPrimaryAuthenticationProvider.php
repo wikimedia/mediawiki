@@ -132,12 +132,12 @@ class LocalPasswordPrimaryAuthenticationProvider
 
 		// @codeCoverageIgnoreStart
 		if ( $this->getPasswordFactory()->needsUpdate( $pwhash ) ) {
-			$pwhash = $this->getPasswordFactory()->newFromPlaintext( $req->password );
-			\DeferredUpdates::addCallableUpdate( function () use ( $pwhash, $oldRow ) {
+			$newHash = $this->getPasswordFactory()->newFromPlaintext( $req->password );
+			\DeferredUpdates::addCallableUpdate( function () use ( $newHash, $oldRow ) {
 				$dbw = wfGetDB( DB_MASTER );
 				$dbw->update(
 					'user',
-					[ 'user_password' => $pwhash->toString() ],
+					[ 'user_password' => $newHash->toString() ],
 					[
 						'user_id' => $oldRow->user_id,
 						'user_password' => $oldRow->user_password
