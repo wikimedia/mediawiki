@@ -26,13 +26,11 @@
 	 * @cfg {number} [weekStartsOn=0] What day the week starts on: 0 is Sunday, 1 is Monday, 6 is Saturday.
 	 */
 	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter = function MwWidgetsDatetimeProlepticGregorianDateTimeFormatter( config ) {
-		var statick = this.constructor[ 'static' ];
-
-		statick.setupDefaults();
+		this.constructor.static.setupDefaults();
 
 		config = $.extend( {
 			weekStartsOn: 0,
-			hour12Periods: statick.hour12Periods
+			hour12Periods: this.constructor.static.hour12Periods
 		}, config );
 
 		if ( config.fullMonthNames && !config.shortMonthNames ) {
@@ -60,11 +58,11 @@
 			}.bind( this ) );
 		}
 		config = $.extend( {
-			fullMonthNames: statick.fullMonthNames,
-			shortMonthNames: statick.shortMonthNames,
-			fullDayNames: statick.fullDayNames,
-			shortDayNames: statick.shortDayNames,
-			dayLetters: statick.dayLetters
+			fullMonthNames: this.constructor.static.fullMonthNames,
+			shortMonthNames: this.constructor.static.shortMonthNames,
+			fullDayNames: this.constructor.static.fullDayNames,
+			shortDayNames: this.constructor.static.shortDayNames,
+			dayLetters: this.constructor.static.dayLetters
 		}, config );
 
 		// Parent constructor
@@ -89,7 +87,7 @@
 	/**
 	 * @inheritdoc
 	 */
-	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter[ 'static' ].formats = {
+	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.formats = {
 		'@time': '${hour|0}:${minute|0}:${second|0}',
 		'@date': '$!{dow|short} ${day|#} ${month|short} ${year|#}',
 		'@datetime': '$!{dow|short} ${day|#} ${month|short} ${year|#} ${hour|0}:${minute|0}:${second|0} $!{zone|short}',
@@ -103,7 +101,7 @@
 	 * @inheritable
 	 * @property {Object}
 	 */
-	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter[ 'static' ].fullMonthNames = null;
+	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.fullMonthNames = null;
 
 	/**
 	 * Default abbreviated month names.
@@ -112,7 +110,7 @@
 	 * @inheritable
 	 * @property {Object}
 	 */
-	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter[ 'static' ].shortMonthNames = null;
+	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.shortMonthNames = null;
 
 	/**
 	 * Default full day of week names.
@@ -121,7 +119,7 @@
 	 * @inheritable
 	 * @property {Object}
 	 */
-	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter[ 'static' ].fullDayNames = null;
+	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.fullDayNames = null;
 
 	/**
 	 * Default abbreviated day of week names.
@@ -130,7 +128,7 @@
 	 * @inheritable
 	 * @property {Object}
 	 */
-	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter[ 'static' ].shortDayNames = null;
+	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.shortDayNames = null;
 
 	/**
 	 * Default day letters.
@@ -139,7 +137,7 @@
 	 * @inheritable
 	 * @property {string[]}
 	 */
-	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter[ 'static' ].dayLetters = null;
+	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.dayLetters = null;
 
 	/**
 	 * Default AM/PM indicators
@@ -148,10 +146,10 @@
 	 * @inheritable
 	 * @property {string[]}
 	 */
-	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter[ 'static' ].hour12Periods = null;
+	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.hour12Periods = null;
 
-	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter[ 'static' ].setupDefaults = function () {
-		mw.widgets.datetime.DateTimeFormatter[ 'static' ].setupDefaults.call( this );
+	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.setupDefaults = function () {
+		mw.widgets.datetime.DateTimeFormatter.static.setupDefaults.call( this );
 
 		if ( this.fullMonthNames && !this.shortMonthNames ) {
 			this.shortMonthNames = {};

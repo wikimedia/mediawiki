@@ -57,7 +57,6 @@
 	 * @inheritdoc
 	 * @property title
 	 */
-	/*jshint -W024*/
 	mw.Upload.Dialog.static.title = mw.msg( 'upload-dialog-title' );
 
 	/**
@@ -96,8 +95,6 @@
 			modes: 'upload'
 		}
 	];
-
-	/*jshint +W024*/
 
 	/* Methods */
 

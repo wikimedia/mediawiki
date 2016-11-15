@@ -1,4 +1,3 @@
-/*jshint -W024 */
 ( function ( mw ) {
 	var specialCharactersPageName,
 		// Can't mock SITENAME since jqueryMsg caches it at load

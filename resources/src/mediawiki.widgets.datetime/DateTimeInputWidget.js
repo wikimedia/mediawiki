@@ -177,7 +177,7 @@
 
 	/* Static properties */
 
-	mw.widgets.datetime.DateTimeInputWidget[ 'static' ].supportsSimpleLabel = false;
+	mw.widgets.datetime.DateTimeInputWidget.static.supportsSimpleLabel = false;
 
 	/* Events */
 
