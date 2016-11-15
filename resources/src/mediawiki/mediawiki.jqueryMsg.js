@@ -292,10 +292,10 @@
 
 		/**
 		 * Fetch the message string associated with a key, return parsed structure. Memoized.
-		 * Note that we pass '[' + key + ']' back for a missing message here.
+		 * Note that we pass '⧼' + key + '⧽' back for a missing message here.
 		 *
 		 * @param {string} key
-		 * @return {string|Array} string of '[key]' if message missing, simple string if possible, array of arrays if needs parsing
+		 * @return {string|Array} string of '⧼key⧽' if message missing, simple string if possible, array of arrays if needs parsing
 		 */
 		getAst: function ( key ) {
 			var wikiText;
@@ -303,7 +303,7 @@
 			if ( !this.astCache.hasOwnProperty( key ) ) {
 				wikiText = this.settings.messages.get( key );
 				if ( typeof wikiText !== 'string' ) {
-					wikiText = '\\[' + key + '\\]';
+					wikiText = '⧼' + key + '⧽';
 				}
 				this.astCache[ key ] = this.wikiTextToAst( wikiText );
 			}
