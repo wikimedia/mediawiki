@@ -242,14 +242,14 @@ class LocalPasswordPrimaryAuthenticationProvider
 
 		$pwhash = null;
 
-		if ( $this->loginOnly ) {
-			$pwhash = $this->getPasswordFactory()->newFromCiphertext( null );
-			$expiry = null;
-			// @codeCoverageIgnoreStart
-		} elseif ( get_class( $req ) === PasswordAuthenticationRequest::class ) {
-			// @codeCoverageIgnoreEnd
-			$pwhash = $this->getPasswordFactory()->newFromPlaintext( $req->password );
-			$expiry = $this->getNewPasswordExpiry( $username );
+		if ( get_class( $req ) === PasswordAuthenticationRequest::class ) {
+			if ( $this->loginOnly ) {
+				$pwhash = $this->getPasswordFactory()->newFromCiphertext( null );
+				$expiry = null;
+			} else {
+				$pwhash = $this->getPasswordFactory()->newFromPlaintext( $req->password );
+				$expiry = $this->getNewPasswordExpiry( $username );
+			}
 		}
 
 		if ( $pwhash ) {
