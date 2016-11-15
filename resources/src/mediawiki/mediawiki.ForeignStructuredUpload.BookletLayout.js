@@ -395,7 +395,7 @@
 				}
 
 				try {
-					metadata = mw.libs.jpegmeta( this.result, file.name );
+					metadata = mw.libs.jpegmeta( fileStr, file.name );
 				} catch ( e ) {
 					metadata = null;
 				}
