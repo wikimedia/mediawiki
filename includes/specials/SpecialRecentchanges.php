@@ -91,6 +91,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$opts->add( 'categories_any', false );
 		$opts->add( 'tagfilter', '' );
 
+		$opts->add( 'userExpLevel', 'all' );
+
 		return $opts;
 	}
 
@@ -239,6 +241,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$query_options,
 			$opts['tagfilter']
 		);
+
+		$this->filterOnUserExperienceLevel( $tables, $conds, $join_conds, $opts );
 
 		if ( !$this->runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds,
 			$opts )
@@ -801,6 +805,71 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 	protected function getCacheTTL() {
 		return 60 * 5;
+	}
+
+	protected function filterOnUserExperienceLevel( &$tables, &$conds, &$join_conds, $opts ) {
+		global $wgLearnerEdits,
+			   $wgExperiencedUserEdits,
+			   $wgLearnerMemberSince,
+			   $wgExperiencedUserMemberSince;
+
+		$selectedExpLevels = explode( ',', strtolower( $opts['userExpLevel'] ) );
+		// remove values that are not recognized
+		$selectedExpLevels = array_intersect(
+			$selectedExpLevels,
+			[ 'newcomer', 'learner', 'experienced' ]
+		);
+		sort( $selectedExpLevels );
+
+		if ( $selectedExpLevels ) {
+			$tables[] = 'user';
+			$join_conds['user'] = [ 'LEFT JOIN', 'rc_user = user_id' ];
+
+			$now = time();
+			$secondsPerDay = 86400;
+			$learnerCutoff = $now - $wgLearnerMemberSince * $secondsPerDay;
+			$experiencedUserCutoff = $now - $wgExperiencedUserMemberSince * $secondsPerDay;
+
+			$aboveNewcomer = $this->getDB()->makeList(
+				[
+					'user_editcount >= ' . intval( $wgLearnerEdits ),
+					'user_registration <= ' . $this->getDB()->timestamp( $learnerCutoff ),
+				],
+				IDatabase::LIST_AND
+			);
+
+			$aboveLearner = $this->getDB()->makeList(
+				[
+					'user_editcount >= ' . intval( $wgExperiencedUserEdits ),
+					'user_registration <= ' . $this->getDB()->timestamp( $experiencedUserCutoff ),
+				],
+				IDatabase::LIST_AND
+			);
+
+			if ( $selectedExpLevels === [ 'newcomer' ] ) {
+				$conds[] =  "NOT ( $aboveNewcomer )";
+			} elseif ( $selectedExpLevels === [ 'learner' ] ) {
+				$conds[] = $this->getDB()->makeList(
+					[ $aboveNewcomer, "NOT ( $aboveLearner )" ],
+					IDatabase::LIST_AND
+				);
+			} elseif ( $selectedExpLevels === [ 'experienced' ] ) {
+				$conds[] = $aboveLearner;
+			} elseif ( $selectedExpLevels === [ 'learner', 'newcomer' ] ) {
+				$conds[] = "NOT ( $aboveLearner )";
+			} elseif ( $selectedExpLevels === [ 'experienced', 'newcomer' ] ) {
+				$conds[] = $this->getDB()->makeList(
+					[ "NOT ( $aboveNewcomer )", $aboveLearner ],
+					IDatabase::LIST_OR
+				);
+			} elseif ( $selectedExpLevels === [ 'experienced', 'learner' ] ) {
+				$conds[] = $aboveNewcomer;
+			}
+
+			// return statement used for unit testing since
+			// TestingAccessWrapper does not support arguments by ref
+			return $conds;
+		}
 	}
 
 }
