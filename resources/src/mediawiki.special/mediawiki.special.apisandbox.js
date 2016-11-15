@@ -389,19 +389,27 @@
 					break;
 
 				case 'limit':
-					widget = new OO.ui.NumberInputWidget( {
-						required: Util.apiBool( pi.required ),
-						isInteger: true
+					widget = new OO.ui.TextInputWidget( {
+						required: Util.apiBool( pi.required )
 					} );
-					widget.setIcon = widget.input.setIcon.bind( widget.input );
-					widget.setIconTitle = widget.input.setIconTitle.bind( widget.input );
-					widget.getValidity = widget.input.getValidity.bind( widget.input );
-					widget.input.setValidation( function ( value ) {
-						return value === 'max' || widget.validateNumber( value );
+					widget.setValidation( function ( value ) {
+						var n, pi = this.paramInfo;
+
+						if ( value === 'max' ) {
+							return true;
+						} else {
+							n = +value;
+							return !isNaN( n ) && isFinite( n ) &&
+								/* jshint bitwise: false */
+								( n | 0 ) === n &&
+								/* jshint bitwise: true */
+								n >= pi.min && n <= pi.apiSandboxMax;
+						}
 					} );
+					pi.min = pi.min || 0;
+					pi.apiSandboxMax = mw.config.get( 'apihighlimits' ) ? pi.highmax : pi.max;
 					widget.paramInfo = pi;
 					$.extend( widget, WidgetMethods.textInputWidget );
-					widget.setRange( pi.min || 0, mw.config.get( 'apihighlimits' ) ? pi.highmax : pi.max );
 					multiMode = 'enter';
 					break;
 
