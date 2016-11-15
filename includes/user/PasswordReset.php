@@ -22,6 +22,9 @@
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\TemporaryPasswordAuthenticationRequest;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+use MediaWiki\Logger\LoggerFactory;
 
 /**
  * Helper class for the password reset functionality shared by the web UI and the API.
@@ -30,12 +33,15 @@ use MediaWiki\Auth\TemporaryPasswordAuthenticationRequest;
  * EmailNotificationSecondaryAuthenticationProvider (or something providing equivalent
  * functionality) to be enabled.
  */
-class PasswordReset {
+class PasswordReset implements LoggerAwareInterface {
 	/** @var Config */
 	protected $config;
 
 	/** @var AuthManager */
 	protected $authManager;
+
+	/** @var LoggerInterface */
+	protected $logger;
 
 	/**
 	 * In-process cache for isAllowed lookups, by username. Contains pairs of StatusValue objects
@@ -48,6 +54,17 @@ class PasswordReset {
 		$this->config = $config;
 		$this->authManager = $authManager;
 		$this->permissionCache = new HashBagOStuff( [ 'maxKeys' => 1 ] );
+		$this->logger = LoggerFactory::getInstance( 'authentication' );
+	}
+
+	/**
+	 * Set the logger instance to use.
+	 *
+	 * @param LoggerInterface $logger
+	 * @since 1.29
+	 */
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
 	}
 
 	/**
@@ -214,7 +231,20 @@ class PasswordReset {
 			}
 		}
 
+		$logContext = [
+			'requestingIp' => $ip,
+			'requestingUser' => $performingUser->getName(),
+			'targetUsername' => $username,
+			'targetEmail' => $email,
+			'actualUser' => $firstUser->getName(),
+			'capture' => $displayPassword,
+		];
+
 		if ( !$result->isGood() ) {
+			$this->logger->info(
+				"{requestingUser} attempted password reset of {actualUser} but failed",
+				$logContext + [ 'errors' => $result->getErrors() ]
+			);
 			return $result;
 		}
 
@@ -225,6 +255,20 @@ class PasswordReset {
 			if ( $displayPassword ) {
 				$passwords[$req->username] = $req->password;
 			}
+		}
+
+		if ( $displayPassword ) {
+			// The password capture thing is scary, so log
+			// at a higher warning level.
+			$this->logger->warning(
+				"{requestingUser} did password reset of {actualUser} with password capturing!",
+				$logContext
+			);
+		} else {
+			$this->logger->info(
+				"{requestingUser} did password reset of {actualUser}",
+				$logContext
+			);
 		}
 
 		return StatusValue::newGood( $passwords );
