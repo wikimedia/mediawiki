@@ -626,7 +626,7 @@
 	"passwordreset-emailsent-capture2": "Salasananpalautus{{PLURAL:$1|sähköposti|sähköpostit}} on lähetetty. {{PLURAL:$1|Käyttäjä ja salasana|Luettelo käyttäjistä ja salasanoista}} näytetään alapuolella.",
 	"passwordreset-emailerror-capture2": "Sähköpostin lähettäminen {{GENDER:$2|käyttäjälle}} epäonnistui: $1 {{PLURAL:$3|Käyttäjänimi ja salasana|Luettelo käyttäjänimistä ja salasanoista}} näytetään alla.",
 	"passwordreset-ignored": "Salasanan palauttamista ei käsitelty. Ehkä tarjoajaa ei ollut määritetty?",
-	"passwordreset-invalideamil": "Virheellinen sähköpostiosoite",
+	"passwordreset-invalidemail": "Virheellinen sähköpostiosoite",
 	"passwordreset-nodata": "Käyttäjätunnusta ja salasanaa ei annettu",
 	"changeemail": "Muuta tai poista sähköpostiosoite",
 	"changeemail-header": "Täydennä tämä lomake, jolla voit muuttaa sähköpostiosoitettasi. Jos haluat poistaa sähköpostiosoitteesi kokonaan tunnuksesi yhteydestä, älä kirjoita uudeksi osoitteeksi mitään vaan jätä se tyhjäksi.",

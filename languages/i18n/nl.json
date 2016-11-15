@@ -656,7 +656,7 @@
 	"passwordreset-nocaller": "Een aanroeper moet worden opgegeven",
 	"passwordreset-nosuchcaller": "Aanroeper bestaat niet: $1",
 	"passwordreset-ignored": "Opnieuw instellen van het wachtwoord niet is afgehandeld. Misschien is er geen provider geconfigureerd?",
-	"passwordreset-invalideamil": "Ongeldig e-mailadres",
+	"passwordreset-invalidemail": "Ongeldig e-mailadres",
 	"passwordreset-nodata": "Er is geen gebruikersnaam of e-mailadres opgegeven",
 	"changeemail": "E-mailadres wijzigen of verwijderen",
 	"changeemail-header": "Vul dit formulier in om uw e-mailadres te wijzigen. Als u het e-mailadres wilt ontkoppelen van uw account, laat het e-mailadres dan leeg als u het formulier opslaat.",

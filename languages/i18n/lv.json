@@ -529,7 +529,7 @@
 	"passwordreset-emailelement": "Lietotājvārds: \n$1\n\nPagaidu parole: \n$2",
 	"passwordreset-emailsentemail": "Paroles atiestatīšanas e-pasts ir nosūtīts.",
 	"passwordreset-nosuchcaller": "Izsaucējs nepastāv: $1",
-	"passwordreset-invalideamil": "Nederīga e-pasta adrese",
+	"passwordreset-invalidemail": "Nederīga e-pasta adrese",
 	"changeemail": "Mainīt vai noņemt e-pasta adresi",
 	"changeemail-header": "Mainīt konta e-pasta adresi",
 	"changeemail-oldemail": "Pašreizējā e-pasta adrese:",

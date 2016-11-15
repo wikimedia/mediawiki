@@ -567,7 +567,7 @@
 	"passwordreset-emailtext-user": "$1 enê karberi, {{SITENAME}}  ra ($4) teferuatê hesab dê şıma  va wa biyaro xo viri. Karbero ke cêrdeyo {{PLURAL:$3|hesaba|eno hesaba}} ena e-posta adresiya aleqey cı esto:\n\n$2\n\n{{PLURAL:$3|ena parola idaretena|ena parola idareten}} {{PLURAL:$5|jew roc|$5  roca}}rêya.\nEna parolaya deqewe de u xorê ju parolaya newi bıweçine. Parolaya şıma emaya şıma viri se  yana  ena e-posta şıma nê weştase u şıma qayıl niye parolaya xo bıvurnese, ena mesacer peygoş bıkerê.",
 	"passwordreset-emailelement": "Nameyê karberi: \n$1\n\nParolaya vêrdiye: \n$2",
 	"passwordreset-emailsentemail": "Eger kı ena e-posta şıma rê se, yew e-posta do bırışiyo eno hesab.",
-	"passwordreset-invalideamil": "Adresê eposta raşt niya",
+	"passwordreset-invalidemail": "Adresê eposta raşt niya",
 	"changeemail": "E-posta adresa xo wedarne",
 	"changeemail-header": "E-posta adresa xo vuriyayışi rë ena former pır kerë. Eger kı şıma qayılë kı e postay adresi ra wedarnë se formi rıştış dı heruna e posta veng verdë",
 	"changeemail-no-info": "Şıma gani bıkewê pele ke derdest bıresê na pele.",

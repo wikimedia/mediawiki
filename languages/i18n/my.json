@@ -1142,8 +1142,6 @@
 	"activeusers": "တက်ကြွလှုပ်ရှားသည့် အသုံးပြုသူစာရင်း",
 	"activeusers-intro": "ဤသည်မှာ နောက်ဆုံး $1 {{PLURAL:$1|ရက်|ရက်}}အတွင်း တက်ကြွလှုပ်ရှားသည့် အသုံးပြုသူများ စာရင်း ဖြစ်သည်။",
 	"activeusers-from": "ဤမှစသော အသုံးပြုသူများကို ပြရန် -",
-	"activeusers-hidebots": "ဘော့များကို ဝှက်ရန်",
-	"activeusers-hidesysops": "အက်ဒမင်များကို ဝှက်ရန်",
 	"activeusers-noresult": "အသုံးပြုသူ မတွေ့ပါ။",
 	"listgrouprights": "အသုံးပြုသူအုပ်စု အခွင့်အရေးများ",
 	"listgrouprights-group": "အုပ်စု",

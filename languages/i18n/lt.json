@@ -610,7 +610,7 @@
 	"passwordreset-emailerror-capture2": "El. laiško siuntimas {{GENDER:$2|vartotojui}} nepavyko: $1 {{PLURAL:$3|vartotojo vardas ir slaptažodis rodomi|vartotojų vardų ir slaptažodžių sąrašas rodomas}} čia.",
 	"passwordreset-nocaller": "Skambinantysis turi būti nurodytas",
 	"passwordreset-nosuchcaller": "Skambinantysis neegzistuoja: $1",
-	"passwordreset-invalideamil": "Neteisingas el. pašto adresas",
+	"passwordreset-invalidemail": "Neteisingas el. pašto adresas",
 	"passwordreset-nodata": "Vartotojo vardas ir el. paštas buvo nepateikti",
 	"changeemail": "Pakeisti ar pašalinti el. pašto adresą",
 	"changeemail-header": "Užpildykite šią formą, kad pakeistumėte savo el. pašto adresą. Jeigu norite pašalinti bet kurio el. pašto adreso susiejimą su savo paskyra, palikite naujojo el. pašto adreso lauką tuščią, kai pateiksite formą.",

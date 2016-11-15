@@ -725,7 +725,7 @@
 	"passwordreset-nocaller": "Un appelant doit être fourni",
 	"passwordreset-nosuchcaller": "L’appelant n’existe pas : $1",
 	"passwordreset-ignored": "La réinitialisation du mot de passe n’a pas été gérée. Peut-être qu’aucun fournisseur n’a été configuré ?",
-	"passwordreset-invalideamil": "Adresse de messagerie non valide",
+	"passwordreset-invalidemail": "Adresse de messagerie non valide",
 	"passwordreset-nodata": "Aucun nom d’utilisateur ou adresse de messagerie n’a été fourni",
 	"changeemail": "Changer ou supprimer l’adresse de courriel",
 	"changeemail-header": "Complétez ce formulaire pour modifier votre adresse de courriel. Si vous voulez supprimer l’association d’une adresse de courriel avec votre compte, laissez la nouvelle adresse de courriel vide lors de la soumission du formulaire.",

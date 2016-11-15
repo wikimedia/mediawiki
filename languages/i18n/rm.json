@@ -1437,8 +1437,6 @@
 	"activeusers-intro": "Quai è ina glista dals utilisaders che han gì activitads {{PLURAL:$1|l'ultim di|en ils ultims $1 dis}}.",
 	"activeusers-count": "$1 {{PLURAL:$1|acziun|acziuns}} {{PLURAL:$3|l'ultim di|ils ultims $3 dis}}",
 	"activeusers-from": "Mussar utilisaders davent da:",
-	"activeusers-hidebots": "Zuppentar bots",
-	"activeusers-hidesysops": "Zuppentar administraturs",
 	"activeusers-noresult": "Chattà nagins utilisaders.",
 	"listgrouprights": "Dretgs da las gruppas d'utilisaders",
 	"listgrouprights-summary": "Sutvart vegn mussada ina glista da las gruppas d'utilisaders sin questa wiki cun ils dretgs d'access associads.\nInfurmaziuns supplementaras davart ils singuls dretgs chattas [[{{MediaWiki:Listgrouprights-helppage}}|sin questa pagina]].",

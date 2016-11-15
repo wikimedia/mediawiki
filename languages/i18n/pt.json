@@ -648,7 +648,7 @@
 	"passwordreset-nocaller": "Um interlocutor deve ser fornecido",
 	"passwordreset-nosuchcaller": "A pessoa que chama não existe: $1",
 	"passwordreset-ignored": "A reposição de palavra-passe não foi realizada. Talvez o fornecedor não tenha sido configurado?",
-	"passwordreset-invalideamil": "Correio eletrónico inválido",
+	"passwordreset-invalidemail": "Correio eletrónico inválido",
 	"passwordreset-nodata": "Não foram fornecidos nome de utilizador(a) nem endereço de correio eletrónico",
 	"changeemail": "Alterar ou remover o endereço de correio eletrónico",
 	"changeemail-header": "Complete este formulário para alterar o seu endereço de correio eletrónico. Se quer eliminar a associação de qualquer endereço de correio eletrónico com a sua conta, deixe em branco o novo endereço de correio eletrónico ao submeter o formulário.",

@@ -1624,8 +1624,6 @@
 	"activeusers-intro": "Iki daptar panganggo sing katon lakuné ing $1 {{PLURAL:$1|dina|dina}} kapungkur.",
 	"activeusers-count": "$1 {{PLURAL:$1|suntingan|suntingan}} ing {{PLURAL:$3|dina|$3 dina}} pungkasan",
 	"activeusers-from": "Tampilna panganggo wiwit saka:",
-	"activeusers-hidebots": "Delikna bot",
-	"activeusers-hidesysops": "Delikna pangurus",
 	"activeusers-noresult": "Naraguna ora ana.",
 	"listgrouprights": "Hak-hak grup panganggo",
 	"listgrouprights-summary": "Ing ngisor iki kapacak dhaftar grup panganggo sing didéfinisi ing wiki iki, kanthi hak-hak aksès gandhèngané.\nInformasi tambahan perkara hak-hak individual bisa ditemokaké ing [[{{MediaWiki:Listgrouprights-helppage}}|kéné]].",

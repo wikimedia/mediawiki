@@ -317,7 +317,6 @@
 	"yourname": "Hmangtuhming:",
 	"yourpassword": "Thurûk:",
 	"yourpasswordagain": "Thurûk ziak nawn leh rawh le:",
-	"remembermypassword": "He ka rangpuifanna hman mék (browser)-ah hian ka luhna (a rei berah ni {{PLURAL:$1||}}$1) min vawnsak rawh, thurûk ziah nawn ngai lo tùrin.",
 	"yourdomainname": "I ram:",
 	"password-change-forbidden": "Hë wiki-ah hian thurûk i thlâk thei lo.",
 	"externaldberror": "Insawifiahna felfai lo a awm lo a nih loh vëk pawhin i pawnlam siangchan tihdanglam phalsak i ni lo a ni ang.",
@@ -394,8 +393,6 @@
 	"passwordreset-emailtitle": "{{SITENAME}}-a siangchan chanchin kim",
 	"passwordreset-emailelement": "Hmangtuhming: \n$1\n\nThurûk lailâwk: \n$2",
 	"passwordreset-emailsentemail": "Hriat nawntirna e-lehkha thawn fel a ni.",
-	"passwordreset-emailsent-capture": "Hriat nawntirna e-lehkha thawn a ni, a hnuaia tarlan ang khuan.",
-	"passwordreset-emailerror-capture": "Hriat nawntirna e-lehkha siam chhuah a ni a, a hnuaia tarlan ang khuan; mahsé thawn hlawhchham a ni: $1",
 	"changeemail": "E-chenhmun thlâk rawh",
 	"changeemail-header": "Siangchan e-chenhmun thlâk rawh",
 	"changeemail-no-info": "He phêk lut mai tùr chuan i inziahluh a ngai.",
@@ -505,7 +502,6 @@
 	"node-count-exceeded-warning": "Suihbawl theih chin pèl phêkte",
 	"expansion-depth-exceeded-category": "Tihchiam theih chin pèl phêkte",
 	"expansion-depth-exceeded-warning": "Tihchiam theih chin phêkin a pèl",
-	"cantcreateaccounttitle": "Siangchan siam theih loh",
 	"viewpagelogs": "He phêk chanchin hi en rawh",
 	"nohistory": "Hë phêk siamṭhatna chanchin ziak a awm lo tlat.",
 	"currentrev": "Ennawnna hnuhnung ber",
@@ -1038,8 +1034,6 @@
 	"listusers-noresult": "Hmangtu an awm lo.",
 	"listusers-blocked": "(danbeh)",
 	"activeusers": "Hmangtu hlun tlarna",
-	"activeusers-hidebots": "Khawlmi thupna",
-	"activeusers-hidesysops": "Roreltu thupna",
 	"activeusers-noresult": "Hmangtu awm lo.",
 	"listgrouprights": "Hmangtu pawl dikna-chanvote",
 	"listgrouprights-key": "* <span class=\"listgrouprights-granted\">Dikna-chanvo phalsak</span>\n* <span class=\"listgrouprights-revoked\">Dikna-chanvo hnuhkirsak</span>",
@@ -1466,6 +1460,5 @@
 	"special-characters-group-lao": "Lao",
 	"special-characters-group-khmer": "Khmer",
 	"mw-widgets-dateinput-placeholder-day": "KKKK-TT-NN",
-	"mw-widgets-dateinput-placeholder-month": "KKKK-TT",
-	"api-error-blacklisted": "Hming dang, chiang zâwk deuh thlang hräm rawh le."
+	"mw-widgets-dateinput-placeholder-month": "KKKK-TT"
 }

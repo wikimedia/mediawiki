@@ -699,8 +699,6 @@
 	"linksearch-ok": "Дилээри",
 	"linksearch-line": "$2-де бижиттинген $1 деп тускай айтыг",
 	"listusers-submit": "Көргүзери",
-	"activeusers-hidebots": "Роботтарны чажырары",
-	"activeusers-hidesysops": "Эргелекчыларны чажырары",
 	"listgrouprights-group": "Бөлүк",
 	"listgrouprights-members": "(кежигүннүң даңзызы)",
 	"emailuser": "Бо ажыглакчыга э-чагааны чорудаары",

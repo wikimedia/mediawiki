@@ -583,7 +583,7 @@
 	"passwordreset-emailelement": "Benotzernumm: \n$1\n\nTemporärt Passwuert: \n$2",
 	"passwordreset-emailsentemail": "Wann dës E-Mailadress mat Ärem Benotzerkont assoziéiert ass, da gëtt Eng E-Mail fir d'Passwuert zréckzesetze geschéckt.",
 	"passwordreset-emailsentusername": "Wann eng E-Mailadress mat dësem Benotzernumm associéiert ass, da gëtt Eng E-Mail fir d'Passwuert zeréckzesetze geschéckt.",
-	"passwordreset-invalideamil": "Net-valabel E-Mail-Adress",
+	"passwordreset-invalidemail": "Net-valabel E-Mail-Adress",
 	"passwordreset-nodata": "Et gouf weder e Benotzernumm nach e Passwuert uginn",
 	"changeemail": "E-Mail-Adress änneren oder ewechhuelen",
 	"changeemail-header": "Fëllt dëse Formulaire aus fir Är E-Mailadress z'änneren.  Wann Dir d'Verbindung tëscht Ärer E-Mailadress an Ärem Benotzerkont ewechhuele wëllt, da loosst d'Feld e-Mailadress eidel wann Dir de Formulaire späichert.",
