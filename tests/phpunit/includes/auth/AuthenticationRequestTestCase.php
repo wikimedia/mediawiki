@@ -6,10 +6,17 @@ namespace MediaWiki\Auth;
  * @group AuthManager
  */
 abstract class AuthenticationRequestTestCase extends \MediaWikiTestCase {
+	/**
+	 * Create the request that will be tested. Used in testGetFieldInfo and testLoadFromSubmission;
+	 * arguments are taken from provideGetFieldInfo and provideLoadFromSubmission.
+	 * @param array $args
+	 * @return AuthenticationRequest
+	 */
 	abstract protected function getInstance( array $args = [] );
 
 	/**
 	 * @dataProvider provideGetFieldInfo
+	 * @param array $args data for getInstance
 	 */
 	public function testGetFieldInfo( array $args ) {
 		$info = $this->getInstance( $args )->getFieldInfo();
@@ -66,6 +73,14 @@ abstract class AuthenticationRequestTestCase extends \MediaWikiTestCase {
 		}
 	}
 
+	/**
+	 * Provider for a test which takes a single array as an argument, calls getInstance() with
+	 * that array, calls getFieldInfo() on the resulting request object and checks that the returned
+	 * array matches the specification.
+	 * You only need to override this if the output of getFieldInfo() depends on the internal
+	 * state of the request object.
+	 * @return array
+	 */
 	public static function provideGetFieldInfo() {
 		return [
 			[ [] ]
@@ -74,9 +89,9 @@ abstract class AuthenticationRequestTestCase extends \MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideLoadFromSubmission
-	 * @param array $args
-	 * @param array $data
-	 * @param array|bool $expectState
+	 * @param array $args data for getInstance
+	 * @param array $data data for $request->loadFromSubmission
+	 * @param array|bool $expectState expected internal state
 	 */
 	public function testLoadFromSubmission( array $args, array $data, $expectState ) {
 		$instance = $this->getInstance( $args );
@@ -90,5 +105,13 @@ abstract class AuthenticationRequestTestCase extends \MediaWikiTestCase {
 		}
 	}
 
+	/**
+	 * Provider for a test which takes three arguments: an array for getInstance() to create the
+	 * authentication request object, an array of simulated webrequest data (that will be passed
+	 * to the loadFromSubmission() method of the request object) and an array describing the
+	 * expected internal state after loadFromSubmission() (verified via __set_state()) or false
+	 * if the request should not load from that data.
+	 * @return array
+	 */
 	abstract public function provideLoadFromSubmission();
 }
