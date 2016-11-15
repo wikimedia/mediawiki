@@ -7,7 +7,9 @@
  * @alternateClassName mediaWiki
  * @singleton
  */
-/*jshint latedef:false */
+
+/* eslint-disable no-use-before-define */
+
 ( function ( $ ) {
 	'use strict';
 
@@ -31,7 +33,7 @@
 	 * @return {string} hash as an seven-character base 36 string
 	 */
 	function fnv132( str ) {
-		/*jshint bitwise:false */
+		/* eslint-disable no-bitwise */
 		var hash = 0x811C9DC5,
 			i;
 
@@ -46,6 +48,7 @@
 		}
 
 		return hash;
+		/* eslint-enable no-bitwise */
 	}
 
 	StringSet = window.Set || ( function () {
@@ -463,9 +466,9 @@
 		log.deprecate = !Object.defineProperty ? function ( obj, key, val ) {
 			obj[ key ] = val;
 		} : function ( obj, key, val, msg, logName ) {
+			var logged = new StringSet();
 			logName = logName || key;
 			msg = 'Use of "' + logName + '" is deprecated.' + ( msg ? ( ' ' + msg ) : '' );
-			var logged = new StringSet();
 			function uniqueTrace() {
 				var trace = new Error().stack;
 				if ( logged.has( trace ) ) {
@@ -1112,7 +1115,7 @@
 				}
 
 				if ( registry[ module ].skip !== null ) {
-					/*jshint evil:true */
+					// eslint-disable-next-line no-new-func
 					skip = new Function( registry[ module ].skip );
 					registry[ module ].skip = null;
 					if ( skip() ) {
@@ -1152,7 +1155,7 @@
 							) );
 						}
 
-						unresolved.add(  module );
+						unresolved.add( module );
 						sortDependencies( deps[ i ], resolved, unresolved );
 					}
 				}
@@ -1297,9 +1300,9 @@
 						} );
 					};
 
-					implicitDependencies = ( $.inArray( module, legacyModules ) !== -1 )
-						? []
-						: legacyModules;
+					implicitDependencies = ( $.inArray( module, legacyModules ) !== -1 ) ?
+						[] :
+						legacyModules;
 
 					if ( module === 'user' ) {
 						// Implicit dependency on the site module. Not real dependency because
@@ -1307,9 +1310,9 @@
 						implicitDependencies.push( 'site' );
 					}
 
-					legacyWait = implicitDependencies.length
-						? mw.loader.using( implicitDependencies )
-						: $.Deferred().resolve();
+					legacyWait = implicitDependencies.length ?
+						mw.loader.using( implicitDependencies ) :
+						$.Deferred().resolve();
 
 					legacyWait.always( function () {
 						try {
@@ -1638,9 +1641,9 @@
 							prefix = modules[ i ].substr( 0, lastDotIndex );
 							suffix = modules[ i ].slice( lastDotIndex + 1 );
 
-							bytesAdded = hasOwn.call( moduleMap, prefix )
-								? suffix.length + 3 // '%2C'.length == 3
-								: modules[ i ].length + 3; // '%7C'.length == 3
+							bytesAdded = hasOwn.call( moduleMap, prefix ) ?
+								suffix.length + 3 : // '%2C'.length == 3
+								modules[ i ].length + 3; // '%7C'.length == 3
 
 							// If the url would become too long, create a new one,
 							// but don't create empty requests
@@ -1780,6 +1783,7 @@
 							return true;
 						} );
 						asyncEval( implementations, function ( err ) {
+							var failed;
 							// Not good, the cached mw.loader.implement calls failed! This should
 							// never happen, barring ResourceLoader bugs, browser bugs and PEBKACs.
 							// Depending on how corrupt the string is, it is likely that some
@@ -1794,7 +1798,7 @@
 
 							mw.track( 'resourceloader.exception', { exception: err, source: 'store-eval' } );
 							// Re-add the failed ones that are still pending back to the batch
-							var failed = $.grep( sourceModules, function ( module ) {
+							failed = $.grep( sourceModules, function ( module ) {
 								return registry[ module ].state === 'loading';
 							} );
 							batchRequest( failed );
@@ -2329,7 +2333,7 @@
 							// Partial descriptor
 							// (e.g. skipped module, or style module with state=ready)
 							$.inArray( undefined, [ descriptor.script, descriptor.style,
-									descriptor.messages, descriptor.templates ] ) !== -1
+								descriptor.messages, descriptor.templates ] ) !== -1
 						) {
 							// Decline to store
 							return false;

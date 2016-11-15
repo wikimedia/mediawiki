@@ -121,13 +121,13 @@
 			var basetimestamp, curtimestamp,
 				api = this;
 			return api.get( {
-					action: 'query',
-					prop: 'revisions',
-					rvprop: [ 'content', 'timestamp' ],
-					titles: String( title ),
-					formatversion: '2',
-					curtimestamp: true
-				} )
+				action: 'query',
+				prop: 'revisions',
+				rvprop: [ 'content', 'timestamp' ],
+				titles: String( title ),
+				formatversion: '2',
+				curtimestamp: true
+			} )
 				.then( function ( data ) {
 					var page, revision;
 					if ( !data.query || !data.query.pages ) {

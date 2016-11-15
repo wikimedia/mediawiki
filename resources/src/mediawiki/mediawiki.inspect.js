@@ -4,7 +4,9 @@
  * @author Ori Livneh
  * @since 1.22
  */
-/*jshint devel:true */
+
+/* eslint-disable no-console */
+
 ( function ( mw, $ ) {
 
 	var inspect,
@@ -18,11 +20,12 @@
 	}
 
 	function humanSize( bytes ) {
-		if ( !$.isNumeric( bytes ) || bytes === 0 ) { return bytes; }
-		var i = 0,
+		var i,
 			units = [ '', ' KiB', ' MiB', ' GiB', ' TiB', ' PiB' ];
 
-		for ( ; bytes >= 1024; bytes /= 1024 ) { i++; }
+		if ( !$.isNumeric( bytes ) || bytes === 0 ) { return bytes; }
+
+		for ( i = 0; bytes >= 1024; bytes /= 1024 ) { i++; }
 		// Maintain one decimal for kB and above, but don't
 		// add ".0" for bytes.
 		return bytes.toFixed( i > 0 ? 1 : 0 ) + units[ i ];
@@ -229,7 +232,7 @@
 						allSelectors: stats.total,
 						matchedSelectors: stats.matched,
 						percentMatched: stats.total !== 0 ?
-							( stats.matched / stats.total * 100 ).toFixed( 2 )  + '%' : null
+							( stats.matched / stats.total * 100 ).toFixed( 2 ) + '%' : null
 					} );
 				} );
 				sortByProperty( modules, 'allSelectors', true );
@@ -247,7 +250,7 @@
 					$.extend( stats, mw.loader.store.stats );
 					try {
 						raw = localStorage.getItem( mw.loader.store.getStoreKey() );
-						stats.totalSizeInBytes =  $.byteLength( raw );
+						stats.totalSizeInBytes = $.byteLength( raw );
 						stats.totalSize = humanSize( $.byteLength( raw ) );
 					} catch ( e ) {}
 				}
@@ -278,8 +281,8 @@
 
 				// Grep module's CSS
 				if (
-					$.isPlainObject( module.style ) && $.isArray( module.style.css )
-					&& pattern.test( module.style.css.join( '' ) )
+					$.isPlainObject( module.style ) && $.isArray( module.style.css ) &&
+					pattern.test( module.style.css.join( '' ) )
 				) {
 					// Module's CSS source matches
 					return true;

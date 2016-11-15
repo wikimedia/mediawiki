@@ -366,7 +366,7 @@
 					prop: 'categories',
 					cllimit: this.limit,
 					titles: 'Category:' + input
-				} ).done( function ( res )  {
+				} ).done( function ( res ) {
 					var categories = [];
 
 					$.each( res.query.pages, function ( index, page ) {

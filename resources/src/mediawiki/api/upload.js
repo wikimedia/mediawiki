@@ -34,7 +34,8 @@
 	 * @return {string}
 	 */
 	function getFirstKey( obj ) {
-		for ( var key in obj ) {
+		var key;
+		for ( key in obj ) {
 			if ( obj.hasOwnProperty( key ) ) {
 				return key;
 			}

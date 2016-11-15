@@ -335,7 +335,7 @@
 		if ( this.imageInfoCache[ imageSrc ] === undefined ) {
 			api = new mw.Api();
 			// TODO: This supports only gallery of images
-			title = new mw.Title.newFromImg( $img );
+			title = mw.Title.newFromImg( $img );
 			params = {
 				action: 'query',
 				formatversion: 2,
@@ -452,9 +452,8 @@
 	// Bootstrap all slideshow galleries
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
 		$content.find( '.mw-gallery-slideshow' ).each( function () {
-			/*jshint -W031 */
+			// eslint-disable-next-line no-new
 			new mw.GallerySlideshow( this );
-			/*jshint +W031 */
 		} );
 	} );
 }( mediaWiki, jQuery, OO ) );

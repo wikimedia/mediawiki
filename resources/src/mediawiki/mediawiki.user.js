@@ -2,6 +2,7 @@
  * @class mw.user
  * @singleton
  */
+/* global Uint8Array */
 ( function ( mw, $ ) {
 	var i,
 		userInfoPromise,
@@ -50,7 +51,7 @@
 		 * @return {string} 64 bit integer in hex format, padded
 		 */
 		generateRandomSessionId: function () {
-			/*jshint bitwise:false */
+			/* eslint-disable no-bitwise */
 			var rnds, i, r,
 				hexRnds = new Array( 8 ),
 				// Support: IE 11
@@ -79,6 +80,7 @@
 			// Concatenation of two random integers with entropy n and m
 			// returns a string with entropy n+m if those strings are independent
 			return hexRnds.join( '' );
+			/* eslint-enable no-bitwise */
 		},
 
 		/**
@@ -108,10 +110,11 @@
 		 *  unavailable, or Date for when the user registered.
 		 */
 		getRegistration: function () {
+			var registration;
 			if ( mw.user.isAnon() ) {
 				return false;
 			}
-			var registration = mw.config.get( 'wgUserRegistration' );
+			registration = mw.config.get( 'wgUserRegistration' );
 			// Registration may be unavailable if the user signed up before MediaWiki
 			// began tracking this.
 			return !registration ? null : new Date( registration );

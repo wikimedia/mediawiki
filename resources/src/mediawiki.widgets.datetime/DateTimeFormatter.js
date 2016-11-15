@@ -462,7 +462,7 @@
 	 *  - 'clip': "Jan 32" => "Jan 31", "Feb 32" => "Feb 28" (or 29), "Feb 0" => "Feb 1", etc.
 	 * @return {Date} Adjusted date
 	 */
-	mw.widgets.datetime.DateTimeFormatter.prototype.adjustComponent = function ( date /*, component, delta, mode */ ) {
+	mw.widgets.datetime.DateTimeFormatter.prototype.adjustComponent = function ( date /* , component, delta, mode */ ) {
 		// Should be overridden by subclass
 		return date;
 	};

@@ -1,4 +1,3 @@
-/* jshint devel: true */
 ( function ( mw, $ ) {
 	/**
 	 * @method confirmCloseWindow
@@ -109,4 +108,4 @@
 			}
 		};
 	};
-} )( mediaWiki, jQuery );
+}( mediaWiki, jQuery ) );
