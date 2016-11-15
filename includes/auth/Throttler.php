@@ -135,7 +135,7 @@ class Throttler implements LoggerAwareInterface {
 				$this->cache->incr( $throttleKey );
 			} else { // throttled
 				$this->logRejection( [
-					'type' => $this->type,
+					'throttle' => $this->type,
 					'index' => $index,
 					'ip' => $ipKey,
 					'username' => $username,
@@ -191,7 +191,7 @@ class Throttler implements LoggerAwareInterface {
 	}
 
 	protected function logRejection( array $context ) {
-		$logMsg = 'Throttle {type} hit, throttled for {expiry} seconds due to {count} attempts '
+		$logMsg = 'Throttle {throttle} hit, throttled for {expiry} seconds due to {count} attempts '
 			. 'from username {username} and IP {ip}';
 
 		// If we are hitting a throttle for >= warningLimit attempts, it is much more likely to be
