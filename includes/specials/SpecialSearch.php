@@ -103,13 +103,13 @@ class SpecialSearch extends SpecialPage {
 		$request = $this->getRequest();
 
 		// Fetch the search term
-		$search = str_replace( "\n", " ", $request->getText( 'search' ) );
+		$term = str_replace( "\n", " ", $request->getText( 'search' ) );
 
 		// Historically search terms have been accepted not only in the search query
 		// parameter, but also as part of the primary url. This can have PII implications
 		// in releasing page view data. As such issue a 301 redirect to the correct
 		// URL.
-		if ( strlen( $par ) && !strlen( $search ) ) {
+		if ( strlen( $par ) && !strlen( $term ) ) {
 			$query = $request->getValues();
 			unset( $query['title'] );
 			// Strip underscores from title parameter; most of the time we'll want
@@ -141,16 +141,46 @@ class SpecialSearch extends SpecialPage {
 			return;
 		}
 
-		$out->addJsConfigVars( [ 'searchTerm' => $search ] );
+		$out->addJsConfigVars( [ 'searchTerm' => $term ] );
 		$this->searchEngineType = $request->getVal( 'srbackend' );
-
-		if ( $request->getVal( 'fulltext' )
-			|| !is_null( $request->getVal( 'offset' ) )
+		if (
+			!$request->getVal( 'fulltext' ) &&
+			!is_null( $request->getVal( 'offset' ) ) &&
+			$this->goResult( $term )
 		) {
-			$this->showResults( $search );
-		} else {
-			$this->goResult( $search );
+			// succesfull 'go'
+			return;
 		}
+
+		$this->setupPage( $term );
+
+		if ( $this->getConfig()->get( 'DisableTextSearch' ) ) {
+			$searchFowardUrl = $this->getConfig()->get( 'SearchForwardUrl' );
+			if ( $searchFowardUrl ) {
+				$url = str_replace( '$1', urlencode( $term ), $searchFowardUrl );
+				$out->redirect( $url );
+			} else {
+				$out->addHTML(
+					Xml::openElement( 'fieldset' ) .
+					Xml::element( 'legend', null, $this->msg( 'search-external' )->text() ) .
+					Xml::element(
+						'p',
+						[ 'class' => 'mw-searchdisabled' ],
+						$this->msg( 'searchdisabled' )->text()
+					) .
+					$this->msg( 'googlesearch' )->rawParams(
+						htmlspecialchars( $term ),
+						'UTF-8',
+						$this->msg( 'searchbutton' )->escaped()
+					)->text() .
+					Xml::closeElement( 'fieldset' )
+				);
+			}
+
+			return;
+		}
+
+		$this->showResults( $term );
 	}
 
 	/**
@@ -211,30 +241,26 @@ class SpecialSearch extends SpecialPage {
 	 * @param string $term
 	 */
 	public function goResult( $term ) {
-		$this->setupPage( $term );
-		# Try to go to page as entered.
-		$title = Title::newFromText( $term );
 		# If the string cannot be used to create a title
-		if ( is_null( $title ) ) {
-			$this->showResults( $term );
-
-			return;
+		if ( is_null( Title::newFromText( $term ) ) ) {
+			return false;
 		}
 		# If there's an exact or very near match, jump right there.
 		$title = $this->getSearchEngine()
 			->getNearMatcher( $this->getConfig() )->getNearMatch( $term );
-
-		if ( !is_null( $title ) &&
-			Hooks::run( 'SpecialSearchGoResult', [ $term, $title, &$url ] )
-		) {
-			if ( $url === null ) {
-				$url = $title->getFullURL();
-			}
-			$this->getOutput()->redirect( $url );
-
-			return;
+		if ( is_null( $title ) ) {
+			return false;
 		}
-		$this->showResults( $term );
+		$url = null;
+		if ( !Hooks::run( 'SpecialSearchGoResult', [ $term, $title, &$url ] ) ) {
+			return false;
+		}
+		if ( $url === null ) {
+			$url = $title->getFullURL();
+		}
+		$this->getOutput()->redirect( $url );
+
+		return true;
 	}
 
 	/**
@@ -249,36 +275,11 @@ class SpecialSearch extends SpecialPage {
 		$search->setNamespaces( $this->namespaces );
 		$search->prefix = $this->mPrefix;
 		$term = $search->transformSearchTerm( $term );
-
-		Hooks::run( 'SpecialSearchSetupEngine', [ $this, $this->profile, $search ] );
-
-		$this->setupPage( $term );
-
 		$out = $this->getOutput();
 
-		if ( $this->getConfig()->get( 'DisableTextSearch' ) ) {
-			$searchFowardUrl = $this->getConfig()->get( 'SearchForwardUrl' );
-			if ( $searchFowardUrl ) {
-				$url = str_replace( '$1', urlencode( $term ), $searchFowardUrl );
-				$out->redirect( $url );
-			} else {
-				$out->addHTML(
-					Xml::openElement( 'fieldset' ) .
-					Xml::element( 'legend', null, $this->msg( 'search-external' )->text() ) .
-					Xml::element(
-						'p',
-						[ 'class' => 'mw-searchdisabled' ],
-						$this->msg( 'searchdisabled' )->text()
-					) .
-					$this->msg( 'googlesearch' )->rawParams(
-						htmlspecialchars( $term ),
-						'UTF-8',
-						$this->msg( 'searchbutton' )->escaped()
-					)->text() .
-					Xml::closeElement( 'fieldset' )
-				);
-			}
-
+		Hooks::run( 'SpecialSearchSetupEngine', [ $this, $this->profile, $search ] );
+		if ( !Hooks::run( 'SpecialSearchResultsPrepend', [ $this, $out, $term ] ) ) {
+			# Hook requested termination
 			return;
 		}
 
@@ -308,23 +309,6 @@ class SpecialSearch extends SpecialPage {
 			}
 		}
 
-		if ( !Hooks::run( 'SpecialSearchResultsPrepend', [ $this, $out, $term ] ) ) {
-			# Hook requested termination
-			return;
-		}
-
-		// start rendering the page
-		$out->addHTML(
-			Xml::openElement(
-				'form',
-				[
-					'id' => ( $this->isPowerSearch() ? 'powersearch' : 'search' ),
-					'method' => 'get',
-					'action' => wfScript(),
-				]
-			)
-		);
-
 		// Get number of results
 		$titleMatchesNum = $textMatchesNum = $numTitleMatches = $numTextMatches = 0;
 		if ( $titleMatches ) {
@@ -338,17 +322,26 @@ class SpecialSearch extends SpecialPage {
 		$num = $titleMatchesNum + $textMatchesNum;
 		$totalRes = $numTitleMatches + $numTextMatches;
 
+		// start rendering the page
 		$out->enableOOUI();
 		$out->addHTML(
-			# This is an awful awful ID name. It's not a table, but we
-			# named it poorly from when this was a table so now we're
-			# stuck with it
-			Xml::openElement( 'div', [ 'id' => 'mw-search-top-table' ] ) .
-			$this->shortDialog( $term, $num, $totalRes ) .
-			Xml::closeElement( 'div' ) .
-			$this->searchProfileTabs( $term ) .
-			$this->searchOptions( $term ) .
-			Xml::closeElement( 'form' ) .
+			Xml::openElement(
+				'form',
+				[
+					'id' => ( $this->isPowerSearch() ? 'powersearch' : 'search' ),
+					'method' => 'get',
+					'action' => wfScript(),
+				]
+			) .
+				# This is an awful awful ID name. It's not a table, but we
+				# named it poorly from when this was a table so now we're
+				# stuck with it
+				"<div id='mw-search-top-table'>" .
+					$this->shortDialog( $term, $num, $totalRes ) .
+				"</div>" .
+				$this->searchProfileTabs( $term ) .
+				$this->searchOptions( $term ) .
+			'</form>' .
 			$didYouMeanHtml
 		);
 
