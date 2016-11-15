@@ -1,33 +1,44 @@
-/*jshint node:true */
+/* eslint-env node */
+
 module.exports = function ( grunt ) {
-	grunt.loadNpmTasks( 'grunt-contrib-copy' );
-	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
-	grunt.loadNpmTasks( 'grunt-stylelint' );
-	grunt.loadNpmTasks( 'grunt-contrib-watch' );
-	grunt.loadNpmTasks( 'grunt-banana-checker' );
-	grunt.loadNpmTasks( 'grunt-jscs' );
-	grunt.loadNpmTasks( 'grunt-jsonlint' );
-	grunt.loadNpmTasks( 'grunt-karma' );
 
 	var wgServer = process.env.MW_SERVER,
 		wgScriptPath = process.env.MW_SCRIPT_PATH,
 		karmaProxy = {};
 
+	grunt.loadNpmTasks( 'grunt-banana-checker' );
+	grunt.loadNpmTasks( 'grunt-contrib-copy' );
+	grunt.loadNpmTasks( 'grunt-contrib-watch' );
+	grunt.loadNpmTasks( 'grunt-eslint' );
+	grunt.loadNpmTasks( 'grunt-jsonlint' );
+	grunt.loadNpmTasks( 'grunt-karma' );
+	grunt.loadNpmTasks( 'grunt-stylelint' );
+
 	karmaProxy[ wgScriptPath ] = wgServer + wgScriptPath;
 
 	grunt.initConfig( {
-		jshint: {
-			options: {
-				jshintrc: true
-			},
-			all: '.'
-		},
-		jscs: {
-			all: '.'
+		eslint: {
+			all: [
+				'**/*.js',
+				'!docs/**',
+				'!tests/**',
+				'!extensions/**',
+				'!node_modules/**',
+				'!resources/lib/**',
+				'!resources/src/jquery.tipsy/**',
+				'!resources/src/jquery/jquery.farbtastic.js',
+				'!resources/src/mediawiki.libs/**',
+				'!skins/**',
+				'!vendor/**',
+				// Skip functions aren't even parseable
+				'!resources/src/dom-level2-skip.js',
+				'!resources/src/es5-skip.js',
+				'!resources/src/json-skip.js',
+				'!resources/src/mediawiki.hidpi-skip.js'
+			]
 		},
 		jsonlint: {
 			all: [
-				'.jscsrc',
 				'**/*.json',
 				'!{docs/js,extensions,node_modules,skins,vendor}/**'
 			]
@@ -48,7 +59,7 @@ module.exports = function ( grunt ) {
 		},
 		watch: {
 			files: [
-				'.{stylelintrc,jscsrc,jshintignore,jshintrc}',
+				'.{stylelintrc,eslint.json}',
 				'**/*',
 				'!{docs,extensions,node_modules,skins,vendor}/**'
 			],
@@ -103,7 +114,7 @@ module.exports = function ( grunt ) {
 		return !!( process.env.MW_SERVER && process.env.MW_SCRIPT_PATH );
 	} );
 
-	grunt.registerTask( 'lint', [ 'jshint', 'jscs', 'jsonlint', 'banana', 'stylelint' ] );
+	grunt.registerTask( 'lint', [ 'eslint', 'banana', 'stylelint' ] );
 	grunt.registerTask( 'qunit', [ 'assert-mw-env', 'karma:main' ] );
 
 	grunt.registerTask( 'test', [ 'lint' ] );

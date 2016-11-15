@@ -5,8 +5,11 @@
  * @class mw.special.upload
  * @singleton
  */
+
+/* global Uint8Array */
+
 ( function ( mw, $ ) {
-	/*jshint latedef:false */
+	/* jshint latedef:false */
 	var uploadWarning, uploadLicense,
 		ajaxUploadDestCheck = mw.config.get( 'wgAjaxUploadDestCheck' ),
 		$license = $( '#wpLicense' );
@@ -421,9 +424,8 @@
 			}, mw.config.get( 'wgFileCanRotate' ) ? function ( data ) {
 				try {
 					meta = mw.libs.jpegmeta( data, file.fileName );
-					// jscs:disable requireCamelCaseOrUpperCaseIdentifiers, disallowDanglingUnderscores
+					// eslint-disable-next-line no-underscore-dangle, camelcase
 					meta._binary_data = null;
-					// jscs:enable
 				} catch ( e ) {
 					meta = null;
 				}
@@ -531,10 +533,11 @@
 		if ( hasFileAPI() ) {
 			// Update thumbnail when the file selection control is updated.
 			$( '#wpUploadFile' ).change( function () {
+				var file;
 				clearPreview();
 				if ( this.files && this.files.length ) {
 					// Note: would need to be updated to handle multiple files.
-					var file = this.files[ 0 ];
+					file = this.files[ 0 ];
 
 					if ( !checkMaxUploadSize( file ) ) {
 						return;

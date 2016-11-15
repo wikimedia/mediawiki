@@ -353,7 +353,7 @@
 							$results.empty();
 							expWidth = -1;
 							for ( i = 0; i < context.config.suggestions.length; i++ ) {
-								/*jshint loopfunc:true */
+								/* jshint loopfunc:true */
 								text = context.config.suggestions[ i ];
 								$result = $( '<div>' )
 									.addClass( 'suggestions-result' )
@@ -758,9 +758,9 @@
 							46, // delete
 							8   // backspace
 						];
-						if ( context.data.keypressedCount === 0
-							&& e.which === context.data.keypressed
-							&& $.inArray( e.which, allowed ) !== -1
+						if ( context.data.keypressedCount === 0 &&
+							e.which === context.data.keypressed &&
+							$.inArray( e.which, allowed ) !== -1
 						) {
 							$.suggestions.keypress( e, context, context.data.keypressed );
 						}

@@ -59,6 +59,8 @@
 		 * @return {jQuery}
 		 */
 		createSpinner: function ( opts ) {
+			var $spinner;
+
 			if ( opts !== undefined && $.type( opts ) !== 'object' ) {
 				opts = {
 					id: opts
@@ -67,7 +69,7 @@
 
 			opts = $.extend( {}, defaults, opts );
 
-			var $spinner = $( '<div>' ).addClass( 'mw-spinner' ).attr( 'title', '...' );
+			$spinner = $( '<div>' ).addClass( 'mw-spinner' ).attr( 'title', '...' );
 			if ( opts.id !== undefined ) {
 				$spinner.attr( 'id', 'mw-spinner-' + opts.id );
 			}

@@ -1,0 +1,20 @@
+{
+	"extends": "wikimedia",
+	"env": {
+		"browser": true,
+		"jquery": true,
+		"qunit": true
+	},
+	"globals": {
+		"require": false,
+		"module": false,
+		"mediaWiki": false,
+		"mwPerformance": false,
+		"OO": false
+	},
+	"rules": {
+		"dot-notation": 0,
+		"valid-jsdoc": 0,
+		"no-use-before-define": 0
+	}
+}

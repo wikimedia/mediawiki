@@ -1,4 +1,3 @@
-/*global OO*/
 ( function ( mw ) {
 	/**
 	 * This is the abstract base class for MessagePoster implementations.
