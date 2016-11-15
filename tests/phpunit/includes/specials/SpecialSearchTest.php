@@ -121,13 +121,15 @@ class SpecialSearchTest extends MediaWikiTestCase {
 		] );
 
 		# Initialize [[Special::Search]]
+		$ctx = new RequestContext();
+		$term = '{{SITENAME}}';
+		$ctx->setRequest( new FauxRequest( [ 'search' => $term, 'fulltext' => 1 ] ) );
+		$ctx->setTitle( Title::newFromText( 'Special:Search' ) );
 		$search = new SpecialSearch();
-		$search->getContext()->setTitle( Title::newFromText( 'Special:Search' ) );
-		$search->load();
+		$search->setContext( $ctx );
 
 		# Simulate a user searching for a given term
-		$term = '{{SITENAME}}';
-		$search->showResults( $term );
+		$search->execute( '' );
 
 		# Lookup the HTML page title set for that page
 		$pageTitle = $search
