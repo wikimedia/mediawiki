@@ -1895,6 +1895,7 @@
 	"apisandbox-continue": "Fortfahren",
 	"apisandbox-continue-clear": "Löschen",
 	"apisandbox-continue-help": "Mit „{{int:apisandbox-continue}}“ kann man die letzte Anfrage [https://www.mediawiki.org/wiki/API:Query#Continuing_queries fortfahren]; „{{int:apisandbox-continue-clear}}“ löscht fortsetzungsbezogene Parameter.",
+	"apisandbox-param-limit": "Gib <kbd>max</kbd> ein, um das maximale Limit zu verwenden.",
 	"booksources": "ISBN-Suche",
 	"booksources-search-legend": "Suche nach Bezugsquellen für Bücher",
 	"booksources-search": "Suchen",
