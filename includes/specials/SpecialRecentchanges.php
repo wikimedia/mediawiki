@@ -91,6 +91,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$opts->add( 'categories_any', false );
 		$opts->add( 'tagfilter', '' );
 
+		$opts->add( 'userExpLevel', 'all' );
+
 		return $opts;
 	}
 
@@ -238,6 +240,15 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$join_conds,
 			$query_options,
 			$opts['tagfilter']
+		);
+
+		$this->filterOnUserExperienceLevel(
+			$tables,
+			$fields,
+			$conds,
+			$query_options,
+			$join_conds,
+			$opts
 		);
 
 		if ( !$this->runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds,
@@ -800,6 +811,78 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 	protected function getCacheTTL() {
 		return 60 * 5;
+	}
+
+	protected function filterOnUserExperienceLevel(
+		&$tables,
+		&$fields,
+		&$conds,
+		&$query_options,
+		&$join_conds,
+		$opts
+	) {
+		global $wgExperiencedUserEdits,
+			   $wgMoreExperiencedUserEdits,
+			   $wgExperiencedUserMemberSince,
+			   $wgMoreExperiencedUserMemberSince;
+		$now = time();
+		$secondsPerDay = 86400;
+		$experiencedUserCutoff = $now - $wgExperiencedUserMemberSince * $secondsPerDay;
+		$moreExperiencedUserCutoff = $now - $wgMoreExperiencedUserMemberSince * $secondsPerDay;
+
+		if ( $opts['userExpLevel'] !== 'all' ) {
+			$tables[] = 'user';
+			$join_conds['user'] = [ 'LEFT JOIN', 'rc_user = user_id' ];
+
+			$userConds = [];
+			$selectedExpLevels = explode( ',', strtolower( $opts['userExpLevel'] ) );
+
+			if ( array_search( 'newcomer', $selectedExpLevels ) !== false ) {
+				$userConds[] = $this->getDB()->makeList(
+					[
+						'user_editcount < ' . $wgExperiencedUserEdits,
+						'user_registration > ' . $this->getDB()->timestamp( $experiencedUserCutoff ),
+					],
+					IDatabase::LIST_OR
+				);
+			}
+
+			if ( array_search( 'experienced', $selectedExpLevels ) !== false ) {
+				$aboveNewcomer = $this->getDB()->makeList(
+					[
+						'user_editcount >= ' . $wgExperiencedUserEdits,
+						'user_registration <= ' . $this->getDB()->timestamp( $experiencedUserCutoff ),
+					],
+					IDatabase::LIST_AND
+				);
+
+				$belowMoreExperienced = $this->getDB()->makeList(
+					[
+						'user_editcount < ' . $wgMoreExperiencedUserEdits,
+						'user_registration > ' . $this->getDB()->timestamp( $moreExperiencedUserCutoff ),
+					],
+					IDatabase::LIST_OR
+				);
+
+				$userConds[] = $this->getDB()->makeList(
+					[ $aboveNewcomer, $belowMoreExperienced ],
+					IDatabase::LIST_AND
+				);
+			}
+
+			if ( array_search( 'moreexperienced', $selectedExpLevels ) !== false ) {
+				$userConds[] = $this->getDB()->makeList(
+					[
+						'user_editcount >= ' . $wgMoreExperiencedUserEdits,
+						'user_registration <= ' . $this->getDB()->timestamp( $moreExperiencedUserCutoff ),
+					],
+					IDatabase::LIST_AND
+				);
+			}
+
+			$conds[] = $this->getDB()->makeList( $userConds, IDatabase::LIST_OR );
+			return $conds;
+		}
 	}
 
 }
