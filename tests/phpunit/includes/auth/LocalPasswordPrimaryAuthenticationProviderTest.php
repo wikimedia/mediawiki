@@ -450,7 +450,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		$changeReq->password = $newpass;
 		$provider->providerChangeAuthenticationData( $changeReq );
 
-		if ( $loginOnly ) {
+		if ( $loginOnly && $changed ) {
 			$old = 'fail';
 			$new = 'fail';
 			$expectExpiry = null;
