@@ -719,8 +719,9 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		$out .= "<ul class='mw-search-results'>\n";
+		$widget = new \MediaWiki\Widget\FullSearchResultWidget( $this );
 		while ( $result ) {
-			$out .= $this->showHit( $result, $terms, $pos++ );
+			$out .= $widget->render( $result, $terms, $pos++ );
 			$result = $matches->next();
 		}
 		$out .= "</ul>\n";
@@ -729,167 +730,6 @@ class SpecialSearch extends SpecialPage {
 		$out = $wgContLang->convert( $out );
 
 		return $out;
-	}
-
-	/**
-	 * Format a single hit result
-	 *
-	 * @param SearchResult $result
-	 * @param array $terms Terms to highlight
-	 * @param int $position Position within the search results, including offset.
-	 *
-	 * @return string
-	 */
-	protected function showHit( SearchResult $result, $terms, $position ) {
-		if ( $result->isBrokenTitle() ) {
-			return '';
-		}
-
-		$title = $result->getTitle();
-
-		$titleSnippet = $result->getTitleSnippet();
-
-		if ( $titleSnippet == '' ) {
-			$titleSnippet = null;
-		}
-
-		$link_t = clone $title;
-		$query = [];
-
-		Hooks::run( 'ShowSearchHitTitle',
-			[ &$link_t, &$titleSnippet, $result, $terms, $this, &$query ] );
-
-		$link = Linker::linkKnown(
-			$link_t,
-			$titleSnippet,
-			[ 'data-serp-pos' => $position ], // HTML attributes
-			$query
-		);
-
-		// If page content is not readable, just return the title.
-		// This is not quite safe, but better than showing excerpts from non-readable pages
-		// Note that hiding the entry entirely would screw up paging.
-		if ( !$title->userCan( 'read', $this->getUser() ) ) {
-			return "<li>{$link}</li>\n";
-		}
-
-		// If the page doesn't *exist*... our search index is out of date.
-		// The least confusing at this point is to drop the result.
-		// You may get less results, but... oh well. :P
-		if ( $result->isMissingRevision() ) {
-			return '';
-		}
-
-		// format redirects / relevant sections
-		$redirectTitle = $result->getRedirectTitle();
-		$redirectText = $result->getRedirectSnippet();
-		$sectionTitle = $result->getSectionTitle();
-		$sectionText = $result->getSectionSnippet();
-		$categorySnippet = $result->getCategorySnippet();
-
-		$redirect = '';
-		if ( !is_null( $redirectTitle ) ) {
-			if ( $redirectText == '' ) {
-				$redirectText = null;
-			}
-
-			$redirect = "<span class='searchalttitle'>" .
-				$this->msg( 'search-redirect' )->rawParams(
-					Linker::linkKnown( $redirectTitle, $redirectText ) )->text() .
-				"</span>";
-		}
-
-		$section = '';
-		if ( !is_null( $sectionTitle ) ) {
-			if ( $sectionText == '' ) {
-				$sectionText = null;
-			}
-
-			$section = "<span class='searchalttitle'>" .
-				$this->msg( 'search-section' )->rawParams(
-					Linker::linkKnown( $sectionTitle, $sectionText ) )->text() .
-				"</span>";
-		}
-
-		$category = '';
-		if ( $categorySnippet ) {
-			$category = "<span class='searchalttitle'>" .
-				$this->msg( 'search-category' )->rawParams( $categorySnippet )->text() .
-				"</span>";
-		}
-
-		// format text extract
-		$extract = "<div class='searchresult'>" . $result->getTextSnippet( $terms ) . "</div>";
-
-		$lang = $this->getLanguage();
-
-		// format description
-		$byteSize = $result->getByteSize();
-		$wordCount = $result->getWordCount();
-		$timestamp = $result->getTimestamp();
-		$size = $this->msg( 'search-result-size', $lang->formatSize( $byteSize ) )
-			->numParams( $wordCount )->escaped();
-
-		if ( $title->getNamespace() == NS_CATEGORY ) {
-			$cat = Category::newFromTitle( $title );
-			$size = $this->msg( 'search-result-category-size' )
-				->numParams( $cat->getPageCount(), $cat->getSubcatCount(), $cat->getFileCount() )
-				->escaped();
-		}
-
-		$date = $lang->userTimeAndDate( $timestamp, $this->getUser() );
-
-		$fileMatch = '';
-		// Include a thumbnail for media files...
-		if ( $title->getNamespace() == NS_FILE ) {
-			$img = $result->getFile();
-			$img = $img ?: wfFindFile( $title );
-			if ( $result->isFileMatch() ) {
-				$fileMatch = "<span class='searchalttitle'>" .
-					$this->msg( 'search-file-match' )->escaped() . "</span>";
-			}
-			if ( $img ) {
-				$thumb = $img->transform( [ 'width' => 120, 'height' => 120 ] );
-				if ( $thumb ) {
-					$desc = $this->msg( 'parentheses' )->rawParams( $img->getShortDesc() )->escaped();
-					// Float doesn't seem to interact well with the bullets.
-					// Table messes up vertical alignment of the bullets.
-					// Bullets are therefore disabled (didn't look great anyway).
-					return "<li>" .
-						'<table class="searchResultImage">' .
-						'<tr>' .
-						'<td style="width: 120px; text-align: center; vertical-align: top;">' .
-						$thumb->toHtml( [ 'desc-link' => true ] ) .
-						'</td>' .
-						'<td style="vertical-align: top;">' .
-						"{$link} {$redirect} {$category} {$section} {$fileMatch}" .
-						$extract .
-						"<div class='mw-search-result-data'>{$desc} - {$date}</div>" .
-						'</td>' .
-						'</tr>' .
-						'</table>' .
-						"</li>\n";
-				}
-			}
-		}
-
-		$html = null;
-
-		$score = '';
-		$related = '';
-		if ( Hooks::run( 'ShowSearchHit', [
-			$this, $result, $terms,
-			&$link, &$redirect, &$section, &$extract,
-			&$score, &$size, &$date, &$related,
-			&$html
-		] ) ) {
-			$html = "<li><div class='mw-search-result-heading'>" .
-				"{$link} {$redirect} {$category} {$section} {$fileMatch}</div> {$extract}\n" .
-				"<div class='mw-search-result-data'>{$size} - {$date}</div>" .
-				"</li>\n";
-		}
-
-		return $html;
 	}
 
 	/**
@@ -920,9 +760,6 @@ class SpecialSearch extends SpecialPage {
 	protected function showInterwiki( $matches, $query ) {
 		global $wgContLang;
 
-		$out = "<div id='mw-search-interwiki'><div id='mw-search-interwiki-caption'>" .
-			$this->msg( 'search-interwiki-caption' )->text() . "</div>\n";
-		$out .= "<ul class='mw-search-iwresults'>\n";
 
 		// work out custom project captions
 		$this->getCustomCaptions();
@@ -931,97 +768,63 @@ class SpecialSearch extends SpecialPage {
 			$matches = [ $matches ];
 		}
 
+		$iwResults = [];
 		foreach ( $matches as $set ) {
-			$prev = null;
 			$result = $set->next();
 			while ( $result ) {
-				$out .= $this->showInterwikiHit( $result, $prev, $query );
-				$prev = $result->getInterwikiPrefix();
+				if ( !$result->isBrokenTitle() ) {
+					$iwResults[$result->getTitle()->getInterwiki()][] = $result;
+				}
 				$result = $set->next();
 			}
 		}
 
-		// @todo Should support paging in a non-confusing way (not sure how though, maybe via ajax)..
-		$out .= "</ul></div>\n";
+		$out = '';
+		$widget = new MediaWiki\Widget\SimpleSearchResultWidget( $this );
+		foreach ( $iwResults as $iwPrefix => $results ) {
+			$out .= $this->iwHeaderHtml( $iwPrefix );
+			$out .= "<ul class='mw-search-iwresults'>";
+			foreach ( $results as $result ) {
+				$out .= $widget->render( $result );
+			}
+			$ot .= "</ul>";
+		}
+
+		$out =
+			"<div id='mw-search-interwiki'>" .
+				"<div id='mw-search-interwiki-caption'>" .
+					$this->msg( 'search-interwiki-caption' )->text() .
+				"</div>" .
+				$out .
+			"</div>";
 
 		// convert the whole thing to desired language variant
-		$out = $wgContLang->convert( $out );
-
-		return $out;
+		return $wgContLang->convert( $out );
 	}
 
-	/**
-	 * Show single interwiki link
-	 *
-	 * @param SearchResult $result
-	 * @param string $lastInterwiki
-	 * @param string $query
-	 *
-	 * @return string
-	 */
-	protected function showInterwikiHit( $result, $lastInterwiki, $query ) {
-		if ( $result->isBrokenTitle() ) {
-			return '';
+	protected function iwHeaderHtml( $iwPrefix ) {
+		if ( isset( $this->customCaptions[$iwPrefix] ) ) {
+			$caption = $this->customCaptions[$iwPrefix];
+		} else {
+			$iwLookup = MediaWiki\MediaWikiServices::getInstance()->getInterwikiLookup();
+			$interwiki = $iwLookup->fetch( $iwPrefix );
+			$parsed = wfParseUrl( wfExpandUrl( $interwiki ? $interwiki->getURL() : '/' ) );
+			$caption = $this->msg( 'search-interwiki-default', $parsed['host'] )->text();
 		}
-
-		$title = $result->getTitle();
-
-		$titleSnippet = $result->getTitleSnippet();
-
-		if ( $titleSnippet == '' ) {
-			$titleSnippet = null;
-		}
-
-		$link = Linker::linkKnown(
-			$title,
-			$titleSnippet
+		$searchLink = Linker::linkKnown(
+			Title::newFromText( "$iwPrefix:Special:Search" ),
+			$this->msg( 'search-interwiki-more' )->text(),
+			[],
+			[
+				'search' => $query,
+				'fulltext' => 1,
+			]
 		);
-
-		// format redirect if any
-		$redirectTitle = $result->getRedirectTitle();
-		$redirectText = $result->getRedirectSnippet();
-		$redirect = '';
-		if ( !is_null( $redirectTitle ) ) {
-			if ( $redirectText == '' ) {
-				$redirectText = null;
-			}
-
-			$redirect = "<span class='searchalttitle'>" .
-				$this->msg( 'search-redirect' )->rawParams(
-					Linker::linkKnown( $redirectTitle, $redirectText ) )->text() .
-				"</span>";
-		}
-
-		$out = "";
-		// display project name
-		if ( is_null( $lastInterwiki ) || $lastInterwiki != $title->getInterwiki() ) {
-			if ( array_key_exists( $title->getInterwiki(), $this->customCaptions ) ) {
-				// captions from 'search-interwiki-custom'
-				$caption = $this->customCaptions[$title->getInterwiki()];
-			} else {
-				// default is to show the hostname of the other wiki which might suck
-				// if there are many wikis on one hostname
-				$parsed = wfParseUrl( $title->getFullURL() );
-				$caption = $this->msg( 'search-interwiki-default', $parsed['host'] )->text();
-			}
-			// "more results" link (special page stuff could be localized, but we might not know target lang)
-			$searchTitle = Title::newFromText( $title->getInterwiki() . ":Special:Search" );
-			$searchLink = Linker::linkKnown(
-				$searchTitle,
-				$this->msg( 'search-interwiki-more' )->text(),
-				[],
-				[
-					'search' => $query,
-					'fulltext' => 'Search'
-				]
-			);
-			$out .= "</ul><div class='mw-search-interwiki-project'><span class='mw-search-interwiki-more'>
-				{$searchLink}</span>{$caption}</div>\n<ul>";
-		}
-
-		$out .= "<li>{$link} {$redirect}</li>\n";
-
-		return $out;
+		return
+			"<div class='mw-search-interwiki-project'>" .
+				"<span class='mw-search-interwiki-more'>{$searchLink}</span>" .
+				$caption .
+			"</div>";
 	}
 
 	/**
