@@ -90,7 +90,9 @@ abstract class ParameterizedPassword extends Password {
 			$str .= $this->getDelimiter();
 		}
 
-		return $str . $this->hash;
+		$res = $str . $this->hash;
+		$this->assertIsSafeSize( $res );
+		return $res;
 	}
 
 	/**
