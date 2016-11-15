@@ -405,7 +405,6 @@
 	"yourpasswordagain": "密码再打一遍:",
 	"createacct-yourpasswordagain": "确认密码",
 	"createacct-yourpasswordagain-ph": "再打一遍密码",
-	"remembermypassword": "来箇只浏览器上记牢我个登录状态（顶长$1天）",
 	"userlogin-remembermypassword": "记牢我个登录状态",
 	"userlogin-signwithsecure": "用保险链接",
 	"yourdomainname": "侬个域名：",

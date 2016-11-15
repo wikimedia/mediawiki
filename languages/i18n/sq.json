@@ -1623,8 +1623,6 @@
 	"activeusers-intro": "Kjo është një listë e përdoruesve që kanë qenë aktivë për $1 {{PLURAL:$1|ditë|ditë}}.",
 	"activeusers-count": "$1 {{PLURAL:$1|redaktim|redaktime}} në {{PLURAL:$3|ditën|$3 ditët}} e fundit",
 	"activeusers-from": "Trego përdoruesit duke filluar prej te:",
-	"activeusers-hidebots": "Fshih robotët",
-	"activeusers-hidesysops": "Fshih administratorët",
 	"activeusers-noresult": "Asnjë përdorues nuk u gjet.",
 	"listgrouprights": "Grupime përdoruesish me privilegje",
 	"listgrouprights-summary": "Më poshtë jepet grupimi i përdoruesve sipas privilegjeve që ju janë dhënë në këtë wiki. Më shumë informacion rreth privilegjeve në veçanti mund të gjendet [[{{MediaWiki:Listgrouprights-helppage}}|këtu]].",

@@ -658,7 +658,7 @@
 	"passwordreset-emailelement": "Kullanıcı adı: \n$1\n\nGeçici şifre: \n$2",
 	"passwordreset-emailsentemail": "Eğer bu e-posta adresi hesabınızın bağlı olduğu adres ise, bir parola sıfırlama e-postası gönderilecektir.",
 	"passwordreset-emailsentusername": "Eğer bu e-posta adresi hesabınızın bağlı olduğu adres ise, bir parola sıfırlama e-postası gönderilecektir.",
-	"passwordreset-invalideamil": "Geçersiz e-posta adresi",
+	"passwordreset-invalidemail": "Geçersiz e-posta adresi",
 	"passwordreset-nodata": "Ne bir kullanıcı adı ne de bir e-posta adresi verildi.",
 	"changeemail": "E-posta adresini değiştir veya çıkar",
 	"changeemail-header": "E-posta adresinizi değiştirmek için bu formu doldurun. Eğer e-posta adresini hesabınızdan kaldırmak istiyorsanız formu gönderirken e-posta adresi bölümünü boş bırakın.",

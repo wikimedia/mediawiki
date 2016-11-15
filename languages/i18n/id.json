@@ -632,7 +632,7 @@
 	"passwordreset-nocaller": "Pemanggil harus diberikan",
 	"passwordreset-nosuchcaller": "Pemanggil tidak ada: $1",
 	"passwordreset-ignored": "Pemulihan kata sandi tidak tertangani. Mungkin penyedia tidak diatur?",
-	"passwordreset-invalideamil": "Alamat surel tidak sah",
+	"passwordreset-invalidemail": "Alamat surel tidak sah",
 	"passwordreset-nodata": "Nama pengguna ataupun alamat surel tidak diberikan",
 	"changeemail": "Ubah atau hapus alamat surel",
 	"changeemail-header": "Lengkapi formulir ini untuk mengubah alamat surel Anda. Jika Anda ingin menghapus seluruh alamat surel yang berkaitan dengan akun Anda, kosongkan alamat surel ketika mengirim formulir.",

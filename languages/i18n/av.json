@@ -235,7 +235,6 @@
 	"yourpasswordagain": "Пароль такрар гьабе:",
 	"createacct-yourpasswordagain": "Пароль ритIухъ гьабе",
 	"createacct-yourpasswordagain-ph": "Пароль цоги нухалъ хъвай",
-	"remembermypassword": "Дир цIарги парольги гьаб компьютералда цIунизе (гIицIго $1 {{PLURAL:$1|къоялъ}})",
 	"userlogin-remembermypassword": "Системаялда чӀезе",
 	"yourdomainname": "Дур домен:",
 	"password-change-forbidden": "Гьаб викиялда пароль хисизабун бажаруларо дуда.",

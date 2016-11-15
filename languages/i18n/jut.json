@@ -340,7 +340,6 @@
 	"yourpasswordagain": "Djentast adgångskode:",
 	"createacct-yourpasswordagain": "Bekräft adgångskode",
 	"createacct-yourpasswordagain-ph": "Intast adgångskode idjen",
-	"remembermypassword": "Husk min brugenaun i denn browser (hyest $1 {{PLURAL:$1|daw}})",
 	"userlogin-remembermypassword": "Husk mej",
 	"userlogin-signwithsecure": "Brug siker forbinjels",
 	"yourdomainname": "Det domænnaun:",

@@ -1400,8 +1400,6 @@
 	"activeusers-intro": "اے اوناں ورتن والیاں دی لسٹ اے جنان پچھلے $1 {{PLURAL:$1|دن|دناں}} چ کم کیتا اے۔",
 	"activeusers-count": "$1 {{PLURAL:$1|تبدیلی|تبدیلیاں}} پچھلے{{PLURAL:$3|دن|$3 دن}} چ",
 	"activeusers-from": "ورتن والے ایس توں شروع ہون والے دسو:",
-	"activeusers-hidebots": "بوٹ چھپاؤ",
-	"activeusers-hidesysops": "مکھۓ لکاؤ",
 	"activeusers-noresult": "کوئی ورتن والا نئیں لبیا۔",
 	"listgrouprights": "ورتن ٹرلی حق",
 	"listgrouprights-summary": "تھلے اک لسٹ اے ورتن ٹولیاں دی ای وکی تے، اپنے رلدے حقاں نال۔ \n\nہربندے دے ح‍ق‍اں [[{{MediaWiki:Listgrouprights-helppage}}|ہور جانکاری]]",

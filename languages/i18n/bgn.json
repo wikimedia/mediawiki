@@ -2765,7 +2765,7 @@
 	"logentry-protect-modify-cascade": "$1 $3 $4 ئ قُلپئ اندازه گا په {{GENDER:$2|تغییر دات}}[آپشاری]",
 	"logentry-rights-rights": "$1 ، $3 ئی عضویتا شه $4 ئی گروپا بئ $5 {{GENDER:$2|تغییر دات}}",
 	"logentry-rights-rights-legacy": "$1 عضویتئ گروپا بئ $3 ئا {{GENDER:$2|تغییر دات}}",
-	"logentry-rights-autopromote": "$1 بئ اوتوماتیکین رکما وتر شه $4 بئ $5 {{GENDER:$2|ارتقاء دات}}",
+	"logentry-rights-autopromote": "$1 بِه اوتوماتیکین رقما شه $4 بِه $5‌ئا {{GENDER:$2|ارتقاء کورت}}",
 	"logentry-upload-upload": "$1 $3 ئا {{GENDER:$2|بُرز کورت}}",
 	"logentry-upload-overwrite": "$1 نوکین نخسه ئی شه $3 ئا {{GENDER:$2|بُرز کورت}}",
 	"logentry-upload-revert": "$1 {{GENDER:$2|بُرز کورت}} $3 ئا",

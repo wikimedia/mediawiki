@@ -479,7 +479,7 @@
 	"passwordreset-email": "برق ٽپال پتو:",
 	"passwordreset-emailtitle": "{{SITENAME}} واري کاتي جا تفصيل",
 	"passwordreset-emailelement": "يُوزر نانءُ: \n$1\n\nعارضي ڳجھو لفظ:\n$2",
-	"passwordreset-invalideamil": "ناقابل ڪار برق ٽپال پتو",
+	"passwordreset-invalidemail": "ناقابل ڪار برق ٽپال پتو",
 	"changeemail": "برق ٽپال پتو مِٽايو يا بدلايو",
 	"changeemail-oldemail": "هاڻوڪو برق ٽپال پتو:",
 	"changeemail-newemail": "نئون برق ٽپال پتو:",
