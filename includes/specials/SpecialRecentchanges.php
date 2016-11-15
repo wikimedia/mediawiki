@@ -91,6 +91,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$opts->add( 'categories_any', false );
 		$opts->add( 'tagfilter', '' );
 
+		$opts->add( 'userExpLevel', 'all' );
+
 		return $opts;
 	}
 
@@ -239,6 +241,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$query_options,
 			$opts['tagfilter']
 		);
+
+		$this->filterOnUserExperienceLevel( $tables, $fields, $conds, $query_options, $join_conds, $opts );
 
 		if ( !$this->runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds,
 			$opts )
@@ -800,6 +804,37 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 	protected function getCacheTTL() {
 		return 60 * 5;
+	}
+
+	protected function filterOnUserExperienceLevel( &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts ) {
+		$now = time();
+		$days = 86400;
+		$newcomerCutoff = $now - 4 * $days;
+		$newcomerEdits = 10;
+		$moreExperiencedCutoff = $now - 30 * $days;
+		$moreExperiencedEdits = 500;
+
+		if ( $opts['userExpLevel'] !== 'all' && !$opts['hideliu'] ) {
+			$tables[] = 'user';
+			$join_conds['user'] = [ 'LEFT JOIN', 'rc_user = user_id' ];
+
+			$userConds = [];
+			$selectedExpLevels = explode( ',', strtolower( $opts['userExpLevel'] ) );
+
+			if ( array_search( 'newcomer', $selectedExpLevels ) !== false ) {
+				$userConds[] = $this->getDB()->makeList(
+					[
+						'user_editcount < ' . $newcomerEdits,
+						'user_registration > ' . $this->getDB()->timestamp( $newcomerCutoff ),
+					],
+					IDatabase::LIST_AND
+				);
+			}
+
+			$conds[] = $this->getDB()->makeList( $userConds, IDatabase::LIST_OR );
+
+			return $conds;
+		}
 	}
 
 }
