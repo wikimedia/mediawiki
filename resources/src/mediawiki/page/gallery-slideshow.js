@@ -450,8 +450,8 @@
 	};
 
 	// Bootstrap all slideshow galleries
-	$( function () {
-		$( '.mw-gallery-slideshow' ).each( function () {
+	mw.hook( 'wikipage.content' ).add( function ( $content ) {
+		$content.find( '.mw-gallery-slideshow' ).each( function () {
 			/*jshint -W031 */
 			new mw.GallerySlideshow( this );
 			/*jshint +W031 */
