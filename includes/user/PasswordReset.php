@@ -134,12 +134,14 @@ class PasswordReset {
 		if ( $resetRoutes['username'] && $username ) {
 			$method = 'username';
 			$users = [ User::newFromName( $username ) ];
+			$email = null;
 		} elseif ( $resetRoutes['email'] && $email ) {
 			if ( !Sanitizer::validateEmail( $email ) ) {
 				return StatusValue::newFatal( 'passwordreset-invalidemail' );
 			}
 			$method = 'email';
 			$users = $this->getUsersByEmail( $email );
+			$username = null;
 		} else {
 			// The user didn't supply any data
 			return StatusValue::newFatal( 'passwordreset-nodata' );
