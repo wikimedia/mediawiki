@@ -37,7 +37,9 @@
  *      MediaWiki code base.
  */
 
-use MediaWiki\Interwiki\ClassicInterwikiLookup;
+use MediaWiki\Interwiki\CdbInterwikiLookup;
+use MediaWiki\Interwiki\HashInterwikiLookup;
+use MediaWiki\Interwiki\DatabaseInterwikiLookup;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -94,14 +96,28 @@ return [
 	'InterwikiLookup' => function( MediaWikiServices $services ) {
 		global $wgContLang; // TODO: manage $wgContLang as a service
 		$config = $services->getMainConfig();
-		return new ClassicInterwikiLookup(
-			$wgContLang,
-			ObjectCache::getMainWANInstance(),
-			$config->get( 'InterwikiExpiry' ),
-			$config->get( 'InterwikiCache' ),
-			$config->get( 'InterwikiScopes' ),
-			$config->get( 'InterwikiFallbackSite' )
-		);
+		$iwCache = $config->get( 'InterwikiCache' );
+		if ( is_string( $iwCache ) ) {
+			return new CdbInterwikiLookup(
+				$wgContLang,
+				$iwCache,
+				$config->get( 'InterwikiScopes' ),
+				$config->get( 'InterwikiFallbackSite' )
+			);
+		} elseif ( is_array( $iwCache ) ) {
+			return new HashInterwikiLookup(
+				$wgContLang,
+				$iwCache,
+				$config->get( 'InterwikiScopes' ),
+				$config->get( 'InterwikiFallbackSite' )
+			);
+		} else {
+			return new DatabaseInterwikiLookup(
+				$wgContLang,
+				ObjectCache::getMainWANInstance(),
+				$config->get( 'InterwikiExpiry' )
+			);
+		}
 	},
 
 	'StatsdDataFactory' => function( MediaWikiServices $services ) {
