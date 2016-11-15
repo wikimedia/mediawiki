@@ -6,6 +6,8 @@ MediaWiki 1.29 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.29 ===
+* Default cookis expiration time has been reduced to 30 days. Login cookie expiration time is
+  kept at 180 days.
 
 === New features in 1.29 ===
 
