@@ -669,7 +669,7 @@
 		mw.config.set( 'wgUserLanguage', oldUserLang );
 	} );
 
-	QUnit.test( 'Int', 4, function ( assert ) {
+	QUnit.test( 'Int', 6, function ( assert ) {
 		var newarticletextSource = 'You have followed a link to a page that does not exist yet. To create the page, start typing in the box below (see the [[{{Int:Foobar}}|foobar]] for more info). If you are here by mistake, click your browser\'s back button.',
 			expectedNewarticletext,
 			helpPageTitle = 'Help:Foobar';
@@ -706,8 +706,21 @@
 
 		assert.equal(
 			formatParse( 'uses-missing-int' ),
-			'[doesnt-exist]',
+			'⧼doesnt-exist⧽',
 			'int: where nested message does not exist'
+		);
+
+		mw.messages.set( 'uses-bad-int', '{{int:doesnt<>exist}}' );
+
+		assert.equal(
+			formatParse( 'uses-bad-int' ),
+			'⧼doesnt&lt;&gt;exist⧽',
+			'int: where nested message is invalid, HTML escaping'
+		);
+		assert.equal(
+			formatText( 'uses-bad-int' ),
+			'⧼doesnt<>exist⧽',
+			'int: where nested message is invalid, no HTML escaping in text format'
 		);
 	} );
 
