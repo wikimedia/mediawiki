@@ -715,6 +715,8 @@
 
 		/**
 		 * Update the current query when the page hash changes
+		 *
+		 * @return {boolean} Successful
 		 */
 		loadFromHash: function () {
 			var params, m, re,

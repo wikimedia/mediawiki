@@ -4,6 +4,8 @@
 		/**
 		 * Set up the protection chaining interface (i.e. "unlock move permissions" checkbox)
 		 * on the protection form
+		 *
+		 * @return {boolean}
 		 */
 		init: function () {
 			var $cell = $( '<td>' ),
@@ -47,6 +49,7 @@
 			$( '#mwProtect-reason' ).byteLimit( 180 );
 
 			this.updateCascadeCheckbox();
+			return true;
 		},
 
 		/**

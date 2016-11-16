@@ -166,6 +166,8 @@
 
 	/**
 	 * @deprecated since 1.17 Use mw.loader instead. Warnings added in 1.25.
+	 * @param {string} url
+	 * @return {HTMLElement} Script tag
 	 */
 	function importScriptURI( url ) {
 		var s;
@@ -188,6 +190,9 @@
 
 	/**
 	 * @deprecated since 1.17 Use mw.loader instead. Warnings added in 1.25.
+	 * @param {string} url
+	 * @param {string} media
+	 * @return {HTMLElement} Link tag
 	 */
 	function importStylesheetURI( url, media ) {
 		var l = document.createElement( 'link' );

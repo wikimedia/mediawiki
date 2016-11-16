@@ -50,6 +50,7 @@
 		 * Encode the string like PHP's rawurlencode
 		 *
 		 * @param {string} str String to be encoded.
+		 * @return {string} Encoded string
 		 */
 		rawurlencode: function ( str ) {
 			str = String( str );
@@ -62,6 +63,7 @@
 		 * Encode the string like Sanitizer::escapeId in PHP
 		 *
 		 * @param {string} str String to be encoded.
+		 * @return {string} Encoded string
 		 */
 		escapeId: function ( str ) {
 			str = String( str );
@@ -80,6 +82,7 @@
 		 * of `wfUrlencode` in PHP.
 		 *
 		 * @param {string} str String to be encoded.
+		 * @return {string} Encoded string
 		 */
 		wikiUrlencode: function ( str ) {
 			return util.rawurlencode( str )
