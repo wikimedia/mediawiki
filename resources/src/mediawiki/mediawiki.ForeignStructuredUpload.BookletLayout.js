@@ -381,7 +381,6 @@
 		if ( file && file.type === 'image/jpeg' ) {
 			fileReader = new FileReader();
 			fileReader.onload = function () {
-				// TODO: fileStr is never used.
 				var fileStr, arr, i, metadata;
 
 				if ( typeof fileReader.result === 'string' ) {
