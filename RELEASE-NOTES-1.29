@@ -6,6 +6,8 @@ MediaWiki 1.29 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.29 ===
+* The resetpassword right and associated password reset capture feature has
+  been removed.
 
 === New features in 1.29 ===
 
@@ -24,6 +26,7 @@ production.
   action=createaccount, action=linkaccount, and action=changeauthenticationdata
   in the query string is now an error. They should be submitted in the POST
   body instead.
+* The capture option for action=resetpassword has been removed
 
 === Action API internal changes in 1.29 ===
 
