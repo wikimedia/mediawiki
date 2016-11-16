@@ -32,14 +32,17 @@
 
 		/**
 		 * Helper function to get an IE TextRange object for an element
+		 *
+		 * @param {HTMLElement} element
+		 * @return {TextRange}
 		 */
-		function rangeForElementIE( e ) {
+		function rangeForElementIE( element ) {
 			var sel;
-			if ( e.nodeName.toLowerCase() === 'input' ) {
-				return e.createTextRange();
+			if ( element.nodeName.toLowerCase() === 'input' ) {
+				return element.createTextRange();
 			} else {
 				sel = document.body.createTextRange();
-				sel.moveToElementText( e );
+				sel.moveToElementText( element );
 				return sel;
 			}
 		}
@@ -48,6 +51,8 @@
 		 * Helper function for IE for activating the textarea. Called only in the
 		 * IE-specific code paths below; makes use of IE-specific non-standard
 		 * function setActive() if possible to avoid screen flicker.
+		 *
+		 * @param {HTMLElement} element
 		 */
 		function activateElementOnIE( element ) {
 			if ( element.setActive ) {
@@ -60,12 +65,16 @@
 		fn = {
 			/**
 			 * Get the contents of the textarea
+			 *
+			 * @return {string}
 			 */
 			getContents: function () {
 				return this.val();
 			},
 			/**
 			 * Set the contents of the textarea, replacing anything that was there before
+			 *
+			 * @param {string} content
 			 */
 			setContents: function ( content ) {
 				this.val( content );
@@ -73,6 +82,8 @@
 			/**
 			 * Get the currently selected text in this textarea. Will focus the textarea
 			 * in some browsers (IE/Opera)
+			 *
+			 * @return {string}
 			 */
 			getSelection: function () {
 				var retval, range,
@@ -97,7 +108,9 @@
 			 * Inserts text at the beginning and end of a text selection, optionally
 			 * inserting text at the caret when selection is empty.
 			 *
+			 * @param {Object} options Options
 			 * FIXME document the options parameters
+			 * @return {jQuery}
 			 */
 			encapsulateSelection: function ( options ) {
 				return this.each( function () {
@@ -133,6 +146,11 @@
 					 * Do the splitlines stuff.
 					 *
 					 * Wrap each line of the selected text with pre and post
+					 *
+					 * @param {string} selText Selected text
+					 * @param {string} pre Text before
+					 * @param {string} post Text after
+					 * @return {string} Wrapped text
 					 */
 					function doSplitLines( selText, pre, post ) {
 						var i,
@@ -269,7 +287,9 @@
 			 *
 			 * Will focus the textarea in some browsers (IE/Opera)
 			 *
+			 * @param {Object} options Options
 			 * FIXME document the options parameters
+			 * @return {number} Position
 			 */
 			getCaretPosition: function ( options ) {
 				function getCaret( e ) {
@@ -366,7 +386,9 @@
 				return getCaret( this.get( 0 ) );
 			},
 			/**
+			 * @param {Object} options options
 			 * FIXME document the options parameters
+			 * @return {jQuery}
 			 */
 			setSelection: function ( options ) {
 				return this.each( function () {
@@ -411,10 +433,11 @@
 			 * Scroll a textarea to the current cursor position. You can set the cursor
 			 * position with setSelection()
 			 *
-			 * @param {boolean} options Whether to force a scroll even if the caret position
-			 *  is already visible. Defaults to false
-			 *
-			 * FIXME document the options parameters (function body suggests options.force is a boolean, not options itself)
+			 * @param {Object} options options
+			 * @cfg {boolean} [force=false] Whether to force a scroll even if the caret position
+			 *  is already visible.
+			 * FIXME document the options parameters
+			 * @return {jQuery}
 			 */
 			scrollToCaretPosition: function ( options ) {
 				function getLineLength( e ) {

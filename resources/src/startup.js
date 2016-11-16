@@ -46,6 +46,9 @@ mwPerformance.mark( 'mwLoadStart' );
  * - Google Glass
  *
  * Other browsers that pass the check are considered Grade X.
+ *
+ * @param {string} [str] User agent, defaults to navigator.userAgent
+ * @return {boolean} User agent is compatible with MediaWiki JS
  */
 function isCompatible( str ) {
 	var ua = str || navigator.userAgent;

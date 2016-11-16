@@ -125,6 +125,7 @@
 		return this.local;
 	};
 
+	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Toggle whether dates are in local time or UTC
 	 *

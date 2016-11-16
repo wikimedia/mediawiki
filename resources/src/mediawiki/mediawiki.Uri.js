@@ -143,6 +143,7 @@
 	 * @param {string|Function} documentLocation A full url, or function returning one.
 	 *  If passed a function, the return value may change over time and this will be honoured. (T74334)
 	 * @member mw
+	 * @return {Function} Uri class
 	 */
 	mw.UriRelative = function ( documentLocation ) {
 		var getDefaultUri = ( function () {

@@ -23,6 +23,8 @@
 	 * @alternateClassName mw.Notification
 	 * @constructor
 	 * @private
+	 * @param {mw.Message|jQuery|HTMLElement|string} message
+	 * @param {Object} options
 	 */
 	function Notification( message, options ) {
 		var $notification, $notificationContent;

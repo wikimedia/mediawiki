@@ -304,6 +304,7 @@
 			return mw.format.apply( null, [ this.map.get( this.key ) ].concat( this.parameters ) );
 		},
 
+		// eslint-disable-next-line valid-jsdoc
 		/**
 		 * Add (does not replace) parameters for `$N` placeholder values.
 		 *
@@ -418,6 +419,7 @@
 		}
 	};
 
+	/* eslint-disable no-console */
 	log = ( function () {
 		// Also update the restoration of methods in mediawiki.log.js
 		// when adding or removing methods here.
@@ -506,6 +508,7 @@
 
 		return log;
 	}() );
+	/* eslint-enable no-console */
 
 	/**
 	 * @class mw
@@ -1241,6 +1244,8 @@
 			 * Utility function for execute()
 			 *
 			 * @ignore
+			 * @param {string} [media] Media attribute
+			 * @param {string} url URL
 			 */
 			function addLink( media, url ) {
 				var el = document.createElement( 'link' );
@@ -1506,6 +1511,8 @@
 			 * to a query string of the form foo.bar,baz|bar.baz,quux
 			 *
 			 * @private
+			 * @param {Object} moduleMap Module map
+			 * @return {string} Module query string
 			 */
 			function buildModulesString( moduleMap ) {
 				var p, prefix,
@@ -2147,6 +2154,8 @@
 				 *
 				 * @protected
 				 * @since 1.27
+				 * @param {string} moduleName Module name
+				 * @return {Mixed} Exported value
 				 */
 				require: function ( moduleName ) {
 					var state = mw.loader.getState( moduleName );
@@ -2313,6 +2322,7 @@
 					 *
 					 * @param {string} module Module name
 					 * @param {Object} descriptor The module's descriptor as set in the registry
+					 * @return {boolean} Module was set
 					 */
 					set: function ( module, descriptor ) {
 						var args, key, src;
@@ -2357,7 +2367,7 @@
 							}
 						} catch ( e ) {
 							mw.track( 'resourceloader.exception', { exception: e, source: 'store-localstorage-json' } );
-							return;
+							return false;
 						}
 
 						src = 'mw.loader.implement(' + args.join( ',' ) + ');';
@@ -2366,11 +2376,14 @@
 						}
 						mw.loader.store.items[ key ] = src;
 						mw.loader.store.update();
+						return true;
 					},
 
 					/**
 					 * Iterate through the module store, removing any item that does not correspond
 					 * (in name and version) to an item in the module registry.
+					 *
+					 * @return {boolean} Store was pruned
 					 */
 					prune: function () {
 						var key, module;
@@ -2389,6 +2402,7 @@
 								delete mw.loader.store.items[ key ];
 							}
 						}
+						return true;
 					},
 
 					/**
@@ -2570,6 +2584,8 @@
 				 * Wrapper object for raw HTML passed to mw.html.element().
 				 *
 				 * @class mw.html.Raw
+				 * @constructor
+				 * @param {string} value
 				 */
 				Raw: function ( value ) {
 					this.value = value;
@@ -2579,6 +2595,8 @@
 				 * Wrapper object for CDATA element contents passed to mw.html.element()
 				 *
 				 * @class mw.html.Cdata
+				 * @constructor
+				 * @param {string} value
 				 */
 				Cdata: function ( value ) {
 					this.value = value;
@@ -2677,6 +2695,7 @@
 					 */
 					remove: list.remove,
 
+					// eslint-disable-next-line valid-jsdoc
 					/**
 					 * Run a hook.
 					 *
@@ -2710,6 +2729,7 @@
 	 * @param {string} [data.module] Name of module which caused the error
 	 */
 	function logError( topic, data ) {
+		/* eslint-disable no-console */
 		var msg,
 			e = data.exception,
 			source = data.source,
@@ -2731,6 +2751,7 @@
 				console.error( String( e ), e );
 			}
 		}
+		/* eslint-enable no-console */
 	}
 
 	// Subscribe to error streams

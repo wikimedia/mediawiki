@@ -90,6 +90,7 @@
 	 *
 	 * @method
 	 * @param {Mixed} response Response from server
+	 * @return {Object}
 	 */
 	mw.widgets.UserInputWidget.prototype.getLookupCacheDataFromResponse = function ( response ) {
 		return response.query.allusers || {};
