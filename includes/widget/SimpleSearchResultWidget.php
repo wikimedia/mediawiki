@@ -7,7 +7,10 @@ use SearchResult;
 use SpecialSearch;
 use Title;
 
-class InterwikiSearchResultWidget {
+/**
+ * Renders a simple one-line result
+ */
+class SimpleSearchResultWidget implements SearchResultWidget {
 	/** @var SpecialSearch */
 	protected $specialSearch;
 
@@ -15,7 +18,7 @@ class InterwikiSearchResultWidget {
 		$this->specialSearch = $specialSearch;
 	}
 
-	public function render( SearchResult $result, $lastInterwiki ) {
+	public function render( SearchResult $result, $terms, $position ) {
 		$title = $result->getTitle();
 		$titleSnippet = $result->getTitleSnippet();
 		if ( $titleSnippet === '' ) {
@@ -25,13 +28,9 @@ class InterwikiSearchResultWidget {
 		$link = Linker::linkKnown( $title, $titleSnippet );
 
 		$redirectTitle = $result->getRedirectTitle();
-		$redirectText = $result->getRedirectSnippet();
 		$redirect = '';
-		if ( $redirectTitle === null ) {
-			if ( $redirectText === '' ) {
-				$redirectText = null;
-			}
-
+		if ( $redirectTitle !== null ) {
+			$redirectText = $result->getRedirectSnippet() ?: null;
 			$redirect =
 				"<span class='searchalttitle'>" .
 					$this->specialSearch->msg( 'search-redirect' )->rawParams(

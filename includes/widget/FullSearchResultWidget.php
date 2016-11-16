@@ -8,7 +8,14 @@ use SearchResult;
 use SpecialSearch;
 use Title;
 
-class BasicSearchResultWidget {
+/**
+ * Renders a 'full' multi-line search result with metadata.
+ *
+ *  The Title
+ *  some *highlighted* *text* about the search result
+ *  5KB (651 words) - 12:40, 6 Aug 2016
+ */
+class FullSearchResultWidget implements SearchResultWidget {
 	/** @var SpecialSearch */
 	protected $specialPage;
 
@@ -31,7 +38,7 @@ class BasicSearchResultWidget {
 
 		$link = $this->generateMainLinkHtml( $result );
 		// If page content is not readable, just return ths title.
-		// This is not quite safe, but better than showing excerpts from 
+		// This is not quite safe, but better than showing excerpts from
 		// non-readable pages. Note that hiding the entry entirely would
 		// screw up paging (really?).
 		if ( !$result->getTitle()->userCan( 'read', $this->specialPage->getUser() ) ) {
@@ -46,9 +53,14 @@ class BasicSearchResultWidget {
 			$this->specialPage->getUser()
 		);
 		list( $file, $desc, $thumb ) = $this->generateFileHtml( $result );
-		$extract = "<div class='searchresult'>" .
-				$result->getTextSnippet( $terms ) .
-			"</div>";
+		$snippet = $result->getTextSnippet( $terms );
+		if ( $snippet ) {
+			$extract = "<div class='searchresult'>" .
+					$result->getTextSnippet( $terms ) .
+				"</div>";
+		} else {
+			$extract = '';
+		}
 
 		if ( $thumb === null ) {
 			// If no thumb, then the description is about size
@@ -63,7 +75,7 @@ class BasicSearchResultWidget {
 			if ( !Hooks::run( 'ShowSearchHit', [
 				$this->specialPage, $result, $terms,
 				&$link, &$redirect, &$section, &$extract,
-				&$score, &$size, &$date, &$related, &$html 
+				&$score, &$size, &$date, &$related, &$html
 			] ) ) {
 				return $html;
 			}
@@ -71,14 +83,14 @@ class BasicSearchResultWidget {
 
 		// All the pieces have been collected. Now generate the final HTML
 		$joined = "{$link} {$redirect} {$category} {$section} {$file}";
-		$meta = "<div class='mw-search-result-data'>{$desc} - {$date}</div>";
+		$meta = $this->buildMeta( $desc, $date );
 
 		if ( $thumb === null ) {
-			$html = 
+			$html =
 				"<div class='mw-search-result-heading'>{$joined}</div>" .
 				"{$extract} {$meta}";
 		} else {
-			$html = 
+			$html =
 				"<table class='searchResultImage'>" .
 					"<tr>" .
 						"<td style='width: 120px; text-align: center; vertical-align: top'>" .
@@ -119,9 +131,9 @@ class BasicSearchResultWidget {
 
 	protected function generateAltTitleHtml( $msgKey, Title $title = null, $text ) {
 		$inner = $title === null
-			? $text 
+			? $text
 			: Linker::linkKnown( $title, $text ?: null );
-		
+
 		return "<span class='searchalttitle'>" .
 				$this->specialPage->msg( $msgKey )->rawParams( $inner )->text()
 			. "</span>";
@@ -155,7 +167,8 @@ class BasicSearchResultWidget {
 			return $this->specialPage->msg( 'search-result-category-size' )
 				->numParams( $cat->getPageCount(), $cat->getSubcatCount(), $cat->getFileCount() )
 				->escaped();
-		} else {
+		// TODO: This is a bit odd...but requires changing the i18n message to fix
+		} elseif ( $result->getByteSize() !== null || $result->getWordCount() > 0 ) {
 			$lang = $this->specialPage->getLanguage();
 			$bytes = $lang->formatSize( $result->getByteSize() );
 			$words = $result->getWordCount();
@@ -164,6 +177,8 @@ class BasicSearchResultWidget {
 				->numParams( $words )
 				->escaped();
 		}
+
+		return '';
 	}
 
 	/**
@@ -199,5 +214,19 @@ class BasicSearchResultWidget {
 		}
 
 		return [ $html, $descHtml, $thumbHtml ];
+	}
+
+	protected function buildMeta( $desc, $date ) {
+		if ( $desc && $date ) {
+			$meta = "{$desc} - {$date}";
+		} elseif ( $desc ) {
+			$meta = $desc;
+		} elseif ( $date ) {
+			$meta = $date;
+		} else {
+			return '';
+		}
+
+		return "<div class='mw-search-result-data'>{$meta}</div>";
 	}
 }
