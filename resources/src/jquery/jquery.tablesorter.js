@@ -407,8 +407,8 @@
 	 * in default (ascending) order when their header cell is clicked the next time.
 	 *
 	 * @param {jQuery} $headers
-	 * @param {number[][]} sortList
-	 * @param {number[][]} headerToColumns
+	 * @param {Array} sortList 2D number array
+	 * @param {Array} headerToColumns 2D number array
 	 */
 	function setHeadersOrder( $headers, sortList, headerToColumns ) {
 		// Loop through all headers to retrieve the indices of the columns the header spans across:
@@ -776,6 +776,7 @@
 		/**
 		 * @param {jQuery} $tables
 		 * @param {Object} [settings]
+		 * @return {jQuery}
 		 */
 		construct: function ( $tables, settings ) {
 			return $tables.each( function ( i, table ) {

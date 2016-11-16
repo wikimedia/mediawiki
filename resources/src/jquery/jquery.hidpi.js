@@ -65,6 +65,7 @@
 	 *
 	 * @static
 	 * @inheritable
+	 * @param {number} baseRatio Base ratio
 	 * @return {number} Device pixel ratio
 	 */
 	$.bracketDevicePixelRatio = function ( baseRatio ) {

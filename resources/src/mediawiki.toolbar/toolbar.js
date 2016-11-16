@@ -28,6 +28,11 @@
 	 *  current cursor position.
 	 * @param {string} [button.imageId] `id` attribute of the button HTML element. Can be
 	 *  used to define the image with CSS if it's not provided as `imageFile`.
+	 * @param {string} [speedTip]
+	 * @param {string} [tagOpen]
+	 * @param {string} [tagClose]
+	 * @param {string} [sampleText]
+	 * @param {string} [imageId]
 	 */
 	function insertButton( button, speedTip, tagOpen, tagClose, sampleText, imageId ) {
 		var $button;

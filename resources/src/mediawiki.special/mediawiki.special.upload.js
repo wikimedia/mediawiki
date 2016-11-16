@@ -269,6 +269,8 @@
 	$( function () {
 		/**
 		 * Is the FileAPI available with sufficient functionality?
+		 *
+		 * @return {boolean}
 		 */
 		function hasFileAPI() {
 			return window.FileReader !== undefined;
@@ -501,6 +503,9 @@
 
 		/**
 		 * Check if the file does not exceed the maximum size
+		 *
+		 * @param {File} file
+		 * @return {boolean}
 		 */
 		function checkMaxUploadSize( file ) {
 			var maxSize, $error;

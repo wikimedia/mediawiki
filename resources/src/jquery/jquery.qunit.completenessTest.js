@@ -211,14 +211,14 @@
 
 			// Hard ignores
 			if ( this.ignoreFn( currVal, this, currPathArray ) ) {
-				return null;
+				return;
 			}
 
 			// Handle the lazy limit
 			this.lazyCounter++;
 			if ( this.lazyCounter > this.lazyLimit ) {
 				log( 'CompletenessTest.fn.walkTheObject> Limit reached: ' + this.lazyCounter, currPathArray );
-				return null;
+				return;
 			}
 
 			// Functions
