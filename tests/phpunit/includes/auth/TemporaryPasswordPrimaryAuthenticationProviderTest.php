@@ -520,10 +520,6 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		$provider = $this->getProvider( [ 'emailEnabled' => false ] );
 		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
 		$this->assertEquals( \StatusValue::newFatal( 'passwordreset-emaildisabled' ), $status );
-		$req->hasBackchannel = true;
-		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
-		$this->assertFalse( $status->hasMessage( 'passwordreset-emaildisabled' ) );
-		$req->hasBackchannel = false;
 
 		$provider = $this->getProvider( [ 'passwordReminderResendTime' => 10 ] );
 		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
@@ -686,18 +682,10 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		$provider = $this->getProvider( [ 'emailEnabled' => false ] );
 		$status = $provider->testForAccountCreation( $user, $creator, [ $req ] );
 		$this->assertEquals( \StatusValue::newFatal( 'emaildisabled' ), $status );
-		$req->hasBackchannel = true;
-		$status = $provider->testForAccountCreation( $user, $creator, [ $req ] );
-		$this->assertFalse( $status->hasMessage( 'emaildisabled' ) );
-		$req->hasBackchannel = false;
 
 		$provider = $this->getProvider( [ 'emailEnabled' => true ] );
 		$status = $provider->testForAccountCreation( $user, $creator, [ $req ] );
 		$this->assertEquals( \StatusValue::newFatal( 'noemailcreate' ), $status );
-		$req->hasBackchannel = true;
-		$status = $provider->testForAccountCreation( $user, $creator, [ $req ] );
-		$this->assertFalse( $status->hasMessage( 'noemailcreate' ) );
-		$req->hasBackchannel = false;
 
 		$user->setEmail( 'test@localhost.localdomain' );
 		$status = $provider->testForAccountCreation( $user, $creator, [ $req ] );
