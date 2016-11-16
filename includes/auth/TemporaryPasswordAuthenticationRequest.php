@@ -33,12 +33,6 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 	/** @var bool Email password to the user. */
 	public $mailpassword = false;
 
-	/**
-	 * @var bool Do not fail certain operations if the password cannot be mailed, there is a
-	 *   backchannel present.
-	 */
-	public $hasBackchannel = false;
-
 	/** @var string Username or IP address of the caller */
 	public $caller;
 

@@ -1220,7 +1220,6 @@
 	"apihelp-resetpassword-description-noroutes": "{{doc-apihelp-description|resetpassword|info=This message is used when no known routes are enabled in <var>[[mw:Manual:$wgPasswordResetRoutes|$wgPasswordResetRoutes]]</var>.|seealso={{msg-mw|apihelp-resetpassword-description}}}}",
 	"apihelp-resetpassword-param-user": "{{doc-apihelp-param|resetpassword|user}}",
 	"apihelp-resetpassword-param-email": "{{doc-apihelp-param|resetpassword|email}}",
-	"apihelp-resetpassword-param-capture": "{{doc-apihelp-param|resetpassword|capture}}",
 	"apihelp-resetpassword-example-user": "{{doc-apihelp-example|resetpassword}}",
 	"apihelp-resetpassword-example-email": "{{doc-apihelp-example|resetpassword}}",
 	"apihelp-revisiondelete-description": "{{doc-apihelp-description|revisiondelete}}",
