@@ -93,11 +93,6 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/** @var mixed[] Temporary warm-up cache */
 	private $warmupCache = [];
 
-	/** @var callable Callback used in generating default options in getWithSetCallback() */
-	private $sowSetOptsCallback;
-	/** @var callable Callback used in generating default options in getWithSetCallback() */
-	private $reapSetOptsCallback;
-
 	/** Max time expected to pass between delete() and DB commit finishing */
 	const MAX_COMMIT_DELAY = 3;
 	/** Max replication+snapshot lag before applying TTL_LAGGED or disallowing set() */
@@ -186,12 +181,6 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			? $params['relayers']['purge']
 			: new EventRelayerNull( [] );
 		$this->setLogger( isset( $params['logger'] ) ? $params['logger'] : new NullLogger() );
-		$this->sowSetOptsCallback = function () {
-			return null; // no-op
-		};
-		$this->reapSetOptsCallback = function () {
-			return []; // no-op
-		};
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -1012,9 +1001,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$setOpts = [];
 		++$this->callbackDepth;
 		try {
-			$tag = call_user_func( $this->sowSetOptsCallback );
 			$value = call_user_func_array( $callback, [ $cValue, &$ttl, &$setOpts, $asOf ] );
-			$setOptDefaults = call_user_func( $this->reapSetOptsCallback, $tag );
 		} finally {
 			--$this->callbackDepth;
 		}
@@ -1039,8 +1026,6 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			$setOpts['lockTSE'] = $lockTSE;
 			// Use best known "since" timestamp if not provided
 			$setOpts += [ 'since' => $preCallbackTime ];
-			// Use default "lag" and "pending" values if not set
-			$setOpts += $setOptDefaults;
 			// Update the cache; this will fail if the key is tombstoned
 			$this->set( $key, $value, $ttl, $setOpts );
 		}
@@ -1265,22 +1250,6 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$age = time() - $mtime;
 
 		return (int)min( $maxTTL, max( $minTTL, $factor * $age ) );
-	}
-
-	/**
-	 * Set the callbacks that provide the fallback values for cache set options
-	 *
-	 * The $reap callback returns default values to use for the "lag", "since", and "pending"
-	 * options used by WANObjectCache::set(). It takes the ID from $sow as the sole parameter.
-	 * An empty array should be returned if there is no usage to base the return value on.
-	 *
-	 * @param callable $sow Function that starts recording and returns an ID
-	 * @param callable $reap Function that takes an ID, stops recording, and returns the options
-	 * @since 1.28
-	 */
-	public function setDefaultCacheSetOptionCallbacks( callable $sow, callable $reap ) {
-		$this->sowSetOptsCallback = $sow;
-		$this->reapSetOptsCallback = $reap;
 	}
 
 	/**

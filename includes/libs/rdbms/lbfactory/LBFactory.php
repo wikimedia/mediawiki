@@ -59,9 +59,6 @@ abstract class LBFactory implements ILBFactory {
 	/** @var array Web request information about the client */
 	protected $requestInfo;
 
-	/** @var bool[] Map of (section ID => true) for usage section IDs */
-	protected $usageSections = [];
-
 	/** @var mixed */
 	protected $ticket;
 	/** @var string|bool String if a requested DBO_TRX transaction round is active */
@@ -506,16 +503,11 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	/**
-	 * Method called whenever a new LoadBalancer is created
-	 *
 	 * @param ILoadBalancer $lb
 	 */
 	protected function initLoadBalancer( ILoadBalancer $lb ) {
 		if ( $this->trxRoundId !== false ) {
 			$lb->beginMasterChanges( $this->trxRoundId ); // set DBO_TRX
-		}
-		foreach ( $this->usageSections as $id => $unused ) {
-			$lb->declareUsageSectionStart( $id );
 		}
 	}
 
@@ -554,40 +546,6 @@ abstract class LBFactory implements ILBFactory {
 
 	public function setRequestInfo( array $info ) {
 		$this->requestInfo = $info + $this->requestInfo;
-	}
-
-	public function declareUsageSectionStart( $id = null ) {
-		static $nextId = 1;
-		if ( $id === null ) {
-			$id = $nextId;
-			++$nextId;
-		}
-		// Handle existing load balancers
-		$this->forEachLB( function ( ILoadBalancer $lb ) use ( $id ) {
-			$lb->declareUsageSectionStart( $id );
-		} );
-		// Remember to set this for new load balancers
-		$this->usageSections[$id] = true;
-
-		return $id;
-	}
-
-	public function declareUsageSectionEnd( $id ) {
-		$info = [ 'readQueries' => 0, 'writeQueries' => 0, 'cacheSetOptions' => null ];
-		$this->forEachLB( function ( ILoadBalancer $lb ) use ( $id, &$info ) {
-			$lbInfo = $lb->declareUsageSectionEnd( $id );
-			$info['readQueries'] += $lbInfo['readQueries'];
-			$info['writeQueries'] += $lbInfo['writeQueries'];
-			$dbCacheOpts = $lbInfo['cacheSetOptions'];
-			if ( $dbCacheOpts ) {
-				$info['cacheSetOptions'] = $info['cacheSetOptions']
-					? Database::mergeCacheSetOptions( $info['cacheSetOptions'], $dbCacheOpts )
-					: $dbCacheOpts;
-			}
-		} );
-		unset( $this->usageSections[$id] );
-
-		return $info;
 	}
 
 	/**

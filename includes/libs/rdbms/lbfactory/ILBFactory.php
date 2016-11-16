@@ -310,32 +310,4 @@ interface ILBFactory {
 	 *   - ChronologyProtection : cookie/header value specifying ChronologyProtector usage
 	 */
 	public function setRequestInfo( array $info );
-
-	/**
-	 * Mark the beginning of a new section to track database usage information for
-	 *
-	 * This returns an ID which can be passed to declareUsageSectionEnd() to indicate
-	 * the end of the section. If $id is provided, the returned ID equals $id.
-	 * @param string|integer Section ID to use instead of auto-generated ID [optional]
-	 * @return string|integer
-	 */
-	public function declareUsageSectionStart( $id = null );
-
-	/**
-	 * End a section started by declareUsageSectionStart() and return the information map
-	 *
-	 * The map includes information about activity during the section:
-	 *   - readQueries: number of read queries issued.
-	 *   - writeQueries: number of write queries issued.
-	 *   - cacheSetOptions: result of pessimistically merging the result of getCacheSetOptions()
-	 *      on each DB handle before the first query of the respective handle. This is null if
-	 *      no actual queries took place in the section interval.
-	 *
-	 * This can be called before cache value generation functions commence queries
-	 * and then passed the caching storage layer to detect and avoid lag race conditions.
-	 *
-	 * @param integer|string $id Section ID passed to declareUsageSectionStart() earlier
-	 * @return array
-	 */
-	public function declareUsageSectionEnd( $id );
 }
