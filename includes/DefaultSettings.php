@@ -5864,7 +5864,7 @@ $wgProxyList = [];
 /**
  * Default cookie lifetime, in seconds. Setting to 0 makes all cookies session-only.
  */
-$wgCookieExpiration = 180 * 86400;
+$wgCookieExpiration = 30 * 86400;
 
 /**
  * Default login cookie lifetime, in seconds. Setting
@@ -5872,7 +5872,7 @@ $wgCookieExpiration = 180 * 86400;
  * calculate the cookie lifetime. As with $wgCookieExpiration, 0 will make
  * login cookies session-only.
  */
-$wgExtendedLoginCookieExpiration = null;
+$wgExtendedLoginCookieExpiration = 180 * 86400;
 
 /**
  * Set to set an explicit domain on the login cookies eg, "justthis.domain.org"
