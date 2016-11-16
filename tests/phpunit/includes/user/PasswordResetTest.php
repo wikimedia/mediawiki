@@ -11,7 +11,7 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testIsAllowed( $passwordResetRoutes, $enableEmail,
 		$allowsAuthenticationDataChange, $canEditPrivate, $canSeePassword,
-		$userIsBlocked, $isAllowed, $isAllowedToDisplayPassword
+		$userIsBlocked, $isAllowed
 	) {
 		$config = new HashConfig( [
 			'PasswordResetRoutes' => $passwordResetRoutes,
@@ -40,8 +40,6 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 		$passwordReset = new PasswordReset( $config, $authManager );
 
 		$this->assertSame( $isAllowed, $passwordReset->isAllowed( $user )->isGood() );
-		$this->assertSame( $isAllowedToDisplayPassword,
-			$passwordReset->isAllowed( $user, true )->isGood() );
 	}
 
 	public function provideIsAllowed() {
@@ -54,7 +52,6 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 				'canSeePassword' => true,
 				'userIsBlocked' => false,
 				'isAllowed' => false,
-				'isAllowedToDisplayPassword' => false,
 			],
 			[
 				'passwordResetRoutes' => [ 'username' => true ],
@@ -64,7 +61,6 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 				'canSeePassword' => true,
 				'userIsBlocked' => false,
 				'isAllowed' => false,
-				'isAllowedToDisplayPassword' => false,
 			],
 			[
 				'passwordResetRoutes' => [ 'username' => true ],
@@ -74,7 +70,6 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 				'canSeePassword' => true,
 				'userIsBlocked' => false,
 				'isAllowed' => false,
-				'isAllowedToDisplayPassword' => false,
 			],
 			[
 				'passwordResetRoutes' => [ 'username' => true ],
@@ -84,7 +79,6 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 				'canSeePassword' => true,
 				'userIsBlocked' => false,
 				'isAllowed' => false,
-				'isAllowedToDisplayPassword' => false,
 			],
 			[
 				'passwordResetRoutes' => [ 'username' => true ],
@@ -94,7 +88,6 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 				'canSeePassword' => true,
 				'userIsBlocked' => true,
 				'isAllowed' => false,
-				'isAllowedToDisplayPassword' => false,
 			],
 			[
 				'passwordResetRoutes' => [ 'username' => true ],
@@ -104,7 +97,6 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 				'canSeePassword' => false,
 				'userIsBlocked' => false,
 				'isAllowed' => true,
-				'isAllowedToDisplayPassword' => false,
 			],
 			[
 				'passwordResetRoutes' => [ 'username' => true ],
@@ -114,7 +106,6 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 				'canSeePassword' => true,
 				'userIsBlocked' => false,
 				'isAllowed' => true,
-				'isAllowedToDisplayPassword' => true,
 			],
 		];
 	}

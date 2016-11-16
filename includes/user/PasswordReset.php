@@ -72,13 +72,12 @@ class PasswordReset implements LoggerAwareInterface {
 	 * @param User $user
 	 * @param bool $displayPassword If set, also check whether the user is allowed to reset the
 	 *   password of another user and see the temporary password.
+	 * @since 1.29 Second argument for displayPassword removed.
 	 * @return StatusValue
 	 */
-	public function isAllowed( User $user, $displayPassword = false ) {
-		$statuses = $this->permissionCache->get( $user->getName() );
-		if ( $statuses ) {
-			list ( $status, $status2 ) = $statuses;
-		} else {
+	public function isAllowed( User $user ) {
+		$status = $this->permissionCache->get( $user->getName() );
+		if ( !$status ) {
 			$resetRoutes = $this->config->get( 'PasswordResetRoutes' );
 			$status = StatusValue::newGood();
 
@@ -107,19 +106,10 @@ class PasswordReset implements LoggerAwareInterface {
 				$status = StatusValue::newFatal( 'blocked-mailpassword' );
 			}
 
-			$status2 = StatusValue::newGood();
-			if ( !$user->isAllowed( 'passwordreset' ) ) {
-				$status2 = StatusValue::newFatal( 'badaccess' );
-			}
-
-			$this->permissionCache->set( $user->getName(), [ $status, $status2 ] );
+			$this->permissionCache->set( $user->getName(), $status );
 		}
 
-		if ( !$displayPassword || !$status->isGood() ) {
-			return $status;
-		} else {
-			return $status2;
-		}
+		return $status;
 	}
 
 	/**
@@ -128,22 +118,22 @@ class PasswordReset implements LoggerAwareInterface {
 	 * Process the form.  At this point we know that the user passes all the criteria in
 	 * userCanExecute(), and if the data array contains 'Username', etc, then Username
 	 * resets are allowed.
+	 *
+	 * @since 1.29 Fourth argument for displayPassword removed.
 	 * @param User $performingUser The user that does the password reset
 	 * @param string $username The user whose password is reset
 	 * @param string $email Alternative way to specify the user
-	 * @param bool $displayPassword Whether to display the password
 	 * @return StatusValue Will contain the passwords as a username => password array if the
 	 *   $displayPassword flag was set
 	 * @throws LogicException When the user is not allowed to perform the action
 	 * @throws MWException On unexpected DB errors
 	 */
 	public function execute(
-		User $performingUser, $username = null, $email = null, $displayPassword = false
+		User $performingUser, $username = null, $email = null
 	) {
-		if ( !$this->isAllowed( $performingUser, $displayPassword )->isGood() ) {
-			$action = $this->isAllowed( $performingUser )->isGood() ? 'display' : 'reset';
+		if ( !$this->isAllowed( $performingUser )->isGood() ) {
 			throw new LogicException( 'User ' . $performingUser->getName()
-				. ' is not allowed to ' . $action . ' passwords' );
+				. ' is not allowed to reset passwords' );
 		}
 
 		$resetRoutes = $this->config->get( 'PasswordResetRoutes' )
@@ -169,7 +159,6 @@ class PasswordReset implements LoggerAwareInterface {
 		$data = [
 			'Username' => $username,
 			'Email' => $email,
-			'Capture' => $displayPassword ? '1' : null,
 		];
 		if ( !Hooks::run( 'SpecialPasswordResetOnSubmit', [ &$users, $data, &$error ] ) ) {
 			return StatusValue::newFatal( Message::newFromSpecifier( $error ) );
@@ -218,7 +207,6 @@ class PasswordReset implements LoggerAwareInterface {
 			$req = TemporaryPasswordAuthenticationRequest::newRandom();
 			$req->username = $user->getName();
 			$req->mailpassword = true;
-			$req->hasBackchannel = $displayPassword;
 			$req->caller = $performingUser->getName();
 			$status = $this->authManager->allowsAuthenticationDataChange( $req, true );
 			if ( $status->isGood() && $status->getValue() !== 'ignored' ) {
@@ -253,10 +241,6 @@ class PasswordReset implements LoggerAwareInterface {
 		$passwords = [];
 		foreach ( $reqs as $req ) {
 			$this->authManager->changeAuthenticationData( $req );
-			// TODO record mail sending errors
-			if ( $displayPassword ) {
-				$passwords[$req->username] = $req->password;
-			}
 		}
 
 		if ( $displayPassword ) {
