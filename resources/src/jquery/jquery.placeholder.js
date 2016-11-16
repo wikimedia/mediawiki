@@ -35,7 +35,7 @@
 	function args( elem ) {
 		// Return an object of element attributes
 		var newAttrs = {},
-				rinlinejQuery = /^jQuery\d+$/;
+			rinlinejQuery = /^jQuery\d+$/;
 		$.each( elem.attributes, function ( i, attr ) {
 			if ( attr.specified && !rinlinejQuery.test( attr.name ) ) {
 				newAttrs[ attr.name ] = attr.value;
@@ -46,7 +46,7 @@
 
 	function clearPlaceholder( event, value ) {
 		var input = this,
-				$input = $( input );
+			$input = $( input );
 		if ( input.value === $input.attr( 'placeholder' ) && $input.hasClass( 'placeholder' ) ) {
 			if ( $input.data( 'placeholder-password' ) ) {
 				$input = $input.hide().next().show().attr( 'id', $input.removeAttr( 'id' ).data( 'placeholder-id' ) );
@@ -68,9 +68,9 @@
 
 	function setPlaceholder() {
 		var $replacement,
-				input = this,
-				$input = $( input ),
-				id = this.id;
+			input = this,
+			$input = $( input ),
+			id = this.id;
 		if ( !input.value ) {
 			if ( input.type === 'password' ) {
 				if ( !$input.data( 'placeholder-textinput' ) ) {
@@ -105,7 +105,7 @@
 
 	function changePlaceholder( text ) {
 		var hasArgs = arguments.length,
-				$input = this;
+			$input = this;
 		if ( hasArgs ) {
 			if ( $input.attr( 'placeholder' ) !== text ) {
 				$input.prop( 'placeholder', text );

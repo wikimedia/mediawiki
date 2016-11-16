@@ -1,4 +1,4 @@
-/*global OO */
+/* eslint-disable no-use-before-define */
 ( function ( $, mw, OO ) {
 	'use strict';
 	var ApiSandbox, Util, WidgetMethods, Validators,
@@ -400,9 +400,8 @@
 						} else {
 							n = +value;
 							return !isNaN( n ) && isFinite( n ) &&
-								/* jshint bitwise: false */
+								// eslint-disable-next-line no-bitwise
 								( n | 0 ) === n &&
-								/* jshint bitwise: true */
 								n >= pi.min && n <= pi.apiSandboxMax;
 						}
 					} );

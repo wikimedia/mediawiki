@@ -1,4 +1,3 @@
-/*global OO */
 ( function ( mw, $ ) {
 	/**
 	 * Factory for MessagePoster objects. This provides a pluggable to way to script the action

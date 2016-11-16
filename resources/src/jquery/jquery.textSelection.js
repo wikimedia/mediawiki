@@ -34,10 +34,11 @@
 		 * Helper function to get an IE TextRange object for an element
 		 */
 		function rangeForElementIE( e ) {
+			var sel;
 			if ( e.nodeName.toLowerCase() === 'input' ) {
 				return e.createTextRange();
 			} else {
-				var sel = document.body.createTextRange();
+				sel = document.body.createTextRange();
 				sel.moveToElementText( e );
 				return sel;
 			}
@@ -275,7 +276,7 @@
 					var caretPos = 0,
 						endPos = 0,
 						preText, rawPreText, periText,
-						rawPeriText, postText, rawPostText,
+						rawPeriText, postText,
 						// IE Support
 						preFinished,
 						periFinished,
@@ -310,7 +311,7 @@
 						// Load the text values we need to compare
 						preText = rawPreText = preRange.text;
 						periText = rawPeriText = periRange.text;
-						postText = rawPostText = postRange.text;
+						postText = postRange.text;
 
 						/*
 						 * Check each range for trimmed newlines by shrinking the range by 1
@@ -347,9 +348,7 @@
 									postFinished = true;
 								} else {
 									postRange.moveEnd( 'character', -1 );
-									if ( postRange.text === postText ) {
-										rawPostText += '\r\n';
-									} else {
+									if ( postRange.text !== postText ) {
 										postFinished = true;
 									}
 								}

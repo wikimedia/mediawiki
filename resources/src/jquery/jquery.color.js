@@ -10,7 +10,6 @@
 ( function ( $ ) {
 
 	function getColor( elem, attr ) {
-		/*jshint boss:true */
 		var color;
 
 		do {
@@ -22,6 +21,7 @@
 			}
 
 			attr = 'backgroundColor';
+		// eslint-disable-next-line no-cond-assign
 		} while ( elem = elem.parentNode );
 
 		return $.colorUtil.getRGB( color );

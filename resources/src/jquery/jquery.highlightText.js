@@ -45,12 +45,14 @@
 					// replace the matched node, with our span-wrapped clone of the matched node
 					middlebit.parentNode.replaceChild( spannode, middlebit );
 				}
-			} else if ( node.nodeType === Node.ELEMENT_NODE
+			} else if (
+				node.nodeType === Node.ELEMENT_NODE &&
 				// element with childnodes, and not a script, style or an element we created
-				&& node.childNodes
-				&& !/(script|style)/i.test( node.tagName )
-				&& !( node.tagName.toLowerCase() === 'span'
-					&& node.className.match( /\bhighlight/ )
+				node.childNodes &&
+				!/(script|style)/i.test( node.tagName ) &&
+				!(
+					node.tagName.toLowerCase() === 'span' &&
+					node.className.match( /\bhighlight/ )
 				)
 			) {
 				for ( i = 0; i < node.childNodes.length; ++i ) {

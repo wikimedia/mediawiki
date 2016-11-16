@@ -122,6 +122,7 @@
 	 * @return {mw.Upload.BookletLayout} An upload booklet
 	 */
 	mw.Upload.Dialog.prototype.createUploadBooklet = function () {
+		// eslint-disable-next-line new-cap
 		return new this.bookletClass( $.extend( {
 			$overlay: this.$overlay
 		}, this.bookletConfig ) );
