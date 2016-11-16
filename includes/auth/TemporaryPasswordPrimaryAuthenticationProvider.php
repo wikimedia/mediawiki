@@ -236,7 +236,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			$sv->merge( $this->checkPasswordValidity( $username, $req->password ) );
 
 			if ( $req->mailpassword ) {
-				if ( !$this->emailEnabled && !$req->hasBackchannel ) {
+				if ( !$this->emailEnabled ) {
 					return \StatusValue::newFatal( 'passwordreset-emaildisabled' );
 				}
 
@@ -326,7 +326,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 
 		$ret = \StatusValue::newGood();
 		if ( $req ) {
-			if ( $req->mailpassword && !$req->hasBackchannel ) {
+			if ( $req->mailpassword ) {
 				if ( !$this->emailEnabled ) {
 					$ret->merge( \StatusValue::newFatal( 'emaildisabled' ) );
 				} elseif ( !$user->getEmail() ) {

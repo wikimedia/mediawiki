@@ -100,14 +100,6 @@ class SpecialPasswordReset extends FormSpecialPage {
 			];
 		}
 
-		if ( $this->getUser()->isAllowed( 'passwordreset' ) ) {
-			$a['Capture'] = [
-				'type' => 'check',
-				'label-message' => 'passwordreset-capture',
-				'help-message' => 'passwordreset-capture-help',
-			];
-		}
-
 		return $a;
 	}
 
@@ -144,22 +136,12 @@ class SpecialPasswordReset extends FormSpecialPage {
 	 * @return Status
 	 */
 	public function onSubmit( array $data ) {
-		if ( isset( $data['Capture'] ) && !$this->getUser()->isAllowed( 'passwordreset' ) ) {
-			// The user knows they don't have the passwordreset permission,
-			// but they tried to spoof the form. That's naughty
-			throw new PermissionsError( 'passwordreset' );
-		}
-
 		$username = isset( $data['Username'] ) ? $data['Username'] : null;
 		$email = isset( $data['Email'] ) ? $data['Email'] : null;
-		$capture = !empty( $data['Capture'] );
 
 		$this->method = $username ? 'username' : 'email';
 		$this->result = Status::wrap(
-			$this->getPasswordReset()->execute( $this->getUser(), $username, $email, $capture ) );
-		if ( $capture && $this->result->isOK() ) {
-			$this->passwords = $this->result->getValue();
-		}
+			$this->getPasswordReset()->execute( $this->getUser(), $username, $email ) );
 
 		if ( $this->result->hasMessage( 'actionthrottledtext' ) ) {
 			throw new ThrottledError;
@@ -169,28 +151,6 @@ class SpecialPasswordReset extends FormSpecialPage {
 	}
 
 	public function onSuccess() {
-		if ( $this->getUser()->isAllowed( 'passwordreset' ) && $this->passwords ) {
-			// @todo Logging
-
-			if ( $this->result->isGood() ) {
-				$this->getOutput()->addWikiMsg( 'passwordreset-emailsent-capture2',
-					count( $this->passwords ) );
-			} else {
-				$this->getOutput()->addWikiMsg( 'passwordreset-emailerror-capture2',
-					$this->result->getMessage(), key( $this->passwords ), count( $this->passwords ) );
-			}
-
-			$this->getOutput()->addHTML( Html::openElement( 'ul' ) );
-			foreach ( $this->passwords as $username => $pwd ) {
-				$this->getOutput()->addHTML( Html::rawElement( 'li', [],
-					htmlspecialchars( $username, ENT_QUOTES )
-					. $this->msg( 'colon-separator' )->text()
-					. htmlspecialchars( $pwd, ENT_QUOTES )
-				) );
-			}
-			$this->getOutput()->addHTML( Html::closeElement( 'ul' ) );
-		}
-
 		if ( $this->method === 'email' ) {
 			$this->getOutput()->addWikiMsg( 'passwordreset-emailsentemail' );
 		} else {
