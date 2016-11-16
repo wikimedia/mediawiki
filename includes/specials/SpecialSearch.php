@@ -24,6 +24,10 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Widget\Search\BasicSearchResultSetWidget;
+use MediaWiki\Widget\Search\InterwikiSearchResultSetWidget;
+use MediaWiki\Widget\Search\FullSearchResultWidget;
+use MediaWiki\Widget\Search\SimpleSearchResultWidget;
 
 /**
  * implements Special:Search - Run text & title search and display the output
@@ -74,12 +78,6 @@ class SpecialSearch extends SpecialPage {
 	 * @var bool
 	 */
 	protected $runSuggestion = true;
-
-	/**
-	 * Names of the wikis, in format: Interwiki prefix -> caption
-	 * @var array
-	 */
-	protected $customCaptions;
 
 	/**
 	 * Search engine configurations.
@@ -327,6 +325,9 @@ class SpecialSearch extends SpecialPage {
 		if ( $textMatches ) {
 			$textMatchesNum = $textMatches->numRows();
 			$numTextMatches = $textMatches->getTotalHits();
+			if ( $textMatchesNum > 0 ) {
+				$search->augmentSearchResults( $textMatches );
+			}
 		}
 		$num = $titleMatchesNum + $textMatchesNum;
 		$totalRes = $numTitleMatches + $numTextMatches;
@@ -373,6 +374,8 @@ class SpecialSearch extends SpecialPage {
 		// Show the create link ahead
 		$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
 
+		Hooks::run( 'SpecialSearchResults', [ $term, $titleMatches, $textMatches ] );
+
 		// If we have no results and have not already displayed an error message
 		if ( $num === 0 && !$hasErrors ) {
 			$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>", [
@@ -381,48 +384,19 @@ class SpecialSearch extends SpecialPage {
 			] );
 		}
 
-		Hooks::run( 'SpecialSearchResults', [ $term, $titleMatches, $textMatches ] );
+		// Although $num might be 0 there can still be secondary or inline
+		// results to display.
+		$mainResultWidget = new FullSearchResultWidget( $this );
+		$sidebarResultWidget = new SimpleSearchResultWidget( $this );
+		$sidebarResultsWidget = new InterwikiSearchResultSetWidget( $this, $sidebarResultWidget );
+		$widget = new BasicSearchResultSetWidget( $this, $mainResultWidget, $sidebarResultsWidget );
 
-		$out->parserOptions()->setEditSection( false );
+		$out->addHTML( $widget->render(
+			$term, $this->offset, $titleMatches, $textMatches
+		) );
+
 		if ( $titleMatches ) {
-			if ( $numTitleMatches > 0 ) {
-				$out->wrapWikiMsg( "==$1==\n", 'titlematches' );
-				$out->addHTML( $this->showMatches( $titleMatches ) );
-			}
 			$titleMatches->free();
-		}
-
-		if ( $textMatches ) {
-			// output appropriate heading
-			if ( $numTextMatches > 0 && $numTitleMatches > 0 ) {
-				$out->addHTML( '<div class="mw-search-visualclear"></div>' );
-				// if no title matches the heading is redundant
-				$out->wrapWikiMsg( "==$1==\n", 'textmatches' );
-			}
-
-			// show results
-			if ( $numTextMatches > 0 ) {
-				$search->augmentSearchResults( $textMatches );
-				$out->addHTML( $this->showMatches( $textMatches ) );
-			}
-
-			// show secondary interwiki results if any
-			if ( $textMatches->hasInterwikiResults( SearchResultSet::SECONDARY_RESULTS ) ) {
-				$out->addHTML( $this->showInterwiki( $textMatches->getInterwikiResults(
-						SearchResultSet::SECONDARY_RESULTS ), $term ) );
-			}
-		}
-
-		if ( $hasOtherResults ) {
-			foreach ( $textMatches->getInterwikiResults( SearchResultSet::INLINE_RESULTS )
-						as $interwiki => $interwikiResult ) {
-				if ( $interwikiResult instanceof Status || $interwikiResult->numRows() == 0 ) {
-					// ignore bad interwikis for now
-					continue;
-				}
-				// TODO: wiki header
-				$out->addHTML( $this->showMatches( $interwikiResult, $interwiki ) );
-			}
 		}
 
 		if ( $textMatches ) {
@@ -447,18 +421,6 @@ class SpecialSearch extends SpecialPage {
 		$out->addHTML( "</div>" );
 
 		Hooks::run( 'SpecialSearchResultsAppend', [ $this, $out, $term ] );
-	}
-
-	/**
-	 * Produce wiki header for interwiki results
-	 * @param string $interwiki Interwiki name
-	 * @param SearchResultSet $interwikiResult The result set
-	 * @return string
-	 */
-	protected function interwikiHeader( $interwiki, $interwikiResult ) {
-		// TODO: we need to figure out how to name wikis correctly
-		$wikiMsg = $this->msg( 'search-interwiki-results-' . $interwiki )->parse();
-		return "<p class=\"mw-search-interwiki-header mw-search-visualclear\">\n$wikiMsg</p>";
 	}
 
 	/**
@@ -692,134 +654,6 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		return false;
-	}
-
-	/**
-	 * Show whole set of results
-	 *
-	 * @param SearchResultSet $matches
-	 * @param string $interwiki Interwiki name
-	 *
-	 * @return string
-	 */
-	protected function showMatches( $matches, $interwiki = null ) {
-		global $wgContLang;
-
-		$terms = $wgContLang->convertForSearchResult( $matches->termMatches() );
-		$out = '';
-		$result = $matches->next();
-		$pos = $this->offset;
-
-		if ( $result && $interwiki ) {
-			$out .= $this->interwikiHeader( $interwiki, $matches );
-		}
-
-		$out .= "<ul class='mw-search-results'>\n";
-		$widget = new \MediaWiki\Widget\Search\FullSearchResultWidget( $this );
-		while ( $result ) {
-			$out .= $widget->render( $result, $terms, $pos++ );
-			$result = $matches->next();
-		}
-		$out .= "</ul>\n";
-
-		// convert the whole thing to desired language variant
-		$out = $wgContLang->convert( $out );
-
-		return $out;
-	}
-
-	/**
-	 * Extract custom captions from search-interwiki-custom message
-	 */
-	protected function getCustomCaptions() {
-		if ( is_null( $this->customCaptions ) ) {
-			$this->customCaptions = [];
-			// format per line <iwprefix>:<caption>
-			$customLines = explode( "\n", $this->msg( 'search-interwiki-custom' )->text() );
-			foreach ( $customLines as $line ) {
-				$parts = explode( ":", $line, 2 );
-				if ( count( $parts ) == 2 ) { // validate line
-					$this->customCaptions[$parts[0]] = $parts[1];
-				}
-			}
-		}
-	}
-
-	/**
-	 * Show results from other wikis
-	 *
-	 * @param SearchResultSet|array $matches
-	 * @param string $query
-	 *
-	 * @return string
-	 */
-	protected function showInterwiki( $matches, $query ) {
-		global $wgContLang;
-
-		// work out custom project captions
-		$this->getCustomCaptions();
-
-		if ( !is_array( $matches ) ) {
-			$matches = [ $matches ];
-		}
-
-		$iwResults = [];
-		foreach ( $matches as $set ) {
-			$result = $set->next();
-			while ( $result ) {
-				if ( !$result->isBrokenTitle() ) {
-					$iwResults[$result->getTitle()->getInterwiki()][] = $result;
-				}
-				$result = $set->next();
-			}
-		}
-
-		$out = '';
-		$widget = new MediaWiki\Widget\Search\SimpleSearchResultWidget( $this );
-		foreach ( $iwResults as $iwPrefix => $results ) {
-			$out .= $this->iwHeaderHtml( $iwPrefix );
-			$out .= "<ul class='mw-search-iwresults'>";
-			foreach ( $results as $result ) {
-				$out .= $widget->render( $result );
-			}
-			$ot .= "</ul>";
-		}
-
-		$out =
-			"<div id='mw-search-interwiki'>" .
-				"<div id='mw-search-interwiki-caption'>" .
-					$this->msg( 'search-interwiki-caption' )->text() .
-				"</div>" .
-				$out .
-			"</div>";
-
-		// convert the whole thing to desired language variant
-		return $wgContLang->convert( $out );
-	}
-
-	protected function iwHeaderHtml( $iwPrefix ) {
-		if ( isset( $this->customCaptions[$iwPrefix] ) ) {
-			$caption = $this->customCaptions[$iwPrefix];
-		} else {
-			$iwLookup = MediaWiki\MediaWikiServices::getInstance()->getInterwikiLookup();
-			$interwiki = $iwLookup->fetch( $iwPrefix );
-			$parsed = wfParseUrl( wfExpandUrl( $interwiki ? $interwiki->getURL() : '/' ) );
-			$caption = $this->msg( 'search-interwiki-default', $parsed['host'] )->text();
-		}
-		$searchLink = Linker::linkKnown(
-			Title::newFromText( "$iwPrefix:Special:Search" ),
-			$this->msg( 'search-interwiki-more' )->text(),
-			[],
-			[
-				'search' => $query,
-				'fulltext' => 1,
-			]
-		);
-		return
-			"<div class='mw-search-interwiki-project'>" .
-				"<span class='mw-search-interwiki-more'>{$searchLink}</span>" .
-				$caption .
-			"</div>";
 	}
 
 	/**
