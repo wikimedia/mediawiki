@@ -8,8 +8,14 @@ production.
 === Configuration changes in 1.29 ===
 * Default cookie expiration time has been reduced to 30 days. Login cookie expiration time is
   kept at 180 days.
+* A new configuration variable has been added: $wgCookieSetOnAutoblock. This
+  determines whether to set a cookie when a user is autoblocked. Doing so means
+  that a blocked user, even after logging out and moving to a new IP address,
+  will still be blocked.
 
 === New features in 1.29 ===
+* (T5233) A cookie can now be set when a user is autoblocked, to track that user if
+  they move to a new IP address. This is disabled by default.
 
 === External library changes in 1.29 ===
 
