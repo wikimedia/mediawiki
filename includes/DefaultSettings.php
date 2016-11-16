@@ -5926,6 +5926,12 @@ $wgCacheVaryCookies = [];
  */
 $wgSessionName = false;
 
+/**
+ * Whether to set a cookie when a user is autoblocked. Doing so means that a blocked user, even
+ * after logging out and moving to a new IP address, will still be blocked.
+ */
+$wgCookieSetOnAutoblock = false;
+
 /** @} */ # end of cookie settings }
 
 /************************************************************************//**
