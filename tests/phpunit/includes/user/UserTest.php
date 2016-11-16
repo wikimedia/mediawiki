@@ -346,6 +346,13 @@ class UserTest extends MediaWikiTestCase {
 		$user->setOption( 'cols', 200 );
 		$user->saveSettings();
 
+		// User::saveSettings() calls User::clearSharedCache() which in turn
+		// uses a onTransactionPreCommitOrIdle() to differ the cache clear
+		// until things are settled down. This can cause a race here in unit
+		// test land, so lets make sure that the cache clear gets a chance to
+		// run.
+		wfGetDB( DB_MASTER )->runOnTransactionPreCommitCallbacks();
+
 		$user = User::newFromName( $user->getName() );
 		$this->assertEquals( 'test', $user->getOption( 'userjs-someoption' ) );
 		$this->assertEquals( 200, $user->getOption( 'cols' ) );
