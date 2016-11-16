@@ -52,10 +52,7 @@ return [
 		);
 		$class = MWLBFactory::getLBFactoryClass( $lbConf );
 
-		$instance = new $class( $lbConf );
-		MWLBFactory::setCacheUsageCallbacks( $instance, $services );
-
-		return $instance;
+		return new $class( $lbConf );
 	},
 
 	'DBLoadBalancer' => function( MediaWikiServices $services ) {

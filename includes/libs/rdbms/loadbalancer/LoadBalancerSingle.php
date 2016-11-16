@@ -71,17 +71,4 @@ class LoadBalancerSingle extends LoadBalancer {
 	protected function reallyOpenConnection( array $server, $dbNameOverride = false ) {
 		return $this->db;
 	}
-
-	public function forEachOpenConnection( $callback, array $params = [] ) {
-		$mergedParams = array_merge( [ $this->db ], $params );
-		call_user_func_array( $callback, $mergedParams );
-	}
-
-	public function forEachOpenMasterConnection( $callback, array $params = [] ) {
-		return $this->forEachOpenConnection( $callback, $params );
-	}
-
-	public function forEachOpenReplicaConnection( $callback, array $params = [] ) {
-		return $this->forEachOpenConnection( $callback, $params );
-	}
 }

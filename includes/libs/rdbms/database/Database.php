@@ -69,8 +69,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $cliMode;
 	/** @var string Agent name for query profiling */
 	protected $agent;
-	/** @var array[] Map of (section ID => info map) for usage section IDs */
-	protected $usageSectionInfo = [];
 
 	/** @var BagOStuff APC cache */
 	protected $srvCache;
@@ -920,29 +918,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	private function doProfiledQuery( $sql, $commentedSql, $isWrite, $fname ) {
-		// Update usage information for all active usage tracking sections
-		foreach ( $this->usageSectionInfo as $id => &$info ) {
-			if ( $isWrite ) {
-				++$info['writeQueries'];
-			} else {
-				++$info['readQueries'];
-			}
-			if ( $info['cacheSetOptions'] === null ) {
-				$info['cacheSetOptions'] = self::getCacheSetOptions( $this );
-			}
-		}
-		unset( $info ); // destroy any reference
-
 		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
-		// generalizeSQL() will probably cut down the query to reasonable
-		// logging size most of the time. The substr is really just a sanity check.
+		# generalizeSQL() will probably cut down the query to reasonable
+		# logging size most of the time. The substr is really just a sanity check.
 		if ( $isMaster ) {
 			$queryProf = 'query-m: ' . substr( self::generalizeSQL( $sql ), 0, 255 );
 		} else {
 			$queryProf = 'query: ' . substr( self::generalizeSQL( $sql ), 0, 255 );
 		}
 
-		// Include query transaction state
+		# Include query transaction state
 		$queryProf .= $this->mTrxShortId ? " [TRX#{$this->mTrxShortId}]" : "";
 
 		$startTime = microtime( true );
@@ -3038,33 +3023,20 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @since 1.27
 	 */
 	public static function getCacheSetOptions( IDatabase $db1 ) {
-		$opts = [ 'lag' => 0, 'since' => INF, 'pending' => false ];
+		$res = [ 'lag' => 0, 'since' => INF, 'pending' => false ];
 		foreach ( func_get_args() as $db ) {
 			/** @var IDatabase $db */
-			$dbOpts = $db->getSessionLagStatus();
-			$dbOpts['pending'] = $db->writesPending();
-			$opts = self::mergeCacheSetOptions( $opts, $dbOpts );
+			$status = $db->getSessionLagStatus();
+			if ( $status['lag'] === false ) {
+				$res['lag'] = false;
+			} elseif ( $res['lag'] !== false ) {
+				$res['lag'] = max( $res['lag'], $status['lag'] );
+			}
+			$res['since'] = min( $res['since'], $status['since'] );
+			$res['pending'] = $res['pending'] ?: $db->writesPending();
 		}
 
-		return $opts;
-	}
-
-	/**
-	 * @param array $base Map in the format of getCacheSetOptions() results
-	 * @param array $other Map in the format of getCacheSetOptions() results
-	 * @return array Pessimistically merged result of $base/$other in the format of $base
-	 * @since 1.28
-	 */
-	public static function mergeCacheSetOptions( array $base, array $other ) {
-		if ( $other['lag'] === false ) {
-			$base['lag'] = false;
-		} elseif ( $base['lag'] !== false ) {
-			$base['lag'] = max( $base['lag'], $other['lag'] );
-		}
-		$base['since'] = min( $base['since'], $other['since'] );
-		$base['pending'] = $base['pending'] ?: $other['pending'];
-
-		return $base;
+		return $res;
 	}
 
 	public function getLag() {
@@ -3409,25 +3381,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function setTableAliases( array $aliases ) {
 		$this->tableAliases = $aliases;
-	}
-
-	public function declareUsageSectionStart( $id ) {
-		$this->usageSectionInfo[$id] = [
-			'readQueries' => 0,
-			'writeQueries' => 0,
-			'cacheSetOptions' => null
-		];
-	}
-
-	public function declareUsageSectionEnd( $id ) {
-		if ( !isset( $this->usageSectionInfo[$id] ) ) {
-			throw new InvalidArgumentException( "No section with ID '$id'" );
-		}
-
-		$info = $this->usageSectionInfo[$id];
-		unset( $this->usageSectionInfo[$id] );
-
-		return $info;
 	}
 
 	/**
