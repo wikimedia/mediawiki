@@ -926,6 +926,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Widget\\NamespaceInputWidget' => __DIR__ . '/includes/widget/NamespaceInputWidget.php',
 	'MediaWiki\\Widget\\SearchInputWidget' => __DIR__ . '/includes/widget/SearchInputWidget.php',
 	'MediaWiki\\Widget\\Search\\FullSearchResultWidget' => __DIR__ . '/includes/widget/search/FullSearchResultWidget.php',
+	'MediaWiki\\Widget\\Search\\SearchFormWidget' => __DIR__ . '/includes/widget/search/SearchFormWidget.php',
 	'MediaWiki\\Widget\\Search\\SearchResultWidget' => __DIR__ . '/includes/widget/search/SearchResultWidget.php',
 	'MediaWiki\\Widget\\Search\\SimpleSearchResultWidget' => __DIR__ . '/includes/widget/search/SimpleSearchResultWidget.php',
 	'MediaWiki\\Widget\\TitleInputWidget' => __DIR__ . '/includes/widget/TitleInputWidget.php',
