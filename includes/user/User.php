@@ -166,7 +166,6 @@ class User implements IDBAccessObject {
 		'noratelimit',
 		'override-export-depth',
 		'pagelang',
-		'passwordreset',
 		'patrol',
 		'patrolmarks',
 		'protect',
