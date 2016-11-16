@@ -1898,6 +1898,7 @@
 	"apisandbox-continue": "继续",
 	"apisandbox-continue-clear": "清除",
 	"apisandbox-continue-help": "{{int:apisandbox-continue}}将[https://www.mediawiki.org/wiki/API:Query#Continuing_queries 继续]上次请求；{{int:apisandbox-continue-clear}}将清除继续相关的参数。",
+	"apisandbox-param-limit": "输入<kbd>max</kbd>以使用最大限制。",
 	"booksources": "网络书源",
 	"booksources-search-legend": "搜索图书来源",
 	"booksources-isbn": "ISBN：",

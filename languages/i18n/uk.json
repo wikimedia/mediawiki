@@ -1883,6 +1883,7 @@
 	"apisandbox-continue": "Продовжити",
 	"apisandbox-continue-clear": "Очистити",
 	"apisandbox-continue-help": "{{int:apisandbox-continue}} [https://www.mediawiki.org/wiki/API:Query#Continuing_queries продовжить] останній запит; {{int:apisandbox-continue-clear}} очистить параметри, пов'язані з продовженням.",
+	"apisandbox-param-limit": "Введіть <kbd>max</kbd>, щоб використати максимальний ліміт.",
 	"booksources": "Джерела книг",
 	"booksources-search-legend": "Пошук інформації про книгу",
 	"booksources-isbn": "ISBN:",

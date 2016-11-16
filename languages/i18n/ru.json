@@ -1900,6 +1900,7 @@
 	"apisandbox-continue": "Продолжить",
 	"apisandbox-continue-clear": "Очистить",
 	"apisandbox-continue-help": "{{int:apisandbox-continue}} [https://www.mediawiki.org/wiki/API:Query#Continuing_queries продолжит] последний запрос; {{int:apisandbox-continue-clear}} очистит связанные с продолжением параметры.",
+	"apisandbox-param-limit": "Введите <kbd>максимальное</kbd> использование максимального предела.",
 	"booksources": "Источники книг",
 	"booksources-search-legend": "Поиск информации о книге",
 	"booksources-isbn": "ISBN:",

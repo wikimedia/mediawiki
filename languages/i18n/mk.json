@@ -1830,6 +1830,7 @@
 	"apisandbox-continue": "Продолжи",
 	"apisandbox-continue-clear": "Исчисти",
 	"apisandbox-continue-help": "{{int:apisandbox-continue}} ќе [https://www.mediawiki.org/wiki/API:Query#Continuing_queries продолжи] со последното барање; „{{int:apisandbox-continue-clear}}“ ќе ги исчисти параметрите поврзани со продолжување.",
+	"apisandbox-param-limit": "Внесете <kbd>max</kbd> за да ја користите најгорната граница.",
 	"booksources": "Печатени извори",
 	"booksources-search-legend": "Пребарување на извори за книга",
 	"booksources-isbn": "ISBN:",

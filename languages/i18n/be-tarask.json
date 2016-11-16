@@ -1815,6 +1815,7 @@
 	"apisandbox-continue": "Працягнуць",
 	"apisandbox-continue-clear": "Ачысьціць",
 	"apisandbox-continue-help": "{{int:apisandbox-continue}} [https://www.mediawiki.org/wiki/API:Query#Continuing_queries працягне] апошні запыт; {{int:apisandbox-continue-clear}} ачысьціць парамэтры, зьвязаныя з працягам.",
+	"apisandbox-param-limit": "Увядзіце <kbd>max</kbd>, каб выкарыстаць максымальны ліміт.",
 	"booksources": "Крыніцы кніг",
 	"booksources-search-legend": "Пошук кніг",
 	"booksources-isbn": "ISBN:",

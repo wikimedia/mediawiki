@@ -1872,6 +1872,7 @@
 	"apisandbox-alert-field": "Wartość tego pola jest nieprawidłowa.",
 	"apisandbox-continue": "Kontynuuj",
 	"apisandbox-continue-clear": "Wyczyść",
+	"apisandbox-param-limit": "Wpisz <kbd>max</kbd>, aby wykorzystać maksymalny limit.",
 	"booksources": "Książki",
 	"booksources-search-legend": "Szukaj informacji o książkach",
 	"booksources-search": "Szukaj",

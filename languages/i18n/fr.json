@@ -1954,6 +1954,7 @@
 	"apisandbox-continue": "Continuer",
 	"apisandbox-continue-clear": "Effacer",
 	"apisandbox-continue-help": "{{int:apisandbox-continue}} [https://www.mediawiki.org/wiki/API:Query#Continuing_queries continuera] la dernière requête ; {{int:apisandbox-continue-clear}} effacera les paramètres relatifs à la continuation.",
+	"apisandbox-param-limit": "Saisir <kbd>max</kbd> pour utiliser la limite maximale.",
 	"booksources": "Ouvrages de référence",
 	"booksources-search-legend": "Rechercher parmi des ouvrages de référence",
 	"booksources-isbn": "ISBN :",
