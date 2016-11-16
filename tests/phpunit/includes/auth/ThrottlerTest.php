@@ -196,7 +196,7 @@ class ThrottlerTest extends \MediaWikiTestCase {
 			->setMethods( [ 'log' ] )
 			->getMockForAbstractClass();
 		$logger->expects( $this->once() )->method( 'log' )->with( $this->anything(), $this->anything(), [
-			'type' => 'custom',
+			'throttle' => 'custom',
 			'index' => 0,
 			'ip' => '1.2.3.4',
 			'username' => 'SomeUser',
