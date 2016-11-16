@@ -8377,9 +8377,9 @@ $wgSearchRunSuggestedQuery = true;
 /**
  * Where popular password file is located.
  *
- * Default in core contains 50,000 most popular. This config
+ * Default in core contains 10,000 most popular. This config
  * allows you to change which file, in case you want to generate
- * a password file with > 50000 entries in it.
+ * a password file with > 10000 entries in it.
  *
  * @see maintenance/createCommonPasswordCdb.php
  * @since 1.27
