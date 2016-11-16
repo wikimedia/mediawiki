@@ -354,6 +354,7 @@
 		 *
 		 * @since 1.22
 		 * @param {string} type Token type
+		 * @param {string} [assert]
 		 * @return {jQuery.Promise} Received token.
 		 */
 		getToken: function ( type, assert ) {

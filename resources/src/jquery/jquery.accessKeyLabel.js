@@ -204,6 +204,8 @@
 	 *
 	 * @method updateTooltipAccessKeys_getAccessKeyPrefix
 	 * @deprecated since 1.27 Use #getAccessKeyModifiers
+	 * @param {Object} [ua] An object with a 'userAgent' and 'platform' property.
+	 * @return {string}
 	 */
 	$.fn.updateTooltipAccessKeys.getAccessKeyPrefix = function ( ua ) {
 		return getAccessKeyModifiers( ua ).join( '-' ) + '-';

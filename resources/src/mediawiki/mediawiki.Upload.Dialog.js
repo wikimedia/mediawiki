@@ -29,6 +29,9 @@
 	 * @uses mw.Upload
 	 * @uses mw.Upload.BookletLayout
 	 * @extends OO.ui.ProcessDialog
+	 *
+	 * @constructor
+	 * @param {Object} [config] Configuration options
 	 * @cfg {Function} [bookletClass=mw.Upload.BookletLayout] Booklet class to be
 	 *     used for the steps
 	 * @cfg {Object} [booklet] Booklet constructor configuration

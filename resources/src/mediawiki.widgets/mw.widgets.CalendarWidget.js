@@ -408,6 +408,7 @@
 	 * what gets clicked.
 	 *
 	 * @private
+	 * @param {jQuery.Evenet} e Click event
 	 */
 	mw.widgets.CalendarWidget.prototype.onBodyClick = function ( e ) {
 		var
@@ -504,6 +505,7 @@
 	 *
 	 * @private
 	 * @param {jQuery.Event} e Mouse click event
+	 * @return {boolean} False to cancel the default event
 	 */
 	mw.widgets.CalendarWidget.prototype.onClick = function ( e ) {
 		if ( !this.isDisabled() && e.which === 1 ) {
@@ -517,6 +519,7 @@
 	 *
 	 * @private
 	 * @param {jQuery.Event} e Key down event
+	 * @return {boolean} False to cancel the default event
 	 */
 	mw.widgets.CalendarWidget.prototype.onKeyDown = function ( e ) {
 		var

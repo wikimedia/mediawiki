@@ -92,13 +92,15 @@
 		}
 
 		/**
-		 * defines the location of autocomplete. Typically either
+		 * Defines the location of autocomplete. Typically either
 		 * header, which is in the top right of vector (for example)
 		 * and content which identifies the main search bar on
-		 * Special:Search.  Defaults to header for skins that don't set
+		 * Special:Search. Defaults to header for skins that don't set
 		 * explicitly.
 		 *
 		 * @ignore
+		 * @param {Object} context
+		 * @return {string}
 		 */
 		function getInputLocation( context ) {
 			return context.config.$region
@@ -112,6 +114,7 @@
 		 * 'this' is the search input box (jQuery object)
 		 *
 		 * @ignore
+		 * @param {Object} metadata
 		 */
 		function onAfterUpdate( metadata ) {
 			var context = this.data( 'suggestionsContext' );

@@ -109,11 +109,10 @@
 	};
 
 	/**
-	 * @class mw.widgets.CategoryCapsuleItemWidget
-	 *
 	 * Category selector capsule item widget. Extends OO.ui.CapsuleItemWidget with the ability to link
 	 * to the given page, and to show its existence status (i.e., whether it is a redlink).
 	 *
+	 * @class mw.widgets.CategoryCapsuleItemWidget
 	 * @uses mw.Api
 	 * @extends OO.ui.CapsuleItemWidget
 	 *

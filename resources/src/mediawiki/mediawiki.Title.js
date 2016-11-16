@@ -31,11 +31,12 @@
 	 *     mw.Title.newFromText( 'Template:Foo', NS_TEMPLATE ).getPrefixedText(); // => 'Template:Foo'
 	 *     mw.Title.makeTitle( NS_TEMPLATE, 'Template:Foo' ).getPrefixedText();   // => 'Template:Template:Foo'
 	 *
-	 * @method constructor
+	 * @constructor
 	 * @param {string} title Title of the page. If no second argument given,
 	 *  this will be searched for a namespace
 	 * @param {number} [namespace=NS_MAIN] If given, will used as default namespace for the given title
 	 * @throws {Error} When the title is invalid
+	 * @return {mw.Title}
 	 */
 	function Title( title, namespace ) {
 		var parsed = parse( title, namespace );

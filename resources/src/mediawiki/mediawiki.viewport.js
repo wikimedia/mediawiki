@@ -18,6 +18,7 @@
 		 *
 		 * @ignore
 		 * @private
+		 * @return {Object} Viewport positions
 		 */
 		makeViewportFromWindow: function () {
 			var $window = $( window ),
