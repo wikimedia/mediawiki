@@ -26,6 +26,7 @@ class ExtensionProcessor implements Processor {
 		'ExtensionEntryPointListFiles',
 		'ExtensionFunctions',
 		'FeedClasses',
+		'FileExtensions',
 		'FilterLogTypes',
 		'GrantPermissionGroups',
 		'GrantPermissions',
