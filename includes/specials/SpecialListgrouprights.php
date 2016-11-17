@@ -139,7 +139,6 @@ class SpecialListGroupRights extends SpecialPage {
 	}
 
 	private function outputNamespaceProtectionInfo() {
-		global $wgParser, $wgContLang;
 		$out = $this->getOutput();
 		$namespaceProtection = $this->getConfig()->get( 'NamespaceProtection' );
 
@@ -175,7 +174,7 @@ class SpecialListGroupRights extends SpecialPage {
 			if ( $namespace == NS_MAIN ) {
 				$namespaceText = $this->msg( 'blanknamespace' )->text();
 			} else {
-				$namespaceText = $wgContLang->convertNamespace( $namespace );
+				$namespaceText = $this->getLanguage()->convertNamespace( $namespace );
 			}
 
 			$out->addHTML(

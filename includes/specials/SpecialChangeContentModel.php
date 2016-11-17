@@ -142,8 +142,6 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	}
 
 	public function onSubmit( array $data ) {
-		global $wgContLang;
-
 		if ( $data['pagetitle'] === '' ) {
 			// Initial form view of special page, pass
 			return false;
@@ -229,7 +227,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			$reason .= $this->msg( 'colon-separator' )->inContentLanguage()->text() . $data['reason'];
 		}
 		# Truncate for whole multibyte characters.
-		$reason = $wgContLang->truncate( $reason, 255 );
+		$reason = $this->getLanguage()->truncate( $reason, 255 );
 
 		// Run edit filters
 		$derivativeContext = new DerivativeContext( $this->getContext() );

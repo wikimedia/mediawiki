@@ -468,13 +468,14 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @param FormOptions $opts Unused
 	 */
 	function setTopText( FormOptions $opts ) {
-		global $wgContLang;
-
 		$message = $this->msg( 'recentchangestext' )->inContentLanguage();
 		if ( !$message->isDisabled() ) {
 			$this->getOutput()->addWikiText(
 				Html::rawElement( 'div',
-					[ 'lang' => $wgContLang->getHtmlCode(), 'dir' => $wgContLang->getDir() ],
+					[
+						'lang' => $this->getLanguage()->getHtmlCode(),
+						'dir' => $this->getLanguage()->getDir()
+					],
 					"\n" . $message->plain() . "\n"
 				),
 				/* $lineStart */ true,

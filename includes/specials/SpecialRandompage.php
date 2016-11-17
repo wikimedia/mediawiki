@@ -54,12 +54,10 @@ class RandomPage extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgContLang;
-
 		if ( is_string( $par ) ) {
 			// Testing for stringiness since we want to catch
 			// the empty string to mean main namespace only.
-			$this->setNamespace( $wgContLang->getNsIndex( $par ) );
+			$this->setNamespace( $this->getLanguage()->getNsIndex( $par ) );
 		}
 
 		$title = $this->getRandomTitle();
@@ -85,17 +83,14 @@ class RandomPage extends SpecialPage {
 	 * @return string
 	 */
 	private function getNsList() {
-		global $wgContLang;
 		$nsNames = [];
+		$lang = $this->getLanguage();
+		$blankmsg = $this->msg( 'blanknamespace' )->plain();
 		foreach ( $this->namespaces as $n ) {
-			if ( $n === NS_MAIN ) {
-				$nsNames[] = $this->msg( 'blanknamespace' )->plain();
-			} else {
-				$nsNames[] = $wgContLang->getNsText( $n );
-			}
+			$nsNames[] = $n === NS_MAIN ? $blankmsg : $lang->getNsText( $n );
 		}
 
-		return $wgContLang->commaList( $nsNames );
+		return $lang->commaList( $nsNames );
 	}
 
 	/**

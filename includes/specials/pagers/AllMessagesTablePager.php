@@ -50,13 +50,11 @@ class AllMessagesTablePager extends TablePager {
 		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 		$this->mLimitsShown = [ 20, 50, 100, 250, 500, 5000 ];
 
-		global $wgContLang;
-
 		$this->talk = $this->msg( 'talkpagelinktext' )->escaped();
 
-		$this->lang = ( $langObj ? $langObj : $wgContLang );
+		$this->lang = $langObj ?: $this->getLanguage();
 		$this->langcode = $this->lang->getCode();
-		$this->foreign = !$this->lang->equals( $wgContLang );
+		$this->foreign = !$this->lang->equals( $this->getLanguage() );
 
 		$request = $this->getRequest();
 

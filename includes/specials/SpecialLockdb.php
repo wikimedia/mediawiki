@@ -74,8 +74,6 @@ class SpecialLockdb extends FormSpecialPage {
 	}
 
 	public function onSubmit( array $data ) {
-		global $wgContLang;
-
 		if ( !$data['Confirm'] ) {
 			return Status::newFatal( 'locknoconfirm' );
 		}
@@ -94,8 +92,8 @@ class SpecialLockdb extends FormSpecialPage {
 		$timestamp = wfTimestampNow();
 		fwrite( $fp, "\n<p>" . $this->msg( 'lockedbyandtime',
 			$this->getUser()->getName(),
-			$wgContLang->date( $timestamp, false, false ),
-			$wgContLang->time( $timestamp, false, false )
+			$this->getLanguage()->date( $timestamp, false, false ),
+			$this->getLanguage()->time( $timestamp, false, false )
 		)->inContentLanguage()->text() . "</p>\n" );
 		fclose( $fp );
 

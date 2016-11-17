@@ -206,10 +206,8 @@ class FileDuplicateSearchPage extends QueryPage {
 	 * @return string HTML
 	 */
 	function formatResult( $skin, $result ) {
-		global $wgContLang;
-
 		$nt = $result->getTitle();
-		$text = $wgContLang->convert( $nt->getText() );
+		$text = $this->getLanguage()->convert( $nt->getText() );
 		$plink = Linker::link(
 			$nt,
 			htmlspecialchars( $text )

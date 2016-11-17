@@ -241,8 +241,6 @@ class SpecialSearch extends SpecialPage {
 	 * @param string $term
 	 */
 	public function showResults( $term ) {
-		global $wgContLang;
-
 		$search = $this->getSearchEngine();
 		$search->setFeatureData( 'rewrite', $this->runSuggestion );
 		$search->setLimitOffset( $this->limit, $this->offset );
@@ -352,7 +350,7 @@ class SpecialSearch extends SpecialPage {
 			$didYouMeanHtml
 		);
 
-		$filePrefix = $wgContLang->getFormattedNsText( NS_FILE ) . ':';
+		$filePrefix = $this->getLanguage()->getFormattedNsText( NS_FILE ) . ':';
 		if ( trim( $term ) === '' || $filePrefix === trim( $term ) ) {
 			// Empty query -- straight view of search form
 			return;
@@ -698,9 +696,7 @@ class SpecialSearch extends SpecialPage {
 	 * @return string
 	 */
 	protected function showMatches( $matches, $interwiki = null ) {
-		global $wgContLang;
-
-		$terms = $wgContLang->convertForSearchResult( $matches->termMatches() );
+		$terms = $this->getLanguage()->convertForSearchResult( $matches->termMatches() );
 		$out = '';
 		$result = $matches->next();
 		$pos = $this->offset;
@@ -717,7 +713,7 @@ class SpecialSearch extends SpecialPage {
 		$out .= "</ul>\n";
 
 		// convert the whole thing to desired language variant
-		$out = $wgContLang->convert( $out );
+		$out = $this->getLanguage()->convert( $out );
 
 		return $out;
 	}
@@ -909,8 +905,6 @@ class SpecialSearch extends SpecialPage {
 	 * @return string
 	 */
 	protected function showInterwiki( $matches, $query ) {
-		global $wgContLang;
-
 		$out = "<div id='mw-search-interwiki'><div id='mw-search-interwiki-caption'>" .
 			$this->msg( 'search-interwiki-caption' )->text() . "</div>\n";
 		$out .= "<ul class='mw-search-iwresults'>\n";
@@ -936,7 +930,7 @@ class SpecialSearch extends SpecialPage {
 		$out .= "</ul></div>\n";
 
 		// convert the whole thing to desired language variant
-		$out = $wgContLang->convert( $out );
+		$out = $this->getLanguage()->convert( $out );
 
 		return $out;
 	}
@@ -1023,8 +1017,6 @@ class SpecialSearch extends SpecialPage {
 	 * @return string HTML form
 	 */
 	protected function powerSearchBox( $term, $opts ) {
-		global $wgContLang;
-
 		// Groups namespaces into rows according to subject
 		$rows = [];
 		foreach ( $this->searchConfig->searchableNamespaces() as $namespace => $name ) {
@@ -1033,7 +1025,7 @@ class SpecialSearch extends SpecialPage {
 				$rows[$subject] = "";
 			}
 
-			$name = $wgContLang->getConverter()->convertNamespace( $namespace );
+			$name = $this->getLanguage()->getConverter()->convertNamespace( $namespace );
 			if ( $name == '' ) {
 				$name = $this->msg( 'blanknamespace' )->text();
 			}
@@ -1303,11 +1295,9 @@ class SpecialSearch extends SpecialPage {
 	 * @return bool
 	 */
 	protected function startsWithImage( $term ) {
-		global $wgContLang;
-
 		$parts = explode( ':', $term );
 		if ( count( $parts ) > 1 ) {
-			return $wgContLang->getNsIndex( $parts[0] ) == NS_FILE;
+			return $this->getLanguage()->getNsIndex( $parts[0] ) == NS_FILE;
 		}
 
 		return false;

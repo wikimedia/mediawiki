@@ -614,7 +614,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return bool|string
 	 */
 	public static function processForm( array $data, IContextSource $context ) {
-		global $wgBlockAllowsUTEdit, $wgHideUserContribLimit, $wgContLang;
+		global $wgBlockAllowsUTEdit, $wgHideUserContribLimit;
 
 		$performer = $context->getUser();
 
@@ -717,7 +717,7 @@ class SpecialBlock extends FormSpecialPage {
 		$block->setTarget( $target );
 		$block->setBlocker( $performer );
 		# Truncate reason for whole multibyte characters
-		$block->mReason = $wgContLang->truncate( $data['Reason'][0], 255 );
+		$block->mReason = $context->getLanguage()->truncate( $data['Reason'][0], 255 );
 		$block->mExpiry = $expiryTime;
 		$block->prevents( 'createaccount', $data['CreateAccount'] );
 		$block->prevents( 'editownusertalk', ( !$wgBlockAllowsUTEdit || $data['DisableUTEdit'] ) );

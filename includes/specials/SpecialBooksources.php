@@ -154,8 +154,6 @@ class SpecialBookSources extends SpecialPage {
 	private function showList( $isbn ) {
 		$out = $this->getOutput();
 
-		global $wgContLang;
-
 		$isbn = self::cleanIsbn( $isbn );
 		# Hook to allow extensions to insert additional HTML,
 		# e.g. for API-interacting plugins and so on
@@ -183,7 +181,7 @@ class SpecialBookSources extends SpecialPage {
 		# Fall back to the defaults given in the language file
 		$out->addWikiMsg( 'booksources-text' );
 		$out->addHTML( '<ul>' );
-		$items = $wgContLang->getBookstoreList();
+		$items = $this->getLanguage()->getBookstoreList();
 		foreach ( $items as $label => $url ) {
 			$out->addHTML( $this->makeListItem( $isbn, $label, $url ) );
 		}

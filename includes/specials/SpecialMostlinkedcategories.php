@@ -68,8 +68,6 @@ class MostlinkedCategoriesPage extends QueryPage {
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
-		global $wgContLang;
-
 		$nt = Title::makeTitleSafe( NS_CATEGORY, $result->title );
 		if ( !$nt ) {
 			return Html::element(
@@ -82,7 +80,7 @@ class MostlinkedCategoriesPage extends QueryPage {
 			);
 		}
 
-		$text = $wgContLang->convert( $nt->getText() );
+		$text = $this->getLanguage()->convert( $nt->getText() );
 		$plink = $this->getLinkRenderer()->makeLink( $nt, $text );
 		$nlinks = $this->msg( 'nmembers' )->numParams( $result->value )->escaped();
 

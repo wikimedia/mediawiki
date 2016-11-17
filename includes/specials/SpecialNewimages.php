@@ -124,13 +124,12 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	 * Send the text to be displayed above the options
 	 */
 	function setTopText() {
-		global $wgContLang;
-
 		$message = $this->msg( 'newimagestext' )->inContentLanguage();
 		if ( !$message->isDisabled() ) {
+			$lang = $this->getLanguage();
 			$this->getOutput()->addWikiText(
 				Html::rawElement( 'p',
-					[ 'lang' => $wgContLang->getHtmlCode(), 'dir' => $wgContLang->getDir() ],
+					[ 'lang' => $lang->getHtmlCode(), 'dir' => $lang->getDir() ],
 					"\n" . $message->plain() . "\n"
 				),
 				/* $lineStart */ false,

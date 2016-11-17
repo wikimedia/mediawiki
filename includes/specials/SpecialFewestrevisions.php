@@ -74,8 +74,6 @@ class FewestrevisionsPage extends QueryPage {
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
-		global $wgContLang;
-
 		$nt = Title::makeTitleSafe( $result->namespace, $result->title );
 		if ( !$nt ) {
 			return Html::element(
@@ -89,7 +87,7 @@ class FewestrevisionsPage extends QueryPage {
 			);
 		}
 
-		$text = htmlspecialchars( $wgContLang->convert( $nt->getPrefixedText() ) );
+		$text = htmlspecialchars( $this->getLanguage()->convert( $nt->getPrefixedText() ) );
 		$plink = Linker::linkKnown( $nt, $text );
 
 		$nl = $this->msg( 'nrevisions' )->numParams( $result->value )->escaped();

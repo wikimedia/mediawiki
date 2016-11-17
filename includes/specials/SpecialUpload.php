@@ -1082,11 +1082,9 @@ class UploadForm extends HTMLForm {
 				$file = null;
 			}
 			if ( $file ) {
-				global $wgContLang;
-
 				$mto = $file->transform( [ 'width' => 120 ] );
 				$this->addHeaderText(
-					'<div class="thumb t' . $wgContLang->alignEnd() . '">' .
+					'<div class="thumb t' . $this->getLanguage()->alignEnd() . '">' .
 					Html::element( 'img', [
 						'src' => $mto->getUrl(),
 						'class' => 'thumbimage',

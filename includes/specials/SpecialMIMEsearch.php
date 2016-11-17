@@ -151,10 +151,9 @@ class MIMEsearchPage extends QueryPage {
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
-		global $wgContLang;
-
 		$nt = Title::makeTitle( $result->namespace, $result->title );
-		$text = $wgContLang->convert( $nt->getText() );
+		$lang = $this->getLanguage();
+		$text = $lang->convert( $nt->getText() );
 		$plink = Linker::link(
 			Title::newFromText( $nt->getPrefixedText() ),
 			htmlspecialchars( $text )
@@ -162,7 +161,7 @@ class MIMEsearchPage extends QueryPage {
 
 		$download = Linker::makeMediaLinkObj( $nt, $this->msg( 'download' )->escaped() );
 		$download = $this->msg( 'parentheses' )->rawParams( $download )->escaped();
-		$lang = $this->getLanguage();
+		
 		$bytes = htmlspecialchars( $lang->formatSize( $result->img_size ) );
 		$dimensions = $this->msg( 'widthheight' )->numParams( $result->img_width,
 			$result->img_height )->escaped();

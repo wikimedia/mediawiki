@@ -88,10 +88,8 @@ class WantedCategoriesPage extends WantedQueryPage {
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
-		global $wgContLang;
-
 		$nt = Title::makeTitle( $result->namespace, $result->title );
-		$text = htmlspecialchars( $wgContLang->convert( $nt->getText() ) );
+		$text = htmlspecialchars( $this->getLanguage()->convert( $nt->getText() ) );
 
 		if ( !$this->isCached() ) {
 			// We can assume the freshest data
