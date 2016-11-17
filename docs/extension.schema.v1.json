@@ -640,6 +640,10 @@
 			"type": "object",
 			"description": "Password policies"
 		},
+		"FileExtensions": {
+			"type": "object",
+			"description": "Preferred file extensions for uploading"
+		},
 		"callback": {
 			"type": [
 				"array",
