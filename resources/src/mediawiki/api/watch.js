@@ -12,6 +12,7 @@
 	 * @param {string|mw.Title|string[]|mw.Title[]} pages Full page name or instance of mw.Title, or an
 	 *  array thereof. If an array is passed, the return value passed to the promise will also be an
 	 *  array of appropriate objects.
+	 * @param {Object} [addParams]
 	 * @return {jQuery.Promise}
 	 * @return {Function} return.done
 	 * @return {Object|Object[]} return.done.watch Object or list of objects (depends on the `pages`

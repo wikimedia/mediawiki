@@ -46,6 +46,7 @@
 	 * Get new iframe object for an upload.
 	 *
 	 * @private
+	 * @param {string} id
 	 * @return {HTMLIframeElement}
 	 */
 	function getNewIframe( id ) {
@@ -59,6 +60,8 @@
 	 * Shortcut for getting hidden inputs
 	 *
 	 * @private
+	 * @param {string} name
+	 * @param {string} val
 	 * @return {jQuery}
 	 */
 	function getHiddenInput( name, val ) {
@@ -374,6 +377,7 @@
 		 *
 		 * @param {string} filekey
 		 * @param {Object} data
+		 * @return {jQuery.Promise}
 		 */
 		uploadFromStash: function ( filekey, data ) {
 			data.filekey = filekey;

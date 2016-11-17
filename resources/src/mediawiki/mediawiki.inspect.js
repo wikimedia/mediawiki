@@ -190,6 +190,8 @@
 			/**
 			 * Generate a breakdown of all loaded modules and their size in
 			 * kilobytes. Modules are ordered from largest to smallest.
+			 *
+			 * @return {Object[]} Size reports
 			 */
 			size: function () {
 				// Map each module to a descriptor object.
@@ -215,6 +217,8 @@
 			/**
 			 * For each module with styles, count the number of selectors, and
 			 * count how many match against some element currently in the DOM.
+			 *
+			 * @return {Object[]} CSS reports
 			 */
 			css: function () {
 				var modules = [];
@@ -243,6 +247,8 @@
 			 * Report stats on mw.loader.store: the number of localStorage
 			 * cache hits and misses, the number of items purged from the
 			 * cache, and the total size of the module blob in localStorage.
+			 *
+			 * @return {Object[]} Store stats
 			 */
 			store: function () {
 				var raw, stats = { enabled: mw.loader.store.enabled };

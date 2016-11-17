@@ -231,6 +231,8 @@
 
 		/**
 		 * Build the console panel
+		 *
+		 * @return {jQuery} Console panel
 		 */
 		buildConsoleTable: function () {
 			var $table, entryTypeText, i, length, entry;

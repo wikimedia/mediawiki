@@ -907,7 +907,8 @@
 			/**
 			 * Starts the parse
 			 *
-			 * @param {Function} rootExpression root parse function
+			 * @param {Function} rootExpression Root parse function
+			 * @return {Array|null}
 			 */
 			function start( rootExpression ) {
 				var result = nOrMore( 0, rootExpression )();
@@ -937,6 +938,9 @@
 
 	/**
 	 * htmlEmitter - object which primarily exists to emit HTML from parser ASTs
+	 *
+	 * @param {Object} language
+	 * @param {Object} magic
 	 */
 	mw.jqueryMsg.htmlEmitter = function ( language, magic ) {
 		var jmsg = this;
@@ -1050,6 +1054,7 @@
 		 * It may, though, if the wikitext appears in extension-controlled content.
 		 *
 		 * @param {string[]} nodes
+		 * @return {jQuery}
 		 */
 		wikilink: function ( nodes ) {
 			var page, anchor, url, $el;

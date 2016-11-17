@@ -207,6 +207,8 @@
 	/**
 	 * Gets the height of the interface elements and the
 	 * gallery's caption.
+	 *
+	 * @return {number} Height
 	 */
 	mw.GallerySlideshow.prototype.getChromeHeight = function () {
 		return this.$interface.outerHeight() + this.$galleryCaption.outerHeight();
