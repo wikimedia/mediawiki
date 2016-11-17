@@ -1666,26 +1666,6 @@
 			}
 
 			/**
-			 * @private
-			 * @param {string[]} implementations Array containing pieces of JavaScript code in the
-			 *  form of calls to mw.loader#implement().
-			 * @param {Function} cb Callback in case of failure
-			 * @param {Error} cb.err
-			 */
-			function asyncEval( implementations, cb ) {
-				if ( !implementations.length ) {
-					return;
-				}
-				mw.requestIdleCallback( function () {
-					try {
-						$.globalEval( implementations.join( ';' ) );
-					} catch ( err ) {
-						cb( err );
-					}
-				} );
-			}
-
-			/**
 			 * Make a versioned key for a specific module.
 			 *
 			 * @private
@@ -1738,7 +1718,7 @@
 				 * @protected
 				 */
 				work: function () {
-					var q, batch, implementations, sourceModules;
+					var q, batch, concatSource, origBatch;
 
 					batch = [];
 
@@ -1768,18 +1748,19 @@
 
 					mw.loader.store.init();
 					if ( mw.loader.store.enabled ) {
-						implementations = [];
-						sourceModules = [];
+						concatSource = [];
+						origBatch = batch;
 						batch = $.grep( batch, function ( module ) {
-							var implementation = mw.loader.store.get( module );
-							if ( implementation ) {
-								implementations.push( implementation );
-								sourceModules.push( module );
+							var source = mw.loader.store.get( module );
+							if ( source ) {
+								concatSource.push( source );
 								return false;
 							}
 							return true;
 						} );
-						asyncEval( implementations, function ( err ) {
+						try {
+							$.globalEval( concatSource.join( ';' ) );
+						} catch ( err ) {
 							// Not good, the cached mw.loader.implement calls failed! This should
 							// never happen, barring ResourceLoader bugs, browser bugs and PEBKACs.
 							// Depending on how corrupt the string is, it is likely that some
@@ -1791,14 +1772,16 @@
 							// something that infected the implement call itself, don't take any
 							// risks and clear everything in this cache.
 							mw.loader.store.clear();
-
+							// Re-add the ones still pending back to the batch and let the server
+							// repopulate these modules to the cache.
+							// This means that at most one module will be useless (the one that had
+							// the error) instead of all of them.
 							mw.track( 'resourceloader.exception', { exception: err, source: 'store-eval' } );
-							// Re-add the failed ones that are still pending back to the batch
-							var failed = $.grep( sourceModules, function ( module ) {
+							origBatch = $.grep( origBatch, function ( module ) {
 								return registry[ module ].state === 'loading';
 							} );
-							batchRequest( failed );
-						} );
+							batch = batch.concat( origBatch );
+						}
 					}
 
 					batchRequest( batch );
