@@ -397,7 +397,7 @@ class ChangeTags {
 			if ( !$user->isAllowed( 'applychangetags' ) ) {
 				return Status::newFatal( 'tags-apply-no-permission' );
 			} elseif ( $user->isBlocked() ) {
-				return Status::newFatal( 'tags-apply-blocked' );
+				return Status::newFatal( 'tags-apply-blocked', $user->getName() );
 			}
 		}
 
@@ -468,7 +468,7 @@ class ChangeTags {
 			if ( !$user->isAllowed( 'changetags' ) ) {
 				return Status::newFatal( 'tags-update-no-permission' );
 			} elseif ( $user->isBlocked() ) {
-				return Status::newFatal( 'tags-update-blocked' );
+				return Status::newFatal( 'tags-update-blocked', $user->getName() );
 			}
 		}
 
@@ -790,7 +790,7 @@ class ChangeTags {
 			if ( !$user->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
 			} elseif ( $user->isBlocked() ) {
-				return Status::newFatal( 'tags-manage-blocked' );
+				return Status::newFatal( 'tags-manage-blocked', $user->getName() );
 			}
 		}
 
@@ -858,7 +858,7 @@ class ChangeTags {
 			if ( !$user->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
 			} elseif ( $user->isBlocked() ) {
-				return Status::newFatal( 'tags-manage-blocked' );
+				return Status::newFatal( 'tags-manage-blocked', $user->getName() );
 			}
 		}
 
@@ -917,7 +917,7 @@ class ChangeTags {
 			if ( !$user->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
 			} elseif ( $user->isBlocked() ) {
-				return Status::newFatal( 'tags-manage-blocked' );
+				return Status::newFatal( 'tags-manage-blocked', $user->getName() );
 			}
 		}
 
@@ -1050,7 +1050,7 @@ class ChangeTags {
 			if ( !$user->isAllowed( 'deletechangetags' ) ) {
 				return Status::newFatal( 'tags-delete-no-permission' );
 			} elseif ( $user->isBlocked() ) {
-				return Status::newFatal( 'tags-manage-blocked' );
+				return Status::newFatal( 'tags-manage-blocked', $user->getName() );
 			}
 		}
 
