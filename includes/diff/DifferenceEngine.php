@@ -247,8 +247,9 @@ class DifferenceEngine extends ContextSource {
 		Hooks::run( 'DifferenceEngineShowDiffPage', [ $out ] );
 
 		if ( !$this->loadRevisionData() ) {
-			$this->showMissingRevision();
-
+			if ( Hooks::run( 'DifferenceEngineShowDiffPageMaybeShowMissingRevision', [ $this ] ) ) {
+				$this->showMissingRevision();
+			}
 			return;
 		}
 
@@ -1369,6 +1370,7 @@ class DifferenceEngine extends ContextSource {
 
 		if ( $this->mNewRev ) {
 			$this->mNewContent = $this->mNewRev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
+			Hooks::run( 'DifferenceEngineLoadTextAfterNewContentIsLoaded', [ $this ] );
 			if ( $this->mNewContent === null ) {
 				return false;
 			}
@@ -1394,6 +1396,8 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		$this->mNewContent = $this->mNewRev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
+
+		Hooks::run( 'DifferenceEngineAfterLoadNewText', [ $this ] );
 
 		return true;
 	}
