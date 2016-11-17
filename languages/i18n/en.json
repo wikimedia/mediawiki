@@ -4102,6 +4102,8 @@
 	"mw-widgets-dateinput-no-date": "No date selected",
 	"mw-widgets-dateinput-placeholder-day": "YYYY-MM-DD",
 	"mw-widgets-dateinput-placeholder-month": "YYYY-MM",
+	"mw-widgets-mediasearch-input-placeholder": "Search for media",
+	"mw-widgets-mediasearch-noresults": "No results found.",
 	"mw-widgets-titleinput-description-new-page": "page does not exist yet",
 	"mw-widgets-titleinput-description-redirect": "redirect to $1",
 	"mw-widgets-categoryselector-add-category-placeholder": "Add a category...",
