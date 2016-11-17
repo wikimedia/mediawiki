@@ -3,6 +3,8 @@
 define( 'NS_UNITTEST', 5600 );
 define( 'NS_UNITTEST_TALK', 5601 );
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group Database
  */
@@ -347,6 +349,12 @@ class UserTest extends MediaWikiTestCase {
 		$user->saveSettings();
 
 		$user = User::newFromName( $user->getName() );
+		$user->load( User::READ_LATEST );
+		$this->assertEquals( 'test', $user->getOption( 'userjs-someoption' ) );
+		$this->assertEquals( 200, $user->getOption( 'cols' ) );
+
+		$user = User::newFromName( $user->getName() );
+		MediaWikiServices::getInstance()->getMainWANObjectCache()->clearProcessCache();
 		$this->assertEquals( 'test', $user->getOption( 'userjs-someoption' ) );
 		$this->assertEquals( 200, $user->getOption( 'cols' ) );
 	}
