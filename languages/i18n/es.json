@@ -1954,6 +1954,7 @@
 	"apisandbox-alert-field": "El valor de este campo no es válido.",
 	"apisandbox-continue": "Continuar",
 	"apisandbox-continue-clear": "Vaciar",
+	"apisandbox-param-limit": "Escribe <kbd>max</kbd> para usar el límite máximo.",
 	"booksources": "Fuentes de libros",
 	"booksources-search-legend": "Buscar fuentes de libros",
 	"booksources-search": "Buscar",

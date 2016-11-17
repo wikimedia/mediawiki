@@ -13,7 +13,8 @@
 			"Yearning",
 			"Priviet",
 			"Ykhwong",
-			"Jonghaya"
+			"Jonghaya",
+			"Jerrykim306"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|설명문서]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 메일링 리스트]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API 알림 사항]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 버그 및 요청]\n</div>\n<strong>상태:</strong> 이 페이지에 보이는 모든 기능은 정상적으로 작동하지만, API는 여전히 활발하게 개발되고 있으며, 언제든지 변경될 수 있습니다. 업데이트 공지를 받아보려면 [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 메일링 리스트]를 구독하십시오.\n\n<strong>잘못된 요청:</strong> API에 잘못된 요청이 전송되면 \"MediaWiki-API-Error\" 키가 포함된 HTTP 헤더가 전송되며 반환되는 헤더와 오류 코드의 값은 동일한 값으로 설정됩니다. 자세한 정보에 대해서는 [[mw:API:Errors_and_warnings|API:오류와 경고]]를 참조하십시오.\n\n<strong>테스트하기:</strong> API 요청 테스트를 용이하게 하려면, [[Special:ApiSandbox]]를 보십시오.",
@@ -139,6 +140,7 @@
 	"apihelp-feedwatchlist-param-feedformat": "피드 포맷.",
 	"apihelp-feedwatchlist-example-default": "주시문서 목록 피드를 보여줍니다.",
 	"apihelp-filerevert-description": "파일을 이전 판으로 되돌립니다.",
+	"apihelp-filerevert-param-comment": "댓글 달기",
 	"apihelp-filerevert-example-revert": "<kbd>Wiki.png</kbd>를 <kbd>2011-03-05T15:27:40Z</kbd> 판으로 되돌립니다.",
 	"apihelp-help-description": "지정된 모듈의 도움말을 보여줍니다.",
 	"apihelp-help-param-helpformat": "도움말 출력 포맷.",

@@ -1871,6 +1871,7 @@
 	"apisandbox-continue": "استمرار",
 	"apisandbox-continue-clear": "إفراغ",
 	"apisandbox-continue-help": "{{int:apisandbox-continue}} س [https://www.mediawiki.org/wiki/API:Query#Continuing_queries يستمر] في الطلب الأخير؛ {{int:apisandbox-continue-clear}} سيفرغ المعاملات المرتبطة بالاستمرار.",
+	"apisandbox-param-limit": "أدخل <kbd>max</kbd> لاستخدام الحد الأقصى.",
 	"booksources": "مصادر كتاب",
 	"booksources-search-legend": "البحث عن مصادر الكتب",
 	"booksources-isbn": "ردمك:",

@@ -235,7 +235,7 @@
 	"views": "Peržiūros",
 	"toolbox": "Įrankiai",
 	"tool-link-userrights": "Keisti {{GENDER:$1|naudotojo|naudotojos}} grupes",
-	"tool-link-emailuser": "Siusti {{GENDER:$1|šiam naudotojui|šiai naudotojai}} el. laišką",
+	"tool-link-emailuser": "Siųsti {{GENDER:$1|šiam naudotojui|šiai naudotojai}} el. laišką",
 	"userpage": "Rodyti naudotojo puslapį",
 	"projectpage": "Rodyti projekto puslapį",
 	"imagepage": "Žiūrėti failo puslapį",

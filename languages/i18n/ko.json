@@ -63,7 +63,8 @@
 			"HDNua",
 			"Ykhwong",
 			"Matma Rex",
-			"Tursetic"
+			"Tursetic",
+			"Jerrykim306"
 		]
 	},
 	"tog-underline": "링크에 밑줄:",
@@ -107,7 +108,7 @@
 	"tog-diffonly": "편집 차이를 비교할 때 문서 내용을 보지 않기",
 	"tog-showhiddencats": "숨은 분류 보이기",
 	"tog-norollbackdiff": "되돌리기 후 차이를 보지 않기",
-	"tog-useeditwarning": "바꾼 내용을 저장하지 않고 편집 페이지를 벗어날 때 내게 경고하기",
+	"tog-useeditwarning": "편집을 저장하지 않고 편집 페이지를 벗어날 때 내게 물어보기",
 	"tog-prefershttps": "로그인하는 동안 항상 보안 연결 사용",
 	"underline-always": "항상",
 	"underline-never": "항상 치지 않기",
