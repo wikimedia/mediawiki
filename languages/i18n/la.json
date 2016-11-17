@@ -1111,8 +1111,6 @@
 	"listusers-blocked": "(obstructus)",
 	"activeusers": "Index usorum activorum",
 	"activeusers-count": "{{PLURAL:$1|una recensio {{PLURAL:$3|hodie|his $3 diebus}} facta|$1 recensiones {{PLURAL:$3|hodie|his $3 diebus}} factae}}",
-	"activeusers-hidebots": "Celare automata",
-	"activeusers-hidesysops": "Celare magistratus",
 	"activeusers-noresult": "Nullus usor inventus.",
 	"listgrouprights": "Gregum usorum potestates",
 	"listgrouprights-group": "Grex",

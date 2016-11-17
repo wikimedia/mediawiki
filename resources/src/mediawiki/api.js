@@ -253,6 +253,7 @@
 				} )
 				// AJAX success just means "200 OK" response, also check API error codes
 				.done( function ( result, textStatus, jqXHR ) {
+					var code;
 					if ( result === undefined || result === null || result === '' ) {
 						apiDeferred.reject( 'ok-but-empty',
 							'OK response but empty result (check HTTP headers?)',
@@ -260,7 +261,7 @@
 							jqXHR
 						);
 					} else if ( result.error ) {
-						var code = result.error.code === undefined ? 'unknown' : result.error.code;
+						code = result.error.code === undefined ? 'unknown' : result.error.code;
 						apiDeferred.reject( code, result, result, jqXHR );
 					} else {
 						apiDeferred.resolve( result, jqXHR );
@@ -353,6 +354,7 @@
 		 *
 		 * @since 1.22
 		 * @param {string} type Token type
+		 * @param {string} [assert]
 		 * @return {jQuery.Promise} Received token.
 		 */
 		getToken: function ( type, assert ) {

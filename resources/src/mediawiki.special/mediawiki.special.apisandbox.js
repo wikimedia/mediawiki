@@ -1,4 +1,4 @@
-/*global OO */
+/* eslint-disable no-use-before-define */
 ( function ( $, mw, OO ) {
 	'use strict';
 	var ApiSandbox, Util, WidgetMethods, Validators,
@@ -389,19 +389,26 @@
 					break;
 
 				case 'limit':
-					widget = new OO.ui.NumberInputWidget( {
-						required: Util.apiBool( pi.required ),
-						isInteger: true
+					widget = new OO.ui.TextInputWidget( {
+						required: Util.apiBool( pi.required )
 					} );
-					widget.setIcon = widget.input.setIcon.bind( widget.input );
-					widget.setIconTitle = widget.input.setIconTitle.bind( widget.input );
-					widget.getValidity = widget.input.getValidity.bind( widget.input );
-					widget.input.setValidation( function ( value ) {
-						return value === 'max' || widget.validateNumber( value );
+					widget.setValidation( function ( value ) {
+						var n, pi = this.paramInfo;
+
+						if ( value === 'max' ) {
+							return true;
+						} else {
+							n = +value;
+							return !isNaN( n ) && isFinite( n ) &&
+								// eslint-disable-next-line no-bitwise
+								( n | 0 ) === n &&
+								n >= pi.min && n <= pi.apiSandboxMax;
+						}
 					} );
+					pi.min = pi.min || 0;
+					pi.apiSandboxMax = mw.config.get( 'apihighlimits' ) ? pi.highmax : pi.max;
 					widget.paramInfo = pi;
 					$.extend( widget, WidgetMethods.textInputWidget );
-					widget.setRange( pi.min || 0, mw.config.get( 'apihighlimits' ) ? pi.highmax : pi.max );
 					multiMode = 'enter';
 					break;
 
@@ -708,6 +715,8 @@
 
 		/**
 		 * Update the current query when the page hash changes
+		 *
+		 * @return {boolean} Successful
 		 */
 		loadFromHash: function () {
 			var params, m, re,
@@ -1346,16 +1355,24 @@
 								if ( pi.parameters[ i ].highmax !== undefined ) {
 									dl.append( $( '<dd>', {
 										addClass: 'info',
-										append: Util.parseHTML( mw.message(
-											'api-help-param-limit2', pi.parameters[ i ].max, pi.parameters[ i ].highmax
-										).parse() )
+										append: [
+											Util.parseHTML( mw.message(
+												'api-help-param-limit2', pi.parameters[ i ].max, pi.parameters[ i ].highmax
+											).parse() ),
+											' ',
+											Util.parseHTML( mw.message( 'apisandbox-param-limit' ).parse() )
+										]
 									} ) );
 								} else {
 									dl.append( $( '<dd>', {
 										addClass: 'info',
-										append: Util.parseHTML( mw.message(
-											'api-help-param-limit', pi.parameters[ i ].max
-										).parse() )
+										append: [
+											Util.parseHTML( mw.message(
+												'api-help-param-limit', pi.parameters[ i ].max
+											).parse() ),
+											' ',
+											Util.parseHTML( mw.message( 'apisandbox-param-limit' ).parse() )
+										]
 									} ) );
 								}
 								break;

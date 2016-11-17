@@ -19,6 +19,9 @@
 	$.expandableField = {
 		/**
 		 * Expand the field, make the callback
+		 *
+		 * @param {jQuery.Event} e Event
+		 * @param {Object} context
 		 */
 		expandField: function ( e, context ) {
 			context.config.beforeExpand.call( context.data.$field, context );
@@ -29,6 +32,9 @@
 		},
 		/**
 		 * Condense the field, make the callback
+		 *
+		 * @param {jQuery.Event} e Event
+		 * @param {Object} context
 		 */
 		condenseField: function ( e, context ) {
 			context.config.beforeCondense.call( context.data.$field, context );

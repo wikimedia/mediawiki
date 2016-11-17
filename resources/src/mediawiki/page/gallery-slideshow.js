@@ -207,6 +207,8 @@
 	/**
 	 * Gets the height of the interface elements and the
 	 * gallery's caption.
+	 *
+	 * @return {number} Height
 	 */
 	mw.GallerySlideshow.prototype.getChromeHeight = function () {
 		return this.$interface.outerHeight() + this.$galleryCaption.outerHeight();
@@ -335,7 +337,7 @@
 		if ( this.imageInfoCache[ imageSrc ] === undefined ) {
 			api = new mw.Api();
 			// TODO: This supports only gallery of images
-			title = new mw.Title.newFromImg( $img );
+			title = mw.Title.newFromImg( $img );
 			params = {
 				action: 'query',
 				formatversion: 2,
@@ -450,11 +452,10 @@
 	};
 
 	// Bootstrap all slideshow galleries
-	$( function () {
-		$( '.mw-gallery-slideshow' ).each( function () {
-			/*jshint -W031 */
+	mw.hook( 'wikipage.content' ).add( function ( $content ) {
+		$content.find( '.mw-gallery-slideshow' ).each( function () {
+			// eslint-disable-next-line no-new
 			new mw.GallerySlideshow( this );
-			/*jshint +W031 */
 		} );
 	} );
 }( mediaWiki, jQuery, OO ) );

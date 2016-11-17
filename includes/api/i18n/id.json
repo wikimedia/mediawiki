@@ -4,7 +4,8 @@
 			"WongKentir",
 			"Beeyan",
 			"Rachmat.Wahidi",
-			"Kenrick95"
+			"Kenrick95",
+			"Presidenvolksraad"
 		]
 	},
 	"apihelp-main-param-action": "Tindakan manakah yang akan dilakukan.",
@@ -94,5 +95,6 @@
 	"apihelp-login-example-login": "Masuk log.",
 	"apihelp-query+prefixsearch-param-profile": "Cari profil untuk digunakan.",
 	"apihelp-query+search-param-qiprofile": "Meminta profil independen untuk digunakan (berefek pada algoritma peringkat).",
-	"apihelp-revisiondelete-param-ids": "Penanda untuk perubahan yang akan dihapus"
+	"apihelp-revisiondelete-param-ids": "Penanda untuk perubahan yang akan dihapus",
+	"api-format-prettyprint-status": "Tanggapan ini akan dikembalikan dengan status $1 $2 HTTP."
 }

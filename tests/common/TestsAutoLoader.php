@@ -35,6 +35,7 @@ $wgAutoloadClasses += [
 	'DjVuSupport' => "$testDir/parser/DjVuSupport.php",
 	'TestRecorder' => "$testDir/parser/TestRecorder.php",
 	'MultiTestRecorder' => "$testDir/parser/MultiTestRecorder.php",
+	'ParserTestMockParser' => "$testDir/parser/ParserTestMockParser.php",
 	'ParserTestRunner' => "$testDir/parser/ParserTestRunner.php",
 	'ParserTestParserHook' => "$testDir/parser/ParserTestParserHook.php",
 	'ParserTestPrinter' => "$testDir/parser/ParserTestPrinter.php",

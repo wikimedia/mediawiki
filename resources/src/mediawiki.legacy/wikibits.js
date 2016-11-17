@@ -166,13 +166,16 @@
 
 	/**
 	 * @deprecated since 1.17 Use mw.loader instead. Warnings added in 1.25.
+	 * @param {string} url
+	 * @return {HTMLElement} Script tag
 	 */
 	function importScriptURI( url ) {
+		var s;
 		if ( loadedScripts[ url ] ) {
 			return null;
 		}
 		loadedScripts[ url ] = true;
-		var s = document.createElement( 'script' );
+		s = document.createElement( 'script' );
 		s.setAttribute( 'src', url );
 		document.getElementsByTagName( 'head' )[ 0 ].appendChild( s );
 		return s;
@@ -187,6 +190,9 @@
 
 	/**
 	 * @deprecated since 1.17 Use mw.loader instead. Warnings added in 1.25.
+	 * @param {string} url
+	 * @param {string} media
+	 * @return {HTMLElement} Link tag
 	 */
 	function importStylesheetURI( url, media ) {
 		var l = document.createElement( 'link' );

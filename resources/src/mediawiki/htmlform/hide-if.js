@@ -4,8 +4,6 @@
  */
 ( function ( mw, $ ) {
 
-	/*jshint -W024*/
-
 	/**
 	 * Helper function for hide-if to find the nearby form field.
 	 *
@@ -204,7 +202,7 @@
 
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 		$root.find( '.mw-htmlform-hide-if' ).each( function () {
-			var v, i, fields, test, func, spec, self, modules, data,extraModules,
+			var v, i, fields, test, func, spec, self, modules, data, extraModules,
 				$el = $( this );
 
 			modules = [];

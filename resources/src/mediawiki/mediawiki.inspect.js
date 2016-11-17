@@ -4,7 +4,9 @@
  * @author Ori Livneh
  * @since 1.22
  */
-/*jshint devel:true */
+
+/* eslint-disable no-console */
+
 ( function ( mw, $ ) {
 
 	var inspect,
@@ -18,11 +20,12 @@
 	}
 
 	function humanSize( bytes ) {
-		if ( !$.isNumeric( bytes ) || bytes === 0 ) { return bytes; }
-		var i = 0,
+		var i,
 			units = [ '', ' KiB', ' MiB', ' GiB', ' TiB', ' PiB' ];
 
-		for ( ; bytes >= 1024; bytes /= 1024 ) { i++; }
+		if ( !$.isNumeric( bytes ) || bytes === 0 ) { return bytes; }
+
+		for ( i = 0; bytes >= 1024; bytes /= 1024 ) { i++; }
 		// Maintain one decimal for kB and above, but don't
 		// add ".0" for bytes.
 		return bytes.toFixed( i > 0 ? 1 : 0 ) + units[ i ];
@@ -187,6 +190,8 @@
 			/**
 			 * Generate a breakdown of all loaded modules and their size in
 			 * kilobytes. Modules are ordered from largest to smallest.
+			 *
+			 * @return {Object[]} Size reports
 			 */
 			size: function () {
 				// Map each module to a descriptor object.
@@ -212,6 +217,8 @@
 			/**
 			 * For each module with styles, count the number of selectors, and
 			 * count how many match against some element currently in the DOM.
+			 *
+			 * @return {Object[]} CSS reports
 			 */
 			css: function () {
 				var modules = [];
@@ -229,7 +236,7 @@
 						allSelectors: stats.total,
 						matchedSelectors: stats.matched,
 						percentMatched: stats.total !== 0 ?
-							( stats.matched / stats.total * 100 ).toFixed( 2 )  + '%' : null
+							( stats.matched / stats.total * 100 ).toFixed( 2 ) + '%' : null
 					} );
 				} );
 				sortByProperty( modules, 'allSelectors', true );
@@ -240,6 +247,8 @@
 			 * Report stats on mw.loader.store: the number of localStorage
 			 * cache hits and misses, the number of items purged from the
 			 * cache, and the total size of the module blob in localStorage.
+			 *
+			 * @return {Object[]} Store stats
 			 */
 			store: function () {
 				var raw, stats = { enabled: mw.loader.store.enabled };
@@ -247,7 +256,7 @@
 					$.extend( stats, mw.loader.store.stats );
 					try {
 						raw = localStorage.getItem( mw.loader.store.getStoreKey() );
-						stats.totalSizeInBytes =  $.byteLength( raw );
+						stats.totalSizeInBytes = $.byteLength( raw );
 						stats.totalSize = humanSize( $.byteLength( raw ) );
 					} catch ( e ) {}
 				}
@@ -278,8 +287,8 @@
 
 				// Grep module's CSS
 				if (
-					$.isPlainObject( module.style ) && $.isArray( module.style.css )
-					&& pattern.test( module.style.css.join( '' ) )
+					$.isPlainObject( module.style ) && $.isArray( module.style.css ) &&
+					pattern.test( module.style.css.join( '' ) )
 				) {
 					// Module's CSS source matches
 					return true;

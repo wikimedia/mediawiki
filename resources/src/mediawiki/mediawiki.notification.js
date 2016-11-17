@@ -23,9 +23,11 @@
 	 * @alternateClassName mw.Notification
 	 * @constructor
 	 * @private
+	 * @param {mw.Message|jQuery|HTMLElement|string} message
+	 * @param {Object} options
 	 */
 	function Notification( message, options ) {
-		var $notification, $notificationTitle, $notificationContent;
+		var $notification, $notificationContent;
 
 		$notification = $( '<div class="mw-notification"></div>' )
 			.data( 'mw.notification', this )
@@ -48,7 +50,7 @@
 		}
 
 		if ( options.title ) {
-			$notificationTitle = $( '<div class="mw-notification-title"></div>' )
+			$( '<div class="mw-notification-title"></div>' )
 				.text( options.title )
 				.appendTo( $notification );
 		}
@@ -227,7 +229,7 @@
 					$area.hide();
 					notif.$notification.remove();
 				} else {
-					notif.$notification.slideUp( 'fast',  function () {
+					notif.$notification.slideUp( 'fast', function () {
 						$( this ).remove();
 					} );
 				}

@@ -7,7 +7,9 @@
  * @alternateClassName mediaWiki
  * @singleton
  */
-/*jshint latedef:false */
+
+/* eslint-disable no-use-before-define */
+
 ( function ( $ ) {
 	'use strict';
 
@@ -31,7 +33,7 @@
 	 * @return {string} hash as an seven-character base 36 string
 	 */
 	function fnv132( str ) {
-		/*jshint bitwise:false */
+		/* eslint-disable no-bitwise */
 		var hash = 0x811C9DC5,
 			i;
 
@@ -46,6 +48,7 @@
 		}
 
 		return hash;
+		/* eslint-enable no-bitwise */
 	}
 
 	StringSet = window.Set || ( function () {
@@ -301,6 +304,7 @@
 			return mw.format.apply( null, [ this.map.get( this.key ) ].concat( this.parameters ) );
 		},
 
+		// eslint-disable-next-line valid-jsdoc
 		/**
 		 * Add (does not replace) parameters for `$N` placeholder values.
 		 *
@@ -325,12 +329,15 @@
 			var text;
 
 			if ( !this.exists() ) {
-				// Use <key> as text if key does not exist
-				if ( this.format === 'escaped' || this.format === 'parse' ) {
-					// format 'escaped' and 'parse' need to have the brackets and key html escaped
-					return mw.html.escape( '<' + this.key + '>' );
-				}
-				return '<' + this.key + '>';
+				// Use ⧼key⧽ as text if key does not exist
+				// Err on the side of safety, ensure that the output
+				// is always html safe in the event the message key is
+				// missing, since in that case its highly likely the
+				// message key is user-controlled.
+				// '⧼' is used instead of '<' to side-step any
+				// double-escaping issues.
+				// (Keep synchronised with Message::toString() in PHP.)
+				return '⧼' + mw.html.escape( this.key ) + '⧽';
 			}
 
 			if ( this.format === 'plain' || this.format === 'text' || this.format === 'parse' ) {
@@ -412,6 +419,7 @@
 		}
 	};
 
+	/* eslint-disable no-console */
 	log = ( function () {
 		// Also update the restoration of methods in mediawiki.log.js
 		// when adding or removing methods here.
@@ -460,9 +468,9 @@
 		log.deprecate = !Object.defineProperty ? function ( obj, key, val ) {
 			obj[ key ] = val;
 		} : function ( obj, key, val, msg, logName ) {
+			var logged = new StringSet();
 			logName = logName || key;
 			msg = 'Use of "' + logName + '" is deprecated.' + ( msg ? ( ' ' + msg ) : '' );
-			var logged = new StringSet();
 			function uniqueTrace() {
 				var trace = new Error().stack;
 				if ( logged.has( trace ) ) {
@@ -500,6 +508,7 @@
 
 		return log;
 	}() );
+	/* eslint-enable no-console */
 
 	/**
 	 * @class mw
@@ -1109,7 +1118,7 @@
 				}
 
 				if ( registry[ module ].skip !== null ) {
-					/*jshint evil:true */
+					// eslint-disable-next-line no-new-func
 					skip = new Function( registry[ module ].skip );
 					registry[ module ].skip = null;
 					if ( skip() ) {
@@ -1149,7 +1158,7 @@
 							) );
 						}
 
-						unresolved.add(  module );
+						unresolved.add( module );
 						sortDependencies( deps[ i ], resolved, unresolved );
 					}
 				}
@@ -1235,6 +1244,8 @@
 			 * Utility function for execute()
 			 *
 			 * @ignore
+			 * @param {string} [media] Media attribute
+			 * @param {string} url URL
 			 */
 			function addLink( media, url ) {
 				var el = document.createElement( 'link' );
@@ -1294,9 +1305,9 @@
 						} );
 					};
 
-					implicitDependencies = ( $.inArray( module, legacyModules ) !== -1 )
-						? []
-						: legacyModules;
+					implicitDependencies = ( $.inArray( module, legacyModules ) !== -1 ) ?
+						[] :
+						legacyModules;
 
 					if ( module === 'user' ) {
 						// Implicit dependency on the site module. Not real dependency because
@@ -1304,9 +1315,9 @@
 						implicitDependencies.push( 'site' );
 					}
 
-					legacyWait = implicitDependencies.length
-						? mw.loader.using( implicitDependencies )
-						: $.Deferred().resolve();
+					legacyWait = implicitDependencies.length ?
+						mw.loader.using( implicitDependencies ) :
+						$.Deferred().resolve();
 
 					legacyWait.always( function () {
 						try {
@@ -1500,6 +1511,8 @@
 			 * to a query string of the form foo.bar,baz|bar.baz,quux
 			 *
 			 * @private
+			 * @param {Object} moduleMap Module map
+			 * @return {string} Module query string
 			 */
 			function buildModulesString( moduleMap ) {
 				var p, prefix,
@@ -1635,9 +1648,9 @@
 							prefix = modules[ i ].substr( 0, lastDotIndex );
 							suffix = modules[ i ].slice( lastDotIndex + 1 );
 
-							bytesAdded = hasOwn.call( moduleMap, prefix )
-								? suffix.length + 3 // '%2C'.length == 3
-								: modules[ i ].length + 3; // '%7C'.length == 3
+							bytesAdded = hasOwn.call( moduleMap, prefix ) ?
+								suffix.length + 3 : // '%2C'.length == 3
+								modules[ i ].length + 3; // '%7C'.length == 3
 
 							// If the url would become too long, create a new one,
 							// but don't create empty requests
@@ -1777,6 +1790,7 @@
 							return true;
 						} );
 						asyncEval( implementations, function ( err ) {
+							var failed;
 							// Not good, the cached mw.loader.implement calls failed! This should
 							// never happen, barring ResourceLoader bugs, browser bugs and PEBKACs.
 							// Depending on how corrupt the string is, it is likely that some
@@ -1791,7 +1805,7 @@
 
 							mw.track( 'resourceloader.exception', { exception: err, source: 'store-eval' } );
 							// Re-add the failed ones that are still pending back to the batch
-							var failed = $.grep( sourceModules, function ( module ) {
+							failed = $.grep( sourceModules, function ( module ) {
 								return registry[ module ].state === 'loading';
 							} );
 							batchRequest( failed );
@@ -2140,6 +2154,8 @@
 				 *
 				 * @protected
 				 * @since 1.27
+				 * @param {string} moduleName Module name
+				 * @return {Mixed} Exported value
 				 */
 				require: function ( moduleName ) {
 					var state = mw.loader.getState( moduleName );
@@ -2306,6 +2322,7 @@
 					 *
 					 * @param {string} module Module name
 					 * @param {Object} descriptor The module's descriptor as set in the registry
+					 * @return {boolean} Module was set
 					 */
 					set: function ( module, descriptor ) {
 						var args, key, src;
@@ -2326,7 +2343,7 @@
 							// Partial descriptor
 							// (e.g. skipped module, or style module with state=ready)
 							$.inArray( undefined, [ descriptor.script, descriptor.style,
-									descriptor.messages, descriptor.templates ] ) !== -1
+								descriptor.messages, descriptor.templates ] ) !== -1
 						) {
 							// Decline to store
 							return false;
@@ -2350,7 +2367,7 @@
 							}
 						} catch ( e ) {
 							mw.track( 'resourceloader.exception', { exception: e, source: 'store-localstorage-json' } );
-							return;
+							return false;
 						}
 
 						src = 'mw.loader.implement(' + args.join( ',' ) + ');';
@@ -2359,11 +2376,14 @@
 						}
 						mw.loader.store.items[ key ] = src;
 						mw.loader.store.update();
+						return true;
 					},
 
 					/**
 					 * Iterate through the module store, removing any item that does not correspond
 					 * (in name and version) to an item in the module registry.
+					 *
+					 * @return {boolean} Store was pruned
 					 */
 					prune: function () {
 						var key, module;
@@ -2382,6 +2402,7 @@
 								delete mw.loader.store.items[ key ];
 							}
 						}
+						return true;
 					},
 
 					/**
@@ -2563,6 +2584,8 @@
 				 * Wrapper object for raw HTML passed to mw.html.element().
 				 *
 				 * @class mw.html.Raw
+				 * @constructor
+				 * @param {string} value
 				 */
 				Raw: function ( value ) {
 					this.value = value;
@@ -2572,6 +2595,8 @@
 				 * Wrapper object for CDATA element contents passed to mw.html.element()
 				 *
 				 * @class mw.html.Cdata
+				 * @constructor
+				 * @param {string} value
 				 */
 				Cdata: function ( value ) {
 					this.value = value;
@@ -2670,6 +2695,7 @@
 					 */
 					remove: list.remove,
 
+					// eslint-disable-next-line valid-jsdoc
 					/**
 					 * Run a hook.
 					 *
@@ -2703,6 +2729,7 @@
 	 * @param {string} [data.module] Name of module which caused the error
 	 */
 	function logError( topic, data ) {
+		/* eslint-disable no-console */
 		var msg,
 			e = data.exception,
 			source = data.source,
@@ -2724,6 +2751,7 @@
 				console.error( String( e ), e );
 			}
 		}
+		/* eslint-enable no-console */
 	}
 
 	// Subscribe to error streams

@@ -1414,8 +1414,6 @@
 	"activeusers-intro": "Dit is 'n lies mit gebroekers die aktief zeen gewaes in de aafgeloupe {{PLURAL:$1|daag|$1 daag}}.",
 	"activeusers-count": "$1 {{PLURAL:$1|bewèrking|bewèrkinger}} inne {{PLURAL:$3|lèsten daag|lès $3 daag}}",
 	"activeusers-from": "Tuin gebroekers vanaaf:",
-	"activeusers-hidebots": "Verberg bots",
-	"activeusers-hidesysops": "Verberg admins",
 	"activeusers-noresult": "Gein gebroekers gevónje.",
 	"listgrouprights": "Rechte van gebroekersgróppe",
 	"listgrouprights-summary": "Op dees pazjena sjtaon de gebroekersgróppe in deze wiki besjreve, mit zien biebehurende rechte.\nInfermasie daoreuver èn de individueel rechter vinjs te [[{{MediaWiki:Listgrouprights-helppage}}|hie]].",

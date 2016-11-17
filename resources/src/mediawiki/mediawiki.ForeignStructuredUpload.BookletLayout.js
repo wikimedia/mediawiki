@@ -1,4 +1,4 @@
-/*global moment */
+/* global moment, Uint8Array */
 ( function ( $, mw ) {
 
 	/**
@@ -18,6 +18,9 @@
 	 * @class mw.ForeignStructuredUpload.BookletLayout
 	 * @uses mw.ForeignStructuredUpload
 	 * @extends mw.Upload.BookletLayout
+	 *
+	 * @constructor
+	 * @param {Object} config Configuration options
 	 * @cfg {string} [target] Used to choose the target repository.
 	 *     If nothing is passed, the {@link mw.ForeignUpload#property-target default} is used.
 	 */
@@ -395,7 +398,7 @@
 				}
 
 				try {
-					metadata = mw.libs.jpegmeta( this.result, file.name );
+					metadata = mw.libs.jpegmeta( fileStr, file.name );
 				} catch ( e ) {
 					metadata = null;
 				}

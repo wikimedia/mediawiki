@@ -52,11 +52,11 @@
 
 			if ( !$log.length ) {
 				$log = $( '<div id="mw-log-console"></div>' ).css( {
-						overflow: 'auto',
-						height: '150px',
-						backgroundColor: 'white',
-						borderTop: 'solid 2px #ADADAD'
-					} );
+					overflow: 'auto',
+					height: '150px',
+					backgroundColor: 'white',
+					borderTop: 'solid 2px #ADADAD'
+				} );
 				hovzer = $.getFootHovzer();
 				hovzer.$.append( $log );
 				hovzer.update();

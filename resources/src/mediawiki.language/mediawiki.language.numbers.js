@@ -15,11 +15,12 @@
 	 * @return {string}
 	 */
 	function replicate( str, num ) {
+		var buf = [];
+
 		if ( num <= 0 || !str ) {
 			return '';
 		}
 
-		var buf = [];
 		while ( num-- ) {
 			buf.push( str );
 		}
@@ -43,12 +44,14 @@
 	 * @return {string}
 	 */
 	function pad( text, size, ch, end ) {
+		var out, padStr;
+
 		if ( !ch ) {
 			ch = '0';
 		}
 
-		var out = String( text ),
-			padStr = replicate( ch, Math.ceil( ( size - out.length ) / ch.length ) );
+		out = String( text );
+		padStr = replicate( ch, Math.ceil( ( size - out.length ) / ch.length ) );
 
 		return end ? out + padStr : padStr + out;
 	}
@@ -69,15 +72,6 @@
 	 * @return {string}
 	 */
 	function commafyNumber( value, pattern, options ) {
-		options = options || {
-			group: ',',
-			decimal: '.'
-		};
-
-		if ( isNaN( value ) ) {
-			return value;
-		}
-
 		var padLength,
 			patternDigits,
 			index,
@@ -91,6 +85,15 @@
 			groupSize = 0,
 			groupSize2 = 0,
 			pieces = [];
+
+		options = options || {
+			group: ',',
+			decimal: '.'
+		};
+
+		if ( isNaN( value ) ) {
+			return value;
+		}
 
 		if ( patternParts[ 1 ] ) {
 			// Pad fractional with trailing zeros

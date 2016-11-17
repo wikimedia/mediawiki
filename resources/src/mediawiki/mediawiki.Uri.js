@@ -50,7 +50,11 @@
  * @class mw.Uri
  */
 
+/* eslint-disable no-use-before-define */
+
 ( function ( mw, $ ) {
+	var parser, properties;
+
 	/**
 	 * Function that's useful when constructing the URI string -- we frequently encounter the pattern
 	 * of having to add something to the URI as we go, but only if it's present, and to include a
@@ -83,10 +87,10 @@
 	 * @static
 	 * @property {Object} parser
 	 */
-	var parser = {
+	parser = {
 		strict: mw.template.get( 'mediawiki.Uri', 'strict.regexp' ).render(),
 		loose: mw.template.get( 'mediawiki.Uri', 'loose.regexp' ).render()
-	},
+	};
 
 	/**
 	 * The order here matches the order of captured matches in the `parser` property regexes.
@@ -139,6 +143,7 @@
 	 * @param {string|Function} documentLocation A full url, or function returning one.
 	 *  If passed a function, the return value may change over time and this will be honoured. (T74334)
 	 * @member mw
+	 * @return {Function} Uri class
 	 */
 	mw.UriRelative = function ( documentLocation ) {
 		var getDefaultUri = ( function () {

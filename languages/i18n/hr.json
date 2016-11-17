@@ -2349,6 +2349,7 @@
 	"pageinfo-robot-index": "Stranicu je moguće indeksirati",
 	"pageinfo-robot-noindex": "Indeksiranje stranice onemogućeno",
 	"pageinfo-watchers": "Broj pratitelja stranice",
+	"pageinfo-visiting-watchers": "Broj suradnika pratitelja ove stranice koji su posjetili nedavne promjene",
 	"pageinfo-few-watchers": "Manje od $1 {{PLURAL:$1|suradnika koji prate ovu stranicu|suradnika koji prate ovu stranicu}}",
 	"pageinfo-redirects-name": "Broj preusmjeravanja na ovu stranicu",
 	"pageinfo-subpages-name": "Podstranice",

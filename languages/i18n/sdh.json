@@ -177,7 +177,6 @@
 	"userlogin-yourpassword-ph": "تێپەڕوشەگەت بنۊس",
 	"createacct-yourpassword-ph": "تێپەڕوشەێگ بنۊس",
 	"yourpasswordagain": "دیسان تێپەڕوشەگە بنۊسەو:",
-	"remembermypassword": "تێپەروشەگەم لەسەر ئەی کامپیوترە پاشدەس بکە (ئەو پەڕی $1 {{PLURAL:$1|ڕووژ}}ە)",
 	"login": "بچووە ناو",
 	"nav-login-createaccount": "بچووە ناو / ھەژمار درس بکە",
 	"userlogin": "بچووە ناو / ھەژمار درس بکە",

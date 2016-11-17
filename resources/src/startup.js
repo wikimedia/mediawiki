@@ -3,11 +3,11 @@
  *
  * This file is where we decide whether to initialise the modern run-time.
  */
-/*jshint unused: false */
-/*globals mw, RLQ: true, NORLQ: true, $VARS, $CODE, performance */
 
+/* global mw, $VARS, $CODE */
+
+// eslint-disable-next-line no-unused-vars
 var mediaWikiLoadStart = ( new Date() ).getTime(),
-
 	mwPerformance = ( window.performance && performance.mark ) ? performance : {
 		mark: function () {}
 	};
@@ -46,24 +46,27 @@ mwPerformance.mark( 'mwLoadStart' );
  * - Google Glass
  *
  * Other browsers that pass the check are considered Grade X.
+ *
+ * @param {string} [str] User agent, defaults to navigator.userAgent
+ * @return {boolean} User agent is compatible with MediaWiki JS
  */
 function isCompatible( str ) {
 	var ua = str || navigator.userAgent;
 	return !!(
 		// http://caniuse.com/#feat=queryselector
-		'querySelector' in document
+		'querySelector' in document &&
 
 		// http://caniuse.com/#feat=namevalue-storage
 		// https://developer.blackberry.com/html5/apis/v1_0/localstorage.html
 		// https://blog.whatwg.org/this-week-in-html-5-episode-30
-		&& 'localStorage' in window
+		'localStorage' in window &&
 
 		// http://caniuse.com/#feat=addeventlistener
-		&& 'addEventListener' in window
+		'addEventListener' in window &&
 
 		// Hardcoded exceptions for browsers that pass the requirement but we don't want to
 		// support in the modern run-time.
-		&& !(
+		!(
 			ua.match( /webOS\/1\.[0-4]|SymbianOS|Series60|NetFront|Opera Mini|S40OviBrowser|MeeGo|Android.+Glass/ ) ||
 			ua.match( /PlayStation/i ) ||
 			// UC Mini (speed mode on)
@@ -112,6 +115,7 @@ function isCompatible( str ) {
 
 		// Must be after mw.config.set because these callbacks may use mw.loader which
 		// needs to have values 'skin', 'debug' etc. from mw.config.
+		// eslint-disable-next-line vars-on-top
 		var RLQ = window.RLQ || [];
 		while ( RLQ.length ) {
 			RLQ.shift()();
