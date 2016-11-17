@@ -1,7 +1,18 @@
 <?php
 
+/**
+ * <input> field.
+ *
+ * Besides the parameters recognized by HTMLFormField, the following are
+ * recognized:
+ *   autocomplete - HTML autocomplete value (a boolean for on/off or a string according to
+ *     https://html.spec.whatwg.org/multipage/forms.html#autofill )
+ */
 class HTMLTextField extends HTMLFormField {
 	protected $mPlaceholder = '';
+
+	/** @var bool HTML autocomplete attribute */
+	protected $autocomplete;
 
 	/**
 	 * @param array $params
@@ -13,6 +24,10 @@ class HTMLTextField extends HTMLFormField {
 	 *     for password fields)
 	 */
 	public function __construct( $params ) {
+		if ( isset( $params['autocomplete'] ) && is_bool( $params['autocomplete'] ) ) {
+			$params['autocomplete'] = $params['autocomplete'] ? 'on' : 'off';
+		}
+
 		parent::__construct( $params );
 
 		if ( isset( $params['placeholder-message'] ) ) {
@@ -80,7 +95,8 @@ class HTMLTextField extends HTMLFormField {
 			'required',
 			'autofocus',
 			'multiple',
-			'readonly'
+			'readonly',
+			'autocomplete',
 		];
 
 		$attribs += $this->getAttributes( $allowedParams );
@@ -146,6 +162,7 @@ class HTMLTextField extends HTMLFormField {
 			'required',
 			'tabindex',
 			'type',
+			'autocomplete',
 		];
 
 		$attribs += OOUI\Element::configFromHtmlAttributes(
