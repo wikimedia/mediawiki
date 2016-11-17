@@ -37,6 +37,8 @@ abstract class MWLBFactory {
 	public static function applyDefaultConfig( array $lbConf, Config $mainConfig ) {
 		global $wgCommandLineMode;
 
+		static $typesWithSchema = [ 'postgres', 'msssql' ];
+
 		$lbConf += [
 			'localDomain' => new DatabaseDomain(
 				$mainConfig->get( 'DBname' ),
@@ -66,13 +68,18 @@ abstract class MWLBFactory {
 					} elseif ( $server['type'] === 'postgres' ) {
 						$server += [ 'port' => $mainConfig->get( 'DBport' ) ];
 					}
-					$lbConf['servers'][$i] = $server + [
-						'schema' => $mainConfig->get( 'DBmwschema' ),
+					if ( in_array( $server['type'], $typesWithSchema, true ) ) {
+						$server += [ 'schema' => $mainConfig->get( 'DBmwschema' ) ];
+					}
+
+					$server += [
 						'tablePrefix' => $mainConfig->get( 'DBprefix' ),
 						'flags' => DBO_DEFAULT,
 						'sqlMode' => $mainConfig->get( 'SQLMode' ),
 						'utf8Mode' => $mainConfig->get( 'DBmysql5' )
 					];
+
+					$lbConf['servers'][$i] = $server;
 				}
 			} else {
 				$flags = DBO_DEFAULT;
@@ -84,7 +91,6 @@ abstract class MWLBFactory {
 					'user' => $mainConfig->get( 'DBuser' ),
 					'password' => $mainConfig->get( 'DBpassword' ),
 					'dbname' => $mainConfig->get( 'DBname' ),
-					'schema' => $mainConfig->get( 'DBmwschema' ),
 					'tablePrefix' => $mainConfig->get( 'DBprefix' ),
 					'type' => $mainConfig->get( 'DBtype' ),
 					'load' => 1,
@@ -92,6 +98,9 @@ abstract class MWLBFactory {
 					'sqlMode' => $mainConfig->get( 'SQLMode' ),
 					'utf8Mode' => $mainConfig->get( 'DBmysql5' )
 				];
+				if ( in_array( $server['type'], $typesWithSchema, true ) ) {
+					$server += [ 'schema' => $mainConfig->get( 'DBmwschema' ) ];
+				}
 				if ( $server['type'] === 'sqlite' ) {
 					$server[ 'dbDirectory'] = $mainConfig->get( 'SQLiteDataDir' );
 				} elseif ( $server['type'] === 'postgres' ) {
@@ -104,7 +113,9 @@ abstract class MWLBFactory {
 			}
 		} elseif ( $lbConf['class'] === 'LBFactoryMulti' ) {
 			if ( isset( $lbConf['serverTemplate'] ) ) {
-				$lbConf['serverTemplate']['schema'] = $mainConfig->get( 'DBmwschema' );
+				if ( in_array( $lbConf['serverTemplate']['type'], $typesWithSchema, true ) ) {
+					$lbConf['serverTemplate']['schema'] = $mainConfig->get( 'DBmwschema' );
+				}
 				$lbConf['serverTemplate']['sqlMode'] = $mainConfig->get( 'SQLMode' );
 				$lbConf['serverTemplate']['utf8Mode'] = $mainConfig->get( 'DBmysql5' );
 			}
