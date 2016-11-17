@@ -601,6 +601,25 @@
 		mw.loader.load( target );
 	} );
 
+	QUnit.test( 'Empty string module name - T28804', function ( assert ) {
+		var done = false;
+
+		assert.strictEqual( mw.loader.getState( '' ), null, 'State (unregistered)' );
+
+		mw.loader.register( '', 'v1' );
+		assert.strictEqual( mw.loader.getState( '' ), 'registered', 'State (registered)' );
+		assert.strictEqual( mw.loader.getVersion( '' ), 'v1', 'Version' );
+
+		mw.loader.implement( '', function () {
+			done = true;
+		} );
+
+		return mw.loader.using( '', function () {
+			assert.strictEqual( done, true, 'script ran' );
+			assert.strictEqual( mw.loader.getState( '' ), 'ready', 'State (ready)' );
+		} );
+	} );
+
 	QUnit.test( 'Executing race - T112232', 2, function ( assert ) {
 		var done = false;
 
