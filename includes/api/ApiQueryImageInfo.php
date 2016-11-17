@@ -635,8 +635,6 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		global $wgContLang;
-
 		return [
 			'prop' => [
 				ApiBase::PARAM_ISMULTI => true,
@@ -675,7 +673,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			],
 			'extmetadatalanguage' => [
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_DFLT => $wgContLang->getCode(),
+				ApiBase::PARAM_DFLT => $this->getLanguage()->getCode(),
 			],
 			'extmetadatamultilang' => [
 				ApiBase::PARAM_TYPE => 'boolean',

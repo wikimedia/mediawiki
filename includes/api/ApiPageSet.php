@@ -496,11 +496,10 @@ class ApiPageSet extends ApiBase {
 	 * @since 1.21
 	 */
 	public function getNormalizedTitlesAsResult( $result = null ) {
-		global $wgContLang;
-
 		$values = [];
+		$lang = $this->getLanguage();
 		foreach ( $this->getNormalizedTitles() as $rawTitleStr => $titleStr ) {
-			$encode = ( $wgContLang->normalize( $rawTitleStr ) !== $rawTitleStr );
+			$encode = ( $lang->normalize( $rawTitleStr ) !== $rawTitleStr );
 			$values[] = [
 				'fromencoded' => $encode,
 				'from' => $encode ? rawurlencode( $rawTitleStr ) : $rawTitleStr,
@@ -1153,15 +1152,14 @@ class ApiPageSet extends ApiBase {
 				$this->mInterwikiTitles[$unconvertedTitle] = $titleObj->getInterwiki();
 			} else {
 				// Variants checking
-				global $wgContLang;
 				if ( $this->mConvertTitles &&
-					count( $wgContLang->getVariants() ) > 1 &&
+					count( $this->getLanguage()->getVariants() ) > 1 &&
 					!$titleObj->exists()
 				) {
 					// Language::findVariantLink will modify titleText and titleObj into
 					// the canonical variant if possible
 					$titleText = is_string( $title ) ? $title : $titleObj->getPrefixedText();
-					$wgContLang->findVariantLink( $titleText, $titleObj );
+					$this->getLanguage()->findVariantLink( $titleText, $titleObj );
 					$titleWasConverted = $unconvertedTitle !== $titleObj->getPrefixedText();
 				}
 

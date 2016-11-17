@@ -126,9 +126,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendGeneralInfo( $property ) {
-		global $wgContLang;
-
 		$config = $this->getConfig();
+		$contLang = $this->getLanguage();
 
 		$data = [];
 		$mainPage = Title::newMainPage();
@@ -165,8 +164,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['langconversion'] = !$config->get( 'DisableLangConversion' );
 		$data['titleconversion'] = !$config->get( 'DisableTitleConversion' );
 
-		if ( $wgContLang->linkPrefixExtension() ) {
-			$linkPrefixCharset = $wgContLang->linkPrefixCharset();
+		if ( $contLang->linkPrefixExtension() ) {
+			$linkPrefixCharset = $contLang->linkPrefixCharset();
 			$data['linkprefixcharset'] = $linkPrefixCharset;
 			// For backwards compatibility
 			$data['linkprefix'] = "/^((?>.*[^$linkPrefixCharset]|))(.+)$/sDu";
@@ -175,7 +174,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data['linkprefix'] = '';
 		}
 
-		$linktrail = $wgContLang->linkTrail();
+		$linktrail = $contLang->linkTrail();
 		$data['linktrail'] = $linktrail ?: '';
 
 		$data['legaltitlechars'] = Title::legalChars();
@@ -198,26 +197,26 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['lang'] = $config->get( 'LanguageCode' );
 
 		$fallbacks = [];
-		foreach ( $wgContLang->getFallbackLanguages() as $code ) {
+		foreach ( $contLang->getFallbackLanguages() as $code ) {
 			$fallbacks[] = [ 'code' => $code ];
 		}
 		$data['fallback'] = $fallbacks;
 		ApiResult::setIndexedTagName( $data['fallback'], 'lang' );
 
-		if ( $wgContLang->hasVariants() ) {
+		if ( $contLang->hasVariants() ) {
 			$variants = [];
-			foreach ( $wgContLang->getVariants() as $code ) {
+			foreach ( $contLang->getVariants() as $code ) {
 				$variants[] = [
 					'code' => $code,
-					'name' => $wgContLang->getVariantname( $code ),
+					'name' => $contLang->getVariantname( $code ),
 				];
 			}
 			$data['variants'] = $variants;
 			ApiResult::setIndexedTagName( $data['variants'], 'lang' );
 		}
 
-		$data['rtl'] = $wgContLang->isRTL();
-		$data['fallback8bitEncoding'] = $wgContLang->fallback8bitEncoding();
+		$data['rtl'] = $contLang->isRTL();
+		$data['fallback8bitEncoding'] = $contLang->fallback8bitEncoding();
 
 		$data['readonly'] = wfReadOnly();
 		if ( $data['readonly'] ) {
@@ -283,11 +282,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendNamespaces( $property ) {
-		global $wgContLang;
 		$data = [
 			ApiResult::META_TYPE => 'assoc',
 		];
-		foreach ( $wgContLang->getFormattedNamespaces() as $ns => $title ) {
+		foreach ( $this->getLanguage()->getFormattedNamespaces() as $ns => $title ) {
 			$data[$ns] = [
 				'id' => intval( $ns ),
 				'case' => MWNamespace::isCapitalized( $ns ) ? 'first-letter' : 'case-sensitive',
@@ -317,10 +315,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendNamespaceAliases( $property ) {
-		global $wgContLang;
 		$aliases = array_merge( $this->getConfig()->get( 'NamespaceAliases' ),
-			$wgContLang->getNamespaceAliases() );
-		$namespaces = $wgContLang->getNamespaces();
+			$this->getLanguage()->getNamespaceAliases() );
+		$namespaces = $this->getLanguage()->getNamespaces();
 		$data = [];
 		foreach ( $aliases as $title => $ns ) {
 			if ( $namespaces[$ns] == $title ) {
@@ -342,9 +339,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendSpecialPageAliases( $property ) {
-		global $wgContLang;
 		$data = [];
-		$aliases = $wgContLang->getSpecialPageAliases();
+		$aliases = $this->getLanguage()->getSpecialPageAliases();
 		foreach ( SpecialPageFactory::getNames() as $specialpage ) {
 			if ( isset( $aliases[$specialpage] ) ) {
 				$arr = [ 'realname' => $specialpage, 'aliases' => $aliases[$specialpage] ];
@@ -358,9 +354,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendMagicWords( $property ) {
-		global $wgContLang;
 		$data = [];
-		foreach ( $wgContLang->getMagicWords() as $magicword => $aliases ) {
+		foreach ( $this->getLanguage()->getMagicWords() as $magicword => $aliases ) {
 			$caseSensitive = array_shift( $aliases );
 			$arr = [ 'name' => $magicword, 'aliases' => $aliases ];
 			$arr['case-sensitive'] = (bool)$caseSensitive;

@@ -137,7 +137,6 @@ class ApiQueryLangLinks extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		global $wgContLang;
 		return [
 			'prop' => [
 				ApiBase::PARAM_ISMULTI => true,
@@ -157,7 +156,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 					'descending'
 				]
 			],
-			'inlanguagecode' => $wgContLang->getCode(),
+			'inlanguagecode' => $this->getLanguage()->getCode(),
 			'limit' => [
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',

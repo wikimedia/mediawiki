@@ -36,8 +36,6 @@ class ApiQueryBlocks extends ApiQueryBase {
 	}
 
 	public function execute() {
-		global $wgContLang;
-
 		$db = $this->getDB();
 		$params = $this->extractRequestParams();
 		$this->requireMaxOneParameter( $params, 'users', 'ip' );
@@ -179,6 +177,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$res = $this->select( __METHOD__ );
 
 		$count = 0;
+		$lang = $this->getLanguage();
 		foreach ( $res as $row ) {
 			if ( ++$count > $params['limit'] ) {
 				// We've had enough
@@ -207,7 +206,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 				$block['timestamp'] = wfTimestamp( TS_ISO_8601, $row->ipb_timestamp );
 			}
 			if ( $fld_expiry ) {
-				$block['expiry'] = $wgContLang->formatExpiry( $row->ipb_expiry, TS_ISO_8601 );
+				$block['expiry'] = $lang->formatExpiry( $row->ipb_expiry, TS_ISO_8601 );
 			}
 			if ( $fld_reason ) {
 				$block['reason'] = $row->ipb_reason;
