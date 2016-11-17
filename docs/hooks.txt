@@ -1194,6 +1194,18 @@ $page: SpecialPage object for DeletedContributions
 $row: the DB row for this line
 &$classes: the classes to add to the surrounding <li>
 
+'DifferenceEngineAfterLoadNewText': called in DifferenceEngine::loadNewText()
+after the new revision's content has been loaded into the class member variable
+$differenceEngine->mNewContent but before returning true from this function.
+$differenceEngine: DifferenceEngine object
+
+'DifferenceEngineLoadTextAfterNewContentIsLoaded': called in
+DifferenceEngine::loadText() after the new revision's content has been loaded
+into the class member variable $differenceEngine->mNewContent but before
+checking if the variable's value is null.
+This hook can be used to inject content into said class member variable.
+$differenceEngine: DifferenceEngine object
+
 'DifferenceEngineMarkPatrolledLink': Allows extensions to change the "mark as patrolled" link
 which is shown both on the diff header as well as on the bottom of a page, usually
 wrapped in a span element which has class="patrollink".
@@ -1271,6 +1283,12 @@ $differenceEngine: DifferenceEngine object
 'DifferenceEngineShowDiffPage': Add additional output via the available OutputPage
 object into the diff view
 $out: OutputPage object
+
+'DifferenceEngineShowDiffPageMaybeShowMissingRevision': called in
+DifferenceEngine::showDiffPage() when revision data cannot be loaded.
+Return false in order to prevent displaying the missing revision message
+(i.e. to prevent DifferenceEngine::showMissingRevision() from being called).
+$differenceEngine: DifferenceEngine object
 
 'DiffRevisionTools': Override or extend the revision tools available from the
 diff view, i.e. undo, etc.
