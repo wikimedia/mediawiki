@@ -82,6 +82,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	private $mwGlobals = [];
 
 	/**
+	 * Holds list of MediaWiki configuration settings to be unset in tearDown().
+	 * See also setMwGlobals().
+	 * @var array
+	 */
+	private $mwGlobalsToUnset = [];
+
+	/**
 	 * Holds original loggers which have been replaced by setLogger()
 	 * @var LoggerInterface[]
 	 */
@@ -535,7 +542,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		foreach ( $this->mwGlobals as $key => $value ) {
 			$GLOBALS[$key] = $value;
 		}
+		foreach ( $this->mwGlobalsToUnset as $value ) {
+			unset( $GLOBALS[$value] );
+		}
 		$this->mwGlobals = [];
+		$this->mwGlobalsToUnset = [];
 		$this->restoreLoggers();
 
 		if ( self::$serviceLocator && MediaWikiServices::getInstance() !== self::$serviceLocator ) {
@@ -684,8 +695,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @param array|string $globalKeys Key to the global variable, or an array of keys.
 	 *
-	 * @throws Exception When trying to stash an unset global
-	 *
 	 * @note To allow changes to global variables to take effect on global service instances,
 	 *       call overrideMwServices().
 	 *
@@ -700,9 +709,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			// NOTE: make sure we only save the global once or a second call to
 			// setMwGlobals() on the same global would override the original
 			// value.
-			if ( !array_key_exists( $globalKey, $this->mwGlobals ) ) {
+			if (
+				!array_key_exists( $globalKey, $this->mwGlobals ) &&
+				!array_key_exists( $globalKey, $this->mwGlobalsToUnset )
+			) {
 				if ( !array_key_exists( $globalKey, $GLOBALS ) ) {
-					throw new Exception( "Global with key {$globalKey} doesn't exist and cant be stashed" );
+					$this->mwGlobalsToUnset[$globalKey] = $globalKey;
+					continue;
 				}
 				// NOTE: we serialize then unserialize the value in case it is an object
 				// this stops any objects being passed by reference. We could use clone
