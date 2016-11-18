@@ -148,6 +148,9 @@ class OracleUpdater extends DatabaseUpdater {
 			[ 'addIndex', 'recentchanges', 'rc_namespace_title_timestamp',
 				'patch-recentchanges-nttindex.sql' ],
 
+			// 1.32
+			[ 'populateExternallinksIndex60' ],
+
 			// KEEP THIS AT THE BOTTOM!!
 			[ 'doRebuildDuplicateFunction' ],
 

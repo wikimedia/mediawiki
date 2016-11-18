@@ -569,6 +569,10 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'setSequenceOwner', 'change_tag', 'ct_id', 'change_tag_ct_id_seq' ],
 			[ 'setSequenceOwner', 'tag_summary', 'ts_id', 'tag_summary_ts_id_seq' ],
 			[ 'setSequenceOwner', 'sites', 'site_id', 'sites_site_id_seq' ],
+
+			// 1.32
+			[ 'populateExternallinksIndex60' ],
+			[ 'dropDefault', 'externallinks', 'el_index_60' ],
 		];
 	}
 
@@ -901,6 +905,20 @@ END;
 			$this->output( "Changing '$table.$field' default value\n" );
 			$this->db->query( "ALTER TABLE $table ALTER $field SET DEFAULT "
 				. $this->db->addQuotes( $default ) );
+		}
+	}
+
+	/**
+	 * Drop a default value from a field
+	 * @since 1.32
+	 * @param string $table
+	 * @param string $field
+	 */
+	protected function dropDefault( $table, $field ) {
+		$info = $this->db->fieldInfo( $table, $field );
+		if ( $info->defaultValue() !== false ) {
+			$this->output( "Removing '$table.$field' default value\n" );
+			$this->db->query( "ALTER TABLE $table ALTER $field DROP DEFAULT" );
 		}
 	}
 

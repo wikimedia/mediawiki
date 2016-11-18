@@ -128,6 +128,11 @@ class MssqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'recentchanges', 'rc_patrolled', 'patch-rc_patrolled_type.sql' ],
 			[ 'addIndex', 'recentchanges', 'rc_namespace_title_timestamp',
 				'patch-recentchanges-nttindex.sql' ],
+
+			// 1.32
+			[ 'populateExternallinksIndex60' ],
+			[ 'modifyfield', 'externallinks', 'el_index_60',
+				'patch-externallinks-el_index_60-drop-default.sql' ],
 		];
 	}
 
