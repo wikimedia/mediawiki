@@ -222,7 +222,7 @@ CREATE TABLE &mw_prefix.externallinks (
   el_from   NUMBER  NOT NULL,
   el_to     VARCHAR2(2048) NOT NULL,
   el_index  VARCHAR2(2048) NOT NULL,
-  el_index_60  VARBINARY(60) NOT NULL DEFAULT ''
+  el_index_60  VARBINARY(60) NOT NULL
 );
 ALTER TABLE &mw_prefix.externallinks ADD CONSTRAINT &mw_prefix.externallinks_pk PRIMARY KEY (el_id);
 ALTER TABLE &mw_prefix.externallinks ADD CONSTRAINT &mw_prefix.externallinks_fk1 FOREIGN KEY (el_from) REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;

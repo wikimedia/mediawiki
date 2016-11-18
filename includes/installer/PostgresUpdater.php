@@ -452,6 +452,10 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addPgIndex', 'externallinks', 'el_from_index_60', '( el_from, el_index_60, el_id )' ],
 			[ 'addPgField', 'user_groups', 'ug_expiry', "TIMESTAMPTZ NULL" ],
 			[ 'addPgIndex', 'user_groups', 'user_groups_expiry', '( ug_expiry )' ],
+
+			// 1.30
+			[ 'populateExternallinksIndex60' ],
+			[ 'dropDefault', 'externallinks', 'el_index_60' ],
 		];
 	}
 
@@ -756,6 +760,20 @@ END;
 		if ( $info->defaultValue() !== $default ) {
 			$this->output( "Changing '$table.$field' default value\n" );
 			$this->db->query( "ALTER TABLE $table ALTER $field SET DEFAULT " . $default );
+		}
+	}
+
+	/**
+	 * Drop a default value from a field
+	 * @since 1.30
+	 * @param string $table
+	 * @param string $field
+	 */
+	protected function dropDefault( $table, $field ) {
+		$info = $this->db->fieldInfo( $table, $field );
+		if ( $info->defaultValue() !== false ) {
+			$this->output( "Removing '$table.$field' default value\n" );
+			$this->db->query( "ALTER TABLE $table ALTER $field DROP DEFAULT" );
 		}
 	}
 

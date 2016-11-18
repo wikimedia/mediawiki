@@ -101,6 +101,9 @@ class MssqlUpdater extends DatabaseUpdater {
 			[ 'addField', 'externallinks', 'el_index_60', 'patch-externallinks-el_index_60.sql' ],
 			[ 'dropIndex', 'oldimage', 'oi_name_archive_name',
 				'patch-alter-table-oldimage.sql' ],
+
+			// 1.30
+			[ 'populateExternallinksIndex60' ],
 		];
 	}
 
