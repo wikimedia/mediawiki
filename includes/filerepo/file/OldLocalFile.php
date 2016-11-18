@@ -86,7 +86,7 @@ class OldLocalFile extends LocalFile {
 	 * @return bool|OldLocalFile
 	 */
 	static function newFromKey( $sha1, $repo, $timestamp = false ) {
-		$dbr = $repo->getSlaveDB();
+		$dbr = $repo->getReplicaDB();
 
 		$conds = [ 'oi_sha1' => $sha1 ];
 		if ( $timestamp ) {
@@ -179,7 +179,7 @@ class OldLocalFile extends LocalFile {
 
 		$dbr = ( $flags & self::READ_LATEST )
 			? $this->repo->getMasterDB()
-			: $this->repo->getSlaveDB();
+			: $this->repo->getReplicaDB();
 
 		$conds = [ 'oi_name' => $this->getName() ];
 		if ( is_null( $this->requestedTime ) ) {
@@ -201,7 +201,7 @@ class OldLocalFile extends LocalFile {
 	 */
 	protected function loadExtraFromDB() {
 		$this->extraDataLoaded = true;
-		$dbr = $this->repo->getSlaveDB();
+		$dbr = $this->repo->getReplicaDB();
 		$conds = [ 'oi_name' => $this->getName() ];
 		if ( is_null( $this->requestedTime ) ) {
 			$conds['oi_archive_name'] = $this->archive_name;

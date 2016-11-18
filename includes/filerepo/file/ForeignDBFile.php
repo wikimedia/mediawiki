@@ -136,7 +136,7 @@ class ForeignDBFile extends LocalFile {
 			return false;
 		}
 
-		$touched = $this->repo->getSlaveDB()->selectField(
+		$touched = $this->repo->getReplicaDB()->selectField(
 			'page',
 			'page_touched',
 			[
@@ -179,7 +179,7 @@ class ForeignDBFile extends LocalFile {
 	 * @since 1.27
 	 */
 	public function getDescriptionShortUrl() {
-		$dbr = $this->repo->getSlaveDB();
+		$dbr = $this->repo->getReplicaDB();
 		$pageId = $dbr->selectField(
 			'page',
 			'page_id',

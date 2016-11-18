@@ -36,7 +36,7 @@ class FindMissingFiles extends Maintenance {
 		$lastName = $this->getOption( 'start', '' );
 
 		$repo = RepoGroup::singleton()->getLocalRepo();
-		$dbr = $repo->getSlaveDB();
+		$dbr = $repo->getReplicaDB();
 		$be = $repo->getBackend();
 
 		$mtime1 = $dbr->timestampOrNull( $this->getOption( 'mtimeafter', null ) );
