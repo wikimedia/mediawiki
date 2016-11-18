@@ -1586,7 +1586,7 @@ $wgEnableUserEmail = true;
 
 /**
  * Set to true to put the sending user's email in a Reply-To header
- * instead of From. ($wgEmergencyContact will be used as From.)
+ * instead of From. ($wgPasswordSender will be used as From.)
  *
  * Some mailers (eg SMTP) set the SMTP envelope sender to the From value,
  * which can cause problems with SPF validation and leak recipient addresses
