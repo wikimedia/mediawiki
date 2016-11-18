@@ -448,6 +448,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addPgField', 'externallinks', 'el_index_60', "BYTEA NOT NULL DEFAULT ''" ],
 			[ 'addPgIndex', 'externallinks', 'el_index_60', '( el_index_60, el_id )' ],
 			[ 'addPgIndex', 'externallinks', 'el_from_index_60', '( el_from, el_index_60, el_id )' ],
+			[ 'populateExternallinksIndex60' ],
+			[ 'dropDefault', 'externallinks', 'el_index_60' ],
 		];
 	}
 
@@ -752,6 +754,20 @@ END;
 		if ( $info->defaultValue() !== $default ) {
 			$this->output( "Changing '$table.$field' default value\n" );
 			$this->db->query( "ALTER TABLE $table ALTER $field SET DEFAULT " . $default );
+		}
+	}
+
+	/**
+	 * Drop a default value from a field
+	 * @since 1.29
+	 * @param string $table
+	 * @param string $field
+	 */
+	protected function dropDefault( $table, $field ) {
+		$info = $this->db->fieldInfo( $table, $field );
+		if ( $info->defaultValue() !== false ) {
+			$this->output( "Removing '$table.$field' default value\n" );
+			$this->db->query( "ALTER TABLE $table ALTER $field DROP DEFAULT" );
 		}
 	}
 
