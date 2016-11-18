@@ -389,11 +389,18 @@ CREATE TABLE /*_*/externallinks (
   -- which allows for fast searching for all pages under example.com with the
   -- clause:
   --      WHERE el_index LIKE 'http://com.example.%'
-  el_index nvarchar(450) NOT NULL
+  el_index nvarchar(450) NOT NULL,
+
+  -- This is el_index truncated to 60 bytes to allow for sortable queries that
+  -- aren't supported by a partial index.
+  -- @todo Drop the default once this is deployed everywhere and code is populating it.
+  el_index_60 varbinary(60) NOT NULL default ''
 );
 
 CREATE INDEX /*i*/el_from ON /*_*/externallinks (el_from);
 CREATE INDEX /*i*/el_index ON /*_*/externallinks (el_index);
+CREATE INDEX /*i*/el_index_60 ON /*_*/externallinks (el_index_60, el_id);
+CREATE INDEX /*i*/el_from_index_60 ON /*_*/externallinks (el_from, el_index_60, el_id);
 -- el_to index intentionally not added; we cannot index nvarchar(max) columns,
 -- but we also cannot restrict el_to to a smaller column size as the external
 -- link may be larger.
