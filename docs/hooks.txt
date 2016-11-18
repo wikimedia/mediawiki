@@ -3224,6 +3224,15 @@ $engine: the search engine
   message key to use in the name column,
 $context: IContextSource object
 
+'SpecialTrackingCategories::preprocess': Called after LinkBatch on Special:TrackingCategories
+$specialPage: The SpecialTrackingCategories object
+$trackingCategories: Array of data from Special:TrackingCategories with msg and cats
+
+'SpecialTrackingCategories::generateCatLink': Called for each cat link on Special:TrackingCategories
+$specialPage: The SpecialTrackingCategories object
+$catTitle: The Title object of the linked category
+&$html: The Result html
+
 'SpecialUploadComplete': Called after successfully uploading a file from
 Special:Upload.
 &$form: The SpecialUpload object
