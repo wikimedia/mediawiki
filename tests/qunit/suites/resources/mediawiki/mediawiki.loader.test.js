@@ -134,6 +134,48 @@
 		} );
 	} );
 
+	QUnit.test( '.using() Error: Circular dependency', function ( assert ) {
+		mw.loader.register( [
+			[ 'test.circle1', '0', [ 'test.circle2' ] ],
+			[ 'test.circle2', '0', [ 'test.circle3' ] ],
+			[ 'test.circle3', '0', [ 'test.circle1' ] ]
+		] );
+		mw.loader.using( 'test.circle3' ).then(
+			function done() {
+				assert.ok( false, 'Unexpected resolution, expected error.' );
+			},
+			function fail( e ) {
+				assert.ok( /Circular/.test( String( e ) ), 'Detect circular dependency' );
+			}
+		);
+	} );
+
+	QUnit.test( '.load() - Error: Circular dependency', function ( assert ) {
+		mw.loader.register( [
+			[ 'test.circleA', '0', [ 'test.circleB' ] ],
+			[ 'test.circleB', '0', [ 'test.circleC' ] ],
+			[ 'test.circleC', '0', [ 'test.circleA' ] ]
+		] );
+		assert.throws( function () {
+			mw.loader.load( 'test.circleC' );
+		}, /Circular/, 'Detect circular dependency' );
+	} );
+
+	QUnit.test( '.using() - Error: Unregistered', function ( assert ) {
+		mw.loader.using( 'test.using.unreg' ).then(
+			function done() {
+				assert.ok( false, 'Unexpected resolution, expected error.' );
+			},
+			function fail( e ) {
+				assert.ok( /Unknown/.test( String( e ) ), 'Detect unknown dependency' );
+			}
+		);
+	} );
+
+	QUnit.test( '.load() - Error: Unregistered (ignored)', 0, function ( assert ) {
+		mw.loader.load( 'test.using.unreg2' );
+	} );
+
 	QUnit.test( '.implement( styles={ "css": [text, ..] } )', 2, function ( assert ) {
 		var $element = $( '<div class="mw-test-implement-a"></div>' ).appendTo( '#qunit-fixture' );
 
@@ -418,17 +460,6 @@
 		assert.strictEqual( mw.loader.getState( 'test.module3' ), 'error', 'Expected "error" state for test.module3' );
 
 		assert.strictEqual( mw.track.callCount, 1 );
-	} );
-
-	QUnit.test( 'Circular dependency', 1, function ( assert ) {
-		mw.loader.register( [
-			[ 'test.circle1', '0', [ 'test.circle2' ] ],
-			[ 'test.circle2', '0', [ 'test.circle3' ] ],
-			[ 'test.circle3', '0', [ 'test.circle1' ] ]
-		] );
-		assert.throws( function () {
-			mw.loader.using( 'test.circle3' );
-		}, /Circular/, 'Detect circular dependency' );
 	} );
 
 	QUnit.test( 'Out-of-order implementation', 9, function ( assert ) {

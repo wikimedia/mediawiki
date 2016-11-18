@@ -1171,6 +1171,7 @@
 			 * @private
 			 * @param {string[]} modules Array of string module names
 			 * @return {Array} List of dependencies, including 'module'.
+			 * @throws {Error} If an unregistered module or a dependency loop is encountered
 			 */
 			function resolve( modules ) {
 				var resolved = [];
@@ -2000,8 +2001,12 @@
 						deferred.fail( error );
 					}
 
-					// Resolve entire dependency map
-					dependencies = resolve( dependencies );
+					try {
+						// Resolve entire dependency map
+						dependencies = resolve( dependencies );
+					} catch ( e ) {
+						return deferred.reject( e ).promise();
+					}
 					if ( allReady( dependencies ) ) {
 						// Run ready immediately
 						deferred.resolve( mw.loader.require );
