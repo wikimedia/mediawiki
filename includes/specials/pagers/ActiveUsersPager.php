@@ -64,6 +64,14 @@ class ActiveUsersPager extends UsersPager {
 		}
 
 		$this->groups = $opts->getValue( 'groups' );
+		$this->excludegroups = $opts->getValue( 'excludegroups' );
+		// Backwards-compatibility with old URLs
+		if ( $opts->getValue( 'hidebots' ) ) {
+			$this->excludegroups[] = 'bot';
+		}
+		if ( $opts->getValue( 'hidesysops' ) ) {
+			$this->excludegroups[] = 'sysop';
+		}
 	}
 
 	function getIndexField() {
@@ -93,6 +101,13 @@ class ActiveUsersPager extends UsersPager {
 			$tables[] = 'user_groups';
 			$conds[] = 'ug_user = user_id';
 			$conds['ug_group'] = $this->groups;
+		}
+		if ( $this->excludegroups !== [] ) {
+			foreach ( $this->excludegroups as $group ) {
+				$conds[] = 'NOT EXISTS (' . $dbr->selectSQLText(
+						'user_groups', '1', [ 'ug_user = user_id', 'ug_group' => $group ]
+					) . ')';
+			}
 		}
 		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
 			$conds[] = 'NOT EXISTS (' . $dbr->selectSQLText(

@@ -52,6 +52,10 @@ class SpecialActiveUsers extends SpecialPage {
 
 		$opts->add( 'username', '' );
 		$opts->add( 'groups', [] );
+		$opts->add( 'excludegroups', [] );
+		// Backwards-compatibility with old URLs
+		$opts->add( 'hidebots', false, FormOptions::BOOL );
+		$opts->add( 'hidesysops', false, FormOptions::BOOL );
 
 		$opts->fetchValuesFromRequest( $this->getRequest() );
 
@@ -86,13 +90,22 @@ class SpecialActiveUsers extends SpecialPage {
 			$options[$msg] = $group;
 		}
 
+		// Backwards-compatibility with old URLs
+		$req = $this->getRequest();
+		$excludeDefault = [];
+		if ( $req->getCheck( 'hidebots' ) ) {
+			$excludeDefault[] = 'bot';
+		}
+		if ( $req->getCheck( 'hidesysops' ) ) {
+			$excludeDefault[] = 'sysop';
+		}
+
 		$formDescriptor = [
 			'username' => [
 				'type' => 'user',
 				'name' => 'username',
 				'label-message' => 'activeusers-from',
 			],
-
 			'groups' => [
 				'type' => 'multiselect',
 				'dropdown' => true,
@@ -100,6 +113,15 @@ class SpecialActiveUsers extends SpecialPage {
 				'name' => 'groups',
 				'label-message' => 'activeusers-groups',
 				'options' => $options,
+			],
+			'excludegroups' => [
+				'type' => 'multiselect',
+				'dropdown' => true,
+				'flatlist' => true,
+				'name' => 'excludegroups',
+				'label-message' => 'activeusers-excludegroups',
+				'options' => $options,
+				'default' => $excludeDefault,
 			],
 		];
 
