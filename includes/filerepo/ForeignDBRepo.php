@@ -89,7 +89,7 @@ class ForeignDBRepo extends LocalRepo {
 	/**
 	 * @return IDatabase
 	 */
-	function getSlaveDB() {
+	function getReplicaDB() {
 		return $this->getMasterDB();
 	}
 

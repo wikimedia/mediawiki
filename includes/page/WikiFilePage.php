@@ -205,7 +205,7 @@ class WikiFilePage extends WikiPage {
 
 		/** @var LocalRepo $repo */
 		$repo = $file->getRepo();
-		$dbr = $repo->getSlaveDB();
+		$dbr = $repo->getReplicaDB();
 
 		$res = $dbr->select(
 			[ 'page', 'categorylinks' ],

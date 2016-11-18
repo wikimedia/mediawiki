@@ -174,7 +174,7 @@ class LocalFile extends File {
 	 * @return bool|LocalFile
 	 */
 	static function newFromKey( $sha1, $repo, $timestamp = false ) {
-		$dbr = $repo->getSlaveDB();
+		$dbr = $repo->getReplicaDB();
 
 		$conds = [ 'img_sha1' => $sha1 ];
 		if ( $timestamp ) {
@@ -259,7 +259,7 @@ class LocalFile extends File {
 			$key,
 			$cache::TTL_WEEK,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $cache ) {
-				$setOpts += Database::getCacheSetOptions( $this->repo->getSlaveDB() );
+				$setOpts += Database::getCacheSetOptions( $this->repo->getReplicaDB() );
 
 				$this->loadFromDB( self::READ_NORMAL );
 
@@ -390,7 +390,7 @@ class LocalFile extends File {
 
 		$dbr = ( $flags & self::READ_LATEST )
 			? $this->repo->getMasterDB()
-			: $this->repo->getSlaveDB();
+			: $this->repo->getReplicaDB();
 
 		$row = $dbr->selectRow( 'image', $this->getCacheFields( 'img_' ),
 			[ 'img_name' => $this->getName() ], $fname );
@@ -412,7 +412,7 @@ class LocalFile extends File {
 		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
 		$this->extraDataLoaded = true;
 
-		$fieldMap = $this->loadFieldsWithTimestamp( $this->repo->getSlaveDB(), $fname );
+		$fieldMap = $this->loadFieldsWithTimestamp( $this->repo->getReplicaDB(), $fname );
 		if ( !$fieldMap ) {
 			$fieldMap = $this->loadFieldsWithTimestamp( $this->repo->getMasterDB(), $fname );
 		}
@@ -490,7 +490,7 @@ class LocalFile extends File {
 
 		$decoded['timestamp'] = wfTimestamp( TS_MW, $decoded['timestamp'] );
 
-		$decoded['metadata'] = $this->repo->getSlaveDB()->decodeBlob( $decoded['metadata'] );
+		$decoded['metadata'] = $this->repo->getReplicaDB()->decodeBlob( $decoded['metadata'] );
 
 		if ( empty( $decoded['major_mime'] ) ) {
 			$decoded['mime'] = 'unknown/unknown';
@@ -1037,7 +1037,7 @@ class LocalFile extends File {
 	 * @return OldLocalFile[]
 	 */
 	function getHistory( $limit = null, $start = null, $end = null, $inc = true ) {
-		$dbr = $this->repo->getSlaveDB();
+		$dbr = $this->repo->getReplicaDB();
 		$tables = [ 'oldimage' ];
 		$fields = OldLocalFile::selectFields();
 		$conds = $opts = $join_conds = [];
@@ -1091,7 +1091,7 @@ class LocalFile extends File {
 		# Polymorphic function name to distinguish foreign and local fetches
 		$fname = get_class( $this ) . '::' . __FUNCTION__;
 
-		$dbr = $this->repo->getSlaveDB();
+		$dbr = $this->repo->getReplicaDB();
 
 		if ( $this->historyLine == 0 ) { // called for the first time, return line from cur
 			$this->historyRes = $dbr->select( 'image',
@@ -1917,7 +1917,7 @@ class LocalFile extends File {
 				'page_namespace' => $this->title->getNamespace(),
 				'page_title' => $this->title->getDBkey()
 			];
-			$touched = $this->repo->getSlaveDB()->selectField( 'page', 'page_touched', $cond, __METHOD__ );
+			$touched = $this->repo->getReplicaDB()->selectField( 'page', 'page_touched', $cond, __METHOD__ );
 			$this->descriptionTouched = $touched ? wfTimestamp( TS_MW, $touched ) : false;
 		}
 

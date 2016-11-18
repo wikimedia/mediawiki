@@ -200,7 +200,7 @@ class LocalRepo extends FileRepo {
 			$memcKey,
 			$expiry,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $method, $title ) {
-				$dbr = $this->getSlaveDB(); // possibly remote DB
+				$dbr = $this->getReplicaDB(); // possibly remote DB
 
 				$setOpts += Database::getCacheSetOptions( $dbr );
 
@@ -298,7 +298,7 @@ class LocalRepo extends FileRepo {
 			}
 		};
 
-		$dbr = $this->getSlaveDB();
+		$dbr = $this->getReplicaDB();
 
 		// Query image table
 		$imgNames = [];
@@ -368,7 +368,7 @@ class LocalRepo extends FileRepo {
 	 * @return File[]
 	 */
 	function findBySha1( $hash ) {
-		$dbr = $this->getSlaveDB();
+		$dbr = $this->getReplicaDB();
 		$res = $dbr->select(
 			'image',
 			LocalFile::selectFields(),
@@ -400,7 +400,7 @@ class LocalRepo extends FileRepo {
 			return []; // empty parameter
 		}
 
-		$dbr = $this->getSlaveDB();
+		$dbr = $this->getReplicaDB();
 		$res = $dbr->select(
 			'image',
 			LocalFile::selectFields(),
@@ -430,7 +430,7 @@ class LocalRepo extends FileRepo {
 		$selectOptions = [ 'ORDER BY' => 'img_name', 'LIMIT' => intval( $limit ) ];
 
 		// Query database
-		$dbr = $this->getSlaveDB();
+		$dbr = $this->getReplicaDB();
 		$res = $dbr->select(
 			'image',
 			LocalFile::selectFields(),
@@ -452,8 +452,18 @@ class LocalRepo extends FileRepo {
 	 * Get a connection to the replica DB
 	 * @return IDatabase
 	 */
-	function getSlaveDB() {
+	function getReplicaDB() {
 		return wfGetDB( DB_REPLICA );
+	}
+
+	/**
+	 * Alias for getReplicaDB()
+	 *
+	 * @return IDatabase
+	 * @deprecated Since 1.29
+	 */
+	function getSlaveDB() {
+		return $this->getReplicaDB();
 	}
 
 	/**
