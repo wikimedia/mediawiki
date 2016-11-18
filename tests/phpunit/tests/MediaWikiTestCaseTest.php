@@ -142,8 +142,7 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 	 * @covers MediaWikiTestCase::setLogger
 	 * @covers MediaWikiTestCase::restoreLogger
 	 */
-	public function testLoggersAreRestoredOnTearDown() {
-		// replacing an existing logger
+	public function testLoggersAreRestoredOnTearDown_replacingExistingLogger() {
 		$logger1 = LoggerFactory::getInstance( 'foo' );
 		$this->setLogger( 'foo', $this->getMock( LoggerInterface::class ) );
 		$logger2 = LoggerFactory::getInstance( 'foo' );
@@ -152,17 +151,27 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 
 		$this->assertSame( $logger1, $logger3 );
 		$this->assertNotSame( $logger1, $logger2 );
+	}
 
-		// replacing a non-existing logger
+	/**
+	 * @covers MediaWikiTestCase::setLogger
+	 * @covers MediaWikiTestCase::restoreLogger
+	 */
+	public function testLoggersAreRestoredOnTearDown_replacingNonExistingLogger() {
 		$this->setLogger( 'foo', $this->getMock( LoggerInterface::class ) );
-		$logger1 = LoggerFactory::getInstance( 'bar' );
+		$logger1 = LoggerFactory::getInstance( 'foo' );
 		$this->tearDown();
-		$logger2 = LoggerFactory::getInstance( 'bar' );
+		$logger2 = LoggerFactory::getInstance( 'foo' );
 
 		$this->assertNotSame( $logger1, $logger2 );
 		$this->assertInstanceOf( '\Psr\Log\LoggerInterface', $logger2 );
+	}
 
-		// replacing same logger twice
+	/**
+	 * @covers MediaWikiTestCase::setLogger
+	 * @covers MediaWikiTestCase::restoreLogger
+	 */
+	public function testLoggersAreRestoredOnTearDown_replacingSameLoggerTwice() {
 		$logger1 = LoggerFactory::getInstance( 'baz' );
 		$this->setLogger( 'foo', $this->getMock( LoggerInterface::class ) );
 		$this->setLogger( 'foo', $this->getMock( LoggerInterface::class ) );
