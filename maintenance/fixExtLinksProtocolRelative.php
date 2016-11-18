@@ -71,11 +71,13 @@ class FixExtLinksProtocolRelative extends LoggedUpdateMaintenance {
 						'el_from' => $row->el_from,
 						'el_to' => $row->el_to,
 						'el_index' => "http:{$row->el_index}",
+						'el_index_60' => substr( "http:{$row->el_index}", 0, 60 ),
 					],
 					[
 						'el_from' => $row->el_from,
 						'el_to' => $row->el_to,
 						'el_index' => "https:{$row->el_index}",
+						'el_index_60' => substr( "https:{$row->el_index}", 0, 60 ),
 					]
 				], __METHOD__, [ 'IGNORE' ]
 			);
