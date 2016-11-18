@@ -90,14 +90,22 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers MediaWikiTestCase::stashMwGlobals
+	 * @covers MediaWikiTestCase::tearDown
 	 */
-	public function testExceptionThrownWhenStashingNonExistentGlobals() {
-		$this->setExpectedException(
-			'Exception',
-			'Global with key ' . self::GLOBAL_KEY_NONEXISTING . ' doesn\'t exist and cant be stashed'
+	public function testSetNonExistentGlobalsAreUnsetOnTearDown() {
+		$globalKey = 'abcdefg1234567';
+		$this->setMwGlobals( $globalKey, true );
+		$this->assertTrue(
+			$GLOBALS[$globalKey],
+			'Global failed to correctly set'
 		);
 
-		$this->stashMwGlobals( self::GLOBAL_KEY_NONEXISTING );
+		$this->tearDown();
+
+		$this->assertFalse(
+			isset( $GLOBALS[$globalKey] ),
+			'Global failed to be correctly unset'
+		);
 	}
 
 	public function testOverrideMwServices() {
