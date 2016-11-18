@@ -135,6 +135,7 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 	 * @covers MediaWikiTestCase::restoreLogger
 	 */
 	public function testLoggersAreRestoredOnTearDown() {
+		$this->fail('I should fail....');
 		// replacing an existing logger
 		$logger1 = LoggerFactory::getInstance( 'foo' );
 		$this->setLogger( 'foo', $this->getMock( LoggerInterface::class ) );
