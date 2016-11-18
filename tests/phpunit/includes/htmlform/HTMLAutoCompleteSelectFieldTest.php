@@ -49,9 +49,9 @@ class HtmlAutoCompleteSelectFieldTest extends MediaWikiTestCase {
 	 */
 	function testOptionalSelectElement() {
 		$params = [
-			'fieldname'    => 'Test',
-			'autocomplete' => $this->options,
-			'options'      => $this->options,
+			'fieldname'         => 'Test',
+			'autocomplete-data' => $this->options,
+			'options'           => $this->options,
 		];
 
 		$field = new HTMLAutoCompleteSelectField( $params );
