@@ -10,7 +10,8 @@
 			"Sujiniku",
 			"Macofe",
 			"Suchichi02",
-			"Kkairri"
+			"Kkairri",
+			"ネイ"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|説明文書]]\n* [[mw:API:FAQ|よくある質問]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api メーリングリスト]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API 告知]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R バグの報告とリクエスト]\n</div>\n<strong>状態:</strong> このページに表示されている機能は全て動作するはずですが、この API は未だ活発に開発されており、変更される可能性があります。アップデートの通知を受け取るには、[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce メーリングリスト]に参加してください。\n\n<strong>誤ったリクエスト:</strong> 誤ったリクエストが API に送られた場合、\"MediaWiki-API-Error\" HTTP ヘッダーが送信され、そのヘッダーの値と送り返されるエラーコードは同じ値にセットされます。より詳しい情報は [[mw:API:Errors_and_warnings|API: Errors and warnings]] を参照してください。\n\n<strong>テスト:</strong> API のリクエストのテストは、[[Special:ApiSandbox]]で簡単に行えます。",
@@ -226,7 +227,7 @@
 	"apihelp-opensearch-example-te": "<kbd>Te</kbd> から始まるページを検索する。",
 	"apihelp-options-param-reset": "個人設定をサイトの既定値にリセットする。",
 	"apihelp-options-param-resetkinds": "<var>$1reset</var>　が設定されている場合、リセットする設定項目の種類のリスト。",
-	"apihelp-options-param-change": "名前=値 の形式 (例えば skin=vector) で整形された変更のリスト。値はパイプ文字を含むことができません。optionname|otheroption|... のように値が与えられない (イコール記号すら無い) 場合、設定は既定値にリセットされます。",
+	"apihelp-options-param-change": "名前=値 の形式 (例えば skin=vector) で整形された変更のリスト。optionname|otheroption|... のように値が与えられなかった (イコール記号すら無い) 場合、設定は既定値にリセットされます。与えられた値がパイプ(<kbd>|</kbd>)を含む場合、[[Special:ApiHelp/main#main/datatypes|ほかのセパレーター]]をお使いください。",
 	"apihelp-options-example-reset": "すべて初期設定に戻す。",
 	"apihelp-options-example-change": "<kbd>skin</kbd> および <kbd>hideminor</kbd> の個人設定を変更する。",
 	"apihelp-options-example-complex": "すべての個人設定を初期化し、<kbd>skin</kbd> および <kbd> nickname </kbd> を設定する。",

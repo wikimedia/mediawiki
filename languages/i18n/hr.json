@@ -1640,6 +1640,8 @@
 	"booksources-search": "Traži",
 	"booksources-text": "Ovdje je popis vanjskih poveznica na internetskim stranicama koje prodaju nove i rabljene knjige, ali mogu sadržavati i ostale podatke o knjigama koje tražite:",
 	"booksources-invalid-isbn": "Čini se da dani ISBN nije valjan; provjerite greške kopirajući iz izvornika.",
+	"magiclink-tracking-isbn": "Stranice s čarobnim ISBN poveznicama",
+	"magiclink-tracking-isbn-desc": "Ova stranica rabi čarobne ISBN poveznice. Za njihovu migraciju vidi [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org].",
 	"specialloguserlabel": "Suradnik:",
 	"speciallogtitlelabel": "Cilj (naslov ili suradnik):",
 	"log": "Evidencije",

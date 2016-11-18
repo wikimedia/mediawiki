@@ -2006,6 +2006,7 @@
 	"tags-activate-submit": "Ակտիվացնել",
 	"tags-deactivate-reason": "Պատճառ՝",
 	"tags-deactivate-submit": "Ապաակտիվացնել",
+	"tags-update-blocked": "Դուք չեք կարող ավելացնել կամ հեռացնել թեգեր, քանի դեռ {{GENDER:$1|դուք}} արգելափակված եք",
 	"comparepages": "Համեմատել էջեր",
 	"compare-page1": "Էջ 1",
 	"compare-page2": "Էջ 2",

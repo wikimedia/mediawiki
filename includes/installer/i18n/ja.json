@@ -19,7 +19,8 @@
 			"2nd-player",
 			"Otokoume",
 			"Rxy",
-			"Foresttttttt"
+			"Foresttttttt",
+			"ネイ"
 		]
 	},
 	"config-desc": "MediaWiki のインストーラー",
@@ -217,7 +218,7 @@
 	"config-subscribe": "[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce リリース告知のメーリングリスト]を購読する。",
 	"config-subscribe-help": "これは、リリースの告知 (重要なセキュリティに関する案内を含む) に使用される、流量が少ないメーリングリストです。\nこのメーリングリストを購読して、新しいバージョンが出た場合にMediaWikiを更新してください。",
 	"config-subscribe-noemail": "メールアドレスなしでリリースアナウンスのメーリングリストを購読しようとしています。\nメーリングリストを購読する場合にはメールアドレスを入力してください。",
-	"config-pingback": "このインストーレーションに関するデータをメデイアウィキの開発者にシェアしてください。",
+	"config-pingback": "このインストールに関するデータをMediaWikiの開発者と共有する。",
 	"config-pingback-help": "もし君がこのオプションを選択したら、メデイアウィキは定期的にhttps://www.mediawiki.orgとメデイアウィキのインスタンスに関する基本的のデータをピンします。このデータはシステムのタイプ、PHPのバージョンと選択されたデータベースのバックエンドなどを含んでいます。メデイアウィキファンデーションは将来の",
 	"config-almost-done": "これでほぼ終わりました!\n残りの設定を飛ばして、ウィキを今すぐインストールできます。",
 	"config-optional-continue": "私にもっと質問してください。",
@@ -328,5 +329,5 @@
 	"config-nofile": "ファイル「$1」が見つかりませんでした。削除された可能性があります。",
 	"config-extension-link": "あなたのウィキは[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions 拡張機能]をサポートしていることをご存知ですか?\n\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category カテゴリ別で拡張機能を見る]か[https://www.mediawiki.org/wiki/Extension_Matrix 拡張機能のマトリックス]で拡張機能すべてのリストをご覧になれます。",
 	"mainpagetext": "<strong>MediaWiki はインストール済みです。</strong>",
-	"mainpagedocfooter": "ウィキソフトウェアの使い方に関する情報は[https://meta.wikimedia.org/wiki/Help:Contents 利用者案内]を参照してください。\n\n== はじめましょう ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings/ja 設定の一覧]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/ja MediaWiki よくある質問と回答]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki リリース情報メーリングリスト]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation/ja MediaWiki のあなたの言語へのローカライズ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Learn how to combat spam on your wiki]"
+	"mainpagedocfooter": "ウィキソフトウェアの使い方に関する情報は[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 利用者案内]を参照してください。\n\n== はじめましょう ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings/ja 設定の一覧]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/ja MediaWiki よくある質問と回答]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki リリース情報メーリングリスト]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation/ja MediaWiki のあなたの言語へのローカライズ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam あなたのウィキでスパムと戦う方法を学ぶ]"
 }

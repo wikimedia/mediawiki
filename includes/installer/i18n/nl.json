@@ -16,7 +16,8 @@
 			"Sjoerddebruin",
 			"Esketti",
 			"JaapDeKleine",
-			"Macofe"
+			"Macofe",
+			"Hex"
 		]
 	},
 	"config-desc": "Het installatieprogramma voor MediaWiki",
@@ -128,7 +129,7 @@
 	"config-type-mssql": "Microsoft SQL Server",
 	"config-support-info": "MediaWiki ondersteunt de volgende databasesystemen:\n\n$1\n\nAls u het databasesysteem dat u wilt gebruiken niet in de lijst terugvindt, volg dan de handleiding waarnaar hierboven wordt verwezen om ondersteuning toe te voegen.",
 	"config-dbsupport-mysql": "* [{{int:version-db-mysql-url}} MySQL] is de primaire database voor MediaWiki en wordt het best ondersteund. MediaWiki werkt ook met [{{int:version-db-mariadb-url}} MariaDB] en [{{int:version-db-percona-url}} Percona Server], die MySQL compatibel zijn ([http://www.php.net/manual/en/mysqli.installation.php hoe PHP te compileren met MySQL-ondersteuning]).",
-	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] is een populair open source databasesysteem als alternatief voor MySQL. Het is mogelijk dat er een aantal bekende kleinere problemen zijn met MediaWiki in combinatie met deze database en daarom wordt PostgreSQL niet aanbevolen voor een productieomgeving ([http://www.php.net/manual/en/pgsql.installation.php hoe PHP gecompileerd moet zijn met ondersteuning voor PostgreSQL]).",
+	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] is een populair open source databasesysteem als alternatief voor MySQL.([http://www.php.net/manual/en/pgsql.installation.php Hoe u PHP kunt compileren met ondersteuning voor PostgreSQL])",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] is een zeer goed ondersteund lichtgewicht databasesysteem ([http://www.php.net/manual/en/pdo.installation.php hoe PHP gecompileerd moet zijn met ondersteuning voor SQLite]; gebruikt PDO).",
 	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle] is een commerciële database voor grote bedrijven ([http://www.php.net/manual/en/oci8.installation.php PHP compileren met ondersteuning voor OCI8]).",
 	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] is een commerciële enterprisedatabase voor Windows ([http://www.php.net/manual/en/sqlsrv.installation.php PHP compileren met ondersteuning voor SQLSRV]).",
@@ -262,7 +263,7 @@
 	"config-cache-options": "Instellingen voor het cachen van objecten:",
 	"config-cache-help": "Het cachen van objecten wordt gebruikt om de snelheid van MediaWiki te verbeteren door vaak gebruikte gegevens te bewaren.\nMiddelgrote tot grote websites wordt geadviseerd dit in te schakelen en ook kleine sites merken de voordelen.",
 	"config-cache-none": "Niets cachen.\nEr gaat geen functionaliteit verloren, maar dit kan invloed hebben op de prestaties.",
-	"config-cache-accel": "Cachen van objecten via PHP (APC, XCache of WinCache)",
+	"config-cache-accel": "Cachen van objecten via PHP (APC, APCu, XCache of WinCache)",
 	"config-cache-memcached": "Memcached gebruiken (dit vereist aanvullende instellingen)",
 	"config-memcached-servers": "Memcachedservers:",
 	"config-memcached-help": "Lijst met IP-adressen te gebruiken voor Memcached.\nEén IP-adres per regel met een poortnummer.\nBijvoorbeeld:\n 127.0.0.1:11211\n 192.168.1.25:1234",

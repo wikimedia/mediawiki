@@ -614,7 +614,7 @@
 	"searchprofile-everything-tooltip": "ಮಾತ ಮಾಹಿತಿಲೆನ್ ನಾಡ್‍ಲೆ (ಪಾತೆರದ ಪುಟೊಲ ಸೇರ್ದ್)",
 	"searchprofile-advanced-tooltip": "ಬಳಕೆದ ನಾಮೊವರ್ಗೊಡು ನಾಡ್‍ಲೆ",
 	"search-result-size": "$1 ({{PLURAL:$2|೧ ಪದೊ|$2 ಪದೊಕುಲು}})",
-	"search-redirect": "(ಪಿರ ನಿರ್ದೇಶನೊ $1)",
+	"search-redirect": "($1 ಡ್ದ್ ಪಿರ ನಿರ್ದೇಸನೊದ)",
 	"search-section": "(ವಿಬಾಗೊ $1)",
 	"search-suggest": "ಇಂದೆನ್ ನಾಡೊಂದುಲ್ಲರೆ: $1",
 	"search-interwiki-caption": "ಬಳಗದ ಇತರ ಯೋಜನೆಲು",
@@ -1217,5 +1217,5 @@
 	"logentry-move-move": "$1 {{GENDER:$2|ಜಾರಲೆ}} ಪುಟೊ $3 ಡ್ದ್ $4",
 	"logentry-newusers-create": "ಬಳಕೆದಾರೆರೆ ಕಾತೆ $1 ನ್ನು {{GENDER:$2|ಸ್ರಿಸ್ಟಿ ಮಲ್ತಾಂಡ್}}",
 	"logentry-upload-upload": "$1 {{GENDER:$2|ಅಪ್ಲೋಡ್ ಮಲ್ತ್‌ದೆರ್}} $3",
-	"searchsuggest-search": "ನಾಡ್‍ಲೆ"
+	"searchsuggest-search": "{{SITENAME}}ನ್ ನಾಡ್‍ಲೆ"
 }

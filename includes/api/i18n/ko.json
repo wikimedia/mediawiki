@@ -140,7 +140,7 @@
 	"apihelp-feedwatchlist-param-feedformat": "피드 포맷.",
 	"apihelp-feedwatchlist-example-default": "주시문서 목록 피드를 보여줍니다.",
 	"apihelp-filerevert-description": "파일을 이전 판으로 되돌립니다.",
-	"apihelp-filerevert-param-comment": "댓글 달기",
+	"apihelp-filerevert-param-comment": "업로드 댓글입니다.",
 	"apihelp-filerevert-example-revert": "<kbd>Wiki.png</kbd>를 <kbd>2011-03-05T15:27:40Z</kbd> 판으로 되돌립니다.",
 	"apihelp-help-description": "지정된 모듈의 도움말을 보여줍니다.",
 	"apihelp-help-param-helpformat": "도움말 출력 포맷.",
