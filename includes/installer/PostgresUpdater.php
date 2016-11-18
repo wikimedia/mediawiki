@@ -443,6 +443,11 @@ class PostgresUpdater extends DatabaseUpdater {
 				"INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('change_tag_ct_id_seq')" ],
 			[ 'addPgField', 'tag_summary', 'ts_id',
 				"INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('tag_summary_ts_id_seq')" ],
+
+			// 1.29
+			[ 'addPgField', 'externallinks', 'el_index_60', "VARCHAR(60) NOT NULL DEFAULT ''" ],
+			[ 'addPgIndex', 'externallinks', 'el_index_60', '( el_index_60, el_id )' ],
+			[ 'addPgIndex', 'externallinks', 'el_from_index_60', '( el_from, el_index_60, el_id )' ],
 		];
 	}
 
