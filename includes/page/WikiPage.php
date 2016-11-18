@@ -938,10 +938,17 @@ class WikiPage implements Page, IDBAccessObject {
 		$dbw->startAtomic( __METHOD__ );
 
 		if ( !$oldLatest || $oldLatest == $this->lockAndGetLatest() ) {
-			$dbw->replace( 'redirect',
-				[ 'rd_from' ],
+			$dbw->upsert(
+				'redirect',
 				[
 					'rd_from' => $this->getId(),
+					'rd_namespace' => $rt->getNamespace(),
+					'rd_title' => $rt->getDBkey(),
+					'rd_fragment' => $rt->getFragment(),
+					'rd_interwiki' => $rt->getInterwiki(),
+				],
+				[ 'rd_from' ],
+				[
 					'rd_namespace' => $rt->getNamespace(),
 					'rd_title' => $rt->getDBkey(),
 					'rd_fragment' => $rt->getFragment(),
