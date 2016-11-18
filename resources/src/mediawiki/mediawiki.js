@@ -1174,10 +1174,10 @@
 			 * @throws {Error} If an unregistered module or a dependency loop is encountered
 			 */
 			function resolve( modules ) {
-				var resolved = [];
-				$.each( modules, function ( idx, module ) {
-					sortDependencies( module, resolved );
-				} );
+				var i, resolved = [];
+				for ( i = 0; i < modules.length; i++ ) {
+					sortDependencies( modules[ i ], resolved );
+				}
 				return resolved;
 			}
 
