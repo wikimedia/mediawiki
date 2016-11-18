@@ -1,6 +1,7 @@
 /*!
  * Scripts for pre-emptive edit preparing on action=edit
  */
+/* eslint-disable no-use-before-define */
 ( function ( mw, $ ) {
 	if ( !mw.config.get( 'wgAjaxEditStash' ) ) {
 		return;
@@ -138,10 +139,10 @@
 			if (
 				// Reverts may involve use (undo) links; stash as they review the diff.
 				// Since the form has a pre-filled summary, stash the edit immediately.
-				mw.util.getParamValue( 'undo' ) !== null
+				mw.util.getParamValue( 'undo' ) !== null ||
 				// Pressing "show changes" and "preview" also signify that the user will
 				// probably save the page soon
-				|| $.inArray( $form.find( '#mw-edit-mode' ).val(), [ 'preview', 'diff' ] ) > -1
+				$.inArray( $form.find( '#mw-edit-mode' ).val(), [ 'preview', 'diff' ] ) > -1
 			) {
 				checkStash();
 			}

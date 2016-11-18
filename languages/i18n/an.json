@@ -1373,8 +1373,6 @@
 	"activeusers-intro": "Ista ye una lista d'usuarios que han teniu bella actividat en os zaguers $1 {{PLURAL:$1|diya|diyas}}.",
 	"activeusers-count": "$1 {{PLURAL:$1|edición|edicions}} en os zaguers {{PLURAL:$3|diya|$3 diyas}}",
 	"activeusers-from": "Amostrar nombres d'usuario que prencipien por:",
-	"activeusers-hidebots": "Amagar robots",
-	"activeusers-hidesysops": "Amagar administradors",
 	"activeusers-noresult": "No s'han trobato usuarios.",
 	"listgrouprights": "Dreitos d'a colla d'usuarios",
 	"listgrouprights-summary": "Contino trobará a lista de collas d'usuario definitas en iste wiki, con os suyos dreitos d'acceso asociatos. Tamién puet trobar aquí [[{{MediaWiki:Listgrouprights-helppage}}|información adicional]] sobre os dreitos individuals.",

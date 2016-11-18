@@ -301,6 +301,11 @@ class User implements IDBAccessObject {
 	/** @var integer User::READ_* constant bitfield used to load data */
 	protected $queryFlagsUsed = self::READ_NORMAL;
 
+	/** @var string Indicates type of block (used for eventlogging)
+	 * Permitted values: 'cookie-block', 'proxy-block', 'openproxy-block', 'xff-block'
+	 */
+	public $blockTrigger = false;
+
 	public static $idCacheByName = [];
 
 	/**
@@ -1200,13 +1205,29 @@ class User implements IDBAccessObject {
 		$user = $session->getUser();
 		if ( $user->isLoggedIn() ) {
 			$this->loadFromUserObject( $user );
+
+			// If this user is autoblocked, set a cookie to track the Block. This has to be done on
+			// every session load, because an autoblocked editor might not edit again from the same
+			// IP address after being blocked.
+			$config = RequestContext::getMain()->getConfig();
+			if ( $config->get( 'CookieSetOnAutoblock' ) === true ) {
+				$block = $this->getBlock();
+				$shouldSetCookie = $this->getRequest()->getCookie( 'BlockID' ) === null
+					&& $block
+					&& $block->getType() === Block::TYPE_USER
+					&& $block->isAutoblocking();
+				if ( $shouldSetCookie ) {
+					wfDebug( __METHOD__ . ': User is autoblocked, setting cookie to track' );
+					$block->setCookie( $this->getRequest()->response() );
+				}
+			}
+
 			// Other code expects these to be set in the session, so set them.
 			$session->set( 'wsUserID', $this->getId() );
 			$session->set( 'wsUserName', $this->getName() );
 			$session->set( 'wsToken', $this->getToken() );
 			return true;
 		}
-
 		return false;
 	}
 
@@ -1609,6 +1630,31 @@ class User implements IDBAccessObject {
 		// User/IP blocking
 		$block = Block::newFromTarget( $this, $ip, !$bFromSlave );
 
+		// If no block has been found, check for a cookie indicating that the user is blocked.
+		$blockCookieVal = (int)$this->getRequest()->getCookie( 'BlockID' );
+		if ( !$block instanceof Block && $blockCookieVal > 0 ) {
+			// Load the Block from the ID in the cookie.
+			$tmpBlock = Block::newFromID( $blockCookieVal );
+			if ( $tmpBlock instanceof Block ) {
+				// Check the validity of the block.
+				$blockIsValid = $tmpBlock->getType() == Block::TYPE_USER
+					&& !$tmpBlock->isExpired()
+					&& $tmpBlock->isAutoblocking();
+				$config = RequestContext::getMain()->getConfig();
+				$useBlockCookie = ( $config->get( 'CookieSetOnAutoblock' ) === true );
+				if ( $blockIsValid && $useBlockCookie ) {
+					// Use the block.
+					$block = $tmpBlock;
+					$this->blockTrigger = 'cookie-block';
+				} else {
+					// If the block is not valid, clear the block cookie (but don't delete it,
+					// because it needs to be cleared from LocalStorage as well and an empty string
+					// value is checked for in the mediawiki.user.blockcookie module).
+					$block->setCookie( $this->getRequest()->response(), true );
+				}
+			}
+		}
+
 		// Proxy blocking
 		if ( !$block instanceof Block && $ip !== null && !in_array( $ip, $wgProxyWhitelist ) ) {
 			// Local list
@@ -1617,11 +1663,13 @@ class User implements IDBAccessObject {
 				$block->setBlocker( wfMessage( 'proxyblocker' )->text() );
 				$block->mReason = wfMessage( 'proxyblockreason' )->text();
 				$block->setTarget( $ip );
+				$this->blockTrigger = 'proxy-block';
 			} elseif ( $this->isAnon() && $this->isDnsBlacklisted( $ip ) ) {
 				$block = new Block;
 				$block->setBlocker( wfMessage( 'sorbs' )->text() );
 				$block->mReason = wfMessage( 'sorbsreason' )->text();
 				$block->setTarget( $ip );
+				$this->blockTrigger = 'openproxy-block';
 			}
 		}
 
@@ -1640,6 +1688,7 @@ class User implements IDBAccessObject {
 				# Mangle the reason to alert the user that the block
 				# originated from matching the X-Forwarded-For header.
 				$block->mReason = wfMessage( 'xffblockreason', $block->mReason )->text();
+				$this->blockTrigger = 'xff-block';
 			}
 		}
 
@@ -1654,6 +1703,7 @@ class User implements IDBAccessObject {
 			$this->mBlockedby = '';
 			$this->mHideName = 0;
 			$this->mAllowUsertalk = false;
+			$this->blockTrigger = false;
 		}
 
 		// Extensions

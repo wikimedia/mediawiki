@@ -176,7 +176,6 @@
 	"yourname": "Cäüttijänimi:",
 	"yourpassword": "Salasõna",
 	"yourpasswordagain": "Tõissaga salain-sõna:",
-	"remembermypassword": "Mäleht minuu (enintään $1 {{PLURAL:$1|päivä|päivää}})",
 	"login": "Cirjut süäme",
 	"nav-login-createaccount": "Cirjut süäme vai registriiroit cäüttijässi",
 	"userlogin": "Cirjut süäme",

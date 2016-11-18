@@ -177,7 +177,7 @@
 
 	/* Static properties */
 
-	mw.widgets.datetime.DateTimeInputWidget[ 'static' ].supportsSimpleLabel = false;
+	mw.widgets.datetime.DateTimeInputWidget.static.supportsSimpleLabel = false;
 
 	/* Events */
 
@@ -583,6 +583,7 @@
 	 * @private
 	 * @param {jQuery} $field
 	 * @param {jQuery.Event} e Key down event
+	 * @return {boolean} False to cancel the default event
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.onFieldKeyDown = function ( $field, e ) {
 		var spec = $field.data( 'mw-widgets-datetime-dateTimeInputWidget-fieldSpec' );
@@ -704,6 +705,7 @@
 	 * @private
 	 * @param {jQuery} $field
 	 * @param {jQuery.Event} e Change event
+	 * @return {boolean} False to cancel the default event
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.onFieldWheel = function ( $field, e ) {
 		var delta = 0,

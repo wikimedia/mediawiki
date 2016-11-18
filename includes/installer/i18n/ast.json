@@ -62,6 +62,7 @@
 	"config-memory-bad": "<strong>Alvertencia:</strong>: el parámetru <code>memory_limit</code> de PHP ye $1.\nProbablemente sía demasiáu baxu.\n¡La instalación puede fallar!",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] ta instaláu",
 	"config-apc": "[http://www.php.net/apc APC] ta instaláu",
+	"config-apcu": "[http://www.php.net/apcu APCu] ta instaláu",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] ta instaláu",
 	"config-no-cache-apcu": "<strong>Warning:</strong> Non pudo atopase[http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] o [http://www.iis.net/download/WinCacheForPhp WinCache].\nEl caxé d'oxetos nun ta activáu.",
 	"config-mod-security": "<strong>Alvertencia:</strong> El to servidor web tien activáu [http://modsecurity.org/mod_security]/mod_security2 .Munches de les sos configuraciones comunes pueden causar problemes a MediaWiki o otru software que dexe a los usuarios publicar conteníu arbitrario. De ser posible, tendríes de desactivalo. Si non, consulta la  [http://modsecurity.org/documentation/ mod_security documentation] o contacta col alministrador del to servidor si atopes erros aleatorios.",
@@ -92,6 +93,13 @@
 	"config-db-username": "Nome d'usuariu de base de datos:",
 	"config-db-password": "Contraseña de base de datos:",
 	"config-db-install-username": "Introduz un nome d'usuariu que s'usará pa coneutase cola base de datos nel procesu d'instalación. Esti nun ye'l nome d'usuariu de la cuenta MediaWiki, ye'l nome d'usuariu de la to base de datos.",
+	"config-db-install-password": "Escribe la contraseña que se va utilizar pa conectase a la base de datos mientres el procesu d'instalación.\nEsta nun ye la contraseña de la cuenta de MediaWiki, sinón la contraseña de la base de datos.",
+	"config-db-install-help": "Escribe'l nome d'usuariu y la contraseña que se van utilizar pa conectase a la base de datos mientres el procesu d'instalación.",
+	"config-db-account-lock": "Usar el mesmu nome d'usuariu y contraseña demientres la operación normal",
+	"config-db-wiki-account": "Cuenta d'usuariu pa operar normalmente",
+	"config-db-wiki-help": "Escribe'l nome d'usuariu y la contraseña que se van utilizar p'aportar a la base de datos mientres la operación normal de la wiki.\nSi esta cuenta nun esiste y la cuenta d'instalación tien permisos bastante, va crease esta cuenta d'usuariu colos mínimos permisos necesarios pa operar normalmente la wiki.",
+	"config-db-prefix": "Prefixu de tables de la base de datos:",
+	"config-db-prefix-help": "Si precises compartir una base de datos ente múltiples wikis, o ente MediaWiki y otra aplicación web, puedes optar por amestar un prefixu a tolos nomes de tabla pa evitar conflictos.\nNun utilices espacios.\n\nDe normal déxase esti campu vacío.",
 	"config-type-mysql": "MySQL (o compatible)",
 	"config-type-mssql": "Microsoft SQL Server",
 	"config-invalid-db-type": "Triba non válida de base de datos.",
@@ -117,5 +125,5 @@
 	"config-help": "Ayuda",
 	"config-nofile": "Nun pudo atopase'l ficheru \"$1\". ¿Desaniciose?",
 	"mainpagetext": "<strong>Instalóse MediaWiki.</strong>",
-	"mainpagedocfooter": "Consulta la [https://meta.wikimedia.org/wiki/Help:Contents Guía del usuariu] pa saber cómo usar el software wiki.\n\n== Primeros pasos ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Llista de les opciones de configuración]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ EMF de MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de corréu de llanzamientos de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Llocaliza MediaWiki na to llingua]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Depriende como combatir la puxarra na to wiki]"
+	"mainpagedocfooter": "Consulta [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents] pa saber cómo usar el software wiki.\n\n== Primeros pasos ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Llista de les opciones de configuración]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ EMF de MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de corréu de llanzamientos de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Llocaliza MediaWiki na to llingua]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Depriende como combatir la puxarra na to wiki]"
 }

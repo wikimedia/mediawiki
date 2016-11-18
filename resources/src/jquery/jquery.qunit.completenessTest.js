@@ -17,9 +17,9 @@
 
 	var util,
 		hasOwn = Object.prototype.hasOwnProperty,
-		log = ( window.console && window.console.log )
-			? function () { return window.console.log.apply( window.console, arguments ); }
-			: function () {};
+		log = ( window.console && window.console.log ) ?
+			function () { return window.console.log.apply( window.console, arguments ); } :
+			function () {};
 
 	// Simplified version of a few jQuery methods, except that they don't
 	// call other jQuery methods. Required to be able to run the CompletenessTest
@@ -94,10 +94,10 @@
 		} );
 
 		QUnit.done( function () {
+			var toolbar, testResults, cntTotal, cntCalled, cntMissing;
+
 			that.populateMissingTests();
 			log( 'CompletenessTest/populateMissingTests', that );
-
-			var toolbar, testResults, cntTotal, cntCalled, cntMissing;
 
 			cntTotal = util.keys( that.injectionTracker ).length;
 			cntCalled = util.keys( that.methodCallTracker ).length;
@@ -211,14 +211,14 @@
 
 			// Hard ignores
 			if ( this.ignoreFn( currVal, this, currPathArray ) ) {
-				return null;
+				return;
 			}
 
 			// Handle the lazy limit
 			this.lazyCounter++;
 			if ( this.lazyCounter > this.lazyLimit ) {
 				log( 'CompletenessTest.fn.walkTheObject> Limit reached: ' + this.lazyCounter, currPathArray );
-				return null;
+				return;
 			}
 
 			// Functions
@@ -292,11 +292,7 @@
 			// Make the spy inherit from the original so that its static methods are also
 			// visible in the spy (e.g. when we inject a check into mw.log, mw.log.warn
 			// must remain accessible).
-			// XXX: https://github.com/jshint/jshint/issues/2656
-			/*jshint ignore:start */
-			/*jshint proto:true */
 			spy.__proto__ = val;
-			/*jshint ignore:end */
 
 			// Objects are by reference, members (unless objects) are not.
 			obj[ key ] = spy;

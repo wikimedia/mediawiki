@@ -32,7 +32,7 @@
 	/**
 	 * @inheritdoc
 	 */
-	mw.widgets.datetime.DiscordianDateTimeFormatter[ 'static' ].formats = {
+	mw.widgets.datetime.DiscordianDateTimeFormatter.static.formats = {
 		'@time': '${hour|0}:${minute|0}:${second|0}',
 		'@date': '$!{dow|full}${not-intercalary|1|, }${season|full}${not-intercalary|1| }${day|#}, ${year|#}',
 		'@datetime': '$!{dow|full}${not-intercalary|1|, }${season|full}${not-intercalary|1| }${day|#}, ${year|#} ${hour|0}:${minute|0}:${second|0} $!{zone|short}',

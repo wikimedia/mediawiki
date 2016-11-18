@@ -587,7 +587,7 @@
 	"passwordreset-nocaller": "Un chi ciamma ti g'hæ da dâlo",
 	"passwordreset-nosuchcaller": "O ciamante o no l'existe: $1",
 	"passwordreset-ignored": "A reimpostaçion da password a no l'è stæta gestia. Foscia n'è stæto configuou nisciun provider ?",
-	"passwordreset-invalideamil": "Addresso e-mail non vallido",
+	"passwordreset-invalidemail": "Addresso e-mail non vallido",
 	"passwordreset-nodata": "No è stæto fornio ni un nomme utente ni un adreçço de posta elettronica",
 	"changeemail": "Cangia o elimmina l'adresso e-mail",
 	"changeemail-header": "Completa sto formulaio pe cangiâ o to adresso e-mail. Se ti veu rimeuve l'associaçion de quasesegge addresso e-mail da-a teu utensa, lascia io neuvo addresso e-mail veuo quande ti invii o formulaio.",

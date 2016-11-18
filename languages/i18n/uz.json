@@ -981,8 +981,6 @@
 	"listusers-blocked": "(chetlashtirilgan)",
 	"activeusers": "Faol foydalanuvchilar roʻyxati",
 	"activeusers-from": "Quyidagidan boshlanuvchi foydalanuvchilarni koʻrsatish:",
-	"activeusers-hidebots": "Botlarni yashirish",
-	"activeusers-hidesysops": "Maʼmurlarni yashirish",
 	"activeusers-noresult": "Foydalanuvchilar topilmadi.",
 	"listgrouprights": "Foydalanuvchilar guruhlari roʻyxati",
 	"listgrouprights-summary": "Har bir viki-loyihada boʻlgani kabi, Oʻzbekcha Vikipediyada ham foydalanuvchilar bir nechta guruhlarga boʻlingan boʻlib, quyida ularning roʻyxati va tegishli huquqlari keltirilgan. Alohida huquqlar haqida [[{{MediaWiki:Listgrouprights-helppage}}|qoʻshimcha maʼlumotlar]] boʻlishi mumkin.",

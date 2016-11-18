@@ -4,7 +4,8 @@
 			"Passawuth",
 			"Tuinui",
 			"아라",
-			"Iberia2011"
+			"Iberia2011",
+			"Aefgh39622"
 		]
 	},
 	"tog-underline": "ຂີດເສັ້ນກ້ອງລິງກ໌:",
@@ -224,7 +225,6 @@
 	"yourname": "ຊື່ຜູ້ໃຊ້",
 	"yourpassword": "ລະຫັດຜ່ານ",
 	"yourpasswordagain": "ພິມລະຫັດຜ່ານອີກ",
-	"remembermypassword": "ຈົດຈໍາການເຊັນເຂົ້າຂອງຂ້ອຍ ຢູ່ ຄອມພິວເຕີໜ່ວຍນີ້ (for a maximum of $1 {{PLURAL:$1|day|days}})",
 	"yourdomainname": "ໂດເມນ ຂອງ ທ່ານ",
 	"login": "ເຊັນເຂົ້າ",
 	"nav-login-createaccount": "ເຊັນເຂົ້າ / ສ້າງບັນຊີ",
@@ -255,6 +255,7 @@
 	"retypenew": "ພິມລະຫັດຜ່ານໃໝ່ອີກ:",
 	"resetpass_submit": "ຕັ້ງລະຫັດຜ່ານ ແລະ ເຊັນເຂົ້າ",
 	"changepassword-success": "ສຳເລັດການປ່ຽນແປງ ລະຫັດຜ່ານຂອງທ່ານແລ້ວ! ດຽວນີ້ ທ່ານ ເຊັ່ນເຂົ້າ ໃນ ...",
+	"passwordreset-invalidemail": "ທີ່ຢູ່ອີເມລບໍ່ຖືກຕ້ອງ",
 	"bold_sample": "ໂຕໜັງສືເຂັ້ມ",
 	"bold_tip": "ໂຕໜັງສືເຂັ້ມ",
 	"italic_sample": "ໂຕເນີ້ງ",
@@ -299,7 +300,6 @@
 	"template-protected": "(ປົກປ້ອງ)",
 	"template-semiprotected": "(ເຄິ່ງປົກປ້ອງ)",
 	"nocreatetext": "{{SITENAME}} ໄດ້ຈຳກັດການສ້າງໜ້າໃໝ່.\nທ່ານສາມາດກັບໄປ ດັດແກ້ ໜ້າທີ່ມີແລ້ວ ຫຼື [[Special:UserLogin|ເຊັນເຂົ້າ ຫຼື ສ້າງບັນຊີ]].",
-	"cantcreateaccounttitle": "ບໍ່ສາມາດສ້າງ ບັນຊີ ໄດ້",
 	"cantcreateaccount-text": "ການສ້າງບັນຊີ ຈາກ IP ນີ້ (<b>$1</b>) ໄດ້ຖືກຫ້າມ ໂດຍ [[User:$3|$3]].\n\nເຫດຜົນ ໃຫ້ໄວ້ ໂດຍ $3 ແມ່ນ ''$2''",
 	"viewpagelogs": "ເບິ່ງບັນທຶກ ຂອງ ໜ້ານີ້",
 	"nohistory": "ຍັງບໍ່ມີ ປະຫວັດການດັດແກ້ໜ້ານີ້ເທື່ອ.",
@@ -613,6 +613,7 @@
 	"tooltip-compareselectedversions": "ເບິ່ງສ່ວນຕ່າງລະຫວ່າງ ສອງ ສະບັບເລືອກ.",
 	"tooltip-watch": "ເພີ່ມໜ້ານີ້ໃສ່ລາຍການຕິດຕາມຂອງທ່ານ",
 	"anonymous": "ຜູ້ໃຊ້ ບໍ່ສະແດງຊື່ ຈາກ {{SITENAME}}",
+	"confirm-markpatrolled-button": "ຕົກລົງ",
 	"previousdiff": "ສ່ວນຕ່າງກ່ອນ",
 	"nextdiff": "ສ່ວນຕ່າງຕໍ່ໄປ →",
 	"imagemaxsize": "ກຳນົດຄວາມໃຫຍ່ຂອງ ຮູບ ຫຼື ໜ້າອະທິບາຍຮູບ ບໍ່ໃຫ້ກາຍ:",

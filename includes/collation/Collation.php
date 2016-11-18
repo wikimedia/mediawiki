@@ -46,11 +46,13 @@ abstract class Collation {
 	 * @return Collation
 	 */
 	public static function factory( $collationName ) {
+		global $wgContLang;
+
 		switch ( $collationName ) {
 			case 'uppercase':
 				return new UppercaseCollation;
 			case 'numeric':
-				return new NumericUppercaseCollation;
+				return new NumericUppercaseCollation( $wgContLang );
 			case 'identity':
 				return new IdentityCollation;
 			case 'uca-default':

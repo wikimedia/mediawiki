@@ -5864,7 +5864,7 @@ $wgProxyList = [];
 /**
  * Default cookie lifetime, in seconds. Setting to 0 makes all cookies session-only.
  */
-$wgCookieExpiration = 180 * 86400;
+$wgCookieExpiration = 30 * 86400;
 
 /**
  * Default login cookie lifetime, in seconds. Setting
@@ -5872,7 +5872,7 @@ $wgCookieExpiration = 180 * 86400;
  * calculate the cookie lifetime. As with $wgCookieExpiration, 0 will make
  * login cookies session-only.
  */
-$wgExtendedLoginCookieExpiration = null;
+$wgExtendedLoginCookieExpiration = 180 * 86400;
 
 /**
  * Set to set an explicit domain on the login cookies eg, "justthis.domain.org"
@@ -5925,6 +5925,12 @@ $wgCacheVaryCookies = [];
  * Override to customise the session name
  */
 $wgSessionName = false;
+
+/**
+ * Whether to set a cookie when a user is autoblocked. Doing so means that a blocked user, even
+ * after logging out and moving to a new IP address, will still be blocked.
+ */
+$wgCookieSetOnAutoblock = false;
 
 /** @} */ # end of cookie settings }
 
@@ -8380,9 +8386,9 @@ $wgSearchRunSuggestedQuery = true;
 /**
  * Where popular password file is located.
  *
- * Default in core contains 50,000 most popular. This config
+ * Default in core contains 10,000 most popular. This config
  * allows you to change which file, in case you want to generate
- * a password file with > 50000 entries in it.
+ * a password file with > 10000 entries in it.
  *
  * @see maintenance/createCommonPasswordCdb.php
  * @since 1.27

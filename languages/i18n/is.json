@@ -1755,8 +1755,6 @@
 	"activeusers-intro": "Þetta er listi yfir notendur sem hafa verið virkir {{PLURAL:$1|síðasta|síðustu}} $1 {{PLURAL:$1|dag|daga}}.",
 	"activeusers-count": "$1 {{PLURAL:$1|aðgerð|aðgerðir}} á {{PLURAL:$3|síðasta $3 degi|síðustu $3 dögum}}",
 	"activeusers-from": "Sýna notendur sem byrja á:",
-	"activeusers-hidebots": "Fela vélmenni",
-	"activeusers-hidesysops": "Fela möppudýr",
 	"activeusers-noresult": "Enginn notandi fannst.",
 	"activeusers-submit": "Sýna virka notendur",
 	"listgrouprights": "Notandahópréttindi",

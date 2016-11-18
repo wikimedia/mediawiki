@@ -154,6 +154,16 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			return $this->failResponse( $req );
 		}
 
+		// Add an extra log entry since a temporary password is
+		// an unusual way to log in, so its important to keep track
+		// of in case of abuse.
+		$this->logger->info( "{user} successfully logged in using temp password",
+			[
+				'user' => $username,
+				'requestIP' => $this->manager->getRequest()->getIP()
+			]
+		);
+
 		$this->setPasswordResetFlag( $username, $status );
 
 		return AuthenticationResponse::newPass( $username );

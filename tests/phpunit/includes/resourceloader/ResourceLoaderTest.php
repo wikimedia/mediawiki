@@ -54,6 +54,16 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	/**
 	 * @covers ResourceLoader::register
 	 */
+	public function testRegisterEmptyString() {
+		$module = new ResourceLoaderTestModule();
+		$resourceLoader = new EmptyResourceLoader();
+		$resourceLoader->register( '', $module );
+		$this->assertEquals( $module, $resourceLoader->getModule( '' ) );
+	}
+
+	/**
+	 * @covers ResourceLoader::register
+	 */
 	public function testRegisterInvalidName() {
 		$resourceLoader = new EmptyResourceLoader();
 		$this->setExpectedException( 'MWException', "name 'test!invalid' is invalid" );

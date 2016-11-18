@@ -263,7 +263,6 @@
 	"yourpasswordagain": "गुपीत उतर परतें टायप करात",
 	"createacct-yourpasswordagain": "गुपीतउतराची खात्री कर",
 	"createacct-yourpasswordagain-ph": "गुपितउतर परत घालात",
-	"remembermypassword": "ह्या ब्राउजराचेर म्हजें लॉग इन याद दवरात (चडांतचड $1 {{PLURAL:$1|दिस|दिसां}} खातीर)",
 	"userlogin-remembermypassword": "म्हजें सत्र चालू दवर",
 	"userlogin-signwithsecure": "सुरक्षित कनेक्शन वापर",
 	"yourdomainname": "तुमचो डोमेन:",

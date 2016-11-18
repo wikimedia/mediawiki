@@ -706,7 +706,7 @@
 
 		assert.equal(
 			formatParse( 'uses-missing-int' ),
-			'[doesnt-exist]',
+			'⧼doesnt-exist⧽',
 			'int: where nested message does not exist'
 		);
 	} );

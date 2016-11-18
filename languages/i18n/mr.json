@@ -1791,8 +1791,6 @@
 	"activeusers-intro": "शेवटच्या $1 {{PLURAL:$1|दिवसात}} काम केलेल्या सदस्यांची यादी येथे मिळेल",
 	"activeusers-count": "शेवटच्या {{PLURAL:$3|दिवसात|$3 दिवसांत}} $1 {{PLURAL:$1|क्रिया}}",
 	"activeusers-from": "पुढील शब्दापासून सुरू होणारे सदस्य दाखवा:",
-	"activeusers-hidebots": "सांगकामे लपवा",
-	"activeusers-hidesysops": "प्रचालक लपवा",
 	"activeusers-noresult": "एकही सदस्य सापडला नाही.",
 	"activeusers-submit": "सक्रिय सदस्य दर्शवा",
 	"listgrouprights": "सदस्य गट अधिकार",

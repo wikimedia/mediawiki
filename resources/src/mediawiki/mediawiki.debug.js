@@ -190,9 +190,9 @@
 			}
 
 			bitDiv( 'phpversion' )
-				.append( $( this.data.phpEngine === 'HHVM'
-					? '<a href="http://hhvm.com/">HHVM</a>'
-					: '<a href="https://php.net/">PHP</a>'
+				.append( $( this.data.phpEngine === 'HHVM' ?
+					'<a href="http://hhvm.com/">HHVM</a>' :
+					'<a href="https://php.net/">PHP</a>'
 				) )
 				.append( ': ' + this.data.phpVersion );
 
@@ -231,6 +231,8 @@
 
 		/**
 		 * Build the console panel
+		 *
+		 * @return {jQuery} Console panel
 		 */
 		buildConsoleTable: function () {
 			var $table, entryTypeText, i, length, entry;
@@ -282,9 +284,9 @@
 			$table = $( '<table id="mw-debug-querylist"></table>' );
 
 			$( '<tr>' )
-				.append( $( '<th>#</th>' ).css( 'width', '4em' )    )
+				.append( $( '<th>#</th>' ).css( 'width', '4em' ) )
 				.append( $( '<th>SQL</th>' ) )
-				.append( $( '<th>Time</th>' ).css( 'width', '8em'  ) )
+				.append( $( '<th>Time</th>' ).css( 'width', '8em' ) )
 				.append( $( '<th>Call</th>' ).css( 'width', '18em' ) )
 			.appendTo( $table );
 

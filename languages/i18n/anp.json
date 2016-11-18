@@ -362,7 +362,6 @@
 	"createacct-yourpassword-ph": "कूटशब्द दर्ज करऽ",
 	"createacct-yourpasswordagain": "कूटशब्द केरऽ पुष्टि करऽ",
 	"createacct-yourpasswordagain-ph": "कूटशब्द पुनः लिखऽ",
-	"remembermypassword": "इ कंप्यूटर पर हमरॊ लॉग-इन सूचना याद रखॊ (अधिकतम $1 {{PLURAL:$1|दिन|दिन}} लेली)",
 	"userlogin-remembermypassword": "हमरा लॉगिन रखऽ",
 	"login": "लॉग इन",
 	"nav-login-createaccount": "सत्रारंभ / खाता खोलॊ",

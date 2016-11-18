@@ -944,8 +944,6 @@
 	"activeusers-intro": "Nyoë nakeuh dapeuta ureuëng ngui nyang na geuteumuléh lam $1 {{PLURAL:$1|uroë}} nyoë.",
 	"activeusers-count": "$1 {{PLURAL:$1|buet}} lam {{PLURAL:$3|uroë|$3 uroë}} nyoë",
 	"activeusers-from": "Peuleumah ureueng ngui nyang neuawai ngön:",
-	"activeusers-hidebots": "Peusom bot",
-	"activeusers-hidesysops": "Peusom ureueng urôh",
 	"activeusers-noresult": "Hana ureueng ngui nyang meutumèe.",
 	"listgrouprights": "Dapeuta khut ureueng ngui",
 	"listgrouprights-key": "Teuneurang:\n* <span class=\"listgrouprights-granted\">Khut nyang geubri</span>\n* <span class=\"listgrouprights-revoked\">Khut nyang hana geubri</span>",

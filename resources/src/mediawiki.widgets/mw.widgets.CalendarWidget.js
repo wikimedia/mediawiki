@@ -4,7 +4,7 @@
  * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
-/*global moment */
+/* global moment */
 ( function ( $, mw ) {
 
 	/**
@@ -175,87 +175,87 @@
 		selected = moment( this.getDate(), this.getDateFormat() );
 
 		switch ( this.displayLayer ) {
-		case 'month':
-			this.labelButton.setLabel( this.moment.format( 'MMMM YYYY' ) );
-			this.upButton.toggle( true );
+			case 'month':
+				this.labelButton.setLabel( this.moment.format( 'MMMM YYYY' ) );
+				this.upButton.toggle( true );
 
-			// First week displayed is the first week spanned by the month, unless it begins on Monday, in
-			// which case first week displayed is the previous week. This makes the calendar "balanced"
-			// and also neatly handles 28-day February sometimes spanning only 4 weeks.
-			currentDay = moment( this.moment ).startOf( 'month' ).subtract( 1, 'day' ).startOf( 'week' );
+				// First week displayed is the first week spanned by the month, unless it begins on Monday, in
+				// which case first week displayed is the previous week. This makes the calendar "balanced"
+				// and also neatly handles 28-day February sometimes spanning only 4 weeks.
+				currentDay = moment( this.moment ).startOf( 'month' ).subtract( 1, 'day' ).startOf( 'week' );
 
-			// Day-of-week labels. Localisation-independent: works with weeks starting on Saturday, Sunday
-			// or Monday.
-			for ( i = 0; i < 7; i++ ) {
-				items.push(
-					$( '<div>' )
-						.addClass( 'mw-widget-calendarWidget-day-heading' )
-						.text( currentDay.format( 'dd' ) )
-				);
-				currentDay.add( 1, 'day' );
-			}
-			currentDay.subtract( 7, 'days' );
+				// Day-of-week labels. Localisation-independent: works with weeks starting on Saturday, Sunday
+				// or Monday.
+				for ( i = 0; i < 7; i++ ) {
+					items.push(
+						$( '<div>' )
+							.addClass( 'mw-widget-calendarWidget-day-heading' )
+							.text( currentDay.format( 'dd' ) )
+					);
+					currentDay.add( 1, 'day' );
+				}
+				currentDay.subtract( 7, 'days' );
 
-			// Actual calendar month. Always displays 6 weeks, for consistency (months can span 4 to 6
-			// weeks).
-			for ( i = 0; i < 42; i++ ) {
-				items.push(
-					$( '<div>' )
-						.addClass( 'mw-widget-calendarWidget-item mw-widget-calendarWidget-day' )
-						.toggleClass( 'mw-widget-calendarWidget-day-additional', !currentDay.isSame( this.moment, 'month' ) )
-						.toggleClass( 'mw-widget-calendarWidget-day-today', currentDay.isSame( today, 'day' ) )
-						.toggleClass( 'mw-widget-calendarWidget-item-selected', currentDay.isSame( selected, 'day' ) )
-						.text( currentDay.format( 'D' ) )
-						.data( 'date', currentDay.date() )
-						.data( 'month', currentDay.month() )
-						.data( 'year', currentDay.year() )
-				);
-				currentDay.add( 1, 'day' );
-			}
-			break;
+				// Actual calendar month. Always displays 6 weeks, for consistency (months can span 4 to 6
+				// weeks).
+				for ( i = 0; i < 42; i++ ) {
+					items.push(
+						$( '<div>' )
+							.addClass( 'mw-widget-calendarWidget-item mw-widget-calendarWidget-day' )
+							.toggleClass( 'mw-widget-calendarWidget-day-additional', !currentDay.isSame( this.moment, 'month' ) )
+							.toggleClass( 'mw-widget-calendarWidget-day-today', currentDay.isSame( today, 'day' ) )
+							.toggleClass( 'mw-widget-calendarWidget-item-selected', currentDay.isSame( selected, 'day' ) )
+							.text( currentDay.format( 'D' ) )
+							.data( 'date', currentDay.date() )
+							.data( 'month', currentDay.month() )
+							.data( 'year', currentDay.year() )
+					);
+					currentDay.add( 1, 'day' );
+				}
+				break;
 
-		case 'year':
-			this.labelButton.setLabel( this.moment.format( 'YYYY' ) );
-			this.upButton.toggle( true );
+			case 'year':
+				this.labelButton.setLabel( this.moment.format( 'YYYY' ) );
+				this.upButton.toggle( true );
 
-			currentMonth = moment( this.moment ).startOf( 'year' );
-			for ( i = 0; i < 12; i++ ) {
-				items.push(
-					$( '<div>' )
-						.addClass( 'mw-widget-calendarWidget-item mw-widget-calendarWidget-month' )
-						.toggleClass( 'mw-widget-calendarWidget-item-selected', currentMonth.isSame( selected, 'month' ) )
-						.text( currentMonth.format( 'MMMM' ) )
-						.data( 'month', currentMonth.month() )
-				);
-				currentMonth.add( 1, 'month' );
-			}
-			// Shuffle the array to display months in columns rather than rows.
-			items = [
-				items[ 0 ], items[ 6 ],      //  | January  | July      |
-				items[ 1 ], items[ 7 ],      //  | February | August    |
-				items[ 2 ], items[ 8 ],      //  | March    | September |
-				items[ 3 ], items[ 9 ],      //  | April    | October   |
-				items[ 4 ], items[ 10 ],     //  | May      | November  |
-				items[ 5 ], items[ 11 ]      //  | June     | December  |
-			];
-			break;
+				currentMonth = moment( this.moment ).startOf( 'year' );
+				for ( i = 0; i < 12; i++ ) {
+					items.push(
+						$( '<div>' )
+							.addClass( 'mw-widget-calendarWidget-item mw-widget-calendarWidget-month' )
+							.toggleClass( 'mw-widget-calendarWidget-item-selected', currentMonth.isSame( selected, 'month' ) )
+							.text( currentMonth.format( 'MMMM' ) )
+							.data( 'month', currentMonth.month() )
+					);
+					currentMonth.add( 1, 'month' );
+				}
+				// Shuffle the array to display months in columns rather than rows.
+				items = [
+					items[ 0 ], items[ 6 ],      //  | January  | July      |
+					items[ 1 ], items[ 7 ],      //  | February | August    |
+					items[ 2 ], items[ 8 ],      //  | March    | September |
+					items[ 3 ], items[ 9 ],      //  | April    | October   |
+					items[ 4 ], items[ 10 ],     //  | May      | November  |
+					items[ 5 ], items[ 11 ]      //  | June     | December  |
+				];
+				break;
 
-		case 'duodecade':
-			this.labelButton.setLabel( null );
-			this.upButton.toggle( false );
+			case 'duodecade':
+				this.labelButton.setLabel( null );
+				this.upButton.toggle( false );
 
-			currentYear = moment( { year: Math.floor( this.moment.year() / 20 ) * 20 } );
-			for ( i = 0; i < 20; i++ ) {
-				items.push(
-					$( '<div>' )
-						.addClass( 'mw-widget-calendarWidget-item mw-widget-calendarWidget-year' )
-						.toggleClass( 'mw-widget-calendarWidget-item-selected', currentYear.isSame( selected, 'year' ) )
-						.text( currentYear.format( 'YYYY' ) )
-						.data( 'year', currentYear.year() )
-				);
-				currentYear.add( 1, 'year' );
-			}
-			break;
+				currentYear = moment( { year: Math.floor( this.moment.year() / 20 ) * 20 } );
+				for ( i = 0; i < 20; i++ ) {
+					items.push(
+						$( '<div>' )
+							.addClass( 'mw-widget-calendarWidget-item mw-widget-calendarWidget-year' )
+							.toggleClass( 'mw-widget-calendarWidget-item-selected', currentYear.isSame( selected, 'year' ) )
+							.text( currentYear.format( 'YYYY' ) )
+							.data( 'year', currentYear.year() )
+					);
+					currentYear.add( 1, 'year' );
+				}
+				break;
 		}
 
 		this.$body.append.apply( this.$body, items );
@@ -369,15 +369,15 @@
 	 */
 	mw.widgets.CalendarWidget.prototype.onPrevButtonClick = function () {
 		switch ( this.displayLayer ) {
-		case 'month':
-			this.moment.subtract( 1, 'month' );
-			break;
-		case 'year':
-			this.moment.subtract( 1, 'year' );
-			break;
-		case 'duodecade':
-			this.moment.subtract( 20, 'years' );
-			break;
+			case 'month':
+				this.moment.subtract( 1, 'month' );
+				break;
+			case 'year':
+				this.moment.subtract( 1, 'year' );
+				break;
+			case 'duodecade':
+				this.moment.subtract( 20, 'years' );
+				break;
 		}
 		this.updateUI( 'previous' );
 	};
@@ -389,15 +389,15 @@
 	 */
 	mw.widgets.CalendarWidget.prototype.onNextButtonClick = function () {
 		switch ( this.displayLayer ) {
-		case 'month':
-			this.moment.add( 1, 'month' );
-			break;
-		case 'year':
-			this.moment.add( 1, 'year' );
-			break;
-		case 'duodecade':
-			this.moment.add( 20, 'years' );
-			break;
+			case 'month':
+				this.moment.add( 1, 'month' );
+				break;
+			case 'year':
+				this.moment.add( 1, 'year' );
+				break;
+			case 'duodecade':
+				this.moment.add( 20, 'years' );
+				break;
 		}
 		this.updateUI( 'next' );
 	};
@@ -408,6 +408,7 @@
 	 * what gets clicked.
 	 *
 	 * @private
+	 * @param {jQuery.Event} e Click event
 	 */
 	mw.widgets.CalendarWidget.prototype.onBodyClick = function ( e ) {
 		var
@@ -504,6 +505,7 @@
 	 *
 	 * @private
 	 * @param {jQuery.Event} e Mouse click event
+	 * @return {boolean} False to cancel the default event
 	 */
 	mw.widgets.CalendarWidget.prototype.onClick = function ( e ) {
 		if ( !this.isDisabled() && e.which === 1 ) {
@@ -517,39 +519,38 @@
 	 *
 	 * @private
 	 * @param {jQuery.Event} e Key down event
+	 * @return {boolean} False to cancel the default event
 	 */
 	mw.widgets.CalendarWidget.prototype.onKeyDown = function ( e ) {
 		var
-			/*jshint -W024*/
 			dir = OO.ui.Element.static.getDir( this.$element ),
-			/*jshint +W024*/
 			nextDirectionKey = dir === 'ltr' ? OO.ui.Keys.RIGHT : OO.ui.Keys.LEFT,
 			prevDirectionKey = dir === 'ltr' ? OO.ui.Keys.LEFT : OO.ui.Keys.RIGHT,
 			changed = true;
 
 		if ( !this.isDisabled() ) {
 			switch ( e.which ) {
-			case prevDirectionKey:
-				this.moment.subtract( 1, this.precision === 'month' ? 'month' : 'day' );
-				break;
-			case nextDirectionKey:
-				this.moment.add( 1, this.precision === 'month' ? 'month' : 'day' );
-				break;
-			case OO.ui.Keys.UP:
-				this.moment.subtract( 1, this.precision === 'month' ? 'month' : 'week' );
-				break;
-			case OO.ui.Keys.DOWN:
-				this.moment.add( 1, this.precision === 'month' ? 'month' : 'week' );
-				break;
-			case OO.ui.Keys.PAGEUP:
-				this.moment.subtract( 1, this.precision === 'month' ? 'year' : 'month' );
-				break;
-			case OO.ui.Keys.PAGEDOWN:
-				this.moment.add( 1, this.precision === 'month' ? 'year' : 'month' );
-				break;
-			default:
-				changed = false;
-				break;
+				case prevDirectionKey:
+					this.moment.subtract( 1, this.precision === 'month' ? 'month' : 'day' );
+					break;
+				case nextDirectionKey:
+					this.moment.add( 1, this.precision === 'month' ? 'month' : 'day' );
+					break;
+				case OO.ui.Keys.UP:
+					this.moment.subtract( 1, this.precision === 'month' ? 'month' : 'week' );
+					break;
+				case OO.ui.Keys.DOWN:
+					this.moment.add( 1, this.precision === 'month' ? 'month' : 'week' );
+					break;
+				case OO.ui.Keys.PAGEUP:
+					this.moment.subtract( 1, this.precision === 'month' ? 'year' : 'month' );
+					break;
+				case OO.ui.Keys.PAGEDOWN:
+					this.moment.add( 1, this.precision === 'month' ? 'year' : 'month' );
+					break;
+				default:
+					changed = false;
+					break;
 			}
 
 			if ( changed ) {

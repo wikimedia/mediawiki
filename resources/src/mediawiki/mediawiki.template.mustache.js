@@ -1,4 +1,4 @@
-/*global Mustache */
+/* global Mustache */
 ( function ( mw, $ ) {
 	// Register mustache compiler
 	mw.template.registerCompiler( 'mustache', {
@@ -16,6 +16,7 @@
 				 * @param {Object} data Data to render
 				 * @param {Object} partialTemplates Map partial names to Mustache template objects
 				 *  returned by mw.template.get()
+				 * @return {jQuery} Rendered HTML
 				 */
 				render: function ( data, partialTemplates ) {
 					var partials = {};

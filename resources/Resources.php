@@ -1406,6 +1406,11 @@ return [
 		'dependencies' => 'mediawiki.util',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.user.blockcookie' => [
+		'scripts' => 'resources/src/mediawiki/mediawiki.user.blockcookie.js',
+		'dependencies' => [ 'mediawiki.cookie', 'mediawiki.storage' ],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.user' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.user.js',
 		'dependencies' => [
@@ -1903,6 +1908,7 @@ return [
 			'apisandbox-continue',
 			'apisandbox-continue-clear',
 			'apisandbox-continue-help',
+			'apisandbox-param-limit',
 			'api-format-prettyprint-status',
 			'blanknamespace',
 		],

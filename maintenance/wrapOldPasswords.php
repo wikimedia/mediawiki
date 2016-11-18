@@ -113,6 +113,7 @@ class WrapOldPasswords extends Maintenance {
 			}
 
 			$this->commitTransaction( $dbw, __METHOD__ );
+			LBFactory::waitForReplication();
 
 			// Clear memcached so old passwords are wiped out
 			foreach ( $updateUsers as $user ) {

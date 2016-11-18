@@ -1,4 +1,4 @@
-/*global moment, mw */
+/* global moment, mw */
 
 // HACK: Overwrite moment's i18n with MediaWiki's for the current language so that
 // wgTranslateNumerals is respected.
