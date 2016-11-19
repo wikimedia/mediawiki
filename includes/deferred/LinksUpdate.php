@@ -567,7 +567,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 		$arr = [];
 		$diffs = array_diff_key( $this->mExternals, $existing );
 		foreach ( $diffs as $url => $dummy ) {
-			foreach ( wfMakeUrlIndexes( $url ) as $index ) {
+			foreach ( LinkFilter::makeIndexes( $url ) as $index ) {
 				$arr[] = [
 					'el_from' => $this->mId,
 					'el_to' => $url,

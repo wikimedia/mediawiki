@@ -1191,6 +1191,7 @@ $wgAutoloadLocalClasses = [
 	'RedisConnectionPool' => __DIR__ . '/includes/libs/redis/RedisConnectionPool.php',
 	'RedisLockManager' => __DIR__ . '/includes/libs/lockmanager/RedisLockManager.php',
 	'RedisPubSubFeedEngine' => __DIR__ . '/includes/rcfeed/RedisPubSubFeedEngine.php',
+	'RefreshExternallinksIndex' => __DIR__ . '/maintenance/refreshExternallinksIndex.php',
 	'RefreshFileHeaders' => __DIR__ . '/maintenance/refreshFileHeaders.php',
 	'RefreshImageMetadata' => __DIR__ . '/maintenance/refreshImageMetadata.php',
 	'RefreshLinks' => __DIR__ . '/maintenance/refreshLinks.php',

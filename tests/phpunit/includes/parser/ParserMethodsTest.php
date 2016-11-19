@@ -181,6 +181,16 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 				'http://example.org/%23%2F%3F%26%3D%2B%3B?%23%2F%3F%26%3D%2B%3B#%23%2F%3F%26%3D%2B%3B',
 				'http://example.org/%23%2F%3F&=+;?%23/?%26%3D%2B%3B#%23/?&=+;',
 			],
+			[
+				'IPv6 links aren\'t escaped',
+				'http://[::1]/foobar',
+				'http://[::1]/foobar',
+			],
+			[
+				'non-IPv6 links aren\'t unescaped',
+				'http://%5B::1%5D/foobar',
+				'http://%5B::1%5D/foobar',
+			],
 		];
 	}
 

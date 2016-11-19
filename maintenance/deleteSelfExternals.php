@@ -38,17 +38,44 @@ class DeleteSelfExternals extends Maintenance {
 
 	public function execute() {
 		global $wgServer;
+
+		// Extract the host and scheme from $wgServer
+		$bits = wfParseUrl( $wgServer );
+		if ( !$bits ) {
+			$this->error( 'Could not parse $wgServer' );
+			exit( 1 );
+		}
+
 		$this->output( "Deleting self externals from $wgServer\n" );
 		$db = $this->getDB( DB_MASTER );
-		while ( 1 ) {
-			$this->commitTransaction( $db, __METHOD__ );
-			$q = $db->limitResult( "DELETE /* deleteSelfExternals */ FROM externallinks WHERE el_to"
-				. $db->buildLike( $wgServer . '/', $db->anyString() ), $this->getBatchSize() );
-			$this->output( "Deleting a batch\n" );
-			$db->query( $q );
-			if ( !$db->affectedRows() ) {
-				return;
+
+		// If it's protocol-relative, we need to do both http and https.
+		// Otherwise, just do the specified scheme.
+		$host = $bits['host'];
+		if ( isset( $bits['port'] ) ) {
+			$host .= ':' . $bits['port'];
+		}
+		if ( $bits['scheme'] != '' ) {
+			$conds = [ LinkFilter::getQueryConditions( $host, [ 'protocol' => $bits['scheme'] . '://' ] ) ];
+		} else {
+			$conds = [
+				LinkFilter::getQueryConditions( $host, [ 'protocol' => 'http://' ] ),
+				LinkFilter::getQueryConditions( $host, [ 'protocol' => 'https://' ] ),
+			];
+		}
+
+		foreach ( $conds as $cond ) {
+			if ( !$cond ) {
+				continue;
 			}
+			$cond = $db->makeList( $cond, LIST_AND );
+			do {
+				$this->commitTransaction( $db, __METHOD__ );
+				$q = $db->limitResult( "DELETE /* deleteSelfExternals */ FROM externallinks WHERE $cond",
+					$this->mBatchSize );
+				$this->output( "Deleting a batch\n" );
+				$db->query( $q );
+			} while ( $db->affectedRows() );
 		}
 	}
 }

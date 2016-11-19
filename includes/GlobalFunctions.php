@@ -894,55 +894,13 @@ function wfExpandIRI( $url ) {
 /**
  * Make URL indexes, appropriate for the el_index field of externallinks.
  *
+ * @deprecated since 1.33, use LinkFilter::makeIndexes() instead
  * @param string $url
  * @return array
  */
 function wfMakeUrlIndexes( $url ) {
-	$bits = wfParseUrl( $url );
-
-	// Reverse the labels in the hostname, convert to lower case
-	// For emails reverse domainpart only
-	if ( $bits['scheme'] == 'mailto' ) {
-		$mailparts = explode( '@', $bits['host'], 2 );
-		if ( count( $mailparts ) === 2 ) {
-			$domainpart = strtolower( implode( '.', array_reverse( explode( '.', $mailparts[1] ) ) ) );
-		} else {
-			// No domain specified, don't mangle it
-			$domainpart = '';
-		}
-		$reversedHost = $domainpart . '@' . $mailparts[0];
-	} else {
-		$reversedHost = strtolower( implode( '.', array_reverse( explode( '.', $bits['host'] ) ) ) );
-	}
-	// Add an extra dot to the end
-	// Why? Is it in wrong place in mailto links?
-	if ( substr( $reversedHost, -1, 1 ) !== '.' ) {
-		$reversedHost .= '.';
-	}
-	// Reconstruct the pseudo-URL
-	$prot = $bits['scheme'];
-	$index = $prot . $bits['delimiter'] . $reversedHost;
-	// Leave out user and password. Add the port, path, query and fragment
-	if ( isset( $bits['port'] ) ) {
-		$index .= ':' . $bits['port'];
-	}
-	if ( isset( $bits['path'] ) ) {
-		$index .= $bits['path'];
-	} else {
-		$index .= '/';
-	}
-	if ( isset( $bits['query'] ) ) {
-		$index .= '?' . $bits['query'];
-	}
-	if ( isset( $bits['fragment'] ) ) {
-		$index .= '#' . $bits['fragment'];
-	}
-
-	if ( $prot == '' ) {
-		return [ "http:$index", "https:$index" ];
-	} else {
-		return [ $index ];
-	}
+	wfDeprecated( __FUNCTION__, '1.33' );
+	return LinkFilter::makeIndexes( $url );
 }
 
 /**

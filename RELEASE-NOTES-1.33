@@ -15,6 +15,9 @@ production.
   the current parse language where available.
 
 ==== Changed configuration ====
+* Some external link searches will not work correctly until update.php (or
+  refreshExternallinksIndex.php) is run. These include searches for links using
+  IP addresses, internationalized domain names, and possibly mailto links.
 * …
 
 ==== Removed configuration ====

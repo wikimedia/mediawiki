@@ -87,6 +87,7 @@ abstract class DatabaseUpdater {
 		AddRFCandPMIDInterwiki::class,
 		PopulatePPSortKey::class,
 		PopulateIpChanges::class,
+		RefreshExternallinksIndex::class,
 	];
 
 	/**
