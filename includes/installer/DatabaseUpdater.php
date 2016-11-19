@@ -78,6 +78,7 @@ abstract class DatabaseUpdater {
 		FixDefaultJsonContentPages::class,
 		CleanupEmptyCategories::class,
 		AddRFCAndPMIDInterwiki::class,
+		RefreshExternallinksIndex::class,
 	];
 
 	/**
