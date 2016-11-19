@@ -58,6 +58,7 @@ $wgAutoloadClasses += [
 	'TestUser' => "$testDir/phpunit/includes/TestUser.php",
 	'TestUserRegistry' => "$testDir/phpunit/includes/TestUserRegistry.php",
 	'LessFileCompilationTest' => "$testDir/phpunit/LessFileCompilationTest.php",
+	'PHPUnitMaintClass' => "$testDir/phpunit/phpunit.php",
 
 	# tests/phpunit/includes
 	'RevisionStorageTest' => "$testDir/phpunit/includes/RevisionStorageTest.php",
