@@ -678,7 +678,7 @@ class User implements IDBAccessObject {
 		);
 		if ( !$row ) {
 			// No user. Create it?
-			return $options['create'] ? self::createNew( $name ) : null;
+			return $options['create'] ? self::createNew( $name, [ 'token' => self::INVALID_TOKEN ] ) : null;
 		}
 		$user = self::newFromRow( $row );
 
