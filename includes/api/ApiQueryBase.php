@@ -411,13 +411,15 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
+	 * @deprecated since 1.30, use LinkFilter::getQueryConditions() instead
 	 * @param string $query
 	 * @param string $protocol
 	 * @return null|string
 	 */
 	public function prepareUrlQuerySearchString( $query = null, $protocol = null ) {
+		wfDeprecated( __METHOD__, '1.30' );
 		$db = $this->getDB();
-		if ( !is_null( $query ) || $query != '' ) {
+		if ( $query !== null && $query !== '' ) {
 			if ( is_null( $protocol ) ) {
 				$protocol = 'http://';
 			}
