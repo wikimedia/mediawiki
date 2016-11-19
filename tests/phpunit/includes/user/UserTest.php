@@ -695,6 +695,51 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * Test that nothing untoward happens when $wgCookieSetOnAutoblock is changed to false after a
+	 * cookie has been set for a user.
+	 */
+	public function testAutoblockCookiesDisabledAfterBeingSet() {
+		// Set up the bits of global configuration that we use.
+		$this->setMwGlobals( [
+			'wgCookieSetOnAutoblock' => true,
+			'wgCookiePrefix' => 'wm_no_cookies',
+		] );
+
+		// 1. Log in a test user, and block them.
+		$testUser = $this->getTestUser()->getUser();
+		$request1 = new FauxRequest();
+		$request1->getSession()->setUser( $testUser );
+		$block = new Block( [ 'enableAutoblock' => true ] );
+		$block->setTarget( $testUser );
+		$block->insert();
+		$user1 = User::newFromSession( $request1 );
+		$user1->mBlock = $block;
+		$user1->load();
+		// Make sure the cookie has been set.
+		$cookies1 = $request1->response()->getCookies();
+		$this->assertArrayHasKey( 'wm_no_cookiesBlockID', $cookies1 );
+
+		// Disable the block cookie.
+		$this->setMwGlobals( [ 'wgCookieSetOnAutoblock' => false ] );
+
+		// 2. Test that the cookie IS NOT present.
+		$request2 = new FauxRequest();
+		$request2->getSession()->setUser( $testUser );
+		$user2 = User::newFromSession( $request2 );
+		$user2->mBlock = $block;
+		$user2->load();
+		$this->assertTrue( $user2->isLoggedIn() );
+		$this->assertTrue( $user2->isBlocked() );
+		$this->assertTrue( $block->isAutoblocking() );
+		$this->assertGreaterThanOrEqual( $block->getId(), $user2->getBlockId() );
+		$cookies2 = $request2->response()->getCookies();
+		$this->assertArrayNotHasKey( 'wm_no_cookiesBlockID', $cookies2 );
+
+		// Clean up.
+		$block->delete();
+	}
+
+	/**
 	 * When a user is autoblocked and a cookie is set to track them, the expiry time of the cookie
 	 * should match the block's expiry. If the block is infinite, the cookie expiry time should
 	 * match $wgCookieExpiration. If the expiry time is changed, the cookie's should change with it.

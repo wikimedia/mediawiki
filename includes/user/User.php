@@ -1630,27 +1630,29 @@ class User implements IDBAccessObject {
 		// User/IP blocking
 		$block = Block::newFromTarget( $this, $ip, !$bFromSlave );
 
-		// If no block has been found, check for a cookie indicating that the user is blocked.
-		$blockCookieVal = (int)$this->getRequest()->getCookie( 'BlockID' );
-		if ( !$block instanceof Block && $blockCookieVal > 0 ) {
-			// Load the Block from the ID in the cookie.
-			$tmpBlock = Block::newFromID( $blockCookieVal );
-			if ( $tmpBlock instanceof Block ) {
-				// Check the validity of the block.
-				$blockIsValid = $tmpBlock->getType() == Block::TYPE_USER
-					&& !$tmpBlock->isExpired()
-					&& $tmpBlock->isAutoblocking();
-				$config = RequestContext::getMain()->getConfig();
-				$useBlockCookie = ( $config->get( 'CookieSetOnAutoblock' ) === true );
-				if ( $blockIsValid && $useBlockCookie ) {
-					// Use the block.
-					$block = $tmpBlock;
-					$this->blockTrigger = 'cookie-block';
-				} else {
-					// If the block is not valid, clear the block cookie (but don't delete it,
-					// because it needs to be cleared from LocalStorage as well and an empty string
-					// value is checked for in the mediawiki.user.blockcookie module).
-					$block->setCookie( $this->getRequest()->response(), true );
+		// Cookie blocking
+		$config = RequestContext::getMain()->getConfig();
+		if ( $config->get( 'CookieSetOnAutoblock' ) === true ) {
+			// If no block has been found, check for a cookie indicating that the user is blocked.
+			$blockCookieVal = (int)$this->getRequest()->getCookie( 'BlockID' );
+			if ( !$block instanceof Block && $blockCookieVal > 0 ) {
+				// Load the Block from the ID in the cookie.
+				$tmpBlock = Block::newFromID( $blockCookieVal );
+				if ( $tmpBlock instanceof Block ) {
+					// Check the validity of the block.
+					$blockIsValid = $tmpBlock->getType() == Block::TYPE_USER
+						&& !$tmpBlock->isExpired()
+						&& $tmpBlock->isAutoblocking();
+					if ( $blockIsValid ) {
+						// Use the block.
+						$block = $tmpBlock;
+						$this->blockTrigger = 'cookie-block';
+					} else {
+						// If the block is not valid, clear the block cookie (but don't delete it,
+						// because it needs to be cleared from LocalStorage as well and an empty string
+						// value is checked for in the mediawiki.user.blockcookie module).
+						$tmpBlock->setCookie( $this->getRequest()->response(), true );
+					}
 				}
 			}
 		}
