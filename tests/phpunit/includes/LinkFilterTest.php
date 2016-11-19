@@ -124,6 +124,20 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 				'http://xx23124:__ffdfdef__@www.test.com:12345/dir' ,
 				'http://name:pass@www.test.com:12345/dir/dir/file.xyz.php#__se__?arg1=_&arg2[]=4rtg'
 			],
+			[ 'http://', '127.0.0.1', 'http://127.000.000.001' ],
+			[ 'http://', '127.0.0.*', 'http://127.000.000.010' ],
+			[ 'http://', '127.0.*', 'http://127.000.123.010' ],
+			[ 'http://', '127.*', 'http://127.127.127.127' ],
+			[ 'http://', '[0:0:0:0:0:0:0:0001]', 'http://[::1]' ],
+			[ 'http://', '[2001:db8:0:0:*]', 'http://[2001:0DB8::]' ],
+			[ 'http://', '[2001:db8:0:0:*]', 'http://[2001:0DB8::123]' ],
+			[ 'http://', '[2001:db8:0:0:*]', 'http://[2001:0DB8::123:456]' ],
+			[ 'http://', 'xn--f-vgaa.example.com', 'http://fóó.example.com' ],
+			[ 'http://', 'xn--f-vgaa.example.com', 'http://f%c3%b3%C3%B3.example.com' ],
+			[ 'http://', 'fóó.example.com', 'http://xn--f-vgaa.example.com' ],
+			[ 'http://', 'f%c3%b3%C3%B3.example.com', 'http://xn--f-vgaa.example.com' ],
+			[ 'http://', 'f%c3%b3%C3%B3.example.com', 'http://fóó.example.com' ],
+			[ 'http://', 'fóó.example.com', 'http://f%c3%b3%C3%B3.example.com' ],
 
 			// Tests for false positives
 			[ 'http://', 'test.com', 'http://www.test.com', false ],
@@ -151,6 +165,8 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			[ 'ftp://', 'test.com/dir/', 'ftp://test.com/', false ],
 			[ '', 'http://test.com:8080/dir/', 'http://test.com:808/dir/', false ],
 			[ '', 'http://test.com/dir/index.html', 'http://test.com/dir/index.php', false ],
+			[ 'http://', '127.0.0.*', 'http://127.0.1.0', false ],
+			[ 'http://', '[2001:db8::*]', 'http://[2001:0DB8::123:456]', false ],
 
 			// These are false positives too and ideally shouldn't match, but that
 			// would require using regexes and RLIKE instead of LIKE
@@ -164,17 +180,17 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 	 * testMakeLikeArrayWithValidPatterns()
 	 *
 	 * Tests whether the LIKE clause produced by LinkFilter::makeLikeArray($pattern, $protocol)
-	 * will find one of the URL indexes produced by wfMakeUrlIndexes($url)
+	 * will find one of the URL indexes produced by LinkFilter::makeIndexes($url)
 	 *
 	 * @dataProvider provideValidPatterns
 	 *
 	 * @param string $protocol Protocol, e.g. 'http://' or 'mailto:'
 	 * @param string $pattern Search pattern to feed to LinkFilter::makeLikeArray
-	 * @param string $url URL to feed to wfMakeUrlIndexes
+	 * @param string $url URL to feed to LinkFilter::makeIndexes
 	 * @param bool $shouldBeFound Should the URL be found? (defaults true)
 	 */
 	function testMakeLikeArrayWithValidPatterns( $protocol, $pattern, $url, $shouldBeFound = true ) {
-		$indexes = wfMakeUrlIndexes( $url );
+		$indexes = LinkFilter::makeIndexes( $url );
 		$likeArray = LinkFilter::makeLikeArray( $pattern, $protocol );
 
 		$this->assertTrue( $likeArray !== false,
@@ -183,7 +199,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 
 		$regex = $this->createRegexFromLIKE( $likeArray );
 		$debugmsg = "Regex: '" . $regex . "'\n";
-		$debugmsg .= count( $indexes ) . " index(es) created by wfMakeUrlIndexes():\n";
+		$debugmsg .= count( $indexes ) . " index(es) created by LinkFilter::makeIndexes():\n";
 
 		$matches = 0;
 
@@ -246,6 +262,150 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			LinkFilter::makeLikeArray( $pattern ),
 			"'$pattern' is not a valid pattern and should be rejected"
 		);
+	}
+
+	/**
+	 * @dataProvider provideMakeIndexes()
+	 * @covers LinkFilter::makeIndexes
+	 */
+	public function testMakeIndexes( $url, $expected ) {
+		// Set global so file:// tests can work
+		$this->setMwGlobals( [
+			'wgUrlProtocols' => [
+				'http://',
+				'https://',
+				'mailto:',
+				'//',
+				'file://', # Non-default
+			],
+		] );
+
+		$index = LinkFilter::makeIndexes( $url );
+		$this->assertEquals( $expected, $index, "LinkFilter::makeIndexes(\"$url\")" );
+	}
+
+	public static function provideMakeIndexes() {
+		return [
+			// Testcase for T30627
+			[
+				'https://example.org/test.cgi?id=12345',
+				[ 'https://org.example./test.cgi?id=12345' ]
+			],
+			[
+				// mailtos are handled special
+				'mailto:wiki@wikimedia.org',
+				[ 'mailto:org.wikimedia.@wiki' ]
+			],
+
+			// file URL cases per T30627...
+			[
+				// three slashes: local filesystem path Unix-style
+				'file:///whatever/you/like.txt',
+				[ 'file://./whatever/you/like.txt' ]
+			],
+			[
+				// three slashes: local filesystem path Windows-style
+				'file:///c:/whatever/you/like.txt',
+				[ 'file://./c:/whatever/you/like.txt' ]
+			],
+			[
+				// two slashes: UNC filesystem path Windows-style
+				'file://intranet/whatever/you/like.txt',
+				[ 'file://intranet./whatever/you/like.txt' ]
+			],
+			// Multiple-slash cases that can sorta work on Mozilla
+			// if you hack it just right are kinda pathological,
+			// and unreliable cross-platform or on IE which means they're
+			// unlikely to appear on intranets.
+			// Those will survive the algorithm but with results that
+			// are less consistent.
+
+			// protocol-relative URL cases per T31854...
+			[
+				'//example.org/test.cgi?id=12345',
+				[
+					'http://org.example./test.cgi?id=12345',
+					'https://org.example./test.cgi?id=12345'
+				]
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetQueryConditions
+	 * @covers LinkFilter::getQueryConditions
+	 */
+	public function testGetQueryConditions( $query, $options, $expected ) {
+		$conds = LinkFilter::getQueryConditions( $query, $options );
+		$this->assertEquals( $expected, $conds );
+	}
+
+	public static function provideGetQueryConditions() {
+		return [
+			'Basic example' => [
+				'example.com',
+				[],
+				[
+					'el_index_60 >= \'http://com.example./\'',
+					'el_index_60 < \'http://com.example.0\'',
+					'el_index LIKE \'http://com.example./%\' ',
+				],
+			],
+			'Basic example with path' => [
+				'example.com/foobar',
+				[],
+				[
+					'el_index_60 >= \'http://com.example./foobar\'',
+					'el_index_60 < \'http://com.example./foobas\'',
+					'el_index LIKE \'http://com.example./foobar%\' ',
+				],
+			],
+			'Wildcard domain' => [
+				'*.example.com',
+				[],
+				[
+					'el_index_60 >= \'http://com.example.\'',
+					'el_index_60 < \'http://com.example/\'',
+					'el_index LIKE \'http://com.example.%\' ',
+				],
+			],
+			'Wildcard domain with path' => [
+				'*.example.com/foobar',
+				[],
+				[
+					'el_index_60 >= \'http://com.example.\'',
+					'el_index_60 < \'http://com.example/\'',
+					'el_index LIKE \'http://com.example.%/foobar%\' ',
+				],
+			],
+			'Wildcard domain with path, oneWildcard=true' => [
+				'*.example.com/foobar',
+				[ 'oneWildcard' => true ],
+				[
+					'el_index_60 >= \'http://com.example.\'',
+					'el_index_60 < \'http://com.example/\'',
+					'el_index LIKE \'http://com.example.%\' ',
+				],
+			],
+			'Constant prefix' => [
+				'example.com/blah/blah/blah/blah/blah/blah/blah/blah/blah/blah?foo=',
+				[],
+				[
+					'el_index_60' => 'http://com.example./blah/blah/blah/blah/blah/blah/blah/blah/',
+					'el_index LIKE ' .
+						'\'http://com.example./blah/blah/blah/blah/blah/blah/blah/blah/blah/blah?foo=%\' ',
+				],
+			],
+			'Various options' => [
+				'example.com',
+				[ 'protocol' => 'https://', 'prefix' => 'xx' ],
+				[
+					'xx_index_60 >= \'https://com.example./\'',
+					'xx_index_60 < \'https://com.example.0\'',
+					'xx_index LIKE \'https://com.example./%\' ',
+				],
+			],
+		];
 	}
 
 }
