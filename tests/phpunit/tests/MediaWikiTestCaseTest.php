@@ -9,8 +9,6 @@ use Psr\Log\LoggerInterface;
  */
 class MediaWikiTestCaseTest extends MediaWikiTestCase {
 
-	const GLOBAL_KEY_NONEXISTING = 'MediaWikiTestCaseTestGLOBAL-NONExisting';
-
 	private static $startGlobals = [
 		'MediaWikiTestCaseTestGLOBAL-ExistingString' => 'foo',
 		'MediaWikiTestCaseTestGLOBAL-ExistingStringEmpty' => '',
