@@ -1917,6 +1917,7 @@
 	"modifiedarticleprotection": "{{GENDER:|promijenio|promijenila}} je stepen zaštite stranice \"[[$1]]\"",
 	"unprotectedarticle": "uklonjena zaštita sa stranice \"[[$1]]\"",
 	"movedarticleprotection": "podešavanja zaštite premještena sa \"[[$2]]\" na \"[[$1]]\"",
+	"protectedarticle-comment": "{{GENDER:$2|Zaštitio|Zaštitila}} je stranicu \"[[$1]]\"",
 	"protect-title": "Mijenjate nivo zašite za \"$1\"",
 	"protect-title-notallowed": "Pregled stepena zaštite za \"$1\"",
 	"prot_1movedto2": "članak [[$1]] premješten na [[$2]]",

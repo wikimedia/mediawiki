@@ -26,7 +26,8 @@
 			"Pilarbini",
 			"Matma Rex",
 			"B20180",
-			"Pon44695"
+			"Pon44695",
+			"Aefgh39622"
 		]
 	},
 	"tog-underline": "การขีดเส้นใต้ลิงก์:",
@@ -881,7 +882,7 @@
 	"searchprofile-advanced-tooltip": "ค้นหาในเนมสเปซที่เลือกเอง",
 	"search-result-size": "$1 ($2 คำ)",
 	"search-result-category-size": "$1 สมาชิก ($2 หมวดหมู่ย่อย, $3 ไฟล์)",
-	"search-redirect": "(เปลี่ยนทาง $1)",
+	"search-redirect": "(เปลี่ยนทางจาก $1)",
 	"search-section": "(ส่วน $1)",
 	"search-category": "(หมวดหมู่ $1)",
 	"search-file-match": "(เนื้อหาไฟล์ตรง)",
@@ -3003,7 +3004,7 @@
 	"feedback-subject": "เรื่อง:",
 	"feedback-submit": "ตกลง",
 	"feedback-thanks": "ขอบคุณ! ผลป้อนกลับของคุณถูกโพสต์ไปยังหน้า \"[$2 $1]\" แล้ว",
-	"searchsuggest-search": "ค้นหา",
+	"searchsuggest-search": "ค้นหา {{SITENAME}}",
 	"searchsuggest-containing": "มี...",
 	"api-error-badaccess-groups": "คุณไม่ได้รับอนุญาตให้อัปโหลดไฟล์มายังวิกินี้",
 	"api-error-empty-file": "ไฟล์ที่คุณส่งมานั้นว่าง",

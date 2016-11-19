@@ -3431,7 +3431,7 @@
 	"mediastatistics-summary": "Statistike vun den Type vun den eropgeluedene Fichieren. Dobäi gëtt nëmmen déi lescht Versioun vun engem Fichier gezielt, al oder geläscht Versioune vu Fichiere sinn ausgeschloss.",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 Byte|$1 Byten}} ($2; $3%)",
 	"mediastatistics-bytespertype": "Gesamtgréisst vun de Fichiere vun dësem Abschnitt:  {{PLURAL:$1|$1 Byte|$1 Bytes}} ($2; $3%).",
-	"mediastatistics-allbytes": "Gesamtgréisst vun alle Fichieren: {{PLURAL:$1|$1 Byte|$1 Bytes}} ($2; $3%).",
+	"mediastatistics-allbytes": "Gesamtgréisst vun alle Fichieren: {{PLURAL:$1|$1 Byte|$1 Bytes}} ($2).",
 	"mediastatistics-table-mimetype": "MIME-Typ",
 	"mediastatistics-table-extensions": "Méiglech Erweiderungen",
 	"mediastatistics-table-count": "Zuel vun de Fichieren",

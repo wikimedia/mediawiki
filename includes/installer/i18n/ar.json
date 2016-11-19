@@ -9,7 +9,8 @@
 			"Kuwaity26",
 			"محمد أحمد عبد الفتاح",
 			"Maroen1990",
-			"Super ninja2"
+			"Super ninja2",
+			"Zpizza"
 		]
 	},
 	"config-desc": "مثبت لميدياويكي",
@@ -50,10 +51,14 @@
 	"config-restart": "نعم، إعادة التشغيل",
 	"config-welcome": "=== التحقق من البيئة ===\nسوف يتم الآن التحقق من أن البيئة مناسبة لتنصيب ميديا ويكي.\nتذكر تضمين هذه المعلومات اذا اردت طلب المساعدة عن كيفية إكمال التنصيب.",
 	"config-copyright": "=== حقوق النسخ والشروط ===\n\n$1\n\nهذا البرنامج هو برنامج حر؛ يمكنك إعادة توزيعه و/أو تعديله تحت شروط رخصة جنو العامة على أن هذا البرنامج قد نُشر من قِبل مؤسسة البرمجيات الحرة؛ إما النسخة 2 من الرخصة، أو أي نسخة أخرى بعدها (من إختيارك)\n\nتم توزيع هذا البرنامج على أمل ان يكون مفيدًا ولكن <strong> دون أية ضمانات</strong>؛ دون حتى أية ضمانات مفهومة ضمنيًا أو رواجات أو أية أسباب محددة.\nأنظر رخصة جنو العامة لمزيد من المعلومات.\n\nمن المفترض أنك إستملت <doclink href=Copying> نسخة عن رخصة جنو العامة </doclink> مع هذا البرنامج؛ اذا لم تقعل إكتب رسالة إلى مؤسسة البرمجيات الحرة المحدودة، شارع 51 فرانكلين الطابق الخامس، بوسطن  MA 02110-1301 الولايات المتخدة أو [http://www.gnu.org/copyleft/gpl.html read it online].",
+	"config-sidebar": "* [https://www.mediawiki.org ميدياويكي الصفحة الرئيسية]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents دليل المستخدم]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents دليل المسؤول]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ التعليمات]\n----\n* <doclink href=Readme>اقرأني</doclink>\n* <doclink href=ReleaseNotes>ملاحظات الإصدار</doclink>\n* <doclink href=Copying>تقليد</doclink>\n* <doclink href=UpgradeDoc>ترفيع</doclink>",
 	"config-env-good": "جرى التحقق من البيئة. يمكنك تنصيب ميدياويكي.",
 	"config-env-bad": "جرى التحقق من البيئة. لا يمكنك تنصيب ميدياويكي.",
 	"config-env-php": "بي إتش بي $1 مثبت.",
 	"config-env-hhvm": "نصبت HHVM $1.",
+	"config-diff3-bad": "جنو diff3 غير موجود.",
+	"config-git": "وجدت البرنامج بوابة التحكم في الإصدار: <code>$1</code>.",
+	"config-git-bad": "بوابة البرمجيات التحكم في الإصدار غير موجود.",
 	"config-db-type": "نوع قاعدة البيانات:",
 	"config-db-host": "مضيف قاعدة البيانات:",
 	"config-db-wiki-settings": "حدِّد هذا الويكي",
