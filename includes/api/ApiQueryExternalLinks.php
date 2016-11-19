@@ -37,6 +37,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		}
 
 		$params = $this->extractRequestParams();
+		$db = $this->getDB();
 
 		$query = $params['query'];
 		$protocol = ApiQueryExtLinksUsage::getProtocolPrefix( $params['protocol'] );
@@ -49,26 +50,55 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		$this->addTables( 'externallinks' );
 		$this->addWhereFld( 'el_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
 
-		$whereQuery = $this->prepareUrlQuerySearchString( $query, $protocol );
-
-		if ( $whereQuery !== null ) {
-			$this->addWhere( $whereQuery );
-		}
-
-		// Don't order by el_from if it's constant in the WHERE clause
+		$orderBy = [];
 		if ( count( $this->getPageSet()->getGoodTitles() ) != 1 ) {
-			$this->addOption( 'ORDER BY', 'el_from' );
+			$orderBy[] = 'el_from';
 		}
 
-		// If we're querying all protocols, use DISTINCT to avoid repeating protocol-relative links twice
-		if ( $protocol === null ) {
-			$this->addOption( 'DISTINCT' );
+		if ( $query !== null && $query !== '' ) {
+			if ( $protocol === null ) {
+				$protocol = 'http://';
+			}
+			$conds = LinkFilter::getQueryConditions( $query,
+				[ 'protocol' => $protocol, 'oneWildcard' => true, 'db' => $db ] );
+			if ( !$conds ) {
+				 $this->dieUsage( 'Invalid query', 'bad_query' );
+			}
+			$this->addWhere( $conds );
+			if ( !isset( $conds['el_index_60'] ) ) {
+				$orderBy[] = 'el_index_60';
+			}
+		} else {
+			$orderBy[] = 'el_index_60';
+
+			if ( $protocol !== null ) {
+				$this->addWhere( 'el_index_60' . $db->buildLike( "$protocol", $db->anyString() ) );
+			} else {
+				// We're querying all protocols, filter out duplicate protocol-relative links
+				$this->addWhere( $db->makeList( [
+					'el_to NOT' . $db->buildLike( '//', $db->anyString() ),
+					'el_index_60 ' . $db->buildLike( 'http://', $db->anyString() ),
+				], LIST_OR ) );
+			}
 		}
+
+		$orderBy[] = 'el_id';
+		$this->addOption( 'ORDER BY', $orderBy );
+		$this->addFields( $orderBy ); // Make sure
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
-		$offset = isset( $params['offset'] ) ? $params['offset'] : 0;
-		if ( $offset ) {
-			$this->addOption( 'OFFSET', $params['offset'] );
+
+		if ( $params['continue'] !== null ) {
+			$cont = explode( '|', $params['continue'] );
+			$this->dieContinueUsageIf( count( $cont ) !== count( $orderBy ) );
+			$i = count( $cont ) - 1;
+			$cond = $orderBy[$i] . ' >= ' . $db->addQuotes( rawurldecode( $cont[$i] ) );
+			while ( $i-- > 0 ) {
+				$field = $orderBy[$i];
+				$v = $db->addQuotes( rawurldecode( $cont[$i] ) );
+				$cond = "($field > $v OR ($field = $v AND $cond))";
+			}
+			$this->addWhere( $cond );
 		}
 
 		$res = $this->select( __METHOD__ );
@@ -78,7 +108,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that
 				// there are additional pages to be had. Stop here...
-				$this->setContinueEnumParameter( 'offset', $offset + $params['limit'] );
+				$this->setContinue( $orderBy, $row );
 				break;
 			}
 			$entry = [];
@@ -90,10 +120,18 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 			ApiResult::setContentValue( $entry, 'url', $to );
 			$fit = $this->addPageSubItem( $row->el_from, $entry );
 			if ( !$fit ) {
-				$this->setContinueEnumParameter( 'offset', $offset + $count - 1 );
+				$this->setContinue( $orderBy, $row );
 				break;
 			}
 		}
+	}
+
+	private function setContinue( $orderBy, $row ) {
+		$fields = [];
+		foreach ( $orderBy as $field ) {
+			$fields[] = rawurlencode( $row->$field );
+		}
+		$this->setContinueEnumParameter( 'continue', implode( '|', $fields ) );
 	}
 
 	public function getCacheMode( $params ) {
@@ -109,8 +147,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			],
-			'offset' => [
-				ApiBase::PARAM_TYPE => 'integer',
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			],
 			'protocol' => [

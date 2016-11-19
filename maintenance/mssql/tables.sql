@@ -545,6 +545,9 @@ CREATE TABLE /*_*/externallinks (
   -- which allows for fast searching for all pages under example.com with the
   -- clause:
   --      WHERE el_index LIKE 'http://com.example.%'
+  --
+  -- Note if you enable or disable PHP's intl extension, you'll need to run
+  -- maintenance/refreshExternallinksIndex.php to refresh this field.
   el_index nvarchar(450) NOT NULL,
 
   -- This is el_index truncated to 60 bytes to allow for sortable queries that

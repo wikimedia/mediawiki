@@ -53,8 +53,8 @@ class CleanupSpam extends Maintenance {
 		$wgUser->addGroup( 'bot' );
 
 		$spec = $this->getArg();
-		$like = LinkFilter::makeLikeArray( $spec );
-		if ( !$like ) {
+		$conds = LinkFilter::getQueryConditions( $spec );
+		if ( !$conds ) {
 			$this->fatalError( "Not a valid hostname specification: $spec" );
 		}
 
@@ -65,8 +65,7 @@ class CleanupSpam extends Maintenance {
 			foreach ( $wgLocalDatabases as $wikiID ) {
 				$dbr = $this->getDB( DB_REPLICA, [], $wikiID );
 
-				$count = $dbr->selectField( 'externallinks', 'COUNT(*)',
-					[ 'el_index' . $dbr->buildLike( $like ) ], __METHOD__ );
+				$count = $dbr->selectField( 'externallinks', 'COUNT(*)', $conds, __METHOD__ );
 				if ( $count ) {
 					$found = true;
 					$cmd = wfShellWikiCmd( "$IP/maintenance/cleanupSpam.php",
@@ -83,8 +82,7 @@ class CleanupSpam extends Maintenance {
 			// Clean up spam on this wiki
 
 			$dbr = $this->getDB( DB_REPLICA );
-			$res = $dbr->select( 'externallinks', [ 'DISTINCT el_from' ],
-				[ 'el_index' . $dbr->buildLike( $like ) ], __METHOD__ );
+			$res = $dbr->select( 'externallinks', [ 'DISTINCT el_from' ], $conds, __METHOD__ );
 			$count = $dbr->numRows( $res );
 			$this->output( "Found $count articles containing $spec\n" );
 			foreach ( $res as $row ) {
