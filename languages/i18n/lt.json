@@ -607,7 +607,7 @@
 	"passwordreset-emailsentemail": "Jeigu šis el. pašto adresas yra susietas su jūsų paskyra, tada slaptažodžio atkūrimo laiškas bus išsiųstas.",
 	"passwordreset-emailsentusername": "Jeigu buvo el. paštas susietas su šiuo naudotojo vardu, tai slaptažodžio atkūrimo el. laiškas bus išsiųstas.",
 	"passwordreset-emailsent-capture2": "Slaptažodžio keitimo {{PLURAL:$1|el. laiškas buvo išsiųstas|el. laiškai buvo išsiųsti}}. {{PLURAL:$1|vartotojo vardas ir slaptažodis rodomi|vartotojų vardų ir slaptažodžių sąrašas rodomas}} čia.",
-	"passwordreset-emailerror-capture2": "El. laiško siuntimas {{GENDER:$2|naudotojui}} nepavyko: $1 {{PLURAL:$3|naudotojo vardas ir slaptažodis rodomi|naudotojų vardų ir slaptažodžių sąrašas rodomas}} čia.",
+	"passwordreset-emailerror-capture2": "El. laiško siuntimas {{GENDER:$2|naudotojui|naudotojai}} nepavyko: $1 {{PLURAL:$3|{{GENDER:$2|naudotojo|naudotojos}} vardas ir slaptažodis rodomi|naudotojų vardų ir slaptažodžių sąrašas rodomi}} čia.",
 	"passwordreset-nocaller": "Skambinantysis turi būti nurodytas",
 	"passwordreset-nosuchcaller": "Skambinantysis neegzistuoja: $1",
 	"passwordreset-invalidemail": "Neteisingas el. pašto adresas",
