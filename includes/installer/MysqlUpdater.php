@@ -268,11 +268,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			// note this patch covers other _comment and _description fields too
 			[ 'modifyField', 'recentchanges', 'rc_comment', 'patch-editsummary-length.sql' ],
 
-			// 1.26
-			[ 'dropTable', 'hitcounter' ],
-			[ 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ],
-			[ 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ],
-
 			// 1.27
 			[ 'dropTable', 'msg_resource_links' ],
 			[ 'dropTable', 'msg_resource' ],
