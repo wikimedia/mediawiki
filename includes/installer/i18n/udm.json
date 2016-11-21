@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Andrewboltachev",
-			"AlnashPiyash2"
+			"AlnashPiyash2",
+			"Zpizza"
 		]
 	},
 	"config-title": "MediaWiki $1 пуктон",
@@ -18,5 +19,5 @@
 	"config-page-copying": "Лицензия",
 	"config-page-upgradedoc": "Выльдытон",
 	"config-diff3-bad": "GNU diff3 шедьтэмын ӧвӧл.",
-	"mainpagetext": "'''MediaWiki движок азинлыко пуктэмын.'''"
+	"mainpagetext": "<strong>MediaWiki движок азинлыко пуктэмын.</strong>"
 }

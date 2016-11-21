@@ -1959,6 +1959,7 @@
 	"activeusers-count": "$1 {{PLURAL:$1|Aktion|Aktionen}} in den {{PLURAL:$3|letzten 24 Stunden|vergangenen $3 Tagen}}",
 	"activeusers-from": "Zeige Benutzer ab:",
 	"activeusers-groups": "Benutzer anzeigen, die zu diesen Gruppen gehören:",
+	"activeusers-excludegroups": "Benutzer ausschließen, die zu diesen Gruppen gehören:",
 	"activeusers-noresult": "Keine Benutzer gefunden.",
 	"activeusers-submit": "Aktive Benutzer anzeigen",
 	"listgrouprights": "Benutzergruppenrechte",
