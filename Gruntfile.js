@@ -33,7 +33,6 @@ module.exports = function ( grunt ) {
 				// Skip functions aren't even parseable
 				'!resources/src/dom-level2-skip.js',
 				'!resources/src/es5-skip.js',
-				'!resources/src/json-skip.js',
 				'!resources/src/mediawiki.hidpi-skip.js'
 			]
 		},
