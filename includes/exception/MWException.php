@@ -71,7 +71,37 @@ class MWException extends Exception {
 	 * @return string|null String to output or null if any hook has been called
 	 */
 	public function runHooks( $name, $args = [] ) {
-		return MWExceptionRenderer::runHooks( $this, $name, $args );
+		global $wgExceptionHooks;
+
+		if ( !isset( $wgExceptionHooks ) || !is_array( $wgExceptionHooks ) ) {
+			return null; // Just silently ignore
+		}
+
+		if ( !array_key_exists( $name, $wgExceptionHooks ) ||
+			!is_array( $wgExceptionHooks[$name] )
+		) {
+			return null;
+		}
+
+		$hooks = $wgExceptionHooks[$name];
+		$callargs = array_merge( [ $this ], $args );
+
+		foreach ( $hooks as $hook ) {
+			if (
+				is_string( $hook ) ||
+				( is_array( $hook ) && count( $hook ) >= 2 && is_string( $hook[0] ) )
+			) {
+				// 'function' or [ 'class', 'hook' ]
+				$result = call_user_func_array( $hook, $callargs );
+			} else {
+				$result = null;
+			}
+
+			if ( is_string( $result ) ) {
+				return $result;
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -206,13 +236,7 @@ class MWException extends Exception {
 			self::header( 'MediaWiki-API-Error: internal_api_error_' . get_class( $this ) );
 			wfHttpError( 500, 'Internal Server Error', $this->getText() );
 		} elseif ( self::isCommandLine() ) {
-			$message = $this->getText();
-			// T17602: STDERR may not be available
-			if ( defined( 'STDERR' ) ) {
-				fwrite( STDERR, $message );
-			} else {
-				echo $message;
-			}
+			MWExceptionHandler::printError( $this->getText() );
 		} else {
 			self::statusHeader( 500 );
 			self::header( "Content-Type: $wgMimeType; charset=utf-8" );
