@@ -61,8 +61,7 @@ class MWExceptionRenderer {
 						"\nBacktrace:\n" . MWExceptionHandler::getRedactedTraceAsString( $eNew );
 				} else {
 					$message .= "Exception caught inside exception handler.\n\n" .
-						"Set \$wgShowExceptionDetails = true; at the bottom of LocalSettings.php " .
-						"to show detailed debugging information.";
+						self::getShowBacktraceError( $e );
 				}
 				$message .= "\n";
 			} else {
@@ -226,9 +225,7 @@ class MWExceptionRenderer {
 					$logId,
 					MWExceptionHandler::getURL()
 				) . "</div>\n" .
-			"<!-- Set \$wgShowExceptionDetails = true; " .
-			"at the bottom of LocalSettings.php to show detailed " .
-			"debugging information. -->";
+				"<!-- " . wordwrap( self::getShowBacktraceError( $e ), 50 ) . " -->";
 		}
 
 		return $html;
@@ -262,8 +259,7 @@ class MWExceptionRenderer {
 				"\nBacktrace:\n" .
 				MWExceptionHandler::getRedactedTraceAsString( $e ) . "\n";
 		} else {
-			return "Set \$wgShowExceptionDetails = true; " .
-				"in LocalSettings.php to show detailed debugging information.\n";
+			return self::getShowBacktraceError( $e );
 		}
 	}
 
@@ -278,6 +274,23 @@ class MWExceptionRenderer {
 			$wgShowExceptionDetails &&
 			( !( $e instanceof DBError ) || $wgShowDBErrorBacktrace )
 		);
+	}
+
+	/**
+	 * @param Exception|Throwable $e
+	 * @return string
+	 */
+	private static function getShowBacktraceError( $e ) {
+		global $wgShowExceptionDetails, $wgShowDBErrorBacktrace;
+		$vars = [];
+		if ( !$wgShowExceptionDetails ) {
+			$vars[] = '$wgShowExceptionDetails = true;';
+		}
+		if ( $e instanceof DBError && !$wgShowDBErrorBacktrace ) {
+			$vars[] = '$wgShowDBErrorBacktrace = true;';
+		}
+		$vars = implode( ' and ', $vars );
+		return "Set $vars at the bottom of LocalSettings.php to show detailed debugging information";
 	}
 
 	/**
