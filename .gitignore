@@ -26,6 +26,8 @@ sftp-config.json
 /docs/js
 /images/[0-9a-f]
 /images/archive
+/images/avatars
+/images/awards
 /images/cache
 /images/deleted
 /images/lockdir
@@ -71,3 +73,4 @@ Thumbs.db
 /tags
 /.htaccess
 /.htpasswd
+PsychonautWiki.xml.gz
