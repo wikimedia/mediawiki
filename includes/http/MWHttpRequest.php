@@ -117,7 +117,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 			$this->setUserAgent( $options['userAgent'] );
 		}
 		if ( isset( $options['username'] ) && isset( $options['password'] ) ) {
-			$this->setHeader( 'Authorization', base64_encode( $options['username'] . ':' . $options['password'] ) );
+			$this->setHeader( 'Authorization', 'Basic ' . base64_encode( $options['username'] . ':' . $options['password'] ) );
                 }
 
 		$members = [ "postData", "proxy", "noProxy", "sslVerifyHost", "caInfo",
