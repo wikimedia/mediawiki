@@ -61,7 +61,7 @@ class MWExceptionRenderer {
 						"\nBacktrace:\n" . MWExceptionHandler::getRedactedTraceAsString( $eNew );
 				} else {
 					$message .= "Exception caught inside exception handler.\n\n" .
-						"Set \$wgShowExceptionDetails = true; at the bottom of LocalSettings.php " .
+						"Set \$wgShowDBErrorBacktrace = true; at the bottom of LocalSettings.php " .
 						"to show detailed debugging information.";
 				}
 				$message .= "\n";
