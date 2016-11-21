@@ -276,7 +276,7 @@ class MWExceptionRenderer {
 
 		return (
 			$wgShowExceptionDetails &&
-			( !( $e instanceof DBError ) || $wgShowDBErrorBacktrace )
+			( !( $e instanceof DBError ) || $wgShowDBErrorBacktrace ) || $wgShowExceptionDetails
 		);
 	}
 
