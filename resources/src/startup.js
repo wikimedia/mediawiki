@@ -44,6 +44,7 @@ mwPerformance.mark( 'mwLoadStart' );
  * - Nokia's Ovi Browser
  * - MeeGo's browser
  * - Google Glass
+ * - UC Mini (speed mode on)
  *
  * Other browsers that pass the check are considered Grade X.
  *
@@ -66,11 +67,10 @@ function isCompatible( str ) {
 
 		// Hardcoded exceptions for browsers that pass the requirement but we don't want to
 		// support in the modern run-time.
+		// Note: Please extend the regex instead of adding new ones
 		!(
-			ua.match( /webOS\/1\.[0-4]|SymbianOS|Series60|NetFront|Opera Mini|S40OviBrowser|MeeGo|Android.+Glass/ ) ||
-			ua.match( /PlayStation/i ) ||
-			// UC Mini (speed mode on)
-			ua.match( /^Mozilla\/5\.0 .+ Gecko\/$/ )
+			ua.match( /webOS\/1\.[0-4]|SymbianOS|Series60|NetFront|Opera Mini|S40OviBrowser|MeeGo|Android.+Glass|^Mozilla\/5\.0 .+ Gecko\/$/ ) ||
+			ua.match( /PlayStation/i )
 		)
 	);
 }
