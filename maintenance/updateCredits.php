@@ -26,8 +26,6 @@ if ( PHP_SAPI != 'cli' ) {
 	die( "This script can only be run from the command line.\n" );
 }
 
-chdir( dirname( __DIR__ ) );
-
 $CREDITS = 'CREDITS';
 $START_CONTRIBUTORS = '<!-- BEGIN CONTRIBUTOR LIST -->';
 $END_CONTRIBUTORS = '<!-- END CONTRIBUTOR LIST -->';
@@ -37,6 +35,10 @@ $inFooter = false;
 $header = [];
 $contributors = [];
 $footer = [];
+
+if ( !file_exists( $CREDITS ) ) {
+	exit( 'No CREDITS file found. Are you running this script in the right directory?' );
+}
 
 $lines = explode( "\n", file_get_contents( $CREDITS ) );
 foreach ( $lines as $line ) {
