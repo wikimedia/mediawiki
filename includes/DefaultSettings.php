@@ -5428,6 +5428,13 @@ $wgAvailableRights = [];
 $wgDeleteRevisionsLimit = 0;
 
 /**
+ * The maximum number of revisions a page can have that can
+ * be merged at once using MergeHistory
+ * Set to 0 to disable the limit.
+ */
+$wgMergeHistoryRevisionsLimit = 5000;
+
+/**
  * The maximum number of edits a user can have and
  * can still be hidden by users with the hideuser permission.
  * This is limited for performance reason.
