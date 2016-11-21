@@ -74,11 +74,7 @@ class MWExceptionRenderer {
 					$message = MWExceptionHandler::getPublicLogMessage( $e );
 				}
 			}
-			if ( self::isCommandLine() ) {
-				self::printError( $message );
-			} else {
-				echo nl2br( htmlspecialchars( $message ) ) . "\n";
-			}
+			echo nl2br( htmlspecialchars( $message ) ) . "\n";
 		}
 	}
 
