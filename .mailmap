@@ -3,18 +3,18 @@
 #
 # To update the CREDITS file, run maintenance/updateCredits.php
 #
-# Two types of entries are useful here. The first sets a cannonical author
+# Two types of entries are useful here. The first sets a canonical author
 # name for a given email address:
 #
-#   Cannonical Author Name <author email>
+#   Canonical Author Name <author email>
 #
 # The second allows collecting alternate email addresses into a single
-# cannonical author name and email address:
+# canonical author name and email address:
 #
-#   Cannonical Author Name <author email> <alternate email>
+#   Canonical Author Name <author email> <alternate email>
 #
 # Mappings are only needed for authors who have used multiple author names
-# and/or author emails for revisions over time. Author names begenning with
+# and/or author emails for revisions over time. Author names beginning with
 # "[BOT]" will be omitted from the CREDITS file.
 #
 # See also: https://git-scm.com/docs/git-shortlog#_mapping_authors
