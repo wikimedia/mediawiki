@@ -651,8 +651,11 @@
 			"description": "Password policies"
 		},
 		"FileExtensions": {
-			"type": "object",
+			"type": "array",
 			"description": "Preferred file extensions for uploading"
+			"items": {
+				"type": "string"
+			}
 		},
 		"callback": {
 			"type": [
