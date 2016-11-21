@@ -187,8 +187,11 @@
 					// If the user can't upload anything, don't give them the option to.
 					api.getUserInfo().then( function ( userInfo ) {
 						if ( userInfo.rights.indexOf( 'upload' ) === -1 ) {
-							// TODO Use a better error message when not all logged-in users can upload
-							booklet.getPage( 'upload' ).$element.msg( 'api-error-mustbeloggedin' );
+							if ( mw.config.get( 'wgUserName' ) === null ) {
+								booklet.getPage( 'upload' ).$element.msg( 'api-error-mustbeloggedin' );
+							} else {
+								booklet.getPage( 'upload' ).$element.msg( 'api-error-badaccess-groups' );
+							}
 						}
 						return $.Deferred().resolve();
 					} )
