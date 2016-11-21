@@ -33,9 +33,6 @@
  */
 class MergeHistory {
 
-	/** @const int Maximum number of revisions that can be merged at once */
-	const REVISION_LIMIT = 5000;
-
 	/** @var Title Page from which history will be merged */
 	protected $source;
 
@@ -133,10 +130,11 @@ class MergeHistory {
 	 * @return int
 	 */
 	public function getRevisionCount() {
+		global $wgMergeHistoryRevisionsLimit;
 		$count = $this->dbw->selectRowCount( 'revision', '1',
 			[ 'rev_page' => $this->source->getArticleID(), $this->timeWhere ],
 			__METHOD__,
-			[ 'LIMIT' => self::REVISION_LIMIT + 1 ]
+			[ 'LIMIT' => $wgMergeHistoryRevisionsLimit + 1 ]
 		);
 
 		return $count;
@@ -196,6 +194,7 @@ class MergeHistory {
 	 * @return Status
 	 */
 	public function isValidMerge() {
+		global $wgMergeHistoryRevisionsLimit;
 		$status = new Status();
 
 		// If either article ID is 0, then revisions cannot be reliably selected
@@ -222,8 +221,8 @@ class MergeHistory {
 		}
 
 		// Check that there are not too many revisions to move
-		if ( $this->timestampLimit && $this->getRevisionCount() > self::REVISION_LIMIT ) {
-			$status->fatal( 'mergehistory-fail-toobig', Message::numParam( self::REVISION_LIMIT ) );
+		if ( $this->timestampLimit && $wgMergeHistoryRevisionsLimit && $this->getRevisionCount() > $wgMergeHistoryRevisionsLimit ) {
+			$status->fatal( 'mergehistory-fail-toobig', Message::numParam( $wgMergeHistoryRevisionsLimit ) );
 		}
 
 		return $status;
