@@ -334,7 +334,6 @@ return [
 			'message' => 'Please use "mediawiki.storage" instead.',
 		],
 		'scripts' => 'resources/lib/jquery/jquery.jStorage.js',
-		'dependencies' => 'json',
 	],
 	'jquery.suggestions' => [
 		'scripts' => 'resources/src/jquery/jquery.suggestions.js',
@@ -738,10 +737,10 @@ return [
 
 	/* json2 */
 
+	// Deprecated since MediaWiki 1.29.0
 	'json' => [
-		'scripts' => 'resources/lib/json2/json2.js',
+		'deprecated' => 'Use of the "json" MediaWiki module is deprecated since MediaWiki 1.29.0',
 		'targets' => [ 'desktop', 'mobile' ],
-		'skipFunction' => 'resources/src/json-skip.js',
 	],
 
 	/* Moment.js */
@@ -926,7 +925,6 @@ return [
 			'dom-level2-shim',
 			'mediawiki.api',
 			'mediawiki.api.edit',
-			'json',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -1109,7 +1107,6 @@ return [
 		'dependencies' => [
 			'jquery.byteLength',
 			'mediawiki.RegExp',
-			'json',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -2353,7 +2350,6 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 		'dependencies' => [
 			'es5-shim',
-			'json',
 		],
 	],
 
