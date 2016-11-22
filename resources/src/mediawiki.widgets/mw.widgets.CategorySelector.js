@@ -52,6 +52,7 @@
 			menu: {
 				filterFromInput: false
 			},
+			placeholder: mw.msg( 'mw-widgets-categoryselector-add-category-placeholder' ),
 			// This allows the user to both select non-existent categories, and prevents the selector from
 			// being wiped from #onMenuItemsChange when we change the available options in the dropdown
 			allowArbitrary: true

@@ -2283,6 +2283,7 @@ return [
 		],
 		'messages' => [
 			'red-link-title',
+			'mw-widgets-categoryselector-add-category-placeholder'
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
