@@ -153,12 +153,8 @@ class MessageCache {
 	 * @param bool $useDB
 	 * @param int $expiry Lifetime for cache. @see $mExpiry.
 	 */
-	function __construct( $memCached, $useDB, $expiry ) {
+	function __construct( BagOStuff $memCached, $useDB, $expiry ) {
 		global $wgUseLocalMessageCache;
-
-		if ( !$memCached ) {
-			$memCached = wfGetCache( CACHE_NONE );
-		}
 
 		$this->mMemc = $memCached;
 		$this->mDisable = !$useDB;
