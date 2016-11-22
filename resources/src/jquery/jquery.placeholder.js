@@ -85,7 +85,7 @@
 								'placeholder-password': $input,
 								'placeholder-id': id
 							} )
-							.bind( 'focus.placeholder drop.placeholder', clearPlaceholder );
+							.on( 'focus.placeholder drop.placeholder', clearPlaceholder );
 					$input
 							.data( {
 								'placeholder-textinput': $replacement,
@@ -145,7 +145,7 @@
 				.filter( function () {
 					return !$( this ).data( 'placeholder-enabled' );
 				} )
-				.bind( {
+				.on( {
 					'focus.placeholder drop.placeholder': clearPlaceholder,
 					'blur.placeholder': setPlaceholder
 				} )
@@ -219,7 +219,7 @@
 		} );
 
 		// Clear placeholder values upon page reload
-		$( window ).bind( 'beforeunload.placeholder', function () {
+		$( window ).on( 'beforeunload.placeholder', function () {
 			$( '.placeholder' ).each( function () {
 				this.value = '';
 			} );
