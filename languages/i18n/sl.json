@@ -1879,6 +1879,7 @@
 	"activeusers-count": "$1 {{PLURAL:$1|dejanje|dejanji|dejanja|dejanj}} v {{PLURAL:$3|preteklem dnevu|preteklih $3 dneh}}",
 	"activeusers-from": "Prikaži uporabnike začenši z:",
 	"activeusers-groups": "Prikaži uporabnike, ki pripadajo skupinam:",
+	"activeusers-excludegroups": "Izključi uporabnike, ki pripadajo skupinam:",
 	"activeusers-noresult": "Noben uporabnik ni bil najden.",
 	"activeusers-submit": "Prikaži dejavne uporabnike",
 	"listgrouprights": "Pravice uporabniških skupin",

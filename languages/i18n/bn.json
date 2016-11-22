@@ -3081,7 +3081,7 @@
 	"table_pager_prev": "পূর্ববর্তী পাতা",
 	"table_pager_first": "প্রথম পাতা",
 	"table_pager_last": "শেষ পাতা",
-	"table_pager_limit": "প্রতি পাতায় $1 গুলো বিষয়বস্তু দেখাও",
+	"table_pager_limit": "প্রতি পাতায় $1টি উপাদান দেখাও",
 	"table_pager_limit_label": "প্রতি পাতায় আইটেম সংখ্যা:",
 	"table_pager_limit_submit": "চলো",
 	"table_pager_empty": "ফলাফল শূন্য",

@@ -5,7 +5,8 @@
 			"GaiJin",
 			"Kaztrans",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Zpizza"
 		]
 	},
 	"tog-underline": "Siltemeniñ astın sız:",
@@ -920,6 +921,7 @@
 	"listusersfrom": "Mına qatıswşıdan bastap körsetw:",
 	"listusers-submit": "Körset",
 	"listusers-noresult": "Qatıswşı tabılğan joq.",
+	"activeusers-excludegroups": "Toptarğa jatatın paydalanwşılardı qospaw:",
 	"listgrouprights": "Qatıswşı tobı quqıqtarı",
 	"listgrouprights-summary": "Kelesi tizimde bul wïkïde tağaýındalğan qatıswşı quqıqtarı (baýlanıstı qatınaw quqıqtarımen birge) körsetiledi.\nJeke quqıqtar twralı köbirek aqparattı [[{{MediaWiki:Listgrouprights-helppage}}|mında]] taba alasız.",
 	"listgrouprights-group": "Top",

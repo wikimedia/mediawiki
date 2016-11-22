@@ -1889,6 +1889,7 @@
 	"activeusers-count": "$1 {{PLURAL:$1|acción|accións}} {{PLURAL:$3|no último día|nos últimos $3 días}}",
 	"activeusers-from": "Mostrar os usuarios que comecen por:",
 	"activeusers-groups": "Mostrar os usuarios que pertencen aos grupos:",
+	"activeusers-excludegroups": "Excluír ós usuarios que pertenzan ós grupos:",
 	"activeusers-noresult": "Non se atopou ningún usuario.",
 	"activeusers-submit": "Mostrar os usuarios activos",
 	"listgrouprights": "Dereitos dun usuario segundo o seu grupo",

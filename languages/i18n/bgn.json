@@ -1478,6 +1478,7 @@
 	"all-logs-page": "عمومین موچین سیاه چال هان",
 	"logempty": "شمی منطبقین آیتم بی سیاه چالئ تا ودی نه بوت.",
 	"log-title-wildcard": "آ تاکدیمیانی پدا بگرد که آوانی ئنوان که گۆ ای ئبارت ئا شرو ئه بیئت",
+	"checkbox-all": "موچ",
 	"allpages": "موچین تاکدیمان",
 	"nextpage": "بعدین تاکدیم ($1)",
 	"prevpage": "دیمی تاکدیم ($1)",
@@ -1616,7 +1617,7 @@
 	"actionfailed": "کار نه بوت",
 	"deletedtext": "«$1» پاک بوت.\nپه آخیرین پاک بوتینین سابقه ئا بئ $2 ئی تا مراجعه بکنیت.",
 	"dellogpage": "پاک بوته‌ئانی کورم",
-	"dellogpagetext": "جهلگین لڑلیستا که گیندیت په آخیرئین پاک بوته‌ئین فابلاني خاتیرا اینت.\nموچین نشان داته بوته‌ئین وخت گو (گرینویچ‌ئی وختا) مطابق انت.",
+	"dellogpagetext": "جهلگین لڑلیستا که گیندیت په آخیرئین پاک بوته‌ئین فایلاني خاتیرا اینت.\nموچین نشان داته بوته‌ئین وخت گو (گرینویچ‌ئی وختا) مطابق انت.",
 	"deletionlog": "پاک بوته‌ئانی کورم",
 	"reverted": "بی دیمتیرین نخسه ئا بیئرگردینته بوت",
 	"deletecomment": "دلیل:",
@@ -2895,5 +2896,7 @@
 	"special-characters-title-endash": "پاسیله خت",
 	"special-characters-title-emdash": "تچکین پاسیله خت",
 	"special-characters-title-minus": "منپی نشانگ",
-	"mw-widgets-titleinput-description-redirect": "گردینتین به $1 یی تا"
+	"mw-widgets-titleinput-description-redirect": "گردینتین به $1 یی تا",
+	"log-action-filter-delete": "پاک بوتین‌ئی رقم:",
+	"log-action-filter-all": "موچ"
 }

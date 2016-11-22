@@ -2716,7 +2716,7 @@
 	"log-show-hide-patrol": "점검 기록을 $1",
 	"log-show-hide-tag": "태그 기록을 $1",
 	"confirm-markpatrolled-button": "확인",
-	"confirm-markpatrolled-top": "$2의 판을 $3으로 점검된 것으로 표시",
+	"confirm-markpatrolled-top": "$2의 $3 판을 점검한 것으로 표시하시겠습니까?",
 	"deletedrevision": "예전 $1 판이 삭제되었습니다.",
 	"filedeleteerror-short": "파일 삭제 오류: $1",
 	"filedeleteerror-long": "파일을 삭제하는 도중 오류가 발생했습니다:\n\n$1",
