@@ -1,18 +1,15 @@
 ( function ( $ ) {
-	QUnit.module( 'jquery.color', QUnit.newMwEnvironment( {
-		setup: function () {
-			this.clock = this.sandbox.useFakeTimers();
-		}
-	} ) );
+	QUnit.module( 'jquery.color', QUnit.newMwEnvironment() );
 
-	QUnit.test( 'animate', 1, function ( assert ) {
-		var $canvas = $( '<div>' ).css( 'background-color', '#fff' );
+	QUnit.test( 'animate', function ( assert ) {
+		var done = assert.async(),
+			$canvas = $( '<div>' ).css( 'background-color', '#fff' ).appendTo( '#qunit-fixture' );
 
-		$canvas.animate( { backgroundColor: '#000' }, 10 ).promise().then( function () {
-			var endColors = $.colorUtil.getRGB( $canvas.css( 'background-color' ) );
-			assert.deepEqual( endColors, [ 0, 0, 0 ], 'end state' );
-		} );
-
-		this.clock.tick( 20 );
+		$canvas.animate( { 'background-color': '#000' }, 3 ).promise()
+			.done( function () {
+				var endColors = $.colorUtil.getRGB( $canvas.css( 'background-color' ) );
+				assert.deepEqual( endColors, [ 0, 0, 0 ], 'end state' );
+			} )
+			.always( done );
 	} );
 }( jQuery ) );
