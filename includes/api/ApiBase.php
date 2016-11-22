@@ -1572,6 +1572,13 @@ abstract class ApiBase extends ContextSource {
 	 * @throws UsageException always
 	 */
 	public function dieUsage( $description, $errorCode, $httpRespCode = 0, $extradata = null ) {
+		error_log( 'meJDMfj' );
+		error_log( $description );
+		error_log( $errorCode );
+		error_log( $httpRespCode );
+		error_log( serialize( $extradata ) );
+		error_log( serialize( $this->mParamCache ) );
+
 		throw new UsageException(
 			$description,
 			$this->encodeParamName( $errorCode ),
