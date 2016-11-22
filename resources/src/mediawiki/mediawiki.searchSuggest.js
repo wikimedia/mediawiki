@@ -257,7 +257,7 @@
 				cache: true,
 				highlightInput: true
 			} )
-			.bind( 'paste cut drop', function () {
+			.on( 'paste cut drop', function () {
 				// make sure paste and cut events from the mouse and drag&drop events
 				// trigger the keypress handler and cause the suggestions to update
 				$( this ).trigger( 'keypress' );
