@@ -241,7 +241,7 @@ class MWExceptionRenderer {
 	private static function msg( $key, $fallback /*[, params...] */ ) {
 		$args = array_slice( func_get_args(), 2 );
 		try {
-			return wfMessage( $key, $args )->text();
+			return wfMessage( $key, $args )->inContentLanguage()->text();
 		} catch ( Exception $e ) {
 			return wfMsgReplaceArgs( $fallback, $args );
 		}
