@@ -21,6 +21,8 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This represents the intention to set a temporary password for the user.
  * @ingroup Auth
@@ -67,7 +69,7 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 	 * @return TemporaryPasswordAuthenticationRequest
 	 */
 	public static function newRandom() {
-		$config = \ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+		$config = MediaWikiServices::getInstance()->getMainConfig();
 
 		// get the min password length
 		$minLength = $config->get( 'MinimalPasswordLength' );

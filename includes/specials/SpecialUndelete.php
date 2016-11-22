@@ -20,6 +20,7 @@
  * @file
  * @ingroup SpecialPage
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Used to show archived pages and eventually restore them.
@@ -46,7 +47,7 @@ class PageArchive {
 		$this->title = $title;
 		if ( $config === null ) {
 			wfDebug( __METHOD__ . ' did not have a Config object passed to it' );
-			$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+			$config = MediaWikiServices::getInstance()->getMainConfig();
 		}
 		$this->config = $config;
 	}

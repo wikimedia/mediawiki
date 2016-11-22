@@ -1,4 +1,6 @@
 <?php
+use MediaWiki\MediaWikiServices;
+
 /**
  * Integration test that checks import success and
  * LinkCache integration.
@@ -77,7 +79,7 @@ class ImportLinkCacheIntegrationTest extends MediaWikiTestCase {
 
 		$importer = new WikiImporter(
 			$importStreamSource->value,
-			ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
+			MediaWikiServices::getInstance()->getMainConfig()
 		);
 		$importer->setDebug( true );
 
