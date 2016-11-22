@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group AuthManager
  * @covers MediaWiki\Auth\AbstractPasswordPrimaryAuthenticationProvider
@@ -26,7 +28,9 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCa
 		$provider = $this->getMockForAbstractClass(
 			AbstractPasswordPrimaryAuthenticationProvider::class
 		);
-		$provider->setConfig( \ConfigFactory::getDefaultInstance()->makeConfig( 'main' ) );
+		$provider->setConfig(
+			MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'main' )
+		);
 		$providerPriv = \TestingAccessWrapper::newFromObject( $provider );
 
 		$obj = $providerPriv->getPasswordFactory();
@@ -38,7 +42,9 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCa
 		$provider = $this->getMockForAbstractClass(
 			AbstractPasswordPrimaryAuthenticationProvider::class
 		);
-		$provider->setConfig( \ConfigFactory::getDefaultInstance()->makeConfig( 'main' ) );
+		$provider->setConfig(
+			MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'main' )
+		);
 		$provider->setLogger( new \Psr\Log\NullLogger() );
 		$providerPriv = \TestingAccessWrapper::newFromObject( $provider );
 
@@ -56,7 +62,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCa
 		);
 		$provider->setConfig( new \MultiConfig( [
 			$config,
-			\ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
+			MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'main' )
 		] ) );
 		$provider->setLogger( new \Psr\Log\NullLogger() );
 		$providerPriv = \TestingAccessWrapper::newFromObject( $provider );
@@ -105,7 +111,9 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCa
 		$provider = $this->getMockForAbstractClass(
 			AbstractPasswordPrimaryAuthenticationProvider::class
 		);
-		$provider->setConfig( \ConfigFactory::getDefaultInstance()->makeConfig( 'main' ) );
+		$provider->setConfig(
+			MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'main' )
+		);
 		$provider->setLogger( new \Psr\Log\NullLogger() );
 		$providerPriv = \TestingAccessWrapper::newFromObject( $provider );
 
@@ -121,7 +129,8 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCa
 		] );
 
 		$manager = new AuthManager(
-			new \FauxRequest(), \ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
+			new \FauxRequest(),
+			MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'main' )
 		);
 
 		$provider = $this->getMockForAbstractClass(

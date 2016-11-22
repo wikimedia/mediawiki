@@ -588,7 +588,7 @@ class SpecialUpload extends SpecialPage {
 	) {
 		if ( $config === null ) {
 			wfDebug( __METHOD__ . ' called without a Config instance passed to it' );
-			$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+			$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'main' );
 		}
 
 		$msg = [];

@@ -20,6 +20,7 @@
  * @file
  * @ingroup SpecialPage
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * A special page that allows users to send e-mails to other users
@@ -223,7 +224,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	public static function getPermissionsError( $user, $editToken, Config $config = null ) {
 		if ( $config === null ) {
 			wfDebug( __METHOD__ . ' called without a Config instance passed to it' );
-			$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+			$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'main' );
 		}
 		if ( !$config->get( 'EnableEmail' ) || !$config->get( 'EnableUserEmail' ) ) {
 			return 'usermaildisabled';

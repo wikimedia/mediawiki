@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -32,7 +33,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		}
 		$config = new \MultiConfig( [
 			$this->config,
-			\ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
+			MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'main' )
 		] );
 
 		if ( !$this->manager ) {
