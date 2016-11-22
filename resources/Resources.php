@@ -2437,4 +2437,11 @@ return [
 
 	/* OOjs UI */
 	// @see ResourcesOOUI.php
+
+	'zxcvbn' => [
+		'scripts' => [
+			'resources/lib/zxcvbn/zxcvbn.js',
+			'resources/src/zxcvbn/zxcvbn.js',
+		],
+	],
 ];
