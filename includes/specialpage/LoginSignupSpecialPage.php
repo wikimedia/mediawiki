@@ -24,6 +24,7 @@
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Auth\Throttler;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Session\SessionManager;
@@ -813,6 +814,13 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 
 		$formDescriptor = array_filter( $coreFieldDescriptors + $formDescriptor );
+
+		$req = AuthenticationRequest::getRequestByClass( $requests,
+			PasswordAuthenticationRequest::class );
+		if ( $req && $req->action == AuthManager::ACTION_CREATE ) {
+			RequestContext::getMain()->getOutput()->addModules( 'zxcvbn' );
+		}
+
 		return true;
 	}
 
