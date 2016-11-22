@@ -20,6 +20,7 @@
  * @file
  * @ingroup Parser
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Various core parser functions, registered in Parser::firstCallInit()
@@ -346,10 +347,11 @@ class CoreParserFunctions {
 
 		// check parameter, or use the ParserOptions if in interface message
 		$user = User::newFromName( $username );
+		$genderCache = MediaWikiServices::getInstance()->getGenderCache();
 		if ( $user ) {
-			$gender = GenderCache::singleton()->getGenderOf( $user, __METHOD__ );
+			$gender = $genderCache->getGenderOf( $user, __METHOD__ );
 		} elseif ( $username === '' && $parser->getOptions()->getInterfaceMessage() ) {
-			$gender = GenderCache::singleton()->getGenderOf( $parser->getOptions()->getUser(), __METHOD__ );
+			$gender = $genderCache->getGenderOf( $parser->getOptions()->getUser(), __METHOD__ );
 		}
 		$ret = $parser->getFunctionLang()->gender( $gender, $forms );
 		return $ret;

@@ -23,6 +23,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Query module to enumerate all available pages.
@@ -206,7 +207,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			foreach ( $res as $row ) {
 				$users[] = $row->page_title;
 			}
-			GenderCache::singleton()->doQuery( $users, __METHOD__ );
+			MediaWikiServices::getInstance()->getGenderCache()->doQuery( $users, __METHOD__ );
 			$res->rewind(); // reset
 		}
 
