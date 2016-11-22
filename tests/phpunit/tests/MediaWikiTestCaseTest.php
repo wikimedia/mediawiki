@@ -138,7 +138,7 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers MediaWikiTestCase::setLogger
-	 * @covers MediaWikiTestCase::restoreLogger
+	 * @covers MediaWikiTestCase::restoreLoggers
 	 */
 	public function testLoggersAreRestoredOnTearDown_replacingExistingLogger() {
 		$logger1 = LoggerFactory::getInstance( 'foo' );
@@ -153,7 +153,7 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers MediaWikiTestCase::setLogger
-	 * @covers MediaWikiTestCase::restoreLogger
+	 * @covers MediaWikiTestCase::restoreLoggers
 	 */
 	public function testLoggersAreRestoredOnTearDown_replacingNonExistingLogger() {
 		$this->setLogger( 'foo', $this->getMock( LoggerInterface::class ) );
@@ -167,7 +167,7 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers MediaWikiTestCase::setLogger
-	 * @covers MediaWikiTestCase::restoreLogger
+	 * @covers MediaWikiTestCase::restoreLoggers
 	 */
 	public function testLoggersAreRestoredOnTearDown_replacingSameLoggerTwice() {
 		$logger1 = LoggerFactory::getInstance( 'baz' );
