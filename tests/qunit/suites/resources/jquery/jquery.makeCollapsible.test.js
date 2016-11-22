@@ -1,11 +1,7 @@
 ( function ( mw, $ ) {
 	var loremIpsum = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.';
 
-	QUnit.module( 'jquery.makeCollapsible', QUnit.newMwEnvironment( {
-		setup: function () {
-			this.clock = this.sandbox.useFakeTimers();
-		}
-	} ) );
+	QUnit.module( 'jquery.makeCollapsible', QUnit.newMwEnvironment() );
 
 	function prepareCollapsible( html, options ) {
 		return $( $.parseHTML( html ) )
@@ -42,12 +38,10 @@
 
 			// ...expanding happens here
 			$toggle.trigger( 'click' );
-			test.clock.tick( 500 );
 		} );
 
 		// ...collapsing happens here
 		$toggle.trigger( 'click' );
-		test.clock.tick( 500 );
 	} );
 
 	QUnit.test( 'basic operation (<div>)', 5, function ( assert ) {
@@ -71,11 +65,9 @@
 			} );
 
 			$toggle.trigger( 'click' );
-			test.clock.tick( 500 );
 		} );
 
 		$toggle.trigger( 'click' );
-		test.clock.tick( 500 );
 	} );
 
 	QUnit.test( 'basic operation (<table>)', 7, function ( assert ) {
@@ -106,11 +98,9 @@
 			} );
 
 			$toggle.trigger( 'click' );
-			test.clock.tick( 500 );
 		} );
 
 		$toggle.trigger( 'click' );
-		test.clock.tick( 500 );
 	} );
 
 	function tableWithCaptionTest( $collapsible, test, assert ) {
@@ -137,11 +127,9 @@
 			} );
 
 			$toggle.trigger( 'click' );
-			test.clock.tick( 500 );
 		} );
 
 		$toggle.trigger( 'click' );
-		test.clock.tick( 500 );
 	}
 
 	QUnit.test( 'basic operation (<table> with caption)', 10, function ( assert ) {
@@ -192,11 +180,9 @@
 			} );
 
 			$toggle.trigger( 'click' );
-			test.clock.tick( 500 );
 		} );
 
 		$toggle.trigger( 'click' );
-		test.clock.tick( 500 );
 	}
 
 	QUnit.test( 'basic operation (<ul>)', 7, function ( assert ) {
@@ -260,7 +246,6 @@
 		} );
 
 		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
-		this.clock.tick( 500 );
 	} );
 
 	QUnit.test( 'initial collapse (options.collapsed)', 2, function ( assert ) {
@@ -278,7 +263,6 @@
 		} );
 
 		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
-		this.clock.tick( 500 );
 	} );
 
 	QUnit.test( 'clicks on links inside toggler pass through (options.linksPassthru)', 2, function ( assert ) {
@@ -316,7 +300,6 @@
 		} );
 
 		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
-		this.clock.tick( 500 );
 	} );
 
 	QUnit.test( 'collapse/expand text (options.collapseText, options.expandText)', 2, function ( assert ) {
@@ -333,7 +316,6 @@
 		} );
 
 		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
-		this.clock.tick( 500 );
 	} );
 
 	QUnit.test( 'cloned collapsibles can be made collapsible again', 2, function ( assert ) {
@@ -352,6 +334,5 @@
 		} );
 
 		$clone.find( '.mw-collapsible-toggle a' ).trigger( 'click' );
-		test.clock.tick( 500 );
 	} );
 }( mediaWiki, jQuery ) );
