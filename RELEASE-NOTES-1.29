@@ -69,6 +69,7 @@ production.
 * Updated psr/log from v1.0.0 to v1.0.2.
 * Update Moment.js from v2.8.4 to v2.15.0.
 * Updated oyejorge/less.php from v1.7.0.10 to v1.7.0.13.
+* Update jQuery from v1.11.3 to v3.2.1 (including jQuery Migrate v3.0.0).
 
 ==== New external libraries ====
 
