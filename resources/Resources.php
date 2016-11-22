@@ -134,6 +134,7 @@ return [
 	'jquery' => [
 		'scripts' => [
 			'resources/lib/jquery/jquery.js',
+			'resources/lib/jquery/jquery.migrate.js',
 		],
 		'raw' => true,
 		'targets' => [ 'desktop', 'mobile' ],
