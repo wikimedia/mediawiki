@@ -25,6 +25,9 @@
 	// killing the test and assuming timeout failure.
 	QUnit.config.testTimeout = 60 * 1000;
 
+	// Reduce default animation duration from 400ms to 0ms for unit tests
+	$.fx.speeds._default = 0;
+
 	// Add a checkbox to QUnit header to toggle MediaWiki ResourceLoader debug mode.
 	QUnit.config.urlConfig.push( {
 		id: 'debug',
