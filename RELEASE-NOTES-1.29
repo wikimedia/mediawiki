@@ -20,6 +20,7 @@ production.
 === External library changes in 1.29 ===
 
 ==== Upgraded external libraries ====
+* Update jQuery from v1.11.3 to v3.1.1 (including jQuery Migrate v3.0.0).
 
 ==== New external libraries ====
 
