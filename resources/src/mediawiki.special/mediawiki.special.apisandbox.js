@@ -981,7 +981,7 @@
 
 						$result.empty();
 						if ( /^text\/mediawiki-api-prettyprint-wrapped(?:;|$)/.test( ct ) ) {
-							data = $.parseJSON( data );
+							data = JSON.parse( data );
 							if ( data.modules.length ) {
 								mw.loader.load( data.modules );
 							}
