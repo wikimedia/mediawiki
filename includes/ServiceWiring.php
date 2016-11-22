@@ -214,12 +214,55 @@ return [
 	},
 
 	'MimeAnalyzer' => function( MediaWikiServices $services ) {
-		return new MimeMagic(
-			MimeMagic::applyDefaultParameters(
-				[],
-				$services->getMainConfig()
-			)
-		);
+		$logger = LoggerFactory::getInstance( 'Mime' );
+		$mainConfig = $services->getMainConfig();
+		$params = [
+			'typeFile' => $mainConfig->get( 'MimeTypeFile' ),
+			'infoFile' => $mainConfig->get( 'MimeInfoFile' ),
+			'xmlTypes' => $mainConfig->get( 'XMLMimeTypes' ),
+			'guessCallback' =>
+				function ( $mimeAnalyzer, &$head, &$tail, $file, &$mime ) use ( $logger ) {
+					// Also test DjVu
+					$deja = new DjVuImage( $file );
+					if ( $deja->isValid() ) {
+						$logger->info( __METHOD__ . ": detected $file as image/vnd.djvu\n" );
+						$mime = 'image/vnd.djvu';
+
+						return;
+					}
+					// Some strings by reference for performance - assuming well-behaved hooks
+					Hooks::run(
+						'MimeMagicGuessFromContent',
+						[ $mimeAnalyzer, &$head, &$tail, $file, &$mime ]
+					);
+				},
+			'extCallback' => function ( $mimeAnalyzer, $ext, &$mime ) {
+				// Media handling extensions can improve the MIME detected
+				Hooks::run( 'MimeMagicImproveFromExtension', [ $mimeAnalyzer, $ext, &$mime ] );
+			},
+			'initCallback' => function ( $mimeAnalyzer ) {
+				// Allow media handling extensions adding MIME-types and MIME-info
+				Hooks::run( 'MimeMagicInit', [ $mimeAnalyzer ] );
+			},
+			'logger' => $logger
+		];
+
+		if ( $params['infoFile'] === 'includes/mime.info' ) {
+			$params['infoFile'] = __DIR__ . "/libs/mime/mime.info";
+		}
+
+		if ( $params['typeFile'] === 'includes/mime.types' ) {
+			$params['typeFile'] = __DIR__ . "/libs/mime/mime.types";
+		}
+
+		$detectorCmd = $mainConfig->get( 'MimeDetectorCommand' );
+		if ( $detectorCmd ) {
+			$params['detectCallback'] = function ( $file ) use ( $detectorCmd ) {
+				return wfShellExec( "$detectorCmd " . wfEscapeShellArg( $file ) );
+			};
+		}
+
+		return new MimeAnalyzer( $params );
 	},
 
 	'ProxyLookup' => function( MediaWikiServices $services ) {
