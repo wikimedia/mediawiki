@@ -22,14 +22,15 @@ module.exports = function ( grunt ) {
 				'**/*.js',
 				'!docs/**',
 				'!tests/**',
-				'!extensions/**',
 				'!node_modules/**',
 				'!resources/lib/**',
 				'!resources/src/jquery.tipsy/**',
 				'!resources/src/jquery/jquery.farbtastic.js',
 				'!resources/src/mediawiki.libs/**',
-				'!skins/**',
 				'!vendor/**',
+				// Explicitly say "**/*.js" here in case of symlinks
+				'!extensions/**/*.js',
+				'!skins/**/*.js',
 				// Skip functions aren't even parseable
 				'!resources/src/dom-level2-skip.js',
 				'!resources/src/es5-skip.js',
