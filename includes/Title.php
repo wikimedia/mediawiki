@@ -1934,6 +1934,11 @@ class Title implements LinkTarget {
 			}
 		}
 
+		error_log( "Checks for title " . $this->getPrefixedText() );
+		error_log( $user->getName() );
+		error_log( $rigor );
+		error_log( serialize( $errors ) );
+
 		return $errors;
 	}
 
