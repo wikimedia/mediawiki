@@ -22,6 +22,7 @@
  * @author Roan Kattouw
  */
 
+use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -187,7 +188,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	public function getConfig() {
 		if ( $this->config === null ) {
 			// Ugh, fall back to default
-			$this->config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+			$this->config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'main' );
 		}
 
 		return $this->config;

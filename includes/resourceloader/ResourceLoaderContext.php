@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Object passed around to modules which contains information about the state
@@ -137,7 +138,7 @@ class ResourceLoaderContext {
 	 */
 	public static function newDummyContext() {
 		return new self( new ResourceLoader(
-			ConfigFactory::getDefaultInstance()->makeConfig( 'main' ),
+			MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'main' ),
 			LoggerFactory::getInstance( 'resourceloader' )
 		), new FauxRequest( [] ) );
 	}

@@ -23,6 +23,7 @@
 
 namespace MediaWiki\Session;
 
+use MediaWiki\MediaWikiServices;
 use MWException;
 use Psr\Log\LoggerInterface;
 use BagOStuff;
@@ -152,7 +153,7 @@ final class SessionManager implements SessionManagerInterface {
 				);
 			}
 		} else {
-			$this->config = \ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+			$this->config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'main' );
 		}
 
 		if ( isset( $options['logger'] ) ) {

@@ -22,6 +22,8 @@
  * @author Roan Kattouw
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -41,7 +43,9 @@ class CleanupRemovedModules extends Maintenance {
 
 	public function execute() {
 		$dbw = $this->getDB( DB_MASTER );
-		$rl = new ResourceLoader( ConfigFactory::getDefaultInstance()->makeConfig( 'main' ) );
+		$rl = new ResourceLoader(
+			MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'main' )
+		);
 		$moduleNames = $rl->getModuleNames();
 		$moduleList = implode( ', ', array_map( [ $dbw, 'addQuotes' ], $moduleNames ) );
 		$limit = max( 1, intval( $this->getOption( 'batchsize', 500 ) ) );
