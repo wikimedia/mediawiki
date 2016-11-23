@@ -1522,6 +1522,7 @@ $wgAutoloadLocalClasses = [
 	'VFormHTMLForm' => __DIR__ . '/includes/htmlform/VFormHTMLForm.php',
 	'ValidateRegistrationFile' => __DIR__ . '/maintenance/validateRegistrationFile.php',
 	'ViewAction' => __DIR__ . '/includes/actions/ViewAction.php',
+	'ViewCLI' => __DIR__ . '/maintenance/view.php',
 	'VirtualRESTService' => __DIR__ . '/includes/libs/virtualrest/VirtualRESTService.php',
 	'VirtualRESTServiceClient' => __DIR__ . '/includes/libs/virtualrest/VirtualRESTServiceClient.php',
 	'WANObjectCache' => __DIR__ . '/includes/libs/objectcache/WANObjectCache.php',
