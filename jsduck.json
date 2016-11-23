@@ -9,6 +9,7 @@
 	"--warnings-exit-nonzero": true,
 	"--external": "Blob,File,HTMLDocument,HTMLElement,HTMLIframeElement,HTMLInputElement,KeyboardEvent,MouseEvent,Node,Window,XMLDocument",
 	"--output": "docs/js",
+	"--exclude": "resources/src/mediawiki/mediawiki.Title.phpCharToUpper.js",
 	"--": [
 		"maintenance/jsduck/external.js",
 		"resources/src/mediawiki",

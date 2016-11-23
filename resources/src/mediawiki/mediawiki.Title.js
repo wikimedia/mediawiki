@@ -826,7 +826,9 @@
 			) {
 				return this.title;
 			}
-			return this.title[ 0 ].toUpperCase() + this.title.slice( 1 );
+			// PHP's strtoupper differs from String.toUpperCase in a number of cases
+			// Bug: T147646
+			return mw.Title.phpCharToUpper( this.title[ 0 ] ) + this.title.slice( 1 );
 		},
 
 		/**
