@@ -707,7 +707,6 @@ class UserrightsPage extends SpecialPage {
 	 * @return bool Can we remove the group?
 	 */
 	private function canRemove( $group ) {
-		// $this->changeableGroups()['remove'] doesn't work, of course. Thanks, PHP.
 		$groups = $this->changeableGroups();
 
 		return in_array(
