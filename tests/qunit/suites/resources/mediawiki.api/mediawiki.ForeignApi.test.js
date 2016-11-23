@@ -11,8 +11,7 @@
 		}
 	} ) );
 
-	QUnit.test( 'origin is included in GET requests', function ( assert ) {
-		QUnit.expect( 1 );
+	QUnit.test( 'origin is included in GET requests', 1, function ( assert ) {
 		var api = new mw.ForeignApi( '//localhost:4242/w/api.php' );
 
 		this.server.respond( function ( request ) {
@@ -23,8 +22,7 @@
 		api.get( {} );
 	} );
 
-	QUnit.test( 'origin is included in POST requests', function ( assert ) {
-		QUnit.expect( 2 );
+	QUnit.test( 'origin is included in POST requests', 2, function ( assert ) {
 		var api = new mw.ForeignApi( '//localhost:4242/w/api.php' );
 
 		this.server.respond( function ( request ) {
