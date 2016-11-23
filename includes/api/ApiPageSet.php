@@ -23,6 +23,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * This class contains a list of pages that the client has requested.
@@ -915,7 +916,7 @@ class ApiPageSet extends ApiBase {
 		}
 
 		// Get gender information
-		$genderCache = GenderCache::singleton();
+		$genderCache = MediaWikiServices::getInstance()->getGenderCache();
 		$genderCache->doQuery( $usernames, __METHOD__ );
 	}
 
@@ -1197,7 +1198,7 @@ class ApiPageSet extends ApiBase {
 			}
 		}
 		// Get gender information
-		$genderCache = GenderCache::singleton();
+		$genderCache = MediaWikiServices::getInstance()->getGenderCache();
 		$genderCache->doQuery( $usernames, __METHOD__ );
 
 		return $linkBatch;
