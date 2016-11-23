@@ -12,6 +12,8 @@ production.
   determines whether to set a cookie when a user is autoblocked. Doing so means
   that a blocked user, even after logging out and moving to a new IP address,
   will still be blocked.
+* The resetpassword right and associated password reset capture feature has
+  been removed.
 
 === New features in 1.29 ===
 * (T5233) A cookie can now be set when a user is autoblocked, to track that user if
@@ -32,6 +34,7 @@ production.
   action=createaccount, action=linkaccount, and action=changeauthenticationdata
   in the query string is now an error. They should be submitted in the POST
   body instead.
+* The capture option for action=resetpassword has been removed
 
 === Action API internal changes in 1.29 ===
 

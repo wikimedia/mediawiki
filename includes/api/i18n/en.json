@@ -1307,7 +1307,6 @@
 	"apihelp-resetpassword-description-noroutes": "No password reset routes are available.\n\nEnable routes in <var>[[mw:Manual:$wgPasswordResetRoutes|$wgPasswordResetRoutes]]</var> to use this module.",
 	"apihelp-resetpassword-param-user": "User being reset.",
 	"apihelp-resetpassword-param-email": "Email address of the user being reset.",
-	"apihelp-resetpassword-param-capture": "Return the temporary passwords that were sent. Requires the <code>passwordreset</code> user right.",
 	"apihelp-resetpassword-example-user": "Send a password reset email to user <kbd>Example</kbd>.",
 	"apihelp-resetpassword-example-email": "Send a password reset email for all users with email address <kbd>user@example.com</kbd>.",
 
