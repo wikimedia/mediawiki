@@ -2638,6 +2638,7 @@
 	"sorbs": "{{optional}}",
 	"sorbsreason": "See also:\n* {{msg-mw|Sorbsreason}}\n* {{msg-mw|Sorbs create account_reason}}",
 	"sorbs_create_account_reason": "Used in [[Special:UserLogin]] when creating an account.\n\nSee also:\n* {{msg-mw|Sorbsreason}}\n* {{msg-mw|Sorbs create account_reason}}",
+	"softblockrangesreason": "This text is shown to the user as a block reason and describes that the user is being blocked because the user is not logged in and their IP is in [[mw:Special:MyLanguage/Manual:$wgSoftBlockRanges|$wgSoftBlockRanges]].\n\nParameters:\n* $1 - The IP address that is blocked.",
 	"xffblockreason": "This text is shown to the user as a block reason and describes that the user is being blocked because an IP in the X-Forwarded-For header (which lists the user's IP as well as all IPs of the transparent proxy servers they went through) sent when they loaded the page has been blocked:\n* $1 is the original block reason for the IP address matched in the X-Forwarded-For header",
 	"cant-see-hidden-user": "Used as (red) error message on [[Special:Block]] when you try to change (as sysop without the hideuser right) the block of a hidden user.",
 	"ipbblocked": "Error message shown when a user tries to alter block settings when they are themselves blocked.",
