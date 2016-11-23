@@ -2,14 +2,12 @@
 	QUnit.module( 'mediawiki.api.options', QUnit.newMwEnvironment( {
 		setup: function () {
 			this.server = this.sandbox.useFakeServer();
+			this.server.respondImmediately = true;
 		}
 	} ) );
 
-	QUnit.test( 'saveOption', function ( assert ) {
-		QUnit.expect( 2 );
-
-		var
-			api = new mw.Api(),
+	QUnit.test( 'saveOption', 2, function ( assert ) {
+		var api = new mw.Api(),
 			stub = this.sandbox.stub( mw.Api.prototype, 'saveOptions' );
 
 		api.saveOption( 'foo', 'bar' );
@@ -18,9 +16,7 @@
 		assert.deepEqual( stub.getCall( 0 ).args, [ { foo: 'bar' } ], '#saveOptions called correctly' );
 	} );
 
-	QUnit.test( 'saveOptions without Unit Separator', function ( assert ) {
-		QUnit.expect( 13 );
-
+	QUnit.test( 'saveOptions without Unit Separator', 13, function ( assert ) {
 		var api = new mw.Api( { useUS: false } );
 
 		// We need to respond to the request for token first, otherwise the other requests won't be sent
@@ -31,25 +27,6 @@
 			[ 200, { 'Content-Type': 'application/json' },
 				'{ "query": { "tokens": { "csrftoken": "+\\\\" } } }' ]
 		);
-
-		api.saveOptions( {} ).done( function () {
-			assert.ok( true, 'Request completed: empty case' );
-		} );
-		api.saveOptions( { foo: 'bar' } ).done( function () {
-			assert.ok( true, 'Request completed: simple' );
-		} );
-		api.saveOptions( { foo: 'bar', baz: 'quux' } ).done( function () {
-			assert.ok( true, 'Request completed: two options' );
-		} );
-		api.saveOptions( { foo: 'bar|quux', bar: 'a|b|c', baz: 'quux' } ).done( function () {
-			assert.ok( true, 'Request completed: not bundleable' );
-		} );
-		api.saveOptions( { foo: null } ).done( function () {
-			assert.ok( true, 'Request completed: reset an option' );
-		} );
-		api.saveOptions( { 'foo|bar=quux': null } ).done( function () {
-			assert.ok( true, 'Request completed: reset an option, not bundleable' );
-		} );
 
 		// Requests are POST, match requestBody instead of url
 		this.server.respond( function ( request ) {
@@ -74,11 +51,30 @@
 					assert.ok( false, 'Unexpected request: ' + request.requestBody );
 			}
 		} );
+
+		return QUnit.whenPromisesComplete(
+			api.saveOptions( {} ).then( function () {
+				assert.ok( true, 'Request completed: empty case' );
+			} ),
+			api.saveOptions( { foo: 'bar' } ).then( function () {
+				assert.ok( true, 'Request completed: simple' );
+			} ),
+			api.saveOptions( { foo: 'bar', baz: 'quux' } ).then( function () {
+				assert.ok( true, 'Request completed: two options' );
+			} ),
+			api.saveOptions( { foo: 'bar|quux', bar: 'a|b|c', baz: 'quux' } ).then( function () {
+				assert.ok( true, 'Request completed: not bundleable' );
+			} ),
+			api.saveOptions( { foo: null } ).then( function () {
+				assert.ok( true, 'Request completed: reset an option' );
+			} ),
+			api.saveOptions( { 'foo|bar=quux': null } ).then( function () {
+				assert.ok( true, 'Request completed: reset an option, not bundleable' );
+			} )
+		);
 	} );
 
-	QUnit.test( 'saveOptions with Unit Separator', function ( assert ) {
-		QUnit.expect( 14 );
-
+	QUnit.test( 'saveOptions with Unit Separator', 14, function ( assert ) {
 		var api = new mw.Api( { useUS: true } );
 
 		// We need to respond to the request for token first, otherwise the other requests won't be sent
@@ -89,28 +85,6 @@
 			[ 200, { 'Content-Type': 'application/json' },
 				'{ "query": { "tokens": { "csrftoken": "+\\\\" } } }' ]
 		);
-
-		api.saveOptions( {} ).done( function () {
-			assert.ok( true, 'Request completed: empty case' );
-		} );
-		api.saveOptions( { foo: 'bar' } ).done( function () {
-			assert.ok( true, 'Request completed: simple' );
-		} );
-		api.saveOptions( { foo: 'bar', baz: 'quux' } ).done( function () {
-			assert.ok( true, 'Request completed: two options' );
-		} );
-		api.saveOptions( { foo: 'bar|quux', bar: 'a|b|c', baz: 'quux' } ).done( function () {
-			assert.ok( true, 'Request completed: bundleable with unit separator' );
-		} );
-		api.saveOptions( { foo: 'bar|quux', bar: 'a|b|c', 'baz=baz': 'quux' } ).done( function () {
-			assert.ok( true, 'Request completed: not bundleable with unit separator' );
-		} );
-		api.saveOptions( { foo: null } ).done( function () {
-			assert.ok( true, 'Request completed: reset an option' );
-		} );
-		api.saveOptions( { 'foo|bar=quux': null } ).done( function () {
-			assert.ok( true, 'Request completed: reset an option, not bundleable' );
-		} );
 
 		// Requests are POST, match requestBody instead of url
 		this.server.respond( function ( request ) {
@@ -136,5 +110,29 @@
 					assert.ok( false, 'Unexpected request: ' + request.requestBody );
 			}
 		} );
+
+		return QUnit.whenPromisesComplete(
+			api.saveOptions( {} ).done( function () {
+				assert.ok( true, 'Request completed: empty case' );
+			} ),
+			api.saveOptions( { foo: 'bar' } ).done( function () {
+				assert.ok( true, 'Request completed: simple' );
+			} ),
+			api.saveOptions( { foo: 'bar', baz: 'quux' } ).done( function () {
+				assert.ok( true, 'Request completed: two options' );
+			} ),
+			api.saveOptions( { foo: 'bar|quux', bar: 'a|b|c', baz: 'quux' } ).done( function () {
+				assert.ok( true, 'Request completed: bundleable with unit separator' );
+			} ),
+			api.saveOptions( { foo: 'bar|quux', bar: 'a|b|c', 'baz=baz': 'quux' } ).done( function () {
+				assert.ok( true, 'Request completed: not bundleable with unit separator' );
+			} ),
+			api.saveOptions( { foo: null } ).done( function () {
+				assert.ok( true, 'Request completed: reset an option' );
+			} ),
+			api.saveOptions( { 'foo|bar=quux': null } ).done( function () {
+				assert.ok( true, 'Request completed: reset an option, not bundleable' );
+			} )
+		);
 	} );
 }( mediaWiki ) );

@@ -367,8 +367,8 @@
 	QUnit.test( 'Match PHP parser', mw.libs.phpParserData.tests.length, function ( assert ) {
 		mw.messages.set( mw.libs.phpParserData.messages );
 		var tasks = $.map( mw.libs.phpParserData.tests, function ( test ) {
+			var done = assert.async();
 			return function ( next, abort ) {
-				var done = assert.async();
 				getMwLanguage( test.lang )
 					.then( function ( langClass ) {
 						mw.config.set( 'wgUserLanguage', test.lang );
@@ -895,8 +895,8 @@
 		mw.messages.set( 'formatnum-msg', '{{formatnum:$1}}' );
 		mw.messages.set( 'formatnum-msg-int', '{{formatnum:$1|R}}' );
 		var queue = $.map( formatnumTests, function ( test ) {
+			var done = assert.async();
 			return function ( next, abort ) {
-				var done = assert.async();
 				getMwLanguage( test.lang )
 					.then( function ( langClass ) {
 						mw.config.set( 'wgUserLanguage', test.lang );
