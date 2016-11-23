@@ -96,7 +96,7 @@ return [
 		$config = $services->getMainConfig();
 		return new ClassicInterwikiLookup(
 			$wgContLang,
-			ObjectCache::getMainWANInstance(),
+			$services->getMainWANObjectCache(),
 			$config->get( 'InterwikiExpiry' ),
 			$config->get( 'InterwikiCache' ),
 			$config->get( 'InterwikiScopes' ),
@@ -238,7 +238,7 @@ return [
 	'LinkCache' => function( MediaWikiServices $services ) {
 		return new LinkCache(
 			$services->getTitleFormatter(),
-			ObjectCache::getMainWANInstance()
+			$services->getMainWANObjectCache()
 		);
 	},
 
