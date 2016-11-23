@@ -468,6 +468,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		foreach ( $this->getCustomFilters() as $key => $params ) {
 			$filters[$key] = $params['msg'];
 		}
+		$filters = array_filter( $filters );
+
 		// Disable some if needed
 		if ( !$user->useRCPatrol() ) {
 			unset( $filters['hidepatrolled'] );
