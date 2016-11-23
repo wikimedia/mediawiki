@@ -744,4 +744,34 @@ class UserTest extends MediaWikiTestCase {
 		// Clean up.
 		$block->delete();
 	}
+
+	public function testSoftBlockRanges() {
+		global $wgUser;
+
+		$this->setMwGlobals( [
+			'wgSoftBlockRanges' => [ '10.0.0.0/8' ],
+			'wgUser' => null,
+		] );
+
+		// IP isn't in $wgSoftBlockRanges
+		$request = new FauxRequest();
+		$request->setIP( '192.168.0.1' );
+		$wgUser = User::newFromSession( $request );
+		$this->assertNull( $wgUser->getBlock() );
+
+		// IP is in $wgSoftBlockRanges
+		$request = new FauxRequest();
+		$request->setIP( '10.20.30.40' );
+		$wgUser = User::newFromSession( $request );
+		$block = $wgUser->getBlock();
+		$this->assertInstanceOf( Block::class, $block );
+		$this->assertSame( 'wgSoftBlockRanges', $block->getSystemBlockType() );
+
+		// Make sure the block is really soft
+		$request->getSession()->setUser( $this->getTestUser()->getUser() );
+		$wgUser = User::newFromSession( $request );
+		$this->assertFalse( $wgUser->isAnon(), 'sanity check' );
+		$this->assertNull( $wgUser->getBlock() );
+	}
+
 }

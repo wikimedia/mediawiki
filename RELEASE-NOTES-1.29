@@ -33,6 +33,8 @@ production.
   exceptions, largely so the API can handle them more sensibly.
 * Blocks created automatically by MediaWiki, such as for configured proxies or
   dnsbls, are now indicated as such and use a new i18n message when displayed.
+* Added $wgSoftBlockRanges, to allow for automatically blocking anonymous edits
+  from certain IP ranges (e.g. private IPs).
 
 === External library changes in 1.29 ===
 
