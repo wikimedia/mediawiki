@@ -1229,7 +1229,6 @@
 	"apihelp-resetpassword-description-noroutes": "没有密码重置路由可用。\n\n在<var>[[mw:Manual:$wgPasswordResetRoutes|$wgPasswordResetRoutes]]</var>中启用路由以使用此模块。",
 	"apihelp-resetpassword-param-user": "正在重置的用户。",
 	"apihelp-resetpassword-param-email": "正在重置用户的电子邮件地址。",
-	"apihelp-resetpassword-param-capture": "返回已发送的临时密码。需要<code>passwordreset</code>用户权限。",
 	"apihelp-resetpassword-example-user": "向用户<kbd>Example</kbd>发送密码重置邮件。",
 	"apihelp-resetpassword-example-email": "向所有电子邮件地址为<kbd>user@example.com</kbd>的用户发送密码重置邮件。",
 	"apihelp-revisiondelete-description": "删除和恢复修订版本。",
