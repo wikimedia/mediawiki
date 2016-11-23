@@ -26,7 +26,7 @@
 /**
  * An action that views article content
  *
- * This is a wrapper that will call Article::render().
+ * This is a wrapper that will call Article::view().
  *
  * @ingroup Actions
  */
