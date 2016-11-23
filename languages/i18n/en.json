@@ -1137,7 +1137,7 @@
 	"userrights-summary": "",
 	"userrights-lookup-user": "Select a user",
 	"userrights-user-editname": "Enter a username:",
-	"editusergroup": "Load {{GENDER:$1|user}} groups",
+	"editusergroup": "Load user groups",
 	"editinguser": "Changing user rights of {{GENDER:$1|user}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-editusergroup": "Edit user groups",
 	"saveusergroups": "Save {{GENDER:$1|user}} groups",
