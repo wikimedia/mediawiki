@@ -144,7 +144,17 @@
 				}
 			},
 			apiCheckValid: function () {
-				var ok = this.getApiValue() !== undefined || suppressErrors;
+				var ok = true,
+					pi = this.paramInfo;
+
+				if ( !suppressErrors ) {
+					ok = this.getApiValue() !== undefined && !(
+						pi.allspecifier !== undefined &&
+						this.getItemsData().length > 1 &&
+						this.getItemsData().indexOf( pi.allspecifier ) !== -1
+					);
+				}
+
 				this.setIcon( ok ? null : 'alert' );
 				this.setIconTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
 				return $.Deferred().resolve( ok ).promise();
@@ -442,6 +452,13 @@
 						return a.data - b.data;
 					} );
 					if ( Util.apiBool( pi.multi ) ) {
+						if ( pi.allspecifier !== undefined ) {
+							items.unshift( new OO.ui.MenuOptionWidget( {
+								data: pi.allspecifier,
+								label: mw.message( 'apisandbox-multivalue-all-namespaces', pi.allspecifier ).text()
+							} ) );
+						}
+
 						widget = new OO.ui.CapsuleMultiselectWidget( {
 							menu: { items: items }
 						} );
@@ -465,6 +482,13 @@
 						return new OO.ui.MenuOptionWidget( { data: String( v ), label: String( v ) } );
 					} );
 					if ( Util.apiBool( pi.multi ) ) {
+						if ( pi.allspecifier !== undefined ) {
+							items.unshift( new OO.ui.MenuOptionWidget( {
+								data: pi.allspecifier,
+								label: mw.message( 'apisandbox-multivalue-all-values', pi.allspecifier ).text()
+							} ) );
+						}
+
 						widget = new OO.ui.CapsuleMultiselectWidget( {
 							menu: { items: items }
 						} );

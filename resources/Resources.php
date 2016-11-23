@@ -1837,6 +1837,8 @@ return [
 			'apisandbox-continue-clear',
 			'apisandbox-continue-help',
 			'apisandbox-param-limit',
+			'apisandbox-multivalue-all-namespaces',
+			'apisandbox-multivalue-all-values',
 			'api-format-prettyprint-status',
 			'blanknamespace',
 		],

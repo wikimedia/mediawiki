@@ -1924,6 +1924,8 @@
 	"apisandbox-continue-clear": "Clear",
 	"apisandbox-continue-help": "{{int:apisandbox-continue}} will [https://www.mediawiki.org/wiki/API:Query#Continuing_queries continue] the last request; {{int:apisandbox-continue-clear}} will clear continuation-related parameters.",
 	"apisandbox-param-limit": "Enter <kbd>max</kbd> to use the maximum limit.",
+	"apisandbox-multivalue-all-namespaces": "$1 (All namespaces)",
+	"apisandbox-multivalue-all-values": "$1 (All values)",
 	"booksources": "Book sources",
 	"booksources-summary": "",
 	"booksources-search-legend": "Search for book sources",
