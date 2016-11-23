@@ -495,4 +495,23 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	protected function getGroupName() {
 		return 'changes';
 	}
+
+	/**
+	 * Get filters that can be rendered.
+	 *
+	 * Filters with 'msg' => false can be used to filter data but won't
+	 * be presented as show/hide toggles in the UI. They are not returned
+	 * by this function.
+	 *
+	 * @param array $allFilters Map of filter URL param names to properties (msg/default)
+	 * @return array Map of filter URL param names to properties (msg/default)
+	 */
+	protected function getRenderableCustomFilters( $allFilters ) {
+		return array_filter(
+			$allFilters,
+			function( $filter ) {
+				return isset( $filter['msg'] ) && ( $filter['msg'] !== false );
+			}
+		);
+	}
 }

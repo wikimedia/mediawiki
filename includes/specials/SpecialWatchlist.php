@@ -130,7 +130,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Get custom show/hide filters
+	 * Get all custom filters
 	 *
 	 * @return array Map of filter URL param names to properties (msg/default)
 	 */
@@ -465,9 +465,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$filters['hidecategorization'] = 'wlshowhidecategorization';
 		}
 
-		foreach ( $this->getCustomFilters() as $key => $params ) {
+		foreach ( $this->getRenderableCustomFilters( $this->getCustomFilters() ) as $key => $params ) {
 			$filters[$key] = $params['msg'];
 		}
+
 		// Disable some if needed
 		if ( !$user->useRCPatrol() ) {
 			unset( $filters['hidepatrolled'] );
