@@ -39,6 +39,8 @@ production.
   downloading the XML dump during a transwiki import in seconds.
 * Parser limit report is now available in machine-readable format to JavaScript
   via mw.config.get('wgPageParseReport').
+* Added $wgSoftBlockRanges, to allow for automatically blocking anonymous edits
+  from certain IP ranges (e.g. private IPs).
 
 === External library changes in 1.29 ===
 
