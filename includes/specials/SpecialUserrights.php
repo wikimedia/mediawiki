@@ -437,10 +437,7 @@ class UserrightsPage extends SpecialPage {
 				)
 			) . ' ' .
 			Xml::submitButton(
-				$this->msg(
-					'editusergroup',
-					$this->mFetchedUser === null ? '[]' : $this->mFetchedUser->getName()
-				)->text()
+				$this->msg( 'editusergroup' )->text()
 			) .
 			Html::closeElement( 'fieldset' ) .
 			Html::closeElement( 'form' ) . "\n"
