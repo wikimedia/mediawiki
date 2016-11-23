@@ -5513,6 +5513,16 @@ $wgDnsBlacklistUrls = [ 'http.dnsbl.sorbs.net.' ];
 $wgProxyWhitelist = [];
 
 /**
+ * IP ranges that should be considered soft-blocked (anon-only, account
+ * creation allowed). This was designed to prevent anonymous edits from
+ * shared infrastructure where bots are run. That way, the bot will not
+ * continue to edit if it accidentally got logged-out.
+ * @since 1.29
+ * @var string[]
+ */
+$wgSoftBlockRanges = [];
+
+/**
  * Whether to look at the X-Forwarded-For header's list of (potentially spoofed)
  * IPs and apply IP blocks to them. This allows for IP blocks to work with correctly-configured
  * (transparent) proxies without needing to block the proxies themselves.
