@@ -127,7 +127,6 @@
 		.done( function () {
 			assert.strictEqual( isAwesomeDone, true, 'test.promise module should\'ve caused isAwesomeDone to be true' );
 			delete mw.loader.testCallback;
-
 		} )
 		.fail( function () {
 			assert.ok( false, 'Error callback fired while loader.using "test.promise" module' );
@@ -135,6 +134,8 @@
 	} );
 
 	QUnit.test( '.using() Error: Circular dependency', function ( assert ) {
+		var done = assert.async();
+
 		mw.loader.register( [
 			[ 'test.circle1', '0', [ 'test.circle2' ] ],
 			[ 'test.circle2', '0', [ 'test.circle3' ] ],
@@ -147,7 +148,8 @@
 			function fail( e ) {
 				assert.ok( /Circular/.test( String( e ) ), 'Detect circular dependency' );
 			}
-		);
+		)
+		.always( done );
 	} );
 
 	QUnit.test( '.load() - Error: Circular dependency', function ( assert ) {
@@ -162,6 +164,8 @@
 	} );
 
 	QUnit.test( '.using() - Error: Unregistered', function ( assert ) {
+		var done = assert.async();
+
 		mw.loader.using( 'test.using.unreg' ).then(
 			function done() {
 				assert.ok( false, 'Unexpected resolution, expected error.' );
@@ -169,7 +173,7 @@
 			function fail( e ) {
 				assert.ok( /Unknown/.test( String( e ) ), 'Detect unknown dependency' );
 			}
-		);
+		).always( done );
 	} );
 
 	QUnit.test( '.load() - Error: Unregistered (ignored)', 0, function ( assert ) {
