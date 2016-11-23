@@ -4823,6 +4823,7 @@ $wgDefaultUserOptions = [
 	'previewonfirst' => 0,
 	'previewontop' => 1,
 	'rcdays' => 7,
+	'rcenhancedfilters' => 0,
 	'rclimit' => 50,
 	'rows' => 25,
 	'showhiddencats' => 0,
@@ -4857,7 +4858,9 @@ $wgDefaultUserOptions = [
 /**
  * An array of preferences to not show for the user
  */
-$wgHiddenPrefs = [];
+$wgHiddenPrefs = [
+	'rcenhancedfilters',
+];
 
 /**
  * Characters to prevent during new account creations.
