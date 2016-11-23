@@ -301,7 +301,8 @@ class User implements IDBAccessObject {
 	protected $queryFlagsUsed = self::READ_NORMAL;
 
 	/** @var string Indicates type of block (used for eventlogging)
-	 * Permitted values: 'cookie-block', 'proxy-block', 'openproxy-block', 'xff-block'
+	 * Permitted values: 'cookie-block', 'proxy-block', 'openproxy-block', 'xff-block',
+	 * 'config-block'
 	 */
 	public $blockTrigger = false;
 
@@ -1596,7 +1597,7 @@ class User implements IDBAccessObject {
 	 *   Check when actually saving should be done against master.
 	 */
 	private function getBlockedStatus( $bFromSlave = true ) {
-		global $wgProxyWhitelist, $wgUser, $wgApplyIpBlocksToXff;
+		global $wgProxyWhitelist, $wgUser, $wgApplyIpBlocksToXff, $wgSoftBlockRanges;
 
 		if ( -1 != $this->mBlockedby ) {
 			return;
@@ -1693,6 +1694,21 @@ class User implements IDBAccessObject {
 				$block->mReason = wfMessage( 'xffblockreason', $block->mReason )->text();
 				$this->blockTrigger = 'xff-block';
 			}
+		}
+
+		if ( !$block instanceof Block
+			&& $ip !== null
+			&& $this->isAnon()
+			&& IP::isInRanges( $ip, $wgSoftBlockRanges )
+		) {
+			$block = new Block( [
+				'address' => $ip,
+				'byText' => 'MediaWiki default',
+				'reason' => wfMessage( 'softblockrangesreason', $ip )->text(),
+				'anonOnly' => true,
+				'systemBlock' => 'wgSoftBlockRanges',
+			] );
+			$this->blockTrigger = 'config-block';
 		}
 
 		if ( $block instanceof Block ) {
