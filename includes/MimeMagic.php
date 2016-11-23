@@ -27,7 +27,7 @@ class MimeMagic extends MimeAnalyzer {
 	 * @deprecated since 1.28
 	 */
 	public static function singleton() {
-		return MediaWikiServices::getInstance()->getMIMEAnalyzer();
+		return MediaWikiServices::getInstance()->getMimeAnalyzer();
 	}
 
 	/**
