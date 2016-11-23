@@ -318,7 +318,7 @@
 					// If no error, return to caller as-is
 					null,
 					// Error handler
-					function ( code ) {
+					function ( code, result, jqXHR ) {
 						if ( code === 'badtoken' ) {
 							api.badToken( tokenType );
 							// Try again, once
@@ -334,8 +334,8 @@
 							} );
 						}
 
-						// Different error, pass on to let caller handle the error code
-						return this;
+						// Let caller handle the error code
+						return $.Deferred().reject( code, result, jqXHR );
 					}
 				);
 			} ).promise( { abort: function () {
@@ -363,6 +363,10 @@
 			promiseGroup = promises[ this.defaults.ajax.url ];
 			d = promiseGroup && promiseGroup[ type + 'Token' ];
 
+			if ( !promiseGroup ) {
+				promiseGroup = promises[ this.defaults.ajax.url ] = {};
+			}
+
 			if ( !d ) {
 				apiPromise = this.get( {
 					action: 'query',
@@ -378,20 +382,17 @@
 						}
 
 						return res.query.tokens[ type + 'token' ];
-					}, function () {
+					}, function ( code, result, jqXHR ) {
 						// Clear promise. Do not cache errors.
 						delete promiseGroup[ type + 'Token' ];
 
-						// Pass on to allow the caller to handle the error
-						return this;
+						// Let caller handle the error code
+						return $.Deferred().reject( code, result, jqXHR );
 					} )
 					// Attach abort handler
 					.promise( { abort: apiPromise.abort } );
 
 				// Store deferred now so that we can use it again even if it isn't ready yet
-				if ( !promiseGroup ) {
-					promiseGroup = promises[ this.defaults.ajax.url ] = {};
-				}
 				promiseGroup[ type + 'Token' ] = d;
 			}
 
