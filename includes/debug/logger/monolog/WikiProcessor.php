@@ -29,17 +29,6 @@ namespace MediaWiki\Logger\Monolog;
  * @copyright © 2013 Bryan Davis and Wikimedia Foundation.
  */
 class WikiProcessor {
-	/** @var array Keys which should not be used in log context */
-	protected $reservedKeys = [
-		// from monolog:src/Monolog/Formatter/LogstashFormatter.php#L71-L88
-		'message', 'channel', 'level', 'type',
-		// from WebProcessor
-		'url', 'ip', 'http_method', 'server', 'referrer',
-		// from WikiProcessor
-		'host', 'wiki', 'reqId', 'mwversion',
-		// from config magic
-		'normalized_message',
-	];
 
 	/**
 	 * @param array $record
@@ -47,15 +36,6 @@ class WikiProcessor {
 	 */
 	public function __invoke( array $record ) {
 		global $wgVersion;
-
-		// some log aggregators such as Logstash will merge the log context into the main
-		// metadata and end up overwriting the data coming from processors
-		foreach ( $this->reservedKeys as $key ) {
-			if ( isset( $record['context'][$key] ) ) {
-				wfLogWarning( __METHOD__ . ": '$key' key overwritten in log context." );
-			}
-		}
-
 		$record['extra'] = array_merge(
 			$record['extra'],
 			[
@@ -67,4 +47,5 @@ class WikiProcessor {
 		);
 		return $record;
 	}
+
 }
