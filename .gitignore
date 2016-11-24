@@ -43,6 +43,7 @@ sftp-config.json
 
 # Building & testing
 node_modules/
+npm-debug.log
 /tests/phpunit/phpunit.phar
 
 # Composer
