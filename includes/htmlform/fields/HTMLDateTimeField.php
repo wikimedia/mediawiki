@@ -52,22 +52,16 @@ class HTMLDateTimeField extends HTMLTextField {
 			$min = $this->parseDate( $this->mParams['min'] );
 			if ( $min ) {
 				$ret['min'] = $this->formatDate( $min );
-				// Because Html::expandAttributes filters it out
-				$ret['data-min'] = $ret['min'];
 			}
 		}
 		if ( in_array( 'max', $list ) && isset( $this->mParams['max'] ) ) {
 			$max = $this->parseDate( $this->mParams['max'] );
 			if ( $max ) {
 				$ret['max'] = $this->formatDate( $max );
-				// Because Html::expandAttributes filters it out
-				$ret['data-max'] = $ret['max'];
 			}
 		}
 
 		$ret['step'] = 1;
-		// Because Html::expandAttributes filters it out
-		$ret['data-step'] = 1;
 
 		$ret['type'] = $this->mType;
 		$ret['pattern'] = static::$patterns[$this->mType];
