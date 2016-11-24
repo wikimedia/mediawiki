@@ -80,4 +80,31 @@ class LogstashFormatter extends \Monolog\Formatter\LogstashFormatter {
 		}
 		return $fields;
 	}
+
+	/**
+	 * Use a more user-friendly trace format than NormalizerFormatter
+	 * @param \Exception|\Throwable $e
+	 * @return array
+	 */
+	protected function normalizeException( $e ) {
+		if ( !$e instanceof \Exception && !$e instanceof \Throwable ) {
+			throw new \InvalidArgumentException( 'Exception/Throwable expected, got '
+				. gettype( $e ) . ' / ' . get_class( $e ) );
+		}
+
+		$data = [
+			'id' => \WebRequest::getRequestId(),
+			'class' => get_class( $e ),
+			'message' => $e->getMessage(),
+			'code' => $e->getCode(),
+			'file' => $e->getFile() . ':' . $e->getLine(),
+			'trace' => \MWExceptionHandler::getRedactedTraceAsString( $e ),
+		];
+
+		if ( $previous = $e->getPrevious() ) {
+			$data['previous'] = $this->normalizeException( $previous );
+		}
+
+		return $data;
+	}
 }
