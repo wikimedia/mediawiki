@@ -6,6 +6,7 @@ namespace MediaWiki\Logger\Monolog;
  * LogstashFormatter squashes the base message array and the context and extras subarrays into one.
  * This can result in unfortunately named context fields overwriting other data (T145133).
  * This class modifies the standard LogstashFormatter to rename such fields and flag the message.
+ * Also changes exception JSON-ification which is done poorly by the standard class.
  *
  * Compatible with Monolog 1.x only.
  *
@@ -79,5 +80,32 @@ class LogstashFormatter extends \Monolog\Formatter\LogstashFormatter {
 			$fields[$key] = $val;
 		}
 		return $fields;
+	}
+
+	/**
+	 * Use a more user-friendly trace format than NormalizerFormatter
+	 * @param \Exception|\Throwable $e
+	 * @return array
+	 */
+	protected function normalizeException( $e ) {
+		if ( !$e instanceof \Exception && !$e instanceof \Throwable ) {
+			throw new \InvalidArgumentException( 'Exception/Throwable expected, got '
+				. gettype( $e ) . ' / ' . get_class( $e ) );
+		}
+
+		$data = [
+			'id' => \WebRequest::getRequestId(),
+			'class' => get_class( $e ),
+			'message' => $e->getMessage(),
+			'code' => $e->getCode(),
+			'file' => $e->getFile() . ':' . $e->getLine(),
+			'trace' => \MWExceptionHandler::getRedactedTraceAsString( $e ),
+		];
+
+		if ( $previous = $e->getPrevious() ) {
+			$data['previous'] = $this->normalizeException( $previous );
+		}
+
+		return $data;
 	}
 }
