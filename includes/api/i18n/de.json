@@ -928,6 +928,7 @@
 	"api-help-param-upload": "Muss als Dateiupload mithilfe eines multipart/form-data-Formular bereitgestellt werden.",
 	"api-help-param-multi-separate": "Werte mit <kbd>|</kbd> trennen oder [[Special:ApiHelp/main#main/datatypes|Alternative]].",
 	"api-help-param-multi-max": "Maximale Anzahl der Werte ist {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} für Bots).",
+	"api-help-param-multi-all": "Um alle Werte anzugeben, verwende <kbd>$1</kbd>.",
 	"api-help-param-default": "Standard: $1",
 	"api-help-param-default-empty": "Standard: <span class=\"apihelp-empty\">(leer)</span>",
 	"api-help-param-token": "Ein „$1“-Token abgerufen von [[Special:ApiHelp/query+tokens|action=query&meta=tokens]]",

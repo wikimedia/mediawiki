@@ -1835,6 +1835,8 @@
 	"apisandbox-continue-clear": "ניקוי",
 	"apisandbox-continue-help": "\"{{int:apisandbox-continue}}\" [https://www.mediawiki.org/wiki/API:Query#Continuing_queries ימשיך] את הבקשה האחרונה; \"{{int:apisandbox-continue-clear}}\" ינקה את הפרמטרים הקשורים להמשך.",
 	"apisandbox-param-limit": "יש לכתוב <kbd>max</kbd> כדי להשתמש בערך המרבי האפשרי.",
+	"apisandbox-multivalue-all-namespaces": "$1 (כל מרחבי השם)",
+	"apisandbox-multivalue-all-values": "$1 (כל הערכים)",
 	"booksources": "משאבי ספרות חיצוניים",
 	"booksources-search-legend": "חיפוש משאבי ספרות חיצוניים",
 	"booksources-isbn": "מסת\"ב (ISBN):",

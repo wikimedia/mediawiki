@@ -1754,6 +1754,7 @@
 	"apisandbox-continue": "Virufueren",
 	"apisandbox-continue-clear": "Eidel maachen",
 	"apisandbox-param-limit": "Gitt <kbd>max</kbd> fir déi maximal Limite ze benotzen.",
+	"apisandbox-multivalue-all-values": "$1 (All Wäerter)",
 	"booksources": "Bicherreferenzen",
 	"booksources-search-legend": "No Bicherreferenze sichen",
 	"booksources-search": "Sichen",

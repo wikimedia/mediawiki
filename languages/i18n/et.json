@@ -2588,6 +2588,7 @@
 	"newimages-label": "Failinimi (või selle osa):",
 	"newimages-showbots": "Näita robotite üles laaditud faile",
 	"noimages": "Uusi pilte ei ole.",
+	"gallery-slideshow-toggle": "Lülita pisipildid ümber",
 	"ilsubmit": "Otsi",
 	"bydate": "kuupäeva järgi",
 	"sp-newimages-showfrom": "Näita uusi faile alates kuupäevast $2, kell $1",

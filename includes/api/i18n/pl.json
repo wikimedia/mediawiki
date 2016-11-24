@@ -539,6 +539,7 @@
 	"api-help-param-integer-minmax": "{{PLURAL:$1|1=Wartość musi|2=Wartości muszą}} być pomiędzy $2 a $3.",
 	"api-help-param-multi-separate": "Oddziel wartości za pomocą <kbd>|</kbd> lub [[Special:ApiHelp/main#main/datatypes|alternatywy]].",
 	"api-help-param-multi-max": "Maksymalna liczba wartości to {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} dla botów).",
+	"api-help-param-multi-all": "Aby wskazać wszystkie wartości, użyj <kbd>$1</kbd>.",
 	"api-help-param-default": "Domyślnie: $1",
 	"api-help-param-default-empty": "Domyślnie: <span class=\"apihelp-empty\">(puste)</span>",
 	"api-help-param-token": "Token \"$1\" zdobyty z [[Special:ApiHelp/query+tokens|action=query&meta=tokens]]",
