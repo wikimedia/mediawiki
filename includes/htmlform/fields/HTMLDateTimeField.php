@@ -36,17 +36,17 @@ class HTMLDateTimeField extends HTMLTextField {
 			throw new InvalidArgumentException( "Invalid type '$this->mType'" );
 		}
 
+		if ( $this->mPlaceholder === '' ) {
+			// Messages: htmlform-date-placeholder htmlform-time-placeholder htmlform-datetime-placeholder
+			$this->mPlaceholder = $this->msg( "htmlform-{$this->mType}-placeholder" )->text();
+		}
+
 		$this->mClass .= ' mw-htmlform-datetime-field';
 	}
 
 	public function getAttributes( array $list ) {
 		$parentList = array_diff( $list, [ 'min', 'max' ] );
 		$ret = parent::getAttributes( $parentList );
-
-		if ( in_array( 'placeholder', $list ) && !isset( $ret['placeholder'] ) ) {
-			// Messages: htmlform-date-placeholder htmlform-time-placeholder htmlform-datetime-placeholder
-			$ret['placeholder'] = $this->msg( "htmlform-{$this->mType}-placeholder" )->text();
-		}
 
 		if ( in_array( 'min', $list ) && isset( $this->mParams['min'] ) ) {
 			$min = $this->parseDate( $this->mParams['min'] );
