@@ -3,7 +3,8 @@
   "scripts": {
     "test": "grunt test",
     "doc": "jsduck",
-    "postdoc": "grunt copy:jsduck"
+    "postdoc": "grunt copy:jsduck",
+    "selenium": "grunt mochaTest"
   },
   "devDependencies": {
     "eslint-config-wikimedia": "0.3.0",
@@ -20,6 +21,7 @@
     "karma-firefox-launcher": "1.0.0",
     "karma-qunit": "1.0.0",
     "qunitjs": "1.22.0",
+    "selenium-webdriver": "2.53.3",
     "stylelint-config-wikimedia": "0.3.0"
   }
 }
