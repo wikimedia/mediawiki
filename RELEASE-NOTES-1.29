@@ -37,6 +37,10 @@ production.
   dnsbls, are now indicated as such and use a new i18n message when displayed.
 * Added new $wgHTTPImportTimeout setting. Sets timeout for
   downloading the XML dump during a transwiki import in seconds.
+* HTML5 form validation attributes will no longer be suppressed. Originally
+  browsers had poor support for them, but modern browsers handle them fine.
+  This might affect some forms that used them and only worked because the
+  attributes were not actually being set.
 
 === External library changes in 1.29 ===
 
