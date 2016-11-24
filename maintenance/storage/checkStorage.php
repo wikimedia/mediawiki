@@ -21,6 +21,8 @@
  * @ingroup Maintenance ExternalStorage
  */
 
+use MediaWiki\MediaWikiServices;
+
 if ( !defined( 'MEDIAWIKI' ) ) {
 	$optionsWithoutArgs = [ 'fix' ];
 	require_once __DIR__ . '/../commandLine.inc';
@@ -470,7 +472,7 @@ class CheckStorage {
 		$source = new ImportStreamSource( $file );
 		$importer = new WikiImporter(
 			$source,
-			ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
+			MediaWikiServices::getInstance()->getMainConfig()
 		);
 		$importer->setRevisionCallback( [ $this, 'importRevision' ] );
 		$importer->doImport();

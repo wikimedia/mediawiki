@@ -1,4 +1,6 @@
 <?php
+use MediaWiki\MediaWikiServices;
+
 /**
  * Handles compiling Mustache templates into PHP rendering functions
  *
@@ -98,7 +100,7 @@ class TemplateParser {
 		$fastHash = md5( $fileContents );
 
 		// Fetch a secret key for building a keyed hash of the PHP code
-		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$secretKey = $config->get( 'SecretKey' );
 
 		if ( $secretKey ) {

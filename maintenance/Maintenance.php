@@ -498,7 +498,7 @@ abstract class Maintenance {
 	 */
 	public function getConfig() {
 		if ( $this->config === null ) {
-			$this->config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+			$this->config = MediaWikiServices::getInstance()->getMainConfig();
 		}
 
 		return $this->config;

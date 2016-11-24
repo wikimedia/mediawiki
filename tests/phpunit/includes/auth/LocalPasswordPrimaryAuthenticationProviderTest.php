@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group AuthManager
  * @group Database
@@ -28,7 +30,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		}
 		$config = new \MultiConfig( [
 			$this->config,
-			\ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
+			MediaWikiServices::getInstance()->getMainConfig()
 		] );
 
 		if ( !$this->manager ) {

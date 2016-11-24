@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
@@ -140,7 +141,7 @@ class EmptyResourceLoader extends ResourceLoader {
 	// and default registrations are done from ServiceWiring instead.
 	public function __construct( Config $config = null, LoggerInterface $logger = null ) {
 		$this->setLogger( $logger ?: new NullLogger() );
-		$this->config = $config ?: ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+		$this->config = $config ?: MediaWikiServices::getInstance()->getMainConfig();
 		$this->setMessageBlobStore( new MessageBlobStore( $this, $this->getLogger() ) );
 	}
 }

@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group AuthManager
  * @group Database
@@ -17,7 +19,8 @@ class LegacyHookPreAuthenticationProviderTest extends \MediaWikiTestCase {
 		$request->expects( $this->any() )->method( 'getIP' )->will( $this->returnValue( '127.0.0.42' ) );
 
 		$manager = new AuthManager(
-			$request, \ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
+			$request,
+			MediaWikiServices::getInstance()->getMainConfig()
 		);
 
 		$provider = new LegacyHookPreAuthenticationProvider();

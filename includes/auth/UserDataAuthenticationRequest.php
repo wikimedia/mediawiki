@@ -21,6 +21,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MediaWikiServices;
 use StatusValue;
 use User;
 
@@ -38,7 +39,7 @@ class UserDataAuthenticationRequest extends AuthenticationRequest {
 	public $realname;
 
 	public function getFieldInfo() {
-		$config = \ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$ret = [
 			'email' => [
 				'type' => 'string',

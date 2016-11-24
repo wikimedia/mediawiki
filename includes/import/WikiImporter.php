@@ -23,6 +23,7 @@
  * @file
  * @ingroup SpecialPage
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * XML file reader for the page data importer.
@@ -59,7 +60,7 @@ class WikiImporter {
 		$this->reader = new XMLReader();
 		if ( !$config ) {
 			wfDeprecated( __METHOD__ . ' without a Config instance', '1.25' );
-			$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+			$config = MediaWikiServices::getInstance()->getMainConfig();
 		}
 		$this->config = $config;
 

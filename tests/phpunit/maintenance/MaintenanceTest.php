@@ -5,6 +5,7 @@
 // without changing the visibility and without working around hacks in
 // Maintenance.php
 // For the same reason, we cannot just use FakeMaintenance.
+use MediaWiki\MediaWikiServices;
 
 /**
  * makes parts of the API of Maintenance that is hidden by protected visibily
@@ -826,7 +827,7 @@ class MaintenanceTest extends MediaWikiTestCase {
 	public function testGetConfig() {
 		$this->assertInstanceOf( 'Config', $this->m->getConfig() );
 		$this->assertSame(
-			ConfigFactory::getDefaultInstance()->makeConfig( 'main' ),
+			MediaWikiServices::getInstance()->getMainConfig(),
 			$this->m->getConfig()
 		);
 	}
