@@ -46,6 +46,10 @@ production.
   of the page being parsed.
 * Added JavaScript that provides as-you-type suggestions for reason
   on the block, delete and protect forms.
+* HTML5 form validation attributes will no longer be suppressed. Originally
+  browsers had poor support for them, but modern browsers handle them fine.
+  This might affect some forms that used them and only worked because the
+  attributes were not actually being set.
 
 === External library changes in 1.29 ===
 
@@ -171,6 +175,7 @@ changes to languages because of Phabricator reports.
 * Linker::getInternalLinkAttributesObj() (deprecated since 1.25) was removed.
 * Linker::getLinkAttributesInternal() (deprecated since 1.25) was removed.
 * RedisConnectionPool::handleException (deprecated since 1.23) was removed.
+
 == Compatibility ==
 
 MediaWiki 1.29 requires PHP 5.5.9 or later. There is experimental support for
