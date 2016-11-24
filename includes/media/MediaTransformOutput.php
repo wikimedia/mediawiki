@@ -476,6 +476,10 @@ class MediaTransformError extends MediaTransformOutput {
 	function isError() {
 		return true;
 	}
+
+	function getHttpStatusCode() {
+		return 500;
+	}
 }
 
 /**
@@ -489,6 +493,10 @@ class TransformParameterError extends MediaTransformError {
 			max( isset( $params['width'] ) ? $params['width'] : 0, 120 ),
 			max( isset( $params['height'] ) ? $params['height'] : 0, 120 ),
 			wfMessage( 'thumbnail_invalid_params' )->text() );
+	}
+
+	function getHttpStatusCode() {
+		return 400;
 	}
 }
 
@@ -510,5 +518,9 @@ class TransformTooBigImageAreaError extends MediaTransformError {
 					$maxImageArea, 1000, "size-$1pixel" )
 				)->text()
 			);
+	}
+
+	function getHttpStatusCode() {
+		return 400;
 	}
 }
