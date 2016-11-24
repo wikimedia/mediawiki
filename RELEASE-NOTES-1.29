@@ -18,6 +18,10 @@ production.
 === New features in 1.29 ===
 * (T5233) A cookie can now be set when a user is autoblocked, to track that user if
   they move to a new IP address. This is disabled by default.
+* HTML5 form validation attributes will no longer be suppressed. Originally
+  browsers had poor support for them, but modern browsers handle them fine.
+  This might affect some forms that used them and only worked because the
+  attributes were not actually being set.
 
 === External library changes in 1.29 ===
 
