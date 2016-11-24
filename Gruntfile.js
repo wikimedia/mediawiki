@@ -1,16 +1,21 @@
 /* eslint-env node */
 
+process.env.NODE_CONFIG_DIR = './tests/selenium/config';
+
 module.exports = function ( grunt ) {
 
 	var wgServer = process.env.MW_SERVER,
 		wgScriptPath = process.env.MW_SCRIPT_PATH,
-		karmaProxy = {};
+		karmaProxy = {},
+		config = require( 'config' ),
+		mochaTestOptions = config.get( 'mochaTestOptions' );
 
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-contrib-copy' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-eslint' );
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
+	grunt.loadNpmTasks( 'grunt-mocha-test' );
 	grunt.loadNpmTasks( 'grunt-karma' );
 	grunt.loadNpmTasks( 'grunt-stylelint' );
 
@@ -25,6 +30,7 @@ module.exports = function ( grunt ) {
 				'**/*.js',
 				'!docs/**',
 				'!tests/**',
+				'tests/selenium/**/*.js',
 				'!node_modules/**',
 				'!resources/lib/**',
 				'!resources/src/jquery.tipsy/**',
@@ -100,6 +106,15 @@ module.exports = function ( grunt ) {
 				rename: function ( dest, src ) {
 					return require( 'path' ).join( dest, src.replace( 'resources/', '' ) );
 				}
+			}
+		},
+		mochaTest: {
+			test: {
+				options: mochaTestOptions,
+				src: [
+					'tests/selenium/**/*.js',
+					'extensions/**/tests/selenium/**/*.js'
+				]
 			}
 		}
 	} );
