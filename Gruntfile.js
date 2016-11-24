@@ -4,13 +4,15 @@ module.exports = function ( grunt ) {
 
 	var wgServer = process.env.MW_SERVER,
 		wgScriptPath = process.env.MW_SCRIPT_PATH,
-		karmaProxy = {};
+		karmaProxy = {},
+		mochaTestOptions;
 
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-contrib-copy' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-eslint' );
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
+	grunt.loadNpmTasks( 'grunt-mocha-test' );
 	grunt.loadNpmTasks( 'grunt-karma' );
 	grunt.loadNpmTasks( 'grunt-stylelint' );
 
@@ -19,12 +21,32 @@ module.exports = function ( grunt ) {
 		changeOrigin: true
 	};
 
+	if ( process.env.JENKINS_HOME ) {
+	// Jenkins
+		mochaTestOptions =
+		{
+			captureFile: process.env.WORKSPACE + '/log/junit.xml',
+			reporter: 'xunit',
+			slow: 10000,
+			timeout: 20000
+		};
+	} else {
+	// MediaWiki-Vagrant
+		mochaTestOptions =
+		{
+			reporter: 'spec',
+			slow: 10000,
+			timeout: 20000
+		};
+	}
+
 	grunt.initConfig( {
 		eslint: {
 			all: [
 				'**/*.js',
 				'!docs/**',
 				'!tests/**',
+				'tests/selenium/**/*.js',
 				'!node_modules/**',
 				'!resources/lib/**',
 				'!resources/src/jquery.tipsy/**',
@@ -100,6 +122,16 @@ module.exports = function ( grunt ) {
 				rename: function ( dest, src ) {
 					return require( 'path' ).join( dest, src.replace( 'resources/', '' ) );
 				}
+			}
+		},
+		mochaTest: {
+			test: {
+				options:
+				mochaTestOptions,
+				src: [
+					'tests/selenium/**/*.js',
+					'extensions/**/tests/selenium/**/*.js'
+				]
 			}
 		}
 	} );
