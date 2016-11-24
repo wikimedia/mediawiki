@@ -1,5 +1,10 @@
 /* eslint-env node */
 
+process.env.NODE_CONFIG_DIR = './tests/selenium/config';
+if ( process.env.JENKINS_HOME ) {
+	process.env.NODE_ENV = 'jenkins';
+}
+
 module.exports = function ( grunt ) {
 
 	var wgServer = process.env.MW_SERVER,
@@ -11,6 +16,7 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-eslint' );
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
+	grunt.loadNpmTasks( 'grunt-mocha-test' );
 	grunt.loadNpmTasks( 'grunt-karma' );
 	grunt.loadNpmTasks( 'grunt-stylelint' );
 
@@ -25,6 +31,7 @@ module.exports = function ( grunt ) {
 				'**/*.js',
 				'!docs/**',
 				'!tests/**',
+				'tests/selenium/**/*.js',
 				'!node_modules/**',
 				'!resources/lib/**',
 				'!resources/src/jquery.tipsy/**',
@@ -103,6 +110,16 @@ module.exports = function ( grunt ) {
 				rename: function ( dest, src ) {
 					return require( 'path' ).join( dest, src.replace( 'resources/', '' ) );
 				}
+			}
+		},
+		mochaTest: {
+			test: {
+				options: require( 'config' ).get( 'mochaTestOptions' ),
+				src: [
+					'tests/selenium/**/*.js',
+					'extensions/*/tests/selenium/**/*.js',
+					'extensions/VisualEditor/modules/ve-mw/tests/selenium/**/*.js'
+				]
 			}
 		}
 	} );
