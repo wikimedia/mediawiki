@@ -11,6 +11,7 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-eslint' );
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
+	grunt.loadNpmTasks( 'grunt-mocha-test' );
 	grunt.loadNpmTasks( 'grunt-karma' );
 	grunt.loadNpmTasks( 'grunt-stylelint' );
 
@@ -22,6 +23,7 @@ module.exports = function ( grunt ) {
 				'**/*.js',
 				'!docs/**',
 				'!tests/**',
+				'tests/selenium/**',
 				'!node_modules/**',
 				'!resources/lib/**',
 				'!resources/src/jquery.tipsy/**',
@@ -98,6 +100,16 @@ module.exports = function ( grunt ) {
 					return require( 'path' ).join( dest, src.replace( 'resources/', '' ) );
 				}
 			}
+		},
+		mochaTest: {
+			test: {
+				options: {
+					reporter: 'xunit',
+					captureFile: process.env.WORKSPACE + '/log/junit.xml',
+					timeout: 10000
+				},
+				src: [ 'tests/selenium/**/*.js' ]
+			}
 		}
 	} );
 
@@ -116,6 +128,7 @@ module.exports = function ( grunt ) {
 
 	grunt.registerTask( 'lint', [ 'eslint', 'banana', 'stylelint' ] );
 	grunt.registerTask( 'qunit', [ 'assert-mw-env', 'karma:main' ] );
+	grunt.registerTask( 'selenium', [ 'mochaTest' ] );
 
 	grunt.registerTask( 'test', [ 'lint' ] );
 	grunt.registerTask( 'default', 'test' );
