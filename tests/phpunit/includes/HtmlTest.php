@@ -633,35 +633,6 @@ class HtmlTest extends MediaWikiTestCase {
 		return $ret;
 	}
 
-	/**
-	 * @covers Html::expandAttributes
-	 */
-	public function testFormValidationBlacklist() {
-		$this->assertEmpty(
-			Html::expandAttributes( [
-				'min' => 1,
-				'max' => 100,
-				'pattern' => 'abc',
-				'required' => true,
-				'step' => 2
-			] ),
-			'Blacklist form validation attributes.'
-		);
-		$this->assertEquals(
-			' step="any"',
-			Html::expandAttributes(
-				[
-					'min' => 1,
-					'max' => 100,
-					'pattern' => 'abc',
-					'required' => true,
-					'step' => 'any'
-				],
-				'Allow special case "step=any".'
-			)
-		);
-	}
-
 	public function testWrapperInput() {
 		$this->assertEquals(
 			'<input type="radio" value="testval" name="testname"/>',
