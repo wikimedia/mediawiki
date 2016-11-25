@@ -641,7 +641,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @return HTMLForm
 	 */
 	protected function getAuthForm( array $requests, $action, $msg = '', $msgType = 'error' ) {
-		global $wgSecureLogin, $wgLoginLanguageSelector;
+		global $wgSecureLogin;
 		// FIXME merge this with parent
 
 		if ( isset( $this->authForm ) ) {
@@ -667,7 +667,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$form = HTMLForm::factory( 'vform', $formDescriptor, $context );
 
 		$form->addHiddenField( 'authAction', $this->authAction );
-		if ( $wgLoginLanguageSelector && $this->mLanguage ) {
+		if ( $this->mLanguage ) {
 			$form->addHiddenField( 'uselang', $this->mLanguage );
 		}
 		$form->addHiddenField( 'force', $this->securityLevel );
@@ -702,7 +702,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 */
 	protected function getFakeTemplate( $msg, $msgType ) {
 		global $wgAuth, $wgEnableEmail, $wgHiddenPrefs, $wgEmailConfirmToEdit, $wgEnableUserEmail,
-			   $wgSecureLogin, $wgLoginLanguageSelector, $wgPasswordResetRoutes;
+			   $wgSecureLogin, $wgPasswordResetRoutes;
 
 		// make a best effort to get the value of fields which used to be fixed in the old login
 		// template but now might or might not exist depending on what providers are used
@@ -760,7 +760,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		# Don't show a "create account" link if the user can't.
 		if ( $this->showCreateAccountLink() ) {
 			# Pass any language selection on to the mode switch link
-			if ( $wgLoginLanguageSelector && $this->mLanguage ) {
+			if ( $this->mLanguage ) {
 				$linkq .= '&uselang=' . $this->mLanguage;
 			}
 			// Supply URL, login template creates the button.
@@ -892,7 +892,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @return array
 	 */
 	protected function getFieldDefinitions( $template ) {
-		global $wgEmailConfirmToEdit, $wgLoginLanguageSelector;
+		global $wgEmailConfirmToEdit;
 
 		$isLoggedIn = $this->getUser()->isLoggedIn();
 		$continuePart = $this->isContinued() ? 'continue-' : '';
@@ -1148,7 +1148,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				$linkTitle = $this->getTitleFor( $this->isSignup() ? 'Userlogin' :'CreateAccount' );
 				$linkq = $this->getReturnToQueryStringFragment();
 				// Pass any language selection on to the mode switch link
-				if ( $wgLoginLanguageSelector && $this->mLanguage ) {
+				if ( $this->mLanguage ) {
 					$linkq .= '&uselang=' . $this->mLanguage;
 				}
 				$loggedIn = $this->getUser()->isLoggedIn();
