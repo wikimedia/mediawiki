@@ -2844,7 +2844,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function doDeleteArticleReal(
 		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', User $user = null,
-		$tags = []
+		$tags = [], $logsubtype = 'delete'
 	) {
 		global $wgUser, $wgContentHandlerUseDB;
 
@@ -2975,7 +2975,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// Log the deletion, if the page was suppressed, put it in the suppression log instead
 		$logtype = $suppress ? 'suppress' : 'delete';
 
-		$logEntry = new ManualLogEntry( $logtype, 'delete' );
+		$logEntry = new ManualLogEntry( $logtype, $logsubtype );
 		$logEntry->setPerformer( $user );
 		$logEntry->setTarget( $logTitle );
 		$logEntry->setComment( $reason );
