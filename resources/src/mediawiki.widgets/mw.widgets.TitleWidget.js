@@ -6,16 +6,6 @@
  */
 ( function ( $, mw ) {
 
-	var interwikiPrefixesPromise = new mw.Api().get( {
-		action: 'query',
-		meta: 'siteinfo',
-		siprop: 'interwikimap'
-	} ).then( function ( data ) {
-		return $.map( data.query.interwikimap, function ( interwiki ) {
-			return interwiki.prefix;
-		} );
-	} );
-
 	/**
 	 * Mixin for title widgets
 	 *
@@ -93,6 +83,18 @@
 		this.namespace = namespace;
 	};
 
+	mw.widgets.TitleWidget.prototype.getInterwikiPrefixesPromise = function() {
+		return this.getApi().get( {
+			action: 'query',
+			meta: 'siteinfo',
+			siprop: 'interwikimap'
+		} ).then( function ( data ) {
+			return $.map( data.query.interwikimap, function ( interwiki ) {
+				return interwiki.prefix;
+			} );
+		} );
+	};
+
 	/**
 	 * Get a promise which resolves with an API repsonse for suggested
 	 * links for the current query.
@@ -108,7 +110,7 @@
 			} };
 
 		if ( mw.Title.newFromText( query ) ) {
-			return interwikiPrefixesPromise.then( function ( interwikiPrefixes ) {
+			return this.getInterwikiPrefixesPromise().then( function ( interwikiPrefixes ) {
 				var params,
 					interwiki = query.substring( 0, query.indexOf( ':' ) );
 				if (
@@ -142,11 +144,11 @@
 						params.prop.push( 'pageterms' );
 						params.wbptterms = 'description';
 					}
-					req = new mw.Api().get( params );
+					req = widget.getApi().get( params );
 					promiseAbortObject.abort = req.abort.bind( req ); // TODO ew
 					return req.then( function ( ret ) {
 						if ( ret.query === undefined ) {
-							ret = new mw.Api().get( { action: 'query', titles: query } );
+							ret = widget.getApi().get( { action: 'query', titles: query } );
 							promiseAbortObject.abort = ret.abort.bind( ret );
 						}
 						return ret;
@@ -158,6 +160,15 @@
 			// Just pretend it returned nothing so we can show the 'invalid title' section
 			return $.Deferred().resolve( {} ).promise( promiseAbortObject );
 		}
+	};
+
+	/**
+	 * Get the api for the title requests
+	 *
+	 * @return {mw.Api} MediaWiki API
+	 */
+	mw.widgets.TitleWidget.prototype.getApi = function () {
+		return new mw.Api();
 	};
 
 	/**
