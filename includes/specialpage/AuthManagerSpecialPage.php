@@ -246,7 +246,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 		$this->authAction = $authAction ?: $request->getText( 'authAction' );
 		if ( !in_array( $this->authAction, static::$allowedActions, true ) ) {
 			$this->authAction = $this->getDefaultAction( $subPage );
-			if ( $request->wasPosted() ) {
+			if ( $request->wasPosted() || $subPage === 'return' ) {
 				$continueAction = $this->getContinueAction( $this->authAction );
 				if ( in_array( $continueAction, static::$allowedActions, true ) ) {
 					$this->authAction = $continueAction;
