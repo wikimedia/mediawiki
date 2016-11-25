@@ -34,28 +34,46 @@ use MediaWiki\Session\SessionManager;
  * @ingroup SpecialPage
  */
 abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
+	/** @var string|null Page name to return to after success (from the 'returnto' parameter). */
 	protected $mReturnTo;
-	protected $mPosted;
-	protected $mAction;
-	protected $mLanguage;
+	/** @var string|null Query string to restore after success (from the 'returntoquery'
+	 *    parameter) */
 	protected $mReturnToQuery;
-	protected $mToken;
-	protected $mStickHTTPS;
-	protected $mFromHTTP;
+	/** @var bool Whether the current request was posted. (This is a business logic flag that
+	 *    can in rare instances differ from the actual HTTP request method.) */
+	protected $mPosted;
+	/** @var string|null Interface language (from the 'uselang' parameter). */
+	protected $mLanguage;
+	/** @var string An error message requested by the page redirecting to login/signup
+	 *    (via the 'error' or 'warning' URL parameter). */
 	protected $mEntryError = '';
+	/** @var string Type of $mEntryError ('error' or 'warning'). */
 	protected $mEntryErrorType = 'error';
-
-	protected $mLoaded = false;
-	protected $mLoadedRequest = false;
+	/** @var string When not on HTTPS but the wiki supports it, this is the URL for switching to a
+	 *    secure protocol before continuing. */
 	protected $mSecureLoginUrl;
-
-	/** @var string */
+	/** @var bool Used to remember that the user started on a HTTP connection but was redirected
+	 *    to HTTPS for security, and should be sent back after login is finished. (Preserved via
+	 *    the 'fromhttp' parameter). */
+	protected $mFromHTTP;
+	/** @var bool Keep the user on HTTPS after successful login. Overrides $mFromHTTP in case of
+	 *    conflict. Can be enabled via 'forcehttps' cookie, or the 'prefershttps' user option or
+	 *    the hooks that affect User::requiresHTTPS. */
+	protected $mStickHTTPS;
+	/** @var string Security level / operation type (as in
+	 *    AuthManager::securitySensitiveOperationStatus), from the 'force' URL parameter. */
 	protected $securityLevel;
 
-	/** @var bool True if the user if creating an account for someone else. Flag used for internal
+	/** @var bool Flag to avoid initializing twice. */
+	protected $mLoaded = false;
+	/** @var bool Flag to avoid initializing twice. Separate from $mLoaded because the request
+	 *    can be changed, in which case we want to reinitialize request-dependent data only. */
+	protected $mLoadedRequest = false;
+
+	/** @var bool True if the user is creating an account for someone else. Flag used for internal
 	 * communication, only set at the very end. */
 	protected $proxyAccountCreation;
-	/** @var User FIXME another flag for passing data. */
+	/** @var User If the user is creating an account for another user, this contains that user. */
 	protected $targetUser;
 
 	/** @var HTMLForm */
@@ -106,12 +124,13 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$request = $this->getRequest();
 
 		$this->mPosted = $request->wasPosted();
-		$this->mIsReturn = $subPage === 'return';
-		$this->mAction = $request->getVal( 'action' );
-		$this->mFromHTTP = $request->getBool( 'fromhttp', false )
-			|| $request->getBool( 'wpFromhttp', false );
-		$this->mStickHTTPS = ( !$this->mFromHTTP && $request->getProtocol() === 'https' )
-			|| $request->getBool( 'wpForceHttps', false );
+		$this->mFromHTTP = $request->getBool( 'fromhttp', false );
+		$this->mStickHTTPS =
+			// stick to HTTPS if the user was on that to begin with, or the session is flagged
+			// to prefer HTTPS
+			!$this->mFromHTTP && $request->getProtocol() === 'https'
+			|| $request->getBool( 'wpForceHttps', false )
+			|| $request->getSession()->shouldForceHTTPS();
 		$this->mLanguage = $request->getText( 'uselang' );
 		$this->mReturnTo = $request->getVal( 'returnto', '' );
 		$this->mReturnToQuery = $request->getVal( 'returntoquery', '' );
@@ -123,8 +142,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @param string $subPage Subpage of Special:Userlogin
 	 */
 	protected function load( $subPage ) {
-		global $wgSecureLogin;
-
 		$this->loadRequestParameters( $subPage );
 		if ( $this->mLoaded ) {
 			return;
@@ -142,23 +159,16 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		$this->loadAuth( $subPage );
 
-		$this->mToken = $request->getVal( $this->getTokenName() );
-
 		// Show an error or warning passed on from a previous page
 		$entryError = $this->msg( $request->getVal( 'error', '' ) );
 		$entryWarning = $this->msg( $request->getVal( 'warning', '' ) );
 		// bc: provide login link as a parameter for messages where the translation
 		// was not updated
 		$loginreqlink = Linker::linkKnown(
-			$this->getPageTitle(),
+			SpecialPage::getTitleFor( 'Userlogin' ),
 			$this->msg( 'loginreqlink' )->escaped(),
 			[],
-			[
-				'returnto' => $this->mReturnTo,
-				'returntoquery' => $this->mReturnToQuery,
-				'uselang' => $this->mLanguage ?: null,
-				'fromhttp' => $wgSecureLogin && $this->mFromHTTP ? '1' : null,
-			]
+			$this->getPreservedParams()
 		);
 
 		// Only show valid error or warning messages.
@@ -193,12 +203,15 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		$params = parent::getPreservedParams( $withToken );
 		$params += [
+			'uselang' => $this->mLanguage ?: null,
+			'force' => $this->securityLevel ?: null,
 			'returnto' => $this->mReturnTo ?: null,
 			'returntoquery' => $this->mReturnToQuery ?: null,
+			'fromhttp' => $wgSecureLogin && $this->mFromHTTP ? '1' : null,
 		];
-		if ( $wgSecureLogin && !$this->isSignup() ) {
-			$params['fromhttp'] = $this->mFromHTTP ? '1' : null;
-		}
+		// there is always exactly one default and one continue action so we can just guess the
+		// action from the HTTP method
+		unset( $params['authAction'] );
 		return $params;
 	}
 
@@ -210,6 +223,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 	/**
 	 * @param string|null $subPage
+	 * @throws ErrorPageError
 	 */
 	public function execute( $subPage ) {
 		$authManager = AuthManager::singleton();
@@ -263,7 +277,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			$query = $this->getPreservedParams( false ) + [
 					'title' => null,
 					( $this->mEntryErrorType === 'error' ? 'error'
-						: 'warning' ) => $this->mEntryError,
+						: 'warning' ) => $this->mEntryError ?: null,
 				] + $this->getRequest()->getQueryValues();
 			$url = $title->getFullURL( $query, false, PROTO_HTTPS );
 			if ( $wgSecureLogin && !$this->mFromHTTP &&
@@ -467,7 +481,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	/**
 	 * Replace some globals to make sure the fact that the user has just been logged in is
 	 * reflected in the current request.
-	 * @param User $user
 	 */
 	protected function setSessionUserForCurrentRequest() {
 		global $wgUser, $wgLang;
@@ -505,7 +518,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @private
 	 */
 	protected function mainLoginForm( array $requests, $msg = '', $msgtype = 'error' ) {
-		$titleObj = $this->getPageTitle();
 		$user = $this->getUser();
 		$out = $this->getOutput();
 
@@ -559,7 +571,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		if (
 			!$this->isSignup() &&
 			$this->getUser()->isLoggedIn() &&
-			$this->authAction !== AuthManager::ACTION_LOGIN_CONTINUE
+			!$this->isContinued()
 		) {
 			$reauthMessage = $this->securityLevel ? 'userlogin-reauth' : 'userlogin-loggedin';
 			$submitStatus->warning( $reauthMessage, $this->getUser()->getName() );
@@ -581,7 +593,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		$loginPrompt = $this->isSignup() ? '' : Html::rawElement( 'div',
 			[ 'id' => 'userloginprompt' ], $this->msg( 'loginprompt' )->parseAsBlock() );
-		$languageLinks = $wgLoginLanguageSelector ? $this->makeLanguageSelector() : '';
+		$languageLinks = $wgLoginLanguageSelector && !$this->isContinued() ?
+			$this->makeLanguageSelector() : '';
 		$signupStartMsg = $this->msg( 'signupstart' );
 		$signupStart = ( $this->isSignup() && !$signupStartMsg->isDisabled() )
 			? Html::rawElement( 'div', [ 'id' => 'signupstart' ], $signupStartMsg->parseAsBlock() ) : '';
@@ -648,8 +661,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			return $this->authForm;
 		}
 
-		$usingHTTPS = $this->getRequest()->getProtocol() === 'https';
-
 		// get basic form description from the auth logic
 		$fieldInfo = AuthenticationRequest::mergeFieldInfo( $requests );
 		$fakeTemplate = $this->getFakeTemplate( $msg, $msgType );
@@ -666,22 +677,20 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 		$form = HTMLForm::factory( 'vform', $formDescriptor, $context );
 
+		// Hidden fields will get lost when using the redirect flow. That should be fine:
+		// authAction is guessed correctly, token gets special handling, and forceHttps is
+		// normally stored in the session and only set here for B/C.
 		$form->addHiddenField( 'authAction', $this->authAction );
-		if ( $this->mLanguage ) {
-			$form->addHiddenField( 'uselang', $this->mLanguage );
-		}
-		$form->addHiddenField( 'force', $this->securityLevel );
 		$form->addHiddenField( $this->getTokenName(), $this->getToken()->toString() );
 		if ( $wgSecureLogin ) {
 			// If using HTTPS coming from HTTP, then the 'fromhttp' parameter must be preserved
 			if ( !$this->isSignup() ) {
 				$form->addHiddenField( 'wpForceHttps', (int)$this->mStickHTTPS );
-				$form->addHiddenField( 'wpFromhttp', $usingHTTPS );
 			}
 		}
 
 		// set properties of the form itself
-		$form->setAction( $this->getPageTitle()->getLocalURL( $this->getReturnToQueryStringFragment() ) );
+		$form->setAction( $this->getPageTitle()->getLocalURL( $this->getPreservedParams() ) );
 		$form->setName( 'userlogin' . ( $this->isSignup() ? '2' : '' ) );
 		if ( $this->isSignup() ) {
 			$form->setId( 'userlogin2' );
@@ -1146,11 +1155,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			if ( $this->showCreateAccountLink() ) {
 				// link to the other action
 				$linkTitle = $this->getTitleFor( $this->isSignup() ? 'Userlogin' :'CreateAccount' );
-				$linkq = $this->getReturnToQueryStringFragment();
-				// Pass any language selection on to the mode switch link
-				if ( $this->mLanguage ) {
-					$linkq .= '&uselang=' . $this->mLanguage;
-				}
+				$linkq = $this->getPreservedParams();
 				$loggedIn = $this->getUser()->isLoggedIn();
 
 				$fieldDefinitions['createOrLogin'] = [
@@ -1234,21 +1239,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	}
 
 	/**
-	 * Returns a string that can be appended to the URL (without encoding) to preserve the
-	 * return target. Does not include leading '?'/'&'.
-	 */
-	protected function getReturnToQueryStringFragment() {
-		$returnto = '';
-		if ( $this->mReturnTo !== '' ) {
-			$returnto = 'returnto=' . wfUrlencode( $this->mReturnTo );
-			if ( $this->mReturnToQuery !== '' ) {
-				$returnto .= '&returntoquery=' . wfUrlencode( $this->mReturnToQuery );
-			}
-		}
-		return $returnto;
-	}
-
-	/**
 	 * Whether the login/create account form should display a link to the
 	 * other form (in addition to whatever the skin provides).
 	 * @return bool
@@ -1294,7 +1284,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 	/**
 	 * Create a language selector link for a particular language
-	 * Links back to this page preserving type and returnto
 	 *
 	 * @param string $text Link text
 	 * @param string $lang Language code
@@ -1305,11 +1294,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			// no link for currently used language
 			return htmlspecialchars( $text );
 		}
-		$query = [ 'uselang' => $lang ];
-		if ( $this->mReturnTo !== '' ) {
-			$query['returnto'] = $this->mReturnTo;
-			$query['returntoquery'] = $this->mReturnToQuery;
-		}
+		$query = [ 'uselang' => $lang ] + $this->getPreservedParams();
 
 		$attr = [];
 		$targetLanguage = Language::factory( $lang );
@@ -1329,6 +1314,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 	/**
 	 * @param array $formDescriptor
+	 * @param AuthenticationRequest[] $requests
 	 */
 	protected function postProcessFormDescriptor( &$formDescriptor, $requests ) {
 		// Pre-fill username (if not creating an account, T46775).
