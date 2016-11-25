@@ -1092,12 +1092,9 @@
 	"userrights-reason": "Motivo:",
 	"userrights-no-interwiki": "Tu non ha le permission de modificar le derectos de usatores in altere wikis.",
 	"userrights-nodatabase": "Le base de datos $1 non existe o non es local.",
-	"userrights-nologin": "Tu debe [[Special:UserLogin|aperir un session]] con un conto de administrator pro poter assignar derectos de usator.",
-	"userrights-notallowed": "Tu non ha le permission de adder o remover derectos de usator.",
 	"userrights-changeable-col": "Gruppos que tu pote modificar",
 	"userrights-unchangeable-col": "Gruppos que tu non pote modificar",
 	"userrights-conflict": "Conflicto inter cambiamentos de derectos de usator! Per favor revide e confirma tu cambiamentos.",
-	"userrights-removed-self": "Tu ha removite tu proprie derectos. In consequentia, tu non plus pote acceder a iste pagina.",
 	"group": "Gruppo:",
 	"group-user": "Usatores",
 	"group-autoconfirmed": "Usatores autoconfirmate",
@@ -1812,6 +1809,8 @@
 	"apisandbox-continue-clear": "Rader",
 	"apisandbox-continue-help": "{{int:apisandbox-continue}} [https://www.mediawiki.org/wiki/API:Query#Continuing_queries continuara] le ultime requesta; {{int:apisandbox-continue-clear}} radera le parametros relative al continuation.",
 	"apisandbox-param-limit": "Scribe <kbd>max</kbd> pro usar le limite maxime.",
+	"apisandbox-multivalue-all-namespaces": "$1 (Tote le spatios de nomines)",
+	"apisandbox-multivalue-all-values": "$1 (Tote le valores)",
 	"booksources": "Fontes de libros",
 	"booksources-search-legend": "Cercar fontes de libros",
 	"booksources-search": "Cercar",
@@ -3639,6 +3638,7 @@
 	"mw-widgets-dateinput-placeholder-month": "AAAA-MM",
 	"mw-widgets-titleinput-description-new-page": "pagina non existe ancora",
 	"mw-widgets-titleinput-description-redirect": "redirection a $1",
+	"mw-widgets-categoryselector-add-category-placeholder": "Adder un categoria…",
 	"sessionmanager-tie": "Impossibile combinar plure typos de authentication de requesta: $1.",
 	"sessionprovider-generic": "sessiones $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sessiones basate sur cookies",
@@ -3769,7 +3769,5 @@
 	"usercssispublic": "Nota ben: Subpaginas CSS non debe continer datos confidential perque altere usatores pote vider los.",
 	"restrictionsfield-badip": "Adresse o intervallo IP non valide: $1",
 	"restrictionsfield-label": "Intervallos IP permittite:",
-	"restrictionsfield-help": "Un adresse IP o intervallo CIDR per linea. Pro activar toto, usa<br><code>0.0.0.0/0</code><br><code>::/0</code>",
-	"edit-error-short": "Error: $1",
-	"edit-error-long": "Errores:\n\n$1"
+	"restrictionsfield-help": "Un adresse IP o intervallo CIDR per linea. Pro activar toto, usa<br><code>0.0.0.0/0</code><br><code>::/0</code>"
 }

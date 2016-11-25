@@ -1100,12 +1100,9 @@
 	"userrights-reason": "Motivo:",
 	"userrights-no-interwiki": "Non ten os permisos necesarios para editar os dereitos de usuario noutros wikis.",
 	"userrights-nodatabase": "A base de datos \"$1\" non existe ou non é local.",
-	"userrights-nologin": "Debe [[Special:UserLogin|acceder ao sistema]] cunta conta de administrador para asignar dereitos de usuario.",
-	"userrights-notallowed": "Non dispón dos permisos necesarios para asignar ou retirar dereitos de usuario.",
 	"userrights-changeable-col": "Os grupos que pode cambiar",
 	"userrights-unchangeable-col": "Os grupos que non pode cambiar",
 	"userrights-conflict": "Hai un conflito na modificación dos dereitos de usuario! Por favor, revíseo e confirme os seus cambios.",
-	"userrights-removed-self": "Retirou os seus propios dereitos. Polo tanto, xa non ten acceso a esta páxina.",
 	"group": "Grupo:",
 	"group-user": "Usuarios",
 	"group-autoconfirmed": "Usuarios autoconfirmados",
@@ -3409,6 +3406,7 @@
 	"htmlform-user-not-exists": "\"<strong>$1</strong>\" non existe.",
 	"htmlform-user-not-valid": "\"<strong>$1</strong>\" non é un nome de usuario válido.",
 	"logentry-delete-delete": "$1 {{GENDER:$2|borrou}} a páxina \"$3\"",
+	"logentry-delete-delete_redir": "$1 {{GENDER:$2|eliminou}} a redirección $3 sobreescribíndoa",
 	"logentry-delete-restore": "$1 {{GENDER:$2|restaurou}} a páxina \"$3\"",
 	"logentry-delete-event": "$1 {{GENDER:$2|mudou}} a visibilidade {{PLURAL:$5|dunha entrada|de $5 entradas}} do rexistro de $3: $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|mudou}} a visibilidade {{PLURAL:$5|dunha revisión|de $5 revisións}} da páxina \"$3\": $4",
@@ -3688,6 +3686,7 @@
 	"log-action-filter-contentmodel-change": "Cambio de modelo de contido",
 	"log-action-filter-contentmodel-new": "Creación de páxins cun modelo de contido non estándar",
 	"log-action-filter-delete-delete": "Borrado de páxinas",
+	"log-action-filter-delete-delete_redir": "Sobreescritura de redirección",
 	"log-action-filter-delete-restore": "Restauración de páxinas",
 	"log-action-filter-delete-event": "Borrado de rexistros",
 	"log-action-filter-delete-revision": "Borrado de revisión",
@@ -3794,7 +3793,5 @@
 	"usercssispublic": "Lembre: As subpáxinas CSS non deberían conter datos confidenciais porque outros usuarios poden velos.",
 	"restrictionsfield-badip": "Enderezo IP ou rango de IP non válido: $1",
 	"restrictionsfield-label": "Rangos de IP permitidos:",
-	"restrictionsfield-help": "Un único enderezo IP ou rango CIDR por liña. Para habilitalos todos, utilice<br><code>0.0.0.0/0</code><br><code>::/0</code>",
-	"edit-error-short": "Erro: $1",
-	"edit-error-long": "Erros:\n\n$1"
+	"restrictionsfield-help": "Un único enderezo IP ou rango CIDR por liña. Para habilitalos todos, utilice<br><code>0.0.0.0/0</code><br><code>::/0</code>"
 }

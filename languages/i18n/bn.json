@@ -1102,12 +1102,9 @@
 	"userrights-reason": "কারণ (বাংলায় লিখুন):",
 	"userrights-no-interwiki": "আপনার অন্য উইকিতে ব্যবহারকারী অধিকার সম্পাদনা করার অনুমতি নেই।",
 	"userrights-nodatabase": "$1 ডাটাবেজটির হয় কোন অস্তিত্ব নেই অথবা এটি স্থানীয় ডাটাবেজ নয়।",
-	"userrights-nologin": "ব্যবহারকারী অধিকার প্রযুক্ত করতে হলে আপনাকে কোন প্রশাসকের অ্যাকাউন্টে [[Special:UserLogin|প্রবেশ]] করতে হবে।",
-	"userrights-notallowed": "আপনার, ব্যবহারকারী অধিকার যুক্ত বা অপসারণ করার অনুমতি নেই।",
 	"userrights-changeable-col": "দল যা আপনি পরিবর্তন করতে পারেন",
 	"userrights-unchangeable-col": "দল যা আপনি পরিবর্তন করতে পারবেন না",
 	"userrights-conflict": "ব্যবহারকারী অধিকার দ্বন্দ্ব! অনুগ্রহ করে নিশ্চিত হোন এবং পুনরায় চেষ্টা করুন।",
-	"userrights-removed-self": "আপনি আপনার নিজের অধিকার পরিবর্তন করেছেন। এর ফলে এখন থেকে আপনি আর এই পাতায় প্রবেশ করতে পারবেন না।",
 	"group": "দল:",
 	"group-user": "ব্যবহারকারীগণ",
 	"group-autoconfirmed": "স্বয়ংনিশ্চিতকৃত ব্যবহারকারীগণ",
@@ -1791,6 +1788,7 @@
 	"apisandbox-alert-field": "এই ক্ষেত্রের মান বৈধ নয়।",
 	"apisandbox-continue": "অব্যাহত",
 	"apisandbox-continue-clear": "পরিস্কার",
+	"apisandbox-multivalue-all-values": "$1 (সব মান)",
 	"booksources": "বইয়ের উৎস",
 	"booksources-search-legend": "বইয়ের উৎসের জন্য অনুসন্ধান করা হোক",
 	"booksources-isbn": "আইএসবিএন:",
@@ -3580,6 +3578,7 @@
 	"mw-widgets-dateinput-placeholder-month": "বববব-মম",
 	"mw-widgets-titleinput-description-new-page": "পাতা এখনো বিদ্যমান নয়",
 	"mw-widgets-titleinput-description-redirect": "$1-এ পুনঃনির্দেশিত",
+	"mw-widgets-categoryselector-add-category-placeholder": "একটি বিষয়শ্রেণী যোগ করুন...",
 	"sessionmanager-tie": "একাধিক অনুরোধের প্রমাণীকরণের ধরন একত্রিত করা যাবে না: $1।",
 	"sessionprovider-generic": "$1টি সেশন",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "কুকি-ভিত্তিক সেশন",
@@ -3675,7 +3674,5 @@
 	"usercssispublic": "অনুগ্রহ করে লক্ষ্য করুন: সিএসএসের উপপাতাগুলিতে গোপনীয় তথ্য থাকা উচিত নয় যেহেতু অন্যান্য ব্যবহারকারীও এগুলি দেখতে পান।",
 	"restrictionsfield-badip": "আইপি ঠিকানা অথবা পরিসীমা অবৈধ: $1",
 	"restrictionsfield-label": "অনুমোদিত আইপি পরিসীমা:",
-	"restrictionsfield-help": "লাইন প্রতি একটি আইপি ঠিকানা বা CIDR পরিসীমা। সবকিছু সক্রিয় করতে<br><code>0.0.0.0/0</code><br><code>::/0</code><br>ব্যবহার করুন",
-	"edit-error-short": "ত্রুটি: $1",
-	"edit-error-long": "ত্রুটিসমূহ:\n\n$1"
+	"restrictionsfield-help": "লাইন প্রতি একটি আইপি ঠিকানা বা CIDR পরিসীমা। সবকিছু সক্রিয় করতে<br><code>0.0.0.0/0</code><br><code>::/0</code><br>ব্যবহার করুন"
 }

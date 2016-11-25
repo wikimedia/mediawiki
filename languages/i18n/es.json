@@ -1233,12 +1233,9 @@
 	"userrights-reason": "Motivo:",
 	"userrights-no-interwiki": "No tienes permiso para editar permisos de usuario en otros wikis.",
 	"userrights-nodatabase": "La base de datos $1 no existe o no es local.",
-	"userrights-nologin": "Debes [[Special:UserLogin|iniciar sesión]] con una cuenta de administrador para poder editar los grupos de los usuarios.",
-	"userrights-notallowed": "No tienes permiso para añadir o quitar permisos de usuario.",
 	"userrights-changeable-col": "Grupos que puedes cambiar",
 	"userrights-unchangeable-col": "Grupos que no puedes cambiar",
 	"userrights-conflict": "¡Conflicto de cambio de los permisos de usuario! Por favor, revisa y confirma tus cambios.",
-	"userrights-removed-self": "Has eliminado tus propios permisos. Por tanto, ya no podrás volver a acceder a esta página.",
 	"group": "Grupo:",
 	"group-user": "Usuarios",
 	"group-autoconfirmed": "Autoconfirmados",
@@ -3932,7 +3929,5 @@
 	"usercssispublic": "Recuerda: las subpáginas CSS no deberían contener datos confidenciales, pues otros usuarios los pueden ver.",
 	"restrictionsfield-badip": "Dirección o intervalo IP no válidos: $1",
 	"restrictionsfield-label": "Intervalos de IP permitidos:",
-	"restrictionsfield-help": "Una dirección IP o intervalo de CIDR por renglón. Para activar todo, utiliza<br><code>0.0.0.0/0</code><br><code>::/0</code>",
-	"edit-error-short": "Error: $1",
-	"edit-error-long": "Errores:\n\n$1"
+	"restrictionsfield-help": "Una dirección IP o intervalo de CIDR por renglón. Para activar todo, utiliza<br><code>0.0.0.0/0</code><br><code>::/0</code>"
 }

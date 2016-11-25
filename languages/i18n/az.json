@@ -887,8 +887,6 @@
 	"userrights-reason": "Səbəb:",
 	"userrights-no-interwiki": "Sizə başqa vikilayihələrdəki istifadəçilərin statusunu dəyişməyə icazə verilməyib",
 	"userrights-nodatabase": "$1 verilənlər bazası ya mövcud deyil, ya da lokal deyil.",
-	"userrights-nologin": "Siz istifadəçilərin hüquqlarını dəyişmək üçün sistemə idarəçi olaraq [[Special:UserLogin|daxil olmalısınız]].",
-	"userrights-notallowed": "Sizin digər istifadəçilərə hüquqlar vermək və ya almaq icazəniz yoxdur.",
 	"userrights-changeable-col": "Dəyişdirə bildiyiniz qruplar",
 	"userrights-unchangeable-col": "Dəyişdirə bilmədiyiniz qruplar",
 	"userrights-irreversible-marker": "$1*",

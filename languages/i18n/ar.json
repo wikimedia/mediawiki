@@ -1146,12 +1146,9 @@
 	"userrights-reason": "السبب:",
 	"userrights-no-interwiki": "أنت لا تمتلك الصلاحية لتعديل صلاحيات المستخدمين على الويكيات الأخرى.",
 	"userrights-nodatabase": "قاعدة البيانات $1 غير موجودة أو ليست محلية.",
-	"userrights-nologin": "يجب عليك [[Special:UserLogin|تسجيل الدخول]] بحساب إداري لتعديل صلاحيات المستخدم.",
-	"userrights-notallowed": "ليس لديك إذن لإضافة أو إزالة صلاحيات المستخدمين.",
 	"userrights-changeable-col": "المجموعات التي يمكنك تغييرها",
 	"userrights-unchangeable-col": "المجموعات التي لا يمكنك تغييرها",
 	"userrights-conflict": "تضارب في تغيير صلاحيات المستخدم! الرجاء مراجعة تغييراتك مجدّدا وتأكيدها.",
-	"userrights-removed-self": "أزلت بنجاح صلاحياتك، ولن تتمكن من الوصول لهذه الصفحة مجددا.",
 	"group": "المجموعة:",
 	"group-user": "مستخدمون",
 	"group-autoconfirmed": "مستخدمون مؤكدون تلقائيا",
@@ -3949,7 +3946,5 @@
 	"usercssispublic": "من فضل لاحظ: صفحات الCSS الفرعية لا ينبغي أن تحتوي على بيانات سرية بما أنها يمكن رؤيتها بواسطة المستخدمين الآخرين.",
 	"restrictionsfield-badip": "عنوان أيبي أو نطاق غير صحيح: $1",
 	"restrictionsfield-label": "نطاقات الأيبي المسموح بها:",
-	"restrictionsfield-help": "عنوان أيبي أو نطاق CIDR واحد لكل سطر. لتفعيل كل شيء، استخدم<br><code>0.0.0.0/0</code><br><code>::/0</code>",
-	"edit-error-short": "خطأ: $1",
-	"edit-error-long": "الأخطاء:\n\n$1"
+	"restrictionsfield-help": "عنوان أيبي أو نطاق CIDR واحد لكل سطر. لتفعيل كل شيء، استخدم<br><code>0.0.0.0/0</code><br><code>::/0</code>"
 }

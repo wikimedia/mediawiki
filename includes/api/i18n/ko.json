@@ -24,6 +24,7 @@
 	"apihelp-main-param-smaxage": "<code>s-maxage</code> HTTP 캐시 컨트롤 헤더를 설정합니다. 오류는 캐시되지 않습니다.",
 	"apihelp-main-param-maxage": "<code>max-age</code> HTTP 캐시 컨트롤 헤더를 설정합니다. 오류는 캐시되지 않습니다.",
 	"apihelp-main-param-assert": "<kbd>user</kbd> 플래그가 설정되어 있다면 로그인 여부를 체크하며, <kbd>bot</kbd>  플래그가 설정되어 있다면 봇 사용자 권한이 설정되어 있는지 확인합니다.",
+	"apihelp-main-param-assertuser": "현재 사용자가 지명된 사용자인지 확인합니다.",
 	"apihelp-main-param-requestid": "주어진 요청 값은 응답에 포함됩니다. 요청을 구분하기 위해 사용될 수 있습니다.",
 	"apihelp-main-param-servedby": "결과에 요청을 처리한 호스트네임을 포함합니다.",
 	"apihelp-main-param-curtimestamp": "결과의 타임스탬프를 포함합니다.",
@@ -144,6 +145,7 @@
 	"apihelp-filerevert-example-revert": "<kbd>Wiki.png</kbd>를 <kbd>2011-03-05T15:27:40Z</kbd> 판으로 되돌립니다.",
 	"apihelp-help-description": "지정된 모듈의 도움말을 보여줍니다.",
 	"apihelp-help-param-helpformat": "도움말 출력 포맷.",
+	"apihelp-help-example-main": "메인 모듈의 도움말입니다.",
 	"apihelp-help-example-recursive": "모든 도움말을 한 페이지로 모읍니다.",
 	"apihelp-imagerotate-description": "하나 이상의 그림을 회전합니다.",
 	"apihelp-imagerotate-param-rotation": "시계 방향으로 회전할 그림의 각도.",
@@ -473,6 +475,7 @@
 	"api-help-param-type-limit": "유형: 정수 또는 <kbd>max</kbd>",
 	"api-help-param-type-integer": "유형: {{PLURAL:$1|1=정수|2=정수 목록}}",
 	"api-help-param-type-boolean": "유형: 부울 ([[Special:ApiHelp/main#main/datatypes|자세한 정보]])",
+	"api-help-param-type-user": "유형: {{PLURAL:$1|1=사용자 이름|2=사용자 이름 목록}}",
 	"api-help-param-list": "{{PLURAL:$1|1=다음 값 중 하나|2=값 (<kbd>{{!}}</kbd>로 구분)}}: $2",
 	"api-help-param-list-can-be-empty": "{{PLURAL:$1|0=비어 있어야 함|비어 있을 수 있거나 $2}}",
 	"api-help-param-limit": "$1 초과는 허용되지 않습니다.",
@@ -492,5 +495,5 @@
 	"api-help-right-apihighlimits": "API 쿼리에서 더 높은 제한 사용 (느린 쿼리: $1, 빠른 쿼리: $2) 느린 쿼리에 대한 제한은 다중값 매개변수에도 적용됩니다.",
 	"api-help-open-in-apisandbox": "<small>[연습장에서 열기]</small>",
 	"api-help-authmanagerhelper-messageformat": "반환 메시지에 사용할 형식.",
-	"api-credits": "API 개발자:\n* Roan Kattouw (선임 개발자, 2007년 9월–2009년)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (초기 개발자, 선임 개발자 2006년 9월~2007년 9월)\n* Brad Jorsch (선임 개발자 2013년–현재)\n\n당신의 의견이나 제안, 질문은 mediawiki-api@lists.wikimedia.org 로 보내주시거나,\nhttps://phabricator.wikimedia.org/ 에 버그 보고를 해 주시기 바랍니다."
+	"api-credits": "API 개발자:\n* Yuri Astrakhan (만든이, 선임 개발자 2006년 9월~2007년 9월)\n* Roan Kattouw (선임 개발자, 2007년 9월–2009년)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (선임 개발자 2013년–현재)\n\n당신의 의견이나 제안, 질문은 mediawiki-api@lists.wikimedia.org 로 보내주시고,\n버그 보고는 https://phabricator.wikimedia.org/ 에 해주시기 바랍니다."
 }

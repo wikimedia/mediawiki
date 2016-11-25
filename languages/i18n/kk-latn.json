@@ -586,8 +586,6 @@
 	"userrights-reason": "Sebebi:",
 	"userrights-no-interwiki": "Basqa wïkïlerdegi paýdalanwşı quqıqtarın öñdewge ruqsatıñız joq.",
 	"userrights-nodatabase": "$1 derekqorı joq ne jergilikti emes.",
-	"userrights-nologin": "Qatıswşı quqıqtarın tağaýındaw üşin äkimşi tirkelgisimen [[{{#special:Userlogin}}|kirwiñiz]] jön.",
-	"userrights-notallowed": "Qatıswşı quqıqtarın tağaýındaw üşin tirkelgiñizde ruqsat joq.",
 	"userrights-changeable-col": "Özgerte alatın toptar",
 	"userrights-unchangeable-col": "Özgerte almaýtın toptar",
 	"group": "Top:",

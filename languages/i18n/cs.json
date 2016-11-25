@@ -1112,12 +1112,9 @@
 	"userrights-reason": "Důvod:",
 	"userrights-no-interwiki": "Nemáte povoleno měnit uživatelská práva na jiných wiki.",
 	"userrights-nodatabase": "Databáze $1 neexistuje nebo není místní.",
-	"userrights-nologin": "Musíte se [[Special:UserLogin|přihlásit]] k účtu správce, abyste mohli měnit uživatelská práva.",
-	"userrights-notallowed": "Nemáte oprávnění měnit uživatelská práva.",
 	"userrights-changeable-col": "Skupiny, které můžete měnit",
 	"userrights-unchangeable-col": "Skupiny, které nemůžete měnit",
 	"userrights-conflict": "Konflikt změn uživatelských práv! Zkontrolujte a potvrďte požadované změny.",
-	"userrights-removed-self": "Odebrali jste si vlastní práva. Tudíž už nemáte k této stránce přístup.",
 	"group": "Skupina:",
 	"group-user": "Uživatelé",
 	"group-autoconfirmed": "Automaticky schválení uživatelé",
@@ -3857,7 +3854,5 @@
 	"usercssispublic": "Uvědomte si prosím, že podstránky s CSS by neměly obsahovat tajné údaje, protože jsou viditelné ostatním uživatelům.",
 	"restrictionsfield-badip": "Neplatná IP adresa nebo rozsah: $1",
 	"restrictionsfield-label": "Povolené rozsahy IP adres:",
-	"restrictionsfield-help": "Jedna IP adresa nebo CIDR rozsah na řádek. Všechno povolíte pomocí<br><code>0.0.0.0/0</code><br><code>::/0</code>",
-	"edit-error-short": "Chyba: $1",
-	"edit-error-long": "Chyby:\n\n$1"
+	"restrictionsfield-help": "Jedna IP adresa nebo CIDR rozsah na řádek. Všechno povolíte pomocí<br><code>0.0.0.0/0</code><br><code>::/0</code>"
 }

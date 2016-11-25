@@ -1074,12 +1074,9 @@
 	"userrights-reason": "Grond:",
 	"userrights-no-interwiki": "Dir hutt net déi néideg Rechter, fir d'Rechter vu Benoutzer op anere Wikien z'änneren.",
 	"userrights-nodatabase": "D'Datebank $1 gëtt et net oder se ass net lokal.",
-	"userrights-nologin": "Dir musst mat engem Administrateurs-Benotzerkont [[Special:UserLogin|ageloggt sinn]], fir Benotzerrechter änneren ze kënnen.",
-	"userrights-notallowed": "Dir hutt net déi néideg Rechter fir Rechter vun anere Benotzer derbäizesetzen oder ewechzehuelen.",
 	"userrights-changeable-col": "Gruppen déi Dir ännere kënnt",
 	"userrights-unchangeable-col": "Gruppen déi Dir net ännere kënnt",
 	"userrights-conflict": "Konflikt bei de Benotzerrechter! Kuckt Är Ännerunge w.e.g. no a maacht se w.e.g. nach eng Kéier.",
-	"userrights-removed-self": "Dir hutt Är eege Rechter ewechgeholl. Dofir kënnt Dir net méi op dës Säit zougräifen.",
 	"group": "Grupp:",
 	"group-user": "Benotzer",
 	"group-autoconfirmed": "Registréiert Benotzer",
@@ -1754,6 +1751,7 @@
 	"apisandbox-continue": "Virufueren",
 	"apisandbox-continue-clear": "Eidel maachen",
 	"apisandbox-param-limit": "Gitt <kbd>max</kbd> fir déi maximal Limite ze benotzen.",
+	"apisandbox-multivalue-all-namespaces": "$1 (All Nummräim)",
 	"apisandbox-multivalue-all-values": "$1 (All Wäerter)",
 	"booksources": "Bicherreferenzen",
 	"booksources-search-legend": "No Bicherreferenze sichen",
@@ -3480,6 +3478,7 @@
 	"mw-widgets-dateinput-placeholder-month": "JJJJ-MM",
 	"mw-widgets-titleinput-description-new-page": "Säit gëtt et nach net",
 	"mw-widgets-titleinput-description-redirect": "viruleeden op $1",
+	"mw-widgets-categoryselector-add-category-placeholder": "Eng Kategorie derbäisetzen...",
 	"sessionprovider-generic": "$1-Sessiounen",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "cookie-baséiert Sessiounen",
 	"sessionprovider-nocookies": "Cookië sinn eventuell desaktivéiert. Vergewëssert Iech datt Dir d'Cookien aktivéiert hutt a probéiert nach eng Kéier.",
@@ -3565,7 +3564,5 @@
 	"unlinkaccounts-success": "De Benotzerkont gouf getrennt.",
 	"userjsispublic": "DEnkt drun: Op JavaScript-Ënnersäite solle keng vertraulech Informatioune stoe well se vun anere Benotzer kënne gesi ginn.",
 	"restrictionsfield-badip": "Net valabel IP-Adress oder Beräich: $1",
-	"restrictionsfield-label": "Zougeloossen IP-Beräicher:",
-	"edit-error-short": "Feeler: $1",
-	"edit-error-long": "Feeler:\n\n$1"
+	"restrictionsfield-label": "Zougeloossen IP-Beräicher:"
 }

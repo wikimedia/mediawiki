@@ -1172,12 +1172,9 @@
 	"userrights-reason": "原因：",
 	"userrights-no-interwiki": "您并没有权限去编辑在其它wiki上的用户权限。",
 	"userrights-nodatabase": "数据库$1不存在或并非为本地的。",
-	"userrights-nologin": "您必须要以管理员帐户[[Special:UserLogin|登录]]之后才可以指定用户权限。",
-	"userrights-notallowed": "您没有权限添加或移除用户权限。",
 	"userrights-changeable-col": "您可以更改的用户组",
 	"userrights-unchangeable-col": "您不能更改的用户组",
 	"userrights-conflict": "用户权限的更改存在冲突！请检查并确认您的更改。",
-	"userrights-removed-self": "您已删除您自己的权利。因此，您不再能够访问此页。",
 	"group": "用户组：",
 	"group-user": "用户",
 	"group-autoconfirmed": "自动确认用户",
@@ -3507,6 +3504,7 @@
 	"htmlform-user-not-exists": "<strong>$1</strong>不存在。",
 	"htmlform-user-not-valid": "<strong>$1</strong>不是一个有效的用户名。",
 	"logentry-delete-delete": "$1{{GENDER:$2|删除}}页面$3",
+	"logentry-delete-delete_redir": "$1通过覆盖{{GENDER:$2|删除}}了重定向$3",
 	"logentry-delete-restore": "$1{{GENDER:$2|还原}}页面$3",
 	"logentry-delete-event": "$1{{GENDER:$2|更改}}$3的{{PLURAL:$5|$5个日志事件}}的可见性：$4",
 	"logentry-delete-revision": "$1{{GENDER:$2|更改}}页面$3的{{PLURAL:$5|$5个版本}}的可见性：$4",
@@ -3784,6 +3782,7 @@
 	"log-action-filter-contentmodel-change": "内容类型的更改",
 	"log-action-filter-contentmodel-new": "带有非标准内容模型的页面的更改",
 	"log-action-filter-delete-delete": "页面删除",
+	"log-action-filter-delete-delete_redir": "重定向覆盖",
 	"log-action-filter-delete-restore": "页面还原",
 	"log-action-filter-delete-event": "日志删除",
 	"log-action-filter-delete-revision": "修订版本删除",
@@ -3890,7 +3889,5 @@
 	"usercssispublic": "请注意：CSS子页面不应包含机密数据，因为它们可以被其他用户查看。",
 	"restrictionsfield-badip": "无效的IP地址或段：$1",
 	"restrictionsfield-label": "允许的IP段：",
-	"restrictionsfield-help": "每行一个IP地址或CIDR段。要启用所有，可使用<br><code>0.0.0.0/0</code><br><code>::/0</code>",
-	"edit-error-short": "错误：$1",
-	"edit-error-long": "错误：\n\n$1"
+	"restrictionsfield-help": "每行一个IP地址或CIDR段。要启用所有，可使用<br><code>0.0.0.0/0</code><br><code>::/0</code>"
 }

@@ -1141,12 +1141,9 @@
 	"userrights-reason": "कारण:",
 	"userrights-no-interwiki": "आपको अन्य विकियों पर सदस्य अधिकार बदलने की अनुमति नहीं हैं।",
 	"userrights-nodatabase": "डाटाबेस $1 या तो मौजूद नहीं है या फिर स्थानीय नहीं है।",
-	"userrights-nologin": "सदस्य अधिकार बदलने के लिये प्रबंधक खाते से [[Special:UserLogin|लॉग इन]] किया हुआ होना आवश्यक है।",
-	"userrights-notallowed": "आपके पास सदस्य अधिकार जोड़ने या हटाने की अनुमति नहीं है।",
 	"userrights-changeable-col": "समूह जिन्हें आप बदल सकते हैं",
 	"userrights-unchangeable-col": "समूह जिन्हें आप नहीं बदल सकते हैं",
 	"userrights-conflict": "सदस्य अधिकार बदलावों में अंतर्विरोध! कृपया अपने बदलाव जाँचें और पुनः सुनिश्चित करें।",
-	"userrights-removed-self": "आपने सफलतापूर्वक अपने अधिकार हटा दिए हैं। अतः आप अब यह पृष्ठ नहीं देख सकते हैं।",
 	"group": "समूह:",
 	"group-user": "सदस्य",
 	"group-autoconfirmed": "स्वतः स्थापित सदस्य",
@@ -3779,7 +3776,5 @@
 	"linkaccounts-success-text": "खाता जुड़ गया।",
 	"linkaccounts-submit": "खाता जोड़ें",
 	"unlinkaccounts": "खाता अलग करें",
-	"unlinkaccounts-success": "खाता अलग हो गया।",
-	"edit-error-short": "त्रुटि: $1",
-	"edit-error-long": "त्रुटि:\n\n$1"
+	"unlinkaccounts-success": "खाता अलग हो गया।"
 }

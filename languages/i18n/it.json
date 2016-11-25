@@ -1180,12 +1180,9 @@
 	"userrights-reason": "Motivo:",
 	"userrights-no-interwiki": "Non si dispone dei permessi necessari per modificare i diritti degli utenti su altri siti.",
 	"userrights-nodatabase": "Il database $1 non esiste o non è un database locale.",
-	"userrights-nologin": "Per assegnare diritti agli utenti è necessario [[Special:UserLogin|effettuare l'accesso]] come amministratore.",
-	"userrights-notallowed": "Non disponi dell'autorizzazione per aggiungere o rimuovere i permessi utente.",
 	"userrights-changeable-col": "Gruppi modificabili",
 	"userrights-unchangeable-col": "Gruppi non modificabili",
 	"userrights-conflict": "Conflitto di modifica dei diritti utente! Controlla e conferma le tue modifiche.",
-	"userrights-removed-self": "Hai rimosso i tuoi diritti. E quindi, non sarai più in grado di accedere a questa pagina.",
 	"group": "Gruppo:",
 	"group-user": "Utenti",
 	"group-autoconfirmed": "Utenti autoconvalidati",
@@ -3888,7 +3885,5 @@
 	"usercssispublic": "Ricorda: le sottopagine CSS non devono contenere dati riservati poichè sono visualizzabili da altri utenti.",
 	"restrictionsfield-badip": "Indirizzo IP o intervallo non valido: $1",
 	"restrictionsfield-label": "Intervalli IP consentiti:",
-	"restrictionsfield-help": "Un indirizzo IP o intervallo CIDR per linea. Per consentire tutto, utilizza<br><code>0.0.0.0/0</code><br><code>::/0</code>",
-	"edit-error-short": "Errore: $1",
-	"edit-error-long": "Errori:\n\n$1"
+	"restrictionsfield-help": "Un indirizzo IP o intervallo CIDR per linea. Per consentire tutto, utilizza<br><code>0.0.0.0/0</code><br><code>::/0</code>"
 }

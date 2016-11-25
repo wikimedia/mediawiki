@@ -1080,7 +1080,7 @@
 	"prefs-help-recentchangescount": "Uwzględnia ostatnie zmiany, historię stron i rejestry.",
 	"prefs-help-watchlist-token2": "To jest tajny klucz umożliwiający dostęp do kanału internetowego zmian w obserwowanych przez ciebie stronach.\nKażdy, kto go zna, będzie mógł je zobaczyć, więc zachowaj go dla siebie.\n[[Special:ResetTokens|Kliknij tu, jeśli chcesz go zresetować]].",
 	"savedprefs": "Twoje preferencje zostały zapisane.",
-	"savedrights": "Zapisano uprawnienia {{GENDER:$1|użytkownika $1|użytkowniczki $1}}.",
+	"savedrights": "Zapisano grupy {{GENDER:$1|użytkownika $1|użytkowniczki $1}}.",
 	"timezonelegend": "Strefa czasowa:",
 	"localtime": "Czas lokalny:",
 	"timezoneuseserverdefault": "Użyj domyślnej dla tej wiki ($1)",
@@ -1161,12 +1161,9 @@
 	"userrights-reason": "Powód:",
 	"userrights-no-interwiki": "Nie masz dostępu do edycji uprawnień na innych wiki.",
 	"userrights-nodatabase": "Baza danych $1 nie istnieje lub nie jest lokalna.",
-	"userrights-nologin": "Musisz [[Special:UserLogin|zalogować się]] na konto administratora, by nadawać uprawnienia użytkownikom.",
-	"userrights-notallowed": "Nie jesteś upoważniony do nadawania i odbierania uprawnień użytkownikom.",
 	"userrights-changeable-col": "Grupy, które możesz wybrać",
 	"userrights-unchangeable-col": "Grupy, których nie możesz wybrać",
 	"userrights-conflict": "Konflikt zmiany uprawnień użytkownika! Proszę sprawdzić i potwierdzić swoje zmiany.",
-	"userrights-removed-self": "Odebrałeś sobie uprawnienia. W związku z tym nie masz już dostępu do tej strony.",
 	"group": "Grupa:",
 	"group-user": "Użytkownicy",
 	"group-autoconfirmed": "Automatycznie zatwierdzeni użytkownicy",
@@ -3480,6 +3477,7 @@
 	"htmlform-user-not-exists": "<strong>$1</strong> nie istnieje.",
 	"htmlform-user-not-valid": "<strong>$1</strong> nie jest prawidłową nazwą użytkownika.",
 	"logentry-delete-delete": "$1 {{GENDER:$2|usunął|usunęła}} stronę $3",
+	"logentry-delete-delete_redir": "$1 {{GENDER:$2|usunął|usunęła}} przekierowanie $3 poprzez nadpisanie",
 	"logentry-delete-restore": "$1 {{GENDER:$2|odtworzył|odtworzyła}} stronę $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w rejestrze $3, wykonano następujące operacje: $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|wersji|$5 wersji}} strony $3, wykonano następujące operacje: $4",
@@ -3839,7 +3837,5 @@
 	"usercssispublic": "Uwaga: Podstrony z kodem CSS są widoczne publicznie i nie powinny zawierać poufnych danych.",
 	"restrictionsfield-badip": "Nieprawidłowy adres IP lub zakres adresów: $1",
 	"restrictionsfield-label": "Dozwolone zakresy adresów IP:",
-	"restrictionsfield-help": "Jeden adres IP lub zakres CIDR w wierszu. Aby zaznaczyć wszystkie, użyj<br><code>0.0.0.0/0</code><br><code>::/0</code>",
-	"edit-error-short": "Błąd: $1",
-	"edit-error-long": "Błędy:\n\n$1"
+	"restrictionsfield-help": "Jeden adres IP lub zakres CIDR w wierszu. Aby zaznaczyć wszystkie, użyj<br><code>0.0.0.0/0</code><br><code>::/0</code>"
 }

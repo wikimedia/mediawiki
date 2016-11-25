@@ -1051,12 +1051,9 @@
 	"userrights-reason": "Põhjus:",
 	"userrights-no-interwiki": "Sul ei ole luba muuta kasutajaõigusi teistes vikides.",
 	"userrights-nodatabase": "Andmebaasi $1 ei ole olemas või pole see kohalik.",
-	"userrights-nologin": "Et kasutajaõigusi jagada, pead administraatori kontoga [[Special:UserLogin|sisse logima]].",
-	"userrights-notallowed": "Sul pole õigust kasutajaõigusi lisada ega eemaldada.",
 	"userrights-changeable-col": "Rühmad, mida sa saad muuta",
 	"userrights-unchangeable-col": "Rühmad, mida sa ei saa muuta",
 	"userrights-conflict": "Kasutajaõiguste muutmise konflikt! Palun vaata oma muudatused üle ja kinnita need.",
-	"userrights-removed-self": "Võtsid endalt õigused. Seetõttu sellele leheküljele sa enam ligi ei pääse.",
 	"group": "Rühm:",
 	"group-user": "Kasutajad",
 	"group-autoconfirmed": "Automaatselt kinnitatud kasutajad",
@@ -3553,7 +3550,5 @@
 	"userjsispublic": "Pea silmas, et JavaScripti alamleheküljed ei tohiks sisaldada konfidentsiaalseid andmeid, kuna neid näevad teised kasutajad.",
 	"restrictionsfield-badip": "Vigane IP-aadress või -aadressivahemik: $1",
 	"restrictionsfield-label": "Lubatud IP-aadressivahemikud:",
-	"restrictionsfield-help": "Üks IP-aadress või CIDR-vahemik rea kohta. Et lubada kõik, kasuta süntaksit <br><code>0.0.0.0/0</code><br><code>::/0</code>",
-	"edit-error-short": "Tõrge: $1",
-	"edit-error-long": "Tõrked:\n\n$1"
+	"restrictionsfield-help": "Üks IP-aadress või CIDR-vahemik rea kohta. Et lubada kõik, kasuta süntaksit <br><code>0.0.0.0/0</code><br><code>::/0</code>"
 }

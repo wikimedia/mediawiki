@@ -803,8 +803,6 @@
 	"userrights-reason": "Sedem:",
 	"userrights-no-interwiki": "Mafê te ji bo guherandina mafên bikarhênerên di Wîkiyên din de nîne.",
 	"userrights-nodatabase": "Danegeh $1 nîne an ne ya vir e.",
-	"userrights-nologin": "Ji bo guherandina mafên bikarhêneran, divê tu bi hesabê rêveber [[Special:UserLogin|têkevî]].",
-	"userrights-notallowed": "Account'a te mafê xwe tune ye ji bo guherandina mafên bikarhêneran.",
 	"userrights-changeable-col": "Komên ku tu dikarî biguherînî",
 	"userrights-unchangeable-col": "Komên ku tu nikarî biguherînî",
 	"group": "Kom:",

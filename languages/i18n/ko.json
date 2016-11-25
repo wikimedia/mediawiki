@@ -1139,12 +1139,9 @@
 	"userrights-reason": "이유:",
 	"userrights-no-interwiki": "다른 위키의 사용자 권한을 바꿀 권한이 없습니다.",
 	"userrights-nodatabase": "데이터베이스 $1이 존재하지 않거나 로컬에 있지 않습니다.",
-	"userrights-nologin": "사용자의 권한을 바꾸기 위해서는 반드시 관리자 계정으로 [[Special:UserLogin|로그인]]해야 합니다.",
-	"userrights-notallowed": "다른 사용자의 권한을 추가하거나 제거할 권한이 없습니다.",
 	"userrights-changeable-col": "바꿀 수 있는 권한",
 	"userrights-unchangeable-col": "바꿀 수 없는 권한",
 	"userrights-conflict": "사용자 권한 바꾸기가 충돌합니다! 바뀜을 검토하고 확인하세요.",
-	"userrights-removed-self": "자신의 권한을 제거했습니다. 따라서 더 이상 이 문서에 접근할 수 없습니다.",
 	"group": "그룹:",
 	"group-user": "사용자",
 	"group-autoconfirmed": "자동 인증된 사용자",
@@ -3836,7 +3833,5 @@
 	"usercssispublic": "주목해 주십시오: CSS의 하위 문서들은 다른 사용자들이 볼 수 있기 때문에 기밀 데이터를 포함해서는 안 됩니다.",
 	"restrictionsfield-badip": "유효하지 않은 IP 주소나 대역: $1",
 	"restrictionsfield-label": "허용된 IP 대역:",
-	"restrictionsfield-help": "줄 단위의 하나의 IP 주소 또는 CIDR 대역입니다. 모든 곳에 적용하려면, 다음을 사용하세요<br><code>0.0.0.0/0</code><br><code>::/0</code>",
-	"edit-error-short": "오류: $1",
-	"edit-error-long": "오류:\n\n$1"
+	"restrictionsfield-help": "줄 단위의 하나의 IP 주소 또는 CIDR 대역입니다. 모든 곳에 적용하려면, 다음을 사용하세요<br><code>0.0.0.0/0</code><br><code>::/0</code>"
 }

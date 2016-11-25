@@ -1153,12 +1153,9 @@
 	"userrights-reason": "原因：",
 	"userrights-no-interwiki": "您沒有權限去編輯其他 Wiki 上的使用者權限。",
 	"userrights-nodatabase": "資料庫 $1 不存在或不在本地主機的。",
-	"userrights-nologin": "您必須 [[Special:UserLogin|登入]] 管理員帳號以指定使用者權限。",
-	"userrights-notallowed": "您沒有權限加入或刪除使用者權限。",
 	"userrights-changeable-col": "您可變更的群組",
 	"userrights-unchangeable-col": "您不可變更的群組",
 	"userrights-conflict": "使用者權限變更發生衝突！請檢閱並確認你的變更。",
-	"userrights-removed-self": "您已移除自己的權限，故您已無法再次存取此頁面。",
 	"group": "群組：",
 	"group-user": "使用者",
 	"group-autoconfirmed": "自動確認的使用者",
@@ -3854,7 +3851,5 @@
 	"usercssispublic": "請注意：CSS 子頁面可被其他使用者檢視，不應包含憑証資料。",
 	"restrictionsfield-badip": "無效的 IP 位址或範圍：$1",
 	"restrictionsfield-label": "允許的 IP 範圍：",
-	"restrictionsfield-help": "一個 IP 位址或 CIDR 範圍一行，要開啟所有範圍可使用 <br><code>0.0.0.0/0</code><br><code>::/0</code>",
-	"edit-error-short": "錯誤：$1",
-	"edit-error-long": "錯誤：\n\n$1"
+	"restrictionsfield-help": "一個 IP 位址或 CIDR 範圍一行，要開啟所有範圍可使用 <br><code>0.0.0.0/0</code><br><code>::/0</code>"
 }

@@ -1147,13 +1147,10 @@
 	"userrights-reason": "理由:",
 	"userrights-no-interwiki": "他ウィキ上における利用者権限の編集権限は、ありません。",
 	"userrights-nodatabase": "データベース$1は存在しないか、ローカル上にありません。",
-	"userrights-nologin": "利用者権限を付与するには、管理者アカウントで[[Special:UserLogin|ログイン]]する必要があります。",
-	"userrights-notallowed": "あなたには利用者権限を追加/除去する権限がありません。",
 	"userrights-changeable-col": "変更できるグループ",
 	"userrights-unchangeable-col": "変更できないグループ",
 	"userrights-irreversible-marker": "$1*",
 	"userrights-conflict": "利用者権限の変更が競合しています! 変更内容を確認してください。",
-	"userrights-removed-self": "あなた自身の権限を除去しました。そのため、このページにはもうアクセスできません。",
 	"group": "グループ:",
 	"group-user": "登録利用者",
 	"group-autoconfirmed": "自動承認された利用者",
@@ -3936,7 +3933,5 @@
 	"usercssispublic": "注意: CSS のサブページは第三者が閲覧可能なため、機微な情報を含めないでください。",
 	"restrictionsfield-badip": "無効な IP アドレス、またはその範囲: $1",
 	"restrictionsfield-label": "許可する IP の範囲:",
-	"restrictionsfield-help": "一行につき、単一の IP アドレス、もしくは CIDR による範囲。全帯域からの接続を許可する場合は<br><code>0.0.0.0/0</code><br><code>::/0</code>",
-	"edit-error-short": "エラー: $1",
-	"edit-error-long": "エラー：\n\n\n\n$1"
+	"restrictionsfield-help": "一行につき、単一の IP アドレス、もしくは CIDR による範囲。全帯域からの接続を許可する場合は<br><code>0.0.0.0/0</code><br><code>::/0</code>"
 }

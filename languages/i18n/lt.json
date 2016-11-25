@@ -1107,12 +1107,9 @@
 	"userrights-reason": "Priežastis:",
 	"userrights-no-interwiki": "Jūs neturite leidimo keisti naudotojų teises kituose projektuose.",
 	"userrights-nodatabase": "Duomenų bazė $1 neegzistuoja arba yra ne vietinė.",
-	"userrights-nologin": "Jūs privalote [[Special:UserLogin|prisijungti]] kaip administratorius, kad galėtumėte priskirti naudotojų teises.",
-	"userrights-notallowed": "Jūs neturite leidimo įtraukti arba pašalinti vartotojo teisių.",
 	"userrights-changeable-col": "Grupės, kurias galite keisti",
 	"userrights-unchangeable-col": "Grupės, kurių negalite keisti",
 	"userrights-conflict": "Naudotojo teisių konfliktas! Prašome dar kartą taikyti savo keitimus.",
-	"userrights-removed-self": "Jūs pašalinote savo paties teises. Taigi, nebegalite pasiekti šio puslapio.",
 	"group": "Grupė:",
 	"group-user": "Naudotojai",
 	"group-autoconfirmed": "Automatiškai patvirtinti naudotojai",
@@ -3701,7 +3698,5 @@
 	"linkaccounts-success-text": "Paskyra buvo susieta.",
 	"linkaccounts-submit": "Susieti paskyras",
 	"unlinkaccounts": "Atsieti paskyras",
-	"unlinkaccounts-success": "Paskyra buvo atsieta.",
-	"edit-error-short": "Klaida: $1",
-	"edit-error-long": "Klaidos:\n\n$1"
+	"unlinkaccounts-success": "Paskyra buvo atsieta."
 }

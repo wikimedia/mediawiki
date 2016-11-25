@@ -1112,12 +1112,9 @@
 	"userrights-reason": "Lý do:",
 	"userrights-no-interwiki": "Bạn không có quyền thay đổi quyền hạn của thành viên tại các wiki khác.",
 	"userrights-nodatabase": "Cơ sở dữ liệu $1 không tồn tại hoặc nằm ở bên ngoài.",
-	"userrights-nologin": "Bạn phải [[Special:UserLogin|đăng nhập]] vào một tài khoản có quyền quản lý để gán quyền cho thành viên.",
-	"userrights-notallowed": "Bạn không có quyền gán hoặc bãi miễn quyền cho thành viên.",
 	"userrights-changeable-col": "Những nhóm bạn có thể thay đổi",
 	"userrights-unchangeable-col": "Những nhóm bạn không thể thay đổi",
 	"userrights-conflict": "Mâu thuẫn thay đổi sửa nhóm thành viên! Xin vui lòng xem lại và xác nhận các thay đổi của bạn.",
-	"userrights-removed-self": "Bạn đã loại bỏ quyền của chính mình nên không còn truy cập được trang này.",
 	"group": "Nhóm:",
 	"group-user": "Thành viên thông thường",
 	"group-autoconfirmed": "Thành viên tự xác nhận",
@@ -3898,7 +3895,5 @@
 	"usercssispublic": "Xin lưu ý: Các trang con CSS không nên chứa dữ liệu bí mật, vì những người dùng khác có thể xem các trang này.",
 	"restrictionsfield-badip": "Địa chỉ hoặc dải IP không hợp lệ: $1.",
 	"restrictionsfield-label": "Các dải IP được cho phép:",
-	"restrictionsfield-help": "Mỗi dòng một địa chỉ IP hoặc dải CIDR. Để kích hoạt tất cả mọi địa chỉ IP, sử dụng<br><code>0.0.0.0/0</code><br><code>::/0</code>",
-	"edit-error-short": "Lỗi: $1",
-	"edit-error-long": "Lỗi:\n\n$1"
+	"restrictionsfield-help": "Mỗi dòng một địa chỉ IP hoặc dải CIDR. Để kích hoạt tất cả mọi địa chỉ IP, sử dụng<br><code>0.0.0.0/0</code><br><code>::/0</code>"
 }

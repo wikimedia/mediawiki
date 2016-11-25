@@ -924,8 +924,6 @@
 	"userrights-reason": "هۆکار:",
 	"userrights-no-interwiki": "دەسەڵاتی گۆڕینی مافەکانی بەکارهێنەر لە ویکی‌یەکانی دیکەت نیە.",
 	"userrights-nodatabase": "بنکەدراوی $1 بوونی نیە یا لەم شوێنە نیە.",
-	"userrights-nologin": "بۆ دانانی مافەکانی بەکارهێنەر دەبێ بە هەژماری بەڕێوبەری [[Special:UserLogin|بچیتە ژووروە]].",
-	"userrights-notallowed": "تۆ دەسەڵاتی دانان یان لابردنی مافەکانی بەکارھێنەرانت نییە.",
 	"userrights-changeable-col": "ئەو گرووپانەی دەتوانی بیگۆڕی",
 	"userrights-unchangeable-col": "ئەو گرووپانەی ناتوانی بیگۆڕی",
 	"group": "گرووپ:",

@@ -836,8 +836,6 @@
 	"userrights-reason": "Razón:",
 	"userrights-no-interwiki": "No tiene premiso ta editar os dreitos d'usuario en atras wikis.",
 	"userrights-nodatabase": "A base de datos $1 no existe u no ye local.",
-	"userrights-nologin": "Ha d'[[Special:UserLogin|encetar una sesión]] con una cuenta d'almenistrador ta poder dar dreitos d'usuario.",
-	"userrights-notallowed": "A suya cuenta no tien permisos ta asignar u desasignar permisos d'usuario.",
 	"userrights-changeable-col": "Grupos que puede cambiar",
 	"userrights-unchangeable-col": "Collas que no puede cambiar",
 	"group": "Colla:",
