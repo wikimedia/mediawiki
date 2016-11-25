@@ -1309,12 +1309,14 @@ class SkinTemplate extends Skin {
 			if ( !$user->isAnon() ) {
 				$sur = new UserrightsPage;
 				$sur->setContext( $this->getContext() );
-				if ( $sur->userCanExecute( $this->getUser() ) ) {
-					$nav_urls['userrights'] = [
-						'text' => $this->msg( 'tool-link-userrights', $this->getUser()->getName() )->text(),
-						'href' => self::makeSpecialUrlSubpage( 'Userrights', $rootUser )
-					];
-				}
+				$canChange = $sur->userCanChangeRights( $this->getUser(), false );
+				$nav_urls['userrights'] = [
+					'text' => $this->msg(
+						$canChange ? 'tool-link-userrights' : 'tool-link-userrights-readonly',
+						$this->getUser()->getName()
+					)->text(),
+					'href' => self::makeSpecialUrlSubpage( 'Userrights', $rootUser )
+				];
 			}
 		}
 
