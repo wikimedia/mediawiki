@@ -78,7 +78,7 @@
 	 * @inheritdoc mw.widgets.TitleWidget
 	 */
 	mw.widgets.SearchInputWidget.prototype.getSuggestionsPromise = function () {
-		var api = new mw.Api(),
+		var api = this.getApi(),
 			promise,
 			self = this;
 
