@@ -1321,7 +1321,7 @@
 	"userrights-summary": "{{doc-specialpagesummary|userrights}}",
 	"userrights-lookup-user": "Label text when managing user rights ([[Special:UserRights]])",
 	"userrights-user-editname": "Displayed on [[Special:UserRights]].",
-	"editusergroup": "Button name, in page [[Special:Userrights]], in the section named {{MediaWiki:userrights-lookup-user}}.\nParameters:\n* $1 - username, for GENDER support",
+	"editusergroup": "Button name, in page [[Special:Userrights]], in the section named {{MediaWiki:userrights-lookup-user}}. The username or gender of the user is not known when this message is displayed.",
 	"editinguser": "Appears on [[Special:UserRights]]. Parameters:\n* $1 - a plaintext username\n* $2 - user tool links. e.g. \"(Talk | contribs | block | send email)\"",
 	"userrights-editusergroup": "Parameter:\n* $1 - (Optional) a username, can be used for GENDER",
 	"saveusergroups": "Button text when editing user groups.\nParameters:\n* $1 - username, for GENDER support",
