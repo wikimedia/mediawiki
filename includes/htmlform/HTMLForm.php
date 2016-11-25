@@ -604,10 +604,14 @@ class HTMLForm extends ContextSource {
 	 */
 	public function trySubmit() {
 		$valid = true;
-		$hoistedErrors = [];
-		$hoistedErrors[] = isset( $this->mValidationErrorMessage )
-			? $this->mValidationErrorMessage
-			: [ 'htmlform-invalid-input' ];
+		$hoistedErrors = Status::newGood();
+		if ( $this->mValidationErrorMessage ) {
+			foreach ( (array)$this->mValidationErrorMessage as $error ) {
+				call_user_func_array( [ $hoistedErrors, 'fatal' ], $error );
+			}
+		} else {
+			$hoistedErrors->fatal( 'htmlform-invalid-input' );
+		}
 
 		$this->mWasSubmitted = true;
 
@@ -634,15 +638,16 @@ class HTMLForm extends ContextSource {
 			if ( $res !== true ) {
 				$valid = false;
 				if ( $res !== false && !$field->canDisplayErrors() ) {
-					$hoistedErrors[] = [ 'rawmessage', $res ];
+					if ( is_string( $res ) ) {
+						$hoistedErrors->fatal( 'rawmessage', $res );
+					} else {
+						$hoistedErrors->fatal( $res );
+					}
 				}
 			}
 		}
 
 		if ( !$valid ) {
-			if ( count( $hoistedErrors ) === 1 ) {
-				$hoistedErrors = $hoistedErrors[0];
-			}
 			return $hoistedErrors;
 		}
 

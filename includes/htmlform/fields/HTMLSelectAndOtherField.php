@@ -125,7 +125,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			&& $this->mParams['required'] !== false
 			&& $value[1] === ''
 		) {
-			return $this->msg( 'htmlform-required' )->parse();
+			return $this->msg( 'htmlform-required' );
 		}
 
 		return true;
