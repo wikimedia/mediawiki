@@ -60,7 +60,7 @@ class WatchedItemIntegrationTest extends MediaWikiTestCase {
 		EmailNotification::updateWatchlistTimestamp( $otherUser, $title, '20150202010101' );
 		$this->assertEquals(
 			'20150202010101',
-			WatchedItem::fromUserTitle( $user, $title )->getNotificationTimestamp()
+			wfTimestamp( TS_MEDIAWIKI, WatchedItem::fromUserTitle( $user, $title )->getNotificationTimestamp() )
 		);
 
 		MediaWikiServices::getInstance()->getWatchedItemStore()->resetNotificationTimestamp(
