@@ -65,20 +65,24 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Override the POST data, GET data from the real request is preserved.
+	 * Override the POST data, preserve GET data from the real request (with optional filtering).
 	 *
 	 * Used to preserve POST data over a HTTP redirect.
 	 *
 	 * @param array $data
 	 * @param bool $wasPosted
+	 * @param array|null $queryFilter Whitelist of GET parameters of the real request to keep
 	 */
-	protected function setRequest( array $data, $wasPosted = null ) {
+	protected function setRequest( array $data, $wasPosted = null, array $queryFilter = null ) {
 		$request = $this->getContext()->getRequest();
 		if ( $wasPosted === null ) {
 			$wasPosted = $request->wasPosted();
 		}
-		$this->savedRequest = new DerivativeRequest( $request, $data + $request->getQueryValues(),
-			$wasPosted );
+		$queryValues = $request->getQueryValues();
+		if ( is_array( $queryFilter ) ) {
+			$queryValues = array_intersect_key( $queryValues, array_fill_keys( $queryFilter, true ) );
+		}
+		$this->savedRequest = new DerivativeRequest( $request, $data + $queryValues, $wasPosted );
 	}
 
 	protected function beforeExecute( $subPage ) {

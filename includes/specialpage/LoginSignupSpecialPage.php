@@ -107,8 +107,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$wgUseMediaWikiUIEverywhere = true;
 	}
 
-	protected function setRequest( array $data, $wasPosted = null ) {
-		parent::setRequest( $data, $wasPosted );
+	protected function setRequest( array $data, $wasPosted = null, array $queryFilter = null ) {
+		parent::setRequest( $data, $wasPosted, $queryFilter );
 		$this->mLoadedRequest = false;
 	}
 
@@ -309,7 +309,10 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 
 		if ( $this->canBypassForm( $button_name ) ) {
-			$this->setRequest( [], true );
+			// bypassing means an attacker can send the user to this page and it will be
+			// autosubmitted; we don't want the attacker to be able to set the values of form
+			// fields, even if they are marked as skippable
+			$this->setRequest( [], true, [ 'uselang', 'force', 'returnto', 'returntoquery', 'fromhttp' ] );
 			$this->getRequest()->setVal( $this->getTokenName(), $this->getToken() );
 			if ( $button_name ) {
 				$this->getRequest()->setVal( $button_name, true );
