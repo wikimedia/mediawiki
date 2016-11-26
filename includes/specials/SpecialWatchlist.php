@@ -605,15 +605,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$form .= "</p>";
 
 		if ( $numItems > 0 && $showUpdatedMarker ) {
-			$form .= Xml::openElement( 'form', [ 'method' => 'post',
-				'action' => $this->getPageTitle()->getLocalURL(),
-				'id' => 'mw-watchlist-resetbutton' ] ) . "\n" .
-			Xml::submitButton( $this->msg( 'enotif_reset' )->text(), [ 'name' => 'dummy' ] ) . "\n" .
-			Html::hidden( 'reset', 'all' ) . "\n";
-			foreach ( $nondefaults as $key => $value ) {
-				$form .= Html::hidden( $key, $value ) . "\n";
-			}
-			$form .= Xml::closeElement( 'form' ) . "\n";
+			$form .= $this->addResetButton( $nondefaults );
 		}
 
 		$form .= Xml::openElement( 'form', [
@@ -656,4 +648,47 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$count = $store->countWatchedItems( $this->getUser() );
 		return floor( $count / 2 );
 	}
+
+	/**
+	 * @param string[] $nondefaults
+	 * @return \OOUI\FormLayout
+	 */
+	private function addResetButton( $nondefaults ) {
+		$this->getOutput()->enableOOUI();
+		$resetForm = new OOUI\FormLayout( [
+			'method' => 'post',
+			'action' => $this->getPageTitle()->getLocalURL(),
+			'id' => 'mw-watchlist-resetbutton'
+		] );
+		$resetFields = [ new OOUI\FieldLayout(
+			new OOUI\ButtonInputWidget( [
+				'name' => 'dummy',
+				'value' => $this->msg( 'enotif_reset' )->text(),
+				'label' => $this->msg( 'enotif_reset' )->text(),
+				'flags' => [ 'primary', 'progressive' ],
+				'type' => 'submit',
+			] ),
+			[
+				'align' => 'top',
+			]
+		) ];
+
+		$resetFieldset = new OOUI\FieldsetLayout( [
+			'label' => $this->msg( 'move-page-legend' )->text(),
+			'id' => 'mw-movepage-table',
+			'items' => $resetFields,
+		] );
+		$resetHiddenFields = Html::hidden( 'reset', 'all' ) . "\n";
+		foreach ( $nondefaults as $key => $value ) {
+			$resetHiddenFields .= Html::hidden( $key, $value ) . "\n";
+		}
+		$resetForm->appendContent(
+			$resetFieldset,
+			new OOUI\HtmlSnippet(
+				$resetHiddenFields
+			)
+		);
+		return $resetForm;
+	}
+
 }
