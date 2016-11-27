@@ -58,7 +58,7 @@ $separatorTransformTable = [
 	'.' => ','
 ];
 
-$fallback = 'ru';
+$fallback = 'be, ru';
 $fallback8bitEncoding = 'windows-1251';
 $linkPrefixExtension = true;
 

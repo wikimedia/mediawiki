@@ -102,6 +102,8 @@
  * @author გიორგიმელა
  */
 
+$fallback = 'be, uk';
+
 $namespaceNames = [
 	NS_MEDIA            => 'Медиа',
 	NS_SPECIAL          => 'Служебная',

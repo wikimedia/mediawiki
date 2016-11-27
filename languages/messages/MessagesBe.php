@@ -7,6 +7,8 @@
  * @file
  *
  */
+ 
+$fallback = 'uk, ru';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Мультымедыя',
