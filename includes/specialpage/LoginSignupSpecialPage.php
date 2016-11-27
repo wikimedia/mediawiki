@@ -308,6 +308,11 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			return;
 		}
 
+		// make sure warnings will be shown exactly once, even if they cannot be shown immediately
+		if ( !$this->isContinued() && !$this->getRequest()->wasPosted() ) {
+			$session->set( 'login-warnings-not-shown-yet', true );
+		}
+
 		if ( $this->canBypassForm( $button_name ) ) {
 			// bypassing means an attacker can send the user to this page and it will be
 			// autosubmitted; we don't want the attacker to be able to set the values of form
@@ -523,6 +528,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	protected function mainLoginForm( array $requests, $msg = '', $msgtype = 'error' ) {
 		$user = $this->getUser();
 		$out = $this->getOutput();
+		$session = SessionManager::getGlobalSession();
 
 		// FIXME how to handle empty $requests - restart, or no form, just an error message?
 		// no form would be better for no session type errors, restart is better when can* fails.
@@ -570,14 +576,13 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			$submitStatus->fatal( $msg );
 		}
 
-		// warning header for non-standard workflows (e.g. security reauthentication)
-		if (
-			!$this->isSignup() &&
-			$this->getUser()->isLoggedIn() &&
-			!$this->isContinued()
-		) {
-			$reauthMessage = $this->securityLevel ? 'userlogin-reauth' : 'userlogin-loggedin';
-			$submitStatus->warning( $reauthMessage, $this->getUser()->getName() );
+		if ( $session->get( 'login-warnings-not-shown-yet' ) ) {
+			if ( !$this->isSignup() && $this->getUser()->isLoggedIn() ) {
+				// warning header for non-standard workflows (e.g. security reauthentication)
+				$reauthMessage = $this->securityLevel ? 'userlogin-reauth' : 'userlogin-loggedin';
+				$submitStatus->warning( $reauthMessage, $this->getUser()->getName() );
+			}
+			$session->remove( 'login-warnings-not-shown-yet' );
 		}
 
 		$formHtml = $form->getHTML( $submitStatus );
