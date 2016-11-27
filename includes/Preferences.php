@@ -633,6 +633,7 @@ class Preferences {
 			'options' => self::getImageSizes( $context ),
 			'label-message' => 'imagemaxsize',
 			'section' => 'rendering/files',
+			'direction' => 'ltr',
 		];
 		$defaultPreferences['thumbsize'] = [
 			'type' => 'select',
@@ -1212,7 +1213,8 @@ class Preferences {
 		$pixels = $context->msg( 'unit-pixel' )->text();
 
 		foreach ( $context->getConfig()->get( 'ImageLimits' ) as $index => $limits ) {
-			$display = "{$limits[0]}×{$limits[1]}" . $pixels;
+			// Note: there is a &lrm; before the × character, see T144386
+			$display = "{$limits[0]}‎×{$limits[1]}" . $pixels;
 			$ret[$display] = $index;
 		}
 
