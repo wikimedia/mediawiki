@@ -1146,7 +1146,7 @@
 	"prefswarning-warning": "U heeft deze wijzigingen gemaakt in uw voorkeuren die nog niet opgeslagen zijn. Wanneer u de pagina verlaat zonder op \"$1\" te klikken worden uw voorkeuren niet bijgewerkt.",
 	"prefs-tabs-navigation-hint": "Tip: u kunt de pijltjestoetsen naar links en naar rechts gebruiken om te navigeren tussen de tabbladen in de lijst.",
 	"userrights": "Gebruikersrechtenbeheer",
-	"userrights-lookup-user": "Gebruikersgroepen beheren",
+	"userrights-lookup-user": "Een gebruiker selecteren",
 	"userrights-user-editname": "Voer een gebruikersnaam in:",
 	"editusergroup": "{{GENDER:$1|Gebruikersgroepen}} wijzigen",
 	"editinguser": "Bezig met wijzigen van de gebruikersrechten van gebruiker '''[[User:$1|$1]]''' $2",
