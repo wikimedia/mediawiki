@@ -22,6 +22,8 @@
  * @file
  */
 
+use MediaWiki\Session\Token;
+
 /**
  * @since 1.25
  * @ingroup API
@@ -39,6 +41,13 @@ class ApiCheckToken extends ApiBase {
 		$tokenObj = ApiQueryTokens::getToken(
 			$this->getUser(), $this->getRequest()->getSession(), $salts[$params['type']]
 		);
+
+		if ( substr( $token, -strlen( urldecode( Token::SUFFIX ) ) ) === urldecode( Token::SUFFIX ) ) {
+			$this->setWarning(
+				"Check that symbols such as \"+\" in the token are properly percent-encoded in the URL."
+			);
+		}
+
 		if ( $tokenObj->match( $token, $maxage ) ) {
 			$res['result'] = 'valid';
 		} elseif ( $maxage !== null && $tokenObj->match( $token ) ) {
@@ -47,7 +56,7 @@ class ApiCheckToken extends ApiBase {
 			$res['result'] = 'invalid';
 		}
 
-		$ts = MediaWiki\Session\Token::getTimestamp( $token );
+		$ts = Token::getTimestamp( $token );
 		if ( $ts !== null ) {
 			$mwts = new MWTimestamp();
 			$mwts->timestamp->setTimestamp( $ts );
