@@ -95,6 +95,8 @@ production.
 * (T150044) SECURITY: "Mark all pages visited" on the watchlist now requires a CSRF
   token.
 * (T156184) SECURITY: Escape content model/format url parameter in message.
+* (T151735) SECURITY: SVG filter evasion using default attribute values in DTD
+  declaration.
 
 === Action API changes in 1.29 ===
 * Submitting sensitive authentication request parameters to action=login,
