@@ -319,16 +319,6 @@ class SpecialSearch extends SpecialPage {
 			$textMatches = $textStatus->getValue();
 		}
 
-		// did you mean... suggestions
-		$didYouMeanHtml = '';
-		if ( $textMatches ) {
-			if ( $textMatches->hasRewrittenQuery() ) {
-				$didYouMeanHtml = $this->getDidYouMeanRewrittenHtml( $term, $textMatches );
-			} elseif ( $textMatches->hasSuggestion() ) {
-				$didYouMeanHtml = $this->getDidYouMeanHtml( $textMatches );
-			}
-		}
-
 		// Get number of results
 		$titleMatchesNum = $textMatchesNum = $numTitleMatches = $numTextMatches = 0;
 		if ( $titleMatches ) {
@@ -352,7 +342,12 @@ class SpecialSearch extends SpecialPage {
 		$out->addHtml( $formWidget->render(
 			$this->profile, $term, $num, $totalRes, $this->offset, $this->isPowerSearch()
 		) );
-		$out->addHtml( $didYouMeanHtml );
+
+		if ( $textMatches ) {
+			$dymWidget = new MediaWiki\Widget\Search\DidYouMeanWidget( $this );
+			$out->addHtml( $dymWidget->render( $term, $textMatches ) );
+		}
+
 		$out->addHTML( "<div class='searchresults'>" );
 
 		$hasErrors = $textStatus && $textStatus->getErrors();
@@ -435,79 +430,6 @@ class SpecialSearch extends SpecialPage {
 		$out->addHTML( "</div>" );
 
 		Hooks::run( 'SpecialSearchResultsAppend', [ $this, $out, $term ] );
-	}
-
-	/**
-	 * Generates HTML shown to the user when we have a suggestion about a query
-	 * that might give more results than their current query.
-	 */
-	protected function getDidYouMeanHtml( SearchResultSet $textMatches ) {
-		# mirror Go/Search behavior of original request ..
-		$params = [ 'search' => $textMatches->getSuggestionQuery() ];
-		if ( $this->fulltext === null ) {
-			$params['fulltext'] = 'Search';
-		} else {
-			$params['fulltext'] = $this->fulltext;
-		}
-		$stParams = array_merge( $params, $this->powerSearchOptions() );
-
-		$suggest = Linker::linkKnown(
-			$this->getPageTitle(),
-			$textMatches->getSuggestionSnippet() ?: null,
-			[ 'id' => 'mw-search-DYM-suggestion' ],
-			$stParams
-		);
-
-		# HTML of did you mean... search suggestion link
-		return Html::rawElement(
-			'div',
-			[ 'class' => 'searchdidyoumean' ],
-			$this->msg( 'search-suggest' )->rawParams( $suggest )->parse()
-		);
-	}
-
-	/**
-	 * Generates HTML shown to user when their query has been internally rewritten,
-	 * and the results of the rewritten query are being returned.
-	 *
-	 * @param string $term The users search input
-	 * @param SearchResultSet $textMatches The response to the users initial search request
-	 * @return string HTML linking the user to their original $term query, and the one
-	 *  suggested by $textMatches.
-	 */
-	protected function getDidYouMeanRewrittenHtml( $term, SearchResultSet $textMatches ) {
-		// Showing results for '$rewritten'
-		// Search instead for '$orig'
-
-		$params = [ 'search' => $textMatches->getQueryAfterRewrite() ];
-		if ( $this->fulltext === null ) {
-			$params['fulltext'] = 'Search';
-		} else {
-			$params['fulltext'] = $this->fulltext;
-		}
-		$stParams = array_merge( $params, $this->powerSearchOptions() );
-
-		$rewritten = Linker::linkKnown(
-			$this->getPageTitle(),
-			$textMatches->getQueryAfterRewriteSnippet() ?: null,
-			[ 'id' => 'mw-search-DYM-rewritten' ],
-			$stParams
-		);
-
-		$stParams['search'] = $term;
-		$stParams['runsuggestion'] = 0;
-		$original = Linker::linkKnown(
-			$this->getPageTitle(),
-			htmlspecialchars( $term ),
-			[ 'id' => 'mw-search-DYM-original' ],
-			$stParams
-		);
-
-		return Html::rawElement(
-			'div',
-			[ 'class' => 'searchdidyoumean' ],
-			$this->msg( 'search-rewritten' )->rawParams( $rewritten, $original )->escaped()
-		);
 	}
 
 	/**
@@ -617,10 +539,12 @@ class SpecialSearch extends SpecialPage {
 
 	/**
 	 * Reconstruct the 'power search' options for links
+	 * TODO: Instead of exposing this publicly, could we instead expose
+	 *  a function for creating search links?
 	 *
 	 * @return array
 	 */
-	protected function powerSearchOptions() {
+	public function powerSearchOptions() {
 		$opt = [];
 		if ( $this->isPowerSearch() ) {
 			foreach ( $this->namespaces as $n ) {
