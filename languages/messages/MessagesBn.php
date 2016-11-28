@@ -171,3 +171,5 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'সংযোগকারী_পৃষ্ঠাসমূহ' ],
 	'Withoutinterwiki'          => [ 'আন্তঃউইকিহীন' ],
 ];
+
+$linkTrail = '/^([\x{0980}-\x{09FF}]+)(.*)$/sDu';
