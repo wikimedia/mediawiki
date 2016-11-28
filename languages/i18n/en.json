@@ -1325,6 +1325,7 @@
     "uploaddisabledtext": "File uploads are disabled.",
     "php-uploaddisabledtext": "File uploads are disabled in PHP.\nPlease check the file_uploads setting.",
     "uploadscripted": "This file contains HTML or script code that may be erroneously interpreted by a web browser.",
+    "upload-scripted-dtd": "Cannot upload SVG files that contain a non-standard DTD declaration.",
     "uploadscriptednamespace": "This SVG file contains an illegal namespace \"$1\"",
     "uploadinvalidxml": "The XML in the uploaded file could not be parsed.",
     "uploadvirus": "The file contains a virus!\nDetails: $1",
