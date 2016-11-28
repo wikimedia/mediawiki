@@ -657,6 +657,12 @@ class LoadBalancer implements ILoadBalancer {
 		return new DBConnRef( $this, [ $db, $groups, $domain ] );
 	}
 
+	public function getMaintenanceConnectionRef( $db, $groups = [], $domain = false ) {
+		$domain = ( $domain !== false ) ? $domain : $this->localDomain;
+
+		return new MaintainableDBConnRef( $this, $this->getConnection( $db, $groups, $domain ) );
+	}
+
 	/**
 	 * @see ILoadBalancer::openConnection()
 	 *

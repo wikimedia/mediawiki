@@ -1087,11 +1087,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * Clones all tables in the given database (whatever database that connection has
 	 * open), to versions with the test prefix.
 	 *
-	 * @param Database $db Database to use
+	 * @param IMaintainableDatabase $db Database to use
 	 * @param string $prefix Prefix to use for test tables
 	 * @return bool True if tables were cloned, false if only the prefix was changed
 	 */
-	protected static function setupDatabaseWithTestPrefix( Database $db, $prefix ) {
+	protected static function setupDatabaseWithTestPrefix( IMaintainableDatabase $db, $prefix ) {
 		$tablesCloned = self::listTables( $db );
 		$dbClone = new CloneDatabase( $db, $tablesCloned, $prefix );
 		$dbClone->useTemporaryTables( self::$useTemporaryTables );
@@ -1210,9 +1210,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				list( $proto, $cluster ) = explode( '://', $url, 2 );
 				// Avoid getMaster() because setupDatabaseWithTestPrefix()
 				// requires Database instead of plain DBConnRef/IDatabase
-				$lb = $externalStoreDB->getLoadBalancer( $cluster );
-				$dbw = $lb->getConnection( DB_MASTER );
-				$dbws[] = $dbw;
+				$dbws[] = $externalStoreDB->getMaster( $cluster );
 			}
 		}
 
@@ -1326,11 +1324,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	/**
 	 * @since 1.18
 	 *
-	 * @param Database $db
+	 * @param IMaintainableDatabase $db
 	 *
 	 * @return array
 	 */
-	public static function listTables( Database $db ) {
+	public static function listTables( IMaintainableDatabase $db ) {
 		$prefix = $db->tablePrefix();
 		$tables = $db->listTables( $prefix, __METHOD__ );
 
@@ -1378,6 +1376,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		if ( isset( PHPUnitMaintClass::$additionalOptions[$offset] ) ) {
 			return PHPUnitMaintClass::$additionalOptions[$offset];
 		}
+
+		return null;
 	}
 
 	/**
