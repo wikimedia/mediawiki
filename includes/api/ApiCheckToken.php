@@ -39,7 +39,10 @@ class ApiCheckToken extends ApiBase {
 		$tokenObj = ApiQueryTokens::getToken(
 			$this->getUser(), $this->getRequest()->getSession(), $salts[$params['type']]
 		);
-		if ( $tokenObj->match( $token, $maxage ) ) {
+
+		if ( preg_match( urldecode( MediaWiki\Session\Token::SUFFIX ), $token ) ) {
+			$res['result'] = 'warning';
+		} elseif ( $tokenObj->match( $token, $maxage ) ) {
 			$res['result'] = 'valid';
 		} elseif ( $maxage !== null && $tokenObj->match( $token ) ) {
 			$res['result'] = 'expired';
