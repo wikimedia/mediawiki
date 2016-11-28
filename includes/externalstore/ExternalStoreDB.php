@@ -115,7 +115,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * Get a replica DB connection for the specified cluster
 	 *
 	 * @param string $cluster Cluster name
-	 * @return IDatabase
+	 * @return DBConnRef
 	 */
 	function getSlave( $cluster ) {
 		global $wgDefaultExternalStore;
@@ -140,7 +140,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * Get a master database connection for the specified cluster
 	 *
 	 * @param string $cluster Cluster name
-	 * @return IDatabase
+	 * @return DBConnRef
 	 */
 	function getMaster( $cluster ) {
 		$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : false;
