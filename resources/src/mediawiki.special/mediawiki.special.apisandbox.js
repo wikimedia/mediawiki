@@ -51,9 +51,7 @@
 		tokenWidget: {
 			alertTokenError: function ( code, error ) {
 				windowManager.openWindow( 'errorAlert', {
-					title: mw.message(
-						'apisandbox-results-fixtoken-fail', this.paramInfo.tokentype
-					).parse(),
+					title: Util.parseMsg( 'apisandbox-results-fixtoken-fail', this.paramInfo.tokentype ),
 					message: error,
 					actions: [
 						{
@@ -218,7 +216,7 @@
 	};
 
 	/**
-	 * @class mw.special.ApiSandbox.Utils
+	 * @class mw.special.ApiSandbox.Util
 	 * @private
 	 */
 	Util = {
@@ -591,17 +589,42 @@
 		},
 
 		/**
-		 * Parse an HTML string, adding target="_blank" to any links
+		 * Parse an HTML string and call Util.fixupHTML()
 		 *
 		 * @param {string} html HTML to parse
 		 * @return {jQuery}
 		 */
 		parseHTML: function ( html ) {
 			var $ret = $( $.parseHTML( html ) );
-			$ret.filter( 'a' ).add( $ret.find( 'a' ) )
+			return Util.fixupHTML( $ret );
+		},
+
+		/**
+		 * Parse an i18n message and call Util.fixupHTML()
+		 *
+		 * @param {string} key Key of message to get
+		 * @param {...Mixed} parameters Values for $N replacements
+		 * @return {jQuery}
+		 */
+		parseMsg: function () {
+			var $ret = mw.message.apply( mw.message, arguments ).parseDom();
+			return Util.fixupHTML( $ret );
+		},
+
+		/**
+		 * Fix HTML for ApiSandbox display
+		 *
+		 * Fixes are:
+		 * - Add target="_blank" to any links
+		 *
+		 * @param {jQuery} $html DOM to process
+		 * @return {jQuery}
+		 */
+		fixupHTML: function ( $html ) {
+			$html.filter( 'a' ).add( $html.find( 'a' ) )
 				.filter( '[href]:not([target])' )
 				.attr( 'target', '_blank' );
-			return $ret;
+			return $html;
 		}
 	};
 
@@ -683,7 +706,7 @@
 
 			$content
 				.empty()
-				.append( $( '<p>' ).append( mw.message( 'apisandbox-intro' ).parse() ) )
+				.append( $( '<p>' ).append( Util.parseMsg( 'apisandbox-intro' ) ) )
 				.append(
 					$( '<div>', { id: 'mw-apisandbox-ui' } )
 						.append( $toolbar )
@@ -896,8 +919,8 @@
 			$.when.apply( $, deferreds ).done( function () {
 				if ( $.inArray( false, arguments ) !== -1 ) {
 					windowManager.openWindow( 'errorAlert', {
-						title: mw.message( 'apisandbox-submit-invalid-fields-title' ).parse(),
-						message: mw.message( 'apisandbox-submit-invalid-fields-message' ).parse(),
+						title: Util.parseMsg( 'apisandbox-submit-invalid-fields-title' ),
+						message: Util.parseMsg( 'apisandbox-submit-invalid-fields-message' ),
 						actions: [
 							{
 								action: 'accept',
@@ -942,7 +965,7 @@
 								readOnly: true,
 								value: mw.util.wikiScript( 'api' ) + '?' + query
 							} ), {
-								label: mw.message( 'apisandbox-request-url-label' ).parse()
+								label: Util.parseMsg( 'apisandbox-request-url-label' )
 							}
 						).$element,
 						$result
@@ -1012,9 +1035,7 @@
 							if ( data.status && data.status !== 200 ) {
 								$( '<div>' )
 									.addClass( 'api-pretty-header api-pretty-status' )
-									.append(
-										mw.message( 'api-format-prettyprint-status', data.status, data.statustext ).parse()
-									)
+									.append( Util.parseMsg( 'api-format-prettyprint-status', data.status, data.statustext ) )
 									.appendTo( $result );
 							}
 							$result.append( Util.parseHTML( data.html ) );
@@ -1049,7 +1070,7 @@
 										framed: false,
 										icon: 'info',
 										popup: {
-											$content: $( '<div>' ).append( mw.message( 'apisandbox-continue-help' ).parse() ),
+											$content: $( '<div>' ).append( Util.parseMsg( 'apisandbox-continue-help' ) ),
 											padded: true
 										}
 									} ).$element
@@ -1198,9 +1219,7 @@
 
 				if ( that.widgets[ name ] !== undefined ) {
 					windowManager.openWindow( 'errorAlert', {
-						title: mw.message(
-							'apisandbox-dynamic-error-exists', name
-						).parse(),
+						title: Util.parseMsg( 'apisandbox-dynamic-error-exists', name ),
 						actions: [
 							{
 								action: 'accept',
@@ -1380,22 +1399,20 @@
 									dl.append( $( '<dd>', {
 										addClass: 'info',
 										append: [
-											Util.parseHTML( mw.message(
+											Util.parseMsg(
 												'api-help-param-limit2', pi.parameters[ i ].max, pi.parameters[ i ].highmax
-											).parse() ),
+											),
 											' ',
-											Util.parseHTML( mw.message( 'apisandbox-param-limit' ).parse() )
+											Util.parseMsg( 'apisandbox-param-limit' )
 										]
 									} ) );
 								} else {
 									dl.append( $( '<dd>', {
 										addClass: 'info',
 										append: [
-											Util.parseHTML( mw.message(
-												'api-help-param-limit', pi.parameters[ i ].max
-											).parse() ),
+											Util.parseMsg( 'api-help-param-limit', pi.parameters[ i ].max ),
 											' ',
-											Util.parseHTML( mw.message( 'apisandbox-param-limit' ).parse() )
+											Util.parseMsg( 'apisandbox-param-limit' )
 										]
 									} ) );
 								}
@@ -1412,11 +1429,11 @@
 								if ( tmp !== '' ) {
 									dl.append( $( '<dd>', {
 										addClass: 'info',
-										append: Util.parseHTML( mw.message(
+										append: Util.parseMsg(
 											'api-help-param-integer-' + tmp,
 											Util.apiBool( pi.parameters[ i ].multi ) ? 2 : 1,
 											pi.parameters[ i ].min, pi.parameters[ i ].max
-										).parse() )
+										)
 									} ) );
 								}
 								break;
@@ -1496,7 +1513,7 @@
 					items.push( new OO.ui.FieldLayout(
 						new OO.ui.Widget( {} ).toggle( false ), {
 							align: 'top',
-							label: Util.parseHTML( mw.message( 'apisandbox-no-parameters' ).parse() )
+							label: Util.parseMsg( 'apisandbox-no-parameters' )
 						}
 					) );
 				}
