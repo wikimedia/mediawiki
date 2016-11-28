@@ -2023,6 +2023,7 @@
 	"listgrants-summary": "The following is a list of grants with their associated access to user rights. Users can authorize applications to use their account, but with limited permissions based on the grants the user gave to the application. An application acting on behalf of a user cannot actually use rights that the user does not have however.\nThere may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] about individual rights.",
 	"listgrants-grant": "Grant",
 	"listgrants-rights": "Rights",
+	"listgrants-grant-display": "$1 <code>($2)</code>",
 	"trackingcategories": "Tracking categories",
 	"trackingcategories-summary": "This page lists tracking categories which are automatically populated by the MediaWiki software. Their names can be changed by altering the relevant system messages in the {{ns:8}} namespace.",
 	"trackingcategories-msg": "Tracking category",
