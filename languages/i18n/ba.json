@@ -27,7 +27,8 @@
 			"Кутлубаева Кунсулу Закиевна",
 			"Вильданова Гюзель",
 			"Ilmira",
-			"Irus"
+			"Irus",
+			"Khanmarat"
 		]
 	},
 	"tog-underline": "Һылтанмалар аҫтына һыҙыу:",
@@ -935,7 +936,7 @@
 	"searchprofile-advanced-tooltip": "Махсус исем арауыҡтарында эҙләргә",
 	"search-result-size": "$1 ({{PLURAL:$2|1=$2 һүҙ|$2 һүҙ}})",
 	"search-result-category-size": "{{PLURAL:$1|1=$1 ағза}} ({{PLURAL:$2|$2 эске категория}}, {{PLURAL:$3|$3 файл}})",
-	"search-redirect": "(йүнәлтеү $1)",
+	"search-redirect": "($1 битенән йүнәлтеү)",
 	"search-section": "($1 бүлеге)",
 	"search-category": "(категория $1)",
 	"search-file-match": "(файл эстәлеге менән тура килә)",
@@ -1085,12 +1086,9 @@
 	"userrights-reason": "Сәбәп:",
 	"userrights-no-interwiki": "Һеҙҙең башҡа вики-проекттарҙа ҡатнашыусыларҙың хоҡуҡтарын үҙгәртергә хоҡуҡтарығыҙ юҡ.",
 	"userrights-nodatabase": "$1 базаһы юҡ йәки урындағы (локаль) база түгел.",
-	"userrights-nologin": "Ҡатнашыусыларҙың хоҡуҡтарын билдәләр өсөн, һеҙ хаким хоҡуҡтары менән [[Special:UserLogin|танылырға]] тейешһегеҙ.",
-	"userrights-notallowed": "Һеҙгә ҡатнашыусыларҙың хоҡуҡтарын өҫтәргә йәки юҡ итергә рөхсәт ителмәгән.",
 	"userrights-changeable-col": "Һеҙ үҙгәртә алған төркөмдәр",
 	"userrights-unchangeable-col": "Һеҙ үҙгәртә алмаған төркөмдәр",
 	"userrights-conflict": "Ҡатнашыусының хоҡуҡтарын үҙгәртеү яраманы! Зинһар, үҙгәрештәрҙе тикшерегеҙ һәм яңынан индерегеҙ.",
-	"userrights-removed-self": "Һеҙ үҙ хоҡуҡтарығыҙҙы уңышлы юҡ иттегеҙ. Шулай итеп, был биткә башҡаса инә алмаясаҡһығыҙ.",
 	"group": "Төркөм:",
 	"group-user": "Ҡулланыусылар",
 	"group-autoconfirmed": "Автоматик раҫланған ҡулланыусылар",
@@ -3396,7 +3394,7 @@
 	"feedback-thanks": "Рәхмәт! Һеҙҙең фекерегеҙ «[$2 $1]» битенә өҫтәлде.",
 	"feedback-thanks-title": "Рәхмәт!",
 	"feedback-useragent": "Браузер:",
-	"searchsuggest-search": "Эҙләү",
+	"searchsuggest-search": "{{SITENAME}} эсендә эҙләү",
 	"searchsuggest-containing": "эстәлегендә...",
 	"api-error-badaccess-groups": "Һеҙгә был викиға файлдар күсереү рөхсәт ителмәй",
 	"api-error-badtoken": "Эске хата: дөрөҫ булмаған токен",
@@ -3603,6 +3601,5 @@
 	"changecredentials-submit": "Иҫәп мәғлүмәттәрен үҙгәртеү",
 	"removecredentials": "Иҫәп мәғлүмәттәрен юйырға",
 	"removecredentials-submit": "Иҫәп мәғлүмәттәрен юйырға",
-	"credentialsform-account": "Иҫәп яҙмаһы исеме:",
-	"edit-error-short": "Хата: $1"
+	"credentialsform-account": "Иҫәп яҙмаһы исеме:"
 }

@@ -2754,7 +2754,7 @@
 	"pageinfo-redirects-name": "Número de redirecciones a esta página",
 	"pageinfo-redirects-value": "$1",
 	"pageinfo-subpages-name": "Subpáginas de esta página",
-	"pageinfo-subpages-value": "$1 ($2 {{PLURAL:$2|redirección|redirecciones}}; $3 {{PLURAL:$3|no-redirección|no-redirecciones}})",
+	"pageinfo-subpages-value": "$1 ($2 {{PLURAL:$2|redirección|redirecciones}}; $3 {{PLURAL:$3|no redirección|no redirecciones}})",
 	"pageinfo-firstuser": "Creador de la página",
 	"pageinfo-firsttime": "Fecha de creación de la página",
 	"pageinfo-lastuser": "Último editor",

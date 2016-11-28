@@ -2477,7 +2477,7 @@
 	"allmessages-filter-translate": "Przetłumacz",
 	"thumbnail-more": "Powiększ",
 	"filemissing": "Brak pliku",
-	"thumbnail_error": "Błąd przy generowaniu miniatury $1",
+	"thumbnail_error": "Błąd przy generowaniu miniatury: $1",
 	"thumbnail_error_remote": "Komunikat o błędzie z {{grammar:2sg|$1}}:\n$2",
 	"djvu_page_error": "Strona DjVu poza zakresem",
 	"djvu_no_xml": "Nie można pobrać danych w formacie XML dla pliku DjVu",
