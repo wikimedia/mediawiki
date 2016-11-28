@@ -130,8 +130,8 @@ class UploadBaseTest extends MediaWikiTestCase {
 	 */
 	public function testCheckSvgScriptCallback( $svg, $wellFormed, $filterMatch, $message ) {
 		list( $formed, $match ) = $this->upload->checkSvgString( $svg );
-		$this->assertSame( $wellFormed, $formed, $message );
-		$this->assertSame( $filterMatch, $match, $message );
+		$this->assertSame( $wellFormed, $formed, $message . " (well-formed)" );
+		$this->assertSame( $filterMatch, $match, $message . " (filter match)" );
 	}
 
 	public static function provideCheckSvgScriptCallback() {
@@ -254,9 +254,15 @@ class UploadBaseTest extends MediaWikiTestCase {
 			],
 			[
 				'<?xml version="1.0"?> <?xml-stylesheet type="text/xml" href="#stylesheet"?> <!DOCTYPE doc [ <!ATTLIST xsl:stylesheet id ID #REQUIRED>]> <svg xmlns="http://www.w3.org/2000/svg"> <xsl:stylesheet id="stylesheet" version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"> <xsl:template match="/"> <iframe xmlns="http://www.w3.org/1999/xhtml" src="javascript:alert(1)"></iframe> </xsl:template> </xsl:stylesheet> <circle fill="red" r="40"></circle> </svg>',
-				true,
+				false,
 				true,
 				'SVG with embedded stylesheet (http://html5sec.org/#125)'
+			],
+			[
+				'<?xml version="1.0"?> <?xml-stylesheet type="text/xml" href="#stylesheet"?> <svg xmlns="http://www.w3.org/2000/svg"> <xsl:stylesheet id="stylesheet" version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"> <xsl:template match="/"> <iframe xmlns="http://www.w3.org/1999/xhtml" src="javascript:alert(1)"></iframe> </xsl:template> </xsl:stylesheet> <circle fill="red" r="40"></circle> </svg>',
+				true,
+				true,
+				'SVG with embedded stylesheet no doctype'
 			],
 			[
 				'<svg xmlns="http://www.w3.org/2000/svg" id="x"> <listener event="load" handler="#y" xmlns="http://www.w3.org/2001/xml-events" observer="x"/> <handler id="y">alert(1)</handler> </svg>',
@@ -364,7 +370,7 @@ class UploadBaseTest extends MediaWikiTestCase {
 			],
 			[
 				'<?xml version="1.0" encoding="UTF-8" standalone="no"?> <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [ <!ENTITY lol "lol"> <!ENTITY lol2 "&#x3C;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;&#x3E;&#x61;&#x6C;&#x65;&#x72;&#x74;&#x28;&#x27;&#x58;&#x53;&#x53;&#x45;&#x44;&#x20;&#x3D;&#x3E;&#x20;&#x27;&#x2B;&#x64;&#x6F;&#x63;&#x75;&#x6D;&#x65;&#x6E;&#x74;&#x2E;&#x64;&#x6F;&#x6D;&#x61;&#x69;&#x6E;&#x29;&#x3B;&#x3C;&#x2F;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;&#x3E;"> ]> <svg xmlns="http://www.w3.org/2000/svg" width="68" height="68" viewBox="-34 -34 68 68" version="1.1"> <circle cx="0" cy="0" r="24" fill="#c8c8c8"/> <text x="0" y="0" fill="black">&lol2;</text> </svg>',
-				true,
+				false,
 				true,
 				'SVG with encoded script tag in internal entity (reported by Beyond Security)'
 			],
@@ -373,6 +379,16 @@ class UploadBaseTest extends MediaWikiTestCase {
 				false,
 				false,
 				'SVG with external entity'
+			],
+			[
+				// The base64 = <script>alert(1)</script>. If for some reason
+				// entities actually do get loaded, this should trigger
+				// filterMatch to be true. So this test verifies that we
+				// are not loading external entities.
+				'<?xml version="1.0"?> <!DOCTYPE svg [ <!ENTITY foo SYSTEM "data:text/plain;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pgo="> ]> <svg xmlns="http://www.w3.org/2000/svg" version="1.1"> <desc>&foo;</desc> <rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:1;stroke:rgb(0,0,2)" /> </svg>',
+				false,
+				false, /* False verifies entities aren't getting loaded */
+				'SVG with data: uri external entity'
 			],
 			[
 				"<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"> <g> <a xlink:href=\"javascript:alert('1&#10;https://google.com')\"> <rect width=\"300\" height=\"100\" style=\"fill:rgb(0,0,255);stroke-width:1;stroke:rgb(0,0,2)\" /> </a> </g> </svg>",
@@ -393,6 +409,104 @@ class UploadBaseTest extends MediaWikiTestCase {
 				false,
 				'SVG with local urls, including filter: in style'
 			],
+			[
+				'<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE x [<!ATTLIST image x:href CDATA "data:image/png,foo" onerror CDATA "alert(\'XSSED = \'+document.domain)" onload CDATA "alert(\'XSSED = \'+document.domain)"> ]> <svg xmlns:h="http://www.w3.org/1999/xhtml" xmlns:x="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"> <image /> </svg>',
+				false,
+				false,
+				'SVG with evil default attribute values'
+			],
+			[
+				'<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE svg SYSTEM "data:application/xml-dtd;base64,PCFET0NUWVBFIHN2ZyBbPCFBVFRMSVNUIGltYWdlIHg6aHJlZiBDREFUQSAiZGF0YTppbWFnZS9wbmcsZm9vIiBvbmVycm9yIENEQVRBICJhbGVydCgnWFNTRUQgPSAnK2RvY3VtZW50LmRvbWFpbikiIG9ubG9hZCBDREFUQSAiYWxlcnQoJ1hTU0VEID0gJytkb2N1bWVudC5kb21haW4pIj4gXT4K"><svg xmlns:x="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"> <image /> </svg>',
+				true,
+				true,
+				'SVG with an evil external dtd'
+			],
+			[
+				'<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//FOO/bar" "http://example.com"><svg></svg>',
+				true,
+				true,
+				'SVG with random public doctype'
+			],
+			[
+				'<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg SYSTEM \'http://example.com/evil.dtd\' ><svg></svg>',
+				true,
+				true,
+				'SVG with random SYSTEM doctype'
+			],
+			[
+				'<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg [<!ENTITY % foo "bar" >] ><svg></svg>',
+				false,
+				false,
+				'SVG with parameter entity'
+			],
+			[
+				'<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg [<!ENTITY foo "bar%a;" ] ><svg></svg>',
+				false,
+				false,
+				'SVG with entity referencing parameter entity'
+			],
+			[
+				'<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg [<!ENTITY foo "bar0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"> ] ><svg></svg>',
+				false,
+				false,
+				'SVG with long entity'
+			],
+			[
+				'<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg [<!ENTITY  foo \'"Hi", said bob\'> ] ><svg><g>&foo;</g></svg>',
+				true,
+				false,
+				'SVG with apostrophe quote entity'
+			],
+			[
+				'<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg [<!ENTITY name "Bob"><!ENTITY  foo \'"Hi", said &name;.\'> ] ><svg><g>&foo;</g></svg>',
+				false,
+				false,
+				'SVG with recursive entity',
+			],
+			[
+				'<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd" [ <!ATTLIST svg xmlns:xlink CDATA #FIXED "http://www.w3.org/1999/xlink"> ]> <svg width="417pt" height="366pt"
+ viewBox="0.00 0.00 417.00 366.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"></svg>',
+				true, /* well-formed */
+				false, /* filter-hit */
+				'GraphViz-esque svg with #FIXED xlink ns (Should be allowed)'
+			],
+			[
+				'<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd" [ <!ATTLIST svg xmlns:xlink CDATA #FIXED "http://www.w3.org/1999/xlink2"> ]> <svg width="417pt" height="366pt"
+ viewBox="0.00 0.00 417.00 366.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"></svg>',
+				false,
+				false,
+				'GraphViz ATLIST exception should match exactly'
+			],
+			[
+				'<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [ <!-- Comment-here --> <!ENTITY foo "#ff6666">]><svg xmlns="http://www.w3.org/2000/svg"></svg>',
+				true,
+				false,
+				'DTD with comments (Should be allowed)'
+			],
+			[
+				'<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [ <!-- invalid--comment  --> <!ENTITY foo "#ff6666">]><svg xmlns="http://www.w3.org/2000/svg"></svg>',
+				false,
+				false,
+				'DTD with invalid comment'
+			],
+			[
+				'<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [ <!-- invalid ---> <!ENTITY foo "#ff6666">]><svg xmlns="http://www.w3.org/2000/svg"></svg>',
+				false,
+				false,
+				'DTD with invalid comment 2'
+			],
+			[
+				'<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [ <!ENTITY bar "&foo;"> <!ENTITY foo "#ff6666">]><svg xmlns="http://www.w3.org/2000/svg"></svg>',
+				true,
+				false,
+				'DTD with aliased entities (Should be allowed)'
+			],
+			[
+				'<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [ <!ENTITY bar \'&foo;\'> <!ENTITY foo \'#ff6666\'>]><svg xmlns="http://www.w3.org/2000/svg"></svg>',
+				true,
+				false,
+				'DTD with aliased entities apos (Should be allowed)'
+			]
 		];
 		// @codingStandardsIgnoreEnd
 	}
@@ -438,7 +552,10 @@ class UploadTestHandler extends UploadBase {
 			$svg,
 			[ $this, 'checkSvgScriptCallback' ],
 			false,
-			[ 'processing_instruction_handler' => 'UploadBase::checkSvgPICallback' ]
+			[
+				'processing_instruction_handler' => 'UploadBase::checkSvgPICallback',
+				'external_dtd_handler' => 'UploadBase::checkSvgExternalDTD'
+			]
 		);
 		return [ $check->wellFormed, $check->filterMatch ];
 	}
