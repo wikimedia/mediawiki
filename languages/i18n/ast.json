@@ -2614,7 +2614,7 @@
 	"pageinfo-few-visiting-watchers": "Puede haber, o non, un usuariu que vixila páxines que visita les ediciones recientes",
 	"pageinfo-redirects-name": "Númberu de redireiciones a esta páxina",
 	"pageinfo-subpages-name": "Subpáxines d'esta páxina",
-	"pageinfo-subpages-value": "$1 ($2 {{PLURAL:$2|redireición|redireiciones}}; $3 {{PLURAL:$3|non-redireición|non-redireiciones}})",
+	"pageinfo-subpages-value": "$1 ($2 {{PLURAL:$2|redireición|redireiciones}}; $3 {{PLURAL:$3|non redireición|non redireiciones}})",
 	"pageinfo-firstuser": "Creador de la páxina",
 	"pageinfo-firsttime": "Data de creación de la páxina",
 	"pageinfo-lastuser": "Caberu editor",
