@@ -1,11 +1,13 @@
 == MediaWiki 1.28 ==
 
-THIS IS NOT A RELEASE YET
+=== Changes since 1.28.0-rc1 ===
+* (T148957) Replace wgShowExceptionDetails with wgShowDBErrorBacktrace on db
+  errors.
+* (T148956) Only apply wgDBschema to postgres/mssql.
+* (T145991) Introduce separate log action for deleting pages on move.
+* (T141474) (T110464) Bypass login page if no user input is required.
 
-MediaWiki 1.28 is an alpha-quality branch and is not recommended for use in
-production.
-
-=== Changes since 1.28.0rc0 ===
+=== Changes since 1.28.0-rc0 ===
 * (T142210) The changes to move the parser "NewPP limit report" from a HTML
   comment to a machine-readable JavaScript config option 'wgPageParseReport'
   have been undone. They caused the human-readable limit report to be shown
