@@ -291,16 +291,6 @@ class SpecialSearch extends SpecialPage {
 			$textMatches = $textStatus->getValue();
 		}
 
-		// did you mean... suggestions
-		$didYouMeanHtml = '';
-		if ( $showSuggestion && $textMatches ) {
-			if ( $textMatches->hasRewrittenQuery() ) {
-				$didYouMeanHtml = $this->getDidYouMeanRewrittenHtml( $term, $textMatches );
-			} elseif ( $textMatches->hasSuggestion() ) {
-				$didYouMeanHtml = $this->getDidYouMeanHtml( $textMatches );
-			}
-		}
-
 		// Get number of results
 		$titleMatchesNum = $textMatchesNum = $numTitleMatches = $numTextMatches = 0;
 		if ( $titleMatches ) {
@@ -324,12 +314,15 @@ class SpecialSearch extends SpecialPage {
 		$out->addHtml( $formWidget->render(
 			$this->profile, $term, $num, $totalRes, $this->offset, $this->isPowerSearch()
 		) );
-		$out->addHtml( $didYouMeanHtml );
-
 		$filePrefix = $wgContLang->getFormattedNsText( NS_FILE ) . ':';
 		if ( trim( $term ) === '' || $filePrefix === trim( $term ) ) {
 			// Empty query -- straight view of search form
 			return;
+		}
+
+		if ( $textMatches ) {
+			$dymWidget = new MediaWiki\Widget\Search\DidYouMeanWidget( $this );
+			$out->addHtml( $dymWidget->render( $term, $textMatches ) );
 		}
 
 		$out->addHTML( "<div class='searchresults'>" );
@@ -451,6 +444,7 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Produce wiki header for interwiki results
 	 * @param string $interwiki Interwiki name
 	 * @param SearchResultSet $interwikiResult The result set
@@ -536,6 +530,8 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	/**
+=======
+>>>>>>> 2255b00... Extract 'did you mean' widget out of SpecialSearch
 	 * @param Title $title
 	 * @param int $num The number of search results found
 	 * @param null|SearchResultSet $titleMatches Results from title search
@@ -642,10 +638,12 @@ class SpecialSearch extends SpecialPage {
 
 	/**
 	 * Reconstruct the 'power search' options for links
+	 * TODO: Instead of exposing this publicly, could we instead expose
+	 *  a function for creating search links?
 	 *
 	 * @return array
 	 */
-	protected function powerSearchOptions() {
+	public function powerSearchOptions() {
 		$opt = [];
 		if ( !$this->isPowerSearch() ) {
 			$opt['profile'] = $this->profile;
