@@ -39,6 +39,11 @@ class ApiCheckToken extends ApiBase {
 		$tokenObj = ApiQueryTokens::getToken(
 			$this->getUser(), $this->getRequest()->getSession(), $salts[$params['type']]
 		);
+
+		if ( substr( $token, -strlen( urldecode( MediaWiki\Session\Token::SUFFIX ) ) ) === urldecode( MediaWiki\Session\Token::SUFFIX ) ) {
+			$this->setWarning( "Check that symbols such as \"+\" in the token are properly percent-encoded in the URL." );
+		}
+
 		if ( $tokenObj->match( $token, $maxage ) ) {
 			$res['result'] = 'valid';
 		} elseif ( $maxage !== null && $tokenObj->match( $token ) ) {
