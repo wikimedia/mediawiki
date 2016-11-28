@@ -12,6 +12,8 @@
  * @author Reder
  */
 
+$fallback = 'it';
+
 $specialPageAliases = [
 	'Allmessages'               => [ 'TutteLeMessagge' ],
 	'Preferences'               => [ 'Preferenze' ],
