@@ -5076,6 +5076,18 @@ class User implements IDBAccessObject {
 	}
 
 	/**
+	 * Get the name of a given grant
+	 *
+	 * @param string $grant Grant to query
+	 * @return string Localized name of the grant
+	 */
+	public static function getGrantName( $grant ) {
+		$key = "grant-$grant";
+		$msg = wfMessage( $key );
+		return $msg->isBlank() ? $grant : $msg->text();
+	}
+
+	/**
 	 * Make a new-style password hash
 	 *
 	 * @param string $password Plain-text password
