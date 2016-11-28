@@ -2862,23 +2862,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->mTrxLevel && ( $this->mTrxAtomicLevels || !$this->mTrxAutomatic );
 	}
 
-	/**
-	 * Creates a new table with structure copied from existing table
-	 * Note that unlike most database abstraction functions, this function does not
-	 * automatically append database prefix, because it works at a lower
-	 * abstraction level.
-	 * The table names passed to this function shall not be quoted (this
-	 * function calls addIdentifierQuotes when needed).
-	 *
-	 * @param string $oldName Name of table whose structure should be copied
-	 * @param string $newName Name of table to be created
-	 * @param bool $temporary Whether the new table should be temporary
-	 * @param string $fname Calling function name
-	 * @throws RuntimeException
-	 * @return bool True if operation was successful
-	 */
-	public function duplicateTableStructure( $oldName, $newName, $temporary = false,
-		$fname = __METHOD__
+	public function duplicateTableStructure(
+		$oldName, $newName, $temporary = false, $fname = __METHOD__
 	) {
 		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}

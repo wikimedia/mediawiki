@@ -41,19 +41,19 @@ class CloneDatabase {
 	/** @var bool Whether to use temporary tables or not */
 	private $useTemporaryTables = true;
 
-	/** @var Database */
+	/** @var IMaintainableDatabase */
 	private $db;
 
 	/**
 	 * Constructor
 	 *
-	 * @param Database $db A database subclass
+	 * @param IMaintainableDatabase $db A database subclass
 	 * @param array $tablesToClone An array of tables to clone, unprefixed
 	 * @param string $newTablePrefix Prefix to assign to the tables
 	 * @param string $oldTablePrefix Prefix on current tables, if not $wgDBprefix
 	 * @param bool $dropCurrentTables
 	 */
-	public function __construct( Database $db, array $tablesToClone,
+	public function __construct( IMaintainableDatabase $db, array $tablesToClone,
 		$newTablePrefix, $oldTablePrefix = '', $dropCurrentTables = true
 	) {
 		$this->db = $db;
@@ -107,7 +107,8 @@ class CloneDatabase {
 
 			# Create new table
 			wfDebug( __METHOD__ . " duplicating $oldTableName to $newTableName\n" );
-			$this->db->duplicateTableStructure( $oldTableName, $newTableName, $this->useTemporaryTables );
+			$this->db->duplicateTableStructure(
+				$oldTableName, $newTableName, $this->useTemporaryTables );
 		}
 	}
 
