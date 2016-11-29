@@ -44,6 +44,11 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Phabricator reports.
 
+==== No fallback for Ukrainian ====
+* (T39314) The fallback from Ukrainian to Russian was removed. The Ukrainian
+  language will now use the default fallback language: English. When a translation
+  to Ukrainian is not available, an English string will be shown.
+
 === Other changes in 1.29 ===
 * Database::getSearchEngine() (deprecated in 1.28) was removed. Use
   SearchEngineFactory::getSearchEngineClass() instead.
