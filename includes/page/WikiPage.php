@@ -1173,8 +1173,22 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-			$messageCache = MessageCache::singleton();
-			$messageCache->updateMessageOverride( $this->mTitle, $this->getContent() );
+			// @todo move this logic to MessageCache
+			if ( $this->exists() ) {
+				// NOTE: use transclusion text for messages.
+				//       This is consistent with  MessageCache::getMsgFromNamespace()
+
+				$content = $this->getContent();
+				$text = $content === null ? null : $content->getWikitextForTransclusion();
+
+				if ( $text === null ) {
+					$text = false;
+				}
+			} else {
+				$text = false;
+			}
+
+			MessageCache::singleton()->replace( $this->mTitle->getDBkey(), $text );
 		}
 
 		return true;
@@ -2236,7 +2250,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   - 'no-change': don't update the article count, ever
 	 */
 	public function doEditUpdates( Revision $revision, User $user, array $options = [] ) {
-		global $wgRCWatchCategoryMembership;
+		global $wgRCWatchCategoryMembership, $wgContLang;
 
 		$options += [
 			'changed' => true,
@@ -2374,7 +2388,17 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-			MessageCache::singleton()->updateMessageOverride( $this->mTitle, $content );
+			// XXX: could skip pseudo-messages like js/css here, based on content model.
+			$msgtext = $content ? $content->getWikitextForTransclusion() : null;
+			if ( $msgtext === false || $msgtext === null ) {
+				$msgtext = '';
+			}
+
+			MessageCache::singleton()->replace( $shortTitle, $msgtext );
+
+			if ( $wgContLang->hasVariants() ) {
+				$wgContLang->updateConversionTable( $this->mTitle );
+			}
 		}
 
 		if ( $options['created'] ) {
@@ -3372,6 +3396,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param Title $title
 	 */
 	public static function onArticleDelete( Title $title ) {
+		global $wgContLang;
+
 		// Update existence markers on article/talk tabs...
 		$other = $title->getOtherPage();
 
@@ -3388,7 +3414,11 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Messages
 		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
-			MessageCache::singleton()->updateMessageOverride( $title, null );
+			MessageCache::singleton()->replace( $title->getDBkey(), false );
+
+			if ( $wgContLang->hasVariants() ) {
+				$wgContLang->updateConversionTable( $title );
+			}
 		}
 
 		// Images
