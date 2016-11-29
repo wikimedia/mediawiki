@@ -1,6 +1,6 @@
 <?php
 /**
- * Specificly for testing Media handlers. Sets up a FSFile backend
+ * Specificly for testing Media handlers. Sets up a FileRepo backend
  */
 abstract class MediaWikiMediaTestCase extends MediaWikiTestCase {
 
@@ -29,7 +29,7 @@ abstract class MediaWikiMediaTestCase extends MediaWikiTestCase {
 			'containerPaths' => $containers,
 			'tmpDirectory' => $this->getNewTempDirectory()
 		] );
-		$this->repo = new FSRepo( $this->getRepoOptions() );
+		$this->repo = new FileRepo( $this->getRepoOptions() );
 	}
 
 	/**
