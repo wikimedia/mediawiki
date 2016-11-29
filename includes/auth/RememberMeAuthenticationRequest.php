@@ -58,6 +58,7 @@ class RememberMeAuthenticationRequest extends AuthenticationRequest {
 				'label' => wfMessage( 'userlogin-remembermypassword' )->numParams( $expirationDays ),
 				'help' => wfMessage( 'authmanager-userlogin-remembermypassword-help' ),
 				'optional' => true,
+				'skippable' => true,
 			]
 		];
 	}

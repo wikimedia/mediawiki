@@ -75,7 +75,7 @@ $wgConfigRegistry = [
  * MediaWiki version number
  * @since 1.2
  */
-$wgVersion = '1.28.0-alpha';
+$wgVersion = '1.28.0';
 
 /**
  * Name of the site. It must be changed in LocalSettings.php
@@ -4363,9 +4363,9 @@ $wgTranscludeCacheExpiry = 3600;
  * @since 1.28
  */
 $wgEnableMagicLinks = [
-	'ISBN' => true,
-	'PMID' => true,
-	'RFC' => true
+	'ISBN' => false,
+	'PMID' => false,
+	'RFC' => false
 ];
 
 /** @} */ # end of parser settings }
@@ -7507,6 +7507,7 @@ $wgLogActionsHandlers = [
 	'contentmodel/change' => 'ContentModelLogFormatter',
 	'contentmodel/new' => 'ContentModelLogFormatter',
 	'delete/delete' => 'DeleteLogFormatter',
+	'delete/delete_redir' => 'DeleteLogFormatter',
 	'delete/event' => 'DeleteLogFormatter',
 	'delete/restore' => 'DeleteLogFormatter',
 	'delete/revision' => 'DeleteLogFormatter',
@@ -7558,6 +7559,7 @@ $wgActionFilteredLogs = [
 	],
 	'delete' => [
 		'delete' => [ 'delete' ],
+		'delete_redir' => [ 'delete_redir' ],
 		'restore' => [ 'restore' ],
 		'event' => [ 'event' ],
 		'revision' => [ 'revision' ],
@@ -8377,9 +8379,9 @@ $wgSearchRunSuggestedQuery = true;
 /**
  * Where popular password file is located.
  *
- * Default in core contains 50,000 most popular. This config
+ * Default in core contains 10,000 most popular. This config
  * allows you to change which file, in case you want to generate
- * a password file with > 50000 entries in it.
+ * a password file with > 10000 entries in it.
  *
  * @see maintenance/createCommonPasswordCdb.php
  * @since 1.27

@@ -507,46 +507,60 @@ class Parser {
 				[ $this->mHighestExpansionDepth, $this->mOptions->getMaxPPExpandDepth() ]
 			);
 			$this->mOutput->setLimitReportData( 'limitreport-expensivefunctioncount',
-				[ $this->mExpensiveFunctionCount,
-					$this->mOptions->getExpensiveParserFunctionLimit() ]
+				[ $this->mExpensiveFunctionCount, $this->mOptions->getExpensiveParserFunctionLimit() ]
 			);
 			Hooks::run( 'ParserLimitReportPrepare', [ $this, $this->mOutput ] );
 
-			$limitReport = '';
-			Hooks::run( 'ParserLimitReport', [ $this, &$limitReport ] );
-			if ( $limitReport != '' ) {
-				// Sanitize for comment. Note '‐' in the replacement is U+2010,
-				// which looks much like the problematic '-'.
-				$limitReport = str_replace( [ '-', '&' ], [ '‐', '&amp;' ], $limitReport );
-				$text .= "\n<!-- \nNewPP limit report\n$limitReport-->\n";
+			$limitReport = "NewPP limit report\n";
+			if ( $wgShowHostnames ) {
+				$limitReport .= 'Parsed by ' . wfHostname() . "\n";
 			}
+			$limitReport .= 'Cached time: ' . $this->mOutput->getCacheTime() . "\n";
+			$limitReport .= 'Cache expiry: ' . $this->mOutput->getCacheExpiry() . "\n";
+			$limitReport .= 'Dynamic content: ' .
+				( $this->mOutput->hasDynamicContent() ? 'true' : 'false' ) .
+				"\n";
 
-			// Add on template profiling data in human/machine readable way
+			foreach ( $this->mOutput->getLimitReportData() as $key => $value ) {
+				if ( Hooks::run( 'ParserLimitReportFormat',
+					[ $key, &$value, &$limitReport, false, false ]
+				) ) {
+					$keyMsg = wfMessage( $key )->inLanguage( 'en' )->useDatabase( false );
+					$valueMsg = wfMessage( [ "$key-value-text", "$key-value" ] )
+						->inLanguage( 'en' )->useDatabase( false );
+					if ( !$valueMsg->exists() ) {
+						$valueMsg = new RawMessage( '$1' );
+					}
+					if ( !$keyMsg->isDisabled() && !$valueMsg->isDisabled() ) {
+						$valueMsg->params( $value );
+						$limitReport .= "{$keyMsg->text()}: {$valueMsg->text()}\n";
+					}
+				}
+			}
+			// Since we're not really outputting HTML, decode the entities and
+			// then re-encode the things that need hiding inside HTML comments.
+			$limitReport = htmlspecialchars_decode( $limitReport );
+			Hooks::run( 'ParserLimitReport', [ $this, &$limitReport ] );
+
+			// Sanitize for comment. Note '‐' in the replacement is U+2010,
+			// which looks much like the problematic '-'.
+			$limitReport = str_replace( [ '-', '&' ], [ '‐', '&amp;' ], $limitReport );
+			$text .= "\n<!-- \n$limitReport-->\n";
+
+			// Add on template profiling data
 			$dataByFunc = $this->mProfiler->getFunctionStats();
 			uasort( $dataByFunc, function ( $a, $b ) {
 				return $a['real'] < $b['real']; // descending order
 			} );
-			$profileReport = [];
+			$profileReport = "Transclusion expansion time report (%,ms,calls,template)\n";
 			foreach ( array_slice( $dataByFunc, 0, 10 ) as $item ) {
-				$profileReport[] = sprintf( "%6.2f%% %8.3f %6d %s",
-					$item['%real'], $item['real'], $item['calls'], $item['name'] );
+				$profileReport .= sprintf( "%6.2f%% %8.3f %6d - %s\n",
+					$item['%real'], $item['real'], $item['calls'],
+					htmlspecialchars( $item['name'] ) );
 			}
-			$this->mOutput->setLimitReportData( 'limitreport-timingprofile', $profileReport );
+			$text .= "\n<!-- \n$profileReport-->\n";
 
-			// Add other cache related metadata
-			if ( $wgShowHostnames ) {
-				$this->mOutput->setLimitReportData( 'cachereport-origin', wfHostname() );
-			}
-			$this->mOutput->setLimitReportData( 'cachereport-timestamp',
-				$this->mOutput->getCacheTime() );
-			$this->mOutput->setLimitReportData( 'cachereport-ttl',
-				$this->mOutput->getCacheExpiry() );
-			$this->mOutput->setLimitReportData( 'cachereport-transientcontent',
-				$this->mOutput->hasDynamicContent() );
-
-			if ( $this->mGeneratedPPNodeCount
-				> $this->mOptions->getMaxGeneratedPPNodeCount() / 10
-			) {
+			if ( $this->mGeneratedPPNodeCount > $this->mOptions->getMaxGeneratedPPNodeCount() / 10 ) {
 				wfDebugLog( 'generated-pp-node-count', $this->mGeneratedPPNodeCount . ' ' .
 					$this->mTitle->getPrefixedDBkey() );
 			}
@@ -1446,6 +1460,7 @@ class Parser {
 				$keyword = 'RFC';
 				$urlmsg = 'rfcurl';
 				$cssClass = 'mw-magiclink-rfc';
+				$trackingCat = 'magiclink-tracking-rfc';
 				$id = $m[5];
 			} elseif ( substr( $m[0], 0, 4 ) === 'PMID' ) {
 				if ( !$this->mOptions->getMagicPMIDLinks() ) {
@@ -1454,12 +1469,14 @@ class Parser {
 				$keyword = 'PMID';
 				$urlmsg = 'pubmedurl';
 				$cssClass = 'mw-magiclink-pmid';
+				$trackingCat = 'magiclink-tracking-pmid';
 				$id = $m[5];
 			} else {
 				throw new MWException( __METHOD__ . ': unrecognised match type "' .
 					substr( $m[0], 0, 20 ) . '"' );
 			}
 			$url = wfMessage( $urlmsg, $id )->inContentLanguage()->text();
+			$this->addTrackingCategory( $trackingCat );
 			return Linker::makeExternalLink( $url, "{$keyword} {$id}", true, $cssClass, [], $this->mTitle );
 		} elseif ( isset( $m[6] ) && $m[6] !== ''
 			&& $this->mOptions->getMagicISBNLinks()
@@ -1473,6 +1490,7 @@ class Parser {
 				' ' => '',
 				'x' => 'X',
 			] );
+			$this->addTrackingCategory( 'magiclink-tracking-isbn' );
 			return $this->getLinkRenderer()->makeKnownLink(
 				SpecialPage::getTitleFor( 'Booksources', $num ),
 				"ISBN $isbn",

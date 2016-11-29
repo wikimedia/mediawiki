@@ -1,9 +1,26 @@
 == MediaWiki 1.28 ==
 
-THIS IS NOT A RELEASE YET
+=== Changes since 1.28.0-rc1 ===
+* (T148957) Replace wgShowExceptionDetails with wgShowDBErrorBacktrace on db
+  errors.
+* (T148956) Only apply wgDBschema to postgres/mssql.
+* (T145991) Introduce separate log action for deleting pages on move.
+* (T141474) (T110464) Bypass login page if no user input is required.
 
-MediaWiki 1.28 is an alpha-quality branch and is not recommended for use in
-production.
+=== Changes since 1.28.0-rc0 ===
+* (T142210) The changes to move the parser "NewPP limit report" from a HTML
+  comment to a machine-readable JavaScript config option 'wgPageParseReport'
+  have been undone. They caused the human-readable limit report to be shown
+  incompletely or not at all. ParserOutput::setLimitReportData() and
+  getLimitReportData() behave as they did in MediaWiki 1.27 again.
+* (T149510) Value of {{DISPLAYTITLE:}} parser function will not be used for
+  the text of subheadings on a category page when creating it. This wasn't
+  working correctly.
+* (T106793) MediaWiki will no longer try to perform a HTTP redirect to the
+  canonical pretty URL when a non-pretty URL is used. It resulted in redirect
+  loops in some clients and in some server configurations. This undoes a change
+  made in MediaWiki 1.26.
+* (T149759) manifest_version: 2 was removed.
 
 === Configuration changes in 1.28 ===
 * $wgSend404Code now affects status code of action=history if the page is not there.
@@ -34,6 +51,14 @@ production.
   instead of just administrators ('sysop'). Documentation for this feature is
   available at <https://www.mediawiki.org/wiki/Help:ChangeContentModel>.
 * $wgRevisionCacheExpiry is now set to one week by default instead of being disabled.
+* Magic links are now disabled by default, and can be re-enabled by modifying the value
+  of $wgEnableMagicLinks. Their usage is discouraged, but if they are manually enabled,
+  a tracking category will be added to help identify usage and make it easier to migrate
+  away from. If you depend upon magic link functionality, it is requested that you comment
+  on <https://www.mediawiki.org/wiki/Requests_for_comment/Future_of_magic_links> and
+  explain your use case(s).
+* New config variable $wgCSPFalsePositiveUrls to control what URLs to ignore
+  in upcoming Content-Security-Policy feature's reporting.
 
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.
@@ -75,8 +100,6 @@ production.
 ==== New external libraries ====
 * Added wikimedia/scoped-callback v1.0.0
 * Added wikimedia/wait-condition-loop v1.0.1
-
-==== Removed and replaced external libraries ====
 
 === Bug fixes in 1.28 ===
 * (T146496) action=history pages should return 404 HTTP error code if the page does not exist
@@ -167,7 +190,7 @@ production.
 
 === Languages updated in 1.28 ===
 
-MediaWiki supports over 350 languages. Many localisations are updated
+MediaWiki supports over 375 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Phabricator reports.
 
@@ -203,7 +226,6 @@ changes to languages because of Phabricator reports.
   * Skin::linkKnown() (use MediaWiki\Linker\LinkRenderer instead)
   * Skin::userLink() (use Linker::userLink() instead)
   * Skin::userToolLinks() (use Linker::userToolLinks() instead)
-* The 'ParserLimitReportFormat' hook was removed.
 * Disabled "bug 2702" HTML tidying of parsed UI messages on wikis where Tidy is
   disabled.
 * DifferenceEngine::generateDiffBody() was removed (deprecated since 1.21).
@@ -223,8 +245,6 @@ changes to languages because of Phabricator reports.
   Instead of --keep-uploads, use the same option to parserTests.php, but you
   must specify a directory with --upload-dir.
 * The 'jquery.arrowSteps' ResourceLoader module is now deprecated.
-* (T62604) Core parser functions returning a number now format the number according
-  to the page content language, not wiki content language.
 * IP::isConfiguredProxy() and IP::isTrustedProxy() were removed. Callers should
   migrate to using the same functions on a ProxyLookup instance, obtainable from
   MediaWikiServices.
@@ -233,6 +253,8 @@ changes to languages because of Phabricator reports.
   ShowRawCssJs hooks will now emit deprecation warnings if used.
 * (T68404) CSS3 attr() function with url type is no longer allowed
   in inline styles.
+* Database::getSearchEngine() is deprecated, use SearchEngineFactory::getSearchEngineClass
+  instead.
 
 == Compatibility ==
 

@@ -3476,6 +3476,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->mOpened = false;
 		}
 	}
+
+	/**
+	 * @deprecated since 1.28 use SearchEngineFactory::getSearchEngineClass instead
+	 * @return string
+	 */
+	public function getSearchEngine() {
+		wfDeprecated( __METHOD__, '1.28' );
+		return SearchEngineFactory::getSearchEngineClass( $this );
+	}
 }
 
 class_alias( 'Database', 'DatabaseBase' );
