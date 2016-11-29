@@ -45,7 +45,7 @@ class ApiClearHasMsg extends ApiBase {
 	}
 
 	public function mustBePosted() {
-		return false;
+		return true;
 	}
 
 	protected function getExamplesMessages() {
