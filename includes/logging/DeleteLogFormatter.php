@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Formatter for delete log entries.
  *
@@ -22,6 +22,8 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  * @since 1.22
  */
+
+use MediaWiki/MediaWikiServices;
 
 /**
  * This class formats delete log entries.
@@ -128,9 +130,9 @@ class DeleteLogFormatter extends LogFormatter {
 				} else {
 					$message = 'undeleteviewlink';
 				}
-				$revert = Linker::linkKnown(
+				$revert = MediaWikiServices::getLinkRenderer()->makeKnownLink(
 					SpecialPage::getTitleFor( 'Undelete' ),
-					$this->msg( $message )->escaped(),
+					$this->msg( $message )->text(),
 					[],
 					[ 'target' => $this->entry->getTarget()->getPrefixedDBkey() ]
 				);
@@ -156,9 +158,9 @@ class DeleteLogFormatter extends LogFormatter {
 				if ( count( $ids ) == 1 ) {
 					// Live revision diffs...
 					if ( $key == 'oldid' || $key == 'revision' ) {
-						$links[] = Linker::linkKnown(
+						$links[] = MediaWikiServices::getLinkRenderer()->makeKnownLink(
 							$this->entry->getTarget(),
-							$this->msg( 'diff' )->escaped(),
+							$this->msg( 'diff' )->text(),
 							[],
 							[
 								'diff' => intval( $ids[0] ),
@@ -167,9 +169,9 @@ class DeleteLogFormatter extends LogFormatter {
 						);
 						// Deleted revision diffs...
 					} elseif ( $key == 'artimestamp' || $key == 'archive' ) {
-						$links[] = Linker::linkKnown(
+						$links[] = MediaWikiServices::getLinkRenderer()->makeKnownLink(
 							SpecialPage::getTitleFor( 'Undelete' ),
-							$this->msg( 'diff' )->escaped(),
+							$this->msg( 'diff' )->text(),
 							[],
 							[
 								'target' => $this->entry->getTarget()->getPrefixedDBkey(),
@@ -181,9 +183,9 @@ class DeleteLogFormatter extends LogFormatter {
 				}
 
 				// View/modify link...
-				$links[] = Linker::linkKnown(
+				$links[] = MediaWikiServices::getLinkRenderer()->makeKnownLink(
 					SpecialPage::getTitleFor( 'Revisiondelete' ),
-					$this->msg( 'revdel-restore' )->escaped(),
+					$this->msg( 'revdel-restore' )->text(),
 					[],
 					[
 						'target' => $this->entry->getTarget()->getPrefixedText(),
@@ -206,9 +208,9 @@ class DeleteLogFormatter extends LogFormatter {
 					$query = implode( ',', $query );
 				}
 				// Link to each hidden object ID, $params[1] is the url param
-				$revert = Linker::linkKnown(
+				$revert = MediaWikiServices::getLinkRenderer()->makeKnownLink(
 					SpecialPage::getTitleFor( 'Revisiondelete' ),
-					$this->msg( 'revdel-restore' )->escaped(),
+					$this->msg( 'revdel-restore' )->text(),
 					[],
 					[
 						'target' => $this->entry->getTarget()->getPrefixedText(),
