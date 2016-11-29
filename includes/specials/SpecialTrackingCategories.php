@@ -36,26 +36,6 @@ class SpecialTrackingCategories extends SpecialPage {
 		parent::__construct( 'TrackingCategories' );
 	}
 
-	/**
-	 * Tracking categories that exist in core
-	 *
-	 * @var array
-	 */
-	private static $coreTrackingCategories = [
-		'index-category',
-		'noindex-category',
-		'duplicate-args-category',
-		'expensive-parserfunction-category',
-		'post-expand-template-argument-category',
-		'post-expand-template-inclusion-category',
-		'hidden-category-category',
-		'broken-file-category',
-		'node-count-exceeded-category',
-		'expansion-depth-exceeded-category',
-		'restricted-displaytitle-ignored',
-		'deprecated-self-close-category',
-	];
-
 	function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
@@ -76,10 +56,11 @@ class SpecialTrackingCategories extends SpecialPage {
 			</tr></thead>"
 		);
 
-		$trackingCategories = $this->prepareTrackingCategoriesData();
+		$trackingCategories = new TrackingCategories( $this->getConfig() );
+		$categoryList = $trackingCategories->getTrackingCategories();
 
 		$batch = new LinkBatch();
-		foreach ( $trackingCategories as $catMsg => $data ) {
+		foreach ( $categoryList as $catMsg => $data ) {
 			$batch->addObj( $data['msg'] );
 			foreach ( $data['cats'] as $catTitle ) {
 				$batch->addObj( $catTitle );
@@ -87,9 +68,9 @@ class SpecialTrackingCategories extends SpecialPage {
 		}
 		$batch->execute();
 
-		Hooks::run( 'SpecialTrackingCategories::preprocess', [ $this, $trackingCategories ] );
+		Hooks::run( 'SpecialTrackingCategories::preprocess', [ $this, $categoryList ] );
 
-		foreach ( $trackingCategories as $catMsg => $data ) {
+		foreach ( $categoryList as $catMsg => $data ) {
 			$allMsgs = [];
 			$catDesc = $catMsg . '-desc';
 
@@ -139,80 +120,6 @@ class SpecialTrackingCategories extends SpecialPage {
 			);
 		}
 		$this->getOutput()->addHTML( Html::closeElement( 'table' ) );
-	}
-
-	/**
-	 * Read the global and extract title objects from the corresponding messages
-	 * @return array Array( 'msg' => Title, 'cats' => Title[] )
-	 */
-	private function prepareTrackingCategoriesData() {
-		$categories = array_merge(
-			self::$coreTrackingCategories,
-			ExtensionRegistry::getInstance()->getAttribute( 'TrackingCategories' ),
-			$this->getConfig()->get( 'TrackingCategories' ) // deprecated
-		);
-
-		// Only show magic link tracking categories if they are enabled
-		$enableMagicLinks = $this->getConfig()->get( 'EnableMagicLinks' );
-		if ( $enableMagicLinks['ISBN'] ) {
-			$categories[] = 'magiclink-tracking-isbn';
-		}
-		if ( $enableMagicLinks['RFC'] ) {
-			$categories[] = 'magiclink-tracking-rfc';
-		}
-		if ( $enableMagicLinks['PMID'] ) {
-			$categories[] = 'magiclink-tracking-pmid';
-		}
-
-		$trackingCategories = [];
-		foreach ( $categories as $catMsg ) {
-			/*
-			 * Check if the tracking category varies by namespace
-			 * Otherwise only pages in the current namespace will be displayed
-			 * If it does vary, show pages considering all namespaces
-			 */
-			$msgObj = $this->msg( $catMsg )->inContentLanguage();
-			$allCats = [];
-			$catMsgTitle = Title::makeTitleSafe( NS_MEDIAWIKI, $catMsg );
-			if ( !$catMsgTitle ) {
-				continue;
-			}
-
-			// Match things like {{NAMESPACE}} and {{NAMESPACENUMBER}}.
-			// False positives are ok, this is just an efficiency shortcut
-			if ( strpos( $msgObj->plain(), '{{' ) !== false ) {
-				$ns = MWNamespace::getValidNamespaces();
-				foreach ( $ns as $namesp ) {
-					$tempTitle = Title::makeTitleSafe( $namesp, $catMsg );
-					if ( !$tempTitle ) {
-						continue;
-					}
-					$catName = $msgObj->title( $tempTitle )->text();
-					# Allow tracking categories to be disabled by setting them to "-"
-					if ( $catName !== '-' ) {
-						$catTitle = Title::makeTitleSafe( NS_CATEGORY, $catName );
-						if ( $catTitle ) {
-							$allCats[] = $catTitle;
-						}
-					}
-				}
-			} else {
-				$catName = $msgObj->text();
-				# Allow tracking categories to be disabled by setting them to "-"
-				if ( $catName !== '-' ) {
-					$catTitle = Title::makeTitleSafe( NS_CATEGORY, $catName );
-					if ( $catTitle ) {
-						$allCats[] = $catTitle;
-					}
-				}
-			}
-			$trackingCategories[$catMsg] = [
-				'cats' => $allCats,
-				'msg' => $catMsgTitle,
-			];
-		}
-
-		return $trackingCategories;
 	}
 
 	protected function getGroupName() {
