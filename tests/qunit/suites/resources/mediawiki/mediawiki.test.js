@@ -31,7 +31,7 @@
 		}
 	} ) );
 
-	QUnit.test( 'Initial check', 8, function ( assert ) {
+	QUnit.test( 'Initial check', function ( assert ) {
 		assert.ok( window.jQuery, 'jQuery defined' );
 		assert.ok( window.$, '$ defined' );
 		assert.strictEqual( window.$, window.jQuery, '$ alias to jQuery' );
@@ -51,7 +51,7 @@
 		this.restoreWarnings();
 	} );
 
-	QUnit.test( 'mw.format', 2, function ( assert ) {
+	QUnit.test( 'mw.format', function ( assert ) {
 		assert.equal(
 			mw.format( 'Format $1 $2', 'foo', 'bar' ),
 			'Format foo bar',
@@ -314,7 +314,7 @@
 
 	} );
 
-	QUnit.test( 'mw.msg', 14, function ( assert ) {
+	QUnit.test( 'mw.msg', function ( assert ) {
 		assert.ok( mw.messages.set( 'hello', 'Hello <b>awesome</b> world' ), 'mw.messages.set: Register' );
 		assert.equal( mw.msg( 'hello' ), 'Hello <b>awesome</b> world', 'Gets message with default options (existing message)' );
 		assert.equal( mw.msg( 'goodbye' ), '⧼goodbye⧽', 'Gets message with default options (nonexistent message)' );
@@ -337,7 +337,7 @@
 		assert.equal( mw.msg( 'int-msg' ), 'Some Other Message', 'int is resolved' );
 	} );
 
-	QUnit.test( 'mw.hook', 13, function ( assert ) {
+	QUnit.test( 'mw.hook', function ( assert ) {
 		var hook, add, fire, chars, callback;
 
 		mw.hook( 'test.hook.unfired' ).add( function () {
