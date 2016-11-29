@@ -3410,7 +3410,7 @@
 	"feedback-submit": "Даслаць",
 	"feedback-thanks": "Дзякуй! Ваш водгук размешчаны на старонцы «[$2 $1]».",
 	"feedback-thanks-title": "Дзякуем!",
-	"searchsuggest-search": "Шукаць у {{SITENAME}}",
+	"searchsuggest-search": "Шукаць у {{GRAMMAR:месны|{{SITENAME}}}}",
 	"searchsuggest-containing": "змяшчае...",
 	"api-error-badaccess-groups": "У Вас няма дазволу загружаць файлы ў гэтую вікі.",
 	"api-error-badtoken": "Унутраная памылка: няслушны ключ.",

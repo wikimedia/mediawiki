@@ -1147,7 +1147,7 @@
 	"userrights-user-editname": "Введіть ім'я користувача:",
 	"editusergroup": "Завантажити групи користувачів",
 	"editinguser": "Зміна прав {{GENDER:$1|користувача}} <strong>[[User:$1|$1]]</strong> $2",
-	"userrights-editusergroup": "Змінити групи користувачів",
+	"userrights-editusergroup": "Змінити групи {{GENDER:$1|користувача|користувачки}}",
 	"saveusergroups": "Зберегти групи {{GENDER:$1|користувачів}}",
 	"userrights-groupsmember": "Член груп:",
 	"userrights-groupsmember-auto": "Неявний член:",
