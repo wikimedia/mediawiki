@@ -2207,6 +2207,7 @@
 	"listgrants-summary": "Explanatory text shown at the top of the grant/rights mapping table.\n\nRefers to {{msg-mw|Listgrouprights-helppage}}.",
 	"listgrants-grant": "Used as table header for the grant/rights mapping table.\n{{Identical|Grant}}",
 	"listgrants-rights": "Used as table header for the grant/rights mapping table.\n{{Identical|Right}}",
+	"listgrants-grant-display": "{{optional}}\nUsed to display the code name of a grant next to the grant. Parameters:\n* $1 - the text from the \"grant-...\" messages, i.e. {{msg-mw|Grant-highvolume}}\n* $2 - the codename of this grant",
 	"trackingcategories": "[[Special:TrackingCategories]] page implementing list of Tracking categories [[mw:Special:MyLanguage/Help:Tracking categories|tracking category]].\n{{Identical|Tracking category}}",
 	"trackingcategories-summary": "Description for [[Special:TrackingCategories]] page [[mw:Help:Tracking categories|tracking category]]",
 	"trackingcategories-msg": "Header for the message column of the table on [[Special:TrackingCategories]]. This column lists the mediawiki message that controls the tracking category in question.\n{{Identical|Tracking category}}",
