@@ -101,7 +101,6 @@
 				// testing custom / localized namespace
 				100: 'Penguins'
 			},
-			// jscs: disable requireCamelCaseOrUpperCaseIdentifiers
 			wgNamespaceIds: {
 				media: -2,
 				special: -1,
@@ -129,12 +128,11 @@
 				penguins: 100,
 				antarctic_waterfowl: 100
 			},
-			// jscs: enable requireCamelCaseOrUpperCaseIdentifiers
 			wgCaseSensitiveNamespaces: []
 		}
 	} ) );
 
-	QUnit.test( 'constructor', cases.invalid.length, function ( assert ) {
+	QUnit.test( 'constructor', function ( assert ) {
 		var i, title;
 		for ( i = 0; i < cases.valid.length; i++ ) {
 			title = new mw.Title( cases.valid[ i ] );
@@ -148,7 +146,7 @@
 		}
 	} );
 
-	QUnit.test( 'newFromText', cases.valid.length + cases.invalid.length, function ( assert ) {
+	QUnit.test( 'newFromText', function ( assert ) {
 		var i;
 		for ( i = 0; i < cases.valid.length; i++ ) {
 			assert.equal(
@@ -166,7 +164,7 @@
 		}
 	} );
 
-	QUnit.test( 'makeTitle', 6, function ( assert ) {
+	QUnit.test( 'makeTitle', function ( assert ) {
 		var cases, i, title, expected,
 			NS_MAIN = 0,
 			NS_TALK = 1,
@@ -192,7 +190,7 @@
 		}
 	} );
 
-	QUnit.test( 'Basic parsing', 21, function ( assert ) {
+	QUnit.test( 'Basic parsing', function ( assert ) {
 		var title;
 		title = new mw.Title( 'File:Foo_bar.JPG' );
 
@@ -223,7 +221,7 @@
 		assert.equal( title.getPrefixedText(), '.foo' );
 	} );
 
-	QUnit.test( 'Transformation', 12, function ( assert ) {
+	QUnit.test( 'Transformation', function ( assert ) {
 		var title;
 
 		title = new mw.Title( 'File:quux pif.jpg' );
@@ -260,7 +258,7 @@
 		assert.equal( title.getFragment(), ' foo bar baz', 'Fragment' );
 	} );
 
-	QUnit.test( 'Namespace detection and conversion', 10, function ( assert ) {
+	QUnit.test( 'Namespace detection and conversion', function ( assert ) {
 		var title;
 
 		title = new mw.Title( 'File:User:Example' );
@@ -292,13 +290,13 @@
 		assert.equal( title.toString(), 'Penguins:Flightless_yet_cute.jpg' );
 	} );
 
-	QUnit.test( 'Throw error on invalid title', 1, function ( assert ) {
+	QUnit.test( 'Throw error on invalid title', function ( assert ) {
 		assert.throws( function () {
 			return new mw.Title( '' );
 		}, 'Throw error on empty string' );
 	} );
 
-	QUnit.test( 'Case-sensivity', 5, function ( assert ) {
+	QUnit.test( 'Case-sensivity', function ( assert ) {
 		var title;
 
 		// Default config
@@ -323,14 +321,14 @@
 		assert.equal( title.toString(), 'User:John', '$wgCapitalLinks=false: User namespace is insensitive, first-letter becomes uppercase' );
 	} );
 
-	QUnit.test( 'toString / toText', 2, function ( assert ) {
+	QUnit.test( 'toString / toText', function ( assert ) {
 		var title = new mw.Title( 'Some random page' );
 
 		assert.equal( title.toString(), title.getPrefixedDb() );
 		assert.equal( title.toText(), title.getPrefixedText() );
 	} );
 
-	QUnit.test( 'getExtension', 7, function ( assert ) {
+	QUnit.test( 'getExtension', function ( assert ) {
 		function extTest( pagename, ext, description ) {
 			var title = new mw.Title( pagename );
 			assert.equal( title.getExtension(), ext, description || pagename );
@@ -348,7 +346,7 @@
 		// extTest( '.NET', null, 'Leading dot is (or is not?) an extension' );
 	} );
 
-	QUnit.test( 'exists', 3, function ( assert ) {
+	QUnit.test( 'exists', function ( assert ) {
 		var title;
 
 		// Empty registry, checks default to null
@@ -367,7 +365,7 @@
 
 	} );
 
-	QUnit.test( 'getUrl', 4, function ( assert ) {
+	QUnit.test( 'getUrl', function ( assert ) {
 		var title;
 		mw.config.set( {
 			wgScript: '/w/index.php',
@@ -385,7 +383,7 @@
 		assert.equal( title.getUrl( { meme: true } ), '/w/index.php?title=User_talk:John_Cena&meme=true#And_His_Name_Is', 'title with fragment and query parameter' );
 	} );
 
-	QUnit.test( 'newFromImg', 44, function ( assert ) {
+	QUnit.test( 'newFromImg', function ( assert ) {
 		var title, i, thisCase, prefix,
 			cases = [
 				{
@@ -496,7 +494,7 @@
 		}
 	} );
 
-	QUnit.test( 'getRelativeText', 5, function ( assert ) {
+	QUnit.test( 'getRelativeText', function ( assert ) {
 		var i, thisCase, title,
 			cases = [
 				{
@@ -534,7 +532,7 @@
 		}
 	} );
 
-	QUnit.test( 'normalizeExtension', 5, function ( assert ) {
+	QUnit.test( 'normalizeExtension', function ( assert ) {
 		var extension, i, thisCase, prefix,
 			cases = [
 				{
@@ -573,7 +571,7 @@
 		}
 	} );
 
-	QUnit.test( 'newFromUserInput', 12, function ( assert ) {
+	QUnit.test( 'newFromUserInput', function ( assert ) {
 		var title, i, thisCase, prefix,
 			cases = [
 				{
@@ -628,7 +626,7 @@
 		}
 	} );
 
-	QUnit.test( 'newFromFileName', 54, function ( assert ) {
+	QUnit.test( 'newFromFileName', function ( assert ) {
 		var title, i, thisCase, prefix,
 			cases = [
 				{

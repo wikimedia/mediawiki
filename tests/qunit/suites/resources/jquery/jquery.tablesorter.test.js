@@ -245,7 +245,6 @@
 		$tr.appendTo( $thead );
 
 		for ( i = 0; i < data.length; i++ ) {
-			/*jshint loopfunc: true */
 			$tr = $( '<tr>' );
 			$.each( data[ i ], function ( j, str ) {
 				var $td = $( '<td>' );
@@ -286,7 +285,7 @@
 	 * @param {function($table)} callback something to do with the table before we compare
 	 */
 	function tableTest( msg, header, data, expected, callback ) {
-		QUnit.test( msg, 1, function ( assert ) {
+		QUnit.test( msg, function ( assert ) {
 			var extracted,
 				$table = tableCreate( header, data );
 
@@ -310,7 +309,7 @@
 	 * @param {function($table)} callback Something to do with the table before we compare
 	 */
 	function tableTestHTML( msg, html, expected, callback ) {
-		QUnit.test( msg, 1, function ( assert ) {
+		QUnit.test( msg, function ( assert ) {
 			var extracted,
 				$table = $( html );
 
@@ -503,7 +502,7 @@
 			$table.find( '.headerSort:eq(1)' ).trigger( event );
 		}
 	);
-	QUnit.test( 'Reset sorting making table appear unsorted', 3, function ( assert ) {
+	QUnit.test( 'Reset sorting making table appear unsorted', function ( assert ) {
 		var $table = tableCreate( header, simple );
 		$table.tablesorter(
 			{ sortList: [
@@ -589,7 +588,7 @@
 		}
 	);
 
-	QUnit.test( 'Basic planet table: one unsortable column', 3, function ( assert ) {
+	QUnit.test( 'Basic planet table: one unsortable column', function ( assert ) {
 		var $table = tableCreate( header, planets ),
 			$cell;
 		$table.find( 'tr:eq(0) > th:eq(0)' ).addClass( 'unsortable' );
@@ -731,7 +730,7 @@
 		}
 	);
 
-	QUnit.test( 'Rowspan not exploded on init', 1, function ( assert ) {
+	QUnit.test( 'Rowspan not exploded on init', function ( assert ) {
 		var $table = tableCreate( header, planets );
 
 		// Modify the table to have a multiple-row-spanning cell:
@@ -853,7 +852,7 @@
 		}
 	);
 
-	QUnit.test( 'Test detection routine', 1, function ( assert ) {
+	QUnit.test( 'Test detection routine', function ( assert ) {
 		var $table;
 		$table = $(
 			'<table class="sortable">' +
@@ -874,7 +873,7 @@
 	} );
 
 	/** FIXME: the diff output is not very readeable. */
-	QUnit.test( 'bug 32047 - caption must be before thead', 1, function ( assert ) {
+	QUnit.test( 'bug 32047 - caption must be before thead', function ( assert ) {
 		var $table;
 		$table = $(
 			'<table class="sortable">' +
@@ -894,7 +893,7 @@
 		);
 	} );
 
-	QUnit.test( 'data-sort-value attribute, when available, should override sorting position', 3, function ( assert ) {
+	QUnit.test( 'data-sort-value attribute, when available, should override sorting position', function ( assert ) {
 		var $table, data;
 
 		// Example 1: All cells except one cell without data-sort-value,
@@ -1071,7 +1070,7 @@
 	);
 	// TODO add numbers sorting tests for bug 8115 with a different language
 
-	QUnit.test( 'bug 32888 - Tables inside a tableheader cell', 2, function ( assert ) {
+	QUnit.test( 'bug 32888 - Tables inside a tableheader cell', function ( assert ) {
 		var $table;
 		$table = $(
 			'<table class="sortable" id="mw-bug-32888">' +
@@ -1135,7 +1134,7 @@
 		}
 	);
 
-	QUnit.test( 'Sorting images using alt text', 1, function ( assert ) {
+	QUnit.test( 'Sorting images using alt text', function ( assert ) {
 		var $table = $(
 			'<table class="sortable">' +
 				'<tr><th>THEAD</th></tr>' +
@@ -1152,7 +1151,7 @@
 		);
 	} );
 
-	QUnit.test( 'Sorting images using alt text (complex)', 1, function ( assert ) {
+	QUnit.test( 'Sorting images using alt text (complex)', function ( assert ) {
 		var $table = $(
 			'<table class="sortable">' +
 				'<tr><th>THEAD</th></tr>' +
@@ -1173,7 +1172,7 @@
 		);
 	} );
 
-	QUnit.test( 'Sorting images using alt text (with format autodetection)', 1, function ( assert ) {
+	QUnit.test( 'Sorting images using alt text (with format autodetection)', function ( assert ) {
 		var $table = $(
 			'<table class="sortable">' +
 				'<tr><th>THEAD</th></tr>' +
@@ -1192,7 +1191,7 @@
 		);
 	} );
 
-	QUnit.test( 'bug 38911 - The row with the largest amount of columns should receive the sort indicators', 3, function ( assert ) {
+	QUnit.test( 'bug 38911 - The row with the largest amount of columns should receive the sort indicators', function ( assert ) {
 		var $table = $(
 			'<table class="sortable">' +
 				'<thead>' +
@@ -1222,7 +1221,7 @@
 		);
 	} );
 
-	QUnit.test( 'rowspans in table headers should prefer the last row when rows are equal in length', 2, function ( assert ) {
+	QUnit.test( 'rowspans in table headers should prefer the last row when rows are equal in length', function ( assert ) {
 		var $table = $(
 			'<table class="sortable">' +
 				'<thead>' +
@@ -1247,7 +1246,7 @@
 		);
 	} );
 
-	QUnit.test( 'holes in the table headers should not throw JS errors', 2, function ( assert ) {
+	QUnit.test( 'holes in the table headers should not throw JS errors', function ( assert ) {
 		var $table = $(
 			'<table class="sortable">' +
 				'<thead>' +
@@ -1270,7 +1269,7 @@
 	} );
 
 	// bug 53527
-	QUnit.test( 'td cells in thead should not be taken into account for longest row calculation', 2, function ( assert ) {
+	QUnit.test( 'td cells in thead should not be taken into account for longest row calculation', function ( assert ) {
 		var $table = $(
 			'<table class="sortable">' +
 				'<thead>' +
@@ -1307,7 +1306,7 @@
 
 	// bug 53211 - exploding rowspans in more complex cases
 	QUnit.test(
-		'Rowspan exploding with row headers and colspans', 1, function ( assert ) {
+		'Rowspan exploding with row headers and colspans', function ( assert ) {
 			var $table = $( '<table class="sortable">' +
 				'<thead><tr><th rowspan="2">n</th><th colspan="2">foo</th><th rowspan="2">baz</th></tr>' +
 				'<tr><th>foo</th><th>bar</th></tr></thead>' +
@@ -1424,7 +1423,7 @@
 		]
 	);
 
-	QUnit.test( 'bug 105731 - incomplete rows in table body', 3, function ( assert ) {
+	QUnit.test( 'bug 105731 - incomplete rows in table body', function ( assert ) {
 		var $table, parsers;
 		$table = $(
 			'<table class="sortable">' +
@@ -1459,7 +1458,7 @@
 		);
 	} );
 
-	QUnit.test( 'bug T114721 - use of expand-child class', 2, function ( assert ) {
+	QUnit.test( 'bug T114721 - use of expand-child class', function ( assert ) {
 		var $table, parsers;
 		$table = $(
 			'<table class="sortable">' +
