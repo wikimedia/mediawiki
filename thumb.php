@@ -341,6 +341,7 @@ function wfStreamThumb( array $params ) {
 	// Check for thumbnail generation errors...
 	$msg = wfMessage( 'thumbnail_error' );
 	$errorCode = 500;
+
 	if ( !$thumb ) {
 		$errorMsg = $errorMsg ?: $msg->rawParams( 'File::transform() returned false' )->escaped();
 		if ( $errorMsg instanceof MessageSpecifier &&
@@ -350,6 +351,7 @@ function wfStreamThumb( array $params ) {
 		}
 	} elseif ( $thumb->isError() ) {
 		$errorMsg = $thumb->getHtmlMsg();
+		$errorCode = $thumb->getHttpStatusCode();
 	} elseif ( !$thumb->hasFile() ) {
 		$errorMsg = $msg->rawParams( 'No path supplied in thumbnail object' )->escaped();
 	} elseif ( $thumb->fileIsSource() ) {
