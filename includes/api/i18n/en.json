@@ -1732,6 +1732,7 @@
 	"apierror-upload-missingresult": "No result in status data.",
 	"apierror-urlparamnormal": "Could not normalize image parameters for $1.",
 	"apierror-writeapidenied": "You're not allowed to edit this wiki through the API.",
+	"apierror-invaliduserid": "User ID <var>$1</var> is not valid.",
 
 	"apiwarn-alldeletedrevisions-performance": "For better performance when generating titles, set <kbd>$1dir=newer</kbd>.",
 	"apiwarn-badurlparam": "Could not parse <var>$1urlparam</var> for $2. Using only width and height.",
