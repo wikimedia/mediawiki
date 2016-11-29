@@ -37,6 +37,7 @@ if (
 		isset( $_SERVER['HTTP_USER_AGENT'] ) &&
 		strpos( $_SERVER['HTTP_USER_AGENT'], 'Parsoid' ) !== false
 	) &&
+	( isset( $_SERVER['REQUEST_METHOD'] ) && $_SERVER['REQUEST_METHOD'] === 'POST' ) &&
 	( isset( $_SERVER['HTTP_HOST'] ) && $_SERVER['HTTP_HOST'] === 'eu.wikipedia.org' )
 ) {
 	header( $_SERVER['SERVER_PROTOCOL'] . ' 500 T151702 Bandaid', true, 500 );
