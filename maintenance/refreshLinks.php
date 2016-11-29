@@ -29,6 +29,8 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class RefreshLinks extends Maintenance {
+	const REPORTING_INTERVAL = 100;
+
 	/** @var int|bool */
 	protected $namespace = false;
 
@@ -43,6 +45,8 @@ class RefreshLinks extends Maintenance {
 		$this->addOption( 'dfn-chunk-size', 'Maximum number of existent IDs to check per ' .
 			'query, default 100000', false, true );
 		$this->addOption( 'namespace', 'Only fix pages in this namespace', false, true );
+		$this->addOption( 'category', 'Only fix pages in this category', false, true );
+		$this->addOption( 'tracking-category', 'Only fix pages in this tracking category', false, true );
 		$this->addArg( 'start', 'Page_id to start from, default 1', false );
 		$this->setBatchSize( 100 );
 	}
@@ -61,7 +65,15 @@ class RefreshLinks extends Maintenance {
 		} else {
 			$this->namespace = (int)$ns;
 		}
-		if ( !$this->hasOption( 'dfn-only' ) ) {
+		if ( ( $category = $this->getOption( 'category', false ) ) !== false ) {
+			$title = Title::makeTitle( NS_CATEGORY, $category );
+			if ( !$title ) {
+				$this->error( "'$category' is an invalid category name!\n", true );
+			}
+			$this->refreshCategory( $category );
+		} elseif ( ( $category = $this->getOption( 'tracking-category', false ) ) !== false ) {
+			$this->refreshTrackingCategory( $category );
+		} elseif ( !$this->hasOption( 'dfn-only' ) ) {
 			$new = $this->getOption( 'new-only', false );
 			$redir = $this->getOption( 'redirects-only', false );
 			$oldRedir = $this->getOption( 'old-redirects-only', false );
@@ -89,7 +101,6 @@ class RefreshLinks extends Maintenance {
 	private function doRefreshLinks( $start, $newOnly = false,
 		$end = null, $redirectsOnly = false, $oldRedirectsOnly = false
 	) {
-		$reportingInterval = 100;
 		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
 
 		if ( $start === null ) {
@@ -124,7 +135,7 @@ class RefreshLinks extends Maintenance {
 			$i = 0;
 
 			foreach ( $res as $row ) {
-				if ( !( ++$i % $reportingInterval ) ) {
+				if ( !( ++$i % self::REPORTING_INTERVAL ) ) {
 					$this->output( "$i\n" );
 					wfWaitForSlaves();
 				}
@@ -145,7 +156,7 @@ class RefreshLinks extends Maintenance {
 
 			$i = 0;
 			foreach ( $res as $row ) {
-				if ( !( ++$i % $reportingInterval ) ) {
+				if ( !( ++$i % self::REPORTING_INTERVAL ) ) {
 					$this->output( "$i\n" );
 					wfWaitForSlaves();
 				}
@@ -166,7 +177,7 @@ class RefreshLinks extends Maintenance {
 
 			for ( $id = $start; $id <= $end; $id++ ) {
 
-				if ( !( $id % $reportingInterval ) ) {
+				if ( !( $id % self::REPORTING_INTERVAL ) ) {
 					$this->output( "$id\n" );
 					wfWaitForSlaves();
 				}
@@ -179,7 +190,7 @@ class RefreshLinks extends Maintenance {
 
 				for ( $id = $start; $id <= $end; $id++ ) {
 
-					if ( !( $id % $reportingInterval ) ) {
+					if ( !( $id % self::REPORTING_INTERVAL ) ) {
 						$this->output( "$id\n" );
 						wfWaitForSlaves();
 					}
@@ -379,6 +390,7 @@ class RefreshLinks extends Maintenance {
 	 * @param string $var Field name
 	 * @param mixed $start First value to include or null
 	 * @param mixed $end Last value to include or null
+	 * @return string
 	 */
 	private static function intervalCond( IDatabase $db, $var, $start, $end ) {
 		if ( $start === null && $end === null ) {
@@ -390,6 +402,82 @@ class RefreshLinks extends Maintenance {
 		} else {
 			return "$var BETWEEN {$db->addQuotes( $start )} AND {$db->addQuotes( $end )}";
 		}
+	}
+
+	/**
+	 * Refershes links for pages in a tracking category
+	 *
+	 * @param string $category Category key
+	 */
+	private function refreshTrackingCategory( $category ) {
+		$cats = $this->getPossibleCategories( $category );
+
+		foreach ( $cats as $cat ) {
+			$this->refreshCategory( $cat );
+		}
+	}
+
+	/**
+	 * Refreshes links to a category
+	 *
+	 * @param Title $category
+	 */
+	private function refreshCategory( Title $category ) {
+		$this->output( "Refreshing pages in category '{$category->getText()}'...\n" );
+
+		$dbr = $this->getDB( DB_REPLICA );
+		$conds = [
+			'page_id=cl_from',
+			'cl_to' => $category->getDBkey(),
+		];
+		if ( $this->namespace !== false ) {
+			$conds['page_namespace'] = $this->namespace;
+		}
+
+		$i = 0;
+		$timestamp = '';
+		$lastId = 0;
+		do {
+			$finalConds = $conds;
+			$timestamp = $dbr->addQuotes( $timestamp );
+			$finalConds []= "(cl_timestamp > $timestamp OR (cl_timestamp = $timestamp AND cl_from > $lastId))";
+			$res = $dbr->select( [ 'page', 'categorylinks' ],
+				[ 'page_id', 'cl_timestamp' ],
+				$finalConds,
+				__METHOD__,
+				[
+					'ORDER BY' => [ 'cl_timestamp', 'cl_from' ],
+					'LIMIT' => $this->mBatchSize,
+				]
+			);
+
+			foreach ( $res as $row ) {
+				if ( !( ++$i % self::REPORTING_INTERVAL ) ) {
+					$this->output( "$id\n" );
+					wfWaitForSlaves();
+				}
+				$lastId = $row->page_id;
+				$timestamp = $row->cl_timestamp;
+				self::fixLinksFromArticle( $row->page_id );
+			}
+
+		} while ( $res->numRows() == $this->mBatchSize );
+	}
+
+	/**
+	 * Returns a list of possible categories for a given tracking category key
+	 *
+	 * @param string $categoryKey
+	 * @return Title[]
+	 */
+	private function getPossibleCategories( $categoryKey ) {
+		/** @var SpecialTrackingCategories $specialTrackingCategories */
+		$specialTrackingCategories = SpecialPageFactory::getPage( 'TrackingCategories' );
+		$cats = $specialTrackingCategories->getTrackingCategories();
+		if ( isset( $cats[$categoryKey] ) ) {
+			return $cats[$categoryKey]['cats'];
+		}
+		$this->error( "Unknown tracking category {$categoryKey}\n", true );
 	}
 }
 

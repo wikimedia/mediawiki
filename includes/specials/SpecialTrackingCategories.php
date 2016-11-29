@@ -76,7 +76,7 @@ class SpecialTrackingCategories extends SpecialPage {
 			</tr></thead>"
 		);
 
-		$trackingCategories = $this->prepareTrackingCategoriesData();
+		$trackingCategories = $this->getTrackingCategories();
 
 		$batch = new LinkBatch();
 		foreach ( $trackingCategories as $catMsg => $data ) {
@@ -145,7 +145,7 @@ class SpecialTrackingCategories extends SpecialPage {
 	 * Read the global and extract title objects from the corresponding messages
 	 * @return array Array( 'msg' => Title, 'cats' => Title[] )
 	 */
-	private function prepareTrackingCategoriesData() {
+	public function getTrackingCategories() {
 		$categories = array_merge(
 			self::$coreTrackingCategories,
 			ExtensionRegistry::getInstance()->getAttribute( 'TrackingCategories' ),

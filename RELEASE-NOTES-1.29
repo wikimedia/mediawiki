@@ -54,6 +54,8 @@ changes to languages because of Phabricator reports.
 === Other changes in 1.29 ===
 * Database::getSearchEngine() (deprecated in 1.28) was removed. Use
   SearchEngineFactory::getSearchEngineClass() instead.
+* refreshLinks.php now can be limited to a particular category with --category=...
+  or a tracking category with --tracking-category=....
 
 == Compatibility ==
 
