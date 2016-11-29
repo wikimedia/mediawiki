@@ -2289,6 +2289,32 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.widgets.MediaSearch' => [
+		'scripts' => [
+			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.APIResultsProvider.js',
+			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.APIResultsQueue.js',
+			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaResourceProvider.js',
+			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaSearchProvider.js',
+			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaResourceQueue.js',
+			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaSearchQueue.js',
+			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaSearchWidget.js',
+			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaResultWidget.js',
+		],
+		'styles' => [
+			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaSearchWidget.css',
+			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaResultWidget.css',
+		],
+		'dependencies' => [
+			'oojs-ui-widgets',
+			'mediawiki.ForeignApi',
+			'mediawiki.Title',
+		],
+		'messages' => [
+			'mw-widgets-mediasearch-noresults',
+			'mw-widgets-mediasearch-input-placeholder',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.widgets.UserInputWidget' => [
 		'scripts' => [
 			'resources/src/mediawiki.widgets/mw.widgets.UserInputWidget.js',
