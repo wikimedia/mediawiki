@@ -1418,6 +1418,14 @@ class Block {
 	}
 
 	/**
+	 * Set the block ID.
+	 * @param int $id Block identifier, usually corresponds to ipblocks.ipb_id
+	 */
+	public function setId( $id ) {
+		$this->mId = $id;
+	}
+
+	/**
 	 * Set the 'BlockID' cookie to this block's ID and expiry time. The cookie's expiry will be
 	 * the same as the block's, unless it's greater than $wgCookieExpiration in which case
 	 * $wgCookieExpiration will be used instead (defaults to 30 days).
