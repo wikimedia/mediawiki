@@ -36,6 +36,7 @@ production.
   in the query string is now an error. They should be submitted in the POST
   body instead.
 * The capture option for action=resetpassword has been removed
+* action=clearhasmsg now requires a POST.
 
 === Action API internal changes in 1.29 ===
 
