@@ -215,7 +215,7 @@
 	} );
 
 	function caretTest( options ) {
-		QUnit.test( options.description, 2, function ( assert ) {
+		QUnit.test( options.description, function ( assert ) {
 			var pos,
 				$textarea = $( '<textarea>' ).text( options.text );
 
