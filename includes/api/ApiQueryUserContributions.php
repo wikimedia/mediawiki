@@ -65,18 +65,36 @@ class ApiQueryContributions extends ApiQueryBase {
 		// TODO: if the query is going only against the revision table, should this be done?
 		$this->selectNamedDB( 'contributions', DB_REPLICA, 'contributions' );
 
+		$this->requireOnlyOneParameter( $this->params, 'userprefix', 'userids' , 'user' );
+
 		$this->idMode = false;
 		if ( isset( $this->params['userprefix'] ) ) {
 			$this->prefixMode = true;
 			$this->multiUserMode = true;
 			$this->userprefix = $this->params['userprefix'];
+		} else if ( isset( $this->params['userids'] ) ) {
+			$this->userids = [];
+
+			if ( !count( $this->params['userids'] ) ) {
+				$encParamName = $this->encodeParamName( 'userids' );
+				$this->dieWithError( [ 'apierror-paramempty', $encParamName ], "paramempty_$encParamName" );
+			}
+
+			foreach ( $this->params['userids'] as $uid ) {
+				if ( $uid <= 0) {
+					$this->dieWithError( [ 'apierror-invaliduserid', $uid] , 'invaliduserid' );
+				}
+
+				$this->userids[] = $uid;
+			}
+
+			$this->prefixMode = false;
+			$this->multiUserMode = ( count( $this->params['userids'] ) > 1 );
+			$this->idMode = true;
 		} else {
 			$anyIPs = false;
 			$this->userids = [];
 			$this->usernames = [];
-			if ( !is_array( $this->params['user'] ) ) {
-				$this->params['user'] = [ $this->params['user'] ];
-			}
 			if ( !count( $this->params['user'] ) ) {
 				$encParamName = $this->encodeParamName( 'user' );
 				$this->dieWithError(
@@ -84,7 +102,7 @@ class ApiQueryContributions extends ApiQueryBase {
 				);
 			}
 			foreach ( $this->params['user'] as $u ) {
-				if ( is_null( $u ) || $u === '' ) {
+				if ( $u === '' ) {
 					$encParamName = $this->encodeParamName( 'user' );
 					$this->dieWithError(
 						[ 'apierror-paramempty', $encParamName ], "paramempty_$encParamName"
@@ -493,6 +511,10 @@ class ApiQueryContributions extends ApiQueryBase {
 			],
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
+				ApiBase::PARAM_ISMULTI => true
+			],
+			'userids' => [
+				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_ISMULTI => true
 			],
 			'userprefix' => null,
