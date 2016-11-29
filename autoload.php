@@ -443,7 +443,6 @@ $wgAutoloadLocalClasses = [
 	'FSFileBackendList' => __DIR__ . '/includes/libs/filebackend/FSFileBackend.php',
 	'FSFileOpHandle' => __DIR__ . '/includes/libs/filebackend/FSFileBackend.php',
 	'FSLockManager' => __DIR__ . '/includes/libs/lockmanager/FSLockManager.php',
-	'FSRepo' => __DIR__ . '/includes/filerepo/FSRepo.php',
 	'FakeAuthTemplate' => __DIR__ . '/includes/specialpage/LoginSignupSpecialPage.php',
 	'FakeConverter' => __DIR__ . '/languages/FakeConverter.php',
 	'FakeMaintenance' => __DIR__ . '/maintenance/Maintenance.php',
