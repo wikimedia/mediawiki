@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Contain classes to list log entries
  *
@@ -22,6 +22,8 @@
  *
  * @file
  */
+
+use MediaWiki/MediaWikiServices;
 
 class LogEventsList extends ContextSource {
 	const NO_ACTION_LINK = 1;
@@ -155,7 +157,7 @@ class LogEventsList extends ContextSource {
 			$hideVal = 1 - intval( $val );
 			$query[$queryKey] = $hideVal;
 
-			$link = Linker::linkKnown(
+			$link = MediaWikiServices::getLinkRenderer()->makeKnownLink(
 				$this->getTitle(),
 				$messages[$hideVal],
 				[],
@@ -672,9 +674,9 @@ class LogEventsList extends ContextSource {
 				$urlParam = array_merge( $urlParam, $extraUrlParams );
 			}
 
-			$s .= Linker::linkKnown(
+			$s .= MediaWikiServices::getLinkRenderer()->makeKnownLink(
 				SpecialPage::getTitleFor( 'Log' ),
-				$context->msg( 'log-fulllog' )->escaped(),
+				$context->msg( 'log-fulllog' )->text(),
 				[],
 				$urlParam
 			);

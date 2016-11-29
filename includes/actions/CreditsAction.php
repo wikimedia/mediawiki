@@ -23,6 +23,8 @@
  * @author <evan@wikitravel.org>
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @ingroup Actions
  */
@@ -205,7 +207,7 @@ class CreditsAction extends FormlessAction {
 			? SpecialPage::getTitleFor( 'Contributions', $user->getName() )
 			: $user->getUserPage();
 
-		return Linker::link( $page, htmlspecialchars( $real ? $real : $user->getName() ) );
+		return MediaWikiServices::getLinkRenderer()->makeLink( $page, $user->getName() );
 	}
 
 	/**
@@ -231,9 +233,9 @@ class CreditsAction extends FormlessAction {
 	 * @return string HTML link
 	 */
 	protected function othersLink() {
-		return Linker::linkKnown(
+		return MediaWikiServices::getLinkRenderer()->makeKnownLink(
 			$this->getTitle(),
-			$this->msg( 'others' )->escaped(),
+			$this->msg( 'others' )->text(),
 			[],
 			[ 'action' => 'credits' ]
 		);
