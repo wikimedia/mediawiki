@@ -1,7 +1,7 @@
 ( function ( $ ) {
 	QUnit.module( 'jquery.byteLength', QUnit.newMwEnvironment() );
 
-	QUnit.test( 'Simple text', 5, function ( assert ) {
+	QUnit.test( 'Simple text', function ( assert ) {
 		var azLc = 'abcdefghijklmnopqrstuvwxyz',
 			azUc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 			num = '0123456789',
@@ -13,10 +13,9 @@
 		assert.equal( $.byteLength( num ), 10, 'Numbers 0-9' );
 		assert.equal( $.byteLength( x ), 1, 'An asterisk' );
 		assert.equal( $.byteLength( space ), 3, '3 spaces' );
-
 	} );
 
-	QUnit.test( 'Special text', 4, function ( assert ) {
+	QUnit.test( 'Special text', function ( assert ) {
 		// https://en.wikipedia.org/wiki/UTF-8
 		var u0024 = '$',
 			// Cent symbol
