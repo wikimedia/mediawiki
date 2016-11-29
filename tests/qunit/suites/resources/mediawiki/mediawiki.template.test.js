@@ -24,7 +24,7 @@
 		}
 	} );
 
-	QUnit.test( 'add', 1, function ( assert ) {
+	QUnit.test( 'add', function ( assert ) {
 		assert.throws(
 			function () {
 				mw.template.add( 'module', 'test_templates_foo', 'hello' );
@@ -33,7 +33,7 @@
 		);
 	} );
 
-	QUnit.test( 'compile', 1, function ( assert ) {
+	QUnit.test( 'compile', function ( assert ) {
 		assert.throws(
 			function () {
 				mw.template.compile( '{{foo}}', 'rainbow' );
@@ -42,7 +42,7 @@
 		);
 	} );
 
-	QUnit.test( 'get', 4, function ( assert ) {
+	QUnit.test( 'get', function ( assert ) {
 		assert.strictEqual( mw.template.get( 'test.mediawiki.template', 'test_templates_foo.xyz' ), 'xyz compiler' );
 		assert.strictEqual( mw.template.get( 'test.mediawiki.template', 'test_templates_foo.abc' ), 'abc default compiler' );
 		assert.throws(

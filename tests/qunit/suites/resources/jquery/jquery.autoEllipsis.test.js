@@ -1,5 +1,4 @@
 ( function ( $ ) {
-
 	QUnit.module( 'jquery.autoEllipsis', QUnit.newMwEnvironment() );
 
 	function createWrappedDiv( text, width ) {
@@ -17,7 +16,7 @@
 		return i;
 	}
 
-	QUnit.test( 'Position right', 4, function ( assert ) {
+	QUnit.test( 'Position right', function ( assert ) {
 		// We need this thing to be visible, so append it to the DOM
 		var $span, spanText, d, spanTextNew,
 			origText = 'This is a really long random string and there is no way it fits in 100 pixels.',
@@ -49,5 +48,4 @@
 		$span.text( spanTextNew );
 		assert.gt( $span.width(), $span.parent().width(), 'Fit is maximal (adding two characters makes it not fit any more)' );
 	} );
-
 }( jQuery ) );
