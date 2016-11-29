@@ -239,7 +239,7 @@ abstract class PrefixSearch {
 		// canonical and alias title forms...
 		$keys = [];
 		foreach ( SpecialPageFactory::getNames() as $page ) {
-			$keys[$wgContLang->caseFold( $page )] = $page;
+			$keys[$wgContLang->caseFold( $page )] = [ 'page' => $page, 'rank' => 0 ];
 		}
 
 		foreach ( $wgContLang->getSpecialPageAliases() as $page => $aliases ) {
@@ -247,33 +247,34 @@ abstract class PrefixSearch {
 				continue;
 			}
 
-			foreach ( $aliases as $alias ) {
-				$keys[$wgContLang->caseFold( $alias )] = $alias;
+			foreach ( $aliases as $key => $alias ) {
+				$keys[$wgContLang->caseFold( $alias )] = [ 'page' => $alias, 'rank' => $key ];
 			}
 		}
 		ksort( $keys );
 
-		$srchres = [];
-		$skipped = 0;
+		$matches = [];
 		foreach ( $keys as $pageKey => $page ) {
 			if ( $searchKey === '' || strpos( $pageKey, $searchKey ) === 0 ) {
 				// bug 27671: Don't use SpecialPage::getTitleFor() here because it
 				// localizes its input leading to searches for e.g. Special:All
 				// returning Spezial:MediaWiki-Systemnachrichten and returning
 				// Spezial:Alle_Seiten twice when $wgLanguageCode == 'de'
-				if ( $offset > 0 && $skipped < $offset ) {
-					$skipped++;
-					continue;
+				$matches[$page['rank']][] = Title::makeTitleSafe( NS_SPECIAL, $page['page'] );
+
+				if ( isset( $matches[0] ) && count( $matches[0] ) >= $limit + $offset ) {
+					break;
 				}
-				$srchres[] = Title::makeTitleSafe( NS_SPECIAL, $page );
 			}
 
-			if ( count( $srchres ) >= $limit ) {
-				break;
-			}
 		}
 
-		return $srchres;
+		// Ensure keys are in order
+		ksort($matches);
+		// Flatten the array
+		$matches = array_reduce( $matches, 'array_merge', [] );
+
+		return array_slice( $matches, $offset, $limit );
 	}
 
 	/**
