@@ -62,7 +62,7 @@
 	};
 
 	function pluralTest( langCode, tests ) {
-		QUnit.test( 'Plural Test for ' + langCode, tests.length, function ( assert ) {
+		QUnit.test( 'Plural Test for ' + langCode, function ( assert ) {
 			for ( var i = 0; i < tests.length; i++ ) {
 				assert.equal(
 					mw.language.convertPlural( tests[ i ][ 0 ], tests[ i ][ 1 ] ),
