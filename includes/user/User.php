@@ -5066,13 +5066,14 @@ class User implements IDBAccessObject {
 	/**
 	 * Get the description of a given right
 	 *
+	 * @since 1.29
 	 * @param string $right Right to query
 	 * @return string Localized description of the right
 	 */
 	public static function getRightDescription( $right ) {
 		$key = "right-$right";
 		$msg = wfMessage( $key );
-		return $msg->isBlank() ? $right : $msg->text();
+		return $msg->isDisabled() ? $right : $msg->text();
 	}
 
 	/**
