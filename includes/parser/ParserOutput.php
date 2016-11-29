@@ -689,6 +689,8 @@ class ParserOutput extends CacheTime {
 	 * to SpecialTrackingCategories::$coreTrackingCategories, and extensions
 	 * should add to "TrackingCategories" in their extension.json.
 	 *
+	 * @todo Migrate some code to TrackingCategories
+	 *
 	 * @param string $msg Message key
 	 * @param Title $title title of the page which is being tracked
 	 * @return bool Whether the addition was successful
