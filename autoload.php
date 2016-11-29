@@ -1446,6 +1446,7 @@ $wgAutoloadLocalClasses = [
 	'TitlePrefixSearch' => __DIR__ . '/includes/PrefixSearch.php',
 	'TitleValue' => __DIR__ . '/includes/title/TitleValue.php',
 	'TrackBlobs' => __DIR__ . '/maintenance/storage/trackBlobs.php',
+	'TrackingCategories' => __DIR__ . '/includes/TrackingCategories.php',
 	'TraditionalImageGallery' => __DIR__ . '/includes/gallery/TraditionalImageGallery.php',
 	'TransactionProfiler' => __DIR__ . '/includes/libs/rdbms/TransactionProfiler.php',
 	'TransformParameterError' => __DIR__ . '/includes/media/MediaTransformOutput.php',
