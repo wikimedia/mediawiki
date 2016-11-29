@@ -21,11 +21,11 @@
 						'jul', 'aug', 'sep', 'oct', 'nov', 'dec' ]
 				},
 				names: [ 'January', 'February', 'March', 'April', 'May', 'June',
-						'July', 'August', 'September', 'October', 'November', 'December' ],
+					'July', 'August', 'September', 'October', 'November', 'December' ],
 				genitive: [ 'January', 'February', 'March', 'April', 'May', 'June',
-						'July', 'August', 'September', 'October', 'November', 'December' ],
+					'July', 'August', 'September', 'October', 'November', 'December' ],
 				abbrev: [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-						'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]
+					'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]
 			};
 		},
 		teardown: function () {
@@ -54,7 +54,7 @@
 	 * @param {function($table)} callback something to do before we start the testcase
 	 */
 	function parserTest( msg, parserId, data, callback ) {
-		QUnit.test( msg, data.length * 2, function ( assert ) {
+		QUnit.test( msg, function ( assert ) {
 			var extractedR, extractedF, parser;
 
 			if ( callback !== undefined ) {
@@ -73,7 +73,7 @@
 		} );
 	}
 
-	text  = [
+	text = [
 		[ 'Mars', true, 'mars', 'Simple text' ],
 		[ 'Mẘas', true, 'mẘas', 'Non ascii character' ],
 		[ 'A sentence', true, 'a sentence', 'A sentence with space chars' ]
