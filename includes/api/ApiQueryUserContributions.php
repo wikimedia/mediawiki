@@ -70,6 +70,28 @@ class ApiQueryContributions extends ApiQueryBase {
 			$this->prefixMode = true;
 			$this->multiUserMode = true;
 			$this->userprefix = $this->params['userprefix'];
+		} else if ( isset( $this->params['userids'] ) ) {
+			$this->userids = [];
+			if ( !is_array( $this->params['userids'] ) ) {
+				$this->params['userids'] = [ $this->params['userids'] ];
+			}
+
+			if ( !count( $this->params['userids'] ) ) {
+				$this->dieUsage( 'Userids parameter may not be empty.', 'param_userids' );
+			}
+
+			foreach ($this->params['userids'] as $uid) {
+				if ( is_null( $uid ) || $uid === 0) {
+					$this->dieUsage( "Userids parameter {$uid} is not valid.", 'param_userids' );
+				}
+
+				// check for anon user is not working because anon users have userid == 0
+				$this->userids[] = $uid;
+			}
+
+			$this->prefixMode = false;
+			$this->multiUserMode = ( count( $this->params['userids'] ) > 1 );
+			$this->idMode = true;
 		} else {
 			$anyIPs = false;
 			$this->userids = [];
@@ -487,6 +509,10 @@ class ApiQueryContributions extends ApiQueryBase {
 			],
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
+				ApiBase::PARAM_ISMULTI => true
+			],
+			'userids' => [
+				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_ISMULTI => true
 			],
 			'userprefix' => null,
