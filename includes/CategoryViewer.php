@@ -197,7 +197,11 @@ class CategoryViewer extends ContextSource {
 		$link = null;
 		Hooks::run( 'CategoryViewer::generateLink', [ $type, $title, $html, &$link ] );
 		if ( $link === null ) {
-			$link = Linker::link( $title, $html );
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+			if ( $html !== null ) {
+				$html = new HtmlArmor( $html );
+			}
+			$link = $linkRenderer->makeLink( $title, $html );
 		}
 		if ( $isRedirect ) {
 			$link = '<span class="redirect-in-category">' . $link . '</span>';
