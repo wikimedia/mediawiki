@@ -52,7 +52,6 @@ class CategoryPager extends AlphabeticPager {
 		return [
 			'tables' => [ 'category' ],
 			'fields' => [ 'cat_title', 'cat_pages' ],
-			'conds' => [ 'cat_pages > 0' ],
 			'options' => [ 'USE INDEX' => 'cat_title' ],
 		];
 	}
