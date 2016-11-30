@@ -164,17 +164,4 @@ class ConnectionManager {
 		$db->endAtomic( $fname );
 		$this->releaseConnection( $db );
 	}
-
-	/**
-	 * @since 1.29
-	 *
-	 * @param IDatabase $db
-	 * @param string $fname
-	 */
-	public function rollbackAtomicSection( IDatabase $db, $fname ) {
-		// FIXME: there does not seem to be a clean way to roll back an atomic section?!
-		$db->rollback( $fname, 'flush' );
-		$this->releaseConnection( $db );
-	}
-
 }
