@@ -462,7 +462,7 @@ if ( $wgMaximalPasswordLength !== false ) {
 }
 
 // Backwards compatibility warning
-if ( !$wgSessionsInObjectCache && !$wgSessionsInMemcached ) {
+if ( !$wgSessionsInObjectCache ) {
 	wfDeprecated( '$wgSessionsInObjectCache = false', '1.27' );
 	if ( $wgSessionHandler ) {
 		wfDeprecated( '$wgSessionsHandler', '1.27' );
