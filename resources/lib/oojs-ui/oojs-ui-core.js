@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.0
+ * OOjs UI v0.18.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-11-09T00:52:37Z
+ * Date: 2016-11-29T22:57:37Z
  */
 ( function ( OO ) {
 
@@ -414,7 +414,7 @@ OO.ui.infuse = function ( idOrNode ) {
 		}
 		return message;
 	};
-} )();
+}() );
 
 /**
  * Package a message and arguments for deferred resolution.
@@ -4308,8 +4308,7 @@ OO.mixinClass( OO.ui.PopupWidget, OO.ui.mixin.ClippableElement );
 OO.ui.PopupWidget.prototype.onMouseDown = function ( e ) {
 	if (
 		this.isVisible() &&
-		!$.contains( this.$element[ 0 ], e.target ) &&
-		( !this.$autoCloseIgnore || !this.$autoCloseIgnore.has( e.target ).length )
+		!OO.ui.contains( this.$element.add( this.$autoCloseIgnore ).get(), e.target, true )
 	) {
 		this.toggle( false );
 	}
@@ -4597,7 +4596,7 @@ OO.ui.mixin.PopupElement = function OoUiMixinPopupElement( config ) {
 	this.popup = new OO.ui.PopupWidget( $.extend(
 		{ autoClose: true },
 		config.popup,
-		{ $autoCloseIgnore: this.$element }
+		{ $autoCloseIgnore: this.$element.add( config.popup && config.popup.$autoCloseIgnore ) }
 	) );
 };
 
@@ -9797,7 +9796,7 @@ OO.ui.ComboBoxInputWidget.prototype.setOptions = function ( options ) {
  * @throws {Error} An error is thrown if no widget is specified
  */
 OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
-	var hasInputWidget, div;
+	var hasInputWidget, $div;
 
 	// Allow passing positional parameters inside the config object
 	if ( OO.isPlainObject( fieldWidget ) && config === undefined ) {
@@ -9837,14 +9836,14 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 			icon: 'info'
 		} );
 
-		div = $( '<div>' );
+		$div = $( '<div>' );
 		if ( config.help instanceof OO.ui.HtmlSnippet ) {
-			div.html( config.help.toString() );
+			$div.html( config.help.toString() );
 		} else {
-			div.text( config.help );
+			$div.text( config.help );
 		}
 		this.popupButtonWidget.getPopup().$body.append(
-			div.addClass( 'oo-ui-fieldLayout-help-content' )
+			$div.addClass( 'oo-ui-fieldLayout-help-content' )
 		);
 		this.$help = this.popupButtonWidget.$element;
 	} else {
@@ -10138,8 +10137,13 @@ OO.inheritClass( OO.ui.ActionFieldLayout, OO.ui.FieldLayout );
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {OO.ui.FieldLayout[]} [items] An array of fields to add to the fieldset. See OO.ui.FieldLayout for more information about fields.
+ * @cfg {string|OO.ui.HtmlSnippet} [help] Help text. When help text is specified, a "help" icon will appear
+ *  in the upper-right corner of the rendered field; clicking it will display the text in a popup.
+ *  For important messages, you are advised to use `notices`, as they are always shown.
  */
 OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
+	var $div;
+
 	// Configuration initialization
 	config = config || {};
 
@@ -10158,10 +10162,14 @@ OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 			icon: 'info'
 		} );
 
+		$div = $( '<div>' );
+		if ( config.help instanceof OO.ui.HtmlSnippet ) {
+			$div.html( config.help.toString() );
+		} else {
+			$div.text( config.help );
+		}
 		this.popupButtonWidget.getPopup().$body.append(
-			$( '<div>' )
-				.text( config.help )
-				.addClass( 'oo-ui-fieldsetLayout-help-content' )
+			$div.addClass( 'oo-ui-fieldsetLayout-help-content' )
 		);
 		this.$help = this.popupButtonWidget.$element;
 	} else {
