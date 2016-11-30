@@ -136,13 +136,7 @@ class BrokenRedirectsPage extends QueryPage {
 				[ 'action' => 'edit' ]
 			);
 		}
-		$to = $linkRenderer->makeLink(
-			$toObj,
-			null,
-			[],
-			[],
-			[ 'broken' ]
-		);
+		$to = $linkRenderer->makeBrokenLink( $toObj );
 		$arr = $this->getLanguage()->getArrow();
 
 		$out = $from . $this->msg( 'word-separator' )->escaped();
