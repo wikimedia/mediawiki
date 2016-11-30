@@ -24,6 +24,8 @@
  * @author Umherirrender
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A special page that listed pages that have highest interwiki count
  *
@@ -97,10 +99,11 @@ class MostinterwikisPage extends QueryPage {
 			);
 		}
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( $this->isCached() ) {
-			$link = Linker::link( $title );
+			$link = $linkRenderer->makeLink( $title );
 		} else {
-			$link = Linker::linkKnown( $title );
+			$link = $linkRenderer->makeKnownLink( $title );
 		}
 
 		$count = $this->msg( 'ninterwikis' )->numParams( $result->value )->escaped();

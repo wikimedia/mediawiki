@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Special page for listing the articles with the fewest revisions.
  *
@@ -88,14 +90,14 @@ class FewestrevisionsPage extends QueryPage {
 				)
 			);
 		}
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$text = $wgContLang->convert( $nt->getPrefixedText() );
+		$plink = $linkRenderer->makeLink( $nt, $text );
 
-		$text = htmlspecialchars( $wgContLang->convert( $nt->getPrefixedText() ) );
-		$plink = Linker::linkKnown( $nt, $text );
-
-		$nl = $this->msg( 'nrevisions' )->numParams( $result->value )->escaped();
+		$nl = $this->msg( 'nrevisions' )->numParams( $result->value )->text();
 		$redirect = isset( $result->redirect ) && $result->redirect ?
 			' - ' . $this->msg( 'isredirect' )->escaped() : '';
-		$nlink = Linker::linkKnown(
+		$nlink = $linkRenderer->makeKnownLink(
 			$nt,
 			$nl,
 			[],

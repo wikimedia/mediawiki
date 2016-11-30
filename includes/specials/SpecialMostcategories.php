@@ -24,6 +24,8 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A special page that list pages that have highest category count
  *
@@ -91,10 +93,11 @@ class MostcategoriesPage extends QueryPage {
 			);
 		}
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( $this->isCached() ) {
-			$link = Linker::link( $title );
+			$link = $linkRenderer->makeLink( $title );
 		} else {
-			$link = Linker::linkKnown( $title );
+			$link = $linkRenderer->makeKnownLink( $title );
 		}
 
 		$count = $this->msg( 'ncategories' )->numParams( $result->value )->escaped();

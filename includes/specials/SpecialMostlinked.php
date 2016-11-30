@@ -25,6 +25,8 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A special page to show pages ordered by the number of pages linking to them.
  *
@@ -91,7 +93,8 @@ class MostlinkedPage extends QueryPage {
 	function makeWlhLink( $title, $caption ) {
 		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedDBkey() );
 
-		return Linker::linkKnown( $wlh, $caption );
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		return $linkRenderer->makeKnownLink( $wlh, $caption );
 	}
 
 	/**
@@ -115,7 +118,8 @@ class MostlinkedPage extends QueryPage {
 			);
 		}
 
-		$link = Linker::link( $title );
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$link = $linkRenderer->makeLink( $title );
 		$wlh = $this->makeWlhLink(
 			$title,
 			$this->msg( 'nlinks' )->numParams( $result->value )->escaped()

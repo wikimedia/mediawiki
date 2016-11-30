@@ -22,6 +22,8 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Searches the database for files of the requested MIME type, comparing this with the
  * 'img_major_mime' and 'img_minor_mime' fields in the image table.
@@ -153,11 +155,12 @@ class MIMEsearchPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getText() );
-		$plink = Linker::link(
+		$plink = $linkRenderer->makeLink(
 			Title::newFromText( $nt->getPrefixedText() ),
-			htmlspecialchars( $text )
+			$text
 		);
 
 		$download = Linker::makeMediaLinkObj( $nt, $this->msg( 'download' )->escaped() );
@@ -166,9 +169,9 @@ class MIMEsearchPage extends QueryPage {
 		$bytes = htmlspecialchars( $lang->formatSize( $result->img_size ) );
 		$dimensions = $this->msg( 'widthheight' )->numParams( $result->img_width,
 			$result->img_height )->escaped();
-		$user = Linker::link(
+		$user = $linkRenderer->makeLink(
 			Title::makeTitle( NS_USER, $result->img_user_text ),
-			htmlspecialchars( $result->img_user_text )
+			$result->img_user_text
 		);
 
 		$time = $lang->userTimeAndDate( $result->img_timestamp, $this->getUser() );

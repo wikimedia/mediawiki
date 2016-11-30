@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This special page lists all defined user groups and the associated rights.
  * See also @ref $wgGroupPermissions.
@@ -71,6 +73,8 @@ class SpecialListGroupRights extends SpecialPage {
 		) );
 		asort( $allGroups );
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+
 		foreach ( $allGroups as $group ) {
 			$permissions = isset( $groupPermissions[$group] )
 				? $groupPermissions[$group]
@@ -92,22 +96,22 @@ class SpecialListGroupRights extends SpecialPage {
 				// Do not make a link for the generic * group or group with invalid group page
 				$grouppage = htmlspecialchars( $groupnameLocalized );
 			} else {
-				$grouppage = Linker::link(
+				$grouppage = $linkRenderer->makeLink(
 					$grouppageLocalizedTitle,
-					htmlspecialchars( $groupnameLocalized )
+					$groupnameLocalized
 				);
 			}
 
 			if ( $group === 'user' ) {
 				// Link to Special:listusers for implicit group 'user'
-				$grouplink = '<br />' . Linker::linkKnown(
+				$grouplink = '<br />' . $linkRenderer->makeKnownLink(
 					SpecialPage::getTitleFor( 'Listusers' ),
-					$this->msg( 'listgrouprights-members' )->escaped()
+					$this->msg( 'listgrouprights-members' )->text()
 				);
 			} elseif ( !in_array( $group, $config->get( 'ImplicitGroups' ) ) ) {
-				$grouplink = '<br />' . Linker::linkKnown(
+				$grouplink = '<br />' . $linkRenderer->makeKnownLink(
 					SpecialPage::getTitleFor( 'Listusers' ),
-					$this->msg( 'listgrouprights-members' )->escaped(),
+					$this->msg( 'listgrouprights-members' )->text(),
 					[],
 					[ 'group' => $group ]
 				);
@@ -165,7 +169,7 @@ class SpecialListGroupRights extends SpecialPage {
 				$this->msg( 'listgrouprights-namespaceprotection-restrictedto' )->text()
 			)
 		);
-
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		ksort( $namespaceProtection );
 		foreach ( $namespaceProtection as $namespace => $rights ) {
 			if ( !in_array( $namespace, MWNamespace::getValidNamespaces() ) ) {
@@ -183,9 +187,9 @@ class SpecialListGroupRights extends SpecialPage {
 				Html::rawElement(
 					'td',
 					[],
-					Linker::link(
+					$linkRenderer->makeLink(
 						SpecialPage::getTitleFor( 'Allpages' ),
-						htmlspecialchars( $namespaceText ),
+						$namespaceText,
 						[],
 						[ 'namespace' => $namespace ]
 					)

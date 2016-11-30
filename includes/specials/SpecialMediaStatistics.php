@@ -22,6 +22,8 @@
  * @author Brian Wolff
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @ingroup SpecialPage
  */
@@ -174,10 +176,11 @@ class MediaStatisticsPage extends QueryPage {
 	 */
 	protected function outputTableRow( $mime, $count, $bytes ) {
 		$mimeSearch = SpecialPage::getTitleFor( 'MIMEsearch', $mime );
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$row = Html::rawElement(
 			'td',
 			[],
-			Linker::link( $mimeSearch, htmlspecialchars( $mime ) )
+			$linkRenderer->makeLink( $mimeSearch, $mime )
 		);
 		$row .= Html::element(
 			'td',
