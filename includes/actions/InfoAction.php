@@ -230,11 +230,11 @@ class InfoAction extends FormlessAction {
 		if ( $title->isRedirect() ) {
 			$pageInfo['header-basic'][] = [
 				$this->msg( 'pageinfo-redirectsto' ),
-				Linker::link( $this->page->getRedirectTarget() ) .
-				$this->msg( 'word-separator' )->escaped() .
-				$this->msg( 'parentheses' )->rawParams( Linker::link(
+				$linkRenderer->makeLink( $this->page->getRedirectTarget() ) .
+				$this->msg( 'word-separator' )->text() .
+				$this->msg( 'parentheses' )->rawParams( $linkRenderer->makeLink(
 					$this->page->getRedirectTarget(),
-					$this->msg( 'pageinfo-redirectsto-info' )->escaped(),
+					$this->msg( 'pageinfo-redirectsto-info' )->text(),
 					[],
 					[ 'action' => 'info' ]
 				) )->escaped()
@@ -266,9 +266,9 @@ class InfoAction extends FormlessAction {
 		) {
 			// Link to Special:PageLanguage with pre-filled page title if user has permissions
 			$titleObj = SpecialPage::getTitleFor( 'PageLanguage', $title->getPrefixedText() );
-			$langDisp = Linker::link(
+			$langDisp = $linkRenderer->makeLink(
 				$titleObj,
-				$this->msg( 'pageinfo-language' )->escaped()
+				$this->msg( 'pageinfo-language' )->text()
 			);
 		} else {
 			// Display just the message
@@ -360,9 +360,9 @@ class InfoAction extends FormlessAction {
 		// Redirects to this page
 		$whatLinksHere = SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedText() );
 		$pageInfo['header-basic'][] = [
-			Linker::link(
+			$linkRenderer->makeLink(
 				$whatLinksHere,
-				$this->msg( 'pageinfo-redirects-name' )->escaped(),
+				$this->msg( 'pageinfo-redirects-name' )->text(),
 				[],
 				[
 					'hidelinks' => 1,
@@ -436,7 +436,7 @@ class InfoAction extends FormlessAction {
 
 			foreach ( $sources as $sourceTitle ) {
 				$cascadingFrom .= Html::rawElement(
-					'li', [], Linker::linkKnown( $sourceTitle ) );
+					'li', [], $linkRenderer->makeKnownLink( $sourceTitle ) );
 			}
 
 			$cascadingFrom = Html::rawElement( 'ul', [], $cascadingFrom );
@@ -525,7 +525,7 @@ class InfoAction extends FormlessAction {
 			// Date of page creation
 			$pageInfo['header-edits'][] = [
 				$this->msg( 'pageinfo-firsttime' ),
-				Linker::linkKnown(
+				$linkRenderer->makeKnownLink(
 					$title,
 					htmlspecialchars( $lang->userTimeAndDate( $firstRev->getTimestamp(), $user ) ),
 					[],
@@ -544,7 +544,7 @@ class InfoAction extends FormlessAction {
 			// Date of latest edit
 			$pageInfo['header-edits'][] = [
 				$this->msg( 'pageinfo-lasttime' ),
-				Linker::linkKnown(
+				$linkRenderer->makeKnownLink(
 					$title,
 					htmlspecialchars(
 						$lang->userTimeAndDate( $this->page->getTimestamp(), $user )
@@ -655,7 +655,7 @@ class InfoAction extends FormlessAction {
 
 			if ( !$config->get( 'MiserMode' ) && $pageCounts['transclusion']['to'] > 0 ) {
 				if ( $pageCounts['transclusion']['to'] > count( $transcludedTargets ) ) {
-					$more = Linker::link(
+					$more = $linkRenderer->makeLink(
 						$whatLinksHere,
 						$this->msg( 'moredotdotdot' )->escaped(),
 						[],
@@ -836,6 +836,7 @@ class InfoAction extends FormlessAction {
 		$real_names = [];
 		$user_names = [];
 		$anon_ips = [];
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
 		# Sift for real versus user names
 		/** @var $user User */
@@ -846,11 +847,11 @@ class InfoAction extends FormlessAction {
 
 			$hiddenPrefs = $this->context->getConfig()->get( 'HiddenPrefs' );
 			if ( $user->getId() == 0 ) {
-				$anon_ips[] = Linker::link( $page, htmlspecialchars( $user->getName() ) );
+				$anon_ips[] = $linkRenderer->makeLink( $page, $user->getName() );
 			} elseif ( !in_array( 'realname', $hiddenPrefs ) && $user->getRealName() ) {
-				$real_names[] = Linker::link( $page, htmlspecialchars( $user->getRealName() ) );
+				$real_names[] = $linkRenderer->makeLink( $page, $user->getRealName() );
 			} else {
-				$user_names[] = Linker::link( $page, htmlspecialchars( $user->getName() ) );
+				$user_names[] = $linkRenderer->makeLink( $page, $user->getName() );
 			}
 		}
 

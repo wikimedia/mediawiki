@@ -22,6 +22,8 @@
  * @since 1.25
  */
 
+use MediaWiki/MediaWikiServices;
+
 /**
  * This class formats block log entries.
  *
@@ -101,11 +103,11 @@ class BlockLogFormatter extends LogFormatter {
 		// Show unblock/change block link
 		$title = $this->entry->getTarget();
 		$links = [
-			Linker::linkKnown(
+			MediaWikiServices::getLinkRenderer()->makeKnownLink(
 				SpecialPage::getTitleFor( 'Unblock', $title->getDBkey() ),
-				$this->msg( 'unblocklink' )->escaped()
+				$this->msg( 'unblocklink' )->text()
 			),
-			Linker::linkKnown(
+			MediaWikiServices::getLinkRenderer()->makeKnownLink(
 				SpecialPage::getTitleFor( 'Block', $title->getDBkey() ),
 				$this->msg( 'change-blocklink' )->escaped()
 			)
