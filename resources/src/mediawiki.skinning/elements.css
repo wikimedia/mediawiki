@@ -204,8 +204,8 @@ pre, code, tt, kbd, samp, .mw-code {
 
 code {
 	color: #000;
-	background-color: #f9f9f9;
-	border: 1px solid #ddd;
+	background-color: #f8f9fa;
+	border: 1px solid #eaecf0;
 	border-radius: 2px;
 	padding: 1px 4px;
 }
@@ -213,8 +213,8 @@ code {
 pre,
 .mw-code {
 	color: #000;
-	background-color: #f9f9f9;
-	border: 1px solid #ddd;
+	background-color: #f8f9fa;
+	border: 1px solid #eaecf0;
 	padding: 1em;
 	/* Wrap lines in overflow. T2260, T103780 */
 	white-space: pre-wrap;

@@ -10,8 +10,8 @@
 .toc,
 .mw-warning,
 .toccolours {
-	border: 1px solid #aaa;
-	background-color: #f9f9f9;
+	border: 1px solid #a2a9b1;
+	background-color: #f8f9fa;
 	padding: 5px;
 	font-size: 95%;
 }
@@ -147,9 +147,9 @@ div.thumb {
 }
 
 div.thumbinner {
-	border: 1px solid #ccc;
+	border: 1px solid #c8ccd1;
 	padding: 3px;
-	background-color: #f9f9f9;
+	background-color: #f8f9fa;
 	font-size: 94%;
 	text-align: center;
 	/* new block formatting context,
@@ -158,7 +158,7 @@ div.thumbinner {
 }
 
 html .thumbimage {
-	border: 1px solid #ccc;
+	border: 1px solid #c8ccd1;
 }
 
 html .thumbcaption {
@@ -199,7 +199,7 @@ div.magnify a {
 }
 
 img.thumbborder {
-	border: 1px solid #ddd;
+	border: 1px solid #eaecf0;
 }
 
 /* Directionality-specific styles for thumbnails - their positioning depends on content language */
