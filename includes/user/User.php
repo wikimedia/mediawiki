@@ -1099,20 +1099,6 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Count the number of edits of a user
-	 *
-	 * @param int $uid User ID to check
-	 * @return int The user's edit count
-	 *
-	 * @deprecated since 1.21 in favour of User::getEditCount
-	 */
-	public static function edits( $uid ) {
-		wfDeprecated( __METHOD__, '1.21' );
-		$user = self::newFromId( $uid );
-		return $user->getEditCount();
-	}
-
-	/**
 	 * Return a random password.
 	 *
 	 * @deprecated since 1.27, use PasswordFactory::generateRandomPasswordString()
