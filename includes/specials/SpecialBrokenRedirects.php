@@ -109,12 +109,13 @@ class BrokenRedirectsPage extends QueryPage {
 			}
 		}
 
+		$linkRenderer = $this->getLinkRenderer();
 		// $toObj may very easily be false if the $result list is cached
 		if ( !is_object( $toObj ) ) {
-			return '<del>' . Linker::link( $fromObj ) . '</del>';
+			return '<del>' . $linkRenderer->makeLink( $fromObj ) . '</del>';
 		}
 
-		$from = Linker::linkKnown(
+		$from = $linkRenderer->makeKnownLink(
 			$fromObj,
 			null,
 			[],
@@ -128,14 +129,14 @@ class BrokenRedirectsPage extends QueryPage {
 			// check, if the content model is editable through action=edit
 			ContentHandler::getForTitle( $fromObj )->supportsDirectEditing()
 		) {
-			$links[] = Linker::linkKnown(
+			$links[] = $linkRenderer->makeKnownLink(
 				$fromObj,
-				$this->msg( 'brokenredirects-edit' )->escaped(),
+				$this->msg( 'brokenredirects-edit' )->text(),
 				[],
 				[ 'action' => 'edit' ]
 			);
 		}
-		$to = Linker::link(
+		$to = $linkRenderer->makeLink(
 			$toObj,
 			null,
 			[],
@@ -147,9 +148,9 @@ class BrokenRedirectsPage extends QueryPage {
 		$out = $from . $this->msg( 'word-separator' )->escaped();
 
 		if ( $this->getUser()->isAllowed( 'delete' ) ) {
-			$links[] = Linker::linkKnown(
+			$links[] = $linkRenderer->makeKnownLink(
 				$fromObj,
-				$this->msg( 'brokenredirects-delete' )->escaped(),
+				$this->msg( 'brokenredirects-delete' )->text(),
 				[],
 				[ 'action' => 'delete' ]
 			);
