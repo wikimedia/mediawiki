@@ -43,6 +43,16 @@
 		assert.equal( mw.language.commafy( 123456789.567, '###,###,#0.00' ), '1,234,567,89.56', 'Decimal part as group of 3 and last one 2' );
 	} );
 
+	QUnit.test( 'mw.language.convertNumber', 2, function ( assert ) {
+		mw.language.setData( 'en', 'digitGroupingPattern', null );
+		mw.language.setData( 'en', 'digitTransformTable', null );
+		mw.language.setData( 'en', 'separatorTransformTable', { ',': '.', '.': ',' } );
+		mw.config.set( 'wgUserLanguage', 'en' );
+
+		assert.equal( mw.language.convertNumber( 1800 ), '1.800', 'formatting' );
+		assert.equal( mw.language.convertNumber( "1.800", true ), '1800', 'unformatting' );
+	} );
+
 	function grammarTest( langCode, test ) {
 		// The test works only if the content language is opt.language
 		// because it requires [lang].js to be loaded.
