@@ -32,8 +32,6 @@ require_once __DIR__ . '/../../maintenance/Maintenance.php';
  * @since 1.17
  */
 abstract class DatabaseUpdater {
-	protected static $updateCounter = 0;
-
 	/**
 	 * Array of updates to perform on the database
 	 *
@@ -423,8 +421,6 @@ abstract class DatabaseUpdater {
 	 * @param array $what What updates to perform
 	 */
 	public function doUpdates( $what = [ 'core', 'extensions', 'stats' ] ) {
-		global $wgVersion;
-
 		$this->db->setSchemaVars( $this->getSchemaVars() );
 
 		$what = array_flip( $what );
@@ -441,12 +437,9 @@ abstract class DatabaseUpdater {
 			$this->checkStats();
 		}
 
-		$this->setAppliedUpdates( $wgVersion, $this->updates );
-
 		if ( $this->fileHandle ) {
 			$this->skipSchema = false;
 			$this->writeSchemaUpdateFile();
-			$this->setAppliedUpdates( "$wgVersion-schema", $this->updatesSkipped );
 		}
 	}
 
@@ -480,23 +473,6 @@ abstract class DatabaseUpdater {
 		}
 		$this->updatesSkipped = array_merge( $this->updatesSkipped, $updatesSkipped );
 		$this->updates = array_merge( $this->updates, $updatesDone );
-	}
-
-	/**
-	 * @param string $version
-	 * @param array $updates
-	 */
-	protected function setAppliedUpdates( $version, $updates = [] ) {
-		$this->db->clearFlag( DBO_DDLMODE );
-		if ( !$this->canUseNewUpdatelog() ) {
-			return;
-		}
-		$key = "updatelist-$version-" . time() . self::$updateCounter;
-		self::$updateCounter++;
-		$this->db->insert( 'updatelog',
-			[ 'ul_key' => $key, 'ul_value' => serialize( $updates ) ],
-			__METHOD__ );
-		$this->db->setFlag( DBO_DDLMODE );
 	}
 
 	/**
