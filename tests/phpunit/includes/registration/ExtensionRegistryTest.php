@@ -259,7 +259,7 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 						'JsonZeroConfig' => [
 							'namespace' => 480,
 							'nsName' => 'Zero',
-							'isLocal' => false,
+							'isLocal' => true,
 						],
 					],
 				],
