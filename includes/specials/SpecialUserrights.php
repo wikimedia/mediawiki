@@ -331,7 +331,7 @@ class UserrightsPage extends SpecialPage {
 	 * @param bool $writing
 	 * @return Status
 	 */
-	public function fetchUser( $username, $writing ) {
+	public function fetchUser( $username, $writing = true ) {
 		$parts = explode( $this->getConfig()->get( 'UserrightsInterwikiDelimiter' ), $username );
 		if ( count( $parts ) < 2 ) {
 			$name = trim( $username );
