@@ -884,7 +884,7 @@
 		},
 		{
 			lang: 'hi',
-			number: '१२३४५६,७८९',
+			number: '१,२३,४५६',
 			result: '123456',
 			integer: true,
 			description: 'formatnum test for Hindi, Devanagari digits passed to get integer value'
