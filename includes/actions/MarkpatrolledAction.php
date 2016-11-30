@@ -20,6 +20,8 @@
  * @ingroup Actions
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Mark a revision as patrolled on a page
  *
@@ -56,6 +58,7 @@ class MarkpatrolledAction extends FormAction {
 	protected function preText() {
 		$rc = $this->getRecentChange();
 		$title = $rc->getTitle();
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
 		// Based on logentry-patrol-patrol (see PatrolLogFormatter)
 		$revId = $rc->getAttribute( 'rc_this_oldid' );
@@ -64,8 +67,8 @@ class MarkpatrolledAction extends FormAction {
 			'diff' => $revId,
 			'oldid' => $rc->getAttribute( 'rc_last_oldid' )
 		];
-		$revlink = Linker::link( $title, htmlspecialchars( $revId ), [], $query );
-		$pagelink = Linker::link( $title, htmlspecialchars( $title->getPrefixedText() ) );
+		$revlink = $linkRenderer->makeLink( $title, $revId, [], $query );
+		$pagelink = $linkRenderer->makeLink( $title, $title->getPrefixedText() );
 
 		return $this->msg( 'confirm-markpatrolled-top' )->params(
 			$title->getPrefixedText(),
