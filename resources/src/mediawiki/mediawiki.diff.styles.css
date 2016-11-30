@@ -62,17 +62,17 @@ td.diff-context {
 }
 
 td.diff-addedline {
-	border-color: #a3d3ff;
+	border-color: #36c;
 }
 
 td.diff-deletedline {
-	border-color: #ffe49c;
+	border-color: #fc3;
 }
 
 td.diff-context {
-	background: #f9f9f9;
-	border-color: #e6e6e6;
-	color: #333;
+	background: #f8f9fa;
+	border-color: #eaecf0;
+	color: #222;
 }
 
 .diffchange {
@@ -87,11 +87,11 @@ td.diff-deletedline .diffchange {
 }
 
 td.diff-addedline .diffchange {
-	background: #d8ecff;
+	background: #eaf3ff;
 }
 
 td.diff-deletedline .diffchange {
-	background: #feeec8;
+	background: #fef6e7;
 }
 
 /* Correct user & content directionality when viewing a diff */
