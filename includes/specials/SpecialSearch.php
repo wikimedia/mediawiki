@@ -295,12 +295,12 @@ class SpecialSearch extends SpecialPage {
 		$textStatus = null;
 		if ( $textMatches instanceof Status ) {
 			$textStatus = $textMatches;
-			$textMatches = null;
+			$textMatches = $textStatus->getValue();
 		}
 
 		// did you mean... suggestions
 		$didYouMeanHtml = '';
-		if ( $showSuggestion && $textMatches && !$textStatus ) {
+		if ( $showSuggestion && $textMatches ) {
 			if ( $textMatches->hasRewrittenQuery() ) {
 				$didYouMeanHtml = $this->getDidYouMeanRewrittenHtml( $term, $textMatches );
 			} elseif ( $textMatches->hasSuggestion() ) {
@@ -360,6 +360,25 @@ class SpecialSearch extends SpecialPage {
 
 		$out->addHTML( "<div class='searchresults'>" );
 
+		$hasErrors = $textStatus && $textStatus->getErrors();
+		if ( $hasErrors ) {
+			list( $error, $warning ) = $textStatus->splitByErrorType();
+			if ( $error->getErrors() ) {
+				$out->addHTML( Html::rawElement(
+					'div',
+					[ 'class' => 'errorbox' ],
+					$error->getHTML( 'search-error' )
+				) );
+			}
+			if ( $warning->getErrors() ) {
+				$out->addHTML( Html::rawElement(
+					'div',
+					[ 'class' => 'warningbox' ],
+					$warning->getHTML( 'search-warning' )
+				) );
+			}
+		}
+
 		// prev/next links
 		$prevnext = null;
 		if ( $num || $this->offset ) {
@@ -388,7 +407,8 @@ class SpecialSearch extends SpecialPage {
 			}
 			$titleMatches->free();
 		}
-		if ( $textMatches && !$textStatus ) {
+
+		if ( $textMatches ) {
 			// output appropriate heading
 			if ( $numTextMatches > 0 && $numTitleMatches > 0 ) {
 				$out->addHTML( '<div class="mw-search-visualclear"></div>' );
@@ -412,22 +432,18 @@ class SpecialSearch extends SpecialPage {
 		$hasOtherResults = $textMatches &&
 			$textMatches->hasInterwikiResults( SearchResultSet::INLINE_RESULTS );
 
-		if ( $num === 0 ) {
-			if ( $textStatus ) {
-				$out->addHTML( '<div class="error">' .
-					$textStatus->getMessage( 'search-error' ) . '</div>' );
-			} else {
-				if ( !$this->offset ) {
-					// If we have an offset the create link was rendered earlier in this function.
-					// This class needs a good de-spaghettification, but for now this will
-					// do the job.
-					$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
-				}
-				$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>",
-					[ $hasOtherResults ? 'search-nonefound-thiswiki' : 'search-nonefound',
-							wfEscapeWikiText( $term )
-					] );
+		// If we have no results and we have not already displayed an error message
+		if ( $num === 0 && !$hasErrors ) {
+			if ( !$this->offset ) {
+				// If we have an offset the create link was rendered earlier in this function.
+				// This class needs a good de-spaghettification, but for now this will
+				// do the job.
+				$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
 			}
+			$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>", [
+				$hasOtherResults ? 'search-nonefound-thiswiki' : 'search-nonefound',
+				wfEscapeWikiText( $term )
+			] );
 		}
 
 		if ( $hasOtherResults ) {
