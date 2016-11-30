@@ -62,12 +62,12 @@ class DummyLinker {
 		$query = [],
 		$options = []
 	) {
-		return Linker::link(
+		$linkRenderer = MediaWiki\MediaWikiServices::getInstance()->getLinkRenderer();
+		return $linkRenderer->makeLink(
 			$target,
-			$html,
+			new HtmlArmor( $html ),
 			$customAttribs,
-			$query,
-			$options
+			$query
 		);
 	}
 

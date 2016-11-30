@@ -253,7 +253,9 @@ class Preferences {
 			'section' => 'personal/info',
 		];
 
-		$editCount = Linker::link( SpecialPage::getTitleFor( "Contributions", $userName ),
+		$linkRenderer = MediaWiki\MediaWikiServices::getInstance()->getLinkRenderer();
+
+		$editCount = $linkRenderer->makeLink( SpecialPage::getTitleFor( "Contributions", $userName ),
 			$lang->formatNum( $user->getEditCount() ) );
 
 		$defaultPreferences['editcount'] = [
@@ -297,8 +299,8 @@ class Preferences {
 		if ( $canEditPrivateInfo && $authManager->allowsAuthenticationDataChange(
 			new PasswordAuthenticationRequest(), false )->isGood()
 		) {
-			$link = Linker::link( SpecialPage::getTitleFor( 'ChangePassword' ),
-				$context->msg( 'prefs-resetpass' )->escaped(), [],
+			$link = $linkRenderer->makeLink( SpecialPage::getTitleFor( 'ChangePassword' ),
+				$context->msg( 'prefs-resetpass' )->text(), [],
 				[ 'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText() ] );
 
 			$defaultPreferences['password'] = [
@@ -448,9 +450,9 @@ class Preferences {
 
 				$emailAddress = $user->getEmail() ? htmlspecialchars( $user->getEmail() ) : '';
 				if ( $canEditPrivateInfo && $authManager->allowsPropertyChange( 'emailaddress' ) ) {
-					$link = Linker::link(
+					$link = $linkRenderer->makeLink(
 						SpecialPage::getTitleFor( 'ChangeEmail' ),
-						$context->msg( $user->getEmail() ? 'prefs-changeemail' : 'prefs-setemail' )->escaped(),
+						$context->msg( $user->getEmail() ? 'prefs-changeemail' : 'prefs-setemail' )->text(),
 						[],
 						[ 'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText() ] );
 
@@ -601,14 +603,15 @@ class Preferences {
 			$linkTools = [];
 			$userName = $user->getName();
 
+			$linkRenderer = MediaWiki\MediaWikiServices::getInstance()->getLinkRenderer();
 			if ( $allowUserCss ) {
 				$cssPage = Title::makeTitleSafe( NS_USER, $userName . '/common.css' );
-				$linkTools[] = Linker::link( $cssPage, $context->msg( 'prefs-custom-css' )->escaped() );
+				$linkTools[] = $linkRenderer->makeLink( $cssPage, $context->msg( 'prefs-custom-css' )->text() );
 			}
 
 			if ( $allowUserJs ) {
 				$jsPage = Title::makeTitleSafe( NS_USER, $userName . '/common.js' );
-				$linkTools[] = Linker::link( $jsPage, $context->msg( 'prefs-custom-js' )->escaped() );
+				$linkTools[] = $linkRenderer->makeLink( $jsPage, $context->msg( 'prefs-custom-js' )->text() );
 			}
 
 			$defaultPreferences['commoncssjs'] = [
@@ -1110,6 +1113,8 @@ class Preferences {
 		$mptitle = Title::newMainPage();
 		$previewtext = $context->msg( 'skin-preview' )->escaped();
 
+		$linkRenderer = MediaWiki\MediaWikiServices::getInstance()->getLinkRenderer();
+
 		# Only show skins that aren't disabled in $wgSkipSkins
 		$validSkinNames = Skin::getAllowedSkins();
 
@@ -1145,12 +1150,12 @@ class Preferences {
 			# Create links to user CSS/JS pages
 			if ( $allowUserCss ) {
 				$cssPage = Title::makeTitleSafe( NS_USER, $user->getName() . '/' . $skinkey . '.css' );
-				$linkTools[] = Linker::link( $cssPage, $context->msg( 'prefs-custom-css' )->escaped() );
+				$linkTools[] = $linkRenderer->makeLink( $cssPage, $context->msg( 'prefs-custom-css' )->text() );
 			}
 
 			if ( $allowUserJs ) {
 				$jsPage = Title::makeTitleSafe( NS_USER, $user->getName() . '/' . $skinkey . '.js' );
-				$linkTools[] = Linker::link( $jsPage, $context->msg( 'prefs-custom-js' )->escaped() );
+				$linkTools[] = $linkRenderer->makeLink( $jsPage, $context->msg( 'prefs-custom-js' )->text() );
 			}
 
 			$display = $sn . ' ' . $context->msg( 'parentheses' )
@@ -1624,7 +1629,8 @@ class PreferencesForm extends HTMLForm {
 		if ( $this->getModifiedUser()->isAllowed( 'editmyoptions' ) ) {
 			$t = SpecialPage::getTitleFor( 'Preferences', 'reset' );
 
-			$html .= "\n" . Linker::link( $t, $this->msg( 'restoreprefs' )->escaped(),
+			$linkRenderer = MediaWiki\MediaWikiServices::getInstance()->getLinkRenderer();
+			$html .= "\n" . $linkRenderer->makeLink( $t, $this->msg( 'restoreprefs' )->text(),
 				Html::buttonAttributes( $attrs, [ 'mw-ui-quiet' ] ) );
 
 			$html = Xml::tags( 'div', [ 'class' => 'mw-prefs-buttons' ], $html );

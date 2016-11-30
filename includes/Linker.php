@@ -256,7 +256,8 @@ class Linker {
 		$target, $html = null, $customAttribs = [],
 		$query = [], $options = [ 'known' ]
 	) {
-		return self::link( $target, $html, $customAttribs, $query, $options );
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		return $linkRenderer->makeKnownLink( $target, new HtmlArmor( $html ), $customAttribs, $query );
 	}
 
 	/**
@@ -425,7 +426,8 @@ class Linker {
 
 		if ( $file && !$file->allowInlineDisplay() ) {
 			wfDebug( __METHOD__ . ': ' . $title->getPrefixedDBkey() . " does not allow inline display\n" );
-			return self::link( $title );
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+			return $linkRenderer->makeLink( $title );
 		}
 
 		// Clean up parameters
@@ -781,6 +783,7 @@ class Linker {
 	public static function makeBrokenImageLinkObj( $title, $label = '',
 		$query = '', $unused1 = '', $unused2 = '', $time = false
 	) {
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( !$title instanceof Title ) {
 			wfWarn( __METHOD__ . ': Requires $title to be a Title object.' );
 			return "<!-- ERROR -->" . htmlspecialchars( $label );
@@ -801,12 +804,12 @@ class Linker {
 			if ( $redir ) {
 				// We already know it's a redirect, so mark it
 				// accordingly
-				return self::link(
+				return $linkRenderer->makePreloadedLink(
 					$title,
-					$encLabel,
+					$label,
+					'',
 					[ 'class' => 'mw-redirect' ],
-					wfCgiToArray( $query ),
-					[ 'known', 'noclasses' ]
+					wfCgiToArray( $query )
 				);
 			}
 
@@ -817,7 +820,7 @@ class Linker {
 				$encLabel . '</a>';
 		}
 
-		return self::link( $title, $encLabel, [], wfCgiToArray( $query ), [ 'known', 'noclasses' ] );
+		return $linkRenderer->makePreloadedLink( $title, $label, '', [], wfCgiToArray( $query ));
 	}
 
 	/**
@@ -993,10 +996,11 @@ class Linker {
 			$page = Title::makeTitle( NS_USER, $userName );
 		}
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		// Wrap the output with <bdi> tags for directionality isolation
-		return self::link(
+		return $linkRenderer->makeLink(
 			$page,
-			'<bdi>' . htmlspecialchars( $altUserName !== false ? $altUserName : $userName ) . '</bdi>',
+			new HtmlArmor( '<bdi>' . htmlspecialchars( $altUserName !== false ? $altUserName : $userName ) . '</bdi>' ),
 			[ 'class' => $classes ]
 		);
 	}
@@ -1040,7 +1044,8 @@ class Linker {
 			}
 			$contribsPage = SpecialPage::getTitleFor( 'Contributions', $userText );
 
-			$items[] = self::link( $contribsPage, wfMessage( 'contribslink' )->escaped(), $attribs );
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+			$items[] = $linkRenderer->makeLink( $contribsPage, wfMessage( 'contribslink' )->text(), $attribs );
 		}
 		if ( $blockable && $wgUser->isAllowed( 'block' ) ) {
 			$items[] = self::blockLink( $userId, $userText );
@@ -1081,8 +1086,9 @@ class Linker {
 	 * @return string HTML fragment with user talk link
 	 */
 	public static function userTalkLink( $userId, $userText ) {
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$userTalkPage = Title::makeTitle( NS_USER_TALK, $userText );
-		$userTalkLink = self::link( $userTalkPage, wfMessage( 'talkpagelinktext' )->escaped() );
+		$userTalkLink = $linkRenderer->makeLink( $userTalkPage, wfMessage( 'talkpagelinktext' )->text() );
 		return $userTalkLink;
 	}
 
@@ -1093,8 +1099,9 @@ class Linker {
 	 * @return string HTML fragment with block link
 	 */
 	public static function blockLink( $userId, $userText ) {
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$blockPage = SpecialPage::getTitleFor( 'Block', $userText );
-		$blockLink = self::link( $blockPage, wfMessage( 'blocklink' )->escaped() );
+		$blockLink = $linkRenderer->makeLink( $blockPage, wfMessage( 'blocklink' )->text() );
 		return $blockLink;
 	}
 
@@ -1104,8 +1111,9 @@ class Linker {
 	 * @return string HTML fragment with e-mail user link
 	 */
 	public static function emailLink( $userId, $userText ) {
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$emailPage = SpecialPage::getTitleFor( 'Emailuser', $userText );
-		$emailLink = self::link( $emailPage, wfMessage( 'emaillink' )->escaped() );
+		$emailLink = $linkRenderer->makeLink( $emailPage, wfMessage( 'emaillink' )->text() );
 		return $emailLink;
 	}
 
@@ -1413,6 +1421,7 @@ class Linker {
 	public static function makeCommentLink(
 		Title $title, $text, $wikiId = null, $options = []
 	) {
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( $wikiId !== null && !$title->isExternal() ) {
 			$link = Linker::makeExternalLink(
 				WikiMap::getForeignURL(
@@ -1424,7 +1433,7 @@ class Linker {
 				/* escape = */ false // Already escaped
 			);
 		} else {
-			$link = Linker::link( $title, $text, [], [], $options );
+			$link = $linkRenderer->makePreloadedLink( $title, $text, '', [], [] );
 		}
 
 		return $link;
@@ -1896,6 +1905,7 @@ class Linker {
 			}
 		}
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( !$disableRollbackEditCount
 			&& is_int( $wgShowRollbackEditCount )
 			&& $wgShowRollbackEditCount > 0
@@ -1911,10 +1921,10 @@ class Linker {
 				$html = $context->msg( 'rollbacklinkcount' )->numParams( $editCount )->parse();
 			}
 
-			return self::link( $title, $html, $attrs, $query, $options );
+			return $linkRenderer->makePreloadedLink( $title, new HtmlArmor( $html ), '', $attrs, $query );
 		} else {
-			$html = $context->msg( 'rollbacklink' )->escaped();
-			return self::link( $title, $html, $attrs, $query, $options );
+			$text = $context->msg( 'rollbacklink' )->text();
+			return $linkRenderer->makePreloadedLink( $title, $text, '', $attrs, $query );
 		}
 	}
 
@@ -1975,11 +1985,12 @@ class Linker {
 			$outText = '<div class="mw-hiddenCategoriesExplanation">';
 			$outText .= wfMessage( 'hiddencategories' )->numParams( count( $hiddencats ) )->parseAsBlock();
 			$outText .= "</div><ul>\n";
+			$linkRenderer = $linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
 			foreach ( $hiddencats as $titleObj ) {
 				# If it's hidden, it must exist - no need to check with a LinkBatch
 				$outText .= '<li>'
-					. self::link( $titleObj, null, [], [], 'known' )
+					. $linkRenderer->makeKnownLink( $titleObj, null, [], [] )
 					. "</li>\n";
 			}
 			$outText .= '</ul>';
@@ -2144,7 +2155,8 @@ class Linker {
 		$msgKey = $delete ? 'rev-delundel' : 'rev-showdeleted';
 		$html = wfMessage( $msgKey )->escaped();
 		$tag = $restricted ? 'strong' : 'span';
-		$link = self::link( $sp, $html, [], $query, [ 'known', 'noclasses' ] );
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$link = $linkRenderer->makePreloadedLink( $sp, new HtmlArmor( $html ), [], '', $query);
 		return Xml::tags(
 			$tag,
 			[ 'class' => 'mw-revdelundel-link' ],
