@@ -592,12 +592,12 @@ class ImportReporter extends ContextSource {
 		}
 
 		$this->mPageCount++;
-
+		$linkRenderer = MediaWiki\MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( $successCount > 0 ) {
 			// <bdi> prevents jumbling of the versions count
 			// in RTL wikis in case the page title is LTR
 			$this->getOutput()->addHTML(
-				"<li>" . Linker::linkKnown( $title ) . " " .
+				"<li>" . $linkRenderer->makeLink( $title ) . " " .
 					"<bdi>" .
 					$this->msg( 'import-revision-count' )->numParams( $successCount )->escaped() .
 					"</bdi>" .
@@ -656,7 +656,7 @@ class ImportReporter extends ContextSource {
 				);
 			}
 		} else {
-			$this->getOutput()->addHTML( "<li>" . Linker::linkKnown( $title ) . " " .
+			$this->getOutput()->addHTML( "<li>" . $linkRenderer->makeKnownLink( $title ) . " " .
 				$this->msg( 'import-nonewrevisions' )->escaped() . "</li>\n" );
 		}
 	}

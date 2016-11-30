@@ -91,7 +91,8 @@ class MostlinkedPage extends QueryPage {
 	function makeWlhLink( $title, $caption ) {
 		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedDBkey() );
 
-		return Linker::linkKnown( $wlh, $caption );
+		$linkRenderer = $this->getLinkRenderer();
+		return $linkRenderer->makeKnownLink( $wlh, $caption );
 	}
 
 	/**
@@ -115,7 +116,8 @@ class MostlinkedPage extends QueryPage {
 			);
 		}
 
-		$link = Linker::link( $title );
+		$linkRenderer = $this->getLinkRenderer();
+		$link = $linkRenderer->makeLink( $title );
 		$wlh = $this->makeWlhLink(
 			$title,
 			$this->msg( 'nlinks' )->numParams( $result->value )->escaped()

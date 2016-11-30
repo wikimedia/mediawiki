@@ -20,7 +20,6 @@
  * @file
  * @ingroup SpecialPage
  */
-use MediaWiki\MediaWikiServices;
 
 /**
  * A special page that allows users to send e-mails to other users
@@ -53,13 +52,14 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	}
 
 	protected function getFormFields() {
+		$linkRenderer = $this->getLinkRenderer();
 		return [
 			'From' => [
 				'type' => 'info',
 				'raw' => 1,
-				'default' => Linker::link(
+				'default' => $linkRenderer->makeLink(
 					$this->getUser()->getUserPage(),
-					htmlspecialchars( $this->getUser()->getName() )
+					$this->getUser()->getName()
 				),
 				'label-message' => 'emailfrom',
 				'id' => 'mw-emailuser-sender',
@@ -67,9 +67,9 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			'To' => [
 				'type' => 'info',
 				'raw' => 1,
-				'default' => Linker::link(
+				'default' => $linkRenderer->makeLink(
 					$this->mTargetObj->getUserPage(),
-					htmlspecialchars( $this->mTargetObj->getName() )
+					$this->mTargetObj->getName()
 				),
 				'label-message' => 'emailto',
 				'id' => 'mw-emailuser-recipient',
