@@ -2366,13 +2366,6 @@ $wgMainStash = 'db-replicated';
 $wgParserCacheExpireTime = 86400;
 
 /**
- * Deprecated alias for $wgSessionsInObjectCache.
- *
- * @deprecated since 1.20; Use $wgSessionsInObjectCache
- */
-$wgSessionsInMemcached = true;
-
-/**
  * @deprecated since 1.27, session data is always stored in object cache.
  */
 $wgSessionsInObjectCache = true;
