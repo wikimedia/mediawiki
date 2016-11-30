@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.0
+ * OOjs UI v0.18.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-11-09T00:52:37Z
+ * Date: 2016-11-29T22:57:37Z
  */
 ( function ( OO ) {
 
@@ -1286,7 +1286,8 @@ OO.ui.WindowManager.prototype.getCurrentWindow = function () {
  *
  * @param {OO.ui.Window|string} win Window object or symbolic name of window to open
  * @param {Object} [data] Window opening data
- * @param {jQuery} [data.$returnFocusTo] Element to which the window will return focus when closed.
+ * @param {jQuery|null} [data.$returnFocusTo] Element to which the window will return focus when closed.
+ *  Defaults the current activeElement. If set to null, focus isn't changed on close.
  * @return {jQuery.Promise} An `opening` promise resolved when the window is done opening.
  *  See {@link #event-opening 'opening' event}  for more information about `opening` promises.
  * @fires opening
@@ -1418,7 +1419,9 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
 								manager.toggleGlobalEvents( false );
 								manager.toggleAriaIsolation( false );
 							}
-							manager.$returnFocusTo[ 0 ].focus();
+							if ( manager.$returnFocusTo && manager.$returnFocusTo.length ) {
+								manager.$returnFocusTo[ 0 ].focus();
+							}
 							manager.closing = null;
 							manager.currentWindow = null;
 							closing.resolve( data );

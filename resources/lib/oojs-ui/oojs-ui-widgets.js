@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.0
+ * OOjs UI v0.18.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-11-09T00:52:37Z
+ * Date: 2016-11-29T22:57:37Z
  */
 ( function ( OO ) {
 
@@ -4074,8 +4074,7 @@ OO.ui.CapsuleMultiselectWidget.prototype.onPopupFocusOut = function () {
 	setTimeout( function () {
 		if (
 			widget.isVisible() &&
-			!OO.ui.contains( widget.$element[ 0 ], document.activeElement, true ) &&
-			( !widget.$autoCloseIgnore || !widget.$autoCloseIgnore.has( document.activeElement ).length )
+			!OO.ui.contains( widget.$element.add( widget.$autoCloseIgnore ).get(), document.activeElement, true )
 		) {
 			widget.toggle( false );
 		}
