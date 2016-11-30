@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki
+MediaWikiServices;
+
 class ContentModelLogFormatter extends LogFormatter {
 	protected function getMessageParameters() {
 		$lang = $this->context->getLanguage();
@@ -18,7 +21,7 @@ class ContentModelLogFormatter extends LogFormatter {
 		}
 
 		$params = $this->extractParameters();
-		$revert = Linker::linkKnown(
+		$revert = MediaWikiServices::getLinkRenderer()->makeKnownLink(
 			SpecialPage::getTitleFor( 'ChangeContentModel' ),
 			$this->msg( 'logentry-contentmodel-change-revertlink' )->escaped(),
 			[],
