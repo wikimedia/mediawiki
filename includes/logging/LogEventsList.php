@@ -23,6 +23,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 class LogEventsList extends ContextSource {
 	const NO_ACTION_LINK = 1;
 	const NO_EXTRA_USER_LINKS = 2;
@@ -142,7 +144,7 @@ class LogEventsList extends ContextSource {
 	 */
 	private function getFilterLinks( $filter ) {
 		// show/hide links
-		$messages = [ $this->msg( 'show' )->escaped(), $this->msg( 'hide' )->escaped() ];
+		$messages = [ $this->msg( 'show' )->text(), $this->msg( 'hide' )->text() ];
 		// Option value -> message mapping
 		$links = [];
 		$hiddens = ''; // keep track for "go" button
@@ -155,7 +157,7 @@ class LogEventsList extends ContextSource {
 			$hideVal = 1 - intval( $val );
 			$query[$queryKey] = $hideVal;
 
-			$link = Linker::linkKnown(
+			$link = MediaWikiServices::getLinkRenderer()->makeKnownLink(
 				$this->getTitle(),
 				$messages[$hideVal],
 				[],
@@ -672,9 +674,9 @@ class LogEventsList extends ContextSource {
 				$urlParam = array_merge( $urlParam, $extraUrlParams );
 			}
 
-			$s .= Linker::linkKnown(
+			$s .= MediaWikiServices::getLinkRenderer()->makeKnownLink(
 				SpecialPage::getTitleFor( 'Log' ),
-				$context->msg( 'log-fulllog' )->escaped(),
+				$context->msg( 'log-fulllog' )->text(),
 				[],
 				$urlParam
 			);
