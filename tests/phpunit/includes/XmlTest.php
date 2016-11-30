@@ -306,17 +306,6 @@ class XmlTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers Xml::escapeJsString
-	 */
-	public function testEscapeJsStringSpecialChars() {
-		$this->assertEquals(
-			'\\\\\r\n',
-			Xml::escapeJsString( "\\\r\n" ),
-			'escapeJsString() with special characters'
-		);
-	}
-
-	/**
 	 * @covers Xml::encodeJsVar
 	 */
 	public function testEncodeJsVarBoolean() {
