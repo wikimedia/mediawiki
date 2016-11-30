@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 use WrappedString\WrappedString;
 use WrappedString\WrappedStringList;
@@ -1010,8 +1011,9 @@ class OutputPage extends ContextSource {
 		if ( $title->isRedirect() ) {
 			$query['redirect'] = 'no';
 		}
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		return wfMessage( 'backlinksubtitle' )
-			->rawParams( Linker::link( $title, null, [], $query ) );
+			->rawParams( $linkRenderer->makeLink( $title, null, [], $query ) );
 	}
 
 	/**
@@ -1269,6 +1271,7 @@ class OutputPage extends ContextSource {
 			'OutputPageMakeCategoryLinks',
 			[ &$this, $categories, &$this->mCategoryLinks ] )
 		) {
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 			foreach ( $categories as $category => $type ) {
 				// array keys will cast numeric category names to ints, so cast back to string
 				$category = (string)$category;
@@ -1283,7 +1286,7 @@ class OutputPage extends ContextSource {
 				}
 				$text = $wgContLang->convertHtml( $title->getText() );
 				$this->mCategories[$type][] = $title->getText();
-				$this->mCategoryLinks[$type][] = Linker::link( $title, $text );
+				$this->mCategoryLinks[$type][] = $linkRenderer->makeLink( $title, new HtmlArmor( $text ) );
 			}
 		}
 	}
@@ -2653,8 +2656,9 @@ class OutputPage extends ContextSource {
 	 * @param array $options Options array to pass to Linker
 	 */
 	public function addReturnTo( $title, array $query = [], $text = null, $options = [] ) {
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRendererFactory()->createFromLegacyOptions( $options );
 		$link = $this->msg( 'returnto' )->rawParams(
-			Linker::link( $title, $text, [], $query, $options ) )->escaped();
+			$linkRenderer->makeLink( $title, $text, [], $query ) )->escaped();
 		$this->addHTML( "<p id=\"mw-returnto\">{$link}</p>\n" );
 	}
 
