@@ -204,6 +204,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 				]
 			);
 
+			$linkRenderer = $this->getLinkRenderer();
 			if ( $res->numRows() > 0 ) {
 				$out = Html::openElement( 'ul', [ 'class' => 'mw-allpages-chunk' ] );
 
@@ -213,7 +214,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 						$out .= '<li' .
 							( $s->page_is_redirect ? ' class="allpagesredirect"' : '' ) .
 							'>' .
-							Linker::link( $t ) .
+							$linkRenderer->makeLink( $t ) .
 							"</li>\n";
 					} else {
 						$out .= '<li>[[' . htmlspecialchars( $s->page_title ) . "]]</li>\n";
@@ -269,6 +270,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 		$navLinks = [];
 		$self = $this->getPageTitle();
 
+		$linkRenderer = $this->getLinkRenderer();
 		// Generate a "previous page" link if needed
 		if ( $prevTitle ) {
 			$query = [ 'from' => $prevTitle->getText() ];
@@ -281,9 +283,9 @@ class SpecialAllPages extends IncludableSpecialPage {
 				$query['hideredirects'] = $hideredirects;
 			}
 
-			$navLinks[] = Linker::linkKnown(
+			$navLinks[] = $linkRenderer->makeKnownLink(
 				$self,
-				$this->msg( 'prevpage', $prevTitle->getText() )->escaped(),
+				$this->msg( 'prevpage', $prevTitle->getText() )->text(),
 				[],
 				$query
 			);
@@ -304,9 +306,9 @@ class SpecialAllPages extends IncludableSpecialPage {
 				$query['hideredirects'] = $hideredirects;
 			}
 
-			$navLinks[] = Linker::linkKnown(
+			$navLinks[] = $linkRenderer->makeKnownLink(
 				$self,
-				$this->msg( 'nextpage', $t->getText() )->escaped(),
+				$this->msg( 'nextpage', $t->getText() )->text(),
 				[],
 				$query
 			);

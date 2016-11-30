@@ -137,14 +137,15 @@ class DoubleRedirectsPage extends QueryPage {
 				$result = $dbr->fetchObject( $res );
 			}
 		}
+		$linkRenderer = $this->getLinkRenderer();
 		if ( !$result ) {
-			return '<del>' . Linker::link( $titleA, null, [], [ 'redirect' => 'no' ] ) . '</del>';
+			return '<del>' . $linkRenderer->makeLink( $titleA, null, [], [ 'redirect' => 'no' ] ) . '</del>';
 		}
 
 		$titleB = Title::makeTitle( $result->nsb, $result->tb );
 		$titleC = Title::makeTitle( $result->nsc, $result->tc, '', $result->iwc );
 
-		$linkA = Linker::linkKnown(
+		$linkA = $linkRenderer->makeKnownLink(
 			$titleA,
 			null,
 			[],
@@ -158,26 +159,24 @@ class DoubleRedirectsPage extends QueryPage {
 			// check, if the content model is editable through action=edit
 			ContentHandler::getForTitle( $titleA )->supportsDirectEditing()
 		) {
-			$edit = Linker::linkKnown(
+			$edit = $linkRenderer->makeKnownLink(
 				$titleA,
-				$this->msg( 'parentheses', $this->msg( 'editlink' )->text() )->escaped(),
+				$this->msg( 'parentheses', $this->msg( 'editlink' )->text() )->text(),
 				[],
-				[
-					'action' => 'edit'
-				]
+				[ 'action' => 'edit' ]
 			);
 		} else {
 			$edit = '';
 		}
 
-		$linkB = Linker::linkKnown(
+		$linkB = $linkRenderer->makeKnownLink(
 			$titleB,
 			null,
 			[],
 			[ 'redirect' => 'no' ]
 		);
 
-		$linkC = Linker::linkKnown( $titleC );
+		$linkC = $linkRenderer->makeKnownLink( $titleC );
 
 		$lang = $this->getLanguage();
 		$arr = $lang->getArrow() . $lang->getDirMark();
