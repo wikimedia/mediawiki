@@ -1,6 +1,7 @@
 <?php
 use MediaWiki\MediaWikiServices;
 
+
 /**
  * Implements Special:FileDuplicateSearch
  *
@@ -208,11 +209,12 @@ class FileDuplicateSearchPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
 
+		$linkRenderer = $this->getLinkRenderer();
 		$nt = $result->getTitle();
 		$text = $wgContLang->convert( $nt->getText() );
-		$plink = Linker::link(
+		$plink = $linkRenderer->makeLink(
 			$nt,
-			htmlspecialchars( $text )
+			$text
 		);
 
 		$userText = $result->getUser( 'text' );
