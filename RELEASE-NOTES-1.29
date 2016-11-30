@@ -56,6 +56,7 @@ changes to languages because of Phabricator reports.
   SearchEngineFactory::getSearchEngineClass() instead.
 * $wgSessionsInMemcached (deprecated in 1.20) was removed. No replacement is
   required as all sessions are stored in Object Cache now.
+* User::edits() (deprecated in 1.21) was removed.
 
 == Compatibility ==
 
