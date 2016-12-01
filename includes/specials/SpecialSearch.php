@@ -502,7 +502,7 @@ class SpecialSearch extends SpecialPage {
 		}
 		$stParams = array_merge( $params, $this->powerSearchOptions() );
 
-		$suggest = Linker::linkKnown(
+		$suggest = $this->getLinkRenderer()->makeKnownLink(
 			$this->getPageTitle(),
 			$textMatches->getSuggestionSnippet() ?: null,
 			[ 'id' => 'mw-search-DYM-suggestion' ],
@@ -538,7 +538,7 @@ class SpecialSearch extends SpecialPage {
 		}
 		$stParams = array_merge( $params, $this->powerSearchOptions() );
 
-		$rewritten = Linker::linkKnown(
+		$rewritten = $this->getLinkRenderer()->makeKnownLink(
 			$this->getPageTitle(),
 			$textMatches->getQueryAfterRewriteSnippet() ?: null,
 			[ 'id' => 'mw-search-DYM-rewritten' ],
@@ -547,7 +547,7 @@ class SpecialSearch extends SpecialPage {
 
 		$stParams['search'] = $term;
 		$stParams['runsuggestion'] = 0;
-		$original = Linker::linkKnown(
+		$original = $this->getLinkRenderer()->makeKnownLink(
 			$this->getPageTitle(),
 			htmlspecialchars( $term ),
 			[ 'id' => 'mw-search-DYM-original' ],
@@ -769,7 +769,7 @@ class SpecialSearch extends SpecialPage {
 		Hooks::run( 'ShowSearchHitTitle',
 			[ &$link_t, &$titleSnippet, $result, $terms, $this, &$query ] );
 
-		$link = Linker::linkKnown(
+		$link = $this->getLinkRenderer()->makeKnownLink(
 			$link_t,
 			$titleSnippet,
 			[ 'data-serp-pos' => $position ], // HTML attributes
@@ -805,7 +805,7 @@ class SpecialSearch extends SpecialPage {
 
 			$redirect = "<span class='searchalttitle'>" .
 				$this->msg( 'search-redirect' )->rawParams(
-					Linker::linkKnown( $redirectTitle, $redirectText ) )->text() .
+					$this->getLinkRenderer()->makeKnownLink( $redirectTitle, $redirectText ) )->text() .
 				"</span>";
 		}
 
@@ -817,7 +817,7 @@ class SpecialSearch extends SpecialPage {
 
 			$section = "<span class='searchalttitle'>" .
 				$this->msg( 'search-section' )->rawParams(
-					Linker::linkKnown( $sectionTitle, $sectionText ) )->text() .
+					$this->getLinkRenderer()->makeKnownLink( $sectionTitle, $sectionText ) )->text() .
 				"</span>";
 		}
 
@@ -982,7 +982,7 @@ class SpecialSearch extends SpecialPage {
 			$titleSnippet = null;
 		}
 
-		$link = Linker::linkKnown(
+		$link = $this->getLinkRenderer()->makeKnownLink(
 			$title,
 			$titleSnippet
 		);
@@ -998,7 +998,7 @@ class SpecialSearch extends SpecialPage {
 
 			$redirect = "<span class='searchalttitle'>" .
 				$this->msg( 'search-redirect' )->rawParams(
-					Linker::linkKnown( $redirectTitle, $redirectText ) )->text() .
+					$this->getLinkRenderer()->makeKnownLink( $redirectTitle, $redirectText ) )->text() .
 				"</span>";
 		}
 
@@ -1016,7 +1016,7 @@ class SpecialSearch extends SpecialPage {
 			}
 			// "more results" link (special page stuff could be localized, but we might not know target lang)
 			$searchTitle = Title::newFromText( $title->getInterwiki() . ":Special:Search" );
-			$searchLink = Linker::linkKnown(
+			$searchLink = $this->getLinkRenderer()->makeKnownLink(
 				$searchTitle,
 				$this->msg( 'search-interwiki-more' )->text(),
 				[],

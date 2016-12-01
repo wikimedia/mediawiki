@@ -210,7 +210,7 @@ class FileDuplicateSearchPage extends QueryPage {
 
 		$nt = $result->getTitle();
 		$text = $wgContLang->convert( $nt->getText() );
-		$plink = Linker::link(
+		$plink = $this->getLinkRenderer()->makeLink(
 			$nt,
 			htmlspecialchars( $text )
 		);

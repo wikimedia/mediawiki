@@ -228,7 +228,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 						$displayed = substr( $displayed, $prefixLength );
 					}
 					$link = ( $title->isRedirect() ? '<div class="allpagesredirect">' : '' ) .
-						Linker::linkKnown(
+						$this->getLinkRenderer()->makeKnownLink(
 							$title,
 							htmlspecialchars( $displayed )
 						) .
@@ -275,7 +275,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 				$query['namespace'] = $namespace;
 			}
 
-			$nextLink = Linker::linkKnown(
+			$nextLink = $this->getLinkRenderer()->makeKnownLink(
 				$this->getPageTitle(),
 				$this->msg( 'nextpage', str_replace( '_', ' ', $nextRow->page_title ) )->escaped(),
 				[],
