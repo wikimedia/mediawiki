@@ -64,6 +64,8 @@ production.
   'stasherrors' rather than a 'stashfailed' text string.
 * action=watch reports 'errors' and 'warnings' instead of a single 'error', and
   no longer returns a 'message' on success.
+* Added action=validatepassword to validate passwords for the account creation
+  and password change forms.
 
 === Action API internal changes in 1.29 ===
 * New methods were added to ApiBase to handle errors and warnings using i18n
