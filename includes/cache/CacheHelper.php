@@ -82,6 +82,8 @@ interface ICacheHelper {
 	function setExpiry( $cacheExpiry );
 }
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Helper class for caching various elements in a single cache entry.
  *
@@ -217,9 +219,9 @@ class CacheHelper implements ICacheHelper {
 			$subPage = explode( '/', $subPage, 2 );
 			$subPage = count( $subPage ) > 1 ? $subPage[1] : false;
 
-			$message .= ' ' . Linker::link(
+			$message .= ' ' . MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
 				$context->getTitle( $subPage ),
-				$context->msg( 'cachedspecial-refresh-now' )->escaped(),
+				$context->msg( 'cachedspecial-refresh-now' )->text(),
 				[],
 				$refreshArgs
 			);
