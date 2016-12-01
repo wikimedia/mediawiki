@@ -31,29 +31,14 @@
 	} );
 
 	// Check if the username is invalid or already taken
-	$( function () {
-		var
-			// We need to hook to all of these events to be sure we are notified of all changes to the
-			// value of an <input type=text> field.
-			events = 'keyup keydown change mouseup cut paste focus blur',
-			$input = $( '#wpName2' ),
-			$statusContainer = $( '#mw-createacct-status-area' ),
+	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
+		var $usernameInput = $root.find( '#wpName2' ),
+			$passwordInput = $root.find( '#wpPassword2' ),
+			$emailInput = $root.find( '#wpEmail' ),
+			$realNameInput = $root.find( '#wpRealName' ),
 			api = new mw.Api(),
-			currentRequest;
+			usernameChecker, passwordChecker;
 
-		// Hide any present status messages.
-		function clearStatus() {
-			$statusContainer.slideUp( function () {
-				$statusContainer
-					.removeAttr( 'class' )
-					.empty();
-			} );
-		}
-
-		// Returns a promise receiving a { state:, username: } object, where:
-		// * 'state' is one of 'invalid', 'taken', 'ok'
-		// * 'username' is the validated username if 'state' is 'ok', null otherwise (if it's not
-		//   possible to register such an account)
 		function checkUsername( username ) {
 			// We could just use .then() if we didn't have to pass on .abort()…
 			var d, apiPromise;
@@ -62,20 +47,29 @@
 			apiPromise = api.get( {
 				action: 'query',
 				list: 'users',
-				ususers: username // '|' in usernames is handled below
+				ususers: username,
+				usprop: 'cancreate',
+				formatversion: 2,
+				errorformat: 'html',
+				errorsuselocal: true,
+				uselang: mw.config.get( 'wgUserLanguage' )
 			} )
 				.done( function ( resp ) {
 					var userinfo = resp.query.users[ 0 ];
 
-					if ( resp.query.users.length !== 1 ) {
-						// Happens if the user types '|' into the field
-						d.resolve( { state: 'invalid', username: null } );
-					} else if ( userinfo.invalid !== undefined ) {
-						d.resolve( { state: 'invalid', username: null } );
+					if ( resp.query.users.length !== 1 || userinfo.invalid ) {
+						d.resolve( { valid: false, messages: [ mw.message( 'noname' ).parseDom() ] } );
 					} else if ( userinfo.userid !== undefined ) {
-						d.resolve( { state: 'taken', username: null } );
+						d.resolve( { valid: false, messages: [ mw.message( 'userexists' ).parseDom() ] } );
+					} else if ( !userinfo.cancreate ) {
+						d.resolve( {
+							valid: false,
+							messages: userinfo.cancreateerror ? userinfo.cancreateerror.map( function ( m ) {
+								return m.html;
+							} ) : []
+						} );
 					} else {
-						d.resolve( { state: 'ok', username: username } );
+						d.resolve( { valid: true, messages: [] } );
 					}
 				} )
 				.fail( d.reject );
@@ -83,58 +77,46 @@
 			return d.promise( { abort: apiPromise.abort } );
 		}
 
-		function updateUsernameStatus() {
-			var
-				username = $.trim( $input.val() ),
-				currentRequestInternal;
+		function checkPassword() {
+			// We could just use .then() if we didn't have to pass on .abort()…
+			var apiPromise,
+				d = $.Deferred();
 
-			// Abort any pending requests.
-			if ( currentRequest ) {
-				currentRequest.abort();
+			if ( $.trim( $usernameInput.val() ) === '' ) {
+				d.resolve( { valid: true, messages: [] } );
+				return d.promise();
 			}
 
-			if ( username === '' ) {
-				clearStatus();
-				return;
-			}
+			apiPromise = api.post( {
+				action: 'validatepassword',
+				user: $usernameInput.val(),
+				password: $passwordInput.val(),
+				email: $emailInput.val() || '',
+				realname: $realNameInput.val() || '',
+				formatversion: 2,
+				errorformat: 'html',
+				errorsuselocal: true,
+				uselang: mw.config.get( 'wgUserLanguage' )
+			} )
+				.done( function ( resp ) {
+					var pwinfo = resp.validatepassword || {};
 
-			currentRequest = currentRequestInternal = checkUsername( username ).done( function ( info ) {
-				var message;
+					d.resolve( {
+						valid: pwinfo.validity === 'Good',
+						messages: pwinfo.validitymessages ? pwinfo.validitymessages.map( function ( m ) {
+							return m.html;
+						} ) : []
+					} );
+				} )
+				.fail( d.reject );
 
-				// Another request was fired in the meantime, the result we got here is no longer current.
-				// This shouldn't happen as we abort pending requests, but you never know.
-				if ( currentRequest !== currentRequestInternal ) {
-					return;
-				}
-				// If we're here, then the current request has finished, avoid calling .abort() needlessly.
-				currentRequest = undefined;
-
-				if ( info.state === 'ok' ) {
-					clearStatus();
-				} else {
-					if ( info.state === 'invalid' ) {
-						message = mw.message( 'noname' ).text();
-					} else if ( info.state === 'taken' ) {
-						message = mw.message( 'userexists' ).text();
-					}
-
-					$statusContainer
-						.attr( 'class', 'errorbox' )
-						.empty()
-						.append(
-							// Ugh…
-							// TODO Change the HTML structure in includes/templates/Usercreate.php
-							$( '<strong>' ).text( mw.message( 'createacct-error' ).text() ),
-							$( '<br>' ),
-							document.createTextNode( message )
-						)
-						.slideDown();
-				}
-			} ).fail( function () {
-				clearStatus();
-			} );
+			return d.promise( { abort: apiPromise.abort } );
 		}
 
-		$input.on( events, $.debounce( 1000, updateUsernameStatus ) );
+		usernameChecker = new mw.htmlform.Checker( $usernameInput, checkUsername );
+		usernameChecker.attach();
+
+		passwordChecker = new mw.htmlform.Checker( $passwordInput, checkPassword );
+		passwordChecker.attach( $usernameInput.add( $emailInput ).add( $realNameInput ) );
 	} );
 }( mediaWiki, jQuery ) );
