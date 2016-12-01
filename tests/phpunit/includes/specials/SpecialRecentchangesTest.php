@@ -215,4 +215,86 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 			$user
 		);
 	}
+
+	public function testRcHidepatrolledDisabledFilter() {
+		$user = $this->getTestUser()->getUser();
+		$this->assertConditions(
+			[ # expected
+				'rc_bot' => 0,
+				0 => "rc_type != '6'",
+			],
+			[
+				'hidepatrolled' => 1,
+			],
+			"rc conditions: hidepatrolled=1 (user not allowed)",
+			$user
+		);
+	}
+
+	public function testRcHidenonpatrolledDisabledFilter() {
+		$user = $this->getTestUser()->getUser();
+		$this->assertConditions(
+			[ # expected
+				'rc_bot' => 0,
+				0 => "rc_type != '6'",
+			],
+			[
+				'hidenonpatrolled' => 1,
+			],
+			"rc conditions: hidenonpatrolled=1 (user not allowed)",
+			$user
+		);
+	}
+	public function testRcHidepatrolledFilter() {
+		$user = $this->getTestSysop()->getUser();
+		$this->assertConditions(
+			[ # expected
+				'rc_bot' => 0,
+				0 => "rc_patrolled = 0",
+				1 => "rc_type != '6'",
+			],
+			[
+				'hidepatrolled' => 1,
+			],
+			"rc conditions: hidepatrolled=1",
+			$user
+		);
+	}
+
+	public function testRcHidenonpatrolledFilter() {
+		$user = $this->getTestSysop()->getUser();
+		$this->assertConditions(
+			[ # expected
+				'rc_bot' => 0,
+				0 => "rc_patrolled = 1",
+				1 => "rc_type != '6'",
+			],
+			[
+				'hidenonpatrolled' => 1,
+			],
+			"rc conditions: hidenonpatrolled=1",
+			$user
+		);
+	}
+
+	// This is probably going to change when we do auto-fix of
+	// filters combinations that don't make sense but for now
+	// it's the behavior therefore it's the test.
+	public function testRcHidepatrolledHidenonpatrolledFilter() {
+		$user = $this->getTestSysop()->getUser();
+		$this->assertConditions(
+			[ # expected
+				'rc_bot' => 0,
+				0 => "rc_patrolled = 0",
+				1 => "rc_patrolled = 1",
+				2 => "rc_type != '6'",
+			],
+			[
+				'hidepatrolled' => 1,
+				'hidenonpatrolled' => 1,
+			],
+			"rc conditions: hidepatrolled=1 hidenonpatrolled=1",
+			$user
+		);
+	}
 }
