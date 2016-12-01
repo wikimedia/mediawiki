@@ -230,50 +230,20 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			$result = $matches->next();
 		}
 
+		// Interwiki results
 		$hasInterwikiResults = false;
-		$totalhits = null;
-		if ( $interwiki && $resultPageSet === null && $matches->hasInterwikiResults() ) {
-			foreach ( $matches->getInterwikiResults() as $interwikiMatches ) {
-				$hasInterwikiResults = true;
-
-				// Include number of results if requested
-				if ( $resultPageSet === null && isset( $searchInfo['totalhits'] ) ) {
-					$totalhits += $interwikiMatches->getTotalHits();
-				}
-
-				$result = $interwikiMatches->next();
-				while ( $result ) {
-					$title = $result->getTitle();
-
-					if ( $resultPageSet === null ) {
-						$vals = [
-							'namespace' => $result->getInterwikiNamespaceText(),
-							'title' => $title->getText(),
-							'url' => $title->getFullURL(),
-						];
-
-						// Add item to results and see whether it fits
-						$fit = $apiResult->addValue(
-							[ 'query', 'interwiki' . $this->getModuleName(), $result->getInterwikiPrefix() ],
-							null,
-							$vals
-						);
-
-						if ( !$fit ) {
-							// We hit the limit. We can't really provide any meaningful
-							// pagination info so just bail out
-							break;
-						}
-					} else {
-						$titles[] = $title;
-					}
-
-					$result = $interwikiMatches->next();
+		if ( $interwiki && $resultPageSet === null ) {
+			if ( $params['enablerewrites'] ) {
+				$totalhits = $this->addInterwikiResults( $matches, $apiResult,
+					SearchResultSet::INLINE_RESULTS );
+				if ( $totalhits ) {
+					$hasInterwikiResults = true;
 				}
 			}
-			if ( $totalhits !== null ) {
-				$apiResult->addValue( [ 'query', 'interwikisearchinfo' ],
-					'totalhits', $totalhits );
+			$totalhits = $this->addInterwikiResults( $matches, $apiResult,
+					SearchResultSet::SECONDARY_RESULTS );
+			if ( $totalhits ) {
+				$hasInterwikiResults = true;
 			}
 		}
 
@@ -299,6 +269,47 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				$resultPageSet->setGeneratorData( $title, [ 'index' => $index + $offset ] );
 			}
 		}
+	}
+
+	private function addInterwikiResults( SearchResultSet $matches, ApiResult $apiResult,
+	                                      $type = SearchResultSet::SECONDARY_RESULTS ) {
+		$totalhits = null;
+		if ( $matches->hasInterwikiResults( $type ) ) {
+			foreach ( $matches->getInterwikiResults( $type ) as $interwikiMatches ) {
+				// Include number of results if requested
+				$totalhits += $interwikiMatches->getTotalHits();
+
+				$result = $interwikiMatches->next();
+				while ( $result ) {
+					$title = $result->getTitle();
+
+					$vals = [
+						'namespace' => $result->getInterwikiNamespaceText(),
+						'title' => $title->getText(),
+						'url' => $title->getFullURL(),
+					];
+
+					// Add item to results and see whether it fits
+					$fit = $apiResult->addValue( [
+							'query',
+							'interwiki' . $this->getModuleName(),
+							$result->getInterwikiPrefix()
+						], null, $vals );
+
+					if ( !$fit ) {
+						// We hit the limit. We can't really provide any meaningful
+						// pagination info so just bail out
+						break;
+					}
+
+					$result = $interwikiMatches->next();
+				}
+			}
+			if ( $totalhits !== null ) {
+				$apiResult->addValue( [ 'query', 'interwikisearchinfo' ], 'totalhits', $totalhits );
+			}
+		}
+		return $totalhits;
 	}
 
 	public function getCacheMode( $params ) {
