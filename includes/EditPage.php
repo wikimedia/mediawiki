@@ -3326,7 +3326,6 @@ HTML
 		}
 
 		if ( $newContent ) {
-			ContentHandler::runLegacyHooks( 'EditPageGetDiffText', [ $this, &$newContent ], '1.21' );
 			Hooks::run( 'EditPageGetDiffContent', [ $this, &$newContent ] );
 
 			$popts = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );

@@ -601,28 +601,7 @@ class DifferenceEngine extends ContextSource {
 			$out->setRevisionTimestamp( $this->mNewRev->getTimestamp() );
 			$out->setArticleFlag( true );
 
-			// NOTE: only needed for B/C: custom rendering of JS/CSS via hook
-			if ( $this->mNewPage->isCssJsSubpage() || $this->mNewPage->isCssOrJsPage() ) {
-				// This needs to be synchronised with Article::showCssOrJsPage(), which sucks
-				// Give hooks a chance to customise the output
-				// @todo standardize this crap into one function
-				if ( ContentHandler::runLegacyHooks( 'ShowRawCssJs', [ $this->mNewContent, $this->mNewPage, $out ], '1.24' ) ) {
-					// NOTE: deprecated hook, B/C only
-					// use the content object's own rendering
-					$cnt = $this->mNewRev->getContent();
-					$po = $cnt ? $cnt->getParserOutput( $this->mNewRev->getTitle(), $this->mNewRev->getId() ) : null;
-					if ( $po ) {
-						$out->addParserOutputContent( $po );
-					}
-				}
-			} elseif ( !Hooks::run( 'ArticleContentViewCustom', [ $this->mNewContent, $this->mNewPage, $out ] ) ) {
-				// Handled by extension
-			} elseif ( !ContentHandler::runLegacyHooks(
-				'ArticleViewCustom',
-				[ $this->mNewContent, $this->mNewPage, $out ],
-				'1.21'
-			) ) {
-				// NOTE: deprecated hook, B/C only
+			if ( !Hooks::run( 'ArticleContentViewCustom', [ $this->mNewContent, $this->mNewPage, $out ] ) ) {
 				// Handled by extension
 			} else {
 				// Normal page
