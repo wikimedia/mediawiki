@@ -147,6 +147,7 @@ $wgAutoloadLocalClasses = [
 	'ApiUpload' => __DIR__ . '/includes/api/ApiUpload.php',
 	'ApiUsageException' => __DIR__ . '/includes/api/ApiUsageException.php',
 	'ApiUserrights' => __DIR__ . '/includes/api/ApiUserrights.php',
+	'ApiValidatePassword' => __DIR__ . '/includes/api/ApiValidatePassword.php',
 	'ApiWatch' => __DIR__ . '/includes/api/ApiWatch.php',
 	'ArchivedFile' => __DIR__ . '/includes/filerepo/file/ArchivedFile.php',
 	'ArrayDiffFormatter' => __DIR__ . '/includes/diff/ArrayDiffFormatter.php',

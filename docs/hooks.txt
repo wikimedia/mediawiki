@@ -592,6 +592,10 @@ Use this hook to extend action=tokens with new token types.
 &$tokenTypes: supported token types in format 'type' => callback function
   used to retrieve this type of tokens.
 
+'ApiValidatePassword': Called from ApiValidatePassword.
+$module: ApiValidatePassword instance.
+&$r: Result array.
+
 'Article::MissingArticleConditions': Before fetching deletion & move log entries
 to display a message of a non-existing page being deleted/moved, give extensions
 a chance to hide their (unrelated) log entries.
