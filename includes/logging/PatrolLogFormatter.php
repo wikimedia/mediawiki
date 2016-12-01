@@ -22,6 +22,7 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  * @since 1.22
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * This class formats patrol log entries.
@@ -54,7 +55,8 @@ class PatrolLogFormatter extends LogFormatter {
 				'oldid' => $oldid,
 				'diff' => 'prev'
 			];
-			$revlink = Linker::link( $target, htmlspecialchars( $revision ), [], $query );
+			$revlink = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
+				$target, $revision, [], $query );
 		} else {
 			$revlink = htmlspecialchars( $revision );
 		}
