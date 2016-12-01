@@ -18,6 +18,7 @@
  * @file
  * @ingroup Change tagging
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Item class for a logging table row with its associated change tags.
@@ -70,7 +71,7 @@ class ChangeTagsLogItem extends RevisionItemBase {
 		$formatter->setAudience( LogFormatter::FOR_THIS_USER );
 
 		// Log link for this page
-		$loglink = Linker::link(
+		$loglink = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
 			SpecialPage::getTitleFor( 'Log' ),
 			$this->list->msg( 'log' )->escaped(),
 			[],

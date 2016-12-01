@@ -205,7 +205,9 @@ class CreditsAction extends FormlessAction {
 			? SpecialPage::getTitleFor( 'Contributions', $user->getName() )
 			: $user->getUserPage();
 
-		return Linker::link( $page, htmlspecialchars( $real ? $real : $user->getName() ) );
+		return \MediaWiki\MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
+			$page, htmlspecialchars( $real ? $real : $user->getName() )
+		);
 	}
 
 	/**
@@ -231,7 +233,7 @@ class CreditsAction extends FormlessAction {
 	 * @return string HTML link
 	 */
 	protected function othersLink() {
-		return Linker::linkKnown(
+		return \MediaWiki\MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
 			$this->getTitle(),
 			$this->msg( 'others' )->escaped(),
 			[],

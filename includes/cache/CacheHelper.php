@@ -21,6 +21,7 @@
  * @license GNU GPL v2 or later
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Interface for all classes implementing CacheHelper functionality.
@@ -217,7 +218,7 @@ class CacheHelper implements ICacheHelper {
 			$subPage = explode( '/', $subPage, 2 );
 			$subPage = count( $subPage ) > 1 ? $subPage[1] : false;
 
-			$message .= ' ' . Linker::link(
+			$message .= ' ' . MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
 				$context->getTitle( $subPage ),
 				$context->msg( 'cachedspecial-refresh-now' )->escaped(),
 				[],

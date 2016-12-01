@@ -58,7 +58,7 @@ class HistoryAction extends FormlessAction {
 
 	protected function getDescription() {
 		// Creation of a subtitle link pointing to [[Special:Log]]
-		return Linker::linkKnown(
+		return \MediaWiki\MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
 			SpecialPage::getTitleFor( 'Log' ),
 			$this->msg( 'viewpagelogs' )->escaped(),
 			[],
@@ -734,7 +734,8 @@ class HistoryPager extends ReverseChronologicalPager {
 				$undoTooltip = $latest
 					? [ 'title' => $this->msg( 'tooltip-undo' )->text() ]
 					: [];
-				$undolink = Linker::linkKnown(
+				$linkRenderer = \MediaWiki\MediaWikiServices::getInstance()->getLinkRenderer();
+				$undolink = $linkRenderer->makeKnownLink(
 					$this->getTitle(),
 					$this->msg( 'editundo' )->escaped(),
 					$undoTooltip,
@@ -790,7 +791,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$date = $this->getLanguage()->userTimeAndDate( $rev->getTimestamp(), $this->getUser() );
 		$date = htmlspecialchars( $date );
 		if ( $rev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
-			$link = Linker::linkKnown(
+			$link = \MediaWiki\MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
 				$this->getTitle(),
 				$date,
 				[ 'class' => 'mw-changeslist-date' ],
@@ -818,7 +819,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		if ( $latest || !$rev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
 			return $cur;
 		} else {
-			return Linker::linkKnown(
+			return \MediaWiki\MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
 				$this->getTitle(),
 				$cur,
 				[],
@@ -849,7 +850,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		if ( $next === 'unknown' ) {
 			# Next row probably exists but is unknown, use an oldid=prev link
-			return Linker::linkKnown(
+			return \MediaWiki\MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
 				$this->getTitle(),
 				$last,
 				[],
@@ -868,7 +869,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			return $last;
 		}
 
-		return Linker::linkKnown(
+		return \MediaWiki\MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
 			$this->getTitle(),
 			$last,
 			[],
