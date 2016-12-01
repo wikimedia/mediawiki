@@ -1658,16 +1658,20 @@ class User implements IDBAccessObject {
 		if ( !$block instanceof Block && $ip !== null && !in_array( $ip, $wgProxyWhitelist ) ) {
 			// Local list
 			if ( self::isLocallyBlockedProxy( $ip ) ) {
-				$block = new Block;
-				$block->setBlocker( wfMessage( 'proxyblocker' )->text() );
-				$block->mReason = wfMessage( 'proxyblockreason' )->text();
-				$block->setTarget( $ip );
+				$block = new Block( [
+					'byText' => wfMessage( 'proxyblocker' )->text(),
+					'reason' => wfMessage( 'proxyblockreason' )->text(),
+					'address' => $ip,
+					'systemBlock' => 'proxy',
+				] );
 				$this->blockTrigger = 'proxy-block';
 			} elseif ( $this->isAnon() && $this->isDnsBlacklisted( $ip ) ) {
-				$block = new Block;
-				$block->setBlocker( wfMessage( 'sorbs' )->text() );
-				$block->mReason = wfMessage( 'sorbsreason' )->text();
-				$block->setTarget( $ip );
+				$block = new Block( [
+					'byText' => wfMessage( 'sorbs' )->text(),
+					'reason' => wfMessage( 'sorbsreason' )->text(),
+					'address' => $ip,
+					'systemBlock' => 'dnsbl',
+				] );
 				$this->blockTrigger = 'openproxy-block';
 			}
 		}
@@ -2082,8 +2086,10 @@ class User implements IDBAccessObject {
 
 		if ( $blocked && $block === null ) {
 			// back-compat: UserIsBlockedGlobally didn't have $block param first
-			$block = new Block;
-			$block->setTarget( $ip );
+			$block = new Block( [
+				'address' => $ip,
+				'systemBlock' => 'global-block'
+			] );
 		}
 
 		$this->mGlobalBlock = $blocked ? $block : false;

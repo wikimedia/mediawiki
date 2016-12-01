@@ -135,11 +135,13 @@ class ApiBaseTest extends ApiTestCase {
 		$expect = Status::newGood();
 		$expect->fatal( 'blockedtext' );
 		$expect->fatal( 'autoblockedtext' );
+		$expect->fatal( 'systemblockedtext' );
 		$expect->fatal( 'mainpage' );
 		$expect->fatal( 'parentheses', 'foobar' );
 		$this->assertEquals( $expect, $mock->errorArrayToStatus( [
 			[ 'blockedtext' ],
 			[ 'autoblockedtext' ],
+			[ 'systemblockedtext' ],
 			'mainpage',
 			[ 'parentheses', 'foobar' ],
 		] ) );
@@ -158,11 +160,13 @@ class ApiBaseTest extends ApiTestCase {
 		$expect = Status::newGood();
 		$expect->fatal( ApiMessage::create( 'apierror-blocked', 'blocked', $blockinfo ) );
 		$expect->fatal( ApiMessage::create( 'apierror-autoblocked', 'autoblocked', $blockinfo ) );
+		$expect->fatal( ApiMessage::create( 'apierror-systemblocked', 'blocked', $blockinfo ) );
 		$expect->fatal( 'mainpage' );
 		$expect->fatal( 'parentheses', 'foobar' );
 		$this->assertEquals( $expect, $mock->errorArrayToStatus( [
 			[ 'blockedtext' ],
 			[ 'autoblockedtext' ],
+			[ 'systemblockedtext' ],
 			'mainpage',
 			[ 'parentheses', 'foobar' ],
 		], $user ) );

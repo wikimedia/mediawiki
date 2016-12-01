@@ -1629,6 +1629,12 @@ abstract class ApiBase extends ContextSource {
 					'autoblocked',
 					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
 				) );
+			} elseif ( is_array( $error ) && $error[0] === 'systemblockedtext' && $user->getBlock() ) {
+				$status->fatal( ApiMessage::create(
+					'apierror-systemblocked',
+					'blocked',
+					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
+				) );
 			} else {
 				call_user_func_array( [ $status, 'fatal' ], (array)$error );
 			}
@@ -2452,6 +2458,7 @@ abstract class ApiBase extends ContextSource {
 		'confirmedittext' => 'confirmedittext',
 		'blockedtext' => 'apierror-blocked',
 		'autoblockedtext' => 'apierror-autoblocked',
+		'systemblockedtext' => 'apierror-systemblocked',
 		'actionthrottledtext' => 'apierror-ratelimited',
 		'alreadyrolled' => 'alreadyrolled',
 		'cantrollback' => 'cantrollback',
