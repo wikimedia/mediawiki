@@ -31,6 +31,8 @@ production.
   they move to a new IP address. This is disabled by default.
 * Added ILocalizedException interface to standardize the use of localized
   exceptions, largely so the API can handle them more sensibly.
+* Blocks created automatically by MediaWiki, such as for configured proxies or
+  dnsbls, are now indicated as such and use a new i18n message when displayed.
 
 === External library changes in 1.29 ===
 

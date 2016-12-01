@@ -661,7 +661,11 @@ class EditPage {
 		$remove = [];
 		foreach ( $permErrors as $error ) {
 			if ( ( $this->preview || $this->diff )
-				&& ( $error[0] == 'blockedtext' || $error[0] == 'autoblockedtext' )
+				&& (
+					$error[0] == 'blockedtext' ||
+					$error[0] == 'autoblockedtext' ||
+					$error[0] == 'systemblockedtext'
+				)
 			) {
 				$remove[] = $error;
 			}

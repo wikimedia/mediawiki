@@ -64,6 +64,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	 *  - blockreason - reason provided for the block
 	 *  - blockedtimestamp - timestamp for when the block was placed/modified
 	 *  - blockexpiry - expiry time of the block
+	 *  - systemblocktype - system block type, if any
 	 */
 	public static function getBlockInfo( Block $block ) {
 		global $wgContLang;
@@ -76,6 +77,9 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		$vals['blockexpiry'] = $wgContLang->formatExpiry(
 			$block->getExpiry(), TS_ISO_8601, 'infinite'
 		);
+		if ( $block->getSystemBlockType() !== null ) {
+			$vals['systemblocktype'] = $block->getSystemBlockType();
+		}
 		return $vals;
 	}
 
