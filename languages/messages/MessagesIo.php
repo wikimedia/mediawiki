@@ -8,6 +8,8 @@
  *
  */
 
+$fallback = 'eo';
+
 $namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Specala',
