@@ -91,11 +91,7 @@ class MostcategoriesPage extends QueryPage {
 			);
 		}
 
-		if ( $this->isCached() ) {
-			$link = Linker::link( $title );
-		} else {
-			$link = Linker::linkKnown( $title );
-		}
+		$link = $this->getLinkRenderer()->makeLink( $title );
 
 		$count = $this->msg( 'ncategories' )->numParams( $result->value )->escaped();
 
