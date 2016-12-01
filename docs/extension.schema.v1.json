@@ -672,6 +672,7 @@
 							"enum": [
 								"array_merge_recursive",
 								"array_replace_recursive",
+								"array_plus_recursive",
 								"array_plus_2d",
 								"array_plus",
 								"array_merge"

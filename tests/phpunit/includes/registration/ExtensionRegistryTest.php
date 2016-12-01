@@ -287,6 +287,45 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 					],
 				],
 			],
+			[
+				'test array_plus_recursive',
+				[
+					'mwtestDeep' => [
+						'foo' => [
+							'bar' => [
+								'baz' => 5
+							]
+						]
+					]
+				],
+				[
+					'mwtestDeep' => [
+						'foo' => [
+							'x' => 1,
+							'bar' => [
+								'y' => 2,
+								'baz' => 3,
+							],
+							'z' => 4
+						],
+						'q' => 9,
+						ExtensionRegistry::MERGE_STRATEGY => 'array_plus_recursive',
+					]
+				],
+				[
+					'mwtestDeep' => [
+						'foo' => [
+							'x' => 1,
+							'bar' => [
+								'y' => 2,
+								'baz' => 5,
+							],
+							'z' => 4
+						],
+						'q' => 9,
+					]
+				],
+			]
 		];
 	}
 }
