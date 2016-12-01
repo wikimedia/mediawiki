@@ -1426,6 +1426,14 @@
 	"apihelp-userrights-example-user": "Add user <kbd>FooBot</kbd> to group <kbd>bot</kbd>, and remove from groups <kbd>sysop</kbd> and <kbd>bureaucrat</kbd>.",
 	"apihelp-userrights-example-userid": "Add the user with ID <kbd>123</kbd> to group <kbd>bot</kbd>, and remove from groups <kbd>sysop</kbd> and <kbd>bureaucrat</kbd>.",
 
+	"apihelp-validatepassword-description": "Validate a password against the wiki's password policies.\n\nValidity is reported as <samp>Good</samp> if the password is acceptable, <samp>Change</samp> if the password may be used for login but must be changed, or <samp>Invalid</samp> if the password is not usable.",
+	"apihelp-validatepassword-param-password": "Password to validate.",
+	"apihelp-validatepassword-param-user": "User name, for use when testing account creation. The named user must not exist.",
+	"apihelp-validatepassword-param-email": "Email address, for use when testing account creation.",
+	"apihelp-validatepassword-param-realname": "Real name, for use when testing account creation.",
+	"apihelp-validatepassword-example-1": "Validate the password <kbd>foobar</kbd> for the current user.",
+	"apihelp-validatepassword-example-2": "Validate the password <kbd>qwerty</kbd> for creating user <kbd>Example</kbd>.",
+
 	"apihelp-watch-description": "Add or remove pages from the current user's watchlist.",
 	"apihelp-watch-param-title": "The page to (un)watch. Use <var>$1titles</var> instead.",
 	"apihelp-watch-param-unwatch": "If set the page will be unwatched rather than watched.",

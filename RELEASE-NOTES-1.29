@@ -59,6 +59,8 @@ production.
   errorformat=html if you're wanting HTML formatting of messages.
 * action=upload now reports optional stash failures as an array under key
   'stasherrors' rather than a 'stashfailed' text string.
+* Added action=validatepassword to validate passwords for the account creation
+  and password change forms.
 
 === Action API internal changes in 1.29 ===
 * New methods were added to ApiBase to handle errors and warnings using i18n
