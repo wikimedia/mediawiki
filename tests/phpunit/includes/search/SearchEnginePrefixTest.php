@@ -126,11 +126,11 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 				'results' => [
 					'Special:ActiveUsers',
 					'Special:AllMessages',
-					'Special:AllMyFiles',
+					'Special:AllMyUploads',
 				],
 				// Third result when testing offset
 				'offsetresult' => [
-					'Special:AllMyUploads',
+					'Special:AllPages',
 				],
 			] ],
 			[ [
@@ -143,7 +143,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 				],
 				// Third result when testing offset
 				'offsetresult' => [
-					'Special:UncategorizedImages',
+					'Special:UncategorizedPages',
 				],
 			] ],
 			[ [
