@@ -58,6 +58,10 @@ changes to languages because of Phabricator reports.
   required as all sessions are stored in Object Cache now.
 * MWHttpRequest::execute() should be considered to return a StatusValue; the
   Status return type is deprecated.
+* WikiRevision::getText(), Article::getText() and Article::prepareTextForEdit()
+  (deprecated in 1.21) were removed.
+* Article::getAutosummary() and WikiPage::getAutosummary (deprecated in 1.21)
+  were removed.
 
 == Compatibility ==
 

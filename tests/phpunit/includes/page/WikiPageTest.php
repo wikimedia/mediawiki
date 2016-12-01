@@ -1034,63 +1034,6 @@ more stuff
 		$this->assertEquals( "one", $page->getContent()->getNativeData() );
 	}
 
-	public static function provideGetAutosummary() {
-		return [
-			[
-				'Hello there, world!',
-				'#REDIRECT [[Foo]]',
-				0,
-				'/^Redirected page .*Foo/'
-			],
-
-			[
-				null,
-				'Hello world!',
-				EDIT_NEW,
-				'/^Created page .*Hello/'
-			],
-
-			[
-				'Hello there, world!',
-				'',
-				0,
-				'/^Blanked/'
-			],
-
-			[
-				'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-				eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-				voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-				clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-				'Hello world!',
-				0,
-				'/^Replaced .*Hello/'
-			],
-
-			[
-				'foo',
-				'bar',
-				0,
-				'/^$/'
-			],
-		];
-	}
-
-	/**
-	 * @dataProvider provideGetAutoSummary
-	 * @covers WikiPage::getAutosummary
-	 */
-	public function testGetAutosummary( $old, $new, $flags, $expected ) {
-		$this->hideDeprecated( "WikiPage::getAutosummary" );
-
-		$page = $this->newPage( "WikiPageTest_testGetAutosummary" );
-
-		$summary = $page->getAutosummary( $old, $new, $flags );
-
-		$this->assertTrue( (bool)preg_match( $expected, $summary ),
-			"Autosummary didn't match expected pattern $expected: $summary" );
-	}
-
 	public static function provideGetAutoDeleteReason() {
 		return [
 			[
