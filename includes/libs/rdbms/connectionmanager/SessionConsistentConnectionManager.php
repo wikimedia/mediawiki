@@ -37,7 +37,6 @@ class SessionConsistentConnectionManager extends ConnectionManager {
 	/**
 	 * Forces all future calls to getReadConnection() to return a write connection.
 	 * Use this before performing read operations that are critical for a future update.
-	 * Calling beginAtomicSection() implies a call to prepareForUpdates().
 	 *
 	 * @since 1.29
 	 */
@@ -93,26 +92,6 @@ class SessionConsistentConnectionManager extends ConnectionManager {
 	public function getWriteConnectionRef() {
 		$this->prepareForUpdates();
 		return parent::getWriteConnectionRef();
-	}
-
-	/**
-	 * Begins an atomic section and returns a database connection to the master DB, for updating.
-	 *
-	 * @since 1.29
-	 *
-	 * @note: This causes all future calls to getReadConnection() to return a connection
-	 * to the master DB, even after commitAtomicSection() or rollbackAtomicSection() have
-	 * been called.
-	 *
-	 * @param string $fname
-	 *
-	 * @return Database
-	 */
-	public function beginAtomicSection( $fname ) {
-		// Once we have written to master, do not read from replica.
-		$this->prepareForUpdates();
-
-		return parent::beginAtomicSection( $fname );
 	}
 
 }
