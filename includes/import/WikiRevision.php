@@ -314,17 +314,6 @@ class WikiRevision {
 	}
 
 	/**
-	 * @return string
-	 *
-	 * @deprecated Since 1.21, use getContent() instead.
-	 */
-	function getText() {
-		wfDeprecated( __METHOD__, '1.21' );
-
-		return $this->text;
-	}
-
-	/**
 	 * @return ContentHandler
 	 */
 	function getContentHandler() {
