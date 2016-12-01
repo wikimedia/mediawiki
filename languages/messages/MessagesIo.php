@@ -7,6 +7,8 @@
  * @file
  *
  */
+ 
+$fallback = 'eo';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Media',
