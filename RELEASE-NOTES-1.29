@@ -62,6 +62,8 @@ changes to languages because of Phabricator reports.
 * Xml::escapeJsString() (deprecated in 1.21) was removed.
 * Article::getText() and Article::prepareTextForEdit() (deprecated in 1.21)
   were removed.
+* Article::getAutosummary() and WikiPage::getAutosummary (deprecated in 1.21)
+  were removed.
 
 == Compatibility ==
 

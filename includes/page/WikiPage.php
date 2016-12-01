@@ -3520,28 +3520,6 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Return an applicable autosummary if one exists for the given edit.
-	 * @param string|null $oldtext The previous text of the page.
-	 * @param string|null $newtext The submitted text of the page.
-	 * @param int $flags Bitmask: a bitmask of flags submitted for the edit.
-	 * @return string An appropriate autosummary, or an empty string.
-	 *
-	 * @deprecated since 1.21, use ContentHandler::getAutosummary() instead
-	 */
-	public static function getAutosummary( $oldtext, $newtext, $flags ) {
-		// NOTE: stub for backwards-compatibility. assumes the given text is
-		// wikitext. will break horribly if it isn't.
-
-		wfDeprecated( __METHOD__, '1.21' );
-
-		$handler = ContentHandler::getForModelID( CONTENT_MODEL_WIKITEXT );
-		$oldContent = is_null( $oldtext ) ? null : $handler->unserializeContent( $oldtext );
-		$newContent = is_null( $newtext ) ? null : $handler->unserializeContent( $newtext );
-
-		return $handler->getAutosummary( $oldContent, $newContent, $flags );
-	}
-
-	/**
 	 * Auto-generates a deletion reason
 	 *
 	 * @param bool &$hasHistory Whether the page has a history

@@ -2725,15 +2725,5 @@ class Article implements Page {
 		WikiPage::onArticleEdit( $title );
 	}
 
-	/**
-	 * @param string $oldtext
-	 * @param string $newtext
-	 * @param int $flags
-	 * @return string
-	 * @deprecated since 1.21, use ContentHandler::getAutosummary() instead
-	 */
-	public static function getAutosummary( $oldtext, $newtext, $flags ) {
-		return WikiPage::getAutosummary( $oldtext, $newtext, $flags );
-	}
 	// ******
 }
