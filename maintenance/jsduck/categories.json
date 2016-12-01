@@ -33,7 +33,8 @@
 					"mw.plugin.*",
 					"mw.cookie",
 					"mw.experiments",
-					"mw.viewport"
+					"mw.viewport",
+					"mw.htmlform.*"
 				]
 			},
 			{
