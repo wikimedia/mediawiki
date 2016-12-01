@@ -699,6 +699,10 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 				$descriptor['default'] = $singleFieldInfo['value'];
 			}
 
+			if ( $type === 'check' && isset( $singleFieldInfo['invert'] ) ) {
+				$descriptor['invert'] = $singleFieldInfo['invert'];
+			}
+
 			if ( empty( $singleFieldInfo['optional'] ) ) {
 				$descriptor['required'] = true;
 			}
