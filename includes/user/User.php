@@ -1003,11 +1003,10 @@ class User implements IDBAccessObject {
 	 * able to set their password to this.
 	 *
 	 * @param string $password Desired password
-	 * @param string $purpose one of 'login', 'create', 'reset'
 	 * @return Status
 	 * @since 1.23
 	 */
-	public function checkPasswordValidity( $password, $purpose = 'login' ) {
+	public function checkPasswordValidity( $password ) {
 		global $wgPasswordPolicy;
 
 		$upp = new UserPasswordPolicy(
@@ -1024,7 +1023,7 @@ class User implements IDBAccessObject {
 		}
 
 		if ( $result === false ) {
-			$status->merge( $upp->checkUserPassword( $this, $password, $purpose ) );
+			$status->merge( $upp->checkUserPassword( $this, $password ) );
 			return $status;
 		} elseif ( $result === true ) {
 			return $status;

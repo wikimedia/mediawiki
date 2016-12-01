@@ -67,12 +67,11 @@ class UserPasswordPolicy {
 	 * Check if a passwords meets the effective password policy for a User.
 	 * @param User $user who's policy we are checking
 	 * @param string $password the password to check
-	 * @param string $purpose one of 'login', 'create', 'reset'
 	 * @return Status error to indicate the password didn't meet the policy, or fatal to
 	 *	indicate the user shouldn't be allowed to login.
 	 */
-	public function checkUserPassword( User $user, $password, $purpose = 'login' ) {
-		$effectivePolicy = $this->getPoliciesForUser( $user, $purpose );
+	public function checkUserPassword( User $user, $password ) {
+		$effectivePolicy = $this->getPoliciesForUser( $user );
 		return $this->checkPolicies(
 			$user,
 			$password,
@@ -134,20 +133,16 @@ class UserPasswordPolicy {
 	 * Get the policy for a user, based on their group membership. Public so
 	 * UI elements can access and inform the user.
 	 * @param User $user
-	 * @param string $purpose one of 'login', 'create', 'reset'
 	 * @return array the effective policy for $user
 	 */
-	public function getPoliciesForUser( User $user, $purpose = 'login' ) {
-		$effectivePolicy = $this->policies['default'];
-		if ( $purpose !== 'create' ) {
-			$effectivePolicy = self::getPoliciesForGroups(
-				$this->policies,
-				$user->getEffectiveGroups(),
-				$this->policies['default']
-			);
-		}
+	public function getPoliciesForUser( User $user ) {
+		$effectivePolicy = self::getPoliciesForGroups(
+			$this->policies,
+			$user->getEffectiveGroups(),
+			$this->policies['default']
+		);
 
-		Hooks::run( 'PasswordPoliciesForUser', [ $user, &$effectivePolicy, $purpose ] );
+		Hooks::run( 'PasswordPoliciesForUser', [ $user, &$effectivePolicy ] );
 
 		return $effectivePolicy;
 	}
