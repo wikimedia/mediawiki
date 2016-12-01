@@ -74,6 +74,9 @@ class Block {
 	/** @var bool */
 	protected $isAutoblocking;
 
+	/** @var string|null */
+	protected $systemBlockType;
+
 	# TYPE constants
 	const TYPE_USER = 1;
 	const TYPE_IP = 2;
@@ -99,6 +102,10 @@ class Block {
 	 *     blockEmail bool      Disallow sending emails
 	 *     allowUsertalk bool   Allow the target to edit its own talk page
 	 *     byText string        Username of the blocker (for foreign users)
+	 *     systemBlock string   Indicate that this block is automatically
+	 *                          created by MediaWiki rather than being stored
+	 *                          in the database. Value is a string to return
+	 *                          from self::getSystemBlockType().
 	 *
 	 * @since 1.26 accepts $options array instead of individual parameters; order
 	 * of parameters above reflects the original order
@@ -119,6 +126,7 @@ class Block {
 			'blockEmail'      => false,
 			'allowUsertalk'   => false,
 			'byText'          => '',
+			'systemBlock'     => null,
 		];
 
 		if ( func_num_args() > 1 || !is_array( $options ) ) {
@@ -162,6 +170,7 @@ class Block {
 		$this->prevents( 'createaccount', (bool)$options['createAccount'] );
 
 		$this->mFromMaster = false;
+		$this->systemBlockType = $options['systemBlock'];
 	}
 
 	/**
@@ -461,6 +470,11 @@ class Block {
 	 */
 	public function insert( $dbw = null ) {
 		global $wgBlockDisablesLogin;
+
+		if ( $this->getSystemBlockType() !== null ) {
+			throw new MWException( 'Cannot insert a system block into the database' );
+		}
+
 		wfDebug( "Block::insert; timestamp {$this->mTimestamp}\n" );
 
 		if ( $dbw === null ) {
@@ -741,6 +755,11 @@ class Block {
 			return false;
 		}
 
+		# Don't autoblock for system blocks
+		if ( $this->getSystemBlockType() !== null ) {
+			throw new MWException( 'Cannot autoblock from a system block' );
+		}
+
 		# Check for presence on the autoblock whitelist.
 		if ( self::isWhitelistedFromAutoblocks( $autoblockIP ) ) {
 			return false;
@@ -932,6 +951,14 @@ class Block {
 	 */
 	public function getId() {
 		return $this->mId;
+	}
+
+	/**
+	 * Get the system block type, if any
+	 * @return string|null
+	 */
+	public function getSystemBlockType() {
+		return $this->systemBlockType;
 	}
 
 	/**
@@ -1469,14 +1496,18 @@ class Block {
 		 * This could be a username, an IP range, or a single IP. */
 		$intended = $this->getTarget();
 
+		$systemBlockType = $this->getSystemBlockType();
+
 		$lang = $context->getLanguage();
 		return [
-			$this->mAuto ? 'autoblockedtext' : 'blockedtext',
+			$systemBlockType !== null
+				? 'systemblockedtext'
+				: ( $this->mAuto ? 'autoblockedtext' : 'blockedtext' ),
 			$link,
 			$reason,
 			$context->getRequest()->getIP(),
 			$this->getByName(),
-			$this->getId(),
+			$systemBlockType !== null ? $systemBlockType : $this->getId(),
 			$lang->formatExpiry( $this->mExpiry ),
 			(string)$intended,
 			$lang->userTimeAndDate( $this->mTimestamp, $context->getUser() ),

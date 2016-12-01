@@ -126,6 +126,7 @@ trait ApiMessageTrait {
 		'rcpatroldisabled' => 'patroldisabled',
 		'readonlytext' => 'readonly',
 		'sessionfailure' => 'badtoken',
+		'systemblockedtext' => 'blocked',
 		'titleprotected' => 'protectedtitle',
 		'undo-failure' => 'undofailure',
 		'userrights-nodatabase' => 'nosuchdatabase',

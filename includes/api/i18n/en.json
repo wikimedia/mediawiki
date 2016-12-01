@@ -1699,6 +1699,7 @@
 	"apierror-stashpathinvalid": "File key of improper format or otherwise invalid: $1.",
 	"apierror-stashwrongowner": "Wrong owner: $1",
 	"apierror-stashzerolength": "File is of zero length, and could not be stored in the stash: $1.",
+	"apierror-systemblocked": "You have been blocked automatically by MediaWiki.",
 	"apierror-templateexpansion-notwikitext": "Template expansion is only supported for wikitext content. $1 uses content model $2.",
 	"apierror-toofewexpiries": "$1 expiry {{PLURAL:$1|timestamp was|timestamps were}} provided where $2 {{PLURAL:$2|was|were}} needed.",
 	"apierror-unknownaction": "The action specified, <kbd>$1</kbd>, is not recognized.",
