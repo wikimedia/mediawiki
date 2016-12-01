@@ -60,6 +60,8 @@ changes to languages because of Phabricator reports.
   Status return type is deprecated.
 * User::edits() (deprecated in 1.21) was removed.
 * Xml::escapeJsString() (deprecated in 1.21) was removed.
+* Article::getText() and Article::prepareTextForEdit() (deprecated in 1.21)
+  were removed.
 
 == Compatibility ==
 

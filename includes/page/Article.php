@@ -2333,16 +2333,6 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
-	 * @see WikiPage::getText
-	 * @deprecated since 1.21 use WikiPage::getContent() instead
-	 */
-	public function getText( $audience = Revision::FOR_PUBLIC, User $user = null ) {
-		wfDeprecated( __METHOD__, '1.21' );
-		return $this->mPage->getText( $audience, $user );
-	}
-
-	/**
-	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getTimestamp
 	 */
 	public function getTimestamp() {
@@ -2501,15 +2491,6 @@ class Article implements Page {
 			$content, $revision, $user,
 			$serialFormat, $useCache
 		);
-	}
-
-	/**
-	 * Call to WikiPage function for backwards compatibility.
-	 * @deprecated since 1.21, use prepareContentForEdit
-	 * @see WikiPage::prepareTextForEdit
-	 */
-	public function prepareTextForEdit( $text, $revid = null, User $user = null ) {
-		return $this->mPage->prepareTextForEdit( $text, $revid, $user );
 	}
 
 	/**
