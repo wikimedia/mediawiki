@@ -31,7 +31,7 @@ class ExtensionRegistry {
 	/**
 	 * Bump whenever the registration cache needs resetting
 	 */
-	const CACHE_VERSION = 3;
+	const CACHE_VERSION = 4;
 
 	/**
 	 * Special key that defines the merge strategy
@@ -285,9 +285,6 @@ class ExtensionRegistry {
 		foreach ( $info['autoloaderPaths'] as $path ) {
 			require_once $path;
 		}
-		foreach ( $info['callbacks'] as $cb ) {
-			call_user_func( $cb );
-		}
 
 		$this->loaded += $info['credits'];
 		if ( $info['attributes'] ) {
@@ -296,6 +293,10 @@ class ExtensionRegistry {
 			} else {
 				$this->attributes = array_merge_recursive( $this->attributes, $info['attributes'] );
 			}
+		}
+
+		foreach ( $info['callbacks'] as $name => $cb ) {
+			call_user_func( $cb, $info['credits'][$name] );
 		}
 	}
 
