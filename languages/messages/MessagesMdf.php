@@ -13,7 +13,7 @@
  * @author Numulunj pilgae
  */
 
-$fallbak = 'ru';
+$fallback = 'ru';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Медиа',
