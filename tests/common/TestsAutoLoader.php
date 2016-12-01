@@ -29,11 +29,13 @@ $wgAutoloadClasses += [
 	# tests/common
 	'TestSetup' => "$testDir/common/TestSetup.php",
 
+	# tests/integration
+	'MWHttpRequestTestCase' => "$testDir/integration/includes/http/MWHttpRequestTestCase.php",
+
 	# tests/parser
 	'DbTestPreviewer' => "$testDir/parser/DbTestPreviewer.php",
 	'DbTestRecorder' => "$testDir/parser/DbTestRecorder.php",
 	'DjVuSupport' => "$testDir/parser/DjVuSupport.php",
-	'TestRecorder' => "$testDir/parser/TestRecorder.php",
 	'MultiTestRecorder' => "$testDir/parser/MultiTestRecorder.php",
 	'ParserTestMockParser' => "$testDir/parser/ParserTestMockParser.php",
 	'ParserTestRunner' => "$testDir/parser/ParserTestRunner.php",

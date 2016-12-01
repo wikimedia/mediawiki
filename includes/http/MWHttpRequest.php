@@ -46,9 +46,11 @@ class MWHttpRequest implements LoggerAwareInterface {
 	protected $reqHeaders = [];
 	protected $url;
 	protected $parsedUrl;
+	/** @var callable  */
 	protected $callback;
 	protected $maxRedirects = 5;
 	protected $followRedirects = false;
+	protected $connectTimeout;
 
 	/**
 	 * @var CookieJar
@@ -60,7 +62,8 @@ class MWHttpRequest implements LoggerAwareInterface {
 	protected $respStatus = "200 Ok";
 	protected $respHeaders = [];
 
-	public $status;
+	/** @var StatusValue */
+	protected $status;
 
 	/**
 	 * @var Profiler
@@ -98,9 +101,9 @@ class MWHttpRequest implements LoggerAwareInterface {
 		}
 
 		if ( !$this->parsedUrl || !Http::isValidURI( $this->url ) ) {
-			$this->status = Status::newFatal( 'http-invalid-url', $url );
+			$this->status = StatusValue::newFatal( 'http-invalid-url', $url );
 		} else {
-			$this->status = Status::newGood( 100 ); // continue
+			$this->status = StatusValue::newGood( 100 ); // continue
 		}
 
 		if ( isset( $options['timeout'] ) && $options['timeout'] != 'default' ) {
@@ -161,7 +164,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 * @param string $url Url to use
 	 * @param array $options (optional) extra params to pass (see Http::request())
 	 * @param string $caller The method making this request, for profiling
-	 * @throws MWException
+	 * @throws DomainException
 	 * @return CurlHttpRequest|PhpHttpRequest
 	 * @see MWHttpRequest::__construct
 	 */
@@ -169,7 +172,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 		if ( !Http::$httpEngine ) {
 			Http::$httpEngine = function_exists( 'curl_init' ) ? 'curl' : 'php';
 		} elseif ( Http::$httpEngine == 'curl' && !function_exists( 'curl_init' ) ) {
-			throw new MWException( __METHOD__ . ': curl (http://php.net/curl) is not installed, but' .
+			throw new DomainException( __METHOD__ . ': curl (http://php.net/curl) is not installed, but' .
 				' Http::$httpEngine is set to "curl"' );
 		}
 
@@ -186,7 +189,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 				return new CurlHttpRequest( $url, $options, $caller, Profiler::instance() );
 			case 'php':
 				if ( !wfIniGetBool( 'allow_url_fopen' ) ) {
-					throw new MWException( __METHOD__ . ': allow_url_fopen ' .
+					throw new DomainException( __METHOD__ . ': allow_url_fopen ' .
 						'needs to be enabled for pure PHP http requests to ' .
 						'work. If possible, curl should be used instead. See ' .
 						'http://php.net/curl.'
@@ -194,7 +197,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 				}
 				return new PhpHttpRequest( $url, $options, $caller, Profiler::instance() );
 			default:
-				throw new MWException( __METHOD__ . ': The setting of Http::$httpEngine is not valid.' );
+				throw new DomainException( __METHOD__ . ': The setting of Http::$httpEngine is not valid.' );
 		}
 	}
 
@@ -222,7 +225,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 *
 	 * @return void
 	 */
-	public function proxySetup() {
+	protected function proxySetup() {
 		// If there is an explicit proxy set and proxies are not disabled, then use it
 		if ( $this->proxy && !$this->noProxy ) {
 			return;
@@ -300,7 +303,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 * Get an array of the headers
 	 * @return array
 	 */
-	public function getHeaderList() {
+	protected function getHeaderList() {
 		$list = [];
 
 		if ( $this->cookieJar ) {
@@ -333,12 +336,14 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 * bytes are reported handled than were passed to you, the HTTP fetch
 	 * will be aborted.
 	 *
-	 * @param callable $callback
-	 * @throws MWException
+	 * @param callable|null $callback
+	 * @throws InvalidArgumentException
 	 */
 	public function setCallback( $callback ) {
-		if ( !is_callable( $callback ) ) {
-			throw new MWException( 'Invalid MwHttpRequest callback' );
+		if ( is_null( $callback ) ) {
+			$callback = [ $this, 'read' ];
+		} elseif ( !is_callable( $callback ) ) {
+			throw new InvalidArgumentException( __METHOD__ . ': invalid callback' );
 		}
 		$this->callback = $callback;
 	}
@@ -350,6 +355,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 * @param resource $fh
 	 * @param string $content
 	 * @return int
+	 * @internal
 	 */
 	public function read( $fh, $content ) {
 		$this->content .= $content;
@@ -359,9 +365,14 @@ class MWHttpRequest implements LoggerAwareInterface {
 	/**
 	 * Take care of whatever is necessary to perform the URI request.
 	 *
-	 * @return Status
+	 * @return StatusValue
+	 * @note currently returns Status for B/C
 	 */
 	public function execute() {
+		throw new LogicException( 'children must override this' );
+	}
+
+	protected function prepare() {
 		$this->content = "";
 
 		if ( strtoupper( $this->method ) == "HEAD" ) {
@@ -371,7 +382,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 		$this->proxySetup(); // set up any proxy as needed
 
 		if ( !$this->callback ) {
-			$this->setCallback( [ $this, 'read' ] );
+			$this->setCallback( null );
 		}
 
 		if ( !isset( $this->reqHeaders['User-Agent'] ) ) {
@@ -494,6 +505,8 @@ class MWHttpRequest implements LoggerAwareInterface {
 	/**
 	 * Tells the MWHttpRequest object to use this pre-loaded CookieJar.
 	 *
+	 * To read response cookies from the jar, getCookieJar must be called first.
+	 *
 	 * @param CookieJar $jar
 	 */
 	public function setCookieJar( $jar ) {
@@ -519,12 +532,16 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 * Set-Cookie headers.
 	 * @see Cookie::set
 	 * @param string $name
-	 * @param mixed $value
+	 * @param string $value
 	 * @param array $attr
 	 */
-	public function setCookie( $name, $value = null, $attr = null ) {
+	public function setCookie( $name, $value, $attr = [] ) {
 		if ( !$this->cookieJar ) {
 			$this->cookieJar = new CookieJar;
+		}
+
+		if ( $this->parsedUrl && !isset( $attr['domain'] ) ) {
+			$attr['domain'] = $this->parsedUrl['host'];
 		}
 
 		$this->cookieJar->setCookie( $name, $value, $attr );
