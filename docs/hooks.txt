@@ -774,14 +774,6 @@ $article: the article
 &$sectionanchor: The section anchor link (e.g. "#overview" )
 &$extraq: Extra query parameters which can be added via hooked functions
 
-'ArticleViewCustom': DEPRECATED! Use ArticleContentViewCustom instead.
-Allows to output the text of the article in a different format than wikitext.
-Note that it is preferable to implement proper handing for a custom data type
-using the ContentHandler facility.
-$text: text of the page
-$title: title of the page
-$output: reference to $wgOut
-
 'ArticleViewFooter': After showing the footer section of an ordinary page view
 $article: Article object
 $patrolFooterShown: boolean whether patrol footer is shown
@@ -1414,13 +1406,6 @@ $title: title of page being edited
 'EditPageGetDiffContent': Allow modifying the wikitext that will be used in
 "Show changes". Note that it is preferable to implement diff handling for
 different data types using the ContentHandler facility.
-$editPage: EditPage object
-&$newtext: wikitext that will be used as "your version"
-
-'EditPageGetDiffText': DEPRECATED! Use EditPageGetDiffContent instead.
-Allow modifying the wikitext that will be used in "Show changes". Note that it
-is preferable to implement diff handling for different data types using the
-ContentHandler facility.
 $editPage: EditPage object
 &$newtext: wikitext that will be used as "your version"
 
@@ -2840,12 +2825,6 @@ Special:ShortPages.
 
 'ShowMissingArticle': Called when generating the output for a non-existent page.
 $article: The article object corresponding to the page
-
-'ShowRawCssJs': DEPRECATED! Use the ContentGetParserOutput hook instead.
-Customise the output of raw CSS and JavaScript in page views.
-$text: Text being shown
-$title: Title of the custom script/stylesheet page
-$output: Current OutputPage object
 
 'ShowSearchHit': Customize display of search hit.
 $searchPage: The SpecialSearch instance.

@@ -621,21 +621,9 @@ class Article implements Page {
 					# Preload timestamp to avoid a DB hit
 					$outputPage->setRevisionTimestamp( $this->mPage->getTimestamp() );
 
-					# Pages containing custom CSS or JavaScript get special treatment
-					if ( $this->getTitle()->isCssOrJsPage() || $this->getTitle()->isCssJsSubpage() ) {
-						wfDebug( __METHOD__ . ": showing CSS/JS source\n" );
-						$this->showCssOrJsPage();
-						$outputDone = true;
-					} elseif ( !Hooks::run( 'ArticleContentViewCustom',
+					if ( !Hooks::run( 'ArticleContentViewCustom',
 							[ $this->fetchContentObject(), $this->getTitle(), $outputPage ] ) ) {
 
-						# Allow extensions do their own custom view for certain pages
-						$outputDone = true;
-					} elseif ( !ContentHandler::runLegacyHooks(
-						'ArticleViewCustom',
-						[ $this->fetchContentObject(), $this->getTitle(), $outputPage ],
-						'1.21'
-					) ) {
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
 					}
@@ -779,47 +767,6 @@ class Article implements Page {
 		list( $old, $new ) = $de->mapDiffPrevNext( $oldid, $diff );
 		// New can be false, convert it to 0 - this conveniently means the latest revision
 		$this->mPage->doViewUpdates( $user, (int)$new );
-	}
-
-	/**
-	 * Show a page view for a page formatted as CSS or JavaScript. To be called by
-	 * Article::view() only.
-	 *
-	 * This exists mostly to serve the deprecated ShowRawCssJs hook (used to customize these views).
-	 * It has been replaced by the ContentGetParserOutput hook, which lets you do the same but with
-	 * more flexibility.
-	 *
-	 * @param bool $showCacheHint Whether to show a message telling the user
-	 *   to clear the browser cache (default: true).
-	 */
-	protected function showCssOrJsPage( $showCacheHint = true ) {
-		$outputPage = $this->getContext()->getOutput();
-
-		if ( $showCacheHint ) {
-			$dir = $this->getContext()->getLanguage()->getDir();
-			$lang = $this->getContext()->getLanguage()->getHtmlCode();
-
-			$outputPage->wrapWikiMsg(
-				"<div id='mw-clearyourcache' lang='$lang' dir='$dir' class='mw-content-$dir'>\n$1\n</div>",
-				'clearyourcache'
-			);
-		}
-
-		$this->fetchContentObject();
-
-		if ( $this->mContentObject ) {
-			// Give hooks a chance to customise the output
-			if ( ContentHandler::runLegacyHooks(
-				'ShowRawCssJs',
-				[ $this->mContentObject, $this->getTitle(), $outputPage ],
-				'1.24'
-			) ) {
-				// If no legacy hooks ran, display the content of the parser output, including RL modules,
-				// but excluding metadata like categories and language links
-				$po = $this->mContentObject->getParserOutput( $this->getTitle() );
-				$outputPage->addParserOutputContent( $po );
-			}
-		}
 	}
 
 	/**
