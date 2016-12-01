@@ -1145,6 +1145,9 @@ abstract class HTMLFormField {
 	 * @since 1.18
 	 */
 	protected static function formatErrors( $errors ) {
+		// Note: If you change the logic in this method, change
+		// htmlform.Checker.js to match.
+
 		if ( is_array( $errors ) && count( $errors ) === 1 ) {
 			$errors = array_shift( $errors );
 		}
