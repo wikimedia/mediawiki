@@ -1183,7 +1183,7 @@ interface IDatabase {
 	/**
 	 * DELETE query wrapper.
 	 *
-	 * @param array $table Table name
+	 * @param string $table Table name
 	 * @param string|array $conds Array of conditions. See $conds in IDatabase::select()
 	 *   for the format. Use $conds == "*" to delete all rows
 	 * @param string $fname Name of the calling function
