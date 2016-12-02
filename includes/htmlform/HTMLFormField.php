@@ -1194,4 +1194,17 @@ abstract class HTMLFormField {
 	public function skipLoadData( $request ) {
 		return !empty( $this->mParams['nodata'] );
 	}
+
+	/**
+	 * Whether this field can be used in forms with HTML5 form validation attributes.
+	 * @return boolean
+	 * @since 1.29
+	 */
+	public function supportsHtml5FormValidation() {
+		if ( $this->mHideIf ) {
+			// This is probably more restrictive than it needs to be, but better safe than sorry
+			return false;
+		}
+		return true;
+	}
 }

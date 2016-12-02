@@ -1042,6 +1042,7 @@ class HTMLForm extends ContextSource {
 			: 'application/x-www-form-urlencoded';
 		# Attributes
 		$attribs = [
+			'class' => 'mw-htmlform',
 			'action' => $this->getAction(),
 			'method' => $this->getMethod(),
 			'enctype' => $encType,
@@ -1054,6 +1055,9 @@ class HTMLForm extends ContextSource {
 		}
 		if ( $this->mName ) {
 			$attribs['name'] = $this->mName;
+		}
+		if ( !$this->supportsHtml5FormValidation() ) {
+			$attribs['novalidate'] = true;
 		}
 		return $attribs;
 	}
@@ -1869,5 +1873,20 @@ class HTMLForm extends ContextSource {
 	 */
 	protected function getMessage( $value ) {
 		return Message::newFromSpecifier( $value )->setContext( $this );
+	}
+
+	/**
+	 * Whether this form, with its current fields, can use HTML5 form validation attributes.
+	 * If this function returns false, a 'novalidate' attribute will be added on the `<form>` element.
+	 * @return boolean
+	 * @since 1.29
+	 */
+	public function supportsHtml5FormValidation() {
+		foreach ( $this->mFlatFields as $fieldname => $field ) {
+			if ( !$field->supportsHtml5FormValidation() ) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
