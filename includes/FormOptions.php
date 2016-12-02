@@ -336,9 +336,13 @@ class FormOptions implements ArrayAccess {
 	 * @param array $optionKeys Which options to fetch the values for (default:
 	 *     all of them). Note that passing an empty array will also result in
 	 *     values for all keys being fetched.
+	 * they are present and different than 0 (not to break compatibility).
 	 * @throws MWException If the type of any option is invalid
 	 */
-	public function fetchValuesFromRequest( WebRequest $r, $optionKeys = null ) {
+	public function fetchValuesFromRequest(
+		WebRequest $r,
+		$optionKeys = null
+	) {
 		if ( !$optionKeys ) {
 			$optionKeys = array_keys( $this->options );
 		}
