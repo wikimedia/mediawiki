@@ -1056,6 +1056,9 @@ class HTMLForm extends ContextSource {
 		if ( $this->mName ) {
 			$attribs['name'] = $this->mName;
 		}
+		if ( $this->needsJSForHtml5FormValidation() ) {
+			$attribs['novalidate'] = true;
+		}
 		return $attribs;
 	}
 
@@ -1870,5 +1873,23 @@ class HTMLForm extends ContextSource {
 	 */
 	protected function getMessage( $value ) {
 		return Message::newFromSpecifier( $value )->setContext( $this );
+	}
+
+	/**
+	 * Whether this form, with its current fields, requires the user agent to have JavaScript enabled
+	 * for the client-side HTML5 form validation to work correctly. If this function returns true, a
+	 * 'novalidate' attribute will be added on the `<form>` element. It will be removed if the user
+	 * agent has JavaScript support, in htmlform.js.
+	 *
+	 * @return boolean
+	 * @since 1.29
+	 */
+	public function needsJSForHtml5FormValidation() {
+		foreach ( $this->mFlatFields as $fieldname => $field ) {
+			if ( $field->needsJSForHtml5FormValidation() ) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
