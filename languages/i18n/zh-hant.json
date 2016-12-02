@@ -76,7 +76,8 @@
 			"Cosine02",
 			"一個正常人",
 			"Wehwei",
-			"1233thehongkonger"
+			"1233thehongkonger",
+			"Maskers"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -1029,6 +1030,7 @@
 	"search-external": "外部搜尋",
 	"searchdisabled": "{{SITENAME}} 已停用搜尋功能。\n您可以改透過 Google 搜尋。\n請注意，在 Google 中搜尋到的 {{SITENAME}} 頁面內容可能不是最新的。",
 	"search-error": "搜尋時發生錯誤：$1",
+	"search-warning": "搜尋時發生錯誤：$1",
 	"preferences": "偏好設定",
 	"mypreferences": "偏好設定",
 	"prefs-edits": "編輯次數：",
@@ -1141,9 +1143,9 @@
 	"prefswarning-warning": "您對您的偏好設定所做的變更尚未儲存。\n若您未點選 \"$1\" 離開此頁面，將不會更新您的偏好設定。",
 	"prefs-tabs-navigation-hint": "提示：您可使用左、右方向鍵切換頁籤。",
 	"userrights": "使用者權限管理",
-	"userrights-lookup-user": "管理使用者群組",
+	"userrights-lookup-user": "選擇用戶",
 	"userrights-user-editname": "請輸入使用者名稱：",
-	"editusergroup": "編輯{{GENDER:$1|使用者}}群組",
+	"editusergroup": "加載用戶組",
 	"editinguser": "變更{{GENDER:$1|使用者}} <strong>[[User:$1|$1]]</strong> 的使用者權限 $2",
 	"userrights-editusergroup": "編輯使用者群組",
 	"saveusergroups": "儲存{{GENDER:$1|使用者}}群組",

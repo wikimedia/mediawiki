@@ -3591,6 +3591,7 @@
 	"authmanager-autocreate-noperm": "Аўтаматычнае стварэнне уліковых запісаў не дапускаецца.",
 	"authmanager-autocreate-exception": "Аўтаматычнае стварэнне уліковых запісаў часова адключана з-за памылак папярэдніх.",
 	"authmanager-userdoesnotexist": "Уліковы запіс удзельніка \"$1\" не зарэгістраваны.",
+	"authmanager-userlogin-remembermypassword-help": "Ці трэба памятаць пароль даўжэй за працягласць сеанса.",
 	"authmanager-username-help": "Імя карыстальніка для праверкі сапраўднасці.",
 	"authmanager-password-help": "Пароль для праверкі сапраўднасці.",
 	"authmanager-domain-help": "Дамен для знешняй праверкі сапраўднасці.",
@@ -3639,5 +3640,9 @@
 	"linkaccounts-success-text": "Акаўнт быў звязаны.",
 	"linkaccounts-submit": "Звязаць акаўнты",
 	"unlinkaccounts": "Адмяніць сувязь уліковых запісаў",
-	"unlinkaccounts-success": "Сувязь акаўнтаў была выдалена."
+	"unlinkaccounts-success": "Сувязь акаўнтаў была выдалена.",
+	"userjsispublic": "Звярніце ўвагу: укладзеныя JavaScript-старонкі не павінны ўтрымліваць канфідэнцыйныя звесткі, бо іх могуць бачыць іншыя ўдзельнікі.",
+	"usercssispublic": "Звярніце ўвагу: укладзеныя CSS-старонкі не павінны ўтрымліваць канфідэнцыйныя звесткі, бо іх могуць бачыць іншыя ўдзельнікі.",
+	"restrictionsfield-badip": "Няслушны IP-адрас ці дыяпазон: $1",
+	"restrictionsfield-label": "Дазволеныя дыяпазоны IP-адрасоў:"
 }

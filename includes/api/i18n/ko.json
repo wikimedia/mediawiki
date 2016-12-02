@@ -28,6 +28,7 @@
 	"apihelp-main-param-requestid": "주어진 요청 값은 응답에 포함됩니다. 요청을 구분하기 위해 사용될 수 있습니다.",
 	"apihelp-main-param-servedby": "결과에 요청을 처리한 호스트네임을 포함합니다.",
 	"apihelp-main-param-curtimestamp": "결과의 타임스탬프를 포함합니다.",
+	"apihelp-main-param-uselang": "메시지 번역을 위한 언어입니다. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd>에 <kbd>siprop=languages</kbd>를 함께 사용하면 언어 코드의 목록을 반환하고, <kbd>user</kbd>를 지정하면 현재 사용자의 언어 환경 설정을 사용하며, <kbd>content</kbd>를 지정하면 이 위키의 콘텐츠 언어를 사용합니다.",
 	"apihelp-block-description": "사용자를 차단합니다.",
 	"apihelp-block-param-user": "차단하고자 하는 계정 이름, IP 주소 또는 대역",
 	"apihelp-block-param-expiry": "기한. 상대값(예시: <kbd>5 months</kbd> 또는 </kbd>2 weeks</kbd>) 또는 절대값(예시: <kbd>2014-09-18T12:34:56Z</kbd>)이 될 수 있습니다. <kbd>infinite</kbd>, <kbd>indefinite</kbd> 또는 <kbd>never</kbd>로 설정하면 무기한으로 설정됩니다.",
