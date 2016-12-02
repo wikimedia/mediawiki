@@ -262,7 +262,8 @@
 	 * @ignore
 	 */
 	function init() {
-		var offset, $window = $( window );
+		var offset,
+			isFloating = false;
 
 		$area = $( '<div id="mw-notification-area" class="mw-notification-area mw-notification-area-layout"></div>' )
 			// Pause auto-hide timers when the mouse is in the notification area.
@@ -289,13 +290,17 @@
 		$area.hide();
 
 		function updateAreaMode() {
-			var isFloating = $window.scrollTop() > offset.top;
+			var shouldFloat = window.pageYOffset > offset.top;
+			if ( isFloating === shouldFloat ) {
+				return;
+			}
+			isFloating = shouldFloat;
 			$area
 				.toggleClass( 'mw-notification-area-floating', isFloating )
 				.toggleClass( 'mw-notification-area-layout', !isFloating );
 		}
 
-		$window.on( 'scroll', updateAreaMode );
+		$( window ).on( 'scroll', updateAreaMode );
 
 		// Initial mode
 		updateAreaMode();
