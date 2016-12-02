@@ -57,6 +57,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		if ( isset( $this->mParams['fields']['delete'] ) ) {
 			$class = 'mw-htmlform-cloner-delete-button';
 			$info = $this->mParams['fields']['delete'] + [
+				'formnovalidate' => true,
 				'cssclass' => $class
 			];
 			unset( $info['name'], $info['class'] );
@@ -310,6 +311,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 				: 'htmlform-cloner-delete';
 			$field = HTMLForm::loadInputFromParameters( $name, [
 				'type' => 'submit',
+				'formnovalidate' => true,
 				'name' => $name,
 				'id' => Sanitizer::escapeId( "{$this->mID}--$key--delete" ),
 				'cssclass' => 'mw-htmlform-cloner-delete-button',
@@ -382,6 +384,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			: 'htmlform-cloner-create';
 		$field = HTMLForm::loadInputFromParameters( $name, [
 			'type' => 'submit',
+			'formnovalidate' => true,
 			'name' => $name,
 			'id' => Sanitizer::escapeId( "{$this->mID}--create" ),
 			'cssclass' => 'mw-htmlform-cloner-create-button',
