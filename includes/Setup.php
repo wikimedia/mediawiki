@@ -264,32 +264,31 @@ foreach ( $wgForeignFileRepos as &$repo ) {
 }
 unset( $repo ); // no global pollution; destroy reference
 
-$rcMaxAgeDays = $wgRCMaxAge / ( 3600 * 24 );
+$rcMaxAge = $wgRCMaxAge;
 if ( $wgRCFilterByAge ) {
 	// Trim down $wgRCLinkDays so that it only lists links which are valid
 	// as determined by $wgRCMaxAge.
 	// Note that we allow 1 link higher than the max for things like 56 days but a 60 day link.
-	sort( $wgRCLinkDays );
+	sort( $wgRCMaxAgeOptions );
 
 	// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
-	for ( $i = 0; $i < count( $wgRCLinkDays ); $i++ ) {
+	for ( $i = 0; $i < count( $wgRCMaxAgeOptions ); $i++ ) {
 		// @codingStandardsIgnoreEnd
-		if ( $wgRCLinkDays[$i] >= $rcMaxAgeDays ) {
-			$wgRCLinkDays = array_slice( $wgRCLinkDays, 0, $i + 1, false );
+		if ( $wgRCMaxAgeOptions[$i] >= $rcMaxAge ) {
+			$wgRCMaxAgeOptions = array_slice( $wgRCMaxAgeOptions, 0, $i + 1, false );
 			break;
 		}
 	}
 }
 // Ensure that default user options are not invalid, since that breaks Special:Preferences
-$wgDefaultUserOptions['rcdays'] = min(
-	$wgDefaultUserOptions['rcdays'],
-	ceil( $rcMaxAgeDays )
+$wgDefaultUserOptions['rcmaxage'] = ChangesListSpecialPage::getClosestValidChangesAge(
+	RequestContext::getMain(), $wgDefaultUserOptions['rcmaxage']
 );
 $wgDefaultUserOptions['watchlistdays'] = min(
 	$wgDefaultUserOptions['watchlistdays'],
-	ceil( $rcMaxAgeDays )
+	ceil( $rcMaxAge / 86400 )
 );
-unset( $rcMaxAgeDays );
+unset( $rcMaxAge );
 
 if ( $wgSkipSkin ) {
 	$wgSkipSkins[] = $wgSkipSkin;

@@ -506,6 +506,28 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
+	 * Given a number of seconds, find the closest value in the changes
+	 * age durations array.
+	 *
+	 * @param \IContextSource $context
+	 * @param int $duration The duration expressed in seconds.
+	 *
+	 * @return int The closest duration
+	 */
+	public static function getClosestValidChangesAge( IContextSource $context, $duration ) {
+		$config = $context->getConfig();
+		$changesMaxAgeOptions = $config->get( 'RCMaxAgeOptions' );
+
+		$closest = null;
+		foreach ( $changesMaxAgeOptions as $item ) {
+			if ( $closest === null || abs( $duration - $closest ) > abs( $item - $duration ) ) {
+				$closest = $item;
+			}
+		}
+		return $closest;
+	}
+
+	/**
 	 * Add page-specific modules.
 	 */
 	protected function addModules() {
