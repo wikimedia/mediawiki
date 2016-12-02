@@ -1,0 +1,35 @@
+.oo-ui-fieldsetLayout:not(:first-child) {
+    margin-top: 1em !important;
+}
+
+#filterform-panel {
+    /* When the panel is collapsed, the "Collapse" toggle
+       will overlap. */
+    min-height: 1.5em;
+}
+
+.oo-ui-fieldLayout-narrow .oo-ui-labelElement-label {
+    width: 55% !important;
+}
+
+.oo-ui-fieldLayout-narrow .oo-ui-fieldLayout-field {
+    width: 40% !important;
+}
+
+.oo-ui-fieldset-narrow {
+    max-width: 40em;
+}
+
+.rcshowhideoption {
+    margin-right: 1em;
+}
+
+.rcform-multicolumn-column {
+    display: inline-block;
+    max-width: 30em;
+    vertical-align: top;
+}
+
+.rcform-multicolumn-column:first-child {
+    margin-right: 3em;
+}
