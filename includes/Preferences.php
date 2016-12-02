@@ -874,22 +874,25 @@ class Preferences {
 	 */
 	static function rcPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		$config = $context->getConfig();
-		$rcMaxAge = $config->get( 'RCMaxAge' );
 		# # RecentChanges #####################################
-		$defaultPreferences['rcdays'] = [
-			'type' => 'float',
-			'label-message' => 'recentchangesdays',
+		$defaultPreferences['rcmaxage'] = [
+			'type' => 'select',
+			'label-message' => 'recentchangesmaxage',
 			'section' => 'rc/displayrc',
-			'min' => 1,
-			'max' => ceil( $rcMaxAge / ( 3600 * 24 ) ),
-			'help' => $context->msg( 'recentchangesdays-max' )->numParams(
-				ceil( $rcMaxAge / ( 3600 * 24 ) ) )->escaped()
+			'default' => (string)SpecialRecentChanges::$changesAgeDurations[0],
+			'options' => self::makeMaxAgeOptions( $context ),
 		];
 		$defaultPreferences['rclimit'] = [
 			'type' => 'int',
 			'label-message' => 'recentchangescount',
 			'help-message' => 'prefs-help-recentchangescount',
 			'section' => 'rc/displayrc',
+		];
+		$defaultPreferences['rcpanelcollapsed'] = [
+			'type' => 'toggle',
+			'label-message' => 'recentchangespanelcollapsed',
+			'section' => 'rc/displayrc',
+			'default' => true,
 		];
 		$defaultPreferences['usenewrc'] = [
 			'type' => 'toggle',
@@ -1239,6 +1242,35 @@ class Preferences {
 		}
 
 		return $ret;
+	}
+
+	/**
+	 * Generate the duration options of the maximum changes age.
+	 *
+	 * @param IContextSource $context
+	 *
+	 * @return array
+	 * @throws \Exception If any of the provided durations is longer than
+	 * the configured maximum in RCMaxAge.
+	 */
+	static function makeMaxAgeOptions( IContextSource $context ) {
+		$options = [];
+		$config = $context->getConfig();
+		$rcMaxAge = $config->get( 'RCMaxAge' );
+
+		foreach ( SpecialRecentChanges::$changesAgeDurations as $duration ) {
+			if ( $duration > $rcMaxAge ) {
+				throw new Exception(
+					"The duration is longer than the maximum ($rcMaxAge)," .
+					"Provided by configuration option \"RCMaxAge\"."
+				);
+			}
+
+			$formattedDuration = $context->getLanguage()->formatDuration( $duration );
+			$options[$formattedDuration] = $duration;
+		}
+
+		return $options;
 	}
 
 	/**
