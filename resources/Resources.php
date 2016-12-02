@@ -1933,6 +1933,17 @@ return [
 	],
 	'mediawiki.special.recentchanges' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.recentchanges.js',
+		'dependencies' => [
+			'mediawiki.special',
+			'mediawiki.widgets',
+		],
+		'messages' => [
+			'recentchanges-limit-notice-invalidnumber',
+			'recentchanges-panel-collapsed-title',
+		],
+	],
+	'mediawiki.special.recentchanges.styles' => [
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.recentchanges.styles.css',
 	],
 	'mediawiki.special.search' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.search.js',
