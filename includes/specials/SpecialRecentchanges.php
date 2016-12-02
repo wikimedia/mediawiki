@@ -401,65 +401,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$defaults = $opts->getAllValues();
 		$nondefaults = $opts->getChangedValues();
 
-		$panel = [];
-		$panel[] = $this->makeLegend();
-		$panel[] = $this->optionsPanel( $defaults, $nondefaults, $numRows );
-		$panel[] = '<hr />';
-
-		$extraOpts = $this->getExtraOptions( $opts );
-		$extraOptsCount = count( $extraOpts );
-		$count = 0;
-		$submit = ' ' . Xml::submitButton( $this->msg( 'recentchanges-submit' )->text() );
-
-		$out = Xml::openElement( 'table', [ 'class' => 'mw-recentchanges-table' ] );
-		foreach ( $extraOpts as $name => $optionRow ) {
-			# Add submit button to the last row only
-			++$count;
-			$addSubmit = ( $count === $extraOptsCount ) ? $submit : '';
-
-			$out .= Xml::openElement( 'tr' );
-			if ( is_array( $optionRow ) ) {
-				$out .= Xml::tags(
-					'td',
-					[ 'class' => 'mw-label mw-' . $name . '-label' ],
-					$optionRow[0]
-				);
-				$out .= Xml::tags(
-					'td',
-					[ 'class' => 'mw-input' ],
-					$optionRow[1] . $addSubmit
-				);
-			} else {
-				$out .= Xml::tags(
-					'td',
-					[ 'class' => 'mw-input', 'colspan' => 2 ],
-					$optionRow . $addSubmit
-				);
-			}
-			$out .= Xml::closeElement( 'tr' );
-		}
-		$out .= Xml::closeElement( 'table' );
-
-		$unconsumed = $opts->getUnconsumedValues();
-		foreach ( $unconsumed as $key => $value ) {
-			$out .= Html::hidden( $key, $value );
-		}
-
-		$t = $this->getPageTitle();
-		$out .= Html::hidden( 'title', $t->getPrefixedText() );
-		$form = Xml::tags( 'form', [ 'action' => wfScript() ], $out );
-		$panel[] = $form;
-		$panelString = implode( "\n", $panel );
-
-		$this->getOutput()->addHTML(
-			Xml::fieldset(
-				$this->msg( 'recentchanges-legend' )->text(),
-				$panelString,
-				[ 'class' => 'rcoptions' ]
-			)
-		);
-
-		$this->setBottomText( $opts );
+		$this->renderForm();
 	}
 
 	/**
@@ -520,7 +462,11 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	protected function addModules() {
 		parent::addModules();
 		$out = $this->getOutput();
+
+		$out->addModuleStyles( 'mediawiki.htmlform.ooui.styles' );
 		$out->addModules( 'mediawiki.special.recentchanges' );
+
+		$out->enableOOUI();
 	}
 
 	/**
@@ -792,6 +738,262 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		) . '</span>';
 
 		return "{$note}$rclinks<br />$rclistfrom";
+	}
+
+	/**
+	 * Render the OOUI form for filtering changes.
+	 */
+	private function renderForm() {
+		$output = $this->getOutput();
+		$form = new OOUI\FormLayout( [
+			'method' => 'GET',
+			'action' => wfScript(),
+		] );
+
+		$this->populateForm( $form );
+
+		$form->addItems( [
+			new OOUI\FieldLayout(
+				new OOUI\ButtonInputWidget( [
+					'name' => 'submit',
+					'label' => $this->msg( 'recentchanges-submit' )->text(),
+					'type' => 'submit',
+					'flags' => [ 'primary', 'progressive' ],
+				] ),
+				[
+					'label' => null,
+					'align' => 'top',
+				]
+			),
+		] );
+
+		$layout = new OOUI\PanelLayout( [
+			'expanded' => false,
+			'padded' => true,
+			'framed' => true,
+			'infusable' => false,
+		] );
+		$layout->appendContent( $form );
+
+		$output->addHTML( $layout );
+	}
+
+	/**
+	 * Populate the OOUI form.
+	 *
+	 * @param \OOUI\FormLayout $form
+	 */
+	private function populateForm( OOUI\FormLayout &$form ) {
+		$namespaceTagFieldset = new OOUI\FieldsetLayout( [
+			'label' => $this->msg( 'recentchanges-fieldset-filter' )->text(),
+			'items' => [
+				new OOUI\FieldLayout(
+					new MediaWiki\Widget\NamespaceInputWidget( [
+						'includeAllValue' => '',
+						'name' => 'rc-filter-namespace',
+						'id' => 'namespace',
+						'infusable' => true,
+					] ),
+					[
+						'label' => $this->msg( 'namespace' )->text(),
+						'align' => 'top',
+					]
+				),
+				new OOUI\HorizontalLayout( [
+					'items' => [
+						new OOUI\FieldLayout(
+							new OOUI\CheckboxInputWidget( [
+								'name' => 'invert',
+								'id' => 'nsinvert',
+								'selected' => false, // @TODO Set to defaults.
+								'infusable' => true,
+							] ),
+							[
+								'label' => $this->msg( 'invert' )->text(),
+								'align' => 'inline',
+							]
+						),
+						new OOUI\FieldLayout(
+							new OOUI\CheckboxInputWidget( [
+								'name' => 'associated',
+								'id' => 'nsassociated',
+								'selected' => false, // @TODO Set to defaults.
+								'infusable' => true,
+								'title' => $this->msg( 'tooltip-namespace_association' )->text(),
+							] ),
+							[
+								'label' => $this->msg( 'namespace_association' )->text(),
+								'align' => 'inline',
+								'title' => $this->msg( 'tooltip-namespace_association' )->text(),
+							]
+						),
+					]
+				] ),
+			],
+		] );
+		$changesTypeFieldset = new OOUI\FieldsetLayout( [
+			'label' => 'Types of changes',
+			'items' => $this->makeHideCheckboxesList(),
+		] );
+		$displayOptionsFieldset = new OOUI\FieldsetLayout( [
+			'label' => $this->msg( 'recentchanges-fieldset-displayopts' )->text(),
+			'items' => [
+				new \OOUI\FieldLayout(
+					new \OOUI\CheckboxInputWidget( [
+						'name' => 'enabledisplayopts',
+						'id' => 'enabledisplayopts',
+						'infusable' => true,
+						'selected' => false,
+					] ),
+					[
+						'label' => $this->msg( 'recentchanges-label-enabledisplayopts' )->text(),
+						'align' => 'inline',
+					]
+				),
+				new \OOUI\FieldLayout(
+					new \OOUI\TextInputWidget( [
+						'name' => 'changescount',
+						'id' => 'changescount',
+						'infusable' => true,
+						'type' => 'number',
+					] ),
+					[
+						'label' => $this->msg( 'recentchanges-changescount-label' )->text(),
+						'align' => 'top',
+						'infusable' => true,
+						'id' => 'changescount-fieldlayout',
+					]
+				),
+				new \OOUI\FieldLayout(
+					new \OOUI\DropdownInputWidget( [
+						'name' => 'changesage',
+						'id' => 'changesage',
+						'infusable' => true,
+						'options' => $this->makeDurationOptions(),
+					] ),
+					[
+						'label' => 'Maximum age of the changes',
+						'align' => 'top',
+					]
+				),
+			],
+		] );
+
+		$tagFilterInput = $this->makeOOUITagFilterInput();
+		if ( $tagFilterInput !== null ) {
+			$namespaceTagFieldset->addItems( [ $tagFilterInput ] );
+		}
+
+		$form->addItems( [ $namespaceTagFieldset, $changesTypeFieldset, $displayOptionsFieldset ] );
+	}
+
+	/**
+	 * Specialized variant of ChangeTags::buildTagFilterSelector to create a FieldLayout.
+	 *
+	 * @param string $selected The currently selected tag, if any.
+	 *
+	 * @return null|\OOUI\FieldLayout Returns null if there are no tags defined or if the
+	 * configuration does not allow the usage of tag filter.
+	 * @see ChangeTags::buildTagFilterSelector
+	 */
+	private function makeOOUITagFilterInput( $selected = '' ) {
+		$context = $this->getContext();
+
+		$config = $context->getConfig();
+		if ( !$config->get( 'UseTagFilter' ) || !count( ChangeTags::listDefinedTags() ) ) {
+			return null;
+		}
+
+		return new \OOUI\FieldLayout(
+			new OOUI\TextInputWidget( [
+				'id' => 'tagfilter',
+				'name' => 'tagfilter',
+				'value' => $selected,
+				'classes' => 'mw-tagfilter-input',
+			] ),
+			[
+				'label' => new OOUI\HtmlSnippet( $this->msg( 'tag-filter' )->parse() ),
+				'align' => 'top',
+			]
+		);
+	}
+
+	/**
+	 * Create the "changes types" checkboxes.
+	 *
+	 * @return array
+	 */
+	private function makeHideCheckboxesList() {
+		$config = $this->getConfig();
+		$user = $this->getUser();
+
+		$filters = [
+			'hideminor' => 'rchideminor',
+			'hidebots' => 'rcshowbots',
+			'hideanons' => 'rchideanons',
+			'hideliu' => 'rchideregistered',
+			'hidepatrolled' => 'rchidepatr',
+			'hidemyself' => 'rchidemine'
+		];
+
+		if ( $config->get( 'RCWatchCategoryMembership' ) ) {
+			$filters['showcategorization'] = 'rcshowcategorization';
+		}
+
+		foreach ( $this->getCustomFilters() as $key => $params ) {
+			$filters[$key] = $params['msg'];
+		}
+
+		// Disable some if needed
+		if ( !$user->useRCPatrol() ) {
+			unset( $filters['hidepatrolled'] );
+		}
+
+		$checkboxes = [];
+		foreach ( $filters as $key => $msg ) {
+			$checkboxes[] = new OOUI\FieldLayout(
+				new OOUI\CheckboxInputWidget( [
+					'name' => $key,
+					'selected' => false // @TODO Set to default
+				] ),
+				[
+					'label' => $this->msg( $msg )->text(),
+					'align' => 'inline',
+				]
+			);
+		}
+
+		return $checkboxes;
+	}
+
+	/**
+	 * Create the list of available "maximum changes ages".
+	 *
+	 * @return array
+	 */
+	private function makeDurationOptions() {
+		$language = $this->getLanguage();
+
+		$durations = [
+			60 * 60, // 1 hour
+			60 * 60 * 2, // 2 hours
+			60 * 60 * 6, // 6 hours,
+			60 * 60 * 12, // 12 hours,
+			60 * 60 * 24, // 1 day
+			60 * 60 * 24 * 3, // 3 days
+			60 * 60 * 24 * 7, // 1 week,
+			60 * 60 * 24 * 30, // 1 month
+		];
+
+		$options = [];
+		foreach ( $durations as $duration ) {
+			$options[] = [
+				'data' => (string)$duration,
+				'label' => $language->formatDuration( $duration ),
+			];
+		}
+
+		return $options;
 	}
 
 	public function isIncludable() {
