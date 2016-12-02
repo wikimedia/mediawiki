@@ -20,7 +20,8 @@
 			"Otokoume",
 			"Rxy",
 			"Foresttttttt",
-			"ネイ"
+			"ネイ",
+			"Suchichi02"
 		]
 	},
 	"config-desc": "MediaWiki のインストーラー",
@@ -268,7 +269,7 @@
 	"config-cache-options": "オブジェクトのキャッシュの設定:",
 	"config-cache-help": "オブジェクトのキャッシュを使用すると、頻繁に使用するデータをキャッシュするため MediaWiki の動作速度を改善できます。\n中〜大規模サイトではこれを有効にすることを強くお勧めします。小規模サイトでも同様に効果があります。",
 	"config-cache-none": "キャッシングしない(機能は取り払われます、しかもより大きなウィキサイト上でスピードの問題が発生します)",
-	"config-cache-accel": "PHP オブジェクト キャッシュ (APC、XCache、WinCache のいずれか)",
+	"config-cache-accel": "PHPオブジェクトキャッシュ (APC、APCu、XCache、WinCache のいずれか)",
 	"config-cache-memcached": "memcached を使用 (追加の設定が必要)",
 	"config-memcached-servers": "memcached サーバー:",
 	"config-memcached-help": "Memcachedを使用するIPアドレスの一覧。\nカンマ区切りで、利用する特定のポートの指定が必要です。例:\n127.0.0.1:11211\n192.168.1.25:1234",

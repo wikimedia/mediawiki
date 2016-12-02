@@ -26,7 +26,8 @@
 			"Xð",
 			"Asierog",
 			"Matma Rex",
-			"Gorkaazk"
+			"Gorkaazk",
+			"Vriullop"
 		]
 	},
 	"tog-underline": "Azpimarratu loturak:",
@@ -2793,6 +2794,7 @@
 	"confirm-unwatch-button": "Ados",
 	"confirm-unwatch-top": "Orrialde hau zure jarraipen-zerrendatik kendu?",
 	"confirm-rollback-button": "Ados",
+	"word-separator": "&#32;",
 	"quotation-marks": "«$1»",
 	"imgmultipageprev": "&larr; aurreko orrialdea",
 	"imgmultipagenext": "hurrengo orrialdea &rarr;",

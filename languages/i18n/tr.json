@@ -88,7 +88,8 @@
 			"Kumkumuk",
 			"Basak",
 			"Ece Alpdeniz",
-			"Superyetkin"
+			"Superyetkin",
+			"Alikaan"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çiz:",
@@ -1031,6 +1032,7 @@
 	"search-external": "Dış arama",
 	"searchdisabled": "{{SITENAME}} sitesinde arama yapma geçici olarak durdurulmuştur. Bu arada Google kullanarak {{SITENAME}} içinde arama yapabilirsiniz. Arama sitelerinde dizinlerin biraz eski kalmış olabileceğini göz önünde bulundurunuz.",
 	"search-error": "Arama yapılırken bir hata oluştu: $1",
+	"search-warning": "Arama yapılırken bir hata oluştu: $1",
 	"preferences": "Tercihler",
 	"mypreferences": "Tercihler",
 	"prefs-edits": "Değişiklik sayısı:",
@@ -3560,6 +3562,8 @@
 	"special-characters-title-emdash": "uzun çizgi",
 	"special-characters-title-minus": "Eksi işareti",
 	"mw-widgets-dateinput-no-date": "Hiçbir tarih seçilmedi",
+	"mw-widgets-mediasearch-input-placeholder": "Medya ara",
+	"mw-widgets-mediasearch-noresults": "Sonuç bulunamadı.",
 	"mw-widgets-titleinput-description-new-page": "sayfa henüz mevcut değil",
 	"mw-widgets-titleinput-description-redirect": "$1'e yönlendirildi",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "çerez tabanlı oturumlar",
