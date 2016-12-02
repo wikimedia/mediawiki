@@ -25,6 +25,9 @@
  *
  * @ingroup Actions
  */
+
+use MediaWiki\MediaWikiServices;
+
 class MarkpatrolledAction extends FormAction {
 
 	public function getName() {
@@ -54,6 +57,8 @@ class MarkpatrolledAction extends FormAction {
 	}
 
 	protected function preText() {
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+
 		$rc = $this->getRecentChange();
 		$title = $rc->getTitle();
 
@@ -64,8 +69,8 @@ class MarkpatrolledAction extends FormAction {
 			'diff' => $revId,
 			'oldid' => $rc->getAttribute( 'rc_last_oldid' )
 		];
-		$revlink = Linker::link( $title, htmlspecialchars( $revId ), [], $query );
-		$pagelink = Linker::link( $title, htmlspecialchars( $title->getPrefixedText() ) );
+		$revlink = $linkRenderer->makeLink( $title, $revId, [], $query );
+		$pagelink = $linkRenderer->makeLink( $title, $title->getPrefixedText() );
 
 		return $this->msg( 'confirm-markpatrolled-top' )->params(
 			$title->getPrefixedText(),

@@ -111,24 +111,25 @@ class BlockListPager extends TablePager {
 				break;
 
 			case 'ipb_expiry':
+				$linkRenderer = $this->getLinkRenderer();
 				$formatted = htmlspecialchars( $language->formatExpiry(
 					$value,
 					/* User preference timezone */true
 				) );
 				if ( $this->getUser()->isAllowed( 'block' ) ) {
 					if ( $row->ipb_auto ) {
-						$links[] = Linker::linkKnown(
+						$links[] = $linkRenderer->makeKnownLink(
 							SpecialPage::getTitleFor( 'Unblock' ),
 							$msg['unblocklink'],
 							[],
 							[ 'wpTarget' => "#{$row->ipb_id}" ]
 						);
 					} else {
-						$links[] = Linker::linkKnown(
+						$links[] = $linkRenderer->makeKnownLink(
 							SpecialPage::getTitleFor( 'Unblock', $row->ipb_address ),
 							$msg['unblocklink']
 						);
-						$links[] = Linker::linkKnown(
+						$links[] = $linkRenderer->makeKnownLink(
 							SpecialPage::getTitleFor( 'Block', $row->ipb_address ),
 							$msg['change-blocklink']
 						);

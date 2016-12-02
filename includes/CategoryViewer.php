@@ -197,7 +197,7 @@ class CategoryViewer extends ContextSource {
 		$link = null;
 		Hooks::run( 'CategoryViewer::generateLink', [ $type, $title, $html, &$link ] );
 		if ( $link === null ) {
-			$link = Linker::link( $title, $html );
+			$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink( $title, $html );
 		}
 		if ( $isRedirect ) {
 			$link = '<span class="redirect-in-category">' . $link . '</span>';
@@ -626,13 +626,14 @@ class CategoryViewer extends ContextSource {
 	 * @return string HTML
 	 */
 	private function pagingLinks( $first, $last, $type = '' ) {
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$prevLink = $this->msg( 'prev-page' )->text();
 
 		if ( $first != '' ) {
 			$prevQuery = $this->query;
 			$prevQuery["{$type}until"] = $first;
 			unset( $prevQuery["{$type}from"] );
-			$prevLink = Linker::linkKnown(
+			$prevLink = $linkRenderer->makeKnownLink(
 				$this->addFragmentToTitle( $this->title, $type ),
 				$prevLink,
 				[],
@@ -646,7 +647,7 @@ class CategoryViewer extends ContextSource {
 			$lastQuery = $this->query;
 			$lastQuery["{$type}from"] = $last;
 			unset( $lastQuery["{$type}until"] );
-			$nextLink = Linker::linkKnown(
+			$nextLink = $linkRenderer->makeKnownLink(
 				$this->addFragmentToTitle( $this->title, $type ),
 				$nextLink,
 				[],

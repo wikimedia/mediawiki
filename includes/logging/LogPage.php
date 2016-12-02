@@ -29,6 +29,8 @@
  * than ever-growing wiki pages.
  *
  */
+use MediaWiki\MediaWikiServices;
+
 class LogPage {
 	const DELETED_ACTION = 1;
 	const DELETED_COMMENT = 2;
@@ -294,6 +296,7 @@ class LogPage {
 	 * @return string
 	 */
 	protected static function getTitleLink( $type, $lang, $title, &$params ) {
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer()
 		if ( !$lang ) {
 			return $title->getPrefixedText();
 		}
@@ -304,16 +307,16 @@ class LogPage {
 			# Use the language name for log titles, rather than Log/X
 			if ( $name == 'Log' ) {
 				$logPage = new LogPage( $par );
-				$titleLink = Linker::link( $title, $logPage->getName()->escaped() );
+				$titleLink = $linkRenderer->makeLink( $title, $logPage->getName() );
 				$titleLink = wfMessage( 'parentheses' )
 					->inLanguage( $lang )
 					->rawParams( $titleLink )
 					->escaped();
 			} else {
-				$titleLink = Linker::link( $title );
+				$titleLink = $linkRenderer->makeLink( $title );
 			}
 		} else {
-			$titleLink = Linker::link( $title );
+			$titleLink = $linkRenderer->makeLink( $title );
 		}
 
 		return $titleLink;
