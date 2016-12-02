@@ -1,5 +1,9 @@
 /* HTMLForm styles */
 
+.mw-htmlform {
+	clear: both;
+}
+
 table.mw-htmlform-nolabel td.mw-label {
 	display: none;
 }

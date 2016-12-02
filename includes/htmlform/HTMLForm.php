@@ -1042,6 +1042,7 @@ class HTMLForm extends ContextSource {
 			: 'application/x-www-form-urlencoded';
 		# Attributes
 		$attribs = [
+			'class' => 'mw-htmlform',
 			'action' => $this->getAction(),
 			'method' => $this->getMethod(),
 			'enctype' => $encType,
@@ -1074,7 +1075,7 @@ class HTMLForm extends ContextSource {
 
 		return Html::rawElement(
 			'form',
-			$this->getFormAttributes() + [ 'class' => 'visualClear' ],
+			$this->getFormAttributes(),
 			$html
 		);
 	}

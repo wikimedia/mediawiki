@@ -275,7 +275,7 @@ class OOUIHTMLForm extends HTMLForm {
 
 	public function wrapForm( $html ) {
 		$form = new OOUI\FormLayout( $this->getFormAttributes() + [
-			'classes' => [ 'mw-htmlform-ooui' ],
+			'classes' => [ 'mw-htmlform', 'mw-htmlform-ooui' ],
 			'content' => new OOUI\HtmlSnippet( $html ),
 		] );
 
