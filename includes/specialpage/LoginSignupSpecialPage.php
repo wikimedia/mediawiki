@@ -149,7 +149,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$entryWarning = $this->msg( $request->getVal( 'warning', '' ) );
 		// bc: provide login link as a parameter for messages where the translation
 		// was not updated
-		$loginreqlink = Linker::linkKnown(
+		$loginreqlink = $this->getLinkRenderer()->makeKnownLink(
 			$this->getPageTitle(),
 			$this->msg( 'loginreqlink' )->escaped(),
 			[],
@@ -1134,9 +1134,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'type' => 'info',
 					'raw' => true,
 					'cssclass' => 'mw-form-related-link-container',
-					'default' => Linker::link(
+					'default' => $this->getLinkRenderer()->makeLink(
 						SpecialPage::getTitleFor( 'PasswordReset' ),
-						$this->msg( 'userlogin-resetpassword-link' )->escaped()
+						$this->msg( 'userlogin-resetpassword-link' )->text()
 					),
 					'weight' => 230,
 				];
@@ -1315,9 +1315,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$targetLanguage = Language::factory( $lang );
 		$attr['lang'] = $attr['hreflang'] = $targetLanguage->getHtmlCode();
 
-		return Linker::linkKnown(
+		return $this->getLinkRenderer()->makeKnownLink(
 			$this->getPageTitle(),
-			htmlspecialchars( $text ),
+			$text,
 			$attr,
 			$query
 		);

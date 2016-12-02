@@ -142,7 +142,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 		$user = User::newFromId( $row->img_user );
 
 		$title = Title::makeTitle( NS_FILE, $name );
-		$ul = Linker::link( $user->getUserPage(), $user->getName() );
+		$ul = $this->getLinkRenderer()->makeLink( $user->getUserPage(), $user->getName() );
 		$time = $this->getLanguage()->userTimeAndDate( $row->img_timestamp, $this->getUser() );
 
 		$this->gallery->add(
