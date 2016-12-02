@@ -2,7 +2,7 @@
  * JavaScript for Special:RecentChanges
  */
 ( function ( mw, $ ) {
-	var rc, $checkboxes, $select;
+	var rc, $namespace, $namespaceFilterOpts, $changesCountFieldLayout, $displayOptions;
 
 	/**
 	 * @class mw.special.recentchanges
@@ -13,22 +13,63 @@
 		 * Handler to disable/enable the namespace selector checkboxes when the
 		 * special 'all' namespace is selected/unselected respectively.
 		 */
-		updateCheckboxes: function () {
+		updateNamespaceFilterForm: function () {
 			// The option element for the 'all' namespace has an empty value
-			var isAllNS = $select.val() === '';
+			var isAllNS = $namespace.getValue() === '';
 
 			// Iterates over checkboxes and propagate the selected option
-			$checkboxes.prop( 'disabled', isAllNS );
+			$namespaceFilterOpts.forEach( function ( checkbox ) {
+				checkbox.setDisabled( isAllNS );
+			} );
+		},
+
+		/**
+		 * Check if the given changes count is within the accepted range.
+         */
+		validateChangesCount: function () {
+			var $field = $displayOptions[ 0 ],
+				value = parseInt( $field.getValue() );
+
+			if ( value < 0 || value > 500 ) {
+				$changesCountFieldLayout.setNotices( [
+					mw.message( 'recentchanges-limit-notice-invalidnumber', 0, 500 ).text()
+				] );
+			} else {
+				$changesCountFieldLayout.setNotices( [] );
+			}
 		},
 
 		/** */
 		init: function () {
-			$select = $( '#namespace' );
-			$checkboxes = $( '#nsassociated, #nsinvert' );
+			var query, panel, panelCollapsed;
 
-			// Bind to change event, and trigger once to set the initial state of the checkboxes.
-			rc.updateCheckboxes();
-			$select.change( rc.updateCheckboxes );
+			$namespace = OO.ui.infuse( 'namespace' );
+			$namespaceFilterOpts = [
+				OO.ui.infuse( 'nsassociated' ),
+				OO.ui.infuse( 'nsinvert' )
+			];
+
+			$changesCountFieldLayout = OO.ui.infuse( 'limit-fieldlayout' );
+			$displayOptions = [
+				OO.ui.infuse( 'limit' ),
+				OO.ui.infuse( 'maxage' ),
+				OO.ui.infuse( 'from' )
+			];
+
+			rc.updateNamespaceFilterForm();
+
+			$namespace.on( 'change', rc.updateNamespaceFilterForm );
+			$displayOptions[ 0 ].on( 'change', rc.validateChangesCount );
+
+			query = new mw.Uri().query;
+			panelCollapsed = query.hasOwnProperty( 'panel-collapsed' ) ?
+				query[ 'panel-collapsed' ] :
+				mw.user.options.get( 'rcpanelcollapsed' );
+
+			panel = $( '#filterform-panel' );
+			$( panel ).makeCollapsible( {
+				collapsed: panelCollapsed
+			} );
 		}
 	};
 
