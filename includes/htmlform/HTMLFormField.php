@@ -1194,4 +1194,19 @@ abstract class HTMLFormField {
 	public function skipLoadData( $request ) {
 		return !empty( $this->mParams['nodata'] );
 	}
+
+	/**
+	 * Whether this field requires the user agent to have JavaScript enabled for the client-side HTML5
+	 * form validation to work correctly.
+	 *
+	 * @return boolean
+	 * @since 1.29
+	 */
+	public function needsJSForHtml5FormValidation() {
+		if ( $this->mHideIf ) {
+			// This is probably more restrictive than it needs to be, but better safe than sorry
+			return true;
+		}
+		return false;
+	}
 }
