@@ -124,7 +124,27 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 		if ( !static::$loadUserData ) {
 			return [];
 		} else {
-			return parent::getAuthFormDescriptor( $requests, $action );
+			$descriptor = parent::getAuthFormDescriptor( $requests, $action );
+
+			$any = false;
+			foreach ( $descriptor as &$field ) {
+				if ( $field['type'] === 'password' && $field['name'] !== 'retype' ) {
+					$any = true;
+					if ( isset( $field['cssclass'] ) ) {
+						$field['cssclass'] .= ' mw-changecredentials-validate-password';
+					} else {
+						$field['cssclass'] = 'mw-changecredentials-validate-password';
+					}
+				}
+			}
+
+			if ( $any ) {
+				$this->getOutput()->addModules( [
+					'mediawiki.special.changecredentials.js'
+				] );
+			}
+
+			return $descriptor;
 		}
 	}
 
