@@ -445,6 +445,72 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 		];
 	}
 
+	/**
+	 * Attributes under manifest_version 2
+	 *
+	 * @covers ExtensionProcessor::extractAttributes
+	 * @covers ExtensionProcessor::getExtractedInfo
+	 */
+	public function testExtractAttributes() {
+		$processor = new ExtensionProcessor();
+		// Load FooBar extension
+		$processor->extractInfo( $this->dir, [ 'name' => 'FooBar' ], 2 );
+		$processor->extractInfo(
+			$this->dir,
+			[
+				'name' => 'Baz',
+				'attributes' => [
+					// Loaded
+					'FooBar' => [
+						'Plugins' => [
+							'ext.baz.foobar',
+						],
+					],
+					// Not loaded
+					'FizzBuzz' => [
+						'MorePlugins' => [
+							'ext.baz.fizzbuzz',
+						],
+					],
+				],
+			],
+			2
+		);
+
+		$info = $processor->getExtractedInfo();
+		$this->assertArrayHasKey( 'FooBarPlugins', $info['attributes'] );
+		$this->assertSame( [ 'ext.baz.foobar' ], $info['attributes']['FooBarPlugins'] );
+		$this->assertArrayNotHasKey( 'FizzBuzzMorePlugins', $info['attributes'] );
+	}
+
+	/**
+	 * Attributes under manifest_version 1
+	 *
+	 * @covers ExtensionProcessor::extractInfo
+	 */
+	public function testAttributes1() {
+		$processor = new ExtensionProcessor();
+		$processor->extractInfo(
+			$this->dir,
+			[
+				'name' => 'FooBar',
+				'FooBarPlugins' => [
+					'ext.baz.foobar',
+				],
+				'FizzBuzzMorePlugins' => [
+					'ext.baz.fizzbuzz',
+				],
+			],
+			1
+		);
+
+		$info = $processor->getExtractedInfo();
+		$this->assertArrayHasKey( 'FooBarPlugins', $info['attributes'] );
+		$this->assertSame( [ 'ext.baz.foobar' ], $info['attributes']['FooBarPlugins'] );
+		$this->assertArrayHasKey( 'FizzBuzzMorePlugins', $info['attributes'] );
+		$this->assertSame( [ 'ext.baz.fizzbuzz' ], $info['attributes']['FizzBuzzMorePlugins'] );
+	}
+
 	public function testGlobalSettingsDocumentedInSchema() {
 		global $IP;
 		$globalSettings = TestingAccessWrapper::newFromClass(
