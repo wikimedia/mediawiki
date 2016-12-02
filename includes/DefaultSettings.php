@@ -4814,8 +4814,9 @@ $wgDefaultUserOptions = [
 	'numberheadings' => 0,
 	'previewonfirst' => 0,
 	'previewontop' => 1,
-	'rcdays' => 7,
+	'rcmaxage' => 2592000, // 30 days
 	'rclimit' => 50,
+	'rcpanelcollapsed' => true,
 	'rows' => 25,
 	'showhiddencats' => 0,
 	'shownumberswatching' => 1,
@@ -6581,10 +6582,19 @@ $wgRCFilterByAge = false;
 $wgRCLinkLimits = [ 50, 100, 250, 500 ];
 
 /**
- * List of Days options to list in the Special:Recentchanges and
+ * List of Maximum Changes' Age options to list in the Special:Recentchanges and
  * Special:Recentchangeslinked pages.
  */
-$wgRCLinkDays = [ 1, 3, 7, 14, 30 ];
+$wgRCMaxAgeOptions = [
+	3600, // 1 hour
+	7200, // 2 hours
+	21600, // 6 hours,
+	43200, // 12 hours,
+	86400, // 1 day
+	259200, // 3 days
+	604800, // 1 week,
+	2592000, // 1 month
+];
 
 /**
  * Destinations to which notifications about recent changes
