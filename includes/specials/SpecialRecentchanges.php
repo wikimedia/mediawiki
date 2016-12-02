@@ -36,6 +36,22 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	// @codingStandardsIgnoreEnd
 
 	/**
+	 * The available duration options for maximum changes age selector.
+	 *
+	 * @var array
+	 */
+	public static $changesAgeDurations = [
+		3600, // 1 hour
+		7200, // 2 hours
+		21600, // 6 hours,
+		43200, // 12 hours,
+		86400, // 1 day
+		259200, // 3 days
+		604800, // 1 week,
+		2592000, // 1 month
+	];
+
+	/**
 	 * Main execution point
 	 *
 	 * @param string $subpage
@@ -75,7 +91,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$opts = parent::getDefaultOptions();
 		$user = $this->getUser();
 
-		$opts->add( 'days', $user->getIntOption( 'rcdays' ) );
+		$opts->add( 'maxage', $user->getIntOption( 'rcmaxage' ) ); // in seconds
 		$opts->add( 'limit', $user->getIntOption( 'rclimit' ) );
 		$opts->add( 'from', '' );
 
@@ -90,6 +106,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$opts->add( 'categories', '' );
 		$opts->add( 'categories_any', false );
 		$opts->add( 'tagfilter', '' );
+
+		$opts->add( 'panel-collapsed', $user->getBoolOption( 'rcpanelcollapsed' ) );
 
 		return $opts;
 	}
@@ -153,8 +171,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			if ( preg_match( '/^limit=(\d+)$/', $bit, $m ) ) {
 				$opts['limit'] = $m[1];
 			}
-			if ( preg_match( '/^days=(\d+)$/', $bit, $m ) ) {
-				$opts['days'] = $m[1];
+			if ( preg_match( '/^maxage=(\d+)$/', $bit, $m ) ) {
+				$opts['maxage'] = $m[1];
 			}
 			if ( preg_match( '/^namespace=(\d+)$/', $bit, $m ) ) {
 				$opts['namespace'] = $m[1];
@@ -181,8 +199,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$conds = parent::buildMainQueryConds( $opts );
 
 		// Calculate cutoff
-		$cutoff_unixtime = time() - ( $opts['days'] * 86400 );
-		$cutoff_unixtime = $cutoff_unixtime - ( $cutoff_unixtime % 86400 );
+		$cutoff_unixtime = time() - $opts['maxage'];
 		$cutoff = $dbr->timestamp( $cutoff_unixtime );
 
 		$fromValid = preg_match( '/^[0-9]{14}$/', $opts['from'] );
@@ -398,68 +415,15 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	public function doHeader( $opts, $numRows ) {
 		$this->setTopText( $opts );
 
-		$defaults = $opts->getAllValues();
-		$nondefaults = $opts->getChangedValues();
+		$this->renderForm( $opts );
 
-		$panel = [];
-		$panel[] = $this->makeLegend();
-		$panel[] = $this->optionsPanel( $defaults, $nondefaults, $numRows );
-		$panel[] = '<hr />';
+		$opts->consumeValues( [
+			'namespace', 'invert', 'associated', 'tagfilter', 'categories', 'categories_any'
+		] );
 
-		$extraOpts = $this->getExtraOptions( $opts );
-		$extraOptsCount = count( $extraOpts );
-		$count = 0;
-		$submit = ' ' . Xml::submitButton( $this->msg( 'recentchanges-submit' )->text() );
-
-		$out = Xml::openElement( 'table', [ 'class' => 'mw-recentchanges-table' ] );
-		foreach ( $extraOpts as $name => $optionRow ) {
-			# Add submit button to the last row only
-			++$count;
-			$addSubmit = ( $count === $extraOptsCount ) ? $submit : '';
-
-			$out .= Xml::openElement( 'tr' );
-			if ( is_array( $optionRow ) ) {
-				$out .= Xml::tags(
-					'td',
-					[ 'class' => 'mw-label mw-' . $name . '-label' ],
-					$optionRow[0]
-				);
-				$out .= Xml::tags(
-					'td',
-					[ 'class' => 'mw-input' ],
-					$optionRow[1] . $addSubmit
-				);
-			} else {
-				$out .= Xml::tags(
-					'td',
-					[ 'class' => 'mw-input', 'colspan' => 2 ],
-					$optionRow . $addSubmit
-				);
-			}
-			$out .= Xml::closeElement( 'tr' );
+		if ( $this->getName() === 'Recentchanges' ) {
+			Hooks::run( 'SpecialRecentChangesPanel', [ &$extraOpts, $opts ] );
 		}
-		$out .= Xml::closeElement( 'table' );
-
-		$unconsumed = $opts->getUnconsumedValues();
-		foreach ( $unconsumed as $key => $value ) {
-			$out .= Html::hidden( $key, $value );
-		}
-
-		$t = $this->getPageTitle();
-		$out .= Html::hidden( 'title', $t->getPrefixedText() );
-		$form = Xml::tags( 'form', [ 'action' => wfScript() ], $out );
-		$panel[] = $form;
-		$panelString = implode( "\n", $panel );
-
-		$this->getOutput()->addHTML(
-			Xml::fieldset(
-				$this->msg( 'recentchanges-legend' )->text(),
-				$panelString,
-				[ 'class' => 'rcoptions' ]
-			)
-		);
-
-		$this->setBottomText( $opts );
 	}
 
 	/**
@@ -484,44 +448,14 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Get options to be displayed in a form
-	 *
-	 * @param FormOptions $opts
-	 * @return array
-	 */
-	function getExtraOptions( $opts ) {
-		$opts->consumeValues( [
-			'namespace', 'invert', 'associated', 'tagfilter', 'categories', 'categories_any'
-		] );
-
-		$extraOpts = [];
-		$extraOpts['namespace'] = $this->namespaceFilterForm( $opts );
-
-		if ( $this->getConfig()->get( 'AllowCategorizedRecentChanges' ) ) {
-			$extraOpts['category'] = $this->categoryFilterForm( $opts );
-		}
-
-		$tagFilter = ChangeTags::buildTagFilterSelector(
-			$opts['tagfilter'], false, $this->getContext() );
-		if ( count( $tagFilter ) ) {
-			$extraOpts['tagfilter'] = $tagFilter;
-		}
-
-		// Don't fire the hook for subclasses. (Or should we?)
-		if ( $this->getName() === 'Recentchanges' ) {
-			Hooks::run( 'SpecialRecentChangesPanel', [ &$extraOpts, $opts ] );
-		}
-
-		return $extraOpts;
-	}
-
-	/**
 	 * Add page-specific modules.
 	 */
 	protected function addModules() {
 		parent::addModules();
 		$out = $this->getOutput();
+
 		$out->addModules( 'mediawiki.special.recentchanges' );
+		$out->enableOOUI();
 	}
 
 	/**
@@ -536,48 +470,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$lastmod = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)', false, __METHOD__ );
 
 		return $lastmod;
-	}
-
-	/**
-	 * Creates the choose namespace selection
-	 *
-	 * @param FormOptions $opts
-	 * @return string
-	 */
-	protected function namespaceFilterForm( FormOptions $opts ) {
-		$nsSelect = Html::namespaceSelector(
-			[ 'selected' => $opts['namespace'], 'all' => '' ],
-			[ 'name' => 'namespace', 'id' => 'namespace' ]
-		);
-		$nsLabel = Xml::label( $this->msg( 'namespace' )->text(), 'namespace' );
-		$invert = Xml::checkLabel(
-			$this->msg( 'invert' )->text(), 'invert', 'nsinvert',
-			$opts['invert'],
-			[ 'title' => $this->msg( 'tooltip-invert' )->text() ]
-		);
-		$associated = Xml::checkLabel(
-			$this->msg( 'namespace_association' )->text(), 'associated', 'nsassociated',
-			$opts['associated'],
-			[ 'title' => $this->msg( 'tooltip-namespace_association' )->text() ]
-		);
-
-		return [ $nsLabel, "$nsSelect $invert $associated" ];
-	}
-
-	/**
-	 * Create an input to filter changes by categories
-	 *
-	 * @param FormOptions $opts
-	 * @return array
-	 */
-	protected function categoryFilterForm( FormOptions $opts ) {
-		list( $label, $input ) = Xml::inputLabelSep( $this->msg( 'rc_categories' )->text(),
-			'categories', 'mw-categories', false, $opts['categories'] );
-
-		$input .= ' ' . Xml::checkLabel( $this->msg( 'rc_categories_any' )->text(),
-			'categories_any', 'mw-categories_any', $opts['categories_any'] );
-
-		return [ $label, $input ];
 	}
 
 	/**
@@ -655,6 +547,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 */
 	function makeOptionsLink( $title, $override, $options, $active = false ) {
 		$params = $override + $options;
+		$linkRenderer = $this->getLinkRenderer();
 
 		// Bug 36524: false values have be converted to "0" otherwise
 		// wfArrayToCgi() will omit it them.
@@ -665,74 +558,301 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		}
 		unset( $value );
 
-		$text = htmlspecialchars( $title );
-		if ( $active ) {
-			$text = '<strong>' . $text . '</strong>';
-		}
-
-		return Linker::linkKnown( $this->getPageTitle(), $text, [], $params );
+		return $linkRenderer->makeKnownLink( $this->getPageTitle(), $title, [], $params );
 	}
 
 	/**
-	 * Creates the options panel.
+	 * Render the OOUI form for filtering changes.
 	 *
-	 * @param array $defaults
-	 * @param array $nondefaults
-	 * @param int $numRows Number of rows in the result to show after this header
-	 * @return string
+	 * @param \FormOptions $opts
 	 */
-	function optionsPanel( $defaults, $nondefaults, $numRows ) {
-		$options = $nondefaults + $defaults;
+	private function renderForm( FormOptions $opts ) {
+		$output = $this->getOutput();
+		$title = $this->getPageTitle();
+		$form = new OOUI\FormLayout( [
+			'method' => 'GET',
+			'action' => wfScript(),
+		] );
 
-		$note = '';
-		$msg = $this->msg( 'rclegend' );
-		if ( !$msg->isDisabled() ) {
-			$note .= '<div class="mw-rclegend">' . $msg->parse() . "</div>\n";
-		}
+		$this->populateForm( $form, $opts );
 
-		$lang = $this->getLanguage();
+		$form->addItems( [
+			new OOUI\FieldLayout(
+				new OOUI\ButtonInputWidget( [
+					'name' => 'submit',
+					'label' => $this->msg( 'recentchanges-submit' )->text(),
+					'type' => 'submit',
+					'flags' => [ 'primary', 'progressive' ],
+				] ),
+				[
+					'label' => null,
+					'align' => 'top',
+				]
+			),
+		] );
+
+		// The usage of $form->addItems is recommended instead of this hack,
+		// but currently there is no Widget in oojs-ui to render as a hidden
+		// input.
+		// Phabricator Task: T152321
+		// When this becomes available, replacement is advised.
+		$form->appendContent( new \OOUI\HtmlSnippet(
+			Html::hidden( 'title', $title->getPrefixedText() )
+		) );
+		$form->appendContent( new \OOUI\HtmlSnippet(
+			Html::hidden( 'panel-collapsed', $opts['panel-collapsed'] )
+		) );
+
+		$layout = new OOUI\PanelLayout( [
+			'expanded' => false,
+			'padded' => true,
+			'framed' => true,
+			'infusable' => true,
+			'id' => 'filterform-panel',
+		] );
+		$layout->appendContent( $form );
+
+		$output->addHTML( $layout );
+	}
+
+	/**
+	 * Populate the OOUI form.
+	 *
+	 * @param \OOUI\FormLayout $form
+	 * @param \FormOptions $opts
+	 */
+	private function populateForm( \OOUI\FormLayout $form, FormOptions $opts ) {
+		$language = $this->getLanguage();
 		$user = $this->getUser();
-		$config = $this->getConfig();
-		if ( $options['from'] ) {
-			$note .= $this->msg( 'rcnotefrom' )
-				->numParams( $options['limit'] )
-				->params(
-					$lang->userTimeAndDate( $options['from'], $user ),
-					$lang->userDate( $options['from'], $user ),
-					$lang->userTime( $options['from'], $user )
+		$timestamp = wfTimestampNow();
+
+		$now = $language->userTimeAndDate( $timestamp, $user );
+		$timenow = $language->userTime( $timestamp, $user );
+		$datenow = $language->userDate( $timestamp, $user );
+
+		$namespaceTagFieldset = new OOUI\FieldsetLayout( [
+			'label' => $this->msg( 'recentchanges-fieldset-filter' )->text(),
+			'items' => [
+				new OOUI\FieldLayout(
+					new MediaWiki\Widget\NamespaceInputWidget( [
+						'includeAllValue' => '',
+						'name' => 'namespace',
+						'id' => 'namespace',
+						'infusable' => true,
+						'value' => $opts['namespace'],
+					] ),
+					[
+						'label' => $this->msg( 'namespace' )->text(),
+						'align' => 'left',
+						'classes' => [ 'oo-ui-fieldLayout-narrow' ],
+					]
+				),
+				new OOUI\HorizontalLayout( [
+					'items' => [
+						new OOUI\FieldLayout(
+							new OOUI\CheckboxInputWidget( [
+								'name' => 'invert',
+								'id' => 'nsinvert',
+								'selected' => $opts['invert'],
+								'infusable' => true,
+								'value' => '1', // for compatibility
+							] ),
+							[
+								'label' => $this->msg( 'invert' )->text(),
+								'align' => 'inline',
+							]
+						),
+						new OOUI\FieldLayout(
+							new OOUI\CheckboxInputWidget( [
+								'name' => 'associated',
+								'id' => 'nsassociated',
+								'selected' => $opts['associated'],
+								'infusable' => true,
+								'title' => $this->msg( 'tooltip-namespace_association' )->text(),
+								'value' => '1', // for compatibility
+							] ),
+							[
+								'label' => $this->msg( 'namespace_association' )->text(),
+								'align' => 'inline',
+								'title' => $this->msg( 'tooltip-namespace_association' )->text(),
+							]
+						),
+					]
+				] ),
+			],
+		] );
+		$categoryFilterForm = new OOUI\FieldsetLayout( [
+			'label' => $this->msg( 'recentchanges-fieldset-categoryfilter' )->text(),
+			'items' => [
+				new \OOUI\FieldLayout(
+					new \OOUI\TextInputWidget( [
+						'name' => 'categories',
+						'id' => 'categories',
+						'value' => $opts['categories'],
+					] ),
+					[
+						'label' => $this->msg( 'rc_categories' )->text(),
+						'align' => 'left',
+						'classes' => [ 'oo-ui-fieldLayout-narrow' ],
+					]
+				),
+				new \OOUI\FieldLayout(
+					new \OOUI\CheckboxInputWidget( [
+						'name' => 'categories_any',
+						'id' => 'categories_any',
+						'selected' => $opts['categories_any'],
+					] ),
+					[
+						'label' => $this->msg( 'rc_categories_any' )->text(),
+						'align' => 'inline',
+					]
+				),
+			],
+		] );
+		$changesTypeFieldset = new OOUI\FieldsetLayout( [
+			'label' => $this->msg( 'recentchanges-fieldset-changestypes' )->text(),
+			'items' => [
+				new \OOUI\HorizontalLayout( [
+					'items' => $this->makeShowHideLinks( $opts ),
+					'classes' => [ 'rcshowhideoption-container' ],
+				] ),
+			],
+		] );
+		$displayOptionsFieldset = new OOUI\FieldsetLayout( [
+			'label' => $this->msg( 'recentchanges-fieldset-displayopts' )->text(),
+			'items' => [
+				new \OOUI\FieldLayout(
+					new \OOUI\TextInputWidget( [
+						'name' => 'limit',
+						'id' => 'limit',
+						'infusable' => true,
+						'type' => 'number',
+						'value' => $opts['limit'],
+					] ),
+					[
+						'label' => $this->msg( 'recentchanges-limit-label' )->text(),
+						'align' => 'left',
+						'infusable' => true,
+						'id' => 'limit-fieldlayout',
+						'classes' => [ 'oo-ui-fieldLayout-narrow' ],
+					]
+				),
+				new \OOUI\FieldLayout(
+					new \OOUI\DropdownInputWidget( [
+						'name' => 'maxage',
+						'id' => 'maxage',
+						'infusable' => true,
+						'options' => $this->makeDurationOptions(),
+						'value' => $opts['maxage'],
+					] ),
+					[
+						'label' => $this->msg( 'recentchanges-maxage-label' )->text(),
+						'align' => 'left',
+						'infusable' => true,
+						'id' => 'maxage-fieldlayout',
+						'classes' => [ 'oo-ui-fieldLayout-narrow' ],
+					]
+				),
+				new \OOUI\FieldLayout(
+					new \OOUI\CheckboxInputWidget( [
+						'name' => 'from',
+						'id' => 'from',
+						'value' => $timestamp,
+						'selected' => $opts['from'] !== '',
+						'infusable' => true,
+					] ),
+					[
+						'label' => $this->msg( 'recentchanges-label-showchangesfrom' )
+							->rawParams( $now, $timenow, $datenow )
+							->parse(),
+						'align' => 'inline',
+					]
 				)
-				->numParams( $numRows )
-				->parse() . '<br />';
+			],
+		] );
+
+		$tagFilterInput = $this->makeOOUITagFilterInput();
+		if ( $tagFilterInput !== null ) {
+			$namespaceTagFieldset->addItems( [ $tagFilterInput ] );
 		}
 
-		# Sort data for display and make sure it's unique after we've added user data.
-		$linkLimits = $config->get( 'RCLinkLimits' );
-		$linkLimits[] = $options['limit'];
-		sort( $linkLimits );
-		$linkLimits = array_unique( $linkLimits );
+		$leftColumn = [ $namespaceTagFieldset ];
+		$rightColumn = [];
 
-		$linkDays = $config->get( 'RCLinkDays' );
-		$linkDays[] = $options['days'];
-		sort( $linkDays );
-		$linkDays = array_unique( $linkDays );
-
-		// limit links
-		$cl = [];
-		foreach ( $linkLimits as $value ) {
-			$cl[] = $this->makeOptionsLink( $lang->formatNum( $value ),
-				[ 'limit' => $value ], $nondefaults, $value == $options['limit'] );
+		if ( $this->getConfig()->get( 'AllowCategorizedRecentChanges' ) ) {
+			$leftColumn[] = $categoryFilterForm;
+			$rightColumn[] = $changesTypeFieldset;
+		} else {
+			$leftColumn[] = $changesTypeFieldset;
 		}
-		$cl = $lang->pipeList( $cl );
 
-		// day links, reset 'from' to none
-		$dl = [];
-		foreach ( $linkDays as $value ) {
-			$dl[] = $this->makeOptionsLink( $lang->formatNum( $value ),
-				[ 'days' => $value, 'from' => '' ], $nondefaults, $value == $options['days'] );
+		$rightColumn[] = $displayOptionsFieldset;
+
+		$form->addItems( [
+			$this->renderFormColumn( $leftColumn ),
+			$this->renderFormColumn( $rightColumn ),
+		] );
+	}
+
+	/**
+	 * Render a column of the form.
+	 *
+	 * @param $content
+	 * @return \OOUI\Tag
+	 */
+	private function renderFormColumn( $content ) {
+		$column = new \OOUI\Tag( 'div' );
+		$column->addClasses( [ 'rcform-multicolumn-column' ] );
+
+		foreach ( $content as $piece ) {
+			$column->appendContent( $piece );
 		}
-		$dl = $lang->pipeList( $dl );
 
-		// show/hide links
+		return $column;
+	}
+
+	/**
+	 * Specialized variant of ChangeTags::buildTagFilterSelector to create a FieldLayout.
+	 *
+	 * @param string $selected The currently selected tag, if any.
+	 *
+	 * @return null|\OOUI\FieldLayout Returns null if there are no tags defined or if the
+	 * configuration does not allow the usage of tag filter.
+	 * @see ChangeTags::buildTagFilterSelector
+	 */
+	private function makeOOUITagFilterInput( $selected = '' ) {
+		$context = $this->getContext();
+
+		$config = $context->getConfig();
+		if ( !$config->get( 'UseTagFilter' ) || !count( ChangeTags::listDefinedTags() ) ) {
+			return null;
+		}
+
+		return new \OOUI\FieldLayout(
+			new OOUI\TextInputWidget( [
+				'id' => 'tagfilter',
+				'name' => 'tagfilter',
+				'value' => $selected,
+			] ),
+			[
+				'label' => new OOUI\HtmlSnippet( $this->msg( 'tag-filter' )->parse() ),
+				'align' => 'left',
+				'classes' => [ 'oo-ui-fieldLayout-narrow' ],
+			]
+		);
+	}
+
+	/**
+	 * Create the show/hide type checkboxes.
+	 *
+	 * @param \FormOptions $opts
+	 *
+	 * @return array
+	 */
+	private function makeShowHideLinks( FormOptions $opts ) {
+		$config = $this->getConfig();
+		$user = $this->getUser();
+
 		$filters = [
 			'hideminor' => 'rcshowhideminor',
 			'hidebots' => 'rcshowhidebots',
@@ -759,41 +879,47 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		$links = [];
 		foreach ( $filters as $key => $msg ) {
-			// The following messages are used here:
-			// rcshowhideminor-show, rcshowhideminor-hide, rcshowhidebots-show, rcshowhidebots-hide,
-			// rcshowhideanons-show, rcshowhideanons-hide, rcshowhideliu-show, rcshowhideliu-hide,
-			// rcshowhidepatr-show, rcshowhidepatr-hide, rcshowhidemine-show, rcshowhidemine-hide,
-			// rcshowhidecategorization-show, rcshowhidecategorization-hide.
-			$linkMessage = $this->msg( $msg . '-' . $showhide[1 - $options[$key]] );
-			// Extensions can define additional filters, but don't need to define the corresponding
-			// messages. If they don't exist, just fall back to 'show' and 'hide'.
+			$linkMessage = $this->msg( $msg . '-' . $showhide[1 - $opts[$key]] );
+
 			if ( !$linkMessage->exists() ) {
-				$linkMessage = $this->msg( $showhide[1 - $options[$key]] );
+				$linkMessage = $this->msg( $showhide[1 - $opts[$key]] );
 			}
 
-			$link = $this->makeOptionsLink( $linkMessage->text(),
-				[ $key => 1 - $options[$key] ], $nondefaults );
-			$links[] = "<span class=\"$msg rcshowhideoption\">"
-				. $this->msg( $msg )->rawParams( $link )->escaped() . '</span>';
+			$link = $this->makeOptionsLink(
+				$linkMessage->text(),
+				[ $key => 1 - $opts[$key] ],
+				$opts->getChangedValues()
+			);
+
+			$linkElement = new \OOUI\Tag( 'span' );
+			$linkElement->addClasses( [ $msg, 'rcshowhideoption' ] );
+			$linkElement->appendContent( new \OOUI\HtmlSnippet(
+				$this->msg( $msg )->rawParams( $link )->parse()
+			) );
+
+			$links[] = $linkElement;
 		}
 
-		// show from this onward link
-		$timestamp = wfTimestampNow();
-		$now = $lang->userTimeAndDate( $timestamp, $user );
-		$timenow = $lang->userTime( $timestamp, $user );
-		$datenow = $lang->userDate( $timestamp, $user );
-		$pipedLinks = '<span class="rcshowhide">' . $lang->pipeList( $links ) . '</span>';
+		return $links;
+	}
 
-		$rclinks = '<span class="rclinks">' . $this->msg( 'rclinks' )->rawParams( $cl, $dl, $pipedLinks )
-			->parse() . '</span>';
+	/**
+	 * Create the list of available "maximum changes ages".
+	 *
+	 * @return array
+	 */
+	private function makeDurationOptions() {
+		$language = $this->getLanguage();
 
-		$rclistfrom = '<span class="rclistfrom">' . $this->makeOptionsLink(
-			$this->msg( 'rclistfrom' )->rawParams( $now, $timenow, $datenow )->parse(),
-			[ 'from' => $timestamp ],
-			$nondefaults
-		) . '</span>';
+		$options = [];
+		foreach ( self::$changesAgeDurations as $duration ) {
+			$options[] = [
+				'data' => (string)$duration,
+				'label' => $language->formatDuration( $duration ),
+			];
+		}
 
-		return "{$note}$rclinks<br />$rclistfrom";
+		return $options;
 	}
 
 	public function isIncludable() {
