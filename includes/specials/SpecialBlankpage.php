@@ -35,5 +35,33 @@ class SpecialBlankpage extends UnlistedSpecialPage {
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->getOutput()->addWikiMsg( 'intentionallyblankpage' );
+
+		$formItems = [
+			'derp' => [
+				'label' => 'Show cloner',
+				'type' => 'check',
+			],
+			'herp' => [
+				'label' => 'Show fields',
+				'type' => 'check',
+			],
+			'cloner' => [
+				'label' => 'Cloner',
+				'type' => 'cloner',
+				'required' => true,
+				'hide-if' => [ '===', 'derp', '' ],
+				'fields' => [
+					'child' => [
+						'type' => 'text',
+						'required' => true,
+						'hide-if' => [ '===', 'herp', '' ],
+					],
+				],
+			],
+		];
+
+		$htmlForm = new HTMLForm( $formItems, $this->getContext(), 'testform' );
+		$htmlForm->setSubmitCallback( function () {} );
+		$htmlForm->show();
 	}
 }
