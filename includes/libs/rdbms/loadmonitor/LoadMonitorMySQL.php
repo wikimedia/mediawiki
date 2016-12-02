@@ -55,8 +55,6 @@ class LoadMonitorMySQL extends LoadMonitor {
 				// https://dev.mysql.com/doc/refman/5.7/en/server-status-variables.html
 				if ( $s->Innodb_buffer_pool_pages_total > 0 ) {
 					$ratio = $s->Innodb_buffer_pool_pages_data / $s->Innodb_buffer_pool_pages_total;
-				} elseif ( $s->Qcache_total_blocks > 0 ) {
-					$ratio = 1.0 - $s->Qcache_free_blocks / $s->Qcache_total_blocks;
 				} else {
 					$ratio = 1.0;
 				}
