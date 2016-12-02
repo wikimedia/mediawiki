@@ -1848,6 +1848,14 @@ return [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.block.css',
 		'dependencies' => 'mediawiki.util',
 	],
+	'mediawiki.special.changecredentials.js' => [
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.changecredentials.js',
+		'dependencies' => [
+			'mediawiki.api',
+			'mediawiki.htmlform.ooui'
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.special.changeslist' => [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.css',
 	],
