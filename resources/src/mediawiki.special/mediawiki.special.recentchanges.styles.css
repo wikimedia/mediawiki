@@ -1,0 +1,9 @@
+.oo-ui-fieldsetLayout:not(:first-child) {
+    margin-top: 1em !important;
+}
+
+#filterform-panel {
+    /* When the panel is collapsed, the "Collapse" toggle
+       will overlap. */
+    min-height: 1.5em;
+}

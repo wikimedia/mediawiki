@@ -1930,6 +1930,17 @@ return [
 	],
 	'mediawiki.special.recentchanges' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.recentchanges.js',
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.recentchanges.styles.css',
+		'dependencies' => [
+			'oojs-ui-core',
+			'oojs-ui-widgets',
+			'mediawiki.special',
+			'mediawiki.widgets',
+		],
+		'messages' => [
+			'recentchanges-changescount-notice-invalidnumber',
+		],
+		'position' => 'top',
 	],
 	'mediawiki.special.search' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.search.js',

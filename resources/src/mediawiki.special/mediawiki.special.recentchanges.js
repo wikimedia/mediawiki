@@ -2,7 +2,9 @@
  * JavaScript for Special:RecentChanges
  */
 ( function ( mw, $ ) {
-	var rc, $checkboxes, $select;
+	var rc;
+	var $namespace, $namespaceFilterOpts;
+	var $enableDisplayOpts, $changesCountFieldLayout, $displayOptions;
 
 	/**
 	 * @class mw.special.recentchanges
@@ -13,22 +15,77 @@
 		 * Handler to disable/enable the namespace selector checkboxes when the
 		 * special 'all' namespace is selected/unselected respectively.
 		 */
-		updateCheckboxes: function () {
+		updateNamespaceFilterForm: function () {
 			// The option element for the 'all' namespace has an empty value
-			var isAllNS = $select.val() === '';
+			var isAllNS = $namespace.getValue() === '';
 
 			// Iterates over checkboxes and propagate the selected option
-			$checkboxes.prop( 'disabled', isAllNS );
+			$namespaceFilterOpts.forEach( function ( checkbox ) {
+				checkbox.setDisabled( isAllNS );
+			} );
+		},
+
+		/**
+		 * Enable or disable the fields in the display options form, according to
+		 * $enableDisplayOpts field.
+         */
+		updateDisplayOptionsForm: function () {
+			var enable = $enableDisplayOpts.isSelected();
+
+			$displayOptions.forEach( function ( element ) {
+				element.setDisabled( !enable );
+			} );
+		},
+
+		/**
+		 * Check if the given changes count is within the accepted range.
+         */
+		validateChangesCount: function () {
+			var $field = $displayOptions[0];
+			var value = parseInt( $field.getValue() );
+
+			if ( value < 1 ) {
+				$changesCountFieldLayout.setNotices( [
+					mw.message( 'recentchanges-changescount-notice-invalidnumber', 1 ).text(),
+				] );
+			} else {
+				$changesCountFieldLayout.setNotices( [] );
+			}
 		},
 
 		/** */
 		init: function () {
-			$select = $( '#namespace' );
-			$checkboxes = $( '#nsassociated, #nsinvert' );
+			$namespace = OO.ui.infuse( 'namespace' );
+			$namespaceFilterOpts = [
+				OO.ui.infuse( 'nsassociated' ),
+				OO.ui.infuse( 'nsinvert' ),
+			];
 
-			// Bind to change event, and trigger once to set the initial state of the checkboxes.
-			rc.updateCheckboxes();
-			$select.change( rc.updateCheckboxes );
+			$enableDisplayOpts = OO.ui.infuse( 'enabledisplayopts' );
+			$changesCountFieldLayout = OO.ui.infuse( 'changescount-fieldlayout' );
+			$displayOptions = [
+				OO.ui.infuse( 'changescount' ),
+				OO.ui.infuse( 'changesage' ),
+				OO.ui.infuse( 'from' ),
+			];
+
+			rc.updateNamespaceFilterForm();
+			rc.updateDisplayOptionsForm();
+
+			$namespace.on( 'change', rc.updateNamespaceFilterForm );
+			$enableDisplayOpts.on( 'change', rc.updateDisplayOptionsForm );
+			$displayOptions[0].on( 'change', rc.validateChangesCount );
+
+			// Just infuse this to enable the enable-disable label color
+			// change behavior.
+			OO.ui.infuse( 'changesage-fieldlayout' );
+
+			// Have the panel initially collapsed.
+			// @TODO Create user preference about this initial state.
+			var panel = OO.ui.infuse( 'filterform-panel' );
+			$( panel.$element ).makeCollapsible( {
+				collapsed: true,
+			} );
 		}
 	};
 
