@@ -8,14 +8,14 @@ use DBConnRef;
 /**
  * Database connection manager.
  *
- * This manages access to master and slave databases. It also manages state that indicates whether
- * the slave databases are possibly outdated after a write operation, and thus the master database
+ * This manages access to master and replica databases. It also manages state that indicates whether
+ * the replica databases are possibly outdated after a write operation, and thus the master database
  * should be used for subsequent read operations.
  *
  * @note: Services that access overlapping sets of database tables, or interact with logically
  * related sets of data in the database, should share a SessionConsistentConnectionManager.
  * Services accessing unrelated sets of information may prefer to not share a
- * SessionConsistentConnectionManager, so they can still perform read operations against slave
+ * SessionConsistentConnectionManager, so they can still perform read operations against replica
  * databases after a (unrelated, per the assumption) write operation to the master database.
  * Generally, sharing a SessionConsistentConnectionManager improves consistency (by avoiding race
  * conditions due to replication lag), but can reduce performance (by directing more read
