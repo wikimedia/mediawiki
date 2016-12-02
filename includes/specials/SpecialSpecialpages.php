@@ -118,7 +118,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 					$pageClasses[] = 'mw-specialpagerestricted';
 				}
 
-				$link = Linker::linkKnown( $title, htmlspecialchars( $desc ) );
+				$link = $this->getLinkRenderer()->makeKnownLink( $title, $desc );
 				$out->addHTML( Html::rawElement(
 						'li',
 						[ 'class' => implode( ' ', $pageClasses ) ],
