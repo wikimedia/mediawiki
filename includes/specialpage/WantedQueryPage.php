@@ -64,14 +64,15 @@ abstract class WantedQueryPage extends QueryPage {
 	 * @return string
 	 */
 	public function formatResult( $skin, $result ) {
+		$linkRenderer = $this->getLinkRenderer();
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
 		if ( $title instanceof Title ) {
 			if ( $this->isCached() || $this->forceExistenceCheck() ) {
 				$pageLink = $this->existenceCheck( $title )
-					? '<del>' . Linker::link( $title ) . '</del>'
-					: Linker::link( $title );
+					? '<del>' . $linkRenderer->makeLink( $title ) . '</del>'
+					: $linkRenderer->makeLink( $title );
 			} else {
-				$pageLink = Linker::link(
+				$pageLink = $linkRenderer->makeLink(
 					$title,
 					null,
 					[],
