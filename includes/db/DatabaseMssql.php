@@ -28,7 +28,7 @@
 /**
  * @ingroup Database
  */
-class DatabaseMssql extends DatabaseBase {
+class DatabaseMssql extends Database {
 	protected $mInsertId = null;
 	protected $mLastResult = null;
 	protected $mAffectedRows = null;
