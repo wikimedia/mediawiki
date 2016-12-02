@@ -26,6 +26,8 @@
  * @ingroup Database
  */
 class LoadMonitorMySQL extends LoadMonitor {
+	/** @var integer Warmup time in seconds after mysql starts */
+	private $uptimeWarmupTTL;
 	/** @var float What buffer pool use ratio counts as "warm" (e.g. 0.5 for 50% usage) */
 	private $warmCacheRatio;
 
@@ -34,6 +36,9 @@ class LoadMonitorMySQL extends LoadMonitor {
 	) {
 		parent::__construct( $lb, $srvCache, $cache, $options );
 
+		$this->uptimeWarmupTTL = isset( $options['uptimeWarmupTTL'] )
+			? $options['uptimeWarmupTTL']
+			: 3600;
 		$this->warmCacheRatio = isset( $options['warmCacheRatio'] )
 			? $options['warmCacheRatio']
 			: 0.0;
@@ -45,24 +50,31 @@ class LoadMonitorMySQL extends LoadMonitor {
 		}
 
 		$weight = 1.0;
+
+		$res = $conn->query( 'SHOW STATUS', false );
+		$s = $res ? $conn->fetchObject( $res ) : false;
+		if ( $s === false ) {
+			$host = $this->parent->getServerName( $index );
+			$this->replLogger->error( __METHOD__ . ": could not get status for $host" );
+
+			return $weight; // leave weight alone
+		}
+
+		if ( $this->uptimeWarmupTTL > 0 ) {
+			$weight *= min( $s->Uptime / $this->uptimeWarmupTTL, 1.0 );
+		}
+
 		if ( $this->warmCacheRatio > 0 ) {
-			$res = $conn->query( 'SHOW STATUS', false );
-			$s = $res ? $conn->fetchObject( $res ) : false;
-			if ( $s === false ) {
-				$host = $this->parent->getServerName( $index );
-				$this->replLogger->error( __METHOD__ . ": could not get status for $host" );
+			// https://dev.mysql.com/doc/refman/5.7/en/server-status-variables.html
+			if ( $s->Innodb_buffer_pool_pages_total > 0 ) {
+				$ratio = $s->Innodb_buffer_pool_pages_data / $s->Innodb_buffer_pool_pages_total;
+			} elseif ( $s->Qcache_total_blocks > 0 ) {
+				$ratio = 1.0 - $s->Qcache_free_blocks / $s->Qcache_total_blocks;
 			} else {
-				// https://dev.mysql.com/doc/refman/5.7/en/server-status-variables.html
-				if ( $s->Innodb_buffer_pool_pages_total > 0 ) {
-					$ratio = $s->Innodb_buffer_pool_pages_data / $s->Innodb_buffer_pool_pages_total;
-				} elseif ( $s->Qcache_total_blocks > 0 ) {
-					$ratio = 1.0 - $s->Qcache_free_blocks / $s->Qcache_total_blocks;
-				} else {
-					$ratio = 1.0;
-				}
-				// Stop caring once $ratio >= $this->warmCacheRatio
-				$weight *= min( $ratio / $this->warmCacheRatio, 1.0 );
+				$ratio = 1.0;
 			}
+			// Stop caring once $ratio >= $this->warmCacheRatio
+			$weight *= min( $ratio / $this->warmCacheRatio, 1.0 );
 		}
 
 		return $weight;
