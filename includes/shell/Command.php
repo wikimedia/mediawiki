@@ -243,7 +243,7 @@ class Command {
 		$desc = [
 			0 => [ 'file', 'php://stdin', 'r' ],
 			1 => [ 'pipe', 'w' ],
-			2 => [ 'file', 'php://stderr', 'w' ],
+			2 => [ 'pipe', 'w' ],
 		];
 		if ( $useLogPipe ) {
 			$desc[3] = [ 'pipe', 'w' ];
@@ -256,6 +256,7 @@ class Command {
 			throw new ProcOpenError();
 		}
 		$outBuffer = $logBuffer = '';
+		$errBuffer = null;
 		$emptyArray = [];
 		$status = false;
 		$logMsg = false;
@@ -322,6 +323,9 @@ class Command {
 				} elseif ( $fd == 1 ) {
 					// From stdout
 					$outBuffer .= $block;
+				} elseif ( $fd == 2 ) {
+					// From stderr
+					$errBuffer .= $block;
 				} elseif ( $fd == 3 ) {
 					// From log FD
 					$logBuffer .= $block;
@@ -372,6 +376,6 @@ class Command {
 			wfDebugLog( 'exec', "$logMsg: $cmd" );
 		}
 
-		return new Result( $retval, $outBuffer );
+		return new Result( $retval, $outBuffer, $errBuffer );
 	}
 }
