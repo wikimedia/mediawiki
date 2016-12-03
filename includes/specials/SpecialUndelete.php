@@ -1002,9 +1002,9 @@ class SpecialUndelete extends SpecialPage {
 		foreach ( $result as $row ) {
 			$title = Title::makeTitleSafe( $row->ar_namespace, $row->ar_title );
 			if ( $title !== null ) {
-				$item = Linker::linkKnown(
+				$item = $this->getLinkRenderer()->makeKnownLink(
 					$undelete,
-					htmlspecialchars( $title->getPrefixedText() ),
+					$title->getPrefixedText(),
 					[],
 					[ 'target' => $title->getPrefixedText() ]
 				);
@@ -1083,9 +1083,9 @@ class SpecialUndelete extends SpecialPage {
 			}
 		}
 
-		$link = Linker::linkKnown(
+		$link = $this->getLinkRenderer()->makeKnownLink(
 			$this->getPageTitle( $this->mTargetObj->getPrefixedDBkey() ),
-			htmlspecialchars( $this->mTargetObj->getPrefixedText() )
+			$this->mTargetObj->getPrefixedText()
 		);
 
 		$lang = $this->getLanguage();
@@ -1259,14 +1259,14 @@ class SpecialUndelete extends SpecialPage {
 		// FIXME This is reimplementing DifferenceEngine#getRevisionHeader
 		// and partially #showDiffPage, but worse
 		return '<div id="mw-diff-' . $prefix . 'title1"><strong>' .
-			Linker::link(
+			$this->getLinkRenderer()->makeLink(
 				$targetPage,
 				$this->msg(
 					'revisionasof',
 					$lang->userTimeAndDate( $rev->getTimestamp(), $user ),
 					$lang->userDate( $rev->getTimestamp(), $user ),
 					$lang->userTime( $rev->getTimestamp(), $user )
-				)->escaped(),
+				)->text(),
 				[],
 				$targetQuery
 			) .
@@ -1550,9 +1550,9 @@ class SpecialUndelete extends SpecialPage {
 				$last = $this->msg( 'diff' )->escaped();
 			} elseif ( $remaining > 0 || ( $earliestLiveTime && $ts > $earliestLiveTime ) ) {
 				$pageLink = $this->getPageLink( $rev, $titleObj, $ts );
-				$last = Linker::linkKnown(
+				$last = $this->getLinkRenderer()->makeKnownLink(
 					$titleObj,
-					$this->msg( 'diff' )->escaped(),
+					$this->msg( 'diff' )->text(),
 					[],
 					[
 						'target' => $this->mTargetObj->getPrefixedText(),
@@ -1672,9 +1672,9 @@ class SpecialUndelete extends SpecialPage {
 			return '<span class="history-deleted">' . $time . '</span>';
 		}
 
-		$link = Linker::linkKnown(
+		$link = $this->getLinkRenderer()->makeKnownLink(
 			$titleObj,
-			htmlspecialchars( $time ),
+			$time,
 			[],
 			[
 				'target' => $this->mTargetObj->getPrefixedText(),
@@ -1707,9 +1707,9 @@ class SpecialUndelete extends SpecialPage {
 			return '<span class="history-deleted">' . $time . '</span>';
 		}
 
-		$link = Linker::linkKnown(
+		$link = $this->getLinkRenderer()->makeKnownLink(
 			$titleObj,
-			htmlspecialchars( $time ),
+			$time,
 			[],
 			[
 				'target' => $this->mTargetObj->getPrefixedText(),
@@ -1796,7 +1796,7 @@ class SpecialUndelete extends SpecialPage {
 					$this->getUser(), $this->mComment ] );
 			}
 
-			$link = Linker::linkKnown( $this->mTargetObj );
+			$link = $this->getLinkRenderer()->makeKnownLink( $this->mTargetObj );
 			$out->addHTML( $this->msg( 'undeletedpage' )->rawParams( $link )->parse() );
 		} else {
 			$out->setPageTitle( $this->msg( 'undelete-error' ) );

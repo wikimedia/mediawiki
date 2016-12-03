@@ -119,14 +119,14 @@ class SpecialUnblock extends SpecialPage {
 				$fields['Target']['type'] = 'hidden';
 				switch ( $type ) {
 					case Block::TYPE_IP:
-						$fields['Name']['default'] = Linker::linkKnown(
+						$fields['Name']['default'] = $this->getLinkRenderer()->makeKnownLink(
 							SpecialPage::getTitleFor( 'Contributions', $target->getName() ),
 							$target->getName()
 						);
 						$fields['Name']['raw'] = true;
 						break;
 					case Block::TYPE_USER:
-						$fields['Name']['default'] = Linker::link(
+						$fields['Name']['default'] = $this->getLinkRenderer()->makeLink(
 							$target->getUserPage(),
 							$target->getName()
 						);

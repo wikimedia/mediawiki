@@ -93,15 +93,15 @@ class SpecialTrackingCategories extends SpecialPage {
 			$allMsgs = [];
 			$catDesc = $catMsg . '-desc';
 
-			$catMsgTitleText = Linker::link(
+			$catMsgTitleText = $this->getLinkRenderer()->makeLink(
 				$data['msg'],
-				htmlspecialchars( $catMsg )
+				$catMsg
 			);
 
 			foreach ( $data['cats'] as $catTitle ) {
-				$html = Linker::link(
+				$html = $this->getLinkRenderer()->makeLink(
 					$catTitle,
-					htmlspecialchars( $catTitle->getText() )
+					$catTitle->getText()
 				);
 
 				Hooks::run( 'SpecialTrackingCategories::generateCatLink',
