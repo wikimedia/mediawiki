@@ -33,6 +33,7 @@ namespace MediaWiki;
  *
  *  ... = $command->getExitCode();
  *  ... = $command->getOutput();
+ *  ... = $command->getErrorOutput();
  */
 class Shell {
 
