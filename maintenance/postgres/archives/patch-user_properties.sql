@@ -1,5 +1,5 @@
 CREATE TABLE user_properties(
-  up_user   INTEGER      NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE,
+  up_user   INTEGER      NULL  REFERENCES user(user_id) ON DELETE CASCADE,
   up_property TEXT NOT NULL,
   up_value TEXT
 );
