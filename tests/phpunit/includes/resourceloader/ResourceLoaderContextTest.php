@@ -14,6 +14,7 @@ class ResourceLoaderContextTest extends PHPUnit_Framework_TestCase {
 			'ResourceLoaderDebug' => false,
 			'DefaultSkin' => 'fallback',
 			'LanguageCode' => 'nl',
+			'LoadScript' => '/w/load.php',
 		] ) );
 	}
 
