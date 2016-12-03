@@ -1259,14 +1259,14 @@ class SpecialUndelete extends SpecialPage {
 		// FIXME This is reimplementing DifferenceEngine#getRevisionHeader
 		// and partially #showDiffPage, but worse
 		return '<div id="mw-diff-' . $prefix . 'title1"><strong>' .
-			Linker::link(
+			$this->getLinkRenderer()->makeLink(
 				$targetPage,
 				$this->msg(
 					'revisionasof',
 					$lang->userTimeAndDate( $rev->getTimestamp(), $user ),
 					$lang->userDate( $rev->getTimestamp(), $user ),
 					$lang->userTime( $rev->getTimestamp(), $user )
-				)->escaped(),
+				)->text(),
 				[],
 				$targetQuery
 			) .
