@@ -60,6 +60,13 @@ class ExtensionRegistry {
 	protected $queued = [];
 
 	/**
+	 * Whether we are done loading things
+	 *
+	 * @var bool
+	 */
+	private $finished = false;
+
+	/**
 	 * Items in the JSON file that aren't being
 	 * set as globals
 	 *
@@ -120,6 +127,12 @@ class ExtensionRegistry {
 			return;
 		}
 
+		if ( $this->finished ) {
+			throw new MWException(
+				"The following paths tried to load late: " . implode( ', ', $this->queued )
+			);
+		}
+
 		// A few more things to vary the cache on
 		$versions = [
 			'registration' => self::CACHE_VERSION,
@@ -162,6 +175,15 @@ class ExtensionRegistry {
 	 */
 	public function clearQueue() {
 		$this->queued = [];
+	}
+
+	/**
+	 * After this is called, no more extensions can be loaded
+	 *
+	 * @since 1.29
+	 */
+	public function finish() {
+		$this->finished = true;
 	}
 
 	/**
