@@ -41,4 +41,82 @@ class CoreVersionCheckerTest extends PHPUnit_Framework_TestCase {
 			[ 'totallyinvalid', '== 1.0', true ],
 		];
 	}
+
+	/**
+	 * @dataProvider provideType
+	 */
+	public function testType( $given, $expected ) {
+		$checker = new VersionChecker();
+		$checker
+			->setCoreVersion( '1.0.0' )
+			->setLoadedExtensionsAndSkins( [
+				'FakeDependency' => [
+					'version' => '1.0.0',
+				],
+			] );
+		$this->assertEquals( $expected, $checker->checkArray( [
+			'FakeExtension' => $given,
+		] )
+		);
+	}
+
+	public static function provideType() {
+		return [
+			// valid type
+			[
+				[
+					'extensions' => [
+						'FakeDependency' => '1.0.0'
+					]
+				],
+				[]
+			],
+			[
+				[
+					'MediaWiki' => '1.0.0'
+				],
+				[]
+			],
+		];
+	}
+
+	/**
+	 * Check, if a non-parsable version constraint does not throw an exception or
+	 * returns any error message.
+	 */
+	public function testInvalidConstraint() {
+		$checker = new VersionChecker();
+		$checker
+			->setCoreVersion( '1.0.0' )
+			->setLoadedExtensionsAndSkins( [
+				'FakeDependency' => [
+					'version' => 'not really valid',
+				],
+			] );
+		$this->assertEquals( [ "Dependency FakeDependency provides an invalid version string." ],
+			$checker->checkArray( [
+				'FakeExtension' => [
+					'extensions' => [
+						'FakeDependency' => '1.24.3',
+					],
+				],
+			] )
+		);
+
+		$checker = new VersionChecker();
+		$checker
+			->setCoreVersion( '1.0.0' )
+			->setLoadedExtensionsAndSkins( [
+				'FakeDependency' => [
+					'version' => '1.24.3',
+				],
+			] );
+
+		$this->setExpectedException( 'UnexpectedValueException' );
+		$checker->checkArray( [
+			'FakeExtension' => [
+				'FakeDependency' => 'not really valid',
+			]
+		] );
+	}
 }
