@@ -608,6 +608,25 @@ class ResourceLoader implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Add an error to the 'errors' array and log it.
+	 *
+	 * Should only be called from within respond().
+	 *
+	 * @since 1.29
+	 * @param Exception $e
+	 * @param string $msg
+	 * @param array $context
+	 */
+	protected function outputErrorAndLog( Exception $e, $msg, array $context = [] ) {
+		MWExceptionHandler::logException( $e );
+		$this->logger->warning(
+			$msg,
+			$context + [ 'exception' => $e ]
+		);
+		$this->errors[] = self::formatExceptionNoComment( $e );
+	}
+
+	/**
 	 * Helper method to get and combine versions of multiple modules.
 	 *
 	 * @since 1.26
@@ -626,15 +645,12 @@ class ResourceLoader implements LoggerAwareInterface {
 				// If modules fail to compute a version, do still consider the versions
 				// of other modules - don't set an empty string E-Tag for the whole request.
 				// See also T152266 and StartupModule::getModuleRegistrations().
-				MWExceptionHandler::logException( $e );
-				$this->logger->warning(
+				$this->outputErrorAndLog( $e,
 					'Calculating version for "{module}" failed: {exception}',
 					[
 						'module' => $module,
-						'exception' => $e,
 					]
 				);
-				$this->errors[] = self::formatExceptionNoComment( $e );
 				return '';
 			}
 		}, $moduleNames );
@@ -711,11 +727,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			// Preload for getCombinedVersion() and for batch makeModuleResponse()
 			$this->preloadModuleInfo( array_keys( $modules ), $context );
 		} catch ( Exception $e ) {
-			MWExceptionHandler::logException( $e );
-			$this->logger->warning( 'Preloading module info failed: {exception}', [
-				'exception' => $e
-			] );
-			$this->errors[] = self::formatExceptionNoComment( $e );
+			$this->outputErrorAndLog( $e, 'Preloading module info failed: {exception}' );
 		}
 
 		// Combine versions to propagate cache invalidation
@@ -723,11 +735,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		try {
 			$versionHash = $this->getCombinedVersion( $context, array_keys( $modules ) );
 		} catch ( Exception $e ) {
-			MWExceptionHandler::logException( $e );
-			$this->logger->warning( 'Calculating version hash failed: {exception}', [
-				'exception' => $e
-			] );
-			$this->errors[] = self::formatExceptionNoComment( $e );
+			$this->outputErrorAndLog( $e, 'Calculating version hash failed: {exception}' );
 		}
 
 		// See RFC 2616 § 3.11 Entity Tags
@@ -976,7 +984,9 @@ class ResourceLoader implements LoggerAwareInterface {
 			return MWExceptionHandler::getPublicLogMessage( $e );
 		}
 
-		return MWExceptionHandler::getLogMessage( $e );
+		return MWExceptionHandler::getLogMessage( $e ) .
+			"\nBacktrace:\n" .
+			MWExceptionHandler::getRedactedTraceAsString( $e );
 	}
 
 	/**
@@ -1077,11 +1087,7 @@ MESSAGE;
 				$out .= $strContent;
 
 			} catch ( Exception $e ) {
-				MWExceptionHandler::logException( $e );
-				$this->logger->warning( 'Generating module package failed: {exception}', [
-					'exception' => $e
-				] );
-				$this->errors[] = self::formatExceptionNoComment( $e );
+				$this->outputErrorAndLog( $e, 'Generating module package failed: {exception}' );
 
 				// Respond to client with error-state instead of module implementation
 				$states[$name] = 'error';
