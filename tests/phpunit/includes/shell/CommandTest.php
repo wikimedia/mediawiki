@@ -67,13 +67,23 @@ class CommandTest extends PHPUnit_Framework_TestCase {
 			->params( [ 'ls', "$IP/index.php" ] )
 			->execute();
 		$this->assertSame( "$IP/index.php", trim( $result->getStdout() ) );
+		$this->assertSame( null, $result->getStderr() );
 
 		$command = new Command();
 		$result = $command
 			->params( [ 'ls', 'index.php', 'no-such-file' ] )
 			->includeStderr()
 			->execute();
+		$this->assertRegExp( '/^index.php$/m', $result->getStdout() );
 		$this->assertRegExp( '/^.+no-such-file.*$/m', $result->getStdout() );
+		$this->assertSame( null, $result->getStderr() );
+
+		$command = new Command();
+		$result = $command
+			->params( [ 'ls', 'index.php', 'no-such-file' ] )
+			->execute();
+		$this->assertRegExp( '/^index.php$/m', $result->getStdout() );
+		$this->assertRegExp( '/^.+no-such-file.*$/m', $result->getStderr() );
 	}
 
 	public function testT69870() {
