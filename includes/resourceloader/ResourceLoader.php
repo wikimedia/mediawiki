@@ -620,7 +620,23 @@ class ResourceLoader implements LoggerAwareInterface {
 			return '';
 		}
 		$hashes = array_map( function ( $module ) use ( $context ) {
-			return $this->getModule( $module )->getVersionHash( $context );
+			try {
+				return $this->getModule( $module )->getVersionHash( $context );
+			} catch ( Exception $e ) {
+				// If modules fail to compute a version, do still consider the versions
+				// of other modules - don't set an empty string E-Tag for the whole request.
+				// See also T152266 and StartupModule::getModuleRegistrations().
+				MWExceptionHandler::logException( $e );
+				$this->logger->warning(
+					'Calculating version for "{module}" failed: {exception}',
+					[
+						'module' => $module,
+						'exception' => $e,
+					]
+				);
+				$this->errors[] = self::formatExceptionNoComment( $e );
+				return '';
+			}
 		}, $moduleNames );
 		return self::makeHash( implode( '', $hashes ) );
 	}

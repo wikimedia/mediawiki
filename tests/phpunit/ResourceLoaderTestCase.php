@@ -16,7 +16,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 	 * - string 'dir' Language direction (ltr or rtl)
 	 * @return ResourceLoaderContext
 	 */
-	protected function getResourceLoaderContext( $options = [] ) {
+	protected function getResourceLoaderContext( $options = [], ResourceLoader $rl = null ) {
 		if ( is_string( $options ) ) {
 			// Back-compat for extension tests
 			$options = [ 'lang' => $options ];
@@ -24,12 +24,14 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 		$options += [
 			'lang' => 'en',
 			'dir' => 'ltr',
+			'modules' => 'startup',
+			'only' => 'scripts',
 		];
-		$resourceLoader = new ResourceLoader();
+		$resourceLoader = $rl ?: new ResourceLoader();
 		$request = new FauxRequest( [
 				'lang' => $options['lang'],
-				'modules' => 'startup',
-				'only' => 'scripts',
+				'modules' => $options['modules'],
+				'only' => $options['only'],
 				'skin' => 'vector',
 				'target' => 'phpunit',
 		] );
@@ -151,6 +153,12 @@ class EmptyResourceLoader extends ResourceLoader {
 	public function __construct( Config $config = null, LoggerInterface $logger = null ) {
 		$this->setLogger( $logger ?: new NullLogger() );
 		$this->config = $config ?: MediaWikiServices::getInstance()->getMainConfig();
+		// Source "local" is required by StartupModule
+		$this->addSource( 'local', $this->config->get( 'LoadScript' ) );
 		$this->setMessageBlobStore( new MessageBlobStore( $this, $this->getLogger() ) );
+	}
+
+	public function getErrors() {
+		return $this->errors;
 	}
 }
