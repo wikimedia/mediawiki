@@ -126,7 +126,7 @@ class SpecialUnblock extends SpecialPage {
 						$fields['Name']['raw'] = true;
 						break;
 					case Block::TYPE_USER:
-						$fields['Name']['default'] = Linker::link(
+						$fields['Name']['default'] = $this->getLinkRenderer()->makeLink(
 							$target->getUserPage(),
 							$target->getName()
 						);
