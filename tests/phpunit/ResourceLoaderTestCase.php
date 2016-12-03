@@ -24,11 +24,13 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 		$options += [
 			'lang' => 'en',
 			'dir' => 'ltr',
+			'modules' => 'startup',
+			'only' => 'scripts',
 		];
 		$resourceLoader = new ResourceLoader();
 		$request = new FauxRequest( [
 				'lang' => $options['lang'],
-				'modules' => 'startup',
+				'modules' => $options['modules'],
 				'only' => 'scripts',
 				'skin' => 'vector',
 				'target' => 'phpunit',
@@ -152,5 +154,9 @@ class EmptyResourceLoader extends ResourceLoader {
 		$this->setLogger( $logger ?: new NullLogger() );
 		$this->config = $config ?: MediaWikiServices::getInstance()->getMainConfig();
 		$this->setMessageBlobStore( new MessageBlobStore( $this, $this->getLogger() ) );
+	}
+
+	public function getErrors() {
+		return $this->errors;
 	}
 }

@@ -441,4 +441,53 @@ mw.example();
 			$this->assertTrue( true );
 		}
 	}
+
+	/**
+	 * Verify that when building module content in a load.php response,
+	 * an exception from the one module class will not breka content
+	 * from another module.
+	 */
+	public function testGetScriptError() {
+		$ferry = $this->getMockBuilder( ResourceLoaderTestModule::class )
+			->setMethods( [ 'getScript' ] )
+			->getMock();
+		$ferry->method( 'getScript' )->will( $this->throwException(
+			new Exception( 'Ferry not found' )
+		) );
+
+		$foo = $this->getMockBuilder( ResourceLoaderTestModule::class )
+			->setMethods( [ 'getScript' ] )
+			->getMock();
+		$foo->method( 'getScript' )->willReturn( 'foo();' );
+
+		$bar = $this->getMockBuilder( ResourceLoaderTestModule::class )
+			->setMethods( [ 'getScript' ] )
+			->getMock();
+		$bar->method( 'getScript' )->willReturn( 'bar();' );
+
+		$modules = [
+			'foo' => $foo,
+			'ferry' => $ferry,
+			'bar' => $bar,
+		];
+		$rl = new EmptyResourceLoader();
+		$rl->register( $modules );
+		$context = $this->getResourceLoaderContext( [
+			'modules' => 'foo|ferry|bar'
+		] );
+
+		$response = $rl->makeModuleResponse( $context, $modules );
+		$errors = $rl->getErrors();
+
+		$this->assertCount( 1, $errors );
+		$this->assertRegExp( '/Ferry not found/', $errors[0] );
+		$this->assertEquals(
+			'foo();bar();mw.loader.state( {
+    "ferry": "error",
+    "foo": "ready",
+    "bar": "ready"
+} );',
+			$response
+		);
+	}
 }
