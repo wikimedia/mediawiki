@@ -199,7 +199,8 @@ class ExtensionRegistry {
 		$autoloaderPaths = [];
 		$processor = new ExtensionProcessor();
 		$incompatible = [];
-		$coreVersionParser = new CoreVersionChecker( $wgVersion );
+		$versionParser = new VersionChecker();
+		$versionParser->setCoreVersion( $wgVersion );
 		foreach ( $queue as $path => $mtime ) {
 			$json = file_get_contents( $path );
 			if ( $json === false ) {
@@ -212,14 +213,14 @@ class ExtensionRegistry {
 
 			// Check any constraints against MediaWiki core
 			$requires = $processor->getRequirements( $info );
-			if ( isset( $requires[self::MEDIAWIKI_CORE] )
-				&& !$coreVersionParser->check( $requires[self::MEDIAWIKI_CORE] )
-			) {
-				// Doesn't match, mark it as incompatible.
-				$incompatible[] = "{$info['name']} is not compatible with the current "
-					. "MediaWiki core (version {$wgVersion}), it requires: " . $requires[self::MEDIAWIKI_CORE]
-					. '.';
-				continue;
+			if ( $requires ) {
+				$versionCheck = $versionParser->checkArray(
+					[ $info['name'] => $requires ]
+				);
+				$incompatible = array_merge( $incompatible, $versionCheck );
+				if ( $versionCheck ) {
+					continue;
+				}
 			}
 
 			if ( !isset( $info['manifest_version'] ) ) {
