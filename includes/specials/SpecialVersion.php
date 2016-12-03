@@ -790,7 +790,7 @@ class SpecialVersion extends SpecialPage {
 				$licenseName = $this->msg( 'version-ext-license' )->escaped();
 			}
 			if ( $licenseName !== null ) {
-				$licenseLink = Linker::link(
+				$licenseLink = $this->getLinkRenderer()->makeLink(
 					$this->getPageTitle( 'License/' . $extension['name'] ),
 					$licenseName,
 					[
@@ -963,9 +963,9 @@ class SpecialVersion extends SpecialPage {
 				$hasOthers = true;
 
 				if ( $extName && $this->getExtAuthorsFileName( $extDir ) ) {
-					$text = Linker::link(
+					$text = $this->getLinkRenderer()->makeLink(
 						$this->getPageTitle( "Credits/$extName" ),
-						$this->msg( 'version-poweredby-others' )->escaped()
+						$this->msg( 'version-poweredby-others' )->plain()
 					);
 				} else {
 					$text = $this->msg( 'version-poweredby-others' )->escaped();
@@ -982,9 +982,9 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		if ( $extName && !$hasOthers && $this->getExtAuthorsFileName( $extDir ) ) {
-			$list[] = $text = Linker::link(
+			$list[] = $text = $this->getLinkRenderer()->makeLink(
 				$this->getPageTitle( "Credits/$extName" ),
-				$this->msg( 'version-poweredby-others' )->escaped()
+				$this->msg( 'version-poweredby-others' )->plain()
 			);
 		}
 
