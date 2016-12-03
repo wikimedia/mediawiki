@@ -441,4 +441,32 @@ mw.example();
 			$this->assertTrue( true );
 		}
 	}
+
+	/**
+	 * Verify that when building module content in a load.php response,
+	 * an exception from the one module class will not breka content
+	 * from another module.
+	 */
+	public function testGetScriptError() {
+		$rl = new EmptyResourceLoader();
+
+		$ferry = $this->getMockBuilder( ResourceLoaderTestModule::class )->getMock();
+		$ferry->method( 'getScript' )
+			->will( $this->throwException( new Exception( 'File not found' ) ) );
+
+		$foo = $this->getMockBuilder( ResourceLoaderTestModule::class )->getMock();
+		$foo->method( 'getScript' )
+			->willReturn( 'foo();' );
+
+		$bar = $this->getMockBuilder( ResourceLoaderTestModule::class )->getMock();
+		$bar->method( 'getScript' )
+			->willReturn( 'bar();' );
+
+		$resourceLoader = new EmptyResourceLoader();
+		$resourceLoader->register( 'foo', $foo );
+		$resourceLoader->register( 'ferry', $ferry );
+		$resourceLoader->register( 'bar', $bar );
+
+		$response = $rl->makeModuleResponse();
+	}
 }
