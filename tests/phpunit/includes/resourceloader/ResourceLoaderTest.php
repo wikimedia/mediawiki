@@ -14,6 +14,10 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 				'Foo' => '#eeeeee',
 				'bar' => 5,
 			],
+			// Clear ResourceLoaderGetConfigVars hooks (called by StartupModule)
+			// to avoid notices during testMakeModuleResponse for missing
+			// wgResourceLoaderLESSVars keys in extension hooks.
+			'wgHooks' => [],
 		] );
 	}
 
@@ -440,5 +444,110 @@ mw.example();
 		} catch ( MWException $e ) {
 			$this->assertTrue( true );
 		}
+	}
+
+	/**
+	 * Verify that when building module content in a load.php response,
+	 * an exception from one module will not break script output from
+	 * other modules.
+	 */
+	public function testMakeModuleResponseError() {
+		$ferry = $this->getMockBuilder( ResourceLoaderTestModule::class )
+			->setMethods( [ 'getScript' ] )
+			->getMock();
+		$ferry->method( 'getScript' )->will( $this->throwException(
+			new Exception( 'Ferry not found' )
+		) );
+
+		$foo = $this->getMockBuilder( ResourceLoaderTestModule::class )
+			->setMethods( [ 'getScript' ] )
+			->getMock();
+		$foo->method( 'getScript' )->willReturn( 'foo();' );
+
+		$bar = $this->getMockBuilder( ResourceLoaderTestModule::class )
+			->setMethods( [ 'getScript' ] )
+			->getMock();
+		$bar->method( 'getScript' )->willReturn( 'bar();' );
+
+		$modules = [
+			'foo' => $foo,
+			'ferry' => $ferry,
+			'bar' => $bar,
+		];
+		$rl = new EmptyResourceLoader();
+		$rl->register( $modules );
+		$context = $this->getResourceLoaderContext( [
+			'modules' => 'foo|ferry|bar',
+			'only' => 'scripts',
+		] );
+
+		$response = $rl->makeModuleResponse( $context, $modules );
+		$errors = $rl->getErrors();
+
+		$this->assertCount( 1, $errors );
+		$this->assertRegExp( '/Ferry not found/', $errors[0] );
+		$this->assertEquals(
+			'foo();bar();mw.loader.state( {
+    "ferry": "error",
+    "foo": "ready",
+    "bar": "ready"
+} );',
+			$response
+		);
+	}
+
+	/**
+	 * Verify that when building the startup module response,
+	 * an exception from one module class will not break the entire
+	 * startup module response.
+	 */
+	public function testMakeModuleResponseStartupError() {
+		$ferry = $this->getMockBuilder( ResourceLoaderTestModule::class )
+			->setMethods( [ 'getScript' ] )
+			->getMock();
+		$ferry->method( 'getScript' )->will( $this->throwException(
+			new Exception( 'Ferry not found' )
+		) );
+		$foo = $this->getMockBuilder( ResourceLoaderTestModule::class )
+			->setMethods( [ 'getScript' ] )
+			->getMock();
+		$foo->method( 'getScript' )->willReturn( 'foo();' );
+		$bar = $this->getMockBuilder( ResourceLoaderTestModule::class )
+			->setMethods( [ 'getScript' ] )
+			->getMock();
+		$bar->method( 'getScript' )->willReturn( 'bar();' );
+
+		$rl = new EmptyResourceLoader();
+		$rl->register( [
+			'foo' => $foo,
+			'ferry' => $ferry,
+			'bar' => $bar,
+			'startup' => [ 'class' => 'ResourceLoaderStartUpModule' ],
+		] );
+		$context = $this->getResourceLoaderContext(
+			[
+				'modules' => 'startup',
+				'only' => 'scripts',
+			],
+			$rl
+		);
+
+		$this->assertEquals(
+			[ 'foo', 'ferry', 'bar', 'startup' ],
+			$rl->getModuleNames(),
+			'getModuleNames'
+		);
+
+		$modules = [ 'startup' => $rl->getModule( 'startup' ) ];
+		$response = $rl->makeModuleResponse( $context, $modules );
+		$errors = $rl->getErrors();
+
+		$this->assertRegExp( '/Ferry not found/', $errors[0] );
+		$this->assertRegExp( '/Problematic module.*"startup"/s', $errors[1] );
+		$this->assertCount( 2, $errors );
+		$this->assertEquals(
+			'',
+			$response
+		);
 	}
 }
