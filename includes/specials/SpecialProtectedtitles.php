@@ -84,7 +84,7 @@ class SpecialProtectedtitles extends SpecialPage {
 			) . "\n";
 		}
 
-		$link = Linker::link( $title );
+		$link = $this->getLinkRenderer()->makeLink( $title );
 		$description_items = [];
 		// Messages: restriction-level-sysop, restriction-level-autoconfirmed
 		$protType = $this->msg( 'restriction-level-' . $row->pt_create_perm )->escaped();

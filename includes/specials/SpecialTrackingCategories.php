@@ -89,19 +89,21 @@ class SpecialTrackingCategories extends SpecialPage {
 
 		Hooks::run( 'SpecialTrackingCategories::preprocess', [ $this, $trackingCategories ] );
 
+		$linkRenderer = $this->getLinkRenderer();
+
 		foreach ( $trackingCategories as $catMsg => $data ) {
 			$allMsgs = [];
 			$catDesc = $catMsg . '-desc';
 
-			$catMsgTitleText = Linker::link(
+			$catMsgTitleText = $linkRenderer->makeLink(
 				$data['msg'],
-				htmlspecialchars( $catMsg )
+				$catMsg
 			);
 
 			foreach ( $data['cats'] as $catTitle ) {
-				$html = Linker::link(
+				$html = $linkRenderer->makeLink(
 					$catTitle,
-					htmlspecialchars( $catTitle->getText() )
+					$catTitle->getText()
 				);
 
 				Hooks::run( 'SpecialTrackingCategories::generateCatLink',
