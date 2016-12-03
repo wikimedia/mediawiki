@@ -2,6 +2,8 @@
 
 class ExtensionProcessor implements Processor {
 
+	const CONTENT_MODEL_CONSTANT_PREFIX = 'CONTENT_MODEL_';
+	const CONTENT_FORMAT_CONSTANT_PREFIX = 'CONTENT_FORMAT_';
 	/**
 	 * Keys that should be set to $GLOBALS
 	 *
@@ -21,7 +23,6 @@ class ExtensionProcessor implements Processor {
 		'CentralIdLookupProviders',
 		'ChangeCredentialsBlacklist',
 		'ConfigRegistry',
-		'ContentHandlers',
 		'DefaultUserOptions',
 		'ExtensionEntryPointListFiles',
 		'ExtensionFunctions',
@@ -177,6 +178,7 @@ class ExtensionProcessor implements Processor {
 		$this->extractExtensionMessagesFiles( $dir, $info );
 		$this->extractMessagesDirs( $dir, $info );
 		$this->extractNamespaces( $info );
+		$this->extractContentHandlers( $info );
 		$this->extractResourceLoaderModules( $dir, $info );
 		$this->extractServiceWiringFiles( $dir, $info );
 		$this->extractParserTestFiles( $dir, $info );
@@ -270,6 +272,49 @@ class ExtensionProcessor implements Processor {
 				if ( isset( $ns['capitallinkoverride'] ) ) {
 					$this->globals['wgCapitalLinkOverrides'][$id] = $ns['capitallinkoverride'];
 				}
+			}
+		}
+	}
+
+	/**
+	 * Register ContentHandlers with the appropriate global settings
+	 * @param array $info
+	 * @throws MWException If one ContentHandler is already registered or the format of the
+	 *  ContentHandler definition is invalid.
+	 */
+	protected function extractContentHandlers( array $info ) {
+		if ( !isset( $info['ContentHandlers'] ) ) {
+			return;
+		}
+
+		foreach ( $info['ContentHandlers'] as $chName => $chData ) {
+			$chConstant = self::CONTENT_MODEL_CONSTANT_PREFIX;
+			if ( isset( $chData['model_constant'] ) ) {
+				$chConstant .= $chData['model_constant'];
+			} else {
+				$chConstant .= strtoupper( $chName );
+			}
+			// check, if constant is already in use
+			if ( defined( $chConstant ) || isset( $this->defines[$chConstant] ) ) {
+				throw new MWException( $info['name'] . ' tried to register the ContentHandler ' .
+					$chName . ', which is already in use.' );
+			}
+
+			define( $chConstant, $chName );
+			if ( is_array( $chData ) && isset( $chData['handler'] ) ) {
+				$this->globals['wgContentHandlers'][$chName] = $chData['handler'];
+			} elseif ( !is_array( $chData ) ) {
+				$this->globals['wgContentHandlers'][$chName] = $chData;
+			} else {
+				throw new MWException( 'Invalid format for ContentHandlers provided by ' .
+					$info['name'] );
+			}
+
+			if ( isset( $chData['format_constant'] ) && isset( $chData['format'] ) ) {
+				define(
+					self::CONTENT_FORMAT_CONSTANT_PREFIX . strtoupper( $chData['format_constant'] ),
+					$chData['format']
+				);
 			}
 		}
 	}

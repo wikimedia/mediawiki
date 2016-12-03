@@ -527,7 +527,26 @@
 			"description": "Mapping of model ID to class name",
 			"patternProperties": {
 				"^[A-Za-z]+$": {
-					"type": "string"
+					"type": [ "string", "object" ],
+					"properties": {
+						"handler": {
+							"type": "string",
+							"description": "The full qualified class name, which handles the content model."
+						},
+						"model_constant": {
+							"type": "string",
+							"description": "The name of the content model constant (without CONTENT_MODEL_).",
+							"default": "Defaults to a computation of \"CONTENT_MODEL_\" and the key of this object in uppercase letters. E.g. if the key of this object is \"Test\", the constant name would be \"CONTENT_MODEL_TEST\"."
+						},
+						"format_constant": {
+							"type": "string",
+							"description": "The name of the content format constant (withhout CONTENT_FORMAT_). If not set, the constant will not be set!"
+						},
+						"format": {
+							"type": "string",
+							"description": "The name of the format of the content handler, will be the value of the CONTENT_FORMAT_ constant. If not set, the constant CONTENT_FORMAT_ will not be set!"
+						}
+					}
 				}
 			}
 		},
