@@ -200,9 +200,9 @@ class SpecialStatistics extends SpecialPage {
 			$linkTarget = Title::newFromText( $grouppageLocalized );
 
 			if ( $linkTarget ) {
-				$grouppage = Linker::link(
+				$grouppage = $this->getLinkRenderer()->makeLink(
 					$linkTarget,
-					htmlspecialchars( $groupnameLocalized )
+					$groupnameLocalized
 				);
 			} else {
 				$grouppage = htmlspecialchars( $groupnameLocalized );
