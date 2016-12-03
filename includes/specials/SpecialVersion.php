@@ -785,12 +785,12 @@ class SpecialVersion extends SpecialPage {
 		if ( isset( $extension['name'] ) ) {
 			$licenseName = null;
 			if ( isset( $extension['license-name'] ) ) {
-				$licenseName = $out->parseInline( $extension['license-name'] );
+				$licenseName = new HtmlArmor( $out->parseInline( $extension['license-name'] ) );
 			} elseif ( $this->getExtLicenseFileName( $extensionPath ) ) {
-				$licenseName = $this->msg( 'version-ext-license' )->escaped();
+				$licenseName = $this->msg( 'version-ext-license' )->text();
 			}
 			if ( $licenseName !== null ) {
-				$licenseLink = Linker::link(
+				$licenseLink = $this->getLinkRenderer()->makeLink(
 					$this->getPageTitle( 'License/' . $extension['name'] ),
 					$licenseName,
 					[
@@ -956,6 +956,7 @@ class SpecialVersion extends SpecialPage {
 	 */
 	public function listAuthors( $authors, $extName, $extDir ) {
 		$hasOthers = false;
+		$linkRenderer = $this->getLinkRenderer();
 
 		$list = [];
 		foreach ( (array)$authors as $item ) {
@@ -963,9 +964,9 @@ class SpecialVersion extends SpecialPage {
 				$hasOthers = true;
 
 				if ( $extName && $this->getExtAuthorsFileName( $extDir ) ) {
-					$text = Linker::link(
+					$text = $linkRenderer->makeLink(
 						$this->getPageTitle( "Credits/$extName" ),
-						$this->msg( 'version-poweredby-others' )->escaped()
+						$this->msg( 'version-poweredby-others' )->text()
 					);
 				} else {
 					$text = $this->msg( 'version-poweredby-others' )->escaped();
@@ -982,9 +983,9 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		if ( $extName && !$hasOthers && $this->getExtAuthorsFileName( $extDir ) ) {
-			$list[] = $text = Linker::link(
+			$list[] = $text = $linkRenderer->makeLink(
 				$this->getPageTitle( "Credits/$extName" ),
-				$this->msg( 'version-poweredby-others' )->escaped()
+				$this->msg( 'version-poweredby-others' )->text()
 			);
 		}
 
