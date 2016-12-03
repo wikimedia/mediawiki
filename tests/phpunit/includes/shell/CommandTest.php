@@ -57,6 +57,33 @@ class CommandTest extends PHPUnit_Framework_TestCase {
 		$this->assertSame( "bar\n", $result->getStdout() );
 	}
 
+	public function testStdout() {
+		$this->requirePosix();
+
+		$command = new Command();
+
+		$result = $command
+			->params( 'bash', '-c', 'echo ThisIsStderr 1>&2' )
+			->execute();
+
+		$this->assertNotContains( 'ThisIsStderr', $result->getStdout() );
+		$this->assertEquals( "ThisIsStderr\n", $result->getStderr() );
+	}
+
+	public function testStdoutRedirection() {
+		$this->requirePosix();
+
+		$command = new Command();
+
+		$result = $command
+			->params( 'bash', '-c', 'echo ThisIsStderr 1>&2' )
+			->includeStderr( true )
+			->execute();
+
+		$this->assertEquals( "ThisIsStderr\n", $result->getStdout() );
+		$this->assertNull( $result->getStderr() );
+	}
+
 	public function testOutput() {
 		global $IP;
 
