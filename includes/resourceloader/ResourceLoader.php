@@ -976,7 +976,9 @@ class ResourceLoader implements LoggerAwareInterface {
 			return MWExceptionHandler::getPublicLogMessage( $e );
 		}
 
-		return MWExceptionHandler::getLogMessage( $e );
+		return MWExceptionHandler::getLogMessage( $e ) .
+			"\nBacktrace:\n" .
+			MWExceptionHandler::getRedactedTraceAsString( $e );
 	}
 
 	/**
