@@ -15,10 +15,14 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 	 * @param string $dir
 	 * @return ResourceLoaderContext
 	 */
-	protected function getResourceLoaderContext( $lang = 'en', $dir = 'ltr' ) {
+	protected function getResourceLoaderContext( $options = [] ) {
+		$options += [
+			'lang' => 'en',
+			'dir' => 'ltr',
+		];
 		$resourceLoader = new ResourceLoader();
 		$request = new FauxRequest( [
-				'lang' => $lang,
+				'lang' => $options['lang'],
 				'modules' => 'startup',
 				'only' => 'scripts',
 				'skin' => 'vector',
@@ -28,7 +32,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 			->setConstructorArgs( [ $resourceLoader, $request ] )
 			->setMethods( [ 'getDirection' ] )
 			->getMock();
-		$ctx->method( 'getDirection' )->willReturn( $dir );
+		$ctx->method( 'getDirection' )->willReturn( $options['dir'] );
 		return $ctx;
 	}
 
