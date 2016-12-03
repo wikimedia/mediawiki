@@ -34,7 +34,8 @@ DROP FUNCTION IF EXISTS add_interwiki(TEXT,INT,SMALLINT) CASCADE;
 DROP TYPE IF EXISTS media_type CASCADE;
 
 CREATE SEQUENCE user_user_id_seq MINVALUE 0 START WITH 0;
-CREATE TABLE mwuser ( -- replace reserved word 'user'
+DROP TABLE IF EXISTS user;
+CREATE TABLE user ( -- replace reserved word 'user'
   user_id                   INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('user_user_id_seq'),
   user_name                 TEXT     NOT NULL  UNIQUE,
   user_real_name            TEXT,
@@ -51,26 +52,26 @@ CREATE TABLE mwuser ( -- replace reserved word 'user'
   user_editcount            INTEGER,
   user_password_expires     TIMESTAMPTZ NULL
 );
-CREATE INDEX user_email_token_idx ON mwuser (user_email_token);
+CREATE INDEX user_email_token_idx ON user (user_email_token);
 
 -- Create a dummy user to satisfy fk contraints especially with revisions
-INSERT INTO mwuser
+INSERT INTO user
   VALUES (DEFAULT,'Anonymous','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,now(),now());
 
 CREATE TABLE user_groups (
-  ug_user   INTEGER      NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  ug_user   INTEGER      NULL  REFERENCES user(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   ug_group  TEXT     NOT NULL
 );
 CREATE UNIQUE INDEX user_groups_unique ON user_groups (ug_user, ug_group);
 
 CREATE TABLE user_former_groups (
-  ufg_user   INTEGER      NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  ufg_user   INTEGER      NULL  REFERENCES user(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   ufg_group  TEXT     NOT NULL
 );
 CREATE UNIQUE INDEX ufg_user_group ON user_former_groups (ufg_user, ufg_group);
 
 CREATE TABLE user_newtalk (
-  user_id              INTEGER      NOT NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  user_id              INTEGER      NOT NULL  REFERENCES user(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   user_ip              TEXT             NULL,
   user_last_timestamp  TIMESTAMPTZ
 );
@@ -130,7 +131,7 @@ CREATE TABLE revision (
   rev_page           INTEGER          NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   rev_text_id        INTEGER          NULL, -- FK
   rev_comment        TEXT,
-  rev_user           INTEGER      NOT NULL  REFERENCES mwuser(user_id) ON DELETE RESTRICT DEFERRABLE INITIALLY DEFERRED,
+  rev_user           INTEGER      NOT NULL  REFERENCES user(user_id) ON DELETE RESTRICT DEFERRABLE INITIALLY DEFERRED,
   rev_user_text      TEXT         NOT NULL,
   rev_timestamp      TIMESTAMPTZ  NOT NULL,
   rev_minor_edit     SMALLINT     NOT NULL  DEFAULT 0,
@@ -189,7 +190,7 @@ CREATE TABLE archive (
   ar_parent_id      INTEGER          NULL,
   ar_sha1           TEXT         NOT NULL DEFAULT '',
   ar_comment        TEXT,
-  ar_user           INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
+  ar_user           INTEGER          NULL  REFERENCES user(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   ar_user_text      TEXT         NOT NULL,
   ar_timestamp      TIMESTAMPTZ  NOT NULL,
   ar_minor_edit     SMALLINT     NOT NULL  DEFAULT 0,
@@ -287,8 +288,8 @@ CREATE SEQUENCE ipblocks_ipb_id_seq;
 CREATE TABLE ipblocks (
   ipb_id                INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('ipblocks_ipb_id_seq'),
   ipb_address           TEXT             NULL,
-  ipb_user              INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
-  ipb_by                INTEGER      NOT NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  ipb_user              INTEGER          NULL  REFERENCES user(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
+  ipb_by                INTEGER      NOT NULL  REFERENCES user(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   ipb_by_text           TEXT         NOT NULL  DEFAULT '',
   ipb_reason            TEXT         NOT NULL,
   ipb_timestamp         TIMESTAMPTZ  NOT NULL,
@@ -322,7 +323,7 @@ CREATE TABLE image (
   img_major_mime   TEXT                DEFAULT 'unknown',
   img_minor_mime   TEXT                DEFAULT 'unknown',
   img_description  TEXT      NOT NULL,
-  img_user         INTEGER       NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
+  img_user         INTEGER       NULL  REFERENCES user(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   img_user_text    TEXT      NOT NULL,
   img_timestamp    TIMESTAMPTZ,
   img_sha1         TEXT      NOT NULL  DEFAULT ''
@@ -339,7 +340,7 @@ CREATE TABLE oldimage (
   oi_height        INTEGER      NOT NULL,
   oi_bits          SMALLINT         NULL,
   oi_description   TEXT,
-  oi_user          INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
+  oi_user          INTEGER          NULL  REFERENCES user(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   oi_user_text     TEXT         NOT NULL,
   oi_timestamp     TIMESTAMPTZ      NULL,
   oi_metadata      BYTEA        NOT NULL DEFAULT '',
@@ -362,7 +363,7 @@ CREATE TABLE filearchive (
   fa_archive_name       TEXT,
   fa_storage_group      TEXT,
   fa_storage_key        TEXT,
-  fa_deleted_user       INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
+  fa_deleted_user       INTEGER          NULL  REFERENCES user(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   fa_deleted_timestamp  TIMESTAMPTZ  NOT NULL,
   fa_deleted_reason     TEXT,
   fa_size               INTEGER      NOT NULL,
@@ -374,7 +375,7 @@ CREATE TABLE filearchive (
   fa_major_mime         TEXT                   DEFAULT 'unknown',
   fa_minor_mime         TEXT                   DEFAULT 'unknown',
   fa_description        TEXT         NOT NULL,
-  fa_user               INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
+  fa_user               INTEGER          NULL  REFERENCES user(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   fa_user_text          TEXT         NOT NULL,
   fa_timestamp          TIMESTAMPTZ,
   fa_deleted            SMALLINT     NOT NULL DEFAULT 0,
@@ -419,7 +420,7 @@ CREATE TABLE recentchanges (
   rc_id              INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('recentchanges_rc_id_seq'),
   rc_timestamp       TIMESTAMPTZ  NOT NULL,
   rc_cur_time        TIMESTAMPTZ      NULL,
-  rc_user            INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
+  rc_user            INTEGER          NULL  REFERENCES user(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   rc_user_text       TEXT         NOT NULL,
   rc_namespace       SMALLINT     NOT NULL,
   rc_title           TEXT         NOT NULL,
@@ -454,7 +455,7 @@ CREATE INDEX rc_name_type_patrolled_timestamp ON recentchanges (rc_namespace, rc
 CREATE SEQUENCE watchlist_wl_id_seq;
 CREATE TABLE watchlist (
   wl_id                     INTEGER     NOT NULL  PRIMARY KEY DEFAULT nextval('watchlist_wl_id_seq'),
-  wl_user                   INTEGER     NOT NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  wl_user                   INTEGER     NOT NULL  REFERENCES user(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   wl_namespace              SMALLINT    NOT NULL  DEFAULT 0,
   wl_title                  TEXT        NOT NULL,
   wl_notificationtimestamp  TIMESTAMPTZ
@@ -519,7 +520,7 @@ CREATE TABLE logging (
   log_type        TEXT         NOT NULL,
   log_action      TEXT         NOT NULL,
   log_timestamp   TIMESTAMPTZ  NOT NULL,
-  log_user        INTEGER                REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
+  log_user        INTEGER                REFERENCES user(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   log_namespace   SMALLINT     NOT NULL,
   log_title       TEXT         NOT NULL,
   log_comment     TEXT,
@@ -628,7 +629,7 @@ CREATE UNIQUE INDEX pf_name_server ON profiling (pf_name, pf_server);
 CREATE TABLE protected_titles (
   pt_namespace   SMALLINT    NOT NULL,
   pt_title       TEXT        NOT NULL,
-  pt_user        INTEGER         NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
+  pt_user        INTEGER         NULL  REFERENCES user(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   pt_reason      TEXT            NULL,
   pt_timestamp   TIMESTAMPTZ NOT NULL,
   pt_expiry      TIMESTAMPTZ     NULL,
@@ -686,7 +687,7 @@ CREATE TABLE valid_tag (
 );
 
 CREATE TABLE user_properties (
-  up_user     INTEGER      NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  up_user     INTEGER      NULL  REFERENCES user(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   up_property TEXT     NOT NULL,
   up_value    TEXT
 );
