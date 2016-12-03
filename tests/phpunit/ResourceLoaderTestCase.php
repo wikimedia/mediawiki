@@ -11,14 +11,23 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 	const BLANK_VERSION = '09p30q0';
 
 	/**
-	 * @param string $lang
-	 * @param string $dir
+	 * @param array|string $options Language code or options array
+	 * - string 'lang' Language code
+	 * - string 'dir' Language direction (ltr or rtl)
 	 * @return ResourceLoaderContext
 	 */
-	protected function getResourceLoaderContext( $lang = 'en', $dir = 'ltr' ) {
+	protected function getResourceLoaderContext( $options = [] ) {
+		if ( is_string( $options ) ) {
+			// Back-compat for extension tests
+			$options = [ 'lang' => $options ];
+		}
+		$options += [
+			'lang' => 'en',
+			'dir' => 'ltr',
+		];
 		$resourceLoader = new ResourceLoader();
 		$request = new FauxRequest( [
-				'lang' => $lang,
+				'lang' => $options['lang'],
 				'modules' => 'startup',
 				'only' => 'scripts',
 				'skin' => 'vector',
@@ -28,7 +37,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 			->setConstructorArgs( [ $resourceLoader, $request ] )
 			->setMethods( [ 'getDirection' ] )
 			->getMock();
-		$ctx->method( 'getDirection' )->willReturn( $dir );
+		$ctx->method( 'getDirection' )->willReturn( $options['dir'] );
 		return $ctx;
 	}
 
