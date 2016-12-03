@@ -44,6 +44,9 @@ class ShellCommand {
 	/** @var string|null */
 	private $output;
 
+	/** @var string|null */
+	private $stderr;
+
 	/** @var int|null */
 	private $exitCode;
 
@@ -293,7 +296,10 @@ class ShellCommand {
 				} elseif ( $fd == 1 ) {
 					// From stdout
 					$outBuffer .= $block;
-				} elseif ( $fd == 3 ) {
+				} elseif ( $fd == 2 ) {
+					// From stderr
+					$this->stderr .= $block;
+ 				} elseif ( $fd == 3 ) {
 					// From log FD
 					$logBuffer .= $block;
 					if ( strpos( $block, "\n" ) !== false ) {
@@ -372,4 +378,13 @@ class ShellCommand {
 		return $this->output;
 	}
 
+	/**
+	 * Returns stdout
+	 * - If execute() wasn't called yet, null will be returned
+	 *
+	 * @return string|null
+	 */
+	public function getErrorOutput() {
+		return $this->stderr;
+	}
 }
