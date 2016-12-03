@@ -256,6 +256,7 @@ class Command {
 			throw new ProcOpenError();
 		}
 		$outBuffer = $logBuffer = '';
+		$errBuffer = null;
 		$emptyArray = [];
 		$status = false;
 		$logMsg = false;
@@ -321,6 +322,9 @@ class Command {
 					break 2;
 				} elseif ( $fd == 1 ) {
 					// From stdout
+					$errBuffer .= $block;
+				} elseif ( $fd == 2 ) {
+					// From stderr
 					$outBuffer .= $block;
 				} elseif ( $fd == 3 ) {
 					// From log FD
@@ -372,6 +376,6 @@ class Command {
 			wfDebugLog( 'exec', "$logMsg: $cmd" );
 		}
 
-		return new Result( $retval, $outBuffer );
+		return new Result( $retval, $outBuffer, $errBuffer );
 	}
 }

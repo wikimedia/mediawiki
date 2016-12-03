@@ -35,6 +35,7 @@ namespace MediaWiki\Shell;
  *
  *  ... = $result->getExitCode();
  *  ... = $result->getStdout();
+ *  ... = $result->getStderr();
  */
 class Shell {
 
