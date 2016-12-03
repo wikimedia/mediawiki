@@ -8,8 +8,14 @@ class CoreVersionCheckerTest extends PHPUnit_Framework_TestCase {
 	 * @dataProvider provideCheck
 	 */
 	public function testCheck( $coreVersion, $constraint, $expected ) {
-		$checker = new CoreVersionChecker( $coreVersion );
-		$this->assertEquals( $expected, $checker->check( $constraint ) );
+		$checker = new VersionChecker();
+		$checker->setCoreVersion( $coreVersion );
+		$this->assertEquals( $expected, !(bool)$checker->checkArray( [
+			'FakeExtension' => [
+				'MediaWiki' => $constraint,
+			],
+		] )
+		);
 	}
 
 	public static function provideCheck() {
