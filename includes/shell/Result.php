@@ -32,13 +32,17 @@ class Result {
 	/** @var string */
 	private $stdout;
 
+	/** @var string|null */
+	private $stderr;
+
 	/**
 	 * @param int $exitCode
 	 * @param string $stdout
 	 */
-	public function __construct( $exitCode, $stdout ) {
+	public function __construct( $exitCode, $stdout, $stderr = null ) {
 		$this->exitCode = $exitCode;
 		$this->stdout = $stdout;
+		$this->stderr = $stderr;
 	}
 
 	/**
@@ -57,5 +61,14 @@ class Result {
 	 */
 	public function getStdout() {
 		return $this->stdout;
+	}
+
+	/**
+	 * Returns stderr of the process
+	 *
+	 * @return string|null
+	 */
+	public function getStderr() {
+		return $this->stderr;
 	}
 }
