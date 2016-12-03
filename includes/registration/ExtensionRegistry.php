@@ -198,9 +198,7 @@ class ExtensionRegistry {
 		$autoloadClasses = [];
 		$autoloaderPaths = [];
 		$processor = new ExtensionProcessor();
-		$incompatible = [];
-		$versionParser = new VersionChecker();
-		$versionParser->setCoreVersion( $wgVersion );
+		$extDependencies = [];
 		foreach ( $queue as $path => $mtime ) {
 			$json = file_get_contents( $path );
 			if ( $json === false ) {
@@ -211,25 +209,9 @@ class ExtensionRegistry {
 				throw new Exception( "$path is not a valid JSON file." );
 			}
 
-			// Check any constraints against MediaWiki core
-			$requires = $processor->getRequirements( $info );
-			if ( $requires ) {
-				$versionCheck = $versionParser->checkArray(
-					[ $info['name'] => $requires ]
-				);
-				$incompatible = array_merge( $incompatible, $versionCheck );
-				if ( $versionCheck ) {
-					continue;
-				}
-			}
-
 			if ( !isset( $info['manifest_version'] ) ) {
 				// For backwards-compatability, assume a version of 1
 				$info['manifest_version'] = 1;
-			}
-			$version = $info['manifest_version'];
-			if ( $version < self::OLDEST_MANIFEST_VERSION || $version > self::MANIFEST_VERSION ) {
-				throw new Exception( "$path: unsupported manifest_version: {$version}" );
 			}
 
 			$autoload = $this->processAutoLoader( dirname( $path ), $info );
@@ -237,12 +219,31 @@ class ExtensionRegistry {
 			$GLOBALS['wgAutoloadClasses'] += $autoload;
 			$autoloadClasses += $autoload;
 
+			// get all requirements/dependencies for this extension
+			$requires = $processor->getRequirements( $info );
+
+			// validate the information needed and add the requirements
+			if ( is_array( $requires ) && $requires && isset( $info['name'] ) ) {
+				$extDependencies[$info['name']] = $requires;
+			}
+			$manifestVersion = $info['manifest_version'];
+			$extDependencies[$info['name']]['manifest_version'] = $manifestVersion;
+
 			// Get extra paths for later inclusion
 			$autoloaderPaths = array_merge( $autoloaderPaths,
 				$processor->getExtraAutoloaderPaths( dirname( $path ), $info ) );
 			// Compatible, read and extract info
-			$processor->extractInfo( $path, $info, $version );
+			$processor->extractInfo( $path, $info, $manifestVersion );
 		}
+		$data = $processor->getExtractedInfo();
+
+		// check for incompatible extensions
+		$versionParser = new VersionChecker();
+		$incompatible = $versionParser
+			->setCoreVersion( $wgVersion )
+			->setLoadedExtensionsAndSkins( $data['credits'] )
+			->checkArray( $extDependencies );
+
 		if ( $incompatible ) {
 			if ( count( $incompatible ) === 1 ) {
 				throw new Exception( $incompatible[0] );
@@ -250,7 +251,7 @@ class ExtensionRegistry {
 				throw new Exception( implode( "\n", $incompatible ) );
 			}
 		}
-		$data = $processor->getExtractedInfo();
+
 		// Need to set this so we can += to it later
 		$data['globals']['wgAutoloadClasses'] = [];
 		$data['autoload'] = $autoloadClasses;

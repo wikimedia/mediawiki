@@ -36,12 +36,29 @@ class VersionChecker {
 	private $coreVersion = false;
 
 	/**
+	 * @var array Loaded extensions
+	 */
+	private $loaded = [];
+
+	/**
 	 * @var VersionParser
 	 */
 	private $versionParser;
 
 	public function __construct() {
 		$this->versionParser = new VersionParser();
+	}
+
+	/**
+	 * Set an array with credits of all loaded extensions and skins.
+	 *
+	 * @param array $credits An array of installed extensions with credits of them
+	 * @return VersionChecker $this
+	 */
+	public function setLoadedExtensionsAndSkins( array $credits ) {
+		$this->loaded = $credits;
+
+		return $this;
 	}
 
 	/**
@@ -71,7 +88,10 @@ class VersionChecker {
 	 * Example $extDependencies:
 	 *	{
 	 *		'GoogleAPIClient' => {
-	 *			'MediaWiki' => '>= 1.25.0'
+	 *			'MediaWiki' => '>= 1.25.0',
+	 * 			'extensions' => {
+	 * 				'FakeExtension' => '>= 1.25.0'
+	 * 			}
 	 *		}
 	 *	}
 	 *
@@ -87,6 +107,20 @@ class VersionChecker {
 						$errors = array_merge(
 							$errors,
 							$this->handleMediaWikiDependency( $values, $extension )
+						);
+						break;
+					case 'extensions':
+						foreach ( $values as $dependency => $constraint ) {
+							$errors = array_merge(
+								$errors,
+								$this->handleExtensionDependency( $dependency, $constraint, $extension )
+							);
+						}
+						break;
+					case 'manifest_version':
+						$errors = array_merge(
+							$errors,
+							$this->handleManifestVersion( $values, $extension )
 						);
 						break;
 					default:
@@ -124,5 +158,78 @@ class VersionChecker {
 		return [ "{$checkedExt} is not compatible with the current "
 		         . "MediaWiki core (version {$this->coreVersion->getPrettyString()}), it requires: " . $constraint
 		         . '.' ];
+	}
+
+	/**
+	 * Handle the manifest_version used in the passed extension. This will return an error, if
+	 * the version is smaller as the oldest supported version in this MediaWiki version, and if
+	 * the version is higher as the highest supported version. Otherwise this check won't fail.
+	 *
+	 * @param string $version The manigfest_version used in the extension
+	 * @param string $checkedExt The name of the extension, which is checked
+	 * @return array An empty array if the manifest_version is supported, an error-message otherwise
+	 */
+	private function handleManifestVersion( $version, $checkedExt ) {
+		if (
+			$version < ExtensionRegistry::OLDEST_MANIFEST_VERSION ||
+			$version > ExtensionRegistry::MANIFEST_VERSION
+		) {
+			return [ "{$checkedExt}: unsupported manifest_version: {$version}" ];
+		}
+		return [];
+	}
+
+	/**
+	 * Handle a dependency to another extension.
+	 *
+	 * @param string $dependencyName The name of the dependency
+	 * @param string $constraint The required version constraint for this dependency
+	 * @param string $checkedExt The Extension, which depends on this dependency
+	 * @return array An empty array, if installed version is compatible with $constraint, an array
+	 *  with an error message, otherwise.
+	 */
+	private function handleExtensionDependency( $dependencyName, $constraint, $checkedExt ) {
+		$incompatible = [];
+		// Check if the dependency is even installed
+		if ( !isset( $this->loaded[$dependencyName] ) ) {
+			$incompatible[] = "{$checkedExt} requires {$dependencyName} to be installed.";
+			return $incompatible;
+		}
+		// Check if the dependency has specified a version
+		if ( !isset( $this->loaded[$dependencyName]['version'] ) ) {
+			// If we depend upon any version, and none is set, that's fine.
+			if ( $constraint === '*' ) {
+				wfDebug( "{$dependencyName} does not expose it's version, but {$checkedExt}
+					mentions it with constraint '*'. Assume it's ok so." );
+			} else {
+				// Otherwise, mark it as incompatible.
+				$incompatible[] = "{$dependencyName} does not expose it's version, but {$checkedExt}
+					requires: {$constraint}.";
+			}
+		} else {
+			// Try to get a constraint for the dependency version
+			try {
+				$installedVersion = new Constraint(
+					'==',
+					$this->versionParser->normalize( $this->loaded[$dependencyName]['version'] )
+				);
+			} catch ( UnexpectedValueException $e ) {
+				// Non-parsable version, don't fatal, output an error message that the version
+				// string is invalid
+				return [ "Dependency $dependencyName provides an invalid version string." ];
+			}
+			// Check if the constraint actually matches...
+			if (
+				isset( $installedVersion ) &&
+				!$this->versionParser->parseConstraints( $constraint )->matches( $installedVersion )
+			) {
+				$incompatible[] = "{$checkedExt} is not compatible with the current "
+				                  . "installed version of {$dependencyName} "
+				                  . "({$this->loaded[$dependencyName]['version']}), "
+				                  . "it requires: " . $constraint . '.';
+			}
+		}
+
+		return $incompatible;
 	}
 }
