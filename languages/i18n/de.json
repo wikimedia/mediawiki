@@ -2022,7 +2022,7 @@
 	"emailccsubject": "Kopie deiner Nachricht an $1: $2",
 	"emailsent": "E-Mail verschickt",
 	"emailsenttext": "Deine E-Mail wurde verschickt.",
-	"emailuserfooter": "Diese E-Mail wurde von „$1“ an „{{GENDER:$2|$2}}“ durch die Funktion „{{int:emailuser}}“ bei {{SITENAME}} {{GENDER:$1|gesendet}}.",
+	"emailuserfooter": "Diese E-Mail wurde von „$1“ an „{{GENDER:$2|$2}}“ durch die Funktion „{{int:emailuser}}“ bei {{SITENAME}} {{GENDER:$1|gesendet}}. {{GENDER:$2|Deine}} E-Mail wird direkt an {{GENDER:$1|den Originalabsender|die Originalabsenderin}} gesendet mit der Preisgabe {{GENDER:$2|deiner}} E-Mail-Adresse an {{GENDER:$1|ihn|sie}}.",
 	"usermessage-summary": "Systemnachricht gespeichert.",
 	"usermessage-editor": "System-Messenger",
 	"usermessage-template": "MediaWiki:Benutzernachricht",

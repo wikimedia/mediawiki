@@ -3,7 +3,8 @@
 		"authors": [
 			"Korrawit",
 			"Horus",
-			"Octahedron80"
+			"Octahedron80",
+			"Aefgh39622"
 		]
 	},
 	"config-desc": "ตัวติดตั้งสำหรับมีเดียวิกิ",
@@ -74,6 +75,7 @@
 	"config-admin-password": "รหัสผ่าน:",
 	"config-admin-password-confirm": "รหัสผ่านอีกครั้ง:",
 	"config-admin-email": "ที่อยู่อีเมล:",
+	"config-optional-continue": "ถามคำถามฉันอีก",
 	"config-license-pd": "สาธารณสมบัติ",
 	"config-extensions": "ส่วนขยาย",
 	"config-install-step-done": "เสร็จสิ้น",

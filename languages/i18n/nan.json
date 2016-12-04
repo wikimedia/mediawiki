@@ -7,7 +7,8 @@
 			"아라",
 			"唐吉訶德的侍從",
 			"Luuva",
-			"Macofe"
+			"Macofe",
+			"進也"
 		]
 	},
 	"tog-underline": "Liân-kiat oē té-sûn:",
@@ -1090,5 +1091,6 @@
 	"expandtemplates": "Khok-chhiong pang-bô͘",
 	"expand_templates_input": "Su-ji̍p bûn-jī:",
 	"expand_templates_output": "Kiat-kó:",
-	"expand_templates_remove_comments": "Comments the̍h tiāu"
+	"expand_templates_remove_comments": "Comments the̍h tiāu",
+	"mw-widgets-mediasearch-input-placeholder": "搜揣媒體"
 }

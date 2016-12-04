@@ -1981,7 +1981,7 @@
 	"emailccsubject": "Kopi av din beskjed til $1: $2",
 	"emailsent": "E-post sendt",
 	"emailsenttext": "E-postbeskjeden er sendt",
-	"emailuserfooter": "Denne e-posten ble {{GENDER:$1|sendt}} av $1 til {{GENDER:$2|$2}}  via funksjonen «{{int:emailuser}}» på {{SITENAME}}.",
+	"emailuserfooter": "Denne e-posten ble {{GENDER:$1|sendt}} av $1 til {{GENDER:$2|$2}}  via funksjonen «{{int:emailuser}}» på {{SITENAME}}. {{GENDER:$2|Din}} epost vil bli sendt direkte til {{GENDER:$1|opprinnelig avsender}} og avsløre {{GENDER:$2|din}} epost-addresse til {{GENDER:$1|dem}}.",
 	"usermessage-summary": "Etterlater en systembeskjed.",
 	"usermessage-editor": "Systembudbringer",
 	"watchlist": "Overvåkningsliste",

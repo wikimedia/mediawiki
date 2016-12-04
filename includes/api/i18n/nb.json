@@ -4,9 +4,11 @@
 			"Jeblad",
 			"Chameleon222",
 			"Macofe",
-			"Jon Harald Søby"
+			"Jon Harald Søby",
+			"Event"
 		]
 	},
+	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Dokumentasjon]]\n* [[mw:API:FAQ|Ofte stilte spørsmål]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api E-post-liste]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-kunngjøringer]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Feil & forespørsler]\n</div>\n<strong>Status:</strong> Alle funksjonene som vises på denne siden skal virke, men API-en er fortsatt i aktiv utvikling, og kan bli endret når som helst. Abonner på [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ MediaWiki sin API-kunnkjøringsepostliste] for nyheter om oppdateringer.\n\n<strong>Feile kall:</strong> Hvis det blir sendt feile kall til API-et, blir det sendt en HTTP-header med nøkkelen \"MediaWiki-API-Error\" og da blir både header-verdien og feilkoden sendt tilbake med samme verdi. For mer informasjon se [[mw:API:Errors_and_warnings|API: Feil og advarsler]].\n\n<strong>Testing:</strong> For enkelt å teste API-kall, se [[Special:ApiSandbox]].",
 	"apihelp-main-param-action": "Hvilken handling skal utføres",
 	"apihelp-main-param-format": "Resultatets format.",
 	"apihelp-main-param-assert": "Verifiser at brukeren er logget inn om satt til <kbd>user</kbd>, eller har botrettighet om satt til <kbd>bot</kbd>.",

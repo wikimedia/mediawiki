@@ -1942,7 +1942,7 @@
 	"emailccsubject": "Kopija tvojega sporočila iz $1: $2",
 	"emailsent": "E-pismo je poslano!",
 	"emailsenttext": "E-pismo je poslano.",
-	"emailuserfooter": "To e-poštno sporočilo je {{GENDER:$1|poslal|poslala|poslal(-a)}} $1 uporabniku {{GENDER:$2|$2}} s funkcijo »{{int:emailuser}}« na {{GRAMMAR:dative|{{SITENAME}}}}.",
+	"emailuserfooter": "To e-poštno sporočilo je {{GENDER:$1|poslal|poslala|poslal(-a)}} $1 uporabniku {{GENDER:$2|$2}} s funkcijo »{{int:emailuser}}« na {{GRAMMAR:dative|{{SITENAME}}}}. {{GENDER:$2|Vaše}} e-poštno sporočilo bo poslano neposredno {{GENDER:$1|izvornemu pošiljatelju|izvorni pošiljateljici}}, kar {{GENDER:$1|mu|ji}} bo razkrilo {{GENDER:$2|vaš}} e-poštni naslov.",
 	"usermessage-summary": "Pusti sistemsko sporočilo.",
 	"usermessage-editor": "Sistemski sporočevalec",
 	"watchlist": "Spisek nadzorov",

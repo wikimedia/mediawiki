@@ -2095,7 +2095,7 @@
 	"emailccsubject": "Copie de votre message à $1 : $2",
 	"emailsent": "Courriel envoyé",
 	"emailsenttext": "Votre message a été envoyé par courriel.",
-	"emailuserfooter": "Ce courriel a été {{GENDER:$1|envoyé}} par « $1 » à « {{GENDER:$2|$2}} » par la fonction « {{int:emailuser}} » de {{SITENAME}}.",
+	"emailuserfooter": "Ce courriel a été {{GENDER:$1|envoyé}} par « $1 » à « {{GENDER:$2|$2}} » par la fonction « {{int:emailuser}} » de {{SITENAME}}. {{GENDER:$2|Votre}} courriel sera envoyé directement à l'{{GENDER:$1|émetteur initial}}, en {{GENDER:$1|lui}} mentionnant {{GENDER:$2|votre}} adresse courriel .",
 	"usermessage-summary": "Laisser un message système.",
 	"usermessage-editor": "Messager du système",
 	"watchlist": "Liste de suivi",

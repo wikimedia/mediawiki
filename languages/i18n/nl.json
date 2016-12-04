@@ -2727,6 +2727,7 @@
 	"log-show-hide-patrol": "markeerlogboek $1",
 	"log-show-hide-tag": "labellogboek $1",
 	"confirm-markpatrolled-button": "OK",
+	"confirm-markpatrolled-top": "Wilt u bewerking $3 van $2 als gecontroleerd markeren?",
 	"deletedrevision": "De oude versie $1 is verwijderd",
 	"filedeleteerror-short": "Fout bij het verwijderen van bestand: $1",
 	"filedeleteerror-long": "Er zijn fouten opgetreden bij het verwijderen van het bestand:\n\n$1",

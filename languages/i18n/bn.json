@@ -3358,6 +3358,7 @@
 	"htmlform-user-not-exists": "<strong>$1</strong>-এর অস্তিত্ব নেই।",
 	"htmlform-user-not-valid": "<strong>$1</strong> একটি বৈধ ব্যবহারকারীর নাম নয়।",
 	"logentry-delete-delete": "$1 কর্তৃক $3 পাতাটি অপসারিত হয়েছে",
+	"logentry-delete-delete_redir": "$1 পুনর্লিখনের দ্বারা $3 পুনর্নির্দেশ {{GENDER:$2|অপসারণ করেছেন}}",
 	"logentry-delete-restore": "$1 কর্তৃক $3 পাতাটি {{GENDER:$2|ফিরিয়ে আনা}} হয়েছে",
 	"logentry-delete-event": "$1 {{PLURAL:$5|একটি লগ ইভেন্টের|$5 লগ ইভেন্টসমূহের}} দৃশ্যমানতা {{GENDER:$2|পরিবর্তন}} করেছেন $3: $4",
 	"logentry-delete-revision": "$1 {{PLURAL:$5|একটি সংস্করণের|$5টি সংস্করণের}} দৃশ্যমানতা {{GENDER:$2|পরিবর্তন}} করেছেন $3: $4",
