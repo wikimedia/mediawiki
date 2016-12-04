@@ -53,6 +53,7 @@
 }
 
 .transition( @value ) {
+	-webkit-backface-visibility: hidden; // fixes Chrome 1px movement bug
 	-webkit-transition: @value; // Safari 3.1-6.0, iOS 3.2-6.1, Android 2.1-4.3
 	-moz-transition: @value; // Firefox 4-15
 	transition: @value; // Chrome 26+, Firefox 16+, IE 10+, Safari 6.1+, Opera 12.1+, iOS 7+, Android 4.4+
