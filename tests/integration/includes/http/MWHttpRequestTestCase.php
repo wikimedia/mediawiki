@@ -175,8 +175,33 @@ class MWHttpRequestTestCase extends PHPUnit_Framework_TestCase {
 		$this->assertArrayHasKey( 'origin', $data );
 	}
 
+	public function testBasicAuthentication() {
+		$request = MWHttpRequest::factory( 'http://httpbin.org/basic-auth/user/pass', [
+			'username' => 'user',
+			'password' => 'pass',
+		] );
+		$status = $request->execute();
+		$this->assertTrue( $status->isGood() );
+		$this->assertResponseFieldValue( 'authenticated', true, $request );
+
+		$request = MWHttpRequest::factory( 'http://httpbin.org/basic-auth/user/pass', [
+			'username' => 'user',
+			'password' => 'wrongpass',
+		] );
+		$status = $request->execute();
+		$this->assertFalse( $status->isOK() );
+		$this->assertSame( 401, $request->getStatus() );
+	}
+
 	// --------------------
 
+	/**
+	 * Verifies that the request was successful, returned valid JSON and the given field of that
+	 * JSON data is as expected.
+	 * @param string|string[] $key Path to the data in the response object
+	 * @param mixed $expectedValue
+	 * @param MWHttpRequest $response
+	 */
 	protected function assertResponseFieldValue( $key, $expectedValue, MWHttpRequest $response ) {
 		$this->assertSame( 200, $response->getStatus(), 'response status is not 200' );
 		$data = json_decode( $response->getContent(), true );
@@ -190,6 +215,12 @@ class MWHttpRequestTestCase extends PHPUnit_Framework_TestCase {
 		$this->assertSame( $expectedValue, $data );
 	}
 
+	/**
+	 * Asserts that the cookie jar has the given cookie with the given value.
+	 * @param string $expectedName Cookie name
+	 * @param string $expectedValue Cookie value
+	 * @param CookieJar $cookieJar
+	 */
 	protected function assertHasCookie( $expectedName, $expectedValue, CookieJar $cookieJar ) {
 		$cookieJar = TestingAccessWrapper::newFromObject( $cookieJar );
 		$cookies = array_change_key_case( $cookieJar->cookie, CASE_LOWER );
@@ -199,6 +230,11 @@ class MWHttpRequestTestCase extends PHPUnit_Framework_TestCase {
 		$this->assertSame( $expectedValue, $cookie->value );
 	}
 
+	/**
+	 * Asserts that the cookie jar does not have the given cookie.
+	 * @param string $expectedName Cookie name
+	 * @param CookieJar $cookieJar
+	 */
 	protected function assertNotHasCookie( $name, CookieJar $cookieJar ) {
 		$cookieJar = TestingAccessWrapper::newFromObject( $cookieJar );
 		$this->assertArrayNotHasKey( strtolower( $name ),
