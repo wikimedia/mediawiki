@@ -112,18 +112,20 @@ class SpecialStatistics extends SpecialPage {
 	 * @return string
 	 */
 	private function getPageStats() {
+		$linkRenderer = $this->getLinkRenderer();
+
 		$specialAllPagesTitle = SpecialPage::getTitleFor( 'Allpages' );
 		$pageStatsHtml = Xml::openElement( 'tr' ) .
 			Xml::tags( 'th', [ 'colspan' => '2' ], $this->msg( 'statistics-header-pages' )
 				->parse() ) .
 			Xml::closeElement( 'tr' ) .
-				$this->formatRow( Linker::linkKnown( $specialAllPagesTitle,
-					$this->msg( 'statistics-articles' )->parse(), [], [ 'hideredirects' => 1 ] ),
+				$this->formatRow( $linkRenderer->makeKnownLink( $specialAllPagesTitle,
+					$this->msg( 'statistics-articles' )->text(), [], [ 'hideredirects' => 1 ] ),
 					$this->getLanguage()->formatNum( $this->good ),
 					[ 'class' => 'mw-statistics-articles' ],
 					'statistics-articles-desc' ) .
-				$this->formatRow( Linker::linkKnown( $specialAllPagesTitle,
-					$this->msg( 'statistics-pages' )->parse() ),
+				$this->formatRow( $linkRenderer->makeKnownLink( $specialAllPagesTitle,
+					$this->msg( 'statistics-pages' )->text() ),
 					$this->getLanguage()->formatNum( $this->total ),
 					[ 'class' => 'mw-statistics-pages' ],
 					'statistics-pages-desc' );
@@ -131,8 +133,8 @@ class SpecialStatistics extends SpecialPage {
 		// Show the image row only, when there are files or upload is possible
 		if ( $this->images !== 0 || $this->getConfig()->get( 'EnableUploads' ) ) {
 			$pageStatsHtml .= $this->formatRow(
-				Linker::linkKnown( SpecialPage::getTitleFor( 'MediaStatistics' ),
-				$this->msg( 'statistics-files' )->parse() ),
+				$linkRenderer->makeKnownLink( SpecialPage::getTitleFor( 'MediaStatistics' ),
+				$this->msg( 'statistics-files' )->text() ),
 				$this->getLanguage()->formatNum( $this->images ),
 				[ 'class' => 'mw-statistics-files' ] );
 		}
@@ -166,9 +168,9 @@ class SpecialStatistics extends SpecialPage {
 				[ 'class' => 'mw-statistics-users' ]
 			) .
 			$this->formatRow( $this->msg( 'statistics-users-active' )->parse() . ' ' .
-				Linker::linkKnown(
+				$this->getLinkRenderer()->makeKnownLink(
 					SpecialPage::getTitleFor( 'Activeusers' ),
-					$this->msg( 'listgrouprights-members' )->escaped()
+					$this->msg( 'listgrouprights-members' )->text()
 				),
 				$this->getLanguage()->formatNum( $this->activeUsers ),
 				[ 'class' => 'mw-statistics-users-active' ],
@@ -178,6 +180,7 @@ class SpecialStatistics extends SpecialPage {
 	}
 
 	private function getGroupStats() {
+		$linkRenderer = $this->getLinkRenderer();
 		$text = '';
 		foreach ( $this->getConfig()->get( 'GroupPermissions' ) as $group => $permissions ) {
 			# Skip generic * and implicit groups
@@ -200,17 +203,17 @@ class SpecialStatistics extends SpecialPage {
 			$linkTarget = Title::newFromText( $grouppageLocalized );
 
 			if ( $linkTarget ) {
-				$grouppage = Linker::link(
+				$grouppage = $linkRenderer->makeLink(
 					$linkTarget,
-					htmlspecialchars( $groupnameLocalized )
+					$groupnameLocalized
 				);
 			} else {
 				$grouppage = htmlspecialchars( $groupnameLocalized );
 			}
 
-			$grouplink = Linker::linkKnown(
+			$grouplink = $linkRenderer->makeKnownLink(
 				SpecialPage::getTitleFor( 'Listusers' ),
-				$this->msg( 'listgrouprights-members' )->escaped(),
+				$this->msg( 'listgrouprights-members' )->text(),
 				[],
 				[ 'group' => $group ]
 			);
