@@ -4,6 +4,7 @@
 	},
 	"sidebar": "\n* navigation\n** mainpage|mainpage-description\n** recentchanges-url|recentchanges\n** randompage-url|randompage\n** helppage|help\n* SEARCH\n* TOOLBOX\n* LANGUAGES",
 	"tog-underline": "Link underlining:",
+	"test-test": "TEST",
 	"tog-hideminor": "Hide minor edits from recent changes",
 	"tog-hidepatrolled": "Hide patrolled edits from recent changes",
 	"tog-newpageshidepatrolled": "Hide patrolled pages from new page list",
