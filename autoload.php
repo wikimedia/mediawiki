@@ -1230,7 +1230,6 @@ $wgAutoloadLocalClasses = [
 	'RevisionItemBase' => __DIR__ . '/includes/RevisionList.php',
 	'RevisionList' => __DIR__ . '/includes/RevisionList.php',
 	'RevisionListBase' => __DIR__ . '/includes/RevisionList.php',
-	'RevisiondeleteAction' => __DIR__ . '/includes/actions/RevisiondeleteAction.php',
 	'RiffExtractor' => __DIR__ . '/includes/libs/RiffExtractor.php',
 	'RightsLogFormatter' => __DIR__ . '/includes/logging/RightsLogFormatter.php',
 	'RollbackAction' => __DIR__ . '/includes/actions/RollbackAction.php',
