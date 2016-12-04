@@ -60,7 +60,7 @@ changes to languages because of Phabricator reports.
   Status return type is deprecated.
 * User::edits() (deprecated in 1.21) was removed.
 * Xml::escapeJsString() (deprecated in 1.21) was removed.
-
+* RevisiondeleteAction() (deprecated in 1.25) was removed.
 == Compatibility ==
 
 MediaWiki 1.29 requires PHP 5.5.9 or later. There is experimental support for
