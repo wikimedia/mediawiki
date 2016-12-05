@@ -268,6 +268,14 @@ abstract class RevisionItemBase {
 	 * This is used to show the list in HTML form, by the special page.
 	 */
 	abstract public function getHTML();
+
+	/**
+	 * Returns an instance of LinkRenderer
+	 * @return \MediaWiki\Linker\LinkRenderer
+	 */
+	protected function getLinkRenderer() {
+		return MediaWikiServices::getInstance()->getLinkRenderer();
+	}
 }
 
 class RevisionList extends RevisionListBase {
