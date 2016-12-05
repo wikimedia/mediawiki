@@ -549,9 +549,14 @@ class UserrightsPage extends SpecialPage {
 			Xml::element(
 				'legend',
 				[],
-				$this->msg( 'userrights-editusergroup', $user->getName() )->text()
+				$this->msg(
+					$canChangeAny ? 'userrights-editusergroup' : 'userrights-viewusergroup',
+					$user->getName()
+				)->text()
 			) .
-			$this->msg( 'editinguser' )->params( wfEscapeWikiText( $user->getName() ) )
+			$this->msg(
+				$canChangeAny ? 'editinguser' : 'viewinguserrights'
+			)->params( wfEscapeWikiText( $user->getName() ) )
 				->rawParams( $userToolLinks )->parse()
 		);
 		if ( $canChangeAny ) {
