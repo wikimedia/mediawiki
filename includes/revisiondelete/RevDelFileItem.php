@@ -128,7 +128,7 @@ class RevDelFileItem extends RevDelItem {
 		if ( !$this->canViewContent() ) {
 			$link = $date;
 		} else {
-			$link = Linker::link(
+			$link = $this->getLinkRenderer->makeLink(
 				SpecialPage::getTitleFor( 'Revisiondelete' ),
 				$date,
 				[],

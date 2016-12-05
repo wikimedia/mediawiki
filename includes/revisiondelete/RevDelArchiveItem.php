@@ -75,7 +75,7 @@ class RevDelArchiveItem extends RevDelRevisionItem {
 			return $date;
 		}
 
-		return Linker::link(
+		return $this->getLinkRenderer->makeLink(
 			SpecialPage::getTitleFor( 'Undelete' ),
 			$date,
 			[],
@@ -91,7 +91,7 @@ class RevDelArchiveItem extends RevDelRevisionItem {
 			return $this->list->msg( 'diff' )->escaped();
 		}
 
-		return Linker::link(
+		return $this->getLinkRenderer->makeLink(
 			SpecialPage::getTitleFor( 'Undelete' ),
 			$this->list->msg( 'diff' )->escaped(),
 			[],

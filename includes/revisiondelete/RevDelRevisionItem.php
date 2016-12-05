@@ -114,7 +114,7 @@ class RevDelRevisionItem extends RevDelItem {
 			return $date;
 		}
 
-		return Linker::linkKnown(
+		return $this->getLinkRenderer->makeKnownLink(
 			$this->list->title,
 			$date,
 			[],
@@ -134,7 +134,7 @@ class RevDelRevisionItem extends RevDelItem {
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return $this->list->msg( 'diff' )->escaped();
 		} else {
-			return Linker::linkKnown(
+			return $this->getLinkRenderer->makeKnownLink(
 					$this->list->title,
 					$this->list->msg( 'diff' )->escaped(),
 					[],

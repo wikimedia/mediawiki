@@ -78,7 +78,7 @@ class RevDelArchivedFileItem extends RevDelFileItem {
 		} else {
 			$undelete = SpecialPage::getTitleFor( 'Undelete' );
 			$key = $this->file->getKey();
-			$link = Linker::link( $undelete, $date, [],
+			$link = $this->getLinkRenderer->makeLink( $undelete, $date, [],
 				[
 					'target' => $this->list->title->getPrefixedText(),
 					'file' => $key,
