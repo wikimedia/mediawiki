@@ -72,7 +72,7 @@ class BlockListPager extends TablePager {
 			];
 
 			foreach ( $keys as $key ) {
-				$msg[$key] = $this->msg( $key )->escaped();
+				$msg[$key] = $this->msg( $key )->text();
 			}
 		}
 
@@ -117,18 +117,18 @@ class BlockListPager extends TablePager {
 				) );
 				if ( $this->getUser()->isAllowed( 'block' ) ) {
 					if ( $row->ipb_auto ) {
-						$links[] = Linker::linkKnown(
+						$links[] = $this->getLinkRenderer()->makeKnownLink(
 							SpecialPage::getTitleFor( 'Unblock' ),
 							$msg['unblocklink'],
 							[],
 							[ 'wpTarget' => "#{$row->ipb_id}" ]
 						);
 					} else {
-						$links[] = Linker::linkKnown(
+						$links[] = $this->getLinkRenderer()->makeKnownLink(
 							SpecialPage::getTitleFor( 'Unblock', $row->ipb_address ),
 							$msg['unblocklink']
 						);
-						$links[] = Linker::linkKnown(
+						$links[] = $this->getLinkRenderer()->makeKnownLink(
 							SpecialPage::getTitleFor( 'Block', $row->ipb_address ),
 							$msg['change-blocklink']
 						);
@@ -174,21 +174,21 @@ class BlockListPager extends TablePager {
 			case 'ipb_params':
 				$properties = [];
 				if ( $row->ipb_anon_only ) {
-					$properties[] = $msg['anononlyblock'];
+					$properties[] = $msg['anononlyblock']->escaped();
 				}
 				if ( $row->ipb_create_account ) {
-					$properties[] = $msg['createaccountblock'];
+					$properties[] = $msg['createaccountblock']->escaped();
 				}
 				if ( $row->ipb_user && !$row->ipb_enable_autoblock ) {
-					$properties[] = $msg['noautoblockblock'];
+					$properties[] = $msg['noautoblockblock']->escaped();
 				}
 
 				if ( $row->ipb_block_email ) {
-					$properties[] = $msg['emailblock'];
+					$properties[] = $msg['emailblock']->escaped();
 				}
 
 				if ( !$row->ipb_allow_usertalk ) {
-					$properties[] = $msg['blocklist-nousertalk'];
+					$properties[] = $msg['blocklist-nousertalk']->escaped();
 				}
 
 				$formatted = $language->commaList( $properties );

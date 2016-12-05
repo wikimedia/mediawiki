@@ -51,7 +51,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		];
 
 		foreach ( $msgs as $msg ) {
-			$this->messages[$msg] = $this->msg( $msg )->escaped();
+			$this->messages[$msg] = $this->msg( $msg )->text();
 		}
 
 		$this->target = isset( $options['target'] ) ? $options['target'] : '';
@@ -367,9 +367,9 @@ class ContribsPager extends ReverseChronologicalPager {
 			$classes = [];
 
 			$page = Title::newFromRow( $row );
-			$link = Linker::link(
+			$link = $this->getLinkRenderer()->makeLink(
 				$page,
-				htmlspecialchars( $page->getPrefixedText() ),
+				$page->getPrefixedText(),
 				[ 'class' => 'mw-contributions-title' ],
 				$page->isRedirect() ? [ 'redirect' => 'no' ] : []
 			);
@@ -389,7 +389,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			}
 			# Is there a visible previous revision?
 			if ( $rev->userCan( Revision::DELETED_TEXT, $user ) && $rev->getParentId() !== 0 ) {
-				$difftext = Linker::linkKnown(
+				$difftext = $this->getLinkRenderer()->makeKnownLink(
 					$page,
 					$this->messages['diff'],
 					[],
@@ -399,9 +399,9 @@ class ContribsPager extends ReverseChronologicalPager {
 					]
 				);
 			} else {
-				$difftext = $this->messages['diff'];
+				$difftext = $this->messages['diff']->escaped();
 			}
-			$histlink = Linker::linkKnown(
+			$histlink = $this->getLinkRenderer()->makeKnownLink(
 				$page,
 				$this->messages['hist'],
 				[],
@@ -434,9 +434,9 @@ class ContribsPager extends ReverseChronologicalPager {
 			$comment = $lang->getDirMark() . Linker::revComment( $rev, false, true );
 			$date = $lang->userTimeAndDate( $row->rev_timestamp, $user );
 			if ( $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
-				$d = Linker::linkKnown(
+				$d = $this->getLinkRenderer()->makeKnownLink(
 					$page,
-					htmlspecialchars( $date ),
+					$date,
 					[ 'class' => 'mw-changeslist-date' ],
 					[ 'oldid' => intval( $row->rev_id ) ]
 				);
@@ -473,7 +473,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			}
 
 			$diffHistLinks = $this->msg( 'parentheses' )
-				->rawParams( $difftext . $this->messages['pipe-separator'] . $histlink )
+				->rawParams( $difftext . $this->messages['pipe-separator']->escaped() . $histlink )
 				->escaped();
 
 			# Tags, if any.

@@ -313,9 +313,9 @@ class AllMessagesTablePager extends TablePager {
 				);
 
 				if ( $this->mCurrentRow->am_customised ) {
-					$title = Linker::linkKnown( $title, $this->getLanguage()->lcfirst( $value ) );
+					$title = $this->getLinkRenderer()->makeKnownLink( $title, $this->getLanguage()->lcfirst( $value ) );
 				} else {
-					$title = Linker::link(
+					$title = $this->getLinkRenderer()->makeLink(
 						$title,
 						$this->getLanguage()->lcfirst( $value ),
 						[],
@@ -324,9 +324,9 @@ class AllMessagesTablePager extends TablePager {
 					);
 				}
 				if ( $this->mCurrentRow->am_talk_exists ) {
-					$talk = Linker::linkKnown( $talk, $this->talk );
+					$talk = $this->getLinkRenderer()->makeKnownLink( $talk, $this->talk );
 				} else {
-					$talk = Linker::link(
+					$talk = $this->getLinkRenderer()->makeLink(
 						$talk,
 						$this->talk,
 						[],
