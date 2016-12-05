@@ -50,7 +50,7 @@
 		mw.config.set( 'wgUserLanguage', 'en' );
 
 		assert.equal( mw.language.convertNumber( 1800 ), '1.800', 'formatting' );
-		assert.equal( mw.language.convertNumber( "1.800", true ), '1800', 'unformatting' );
+		assert.equal( mw.language.convertNumber( '1.800', true ), '1800', 'unformatting' );
 	} );
 
 	function grammarTest( langCode, test ) {
