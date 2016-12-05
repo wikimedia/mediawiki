@@ -92,9 +92,9 @@ class RevDelLogItem extends RevDelItem {
 		$formatter->setAudience( LogFormatter::FOR_THIS_USER );
 
 		// Log link for this page
-		$loglink = Linker::link(
+		$loglink = $this->getLinkRenderer()->makeLink(
 			SpecialPage::getTitleFor( 'Log' ),
-			$this->list->msg( 'log' )->escaped(),
+			$this->list->msg( 'log' )->text(),
 			[],
 			[ 'page' => $title->getPrefixedText() ]
 		);
