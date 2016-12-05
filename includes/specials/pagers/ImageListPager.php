@@ -462,7 +462,7 @@ class ImageListPager extends TablePager {
 					// Add delete links if allowed
 					// From https://github.com/Wikia/app/pull/3859
 					if ( $filePage->userCan( 'delete', $this->getUser() ) ) {
-						$deleteMsg = $this->msg( 'listfiles-delete' )->escaped();
+						$deleteMsg = $this->msg( 'listfiles-delete' )->text();
 
 						$delete = Linker::linkKnown(
 							$filePage, $deleteMsg, [], [ 'action' => 'delete' ]

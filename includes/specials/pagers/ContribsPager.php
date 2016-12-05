@@ -391,7 +391,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			if ( $rev->userCan( Revision::DELETED_TEXT, $user ) && $rev->getParentId() !== 0 ) {
 				$difftext = Linker::linkKnown(
 					$page,
-					$this->messages['diff'],
+					$this->msg( 'diff' )->text(),
 					[],
 					[
 						'diff' => 'prev',
@@ -403,7 +403,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			}
 			$histlink = Linker::linkKnown(
 				$page,
-				$this->messages['hist'],
+				$this->msg( 'hist' )->text(),
 				[],
 				[ 'action' => 'history' ]
 			);
@@ -436,7 +436,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			if ( $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
 				$d = Linker::linkKnown(
 					$page,
-					htmlspecialchars( $date ),
+					$date,
 					[ 'class' => 'mw-changeslist-date' ],
 					[ 'oldid' => intval( $row->rev_id ) ]
 				);

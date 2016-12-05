@@ -256,7 +256,7 @@ class DeletedContribsPager extends IndexPager {
 		$logs = SpecialPage::getTitleFor( 'Log' );
 		$dellog = Linker::linkKnown(
 			$logs,
-			$this->messages['deletionlog'],
+			$this->msg( 'deletionlog' )->text(),
 			[],
 			[
 				'type' => 'delete',
@@ -266,7 +266,7 @@ class DeletedContribsPager extends IndexPager {
 
 		$reviewlink = Linker::linkKnown(
 			SpecialPage::getTitleFor( 'Undelete', $page->getPrefixedDBkey() ),
-			$this->messages['undeleteviewlink']
+			$this->msg( 'undeleteviewlink' )->text()
 		);
 
 		$user = $this->getUser();
@@ -274,7 +274,7 @@ class DeletedContribsPager extends IndexPager {
 		if ( $user->isAllowed( 'deletedtext' ) ) {
 			$last = Linker::linkKnown(
 				$undelete,
-				$this->messages['diff'],
+				$this->msg( 'diff' )->text(),
 				[],
 				[
 					'target' => $page->getPrefixedText(),
@@ -288,10 +288,9 @@ class DeletedContribsPager extends IndexPager {
 
 		$comment = Linker::revComment( $rev );
 		$date = $this->getLanguage()->userTimeAndDate( $rev->getTimestamp(), $user );
-		$date = htmlspecialchars( $date );
 
 		if ( !$user->isAllowed( 'undelete' ) || !$rev->userCan( Revision::DELETED_TEXT, $user ) ) {
-			$link = $date; // unusable link
+			$link = htmlspecialchars( $date ); // unusable link
 		} else {
 			$link = Linker::linkKnown(
 				$undelete,
