@@ -327,7 +327,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$query = [];
 		}
 
-		$link = Linker::linkKnown(
+		$link = $this->getLinkRenderer()->makeKnownLink(
 			$nt,
 			null,
 			$row->page_is_redirect ? [ 'class' => 'mw-redirect' ] : [],
@@ -376,11 +376,13 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$title = $this->getPageTitle();
 		}
 
+		$linkRenderer = $this->getLinkRenderer();
+
 		// always show a "<- Links" link
 		$links = [
-			'links' => Linker::linkKnown(
+			'links' => $linkRenderer->makeKnownLink(
 				$title,
-				$text,
+				new HtmlArmor( $text ),
 				[],
 				[ 'target' => $target->getPrefixedText() ]
 			),
@@ -393,9 +395,9 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			// check, if the content model is editable through action=edit
 			ContentHandler::getForTitle( $target )->supportsDirectEditing()
 		) {
-			$links['edit'] = Linker::linkKnown(
+			$links['edit'] = $linkRenderer->makeKnownLink(
 				$target,
-				$editText,
+				new HtmlArmor( $editText ),
 				[],
 				[ 'action' => 'edit' ]
 			);
@@ -406,9 +408,9 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	}
 
 	function makeSelfLink( $text, $query ) {
-		return Linker::linkKnown(
+		return $this->getLinkRenderer()->makeKnownLink(
 			$this->selfTitle,
-			$text,
+			new HtmlArmor( $text ),
 			[],
 			$query
 		);

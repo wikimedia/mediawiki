@@ -42,6 +42,6 @@ class UncategorizedCategoriesPage extends UncategorizedPagesPage {
 		$title = Title::makeTitle( NS_CATEGORY, $result->title );
 		$text = $title->getText();
 
-		return Linker::linkKnown( $title, htmlspecialchars( $text ) );
+		return $this->getLinkRenderer()->makeKnownLink( $title, $text );
 	}
 }
