@@ -116,10 +116,10 @@ class UnwatchedpagesPage extends QueryPage {
 
 		$text = $wgContLang->convert( $nt->getPrefixedText() );
 
-		$plink = Linker::linkKnown( $nt, htmlspecialchars( $text ) );
-		$wlink = Linker::linkKnown(
+		$plink = $this->getLinkRenderer()->makeKnownLink( $nt, $text );
+		$wlink = $this->getLinkRenderer()->makeKnownLink(
 			$nt,
-			$this->msg( 'watch' )->escaped(),
+			$this->msg( 'watch' )->text(),
 			[ 'class' => 'mw-watch-link' ],
 			[ 'action' => 'watch' ]
 		);
