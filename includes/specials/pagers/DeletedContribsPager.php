@@ -22,6 +22,8 @@
 /**
  * @ingroup Pager
  */
+use MediaWiki\MediaWikiServices;
+
 class DeletedContribsPager extends IndexPager {
 
 	public $mDefaultDirection = IndexPager::DIR_DESCENDING;
@@ -39,7 +41,7 @@ class DeletedContribsPager extends IndexPager {
 		parent::__construct( $context );
 		$msgs = [ 'deletionlog', 'undeleteviewlink', 'diff' ];
 		foreach ( $msgs as $msg ) {
-			$this->messages[$msg] = $this->msg( $msg )->escaped();
+			$this->messages[$msg] = $this->msg( $msg )->text();
 		}
 		$this->target = $target;
 		$this->namespace = $namespace;
@@ -240,6 +242,8 @@ class DeletedContribsPager extends IndexPager {
 	function formatRevisionRow( $row ) {
 		$page = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+
 		$rev = new Revision( [
 			'title' => $page,
 			'id' => $row->ar_rev_id,
@@ -254,7 +258,7 @@ class DeletedContribsPager extends IndexPager {
 		$undelete = SpecialPage::getTitleFor( 'Undelete' );
 
 		$logs = SpecialPage::getTitleFor( 'Log' );
-		$dellog = Linker::linkKnown(
+		$dellog = $linkRenderer->makeKnownLink(
 			$logs,
 			$this->messages['deletionlog'],
 			[],
@@ -264,7 +268,7 @@ class DeletedContribsPager extends IndexPager {
 			]
 		);
 
-		$reviewlink = Linker::linkKnown(
+		$reviewlink = $linkRenderer->makeKnownLink(
 			SpecialPage::getTitleFor( 'Undelete', $page->getPrefixedDBkey() ),
 			$this->messages['undeleteviewlink']
 		);
@@ -272,7 +276,7 @@ class DeletedContribsPager extends IndexPager {
 		$user = $this->getUser();
 
 		if ( $user->isAllowed( 'deletedtext' ) ) {
-			$last = Linker::linkKnown(
+			$last = $linkRenderer->makeKnownLink(
 				$undelete,
 				$this->messages['diff'],
 				[],
@@ -283,17 +287,16 @@ class DeletedContribsPager extends IndexPager {
 				]
 			);
 		} else {
-			$last = $this->messages['diff'];
+			$last = htmlspecialchars( $this->messages['diff'] );
 		}
 
 		$comment = Linker::revComment( $rev );
 		$date = $this->getLanguage()->userTimeAndDate( $rev->getTimestamp(), $user );
-		$date = htmlspecialchars( $date );
 
 		if ( !$user->isAllowed( 'undelete' ) || !$rev->userCan( Revision::DELETED_TEXT, $user ) ) {
-			$link = $date; // unusable link
+			$link = htmlspecialchars( $date ); // unusable link
 		} else {
-			$link = Linker::linkKnown(
+			$link = $linkRenderer->makeKnownLink(
 				$undelete,
 				$date,
 				[ 'class' => 'mw-changeslist-date' ],
@@ -308,7 +311,7 @@ class DeletedContribsPager extends IndexPager {
 			$link = '<span class="history-deleted">' . $link . '</span>';
 		}
 
-		$pagelink = Linker::link(
+		$pagelink = $linkRenderer->makeLink(
 			$page,
 			null,
 			[ 'class' => 'mw-changeslist-title' ]

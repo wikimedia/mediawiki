@@ -23,6 +23,8 @@
  * Pager for Special:Contributions
  * @ingroup Pager
  */
+use MediaWiki\MediaWikiServices;
+
 class ContribsPager extends ReverseChronologicalPager {
 
 	public $mDefaultDirection = IndexPager::DIR_DESCENDING;
@@ -347,6 +349,8 @@ class ContribsPager extends ReverseChronologicalPager {
 		$ret = '';
 		$classes = [];
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+
 		/*
 		 * There may be more than just revision rows. To make sure that we'll only be processing
 		 * revisions here, let's _try_ to build a revision out of our row (without displaying
@@ -367,9 +371,9 @@ class ContribsPager extends ReverseChronologicalPager {
 			$classes = [];
 
 			$page = Title::newFromRow( $row );
-			$link = Linker::link(
+			$link = $linkRenderer->makeLink(
 				$page,
-				htmlspecialchars( $page->getPrefixedText() ),
+				$page->getPrefixedText(),
 				[ 'class' => 'mw-contributions-title' ],
 				$page->isRedirect() ? [ 'redirect' => 'no' ] : []
 			);
@@ -389,9 +393,9 @@ class ContribsPager extends ReverseChronologicalPager {
 			}
 			# Is there a visible previous revision?
 			if ( $rev->userCan( Revision::DELETED_TEXT, $user ) && $rev->getParentId() !== 0 ) {
-				$difftext = Linker::linkKnown(
+				$difftext = $linkRenderer->makeKnownLink(
 					$page,
-					$this->messages['diff'],
+					new HtmlArmor( $this->messages['diff'] ),
 					[],
 					[
 						'diff' => 'prev',
@@ -401,9 +405,9 @@ class ContribsPager extends ReverseChronologicalPager {
 			} else {
 				$difftext = $this->messages['diff'];
 			}
-			$histlink = Linker::linkKnown(
+			$histlink = $linkRenderer->makeKnownLink(
 				$page,
-				$this->messages['hist'],
+				new HtmlArmor( $this->messages['hist'] ),
 				[],
 				[ 'action' => 'history' ]
 			);
@@ -434,9 +438,9 @@ class ContribsPager extends ReverseChronologicalPager {
 			$comment = $lang->getDirMark() . Linker::revComment( $rev, false, true );
 			$date = $lang->userTimeAndDate( $row->rev_timestamp, $user );
 			if ( $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
-				$d = Linker::linkKnown(
+				$d = $linkRenderer->makeKnownLink(
 					$page,
-					htmlspecialchars( $date ),
+					$date,
 					[ 'class' => 'mw-changeslist-date' ],
 					[ 'oldid' => intval( $row->rev_id ) ]
 				);
