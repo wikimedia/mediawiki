@@ -1246,6 +1246,7 @@
 	"apihelp-query+users-paramvalue-prop-cancreate": "Indicates whether an account for valid but unregistered usernames can be created.",
 	"apihelp-query+users-param-attachedwiki": "With <kbd>$1prop=centralids</kbd>, indicate whether the user is attached with the wiki identified by this ID.",
 	"apihelp-query+users-param-users": "A list of users to obtain information for.",
+	"apihelp-query+users-param-userids": "A list of id's to obtain information for.",
 	"apihelp-query+users-param-token": "Use <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd> instead.",
 	"apihelp-query+users-example-simple": "Return information for user <kbd>Example</kbd>.",
 
