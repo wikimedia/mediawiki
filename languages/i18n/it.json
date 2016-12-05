@@ -2031,7 +2031,7 @@
 	"emailccsubject": "Copia del messaggio inviato a $1: $2",
 	"emailsent": "Messaggio inviato",
 	"emailsenttext": "Il messaggio e-mail è stato inviato.",
-	"emailuserfooter": "Questa email è stata {{GENDER:$1|inviata}} da $1 a {{GENDER:$2|$2}} attraverso la funzione \"{{int:emailuser}}\" su {{SITENAME}}.",
+	"emailuserfooter": "Questa email è stata {{GENDER:$1|inviata}} da $1 a {{GENDER:$2|$2}} attraverso la funzione \"{{int:emailuser}}\" su {{SITENAME}}. La {{GENDER:$2|tua}} eventuale email di risposta sarà inviata direttamente al {{GENDER:$1|mittente originale}}, rivelando il  {{GENDER:$2|tuo}} indirizzo di posta elettronica a {{GENDER:$1|lui|lei}}.",
 	"usermessage-summary": "Messaggio di sistema",
 	"usermessage-editor": "Messaggero di sistema",
 	"usermessage-template": "MediaWiki:MessaggioUtente",

@@ -3442,6 +3442,7 @@
 	"htmlform-user-not-exists": "Käyttäjää <strong>$1</strong> ei ole olemassa.",
 	"htmlform-user-not-valid": "<strong>$1</strong> ei ole kelvollinen käyttäjänimi.",
 	"logentry-delete-delete": "$1 {{GENDER:$2|poisti}} sivun $3",
+	"logentry-delete-delete_redir": "$1 {{GENDER:$2|poisti}} ohjaussivun $3 korvaamalla",
 	"logentry-delete-restore": "$1 {{GENDER:$2|palautti}} sivun $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|muutti}} {{PLURAL:$5|lokitapahtuman|$5 lokitapahtuman}} näkyvyyttä kohteessa $3: $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|muutti}} {{PLURAL:$5|version|$5 version}} näkyvyyttä sivulla $3: $4",

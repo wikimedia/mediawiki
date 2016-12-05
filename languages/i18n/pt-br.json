@@ -102,7 +102,8 @@
 			"Cristofer Alves",
 			"Tark",
 			"O Andarilho",
-			"Bruno.S.Alves 270"
+			"Bruno.S.Alves 270",
+			"!Silent"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -3454,7 +3455,7 @@
 	"feedback-thanks": "Obrigado! O seu comentário foi adicionado à página \"[$2 $1]\".",
 	"feedback-thanks-title": "Obrigado!",
 	"feedback-useragent": "Agente de usuário:",
-	"searchsuggest-search": "Pesquisa",
+	"searchsuggest-search": "Pesquisar em {{SITENAME}}",
 	"searchsuggest-containing": "páginas contendo…",
 	"api-error-badaccess-groups": "Você não tem permissão para enviar arquivos para este wiki.",
 	"api-error-badtoken": "Erro interno: token inválido.",

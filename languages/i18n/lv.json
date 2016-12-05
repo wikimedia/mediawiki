@@ -523,7 +523,6 @@
 	"passwordreset-emaildisabled": "Šajā viki ir atspējotas e-pasta iespējas.",
 	"passwordreset-username": "Lietotājvārds:",
 	"passwordreset-domain": "Domēns:",
-	"passwordreset-capture": "Apskatīt izveidoto e-pastu?",
 	"passwordreset-email": "E-pasta adrese:",
 	"passwordreset-emailtitle": "Konta informācija {{SITENAME}}",
 	"passwordreset-emailelement": "Lietotājvārds: \n$1\n\nPagaidu parole: \n$2",
@@ -939,8 +938,6 @@
 	"userrights-reason": "Iemesls:",
 	"userrights-no-interwiki": "Tev nav atļaujas izmainīt dalībnieku tiesības citos wiki.",
 	"userrights-nodatabase": "Datubāze $1 neeksistē vai nav lokāla.",
-	"userrights-nologin": "Tev ir [[Special:UserLogin|jāieiet iekšā]] kā adminam, lai varētu izmainīt dalībnieku grupas.",
-	"userrights-notallowed": "Tev nav atļaujas pievienot vai noņemt dalībnieku tiesības.",
 	"userrights-changeable-col": "Grupas, kuras tu vari izmainīt",
 	"userrights-unchangeable-col": "Grupas, kuras tu nevari izmainīt",
 	"group": "Grupa:",
@@ -1019,7 +1016,6 @@
 	"right-userrights-interwiki": "Mainīt dalīnieku tiesības citās Vikipēdijās",
 	"right-siteadmin": "Bloķēt un atbloķēt datubāzi",
 	"right-sendemail": "Sūtīt e-pastu citiem dalībniekiem",
-	"right-passwordreset": "Apskatīt paroles atiestatīšanas e-pasta ziņojumus",
 	"grant-group-email": "Sūtīt e-pastu",
 	"grant-createaccount": "Izveidot kontu",
 	"grant-editmywatchlist": "Labot uzraugāmo rakstu sarakstu",
@@ -2601,6 +2597,7 @@
 	"htmlform-cloner-create": "Pievienot vairāk",
 	"htmlform-cloner-delete": "Noņemt",
 	"logentry-delete-delete": "$1 {{GENDER:$2|izdzēsa}} lapu $3",
+	"logentry-delete-delete_redir": "$1 {{GENDER:$2|izdzēsa}} pāradresāciju $3 pārrakstot",
 	"logentry-delete-restore": "$1 {{GENDER:$2|atjaunoja}} lapu $3",
 	"revdelete-content-hid": "saturs slēpts",
 	"revdelete-summary-hid": "labojuma kopsavilkums slēpts",
@@ -2693,7 +2690,5 @@
 	"authmanager-realname-label": "Tavs īstais vārds",
 	"authmanager-realname-help": "Dalībnieka īstais vārds",
 	"authprovider-resetpass-skip-label": "Izlaist",
-	"specialpage-securitylevel-not-allowed-title": "Nav atļauts",
-	"edit-error-short": "Kļūda: $1",
-	"edit-error-long": "Kļūdas:\n\n$1"
+	"specialpage-securitylevel-not-allowed-title": "Nav atļauts"
 }

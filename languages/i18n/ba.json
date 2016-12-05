@@ -2127,7 +2127,7 @@
 	"contributions": "{{GENDER:$1|Ҡатнашыусы}} башҡарған эш",
 	"contributions-title": "$1 исемле ҡатнашыусы башҡарған эш",
 	"mycontris": "Башҡарған эштәр",
-	"anoncontribs": "Иғәнәләр",
+	"anoncontribs": "Башҡарған эштәр",
 	"contribsub2": "{{GENDER:$3|$1}} башҡарған эше ($2)",
 	"contributions-userdoesnotexist": "«$1» исемле иҫәп яҙыуы юҡ.",
 	"nocontribs": "Күрһәтелгән шарттарға яуап биргән үҙгәртеүҙәр табылманы.",
