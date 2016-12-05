@@ -449,9 +449,9 @@ class ImageListPager extends TablePager {
 				// Weird files can maybe exist? Bug 22227
 				$filePage = Title::makeTitleSafe( NS_FILE, $value );
 				if ( $filePage ) {
-					$link = Linker::linkKnown(
+					$link = $this->getLinkRenderer()->makeKnownLink(
 						$filePage,
-						htmlspecialchars( $filePage->getText() )
+						$filePage->getText()
 					);
 					$download = Xml::element( 'a',
 						[ 'href' => wfLocalFile( $filePage )->getUrl() ],
@@ -464,7 +464,7 @@ class ImageListPager extends TablePager {
 					if ( $filePage->userCan( 'delete', $this->getUser() ) ) {
 						$deleteMsg = $this->msg( 'listfiles-delete' )->escaped();
 
-						$delete = Linker::linkKnown(
+						$delete = $this->getLinkRenderer()->makeKnownLink(
 							$filePage, $deleteMsg, [], [ 'action' => 'delete' ]
 						);
 						$delete = $this->msg( 'parentheses' )->rawParams( $delete )->escaped();
@@ -479,9 +479,9 @@ class ImageListPager extends TablePager {
 			case 'img_user_text':
 				if ( $this->mCurrentRow->img_user ) {
 					$name = User::whoIs( $this->mCurrentRow->img_user );
-					$link = Linker::link(
+					$link = $this->getLinkRenderer()->makeLink(
 						Title::makeTitle( NS_USER, $name ),
-						htmlspecialchars( $name )
+						$name
 					);
 				} else {
 					$link = htmlspecialchars( $value );
