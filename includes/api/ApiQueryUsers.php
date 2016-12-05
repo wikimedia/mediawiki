@@ -98,14 +98,25 @@ class ApiQueryUsers extends ApiQueryBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
+		$this->requireMaxOneParameter( $params, 'ids', 'users' );
 
 		if ( !is_null( $params['prop'] ) ) {
 			$this->prop = array_flip( $params['prop'] );
 		} else {
 			$this->prop = [];
 		}
+		$useNames = !is_null( $params['users'] );
 
 		$users = (array)$params['users'];
+		$ids = (array)$params['ids'];
+
+		if ( $useNames ) {
+			$parameters = &$users;
+		}
+		else {
+			$parameters = &$ids;
+		}
+
 		$goodNames = $done = [];
 		$result = $this->getResult();
 		// Canonicalize user names
@@ -129,10 +140,14 @@ class ApiQueryUsers extends ApiQueryBase {
 
 		$result = $this->getResult();
 
-		if ( count( $goodNames ) ) {
+		if ( count( $parameters ) ) {
 			$this->addTables( 'user' );
 			$this->addFields( User::selectFields() );
-			$this->addWhereFld( 'user_name', $goodNames );
+			if ( $useNames ) {
+				$this->addWhereFld( 'user_name', $goodNames );
+			} else {
+				$this->addWhereFld( 'user_id', $ids );
+			}
 
 			$this->showHiddenUsersAddBlockInfo( isset( $this->prop['blockinfo'] ) );
 
@@ -145,7 +160,12 @@ class ApiQueryUsers extends ApiQueryBase {
 				$userGroups = [];
 
 				$this->addTables( 'user' );
-				$this->addWhereFld( 'user_name', $goodNames );
+				if ( $useNames ) {
+					$this->addWhereFld( 'user_name', $goodNames );
+				} else {
+					$this->addWhereFld( 'user_id', $ids );
+				}
+
 				$this->addTables( 'user_groups' );
 				$this->addJoinConds( [ 'user_groups' => [ 'INNER JOIN', 'ug_user=user_id' ] ] );
 				$this->addFields( [ 'user_name', 'ug_group' ] );
@@ -157,6 +177,7 @@ class ApiQueryUsers extends ApiQueryBase {
 			}
 
 			foreach ( $res as $row ) {
+
 				// create user object and pass along $userGroups if set
 				// that reduces the number of database queries needed in User dramatically
 				if ( !isset( $userGroups ) ) {
@@ -168,8 +189,9 @@ class ApiQueryUsers extends ApiQueryBase {
 					$user = User::newFromRow( $row, [ 'user_groups' => $userGroups[$row->user_name] ] );
 				}
 				$name = $user->getName();
+				$id = $user->getId();
 
-				$data[$name]['userid'] = $user->getId();
+				$data[$name]['userid'] = $id;
 				$data[$name]['name'] = $name;
 
 				if ( isset( $this->prop['editcount'] ) ) {
@@ -232,16 +254,22 @@ class ApiQueryUsers extends ApiQueryBase {
 						}
 					}
 				}
+				$data[$id] = &$data[$name];
 			}
 		}
 
 		$context = $this->getContext();
 		// Second pass: add result data to $retval
-		foreach ( $goodNames as $u ) {
+		foreach ( $parameters as $u ) {
 			if ( !isset( $data[$u] ) ) {
-				$data[$u] = [ 'name' => $u ];
+				if ( useNames ) {
+					$data[$u] = [ 'name' => $u ];
+				} else {
+					$data[$u] = [ 'userid' => $u ];
+				}
 				$urPage = new UserrightsPage;
 				$urPage->setContext( $context );
+
 				$iwUser = $urPage->fetchUser( $u );
 
 				if ( $iwUser instanceof UserRightsProxy ) {
@@ -328,6 +356,9 @@ class ApiQueryUsers extends ApiQueryBase {
 			],
 			'attachedwiki' => null,
 			'users' => [
+				ApiBase::PARAM_ISMULTI => true
+			],
+			'ids' => [
 				ApiBase::PARAM_ISMULTI => true
 			],
 			'token' => [
