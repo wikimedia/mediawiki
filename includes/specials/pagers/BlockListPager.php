@@ -117,20 +117,20 @@ class BlockListPager extends TablePager {
 				) );
 				if ( $this->getUser()->isAllowed( 'block' ) ) {
 					if ( $row->ipb_auto ) {
-						$links[] = Linker::linkKnown(
+						$links[] = $this->getLinkRenderer()->makeKnownLink(
 							SpecialPage::getTitleFor( 'Unblock' ),
-							$msg['unblocklink'],
+							$this->msg( 'unblocklink' )->text(),
 							[],
 							[ 'wpTarget' => "#{$row->ipb_id}" ]
 						);
 					} else {
-						$links[] = Linker::linkKnown(
+						$links[] = $this->getLinkRenderer()->makeKnownLink(
 							SpecialPage::getTitleFor( 'Unblock', $row->ipb_address ),
-							$msg['unblocklink']
+							$this->msg( 'unblocklink' )->text()
 						);
-						$links[] = Linker::linkKnown(
+						$links[] = $this->getLinkRenderer()->makeKnownLink(
 							SpecialPage::getTitleFor( 'Block', $row->ipb_address ),
-							$msg['change-blocklink']
+							$this->msg( 'change-blocklink' )->text()
 						);
 					}
 					$formatted .= ' ' . Html::rawElement(

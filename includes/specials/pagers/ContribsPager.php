@@ -367,9 +367,9 @@ class ContribsPager extends ReverseChronologicalPager {
 			$classes = [];
 
 			$page = Title::newFromRow( $row );
-			$link = Linker::link(
+			$link = $this->getLinkRenderer()->makeLink(
 				$page,
-				htmlspecialchars( $page->getPrefixedText() ),
+				$page->getPrefixedText(),
 				[ 'class' => 'mw-contributions-title' ],
 				$page->isRedirect() ? [ 'redirect' => 'no' ] : []
 			);
@@ -389,9 +389,9 @@ class ContribsPager extends ReverseChronologicalPager {
 			}
 			# Is there a visible previous revision?
 			if ( $rev->userCan( Revision::DELETED_TEXT, $user ) && $rev->getParentId() !== 0 ) {
-				$difftext = Linker::linkKnown(
+				$difftext = $this->getLinkRenderer()->makeKnownLink(
 					$page,
-					$this->messages['diff'],
+					$this->msg( 'diff' )->text(),
 					[],
 					[
 						'diff' => 'prev',
@@ -401,9 +401,9 @@ class ContribsPager extends ReverseChronologicalPager {
 			} else {
 				$difftext = $this->messages['diff'];
 			}
-			$histlink = Linker::linkKnown(
+			$histlink = $this->getLinkRenderer()->makeKnownLink(
 				$page,
-				$this->messages['hist'],
+				$this->msg( 'hist' )->text(),
 				[],
 				[ 'action' => 'history' ]
 			);
@@ -434,9 +434,9 @@ class ContribsPager extends ReverseChronologicalPager {
 			$comment = $lang->getDirMark() . Linker::revComment( $rev, false, true );
 			$date = $lang->userTimeAndDate( $row->rev_timestamp, $user );
 			if ( $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
-				$d = Linker::linkKnown(
+				$d = $this->getLinkRenderer()->makeKnownLink(
 					$page,
-					htmlspecialchars( $date ),
+					$date,
 					[ 'class' => 'mw-changeslist-date' ],
 					[ 'oldid' => intval( $row->rev_id ) ]
 				);
