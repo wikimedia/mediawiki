@@ -98,14 +98,25 @@ class ApiQueryUsers extends ApiQueryBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
+		$this->requireMaxOneParameter( $params, 'ids', 'users' );
 
 		if ( !is_null( $params['prop'] ) ) {
 			$this->prop = array_flip( $params['prop'] );
 		} else {
 			$this->prop = [];
 		}
+		if ( !is_null( $params['users'] ) ){
+			$users = (array)$params['users'];
+		} else {
+			$users = [];
+			$ids = (array)$params['ids'];
+			// Convert IDS to names
+			foreach ( $ids as $id ) {
+				$user = User::newFromID( $id );
+				array_push( $users, $user->getName() );
+			}
+		}
 
-		$users = (array)$params['users'];
 		$goodNames = $done = [];
 		$result = $this->getResult();
 		// Canonicalize user names
@@ -328,6 +339,9 @@ class ApiQueryUsers extends ApiQueryBase {
 			],
 			'attachedwiki' => null,
 			'users' => [
+				ApiBase::PARAM_ISMULTI => true
+			],
+			'ids' => [
 				ApiBase::PARAM_ISMULTI => true
 			],
 			'token' => [
