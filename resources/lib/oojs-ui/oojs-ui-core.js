@@ -10148,7 +10148,7 @@ OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 
 	// Mixin constructors
 	OO.ui.mixin.IconElement.call( this, config );
-	OO.ui.mixin.LabelElement.call( this, $.extend( {}, config, { $label: $( '<legend>' ) } ) );
+	OO.ui.mixin.LabelElement.call( this, $.extend( {}, config, { $label: $( '<div>' ) } ) );
 	OO.ui.mixin.GroupElement.call( this, config );
 
 	if ( config.help ) {
