@@ -69,16 +69,16 @@ class RevDelArchivedFileItem extends RevDelFileItem {
 	}
 
 	protected function getLink() {
-		$date = htmlspecialchars( $this->list->getLanguage()->userTimeAndDate(
-			$this->file->getTimestamp(), $this->list->getUser() ) );
+		$date = $this->list->getLanguage()->userTimeAndDate(
+			$this->file->getTimestamp(), $this->list->getUser() );
 
 		# Hidden files...
 		if ( !$this->canViewContent() ) {
-			$link = $date;
+			$link = htmlspecialchars( $date );
 		} else {
 			$undelete = SpecialPage::getTitleFor( 'Undelete' );
 			$key = $this->file->getKey();
-			$link = Linker::link( $undelete, $date, [],
+			$link = $this->getLinkRenderer()->makeLink( $undelete, $date, [],
 				[
 					'target' => $this->list->title->getPrefixedText(),
 					'file' => $key,
