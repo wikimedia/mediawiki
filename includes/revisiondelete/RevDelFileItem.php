@@ -116,19 +116,19 @@ class RevDelFileItem extends RevDelItem {
 	 * @return string
 	 */
 	protected function getLink() {
-		$date = htmlspecialchars( $this->list->getLanguage()->userTimeAndDate(
-			$this->file->getTimestamp(), $this->list->getUser() ) );
+		$date = $this->list->getLanguage()->userTimeAndDate(
+			$this->file->getTimestamp(), $this->list->getUser() );
 
 		if ( !$this->isDeleted() ) {
 			# Regular files...
-			return Html::rawElement( 'a', [ 'href' => $this->file->getUrl() ], $date );
+			return Html::rawElement( 'a', [ 'href' => $this->file->getUrl() ], htmlspecialchars( $date ) );
 		}
 
 		# Hidden files...
 		if ( !$this->canViewContent() ) {
-			$link = $date;
+			$link = htmlspecialchars( $date );
 		} else {
-			$link = Linker::link(
+			$link = $this->getLinkRenderer->makeLink(
 				SpecialPage::getTitleFor( 'Revisiondelete' ),
 				$date,
 				[],
