@@ -47,10 +47,15 @@
  * @ingroup SpecialPage
  */
 class SpecialRandomInCategory extends FormSpecialPage {
-	protected $extra = []; // Extra SQL statements
-	protected $category = false; // Title object of category
-	protected $maxOffset = 30; // Max amount to fudge randomness by.
+	/** @var array Extra SQL statements */
+	protected $extra = [];
+	/** @var Title|null Title object of category */
+	protected $category = null;
+	/** @var int Max amount to fudge randomness by */
+	protected $maxOffset = 30;
+	/** @var string|null */
 	private $maxTimestamp = null;
+	/** @var string|null */
 	private $minTimestamp = null;
 
 	public function __construct( $name = 'RandomInCategory' ) {
