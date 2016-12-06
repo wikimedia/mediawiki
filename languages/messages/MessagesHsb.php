@@ -8,7 +8,7 @@
  *
  */
 
-$fallback = 'de';
+$fallback = 'dsb, de';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Media',
