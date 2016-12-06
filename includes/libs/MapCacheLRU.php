@@ -58,7 +58,7 @@ class MapCacheLRU {
 	 * @return void
 	 */
 	public function set( $key, $value ) {
-		if ( array_key_exists( $key, $this->cache ) ) {
+		if ( $this->has( $key ) ) {
 			$this->ping( $key );
 		} elseif ( count( $this->cache ) >= $this->maxCacheKeys ) {
 			reset( $this->cache );
@@ -75,6 +75,9 @@ class MapCacheLRU {
 	 * @return bool
 	 */
 	public function has( $key ) {
+		if ( !is_int( $key ) && !is_string( $key ) ) {
+			throw new MWException( __METHOD__ . ' called with invalid key. Must be string or integer.' );
+		}
 		return array_key_exists( $key, $this->cache );
 	}
 
@@ -87,7 +90,7 @@ class MapCacheLRU {
 	 * @return mixed Returns null if the key was not found
 	 */
 	public function get( $key ) {
-		if ( !array_key_exists( $key, $this->cache ) ) {
+		if ( !$this->has( $key ) ) {
 			return null;
 		}
 
