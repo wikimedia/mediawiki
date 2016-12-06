@@ -1174,7 +1174,6 @@
 	"editusergroup": "Modifica gruppi utente",
 	"editinguser": "Modifica in corso dei diritti dell'{{GENDER:$1|utente}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-editusergroup": "Modifica gruppi utente",
-	"userrights-viewusergroup": "Visualizza gruppi utente",
 	"saveusergroups": "Salva gruppi {{GENDER:$1|utente}}",
 	"userrights-groupsmember": "Appartiene {{PLURAL:$1|al gruppo|ai gruppi}}:",
 	"userrights-groupsmember-auto": "Membro implicito di:",
