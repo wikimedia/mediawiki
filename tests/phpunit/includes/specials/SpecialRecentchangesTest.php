@@ -210,22 +210,61 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function testRcHidemyselfHidebyothersFilter() {
-		$user = $this->getTestUser()->getUser();
-		$this->assertConditions(
-			[ # expected
-				'rc_bot' => 0,
-				"rc_user != '{$user->getId()}'",
-				"rc_user = '{$user->getId()}'",
-				"rc_type != '6'",
+	public function validateOptionsProvider() {
+		return [
+			[
+				[ 'hidemyself', 'hidebyothers' ],
+				true,
+				[],
 			],
 			[
-				'hidemyself' => 1,
-				'hidebyothers' => 1,
+				[ 'hidebots', 'hidehumans' ],
+				true,
+				[],
 			],
-			"rc conditions: hidemyself=1 hidebyothers=1 (logged in)",
-			$user
+			[
+				[ 'hidepatrolled', 'hideunpatrolled' ],
+				true,
+				[],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider validateOptionsProvider
+	 */
+	public function testValidateOptions( $optionsToSet, $expectedRedirect, $expectedRedirectOptions ) {
+		$redirectQuery = [];
+		$redirected = false;
+		$output = $this->getMockBuilder( OutputPage::class )
+			->disableProxyingToOriginalMethods()
+			->disableOriginalConstructor()
+			->getMock();
+		$output->method( 'redirect' )->willReturnCallback(
+			function ( $url ) use ( &$redirectQuery, &$redirected ) {
+				$urlParts = wfParseUrl( $url );
+				$query = isset( $urlParts[ 'query' ] ) ? $urlParts[ 'query' ] : '';
+				parse_str( $query, $redirectQuery );
+				$redirected = true;
+			}
 		);
+		$ctx = new RequestContext();
+		$ctx->setOutput( $output );
+		$rc = new SpecialRecentChanges();
+		$rc->setContext( $ctx );
+		$opts = $rc->getDefaultOptions();
+
+		foreach ( $optionsToSet as $option ) {
+			$opts->setValue( $option, true );
+		}
+
+		$rc->validateOptions( $opts );
+
+		$this->assertEquals( $expectedRedirect, $redirected, 'redirection' );
+
+		if ( $expectedRedirect ) {
+			$this->assertArrayEquals( $expectedRedirectOptions, $redirectQuery, 'redirection query' );
+		}
 	}
 
 	public function testRcHidepageedits() {
@@ -373,24 +412,4 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 		);
 	}
 
-	// This is probably going to change when we do auto-fix of
-	// filters combinations that don't make sense but for now
-	// it's the behavior therefore it's the test.
-	public function testRcHidepatrolledHideunpatrolledFilter() {
-		$user = $this->getTestSysop()->getUser();
-		$this->assertConditions(
-			[ # expected
-				'rc_bot' => 0,
-				"rc_patrolled = 0",
-				"rc_patrolled = 1",
-				"rc_type != '6'",
-			],
-			[
-				'hidepatrolled' => 1,
-				'hideunpatrolled' => 1,
-			],
-			"rc conditions: hidepatrolled=1 hideunpatrolled=1",
-			$user
-		);
-	}
 }

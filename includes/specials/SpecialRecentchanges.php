@@ -654,16 +654,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @return string
 	 */
 	function makeOptionsLink( $title, $override, $options, $active = false ) {
-		$params = $override + $options;
-
-		// Bug 36524: false values have be converted to "0" otherwise
-		// wfArrayToCgi() will omit it them.
-		foreach ( $params as &$value ) {
-			if ( $value === false ) {
-				$value = '0';
-			}
-		}
-		unset( $value );
+		$params = $this->convertParamsForLink( $override + $options );
 
 		if ( $active ) {
 			$title = new HtmlArmor( '<strong>' . htmlspecialchars( $title ) . '</strong>' );
