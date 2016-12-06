@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.1
+ * OOjs UI v0.18.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-11-29T22:57:42Z
+ * Date: 2016-12-06T23:32:57Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -119,6 +119,7 @@
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-buttonElement-pressed > input.oo-ui-buttonElement-button,
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button:active {
   color: #000;
+  box-shadow: none;
 }
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
   color: #36c;
@@ -127,6 +128,7 @@
   color: #447ff5;
 }
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:active > .oo-ui-labelElement-label,
+.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:active:focus > .oo-ui-labelElement-label,
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
   color: #2a4b8d;
   box-shadow: none;
@@ -138,6 +140,7 @@
   color: #447ff5;
 }
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button:active > .oo-ui-labelElement-label,
+.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button:active:focus > .oo-ui-labelElement-label,
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-constructive.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
   color: #2a4b8d;
   box-shadow: none;
@@ -149,6 +152,7 @@
   color: #ff4242;
 }
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button:active > .oo-ui-labelElement-label,
+.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button:active:focus > .oo-ui-labelElement-label,
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
   color: #b32424;
   box-shadow: none;
@@ -223,10 +227,12 @@
   box-shadow: inset 0 0 0 1px #36c;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active,
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active:focus,
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
   background-color: #c8ccd1;
   color: #000;
   border-color: #72777d;
+  box-shadow: none;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button {
   background-color: #2a4b8d;
@@ -882,7 +888,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-checkboxInputWidget {
   position: relative;
-  line-height: 1.6em;
+  line-height: 1.5625em;
   white-space: nowrap;
 }
 .oo-ui-checkboxInputWidget * {
@@ -892,8 +898,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-checkboxInputWidget [type='checkbox'] {
   position: relative;
   max-width: none;
-  width: 1.6em;
-  height: 1.6em;
+  width: 1.5625em;
+  height: 1.5625em;
   margin: 0;
   opacity: 0;
   z-index: 1;
@@ -909,8 +915,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
           box-sizing: border-box;
   position: absolute;
   left: 0;
-  width: 1.6em;
-  height: 1.6em;
+  width: 1.5625em;
+  height: 1.5625em;
   border: 1px solid #72777d;
   border-radius: 2px;
 }
@@ -1032,7 +1038,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-radioInputWidget {
   position: relative;
-  line-height: 1.6em;
+  line-height: 1.5625em;
   white-space: nowrap;
 }
 .oo-ui-radioInputWidget * {
@@ -1042,8 +1048,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-radioInputWidget [type='radio'] {
   position: relative;
   max-width: none;
-  width: 1.6em;
-  height: 1.6em;
+  width: 1.5625em;
+  height: 1.5625em;
   margin: 0;
   opacity: 0;
   z-index: 1;
@@ -1055,8 +1061,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
-  width: 1.6em;
-  height: 1.6em;
+  width: 1.5625em;
+  height: 1.5625em;
   border: 1px solid #72777d;
   border-radius: 100%;
 }
@@ -1071,11 +1077,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-radius: 100%;
 }
 .oo-ui-radioInputWidget [type='radio']:checked + span {
-  border-width: 0.4em;
+  border-width: 0.390625em;
 }
 .oo-ui-radioInputWidget [type='radio']:checked:hover + span,
 .oo-ui-radioInputWidget [type='radio']:checked:focus:hover + span {
-  border-width: 0.4em;
+  border-width: 0.390625em;
 }
 .oo-ui-radioInputWidget [type='radio']:disabled + span {
   background-color: #c8ccd1;
@@ -1183,41 +1189,20 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   display: none;
 }
 .oo-ui-textInputWidget.oo-ui-iconElement > .oo-ui-iconElement-icon,
-.oo-ui-textInputWidget.oo-ui-indicatorElement > .oo-ui-indicatorElement-indicator {
+.oo-ui-textInputWidget.oo-ui-indicatorElement > .oo-ui-indicatorElement-indicator,
+.oo-ui-textInputWidget > .oo-ui-labelElement-label {
   display: block;
   position: absolute;
   top: 0;
+}
+.oo-ui-textInputWidget.oo-ui-iconElement > .oo-ui-iconElement-icon,
+.oo-ui-textInputWidget.oo-ui-indicatorElement > .oo-ui-indicatorElement-indicator {
   height: 100%;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-}
-.oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-iconElement-icon,
-.oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-indicatorElement-indicator {
-  cursor: text;
-}
-.oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-textInputWidget-type-search > .oo-ui-indicatorElement-indicator {
-  cursor: pointer;
-}
-.oo-ui-textInputWidget.oo-ui-widget-disabled input,
-.oo-ui-textInputWidget.oo-ui-widget-disabled textarea {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-.oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-labelElement-label {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-.oo-ui-textInputWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
-  display: block;
 }
 .oo-ui-textInputWidget > .oo-ui-iconElement-icon,
 .oo-ui-textInputWidget-labelPosition-before > .oo-ui-labelElement-label {
@@ -1227,26 +1212,39 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-textInputWidget-labelPosition-after > .oo-ui-labelElement-label {
   right: 0;
 }
-.oo-ui-textInputWidget > .oo-ui-labelElement-label {
-  position: absolute;
-  top: 0;
+.oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-iconElement-icon,
+.oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-indicatorElement-indicator,
+.oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-labelElement-label {
+  cursor: text;
+}
+.oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-textInputWidget-type-search > .oo-ui-indicatorElement-indicator {
+  cursor: pointer;
+}
+.oo-ui-textInputWidget.oo-ui-widget-disabled input,
+.oo-ui-textInputWidget.oo-ui-widget-disabled textarea,
+.oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-labelElement-label {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .oo-ui-textInputWidget input,
 .oo-ui-textInputWidget textarea {
-  margin: 0;
   font-size: inherit;
   font-family: inherit;
   background-color: #fff;
   color: #000;
   border: 1px solid #a2a9b1;
   border-radius: 2px;
-  padding: 0.625em 0.546875em 0.546875em;
 }
 .oo-ui-textInputWidget input {
+  padding: 0.625em 0.546875em 0.546875em;
   line-height: 1.172em;
 }
 .oo-ui-textInputWidget textarea {
-  line-height: 1.275;
+  padding: 0.46875em 0.546875em 0.546875em;
+  line-height: 1.4;
 }
 .oo-ui-textInputWidget .oo-ui-pendingElement-pending {
   background-color: transparent;
@@ -1311,6 +1309,36 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-color: #f00;
   box-shadow: inset 0 0 0 0.1em #f00;
 }
+.oo-ui-textInputWidget.oo-ui-iconElement input,
+.oo-ui-textInputWidget.oo-ui-iconElement textarea {
+  padding-left: 2.65625em;
+}
+.oo-ui-textInputWidget.oo-ui-iconElement .oo-ui-iconElement-icon {
+  max-height: 2.5em;
+  left: 0.46875em;
+}
+.oo-ui-textInputWidget.oo-ui-indicatorElement input,
+.oo-ui-textInputWidget.oo-ui-indicatorElement textarea {
+  padding-right: 2.4875em;
+}
+.oo-ui-textInputWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
+  max-height: 2.5em;
+  right: 0.625em;
+}
+.oo-ui-textInputWidget > .oo-ui-labelElement-label {
+  color: #72777d;
+  right: 0.625em;
+  border: 1px solid transparent;
+  border-width: 1px 0;
+  padding: 0.625em 0 0.546875em;
+  line-height: 1.172em;
+}
+.oo-ui-textInputWidget-labelPosition-after.oo-ui-indicatorElement > .oo-ui-labelElement-label {
+  right: 2.1875em;
+}
+.oo-ui-textInputWidget-labelPosition-before.oo-ui-iconElement > .oo-ui-labelElement-label {
+  left: 2.65625em;
+}
 .oo-ui-textInputWidget.oo-ui-widget-disabled input,
 .oo-ui-textInputWidget.oo-ui-widget-disabled textarea {
   background-color: #eaecf0;
@@ -1325,37 +1353,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-labelElement-label {
   color: #72777d;
   text-shadow: 0 1px 1px #fff;
-}
-.oo-ui-textInputWidget.oo-ui-iconElement input,
-.oo-ui-textInputWidget.oo-ui-iconElement textarea {
-  padding-left: 2.875em;
-}
-.oo-ui-textInputWidget.oo-ui-iconElement .oo-ui-iconElement-icon {
-  left: 0;
-  height: 100%;
-  max-height: 2.375em;
-  margin-left: 0.5em;
-  background-position: right center;
-}
-.oo-ui-textInputWidget.oo-ui-indicatorElement input,
-.oo-ui-textInputWidget.oo-ui-indicatorElement textarea {
-  padding-right: 2.4875em;
-}
-.oo-ui-textInputWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
-  height: 100%;
-  max-height: 2.375em;
-  margin: 0 0.775em;
-}
-.oo-ui-textInputWidget > .oo-ui-labelElement-label {
-  color: #72777d;
-  padding: 0.4em;
-  line-height: 1.5;
-}
-.oo-ui-textInputWidget-labelPosition-after.oo-ui-indicatorElement > .oo-ui-labelElement-label {
-  margin-right: 2.0875em;
-}
-.oo-ui-textInputWidget-labelPosition-before.oo-ui-iconElement > .oo-ui-labelElement-label {
-  margin-left: 2.475em;
 }
 .oo-ui-menuSelectWidget {
   position: absolute;
