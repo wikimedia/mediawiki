@@ -280,8 +280,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		$h = $image->getHandler();
 		if ( !$h ) {
-			$this->setWarning( 'Could not create thumbnail because ' .
-				$image->getName() . ' does not have an associated image handler' );
+			$this->addWarning( [ 'apiwarn-nothumb-noimagehandler', wfEscapeWikiText( $image->getName() ) ] );
 
 			return $thumbParams;
 		}
@@ -292,23 +291,24 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			// we could still render the image using width and height parameters,
 			// and this type of thing could happen between different versions of
 			// handlers.
-			$this->setWarning( "Could not parse {$p}urlparam for " . $image->getName()
-				. '. Using only width and height' );
+			$this->addWarning( [ 'apiwarn-badurlparam', $p, wfEscapeWikiText( $image->getName() ) ] );
 			$this->checkParameterNormalise( $image, $thumbParams );
 			return $thumbParams;
 		}
 
 		if ( isset( $paramList['width'] ) && isset( $thumbParams['width'] ) ) {
 			if ( intval( $paramList['width'] ) != intval( $thumbParams['width'] ) ) {
-				$this->setWarning( "Ignoring width value set in {$p}urlparam ({$paramList['width']}) "
-					. "in favor of width value derived from {$p}urlwidth/{$p}urlheight "
-					. "({$thumbParams['width']})" );
+				$this->addWarning(
+					[ 'apiwarn-urlparamwidth', $p, $paramList['width'], $thumbParams['width'] ]
+				);
 			}
 		}
 
 		foreach ( $paramList as $name => $value ) {
 			if ( !$h->validateParam( $name, $value ) ) {
-				$this->dieUsage( "Invalid value for {$p}urlparam ($name=$value)", 'urlparam' );
+				$this->dieWithError(
+					[ 'apierror-invalidurlparam', $p, wfEscapeWikiText( $name ), wfEscapeWikiText( $value ) ]
+				);
 			}
 		}
 
@@ -337,8 +337,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		// in the actual normalised version, only if we can actually normalise them,
 		// so we use the functions scope to throw away the normalisations.
 		if ( !$h->normaliseParams( $image, $finalParams ) ) {
-			$this->dieUsage( 'Could not normalise image parameters for ' .
-				$image->getName(), 'urlparamnormal' );
+			$this->dieWithError( [ 'apierror-urlparamnormal', wfEscapeWikiText( $image->getName() ) ] );
 		}
 	}
 

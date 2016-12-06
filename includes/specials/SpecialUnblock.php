@@ -175,7 +175,7 @@ class SpecialUnblock extends SpecialPage {
 	 * @param array $data
 	 * @param IContextSource $context
 	 * @throws ErrorPageError
-	 * @return array|bool Array(message key, parameters) on failure, True on success
+	 * @return array|bool Array( Array( message key, parameters ) ) on failure, True on success
 	 */
 	public static function processUnblock( array $data, IContextSource $context ) {
 		$performer = $context->getUser();
@@ -211,7 +211,7 @@ class SpecialUnblock extends SpecialPage {
 
 		# Delete block
 		if ( !$block->delete() ) {
-			return [ 'ipb_cant_unblock', htmlspecialchars( $block->getTarget() ) ];
+			return [ [ 'ipb_cant_unblock', htmlspecialchars( $block->getTarget() ) ] ];
 		}
 
 		# Unset _deleted fields as needed

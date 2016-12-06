@@ -307,7 +307,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @since 1.20
 	 * @param array $data
 	 * @param HTMLForm $form
-	 * @return Status|string|bool
+	 * @return Status|bool
 	 */
 	public static function uiSubmit( array $data, HTMLForm $form ) {
 		return self::submit( $data, $form->getContext() );
@@ -320,8 +320,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 *
 	 * @param array $data
 	 * @param IContextSource $context
-	 * @return Status|string|bool Status object, or potentially a String on error
-	 * or maybe even true on success if anything uses the EmailUser hook.
+	 * @return Status|bool
 	 */
 	public static function submit( array $data, IContextSource $context ) {
 		$config = $context->getConfig();
@@ -329,7 +328,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$target = self::getTarget( $data['Target'] );
 		if ( !$target instanceof User ) {
 			// Messages used here: notargettext, noemailtext, nowikiemailtext
-			return $context->msg( $target . 'text' )->parseAsBlock();
+			return Status::newFatal( $target . 'text' );
 		}
 
 		$to = MailAddress::newFromUser( $target );
@@ -342,9 +341,33 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$text .= $context->msg( 'emailuserfooter',
 			$from->name, $to->name )->inContentLanguage()->text();
 
-		$error = '';
+		$error = false;
 		if ( !Hooks::run( 'EmailUser', [ &$to, &$from, &$subject, &$text, &$error ] ) ) {
-			return $error;
+			if ( $error instanceof Status ) {
+				return $error;
+			} elseif ( $error === false || $error === '' || $error === [] ) {
+				// Possibly to tell HTMLForm to pretend there was no submission?
+				return false;
+			} elseif ( $error === true ) {
+				// Hook sent the mail itself and indicates success?
+				return Status::newGood();
+			} elseif ( is_array( $error ) ) {
+				$status = Status::newGood();
+				foreach ( $error as $e ) {
+					$status->fatal( $e );
+				}
+				return $status;
+			} elseif ( $error instanceof MessageSpecifier ) {
+				return Status::newFatal( $error );
+			} else {
+				// Ugh. Either a raw HTML string, or something that's supposed
+				// to be treated like one.
+				$type = is_object( $error ) ? get_class( $error ) : gettype( $error );
+				wfDeprecated( "EmailUser hook returning a $type as \$error", '1.29' );
+				return Status::newFatal( new ApiRawMessage(
+					[ '$1', Message::rawParam( (string)$error ) ], 'hookaborted'
+				) );
+			}
 		}
 
 		if ( $config->get( 'UserEmailUseReplyTo' ) ) {

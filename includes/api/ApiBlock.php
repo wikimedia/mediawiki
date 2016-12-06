@@ -41,22 +41,18 @@ class ApiBlock extends ApiBase {
 	public function execute() {
 		global $wgContLang;
 
+		$this->checkUserRightsAny( 'block' );
+
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
-
-		if ( !$user->isAllowed( 'block' ) ) {
-			$this->dieUsageMsg( 'cantblock' );
-		}
 
 		# bug 15810: blocked admins should have limited access here
 		if ( $user->isBlocked() ) {
 			$status = SpecialBlock::checkUnblockSelf( $params['user'], $user );
 			if ( $status !== true ) {
-				$msg = $this->parseMsg( $status );
-				$this->dieUsage(
-					$msg['info'],
-					$msg['code'],
-					0,
+				$this->dieWithError(
+					$status,
+					null,
 					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
 				);
 			}
@@ -68,14 +64,14 @@ class ApiBlock extends ApiBase {
 		if ( $target instanceof User &&
 			( $target->isAnon() /* doesn't exist */ || !User::isUsableName( $target->getName() ) )
 		) {
-			$this->dieUsageMsg( [ 'nosuchuser', $params['user'] ] );
+			$this->dieWithError( [ 'nosuchusershort', $params['user'] ], 'nosuchuser' );
 		}
 
 		if ( $params['hidename'] && !$user->isAllowed( 'hideuser' ) ) {
-			$this->dieUsageMsg( 'canthide' );
+			$this->dieWithError( 'apierror-canthide' );
 		}
 		if ( $params['noemail'] && !SpecialBlock::canBlockEmail( $user ) ) {
-			$this->dieUsageMsg( 'cantblock-email' );
+			$this->dieWithError( 'apierror-cantblock-email' );
 		}
 
 		$data = [
@@ -100,8 +96,7 @@ class ApiBlock extends ApiBase {
 
 		$retval = SpecialBlock::processForm( $data, $this->getContext() );
 		if ( $retval !== true ) {
-			// We don't care about multiple errors, just report one of them
-			$this->dieUsageMsg( $retval );
+			$this->dieStatus( $this->errorArrayToStatus( $retval ) );
 		}
 
 		list( $target, /*...*/ ) = SpecialBlock::getTargetAndType( $params['user'] );
