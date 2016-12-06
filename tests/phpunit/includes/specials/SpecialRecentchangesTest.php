@@ -48,9 +48,19 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 		);
 
 		$this->assertEquals(
-			$expected,
-			$queryConditions,
+			self::normalizeCondition( $expected ),
+			self::normalizeCondition( $queryConditions ),
 			$message
+		);
+	}
+
+	private static function normalizeCondition( $conds ) {
+		return array_map(
+			function ( $k, $v ) {
+				return is_numeric( $k ) ? $v : "$k = $v";
+			},
+			array_keys( $conds ),
+			$conds
 		);
 	}
 
@@ -63,8 +73,8 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 		$this->assertConditions(
 			[ # expected
 				'rc_bot' => 0,
-				0 => "rc_type != '6'",
-				1 => "rc_namespace = '0'",
+				"rc_type != '6'",
+				"rc_namespace = '0'",
 			],
 			[
 				'namespace' => NS_MAIN,
@@ -77,8 +87,8 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 		$this->assertConditions(
 			[ # expected
 				'rc_bot' => 0,
-				0 => "rc_type != '6'",
-				1 => sprintf( "rc_namespace != '%s'", NS_MAIN ),
+				"rc_type != '6'",
+				"rc_namespace != '0'",
 			],
 			[
 				'namespace' => NS_MAIN,
@@ -96,8 +106,8 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 		$this->assertConditions(
 			[ # expected
 				'rc_bot' => 0,
-				0 => "rc_type != '6'",
-				1 => sprintf( "(rc_namespace = '%s' OR rc_namespace = '%s')", $ns1, $ns2 ),
+				"rc_type != '6'",
+				"(rc_namespace = '$ns1' OR rc_namespace = '$ns2')",
 			],
 			[
 				'namespace' => $ns1,
@@ -115,8 +125,8 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 		$this->assertConditions(
 			[ # expected
 				'rc_bot' => 0,
-				0 => "rc_type != '6'",
-				1 => sprintf( "(rc_namespace != '%s' AND rc_namespace != '%s')", $ns1, $ns2 ),
+				"rc_type != '6'",
+				"(rc_namespace != '$ns1' AND rc_namespace != '$ns2')",
 			],
 			[
 				'namespace' => $ns1,
