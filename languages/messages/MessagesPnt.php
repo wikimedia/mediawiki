@@ -16,6 +16,8 @@
  * @author ZaDiak
  */
 
+$fallback = 'el';
+
 $namespaceNames = [
 	NS_MEDIA            => 'Μέσον',
 	NS_SPECIAL          => 'Ειδικόν',
