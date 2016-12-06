@@ -813,7 +813,95 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @param FormOptions $opts
 	 */
 	public function validateOptions( FormOptions $opts ) {
-		// nothing by default
+		if ( $this->fixContradictoryOptions( $opts ) ) {
+			$query = wfArrayToCgi( $this->convertParamsForLink( $opts->getChangedValues() ) );
+			$this->getOutput()->redirect( $this->getPageTitle()->getCanonicalURL( $query ) );
+		}
+	}
+
+	/**
+	 * Fix invalid options by resetting pairs that should never appear together.
+	 *
+	 * @param FormOptions $opts
+	 * @return bool True if any option was reset
+	 */
+	private function fixContradictoryOptions( FormOptions $opts ) {
+		$contradictorySets = [];
+
+		$fixed = $this->fixBackwardsCompatibilityOptions( $opts );
+
+		foreach ( $this->filterGroups as $filterGroup ) {
+			if ( $filterGroup instanceof ChangesListBooleanFilterGroup ) {
+				$set = [];
+				foreach ( $filterGroup->getFilters() as $filter ) {
+					if ( $filter->isAllowed( $this ) ) {
+						$set[] = $filter->getName();
+					}
+				}
+				$contradictorySets[] = $set;
+			}
+		}
+
+		foreach ( $contradictorySets as $set ) {
+			$allInSetEnabled = array_reduce(
+				$set,
+				function ( $carry, $filterName ) use ( $opts ) {
+					return $carry && $opts[ $filterName ];
+				},
+				/* initialValue */ count( $set ) > 0
+			);
+
+			if ( $allInSetEnabled ) {
+				foreach ( $set as $filterName ) {
+					$opts->reset( $filterName );
+				}
+
+				$fixed = true;
+			}
+		}
+		return $fixed;
+	}
+
+	/**
+	 * Fix a special case (hideanons=1 and hideliu=1) in a special way, for backwards
+	 * compatibility.
+	 *
+	 * This is deprecated and may be removed.
+	 *
+	 * @param FormOptions $opts
+	 * @return bool True if this change was mode
+	 */
+	private function fixBackwardsCompatibilityOptions( FormOptions $opts ) {
+		if ( $opts['hideanons'] && $opts['hideliu'] ) {
+			$opts->reset( 'hideanons' );
+			if ( !$opts['hidebots'] ) {
+				$opts->reset( 'hideliu' );
+				$opts['hidehumans'] = 1;
+			}
+
+			return true;
+		}
+
+		return false;
+
+	}
+
+	/**
+	 * Convert parameters values from true/false to 1/0
+	 * so they are not omitted by wfArrayToCgi()
+	 * Bug 36524
+	 *
+	 * @param array $params
+	 * @return array
+	 */
+	protected function convertParamsForLink( $params ) {
+		foreach ( $params as &$value ) {
+			if ( $value === false ) {
+				$value = '0';
+			}
+		}
+		unset( $value );
+		return $params;
 	}
 
 	/**
@@ -898,15 +986,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$query_options,
 			''
 		);
-
-		// It makes no sense to hide both anons and logged-in users. When this occurs, try a guess on
-		// what the user meant and either show only bots or force anons to be shown.
-
-		// -------
-
-		// XXX: We're no longer doing this handling.  To preserve back-compat, we need to complete
-		// T151873 (particularly the hideanons/hideliu/hidebots/hidehumans part) in conjunction
-		// with merging this.
 
 		if ( !$this->runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds,
 			$opts )

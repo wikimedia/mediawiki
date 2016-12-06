@@ -8,14 +8,14 @@
  * @covers SpecialRecentChanges
  */
 class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
-	protected function setUp() {
-		parent::setUp();
-
-		# setup the CLSP object
-		$this->changesListSpecialPage = TestingAccessWrapper::newFromObject(
+	protected function getPage() {
+		return TestingAccessWrapper::newFromObject(
 			new SpecialRecentchanges
 		);
 	}
+
+	// Below providers should only be for features specific to
+	// RecentChanges.  Otherwise, it should go in ChangesListSpecialPageTest
 
 	public function provideParseParameters() {
 		return [
@@ -28,6 +28,17 @@ class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
 			[ 'namespace=5', [ 'namespace' => 5 ] ],
 
 			[ 'tagfilter=foo', [ 'tagfilter' => 'foo' ] ],
+		];
+	}
+
+	public function validateOptionsProvider() {
+		return [
+			[
+				// hidebots=1 is default for Special:RecentChanges
+				[ 'hideanons' => 1, 'hideliu' => 1 ],
+				true,
+				[ 'hideliu' => 1 ],
+			],
 		];
 	}
 }

@@ -12,23 +12,26 @@
  * @covers ChangesListSpecialPage
  */
 class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase {
-	protected function setUp() {
-		parent::setUp();
-
-		# setup the rc object
-		$this->changesListSpecialPage = $this->getPage();
-	}
-
 	protected function getPage() {
-		return TestingAccessWrapper::newFromObject(
-			$this->getMockForAbstractClass(
-				'ChangesListSpecialPage',
+		$mock = $this->getMockBuilder( ChangesListSpecialPage::class )
+			->setConstructorArgs(
 				[
 					'ChangesListSpecialPage',
 					''
 				]
 			)
+			->setMethods( [ 'getPageTitle' ] )
+			->getMockForAbstractClass();
+
+		$mock->method( 'getPageTitle' )->willReturn(
+			Title::makeTitle( NS_SPECIAL, 'ChangesListSpecialPage' )
 		);
+
+		$mock = TestingAccessWrapper::newFromObject(
+			$mock
+		);
+
+		return $mock;
 	}
 
 	/** helper to test SpecialRecentchanges::buildMainQueryConds() */
@@ -221,22 +224,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 	}
 
-	public function testRcHidemyselfHidebyothersFilter() {
-		$user = $this->getTestUser()->getUser();
-		$this->assertConditions(
-			[ # expected
-				"rc_user != '{$user->getId()}'",
-				"rc_user = '{$user->getId()}'",
-			],
-			[
-				'hidemyself' => 1,
-				'hidebyothers' => 1,
-			],
-			"rc conditions: hidemyself=1 hidebyothers=1 (logged in)",
-			$user
-		);
-	}
-
 	public function testRcHidepageedits() {
 		$this->assertConditions(
 			[ # expected
@@ -360,22 +347,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 				'hidemajor' => 1,
 			],
 			"rc conditions: hidemajor=1"
-		);
-	}
-
-	public function testRcHidepatrolledHideunpatrolledFilter() {
-		$user = $this->getTestSysop()->getUser();
-		$this->assertConditions(
-			[ # expected
-				"rc_patrolled = 0",
-				"rc_patrolled = 1",
-			],
-			[
-				'hidepatrolled' => 1,
-				'hideunpatrolled' => 1,
-			],
-			"rc conditions: hidepatrolled=1 hideunpatrolled=1",
-			$user
 		);
 	}
 
@@ -565,6 +536,8 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testGetStructuredFilterJsData() {
+		$this->changesListSpecialPage->filterGroups = [];
+
 		$definition = [
 			[
 				'name' => 'gub-group',
@@ -798,6 +771,49 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 					'hideminor' => true,
 					'userExpLevel' => 'newcomer;learner',
 				],
+			],
+		];
+	}
+
+	public function validateOptionsProvider() {
+		return [
+			[
+				[ 'hideanons' => 1, 'hideliu' => 1, 'hidebots' => 1 ],
+				true,
+				[ 'hideliu' => 1, 'hidebots' => 1, ],
+			],
+
+			[
+				[ 'hideanons' => 1, 'hideliu' => 1, 'hidebots' => 0 ],
+				true,
+				[ 'hidebots' => 0, 'hidehumans' => 1 ],
+			],
+
+			[
+				[ 'hidemyself' => 1, 'hidebyothers' => 1 ],
+				true,
+				[],
+			],
+			[
+				[ 'hidebots' => 1, 'hidehumans' => 1 ],
+				true,
+				[],
+			],
+			[
+				[ 'hidepatrolled' => 1, 'hideunpatrolled' => 1 ],
+				true,
+				[],
+			],
+			[
+				[ 'hideminor' => 1, 'hidemajor' => 1 ],
+				true,
+				[],
+			],
+			[
+				// changeType
+				[ 'hidepageedits' => 1, 'hidenewpages' => 1, 'hidecategorization' => 1, 'hidelog' => 1, ],
+				true,
+				[],
 			],
 		];
 	}
