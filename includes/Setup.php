@@ -36,8 +36,10 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 $fname = 'Setup.php';
 $ps_setup = Profiler::instance()->scopedProfileIn( $fname );
 
-// If any extensions are still queued, force load them
+// Load queued extensions
 ExtensionRegistry::getInstance()->loadFromQueue();
+// Don't let any other extensions load
+ExtensionRegistry::getInstance()->finish();
 
 // Check to see if we are at the file scope
 if ( !isset( $wgVersion ) ) {
