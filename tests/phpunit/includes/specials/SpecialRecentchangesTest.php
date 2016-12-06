@@ -30,4 +30,62 @@ class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
 			[ 'tagfilter=foo', [ 'tagfilter' => 'foo' ] ],
 		];
 	}
+
+	public function validateOptionsProvider() {
+		return [
+			[
+				[ 'hidemyself', 'hidebyothers' ],
+				true,
+				[],
+			],
+			[
+				[ 'hidebots', 'hidehumans' ],
+				true,
+				[],
+			],
+			[
+				[ 'hidepatrolled', 'hideunpatrolled' ],
+				true,
+				[],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider validateOptionsProvider
+	 */
+	public function testValidateOptions( $optionsToSet, $expectedRedirect, $expectedRedirectOptions ) {
+		$redirectQuery = [];
+		$redirected = false;
+		$output = $this->getMockBuilder( OutputPage::class )
+			->disableProxyingToOriginalMethods()
+			->disableOriginalConstructor()
+			->getMock();
+		$output->method( 'redirect' )->willReturnCallback(
+			function ( $url ) use ( &$redirectQuery, &$redirected ) {
+				$urlParts = wfParseUrl( $url );
+				$query = isset( $urlParts[ 'query' ] ) ? $urlParts[ 'query' ] : '';
+				parse_str( $query, $redirectQuery );
+				$redirected = true;
+			}
+		);
+		$ctx = new RequestContext();
+		$ctx->setOutput( $output );
+		$rc = new SpecialRecentChanges();
+		$rc->setContext( $ctx );
+		$opts = $rc->getDefaultOptions();
+
+		foreach ( $optionsToSet as $option ) {
+			$opts->setValue( $option, true );
+		}
+
+		$rc->validateOptions( $opts );
+
+		$this->assertEquals( $expectedRedirect, $redirected, 'redirection' );
+
+		if ( $expectedRedirect ) {
+			$this->assertArrayEquals( $expectedRedirectOptions, $redirectQuery, 'redirection query' );
+		}
+	}
+
 }

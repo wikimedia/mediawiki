@@ -813,7 +813,51 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @param FormOptions $opts
 	 */
 	public function validateOptions( FormOptions $opts ) {
-		// nothing by default
+		if ( $this->fixContradictoryOptions( $opts ) ) {
+			$query = wfArrayToCgi( $this->convertParamsForLink( $opts->getChangedValues() ) );
+			$this->getOutput()->redirect( $this->getPageTitle()->getCanonicalURL( $query ) );
+		}
+	}
+
+	/**
+	 * Fix invalid options by resetting pairs that should never appear together.
+	 *
+	 * @param FormOptions $opts
+	 * @return bool True if any option was reset
+	 */
+	private function fixContradictoryOptions( FormOptions $opts ) {
+		$contradictoryPairs = [
+			[ 'hidemyself', 'hidebyothers' ],
+			[ 'hidebots', 'hidehumans' ],
+			[ 'hidepatrolled', 'hideunpatrolled' ],
+		];
+		$fixed = false;
+		foreach ( $contradictoryPairs as $pair ) {
+			if ( $opts[ $pair[0] ] && $opts[ $pair[1] ] ) {
+				$opts->reset( $pair[0] );
+				$opts->reset( $pair[1] );
+				$fixed = true;
+			}
+		}
+		return $fixed;
+	}
+
+	/**
+	 * Convert parameters values from true/false to 1/0
+	 * so they are not omitted by wfArrayToCgi()
+	 * Bug 36524
+	 *
+	 * @param array $params
+	 * @return array
+	 */
+	protected function convertParamsForLink( $params ) {
+		foreach ( $params as &$value ) {
+			if ( $value === false ) {
+				$value = '0';
+			}
+		}
+		unset( $value );
+		return $params;
 	}
 
 	/**

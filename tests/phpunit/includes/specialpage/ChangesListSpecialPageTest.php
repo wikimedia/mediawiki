@@ -221,22 +221,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 	}
 
-	public function testRcHidemyselfHidebyothersFilter() {
-		$user = $this->getTestUser()->getUser();
-		$this->assertConditions(
-			[ # expected
-				"rc_user != '{$user->getId()}'",
-				"rc_user = '{$user->getId()}'",
-			],
-			[
-				'hidemyself' => 1,
-				'hidebyothers' => 1,
-			],
-			"rc conditions: hidemyself=1 hidebyothers=1 (logged in)",
-			$user
-		);
-	}
-
 	public function testRcHidepageedits() {
 		$this->assertConditions(
 			[ # expected
@@ -360,22 +344,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 				'hidemajor' => 1,
 			],
 			"rc conditions: hidemajor=1"
-		);
-	}
-
-	public function testRcHidepatrolledHideunpatrolledFilter() {
-		$user = $this->getTestSysop()->getUser();
-		$this->assertConditions(
-			[ # expected
-				"rc_patrolled = 0",
-				"rc_patrolled = 1",
-			],
-			[
-				'hidepatrolled' => 1,
-				'hideunpatrolled' => 1,
-			],
-			"rc conditions: hidepatrolled=1 hideunpatrolled=1",
-			$user
 		);
 	}
 
