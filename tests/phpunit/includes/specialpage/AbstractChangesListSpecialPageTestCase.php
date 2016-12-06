@@ -16,14 +16,23 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiTestCase 
 	protected function setUp() {
 		parent::setUp();
 		$this->setMwGlobals( 'wgRCWatchCategoryMembership', true );
+
+		// Deprecated
+		$this->setTemporaryHook(
+			'ChangesListSpecialPageFilters',
+			null
+		);
+
+		# setup the ChangesListSpecialPage (or subclass) object
+		$this->changesListSpecialPage = $this->getPage();
+		$this->changesListSpecialPage->registerFilters();
+
 	}
 
 	/**
 	 * @dataProvider provideParseParameters
 	 */
 	public function testParseParameters( $params, $expected ) {
-		$this->changesListSpecialPage->registerFilters();
-
 		$opts = new FormOptions();
 		foreach ( $expected as $key => $value ) {
 			// Register it as null so sets aren't rejected.
@@ -45,5 +54,66 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiTestCase 
 			/** ordered= */ false,
 			/** named= */ true
 		);
+	}
+
+	/**
+	 * @dataProvider validateOptionsProvider
+	 */
+	public function testValidateOptions( $optionsToSet, $expectedRedirect, $expectedRedirectOptions ) {
+		$redirectQuery = [];
+		$redirected = false;
+		$output = $this->getMockBuilder( OutputPage::class )
+			->disableProxyingToOriginalMethods()
+			->disableOriginalConstructor()
+			->getMock();
+		$output->method( 'redirect' )->willReturnCallback(
+			function ( $url ) use ( &$redirectQuery, &$redirected ) {
+				$urlParts = wfParseUrl( $url );
+				$query = isset( $urlParts[ 'query' ] ) ? $urlParts[ 'query' ] : '';
+				parse_str( $query, $redirectQuery );
+				$redirected = true;
+			}
+		);
+		$ctx = new RequestContext();
+
+		// Give users patrol permissions so we can test that.
+		$user = $this->getTestSysop()->getUser();
+		$ctx->setUser( $user );
+
+		// Disable this hook or it could break changeType
+		// depending on which other extensions are running.
+		$this->setTemporaryHook(
+			'ChangesListSpecialPageStructuredFilters',
+			null
+		);
+
+		$ctx->setOutput( $output );
+		$clsp = $this->changesListSpecialPage;
+		$clsp->setContext( $ctx );
+		$opts = $clsp->getDefaultOptions();
+
+		foreach ( $optionsToSet as $option => $value) {
+			$opts->setValue( $option, $value );
+		}
+
+		$clsp->validateOptions( $opts );
+
+		$this->assertEquals( $expectedRedirect, $redirected, 'redirection' );
+
+		if ( $expectedRedirect ) {
+			if ( count( $expectedRedirectOptions ) > 0 ) {
+				$expectedRedirectOptions += [
+					'title' => $clsp->getPageTitle()->getPrefixedText(),
+				];
+			}
+
+			$this->assertArrayEquals(
+				$expectedRedirectOptions,
+				$redirectQuery,
+				/* $ordered= */ false,
+				/* $named= */ true,
+				'redirection query'
+			);
+		}
 	}
 }
