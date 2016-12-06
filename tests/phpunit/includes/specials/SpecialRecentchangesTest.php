@@ -198,21 +198,50 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function testRcHidemyselfHidebyothersFilter() {
-		$user = $this->getTestUser()->getUser();
-		$this->assertConditions(
-			[ # expected
-				'rc_bot' => 0,
-				0 => "rc_user != '{$user->getId()}'",
-				1 => "rc_user = '{$user->getId()}'",
-				2 => "rc_type != '6'",
-			],
+	public function validateOptionsProvider() {
+		return [
 			[
-				'hidemyself' => 1,
-				'hidebyothers' => 1,
+				[ 'hidemyself', 'hidebyothers' ],
+				true,
+				[],
 			],
-			"rc conditions: hidemyself=1 hidebyothers=1 (logged in)",
-			$user
+		];
+	}
+
+	/**
+	 * @dataProvider validateOptionsProvider
+	 */
+	public function testValidateOptions( $optionsToSet, $expectedRedirect, $expectedRedirectOptions ) {
+		$redirectQuery = [];
+		$redirected = false;
+		$output = $this->getMockBuilder( OutputPage::class )
+			->disableProxyingToOriginalMethods()
+			->disableOriginalConstructor()
+			->getMock();
+		$output->method( 'redirect' )->willReturnCallback(
+			function ( $url ) use ( &$redirectQuery, &$redirected ) {
+				$urlParts = wfParseUrl( $url );
+				$query = isset( $urlParts[ 'query' ] ) ? $urlParts[ 'query' ] : '';
+				parse_str( $query, $redirectQuery );
+				$redirected = true;
+			}
 		);
+		$ctx = new RequestContext();
+		$ctx->setOutput( $output );
+		$rc = new SpecialRecentChanges();
+		$rc->setContext( $ctx );
+		$opts = $rc->getDefaultOptions();
+
+		foreach ( $optionsToSet as $option ) {
+			$opts->setValue( $option, true );
+		}
+
+		$rc->validateOptions( $opts );
+
+		$this->assertEquals( $expectedRedirect, $redirected, 'redirection' );
+
+		if ( $expectedRedirect ) {
+			$this->assertArrayEquals( $expectedRedirectOptions, $redirectQuery, 'redirection query' );
+		}
 	}
 }
