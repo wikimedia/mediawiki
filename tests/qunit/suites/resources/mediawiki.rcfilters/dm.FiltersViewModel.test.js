@@ -465,4 +465,51 @@
 			'After unchecking then checking a filter (without touching other filters in that group), all are checked'
 		);
 	} );
+
+	QUnit.test( 'sanitizeStringOptionGroup', function ( assert ) {
+		var definition = {
+				group1: {
+					title: 'Group 1',
+					type: 'string_options',
+					filters: [
+						{
+							name: 'filter1',
+							label: 'Show filter 1',
+							description: 'Description of Filter 1 in Group 1'
+						},
+						{
+							name: 'filter2',
+							label: 'Show filter 2',
+							description: 'Description of Filter 2 in Group 1'
+						},
+						{
+							name: 'filter3',
+							label: 'Show filter 3',
+							description: 'Description of Filter 3 in Group 1'
+						}
+					]
+				}
+			},
+			model = new mw.rcfilters.dm.FiltersViewModel();
+
+		model.initializeFilters( definition );
+
+		assert.deepEqual(
+			model.sanitizeStringOptionGroup( 'group1', [ 'filter1', 'filter1', 'filter2' ] ),
+			[ 'filter1', 'filter2' ],
+			'Remove duplicate values'
+		);
+
+		assert.deepEqual(
+			model.sanitizeStringOptionGroup( 'group1', [ 'filter1', 'foo', 'filter2' ] ),
+			[ 'filter1', 'filter2' ],
+			'Remove invalid values'
+		);
+
+		assert.deepEqual(
+			model.sanitizeStringOptionGroup( 'group1', [ 'filter1', 'all', 'filter2' ] ),
+			[ 'all' ],
+			'If any value is "all", the only value is "all".'
+		);
+	} );
 }( mediaWiki, jQuery ) );
