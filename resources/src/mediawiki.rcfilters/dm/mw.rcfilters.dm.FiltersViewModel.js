@@ -85,6 +85,7 @@
 
 			model.groups[ group ].title = data.title;
 			model.groups[ group ].type = data.type;
+			model.groups[ group ].separator = data.separator || '|';
 
 			for ( i = 0; i < data.filters.length; i++ ) {
 				filterItem = new mw.rcfilters.dm.FilterItem( data.filters[ i ].name, {
@@ -150,7 +151,17 @@
 		if ( this.groups[ groupName ] ) {
 			this.groups[ groupName ].filters.forEach( function ( filter ) {
 				// Get the parameter value
-				groupParamValues.push( Number( model.parameters[ filter.getName() ] || 0 ) );
+				if ( model.groups[ groupName ].type === 'send_unselected_if_any' ) {
+					groupParamValues.push( Number( model.parameters[ filter.getName() ] || 0 ) );
+				} else if ( model.groups[ groupName ].type === 'string_options' ) {
+					if (  !model.parameters[ groupName ] ) {
+						// The parameter doesn't exist; it's valid
+						return true;
+					}
+debugger;
+					// This group uses a parameter of the group name, separated by the given separator
+					groupParamValues = model.parameters[ groupName ].split( model.groups[ groupName ].separator );
+				}
 			} );
 
 			// Go over the values and validate
@@ -158,6 +169,14 @@
 				// With this type of group, if all params in the group are true
 				// the group is invalid
 				return groupParamValues.reduce( function ( a, b ) { return Number( a ) + Number( b ); } ) !== groupParamValues.length;
+			} else if ( this.groups[ groupName ].type === 'string_options' ) {
+				groupValues = this.groups[ groupName ].filters.map( function ( filter ) { return filter.getName(); } );
+				// For this group, we need to see if the value(s) are either
+				// any of the filter names or the word 'all'
+				return ( groupParamValues.length === 1 && groupParamValues[ 0 ] === 'all' ) ||
+					groupParamValues.every( function ( val ) {
+						return groupValues.indexOf( val ) > -1;
+					} );
 			}
 		}
 
@@ -201,8 +220,12 @@
 							paramGroup[ filterItem.getName() ] = false;
 						}
 					} );
-					model.updateParameters( paramGroup );
+				} else if ( data.type === 'string_options' ) {
+					// If this group came in invalid, we assume the
+					// correction is "all"
+					paramGroup[ groupName ] = 'all';
 				}
+				model.updateParameters( paramGroup );
 			}
 		} );
 	};
@@ -270,14 +293,14 @@
 	 * @return {Object} Parameter state object
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getFiltersToParameters = function () {
-		var i, filterItems, anySelected,
+		var i, filterItems, anySelected, values,
 			result = {},
 			groupItems = this.getFilterGroups();
 
 		$.each( groupItems, function ( group, data ) {
-			if ( data.type === 'send_unselected_if_any' ) {
-				filterItems = data.filters;
+			filterItems = data.filters;
 
+			if ( data.type === 'send_unselected_if_any' ) {
 				// First, check if any of the items are selected at all.
 				// If none is selected, we're treating it as if they are
 				// all false
@@ -293,6 +316,20 @@
 				for ( i = 0; i < filterItems.length; i++ ) {
 					result[ filterItems[ i ].getName() ] = anySelected ?
 						!filterItems[ i ].isSelected() : false;
+				}
+			} else if ( data.type === 'string_options' ) {
+				values = [];
+				for ( i = 0; i < filterItems.length; i++ ) {
+					if ( filterItems[ i ].isSelected() ) {
+						values.push( filterItems[ i ].getName() );
+					}
+				}
+
+				if ( values.length === filterItems.length ) {
+					result[ group ] = 'all';
+				} else if ( values.length > 0 ) {
+debugger;
+					result[ group ] = values.join( data.separator );
 				}
 			}
 		} );
@@ -320,7 +357,6 @@
 		$.each( params, function ( paramName, paramValue ) {
 			// Find the filter item
 			filterItem = model.getItemByName( paramName );
-
 			// Ignore if no filter item exists
 			if ( filterItem ) {
 				groupMap[ filterItem.getGroup() ] = groupMap[ filterItem.getGroup() ] || {};
@@ -334,15 +370,36 @@
 				// Add the relevant filter into the group map
 				groupMap[ filterItem.getGroup() ].filters = groupMap[ filterItem.getGroup() ].filters || [];
 				groupMap[ filterItem.getGroup() ].filters.push( filterItem );
+			} else if ( Object.keys( model.groups ).indexOf( paramName ) > -1 ) {
+				// This parameter represents a group (values are the filters)
+				// this is equivalent to checking if the group is 'string_options'
+				groupMap[ paramName ] = {};
+debugger;
+				paramValue = paramValue.split( model.groups[ paramName ].separator );
+
+				if (
+					( paramValue.length === 1 && paramValue[ 0 ] === 'all' ) ||
+					( paramValue.length === model.groups[ paramName ].length )
+				) {
+					// All true is the same as all false
+					$.each( model.groups[ paramName ].filters, function ( filterItem ) {
+						groupMap[ paramName ][ filterItem.getName() ] = true;
+					} );
+				} else {
+					// Mark the filters that correspond to the values
+					model.groups[ paramName ].filters.forEach( function ( filterItem ) {
+						groupMap[ paramName ][ filterItem.getName() ] = paramValue.indexOf( filterItem.getName() ) > -1;
+					} );
+				}
 			}
 		} );
 
 		// Now that we know the groups' selection states, we need to go over
 		// the filters in the groups and mark their selected states appropriately
 		$.each( groupMap, function ( group, data ) {
-			if ( model.groups[ group ].type === 'send_unselected_if_any' ) {
-				allItemsInGroup = model.groups[ group ].filters;
+			allItemsInGroup = model.groups[ group ].filters;
 
+			if ( model.groups[ group ].type === 'send_unselected_if_any' ) {
 				for ( i = 0; i < allItemsInGroup.length; i++ ) {
 					filterItem = allItemsInGroup[ i ];
 
@@ -355,6 +412,11 @@
 						// group, which means the state is false
 						false;
 				}
+			} else if ( model.groups[ group ].type === 'string_options' ) {
+				// We already have the correct result in our group map,
+				// override the current states of the filters from this
+				// group
+				result = $.extend( {}, result, groupMap[ group ] );
 			}
 		} );
 		return result;
