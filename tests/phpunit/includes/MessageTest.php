@@ -68,19 +68,37 @@ class MessageTest extends MediaWikiLangTestCase {
 				[ [ 'baz', 'foo' ] ],
 			],
 			[
-				[ 'baz', 'foo' ],
+				[ Message::rawParam( 'baz' ) ],
+				[ Message::rawParam( 'baz' ) ],
+			],
+			[
+				[ Message::rawParam( 'baz' ), 'foo' ],
+				[ Message::rawParam( 'baz' ), 'foo' ],
+			],
+			[
+				[ Message::rawParam( 'baz' ) ],
+				[ [ Message::rawParam( 'baz' ) ] ],
+			],
+			[
+				[ Message::rawParam( 'baz' ), 'foo' ],
+				[ [ Message::rawParam( 'baz' ), 'foo' ] ],
+			],
+
+			// Test handling of erroneous input, to detect if it changes
+			[
+				[ [ 'baz', 'foo' ], 'hhh' ],
 				[ [ 'baz', 'foo' ], 'hhh' ],
 			],
 			[
-				[ 'baz', 'foo' ],
+				[ [ 'baz', 'foo' ], 'hhh', [ 'ahahahahha' ] ],
 				[ [ 'baz', 'foo' ], 'hhh', [ 'ahahahahha' ] ],
 			],
 			[
-				[ 'baz', 'foo' ],
+				[ [ 'baz', 'foo' ], [ 'ahahahahha' ] ],
 				[ [ 'baz', 'foo' ], [ 'ahahahahha' ] ],
 			],
 			[
-				[ 'baz' ],
+				[ [ 'baz' ], [ 'ahahahahha' ] ],
 				[ [ 'baz' ], [ 'ahahahahha' ] ],
 			],
 		];
