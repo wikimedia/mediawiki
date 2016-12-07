@@ -92,6 +92,7 @@
 	"apihelp-expandtemplates-param-text": "Teks wiki yang akan diubah.",
 	"apihelp-expandtemplates-param-revid": "ID revisi, untuk <nowiki>{{REVISIONID}}</nowiki> dan variabel serupa.",
 	"apihelp-expandtemplates-param-prop": "Bagian informasi manakah yang ingin didapatkan.\n\nPerhatikan bahwa jika tidak ada nilai yang dipilih, hasilnya akan mengandung teks wiki, namun keluaran akan berupa format usang.",
+	"apihelp-feedcontributions-param-deletedonly": "Tampilkan hanya kontribusi terhapus.",
 	"apihelp-login-example-login": "Masuk log.",
 	"apihelp-move-param-noredirect": "Jangan buat pengalihan.",
 	"apihelp-move-param-unwatch": "Hapus halaman dan pengalihan dari daftar pantauan pengguna ini.",

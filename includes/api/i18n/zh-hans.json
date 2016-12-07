@@ -1351,7 +1351,7 @@
 	"apihelp-phpfm-description": "输出数据为序列化PHP格式（HTML优质打印效果）。",
 	"apihelp-rawfm-description": "输出数据为JSON格式，包含调试元素（HTML优质打印效果）。",
 	"apihelp-xml-description": "输出数据为XML格式。",
-	"apihelp-xml-param-xslt": "如果指定，加入已命名的页面作为一个XSL样式表。值必须是在{{ns:mediawiki}}名字空间以<code>.xsl</code>为结尾的标题。",
+	"apihelp-xml-param-xslt": "如果指定，加入已命名的页面作为一个XSL样式表。值必须是在{{ns:MediaWiki}}名字空间以<code>.xsl</code>为结尾的标题。",
 	"apihelp-xml-param-includexmlnamespace": "如果指定，添加一个XML名字空间。",
 	"apihelp-xmlfm-description": "输出数据为XML格式（HTML优质打印效果）。",
 	"api-format-title": "MediaWiki API 结果",

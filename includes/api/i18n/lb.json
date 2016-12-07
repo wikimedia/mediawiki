@@ -184,5 +184,19 @@
 	"api-help-param-type-user": "Typ: {{PLURAL:$1|1=Benotzernumm|2=Lëscht vu Benotzernimm}}",
 	"api-help-examples": "{{PLURAL:$1|Beispill|Beispiler}}:",
 	"api-help-permissions": "{{PLURAL:$1|Autorisatioun|Autorisatiounen}}:",
-	"api-help-open-in-apisandbox": "<small>[an der Sandkëscht opmaachen]</small>"
+	"api-help-open-in-apisandbox": "<small>[an der Sandkëscht opmaachen]</small>",
+	"apierror-articleexists": "Den Artikel deen dir probéiert hutt unzeleeë gouf schonn ugeluecht.",
+	"apierror-autoblocked": "Är IP-Adress gouf automatesch gespaart well se vun engem gespaarte Benotzer benotzt gouf.",
+	"apierror-copyuploadbadurl": "D'Eroplueden ass vun dëser URL net erlaabt.",
+	"apierror-import-unknownerror": "Onbekannte Feeler beim Import: $1\nf",
+	"apierror-invalidtitle": "Schlechten Titel \"$1\".",
+	"apierror-missingtitle": "D'Säit déi Dir spezifizéiert hutt gëtt et net.",
+	"apierror-missingtitle-byname": "D'Säit $1 gëtt et net.",
+	"apierror-unknownerror-nocode": "Onbekannte Feeler.",
+	"apierror-writeapidenied": "Dir däerft dës Wiki net iwwer den API ännneren.",
+	"apiwarn-invalidcategory": "\"$1\" ass keng Kategorie.",
+	"apiwarn-invalidtitle": "\"$1\" ass kee valabelen Titel",
+	"apiwarn-tokennotallowed": "Aktioun \"$1\" ass net erlaabt fir den aktuelle Benotzer.",
+	"apiwarn-validationfailed-badpref": "keng valabel Astellung",
+	"api-feed-error-title": "Feeler ($1)"
 }

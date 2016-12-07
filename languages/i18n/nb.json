@@ -1284,7 +1284,7 @@
 	"action-upload_by_url": "laste opp denne filen fra en URL",
 	"action-writeapi": "bruke skrive-API-en",
 	"action-delete": "slette denne siden",
-	"action-deleterevision": "slette denne revisjonen",
+	"action-deleterevision": "slett revisjoner",
 	"action-deletedhistory": "se denne sidens slettede historikk",
 	"action-browsearchive": "søke i slettede sider",
 	"action-undelete": "gjenopprette denne siden",

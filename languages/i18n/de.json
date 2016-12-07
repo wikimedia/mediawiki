@@ -1327,10 +1327,12 @@
 	"action-writeapi": "die API mit Schreibzugriffen zu verwenden",
 	"action-delete": "Seiten zu löschen",
 	"action-deleterevision": "Versionen zu löschen",
+	"action-deletelogentry": "Logbucheinträge zu löschen",
 	"action-deletedhistory": "die Liste der gelöschten Versionen zu sehen",
+	"action-deletedtext": "gelöschten Versionstext anzusehen",
 	"action-browsearchive": "nach gelöschten Seiten zu suchen",
-	"action-undelete": "die Seite wiederherzustellen",
-	"action-suppressrevision": "die versteckte Version einzusehen und wiederherzustellen",
+	"action-undelete": "Seiten wiederherzustellen",
+	"action-suppressrevision": "versteckte Versionen einzusehen und wiederherzustellen",
 	"action-suppressionlog": "das private Logbuch einzusehen",
 	"action-block": "den Benutzer zu sperren",
 	"action-protect": "den Schutzstatus von Seiten zu ändern",
@@ -1345,6 +1347,7 @@
 	"action-userrights-interwiki": "die Rechte von Benutzern in anderen Wikis zu ändern",
 	"action-siteadmin": "die Datenbank zu sperren oder freizugeben",
 	"action-sendemail": "E-Mails zu senden",
+	"action-editmyoptions": "deine Einstellungen zu bearbeiten",
 	"action-editmywatchlist": "deine Beobachtungsliste zu bearbeiten",
 	"action-viewmywatchlist": "deine Beobachtungsliste anzusehen",
 	"action-viewmyprivateinfo": "deine privaten Informationen einzusehen",
@@ -3898,5 +3901,7 @@
 	"usercssispublic": "Bitte beachten: CSS-Unterseiten sollten keine vertraulichen Daten enthalten, da sie von anderen Benutzern eingesehen werden können.",
 	"restrictionsfield-badip": "Ungültige IP-Adresse oder ungültiger IP-Adressbereich: $1",
 	"restrictionsfield-label": "Erlaubte IP-Adressbereiche:",
-	"restrictionsfield-help": "Eine IP-Adresse oder ein CIDR-Bereich pro Zeile. Um alles zu aktivieren, verwende<br><code>0.0.0.0/0</code><br><code>::/0</code>"
+	"restrictionsfield-help": "Eine IP-Adresse oder ein CIDR-Bereich pro Zeile. Um alles zu aktivieren, verwende<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"revid": "v$1",
+	"pageid": "Seitenkennung $1"
 }

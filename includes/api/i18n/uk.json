@@ -1340,7 +1340,7 @@
 	"apihelp-phpfm-description": "Виводити дані у форматі серіалізованого PHP (вивід відформатованого коду за допомогою HTML).",
 	"apihelp-rawfm-description": "Виводити дані, включно з елементами налагодження, у форматі JSON (вивід відформатованого коду за допомогою HTML).",
 	"apihelp-xml-description": "Виводити дані у форматі XML.",
-	"apihelp-xml-param-xslt": "Якщо вказано, додає названу сторінку як таблицю стилів XSL. Це значення повинне бути назвою у просторі назв {{ns:mediawiki}}, що закінчується на <code>.xsl</code>.",
+	"apihelp-xml-param-xslt": "Якщо вказано, додає названу сторінку як таблицю стилів XSL. Це значення повинне бути назвою у просторі назв {{ns:MediaWiki}}, що закінчується на <code>.xsl</code>.",
 	"apihelp-xml-param-includexmlnamespace": "Якщо вказано, додає простір назв XML.",
 	"apihelp-xmlfm-description": "Вивести дані у форматі XML (вивід відформатованого коду за допомогою HTML).",
 	"api-format-title": "Результат запиту до API MediaWiki",

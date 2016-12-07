@@ -3377,7 +3377,7 @@
 	"tags-edit": "ویرایش",
 	"tags-delete": "حذف",
 	"tags-activate": "فعال‌سازی",
-	"tags-deactivate": "غیرفعال کردن/إکار کةتن",
+	"tags-deactivate": "غیرفعال کردن",
 	"tags-hitcount": "$1 {{PLURAL:$1|تغییر|تغییر}}",
 	"tags-manage-no-permission": "شما اجازه مدیریت تغییر تگ‌ها را ندارید.",
 	"tags-manage-blocked": "امکان تغییر برچسب‌ها را در زمان بسته‌بودن {{GENDER:$1|ندارید}}",
