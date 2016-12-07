@@ -46,6 +46,8 @@ class ApiBlock extends ApiBase {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
+		$this->requireOnlyOneParameter( $params, 'user', 'userid' );
+
 		# bug 15810: blocked admins should have limited access here
 		if ( $user->isBlocked() ) {
 			$status = SpecialBlock::checkUnblockSelf( $params['user'], $user );
@@ -58,13 +60,26 @@ class ApiBlock extends ApiBase {
 			}
 		}
 
-		$target = User::newFromName( $params['user'] );
-		// Bug 38633 - if the target is a user (not an IP address), but it
-		// doesn't exist or is unusable, error.
-		if ( $target instanceof User &&
-			( $target->isAnon() /* doesn't exist */ || !User::isUsableName( $target->getName() ) )
-		) {
-			$this->dieWithError( [ 'nosuchusershort', $params['user'] ], 'nosuchuser' );
+		if ( $params['userid'] !== null ) {
+			$target = User::newFromId( $params['userid'] );
+
+			if ( $target instanceof User &&
+				( $target->isAnon() /* doesn't exist */ || !User::isUsableName( $target->getName() ) )
+			) {
+				$this->dieWithError( [ 'nosuchuserid', $params['userid'] ], 'nosuchuser' );
+			}
+
+			$params['user'] = $target->getName();
+		}else{
+			$target = User::newFromName( $params['user'] );
+
+			// Bug 38633 - if the target is a user (not an IP address), but it
+			// doesn't exist or is unusable, error.
+			if ( $target instanceof User &&
+				( $target->isAnon() /* doesn't exist */ || !User::isUsableName( $target->getName() ) )
+			) {
+				$this->dieWithError( [ 'nosuchusershort', $params['user'] ], 'nosuchuser' );
+			}
 		}
 
 		if ( $params['hidename'] && !$user->isAllowed( 'hideuser' ) ) {
@@ -136,8 +151,10 @@ class ApiBlock extends ApiBase {
 	public function getAllowedParams() {
 		return [
 			'user' => [
-				ApiBase::PARAM_TYPE => 'user',
-				ApiBase::PARAM_REQUIRED => true
+				ApiBase::PARAM_TYPE => 'user'
+			],
+			'userid' => [
+				ApiBase::PARAM_TYPE => 'integer'
 			],
 			'expiry' => 'never',
 			'reason' => '',

@@ -488,6 +488,7 @@
 	"loginsuccess": "<strong>You are now logged in to {{SITENAME}} as \"$1\".</strong>",
 	"nosuchuser": "There is no user by the name \"$1\".\nUsernames are case sensitive.\nCheck your spelling, or [[Special:CreateAccount|create a new account]].",
 	"nosuchusershort": "There is no user by the name \"$1\".\nCheck your spelling.",
+	"nosuchuserid": "There is no user by the id \"$1\".",
 	"nouserspecified": "You have to specify a username.",
 	"login-userblocked": "This user is blocked. Login not allowed.",
 	"wrongpassword": "Incorrect password entered.\nPlease try again.",
