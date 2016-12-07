@@ -87,6 +87,10 @@ class UserrightsPage extends SpecialPage {
 		if ( is_string( $this->mTarget ) ) {
 			$this->mTarget = trim( $this->mTarget );
 		}
+		
+		if ( $this->mTarget !== null && User::getCanonicalName( $this->mTarget ) === $user->getName() ) {
+			$this->isself = true;
+		}
 
 		$fetchedStatus = $this->fetchUser( $this->mTarget, true );
 		if ( $fetchedStatus->isOK() ) {
