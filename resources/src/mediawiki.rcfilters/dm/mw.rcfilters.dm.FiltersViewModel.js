@@ -85,6 +85,7 @@
 
 			model.groups[ group ].title = data.title;
 			model.groups[ group ].type = data.type;
+			model.groups[ group ].separator = data.separator || '|';
 
 			for ( i = 0; i < data.filters.length; i++ ) {
 				filterItem = new mw.rcfilters.dm.FilterItem( data.filters[ i ].name, {
@@ -127,6 +128,7 @@
 	mw.rcfilters.dm.FiltersViewModel.prototype.isLoading = function () {
 		return this.loading;
 	};
+
 	/**
 	 * Get the names of all available filters
 	 *
@@ -144,19 +146,54 @@
 	 * @return {boolean} Group parameter values is valid
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.isParameterGroupValid = function ( groupName ) {
-		var model = this,
-			groupParamValues = [];
+		var groupValues,
+			model = this,
+			groupParamValues = [],
+			isArrUnique = function( arr ) {
+				var unique = true,
+					result = [];
+
+				arr.forEach( function ( val ) {
+					if ( unique && result.indexOf( val ) === -1 ) {
+						unique = false;
+					}
+					result.push( val );
+				} );
+
+				return unique;
+			};
 
 		if ( this.groups[ groupName ] ) {
-			groupParamValues = this.groups[ groupName ].filters.map( function ( filterItem ) {
-				return model.parameters[ filterItem.getName() ];
-			} );
+			if ( model.groups[ groupName ].type === 'send_unselected_if_any' ) {
+				// Get the parameter value
+				groupParamValues = this.groups[ groupName ].filters.map( function ( filterItem ) {
+					return model.parameters[ filterItem.getName() ];
+				} );
+			} else if ( this.groups[ groupName ].type === 'string_options' ) {
+				// This group uses a parameter of the group name, separated by the given separator
+				groupParamValues = (
+					this.parameters[ groupName ] && this.parameters[ groupName ].split( this.groups[ groupName ].separator )
+				) || [];
+			}
 
 			// Go over the values and validate
 			if ( this.groups[ groupName ].type === 'send_unselected_if_any' ) {
 				// With this type of group, if all params in the group are true
 				// the group is invalid
 				return groupParamValues.reduce( function ( a, b ) { return Number( a ) + Number( b ); } ) !== groupParamValues.length;
+			} else if ( this.groups[ groupName ].type === 'string_options' ) {
+				groupValues = this.groups[ groupName ].filters.map( function ( filter ) { return filter.getName(); } );
+				// For this group, we need to see if the value(s) are:
+				// 1. Unique, and
+				// 3. The word "all", or
+				// 2. Every value is a valid filter names
+				return isArrUnique( groupParamValues ) &&
+				(
+					( groupParamValues.length === 1 && groupParamValues[ 0 ] === 'all' ) ||
+					groupParamValues.every( function ( val ) {
+						return groupValues.indexOf( val ) > -1;
+					} )
+				);
 			}
 		}
 
@@ -197,8 +234,13 @@
 							paramGroup[ filterItem.getName() ] = false;
 						}
 					} );
-					model.updateParameters( paramGroup );
+				} else if ( data.type === 'string_options' ) {
+					paramGroup[ groupName ] = model.sanitizeStringOptionGroup(
+						groupName,
+						model.parameters[ groupName ]
+					);
 				}
+				model.updateParameters( paramGroup );
 			}
 		} );
 	};
@@ -266,14 +308,14 @@
 	 * @return {Object} Parameter state object
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getFiltersToParameters = function () {
-		var i, filterItems, anySelected,
+		var i, filterItems, anySelected, values,
 			result = {},
 			groupItems = this.getFilterGroups();
 
 		$.each( groupItems, function ( group, data ) {
-			if ( data.type === 'send_unselected_if_any' ) {
-				filterItems = data.filters;
+			filterItems = data.filters;
 
+			if ( data.type === 'send_unselected_if_any' ) {
 				// First, check if any of the items are selected at all.
 				// If none is selected, we're treating it as if they are
 				// all false
@@ -290,6 +332,58 @@
 					result[ filterItems[ i ].getName() ] = anySelected ?
 						Number( !filterItems[ i ].isSelected() ) : 0;
 				}
+			} else if ( data.type === 'string_options' ) {
+				values = [];
+				for ( i = 0; i < filterItems.length; i++ ) {
+					if ( filterItems[ i ].isSelected() ) {
+						values.push( filterItems[ i ].getName() );
+					}
+				}
+
+				if ( values.length === 0 || values.length === filterItems.length ) {
+					result[ group ] = 'all';
+				} else {
+					result[ group ] = values.join( data.separator );
+				}
+			}
+		} );
+
+		return result;
+	};
+
+	/**
+	 * Sanitize value group of a string_option groups type
+	 * Remove duplicates and make sure to only use valid
+	 * values.
+	 *
+	 * @param {string} groupName Group name
+	 * @param {string[]} valueArray Array of values
+	 * @return {string[]} Array of valid values
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.sanitizeStringOptionGroup = function( groupName, valueArray ) {
+		var result = [],
+			validNames = this.groups[ groupName ].filters.map( function ( filterItem ) {
+				return filterItem.getName();
+			} );
+
+		if ( valueArray.indexOf( 'all' ) > -1 ) {
+			// If anywhere in the values there's 'all', we
+			// treat it as if only 'all' was selected.
+			// Example: param=valid1,valid2,all
+			// Result: param=all
+			return [ 'all' ];
+		}
+
+		// Get rid of any dupe and invalid parameter, only output
+		// valid ones
+		// Example: param=valid1,valid2,invalid1,valid1
+		// Result: param=valid1,valid2
+		valueArray.forEach( function ( value ) {
+			if (
+				validNames.indexOf( value ) > -1 &&
+				result.indexOf( value ) === -1
+			) {
+				result.push( value );
 			}
 		} );
 
@@ -304,7 +398,7 @@
 	 * @return {Object} Filter state object
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getParametersToFilters = function ( params ) {
-		var i, filterItem, allItemsInGroup,
+		var i, filterItem,
 			groupMap = {},
 			model = this,
 			base = this.getFiltersToParameters(),
@@ -316,7 +410,6 @@
 		$.each( params, function ( paramName, paramValue ) {
 			// Find the filter item
 			filterItem = model.getItemByName( paramName );
-
 			// Ignore if no filter item exists
 			if ( filterItem ) {
 				groupMap[ filterItem.getGroup() ] = groupMap[ filterItem.getGroup() ] || {};
@@ -330,15 +423,20 @@
 				// Add the relevant filter into the group map
 				groupMap[ filterItem.getGroup() ].filters = groupMap[ filterItem.getGroup() ].filters || [];
 				groupMap[ filterItem.getGroup() ].filters.push( filterItem );
+			} else if ( Object.keys( model.groups ).indexOf( paramName ) > -1 ) {
+				// // This parameter represents a group (values are the filters)
+				// // this is equivalent to checking if the group is 'string_options'
+				groupMap[ paramName ] = { filters: model.groups[ paramName ].filters };
 			}
 		} );
 
 		// Now that we know the groups' selection states, we need to go over
 		// the filters in the groups and mark their selected states appropriately
 		$.each( groupMap, function ( group, data ) {
-			if ( model.groups[ group ].type === 'send_unselected_if_any' ) {
-				allItemsInGroup = model.groups[ group ].filters;
+			var paramValue, filterItem,
+				allItemsInGroup = data.filters;
 
+			if ( model.groups[ group ].type === 'send_unselected_if_any' ) {
 				for ( i = 0; i < allItemsInGroup.length; i++ ) {
 					filterItem = allItemsInGroup[ i ];
 
@@ -350,6 +448,24 @@
 						// Otherwise, there are no selected items in the
 						// group, which means the state is false
 						false;
+				}
+			} else if ( model.groups[ group ].type === 'string_options' ) {
+				for ( i = 0; i < allItemsInGroup.length; i++ ) {
+					filterItem = allItemsInGroup[ i ];
+
+					paramValue = model.sanitizeStringOptionGroup( group, params[ group ].split( model.groups[ group ].separator ) );
+
+					result[ filterItem.getName() ] = (
+							// If it is the word 'all'
+							paramValue.length === 1 && paramValue[ 0 ] === 'all' ||
+							// All values are written
+							paramValue.length === model.groups[ group ].filters.length
+						) ?
+						// All true (either because all values are written or the term 'all' is written)
+						// is the same as all filters set to false
+						false :
+						// Otherwise, the filter is selected only if it appears in the parameter values
+						paramValue.indexOf( filterItem.getName() ) > -1;
 				}
 			}
 		} );
