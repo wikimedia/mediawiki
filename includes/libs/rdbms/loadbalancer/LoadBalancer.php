@@ -31,7 +31,7 @@ use Wikimedia\ScopedCallback;
 class LoadBalancer implements ILoadBalancer {
 	/** @var array[] Map of (server index => server config array) */
 	private $mServers;
-	/** @var array[] Map of (local/foreignUsed/foreignFree => server index => IDatabase array) */
+	/** @var IDatabase[][] Map of (local/foreignUsed/foreignFree => server index => IDatabase array) */
 	private $mConns;
 	/** @var float[] Map of (server index => weight) */
 	private $mLoads;
@@ -390,6 +390,9 @@ class LoadBalancer implements ILoadBalancer {
 		return $i;
 	}
 
+	/**
+	 * @param DBMasterPos|false $pos
+	 */
 	public function waitFor( $pos ) {
 		$this->mWaitForPos = $pos;
 		$i = $this->mReadIndex;
@@ -436,6 +439,10 @@ class LoadBalancer implements ILoadBalancer {
 		return $ok;
 	}
 
+	/**
+	 * @param int $i
+	 * @return IDatabase
+	 */
 	public function getAnyOpenConnection( $i ) {
 		foreach ( $this->mConns as $connsByServer ) {
 			if ( !empty( $connsByServer[$i] ) ) {
@@ -1447,6 +1454,11 @@ class LoadBalancer implements ILoadBalancer {
 		}
 	}
 
+	/**
+	 * @param IDatabase $conn
+	 * @param DBMasterPos|false $pos
+	 * @param int $timeout
+	 */
 	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = 10 ) {
 		if ( $this->getServerCount() <= 1 || !$conn->getLBInfo( 'replica' ) ) {
 			return true; // server is not a replica DB

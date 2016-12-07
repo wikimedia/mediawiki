@@ -45,6 +45,7 @@ class DatabaseSqlite extends Database {
 	protected $mLastResult;
 
 	/** @var $mConn PDO */
+	protected $mConn;
 
 	/** @var FSLockManager (hopefully on the same server as the DB) */
 	protected $lockMgr;
