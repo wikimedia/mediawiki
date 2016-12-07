@@ -22,6 +22,7 @@
  */
 
 use \MediaWiki\MediaWikiServices;
+use \Wikimedia\WaitConditionLoop;
 
 /**
  * Class to store objects in the database
