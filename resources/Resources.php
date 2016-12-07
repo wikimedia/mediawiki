@@ -1807,6 +1807,13 @@ return [
 			'rcfilters-filter-editsbyself-description',
 			'rcfilters-filter-editsbyother-label',
 			'rcfilters-filter-editsbyother-description',
+			'rcfilters-filtergroup-userExpLevel',
+			'rcfilters-filter-userExpLevel-newcomer-label',
+			'rcfilters-filter-userExpLevel-newcomer-description',
+			'rcfilters-filter-userExpLevel-learner-label',
+			'rcfilters-filter-userExpLevel-learner-description',
+			'rcfilters-filter-userExpLevel-experienced-label',
+			'rcfilters-filter-userExpLevel-experienced-description',
 		],
 		'dependencies' => [
 			'oojs-ui',
