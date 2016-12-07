@@ -34,6 +34,22 @@
 							description: 'Description of Filter 2 in Group 2'
 						}
 					]
+				},
+				group3: {
+					title: 'Group 3',
+					type: 'string_options',
+					filters: [
+						{
+							name: 'group3filter1',
+							label: 'Group 3: Filter 1',
+							description: 'Description of Filter 1 in Group 3'
+						},
+						{
+							name: 'group3filter2',
+							label: 'Group 3: Filter 2',
+							description: 'Description of Filter 2 in Group 3'
+						}
+					]
 				}
 			},
 			model = new mw.rcfilters.dm.FiltersViewModel();
@@ -44,7 +60,9 @@
 			model.getItemByName( 'group1filter1' ) instanceof mw.rcfilters.dm.FilterItem &&
 			model.getItemByName( 'group1filter2' ) instanceof mw.rcfilters.dm.FilterItem &&
 			model.getItemByName( 'group2filter1' ) instanceof mw.rcfilters.dm.FilterItem &&
-			model.getItemByName( 'group2filter2' ) instanceof mw.rcfilters.dm.FilterItem,
+			model.getItemByName( 'group2filter2' ) instanceof mw.rcfilters.dm.FilterItem &&
+			model.getItemByName( 'group3filter1' ) instanceof mw.rcfilters.dm.FilterItem &&
+			model.getItemByName( 'group3filter2' ) instanceof mw.rcfilters.dm.FilterItem,
 			'Filters instantiated and stored correctly'
 		);
 
@@ -54,14 +72,17 @@
 				group1filter1: false,
 				group1filter2: false,
 				group2filter1: false,
-				group2filter2: false
+				group2filter2: false,
+				group3filter1: false,
+				group3filter2: false
 			},
 			'Initial state of filters'
 		);
 
 		model.updateFilters( {
 			group1filter1: true,
-			group2filter2: true
+			group2filter2: true,
+			group3filter1: true
 		} );
 		assert.deepEqual(
 			model.getState(),
@@ -69,7 +90,9 @@
 				group1filter1: true,
 				group1filter2: false,
 				group2filter1: false,
-				group2filter2: true
+				group2filter2: true,
+				group3filter1: true,
+				group3filter2: false
 			},
 			'Updating filter states correctly'
 		);
@@ -196,6 +219,28 @@
 							description: 'Description of Filter 3 in Group 2'
 						}
 					]
+				},
+				group3: {
+					title: 'Group 3',
+					type: 'string_options',
+					separator: ',',
+					filters: [
+						{
+							name: 'filter7',
+							label: 'Group 3: Filter 1',
+							description: 'Description of Filter 1 in Group 3'
+						},
+						{
+							name: 'filter8',
+							label: 'Group 3: Filter 2',
+							description: 'Description of Filter 2 in Group 3'
+						},
+						{
+							name: 'filter9',
+							label: 'Group 3: Filter 3',
+							description: 'Description of Filter 3 in Group 3'
+						}
+					]
 				}
 			},
 			model = new mw.rcfilters.dm.FiltersViewModel();
@@ -211,9 +256,10 @@
 				hidefilter3: 0,
 				hidefilter4: 0,
 				hidefilter5: 0,
-				hidefilter6: 0
+				hidefilter6: 0,
+				group3: 'all',
 			},
-			'Unselected filters return all parameters falsey.'
+			'Unselected filters return all parameters falsey or \'all\'.'
 		);
 
 		// Select 1 filter
@@ -236,7 +282,8 @@
 				// Group 2 (nothing is selected, all false)
 				hidefilter4: 0,
 				hidefilter5: 0,
-				hidefilter6: 0
+				hidefilter6: 0,
+				group3: 'all'
 			},
 			'One filters in one "send_unselected_if_any" group returns the other parameters truthy.'
 		);
@@ -261,7 +308,8 @@
 				// Group 2 (nothing is selected, all false)
 				hidefilter4: 0,
 				hidefilter5: 0,
-				hidefilter6: 0
+				hidefilter6: 0,
+				group3: 'all'
 			},
 			'One filters in one "send_unselected_if_any" group returns the other parameters truthy.'
 		);
@@ -286,10 +334,81 @@
 				// Group 2 (nothing is selected, all false)
 				hidefilter4: 0,
 				hidefilter5: 0,
-				hidefilter6: 0
+				hidefilter6: 0,
+				group3: 'all'
 			},
 			'All filters selected in one "send_unselected_if_any" group returns all parameters falsy.'
 		);
+
+		// Select 1 filter from string_options
+		model.updateFilters( {
+			filter7: true,
+			filter8: false,
+			filter9: false
+		} );
+		// All filters of the group are selected == this is the same as not selecting any
+		assert.deepEqual(
+			model.getFiltersToParameters(),
+			{
+				// Group 1 (all selected, all)
+				hidefilter1: 0,
+				hidefilter2: 0,
+				hidefilter3: 0,
+				// Group 2 (nothing is selected, all false)
+				hidefilter4: 0,
+				hidefilter5: 0,
+				hidefilter6: 0,
+				group3: 'filter7'
+			},
+			'One filter selected in "string_option" group returns that filter in the value.'
+		);
+
+		// Select 2 filters from string_options
+		model.updateFilters( {
+			filter7: true,
+			filter8: true,
+			filter9: false
+		} );
+		// All filters of the group are selected == this is the same as not selecting any
+		assert.deepEqual(
+			model.getFiltersToParameters(),
+			{
+				// Group 1 (all selected, all)
+				hidefilter1: 0,
+				hidefilter2: 0,
+				hidefilter3: 0,
+				// Group 2 (nothing is selected, all false)
+				hidefilter4: 0,
+				hidefilter5: 0,
+				hidefilter6: 0,
+				group3: 'filter7,filter8'
+			},
+			'Two filters selected in "string_option" group returns those filters in the value.'
+		);
+
+		// Select 3 filters from string_options
+		model.updateFilters( {
+			filter7: true,
+			filter8: true,
+			filter9: true
+		} );
+		// All filters of the group are selected == this is the same as not selecting any
+		assert.deepEqual(
+			model.getFiltersToParameters(),
+			{
+				// Group 1 (all selected, all)
+				hidefilter1: 0,
+				hidefilter2: 0,
+				hidefilter3: 0,
+				// Group 2 (nothing is selected, all false)
+				hidefilter4: 0,
+				hidefilter5: 0,
+				hidefilter6: 0,
+				group3: 'all'
+			},
+			'All filters selected in "string_option" group returns \'all\'.'
+		);
+
 	} );
 
 	QUnit.test( 'getParametersToFilters', function ( assert ) {
@@ -335,6 +454,28 @@
 							description: 'Description of Filter 3 in Group 2'
 						}
 					]
+				},
+				group3: {
+					title: 'Group 3',
+					type: 'string_options',
+					separator: ',',
+					filters: [
+						{
+							name: 'filter7',
+							label: 'Group 3: Filter 1',
+							description: 'Description of Filter 1 in Group 3'
+						},
+						{
+							name: 'filter8',
+							label: 'Group 3: Filter 2',
+							description: 'Description of Filter 2 in Group 3'
+						},
+						{
+							name: 'filter9',
+							label: 'Group 3: Filter 3',
+							description: 'Description of Filter 3 in Group 3'
+						}
+					]
 				}
 			},
 			model = new mw.rcfilters.dm.FiltersViewModel();
@@ -350,7 +491,10 @@
 				hidefilter3: false, // The text is "show filter 3"
 				hidefilter4: false, // The text is "show filter 4"
 				hidefilter5: false, // The text is "show filter 5"
-				hidefilter6: false // The text is "show filter 6"
+				hidefilter6: false, // The text is "show filter 6"
+				filter7: false,
+				filter8: false,
+				filter9: false
 			},
 			'Empty parameter query results in filters in initial state'
 		);
@@ -365,7 +509,10 @@
 				hidefilter3: true, // The text is "show filter 3"
 				hidefilter4: false, // The text is "show filter 4"
 				hidefilter5: false, // The text is "show filter 5"
-				hidefilter6: false // The text is "show filter 6"
+				hidefilter6: false, // The text is "show filter 6"
+				filter7: false,
+				filter8: false,
+				filter9: false
 			},
 			'One falsey parameter in a group makes the rest of the filters in the group truthy (checked) in the interface'
 		);
@@ -381,9 +528,12 @@
 				hidefilter3: true, // The text is "show filter 3"
 				hidefilter4: false, // The text is "show filter 4"
 				hidefilter5: false, // The text is "show filter 5"
-				hidefilter6: false // The text is "show filter 6"
+				hidefilter6: false, // The text is "show filter 6"
+				filter7: false,
+				filter8: false,
+				filter9: false
 			},
-			'Two falsey parameters in a group makes the rest of the filters in the group truthy (checked) in the interface'
+			'Two falsey parameters in a \'send_unselected_if_any\' group makes the rest of the filters in the group truthy (checked) in the interface'
 		);
 
 		assert.deepEqual(
@@ -399,9 +549,12 @@
 				hidefilter3: false, // The text is "show filter 3"
 				hidefilter4: false, // The text is "show filter 4"
 				hidefilter5: false, // The text is "show filter 5"
-				hidefilter6: false // The text is "show filter 6"
+				hidefilter6: false, // The text is "show filter 6"
+				filter7: false,
+				filter8: false,
+				filter9: false
 			},
-			'All paremeters in the same group false is equivalent to none are truthy (checked) in the interface'
+			'All paremeters in the same \'send_unselected_if_any\' group false is equivalent to none are truthy (checked) in the interface'
 		);
 
 		// The ones above don't update the model, so we have a clean state.
@@ -430,9 +583,12 @@
 				hidefilter3: false, // The text is "show filter 3"
 				hidefilter4: false, // The text is "show filter 4"
 				hidefilter5: false, // The text is "show filter 5"
-				hidefilter6: false // The text is "show filter 6"
+				hidefilter6: false, // The text is "show filter 6"
+				filter7: false,
+				filter8: false,
+				filter9: false
 			},
-			'After unchecking 2 of 3 filters via separate updateFilters calls, only the remaining one is still checked.'
+			'After unchecking 2 of 3 \'send_unselected_if_any\' filters via separate updateFilters calls, only the remaining one is still checked.'
 		);
 
 		// Reset
@@ -460,9 +616,164 @@
 				hidefilter3: false, // The text is "show filter 3"
 				hidefilter4: false, // The text is "show filter 4"
 				hidefilter5: false, // The text is "show filter 5"
-				hidefilter6: false // The text is "show filter 6"
+				hidefilter6: false, // The text is "show filter 6"
+				filter7: false,
+				filter8: false,
+				filter9: false
 			},
-			'After unchecking then checking a filter (without touching other filters in that group), all are checked'
+			'After unchecking then checking a \'send_unselected_if_any\' filter (without touching other filters in that group), all are checked'
+		);
+
+		model.updateFilters(
+			model.getParametersToFilters( {
+				group3: 'filter7'
+			} )
+		);
+		assert.deepEqual(
+			model.getState(),
+			{
+				hidefilter1: false, // The text is "show filter 1"
+				hidefilter2: false, // The text is "show filter 2"
+				hidefilter3: false, // The text is "show filter 3"
+				hidefilter4: false, // The text is "show filter 4"
+				hidefilter5: false, // The text is "show filter 5"
+				hidefilter6: false, // The text is "show filter 6"
+				filter7: true,
+				filter8: false,
+				filter9: false
+			},
+			'A \'string_options\' parameter containing 1 value, results in the corresponding filter as checked'
+		);
+
+		model.updateFilters(
+			model.getParametersToFilters( {
+				group3: 'filter7,filter8'
+			} )
+		);
+		assert.deepEqual(
+			model.getState(),
+			{
+				hidefilter1: false, // The text is "show filter 1"
+				hidefilter2: false, // The text is "show filter 2"
+				hidefilter3: false, // The text is "show filter 3"
+				hidefilter4: false, // The text is "show filter 4"
+				hidefilter5: false, // The text is "show filter 5"
+				hidefilter6: false, // The text is "show filter 6"
+				filter7: true,
+				filter8: true,
+				filter9: false
+			},
+			'A \'string_options\' parameter containing 2 values, results in both corresponding filters as checked'
+		);
+
+		model.updateFilters(
+			model.getParametersToFilters( {
+				group3: 'filter7,filter8,filter9'
+			} )
+		);
+		assert.deepEqual(
+			model.getState(),
+			{
+				hidefilter1: false, // The text is "show filter 1"
+				hidefilter2: false, // The text is "show filter 2"
+				hidefilter3: false, // The text is "show filter 3"
+				hidefilter4: false, // The text is "show filter 4"
+				hidefilter5: false, // The text is "show filter 5"
+				hidefilter6: false, // The text is "show filter 6"
+				filter7: false,
+				filter8: false,
+				filter9: false
+			},
+			'A \'string_options\' parameter containing all values, results in all filters of the group as unchecked.'
+		);
+
+		model.updateFilters(
+			model.getParametersToFilters( {
+				group3: 'filter7,filter8,filter9'
+			} )
+		);
+		assert.deepEqual(
+			model.getState(),
+			{
+				hidefilter1: false, // The text is "show filter 1"
+				hidefilter2: false, // The text is "show filter 2"
+				hidefilter3: false, // The text is "show filter 3"
+				hidefilter4: false, // The text is "show filter 4"
+				hidefilter5: false, // The text is "show filter 5"
+				hidefilter6: false, // The text is "show filter 6"
+				filter7: false,
+				filter8: false,
+				filter9: false
+			},
+			'A \'string_options\' parameter containing the value \'all\', results in all filters of the group as unchecked.'
+		);
+
+		model.updateFilters(
+			model.getParametersToFilters( {
+				group3: 'filter7,foo,filter9'
+			} )
+		);
+		assert.deepEqual(
+			model.getState(),
+			{
+				hidefilter1: false, // The text is "show filter 1"
+				hidefilter2: false, // The text is "show filter 2"
+				hidefilter3: false, // The text is "show filter 3"
+				hidefilter4: false, // The text is "show filter 4"
+				hidefilter5: false, // The text is "show filter 5"
+				hidefilter6: false, // The text is "show filter 6"
+				filter7: true,
+				filter8: false,
+				filter9: true
+			},
+			'A \'string_options\' parameter containing an invalid value, results in the invalid value ignored and the valid corresponding filters checked.'
+		);
+	} );
+
+	QUnit.test( 'sanitizeStringOptionGroup', function ( assert ) {
+		var definition = {
+				group1: {
+					title: 'Group 1',
+					type: 'string_options',
+					filters: [
+						{
+							name: 'filter1',
+							label: 'Show filter 1',
+							description: 'Description of Filter 1 in Group 1'
+						},
+						{
+							name: 'filter2',
+							label: 'Show filter 2',
+							description: 'Description of Filter 2 in Group 1'
+						},
+						{
+							name: 'filter3',
+							label: 'Show filter 3',
+							description: 'Description of Filter 3 in Group 1'
+						}
+					]
+				}
+			},
+			model = new mw.rcfilters.dm.FiltersViewModel();
+
+		model.initializeFilters( definition );
+
+		assert.deepEqual(
+			model.sanitizeStringOptionGroup( 'group1', [ 'filter1', 'filter1', 'filter2' ] ),
+			[ 'filter1', 'filter2' ],
+			'Remove duplicate values'
+		);
+
+		assert.deepEqual(
+			model.sanitizeStringOptionGroup( 'group1', [ 'filter1', 'foo', 'filter2' ] ),
+			[ 'filter1', 'filter2' ],
+			'Remove invalid values'
+		);
+
+		assert.deepEqual(
+			model.sanitizeStringOptionGroup( 'group1', [ 'filter1', 'all', 'filter2' ] ),
+			[ 'all' ],
+			'If any value is "all", the only value is "all".'
 		);
 	} );
 }( mediaWiki, jQuery ) );
