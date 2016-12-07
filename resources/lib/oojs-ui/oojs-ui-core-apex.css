@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.1
+ * OOjs UI v0.18.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-11-29T22:57:42Z
+ * Date: 2016-12-06T23:32:57Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -832,41 +832,20 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   display: none;
 }
 .oo-ui-textInputWidget.oo-ui-iconElement > .oo-ui-iconElement-icon,
-.oo-ui-textInputWidget.oo-ui-indicatorElement > .oo-ui-indicatorElement-indicator {
+.oo-ui-textInputWidget.oo-ui-indicatorElement > .oo-ui-indicatorElement-indicator,
+.oo-ui-textInputWidget > .oo-ui-labelElement-label {
   display: block;
   position: absolute;
   top: 0;
+}
+.oo-ui-textInputWidget.oo-ui-iconElement > .oo-ui-iconElement-icon,
+.oo-ui-textInputWidget.oo-ui-indicatorElement > .oo-ui-indicatorElement-indicator {
   height: 100%;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-}
-.oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-iconElement-icon,
-.oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-indicatorElement-indicator {
-  cursor: text;
-}
-.oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-textInputWidget-type-search > .oo-ui-indicatorElement-indicator {
-  cursor: pointer;
-}
-.oo-ui-textInputWidget.oo-ui-widget-disabled input,
-.oo-ui-textInputWidget.oo-ui-widget-disabled textarea {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-.oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-labelElement-label {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-.oo-ui-textInputWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
-  display: block;
 }
 .oo-ui-textInputWidget > .oo-ui-iconElement-icon,
 .oo-ui-textInputWidget-labelPosition-before > .oo-ui-labelElement-label {
@@ -876,9 +855,22 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-textInputWidget-labelPosition-after > .oo-ui-labelElement-label {
   right: 0;
 }
-.oo-ui-textInputWidget > .oo-ui-labelElement-label {
-  position: absolute;
-  top: 0;
+.oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-iconElement-icon,
+.oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-indicatorElement-indicator,
+.oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-labelElement-label {
+  cursor: text;
+}
+.oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-textInputWidget-type-search > .oo-ui-indicatorElement-indicator {
+  cursor: pointer;
+}
+.oo-ui-textInputWidget.oo-ui-widget-disabled input,
+.oo-ui-textInputWidget.oo-ui-widget-disabled textarea,
+.oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-labelElement-label {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .oo-ui-textInputWidget input,
 .oo-ui-textInputWidget textarea {
