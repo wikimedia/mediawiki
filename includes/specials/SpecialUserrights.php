@@ -632,6 +632,7 @@ class UserrightsPage extends SpecialPage {
 	 * whether any groups are changeable
 	 */
 	private function groupCheckboxes( $usergroups, $user ) {
+		$this->isself = $user->getName() == $this->getUser()->getName();
 		$allgroups = $this->getAllGroups();
 		$ret = '';
 
