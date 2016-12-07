@@ -73,7 +73,7 @@ class AuthPlugin {
 	/**
 	 * Modify options in the login template.
 	 *
-	 * @param UserLoginTemplate $template
+	 * @param BaseTemplate $template
 	 * @param string $type 'signup' or 'login'. Added in 1.16.
 	 */
 	public function modifyUITemplate( &$template, &$type ) {
