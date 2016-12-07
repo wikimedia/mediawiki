@@ -38,6 +38,33 @@
 							description: mw.msg( 'rcfilters-filter-editsbyother-description' )
 						}
 					]
+				},
+				userExpLevel: {
+					title: mw.msg( 'rcfilters-filtergroup-userExpLevel' ),
+					// Type 'string_options' means that the group is evaluated by
+					// string values separated by pipe; for example, param=opt1|opt2
+					// If all options are selected they are replaced by the term "all".
+					// The filters are the values for the parameter defined by the group.
+					// ** In this case, the parameter name is the group name. **
+					type: 'string_options',
+					separator: ',',
+					filters: [
+						{
+							name: 'newcomer',
+							label: mw.msg( 'rcfilters-filter-userExpLevel-newcomer-label' ),
+							description: mw.msg( 'rcfilters-filter-userExpLevel-newcomer-description' )
+						},
+						{
+							name: 'experienced',
+							label: mw.msg( 'rcfilters-filter-userExpLevel-experienced-label' ),
+							description: mw.msg( 'rcfilters-filter-userExpLevel-experienced-description' )
+						},
+						{
+							name: 'moreexperienced',
+							label: mw.msg( 'rcfilters-filter-userExpLevel-moreexperienced-label' ),
+							description: mw.msg( 'rcfilters-filter-userExpLevel-moreexperienced-description' )
+						}
+					]
 				}
 			} );
 
