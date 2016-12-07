@@ -25,6 +25,8 @@
  *
  * @ingroup Pager
  */
+use MediaWiki\MediaWikiServices;
+
 class AllMessagesTablePager extends TablePager {
 
 	protected $filter, $prefix, $langcode, $displayPrefix;
@@ -297,6 +299,7 @@ class AllMessagesTablePager extends TablePager {
 	}
 
 	function formatValue( $field, $value ) {
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		switch ( $field ) {
 			case 'am_title' :
 				$title = Title::makeTitle( NS_MEDIAWIKI, $value . $this->suffix );
@@ -313,25 +316,19 @@ class AllMessagesTablePager extends TablePager {
 				);
 
 				if ( $this->mCurrentRow->am_customised ) {
-					$title = Linker::linkKnown( $title, $this->getLanguage()->lcfirst( $value ) );
+					$title = $linkRenderer->makeKnownLink( $title, $this->getLanguage()->lcfirst( $value ) );
 				} else {
-					$title = Linker::link(
+					$title = $linkRenderer->makeBrokenLink(
 						$title,
-						$this->getLanguage()->lcfirst( $value ),
-						[],
-						[],
-						[ 'broken' ]
+						$this->getLanguage()->lcfirst( $value )
 					);
 				}
 				if ( $this->mCurrentRow->am_talk_exists ) {
-					$talk = Linker::linkKnown( $talk, $this->talk );
+					$talk = $linkRenderer->makeKnownLink( $talk, $this->talk );
 				} else {
-					$talk = Linker::link(
+					$talk = $linkRenderer->makeBrokenLink(
 						$talk,
-						$this->talk,
-						[],
-						[],
-						[ 'broken' ]
+						$this->talk
 					);
 				}
 
