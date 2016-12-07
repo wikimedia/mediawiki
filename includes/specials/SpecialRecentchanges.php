@@ -95,7 +95,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Get custom show/hide filters
+	 * Get all custom filters
 	 *
 	 * @return array Map of filter URL param names to properties (msg/default)
 	 */
@@ -747,9 +747,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		$showhide = [ 'show', 'hide' ];
 
-		foreach ( $this->getCustomFilters() as $key => $params ) {
+		foreach ( $this->getRenderableCustomFilters( $this->getCustomFilters() ) as $key => $params ) {
 			$filters[$key] = $params['msg'];
 		}
+
 		// Disable some if needed
 		if ( !$user->useRCPatrol() ) {
 			unset( $filters['hidepatrolled'] );
