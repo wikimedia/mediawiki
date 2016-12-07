@@ -120,44 +120,14 @@ class ApiRevisionDelete extends ApiBase {
 		$ret = [
 			'status' => $status->isOK() ? 'Success' : 'Fail',
 		];
-		$errors = $this->formatStatusMessages( $status->getErrorsByType( 'error' ) );
+
+		$errors = $this->getErrorFormatter()->arrayFromStatus( $status, 'error' );
 		if ( $errors ) {
-			ApiResult::setIndexedTagName( $errors, 'e' );
 			$ret['errors'] = $errors;
 		}
-		$warnings = $this->formatStatusMessages( $status->getErrorsByType( 'warning' ) );
+		$warnings = $this->getErrorFormatter()->arrayFromStatus( $status, 'warning' );
 		if ( $warnings ) {
-			ApiResult::setIndexedTagName( $warnings, 'w' );
 			$ret['warnings'] = $warnings;
-		}
-
-		return $ret;
-	}
-
-	private function formatStatusMessages( $messages ) {
-		if ( !$messages ) {
-			return [];
-		}
-		$ret = [];
-		foreach ( $messages as $m ) {
-			if ( $m['message'] instanceof Message ) {
-				$msg = $m['message'];
-				$message = [ 'message' => $msg->getKey() ];
-				if ( $msg->getParams() ) {
-					$message['params'] = $msg->getParams();
-					ApiResult::setIndexedTagName( $message['params'], 'p' );
-				}
-			} else {
-				$message = [ 'message' => $m['message'] ];
-				$msg = wfMessage( $m['message'] );
-				if ( isset( $m['params'] ) ) {
-					$message['params'] = $m['params'];
-					ApiResult::setIndexedTagName( $message['params'], 'p' );
-					$msg->params( $m['params'] );
-				}
-			}
-			$message['rendered'] = $msg->useDatabase( false )->inLanguage( 'en' )->plain();
-			$ret[] = $message;
 		}
 
 		return $ret;

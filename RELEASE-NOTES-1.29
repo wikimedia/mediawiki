@@ -55,6 +55,9 @@ production.
 * action=move now reports errors when moving the talk page as an array under
   key 'talkmove-errors', rather than using 'talkmove-error-code' and
   'talkmove-error-info'. The format for subpage move errors has also changed.
+* action=revisiondelete no longer includes a "rendered" property on warnings
+  and errors for each item. Use errorformat=wikitext if you're wanting parsed
+  output.
 * action=rollback no longer returns a "messageHtml" property on errors. Use
   errorformat=html if you're wanting HTML formatting of messages.
 * action=upload now reports optional stash failures as an array under key
