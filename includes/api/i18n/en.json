@@ -26,6 +26,7 @@
 
 	"apihelp-block-description": "Block a user.",
 	"apihelp-block-param-user": "Username, IP address, or IP address range to block.",
+  "apihelp-block-param-userid": "User ID to block. Cannot be used together with <var>$1user</var>.",
 	"apihelp-block-param-expiry": "Expiry time. May be relative (e.g. <kbd>5 months</kbd> or <kbd>2 weeks</kbd>) or absolute (e.g. <kbd>2014-09-18T12:34:56Z</kbd>). If set to <kbd>infinite</kbd>, <kbd>indefinite</kbd>, or <kbd>never</kbd>, the block will never expire.",
 	"apihelp-block-param-reason": "Reason for block.",
 	"apihelp-block-param-anononly": "Block anonymous users only (i.e. disable anonymous edits for this IP address).",
@@ -1378,6 +1379,7 @@
 	"apihelp-unblock-description": "Unblock a user.",
 	"apihelp-unblock-param-id": "ID of the block to unblock (obtained through <kbd>list=blocks</kbd>). Cannot be used together with <var>$1user</var>.",
 	"apihelp-unblock-param-user": "Username, IP address or IP address range to unblock. Cannot be used together with <var>$1id</var>.",
+  "apihelp-unblock-param-userid": "User ID to unblock. Cannot be used together with <var>$1id</var> or <var>$1user</var>.",
 	"apihelp-unblock-param-reason": "Reason for unblock.",
 	"apihelp-unblock-param-tags": "Change tags to apply to the entry in the block log.",
 	"apihelp-unblock-example-id": "Unblock block ID #<kbd>105</kbd>.",
