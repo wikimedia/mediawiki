@@ -39,7 +39,7 @@ class ApiUnblock extends ApiBase {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
-		$this->requireOnlyOneParameter( $params, 'id', 'user' );
+		$this->requireOnlyOneParameter( $params, 'id', 'user', 'userid' );
 
 		if ( !$user->isAllowed( 'block' ) ) {
 			$this->dieWithError( 'apierror-permissiondenied-unblock', 'permissiondenied' );
@@ -61,6 +61,16 @@ class ApiUnblock extends ApiBase {
 			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
 			if ( !$ableToTag->isOK() ) {
 				$this->dieStatus( $ableToTag );
+			}
+		}
+
+		if ( $params['userid'] !== null ) {
+			$username = User::whoIs( $params['userid'] );
+
+			if ( $username === false ) {
+				$this->dieWithError( [ 'apierror-nosuchuserid', $params['userid'] ], 'nosuchuserid' );
+			} else {
+				$params['user'] = $username;
 			}
 		}
 
@@ -97,6 +107,9 @@ class ApiUnblock extends ApiBase {
 				ApiBase::PARAM_TYPE => 'integer',
 			],
 			'user' => null,
+			'userid' => [
+				ApiBase::PARAM_TYPE => 'integer'
+			],
 			'reason' => '',
 			'tags' => [
 				ApiBase::PARAM_TYPE => 'tags',
