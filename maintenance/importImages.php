@@ -196,6 +196,7 @@ if ( $count > 0 ) {
 
 			echo "Importing {$base}...";
 			$svar = 'added';
+			$gallery[] = $base;
 		}
 
 		if ( isset( $options['source-wiki-url'] ) ) {
@@ -349,6 +350,16 @@ if ( $count > 0 ) {
 			echo "{$desc}: {$$var}\n";
 		}
 	}
+	
+	if ( isset( $options['gallery'] ) && !empty( $gallery ) ) {
+		echo "\nGallery code to copy & paste:\n\n";
+		echo "<gallery>\n";
+		foreach ($gallery as $galleryfile){
+			echo $galleryfile."|\n";
+			}
+		echo "</gallery>\n\n";
+	}
+	
 } else {
 	echo "No suitable files could be found for import.\n";
 }
@@ -397,7 +408,9 @@ Options:
 --unprotect             Unprotects all uploaded images.
 --source-wiki-url       If specified, take User and Comment data for each
                         imported file from this URL. For example,
-                        --source-wiki-url="http://en.wikipedia.org/."
+                        --source-wiki-url="http://en.wikipedia.org/.
+--gallery               Prints out wiki code for a gallery with the pictures that
+                        were just uploaded."
 
 TEXT;
 	exit( 1 );
