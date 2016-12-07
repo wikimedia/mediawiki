@@ -111,39 +111,24 @@ class SpecialBotPasswords extends FormSpecialPage {
 
 			$lang = $this->getLanguage();
 			$showGrants = MWGrants::getValidGrants();
-			$fields['grants'] = [
-				'type' => 'checkmatrix',
+			$fields['grants'] = array(
+				'type' => 'multiselect',
 				'label-message' => 'botpasswords-label-grants',
 				'help-message' => 'botpasswords-help-grants',
-				'columns' => [
-					$this->msg( 'botpasswords-label-grants-column' )->escaped() => 'grant'
-				],
-				'rows' => array_combine(
+				'options' => array_combine(
 					array_map( 'MWGrants::getGrantsLink', $showGrants ),
 					$showGrants
 				),
 				'default' => array_map(
 					function( $g ) {
-						return "grant-$g";
+						return "$g";
 					},
-					$this->botPassword->getGrants()
-				),
-				'tooltips' => array_combine(
-					array_map( 'MWGrants::getGrantsLink', $showGrants ),
-					array_map(
-						function( $rights ) use ( $lang ) {
-							return $lang->semicolonList( array_map( 'User::getRightDescription', $rights ) );
-						},
-						array_intersect_key( MWGrants::getRightsByGrant(), array_flip( $showGrants ) )
+					array_merge(
+						$this->botPassword->getGrants(),
+						MWGrants::getHiddenGrants()
 					)
 				),
-				'force-options-on' => array_map(
-					function( $g ) {
-						return "grant-$g";
-					},
-					MWGrants::getHiddenGrants()
-				),
-			];
+			);
 
 			$fields['restrictions'] = [
 				'class' => 'HTMLRestrictionsField',
