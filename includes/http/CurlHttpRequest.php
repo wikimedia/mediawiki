@@ -37,6 +37,12 @@ class CurlHttpRequest extends MWHttpRequest {
 		return strlen( $content );
 	}
 
+	/**
+	 * @see MWHttpRequest::execute
+	 *
+	 * @throws MWException
+	 * @return Status
+	 */
 	public function execute() {
 		$this->prepare();
 

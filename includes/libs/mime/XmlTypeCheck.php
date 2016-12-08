@@ -291,8 +291,6 @@ class XmlTypeCheck {
 		$this->stackDepth++;
 	}
 
-	/**
-	 */
 	private function elementClose() {
 		list( $name, $attribs ) = array_pop( $this->elementDataContext );
 		$data = array_pop( $this->elementData );

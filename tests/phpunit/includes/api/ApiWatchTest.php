@@ -16,8 +16,6 @@ class ApiWatchTest extends ApiTestCase {
 		return $this->getTokenList( self::$users['sysop'] );
 	}
 
-	/**
-	 */
 	public function testWatchEdit() {
 		$tokens = $this->getTokens();
 
@@ -74,8 +72,6 @@ class ApiWatchTest extends ApiTestCase {
 		return $data;
 	}
 
-	/**
-	 */
 	public function testWatchProtect() {
 		$tokens = $this->getTokens();
 
@@ -92,8 +88,6 @@ class ApiWatchTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'edit', $data[0]['protect']['protections'][0] );
 	}
 
-	/**
-	 */
 	public function testGetRollbackToken() {
 		$this->getTokens();
 

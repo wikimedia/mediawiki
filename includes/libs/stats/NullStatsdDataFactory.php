@@ -15,7 +15,7 @@ class NullStatsdDataFactory implements StatsdDataFactoryInterface {
 	 *
 	 * @param string|array $key The metric(s) to set.
 	 * @param float $time The elapsed time (ms) to log
-	 **/
+	 */
 	public function timing( $key, $time ) {
 	}
 
@@ -24,7 +24,7 @@ class NullStatsdDataFactory implements StatsdDataFactoryInterface {
 	 *
 	 * @param string|array $key The metric(s) to set.
 	 * @param float $value The value for the stats.
-	 **/
+	 */
 	public function gauge( $key, $value ) {
 	}
 
@@ -44,7 +44,7 @@ class NullStatsdDataFactory implements StatsdDataFactoryInterface {
 	 * @param  float $value The value for the stats.
 	 *
 	 * @return array
-	 **/
+	 */
 	public function set( $key, $value ) {
 		return [];
 	}
@@ -56,7 +56,7 @@ class NullStatsdDataFactory implements StatsdDataFactoryInterface {
 	 * @param float|1      $sampleRate The rate (0-1) for sampling.
 	 *
 	 * @return array
-	 **/
+	 */
 	public function increment( $key ) {
 		return [];
 	}
@@ -69,7 +69,7 @@ class NullStatsdDataFactory implements StatsdDataFactoryInterface {
 	 * @param float|1      $sampleRate The rate (0-1) for sampling.
 	 *
 	 * @return mixed
-	 **/
+	 */
 	public function decrement( $key ) {
 		return [];
 	}
@@ -81,7 +81,7 @@ class NullStatsdDataFactory implements StatsdDataFactoryInterface {
 	 * @param integer $delta The delta to add to the each metric
 	 *
 	 * @return mixed
-	 **/
+	 */
 	public function updateCount( $key, $delta ) {
 		return [];
 	}
@@ -95,7 +95,7 @@ class NullStatsdDataFactory implements StatsdDataFactoryInterface {
 	 *                      ("c" for count, "ms" for timing, "g" for gauge, "s" for set)
 	 *
 	 * @return StatsdDataInterface
-	 **/
+	 */
 	public function produceStatsdData(
 		$key,
 		$value = 1,

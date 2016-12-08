@@ -99,7 +99,6 @@
 	 * @param {mw.Title} title Title being posted to
 	 * @param {mw.Api} api mw.Api instance that the instance should use
 	 * @return {mw.messagePoster.MessagePoster}
-	 *
 	 */
 	MessagePosterFactory.prototype.createForContentModel = function ( contentModel, title, api ) {
 		return new this.contentModelToClass[ contentModel ]( title, api );

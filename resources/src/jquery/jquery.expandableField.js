@@ -12,7 +12,6 @@
  *		$('#textbox').expandableField();
  *
  * Options:
- *
  */
 ( function ( $ ) {
 

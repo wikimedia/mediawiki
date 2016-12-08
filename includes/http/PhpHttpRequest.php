@@ -94,6 +94,11 @@ class PhpHttpRequest extends MWHttpRequest {
 		$this->fopenErrors += [ "errno$n" => $errno, "errstr$n" => $errstr ];
 	}
 
+	/**
+	 * @see MWHttpRequest::execute
+	 *
+	 * @return Status
+	 */
 	public function execute() {
 		$this->prepare();
 

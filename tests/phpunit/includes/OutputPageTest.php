@@ -7,7 +7,6 @@
  * @group Output
  *
  * @todo factor tests in this class into providers and test methods
- *
  */
 class OutputPageTest extends MediaWikiTestCase {
 	const SCREEN_MEDIA_QUERY = 'screen and (min-width: 982px)';

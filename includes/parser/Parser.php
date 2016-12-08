@@ -224,7 +224,7 @@ class Parser {
 	/**
 	 * @var string Deprecated accessor for the strip marker prefix.
 	 * @deprecated since 1.26; use Parser::MARKER_PREFIX instead.
-	 **/
+	 */
 	public $mUniqPrefix = Parser::MARKER_PREFIX;
 
 	/**

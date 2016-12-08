@@ -1131,7 +1131,7 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @return string The content model id associated with this revision,
 	 *     see the CONTENT_MODEL_XXX constants.
-	 **/
+	 */
 	public function getContentModel() {
 		if ( !$this->mContentModel ) {
 			$title = $this->getTitle();
@@ -1155,7 +1155,7 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @return string The content format id associated with this revision,
 	 *     see the CONTENT_FORMAT_XXX constants.
-	 **/
+	 */
 	public function getContentFormat() {
 		if ( !$this->mContentFormat ) {
 			$handler = $this->getContentHandler();
