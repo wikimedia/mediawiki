@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# Note that this isn't loaded in via composer because then composer can
+# only be run with php7.0
+if [ ! -f "$PHAN" ]; then
+	echo "The environment variable PHAN must point to the 'phan' file"
+	echo "in a checkout of https://github.com/etsy/phan.git"
+	exit 1
+fi
+
+cd "$(dirname "$0")"
+
+# Root directory of project
+export ROOT="$(git rev-parse --show-toplevel)"
+
+# Phan's issues directory
+export ISSUES="${ROOT}/tests/phan/issues"
+
+# Go to the root of this git repo
+cd "$ROOT"
+
+# Get the current hash of HEAD
+export REV="$(git rev-parse HEAD)"
+
+# Destination for issues found
+export RUN="${ISSUES}/issues-${REV}"
+
+# Run the analysis, emitting output to the
+# issues file.
+php7.0 $PHAN \
+	--project-root-directory "$ROOT" \
+	--config-file "$ROOT/tests/phan/config.php" \
+	--output "$ROOT/tests/phan/issues/issues-${REV}" \
+	-j 4
+
+# Re-link the latest directory
+rm -f "${ISSUES}/latest"
+ln -s "${RUN}" "${ISSUES}/latest"
+
+# Output any issues that were found
+cat "${RUN}"
+
+if [ $(wc -l < ${RUN}) -ne 0 ]; then
+	exit 1
+fi
