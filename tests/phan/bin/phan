@@ -33,6 +33,8 @@ php7.0 $PHAN \
 	--output "$ROOT/tests/phan/issues/issues-${REV}" \
 	"${@}"
 
+EXIT_CODE="$?"
+
 # Re-link the latest file
 rm -f "${ISSUES}/latest"
 ln -s "${RUN}" "${ISSUES}/latest"
@@ -40,6 +42,4 @@ ln -s "${RUN}" "${ISSUES}/latest"
 # Output any issues that were found
 cat "${RUN}"
 
-if [ $(wc -l < ${RUN}) -ne 0 ]; then
-	exit 1
-fi
+exit $EXIT_CODE
