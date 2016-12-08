@@ -31,7 +31,7 @@ php7.0 $PHAN \
 	--project-root-directory "$ROOT" \
 	--config-file "$ROOT/tests/phan/config.php" \
 	--output "$ROOT/tests/phan/issues/issues-${REV}" \
-	-j 4
+	${@}
 
 # Re-link the latest directory
 rm -f "${ISSUES}/latest"
