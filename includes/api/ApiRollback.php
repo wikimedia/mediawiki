@@ -92,17 +92,6 @@ class ApiRollback extends ApiBase {
 			'last_revid' => intval( $details['target']->getID() )
 		];
 
-		$oldUser = $details['current']->getUserText( Revision::FOR_THIS_USER );
-		$lastUser = $details['target']->getUserText( Revision::FOR_THIS_USER );
-		$diffUrl = $titleObj->getFullURL( [
-			'diff' => $info['revid'],
-			'oldid' => $info['old_revid'],
-			'diffonly' => '1'
-		] );
-		$info['messageHtml'] = $this->msg( 'rollback-success-notify' )
-			->params( $oldUser, $lastUser, $diffUrl )
-			->parseAsBlock();
-
 		$this->getResult()->addValue( null, $this->getModuleName(), $info );
 	}
 
