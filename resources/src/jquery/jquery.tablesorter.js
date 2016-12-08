@@ -78,7 +78,7 @@
 			return $node.attr( 'alt' ) || ''; // handle undefined alt
 		}
 		if ( node.tagName.toLowerCase() === 'time' ) {
-			return $node.attr( 'datetime' ) || '';
+			return new Date($node.attr( 'datetime' )).toISOString() || ''; // handle undefined datetime
 		}
 		return $.map( $.makeArray( node.childNodes ), function ( elem ) {
 			if ( elem.nodeType === Node.ELEMENT_NODE ) {
