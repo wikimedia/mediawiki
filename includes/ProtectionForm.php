@@ -148,7 +148,7 @@ class ProtectionForm {
 	 *
 	 * @param string $action
 	 *
-	 * @return string 14-char timestamp or "infinity", or false if the input was invalid
+	 * @return string|false 14-char timestamp or "infinity", or false if the input was invalid
 	 */
 	function getExpiry( $action ) {
 		if ( $this->mExpirySelection[$action] == 'existing' ) {

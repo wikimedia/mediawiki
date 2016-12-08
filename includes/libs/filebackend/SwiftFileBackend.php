@@ -1701,7 +1701,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param array $creds From getAuthentication()
 	 * @param string $container
 	 * @param string $object
-	 * @return array
+	 * @return string
 	 */
 	protected function storageUrl( array $creds, $container = null, $object = null ) {
 		$parts = [ $creds['storage_url'] ];

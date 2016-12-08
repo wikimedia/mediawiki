@@ -53,7 +53,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	 */
 	private function validateHexSortkey( $hexSortkey ) {
 		// A hex sortkey has an unbound number of 2 letter pairs
-		return preg_match( '/^(?:[a-fA-F0-9]{2})*$/D', $hexSortkey );
+		return (bool)preg_match( '/^(?:[a-fA-F0-9]{2})*$/D', $hexSortkey );
 	}
 
 	/**

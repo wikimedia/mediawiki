@@ -2229,7 +2229,7 @@ abstract class ApiBase extends ContextSource {
 	 * "apihelp-{$this->getModulePath()}-description".
 	 *
 	 * @deprecated since 1.25
-	 * @return Message|string|array
+	 * @return Message|string|array|false
 	 */
 	protected function getDescription() {
 		return false;

@@ -295,7 +295,7 @@ class EditPage {
 	/** @var bool Has a summary been preset using GET parameter &summary= ? */
 	public $hasPresetSummary = false;
 
-	/** @var bool */
+	/** @var Revision|bool */
 	public $mBaseRevision = false;
 
 	/** @var bool */

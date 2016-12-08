@@ -567,7 +567,7 @@ abstract class Installer {
 	/**
 	 * Determine if LocalSettings.php exists. If it does, return its variables.
 	 *
-	 * @return array
+	 * @return array|false
 	 */
 	public static function getExistingLocalSettings() {
 		global $IP;
@@ -1080,7 +1080,7 @@ abstract class Installer {
 	/**
 	 * Convert a hex string representing a Unicode code point to that code point.
 	 * @param string $c
-	 * @return string
+	 * @return string|false
 	 */
 	protected function unicodeChar( $c ) {
 		$c = hexdec( $c );

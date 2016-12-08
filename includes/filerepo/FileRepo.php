@@ -99,7 +99,7 @@ class FileRepo {
 	 */
 	protected $pathDisclosureProtection = 'simple';
 
-	/** @var bool Public zone URL. */
+	/** @var string|false Public zone URL. */
 	protected $url;
 
 	/** @var string The base thumbnail URL. Defaults to "<url>/thumb". */
@@ -309,7 +309,7 @@ class FileRepo {
 	 * @return bool Whether non-ASCII path characters are allowed
 	 */
 	public function backendSupportsUnicodePaths() {
-		return ( $this->getBackend()->getFeatures() & FileBackend::ATTR_UNICODE_PATHS );
+		return (bool)( $this->getBackend()->getFeatures() & FileBackend::ATTR_UNICODE_PATHS );
 	}
 
 	/**
@@ -737,7 +737,7 @@ class FileRepo {
 	 * constructor, whereas local repositories use the local Title functions.
 	 *
 	 * @param string $name
-	 * @return string
+	 * @return string|false
 	 */
 	public function getDescriptionUrl( $name ) {
 		$encName = wfUrlencode( $name );
@@ -771,7 +771,7 @@ class FileRepo {
 	 *
 	 * @param string $name Name of image to fetch
 	 * @param string $lang Language to fetch it in, if any.
-	 * @return string
+	 * @return string|false
 	 */
 	public function getDescriptionRenderUrl( $name, $lang = null ) {
 		$query = 'action=render';

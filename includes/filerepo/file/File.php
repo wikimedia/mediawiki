@@ -127,7 +127,7 @@ abstract class File implements IDBAccessObject {
 	/** @var string Relative path including trailing slash */
 	protected $hashPath;
 
-	/** @var string Number of pages of a multipage document, or false for
+	/** @var string|false Number of pages of a multipage document, or false for
 	 *    documents which aren't multipage documents
 	 */
 	protected $pageCount;
@@ -535,7 +535,7 @@ abstract class File implements IDBAccessObject {
 	/**
 	 * Get the duration of a media file in seconds
 	 *
-	 * @return int
+	 * @return float|int
 	 */
 	public function getLength() {
 		$handler = $this->getHandler();
@@ -909,7 +909,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @param array $handlerParams
 	 *
-	 * @return string
+	 * @return ThumbnailImage|MediaTransformOutput|bool False on failure
 	 */
 	function getUnscaledThumb( $handlerParams = [] ) {
 		$hp =& $handlerParams;
@@ -1963,7 +1963,7 @@ abstract class File implements IDBAccessObject {
 	 * Returns the number of pages of a multipage document, or false for
 	 * documents which aren't multipage documents
 	 *
-	 * @return bool|int
+	 * @return string|bool|int
 	 */
 	function pageCount() {
 		if ( !isset( $this->pageCount ) ) {
@@ -1991,7 +1991,7 @@ abstract class File implements IDBAccessObject {
 		if ( $srcWidth == 0 ) {
 			return 0;
 		} else {
-			return round( $srcHeight * $dstWidth / $srcWidth );
+			return (int)round( $srcHeight * $dstWidth / $srcWidth );
 		}
 	}
 
@@ -2003,7 +2003,7 @@ abstract class File implements IDBAccessObject {
 	 *  a good reason. This method skips all caches.
 	 *
 	 * @param string $filePath The path to the file (e.g. From getLocalPathRef() )
-	 * @return array The width, followed by height, with optionally more things after
+	 * @return array|false The width, followed by height, with optionally more things after
 	 */
 	function getImageSize( $filePath ) {
 		if ( !$this->getHandler() ) {
@@ -2031,7 +2031,7 @@ abstract class File implements IDBAccessObject {
 	 * Get the HTML text of the description page, if available
 	 *
 	 * @param bool|Language $lang Optional language to fetch description in
-	 * @return string
+	 * @return string|false
 	 */
 	function getDescriptionText( $lang = false ) {
 		global $wgLang;
@@ -2122,7 +2122,7 @@ abstract class File implements IDBAccessObject {
 	/**
 	 * Get the deletion archive key, "<sha1>.<ext>"
 	 *
-	 * @return string
+	 * @return string|false
 	 */
 	function getStorageKey() {
 		$hash = $this->getSha1();

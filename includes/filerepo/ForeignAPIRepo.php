@@ -109,7 +109,7 @@ class ForeignAPIRepo extends FileRepo {
 	 *
 	 * @param Title $title
 	 * @param string|bool $time
-	 * @return File
+	 * @return File|false
 	 */
 	function newFile( $title, $time = false ) {
 		if ( $time ) {

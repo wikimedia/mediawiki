@@ -238,7 +238,7 @@ class WebRequest {
 	 * This is for use prior to Setup.php, when no WebRequest object is available.
 	 * At other times, use the non-static function getProtocol().
 	 *
-	 * @return array
+	 * @return string
 	 */
 	public static function detectProtocol() {
 		if ( ( !empty( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] !== 'off' ) ||

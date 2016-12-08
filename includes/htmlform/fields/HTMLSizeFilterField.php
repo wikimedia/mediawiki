@@ -49,7 +49,7 @@ class HTMLSizeFilterField extends HTMLIntField {
 	/**
 	 * @param WebRequest $request
 	 *
-	 * @return string
+	 * @return string|int
 	 */
 	public function loadDataFromRequest( $request ) {
 		$size = $request->getInt( $this->mName );

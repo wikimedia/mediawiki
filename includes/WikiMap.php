@@ -141,7 +141,7 @@ class WikiMap {
 	 * @param string $wikiID Wiki'd id (generally database name)
 	 * @param string $page Page name (must be normalised before calling this function!)
 	 * @param string $text Link's text; optional, default to $page
-	 * @return string HTML link or false if the wiki was not found
+	 * @return string|false HTML link or false if the wiki was not found
 	 */
 	public static function makeForeignLink( $wikiID, $page, $text = null ) {
 		if ( !$text ) {
