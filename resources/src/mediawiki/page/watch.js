@@ -132,9 +132,19 @@
 
 			api[ action ]( title )
 				.done( function ( watchResponse ) {
-					var otherAction = action === 'watch' ? 'unwatch' : 'watch';
+					var mwTitle, message, otherAction = action === 'watch' ? 'unwatch' : 'watch';
 
-					mw.notify( $.parseHTML( watchResponse.message ), {
+					message = action === 'watch' ? 'addedwatchtext' : 'removedwatchtext';
+					mwTitle = mw.Title.newFromText( title );
+					if ( mwTitle && mwTitle.getNamespaceId() > 0 &&
+						/* eslint-disable no-bitwise */
+						( mwTitle.getNamespaceId() & 1 ) === 1
+						/* eslint-enable no-bitwise */
+					) {
+						message += '-talk';
+					}
+
+					mw.notify( mw.message( message, title ).parseDom(), {
 						tag: 'watch-self'
 					} );
 

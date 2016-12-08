@@ -19,7 +19,6 @@
 	 *  parameter)
 	 * @return {string} return.done.watch.title Full pagename
 	 * @return {boolean} return.done.watch.watched Whether the page is now watched or unwatched
-	 * @return {string} return.done.watch.message Parsed HTML of the confirmational interface message
 	 */
 	function doWatchInternal( pages, addParams ) {
 		// XXX: Parameter addParams is undocumented because we inherit this
