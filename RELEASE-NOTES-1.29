@@ -22,6 +22,7 @@ production.
   code for ApiBase::parseMsg() will no longer work.
 * ApiBase::$messageMap is no longer public. Code attempting to access it will
   result in a PHP fatal error.
+* $wgUserEmailUseReplyTo is now false by default to work around restrictive DMARC policies.
 
 === New features in 1.29 ===
 * (T5233) A cookie can now be set when a user is autoblocked, to track that user if
