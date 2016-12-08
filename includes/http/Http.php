@@ -145,7 +145,7 @@ class Http {
 		return preg_match(
 			'/^https?:\/\/[^\/\s]\S*$/D',
 			$uri
-		);
+		) === 1;
 	}
 
 	/**

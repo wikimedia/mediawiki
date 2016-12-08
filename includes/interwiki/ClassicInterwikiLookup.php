@@ -187,7 +187,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	 * @note More logic is explained in DefaultSettings.
 	 *
 	 * @param string $prefix Interwiki prefix
-	 * @return Interwiki
+	 * @return Interwiki|false
 	 */
 	private function getInterwikiCached( $prefix ) {
 		$value = $this->getInterwikiCacheEntry( $prefix );

@@ -313,7 +313,7 @@ class LocalisationCache {
 	 * array.
 	 * @param string $code
 	 * @param string $key
-	 * @return bool|null|string
+	 * @return bool|null|string|string[]
 	 */
 	public function getSubitemList( $code, $key ) {
 		if ( in_array( $key, self::$splitKeys ) ) {

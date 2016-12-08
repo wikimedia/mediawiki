@@ -127,6 +127,6 @@ class HTMLButtonField extends HTMLFormField {
 		$request = $this->mParent
 			? $this->mParent->getRequest()
 			: RequestContext::getMain()->getRequest();
-		return preg_match( '/MSIE [1-7]\./i', $request->getHeader( 'User-Agent' ) );
+		return preg_match( '/MSIE [1-7]\./i', $request->getHeader( 'User-Agent' ) ) === 1;
 	}
 }

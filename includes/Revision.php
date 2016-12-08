@@ -874,7 +874,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Fetch revision's user id without regard for the current user's permissions
 	 *
-	 * @return string
+	 * @return int
 	 * @deprecated since 1.25, use getUser( Revision::RAW )
 	 */
 	public function getRawUser() {
@@ -1269,7 +1269,7 @@ class Revision implements IDBAccessObject {
 	 *   (same as the the wiki $row was loaded from) or false to indicate the local
 	 *   wiki (this is the default). Otherwise, it must be a symbolic wiki database
 	 *   identifier as understood by the LoadBalancer class.
-	 * @return string Text the text requested or false on failure
+	 * @return string|false Text the text requested or false on failure
 	 */
 	public static function getRevisionText( $row, $prefix = 'old_', $wiki = false ) {
 

@@ -239,7 +239,7 @@ class HistoryBlobStub {
 	}
 
 	/**
-	 * @return string
+	 * @return string|false
 	 */
 	function getText() {
 		if ( isset( self::$blobCache[$this->mOldId] ) ) {

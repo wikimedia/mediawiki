@@ -364,7 +364,7 @@ class PathRouterPatternReplacer {
 	 * difference between a $1 that was not replaced and a $1 that was part of
 	 * the content a $1 was replaced with.
 	 * @param string $value
-	 * @return string
+	 * @return string|false
 	 */
 	public function replace( $value ) {
 		$this->error = false;

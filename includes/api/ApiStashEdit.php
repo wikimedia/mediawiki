@@ -168,7 +168,7 @@ class ApiStashEdit extends ApiBase {
 	 * @param Content $content Edit content
 	 * @param User $user
 	 * @param string $summary Edit summary
-	 * @return integer ApiStashEdit::ERROR_* constant
+	 * @return string ApiStashEdit::ERROR_* constant
 	 * @since 1.25
 	 */
 	public static function parseAndStash( WikiPage $page, Content $content, User $user, $summary ) {
