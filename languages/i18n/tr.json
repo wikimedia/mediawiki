@@ -89,7 +89,8 @@
 			"Basak",
 			"Ece Alpdeniz",
 			"Superyetkin",
-			"Alikaan"
+			"Alikaan",
+			"By erdo can"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çiz:",
@@ -1152,6 +1153,7 @@
 	"editusergroup": "Kullanıcı grupları düzenle",
 	"editinguser": "<strong>'''[[User:$1|$1]]'''</strong> $2 kullanıcısının yetkileri değiştiriliyor",
 	"userrights-editusergroup": "Kullanıcı grupları düzenle",
+	"userrights-viewusergroup": "Kullanıcının gruplarını gör",
 	"saveusergroups": "Kullanıcı grupları kaydet",
 	"userrights-groupsmember": "İçinde olduğu gruplar:",
 	"userrights-groupsmember-auto": "Saklı olarak içinde olduğu gruplar:",
