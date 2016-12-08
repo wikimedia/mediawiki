@@ -35,6 +35,9 @@ php7.0 $PHAN \
 
 EXIT_CODE="$?"
 
+cat "$RUN" | php "${ROOT}/tests/phan/bin/postprocess-phan.php" > /tmp/phan.$$
+mv /tmp/phan.$$ "$RUN"
+
 # Re-link the latest file
 rm -f "${ISSUES}/latest"
 ln -s "${RUN}" "${ISSUES}/latest"
