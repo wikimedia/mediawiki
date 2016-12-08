@@ -263,6 +263,9 @@
 					} else if ( result.error ) {
 						code = result.error.code === undefined ? 'unknown' : result.error.code;
 						apiDeferred.reject( code, result, result, jqXHR );
+					} else if ( result.errors ) {
+						code = result.errors[ 0 ].code === undefined ? 'unknown' : result.errors[ 0 ].code;
+						apiDeferred.reject( code, result, result, jqXHR );
 					} else {
 						apiDeferred.resolve( result, jqXHR );
 					}
