@@ -77,6 +77,9 @@
 		if ( node.tagName.toLowerCase() === 'img' ) {
 			return $node.attr( 'alt' ) || ''; // handle undefined alt
 		}
+		if ( node.tagName.toLowerCase() === 'time' ) {
+			return $node.attr( 'datetime' ) || '';
+		}
 		return $.map( $.makeArray( node.childNodes ), function ( elem ) {
 			if ( elem.nodeType === Node.ELEMENT_NODE ) {
 				return getElementSortKey( elem );
