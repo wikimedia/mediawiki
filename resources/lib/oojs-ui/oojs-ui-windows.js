@@ -346,7 +346,6 @@ OO.ui.ActionSet.static.specialFlags = [ 'safe', 'primary' ];
  *
  * A 'change' event is emitted when actions are {@link #method-add added}, {@link #clear cleared},
  * or {@link #method-remove removed} from the action set or when the {@link #setMode mode} is changed.
- *
  */
 
 /* Methods */

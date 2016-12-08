@@ -2,7 +2,6 @@
 
 /**
  * Augment search results.
- *
  */
 interface ResultSetAugmentor {
 	/**

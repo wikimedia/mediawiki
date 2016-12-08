@@ -253,7 +253,6 @@ class IEUrlExtension {
 	 *
 	 * @param $serverSoftware
 	 * @return bool
-	 *
 	 */
 	public static function haveUndecodedRequestUri( $serverSoftware ) {
 		static $whitelist = [

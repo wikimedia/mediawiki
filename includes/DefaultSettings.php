@@ -2031,7 +2031,6 @@ $wgDBmysql5 = false;
  * is in this case an unwanted overhead that just slows things down.
  *
  * @warning EXPERIMENTAL!
- *
  */
 $wgDBOracleDRCP = false;
 

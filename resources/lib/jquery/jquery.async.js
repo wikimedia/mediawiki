@@ -4,7 +4,6 @@
  * Copyright (c) 2008 Vincent Robert (genezys.net)
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
- *
  */
 (function($){
 

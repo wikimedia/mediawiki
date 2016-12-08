@@ -823,7 +823,6 @@ class ParserOutput extends CacheTime {
 	 * @code
 	 *    $parser->getOutput()->my_ext_foo = '...';
 	 * @endcode
-	 *
 	 */
 	public function setProperty( $name, $value ) {
 		$this->mProperties[$name] = $value;

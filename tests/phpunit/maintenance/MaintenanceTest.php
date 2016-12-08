@@ -24,7 +24,6 @@ use MediaWiki\MediaWikiServices;
  * Due to a hack in Maintenance.php using register_shutdown_function, be sure to
  * finally call simulateShutdown on MaintenanceFixup instance before a test
  * ends.
- *
  */
 class MaintenanceFixup extends Maintenance {
 

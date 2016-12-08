@@ -149,7 +149,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 	/**
 	 * Executes an edit mode for the watchlist view, from which you can manage your watchlist
-	 *
 	 */
 	protected function executeViewEditWatchlist() {
 		$out = $this->getOutput();
