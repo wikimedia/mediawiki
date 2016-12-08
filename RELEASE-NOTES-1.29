@@ -58,11 +58,12 @@ production.
 * action=revisiondelete no longer includes a "rendered" property on warnings
   and errors for each item. Use errorformat=wikitext if you're wanting parsed
   output.
-* action=rollback no longer returns a "messageHtml" property on errors. Use
-  errorformat=html if you're wanting HTML formatting of messages.
+* action=rollback no longer returns a "messageHtml" property. Use
+  errorformat=html if you're wanting HTML formatting of error messages.
 * action=upload now reports optional stash failures as an array under key
   'stasherrors' rather than a 'stashfailed' text string.
-* action=watch reports 'errors' and 'warnings' instead of a single 'error'.
+* action=watch reports 'errors' and 'warnings' instead of a single 'error', and
+  no longer returns a 'message' on success.
 
 === Action API internal changes in 1.29 ===
 * New methods were added to ApiBase to handle errors and warnings using i18n

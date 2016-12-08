@@ -197,9 +197,14 @@ class ApiLogin extends ApiBase {
 				break;
 
 			case 'Failed':
-				$result['reason'] = ApiErrorFormatter::stripMarkup(
-					$message->useDatabase( false )->inLanguage( 'en' )->text()
-				);
+				$errorFormatter = $this->getErrorFormatter();
+				if ( $errorFormatter instanceof ApiErrorFormatter_BackCompat ) {
+					$result['reason'] = ApiErrorFormatter::stripMarkup(
+						$message->useDatabase( false )->inLanguage( 'en' )->text()
+					);
+				} else {
+					$result['reason'] = $errorFormatter->formatMessage( $message );
+				}
 				break;
 
 			case 'Aborted':
