@@ -83,7 +83,7 @@ class ApiImport extends ApiBase {
 		try {
 			$importer->doImport();
 		} catch ( Exception $e ) {
-			$this->dieWithError( [ 'apierror-import-unknownerror', wfEscapeWikiText( $e->getMessage() ) ] );
+			$this->dieWithException( $e, [ 'wrap' => 'apierror-import-unknownerror' ] );
 		}
 
 		$resultData = $reporter->getData();

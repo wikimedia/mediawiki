@@ -225,11 +225,9 @@ class ApiParse extends ApiBase {
 			try {
 				$this->content = ContentHandler::makeContent( $text, $titleObj, $model, $format );
 			} catch ( MWContentSerializationException $ex ) {
-				// @todo: Internationalize MWContentSerializationException
-				$this->dieWithError(
-					[ 'apierror-contentserializationexception', wfEscapeWikiText( $ex->getMessage() ) ],
-					'parseerror'
-				);
+				$this->dieWithException( $ex, [
+					'wrap' => ApiMessage::create( 'apierror-contentserializationexception', 'parseerror' )
+				] );
 			}
 
 			if ( $this->section !== false ) {

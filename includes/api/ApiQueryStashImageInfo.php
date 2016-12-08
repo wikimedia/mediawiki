@@ -63,11 +63,10 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 				$result->addIndexedTagName( [ 'query', $this->getModuleName() ], $modulePrefix );
 			}
 		// @todo Update exception handling here to understand current getFile exceptions
-		// @todo Internationalize the exceptions
 		} catch ( UploadStashFileNotFoundException $e ) {
-			$this->dieWithError( [ 'apierror-stashedfilenotfound', wfEscapeWikiText( $e->getMessage() ) ] );
+			$this->dieWithException( $e, [ 'wrap' => 'apierror-stashedfilenotfound' ] );
 		} catch ( UploadStashBadPathException $e ) {
-			$this->dieWithError( [ 'apierror-stashpathinvalid', wfEscapeWikiText( $e->getMessage() ) ] );
+			$this->dieWithException( $e, [ 'wrap' => 'apierror-stashpathinvalid' ] );
 		}
 	}
 

@@ -320,12 +320,14 @@ class ApiUpload extends ApiBase {
 
 			if ( $status->isGood() && !$status->getValue() ) {
 				// Not actually a 'good' status...
-				$status->fatal( new ApiRawMessage( 'Invalid stashed file', 'stashfailed' ) );
+				$status->fatal( new ApiMessage( 'apierror-stashinvalidfile', 'stashfailed' ) );
 			}
 		} catch ( Exception $e ) {
 			$debugMessage = 'Stashing temporary file failed: ' . get_class( $e ) . ' ' . $e->getMessage();
 			wfDebug( __METHOD__ . ' ' . $debugMessage . "\n" );
-			$status = Status::newFatal( new ApiRawMessage( $e->getMessage(), 'stashfailed' ) );
+			$status = Status::newFatal( $this->getErrorFormatter()->getMessageFromException(
+				$e, [ 'wrap' => new ApiMessage( 'apierror-stashexception', 'stashfailed' ) ]
+			) );
 		}
 
 		if ( $status->isGood() ) {
@@ -564,7 +566,6 @@ class ApiUpload extends ApiBase {
 	 * @param array $verification
 	 */
 	protected function checkVerification( array $verification ) {
-		// @todo Move them to ApiBase's message map
 		switch ( $verification['status'] ) {
 			// Recoverable errors
 			case UploadBase::MIN_LENGTH_PARTNAME:
@@ -713,32 +714,41 @@ class ApiUpload extends ApiBase {
 
 	/**
 	 * Handles a stash exception, giving a useful error to the user.
-	 * @todo Internationalize the exceptions
+	 * @todo Internationalize the exceptions then get rid of this
 	 * @param Exception $e
 	 * @return StatusValue
 	 */
 	protected function handleStashException( $e ) {
-		$err = wfEscapeWikiText( $e->getMessage() );
 		switch ( get_class( $exception ) ) {
 			case 'UploadStashFileNotFoundException':
-				return StatusValue::newFatal( 'apierror-stashedfilenotfound', $err );
+				$wrap = 'apierror-stashedfilenotfound';
+				break;
 			case 'UploadStashBadPathException':
-				return StatusValue::newFatal( 'apierror-stashpathinvalid', $err );
+				$wrap = 'apierror-stashpathinvalid';
+				break;
 			case 'UploadStashFileException':
-				return StatusValue::newFatal( 'apierror-stashfilestorage', $err );
+				$wrap = 'apierror-stashfilestorage';
+				break;
 			case 'UploadStashZeroLengthFileException':
-				return StatusValue::newFatal( 'apierror-stashzerolength', $err );
+				$wrap = 'apierror-stashzerolength';
+				break;
 			case 'UploadStashNotLoggedInException':
 				return StatusValue::newFatal( ApiMessage::create(
 					[ 'apierror-mustbeloggedin', $this->msg( 'action-upload' ) ], 'stashnotloggedin'
 				) );
 			case 'UploadStashWrongOwnerException':
-				return StatusValue::newFatal( 'apierror-stashwrongowner', $err );
+				$wrap = 'apierror-stashwrongowner';
+				break;
 			case 'UploadStashNoSuchKeyException':
-				return StatusValue::newFatal( 'apierror-stashnosuchfilekey', $err );
+				$wrap = 'apierror-stashnosuchfilekey';
+				break;
 			default:
-				return StatusValue::newFatal( 'uploadstash-exception', get_class( $e ), $err );
+				$wrap = [ 'uploadstash-exception', get_class( $e ) ];
+				break;
 		}
+		return StatusValue::newFatal(
+			$this->getErrorFormatter()->getMessageFromException( $e, [ 'wrap' => $wrap ] )
+		);
 	}
 
 	/**

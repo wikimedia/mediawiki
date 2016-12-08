@@ -26,6 +26,8 @@ production.
 === New features in 1.29 ===
 * (T5233) A cookie can now be set when a user is autoblocked, to track that user if
   they move to a new IP address. This is disabled by default.
+* Added ILocalizedException interface to standardize the use of localized
+  exceptions, largely so the API can handle them more sensibly.
 
 === External library changes in 1.29 ===
 
@@ -49,6 +51,8 @@ production.
   using the new 'errorformat', 'errorlang', and 'errorsuselocal' parameters.
 * API error codes may have changed. Most notably, errors from modules using
   parameter prefixes (e.g. all query submodules) will no longer be prefixed.
+* ApiPageSet-using modules will report the 'invalidreason' using the specified
+  'errorformat'.
 * action=emailuser may return a "Warnings" status, and now returns 'warnings' and
   'errors' subelements (as applicable) instead of 'message'.
 * action=imagerotate returns an 'errors' subelement rather than 'errormessage'.
