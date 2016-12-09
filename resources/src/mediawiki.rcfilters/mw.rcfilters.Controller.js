@@ -18,14 +18,45 @@
 	 * Initialize the filter and parameter states
 	 */
 	mw.rcfilters.Controller.prototype.initialize = function () {
-		var uri = new mw.Uri();
+		var paramData,
+			controller = this,
+			uri = new mw.Uri(),
+			prefParamStates = {};
 
+mw.user.options.set( 'hidemyself', 1 ); // Test purpose only!
+
+		// Go over filters and fetch preferences, if those are set up and exist
+		$.each( this.model.getFilterGroups(), function( group, data ) {
+			var prefValue;
+
+			if ( data.type === 'string_options' ) {
+				// Preference is set on the group
+				if ( data.preference ) {
+					prefValue = mw.user.options.get( data.preference );
+					if ( prefValue !== null ) {
+						prefParamStates[ group ] = prefValue;
+					}
+				}
+			} else if ( data.type === 'send_unselected_if_any' ) {
+				// Preference is set on the individual filters
+				data.filters.forEach( function ( filterItem ) {
+					if ( filterItem.getPreferenceName() ) {
+						prefParamStates[ filterItem.getName() ] = mw.user.options.get( filterItem.getPreferenceName() );
+					}
+				} );
+			}
+		} );
+
+		// Combine preference data with url params (URL should override)
+		paramData = $.extend( {}, prefParamStates, uri.query );
+
+		// Give the model a full parameter state from which to
+		// update the filters
 		this.model.updateFilters(
-			// Translate the url params to filter select states
-			this.model.getParametersToFilters( uri.query )
+			this.model.getParametersToFilters( paramData )
 		);
 
-		this.model.updateParameters( uri.query );
+		this.model.updateParameters( paramData );
 	};
 
 	/**
@@ -62,11 +93,6 @@
 		var filter,
 			uri = new mw.Uri(),
 			currFilters = this.model.getFiltersToParameters();
-
-		// Translate true/false to integer values
-		for ( filter in currFilters ) {
-			currFilters[ filter ] = Number( currFilters[ filter ] );
-		}
 
 		// Add to existing queries in URL
 		currFilters = $.extend( uri.query, currFilters );
