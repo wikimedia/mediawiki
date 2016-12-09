@@ -22,6 +22,7 @@
 		this.group = config.group || '';
 		this.label = config.label || this.name;
 		this.description = config.description;
+		this.preference = config.preference;
 
 		this.selected = !!config.selected;
 	};
@@ -76,6 +77,15 @@
 	 */
 	mw.rcfilters.dm.FilterItem.prototype.getDescription = function () {
 		return this.description;
+	};
+
+	/**
+	 * Return the preference name associated with this filter
+	 *
+	 * @return {string} Preference name
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.getPreferenceName = function () {
+		return this.preference;
 	};
 
 	/**
