@@ -147,6 +147,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 			$logger->info( '{time} {title}', [
 				'time' => number_format( $time, 2 ),
 				'title' => $this->page->getTitle()->getPrefixedDBkey(),
+				'ns' => $this->page->getTitle()->getNamespace(),
 				'trigger' => 'view',
 			] );
 		}
