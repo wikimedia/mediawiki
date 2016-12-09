@@ -482,7 +482,7 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @return string HTML or empty string
 	 */
-	protected function markPatrolledLink() {
+	public function markPatrolledLink() {
 		if ( $this->mMarkPatrolledLink === null ) {
 			$linkInfo = $this->getMarkPatrolledLinkInfo();
 			// If false, there is no patrol link needed/allowed
@@ -1065,7 +1065,7 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @return string HTML fragment
 	 */
-	protected function getRevisionHeader( Revision $rev, $complete = '' ) {
+	public function getRevisionHeader( Revision $rev, $complete = '' ) {
 		$lang = $this->getLanguage();
 		$user = $this->getUser();
 		$revtimestamp = $rev->getTimestamp();
