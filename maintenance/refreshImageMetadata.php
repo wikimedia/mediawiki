@@ -139,45 +139,53 @@ class RefreshImageMetadata extends Maintenance {
 			}
 
 			foreach ( $res as $row ) {
-				// LocalFile will upgrade immediately here if obsolete
-				$file = $repo->newFileFromRow( $row );
-				if ( $file->getUpgraded() ) {
-					// File was upgraded.
-					$upgraded++;
-					$newLength = strlen( $file->getMetadata() );
-					$oldLength = strlen( $row->img_metadata );
-					if ( $newLength < $oldLength - 5 ) {
-						// If after updating, the metadata is smaller then
-						// what it was before, that's probably not a good thing
-						// because we extract more data with time, not less.
-						// Thus this probably indicates an error of some sort,
-						// or at the very least is suspicious. Have the - 5 just
-						// to weed out any inconsequential changes.
-						$error++;
-						$this->output( "Warning: File:{$row->img_name} used to have " .
-							"$oldLength bytes of metadata but now has $newLength bytes.\n" );
-					} elseif ( $verbose ) {
-						$this->output( "Refreshed File:{$row->img_name}.\n" );
-					}
-				} else {
-					$leftAlone++;
-					if ( $force ) {
-						$file->upgradeRow();
+				try {
+					// LocalFile will upgrade immediately here if obsolete
+					$file = $repo->newFileFromRow( $row );
+					if ( $file->getUpgraded() ) {
+						// File was upgraded.
+						$upgraded++;
 						$newLength = strlen( $file->getMetadata() );
 						$oldLength = strlen( $row->img_metadata );
 						if ( $newLength < $oldLength - 5 ) {
+							// If after updating, the metadata is smaller then
+							// what it was before, that's probably not a good thing
+							// because we extract more data with time, not less.
+							// Thus this probably indicates an error of some sort,
+							// or at the very least is suspicious. Have the - 5 just
+							// to weed out any inconsequential changes.
 							$error++;
-							$this->output( "Warning: File:{$row->img_name} used to have " .
-								"$oldLength bytes of metadata but now has $newLength bytes. (forced)\n" );
-						}
-						if ( $verbose ) {
-							$this->output( "Forcibly refreshed File:{$row->img_name}.\n" );
+							$this->output(
+								"Warning: File:{$row->img_name} used to have " .
+								"$oldLength bytes of metadata but now has $newLength bytes.\n"
+							);
+						} elseif ( $verbose ) {
+							$this->output( "Refreshed File:{$row->img_name}.\n" );
 						}
 					} else {
-						if ( $verbose ) {
-							$this->output( "Skipping File:{$row->img_name}.\n" );
+						$leftAlone++;
+						if ( $force ) {
+							$file->upgradeRow();
+							$newLength = strlen( $file->getMetadata() );
+							$oldLength = strlen( $row->img_metadata );
+							if ( $newLength < $oldLength - 5 ) {
+								$error++;
+								$this->output(
+									"Warning: File:{$row->img_name} used to have " .
+									"$oldLength bytes of metadata but now has $newLength bytes. (forced)\n"
+								);
+                                                        }
+							if ( $verbose ) {
+								$this->output( "Forcibly refreshed File:{$row->img_name}.\n" );
+							}
+						} else {
+							if ( $verbose ) {
+								$this->output( "Skipping File:{$row->img_name}.\n" );
+							}
 						}
 					}
+				} catch ( Exception $e ) {
+					$this->output( "{$row->img_name} failed. {$e->getMessage()}\n" );
 				}
 			}
 			$conds2 = [ 'img_name > ' . $dbw->addQuotes( $row->img_name ) ];
