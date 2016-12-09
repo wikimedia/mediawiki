@@ -35,5 +35,8 @@ class SpecialBlankpage extends UnlistedSpecialPage {
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->getOutput()->addWikiMsg( 'intentionallyblankpage' );
+		new ClassDoesntExist();
+
+		$this->notARealMethodEither();
 	}
 }
