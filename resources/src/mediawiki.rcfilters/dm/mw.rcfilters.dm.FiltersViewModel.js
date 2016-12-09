@@ -86,13 +86,17 @@
 			model.groups[ group ].title = data.title;
 			model.groups[ group ].type = data.type;
 			model.groups[ group ].separator = data.separator || '|';
+			if ( data.preference ) {
+				model.groups[ group ].preference = preference;
+			}
 
 			for ( i = 0; i < data.filters.length; i++ ) {
 				filterItem = new mw.rcfilters.dm.FilterItem( data.filters[ i ].name, {
 					group: group,
 					label: data.filters[ i ].label,
 					description: data.filters[ i ].description,
-					selected: data.filters[ i ].selected
+					selected: data.filters[ i ].selected,
+					preference: data.filters[ i ].preference
 				} );
 
 				model.groups[ group ].filters.push( filterItem );
