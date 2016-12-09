@@ -13,6 +13,7 @@
 		OO.EmitterList.call( this );
 
 		this.groups = {};
+		this.defaultParams = {};
 
 		// Events
 		this.aggregate( { update: 'itemUpdate' } );
@@ -47,7 +48,7 @@
 	 * @param {Object} filters Filter group definition
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.initializeFilters = function ( filters ) {
-		var i, filterItem,
+		var i, filterItem, selectedFilterNames,
 			model = this,
 			items = [];
 
@@ -63,20 +64,41 @@
 			model.groups[ group ].type = data.type;
 			model.groups[ group ].separator = data.separator || '|';
 
+			selectedFilterNames = [];
 			for ( i = 0; i < data.filters.length; i++ ) {
 				filterItem = new mw.rcfilters.dm.FilterItem( data.filters[ i ].name, {
 					group: group,
 					label: data.filters[ i ].label,
-					description: data.filters[ i ].description,
-					selected: data.filters[ i ].selected
+					description: data.filters[ i ].description
 				} );
+
+				if ( data.type === 'send_unselected_if_any' ) {
+					// Store the default parameter state
+					// For this group type, parameter values are direct
+					model.defaultParams[ data.filters[ i ].name ] = Number( !!data.filters[ i ].default );
+				} else if (
+					data.type === 'string_options' &&
+					data.filters[ i ].default
+				) {
+					selectedFilterNames.push( data.filters[ i ].name );
+				}
 
 				model.groups[ group ].filters.push( filterItem );
 				items.push( filterItem );
 			}
+
+			if ( data.type === 'string_options' ) {
+				// Store the default parameter group state
+				// For this group, the parameter is group name and value is the names
+				// of selected items
+				model.defaultParams[ group ] = model.sanitizeStringOptionGroup( group, selectedFilterNames ).join( model.groups[ group ].separator );
+			}
 		} );
 
 		this.addItems( items );
+
+		// Now set selected state based on defaults
+		this.setFiltersToDefaults();
 		this.emit( 'initialize' );
 	};
 
@@ -124,15 +146,36 @@
 	};
 
 	/**
+	 * Get the default parameters object
+	 *
+	 * @return {Object} Default parameter values
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getDefaultParams = function () {
+		return this.defaultParams;
+	};
+
+	/**
+	 * Set all filter states to default values
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.setFiltersToDefaults = function () {
+		var defaultFilterStates = this.getFiltersFromParameters( this.getDefaultParams() );
+
+		this.updateFilters( defaultFilterStates );
+	};
+
+	/**
 	 * Analyze the groups and their filters and output an object representing
 	 * the state of the parameters they represent.
 	 *
+	 * @param {Object} [filterGroups] An object defining the filter groups to
+	 *  translate to parameters. Its structure must follow that of this.groups
+	 *  see #getFilterGroups
 	 * @return {Object} Parameter state object
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.getParametersFromFilters = function () {
+	mw.rcfilters.dm.FiltersViewModel.prototype.getParametersFromFilters = function ( filterGroups ) {
 		var i, filterItems, anySelected, values,
 			result = {},
-			groupItems = this.getFilterGroups();
+			groupItems = filterGroups || this.getFilterGroups();
 
 		$.each( groupItems, function ( group, data ) {
 			filterItems = data.filters;
@@ -174,6 +217,7 @@
 	 * Remove duplicates and make sure to only use valid
 	 * values.
 	 *
+	 * @private
 	 * @param {string} groupName Group name
 	 * @param {string[]} valueArray Array of values
 	 * @return {string[]} Array of valid values
@@ -210,7 +254,7 @@
 
 	/**
 	 * This is the opposite of the #getParametersFromFilters method; this goes over
-	 * the parameters and translates into a selected/unselected value in the filters.
+	 * the given parameters and translates into a selected/unselected value in the filters.
 	 *
 	 * @param {Object} params Parameters query object
 	 * @return {Object} Filter state object
@@ -219,9 +263,8 @@
 		var i, filterItem,
 			groupMap = {},
 			model = this,
-			base = this.getParametersFromFilters(),
-			// Start with current state
-			result = this.getState();
+			base = this.getDefaultParams(),
+			result = {};
 
 		params = $.extend( {}, base, params );
 
