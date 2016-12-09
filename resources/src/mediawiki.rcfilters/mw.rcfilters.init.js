@@ -29,12 +29,14 @@
 						{
 							name: 'hidemyself',
 							label: mw.msg( 'rcfilters-filter-editsbyself-label' ),
-							description: mw.msg( 'rcfilters-filter-editsbyself-description' )
+							description: mw.msg( 'rcfilters-filter-editsbyself-description' ),
+							default: true
 						},
 						{
 							name: 'hidebyothers',
 							label: mw.msg( 'rcfilters-filter-editsbyother-label' ),
-							description: mw.msg( 'rcfilters-filter-editsbyother-description' )
+							description: mw.msg( 'rcfilters-filter-editsbyother-description' ),
+							default: false
 						}
 					]
 				},
@@ -51,12 +53,14 @@
 						{
 							name: 'newcomer',
 							label: mw.msg( 'rcfilters-filter-userExpLevel-newcomer-label' ),
-							description: mw.msg( 'rcfilters-filter-userExpLevel-newcomer-description' )
+							description: mw.msg( 'rcfilters-filter-userExpLevel-newcomer-description' ),
+							default: true
 						},
 						{
 							name: 'experienced',
 							label: mw.msg( 'rcfilters-filter-userExpLevel-experienced-label' ),
-							description: mw.msg( 'rcfilters-filter-userExpLevel-experienced-description' )
+							description: mw.msg( 'rcfilters-filter-userExpLevel-experienced-description' ),
+							default: true
 						},
 						{
 							name: 'moreexperienced',
