@@ -7,6 +7,7 @@
 	mw.rcfilters.Controller = function MwRcfiltersController( model ) {
 		this.model = model;
 
+		this.preferences = {};
 		// TODO: When we are ready, update the URL when a filter is updated
 		// this.model.connect( this, { itemUpdate: 'updateURL' } );
 	};
@@ -18,14 +19,20 @@
 	 * Initialize the filter and parameter states
 	 */
 	mw.rcfilters.Controller.prototype.initialize = function () {
-		var uri = new mw.Uri();
+		var paramData,
+			controller = this,
+			uri = new mw.Uri();
 
+		// Combine preference data with url params (URL should override)
+		paramData = $.extend( {}, this.getFilterPreferences(), uri.query );
+
+		// Give the model a full parameter state from which to
+		// update the filters
 		this.model.updateFilters(
-			// Translate the url params to filter select states
-			this.model.getParametersToFilters( uri.query )
+			this.model.getParametersToFilters( paramData )
 		);
 
-		this.model.updateParameters( uri.query );
+		this.model.updateParameters( paramData );
 	};
 
 	/**
@@ -63,11 +70,6 @@
 			uri = new mw.Uri(),
 			currFilters = this.model.getFiltersToParameters();
 
-		// Translate true/false to integer values
-		for ( filter in currFilters ) {
-			currFilters[ filter ] = Number( currFilters[ filter ] );
-		}
-
 		// Add to existing queries in URL
 		currFilters = $.extend( uri.query, currFilters );
 
@@ -77,4 +79,50 @@
 		return currFilters;
 	};
 
+	/**
+	 * Go over filter definition to get the values in the user preferences
+	 */
+	mw.rcfilters.Controller.prototype.updateFilterPreferences = function () {
+		var prefParamStates = {};
+
+		/*********** TEST ****************/
+		mw.user.options.set( 'hidemyself', 1 ); // Test purpose only!
+		/*********** TEST ****************/
+
+		$.each( this.model.getFilterGroups(), function( group, data ) {
+			var prefValue;
+
+			if ( data.type === 'string_options' ) {
+				// Preference is set on the group
+				if ( data.preference ) {
+					prefValue = mw.user.options.get( data.preference );
+					if ( prefValue !== null ) {
+						prefParamStates[ group ] = prefValue;
+					}
+				}
+			} else if ( data.type === 'send_unselected_if_any' ) {
+				// Preference is set on the individual filters
+				data.filters.forEach( function ( filterItem ) {
+					if ( filterItem.getPreferenceName() ) {
+						prefParamStates[ filterItem.getName() ] = mw.user.options.get( filterItem.getPreferenceName() );
+					}
+				} );
+			}
+		} );
+
+		this.preferences = prefParamStates;
+	};
+
+	/**
+	 * Get the filte values that are in the user preferences
+	 *
+	 * @return {Object} Filter values from user preferences
+	 */
+	mw.rcfilters.Controller.prototype.getFilterPreferences = function () {
+		if ( $.isEmptyObject( this.preferences ) ) {
+			this.updateFilterPreferences();
+		}
+
+		return this.preferences;
+	};
 }( mediaWiki, jQuery ) );

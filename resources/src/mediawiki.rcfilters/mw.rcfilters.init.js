@@ -29,6 +29,7 @@
 					filters: [
 						{
 							name: 'hidemyself',
+							preference: 'hidemyself',
 							label: mw.msg( 'rcfilters-filter-editsbyself-label' ),
 							description: mw.msg( 'rcfilters-filter-editsbyself-description' )
 						},
