@@ -1238,7 +1238,7 @@
 	"reuploaddesc": "Nazad na obrazac za otpremanje",
 	"upload-tryagain": "Pošalji izmenjeni opis datoteke",
 	"uploadnologin": "Niste prijavljeni",
-	"uploadnologintext": "$1 da biste otpremali datoteke.",
+	"uploadnologintext": "Morate biti $1 da biste otpremali datoteke.",
 	"upload_directory_missing": "Fascikla za slanje ($1) nedostaje i server je ne može napraviti.",
 	"upload_directory_read_only": "Server ne može da piše po fascikli za slanje ($1).",
 	"uploaderror": "Greška pri otpremanju",

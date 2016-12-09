@@ -962,6 +962,14 @@
 	"api-help-examples": "{{PLURAL:$1|Ejemplo|Ejemplos}}:",
 	"api-help-permissions": "{{PLURAL:$1|Permiso|Permisos}}:",
 	"api-help-permissions-granted-to": "{{PLURAL:$1|Concedido a|Concedidos a}}: $2",
+	"apierror-badip": "El parámetro IP no es válido.",
+	"apierror-invalidtitle": "Título incorrecto \"$1\".",
+	"apierror-revwrongpage": "r$1 no es una revisión de $2.",
+	"apierror-unknownerror-nocode": "Error desconocido.",
+	"apiwarn-invalidcategory": "\"$1\" no es una categoría.",
+	"apiwarn-notfile": "\"$1\" no es un archivo.",
+	"api-feed-error-title": "Error ($1)",
+	"api-exception-trace": "$1 en $2($3)\n$4",
 	"api-credits-header": "Créditos",
 	"api-credits": "Desarrolladores de la API:\n* Roan Kattouw (desarrollador principal, sep. 2007-2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (creador y desarrollador principal, sep. 2006-sep. 2007)\n* Brad Jorsch (desarrollador principal, 2013-actualidad)\n\nEnvía comentarios, sugerencias y preguntas a mediawiki-api@lists.wikimedia.org\no informa de un error en https://phabricator.wikimedia.org/."
 }

@@ -1718,7 +1718,7 @@
 	"confirmdeletetext": "Panjenengan bakal mbusak kaca utawa berkas iki minangka permanèn karo kabèh sajarahé saka basis data. Pastèkna dhisik menawa panjenengan pancèn nggayuh iki, ngerti kabèh akibat lan konsekwènsiné, lan apa sing bakal panjenengan tumindak iku cocog karo [[{{MediaWiki:Policy-url}}|kawicaksanan {{SITENAME}}]].",
 	"actioncomplete": "Kasil diayahi",
 	"actionfailed": "Tindakan gagal",
-	"deletedtext": "\"$1\" wis dibusak. \nDelenga $2 minangka rekamaning busak-busakan pungkasan.",
+	"deletedtext": "\"$1\" wis dibusak. \nDelenga $2 minangka cathetan ngenani sing pungkasan kabusak.",
 	"dellogpage": "Log busak",
 	"dellogpagetext": "Ing ngisor iki kapacak log pambusakan kaca sing anyar dhéwé.",
 	"deletionlog": "log busak",

@@ -3461,6 +3461,7 @@
 	"htmlform-user-not-exists": "<strong>$1</strong> bestaat niet.",
 	"htmlform-user-not-valid": "<strong>$1</strong> is geen geldige gebruikersnaam.",
 	"logentry-delete-delete": "$1 {{GENDER:$2|heeft}} de pagina $3 verwijderd",
+	"logentry-delete-delete_redir": "$1 heeft de doorverwijzing $3 {{GENDER:$2|verwijderd}} door deze te overschrijven",
 	"logentry-delete-restore": "$1 {{GENDER:$2|heeft}} de pagina $3 teruggeplaatst",
 	"logentry-delete-event": "$1 {{GENDER:$2|heeft}} de zichtbaarheid van {{PLURAL:$5|een logboekregel|$5 logboekregels}} van $3 gewijzigd: $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|heeft}} de zichtbaarheid van {{PLURAL:$5|een versie|$5 versies}} van de pagina $3 gewijzigd: $4",

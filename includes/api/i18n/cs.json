@@ -285,6 +285,8 @@
 	"api-help-permissions-granted-to": "Uděleno {{PLURAL:$1|skupině|skupinám}}: $2",
 	"api-help-right-apihighlimits": "Používání vyšších limitů v API dotazech (pomalé dotazy: $1, rychlé dotazy: $2). Limity pro pomalé dotazy se vztahují i na vícehodnotové parametry.",
 	"api-help-open-in-apisandbox": "<small>[otevřít v pískovišti]</small>",
+	"apierror-nosuchsection-what": "$2 neobsahuje sekci $1.",
+	"apierror-sectionsnotsupported-what": "$1 nepodporuje sekce.",
 	"api-credits-header": "Zásluhy",
 	"api-credits": "Vývojáři API:\n* Roan Kattouw (hlavní vývojář září 2007–2009)\n* Viktor Vasiljev\n* Bryan Tong Minh\n* Sam Reed\n* Jurij Astrachan (tvůrce, hlavní vývojář září 2006–září 2007)\n* Brad Jorsch (hlavní vývojář od 2013)\n\nSvé komentáře, návrhy či dotazy posílejte na mediawiki-api@lists.wikimedia.org\nnebo založte chybové hlášení na https://phabricator.wikimedia.org/."
 }

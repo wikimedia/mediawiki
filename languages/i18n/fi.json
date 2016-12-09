@@ -1898,6 +1898,7 @@
 	"activeusers-count": "$1 {{PLURAL:$1|toiminto|toimintoa}} viimeisen {{PLURAL:$3|päivän|$3 päivän}} aikana",
 	"activeusers-from": "Näytä käyttäjät alkaen kohdasta:",
 	"activeusers-groups": "Näytä käyttäjät, jotka kuuluvat ryhmiin:",
+	"activeusers-excludegroups": "Älä näytä käyttäjiä, jotka kuuluvat seuraaviin ryhmiin:",
 	"activeusers-noresult": "Käyttäjiä ei löytynyt.",
 	"activeusers-submit": "Hae aktiiviset käyttäjät",
 	"listgrouprights": "Käyttäjäryhmien oikeudet",
