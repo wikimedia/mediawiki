@@ -10,7 +10,7 @@
 	 * @cfg {string} [group] The group this item belongs to
 	 * @cfg {string} [label] The label for the filter
 	 * @cfg {string} [description] The description of the filter
-	 * @cfg {boolean} [selected] Filter is selected
+	 * @cfg {boolean} [default] The default state of this filter
 	 */
 	mw.rcfilters.dm.FilterItem = function MwRcfiltersDmFilterItem( name, config ) {
 		config = config || {};
@@ -22,8 +22,9 @@
 		this.group = config.group || '';
 		this.label = config.label || this.name;
 		this.description = config.description;
+		this.default = !!config.default;
 
-		this.selected = !!config.selected;
+		this.selected = this.default;
 	};
 
 	/* Initialization */
@@ -75,6 +76,15 @@
 	 */
 	mw.rcfilters.dm.FilterItem.prototype.getDescription = function () {
 		return this.description;
+	};
+
+	/**
+	 * Get the default value of this filter
+	 *
+	 * @return {string} Filter default
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.getDefault = function () {
+		return this.default;
 	};
 
 	/**
