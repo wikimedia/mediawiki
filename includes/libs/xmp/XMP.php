@@ -49,7 +49,6 @@ use Wikimedia\ScopedCallback;
  * Note XMP kind of looks like rdf. They are not the same thing - XMP is
  * encoded as a specific subset of rdf. This class can read XMP. It cannot
  * read rdf.
- *
  */
 class XMPReader implements LoggerAwareInterface {
 	/** @var array XMP item configuration array */
@@ -980,7 +979,6 @@ class XMPReader implements LoggerAwareInterface {
 	 * Called when processing the <rdf:value> or <foo:someQualifier>.
 	 *
 	 * @param string $elm Namespace and tag name separated by a space.
-	 *
 	 */
 	private function startElementModeQDesc( $elm ) {
 		if ( $elm === self::NS_RDF . ' value' ) {

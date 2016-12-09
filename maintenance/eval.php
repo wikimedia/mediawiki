@@ -32,7 +32,6 @@
 
 $optionsWithArgs = [ 'd' ];
 
-/** */
 require_once __DIR__ . "/commandLine.inc";
 
 if ( isset( $options['d'] ) ) {

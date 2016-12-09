@@ -391,8 +391,6 @@ class ResourceLoader implements LoggerAwareInterface {
 		}
 	}
 
-	/**
-	 */
 	public function registerTestModules() {
 		global $IP;
 

@@ -40,7 +40,6 @@
  *     $a = $cf->run();
  *     print implode( ',' , $a );
  * @endcode
- *
  */
 class CategoryFinder {
 	/** @var int[] The original article IDs passed to the seed function */
