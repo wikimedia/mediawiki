@@ -10,10 +10,10 @@
 	 * @cfg {string} [group] The group this item belongs to
 	 * @cfg {string} [label] The label for the filter
 	 * @cfg {string} [description] The description of the filter
-	 * @cfg {boolean} [selected] Filter is selected
 	 * @cfg {boolean} [active=true] The filter is active and affecting the result
 	 * @cfg {string[]} [excludes=[]] A list of filter names this filter, if
 	 *  selected, makes inactive.
+	 * @cfg {boolean} [default] The default state of this filter
 	 */
 	mw.rcfilters.dm.FilterItem = function MwRcfiltersDmFilterItem( name, config ) {
 		config = config || {};
@@ -25,10 +25,11 @@
 		this.group = config.group || '';
 		this.label = config.label || this.name;
 		this.description = config.description;
+		this.default = !!config.default;
 
-		this.selected = !!config.selected;
 		this.active = config.active === undefined ? true : !!config.active;
 		this.excludes = config.excludes || [];
+		this.selected = this.default;
 	};
 
 	/* Initialization */
@@ -80,6 +81,15 @@
 	 */
 	mw.rcfilters.dm.FilterItem.prototype.getDescription = function () {
 		return this.description;
+	};
+
+	/**
+	 * Get the default value of this filter
+	 *
+	 * @return {boolean} Filter default
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.getDefault = function () {
+		return this.default;
 	};
 
 	/**
