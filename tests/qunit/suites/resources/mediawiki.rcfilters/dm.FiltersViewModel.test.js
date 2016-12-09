@@ -420,7 +420,8 @@
 						{
 							name: 'hidefilter1',
 							label: 'Show filter 1',
-							description: 'Description of Filter 1 in Group 1'
+							description: 'Description of Filter 1 in Group 1',
+							default: true
 						},
 						{
 							name: 'hidefilter2',
@@ -430,7 +431,8 @@
 						{
 							name: 'hidefilter3',
 							label: 'Show filter 3',
-							description: 'Description of Filter 3 in Group 1'
+							description: 'Description of Filter 3 in Group 1',
+							default: true
 						}
 					]
 				},
@@ -446,7 +448,8 @@
 						{
 							name: 'hidefilter5',
 							label: 'Show filter 5',
-							description: 'Description of Filter 2 in Group 2'
+							description: 'Description of Filter 2 in Group 2',
+							default: true
 						},
 						{
 							name: 'hidefilter6',
@@ -468,7 +471,8 @@
 						{
 							name: 'filter8',
 							label: 'Group 3: Filter 2',
-							description: 'Description of Filter 2 in Group 3'
+							description: 'Description of Filter 2 in Group 3',
+							default: true
 						},
 						{
 							name: 'filter9',
@@ -478,62 +482,40 @@
 					]
 				}
 			},
+			defaultFilterRepresentation = {
+				// Group 1 and 2, "send_unselected_if_any", the values of the filters are "flipped" from the values of the parameters
+				hidefilter1: false,
+				hidefilter2: true,
+				hidefilter3: false,
+				hidefilter4: true,
+				hidefilter5: false,
+				hidefilter6: true,
+				// Group 3, "string_options", default values correspond to parameters and filters
+				filter7: false,
+				filter8: true,
+				filter9: false
+			},
 			model = new mw.rcfilters.dm.FiltersViewModel();
 
 		model.initializeFilters( definition );
 
-		// Empty query = empty filter definition
+		// Empty query = only default values
 		assert.deepEqual(
 			model.getFiltersFromParameters( {} ),
-			{
-				hidefilter1: false, // The text is "show filter 1"
-				hidefilter2: false, // The text is "show filter 2"
-				hidefilter3: false, // The text is "show filter 3"
-				hidefilter4: false, // The text is "show filter 4"
-				hidefilter5: false, // The text is "show filter 5"
-				hidefilter6: false, // The text is "show filter 6"
-				filter7: false,
-				filter8: false,
-				filter9: false
-			},
-			'Empty parameter query results in filters in initial state'
+			defaultFilterRepresentation,
+			'Empty parameter query results in filters in initial default state'
 		);
 
 		assert.deepEqual(
 			model.getFiltersFromParameters( {
-				hidefilter1: '1'
-			} ),
-			{
-				hidefilter1: false, // The text is "show filter 1"
-				hidefilter2: true, // The text is "show filter 2"
-				hidefilter3: true, // The text is "show filter 3"
-				hidefilter4: false, // The text is "show filter 4"
-				hidefilter5: false, // The text is "show filter 5"
-				hidefilter6: false, // The text is "show filter 6"
-				filter7: false,
-				filter8: false,
-				filter9: false
-			},
-			'One falsey parameter in a group makes the rest of the filters in the group truthy (checked) in the interface'
-		);
-
-		assert.deepEqual(
-			model.getFiltersFromParameters( {
-				hidefilter1: '1',
 				hidefilter2: '1'
 			} ),
-			{
+			$.extend( {}, defaultFilterRepresentation, {
 				hidefilter1: false, // The text is "show filter 1"
 				hidefilter2: false, // The text is "show filter 2"
-				hidefilter3: true, // The text is "show filter 3"
-				hidefilter4: false, // The text is "show filter 4"
-				hidefilter5: false, // The text is "show filter 5"
-				hidefilter6: false, // The text is "show filter 6"
-				filter7: false,
-				filter8: false,
-				filter9: false
-			},
-			'Two falsey parameters in a \'send_unselected_if_any\' group makes the rest of the filters in the group truthy (checked) in the interface'
+				hidefilter3: false // The text is "show filter 3"
+			} ),
+			'One truthy parameter in a group whose other parameters are true by default makes the rest of the filters in the group false (unchecked)'
 		);
 
 		assert.deepEqual(
@@ -542,23 +524,23 @@
 				hidefilter2: '1',
 				hidefilter3: '1'
 			} ),
-			{
-				// TODO: This will have to be represented as a different state, though.
+			$.extend( {}, defaultFilterRepresentation, {
 				hidefilter1: false, // The text is "show filter 1"
 				hidefilter2: false, // The text is "show filter 2"
-				hidefilter3: false, // The text is "show filter 3"
-				hidefilter4: false, // The text is "show filter 4"
-				hidefilter5: false, // The text is "show filter 5"
-				hidefilter6: false, // The text is "show filter 6"
-				filter7: false,
-				filter8: false,
-				filter9: false
-			},
+				hidefilter3: false // The text is "show filter 3"
+			} ),
 			'All paremeters in the same \'send_unselected_if_any\' group false is equivalent to none are truthy (checked) in the interface'
 		);
 
 		// The ones above don't update the model, so we have a clean state.
-
+		// getFiltersFromParameters is stateless; any change is unaffected by the current state
+		// This test is demonstrating wrong usage of the method;
+		// We should be aware that getFiltersFromParameters is stateless,
+		// so each call gives us a filter state that only reflects the query given.
+		// This means that the two calls to updateFilters() below collide.
+		// The result of the first is overridden by the result of the second,
+		// since both get a full state object from getFiltersFromParameters that **only** relates
+		// to the input it receives.
 		model.updateFilters(
 			model.getFiltersFromParameters( {
 				hidefilter1: '1'
@@ -567,28 +549,19 @@
 
 		model.updateFilters(
 			model.getFiltersFromParameters( {
-				hidefilter3: '1'
+				hidefilter6: '1'
 			} )
 		);
 
-		// 1 and 3 are separately unchecked via hide parameters, 2 should still be
-		// checked.
-		// This can simulate separate filters in the same group being hidden different
-		// ways (e.g. preferences and URL).
+		// The result here is ignoring the first updateFilters call
+		// We should receive default values + hidefilter6 as false
 		assert.deepEqual(
 			model.getSelectedState(),
-			{
-				hidefilter1: false, // The text is "show filter 1"
-				hidefilter2: true, // The text is "show filter 2"
-				hidefilter3: false, // The text is "show filter 3"
-				hidefilter4: false, // The text is "show filter 4"
-				hidefilter5: false, // The text is "show filter 5"
-				hidefilter6: false, // The text is "show filter 6"
-				filter7: false,
-				filter8: false,
-				filter9: false
-			},
-			'After unchecking 2 of 3 \'send_unselected_if_any\' filters via separate updateFilters calls, only the remaining one is still checked.'
+			$.extend( {}, defaultFilterRepresentation, {
+				hidefilter5: false,
+				hidefilter6: false
+			} ),
+			'getFiltersFromParameters does not care about previous or existing state.'
 		);
 
 		// Reset
@@ -597,12 +570,12 @@
 
 		model.updateFilters(
 			model.getFiltersFromParameters( {
-				hidefilter1: '1'
+				hidefilter1: '0'
 			} )
 		);
 		model.updateFilters(
 			model.getFiltersFromParameters( {
-				hidefilter1: '0'
+				hidefilter1: '1'
 			} )
 		);
 
@@ -610,18 +583,8 @@
 		// override.
 		assert.deepEqual(
 			model.getSelectedState(),
-			{
-				hidefilter1: false, // The text is "show filter 1"
-				hidefilter2: false, // The text is "show filter 2"
-				hidefilter3: false, // The text is "show filter 3"
-				hidefilter4: false, // The text is "show filter 4"
-				hidefilter5: false, // The text is "show filter 5"
-				hidefilter6: false, // The text is "show filter 6"
-				filter7: false,
-				filter8: false,
-				filter9: false
-			},
-			'After unchecking then checking a \'send_unselected_if_any\' filter (without touching other filters in that group), all are checked'
+			defaultFilterRepresentation,
+			'After checking and then unchecking a \'send_unselected_if_any\' filter (without touching other filters in that group), results are default'
 		);
 
 		model.updateFilters(
@@ -631,17 +594,11 @@
 		);
 		assert.deepEqual(
 			model.getSelectedState(),
-			{
-				hidefilter1: false, // The text is "show filter 1"
-				hidefilter2: false, // The text is "show filter 2"
-				hidefilter3: false, // The text is "show filter 3"
-				hidefilter4: false, // The text is "show filter 4"
-				hidefilter5: false, // The text is "show filter 5"
-				hidefilter6: false, // The text is "show filter 6"
+			$.extend( {}, defaultFilterRepresentation, {
 				filter7: true,
 				filter8: false,
 				filter9: false
-			},
+			} ),
 			'A \'string_options\' parameter containing 1 value, results in the corresponding filter as checked'
 		);
 
@@ -652,17 +609,11 @@
 		);
 		assert.deepEqual(
 			model.getSelectedState(),
-			{
-				hidefilter1: false, // The text is "show filter 1"
-				hidefilter2: false, // The text is "show filter 2"
-				hidefilter3: false, // The text is "show filter 3"
-				hidefilter4: false, // The text is "show filter 4"
-				hidefilter5: false, // The text is "show filter 5"
-				hidefilter6: false, // The text is "show filter 6"
+			$.extend( {}, defaultFilterRepresentation, {
 				filter7: true,
 				filter8: true,
 				filter9: false
-			},
+			} ),
 			'A \'string_options\' parameter containing 2 values, results in both corresponding filters as checked'
 		);
 
@@ -673,38 +624,26 @@
 		);
 		assert.deepEqual(
 			model.getSelectedState(),
-			{
-				hidefilter1: false, // The text is "show filter 1"
-				hidefilter2: false, // The text is "show filter 2"
-				hidefilter3: false, // The text is "show filter 3"
-				hidefilter4: false, // The text is "show filter 4"
-				hidefilter5: false, // The text is "show filter 5"
-				hidefilter6: false, // The text is "show filter 6"
+			$.extend( {}, defaultFilterRepresentation, {
 				filter7: false,
 				filter8: false,
 				filter9: false
-			},
+			} ),
 			'A \'string_options\' parameter containing all values, results in all filters of the group as unchecked.'
 		);
 
 		model.updateFilters(
 			model.getFiltersFromParameters( {
-				group3: 'filter7,filter8,filter9'
+				group3: 'filter7,all,filter9'
 			} )
 		);
 		assert.deepEqual(
 			model.getSelectedState(),
-			{
-				hidefilter1: false, // The text is "show filter 1"
-				hidefilter2: false, // The text is "show filter 2"
-				hidefilter3: false, // The text is "show filter 3"
-				hidefilter4: false, // The text is "show filter 4"
-				hidefilter5: false, // The text is "show filter 5"
-				hidefilter6: false, // The text is "show filter 6"
+			$.extend( {}, defaultFilterRepresentation, {
 				filter7: false,
 				filter8: false,
 				filter9: false
-			},
+			} ),
 			'A \'string_options\' parameter containing the value \'all\', results in all filters of the group as unchecked.'
 		);
 
@@ -715,17 +654,11 @@
 		);
 		assert.deepEqual(
 			model.getSelectedState(),
-			{
-				hidefilter1: false, // The text is "show filter 1"
-				hidefilter2: false, // The text is "show filter 2"
-				hidefilter3: false, // The text is "show filter 3"
-				hidefilter4: false, // The text is "show filter 4"
-				hidefilter5: false, // The text is "show filter 5"
-				hidefilter6: false, // The text is "show filter 6"
+			$.extend( {}, defaultFilterRepresentation, {
 				filter7: true,
 				filter8: false,
 				filter9: true
-			},
+			} ),
 			'A \'string_options\' parameter containing an invalid value, results in the invalid value ignored and the valid corresponding filters checked.'
 		);
 	} );
@@ -777,7 +710,7 @@
 		);
 	} );
 
-	QUnit.test( 'reapplyActiveFilters - "default" exclusion rules', function ( assert ) {
+	QUnit.test( 'setFiltersToDefaults', function ( assert ) {
 		var definition = {
 				group1: {
 					title: 'Group 1',
@@ -787,7 +720,8 @@
 						{
 							name: 'hidefilter1',
 							label: 'Show filter 1',
-							description: 'Description of Filter 1 in Group 1'
+							description: 'Description of Filter 1 in Group 1',
+							default: true
 						},
 						{
 							name: 'hidefilter2',
@@ -797,7 +731,8 @@
 						{
 							name: 'hidefilter3',
 							label: 'Show filter 3',
-							description: 'Description of Filter 3 in Group 1'
+							description: 'Description of Filter 3 in Group 1',
+							default: true
 						}
 					]
 				},
@@ -813,7 +748,8 @@
 						{
 							name: 'hidefilter5',
 							label: 'Show filter 5',
-							description: 'Description of Filter 2 in Group 2'
+							description: 'Description of Filter 2 in Group 2',
+							default: true
 						},
 						{
 							name: 'hidefilter6',
@@ -831,15 +767,15 @@
 			model.getFullState(),
 			{
 				// Group 1
-				hidefilter1: { selected: false, active: true },
+				hidefilter1: { selected: true, active: true },
 				hidefilter2: { selected: false, active: true },
-				hidefilter3: { selected: false, active: true },
+				hidefilter3: { selected: true, active: true },
 				// Group 2
 				hidefilter4: { selected: false, active: true },
-				hidefilter5: { selected: false, active: true },
+				hidefilter5: { selected: true, active: true },
 				hidefilter6: { selected: false, active: true },
 			},
-			'Initial state: all filters are active.'
+			'Initial state: all filters are active, and select states are default.'
 		);
 
 		// Default behavior for 'exclusion' type with only 1 item selected, means that:
@@ -955,6 +891,19 @@
 						}
 					]
 				}
+			},
+			defaultFilterRepresentation = {
+				// Group 1 and 2, "send_unselected_if_any", the values of the filters are "flipped" from the values of the parameters
+				hidefilter1: false,
+				hidefilter2: true,
+				hidefilter3: false,
+				hidefilter4: true,
+				hidefilter5: false,
+				hidefilter6: true,
+				// Group 3, "string_options", default values correspond to parameters and filters
+				filter7: false,
+				filter8: true,
+				filter9: false
 			},
 			model = new mw.rcfilters.dm.FiltersViewModel();
 
