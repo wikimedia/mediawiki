@@ -6,7 +6,6 @@
 	 */
 	mw.rcfilters.Controller = function MwRcfiltersController( model ) {
 		this.model = model;
-
 		// TODO: When we are ready, update the URL when a filter is updated
 		// this.model.connect( this, { itemUpdate: 'updateURL' } );
 	};
@@ -18,8 +17,12 @@
 	 * Initialize the filter and parameter states
 	 */
 	mw.rcfilters.Controller.prototype.initialize = function () {
-		var uri = new mw.Uri();
+		var paramData,
+			controller = this,
+			uri = new mw.Uri();
 
+		// Give the model a full parameter state from which to
+		// update the filters
 		this.model.updateFilters(
 			// Translate the url params to filter select states
 			this.model.getFiltersFromParameters( uri.query )
@@ -43,7 +46,9 @@
 	 * Update the URL of the page to reflect current filters
 	 */
 	mw.rcfilters.Controller.prototype.updateURL = function () {
-		var uri = new mw.Uri();
+		var filter,
+			uri = new mw.Uri(),
+			currFilters = this.model.getFiltersToParameters();
 
 		// Add to existing queries in URL
 		// TODO: Clean up the list of filters; perhaps 'falsy' filters
@@ -54,4 +59,4 @@
 		// Update the URL itself
 		window.history.pushState( { tag: 'rcfilters' }, document.title, uri.toString() );
 	};
-}( mediaWiki ) );
+}( mediaWiki, jQuery ) );
