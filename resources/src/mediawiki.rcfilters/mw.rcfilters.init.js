@@ -88,12 +88,14 @@
 						{
 							name: 'hidebots',
 							label: mw.msg( 'rcfilters-filter-bots-label' ),
-							description: mw.msg( 'rcfilters-filter-bots-description' )
+							description: mw.msg( 'rcfilters-filter-bots-description' ),
+							default: true
 						},
 						{
 							name: 'hidehumans',
 							label: mw.msg( 'rcfilters-filter-humans-label' ),
-							description: mw.msg( 'rcfilters-filter-humans-description' )
+							description: mw.msg( 'rcfilters-filter-humans-description' ),
+							default: false
 						}
 					]
 				},
@@ -120,22 +122,26 @@
 						{
 							name: 'hidepageedits',
 							label: mw.msg( 'rcfilters-filter-pageedits-label' ),
-							description: mw.msg( 'rcfilters-filter-pageedits-description' )
+							description: mw.msg( 'rcfilters-filter-pageedits-description' ),
+							default: false
 						},
 						{
 							name: 'hidenewpages',
 							label: mw.msg( 'rcfilters-filter-newpages-label' ),
-							description: mw.msg( 'rcfilters-filter-newpages-description' )
+							description: mw.msg( 'rcfilters-filter-newpages-description' ),
+							default: false
 						},
 						{
 							name: 'hidecategorization',
 							label: mw.msg( 'rcfilters-filter-categorization-label' ),
-							description: mw.msg( 'rcfilters-filter-categorization-description' )
+							description: mw.msg( 'rcfilters-filter-categorization-description' ),
+							default: true
 						},
 						{
 							name: 'hidelog',
 							label: mw.msg( 'rcfilters-filter-logactions-label' ),
-							description: mw.msg( 'rcfilters-filter-logactions-description' )
+							description: mw.msg( 'rcfilters-filter-logactions-description' ),
+							default: false
 						}
 					]
 				}
