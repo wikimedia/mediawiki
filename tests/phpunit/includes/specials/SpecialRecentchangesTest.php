@@ -55,13 +55,15 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 	}
 
 	private static function normalizeCondition( $conds ) {
-		return array_map(
+		$normalized = array_map(
 			function ( $k, $v ) {
 				return is_numeric( $k ) ? $v : "$k = $v";
 			},
 			array_keys( $conds ),
 			$conds
 		);
+		sort( $normalized );
+		return $normalized;
 	}
 
 	/** return false if condition begin with 'rc_timestamp ' */
@@ -340,6 +342,34 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 			],
 			"rc conditions: hideunpatrolled=1",
 			$user
+		);
+	}
+
+	public function testRcHideminorFilter() {
+		$this->assertConditions(
+			[ # expected
+				'rc_bot' => 0,
+				"rc_minor = 0",
+				"rc_type != '6'",
+			],
+			[
+				'hideminor' => 1,
+			],
+			"rc conditions: hideminor=1"
+		);
+	}
+
+	public function testRcHidemajorFilter() {
+		$this->assertConditions(
+			[ # expected
+				'rc_bot' => 0,
+				"rc_minor = 1",
+				"rc_type != '6'",
+			],
+			[
+				'hidemajor' => 1,
+			],
+			"rc conditions: hidemajor=1"
 		);
 	}
 
