@@ -223,13 +223,17 @@
 				numberString = mw.language.commafy( num, pattern );
 			}
 
-			convertedNumber = '';
-			for ( i = 0; i < numberString.length; i++ ) {
-				if ( transformTable.hasOwnProperty( numberString[ i ] ) ) {
-					convertedNumber += transformTable[ numberString[ i ] ];
-				} else {
-					convertedNumber += numberString[ i ];
+			if ( transformTable ) {
+				convertedNumber = '';
+				for ( i = 0; i < numberString.length; i++ ) {
+					if ( transformTable.hasOwnProperty( numberString[ i ] ) ) {
+						convertedNumber += transformTable[ numberString[ i ] ];
+					} else {
+						convertedNumber += numberString[ i ];
+					}
 				}
+			} else {
+				convertedNumber = numberString;
 			}
 
 			if ( integer ) {
