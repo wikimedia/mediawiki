@@ -665,11 +665,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		}
 		unset( $value );
 
+		$text = htmlspecialchars( $title );
 		if ( $active ) {
-			$title = new HtmlArmor( '<strong>' . htmlspecialchars( $title ) . '</strong>' );
+			$text = '<strong>' . $text . '</strong>';
 		}
 
-		return $this->getLinkRenderer()->makeKnownLink( $this->getPageTitle(), $title, [], $params );
+		return Linker::linkKnown( $this->getPageTitle(), $text, [], $params );
 	}
 
 	/**
