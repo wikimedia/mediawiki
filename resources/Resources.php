@@ -2033,9 +2033,21 @@ return [
 	],
 	'mediawiki.special.watchlist' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.watchlist.js',
+		'messages' => [
+			'cancel',
+			'confirm',
+			'enotif_reset',
+			'watchlist-mark-all-visited'
+		],
 		'dependencies' => [
+			'mediawiki.api',
+			'mediawiki.jqueryMsg',
+			'oojs-ui-windows',
 			'user.options',
 		]
+	],
+	'mediawiki.special.watchlist.styles' => [
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.watchlist.css',
 	],
 	'mediawiki.special.version' => [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.version.css',
