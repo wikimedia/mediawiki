@@ -1412,6 +1412,13 @@
 	"api-help-authmanagerhelper-returnurl": "כתובת URL לחזרה עם זרימות אימות צד־שלישי, חייב להיות מוחלט. נדרש או זה או <var>$1continue</var>.\n\nעם קבלת תשובת <samp>REDIRECT</samp>, בדרך־כלל תפתח דפדפן או תצוגת וב בכתובת ה־<samp>redirecttarget</samp> שצוינה בשביל זרימת אימות צד־שלישי. כשזה יושלם, הצד השלישי ישלח את הדפדפן או את תצוגת הווב לכתובת הזאת. יש לחלץ את כל הפרמטרים של שאילתה או בקשת POST מה־URL ולהעביר אותם בתור בקשת <var>$1continue</var> למודול ה־API הזה.",
 	"api-help-authmanagerhelper-continue": "הבקשה הזאת היא המשך אחרי תשובת <samp>UI</samp> או <samp>REDIRECT</samp> קודמת. נדרש זה או <var>$1returnurl</var>.",
 	"api-help-authmanagerhelper-additional-params": "המודול הזה מקבל פרמטרים נוספים בהתאם לבקשות אימות זמינות. יש להשתמש ב־<kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> עם <kbd>amirequestsfor=$1</kbd> (או תגובה קודמת מהמודול הזה, אם זה זמין) כדי להבין מה הבקשות הזמינות ובאילו שדות הן משתמשות.",
+	"apiwarn-validationfailed-badpref": "לא העדפה תקינה.",
+	"apiwarn-validationfailed-cannotset": "לא יכולה להיות מוגדרת על־ידי המודול הזה.",
+	"apiwarn-validationfailed-keytoolong": "המפתח ארוך מדי (מותר לכתוב לא יותר מ־$1 בתים).",
+	"apiwarn-validationfailed": "שגיאה בבדיקת תקינות עבור <kbd>$1</kbd>: $2",
+	"apiwarn-wgDebugAPI": "<strong>אזהרת אבטחה</strong>: <var dir=\"ltr\">$wgDebugAPI</var> מופעל.",
+	"api-feed-error-title": "שגיאה ($1)",
+	"api-usage-docref": "ר' $1 לשימוש ב־API.",
 	"api-credits-header": "קרדיטים",
 	"api-credits": "מפתחי ה־API:\n* רואן קטאו (מפתח מוביל 2007–2009)\n* ויקטור וסילייב\n* בריאן טונג מין\n* סאם ריד\n* יורי אסטרחן (יוצר, מפתח מוביל מספטמבר 2006 עד ספטמבר 2007)\n* בראד יורש (מפתח מוביל מאז 2013)\n\nאנא שלחו הערות, הצעות ושאלות לכתובת mediawiki-api@lists.wikimedia.org או כתבו דיווח באג באתר https://phabricator.wikimedia.org."
 }

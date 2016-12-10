@@ -817,6 +817,7 @@
 	"apihelp-query+users-paramvalue-prop-rights": "Listet alle Rechte auf, die jeder Benutzer hat.",
 	"apihelp-query+users-paramvalue-prop-editcount": "Ergänzt den Bearbeitungszähler des Benutzers.",
 	"apihelp-query+users-param-users": "Eine Liste der Benutzer, für die Informationen abgerufen werden sollen.",
+	"apihelp-query+users-param-userids": "Eine Liste der Benutzerkennungen, für die die Informationen abgerufen werden sollen.",
 	"apihelp-query+users-example-simple": "Gibt Informationen für den Benutzer <kbd>Example</kbd> zurück.",
 	"apihelp-query+watchlist-param-user": "Listet nur Änderungen von diesem Benutzer auf.",
 	"apihelp-query+watchlist-param-excludeuser": "Listet keine Änderungen von diesem Benutzer auf.",
