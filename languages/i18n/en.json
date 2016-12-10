@@ -2114,6 +2114,7 @@
 	"wlshowhidemine": "my edits",
 	"wlshowhidecategorization": "page categorization",
 	"watchlist-options": "Watchlist options",
+	"watchlist-mark-all-visited": "Are you sure you want to reset unseen watchlist changes by marking all pages as visited?",
 	"watching": "Watching...",
 	"unwatching": "Unwatching...",
 	"watcherrortext": "An error occurred while changing your watchlist settings for \"$1\".",
