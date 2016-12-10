@@ -1,0 +1,5 @@
+#mw-watchlist-reset-progressbar {
+	visibility: hidden;
+	position: absolute;
+	width: 100%
+}
