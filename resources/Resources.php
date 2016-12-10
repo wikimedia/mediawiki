@@ -2033,6 +2033,9 @@ return [
 	],
 	'mediawiki.special.watchlist' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.watchlist.js',
+		'dependencies' => [
+			'user.options',
+		]
 	],
 	'mediawiki.special.version' => [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.version.css',
