@@ -482,15 +482,8 @@ class MediaWiki {
 			}
 
 			# Let CDN cache things if we can purge them.
-			if ( $this->config->get( 'UseSquid' ) &&
-				in_array(
-					// Use PROTO_INTERNAL because that's what getCdnUrls() uses
-					wfExpandUrl( $request->getRequestURL(), PROTO_INTERNAL ),
-					$requestTitle->getCdnUrls()
-				)
-			) {
-				$output->setCdnMaxage( $this->config->get( 'SquidMaxage' ) );
-			}
+			$controller = MediaWikiServices::getInstance()->getCdnController();
+			$controller->applyCacheControl( $requestTitle, $request, $output );
 
 			$action->show();
 			return;

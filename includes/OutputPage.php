@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 use WrappedString\WrappedString;
 use WrappedString\WrappedStringList;
@@ -1952,6 +1953,13 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * @return int Maximum cache time on the CDN, in seconds
+	 */
+	public function getCdnMaxage() {
+		return $this->mCdnMaxage;
+	}
+
+	/**
 	 * Get TTL in [$minTTL,$maxTTL] in pass it to lowerCdnMaxage()
 	 *
 	 * This sets and returns $minTTL if $mtime is false or null. Otherwise,
@@ -1990,6 +1998,13 @@ class OutputPage extends ContextSource {
 	 */
 	public function enableClientCache( $state ) {
 		return wfSetVar( $this->mEnableClientCache, $state );
+	}
+
+	/**
+	 * @return bool whether the output is cfacheable
+	 */
+	public function isCacheable() {
+		return $this->mEnableClientCache;
 	}
 
 	/**
@@ -2189,73 +2204,14 @@ class OutputPage extends ContextSource {
 	 * Send cache control HTTP headers
 	 */
 	public function sendCacheControl() {
-		$response = $this->getRequest()->response();
-		$config = $this->getConfig();
-
 		$this->addVaryHeader( 'Cookie' );
 		$this->addAcceptLanguage();
 
-		# don't serve compressed data to clients who can't handle it
-		# maintain different caches for logged-in users and non-logged in ones
-		$response->header( $this->getVaryHeader() );
-
-		if ( $config->get( 'UseKeyHeader' ) ) {
-			$response->header( $this->getKeyHeader() );
-		}
-
-		if ( $this->mEnableClientCache ) {
-			if (
-				$config->get( 'UseSquid' ) &&
-				!$response->hasCookies() &&
-				!SessionManager::getGlobalSession()->isPersistent() &&
-				!$this->isPrintable() &&
-				$this->mCdnMaxage != 0 &&
-				!$this->haveCacheVaryCookies()
-			) {
-				if ( $config->get( 'UseESI' ) ) {
-					# We'll purge the proxy cache explicitly, but require end user agents
-					# to revalidate against the proxy on each visit.
-					# Surrogate-Control controls our CDN, Cache-Control downstream caches
-					wfDebug( __METHOD__ .
-						": proxy caching with ESI; {$this->mLastModified} **", 'private' );
-					# start with a shorter timeout for initial testing
-					# header( 'Surrogate-Control: max-age=2678400+2678400, content="ESI/1.0"');
-					$response->header(
-						"Surrogate-Control: max-age={$config->get( 'SquidMaxage' )}" .
-						"+{$this->mCdnMaxage}, content=\"ESI/1.0\""
-					);
-					$response->header( 'Cache-Control: s-maxage=0, must-revalidate, max-age=0' );
-				} else {
-					# We'll purge the proxy cache for anons explicitly, but require end user agents
-					# to revalidate against the proxy on each visit.
-					# IMPORTANT! The CDN needs to replace the Cache-Control header with
-					# Cache-Control: s-maxage=0, must-revalidate, max-age=0
-					wfDebug( __METHOD__ .
-						": local proxy caching; {$this->mLastModified} **", 'private' );
-					# start with a shorter timeout for initial testing
-					# header( "Cache-Control: s-maxage=2678400, must-revalidate, max-age=0" );
-					$response->header( "Cache-Control: " .
-						"s-maxage={$this->mCdnMaxage}, must-revalidate, max-age=0" );
-				}
-			} else {
-				# We do want clients to cache if they can, but they *must* check for updates
-				# on revisiting the page.
-				wfDebug( __METHOD__ . ": private caching; {$this->mLastModified} **", 'private' );
-				$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
-				$response->header( "Cache-Control: private, must-revalidate, max-age=0" );
-			}
-			if ( $this->mLastModified ) {
-				$response->header( "Last-Modified: {$this->mLastModified}" );
-			}
-		} else {
-			wfDebug( __METHOD__ . ": no caching **", 'private' );
-
-			# In general, the absence of a last modified header should be enough to prevent
-			# the client from using its cache. We send a few other things just to make sure.
-			$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
-			$response->header( 'Cache-Control: no-cache, no-store, max-age=0, must-revalidate' );
-			$response->header( 'Pragma: no-cache' );
-		}
+		MediaWikiServices::getInstance()->getCdnController()->applyCacheControl(
+			$this->getTitle(),
+			$this->getRequest(),
+			$this
+		);
 	}
 
 	/**
@@ -3885,5 +3841,12 @@ class OutputPage extends ContextSource {
 			'oojs-ui.styles.textures',
 			'mediawiki.widgets.styles',
 		] );
+	}
+
+	/**
+	 * @return string RFC2822 timestamp for use with the Last-Modified HTTP header.
+	 */
+	public function getLastModified() {
+		return $this->mLastModified;
 	}
 }
