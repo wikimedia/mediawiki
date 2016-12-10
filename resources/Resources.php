@@ -2033,7 +2033,16 @@ return [
 	],
 	'mediawiki.special.watchlist' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.watchlist.js',
+		'messages' => [
+			'cancel',
+			'confirm',
+			'enotif_reset',
+			'watchlist-mark-all-visited'
+		],
 		'dependencies' => [
+			'mediawiki.api.edit',
+			'mediawiki.jqueryMsg',
+			'oojs-ui-windows',
 			'user.options',
 		]
 	],
