@@ -7,6 +7,7 @@ This is not a release yet!
   in inline styles.
 * $wgRunJobsAsync is now false by default (T142751). This change only affects
   wikis with $wgJobRunRate > 0.
+* (T152717) Better escaping for PHP mail() command
 
 == MediaWiki 1.27.1 ==
 
