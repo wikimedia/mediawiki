@@ -50,10 +50,14 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$output = $this->getOutput();
 		$request = $this->getRequest();
 		$this->addHelpLink( 'Help:Watching pages' );
+		$output->addModuleStyles( [
+			'mediawiki.special.watchlist.styles',
+		] );
 		$output->addModules( [
 			'mediawiki.special.changeslist.visitedstatus',
 			'mediawiki.special.watchlist',
 		] );
+		$output->enableOOUI();
 
 		$mode = SpecialEditWatchlist::getMode( $request, $subpage );
 		if ( $mode !== false ) {
@@ -604,11 +608,21 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$form .= Xml::openElement( 'form', [ 'method' => 'post',
 				'action' => $this->getPageTitle()->getLocalURL(),
 				'id' => 'mw-watchlist-resetbutton' ] ) . "\n" .
-			Xml::submitButton( $this->msg( 'enotif_reset' )->text(), [ 'name' => 'dummy' ] ) . "\n" .
+			Xml::submitButton( $this->msg( 'enotif_reset' )->text(),
+				[ 'name' => 'mw-watchlist-reset-submit' ] ) . "\n" .
 			Html::hidden( 'reset', 'all' ) . "\n";
 			foreach ( $nondefaults as $key => $value ) {
 				$form .= Html::hidden( $key, $value ) . "\n";
 			}
+
+			// A progress bar for the JS reset functionality.
+			// It should be invisible via CSS but continue to occupy empty space so
+			// we don't get a sudden flash/shift when the bar does appear
+			$form .= new \OOUI\ProgressBarWidget( [
+				'progress' => false,
+			    'id' => 'mw-watchlist-reset-progressbar',
+			    'infusable' => true,
+			] );
 			$form .= Xml::closeElement( 'form' ) . "\n";
 		}
 
