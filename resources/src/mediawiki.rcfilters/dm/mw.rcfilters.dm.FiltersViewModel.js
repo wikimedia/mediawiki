@@ -15,6 +15,7 @@
 		this.groups = {};
 		this.excludedByMap = {};
 		this.defaultParams = {};
+		this.defaultFiltersEmpty = null;
 
 		// Events
 		this.aggregate( { update: 'filterItemUpdate' } );
@@ -432,6 +433,39 @@
 	};
 
 	/**
+	 * Check whether the current filter state is set to all false.
+	 *
+	 * @return {boolean} Current filters are all empty
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.areCurrentFiltersEmpty = function () {
+		var currFilters = this.getSelectedState();
+
+		return Object.keys( currFilters ).every( function ( filterName ) {
+			return !currFilters[ filterName ];
+		} );
+	};
+
+	/**
+	 * Check whether the default values of the filters are all false.
+	 *
+	 * @return {boolean} Default filters are all false
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.areDefaultFiltersEmpty = function () {
+		var defaultFilters;
+
+		if ( this.defaultFiltersEmpty !== null ) {
+			// We only need to do this test once,
+			// because defaults are set once per session
+			defaultFilters = this.getFiltersFromParameters();
+			this.defaultFiltersEmpty = Object.keys( defaultFilters ).every( function ( filterName ) {
+				return !defaultFilters[ filterName ];
+			} );
+		}
+
+		return this.defaultFiltersEmpty;
+	};
+
+	/**
 	 * This is the opposite of the #getParametersFromFilters method; this goes over
 	 * the given parameters and translates into a selected/unselected value in the filters.
 	 *
@@ -522,6 +556,21 @@
 		return this.getItems().filter( function ( item ) {
 			return name === item.getName();
 		} )[ 0 ];
+	};
+
+	/**
+	 * Set all filters to false or empty/all
+	 * This is equivalent to display all.
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.emptyAllFilters = function () {
+		var filters = {};
+
+		this.getItems().forEach( function ( filterItem ) {
+			filters[ filterItem.getName() ] = false;
+		} );
+
+		// Update filters
+		this.updateFilters( filters );
 	};
 
 	/**
