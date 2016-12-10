@@ -604,7 +604,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$form .= Xml::openElement( 'form', [ 'method' => 'post',
 				'action' => $this->getPageTitle()->getLocalURL(),
 				'id' => 'mw-watchlist-resetbutton' ] ) . "\n" .
-			Xml::submitButton( $this->msg( 'enotif_reset' )->text(), [ 'name' => 'dummy' ] ) . "\n" .
+			Xml::submitButton( $this->msg( 'enotif_reset' )->text(),
+				[ 'name' => 'mw-watchlist-reset-submit' ] ) . "\n" .
 			Html::hidden( 'reset', 'all' ) . "\n";
 			foreach ( $nondefaults as $key => $value ) {
 				$form .= Html::hidden( $key, $value ) . "\n";
