@@ -88,8 +88,8 @@ img {
 
 hr {
 	height: 1px;
-	color: #aaa;
-	background-color: #aaa;
+	color: #a2a9b1;
+	background-color: #a2a9b1;
 	border: 0;
 	margin: .2em 0;
 }
@@ -108,7 +108,7 @@ h6 {
 	overflow: hidden;
 	padding-top: .5em;
 	padding-bottom: .17em;
-	border-bottom: 1px solid #aaa;
+	border-bottom: 1px solid #a2a9b1;
 }
 
 h1 {
