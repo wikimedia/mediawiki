@@ -36,7 +36,7 @@
 			placeholder: mw.msg( 'rcfilters-search-placeholder' )
 		} );
 
-		this.capsule = new mw.rcfilters.ui.FilterCapsuleMultiselectWidget( this.textInput, {
+		this.capsule = new mw.rcfilters.ui.FilterCapsuleMultiselectWidget( controller, this.textInput, {
 			popup: {
 				$content: this.filterPopup.$element,
 				$autoCloseIgnore: this.textInput.$element,
