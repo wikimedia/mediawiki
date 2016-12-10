@@ -1756,8 +1756,11 @@ return [
 		],
 		'messages' => [
 			'rcfilters-activefilters',
+			'rcfilters-restore-default-filters',
+			'rcfilters-clear-all-filters',
 			'rcfilters-search-placeholder',
 			'rcfilters-invalid-filter',
+			'rcfilters-empty-filter',
 			'rcfilters-filterlist-title',
 			'rcfilters-filterlist-noresults',
 			'rcfilters-filtergroup-registration',
@@ -1800,6 +1803,7 @@ return [
 		'dependencies' => [
 			'oojs-ui',
 			'mediawiki.Uri',
+			'oojs-ui.styles.icons-moderation'
 		],
 	],
 	'mediawiki.special' => [
