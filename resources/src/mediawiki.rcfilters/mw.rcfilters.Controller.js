@@ -28,6 +28,20 @@
 	};
 
 	/**
+	 * Reset to default filters
+	 */
+	mw.rcfilters.Controller.prototype.resetToDefaults = function () {
+		this.model.setFiltersToDefaults();
+	};
+
+	/**
+	 * Empty all selected filters
+	 */
+	mw.rcfilters.Controller.prototype.emptyFilters = function () {
+		this.model.emptyAllFilters();
+	};
+
+	/**
 	 * Update the state of a filter
 	 *
 	 * @param {string} filterName Filter name
