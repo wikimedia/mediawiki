@@ -1166,10 +1166,8 @@ class WikiPage implements Page, IDBAccessObject {
 			// Clear any HTML file cache
 			HTMLFileCache::clearFileCache( $this->getTitle() );
 			// Send purge after any page_touched above update was committed
-			DeferredUpdates::addUpdate(
-				new CdnCacheUpdate( $this->mTitle->getCdnUrls() ),
-				DeferredUpdates::PRESEND
-			);
+			$cdnCtrl = MediaWikiServices::getInstance()->getCdnController();
+			$cdnCtrl->purgeDependentResources( $this->mTitle );
 		}
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
@@ -3349,10 +3347,10 @@ class WikiPage implements Page, IDBAccessObject {
 		// Update existence markers on article/talk tabs...
 		$other = $title->getOtherPage();
 
-		$other->purgeSquid();
+		self::purgeCdnCache( $other );
 
 		$title->touchLinks();
-		$title->purgeSquid();
+		self::purgeCdnCache( $title );
 		$title->deleteTitleProtection();
 
 		MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $title );
@@ -3375,10 +3373,10 @@ class WikiPage implements Page, IDBAccessObject {
 		// Update existence markers on article/talk tabs...
 		$other = $title->getOtherPage();
 
-		$other->purgeSquid();
+		self::purgeCdnCache( $other );
 
 		$title->touchLinks();
-		$title->purgeSquid();
+		self::purgeCdnCache( $title );
 
 		MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $title );
 
@@ -3424,7 +3422,7 @@ class WikiPage implements Page, IDBAccessObject {
 		MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $title );
 
 		// Purge CDN for this page only
-		$title->purgeSquid();
+		self::purgeCdnCache( $title );
 		// Clear file cache for this page only
 		HTMLFileCache::clearFileCache( $title );
 
@@ -3435,6 +3433,13 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**#@-*/
+
+	private static function purgeCdnCache( Title $title ) {
+		// Once the logic in this class has been refactored into a service,
+		// the CdnController can be properly injected.
+		$cdnCtrl = MediaWikiServices::getInstance()->getCdnController();
+		$cdnCtrl->purgeDependentResources( $title );
+	}
 
 	/**
 	 * Returns a list of categories this page is a member of.

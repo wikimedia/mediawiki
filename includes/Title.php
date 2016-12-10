@@ -3551,35 +3551,17 @@ class Title implements LinkTarget {
 	 * Get a list of URLs to purge from the CDN cache when this
 	 * page changes
 	 *
+	 * @deprecated since 1.29, use CdnController::getDependentResources()
+	 *
 	 * @return string[] Array of String the URLs
 	 */
 	public function getCdnUrls() {
-		$urls = [
-			$this->getInternalURL(),
-			$this->getInternalURL( 'action=history' )
-		];
-
-		$pageLang = $this->getPageLanguage();
-		if ( $pageLang->hasVariants() ) {
-			$variants = $pageLang->getVariants();
-			foreach ( $variants as $vCode ) {
-				$urls[] = $this->getInternalURL( $vCode );
-			}
-		}
-
-		// If we are looking at a css/js user subpage, purge the action=raw.
-		if ( $this->isJsSubpage() ) {
-			$urls[] = $this->getInternalURL( 'action=raw&ctype=text/javascript' );
-		} elseif ( $this->isCssSubpage() ) {
-			$urls[] = $this->getInternalURL( 'action=raw&ctype=text/css' );
-		}
-
-		Hooks::run( 'TitleSquidURLs', [ $this, &$urls ] );
-		return $urls;
+		$controller = MediaWikiServices::getInstance()->getCdnController();
+		return $controller->getDependentResources( $this );
 	}
 
 	/**
-	 * @deprecated since 1.27 use getCdnUrls()
+	 * @deprecated since 1.27 use getCdnUrls(); from 1.29, use CdnController::getDependentResources()
 	 */
 	public function getSquidURLs() {
 		return $this->getCdnUrls();
@@ -3587,12 +3569,12 @@ class Title implements LinkTarget {
 
 	/**
 	 * Purge all applicable CDN URLs
+	 *
+	 * @deprecated since 1.29, use CdnController::purgeDependentResources()
 	 */
 	public function purgeSquid() {
-		DeferredUpdates::addUpdate(
-			new CdnCacheUpdate( $this->getCdnUrls() ),
-			DeferredUpdates::PRESEND
-		);
+		$controller = MediaWikiServices::getInstance()->getCdnController();
+		$controller->purgeDependentResources( $this );
 	}
 
 	/**
