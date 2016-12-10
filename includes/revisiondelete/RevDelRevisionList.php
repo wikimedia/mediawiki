@@ -18,6 +18,7 @@
  * @file
  * @ingroup RevisionDelete
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * List for revision table items
@@ -174,7 +175,9 @@ class RevDelRevisionList extends RevDelList {
 	}
 
 	public function doPostCommitUpdates( array $visibilityChangeMap ) {
-		$this->title->purgeSquid();
+		$cdnCtrl = MediaWikiServices::getInstance()->getCdnController();
+		$cdnCtrl->purgeDependentResources( $this->title );
+
 		// Extensions that require referencing previous revisions may need this
 		Hooks::run( 'ArticleRevisionVisibilitySet', [ $this->title, $this->ids, $visibilityChangeMap ] );
 		return Status::newGood();

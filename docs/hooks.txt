@@ -3373,6 +3373,10 @@ $user: Current user object
 'TitleSquidURLs': Called to determine which URLs to purge from HTTP caches.
 $title: Title object to purge
 &$urls: An array of URLs to purge from the caches, to be manipulated.
+$usingBuckets: true if the CDN controller uses buckets to tag any resource for
+  which CdnController::applyCacheControl() was used. If buckets are used, resources
+  that had CdnController::applyCacheControl() applied before sending do not need
+  to be added to $urls.
 
 'UndeleteForm::showHistory': Called in UndeleteForm::showHistory, after a
 PageArchive object has been created but before any further processing is done.
