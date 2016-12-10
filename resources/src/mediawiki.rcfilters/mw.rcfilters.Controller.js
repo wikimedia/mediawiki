@@ -24,7 +24,7 @@
 			uri = new mw.Uri();
 
 		// Combine preference data with url params (URL should override)
-		paramData = $.extend( {}, this.getFilterPreferences(), uri.query );
+		paramData = $.extend( {}, this.getParamPreferences(), uri.query );
 
 		// Give the model a full parameter state from which to
 		// update the filters
@@ -33,6 +33,22 @@
 		);
 
 		this.model.updateParameters( paramData );
+	};
+
+	/**
+	 * Reset to default filters
+	 */
+	mw.rcfilters.Controller.prototype.resetToDefaults = function () {
+		this.model.updateFilters(
+			this.model.getParametersToFilters( this.getParamPreferences() )
+		);
+	};
+
+	/**
+	 * Empty all selected filters
+	 */
+	mw.rcfilters.Controller.prototype.emptyFilters = function () {
+		this.model.emptyAllFilters();
 	};
 
 	/**
@@ -118,7 +134,7 @@
 	 *
 	 * @return {Object} Filter values from user preferences
 	 */
-	mw.rcfilters.Controller.prototype.getFilterPreferences = function () {
+	mw.rcfilters.Controller.prototype.getParamPreferences = function () {
 		if ( $.isEmptyObject( this.preferences ) ) {
 			this.updateFilterPreferences();
 		}
