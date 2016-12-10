@@ -494,6 +494,37 @@
 	};
 
 	/**
+	 * Set all filters to false or empty/all
+	 * This is equivalent to display all.
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.emptyAllFilters = function () {
+		var model = this,
+			filters = {},
+			params = {};
+
+		this.getItems().forEach( function ( filterItem ) {
+			filters[ filterItem.getName() ] = false;
+
+			if ( model.groups[ filterItem.getGroup() ].type !== 'string_options' ) {
+				params[ filterItem.getName() ] = 0;
+			}
+		} );
+
+		$.each( this.groups, function( group, data ) {
+			if ( data.type === 'string_options' ) {
+				// The parameter is the filter group
+				params[ group ] = 'all';
+			}
+		} );
+
+		// Update filters
+		this.updateFilters( filters );
+
+		// Update params
+		this.updateParameters( params );
+	};
+
+	/**
 	 * Toggle selected state of items by their names
 	 *
 	 * @param {Object} filterDef Filter definitions
