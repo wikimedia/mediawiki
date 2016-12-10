@@ -421,11 +421,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$user = $this->getUser();
 		$out = $this->getOutput();
 
-		// if the user wishes, that the watchlist is reloaded, whenever a filter changes,
-		// add the module for that
-		if ( $user->getBoolOption( 'watchlistreloadautomatically' ) ) {
-			$out->addModules( [ 'mediawiki.special.watchlist' ] );
-		}
+		$out->addModules( [ 'mediawiki.special.watchlist' ] );
 
 		$out->addSubtitle(
 			$this->msg( 'watchlistfor2', $user->getName() )
