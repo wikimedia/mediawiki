@@ -175,4 +175,15 @@ class SpecialPasswordReset extends FormSpecialPage {
 	protected function getGroupName() {
 		return 'users';
 	}
+
+	/**
+	 * We do our own unblock checking
+	 *
+	 * The PasswordReset class checks blocks, but we don't want to
+	 * stop anon-only range blocks, so return false here.
+	 * @see T109909
+	 */
+	public function requiresUnblock() {
+		return false;
+	}
 }
