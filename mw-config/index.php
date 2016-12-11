@@ -60,7 +60,12 @@ function wfInstallerMain() {
 	if ( isset( $_SESSION['installData'][$fingerprint] ) ) {
 		$session = $_SESSION['installData'][$fingerprint];
 	} else {
-		$session = [];
+		// Use old array syntax since this is an entry point
+		// and we do not want to fatal for php <= 5.3 but instead
+		// show an error message.
+		// @codingStandardsIgnoreStart Generic.Arrays.DisallowLongArraySyntax
+		$session = array();
+		// @codingStandardsIgnoreEnd
 	}
 
 	if ( !is_null( $wgRequest->getVal( 'uselang' ) ) ) {
