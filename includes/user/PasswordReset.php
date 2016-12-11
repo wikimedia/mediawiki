@@ -50,10 +50,10 @@ class PasswordReset implements LoggerAwareInterface {
 	 */
 	private $permissionCache;
 
-	public function __construct( Config $config, AuthManager $authManager ) {
+	public function __construct( Config $config, AuthManager $authManager, $cache = null ) {
 		$this->config = $config;
 		$this->authManager = $authManager;
-		$this->permissionCache = new HashBagOStuff( [ 'maxKeys' => 1 ] );
+		$this->permissionCache = $cache ?: new HashBagOStuff( [ 'maxKeys' => 1 ] );
 		$this->logger = LoggerFactory::getInstance( 'authentication' );
 	}
 
@@ -101,9 +101,14 @@ class PasswordReset implements LoggerAwareInterface {
 				// Maybe not all users have permission to change private data
 				$status = StatusValue::newFatal( 'badaccess' );
 			} elseif ( $user->isBlocked() ) {
+				$block = $user->getBlock();
 				// Maybe the user is blocked (check this here rather than relying on the parent
-				// method as we have a more specific error message to use here
-				$status = StatusValue::newFatal( 'blocked-mailpassword' );
+				// method as we have a more specific error message to use here.
+				// Don't error on anon-only range blocks, since
+				// user is likely innocent.
+				if ( $block->isHardblock() || $block->getType() !== BLOCK::TYPE_RANGE ) {
+					$status = StatusValue::newFatal( 'blocked-mailpassword' );
+				}
 			}
 
 			$this->permissionCache->set( $user->getName(), $status );

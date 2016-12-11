@@ -11,7 +11,7 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testIsAllowed( $passwordResetRoutes, $enableEmail,
 		$allowsAuthenticationDataChange, $canEditPrivate, $canSeePassword,
-		$userIsBlocked, $isAllowed
+		$userIsBlocked, $isAllowed, $userIsHardblocked
 	) {
 		$config = new HashConfig( [
 			'PasswordResetRoutes' => $passwordResetRoutes,
@@ -23,9 +23,18 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 		$authManager->expects( $this->any() )->method( 'allowsAuthenticationDataChange' )
 			->willReturn( $allowsAuthenticationDataChange ? Status::newGood() : Status::newFatal( 'foo' ) );
 
+		$block = $userIsBlocked ? new Block( [
+			'address' => $userIsHardblocked ? 'Foo' : '127.0.0.0/16',
+			'by' => 0,
+			'reason' => 'Password reset test',
+			'expiry' => 'infinite',
+			'anonOnly' => !$userIsHardblocked
+		] ) : null;
+
 		$user = $this->getMock( User::class );
 		$user->expects( $this->any() )->method( 'getName' )->willReturn( 'Foo' );
 		$user->expects( $this->any() )->method( 'isBlocked' )->willReturn( $userIsBlocked );
+		$user->expects( $this->any() )->method( 'getBlock' )->willReturn( $block );
 		$user->expects( $this->any() )->method( 'isAllowed' )
 			->will( $this->returnCallback( function ( $perm ) use ( $canEditPrivate, $canSeePassword ) {
 				if ( $perm === 'editmyprivateinfo' ) {
@@ -37,7 +46,8 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 				}
 			} ) );
 
-		$passwordReset = new PasswordReset( $config, $authManager );
+		$cache = new EmptyBagOStuff();
+		$passwordReset = new PasswordReset( $config, $authManager, $cache );
 
 		$this->assertSame( $isAllowed, $passwordReset->isAllowed( $user )->isGood() );
 	}
@@ -52,6 +62,7 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 				'canSeePassword' => true,
 				'userIsBlocked' => false,
 				'isAllowed' => false,
+				'userIsHardblocked' => true,
 			],
 			[
 				'passwordResetRoutes' => [ 'username' => true ],
@@ -61,6 +72,7 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 				'canSeePassword' => true,
 				'userIsBlocked' => false,
 				'isAllowed' => false,
+				'userIsHardblocked' => true,
 			],
 			[
 				'passwordResetRoutes' => [ 'username' => true ],
@@ -70,6 +82,7 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 				'canSeePassword' => true,
 				'userIsBlocked' => false,
 				'isAllowed' => false,
+				'userIsHardblocked' => true,
 			],
 			[
 				'passwordResetRoutes' => [ 'username' => true ],
@@ -79,6 +92,7 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 				'canSeePassword' => true,
 				'userIsBlocked' => false,
 				'isAllowed' => false,
+				'userIsHardblocked' => true,
 			],
 			[
 				'passwordResetRoutes' => [ 'username' => true ],
@@ -88,6 +102,17 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 				'canSeePassword' => true,
 				'userIsBlocked' => true,
 				'isAllowed' => false,
+				'userIsHardblocked' => true,
+			],
+			[
+				'passwordResetRoutes' => [ 'username' => true ],
+				'enableEmail' => true,
+				'allowsAuthenticationDataChange' => true,
+				'canEditPrivate' => true,
+				'canSeePassword' => true,
+				'userIsBlocked' => true,
+				'isAllowed' => true,
+				'userIsHardblocked' => false,
 			],
 			[
 				'passwordResetRoutes' => [ 'username' => true ],
@@ -97,6 +122,7 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 				'canSeePassword' => false,
 				'userIsBlocked' => false,
 				'isAllowed' => true,
+				'userIsHardblocked' => true,
 			],
 			[
 				'passwordResetRoutes' => [ 'username' => true ],
@@ -106,6 +132,7 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 				'canSeePassword' => true,
 				'userIsBlocked' => false,
 				'isAllowed' => true,
+				'userIsHardblocked' => true,
 			],
 		];
 	}
