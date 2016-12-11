@@ -45,7 +45,9 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 
 		// Only display 10 revisions at once by default, otherwise the list is overwhelming
 		$this->mLimitsShown = array_merge( [ 10 ], $this->mLimitsShown );
-		$this->setLimit( 10 );
+		$this->mDefaultLimit = 10;
+		list( $this->mLimit, /* $offset */ ) =
+			$this->mRequest->getLimitOffset( $this->mDefaultLimit, '' );
 	}
 
 	/**
