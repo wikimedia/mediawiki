@@ -3774,7 +3774,7 @@
 	"log-action-filter-block-block": "بستن",
 	"log-action-filter-block-reblock": "تصحیح بلاک",
 	"log-action-filter-block-unblock": "باز شدن",
-	"log-action-filter-contentmodel-change": "تغییر نوع محتوا",
+	"log-action-filter-contentmodel-change": "تغییر مدل محتوا",
 	"log-action-filter-contentmodel-new": "ایجاد صفحه با contentmodel غیر استاندارد",
 	"log-action-filter-delete-delete": "حذف صفحه",
 	"log-action-filter-delete-delete_redir": "رونویسی تغییرمسیر",

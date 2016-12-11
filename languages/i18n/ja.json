@@ -76,7 +76,8 @@
 			"Foresttttttt",
 			"ネイ",
 			"Mirinano",
-			"Suchichi02"
+			"Suchichi02",
+			"にょきにょき"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -276,6 +277,7 @@
 	"views": "表示",
 	"toolbox": "ツール",
 	"tool-link-userrights": "{{GENDER:$1|利用者}}グループの変更",
+	"tool-link-userrights-readonly": "{{GENDER:$1|利用者}}グループの表示",
 	"tool-link-emailuser": "この{{GENDER:$1|利用者}}にメールを送信",
 	"userpage": "利用者ページを表示",
 	"projectpage": "プロジェクトのページを表示",
@@ -1138,9 +1140,11 @@
 	"userrights": "利用者権限を管理",
 	"userrights-lookup-user": "利用者を選択",
 	"userrights-user-editname": "利用者名を入力:",
-	"editusergroup": "利用者グループをロード",
+	"editusergroup": "利用者グループの表示",
 	"editinguser": "利用者<strong> [[User:$1|$1]]</strong> $2 の権限を変更",
+	"viewinguserrights": "{{GENDER:$1|利用者}} <strong>[[User:$1|$1]]</strong> $2 の利用者権限",
 	"userrights-editusergroup": "利用者グループを編集",
+	"userrights-viewusergroup": "利用者グループ",
 	"saveusergroups": "{{GENDER:$1|利用者}}グループを保存",
 	"userrights-groupsmember": "所属グループ:",
 	"userrights-groupsmember-auto": "自動的に付与される権限:",

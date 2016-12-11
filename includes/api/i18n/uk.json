@@ -11,7 +11,8 @@
 			"Mix Gerder",
 			"Piramidion",
 			"Andriykopanytsia",
-			"Максим Підліснюк"
+			"Максим Підліснюк",
+			"AS"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Документація]]\n* [[mw:API:FAQ|ЧаПи]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Список розсилки]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Оголошення API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Баґи і запити]\n</div>\n<strong>Статус:</strong> Усі функції, вказані на цій сторінці, мають працювати, але API далі перебуває в активній розробці і може змінитися у будь-який момент. Підпишіться на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ список розсилки mediawiki-api-announce], щоб помічати оновлення.\n\n<strong>Хибні запити:</strong> Коли до API надсилаються хибні запити, буде відіслано HTTP-шапку з ключем «MediaWiki-API-Error», а тоді і значення шапки, і код помилки, надіслані назад, будуть встановлені з тим же значенням. Більше інформації див. на [[mw:API:Errors_and_warnings|API: Errors and warnings]].\n\n<strong>Тестування:</strong> Для зручності тестування запитів API, див. [[Special:ApiSandbox]].",
@@ -25,8 +26,10 @@
 	"apihelp-main-param-requestid": "Будь-яке значення, вказане тут, буде включене у відповідь. Може використовуватися, щоб відрізняти запити.",
 	"apihelp-main-param-servedby": "Включити в результати ім'я хоста, який обробив запит.",
 	"apihelp-main-param-curtimestamp": "Включити в результат поточну мітку часу.",
+	"apihelp-main-param-responselanginfo": "Включати мови, які були використані для <var>uselang</var> і <var>errorlang</var>, у результат.",
 	"apihelp-main-param-origin": "При доступі до API з використанням крос-доменного AJAX-запиту (CORS), задайте параметру значення вихідного домена. Він має бути включений у будь-який попередній запит і таким чином мусить бути частиною запиту URI (не тіла POST). \n\nДля автентифікованих запитів він повинен точно співпадати з одним з виходів у заголовку <code>Origin</code>, тобто бути заданим чимось на зразок <kbd>https://uk.wikipedia.org</kbd> або <kbd>https://meta.wikimedia.org</kbd>. Якщо цей параметр не співпадає з заголовком <code>Origin</code>, повернеться помилка 403. Якщо цей параметр співпадає з заголовком <code>Origin</code> і вихід знаходиться у білому списку, буде встановлено заголовки <code>Access-Control-Allow-Origin</code> і <code>Access-Control-Allow-Credentials</code>.\n\nДля неавтентифікованих запитів укажіть значення <kbd>*</kbd>. Це дасть встановлення заголовка <code>Access-Control-Allow-Origin</code>, але <code>Access-Control-Allow-Credentials</code> буде <code>false</code> і всі дані про користувача будуть заборонені.",
 	"apihelp-main-param-uselang": "Мова, що використовується для перекладу повідомлень. Список кодів можна видати на <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> з <kbd>siprop=languages</kbd> або вказати <kbd>user</kbd> на використання поточного налаштування мови користувача, або вказати <kbd>content</kbd> на використання мови вмісту цієї вікі.",
+	"apihelp-main-param-errorformat": "Формат попереджень і тексту помилок.\n; plaintext: вікітекст із прираними HTML-тегами і заміненими HTML-мнемоніками.\n; wikitext: неопрацьований вікітекст.\n; html: HTML.\n; raw: лише ключ і параметри повідомлення.\n; none: без тексту, тільки коди помилок.\n; bc: формат, який використовувався до MediaWiki 1.29. <var>errorlang</var> і <var>errorsuselocal</var> ігноруються.",
 	"apihelp-block-description": "Заблокувати користувача.",
 	"apihelp-block-param-user": "Ім'я користувача, IP-адреса або діапазон IP-адрес для блокування.",
 	"apihelp-block-param-expiry": "Закінчення часу. Може бути відносним (напр., <kbd>5 місяців</kbd> або <kbd>2 тижні</kbd>) чи абсолютним (напр., <kbd>2014-09-18T12:34:56Z</kbd>). Якщо вказано <kbd>infinite</kbd>, <kbd>indefinite</kbd> або <kbd>never</kbd>, блокування не закінчиться ніколи.",
@@ -455,7 +458,7 @@
 	"apihelp-query+allmessages-param-prop": "Які властивості отримати.",
 	"apihelp-query+allmessages-param-enableparser": "Встановити увімкнення парсеру, це попередньо обробить вікітекст повідомлення (підставити магічні слова, розкрити шаблони тощо).",
 	"apihelp-query+allmessages-param-nocontent": "Якщо вказано, не включати повідомлення вміст повідомлення у результат.",
-	"apihelp-query+allmessages-param-includelocal": "Також включити локальні повідомлення, тобто повідомлення, що не існують у програмному забезпеченні, але існують як сторінка MediaWiki:.\nЦе видає список усіх сторінок MediaWiki:, так що у ньому будуть сторінки, які насправді не є повідомленнями, як-то [[MediaWiki:Common.js|Common.js]].",
+	"apihelp-query+allmessages-param-includelocal": "Також включити локальні повідомлення, тобто повідомлення, що не існують у програмному забезпеченні, але існують як сторінка в просторі назв {{ns:MediaWiki}}.\nЦе видає список усіх сторінок простору {{ns:MediaWiki}}, так що у ньому також будуть сторінки, які насправді не є повідомленнями, як-то [[MediaWiki:Common.js|Common.js]].",
 	"apihelp-query+allmessages-param-args": "Аргументи будуть підставлятися в повідомлення.",
 	"apihelp-query+allmessages-param-filter": "Видати лише повідомлення з назвами, що місять цей рядок.",
 	"apihelp-query+allmessages-param-customised": "Видати лише повідомлення у цьому стані налаштувань.",

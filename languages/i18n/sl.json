@@ -12,7 +12,8 @@
 			"MaGa",
 			"Skalcaa",
 			"Janezdrilc",
-			"Matma Rex"
+			"Matma Rex",
+			"NegativeTwelveDollars"
 		]
 	},
 	"tog-underline": "Podčrtavanje povezav:",
@@ -1253,7 +1254,7 @@
 	"action-deletedhistory": "ogled zgodovine izbrisanih redakcij strani",
 	"action-deletedtext": "ogled besedila izbrisanih redakcij",
 	"action-browsearchive": "iskanje izbrisanih strani",
-	"action-undelete": "obnavljanje strani",
+	"action-undelete": "Obnovi strani",
 	"action-suppressrevision": "vpogled in obnavljanje skritih redakcij",
 	"action-suppressionlog": "vpogled tega zasebnega dnevnika",
 	"action-block": "blokiranje urejanja s tega uporabniškega računa",

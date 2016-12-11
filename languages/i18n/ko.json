@@ -1297,7 +1297,7 @@
 	"action-deleterevision": "판을 삭제",
 	"action-deletedhistory": "문서의 삭제된 기여의 역사 보기",
 	"action-browsearchive": "삭제된 문서 검색",
-	"action-undelete": "이 문서 되살리기",
+	"action-undelete": "문서 되살리기",
 	"action-suppressrevision": "이 숨겨진 판을 검토하고 되살릴",
 	"action-suppressionlog": "비공개 기록 보기",
 	"action-block": "이 사용자가 편집하지 못하도록 차단",
