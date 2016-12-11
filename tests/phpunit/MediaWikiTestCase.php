@@ -582,6 +582,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	/**
 	 * Make sure MediaWikiTestCase extending classes have called their
 	 * parent setUp method
+	 *
+	 * With strict coverage activated in PHP_CodeCoverage, this test would be
+	 * marked as risky without the following annotation (T152923).
+	 * @coversNothing
 	 */
 	final public function testMediaWikiTestCaseParentSetupCalled() {
 		$this->assertArrayHasKey( 'setUp', $this->called,
