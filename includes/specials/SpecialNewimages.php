@@ -43,6 +43,8 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		$opts->add( 'hidepatrolled', false );
 		$opts->add( 'limit', 50 );
 		$opts->add( 'offset', '' );
+		$opts->add( 'start', '' );
+		$opts->add( 'end', '' );
 
 		$opts->fetchValuesFromRequest( $this->getRequest() );
 
@@ -97,6 +99,18 @@ class SpecialNewFiles extends IncludableSpecialPage {
 				'type' => 'hidden',
 				'default' => $this->opts->getValue( 'offset' ),
 				'name' => 'offset',
+			],
+
+			'start' => [
+				'type' => 'date',
+				'label-message' => 'date-range-from',
+				'name' => 'start',
+			],
+
+			'end' => [
+				'type' => 'date',
+				'label-message' => 'date-range-to',
+				'name' => 'end',
 			],
 		];
 
