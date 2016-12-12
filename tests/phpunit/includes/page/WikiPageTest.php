@@ -161,7 +161,6 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	 */
 	public function testDoEdit() {
 		$this->hideDeprecated( "WikiPage::doEdit" );
-		$this->hideDeprecated( "WikiPage::getText" );
 		$this->hideDeprecated( "Revision::getText" );
 
 		// NOTE: assume help namespace will default to wikitext
@@ -190,12 +189,6 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 1, $n, 'pagelinks should contain one link from the page' );
 
 		# ------------------------
-		$page = new WikiPage( $title );
-
-		$retrieved = $page->getText();
-		$this->assertEquals( $text, $retrieved, 'retrieved text doesn\'t equal original' );
-
-		# ------------------------
 		$text = "At vero eos et accusam et justo duo [[dolores]] et ea rebum. "
 			. "Stet clita kasd [[gubergren]], no sea takimata sanctus est.";
 
@@ -204,7 +197,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		# ------------------------
 		$page = new WikiPage( $title );
 
-		$retrieved = $page->getText();
+		$retrieved = $page->getContent()->getNativeData();
 		$this->assertEquals( $text, $retrieved, 'retrieved text doesn\'t equal original' );
 
 		# ------------------------
@@ -241,10 +234,6 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$this->assertNull(
 			$page->getContent(),
 			"WikiPage::getContent should return null after page was deleted"
-		);
-		$this->assertFalse(
-			$page->getText(),
-			"WikiPage::getText should return false after page was deleted"
 		);
 
 		$t = Title::newFromText( $page->getTitle()->getPrefixedText() );
@@ -330,24 +319,6 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 		$content = $page->getContent();
 		$this->assertEquals( "some text", $content->getNativeData() );
-	}
-
-	/**
-	 * @covers WikiPage::getText
-	 */
-	public function testGetText() {
-		$this->hideDeprecated( "WikiPage::getText" );
-
-		$page = $this->newPage( "WikiPageTest_testGetText" );
-
-		$text = $page->getText();
-		$this->assertFalse( $text );
-
-		# -----------------
-		$this->createPage( $page, "some text", CONTENT_MODEL_WIKITEXT );
-
-		$text = $page->getText();
-		$this->assertEquals( "some text", $text );
 	}
 
 	/**
