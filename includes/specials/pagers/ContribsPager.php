@@ -25,7 +25,7 @@
  */
 use MediaWiki\MediaWikiServices;
 
-class ContribsPager extends ReverseChronologicalPager {
+class ContribsPager extends RangeChronologicalPager {
 
 	public $mDefaultDirection = IndexPager::DIR_DESCENDING;
 	public $messages;
@@ -68,9 +68,10 @@ class ContribsPager extends ReverseChronologicalPager {
 		$this->newOnly = !empty( $options['newOnly'] );
 		$this->hideMinor = !empty( $options['hideMinor'] );
 
-		$year = isset( $options['year'] ) ? $options['year'] : false;
-		$month = isset( $options['month'] ) ? $options['month'] : false;
-		$this->getDateCond( $year, $month );
+		// Date filtering: use timestamp if available
+		$this->start = !empty( $options['start'] ) ? $options['start'] : false;
+		$this->end = !empty( $options['end'] ) ? $options['end'] : false;
+		$this->getDateRangeCond( $this->start, $this->end );
 
 		// Most of this code will use the 'contributions' group DB, which can map to replica DBs
 		// with extra user based indexes or partioning by user. The additional metadata
