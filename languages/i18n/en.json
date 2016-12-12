@@ -4251,5 +4251,7 @@
 	"restrictionsfield-label": "Allowed IP ranges:",
 	"restrictionsfield-help": "One IP address or CIDR range per line. To enable everything, use<br><code>0.0.0.0/0</code><br><code>::/0</code>",
 	"revid": "r$1",
-	"pageid": "page ID $1"
+	"pageid": "page ID $1",
+	"date-range-from": "From date:",
+	"date-range-to": "To date:"
 }
