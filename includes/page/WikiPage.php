@@ -686,28 +686,6 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Get the text of the current revision. No side-effects...
-	 *
-	 * @param int $audience One of:
-	 *   Revision::FOR_PUBLIC       to be displayed to all users
-	 *   Revision::FOR_THIS_USER    to be displayed to the given user
-	 *   Revision::RAW              get the text regardless of permissions
-	 * @param User $user User object to check for, only if FOR_THIS_USER is passed
-	 *   to the $audience parameter
-	 * @return string|bool The text of the current revision
-	 * @deprecated since 1.21, getContent() should be used instead.
-	 */
-	public function getText( $audience = Revision::FOR_PUBLIC, User $user = null ) {
-		wfDeprecated( __METHOD__, '1.21' );
-
-		$this->loadLastEdit();
-		if ( $this->mLastRevision ) {
-			return $this->mLastRevision->getText( $audience, $user );
-		}
-		return false;
-	}
-
-	/**
 	 * @return string MW timestamp of last article revision
 	 */
 	public function getTimestamp() {
