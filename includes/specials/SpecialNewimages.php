@@ -43,11 +43,26 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		$opts->add( 'hidepatrolled', false );
 		$opts->add( 'limit', 50 );
 		$opts->add( 'offset', '' );
+		$opts->add( 'start', '' );
+		$opts->add( 'end', '' );
 
 		$opts->fetchValuesFromRequest( $this->getRequest() );
 
 		if ( $par !== null ) {
 			$opts->setValue( is_numeric( $par ) ? 'limit' : 'like', $par );
+		}
+
+		// If start date comes after end date chronologically, swap them
+		// @TODO this doesn't show up in the interface
+		$start = $opts->getValue( 'start' );
+		$end = $opts->getValue( 'end' );
+		if ( $start !== '' && $end !== '' && $start > $end ) {
+			$temp = $end;
+			$end = $start;
+			$start = $temp;
+
+			$opts->setValue( 'start', $start, true );
+			$opts->setValue( 'end', $end, true );
 		}
 
 		$opts->validateIntBounds( 'limit', 0, 500 );
@@ -97,6 +112,18 @@ class SpecialNewFiles extends IncludableSpecialPage {
 				'type' => 'hidden',
 				'default' => $this->opts->getValue( 'offset' ),
 				'name' => 'offset',
+			],
+
+			'start' => [
+				'type' => 'date',
+				'label-message' => 'date-range-from',
+				'name' => 'start',
+			],
+
+			'end' => [
+				'type' => 'date',
+				'label-message' => 'date-range-to',
+				'name' => 'end',
 			],
 		];
 
