@@ -72,6 +72,8 @@
 	 *     while the widget is inactive. Should be as unambiguous as possible (for example, prefer to
 	 *     spell out the month, rather than rely on the order), even if that makes it longer. When not
 	 *     given, the default is language-specific.
+	 * @cfg {boolean} [longDisplayFormat=false] If a custom displayFormat is not specified, use
+	 *     unabbreviated day of the week and month names in the default language-specific displayFormat.
 	 * @cfg {string} [placeholderLabel=No date selected] Placeholder text shown when the widget is not
 	 *     selected. Default text taken from message `mw-widgets-dateinput-no-date`.
 	 * @cfg {string} [placeholderDateFormat] User-visible date format string displayed in the textual input
@@ -92,6 +94,7 @@
 		// Config initialization
 		config = $.extend( {
 			precision: 'day',
+			longDisplayFormat: false,
 			required: false,
 			placeholderLabel: mw.msg( 'mw-widgets-dateinput-no-date' )
 		}, config );
@@ -129,6 +132,7 @@
 		this.inTextInput = 0;
 		this.inputFormat = config.inputFormat;
 		this.displayFormat = config.displayFormat;
+		this.longDisplayFormat = config.longDisplayFormat;
 		this.required = config.required;
 		this.placeholderLabel = config.placeholderLabel;
 
@@ -438,6 +442,10 @@
 			lll = localeData.longDateFormat( 'lll' );
 			ll = localeData.longDateFormat( 'll' );
 			format = llll.replace( lll.replace( ll, '' ), '' );
+
+			if ( this.longDisplayFormat ) {
+				format = format.replace( 'MMM', 'MMMM' ).replace( 'ddd', 'dddd' );
+			}
 
 			return format;
 		}
