@@ -1956,6 +1956,12 @@ return [
 	'mediawiki.special.movePage.styles' => [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.movePage.css',
 	],
+	'mediawiki.special.newFiles' => [
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.newFiles.js',
+		'dependencies' => [
+			'mediawiki.widgets.datetime',
+		],
+	],
 	'mediawiki.special.pageLanguage' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.pageLanguage.js',
 		'dependencies' => [
