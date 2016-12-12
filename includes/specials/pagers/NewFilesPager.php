@@ -24,7 +24,7 @@
  */
 use MediaWiki\MediaWikiServices;
 
-class NewFilesPager extends ReverseChronologicalPager {
+class NewFilesPager extends RangeChronologicalPager {
 
 	/**
 	 * @var ImageGalleryBase
@@ -41,11 +41,20 @@ class NewFilesPager extends ReverseChronologicalPager {
 	 * @param FormOptions $opts
 	 */
 	function __construct( IContextSource $context, FormOptions $opts ) {
-		$this->opts = $opts;
+		parent::__construct( $context );
 
+		$this->opts = $opts;
 		$this->setLimit( $opts->getValue( 'limit' ) );
 
-		parent::__construct( $context );
+		$startTimestamp = '';
+		$endTimestamp = '';
+		if ( $opts->getValue( 'start' ) ) {
+			$startTimestamp = $opts->getValue( 'start' ) . ' 00:00:00';
+		}
+		if ( $opts->getValue( 'end' ) ) {
+			$endTimestamp = $opts->getValue( 'end' ) . ' 23:59:59';
+		}
+		$this->getDateRangeCond( $startTimestamp, $endTimestamp );
 	}
 
 	function getQueryInfo() {
