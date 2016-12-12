@@ -28,7 +28,7 @@ use Wikimedia\Rdbms\ResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
-class ContribsPager extends ReverseChronologicalPager {
+class ContribsPager extends RangeChronologicalPager {
 
 	public $mDefaultDirection = IndexPager::DIR_DESCENDING;
 	public $messages;
@@ -71,9 +71,16 @@ class ContribsPager extends ReverseChronologicalPager {
 		$this->newOnly = !empty( $options['newOnly'] );
 		$this->hideMinor = !empty( $options['hideMinor'] );
 
-		$year = isset( $options['year'] ) ? $options['year'] : false;
-		$month = isset( $options['month'] ) ? $options['month'] : false;
-		$this->getDateCond( $year, $month );
+		// Date filtering: use timestamp if available
+		$startTimestamp = '';
+		$endTimestamp = '';
+		if ( $options['start'] ) {
+			$startTimestamp = $options['start'] . ' 00:00:00';
+		}
+		if ( $options['end'] ) {
+			$endTimestamp = $options['end'] . ' 23:59:59';
+		}
+		$this->getDateRangeCond( $startTimestamp, $endTimestamp );
 
 		// Most of this code will use the 'contributions' group DB, which can map to replica DBs
 		// with extra user based indexes or partioning by user. The additional metadata
