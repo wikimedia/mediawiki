@@ -4334,6 +4334,8 @@
 	"mw-widgets-titleinput-description-redirect": "Description label for a redirect in the title input widget.",
 	"mw-widgets-categoryselector-add-category-placeholder": "Placeholder displayed in the category selector widget after the capsules of already added categories.",
 	"mw-widgets-usersmultiselect-placeholder": "Placeholder displayed in the input field, where new usernames are entered",
+	"date-range-from": "Label for an input field that specifies the start date of a date range filter.",
+	"date-range-to": " Label for an input field that specifies the end date of a date range filter.",
 	"sessionmanager-tie": "Used as an error message when multiple session sources are tied in priority.\n\nParameters:\n* $1 - List of dession type descriptions, from messages like {{msg-mw|sessionprovider-mediawiki-session-cookiesessionprovider}}.",
 	"sessionprovider-generic": "Used to create a generic session type description when one isn't provided via the proper message. Should be phrased to make sense when added to a message such as {{msg-mw|cannotloginnow-text}}.\n\nParameters:\n* $1 - PHP classname.",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "Description of the sessions provided by the CookieSessionProvider class, which use HTTP cookies. Should be phrased to make sense when added to a message such as {{msg-mw|cannotloginnow-text}}.",
