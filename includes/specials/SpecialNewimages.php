@@ -43,6 +43,8 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		$opts->add( 'hidepatrolled', false );
 		$opts->add( 'limit', 50 );
 		$opts->add( 'offset', '' );
+		$opts->add( 'start', '' );
+		$opts->add( 'end', '' );
 
 		$opts->fetchValuesFromRequest( $this->getRequest() );
 
@@ -98,6 +100,20 @@ class SpecialNewFiles extends IncludableSpecialPage {
 				'default' => $this->opts->getValue( 'offset' ),
 				'name' => 'offset',
 			],
+
+			'start' => [
+				'type' => 'date',
+				'label-message' => 'date-range-from',
+				'name' => 'start',
+			    'filter-callback' => [ __CLASS__, 'fixDateRangeStart' ],
+			],
+
+			'end' => [
+				'type' => 'date',
+				'label-message' => 'date-range-to',
+				'name' => 'end',
+				'filter-callback' => [ __CLASS__, 'fixDateRangeEnd' ],
+			],
 		];
 
 		if ( $this->getConfig()->get( 'MiserMode' ) ) {
@@ -111,9 +127,35 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
 			->setWrapperLegendMsg( 'newimages-legend' )
 			->setSubmitTextMsg( 'ilsubmit' )
+			->setSubmitCallback( function () {
+				return false;
+			} )
 			->setMethod( 'get' )
 			->prepareForm()
-			->displayForm( false );
+			->show();
+	}
+
+	public static function fixDateRangeStart( $startValue, $formData, $form ) {
+		// If start date comes after end date chronologically, swap the two dates
+		$start = $startValue;
+		$end = $formData['end'];
+		if ( $start !== '' && $end !== '' && $start > $end ) {
+			return $end;
+		}
+
+
+		return $start;
+	}
+
+	public static function fixDateRangeEnd( $endValue, $allFields, $form ) {
+		// If start date comes after end date chronologically, show error
+		$start = $allFields['start'];
+		$end = $endValue;
+		if ( $start !== '' && $end !== '' && $start > $end ) {
+			return $start;
+		}
+
+		return $end;
 	}
 
 	protected function getGroupName() {
