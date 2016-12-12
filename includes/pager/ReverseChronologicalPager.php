@@ -97,7 +97,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	 * @param string|int $day [optional] Day up to which we want revisions. Default is end of month.
 	 * @return int|null Timestamp (in int "Ymd" form) or null if year and month are false/invalid
 	 */
-	protected static function getOffsetDate( $year, $month, $day = -1 ) {
+	public static function getOffsetDate( $year, $month, $day = -1 ) {
 		$year = intval( $year );
 		$month = intval( $month );
 		$day = intval( $day );
