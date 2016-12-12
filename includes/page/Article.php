@@ -317,46 +317,6 @@ class Article implements Page {
 	}
 
 	/**
-	 * Get text of an article from database
-	 * Does *NOT* follow redirects.
-	 *
-	 * @protected
-	 * @note This is really internal functionality that should really NOT be
-	 * used by other functions. For accessing article content, use the WikiPage
-	 * class, especially WikiBase::getContent(). However, a lot of legacy code
-	 * uses this method to retrieve page text from the database, so the function
-	 * has to remain public for now.
-	 *
-	 * @return string|bool String containing article contents, or false if null
-	 * @deprecated since 1.21, use WikiPage::getContent() instead
-	 */
-	function fetchContent() {
-		// BC cruft!
-
-		wfDeprecated( __METHOD__, '1.21' );
-
-		if ( $this->mContentLoaded && $this->mContent ) {
-			return $this->mContent;
-		}
-
-		$content = $this->fetchContentObject();
-
-		if ( !$content ) {
-			return false;
-		}
-
-		// @todo Get rid of mContent everywhere!
-		$this->mContent = ContentHandler::getContentText( $content );
-		ContentHandler::runLegacyHooks(
-			'ArticleAfterFetchContent',
-			[ &$this, &$this->mContent ],
-			'1.21'
-		);
-
-		return $this->mContent;
-	}
-
-	/**
 	 * Get text content object
 	 * Does *NOT* follow redirects.
 	 * @todo When is this null?

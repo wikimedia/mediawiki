@@ -117,6 +117,7 @@ changes to languages because of Phabricator reports.
 * Class RevisiondeleteAction (deprecated in 1.25) was removed.
 * WikiPage::prepareTextForEdit() (deprecated in 1.21) was removed.
 * WikiPage::getText() (deprecated in 1.21) was removed.
+* Article::fetchContent() (deprecated in 1.21) was removed.
 
 == Compatibility ==
 
