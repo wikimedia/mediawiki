@@ -1156,6 +1156,7 @@ $wgAutoloadLocalClasses = [
 	'RESTBagOStuff' => __DIR__ . '/includes/libs/objectcache/RESTBagOStuff.php',
 	'RSSFeed' => __DIR__ . '/includes/Feed.php',
 	'RandomPage' => __DIR__ . '/includes/specials/SpecialRandompage.php',
+	'RangeChronologicalPager' => __DIR__ . '/includes/pager/RangeChronologicalPager.php',
 	'RangeDifference' => __DIR__ . '/includes/diff/DiffEngine.php',
 	'RawAction' => __DIR__ . '/includes/actions/RawAction.php',
 	'RawMessage' => __DIR__ . '/includes/Message.php',
