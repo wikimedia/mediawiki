@@ -443,5 +443,9 @@
 	"api-help-param-list-can-be-empty": "{{PLURAL:$1|0=Måste vara tom|Kan vara tom, eller $2}}",
 	"api-help-param-limit": "Inte mer än $1 tillåts.",
 	"api-help-param-limit2": "Inte mer än $1 ($2 för robotar) tillåts.",
-	"api-help-param-multi-separate": "Separera värden med <kbd>|</kbd> eller [[Special:ApiHelp/main#main/datatypes|alternativ]]."
+	"api-help-param-multi-separate": "Separera värden med <kbd>|</kbd> eller [[Special:ApiHelp/main#main/datatypes|alternativ]].",
+	"apierror-articleexists": "Artikeln du försökte skapa har redan skapats.",
+	"apierror-protect-invalidaction": "Ogiltig skyddstyp \"$1\".",
+	"apierror-unknownformat": "Okänt format \"$1\".",
+	"api-feed-error-title": "Fel ($1)"
 }

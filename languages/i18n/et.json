@@ -1767,7 +1767,7 @@
 	"allpagesbadtitle": "Lehekülje pealkiri oli vigane või sisaldas teise viki või keele eesliidet.\nSee võib sisaldada üht või enamat märki, mida ei saa pealkirjades kasutada.",
 	"allpages-bad-ns": "{{GRAMMAR:inessive|{{SITENAME}}}} ei ole nimeruumi \"$1\".",
 	"allpages-hide-redirects": "Peida ümbersuunamised",
-	"cachedspecial-viewing-cached-ttl": "Vaata vahemälus olevat lehekülje versiooni, mis võib olla kuni $1 vana.",
+	"cachedspecial-viewing-cached-ttl": "Sa vaatad lehekülje vahemälus olevat versiooni, mis võib olla kuni $1 vana.",
 	"cachedspecial-viewing-cached-ts": "Vaatad vahemälus olevat lehekülje versiooni, mis ei pruugi olla täiesti ajakohane.",
 	"cachedspecial-refresh-now": "Vaata uusimat versiooni.",
 	"categories": "Kategooriad",
