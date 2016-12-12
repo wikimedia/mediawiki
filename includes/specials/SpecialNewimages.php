@@ -43,6 +43,8 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		$opts->add( 'hidepatrolled', false );
 		$opts->add( 'limit', 50 );
 		$opts->add( 'offset', '' );
+		$opts->add( 'start', '' );
+		$opts->add( 'end', '' );
 
 		$opts->fetchValuesFromRequest( $this->getRequest() );
 
@@ -98,6 +100,19 @@ class SpecialNewFiles extends IncludableSpecialPage {
 				'default' => $this->opts->getValue( 'offset' ),
 				'name' => 'offset',
 			],
+
+			'start' => [
+				'type' => 'date',
+				'label-message' => 'date-range-from',
+				'name' => 'start',
+				'validation-callback' => [ __CLASS__, 'validateDateRange' ],
+			],
+
+			'end' => [
+				'type' => 'date',
+				'label-message' => 'date-range-to',
+				'name' => 'end',
+			],
 		];
 
 		if ( $this->getConfig()->get( 'MiserMode' ) ) {
@@ -112,8 +127,22 @@ class SpecialNewFiles extends IncludableSpecialPage {
 			->setWrapperLegendMsg( 'newimages-legend' )
 			->setSubmitTextMsg( 'ilsubmit' )
 			->setMethod( 'get' )
+			->setSubmitCallback( function () {
+				return false;
+			} )
 			->prepareForm()
-			->displayForm( false );
+			->show();
+	}
+
+	public static function validateDateRange( $startDateField, $allFields, $form ) {
+		// If start date comes after end date chronologically, show error
+		$start = $allFields['start'];
+		$end = $allFields['end'];
+		if ( $start !== '' && $end !== '' && $start > $end ) {
+			return $form->msg('error');
+		}
+
+		return true;
 	}
 
 	protected function getGroupName() {
