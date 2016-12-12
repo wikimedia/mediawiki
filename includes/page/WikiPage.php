@@ -2077,22 +2077,6 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Prepare text which is about to be saved.
-	 * Returns a stdClass with source, pst and output members
-	 *
-	 * @param string $text
-	 * @param int|null $revid
-	 * @param User|null $user
-	 * @deprecated since 1.21: use prepareContentForEdit instead.
-	 * @return object
-	 */
-	public function prepareTextForEdit( $text, $revid = null, User $user = null ) {
-		wfDeprecated( __METHOD__, '1.21' );
-		$content = ContentHandler::makeContent( $text, $this->getTitle() );
-		return $this->prepareContentForEdit( $content, $revid, $user );
-	}
-
-	/**
 	 * Prepare content which is about to be saved.
 	 * Returns a stdClass with source, pst and output members
 	 *
