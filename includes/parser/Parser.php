@@ -5151,7 +5151,13 @@ class Parser {
 		#  * bottom
 		#  * text-bottom
 
-		$parts = StringUtils::explode( "|", $options );
+		$placeholder = Parser::MARKER_PREFIX . wfRandomString( 16 );
+		$separator = '|';
+		$options = str_replace( $placeholder, '', $options );
+		$replacer = new DoubleReplacer( $separator, $placeholder );
+		// Protect LanguageConverter markup
+		$cleaned = StringUtils::delimiterReplaceCallback( '-{', '}-', $replacer->cb(), $options );
+		$parts = StringUtils::explode( $separator, $cleaned );
 
 		# Give extensions a chance to select the file revision for us
 		$options = [];
@@ -5176,7 +5182,8 @@ class Parser {
 			'horizAlign' => [], 'vertAlign' => [] ];
 		$seenformat = false;
 		foreach ( $parts as $part ) {
-			$part = trim( $part );
+			// Put replaced separators back in.
+			$part = trim( str_replace( $placeholder, $separator, $part ) );
 			list( $magicName, $value ) = $mwArray->matchVariableStartToEnd( $part );
 			$validated = false;
 			if ( isset( $paramMap[$magicName] ) ) {
