@@ -166,7 +166,7 @@ return [
 	'analyze_signature_compatibility' => true,
 
 	// Only emit critical issues
-	"minimum_severity" => 10,
+	"minimum_severity" => 0,
 
 	/**
 	 * If true, missing properties will be created when
@@ -289,14 +289,74 @@ return [
 	 * to this black-list to inhibit them from being reported.
 	 */
 	'suppress_issue_types' => [
-		// MediaWiki has so much deprecated class usage it's a bit hopeless to
-		// fix this immediately
-		'PhanDeprecatedClass',
-		'PhanDeprecatedFunction',
-		'PhanDeprecatedProperty',
-		// There are arround 1400 usages of undeclared properties.
-		// php is ok with that but it's a code smell.
-		'PhanUndeclaredProperty',
+		// approximate error count: 8 
+		"PhanDeprecatedClass",
+		// approximate error count: 468 
+		"PhanDeprecatedFunction",
+		// approximate error count: 24 
+		"PhanDeprecatedProperty",
+		// approximate error count: 12 
+		"PhanParamReqAfterOpt",
+		// approximate error count: 749 
+		"PhanParamSignatureMismatch",
+		// approximate error count: 7 
+		"PhanParamSignatureMismatchInternal",
+		// approximate error count: 1 
+		"PhanParamSpecial1",
+		// approximate error count: 2 
+		"PhanParamTooFew",
+		// approximate error count: 308 
+		"PhanParamTooMany",
+		// approximate error count: 3 
+		"PhanParamTooManyInternal",
+		// approximate error count: 1 
+		"PhanRedefineFunction",
+		// approximate error count: 1 
+		"PhanRedefineFunctionInternal",
+		// approximate error count: 2 
+		"PhanTraitParentReference",
+		// approximate error count: 4 
+		"PhanTypeArraySuspicious",
+		// approximate error count: 4 
+		"PhanTypeComparisonFromArray",
+		// approximate error count: 1 
+		"PhanTypeConversionFromArray",
+		// approximate error count: 1 
+		"PhanTypeInvalidLeftOperand",
+		// approximate error count: 3 
+		"PhanTypeInvalidRightOperand",
+		// approximate error count: 564 
+		"PhanTypeMismatchArgument",
+		// approximate error count: 39 
+		"PhanTypeMismatchArgumentInternal",
+		// approximate error count: 4 
+		"PhanTypeMismatchDefault",
+		// approximate error count: 16 
+		"PhanTypeMismatchForeach",
+		// approximate error count: 63 
+		"PhanTypeMismatchProperty",
+		// approximate error count: 95 
+		"PhanTypeMismatchReturn",
+		// approximate error count: 16 
+		"PhanTypeMissingReturn",
+		// approximate error count: 5 
+		"PhanTypeNonVarPassByRef",
+		// approximate error count: 3 
+		"PhanTypeVoidAssignment",
+		// approximate error count: 27 
+		"PhanUndeclaredConstant",
+		// approximate error count: 185 
+		"PhanUndeclaredMethod",
+		// approximate error count: 1431 
+		"PhanUndeclaredProperty",
+		// approximate error count: 9 
+		"PhanUndeclaredStaticMethod",
+		// approximate error count: 15 
+		"PhanUndeclaredTypeParameter",
+		// approximate error count: 1 
+		"PhanUndeclaredTypeProperty",
+		// approximate error count: 79 
+		"PhanUndeclaredVariable",
 	],
 
 	/**
