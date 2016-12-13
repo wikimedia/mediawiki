@@ -20674,9 +20674,8 @@ language=zh variant=zh-cn
 </dt></dl>
 !! end
 
-# FIXME: This test is currently broken in the PHP parser (bug 52661)
 !! test
-Don't break table handling if language converter markup is in the cell.
+T153140: Don't break table handling if language converter markup is in the cell.
 !! options
 language=sr variant=sr-ec
 !! wikitext
@@ -20688,7 +20687,7 @@ language=sr variant=sr-ec
 <table>
 
 <tr>
-<td>Б}-
+<td> B
 </td></tr></table>
 
 !! html/parsoid
