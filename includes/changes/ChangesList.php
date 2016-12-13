@@ -158,19 +158,29 @@ class ChangesList extends ContextSource {
 	protected function getHTMLClasses( $rc, $watched ) {
 		$classes = [];
 		$logType = $rc->mAttribs['rc_log_type'];
+		$prefix = 'mw-changeslist-';
 
 		if ( $logType ) {
-			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-log-' . $logType );
+			$classes[] = Sanitizer::escapeClass( $prefix . 'log-' . $logType );
 		} else {
-			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-ns' .
+			$classes[] = Sanitizer::escapeClass( $prefix . 'ns' .
 				$rc->mAttribs['rc_namespace'] . '-' . $rc->mAttribs['rc_title'] );
 		}
 
 		// Indicate watched status on the line to allow for more
 		// comprehensive styling.
 		$classes[] = $watched && $rc->mAttribs['rc_timestamp'] >= $watched
-			? 'mw-changeslist-line-watched'
-			: 'mw-changeslist-line-not-watched';
+			? $prefix . 'line-watched'
+			: $prefix . 'line-not-watched';
+
+		$classes[] = $prefix . ( $rc->getAttribute( 'rc_bot' ) ? 'bot' : 'human' );
+		$classes[] = $prefix . ( $rc->getAttribute( 'rc_user' ) ? 'liu' : 'anon' );
+		$classes[] = $prefix . ( $rc->getAttribute( 'rc_minor' ) ? 'minor' : 'major' );
+		$classes[] = $prefix .
+			( $rc->getAttribute( 'rc_patrolled' ) ? 'patrolled' : 'unpatrolled' );
+		$classes[] = $prefix .
+			( $this->getUser()->equals( $rc->getPerformer() ) ? 'self' : 'others' );
+		$classes[] = $prefix . 'src-' . str_replace( '.', '-', $rc->getAttribute( 'rc_source' ) );
 
 		return $classes;
 	}
