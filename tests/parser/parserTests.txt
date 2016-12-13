@@ -20934,19 +20934,61 @@ File:foobar.jpg|{{Test|unamedParam|alt=-{R|param}-}}|alt=galleryalt
 
 !! end
 
-# FIXME: This test is currently broken in the PHP parser (bug 52661)
 !! test
-Don't break list handling if language converter markup is in the item.
+T153135: Don't break list handling if language converter markup is in the item.
 !! options
 language=zh variant=zh-cn
 !! wikitext
 ;-{zh-cn:AAA;zh-tw:BBB}-
+;-{R|foo:bar}-
 !! html/php
-<dl><dt><span class="error">在手动语言转换规则中检测到错误</span></dd></dl>
+<dl><dt>AAA</dt>
+<dt>foo:bar</dt></dl>
 
 !! html/parsoid
-<dl><dt>AAA
-</dt></dl>
+<dl>
+<dt><span typeof="mw:LanguageVariant" data-mw='{"bidir":[{"l":"zh-cn","t":"AAA"},{"l":"zh-tw","t":"BBB"}],"show":true}'></span></dt>
+<dt><span typeof="mw:LanguageVariant" data-mw='{"disabled":true,"show":true,"text":"foo:bar"}'></span></dt>
+</dl>
+!! end
+
+// Note that parsoid does not protect colons unless language converter
+// markup is properly nested, because it is a backtracking parser.
+!! test
+T153135: Unclosed markup in definition list (code coverage)
+!! options
+language=zh variant=zh-cn
+!! wikitext
+;<b>foo:bar
+;-{zh-cn:AAA
+!! html/php
+<dl><dt><b>foo:bar</dt>
+<dt>-{zh-cn:AAA</b></dt></dl>
+
+!! html/parsoid
+<dl>
+<dt><b>foo:bar</b></dt>
+<b>
+<dt>-{zh-cn</dt>
+<dd>AAA</dd>
+</b></dl>
+!! end
+
+!! test
+T153135: Nested language converter markup in definition list (code coverage)
+!! options
+language=zh variant=zh-cn
+!! wikitext
+;-{zh-cn:AAA -{zh-hans|foo:bar}- -{R|bat:baz}-}-:def
+!! html/php
+<dl><dt>AAA foo:bar bat:baz</dt>
+<dd>def</dd></dl>
+
+!! html/parsoid
+<dl>
+<dt><span typeof="mw:LanguageVariant" data-mw='{"bidir":[{"l":"zh-cn","t":"AAA &lt;span typeof=\"mw:LanguageVariant\" data-parsoid=&#39;{\"fl\":[\"zh-hans\"],\"dsr\":[13,32,null,2]}&#39; data-mw=&#39;{\"filter\":[\"zh-hans\"],\"text\":\"bar\"}&#39;>&lt;/span> &lt;span typeof=\"mw:LanguageVariant\" data-parsoid=&#39;{\"fl\":[\"R\"],\"dsr\":[33,46,null,2]}&#39; data-mw=&#39;{\"disabled\":true,\"show\":true,\"text\":\"bat:baz\"}&#39;>&lt;/span>"}],"show":true}'></span></dt>
+<dd>def</dd>
+</dl>
 !! end
 
 !! test
