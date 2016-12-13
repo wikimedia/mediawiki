@@ -207,14 +207,14 @@ class MWExceptionRenderer {
 	 */
 	public static function getHTML( $e ) {
 		if ( self::showBackTrace( $e ) ) {
-			$html = "<div class=\"errorbox\"><p>" .
+			$html = "<div class=\"errorbox mw-content-ltr\"><p>" .
 				nl2br( htmlspecialchars( MWExceptionHandler::getLogMessage( $e ) ) ) .
 				'</p><p>Backtrace:</p><p>' .
 				nl2br( htmlspecialchars( MWExceptionHandler::getRedactedTraceAsString( $e ) ) ) .
 				"</p></div>\n";
 		} else {
 			$logId = WebRequest::getRequestId();
-			$html = "<div class=\"errorbox\">" .
+			$html = "<div class=\"errorbox mw-content-ltr\">" .
 				'[' . $logId . '] ' .
 				gmdate( 'Y-m-d H:i:s' ) . ": " .
 				self::msg( "internalerror-fatal-exception",
