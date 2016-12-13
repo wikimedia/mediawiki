@@ -75,7 +75,7 @@ function isCompatible( str ) {
 		// support in the modern run-time.
 		// Note: Please extend the regex instead of adding new ones
 		!(
-			ua.match( /webOS\/1\.[0-4]|SymbianOS|Series60|NetFront|Opera Mini|S40OviBrowser|MeeGo|Android.+Glass|^Mozilla\/5\.0 .+ Gecko\/$/ ) ||
+			ua.match( /webOS\/1\.[0-4]|SymbianOS|Series60|NetFront|Opera Mini|S40OviBrowser|MeeGo|Android.+Glass|^Mozilla\/5\.0 .+ Gecko\/$|googleweblight/ ) ||
 			ua.match( /PlayStation/i )
 		)
 	);
