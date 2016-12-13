@@ -139,7 +139,9 @@
 			// MeeGo
 			'Mozilla/5.0 (MeeGo; NokiaN9) AppleWebKit/534.13 (KHTML, like Gecko) NokiaBrowser/8.5.0 Mobile Safari/534.13',
 			// UC Mini (speed mode on)
-			'Mozilla/5.0 (X11; U; Linux i686; zh-CN; r:1.2.3.4) Gecko/'
+			'Mozilla/5.0 (X11; U; Linux i686; zh-CN; r:1.2.3.4) Gecko/',
+			// Google Web Light proxy
+			'Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko; googleweblight) Chrome/38.0.1025.166 Mobile Safari/535.19'
 		]
 	};
 
