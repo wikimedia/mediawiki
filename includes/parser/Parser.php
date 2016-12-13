@@ -1183,7 +1183,8 @@ class Parser {
 
 					# T2553: Note that a '|' inside an invalid link should not
 					# be mistaken as delimiting cell parameters
-					if ( strpos( $cell_data[0], '[[' ) !== false ) {
+					# Bug T153140: Neither should language converter markup.
+					if ( preg_match( '/\[\[|-\{/', $cell_data[0] ) === 1 ) {
 						$cell = "{$previous}<{$last_tag}>{$cell}";
 					} elseif ( count( $cell_data ) == 1 ) {
 						$cell = "{$previous}<{$last_tag}>{$cell_data[0]}";
