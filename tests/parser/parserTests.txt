@@ -20359,7 +20359,6 @@ File:foobar.jpg|{{Test|unamedParam|alt=-{R|param}-}}|alt=galleryalt
 
 !! end
 
-# FIXME: This test is currently broken in the PHP parser (bug 52661)
 !! test
 Don't break list handling if language converter markup is in the item.
 !! options
@@ -20367,14 +20366,12 @@ language=zh variant=zh-cn
 !! wikitext
 ;-{zh-cn:AAA;zh-tw:BBB}-
 !! html/php
-<dl><dt><span class="error">在手动语言转换规则中检测到错误</span></dd></dl>
-
+<dl><dt>AAA</dd></dl>
 !! html/parsoid
 <dl><dt>AAA
 </dt></dl>
 !! end
 
-# FIXME: This test is currently broken in the PHP parser (bug 52661)
 !! test
 Don't break table handling if language converter markup is in the cell.
 !! options
@@ -20388,7 +20385,7 @@ language=sr variant=sr-ec
 <table>
 
 <tr>
-<td>Б}-
+<td> B
 </td></tr></table>
 
 !! html/parsoid
