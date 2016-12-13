@@ -1,7 +1,17 @@
 /* OOUIHTMLForm styles */
 
+/*
+ * Calculation of margins, compare OOjs UI MediaWiki theme's common.less
+ *
+ * @oo-ui-font-size-browser: 16; // assumed browser default of `16px`
+ * @vector-font-size-default: 0.875em; // equals `14px` at browser default of `16px`
+ *
+ * Instead of `1.25em` in the guideline, we go for `15px`/`1.171875em`
+ * 15 / @oo-ui-font-size-browser / @vector-font-size-default equals `1.0714285714em`≈`15px` at base `font-size: 14px`
+ */
+
 .mw-htmlform-ooui .mw-htmlform-submit-buttons {
-	margin-top: 1em;
+	margin-top: 1.071em;
 }
 
 .mw-htmlform-ooui .mw-htmlform-field-HTMLCheckMatrix,
@@ -15,11 +25,17 @@
 	width: 39%;
 }
 
-/* Flatlist styling for PHP widgets... */
+/* Flatlist */
+.mw-htmlform-flatlist {
+	margin-top: 1.071em;
+}
+
+/* PHP widgets... */
 .mw-htmlform-flatlist .oo-ui-fieldLayout-align-inline,
-/* ...and for JS widgets */
+/* JS widgets */
 .mw-htmlform-flatlist .oo-ui-radioOptionWidget,
 .mw-htmlform-flatlist .oo-ui-checkboxMultioptionWidget {
 	display: inline-block;
+	margin-top: 0;
 	margin-right: 1em;
 }
