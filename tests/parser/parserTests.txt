@@ -20617,16 +20617,30 @@ language=sr variant=sr-ec
 </p>
 !! end
 
-# FIXME: This test is currently broken in the PHP parser (bug 52661)
 !! test
-Don't break image parsing if language converter markup is in the caption.
+T146305: Don't break image parsing if language converter markup is in the caption.
 !! options
 language=sr
 !! wikitext
-[[File:Foobar.jpg|-{R|caption}-]]
+[[File:Foobar.jpg|thumb|-{R|caption:}-]]
+!! html/php
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/%D0%94%D0%B0%D1%82%D0%BE%D1%82%D0%B5%D0%BA%D0%B0:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/%D0%94%D0%B0%D1%82%D0%BE%D1%82%D0%B5%D0%BA%D0%B0:Foobar.jpg" class="internal" title="Повећај"></a></div>caption:</div></div></div>
+
 !! html/parsoid
-<p><a href="/wiki/File:Foobar.jpg" class="image" title="caption"><img alt="caption" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
-</p>
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./Датотека:Foobar.jpg"><img resource="./Датотека:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption><span typeof="mw:LanguageVariant" data-mw='{"disabled":true,"show":true,"text":"caption:"}'></span></figcaption></figure>
+!! end
+
+!! test
+T146305: Don't break image parsing if nested language converter markup is in the caption.
+!! options
+language=zh variant=zh-cn
+!! wikitext
+[[File:Foobar.jpg|thumb|-{zh-cn:blog (hk: -{zh-hans|WEBJOURNAL}-, tw: -{zh-hans|WEBLOG}-)}-]]
+!! html/php
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="放大"></a></div>blog (hk: WEBJOURNAL, tw: WEBLOG)</div></div></div>
+
+!! html/parsoid
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption><span typeof="mw:LanguageVariant" data-mw='{"bidir":[{"l":"zh-cn","t":"blog (hk: &lt;span typeof=\"mw:LanguageVariant\" data-parsoid=&#39;{\"fl\":[\"zh-hans\"],\"dsr\":[42,64,null,2]}&#39; data-mw=&#39;{\"filter\":[\"zh-hans\"],\"text\":\"WEBJOURNAL\"}&#39;>&lt;/span>, tw: &lt;span typeof=\"mw:LanguageVariant\" data-parsoid=&#39;{\"fl\":[\"zh-hans\"],\"dsr\":[70,88,null,2]}&#39; data-mw=&#39;{\"filter\":[\"zh-hans\"],\"text\":\"WEBLOG\"}&#39;>&lt;/span>)"}],"show":true}'></span></figcaption></figure>
 !! end
 
 # FIXME: This test is currently broken in the PHP parser (bug 52661)

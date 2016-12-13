@@ -5150,7 +5150,10 @@ class Parser {
 		#  * bottom
 		#  * text-bottom
 
-		$parts = StringUtils::explode( "|", $options );
+		# Protect LanguageConverter markup when splitting into parts
+		$parts = StringUtils::delimiterExplode(
+			'-{', '}-', '|', $options, true /* allow nesting */
+		);
 
 		# Give extensions a chance to select the file revision for us
 		$options = [];
