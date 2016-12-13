@@ -52,6 +52,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$this->addHelpLink( 'Help:Watching pages' );
 		$output->addModules( [
 			'mediawiki.special.changeslist.visitedstatus',
+			'mediawiki.special.watchlist',
 		] );
 
 		$mode = SpecialEditWatchlist::getMode( $request, $subpage );
@@ -420,12 +421,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	public function doHeader( $opts, $numRows ) {
 		$user = $this->getUser();
 		$out = $this->getOutput();
-
-		// if the user wishes, that the watchlist is reloaded, whenever a filter changes,
-		// add the module for that
-		if ( $user->getBoolOption( 'watchlistreloadautomatically' ) ) {
-			$out->addModules( [ 'mediawiki.special.watchlist' ] );
-		}
 
 		$out->addSubtitle(
 			$this->msg( 'watchlistfor2', $user->getName() )
