@@ -222,7 +222,7 @@ class UploadFromChunks extends UploadFromFile {
 					$this->verifyChunk();
 					$this->mTempPath = $oldTemp;
 				} catch ( UploadChunkVerificationException $e ) {
-					return Status::newFatal( $e->getMessage() );
+					return Status::newFatal( $e->msg );
 				}
 				$status = $this->outputChunk( $chunkPath );
 				if ( $status->isGood() ) {
@@ -364,7 +364,7 @@ class UploadFromChunks extends UploadFromFile {
 		$this->mDesiredDestName = $oldDesiredDestName;
 		$this->mTitle = false;
 		if ( is_array( $res ) ) {
-			throw new UploadChunkVerificationException( $res[0] );
+			throw new UploadChunkVerificationException( $res );
 		}
 	}
 }
@@ -376,4 +376,9 @@ class UploadChunkFileException extends MWException {
 }
 
 class UploadChunkVerificationException extends MWException {
+	public $msg;
+	public function __construct( $res ) {
+		$this->msg = call_user_func_array( 'wfMessage', $res );
+		parent::__construct( $this->msg->inLanguage( 'en' )->useDatabase( false )->text() );
+	}
 }
