@@ -2067,6 +2067,7 @@
 	"wlshowhidemine": "Meine Bearbeitungen",
 	"wlshowhidecategorization": "Seitenkategorisierung",
 	"watchlist-options": "Anzeigeoptionen",
+	"watchlist-mark-all-visited": "Bist du sicher, dass du ungesehene Änderungen auf deiner Beobachtungsliste durch das Markieren aller Seiten als besucht zurücksetzen möchtest?",
 	"watching": "Beobachten …",
 	"unwatching": "Nicht mehr beobachten …",
 	"watcherrortext": "Beim Ändern der Beobachtungslisteneinstellungen für „$1“ ist ein Fehler aufgetreten.",

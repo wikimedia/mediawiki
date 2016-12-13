@@ -2139,6 +2139,7 @@
 	"wlshowhidemine": "mes modifications",
 	"wlshowhidecategorization": "catégorisation de la page",
 	"watchlist-options": "Options de la liste de suivi",
+	"watchlist-mark-all-visited": "Êtes-vous sûr de vouloir réinitialiser les modifications de la liste de suivi non vues en marquant toutes les pages comme visitées ?",
 	"watching": "Suivi…",
 	"unwatching": "Fin du suivi…",
 	"watcherrortext": "Une erreur s'est produite lors de la modification des paramètres de votre liste de suivi pour « $1 ».",

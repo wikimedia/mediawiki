@@ -2049,6 +2049,7 @@
 	"wlshowhidemine": "mina redigeringar",
 	"wlshowhidecategorization": "kategorisering av sidor",
 	"watchlist-options": "Alternativ för bevakningslistan",
+	"watchlist-mark-all-visited": "Är du säker på att du vill återställa osedda förändringar i bevakningslistan genom att markera alla sidor som besökta?",
 	"watching": "Bevakar...",
 	"unwatching": "Avbevakar...",
 	"watcherrortext": "Ett fel inträffade när du ändrade dina bevakningsinställningarna för \"$1\".",

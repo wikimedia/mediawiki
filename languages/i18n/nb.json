@@ -2025,6 +2025,7 @@
 	"wlshowhidemine": "mine redigeringer",
 	"wlshowhidecategorization": "sidekategorisering",
 	"watchlist-options": "Alternativ for overvåkningslisten",
+	"watchlist-mark-all-visited": "Er du sikker på at du vil resette usette endringer på overvåkningslisten ved å merke alle sider som besøkte?",
 	"watching": "Overvåker…",
 	"unwatching": "Fjerner fra overvåkningsliste…",
 	"watcherrortext": "Det oppsto en feil under endring av overvåkningsinnstillingene dine for «$1».",

@@ -2070,6 +2070,7 @@
 	"wlshowhidemine": "我的编辑",
 	"wlshowhidecategorization": "页面分类",
 	"watchlist-options": "监视列表选项",
+	"watchlist-mark-all-visited": "您确定要通过标记所有页面为已访问，重置未查看的监视列表更改么？",
 	"watching": "正在监视...",
 	"unwatching": "正在取消监视...",
 	"watcherrortext": "更改“$1”的监视列表设置时出错。",
