@@ -30,10 +30,13 @@ export RUN="${ISSUES}/issues-${REV}"
 php7.0 $PHAN \
 	--project-root-directory "$ROOT" \
 	--config-file "$ROOT/tests/phan/config.php" \
-	--output "$ROOT/tests/phan/issues/issues-${REV}" \
+	--output "$RUN" \
 	"${@}"
 
+
+cat "${RUN}" | php "$ROOT/tests/phan/postprocess-phan.php" "${@}" > /tmp/phan.$$
 EXIT_CODE="$?"
+mv /tmp/phan.$$ "${RUN}"
 
 # Re-link the latest file
 rm -f "${ISSUES}/latest"
