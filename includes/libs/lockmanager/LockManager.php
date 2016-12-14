@@ -34,7 +34,7 @@ use Wikimedia\WaitConditionLoop;
  *
  * Locks on resource keys can either be shared or exclusive.
  *
- * Implementations must keep track of what is locked by this proccess
+ * Implementations must keep track of what is locked by this process
  * in-memory and support nested locking calls (using reference counting).
  * At least LOCK_UW and LOCK_EX must be implemented. LOCK_SH can be a no-op.
  * Locks should either be non-blocking or have low wait timeouts.
@@ -170,7 +170,7 @@ abstract class LockManager {
 	/**
 	 * Get the base 36 SHA-1 of a string, padded to 31 digits.
 	 * Before hashing, the path will be prefixed with the domain ID.
-	 * This should be used interally for lock key or file names.
+	 * This should be used internally for lock key or file names.
 	 *
 	 * @param string $path
 	 * @return string
@@ -182,7 +182,7 @@ abstract class LockManager {
 	/**
 	 * Get the base 16 SHA-1 of a string, padded to 31 digits.
 	 * Before hashing, the path will be prefixed with the domain ID.
-	 * This should be used interally for lock key or file names.
+	 * This should be used internally for lock key or file names.
 	 *
 	 * @param string $path
 	 * @return string
