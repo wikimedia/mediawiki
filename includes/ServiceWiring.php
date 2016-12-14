@@ -86,6 +86,13 @@ return [
 		return $factory;
 	},
 
+	'ConfigRepository' => function( MediaWikiServices $services ) {
+		$repo = new \MediaWiki\Config\ConfigRepository();
+		$repo->setMediaWikiServices( $services );
+
+		return $repo;
+	},
+
 	'MainConfig' => function( MediaWikiServices $services ) {
 		// Use the 'main' config from the ConfigFactory service.
 		return $services->getConfigFactory()->makeConfig( 'main' );
