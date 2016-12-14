@@ -868,6 +868,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Auth\\Throttler' => __DIR__ . '/includes/auth/Throttler.php',
 	'MediaWiki\\Auth\\UserDataAuthenticationRequest' => __DIR__ . '/includes/auth/UserDataAuthenticationRequest.php',
 	'MediaWiki\\Auth\\UsernameAuthenticationRequest' => __DIR__ . '/includes/auth/UsernameAuthenticationRequest.php',
+	'MediaWiki\\Config\\ConfigRepository' => __DIR__ . '/includes/config/ConfigRepository.php',
 	'MediaWiki\\Diff\\ComplexityException' => __DIR__ . '/includes/diff/ComplexityException.php',
 	'MediaWiki\\Diff\\WordAccumulator' => __DIR__ . '/includes/diff/WordAccumulator.php',
 	'MediaWiki\\HeaderCallback' => __DIR__ . '/includes/HeaderCallback.php',
