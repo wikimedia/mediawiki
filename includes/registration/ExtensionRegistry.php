@@ -31,7 +31,7 @@ class ExtensionRegistry {
 	/**
 	 * Bump whenever the registration cache needs resetting
 	 */
-	const CACHE_VERSION = 5;
+	const CACHE_VERSION = 6;
 
 	/**
 	 * Special key that defines the merge strategy
@@ -318,6 +318,10 @@ class ExtensionRegistry {
 		}
 		foreach ( $info['autoloaderPaths'] as $path ) {
 			require_once $path;
+		}
+		$configRepo = MediaWikiServices::getInstance()->getConfigRepository();
+		foreach ( $info['config'] as $configItem ) {
+			$configRepo->add( $configItem );
 		}
 
 		$this->loaded += $info['credits'];
