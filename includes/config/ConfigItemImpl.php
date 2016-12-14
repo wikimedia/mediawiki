@@ -22,6 +22,7 @@ namespace MediaWiki\Config;
  * @file
  */
 use MediaWiki\ConfigProvider\ConfigProvider;
+use MediaWiki\MediaWikiServices;
 
 /**
  * A descriptive object for a configuration option.
@@ -51,21 +52,31 @@ class ConfigItemImpl implements ConfigItem {
 	private $valueProvider;
 
 	/**
+	 * @var string
+	 */
+	private $configFactoryName;
+
+	/**
 	 * @var ConfigProvider
 	 */
 	private $provider;
+
+	/**
+	 * @var MediaWikiServices
+	 */
+	private $services;
 
 	public function getName() {
 		return $this->name;
 	}
 
 	public function getValue() {
-		if ( $this->valueProvider === null ) {
+		if ( $this->getValueProvider() === null ) {
 			throw new \ConfigException(
 				'No provider set to retrieve the value of the config item: ' . $this->getName() );
 		}
 
-		return $this->valueProvider->get( $this->getName() );
+		return $this->getValueProvider()->get( $this->getName() );
 	}
 
 	public function getDefaultValue() {
@@ -85,7 +96,16 @@ class ConfigItemImpl implements ConfigItem {
 	}
 
 	public function getValueProvider() {
-		return $this->getValueProvider();
+		if (
+			$this->valueProvider === null &&
+			$this->configFactoryName !== null &&
+			$this->services !== null
+		) {
+			$this->valueProvider = $this->services
+				->getConfigFactory()
+				->makeConfig( $this->configFactoryName );
+		}
+		return $this->valueProvider;
 	}
 
 	public function setProvider( ConfigProvider $provider ) {
@@ -119,8 +139,15 @@ class ConfigItemImpl implements ConfigItem {
 		if ( isset( $arr['valueprovider'] ) ) {
 			$retval->valueProvider = $arr['valueprovider'];
 		}
+		if ( isset( $arr['config'] ) ) {
+			$retval->configFactoryName = $arr['config'];
+		}
 
 		return $retval;
+	}
+
+	public function setMediaWikiServices(MediaWikiServices $services) {
+		$this->services = $services;
 	}
 
 	public function __toString() {

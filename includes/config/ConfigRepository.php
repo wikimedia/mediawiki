@@ -78,6 +78,7 @@ class ConfigRepository implements \Iterator, SalvageableService  {
 				'does already exist. It is provided by: ' .
 				$this->get( $item->getName() )->getProvider()->getName() );
 		}
+		$item->setMediaWikiServices( $this->services );
 		$this->configItems[] = $item;
 	}
 

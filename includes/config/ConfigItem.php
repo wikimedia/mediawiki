@@ -22,6 +22,7 @@ namespace MediaWiki\Config;
  * @file
  */
 use MediaWiki\ConfigProvider\ConfigProvider;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Interface, which holds information about a specific config item.
@@ -111,9 +112,19 @@ interface ConfigItem {
 	 * Other options are:
 	 *  * description: The description of the configuration
 	 *  * valueprovider: The provider, from which the value should be retrieved
+	 *  * config: Instead of valueprovider, the name of the config that can be retrieved from
+	 *    ConfigFactory
 	 *
 	 * @param array $array
 	 * @return ConfigItem
 	 */
 	public static function newFromArray( array $array );
+
+	/**
+	 * Sets the MediaWikiServices object which can be used to retrieve other services.
+	 *
+	 * @param MediaWikiServices $services
+	 * @return mixed
+	 */
+	public function setMediaWikiServices(MediaWikiServices $services);
 }
