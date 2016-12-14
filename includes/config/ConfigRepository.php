@@ -21,7 +21,6 @@ namespace MediaWiki\Config;
  *
  * @file
  */
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Services\SalvageableService;
 use Wikimedia\Assert\Assert;
 
@@ -83,6 +82,7 @@ class ConfigRepository implements \Iterator, SalvageableService  {
 				'does already exist. It is provided by: ' .
 				$this->get( $item->getName() )->getProvider()->getName() );
 		}
+		$item->setConfigFactory( $this->configFactory );
 		$this->configItems[] = $item;
 	}
 
@@ -125,7 +125,7 @@ class ConfigRepository implements \Iterator, SalvageableService  {
 				continue;
 			}
 
-			$this->configItems[$name] = $otherConfig;
+			$this->add( $otherConfig );
 
 			// recover the pointer of the other config repository
 			if ( $otherCurrentObj === $otherConfig ) {
