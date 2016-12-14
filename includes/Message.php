@@ -488,18 +488,32 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @since 1.17
 	 *
-	 * @param mixed ... Parameters as strings, or a single argument that is
-	 * an array of strings.
+	 * @param mixed ... Parameters as strings or arrays from
+	 *  Message::numParam() and the like, or a single array of parameters.
 	 *
 	 * @return Message $this
 	 */
 	public function params( /*...*/ ) {
 		$args = func_get_args();
-		if ( isset( $args[0] ) && is_array( $args[0] ) ) {
-			$args = $args[0];
+
+		// If $args has only one entry and it's an array, then it's either a
+		// non-varargs call or it happens to be a call with just a single
+		// "special" parameter. Since the "special" parameters don't have any
+		// numeric keys, we'll test that to differentiate the cases.
+		if ( count( $args ) === 1 && isset( $args[0] ) && is_array( $args[0] ) ) {
+			if ( $args[0] === [] ) {
+				$args = [];
+			} else {
+				foreach ( $args[0] as $key => $value ) {
+					if ( is_int( $key ) ) {
+						$args = $args[0];
+						break;
+					}
+				}
+			}
 		}
-		$args_values = array_values( $args );
-		$this->parameters = array_merge( $this->parameters, $args_values );
+
+		$this->parameters = array_merge( $this->parameters, array_values( $args ) );
 		return $this;
 	}
 
