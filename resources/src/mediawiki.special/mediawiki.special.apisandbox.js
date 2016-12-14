@@ -408,8 +408,7 @@
 						} else {
 							n = +value;
 							return !isNaN( n ) && isFinite( n ) &&
-								// eslint-disable-next-line no-bitwise
-								( n | 0 ) === n &&
+								Math.floor( n ) === n &&
 								n >= pi.min && n <= pi.apiSandboxMax;
 						}
 					} );
