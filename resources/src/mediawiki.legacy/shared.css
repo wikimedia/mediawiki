@@ -363,7 +363,7 @@ table.wikitable > tr > th,
 table.wikitable > tr > td,
 table.wikitable > * > tr > th,
 table.wikitable > * > tr > td {
-	border: 1px solid #aaa;
+	border: 1px solid #a2a9b1;
 	padding: 0.2em 0.4em;
 }
 
