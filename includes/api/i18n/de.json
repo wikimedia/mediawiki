@@ -35,7 +35,7 @@
 	"apihelp-main-param-uselang": "Zu verwendende Sprache für Nachrichtenübersetzungen. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> mit <kbd>siprop=languages</kbd> gibt eine Liste der Sprachcodes zurück. Gib <kbd>user</kbd> zum Verwenden der aktuellen Benutzerspracheinstellung oder <kbd>content</kbd> an, um die Inhaltssprache des Wikis zu verwenden.",
 	"apihelp-main-param-errorsuselocal": "Falls angegeben, verwenden Fehlertexte lokalisierte Nachrichten aus dem {{ns:MediaWiki}}-Namensraum.",
 	"apihelp-block-description": "Einen Benutzer sperren.",
-	"apihelp-block-param-user": "Benutzername, IP-Adresse oder IP-Bereich, der gesperrt werden soll.",
+	"apihelp-block-param-user": "Benutzername, IP-Adresse oder IP-Adressbereich, der gesperrt werden soll. Kann nicht zusammen mit <var>$1userid</var> verwendet werden.",
 	"apihelp-block-param-expiry": "Sperrdauer. Kann relativ (z.&nbsp;B. <kbd>5 months</kbd> oder <kbd>2 weeks</kbd>) oder absolut (z.&nbsp;B. <kbd>2014-09-18T12:34:56Z</kbd>) sein. Wenn auf <kbd>infinite</kbd>, <kbd>indefinite</kbd> oder <kbd>never</kbd> gesetzt, ist die Sperre unbegrenzt.",
 	"apihelp-block-param-reason": "Sperrbegründung.",
 	"apihelp-block-param-anononly": "Nur anonyme Benutzer sperren (z.&nbsp;B. anonyme Bearbeitungen für diese IP deaktivieren).",
@@ -854,8 +854,8 @@
 	"apihelp-tokens-example-edit": "Ruft einen Bearbeitungstoken ab (Standard).",
 	"apihelp-tokens-example-emailmove": "Ruft einen E-Mail- und Verschiebungstoken ab.",
 	"apihelp-unblock-description": "Einen Benutzer freigeben.",
-	"apihelp-unblock-param-id": "ID der Sperre zum Entsperren (über <kbd>list=blocks</kbd> erhalten). Darf nicht zusammen mit <var>$1user</var> verwendet werden.",
-	"apihelp-unblock-param-user": "Freizugebender Benutzername, IP-Adressbereich oder freizugebende IP-Adresse. Kann nicht zusammen mit <var>$1id</var> verwendet werden.",
+	"apihelp-unblock-param-id": "Kennung der Sperre zur Freigabe (abgerufen durch <kbd>list=blocks</kbd>). Kann nicht zusammen mit <var>$1user</var> oder <var>$1userid</var> verwendet werden.",
+	"apihelp-unblock-param-user": "Benutzername, IP-Adresse oder IP-Adressbereich, der freigegeben werden soll. Kann nicht zusammen mit <var>$1id</var> oder <var>$1userid</var> verwendet werden.",
 	"apihelp-unblock-param-reason": "Grund für die Freigabe.",
 	"apihelp-unblock-param-tags": "Auf den Benutzersperr-Logbuch-Eintrag anzuwendende Änderungsmarkierungen.",
 	"apihelp-unblock-example-id": "Sperrkennung #<kbd>105</kbd> freigeben.",
@@ -947,6 +947,7 @@
 	"api-help-right-apihighlimits": "Höhere Beschränkungen in API-Anfragen verwenden (langsame Anfragen: $1; schnelle Anfragen: $2). Die Beschränkungen für langsame Anfragen werden auch auf Mehrwertparameter angewandt.",
 	"api-help-open-in-apisandbox": "<small>[in Spielwiese öffnen]</small>",
 	"api-help-authmanagerhelper-messageformat": "Zu verwendendes Format zur Rückgabe von Nachrichten.",
+	"apierror-nosuchuserid": "Es gibt keinen Benutzer mit der Kennung $1.",
 	"api-credits-header": "Danksagungen",
 	"api-credits": "API-Entwickler:\n* Roan Kattouw (Hauptentwickler von September 2007 bis 2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (Autor, Hauptentwickler von September 2006 bis September 2007)\n* Brad Jorsch (Hauptentwickler seit 2013)\n\nBitte sende deine Kommentare, Vorschläge und Fragen an mediawiki-api@lists.wikimedia.org\noder reiche einen Fehlerbericht auf https://phabricator.wikimedia.org/ ein."
 }

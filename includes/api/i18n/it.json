@@ -26,7 +26,7 @@
 	"apihelp-main-param-servedby": "Includi nel risultato il nome dell'host che ha servito la richiesta.",
 	"apihelp-main-param-curtimestamp": "Includi nel risultato il timestamp attuale.",
 	"apihelp-block-description": "Blocca  un utente.",
-	"apihelp-block-param-user": "Nome utente, indirizzo IP o range di IP da bloccare.",
+	"apihelp-block-param-user": "Nome utente, indirizzo IP o range di IP da bloccare. Non può essere usato insieme a <var>$1userid</var>",
 	"apihelp-block-param-expiry": "Tempo di scadenza. Può essere relativo (ad esempio, <kbd>5 months</kbd> o <kbd>2 weeks</kbd>) o assoluto (ad esempio <kbd>2014-09-18T12:34:56Z</kbd>). Se impostato a <kbd>infinite</kbd>, <kbd>indefinite</kbd> o <kbd>never</kbd>, il blocco non scadrà mai.",
 	"apihelp-block-param-reason": "Motivo del blocco.",
 	"apihelp-block-param-anononly": "Blocca solo gli utenti non registrati (cioè disattiva i contributi anonimi da questo indirizzo IP).",

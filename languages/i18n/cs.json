@@ -2008,6 +2008,7 @@
 	"wlshowhidemine": "moje editace",
 	"wlshowhidecategorization": "kategorizaci stránek",
 	"watchlist-options": "Možnosti sledovaných stránek",
+	"watchlist-mark-all-visited": "Jste si {{GENDER:|jist|jista|jisti}}, že chcete odznačit neprohlédnuté změny sledovaných stránek tím, že všechny stránky označíte jako navštívené?",
 	"watching": "Přidávám na seznam sledovaných stránek…",
 	"unwatching": "Odebírám ze seznamu sledovaných stránek…",
 	"watcherrortext": "Při změně sledování stránky „$1“ došlo k chybě.",
