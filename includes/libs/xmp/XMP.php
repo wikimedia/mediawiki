@@ -491,7 +491,7 @@ class XMPReader implements LoggerAwareInterface {
 	 * <exif:DigitalZoomRatio>0/10</exif:DigitalZoomRatio>
 	 * and are processing the 0/10 bit.
 	 *
-	 * @param XMLParser $parser XMLParser reference to the xml parser
+	 * @param resource $parser XMLParser reference to the xml parser
 	 * @param string $data Character data
 	 * @throws RuntimeException On invalid data
 	 */
@@ -776,7 +776,7 @@ class XMPReader implements LoggerAwareInterface {
 	 * Ignores the outer wrapping elements that are optional in
 	 * xmp and have no meaning.
 	 *
-	 * @param XMLParser $parser
+	 * @param resource $parser
 	 * @param string $elm Namespace . ' ' . element name
 	 * @throws RuntimeException
 	 */
@@ -1188,7 +1188,7 @@ class XMPReader implements LoggerAwareInterface {
 	 * Generally just calls a helper based on what MODE we're in.
 	 * Also does some initial set up for the wrapper element
 	 *
-	 * @param XMLParser $parser
+	 * @param resource $parser
 	 * @param string $elm Namespace "<space>" element
 	 * @param array $attribs Attribute name => value
 	 * @throws RuntimeException

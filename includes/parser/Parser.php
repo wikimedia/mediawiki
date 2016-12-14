@@ -5437,7 +5437,7 @@ class Parser {
 	 * External callers should use the getSection and replaceSection methods.
 	 *
 	 * @param string $text Page wikitext
-	 * @param string|number $sectionId A section identifier string of the form:
+	 * @param string|int $sectionId A section identifier string of the form:
 	 *   "<flag1> - <flag2> - ... - <section number>"
 	 *
 	 * Currently the only recognised flag is "T", which means the target section number
@@ -5578,7 +5578,7 @@ class Parser {
 	 * If a section contains subsections, these are also returned.
 	 *
 	 * @param string $text Text to look in
-	 * @param string|number $sectionId Section identifier as a number or string
+	 * @param string|int $sectionId Section identifier as a number or string
 	 * (e.g. 0, 1 or 'T-1').
 	 * @param string $defaultText Default to return if section is not found
 	 *
@@ -5594,7 +5594,7 @@ class Parser {
 	 * section does not exist, $oldtext is returned unchanged.
 	 *
 	 * @param string $oldText Former text of the article
-	 * @param string|number $sectionId Section identifier as a number or string
+	 * @param string|int $sectionId Section identifier as a number or string
 	 * (e.g. 0, 1 or 'T-1').
 	 * @param string $newText Replacing text
 	 *
