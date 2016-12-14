@@ -1405,7 +1405,7 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * @param string|number|null|bool $sectionId Section identifier as a number or string
+	 * @param string|int|null|bool $sectionId Section identifier as a number or string
 	 * (e.g. 0, 1 or 'T-1'), null/false or an empty string for the whole page
 	 * or 'new' for a new section.
 	 * @param Content $sectionContent New content of the section.
@@ -1445,7 +1445,7 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * @param string|number|null|bool $sectionId Section identifier as a number or string
+	 * @param string|int|null|bool $sectionId Section identifier as a number or string
 	 * (e.g. 0, 1 or 'T-1'), null/false or an empty string for the whole page
 	 * or 'new' for a new section.
 	 * @param Content $sectionContent New content of the section.

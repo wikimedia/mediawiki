@@ -22,6 +22,8 @@
  * @author Brian Wolff
  */
 
+use stdClass;
+
 /**
  * @ingroup SpecialPage
  */
@@ -339,7 +341,7 @@ class MediaStatisticsPage extends QueryPage {
 	 * we need to implement since abstract in parent class.
 	 *
 	 * @param Skin $skin
-	 * @param stdObject $result Result row
+	 * @param stdClass $result Result row
 	 * @return bool|string|void
 	 * @throws MWException
 	 */

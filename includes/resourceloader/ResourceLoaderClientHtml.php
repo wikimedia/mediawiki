@@ -56,7 +56,7 @@ class ResourceLoaderClientHtml {
 
 	/**
 	 * @param ResourceLoaderContext $context
-	 * @param aray $target [optional] Custom 'target' parameter for the startup module
+	 * @param string|null $target [optional] Custom 'target' parameter for the startup module
 	 */
 	public function __construct( ResourceLoaderContext $context, $target = null ) {
 		$this->context = $context;

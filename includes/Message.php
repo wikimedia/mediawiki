@@ -1054,9 +1054,9 @@ class Message implements MessageSpecifier, Serializable {
 	/**
 	 * @since 1.22
 	 *
-	 * @param number $period
+	 * @param int $period
 	 *
-	 * @return number[] Array with a single "period" key.
+	 * @return int[] Array with a single "period" key.
 	 */
 	public static function timeperiodParam( $period ) {
 		return [ 'period' => $period ];
