@@ -486,7 +486,7 @@ class ExtensionProcessor implements Processor {
 				}
 				$this->globals["$prefix$key"] = $value;
 				$data['providedby'] = $info['name'];
-				if ( isset( $info['ConfigRegistry'][0] ) ) {
+				if ( !empty( $info['ConfigRegistry'] ) ) {
 					$data['configregistry'] = array_keys( $info['ConfigRegistry'] )[0];
 				}
 				$this->config[$key] = $data;

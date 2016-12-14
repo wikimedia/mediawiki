@@ -29,6 +29,7 @@ class ResourceLoaderOOUIImageModuleTest extends ResourceLoaderTestCase {
 			'defines' => [],
 			'callbacks' => [],
 			'credits' => [],
+			'config' => [],
 			'autoloaderPaths' => [],
 			'attributes' => [
 				'SkinOOUIThemes' => [
