@@ -428,7 +428,7 @@ class ManualLogEntry extends LogEntryBase {
 	/** @var int ID of the log entry */
 	protected $id;
 
-	/** @var Can this log entry be patrolled? */
+	/** @var bool Can this log entry be patrolled? */
 	protected $isPatrollable = false;
 
 	/** @var bool Whether this is a legacy log entry */
