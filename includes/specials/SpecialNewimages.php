@@ -108,7 +108,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 			unset( $formDescriptor['hidepatrolled'] );
 		}
 
-		$form = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
+		HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
 			->setWrapperLegendMsg( 'newimages-legend' )
 			->setSubmitTextMsg( 'ilsubmit' )
 			->setMethod( 'get' )

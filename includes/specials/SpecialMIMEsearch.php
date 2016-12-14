@@ -119,7 +119,7 @@ class MIMEsearchPage extends QueryPage {
 			],
 		];
 
-		$form = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
+		HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
 			->setWrapperLegendMsg( 'mimesearch' )
 			->setSubmitTextMsg( 'ilsubmit' )
 			->setAction( $this->getPageTitle()->getLocalURL() )
