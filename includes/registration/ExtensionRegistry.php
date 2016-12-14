@@ -321,6 +321,10 @@ class ExtensionRegistry {
 		foreach ( $info['autoloaderPaths'] as $path ) {
 			require_once $path;
 		}
+		$configRepo = MediaWikiServices::getInstance()->getConfigRepository();
+		foreach ( $info['config'] as $name => $configItem ) {
+			$configRepo->add( $name, $configItem );
+		}
 
 		$this->loaded += $info['credits'];
 		if ( $info['attributes'] ) {
