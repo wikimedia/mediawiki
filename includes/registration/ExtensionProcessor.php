@@ -380,9 +380,12 @@ class ExtensionProcessor implements Processor {
 			} else {
 				$prefix = 'wg';
 			}
+			$configRegistry =
+				isset( $info['ConfigRegistry'] ) ? $info['ConfigRegistry'] : null;
 			foreach ( $info['config'] as $key => $val ) {
 				if ( $key[0] !== '@' ) {
 					$this->globals["$prefix$key"] = $val;
+					$this->addConfigItem( $key, $val, $info['name'], $configRegistry, null );
 				}
 			}
 		}
@@ -401,6 +404,7 @@ class ExtensionProcessor implements Processor {
 		} else {
 			$prefix = 'wg';
 		}
+		$configRegistry = isset( $info['ConfigRegistry'] ) ? $info['ConfigRegistry'] : null;
 		if ( isset( $info['config'] ) ) {
 			foreach ( $info['config'] as $key => $data ) {
 				$value = &$data['value'];
@@ -418,6 +422,27 @@ class ExtensionProcessor implements Processor {
 				$this->config[$key] = $data;
 			}
 		}
+	}
+
+	private function addConfigItem( $key, $value, $extName,
+		$configRegistry = null, $description = null
+	) {
+		$provider = new \MediaWiki\ConfigProvider\ExtensionConfigProvider();
+		$provider->setName( $extName );
+		$config = [
+			'name' => $key,
+			'defaultvalue' => $value,
+			'provider' => $provider,
+		];
+		if ( $configRegistry !== null ) {
+			$config['config'] = key( $configRegistry );
+		}
+		if ( $description ) {
+			$config['description'] = $description;
+		}
+		$configItem = \MediaWiki\Config\ConfigItemImpl::newFromArray( $config );
+
+		$this->configItems[] = $configItem;
 	}
 
 	protected function extractServiceWiringFiles( $dir, array $info ) {

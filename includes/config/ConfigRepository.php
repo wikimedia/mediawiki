@@ -21,7 +21,6 @@ namespace MediaWiki\Config;
  *
  * @file
  */
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Services\SalvageableService;
 use Wikimedia\Assert\Assert;
 
