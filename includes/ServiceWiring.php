@@ -38,6 +38,7 @@
  */
 
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
@@ -102,6 +103,10 @@ return [
 			$factory->register( $name, $callback );
 		}
 		return $factory;
+	},
+
+	'ConfigRepository' => function ( MediaWikiServices $services ) {
+		return new ConfigRepository( $services->getConfigFactory() );
 	},
 
 	'MainConfig' => function ( MediaWikiServices $services ) {

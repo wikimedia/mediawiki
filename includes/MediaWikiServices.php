@@ -28,6 +28,7 @@ use Wikimedia\Rdbms\LBFactory;
 use LinkCache;
 use Wikimedia\Rdbms\LoadBalancer;
 use MediaHandlerFactory;
+use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Services\SalvageableService;
@@ -862,6 +863,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getOldRevisionImporter() {
 		return $this->getService( 'OldRevisionImporter' );
+	}
+
+	/**
+	 * @return ConfigRepository
+	 */
+	public function getConfigRepository() {
+		return $this->getService( 'ConfigRepository' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////
