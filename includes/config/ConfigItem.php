@@ -90,7 +90,7 @@ interface ConfigItem {
 	/**
 	 * Sets the ConfigProvider which provides this configurationb object.
 	 *
-	 * @return ConfigProvider
+	 * @param $provider ConfigProvider
 	 */
 	public function setProvider( ConfigProvider $provider );
 
@@ -111,9 +111,19 @@ interface ConfigItem {
 	 * Other options are:
 	 *  * description: The description of the configuration
 	 *  * valueprovider: The provider, from which the value should be retrieved
+	 *  * config: Instead of valueprovider, the name of the config that can be retrieved from
+	 *    ConfigFactory
 	 *
 	 * @param array $array
 	 * @return ConfigItem
 	 */
 	public static function newFromArray( array $array );
+
+	/**
+	 * Sets the ConfigFactory instance for this ConfigItem.
+	 *
+	 * @param \ConfigFactory $configFactory
+	 * @return mixed
+	 */
+	public function setConfigFactory( \ConfigFactory $configFactory );
 }
