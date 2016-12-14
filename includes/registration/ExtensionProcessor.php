@@ -153,6 +153,11 @@ class ExtensionProcessor implements Processor {
 	protected $credits = [];
 
 	/**
+	 * @var array
+	 */
+	protected $configItems = [];
+
+	/**
 	 * Any thing else in the $info that hasn't
 	 * already been processed
 	 *
@@ -208,6 +213,7 @@ class ExtensionProcessor implements Processor {
 
 		return [
 			'globals' => $this->globals,
+			'config' => $this->configItems,
 			'defines' => $this->defines,
 			'callbacks' => $this->callbacks,
 			'credits' => $this->credits,
@@ -374,9 +380,12 @@ class ExtensionProcessor implements Processor {
 			} else {
 				$prefix = 'wg';
 			}
+			$configRegistry =
+				isset( $info['ConfigRegistry'] ) ? $info['ConfigRegistry'] : null;
 			foreach ( $info['config'] as $key => $val ) {
 				if ( $key[0] !== '@' ) {
 					$this->globals["$prefix$key"] = $val;
+					$this->addConfigItem( $key, $val, $info['name'], $configRegistry, null );
 				}
 			}
 		}
@@ -395,6 +404,7 @@ class ExtensionProcessor implements Processor {
 		} else {
 			$prefix = 'wg';
 		}
+		$configRegistry = isset( $info['ConfigRegistry'] ) ? $info['ConfigRegistry'] : null;
 		if ( isset( $info['config'] ) ) {
 			foreach ( $info['config'] as $key => $data ) {
 				$value = $data['value'];
@@ -405,8 +415,31 @@ class ExtensionProcessor implements Processor {
 					$value = "$dir/$value";
 				}
 				$this->globals["$prefix$key"] = $value;
+				$description = isset( $data['description'] ) ? $data['description'] : null;
+				$this->addConfigItem( $key, $value, $info['name'], $configRegistry, $description );
 			}
 		}
+	}
+
+	private function addConfigItem( $key, $value, $extName,
+		$configRegistry = null, $description = null
+	) {
+		$provider = new \MediaWiki\ConfigProvider\ExtensionConfigProvider();
+		$provider->setName( $extName );
+		$config = [
+			'name' => $key,
+			'defaultvalue' => $value,
+			'provider' => $provider,
+		];
+		if ( $configRegistry !== null ) {
+			$config['config'] = key( $configRegistry );
+		}
+		if ( $description ) {
+			$config['description'] = $description;
+		}
+		$configItem = \MediaWiki\Config\ConfigItemImpl::newFromArray( $config );
+
+		$this->configItems[] = $configItem;
 	}
 
 	protected function extractServiceWiringFiles( $dir, array $info ) {
