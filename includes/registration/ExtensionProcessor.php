@@ -153,6 +153,11 @@ class ExtensionProcessor implements Processor {
 	protected $credits = [];
 
 	/**
+	 * @var array
+	 */
+	protected $configItems = [];
+
+	/**
 	 * Any thing else in the $info that hasn't
 	 * already been processed
 	 *
@@ -208,6 +213,7 @@ class ExtensionProcessor implements Processor {
 
 		return [
 			'globals' => $this->globals,
+			'config' => $this->configItems,
 			'defines' => $this->defines,
 			'callbacks' => $this->callbacks,
 			'credits' => $this->credits,
@@ -377,6 +383,7 @@ class ExtensionProcessor implements Processor {
 			foreach ( $info['config'] as $key => $val ) {
 				if ( $key[0] !== '@' ) {
 					$this->globals["$prefix$key"] = $val;
+					$this->addConfigItem( $key, $val, $info );
 				}
 			}
 		}
@@ -405,8 +412,25 @@ class ExtensionProcessor implements Processor {
 					$value = "$dir/$value";
 				}
 				$this->globals["$prefix$key"] = $value;
+				$this->addConfigItem( $key, $value, $info );
 			}
 		}
+	}
+
+	private function addConfigItem( $key, $value, $info ) {
+		$provider = new \MediaWiki\ConfigProvider\ExtensionConfigProvider();
+		$provider->setName( $info['name'] );
+		$config = [
+			'name' => $key,
+			'defaultvalue' => $value,
+			'provider' => $provider,
+		];
+		if ( isset( $info['ConfigRegistry'] ) ) {
+			$config['config'] = key( $info['ConfigRegistry'] );
+		}
+		$configItem = \MediaWiki\Config\ConfigItemImpl::newFromArray( $config );
+
+		$this->configItems[] = $configItem;
 	}
 
 	protected function extractServiceWiringFiles( $dir, array $info ) {
