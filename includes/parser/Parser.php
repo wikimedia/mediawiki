@@ -88,7 +88,7 @@ class Parser {
 	# Constants needed for external link processing
 	# Everything except bracket, space, or control characters
 	# \p{Zs} is unicode 'separator, space' category. It covers the space 0x20
-	# as well as U+3000 is IDEOGRAPHIC SPACE for bug 19052
+	# as well as U+3000 is IDEOGRAPHIC SPACE for T21052
 	const EXT_LINK_URL_CLASS = '[^][<>"\\x00-\\x20\\x7F\p{Zs}]';
 	# Simplified expression to match an IPv4 or IPv6 address, or
 	# at least one character of a host name (embeds EXT_LINK_URL_CLASS)
@@ -271,7 +271,7 @@ class Parser {
 			# Preprocessor_Hash is much faster than Preprocessor_DOM under HipHop
 			$this->mPreprocessorClass = 'Preprocessor_Hash';
 		} elseif ( extension_loaded( 'domxml' ) ) {
-			# PECL extension that conflicts with the core DOM extension (bug 13770)
+			# PECL extension that conflicts with the core DOM extension (T15770)
 			wfDebug( "Warning: you have the obsolete domxml extension for PHP. Please remove it!\n" );
 			$this->mPreprocessorClass = 'Preprocessor_Hash';
 		} elseif ( extension_loaded( 'dom' ) ) {
@@ -300,7 +300,7 @@ class Parser {
 	public function __clone() {
 		$this->mInParse = false;
 
-		// Bug 56226: When you create a reference "to" an object field, that
+		// T58226: When you create a reference "to" an object field, that
 		// makes the object field itself be a reference too (until the other
 		// reference goes out of scope). When cloning, any field that's a
 		// reference is copied as a reference in the new object. Both of these
@@ -357,7 +357,7 @@ class Parser {
 
 		$this->mStripState = new StripState;
 
-		# Clear these on every parse, bug 4549
+		# Clear these on every parse, T6549
 		$this->mTplRedirCache = $this->mTplDomCache = [];
 
 		$this->mShowToc = true;
@@ -672,7 +672,7 @@ class Parser {
 	}
 
 	/**
-	 * Process the wikitext for the "?preload=" feature. (bug 5210)
+	 * Process the wikitext for the "?preload=" feature. (T7210)
 	 *
 	 * "<noinclude>", "<includeonly>" etc. are parsed as for template
 	 * transclusion, comments, templates, arguments, tags hooks and parser
@@ -1181,7 +1181,7 @@ class Parser {
 					# A cell could contain both parameters and data
 					$cell_data = explode( '|', $cell, 2 );
 
-					# Bug 553: Note that a '|' inside an invalid link should not
+					# T2553: Note that a '|' inside an invalid link should not
 					# be mistaken as delimiting cell parameters
 					if ( strpos( $cell_data[0], '[[' ) !== false ) {
 						$cell = "{$previous}<{$last_tag}>{$cell}";
@@ -1319,12 +1319,12 @@ class Parser {
 
 		# Clean up special characters, only run once, next-to-last before doBlockLevels
 		$fixtags = [
-			# french spaces, last one Guillemet-left
+			# French spaces, last one Guillemet-left
 			# only if there is something before the space
 			'/(.) (?=\\?|:|;|!|%|\\302\\273)/' => '\\1&#160;',
 			# french spaces, Guillemet-right
 			'/(\\302\\253) /' => '\\1&#160;',
-			'/&#160;(!\s*important)/' => ' \\1', # Beware of CSS magic word !important, bug #11874.
+			'/&#160;(!\s*important)/' => ' \\1', # Beware of CSS magic word !important, T13874.
 		];
 		$text = preg_replace( array_keys( $fixtags ), array_values( $fixtags ), $text );
 
@@ -1367,14 +1367,14 @@ class Parser {
 			}
 		} else {
 			# attempt to sanitize at least some nesting problems
-			# (bug #2702 and quite a few others)
+			# (T4702 and quite a few others)
 			$tidyregs = [
 				# ''Something [http://www.cool.com cool''] -->
 				# <i>Something</i><a href="http://www.cool.com"..><i>cool></i></a>
 				'/(<([bi])>)(<([bi])>)?([^<]*)(<\/?a[^<]*>)([^<]*)(<\/\\4>)?(<\/\\2>)/' =>
 				'\\1\\3\\5\\8\\9\\6\\1\\3\\7\\8\\9',
 				# fix up an anchor inside another anchor, only
-				# at least for a single single nested link (bug 3695)
+				# at least for a single single nested link (T5695)
 				'/(<a[^>]+>)([^<]*)(<a[^>]+>[^<]*)<\/a>(.*)<\/a>/' =>
 				'\\1\\2</a>\\3</a>\\1\\4</a>',
 				# fix div inside inline elements- doBlockLevels won't wrap a line which
@@ -1639,7 +1639,7 @@ class Parser {
 			$thislen = strlen( $arr[$i] );
 			// If there are ever four apostrophes, assume the first is supposed to
 			// be text, and the remaining three constitute mark-up for bold text.
-			// (bug 13227: ''''foo'''' turns into ' ''' foo ' ''')
+			// (T15227: ''''foo'''' turns into ' ''' foo ' ''')
 			if ( $thislen == 4 ) {
 				$arr[$i - 1] .= "'";
 				$arr[$i] = "'''";
@@ -1647,7 +1647,7 @@ class Parser {
 			} elseif ( $thislen > 5 ) {
 				// If there are more than 5 apostrophes in a row, assume they're all
 				// text except for the last 5.
-				// (bug 13227: ''''''foo'''''' turns into ' ''''' foo ' ''''')
+				// (T15227: ''''''foo'''''' turns into ' ''''' foo ' ''''')
 				$arr[$i - 1] .= str_repeat( "'", $thislen - 5 );
 				$arr[$i] = "'''''";
 				$thislen = 5;
@@ -2169,9 +2169,9 @@ class Parser {
 				# If we get a ] at the beginning of $m[3] that means we have a link that's something like:
 				# [[Image:Foo.jpg|[http://example.com desc]]] <- having three ] in a row fucks up,
 				# the real problem is with the $e1 regex
-				# See bug 1300.
+				# See T1500.
 				# Still some problems for cases where the ] is meant to be outside punctuation,
-				# and no image is in sight. See bug 2095.
+				# and no image is in sight. See T4095.
 				if ( $text !== ''
 					&& substr( $m[3], 0, 1 ) === ']'
 					&& strpos( $text, '[' ) !== false
@@ -2276,7 +2276,7 @@ class Parser {
 			if ( $wasblank ) {
 				$text = $link;
 			} else {
-				# Bug 4598 madness. Handle the quotes only if they come from the alternate part
+				# T6598 madness. Handle the quotes only if they come from the alternate part
 				# [[Lista d''e paise d''o munno]] -> <a href="...">Lista d''e paise d''o munno</a>
 				# [[Criticism of Harry Potter|Criticism of ''Harry Potter'']]
 				#    -> <a href="Criticism of Harry Potter">Criticism of <i>Harry Potter</i></a>
@@ -2292,7 +2292,7 @@ class Parser {
 						in_array( $iw, $wgExtraInterlanguageLinkPrefixes )
 					)
 				) {
-					# Bug 24502: filter duplicates
+					# T26502: filter duplicates
 					if ( !isset( $this->mLangLinkLanguages[$iw] ) ) {
 						$this->mLangLinkLanguages[$iw] = true;
 						$this->mOutput->addLanguageLink( $nt->getFullText() );
@@ -2324,7 +2324,7 @@ class Parser {
 						continue;
 					}
 				} elseif ( $ns == NS_CATEGORY ) {
-					$s = rtrim( $s . "\n" ); # bug 87
+					$s = rtrim( $s . "\n" ); # T2087
 
 					if ( $wasblank ) {
 						$sortkey = $this->getDefaultSort();
@@ -2337,7 +2337,7 @@ class Parser {
 					$this->mOutput->addCategory( $nt->getDBkey(), $sortkey );
 
 					/**
-					 * Strip the whitespace Category links produce, see bug 87
+					 * Strip the whitespace Category links produce, see T2087
 					 */
 					$s .= trim( $prefix . $trail, "\n" ) == '' ? '' : $prefix . $trail;
 
@@ -2606,7 +2606,7 @@ class Parser {
 				$subjPage = $this->mTitle->getSubjectPage();
 				$value = wfEscapeWikiText( $subjPage->getPrefixedURL() );
 				break;
-			case 'pageid': // requested in bug 23427
+			case 'pageid': // requested in T25427
 				$pageid = $this->getTitle()->getArticleID();
 				if ( $pageid == 0 ) {
 					# 0 means the page doesn't exist in the database,
@@ -2717,7 +2717,7 @@ class Parser {
 				$value = $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'H' ), true );
 				break;
 			case 'currentweek':
-				# @bug 4594 PHP5 has it zero padded, PHP4 does not, cast to
+				# @bug T6594 PHP5 has it zero padded, PHP4 does not, cast to
 				# int to remove the padding
 				$value = $pageLang->formatNum( (int)MWTimestamp::getInstance( $ts )->format( 'W' ) );
 				break;
@@ -2743,7 +2743,7 @@ class Parser {
 				$value = $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'H' ), true );
 				break;
 			case 'localweek':
-				# @bug 4594 PHP5 has it zero padded, PHP4 does not, cast to
+				# @bug T6594 PHP5 has it zero padded, PHP4 does not, cast to
 				# int to remove the padding
 				$value = $pageLang->formatNum( (int)MWTimestamp::getLocalInstance( $ts )->format( 'W' ) );
 				break;
@@ -2840,7 +2840,7 @@ class Parser {
 	 *     included. Default is to assume a direct page view.
 	 *
 	 * The generated DOM tree must depend only on the input text and the flags.
-	 * The DOM tree must be the same in OT_HTML and OT_WIKI mode, to avoid a regression of bug 4899.
+	 * The DOM tree must be the same in OT_HTML and OT_WIKI mode, to avoid a regression of T6899.
 	 *
 	 * Any flag added to the $flags parameter here, or any other parameter liable to cause a
 	 * change in the DOM tree for a given text, must be passed through the section identifier
@@ -3275,7 +3275,7 @@ class Parser {
 			&& !$piece['lineStart']
 			&& preg_match( '/^(?:{\\||:|;|#|\*)/', $text )
 		) {
-			# Bug 529: if the template begins with a table or block-level
+			# T2529: if the template begins with a table or block-level
 			# element, it should be treated as beginning a new line.
 			# This behavior is somewhat controversial.
 			$text = "\n" . $text;
@@ -3284,7 +3284,7 @@ class Parser {
 		if ( is_string( $text ) && !$this->incrementIncludeSize( 'post-expand', strlen( $text ) ) ) {
 			# Error, oversize inclusion
 			if ( $titleText !== false ) {
-				# Make a working, properly escaped link if possible (bug 23588)
+				# Make a working, properly escaped link if possible (T25588)
 				$text = "[[:$titleText]]";
 			} else {
 				# This will probably not be a working link, but at least it may
@@ -3968,9 +3968,8 @@ class Parser {
 		) {
 			$this->addTrackingCategory( 'hidden-category-category' );
 		}
-		# (bug 8068) Allow control over whether robots index a page.
-		# @todo FIXME: Bug 14899: __INDEX__ always overrides __NOINDEX__ here!  This
-		# is not desirable, the last one on the page should win.
+		# (T10068) Allow control over whether robots index a page.
+		# __INDEX__ always overrides __NOINDEX__, see T16899
 		if ( isset( $this->mDoubleUnderscores['noindex'] ) && $this->mTitle->canUseNoindex() ) {
 			$this->mOutput->setIndexPolicy( 'noindex' );
 			$this->addTrackingCategory( 'noindex-category' );
@@ -4177,11 +4176,11 @@ class Parser {
 
 			# Strip out HTML (first regex removes any tag not allowed)
 			# Allowed tags are:
-			# * <sup> and <sub> (bug 8393)
-			# * <i> (bug 26375)
+			# * <sup> and <sub> (T10393)
+			# * <i> (T28375)
 			# * <b> (r105284)
-			# * <bdi> (bug 72884)
-			# * <span dir="rtl"> and <span dir="ltr"> (bug 35167)
+			# * <bdi> (T74884)
+			# * <span dir="rtl"> and <span dir="ltr"> (T37167)
 			# * <s> and <strike> (T35715)
 			# We strip any parameter from accepted tags (second regex), except dir="rtl|ltr" from <span>,
 			# to allow setting directionality in toc items.
@@ -4232,7 +4231,7 @@ class Parser {
 					'noninitial' );
 			}
 
-			# HTML names must be case-insensitively unique (bug 10721).
+			# HTML names must be case-insensitively unique (T12721).
 			# This does not apply to Unicode characters per
 			# https://www.w3.org/TR/html5/infrastructure.html#case-sensitivity-and-string-comparison
 			# @todo FIXME: We may be changing them depending on the current locale.
@@ -4463,7 +4462,7 @@ class Parser {
 		# the database, we use $wgContLang here in order to give
 		# everyone the same signature and use the default one rather
 		# than the one selected in each user's preferences.
-		# (see also bug 12815)
+		# (see also T14815)
 		$ts = $this->mOptions->getTimestamp();
 		$timestamp = MWTimestamp::getLocalInstance( $ts );
 		$ts = $timestamp->format( 'YmdHis' );
@@ -5199,7 +5198,7 @@ class Parser {
 							$validated = true;
 						}
 					}
-					# else no validation -- bug 13436
+					# else no validation -- T15436
 				} else {
 					if ( $type === 'handler' ) {
 						# Validate handler parameter
@@ -5445,7 +5444,7 @@ class Parser {
 	 * was derived during a template inclusion parse, in other words this is a template
 	 * section edit link. If no flags are given, it was an ordinary section edit link.
 	 * This flag is required to avoid a section numbering mismatch when a section is
-	 * enclosed by "<includeonly>" (bug 6563).
+	 * enclosed by "<includeonly>" (T8563).
 	 *
 	 * The section number 0 pulls the text before the first heading; other numbers will
 	 * pull the given section along with its lower-level subsections. If the section is
@@ -5986,7 +5985,7 @@ class Parser {
 			return $parsedWidthParam;
 		}
 		$m = [];
-		# (bug 13500) In both cases (width/height and width only),
+		# (T15500) In both cases (width/height and width only),
 		# permit trailing "px" for backward compatibility.
 		if ( preg_match( '/^([0-9]*)x([0-9]*)\s*(?:px)?\s*$/', $value, $m ) ) {
 			$width = intval( $m[1] );
