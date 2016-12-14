@@ -134,14 +134,11 @@
 				.done( function ( watchResponse ) {
 					var mwTitle, message, otherAction = action === 'watch' ? 'unwatch' : 'watch';
 
-					message = action === 'watch' ? 'addedwatchtext' : 'removedwatchtext';
 					mwTitle = mw.Title.newFromText( title );
-					if ( mwTitle && mwTitle.getNamespaceId() > 0 &&
-						/* eslint-disable no-bitwise */
-						( mwTitle.getNamespaceId() & 1 ) === 1
-						/* eslint-enable no-bitwise */
-					) {
-						message += '-talk';
+					if ( mwTitle && mwTitle.getNamespaceId() > 0 && mwTitle.getNamespaceId() % 2 === 1 ) {
+						message = action === 'watch' ? 'addedwatchtext-talk' : 'removedwatchtext-talk';
+					} else {
+						message = action === 'watch' ? 'addedwatchtext' : 'removedwatchtext';
 					}
 
 					mw.notify( mw.message( message, title ).parseDom(), {
