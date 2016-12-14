@@ -206,7 +206,7 @@ class DeletedContributionsPage extends SpecialPage {
 			],
 		];
 
-		$form = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
+		HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
 			->setWrapperLegendMsg( 'sp-contributions-search' )
 			->setSubmitTextMsg( 'sp-contributions-submit' )
 			// prevent setting subpage and 'target' parameter at the same time

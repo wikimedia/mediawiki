@@ -341,8 +341,6 @@ return [
 		"PhanTypeMissingReturn",
 		// approximate error count: 5
 		"PhanTypeNonVarPassByRef",
-		// approximate error count: 3
-		"PhanTypeVoidAssignment",
 		// approximate error count: 27
 		"PhanUndeclaredConstant",
 		// approximate error count: 185
