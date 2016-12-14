@@ -323,8 +323,6 @@ return [
 		"PhanTypeArraySuspicious",
 		// approximate error count: 4
 		"PhanTypeComparisonFromArray",
-		// approximate error count: 1
-		"PhanTypeInvalidLeftOperand",
 		// approximate error count: 3
 		"PhanTypeInvalidRightOperand",
 		// approximate error count: 563
