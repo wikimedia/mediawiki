@@ -51,6 +51,11 @@ class ConfigItemImpl implements ConfigItem {
 	private $valueProvider;
 
 	/**
+	 * @var string
+	 */
+	private $configFactoryName;
+
+	/**
 	 * @var ConfigProvider
 	 */
 	private $provider;
@@ -60,12 +65,12 @@ class ConfigItemImpl implements ConfigItem {
 	}
 
 	public function getValue() {
-		if ( $this->valueProvider === null ) {
+		if ( $this->getValueProvider() === null ) {
 			throw new \ConfigException(
 				'No provider set to retrieve the value of the config item: ' . $this->getName() );
 		}
 
-		return $this->valueProvider->get( $this->getName() );
+		return $this->getValueProvider()->get( $this->getName() );
 	}
 
 	public function getDefaultValue() {
@@ -85,7 +90,12 @@ class ConfigItemImpl implements ConfigItem {
 	}
 
 	public function getValueProvider() {
-		return $this->getValueProvider();
+		if ( $this->valueProvider === null && $this->configFactoryName !== null ) {
+			$this->valueProvider = \MediaWiki\MediaWikiServices::getInstance()
+				->getConfigFactory()
+				->makeConfig( $this->configFactoryName );
+		}
+		return $this->valueProvider;
 	}
 
 	public function setProvider( ConfigProvider $provider ) {
@@ -118,6 +128,9 @@ class ConfigItemImpl implements ConfigItem {
 		}
 		if ( isset( $arr['valueprovider'] ) ) {
 			$retval->valueProvider = $arr['valueprovider'];
+		}
+		if ( isset( $arr['config'] ) ) {
+			$retval->configFactoryName = $arr['config'];
 		}
 
 		return $retval;
