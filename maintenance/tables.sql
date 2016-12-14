@@ -676,12 +676,19 @@ CREATE TABLE /*_*/externallinks (
   -- which allows for fast searching for all pages under example.com with the
   -- clause:
   --      WHERE el_index LIKE 'http://com.example.%'
-  el_index blob NOT NULL
+  el_index blob NOT NULL,
+
+  -- This is el_index truncated to 60 bytes to allow for sortable queries that
+  -- aren't supported by a partial index.
+  -- @todo Drop the default once this is deployed everywhere and code is populating it.
+  el_index_60 varbinary(60) NOT NULL default ''
 ) /*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/el_from ON /*_*/externallinks (el_from, el_to(40));
 CREATE INDEX /*i*/el_to ON /*_*/externallinks (el_to(60), el_from);
 CREATE INDEX /*i*/el_index ON /*_*/externallinks (el_index(60));
+CREATE INDEX /*i*/el_index_60 ON /*_*/externallinks (el_index_60, el_id);
+CREATE INDEX /*i*/el_from_index_60 ON /*_*/externallinks (el_from, el_index_60, el_id);
 
 --
 -- Track interlanguage links

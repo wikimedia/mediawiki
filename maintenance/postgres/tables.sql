@@ -254,13 +254,16 @@ CREATE INDEX cl_sortkey     ON categorylinks (cl_to, cl_sortkey, cl_from);
 
 CREATE SEQUENCE externallinks_el_id_seq;
 CREATE TABLE externallinks (
-  el_id     INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('externallinks_el_id_seq'),
-  el_from   INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  el_to     TEXT     NOT NULL,
-  el_index  TEXT     NOT NULL
+  el_id       INTEGER     NOT NULL  PRIMARY KEY DEFAULT nextval('externallinks_el_id_seq'),
+  el_from     INTEGER     NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  el_to       TEXT        NOT NULL,
+  el_index    TEXT        NOT NULL,
+  el_index_60 BYTEA       NOT NULL  DEFAULT ''
 );
 CREATE INDEX externallinks_from_to ON externallinks (el_from,el_to);
 CREATE INDEX externallinks_index   ON externallinks (el_index);
+CREATE INDEX el_index_60           ON externallinks (el_index_60, el_id);
+CREATE INDEX el_from_index_60      ON externallinks (el_from, el_index_60, el_id);
 
 CREATE TABLE langlinks (
   ll_from    INTEGER  NOT NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
