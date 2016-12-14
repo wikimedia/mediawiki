@@ -1218,7 +1218,8 @@ class Preferences {
 		$pixels = $context->msg( 'unit-pixel' )->text();
 
 		foreach ( $context->getConfig()->get( 'ImageLimits' ) as $index => $limits ) {
-			$display = "{$limits[0]}×{$limits[1]}" . $pixels;
+			// Note: A left-to-right marker (\u200e) is inserted, see T144386
+			$display = "{$limits[0]}" . json_decode( '"\u200e"' ) . "×{$limits[1]}" . $pixels;
 			$ret[$display] = $index;
 		}
 
