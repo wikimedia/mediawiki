@@ -138,8 +138,7 @@ abstract class Password {
 	 *
 	 * @return bool True if needs update, false otherwise
 	 */
-	public function needsUpdate() {
-	}
+	abstract public function needsUpdate();
 
 	/**
 	 * Compare one Password object to this object

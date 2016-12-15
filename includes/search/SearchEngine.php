@@ -104,7 +104,6 @@ abstract class SearchEngine {
 	 * @since 1.18
 	 * @param string $feature
 	 * @param mixed $data
-	 * @return bool
 	 */
 	public function setFeatureData( $feature, $data ) {
 		$this->features[$feature] = $data;
