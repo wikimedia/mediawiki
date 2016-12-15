@@ -31,7 +31,7 @@ class ExtensionRegistry {
 	/**
 	 * Bump whenever the registration cache needs resetting
 	 */
-	const CACHE_VERSION = 4;
+	const CACHE_VERSION = 5;
 
 	/**
 	 * Special key that defines the merge strategy
@@ -203,8 +203,7 @@ class ExtensionRegistry {
 		$autoloadClasses = [];
 		$autoloaderPaths = [];
 		$processor = new ExtensionProcessor();
-		$versionChecker = new VersionChecker();
-		$versionChecker->setCoreVersion( $wgVersion );
+		$versionChecker = new VersionChecker( $wgVersion );
 		$extDependencies = [];
 		$incompatible = [];
 		foreach ( $queue as $path => $mtime ) {
