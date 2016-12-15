@@ -11,6 +11,9 @@
 	 * @cfg {string} [label] The label for the filter
 	 * @cfg {string} [description] The description of the filter
 	 * @cfg {boolean} [selected] Filter is selected
+	 * @cfg {boolean} [active=true] The filter is active and affecting the result
+	 * @cfg {string[]} [excludes=[]] A list of filter names this filter, if
+	 *  selected, makes inactive.
 	 */
 	mw.rcfilters.dm.FilterItem = function MwRcfiltersDmFilterItem( name, config ) {
 		config = config || {};
@@ -24,6 +27,8 @@
 		this.description = config.description;
 
 		this.selected = !!config.selected;
+		this.active = config.active === undefined ? true : !!config.active;
+		this.excludes = config.excludes || [];
 	};
 
 	/* Initialization */
@@ -84,6 +89,48 @@
 	 */
 	mw.rcfilters.dm.FilterItem.prototype.isSelected = function () {
 		return this.selected;
+	};
+
+	/**
+	 * Check if this filter is active
+	 *
+	 * @return {boolean} Filter is active
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.isActive = function () {
+		return this.active;
+	};
+
+	/**
+	 * Check if this filter has a list of excluded filters
+	 *
+	 * @return {boolean} Filter has a list of excluded filters
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.hasExcludedFilters = function () {
+		return !!this.excludes.length;
+	};
+
+	/**
+	 * Get this filter's list of excluded filters
+	 *
+	 * @return {string[]} Array of excluded filter names
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.getExcludedFilters = function () {
+		return this.excludes;
+	};
+
+	/**
+	 * Toggle the active state of the item
+	 *
+	 * @param {boolean} [isActive] Filter is active
+	 * @fires update
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.toggleActive = function ( isActive ) {
+		isActive = isActive === undefined ? !this.active : isActive;
+
+		if ( this.active !== isActive ) {
+			this.active = isActive;
+			this.emit( 'update' );
+		}
 	};
 
 	/**
