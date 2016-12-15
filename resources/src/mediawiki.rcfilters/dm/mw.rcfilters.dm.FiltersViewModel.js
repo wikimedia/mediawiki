@@ -15,6 +15,7 @@
 		this.groups = {};
 		this.parameters = {};
 		this.loading = true;
+		this.excludedByMap = {};
 
 		// Events
 		this.aggregate( { update: 'filterItemUpdate' } );
@@ -45,6 +46,7 @@
 	 * @event itemUpdate
 	 * @param {mw.rcfilters.dm.FilterItem} item Filter item updated
 	 * @param {boolean} isSelected Filter is selected
+	 * @param {boolean} isActive Filter is active
 	 *
 	 * Filter item has changed
 	 */
@@ -58,10 +60,83 @@
 	 * @param {boolean} isSelected Filter item is selected
 	 * @fires filterUpdate
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.onFilterItemUpdate = function ( item, isSelected ) {
+	mw.rcfilters.dm.FiltersViewModel.prototype.onFilterItemUpdate = function ( item ) {
 		// Update parameter state
 		this.updateParameters( this.getFiltersToParameters() );
-		this.emit( 'itemUpdate', item, isSelected );
+
+		this.reapplyActiveFilters( item );
+
+		this.emit( 'itemUpdate', item );
+	};
+
+	/**
+	 * Calculate the active state of the filters, based on selected filters in the group.
+	 *
+	 * @param {mw.rcfilters.dm.FilterItem} item Changed item
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.reapplyActiveFilters = function ( item ) {
+		var excludedFilters, exclusionMap,
+			group = item.getGroup(),
+			model = this,
+			selectedItemCounter = 0;
+
+debugger;
+		if (
+			!this.groups[ group ].exclusion_type ||
+			this.groups[ group ].exclusion_type === 'default'
+		) {
+			// Default behavior
+			// - If there are unselected items in the group, they are inactive
+			// - If the entire group is selected, all are inactive
+
+			// Check what's selected in the group
+			selectedItemCounter = 0;
+			this.groups[ group ].filters.forEach( function ( filterItem ) {
+				selectedItemCounter += Number( filterItem.isSelected() );
+			} );
+
+			this.groups[ group ].filters.forEach( function ( filterItem ) {
+				if ( selectedItemCounter === model.groups[ group ].filters.length ) {
+					// All items are selected; they're all inactive
+					filterItem.toggleActive( false );
+				} else {
+					// Some items are selected.. the unselected ones are inactive
+					filterItem.toggleActive( filterItem.isSelected() );
+				}
+			} );
+		} else if ( this.groups[ group ].exclusion_type === 'explicit' ) {
+			// Explicit behavior
+			// - Go over the list of excluded filters to change their
+			//   active states accordingly
+			if ( item.hasExcludedFilters() ) {
+				// For each item in the list, see if there are other selected
+				// filters that also exclude it. If it does, it will still be
+				// inactive.
+				item.getExcludedFilters().forEach( function ( filterName ) {
+					var filterItem = model.getItemByName( filterName ),
+						excludedByAnotherSelectedFilter = false;
+
+					model.excludedByMap[ filterName ].forEach( function ( anotherExcludingFilterName ) {
+						var anotherExcludingFilter;
+						if (
+							!excludedByAnotherSelectedFilter &&
+							anotherExcludingFilter !== item.getName()
+						) {
+							anotherExcludingFilter = model.getItemByName( anotherExcludingFilterName );
+							if ( anotherExcludingFilter.isSelected() ) {
+								excludedByAnotherSelectedFilter = true;
+							}
+						}
+					} );
+
+					if ( !excludedByAnotherSelectedFilter ) {
+						// Only change the state for filters that aren't
+						// also affected by other excluding selected filters
+						filterItem.toggleActive( !item.isSelected() );
+					}
+				} );
+			}
+		}
 	};
 
 	/**
@@ -71,13 +146,14 @@
 	 * @param {Object} filters Filter group definition
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.initializeFilters = function ( filters ) {
-		var i, filterItem,
+		var i, filterItem, excludedFilters,
 			model = this,
 			items = [];
 
 		// Reset
 		this.clearItems();
 		this.groups = {};
+		this.exclusionMap = {};
 
 		$.each( filters, function ( group, data ) {
 			model.groups[ group ] = model.groups[ group ] || {};
@@ -86,14 +162,26 @@
 			model.groups[ group ].title = data.title;
 			model.groups[ group ].type = data.type;
 			model.groups[ group ].separator = data.separator || '|';
+			model.groups[ group ].exclusion_type = data.exclusion_type || 'default';
 
 			for ( i = 0; i < data.filters.length; i++ ) {
+				excludedFilters = data.filters[ i ].excludes || [];
+
 				filterItem = new mw.rcfilters.dm.FilterItem( data.filters[ i ].name, {
 					group: group,
 					label: data.filters[ i ].label,
 					description: data.filters[ i ].description,
-					selected: data.filters[ i ].selected
+					selected: data.filters[ i ].selected,
+					excludes: excludedFilters
 				} );
+
+				if ( excludedFilters.length ) {
+					// Map filters and what excludes them
+					excludedFilters.forEach( function ( filterName ) {
+						model.excludedByMap[ filterName ] = model.exclusionMap[ filterName ] || [];
+						model.excludedByMap[ filterName ].push( filterItem.getName() );
+					} );
+				}
 
 				model.groups[ group ].filters.push( filterItem );
 				items.push( filterItem );
@@ -255,6 +343,27 @@
 	};
 
 	/**
+	 * Checks whether the filter group is active. This means at least one
+	 * filter is selected, but not all filters are selected.
+	 *
+	 * @param {string} groupName Group name
+	 * @return {boolean} Filter group is active
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.isFilterGroupActive = function ( groupName ) {
+		var count = 0,
+			filters = this.groups[ groupName ].filters;
+
+		filters.forEach( function ( filterItem ) {
+			count += Number( filterItem.isSelected() );
+		} );
+
+		return (
+			count > 0 &&
+			count < filters.length
+		);
+	};
+
+	/**
 	 * Update the representation of the parameters. These are the back-end
 	 * parameters representing the filters, but they represent the given
 	 * current state regardless of validity.
@@ -285,17 +394,37 @@
 	};
 
 	/**
-	 * Get the current state of the filters
+	 * Get the current selected state of the filters
 	 *
-	 * @return {Object} Filters current state
+	 * @return {Object} Filters selected state
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.getState = function () {
+	mw.rcfilters.dm.FiltersViewModel.prototype.getSelectedState = function () {
 		var i,
 			items = this.getItems(),
 			result = {};
 
 		for ( i = 0; i < items.length; i++ ) {
 			result[ items[ i ].getName() ] = items[ i ].isSelected();
+		}
+
+		return result;
+	};
+
+	/**
+	 * Get the current full state of the filters
+	 *
+	 * @return {Object} Filters full state
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getFullState = function () {
+		var i,
+			items = this.getItems(),
+			result = {};
+
+		for ( i = 0; i < items.length; i++ ) {
+			result[ items[ i ].getName() ] = {
+				selected: items[ i ].isSelected(),
+				active: items[ i ].isActive()
+			};
 		}
 
 		return result;
@@ -403,7 +532,7 @@
 			model = this,
 			base = this.getFiltersToParameters(),
 			// Start with current state
-			result = this.getState();
+			result = this.getSelectedState();
 
 		params = $.extend( {}, base, params );
 
