@@ -51,14 +51,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 		$params = $this->extractRequestParams();
 
 		if ( isset( $params['title'] ) && !isset( $params['prefix'] ) ) {
-			$this->dieWithError(
-				[
-					'apierror-invalidparammix-mustusewith',
-					$this->encodeParamName( 'title' ),
-					$this->encodeParamName( 'prefix' ),
-				],
-				'invalidparammix'
-			);
+			$this->dieUsageMsg( [ 'missingparam', 'prefix' ] );
 		}
 
 		if ( !is_null( $params['continue'] ) ) {

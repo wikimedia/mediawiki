@@ -36,22 +36,24 @@ class ApiRevisionDelete extends ApiBase {
 
 		$params = $this->extractRequestParams();
 		$user = $this->getUser();
-		$this->checkUserRightsAny( RevisionDeleter::getRestriction( $params['type'] ) );
+		if ( !$user->isAllowed( RevisionDeleter::getRestriction( $params['type'] ) ) ) {
+			$this->dieUsageMsg( 'badaccess-group0' );
+		}
 
 		if ( $user->isBlocked() ) {
 			$this->dieBlocked( $user->getBlock() );
 		}
 
 		if ( !$params['ids'] ) {
-			$this->dieWithError( [ 'apierror-paramempty', 'ids' ], 'paramempty_ids' );
+			$this->dieUsage( "At least one value is required for 'ids'", 'badparams' );
 		}
 
 		$hide = $params['hide'] ?: [];
 		$show = $params['show'] ?: [];
 		if ( array_intersect( $hide, $show ) ) {
-			$this->dieWithError( 'apierror-revdel-mutuallyexclusive', 'badparams' );
+			$this->dieUsage( "Mutually exclusive values for 'hide' and 'show'", 'badparams' );
 		} elseif ( !$hide && !$show ) {
-			$this->dieWithError( 'apierror-revdel-paramneeded', 'badparams' );
+			$this->dieUsage( "At least one value is required for 'hide' or 'show'", 'badparams' );
 		}
 		$bits = [
 			'content' => RevisionDeleter::getRevdelConstant( $params['type'] ),
@@ -70,7 +72,9 @@ class ApiRevisionDelete extends ApiBase {
 		}
 
 		if ( $params['suppress'] === 'yes' ) {
-			$this->checkUserRightsAny( 'suppressrevision' );
+			if ( !$user->isAllowed( 'suppressrevision' ) ) {
+				$this->dieUsageMsg( 'badaccess-group0' );
+			}
 			$bitfield[Revision::DELETED_RESTRICTED] = 1;
 		} elseif ( $params['suppress'] === 'no' ) {
 			$bitfield[Revision::DELETED_RESTRICTED] = 0;
@@ -84,7 +88,7 @@ class ApiRevisionDelete extends ApiBase {
 		}
 		$targetObj = RevisionDeleter::suggestTarget( $params['type'], $targetObj, $params['ids'] );
 		if ( $targetObj === null ) {
-			$this->dieWithError( [ 'apierror-revdel-needtarget' ], 'needtarget' );
+			$this->dieUsage( 'A target title is required for this RevDel type', 'needtarget' );
 		}
 
 		$list = RevisionDeleter::createList(

@@ -310,7 +310,7 @@ class ApiQuery extends ApiBase {
 					ApiBase::dieDebug( __METHOD__, 'Error instantiating module' );
 				}
 				if ( !$wasPosted && $instance->mustBePosted() ) {
-					$this->dieWithErrorOrDebug( [ 'apierror-mustbeposted', $moduleName ] );
+					$this->dieUsageMsgOrDebug( [ 'mustbeposted', $moduleName ] );
 				}
 				// Ignore duplicates. TODO 2.0: die()?
 				if ( !array_key_exists( $moduleName, $modules ) ) {
@@ -415,7 +415,11 @@ class ApiQuery extends ApiBase {
 		}
 
 		if ( !$fit ) {
-			$this->dieWithError( 'apierror-badconfig-resulttoosmall', 'badconfig' );
+			$this->dieUsage(
+				'The value of $wgAPIMaxResultSize on this wiki is ' .
+					'too small to hold basic result information',
+				'badconfig'
+			);
 		}
 
 		if ( $this->mParams['export'] ) {

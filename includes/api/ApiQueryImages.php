@@ -90,7 +90,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 			foreach ( $params['images'] as $img ) {
 				$title = Title::newFromText( $img );
 				if ( !$title || $title->getNamespace() != NS_FILE ) {
-					$this->addWarning( [ 'apiwarn-notfile', wfEscapeWikiText( $img ) ] );
+					$this->setWarning( "\"$img\" is not a file" );
 				} else {
 					$images[] = $title->getDBkey();
 				}

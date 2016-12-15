@@ -12,8 +12,4 @@ class MockApiQueryBase extends ApiQueryBase {
 	public function getModuleName() {
 		return $this->name;
 	}
-
-	public function getModulePath() {
-		return 'query+' . $this->getModuleName();
-	}
 }

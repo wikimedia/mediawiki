@@ -114,13 +114,16 @@ class ApiQueryBlocks extends ApiQueryBase {
 				$cidrLimit = $blockCIDRLimit['IPv6'];
 				$prefixLen = 3; // IP::toHex output is prefixed with "v6-"
 			} else {
-				$this->dieWithError( 'apierror-badip', 'param_ip' );
+				$this->dieUsage( 'IP parameter is not valid', 'param_ip' );
 			}
 
 			# Check range validity, if it's a CIDR
 			list( $ip, $range ) = IP::parseCIDR( $params['ip'] );
 			if ( $ip !== false && $range !== false && $range < $cidrLimit ) {
-				$this->dieWithError( [ 'apierror-cidrtoobroad', $type, $cidrLimit ] );
+				$this->dieUsage(
+					"$type CIDR ranges broader than /$cidrLimit are not accepted",
+					'cidrtoobroad'
+				);
 			}
 
 			# Let IP::parseRange handle calculating $upper, instead of duplicating the logic here.
@@ -151,7 +154,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 				|| ( isset( $show['range'] ) && isset( $show['!range'] ) )
 				|| ( isset( $show['temp'] ) && isset( $show['!temp'] ) )
 			) {
-				$this->dieWithError( 'apierror-show' );
+				$this->dieUsageMsg( 'show' );
 			}
 
 			$this->addWhereIf( 'ipb_user = 0', isset( $show['!account'] ) );
@@ -234,19 +237,13 @@ class ApiQueryBlocks extends ApiQueryBase {
 
 	protected function prepareUsername( $user ) {
 		if ( !$user ) {
-			$encParamName = $this->encodeParamName( 'users' );
-			$this->dieWithError( [ 'apierror-baduser', $encParamName, wfEscapeWikiText( $user ) ],
-				"baduser_{$encParamName}"
-			);
+			$this->dieUsage( 'User parameter may not be empty', 'param_user' );
 		}
 		$name = User::isIP( $user )
 			? $user
 			: User::getCanonicalName( $user, 'valid' );
 		if ( $name === false ) {
-			$encParamName = $this->encodeParamName( 'users' );
-			$this->dieWithError( [ 'apierror-baduser', $encParamName, wfEscapeWikiText( $user ) ],
-				"baduser_{$encParamName}"
-			);
+			$this->dieUsage( "User name {$user} is not valid", 'param_user' );
 		}
 		return $name;
 	}

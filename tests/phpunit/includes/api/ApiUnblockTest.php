@@ -14,7 +14,7 @@ class ApiUnblockTest extends ApiTestCase {
 	}
 
 	/**
-	 * @expectedException ApiUsageException
+	 * @expectedException UsageException
 	 */
 	public function testWithNoToken() {
 		$this->doApiRequest(

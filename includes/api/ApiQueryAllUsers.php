@@ -110,7 +110,9 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			}
 		}
 
-		$this->requireMaxOneParameter( $params, 'group', 'excludegroup' );
+		if ( !is_null( $params['group'] ) && !is_null( $params['excludegroup'] ) ) {
+			$this->dieUsage( 'group and excludegroup cannot be used together', 'group-excludegroup' );
+		}
 
 		if ( !is_null( $params['group'] ) && count( $params['group'] ) ) {
 			// Filter only users that belong to a given group. This might

@@ -31,10 +31,10 @@
 class ApiTokens extends ApiBase {
 
 	public function execute() {
-		$this->addDeprecation(
-			[ 'apiwarn-deprecation-withreplacement', 'action=tokens', 'action=query&meta=tokens' ],
-			'action=tokens'
+		$this->setWarning(
+			'action=tokens has been deprecated. Please use action=query&meta=tokens instead.'
 		);
+		$this->logFeatureUsage( 'action=tokens' );
 
 		$params = $this->extractRequestParams();
 		$res = [
@@ -46,7 +46,7 @@ class ApiTokens extends ApiBase {
 			$val = call_user_func( $types[$type], null, null );
 
 			if ( $val === false ) {
-				$this->addWarning( [ 'apiwarn-tokennotallowed', $type ] );
+				$this->setWarning( "Action '$type' is not allowed for the current user" );
 			} else {
 				$res[$type . 'token'] = $val;
 			}

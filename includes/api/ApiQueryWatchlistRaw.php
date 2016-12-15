@@ -60,7 +60,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		if ( isset( $show[WatchedItemQueryService::FILTER_CHANGED] )
 			&& isset( $show[WatchedItemQueryService::FILTER_NOT_CHANGED] )
 		) {
-			$this->dieWithError( 'apierror-show' );
+			$this->dieUsageMsg( 'show' );
 		}
 
 		$options = [];

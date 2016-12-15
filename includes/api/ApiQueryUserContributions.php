@@ -78,17 +78,11 @@ class ApiQueryContributions extends ApiQueryBase {
 				$this->params['user'] = [ $this->params['user'] ];
 			}
 			if ( !count( $this->params['user'] ) ) {
-				$encParamName = $this->encodeParamName( 'user' );
-				$this->dieWithError(
-					[ 'apierror-paramempty', $encParamName ], "paramempty_$encParamName"
-				);
+				$this->dieUsage( 'User parameter may not be empty.', 'param_user' );
 			}
 			foreach ( $this->params['user'] as $u ) {
 				if ( is_null( $u ) || $u === '' ) {
-					$encParamName = $this->encodeParamName( 'user' );
-					$this->dieWithError(
-						[ 'apierror-paramempty', $encParamName ], "paramempty_$encParamName"
-					);
+					$this->dieUsage( 'User parameter may not be empty', 'param_user' );
 				}
 
 				if ( User::isIP( $u ) ) {
@@ -97,10 +91,7 @@ class ApiQueryContributions extends ApiQueryBase {
 				} else {
 					$name = User::getCanonicalName( $u, 'valid' );
 					if ( $name === false ) {
-						$encParamName = $this->encodeParamName( 'user' );
-						$this->dieWithError(
-							[ 'apierror-baduser', $encParamName, wfEscapeWikiText( $u ) ], "baduser_$encParamName"
-						);
+						$this->dieUsage( "User name {$u} is not valid", 'param_user' );
 					}
 					$this->usernames[] = $name;
 				}
@@ -263,7 +254,7 @@ class ApiQueryContributions extends ApiQueryBase {
 				|| ( isset( $show['top'] ) && isset( $show['!top'] ) )
 				|| ( isset( $show['new'] ) && isset( $show['!new'] ) )
 			) {
-				$this->dieWithError( 'apierror-show' );
+				$this->dieUsageMsg( 'show' );
 			}
 
 			$this->addWhereIf( 'rev_minor_edit = 0', isset( $show['!minor'] ) );
@@ -294,7 +285,10 @@ class ApiQueryContributions extends ApiQueryBase {
 			$this->fld_patrolled
 		) {
 			if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
-				$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'permissiondenied' );
+				$this->dieUsage(
+					'You need the patrol right to request the patrolled flag',
+					'permissiondenied'
+				);
 			}
 
 			// Use a redundant join condition on both

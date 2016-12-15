@@ -45,7 +45,7 @@ class ApiFileRevert extends ApiBase {
 		$this->validateParameters();
 
 		// Check whether we're allowed to revert this file
-		$this->checkTitleUserPermissions( $this->file->getTitle(), [ 'edit', 'upload' ] );
+		$this->checkPermissions( $this->getUser() );
 
 		$sourceUrl = $this->file->getArchiveVirtualUrl( $this->archiveName );
 		$status = $this->file->upload(
@@ -71,6 +71,23 @@ class ApiFileRevert extends ApiBase {
 	}
 
 	/**
+	 * Checks that the user has permissions to perform this revert.
+	 * Dies with usage message on inadequate permissions.
+	 * @param User $user The user to check.
+	 */
+	protected function checkPermissions( $user ) {
+		$title = $this->file->getTitle();
+		$permissionErrors = array_merge(
+			$title->getUserPermissionsErrors( 'edit', $user ),
+			$title->getUserPermissionsErrors( 'upload', $user )
+		);
+
+		if ( $permissionErrors ) {
+			$this->dieUsageMsg( $permissionErrors[0] );
+		}
+	}
+
+	/**
 	 * Validate the user parameters and set $this->archiveName and $this->file.
 	 * Throws an error if validation fails
 	 */
@@ -78,23 +95,21 @@ class ApiFileRevert extends ApiBase {
 		// Validate the input title
 		$title = Title::makeTitleSafe( NS_FILE, $this->params['filename'] );
 		if ( is_null( $title ) ) {
-			$this->dieWithError(
-				[ 'apierror-invalidtitle', wfEscapeWikiText( $this->params['filename'] ) ]
-			);
+			$this->dieUsageMsg( [ 'invalidtitle', $this->params['filename'] ] );
 		}
 		$localRepo = RepoGroup::singleton()->getLocalRepo();
 
 		// Check if the file really exists
 		$this->file = $localRepo->newFile( $title );
 		if ( !$this->file->exists() ) {
-			$this->dieWithError( 'apierror-missingtitle' );
+			$this->dieUsageMsg( 'notanarticle' );
 		}
 
 		// Check if the archivename is valid for this file
 		$this->archiveName = $this->params['archivename'];
 		$oldFile = $localRepo->newFromArchiveName( $title, $this->archiveName );
 		if ( !$oldFile->exists() ) {
-			$this->dieWithError( 'filerevert-badversion' );
+			$this->dieUsageMsg( 'filerevert-badversion' );
 		}
 	}
 

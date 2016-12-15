@@ -413,9 +413,11 @@ class ApiResult implements ApiSerializable {
 
 			$newsize = $this->size + self::size( $value );
 			if ( $this->maxSize !== false && $newsize > $this->maxSize ) {
-				$this->errorFormatter->addWarning(
-					'result', [ 'apiwarn-truncatedresult', Message::numParam( $this->maxSize ) ]
-				);
+				/// @todo Add i18n message when replacing calls to ->setWarning()
+				$msg = new ApiRawMessage( 'This result was truncated because it would otherwise ' .
+					'be larger than the limit of $1 bytes', 'truncatedresult' );
+				$msg->numParams( $this->maxSize );
+				$this->errorFormatter->addWarning( 'result', $msg );
 				return false;
 			}
 			$this->size = $newsize;

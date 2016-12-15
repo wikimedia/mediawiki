@@ -35,10 +35,12 @@ class ApiWatch extends ApiBase {
 	public function execute() {
 		$user = $this->getUser();
 		if ( !$user->isLoggedIn() ) {
-			$this->dieWithError( 'watchlistanontext', 'notloggedin' );
+			$this->dieUsage( 'You must be logged-in to have a watchlist', 'notloggedin' );
 		}
 
-		$this->checkUserRightsAny( 'editmywatchlist' );
+		if ( !$user->isAllowed( 'editmywatchlist' ) ) {
+			$this->dieUsage( 'You don\'t have permission to edit your watchlist', 'permissiondenied' );
+		}
 
 		$params = $this->extractRequestParams();
 
@@ -76,19 +78,16 @@ class ApiWatch extends ApiBase {
 			} ) );
 
 			if ( $extraParams ) {
-				$this->dieWithError(
-					[
-						'apierror-invalidparammix-cannotusewith',
-						$this->encodeParamName( 'title' ),
-						$pageSet->encodeParamName( $extraParams[0] )
-					],
+				$p = $this->getModulePrefix();
+				$this->dieUsage(
+					"The parameter {$p}title can not be used with " . implode( ', ', $extraParams ),
 					'invalidparammix'
 				);
 			}
 
 			$title = Title::newFromText( $params['title'] );
 			if ( !$title || !$title->isWatchable() ) {
-				$this->dieWithError( [ 'invalidtitle', $params['title'] ] );
+				$this->dieUsageMsg( [ 'invalidtitle', $params['title'] ] );
 			}
 			$res = $this->watchTitle( $title, $user, $params, true );
 		}
@@ -129,11 +128,7 @@ class ApiWatch extends ApiBase {
 			if ( $compatibilityMode ) {
 				$this->dieStatus( $status );
 			}
-			$res['errors'] = $this->getErrorFormatter()->arrayFromStatus( $status, 'error' );
-			$res['warnings'] = $this->getErrorFormatter()->arrayFromStatus( $status, 'warning' );
-			if ( !$res['warnings'] ) {
-				unset( $res['warnings'] );
-			}
+			$res['error'] = $this->getErrorFromStatus( $status );
 		}
 
 		return $res;

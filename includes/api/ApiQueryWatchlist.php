@@ -82,7 +82,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 			if ( $this->fld_patrol ) {
 				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
-					$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'patrol' );
+					$this->dieUsage( 'patrol property is not available', 'patrol' );
 				}
 			}
 		}
@@ -134,7 +134,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 			/* Check for conflicting parameters. */
 			if ( $this->showParamsConflicting( $show ) ) {
-				$this->dieWithError( 'apierror-show' );
+				$this->dieUsageMsg( 'show' );
 			}
 
 			// Check permissions.
@@ -142,7 +142,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				|| isset( $show[WatchedItemQueryService::FILTER_NOT_PATROLLED] )
 			) {
 				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
-					$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'permissiondenied' );
+					$this->dieUsage(
+						'You need the patrol right to request the patrolled flag',
+						'permissiondenied'
+					);
 				}
 			}
 
@@ -157,7 +160,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			}
 		}
 
-		$this->requireMaxOneParameter( $params, 'user', 'excludeuser' );
+		if ( !is_null( $params['user'] ) && !is_null( $params['excludeuser'] ) ) {
+			$this->dieUsage( 'user and excludeuser cannot be used together', 'user-excludeuser' );
+		}
 		if ( !is_null( $params['user'] ) ) {
 			$options['onlyByUser'] = $params['user'];
 		}

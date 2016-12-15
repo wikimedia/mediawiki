@@ -422,7 +422,10 @@ class WatchedItemQueryService {
 			$ownersToken = $watchlistOwner->getOption( 'watchlisttoken' );
 			$token = $options['watchlistOwnerToken'];
 			if ( $ownersToken == '' || !hash_equals( $ownersToken, $token ) ) {
-				throw ApiUsageException::newWithMessage( null, 'apierror-bad-watchlist-token', 'bad_wltoken' );
+				throw new UsageException(
+					'Incorrect watchlist token provided -- please set a correct token in Special:Preferences',
+					'bad_wltoken'
+				);
 			}
 			return $watchlistOwner->getId();
 		}

@@ -30,7 +30,6 @@
 			$spinner = $.createSpinner( { size: 'small', type: 'inline' } );
 			$link.hide().after( $spinner );
 
-			// @todo: data.messageHtml is no more. Convert to using errorformat=html.
 			api = new mw.Api();
 			api.rollback( page, user )
 				.then( function ( data ) {

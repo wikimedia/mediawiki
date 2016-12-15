@@ -391,14 +391,14 @@ class ApiOpenSearchFormatJson extends ApiFormatJson {
 	}
 
 	public function execute() {
-		$result = $this->getResult();
-		if ( !$result->getResultData( 'error' ) && !$result->getResultData( 'errors' ) ) {
+		if ( !$this->getResult()->getResultData( 'error' ) ) {
+			$result = $this->getResult();
+
 			// Ignore warnings or treat as errors, as requested
 			$warnings = $result->removeValue( 'warnings', null );
 			if ( $this->warningsAsError && $warnings ) {
-				$this->dieWithError(
-					'apierror-opensearch-json-warnings',
-					'warnings',
+				$this->dieUsage(
+					'Warnings cannot be represented in OpenSearch JSON format', 'warnings', 0,
 					[ 'warnings' => $warnings ]
 				);
 			}

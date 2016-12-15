@@ -55,8 +55,7 @@ class ApiFormatPhp extends ApiFormatBase {
 				break;
 
 			default:
-				// Should have been caught during parameter validation
-				$this->dieDebug( __METHOD__, 'Unknown value for \'formatversion\'' );
+				$this->dieUsage( __METHOD__ . ': Unknown value for \'formatversion\'', 'unknownformatversion' );
 		}
 		$text = serialize( $this->getResult()->getResultData( null, $transforms ) );
 
@@ -68,7 +67,11 @@ class ApiFormatPhp extends ApiFormatBase {
 			in_array( 'wfOutputHandler', ob_list_handlers(), true ) &&
 			preg_match( '/\<\s*cross-domain-policy(?=\s|\>)/i', $text )
 		) {
-			$this->dieWithError( 'apierror-formatphp', 'internalerror' );
+			$this->dieUsage(
+				'This response cannot be represented using format=php. ' .
+				'See https://phabricator.wikimedia.org/T68776',
+				'internalerror'
+			);
 		}
 
 		$this->printText( $text );

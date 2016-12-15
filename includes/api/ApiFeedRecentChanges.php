@@ -47,12 +47,12 @@ class ApiFeedRecentChanges extends ApiBase {
 		$this->params = $this->extractRequestParams();
 
 		if ( !$config->get( 'Feed' ) ) {
-			$this->dieWithError( 'feed-unavailable' );
+			$this->dieUsage( 'Syndication feeds are not available', 'feed-unavailable' );
 		}
 
 		$feedClasses = $config->get( 'FeedClasses' );
 		if ( !isset( $feedClasses[$this->params['feedformat']] ) ) {
-			$this->dieWithError( 'feed-invalid' );
+			$this->dieUsage( 'Invalid subscription feed type', 'feed-invalid' );
 		}
 
 		$this->getMain()->setCacheMode( 'public' );
@@ -98,7 +98,7 @@ class ApiFeedRecentChanges extends ApiBase {
 		if ( $specialClass === 'SpecialRecentchangeslinked' ) {
 			$title = Title::newFromText( $this->params['target'] );
 			if ( !$title ) {
-				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $this->params['target'] ) ] );
+				$this->dieUsageMsg( [ 'invalidtitle', $this->params['target'] ] );
 			}
 
 			$feed = new ChangesFeed( $feedFormat, false );

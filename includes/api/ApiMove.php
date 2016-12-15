@@ -41,23 +41,23 @@ class ApiMove extends ApiBase {
 		if ( isset( $params['from'] ) ) {
 			$fromTitle = Title::newFromText( $params['from'] );
 			if ( !$fromTitle || $fromTitle->isExternal() ) {
-				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['from'] ) ] );
+				$this->dieUsageMsg( [ 'invalidtitle', $params['from'] ] );
 			}
 		} elseif ( isset( $params['fromid'] ) ) {
 			$fromTitle = Title::newFromID( $params['fromid'] );
 			if ( !$fromTitle ) {
-				$this->dieWithError( [ 'apierror-nosuchpageid', $params['fromid'] ] );
+				$this->dieUsageMsg( [ 'nosuchpageid', $params['fromid'] ] );
 			}
 		}
 
 		if ( !$fromTitle->exists() ) {
-			$this->dieWithError( 'apierror-missingtitle' );
+			$this->dieUsageMsg( 'notanarticle' );
 		}
 		$fromTalk = $fromTitle->getTalkPage();
 
 		$toTitle = Title::newFromText( $params['to'] );
 		if ( !$toTitle || $toTitle->isExternal() ) {
-			$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['to'] ) ] );
+			$this->dieUsageMsg( [ 'invalidtitle', $params['to'] ] );
 		}
 		$toTalk = $toTitle->getTalkPage();
 
@@ -66,15 +66,15 @@ class ApiMove extends ApiBase {
 			&& wfFindFile( $toTitle )
 		) {
 			if ( !$params['ignorewarnings'] && $user->isAllowed( 'reupload-shared' ) ) {
-				$this->dieWithError( 'apierror-fileexists-sharedrepo-perm' );
+				$this->dieUsageMsg( 'sharedfile-exists' );
 			} elseif ( !$user->isAllowed( 'reupload-shared' ) ) {
-				$this->dieWithError( 'apierror-cantoverwrite-sharedfile' );
+				$this->dieUsageMsg( 'cantoverwrite-sharedfile' );
 			}
 		}
 
 		// Rate limit
 		if ( $user->pingLimiter( 'move' ) ) {
-			$this->dieWithError( 'apierror-ratelimited' );
+			$this->dieUsageMsg( 'actionthrottledtext' );
 		}
 
 		// Move the page
@@ -108,8 +108,10 @@ class ApiMove extends ApiBase {
 				$r['talkto'] = $toTalk->getPrefixedText();
 				$r['talkmoveoverredirect'] = $toTalkExists;
 			} else {
-				// We're not going to dieWithError() on failure, since we already changed something
-				$r['talkmove-errors'] = $this->getErrorFormatter()->arrayFromStatus( $status );
+				// We're not gonna dieUsage() on failure, since we already changed something
+				$error = $this->getErrorFromStatus( $status );
+				$r['talkmove-error-code'] = $error[0];
+				$r['talkmove-error-info'] = $error[1];
 			}
 		}
 
@@ -182,8 +184,7 @@ class ApiMove extends ApiBase {
 		$retval = [];
 		$success = $fromTitle->moveSubpages( $toTitle, true, $reason, !$noredirect );
 		if ( isset( $success[0] ) ) {
-			$status = $this->errorArrayToStatus( $success );
-			return [ 'errors' => $this->getErrorFormatter()->arrayFromStatus( $status ) ];
+			return [ 'error' => $this->parseMsg( $success ) ];
 		}
 
 		// At least some pages could be moved
@@ -191,8 +192,7 @@ class ApiMove extends ApiBase {
 		foreach ( $success as $oldTitle => $newTitle ) {
 			$r = [ 'from' => $oldTitle ];
 			if ( is_array( $newTitle ) ) {
-				$status = $this->errorArrayToStatus( $newTitle );
-				$r['errors'] = $this->getErrorFormatter()->arrayFromStatus( $status );
+				$r['error'] = $this->parseMsg( reset( $newTitle ) );
 			} else {
 				// Success
 				$r['to'] = $newTitle;

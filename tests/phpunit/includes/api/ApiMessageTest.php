@@ -24,56 +24,6 @@ class ApiMessageTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers ApiMessageTrait
-	 */
-	public function testCodeDefaults() {
-		$msg = new ApiMessage( 'foo' );
-		$this->assertSame( 'foo', $msg->getApiCode() );
-
-		$msg = new ApiMessage( 'apierror-bar' );
-		$this->assertSame( 'bar', $msg->getApiCode() );
-
-		$msg = new ApiMessage( 'apiwarn-baz' );
-		$this->assertSame( 'baz', $msg->getApiCode() );
-
-		// BC case
-		$msg = new ApiMessage( 'actionthrottledtext' );
-		$this->assertSame( 'ratelimited', $msg->getApiCode() );
-
-		$msg = new ApiMessage( [ 'apierror-missingparam', 'param' ] );
-		$this->assertSame( 'noparam', $msg->getApiCode() );
-	}
-
-	/**
-	 * @covers ApiMessageTrait
-	 * @dataProvider provideInvalidCode
-	 * @param mixed $code
-	 */
-	public function testInvalidCode( $code ) {
-		$msg = new ApiMessage( 'foo' );
-		try {
-			$msg->setApiCode( $code );
-			$this->fail( 'Expected exception not thrown' );
-		} catch ( InvalidArgumentException $ex ) {
-			$this->assertTrue( true );
-		}
-
-		try {
-			new ApiMessage( 'foo', $code );
-			$this->fail( 'Expected exception not thrown' );
-		} catch ( InvalidArgumentException $ex ) {
-			$this->assertTrue( true );
-		}
-	}
-
-	public static function provideInvalidCode() {
-		return [
-			[ '' ],
-			[ 42 ],
-		];
-	}
-
-	/**
 	 * @covers ApiMessage
 	 * @covers ApiMessageTrait
 	 */
@@ -155,32 +105,14 @@ class ApiMessageTest extends MediaWikiTestCase {
 	 * @covers ApiMessage::create
 	 */
 	public function testApiMessageCreate() {
-		$this->assertInstanceOf( ApiMessage::class, ApiMessage::create( new Message( 'mainpage' ) ) );
-		$this->assertInstanceOf(
-			ApiRawMessage::class, ApiMessage::create( new RawMessage( 'mainpage' ) )
-		);
-		$this->assertInstanceOf( ApiMessage::class, ApiMessage::create( 'mainpage' ) );
+		$this->assertInstanceOf( 'ApiMessage', ApiMessage::create( new Message( 'mainpage' ) ) );
+		$this->assertInstanceOf( 'ApiRawMessage', ApiMessage::create( new RawMessage( 'mainpage' ) ) );
+		$this->assertInstanceOf( 'ApiMessage', ApiMessage::create( 'mainpage' ) );
 
-		$msg = new ApiMessage( [ 'parentheses', 'foobar' ] );
-		$msg2 = new Message( 'parentheses', [ 'foobar' ] );
-
+		$msg = new ApiMessage( 'mainpage' );
 		$this->assertSame( $msg, ApiMessage::create( $msg ) );
-		$this->assertEquals( $msg, ApiMessage::create( $msg2 ) );
-		$this->assertEquals( $msg, ApiMessage::create( [ 'parentheses', 'foobar' ] ) );
-		$this->assertEquals( $msg,
-			ApiMessage::create( [ 'message' => 'parentheses', 'params' => [ 'foobar' ] ] )
-		);
-		$this->assertSame( $msg,
-			ApiMessage::create( [ 'message' => $msg, 'params' => [ 'xxx' ] ] )
-		);
-		$this->assertEquals( $msg,
-			ApiMessage::create( [ 'message' => $msg2, 'params' => [ 'xxx' ] ] )
-		);
-		$this->assertSame( $msg,
-			ApiMessage::create( [ 'message' => $msg ] )
-		);
 
-		$msg = new ApiRawMessage( [ 'parentheses', 'foobar' ] );
+		$msg = new ApiRawMessage( 'mainpage' );
 		$this->assertSame( $msg, ApiMessage::create( $msg ) );
 	}
 

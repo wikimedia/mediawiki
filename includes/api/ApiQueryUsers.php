@@ -226,7 +226,7 @@ class ApiQueryUsers extends ApiQueryBase {
 					foreach ( $params['token'] as $t ) {
 						$val = call_user_func( $tokenFunctions[$t], $user );
 						if ( $val === false ) {
-							$this->addWarning( [ 'apiwarn-tokennotallowed', $t ] );
+							$this->setWarning( "Action '$t' is not allowed for the current user" );
 						} else {
 							$data[$name][$t . 'token'] = $val;
 						}
@@ -253,7 +253,7 @@ class ApiQueryUsers extends ApiQueryBase {
 						foreach ( $params['token'] as $t ) {
 							$val = call_user_func( $tokenFunctions[$t], $iwUser );
 							if ( $val === false ) {
-								$this->addWarning( [ 'apiwarn-tokennotallowed', $t ] );
+								$this->setWarning( "Action '$t' is not allowed for the current user" );
 							} else {
 								$data[$u][$t . 'token'] = $val;
 							}

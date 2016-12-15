@@ -56,29 +56,23 @@ class ApiImageRotate extends ApiBase {
 			$file = wfFindFile( $title, [ 'latest' => true ] );
 			if ( !$file ) {
 				$r['result'] = 'Failure';
-				$r['errors'] = $this->getErrorFormatter()->arrayFromStatus(
-					Status::newFatal( 'apierror-filedoesnotexist' )
-				);
+				$r['errormessage'] = 'File does not exist';
 				$result[] = $r;
 				continue;
 			}
 			$handler = $file->getHandler();
 			if ( !$handler || !$handler->canRotate() ) {
 				$r['result'] = 'Failure';
-				$r['errors'] = $this->getErrorFormatter()->arrayFromStatus(
-					Status::newFatal( 'apierror-filetypecannotberotated' )
-				);
+				$r['errormessage'] = 'File type cannot be rotated';
 				$result[] = $r;
 				continue;
 			}
 
 			// Check whether we're allowed to rotate this file
-			$permError = $this->checkTitleUserPermissions( $file->getTitle(), [ 'edit', 'upload' ] );
-			if ( $permError ) {
+			$permError = $this->checkPermissions( $this->getUser(), $file->getTitle() );
+			if ( $permError !== null ) {
 				$r['result'] = 'Failure';
-				$r['errors'] = $this->getErrorFormatter()->arrayFromStatus(
-					$this->errorArrayToStatus( $permError )
-				);
+				$r['errormessage'] = $permError;
 				$result[] = $r;
 				continue;
 			}
@@ -86,9 +80,7 @@ class ApiImageRotate extends ApiBase {
 			$srcPath = $file->getLocalRefPath();
 			if ( $srcPath === false ) {
 				$r['result'] = 'Failure';
-				$r['errors'] = $this->getErrorFormatter()->arrayFromStatus(
-					Status::newFatal( 'apierror-filenopath' )
-				);
+				$r['errormessage'] = 'Cannot get local file path';
 				$result[] = $r;
 				continue;
 			}
@@ -110,13 +102,11 @@ class ApiImageRotate extends ApiBase {
 					$r['result'] = 'Success';
 				} else {
 					$r['result'] = 'Failure';
-					$r['errors'] = $this->getErrorFormatter()->arrayFromStatus( $status );
+					$r['errormessage'] = $this->getErrorFormatter()->arrayFromStatus( $status );
 				}
 			} else {
 				$r['result'] = 'Failure';
-				$r['errors'] = $this->getErrorFormatter()->arrayFromStatus(
-					Status::newFatal( ApiMessage::create( $err->getMsg() ) )
-				);
+				$r['errormessage'] = $err->toText();
 			}
 			$result[] = $r;
 		}
@@ -138,6 +128,28 @@ class ApiImageRotate extends ApiBase {
 		}
 
 		return $this->mPageSet;
+	}
+
+	/**
+	 * Checks that the user has permissions to perform rotations.
+	 * @param User $user The user to check
+	 * @param Title $title
+	 * @return string|null Permission error message, or null if there is no error
+	 */
+	protected function checkPermissions( $user, $title ) {
+		$permissionErrors = array_merge(
+			$title->getUserPermissionsErrors( 'edit', $user ),
+			$title->getUserPermissionsErrors( 'upload', $user )
+		);
+
+		if ( $permissionErrors ) {
+			// Just return the first error
+			$msg = $this->parseMsg( $permissionErrors[0] );
+
+			return $msg['info'];
+		}
+
+		return null;
 	}
 
 	public function mustBePosted() {

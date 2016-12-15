@@ -40,7 +40,12 @@ class ApiEditPage extends ApiBase {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
-		$this->requireAtLeastOneParameter( $params, 'text', 'appendtext', 'prependtext', 'undo' );
+		if ( is_null( $params['text'] ) && is_null( $params['appendtext'] ) &&
+			is_null( $params['prependtext'] ) &&
+			$params['undo'] == 0
+		) {
+			$this->dieUsageMsg( 'missingtext' );
+		}
 
 		$pageObj = $this->getTitleOrPageId( $params );
 		$titleObj = $pageObj->getTitle();
@@ -50,7 +55,9 @@ class ApiEditPage extends ApiBase {
 			if ( $params['prependtext'] === null && $params['appendtext'] === null
 				&& $params['section'] !== 'new'
 			) {
-				$this->dieWithError( 'apierror-redirect-appendonly' );
+				$this->dieUsage( 'You have attempted to edit using the "redirect"-following'
+					. ' mode, which must be used in conjuction with section=new, prependtext'
+					. ', or appendtext.', 'redirect-appendonly' );
 			}
 			if ( $titleObj->isRedirect() ) {
 				$oldTitle = $titleObj;
@@ -98,7 +105,10 @@ class ApiEditPage extends ApiBase {
 		if ( $params['undo'] > 0 ) {
 			// allow undo via api
 		} elseif ( $contentHandler->supportsDirectApiEditing() === false ) {
-			$this->dieWithError( [ 'apierror-no-direct-editing', $model, $name ] );
+			$this->dieUsage(
+				"Direct editing via API is not supported for content model $model used by $name",
+				'no-direct-editing'
+			);
 		}
 
 		if ( !isset( $params['contentformat'] ) || $params['contentformat'] == '' ) {
@@ -108,21 +118,49 @@ class ApiEditPage extends ApiBase {
 		}
 
 		if ( !$contentHandler->isSupportedFormat( $contentFormat ) ) {
-			$this->dieWithError( [ 'apierror-badformat', $contentFormat, $model, $name ] );
+
+			$this->dieUsage( "The requested format $contentFormat is not supported for content model " .
+				" $model used by $name", 'badformat' );
 		}
 
 		if ( $params['createonly'] && $titleObj->exists() ) {
-			$this->dieWithError( 'apierror-articleexists' );
+			$this->dieUsageMsg( 'createonly-exists' );
 		}
 		if ( $params['nocreate'] && !$titleObj->exists() ) {
-			$this->dieWithError( 'apierror-missingtitle' );
+			$this->dieUsageMsg( 'nocreate-missing' );
 		}
 
 		// Now let's check whether we're even allowed to do this
-		$this->checkTitleUserPermissions(
-			$titleObj,
-			$titleObj->exists() ? 'edit' : [ 'edit', 'create' ]
-		);
+		$errors = $titleObj->getUserPermissionsErrors( 'edit', $user );
+		if ( !$titleObj->exists() ) {
+			$errors = array_merge( $errors, $titleObj->getUserPermissionsErrors( 'create', $user ) );
+		}
+		if ( count( $errors ) ) {
+			if ( is_array( $errors[0] ) ) {
+				switch ( $errors[0][0] ) {
+					case 'blockedtext':
+						$this->dieUsage(
+							'You have been blocked from editing',
+							'blocked',
+							0,
+							[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
+						);
+						break;
+					case 'autoblockedtext':
+						$this->dieUsage(
+							'Your IP address has been blocked automatically, because it was used by a blocked user',
+							'autoblocked',
+							0,
+							[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
+						);
+						break;
+					default:
+						$this->dieUsageMsg( $errors[0] );
+				}
+			} else {
+				$this->dieUsageMsg( $errors[0] );
+			}
+		}
 
 		$toMD5 = $params['text'];
 		if ( !is_null( $params['appendtext'] ) || !is_null( $params['prependtext'] ) ) {
@@ -140,11 +178,8 @@ class ApiEditPage extends ApiBase {
 					try {
 						$content = ContentHandler::makeContent( $text, $this->getTitle() );
 					} catch ( MWContentSerializationException $ex ) {
-						// @todo: Internationalize MWContentSerializationException
-						$this->dieWithError(
-							[ 'apierror-contentserializationexception', wfEscapeWikiText( $ex->getMessage() ) ],
-							'parseerror'
-						);
+						$this->dieUsage( $ex->getMessage(), 'parseerror' );
+
 						return;
 					}
 				} else {
@@ -156,14 +191,17 @@ class ApiEditPage extends ApiBase {
 			// @todo Add support for appending/prepending to the Content interface
 
 			if ( !( $content instanceof TextContent ) ) {
-				$modelName = $contentHandler->getModelID();
-				$this->dieWithError( [ 'apierror-appendnotsupported', $modelName ] );
+				$mode = $contentHandler->getModelID();
+				$this->dieUsage( "Can't append to pages using content model $mode", 'appendnotsupported' );
 			}
 
 			if ( !is_null( $params['section'] ) ) {
 				if ( !$contentHandler->supportsSections() ) {
 					$modelName = $contentHandler->getModelID();
-					$this->dieWithError( [ 'apierror-sectionsnotsupported', $modelName ] );
+					$this->dieUsage(
+						"Sections are not supported for this content model: $modelName.",
+						'sectionsnotsupported'
+					);
 				}
 
 				if ( $params['section'] == 'new' ) {
@@ -175,7 +213,7 @@ class ApiEditPage extends ApiBase {
 					$content = $content->getSection( $section );
 
 					if ( !$content ) {
-						$this->dieWithError( [ 'apierror-nosuchsection', wfEscapeWikiText( $section ) ] );
+						$this->dieUsage( "There is no section {$section}.", 'nosuchsection' );
 					}
 				}
 			}
@@ -200,22 +238,22 @@ class ApiEditPage extends ApiBase {
 			}
 			$undoRev = Revision::newFromId( $params['undo'] );
 			if ( is_null( $undoRev ) || $undoRev->isDeleted( Revision::DELETED_TEXT ) ) {
-				$this->dieWithError( [ 'apierror-nosuchrevid', $params['undo'] ] );
+				$this->dieUsageMsg( [ 'nosuchrevid', $params['undo'] ] );
 			}
 
 			if ( $params['undoafter'] == 0 ) {
 				$undoafterRev = $undoRev->getPrevious();
 			}
 			if ( is_null( $undoafterRev ) || $undoafterRev->isDeleted( Revision::DELETED_TEXT ) ) {
-				$this->dieWithError( [ 'apierror-nosuchrevid', $params['undoafter'] ] );
+				$this->dieUsageMsg( [ 'nosuchrevid', $params['undoafter'] ] );
 			}
 
 			if ( $undoRev->getPage() != $pageObj->getId() ) {
-				$this->dieWithError( [ 'apierror-revwrongpage', $undoRev->getId(),
+				$this->dieUsageMsg( [ 'revwrongpage', $undoRev->getId(),
 					$titleObj->getPrefixedText() ] );
 			}
 			if ( $undoafterRev->getPage() != $pageObj->getId() ) {
-				$this->dieWithError( [ 'apierror-revwrongpage', $undoafterRev->getId(),
+				$this->dieUsageMsg( [ 'revwrongpage', $undoafterRev->getId(),
 					$titleObj->getPrefixedText() ] );
 			}
 
@@ -226,7 +264,7 @@ class ApiEditPage extends ApiBase {
 			);
 
 			if ( !$newContent ) {
-				$this->dieWithError( 'undo-failure', 'undofailure' );
+				$this->dieUsageMsg( 'undo-failure' );
 			}
 			if ( empty( $params['contentmodel'] )
 				&& empty( $params['contentformat'] )
@@ -255,7 +293,7 @@ class ApiEditPage extends ApiBase {
 
 		// See if the MD5 hash checks out
 		if ( !is_null( $params['md5'] ) && md5( $toMD5 ) !== $params['md5'] ) {
-			$this->dieWithError( 'apierror-badmd5' );
+			$this->dieUsageMsg( 'hashcheckfailed' );
 		}
 
 		// EditPage wants to parse its stuff from a WebRequest
@@ -309,13 +347,14 @@ class ApiEditPage extends ApiBase {
 		if ( !is_null( $params['section'] ) ) {
 			$section = $params['section'];
 			if ( !preg_match( '/^((T-)?\d+|new)$/', $section ) ) {
-				$this->dieWithError( 'apierror-invalidsection' );
+				$this->dieUsage( "The section parameter must be a valid section id or 'new'",
+					'invalidsection' );
 			}
 			$content = $pageObj->getContent();
 			if ( $section !== '0' && $section != 'new'
 				&& ( !$content || !$content->getSection( $section ) )
 			) {
-				$this->dieWithError( [ 'apierror-nosuchsection', $section ] );
+				$this->dieUsage( "There is no section {$section}.", 'nosuchsection' );
 			}
 			$requestArray['wpSection'] = $params['section'];
 		} else {
@@ -384,7 +423,7 @@ class ApiEditPage extends ApiBase {
 				return;
 			}
 
-			$this->dieWithError( 'hookaborted' );
+			$this->dieUsageMsg( 'hookaborted' );
 		}
 
 		// Do the actual save
@@ -406,21 +445,66 @@ class ApiEditPage extends ApiBase {
 					$r['result'] = 'Failure';
 					$apiResult->addValue( null, $this->getModuleName(), $r );
 					return;
+				} else {
+					$this->dieUsageMsg( 'hookaborted' );
 				}
-				if ( !$status->getErrors() ) {
-					$status->fatal( 'hookaborted' );
-				}
-				$this->dieStatus( $status );
+
+			case EditPage::AS_PARSE_ERROR:
+				$this->dieUsage( $status->getMessage(), 'parseerror' );
+
+			case EditPage::AS_IMAGE_REDIRECT_ANON:
+				$this->dieUsageMsg( 'noimageredirect-anon' );
+
+			case EditPage::AS_IMAGE_REDIRECT_LOGGED:
+				$this->dieUsageMsg( 'noimageredirect-logged' );
+
+			case EditPage::AS_SPAM_ERROR:
+				$this->dieUsageMsg( [ 'spamdetected', $result['spam'] ] );
 
 			case EditPage::AS_BLOCKED_PAGE_FOR_USER:
-				$this->dieWithError(
-					'apierror-blocked',
+				$this->dieUsage(
+					'You have been blocked from editing',
 					'blocked',
+					0,
 					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
 				);
 
+			case EditPage::AS_MAX_ARTICLE_SIZE_EXCEEDED:
+			case EditPage::AS_CONTENT_TOO_BIG:
+				$this->dieUsageMsg( [ 'contenttoobig', $this->getConfig()->get( 'MaxArticleSize' ) ] );
+
+			case EditPage::AS_READ_ONLY_PAGE_ANON:
+				$this->dieUsageMsg( 'noedit-anon' );
+
+			case EditPage::AS_READ_ONLY_PAGE_LOGGED:
+				$this->dieUsageMsg( 'noedit' );
+
 			case EditPage::AS_READ_ONLY_PAGE:
 				$this->dieReadOnly();
+
+			case EditPage::AS_RATE_LIMITED:
+				$this->dieUsageMsg( 'actionthrottledtext' );
+
+			case EditPage::AS_ARTICLE_WAS_DELETED:
+				$this->dieUsageMsg( 'wasdeleted' );
+
+			case EditPage::AS_NO_CREATE_PERMISSION:
+				$this->dieUsageMsg( 'nocreate-loggedin' );
+
+			case EditPage::AS_NO_CHANGE_CONTENT_MODEL:
+				$this->dieUsageMsg( 'cantchangecontentmodel' );
+
+			case EditPage::AS_BLANK_ARTICLE:
+				$this->dieUsageMsg( 'blankpage' );
+
+			case EditPage::AS_CONFLICT_DETECTED:
+				$this->dieUsageMsg( 'editconflict' );
+
+			case EditPage::AS_TEXTBOX_EMPTY:
+				$this->dieUsageMsg( 'emptynewsection' );
+
+			case EditPage::AS_CHANGE_TAG_ERROR:
+				$this->dieStatus( $status );
 
 			case EditPage::AS_SUCCESS_NEW_ARTICLE:
 				$r['new'] = true;
@@ -442,39 +526,15 @@ class ApiEditPage extends ApiBase {
 				}
 				break;
 
-			default:
-				// EditPage sometimes only sets the status code without setting
-				// any actual error messages. Supply defaults for those cases.
-				$maxArticleSize = $this->getConfig()->get( 'MaxArticleSize' );
-				$defaultMessages = [
-					// Currently needed
-					EditPage::AS_IMAGE_REDIRECT_ANON => [ 'apierror-noimageredirect-anon' ],
-					EditPage::AS_IMAGE_REDIRECT_LOGGED => [ 'apierror-noimageredirect-logged' ],
-					EditPage::AS_CONTENT_TOO_BIG => [ 'apierror-contenttoobig', $maxArticleSize ],
-					EditPage::AS_MAX_ARTICLE_SIZE_EXCEEDED => [ 'apierror-contenttoobig', $maxArticleSize ],
-					EditPage::AS_READ_ONLY_PAGE_ANON => [ 'apierror-noedit-anon' ],
-					EditPage::AS_NO_CHANGE_CONTENT_MODEL => [ 'apierror-cantchangecontentmodel' ],
-					EditPage::AS_ARTICLE_WAS_DELETED => [ 'apierror-pagedeleted' ],
-					EditPage::AS_CONFLICT_DETECTED => [ 'editconflict' ],
+			case EditPage::AS_SUMMARY_NEEDED:
+				// Shouldn't happen since we set wpIgnoreBlankSummary, but just in case
+				$this->dieUsageMsg( 'summaryrequired' );
 
-					// Currently shouldn't be needed
-					EditPage::AS_SPAM_ERROR => [ 'apierror-spamdetected', wfEscapeWikiText( $result['spam'] ) ],
-					EditPage::AS_READ_ONLY_PAGE_LOGGED => [ 'apierror-noedit' ],
-					EditPage::AS_RATE_LIMITED => [ 'apierror-ratelimited' ],
-					EditPage::AS_NO_CREATE_PERMISSION => [ 'nocreate-loggedin' ],
-					EditPage::AS_BLANK_ARTICLE => [ 'apierror-emptypage' ],
-					EditPage::AS_TEXTBOX_EMPTY => [ 'apierror-emptynewsection' ],
-					EditPage::AS_SUMMARY_NEEDED => [ 'apierror-summaryrequired' ],
-				];
-				if ( !$status->getErrors() ) {
-					if ( isset( $defaultMessages[$status->value] ) ) {
-						call_user_func_array( [ $status, 'fatal' ], $defaultMessages[$status->value] );
-					} else {
-						wfWarn( __METHOD__ . ": Unknown EditPage code {$status->value} with no message" );
-						$status->fatal( 'apierror-unknownerror-editpage', $status->value );
-					}
-				}
-				$this->dieStatus( $status );
+			case EditPage::AS_END:
+			default:
+				// $status came from WikiPage::doEditContent()
+				$errors = $status->getErrorsArray();
+				$this->dieUsageMsg( $errors[0] ); // TODO: Add new errors to message map
 				break;
 		}
 		$apiResult->addValue( null, $this->getModuleName(), $r );

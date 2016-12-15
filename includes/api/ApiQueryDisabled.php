@@ -37,7 +37,7 @@
 class ApiQueryDisabled extends ApiQueryBase {
 
 	public function execute() {
-		$this->addWarning( [ 'apierror-moduledisabled', $this->getModuleName() ] );
+		$this->setWarning( "The \"{$this->getModuleName()}\" module has been disabled." );
 	}
 
 	public function getAllowedParams() {

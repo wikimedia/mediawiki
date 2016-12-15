@@ -30,7 +30,10 @@ class ApiTag extends ApiBase {
 		$user = $this->getUser();
 
 		// make sure the user is allowed
-		$this->checkUserRightsAny( 'changetags' );
+		if ( !$user->isAllowed( 'changetags' ) ) {
+			$this->dieUsage( "You don't have permission to add or remove change tags from individual edits",
+				'permissiondenied' );
+		}
 
 		if ( $user->isBlocked() ) {
 			$this->dieBlocked( $user->getBlock() );
@@ -85,8 +88,7 @@ class ApiTag extends ApiBase {
 
 		if ( !$valid ) {
 			$idResult['status'] = 'error';
-			// Messages: apierror-nosuchrcid apierror-nosuchrevid apierror-nosuchlogid
-			$idResult += $this->getErrorFormatter()->formatMessage( [ "apierror-nosuch$type", $id ] );
+			$idResult += $this->parseMsg( [ "nosuch$type", $id ] );
 			return $idResult;
 		}
 

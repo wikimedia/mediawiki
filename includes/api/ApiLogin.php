@@ -72,11 +72,10 @@ class ApiLogin extends ApiBase {
 
 		try {
 			$this->requirePostedParameters( [ 'password', 'token' ] );
-		} catch ( ApiUsageException $ex ) {
+		} catch ( UsageException $ex ) {
 			// Make this a warning for now, upgrade to an error in 1.29.
-			foreach ( $ex->getStatusValue()->getErrors() as $error ) {
-				$this->addDeprecation( $error, 'login-params-in-query-string' );
-			}
+			$this->setWarning( $ex->getMessage() );
+			$this->logFeatureUsage( 'login-params-in-query-string' );
 		}
 
 		$params = $this->extractRequestParams();
@@ -147,10 +146,15 @@ class ApiLogin extends ApiBase {
 			switch ( $res->status ) {
 				case AuthenticationResponse::PASS:
 					if ( $this->getConfig()->get( 'EnableBotPasswords' ) ) {
-						$this->addDeprecation( 'apiwarn-deprecation-login-botpw', 'main-account-login' );
+						$warn = 'Main-account login via action=login is deprecated and may stop working ' .
+							'without warning.';
+						$warn .= ' To continue login with action=login, see [[Special:BotPasswords]].';
+						$warn .= ' To safely continue using main-account login, see action=clientlogin.';
 					} else {
-						$this->addDeprecation( 'apiwarn-deprecation-login-nobotpw', 'main-account-login' );
+						$warn = 'Login via action=login is deprecated and may stop working without warning.';
+						$warn .= ' To safely log in, see action=clientlogin.';
 					}
+					$this->setWarning( $warn );
 					$authRes = 'Success';
 					$loginType = 'AuthManager';
 					break;
@@ -190,16 +194,16 @@ class ApiLogin extends ApiBase {
 
 			case 'NeedToken':
 				$result['token'] = $token->toString();
-				$this->addDeprecation( 'apiwarn-deprecation-login-token', 'action=login&!lgtoken' );
+				$this->setWarning( 'Fetching a token via action=login is deprecated. ' .
+				   'Use action=query&meta=tokens&type=login instead.' );
+				$this->logFeatureUsage( 'action=login&!lgtoken' );
 				break;
 
 			case 'WrongToken':
 				break;
 
 			case 'Failed':
-				$result['reason'] = ApiErrorFormatter::stripMarkup(
-					$message->useDatabase( false )->inLanguage( 'en' )->text()
-				);
+				$result['reason'] = $message->useDatabase( 'false' )->inLanguage( 'en' )->text();
 				break;
 
 			case 'Aborted':

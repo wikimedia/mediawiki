@@ -62,7 +62,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 		/** @var $qp QueryPage */
 		$qp = new $this->qpMap[$params['page']]();
 		if ( !$qp->userCanExecute( $this->getUser() ) ) {
-			$this->dieWithError( 'apierror-specialpage-cantexecute' );
+			$this->dieUsageMsg( 'specialpage-cantexecute' );
 		}
 
 		$r = [ 'name' => $params['page'] ];

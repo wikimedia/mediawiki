@@ -56,8 +56,8 @@ class ApiAMCreateAccount extends ApiBase {
 			$bits = wfParseUrl( $params['returnurl'] );
 			if ( !$bits || $bits['scheme'] === '' ) {
 				$encParamName = $this->encodeParamName( 'returnurl' );
-				$this->dieWithError(
-					[ 'apierror-badurl', $encParamName, wfEscapeWikiText( $params['returnurl'] ) ],
+				$this->dieUsage(
+					"Invalid value '{$params['returnurl']}' for url parameter $encParamName",
 					"badurl_{$encParamName}"
 				);
 			}

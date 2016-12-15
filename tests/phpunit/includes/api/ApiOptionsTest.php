@@ -30,7 +30,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->mUserMock->expects( $this->any() )
 			->method( 'getEffectiveGroups' )->will( $this->returnValue( [ '*', 'user' ] ) );
 		$this->mUserMock->expects( $this->any() )
-			->method( 'isAllowedAny' )->will( $this->returnValue( true ) );
+			->method( 'isAllowed' )->will( $this->returnValue( true ) );
 
 		// Set up callback for User::getOptionKinds
 		$this->mUserMock->expects( $this->any() )
@@ -146,7 +146,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @expectedException ApiUsageException
+	 * @expectedException UsageException
 	 */
 	public function testNoToken() {
 		$request = $this->getSampleRequest( [ 'token' => null ] );
@@ -163,11 +163,13 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			$request = $this->getSampleRequest();
 
 			$this->executeQuery( $request );
-		} catch ( ApiUsageException $e ) {
-			$this->assertTrue( ApiTestCase::apiExceptionHasCode( $e, 'notloggedin' ) );
+		} catch ( UsageException $e ) {
+			$this->assertEquals( 'notloggedin', $e->getCodeString() );
+			$this->assertEquals( 'Anonymous users cannot change preferences', $e->getMessage() );
+
 			return;
 		}
-		$this->fail( "ApiUsageException was not thrown" );
+		$this->fail( "UsageException was not thrown" );
 	}
 
 	public function testNoOptionname() {
@@ -175,11 +177,13 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			$request = $this->getSampleRequest( [ 'optionvalue' => '1' ] );
 
 			$this->executeQuery( $request );
-		} catch ( ApiUsageException $e ) {
-			$this->assertTrue( ApiTestCase::apiExceptionHasCode( $e, 'nooptionname' ) );
+		} catch ( UsageException $e ) {
+			$this->assertEquals( 'nooptionname', $e->getCodeString() );
+			$this->assertEquals( 'The optionname parameter must be set', $e->getMessage() );
+
 			return;
 		}
-		$this->fail( "ApiUsageException was not thrown" );
+		$this->fail( "UsageException was not thrown" );
 	}
 
 	public function testNoChanges() {
@@ -196,11 +200,13 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			$request = $this->getSampleRequest();
 
 			$this->executeQuery( $request );
-		} catch ( ApiUsageException $e ) {
-			$this->assertTrue( ApiTestCase::apiExceptionHasCode( $e, 'nochanges' ) );
+		} catch ( UsageException $e ) {
+			$this->assertEquals( 'nochanges', $e->getCodeString() );
+			$this->assertEquals( 'No changes were requested', $e->getMessage() );
+
 			return;
 		}
-		$this->fail( "ApiUsageException was not thrown" );
+		$this->fail( "UsageException was not thrown" );
 	}
 
 	public function testReset() {
@@ -394,7 +400,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			'options' => 'success',
 			'warnings' => [
 				'options' => [
-					'warnings' => "Validation error for \"special\": cannot be set by this module."
+					'warnings' => "Validation error for 'special': cannot be set by this module"
 				]
 			]
 		], $response );
@@ -417,7 +423,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			'options' => 'success',
 			'warnings' => [
 				'options' => [
-					'warnings' => "Validation error for \"unknownOption\": not a valid preference."
+					'warnings' => "Validation error for 'unknownOption': not a valid preference"
 				]
 			]
 		], $response );

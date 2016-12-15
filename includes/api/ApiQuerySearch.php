@@ -64,14 +64,12 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 		// Deprecated parameters
 		if ( isset( $prop['hasrelated'] ) ) {
-			$this->addDeprecation(
-				[ 'apiwarn-deprecation-parameter', 'srprop=hasrelated' ], 'action=search&srprop=hasrelated'
-			);
+			$this->logFeatureUsage( 'action=search&srprop=hasrelated' );
+			$this->setWarning( 'srprop=hasrelated has been deprecated' );
 		}
 		if ( isset( $prop['score'] ) ) {
-			$this->addDeprecation(
-				[ 'apiwarn-deprecation-parameter', 'srprop=score' ], 'action=search&srprop=score'
-			);
+			$this->logFeatureUsage( 'action=search&srprop=score' );
+			$this->setWarning( 'srprop=score has been deprecated' );
 		}
 
 		// Create search engine instance and set options
@@ -124,10 +122,10 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 					$status
 				);
 			} else {
-				$this->dieStatus( $status );
+				$this->dieUsage( $status->getWikiText( false, false, 'en' ), 'search-error' );
 			}
 		} elseif ( is_null( $matches ) ) {
-			$this->dieWithError( [ 'apierror-searchdisabled', $what ], "search-{$what}-disabled" );
+			$this->dieUsage( "{$what} search is disabled", "search-{$what}-disabled" );
 		}
 
 		if ( $resultPageSet === null ) {

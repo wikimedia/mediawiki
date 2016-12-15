@@ -69,8 +69,24 @@ class ApiRollback extends ApiBase {
 			$params['tags']
 		);
 
+		// We don't care about multiple errors, just report one of them
 		if ( $retval ) {
-			$this->dieStatus( $this->errorArrayToStatus( $retval, $user ) );
+			if ( isset( $retval[0][0] ) &&
+				( $retval[0][0] == 'alreadyrolled' || $retval[0][0] == 'cantrollback' )
+			) {
+				$error = $retval[0];
+				$userMessage = $this->msg( $error[0], array_slice( $error, 1 ) );
+				// dieUsageMsg() doesn't support $extraData
+				$errorCode = $error[0];
+				$errorInfo = isset( ApiBase::$messageMap[$errorCode] ) ?
+					ApiBase::$messageMap[$errorCode]['info'] :
+					$errorCode;
+				$this->dieUsage( $errorInfo, $errorCode, 0, [
+					'messageHtml' => $userMessage->parseAsBlock()
+				] );
+			}
+
+			$this->dieUsageMsg( reset( $retval ) );
 		}
 
 		$watch = 'preferences';
@@ -165,7 +181,7 @@ class ApiRollback extends ApiBase {
 			? $params['user']
 			: User::getCanonicalName( $params['user'] );
 		if ( !$this->mUser ) {
-			$this->dieWithError( [ 'apierror-invaliduser', wfEscapeWikiText( $params['user'] ) ] );
+			$this->dieUsageMsg( [ 'invaliduser', $params['user'] ] );
 		}
 
 		return $this->mUser;
@@ -186,17 +202,17 @@ class ApiRollback extends ApiBase {
 		if ( isset( $params['title'] ) ) {
 			$this->mTitleObj = Title::newFromText( $params['title'] );
 			if ( !$this->mTitleObj || $this->mTitleObj->isExternal() ) {
-				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['title'] ) ] );
+				$this->dieUsageMsg( [ 'invalidtitle', $params['title'] ] );
 			}
 		} elseif ( isset( $params['pageid'] ) ) {
 			$this->mTitleObj = Title::newFromID( $params['pageid'] );
 			if ( !$this->mTitleObj ) {
-				$this->dieWithError( [ 'apierror-nosuchpageid', $params['pageid'] ] );
+				$this->dieUsageMsg( [ 'nosuchpageid', $params['pageid'] ] );
 			}
 		}
 
 		if ( !$this->mTitleObj->exists() ) {
-			$this->dieWithError( 'apierror-missingtitle' );
+			$this->dieUsageMsg( 'notanarticle' );
 		}
 
 		return $this->mTitleObj;
