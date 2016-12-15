@@ -3789,5 +3789,6 @@
 	"restrictionsfield-badip": "Neveljaven IP-naslov ali obseg: $1",
 	"restrictionsfield-label": "Dovoljeni IP-obsegi:",
 	"restrictionsfield-help": "En IP-naslov ali CIDR-območje na vrstico. Da omogočite vse, uporabite<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"revid": "redakcija $1",
 	"pageid": "ID strani $1"
 }

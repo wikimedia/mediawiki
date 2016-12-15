@@ -2008,6 +2008,7 @@
 	"wlshowhidemine": "omat muokkaukseni",
 	"wlshowhidecategorization": "sivujen luokkien muutokset",
 	"watchlist-options": "Tarkkailulistan asetukset",
+	"watchlist-mark-all-visited": "Oletko varma, että haluat merkata nähdyiksi kaikki tarkkailulistan sivut, joita et ole avannut?",
 	"watching": "Lisätään tarkkailulistalle...",
 	"unwatching": "Poistetaan tarkkailulistalta...",
 	"watcherrortext": "Sivun ”$1” tarkkailulista-asetusten muutoksissa tapahtui virhe.",

@@ -3369,6 +3369,7 @@
 	"htmlform-user-not-exists": "<strong>$1</strong> neegzistuoja.",
 	"htmlform-user-not-valid": "<strong>$1</strong> nėra tinkamas naudotojo vardas.",
 	"logentry-delete-delete": "$1 {{GENDER:$2|ištrynė}} puslapį $3",
+	"logentry-delete-delete_redir": "$1 pervadindamas {{GENDER:$2|ištrynė}} buvusį nukreipimą $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|atkūrė}} puslapį $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|pakeitė}} matomumą {{PLURAL:$5|žurnalo įvykio|$5 žurnalo įvykių}} $3: $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|pakeitė}} matomumą {{PLURAL:$5|versijos|$5 versijų}} puslapyje $3: $4",

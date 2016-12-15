@@ -3903,6 +3903,6 @@
 	"restrictionsfield-badip": "Ungültige IP-Adresse oder ungültiger IP-Adressbereich: $1",
 	"restrictionsfield-label": "Erlaubte IP-Adressbereiche:",
 	"restrictionsfield-help": "Eine IP-Adresse oder ein CIDR-Bereich pro Zeile. Um alles zu aktivieren, verwende<br><code>0.0.0.0/0</code><br><code>::/0</code>",
-	"revid": "v$1",
+	"revid": "Version $1",
 	"pageid": "Seitenkennung $1"
 }
