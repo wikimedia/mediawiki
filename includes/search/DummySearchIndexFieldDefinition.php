@@ -21,7 +21,7 @@ class DummySearchIndexFieldDefinition extends SearchIndexFieldDefinition {
 		];
 
 		foreach ( $this->subfields as $subfield ) {
-			$mapping['subfields'][] = $subfield->getMapping();
+			$mapping['subfields'][] = $subfield->getMapping( $engine );
 		}
 
 		return $mapping;

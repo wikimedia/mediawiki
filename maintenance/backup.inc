@@ -163,7 +163,7 @@ class BackupDumper extends Maintenance {
 					$val = explode( ':', $param );
 
 					if ( count( $val ) === 1 ) {
-						$this->loadPlugin( $val[0] );
+						$this->loadPlugin( $val[0], '' );
 					} elseif ( count( $val ) === 2 ) {
 						$this->loadPlugin( $val[0], $val[1] );
 					} else {

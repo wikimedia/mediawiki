@@ -307,8 +307,6 @@ return [
 		"PhanParamSignatureMismatchInternal",
 		// approximate error count: 1
 		"PhanParamSpecial1",
-		// approximate error count: 2
-		"PhanParamTooFew",
 		// approximate error count: 308
 		"PhanParamTooMany",
 		// approximate error count: 3
