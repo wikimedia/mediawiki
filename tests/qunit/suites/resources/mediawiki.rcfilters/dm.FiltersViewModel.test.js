@@ -67,7 +67,7 @@
 		);
 
 		assert.deepEqual(
-			model.getState(),
+			model.getSelectedState(),
 			{
 				group1filter1: false,
 				group1filter2: false,
@@ -85,7 +85,7 @@
 			group3filter1: true
 		} );
 		assert.deepEqual(
-			model.getState(),
+			model.getSelectedState(),
 			{
 				group1filter1: true,
 				group1filter2: false,
@@ -576,7 +576,7 @@
 		// This can simulate separate filters in the same group being hidden different
 		// ways (e.g. preferences and URL).
 		assert.deepEqual(
-			model.getState(),
+			model.getSelectedState(),
 			{
 				hidefilter1: false, // The text is "show filter 1"
 				hidefilter2: true, // The text is "show filter 2"
@@ -609,7 +609,7 @@
 		// Simulates minor edits being hidden in preferences, then unhidden via URL
 		// override.
 		assert.deepEqual(
-			model.getState(),
+			model.getSelectedState(),
 			{
 				hidefilter1: false, // The text is "show filter 1"
 				hidefilter2: false, // The text is "show filter 2"
@@ -630,7 +630,7 @@
 			} )
 		);
 		assert.deepEqual(
-			model.getState(),
+			model.getSelectedState(),
 			{
 				hidefilter1: false, // The text is "show filter 1"
 				hidefilter2: false, // The text is "show filter 2"
@@ -651,7 +651,7 @@
 			} )
 		);
 		assert.deepEqual(
-			model.getState(),
+			model.getSelectedState(),
 			{
 				hidefilter1: false, // The text is "show filter 1"
 				hidefilter2: false, // The text is "show filter 2"
@@ -672,7 +672,7 @@
 			} )
 		);
 		assert.deepEqual(
-			model.getState(),
+			model.getSelectedState(),
 			{
 				hidefilter1: false, // The text is "show filter 1"
 				hidefilter2: false, // The text is "show filter 2"
@@ -693,7 +693,7 @@
 			} )
 		);
 		assert.deepEqual(
-			model.getState(),
+			model.getSelectedState(),
 			{
 				hidefilter1: false, // The text is "show filter 1"
 				hidefilter2: false, // The text is "show filter 2"
@@ -714,7 +714,7 @@
 			} )
 		);
 		assert.deepEqual(
-			model.getState(),
+			model.getSelectedState(),
 			{
 				hidefilter1: false, // The text is "show filter 1"
 				hidefilter2: false, // The text is "show filter 2"
@@ -775,5 +775,292 @@
 			[ 'all' ],
 			'If any value is "all", the only value is "all".'
 		);
+	} );
+
+	QUnit.test( 'reapplyActiveFilters - "default" exclusion rules', function ( assert ) {
+		var definition = {
+				group1: {
+					title: 'Group 1',
+					type: 'send_unselected_if_any',
+					exclusionType: 'default',
+					filters: [
+						{
+							name: 'hidefilter1',
+							label: 'Show filter 1',
+							description: 'Description of Filter 1 in Group 1'
+						},
+						{
+							name: 'hidefilter2',
+							label: 'Show filter 2',
+							description: 'Description of Filter 2 in Group 1'
+						},
+						{
+							name: 'hidefilter3',
+							label: 'Show filter 3',
+							description: 'Description of Filter 3 in Group 1'
+						}
+					]
+				},
+				group2: {
+					title: 'Group 2',
+					type: 'send_unselected_if_any',
+					filters: [
+						{
+							name: 'hidefilter4',
+							label: 'Show filter 4',
+							description: 'Description of Filter 1 in Group 2'
+						},
+						{
+							name: 'hidefilter5',
+							label: 'Show filter 5',
+							description: 'Description of Filter 2 in Group 2'
+						},
+						{
+							name: 'hidefilter6',
+							label: 'Show filter 6',
+							description: 'Description of Filter 3 in Group 2'
+						}
+					]
+				}
+			},
+			model = new mw.rcfilters.dm.FiltersViewModel();
+
+		model.initializeFilters( definition );
+
+		assert.deepEqual(
+			model.getFullState(),
+			{
+				// Group 1
+				hidefilter1: { selected: false, active: true },
+				hidefilter2: { selected: false, active: true },
+				hidefilter3: { selected: false, active: true },
+				// Group 2
+				hidefilter4: { selected: false, active: true },
+				hidefilter5: { selected: false, active: true },
+				hidefilter6: { selected: false, active: true },
+			},
+			'Initial state: all filters are active.'
+		);
+
+		// Default behavior for 'exclusion' type with only 1 item selected, means that:
+		// - The items in the same group that are *not* selected are *not* active
+		// - Items in other groups are unaffected (all active)
+		model.updateFilters( {
+			hidefilter1: false,
+			hidefilter2: false,
+			hidefilter3: false,
+			hidefilter4: false,
+			hidefilter5: false,
+			hidefilter6: true
+		} );
+		assert.deepEqual(
+			model.getFullState(),
+			{
+				// Group 1: not affected
+				hidefilter1: { selected: false, active: true },
+				hidefilter2: { selected: false, active: true },
+				hidefilter3: { selected: false, active: true },
+				// Group 2: affected
+				hidefilter4: { selected: false, active: false },
+				hidefilter5: { selected: false, active: false },
+				hidefilter6: { selected: true, active: true },
+			},
+			'Default exclusion behavior with 1 item selected in the group.'
+		);
+
+		// Default behavior for 'exclusion' type with multiple items selected, but not all, means that:
+		// - The items in the same group that are *not* selected are *not* active
+		// - Items in other groups are unaffected (all active)
+		model.updateFilters( {
+			// Literally updating filters to create a clean state
+			hidefilter1: false,
+			hidefilter2: false,
+			hidefilter3: false,
+			hidefilter4: false,
+			hidefilter5: true,
+			hidefilter6: true
+		} );
+		assert.deepEqual(
+			model.getFullState(),
+			{
+				// Group 1: not affected
+				hidefilter1: { selected: false, active: true },
+				hidefilter2: { selected: false, active: true },
+				hidefilter3: { selected: false, active: true },
+				// Group 2: affected
+				hidefilter4: { selected: false, active: false },
+				hidefilter5: { selected: true, active: true },
+				hidefilter6: { selected: true, active: true },
+			},
+			'Default exclusion behavior with multiple items (but not all) selected in the group.'
+		);
+
+		// Default behavior for 'exclusion' type with all items in the group selected, means that:
+		// - All items in the group are NOT active
+		// - Items in other groups are unaffected (all active)
+		model.updateFilters( {
+			// Literally updating filters to create a clean state
+			hidefilter1: false,
+			hidefilter2: false,
+			hidefilter3: false,
+			hidefilter4: true,
+			hidefilter5: true,
+			hidefilter6: true
+		} );
+		assert.deepEqual(
+			model.getFullState(),
+			{
+				// Group 1: not affected
+				hidefilter1: { selected: false, active: true },
+				hidefilter2: { selected: false, active: true },
+				hidefilter3: { selected: false, active: true },
+				// Group 2: affected
+				hidefilter4: { selected: true, active: false },
+				hidefilter5: { selected: true, active: false },
+				hidefilter6: { selected: true, active: false },
+			},
+			'Default exclusion behavior with all items in the group.'
+		);
+	} );
+
+	QUnit.test( 'reapplyActiveFilters - "explicit" exclusion rules', function ( assert ) {
+		var definition = {
+				group1: {
+					title: 'Group 1',
+					type: 'send_unselected_if_any',
+					exclusionType: 'explicit',
+					filters: [
+						{
+							name: 'filter1',
+							excludes: [ 'filter2', 'filter3' ],
+							label: 'Show filter 1',
+							description: 'Description of Filter 1 in Group 1'
+						},
+						{
+							name: 'filter2',
+							excludes: [ 'filter3' ],
+							label: 'Show filter 2',
+							description: 'Description of Filter 2 in Group 1'
+						},
+						{
+							name: 'filter3',
+							label: 'Show filter 3',
+							excludes: [ 'filter1' ],
+							description: 'Description of Filter 3 in Group 1'
+						},
+						{
+							name: 'filter4',
+							label: 'Show filter 4',
+							description: 'Description of Filter 4 in Group 1'
+						}
+					]
+				}
+			},
+			model = new mw.rcfilters.dm.FiltersViewModel();
+
+		model.initializeFilters( definition );
+
+		assert.deepEqual(
+			model.getFullState(),
+			{
+				filter1: { selected: false, active: true },
+				filter2: { selected: false, active: true },
+				filter3: { selected: false, active: true },
+				filter4: { selected: false, active: true }
+			},
+			'Initial state: all filters are active.'
+		);
+
+		// "Explicit" behavior for 'exclusion' with one item checked:
+		// - Items in the 'excluded' list of the selected filter are inactive
+		model.updateFilters( {
+			// Literally updating filters to create a clean state
+			filter1: true, // Excludes 'hidefilter2', 'hidefilter3'
+			filter2: false, // Excludes 'hidefilter3'
+			filter3: false, // Excludes 'hidefilter1'
+			filter4: false // No exclusion list
+		} );
+		assert.deepEqual(
+			model.getFullState(),
+			{
+				filter1: { selected: true, active: true },
+				filter2: { selected: false, active: false },
+				filter3: { selected: false, active: false },
+				filter4: { selected: false, active: true }
+			},
+			'"Explicit" exclusion behavior with one item selected that has an exclusion list.'
+		);
+
+		// "Explicit" behavior for 'exclusion' with two item checked:
+		// - Items in the 'excluded' list of each of the selected filter are inactive
+		model.updateFilters( {
+			// Literally updating filters to create a clean state
+			filter1: true, // Excludes 'hidefilter2', 'hidefilter3'
+			filter2: false, // Excludes 'hidefilter3'
+			filter3: true, // Excludes 'hidefilter1'
+			filter4: false // No exclusion list
+		} );
+		assert.deepEqual(
+			model.getFullState(),
+			{
+				filter1: { selected: true, active: false },
+				filter2: { selected: false, active: false },
+				filter3: { selected: true, active: false },
+				filter4: { selected: false, active: true }
+			},
+			'"Explicit" exclusion behavior with two selected items that both have an exclusion list.'
+		);
+
+		// "Explicit behavior" with two filters that exclude the same item
+
+		// Two filters selected, both exclude 'hidefilter3'
+		model.updateFilters( {
+			// Literally updating filters to create a clean state
+			filter1: true, // Excludes 'hidefilter2', 'hidefilter3'
+			filter2: true, // Excludes 'hidefilter3'
+			filter3: false, // Excludes 'hidefilter1'
+			filter4: false // No exclusion list
+		} );
+		assert.deepEqual(
+			model.getFullState(),
+			{
+				filter1: { selected: true, active: true },
+				filter2: { selected: true, active: false }, // Excluded by filter1
+				filter3: { selected: false, active: false }, // Excluded by both filter1 and filter2
+				filter4: { selected: false, active: true }
+			},
+			'"Explicit" exclusion behavior with two selected items that both exclude another item.'
+		);
+
+		// Unselect filter2: filter3 should still be excluded, because filter1 excludes it and is selected
+		model.updateFilters( {
+			filter2: false, // Excludes 'hidefilter3'
+		} );
+		assert.deepEqual(
+			model.getFullState(),
+			{
+				filter1: { selected: true, active: true },
+				filter2: { selected: false, active: false }, // Excluded by filter1
+				filter3: { selected: false, active: false }, // Still excluded by filter1
+				filter4: { selected: false, active: true }
+			},
+			'"Explicit" exclusion behavior unselecting one item that excludes another item, that is being excluded by a third active item.'
+		);
+
+		// Unselect filter1: filter3 should now be active, since both filters that exclude it are unselected
+		model.updateFilters( {
+			filter1: false, // Excludes 'hidefilter3' and 'hidefilter2'
+		} );
+		assert.deepEqual(
+			model.getFullState(),
+			{
+				filter1: { selected: false, active: true },
+				filter2: { selected: false, active: true }, // No longer excluded by filter1
+				filter3: { selected: false, active: true }, // No longer excluded by either filter1 nor filter2
+				filter4: { selected: false, active: true }
+			},
+			'"Explicit" exclusion behavior unselecting both items that excluded the same third item.'
+		);
+
 	} );
 }( mediaWiki, jQuery ) );
