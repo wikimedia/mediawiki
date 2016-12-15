@@ -665,7 +665,7 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
-	 * @param string $sqls
+	 * @param string[] $sqls
 	 * @param bool $all Whether to "UNION ALL" or not
 	 * @return string
 	 */
