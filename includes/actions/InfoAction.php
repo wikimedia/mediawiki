@@ -262,7 +262,7 @@ class InfoAction extends FormlessAction {
 		$pageLang = $title->getPageLanguage()->getCode();
 
 		if ( $config->get( 'PageLanguageUseDB' )
-			&& $this->getTitle()->userCan( 'pagelang', $this->getUser() )
+			&& $title->userCan( 'pagelang', $user )
 		) {
 			// Link to Special:PageLanguage with pre-filled page title if user has permissions
 			$titleObj = SpecialPage::getTitleFor( 'PageLanguage', $title->getPrefixedText() );
@@ -282,7 +282,9 @@ class InfoAction extends FormlessAction {
 		// Content model of the page
 		$modelHtml = htmlspecialchars( ContentHandler::getLocalizedName( $title->getContentModel() ) );
 		// If the user can change it, add a link to Special:ChangeContentModel
-		if ( $title->quickUserCan( 'editcontentmodel' ) ) {
+		if ( $config->get( 'ContentHandlerUseDB' )
+			&& $title->userCan( 'editcontentmodel', $user )
+		) {
 			$modelHtml .= ' ' . $this->msg( 'parentheses' )->rawParams( $linkRenderer->makeLink(
 				SpecialPage::getTitleValueFor( 'ChangeContentModel', $title->getPrefixedText() ),
 				$this->msg( 'pageinfo-content-model-change' )->text()
@@ -474,7 +476,7 @@ class InfoAction extends FormlessAction {
 			}
 			$expiry = $title->getRestrictionExpiry( $restrictionType );
 			$formattedexpiry = $this->msg( 'parentheses',
-				$this->getLanguage()->formatExpiry( $expiry ) )->escaped();
+				$lang->formatExpiry( $expiry ) )->escaped();
 			$message .= $this->msg( 'word-separator' )->escaped() . $formattedexpiry;
 
 			// Messages: restriction-edit, restriction-move, restriction-create,
