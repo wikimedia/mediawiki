@@ -62,4 +62,13 @@
 		this.$element.toggleClass( 'mw-rcfilters-ui-filterGroupWidget-invalid', !isValid );
 	};
 
+	/**
+	 * Toggle the active state of this group
+	 *
+	 * @param {boolean} isActive The group is active
+	 */
+	mw.rcfilters.ui.FilterGroupWidget.prototype.toggleActiveState = function ( isActive ) {
+		this.$element.toggleClass( 'mw-rcfilters-ui-filterGroupWidget-active', isActive );
+	};
+
 }( mediaWiki, jQuery ) );
