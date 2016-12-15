@@ -165,14 +165,26 @@
 	 * Respond to model item update
 	 *
 	 * @param {mw.rcfilters.dm.FilterItem} item Filter item that was updated
-	 * @param {boolean} isSelected State of the filter
 	 */
-	mw.rcfilters.ui.FilterWrapperWidget.prototype.onModelItemUpdate = function ( item, isSelected ) {
-		if ( isSelected ) {
+	mw.rcfilters.ui.FilterWrapperWidget.prototype.onModelItemUpdate = function ( item ) {
+		var widget = this;
+
+		if ( item.isSelected() ) {
 			this.capsule.addItemsFromData( [ item.getName() ] );
+
+			// Deal with active/inactive capsule filter items
+			this.capsule.getItemFromData( item.getName() ).$element
+				.toggleClass( 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-item-inactive', !item.isActive() );
 		} else {
 			this.capsule.removeItemsFromData( [ item.getName() ] );
 		}
+
+		// Toggle the active state of the group
+		this.filterPopup.getItems().forEach( function ( groupWidget ) {
+			if ( groupWidget.getName() === item.getGroup() ) {
+				groupWidget.toggleActiveState( widget.model.isFilterGroupActive( groupWidget.getName() ) );
+			}
+		} );
 
 		if ( !this.model.isLoading() ) {
 			if ( this.model.areAllParameterGroupsValid() ) {

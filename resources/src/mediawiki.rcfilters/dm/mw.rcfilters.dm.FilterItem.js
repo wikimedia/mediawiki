@@ -11,6 +11,7 @@
 	 * @cfg {string} [label] The label for the filter
 	 * @cfg {string} [description] The description of the filter
 	 * @cfg {boolean} [selected] Filter is selected
+	 * @cfg {boolean} [active=true] The filter is active and affecting the result
 	 */
 	mw.rcfilters.dm.FilterItem = function MwRcfiltersDmFilterItem( name, config ) {
 		config = config || {};
@@ -24,6 +25,7 @@
 		this.description = config.description;
 
 		this.selected = !!config.selected;
+		this.active = config.active === undefined ? true : !!config.active;
 	};
 
 	/* Initialization */
@@ -35,7 +37,6 @@
 
 	/**
 	 * @event update
-	 * @param {boolean} isSelected Filter is selected
 	 *
 	 * The state of this filter has changed
 	 */
@@ -88,6 +89,30 @@
 	};
 
 	/**
+	 * Check if this filter is active
+	 *
+	 * @return {boolean} Filter is active
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.isActive = function () {
+		return this.active;
+	};
+
+	/**
+	 * Toggle the active state of the item
+	 *
+	 * @param {boolean} [isActive] Filter is active
+	 * @fires update
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.toggleActive = function ( isActive ) {
+		isActive = isActive === undefined ? !this.active : isActive;
+
+		if ( this.active !== isActive ) {
+			this.active = isActive;
+			this.emit( 'update' );
+		}
+	};
+
+	/**
 	 * Toggle the selected state of the item
 	 *
 	 * @param {boolean} [isSelected] Filter is selected
@@ -98,7 +123,8 @@
 
 		if ( this.selected !== isSelected ) {
 			this.selected = isSelected;
-			this.emit( 'update', this.selected );
+			this.emit( 'update' );
 		}
 	};
+
 }( mediaWiki ) );

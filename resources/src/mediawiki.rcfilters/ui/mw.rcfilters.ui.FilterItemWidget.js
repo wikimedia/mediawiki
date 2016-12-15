@@ -78,8 +78,13 @@
 	 *
 	 * @param {boolean} isSelected Filter is selected
 	 */
-	mw.rcfilters.ui.FilterItemWidget.prototype.onModelUpdate = function ( isSelected ) {
-		this.checkboxWidget.setSelected( isSelected );
+	mw.rcfilters.ui.FilterItemWidget.prototype.onModelUpdate = function () {
+		this.checkboxWidget.setSelected( this.model.isSelected() );
+
+		this.$element.toggleClass(
+			'mw-rcfilters-ui-filterItemWidget-inactive',
+			!this.model.isActive()
+		);
 	};
 
 	/**
