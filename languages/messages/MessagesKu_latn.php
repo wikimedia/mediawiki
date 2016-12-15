@@ -109,3 +109,4 @@ $magicWords = [
 	'pagesincategory_pages'     => [ '0', 'rûpel', 'pages' ],
 ];
 
+$linkTrail = '/^([a-zçêîşûẍḧÇÊÎŞÛẌḦ]+)(.*)$/sDu';
