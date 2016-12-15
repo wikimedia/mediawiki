@@ -45,6 +45,7 @@
 	 * @event itemUpdate
 	 * @param {mw.rcfilters.dm.FilterItem} item Filter item updated
 	 * @param {boolean} isSelected Filter is selected
+	 * @param {boolean} isActive Filter is active
 	 *
 	 * Filter item has changed
 	 */
@@ -58,10 +59,47 @@
 	 * @param {boolean} isSelected Filter item is selected
 	 * @fires filterUpdate
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.onFilterItemUpdate = function ( item, isSelected ) {
+	mw.rcfilters.dm.FiltersViewModel.prototype.onFilterItemUpdate = function ( item ) {
 		// Update parameter state
 		this.updateParameters( this.getFiltersToParameters() );
-		this.emit( 'itemUpdate', item, isSelected );
+
+		this.calculateActiveFilters( item );
+
+		this.emit( 'itemUpdate', item, item.isSelected(), item.isActive() );
+	};
+
+	/**
+	 * Calculate the active state of the filters, based on selected filters in the group.
+	 *
+	 * @param {[type]} item Changed item
+	 * @return {[type]} [description]
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.calculateActiveFilters = function ( item ) {
+		var group = item.getGroup(),
+			model = this,
+			selectedItemCounter = 0;
+
+		if ( !this.groups[ group ].exclusion_type ) {
+			// Default behavior
+			// - If there are unselected items in the group, they are inactive
+			// - If the entire group is selected, all are inactive
+
+			// Check what's selected in the group
+			selectedItemCounter = 0;
+			this.groups[ group ].filters.forEach( function ( filterItem ) {
+				selectedItemCounter += Number( filterItem.isSelected() );
+			} );
+debugger;
+			this.groups[ group ].filters.forEach( function ( filterItem ) {
+				if ( selectedItemCounter === model.groups[ group ].filters.length ) {
+					// All items are selected; they're all inactive
+					filterItem.toggleActive( false );
+				} else {
+					// Some items are selected.. the unselected ones are inactive
+					filterItem.toggleActive( filterItem.isSelected() );
+				}
+			} );
+		}
 	};
 
 	/**
@@ -252,6 +290,27 @@
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getFilterGroups = function () {
 		return this.groups;
+	};
+
+	/**
+	 * Checks whether the filter group is active. This means at least one
+	 * filter is selected, but not all filters are selected.
+	 *
+	 * @param {string} groupName Group name
+	 * @return {boolean} Filter group is active
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.isFilterGroupActive = function ( groupName ) {
+		var count = 0,
+			filters = this.groups[ groupName ].filters;
+
+		filters.forEach( function ( filterItem ) {
+			count += Number( filterItem.isSelected() );
+		} );
+
+		return (
+			count > 0 &&
+			count < filters.length
+		);
 	};
 
 	/**
