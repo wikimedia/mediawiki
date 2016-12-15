@@ -64,6 +64,52 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
+	 * {@inheritdoc}
+	 */
+	public function tryStashFile( User $user, $isPartial = false ) {
+		try {
+			$this->verifyChunk();
+		} catch ( UploadChunkVerificationException $e ) {
+			return Status::newFatal( $e->msg );
+		}
+
+		return parent::tryStashFile( $user, $isPartial );
+	}
+
+	/**
+	 * {@inheritdoc}
+	 * @throws UploadChunkVerificationException
+	 * @deprecated since 1.28 Use tryStashFile() instead
+	 */
+	public function stashFile( User $user = null ) {
+		wfDeprecated( __METHOD__, '1.28' );
+		$this->verifyChunk();
+		return parent::stashFile( $user );
+	}
+
+	/**
+	 * {@inheritdoc}
+	 * @throws UploadChunkVerificationException
+	 * @deprecated since 1.28
+	 */
+	public function stashFileGetKey() {
+		wfDeprecated( __METHOD__, '1.28' );
+		$this->verifyChunk();
+		return parent::stashFileGetKey();
+	}
+
+	/**
+	 * {@inheritdoc}
+	 * @throws UploadChunkVerificationException
+	 * @deprecated since 1.28
+	 */
+	public function stashSession() {
+		wfDeprecated( __METHOD__, '1.28' );
+		$this->verifyChunk();
+		return parent::stashSession();
+	}
+
+	/**
 	 * Calls the parent doStashFile and updates the uploadsession table to handle "chunks"
 	 *
 	 * @param User|null $user
@@ -74,7 +120,6 @@ class UploadFromChunks extends UploadFromFile {
 		$this->mChunkIndex = 0;
 		$this->mOffset = 0;
 
-		$this->verifyChunk();
 		// Create a local stash target
 		$this->mStashFile = parent::doStashFile( $user );
 		// Update the initial file offset (based on file size)
