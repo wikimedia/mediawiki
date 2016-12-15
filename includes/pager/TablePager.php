@@ -336,7 +336,7 @@ abstract class TablePager extends IndexPager {
 	/**
 	 * Get a "<select>" element which has options for each of the allowed limits
 	 *
-	 * @param string $attribs Extra attributes to set
+	 * @param string[] $attribs Extra attributes to set
 	 * @return string HTML fragment
 	 */
 	public function getLimitSelect( $attribs = [] ) {
