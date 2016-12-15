@@ -1306,7 +1306,8 @@ class Message implements MessageSpecifier, Serializable {
 	protected function formatListParam( array $params, $listType, $format ) {
 		if ( !isset( self::$listTypeMap[$listType] ) ) {
 			$warning = 'Invalid list type for message "' . $this->getKey() . '": ' .
-				htmlspecialchars( serialize( $param ) );
+				htmlspecialchars( serialize( $params )
+			);
 			trigger_error( $warning, E_USER_WARNING );
 			$e = new Exception;
 			wfDebugLog( 'Bug58676', $warning . "\n" . $e->getTraceAsString() );
