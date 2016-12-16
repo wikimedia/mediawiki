@@ -90,7 +90,7 @@ class IcuCollation extends Collation {
 	 * Empty arrays are intended; this signifies that the data for the language is
 	 * available and that there are, in fact, no additional letters to consider.
 	 */
-	private static $tailoringFirstLetters = [
+	public static $tailoringFirstLetters = [
 		'af' => [],
 		'am' => [],
 		'ar' => [],

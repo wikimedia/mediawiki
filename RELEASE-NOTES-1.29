@@ -14,6 +14,9 @@ production.
   will still be blocked.
 * The resetpassword right and associated password reset capture feature has
   been removed.
+* (T47611) Language specific UCA collation ($wgCategoryCollation) for the wiki will now be
+  automatically set during installation after user has set the wiki language, with appropriate
+  defaults.
 
 === New features in 1.29 ===
 * (T5233) A cookie can now be set when a user is autoblocked, to track that user if
