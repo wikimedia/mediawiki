@@ -23,7 +23,7 @@
 /**
  * Handles searching prefixes of titles and finding any page
  * names that match. Used largely by the OpenSearch implementation.
- * @deprecated Since 1.27, Use SearchEngine::prefixSearchSubpages or SearchEngine::completionSearch
+ * @deprecated Since 1.27, Use SearchEngine::defaultPrefixSearch or SearchEngine::completionSearch
  *
  * @ingroup Search
  */
@@ -369,7 +369,7 @@ abstract class PrefixSearch {
 
 /**
  * Performs prefix search, returning Title objects
- * @deprecated Since 1.27, Use SearchEngine::prefixSearchSubpages or SearchEngine::completionSearch
+ * @deprecated Since 1.27, Use SearchEngine::defaultPrefixSearch or SearchEngine::completionSearch
  * @ingroup Search
  */
 class TitlePrefixSearch extends PrefixSearch {
