@@ -27,6 +27,9 @@ production.
   $wgNamespacesWithSubpages[NS_TEMPLATE] to false to keep the old behavior.
 * $wgRunJobsAsync is now false by default (T142751). This change only affects
   wikis with $wgJobRunRate > 0.
+* Language specific UCA collation ($wgCategoryCollation) for the wiki will now be
+  automatically set during installation after user has set the wiki language, with appropriate
+  defaults. (T47611)
 
 === New features in 1.29 ===
 * (T5233) A cookie can now be set when a user is autoblocked, to track that user if
