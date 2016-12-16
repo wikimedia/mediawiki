@@ -261,23 +261,22 @@ class InfoAction extends FormlessAction {
 		// Language in which the page content is (supposed to be) written
 		$pageLang = $title->getPageLanguage()->getCode();
 
+		$pageLangHtml = $pageLang . ' - ' .
+			Language::fetchLanguageName( $pageLang, $lang->getCode() );
+		// Link to Special:PageLanguage with pre-filled page title if user has permissions
 		if ( $config->get( 'PageLanguageUseDB' )
 			&& $title->userCan( 'pagelang', $user )
 		) {
-			// Link to Special:PageLanguage with pre-filled page title if user has permissions
-			$titleObj = SpecialPage::getTitleFor( 'PageLanguage', $title->getPrefixedText() );
-			$langDisp = $linkRenderer->makeLink(
-				$titleObj,
-				$this->msg( 'pageinfo-language' )->text()
-			);
-		} else {
-			// Display just the message
-			$langDisp = $this->msg( 'pageinfo-language' )->escaped();
+			$pageLangHtml .= ' ' . $this->msg( 'parentheses' )->rawParams( $linkRenderer->makeLink(
+				SpecialPage::getTitleValueFor( 'PageLanguage', $title->getPrefixedText() ),
+				$this->msg( 'pageinfo-language-change' )->text()
+			) )->escaped();
 		}
 
-		$pageInfo['header-basic'][] = [ $langDisp,
-			Language::fetchLanguageName( $pageLang, $lang->getCode() )
-			. ' ' . $this->msg( 'parentheses', $pageLang )->escaped() ];
+		$pageInfo['header-basic'][] = [
+			$this->msg( 'pageinfo-language' )->escaped(),
+			$pageLangHtml
+		];
 
 		// Content model of the page
 		$modelHtml = htmlspecialchars( ContentHandler::getLocalizedName( $title->getContentModel() ) );
