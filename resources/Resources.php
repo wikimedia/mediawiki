@@ -2033,11 +2033,9 @@ return [
 	],
 	'mediawiki.special.watchlist' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.watchlist.js',
-		'messages' => 'watchlist-mark-all-visited',
 		'dependencies' => [
 			'mediawiki.api',
-			'mediawiki.jqueryMsg',
-			'oojs-ui-windows',
+			'oojs-ui-core',
 			'user.options',
 		]
 	],
