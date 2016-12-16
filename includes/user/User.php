@@ -2484,24 +2484,6 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * @deprecated Removed in 1.27.
-	 * @return Password
-	 * @since 1.24
-	 */
-	public function getPassword() {
-		throw new BadMethodCallException( __METHOD__ . ' has been removed in 1.27' );
-	}
-
-	/**
-	 * @deprecated Removed in 1.27.
-	 * @return Password
-	 * @since 1.24
-	 */
-	public function getTemporaryPassword() {
-		throw new BadMethodCallException( __METHOD__ . ' has been removed in 1.27' );
-	}
-
-	/**
 	 * Set the password and reset the random token.
 	 * Calls through to authentication plugin if necessary;
 	 * will have no effect if the auth plugin refuses to
