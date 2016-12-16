@@ -22,8 +22,6 @@
  * @author Brian Wolff
  */
 
-use stdClass;
-
 /**
  * @ingroup SpecialPage
  */
