@@ -1,15 +1,14 @@
 <?php
 
 /**
- * @covers CoreVersionChecker
+ * @covers VersionChecker
  */
-class CoreVersionCheckerTest extends PHPUnit_Framework_TestCase {
+class VersionCheckerTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider provideCheck
 	 */
 	public function testCheck( $coreVersion, $constraint, $expected ) {
-		$checker = new VersionChecker();
-		$checker->setCoreVersion( $coreVersion );
+		$checker = new VersionChecker( $coreVersion );
 		$this->assertEquals( $expected, !(bool)$checker->checkArray( [
 			'FakeExtension' => [
 				'MediaWiki' => $constraint,
@@ -46,9 +45,8 @@ class CoreVersionCheckerTest extends PHPUnit_Framework_TestCase {
 	 * @dataProvider provideType
 	 */
 	public function testType( $given, $expected ) {
-		$checker = new VersionChecker();
+		$checker = new VersionChecker( '1.0.0' );
 		$checker
-			->setCoreVersion( '1.0.0' )
 			->setLoadedExtensionsAndSkins( [
 				'FakeDependency' => [
 					'version' => '1.0.0',
@@ -85,15 +83,14 @@ class CoreVersionCheckerTest extends PHPUnit_Framework_TestCase {
 	 * returns any error message.
 	 */
 	public function testInvalidConstraint() {
-		$checker = new VersionChecker();
+		$checker = new VersionChecker( '1.0.0' );
 		$checker
-			->setCoreVersion( '1.0.0' )
 			->setLoadedExtensionsAndSkins( [
 				'FakeDependency' => [
 					'version' => 'not really valid',
 				],
 			] );
-		$this->assertEquals( [ "Dependency FakeDependency provides an invalid version string." ],
+		$this->assertEquals( [ "FakeDependency does not have a valid version string." ],
 			$checker->checkArray( [
 				'FakeExtension' => [
 					'extensions' => [
@@ -103,9 +100,8 @@ class CoreVersionCheckerTest extends PHPUnit_Framework_TestCase {
 			] )
 		);
 
-		$checker = new VersionChecker();
+		$checker = new VersionChecker( '1.0.0' );
 		$checker
-			->setCoreVersion( '1.0.0' )
 			->setLoadedExtensionsAndSkins( [
 				'FakeDependency' => [
 					'version' => '1.24.3',
