@@ -2036,8 +2036,7 @@ return [
 		'messages' => 'watchlist-mark-all-visited',
 		'dependencies' => [
 			'mediawiki.api',
-			'mediawiki.jqueryMsg',
-			'oojs-ui-windows',
+			'oojs-ui-core',
 			'user.options',
 		]
 	],
