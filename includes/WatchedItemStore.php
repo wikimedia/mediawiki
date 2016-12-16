@@ -668,7 +668,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 
 	/**
 	 * @param User $user The user to set the timestamp for
-	 * @param string $timestamp Set the update timestamp to this value
+	 * @param string|null $timestamp Set the update timestamp to this value
 	 * @param LinkTarget[] $targets List of targets to update. Default to all targets
 	 *
 	 * @return bool success
@@ -687,9 +687,13 @@ class WatchedItemStore implements StatsdAwareInterface {
 			$conds[] = $batch->constructSet( 'wl', $dbw );
 		}
 
+		if ( $timestamp !== null ) {
+			$timestamp = $dbw->timestamp( $timestamp );
+		}
+
 		$success = $dbw->update(
 			'watchlist',
-			[ 'wl_notificationtimestamp' => $dbw->timestamp( $timestamp ) ],
+			[ 'wl_notificationtimestamp' => $timestamp ],
 			$conds,
 			__METHOD__
 		);
