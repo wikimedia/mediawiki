@@ -129,6 +129,7 @@ changes to languages because of Phabricator reports.
 * Article::fetchContent() (deprecated in 1.21) was removed.
 * User::getPassword() (deprecated in 1.27) was removed.
 * User::getTemporaryPassword() (deprecated in 1.27) was removed.
+* User::isPasswordReminderThrottled() (deprecated in 1.27) was removed.
 
 == Compatibility ==
 
