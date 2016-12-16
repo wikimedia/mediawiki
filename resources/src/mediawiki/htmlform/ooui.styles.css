@@ -4,13 +4,23 @@
 	margin-top: 1em;
 }
 
-.mw-htmlform-ooui .mw-htmlform-field-HTMLCheckMatrix,
-.mw-htmlform-ooui .mw-htmlform-matrix,
-.mw-htmlform-ooui .mw-htmlform-matrix tr {
+.mw-htmlform-ooui .mw-htmlform-field-HTMLCheckMatrix {
 	width: 100%;
 }
 
-.mw-htmlform-ooui .mw-htmlform-matrix tr td.first {
+.mw-htmlform-ooui .mw-htmlform-matrix {
+	border-spacing: 0 6px; /* first value horizontal, second vertical */
+}
+
+.mw-htmlform-ooui .mw-htmlform-matrix td {
+	padding: 0.25em 0.5em;
+}
+
+.mw-htmlform-ooui .mw-htmlform-matrix tbody tr:nth-child( even ) td {
+	background-color: #f8f9fa;
+}
+
+.mw-htmlform-ooui .mw-htmlform-matrix td.first {
 	margin-right: 5%;
 	width: 39%;
 }
