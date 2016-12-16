@@ -415,8 +415,6 @@ class LanguageConverter {
 						$attr = $this->recursiveConvertTopLevel( $attr, $toVariant );
 					}
 
-					// Remove HTML tags to avoid disrupting the layout
-					$attr = preg_replace( '/<[^>]+>/', '', $attr );
 					if ( $attr !== $attrs[$attrName] ) {
 						$attrs[$attrName] = $attr;
 						$changed = true;
