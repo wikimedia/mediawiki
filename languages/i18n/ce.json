@@ -2940,5 +2940,7 @@
 	"removecredentials": "ДӀадаха декъашхойн дӀаяздарш",
 	"removecredentials-submit": "ДӀадаха декъашхойн дӀаяздарш",
 	"credentialsform-provider": "ДӀаяздарийн тайпа:",
-	"credentialsform-account": "Декъашхочун цӀе:"
+	"credentialsform-account": "Декъашхочун цӀе:",
+	"userjsispublic": "Тергам бе: JavaScript бухара агӀонаш чохь къайлаха хаамаш хийла ца беза, уьш массо декъашхойн тӀекхочуш йолу дера.",
+	"usercssispublic": "Тергам бе: CSS бухара агӀонаш чохь къайлаха хаамаш хийла ца беза, уьш массо декъашхойн тӀекхочуш йолу дера."
 }

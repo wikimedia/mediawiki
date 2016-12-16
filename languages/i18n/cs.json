@@ -2008,7 +2008,6 @@
 	"wlshowhidemine": "moje editace",
 	"wlshowhidecategorization": "kategorizaci stránek",
 	"watchlist-options": "Možnosti sledovaných stránek",
-	"watchlist-mark-all-visited": "Jste si {{GENDER:|jist|jista|jisti}}, že chcete odznačit neprohlédnuté změny sledovaných stránek tím, že všechny stránky označíte jako navštívené?",
 	"watching": "Přidávám na seznam sledovaných stránek…",
 	"unwatching": "Odebírám ze seznamu sledovaných stránek…",
 	"watcherrortext": "Při změně sledování stránky „$1“ došlo k chybě.",
@@ -3870,5 +3869,6 @@
 	"restrictionsfield-badip": "Neplatná IP adresa nebo rozsah: $1",
 	"restrictionsfield-label": "Povolené rozsahy IP adres:",
 	"restrictionsfield-help": "Jedna IP adresa nebo CIDR rozsah na řádek. Všechno povolíte pomocí<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"revid": "revize $1",
 	"pageid": "Stránka s ID $1"
 }

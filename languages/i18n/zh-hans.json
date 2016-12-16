@@ -2070,7 +2070,6 @@
 	"wlshowhidemine": "我的编辑",
 	"wlshowhidecategorization": "页面分类",
 	"watchlist-options": "监视列表选项",
-	"watchlist-mark-all-visited": "您确定要通过标记所有页面为已访问，重置未查看的监视列表更改么？",
 	"watching": "正在监视...",
 	"unwatching": "正在取消监视...",
 	"watcherrortext": "更改“$1”的监视列表设置时出错。",
@@ -3900,5 +3899,6 @@
 	"restrictionsfield-badip": "无效的IP地址或段：$1",
 	"restrictionsfield-label": "允许的IP段：",
 	"restrictionsfield-help": "每行一个IP地址或CIDR段。要启用所有，可使用<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"revid": "修订版本$1",
 	"pageid": "页面ID$1"
 }

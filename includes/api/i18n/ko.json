@@ -224,6 +224,7 @@
 	"apihelp-query+alldeletedrevisions-param-user": "이 사용자에 대한 판만 나열합니다.",
 	"apihelp-query+alldeletedrevisions-param-excludeuser": "이 사용자에 대한 판을 나열하지 않습니다.",
 	"apihelp-query+alldeletedrevisions-param-namespace": "이 이름공간의 문서만 나열합니다.",
+	"apihelp-query+alldeletedrevisions-example-user": "<kbd>예시</kbd>님의 기여중 최근 50개의 삭제된 특정판을 표시하기",
 	"apihelp-query+allfileusages-paramvalue-prop-title": "파일의 제목을 추가합니다.",
 	"apihelp-query+allfileusages-param-limit": "반환할 총 항목 수입니다.",
 	"apihelp-query+allfileusages-example-unique": "고유한 파일 제목을 나열합니다.",

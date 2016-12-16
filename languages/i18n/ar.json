@@ -2043,7 +2043,6 @@
 	"wlshowhidemine": "تعديلاتي",
 	"wlshowhidecategorization": "تصنيف الصفحات",
 	"watchlist-options": "خيارات قائمة المراقبة",
-	"watchlist-mark-all-visited": "هل أنت متأكد أنك تريد إعادة ضبط تغييرات قائمة المراقبة غير المرئية عن طريق التعليم على كل الصفحات كمزارة؟",
 	"watching": "يراقب...",
 	"unwatching": "إزالة المراقبة...",
 	"watcherrortext": "حدث خطأ أثناء تغيير إعدادات الرصد الخاصة بك \"$1\".",
@@ -3959,5 +3958,6 @@
 	"restrictionsfield-badip": "عنوان أيبي أو نطاق غير صحيح: $1",
 	"restrictionsfield-label": "نطاقات الأيبي المسموح بها:",
 	"restrictionsfield-help": "عنوان أيبي أو نطاق CIDR واحد لكل سطر. لتفعيل كل شيء، استخدم<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"revid": "المراجعة $1",
 	"pageid": "معرف الصفحة $1"
 }

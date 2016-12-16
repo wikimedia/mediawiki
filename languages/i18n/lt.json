@@ -3701,5 +3701,6 @@
 	"linkaccounts-success-text": "Paskyra buvo susieta.",
 	"linkaccounts-submit": "Susieti paskyras",
 	"unlinkaccounts": "Atsieti paskyras",
-	"unlinkaccounts-success": "Paskyra buvo atsieta."
+	"unlinkaccounts-success": "Paskyra buvo atsieta.",
+	"revid": "apžvalga $1"
 }

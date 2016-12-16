@@ -2106,7 +2106,7 @@
 	"protect-expiry-options": "1 საათი:1 hour,1 დღე:1 day,1 კვირა:1 week,2 კვირა:2 weeks,1 თვე:1 month,3 თვე:3 months,6 თვე:6 months,1 წელი:1 year,განუსაზღვრელი ვადით:infinite",
 	"restriction-type": "უფლება",
 	"restriction-level": "შეზღუდვის დონე:",
-	"minimum-size": "მინ ზომა",
+	"minimum-size": "მინ. ზომა",
 	"maximum-size": "მაქს. ზომა",
 	"pagesize": "(ბაიტი)",
 	"restriction-edit": "რედაქტირება",
