@@ -1099,6 +1099,7 @@ class WebRequest {
 		header( 'Content-Type: text/html' );
 		$encUrl = htmlspecialchars( $url );
 		echo <<<HTML
+<!DOCTYPE html>
 <html>
 <head>
 <title>Security redirect</title>
