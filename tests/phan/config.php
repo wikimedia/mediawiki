@@ -331,7 +331,7 @@ return [
 		"PhanTypeMismatchProperty",
 		// approximate error count: 95
 		"PhanTypeMismatchReturn",
-		// approximate error count: 16
+		// approximate error count: 11
 		"PhanTypeMissingReturn",
 		// approximate error count: 5
 		"PhanTypeNonVarPassByRef",

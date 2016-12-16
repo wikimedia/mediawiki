@@ -90,7 +90,6 @@ class ApiHelp extends ApiBase {
 	 * @param IContextSource $context
 	 * @param ApiBase[]|ApiBase $modules
 	 * @param array $options Formatting options (described above)
-	 * @return string
 	 */
 	public static function getHelp( IContextSource $context, $modules, array $options ) {
 		global $wgContLang;

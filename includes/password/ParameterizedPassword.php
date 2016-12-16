@@ -79,7 +79,7 @@ abstract class ParameterizedPassword extends Password {
 	}
 
 	public function needsUpdate() {
-		return parent::needsUpdate() || $this->params !== $this->getDefaultParams();
+		return $this->params !== $this->getDefaultParams();
 	}
 
 	public function toString() {
