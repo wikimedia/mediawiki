@@ -97,7 +97,12 @@
 			cache[ key ] = api.get( {
 				action: 'query',
 				meta: 'siteinfo',
-				siprop: 'interwikimap'
+				siprop: 'interwikimap',
+				// Cache client-side for a day since this info is mostly static
+				maxage: 60 * 60 * 24,
+				smaxage: 60 * 60 * 24,
+				// Workaround T97096 by setting uselang=content
+				uselang: 'content'
 			} ).then( function ( data ) {
 				return $.map( data.query.interwikimap, function ( interwiki ) {
 					return interwiki.prefix;
