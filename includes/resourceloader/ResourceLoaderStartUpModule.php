@@ -194,7 +194,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @return string JavaScript code for registering all modules with the client loader
 	 */
 	public function getModuleRegistrations( ResourceLoaderContext $context ) {
-
 		$resourceLoader = $context->getResourceLoader();
 		$target = $context->getRequest()->getVal( 'target', 'desktop' );
 		// Bypass target filter if this request is Special:JavaScriptTest.
@@ -202,6 +201,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		$byPassTargetFilter = $this->getConfig()->get( 'EnableJavaScriptTest' ) && $target === 'test';
 
 		$out = '';
+		$states = [];
 		$registryData = [];
 
 		// Get registry data
@@ -219,8 +219,23 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				continue;
 			}
 
-			$versionHash = $module->getVersionHash( $context );
-			if ( strlen( $versionHash ) !== 7 ) {
+			try {
+				$versionHash = $module->getVersionHash( $context );
+			} catch ( Exception $e ) {
+				// See also T152266 and ResourceLoader::getCombinedVersion()
+				MWExceptionHandler::logException( $e );
+				$context->getLogger()->warning(
+					'Calculating version for "{module}" failed: {exception}',
+					[
+						'module' => $name,
+						'exception' => $e,
+					]
+				);
+				$versionHash = '';
+				$states[$name] = 'error';
+			}
+
+			if ( $versionHash !== '' && strlen( $versionHash ) !== 7 ) {
 				$context->getLogger()->warning(
 					"Module '{module}' produced an invalid version hash: '{version}'.",
 					[
@@ -269,6 +284,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		// Register modules
 		$out .= "\n" . ResourceLoader::makeLoaderRegisterScript( $registrations );
+
+		if ( $states ) {
+			$out .= "\n" . ResourceLoader::makeLoaderStateScript( $states );
+		}
 
 		return $out;
 	}
