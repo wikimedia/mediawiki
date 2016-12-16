@@ -182,6 +182,7 @@ abstract class Installer {
 		'wgUpgradeKey',
 		'wgDefaultSkin',
 		'wgPingback',
+		'wgCategoryCollation'
 	];
 
 	/**
@@ -566,6 +567,22 @@ abstract class Installer {
 		}
 
 		return $this->dbInstallers[$type];
+	}
+
+	/**
+	 * Get language appropriate collation value (T47611)
+	 *
+	 * @return string Collation value
+	 */
+	public function getCollation( $wikiLang ) {
+		if ( extension_loaded( 'intl' ) ) {
+			if ( in_array( $wikiLang, array_keys( IcuCollation::$tailoringFirstLetters ) ) ) {
+				return 'uca-' . $wikiLang . '-u-kn';
+			} else {
+				return 'uca-default-u-kn';
+			}
+		}
+		return 'numeric';
 	}
 
 	/**
