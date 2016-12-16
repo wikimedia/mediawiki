@@ -17,35 +17,29 @@
 		// Adapted from a user script by User:NQ of English Wikipedia
 		// (User:NQ/WatchlistResetConfirm.js)
 		$resetForm.submit( function ( event ) {
+			var $button = $resetForm.find( 'input[name=mw-watchlist-reset-submit]' );
 			event.preventDefault();
 
-			OO.ui.confirm( mw.msg( 'watchlist-mark-all-visited' ) ).done( function ( confirmed ) {
-				var $button;
+			// Disable reset button to prevent multiple concurrent requests and show progress bar
+			$button.prop( 'disabled', true );
+			$progressBar.css( 'visibility', 'visible' );
 
-				if ( confirmed ) {
-					// Disable reset button to prevent multiple requests and show progress bar
-					$button = $resetForm.find( 'input[name=mw-watchlist-reset-submit]' ).prop( 'disabled', true );
-					$progressBar.css( 'visibility', 'visible' );
-
-					// Use action=setnotificationtimestamp to mark all as visited,
-					// then set all watchlist lines accordingly
-					new mw.Api().postWithToken( 'csrf', {
-						formatversion: 2,
-						action: 'setnotificationtimestamp',
-						entirewatchlist: true
-					} ).done( function () {
-						$button.css( 'visibility', 'hidden' );
-						$progressBar.css( 'visibility', 'hidden' );
-						$( '.mw-changeslist-line-watched' )
-							.removeClass( 'mw-changeslist-line-watched' )
-							.addClass( 'mw-changeslist-line-not-watched' );
-					} ).fail( function () {
-						// On error, fall back to server-side reset
-						// First remove this submit listener and then re-submit the form
-						$resetForm.off( 'submit' ).submit();
-					} );
-
-				}
+			// Use action=setnotificationtimestamp to mark all as visited,
+			// then set all watchlist lines accordingly
+			new mw.Api().postWithToken( 'csrf', {
+				formatversion: 2,
+				action: 'setnotificationtimestamp',
+				entirewatchlist: true
+			} ).done( function () {
+				$button.css( 'visibility', 'hidden' );
+				$progressBar.css( 'visibility', 'hidden' );
+				$( '.mw-changeslist-line-watched' )
+					.removeClass( 'mw-changeslist-line-watched' )
+					.addClass( 'mw-changeslist-line-not-watched' );
+			} ).fail( function () {
+				// On error, fall back to server-side reset
+				// First remove this submit listener and then re-submit the form
+				$resetForm.off( 'submit' ).submit();
 			} );
 		} );
 
