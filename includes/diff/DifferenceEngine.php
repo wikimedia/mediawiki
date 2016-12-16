@@ -210,7 +210,7 @@ class DifferenceEngine extends ContextSource {
 		if ( $link ) {
 			return "[$link $id]";
 		} else {
-			return $id;
+			return (string)$id;
 		}
 	}
 

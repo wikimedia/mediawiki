@@ -545,7 +545,7 @@ function wfAppendQuery( $url, $query ) {
  * @param string $url Either fully-qualified or a local path + query
  * @param string $defaultProto One of the PROTO_* constants. Determines the
  *    protocol to use if $url or $wgServer is protocol-relative
- * @return string Fully-qualified URL, current-path-relative URL or false if
+ * @return string|false Fully-qualified URL, current-path-relative URL or false if
  *    no valid URL can be constructed
  */
 function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {

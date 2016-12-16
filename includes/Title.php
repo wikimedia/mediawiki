@@ -835,7 +835,7 @@ class Title implements LinkTarget {
 	/**
 	 * Returns the DB name of the distant wiki which owns the object.
 	 *
-	 * @return string The DB name
+	 * @return string|false The DB name
 	 */
 	public function getTransWikiID() {
 		if ( !$this->isExternal() ) {
@@ -974,7 +974,7 @@ class Title implements LinkTarget {
 	/**
 	 * Get the namespace text
 	 *
-	 * @return string Namespace text
+	 * @return string|false Namespace text
 	 */
 	public function getNsText() {
 		if ( $this->isExternal() ) {
@@ -4436,7 +4436,7 @@ class Title implements LinkTarget {
 	 * Get the last touched timestamp
 	 *
 	 * @param IDatabase $db Optional db
-	 * @return string Last-touched timestamp
+	 * @return string|false Last-touched timestamp
 	 */
 	public function getTouched( $db = null ) {
 		if ( $db === null ) {

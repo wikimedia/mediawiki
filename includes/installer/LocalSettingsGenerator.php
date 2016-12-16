@@ -109,7 +109,7 @@ class LocalSettingsGenerator {
 	 *
 	 * @param string $string
 	 *
-	 * @return string
+	 * @return string|false
 	 */
 	public static function escapePhpString( $string ) {
 		if ( is_array( $string ) || is_object( $string ) ) {

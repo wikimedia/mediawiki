@@ -378,7 +378,7 @@ class LegacyLogger extends AbstractLogger {
 			if ( is_nan( $item ) ) {
 				return 'NaN';
 			}
-			return $item;
+			return (string)$item;
 		}
 
 		if ( is_scalar( $item ) ) {

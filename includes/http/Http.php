@@ -142,7 +142,7 @@ class Http {
 	 * @return bool
 	 */
 	public static function isValidURI( $uri ) {
-		return preg_match(
+		return (bool)preg_match(
 			'/^https?:\/\/[^\/\s]\S*$/D',
 			$uri
 		);

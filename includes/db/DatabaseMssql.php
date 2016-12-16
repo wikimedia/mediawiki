@@ -332,7 +332,7 @@ class DatabaseMssql extends Database {
 	}
 
 	/**
-	 * @return string
+	 * @return string|int
 	 */
 	public function lastErrno() {
 		$err = sqlsrv_errors( SQLSRV_ERR_ALL );

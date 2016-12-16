@@ -334,7 +334,7 @@ class RepoGroup {
 	/**
 	 * Get the repo instance by its name
 	 * @param string $name
-	 * @return bool
+	 * @return FileRepo|bool
 	 */
 	function getRepoByName( $name ) {
 		if ( !$this->reposInitialised ) {

@@ -46,7 +46,7 @@ class GitInfo {
 	protected $cache = [];
 
 	/**
-	 * Map of repo URLs to viewer URLs. Access via static method getViewers().
+	 * @var array|false Map of repo URLs to viewer URLs. Access via static method getViewers().
 	 */
 	private static $viewers = false;
 

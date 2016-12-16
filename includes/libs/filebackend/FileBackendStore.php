@@ -729,7 +729,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackendStore::getFileXAttributes()
 	 * @param array $params
-	 * @return bool|string
+	 * @return array[][]
 	 */
 	protected function doGetFileXAttributes( array $params ) {
 		return [ 'headers' => [], 'metadata' => [] ]; // not supported

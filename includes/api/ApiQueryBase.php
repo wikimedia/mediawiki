@@ -584,7 +584,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return bool
 	 */
 	public function validateSha1Hash( $hash ) {
-		return preg_match( '/^[a-f0-9]{40}$/', $hash );
+		return (bool)preg_match( '/^[a-f0-9]{40}$/', $hash );
 	}
 
 	/**
@@ -592,7 +592,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return bool
 	 */
 	public function validateSha1Base36Hash( $hash ) {
-		return preg_match( '/^[a-z0-9]{31}$/', $hash );
+		return (bool)preg_match( '/^[a-z0-9]{31}$/', $hash );
 	}
 
 	/**

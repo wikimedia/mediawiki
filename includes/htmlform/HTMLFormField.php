@@ -1034,7 +1034,7 @@ abstract class HTMLFormField {
 	 * with integer 0 as a value.
 	 *
 	 * @param array $array
-	 * @return array
+	 * @return array|string
 	 */
 	public static function forceToStringRecursive( $array ) {
 		if ( is_array( $array ) ) {

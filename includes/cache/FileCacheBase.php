@@ -154,7 +154,7 @@ abstract class FileCacheBase {
 	/**
 	 * Save and compress text to the cache
 	 * @param string $text
-	 * @return string Compressed text
+	 * @return string|false Compressed text
 	 */
 	public function saveText( $text ) {
 		if ( $this->useGzip() ) {

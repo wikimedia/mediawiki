@@ -2580,7 +2580,7 @@ class Language {
 
 	/**
 	 * @param string $key
-	 * @return array|null
+	 * @return string|null
 	 */
 	public function getMessage( $key ) {
 		return self::$dataCache->getSubitem( $this->mCode, 'messages', $key );

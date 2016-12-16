@@ -2176,7 +2176,7 @@ class OutputPage extends ContextSource {
 	 * if there isn't one. This is used by Skin to determine whether to enable
 	 * JavaScript frame-breaking, for clients that don't support X-Frame-Options.
 	 *
-	 * @return string
+	 * @return string|false
 	 */
 	public function getFrameOptions() {
 		$config = $this->getConfig();

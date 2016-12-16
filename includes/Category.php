@@ -168,7 +168,7 @@ class Category {
 	 * @param Title $title Optional title object for the category represented by
 	 *   the given row. May be provided if it is already known, to avoid having
 	 *   to re-create a title object later.
-	 * @return Category
+	 * @return Category|false
 	 */
 	public static function newFromRow( $row, $title = null ) {
 		$cat = new self();

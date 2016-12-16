@@ -237,7 +237,7 @@ class ApiParamInfo extends ApiBase {
 
 	/**
 	 * @param ApiBase $module
-	 * @return ApiResult
+	 * @return array
 	 */
 	private function getModuleInfo( $module ) {
 		$ret = [];

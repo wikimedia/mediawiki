@@ -121,7 +121,7 @@ class ForeignDBFile extends LocalFile {
 
 	/**
 	 * @param bool|Language $lang Optional language to fetch description in.
-	 * @return string
+	 * @return string|false
 	 */
 	function getDescriptionText( $lang = false ) {
 		global $wgLang;
