@@ -56,6 +56,8 @@ class WebInstallerLanguage extends WebInstallerPage {
 				}
 				if ( isset( $languages[$contLang] ) ) {
 					$this->setVar( 'wgLanguageCode', $contLang );
+					$this->setVar( 'wgCategoryCollation',
+						$this->parent->getCollation( $languages[$contLang] ) );
 				}
 
 				return 'continue';

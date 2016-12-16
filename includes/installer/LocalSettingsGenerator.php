@@ -63,6 +63,7 @@ class LocalSettingsGenerator {
 				'_MemCachedServers', 'wgDBserver', 'wgDBuser',
 				'wgDBpassword', 'wgUseInstantCommons', 'wgUpgradeKey', 'wgDefaultSkin',
 				'wgMetaNamespace', 'wgLogo', 'wgAuthenticationTokenVersion', 'wgPingback',
+				'wgCategoryCollation'
 			],
 			$db->getGlobalNames()
 		);

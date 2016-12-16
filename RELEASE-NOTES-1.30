@@ -39,6 +39,9 @@ section).
   requested through the configuration parameter $wgDBservers.
 * $wgOOUIEditPage was removed, as it is now the default. This was documented as a
   temporary variable during the migration period.
+* (T47611) Language specific UCA collation ($wgCategoryCollation) for the wiki
+  will now be automatically set during installation after user has set the wiki
+  language, with appropriate defaults.
 
 === New features in 1.30 ===
 * (T37247) Output from Parser::parse() will now be wrapped in a div with
