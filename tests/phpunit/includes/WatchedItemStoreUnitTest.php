@@ -2404,6 +2404,35 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		);
 	}
 
+	public function testSetNotificationTimestampsForUser_nullTimestamp() {
+		$user = $this->getMockNonAnonUserWithId( 1 );
+		$timestamp = null;
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->once() )
+			->method( 'update' )
+			->with(
+				'watchlist',
+				[ 'wl_notificationtimestamp' => null ],
+				[ 'wl_user' => 1 ]
+			)
+			->will( $this->returnValue( true ) );
+		$mockDb->expects( $this->exactly( 0 ) )
+			->method( 'timestamp' )
+			->will( $this->returnCallback( function( $value ) {
+				return 'TS' . $value . 'TS';
+			} ) );
+
+		$store = $this->newWatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockCache()
+		);
+
+		$this->assertTrue(
+			$store->setNotificationTimestampsForUser( $user, $timestamp )
+		);
+	}
+
 	public function testSetNotificationTimestampsForUser_specificTargets() {
 		$user = $this->getMockNonAnonUserWithId( 1 );
 		$timestamp = '20100101010101';
