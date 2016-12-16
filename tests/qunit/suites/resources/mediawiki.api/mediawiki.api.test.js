@@ -44,11 +44,25 @@
 		} );
 	} );
 
-	QUnit.test( 'API error', function ( assert ) {
+	QUnit.test( 'API error errorformat=bc', function ( assert ) {
 		var api = new mw.Api();
 
 		this.server.respond( [ 200, { 'Content-Type': 'application/json' },
 			'{ "error": { "code": "unknown_action" } }'
+		] );
+
+		api.get( { action: 'doesntexist' } )
+			.fail( function ( errorCode ) {
+				assert.equal( errorCode, 'unknown_action', 'API error should reject the deferred' );
+			} )
+			.always( assert.async() );
+	} );
+
+	QUnit.test( 'API error errorformat!=bc', function ( assert ) {
+		var api = new mw.Api();
+
+		this.server.respond( [ 200, { 'Content-Type': 'application/json' },
+			'{ "errors": [ { "code": "unknown_action", "key": "unknown-error", "params": [] } ] }'
 		] );
 
 		api.get( { action: 'doesntexist' } )
