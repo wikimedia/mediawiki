@@ -181,6 +181,7 @@ abstract class Installer {
 		'wgUpgradeKey',
 		'wgDefaultSkin',
 		'wgPingback',
+		'wgCategoryCollation'
 	];
 
 	/**
@@ -325,6 +326,18 @@ abstract class Installer {
 		'ca', 'cs', 'da', 'de', 'en', 'es', 'et', 'eu', 'fi', 'fr', 'hr', 'hu',
 		'it', 'ja', 'ko', 'lt', 'nl', 'no', 'pl', 'pt', 'pt-br', 'ro', 'ru',
 		'sl', 'sr', 'sv', 'tr', 'uk'
+	];
+
+	/**
+	 * Language specific collations supported by MediaWiki
+	 */
+	protected $supportedLangCollations = [
+		'af', 'ast', 'az', 'be', 'be-tarask', 'bg', 'br', 'bs', 'ca',
+		'co', 'cs', 'cy', 'da', 'de', 'dsb', 'el', 'en', 'eo', 'es', 'et', 'eu', 'fa', 'fi',
+		'fo', 'fr', 'fur', 'fy', 'ga', 'gd', 'gl', 'hr', 'hsb', 'hu', 'is', 'it', 'kk', 'kl',
+		'ku', 'ky', 'la', 'lb', 'lt', 'lv', 'mk', 'mo', 'mt', 'nl', 'no', 'oc', 'pl', 'pt',
+		'rm', 'ro', 'ru', 'rup', 'sco', 'sk', 'sl', 'smn', 'sq', 'sr', 'sv', 'ta', 'tk', 'tl',
+		'tr', 'tt', 'uk', 'uz', 'vi'
 	];
 
 	/**
@@ -562,6 +575,22 @@ abstract class Installer {
 		}
 
 		return $this->dbInstallers[$type];
+	}
+
+	/**
+	 * Get language appropriate collation value (T47611)
+	 *
+	 * @return string Collation value
+	 */
+	public function getCollation( $wikiLang ) {
+		if ( extension_loaded( 'intl' ) ) {
+			if ( in_array( $wikiLang, $this->supportedLangCollations ) ) {
+				return 'uca-' . $wikiLang . '-u-kn';
+			} else {
+				return 'uca-default-u-kn';
+			}
+		}
+		return 'numeric';
 	}
 
 	/**
