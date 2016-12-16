@@ -374,6 +374,9 @@ abstract class Installer {
 
 		$configOverrides->set( 'ObjectCaches', $objectCaches );
 
+		// Set language-appropriate collation
+		$configOverrides->set( 'CategoryCollation', self::getCollation() );
+
 		// Load the installer's i18n.
 		$messageDirs = $baseConfig->get( 'MessagesDirs' );
 		$messageDirs['MediawikiInstaller'] = __DIR__ . '/i18n';
@@ -447,6 +450,31 @@ abstract class Installer {
 		$this->parserOptions = new ParserOptions( $wgUser ); // language will be wrong :(
 		$this->parserOptions->setEditSection( false );
 	}
+
+	/**
+	 * Get language appropriate collation value (T47611)
+	 *
+	 * @return string Collation value
+	 */
+	public function getCollation() {
+		$wikiLang = $this->getVar( 'wgLanguageCode' );
+		$supportedLangCollations = [ 'af', 'ast', 'az', 'be', 'be-tarask', 'bg', 'br', 'bs', 'ca',
+			'co', 'cs', 'cy', 'da', 'de', 'dsb', 'el', 'en', 'eo', 'es', 'et', 'eu', 'fa', 'fi',
+			'fo', 'fr', 'fur', 'fy', 'ga', 'gd', 'gl', 'hr', 'hsb', 'hu', 'is', 'it', 'kk', 'kl',
+			'ku', 'ky', 'la', 'lb', 'lt', 'lv', 'mk', 'mo', 'mt', 'nl', 'no', 'oc', 'pl', 'pt',
+			'rm', 'ro', 'ru', 'rup', 'sco', 'sk', 'sl', 'smn', 'sq', 'sr', 'sv', 'ta', 'tk', 'tl',
+			'tr', 'tt', 'uk', 'uz', 'vi' ];
+		if ( extension_loaded( 'intl' ) ) {
+			if ( in_array( $wikiLang, $supportedLangCollations ) ) {
+				return 'uca-' . $wikiLang . '-u-kn';
+			} else {
+				return 'uca-default-u-kn';
+			}
+		}
+		return 'numeric';
+
+	}
+
 
 	/**
 	 * Get a list of known DB types.
