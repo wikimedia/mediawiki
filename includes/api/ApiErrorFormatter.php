@@ -143,6 +143,66 @@ class ApiErrorFormatter {
 	}
 
 	/**
+	 * Get an ApiMessage from an exception
+	 * @since 1.29
+	 * @param Exception|Throwable $exception
+	 * @param array $options
+	 *  - wrap: (string|array|MessageSpecifier) Used to wrap the exception's
+	 *    message. The exception's message will be added as the final parameter.
+	 *  - code: (string) Default code
+	 *  - data: (array) Extra data
+	 * @return ApiMessage
+	 */
+	public function getMessageFromException( $exception, array $options = [] ) {
+		$options += [ 'code' => null, 'data' => [] ];
+
+		if ( $exception instanceof ILocalizedException ) {
+			$msg = $exception->getMessageObject();
+			$params = [];
+		} else {
+			// Extract code and data from the exception, if applicable
+			if ( $exception instanceof UsageException ) {
+				$data = $exception->getMessageArray();
+				if ( !isset( $options['code'] ) ) {
+					$options['code'] = $data['code'];
+				}
+				unset( $data['code'], $data['info'] );
+				$options['data'] = array_merge( $data['code'], $options['data'] );
+			}
+
+			if ( isset( $options['wrap'] ) ) {
+				$msg = $options['wrap'];
+			} else {
+				$msg = new RawMessage( '$1' );
+				if ( !isset( $options['code'] ) ) {
+					$options['code'] = 'internal_api_error_' . get_class( $exception );
+				}
+			}
+			$params = [ wfEscapeWikiText( $exception->getMessage() ) ];
+		}
+		return ApiMessage::create( $msg, $options['code'], $options['data'] )
+			->params( $params )
+			->inLanguage( $this->lang )
+			->title( $this->getDummyTitle() )
+			->useDatabase( $this->useDB );
+	}
+
+	/**
+	 * Format an exception as an array
+	 * @since 1.29
+	 * @param Exception|Throwable $exception
+	 * @param array $options See self::getMessageFromException(), plus
+	 *  - format: (string) Format override
+	 * @return array
+	 */
+	public function formatException( $exception, array $options = [] ) {
+		return $this->formatMessage(
+			$this->getMessageFromException( $exception, $options ),
+			isset( $options['format'] ) ? $options['format'] : null
+		);
+	}
+
+	/**
 	 * Format a message as an array
 	 * @param Message|array|string $msg Message. See ApiMessage::create().
 	 * @param string|null $format
@@ -333,6 +393,19 @@ class ApiErrorFormatter_BackCompat extends ApiErrorFormatter {
 			'code' => $msg->getApiCode(),
 			'info' => $msg->text(),
 		] + $msg->getApiData();
+	}
+
+	/**
+	 * Format an exception as an array
+	 * @since 1.29
+	 * @param Exception|Throwable $exception
+	 * @param array $options See parent::formatException(), plus
+	 *  - bc: (bool) Return only the string, not an array
+	 * @return array|string
+	 */
+	public function formatException( $exception, array $options = [] ) {
+		$ret = parent::formatException( $exception, $options );
+		return empty( $options['bc'] ) ? $ret : $ret['info'];
 	}
 
 	protected function addWarningOrError( $tag, $modulePath, $msg ) {

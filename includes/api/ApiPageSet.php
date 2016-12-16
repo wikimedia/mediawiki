@@ -1151,7 +1151,7 @@ class ApiPageSet extends ApiBase {
 					$this->mAllPages[0][$title] = $this->mFakePageId;
 					$this->mInvalidTitles[$this->mFakePageId] = [
 						'title' => $title,
-						'invalidreason' => $ex->getMessage(),
+						'invalidreason' => $this->getErrorFormatter()->formatException( $ex, [ 'bc' => true ] ),
 					];
 					$this->mFakePageId--;
 					continue; // There's nothing else we can do

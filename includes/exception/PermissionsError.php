@@ -58,6 +58,9 @@ class PermissionsError extends ErrorPageError {
 		}
 
 		$this->errors = $errors;
+
+		// Give the parent class something to work with
+		parent::__construct( 'permissionserrors', Message::newFromSpecifier( $errors[0] ) );
 	}
 
 	public function report() {

@@ -140,11 +140,9 @@ class ApiEditPage extends ApiBase {
 					try {
 						$content = ContentHandler::makeContent( $text, $this->getTitle() );
 					} catch ( MWContentSerializationException $ex ) {
-						// @todo: Internationalize MWContentSerializationException
-						$this->dieWithError(
-							[ 'apierror-contentserializationexception', wfEscapeWikiText( $ex->getMessage() ) ],
-							'parseerror'
-						);
+						$this->dieWithException( $ex, [
+							'wrap' => ApiMessage::create( 'apierror-contentserializationexception', 'parseerror' )
+						] );
 						return;
 					}
 				} else {

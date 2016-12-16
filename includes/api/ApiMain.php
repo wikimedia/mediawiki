@@ -1046,7 +1046,9 @@ class ApiMain extends ApiBase {
 				$params = [
 					'apierror-exceptioncaught',
 					WebRequest::getRequestId(),
-					wfEscapeWikiText( $e->getMessage() )
+					$e instanceof ILocalizedException
+						? $e->getMessageObject()
+						: wfEscapeWikiText( $e->getMessage() )
 				];
 			}
 			$messages[] = ApiMessage::create( $params, $code );

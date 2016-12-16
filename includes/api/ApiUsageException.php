@@ -95,7 +95,7 @@ class UsageException extends MWException {
  *  starts throwing ApiUsageException. Eventually UsageException will go away
  *  and this will (probably) extend MWException directly.
  */
-class ApiUsageException extends UsageException {
+class ApiUsageException extends UsageException implements ILocalizedException {
 
 	protected $modulePath;
 	protected $status;
@@ -199,6 +199,13 @@ class ApiUsageException extends UsageException {
 			'code' => $enMsg->getApiCode(),
 			'info' => ApiErrorFormatter::stripMarkup( $enMsg->text() ),
 		] + $enMsg->getApiData();
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function getMessageObject() {
+		return $this->status->getMessage();
 	}
 
 	/**

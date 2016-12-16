@@ -1724,6 +1724,20 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Abort execution with an error derived from an exception
+	 *
+	 * @since 1.29
+	 * @param Exception|Throwable $exception See ApiErrorFormatter::getMessageFromException()
+	 * @param array $options See ApiErrorFormatter::getMessageFromException()
+	 * @throws ApiUsageException always
+	 */
+	public function dieWithException( $exception, array $options = [] ) {
+		$this->dieWithError(
+			$this->getErrorFormatter()->getMessageFromException( $exception, $options )
+		);
+	}
+
+	/**
 	 * Adds a warning to the output, else dies
 	 *
 	 * @param ApiMessage $msg Message to show as a warning, or error message if dying

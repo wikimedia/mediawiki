@@ -26,7 +26,7 @@
  * @ingroup Database
  * @since 1.23
  */
-class DBExpectedError extends DBError implements MessageSpecifier {
+class DBExpectedError extends DBError implements MessageSpecifier, ILocalizedException {
 	/** @var string[] Message parameters */
 	protected $params;
 
@@ -41,5 +41,13 @@ class DBExpectedError extends DBError implements MessageSpecifier {
 
 	public function getParams() {
 		return $this->params;
+	}
+
+	/**
+	 * @inheritdoc
+	 * @since 1.29
+	 */
+	public function getMessageObject() {
+		return Message::newFromSpecifier( $this );
 	}
 }
