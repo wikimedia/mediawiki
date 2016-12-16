@@ -45,7 +45,9 @@ class Language {
 	public $dateFormatStrings = [];
 	public $mExtendedSpecialPageAliases;
 
-	protected $namespaceNames, $mNamespaceIds, $namespaceAliases;
+	/** @var array|null */
+	protected $namespaceNames;
+	protected $mNamespaceIds, $namespaceAliases;
 
 	/**
 	 * ReplacementArray object caches
@@ -463,11 +465,11 @@ class Language {
 		if ( is_null( $this->namespaceNames ) ) {
 			global $wgMetaNamespace, $wgMetaNamespaceTalk, $wgExtraNamespaces;
 
-			$this->namespaceNames = self::$dataCache->getItem( $this->mCode, 'namespaceNames' );
 			$validNamespaces = MWNamespace::getCanonicalNamespaces();
 
-			/** @suppress PhanTypeInvalidLeftOperand */
-			$this->namespaceNames = $wgExtraNamespaces + $this->namespaceNames + $validNamespaces;
+			$this->namespaceNames = $wgExtraNamespaces +
+				self::$dataCache->getItem( $this->mCode, 'namespaceNames' );
+			$this->namespaceNames += $validNamespaces;
 
 			$this->namespaceNames[NS_PROJECT] = $wgMetaNamespace;
 			if ( $wgMetaNamespaceTalk ) {
