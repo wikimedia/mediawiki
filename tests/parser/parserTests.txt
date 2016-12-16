@@ -14155,6 +14155,19 @@ Escape HTML special chars in image alt text
 !! end
 
 !! test
+Escape HTML special chars in image alt text with LanguageConverter
+!! options
+language=zh
+!! wikitext
+[[File:Foobar.jpg|& < > "]]
+!! html/php
+<p><a href="/wiki/File:Foobar.jpg" class="image" title="&amp; &lt; &gt; &quot;"><img alt="&amp; &lt; &gt; &quot;" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
+</p>
+!! html/parsoid
+<p><span class="mw-default-size" typeof="mw:Image" data-parsoid='{"optList":[{"ck":"caption","ak":"&amp; &lt; > \""}]}' data-mw='{"caption":"&amp;amp; &amp;lt; > \""}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{}}'><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span></p>
+!! end
+
+!! test
 Entities in file name and attributes
 !! wikitext
 [[File:7%25 solution.gif|manualthumb=7%25 solution.gif|link=7%25 solution|[[7%25 solution]]]]
