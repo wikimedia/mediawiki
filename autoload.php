@@ -217,6 +217,7 @@ $wgAutoloadLocalClasses = [
 	'CachedBagOStuff' => __DIR__ . '/includes/libs/objectcache/CachedBagOStuff.php',
 	'CachingSiteStore' => __DIR__ . '/includes/site/CachingSiteStore.php',
 	'CapsCleanup' => __DIR__ . '/maintenance/cleanupCaps.php',
+	'CategoriesRDF' => __DIR__ . '/maintenance/categoriesRdf.php',
 	'Category' => __DIR__ . '/includes/Category.php',
 	'CategoryFinder' => __DIR__ . '/includes/CategoryFinder.php',
 	'CategoryMembershipChange' => __DIR__ . '/includes/changes/CategoryMembershipChange.php',
