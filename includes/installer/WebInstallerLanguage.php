@@ -22,6 +22,18 @@
 class WebInstallerLanguage extends WebInstallerPage {
 
 	/**
+	 * Language specific collations supported by MediaWiki
+	 */
+	protected $supportedLangCollations = [
+		'af', 'ast', 'az', 'be', 'be-tarask', 'bg', 'br', 'bs', 'ca',
+		'co', 'cs', 'cy', 'da', 'de', 'dsb', 'el', 'en', 'eo', 'es', 'et', 'eu', 'fa', 'fi',
+		'fo', 'fr', 'fur', 'fy', 'ga', 'gd', 'gl', 'hr', 'hsb', 'hu', 'is', 'it', 'kk', 'kl',
+		'ku', 'ky', 'la', 'lb', 'lt', 'lv', 'mk', 'mo', 'mt', 'nl', 'no', 'oc', 'pl', 'pt',
+		'rm', 'ro', 'ru', 'rup', 'sco', 'sk', 'sl', 'smn', 'sq', 'sr', 'sv', 'ta', 'tk', 'tl',
+		'tr', 'tt', 'uk', 'uz', 'vi'
+	];
+
+	/**
 	 * @return string|null
 	 */
 	public function execute() {
@@ -56,6 +68,8 @@ class WebInstallerLanguage extends WebInstallerPage {
 				}
 				if ( isset( $languages[$contLang] ) ) {
 					$this->setVar( 'wgLanguageCode', $contLang );
+					$this->setVar( 'wgCategoryCollation',
+						$this->getCollation( $languages[$contLang] ) );
 				}
 
 				return 'continue';
@@ -116,6 +130,23 @@ class WebInstallerLanguage extends WebInstallerPage {
 
 		$output .= $select->getHTML();
 		return $this->parent->label( $label, $name, $output );
+	}
+
+	/**
+	 * Get language appropriate collation value (T47611)
+	 *
+	 * @return string Collation value
+	 */
+	public function getCollation( $wikiLang ) {
+		if ( extension_loaded( 'intl' ) ) {
+			if ( in_array( $wikiLang, $this->supportedLangCollations ) ) {
+				return 'uca-' . $wikiLang . '-u-kn';
+			} else {
+				return 'uca-default-u-kn';
+			}
+		}
+		return 'numeric';
+
 	}
 
 }

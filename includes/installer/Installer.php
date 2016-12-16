@@ -181,6 +181,7 @@ abstract class Installer {
 		'wgUpgradeKey',
 		'wgDefaultSkin',
 		'wgPingback',
+		'wgCategoryCollation'
 	];
 
 	/**
