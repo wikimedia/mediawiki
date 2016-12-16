@@ -97,7 +97,10 @@
 			cache[ key ] = api.get( {
 				action: 'query',
 				meta: 'siteinfo',
-				siprop: 'interwikimap'
+				siprop: 'interwikimap',
+				maxage: 60 * 60 * 24,
+				smaxage: 60 * 60 * 24,
+				uselang: 'content'
 			} ).then( function ( data ) {
 				return $.map( data.query.interwikimap, function ( interwiki ) {
 					return interwiki.prefix;
