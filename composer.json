@@ -37,6 +37,7 @@
 		"wikimedia/html-formatter": "1.0.1",
 		"wikimedia/ip-set": "1.1.0",
 		"wikimedia/php-session-serializer": "1.0.4",
+                "wikimedia/purtle": "1.0.5",
 		"wikimedia/relpath": "1.0.3",
 		"wikimedia/remex-html": "1.0.1",
 		"wikimedia/running-stat": "1.1.0",
