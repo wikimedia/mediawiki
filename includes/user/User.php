@@ -2645,16 +2645,6 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Has password reminder email been sent within the last
-	 * $wgPasswordReminderResendTime hours?
-	 * @deprecated Removed in 1.27. See above.
-	 * @return bool
-	 */
-	public function isPasswordReminderThrottled() {
-		throw new BadMethodCallException( __METHOD__ . ' has been removed in 1.27' );
-	}
-
-	/**
 	 * Get the user's e-mail address
 	 * @return string User's email address
 	 */
