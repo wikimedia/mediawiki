@@ -2796,6 +2796,14 @@ $wgHTCPMulticastTTL = 1;
  */
 $wgUsePrivateIPs = false;
 
+/**
+ * Should the X-Forwarded-For header be parsed according to RFC7239, with the
+ * assumption that the actual client IP is the first entry in the header.
+ *
+ * This defaults to false for backwards compatibility reasons.
+ */
+$wgRfcProxyIPs = false;
+
 /** @} */ # end of HTTP proxy settings
 
 /************************************************************************//**

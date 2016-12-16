@@ -1227,7 +1227,9 @@ HTML;
 			$proxyLookup = MediaWikiServices::getInstance()->getProxyLookup();
 			$isConfigured = $proxyLookup->isConfiguredProxy( $ip );
 			$ipchain = array_map( 'trim', explode( ',', $forwardedFor ) );
-			$ipchain = array_reverse( $ipchain );
+			if ( !$wgRfcProxyIPs ) {
+				$ipchain = array_reverse( $ipchain );
+			}
 			array_unshift( $ipchain, $ip );
 
 			# Step through XFF list and find the last address in the list which is a
