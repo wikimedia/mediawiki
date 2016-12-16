@@ -127,6 +127,8 @@ changes to languages because of Phabricator reports.
 * WikiPage::prepareTextForEdit() (deprecated in 1.21) was removed.
 * WikiPage::getText() (deprecated in 1.21) was removed.
 * Article::fetchContent() (deprecated in 1.21) was removed.
+* User::getPassword() (deprecated in 1.27) was removed.
+* User::getTemporaryPassword() (deprecated in 1.27) was removed.
 
 == Compatibility ==
 
