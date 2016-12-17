@@ -22,7 +22,7 @@
 	};
 
 	$( function () {
-		var api, map, searchboxesSelectors,
+		var api, searchboxesSelectors,
 			// Region where the suggestions box will appear directly below
 			// (using the same width). Can be a container element or the input
 			// itself, depending on what suits best in the environment.
@@ -33,23 +33,6 @@
 			$searchRegion = $( '#simpleSearch, #searchInput' ).first(),
 			$searchInput = $( '#searchInput' ),
 			previousSearchText = $searchInput.val();
-
-		// Compatibility map
-		map = {
-			// SimpleSearch is broken in Opera < 9.6
-			opera: [ [ '>=', 9.6 ] ],
-			// Older Konquerors are unable to position the suggestions correctly (bug 50805)
-			konqueror: [ [ '>=', '4.11' ] ],
-			docomo: false,
-			blackberry: false,
-			// Support for iOS 6 or higher. It has not been tested on iOS 5 or lower
-			ipod: [ [ '>=', 6 ] ],
-			iphone: [ [ '>=', 6 ] ]
-		};
-
-		if ( !$.client.test( map ) ) {
-			return;
-		}
 
 		// Compute form data for search suggestions functionality.
 		function getFormData( context ) {
