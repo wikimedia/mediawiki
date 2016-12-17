@@ -375,7 +375,7 @@
 								}
 
 								if ( context.config.highlightInput ) {
-									$result.highlightText( context.data.prevText );
+									$result.highlightText( context.data.prevText, { method: 'prefixHighlight' } );
 								}
 
 								// Widen results box if needed (new width is only calculated here, applied later).

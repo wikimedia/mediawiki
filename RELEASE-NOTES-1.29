@@ -65,6 +65,8 @@ production.
 === Bug fixes in 1.29 ===
 * (T62604) Core parser functions returning a number now format the number according
   to the page content language, not wiki content language.
+* (T27187) Search suggestions based on jquery.suggestions will now correctly only
+  highlight prefix matches in the results.
 
 === Action API changes in 1.29 ===
 * Submitting sensitive authentication request parameters to action=clientlogin,
