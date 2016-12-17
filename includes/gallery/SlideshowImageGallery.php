@@ -34,4 +34,8 @@ class SlideshowImageGallery extends TraditionalImageGallery {
 	protected function getModules() {
 		return [ 'mediawiki.page.gallery.slideshow' ];
 	}
+
+	public function setAdditionalOptions( $params ) {
+		$this->mAttribs['data-showthumbnails'] = isset( $params['showthumbnails'] );
+	}
 }
