@@ -4,12 +4,12 @@
 ( function ( mw, $ ) {
 	mw.searchSuggest = {
 		// queries the wiki and calls response with the result
-		request: function ( api, query, response, maxRows ) {
+		request: function ( api, query, response, maxRows, namespace ) {
 			return api.get( {
 				formatversion: 2,
 				action: 'opensearch',
 				search: query,
-				namespace: 0,
+				namespace: namespace || 0,
 				limit: maxRows,
 				suggest: true
 			} ).done( function ( data, jqXHR ) {
