@@ -316,8 +316,6 @@ return [
 		// approximate error count: 2
 		"PhanTraitParentReference",
 		// approximate error count: 4
-		"PhanTypeArraySuspicious",
-		// approximate error count: 4
 		"PhanTypeComparisonFromArray",
 		// approximate error count: 3
 		"PhanTypeInvalidRightOperand",
