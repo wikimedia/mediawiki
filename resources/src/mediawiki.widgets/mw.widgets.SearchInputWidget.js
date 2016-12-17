@@ -34,7 +34,8 @@
 			icon: 'search',
 			maxLength: undefined,
 			performSearchOnClick: true,
-			dataLocation: 'header'
+			dataLocation: 'header',
+			namespace: 0
 		}, config );
 
 		// Parent constructor
@@ -83,7 +84,7 @@
 			self = this;
 
 		// reuse the searchSuggest function from mw.searchSuggest
-		promise = mw.searchSuggest.request( api, this.getQueryValue(), $.noop, this.limit );
+		promise = mw.searchSuggest.request( api, this.getQueryValue(), $.noop, this.limit, this.getNamespace() );
 
 		// tracking purposes
 		promise.done( function ( data, jqXHR ) {
