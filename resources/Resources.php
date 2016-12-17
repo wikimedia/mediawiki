@@ -1174,7 +1174,6 @@ return [
 			'searchsuggest-containing',
 		],
 		'dependencies' => [
-			'jquery.client',
 			'jquery.placeholder',
 			'jquery.suggestions',
 			'jquery.getAttrs',
