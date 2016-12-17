@@ -26,7 +26,7 @@
 		// Initialize
 		this.drawCarousel();
 		this.setSizeRequirement();
-		this.toggleThumbnails( false );
+		this.toggleThumbnails( !!this.$gallery.attr( 'data-showthumbnails' ));
 		this.showCurrentImage();
 
 		// Events
