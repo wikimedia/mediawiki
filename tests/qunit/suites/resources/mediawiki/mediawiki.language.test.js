@@ -3,11 +3,11 @@
 
 	QUnit.module( 'mediawiki.language', QUnit.newMwEnvironment( {
 		setup: function () {
-			this.liveLangData = mw.language.data.values;
-			mw.language.data.values = $.extend( true, {}, this.liveLangData );
+			this.liveLangData = mw.language.data;
+			mw.language.data = {};
 		},
 		teardown: function () {
-			mw.language.data.values = this.liveLangData;
+			mw.language.data = this.liveLangData;
 		},
 		messages: {
 			// mw.language.listToText test
