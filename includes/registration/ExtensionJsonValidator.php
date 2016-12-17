@@ -75,11 +75,7 @@ class ExtensionJsonValidator {
 		}
 
 		$version = $data->manifest_version;
-		if ( $version !== ExtensionRegistry::MANIFEST_VERSION ) {
-			$schemaPath = __DIR__ . "/../../docs/extension.schema.v$version.json";
-		} else {
-			$schemaPath = __DIR__ . '/../../docs/extension.schema.json';
-		}
+		$schemaPath = __DIR__ . "/../../docs/extension.schema.v$version.json";
 
 		// Not too old
 		if ( $version < ExtensionRegistry::OLDEST_MANIFEST_VERSION ) {

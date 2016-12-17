@@ -450,8 +450,9 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 		$globalSettings = TestingAccessWrapper::newFromClass(
 			ExtensionProcessor::class )->globalSettings;
 
+		$version = ExtensionRegistry::MANIFEST_VERSION;
 		$schema = FormatJson::decode(
-			file_get_contents( "$IP/docs/extension.schema.json" ),
+			file_get_contents( "$IP/docs/extension.schema.v$version.json" ),
 			true
 		);
 		$missing = [];
