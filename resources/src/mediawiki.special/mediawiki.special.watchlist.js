@@ -16,17 +16,15 @@
 			// Disable reset button to prevent multiple concurrent requests
 			$button.prop( 'disabled', true );
 
-			// Show progress bar
-			if ( $progressBar ) {
-				$progressBar.css( 'visibility', 'visible' );
-			} else {
+			if ( !$progressBar ) {
 				$progressBar = new OO.ui.ProgressBarWidget( { progress: false } ).$element;
 				$progressBar.css( {
 					position: 'absolute',
 					width: '100%'
 				} );
-				$resetForm.append( $progressBar );
 			}
+			// Show progress bar
+			$resetForm.append( $progressBar );
 
 			// Use action=setnotificationtimestamp to mark all as visited,
 			// then set all watchlist lines accordingly
@@ -39,7 +37,7 @@
 				$button.prop( 'disabled', false );
 				// Hide the button because further clicks can not generate any visual changes
 				$button.css( 'visibility', 'hidden' );
-				$progressBar.css( 'visibility', 'hidden' );
+				$progressBar.detach();
 				$( '.mw-changeslist-line-watched' )
 					.removeClass( 'mw-changeslist-line-watched' )
 					.addClass( 'mw-changeslist-line-not-watched' );
