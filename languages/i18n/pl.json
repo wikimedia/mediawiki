@@ -3849,5 +3849,6 @@
 	"usercssispublic": "Uwaga: Podstrony z kodem CSS są widoczne publicznie i nie powinny zawierać poufnych danych.",
 	"restrictionsfield-badip": "Nieprawidłowy adres IP lub zakres adresów: $1",
 	"restrictionsfield-label": "Dozwolone zakresy adresów IP:",
-	"restrictionsfield-help": "Jeden adres IP lub zakres CIDR w wierszu. Aby zaznaczyć wszystkie, użyj<br><code>0.0.0.0/0</code><br><code>::/0</code>"
+	"restrictionsfield-help": "Jeden adres IP lub zakres CIDR w wierszu. Aby zaznaczyć wszystkie, użyj<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"revid": "wersja $1"
 }

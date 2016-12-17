@@ -951,6 +951,7 @@
 	"api-help-authmanagerhelper-messageformat": "Zu verwendendes Format zur Rückgabe von Nachrichten.",
 	"apierror-nosuchuserid": "Es gibt keinen Benutzer mit der Kennung $1.",
 	"apierror-stashinvalidfile": "Ungültige gespeicherte Datei.",
+	"apierror-systemblocked": "Du wurdest von MediaWiki automatisch gesperrt.",
 	"api-credits-header": "Danksagungen",
 	"api-credits": "API-Entwickler:\n* Roan Kattouw (Hauptentwickler von September 2007 bis 2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (Autor, Hauptentwickler von September 2006 bis September 2007)\n* Brad Jorsch (Hauptentwickler seit 2013)\n\nBitte sende deine Kommentare, Vorschläge und Fragen an mediawiki-api@lists.wikimedia.org\noder reiche einen Fehlerbericht auf https://phabricator.wikimedia.org/ ein."
 }

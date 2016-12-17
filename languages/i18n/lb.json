@@ -2526,6 +2526,7 @@
 	"pageinfo-length": "Gréisst vun der Säit (a Bytes)",
 	"pageinfo-article-id": "ID (Nummer) vun der Säit",
 	"pageinfo-language": "Sprooch vum Inhalt vun der Säit",
+	"pageinfo-language-change": "änneren",
 	"pageinfo-content-model": "Modell vun enger Säit mat Inhalt",
 	"pageinfo-content-model-change": "änneren",
 	"pageinfo-robot-policy": "Indexéierung duerch Botten",
@@ -3571,5 +3572,5 @@
 	"userjsispublic": "DEnkt drun: Op JavaScript-Ënnersäite solle keng vertraulech Informatioune stoe well se vun anere Benotzer kënne gesi ginn.",
 	"restrictionsfield-badip": "Net valabel IP-Adress oder Beräich: $1",
 	"restrictionsfield-label": "Zougeloossen IP-Beräicher:",
-	"revid": "r$1"
+	"revid": "Versioun $1"
 }

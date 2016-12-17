@@ -90,7 +90,8 @@
 			"Ece Alpdeniz",
 			"Superyetkin",
 			"Alikaan",
-			"By erdo can"
+			"By erdo can",
+			"1917 Ekim Devrimi"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çiz:",
@@ -2021,6 +2022,7 @@
 	"changecontentmodel-submit": "Değiştir",
 	"changecontentmodel-success-title": "İçerik modeli değiştirildi",
 	"changecontentmodel-success-text": "İçerik türü [[:$1]] olarak değiştirildi.",
+	"log-name-contentmodel": "İçerik modeli değiştirme günlüğü",
 	"logentry-contentmodel-change-revertlink": "Eski haline döndür",
 	"logentry-contentmodel-change-revert": "Eski haline döndür",
 	"protectlogpage": "Koruma kayıtları",
@@ -3332,6 +3334,7 @@
 	"htmlform-user-not-exists": "<strong>$1</strong> mevcut değil.",
 	"htmlform-user-not-valid": "<strong>$1</strong> geçerli bir kullanıcı ismi değildir.",
 	"logentry-delete-delete": "$1 $3 sayfasını {{GENDER:$2|sildi}}",
+	"logentry-delete-delete_redir": "$1, $3 yönlendirmesini üzerine yazılması için {{GENDER:$2|sildi}}",
 	"logentry-delete-restore": "$1 $3 sayfasını {{GENDER:$2|geri getirdi}}",
 	"logentry-delete-event": "$1, $3 sayfasında {{PLURAL:$5|bir günlük girdisinin |$5 günlük girdisinin}} görünürlüğünü {{GENDER:$2|değiştirdi}}: $4",
 	"logentry-delete-revision": "$1, $3 sayfasında {{PLURAL:$5|bir sürümün|$5 sürümün}} görünürlüğünü {{GENDER:$2|değiştirdi}}: $4",
