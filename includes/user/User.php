@@ -1780,21 +1780,22 @@ class User implements IDBAccessObject {
 		}
 
 		if ( !is_array( $wgProxyList ) ) {
-			// Load from the specified file
+			// Load values from the specified file
 			$wgProxyList = array_map( 'trim', file( $wgProxyList ) );
 		}
 
-		if ( !is_array( $wgProxyList ) ) {
-			$ret = false;
-		} elseif ( array_search( $ip, $wgProxyList ) !== false ) {
-			$ret = true;
-		} elseif ( array_key_exists( $ip, $wgProxyList ) ) {
-			// Old-style flipped proxy list
-			$ret = true;
-		} else {
-			$ret = false;
+		if ( is_array( $wgProxyList ) ) {
+			if (
+				// Look for IP as value
+				array_search( $ip, $wgProxyList ) !== false ||
+				// Look for IP as key (for backwards-compatility)
+				array_key_exists( $ip, $wgProxyList )
+			) {
+				return true;
+			}
 		}
-		return $ret;
+
+		return false;
 	}
 
 	/**
