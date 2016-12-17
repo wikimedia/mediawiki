@@ -441,12 +441,15 @@ class LoadBalancer implements ILoadBalancer {
 
 	/**
 	 * @param int $i
-	 * @return IDatabase
+	 * @return IDatabase|bool
 	 */
 	public function getAnyOpenConnection( $i ) {
 		foreach ( $this->mConns as $connsByServer ) {
 			if ( !empty( $connsByServer[$i] ) ) {
-				return reset( $connsByServer[$i] );
+				/** @var $serverConns IDatabase[] */
+				$serverConns = $connsByServer[$i];
+
+				return reset( $serverConns );
 			}
 		}
 
