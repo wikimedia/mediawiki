@@ -31,7 +31,7 @@ use Wikimedia\ScopedCallback;
 class LoadBalancer implements ILoadBalancer {
 	/** @var array[] Map of (server index => server config array) */
 	private $mServers;
-	/** @var IDatabase[][] Map of (local/foreignUsed/foreignFree => server index => IDatabase array) */
+	/** @var IDatabase[][][] Map of (local/foreignUsed/foreignFree => server index => IDatabase array) */
 	private $mConns;
 	/** @var float[] Map of (server index => weight) */
 	private $mLoads;
