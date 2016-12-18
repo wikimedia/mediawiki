@@ -6,6 +6,10 @@
  *
  * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
+ * Updated on Dec 19, 2016
+ *
+ * Karatakis Panagiotis "karatakis@auth.gr"
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -64,6 +68,8 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		// TODO: if the query is going only against the revision table, should this be done?
 		$this->selectNamedDB( 'contributions', DB_REPLICA, 'contributions' );
+
+		$this->requireOnlyOneParameter( $params, 'userprefix', 'userids' , 'user' );
 
 		$this->idMode = false;
 		if ( isset( $this->params['userprefix'] ) ) {
