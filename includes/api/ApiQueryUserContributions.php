@@ -84,7 +84,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			}
 
 			foreach ( $this->params['userids'] as $uid ) {
-				if ( is_null( $uid ) || $uid === 0) {
+				if ( is_null( $uid ) || $uid <= 0) {
 					$this->dieUsage( "Userids parameter {$uid} is not valid.", 'param_userids' );
 				}
 
