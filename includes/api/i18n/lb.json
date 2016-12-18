@@ -211,6 +211,7 @@
 	"apierror-readonly": "D'Wiki kann elo just geliest ginn.",
 	"apierror-revwrongpage": "r$1 ass keng Versioun vu(n) $2.",
 	"apierror-stashwrongowner": "Falsche Besëtzer: $1",
+	"apierror-systemblocked": "Dir gouft automatesch vu MediaWiki gespaart.",
 	"apierror-unknownerror-editpage": "Onbekannten EditPage-Feeler: $1",
 	"apierror-unknownerror-nocode": "Onbekannte Feeler.",
 	"apierror-unknownerror": "Onbekannte Feeler: \"$1\".",

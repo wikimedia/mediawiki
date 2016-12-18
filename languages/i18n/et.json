@@ -3072,7 +3072,7 @@
 	"watchlistedit-clear-done": "Sinu jälgimisloend on tühjendatud.",
 	"watchlistedit-clear-removed": "{{PLURAL:$1|Üks pealkiri|$1 pealkirja}} eemaldati:",
 	"watchlistedit-too-many": "Pealkirju on siin kuvamiseks liiga palju.",
-	"watchlisttools-clear": "Tühjenda jälgimisloend",
+	"watchlisttools-clear": "tühjenda jälgimisloend",
 	"watchlisttools-view": "näita vastavaid muudatusi",
 	"watchlisttools-edit": "vaata ja redigeeri jälgimisloendit",
 	"watchlisttools-raw": "redigeeri jälgimisloendi toorandmeid",

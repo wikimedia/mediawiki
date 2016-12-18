@@ -2657,6 +2657,7 @@
 	"pageinfo-length": "Długość strony (w bajtach)",
 	"pageinfo-article-id": "Identyfikator strony",
 	"pageinfo-language": "Język zawartości strony",
+	"pageinfo-language-change": "zmień",
 	"pageinfo-content-model": "Model zawartości",
 	"pageinfo-content-model-change": "zmień",
 	"pageinfo-robot-policy": "Indeksowanie przez roboty",

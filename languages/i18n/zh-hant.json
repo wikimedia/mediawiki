@@ -3763,7 +3763,7 @@
 	"log-action-filter-newusers-create": "由匿名使用者建立",
 	"log-action-filter-newusers-create2": "由註冊使用者建立",
 	"log-action-filter-newusers-autocreate": "自動建立",
-	"log-action-filter-newusers-byemail": "使用電子郵件發送密碼建立",
+	"log-action-filter-newusers-byemail": "使用電子郵件寄送密碼建立",
 	"log-action-filter-patrol-patrol": "手動巡查",
 	"log-action-filter-patrol-autopatrol": "自動巡查",
 	"log-action-filter-protect-protect": "保護",

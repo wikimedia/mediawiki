@@ -1608,6 +1608,7 @@
 	"apierror-stashpathinvalid": "La clé du fichier n'a pas le bon format ou est invalide: $1 .",
 	"apierror-stashwrongowner": "Erreur de propriétaire: $1",
 	"apierror-stashzerolength": "Fichier est de longueur nulle, et n'a pas pu être mis dans la réserve: $1.",
+	"apierror-systemblocked": "Vous avez été bloqué automatiquement par MediaWiki.",
 	"apierror-templateexpansion-notwikitext": "Le développement du modèle n'est effectif que sur un contenu wikitext. $1 utilise le modèle de contenu $2.",
 	"apierror-toofewexpiries": "$1 {{PLURAL:$1|horodatage d’expiration a été fourni|horodatages d’expiration ont été fournis}} alors que $2 {{PLURAL:$2|était attendu|étaient attendus}}.",
 	"apierror-unknownaction": "L'action spécifiée, <kbd>$1</kbd>, n'est pas reconnue.",

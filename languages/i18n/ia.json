@@ -651,6 +651,7 @@
 	"blockedtitle": "Le usator es blocate",
 	"blockedtext": "'''Tu nomine de usator o adresse IP ha essite blocate.'''\n\nLe blocada esseva facite per $1.\nLe motivo presentate es ''$2''.\n\n* Initio del blocada: $8\n* Expiration del blocada: $6\n* Le blocato intendite: $7\n\nTu pote contactar $1 o un altere [[{{MediaWiki:Grouppage-sysop}}|administrator]] pro discuter le blocada.\nTu non pote usar le function 'inviar e-mail a iste usator' salvo que un adresse de e-mail valide es specificate in le\n[[Special:Preferences|preferentias de tu conto]] e que tu non ha essite blocate de usar lo.\nTu adresse IP actual es $3, e le ID del blocada es #$5.\nPer favor include tote le detalios supra specificate in omne correspondentia.",
 	"autoblockedtext": "Tu adresse de IP ha essite automaticamente blocate proque un altere usator lo usava qui esseva blocate per $1.\nLe motivo presentate es:\n\n:''$2''\n\n* Initio del blocada: $8\n* Expiration del blocada: $6\n* Blocato intendite: $7\n\nTu pote contactar $1 o un del altere [[{{MediaWiki:Grouppage-sysop}}|administratores]] pro discuter le blocada.\n\nNota que tu non pote utilisar le function \"inviar e-mail a iste usator\" salvo que tu ha registrate un adresse de e-mail valide in tu [[Special:Preferences|preferentias de usator]] e que tu non ha essite blocate de usar lo.\n\nTu adresse IP actual es $3, e le ID del blocada es #$5.\nPer favor include tote le detalios supra specificate in omne correspondentia.",
+	"systemblockedtext": "Tu nomine de usator o adresse IP ha essite blocate automaticamente per MediaWiki.\nLe motivo presentate es:\n\n:<em>$2</em>\n\n* Initio del blocada: $8\n* Expiration del blocada: $6\n* Blocato intendite: $7\n\nTu adresse IP actual es $3.\nPer favor, include tote le detalios enumerate hic supra in omne questiones que tu pone.",
 	"blockednoreason": "nulle motivo specificate",
 	"whitelistedittext": "Tu debe $1 pro poter modificar paginas.",
 	"confirmedittext": "Tu debe confirmar tu adresse de e-mail pro poter modificar paginas.\nPer favor entra e valida tu adresse de e-mail per medio de tu [[Special:Preferences|preferentias de usator]].",
@@ -1948,7 +1949,7 @@
 	"emailccsubject": "Copia de tu message a $1: $2",
 	"emailsent": "E-mail inviate",
 	"emailsenttext": "Tu message de e-mail ha essite inviate.",
-	"emailuserfooter": "Iste e-mail ha essite {{GENDER:$1|inviate}} per $1 a {{GENDER:$2|$2}} con le function \"{{int:emailuser}}\" in {{SITENAME}}.",
+	"emailuserfooter": "Iste e-mail ha essite {{GENDER:$1|inviate}} per $1 a {{GENDER:$2|$2}} con le function \"{{int:emailuser}}\" in {{SITENAME}}.\n{{GENDER:$2|Le}} message ha essite inviate directemente al {{GENDER:$1|expeditor|expeditrice}} original, revelante {{GENDER:$2|tu}} adresse de e-mail a {{GENDER:$1|ille|illa}}.",
 	"usermessage-summary": "Lassante un message de systema.",
 	"usermessage-editor": "Messagero del systema",
 	"watchlist": "Observatorio",
@@ -2601,6 +2602,7 @@
 	"pageinfo-length": "Dimension del pagina (in bytes)",
 	"pageinfo-article-id": "ID del pagina",
 	"pageinfo-language": "Lingua del contento del pagina",
+	"pageinfo-language-change": "cambiar",
 	"pageinfo-content-model": "Modello de contento de pagina",
 	"pageinfo-content-model-change": "cambiar",
 	"pageinfo-robot-policy": "Indexation per robots",
@@ -3781,5 +3783,6 @@
 	"restrictionsfield-badip": "Adresse o intervallo IP non valide: $1",
 	"restrictionsfield-label": "Intervallos IP permittite:",
 	"restrictionsfield-help": "Un adresse IP o intervallo CIDR per linea. Pro activar toto, usa<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"revid": "version $1",
 	"pageid": "ID de pagina $1"
 }

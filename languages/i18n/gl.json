@@ -1358,7 +1358,7 @@
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] eliminada da categoría [[Special:WhatLinksHere/$1||esta páxina está incluída noutras páxinas]]",
 	"autochange-username": "Cambio automático de MediaWiki",
 	"upload": "Subir un ficheiro",
-	"uploadbtn": "Subir o ficheiro",
+	"uploadbtn": "Subir un ficheiro",
 	"reuploaddesc": "Cancelar a subida e volver ao formulario de subidas",
 	"upload-tryagain": "Enviar a descrición do ficheiro modificada",
 	"uploadnologin": "Non accedeu ao sistema",

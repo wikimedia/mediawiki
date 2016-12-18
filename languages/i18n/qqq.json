@@ -2258,7 +2258,7 @@
 	"emailccsubject": "Used in [[Special:EmailUser]].\n\nSubject of the carbon-copied email for the sender sent through MediaWiki.\n\nParameters:\n* $1 - target username\n* $2 - email subject",
 	"emailsent": "Title of [[Special:EmailUser]] when it says you it sent an email",
 	"emailsenttext": "Confirmation page: when you send an email, [[Special:EmailUser]] says you this (Your email has been sent).\n\nParameters:\n* $1 - (Optional) the recipient's username, for local customizations",
-	"emailuserfooter": "This message is appended to every email sent through the \"Email user\" function. Parameters:\n* $1 - username of the sender\n* $2 - username of the recipient",
+	"emailuserfooter": "This message is appended to every email sent through the \"Email user\" function. Parameters:\n* $1 - username of the sender\n* $2 - username of the recipient\n\n{{doc-singularthey}}",
 	"usermessage-summary": "This message is used as an edit summary for any message that is posted because of a system event. Translate \"leaving a message\" in the sense of: to give a message to someone; to deliver a message somewhere; to deposit.",
 	"usermessage-editor": "The user name for the user that is the editor of system messages. See [{{canonicalurl:Thread:Support/Message_info_please}} discussion on Support].",
 	"usermessage-template": "{{optional}}",
