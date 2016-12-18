@@ -80,13 +80,16 @@ module.exports = function ( grunt ) {
 				singleRun: true,
 				autoWatch: false,
 				// Some tests in extensions don't yield for more than the default 10s (T89075)
-				browserNoActivityTimeout: 60 * 1000
+				browserNoActivityTimeout: 60 * 1000,
+				mime: {
+					'text/x-typescript': ['ts','tsx']
+				}
 			},
 			main: {
-				browsers: [ 'Chrome' ]
+				browsers: [ 'Chromium' ]
 			},
 			more: {
-				browsers: [ 'Chrome', 'Firefox' ]
+				browsers: [ 'Chromium', 'Firefox' ]
 			}
 		},
 		copy: {
