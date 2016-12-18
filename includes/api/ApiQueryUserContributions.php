@@ -78,9 +78,6 @@ class ApiQueryContributions extends ApiQueryBase {
 			$this->userprefix = $this->params['userprefix'];
 		} else if ( isset( $this->params['userids'] ) ) {
 			$this->userids = [];
-			if ( !is_array( $this->params['userids'] ) ) {
-				$this->params['userids'] = [ $this->params['userids'] ];
-			}
 
 			if ( !count( $this->params['userids'] ) ) {
 				$this->dieUsage( 'Userids parameter may not be empty.', 'param_userids' );
@@ -102,9 +99,6 @@ class ApiQueryContributions extends ApiQueryBase {
 			$anyIPs = false;
 			$this->userids = [];
 			$this->usernames = [];
-			if ( !is_array( $this->params['user'] ) ) {
-				$this->params['user'] = [ $this->params['user'] ];
-			}
 			if ( !count( $this->params['user'] ) ) {
 				$encParamName = $this->encodeParamName( 'user' );
 				$this->dieWithError(
