@@ -20,6 +20,10 @@
     "karma-firefox-launcher": "1.0.0",
     "karma-qunit": "1.0.0",
     "qunitjs": "1.22.0",
-    "stylelint-config-wikimedia": "0.3.0"
+    "stylelint-config-wikimedia": "0.3.0",
+    "eslint": "3.12.2"
+  },
+  "peerDependencies": {
+    "eslint": "3.12.2"
   }
 }
