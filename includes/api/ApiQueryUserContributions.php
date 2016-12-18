@@ -84,7 +84,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			}
 
 			foreach ( $this->params['userids'] as $uid ) {
-				if ( is_null( $uid ) || $uid <= 0) {
+				if ( $uid <= 0) {
 					$this->dieUsage( "Userids parameter {$uid} is not valid.", 'param_userids' );
 				}
 
@@ -106,7 +106,7 @@ class ApiQueryContributions extends ApiQueryBase {
 				);
 			}
 			foreach ( $this->params['user'] as $u ) {
-				if ( is_null( $u ) || $u === '' ) {
+				if ( $u === '' ) {
 					$encParamName = $this->encodeParamName( 'user' );
 					$this->dieWithError(
 						[ 'apierror-paramempty', $encParamName ], "paramempty_$encParamName"
