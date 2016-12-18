@@ -1634,6 +1634,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param array|null $tags Change tags to apply to this edit
 	 * Callers are responsible for permission checks
 	 * (with ChangeTags::canAddTagsAccompanyingChange)
+	 * @param Int $undidRevId Id of revision that was undone or 0
 	 *
 	 * @throws MWException
 	 * @return Status Possible errors:
@@ -1655,7 +1656,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function doEditContent(
 		Content $content, $summary, $flags = 0, $baseRevId = false,
-		User $user = null, $serialFormat = null, $tags = []
+		User $user = null, $serialFormat = null, $tags = [], $undidRevId = 0
 	) {
 		global $wgUser, $wgUseAutomaticEditSummaries;
 
@@ -1734,7 +1735,8 @@ class WikiPage implements Page, IDBAccessObject {
 			'oldId' => $this->getLatest(),
 			'oldIsRedirect' => $this->isRedirect(),
 			'oldCountable' => $this->isCountable(),
-			'tags' => ( $tags !== null ) ? (array)$tags : []
+			'tags' => ( $tags !== null ) ? (array)$tags : [],
+			'undidRevId' => $undidRevId
 		];
 
 		// Actually create the revision and create/update the page
@@ -1914,7 +1916,8 @@ class WikiPage implements Page, IDBAccessObject {
 					);
 					// Trigger post-save hook
 					$params = [ &$this, &$user, $content, $summary, $flags & EDIT_MINOR,
-						null, null, &$flags, $revision, &$status, $meta['baseRevId'] ];
+						null, null, &$flags, $revision, &$status, $meta['baseRevId'],
+						$meta['undidRevId'] ];
 					ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $params );
 					Hooks::run( 'PageContentSaveComplete', $params );
 				}

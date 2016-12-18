@@ -2142,7 +2142,8 @@ class EditPage {
 			false,
 			$wgUser,
 			$content->getDefaultFormat(),
-			$this->changeTags
+			$this->changeTags,
+			$this->undidRev
 		);
 
 		if ( !$doEditStatus->isOK() ) {
