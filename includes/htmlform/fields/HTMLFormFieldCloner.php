@@ -96,6 +96,17 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			} else {
 				$info['id'] = Sanitizer::escapeId( "{$this->mID}--$key--$fieldname" );
 			}
+			// Copy the hide-if rules to "child" fields, so that the JavaScript code handling them
+			// (resources/src/mediawiki/htmlform/hide-if.js) doesn't have to handle nested fields.
+			if ( $this->mHideIf ) {
+				if ( isset( $info['hide-if'] ) ) {
+					// Hide child field if either its rules say it's hidden, or parent's rules say it's hidden
+					$info['hide-if'] = [ 'OR', $info['hide-if'], $this->mHideIf ];
+				} else {
+					// Hide child field if parent's rules say it's hidden
+					$info['hide-if'] = $this->mHideIf;
+				}
+			}
 			$field = HTMLForm::loadInputFromParameters( $name, $info, $this->mParent );
 			$fields[$fieldname] = $field;
 		}

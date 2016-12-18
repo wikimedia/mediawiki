@@ -201,22 +201,31 @@
 	}
 
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
-		$root.find( '.mw-htmlform-hide-if' ).each( function () {
-			var v, i, fields, test, func, spec, self, modules, data, extraModules,
-				$el = $( this );
-
+		var
+			$fields = $root.find( '.mw-htmlform-hide-if' ),
+			$oouiFields = $fields.filter( '[data-ooui]' ),
 			modules = [];
-			if ( $el.is( '[data-ooui]' ) ) {
-				modules.push( 'mediawiki.htmlform.ooui' );
+
+		if ( $oouiFields.length ) {
+			modules.push( 'mediawiki.htmlform.ooui' );
+			$oouiFields.each( function () {
+				var data, extraModules,
+					$el = $( this );
+
 				data = $el.data( 'mw-modules' );
 				if ( data ) {
 					// We can trust this value, 'data-mw-*' attributes are banned from user content in Sanitizer
 					extraModules = data.split( ',' );
 					modules.push.apply( modules, extraModules );
 				}
-			}
+			} );
+		}
 
-			mw.loader.using( modules ).done( function () {
+		mw.loader.using( modules ).done( function () {
+			$fields.each( function () {
+				var v, i, fields, test, func, spec, self,
+					$el = $( this );
+
 				if ( $el.is( '[data-ooui]' ) ) {
 					// self should be a FieldLayout that mixes in mw.htmlform.Element
 					self = OO.ui.FieldLayout.static.infuse( $el );
@@ -237,7 +246,42 @@
 				test = v[ 1 ];
 				// The .toggle() method works mostly the same for jQuery objects and OO.ui.Widget
 				func = function () {
-					self.toggle( !test() );
+					var shouldHide = test();
+					self.toggle( !shouldHide );
+
+					// It is impossible to submit a form with hidden fields failing validation, e.g. one that
+					// is required. However, validity is not checked for disabled fields, as these are not
+					// submitted with the form. So we should also disable fields when hiding them.
+					if ( self instanceof jQuery ) {
+						// This also finds elements inside any nested fields (in case of HTMLFormFieldCloner),
+						// which is problematic. But it works because:
+						// * HTMLFormFieldCloner::createFieldsForKey() copies 'hide-if' rules to nested fields
+						// * jQuery collections like $fields are in document order, so we register event
+						//   handlers for parents first
+						// * Event handlers are fired in the order they were registered, so even if the handler
+						//   for parent messed up the child, the handle for child will run next and fix it
+						self.find( 'input, textarea, select' ).each( function () {
+							var $this = $( this );
+							if ( shouldHide ) {
+								if ( $this.data( 'was-disabled' ) === undefined ) {
+									$this.data( 'was-disabled', $this.prop( 'disabled' ) );
+								}
+								$this.prop( 'disabled', true );
+							} else {
+								$this.prop( 'disabled', $this.data( 'was-disabled' ) );
+							}
+						} );
+					} else {
+						// self is a OO.ui.FieldLayout
+						if ( shouldHide ) {
+							if ( self.wasDisabled === undefined ) {
+								self.wasDisabled = self.fieldWidget.isDisabled();
+							}
+							self.fieldWidget.setDisabled( false );
+						} else if ( self.wasDisabled !== undefined ) {
+							self.fieldWidget.setDisabled( self.wasDisabled );
+						}
+					}
 				};
 				for ( i = 0; i < fields.length; i++ ) {
 					// The .on() method works mostly the same for jQuery objects and OO.ui.Widget
