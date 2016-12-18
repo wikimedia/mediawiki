@@ -85,10 +85,9 @@ class ApiQueryContributions extends ApiQueryBase {
 
 			foreach ( $this->params['userids'] as $uid ) {
 				if ( $uid <= 0) {
-					$this->dieUsage( "Userids parameter {$uid} is not valid.", 'param_userids' );
+					$this->dieUsage( "User ID {$uid} is not valid.", 'param_userids' );
 				}
 
-				// check for anon user is not working because anon users have userid == 0
 				$this->userids[] = $uid;
 			}
 
