@@ -5,6 +5,9 @@
     "doc": "jsduck",
     "postdoc": "grunt copy:jsduck"
   },
+  "dependencies": {
+    "eslint": "3.12.2"
+  },
   "devDependencies": {
     "eslint-config-wikimedia": "0.3.0",
     "grunt": "1.0.1",
@@ -21,5 +24,8 @@
     "karma-qunit": "1.0.0",
     "qunitjs": "1.22.0",
     "stylelint-config-wikimedia": "0.3.0"
+  },
+  "peerDependencies": {
+    "eslint": "3.12.2"
   }
 }
