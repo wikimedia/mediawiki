@@ -86,10 +86,10 @@ module.exports = function ( grunt ) {
 				browserNoActivityTimeout: 60 * 1000
 			},
 			main: {
-				browsers: [ 'Chrome' ]
+				browsers: [ 'Chromium' ]
 			},
 			more: {
-				browsers: [ 'Chrome', 'Firefox' ]
+				browsers: [ 'Chromium', 'Firefox' ]
 			}
 		},
 		copy: {
