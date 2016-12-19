@@ -102,10 +102,10 @@ class RevDelArchivedFileItem extends RevDelFileItem {
 			'width' => $file->getWidth(),
 			'height' => $file->getHeight(),
 			'size' => $file->getSize(),
+			'userhidden' => (bool)$file->isDeleted( Revision::DELETED_USER ),
+			'commenthidden' => (bool)$file->isDeleted( Revision::DELETED_COMMENT ),
+			'contenthidden' => (bool)$this->isDeleted(),
 		];
-		$ret += $file->isDeleted( Revision::DELETED_USER ) ? [ 'userhidden' => '' ] : [];
-		$ret += $file->isDeleted( Revision::DELETED_COMMENT ) ? [ 'commenthidden' => '' ] : [];
-		$ret += $this->isDeleted() ? [ 'contenthidden' => '' ] : [];
 		if ( $this->canViewContent() ) {
 			$ret += [
 				'url' => SpecialPage::getTitleFor( 'Revisiondelete' )->getLinkURL(
