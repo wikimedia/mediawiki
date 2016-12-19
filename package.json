@@ -3,7 +3,9 @@
   "scripts": {
     "test": "grunt test",
     "doc": "jsduck",
-    "postdoc": "grunt copy:jsduck"
+    "postdoc": "grunt copy:jsduck",
+    "selenium": "chromedriver --url-base=/wd/hub --port=4444 & grunt webdriver:jenkins",
+    "selenium-vagrant": "chromedriver --url-base=/wd/hub --port=4444 & grunt webdriver:vagrant; pkill chromedriver"
   },
   "devDependencies": {
     "eslint-config-wikimedia": "0.3.0",
@@ -15,11 +17,17 @@
     "grunt-jsonlint": "1.1.0",
     "grunt-karma": "2.0.0",
     "grunt-stylelint": "0.6.0",
+    "grunt-webdriver": "^2.0.3",
     "karma": "1.1.0",
     "karma-chrome-launcher": "1.0.1",
     "karma-firefox-launcher": "1.0.0",
     "karma-qunit": "1.0.0",
     "qunitjs": "1.22.0",
-    "stylelint-config-wikimedia": "0.3.0"
+    "stylelint-config-wikimedia": "0.3.0",
+    "wdio-dot-reporter": "0.0.6",
+    "wdio-junit-reporter": "^0.2.0",
+    "wdio-mocha-framework": "^0.5.8",
+    "wdio-spec-reporter": "0.0.5",
+    "webdriverio": "^4.5.1"
   }
 }
