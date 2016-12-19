@@ -182,7 +182,7 @@ class ApiMove extends ApiBase {
 		$retval = [];
 		$success = $fromTitle->moveSubpages( $toTitle, true, $reason, !$noredirect );
 		if ( isset( $success[0] ) ) {
-			$status = $this->errorArrayToStatus( $success );
+			$status = call_user_func_array( 'Status::newFatal', $success );
 			return [ 'errors' => $this->getErrorFormatter()->arrayFromStatus( $status ) ];
 		}
 
