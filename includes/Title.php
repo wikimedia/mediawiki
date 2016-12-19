@@ -3703,23 +3703,28 @@ class Title implements LinkTarget {
 	 * @param bool $createRedirect Whether to create redirects from the old subpages to
 	 *     the new ones Ignored if the user doesn't have the 'suppressredirect' right
 	 * @return array Array with old page titles as keys, and strings (new page titles) or
-	 *     arrays (errors) as values, or an error array with numeric indices if no pages
-	 *     were moved
+	 *     getUserPermissionsErrors()-like arrays (errors) as values, or a
+	 *     getUserPermissionsErrors()-like error array with numeric indices if
+	 *     no pages were moved
 	 */
 	public function moveSubpages( $nt, $auth = true, $reason = '', $createRedirect = true ) {
 		global $wgMaximumMovedPages;
 		// Check permissions
 		if ( !$this->userCan( 'move-subpages' ) ) {
-			return [ 'cant-move-subpages' ];
+			return [
+				[ 'cant-move-subpages' ],
+			];
 		}
 		// Do the source and target namespaces support subpages?
 		if ( !MWNamespace::hasSubpages( $this->getNamespace() ) ) {
-			return [ 'namespace-nosubpages',
-				MWNamespace::getCanonicalName( $this->getNamespace() ) ];
+			return [
+				[ 'namespace-nosubpages', MWNamespace::getCanonicalName( $this->getNamespace() ) ],
+			];
 		}
 		if ( !MWNamespace::hasSubpages( $nt->getNamespace() ) ) {
-			return [ 'namespace-nosubpages',
-				MWNamespace::getCanonicalName( $nt->getNamespace() ) ];
+			return [
+				[ 'namespace-nosubpages', MWNamespace::getCanonicalName( $nt->getNamespace() ) ],
+			];
 		}
 
 		$subpages = $this->getSubpages( $wgMaximumMovedPages + 1 );
@@ -3728,9 +3733,9 @@ class Title implements LinkTarget {
 		foreach ( $subpages as $oldSubpage ) {
 			$count++;
 			if ( $count > $wgMaximumMovedPages ) {
-				$retval[$oldSubpage->getPrefixedText()] =
-						[ 'movepage-max-pages',
-							$wgMaximumMovedPages ];
+				$retval[$oldSubpage->getPrefixedText()] = [
+					[ 'movepage-max-pages', $wgMaximumMovedPages ],
+				];
 				break;
 			}
 
