@@ -59,7 +59,7 @@ class ApiMove extends ApiBase {
 		if ( !$toTitle || $toTitle->isExternal() ) {
 			$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['to'] ) ] );
 		}
-		$toTalk = $toTitle->getTalkPage();
+		$toTalk = $toTitle->canTalk() ? $toTitle->getTalkPage() : null;
 
 		if ( $toTitle->getNamespace() == NS_FILE
 			&& !RepoGroup::singleton()->getLocalRepo()->findFile( $toTitle )
@@ -100,7 +100,7 @@ class ApiMove extends ApiBase {
 		$r['moveoverredirect'] = $toTitleExists;
 
 		// Move the talk page
-		if ( $params['movetalk'] && $fromTalk->exists() && !$fromTitle->isTalkPage() ) {
+		if ( $params['movetalk'] && $toTalk && $fromTalk->exists() && !$fromTitle->isTalkPage() ) {
 			$toTalkExists = $toTalk->exists();
 			$status = $this->movePage( $fromTalk, $toTalk, $params['reason'], !$params['noredirect'] );
 			if ( $status->isOK() ) {
