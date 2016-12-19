@@ -13,6 +13,7 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
 	grunt.loadNpmTasks( 'grunt-karma' );
 	grunt.loadNpmTasks( 'grunt-stylelint' );
+	grunt.loadNpmTasks( 'grunt-webdriver' );
 
 	karmaProxy[ wgScriptPath ] = wgServer + wgScriptPath;
 
@@ -98,7 +99,15 @@ module.exports = function ( grunt ) {
 					return require( 'path' ).join( dest, src.replace( 'resources/', '' ) );
 				}
 			}
+		},
+
+		// Configure WebdriverIO task
+		webdriver: {
+			test: {
+				configFile: './wdio.conf.js'
+			}
 		}
+
 	} );
 
 	grunt.registerTask( 'assert-mw-env', function () {
@@ -116,6 +125,7 @@ module.exports = function ( grunt ) {
 
 	grunt.registerTask( 'lint', [ 'eslint', 'banana', 'stylelint' ] );
 	grunt.registerTask( 'qunit', [ 'assert-mw-env', 'karma:main' ] );
+	grunt.registerTask( 'wdio', 'webdriver' );
 
 	grunt.registerTask( 'test', [ 'lint' ] );
 	grunt.registerTask( 'default', 'test' );
