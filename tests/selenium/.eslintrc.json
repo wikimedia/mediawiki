@@ -1,0 +1,11 @@
+{
+	"extends": "../../.eslintrc.json",
+	"env": {
+		"es6": true,
+		"mocha": true,
+		"node": true
+	},
+	"globals": {
+		"browser": false
+	}
+}
