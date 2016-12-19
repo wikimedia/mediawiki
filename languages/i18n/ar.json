@@ -2668,6 +2668,7 @@
 	"pageinfo-length": "حجم الصفحة (بالبايت)",
 	"pageinfo-article-id": "معرف الصفحة (ID)",
 	"pageinfo-language": "لغة محتوى الصفحة",
+	"pageinfo-language-change": "غير",
 	"pageinfo-content-model": "نموذج محتوى الصفحة",
 	"pageinfo-content-model-change": "تغيير",
 	"pageinfo-robot-policy": "فهرسة الروبوتات",

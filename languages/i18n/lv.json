@@ -567,7 +567,7 @@
 	"preview": "Pirmskats",
 	"showpreview": "Rādīt pirmskatu",
 	"showdiff": "Rādīt izmaiņas",
-	"anoneditwarning": "'''Uzmanību:''' tu neesi iegājis. Lapas hronoloģijā tiks ierakstīta tava IP adrese.",
+	"anoneditwarning": "<strong>Uzmanību:</strong> tu neesi pieslēdzies. Ja veiksi labojumus, publiski būs redzama tava IP adrese. Ja tu <strong>[$1 pieslēgsies]</strong> vai <strong>[$2 izveidosi kontu]</strong>, visi labojumi tiks piesaistīti tavam kontam; būs arī citi ieguvumi.",
 	"anonpreviewwarning": "''Tu neesi ienācis. Saglabājot lapu, Tava IP adrese tiks ierakstīta šīs lapas hronoloģijā.''",
 	"missingsummary": "'''Atgādinājums''': Tu neesi norādījis izmaiņu kopsavilkumu. Vēlreiz klikšķinot uz \"Saglabāt lapu\", Tavas izmaiņas tiks saglabātas bez kopsavilkuma.",
 	"missingcommenttext": "Lūdzu, ievadi tekstu zemāk redzamajā logā!",

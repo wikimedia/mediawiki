@@ -687,6 +687,7 @@
 	"blockedtitle": "Brukeren er blokkert",
 	"blockedtext": "'''Ditt brukernavn eller din IP-adresse har blitt blokkert.'''\n\nBlokkeringen ble utført av $1. Grunnen som ble oppgitt var ''$2''.\n\n* Blokkeringen begynte: $8\n* Blokkeringen utgår: $6\n* Blokkering ment på: $7\n\nDu kan kontakte $1 eller en annen [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringen.\nDu kan ikke bruke «E-post til denne brukeren»-funksjonen med mindre du har oppgitt en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]] og du ikke er blokkert fra å sende e-post.\nDin nåværende IP-adresse er $3, og blokkerings-ID-en er #$5.\nVennligst ta all denne informasjonen ved henvendelser.",
 	"autoblockedtext": "Din IP-adresse har blitt automatisk blokkert fordi den ble brukt av en annen bruker som ble blokkert av $1.\nDen oppgitte grunnen var:\n\n:'''$2'''\n\n* Blokkeringen begynte: $8\n* Blokkeringen utgår: $6\n* Blokkeringen er ment for: $7\n\nDu kan kontakte $1 eller en av de andre [[{{MediaWiki:Grouppage-sysop}}|administratorene]] for å diskutere blokkeringen.\n\nMerk at du ikke kan bruke «E-post til denne brukeren»-funksjonen med mindre du har registrert en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]].\n\nDin IP-adresse er $3, og blokkerings-ID-en er #$5.\nVennligst ta med all denne informasjonen ved henvendelser.",
+	"systemblockedtext": "Ditt brukernavn eller IP-adresse har blitt blokkert automatisk av MediaWiki.\n\nBlokkeringen grunnes:\n\n:<em>$2</em>\n\n* Blokaden startet: $8\n* Blokaden gjelder til: $6\n* Blokaden er ment for: $7\n\nDin nåværende IP-adresse er $3.\nVennligst inkluder informasjonen over i alle spørsmål du spør angående dette.",
 	"blockednoreason": "ingen grunn gitt",
 	"whitelistedittext": "Du må $1 for å redigere artikler.",
 	"confirmedittext": "Du må bekrefte e-postadressen din før du kan redigere sider. Vennligst oppgi og bekreft e-postadressen din via [[Special:Preferences|innstillingene dine]].",
@@ -2650,6 +2651,7 @@
 	"pageinfo-length": "Sidestørrelse (i bytes)",
 	"pageinfo-article-id": "Side-ID",
 	"pageinfo-language": "Språk for sideinnholdet",
+	"pageinfo-language-change": "endre",
 	"pageinfo-content-model": "Modell for sideinnhold",
 	"pageinfo-content-model-change": "endre",
 	"pageinfo-robot-policy": "Bot-indeksering",
@@ -3872,5 +3874,6 @@
 	"restrictionsfield-badip": "Ugyldig IP-adresse eller intervall: $1",
 	"restrictionsfield-label": "Tillatte IP-intervaller:",
 	"restrictionsfield-help": "Én IP-adresse eller CIDR-intervall per linje. For å slå på alt, bruk <br /><code>0.0.0.0/0</code><br /><code>::/0</code>",
+	"revid": "revisjon $1",
 	"pageid": "side-ID $1"
 }

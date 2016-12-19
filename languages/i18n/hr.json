@@ -3017,6 +3017,8 @@
 	"tag-filter": "Filtar [[Special:Tags|oznaka]]:",
 	"tag-filter-submit": "Filtar",
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Oznaka|Oznake}}]]: $2)",
+	"tag-mw-contentmodelchange": "promjena modela sadržaja",
+	"tag-mw-contentmodelchange-description": "Uređivanja koja [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel mijenjanju model sadržaja] stranice",
 	"tags-title": "Oznake",
 	"tags-intro": "Ova je stranica popis oznaka s kojima softver može označiti promjenu te njihovo značenje.",
 	"tags-tag": "Naziv oznake",

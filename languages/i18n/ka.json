@@ -3441,6 +3441,7 @@
 	"htmlform-user-not-exists": "<strong>$1</strong> არ არსებობს.",
 	"htmlform-user-not-valid": "<strong>$1</strong> არ არის სწორი მომხმარებლის სახელი.",
 	"logentry-delete-delete": "მომხმარებელმა $1 {{GENDER:$2|წაშალა}} გვერდი: „$3“",
+	"logentry-delete-delete_redir": "მომხმარებელმა $1 {{GENDER:$2|წაშალა}} გადამისამართება $3 გადაწერით",
 	"logentry-delete-restore": "მომხმარებელმა $1 {{GENDER:$2|აღადგინა}} გვერდი $3",
 	"logentry-delete-event": "მომხმარებელმა $1 {{GENDER:$2|შეცვალა}} {{PLURAL:$5|ჟურნალის ჩანაწერის|$5 ჟურნალის ჩანაწერების}} ხილვადობა $3-ზე: $4",
 	"logentry-delete-revision": "მომხმარებელმა $1 {{GENDER:$2|შეცვალა}} {{PLURAL:$5|$5 ვერსიის|$5 ვერსიის}} ხილვადობა გვერდისათვის $3: $4",

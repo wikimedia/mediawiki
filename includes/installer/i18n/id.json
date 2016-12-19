@@ -13,7 +13,8 @@
 			"Bennylin",
 			"WongKentir",
 			"Macofe",
-			"Rachmat.Wahidi"
+			"Rachmat.Wahidi",
+			"Gombang"
 		]
 	},
 	"config-desc": "Penginstal untuk MediaWiki",
@@ -210,6 +211,7 @@
 	"config-subscribe": "Berlangganan ke [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce milis pengumuman rilis].",
 	"config-subscribe-help": "Ini adalah milis bervolume rendah yang digunakan untuk pengumuman rilis, termasuk pengumuman keamanan penting.\nAnda sebaiknya berlangganan dan memperbarui instalasi MediaWiki saat versi baru keluar.",
 	"config-subscribe-noemail": "Anda mencoba untuk berlangganan milis pengumuman rilis tanpa menyediakan alamat email.\nHarap berikan alamat surel jika Anda ingin berlangganan ke milis.",
+	"config-pingback": "Bagikan data tentang instalasi ini dengan pengembang MediaWiki",
 	"config-almost-done": "Anda hampir selesai!\nAnda sekarang dapat melewati sisa konfigurasi dan menginstal wiki sekarang.",
 	"config-optional-continue": "Berikan saya pertanyaan lagi.",
 	"config-optional-skip": "Saya sudah bosan, instal saja wikinya.",
@@ -218,7 +220,7 @@
 	"config-profile-no-anon": "Pembuatan akun diperlukan",
 	"config-profile-fishbowl": "Khusus penyunting terdaftar",
 	"config-profile-private": "Wiki pribadi",
-	"config-profile-help": "Wiki paling baik bekerja jika Anda membiarkan sebanyak mungkin orang untuk menyunting. Dengan MediaWiki, sangat mudah meninjau perubahan terbaru dan mengembalikan kerusakan yang dilakukan oleh pengguna naif atau berbahaya.\n\nNamun, berbagai kegunaan lain dari MediaWiki telah ditemukan, dan kadang tidak mudah untuk meyakinkan semua orang manfaat dari cara wiki. Jadi, Anda yang menentukan.\n\n'''{{int:config-profile-wiki}}''' memungkinkan setiap orang untuk menyunting, bahkan tanpa masuk.\n'''{{int:config-profile-no-anon}}''' menyediakan akuntabilitas tambahan, tetapi dapat mencegah kontributor biasa.\n\n'''{{int:config-profile-fishbowl}}''' memungkinkan pengguna yang disetujui untuk menyunting, tetapi publik dapat melihat halaman, termasuk riwayatnya.\n'''{{int:config-profile-private}}''' hanya memungkinkan pengguna yang disetujui untuk melihat dan menyunting halaman.\n\nKonfigurasi hak pengguna yang lebih kompleks tersedia setelah instalasi. Lihat [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:User_rights/id entri manual terkait].",
+	"config-profile-help": "Wiki paling baik bekerja jika Anda membiarkan sebanyak mungkin orang untuk menyunting. Dengan MediaWiki, sangat mudah meninjau perubahan terbaru dan mengembalikan kerusakan yang dilakukan oleh pengguna naif atau berbahaya.\n\nNamun, berbagai kegunaan lain dari MediaWiki telah ditemukan, dan kadang tidak mudah untuk meyakinkan semua orang manfaat dari cara wiki. Jadi, Anda yang menentukan.\n\n'''{{int:config-profile-wiki}}''' memungkinkan setiap orang untuk menyunting, bahkan tanpa masuk log.\n'''{{int:config-profile-no-anon}}''' menyediakan akuntabilitas tambahan, tetapi dapat mengurangi semangat kontributor sambil lalu.\n\n'''{{int:config-profile-fishbowl}}''' memungkinkan pengguna yang disetujui untuk menyunting, tetapi publik dapat melihat halaman, termasuk riwayatnya.\n'''{{int:config-profile-private}}''' hanya memungkinkan pengguna yang disetujui untuk melihat dan menyunting halaman.\n\nKonfigurasi hak pengguna yang lebih kompleks tersedia setelah instalasi. Lihat [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:User_rights/id entri manual terkait].",
 	"config-license": "Hak cipta dan lisensi:",
 	"config-license-none": "Tidak ada lisensi",
 	"config-license-cc-by-sa": "Creative Commons Atribusi Berbagi Serupa",
