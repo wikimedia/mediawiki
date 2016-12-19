@@ -13,6 +13,7 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
 	grunt.loadNpmTasks( 'grunt-karma' );
 	grunt.loadNpmTasks( 'grunt-stylelint' );
+	grunt.loadNpmTasks( 'grunt-webdriver' );
 
 	karmaProxy[ wgScriptPath ] = {
 		target: wgServer + wgScriptPath,
@@ -101,7 +102,18 @@ module.exports = function ( grunt ) {
 					return require( 'path' ).join( dest, src.replace( 'resources/', '' ) );
 				}
 			}
+		},
+
+		// Configure WebdriverIO task
+		webdriver: {
+			jenkins: {
+				configFile: './wdio.conf.jenkins.js'
+			},
+			vagrant: {
+				configFile: './wdio.conf.vagrant.js'
+			}
 		}
+
 	} );
 
 	grunt.registerTask( 'assert-mw-env', function () {
