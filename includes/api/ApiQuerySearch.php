@@ -171,7 +171,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 			// Silently skip broken and missing titles
 			if ( $result->isBrokenTitle() || $result->isMissingRevision() ) {
-				return null;
+				continue;
 			}
 
 			if ( $resultPageSet === null ) {
