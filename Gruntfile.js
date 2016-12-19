@@ -1,5 +1,12 @@
 /* eslint-env node */
 
+var WebdriverIOconfigFile;
+if ( process.env.JENKINS_HOME ) {
+	WebdriverIOconfigFile = './wdio.conf.jenkins.js';
+} else {
+	WebdriverIOconfigFile = './wdio.conf.vagrant.js';
+}
+
 module.exports = function ( grunt ) {
 
 	var wgServer = process.env.MW_SERVER,
@@ -13,6 +20,7 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
 	grunt.loadNpmTasks( 'grunt-karma' );
 	grunt.loadNpmTasks( 'grunt-stylelint' );
+	grunt.loadNpmTasks( 'grunt-webdriver' );
 
 	karmaProxy[ wgScriptPath ] = {
 		target: wgServer + wgScriptPath,
@@ -105,7 +113,15 @@ module.exports = function ( grunt ) {
 					return require( 'path' ).join( dest, src.replace( 'resources/', '' ) );
 				}
 			}
+		},
+
+		// Configure WebdriverIO task
+		webdriver: {
+			test: {
+				configFile: WebdriverIOconfigFile
+			}
 		}
+
 	} );
 
 	grunt.registerTask( 'assert-mw-env', function () {
