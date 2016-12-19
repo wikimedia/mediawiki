@@ -441,35 +441,62 @@ class ApiEditPage extends ApiBase {
 				break;
 
 			default:
-				// EditPage sometimes only sets the status code without setting
-				// any actual error messages. Supply defaults for those cases.
-				$maxArticleSize = $this->getConfig()->get( 'MaxArticleSize' );
-				$defaultMessages = [
-					// Currently needed
-					EditPage::AS_IMAGE_REDIRECT_ANON => [ 'apierror-noimageredirect-anon' ],
-					EditPage::AS_IMAGE_REDIRECT_LOGGED => [ 'apierror-noimageredirect-logged' ],
-					EditPage::AS_CONTENT_TOO_BIG => [ 'apierror-contenttoobig', $maxArticleSize ],
-					EditPage::AS_MAX_ARTICLE_SIZE_EXCEEDED => [ 'apierror-contenttoobig', $maxArticleSize ],
-					EditPage::AS_READ_ONLY_PAGE_ANON => [ 'apierror-noedit-anon' ],
-					EditPage::AS_NO_CHANGE_CONTENT_MODEL => [ 'apierror-cantchangecontentmodel' ],
-					EditPage::AS_ARTICLE_WAS_DELETED => [ 'apierror-pagedeleted' ],
-					EditPage::AS_CONFLICT_DETECTED => [ 'editconflict' ],
-
-					// Currently shouldn't be needed
-					EditPage::AS_SPAM_ERROR => [ 'apierror-spamdetected', wfEscapeWikiText( $result['spam'] ) ],
-					EditPage::AS_READ_ONLY_PAGE_LOGGED => [ 'apierror-noedit' ],
-					EditPage::AS_RATE_LIMITED => [ 'apierror-ratelimited' ],
-					EditPage::AS_NO_CREATE_PERMISSION => [ 'nocreate-loggedin' ],
-					EditPage::AS_BLANK_ARTICLE => [ 'apierror-emptypage' ],
-					EditPage::AS_TEXTBOX_EMPTY => [ 'apierror-emptynewsection' ],
-					EditPage::AS_SUMMARY_NEEDED => [ 'apierror-summaryrequired' ],
-				];
 				if ( !$status->getErrors() ) {
-					if ( isset( $defaultMessages[$status->value] ) ) {
-						call_user_func_array( [ $status, 'fatal' ], $defaultMessages[$status->value] );
-					} else {
-						wfWarn( __METHOD__ . ": Unknown EditPage code {$status->value} with no message" );
-						$status->fatal( 'apierror-unknownerror-editpage', $status->value );
+					// EditPage sometimes only sets the status code without setting
+					// any actual error messages. Supply defaults for those cases.
+					switch ( $status->value ) {
+						// Currently needed
+						case EditPage::AS_IMAGE_REDIRECT_ANON:
+							$status->fatal( 'apierror-noimageredirect-anon' );
+							break;
+						case EditPage::AS_IMAGE_REDIRECT_LOGGED:
+							$status->fatal( 'apierror-noimageredirect-logged' );
+							break;
+						case EditPage::AS_CONTENT_TOO_BIG:
+						case EditPage::AS_MAX_ARTICLE_SIZE_EXCEEDED:
+							$status->fatal( 'apierror-contenttoobig', $this->getConfig()->get( 'MaxArticleSize' ) );
+							break;
+						case EditPage::AS_READ_ONLY_PAGE_ANON:
+							$status->fatal( 'apierror-noedit-anon' );
+							break;
+						case EditPage::AS_NO_CHANGE_CONTENT_MODEL:
+							$status->fatal( 'apierror-cantchangecontentmodel' );
+							break;
+						case EditPage::AS_ARTICLE_WAS_DELETED:
+							$status->fatal( 'apierror-pagedeleted' );
+							break;
+						case EditPage::AS_CONFLICT_DETECTED:
+							$status->fatal( 'editconflict' );
+							break;
+
+						// Currently shouldn't be needed, but here in case
+						// hooks use them without setting appropriate
+						// errors on the status.
+						case EditPage::AS_SPAM_ERROR:
+							$status->fatal( 'apierror-spamdetected', $result['spam'] );
+							break;
+						case EditPage::AS_READ_ONLY_PAGE_LOGGED:
+							$status->fatal( 'apierror-noedit' );
+							break;
+						case EditPage::AS_RATE_LIMITED:
+							$status->fatal( 'apierror-ratelimited' );
+							break;
+						case EditPage::AS_NO_CREATE_PERMISSION:
+							$status->fatal( 'nocreate-loggedin' );
+							break;
+						case EditPage::AS_BLANK_ARTICLE:
+							$status->fatal( 'apierror-emptypage' );
+							break;
+						case EditPage::AS_TEXTBOX_EMPTY:
+							$status->fatal( 'apierror-emptynewsection' );
+							break;
+						case EditPage::AS_SUMMARY_NEEDED:
+							$status->fatal( 'apierror-summaryrequired' );
+							break;
+						default:
+							wfWarn( __METHOD__ . ": Unknown EditPage code {$status->value} with no message" );
+							$status->fatal( 'apierror-unknownerror-editpage', $status->value );
+							break;
 					}
 				}
 				$this->dieStatus( $status );
