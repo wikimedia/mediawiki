@@ -188,10 +188,10 @@ class RevDelRevisionItem extends RevDelItem {
 		$ret = [
 			'id' => $rev->getId(),
 			'timestamp' => wfTimestamp( TS_ISO_8601, $rev->getTimestamp() ),
+			'userhidden' => (bool)$rev->isDeleted( Revision::DELETED_USER ),
+			'commenthidden' => (bool)$rev->isDeleted( Revision::DELETED_COMMENT ),
+			'texthidden' => (bool)$rev->isDeleted( Revision::DELETED_TEXT ),
 		];
-		$ret += $rev->isDeleted( Revision::DELETED_USER ) ? [ 'userhidden' => '' ] : [];
-		$ret += $rev->isDeleted( Revision::DELETED_COMMENT ) ? [ 'commenthidden' => '' ] : [];
-		$ret += $rev->isDeleted( Revision::DELETED_TEXT ) ? [ 'texthidden' => '' ] : [];
 		if ( $rev->userCan( Revision::DELETED_USER, $user ) ) {
 			$ret += [
 				'userid' => $rev->getUser( Revision::FOR_THIS_USER ),
