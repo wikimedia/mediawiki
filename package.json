@@ -19,7 +19,7 @@
     "karma-chrome-launcher": "2.0.0",
     "karma-firefox-launcher": "1.0.0",
     "karma-qunit": "1.2.1",
-    "qunitjs": "1.22.0",
+    "qunitjs": "1.23.1",
     "stylelint-config-wikimedia": "0.3.0"
   }
 }
