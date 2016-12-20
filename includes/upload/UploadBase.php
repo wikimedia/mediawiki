@@ -775,7 +775,7 @@ abstract class UploadBase {
 					User::IGNORE_USER_RIGHTS
 				);
 			}
-			Hooks::run( 'UploadComplete', [ &$this ] );
+			Hooks::run( 'UploadComplete', [ $this ] );
 
 			$this->postProcessUpload();
 		}
