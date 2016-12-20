@@ -1269,7 +1269,7 @@ class OutputPage extends ContextSource {
 		# Add the remaining categories to the skin
 		if ( Hooks::run(
 			'OutputPageMakeCategoryLinks',
-			[ &$this, $categories, &$this->mCategoryLinks ] )
+			[ $this, $categories, &$this->mCategoryLinks ] )
 		) {
 			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 			foreach ( $categories as $category => $type ) {
@@ -1839,7 +1839,7 @@ class OutputPage extends ContextSource {
 	 */
 	public function addParserOutputText( $parserOutput ) {
 		$text = $parserOutput->getText();
-		Hooks::run( 'OutputPageBeforeHTML', [ &$this, &$text ] );
+		Hooks::run( 'OutputPageBeforeHTML', [ $this, &$text ] );
 		$this->addHTML( $text );
 	}
 
@@ -2360,7 +2360,7 @@ class OutputPage extends ContextSource {
 
 			// Hook that allows last minute changes to the output page, e.g.
 			// adding of CSS or Javascript by extensions.
-			Hooks::run( 'BeforePageDisplay', [ &$this, &$sk ] );
+			Hooks::run( 'BeforePageDisplay', [ $this, &$sk ] );
 
 			try {
 				$sk->outputPage();
