@@ -1446,8 +1446,7 @@ class Block {
 
 	/**
 	 * Set the 'BlockID' cookie to this block's ID and expiry time. The cookie's expiry will be
-	 * the same as the block's, unless it's greater than $wgCookieExpiration in which case
-	 * $wgCookieExpiration will be used instead (defaults to 30 days).
+	 * the same as the block's, to a maximum of 24 hours.
 	 *
 	 * An empty value can also be set, in order to retain the cookie but remove the block ID
 	 * (e.g. as used in User::getBlockedStatus).
@@ -1457,18 +1456,18 @@ class Block {
 	 */
 	public function setCookie( WebResponse $response, $setEmpty = false ) {
 		// Calculate the default expiry time.
-		$config = RequestContext::getMain()->getConfig();
-		$defaultExpiry = wfTimestamp() + $config->get( 'CookieExpiration' );
+		$maxExpiryTime = wfTimestamp( TS_MW, wfTimestamp() + ( 24 * 60 * 60 ) );
 
 		// Use the Block's expiry time only if it's less than the default.
-		$expiry = wfTimestamp( TS_UNIX, $this->getExpiry() );
-		if ( $expiry > $defaultExpiry ) {
-			// The *default* default expiry is 30 days.
-			$expiry = $defaultExpiry;
+		$expiryTime = $this->getExpiry();
+		if ( $expiryTime === 'infinity' || $expiryTime > $maxExpiryTime ) {
+			$expiryTime = $maxExpiryTime;
 		}
 
+		// Set the cookie. Reformat the MediaWiki datetime as a Unix timestamp for the cookie.
 		$cookieValue = $setEmpty ? '' : $this->getId();
-		$response->setCookie( 'BlockID', $cookieValue, $expiry );
+		$expiryValue = DateTime::createFromFormat( "YmdHis", $expiryTime );
+		$response->setCookie( 'BlockID', $cookieValue, $expiryValue->format( "U" ) );
 	}
 
 	/**
