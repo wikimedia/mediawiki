@@ -117,7 +117,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			'import' => [ 'ApiQueryInfo', 'getImportToken' ],
 			'watch' => [ 'ApiQueryInfo', 'getWatchToken' ],
 		];
-		Hooks::run( 'APIQueryInfoTokens', [ &$this->tokenFunctions ] );
+		Hooks::run( 'APIQueryInfoTokens', [ $this->tokenFunctions ] );
 
 		return $this->tokenFunctions;
 	}
