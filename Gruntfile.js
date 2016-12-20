@@ -85,6 +85,9 @@ module.exports = function ( grunt ) {
 			main: {
 				browsers: [ 'Chrome' ]
 			},
+			chromium: {
+				browsers: [ 'Chromium' ]
+			},
 			more: {
 				browsers: [ 'Chrome', 'Firefox' ]
 			}
