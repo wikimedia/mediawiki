@@ -603,10 +603,10 @@ class UserTest extends MediaWikiTestCase {
 		$user1tmp = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
 		$request1->getSession()->setUser( $user1tmp );
-		$expiryFiveDays = time() + ( 5 * 24 * 60 * 60 );
+		$expiryFiveHours = wfTimestamp() + ( 5 * 60 * 60 );
 		$block = new Block( [
 			'enableAutoblock' => true,
-			'expiry' => wfTimestamp( TS_MW, $expiryFiveDays ),
+			'expiry' => wfTimestamp( TS_MW, $expiryFiveHours ),
 		] );
 		$block->setTarget( $user1tmp );
 		$block->insert();
@@ -625,7 +625,7 @@ class UserTest extends MediaWikiTestCase {
 		$cookies = $request1->response()->getCookies();
 		$this->assertArrayHasKey( 'wmsitetitleBlockID', $cookies );
 		$this->assertEquals( $block->getId(), $cookies['wmsitetitleBlockID']['value'] );
-		$this->assertEquals( $expiryFiveDays, $cookies['wmsitetitleBlockID']['expire'] );
+		$this->assertEquals( $expiryFiveHours, $cookies['wmsitetitleBlockID']['expire'] );
 
 		// 2. Create a new request, set the cookies, and see if the (anon) user is blocked.
 		$request2 = new FauxRequest();
@@ -696,14 +696,12 @@ class UserTest extends MediaWikiTestCase {
 
 	/**
 	 * When a user is autoblocked and a cookie is set to track them, the expiry time of the cookie
-	 * should match the block's expiry. If the block is infinite, the cookie expiry time should
-	 * match $wgCookieExpiration. If the expiry time is changed, the cookie's should change with it.
+	 * should match the block's expiry, to a maximum of 24 hours. If the expiry time is changed,
+	 * the cookie's should change with it.
 	 */
 	public function testAutoblockCookieInfiniteExpiry() {
-		$cookieExpiration = 20 * 24 * 60 * 60; // 20 days
 		$this->setMwGlobals( [
 			'wgCookieSetOnAutoblock' => true,
-			'wgCookieExpiration' => $cookieExpiration,
 			'wgCookiePrefix' => 'wm_infinite_block',
 		] );
 		// 1. Log in a test user, and block them indefinitely.
@@ -724,12 +722,13 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertTrue( $block->isAutoblocking() );
 		$this->assertGreaterThanOrEqual( 1, $user1->getBlockId() );
 		$cookies = $request1->response()->getCookies();
-		// Calculate the expected cookie expiry date.
+		// Test the cookie's expiry to the nearest minute.
 		$this->assertArrayHasKey( 'wm_infinite_blockBlockID', $cookies );
-		$this->assertEquals( time() + $cookieExpiration, $cookies['wm_infinite_blockBlockID']['expire'] );
+		$expOneDay = wfTimestamp() + ( 24 * 60 * 60 );
+		$this->assertEquals( $expOneDay, $cookies['wm_infinite_blockBlockID']['expire'] );
 
-		// 3. Change the block's expiry (to 2 days), and the cookie's should be changed also.
-		$newExpiry = time() + 2 * 24 * 60 * 60;
+		// 3. Change the block's expiry (to 2 hours), and the cookie's should be changed also.
+		$newExpiry = wfTimestamp() + 2 * 60 * 60;
 		$block->mExpiry = wfTimestamp( TS_MW, $newExpiry );
 		$block->update();
 		$user2tmp = $this->getTestUser()->getUser();
@@ -739,6 +738,7 @@ class UserTest extends MediaWikiTestCase {
 		$user2->mBlock = $block;
 		$user2->load();
 		$cookies = $request2->response()->getCookies();
+		$this->assertEquals( wfTimestamp( TS_MW, $newExpiry ), $block->getExpiry() );
 		$this->assertEquals( $newExpiry, $cookies['wm_infinite_blockBlockID']['expire'] );
 
 		// Clean up.
