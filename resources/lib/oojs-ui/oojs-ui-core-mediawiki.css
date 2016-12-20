@@ -962,6 +962,10 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   background-color: #36c;
   border-color: #36c;
 }
+.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:disabled + span {
+  background-color: #c8ccd1;
+  border-color: #c3ccd1;
+}
 .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked:hover + span,
 .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked:focus:hover + span {
   background-color: #447ff5;
