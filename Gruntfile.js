@@ -85,6 +85,15 @@ module.exports = function ( grunt ) {
 			main: {
 				browsers: [ 'Chrome' ]
 			},
+			chromenosecurity: {
+				customLaunchers: {
+					ChromeNoSecurity: {
+						base: 'Chrome',
+						flags: ['--disable-web-security']
+					}
+				},
+				browsers: [ 'ChromeNoSecurity' ]
+			},
 			more: {
 				browsers: [ 'Chrome', 'Firefox' ]
 			}
