@@ -60,7 +60,7 @@ class ApiWatch extends ApiBase {
 
 			foreach ( $pageSet->getMissingTitles() as $title ) {
 				$r = $this->watchTitle( $title, $user, $params );
-				$r['missing'] = 1;
+				$r['missing'] = true;
 				$res[] = $r;
 			}
 
