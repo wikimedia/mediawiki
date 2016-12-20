@@ -215,12 +215,41 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertSame( 'Return to $1.', wfMessage( 'returnto' )->text() );
 		$this->assertSame( 'Return to $1.', wfMessage( 'returnto', [] )->text() );
 		$this->assertSame(
+			'Return to 1,024.',
+			wfMessage( 'returnto', Message::numParam( 1024 ) )->text()
+		);
+		$this->assertSame(
+			'Return to 1,024.',
+			wfMessage( 'returnto', [ Message::numParam( 1024 ) ] )->text()
+		);
+		$this->assertSame(
 			'You have foo (bar).',
 			wfMessage( 'youhavenewmessages', 'foo', 'bar' )->text()
 		);
 		$this->assertSame(
 			'You have foo (bar).',
 			wfMessage( 'youhavenewmessages', [ 'foo', 'bar' ] )->text()
+		);
+		$this->assertSame(
+			'You have 1,024 (bar).',
+			wfMessage(
+				'youhavenewmessages',
+				Message::numParam( 1024 ), 'bar'
+			)->text()
+		);
+		$this->assertSame(
+			'You have foo (2,048).',
+			wfMessage(
+				'youhavenewmessages',
+				'foo', Message::numParam( 2048 )
+			)->text()
+		);
+		$this->assertSame(
+			'You have 1,024 (2,048).',
+			wfMessage(
+				'youhavenewmessages',
+				[ Message::numParam( 1024 ), Message::numParam( 2048 ) ]
+			)->text()
 		);
 	}
 
