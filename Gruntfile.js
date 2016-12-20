@@ -12,6 +12,7 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-eslint' );
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
 	grunt.loadNpmTasks( 'grunt-karma' );
+	grunt.loadNpmTasks( 'grunt-nightwatch' );
 	grunt.loadNpmTasks( 'grunt-stylelint' );
 
 	karmaProxy[ wgScriptPath ] = {
@@ -101,7 +102,19 @@ module.exports = function ( grunt ) {
 					return require( 'path' ).join( dest, src.replace( 'resources/', '' ) );
 				}
 			}
+		},
+
+		// Configure Nightwatch task
+		nightwatch: {
+			options: {
+				// nightwatch settings
+				// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+				src_folders: [ 'tests/selenium' ], // eslint-disable-line camelcase
+				output_folder: '../log' // eslint-disable-line camelcase
+				// jscs:enable requireCamelCaseOrUpperCaseIdentifiers
+			}
 		}
+
 	} );
 
 	grunt.registerTask( 'assert-mw-env', function () {
