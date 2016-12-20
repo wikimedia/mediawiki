@@ -726,7 +726,15 @@ class UserTest extends MediaWikiTestCase {
 		$cookies = $request1->response()->getCookies();
 		// Calculate the expected cookie expiry date.
 		$this->assertArrayHasKey( 'wm_infinite_blockBlockID', $cookies );
-		$this->assertEquals( time() + $cookieExpiration, $cookies['wm_infinite_blockBlockID']['expire'] );
+		// Check for expiry dates in a 10-second window, to account for slow testing.
+		$this->assertGreaterThan(
+			time() + $cookieExpiration - 5,
+			$cookies['wm_infinite_blockBlockID']['expire']
+		);
+		$this->assertLessThan(
+			time() + $cookieExpiration + 5,
+			$cookies['wm_infinite_blockBlockID']['expire']
+		);
 
 		// 3. Change the block's expiry (to 2 days), and the cookie's should be changed also.
 		$newExpiry = time() + 2 * 24 * 60 * 60;
@@ -739,7 +747,9 @@ class UserTest extends MediaWikiTestCase {
 		$user2->mBlock = $block;
 		$user2->load();
 		$cookies = $request2->response()->getCookies();
-		$this->assertEquals( $newExpiry, $cookies['wm_infinite_blockBlockID']['expire'] );
+		// Check for expiry dates in a 10-second window, to account for slow testing.
+		$this->assertGreaterThan( $newExpiry - 5, $cookies['wm_infinite_blockBlockID']['expire'] );
+		$this->assertLessThan( $newExpiry + 5, $cookies['wm_infinite_blockBlockID']['expire'] );
 
 		// Clean up.
 		$block->delete();
