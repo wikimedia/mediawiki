@@ -70,7 +70,7 @@ class RightsLogFormatter extends LogFormatter {
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
 
-		// Really old entries
+		// Really old entries that lack old/new groups
 		if ( !isset( $params[3] ) && !isset( $params[4] ) ) {
 			return $params;
 		}
@@ -90,16 +90,20 @@ class RightsLogFormatter extends LogFormatter {
 			}
 		}
 
-		$lang = $this->context->getLanguage();
+		// fetch the metadata about each group membership
+		$allParams = $this->entry->getParameters();
+
 		if ( count( $oldGroups ) ) {
-			$params[3] = $lang->listToText( $oldGroups );
+			$params[3] = [ 'raw' => $this->formatRightsList( $oldGroups,
+				isset( $allParams['oldmetadata'] ) ? $allParams['oldmetadata'] : [] ) ];
 		} else {
 			$params[3] = $this->msg( 'rightsnone' )->text();
 		}
 		if ( count( $newGroups ) ) {
 			// Array_values is used here because of T44211
 			// see use of array_unique in UserrightsPage::doSaveUserGroups on $newGroups.
-			$params[4] = $lang->listToText( array_values( $newGroups ) );
+			$params[4] = [ 'raw' => $this->formatRightsList( array_values( $newGroups ),
+				isset( $allParams['newmetadata'] ) ? $allParams['newmetadata'] : [] ) ];
 		} else {
 			$params[4] = $this->msg( 'rightsnone' )->text();
 		}
@@ -107,6 +111,39 @@ class RightsLogFormatter extends LogFormatter {
 		$params[5] = $userName;
 
 		return $params;
+	}
+
+	protected function formatRightsList( $groups, $serializedUGMs = [] ) {
+		$uiLanguage = $this->context->getLanguage();
+		$uiUser = $this->context->getUser();
+		$list = [];
+
+		reset( $groups );
+		reset( $serializedUGMs );
+		while ( current( $groups ) ) {
+			$group = current( $groups );
+
+			if ( current( $serializedUGMs ) &&
+				isset( current( $serializedUGMs )['expiry'] ) &&
+				current( $serializedUGMs )['expiry']
+			) {
+				// there is an expiry date; format the group and expiry into a friendly string
+				$expiry = current( $serializedUGMs )['expiry'];
+				$expiryFormatted = $uiLanguage->userTimeAndDate( $expiry, $uiUser );
+				$expiryFormattedD = $uiLanguage->userDate( $expiry, $uiUser );
+				$expiryFormattedT = $uiLanguage->userTime( $expiry, $uiUser );
+				$list[] = $this->msg( 'rightslogentry-temporary-group' )->params( $group,
+					$expiryFormatted, $expiryFormattedD, $expiryFormattedT )->parse();
+			} else {
+				// the right does not expire; just insert the group name
+				$list[] = $group;
+			}
+
+			next( $groups );
+			next( $serializedUGMs );
+		}
+
+		return $uiLanguage->listToText( $list );
 	}
 
 	protected function getParametersForApi() {
@@ -126,13 +163,36 @@ class RightsLogFormatter extends LogFormatter {
 			}
 		}
 
-		// Really old entries does not have log params
+		// Really old entries do not have log params
 		if ( isset( $params['4:array:oldgroups'] ) ) {
 			$params['4:array:oldgroups'] = $this->makeGroupArray( $params['4:array:oldgroups'] );
 		}
 		if ( isset( $params['5:array:newgroups'] ) ) {
 			$params['5:array:newgroups'] = $this->makeGroupArray( $params['5:array:newgroups'] );
 		}
+
+		// Walk through the parallel arrays of groups and metadata, combining each metadata
+		// array with the name of the group it pertains to
+		$params['oldmetadata'] = array_map( function( $index ) use ( $params ) {
+			$result = [ 'group' => $params['4:array:oldgroups'][$index] ];
+			if ( isset( $params['oldmetadata'][$index] ) ) {
+				$result += $params['oldmetadata'][$index];
+			}
+			if ( !isset( $result['expiry'] ) ) {
+				$result['expiry'] = 'infinity';
+			}
+			return $result;
+		}, array_keys( $params['4:array:oldgroups'] ) );
+		$params['newmetadata'] = array_map( function( $index ) use ( $params ) {
+			$result = [ 'group' => $params['5:array:newgroups'][$index] ];
+			if ( isset( $params['newmetadata'][$index] ) ) {
+				$result += $params['newmetadata'][$index];
+			}
+			if ( !isset( $result['expiry'] ) ) {
+				$result['expiry'] = 'infinity';
+			}
+			return $result;
+		}, array_keys( $params['5:array:newgroups'] ) );
 
 		return $params;
 	}
@@ -144,6 +204,14 @@ class RightsLogFormatter extends LogFormatter {
 		}
 		if ( isset( $ret['newgroups'] ) ) {
 			ApiResult::setIndexedTagName( $ret['newgroups'], 'g' );
+		}
+		if ( isset( $ret['oldmetadata'] ) ) {
+			ApiResult::setArrayType( $ret['oldmetadata'], 'array' );
+			ApiResult::setIndexedTagName( $ret['oldmetadata'], 'g' );
+		}
+		if ( isset( $ret['newmetadata'] ) ) {
+			ApiResult::setArrayType( $ret['newmetadata'], 'array' );
+			ApiResult::setIndexedTagName( $ret['newmetadata'], 'g' );
 		}
 		return $ret;
 	}
