@@ -5,6 +5,8 @@ This is not a release yet!
 
 * (T68404) CSS3 attr() function with url type argument is no longer allowed
   in inline styles.
+* $wgRunJobsAsync is now false by default (T142751). This change only affects
+  wikis with $wgJobRunRate > 0.
 
 == MediaWiki 1.27.1 ==
 
