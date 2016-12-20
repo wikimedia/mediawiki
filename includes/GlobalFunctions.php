@@ -1385,12 +1385,16 @@ function wfGetLangObj( $langcode = false ) {
  * @see Message::__construct
  */
 function wfMessage( $key /*...*/ ) {
+	$message = new Message( $key );
+
+	// We call Message::params() to reduce code duplication
 	$params = func_get_args();
 	array_shift( $params );
-	if ( isset( $params[0] ) && is_array( $params[0] ) ) {
-		$params = $params[0];
+	if ( !empty( $params ) ) {
+		call_user_func_array( [ $message, 'params' ], $params );
 	}
-	return new Message( $key, $params );
+
+	return $message;
 }
 
 /**
