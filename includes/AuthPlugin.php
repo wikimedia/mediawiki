@@ -221,7 +221,7 @@ class AuthPlugin {
 	 * Return true if successful.
 	 *
 	 * @deprecated since 1.26, use the UserGroupsChanged hook instead.
-	 * @param User $user
+	 * @param UserGroupManager $user
 	 * @param array $addgroups Groups to add.
 	 * @param array $delgroups Groups to remove.
 	 * @return bool

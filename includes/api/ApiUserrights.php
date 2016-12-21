@@ -78,7 +78,7 @@ class ApiUserrights extends ApiBase {
 
 	/**
 	 * @param array $params
-	 * @return User
+	 * @return UserGroupProvider
 	 */
 	private function getUrUser( array $params ) {
 		if ( $this->mUser !== null ) {
