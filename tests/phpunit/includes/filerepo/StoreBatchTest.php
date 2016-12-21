@@ -63,7 +63,7 @@ class StoreBatchTest extends MediaWikiTestCase {
 	 * @param string $originalName The title of the image
 	 * @param string $srcPath The filepath or virtual URL
 	 * @param int $flags Flags to pass into repo::store().
-	 * @return FileRepoStatus
+	 * @return Status
 	 */
 	private function storeit( $originalName, $srcPath, $flags ) {
 		$hashPath = $this->repo->getHashPath( $originalName );
