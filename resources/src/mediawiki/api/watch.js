@@ -29,7 +29,6 @@
 					formatversion: 2,
 					action: 'watch',
 					titles: $.isArray( pages ) ? pages.join( '|' ) : String( pages ),
-					uselang: mw.config.get( 'wgUserLanguage' )
 				},
 				addParams
 			)
