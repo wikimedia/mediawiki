@@ -276,7 +276,7 @@ class CoreParserFunctions {
 		}
 		if ( !is_null( $title ) ) {
 			# Convert NS_MEDIA -> NS_FILE
-			if ( $title->getNamespace() == NS_MEDIA ) {
+			if ( $title->inNamespace( NS_MEDIA ) ) {
 				$title = Title::makeTitle( NS_FILE, $title->getDBkey() );
 			}
 			if ( !is_null( $arg ) ) {
@@ -341,7 +341,7 @@ class CoreParserFunctions {
 		// allow prefix.
 		$title = Title::newFromText( $username );
 
-		if ( $title && $title->getNamespace() == NS_USER ) {
+		if ( $title && $title->inNamespace( NS_USER ) ) {
 			$username = $title->getText();
 		}
 
