@@ -1,9 +1,7 @@
 <?php
 
 /**
- *
- *
- * Created on Mar 24, 2009
+ * API userrights module
  *
  * Copyright © 2009 Roan Kattouw "<Firstname>.<Lastname>@gmail.com"
  *

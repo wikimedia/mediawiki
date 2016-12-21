@@ -22,19 +22,59 @@ class RightsLogFormatterTest extends LogFormatterTestCase {
 					'params' => [
 						'4::oldgroups' => [],
 						'5::newgroups' => [ 'sysop', 'bureaucrat' ],
+						'oldmetadata' => [],
+						'newmetadata' => [
+							[ 'expiry' => null ],
+							[ 'expiry' => '20160101123456' ]
+						],
 					],
 				],
 				[
 					'text' => 'Sysop changed group membership for User from (none) to '
-						. 'administrator and bureaucrat',
+						. 'bureaucrat (temporary, until 12:34, 1 January 2016) and administrator',
 					'api' => [
+						'oldmetadata' => [],
+						'newmetadata' => [
+							[ 'group' => 'sysop', 'expiry' => 'infinity' ],
+							[ 'group' => 'bureaucrat', 'expiry' => '20160101123456' ],
+						],
 						'oldgroups' => [],
 						'newgroups' => [ 'sysop', 'bureaucrat' ],
 					],
 				],
 			],
 
-			// Legacy format
+			// Previous format (oldgroups and newgroups as arrays, no metadata)
+			[
+				[
+					'type' => 'rights',
+					'action' => 'rights',
+					'comment' => 'rights comment',
+					'user' => 0,
+					'user_text' => 'Sysop',
+					'namespace' => NS_USER,
+					'title' => 'User',
+					'params' => [
+						'4::oldgroups' => [],
+						'5::newgroups' => [ 'sysop', 'bureaucrat' ],
+					],
+				],
+				[
+					'text' => 'Sysop changed group membership for User from (none) to '
+						. 'administrator and bureaucrat',
+					'api' => [
+						'oldmetadata' => [],
+						'newmetadata' => [
+							[ 'group' => 'sysop', 'expiry' => 'infinity' ],
+							[ 'group' => 'bureaucrat', 'expiry' => 'infinity' ],
+						],
+						'oldgroups' => [],
+						'newgroups' => [ 'sysop', 'bureaucrat' ],
+					],
+				],
+			],
+
+			// Legacy format (oldgroups and newgroups as numeric-keyed strings)
 			[
 				[
 					'type' => 'rights',
@@ -54,6 +94,11 @@ class RightsLogFormatterTest extends LogFormatterTestCase {
 					'text' => 'Sysop changed group membership for User from (none) to '
 						. 'administrator and bureaucrat',
 					'api' => [
+						'oldmetadata' => [],
+						'newmetadata' => [
+							[ 'group' => 'sysop', 'expiry' => 'infinity' ],
+							[ 'group' => 'bureaucrat', 'expiry' => 'infinity' ],
+						],
 						'oldgroups' => [],
 						'newgroups' => [ 'sysop', 'bureaucrat' ],
 					],
@@ -114,6 +159,11 @@ class RightsLogFormatterTest extends LogFormatterTestCase {
 					'text' => 'Sysop was automatically promoted from administrator to '
 						. 'administrator and bureaucrat',
 					'api' => [
+						'oldmetadata' => [],
+						'newmetadata' => [
+							[ 'group' => 'sysop', 'expiry' => 'infinity' ],
+							[ 'group' => 'bureaucrat', 'expiry' => 'infinity' ],
+						],
 						'oldgroups' => [ 'sysop' ],
 						'newgroups' => [ 'sysop', 'bureaucrat' ],
 					],
@@ -140,6 +190,11 @@ class RightsLogFormatterTest extends LogFormatterTestCase {
 					'text' => 'Sysop was automatically promoted from administrator to '
 						. 'administrator and bureaucrat',
 					'api' => [
+						'oldmetadata' => [],
+						'newmetadata' => [
+							[ 'group' => 'sysop', 'expiry' => 'infinity' ],
+							[ 'group' => 'bureaucrat', 'expiry' => 'infinity' ],
+						],
 						'oldgroups' => [ 'sysop' ],
 						'newgroups' => [ 'sysop', 'bureaucrat' ],
 					],
