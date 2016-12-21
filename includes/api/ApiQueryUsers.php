@@ -42,6 +42,7 @@ class ApiQueryUsers extends ApiQueryBase {
 		// everything except 'blockinfo' which might show hidden records if the user
 		// making the request has the appropriate permissions
 		'groups',
+		'groupmemberships',
 		'implicitgroups',
 		'rights',
 		'editcount',
@@ -167,11 +168,15 @@ class ApiQueryUsers extends ApiQueryBase {
 
 				$this->addTables( 'user_groups' );
 				$this->addJoinConds( [ 'user_groups' => [ 'INNER JOIN', 'ug_user=user_id' ] ] );
-				$this->addFields( [ 'user_name', 'ug_group' ] );
+				$this->addFields( array_merge( [ 'user_name' ], UserGroupMembership::selectFields() ) );
 				$userGroupsRes = $this->select( __METHOD__ );
 
+				$now = wfTimestampNow();
 				foreach ( $userGroupsRes as $row ) {
-					$userGroups[$row->user_name][] = $row->ug_group;
+					// don't keep expired user groups
+					if ( !$row->ug_expiry || $row->ug_expiry >= $now ) {
+						$userGroups[$row->user_name][] = $row;
+					}
 				}
 			}
 
@@ -205,6 +210,15 @@ class ApiQueryUsers extends ApiQueryBase {
 
 				if ( isset( $this->prop['groups'] ) ) {
 					$data[$key]['groups'] = $user->getEffectiveGroups();
+				}
+
+				if ( isset( $this->prop['groupmemberships'] ) ) {
+					$data[$key]['groupmemberships'] = array_map( function( $ugm ) {
+						return [
+							'group' => $ugm->getGroup(),
+							'expiry' => $ugm->getExpiry() ?: 'infinity',
+						];
+					}, $user->getGroupMemberships() );
 				}
 
 				if ( isset( $this->prop['implicitgroups'] ) ) {
@@ -303,6 +317,10 @@ class ApiQueryUsers extends ApiQueryBase {
 					ApiResult::setArrayType( $data[$u]['groups'], 'array' );
 					ApiResult::setIndexedTagName( $data[$u]['groups'], 'g' );
 				}
+				if ( isset( $this->prop['groupmemberships'] ) && isset( $data[$u]['groupmemberships'] ) ) {
+					ApiResult::setArrayType( $data[$u]['groupmemberships'], 'array' );
+					ApiResult::setIndexedTagName( $data[$u]['groupmemberships'], 'groupmembership' );
+				}
 				if ( isset( $this->prop['implicitgroups'] ) && isset( $data[$u]['implicitgroups'] ) ) {
 					ApiResult::setArrayType( $data[$u]['implicitgroups'], 'array' );
 					ApiResult::setIndexedTagName( $data[$u]['implicitgroups'], 'g' );
@@ -347,6 +365,7 @@ class ApiQueryUsers extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => [
 					'blockinfo',
 					'groups',
+					'groupmemberships',
 					'implicitgroups',
 					'rights',
 					'editcount',
