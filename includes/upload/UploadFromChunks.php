@@ -113,7 +113,7 @@ class UploadFromChunks extends UploadFromFile {
 
 	/**
 	 * Append the final chunk and ready file for parent::performUpload()
-	 * @return FileRepoStatus
+	 * @return Status
 	 */
 	public function concatenateChunks() {
 		$chunkIndex = $this->getChunkIndex();
@@ -313,7 +313,7 @@ class UploadFromChunks extends UploadFromFile {
 	 *
 	 * @param string $chunkPath
 	 * @throws UploadChunkFileException
-	 * @return FileRepoStatus
+	 * @return Status
 	 */
 	private function outputChunk( $chunkPath ) {
 		// Key is fileKey + chunk index

@@ -1792,7 +1792,7 @@ abstract class File implements IDBAccessObject {
 
 	/**
 	 * Move or copy a file to its public location. If a file exists at the
-	 * destination, move it to an archive. Returns a FileRepoStatus object with
+	 * destination, move it to an archive. Returns a Status object with
 	 * the archive name in the "value" member on success.
 	 *
 	 * The archive name should be passed through to recordUpload for database
