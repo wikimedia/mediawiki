@@ -109,7 +109,7 @@ class ApiTag extends ApiBase {
 		} else {
 			$idResult['status'] = 'success';
 			if ( is_null( $status->value->logId ) ) {
-				$idResult['noop'] = '';
+				$idResult['noop'] = true;
 			} else {
 				$idResult['actionlogid'] = $status->value->logId;
 				$idResult['added'] = $status->value->addedTags;
