@@ -489,8 +489,10 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'debughtml', $this->generateDebugHTML() );
 		$tpl->set( 'reporttime', wfReportTime() );
 
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$skinTemplate = $this;
 		// original version by hansm
-		if ( !Hooks::run( 'SkinTemplateOutputPageBeforeExec', [ &$this, &$tpl ] ) ) {
+		if ( !Hooks::run( 'SkinTemplateOutputPageBeforeExec', [ &$skinTemplate, &$tpl ] ) ) {
 			wfDebug( __METHOD__ . ": Hook SkinTemplateOutputPageBeforeExec broke outputPage execution!\n" );
 		}
 
@@ -768,8 +770,10 @@ class SkinTemplate extends Skin {
 				MWNamespace::getSubject( $title->getNamespace() ) );
 		}
 
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$skinTemplate = $this;
 		$result = [];
-		if ( !Hooks::run( 'SkinTemplateTabAction', [ &$this,
+		if ( !Hooks::run( 'SkinTemplateTabAction', [ &$skinTemplate,
 				$title, $message, $selected, $checkEdit,
 				&$classes, &$query, &$text, &$result ] ) ) {
 			return $result;
@@ -870,8 +874,10 @@ class SkinTemplate extends Skin {
 
 		$userCanRead = $title->quickUserCan( 'read', $user );
 
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$skinTemplate = $this;
 		$preventActiveTabs = false;
-		Hooks::run( 'SkinTemplatePreventOtherActiveTabs', [ &$this, &$preventActiveTabs ] );
+		Hooks::run( 'SkinTemplatePreventOtherActiveTabs', [ &$skinTemplate, &$preventActiveTabs ] );
 
 		// Checks if page is some kind of content
 		if ( $title->canExist() ) {
@@ -1074,7 +1080,9 @@ class SkinTemplate extends Skin {
 				}
 			}
 
-			Hooks::run( 'SkinTemplateNavigation', [ &$this, &$content_navigation ] );
+			// Avoid PHP 7.1 warning of passing $this by reference
+			$skinTemplate = $this;
+			Hooks::run( 'SkinTemplateNavigation', [ &$skinTemplate, &$content_navigation ] );
 
 			if ( $userCanRead && !$wgDisableLangConversion ) {
 				$pageLang = $title->getPageLanguage();
@@ -1116,12 +1124,16 @@ class SkinTemplate extends Skin {
 				'context' => 'subject'
 			];
 
+			// Avoid PHP 7.1 warning of passing $this by reference
+			$skinTemplate = $this;
 			Hooks::run( 'SkinTemplateNavigation::SpecialPage',
-				[ &$this, &$content_navigation ] );
+				[ &$skinTemplate, &$content_navigation ] );
 		}
 
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$skinTemplate = $this;
 		// Equiv to SkinTemplateContentActions
-		Hooks::run( 'SkinTemplateNavigation::Universal', [ &$this, &$content_navigation ] );
+		Hooks::run( 'SkinTemplateNavigation::Universal', [ &$skinTemplate, &$content_navigation ] );
 
 		// Setup xml ids and tooltip info
 		foreach ( $content_navigation as $section => &$links ) {
@@ -1254,9 +1266,11 @@ class SkinTemplate extends Skin {
 				];
 			}
 
+			// Avoid PHP 7.1 warning of passing $this by reference
+			$skinTemplate = $this;
 			// Use the copy of revision ID in case this undocumented, shady hook tries to mess with internals
 			Hooks::run( 'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink',
-				[ &$this, &$nav_urls, &$revid, &$revid ] );
+				[ &$skinTemplate, &$nav_urls, &$revid, &$revid ] );
 		}
 
 		if ( $out->isArticleRelated() ) {
