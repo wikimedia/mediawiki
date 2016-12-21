@@ -71,8 +71,14 @@ return [
 	},
 
 	'SiteLookup' => function( MediaWikiServices $services ) {
-		// Use the default SiteStore as the SiteLookup implementation for now
-		return $services->getSiteStore();
+		$cacheFile = $services->getMainConfig()->get( 'SitesCacheFile' );
+
+		if ( $cacheFile !== false ) {
+			return new FileBasedSiteLookup( $cacheFile );
+		} else {
+			// Use the default SiteStore as the SiteLookup implementation for now
+			return $services->getSiteStore();
+		}
 	},
 
 	'ConfigFactory' => function( MediaWikiServices $services ) {
