@@ -168,11 +168,15 @@ class ApiQueryUsers extends ApiQueryBase {
 
 				$this->addTables( 'user_groups' );
 				$this->addJoinConds( [ 'user_groups' => [ 'INNER JOIN', 'ug_user=user_id' ] ] );
-				$this->addFields( [ 'user_name', 'ug_group' ] );
+				$this->addFields( array_merge( [ 'user_name' ], UserGroupMembership::selectFields() ) );
 				$userGroupsRes = $this->select( __METHOD__ );
 
+				$now = wfTimestampNow();
 				foreach ( $userGroupsRes as $row ) {
-					$userGroups[$row->user_name][] = $row->ug_group;
+					// don't keep expired user groups
+					if ( !$row->ug_expiry || $row->ug_expiry >= $now ) {
+						$userGroups[$row->user_name][] = $row;
+					}
 				}
 			}
 
