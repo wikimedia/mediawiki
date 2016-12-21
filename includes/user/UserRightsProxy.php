@@ -210,38 +210,47 @@ class UserRightsProxy {
 	}
 
 	/**
-	 * Replaces User::addUserGroup()
-	 * @param string $group
+	 * Replaces User::getGroupMemberships()
 	 *
-	 * @return bool
+	 * @return array
+	 * @since 1.29
 	 */
-	function addGroup( $group ) {
-		$this->db->insert( 'user_groups',
-			[
-				'ug_user' => $this->id,
-				'ug_group' => $group,
-			],
-			__METHOD__,
-			[ 'IGNORE' ] );
-
-		return true;
+	function getGroupMemberships() {
+		$res = $this->db->select( 'user_groups',
+			UserGroupMembership::selectFields(),
+			[ 'ug_user' => $this->id ],
+			__METHOD__ );
+		$ugms = [];
+		foreach ( $res as $row ) {
+			$ugms[$row->ug_group] = UserGroupMembership::newFromRow( $row );
+		}
+		return $ugms;
 	}
 
 	/**
-	 * Replaces User::removeUserGroup()
-	 * @param string $group
+	 * Replaces User::addGroup()
 	 *
+	 * @param string $group
+	 * @param string|null $expiry
+	 * @return bool
+	 */
+	function addGroup( $group, $expiry = null ) {
+		$ugm = new UserGroupMembership( $this->id, $group, $expiry );
+		return $ugm->insert( true, $this->db );
+	}
+
+	/**
+	 * Replaces User::removeGroup()
+	 *
+	 * @param string $group
 	 * @return bool
 	 */
 	function removeGroup( $group ) {
-		$this->db->delete( 'user_groups',
-			[
-				'ug_user' => $this->id,
-				'ug_group' => $group,
-			],
-			__METHOD__ );
-
-		return true;
+		$ugm = UserGroupMembership::getMembership( $this->id, $group, $this->db );
+		if ( !$ugm ) {
+			return false;
+		}
+		return $ugm->delete( $this->db );
 	}
 
 	/**

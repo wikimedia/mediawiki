@@ -146,6 +146,19 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			ApiResult::setIndexedTagName( $vals['groups'], 'g' ); // even if empty
 		}
 
+		if ( isset( $this->prop['groupmemberships'] ) ) {
+			$ugms = $user->getGroupMemberships();
+			$vals['groupmemberships'] = [];
+			foreach ( $ugms as $group => $ugm ) {
+				$vals['groupmemberships'][] = [
+					'group' => $group,
+					'expiry' => $ugm->getExpiry() ?: 'infinity',
+				];
+			}
+			ApiResult::setArrayType( $vals['groupmemberships'], 'array' ); // even if empty
+			ApiResult::setIndexedTagName( $vals['groupmemberships'], 'groupmembership' ); // even if empty
+		}
+
 		if ( isset( $this->prop['implicitgroups'] ) ) {
 			$vals['implicitgroups'] = $user->getAutomaticGroups();
 			ApiResult::setArrayType( $vals['implicitgroups'], 'array' ); // even if empty
@@ -305,6 +318,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'blockinfo',
 					'hasmsg',
 					'groups',
+					'groupmemberships',
 					'implicitgroups',
 					'rights',
 					'changeablegroups',

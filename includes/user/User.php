@@ -105,6 +105,7 @@ class User implements IDBAccessObject {
 		'mEditCount',
 		// user_groups table
 		'mGroups',
+		'mGroupMemberships',
 		// user_properties table
 		'mOptionOverrides',
 	];
@@ -225,8 +226,14 @@ class User implements IDBAccessObject {
 	protected $mRegistration;
 	/** @var int */
 	protected $mEditCount;
-	/** @var array */
+	/**
+	 * @var array
+	 * @deprecated since 1.29 Consumers use getGroups() instead; subclasses use
+	 * $mGroupMemberships instead
+	 */
 	public $mGroups;
+	/** @var array Associative array of (group name => UserGroupMembership object) */
+	protected $mGroupMemberships;
 	/** @var array */
 	protected $mOptionOverrides;
 	// @}
@@ -283,9 +290,7 @@ class User implements IDBAccessObject {
 	/** @var array */
 	public $mOptions;
 
-	/**
-	 * @var WebRequest
-	 */
+	/** @var WebRequest */
 	private $mRequest;
 
 	/** @var Block */
@@ -1138,6 +1143,7 @@ class User implements IDBAccessObject {
 		$this->mEmailTokenExpires = null;
 		$this->mRegistration = wfTimestamp( TS_MW );
 		$this->mGroups = [];
+		$this->mGroupMemberships = [];
 
 		Hooks::run( 'UserLoadDefaults', [ $this, $name ] );
 	}
@@ -1249,7 +1255,7 @@ class User implements IDBAccessObject {
 		if ( $s !== false ) {
 			// Initialise user table data
 			$this->loadFromRow( $s );
-			$this->mGroups = null; // deferred
+			$this->mGroupMemberships = null; // deferred
 			$this->getEditCount(); // revalidation for nulls
 			return true;
 		} else {
@@ -1266,13 +1272,16 @@ class User implements IDBAccessObject {
 	 * @param stdClass $row Row from the user table to load.
 	 * @param array $data Further user data to load into the object
 	 *
-	 *	user_groups		Array with groups out of the user_groups table
-	 *	user_properties		Array with properties out of the user_properties table
+	 *  user_groups   Array of arrays or stdClass result rows out of the user_groups
+	 *                table. Previously you were supposed to pass an array of strings
+	 *                here, but we also need expiry info nowadays, so an array of
+	 *                strings is ignored.
+	 *  user_properties   Array with properties out of the user_properties table
 	 */
 	protected function loadFromRow( $row, $data = null ) {
 		$all = true;
 
-		$this->mGroups = null; // deferred
+		$this->mGroupMemberships = null; // deferred
 
 		if ( isset( $row->user_name ) ) {
 			$this->mName = $row->user_name;
@@ -1341,7 +1350,20 @@ class User implements IDBAccessObject {
 
 		if ( is_array( $data ) ) {
 			if ( isset( $data['user_groups'] ) && is_array( $data['user_groups'] ) ) {
-				$this->mGroups = $data['user_groups'];
+				if ( !count( $data['user_groups'] ) ) {
+					$this->mGroupMemberships = $this->mGroups = [];
+				} else {
+					$firstGroup = reset( $data['user_groups'] );
+					if ( is_array( $firstGroup ) || is_object( $firstGroup ) ) {
+						$this->mGroupMemberships = $this->mGroups = [];
+						foreach ( $data['user_groups'] as $row ) {
+							$ugm = UserGroupMembership::newFromRow( (object)$row );
+							$group = $ugm->getGroup();
+							$this->mGroupMemberships[$group] = $ugm;
+							$this->mGroups[] = $group;
+						}
+					}
+				}
 			}
 			if ( isset( $data['user_properties'] ) && is_array( $data['user_properties'] ) ) {
 				$this->loadOptions( $data['user_properties'] );
@@ -1365,17 +1387,17 @@ class User implements IDBAccessObject {
 	 * Load the groups from the database if they aren't already loaded.
 	 */
 	private function loadGroups() {
-		if ( is_null( $this->mGroups ) ) {
+		if ( is_null( $this->mGroupMemberships ) ) {
 			$db = ( $this->queryFlagsUsed & self::READ_LATEST )
 				? wfGetDB( DB_MASTER )
 				: wfGetDB( DB_REPLICA );
-			$res = $db->select( 'user_groups',
-				[ 'ug_group' ],
-				[ 'ug_user' => $this->mId ],
-				__METHOD__ );
+			$this->mGroupMemberships = UserGroupMembership::getMembershipsForUser(
+				$this->mId, $db );
+
+			// convert to an array of plain strings for legacy $this->mGroups
 			$this->mGroups = [];
-			foreach ( $res as $row ) {
-				$this->mGroups[] = $row->ug_group;
+			foreach ( $this->mGroupMemberships as $ugm ) {
+				$this->mGroups[] = $ugm->getGroup();
 			}
 		}
 	}
@@ -1509,6 +1531,7 @@ class User implements IDBAccessObject {
 		$this->mEffectiveGroups = null;
 		$this->mImplicitGroups = null;
 		$this->mGroups = null;
+		$this->mGroupMemberships = null;
 		$this->mOptions = null;
 		$this->mOptionsLoaded = false;
 		$this->mEditCount = null;
@@ -3194,7 +3217,20 @@ class User implements IDBAccessObject {
 	public function getGroups() {
 		$this->load();
 		$this->loadGroups();
-		return $this->mGroups;
+		return array_keys( $this->mGroupMemberships );
+	}
+
+	/**
+	 * Get the list of explicit group memberships this user has, stored as
+	 * UserGroupMembership objects. Implicit groups are not included.
+	 *
+	 * @return array Associative array of (group name as string => UserGroupMembership object)
+	 * @since 1.29
+	 */
+	public function getGroupMemberships() {
+		$this->load();
+		$this->loadGroups();
+		return $this->mGroupMemberships;
 	}
 
 	/**
@@ -3303,34 +3339,32 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Add the user to the given group.
-	 * This takes immediate effect.
+	 * Add the user to the given group. This takes immediate effect.
+	 * If the user is already in the group, the expiry time will be updated to the new
+	 * expiry time. (If $expiry is omitted or null, the membership will be altered to
+	 * never expire.)
+	 *
 	 * @param string $group Name of the group to add
+	 * @param string $expiry Optional expiry timestamp, or null if the group assignment
+	 *   should not expire
 	 * @return bool
 	 */
-	public function addGroup( $group ) {
+	public function addGroup( $group, $expiry = null ) {
 		$this->load();
+		$this->loadGroups();
 
 		if ( !Hooks::run( 'UserAddGroup', [ $this, &$group ] ) ) {
 			return false;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
-		if ( $this->getId() ) {
-			$dbw->insert( 'user_groups',
-				[
-					'ug_user' => $this->getId(),
-					'ug_group' => $group,
-				],
-				__METHOD__,
-				[ 'IGNORE' ] );
+		// create the new UserGroupMembership and put it in the DB
+		$ugm = new UserGroupMembership( $this->mId, $group, $expiry );
+		if ( !$ugm->insert( true ) ) {
+			return false;
 		}
 
-		$this->loadGroups();
+		$this->mGroupMemberships[$group] = $ugm;
 		$this->mGroups[] = $group;
-		// In case loadGroups was not called before, we now have the right twice.
-		// Get rid of the duplicate.
-		$this->mGroups = array_unique( $this->mGroups );
 
 		// Refresh the groups caches, and clear the rights cache so it will be
 		// refreshed on the next call to $this->getRights().
@@ -3350,28 +3384,19 @@ class User implements IDBAccessObject {
 	 */
 	public function removeGroup( $group ) {
 		$this->load();
+
 		if ( !Hooks::run( 'UserRemoveGroup', [ $this, &$group ] ) ) {
 			return false;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'user_groups',
-			[
-				'ug_user' => $this->getId(),
-				'ug_group' => $group,
-			], __METHOD__
-		);
-		// Remember that the user was in this group
-		$dbw->insert( 'user_former_groups',
-			[
-				'ufg_user' => $this->getId(),
-				'ufg_group' => $group,
-			],
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
+		$ugm = UserGroupMembership::getMembership( $this->mId, $group );
+		if ( !$ugm ) {
+			return false;
+		}
+		$ugm->delete();
 
 		$this->loadGroups();
+		unset( $this->mGroupMemberships[$group] );
 		$this->mGroups = array_diff( $this->mGroups, [ $group ] );
 
 		// Refresh the groups caches, and clear the rights cache so it will be
