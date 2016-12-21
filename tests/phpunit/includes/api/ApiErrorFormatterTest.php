@@ -504,4 +504,116 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	/**
+	 * @dataProvider provideGetMessageFromException
+	 * @covers ApiErrorFormatter::getMessageFromException
+	 * @covers ApiErrorFormatter::formatException
+	 * @param Exception $exception
+	 * @param array $options
+	 * @param array $expect
+	 */
+	public function testGetMessageFromException( $exception, $options, $expect ) {
+		$result = new ApiResult( 8388608 );
+		$formatter = new ApiErrorFormatter( $result, Language::factory( 'en' ), 'html', false );
+
+		$msg = $formatter->getMessageFromException( $exception, $options );
+		$this->assertInstanceOf( Message::class, $msg );
+		$this->assertInstanceOf( IApiMessage::class, $msg );
+		$this->assertSame( $expect, [
+			'text' => $msg->parse(),
+			'code' => $msg->getApiCode(),
+			'data' => $msg->getApiData(),
+		] );
+
+		$expectFormatted = $formatter->formatMessage( $msg );
+		$formatted = $formatter->formatException( $exception, $options );
+		$this->assertSame( $expectFormatted, $formatted );
+	}
+
+	/**
+	 * @dataProvider provideGetMessageFromException
+	 * @covers ApiErrorFormatter_BackCompat::formatException
+	 * @param Exception $exception
+	 * @param array $options
+	 * @param array $expect
+	 */
+	public function testGetMessageFromException_BC( $exception, $options, $expect ) {
+		$result = new ApiResult( 8388608 );
+		$formatter = new ApiErrorFormatter_BackCompat( $result );
+
+		$msg = $formatter->getMessageFromException( $exception, $options );
+		$this->assertInstanceOf( Message::class, $msg );
+		$this->assertInstanceOf( IApiMessage::class, $msg );
+		$this->assertSame( $expect, [
+			'text' => $msg->parse(),
+			'code' => $msg->getApiCode(),
+			'data' => $msg->getApiData(),
+		] );
+
+		$expectFormatted = $formatter->formatMessage( $msg );
+		$formatted = $formatter->formatException( $exception, $options );
+		$this->assertSame( $expectFormatted, $formatted );
+		$formatted = $formatter->formatException( $exception, $options + [ 'bc' => true ] );
+		$this->assertSame( $expectFormatted['info'], $formatted );
+	}
+
+	public static function provideGetMessageFromException() {
+		return [
+			'Normal exception' => [
+				new RuntimeException( '<b>Something broke!</b>' ),
+				[],
+				[
+					'text' => '&#60;b&#62;Something broke!&#60;/b&#62;',
+					'code' => 'internal_api_error_RuntimeException',
+					'data' => [],
+				]
+			],
+			'Normal exception, wrapped' => [
+				new RuntimeException( '<b>Something broke!</b>' ),
+				[ 'wrap' => 'parentheses', 'code' => 'some-code', 'data' => [ 'foo' => 'bar', 'baz' => 42 ] ],
+				[
+					'text' => '(&#60;b&#62;Something broke!&#60;/b&#62;)',
+					'code' => 'some-code',
+					'data' => [ 'foo' => 'bar', 'baz' => 42 ],
+				]
+			],
+			'UsageException' => [
+				new UsageException( '<b>Something broke!</b>', 'ue-code', 0, [ 'xxx' => 'yyy', 'baz' => 23 ] ),
+				[],
+				[
+					'text' => '&#60;b&#62;Something broke!&#60;/b&#62;',
+					'code' => 'ue-code',
+					'data' => [ 'xxx' => 'yyy', 'baz' => 23 ],
+				]
+			],
+			'UsageException, wrapped' => [
+				new UsageException( '<b>Something broke!</b>', 'ue-code', 0, [ 'xxx' => 'yyy', 'baz' => 23 ] ),
+				[ 'wrap' => 'parentheses', 'code' => 'some-code', 'data' => [ 'foo' => 'bar', 'baz' => 42 ] ],
+				[
+					'text' => '(&#60;b&#62;Something broke!&#60;/b&#62;)',
+					'code' => 'some-code',
+					'data' => [ 'xxx' => 'yyy', 'baz' => 42, 'foo' => 'bar' ],
+				]
+			],
+			'LocalizedException' => [
+				new LocalizedException( [ 'returnto', '<b>FooBar</b>' ] ),
+				[],
+				[
+					'text' => 'Return to <b>FooBar</b>.',
+					'code' => 'returnto',
+					'data' => [],
+				]
+			],
+			'LocalizedException, wrapped' => [
+				new LocalizedException( [ 'returnto', '<b>FooBar</b>' ] ),
+				[ 'wrap' => 'parentheses', 'code' => 'some-code', 'data' => [ 'foo' => 'bar', 'baz' => 42 ] ],
+				[
+					'text' => 'Return to <b>FooBar</b>.',
+					'code' => 'some-code',
+					'data' => [ 'foo' => 'bar', 'baz' => 42 ],
+				]
+			],
+		];
+	}
+
 }

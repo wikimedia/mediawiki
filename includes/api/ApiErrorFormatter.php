@@ -148,10 +148,11 @@ class ApiErrorFormatter {
 	 * @param Exception|Throwable $exception
 	 * @param array $options
 	 *  - wrap: (string|array|MessageSpecifier) Used to wrap the exception's
-	 *    message. The exception's message will be added as the final parameter.
+	 *    message if it's not an ILocalizedException. The exception's message
+	 *    will be added as the final parameter.
 	 *  - code: (string) Default code
-	 *  - data: (array) Extra data
-	 * @return ApiMessage
+	 *  - data: (array) Default extra data
+	 * @return IApiMessage
 	 */
 	public function getMessageFromException( $exception, array $options = [] ) {
 		$options += [ 'code' => null, 'data' => [] ];
@@ -163,11 +164,11 @@ class ApiErrorFormatter {
 			// Extract code and data from the exception, if applicable
 			if ( $exception instanceof UsageException ) {
 				$data = $exception->getMessageArray();
-				if ( !isset( $options['code'] ) ) {
+				if ( !$options['code'] ) {
 					$options['code'] = $data['code'];
 				}
 				unset( $data['code'], $data['info'] );
-				$options['data'] = array_merge( $data['code'], $options['data'] );
+				$options['data'] = array_merge( $data, $options['data'] );
 			}
 
 			if ( isset( $options['wrap'] ) ) {
