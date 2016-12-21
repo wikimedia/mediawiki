@@ -15,7 +15,8 @@
 			"Urielejh",
 			"Matteocng",
 			"Einreiher",
-			"Mpiva"
+			"Mpiva",
+			"Margherita.mignanelli"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentazione]] (in inglese)\n* [[mw:API:FAQ|FAQ]] (in inglese)\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailing list]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annunci sull'API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bug & richieste]\n</div>\n<strong>Stato:</strong> tutte le funzioni e caratteristiche mostrate su questa pagina dovrebbero funzionare, ma le API sono ancora in fase attiva di sviluppo, e potrebbero cambiare in qualsiasi momento. Iscriviti alla [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la mailing list sugli annunci delle API MediaWiki] per essere informato sugli aggiornamenti.\n\n<strong>Istruzioni sbagliate:</strong> quando vengono impartite alle API delle istruzioni sbagliate, un'intestazione HTTP verrà inviata col messaggio \"MediaWiki-API-Error\" e, sia il valore dell'intestazione, sia il codice d'errore, verranno impostati con lo stesso valore. Per maggiori informazioni leggi [[mw:API:Errors_and_warnings|API:Errori ed avvertimenti]] (in inglese).\n\n<strong>Test:</strong> per testare facilmente le richieste API, vedi [[Special:ApiSandbox]].",
@@ -612,6 +613,10 @@
 	"apihelp-userrights-param-add": "Aggiungi l'utente a questi gruppi.",
 	"apihelp-userrights-param-remove": "Rimuovi l'utente da questi gruppi.",
 	"apihelp-userrights-param-reason": "Motivo del cambiamento.",
+	"apihelp-validatepassword-description": "Convalidare una password seguendo le politiche di wiki sulle password",
+	"apihelp-validatepassword-param-password": "Password da convalidare",
+	"apihelp-validatepassword-example-1": "Convalidare la password <kbd>foobar</kbd> per l'attuale utente.",
+	"apihelp-validatepassword-example-2": "Convalidare la password <kbd>qwerty</kbd> per la creazione di un utente <kbd>Esempio</kbd>.",
 	"apihelp-watch-description": "Aggiunge o rimuove pagine dagli osservati speciali dell'utente attuale.",
 	"apihelp-format-param-wrappedhtml": "Restituisce l'HTML ben formattato e i moduli ResourceLoader associati come un oggetto JSON.",
 	"api-pageset-param-titles": "Un elenco di titoli su cui lavorare.",

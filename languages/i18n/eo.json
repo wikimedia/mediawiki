@@ -1286,7 +1286,7 @@
 	"action-delete": "forigi ĉi tiun paĝon",
 	"action-deleterevision": "forigi ĉi tiun version",
 	"action-deletelogentry": "forigi protokolerojn",
-	"action-deletedhistory": "vidi historion de forigita paĝo",
+	"action-deletedhistory": "vidi historion de forigitaj versiojn de la paĝo",
 	"action-deletedtext": "vidi tekston el forigita versio",
 	"action-browsearchive": "traserĉi forigitajn paĝojn",
 	"action-undelete": "malforigi paĝojn",

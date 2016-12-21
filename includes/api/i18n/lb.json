@@ -172,6 +172,8 @@
 	"apihelp-userrights-param-user": "Benotzernumm.",
 	"apihelp-userrights-param-userid": "Benotzer Id.",
 	"apihelp-userrights-param-reason": "Grond fir d'Ännerung.",
+	"apihelp-validatepassword-param-password": "Passwuert fir ze validéieren.",
+	"apihelp-validatepassword-example-1": "Validéiert d'Passwuert <kbd>foobar</kbd> fir den aktuelle Benotzer.",
 	"apihelp-watch-example-watch": "D'Säit <kbd>Main Page</kbd> iwwerwaachen.",
 	"api-help-source": "Quell: $1",
 	"api-help-source-unknown": "Quell: <span class=\"apihelp-unknown\">onbekannt</span>",

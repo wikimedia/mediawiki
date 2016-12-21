@@ -2619,6 +2619,7 @@
 	"pageinfo-length": "Lonxitude da páxina (en bytes)",
 	"pageinfo-article-id": "ID da páxina",
 	"pageinfo-language": "Lingua do contido da páxina",
+	"pageinfo-language-change": "cambiar",
 	"pageinfo-content-model": "Modelo do contido da páxina",
 	"pageinfo-content-model-change": "cambiar",
 	"pageinfo-robot-policy": "Indexación por robots",
@@ -3803,5 +3804,6 @@
 	"restrictionsfield-badip": "Enderezo IP ou rango de IP non válido: $1",
 	"restrictionsfield-label": "Rangos de IP permitidos:",
 	"restrictionsfield-help": "Un único enderezo IP ou rango CIDR por liña. Para habilitalos todos, utilice<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"revid": "revisión $1",
 	"pageid": "identificador de páxina $1"
 }

@@ -460,6 +460,8 @@
 	"apihelp-upload-param-ignorewarnings": "모든 경고를 무시합니다.",
 	"apihelp-userrights-param-user": "사용자 이름.",
 	"apihelp-userrights-param-userid": "사용자 ID.",
+	"apihelp-validatepassword-param-email": "계정 생성을 테스트할 때 사용할 이메일 주소입니다.",
+	"apihelp-validatepassword-param-realname": "계정 생성을 테스트할 때 사용할 실명입니다.",
 	"apihelp-rawfm-description": "출력 데이터, 디버깅 요소를 포함, (HTML에 포함된)JSON형식.",
 	"apihelp-xml-param-includexmlnamespace": "지정하면 XML 이름공간을 추가합니다.",
 	"api-format-title": "미디어위키 API 결과",

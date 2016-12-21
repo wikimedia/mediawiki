@@ -149,7 +149,8 @@
 			"Lucas",
 			"Mabroukb",
 			"Pymouss",
-			"Derugon"
+			"Derugon",
+			"Benoit Rochon"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -441,7 +442,7 @@
 	"sort-descending": "Tri décroissant",
 	"sort-ascending": "Tri croissant",
 	"nstab-main": "Page",
-	"nstab-user": "Page utilisateur",
+	"nstab-user": "Page {{GENDER:{{ROOTPAGENAME}}|utilisateur|utilisatrice}}",
 	"nstab-media": "Média",
 	"nstab-special": "Page spéciale",
 	"nstab-project": "À propos",
@@ -2651,7 +2652,7 @@
 	"javascripttest": "Test de JavaScript",
 	"javascripttest-pagetext-unknownaction": "Action « $1 » inconnue.",
 	"javascripttest-qunit-intro": "Voir [$1 la documentation de test] sur mediawiki.org.",
-	"tooltip-pt-userpage": "{{GENDER:|Votre}} page utilisateur",
+	"tooltip-pt-userpage": "Votre page {{GENDER:|utilisateur|utilisatrice}}",
 	"tooltip-pt-anonuserpage": "La page utilisateur avec l'adresse IP de laquelle vous contribuez",
 	"tooltip-pt-mytalk": "{{GENDER:|Votre}} page de discussion",
 	"tooltip-pt-anontalk": "La page de discussion pour les contributions depuis cette adresse IP",

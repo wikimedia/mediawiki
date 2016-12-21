@@ -3737,7 +3737,7 @@
 	"log-action-filter-newusers-create2": "पंजीकृत सदस्य द्वारा निर्मित",
 	"log-action-filter-newusers-autocreate": "स्वतः निर्मित",
 	"log-action-filter-newusers-byemail": "पासवर्ड ईमेल द्वारा भेजा गया के साथ निर्मित",
-	"log-action-filter-patrol-patrol": "अपने से परीक्षण",
+	"log-action-filter-patrol-patrol": "सदस्य द्वारा परीक्षित",
 	"log-action-filter-patrol-autopatrol": "स्वतः पुनरीक्षण",
 	"log-action-filter-protect-protect": "सुरक्षा",
 	"log-action-filter-protect-modify": "सुरक्षा परिवर्तन",
