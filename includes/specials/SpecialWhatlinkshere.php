@@ -102,6 +102,9 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	 * @param int $limit Number of entries to display
 	 * @param int $from Display from this article ID (default: 0)
 	 * @param int $back Display from this article ID at backwards scrolling (default: 0)
+	 * @var array $plRes
+	 * @var array $tlRes
+	 * @var array $ilRes
 	 */
 	function showIndirectLinks( $level, $target, $limit, $from = 0, $back = 0 ) {
 		$out = $this->getOutput();
@@ -193,7 +196,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		if ( !$hideimages ) {
 			$ilRes = $queryFunc( $dbr, 'imagelinks', 'il_from' );
 		}
-
+		/** @suppress PhanNonClassMethodCall */
 		if ( ( !$fetchlinks || !$plRes->numRows() )
 			&& ( $hidetrans || !$tlRes->numRows() )
 			&& ( $hideimages || !$ilRes->numRows() )
@@ -219,6 +222,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		// templatelinks comes second so that the templatelinks row overwrites the
 		// pagelinks row, so we get (inclusion) rather than nothing
 		if ( $fetchlinks ) {
+			/** @suppress PhanTypeMismatchForeach */
 			foreach ( $plRes as $row ) {
 				$row->is_template = 0;
 				$row->is_image = 0;
@@ -226,6 +230,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			}
 		}
 		if ( !$hidetrans ) {
+			/** @suppress PhanTypeMismatchForeach */
 			foreach ( $tlRes as $row ) {
 				$row->is_template = 1;
 				$row->is_image = 0;
@@ -233,6 +238,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			}
 		}
 		if ( !$hideimages ) {
+			/** @suppress PhanTypeMismatchForeach */
 			foreach ( $ilRes as $row ) {
 				$row->is_template = 0;
 				$row->is_image = 1;

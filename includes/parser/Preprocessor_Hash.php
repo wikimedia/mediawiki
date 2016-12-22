@@ -752,6 +752,7 @@ class PPDStackElement_Hash extends PPDStackElement {
 	 * Get the accumulator that would result if the close is not found.
 	 *
 	 * @param int|bool $openingCount
+	 * @var array $out
 	 * @return array
 	 */
 	public function breakSyntax( $openingCount = false ) {
@@ -772,7 +773,9 @@ class PPDStackElement_Hash extends PPDStackElement {
 				} else {
 					$accum[++$lastIndex] = '|';
 				}
-				foreach ( $part->out as $node ) {
+				$out = $part->out;
+				/** @suppress PhanTypeMismatchForeach */
+				foreach ( $out as $node ) {
 					if ( is_string( $node ) && is_string( $accum[$lastIndex] ) ) {
 						$accum[$lastIndex] .= $node;
 					} else {
