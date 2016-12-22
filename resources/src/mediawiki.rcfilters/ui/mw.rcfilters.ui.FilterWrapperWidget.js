@@ -8,7 +8,7 @@
 	 * @constructor
 	 * @param {mw.rcfilters.Controller} controller Controller
 	 * @param {mw.rcfilters.dm.FiltersViewModel} model View model
-	 * @param {Object} config Configuration object
+	 * @param {Object} [config] Configuration object
 	 * @cfg {Object} [filters] A definition of the filter groups in this list
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
 	 */
@@ -23,8 +23,6 @@
 		this.controller = controller;
 		this.model = model;
 		this.$overlay = config.$overlay || this.$element;
-
-		this.filtersInCapsule = [];
 
 		this.filterPopup = new mw.rcfilters.ui.FiltersListWidget(
 			this.controller,
@@ -92,14 +90,5 @@
 				wrapper.capsule.addItemByName( filterItem.getName() );
 			}
 		} );
-	};
-
-	/**
-	 * Add a capsule item by its filter name
-	 *
-	 * @param {string} itemName Filter name
-	 */
-	mw.rcfilters.ui.FilterWrapperWidget.prototype.addCapsuleItemFromName = function ( itemName ) {
-		this.capsule.addItemByName( [ itemName ] );
 	};
 }( mediaWiki ) );
