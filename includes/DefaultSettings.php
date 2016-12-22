@@ -8461,6 +8461,23 @@ $wgCSPFalsePositiveUrls = [
 ];
 
 /**
+ * The following variables define 3 user experience levels:
+ *
+ *  - newcomer: has not yet reached the 'learner' level
+ *
+ *  - learner: has at least $wgLearnerEdits and has been
+ *             a member for $wgLearnerMemberSince days
+ *             but has not yet reached the 'experienced' level.
+ *
+ *  - experienced: has at least $wgExperiencedUserEdits edits and
+ *                 has been a member for $wgExperiencedUserMemberSince days.
+ */
+$wgLearnerEdits = 10;
+$wgLearnerMemberSince = 4; # days
+$wgExperiencedUserEdits = 500;
+$wgExperiencedUserMemberSince = 30; # days
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
