@@ -292,8 +292,8 @@ CircularRef
 {{CircularRef}}
 <references />
 !! html/parsoid
-<p><span about="#mwt1" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Transclusion  mw:Extension/ref" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"CircularRef","href":"./Template:CircularRef"},"params":{},"i":0}}]}'><a href="#cite_note-1" style="counter-reset: mw-Ref 1;"><span class="mw-reflink-text">[1]</span></a></span></p>
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">Error: Expansion loop detected at <a data-parsoid='{"a":{"href":null},"sa":{"href":"Template:CircularRef"}}'>Template:CircularRef</a></span></li></ol>
+<p><span about="#mwt1" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Transclusion  mw:Extension/ref" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"CircularRef","href":"./Template:CircularRef"},"params":{},"i":0}}]}'><a href="./Main_Page#cite_note-1" style="counter-reset: mw-Ref 1;"><span class="mw-reflink-text">[1]</span></a></span></p>
+<ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">Error: Expansion loop detected at <a data-parsoid='{"a":{"href":null},"sa":{"href":"Template:CircularRef"}}'>Template:CircularRef</a></span></li></ol>
 !! end
 
 !! test
@@ -1453,6 +1453,8 @@ Don't parse <nowiki><span class="error"></nowiki> (T149622)
 !! html/php
 <p>&lt;span class="error"&gt;
 </p>
+!! html/parsoid
+<p><span typeof="mw:Nowiki">&lt;span class="error"></span></p>
 !! end
 
 !! test
@@ -6474,6 +6476,18 @@ parsoid=wt2html,html2html
 <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"ho\">ha&lt;/div>"}},"i":0}}]}'>ho">ha</span>
 !! end
 
+!! test
+Don't break on | in extension attribute in template
+!! wikitext
+{{echo|<ref name="hi|ho">ha</ref>}}
+
+<references />
+!! html/parsoid
+<p><span about="#mwt2" class="mw-ref" id="cite_ref-hi.7Cho_1-0" rel="dc:references" typeof="mw:Transclusion  mw:Extension/ref" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;ref name=\"hi|ho\">ha&lt;/ref>"}},"i":0}}]}'><a href="./Main_Page#cite_note-hi.7Cho-1" style="counter-reset: mw-Ref 1;"><span class="mw-reflink-text">[1]</span></a></span></p>
+
+<ol class="mw-references" typeof="mw:Extension/references" about="#mwt5" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-hi.7Cho-1" id="cite_note-hi.7Cho-1"><a href="./Main_Page#cite_ref-hi.7Cho_1-0" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-hi.7Cho-1" class="mw-reference-text">ha</span></li></ol>
+!! end
+
 ## We don't support roundtripping of these attributes in Parsoid.
 ## Selective serialization takes care of preventing dirty diffs.
 ## But, on edits, we dirty-diff the invalid attribute text.
@@ -6644,9 +6658,9 @@ T107652: <ref>s in templates that also generate table cell attributes should be 
 <references />
 !! html/parsoid
 <table>
-<tbody><tr><td style="background:#f9f9f9;" typeof="mw:Transclusion" about="#mwt1" data-mw='{"parts":["|",{"template":{"target":{"wt":"table_attribs_7","href":"./Template:Table_attribs_7"},"params":{},"i":0}}]}'>Foo<span class="mw-ref" id="cite_ref-1" rel="dc:references" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1" style="counter-reset: mw-Ref 1;"><span class="mw-reflink-text">[1]</span></a></span></td></tr>
+<tbody><tr><td style="background:#f9f9f9;" typeof="mw:Transclusion" about="#mwt1" data-mw='{"parts":["|",{"template":{"target":{"wt":"table_attribs_7","href":"./Template:Table_attribs_7"},"params":{},"i":0}}]}'>Foo<span class="mw-ref" id="cite_ref-1" rel="dc:references" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1" style="counter-reset: mw-Ref 1;"><span class="mw-reflink-text">[1]</span></a></span></td></tr>
 </tbody></table>
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt5" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">foo</span></li></ol>
+<ol class="mw-references" typeof="mw:Extension/references" about="#mwt5" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">foo</span></li></ol>
 !! end
 
 !! test
@@ -12296,11 +12310,11 @@ Templates: Wiki Tables: 7. Fosterable <ref>s should get fostered
 
 <references />
 !!html/parsoid
-<span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Transclusion  mw:Extension/ref" data-mw='{"parts":[{"template":{"target":{"wt":"PartialTable","href":"./Template:PartialTable"},"params":{},"i":0}},"&lt;ref>foo&lt;/ref>\n|}"]}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span><table about="#mwt2">
+<span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Transclusion  mw:Extension/ref" data-mw='{"parts":[{"template":{"target":{"wt":"PartialTable","href":"./Template:PartialTable"},"params":{},"i":0}},"&lt;ref>foo&lt;/ref>\n|}"]}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span><table about="#mwt2">
 <tbody>
 </tbody></table>
 
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li></ol>
+<ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li></ol>
 !!end
 
 !! test
@@ -14606,9 +14620,9 @@ T93580: 1. Templated <ref> inside block images
 
 <references />
 !! html/parsoid
-<figure class="mw-default-size" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"caption","ak":"Caption with templated ref: {{echo|&lt;ref>foo&lt;/ref>}}"}]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"25","width":"220"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption>Caption with templated ref: <span about="#mwt5" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Transclusion  mw:Extension/ref" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;ref>foo&lt;/ref>"}},"i":0}}]}'><a href="#cite_note-1" style="counter-reset: mw-Ref 1;"><span class="mw-reflink-text">[1]</span></a></span></figcaption></figure>
+<figure class="mw-default-size" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"caption","ak":"Caption with templated ref: {{echo|&lt;ref>foo&lt;/ref>}}"}]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"25","width":"220"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption>Caption with templated ref: <span about="#mwt5" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Transclusion  mw:Extension/ref" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;ref>foo&lt;/ref>"}},"i":0}}]}'><a href="./Main_Page#cite_note-1" style="counter-reset: mw-Ref 1;"><span class="mw-reflink-text">[1]</span></a></span></figcaption></figure>
 
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">foo</span></li></ol>
+<ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">foo</span></li></ol>
 !! end
 
 !! test
@@ -14618,9 +14632,9 @@ T93580: 2. <ref> inside inline images
 
 <references />
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Image" data-parsoid='{"optList":[{"ck":"caption","ak":"Undisplayed caption in inline image with ref: &lt;ref>foo&lt;/ref>"}]}' data-mw='{"caption":"Undisplayed caption in inline image with ref: &lt;span about=\"#mwt2\" class=\"mw-ref\" id=\"cite_ref-1\" rel=\"dc:references\" typeof=\"mw:Extension/ref\" data-parsoid=&#39;{\"dsr\":[64,78,5,6]}&#39; data-mw=&#39;{\"name\":\"ref\",\"body\":{\"id\":\"mw-reference-text-cite_note-1\"},\"attrs\":{}}&#39;>&lt;a href=\"#cite_note-1\" style=\"counter-reset: mw-Ref 1;\" data-parsoid=\"{}\">&lt;span class=\"mw-reflink-text\" data-parsoid=\"{}\">[1]&lt;/span>&lt;/a>&lt;/span>&lt;meta typeof=\"mw:Extension/ref/Marker\" about=\"#mwt2\" data-parsoid=&#39;{\"group\":\"\",\"name\":\"\",\"content\":\"foo\",\"hasRefInRef\":false,\"dsr\":[64,78,5,6]}&#39;/>"}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{}}'><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Image" data-parsoid='{"optList":[{"ck":"caption","ak":"Undisplayed caption in inline image with ref: &lt;ref>foo&lt;/ref>"}]}' data-mw='{"caption":"Undisplayed caption in inline image with ref: &lt;span about=\"#mwt2\" class=\"mw-ref\" id=\"cite_ref-1\" rel=\"dc:references\" typeof=\"mw:Extension/ref\" data-parsoid=&#39;{\"dsr\":[64,78,5,6]}&#39; data-mw=&#39;{\"name\":\"ref\",\"body\":{\"id\":\"mw-reference-text-cite_note-1\"},\"attrs\":{}}&#39;>&lt;a href=\"./Main_Page#cite_note-1\" style=\"counter-reset: mw-Ref 1;\" data-parsoid=\"{}\">&lt;span class=\"mw-reflink-text\" data-parsoid=\"{}\">[1]&lt;/span>&lt;/a>&lt;/span>&lt;meta typeof=\"mw:Extension/ref/Marker\" about=\"#mwt2\" data-parsoid=&#39;{\"group\":\"\",\"name\":\"\",\"content\":\"foo\",\"hasRefInRef\":false,\"dsr\":[64,78,5,6]}&#39;/>"}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{}}'><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span></p>
 
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">foo</span></li></ol>
+<ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">foo</span></li></ol>
 !! end
 
 !! test
@@ -14630,9 +14644,9 @@ T93580: 3. Templated <ref> inside inline images
 
 <references />
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Image" data-parsoid='{"optList":[{"ck":"caption","ak":"Undisplayed caption in inline image with ref: {{echo|&lt;ref>{{echo|foo}}&lt;/ref>}}"}]}' data-mw='{"caption":"Undisplayed caption in inline image with ref: &lt;span about=\"#mwt2\" class=\"mw-ref\" id=\"cite_ref-1\" rel=\"dc:references\" typeof=\"mw:Transclusion  mw:Extension/ref\" data-parsoid=&#39;{\"dsr\":[64,96,null,null],\"pi\":[[{\"k\":\"1\"}]]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"&amp;lt;ref>{{echo|foo}}&amp;lt;/ref>\"}},\"i\":0}}]}&#39;>&lt;a href=\"#cite_note-1\" style=\"counter-reset: mw-Ref 1;\" data-parsoid=\"{}\">&lt;span class=\"mw-reflink-text\" data-parsoid=\"{}\">[1]&lt;/span>&lt;/a>&lt;/span>&lt;meta typeof=\"mw:Transclusion mw:Extension/ref/Marker\" about=\"#mwt2\" data-parsoid=&#39;{\"group\":\"\",\"name\":\"\",\"content\":\"foo\",\"hasRefInRef\":false,\"dsr\":[64,96,null,null],\"pi\":[[{\"k\":\"1\"}]]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"&amp;lt;ref>{{echo|foo}}&amp;lt;/ref>\"}},\"i\":0}}]}&#39;/>"}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{}}'><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Image" data-parsoid='{"optList":[{"ck":"caption","ak":"Undisplayed caption in inline image with ref: {{echo|&lt;ref>{{echo|foo}}&lt;/ref>}}"}]}' data-mw='{"caption":"Undisplayed caption in inline image with ref: &lt;span about=\"#mwt2\" class=\"mw-ref\" id=\"cite_ref-1\" rel=\"dc:references\" typeof=\"mw:Transclusion  mw:Extension/ref\" data-parsoid=&#39;{\"dsr\":[64,96,null,null],\"pi\":[[{\"k\":\"1\"}]]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"&amp;lt;ref>{{echo|foo}}&amp;lt;/ref>\"}},\"i\":0}}]}&#39;>&lt;a href=\"./Main_Page#cite_note-1\" style=\"counter-reset: mw-Ref 1;\" data-parsoid=\"{}\">&lt;span class=\"mw-reflink-text\" data-parsoid=\"{}\">[1]&lt;/span>&lt;/a>&lt;/span>&lt;meta typeof=\"mw:Transclusion mw:Extension/ref/Marker\" about=\"#mwt2\" data-parsoid=&#39;{\"group\":\"\",\"name\":\"\",\"content\":\"foo\",\"hasRefInRef\":false,\"dsr\":[64,96,null,null],\"pi\":[[{\"k\":\"1\"}]]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"&amp;lt;ref>{{echo|foo}}&amp;lt;/ref>\"}},\"i\":0}}]}&#39;/>"}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{}}'><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span></p>
 
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">foo</span></li></ol>
+<ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">foo</span></li></ol>
 !! end
 
 ###
@@ -22572,13 +22586,13 @@ B <ref name="x">foo</ref>
 C <ref name="y" />
 <references />
 !! html/parsoid
-<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span>
-B <span about="#mwt4" class="mw-ref" id="cite_ref-x_2-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-x-2"},"attrs":{"name":"x"}}'><a href="#cite_note-x-2"><span class="mw-reflink-text">[2]</span></a></span>
-C <span about="#mwt6" class="mw-ref" id="cite_ref-y_3-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"y"}}'><a href="#cite_note-y-3"><span class="mw-reflink-text">[3]</span></a></span></p>
+<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span>
+B <span about="#mwt4" class="mw-ref" id="cite_ref-x_2-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-x-2"},"attrs":{"name":"x"}}'><a href="./Main_Page#cite_note-x-2"><span class="mw-reflink-text">[2]</span></a></span>
+C <span about="#mwt6" class="mw-ref" id="cite_ref-y_3-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"y"}}'><a href="./Main_Page#cite_note-y-3"><span class="mw-reflink-text">[3]</span></a></span></p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt8" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li>
-<li about="#cite_note-x-2" id="cite_note-x-2"><a href="#cite_ref-x_2-0" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-x-2" class="mw-reference-text">foo</span></li>
-<li about="#cite_note-y-3" id="cite_note-y-3"><a href="#cite_ref-y_3-0" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-y-3" class="mw-reference-text"></span></li>
+<li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li>
+<li about="#cite_note-x-2" id="cite_note-x-2"><a href="./Main_Page#cite_ref-x_2-0" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-x-2" class="mw-reference-text">foo</span></li>
+<li about="#cite_note-y-3" id="cite_note-y-3"><a href="./Main_Page#cite_ref-y_3-0" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-y-3" class="mw-reference-text"></span></li>
 </ol>
 !!end
 
@@ -22589,10 +22603,10 @@ A <ref name="x">foo</ref>
 B <ref name="x" />
 <references />
 !! html/parsoid
-<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-x_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-x-1"},"attrs":{"name":"x"}}'><a href="#cite_note-x-1"><span class="mw-reflink-text">[1]</span></a></span>
-B <span about="#mwt4" class="mw-ref" id="cite_ref-x_1-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"x"}}'><a href="#cite_note-x-1"><span class="mw-reflink-text">[1]</span></a></span></p>
+<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-x_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-x-1"},"attrs":{"name":"x"}}'><a href="./Main_Page#cite_note-x-1"><span class="mw-reflink-text">[1]</span></a></span>
+B <span about="#mwt4" class="mw-ref" id="cite_ref-x_1-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"x"}}'><a href="./Main_Page#cite_note-x-1"><span class="mw-reflink-text">[1]</span></a></span></p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-x-1" id="cite_note-x-1"><span rel="mw:referencedBy"><a href="#cite_ref-x_1-0"><span class="mw-linkback-text">1 </span></a><a href="#cite_ref-x_1-1"><span class="mw-linkback-text">2 </span></a></span> <span id="mw-reference-text-cite_note-x-1" class="mw-reference-text">foo</span></li>
+<li about="#cite_note-x-1" id="cite_note-x-1"><span rel="mw:referencedBy"><a href="./Main_Page#cite_ref-x_1-0"><span class="mw-linkback-text">1 </span></a><a href="./Main_Page#cite_ref-x_1-1"><span class="mw-linkback-text">2 </span></a></span> <span id="mw-reference-text-cite_note-x-1" class="mw-reference-text">foo</span></li>
 </ol>
 !!end
 
@@ -22604,11 +22618,11 @@ B <ref name=" x " />
 C <ref name= x  />
 <references />
 !! html/parsoid
-<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-x_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-x-1"},"attrs":{"name":"x"}}'><a href="#cite_note-x-1"><span class="mw-reflink-text">[1]</span></a></span>
-B <span about="#mwt4" class="mw-ref" id="cite_ref-x_1-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"x"}}'><a href="#cite_note-x-1"><span class="mw-reflink-text">[1]</span></a></span>
-C <span about="#mwt6" class="mw-ref" id="cite_ref-x_1-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"x"}}'><a href="#cite_note-x-1"><span class="mw-reflink-text">[1]</span></a></span></p>
+<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-x_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-x-1"},"attrs":{"name":"x"}}'><a href="./Main_Page#cite_note-x-1"><span class="mw-reflink-text">[1]</span></a></span>
+B <span about="#mwt4" class="mw-ref" id="cite_ref-x_1-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"x"}}'><a href="./Main_Page#cite_note-x-1"><span class="mw-reflink-text">[1]</span></a></span>
+C <span about="#mwt6" class="mw-ref" id="cite_ref-x_1-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"x"}}'><a href="./Main_Page#cite_note-x-1"><span class="mw-reflink-text">[1]</span></a></span></p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt8" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-x-1" id="cite_note-x-1"><span rel="mw:referencedBy"><a href="#cite_ref-x_1-0"><span class="mw-linkback-text">1 </span></a><a href="#cite_ref-x_1-1"><span class="mw-linkback-text">2 </span></a><a href="#cite_ref-x_1-2"><span class="mw-linkback-text">3 </span></a></span> <span id="mw-reference-text-cite_note-x-1" class="mw-reference-text">foo</span></li>
+<li about="#cite_note-x-1" id="cite_note-x-1"><span rel="mw:referencedBy"><a href="./Main_Page#cite_ref-x_1-0"><span class="mw-linkback-text">1 </span></a><a href="./Main_Page#cite_ref-x_1-1"><span class="mw-linkback-text">2 </span></a><a href="./Main_Page#cite_ref-x_1-2"><span class="mw-linkback-text">3 </span></a></span> <span id="mw-reference-text-cite_note-x-1" class="mw-reference-text">foo</span></li>
 </ol>
 !!end
 
@@ -22619,9 +22633,9 @@ Ref: 4. 'constructor' should be accepted as a valid ref-name
 A <ref name="constructor">foo</ref>
 <references />
 !! html/parsoid
-<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-constructor_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-constructor-1"},"attrs":{"name":"constructor"}}'><a href="#cite_note-constructor-1"><span class="mw-reflink-text">[1]</span></a></span></p>
+<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-constructor_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-constructor-1"},"attrs":{"name":"constructor"}}'><a href="./Main_Page#cite_note-constructor-1"><span class="mw-reflink-text">[1]</span></a></span></p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-constructor-1" id="cite_note-constructor-1"><a href="#cite_ref-constructor_1-0" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-constructor-1" class="mw-reference-text">foo</span></li>
+<li about="#cite_note-constructor-1" id="cite_note-constructor-1"><a href="./Main_Page#cite_ref-constructor_1-0" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-constructor-1" class="mw-reference-text">foo</span></li>
 </ol>
 !!end
 
@@ -22634,10 +22648,10 @@ A <ref>
 
 <references />
 !! html/parsoid
-<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p>
+<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p>
 
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt5" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">This is a <b><a rel="mw:WikiLink" href="Bolded_link" title="Bolded link">bolded link</a></b> and this is a <span about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"transclusion"}},"i":0}}]}'>transclusion</span>
+<li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">This is a <b><a rel="mw:WikiLink" href="Bolded_link" title="Bolded link">bolded link</a></b> and this is a <span about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"transclusion"}},"i":0}}]}'>transclusion</span>
 </span></li>
 </ol>
 !!end
@@ -22653,10 +22667,10 @@ A <ref>
 
 <references />
 !! html/parsoid
-<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p>
+<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p>
 
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo
+<li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo
  bar
  baz
 </span></li>
@@ -22681,10 +22695,10 @@ booz
 
 <references />
 !! html/parsoid
-<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p>
+<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p>
 
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo
+<li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo
 
 bar
 
@@ -22705,9 +22719,9 @@ A <ref> foo {{echo|</ref> B C}}
 
 <references />
 !! html/parsoid
-<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span> B C}}</p>
+<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span> B C}}</p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo {{echo|</span></li>
+<li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo {{echo|</span></li>
 </ol>
 !!end
 
@@ -22717,9 +22731,9 @@ Ref: 9. unclosed comments should not leak out of ref-body
 A <ref> foo <!--</ref> B C
 <references />
 !! html/parsoid
-<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span> B C</p>
+<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span> B C</p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo <!----></span></li>
+<li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo <!----></span></li>
 </ol>
 !!end
 
@@ -22730,11 +22744,11 @@ A <ref> <b> foo </ref> B C
 
 <references />
 !! html/parsoid
-<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span> B C</p>
+<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span> B C</p>
 
 
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text"><b data-parsoid='{"stx":"html","autoInsertedEnd":true}'> foo </b></span></li>
+<li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text"><b data-parsoid='{"stx":"html","autoInsertedEnd":true}'> foo </b></span></li>
 </ol>
 !!end
 
@@ -22745,11 +22759,11 @@ A <ref>foo</ref> B
 C <ref>bar</ref> D
 <references />
 !! html/parsoid
-<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span> B
-C <span about="#mwt4" class="mw-ref" id="cite_ref-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-2"},"attrs":{}}'><a href="#cite_note-2"><span class="mw-reflink-text">[2]</span></a></span> D</p>
+<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span> B
+C <span about="#mwt4" class="mw-ref" id="cite_ref-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-2"},"attrs":{}}'><a href="./Main_Page#cite_note-2"><span class="mw-reflink-text">[2]</span></a></span> D</p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li>
-<li about="#cite_note-2" id="cite_note-2"><a href="#cite_ref-2" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-2" class="mw-reference-text">bar</span></li>
+<li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li>
+<li about="#cite_note-2" id="cite_note-2"><a href="./Main_Page#cite_ref-2" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-2" class="mw-reference-text">bar</span></li>
 </ol>
 !!end
 
@@ -22767,13 +22781,13 @@ c
 <!--the newline at the end of this line moves out of the p tag--><p>a</p>
 
 
-<p>b<!--the newline at the end of this line stays inside the p tag--> <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span>
-<span about="#mwt4" class="mw-ref" id="cite_ref-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{}}'><a href="#cite_note-2"><span class="mw-reflink-text">[2]</span></a></span></p>
+<p>b<!--the newline at the end of this line stays inside the p tag--> <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span>
+<span about="#mwt4" class="mw-ref" id="cite_ref-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{}}'><a href="./Main_Page#cite_note-2"><span class="mw-reflink-text">[2]</span></a></span></p>
 
 <p>c</p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text"></span></li>
-<li about="#cite_note-2" id="cite_note-2"><a href="#cite_ref-2" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-2" class="mw-reference-text"></span></li></ol>
+<li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text"></span></li>
+<li about="#cite_note-2" id="cite_note-2"><a href="./Main_Page#cite_ref-2" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-2" class="mw-reference-text"></span></li></ol>
 !!end
 
 !!test
@@ -22784,11 +22798,11 @@ Ref: 13. ref-tags are not SOL-transparent and block indent-pres
 </ref> B
 <references />
 !! html/parsoid
-<p><span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span> A
-<span about="#mwt4" class="mw-ref" id="cite_ref-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-2"},"attrs":{}}'><a href="#cite_note-2"><span class="mw-reflink-text">[2]</span></a></span> B</p>
+<p><span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span> A
+<span about="#mwt4" class="mw-ref" id="cite_ref-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-2"},"attrs":{}}'><a href="./Main_Page#cite_note-2"><span class="mw-reflink-text">[2]</span></a></span> B</p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li>
-<li about="#cite_note-2" id="cite_note-2"><a href="#cite_ref-2" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-2" class="mw-reference-text">bar
+<li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li>
+<li about="#cite_note-2" id="cite_note-2"><a href="./Main_Page#cite_ref-2" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-2" class="mw-reference-text">bar
 </span></li>
 </ol>
 !!end
@@ -22803,9 +22817,9 @@ parsoid=wt2html
 
 <references />
 !! html/parsoid
-<p><span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1" style="counter-reset: mw-Ref 1;"><span class="mw-reflink-text">[1]</span></a></span> baz&lt;/ref></p>
+<p><span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1" style="counter-reset: mw-Ref 1;"><span class="mw-reflink-text">[1]</span></a></span> baz&lt;/ref></p>
 
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">foo &lt;ref>bar</span></li></ol>
+<ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">foo &lt;ref>bar</span></li></ol>
 !! end
 
 !!test
@@ -22816,10 +22830,10 @@ B1 <ref name="b" /> B2 <ref name="b">bar</ref>
 
 <references />
 !! html/parsoid
-<p>A1 <span about="#mwt3" class="mw-ref" id="cite_ref-a_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-a-1"},"attrs":{"name":"a"}}'><a href="#cite_note-a-1"><span class="mw-reflink-text">[1]</span></a></span> A2 <span about="#mwt4" class="mw-ref" id="cite_ref-a_1-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"a"}}'><a href="#cite_note-a-1"><span class="mw-reflink-text">[1]</span></a></span>
-B1 <span about="#mwt7" class="mw-ref" id="cite_ref-b_2-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"b"}}'><a href="#cite_note-b-2"><span class="mw-reflink-text">[2]</span></a></span> B2 <span about="#mwt8" class="mw-ref" id="cite_ref-b_2-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-b-2"},"attrs":{"name":"b"}}'><a href="#cite_note-b-2"><span class="mw-reflink-text">[2]</span></a></span></p>
+<p>A1 <span about="#mwt3" class="mw-ref" id="cite_ref-a_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-a-1"},"attrs":{"name":"a"}}'><a href="./Main_Page#cite_note-a-1"><span class="mw-reflink-text">[1]</span></a></span> A2 <span about="#mwt4" class="mw-ref" id="cite_ref-a_1-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"a"}}'><a href="./Main_Page#cite_note-a-1"><span class="mw-reflink-text">[1]</span></a></span>
+B1 <span about="#mwt7" class="mw-ref" id="cite_ref-b_2-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"b"}}'><a href="./Main_Page#cite_note-b-2"><span class="mw-reflink-text">[2]</span></a></span> B2 <span about="#mwt8" class="mw-ref" id="cite_ref-b_2-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-b-2"},"attrs":{"name":"b"}}'><a href="./Main_Page#cite_note-b-2"><span class="mw-reflink-text">[2]</span></a></span></p>
 
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt10" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-a-1" id="cite_note-a-1"><span rel="mw:referencedBy"><a href="#cite_ref-a_1-0"><span class="mw-linkback-text">1 </span></a><a href="#cite_ref-a_1-1"><span class="mw-linkback-text">2 </span></a></span> <span id="mw-reference-text-cite_note-a-1" class="mw-reference-text">foo</span></li><li about="#cite_note-b-2" id="cite_note-b-2"><span rel="mw:referencedBy"><a href="#cite_ref-b_2-0"><span class="mw-linkback-text">1 </span></a><a href="#cite_ref-b_2-1"><span class="mw-linkback-text">2 </span></a></span> <span id="mw-reference-text-cite_note-b-2" class="mw-reference-text">bar</span></li>
+<ol class="mw-references" typeof="mw:Extension/references" about="#mwt10" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-a-1" id="cite_note-a-1"><span rel="mw:referencedBy"><a href="./Main_Page#cite_ref-a_1-0"><span class="mw-linkback-text">1 </span></a><a href="./Main_Page#cite_ref-a_1-1"><span class="mw-linkback-text">2 </span></a></span> <span id="mw-reference-text-cite_note-a-1" class="mw-reference-text">foo</span></li><li about="#cite_note-b-2" id="cite_note-b-2"><span rel="mw:referencedBy"><a href="./Main_Page#cite_ref-b_2-0"><span class="mw-linkback-text">1 </span></a><a href="./Main_Page#cite_ref-b_2-1"><span class="mw-linkback-text">2 </span></a></span> <span id="mw-reference-text-cite_note-b-2" class="mw-reference-text">bar</span></li>
 </ol>
 !!end
 
@@ -22833,24 +22847,24 @@ A <ref >foo</ref >
 
 <references />
 !! html/parsoid
-<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p>
+<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li></ol>
+<li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li></ol>
 !!end
 
 !!test
 Ref: 17. Generate valid HTML5 id/about attributes
 !!wikitext
 <ref name="a b">foo</ref>
+<ref name=":0">ve-created name</ref>
 
 <references />
 !!html/parsoid
-<p><span class="mw-ref" id="cite_ref-a_b_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-a_b-1"},"attrs":{"name":"a b"}}'><a href="#cite_note-a_b-1"><span class="mw-reflink-text">[1]</span></a></span>
-</p>
+<p><span about="#mwt2" class="mw-ref" id="cite_ref-a_b_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-a_b-1"},"attrs":{"name":"a b"}}'><a href="./Main_Page#cite_note-a_b-1" style="counter-reset: mw-Ref 1;"><span class="mw-reflink-text">[1]</span></a></span>
+<span about="#mwt4" class="mw-ref" id="cite_ref-:0_2-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-:0-2"},"attrs":{"name":":0"}}'><a href="./Main_Page#cite_note-:0-2" style="counter-reset: mw-Ref 2;"><span class="mw-reflink-text">[2]</span></a></span>
 
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-a_b-1" id="cite_note-a_b-1"><a href="#cite_ref-a_b_1-0" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-a_b-1" class="mw-reference-text">foo</span></li>
-</ol>
+<ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-a_b-1" id="cite_note-a_b-1"><a href="./Main_Page#cite_ref-a_b_1-0" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-a_b-1" class="mw-reference-text">foo</span></li><li about="#cite_note-:0-2" id="cite_note-:0-2"><a href="./Main_Page#cite_ref-:0_2-0" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-:0-2" class="mw-reference-text">ve-created name</span></li></ol>
+
 !!end
 
 !!test
@@ -22860,11 +22874,11 @@ Ref: 18. T58916: Extension attributes should be parsed as plain text
 
 <references />
 !!html/parsoid
-<p><span class="mw-ref" id="cite_ref-.7B.7Becho.7Ca.7D.7D_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-.7B.7Becho.7Ca.7D.7D-1"},"attrs":{"name":"{{echo|a}}"}}'><a href="#cite_note-.7B.7Becho.7Ca.7D.7D-1"><span class="mw-reflink-text">[1]</span></a></span>
+<p><span class="mw-ref" id="cite_ref-.7B.7Becho.7Ca.7D.7D_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-.7B.7Becho.7Ca.7D.7D-1"},"attrs":{"name":"{{echo|a}}"}}'><a href="./Main_Page#cite_note-.7B.7Becho.7Ca.7D.7D-1"><span class="mw-reflink-text">[1]</span></a></span>
 </p>
 
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-.7B.7Becho.7Ca.7D.7D-1" id="cite_note-.7B.7Becho.7Ca.7D.7D-1"><a href="#cite_ref-.7B.7Becho.7Ca.7D.7D_1-0" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-.7B.7Becho.7Ca.7D.7D-1" class="mw-reference-text">foo</span></li>
+<li about="#cite_note-.7B.7Becho.7Ca.7D.7D-1" id="cite_note-.7B.7Becho.7Ca.7D.7D-1"><a href="./Main_Page#cite_ref-.7B.7Becho.7Ca.7D.7D_1-0" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-.7B.7Becho.7Ca.7D.7D-1" class="mw-reference-text">foo</span></li>
 </ol>
 !!end
 
@@ -22875,10 +22889,10 @@ Ref: 19. ref-tags with identical name encodings should get identical indexes
 
 <references />
 !! html/parsoid
-<p>1 <span about="#mwt3" class="mw-ref" id="cite_ref-a_.26_b_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-a_.26_b-1"},"attrs":{"name":"a &amp; b"}}'><a href="#cite_note-a_.26_b-1"><span class="mw-reflink-text">[1]</span></a></span> 2 <span about="#mwt4" class="mw-ref" id="cite_ref-a_.26_b_1-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"a &amp;amp; b"}}'><a href="#cite_note-a_.26_b-1"><span class="mw-reflink-text">[1]</span></a></span>
+<p>1 <span about="#mwt3" class="mw-ref" id="cite_ref-a_.26_b_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-a_.26_b-1"},"attrs":{"name":"a &amp; b"}}'><a href="./Main_Page#cite_note-a_.26_b-1"><span class="mw-reflink-text">[1]</span></a></span> 2 <span about="#mwt4" class="mw-ref" id="cite_ref-a_.26_b_1-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"a &amp;amp; b"}}'><a href="./Main_Page#cite_note-a_.26_b-1"><span class="mw-reflink-text">[1]</span></a></span>
 </p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-a_.26_b-1" id="cite_note-a_.26_b-1"><span rel="mw:referencedBy"><a href="#cite_ref-a_.26_b_1-0"><span class="mw-linkback-text">1 </span></a><a href="#cite_ref-a_.26_b_1-1"><span class="mw-linkback-text">2 </span></a></span> <span id="mw-reference-text-cite_note-a_.26_b-1" class="mw-reference-text">foo</span></li>
+<li about="#cite_note-a_.26_b-1" id="cite_note-a_.26_b-1"><span rel="mw:referencedBy"><a href="./Main_Page#cite_ref-a_.26_b_1-0"><span class="mw-linkback-text">1 </span></a><a href="./Main_Page#cite_ref-a_.26_b_1-1"><span class="mw-linkback-text">2 </span></a></span> <span id="mw-reference-text-cite_note-a_.26_b-1" class="mw-reference-text">foo</span></li>
 </ol>
 !!end
 
@@ -22891,11 +22905,11 @@ C <ref name="foo" />
 
 <references />
 !! html/parsoid
-<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-foo_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-foo-1"},"attrs":{"name":"foo"}}'><a href="#cite_note-foo-1"><span class="mw-reflink-text">[1]</span></a></span>
-B <span about="#mwt4" class="mw-ref" id="cite_ref-foo_1-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"html":"Foo two"},"attrs":{"name":"foo"}}'><a href="#cite_note-foo-1"><span class="mw-reflink-text">[1]</span></a></span>
-C <span about="#mwt6" class="mw-ref" id="cite_ref-foo_1-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"foo"}}'><a href="#cite_note-foo-1"><span class="mw-reflink-text">[1]</span></a></span></p>
+<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-foo_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-foo-1"},"attrs":{"name":"foo"}}'><a href="./Main_Page#cite_note-foo-1"><span class="mw-reflink-text">[1]</span></a></span>
+B <span about="#mwt4" class="mw-ref" id="cite_ref-foo_1-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"html":"Foo two"},"attrs":{"name":"foo"}}'><a href="./Main_Page#cite_note-foo-1"><span class="mw-reflink-text">[1]</span></a></span>
+C <span about="#mwt6" class="mw-ref" id="cite_ref-foo_1-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"foo"}}'><a href="./Main_Page#cite_note-foo-1"><span class="mw-reflink-text">[1]</span></a></span></p>
 
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt8" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-foo-1" id="cite_note-foo-1"><span rel="mw:referencedBy"><a href="#cite_ref-foo_1-0"><span class="mw-linkback-text">1 </span></a><a href="#cite_ref-foo_1-1"><span class="mw-linkback-text">2 </span></a><a href="#cite_ref-foo_1-2"><span class="mw-linkback-text">3 </span></a></span> <span id="mw-reference-text-cite_note-foo-1" class="mw-reference-text">Foo one</span></li>
+<ol class="mw-references" typeof="mw:Extension/references" about="#mwt8" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-foo-1" id="cite_note-foo-1"><span rel="mw:referencedBy"><a href="./Main_Page#cite_ref-foo_1-0"><span class="mw-linkback-text">1 </span></a><a href="./Main_Page#cite_ref-foo_1-1"><span class="mw-linkback-text">2 </span></a><a href="./Main_Page#cite_ref-foo_1-2"><span class="mw-linkback-text">3 </span></a></span> <span id="mw-reference-text-cite_note-foo-1" class="mw-reference-text">Foo one</span></li>
 </ol>
 !!end
 
@@ -22918,18 +22932,18 @@ C <ref>baz</ref>
 <references />
 <references group="b" />
 !! html/parsoid
-<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{"group":"a"}}'><a href="#cite_note-1" data-mw-group="a"><span class="mw-reflink-text">[a 1]</span></a></span>
-B <span about="#mwt4" class="mw-ref" id="cite_ref-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-2"},"attrs":{"group":"b"}}'><a href="#cite_note-2" data-mw-group="b"><span class="mw-reflink-text">[b 1]</span></a></span>
-C <span class="mw-ref" id="cite_ref-3" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-3"},"attrs":{}}'><a href="#cite_note-3"><span class="mw-reflink-text">[1]</span></a></span></p>
+<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{"group":"a"}}'><a href="./Main_Page#cite_note-1" data-mw-group="a"><span class="mw-reflink-text">[a 1]</span></a></span>
+B <span about="#mwt4" class="mw-ref" id="cite_ref-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-2"},"attrs":{"group":"b"}}'><a href="./Main_Page#cite_note-2" data-mw-group="b"><span class="mw-reflink-text">[b 1]</span></a></span>
+C <span class="mw-ref" id="cite_ref-3" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-3"},"attrs":{}}'><a href="./Main_Page#cite_note-3"><span class="mw-reflink-text">[1]</span></a></span></p>
 
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt8" data-mw-group="a" data-mw='{"name":"references","attrs":{"group":"a"}}'>
-<li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" data-mw-group="a" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li>
+<li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" data-mw-group="a" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li>
 </ol>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt10" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-3" id="cite_note-3"><a href="#cite_ref-3" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-3" class="mw-reference-text">baz</span></li>
+<li about="#cite_note-3" id="cite_note-3"><a href="./Main_Page#cite_ref-3" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-3" class="mw-reference-text">baz</span></li>
 </ol>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt12" data-mw-group="b" data-mw='{"name":"references","attrs":{"group":"b"}}'>
-<li about="#cite_note-2" id="cite_note-2"><a href="#cite_ref-2" data-mw-group="b" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-2" class="mw-reference-text">bar</span></li>
+<li about="#cite_note-2" id="cite_note-2"><a href="./Main_Page#cite_ref-2" data-mw-group="b" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-2" class="mw-reference-text">bar</span></li>
 </ol>
 !!end
 
@@ -22944,15 +22958,15 @@ B <ref>bar</ref>
 
 <references />
 !! html/parsoid
-<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p>
+<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p>
 
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li>
+<ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li>
 </ol>
 
-<p>B <span about="#mwt6" class="mw-ref" id="cite_ref-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-2"},"attrs":{}}'><a href="#cite_note-2"><span class="mw-reflink-text">[1]</span></a></span></p>
+<p>B <span about="#mwt6" class="mw-ref" id="cite_ref-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-2"},"attrs":{}}'><a href="./Main_Page#cite_note-2"><span class="mw-reflink-text">[1]</span></a></span></p>
 
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt8" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-2" id="cite_note-2"><a href="#cite_ref-2" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-2" class="mw-reference-text">bar</span></li>
+<li about="#cite_note-2" id="cite_note-2"><a href="./Main_Page#cite_ref-2" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-2" class="mw-reference-text">bar</span></li>
 </ol>
 !!end
 
@@ -22968,15 +22982,15 @@ C <ref>cfoo</ref>
 
 <references />
 !! html/parsoid
-<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{"group":"a"}}'><a href="#cite_note-1" data-mw-group="a"><span class="mw-reflink-text">[a 1]</span></a></span>
-B <span about="#mwt4" class="mw-ref" id="cite_ref-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-2"},"attrs":{}}'><a href="#cite_note-2"><span class="mw-reflink-text">[1]</span></a></span></p>
+<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{"group":"a"}}'><a href="./Main_Page#cite_note-1" data-mw-group="a"><span class="mw-reflink-text">[a 1]</span></a></span>
+B <span about="#mwt4" class="mw-ref" id="cite_ref-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-2"},"attrs":{}}'><a href="./Main_Page#cite_note-2"><span class="mw-reflink-text">[1]</span></a></span></p>
 
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw-group="a" data-mw='{"name":"references","attrs":{"group":"a"}}'><li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" data-mw-group="a" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">afoo</span></li>
+<ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw-group="a" data-mw='{"name":"references","attrs":{"group":"a"}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" data-mw-group="a" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">afoo</span></li>
 </ol>
 
-<p>C <span about="#mwt8" class="mw-ref" id="cite_ref-3" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-3"},"attrs":{}}'><a href="#cite_note-3"><span class="mw-reflink-text">[2]</span></a></span></p>
+<p>C <span about="#mwt8" class="mw-ref" id="cite_ref-3" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-3"},"attrs":{}}'><a href="./Main_Page#cite_note-3"><span class="mw-reflink-text">[2]</span></a></span></p>
 
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt10" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-2" id="cite_note-2"><a href="#cite_ref-2" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-2" class="mw-reference-text">bfoo</span></li><li about="#cite_note-3" id="cite_note-3"><a href="#cite_ref-3" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-3" class="mw-reference-text">cfoo</span></li>
+<ol class="mw-references" typeof="mw:Extension/references" about="#mwt10" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-2" id="cite_note-2"><a href="./Main_Page#cite_ref-2" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-2" class="mw-reference-text">bfoo</span></li><li about="#cite_note-3" id="cite_note-3"><a href="./Main_Page#cite_ref-3" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-3" class="mw-reference-text">cfoo</span></li>
 </ol>
 !!end
 
@@ -22994,11 +23008,11 @@ B <ref name="b">bar</ref>
 This should just get lost.
 </references>
 !! html/parsoid
-<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-a_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"a"}}'><a href="#cite_note-a-1"><span class="mw-reflink-text">[1]</span></a></span>
-B <span about="#mwt4" class="mw-ref" id="cite_ref-b_2-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-b-2"},"attrs":{"name":"b"}}'><a href="#cite_note-b-2"><span class="mw-reflink-text">[2]</span></a></span></p>
+<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-a_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"a"}}'><a href="./Main_Page#cite_note-a-1"><span class="mw-reflink-text">[1]</span></a></span>
+B <span about="#mwt4" class="mw-ref" id="cite_ref-b_2-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-b-2"},"attrs":{"name":"b"}}'><a href="./Main_Page#cite_note-b-2"><span class="mw-reflink-text">[2]</span></a></span></p>
 
 
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{},"body":{"html":"\n&lt;span about=\"#mwt8\" class=\"mw-ref\" rel=\"dc:references\" typeof=\"mw:Extension/ref\" data-parsoid=&#39;{\"dsr\":[59,82,14,6]}&#39; data-mw=&#39;{\"name\":\"ref\",\"body\":{\"id\":\"mw-reference-text-cite_note-a-1\"},\"attrs\":{\"name\":\"a\"}}&#39;>&lt;a href=\"#cite_note-a-1\" style=\"counter-reset: mw-Ref 1;\" data-parsoid=\"{}\">&lt;span class=\"mw-reflink-text\" data-parsoid=\"{}\">[1]&lt;/span>&lt;/a>&lt;/span>\n"}}'><li about="#cite_note-a-1" id="cite_note-a-1"><a href="#cite_ref-a_1-0" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-a-1" class="mw-reference-text">foo</span></li><li about="#cite_note-b-2" id="cite_note-b-2"><a href="#cite_ref-b_2-0" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-b-2" class="mw-reference-text">bar</span></li>
+<ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{},"body":{"html":"\n&lt;span about=\"#mwt8\" class=\"mw-ref\" rel=\"dc:references\" typeof=\"mw:Extension/ref\" data-parsoid=&#39;{\"dsr\":[59,82,14,6]}&#39; data-mw=&#39;{\"name\":\"ref\",\"body\":{\"id\":\"mw-reference-text-cite_note-a-1\"},\"attrs\":{\"name\":\"a\"}}&#39;>&lt;a href=\"./Main_Page#cite_note-a-1\" style=\"counter-reset: mw-Ref 1;\" data-parsoid=\"{}\">&lt;span class=\"mw-reflink-text\" data-parsoid=\"{}\">[1]&lt;/span>&lt;/a>&lt;/span>\n"}}'><li about="#cite_note-a-1" id="cite_note-a-1"><a href="./Main_Page#cite_ref-a_1-0" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-a-1" class="mw-reference-text">foo</span></li><li about="#cite_note-b-2" id="cite_note-b-2"><a href="./Main_Page#cite_ref-b_2-0" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-b-2" class="mw-reference-text">bar</span></li>
 </ol>
 !! end
 
@@ -23007,7 +23021,7 @@ References: 6. <references /> from a transclusion
 !! wikitext
 <ref>Foo</ref> {{echo|<references />}}
 !! html/parsoid
-<p><span about="#mwt3" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p> <ol class="mw-references" typeof="mw:Extension/references mw:Transclusion" about="#mwt4" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;references />"}},"i":0}}]}'><li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">Foo</span></li>
+<p><span about="#mwt3" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p> <ol class="mw-references" typeof="mw:Extension/references mw:Transclusion" about="#mwt4" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;references />"}},"i":0}}]}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">Foo</span></li>
 </ol>
 !! end
 
@@ -23023,16 +23037,16 @@ B <ref group="X" name="b" />
 <ref name="b">foo</ref>
 </references>
 !! html/parsoid
-<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span>
-B <span about="#mwt4" class="mw-ref" id="cite_ref-b_2-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"group":"X","name":"b"}}'><a href="#cite_note-b-2" data-mw-group="X"><span class="mw-reflink-text">[X 1]</span></a></span>
+<p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span>
+B <span about="#mwt4" class="mw-ref" id="cite_ref-b_2-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"group":"X","name":"b"}}'><a href="./Main_Page#cite_note-b-2" data-mw-group="X"><span class="mw-reflink-text">[X 1]</span></a></span>
 </p>
 
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo bar for a</span></li>
+<li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo bar for a</span></li>
 </ol>
 
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt8" data-mw-group="X" data-mw='{"name":"references","attrs":{"group":"X"},"body":{"html":"\n&lt;span about=\"#mwt10\" class=\"mw-ref\" rel=\"dc:references\" typeof=\"mw:Extension/ref\" data-parsoid=&#39;{\"dsr\":[96,119,14,6]}&#39; data-mw=&#39;{\"name\":\"ref\",\"body\":{\"id\":\"mw-reference-text-cite_note-b-2\"},\"attrs\":{\"name\":\"b\"}}&#39;>&lt;a href=\"#cite_note-b-2\" style=\"counter-reset: mw-Ref 1;\" data-mw-group=\"X\" data-parsoid=\"{}\">&lt;span class=\"mw-reflink-text\" data-parsoid=\"{}\">[X 1]&lt;/span>&lt;/a>&lt;/span>\n"}}'>
-<li about="#cite_note-b-2" id="cite_note-b-2"><a href="#cite_ref-b_2-0" data-mw-group="X" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-b-2" class="mw-reference-text">foo</span></li>
+<ol class="mw-references" typeof="mw:Extension/references" about="#mwt8" data-mw-group="X" data-mw='{"name":"references","attrs":{"group":"X"},"body":{"html":"\n&lt;span about=\"#mwt10\" class=\"mw-ref\" rel=\"dc:references\" typeof=\"mw:Extension/ref\" data-parsoid=&#39;{\"dsr\":[96,119,14,6]}&#39; data-mw=&#39;{\"name\":\"ref\",\"body\":{\"id\":\"mw-reference-text-cite_note-b-2\"},\"attrs\":{\"name\":\"b\"}}&#39;>&lt;a href=\"./Main_Page#cite_note-b-2\" style=\"counter-reset: mw-Ref 1;\" data-mw-group=\"X\" data-parsoid=\"{}\">&lt;span class=\"mw-reflink-text\" data-parsoid=\"{}\">[X 1]&lt;/span>&lt;/a>&lt;/span>\n"}}'>
+<li about="#cite_note-b-2" id="cite_note-b-2"><a href="./Main_Page#cite_ref-b_2-0" data-mw-group="X" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-b-2" class="mw-reference-text">foo</span></li>
 </ol>
 !! end
 
@@ -23042,8 +23056,8 @@ References: 8. T88019: Remove <meta>s from templates inside <ref> that's itself 
 X{{echo|<ref>foo {{echo|<b>bar</b>}} and {{echo|baz}} boo</ref>}}
 <references />
 !! html/parsoid
-<p>X<span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Transclusion  mw:Extension/ref" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;ref>foo {{echo|&lt;b>bar&lt;/b>}} and {{echo|baz}} boo&lt;/ref>"}},"i":0}}]}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p>
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt7" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo <b data-parsoid='{"stx":"html"}'>bar</b> and baz boo</span></li>
+<p>X<span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Transclusion  mw:Extension/ref" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;ref>foo {{echo|&lt;b>bar&lt;/b>}} and {{echo|baz}} boo&lt;/ref>"}},"i":0}}]}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p>
+<ol class="mw-references" typeof="mw:Extension/references" about="#mwt7" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo <b data-parsoid='{"stx":"html"}'>bar</b> and baz boo</span></li>
 </ol>
 !!end
 
@@ -23057,12 +23071,12 @@ References: 9. Generate missing references list at the end
 A <ref>foo</ref>
 B <ref group="inexistent">bar</ref>
 !! html/parsoid
-<p>A <span class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span> B <span class="mw-ref" id="cite_ref-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-2"},"attrs":{"group":"inexistent"}}'><a href="#cite_note-2" data-mw-group="inexistent"><span class="mw-reflink-text">[inexistent 1]</span></a></span></p>
+<p>A <span class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span> B <span class="mw-ref" id="cite_ref-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-2"},"attrs":{"group":"inexistent"}}'><a href="./Main_Page#cite_note-2" data-mw-group="inexistent"><span class="mw-reflink-text">[inexistent 1]</span></a></span></p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt5" data-mw='{"name":"references","attrs":{},"autoGenerated":true}'>
-<li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li>
+<li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li>
 </ol>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw-group="inexistent" data-mw='{"name":"references","attrs":{"group":"inexistent"},"autoGenerated":true}'>
-<li about="#cite_note-2" id="cite_note-2"><a href="#cite_ref-2" data-mw-group="inexistent" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-2" class="mw-reference-text">bar</span></li>
+<li about="#cite_note-2" id="cite_note-2"><a href="./Main_Page#cite_ref-2" data-mw-group="inexistent" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-2" class="mw-reference-text">bar</span></li>
 </ol>
 !! end
 
@@ -23088,9 +23102,9 @@ Entities in ref name
 <ref name="test &amp; me">hi</ref>
 <references />
 !! html/parsoid
-<p><span about="#mwt2" class="mw-ref" id="cite_ref-test_.26_me_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-test_.26_me-1"},"attrs":{"name":"test &amp;amp; me"}}'><a href="#cite_note-test_.26_me-1"><span class="mw-reflink-text">[1]</span></a></span></p>
+<p><span about="#mwt2" class="mw-ref" id="cite_ref-test_.26_me_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-test_.26_me-1"},"attrs":{"name":"test &amp;amp; me"}}'><a href="./Main_Page#cite_note-test_.26_me-1"><span class="mw-reflink-text">[1]</span></a></span></p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-test_.26_me-1" id="cite_note-test_.26_me-1"><a href="#cite_ref-test_.26_me_1-0" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-test_.26_me-1" class="mw-reference-text">hi</span></li>
+<li about="#cite_note-test_.26_me-1" id="cite_note-test_.26_me-1"><a href="./Main_Page#cite_ref-test_.26_me_1-0" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-test_.26_me-1" class="mw-reference-text">hi</span></li>
 </ol>
 !! end
 
@@ -23108,10 +23122,10 @@ a<ref>foo</ref>
 
 <references>
 !! html/parsoid
-<p>a<span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1" style="counter-reset: mw-Ref 1;"><span class="mw-reflink-text">[1]</span></a></span></p>
+<p>a<span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1" style="counter-reset: mw-Ref 1;"><span class="mw-reflink-text">[1]</span></a></span></p>
 
 <p>&lt;references></p>
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt3" data-mw='{"name":"references","attrs":{},"autoGenerated":true}'><li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li></ol>
+<ol class="mw-references" typeof="mw:Extension/references" about="#mwt3" data-mw='{"name":"references","attrs":{},"autoGenerated":true}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li></ol>
 !! end
 
 !! test
@@ -23123,6 +23137,43 @@ foo
 <references />
 !! html/parsoid
 foo<ol class="mw-references" typeof="mw:Extension/references" about="#mwt2" data-mw='{"name":"references","attrs":{}}'></ol>
+!! end
+
+#### ----------------------------------------------------------------
+#### Parsoid-only testing of Parsoid's impl of LST
+#### Not implemented yet, see
+#### https://www.mediawiki.org/wiki/Parsoid/HTML_based_LST
+#### ----------------------------------------------------------------
+
+## We still need to support serializing the older format while content is stored.
+!! test
+LST Sections: Backwards compatibility
+!! options
+parsoid={
+  "suppressErrors": true,
+  "modes": ["html2wt"]
+}
+!! wikitext
+<section begin="2011-05-16" />
+<section end="2014-04-10 (MW 1.23wmf22)" />
+!! html/parsoid
+<p><meta typeof="mw:Extension/LabeledSectionTransclusion/begin" content="2011-05-16"/>
+<meta typeof="mw:Extension/LabeledSectionTransclusion/end" content="2014-04-10 (MW 1.23wmf22)"/></p>
+!! end
+
+## The unconventional output is the result of `usePHPPreProcessor` being
+## disabled in parserTests.js.  This test is mainly just to show <section> is
+## recognized as an extension tag w/o a native handler.
+!! test
+LST Sections: Newfangled approach
+!! options
+parsoid={ "suppressErrors": true }
+!! wikitext
+<section begin="2011-05-16" />
+<section end="2014-04-10 (MW 1.23wmf22)" />
+!! html/parsoid
+<p><span typeof="mw:Extension/section" about="#mwt1" data-parsoid='{"stx":"html","selfClose":true,"src":"&lt;section begin=\"2011-05-16\" />","tagWidths":[30,0]}'>&lt;section begin="2011-05-16" /></span>
+<span typeof="mw:Extension/section" about="#mwt2" data-parsoid='{"stx":"html","selfClose":true,"src":"&lt;section end=\"2014-04-10 (MW 1.23wmf22)\" />","tagWidths":[43,0]}'>&lt;section end="2014-04-10 (MW 1.23wmf22)" /></span></p>
 !! end
 
 #--------- Test stripping of empty nodes in template content ----------
@@ -24463,11 +24514,11 @@ parsoid=html2wt
 <i>a'</i> foo <i><a rel="mw:WikiLink" href="Bar" title="Bar">bar</a></i>
 <i>a'</i> foo <b><a rel="mw:WikiLink" href="Bar" title="Bar" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[[bar]]"}},"i":0}}]}'>bar</a></b>
 <a rel="mw:WikiLink" href="Foo" title="Foo">foo</a> x'<i><a href="Bar" rel="mw:WikiLink" title="Bar">bar</a></i>
-'<i>foo</i> <span class="mw-ref" id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span>
+'<i>foo</i> <span class="mw-ref" id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span>
 '<i>foo</i> <div title="name">test</div>
 '<i>foo</i> and <br data-parsoid='{"stx":"html","noClose":true}'/> bar
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt5" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1">↑</a></span> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">test</span></li>
+<li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="./Main_Page#cite_ref-1">↑</a></span> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">test</span></li>
 </ol>
 !! wikitext
 '''a'' foo ''[[bar]]''
@@ -24615,9 +24666,9 @@ a
 !! options
 parsoid=html2wt
 !! html/parsoid
-<p>foo <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p>
+<p>foo <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text"><i>a</i>
+<li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text"><i>a</i>
  b</span></li>
 </ol>
 !! wikitext
@@ -26123,9 +26174,9 @@ parsoid={
   "scrubWikitext": true
 }
 !! html/parsoid
-<h2> foo <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span> </h2>
+<h2> foo <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span> </h2>
 
-<ol class="references" typeof="mw:Extension/references" about="#mwt3" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1">↑</a></span> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">bar <link rel="mw:PageProp/Category" href="./Category:Baz" /> </span></li></ol>
+<ol class="references" typeof="mw:Extension/references" about="#mwt3" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="./Main_Page#cite_ref-1">↑</a></span> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">bar <link rel="mw:PageProp/Category" href="./Category:Baz" /> </span></li></ol>
 !! wikitext
 == foo <ref>bar 
 [[Category:Baz]] </ref> ==
@@ -26213,9 +26264,9 @@ parsoid=html2wt
 <h2> hi <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"bogus","href":"./Template:Bogus"},"params":{"1":{"wt":"there\nyou"}},"i":0}}]}'>there</span><span about="#mwt1">
 </span><span about="#mwt1">you</span> </h2>
 
-<h2> foo <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span> </h2>
+<h2> foo <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span> </h2>
 
-<ol class="references" typeof="mw:Extension/references" about="#mwt3" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1">↑</a></span> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">hello
+<ol class="references" typeof="mw:Extension/references" about="#mwt3" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="./Main_Page#cite_ref-1">↑</a></span> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">hello
 there</span></li></ol>
 
 <ul><li>asd
@@ -26827,7 +26878,8 @@ parsoid={
     [ "#h2", "html", "a\nb\n" ],
     [ "#c1", "html", "a\nb\n" ],
     [ "#c2", "html", "<p>a</p>" ],
-    [ "#c3", "html", "<p>a</p>" ]
+    [ "#c3", "html", "<p>a</p>" ],
+    [ "#c4", "html", "edit-me<p>a</p>" ]
   ]
 }
 !! wikitext
@@ -26841,6 +26893,8 @@ parsoid={
 | id="c2" |edit-me||4
 |-
 | id="c3" |edit-me||p||q||r
+|-
+| id="c4" |edit-me||p||q||r
 |}
 !! wikitext/edited
 {|
@@ -26860,6 +26914,10 @@ b
 |4
 |-
 | id="c3" |a
+|p||q||r
+|-
+| id="c4" |edit-me
+a
 |p||q||r
 |}
 !! end
