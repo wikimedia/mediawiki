@@ -448,6 +448,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addPgField', 'externallinks', 'el_index_60', "BYTEA NOT NULL DEFAULT ''" ],
 			[ 'addPgIndex', 'externallinks', 'el_index_60', '( el_index_60, el_id )' ],
 			[ 'addPgIndex', 'externallinks', 'el_from_index_60', '( el_from, el_index_60, el_id )' ],
+			[ 'addPgField', 'user_groups', 'ug_id',
+				"INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('user_groups_ug_id_seq')" ],
+			[ 'addPgField', 'user_groups', 'ug_expiry', "TIMESTAMPTZ NULL" ],
 		];
 	}
 
