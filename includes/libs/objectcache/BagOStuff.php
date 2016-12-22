@@ -236,6 +236,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 */
 	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
 		throw new Exception( __METHOD__ . ' not implemented.' );
+		return false;
 	}
 
 	/**
@@ -332,6 +333,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 */
 	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
 		throw new Exception( "CAS is not implemented in " . __CLASS__ );
+		return false;
 	}
 
 	/**

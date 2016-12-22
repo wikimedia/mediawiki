@@ -97,6 +97,7 @@ class ChangesList extends ContextSource {
 	 */
 	public function recentChangesLine( &$rc, $watched = false, $linenumber = null ) {
 		throw new RuntimeException( 'recentChangesLine should be implemented' );
+		return false;
 	}
 
 	/**
