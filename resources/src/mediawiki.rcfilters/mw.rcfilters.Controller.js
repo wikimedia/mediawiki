@@ -1,13 +1,14 @@
-( function ( mw ) {
+( function ( mw, $ ) {
 	/**
 	 * Controller for the filters in Recent Changes
 	 *
-	 * @param {mw.rcfilters.dm.FiltersViewModel} model View model
+	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersModel Filters view model
+	 * @param {mw.rcfilters.dm.ChangesListViewModel} changesListModel Changes list view model
 	 */
-	mw.rcfilters.Controller = function MwRcfiltersController( model ) {
-		this.model = model;
-		// TODO: When we are ready, update the URL when a filter is updated
-		// this.model.connect( this, { itemUpdate: 'updateURL' } );
+	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel ) {
+		this.filtersModel = filtersModel;
+		this.changesListModel = changesListModel;
+		this.requestCounter = 0;
 	};
 
 	/* Initialization */
@@ -17,13 +18,18 @@
 	 * Initialize the filter and parameter states
 	 */
 	mw.rcfilters.Controller.prototype.initialize = function () {
+		this.updateFromURL();
+	};
+
+	/**
+	 * Update the model state based on the URL parameters.
+	 */
+	mw.rcfilters.Controller.prototype.updateFromURL = function () {
 		var uri = new mw.Uri();
 
-		// Give the model a full parameter state from which to
-		// update the filters
-		this.model.updateFilters(
+		this.filtersModel.updateFilters(
 			// Translate the url params to filter select states
-			this.model.getFiltersFromParameters( uri.query )
+			this.filtersModel.getFiltersFromParameters( uri.query )
 		);
 	};
 
@@ -31,14 +37,18 @@
 	 * Reset to default filters
 	 */
 	mw.rcfilters.Controller.prototype.resetToDefaults = function () {
-		this.model.setFiltersToDefaults();
+		this.filtersModel.setFiltersToDefaults();
+		this.updateURL();
+		this.updateChangesList();
 	};
 
 	/**
 	 * Empty all selected filters
 	 */
 	mw.rcfilters.Controller.prototype.emptyFilters = function () {
-		this.model.emptyAllFilters();
+		this.filtersModel.emptyAllFilters();
+		this.updateURL();
+		this.updateChangesList();
 	};
 
 	/**
@@ -51,7 +61,9 @@
 		var obj = {};
 
 		obj[ filterName ] = isSelected;
-		this.model.updateFilters( obj );
+		this.filtersModel.updateFilters( obj );
+		this.updateURL();
+		this.updateChangesList();
 	};
 
 	/**
@@ -64,9 +76,44 @@
 		// TODO: Clean up the list of filters; perhaps 'falsy' filters
 		// shouldn't appear at all? Or compare to existing query string
 		// and see if current state of a specific filter is needed?
-		uri.extend( this.model.getParametersFromFilters() );
+		uri.extend( this.filtersModel.getParametersFromFilters() );
 
 		// Update the URL itself
 		window.history.pushState( { tag: 'rcfilters' }, document.title, uri.toString() );
 	};
-}( mediaWiki ) );
+
+	/**
+	 * Fetch the list of changes from the server for the current filters
+	 *
+	 * @returns {Promise} Promise object that will resolve with the changes list
+	 */
+	mw.rcfilters.Controller.prototype.fetchChangesList = function () {
+		var uri = new mw.Uri(),
+			requestId = ++this.requestCounter,
+			latestRequest = function () {
+				return requestId === this.requestCounter;
+			}.bind( this );
+		uri.extend( this.filtersModel.getParametersFromFilters() );
+		return $.ajax( uri.toString(), { contentType: 'html' } )
+			.then( function ( html ) {
+				return latestRequest() ?
+					$( $.parseHTML( html ) ).find( '.mw-changeslist' ).first().contents() :
+					null;
+			} ).then( null, function () {
+				return latestRequest() ? 'NO_RESULTS' : null;
+			} );
+	};
+
+	/**
+	 * Update the list of changes and notify the model
+	 */
+	mw.rcfilters.Controller.prototype.updateChangesList = function () {
+		this.changesListModel.invalidate();
+		this.fetchChangesList()
+			.always( function ( changesListContent ) {
+				if ( changesListContent ) {
+					this.changesListModel.update( changesListContent );
+				}
+			}.bind( this ) );
+	};
+}( mediaWiki, jQuery ) );
