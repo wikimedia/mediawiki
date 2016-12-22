@@ -580,6 +580,7 @@ class ApiParse extends ApiBase {
 
 	private function formatLangLinks( $links ) {
 		$result = [];
+		/** @suppress PhanTypeMismatchForeach */
 		foreach ( $links as $link ) {
 			$entry = [];
 			$bits = explode( ':', $link, 2 );

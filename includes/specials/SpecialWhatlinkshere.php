@@ -182,6 +182,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			);
 		};
 
+		$plRes = $tlRes = $ilRes = [];
 		if ( $fetchlinks ) {
 			$plRes = $queryFunc( $dbr, 'pagelinks', 'pl_from' );
 		}
