@@ -861,6 +861,7 @@ class User implements IDBAccessObject {
 			return false;
 		}
 
+		/** @var Array */
 		static $reservedUsernames = false;
 		if ( !$reservedUsernames ) {
 			$reservedUsernames = $wgReservedUsernames;
