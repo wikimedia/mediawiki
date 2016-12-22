@@ -1572,7 +1572,7 @@ class LocalFile extends File {
 
 	/**
 	 * Move or copy a file to its public location. If a file exists at the
-	 * destination, move it to an archive. Returns a FileRepoStatus object with
+	 * destination, move it to an archive. Returns a Status object with
 	 * the archive name in the "value" member on success.
 	 *
 	 * The archive name should be passed through to recordUpload for database
@@ -1590,7 +1590,7 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * Move or copy a file to a specified location. Returns a FileRepoStatus
+	 * Move or copy a file to a specified location. Returns a Status
 	 * object with the archive name in the "value" member on success.
 	 *
 	 * The archive name should be passed through to recordUpload for database
@@ -2086,7 +2086,7 @@ class LocalFileDeleteBatch {
 	/** @var bool Whether to suppress all suppressable fields when deleting */
 	private $suppress;
 
-	/** @var FileRepoStatus */
+	/** @var Status */
 	private $status;
 
 	/** @var User */
@@ -2993,7 +2993,7 @@ class LocalFileMoveBatch {
 	}
 
 	/**
-	 * Verify the database updates and return a new FileRepoStatus indicating how
+	 * Verify the database updates and return a new Status indicating how
 	 * many rows would be updated.
 	 *
 	 * @return Status
@@ -3036,7 +3036,7 @@ class LocalFileMoveBatch {
 	}
 
 	/**
-	 * Do the database updates and return a new FileRepoStatus indicating how
+	 * Do the database updates and return a new Status indicating how
 	 * many rows where updated.
 	 */
 	protected function doDBUpdates() {

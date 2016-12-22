@@ -1059,7 +1059,7 @@ class FileRepo {
 
 	/**
 	 * Pick a random name in the temp zone and store a file to it.
-	 * Returns a FileRepoStatus object with the file Virtual URL in the value,
+	 * Returns a Status object with the file Virtual URL in the value,
 	 * file can later be disposed using FileRepo::freeTemp().
 	 *
 	 * @param string $originalName The base name of the file as specified
@@ -1143,7 +1143,7 @@ class FileRepo {
 	 * Copy or move a file either from a storage path, virtual URL,
 	 * or file system path, into this repository at the specified destination location.
 	 *
-	 * Returns a FileRepoStatus object. On success, the value contains "new" or
+	 * Returns a Status object. On success, the value contains "new" or
 	 * "archived", to indicate whether the file was new with that name.
 	 *
 	 * Options to $options include:
