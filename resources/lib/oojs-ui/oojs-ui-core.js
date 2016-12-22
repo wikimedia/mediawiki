@@ -6996,6 +6996,7 @@ OO.ui.CheckboxMultioptionWidget.prototype.onKeyDown = function ( e ) {
  *     var option1 = new OO.ui.CheckboxMultioptionWidget( {
  *         data: 'a',
  *         selected: true,
+ *         disabled: true,
  *         label: 'Selected checkbox'
  *     } );
  *
@@ -8177,7 +8178,8 @@ OO.ui.DropdownInputWidget.prototype.setOptions = function ( options ) {
 			var optValue = widget.cleanUpValue( opt.data );
 			return new OO.ui.MenuOptionWidget( {
 				data: optValue,
-				label: opt.label !== undefined ? opt.label : optValue
+				label: opt.label !== undefined ? opt.label : optValue,
+				disabled: opt.disabled
 			} );
 		} ) );
 
