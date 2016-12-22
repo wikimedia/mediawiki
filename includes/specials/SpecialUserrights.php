@@ -162,6 +162,7 @@ class UserrightsPage extends SpecialPage {
 				return;
 			}
 
+			/** @var UserGroupMember $targetUser */
 			$targetUser = $this->mFetchedUser;
 			if ( $targetUser instanceof User ) { // UserRightsProxy doesn't have this method (bug 61252)
 				$targetUser->clearInstanceCache(); // bug 38989
@@ -203,10 +204,10 @@ class UserrightsPage extends SpecialPage {
 	 *
 	 * @param string $username Username to apply changes to.
 	 * @param string $reason Reason for group change
-	 * @param User|UserRightsProxy $user Target user object.
+	 * @param UserGroupMember $user Target user object.
 	 * @return null
 	 */
-	function saveUserGroups( $username, $reason, $user ) {
+	function saveUserGroups( $username, $reason, UserGroupMember $user ) {
 		$allgroups = $this->getAllGroups();
 		$addgroup = [];
 		$removegroup = [];
@@ -229,13 +230,13 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Save user groups changes in the database.
 	 *
-	 * @param User|UserRightsProxy $user
+	 * @param UserGroupMember $user
 	 * @param array $add Array of groups to add
 	 * @param array $remove Array of groups to remove
 	 * @param string $reason Reason for group change
 	 * @return array Tuple of added, then removed groups
 	 */
-	function doSaveUserGroups( $user, $add, $remove, $reason = '' ) {
+	function doSaveUserGroups( UserGroupMember $user, $add, $remove, $reason = '' ) {
 		// Validate input set...
 		$isself = $user->getName() == $this->getUser()->getName();
 		$groups = $user->getGroups();
@@ -295,12 +296,12 @@ class UserrightsPage extends SpecialPage {
 
 	/**
 	 * Add a rights log entry for an action.
-	 * @param User $user
+	 * @param UserGroupMember $user
 	 * @param array $oldGroups
 	 * @param array $newGroups
 	 * @param array $reason
 	 */
-	function addLogEntry( $user, $oldGroups, $newGroups, $reason ) {
+	function addLogEntry( UserGroupMember $user, $oldGroups, $newGroups, $reason ) {
 		$logEntry = new ManualLogEntry( 'rights', 'rights' );
 		$logEntry->setPerformer( $this->getUser() );
 		$logEntry->setTarget( $user->getUserPage() );
@@ -324,6 +325,7 @@ class UserrightsPage extends SpecialPage {
 
 			return;
 		} else {
+			/** @var UserGroupMember $user */
 			$user = $status->value;
 		}
 
@@ -340,10 +342,10 @@ class UserrightsPage extends SpecialPage {
 	 * Normalize the input username, which may be local or remote, and
 	 * return a user (or proxy) object for manipulating it.
 	 *
-	 * Side effects: error output for invalid access
 	 * @param string $username
 	 * @param bool $writing
-	 * @return Status
+	 * @return Status If successful, the value of this Status is a UserGroupMember
+	 *   object, like User or UserRightsProxy
 	 */
 	public function fetchUser( $username, $writing = true ) {
 		$parts = explode( $this->getConfig()->get( 'UserrightsInterwikiDelimiter' ), $username );
@@ -484,10 +486,10 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Show the form to edit group memberships.
 	 *
-	 * @param User|UserRightsProxy $user User or UserRightsProxy you're editing
+	 * @param UserGroupMember $user User or UserRightsProxy you're editing
 	 * @param array $groups Array of groups the user is in
 	 */
-	protected function showEditUserGroupsForm( $user, $groups ) {
+	protected function showEditUserGroupsForm( UserGroupMember $user, $groups ) {
 		$list = [];
 		$membersList = [];
 		foreach ( $groups as $group ) {
@@ -641,11 +643,11 @@ class UserrightsPage extends SpecialPage {
 	 *
 	 * @todo Just pass the username string?
 	 * @param array $usergroups Groups the user belongs to
-	 * @param User $user
+	 * @param UserGroupMember $user
 	 * @return Array with 2 elements: the XHTML table element with checkxboes, and
 	 * whether any groups are changeable
 	 */
-	private function groupCheckboxes( $usergroups, $user ) {
+	private function groupCheckboxes( $usergroups, UserGroupMember $user ) {
 		$allgroups = $this->getAllGroups();
 		$ret = '';
 
@@ -764,10 +766,10 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Show a rights log fragment for the specified user
 	 *
-	 * @param User $user User to show log for
+	 * @param UserGroupMember $user User to show log for
 	 * @param OutputPage $output OutputPage to use
 	 */
-	protected function showLogFragment( $user, $output ) {
+	protected function showLogFragment( UserGroupMember $user, $output ) {
 		$rightsLogPage = new LogPage( 'rights' );
 		$output->addHTML( Xml::element( 'h2', null, $rightsLogPage->getName()->text() ) );
 		LogEventsList::showLogExtract( $output, 'rights', $user->getUserPage() );

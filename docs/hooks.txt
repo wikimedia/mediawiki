@@ -3577,7 +3577,8 @@ $user: User to get rights for
 &$rights: Current rights
 
 'UserGroupsChanged': Called after user groups are changed.
-$user: User whose groups changed
+$user: UserGroupMember object whose groups changed. This object is not
+guaranteed to be an instance of User
 $added: Groups added
 $removed: Groups removed
 $performer: User who performed the change, false if via autopromotion
@@ -3709,7 +3710,7 @@ message(s).
 
 'UserRights': DEPRECATED! Use UserGroupsChanged instead.
 After a user's group memberships are changed.
-&$user: User object that was changed
+&$user: UserGroupMember object that was changed
 $add: Array of strings corresponding to groups added
 $remove: Array of strings corresponding to groups removed
 
