@@ -112,6 +112,7 @@ class UsersPager extends AlphabeticPager {
 
 		if ( $this->requestedGroup != '' ) {
 			$conds['ug_group'] = $this->requestedGroup;
+			$conds[] = 'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() );
 		}
 
 		if ( $this->requestedUser != '' ) {
