@@ -650,6 +650,7 @@
 	"blockedtitle": "L'usuariu ta bloquiáu",
 	"blockedtext": "'''El to nome d'usuariu o direición IP ta bloquiáu.'''\n\nEl bloquéu fexolu $1.\nEl motivu conseñáu ye ''$2''.\n\n* Principiu del bloquéu: $8\n* Caducidá del bloquéu: $6\n* Usuariu a bloquiar: $7\n\nPues ponete'n contautu con $1 o con otru [[{{MediaWiki:Grouppage-sysop}}|alministrador]] p'aldericar sobre'l bloquéu.\nNun pues usar la función 'manda-y un corréu electrónicu a esti usuariu' a nun ser que tea especificada una direición de\ncorréu electrónicu válida nes tos [[Special:Preferences|preferencies de cuenta]] y que nun tengas torgao usala.\nLa to direición IP actual ye $3, y la ID del bloquéu ye #$5.\nPor favor, incluye tolos detalles anteriores nes consultes que faigas.",
 	"autoblockedtext": "La to direición IP bloquióse automáticamente porque usóla otru usuariu que foi bloquiáu por $1.\nEl motivu conseñáu ye:\n\n:''$2''\n\n* Principiu del bloquéu: $8\n* Caducidá del bloquéu: $6\n* Usuariu a bloquiar: $7\n\nPues ponete'n contautu con $1 o con otru de los [[{{MediaWiki:Grouppage-sysop}}|alministradores]] p'aldericar sobre'l bloquéu.\n\nTen en cuenta que nun pues usar la función «manda-y un corréu electrónicu a esti usuariu» a nun ser que tengas rexistrada una direición de corréu electrónicu válida nes [[Special:Preferences|preferencies d'usuariu]] y que nun tengas torgao usala.\n\nLa to direición IP actual ye $3, y la ID del bloquéu ye #$5.\nPor favor, incluye tolos detalles anteriores nes consultes que faigas.",
+	"systemblockedtext": "El to nome d'usuariu o dirección IP bloquióse automáticamente pol software MediaWiki.\nEl motivu dau ye:\n\n:<em>$2</em>\n\n* Entamu del bloquéu: $8\n* Caducidá de bloquéu: $6\n* Destinatariu del bloquéu: $7\n\nLa to dirección IP actual ye $3.\nPor favor, incluye tolos anteriores en cualquier consulta que faigas.",
 	"blockednoreason": "nun se dio nengún motivu",
 	"whitelistedittext": "Tienes d'$1 pa editar páxines.",
 	"confirmedittext": "Tienes de confirmar la direición de corréu electrónicu enantes d'editar páxines.\nPor favor, configura y valida la direición de corréu nes [[Special:Preferences|preferencies d'usuariu]].",
@@ -2357,6 +2358,7 @@
 	"cant-move-to-user-page": "Nun tienes permisu pa treslladar una páxina a una páxina d'usuariu (sacante a una subpáxina d'usuariu).",
 	"cant-move-category-page": "Nun tienes permisu pa treslladar páxines de categoría.",
 	"cant-move-to-category-page": "Nun tienes permisu pa treslladar una páxina a una páxina de categoría.",
+	"movepage-max-pages": "Treslladóse'l máximu de $1 {{PLURAL:$1|páxina|páxinees}} y nun van treslladase más automáticamente.",
 	"newtitle": "Títulu nuevu:",
 	"move-watch": "Vixilar esta páxina",
 	"movepagebtn": "Treslladar la páxina",
@@ -2372,7 +2374,6 @@
 	"movepage-page-exists": "La páxina $1 yá esiste y nun se pue sobreescribir automáticamente.",
 	"movepage-page-moved": "Treslladóse la páxina $1 a $2.",
 	"movepage-page-unmoved": "Nun se pudo treslladar la páxina $1 a $2.",
-	"movepage-max-pages": "Treslladóse'l máximu de $1 {{PLURAL:$1|páxina|páxinees}} y nun van treslladase más automáticamente.",
 	"movelogpage": "Rexistru de tresllaos",
 	"movelogpagetext": "Esta ye la llista de páxines treslladaes.",
 	"movesubpage": "{{PLURAL:$1|Subpáxina|Subpáxines}}",
@@ -2610,6 +2611,7 @@
 	"pageinfo-length": "Llonxitú de la páxina (en bytes)",
 	"pageinfo-article-id": "ID de la páxina",
 	"pageinfo-language": "Llingua del conteníu de la páxina",
+	"pageinfo-language-change": "camudar",
 	"pageinfo-content-model": "Plantía del conteníu de la páxina",
 	"pageinfo-content-model-change": "camudar",
 	"pageinfo-robot-policy": "Indexación por robots",
@@ -3792,5 +3794,6 @@
 	"restrictionsfield-badip": "Direición o rangu IP inválidu: $1",
 	"restrictionsfield-label": "Rangos d'IP permitíos:",
 	"restrictionsfield-help": "Una única direición IP o rangu CIDR per llinia. P'activar toos, utiliza<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"revid": "revisión $1",
 	"pageid": "ID de páxina $1"
 }

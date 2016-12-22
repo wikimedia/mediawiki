@@ -16,7 +16,7 @@
 	"apihelp-main-param-servedby": "Incluyir el nome del host que sirvió la solicitú nes resultancies.",
 	"apihelp-main-param-curtimestamp": "Incluyir la marca de tiempu actual na resultancia.",
 	"apihelp-block-description": "Bloquiar a un usuariu.",
-	"apihelp-block-param-user": "El nome d'usuariu, dirección IP o intervalu d'IP que quies bloquiar.",
+	"apihelp-block-param-user": "Nome d'usuariu, dirección #IP o intervalu d'IP que quies bloquiar. Nun puede utilizase con <var>$1userid</var>",
 	"apihelp-block-param-expiry": "Fecha de caducidá. Puede ser relativa (por casu, <kbd>5 meses</kbd> o <kbd>2 selmanes</kbd>) o absoluta (por casu, 2016-01-16T12:34:56Z). Si s'establez a <kbd>infinitu</kbd>, <kbd>indefiníu</kbd>, o <kbd>nunca</kbd>, el bloquéu nun caducará nunca.",
 	"apihelp-block-param-reason": "Motivu del bloquéu.",
 	"apihelp-block-param-anononly": "Bloquiar solo los usuarios anónimos (esto ye, desactivar ediciones anónimes dende esta dirección IP).",
