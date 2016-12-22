@@ -11,7 +11,43 @@
 		init: function () {
 			var model = new mw.rcfilters.dm.FiltersViewModel(),
 				controller = new mw.rcfilters.Controller( model ),
-				widget = new mw.rcfilters.ui.FilterWrapperWidget( controller, model );
+				widget = new mw.rcfilters.ui.FilterWrapperWidget( controller, model ),
+				$form = $( '.rcoptions form' ),
+				submittingPromise = null;
+
+			function updateResults( fromPopState ) {
+				var $submitButton = $form.find( 'input[type=submit]' ),
+					$changesList = $( '.mw-changeslist' ),
+					uri = new mw.Uri();
+				if ( submittingPromise ) {
+					// If a submission is already pending, ignore this one
+					return;
+				}
+
+				$changesList.addClass( 'oo-ui-pendingElement-pending' );
+				$submitButton.prop( 'disabled', true );
+
+				// FIXME in theory this should use controller.makeFiltersQuery() but its API
+				// is not very useful and it breaks non-boolean params
+				uri.extend( model.getFiltersToParameters() );
+				submittingPromise = $.ajax( uri.toString(), { contentType: 'html' } );
+				submittingPromise
+					.then( function ( html ) {
+						$changesList.empty().append(
+							$( $.parseHTML( html ) ).find( '.mw-changeslist' ).first().contents()
+						);
+						// FIXME ideally this would use controller.updateURL(); , but since it uses
+						// makeFiltersQuery() it also breaks non-boolean params
+						if ( !fromPopState ) {
+							history.pushState( { tag: 'mw-rcfilters' }, document.title, uri.toString() );
+						}
+					} )
+					.always( function () {
+						$changesList.removeClass( 'oo-ui-pendingElement-pending' );
+						$submitButton.prop( 'disabled', false );
+						submittingPromise = null;
+					} );
+			}
 
 			model.toggleLoading( true );
 			model.initializeFilters( {
@@ -74,32 +110,24 @@
 			controller.initialize();
 			model.toggleLoading( false );
 
-			$( '.rcoptions form' ).submit( function () {
-				var $form = $( this );
-
-				// Get current filter values
-				$.each( model.getFiltersToParameters(), function ( paramName, paramValue ) {
-					var $existingInput = $form.find( 'input[name=' + paramName + ']' );
-					// Check if the hidden input already exists
-					// This happens if the parameter was already given
-					// on load
-					if ( $existingInput.length ) {
-						// Update the value
-						$existingInput.val( paramValue );
-					} else {
-						// Append hidden fields with filter values
-						$form.append(
-							$( '<input>' )
-								.attr( 'type', 'hidden' )
-								.attr( 'name', paramName )
-								.val( paramValue )
-						);
-					}
-				} );
-
-				// Continue the submission process
-				return true;
+			$form.submit( function () {
+				updateResults();
+				// Prevent native form submission
+				return false;
 			} );
+
+			window.addEventListener( 'popstate', function ( e ) {
+				if ( !e.state || e.state.tag !== 'mw-rcfilters' ) {
+					// Not our state, ignore
+					return;
+				}
+				controller.updateFromURL();
+				updateResults( true );
+			} );
+
+			// Replace the current state with one that's marked with our tag, so that using the
+			// back button to navigate to the initial state works
+			history.replaceState( { tag: 'mw-rcfilters' }, document.title, location.href );
 		}
 	};
 

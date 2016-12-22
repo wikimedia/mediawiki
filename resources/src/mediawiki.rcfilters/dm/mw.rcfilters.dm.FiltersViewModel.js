@@ -419,7 +419,7 @@
 				// Mark the group if it has any items that are selected
 				groupMap[ filterItem.getGroup() ].hasSelected = (
 					groupMap[ filterItem.getGroup() ].hasSelected ||
-					!!paramValue
+					!!Number( paramValue )
 				);
 
 				// Add the relevant filter into the group map
@@ -446,7 +446,7 @@
 						// Flip the definition between the parameter
 						// state and the filter state
 						// This is what the 'toggleSelected' value of the filter is
-						!params[ filterItem.getName() ] :
+						!Number( params[ filterItem.getName() ] ) :
 						// Otherwise, there are no selected items in the
 						// group, which means the state is false
 						false;
