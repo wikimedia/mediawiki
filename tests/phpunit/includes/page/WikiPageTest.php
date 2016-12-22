@@ -850,6 +850,7 @@ more stuff
 		$this->assertEquals( 'Admin', $rev1->getUserText() );
 
 		# now, try the actual rollback
+		$admin->addToDatabase();
 		$admin->addGroup( "sysop" ); # XXX: make the test user a sysop...
 		$token = $admin->getEditToken(
 			[ $page->getTitle()->getPrefixedText(), $user2->getName() ],
@@ -882,6 +883,7 @@ more stuff
 	public function testDoRollback() {
 		$admin = new User();
 		$admin->setName( "Admin" );
+		$admin->addToDatabase();
 
 		$text = "one";
 		$page = $this->newPage( "WikiPageTest_testDoRollback" );
@@ -908,10 +910,7 @@ more stuff
 
 		# now, try the rollback
 		$admin->addGroup( "sysop" ); # XXX: make the test user a sysop...
-		$token = $admin->getEditToken(
-			[ $page->getTitle()->getPrefixedText(), $user1->getName() ],
-			null
-		);
+		$token = $admin->getEditToken( 'rollback' );
 		$errors = $page->doRollback(
 			$user1->getName(),
 			"testing revert",
@@ -938,6 +937,7 @@ more stuff
 	public function testDoRollbackFailureSameContent() {
 		$admin = new User();
 		$admin->setName( "Admin" );
+		$admin->addToDatabase();
 		$admin->addGroup( "sysop" ); # XXX: make the test user a sysop...
 
 		$text = "one";
@@ -953,6 +953,7 @@ more stuff
 
 		$user1 = new User();
 		$user1->setName( "127.0.1.11" );
+		$user1->addToDatabase();
 		$user1->addGroup( "sysop" ); # XXX: make the test user a sysop...
 		$text .= "\n\ntwo";
 		$page = new WikiPage( $page->getTitle() );
@@ -966,10 +967,7 @@ more stuff
 
 		# now, do a the rollback from the same user was doing the edit before
 		$resultDetails = [];
-		$token = $user1->getEditToken(
-			[ $page->getTitle()->getPrefixedText(), $user1->getName() ],
-			null
-		);
+		$token = $user1->getEditToken( 'rollback' );
 		$errors = $page->doRollback(
 			$user1->getName(),
 			"testing revert same user",
@@ -983,10 +981,7 @@ more stuff
 
 		# now, try the rollback
 		$resultDetails = [];
-		$token = $admin->getEditToken(
-			[ $page->getTitle()->getPrefixedText(), $user1->getName() ],
-			null
-		);
+		$token = $admin->getEditToken( 'rollback' );
 		$errors = $page->doRollback(
 			$user1->getName(),
 			"testing revert",
