@@ -519,9 +519,11 @@ class ApiHelp extends ApiBase {
 								case 'submodule':
 									$groups[] = $name;
 									if ( isset( $settings[ApiBase::PARAM_SUBMODULE_MAP] ) ) {
+										/** @var $map string[] */
 										$map = $settings[ApiBase::PARAM_SUBMODULE_MAP];
 										ksort( $map );
 										$submodules = [];
+										/** @suppress PhanTypeMismatchForeach */
 										foreach ( $map as $v => $m ) {
 											$submodules[] = "[[Special:ApiHelp/{$m}|{$v}]]";
 										}

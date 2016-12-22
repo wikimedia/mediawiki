@@ -94,7 +94,8 @@ class SvgHandler extends ImageHandler {
 		$langList = [];
 		if ( $metadata ) {
 			$metadata = $this->unpackMetadata( $metadata );
-			if ( isset( $metadata['translations'] ) ) {
+			if ( isset( $metadata['translations'] ) && is_array( $metadata['translations'] ) ) {
+				/** @suppress PhanTypeMismatchForeach */
 				foreach ( $metadata['translations'] as $lang => $langType ) {
 					if ( $langType === SVGReader::LANG_FULL_MATCH ) {
 						$langList[] = $lang;
@@ -438,6 +439,9 @@ class SvgHandler extends ImageHandler {
 		$visibleFields = $this->visibleMetadataFields();
 
 		$showMeta = false;
+
+		/** @var $metadata array */
+		/** @suppress PhanTypeMismatchForeach */
 		foreach ( $metadata as $name => $value ) {
 			$tag = strtolower( $name );
 			if ( isset( self::$metaConversion[$tag] ) ) {
@@ -453,6 +457,7 @@ class SvgHandler extends ImageHandler {
 				$tag,
 				$value
 			);
+
 		}
 
 		return $showMeta ? $result : false;
@@ -537,6 +542,9 @@ class SvgHandler extends ImageHandler {
 			return [];
 		}
 		$stdMetadata = [];
+
+		/** @var $metadata array */
+		/** @suppress PhanTypeMismatchForeach */
 		foreach ( $metadata as $name => $value ) {
 			$tag = strtolower( $name );
 			if ( $tag === 'originalwidth' || $tag === 'originalheight' ) {

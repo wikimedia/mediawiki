@@ -861,6 +861,8 @@ class User implements IDBAccessObject {
 			return false;
 		}
 
+		/** @var $reservedUsernames string[] */
+		/** @suppress PhanTypeMismatchForeach */
 		static $reservedUsernames = false;
 		if ( !$reservedUsernames ) {
 			$reservedUsernames = $wgReservedUsernames;

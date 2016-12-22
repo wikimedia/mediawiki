@@ -219,6 +219,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		// templatelinks comes second so that the templatelinks row overwrites the
 		// pagelinks row, so we get (inclusion) rather than nothing
 		if ( $fetchlinks ) {
+			/** var $plRes array */
+			/** @suppress PhanTypeMismatchForeach */
 			foreach ( $plRes as $row ) {
 				$row->is_template = 0;
 				$row->is_image = 0;
@@ -226,6 +228,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			}
 		}
 		if ( !$hidetrans ) {
+			/** var $tlRes array */
+			/** @suppress PhanTypeMismatchForeach */
 			foreach ( $tlRes as $row ) {
 				$row->is_template = 1;
 				$row->is_image = 0;
@@ -233,6 +237,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			}
 		}
 		if ( !$hideimages ) {
+			/** var $ilRes array */
+			/** @suppress PhanTypeMismatchForeach */
 			foreach ( $ilRes as $row ) {
 				$row->is_template = 0;
 				$row->is_image = 1;
