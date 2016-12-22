@@ -995,7 +995,7 @@ abstract class HTMLFormField {
 	 * @return array Attributes
 	 */
 	public function getAttributes( array $list ) {
-		static $boolAttribs = [ 'disabled', 'required', 'autofocus', 'multiple', 'readonly' ];
+		static $boolAttribs = [ 'required', 'autofocus', 'multiple', 'readonly' ];
 
 		$ret = [];
 		foreach ( $list as $key ) {
