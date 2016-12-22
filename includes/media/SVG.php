@@ -94,7 +94,7 @@ class SvgHandler extends ImageHandler {
 		$langList = [];
 		if ( $metadata ) {
 			$metadata = $this->unpackMetadata( $metadata );
-			if ( isset( $metadata['translations'] ) ) {
+			if ( is_array( $metadata['translations'] ) ) {
 				foreach ( $metadata['translations'] as $lang => $langType ) {
 					if ( $langType === SVGReader::LANG_FULL_MATCH ) {
 						$langList[] = $lang;
@@ -438,6 +438,7 @@ class SvgHandler extends ImageHandler {
 		$visibleFields = $this->visibleMetadataFields();
 
 		$showMeta = false;
+		/** @suppress PhanTypeMismatchForeach */
 		foreach ( $metadata as $name => $value ) {
 			$tag = strtolower( $name );
 			if ( isset( self::$metaConversion[$tag] ) ) {
@@ -537,16 +538,18 @@ class SvgHandler extends ImageHandler {
 			return [];
 		}
 		$stdMetadata = [];
-		foreach ( $metadata as $name => $value ) {
-			$tag = strtolower( $name );
-			if ( $tag === 'originalwidth' || $tag === 'originalheight' ) {
-				// Skip these. In the exif metadata stuff, it is assumed these
-				// are measured in px, which is not the case here.
-				continue;
-			}
-			if ( isset( self::$metaConversion[$tag] ) ) {
-				$tag = self::$metaConversion[$tag];
-				$stdMetadata[$tag] = $value;
+		if ( is_array( $metadata ) ) {
+			foreach ( $metadata as $name => $value ) {
+				$tag = strtolower( $name );
+				if ( $tag === 'originalwidth' || $tag === 'originalheight' ) {
+					// Skip these. In the exif metadata stuff, it is assumed these
+					// are measured in px, which is not the case here.
+					continue;
+				}
+				if ( isset( self::$metaConversion[$tag] ) ) {
+					$tag = self::$metaConversion[$tag];
+					$stdMetadata[$tag] = $value;
+				}
 			}
 		}
 

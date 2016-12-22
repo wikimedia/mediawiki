@@ -519,6 +519,7 @@ class ApiHelp extends ApiBase {
 								case 'submodule':
 									$groups[] = $name;
 									if ( isset( $settings[ApiBase::PARAM_SUBMODULE_MAP] ) ) {
+										/** @var string[] */
 										$map = $settings[ApiBase::PARAM_SUBMODULE_MAP];
 										ksort( $map );
 										$submodules = [];
