@@ -8,7 +8,7 @@
 	 * @constructor
 	 * @param {mw.rcfilters.Controller} controller Controller
 	 * @param {mw.rcfilters.dm.FiltersViewModel} model View model
-	 * @param {Object} config Configuration object
+	 * @param {Object} [config] Configuration object
 	 * @cfg {Object} [filters] A definition of the filter groups in this list
 	 */
 	mw.rcfilters.ui.FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget( controller, model, config ) {
@@ -83,13 +83,10 @@
 	 * @param {string[]} filterNames An array of filter names that were removed
 	 */
 	mw.rcfilters.ui.FilterWrapperWidget.prototype.onCapsuleRemoveItem = function ( filterNames ) {
-		var filterItem,
-			widget = this;
+		var controller = this.controller;
 
 		filterNames.forEach( function ( filterName ) {
-			// Go over filters
-			filterItem = widget.model.getItemByName( filterName );
-			filterItem.toggleSelected( false );
+			controller.updateFilter( filterName, false );
 		} );
 	};
 
