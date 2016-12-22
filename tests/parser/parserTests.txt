@@ -3683,6 +3683,32 @@ Definition lists: self-closed tag
 !! end
 
 !! test
+Definition lists: ignore colons inside tags
+!! wikitext
+;one <b>two : tag <i>fun:</i>:</b>: def
+!! html
+<dl><dt>one <b>two&#160;: tag <i>fun:</i>:</b></dt>
+<dd> def</dd></dl>
+
+!! end
+
+!! test
+Definition lists: excess closed tags
+!! wikitext
+;one</b>two : bad tag fun
+!! html/php+tidy
+<dl>
+<dt>onetwo&#160;</dt>
+<dd>bad tag fun</dd>
+</dl>
+!! html/parsoid
+<dl>
+<dt>onetwo</dt>
+<dd>bad tag fun</dd>
+</dl>
+!! end
+
+!! test
 Bug 11748: Literal closing tags
 !! wikitext
 <dl>

@@ -496,10 +496,12 @@ class BlockLevelPass {
 			case self::COLON_STATE_CLOSETAG:
 				# In a </tag>
 				if ( $c === ">" ) {
-					$ltLevel--;
-					if ( $ltLevel < 0 ) {
+					if ( $ltLevel > 0 ) {
+						$ltLevel--;
+					} else {
+						# ignore the excess close tag, but keep looking for
+						# colons. (This matches Parsoid behavior.)
 						wfDebug( __METHOD__ . ": Invalid input; too many close tags\n" );
-						return false;
 					}
 					$state = self::COLON_STATE_TEXT;
 				}
