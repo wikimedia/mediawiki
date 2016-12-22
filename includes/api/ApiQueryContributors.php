@@ -77,15 +77,21 @@ class ApiQueryContributors extends ApiQueryBase {
 		$result = $this->getResult();
 
 		// First, count anons
+		// Use a contributor slave that has user based partitioning,
+		// since this should work well with the rev_user = 0 condition.
+		$this->selectNamedDB( 'contributions', DB_REPLICA, 'contributions' );
 		$this->addTables( 'revision' );
 		$this->addFields( [
-			'page' => 'rev_page',
+			'page' => count( $pages ) === 1 ? (int)$pages[0] : 'rev_page',
 			'anons' => 'COUNT(DISTINCT rev_user_text)',
 		] );
 		$this->addWhereFld( 'rev_page', $pages );
 		$this->addWhere( 'rev_user = 0' );
 		$this->addWhere( $db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
-		$this->addOption( 'GROUP BY', 'rev_page' );
+		if ( count( $pages ) !== 1 ) {
+			// Optimization. Avoid group by if unneeded
+			$this->addOption( 'GROUP BY', 'rev_page' );
+		}
 		$res = $this->select( __METHOD__ );
 		foreach ( $res as $row ) {
 			$fit = $result->addValue( [ 'query', 'pages', $row->page ],
@@ -105,16 +111,23 @@ class ApiQueryContributors extends ApiQueryBase {
 
 		// Next, add logged-in users
 		$this->resetQueryParams();
+		// Stop using contributions replica.
+		$this->selectNamedDB( 'normal', DB_REPLICA, [] );
 		$this->addTables( 'revision' );
 		$this->addFields( [
-			'page' => 'rev_page',
+			'page' => count( $pages ) === 1 ? (int)$pages[0] : 'rev_page',
 			'user' => 'rev_user',
 			'username' => 'MAX(rev_user_text)', // Non-MySQL databases don't like partial group-by
 		] );
 		$this->addWhereFld( 'rev_page', $pages );
 		$this->addWhere( 'rev_user != 0' );
 		$this->addWhere( $db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
-		$this->addOption( 'GROUP BY', 'rev_page, rev_user' );
+		if ( count( $pages ) === 1 ) {
+			// Optimization - not grouping by rev_page avoids a filesort
+			$this->addOption( 'GROUP BY', 'rev_user' );
+		} else {
+			$this->addOption( 'GROUP BY', 'rev_page, rev_user' );
+		}
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
 		// Force a sort order to ensure that properties are grouped by page
