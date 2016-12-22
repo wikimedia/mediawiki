@@ -1694,8 +1694,9 @@ class User implements IDBAccessObject {
 			$this->blockTrigger = false;
 		}
 
+		$user = $this;
 		// Extensions
-		Hooks::run( 'GetBlockedStatus', [ &$this ] );
+		Hooks::run( 'GetBlockedStatus', [ &$user ] );
 	}
 
 	/**
@@ -1830,8 +1831,9 @@ class User implements IDBAccessObject {
 	 */
 	public function pingLimiter( $action = 'edit', $incrBy = 1 ) {
 		// Call the 'PingLimiter' hook
+		$user = $this;
 		$result = false;
-		if ( !Hooks::run( 'PingLimiter', [ &$this, $action, &$result, $incrBy ] ) ) {
+		if ( !Hooks::run( 'PingLimiter', [ &$user, $action, &$result, $incrBy ] ) ) {
 			return $result;
 		}
 
@@ -2066,9 +2068,10 @@ class User implements IDBAccessObject {
 		} elseif ( !$ip ) {
 			$ip = $this->getRequest()->getIP();
 		}
+		$user = $this;
 		$blocked = false;
 		$block = null;
-		Hooks::run( 'UserIsBlockedGlobally', [ &$this, $ip, &$blocked, &$block ] );
+		Hooks::run( 'UserIsBlockedGlobally', [ &$user, $ip, &$blocked, &$block ] );
 
 		if ( $blocked && $block === null ) {
 			// back-compat: UserIsBlockedGlobally didn't have $block param first
@@ -2091,9 +2094,10 @@ class User implements IDBAccessObject {
 		if ( $this->mLocked !== null ) {
 			return $this->mLocked;
 		}
-		$authUser = AuthManager::callLegacyAuthPlugin( 'getUserInstance', [ &$this ], null );
+		$user = $this;
+		$authUser = AuthManager::callLegacyAuthPlugin( 'getUserInstance', [ &$user ], null );
 		$this->mLocked = $authUser && $authUser->isLocked();
-		Hooks::run( 'UserIsLocked', [ $this, &$this->mLocked ] );
+		Hooks::run( 'UserIsLocked', [ $this, &$user->mLocked ] );
 		return $this->mLocked;
 	}
 
@@ -2108,9 +2112,10 @@ class User implements IDBAccessObject {
 		}
 		$this->getBlockedStatus();
 		if ( !$this->mHideName ) {
-			$authUser = AuthManager::callLegacyAuthPlugin( 'getUserInstance', [ &$this ], null );
+			$user = $this;
+			$authUser = AuthManager::callLegacyAuthPlugin( 'getUserInstance', [ &$user ], null );
 			$this->mHideName = $authUser && $authUser->isHidden();
-			Hooks::run( 'UserIsHidden', [ $this, &$this->mHideName ] );
+			Hooks::run( 'UserIsHidden', [ $this, &$user->mHideName ] );
 		}
 		return $this->mHideName;
 	}
@@ -2227,8 +2232,9 @@ class User implements IDBAccessObject {
 	 * @return array
 	 */
 	public function getNewMessageLinks() {
+		$user = $this;
 		$talks = [];
-		if ( !Hooks::run( 'UserRetrieveNewTalks', [ &$this, &$talks ] ) ) {
+		if ( !Hooks::run( 'UserRetrieveNewTalks', [ &$user, &$talks ] ) ) {
 			return $talks;
 		} elseif ( !$this->getNewtalk() ) {
 			return [];
@@ -2657,7 +2663,8 @@ class User implements IDBAccessObject {
 	 */
 	public function getEmail() {
 		$this->load();
-		Hooks::run( 'UserGetEmail', [ $this, &$this->mEmail ] );
+		$user = $this;
+		Hooks::run( 'UserGetEmail', [ $this, &$user->mEmail ] );
 		return $this->mEmail;
 	}
 
@@ -2667,7 +2674,8 @@ class User implements IDBAccessObject {
 	 */
 	public function getEmailAuthenticationTimestamp() {
 		$this->load();
-		Hooks::run( 'UserGetEmailAuthenticationTimestamp', [ $this, &$this->mEmailAuthenticated ] );
+		$user = $this;
+		Hooks::run( 'UserGetEmailAuthenticationTimestamp', [ $this, &$user->mEmailAuthenticated ] );
 		return $this->mEmailAuthenticated;
 	}
 
@@ -2682,7 +2690,8 @@ class User implements IDBAccessObject {
 		}
 		$this->invalidateEmail();
 		$this->mEmail = $str;
-		Hooks::run( 'UserSetEmail', [ $this, &$this->mEmail ] );
+		$user = $this;
+		Hooks::run( 'UserSetEmail', [ $this, &$user->mEmail ] );
 	}
 
 	/**
@@ -3153,7 +3162,8 @@ class User implements IDBAccessObject {
 	public function getRights() {
 		if ( is_null( $this->mRights ) ) {
 			$this->mRights = self::getGroupPermissions( $this->getEffectiveGroups() );
-			Hooks::run( 'UserGetRights', [ $this, &$this->mRights ] );
+			$user = $this;
+			Hooks::run( 'UserGetRights', [ $this, &$user->mRights ] );
 
 			// Deny any rights denied by the user's session, unless this
 			// endpoint has no sessions.
@@ -3211,7 +3221,8 @@ class User implements IDBAccessObject {
 				$this->getAutomaticGroups( $recache ) // implicit groups
 			) );
 			// Hook for additional groups
-			Hooks::run( 'UserEffectiveGroups', [ &$this, &$this->mEffectiveGroups ] );
+			$user = $this;
+			Hooks::run( 'UserEffectiveGroups', [ &$user, &$user->mEffectiveGroups ] );
 			// Force reindexation of groups when a hook has unset one of them
 			$this->mEffectiveGroups = array_values( array_unique( $this->mEffectiveGroups ) );
 		}
@@ -3578,7 +3589,8 @@ class User implements IDBAccessObject {
 
 		// If we're working on user's talk page, we should update the talk page message indicator
 		if ( $title->getNamespace() == NS_USER_TALK && $title->getText() == $this->getName() ) {
-			if ( !Hooks::run( 'UserClearNewTalkNotification', [ &$this, $oldid ] ) ) {
+			$user = $this;
+			if ( !Hooks::run( 'UserClearNewTalkNotification', [ &$user, $oldid ] ) ) {
 				return;
 			}
 
@@ -3810,7 +3822,8 @@ class User implements IDBAccessObject {
 	 * Log this user out.
 	 */
 	public function logout() {
-		if ( Hooks::run( 'UserLogout', [ &$this ] ) ) {
+		$user = $this;
+		if ( Hooks::run( 'UserLogout', [ &$user ] ) ) {
 			$this->doLogout();
 		}
 	}
@@ -4471,7 +4484,8 @@ class User implements IDBAccessObject {
 	public function setEmailAuthenticationTimestamp( $timestamp ) {
 		$this->load();
 		$this->mEmailAuthenticated = $timestamp;
-		Hooks::run( 'UserSetEmailAuthenticationTimestamp', [ $this, &$this->mEmailAuthenticated ] );
+		$user = $this;
+		Hooks::run( 'UserSetEmailAuthenticationTimestamp', [ $this, &$user->mEmailAuthenticated ] );
 	}
 
 	/**
@@ -4485,7 +4499,8 @@ class User implements IDBAccessObject {
 			return false;
 		}
 		$canSend = $this->isEmailConfirmed();
-		Hooks::run( 'UserCanSendEmail', [ &$this, &$canSend ] );
+		$user = $this;
+		Hooks::run( 'UserCanSendEmail', [ &$user, &$canSend ] );
 		return $canSend;
 	}
 
@@ -4511,8 +4526,9 @@ class User implements IDBAccessObject {
 	public function isEmailConfirmed() {
 		global $wgEmailAuthentication;
 		$this->load();
+		$user = $this;
 		$confirmed = true;
-		if ( Hooks::run( 'EmailConfirmed', [ &$this, &$confirmed ] ) ) {
+		if ( Hooks::run( 'EmailConfirmed', [ &$user, &$confirmed ] ) ) {
 			if ( $this->isAnon() ) {
 				return false;
 			}
@@ -5201,8 +5217,8 @@ class User implements IDBAccessObject {
 		}
 
 		$this->mOptionsLoaded = true;
-
-		Hooks::run( 'UserLoadOptions', [ $this, &$this->mOptions ] );
+		$user = $this;
+		Hooks::run( 'UserLoadOptions', [ $this, &$user->mOptions ] );
 	}
 
 	/**
