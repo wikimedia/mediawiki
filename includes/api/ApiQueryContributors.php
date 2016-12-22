@@ -74,15 +74,25 @@ class ApiQueryContributors extends ApiQueryBase {
 			$pages = array_slice( $pages, 0, self::MAX_PAGES );
 		}
 
+		// MariaDB optimizer doesn't like having strings for
+		// rev_page. Using raw numbers prevents a filesort.
+		$numericCallback = function ( $elm ) {
+			return new RawDBNumber( $elm );
+		};
+		$numericPages = array_map( $numericCallback, $pages );
+
 		$result = $this->getResult();
 
 		// First, count anons
+		// Use a contributor slave that has user based partitioning,
+		// since this should work well with the rev_user = 0 condition.
+		$this->selectNamedDB( 'contributions', DB_REPLICA, 'contributions' );
 		$this->addTables( 'revision' );
 		$this->addFields( [
 			'page' => 'rev_page',
 			'anons' => 'COUNT(DISTINCT rev_user_text)',
 		] );
-		$this->addWhereFld( 'rev_page', $pages );
+		$this->addWhereFld( 'rev_page', $numericPages );
 		$this->addWhere( 'rev_user = 0' );
 		$this->addWhere( $db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
 		$this->addOption( 'GROUP BY', 'rev_page' );
@@ -105,20 +115,22 @@ class ApiQueryContributors extends ApiQueryBase {
 
 		// Next, add logged-in users
 		$this->resetQueryParams();
+		// Stop using contributions replica.
+		$this->selectNamedDB( 'normal', DB_REPLICA, [] );
 		$this->addTables( 'revision' );
 		$this->addFields( [
 			'page' => 'rev_page',
 			'user' => 'rev_user',
 			'username' => 'MAX(rev_user_text)', // Non-MySQL databases don't like partial group-by
 		] );
-		$this->addWhereFld( 'rev_page', $pages );
+		$this->addWhereFld( 'rev_page', $numericPages );
 		$this->addWhere( 'rev_user != 0' );
 		$this->addWhere( $db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
 		$this->addOption( 'GROUP BY', 'rev_page, rev_user' );
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
 		// Force a sort order to ensure that properties are grouped by page
-		// But only if pp_page is not constant in the WHERE clause.
+		// But only if rev_page is not constant in the WHERE clause.
 		if ( count( $pages ) > 1 ) {
 			$this->addOption( 'ORDER BY', 'rev_page, rev_user' );
 		} else {

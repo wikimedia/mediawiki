@@ -1138,6 +1138,7 @@ $wgAutoloadLocalClasses = [
 	'RandomPage' => __DIR__ . '/includes/specials/SpecialRandompage.php',
 	'RangeDifference' => __DIR__ . '/includes/diff/DiffEngine.php',
 	'RawAction' => __DIR__ . '/includes/actions/RawAction.php',
+	'RawDBNumber' => __DIR__ . '/includes/libs/rdbms/encasing/RawDBNumber.php',
 	'RawMessage' => __DIR__ . '/includes/Message.php',
 	'ReadOnlyError' => __DIR__ . '/includes/exception/ReadOnlyError.php',
 	'ReassignEdits' => __DIR__ . '/maintenance/reassignEdits.php',
