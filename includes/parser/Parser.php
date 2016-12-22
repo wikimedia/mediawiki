@@ -1319,7 +1319,44 @@ class Parser {
 		}
 
 		# Clean up special characters, only run once, next-to-last before doBlockLevels
+		# see T15619
+		# last character before an abbr.
+		$wb   = '[ \n([\x{201E}]';
+		# first character after an abbr.
+		$we   = '[ )\x5D,;:?!\'"\x{2018}-\x{201A}\x{201C}-\x{201D}\xAB\xBB\x{2039}\x{203A}]';
+		# some space character
+		$s_re = '(?:&(?:nbsp|#160);|\x20)';
+		# narrow non-breaking space
+		$nns  = '<span style="margin-left:0.167em"><span style="display:none">&nbsp;</span></span>';
+		# replacements
 		$fixtags = [
+			# German whitespace, see T15619
+			"/${wb}a\.\K$s_re?a\.$s_re?(?=O\.$we)/u"          => "${nns}a.$nns", # a.a.O.
+			"/${wb}a\.\K$s_re?(?=D\.$we)/u"                   => $nns,           # a.D.
+			"/${wb}[dD]\.\K$s_re?(?=h\.[ ,])/u"               => $nns,           # d.h.
+			"/${wb}[iI]\.\K$s_re?d\.$s_re?(?=R\.$we)/u"       => "${nns}d.$nns", # i.d.R.
+			"/${wb}d\.\K$s_re?(?=[iJR\\xC4]\.$we)/u"          => $nns,           # d.i., d.J, d.R, d.Ä
+			"/${wb}e\.\K$s_re?(?=V\.$we)/u"                   => $nns,           # e.V.
+			"/${wb}h\.\K$s_re?(?=c\.$we)/u"                   => $nns,           # h.c.
+			"/${wb}i\.\K$s_re?V\.$s_re?(?=m\.$we)/u"          => "${nns}V.$nns", # i.V.m.
+			"/${wb}i\.\K$s_re?(?=[ARV]\.$we)/u"               => $nns,           # i.A., i.R, i.V.
+			"/${wb}[nv]\.\K$s_re?(?=Chr\.$we)/u"              => $nns,           # n.Chr., v.Chr.
+			"/${wb}o\.\K$s_re?(?=[J\\xC4\\xE4]\.$we)/u"       => $nns,           # o.J., o.Ä, o.ä.
+			"/${wb}[sS]\.\K$s_re?(?=[ou]\.$we)/u"             => $nns,           # s.o., s.u.
+			"/${wb}u\.\K$s_re?a\.$s_re?(?=m\.$we)/u"          => "${nns}a.$nns", # u.a.m.
+			"/${wb}u\.\K$s_re?v\.$s_re?a\.$s_re?(?=m\.$we)/u" => "${nns}v.${nns}a.", # u.v.a.m.
+			"/${wb}u\.\K$s_re?v\.$s_re?(?=a\.$we)/u"          => "${nns}v.$nns", # u.v.a.
+			"/${wb}u\.\K$s_re?(?=[\\xC4\\xE4]\.$we)/u"        => $nns,           # u.Ä., u.ä.
+			"/${wb}[uU]\.\K$s_re?(?=a\.$we)/u"                => $nns,           # u.a.
+			"/${wb}u\.\K$s_re?(?=U\.[ ,])/u"                  => $nns,           # u.U.
+			"/${wb}[vV]\.\K$s_re?(?=a\.$we)/u"                => $nns,           # v.a.
+			"/${wb}[zZ]\.\K$s_re?(?=(?:[BT]|Zt?)\.[ ,])/u"    => $nns,           # z.B., z.T., z.Zt.
+			"/(?:\(|,$s_re)[*\x{2020}]\K$s_re?(?=\d+[ ,)])/u" => $nns,           # († 1865), (* 1634), ...
+			"/${wb}(?:A(?:rt|bs)|S)\.\K$s_re?(?=\d+$s_re?ff\.$we)/u" => "$nns$1$nns", # Art. 1 ff., Abs. 1 ff., S. 1 ff.
+			"/${wb}(?:A(?:rt|bs)|S)\.\K$s_re?(?=\d)/u"        => $nns,           # Art. 1, Abs. 1, S. 1
+			"/${wb}[1-3]?\d\.\K$s_re(?=(?:Januar|J\\xE4nner|Februar|M\\xE4rz|April|Mai|Ju[nl]i|August|September|Oktober|November|Dezember)\b)/u" => $nns, # 12. August, ...
+			"/${wb}\d+\.\K$s_re(?=(?:Jh\.|Jahrhundert\b))/u"  => $nns,           # 13. Jh., ...
+			"/\b\d+\K$s_re?(?=(?:[\\x24\\xA2\\xA5\x{09F3}\x{0E3F}\x{17DB}\x{20A0}-\x{20B5}\x{2133}\x{2116}]|DM|US[D\\x24]|EUR|CHF|CAD|AUD|GBP|\\xB0[CFR]|[stHNT]|[KMGT]iB|[kMGT]?(?:B|Wh?)|[cdhkm\\xB5\x{03BC}]?m|[cdh]?l|m?(?:mol|W)|Bq|Cd|Pa|pF|sm|kn|ha|Ar|eV|Ws|[km\\xB5\x{03BC}]?(?:Sv|[VAFg])|[mk]?\x{03A9}|VA?)\b)/u" => $nns, # <number> <[prefix]unit|currency>
 			# French spaces, last one Guillemet-left
 			# only if there is something before the space
 			'/(.) (?=\\?|:|;|!|%|\\302\\273)/' => '\\1&#160;',
