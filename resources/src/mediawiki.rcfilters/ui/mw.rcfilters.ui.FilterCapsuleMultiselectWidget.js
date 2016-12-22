@@ -154,7 +154,11 @@
 			return;
 		}
 
-		return new mw.rcfilters.ui.CapsuleItemWidget( item, { $overlay: this.$overlay } );
+		return new mw.rcfilters.ui.CapsuleItemWidget(
+			this.controller,
+			item,
+			{ $overlay: this.$overlay }
+		);
 	};
 
 	/**
@@ -203,23 +207,6 @@
 	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.onFocusForPopup = function () {
 		// HACK can be removed once I21b8cff4048 is merged in oojs-ui
 		this.focus();
-	};
-
-	/**
-	 * @inheritdoc
-	 */
-	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.removeItems = function ( items ) {
-		var filterData = {};
-
-		// Parent
-		mw.rcfilters.ui.FilterCapsuleMultiselectWidget.parent.prototype.removeItems.call( this, items );
-
-		items.forEach( function ( itemWidget ) {
-			filterData[ itemWidget.getData() ] = false;
-		} );
-
-		// Update the model
-		this.model.updateFilters( filterData );
 	};
 
 	/**
