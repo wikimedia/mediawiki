@@ -73,7 +73,7 @@ function wfThumbHandle404() {
 		return;
 	}
 
-	wfStreamThumb( $params ); // stream the thumbnail
+	wfStreamThumb( $params, $matches['title'] ); // stream the thumbnail
 }
 
 /**
@@ -89,7 +89,7 @@ function wfThumbHandle404() {
  *   to the parameters)
  * @return void
  */
-function wfStreamThumb( array $params ) {
+function wfStreamThumb( array $params, $path ) {
 	global $wgVaryOnXFP;
 
 	$headers = []; // HTTP headers to send
@@ -119,6 +119,18 @@ function wfStreamThumb( array $params ) {
 
 	// Some basic input validation
 	$fileName = strtr( $fileName, '\\/', '__' );
+	// Format is <timestamp>!<name>
+	$bits = explode( '!', $fileName, 2 );
+	if ( count( $bits ) !== 2 && $isOld ) {
+		wfThumbError( 404, wfMessage( 'badtitletext' )->parse() );
+		return;
+	}
+	$name = $bits[1];
+	$title = Title::makeTitleSafe( NS_FILE, $name );
+	if ( !$title ) {
+		wfThumbError( 404, wfMessage( 'badtitletext' )->parse() );
+		return;
+	}
 
 	// Actually fetch the image. Method depends on whether it is archived or not.
 	if ( $isTemp ) {
@@ -130,17 +142,6 @@ function wfStreamThumb( array $params ) {
 			$repo->getZonePath( 'public' ) . '/' . $repo->getTempHashPath( $fileName ) . $fileName
 		);
 	} elseif ( $isOld ) {
-		// Format is <timestamp>!<name>
-		$bits = explode( '!', $fileName, 2 );
-		if ( count( $bits ) != 2 ) {
-			wfThumbError( 404, wfMessage( 'badtitletext' )->parse() );
-			return;
-		}
-		$title = Title::makeTitleSafe( NS_FILE, $bits[1] );
-		if ( !$title ) {
-			wfThumbError( 404, wfMessage( 'badtitletext' )->parse() );
-			return;
-		}
 		$img = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $title, $fileName );
 	} else {
 		$img = wfLocalFile( $fileName );
@@ -167,6 +168,12 @@ function wfStreamThumb( array $params ) {
 	// Check if the file is hidden
 	if ( $img->isDeleted( File::DELETED_FILE ) ) {
 		wfThumbErrorText( 404, "The source file '$fileName' does not exist." );
+		return;
+	}
+
+	$result = null;
+	if ( !Hooks::run( 'ImgAuthBeforeStream', [ &$title, &$path, &$name, &$result ] ) ) {
+		wfForbidden( $result[0], $result[1], array_slice( $result, 2 ) );
 		return;
 	}
 
