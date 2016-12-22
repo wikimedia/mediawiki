@@ -7,6 +7,8 @@
 	mw.rcfilters.Controller = function MwRcfiltersController( model ) {
 		this.model = model;
 		// TODO: When we are ready, update the URL when a filter is updated
+		// TODO should we do this on every itemUpdate, or only when the user submits the form
+		//      or takes some other explicit action like closing the popup?
 		// this.model.connect( this, { itemUpdate: 'updateURL' } );
 	};
 
@@ -17,10 +19,15 @@
 	 * Initialize the filter and parameter states
 	 */
 	mw.rcfilters.Controller.prototype.initialize = function () {
+		this.updateFromURL();
+	};
+
+	/**
+	 * Update the model state based on the URL parameters.
+	 */
+	mw.rcfilters.Controller.prototype.updateFromURL = function () {
 		var uri = new mw.Uri();
 
-		// Give the model a full parameter state from which to
-		// update the filters
 		this.model.updateFilters(
 			// Translate the url params to filter select states
 			this.model.getFiltersFromParameters( uri.query )
