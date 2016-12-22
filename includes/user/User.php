@@ -1694,8 +1694,10 @@ class User implements IDBAccessObject {
 			$this->blockTrigger = false;
 		}
 
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$user = $this;
 		// Extensions
-		Hooks::run( 'GetBlockedStatus', [ &$this ] );
+		Hooks::run( 'GetBlockedStatus', [ &$user ] );
 	}
 
 	/**
@@ -1829,9 +1831,11 @@ class User implements IDBAccessObject {
 	 * @return bool True if a rate limiter was tripped
 	 */
 	public function pingLimiter( $action = 'edit', $incrBy = 1 ) {
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$user = $this;
 		// Call the 'PingLimiter' hook
 		$result = false;
-		if ( !Hooks::run( 'PingLimiter', [ &$this, $action, &$result, $incrBy ] ) ) {
+		if ( !Hooks::run( 'PingLimiter', [ &$user, $action, &$result, $incrBy ] ) ) {
 			return $result;
 		}
 
@@ -2066,9 +2070,11 @@ class User implements IDBAccessObject {
 		} elseif ( !$ip ) {
 			$ip = $this->getRequest()->getIP();
 		}
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$user = $this;
 		$blocked = false;
 		$block = null;
-		Hooks::run( 'UserIsBlockedGlobally', [ &$this, $ip, &$blocked, &$block ] );
+		Hooks::run( 'UserIsBlockedGlobally', [ &$user, $ip, &$blocked, &$block ] );
 
 		if ( $blocked && $block === null ) {
 			// back-compat: UserIsBlockedGlobally didn't have $block param first
@@ -2091,7 +2097,9 @@ class User implements IDBAccessObject {
 		if ( $this->mLocked !== null ) {
 			return $this->mLocked;
 		}
-		$authUser = AuthManager::callLegacyAuthPlugin( 'getUserInstance', [ &$this ], null );
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$user = $this;
+		$authUser = AuthManager::callLegacyAuthPlugin( 'getUserInstance', [ &$user ], null );
 		$this->mLocked = $authUser && $authUser->isLocked();
 		Hooks::run( 'UserIsLocked', [ $this, &$this->mLocked ] );
 		return $this->mLocked;
@@ -2108,7 +2116,9 @@ class User implements IDBAccessObject {
 		}
 		$this->getBlockedStatus();
 		if ( !$this->mHideName ) {
-			$authUser = AuthManager::callLegacyAuthPlugin( 'getUserInstance', [ &$this ], null );
+			// Avoid PHP 7.1 warning of passing $this by reference
+			$user = $this;
+			$authUser = AuthManager::callLegacyAuthPlugin( 'getUserInstance', [ &$user ], null );
 			$this->mHideName = $authUser && $authUser->isHidden();
 			Hooks::run( 'UserIsHidden', [ $this, &$this->mHideName ] );
 		}
@@ -2227,8 +2237,10 @@ class User implements IDBAccessObject {
 	 * @return array
 	 */
 	public function getNewMessageLinks() {
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$user = $this;
 		$talks = [];
-		if ( !Hooks::run( 'UserRetrieveNewTalks', [ &$this, &$talks ] ) ) {
+		if ( !Hooks::run( 'UserRetrieveNewTalks', [ &$user, &$talks ] ) ) {
 			return $talks;
 		} elseif ( !$this->getNewtalk() ) {
 			return [];
@@ -3210,8 +3222,10 @@ class User implements IDBAccessObject {
 				$this->getGroups(), // explicit groups
 				$this->getAutomaticGroups( $recache ) // implicit groups
 			) );
+			// Avoid PHP 7.1 warning of passing $this by reference
+			$user = $this;
 			// Hook for additional groups
-			Hooks::run( 'UserEffectiveGroups', [ &$this, &$this->mEffectiveGroups ] );
+			Hooks::run( 'UserEffectiveGroups', [ &$user, &$this->mEffectiveGroups ] );
 			// Force reindexation of groups when a hook has unset one of them
 			$this->mEffectiveGroups = array_values( array_unique( $this->mEffectiveGroups ) );
 		}
@@ -3578,7 +3592,9 @@ class User implements IDBAccessObject {
 
 		// If we're working on user's talk page, we should update the talk page message indicator
 		if ( $title->getNamespace() == NS_USER_TALK && $title->getText() == $this->getName() ) {
-			if ( !Hooks::run( 'UserClearNewTalkNotification', [ &$this, $oldid ] ) ) {
+			// Avoid PHP 7.1 warning of passing $this by reference
+			$user = $this;
+			if ( !Hooks::run( 'UserClearNewTalkNotification', [ &$user, $oldid ] ) ) {
 				return;
 			}
 
@@ -3810,7 +3826,9 @@ class User implements IDBAccessObject {
 	 * Log this user out.
 	 */
 	public function logout() {
-		if ( Hooks::run( 'UserLogout', [ &$this ] ) ) {
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$user = $this;
+		if ( Hooks::run( 'UserLogout', [ &$user ] ) ) {
 			$this->doLogout();
 		}
 	}
@@ -4485,7 +4503,9 @@ class User implements IDBAccessObject {
 			return false;
 		}
 		$canSend = $this->isEmailConfirmed();
-		Hooks::run( 'UserCanSendEmail', [ &$this, &$canSend ] );
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$user = $this;
+		Hooks::run( 'UserCanSendEmail', [ &$user, &$canSend ] );
 		return $canSend;
 	}
 
@@ -4511,8 +4531,10 @@ class User implements IDBAccessObject {
 	public function isEmailConfirmed() {
 		global $wgEmailAuthentication;
 		$this->load();
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$user = $this;
 		$confirmed = true;
-		if ( Hooks::run( 'EmailConfirmed', [ &$this, &$confirmed ] ) ) {
+		if ( Hooks::run( 'EmailConfirmed', [ &$user, &$confirmed ] ) ) {
 			if ( $this->isAnon() ) {
 				return false;
 			}
@@ -5201,7 +5223,6 @@ class User implements IDBAccessObject {
 		}
 
 		$this->mOptionsLoaded = true;
-
 		Hooks::run( 'UserLoadOptions', [ $this, &$this->mOptions ] );
 	}
 
