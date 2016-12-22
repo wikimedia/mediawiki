@@ -2417,19 +2417,7 @@ class Title implements LinkTarget {
 			return [ 'badaccess-group0' ];
 		}
 
-		$groups = array_map( [ 'User', 'makeGroupLinkWiki' ],
-			User::getGroupsWithPermission( $action ) );
-
-		if ( count( $groups ) ) {
-			global $wgLang;
-			return [
-				'badaccess-groups',
-				$wgLang->commaList( $groups ),
-				count( $groups )
-			];
-		} else {
-			return [ 'badaccess-group0' ];
-		}
+		return User::newFatalPermissionDeniedStatus( $action )[0];
 	}
 
 	/**

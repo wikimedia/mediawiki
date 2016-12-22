@@ -3505,10 +3505,12 @@ temporary password
 &$ip: IP of the user who sent the message out
 &$u: the account whose new password will be set
 
-'UserAddGroup': Called when adding a group; return false to override
-stock group addition.
+'UserAddGroup': Called when adding a group or changing a group's expiry; return
+false to override stock group addition.
 $user: the user object that is to have a group added
-&$group: the group to add, can be modified
+&$group: the group to add; can be modified
+&$expiry: the expiry time in TS_MW format, or null if the group is not to
+expire; can be modified
 
 'UserArrayFromResult': Called when creating an UserArray object from a database
 result.
@@ -3751,7 +3753,8 @@ their data into the cache array so that things like global user groups are
 displayed correctly in Special:ListUsers.
 $dbr: Read-only database handle
 $userIds: Array of user IDs whose groups we should look up
-&$cache: Array of user ID -> internal user group name (e.g. 'sysop') mappings
+&$cache: Array of user ID -> (array of internal group name (e.g. 'sysop') ->
+UserGroupMembership object)
 &$groups: Array of group name -> bool true mappings for members of a given user
 group
 
