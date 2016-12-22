@@ -852,6 +852,7 @@ class User implements IDBAccessObject {
 	 * by a failure to pass this function.
 	 *
 	 * @param string $name Name to match
+	 * @var string[] $reservedUsernames
 	 * @return bool
 	 */
 	public static function isUsableName( $name ) {
@@ -861,6 +862,7 @@ class User implements IDBAccessObject {
 			return false;
 		}
 
+
 		static $reservedUsernames = false;
 		if ( !$reservedUsernames ) {
 			$reservedUsernames = $wgReservedUsernames;
@@ -868,6 +870,7 @@ class User implements IDBAccessObject {
 		}
 
 		// Certain names may be reserved for batch processes.
+		/** @suppress PhanTypeMismatchForeach */
 		foreach ( $reservedUsernames as $reserved ) {
 			if ( substr( $reserved, 0, 4 ) == 'msg:' ) {
 				$reserved = wfMessage( substr( $reserved, 4 ) )->inContentLanguage()->text();

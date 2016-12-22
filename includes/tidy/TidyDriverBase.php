@@ -28,6 +28,7 @@ abstract class TidyDriverBase {
 	 */
 	public function validate( $text, &$errorStr ) {
 		throw new \MWException( get_class( $this ) . " does not support validate()" );
+		return false;
 	}
 
 	/**

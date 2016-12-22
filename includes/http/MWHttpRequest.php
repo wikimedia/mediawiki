@@ -376,6 +376,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 */
 	public function execute() {
 		throw new LogicException( 'children must override this' );
+		return false;
 	}
 
 	protected function prepare() {

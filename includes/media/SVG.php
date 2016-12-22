@@ -87,6 +87,7 @@ class SvgHandler extends ImageHandler {
 	 * this list.
 	 *
 	 * @param File $file
+	 * @var array $translations
 	 * @return array Array of language codes, or empty if no language switching supported.
 	 */
 	public function getAvailableLanguages( File $file ) {
@@ -94,8 +95,10 @@ class SvgHandler extends ImageHandler {
 		$langList = [];
 		if ( $metadata ) {
 			$metadata = $this->unpackMetadata( $metadata );
-			if ( isset( $metadata['translations'] ) ) {
-				foreach ( $metadata['translations'] as $lang => $langType ) {
+			if ( isset( $metadata['translations'] ) && is_array( $metadata['translations'] ) ) {
+				$translations = $metadata['translations'];
+				/** @suppress PhanTypeMismatchForeach */
+				foreach ( $translations as $lang => $langType ) {
 					if ( $langType === SVGReader::LANG_FULL_MATCH ) {
 						$langList[] = $lang;
 					}
@@ -413,6 +416,7 @@ class SvgHandler extends ImageHandler {
 	/**
 	 * @param File $file
 	 * @param bool|IContextSource $context Context to use (optional)
+	 * @var array $metadata
 	 * @return array|bool
 	 */
 	function formatMetadata( $file, $context = false ) {
@@ -438,6 +442,7 @@ class SvgHandler extends ImageHandler {
 		$visibleFields = $this->visibleMetadataFields();
 
 		$showMeta = false;
+		/** @suppress PhanTypeMismatchForeach */
 		foreach ( $metadata as $name => $value ) {
 			$tag = strtolower( $name );
 			if ( isset( self::$metaConversion[$tag] ) ) {
@@ -453,6 +458,7 @@ class SvgHandler extends ImageHandler {
 				$tag,
 				$value
 			);
+
 		}
 
 		return $showMeta ? $result : false;
@@ -526,7 +532,7 @@ class SvgHandler extends ImageHandler {
 
 		return $scriptParams;
 	}
-
+	/** @var array $metadata */
 	public function getCommonMetaArray( File $file ) {
 		$metadata = $file->getMetadata();
 		if ( !$metadata ) {
@@ -537,6 +543,7 @@ class SvgHandler extends ImageHandler {
 			return [];
 		}
 		$stdMetadata = [];
+		/** @suppress PhanTypeMismatchForeach */
 		foreach ( $metadata as $name => $value ) {
 			$tag = strtolower( $name );
 			if ( $tag === 'originalwidth' || $tag === 'originalheight' ) {
