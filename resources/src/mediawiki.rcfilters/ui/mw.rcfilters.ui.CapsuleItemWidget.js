@@ -7,11 +7,12 @@
 	 * @mixins OO.ui.mixin.PopupElement
 	 *
 	 * @constructor
+	 * @param {mw.rcfilters.Controller} controller
 	 * @param {mw.rcfilters.dm.FilterItem} model Item model
 	 * @param {Object} config Configuration object
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
 	 */
-	mw.rcfilters.ui.CapsuleItemWidget = function MwRcfiltersUiCapsuleItemWidget( model, config ) {
+	mw.rcfilters.ui.CapsuleItemWidget = function MwRcfiltersUiCapsuleItemWidget( controller, model, config ) {
 		var $popupContent = $( '<div>' )
 			.addClass( 'mw-rcfilters-ui-capsuleItemWidget-popup' ),
 			descLabelWidget = new OO.ui.LabelWidget();
@@ -19,6 +20,7 @@
 		// Configuration initialization
 		config = config || {};
 
+		this.controller = controller;
 		this.model = model;
 		this.$overlay = config.$overlay || this.$element;
 		this.positioned = false;
@@ -45,6 +47,8 @@
 
 		// Events
 		this.model.connect( this, { update: 'onModelUpdate' } );
+
+		this.closeButton.connect( this, { click: 'onCapsuleRemovedByUser' } );
 
 		// Initialization
 		this.$overlay.append( this.popup.$element );
@@ -85,5 +89,12 @@
 				this.positioned = true;
 			}
 		}
+	};
+
+	/**
+	 * Respond to the user removing the capsule with the close button
+	 */
+	mw.rcfilters.ui.CapsuleItemWidget.prototype.onCapsuleRemovedByUser = function () {
+		this.controller.updateFilter( this.model.getName(), false );
 	};
 }( mediaWiki, jQuery ) );
