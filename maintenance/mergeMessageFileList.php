@@ -34,6 +34,7 @@ $mmfl = false;
  * extensions to produce a single array containing all message files.
  *
  * @ingroup Maintenance
+ * @var array $setupFiles
  */
 class MergeMessageFileList extends Maintenance {
 	function __construct() {
@@ -159,7 +160,9 @@ class MergeMessageFileList extends Maintenance {
 require_once RUN_MAINTENANCE_IF_MAIN;
 
 $queue = [];
-foreach ( $mmfl['setupFiles'] as $fileName ) {
+$setupFiles = $mmfl['setupFiles'];
+/** @suppress PhanTypeMismatchForeach */
+foreach ( $setupFiles as $fileName ) {
 	if ( strval( $fileName ) === '' ) {
 		continue;
 	}

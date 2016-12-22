@@ -321,7 +321,7 @@ return [
 		"PhanTypeMismatchArgument",
 		// approximate error count: 39
 		"PhanTypeMismatchArgumentInternal",
-		// approximate error count: 16
+		// approximate error count: 2
 		"PhanTypeMismatchForeach",
 		// approximate error count: 63
 		"PhanTypeMismatchProperty",

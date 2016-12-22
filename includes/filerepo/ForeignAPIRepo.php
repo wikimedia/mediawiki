@@ -121,6 +121,9 @@ class ForeignAPIRepo extends FileRepo {
 
 	/**
 	 * @param array $files
+	 * @var array $querypages
+	 * @var array $queryredirects
+	 * @var array $querynormalized
 	 * @return array
 	 */
 	function fileExistsBatch( array $files ) {
@@ -147,21 +150,27 @@ class ForeignAPIRepo extends FileRepo {
 			'prop' => 'imageinfo' ]
 		);
 
-		if ( isset( $data['query']['pages'] ) ) {
+		if ( isset( $data['query']['pages'] ) && is_array( $data['query']['pages'] ) ) {
 			# First, get results from the query. Note we only care whether the image exists,
 			# not whether it has a description page.
-			foreach ( $data['query']['pages'] as $p ) {
+			$querypages = $data['query']['pages'];
+			/** @suppress PhanTypeMismatchForeach */
+			foreach (	$querypages as $p ) {
 				$this->mFileExists[$p['title']] = ( $p['imagerepository'] !== '' );
 			}
 			# Second, copy the results to any redirects that were queried
-			if ( isset( $data['query']['redirects'] ) ) {
-				foreach ( $data['query']['redirects'] as $r ) {
+			if ( isset( $data['query']['redirects'] ) && is_array( $data['query']['redirects'] ) ) {
+				$queryredirects = $data['query']['redirects'];
+				/** @suppress PhanTypeMismatchForeach */
+				foreach ( $queryredirects as $r ) {
 					$this->mFileExists[$r['from']] = $this->mFileExists[$r['to']];
 				}
 			}
 			# Third, copy the results to any non-normalized titles that were queried
-			if ( isset( $data['query']['normalized'] ) ) {
-				foreach ( $data['query']['normalized'] as $n ) {
+			if ( isset( $data['query']['normalized'] ) && is_array( $data['query']['normalized'] ) ) {
+				$querynormalized = $data['query']['normalized'];
+				/** @suppress PhanTypeMismatchForeach */
+				foreach ( $querynormalized as $n ) {
 					$this->mFileExists[$n['from']] = $this->mFileExists[$n['to']];
 				}
 			}
@@ -232,6 +241,7 @@ class ForeignAPIRepo extends FileRepo {
 	/**
 	 * @param string $hash
 	 * @return array
+	 * @var array $allimages
 	 */
 	function findBySha1( $hash ) {
 		$results = $this->fetchImageQuery( [
@@ -240,8 +250,10 @@ class ForeignAPIRepo extends FileRepo {
 			'list' => 'allimages',
 		] );
 		$ret = [];
-		if ( isset( $results['query']['allimages'] ) ) {
-			foreach ( $results['query']['allimages'] as $img ) {
+		if ( isset( $results['query']['allimages'] ) && is_array( $results['query']['allimages'] ) ) {
+			$allimages = $results['query']['allimages'];
+			/** @suppress PhanTypeMismatchForeach */
+			foreach ( $allimages as $img ) {
 				// 1.14 was broken, doesn't return name attribute
 				if ( !isset( $img['name'] ) ) {
 					continue;
