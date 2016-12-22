@@ -64,7 +64,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	public function formatOptions( $options, $value ) {
 		$html = '';
 
-		$attribs = $this->getAttributes( [ 'disabled', 'tabindex' ] );
+		$attribs = $this->getAttributes( [ 'disabled', 'tabindex', 'disabled-options' ] );
 
 		foreach ( $options as $label => $info ) {
 			if ( is_array( $info ) ) {
@@ -74,6 +74,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 				$thisAttribs = [
 					'id' => "{$this->mID}-$info",
 					'value' => $info,
+					'disabled' => in_array( $info, $this->mParams['disabled-options'], true ),
 				];
 				$checked = in_array( $info, $value, true );
 
@@ -110,6 +111,18 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			}
 			return $checkbox;
 		}
+	}
+
+	/**
+	 * Get options and make them into arrays suitable for OOUI.
+	 * @return array Options for inclusion in a select or whatever.
+	 */
+	public function getOptionsOOUI() {
+		$options = parent::getOptionsOOUI();
+		foreach ( $options as &$option ) {
+			$option['disabled'] = in_array( $option['data'], $this->mParams['disabled-options'], true );
+		}
+		return $options;
 	}
 
 	/**
