@@ -218,21 +218,21 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		// Read the rows into an array and remove duplicates
 		// templatelinks comes second so that the templatelinks row overwrites the
 		// pagelinks row, so we get (inclusion) rather than nothing
-		if ( $fetchlinks ) {
+		if ( $fetchlinks && is_array( $plRes ) ) {
 			foreach ( $plRes as $row ) {
 				$row->is_template = 0;
 				$row->is_image = 0;
 				$rows[$row->page_id] = $row;
 			}
 		}
-		if ( !$hidetrans ) {
+		if ( !$hidetrans && is_array( $tlRes ) ) {
 			foreach ( $tlRes as $row ) {
 				$row->is_template = 1;
 				$row->is_image = 0;
 				$rows[$row->page_id] = $row;
 			}
 		}
-		if ( !$hideimages ) {
+		if ( !$hideimages && is_array( $ilRes ) ) {
 			foreach ( $ilRes as $row ) {
 				$row->is_template = 0;
 				$row->is_image = 1;
