@@ -17,6 +17,11 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	public function __construct( $params ) {
 		parent::__construct( $params );
 
+        // If the disabled-options parameter is not provided, use an empty array 
+        if ( isset($this->mParams['disabled-options']) === false ) {
+            $this->mParams['disabled-options'] = [];
+        }
+
 		// For backwards compatibility, also handle the old way with 'cssclass' => 'mw-chosen'
 		if ( isset( $params['dropdown'] ) || strpos( $this->mClass, 'mw-chosen' ) !== false ) {
 			$this->mClass .= ' mw-htmlform-dropdown';
@@ -74,6 +79,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 				$thisAttribs = [
 					'id' => "{$this->mID}-$info",
 					'value' => $info,
+					'disabled' => in_array( $info, $this->mParams['disabled-options'], true ),
 				];
 				$checked = in_array( $info, $value, true );
 
@@ -110,6 +116,18 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			}
 			return $checkbox;
 		}
+	}
+
+	/**
+	 * Get options and make them into arrays suitable for OOUI.
+	 * @return array Options for inclusion in a select or whatever.
+	 */
+	public function getOptionsOOUI() {
+		$options = parent::getOptionsOOUI();
+		foreach ( $options as &$option ) {
+			$option['disabled'] = in_array( $option['data'], $this->mParams['disabled-options'], true );
+		}
+		return $options;
 	}
 
 	/**
