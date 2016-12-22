@@ -311,13 +311,9 @@ class ApiParse extends ApiBase {
 				$linkFlags = [];
 				Hooks::run( 'LanguageLinks', [ $titleObj, &$langlinks, &$linkFlags ] );
 			}
-		} else {
-			$langlinks = false;
-		}
-
-		if ( isset( $prop['langlinks'] ) ) {
 			$result_array['langlinks'] = $this->formatLangLinks( $langlinks );
 		}
+
 		if ( isset( $prop['categories'] ) ) {
 			$result_array['categories'] = $this->formatCategoryLinks( $p_result->getCategories() );
 		}

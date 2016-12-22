@@ -220,6 +220,7 @@ class ApiHelp extends ApiBase {
 	 * @param ApiBase[] $modules
 	 * @param array $options
 	 * @param array &$haveModules
+	 * @var string[] $map
 	 * @return string
 	 */
 	private static function getHelpInternal( IContextSource $context, array $modules,
@@ -519,9 +520,11 @@ class ApiHelp extends ApiBase {
 								case 'submodule':
 									$groups[] = $name;
 									if ( isset( $settings[ApiBase::PARAM_SUBMODULE_MAP] ) ) {
+
 										$map = $settings[ApiBase::PARAM_SUBMODULE_MAP];
 										ksort( $map );
 										$submodules = [];
+										/** @suppress PhanTypeMismatchForeach */
 										foreach ( $map as $v => $m ) {
 											$submodules[] = "[[Special:ApiHelp/{$m}|{$v}]]";
 										}
