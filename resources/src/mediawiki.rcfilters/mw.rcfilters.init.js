@@ -9,13 +9,23 @@
 	var rcfilters = {
 		/** */
 		init: function () {
-			var model = new mw.rcfilters.dm.FiltersViewModel(),
-				controller = new mw.rcfilters.Controller( model ),
+			var filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
+				changesListModel = new mw.rcfilters.dm.ChangesListViewModel(),
+				controller = new mw.rcfilters.Controller( filtersModel, changesListModel ),
 				$overlay = $( '<div>' )
 					.addClass( 'mw-rcfilters-ui-overlay' ),
-				widget = new mw.rcfilters.ui.FilterWrapperWidget( controller, model, { $overlay: $overlay } );
+				filtersWidget = new mw.rcfilters.ui.FilterWrapperWidget(
+					controller, filtersModel, { $overlay: $overlay } );
 
-			model.initializeFilters( {
+			// eslint-disable-next-line no-new
+			new mw.rcfilters.ui.ChangesListWrapperWidget(
+				changesListModel, { $element: $( '.mw-changeslist, .mw-changeslist-empty' ) } );
+
+			// eslint-disable-next-line no-new
+			new mw.rcfilters.ui.FormWrapperWidget(
+				changesListModel, { $element: $( '.rcoptions form' ) } );
+
+			filtersModel.initializeFilters( {
 				registration: {
 					title: mw.msg( 'rcfilters-filtergroup-registration' ),
 					type: 'send_unselected_if_any',
@@ -149,7 +159,7 @@
 				}
 			} );
 
-			$( '.rcoptions' ).before( widget.$element );
+			$( '.rcoptions' ).before( filtersWidget.$element );
 			$( 'body' ).append( $overlay );
 
 			// Initialize values
@@ -179,7 +189,7 @@
 					name = 'hidemyself';
 				}
 				// This span corresponds to a filter that's in our model, so remove it
-				if ( model.getItemByName( name ) ) {
+				if ( filtersModel.getItemByName( name ) ) {
 					// HACK: Remove the text node after the span.
 					// If there isn't one, we're at the end, so remove the text node before the span.
 					// This would be unnecessary if we added separators with CSS.
@@ -193,31 +203,9 @@
 				}
 			} );
 
-			$( '.rcoptions form' ).submit( function () {
-				var $form = $( this );
-
-				// Get current filter values
-				$.each( model.getParametersFromFilters(), function ( paramName, paramValue ) {
-					var $existingInput = $form.find( 'input[name=' + paramName + ']' );
-					// Check if the hidden input already exists
-					// This happens if the parameter was already given
-					// on load
-					if ( $existingInput.length ) {
-						// Update the value
-						$existingInput.val( paramValue );
-					} else {
-						// Append hidden fields with filter values
-						$form.append(
-							$( '<input>' )
-								.attr( 'type', 'hidden' )
-								.attr( 'name', paramName )
-								.val( paramValue )
-						);
-					}
-				} );
-
-				// Continue the submission process
-				return true;
+			window.addEventListener( 'popstate', function () {
+				controller.updateFromURL();
+				controller.updateChangesList();
 			} );
 		}
 	};

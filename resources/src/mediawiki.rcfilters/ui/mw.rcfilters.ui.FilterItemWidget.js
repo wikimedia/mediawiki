@@ -22,7 +22,7 @@
 		this.controller = controller;
 		this.model = model;
 
-		this.checkboxWidget = new OO.ui.CheckboxInputWidget( {
+		this.checkboxWidget = new mw.rcfilters.ui.CheckboxInputWidget( {
 			value: this.model.getName(),
 			selected: this.model.isSelected()
 		} );
@@ -46,7 +46,7 @@
 		} );
 
 		// Event
-		this.checkboxWidget.connect( this, { change: 'onCheckboxChange' } );
+		this.checkboxWidget.connect( this, { userChange: 'onCheckboxChange' } );
 		this.model.connect( this, { update: 'onModelUpdate' } );
 
 		this.$element
