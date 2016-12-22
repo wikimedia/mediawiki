@@ -11,7 +11,39 @@
 		init: function () {
 			var model = new mw.rcfilters.dm.FiltersViewModel(),
 				controller = new mw.rcfilters.Controller( model ),
-				widget = new mw.rcfilters.ui.FilterWrapperWidget( controller, model );
+				widget = new mw.rcfilters.ui.FilterWrapperWidget( controller, model ),
+				$form = $( '.rcoptions form' ),
+				submittingPromise = null;
+
+			function updateResults( fromPopState ) {
+				var $submitButton = $form.find( 'input[type=submit]' ),
+					$changesList = $( '.mw-changeslist' ),
+					uri = new mw.Uri();
+				if ( submittingPromise ) {
+					// If a submission is already pending, ignore this one
+					return;
+				}
+
+				$changesList.addClass( 'oo-ui-pendingElement-pending' );
+				$submitButton.prop( 'disabled', true );
+
+				uri.extend( model.getParametersFromFilters() );
+				submittingPromise = $.ajax( uri.toString(), { contentType: 'html' } );
+				submittingPromise
+					.then( function ( html ) {
+						$changesList.empty().append(
+							$( $.parseHTML( html ) ).find( '.mw-changeslist' ).first().contents()
+						);
+						if ( !fromPopState ) {
+							controller.updateURL();
+						}
+					} )
+					.always( function () {
+						$changesList.removeClass( 'oo-ui-pendingElement-pending' );
+						$submitButton.prop( 'disabled', false );
+						submittingPromise = null;
+					} );
+			}
 
 			model.toggleLoading( true );
 			model.initializeFilters( {
@@ -74,31 +106,15 @@
 			controller.initialize();
 			model.toggleLoading( false );
 
-			$( '.rcoptions form' ).submit( function () {
-				var $form = $( this );
+			$form.submit( function () {
+				updateResults();
+				// Prevent native form submission
+				return false;
+			} );
 
-				// Get current filter values
-				$.each( model.getParametersFromFilters(), function ( paramName, paramValue ) {
-					var $existingInput = $form.find( 'input[name=' + paramName + ']' );
-					// Check if the hidden input already exists
-					// This happens if the parameter was already given
-					// on load
-					if ( $existingInput.length ) {
-						// Update the value
-						$existingInput.val( paramValue );
-					} else {
-						// Append hidden fields with filter values
-						$form.append(
-							$( '<input>' )
-								.attr( 'type', 'hidden' )
-								.attr( 'name', paramName )
-								.val( paramValue )
-						);
-					}
-				} );
-
-				// Continue the submission process
-				return true;
+			window.addEventListener( 'popstate', function ( e ) {
+				controller.updateFromURL();
+				updateResults( true );
 			} );
 		}
 	};

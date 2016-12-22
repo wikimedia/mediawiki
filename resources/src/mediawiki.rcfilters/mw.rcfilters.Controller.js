@@ -8,6 +8,8 @@
 		this.model = model;
 
 		// TODO: When we are ready, update the URL when a filter is updated
+		// TODO should we do this on every itemUpdate, or only when the user submits the form
+		//      or takes some other explicit action like closing the popup?
 		// this.model.connect( this, { itemUpdate: 'updateURL' } );
 	};
 
@@ -18,8 +20,14 @@
 	 * Initialize the filter and parameter states
 	 */
 	mw.rcfilters.Controller.prototype.initialize = function () {
-		var uri = new mw.Uri();
+		this.updateFromURL();
+	};
 
+	/**
+	 * Update the model state based on the URL parameters.
+	 */
+	mw.rcfilters.Controller.prototype.updateFromURL = function () {
+		var uri = new mw.Uri();
 		this.model.updateFilters(
 			// Translate the url params to filter select states
 			this.model.getFiltersFromParameters( uri.query )
@@ -51,7 +59,7 @@
 		// TODO: Clean up the list of filters; perhaps 'falsy' filters
 		// shouldn't appear at all? Or compare to existing query string
 		// and see if current state of a specific filter is needed?
-		uri.query = $.extend( this.model.getParametersFromFilters(), uri.query );
+		uri.extend( this.model.getParametersFromFilters() );
 
 		// Update the URL itself
 		window.history.pushState( { tag: 'rcfilters' }, document.title, uri.toString() );
