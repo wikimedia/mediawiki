@@ -80,12 +80,13 @@ class ApiQueryContributions extends ApiQueryBase {
 			$this->userids = [];
 
 			if ( !count( $this->params['userids'] ) ) {
-				$this->dieUsage( 'Userids parameter may not be empty.', 'param_userids' );
+				$encParamName = $this->encodeParamName( 'userids' );
+				$this->dieWithError( [ 'apierror-paramempty', $encParamName ], "paramempty_$encParamName" );
 			}
 
 			foreach ( $this->params['userids'] as $uid ) {
 				if ( $uid <= 0) {
-					$this->dieUsage( "User ID {$uid} is not valid.", 'param_userids' );
+					$this->dieWithError( [ 'apierror-invaliduserid', $uid] , 'invaliduserid' );
 				}
 
 				$this->userids[] = $uid;
