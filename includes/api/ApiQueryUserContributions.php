@@ -6,7 +6,7 @@
  *
  * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
- * Updated on Dec 19, 2016
+ * Updated on Dec 22, 2016
  *
  * Karatakis Panagiotis "karatakis@auth.gr"
  *
