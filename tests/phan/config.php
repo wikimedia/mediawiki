@@ -335,8 +335,6 @@ return [
 		"PhanUndeclaredConstant",
 		// approximate error count: 185
 		"PhanUndeclaredMethod",
-		// approximate error count: 1342
-		"PhanUndeclaredProperty",
 		// approximate error count: 9
 		"PhanUndeclaredStaticMethod",
 		// approximate error count: 79
