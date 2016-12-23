@@ -1950,18 +1950,6 @@ class Parser {
 	/**
 	 * Replace unusual escape codes in a URL with their equivalent characters
 	 *
-	 * @deprecated since 1.24, use normalizeLinkUrl
-	 * @param string $url
-	 * @return string
-	 */
-	public static function replaceUnusualEscapes( $url ) {
-		wfDeprecated( __METHOD__, '1.24' );
-		return self::normalizeLinkUrl( $url );
-	}
-
-	/**
-	 * Replace unusual escape codes in a URL with their equivalent characters
-	 *
 	 * This generally follows the syntax defined in RFC 3986, with special
 	 * consideration for HTTP query strings.
 	 *
