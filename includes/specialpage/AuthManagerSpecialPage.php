@@ -323,8 +323,10 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			case AuthManager::ACTION_LINK:
 			case AuthManager::ACTION_LINK_CONTINUE:
 				return $authManager->canLinkAccounts();
-			case AuthManager::ACTION_CHANGE:
 			case AuthManager::ACTION_REMOVE:
+				return !$authManager->onlyOneRemovablePrimaryRemaining();
+				break;
+			case AuthManager::ACTION_CHANGE:
 			case AuthManager::ACTION_UNLINK:
 				return true;
 			default:

@@ -195,6 +195,25 @@ class LocalPasswordPrimaryAuthenticationProvider
 		);
 	}
 
+	public function getAuthenticationRequests( $action, array $options ) {
+		if ( $action !== AuthManager::ACTION_REMOVE ) {
+			return parent::getAuthenticationRequests( $action, $options );
+		}
+
+		$dbr = wfGetDB( DB_REPLICA );
+		$row = $dbr->selectRow(
+			'user',
+			[ 'user_password' ],
+			[ 'user_name' => $options['username'] ],
+			__METHOD__
+		);
+
+		if ( $row->user_password !== null && $row->user_password !== '' ) {
+			return [ new PasswordAuthenticationRequest() ];
+		}
+		return [];
+	}
+
 	public function providerAllowsAuthenticationDataChange(
 		AuthenticationRequest $req, $checkData = true
 	) {
@@ -236,34 +255,28 @@ class LocalPasswordPrimaryAuthenticationProvider
 
 	public function providerChangeAuthenticationData( AuthenticationRequest $req ) {
 		$username = $req->username !== null ? User::getCanonicalName( $req->username, 'usable' ) : false;
-		if ( $username === false ) {
+		if ( $username === false || get_class( $req ) !== PasswordAuthenticationRequest::class ) {
 			return;
 		}
 
-		$pwhash = null;
-
-		if ( get_class( $req ) === PasswordAuthenticationRequest::class ) {
-			if ( $this->loginOnly ) {
-				$pwhash = $this->getPasswordFactory()->newFromCiphertext( null );
-				$expiry = null;
-			} else {
-				$pwhash = $this->getPasswordFactory()->newFromPlaintext( $req->password );
-				$expiry = $this->getNewPasswordExpiry( $username );
-			}
+		if ( $this->loginOnly || $req->action === AuthManager::ACTION_REMOVE ) {
+			$pwhash = $this->getPasswordFactory()->newFromCiphertext( null );
+			$expiry = null;
+		} else {
+			$pwhash = $this->getPasswordFactory()->newFromPlaintext( $req->password );
+			$expiry = $this->getNewPasswordExpiry( $username );
 		}
 
-		if ( $pwhash ) {
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->update(
-				'user',
-				[
-					'user_password' => $pwhash->toString(),
-					'user_password_expires' => $dbw->timestampOrNull( $expiry ),
-				],
-				[ 'user_name' => $username ],
-				__METHOD__
-			);
-		}
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->update(
+			'user',
+			[
+				'user_password' => $pwhash->toString(),
+				'user_password_expires' => $dbw->timestampOrNull( $expiry ),
+			],
+			[ 'user_name' => $username ],
+			__METHOD__
+		);
 	}
 
 	public function accountCreationType() {

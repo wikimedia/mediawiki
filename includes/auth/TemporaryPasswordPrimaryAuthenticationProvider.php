@@ -108,8 +108,18 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 				}
 
 			case AuthManager::ACTION_REMOVE:
-				return [ new TemporaryPasswordAuthenticationRequest ];
+				$dbr = wfGetDB( DB_REPLICA );
+				$row = $dbr->selectRow(
+					'user',
+					[ 'user_newpassword' ],
+					[ 'user_name' => $options['username'] ],
+					__METHOD__
+				);
 
+				if ( $row->user_newpassword !== null && $row->user_newpassword !== '' ) {
+					return [ new TemporaryPasswordAuthenticationRequest() ];
+				}
+				return [];
 			default:
 				return [];
 		}
