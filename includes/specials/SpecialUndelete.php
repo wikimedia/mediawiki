@@ -1806,11 +1806,9 @@ class SpecialUndelete extends SpecialPage {
 		// Show revision undeletion warnings and errors
 		$status = $archive->getRevisionStatus();
 		if ( $status && !$status->isGood() ) {
-			$out->addWikiText( '<div class="error">' .
-				$status->getWikiText(
-					'cannotundelete',
-					'cannotundelete'
-				) . '</div>'
+			$out->wrapWikiMsg(
+				"<div class=\"error\" id=\"mw-error-cannotundelete\">\n$1\n</div>",
+				'cannotundelete'
 			);
 		}
 
