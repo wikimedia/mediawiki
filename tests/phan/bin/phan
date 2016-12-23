@@ -10,8 +10,13 @@ fi
 # Note that this isn't loaded in via composer because then composer can
 # only be run with php7.0
 if [ ! -f "$PHAN" ]; then
+	# If no PHAN is specified then try to get location from PATH
+	export PHAN="$(which phan)"
+fi
+if [ ! -f "$PHAN" ]; then
 	echo "The environment variable PHAN must point to the 'phan' file"
 	echo "in a checkout of https://github.com/etsy/phan.git"
+	echo "Or phan must be included in your PATH"
 	exit 1
 fi
 
@@ -36,6 +41,7 @@ export ROOT="$(git rev-parse --show-toplevel)"
 
 # Go to the root of this git repo
 cd "$ROOT"
+
 
 export CONFIG_FILE="$ROOT/tests/phan/config.php"
 if [ ! -f "$CONFIG_FILE" ]; then
