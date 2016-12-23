@@ -260,7 +260,7 @@ class LBFactoryMulti extends LBFactory {
 			throw new InvalidArgumentException( __METHOD__ . ": Unknown cluster \"$cluster\"" );
 		}
 		$template = $this->serverTemplate;
-		if ( isset( $this->externalTemplateOverrides ) ) {
+		if ( $this->externalTemplateOverrides ) {
 			$template = $this->externalTemplateOverrides + $template;
 		}
 		if ( isset( $this->templateOverridesByCluster[$cluster] ) ) {
@@ -348,7 +348,7 @@ class LBFactoryMulti extends LBFactory {
 			$serverInfo = $template;
 			if ( $master ) {
 				$serverInfo['master'] = true;
-				if ( isset( $this->masterTemplateOverrides ) ) {
+				if ( $this->masterTemplateOverrides ) {
 					$serverInfo = $this->masterTemplateOverrides + $serverInfo;
 				}
 				$master = false;
