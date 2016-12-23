@@ -2501,7 +2501,6 @@
 	"cant-move-to-category-page": "You do not have permission to move a page to a category page.",
 	"cant-move-subpages": "You do not have permission to move subpages.",
 	"namespace-nosubpages": "Namespace \"$1\" does not allow subpages.",
-	"movepage-max-pages": "The source page has more than the maximum $1 {{PLURAL:$1|subpage|subpages}}.",
 	"newtitle": "New title:",
 	"move-watch": "Watch source page and target page",
 	"movepagebtn": "Move page",
