@@ -193,7 +193,10 @@ class SiteStats {
 				return $dbr->selectField(
 					'user_groups',
 					'COUNT(*)',
-					[ 'ug_group' => $group ],
+					[
+						'ug_group' => $group,
+						'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
+					],
 					__METHOD__
 				);
 			},
