@@ -86,7 +86,7 @@ class SpecialActiveUsers extends SpecialPage {
 		$groups = User::getAllGroups();
 
 		foreach ( $groups as $group ) {
-			$msg = htmlspecialchars( User::getGroupName( $group ) );
+			$msg = htmlspecialchars( UserGroupMembership::getGroupName( $group ) );
 			$options[$msg] = $group;
 		}
 

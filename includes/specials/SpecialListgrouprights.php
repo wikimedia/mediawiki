@@ -273,12 +273,14 @@ class SpecialListGroupRights extends SpecialPage {
 			} elseif ( is_array( $changeGroup ) ) {
 				$changeGroup = array_intersect( array_values( array_unique( $changeGroup ) ), $allGroups );
 				if ( count( $changeGroup ) ) {
+					$groupLinks = [];
+					foreach ( $changeGroup as $group ) {
+						$groupLinks[] = UserGroupMembership::getLink( $group, $this->getContext(), 'wiki' );
+					}
 					// For grep: listgrouprights-addgroup, listgrouprights-removegroup,
 					// listgrouprights-addgroup-self, listgrouprights-removegroup-self
 					$r[] = $this->msg( 'listgrouprights-' . $messageKey,
-						$lang->listToText( array_map( [ 'User', 'makeGroupLinkWiki' ], $changeGroup ) ),
-						count( $changeGroup )
-					)->parse();
+						$lang->listToText( $groupLinks ), count( $changeGroup ) )->parse();
 				}
 			}
 		}

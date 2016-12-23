@@ -25,6 +25,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->setUpPermissionGlobals();
 
 		$this->user = new User;
+		$this->user->addToDatabase();
 		$this->user->addGroup( 'unittesters' );
 	}
 
@@ -99,6 +100,7 @@ class UserTest extends MediaWikiTestCase {
 	 */
 	public function testUserGetRightsHooks() {
 		$user = new User;
+		$user->addToDatabase();
 		$user->addGroup( 'unittesters' );
 		$user->addGroup( 'testwriters' );
 		$userWrapper = TestingAccessWrapper::newFromObject( $user );
