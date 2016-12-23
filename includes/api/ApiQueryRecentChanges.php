@@ -177,7 +177,14 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		if ( !is_null( $params['type'] ) ) {
 			try {
-				$this->addWhereFld( 'rc_type', RecentChange::parseToRCType( $params['type'] ) );
+				$typeField = RecentChange::parseToRCType( $params['type'] );
+				$this->addWhereFld( 'rc_type', $typeField );
+				// If only showing "new" pages, add rc_new condition
+				// so that mysql can use the new_name_timestamp index if
+				// appropriate.
+				if ( count( $typeField ) === 1 && $typeField[0] === RC_NEW ) {
+					$this->addWhereFld( 'rc_new', 1 );
+				}
 			} catch ( Exception $e ) {
 				ApiBase::dieDebug( __METHOD__, $e->getMessage() );
 			}
