@@ -1480,6 +1480,7 @@
 	"apierror-cantsend": "{{doc-apierror}}",
 	"apierror-cantundelete": "{{doc-apierror}}",
 	"apierror-changeauth-norequest": "{{doc-apierror}}",
+	"apierror-removeauth-lastremaining": "{{doc-apierror}}",
 	"apierror-chunk-too-small": "{{doc-apierror}}\n\nParameters:\n* $1 - Minimum size in bytes.",
 	"apierror-cidrtoobroad": "{{doc-apierror}}\n\nParameters:\n* $1 - \"IPv4\" or \"IPv6\"\n* $2 - Minimum CIDR mask length.",
 	"apierror-compare-inputneeded": "{{doc-apierror}}",
