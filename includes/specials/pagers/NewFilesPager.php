@@ -59,13 +59,15 @@ class NewFilesPager extends ReverseChronologicalPager {
 			$groupsWithBotPermission = User::getGroupsWithPermission( 'bot' );
 
 			if ( count( $groupsWithBotPermission ) ) {
+				$dbr = wfGetDB( DB_REPLICA );
 				$tables[] = 'user_groups';
 				$conds[] = 'ug_group IS NULL';
 				$jconds['user_groups'] = [
 					'LEFT JOIN',
 					[
 						'ug_group' => $groupsWithBotPermission,
-						'ug_user = img_user'
+						'ug_user = img_user',
+						'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
 					]
 				];
 			}

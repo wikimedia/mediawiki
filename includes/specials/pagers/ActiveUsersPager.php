@@ -101,12 +101,17 @@ class ActiveUsersPager extends UsersPager {
 			$tables[] = 'user_groups';
 			$conds[] = 'ug_user = user_id';
 			$conds['ug_group'] = $this->groups;
+			$conds[] = 'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() );
 		}
 		if ( $this->excludegroups !== [] ) {
 			foreach ( $this->excludegroups as $group ) {
 				$conds[] = 'NOT EXISTS (' . $dbr->selectSQLText(
-						'user_groups', '1', [ 'ug_user = user_id', 'ug_group' => $group ]
-					) . ')';
+					'user_groups', '1', [
+						'ug_user = user_id',
+						'ug_group' => $group,
+						'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
+					]
+				) . ')';
 			}
 		}
 		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
