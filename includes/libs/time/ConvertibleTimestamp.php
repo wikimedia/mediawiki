@@ -208,7 +208,7 @@ class ConvertibleTimestamp {
 			$output .= ' GMT';
 		}
 
-		if ( $style == TS_MW && strlen( $output ) !== 14 ) {
+		if ( $style == TS_MW && ( strlen( $output ) !== 14 || $output > '99991229235959' ) ) {
 			throw new TimestampException( __METHOD__ . ': The timestamp cannot be represented in ' .
 				'the specified format' );
 		}
