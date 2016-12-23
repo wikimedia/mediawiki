@@ -193,11 +193,30 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 	 */
 	public function testGetAuthenticationRequests( $action, $options, $expected ) {
 		$actual = $this->getProvider()->getAuthenticationRequests( $action, $options );
+		$needsTempPassword = false;
 		foreach ( $actual as $req ) {
-			if ( $req instanceof TemporaryPasswordAuthenticationRequest && $req->password !== null ) {
+			if ( !$req instanceof TemporaryPasswordAuthenticationRequest ) {
+				continue;
+			}
+
+			if ( isset( $options['username'] ) ) {
+				$needsTempPassword = true;
+			}
+
+			if ( $req->password !== null ) {
 				$req->password = 'random';
 			}
 		}
+		if ( $needsTempPassword ) {
+			$dbw = wfGetDB( DB_MASTER );
+			$dbw->update( 'user', [
+					'user_newpassword' => 'test',
+					'user_newpass_time' => null,
+				], [
+					'user_name' => $options['username'],
+				] );
+		}
+
 		$this->assertEquals( $expected, $actual );
 	}
 
@@ -224,9 +243,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 			[ AuthManager::ACTION_CHANGE, $loggedIn, [
 				new TemporaryPasswordAuthenticationRequest( 'random' )
 			] ],
-			[ AuthManager::ACTION_REMOVE, $anon, [
-				new TemporaryPasswordAuthenticationRequest
-			] ],
+			[ AuthManager::ACTION_REMOVE, $anon, [] ],
 			[ AuthManager::ACTION_REMOVE, $loggedIn, [
 				new TemporaryPasswordAuthenticationRequest
 			] ],

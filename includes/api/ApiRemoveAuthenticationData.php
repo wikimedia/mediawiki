@@ -71,6 +71,10 @@ class ApiRemoveAuthenticationData extends ApiBase {
 		}
 		$req = reset( $reqs );
 
+		if ( $manager->onlyOneRemovablePrimaryRemaining() ) {
+			$this->dieWithError( 'apierror-removeauth-lastremaining', 'lastremaining' );
+		}
+
 		// Perform the removal
 		$status = $manager->allowsAuthenticationDataChange( $req, true );
 		Hooks::run( 'ChangeAuthenticationDataAudit', [ $req, $status ] );

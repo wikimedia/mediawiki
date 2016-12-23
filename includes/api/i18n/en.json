@@ -1587,6 +1587,7 @@
 	"apierror-cantsend": "You are not logged in, you do not have a confirmed email address, or you are not allowed to send email to other users, so you cannot send email.",
 	"apierror-cantundelete": "Couldn't undelete: the requested revisions may not exist, or may have been undeleted already.",
 	"apierror-changeauth-norequest": "Failed to create change request.",
+	"apierror-removeauth-lastremaining": "Can't remove the last remaining authentication method. Add another method first, before you remove this one.",
 	"apierror-chunk-too-small": "Minimum chunk size is $1 {{PLURAL:$1|byte|bytes}} for non-final chunks.",
 	"apierror-cidrtoobroad": "$1 CIDR ranges broader than /$2 are not accepted.",
 	"apierror-compare-inputneeded": "A title, a page ID, or a revision number is needed for both the <var>from</var> and the <var>to</var> parameters.",
