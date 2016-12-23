@@ -1774,6 +1774,23 @@ class AuthManager implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Returns true, if only one primary authentication provider (with which the user can
+	 * be authenticated and has locally stored (read: removable) data) is remaining. This should
+	 * be checked, before an authentication provider is removed to ensure, that the user has at
+	 * least one remaining primary authentication provider and there's no account left, which can't
+	 * login anymore.
+	 *
+	 * @param String $username
+	 * @return bool
+	 */
+	public function onlyOnePrimaryRemaining( $username ) {
+		$reqs = array_filter( $this->getPrimaryAuthenticationProviders(), function ( $r ) use ( $username ) {
+			return $r->testUserCanAuthenticate( $username );
+		} );
+		return count( $reqs ) === 1;
+	}
+
+	/**
 	 * Start an account linking flow
 	 *
 	 * @param User $user User being linked

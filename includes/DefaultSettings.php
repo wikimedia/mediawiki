@@ -4753,9 +4753,7 @@ $wgChangeCredentialsBlacklist = [
  * @since 1.27
  * @var string[]
  */
-$wgRemoveCredentialsBlacklist = [
-	\MediaWiki\Auth\PasswordAuthenticationRequest::class,
-];
+$wgRemoveCredentialsBlacklist = [];
 
 /**
  * For compatibility with old installations set to false

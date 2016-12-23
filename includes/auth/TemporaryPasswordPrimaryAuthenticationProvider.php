@@ -108,8 +108,10 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 				}
 
 			case AuthManager::ACTION_REMOVE:
-				return [ new TemporaryPasswordAuthenticationRequest ];
-
+				if ( $this->testUserCanAuthenticate( $options['username'] )) {
+					return [ new TemporaryPasswordAuthenticationRequest() ];
+				}
+				return [];
 			default:
 				return [];
 		}

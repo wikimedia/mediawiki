@@ -76,6 +76,24 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 
 		$this->loadAuth( $subPage );
 
+		if ( !$this->isActionAllowed( $this->authAction ) ) {
+			// TODO: This currently can't happen for Special:ChangeCredentials, so the messages
+			// are deactivated, as we can't give a clear "What you should do now" to the user in
+			// this case (as it should never happen), see AuthManagerSpecialPage::isActionAllowed().
+			// However, if this change in the future, the messages should be changed, too.
+
+			// messages used:
+			//  removecredentials-action-not-allowed-title,
+			//  changecredentials-action-not-allowed-title
+			$titleMessage =
+				$this->msg( static::$messagePrefix . '-action-not-allowed-title', $subPage );
+			// messages used:
+			//  removecredentials-action-not-allowed,
+			//  changecredentials-action-not-allowed
+			$errorMessage = $this->msg( static::$messagePrefix . '-action-not-allowed', $subPage );
+			throw new ErrorPageError( $titleMessage, $errorMessage );
+		}
+
 		if ( !$subPage ) {
 			$this->showSubpageList();
 			return;
