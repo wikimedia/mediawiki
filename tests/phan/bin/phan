@@ -57,7 +57,7 @@ export RUN="${ISSUES}/issues-${REV}"
 
 # Run the analysis, emitting output to the
 # issues file.
-php7.0 $PHAN \
+php $PHAN \
 	--project-root-directory "$ROOT" \
 	--config-file "$CONFIG_FILE" \
 	--output "php://stdout" \
