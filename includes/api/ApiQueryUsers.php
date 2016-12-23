@@ -100,6 +100,8 @@ class ApiQueryUsers extends ApiQueryBase {
 	public function execute() {
 		global $wgContLang;
 
+		$db = $this->getDB();
+
 		$params = $this->extractRequestParams();
 		$this->requireMaxOneParameter( $params, 'userids', 'users' );
 
@@ -170,11 +172,14 @@ class ApiQueryUsers extends ApiQueryBase {
 
 				$this->addTables( 'user_groups' );
 				$this->addJoinConds( [ 'user_groups' => [ 'INNER JOIN', 'ug_user=user_id' ] ] );
-				$this->addFields( [ 'user_name', 'ug_group' ] );
+				$this->addFields( [ 'user_name' ] );
+				$this->addFields( UserGroupMembership::selectFields() );
+				$this->addWhere( 'ug_expiry IS NULL OR ug_expiry >= ' .
+					$db->addQuotes( $db->timestamp() ) );
 				$userGroupsRes = $this->select( __METHOD__ );
 
 				foreach ( $userGroupsRes as $row ) {
-					$userGroups[$row->user_name][] = $row->ug_group;
+					$userGroups[$row->user_name][] = $row;
 				}
 			}
 
