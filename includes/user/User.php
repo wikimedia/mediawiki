@@ -66,7 +66,7 @@ class User implements IDBAccessObject {
 	/**
 	 * @const int Serialized record version.
 	 */
-	const VERSION = 10;
+	const VERSION = 11;
 
 	/**
 	 * Exclude user options that are set to their default value.
@@ -104,7 +104,7 @@ class User implements IDBAccessObject {
 		'mRegistration',
 		'mEditCount',
 		// user_groups table
-		'mGroups',
+		'mGroupMemberships',
 		// user_properties table
 		'mOptionOverrides',
 	];
@@ -225,8 +225,13 @@ class User implements IDBAccessObject {
 	protected $mRegistration;
 	/** @var int */
 	protected $mEditCount;
-	/** @var array */
-	public $mGroups;
+	/**
+	 * @var array No longer used since 1.29; use User::getGroups() instead
+	 * @deprecated since 1.29
+	 */
+	private $mGroups;
+	/** @var array Associative array of (group name => UserGroupMembership object) */
+	protected $mGroupMemberships;
 	/** @var array */
 	protected $mOptionOverrides;
 	// @}
@@ -283,9 +288,7 @@ class User implements IDBAccessObject {
 	/** @var array */
 	public $mOptions;
 
-	/**
-	 * @var WebRequest
-	 */
+	/** @var WebRequest */
 	private $mRequest;
 
 	/** @var Block */
@@ -1137,7 +1140,7 @@ class User implements IDBAccessObject {
 		$this->mEmailToken = '';
 		$this->mEmailTokenExpires = null;
 		$this->mRegistration = wfTimestamp( TS_MW );
-		$this->mGroups = [];
+		$this->mGroupMemberships = [];
 
 		Hooks::run( 'UserLoadDefaults', [ $this, $name ] );
 	}
@@ -1249,7 +1252,7 @@ class User implements IDBAccessObject {
 		if ( $s !== false ) {
 			// Initialise user table data
 			$this->loadFromRow( $s );
-			$this->mGroups = null; // deferred
+			$this->mGroupMemberships = null; // deferred
 			$this->getEditCount(); // revalidation for nulls
 			return true;
 		} else {
@@ -1266,13 +1269,16 @@ class User implements IDBAccessObject {
 	 * @param stdClass $row Row from the user table to load.
 	 * @param array $data Further user data to load into the object
 	 *
-	 *	user_groups		Array with groups out of the user_groups table
-	 *	user_properties		Array with properties out of the user_properties table
+	 *  user_groups   Array of arrays or stdClass result rows out of the user_groups
+	 *                table. Previously you were supposed to pass an array of strings
+	 *                here, but we also need expiry info nowadays, so an array of
+	 *                strings is ignored.
+	 *  user_properties   Array with properties out of the user_properties table
 	 */
 	protected function loadFromRow( $row, $data = null ) {
 		$all = true;
 
-		$this->mGroups = null; // deferred
+		$this->mGroupMemberships = null; // deferred
 
 		if ( isset( $row->user_name ) ) {
 			$this->mName = $row->user_name;
@@ -1341,7 +1347,18 @@ class User implements IDBAccessObject {
 
 		if ( is_array( $data ) ) {
 			if ( isset( $data['user_groups'] ) && is_array( $data['user_groups'] ) ) {
-				$this->mGroups = $data['user_groups'];
+				if ( !count( $data['user_groups'] ) ) {
+					$this->mGroupMemberships = [];
+				} else {
+					$firstGroup = reset( $data['user_groups'] );
+					if ( is_array( $firstGroup ) || is_object( $firstGroup ) ) {
+						$this->mGroupMemberships = [];
+						foreach ( $data['user_groups'] as $row ) {
+							$ugm = UserGroupMembership::newFromRow( (object)$row );
+							$this->mGroupMemberships[$ugm->getGroup()] = $ugm;
+						}
+					}
+				}
 			}
 			if ( isset( $data['user_properties'] ) && is_array( $data['user_properties'] ) ) {
 				$this->loadOptions( $data['user_properties'] );
@@ -1365,18 +1382,12 @@ class User implements IDBAccessObject {
 	 * Load the groups from the database if they aren't already loaded.
 	 */
 	private function loadGroups() {
-		if ( is_null( $this->mGroups ) ) {
+		if ( is_null( $this->mGroupMemberships ) ) {
 			$db = ( $this->queryFlagsUsed & self::READ_LATEST )
 				? wfGetDB( DB_MASTER )
 				: wfGetDB( DB_REPLICA );
-			$res = $db->select( 'user_groups',
-				[ 'ug_group' ],
-				[ 'ug_user' => $this->mId ],
-				__METHOD__ );
-			$this->mGroups = [];
-			foreach ( $res as $row ) {
-				$this->mGroups[] = $row->ug_group;
-			}
+			$this->mGroupMemberships = UserGroupMembership::getMembershipsForUser(
+				$this->mId, $db );
 		}
 	}
 
@@ -1508,7 +1519,7 @@ class User implements IDBAccessObject {
 		$this->mRights = null;
 		$this->mEffectiveGroups = null;
 		$this->mImplicitGroups = null;
-		$this->mGroups = null;
+		$this->mGroupMemberships = null;
 		$this->mOptions = null;
 		$this->mOptionsLoaded = false;
 		$this->mEditCount = null;
@@ -3194,7 +3205,20 @@ class User implements IDBAccessObject {
 	public function getGroups() {
 		$this->load();
 		$this->loadGroups();
-		return $this->mGroups;
+		return array_keys( $this->mGroupMemberships );
+	}
+
+	/**
+	 * Get the list of explicit group memberships this user has, stored as
+	 * UserGroupMembership objects. Implicit groups are not included.
+	 *
+	 * @return array Associative array of (group name as string => UserGroupMembership object)
+	 * @since 1.29
+	 */
+	public function getGroupMemberships() {
+		$this->load();
+		$this->loadGroups();
+		return $this->mGroupMemberships;
 	}
 
 	/**
@@ -3303,34 +3327,35 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Add the user to the given group.
-	 * This takes immediate effect.
+	 * Add the user to the given group. This takes immediate effect.
+	 * If the user is already in the group, the expiry time will be updated to the new
+	 * expiry time. (If $expiry is omitted or null, the membership will be altered to
+	 * never expire.)
+	 *
 	 * @param string $group Name of the group to add
+	 * @param string $expiry Optional expiry timestamp in any format acceptable to
+	 *   wfTimestamp(), or null if the group assignment should not expire
 	 * @return bool
 	 */
-	public function addGroup( $group ) {
+	public function addGroup( $group, $expiry = null ) {
 		$this->load();
+		$this->loadGroups();
 
-		if ( !Hooks::run( 'UserAddGroup', [ $this, &$group ] ) ) {
+		if ( $expiry ) {
+			$expiry = wfTimestamp( TS_MW, $expiry );
+		}
+
+		if ( !Hooks::run( 'UserAddGroup', [ $this, &$group, &$expiry ] ) ) {
 			return false;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
-		if ( $this->getId() ) {
-			$dbw->insert( 'user_groups',
-				[
-					'ug_user' => $this->getId(),
-					'ug_group' => $group,
-				],
-				__METHOD__,
-				[ 'IGNORE' ] );
+		// create the new UserGroupMembership and put it in the DB
+		$ugm = new UserGroupMembership( $this->mId, $group, $expiry );
+		if ( !$ugm->insert( true ) ) {
+			return false;
 		}
 
-		$this->loadGroups();
-		$this->mGroups[] = $group;
-		// In case loadGroups was not called before, we now have the right twice.
-		// Get rid of the duplicate.
-		$this->mGroups = array_unique( $this->mGroups );
+		$this->mGroupMemberships[$group] = $ugm;
 
 		// Refresh the groups caches, and clear the rights cache so it will be
 		// refreshed on the next call to $this->getRights().
@@ -3350,29 +3375,19 @@ class User implements IDBAccessObject {
 	 */
 	public function removeGroup( $group ) {
 		$this->load();
+
 		if ( !Hooks::run( 'UserRemoveGroup', [ $this, &$group ] ) ) {
 			return false;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'user_groups',
-			[
-				'ug_user' => $this->getId(),
-				'ug_group' => $group,
-			], __METHOD__
-		);
-		// Remember that the user was in this group
-		$dbw->insert( 'user_former_groups',
-			[
-				'ufg_user' => $this->getId(),
-				'ufg_group' => $group,
-			],
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
+		$ugm = UserGroupMembership::getMembership( $this->mId, $group );
+		// delete the membership entry
+		if ( !$ugm || !$ugm->delete() ) {
+			return false;
+		}
 
 		$this->loadGroups();
-		$this->mGroups = array_diff( $this->mGroups, [ $group ] );
+		unset( $this->mGroupMemberships[$group] );
 
 		// Refresh the groups caches, and clear the rights cache so it will be
 		// refreshed on the next call to $this->getRights().
@@ -4698,25 +4713,27 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Get the localized descriptive name for a group, if it exists
+	 * @deprecated since 1.29 Use UserGroupMembership::getGroupName instead
 	 *
 	 * @param string $group Internal group name
 	 * @return string Localized descriptive group name
 	 */
 	public static function getGroupName( $group ) {
-		$msg = wfMessage( "group-$group" );
-		return $msg->isBlank() ? $group : $msg->text();
+		wfDeprecated( __METHOD__, '1.29' );
+		return UserGroupMembership::getGroupName( $group );
 	}
 
 	/**
 	 * Get the localized descriptive name for a member of a group, if it exists
+	 * @deprecated since 1.29 Use UserGroupMembership::getGroupMemberName instead
 	 *
 	 * @param string $group Internal group name
 	 * @param string $username Username for gender (since 1.19)
 	 * @return string Localized name for group member
 	 */
 	public static function getGroupMember( $group, $username = '#' ) {
-		$msg = wfMessage( "group-$group-member", $username );
-		return $msg->isBlank() ? $group : $msg->text();
+		wfDeprecated( __METHOD__, '1.29' );
+		return UserGroupMembership::getGroupMemberName( $group, $username );
 	}
 
 	/**
@@ -4766,34 +4783,33 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Get the title of a page describing a particular group
+	 * @deprecated since 1.29 Use UserGroupMembership::getGroupPage instead
 	 *
 	 * @param string $group Internal group name
 	 * @return Title|bool Title of the page if it exists, false otherwise
 	 */
 	public static function getGroupPage( $group ) {
-		$msg = wfMessage( 'grouppage-' . $group )->inContentLanguage();
-		if ( $msg->exists() ) {
-			$title = Title::newFromText( $msg->text() );
-			if ( is_object( $title ) ) {
-				return $title;
-			}
-		}
-		return false;
+		wfDeprecated( __METHOD__, '1.29' );
+		return UserGroupMembership::getGroupPage( $group );
 	}
 
 	/**
 	 * Create a link to the group in HTML, if available;
 	 * else return the group name.
+	 * @deprecated since 1.29 Use UserGroupMembership::getLink instead, or
+	 * make the link yourself if you need custom text
 	 *
 	 * @param string $group Internal name of the group
 	 * @param string $text The text of the link
 	 * @return string HTML link to the group
 	 */
 	public static function makeGroupLinkHTML( $group, $text = '' ) {
+		wfDeprecated( __METHOD__, '1.29' );
+
 		if ( $text == '' ) {
-			$text = self::getGroupName( $group );
+			$text = UserGroupMembership::getGroupName( $group );
 		}
-		$title = self::getGroupPage( $group );
+		$title = UserGroupMembership::getGroupPage( $group );
 		if ( $title ) {
 			return Linker::link( $title, htmlspecialchars( $text ) );
 		} else {
@@ -4804,16 +4820,20 @@ class User implements IDBAccessObject {
 	/**
 	 * Create a link to the group in Wikitext, if available;
 	 * else return the group name.
+	 * @deprecated since 1.29 Use UserGroupMembership::getLink instead, or
+	 * make the link yourself if you need custom text
 	 *
 	 * @param string $group Internal name of the group
 	 * @param string $text The text of the link
 	 * @return string Wikilink to the group
 	 */
 	public static function makeGroupLinkWiki( $group, $text = '' ) {
+		wfDeprecated( __METHOD__, '1.29' );
+
 		if ( $text == '' ) {
-			$text = self::getGroupName( $group );
+			$text = UserGroupMembership::getGroupName( $group );
 		}
-		$title = self::getGroupPage( $group );
+		$title = UserGroupMembership::getGroupPage( $group );
 		if ( $title ) {
 			$page = $title->getFullText();
 			return "[[$page|$text]]";
@@ -5373,10 +5393,10 @@ class User implements IDBAccessObject {
 	static function newFatalPermissionDeniedStatus( $permission ) {
 		global $wgLang;
 
-		$groups = array_map(
-			[ 'User', 'makeGroupLinkWiki' ],
-			User::getGroupsWithPermission( $permission )
-		);
+		$groups = [];
+		foreach ( User::getGroupsWithPermission( $permission ) as $group ) {
+			$groups[] = UserGroupMembership::getLink( $group, RequestContext::getMain(), 'wiki' );
+		}
 
 		if ( $groups ) {
 			return Status::newFatal( 'badaccess-groups', $wgLang->commaList( $groups ), count( $groups ) );
