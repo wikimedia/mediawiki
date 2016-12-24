@@ -2100,17 +2100,16 @@ class Language {
 		$data = explode( '|', $tz, 3 );
 
 		if ( $data[0] == 'ZoneInfo' ) {
-			MediaWiki\suppressWarnings();
-			$userTZ = timezone_open( $data[2] );
-			MediaWiki\restoreWarnings();
-			if ( $userTZ !== false ) {
+			try {
+				$userTZ = new DateTimeZone( $data[2] );
 				$date = date_create( $ts, timezone_open( 'UTC' ) );
 				date_timezone_set( $date, $userTZ );
 				$date = date_format( $date, 'YmdHis' );
 				return $date;
+			} catch ( Exception $e ) {
+				// Unrecognized timezone, default to 'Offset' with the stored offset.
+				$data[0] = 'Offset';
 			}
-			# Unrecognized timezone, default to 'Offset' with the stored offset.
-			$data[0] = 'Offset';
 		}
 
 		if ( $data[0] == 'System' || $tz == '' ) {

@@ -696,18 +696,22 @@ class Preferences {
 		$tzOptions = self::getTimezoneOptions( $context );
 
 		$tzSetting = $tzOffset;
+		if ( count( $tz ) > 1 && $tz[0] == 'ZoneInfo' &&
+			!in_array( $tzOffset, HTMLFormField::flattenOptions( $tzOptions ) )
+		) {
+			// Timezone offset can vary with DST
+			try {
+				$userTZ = new DateTimeZone( $tz[2] );
+				$minDiff = floor( timezone_offset_get( $userTZ, date_create( 'now' ) ) / 60 );
+				$tzSetting = "ZoneInfo|$minDiff|{$tz[2]}";
+			} catch ( Exception $e ) {
+				// User has an invalid time zone set. Fall back to just using the offset
+				$tz[0] = 'Offset';
+			}
+		}
 		if ( count( $tz ) > 1 && $tz[0] == 'Offset' ) {
 			$minDiff = $tz[1];
 			$tzSetting = sprintf( '%+03d:%02d', floor( $minDiff / 60 ), abs( $minDiff ) % 60 );
-		} elseif ( count( $tz ) > 1 && $tz[0] == 'ZoneInfo' &&
-			!in_array( $tzOffset, HTMLFormField::flattenOptions( $tzOptions ) )
-		) {
-			# Timezone offset can vary with DST
-			$userTZ = timezone_open( $tz[2] );
-			if ( $userTZ !== false ) {
-				$minDiff = floor( timezone_offset_get( $userTZ, date_create( 'now' ) ) / 60 );
-				$tzSetting = "ZoneInfo|$minDiff|{$tz[2]}";
-			}
 		}
 
 		$defaultPreferences['timecorrection'] = [
@@ -1391,6 +1395,25 @@ class Preferences {
 		$data = explode( '|', $tz, 3 );
 		switch ( $data[0] ) {
 			case 'ZoneInfo':
+				$data = explode( '|', $tz, 3 );
+				$valid = false;
+
+				if ( count( $data ) === 3 ) {
+					// Make sure this timezone exists
+					try {
+						new DateTimeZone( $data[2] );
+						// If the constructor didn't throw, we know it's valid
+						$valid = true;
+					} catch ( Exception $e ) {
+						// Not a valid timezone
+					}
+				}
+
+				if ( !$valid ) {
+					// If the input is invalid, fall back to a safe default
+					return 'Offset|0';
+				}
+				return $tz;
 			case 'System':
 				return $tz;
 			default:
