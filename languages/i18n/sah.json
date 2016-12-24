@@ -3726,5 +3726,18 @@
 	"authmanager-userdoesnotexist": "Маннык аат «$1» суох.",
 	"authmanager-userlogin-remembermypassword-help": "Аһарык сиэссийэ түмүктэммитин кэннэ долоҕойго хаалар дуо.",
 	"authmanager-username-help": "Кыттааччы аата тургутарга.",
-	"authmanager-password-help": "Аһарык тургутарга"
+	"authmanager-password-help": "Аһарык тургутарга",
+	"authmanager-realname-label": "Дьиҥнээх аатыҥ",
+	"authmanager-realname-help": "Кыттааччы сурукка киирбит аата",
+	"authmanager-provider-password": "Аһарык көмөтүнэн киирии",
+	"authmanager-provider-password-domain": "Дамыан уонна аһарык көмөтүнэн киирии",
+	"authmanager-provider-temporarypassword": "Быстах аһарык",
+	"authprovider-resetpass-skip-label": "Аһар",
+	"authprovider-resetpass-skip-help": "Аһарыгы хос ыытыыны көтүт.",
+	"authform-nosession-login": "Этэҥҥэ киирдиҥ, ол эрээри браузерыҥ киирбиккин «долоҕойугар тохтотуо» суоҕа.\n\n$1",
+	"authform-nosession-signup": "Этэҥҥэ бэлиэтэнниҥ, ол эрээри браузерыҥ киирбиккин «долоҕойугар тохтотуо» суоҕа.\n\n$1",
+	"specialpage-securitylevel-not-allowed-title": "Көҥүллэммэт",
+	"specialpage-securitylevel-not-allowed": "Бу сирэйи туһанар кыаҕыҥ суох эбит, тоҕо диэтэххэ бу чахчы Эн буоларгын тургутар кыахпыт суох.",
+	"authpage-cannot-login": "Киириини салгыыр кыах суох.",
+	"authpage-cannot-login-continue": "Киириини салгыыр кыах суох. Сиэссийэттэн тахсан хаалбыккын быһыылаах."
 }

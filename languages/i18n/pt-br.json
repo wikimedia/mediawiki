@@ -1728,7 +1728,7 @@
 	"statistics-header-hooks": "Outras estatísticas",
 	"statistics-articles": "Páginas de conteúdo",
 	"statistics-pages": "Páginas",
-	"statistics-pages-desc": "Todas as páginas no wiki, incluindo páginas de discussão, redirecionamentos, etc.",
+	"statistics-pages-desc": "Todas as páginas da wiki, incluindo páginas de discussão, redirecionamentos etc.",
 	"statistics-files": "Arquivos carregados",
 	"statistics-edits": "Edições de página desde que {{SITENAME}} foi instalado",
 	"statistics-edits-average": "Média de edições por página",

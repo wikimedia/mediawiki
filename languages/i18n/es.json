@@ -2497,6 +2497,8 @@
 	"cant-move-to-user-page": "No tienes permiso para trasladar una página a una página de usuario (excepto a subpáginas de usuario).",
 	"cant-move-category-page": "No tienes permiso para trasladar páginas de categoría.",
 	"cant-move-to-category-page": "No tienes permiso para trasladar una página a una página de categoría.",
+	"cant-move-subpages": "No tienes permiso para trasladar subpáginas.",
+	"namespace-nosubpages": "El espacio de nombres «$1» no permite subpáginas.",
 	"newtitle": "Título nuevo:",
 	"move-watch": "Vigilar páginas de origen y destino",
 	"movepagebtn": "Renombrar página",

@@ -352,7 +352,7 @@
 	"apihelp-query+prefixsearch-param-limit": "반환할 결과의 최대 수",
 	"apihelp-query+prefixsearch-param-profile": "검색 프로파일 사용",
 	"apihelp-query+protectedtitles-paramvalue-prop-level": "보호 수준을 추가합니다.",
-	"apihelp-query+querypage-example-ancientpages": "[[Special:Ancientpages|특수기능:오래된문서]]에서 결과를 반환합니다.",
+	"apihelp-query+querypage-example-ancientpages": "[[Special:Ancientpages|특수:오래된문서]]에서 결과를 반환합니다.",
 	"apihelp-query+recentchanges-param-prop": "추가 정보를 포함합니다:",
 	"apihelp-query+recentchanges-paramvalue-prop-user": "편집에 임할 사용자를 추가하고 IP인 경우 태그합니다.",
 	"apihelp-query+recentchanges-paramvalue-prop-userid": "편집에 임할 사용자를 추가합니다.",

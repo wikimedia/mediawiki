@@ -77,7 +77,8 @@
 			"一個正常人",
 			"Wehwei",
 			"1233thehongkonger",
-			"Maskers"
+			"Maskers",
+			"Knch903"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -1311,7 +1312,9 @@
 	"action-writeapi": "使用寫入 API",
 	"action-delete": "刪除此頁面",
 	"action-deleterevision": "刪除修訂",
+	"action-deletelogentry": "删除日誌記錄",
 	"action-deletedhistory": "檢視頁面的刪除歷史",
+	"action-deletedtext": "查看已刪除的修訂版本文字",
 	"action-browsearchive": "搜尋已刪除頁面",
 	"action-undelete": "取消刪除頁面",
 	"action-suppressrevision": "檢閱與還原隱藏修訂",
@@ -1329,6 +1332,7 @@
 	"action-userrights-interwiki": "編輯在其它 Wiki 上的使用者權限",
 	"action-siteadmin": "鎖定或解除鎖定資料庫",
 	"action-sendemail": "傳送電子郵件",
+	"action-editmyoptions": "編輯自己的偏好設定",
 	"action-editmywatchlist": "編輯您的監視清單",
 	"action-viewmywatchlist": "檢視您的監視清單",
 	"action-viewmyprivateinfo": "檢視您的個人資訊",
@@ -1874,6 +1878,7 @@
 	"apisandbox-continue-clear": "清除",
 	"apisandbox-continue-help": "{{int:apisandbox-continue}} 會 [https://www.mediawiki.org/wiki/API:Query#Continuing_queries 繼續] 最後的請求，{{int:apisandbox-continue-clear}} 則會清除繼續相關的參數。",
 	"apisandbox-param-limit": "輸入 <kbd>max</kbd> 以使用最大限制。",
+	"apisandbox-multivalue-all-values": "$1（所有值）",
 	"booksources": "圖書資源",
 	"booksources-search-legend": "尋找圖書資源",
 	"booksources-isbn": "國際標準書號：",
