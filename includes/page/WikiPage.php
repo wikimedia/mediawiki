@@ -316,11 +316,14 @@ class WikiPage implements Page, IDBAccessObject {
 	protected function pageData( $dbr, $conditions, $options = [] ) {
 		$fields = self::selectFields();
 
-		Hooks::run( 'ArticlePageDataBefore', [ &$this, &$fields ] );
+		// Use of &$this in hooks triggers warnings in PHP 7.1, see T153505
+		$wikiPage = $this;
+
+		Hooks::run( 'ArticlePageDataBefore', [ &$wikiPage, &$fields ] );
 
 		$row = $dbr->selectRow( 'page', $fields, $conditions, __METHOD__, $options );
 
-		Hooks::run( 'ArticlePageDataAfter', [ &$this, &$row ] );
+		Hooks::run( 'ArticlePageDataAfter', [ &$wikiPage, &$row ] );
 
 		return $row;
 	}

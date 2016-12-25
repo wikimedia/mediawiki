@@ -54,7 +54,10 @@ class CategoryPage extends Article {
 			return;
 		}
 
-		if ( !Hooks::run( 'CategoryPageView', [ &$this ] ) ) {
+		// Use of &$this in hooks triggers warnings in PHP 7.1, see T153505
+		$categoryPage = $this;
+
+		if ( !Hooks::run( 'CategoryPageView', [ &$categoryPage ] ) ) {
 			return;
 		}
 
