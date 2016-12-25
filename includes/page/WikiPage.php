@@ -316,7 +316,10 @@ class WikiPage implements Page, IDBAccessObject {
 	protected function pageData( $dbr, $conditions, $options = [] ) {
 		$fields = self::selectFields();
 
-		Hooks::run( 'ArticlePageDataBefore', [ &$this, &$fields ] );
+		// Use of &$this in hooks triggers warnings in PHP 7.1, see T153505
+		$wikiPage = $this;
+
+		Hooks::run( 'ArticlePageDataBefore', [ &$wikiPage, &$fields ] );
 
 		$row = $dbr->selectRow( 'page', $fields, $conditions, __METHOD__, $options );
 
@@ -1121,7 +1124,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return bool
 	 */
 	public function doPurge( $flags = self::PURGE_ALL ) {
-		if ( !Hooks::run( 'ArticlePurge', [ &$this ] ) ) {
+		// Use of &$this in hooks triggers warnings in PHP 7.1, see T153505
+		$wikiPage = $this;
+
+		if ( !Hooks::run( 'ArticlePurge', [ &$wikiPage ] ) ) {
 			return false;
 		}
 
@@ -1649,9 +1655,12 @@ class WikiPage implements Page, IDBAccessObject {
 		$user = $user ?: $wgUser;
 		$flags = $this->checkFlags( $flags );
 
+		// Use of &$this in hooks triggers warnings in PHP 7.1, see T153505
+		$wikiPage = $this;
+
 		// Trigger pre-save hook (using provided edit summary)
 		$hookStatus = Status::newGood( [] );
-		$hook_args = [ &$this, &$user, &$content, &$summary,
+		$hook_args = [ &$wikiPage, &$user, &$content, &$summary,
 							$flags & EDIT_MINOR, null, null, &$flags, &$hookStatus ];
 		// Check if the hook rejected the attempted save
 		if ( !Hooks::run( 'PageContentSave', $hook_args )
@@ -1878,8 +1887,10 @@ class WikiPage implements Page, IDBAccessObject {
 							'oldrevision' => $meta['oldRevision']
 						]
 					);
+					// Use of &$this in hooks triggers warnings in PHP 7.1, see T153505
+					$wikiPage = $this;
 					// Trigger post-save hook
-					$params = [ &$this, &$user, $content, $summary, $flags & EDIT_MINOR,
+					$params = [ &$wikiPage, &$user, $content, $summary, $flags & EDIT_MINOR,
 						null, null, &$flags, $revision, &$status, $meta['baseRevId'],
 						$meta['undidRevId'] ];
 					ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $params );
@@ -1999,8 +2010,10 @@ class WikiPage implements Page, IDBAccessObject {
 				) {
 					// Update links, etc.
 					$this->doEditUpdates( $revision, $user, [ 'created' => true ] );
+					// Use of &$this in hooks triggers warnings in PHP 7.1, see T153505
+					$wikiPage = $this;
 					// Trigger post-create hook
-					$params = [ &$this, &$user, $content, $summary,
+					$params = [ &$wikiPage, &$user, $content, $summary,
 						$flags & EDIT_MINOR, null, null, &$flags, $revision ];
 					ContentHandler::runLegacyHooks( 'ArticleInsertComplete', $params, '1.21' );
 					Hooks::run( 'PageContentInsertComplete', $params );
@@ -2277,9 +2290,12 @@ class WikiPage implements Page, IDBAccessObject {
 			}
 		}
 
-		Hooks::run( 'ArticleEditUpdates', [ &$this, &$editInfo, $options['changed'] ] );
+		// Use of &$this in hooks triggers warnings in PHP 7.1, see T153505
+		$wikiPage = $this;
 
-		if ( Hooks::run( 'ArticleEditUpdatesDeleteFromRecentchanges', [ &$this ] ) ) {
+		Hooks::run( 'ArticleEditUpdates', [ &$wikiPage, &$editInfo, $options['changed'] ] );
+
+		if ( Hooks::run( 'ArticleEditUpdatesDeleteFromRecentchanges', [ &$wikiPage ] ) ) {
 			// Flush old entries from the `recentchanges` table
 			if ( mt_rand( 0, 9 ) == 0 ) {
 				JobQueueGroup::singleton()->lazyPush( RecentChangesUpdateJob::newPurgeJob() );
@@ -2323,9 +2339,12 @@ class WikiPage implements Page, IDBAccessObject {
 			if ( !$recipient ) {
 				wfDebug( __METHOD__ . ": invalid username\n" );
 			} else {
+				// Use of &$this in hooks triggers warnings in PHP 7.1, see T153505
+				$wikiPage = $this;
+
 				// Allow extensions to prevent user notification
 				// when a new message is added to their talk page
-				if ( Hooks::run( 'ArticleEditUpdateNewTalk', [ &$this, $recipient ] ) ) {
+				if ( Hooks::run( 'ArticleEditUpdateNewTalk', [ &$wikiPage, $recipient ] ) ) {
 					if ( User::isIP( $shortTitle ) ) {
 						// An anonymous user
 						$recipient->setNewtalk( true, $revision );
@@ -2454,7 +2473,10 @@ class WikiPage implements Page, IDBAccessObject {
 		$nullRevision = null;
 
 		if ( $id ) { // Protection of existing page
-			if ( !Hooks::run( 'ArticleProtect', [ &$this, &$user, $limit, $reason ] ) ) {
+			// Use of &$this in hooks triggers warnings in PHP 7.1, see T153505
+			$wikiPage = $this;
+
+			if ( !Hooks::run( 'ArticleProtect', [ &$wikiPage, &$user, $limit, $reason ] ) ) {
 				return Status::newGood();
 			}
 
@@ -2541,9 +2563,12 @@ class WikiPage implements Page, IDBAccessObject {
 				__METHOD__
 			);
 
+			// Use of &$this in hooks triggers warnings in PHP 7.1, see T153505
+			$wikiPage = $this;
+
 			Hooks::run( 'NewRevisionFromEditComplete',
 				[ $this, $nullRevision, $latest, $user ] );
-			Hooks::run( 'ArticleProtectComplete', [ &$this, &$user, $limit, $reason ] );
+			Hooks::run( 'ArticleProtectComplete', [ &$wikiPage, &$user, $limit, $reason ] );
 		} else { // Protection of non-existing page (also known as "title protection")
 			// Cascade protection is meaningless in this case
 			$cascade = false;
@@ -2823,9 +2848,12 @@ class WikiPage implements Page, IDBAccessObject {
 			return $status;
 		}
 
+		// Use of &$this in hooks triggers warnings in PHP 7.1, see T153505
+		$wikiPage = $this;
+
 		$user = is_null( $user ) ? $wgUser : $user;
 		if ( !Hooks::run( 'ArticleDelete',
-			[ &$this, &$user, &$reason, &$error, &$status, $suppress ]
+			[ &$wikiPage, &$user, &$reason, &$error, &$status, $suppress ]
 		) ) {
 			if ( $status->isOK() ) {
 				// Hook aborted but didn't set a fatal status

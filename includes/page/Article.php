@@ -388,9 +388,12 @@ class Article implements Page {
 		$this->mContentObject = $content;
 		$this->mRevIdFetched = $this->mRevision->getId();
 
+		// Use of &$this in hooks triggers warnings in PHP 7.1, see T153505
+		$articlePage = $this;
+
 		ContentHandler::runLegacyHooks(
 			'ArticleAfterFetchContentObject',
-			[ &$this, &$this->mContentObject ],
+			[ &$articlePage, &$articlePage->mContentObject ],
 			'1.21'
 		);
 
@@ -525,7 +528,9 @@ class Article implements Page {
 		while ( !$outputDone && ++$pass ) {
 			switch ( $pass ) {
 				case 1:
-					Hooks::run( 'ArticleViewHeader', [ &$this, &$outputDone, &$useParserCache ] );
+					// Use of &$this in hooks triggers warnings in PHP 7.1, see T153505
+					$articlePage = $this;
+					Hooks::run( 'ArticleViewHeader', [ &$articlePage, &$outputDone, &$useParserCache ] );
 					break;
 				case 2:
 					# Early abort if the page doesn't exist
@@ -863,9 +868,12 @@ class Article implements Page {
 		$redirectTargetUrl = $this->getTitle()->getLinkURL( $query );
 
 		if ( isset( $this->mRedirectedFrom ) ) {
+			// Use of &$this in hooks triggers warnings in PHP 7.1, see T153505
+			$articlePage = $this;
+
 			// This is an internally redirected page view.
 			// We'll need a backlink to the source page for navigation.
-			if ( Hooks::run( 'ArticleViewRedirect', [ &$this ] ) ) {
+			if ( Hooks::run( 'ArticleViewRedirect', [ &$articlePage ] ) ) {
 				$redir = Linker::linkKnown(
 					$this->mRedirectedFrom,
 					null,
@@ -1295,7 +1303,10 @@ class Article implements Page {
 	 * @param int $oldid Revision ID of this article revision
 	 */
 	public function setOldSubtitle( $oldid = 0 ) {
-		if ( !Hooks::run( 'DisplayOldSubtitle', [ &$this, &$oldid ] ) ) {
+		// Use of &$this in hooks triggers warnings in PHP 7.1, see T153505
+		$articlePage = $this;
+
+		if ( !Hooks::run( 'DisplayOldSubtitle', [ &$articlePage, &$oldid ] ) ) {
 			return;
 		}
 
@@ -1858,7 +1869,9 @@ class Article implements Page {
 				&& !$this->mRedirectedFrom && !$this->getTitle()->isRedirect();
 			// Extension may have reason to disable file caching on some pages.
 			if ( $cacheable ) {
-				$cacheable = Hooks::run( 'IsFileCacheable', [ &$this ] );
+				// Use of &$this in hooks triggers warnings in PHP 7.1, see T153505
+				$articlePage = $this;
+				$cacheable = Hooks::run( 'IsFileCacheable', [ &$articlePage ] );
 			}
 		}
 
