@@ -1936,7 +1936,8 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function getFinalDescription() {
 		$desc = $this->getDescription();
-		Hooks::run( 'APIGetDescription', [ &$this, &$desc ] );
+		$apiModule = $this;
+		Hooks::run( 'APIGetDescription', [ &$apiModule, &$desc ] );
 		$desc = self::escapeWikiText( $desc );
 		if ( is_array( $desc ) ) {
 			$desc = implode( "\n", $desc );
@@ -1984,7 +1985,8 @@ abstract class ApiBase extends ContextSource {
 			] + ( isset( $params['token'] ) ? $params['token'] : [] );
 		}
 
-		Hooks::run( 'APIGetAllowedParams', [ &$this, &$params, $flags ] );
+		$apiModule = $this;
+		Hooks::run( 'APIGetAllowedParams', [ &$apiModule, &$params, $flags ] );
 
 		return $params;
 	}
@@ -2002,7 +2004,8 @@ abstract class ApiBase extends ContextSource {
 		$path = $this->getModulePath();
 
 		$desc = $this->getParamDescription();
-		Hooks::run( 'APIGetParamDescription', [ &$this, &$desc ] );
+		$apiModule = $this;
+		Hooks::run( 'APIGetParamDescription', [ &$apiModule, &$desc ] );
 
 		if ( !$desc ) {
 			$desc = [];

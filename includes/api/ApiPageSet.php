@@ -174,7 +174,8 @@ class ApiPageSet extends ApiBase {
 			// populate this pageset with the generator output
 			if ( !$isDryRun ) {
 				$generator->executeGenerator( $this );
-				Hooks::run( 'APIQueryGeneratorAfterExecute', [ &$generator, &$this ] );
+				$apiModule = $this;
+				Hooks::run( 'APIQueryGeneratorAfterExecute', [ &$generator, &$apiModule ] );
 			} else {
 				// Prevent warnings from being reported on these parameters
 				$main = $this->getMain();

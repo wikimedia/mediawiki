@@ -428,7 +428,9 @@ class HistoryPager extends ReverseChronologicalPager {
 			$queryInfo['options'],
 			$this->tagFilter
 		);
-		Hooks::run( 'PageHistoryPager::getQueryInfo', [ &$this, &$queryInfo ] );
+
+		$historyAction = $this;
+		Hooks::run( 'PageHistoryPager::getQueryInfo', [ &$historyAction, &$queryInfo ] );
 
 		return $queryInfo;
 	}
