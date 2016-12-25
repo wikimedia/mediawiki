@@ -66,7 +66,8 @@ abstract class FormAction extends Action {
 		$this->fields = $this->getFormFields();
 
 		// Give hooks a chance to alter the form, adding extra fields or text etc
-		Hooks::run( 'ActionModifyFormFields', [ $this->getName(), &$this->fields, $this->page ] );
+		$formAction = $this;
+		Hooks::run( 'ActionModifyFormFields', [ $this->getName(), &$formAction->fields, $this->page ] );
 
 		$form = new HTMLForm( $this->fields, $this->getContext(), $this->getName() );
 		$form->setSubmitCallback( [ $this, 'onSubmit' ] );

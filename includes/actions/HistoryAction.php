@@ -210,7 +210,8 @@ class HistoryAction extends FormlessAction {
 			'</fieldset></form>'
 		);
 
-		Hooks::run( 'PageHistoryBeforeList', [ &$this->page, $this->getContext() ] );
+		$historyAction = $this;
+		Hooks::run( 'PageHistoryBeforeList', [ &$historyAction->page, $this->getContext() ] );
 
 		// Create and output the list.
 		$pager = new HistoryPager( $this, $year, $month, $tagFilter, $conds );
@@ -428,7 +429,9 @@ class HistoryPager extends ReverseChronologicalPager {
 			$queryInfo['options'],
 			$this->tagFilter
 		);
-		Hooks::run( 'PageHistoryPager::getQueryInfo', [ &$this, &$queryInfo ] );
+
+		$historyAction = $this;
+		Hooks::run( 'PageHistoryPager::getQueryInfo', [ &$historyAction, &$queryInfo ] );
 
 		return $queryInfo;
 	}
