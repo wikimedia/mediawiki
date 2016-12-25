@@ -1849,9 +1849,11 @@ return [
 	],
 	'mediawiki.special.changeslist' => [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.css',
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.changeslist.legend' => [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.legend.css',
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.changeslist.legend.js' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.legend.js',
@@ -1859,6 +1861,7 @@ return [
 			'jquery.makeCollapsible',
 			'mediawiki.cookie',
 		],
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.changeslist.enhanced' => [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.enhanced.css',
@@ -1929,6 +1932,7 @@ return [
 	],
 	'mediawiki.special.recentchanges' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.recentchanges.js',
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.search' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.search.js',
