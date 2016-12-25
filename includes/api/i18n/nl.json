@@ -14,7 +14,8 @@
 			"Robin van der Vliet",
 			"Edoderoo",
 			"Lemondoge",
-			"Hex"
+			"Hex",
+			"Mainframe98"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentatie]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api E-maillijst]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-aankondigingen]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & verzoeken]\n</div>\n<strong>Status:</strong> Alle functies die op deze pagina worden weergegeven horen te werken. Aan de API wordt actief gewerkt, en deze kan gewijzigd worden. Abonneer u op  de [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ e-maillijst mediawiki-api-announce] voor meldingen over aanpassingen.\n\n<strong>Foutieve verzoeken:</strong> als de API foutieve verzoeken ontvangt, wordt er geantwoord met een HTTP-header met de sleutel \"MediaWiki-API-Error\" en daarna worden de waarde van de header en de foutcode op dezelfde waarde ingesteld. Zie [[mw:API:Errors_and_warnings|API: Errors and warnings]] voor meer informatie.\n\n<strong>Testen:</strong> u kunt [[Special:ApiSandbox|eenvoudig API-verzoeken testen]].",
@@ -28,7 +29,7 @@
 	"apihelp-main-param-servedby": "Voeg de hostnaam van de server die de aanvraag heeft afgehandeld toe aan het antwoord.",
 	"apihelp-main-param-curtimestamp": "Huidige tijd aan het antwoord toevoegen.",
 	"apihelp-block-description": "Gebruiker blokkeren.",
-	"apihelp-block-param-user": "Gebruikersnaam, IP-adres of IP-range om te blokkeren.",
+	"apihelp-block-param-user": "Gebruikersnaam, IP-adres of IP-range om te blokkeren. Kan niet samen worden gebruikt me <var>$1userid</var>",
 	"apihelp-block-param-reason": "Reden voor blokkade.",
 	"apihelp-block-param-anononly": "Alleen anonieme gebruikers blokkeren (uitschakelen van anonieme bewerkingen via dit IP-adres)",
 	"apihelp-block-param-nocreate": "Voorkom registeren van accounts.",
@@ -83,6 +84,7 @@
 	"apihelp-feedcontributions-param-year": "Van jaar (en eerder).",
 	"apihelp-feedcontributions-param-month": "Van maand (en eerder).",
 	"apihelp-feedcontributions-param-deletedonly": "Alleen verwijderde bijdragen weergeven.",
+	"apihelp-feedcontributions-param-hideminor": "Verberg kleine bewerkingen.",
 	"apihelp-feedrecentchanges-param-hideminor": "Kleine wijzigingen verbergen.",
 	"apihelp-feedrecentchanges-param-hidebots": "Wijzigingen gedaan door bots verbergen.",
 	"apihelp-feedrecentchanges-param-hideanons": "Wijzigingen gedaan door anonieme gebruikers verbergen.",

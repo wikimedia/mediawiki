@@ -253,7 +253,7 @@
 	"apihelp-managetags-param-operation": "Quelle opération effectuer :\n;create:Créer une nouvelle balise de modification pour un usage manuel.\n;delete:Supprimer une balise de modification de la base de données, y compris la suppression de la marque de toutes les révisions, entrées de modification récente et entrées de journal dans lesquelles elle serait utilisée.\n;activate:Activer une balise de modification, permettant aux utilisateurs de l’appliquer manuellement.\n;deactivate:Désactiver une balise de modification, empêchant les utilisateurs de l’appliquer manuellement.",
 	"apihelp-managetags-param-tag": "Balise à créer, supprimer, activer ou désactiver. Pour la création de balise, elle ne doit pas exister. Pour la suppression de balise, elle doit exister. Pour l’activation de balise, elle doit exister et ne pas être utilisée par une extension. Pour la désactivation de balise, elle doit être actuellement active et définie manuellement.",
 	"apihelp-managetags-param-reason": "Un motif facultatif pour créer, supprimer, activer ou désactiver la balise.",
-	"apihelp-managetags-param-ignorewarnings": "S’il faut ignorer tout avertissement qui se produirait au cours de l’opération.",
+	"apihelp-managetags-param-ignorewarnings": "S’il faut ignorer tout avertissement qui surviendrait au cours de l’opération.",
 	"apihelp-managetags-example-create": "Créer une balise nommée <kbd>spam</kbd> avec le motif <kbd>For use in edit patrolling</kbd>",
 	"apihelp-managetags-example-delete": "Supprimer la balise <kbd>vandlaism</kbd> avec le motif <kbd>Misspelt</kbd>",
 	"apihelp-managetags-example-activate": "Activer une balise nommée <kbd>spam</kbd> avec le motif <kbd>For use in edit patrolling</kbd>",
