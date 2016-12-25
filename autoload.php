@@ -1086,6 +1086,7 @@ $wgAutoloadLocalClasses = [
 	'PopulateContentModel' => __DIR__ . '/maintenance/populateContentModel.php',
 	'PopulateFilearchiveSha1' => __DIR__ . '/maintenance/populateFilearchiveSha1.php',
 	'PopulateImageSha1' => __DIR__ . '/maintenance/populateImageSha1.php',
+	'PopulateInterwiki' => __DIR__ . '/maintenance/populateInterwiki.php',
 	'PopulateLogSearch' => __DIR__ . '/maintenance/populateLogSearch.php',
 	'PopulateLogUsertext' => __DIR__ . '/maintenance/populateLogUsertext.php',
 	'PopulateParentId' => __DIR__ . '/maintenance/populateParentId.php',
