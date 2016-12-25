@@ -10,9 +10,16 @@ fi
 # Note that this isn't loaded in via composer because then composer can
 # only be run with php7.0
 if [ ! -f "$PHAN" ]; then
-	echo "The environment variable PHAN must point to the 'phan' file"
-	echo "in a checkout of https://github.com/etsy/phan.git"
-	exit 1
+	# If no PHAN is specified then try to get location from PATH
+	export PHAN="$(which phan)"
+	if [ ! -f "$PHAN" ]; then
+		echo "The environment variable PHAN must point to the 'phan' file"
+		echo "in a checkout of https://github.com/etsy/phan.git"
+		echo "Or phan must be included in your PATH"
+		exit 1
+	fi
+else
+	export PHAN="php7.0 $PHAN"
 fi
 
 if [ -z "$MW_INSTALL_PATH" ]; then
@@ -57,7 +64,7 @@ export RUN="${ISSUES}/issues-${REV}"
 
 # Run the analysis, emitting output to the
 # issues file.
-php7.0 $PHAN \
+$PHAN \
 	--project-root-directory "$ROOT" \
 	--config-file "$CONFIG_FILE" \
 	--output "php://stdout" \
