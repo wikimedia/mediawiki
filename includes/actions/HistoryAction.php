@@ -428,7 +428,10 @@ class HistoryPager extends ReverseChronologicalPager {
 			$queryInfo['options'],
 			$this->tagFilter
 		);
-		Hooks::run( 'PageHistoryPager::getQueryInfo', [ &$this, &$queryInfo ] );
+
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$historyPager = $this;
+		Hooks::run( 'PageHistoryPager::getQueryInfo', [ &$historyPager, &$queryInfo ] );
 
 		return $queryInfo;
 	}

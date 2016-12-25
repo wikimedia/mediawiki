@@ -108,7 +108,9 @@ class RawAction extends FormlessAction {
 			$response->statusHeader( 404 );
 		}
 
-		if ( !Hooks::run( 'RawPageViewBeforeOutput', [ &$this, &$text ] ) ) {
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$rawAction = $this;
+		if ( !Hooks::run( 'RawPageViewBeforeOutput', [ &$rawAction, &$text ] ) ) {
 			wfDebug( __METHOD__ . ": RawPageViewBeforeOutput hook broke raw page output.\n" );
 		}
 
