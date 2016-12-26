@@ -37,8 +37,16 @@ class NamespaceAwareForeignTitleFactoryTest extends MediaWikiTestCase {
 				new ForeignTitle( 0, '', 'MainNamespaceArticle' ),
 			],
 			[
+				'Magic:_The_Gathering', 0,
+				new ForeignTitle( 0, '', 'Magic:_The_Gathering' ),
+			],
+			[
 				'Talk:Nice_talk', 1,
 				new ForeignTitle( 1, 'Talk', 'Nice_talk' ),
+			],
+			[
+				'Talk:Magic:_The_Gathering', 1,
+				new ForeignTitle( 1, 'Talk', 'Magic:_The_Gathering' ),
 			],
 			[
 				'Bogus:Nice_talk', 0,
@@ -55,6 +63,11 @@ class NamespaceAwareForeignTitleFactoryTest extends MediaWikiTestCase {
 			[
 				'Bogus:Nice_talk', 1,
 				new ForeignTitle( 1, 'Talk', 'Nice_talk' ),
+			],
+			// Misconfigured wiki with unregistered namespace (T114115)
+			[
+				'Nice_talk', 1234,
+				new ForeignTitle( 1234, 'Ns1234', 'Nice_talk' ),
 			],
 		];
 	}
