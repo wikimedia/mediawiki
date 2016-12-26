@@ -4,7 +4,8 @@
 			"Gorizon",
 			"Mirzali",
 			"Kumkumuk",
-			"Asmen"
+			"Asmen",
+			"1917 Ekim Devrimi"
 		]
 	},
 	"apihelp-main-param-action": "Performansa kamci aksiyon",
@@ -35,7 +36,7 @@
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "Herabıyaye wikimetin",
 	"apihelp-feedcontributions-param-feedformat": "Formata warikerdışi",
 	"apihelp-feedcontributions-param-hideminor": "Vuryayışanê werdiyan bınımne",
-	"apihelp-feedcontributions-param-showsizediff": "Goreyê ebati ferqê versiyoni bıasne.",
+	"apihelp-feedcontributions-param-showsizediff": "Goreyê ebati ferqê versiyoni bımotné.",
 	"apihelp-feedrecentchanges-param-hideminor": "Vurriyayışanê werdiyan bınımne.",
 	"apihelp-feedrecentchanges-param-hidebots": "Vurnayışanê botan bınımne.",
 	"apihelp-feedrecentchanges-param-hideanons": "Vurnayışanê karberanê anoniman bınımne.",

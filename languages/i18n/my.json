@@ -27,7 +27,7 @@
 		]
 	},
 	"tog-underline": "လင့်ကို မျဉ်းသားသည့် ပုံစံ -",
-	"tog-hideminor": "လတ်တလော အပြောင်းအလဲများတွင် အရေးမကြီးသည်များကို ဝှက်ရန်",
+	"tog-hideminor": "အရေးမကြီးသော တည်းဖြတ်မှုများကို လတ်တလော အပြောင်းအလဲများမှ ဝှက်ရန်",
 	"tog-hidepatrolled": "လတ်တလော အပြောင်းအလဲများတွင် ကင်းလှည့်တည်းဖြတ်မှုများကို ဝှက်ရန်",
 	"tog-newpageshidepatrolled": "စာမျက်နှာသစ်စာရင်းတွင် ကင်းလှည့်စာမျက်နှာများကို ဝှက်ရန်",
 	"tog-hidecategorization": "စာမျက်နှာများ၏ ကဏ္ဍကို ဝှက်ရန်",
@@ -1119,6 +1119,7 @@
 	"all-logs-page": "အများနှင့်ဆိုင်သောမှတ်တမ်းအားလုံး",
 	"alllogstext": "{{SITENAME}}၏ ရရှိနိုင်သော မှတ်တမ်းများအားလုံး ပေါင်းစည်းပြသခြင်း ဖြစ်သည်။\nမှတ်တမ်းအမျိုးအစား၊ အသုံးပြုသူအမည် (စာလုံးအကြီးအသေး)၊ သို့မဟုတ် သက်ဆိုင်ရာ စာမျက်နှာ (စာလုံးအကြီးအသေး) ကို ရွေးချယ်ခြင်းဖြင့် ကြည့်ရှုမှုကို အကျဉ်းချုံးနိုင်ပါသည်။",
 	"logempty": "မှတ်တမ်းထဲတွင် ကိုက်ညီသော အရာများ မရှိပါ။",
+	"checkbox-all": "အားလုံး",
 	"allpages": "စာမျက်နှာအားလုံး",
 	"nextpage": "နောက်ထပ်စာမျက်နှာ ($1)",
 	"prevpage": "ယခင် စာမျက်နှာ ($1)",
@@ -1297,6 +1298,7 @@
 	"sp-contributions-newbies": "အကောင့်အသစ်များ၏ ပံ့ပိုးမှုများကိုသာ ပြရန်",
 	"sp-contributions-newbies-sub": "အကောင့်အသစ်များအတွက်",
 	"sp-contributions-blocklog": "ပိတ်ပင်တားဆီးမှု မှတ်တမ်း",
+	"sp-contributions-deleted": "ဖျက်ခံထားရသည့် {{GENDER:$1|အသုံးပြုသူ}} ဆောင်ရွက်ချက်များ",
 	"sp-contributions-uploads": "အပ်လုပ်တင်ထားသည်များ",
 	"sp-contributions-logs": "မှတ်​တမ်း​များ​",
 	"sp-contributions-talk": "ဆွေးနွေး",
@@ -1304,6 +1306,7 @@
 	"sp-contributions-search": "ပံ့ပိုးမှုများကို ရှာရန်",
 	"sp-contributions-username": "အိုင်ပီလိပ်စာ သို့ အသုံးပြုသူအမည် :",
 	"sp-contributions-toponly": "နောက်ဆုံးတည်းဖြတ်မူများသာပြရန်",
+	"sp-contributions-hideminor": "အရေးမကြီးသော တည်းဖြတ်မှုများကို ဝှက်ရန်",
 	"sp-contributions-submit": "ရှာဖွေရန်",
 	"whatlinkshere": "ဘယ်ကလင့်ခ်ထားလဲ",
 	"whatlinkshere-title": "\"$1\" ကို လင့်ထားသော စာမျက်နှာများ",
@@ -1651,6 +1654,7 @@
 	"logentry-move-move": "$3 စာမျက်နှာကို $4 သို့ $1က {{GENDER:$2|ရွှေ့ခဲ့သည်}}",
 	"logentry-move-move-noredirect": "$3 မှ $4 သို့ စာမျက်နှာကို ပြန်ညွှန်းချန်မထားပဲ $1 {{GENDER:$2|က ရွှေ့ခဲ့သည်}}",
 	"logentry-newusers-create": "အသုံးပြုသူအကောင့် $1 ကို {{GENDER:$2|ဖန်တီးခဲ့သည်}}",
+	"logentry-newusers-autocreate": "အသုံးပြုသူအကောင့် $1 ကို အလိုအလျောက် {{GENDER:$2|ဖန်တီးခဲ့သည်}}",
 	"logentry-upload-upload": "$1 သည် $3 ကို {{GENDER:$2|upload တင်ခဲ့သည်}}",
 	"logentry-upload-overwrite": "$3 ၏ ဗားရှင်းအသစ်ကို $1 {{GENDER:$2|upload တင်ခဲ့သည်}}",
 	"rightsnone": "(ဘာမှမရှိ)",
@@ -1671,5 +1675,11 @@
 	"pagelang-use-default": "ပင်မ ဘာသာစကားကို အသုံးပြုရန်",
 	"right-pagelang": "စာမျက်နှာ ဘာသာစကား ပြောင်းလဲရန်",
 	"log-name-pagelang": "ဘာသာစကား ပြောင်းလဲမှု မှတ်တမ်း",
-	"log-description-pagelang": "ဤအရာသည် စာမျက်နှာ၏ဘာသာစကားများ ပြောင်းလဲမှုမှတ်တမ်း ဖြစ်သည်။"
+	"log-description-pagelang": "ဤအရာသည် စာမျက်နှာ၏ဘာသာစကားများ ပြောင်းလဲမှုမှတ်တမ်း ဖြစ်သည်။",
+	"log-action-filter-newusers": "အကောင့်ဖန်တီးမှု အမျိုးအစား:",
+	"log-action-filter-all": "အားလုံး",
+	"log-action-filter-newusers-create": "အမည်မသိ အသုံးပြုသူများမှ ဖန်တီးမှု",
+	"log-action-filter-newusers-create2": "မှတ်ပုံတင်ထားသော အသုံးပြုသူမှ ဖန်တီးမှု",
+	"log-action-filter-newusers-autocreate": "အလိုအလျောက် ဖန်တီးမှု",
+	"log-action-filter-newusers-byemail": "အီးမေးလ်မှတဆင့် စကားဝှက်ပို့၍ ဖန်တီးမှု"
 }

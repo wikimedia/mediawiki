@@ -1627,7 +1627,7 @@
 	"apierror-writeapidenied": "{{doc-apierror}}",
 	"apiwarn-alldeletedrevisions-performance": "{{doc-apierror}}\n\nParameters:\n* $1 - Module parameter prefix, e.g. \"bl\".",
 	"apiwarn-badurlparam": "{{doc-apierror}}\n\nParameters:\n* $1 - Module parameter prefix, e.g. \"bl\".\n* $2 - Image title.",
-	"apiwarn-badutf8": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name.",
+	"apiwarn-badutf8": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name.\n{{doc-important|Do not translate \"\\t\", \"\\n\", and \"\\r\"}}",
 	"apiwarn-checktoken-percentencoding": "{{doc-apierror}}",
 	"apiwarn-deprecation-deletedrevs": "{{doc-apierror}}",
 	"apiwarn-deprecation-expandtemplates-prop": "{{doc-apierror}}",

@@ -323,7 +323,7 @@
 	"pool-errorunknown": "Неизвестная ошибка",
 	"pool-servererror": "Служба счётчика пула недоступна ($1).",
 	"poolcounter-usage-error": "Ошибка использования: $1",
-	"aboutsite": "Описание {{grammar:genitive|{{SITENAME}}}}",
+	"aboutsite": "Описание {{GRAMMAR:prepositional|{{SITENAME}}}}",
 	"aboutpage": "Project:Описание",
 	"copyright": "Содержание доступно по лицензии $1 (если не указано иное).",
 	"copyrightpage": "{{ns:project}}:Авторские права",
