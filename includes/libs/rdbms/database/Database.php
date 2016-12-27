@@ -1419,9 +1419,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		$table = $this->tableName( $table );
-		$old = $this->ignoreErrors( true );
-		$res = $this->query( "SELECT 1 FROM $table LIMIT 1", $fname );
-		$this->ignoreErrors( $old );
+		$ignoreErrors = true;
+		$res = $this->query( "SELECT 1 FROM $table LIMIT 1", $fname, $ignoreErrors );
 
 		return (bool)$res;
 	}

@@ -243,9 +243,7 @@ class DatabasePostgres extends Database {
 		}
 		/* Transaction stays in the ERROR state until rolled back */
 		if ( $this->mTrxLevel ) {
-			$ignore = $this->ignoreErrors( true );
 			$this->rollback( __METHOD__ );
-			$this->ignoreErrors( $ignore );
 		}
 		parent::reportQueryError( $error, $errno, $sql, $fname, false );
 	}
