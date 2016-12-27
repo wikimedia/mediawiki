@@ -1416,7 +1416,7 @@ class SpecialUndelete extends SpecialPage {
 			if ( $this->getUser()->isAllowed( 'suppressrevision' ) ) {
 				$unsuppressBox =
 					"<tr>
-						<td>&#160;</td>
+						<td>\xc2\xa0</td>
 						<td class='mw-input'>" .
 						Xml::checkLabel( $this->msg( 'revdelete-unsuppress' )->text(),
 							'wpUnsuppress', 'mw-undelete-unsuppress', $this->mUnsuppress ) .
@@ -1447,7 +1447,7 @@ class SpecialUndelete extends SpecialPage {
 				"</td>
 			</tr>
 			<tr>
-				<td>&#160;</td>
+				<td>\xc2\xa0</td>
 				<td class='mw-submit'>" .
 				Xml::submitButton(
 					$this->msg( 'undeletebtn' )->text(),

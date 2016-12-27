@@ -4040,7 +4040,7 @@ HTML
 				];
 				$minorEditHtml =
 					Xml::check( 'wpMinoredit', $checked['minor'], $attribs ) .
-					"&#160;<label for='wpMinoredit' id='mw-editpage-minoredit'" .
+					"\xc2\xa0<label for='wpMinoredit' id='mw-editpage-minoredit'" .
 					Xml::expandAttributes( [ 'title' => Linker::titleAttrib( 'minoredit', 'withaccess' ) ] ) .
 					">{$minorLabel}</label>";
 
@@ -4064,7 +4064,7 @@ HTML
 			];
 			$watchThisHtml =
 				Xml::check( 'wpWatchthis', $checked['watch'], $attribs ) .
-				"&#160;<label for='wpWatchthis' id='mw-editpage-watch'" .
+				"\xc2\xa0<label for='wpWatchthis' id='mw-editpage-watch'" .
 				Xml::expandAttributes( [ 'title' => Linker::titleAttrib( 'watch', 'withaccess' ) ] ) .
 				">{$watchLabel}</label>";
 			if ( $wgUseMediaWikiUIEverywhere ) {

@@ -123,10 +123,10 @@ class SpecialProtectedtitles extends SpecialPage {
 		return "<form action=\"$action\" method=\"get\">\n" .
 			'<fieldset>' .
 			Xml::element( 'legend', [], $this->msg( 'protectedtitles' )->text() ) .
-			Html::hidden( 'title', $special ) . "&#160;\n" .
-			$this->getNamespaceMenu( $namespace ) . "&#160;\n" .
-			$this->getLevelMenu( $level ) . "&#160;\n" .
-			"&#160;" . Xml::submitButton( $this->msg( 'protectedtitles-submit' )->text() ) . "\n" .
+			Html::hidden( 'title', $special ) . "\xc2\xa0\n" .
+			$this->getNamespaceMenu( $namespace ) . "\xc2\xa0\n" .
+			$this->getLevelMenu( $level ) . "\xc2\xa0\n" .
+			"\xc2\xa0" . Xml::submitButton( $this->msg( 'protectedtitles-submit' )->text() ) . "\n" .
 			"</fieldset></form>";
 	}
 
@@ -180,7 +180,7 @@ class SpecialProtectedtitles extends SpecialPage {
 			$options[] = Xml::option( $text, $type, $selected );
 		}
 
-		return Xml::label( $this->msg( 'restriction-level' )->text(), $this->IdLevel ) . '&#160;' .
+		return Xml::label( $this->msg( 'restriction-level' )->text(), $this->IdLevel ) . "\xc2\xa0" .
 			Xml::tags( 'select',
 				[ 'id' => $this->IdLevel, 'name' => $this->IdLevel ],
 				implode( "\n", $options ) );

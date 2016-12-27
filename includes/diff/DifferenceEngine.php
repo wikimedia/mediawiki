@@ -308,7 +308,7 @@ class DifferenceEngine extends ContextSource {
 					$rollbackLink = Linker::generateRollback( $this->mNewRev, $this->getContext() );
 					if ( $rollbackLink ) {
 						$out->preventClickjacking();
-						$rollback = '&#160;&#160;&#160;' . $rollbackLink;
+						$rollback = "\xc2\xa0\xc2\xa0\xc2\xa0" . $rollbackLink;
 					}
 				}
 
@@ -338,7 +338,7 @@ class DifferenceEngine extends ContextSource {
 					[ 'diff' => 'prev', 'oldid' => $this->mOldid ] + $query
 				);
 			} else {
-				$prevlink = '&#160;';
+				$prevlink = "\xc2\xa0";
 			}
 
 			if ( $this->mOldRev->isMinor() ) {
@@ -386,7 +386,7 @@ class DifferenceEngine extends ContextSource {
 				[ 'diff' => 'next', 'oldid' => $this->mNewid ] + $query
 			);
 		} else {
-			$nextlink = '&#160;';
+			$nextlink = "\xc2\xa0";
 		}
 
 		if ( $this->mNewRev->isMinor() ) {
@@ -579,7 +579,7 @@ class DifferenceEngine extends ContextSource {
 	protected function revisionDeleteLink( $rev ) {
 		$link = Linker::getRevDeleteLink( $this->getUser(), $rev, $rev->getTitle() );
 		if ( $link !== '' ) {
-			$link = '&#160;&#160;&#160;' . $link . ' ';
+			$link = "\xc2\xa0\xc2\xa0\xc2\xa0" . $link . ' ';
 		}
 
 		return $link;
