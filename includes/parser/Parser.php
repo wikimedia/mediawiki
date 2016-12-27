@@ -2201,7 +2201,7 @@ class Parser {
 				continue;
 			}
 
-			$origLink = $m[1];
+			$origLink = ltrim( $m[1], ' ' );
 
 			# Don't allow internal links to pages containing
 			# PROTO: where PROTO is a valid URL protocol; these
