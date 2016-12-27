@@ -500,7 +500,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			]
 		);
 
-		$f .= '&#160;' .
+		$f .= "\xc2\xa0" .
 			Xml::checkLabel(
 				$this->msg( 'invert' )->text(),
 				'invert',

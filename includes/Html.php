@@ -883,7 +883,7 @@ class Html {
 				'label', [
 					'for' => isset( $selectAttribs['id'] ) ? $selectAttribs['id'] : null,
 				], $params['label']
-			) . '&#160;';
+			) . "\xc2\xa0";
 		}
 
 		// Wrap options in a <select>

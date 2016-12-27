@@ -134,7 +134,7 @@ class LogEventsList extends ContextSource {
 
 		// Tag filter
 		if ( $tagSelector ) {
-			$html .= Xml::tags( 'p', null, implode( '&#160;', $tagSelector ) );
+			$html .= Xml::tags( 'p', null, implode( "\xc2\xa0", $tagSelector ) );
 		}
 
 		// Filter links

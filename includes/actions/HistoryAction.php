@@ -197,8 +197,8 @@ class HistoryAction extends FormlessAction {
 		$content .= Xml::dateMenu(
 			( $year == null ? MWTimestamp::getLocalInstance()->format( 'Y' ) : $year ),
 			$month
-		) . '&#160;';
-		$content .= $tagSelector ? ( implode( '&#160;', $tagSelector ) . '&#160;' ) : '';
+		) . "\xc2\xa0";
+		$content .= $tagSelector ? ( implode( "\xc2\xa0", $tagSelector ) . "\xc2\xa0" ) : '';
 		$content .= $checkDeleted . Html::submitButton(
 			$this->msg( 'historyaction-submit' )->text(),
 			[],
