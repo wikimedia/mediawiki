@@ -717,10 +717,10 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		if ( isset( $data['timestampLink'] ) ) {
-			$line .= '&#160;' . $data['timestampLink'];
+			$line .= "\u{00A0}" . $data['timestampLink'];
 			unset( $data['timestampLink'] );
 		}
-		$line .= '&#160;</td>';
+		$line .= "\u{00A0}</td>";
 		$line .= Html::openElement( 'td', [
 			'class' => 'mw-changeslist-line-inner',
 			// Used for reliable determination of the affiliated page

@@ -92,7 +92,7 @@ class HTMLRadioField extends HTMLFormField {
 					$classes[] = 'mw-ui-radio';
 				}
 				$radio = Xml::radio( $this->mName, $info, $info === $value, $attribs + [ 'id' => $id ] );
-				$radio .= '&#160;' . call_user_func( $elementFunc, 'label', [ 'for' => $id ], $label );
+				$radio .= "\u{00A0}" . call_user_func( $elementFunc, 'label', [ 'for' => $id ], $label );
 
 				$html .= ' ' . Html::rawElement(
 					'div',

@@ -224,11 +224,11 @@ class SpecialMergeHistory extends SpecialPage {
 					'</td>
 					<td class="mw-input">' .
 					Xml::input( 'wpComment', 50, $this->mComment, [ 'id' => 'wpComment' ] ) .
-					'</td>
+					"</td>
 					</tr>
 					<tr>
-						<td>&#160;</td>
-						<td class="mw-submit">' .
+						<td>\u{00A0}</td>
+						<td class=\"mw-submit\">" .
 					Xml::submitButton(
 						$this->msg( 'mergehistory-submit' )->text(),
 						[ 'name' => 'merge', 'id' => 'mw-merge-submit' ]
