@@ -8577,6 +8577,22 @@ Blah blah blah
 <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo_bar" />
 !! end
 
+!! test
+Escaping of interlanguage links
+!! wikitext
+Blah blah blah
+[[:es:Spanish]]
+[[ : zh : Chinese ]]
+!! html/php
+<p>Blah blah blah
+<a href="http://es.wikipedia.org/wiki/Spanish" class="extiw" title="es:Spanish">es:Spanish</a>
+<a href="http://zh.wikipedia.org/wiki/Chinese" class="extiw" title="zh:Chinese"> zh : Chinese </a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://es.wikipedia.org/wiki/Spanish" title="es:Spanish">es:Spanish</a>
+<a rel="mw:ExtLink" href="http://zh.wikipedia.org/wiki/Chinese" title="zh:Chinese"> zh : Chinese </a></p>
+!! end
+
 ## parsoid html2wt will normalize the space to _
 !! test
 Space and question mark encoding in interlanguage links (T95473)
