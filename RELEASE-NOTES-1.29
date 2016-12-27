@@ -137,6 +137,7 @@ changes to languages because of Phabricator reports.
 * User::getTemporaryPassword() (deprecated in 1.27) was removed.
 * User::isPasswordReminderThrottled() (deprecated in 1.27) was removed.
 * FSRepo (deprecated in 1.19) was removed.
+* Article::getContent() (deprecated in 1.21) was removed.
 
 == Compatibility ==
 

@@ -198,24 +198,6 @@ class Article implements Page {
 	}
 
 	/**
-	 * Note that getContent does not follow redirects anymore.
-	 * If you need to fetch redirectable content easily, try
-	 * the shortcut in WikiPage::getRedirectTarget()
-	 *
-	 * This function has side effects! Do not use this function if you
-	 * only want the real revision text if any.
-	 *
-	 * @deprecated since 1.21; use WikiPage::getContent() instead
-	 *
-	 * @return string Return the text of this revision
-	 */
-	public function getContent() {
-		wfDeprecated( __METHOD__, '1.21' );
-		$content = $this->getContentObject();
-		return ContentHandler::getContentText( $content );
-	}
-
-	/**
 	 * Returns a Content object representing the pages effective display content,
 	 * not necessarily the revision's content!
 	 *
