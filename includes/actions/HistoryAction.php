@@ -97,6 +97,7 @@ class HistoryAction extends FormlessAction {
 	function onView() {
 		$out = $this->getOutput();
 		$request = $this->getRequest();
+		$user = $this->getUser();
 
 		/**
 		 * Allow client caching.
@@ -174,6 +175,7 @@ class HistoryAction extends FormlessAction {
 		$month = $request->getInt( 'month' );
 		$tagFilter = $request->getVal( 'tagfilter' );
 		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter, false, $this->getContext() );
+		$filterUsername = $request->getVal( 'user' );
 
 		/**
 		 * Option to show only revisions that have been (partially) hidden via RevisionDelete
@@ -183,12 +185,34 @@ class HistoryAction extends FormlessAction {
 		} else {
 			$conds = [];
 		}
-		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
+		if ( $user->isAllowed( 'deletedhistory' ) ) {
 			$checkDeleted = Xml::checkLabel( $this->msg( 'history-show-deleted' )->text(),
 				'deleted', 'mw-show-deleted-only', $request->getBool( 'deleted' ) ) . "\n";
 		} else {
 			$checkDeleted = '';
 		}
+		// Check username input validity and build condition
+		$filterUserTitle = Title::makeTitleSafe( NS_USER, $filterUsername );
+		if ( $filterUserTitle ) {
+			$filterUsername = $filterUserTitle->getText();
+			$filterUserid = User::idFromName( $filterUsername );
+			if ( !$filterUserid ) {
+				$conds['rev_user_text'] = IP::sanitizeIP( $filterUsername );
+			} else {
+				$conds['rev_user'] = $filterUserid;
+			}
+			// Do not find revision deleted entries matching the user name,
+			// when the viewing user should not see it
+			$dbr = wfGetDB( DB_REPLICA );
+			if ( !$user->isAllowed( 'deletedhistory' ) ) {
+				$conds[] = $dbr->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0';
+			} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
+				$conds[] = $dbr->bitAnd( 'rev_deleted', Revision::SUPPRESSED_USER ) .
+					' != ' . Revision::SUPPRESSED_USER;
+			}
+		}
+
+		$out->addModules( 'mediawiki.userSuggest' );
 
 		// Add the general form
 		$action = htmlspecialchars( wfScript() );
@@ -201,6 +225,21 @@ class HistoryAction extends FormlessAction {
 			) .
 			Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) . "\n" .
 			Html::hidden( 'action', 'history' ) . "\n" .
+			Html::label( $this->msg( 'history-user-search' )->text(), 'mw-history-user-search' ) .
+			'&#160;' . Html::input(
+				'user',
+				$filterUsername,
+				'text',
+				[
+					'id' => 'mw-history-user-search',
+					'size' => '40',
+					'class' => [
+						'mw-input',
+						'mw-ui-input-inline',
+						'mw-autocomplete-user', // used by mediawiki.userSuggest
+					],
+				]
+			) . "<br />\n" .
 			Xml::dateMenu(
 				( $year == null ? MWTimestamp::getLocalInstance()->format( 'Y' ) : $year ),
 				$month
