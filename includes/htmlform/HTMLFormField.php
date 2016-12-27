@@ -397,9 +397,9 @@ abstract class HTMLFormField {
 		if ( isset( $params['label-message'] ) ) {
 			$this->mLabel = $this->getMessage( $params['label-message'] )->parse();
 		} elseif ( isset( $params['label'] ) ) {
-			if ( $params['label'] === '&#160;' ) {
+			if ( $params['label'] === "\xc2\xa0" ) {
 				// Apparently some things set &nbsp directly and in an odd format
-				$this->mLabel = '&#160;';
+				$this->mLabel = "\xc2\xa0";
 			} else {
 				$this->mLabel = htmlspecialchars( $params['label'] );
 			}
@@ -547,7 +547,7 @@ abstract class HTMLFormField {
 			? $this->mParams['horizontal-label'] : false;
 
 		if ( $horizontalLabel ) {
-			$field = '&#160;' . $inputHtml . "\n$errors";
+			$field = "\xc2\xa0" . $inputHtml . "\n$errors";
 		} else {
 			$field = Html::rawElement(
 				'div',
@@ -746,7 +746,7 @@ abstract class HTMLFormField {
 		$label = $this->getLabelHtml( $cellAttributes );
 
 		$html = "\n" . $errors .
-			$label . '&#160;' .
+			$label . "\xc2\xa0" .
 			$inputHtml .
 			$helptext;
 
@@ -941,7 +941,7 @@ abstract class HTMLFormField {
 
 		$labelValue = trim( $this->getLabel() );
 		$hasLabel = false;
-		if ( $labelValue !== '&#160;' && $labelValue !== '' ) {
+		if ( $labelValue !== "\xc2\xa0" && $labelValue !== '' ) {
 			$hasLabel = true;
 		}
 

@@ -549,7 +549,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 								$this->msg( 'watchlist-unwatch' )->text(), [
 									'class' => 'mw-unwatch-link',
 									'title' => $this->msg( 'tooltip-ca-unwatch' )->text()
-								], [ 'action' => 'unwatch' ] ) . '&#160;';
+								], [ 'action' => 'unwatch' ] ) . "\xc2\xa0";
 				}
 			} );
 		}

@@ -4218,7 +4218,7 @@ class EditPage {
 			}
 			$checkboxHtml =
 				Xml::check( $name, $options['default'], $attribs ) .
-				'&#160;' .
+				"\xc2\xa0" .
 				Xml::tags( 'label', $labelAttribs, $label );
 
 			if ( $wgUseMediaWikiUIEverywhere ) {
