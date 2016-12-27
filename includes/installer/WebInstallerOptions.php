@@ -337,7 +337,7 @@ class WebInstallerOptions extends WebInstallerPage {
 
 		return '<p>' .
 			Html::element( 'img', [ 'src' => $this->getVar( 'wgRightsIcon' ) ] ) .
-			'&#160;&#160;' .
+			'\xc2\xa0\xc2\xa0' .
 			htmlspecialchars( $this->getVar( 'wgRightsText' ) ) .
 			"</p>\n" .
 			"<p style=\"text-align: center;\">" .
