@@ -2025,17 +2025,6 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
-	 * @see WikiPage::doEdit
-	 *
-	 * @deprecated since 1.21: use doEditContent() instead.
-	 */
-	public function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) {
-		wfDeprecated( __METHOD__, '1.21' );
-		return $this->mPage->doEdit( $text, $summary, $flags, $baseRevId, $user );
-	}
-
-	/**
-	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::doEditContent
 	 */
 	public function doEditContent( Content $content, $summary, $flags = 0, $baseRevId = false,
