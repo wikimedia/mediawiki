@@ -66,7 +66,7 @@ class WordAccumulator {
 			array_push( $this->lines, $this->line );
 		} else {
 			# make empty lines visible by inserting an NBSP
-			array_push( $this->lines, '&#160;' );
+			array_push( $this->lines, "\u{00A0}" );
 		}
 		$this->line = '';
 	}

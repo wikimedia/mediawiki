@@ -927,7 +927,7 @@ class Html {
 				'label', [
 					'for' => $selectAttribs['id'] ?? null,
 				], $params['label']
-			) . '&#160;';
+			) . "\u{00A0}";
 		}
 
 		// Wrap options in a <select>

@@ -27,7 +27,7 @@ class HTMLCheckField extends HTMLFormField {
 		}
 
 		$chkLabel = Xml::check( $this->mName, $value, $attr ) .
-			'&#160;' .
+			"\u{00A0}" .
 			Html::rawElement( 'label', $attrLabel, $this->mLabel );
 
 		if ( $wgUseMediaWikiUIEverywhere || $this->mParent instanceof VFormHTMLForm ) {
@@ -88,7 +88,7 @@ class HTMLCheckField extends HTMLFormField {
 		) {
 			return '';
 		} else {
-			return '&#160;';
+			return "\u{00A0}";
 		}
 	}
 

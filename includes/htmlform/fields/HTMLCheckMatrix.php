@@ -88,7 +88,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		$attribs = $this->getAttributes( [ 'disabled', 'tabindex' ] );
 
 		// Build the column headers
-		$headerContents = Html::rawElement( 'td', [], '&#160;' );
+		$headerContents = Html::rawElement( 'td', [], "\u{00A0}" );
 		foreach ( $columns as $columnLabel => $columnTag ) {
 			$headerContents .= Html::rawElement( 'td', [], $columnLabel );
 		}

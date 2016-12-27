@@ -382,7 +382,7 @@ class Xml {
 		$value = false, $attribs = []
 	) {
 		list( $label, $input ) = self::inputLabelSep( $label, $name, $id, $size, $value, $attribs );
-		return $label . '&#160;' . $input;
+		return $label . "\u{00A0}" . $input;
 	}
 
 	/**
@@ -420,7 +420,7 @@ class Xml {
 	public static function checkLabel( $label, $name, $id, $checked = false, $attribs = [] ) {
 		global $wgUseMediaWikiUIEverywhere;
 		$chkLabel = self::check( $name, $checked, [ 'id' => $id ] + $attribs ) .
-			'&#160;' .
+			"\u{00A0}" .
 			self::label( $label, $id, $attribs );
 
 		if ( $wgUseMediaWikiUIEverywhere ) {
@@ -446,7 +446,7 @@ class Xml {
 		$checked = false, $attribs = []
 	) {
 		return self::radio( $name, $value, $checked, [ 'id' => $id ] + $attribs ) .
-			'&#160;' .
+			"\u{00A0}" .
 			self::label( $label, $id, $attribs );
 	}
 

@@ -152,7 +152,7 @@ class ChangesList extends ContextSource {
 	 * @param string $nothing To use for empty space
 	 * @return string
 	 */
-	public function recentChangesFlags( $flags, $nothing = '&#160;' ) {
+	public function recentChangesFlags( $flags, $nothing = "\u{00A0}" ) {
 		$f = '';
 		foreach ( array_keys( $this->getConfig()->get( 'RecentChangesFlags' ) ) as $flag ) {
 			$f .= isset( $flags[$flag] ) && $flags[$flag]

@@ -1662,7 +1662,7 @@ class HTMLForm extends ContextSource {
 					$html[] = $retval;
 
 					$labelValue = trim( $value->getLabel() );
-					if ( $labelValue !== '&#160;' && $labelValue !== '' ) {
+					if ( $labelValue !== "\u{00A0}" && $labelValue !== '' ) {
 						$hasLabel = true;
 					}
 
