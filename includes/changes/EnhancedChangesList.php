@@ -684,10 +684,10 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		if ( isset( $data['timestampLink'] ) ) {
-			$line .= '&#160;' . $data['timestampLink'];
+			$line .= "\xc2\xa0" . $data['timestampLink'];
 			unset( $data['timestampLink'] );
 		}
-		$line .= '&#160;</td><td>';
+		$line .= "\xc2\xa0</td><td>";
 
 		// everything else: makes it easier for extensions to add or remove data
 		$line .= implode( '', $data );

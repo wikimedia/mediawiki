@@ -70,6 +70,6 @@ class HTMLFormFieldWithButton extends HTMLFormField {
 	 * @return String
 	 */
 	public function getElement( $element ) {
-		return $element . '&#160;' . $this->getInputHTML( '' );
+		return $element . "\xc2\xa0" . $this->getInputHTML( '' );
 	}
 }

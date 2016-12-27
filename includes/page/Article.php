@@ -1688,7 +1688,7 @@ class Article implements Page {
 			Html::openElement( 'div', [ 'id' => 'mw-deleteconfirm-table' ] ) .
 			Html::openElement( 'div', [ 'id' => 'wpDeleteReasonListRow' ] ) .
 			Html::label( wfMessage( 'deletecomment' )->text(), 'wpDeleteReasonList' ) .
-			'&nbsp;' .
+			"\xc2\xa0" .
 			Xml::listDropDown(
 				'wpDeleteReasonList',
 				wfMessage( 'deletereason-dropdown' )->inContentLanguage()->text(),
@@ -1700,7 +1700,7 @@ class Article implements Page {
 			Html::closeElement( 'div' ) .
 			Html::openElement( 'div', [ 'id' => 'wpDeleteReasonRow' ] ) .
 			Html::label( wfMessage( 'deleteotherreason' )->text(), 'wpReason' ) .
-			'&nbsp;' .
+			"\xc2\xa0" .
 			Html::input( 'wpReason', $reason, 'text', [
 				'size' => '60',
 				'maxlength' => '255',

@@ -66,7 +66,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			$preferences[$k] = [
 				'type' => 'text',
 				'section' => 'test',
-				'label' => '&#160;',
+				'label' => "\xc2\xa0",
 			];
 		}
 
@@ -81,7 +81,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 				],
 			],
 			'section' => 'test',
-			'label' => '&#160;',
+			'label' => "\xc2\xa0",
 			'prefix' => 'testmultiselect-',
 			'default' => [],
 		];

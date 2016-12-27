@@ -105,7 +105,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			$elementFunc = [ 'Html', $this->mOptionsLabelsNotFromMessage ? 'rawElement' : 'element' ];
 			$checkbox =
 				Xml::check( "{$this->mName}[]", $checked, $attribs ) .
-				'&#160;' .
+				"\xc2\xa0" .
 				call_user_func( $elementFunc,
 					'label',
 					[ 'for' => $attribs['id'] ],

@@ -282,7 +282,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			Html::label(
 				$this->msg( 'emailusername' )->text(),
 				'emailusertarget'
-			) . '&#160;' .
+			) . "\xc2\xa0" .
 			Html::input(
 				'target',
 				$name,

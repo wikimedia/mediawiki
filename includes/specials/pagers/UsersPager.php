@@ -311,14 +311,14 @@ class UsersPager extends AlphabeticPager {
 			'editsOnly',
 			$this->editsOnly
 		);
-		$out .= '&#160;';
+		$out .= "\xc2\xa0";
 		$out .= Xml::checkLabel(
 			$this->msg( 'listusers-creationsort' )->text(),
 			'creationSort',
 			'creationSort',
 			$this->creationSort
 		);
-		$out .= '&#160;';
+		$out .= "\xc2\xa0";
 		$out .= Xml::checkLabel(
 			$this->msg( 'listusers-desc' )->text(),
 			'desc',
