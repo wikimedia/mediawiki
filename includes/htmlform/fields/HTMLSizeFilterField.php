@@ -27,7 +27,7 @@ class HTMLSizeFilterField extends HTMLIntField {
 			$value >= 0,
 			$attribs
 		);
-		$html .= '&#160;' . Xml::radioLabel(
+		$html .= "\xc2\xa0" . Xml::radioLabel(
 			$this->msg( 'maximum-size' )->text(),
 			$this->mName . '-mode',
 			'max',
@@ -35,8 +35,8 @@ class HTMLSizeFilterField extends HTMLIntField {
 			$value < 0,
 			$attribs
 		);
-		$html .= '&#160;' . parent::getInputHTML( $value ? abs( $value ) : '' );
-		$html .= '&#160;' . $this->msg( 'pagesize' )->parse();
+		$html .= "\xc2\xa0" . parent::getInputHTML( $value ? abs( $value ) : '' );
+		$html .= "\xc2\xa0" . $this->msg( 'pagesize' )->parse();
 
 		return $html;
 	}
