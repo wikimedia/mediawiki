@@ -7,6 +7,8 @@
  * @file
  *
  */
+ 
+$fallback = 'fr';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Media',
@@ -31,6 +33,8 @@ $namespaceAliases = [
 	'Skeudenn'            => NS_FILE,
 	'Kaozeadenn_Skeudenn' => NS_FILE_TALK,
 ];
+
+$namespaceGenderAliases = [];
 
 $specialPageAliases = [
 	'Activeusers'               => [ 'ImplijerienOberiant' ],
