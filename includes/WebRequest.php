@@ -758,22 +758,6 @@ class WebRequest {
 	}
 
 	/**
-	 * Returns true if the request has a persistent session.
-	 * This does not necessarily mean that the user is logged in!
-	 *
-	 * @deprecated since 1.27, use
-	 *  \MediaWiki\Session\SessionManager::singleton()->getPersistedSessionId()
-	 *  instead.
-	 * @return bool
-	 */
-	public function checkSessionCookie() {
-		global $wgInitialSessionId;
-		wfDeprecated( __METHOD__, '1.27' );
-		return $wgInitialSessionId !== null &&
-			$this->getSession()->getId() === (string)$wgInitialSessionId;
-	}
-
-	/**
 	 * Get a cookie from the $_COOKIE jar
 	 *
 	 * @param string $key The name of the cookie
