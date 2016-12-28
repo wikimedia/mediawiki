@@ -109,6 +109,16 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Phabricator reports.
 
+* Based as always on linguistic studies on intelligibility and language
+  knowledge by geography, language fallbacks have been expanded. When a
+  translation is missing in the user's preferred interface language, the
+  corresponding translation for the fallback language will be used instead.
+  English will only be used as last resort when there are no translations.
+  Some configurations (such as date formats and gender namespaces) have also
+  been updated when using the fallback language's configuration was inadequate.
+  The new or reinstated language fallbacks are (after cs ↔ sk in 1.28):
+  hsb ↔ dsb, io → eo, mdf → ru, pnt → el, roa-tara → it.
+
 ==== No fallback for Ukrainian ====
 * (T39314) The fallback from Ukrainian to Russian was removed. The Ukrainian
   language will now use the default fallback language: English. When a translation
