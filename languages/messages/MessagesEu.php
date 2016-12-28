@@ -8,6 +8,8 @@
  *
  */
 
+$fallback = 'es';
+
 $namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Berezi',
@@ -32,6 +34,8 @@ $namespaceAliases = [
 	'Irudi' => NS_FILE,
 	'Irudi_eztabaida' => NS_FILE_TALK,
 ];
+
+$namespaceGenderAliases = [];
 
 $specialPageAliases = [
 	'Allmessages'               => [ 'MezuGuztiak' ],
