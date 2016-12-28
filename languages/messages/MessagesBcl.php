@@ -8,6 +8,8 @@
  *
  */
 
+$fallback = 'bto, tl';
+
 $namespaceNames = [
 	NS_MEDIA            => 'Medio',
 	NS_SPECIAL          => 'Espesyal',
