@@ -19,7 +19,7 @@
  */
 
 /**
- * Temporary workaround for incorrect collation of Persian language ('fa') in ICU (bug T139110).
+ * Temporary workaround for incorrect collation of Persian language ('fa') in ICU 52 (bug T139110).
  *
  * 'ا' and 'و' should not be considered the same letter for the purposes of collation in Persian.
  *
@@ -34,11 +34,14 @@ class CollationFa extends IcuCollation {
 	}
 
 	public function getPrimarySortKey( $string ) {
-		$firstLetter = mb_substr( $string, 0, 1 );
-		if ( $firstLetter === 'و' || $firstLetter === 'ا' ) {
+		$primary = parent::getPrimarySortKey( $string );
+		// We have to use a tertiary sortkey for everything with the primary sortkey of 2627.
+		// Otherwise, the "Remove duplicate prefixes" logic in IcuCollation would remove them.
+		// This matches sortkeys for the following characters: ء ئ ا و ٲ ٳ
+		if ( substr( $primary, 0, 2 ) === "\x26\x27" ) {
+			wfDebug( "Using tertiary sortkey for '$string'\n" );
 			return $this->tertiaryCollator->getSortKey( $string );
 		}
-
-		return parent::getPrimarySortKey( $string );
+		return $primary;
 	}
 }
