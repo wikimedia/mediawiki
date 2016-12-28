@@ -8,6 +8,8 @@
  *
  */
 
+$fallback = 'tl';
+
 $namespaceNames = [
 	NS_MEDIA            => 'Medya',
 	NS_SPECIAL          => 'Espesyal',
