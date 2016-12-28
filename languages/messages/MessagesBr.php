@@ -8,6 +8,8 @@
  *
  */
 
+$fallback = 'fr';
+
 $namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Dibar',
@@ -31,6 +33,8 @@ $namespaceAliases = [
 	'Skeudenn'            => NS_FILE,
 	'Kaozeadenn_Skeudenn' => NS_FILE_TALK,
 ];
+
+$namespaceGenderAliases = [];
 
 $specialPageAliases = [
 	'Activeusers'               => [ 'ImplijerienOberiant' ],

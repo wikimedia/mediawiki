@@ -19,6 +19,8 @@
  * @author לערי ריינהארט
  */
 
+$fallback = 'fr';
+
 $bookstoreList = [
 	'Amazon.fr' => 'http://www.amazon.fr/exec/obidos/ISBN=$1'
 ];
@@ -56,6 +58,8 @@ $namespaceAliases = [
 	'Imatge'               => NS_FILE,
 	'Discussion_Imatge'    => NS_FILE_TALK,
 ];
+
+$namespaceGenderAliases = [];
 
 $specialPageAliases = [
 	'Allmessages'               => [ 'Messatge_sistèma', 'Messatge_del_sistèma' ],
