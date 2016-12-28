@@ -2416,6 +2416,8 @@
 	"cant-move-to-user-page": "Não tem permissão para mover uma página para uma página de utilizador (pode movê-la para uma subpágina de utilizador).",
 	"cant-move-category-page": "Não possui permissão para mover categorias.",
 	"cant-move-to-category-page": "Não possui permissão para mover uma página para uma categoria.",
+	"cant-move-subpages": "Não tem permissão para mover subpáginas.",
+	"namespace-nosubpages": "O espaço nominal \"$1\" não permite subpáginas.",
 	"newtitle": "Novo título:",
 	"move-watch": "Vigiar esta página",
 	"movepagebtn": "Mover página",

@@ -2366,6 +2366,8 @@
 	"cant-move-to-user-page": "Non ten os permisos necesarios para mover unha páxina a unha páxina de usuario (agás a unha subpáxina).",
 	"cant-move-category-page": "Non ten os permisos necesarios para mover páxinas de categoría.",
 	"cant-move-to-category-page": "Non ten os permisos necesarios para mover unha páxina a unha páxina de categoría.",
+	"cant-move-subpages": "Non ten os permisos necesarios para mover subpáxinas.",
+	"namespace-nosubpages": "O espazo de nomes \"$1\" non deixa subpáxinas.",
 	"newtitle": "Novo título:",
 	"move-watch": "Vixiar esta páxina",
 	"movepagebtn": "Mover a páxina",
