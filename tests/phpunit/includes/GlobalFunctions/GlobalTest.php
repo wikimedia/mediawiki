@@ -463,20 +463,24 @@ class GlobalTest extends MediaWikiTestCase {
 	 * @param string $yours Text submitted by the user
 	 * @param bool $expectedMergeResult Whether the merge should be a success
 	 * @param string $expectedText Text after merge has been completed
+	 * @param string $expectedMergeAttemptResult Diff3 output if conflicts occur
 	 *
 	 * @dataProvider provideMerge()
 	 * @group medium
 	 * @covers ::wfMerge
 	 */
-	public function testMerge( $old, $mine, $yours, $expectedMergeResult, $expectedText ) {
+	public function testMerge( $old, $mine, $yours, $expectedMergeResult, $expectedText,
+							   $expectedMergeAttemptResult ) {
 		$this->markTestSkippedIfNoDiff3();
 
 		$mergedText = null;
-		$isMerged = wfMerge( $old, $mine, $yours, $mergedText );
+		$attemptMergeResult = null;
+		$isMerged = wfMerge( $old, $mine, $yours, $mergedText, $mergeAttemptResult );
 
 		$msg = 'Merge should be a ';
 		$msg .= $expectedMergeResult ? 'success' : 'failure';
 		$this->assertEquals( $expectedMergeResult, $isMerged, $msg );
+		$this->assertEquals( $expectedMergeAttemptResult, $mergeAttemptResult );
 
 		if ( $isMerged ) {
 			// Verify the merged text
@@ -514,6 +518,9 @@ class GlobalTest extends MediaWikiTestCase {
 				"one one one ONE ONE\n" .
 					"\n" .
 					"two two TWO TWO\n", // note: will always end in a newline
+
+				// mergeAttemptResult:
+				"",
 			],
 
 			// #1: conflict, fail
@@ -536,6 +543,13 @@ class GlobalTest extends MediaWikiTestCase {
 
 				// result:
 				null,
+
+				// mergeAttemptResult:
+				"1,3c\n" .
+				"one one one\n" .
+				"\n" .
+				"two two\n" .
+				".\n",
 			],
 		];
 	}

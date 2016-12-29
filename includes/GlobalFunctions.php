@@ -2602,9 +2602,10 @@ function wfShellWikiCmd( $script, array $parameters = [], array $options = [] ) 
  * @param string $mine
  * @param string $yours
  * @param string $result
+ * @param string $mergeAttemptResult
  * @return bool
  */
-function wfMerge( $old, $mine, $yours, &$result ) {
+function wfMerge( $old, $mine, $yours, &$result, &$mergeAttemptResult = null ) {
 	global $wgDiff3;
 
 	# This check may also protect against code injection in
@@ -2640,12 +2641,17 @@ function wfMerge( $old, $mine, $yours, &$result ) {
 		$oldtextName, $yourtextName );
 	$handle = popen( $cmd, 'r' );
 
-	if ( fgets( $handle, 1024 ) ) {
-		$conflict = true;
-	} else {
-		$conflict = false;
-	}
+	$mergeAttemptResult = '';
+	do {
+		$data = fread( $handle, 8192 );
+		if ( strlen( $data ) == 0 ) {
+			break;
+		}
+		$mergeAttemptResult .= $data;
+	} while ( true );
 	pclose( $handle );
+
+	$conflict = $mergeAttemptResult !== '';
 
 	# Merge differences
 	$cmd = wfEscapeShellArg( $wgDiff3, '-a', '-e', '--merge', $mytextName,
