@@ -1975,7 +1975,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Quotes an identifier using `backticks` or "double quotes" depending on the database type.
 	 * MySQL uses `backticks` while basically everything else uses double quotes.
 	 * Since MySQL is the odd one out here the double quotes are our generic
-	 * and we implement backticks in DatabaseMysql.
+	 * and we implement backticks in DatabaseMysqlBase.
 	 *
 	 * @param string $s
 	 * @return string

@@ -147,6 +147,9 @@ changes to languages because of Phabricator reports.
 * User::getTemporaryPassword() (deprecated in 1.27) was removed.
 * User::isPasswordReminderThrottled() (deprecated in 1.27) was removed.
 * FSRepo (deprecated in 1.19) was removed.
+* (T120333) Soft-deprecated the use of PHP extension 'mysql' in favor of 'mysqli'
+  (this PHP extension was deprecated in PHP 5.5 and removed in PHP 7.0;
+  MediaWiki auto-selects the 'mysqli' driver since MediaWiki 1.22).
 
 == Compatibility ==
 
