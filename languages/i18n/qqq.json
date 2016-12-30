@@ -4574,4 +4574,17 @@
 	"pagedata-text": "Error shown when none of the formats acceptable to the client is supported (HTTP error 406). Parameters:\n* $1 - the list of supported MIME types",
 	"pagedata-not-acceptable": "No matching format found. Supported MIME types: $1",
 	"pagedata-bad-title": "Error shown when the requested title is invalid. Parameters:\n* $1: the malformed ID"
+	"right-viewconfigurations": "{{Doc-right|viewconfigurations}}",
+	"right-viewprivateconfigurations": "{{Doc-right|viewprivateconfigurations}}",
+	"action-viewconfigurations": "{{Doc-action|viewconfigurations}}",
+	"configurations": "Title for [[Special:Configurations]]",
+	"configurations-summary": "Summary for [[Special:Configurations]], which shows the available configuration options and their values.",
+	"sp-configurations-no-public": "Error message, if there're no public configuration options visible (the message should not contain the word 'public').",
+	"sp-configurations-no-configurations": "Error message, if there're no visible configuration options at all (no private nor public).",
+	"sp-configurations-for": "Heading for a section of configuration options on [[Special:Configurations]].\n* $1 - the name of the configuration options provider (usually an extension name)",
+	"sp-configurations-configuration": "Table heading for a configuration options name on [[Special:Configurations]].",
+	"sp-configurations-description": "Table heading for a configuration options description on [[Special:Configurations]].",
+	"sp-configurations-value": "Table heading for a configuration options actual value on [[Special:Configurations]].",
+	"sp-configurations-defaultvalue": "Table heading for a configuration options default value on [[Special:Configurations]].",
+	"sp-configurations-emptyvalue": "The text representation of an empty string (used for empzty configuration option values on [[SpecialConfigurations]])."
 }
