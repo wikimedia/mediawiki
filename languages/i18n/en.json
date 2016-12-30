@@ -4326,5 +4326,18 @@
 	"gotointerwiki-invalid": "The specified title was invalid.",
 	"gotointerwiki-external": "You are about to leave {{SITENAME}} to visit [[$2]] which is a separate website.\n\n[$1 Click here to continue on to $1].",
 	"undelete-cantedit": "You cannot undelete this page as you are not allowed to edit this page.",
-	"undelete-cantcreate": "You cannot undelete this page as there is no existing page with this name and you are not allowed to create this page."
+	"undelete-cantcreate": "You cannot undelete this page as there is no existing page with this name and you are not allowed to create this page.",
+	"right-viewconfigurations": "View configuration options",
+	"right-viewprivateconfigurations": "View private configuration options",
+	"action-viewconfigurations": "view configuration options",
+	"configurations": "Configuration options",
+	"configurations-summary": "This page gives an overview about configuration options and their values used on this wiki.",
+	"sp-configurations-no-public": "There're no public configuration options for this wiki.",
+	"sp-configurations-no-configurations": "There're no configuration options for this wiki.",
+	"sp-configurations-for": "Configurations for $1",
+	"sp-configurations-configuration": "Configuration",
+	"sp-configurations-description": "Description",
+	"sp-configurations-value": "Value",
+	"sp-configurations-defaultvalue": "Default value",
+	"sp-configurations-emptyvalue": "An empty string."
 }
