@@ -1553,7 +1553,7 @@
 	"apierror-autoblocked": "Your IP address has been blocked automatically, because it was used by a blocked user.",
 	"apierror-badconfig-resulttoosmall": "The value of <code>$wgAPIMaxResultSize</code> on this wiki is too small to hold basic result information.",
 	"apierror-badcontinue": "Invalid continue param. You should pass the original value returned by the previous query.",
-	"apierror-baddiff": "The diff cannot be retrieved, one or both revisions do not exist or you do not have permission to view them.",
+	"apierror-baddiff": "The diff cannot be retrieved. One or both revisions do not exist or you do not have permission to view them.",
 	"apierror-baddiffto": "<var>$1diffto</var> must be set to a non-negative number, <kbd>prev</kbd>, <kbd>next</kbd> or <kbd>cur</kbd>.",
 	"apierror-badformat-generic": "The requested format $1 is not supported for content model $2.",
 	"apierror-badformat": "The requested format $1 is not supported for content model $2 used by $3.",
