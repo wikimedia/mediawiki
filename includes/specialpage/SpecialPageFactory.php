@@ -165,6 +165,7 @@ class SpecialPageFactory {
 
 		// Other
 		'Booksources' => 'SpecialBookSources',
+		'Configurations' => 'SpecialConfigurations',
 
 		// Unlisted / redirects
 		'ApiHelp' => 'SpecialApiHelp',
