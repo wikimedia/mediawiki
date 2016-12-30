@@ -196,7 +196,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 	 * @param string $session_name Session name (ignored)
 	 * @return bool|int Success (see self::returnSuccess())
 	 */
-	public function open( $save_path, $session_name ) {
+	abstract public function open( $save_path, $session_name ) {
 		if ( self::$instance !== $this ) {
 			throw new \UnexpectedValueException( __METHOD__ . ': Wrong instance called!' );
 		}
@@ -211,7 +211,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 	 * @private For internal use only
 	 * @return bool|int Success (see self::returnSuccess())
 	 */
-	public function close() {
+	abstract public function close() {
 		if ( self::$instance !== $this ) {
 			throw new \UnexpectedValueException( __METHOD__ . ': Wrong instance called!' );
 		}
@@ -225,7 +225,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 	 * @param string $id Session id
 	 * @return string Session data
 	 */
-	public function read( $id ) {
+	abstract public function read( $id ) {
 		if ( self::$instance !== $this ) {
 			throw new \UnexpectedValueException( __METHOD__ . ': Wrong instance called!' );
 		}
@@ -253,7 +253,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 	 *   via user-controlled data as does PHP's unserialize function.
 	 * @return bool|int Success (see self::returnSuccess())
 	 */
-	public function write( $id, $dataStr ) {
+	abstract public function write( $id, $dataStr ) {
 		if ( self::$instance !== $this ) {
 			throw new \UnexpectedValueException( __METHOD__ . ': Wrong instance called!' );
 		}
@@ -359,7 +359,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 	 * @param string $id Session id
 	 * @return bool|int Success (see self::returnSuccess())
 	 */
-	public function destroy( $id ) {
+	abstract public function destroy( $id ) {
 		if ( self::$instance !== $this ) {
 			throw new \UnexpectedValueException( __METHOD__ . ': Wrong instance called!' );
 		}
@@ -380,7 +380,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 	 * @return bool|int Success (see self::returnSuccess())
 	 * @codeCoverageIgnore See T135576
 	 */
-	public function gc( $maxlifetime ) {
+	abstract public function gc( $maxlifetime ) {
 		if ( self::$instance !== $this ) {
 			throw new \UnexpectedValueException( __METHOD__ . ': Wrong instance called!' );
 		}
