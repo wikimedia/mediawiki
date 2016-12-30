@@ -1454,8 +1454,8 @@
 
 		assert.equal(
 			parsers[ 1 ].format( $table.find( 'tbody > tr > td:eq(1)' ).text() ),
-			0,
-			'empty cell is sorted as number 0'
+			-Infinity,
+			'empty cell is sorted as number -Infinity'
 		);
 	} );
 
