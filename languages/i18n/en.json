@@ -4279,5 +4279,18 @@
 	"restrictionsfield-label": "Allowed IP ranges:",
 	"restrictionsfield-help": "One IP address or CIDR range per line. To enable everything, use:<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "revision $1",
-	"pageid": "page ID $1"
+	"pageid": "page ID $1",
+	"right-viewconfigurations": "View configuration options",
+	"right-viewprivateconfigurations": "View private configuration options",
+	"action-viewconfigurations": "view configuration options",
+	"configurations": "Configuration options",
+	"configurations-summary": "This page gives an overview about configuration options and their values used on this wiki.",
+	"sp-configurations-no-public": "There're no public configuration options for this wiki.",
+	"sp-configurations-no-configurations": "There're no configuration options for this wiki.",
+	"sp-configurations-for": "Configurations for $1",
+	"sp-configurations-configuration": "Configuration",
+	"sp-configurations-description": "Description",
+	"sp-configurations-value": "Value",
+	"sp-configurations-defaultvalue": "Default value",
+	"sp-configurations-emptyvalue": "An empty string."
 }
