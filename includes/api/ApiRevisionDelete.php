@@ -46,6 +46,14 @@ class ApiRevisionDelete extends ApiBase {
 			$this->dieWithError( [ 'apierror-paramempty', 'ids' ], 'paramempty_ids' );
 		}
 
+		// Check if user can add tags
+		if ( count( $params['tags'] ) ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			if ( !$ableToTag->isOK() ) {
+				$this->dieStatus( $ableToTag );
+			}
+		}
+
 		$hide = $params['hide'] ?: [];
 		$show = $params['show'] ?: [];
 		if ( array_intersect( $hide, $show ) ) {
@@ -90,9 +98,12 @@ class ApiRevisionDelete extends ApiBase {
 		$list = RevisionDeleter::createList(
 			$params['type'], $this->getContext(), $targetObj, $params['ids']
 		);
-		$status = $list->setVisibility(
-			[ 'value' => $bitfield, 'comment' => $params['reason'], 'perItemStatus' => true ]
-		);
+		$status = $list->setVisibility( [
+			'value' => $bitfield,
+			'comment' => $params['reason'],
+			'perItemStatus' => true,
+			'tags' => $params['tags']
+		] );
 
 		$result = $this->getResult();
 		$data = $this->extractStatusInfo( $status );
@@ -165,6 +176,10 @@ class ApiRevisionDelete extends ApiBase {
 				ApiBase::PARAM_DFLT => 'nochange',
 			],
 			'reason' => null,
+			'tags' => [
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
+			],
 		];
 	}
 
