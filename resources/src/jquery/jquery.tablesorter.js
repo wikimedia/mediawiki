@@ -1018,17 +1018,17 @@
 				s = out;
 			}
 			i = parseFloat( s.replace( /[, ]/g, '' ).replace( '\u2212', '-' ) );
-			return isNaN( i ) ? 0 : i;
+			return isNaN( i ) ? -Infinity : i;
 		},
 
 		formatFloat: function ( s ) {
 			var i = parseFloat( s );
-			return isNaN( i ) ? 0 : i;
+			return isNaN( i ) ? -Infinity : i;
 		},
 
 		formatInt: function ( s ) {
 			var i = parseInt( s, 10 );
-			return isNaN( i ) ? 0 : i;
+			return isNaN( i ) ? -Infinity : i;
 		},
 
 		clearTableBody: function ( table ) {
