@@ -608,7 +608,7 @@ class Title implements LinkTarget {
 		wfDeprecated( __METHOD__, '1.25' );
 		return MediaWikiTitleCodec::getTitleInvalidRegex();
 	}
-
+	
 	/**
 	 * Utility method for converting a character sequence from bytes to Unicode.
 	 *
@@ -3609,18 +3609,7 @@ class Title implements LinkTarget {
 		);
 	}
 
-	/**
-	 * Move this page without authentication
-	 *
-	 * @deprecated since 1.25 use MovePage class instead
-	 * @param Title $nt The new page Title
-	 * @return array|bool True on success, getUserPermissionsErrors()-like array on failure
-	 */
-	public function moveNoAuth( &$nt ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		return $this->moveTo( $nt, false );
-	}
-
+	
 	/**
 	 * Check whether a given move operation would be valid.
 	 * Returns true if ok, or a getUserPermissionsErrors()-like array otherwise
@@ -3675,6 +3664,7 @@ class Title implements LinkTarget {
 	}
 
 	/**
+	 *
 	 * Move a title to a new location
 	 *
 	 * @deprecated since 1.25, use the MovePage class instead
@@ -3698,7 +3688,6 @@ class Title implements LinkTarget {
 		if ( $auth && !$wgUser->isAllowed( 'suppressredirect' ) ) {
 			$createRedirect = true;
 		}
-
 		$mp = new MovePage( $this, $nt );
 		$status = $mp->move( $wgUser, $reason, $createRedirect );
 		if ( $status->isOK() ) {
@@ -3867,7 +3856,6 @@ class Title implements LinkTarget {
 		# Does the redirect point to the source?
 		# Or is it a broken self-redirect, usually caused by namespace collisions?
 		$redirTitle = $content ? $content->getRedirectTarget() : null;
-
 		if ( $redirTitle ) {
 			if ( $redirTitle->getPrefixedDBkey() != $this->getPrefixedDBkey() &&
 				$redirTitle->getPrefixedDBkey() != $nt->getPrefixedDBkey() ) {
