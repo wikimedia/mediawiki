@@ -147,6 +147,16 @@ changes to languages because of Phabricator reports.
 * User::getTemporaryPassword() (deprecated in 1.27) was removed.
 * User::isPasswordReminderThrottled() (deprecated in 1.27) was removed.
 * FSRepo (deprecated in 1.19) was removed.
+* Title::getTitleInvalidRegex() (deprecated since 1.25) was removed, 
+  use MediawikiTitleCodec::getTitleInvalidRegex() instead.
+* Title::getSquidURLs() (deprecated since 1.27) was removed,
+  use getCdnUrls() instead.
+* Title::isValidMoveTarget( $nt ) (deprecated since 1.25) was removed,
+  use MovePage's methods instead.
+* Title::moveNoAuth( &$nt ) (deprecated since 1.25) was removed,
+  use MovePage class instead.
+* Title::moveTo (deprecated since 1.25) was removed,
+  use MovePage class instead.
 
 == Compatibility ==
 

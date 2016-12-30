@@ -595,20 +595,7 @@ class Title implements LinkTarget {
 		return $wgLegalTitleChars;
 	}
 
-	/**
-	 * Returns a simple regex that will match on characters and sequences invalid in titles.
-	 * Note that this doesn't pick up many things that could be wrong with titles, but that
-	 * replacing this regex with something valid will make many titles valid.
-	 *
-	 * @deprecated since 1.25, use MediaWikiTitleCodec::getTitleInvalidRegex() instead
-	 *
-	 * @return string Regex string
-	 */
-	static function getTitleInvalidRegex() {
-		wfDeprecated( __METHOD__, '1.25' );
-		return MediaWikiTitleCodec::getTitleInvalidRegex();
-	}
-
+	
 	/**
 	 * Utility method for converting a character sequence from bytes to Unicode.
 	 *
@@ -3592,13 +3579,7 @@ class Title implements LinkTarget {
 		return $urls;
 	}
 
-	/**
-	 * @deprecated since 1.27 use getCdnUrls()
-	 */
-	public function getSquidURLs() {
-		return $this->getCdnUrls();
-	}
-
+	
 	/**
 	 * Purge all applicable CDN URLs
 	 */
@@ -3609,18 +3590,7 @@ class Title implements LinkTarget {
 		);
 	}
 
-	/**
-	 * Move this page without authentication
-	 *
-	 * @deprecated since 1.25 use MovePage class instead
-	 * @param Title $nt The new page Title
-	 * @return array|bool True on success, getUserPermissionsErrors()-like array on failure
-	 */
-	public function moveNoAuth( &$nt ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		return $this->moveTo( $nt, false );
-	}
-
+	
 	/**
 	 * Check whether a given move operation would be valid.
 	 * Returns true if ok, or a getUserPermissionsErrors()-like array otherwise
@@ -3674,39 +3644,7 @@ class Title implements LinkTarget {
 		return $errors;
 	}
 
-	/**
-	 * Move a title to a new location
-	 *
-	 * @deprecated since 1.25, use the MovePage class instead
-	 * @param Title $nt The new title
-	 * @param bool $auth Indicates whether $wgUser's permissions
-	 *  should be checked
-	 * @param string $reason The reason for the move
-	 * @param bool $createRedirect Whether to create a redirect from the old title to the new title.
-	 *  Ignored if the user doesn't have the suppressredirect right.
-	 * @return array|bool True on success, getUserPermissionsErrors()-like array on failure
-	 */
-	public function moveTo( &$nt, $auth = true, $reason = '', $createRedirect = true ) {
-		global $wgUser;
-		$err = $this->isValidMoveOperation( $nt, $auth, $reason );
-		if ( is_array( $err ) ) {
-			// Auto-block user's IP if the account was "hard" blocked
-			$wgUser->spreadAnyEditBlock();
-			return $err;
-		}
-		// Check suppressredirect permission
-		if ( $auth && !$wgUser->isAllowed( 'suppressredirect' ) ) {
-			$createRedirect = true;
-		}
-
-		$mp = new MovePage( $this, $nt );
-		$status = $mp->move( $wgUser, $reason, $createRedirect );
-		if ( $status->isOK() ) {
-			return true;
-		} else {
-			return $status->getErrorsArray();
-		}
-	}
+	
 
 	/**
 	 * Move this page's subpages to be subpages of $nt
@@ -3835,55 +3773,7 @@ class Title implements LinkTarget {
 		return ( $row === false );
 	}
 
-	/**
-	 * Checks if $this can be moved to a given Title
-	 * - Selects for update, so don't call it unless you mean business
-	 *
-	 * @deprecated since 1.25, use MovePage's methods instead
-	 * @param Title $nt The new title to check
-	 * @return bool
-	 */
-	public function isValidMoveTarget( $nt ) {
-		# Is it an existing file?
-		if ( $nt->getNamespace() == NS_FILE ) {
-			$file = wfLocalFile( $nt );
-			$file->load( File::READ_LATEST );
-			if ( $file->exists() ) {
-				wfDebug( __METHOD__ . ": file exists\n" );
-				return false;
-			}
-		}
-		# Is it a redirect with no history?
-		if ( !$nt->isSingleRevRedirect() ) {
-			wfDebug( __METHOD__ . ": not a one-rev redirect\n" );
-			return false;
-		}
-		# Get the article text
-		$rev = Revision::newFromTitle( $nt, false, Revision::READ_LATEST );
-		if ( !is_object( $rev ) ) {
-			return false;
-		}
-		$content = $rev->getContent();
-		# Does the redirect point to the source?
-		# Or is it a broken self-redirect, usually caused by namespace collisions?
-		$redirTitle = $content ? $content->getRedirectTarget() : null;
-
-		if ( $redirTitle ) {
-			if ( $redirTitle->getPrefixedDBkey() != $this->getPrefixedDBkey() &&
-				$redirTitle->getPrefixedDBkey() != $nt->getPrefixedDBkey() ) {
-				wfDebug( __METHOD__ . ": redirect points to other page\n" );
-				return false;
-			} else {
-				return true;
-			}
-		} else {
-			# Fail safe (not a redirect after all. strange.)
-			wfDebug( __METHOD__ . ": failsafe: database sais " . $nt->getPrefixedDBkey() .
-						" is a redirect, but it doesn't contain a valid redirect.\n" );
-			return false;
-		}
-	}
-
+	
 	/**
 	 * Get categories to which this Title belongs and return an array of
 	 * categories' names.
