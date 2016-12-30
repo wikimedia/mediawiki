@@ -3539,7 +3539,7 @@
 	"api-error-unclassified": "Prišlo je do neznane napake",
 	"api-error-unknown-code": "Neznana napaka: »$1«",
 	"api-error-unknown-error": "Notranja napaka: pri poskusu nalaganja vaše datoteke je nekaj šlo narobe.",
-	"api-error-unknown-warning": "Neznano opozorilo: $1",
+	"api-error-unknown-warning": "Neznano opozorilo: »$1«.",
 	"api-error-unknownerror": "Neznana napaka: »$1«.",
 	"api-error-uploaddisabled": "Nalaganje je onemogočeno na tem wikiju.",
 	"api-error-verification-error": "Ta datoteka je morda poškodovana ali ima napačno končnico.",

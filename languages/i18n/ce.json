@@ -143,7 +143,7 @@
 	"listingcontinuesabbrev": "(кхин дlа)",
 	"index-category": "Меттигтерахьйо агӀонаш",
 	"noindex-category": "ДӀахьушйоцу агӀонаш",
-	"broken-file-category": "{{#switch:{{NAMESPACE}}\n |{{ns:0}}=Болх цабеш файлийн хьажоргаш йолу агӀонаш}}",
+	"broken-file-category": "{{#switch:{{NAMESPACE}}\n |{{ns:0}}=Болх ца бен файлийн хьажоргаш йолу агӀонаш}}",
 	"about": "Цуьнах лаьцна",
 	"article": "Яззам",
 	"newwindow": "(керлачу корехь)",

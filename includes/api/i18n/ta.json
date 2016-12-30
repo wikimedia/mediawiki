@@ -3,7 +3,8 @@
 		"authors": [
 			"AntanO",
 			"கலைவாணன்",
-			"Info-farmer"
+			"Info-farmer",
+			"ElangoRamanujam"
 		]
 	},
 	"apihelp-main-param-action": "எச்செயலை செயற்படுத்த",
@@ -13,5 +14,15 @@
 	"apihelp-import-param-rootpage": "இப்பக்கத்தின் துணைப்பக்கமாக இறக்குமதி செய்யவும். <kbd>$1namespace</kbd> அளவுரு வழங்கப்பட்டிருந்தால் இது புறக்கணிக்கப்படும்.",
 	"api-help-source": "மூலம்: $1",
 	"api-help-license": "அனுமதி: [[$1|$2]]",
-	"api-help-license-noname": "அனுமதி: [[$1|இணைப்பைப் பார்]]"
+	"api-help-license-noname": "அனுமதி: [[$1|இணைப்பைப் பார்]]",
+	"apierror-invalidtitle": "தவறான தலைப்பு ”$1”",
+	"apierror-mustbeloggedin-generic": "தாங்கள் புகுபதிந்திருக்கவேண்டும்.",
+	"apierror-mustbeloggedin": "தாங்கள் $1-ல் புகுபதிந்திருக்கவேண்டும்.",
+	"apierror-nochanges": "மாற்றங்களேதும் கோரப்படவில்லை.",
+	"apierror-permissiondenied-generic": "அனுமதி மறுக்கப்பட்டது.",
+	"apierror-unknownerror-nocode": "இனம்புரியாப் பிழை.",
+	"apierror-unknownerror": "இனமறியாப் பிழை:\"$1\".",
+	"apiwarn-invalidtitle": "\"$1\" என்பது செல்லும் தலைப்பல்ல.",
+	"apiwarn-notfile": "”$1” ஒரு கோப்பல்ல.",
+	"api-feed-error-title": "பிழை ($1)"
 }

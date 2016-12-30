@@ -3702,7 +3702,7 @@
 	"api-error-unclassified": "Се појави непозната грешка.",
 	"api-error-unknown-code": "Непозната грешка: „$1“",
 	"api-error-unknown-error": "Внатрешна грешка: нешто тргна наопаку при обидот да ја подигнете податотеката.",
-	"api-error-unknown-warning": "Непознато предупредување: $1",
+	"api-error-unknown-warning": "Непознато предупредување: „$1“",
 	"api-error-unknownerror": "Непозната грешка: „$1“.",
 	"api-error-uploaddisabled": "Подигањето е оневозможено на ова вики.",
 	"api-error-verification-error": "Податотеката е оштетена или има погрешна наставка.",

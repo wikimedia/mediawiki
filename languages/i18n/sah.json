@@ -3753,5 +3753,13 @@
 	"authpage-cannot-link": "Бэлиэ-ааттары ситимниир сатаммата.",
 	"authpage-cannot-link-continue": "Ситимниир кыах суох. Сиэссийэттэн тахсан хаалбыккын быһыылаах.",
 	"cannotauth-not-allowed-title": "Киирэр көҥүллэммэт",
-	"cannotauth-not-allowed": "Бу сирэйи туһанарыҥ сатаммат эбит"
+	"cannotauth-not-allowed": "Бу сирэйи туһанарыҥ сатаммат эбит",
+	"credentialsform-account": "Бэлиэ-аат:",
+	"cannotlink-no-provider-title": "Бэлиэ-ааттар суохтар",
+	"cannotlink-no-provider": "Бэлиэ-ааттар суохтар.",
+	"linkaccounts": "Бэлиэ-ааттары ситимнииргэ",
+	"linkaccounts-success-text": "Бэлиэ-аат ситимнэннэ.",
+	"linkaccounts-submit": "Ситимнииргэ",
+	"unlinkaccounts": "Ситими быһарга",
+	"unlinkaccounts-success": "Бэлиэ-аат ситимэ быһынна."
 }
