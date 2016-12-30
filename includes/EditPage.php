@@ -352,6 +352,9 @@ class EditPage {
 	public $oldid = 0;
 
 	/** @var int */
+	public $baseRev = 0;
+
+	/** @var int */
 	public $parentRevId = 0;
 
 	/** @var string */
@@ -389,6 +392,7 @@ class EditPage {
 	/* $didSave should be set to true whenever an article was successfully altered. */
 	public $didSave = false;
 	public $undidRev = 0;
+	public $undidAfterRev = 0;
 
 	public $suppressIntro = false;
 
@@ -574,13 +578,13 @@ class EditPage {
 			&& $revision->getContentModel() !== $this->contentModel
 		) {
 			$prevRev = null;
-			if ( $this->undidRev ) {
+			if ( $this->undidRev && $this->undidAfterRev ) {
 				$undidRevObj = Revision::newFromId( $this->undidRev );
-				$prevRev = $undidRevObj ? $undidRevObj->getPrevious() : null;
+				$undidAfterRevObj = Revision::newFromId( $this->undidAfterRev );
 			}
 			if ( !$this->undidRev
-				|| !$prevRev
-				|| $prevRev->getContentModel() !== $this->contentModel
+				|| !$this->undidAfterRev
+				|| $undidAfterRevObj->getContentModel() !== $this->contentModel
 			) {
 				$this->displayViewSourcePage(
 					$this->getContentObject(),
@@ -889,6 +893,11 @@ class EditPage {
 				$this->undidRev = $undidRev;
 			}
 
+			$undidAfterRev = $request->getInt( 'wpUndidAfterRevision' );
+			if ( $undidAfterRev ) {
+				$this->undidAfterRev = $undidAfterRev;
+			}
+
 			$this->scrolltop = $request->getIntOrNull( 'wpScrolltop' );
 
 			if ( $this->textbox1 === '' && $request->getVal( 'wpTextbox1' ) === null ) {
@@ -1008,6 +1017,37 @@ class EditPage {
 		}
 
 		$this->oldid = $request->getInt( 'oldid' );
+
+		// the base revision is:
+		// 1) in case of undo, the restored revision
+		// 2) in case of manual editing of an old revision, the old revision
+		// 3) otherwise, the latest revision at the time of edit
+		if ( $this->undidRev && $this->undidAfterRev && $this->undidAfterRev < $this->undidRev ) {
+			// implies $request->wasPosted()
+			$this->baseRev = $this->undidAfterRev;
+		} elseif ( $this->oldid && $this->oldid < $this->editRevId ) {
+			$this->baseRev = $this->oldid;
+			if ( $request->wasPosted() ) {
+				// editing an old revision is equivalent to reverting the
+				// latest revision back to the old revision, so should be
+				// treated the same way by client code
+				$this->undidRev = $this->editRevId;
+				$this->undidAfterRev = $this->oldid;
+			}
+		} else {
+			if ( $this->editRevId ) {
+				$this->baseRev = $this->editRevId;
+			}
+			if ( $request->wasPosted() ) {
+				// just in case
+				$this->undidRev = 0;
+				$this->undidAfterRev = 0;
+			}
+		}
+		// note that if there is an undid rev, there is an undid after rev and the latter
+		// is identical to the base rev; and if there is a base rev, there is an undid rev
+		// iff the base rev is old
+
 		$this->parentRevId = $request->getInt( 'parentRevId' );
 
 		$this->bot = $request->getBool( 'bot', true );
@@ -1204,8 +1244,9 @@ class EditPage {
 										$this->summary = $undoSummary . $this->context->msg( 'colon-separator' )
 											->inContentLanguage()->text() . $this->summary;
 									}
-									$this->undidRev = $undo;
 								}
+								$this->undidRev = $undo;
+								$this->undidAfterRev = $undoafter;
 								$this->formtype = 'diff';
 							}
 						}
@@ -1302,7 +1343,7 @@ class EditPage {
 			$handler = ContentHandler::getForModelID( $this->contentModel );
 
 			return $handler->makeEmptyContent();
-		} elseif ( !$this->undidRev ) {
+		} elseif ( !$this->undidRev || !$this->undidAfterRev ) {
 			// Content models should always be the same since we error
 			// out if they are different before this point (in ->edit()).
 			// The exception being, during an undo, the current revision might
@@ -2143,7 +2184,7 @@ class EditPage {
 			$content,
 			$this->summary,
 			$flags,
-			false,
+			$this->baseRev,
 			$wgUser,
 			$content->getDefaultFormat(),
 			$this->changeTags,
@@ -2274,15 +2315,16 @@ class EditPage {
 	}
 
 	/**
-	 * @note: this method is very poorly named. If the user opened the form with ?oldid=X,
-	 *        one might think of X as the "base revision", which is NOT what this returns.
-	 * @return Revision Current version when the edit was started
+	 * This returns in case of undo the revision reverted to ('undoafter' request param),
+	 * or in case of restore the revision reverted to ('oldid' request param),
+	 * otherwise the current version at the time of edit.
+	 * @return Revision revision the edit was based on
 	 */
 	function getBaseRevision() {
 		if ( !$this->mBaseRevision ) {
 			$db = wfGetDB( DB_MASTER );
-			$this->mBaseRevision = $this->editRevId
-				? Revision::newFromId( $this->editRevId, Revision::READ_LATEST )
+			$this->mBaseRevision = $this->baseRev
+				? Revision::newFromId( $this->baseRev, Revision::READ_LATEST )
 				: Revision::loadFromTimestamp( $db, $this->mTitle, $this->edittime );
 		}
 		return $this->mBaseRevision;
@@ -2721,6 +2763,10 @@ class EditPage {
 
 		if ( $this->undidRev ) {
 			$wgOut->addHTML( Html::hidden( 'wpUndidRevision', $this->undidRev ) );
+		}
+
+		if ( $this->undidAfterRev ) {
+			$wgOut->addHTML( Html::hidden( 'wpUndidAfterRevision', $this->undidAfterRev ) );
 		}
 
 		if ( $this->selfRedirect ) {
