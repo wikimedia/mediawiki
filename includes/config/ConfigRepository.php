@@ -69,7 +69,7 @@ class ConfigRepository implements \Iterator, SalvageableService  {
 	 * @throws \ConfigException
 	 */
 	public function get( $name ) {
-		if ( !$this->has( $name ) ) {
+		if ( !$this->has( $name, true ) ) {
 			throw new \ConfigException( 'The configuration option ' . $name . ' does not exist.' );
 		}
 		if ( isset( $this->configItems['public'][$name] ) ) {
@@ -152,6 +152,21 @@ class ConfigRepository implements \Iterator, SalvageableService  {
 		} else {
 			$this->configItems['private'][$name] = $config;
 		}
+	}
+
+	/**
+	 * Returns true, if there're no elements in this instance, otherwise false.
+	 *
+	 * @param bool $includePrivate Whether configuration options, that are marked as private
+	 * should be included in this check.
+	 * @return bool
+	 */
+	public function isEmpty( $includePrivate = false ) {
+		if ( $includePrivate ) {
+			return
+				empty( $this->configItems['private'] ) && empty( $this->configItems[ 'public'] );
+		}
+		return empty( $this->configItems['public'] );
 	}
 
 	public function current() {
