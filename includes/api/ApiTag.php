@@ -36,6 +36,14 @@ class ApiTag extends ApiBase {
 			$this->dieBlocked( $user->getBlock() );
 		}
 
+		// Check if user can add tags
+		if ( count( $params['tags'] ) ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			if ( !$ableToTag->isOk() ) {
+				$this->dieStatus( $ableToTag );
+			}
+		}
+
 		// validate and process each revid, rcid and logid
 		$this->requireAtLeastOneParameter( $params, 'revid', 'rcid', 'logid' );
 		$ret = [];
@@ -116,6 +124,10 @@ class ApiTag extends ApiBase {
 				ApiResult::setIndexedTagName( $idResult['added'], 't' );
 				$idResult['removed'] = $status->value->removedTags;
 				ApiResult::setIndexedTagName( $idResult['removed'], 't' );
+
+				if ( $params['tags'] ) {
+					ChangeTags::addTags( $params['tags'], null, null, $status->value->logId );
+				}
 			}
 		}
 		return $idResult;
@@ -153,6 +165,10 @@ class ApiTag extends ApiBase {
 			],
 			'reason' => [
 				ApiBase::PARAM_DFLT => '',
+			],
+			'tags' => [
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
 			],
 		];
 	}
