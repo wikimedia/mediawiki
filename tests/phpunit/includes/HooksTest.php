@@ -120,6 +120,29 @@ class HooksTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers Hooks::getRunner
+	 */
+	public function testGetRunner() {
+		global $wgHooks;
+
+		$result = null;
+
+		$wgHooks['MediaWikiHooksTest001'][] = function( $value ) use ( &$result ) {
+			$result = $value;
+		};
+
+		$runner = Hooks::getRunner( 'MediaWikiHooksTest00XX' );
+		$runner->run( [ 'foo' ] );
+
+		$this->assertNull( $result );
+
+		$runner = Hooks::getRunner( 'MediaWikiHooksTest001' );
+		$runner->run( [ 'foo' ] );
+
+		$this->assertSame( 'foo', $result );
+	}
+
+	/**
 	 * @expectedException MWException
 	 * @covers Hooks::run
 	 */

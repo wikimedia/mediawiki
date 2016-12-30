@@ -23,11 +23,13 @@
  * @see hooks.txt
  * @file
  */
+use MediaWiki\Hooks\HookRunner;
 
 /**
  * Hooks class.
  *
  * Used to supersede $wgHooks, because globals are EVIL.
+ * ^--- not doing much good though, since it's still EVIL global state!
  *
  * @since 1.18
  */
@@ -83,6 +85,22 @@ class Hooks {
 	public static function isRegistered( $name ) {
 		global $wgHooks;
 		return !empty( $wgHooks[$name] ) || !empty( self::$handlers[$name] );
+	}
+
+	/**
+	 * Returns a hook runner for running the handler functions for the given hook.
+	 *
+	 * @note The list hook handlers in the HookRunners is fixed. Registering additional
+	 * hook handlers via $wgHooks or the register() method will have no effect on the handler
+	 * known to the runner.
+	 *
+	 * @param string $name the event name for which to return a runner
+	 *
+	 * @return HookRunner a new runner for the given event
+	 */
+	public static function getRunner( $name ) {
+		// XXX: We could pass the deprecation version into the constructor here.
+		return new HookRunner( $name, self::getHandlers( $name ) );
 	}
 
 	/**
