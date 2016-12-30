@@ -47,6 +47,8 @@
  * @author לערי ריינהארט
  */
 
+$fallback = 'nn';
+
 $bookstoreList = [
 	'Antikvariat.net' => 'http://www.antikvariat.net/',
 	'Frida' => 'http://wo.uio.no/as/WebObjects/frida.woa/wa/fres?action=sok&isbn=$1&visParametre=1&sort=alfabetisk&bs=50',
@@ -82,6 +84,14 @@ $namespaceAliases = [
 
 $separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
 $linkTrail = '/^([æøåa-z]+)(.*)$/sDu';
+
+$datePreferenceMigrationMap = [
+	'default',
+	'mdy',
+	'dmy',
+	'ymd'
+];
+$defaultDateFormat = 'dmy';
 
 $dateFormats = [
 	'mdy time' => 'H:i',
