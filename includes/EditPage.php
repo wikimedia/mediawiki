@@ -389,6 +389,7 @@ class EditPage {
 	/* $didSave should be set to true whenever an article was successfully altered. */
 	public $didSave = false;
 	public $undidRev = 0;
+	public $baseRev = 0;
 
 	public $suppressIntro = false;
 
@@ -574,13 +575,13 @@ class EditPage {
 			&& $revision->getContentModel() !== $this->contentModel
 		) {
 			$prevRev = null;
-			if ( $this->undidRev ) {
+			if ( $this->undidRev && $this->baseRev ) {
 				$undidRevObj = Revision::newFromId( $this->undidRev );
-				$prevRev = $undidRevObj ? $undidRevObj->getPrevious() : null;
+				$baseRevObj = Revision::newFromId( $this->baseRev );
 			}
 			if ( !$this->undidRev
-				|| !$prevRev
-				|| $prevRev->getContentModel() !== $this->contentModel
+				|| !$this->baseRev
+				|| $baseRevObj->getContentModel() !== $this->contentModel
 			) {
 				$this->displayViewSourcePage(
 					$this->getContentObject(),
@@ -887,6 +888,11 @@ class EditPage {
 			$undidRev = $request->getInt( 'wpUndidRevision' );
 			if ( $undidRev ) {
 				$this->undidRev = $undidRev;
+			}
+
+			$baseRev = $request->getInt( 'wpBaseRevision' );
+			if ( $baseRev ) {
+				$this->baseRev = $baseRev;
 			}
 
 			$this->scrolltop = $request->getIntOrNull( 'wpScrolltop' );
@@ -1204,8 +1210,9 @@ class EditPage {
 										$this->summary = $undoSummary . $this->context->msg( 'colon-separator' )
 											->inContentLanguage()->text() . $this->summary;
 									}
-									$this->undidRev = $undo;
 								}
+								$this->undidRev = $undo;
+								$this->baseRev = $undoafter;
 								$this->formtype = 'diff';
 							}
 						}
@@ -1302,7 +1309,7 @@ class EditPage {
 			$handler = ContentHandler::getForModelID( $this->contentModel );
 
 			return $handler->makeEmptyContent();
-		} elseif ( !$this->undidRev ) {
+		} elseif ( !$this->undidRev || !$this->baseRev ) {
 			// Content models should always be the same since we error
 			// out if they are different before this point (in ->edit()).
 			// The exception being, during an undo, the current revision might
@@ -2143,7 +2150,7 @@ class EditPage {
 			$content,
 			$this->summary,
 			$flags,
-			false,
+			$this->baseRev,
 			$wgUser,
 			$content->getDefaultFormat(),
 			$this->changeTags,
@@ -2721,6 +2728,10 @@ class EditPage {
 
 		if ( $this->undidRev ) {
 			$wgOut->addHTML( Html::hidden( 'wpUndidRevision', $this->undidRev ) );
+		}
+
+		if ( $this->baseRev ) {
+			$wgOut->addHTML( Html::hidden( 'wpBaseRevision', $this->baseRev ) );
 		}
 
 		if ( $this->selfRedirect ) {
