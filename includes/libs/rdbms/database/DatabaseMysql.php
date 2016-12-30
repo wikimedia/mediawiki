@@ -24,6 +24,7 @@
 /**
  * Database abstraction object for PHP extension mysql.
  *
+ * @deprecated 1.29:1.31 The PHP extension 'mysql' was deprecated in PHP 5.5 and removed in PHP 7.0, it is replaced by the PHP extension 'mysqli'.
  * @ingroup Database
  * @see Database
  */
