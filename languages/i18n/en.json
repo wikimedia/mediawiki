@@ -4381,5 +4381,18 @@
 	"pagedata-title": "Page data",
 	"pagedata-text": "This page provides a data interface to pages. Please provide the page title in the URL, using subpage syntax.\n* Content negotiation applies based on your client's Accept header. This means that the page data will be provided in the format preferred by your client.",
 	"pagedata-not-acceptable": "No matching format found. Supported MIME types: $1",
-	"pagedata-bad-title": "Invalid title: $1."
+	"pagedata-bad-title": "Invalid title: $1.",
+	"right-viewconfigurations": "View configuration options",
+	"right-viewprivateconfigurations": "View private configuration options",
+	"action-viewconfigurations": "view configuration options",
+	"configurations": "Configuration options",
+	"configurations-summary": "This page gives an overview about configuration options and their values used on this wiki.",
+	"sp-configurations-no-public": "There're no public configuration options for this wiki.",
+	"sp-configurations-no-configurations": "There're no configuration options for this wiki.",
+	"sp-configurations-for": "Configurations for $1",
+	"sp-configurations-configuration": "Configuration",
+	"sp-configurations-description": "Description",
+	"sp-configurations-value": "Value",
+	"sp-configurations-defaultvalue": "Default value",
+	"sp-configurations-emptyvalue": "An empty string."
 }

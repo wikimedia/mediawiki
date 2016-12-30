@@ -1365,6 +1365,7 @@ $wgAutoloadLocalClasses = [
 	'SpecialChangeEmail' => __DIR__ . '/includes/specials/SpecialChangeEmail.php',
 	'SpecialChangePassword' => __DIR__ . '/includes/specials/SpecialChangePassword.php',
 	'SpecialComparePages' => __DIR__ . '/includes/specials/SpecialComparePages.php',
+	'SpecialConfigurations' => __DIR__ . '/includes/specials/SpecialConfigurations.php',
 	'SpecialContributions' => __DIR__ . '/includes/specials/SpecialContributions.php',
 	'SpecialCreateAccount' => __DIR__ . '/includes/specials/SpecialCreateAccount.php',
 	'SpecialDiff' => __DIR__ . '/includes/specials/SpecialDiff.php',
