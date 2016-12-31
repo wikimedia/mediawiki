@@ -209,10 +209,17 @@ class SpecialUnblock extends SpecialPage {
 			return [ 'unblock-hideuser' ];
 		}
 
+		$reason = [ 'hookaborted' ];
+		if ( !Hooks::run( 'UnblockUser', [ &$block, &$performer, &$reason ] ) ) {
+			return $reason;
+		}
+
 		# Delete block
 		if ( !$block->delete() ) {
 			return [ [ 'ipb_cant_unblock', htmlspecialchars( $block->getTarget() ) ] ];
 		}
+
+		Hooks::run( 'UnblockUserComplete', [ $block, $performer ] );
 
 		# Unset _deleted fields as needed
 		if ( $block->mHideName ) {

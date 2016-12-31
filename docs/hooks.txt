@@ -3379,6 +3379,15 @@ $user: Current user object
 $title: Title object to purge
 &$urls: An array of URLs to purge from the caches, to be manipulated.
 
+'UnblockUser': Before an IP address or user is unblocked.
+&$block: The Block object about to be saved
+&$user: The user performing the unblock (not the one being unblocked)
+&$reason: If the hook is aborted, the error message to be returned in an array
+
+'UnblockUserComplete': After an IP address or user has been unblocked.
+$block: The Block object that was saved
+$user: The user who performed the unblock (not the one being unblocked)
+
 'UndeleteForm::showHistory': Called in UndeleteForm::showHistory, after a
 PageArchive object has been created but before any further processing is done.
 &$archive: PageArchive object
