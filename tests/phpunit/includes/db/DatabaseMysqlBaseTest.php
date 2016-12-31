@@ -170,7 +170,7 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 	}
 
 	function getMockForViews() {
-		$db = $this->getMockBuilder( 'DatabaseMysql' )
+		$db = $this->getMockBuilder( 'DatabaseMysqli' )
 			->disableOriginalConstructor()
 			->setMethods( [ 'fetchRow', 'query' ] )
 			->getMock();
@@ -314,7 +314,7 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 	 * @dataProvider provideLagAmounts
 	 */
 	function testPtHeartbeat( $lag ) {
-		$db = $this->getMockBuilder( 'DatabaseMysql' )
+		$db = $this->getMockBuilder( 'DatabaseMysqli' )
 			->disableOriginalConstructor()
 			->setMethods( [
 				'getLagDetectionMethod', 'getHeartbeatData', 'getMasterServerInfo' ] )
