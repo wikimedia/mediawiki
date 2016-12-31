@@ -3610,18 +3610,6 @@ class Title implements LinkTarget {
 	}
 
 	/**
-	 * Move this page without authentication
-	 *
-	 * @deprecated since 1.25 use MovePage class instead
-	 * @param Title $nt The new page Title
-	 * @return array|bool True on success, getUserPermissionsErrors()-like array on failure
-	 */
-	public function moveNoAuth( &$nt ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		return $this->moveTo( $nt, false );
-	}
-
-	/**
 	 * Check whether a given move operation would be valid.
 	 * Returns true if ok, or a getUserPermissionsErrors()-like array otherwise
 	 *
