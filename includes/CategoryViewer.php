@@ -67,7 +67,7 @@ class CategoryViewer extends ContextSource {
 	/** @var Collation */
 	public $collation;
 
-	/** @var ImageGallery */
+	/** @var ImageGalleryBase */
 	public $gallery;
 
 	/** @var Category Category object for this page. */
