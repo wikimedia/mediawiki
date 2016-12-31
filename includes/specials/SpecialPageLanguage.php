@@ -131,6 +131,15 @@ class SpecialPageLanguage extends FormSpecialPage {
 			return false;
 		}
 
+		// Check if user is allowed to edit the page
+		$errors = $title->getUserPermissionsErrors( 'edit', $this->getUser() );
+		if ( $errors ) {
+			$out = $this->getOutput();
+			$wikitext = $out->formatPermissionsErrorMessage( $errors );
+			// Hack to get our wikitext parsed
+			return Status::newFatal( new RawMessage( '$1', [ $wikitext ] ) );
+		}
+
 		// Load the page language from DB
 		$dbw = wfGetDB( DB_MASTER );
 		$langOld = $dbw->selectField(
