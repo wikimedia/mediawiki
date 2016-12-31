@@ -147,6 +147,16 @@ changes to languages because of Phabricator reports.
 * User::getTemporaryPassword() (deprecated in 1.27) was removed.
 * User::isPasswordReminderThrottled() (deprecated in 1.27) was removed.
 * FSRepo (deprecated in 1.19) was removed.
+* Revision::fetchRevision() (deprecated in 1.28) was removed.
+* Revision::getRawUser() (deprecated in 1.25) was removed.
+  Use getUser( Revision::RAW ) instead.
+* Revision::getRawUserText() (deprecated in 1.25) was removed.
+  Use getUserText( Revision::RAW ) instead.
+* Revision::getRawComment() (deprecated in 1.25) was removed.
+  Use getComment( Revision::RAW ) instead.
+* Revision::getText() (deprecated in 1.21) was removed.
+  Use getContent() instead.
+* Revision::userWasLastToEdit() (deprecated in 1.24) was removed.
 
 == Compatibility ==
 
