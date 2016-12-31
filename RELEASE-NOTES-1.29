@@ -151,6 +151,7 @@ changes to languages because of Phabricator reports.
 \MediaWiki\Session\SessionManager::singleton()->getPersistedSessionId() instead.
 * Class ImageGallery (deprecated in 1.22) was removed.
   Use ImageGalleryBase::factory instead.
+* Title::moveNoAuth() (deprecated in 1.25) was removed. Use MovePage class instead.
 
 == Compatibility ==
 
