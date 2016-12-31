@@ -78,7 +78,8 @@ class TitleValue implements LinkTarget {
 		Assert::parameterType( 'string', $interwiki, '$interwiki' );
 
 		// Sanity check, no full validation or normalization applied here!
-		Assert::parameter( !preg_match( '/^_|[ \r\n\t]|_$/', $dbkey ), '$dbkey', 'invalid DB key' );
+		Assert::parameter( !preg_match( '/^_|[ \r\n\t]|_$/', $dbkey ), '$dbkey',
+			"invalid DB key '$dbkey'" );
 		Assert::parameter( $dbkey !== '', '$dbkey', 'should not be empty' );
 
 		$this->namespace = $namespace;
