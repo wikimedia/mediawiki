@@ -1079,6 +1079,12 @@ $params: tag params
 $rc: RecentChange being tagged when the tagging accompanies the action or null
 $user: User who performed the tagging when the tagging is subsequent to the action or null
 
+'ChangeUserGroups': Called before user groups are changed.
+$performer: The User who will perform the change
+$user: The User whose groups will be changed
+$add: The groups that will be added
+$remove: The groups that will be removed
+
 'Collation::factory': Called if $wgCategoryCollation is an unknown collation.
 $collationName: Name of the collation in question
 &$collationObject: Null. Replace with a subclass of the Collation class that

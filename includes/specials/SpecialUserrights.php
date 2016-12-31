@@ -250,6 +250,8 @@ class UserrightsPage extends SpecialPage {
 			$groups )
 		);
 
+		Hooks::run( 'ChangeUserGroups', [ $this->getUser(), $user, &$add, &$remove ] );
+
 		$oldGroups = $user->getGroups();
 		$newGroups = $oldGroups;
 
