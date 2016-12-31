@@ -8,7 +8,8 @@
 			"Zanatos",
 			"زكريا",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"MtDu"
 		]
 	},
 	"tog-underline": "Ṣetter l-lyanaṫ:",
@@ -144,7 +145,7 @@
 	"variants": "lhja:",
 	"errorpagetitle": "ĥata'",
 	"returnto": "Rjeĝ le $1",
-	"tagline": "Men",
+	"tagline": "Men {{SITENAME}}",
 	"help": "Mosaĝada",
 	"search": "Qelleb",
 	"searchbutton": "Qelleb",
@@ -748,8 +749,6 @@
 	"userrights-reason": "S-Sbab:",
 	"userrights-no-interwiki": "ma msmoḫ-likċ ṫĝddel hoqoq l-mosṫĥdim fl-wikiat loĥra.",
 	"userrights-nodatabase": "qaĝidaṫ l-bayanaṫ $1 ma kayna-ċ wlla kayna walakin maċi f-had l-wiki.",
-	"userrights-nologin": "ĥaṣṣk [[Special:UserLogin|ṫdĥol]] b-ĥisab idari baċ ṫĝti hoqoq l-mosṫĥdim.",
-	"userrights-notallowed": "l-ḫisab ṫaĝk ma mṣmoh-lihċ iĝti ḫoqoq l-mosṫĥdim.",
 	"userrights-changeable-col": "lmojmoat li imkn li tghiyrha",
 	"userrights-unchangeable-col": "lmjmoat li maymknch lik tghyrha",
 	"userrights-irreversible-marker": "$1*",

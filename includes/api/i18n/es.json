@@ -26,7 +26,8 @@
 			"Irus",
 			"Hamilton Abreu",
 			"Pompilos",
-			"Igv"
+			"Igv",
+			"Fortega"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentación]]\n* [[mw:API:FAQ|Preguntas frecuentes]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de correo]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anuncios de la API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Errores y peticiones]\n</div>\n<strong>Estado:</strong> Todas las características que se muestran en esta página deberían funcionar, pero la API aún se encuentra en desarrollo activo y puede cambiar en cualquier momento. Suscríbete a [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la lista de correo de mediawiki-api-announce] para estar al día de las actualizaciones.\n\n<strong>Solicitudes erróneas:</strong> Cuando se envían solicitudes erróneas a la API, se envía una cabecera HTTP con la clave \"MediaWiki-API-Error\". El valor de la cabecera y el código de error devuelto tomarán el mismo valor. Para más información, véase [[mw:API:Errors_and_warnings|API: Errores y advertencias]].\n\n<strong>Pruebas:</strong> para facilitar las pruebas de solicitudes a la API, consulta [[Special:ApiSandbox]].",
@@ -1100,6 +1101,7 @@
 	"apierror-assertuserfailed": "La aserción de que el usuario está conectado falló.",
 	"apierror-autoblocked": "Tu dirección IP ha sido bloqueada automáticamente porque fue utilizada por un usuario bloqueado.",
 	"apierror-badconfig-resulttoosmall": "El valor de <code>$wgAPIMaxResultSize</code> en este wiki es demasiado pequeño como para contener información básica de resultados.",
+	"apierror-baddiff": "La comparación no puede recuperarse. Una o ambas revisiones no existen o no tienes permiso para verlas.",
 	"apierror-badgenerator-notgenerator": "El módulo <kbd>$1</kbd> no puede utilizarse como un generador.",
 	"apierror-badgenerator-unknown": "<kbd>generator=$1</kbd> desconocido.",
 	"apierror-badip": "El parámetro IP no es válido.",

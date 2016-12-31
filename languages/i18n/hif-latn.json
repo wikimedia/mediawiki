@@ -16,7 +16,8 @@
 			"Macofe",
 			"Matma Rex",
 			"V6rg",
-			"C.R."
+			"C.R.",
+			"Smcnarayan"
 		]
 	},
 	"tog-underline": "Jorr ke niche line khicho:",
@@ -530,6 +531,7 @@
 	"changepassword-success": "Aap ke password ke badal dewa gais hai!",
 	"changepassword-throttled": "Aap bahut jaada dafe ii account ke password ke enter kare ke kosis karaa hae.\n$1 talak wait kar ke fir se try karo.",
 	"botpasswords": "Bot passwords",
+	"botpasswords-summary": "<em>Bot passwords</em> sadasya ke account ke access API se dewe hai, bina account ke main login credentials ke use kare. Bot password se login kare se bahut restricted rights mile hai. \n\nAgar aap ii nai janta hai ki kaahe aap ii chij kaahe kartaa hai, tab aap ke saait ii chij nai kare ke chaahi. Koi jane ke ii nai maange ke chaahi ki aap aapan bot credentials ke generate kar ke uske de.",
 	"botpasswords-disabled": "Bot passwords ke disable kar dewa gais hai.",
 	"botpasswords-no-central-id": "Bot password use kare ke khaatir, aap ke ek centralized account me logged in hoe ke chaahi.",
 	"botpasswords-existing": "Abhi ke bot passwords",

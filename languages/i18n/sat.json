@@ -12,7 +12,8 @@
 			"Samar88",
 			"Srabony90",
 			"아라",
-			"Shirayuki"
+			"Shirayuki",
+			"MtDu"
 		]
 	},
 	"tog-underline": "Joṛaoko latarre dag udugoḱma:",
@@ -149,7 +150,7 @@
 	"navigation-heading": "Ạcurbaṛa minu",
 	"errorpagetitle": "vul",
 	"returnto": "$1 te ruar-rok' me",
-	"tagline": "Oka khoć",
+	"tagline": "Oka khoć {{SITENAME}}",
 	"help": "Go̠ṛo̠",
 	"search": "Se̠ndra",
 	"searchbutton": "Se̠ndra",
@@ -207,7 +208,7 @@
 	"pool-timeout": "Somoy paromena cạbi lạgit́te tạṅgi hoyoḱkana",
 	"pool-queuefull": "Pul reaḱ sakam perećena",
 	"pool-errorunknown": "Bań baḍayaḱ bhul",
-	"aboutsite": "babo̠tre",
+	"aboutsite": "babo̠tre {{SITENAME}}",
 	"aboutpage": "Project: Babo̠t",
 	"copyright": "$1 re bhitrire ńamoḱa.",
 	"copyrightpage": "{{ns:project}}: Eḱteạr",
@@ -411,8 +412,6 @@
 	"passwordreset-disabled": "Noa wikire amaḱ uku nambar nãwãte em lạgit subita do bando gea.",
 	"passwordreset-username": "Beoharicaḱ ńutum:",
 	"passwordreset-domain": "Ḍomen:",
-	"passwordreset-capture": "Sendra fol reaḱ e-mail ńelmẽ?",
-	"passwordreset-capture-help": "Am do judi noa jacạy baksom lin lekhan, tobe nit lạgit́te em akan uku nambar são mit́ṭen e-mail ame uduḱama ar ona sãote beoharić ṭhen ona kuluḱa.",
 	"passwordreset-email": "E-mail ṭhikạna:",
 	"passwordreset-emailtitle": "{{SITENAME}} sayeṭre beoharićaḱ purạo thutiko",
 	"passwordreset-emailelement": "Beoharićaḱ ńutum: \n$1\n\nMit́ ghạṛi lạgit uku nambar: \n$2",

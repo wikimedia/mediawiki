@@ -4,7 +4,8 @@
 			"Usingha",
 			"Uttam Singha, Dec 2006",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"MtDu"
 		]
 	},
 	"tog-underline": "লিঙ্কর তলে দুরগ দিক:",
@@ -141,7 +142,7 @@
 	"variants": "ভেরিয়েন্টহানি",
 	"errorpagetitle": "লাল",
 	"returnto": "$1-ত আলথকে যাগা।",
-	"tagline": "মুক্ত বিশ্বকোষ উইকিপিডিয়াত্ত",
+	"tagline": "মুক্ত বিশ্বকোষ উইকিপিডিয়াত্ত {{SITENAME}}",
 	"help": "পাংলাক",
 	"search": "বিসারিয়া চা",
 	"searchbutton": "বিসারানি",

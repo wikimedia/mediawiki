@@ -1438,7 +1438,7 @@
 	"apierror-autoblocked": "כתובת ה־IP שלך נחסמה אוטומטית, כי היא שימשה משתמש חסום.",
 	"apierror-badconfig-resulttoosmall": "הערך של <code dir=\"ltr\">$wgAPIMaxResultSize</code> בוויקי הזה קטן מלהחזיק מידע בסיסי על תוצאה.",
 	"apierror-badcontinue": "פרמטר continue בלתי־תקין. יש להעביר את הערך המקורי שהחזירה השאילתה הקודמת.",
-	"apierror-baddiff": "לא ניתן לאחזר את ההשוואה, גרסה אחת לא קיימת או ששתיהן לא קיימות, או שאין לך הרשאה להציג אותן.",
+	"apierror-baddiff": "לא ניתן לאחזר את ההשוואה. גרסה אחת לא קיימת או ששתיהן לא קיימות, או שאין לך הרשאה להציג אותן.",
 	"apierror-baddiffto": "יש להגדיר את <var>$1diffto</var> למספר שאינו שלילי, <kbd dir=\"ltr\">prev</kbd>, <kbd dir=\"ltr\">next</kbd> או <kbd dir=\"ltr\">cur</kbd>",
 	"apierror-badformat-generic": "התסדיר המבוקש $1 אינו נתמך במודל התוכן $2.",
 	"apierror-badformat": "התסדיר המבוקש $1 אינו נתמך במודל התוכן $2 שמשמש ב־$3.",

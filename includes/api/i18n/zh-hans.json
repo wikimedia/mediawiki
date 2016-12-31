@@ -1449,7 +1449,7 @@
 	"apierror-autoblocked": "您的IP地址已被自动封禁，因为它曾被一位已封禁用户使用。",
 	"apierror-badconfig-resulttoosmall": "此wiki上<code>$wgAPIMaxResultSize</code>的值太小，不能获得基础结果信息。",
 	"apierror-badcontinue": "无效继续参数。您应该传递由之前查询返回的原始值。",
-	"apierror-baddiff": "不能取得差异，一个或多个修订版本不存在，或您没有权限查看它们。",
+	"apierror-baddiff": "不能取得差异。一个或多个修订版本不存在，或您没有权限查看它们。",
 	"apierror-baddiffto": "<var>$1diffto</var>必须设置为非负数、<kbd>prev</kbd>、<kbd>next</kbd>或<kbd>cur</kbd>。",
 	"apierror-badformat-generic": "内容模型$2尚不支持请求的内容格式$1。",
 	"apierror-badformat": "由$3使用的内容模型$2尚不支持请求的内容格式$1。",

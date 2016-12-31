@@ -1454,7 +1454,7 @@
 	"apierror-autoblocked": "Votre adresse IP a été bloquée automatiquement, parce qu’elle a été utilisée par un utilisateur bloqué.",
 	"apierror-badconfig-resulttoosmall": "La valeur de <code>$wgAPIMaxResultSize</code> sur ce wiki est trop petite pour contenir des informations de résultat basiques.",
 	"apierror-badcontinue": "Paramètre de continuation non valide. Vous devez passer la valeur d’origine renvoyée par la requête précédente.",
-	"apierror-baddiff": "La différence ne peut être récupérée, une ou plusieurs révisions n’existent pas ou vous n’avez pas le droit de les voir.",
+	"apierror-baddiff": "La différence ne peut être récupérée. Une ou les deux révisions n’existent pas ou vous n’avez pas le droit de les voir.",
 	"apierror-baddiffto": "<var>$1diffto</var> doit être fixé à un nombre positif ou nul, <kbd>prev</kbd>, <kbd>next</kbd> ou <kbd>cur</kbd>.",
 	"apierror-badformat-generic": "Le format demandé $1 n’est pas supporté pour le modèle de contenu $2.",
 	"apierror-badformat": "Le format demandé $1 n’est pas supporté pour le modèle de contenu $2 utilisé par $3.",
