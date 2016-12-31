@@ -27,7 +27,7 @@ use MediaWiki\MediaWikiServices;
 class NewFilesPager extends ReverseChronologicalPager {
 
 	/**
-	 * @var ImageGallery
+	 * @var ImageGalleryBase
 	 */
 	protected $gallery;
 
