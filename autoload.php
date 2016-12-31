@@ -608,7 +608,6 @@ $wgAutoloadLocalClasses = [
 	'IdentityCollation' => __DIR__ . '/includes/collation/IdentityCollation.php',
 	'ImageBuilder' => __DIR__ . '/maintenance/rebuildImages.php',
 	'ImageCleanup' => __DIR__ . '/maintenance/cleanupImages.php',
-	'ImageGallery' => __DIR__ . '/includes/gallery/TraditionalImageGallery.php',
 	'ImageGalleryBase' => __DIR__ . '/includes/gallery/ImageGalleryBase.php',
 	'ImageHandler' => __DIR__ . '/includes/media/ImageHandler.php',
 	'ImageHistoryList' => __DIR__ . '/includes/page/ImageHistoryList.php',
