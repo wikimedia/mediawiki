@@ -137,7 +137,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['hasmsg'] ) ) {
-			$vals['messages'] = $user->getNewtalk();
+			$vals['messages'] = ( new NewMessagesNotifier( $user ) )->hasNewMessages();
 		}
 
 		if ( isset( $this->prop['groups'] ) ) {

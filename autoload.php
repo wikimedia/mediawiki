@@ -991,6 +991,7 @@ $wgAutoloadLocalClasses = [
 	'NamespaceConflictChecker' => __DIR__ . '/maintenance/namespaceDupes.php',
 	'NamespaceImportTitleFactory' => __DIR__ . '/includes/title/NamespaceImportTitleFactory.php',
 	'NewFilesPager' => __DIR__ . '/includes/specials/pagers/NewFilesPager.php',
+	'NewMessagesNotifier' => __DIR__ . '/includes/user/NewMessagesNotifier.php',
 	'NewPagesPager' => __DIR__ . '/includes/specials/pagers/NewPagesPager.php',
 	'NewUsersLogFormatter' => __DIR__ . '/includes/logging/NewUsersLogFormatter.php',
 	'NolinesImageGallery' => __DIR__ . '/includes/gallery/NolinesImageGallery.php',

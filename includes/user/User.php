@@ -257,7 +257,6 @@ class User implements IDBAccessObject {
 	/**
 	 * Lazy-initialized variables, invalidated with clearInstanceCache
 	 */
-	protected $mNewtalk;
 	/** @var string */
 	protected $mDatePreference;
 	/** @var string */
@@ -282,6 +281,11 @@ class User implements IDBAccessObject {
 	public $mHideName;
 	/** @var array */
 	public $mOptions;
+	/**
+	 * @var int|bool Unused
+	 * @deprecated since 1.29 Use NewMessagesNotifier class instead
+	 */
+	private $mNewtalk;
 
 	/**
 	 * @var WebRequest
@@ -1501,7 +1505,6 @@ class User implements IDBAccessObject {
 	 *   given source. May be "name", "id", "defaults", "session", or false for no reload.
 	 */
 	public function clearInstanceCache( $reloadFrom = false ) {
-		$this->mNewtalk = -1;
 		$this->mDatePreference = null;
 		$this->mBlockedby = -1; # Unset
 		$this->mHash = false;
@@ -2196,31 +2199,12 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Check if the user has new messages.
+	 * @deprecated since 1.29 Use NewMessagesNotifier::hasNewMessages instead
 	 * @return bool True if the user has new messages
 	 */
 	public function getNewtalk() {
-		$this->load();
-
-		// Load the newtalk status if it is unloaded (mNewtalk=-1)
-		if ( $this->mNewtalk === -1 ) {
-			$this->mNewtalk = false; # reset talk page status
-
-			// Check memcached separately for anons, who have no
-			// entire User object stored in there.
-			if ( !$this->mId ) {
-				global $wgDisableAnonTalk;
-				if ( $wgDisableAnonTalk ) {
-					// Anon newtalk disabled by configuration.
-					$this->mNewtalk = false;
-				} else {
-					$this->mNewtalk = $this->checkNewtalk( 'user_ip', $this->getName() );
-				}
-			} else {
-				$this->mNewtalk = $this->checkNewtalk( 'user_id', $this->mId );
-			}
-		}
-
-		return (bool)$this->mNewtalk;
+		wfDeprecated( __METHOD__, '1.29' );
+		return ( new NewMessagesNotifier( $this ) )->hasNewMessages();
 	}
 
 	/**
@@ -2234,145 +2218,35 @@ class User implements IDBAccessObject {
 	 * If there are no new messages, it returns an empty array.
 	 * @note This function was designed to accomodate multiple talk pages, but
 	 * currently only returns a single link and revision.
+	 * @deprecated since 1.29 Use NewMessagesNotifier::getNewMessageLinks instead
 	 * @return array
 	 */
 	public function getNewMessageLinks() {
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$user = $this;
-		$talks = [];
-		if ( !Hooks::run( 'UserRetrieveNewTalks', [ &$user, &$talks ] ) ) {
-			return $talks;
-		} elseif ( !$this->getNewtalk() ) {
-			return [];
-		}
-		$utp = $this->getTalkPage();
-		$dbr = wfGetDB( DB_REPLICA );
-		// Get the "last viewed rev" timestamp from the oldest message notification
-		$timestamp = $dbr->selectField( 'user_newtalk',
-			'MIN(user_last_timestamp)',
-			$this->isAnon() ? [ 'user_ip' => $this->getName() ] : [ 'user_id' => $this->getId() ],
-			__METHOD__ );
-		$rev = $timestamp ? Revision::loadFromTimestamp( $dbr, $utp, $timestamp ) : null;
-		return [ [ 'wiki' => wfWikiID(), 'link' => $utp->getLocalURL(), 'rev' => $rev ] ];
+		wfDeprecated( __METHOD__, '1.29' );
+		return ( new NewMessagesNotifier( $this ) )->getNewMessageLinks();
 	}
 
 	/**
 	 * Get the revision ID for the last talk page revision viewed by the talk
 	 * page owner.
+	 * @deprecated since 1.29 Use NewMessagesNotifier::getNewMessageRevisionId instead
 	 * @return int|null Revision ID or null
 	 */
 	public function getNewMessageRevisionId() {
-		$newMessageRevisionId = null;
-		$newMessageLinks = $this->getNewMessageLinks();
-		if ( $newMessageLinks ) {
-			// Note: getNewMessageLinks() never returns more than a single link
-			// and it is always for the same wiki, but we double-check here in
-			// case that changes some time in the future.
-			if ( count( $newMessageLinks ) === 1
-				&& $newMessageLinks[0]['wiki'] === wfWikiID()
-				&& $newMessageLinks[0]['rev']
-			) {
-				/** @var Revision $newMessageRevision */
-				$newMessageRevision = $newMessageLinks[0]['rev'];
-				$newMessageRevisionId = $newMessageRevision->getId();
-			}
-		}
-		return $newMessageRevisionId;
-	}
-
-	/**
-	 * Internal uncached check for new messages
-	 *
-	 * @see getNewtalk()
-	 * @param string $field 'user_ip' for anonymous users, 'user_id' otherwise
-	 * @param string|int $id User's IP address for anonymous users, User ID otherwise
-	 * @return bool True if the user has new messages
-	 */
-	protected function checkNewtalk( $field, $id ) {
-		$dbr = wfGetDB( DB_REPLICA );
-
-		$ok = $dbr->selectField( 'user_newtalk', $field, [ $field => $id ], __METHOD__ );
-
-		return $ok !== false;
-	}
-
-	/**
-	 * Add or update the new messages flag
-	 * @param string $field 'user_ip' for anonymous users, 'user_id' otherwise
-	 * @param string|int $id User's IP address for anonymous users, User ID otherwise
-	 * @param Revision|null $curRev New, as yet unseen revision of the user talk page. Ignored if null.
-	 * @return bool True if successful, false otherwise
-	 */
-	protected function updateNewtalk( $field, $id, $curRev = null ) {
-		// Get timestamp of the talk page revision prior to the current one
-		$prevRev = $curRev ? $curRev->getPrevious() : false;
-		$ts = $prevRev ? $prevRev->getTimestamp() : null;
-		// Mark the user as having new messages since this revision
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->insert( 'user_newtalk',
-			[ $field => $id, 'user_last_timestamp' => $dbw->timestampOrNull( $ts ) ],
-			__METHOD__,
-			'IGNORE' );
-		if ( $dbw->affectedRows() ) {
-			wfDebug( __METHOD__ . ": set on ($field, $id)\n" );
-			return true;
-		} else {
-			wfDebug( __METHOD__ . " already set ($field, $id)\n" );
-			return false;
-		}
-	}
-
-	/**
-	 * Clear the new messages flag for the given user
-	 * @param string $field 'user_ip' for anonymous users, 'user_id' otherwise
-	 * @param string|int $id User's IP address for anonymous users, User ID otherwise
-	 * @return bool True if successful, false otherwise
-	 */
-	protected function deleteNewtalk( $field, $id ) {
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'user_newtalk',
-			[ $field => $id ],
-			__METHOD__ );
-		if ( $dbw->affectedRows() ) {
-			wfDebug( __METHOD__ . ": killed on ($field, $id)\n" );
-			return true;
-		} else {
-			wfDebug( __METHOD__ . ": already gone ($field, $id)\n" );
-			return false;
-		}
+		wfDeprecated( __METHOD__, '1.29' );
+		return ( new NewMessagesNotifier( $this ) )->getNewMessageRevisionId();
 	}
 
 	/**
 	 * Update the 'You have new messages!' status.
+	 * @deprecated since 1.29 Use NewMessagesNotifier::setNewMessages instead
 	 * @param bool $val Whether the user has new messages
 	 * @param Revision $curRev New, as yet unseen revision of the user talk
 	 *   page. Ignored if null or !$val.
 	 */
 	public function setNewtalk( $val, $curRev = null ) {
-		if ( wfReadOnly() ) {
-			return;
-		}
-
-		$this->load();
-		$this->mNewtalk = $val;
-
-		if ( $this->isAnon() ) {
-			$field = 'user_ip';
-			$id = $this->getName();
-		} else {
-			$field = 'user_id';
-			$id = $this->getId();
-		}
-
-		if ( $val ) {
-			$changed = $this->updateNewtalk( $field, $id, $curRev );
-		} else {
-			$changed = $this->deleteNewtalk( $field, $id );
-		}
-
-		if ( $changed ) {
-			$this->invalidateCache();
-		}
+		wfDeprecated( __METHOD__, '1.29' );
+		( new NewMessagesNotifier( $this ) )->setNewMessages( $val, $curRev );
 	}
 
 	/**
