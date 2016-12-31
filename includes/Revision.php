@@ -872,17 +872,6 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * Fetch revision's user id without regard for the current user's permissions
-	 *
-	 * @return int
-	 * @deprecated since 1.25, use getUser( Revision::RAW )
-	 */
-	public function getRawUser() {
-		wfDeprecated( __METHOD__, '1.25' );
-		return $this->getUser( self::RAW );
-	}
-
-	/**
 	 * Fetch revision's username if it's available to the specified audience.
 	 * If the specified audience does not have access to the username, an
 	 * empty string will be returned.
@@ -916,17 +905,6 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * Fetch revision's username without regard for view restrictions
-	 *
-	 * @return string
-	 * @deprecated since 1.25, use getUserText( Revision::RAW )
-	 */
-	public function getRawUserText() {
-		wfDeprecated( __METHOD__, '1.25' );
-		return $this->getUserText( self::RAW );
-	}
-
-	/**
 	 * Fetch revision comment if it's available to the specified audience.
 	 * If the specified audience does not have access to the comment, an
 	 * empty string will be returned.
@@ -947,17 +925,6 @@ class Revision implements IDBAccessObject {
 		} else {
 			return $this->mComment;
 		}
-	}
-
-	/**
-	 * Fetch revision comment without regard for the current user's permissions
-	 *
-	 * @return string
-	 * @deprecated since 1.25, use getComment( Revision::RAW )
-	 */
-	public function getRawComment() {
-		wfDeprecated( __METHOD__, '1.25' );
-		return $this->getComment( self::RAW );
 	}
 
 	/**
@@ -1033,28 +1000,6 @@ class Revision implements IDBAccessObject {
 		$this->loadMutableFields();
 
 		return (int)$this->mDeleted;
-	}
-
-	/**
-	 * Fetch revision text if it's available to the specified audience.
-	 * If the specified audience does not have the ability to view this
-	 * revision, an empty string will be returned.
-	 *
-	 * @param int $audience One of:
-	 *   Revision::FOR_PUBLIC       to be displayed to all users
-	 *   Revision::FOR_THIS_USER    to be displayed to the given user
-	 *   Revision::RAW              get the text regardless of permissions
-	 * @param User $user User object to check for, only if FOR_THIS_USER is passed
-	 *   to the $audience parameter
-	 *
-	 * @deprecated since 1.21, use getContent() instead
-	 * @return string
-	 */
-	public function getText( $audience = self::FOR_PUBLIC, User $user = null ) {
-		wfDeprecated( __METHOD__, '1.21' );
-
-		$content = $this->getContent( $audience, $user );
-		return ContentHandler::getContentText( $content ); # returns the raw content text, if applicable
 	}
 
 	/**
