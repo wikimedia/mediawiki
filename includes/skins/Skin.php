@@ -1353,7 +1353,8 @@ abstract class Skin extends ContextSource {
 
 		$newMessagesAlert = '';
 		$user = $this->getUser();
-		$newtalks = $user->getNewMessageLinks();
+		$nmn = new NewMessagesNotifier( $user );
+		$newtalks = $nmn->getNewMessageLinks();
 		$out = $this->getOutput();
 
 		// Allow extensions to disable or modify the new messages alert

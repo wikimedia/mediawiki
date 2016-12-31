@@ -2345,11 +2345,9 @@ class WikiPage implements Page, IDBAccessObject {
 				// Allow extensions to prevent user notification
 				// when a new message is added to their talk page
 				if ( Hooks::run( 'ArticleEditUpdateNewTalk', [ &$wikiPage, $recipient ] ) ) {
-					if ( User::isIP( $shortTitle ) ) {
-						// An anonymous user
-						$recipient->setNewtalk( true, $revision );
-					} elseif ( $recipient->isLoggedIn() ) {
-						$recipient->setNewtalk( true, $revision );
+					$nmn = new NewMessagesNotifier( $recipient );
+					if ( User::isIP( $shortTitle ) || $recipient->isLoggedIn() ) {
+						$nmn->setNewMessages( true, $revision );
 					} else {
 						wfDebug( __METHOD__ . ": don't need to notify a nonexistent user\n" );
 					}
@@ -3393,7 +3391,7 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $title->getNamespace() == NS_USER_TALK ) {
 			$user = User::newFromName( $title->getText(), false );
 			if ( $user ) {
-				$user->setNewtalk( false );
+				( new NewMessagesNotifier( $user ) )->setNewMessages( false );
 			}
 		}
 

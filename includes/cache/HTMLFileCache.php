@@ -141,7 +141,7 @@ class HTMLFileCache extends FileCacheBase {
 		}
 
 		if ( $mode === self::MODE_NORMAL ) {
-			if ( $user->getNewtalk() ) {
+			if ( ( new NewMessagesNotifier( $user ) )->hasNewMessages() ) {
 				return false;
 			}
 		}

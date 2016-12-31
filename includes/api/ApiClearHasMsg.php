@@ -24,17 +24,17 @@
  */
 
 /**
- * API module that clears the hasmsg flag for current user
+ * API module that clears the hasmsg (user_newtalk) flag for current user
  * @ingroup API
  */
 class ApiClearHasMsg extends ApiBase {
 	public function execute() {
-		$user = $this->getUser();
+		$nmn = new NewMessagesNotifier( $this->getUser() );
 		if ( $this->getRequest()->wasPosted() ) {
-			$user->setNewtalk( false );
+			$nmn->setNewMessages( false );
 		} else {
-			DeferredUpdates::addCallableUpdate( function () use ( $user ) {
-				$user->setNewtalk( false );
+			DeferredUpdates::addCallableUpdate( function () use ( $nmn ) {
+				$nmn->setNewMessages( false );
 			} );
 		}
 		$this->getResult()->addValue( null, $this->getModuleName(), 'success' );
