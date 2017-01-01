@@ -1029,6 +1029,7 @@
 	"editusergroup": "Učitaj suradničke skupine",
 	"editinguser": "Promjena suradničkih prava {{GENDER:$1|suradnika|suradnice}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-editusergroup": "Uredi suradničke skupine",
+	"userrights-viewusergroup": "Pregled suradničkih skupinâ",
 	"saveusergroups": "Spremi {{GENDER:$1|suradničke}} grupe",
 	"userrights-groupsmember": "Član:",
 	"userrights-groupsmember-auto": "Uključeni član:",

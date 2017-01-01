@@ -3829,6 +3829,7 @@
 	"log-action-filter-newusers": "アカウント作成の種類:",
 	"log-action-filter-patrol": "巡回の種類:",
 	"log-action-filter-protect": "保護の種類:",
+	"log-action-filter-rights": "権限変更の種類:",
 	"log-action-filter-suppress": "秘匿の種類:",
 	"log-action-filter-upload": "アップロードの種類",
 	"log-action-filter-all": "すべて",

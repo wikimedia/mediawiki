@@ -2144,7 +2144,7 @@
 	"changecontentmodel-emptymodels-title": "Keine Inhaltsmodelle verfügbar",
 	"changecontentmodel-emptymodels-text": "Der Inhalt auf [[:$1]] kann zu keinem Typ konvertiert werden.",
 	"log-name-contentmodel": "Inhaltsmodell-Änderungs-Logbuch",
-	"log-description-contentmodel": "Ereignisse bezüglich den Inhaltsmodellen einer Seite",
+	"log-description-contentmodel": "Diese Seite listet Änderungen an dem Inhaltsmodell von Seiten auf sowie Seiten, die mit einem Inhaltsmodell erstellt wurden, das nicht dem Standard entspricht.",
 	"logentry-contentmodel-new": "$1 {{GENDER:$2|erstellte}} die Seite $3 mit einem Nicht-Standard-Inhaltsmodell „$5“",
 	"logentry-contentmodel-change": "$1 {{GENDER:$2|änderte}} das Inhaltsmodell der Seite $3 von „$4“ nach „$5“",
 	"logentry-contentmodel-change-revertlink": "zurücksetzen",

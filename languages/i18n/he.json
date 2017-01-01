@@ -2089,7 +2089,7 @@
 	"changecontentmodel-emptymodels-title": "לא קיים מודל תוכן מתאים",
 	"changecontentmodel-emptymodels-text": "לא ניתן להמיר את התוכן של [[:$1]] לאף סוג.",
 	"log-name-contentmodel": "יומן שינויי מודל תוכן",
-	"log-description-contentmodel": "אירועים שקשורים למודל תוכן של דפים",
+	"log-description-contentmodel": "בדף זה מופיעים שינויים במודל התוכן של דפים, וכן דפים שנוצרו עם מודל תוכן שונה מברירת המחדל.",
 	"logentry-contentmodel-new": "$1 {{GENDER:$2|יצר|יצרה}} את הדף $3 תוך שימוש במודל התוכן \"$5\" השונה ממודל ברירת המחדל",
 	"logentry-contentmodel-change": "$1 {{GENDER:$2|שינה|שינתה}} את מודל התוכן של הדף $3 מ\"$4\" ל\"$5\"",
 	"logentry-contentmodel-change-revertlink": "שחזור",
