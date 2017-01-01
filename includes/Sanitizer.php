@@ -1263,7 +1263,7 @@ class Sanitizer {
 		$html = Sanitizer::decodeCharReferences( $html );
 		# It seems wise to escape ' as well as ", as a matter of course.  Can't
 		# hurt.
-		$html = htmlspecialchars( $html, ENT_QUOTES );
+		$html = htmlspecialchars( $html, ENT_QUOTES | ENT_SUBSTITUTE );
 		return $html;
 	}
 
