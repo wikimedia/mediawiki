@@ -25,7 +25,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiTestCase {
 			]
 		] );
 
-		$dbMock = $this->getMockBuilder( 'DatabaseMysql' )
+		$dbMock = $this->getMockBuilder( 'DatabaseMysqli' )
 			->disableOriginalConstructor()
 			->getMock();
 

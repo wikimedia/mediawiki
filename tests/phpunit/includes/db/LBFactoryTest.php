@@ -29,7 +29,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 	 * @dataProvider getLBFactoryClassProvider
 	 */
 	public function testGetLBFactoryClass( $expected, $deprecated ) {
-		$mockDB = $this->getMockBuilder( 'DatabaseMysql' )
+		$mockDB = $this->getMockBuilder( 'DatabaseMysqli' )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -178,7 +178,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$mPos = new MySQLMasterPos( 'db1034-bin.000976', '843431247' );
 
 		$now = microtime( true );
-		$mockDB = $this->getMockBuilder( 'DatabaseMysql' )
+		$mockDB = $this->getMockBuilder( 'DatabaseMysqli' )
 			->disableOriginalConstructor()
 			->getMock();
 		$mockDB->method( 'writesOrCallbacksPending' )->willReturn( true );
