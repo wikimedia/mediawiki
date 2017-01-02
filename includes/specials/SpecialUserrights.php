@@ -233,9 +233,10 @@ class UserrightsPage extends SpecialPage {
 	 * @param array $add Array of groups to add
 	 * @param array $remove Array of groups to remove
 	 * @param string $reason Reason for group change
+	 * @param array $tags Array of change tags to add to the log entry
 	 * @return array Tuple of added, then removed groups
 	 */
-	function doSaveUserGroups( $user, $add, $remove, $reason = '' ) {
+	function doSaveUserGroups( $user, $add, $remove, $reason = '', $tags = [] ) {
 		// Validate input set...
 		$isself = $user->getName() == $this->getUser()->getName();
 		$groups = $user->getGroups();
@@ -289,7 +290,7 @@ class UserrightsPage extends SpecialPage {
 		Hooks::run( 'UserRights', [ &$user, $add, $remove ], '1.26' );
 
 		if ( $newGroups != $oldGroups ) {
-			$this->addLogEntry( $user, $oldGroups, $newGroups, $reason );
+			$this->addLogEntry( $user, $oldGroups, $newGroups, $reason, $tags );
 		}
 
 		return [ $add, $remove ];
@@ -301,8 +302,9 @@ class UserrightsPage extends SpecialPage {
 	 * @param array $oldGroups
 	 * @param array $newGroups
 	 * @param array $reason
+	 * @param array $tags
 	 */
-	function addLogEntry( $user, $oldGroups, $newGroups, $reason ) {
+	function addLogEntry( $user, $oldGroups, $newGroups, $reason, $tags ) {
 		$logEntry = new ManualLogEntry( 'rights', 'rights' );
 		$logEntry->setPerformer( $this->getUser() );
 		$logEntry->setTarget( $user->getUserPage() );
@@ -312,6 +314,9 @@ class UserrightsPage extends SpecialPage {
 			'5::newgroups' => $newGroups,
 		] );
 		$logid = $logEntry->insert();
+		if ( count( $tags ) ) {
+			$logEntry->setTags( $tags );
+		}
 		$logEntry->publish( $logid );
 	}
 

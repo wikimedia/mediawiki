@@ -1329,6 +1329,7 @@
 	"apihelp-userrights-param-add": "{{doc-apihelp-param|userrights|add}}",
 	"apihelp-userrights-param-remove": "{{doc-apihelp-param|userrights|remove}}",
 	"apihelp-userrights-param-reason": "{{doc-apihelp-param|userrights|reason}}",
+	"apihelp-userrights-param-tags": "{{doc-apihelp-param|userrights|tags}}",
 	"apihelp-userrights-example-user": "{{doc-apihelp-example|userrights}}",
 	"apihelp-userrights-example-userid": "{{doc-apihelp-example|userrights}}",
 	"apihelp-validatepassword-description": "{{doc-apihelp-description|validatepassword}}",

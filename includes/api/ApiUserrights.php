@@ -61,13 +61,23 @@ class ApiUserrights extends ApiBase {
 
 		$user = $this->getUrUser( $params );
 
+		$tags = $params['tags'];
+
+		// Check if user can add tags
+		if ( !is_null( $tags ) ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $tags, $pUser );
+			if ( !$ableToTag->isOK() ) {
+				$this->dieStatus( $ableToTag );
+			}
+		}
+
 		$form = $this->getUserRightsPage();
 		$form->setContext( $this->getContext() );
 		$r['user'] = $user->getName();
 		$r['userid'] = $user->getId();
 		list( $r['added'], $r['removed'] ) = $form->doSaveUserGroups(
 			$user, (array)$params['add'],
-			(array)$params['remove'], $params['reason']
+			(array)$params['remove'], $params['reason'], $tags
 		);
 
 		$result = $this->getResult();
@@ -131,6 +141,10 @@ class ApiUserrights extends ApiBase {
 			'token' => [
 				// Standard definition automatically inserted
 				ApiBase::PARAM_HELP_MSG_APPEND => [ 'api-help-param-token-webui' ],
+			],
+			'tags' => [
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true
 			],
 		];
 	}

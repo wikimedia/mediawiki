@@ -1428,6 +1428,7 @@
 	"apihelp-userrights-param-add": "Add the user to these groups.",
 	"apihelp-userrights-param-remove": "Remove the user from these groups.",
 	"apihelp-userrights-param-reason": "Reason for the change.",
+	"apihelp-userrights-param-tags": "Change tags to apply to the entry in the user rights log.",
 	"apihelp-userrights-example-user": "Add user <kbd>FooBot</kbd> to group <kbd>bot</kbd>, and remove from groups <kbd>sysop</kbd> and <kbd>bureaucrat</kbd>.",
 	"apihelp-userrights-example-userid": "Add the user with ID <kbd>123</kbd> to group <kbd>bot</kbd>, and remove from groups <kbd>sysop</kbd> and <kbd>bureaucrat</kbd>.",
 
