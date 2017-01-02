@@ -117,6 +117,8 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		$initialUnreadNotifications = $store->countUnreadNotifications( $user );
 
 		$store->updateNotificationTimestamp( $otherUser, $title, '20150202010101' );
+		DeferredUpdates::doUpdates();
+
 		$this->assertEquals(
 			'20150202010101',
 			$store->loadWatchedItem( $user, $title )->getNotificationTimestamp()
@@ -145,6 +147,8 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		);
 
 		$this->assertTrue( $store->resetNotificationTimestamp( $user, $title ) );
+		DeferredUpdates::doUpdates();
+
 		$this->assertNull( $store->getWatchedItem( $user, $title )->getNotificationTimestamp() );
 		$this->assertEquals(
 			[ $title->getNamespace() => [ $title->getDBkey() => null ] ],

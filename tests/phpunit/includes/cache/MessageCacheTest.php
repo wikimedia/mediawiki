@@ -107,6 +107,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		$uckey = $wgContLang->ucfirst( $message );
 		$oldText = $messageCache->get( $message ); // "Ausführen"
 
+		DeferredUpdates::setOpportunisticMode( true );
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->startAtomic( __METHOD__ ); // simulate request and block deferred updates
 		$messageCache->replace( $uckey, 'Allez!' );

@@ -27,6 +27,8 @@ class ArticleTablesTest extends MediaWikiLangTestCase {
 			false,
 			$user
 		);
+		DeferredUpdates::doUpdates();
+
 		$templates1 = $title->getTemplateLinksFrom();
 
 		$this->setUserLang( 'de' );
@@ -40,6 +42,8 @@ class ArticleTablesTest extends MediaWikiLangTestCase {
 			false,
 			$user
 		);
+		DeferredUpdates::doUpdates();
+
 		$templates2 = $title->getTemplateLinksFrom();
 
 		/**

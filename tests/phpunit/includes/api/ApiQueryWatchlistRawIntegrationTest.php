@@ -84,6 +84,7 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 			$target,
 			'20151212010101'
 		);
+		DeferredUpdates::doUpdates();
 
 		$result = $this->doListWatchlistRawRequest( [ 'wrprop' => 'changed' ] );
 
@@ -136,6 +137,7 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 			$subjectTarget,
 			'20151212010101'
 		);
+		DeferredUpdates::doUpdates();
 
 		$resultChanged = $this->doListWatchlistRawRequest(
 			[ 'wrprop' => 'changed', 'wrshow' => WatchedItemQueryService::FILTER_CHANGED ]

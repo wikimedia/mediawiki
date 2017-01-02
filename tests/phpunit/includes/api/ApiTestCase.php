@@ -51,7 +51,9 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		$title = Title::newFromText( $pageName, $defaultNs );
 		$page = WikiPage::factory( $title );
 
-		return $page->doEditContent( ContentHandler::makeContent( $text, $title ), $summary );
+		$res = $page->doEditContent( ContentHandler::makeContent( $text, $title ), $summary );
+		DeferredUpdates::doUpdates();
+		return $res;
 	}
 
 	/**

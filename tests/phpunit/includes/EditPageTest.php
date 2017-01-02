@@ -297,6 +297,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 		}
 
 		$page = $this->assertEdit( $pageTitle, null, $user, $edit, $expectedCode, $expectedText, $desc );
+		DeferredUpdates::doUpdates();
 
 		if ( $expectedCode != EditPage::AS_BLANK_ARTICLE ) {
 			$latest = $page->getLatest();
@@ -348,6 +349,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 		wfGetDB( DB_MASTER )->commit( __METHOD__ );
 
+		DeferredUpdates::doUpdates();
 		$this->assertEquals( 0, DeferredUpdates::pendingUpdatesCount(), 'No deferred updates' );
 
 		if ( $expectedCode != EditPage::AS_BLANK_ARTICLE ) {
@@ -394,6 +396,8 @@ class EditPageTest extends MediaWikiLangTestCase {
 		$page = $this->assertEdit( 'EditPageTest_testUpdatePage', "zero", null, $edit,
 			EditPage::AS_SUCCESS_UPDATE, $text,
 			"expected successfull update with given text" );
+		DeferredUpdates::doUpdates();
+
 		$this->assertGreaterThan( 0, $checkIds[0], "First event rev ID set" );
 
 		$this->forceRevisionDate( $page, '20120101000000' );
@@ -459,6 +463,8 @@ class EditPageTest extends MediaWikiLangTestCase {
 			"expected successfull update with given text" );
 
 		wfGetDB( DB_MASTER )->commit( __METHOD__ );
+
+		DeferredUpdates::doUpdates();
 
 		$this->assertGreaterThan( 0, $checkIds[0], "First event rev ID set" );
 		$this->assertGreaterThan( 0, $checkIds[1], "Second edit hook rev ID set" );

@@ -163,6 +163,8 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$title = Title::newFromText( 'Testing' );
 		$wikiPage = new WikiPage( $title );
 		$wikiPage->doEditContent( new WikitextContent( '[[Category:Foo]]' ), 'added category' );
+		DeferredUpdates::doUpdates();
+
 		$this->runAllRelatedJobs();
 
 		$this->assertRecentChangeByCategorization(
@@ -173,6 +175,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		);
 
 		$wikiPage->doEditContent( new WikitextContent( '[[Category:Bar]]' ), 'replaced category' );
+		DeferredUpdates::doUpdates();
 		$this->runAllRelatedJobs();
 
 		$this->assertRecentChangeByCategorization(
@@ -203,10 +206,12 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 		$wikiPage = new WikiPage( Title::newFromText( 'Testing' ) );
 		$wikiPage->doEditContent( new WikitextContent( '{{TestingTemplate}}' ), 'added template' );
+		DeferredUpdates::doUpdates();
 		$this->runAllRelatedJobs();
 
 		$otherWikiPage = new WikiPage( Title::newFromText( 'Some_other_page' ) );
 		$otherWikiPage->doEditContent( new WikitextContent( '{{TestingTemplate}}' ), 'added template' );
+		DeferredUpdates::doUpdates();
 		$this->runAllRelatedJobs();
 
 		$this->assertRecentChangeByCategorization(
@@ -217,6 +222,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		);
 
 		$templatePage->doEditContent( new WikitextContent( '[[Category:Baz]]' ), 'added category' );
+		DeferredUpdates::doUpdates();
 		$this->runAllRelatedJobs();
 
 		$this->assertRecentChangeByCategorization(

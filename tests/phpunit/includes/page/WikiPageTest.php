@@ -86,6 +86,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 		$content = ContentHandler::makeContent( $text, $page->getTitle(), $model );
 		$page->doEditContent( $content, "testing", EDIT_NEW );
+		DeferredUpdates::doUpdates();
 
 		return $page;
 	}
@@ -108,6 +109,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		);
 
 		$page->doEditContent( $content, "[[testing]] 1" );
+		DeferredUpdates::doUpdates();
 
 		$this->assertTrue( $title->getArticleID() > 0, "Title object should have new page id" );
 		$this->assertTrue( $page->getId() > 0, "WikiPage should have new page id" );
@@ -139,6 +141,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		);
 
 		$page->doEditContent( $content, "testing 2" );
+		DeferredUpdates::doUpdates();
 
 		# ------------------------
 		$page = new WikiPage( $title );
@@ -526,6 +529,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$page = $this->createPage( $title, $text, $model );
 
 		$editInfo = $page->prepareContentForEdit( $page->getContent() );
+		DeferredUpdates::doUpdates();
 
 		$v = $page->isCountable();
 		$w = $page->isCountable( $editInfo );

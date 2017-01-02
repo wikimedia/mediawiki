@@ -2576,13 +2576,16 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			$this->getMockReadOnlyMode()
 		);
 
+		$notified = $store->updateNotificationTimestamp(
+			$this->getMockNonAnonUserWithId( 1 ),
+			new TitleValue( 0, 'SomeDbKey' ),
+			'20151212010101'
+		);
+		DeferredUpdates::doUpdates();
+
 		$this->assertEquals(
 			[ 2, 3 ],
-			$store->updateNotificationTimestamp(
-				$this->getMockNonAnonUserWithId( 1 ),
-				new TitleValue( 0, 'SomeDbKey' ),
-				'20151212010101'
-			)
+			$notified
 		);
 	}
 
@@ -2669,6 +2672,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			$titleValue,
 			'20151212010101'
 		);
+		DeferredUpdates::doUpdates();
 	}
 
 }

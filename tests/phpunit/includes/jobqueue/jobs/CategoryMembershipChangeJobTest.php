@@ -48,6 +48,8 @@ class CategoryMembershipChangeJobTest extends MediaWikiTestCase {
 			ContentHandler::makeContent( $text, $this->title ),
 			__METHOD__
 		);
+		DeferredUpdates::doUpdates();
+
 		/** @var Revision $revision */
 		$revision = $editResult->value['revision'];
 		$this->runJobs();

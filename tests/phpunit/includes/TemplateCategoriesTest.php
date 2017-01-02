@@ -65,6 +65,8 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 			$user
 		);
 
+		DeferredUpdates::doUpdates();
+
 		// Run the job queue
 		JobQueueGroup::destroySingletons();
 		$jobs = new RunJobs;
