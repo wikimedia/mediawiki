@@ -54,6 +54,8 @@ class DeferredUpdates {
 	private static $postSendUpdates = [];
 	/** @var bool Whether to just run updates in addUpdate() */
 	private static $immediateMode = false;
+	/** @var bool Whether to try running updates when possible */
+	private static $opportunisticMode = true;
 
 	const ALL = 0; // all updates; in web requests, use only after flushing the output buffer
 	const PRESEND = 1; // for updates that should run before flushing output buffer
@@ -140,6 +142,14 @@ class DeferredUpdates {
 	 */
 	public static function setImmediateMode( $value ) {
 		self::$immediateMode = (bool)$value;
+	}
+
+	/**
+	 * @param bool $value Whether to try running updates when possible
+	 * @since 1.29
+	 */
+	public static function setOpportunisticMode( $value ) {
+		self::$opportunisticMode = (bool)$value;
 	}
 
 	/**
@@ -286,6 +296,10 @@ class DeferredUpdates {
 	public static function tryOpportunisticExecute( $mode = 'run' ) {
 		// execute() loop is already running
 		if ( self::$executeContext ) {
+			return false;
+		}
+
+		if ( !self::$opportunisticMode ) {
 			return false;
 		}
 
