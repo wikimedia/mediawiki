@@ -8056,6 +8056,12 @@ $wgShellLocale = 'en_US.utf8';
 $wgHTTPTimeout = 25;
 
 /**
+ * Timeout for HTTP requests done internally for transwiki imports, in seconds.
+ * @since 1.29
+ */
+$wgHTTPImportTimeout = 25;
+
+/**
  * Timeout for Asynchronous (background) HTTP requests, in seconds.
  */
 $wgAsyncHTTPTimeout = 25;
