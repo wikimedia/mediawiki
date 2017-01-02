@@ -2102,7 +2102,7 @@
 	"changecontentmodel-emptymodels-title": "Ingen innholdsmodeller er tilgjengelige",
 	"changecontentmodel-emptymodels-text": "Innholdet på [[:$1]] kan ikke konverteres til noen type.",
 	"log-name-contentmodel": "Logg over endringer i endringsloggen",
-	"log-description-contentmodel": "Hendelseslogg relatert til innholdsmodellen for en side",
+	"log-description-contentmodel": "Denne siden lister endringer i innholdsmodellen til sider, og sider som ble laget med andre innholdsmodeller enn den som er standard.",
 	"logentry-contentmodel-new": "$1 {{GENDER:$2|opprettet}} siden $3 med den ikke-standard innholdsmodellen «$5»",
 	"logentry-contentmodel-change": "$1 {{GENDER:$2|endret}} innholdsmodellen for siden $3 fra «$4» til «$5»",
 	"logentry-contentmodel-change-revertlink": "tilbakestill",

@@ -1354,7 +1354,7 @@
 	"apihelp-jsonfm-description": "{{doc-apihelp-description|jsonfm|seealso=* {{msg-mw|apihelp-json-description}}}}",
 	"apihelp-none-description": "{{doc-apihelp-description|none}}",
 	"apihelp-php-description": "{{doc-apihelp-description|php|seealso=* {{msg-mw|apihelp-phpfm-description}}}}",
-	"apihelp-php-param-formatversion": "{{doc-apihelp-param|json|formatversion}}",
+	"apihelp-php-param-formatversion": "{{doc-apihelp-param|php|formatversion}}",
 	"apihelp-phpfm-description": "{{doc-apihelp-description|phpfm|seealso=* {{msg-mw|apihelp-php-description}}}}",
 	"apihelp-rawfm-description": "{{doc-apihelp-description|rawfm|seealso=* {{msg-mw|apihelp-raw-description}}}}",
 	"apihelp-xml-description": "{{doc-apihelp-description|xml|seealso=* {{msg-mw|apihelp-xmlfm-description}}}}",

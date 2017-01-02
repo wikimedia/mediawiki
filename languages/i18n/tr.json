@@ -2031,6 +2031,7 @@
 	"modifiedarticleprotection": "\"[[$1]]\" için koruma düzeyi değiştirildi",
 	"unprotectedarticle": "koruma kaldırıldı: \"[[$1]]\"",
 	"movedarticleprotection": "koruma ayarları \"[[$2]]\" sayfasından \"[[$1]]\" sayfasına taşındı",
+	"modifiedarticleprotection-comment": "\"[[$1]]\" için {{GENDER:$2|koruma düzeyini değiştirdi}}",
 	"protect-title": "\"$1\" için bir koruma seviyesi seçiniz",
 	"protect-title-notallowed": "\"$1\" için koruma seviyesini görüntüleyin",
 	"prot_1movedto2": "[[$1]] sayfasının yeni adı: [[$2]]",

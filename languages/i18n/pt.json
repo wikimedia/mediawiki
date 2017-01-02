@@ -3557,7 +3557,7 @@
 	"api-error-blocked": "Foi bloqueado de editar.",
 	"api-error-copyuploaddisabled": "O carregamento de ficheiros por URL não foi possibilitado neste servidor.",
 	"api-error-duplicate": "Já {{PLURAL:$1|existia outro ficheiro|existiam outros ficheiro}} na wiki com o mesmo conteúdo.",
-	"api-error-duplicate-archive": "Já {{PLURAL:$1|estava outro ficheiro|estavam outros ficheiros}} no  site com o mesmo conteúdo, mas {{PLURAL:$1|foi|foram}} eliminados.",
+	"api-error-duplicate-archive": "Já {{PLURAL:$1|estava outro ficheiro|estavam outros ficheiros}} no site com o mesmo conteúdo, mas {{PLURAL:$1|foi eliminado|foram eliminados}}.",
 	"api-error-empty-file": "O ficheiro que enviou está vazio.",
 	"api-error-emptypage": "Não é permitido criar páginas novas vazias.",
 	"api-error-fetchfileerror": "Erro interno: Ocorreu um problema indeterminado ao aceder ao ficheiro.",

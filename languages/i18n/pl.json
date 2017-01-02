@@ -3643,7 +3643,7 @@
 	"api-error-unclassified": "Wystąpił nieznany błąd",
 	"api-error-unknown-code": "Błąd nieznany – „$1”",
 	"api-error-unknown-error": "Błąd wewnętrzny – wysŧapił nierozpoznany błąd w trakcie próby przesłania pliku.",
-	"api-error-unknown-warning": "Nieznane ostrzeżenie: \"$1\"",
+	"api-error-unknown-warning": "Nieznane ostrzeżenie: „$1”.",
 	"api-error-unknownerror": "Nieznany błąd: „$1”",
 	"api-error-uploaddisabled": "Na tej wiki przesyłanie zostało wyłączone.",
 	"api-error-verification-error": "Plik może być uszkodzony lub nazwa pliku ma nieprawidłowe rozszerzenie.",

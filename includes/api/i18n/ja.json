@@ -885,6 +885,7 @@
 	"apihelp-userrights-param-userid": "利用者ID。",
 	"apihelp-userrights-param-add": "利用者をこのグループに追加します。",
 	"apihelp-userrights-param-reason": "変更の理由。",
+	"apihelp-watch-description": "現在の利用者のウォッチリストにページを追加/除去します。",
 	"apihelp-watch-example-watch": "<kbd>Main Page</kbd> をウォッチする。",
 	"apihelp-watch-example-unwatch": "<kbd>Main Page</kbd> のウォッチを解除する。",
 	"apihelp-format-example-generic": "クエリの結果を $1 形式に返します。",
