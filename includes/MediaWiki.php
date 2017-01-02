@@ -495,8 +495,15 @@ class MediaWiki {
 			$action->show();
 			return;
 		}
-
-		if ( Hooks::run( 'UnknownAction', [ $request->getVal( 'action', 'view' ), $page ] ) ) {
+		// NOTE: deprecated hook. Add to $wgActions instead
+		if ( Hooks::run(
+			'UnknownAction',
+			[
+				$request->getVal( 'action', 'view' ),
+				$page
+			],
+			'1.19'
+		) ) {
 			$output->setStatusCode( 404 );
 			$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 		}
