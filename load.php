@@ -56,3 +56,5 @@ Profiler::instance()->setTemplated( true );
 
 $mediawiki = new MediaWiki();
 $mediawiki->doPostOutputShutdown( 'fast' );
+
+#Test
