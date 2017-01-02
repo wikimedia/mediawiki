@@ -3420,8 +3420,8 @@ Since 1.24: Paths pointing to a directory will be recursively scanned for
 test case files matching the suffix "Test.php".
 &$paths: list of test cases and directories to search.
 
-'UnknownAction': An unknown "action" has occurred (useful for defining your own
-actions).
+'UnknownAction': DEPRECATED! To add an action in an extension, create a subclass of Action, and add a new key to $wgActions.
+An unknown "action" has occurred (useful for defining your own actions).
 $action: action name
 $article: article "acted on"
 

@@ -496,7 +496,7 @@ class MediaWiki {
 			return;
 		}
 
-		if ( Hooks::run( 'UnknownAction', [ $request->getVal( 'action', 'view' ), $page ] ) ) {
+		if ( Hooks::run( 'UnknownAction', [ $request->getVal( 'action', 'view' ), $page ], '1.19' ) ) {
 			$output->setStatusCode( 404 );
 			$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 		}
