@@ -494,6 +494,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 
 		DeferredUpdates::clearPendingUpdates();
+		DeferredUpdates::setImmediateMode( false );
+		DeferredUpdates::setOpportunisticMode( false );
+
 		ObjectCache::getMainWANInstance()->clearProcessCache();
 
 		// XXX: reset maintenance triggers
@@ -967,6 +970,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$page = WikiPage::factory( $title );
 		$page->doEditContent( ContentHandler::makeContent( $text, $title ), $comment, 0, false, $user );
+		DeferredUpdates::doUpdates();
 
 		return [
 			'title' => $title,

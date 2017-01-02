@@ -6,9 +6,6 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 	 * @covers DeferredUpdates::getPendingUpdates
 	 */
 	public function testGetPendingUpdates() {
-		# Prevent updates from running
-		$this->setMwGlobals( 'wgCommandLineMode', false );
-
 		$pre = DeferredUpdates::PRESEND;
 		$post = DeferredUpdates::POSTSEND;
 		$all = DeferredUpdates::ALL;
@@ -34,8 +31,6 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 	}
 
 	public function testDoUpdatesWeb() {
-		$this->setMwGlobals( 'wgCommandLineMode', false );
-
 		$updates = [
 			'1' => "deferred update 1;\n",
 			'2' => "deferred update 2;\n",
@@ -126,7 +121,6 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 	}
 
 	public function testDoUpdatesCLI() {
-		$this->setMwGlobals( 'wgCommandLineMode', true );
 		$updates = [
 			'1' => "deferred update 1;\n",
 			'2' => "deferred update 2;\n",

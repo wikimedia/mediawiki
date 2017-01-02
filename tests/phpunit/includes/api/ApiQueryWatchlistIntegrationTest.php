@@ -44,6 +44,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			false,
 			$user
 		);
+		DeferredUpdates::doUpdates();
 	}
 
 	private function doMinorPageEdit( User $user, LinkTarget $target, $content, $summary ) {
@@ -56,6 +57,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			false,
 			$user
 		);
+		DeferredUpdates::doUpdates();
 	}
 
 	private function doBotPageEdit( User $user, LinkTarget $target, $content, $summary ) {
@@ -68,6 +70,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			false,
 			$user
 		);
+		DeferredUpdates::doUpdates();
 	}
 
 	private function doAnonPageEdit( LinkTarget $target, $content, $summary ) {
@@ -80,6 +83,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			false,
 			User::newFromId( 0 )
 		);
+		DeferredUpdates::doUpdates();
 	}
 
 	private function doPatrolledPageEdit(
@@ -98,6 +102,8 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			false,
 			$user
 		);
+		DeferredUpdates::doUpdates();
+
 		/** @var Revision $rev */
 		$rev = $status->value['revision'];
 		$rc = $rev->getRecentChange();
@@ -588,6 +594,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			$target,
 			'20151212010101'
 		);
+		DeferredUpdates::doUpdates();
 
 		$result = $this->doListWatchlistRequest( [ 'wlprop' => 'notificationtimestamp', ] );
 
@@ -643,6 +650,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			'Create the page that will be deleted'
 		);
 		$this->deletePage( $target, 'Important Reason' );
+		DeferredUpdates::doUpdates();
 	}
 
 	public function testLoginfoPropParameter() {
@@ -920,6 +928,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			$talkTarget,
 			'20151212010101'
 		);
+		DeferredUpdates::doUpdates();
 
 		$resultUnread = $this->doListWatchlistRequest( [
 			'wlprop' => 'notificationtimestamp|title',

@@ -26,6 +26,7 @@ class RefreshLinksPartitionTest extends MediaWikiTestCase {
 			$content = ContentHandler::makeContent( "[[{$title->getPrefixedText()}]]", $bpage->getTitle() );
 			$bpage->doEditContent( $content, "test" );
 		}
+		DeferredUpdates::doUpdates();
 
 		$title->getBacklinkCache()->clear();
 		$this->assertEquals(

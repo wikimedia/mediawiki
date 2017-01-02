@@ -58,6 +58,7 @@ class WatchedItemIntegrationTest extends MediaWikiTestCase {
 		$this->assertNull( WatchedItem::fromUserTitle( $user, $title )->getNotificationTimestamp() );
 
 		EmailNotification::updateWatchlistTimestamp( $otherUser, $title, '20150202010101' );
+		DeferredUpdates::doUpdates();
 		$this->assertEquals(
 			'20150202010101',
 			WatchedItem::fromUserTitle( $user, $title )->getNotificationTimestamp()
@@ -66,6 +67,7 @@ class WatchedItemIntegrationTest extends MediaWikiTestCase {
 		MediaWikiServices::getInstance()->getWatchedItemStore()->resetNotificationTimestamp(
 			$user, $title
 		);
+		DeferredUpdates::doUpdates();
 		$this->assertNull( WatchedItem::fromUserTitle( $user, $title )->getNotificationTimestamp() );
 	}
 
