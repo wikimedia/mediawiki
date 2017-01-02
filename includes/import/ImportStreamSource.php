@@ -29,6 +29,7 @@
  * @ingroup SpecialPage
  */
 class ImportStreamSource implements ImportSource {
+	global $wgHTTPTimeout = $wgHTTPImportTimeout;
 	function __construct( $handle ) {
 		$this->mHandle = $handle;
 	}

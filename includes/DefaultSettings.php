@@ -8056,6 +8056,11 @@ $wgShellLocale = 'en_US.utf8';
 $wgHTTPTimeout = 25;
 
 /**
+ * Timeout for HTTP requests done internally in imports, in seconds.
+ */
+$wgHTTPImportTimeout = 60;
+
+/**
  * Timeout for Asynchronous (background) HTTP requests, in seconds.
  */
 $wgAsyncHTTPTimeout = 25;
