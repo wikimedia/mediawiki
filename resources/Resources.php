@@ -858,6 +858,14 @@ return [
 		'styles' => 'resources/src/mediawiki/mediawiki.apihelp.css',
 		'targets' => [ 'desktop' ],
 	],
+	'mediawiki.avatar.css' => [
+		'styles' => 'resources/src/mediawiki/mediawiki.avatar.css',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	'mediawiki.avatar.clearfix' => [
+		'styles' => 'resources/src/mediawiki/mediawiki.avatar-clearfix.css',
+		'targets' => [ 'desktop' , 'mobile'],
+	],
 	'mediawiki.template' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.template.js',
 		'targets' => [ 'desktop', 'mobile' ],

@@ -1,0 +1,753 @@
+.firstHeading {
+	border-bottom: none;
+	margin: 0px !important;
+	display: none;
+}
+
+.pagetitle {
+	display: inline !important;
+}
+
+#main {
+	padding: 0px 0px 0px 0px !important;
+}
+
+#user-page-left {
+	width: 35%;
+	float: left;
+}
+
+#user-page-right {
+	float: right;
+	width: 60%;
+}
+
+#user-page-left h2, #user-page-right h2 {
+	border-bottom: 1px solid #dcdcdc;
+	padding: 0px 0px 3px 0px;
+	margin: 0px 0px 5px 0px;
+	font-size: 17px;
+	letter-spacing: -1px;
+	color: #333;
+}
+
+.no-info-container {
+	margin: 10px 0px 20px 0px;
+	background-color: #F2F4F7;
+	padding: 20px;
+	text-align: center;
+	color: #777;
+}
+
+.item-small {
+	color: #999;
+	font-size: 9px;
+	margin: 0px 0px 0px 6px;
+}
+
+.user-section-heading {
+	border-bottom: 1px solid #DCDCDC;
+	width: 100%;
+	line-height: 22px;
+	margin: 0px 0px 8px 0px;
+}
+
+.user-section-title {
+	float: left;
+	font-size: 20px;
+	letter-spacing: -1px;
+	padding: 0px 10px 0px 0px;
+}
+
+.user-section-actions {
+	position: relative;
+	right: 0px;
+	top: -2px;
+}
+
+.action-right {
+	float: right;
+	font-size: 10px;
+	padding: 0px 5px 0px 0px;
+}
+
+.action-left {
+	float: left;
+	font-size: 10px;
+}
+
+.user-section-actions a {
+	text-decoration: none;
+}
+
+/* Profile Top */
+#profile-top {
+	background-color: #fff;
+	border-bottom: 1px solid #D4DFD7;
+	padding: 10px 0px;
+	margin: 0px 0px 20px 0px;
+	position: relative;
+}
+
+#profile-title-container {
+	padding: 0px 0px 6px 6px;
+}
+
+#profile-title {
+	float: left;
+	font-size: 2em;
+	line-height: 26px;
+	font-weight: bold;
+	margin: 0px 15px 0px 0px;
+}
+
+#points-level {
+	float: left;
+	font-size: 11px;
+	background-color: #CC0000;
+	padding: 1px 5px;
+	margin: 4px 8px 0px 0px;
+	text-align: center;
+}
+
+#honorific-level {
+	float: left;
+	margin: 4px 0px 0px 0px;
+	font-size: 12px;
+}
+
+#honorific-level a {
+	text-decoration: none;
+}
+
+#points-level a {
+	text-decoration: none;
+	font-weight: bold;
+	color: #fff;
+}
+
+#profile-image {
+	position: relative;
+	float: left;
+	margin: 0px 8px 0px 0px;
+}
+
+#profile-image img {
+	border: 1px solid #dcdcdc;
+	background-color: #fff;
+	padding: 3px;
+}
+
+#profile-right {
+	float: left;
+	position: relative;
+}
+
+.profile-actions a {
+	text-decoration: none;
+	font-weight: bold;
+	margin: 0px 6px;
+}
+
+/* User-Relationship */
+.user-relationship-container {
+	padding: 0px 0px 25px 0px;
+}
+
+.user-relationship-container a {
+	text-decoration: none;
+	display: block;
+	float: left;
+	margin: 5px 10px 0px 0px;
+}
+
+.user-relationship-container img {
+	padding: 3px;
+	border: 1px solid #dcdcdc;
+	background-color: #fff;
+}
+
+/* User Gift / User Awards */
+.user-gift-container {
+	padding: 0px 0px 25px 0px;
+}
+
+.user-gift-container a {
+	text-decoration: none;
+	display: block;
+	float: left;
+	margin: 5px 10px 0px 0px;
+}
+
+.user-gift-container img {
+	padding: 3px;
+	border: 1px solid #dcdcdc;
+	background-color: #fff;
+}
+
+/* Fanboxes */
+.user-fanbox-container {
+	padding: 0px 0px 25px 0px;
+}
+
+/* User Activity */
+.activity-item {
+	border-bottom: 1px solid #dcdcdc;
+	padding: 7px 0px;
+}
+
+.activity-item-bottom {
+	padding: 7px 0px 0px 0px;
+}
+
+.activity-item img, .activity-item-bottom img {
+	vertical-align: middle;
+	margin: 0px 5px 0px 0px;
+}
+
+.activity-item a, .activity-item-bottom a {
+	text-decoration: none;
+}
+
+.item {
+	color: #666;
+	margin: 5px 25px;
+}
+
+.item a {
+	font-weight: bold;
+}
+
+#recent-all {
+	padding: 0px 0px 25px 0px;
+}
+
+/* Message Board */
+#user-page-board {
+	margin: 5px 0px 10px 0px;
+}
+
+.user-page-message-form {
+	margin: 5px 0px 15px 0px;
+	font-weight: bold;
+}
+
+.user-board-message {
+	border: 1px solid #e2e2e2;
+	margin: 0px 0px 15px 0px;
+}
+
+.user-board-message-from {
+	background-color: #F8F5F5;
+	padding: 3px 0px 5px 5px;
+}
+
+.user-board-message-from a {
+	font-size: 14px;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.user-board-message-content {
+	padding: 5px;
+}
+
+.user-board-message-time {
+	font-size: 11px;
+	color: #797979;
+	margin: 2px 0px 0px 5px;
+}
+
+.user-board-message-image {
+	float: left;
+	padding: 0px 10px 5px 0px;
+}
+
+.user-board-message-image img {
+	border: 1px solid #dcdcdc;
+}
+
+.user-board-message-body {
+	margin: 0px 10px 0px 0px;
+}
+
+.user-board-message-body p {
+	margin: 0px 0px 0px 0px !important;
+}
+
+.user-board-message-links {
+	padding: 0px 0px 5px 5px;
+}
+
+.user-board-message-links a {
+	font-size: 11px;
+	text-decoration: none;
+	margin: 0px 10px 0px 0px;
+}
+
+.user-board-red a {
+	color: #ff0000;
+}
+
+/* Profile Data */
+.profile-info-container {
+	padding: 0px 0px 17px 0px;
+}
+
+.profile-info-container b {
+	color: #555;
+	margin: 0px 10px 0px 0px;
+}
+
+.profile-info-container div {
+	margin: 0px 0px 8px 0px;
+	color: #666;
+}
+
+.bold-fix b {
+	margin: 0px 5px 0px 0px !important;
+}
+
+/* Casual Games */
+.casual-game-container {
+	padding: 0px 0px 18px 0px;
+}
+
+.casual-game-container p {
+	margin: 0px 0px 0px 0px !important;
+	padding: 7px 0px !important;
+	border-top: 1px solid #dcdcdc;
+}
+
+.casual-game-container .item-top {
+	border: none;
+}
+
+.casual-game-container a {
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.casual-game-container .item-type {
+	font-size: 9px;
+	margin: 0px 0px 0px 6px;
+}
+
+.casual-game-container img {
+	border: 1px solid #dcdcdc;
+	padding: 3px;
+	background-color: #fff;
+	vertical-align: middle;
+	margin: 0px 3px 0px 0px;
+}
+
+/* User Articles */
+.user-articles-container {
+	padding: 0px 0px 23px 0px;
+}
+
+.article-item {
+	margin: 0px 0px 0px 0px;
+	padding: 7px 0px 2px 0px;
+	border-top: 1px solid #dcdcdc;
+}
+
+.user-articles-container a {
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.article-item-top {
+	margin: 0px 0px 0px 0px;
+	padding: 7px 0px 2px 0px;
+	border: none;
+}
+
+.number-of-votes {
+	margin: 0px 10px 3px 0px;
+	text-align: center;
+	float: left;
+	width: 25px;
+}
+
+.vote-number {
+	background-color: #89C46F;
+	color: #FFFFFF;
+	font-size: 12px !important;
+	margin: 0px 0px 2px 0px;
+	font-weight: bold;
+	height: 25px;
+	line-height: 25px;
+}
+
+.vote-text {
+	margin: -1px 0px 0px 0px;
+	font-size: 9px;
+	color: #777;
+	line-height: 9px;
+}
+
+/* Pictures */
+.picture-container-spacer {
+	height: 25px;
+	width: 100%;
+}
+
+.picture-container .mini-image {
+	float: left;
+	margin: 5px 10px 0px 0px;
+}
+
+.picture-container img {
+	background-color: #fff;
+	padding: 3px;
+	border: 1px solid #dcdcdc;
+}
+
+.picture-container a {
+	text-decoration: none;
+}
+
+.upload-container {
+	clear: left;
+	height: 90px;
+	margin-left: -5px;
+}
+
+.upload-frame-errors {
+	margin: 10px 0px 5px 0px;
+	color: red;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.no-pictures-container {
+	color: #777777;
+	margin: 10px 0px 0px;
+	padding: 20px;
+	text-align: center;
+	background-color: #EFF3F0;
+}
+
+.upload-frame-errors {
+	display: none;
+}
+
+.imageUpload-frame {
+	height: 90px;
+	width: 425px;
+}
+
+/* Sports Networks */
+.network-container {
+	padding: 0px 0px 22px 0px;
+}
+
+.network {
+	margin: 0px 0px 3px 0px;
+}
+
+.network img {
+	margin: 0px 5px 0px 0px;
+	vertical-align: middle;
+}
+
+.network a {
+	text-decoration: none;
+}
+
+.status-message-add a {
+	color: #999;
+	font-size: 10px;
+}
+
+.status-update-box {
+	margin: 10px 0px 10px 0px;
+}
+
+#status-text input {
+	font-size: 10px;
+	width: 200px;
+}
+
+/* Status */
+.status-container {
+	padding: 0px 0px 20px 0px;
+}
+
+.status-message img {
+	vertical-align: middle;
+	margin: 0px 5px 0px 0px;
+}
+
+.user-status-date {
+	margin: 0px 6px 0px 0px;
+	color: #999;
+	font-size: 9px;
+}
+
+.user-status-profile-vote {
+	color: #666;
+}
+
+.user-status-profile-vote a {
+	text-decoration: none;
+	font-size: 9px;
+}
+
+/* Avatar upload page (Special:UploadAvatar) */
+#wpUploadSource {
+	width: 100px;
+}
+
+table.avatar-success-page {
+	border-collapse: collapse;
+	margin-top: 20px;
+	padding: 0;
+}
+
+table.avatar-success-page td.title-cell {
+	color: #797979;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 5px;
+	padding-bottom: 20px;
+}
+
+table.avatar-success-page td.image-cell {
+	padding-bottom: 20px;
+}
+
+table.avatar-success-page td.image-cell img {
+	border: 0;
+}
+
+/* Update Profile */
+.profile-info {
+	background-color: #fff;
+	padding: 25px 0px;
+}
+
+.profile-update {
+	padding: 0px;
+}
+
+.profile-tab-bar {
+	margin-top: 20px;
+}
+
+.profile-tab {
+	float: left;
+	background-color: #68BD46;
+	height: 22px;
+	min-width: 72px;
+	padding: 6px 5px 0px 5px;
+	margin: 0px 5px 0px 0px;
+	text-align: center;
+}
+
+.profile-tab-on {
+	background-color: #466C2C;
+	float: left;
+	height: 22px;
+	color: #ffffff;
+	font-size: 12px;
+	min-width: 72px;
+	font-weight: bold;
+	padding: 6px 5px 0px 5px;
+	margin: 0px 5px 0px 0px;
+	text-align: center;
+}
+
+.profile-tab-on a, .profile-tab a {
+	color: #fff;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+.profile-tab a:hover {
+	color: #466C2C;
+}
+
+.profile-tab a:visited {
+	color: #FFFFFF !important;
+}
+
+.profile-tab-on a:visited {
+	color: #FFFFFF !important;
+}
+
+.profile-update-button {
+	background-color: #78BA5D;
+	border: 1px solid #6B6B6B;
+	color: #ffffff;
+	font-size: 13px;
+	padding: 3px;
+}
+
+.profile-update-title {
+	font-size: 16px;
+	color: #333;
+	margin: 0px 0px 5px 0px !important;
+	font-weight: bold;
+}
+
+.profile-update-title img {
+	vertical-align: middle;
+	margin: -3px 0px 0px 5px;
+}
+
+.profile-update-unit-left {
+	color: #797979;
+	font-weight: bold;
+	font-size: 12px;
+	float: left;
+	width: 150px;
+}
+
+.profile-update-unit {
+	float: left;
+	width: 450px;
+}
+
+.profile-update-unit-small {
+	float: left;
+	width: 450px;
+	font-size: 10px;
+	color: #797979;
+}
+
+.profile-update-row {
+	color: #797979;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.profile-update-links {
+	margin: 0px 0px 10px 0px;
+	font-weight: bold;
+}
+
+.profile-update-links a {
+	text-decoration: none;
+}
+
+.profile-status {
+	background-color: #FFFB9B;
+	font-weight: bold;
+	padding: 0px 5px 0px 5px;
+}
+
+.profile-on {
+	background-color: #FFFB9B;
+	border: 1px solid #FDC745;
+	font-weight: bold;
+	padding: 1px 5px 1px 5px;
+}
+
+#profile-toggle-button {
+	position: absolute;
+	top: 5px;
+	right: 0px;
+	background-color: orange;
+	padding: 2px 10px;
+}
+
+#profile-toggle-button a {
+	color: #fff;
+	font-weight: bold;
+}
+
+/* The text "Message type" on the left side of the message type selector on profile page */
+.profile-board-message-type {
+	color: #797979;
+}
+
+/* Responsive stuff for mobile devices */
+@media screen and (max-width: 750px) {
+	/* Special:UpdateProfile & Special:EditProfile */
+	.mw-special-EditProfile textarea,
+	.mw-special-UpdateProfile textarea {
+		min-width: 60%;
+		max-width: 100%;
+	}
+	div.profile-tab {
+		/**
+		 * I don't like how the tabs' texts are off-center, but this
+		 * is still better than nothing
+		 */
+		margin-bottom: 10px;
+	}
+}
+
+@media screen and (max-width: 750px) and (orientation: portrait) {
+	.mw-special-EditProfile textarea,
+	.mw-special-UpdateProfile textarea {
+		width: 30% !important;
+	}
+}
+
+/* Privacy */
+.mw-special-UpdateProfile div#mw-content-text .visualClear {
+	height: 20px;
+}
+
+.eye-container {
+	width: 130px;
+	height: 20px;
+	/* @embed */
+	background: #a3c2d5 url(../images/eye.png) 0 0 no-repeat;
+	border-radius: 4px;
+	opacity: 0.5;
+	overflow: hidden;
+	position: relative;
+	top: -25px;
+	cursor: pointer;
+	box-shadow: 2px 2px 3px -1px darkgray;
+}
+
+/** @todo FIXME: this is an awful hack for Special:UpdateProfile (the "personal information" page) */
+div.eye-container[fieldkey="up_real_name"],
+div.eye-container[fieldkey="up_email"],
+div.eye-container[fieldkey="up_location_city"],
+div.eye-container[fieldkey="up_hometown_country"],
+div.eye-container[fieldkey="up_birthday"] {
+	top: 5px;
+}
+
+div.eye-container[fieldkey="up_hometown_city"],
+div.eye-container[fieldkey="up_location_country"] {
+	top: 10px;
+}
+
+.eye-container:hover {
+	opacity: 1.0;
+}
+
+.eye-container .title {
+	font-size: 12px;
+	font-weight: bold;
+	color: white;
+	padding: 0px 0 0 25px;
+}
+
+.eye-container .menu {
+	padding: 10px 0 10px 0;
+}
+
+.eye-container .menu .item {
+	height: 18px;
+	font-size: 12px;
+	font-weight: bold;
+	color: white;
+	margin: 4px 0 4px 0;
+	padding: 0 0 0 30px;
+	/* @embed */
+	background: #a3c2d5 url(images/eye-bw.png) 5px 1px no-repeat;
+}
+
+.eye-container .menu .item:hover {
+	background-color: white;
+	box-shadow: 1px 1px 1px -1px black;
+	color: #a3c2d5;
+}
