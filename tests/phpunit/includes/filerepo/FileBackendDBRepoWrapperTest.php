@@ -113,6 +113,7 @@ class FileBackendDBRepoWrapperTest extends MediaWikiTestCase {
 
 	protected function getMocks() {
 		$dbMock = $this->getMockBuilder( 'DatabaseMysqli' )
+			->disableOriginalClone()
 			->disableOriginalConstructor()
 			->getMock();
 
