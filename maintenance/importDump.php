@@ -283,6 +283,9 @@ TEXT
 		$source = new ImportStreamSource( $handle );
 		$importer = new WikiImporter( $source, $this->getConfig() );
 
+		// Updating statistics require a lot of time so disable it
+		$importer->disableStatisticsUpdate();
+
 		if ( $this->hasOption( 'debug' ) ) {
 			$importer->setDebug( true );
 		}
