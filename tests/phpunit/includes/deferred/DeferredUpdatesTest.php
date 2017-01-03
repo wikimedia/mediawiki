@@ -1,6 +1,35 @@
 <?php
 
 class DeferredUpdatesTest extends MediaWikiTestCase {
+
+	/**
+	 * @covers DeferredUpdates::getPendingUpdates
+	 */
+	public function testGetPendingUpdates() {
+		$pre = DeferredUpdates::PRESEND;
+		$post = DeferredUpdates::POSTSEND;
+		$all = DeferredUpdates::ALL;
+
+		$update = $this->getMockBuilder( 'DeferrableUpdate' )
+			      ->getMock();
+		$update->expects( $this->never() )
+			->method( 'doUpdate' );
+
+		DeferredUpdates::addUpdate( $update, $pre );
+		$this->assertCount( 1, DeferredUpdates::getPendingUpdates( $pre ) );
+		$this->assertCount( 0, DeferredUpdates::getPendingUpdates( $post ) );
+		$this->assertCount( 1, DeferredUpdates::getPendingUpdates( $all ) );
+		$this->assertCount( 1, DeferredUpdates::getPendingUpdates( ) );
+		DeferredUpdates::clearPendingUpdates();
+
+		DeferredUpdates::addUpdate( $update, $post );
+		$this->assertCount( 0, DeferredUpdates::getPendingUpdates( $pre ) );
+		$this->assertCount( 1, DeferredUpdates::getPendingUpdates( $post ) );
+		$this->assertCount( 1, DeferredUpdates::getPendingUpdates( $all ) );
+		$this->assertCount( 1, DeferredUpdates::getPendingUpdates( ) );
+		DeferredUpdates::clearPendingUpdates();
+	}
+
 	public function testDoUpdatesWeb() {
 		$this->setMwGlobals( 'wgCommandLineMode', false );
 
