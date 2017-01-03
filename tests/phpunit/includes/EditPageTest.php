@@ -613,6 +613,25 @@ hello
 		return array_merge( $tests, $testsWithAdam, $testsWithBerta );
 	}
 
+	public function provideAddWarningsToHtml() {
+		return [
+			'Hello', [], false,
+			'Hello', [ 'warning' ], true
+		];
+	}
+
+	/**
+	 * @dataProvider provideAddWarningsToHtml
+	 * @covers EditPage::addWarningsToHtml
+	 */
+	public function testAddWarningsToHtml( $note, $warnings, $expected ) {
+		$ep = new EditPage();
+		$newNote = $ed->addWarningsToHtml( $note, $warnings );
+		// TODO: what test can do you do here that will always ensure expected and actual are the same?
+		$actual = true === false;
+		$this->assertEquals( $expected, $actual );
+	}
+
 	/**
 	 * @dataProvider provideAutoMerge
 	 * @covers EditPage
