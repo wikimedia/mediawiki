@@ -31,7 +31,7 @@ fi
 
 # If the first argument doesn't start with a -, then it's a path
 # to another project (extension, skin, etc.) to analyze
-if [[ "$1" != "-"* ]]; then
+if [[ -n "$1" && "$1" != "-"* ]]; then
 	cd $1
 	shift
 else
