@@ -223,7 +223,8 @@ class Preprocessor_DOM extends Preprocessor {
 
 		$searchBase = "[{<\n"; # }
 		if ( !$wgDisableLangConversion ) {
-			$searchBase .= '-';
+			// FIXME: disabled due to T153761
+			//$searchBase .= '-';
 		}
 
 		// For fast reverse searches
