@@ -613,6 +613,29 @@ hello
 		return array_merge( $tests, $testsWithAdam, $testsWithBerta );
 	}
 
+	public function provideAddWarningsToHtml() {
+		return [
+			// Test 1: Check no warning class added to html when no warnings
+			[ 'Hello', [], false ],
+			// Test 2: Check warning class added to html when there is a warning
+			[ 'Hello', [ 'warning' ], true ]
+		];
+	}
+
+	/**
+	 * @dataProvider provideAddWarningsToHtml
+	 * @covers EditPage::addWarningsToHtml
+	 */
+	public function testAddWarningsToHtml( $note, $warnings, $expected ) {
+		$title = Title::newFromText( 'Dummy:AddWarningsToHtmlForEditPage' );
+		$article = new Article( $title );
+		$ep = new EditPage( $article );
+		$newNote = $ep->addWarningsToHtml( $note, $warnings );
+		// TODO: what test can do you do here that will always ensure expected and actual are the same?
+		$actual = true === false;
+		$this->assertEquals( $expected, $actual );
+	}
+
 	/**
 	 * @dataProvider provideAutoMerge
 	 * @covers EditPage
