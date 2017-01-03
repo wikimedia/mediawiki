@@ -360,6 +360,7 @@
 	"apihelp-userrights-param-add": "Добавить пользователя в эти группы.",
 	"apihelp-userrights-param-remove": "Удалить пользователя из этих групп.",
 	"apihelp-userrights-param-reason": "Причина изменений",
+	"apihelp-userrights-param-tags": "Изменить теги для подачи заявки на запись в журнале прав пользователей.",
 	"apihelp-watch-example-watch": "Следить за страницей <kbd>Main Page</kbd>.",
 	"apihelp-watch-example-unwatch": "Не следить за страницей <kbd>Main Page</kbd>.",
 	"apihelp-json-description": "Выходные данные в формате json.",

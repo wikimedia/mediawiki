@@ -1974,6 +1974,7 @@
 	"tooltip-pt-anoncontribs": "Labojumi, kas veikti no šīs IP adreses",
 	"tooltip-pt-login": "Aicinām tevi ieiet {{grammar:lokatīvs|{{SITENAME}}}}, tomēr tas nav obligāti.",
 	"tooltip-pt-logout": "Iziet",
+	"tooltip-pt-createaccount": "Ieteicams izveidot kontu un pieslēgties; tomēr tas nav obligāti.",
 	"tooltip-ca-talk": "Diskusija par šī raksta lapu",
 	"tooltip-ca-edit": "Labot šo lapu",
 	"tooltip-ca-addsection": "Sākt jaunu sadaļu",

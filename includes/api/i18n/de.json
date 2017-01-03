@@ -883,6 +883,7 @@
 	"apihelp-userrights-param-add": "Fügt den Benutzer zu diesen Gruppen hinzu.",
 	"apihelp-userrights-param-remove": "Entfernt den Benutzer von diesen Gruppen.",
 	"apihelp-userrights-param-reason": "Grund für die Änderung.",
+	"apihelp-userrights-param-tags": "Auf den Eintrag im Benutzerrechte-Logbuch anzuwendende Änderungsmarkierungen.",
 	"apihelp-validatepassword-description": "Validiert ein Passwort gegen die Passwortrichtlinien des Wikis.\n\nDie Validität wird als <samp>Good</samp> gemeldet, falls das Passwort akzeptabel ist, <samp>Change</samp>, falls das Passwort zur Anmeldung verwendet werden kann, jedoch geändert werden muss oder <samp>Invalid</samp>, falls das Passwort nicht verwendbar ist.",
 	"apihelp-validatepassword-param-password": "Zu validierendes Passwort.",
 	"apihelp-validatepassword-param-user": "Der beim Austesten der Benutzerkontenerstellung verwendete Benutzername. Der angegebene Benutzer darf nicht vorhanden sein.",
