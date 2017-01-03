@@ -335,6 +335,21 @@ class DeferredUpdates {
 	}
 
 	/**
+	 * @param integer $stage DeferredUpdates constant (PRESEND, POSTSEND, or ALL)
+	 * @since 1.29
+	 */
+	public static function getPendingUpdates( $stage = self::ALL ) {
+		$updates = [];
+		if ( $stage === self::ALL || $stage === self::PRESEND ) {
+			$updates = array_merge( $updates, self::$preSendUpdates );
+		}
+		if ( $stage === self::ALL || $stage === self::POSTSEND ) {
+			$updates = array_merge( $updates, self::$postSendUpdates );
+		}
+		return $updates;
+	}
+
+	/**
 	 * Clear all pending updates without performing them. Generally, you don't
 	 * want or need to call this. Unit tests need it though.
 	 */
