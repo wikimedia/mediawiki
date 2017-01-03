@@ -217,31 +217,6 @@ class KkConverter extends LanguageConverter {
 	}
 
 	/**
-	 * rules should be defined as -{ekavian | iyekavian-} -or-
-	 * -{code:text | code:text | ...}-
-	 *
-	 * update: delete all rule parsing because it's not used
-	 *      currently, and just produces a couple of bugs
-	 *
-	 * @param string $rule
-	 * @param array $flags
-	 * @return array
-	 */
-	function parseManualRule( $rule, $flags = [] ) {
-		if ( in_array( 'T', $flags ) ) {
-			return parent::parseManualRule( $rule, $flags );
-		}
-
-		$carray = [];
-		// otherwise ignore all formatting
-		foreach ( $this->mVariants as $v ) {
-			$carray[$v] = $rule;
-		}
-
-		return $carray;
-	}
-
-	/**
 	 * A function wrapper:
 	 *  - if there is no selected variant, leave the link
 	 *    names as they were
