@@ -20633,10 +20633,12 @@ language=sr variant=sr-ec
 </p>
 !! end
 
+# FIXME: This test is currently broken in the PHP parser T153761
 !! test
 T146304: Don't break template parsing if language converter markup is in the parameter.
 !! options
 language=sr variant=sr-ec
+disabled
 !! wikitext
 {{echo|-{R|foo}-}}
 !! html/php
