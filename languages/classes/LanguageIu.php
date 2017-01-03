@@ -97,44 +97,6 @@ class IuConverter extends LanguageConverter {
 	}
 
 	/**
-	 * rules should be defined as -{Syllabic | Latin-} -or-
-	 * -{code:text | code:text | ...}-
-	 * update: delete all rule parsing because it's not used
-	 * currently, and just produces a couple of bugs
-	 *
-	 * @param string $rule
-	 * @param array $flags
-	 * @return array
-	 */
-	function parseManualRule( $rule, $flags = [] ) {
-		if ( in_array( 'T', $flags ) ) {
-			return parent::parseManualRule( $rule, $flags );
-		}
-
-		$carray = [];
-		// otherwise ignore all formatting
-		foreach ( $this->mVariants as $v ) {
-			$carray[$v] = $rule;
-		}
-
-		return $carray;
-	}
-
-	/**
-	 * Do not convert content on talk pages
-	 *
-	 * @param string $text
-	 * @param Parser $parser
-	 * @return string
-	 */
-	function parserConvert( $text, &$parser ) {
-		$this->mDoContentConvert = !( is_object( $parser->getTitle() )
-			&& $parser->getTitle()->isTalkPage() );
-
-		return parent::parserConvert( $text, $parser );
-	}
-
-	/**
 	 * A function wrapper:
 	 *   - if there is no selected variant, leave the link
 	 *     names as they were
