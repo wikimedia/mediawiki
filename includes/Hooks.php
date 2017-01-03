@@ -176,22 +176,13 @@ class Hooks {
 				throw new MWException( 'Invalid callback ' . $func . ' in hooks for ' . $event . "\n" );
 			}
 
-			/*
-			 * Call the hook. The documentation of call_user_func_array says
-			 * false is returned on failure. However, if the function signature
-			 * does not match the call signature, PHP will issue an warning and
-			 * return null instead. The following code catches that warning and
-			 * provides better error message.
-			 */
-			$retval = null;
-			$badhookmsg = null;
-			$hook_args = array_merge( $hook, $args );
-
 			// mark hook as deprecated, if deprecation version is specified
 			if ( $deprecatedVersion !== null ) {
 				wfDeprecated( "$event hook (used in $func)", $deprecatedVersion );
 			}
 
+			// Call the hook.
+			$hook_args = array_merge( $hook, $args );
 			$retval = call_user_func_array( $callback, $hook_args );
 
 			// Process the return value.
