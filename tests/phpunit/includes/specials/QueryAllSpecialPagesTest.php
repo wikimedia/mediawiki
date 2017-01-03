@@ -36,8 +36,9 @@ class QueryAllSpecialPagesTest extends MediaWikiTestCase {
 
 		foreach ( QueryPage::getPages() as $page ) {
 			$class = $page[0];
+			$name = $page[1];
 			if ( !in_array( $class, $this->manualTest ) ) {
-				$this->queryPages[$class] = new $class;
+				$this->queryPages[$class] = SpecialPageFactory::getPage( $name );
 			}
 		}
 	}
