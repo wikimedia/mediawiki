@@ -1826,6 +1826,7 @@ return [
 			'apisandbox-sending-request',
 			'apisandbox-loading-results',
 			'apisandbox-results-error',
+			'apisandbox-request-params-json',
 			'apisandbox-request-url-label',
 			'apisandbox-request-time',
 			'apisandbox-results-fixtoken',

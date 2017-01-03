@@ -1919,6 +1919,7 @@
 	"apisandbox-sending-request": "Sending API request...",
 	"apisandbox-loading-results": "Receiving API results...",
 	"apisandbox-results-error": "An error occurred while loading the API query response: $1.",
+	"apisandbox-request-params-json": "JSON parameters:",
 	"apisandbox-request-url-label": "Request URL:",
 	"apisandbox-request-time": "Request time: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "Correct token and resubmit",

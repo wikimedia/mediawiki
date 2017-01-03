@@ -2103,6 +2103,7 @@
 	"apisandbox-sending-request": "JavaScript message displayed while the request is being sent.",
 	"apisandbox-loading-results": "JavaScript message displayed while the response is being read.",
 	"apisandbox-results-error": "Displayed as an error message from JavaScript when the request failed.\n\nParameters:\n* $1 - Error message",
+	"apisandbox-request-params-json": "Label for text field display the request parameters as JSON.",
 	"apisandbox-request-url-label": "Label for the text field displaying the URL used to make this request.",
 	"apisandbox-request-time": "Label and value for displaying the time taken by the request.\n\nParameters:\n* $1 - Time taken in milliseconds",
 	"apisandbox-results-fixtoken": "JavaScript button label",
