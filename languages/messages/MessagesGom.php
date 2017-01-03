@@ -8,4 +8,4 @@
  *
  */
 
-$fallback = 'gom-deva';
+$fallback = 'gom-deva, hi';
