@@ -2,7 +2,7 @@
 
 	/**
 	 * Provides various methods needed for formatting dates and times. This
-	 * implementation implments the proleptic Gregorian calendar over years
+	 * implementation implements the proleptic Gregorian calendar over years
 	 * 0000–9999.
 	 *
 	 * @class
@@ -282,6 +282,7 @@
 			case 'year|0':
 				spec = {
 					component: 'year',
+					calendarComponent: true,
 					type: 'number',
 					size: 4,
 					zeropad: params[ 0 ] === '0'
@@ -292,6 +293,7 @@
 			case 'month|full':
 				spec = {
 					component: 'month',
+					calendarComponent: true,
 					type: 'string',
 					values: params[ 0 ] === 'short' ? this.shortMonthNames : this.fullMonthNames
 				};
@@ -301,6 +303,7 @@
 			case 'dow|full':
 				spec = {
 					component: 'dow',
+					calendarComponent: true,
 					editable: false,
 					type: 'string',
 					values: params[ 0 ] === 'short' ? this.shortDayNames : this.fullDayNames
@@ -311,6 +314,15 @@
 			case 'month|0':
 			case 'day|#':
 			case 'day|0':
+				spec = {
+					component: tag,
+					calendarComponent: true,
+					type: 'number',
+					size: 2,
+					zeropad: params[ 0 ] === '0'
+				};
+				break;
+
 			case 'hour|#':
 			case 'hour|0':
 			case 'minute|#':
@@ -319,6 +331,7 @@
 			case 'second|0':
 				spec = {
 					component: tag,
+					calendarComponent: false,
 					type: 'number',
 					size: 2,
 					zeropad: params[ 0 ] === '0'
@@ -329,6 +342,7 @@
 			case 'hour|012':
 				spec = {
 					component: 'hour12',
+					calendarComponent: false,
 					type: 'number',
 					size: 2,
 					zeropad: params[ 0 ] === '012'
@@ -338,6 +352,7 @@
 			case 'hour|period':
 				spec = {
 					component: 'hour12period',
+					calendarComponent: false,
 					type: 'boolean',
 					values: this.hour12Periods
 				};
@@ -347,6 +362,7 @@
 			case 'millisecond|0':
 				spec = {
 					component: 'millisecond',
+					calendarComponent: false,
 					type: 'number',
 					size: 3,
 					zeropad: params[ 0 ] === '0'
