@@ -443,7 +443,6 @@ $wgImgAuthUrlPathMap = [];
  * Properties required for all repos:
  *   - class            The class name for the repository. May come from the core or an extension.
  *                      The core repository classes are FileRepo, LocalRepo, ForeignDBRepo.
- *                      FSRepo is also supported for backwards compatibility.
  *
  *   - name             A unique name for the repository (but $wgLocalFileRepo should be 'local').
  *                      The name should consist of alpha-numeric characters.
