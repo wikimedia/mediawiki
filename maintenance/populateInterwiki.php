@@ -33,11 +33,6 @@ class PopulateInterwiki extends Maintenance {
 	 */
 	private $source;
 
-	/**
-	 * @var BagOStuff
-	 */
-	private $cache;
-
 	public function __construct() {
 		parent::__construct();
 
@@ -63,8 +58,6 @@ TEXT
 	public function execute() {
 		$force = $this->getOption( 'force', false );
 		$this->source = $this->getOption( 'source', 'https://en.wikipedia.org/w/api.php' );
-
-		$this->cache = wfGetMainCache();
 
 		$data = $this->fetchLinks();
 
@@ -149,20 +142,12 @@ TEXT
 				);
 			}
 
-			$this->clearCacheEntry( $prefix );
+			Interwiki::invalidateCache( $prefix );
 		}
 
 		$this->output( "Interwiki links are populated.\n" );
 
 		return true;
-	}
-
-	/**
-	 * @param string $prefix
-	 */
-	private function clearCacheEntry( $prefix ) {
-		$key = wfMemcKey( 'interwiki', $prefix );
-		$this->cache->delete( $key );
 	}
 
 }
