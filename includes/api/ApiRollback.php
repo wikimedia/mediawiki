@@ -86,10 +86,17 @@ class ApiRollback extends ApiBase {
 			'pageid' => intval( $details['current']->getPage() ),
 			'summary' => $details['summary'],
 			'revid' => intval( $details['newid'] ),
+			'diffUrl' => $titleObj->getFullURL( [
+				'diff' => $info['revid'],
+				'oldid' => $info['old_revid'],
+				'diffonly' => '1'
+			] ),
 			// The revision being reverted (previously the current revision of the page)
 			'old_revid' => intval( $details['current']->getID() ),
+			'oldUser' => $details['current']->getUserText( Revision::FOR_THIS_USER ),
 			// The revision being restored (the last revision before revision(s) by the reverted user)
-			'last_revid' => intval( $details['target']->getID() )
+			'last_revid' => intval( $details['target']->getID() ),
+			'lastUser' => $details['target']->getUserText( Revision::FOR_THIS_USER ),
 		];
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $info );

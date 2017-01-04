@@ -29,6 +29,7 @@ production.
   wikis with $wgJobRunRate > 0.
 
 === New features in 1.29 ===
+* (T88044) Implemented one-click rollback handling via AJAX.
 * (T5233) A cookie can now be set when a user is autoblocked, to track that user if
   they move to a new IP address. This is disabled by default.
 * Added ILocalizedException interface to standardize the use of localized

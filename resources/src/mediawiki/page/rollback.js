@@ -13,7 +13,8 @@
 				$link = $( this ),
 				url = this.href,
 				page = mw.util.getParamValue( 'title', url ),
-				user = mw.util.getParamValue( 'from', url );
+				user = mw.util.getParamValue( 'from', url ),
+				summary = mw.util.getParamValue( 'summary', url );
 
 			if ( !page || user === null ) {
 				// Let native browsing handle the link
@@ -32,11 +33,21 @@
 
 			// @todo: data.messageHtml is no more. Convert to using errorformat=html.
 			api = new mw.Api();
-			api.rollback( page, user )
+			api.rollback( page, user, summary ? { summary: summary } : null )
 				.then( function ( data ) {
-					mw.notify( $.parseHTML( data.messageHtml ), {
-						title: mw.msg( 'actioncomplete' )
-					} );
+					mw.notify(
+						mw.message(
+							'rollback-success-notify',
+							data.oldUser,
+							data.lastUser,
+							data.diffUrl,
+							data.title
+						),
+						{
+							title: mw.msg( 'actioncomplete' ),
+							autoHide: false
+						}
+					);
 
 					// Remove link container and the subsequent text node containing " | ".
 					if ( e.delegateTarget.nextSibling && e.delegateTarget.nextSibling.nodeType === Node.TEXT_NODE ) {

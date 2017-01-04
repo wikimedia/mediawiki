@@ -1763,6 +1763,7 @@ return [
 		'messages' => [
 			'rollbackfailed',
 			'actioncomplete',
+			'rollback-success-notify',
 		],
 	],
 	'mediawiki.page.image.pagination' => [

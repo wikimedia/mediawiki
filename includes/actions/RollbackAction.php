@@ -25,7 +25,7 @@
  *
  * @ingroup Actions
  */
-class RollbackAction extends FormlessAction {
+class RollbackAction extends FormAction {
 
 	public function getName() {
 		return 'rollback';
@@ -35,20 +35,38 @@ class RollbackAction extends FormlessAction {
 		return 'rollback';
 	}
 
-	/**
-	 * Temporarily unused message keys due to T88044/T136375:
-	 * - confirm-rollback-top
-	 * - confirm-rollback-button
-	 * - rollbackfailed
-	 * - rollback-missingparam
-	 */
+	protected function preText() {
+		return $this->msg( 'confirm-rollback-top' )->parse();
+	}
+
+	protected function alterForm( HTMLForm $form ) {
+		$form->setSubmitTextMsg( 'confirm-rollback-button' );
+		$form->setTokenSalt( 'rollback' );
+
+		// Copy parameters from GET to confirmation form
+		$from = $this->getRequest()->getVal( 'from' );
+		if ( $from === null ) {
+			throw new BadRequestError( 'rollbackfailed', 'rollback-missingparam' );
+		}
+		foreach ( [ 'from', 'bot', 'hidediff', 'summary' ] as $param ) {
+			$val = $this->getRequest()->getVal( $param );
+			if ( $val !== null ) {
+				$form->addHiddenField( $param, $val );
+			}
+		}
+	}
 
 	/**
+	 * This must return true so that HTMLForm::show() will not display the form again after
+	 * submission. For rollback, display either the form or the result (success/error)
+	 * not both.
+	 *
+	 * @return bool|string True for success, false for didn't try, empty string if
+	 *  action failed but error is already output here.
 	 * @throws ErrorPageError
 	 */
-	public function onView() {
-		// TODO: use $this->useTransactionalTimeLimit(); when POST only
-		wfTransactionalTimeLimit();
+	public function onSubmit( $data ) {
+		$this->useTransactionalTimeLimit();
 
 		$request = $this->getRequest();
 		$user = $this->getUser();
@@ -72,7 +90,8 @@ class RollbackAction extends FormlessAction {
 		$errors = $this->page->doRollback(
 			$from,
 			$request->getText( 'summary' ),
-			$request->getVal( 'token' ),
+			// Provided by HTMLForm
+			$request->getVal( 'wpEditToken' ),
 			$request->getBool( 'bot' ),
 			$data,
 			$this->getUser()
@@ -100,7 +119,7 @@ class RollbackAction extends FormlessAction {
 				}
 			}
 
-			return;
+			return '';
 		}
 
 		# NOTE: Permission errors already handled by Action::checkExecute.
@@ -145,7 +164,12 @@ class RollbackAction extends FormlessAction {
 			);
 			$de->showDiff( '', '' );
 		}
-		return;
+		return true;
+	}
+
+	public function onSuccess() {
+		// Required by parent class, but redundant because onSubmit already shows
+		// the success message when needed.
 	}
 
 	protected function getDescription() {
