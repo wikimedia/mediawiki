@@ -15,7 +15,7 @@ class StoreBatchTest extends MediaWikiTestCase {
 		global $wgFileBackends;
 		parent::setUp();
 
-		# Forge a FSRepo object to not have to rely on local wiki settings
+		# Forge a FileRepo object to not have to rely on local wiki settings
 		$tmpPrefix = $this->getNewTempDirectory();
 		if ( $this->getCliArg( 'use-filebackend' ) ) {
 			$name = $this->getCliArg( 'use-filebackend' );
