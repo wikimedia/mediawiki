@@ -916,8 +916,6 @@
 			}
 
 			$.when.apply( $, deferreds ).done( function () {
-				var jsonInput;
-
 				if ( $.inArray( false, arguments ) !== -1 ) {
 					windowManager.openWindow( 'errorAlert', {
 						title: Util.parseMsg( 'apisandbox-submit-invalid-fields-title' ),
@@ -969,25 +967,10 @@
 								label: Util.parseMsg( 'apisandbox-request-url-label' )
 							}
 						).$element,
-						new OO.ui.FieldLayout(
-							jsonInput = new OO.ui.TextInputWidget( {
-								classes: [ 'mw-apisandbox-textInputCode' ],
-								readOnly: true,
-								multiline: true,
-								autosize: true,
-								maxRows: 6,
-								value: JSON.stringify( displayParams, null, '\t' )
-							} ), {
-								label: Util.parseMsg( 'apisandbox-request-params-json' )
-							}
-						).$element,
 						$result
 					);
 				ApiSandbox.updateUI();
 				booklet.setPage( '|results|' );
-
-				// Resize the multiline input once visible
-				jsonInput.adjustSize();
 
 				location.href = oldhash = '#' + query;
 
