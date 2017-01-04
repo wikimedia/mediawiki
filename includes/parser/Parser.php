@@ -5258,7 +5258,7 @@ class Parser {
 						case 'framed':
 						case 'thumbnail':
 							// use first appearing option, discard others.
-							$validated = ! $seenformat;
+							$validated = !$seenformat;
 							$seenformat = true;
 							break;
 						default:
