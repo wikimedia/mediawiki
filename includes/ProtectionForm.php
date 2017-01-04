@@ -182,10 +182,18 @@ class ProtectionForm {
 			throw new ErrorPageError( 'protect-badnamespace-title', 'protect-badnamespace-text' );
 		}
 
+		$out = $this->mContext->getOutput();
+		if ( !wfMessage( 'protect-dropdown' )->inContentLanguage()->isDisabled() ) {
+			$out->addModules( 'mediawiki.reasonSuggest' );
+			$out->addJsConfigVars( [
+				'reasons' => 'protect-dropdown'
+			] );
+		}
+
 		if ( $this->mContext->getRequest()->wasPosted() ) {
 			if ( $this->save() ) {
 				$q = $this->mArticle->isRedirect() ? 'redirect=no' : '';
-				$this->mContext->getOutput()->redirect( $this->mTitle->getFullURL( $q ) );
+				$out->redirect( $this->mTitle->getFullURL( $q ) );
 			}
 		} else {
 			$this->show();
