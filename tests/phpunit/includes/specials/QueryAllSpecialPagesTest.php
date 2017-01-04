@@ -13,6 +13,11 @@
  */
 class QueryAllSpecialPagesTest extends MediaWikiTestCase {
 
+	/**
+	 * @var SpecialPage[]
+	 */
+	private $queryPages;
+
 	/** List query pages that can not be tested automatically */
 	protected $manualTest = [
 		'LinkSearchPage'
