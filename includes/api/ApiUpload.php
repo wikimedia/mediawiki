@@ -719,7 +719,7 @@ class ApiUpload extends ApiBase {
 	 * @return StatusValue
 	 */
 	protected function handleStashException( $e ) {
-		switch ( get_class( $exception ) ) {
+		switch ( get_class( $e ) ) {
 			case 'UploadStashFileNotFoundException':
 				$wrap = 'apierror-stashedfilenotfound';
 				break;
