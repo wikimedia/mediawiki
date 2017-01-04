@@ -3,7 +3,6 @@
  */
 ( function ( mw, $ ) {
 	var api, config;
-
 	config = {
 		fetch: function ( userInput, response, maxRows ) {
 			var node = this[ 0 ];
@@ -37,6 +36,6 @@
 	};
 
 	$( function () {
-		$( '.mw-autocomplete-user' ).suggestions( config );
+		$( '#mw-autocomplete-user' ).suggestions( config );
 	} );
 }( mediaWiki, jQuery ) );
