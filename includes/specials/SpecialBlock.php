@@ -128,6 +128,10 @@ class SpecialBlock extends FormSpecialPage {
 	protected function getFormFields() {
 		global $wgBlockAllowsUTEdit;
 
+		$this->getOutput()->addModules( 'mediawiki.reasonSuggest' );
+		$this->getOutput()->addJsConfigVars( [
+			'reasons' => wfMessage( 'ipbreason-dropdown' )->inContentLanguage()->text()
+		] );
 		$user = $this->getUser();
 
 		$suggestedDurations = self::getSuggestedDurations();
