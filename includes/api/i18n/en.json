@@ -1353,6 +1353,15 @@
 	"apihelp-setnotificationtimestamp-example-pagetimestamp": "Set the notification timestamp for <kbd>Main page</kbd> so all edits since 1 January 2012 are unviewed.",
 	"apihelp-setnotificationtimestamp-example-allpages": "Reset the notification status for pages in the <kbd>{{ns:user}}</kbd> namespace.",
 
+	"apihelp-setpagelanguage-description": "Change the language of a page.",
+	"apihelp-setpagelanguage-description-disabled": "Changing the language of a page is not allowed on this wiki.\n\nEnable <var>[[mw:Manual:$wgPageLanguageUseDB|$wgPageLanguageUseDB]]</var> to use the API.",
+	"apihelp-setpagelanguage-param-title": "Title of the page to change language. Cannot be used together with <var>$1pageid</var>.",
+	"apihelp-setpagelanguage-param-pageid": "Page ID of the page whose language you wish to change. Cannot be used together with <var>$1title</var>.",
+	"apihelp-setpagelanguage-param-lang": "Language code of the language to change the page to. Use <kbd>default</kbd> to reset the page to the wiki's default content language.",
+	"apihelp-setpagelanguage-param-tags": "Change tags to apply to the log entry resulting from this action.",
+	"apihelp-setpagelanguage-example-language": "Change the language of <kbd>Main Page</kbd> to Basque.",
+	"apihelp-setpagelanguage-example-default": "Change the language of the page with ID 123 to the wiki's default content language.",
+
 	"apihelp-stashedit-description": "Prepare an edit in shared cache.\n\nThis is intended to be used via AJAX from the edit form to improve the performance of the page save.",
 	"apihelp-stashedit-param-title": "Title of the page being edited.",
 	"apihelp-stashedit-param-section": "Section number. <kbd>0</kbd> for the top section, <kbd>new</kbd> for a new section.",
@@ -1673,6 +1682,7 @@
 	"apierror-opensearch-json-warnings": "Warnings cannot be represented in OpenSearch JSON format.",
 	"apierror-pagecannotexist": "Namespace doesn't allow actual pages.",
 	"apierror-pagedeleted": "The page has been deleted since you fetched its timestamp.",
+	"apierror-pagelang-disabled": "Changing the language of a page is not allowed on this wiki.",
 	"apierror-paramempty": "The parameter <var>$1</var> may not be empty.",
 	"apierror-parsetree-notwikitext": "<kbd>prop=parsetree</kbd> is only supported for wikitext content.",
 	"apierror-parsetree-notwikitext-title": "<kbd>prop=parsetree</kbd> is only supported for wikitext content. $1 uses content model $2.",
