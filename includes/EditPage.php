@@ -2843,7 +2843,7 @@ class EditPage {
 	 * @param Title[] $templates
 	 * @return string HTML
 	 */
-	protected function makeTemplatesOnThisPageList( array $templates ) {
+	public function makeTemplatesOnThisPageList( array $templates ) {
 		$templateListFormatter = new TemplatesOnThisPageFormatter(
 			$this->context, MediaWikiServices::getInstance()->getLinkRenderer()
 		);
