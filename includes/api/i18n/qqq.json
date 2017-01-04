@@ -1626,6 +1626,7 @@
 	"apierror-upload-missingresult": "{{doc-apierror}}",
 	"apierror-urlparamnormal": "{{doc-apierror}}\n\nParameters:\n* $1 - Image title.",
 	"apierror-writeapidenied": "{{doc-apierror}}",
+	"apierror-pagelang-disabled": "{{doc-apierror}}",
 	"apiwarn-alldeletedrevisions-performance": "{{doc-apierror}}\n\nParameters:\n* $1 - Module parameter prefix, e.g. \"bl\".",
 	"apiwarn-badurlparam": "{{doc-apierror}}\n\nParameters:\n* $1 - Module parameter prefix, e.g. \"bl\".\n* $2 - Image title.",
 	"apiwarn-badutf8": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name.\n{{doc-important|Do not translate \"\\t\", \"\\n\", and \"\\r\"}}",
