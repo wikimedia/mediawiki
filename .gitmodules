@@ -5,7 +5,7 @@
 [submodule "extensions/Wikidata"]
 	path = extensions/Wikidata
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Wikidata
-	branch = wmf/1.29.0-wmf.5
+	branch = wmf/1.29.0-wmf.5.1
 [submodule "extensions/SemanticForms"]
 	path = extensions/SemanticForms
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/SemanticForms
