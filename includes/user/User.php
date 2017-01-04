@@ -1616,10 +1616,11 @@ class User implements IDBAccessObject {
 		$block = Block::newFromTarget( $this, $ip, !$bFromSlave );
 
 		// If no block has been found, check for a cookie indicating that the user is blocked.
-		$blockCookieVal = (int)$this->getRequest()->getCookie( 'BlockID' );
-		if ( !$block instanceof Block && $blockCookieVal > 0 ) {
+		$blockCookieVal = $this->getRequest()->getCookie( 'BlockID' );
+		if ( !$block instanceof Block && strlen( $blockCookieVal ) > 0 ) {
 			// Load the Block from the ID in the cookie.
-			$tmpBlock = Block::newFromID( $blockCookieVal );
+			$blockCookieId = Block::getIdFromCookieValue( $blockCookieVal );
+			$tmpBlock = Block::newFromID( $blockCookieId );
 			if ( $tmpBlock instanceof Block ) {
 				// Check the validity of the block.
 				$blockIsValid = $tmpBlock->getType() == Block::TYPE_USER

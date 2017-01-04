@@ -597,6 +597,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->setMwGlobals( [
 			'wgCookieSetOnAutoblock' => true,
 			'wgCookiePrefix' => 'wmsitetitle',
+			'wgSecretKey' => MWCryptRand::generateHex( 64, true ),
 		] );
 
 		// 1. Log in a test user, and block them.
@@ -624,12 +625,13 @@ class UserTest extends MediaWikiTestCase {
 		// Test for the desired cookie name, value, and expiry.
 		$cookies = $request1->response()->getCookies();
 		$this->assertArrayHasKey( 'wmsitetitleBlockID', $cookies );
-		$this->assertEquals( $block->getId(), $cookies['wmsitetitleBlockID']['value'] );
 		$this->assertEquals( $expiryFiveHours, $cookies['wmsitetitleBlockID']['expire'] );
+		$cookieValue = Block::getIdFromCookieValue( $cookies['wmsitetitleBlockID']['value'] );
+		$this->assertEquals( $block->getId(), $cookieValue );
 
 		// 2. Create a new request, set the cookies, and see if the (anon) user is blocked.
 		$request2 = new FauxRequest();
-		$request2->setCookie( 'BlockID', $block->getId() );
+		$request2->setCookie( 'BlockID', $block->getCookieValue() );
 		$user2 = User::newFromSession( $request2 );
 		$user2->load();
 		$this->assertNotEquals( $user1->getId(), $user2->getId() );
@@ -667,6 +669,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->setMwGlobals( [
 			'wgCookieSetOnAutoblock' => false,
 			'wgCookiePrefix' => 'wm_no_cookies',
+			'wgSecretKey' => MWCryptRand::generateHex( 64, true ),
 		] );
 
 		// 1. Log in a test user, and block them.
@@ -703,6 +706,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->setMwGlobals( [
 			'wgCookieSetOnAutoblock' => true,
 			'wgCookiePrefix' => 'wm_infinite_block',
+			'wgSecretKey' => MWCryptRand::generateHex( 64, true ),
 		] );
 		// 1. Log in a test user, and block them indefinitely.
 		$user1Tmp = $this->getTestUser()->getUser();
@@ -780,4 +784,36 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertNull( $wgUser->getBlock() );
 	}
 
+	/**
+	 * Test that a modified BlockID cookie doesn't actually load the relevant block (T152951).
+	 */
+	public function testAutoblockCookieInauthentic() {
+		// Set up the bits of global configuration that we use.
+		$this->setMwGlobals( [
+			'wgCookieSetOnAutoblock' => true,
+			'wgCookiePrefix' => 'wmsitetitle',
+			'wgSecretKey' => MWCryptRand::generateHex( 64, true ),
+		] );
+
+		// 1. Log in a blocked test user.
+		$user1tmp = $this->getTestUser()->getUser();
+		$request1 = new FauxRequest();
+		$request1->getSession()->setUser( $user1tmp );
+		$block = new Block( [ 'enableAutoblock' => true ] );
+		$block->setTarget( $user1tmp );
+		$block->insert();
+		$user1 = User::newFromSession( $request1 );
+		$user1->mBlock = $block;
+		$user1->load();
+
+		// 2. Create a new request, set the cookie to an invalie value, and make sure the (anon)
+		// user not blocked.
+		$request2 = new FauxRequest();
+		$request2->setCookie( 'BlockID', $block->getId() . '!zzzzzzz' );
+		$user2 = User::newFromSession( $request2 );
+		$user2->load();
+		$this->assertTrue( $user2->isAnon() );
+		$this->assertFalse( $user2->isLoggedIn() );
+		$this->assertFalse( $user2->isBlocked() );
+	}
 }
