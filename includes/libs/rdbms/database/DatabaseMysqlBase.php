@@ -756,14 +756,20 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @see https://www.percona.com/doc/percona-toolkit/2.1/pt-heartbeat.html
 	 */
 	protected function getHeartbeatData( array $conds ) {
-		$whereSQL = $this->makeList( $conds, self::LIST_AND );
-		// Use ORDER BY for channel based queries since that field might not be UNIQUE.
-		// Note: this would use "TIMESTAMPDIFF(MICROSECOND,ts,UTC_TIMESTAMP(6))" but the
-		// percision field is not supported in MySQL <= 5.5.
-		$res = $this->query(
-			"SELECT ts FROM heartbeat.heartbeat WHERE $whereSQL ORDER BY ts DESC LIMIT 1"
-		);
-		$row = $res ? $res->fetchObject() : false;
+		// Do not bother starting implicit transactions here
+		$this->clearFlag( self::DBO_TRX, self::REMEMBER_PRIOR );
+		try {
+			$whereSQL = $this->makeList( $conds, self::LIST_AND );
+			// Use ORDER BY for channel based queries since that field might not be UNIQUE.
+			// Note: this would use "TIMESTAMPDIFF(MICROSECOND,ts,UTC_TIMESTAMP(6))" but the
+			// percision field is not supported in MySQL <= 5.5.
+			$res = $this->query(
+				"SELECT ts FROM heartbeat.heartbeat WHERE $whereSQL ORDER BY ts DESC LIMIT 1"
+			);
+			$row = $res ? $res->fetchObject() : false;
+		} finally {
+			$this->restoreFlags();
+		}
 
 		return [ $row ? $row->ts : null, microtime( true ) ];
 	}
