@@ -410,7 +410,7 @@
 	"api-help-param-disabled-in-miser-mode": "Исклучено поради [[mw:Manual:$wgMiserMode|скржавиот режим]].",
 	"api-help-param-limited-in-miser-mode": "<strong>Напомена:</strong> Бидејќи сте во [[mw:Manual:$wgMiserMode|скржав режим]], користејќи го ова може да добиете помалку од <var>$1limit</var> резултати пред да продолжите; во крајни случаи може да не добиете ниеден резултат.",
 	"api-help-param-direction": "Во која насока да се набројува:\n;понови:Прво најстарите. Напомена: $1start мора да биде пред $1end.\n;постари:Прво најновите (по основно). Напомена: $1start мора да биде подоцна од $1end.",
-	"api-help-param-continue": "Употребете го ова за да продолжите кога има повеќе расположиви резултати.",
+	"api-help-param-continue": "Употребете го ова за да продолжите кога има повеќе расположиви ставки.",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(нема опис)</span>",
 	"api-help-examples": "{{PLURAL:$1|Пример|Примери}}:",
 	"api-help-permissions": "{{PLURAL:$1|Дозвола|Дозволи}}:",

@@ -1874,6 +1874,7 @@
 	"apisandbox-sending-request": "Wysyłanie zapytania API…",
 	"apisandbox-loading-results": "Pobieranie wyników API...",
 	"apisandbox-results-error": "Wystąpił błąd podczas pobierania odpowiedzi na zapytanie API: $1.",
+	"apisandbox-request-params-json": "Parametry JSON:",
 	"apisandbox-request-url-label": "URL zapytania:",
 	"apisandbox-request-time": "Czas przetwarzania zapytania: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "Popraw token i wyślij ponownie",

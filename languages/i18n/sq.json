@@ -229,6 +229,7 @@
 	"talk": "Diskutimet",
 	"views": "Shikime",
 	"toolbox": "Mjete",
+	"tool-link-emailuser": "Dërgo email {{GENDER:$1|user}}",
 	"userpage": "Shfaq faqen e përdoruesit",
 	"projectpage": "Shfaq faqen e projektit",
 	"imagepage": "Shfaq faqen e skedës",

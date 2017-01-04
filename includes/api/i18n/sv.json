@@ -449,6 +449,7 @@
 	"api-help-param-limit2": "Inte mer än $1 ($2 för robotar) tillåts.",
 	"api-help-param-multi-separate": "Separera värden med <kbd>|</kbd> eller [[Special:ApiHelp/main#main/datatypes|alternativ]].",
 	"apierror-articleexists": "Artikeln du försökte skapa har redan skapats.",
+	"apierror-baddiff": "Diff kan inte hämtas. En eller båda sidversioner finns inte eller du har inte behörighet för att visa dem.",
 	"apierror-nosuchuserid": "Det finns ingen användare med ID $1.",
 	"apierror-protect-invalidaction": "Ogiltig skyddstyp \"$1\".",
 	"apierror-systemblocked": "Du har blockerats automatiskt av MediaWiki.",

@@ -1959,6 +1959,7 @@
 	"apisandbox-sending-request": "Envoi de la requête à l'API...",
 	"apisandbox-loading-results": "Réception des résultats de l'API...",
 	"apisandbox-results-error": "Une erreur s'est produite lors du chargement de la réponse à la requête de l'API: $1.",
+	"apisandbox-request-params-json": "Paramètres JSON :",
 	"apisandbox-request-url-label": "Requête URL :",
 	"apisandbox-request-time": "Durée de la demande: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "Corrigez le jeton et renvoyez",

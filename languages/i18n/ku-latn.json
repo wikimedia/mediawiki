@@ -679,7 +679,7 @@
 	"shown-title": "Li her rûpelê $1 {{PLURAL:$1|encam|encaman}} nîşan bide",
 	"viewprevnext": "($1 {{int:pipe-separator}} $2) ($3) nîşan bide",
 	"searchmenu-exists": "'''Rûpeleke bi navê \"[[:$1]]\" li ser vê wîkiyê heye.'''",
-	"searchmenu-new": "<strong>Rûpela \"[[:$1]]\" çêke!</strong>{{PLURAL:$2|0=|See also the page found with your search.|Herwiha li encamên hatiye dîtin jî binêre.}}",
+	"searchmenu-new": "<strong>Rûpela \"[[:$1]]\" çêke!</strong> {{PLURAL:$2|0=|Herwiha li encama hatiye dîtin jî binêre.|Herwiha li encamên hatine dîtin jî binêre.}}",
 	"searchprofile-articles": "Rûpelên naverokê",
 	"searchprofile-images": "Multîmedya",
 	"searchprofile-everything": "Her tişt",
