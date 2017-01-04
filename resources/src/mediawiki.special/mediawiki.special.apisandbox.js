@@ -3,6 +3,7 @@
 	'use strict';
 	var ApiSandbox, Util, WidgetMethods, Validators,
 		$content, panel, booklet, oldhash, windowManager, fullscreenButton,
+		formatDropdown,
 		api = new mw.Api(),
 		bookletPages = [],
 		availableFormats = {},
@@ -624,6 +625,70 @@
 				.filter( '[href]:not([target])' )
 				.attr( 'target', '_blank' );
 			return $html;
+		},
+
+		/**
+		 * Format a request and return a bunch of menu option widgets
+		 *
+		 * @param {Object} displayParams Query parameters, sanitized for display.
+		 * @param {Object} rawParams Query parameters. You should probably use displayParams instead.
+		 * @return {OO.ui.MenuOptionWidget[]} Each item's data should be an OO.ui.FieldLayout
+		 */
+		formatRequest: function ( displayParams, rawParams ) {
+			var jsonInput,
+				items = [
+					new OO.ui.MenuOptionWidget( {
+						label: Util.parseMsg( 'apisandbox-request-format-url-label' ),
+						data: new OO.ui.FieldLayout(
+							new OO.ui.TextInputWidget( {
+								readOnly: true,
+								value: mw.util.wikiScript( 'api' ) + '?' + $.param( displayParams )
+							} ), {
+								label: Util.parseMsg( 'apisandbox-request-url-label' )
+							}
+						)
+					} ),
+					new OO.ui.MenuOptionWidget( {
+						label: Util.parseMsg( 'apisandbox-request-format-json-label' ),
+						data: new OO.ui.FieldLayout(
+							jsonInput = new OO.ui.TextInputWidget( {
+								classes: [ 'mw-apisandbox-textInputCode' ],
+								readOnly: true,
+								multiline: true,
+								autosize: true,
+								maxRows: 6,
+								value: JSON.stringify( displayParams, null, '\t' )
+							} ), {
+								label: Util.parseMsg( 'apisandbox-request-json-label' )
+							}
+						).on( 'toggle', function ( visible ) {
+							if ( visible ) {
+								// Call updatePosition instead of adjustSize
+								// because the latter has weird caching
+								// behavior and the former bypasses it.
+								jsonInput.updatePosition();
+							}
+						} )
+					} )
+				];
+
+			mw.hook( 'apisandbox.formatRequest' ).fire( items, displayParams, rawParams );
+
+			return items;
+		},
+
+		/**
+		 * Event handler for when formatDropdown's selection changes
+		 */
+		onFormatDropdownChange: function () {
+			var i,
+				menu = formatDropdown.getMenu(),
+				items = menu.getItems(),
+				selectedField = menu.getSelectedItem() ? menu.getSelectedItem().getData() : null;
+
+			for ( i = 0; i < items.length; i++ ) {
+				items[ i ].getData().toggle( items[ i ].getData() === selectedField );
+			}
 		}
 	};
 
@@ -916,7 +981,7 @@
 			}
 
 			$.when.apply( $, deferreds ).done( function () {
-				var jsonInput;
+				var formatItems, menu, selectedLabel;
 
 				if ( $.inArray( false, arguments ) !== -1 ) {
 					windowManager.openWindow( 'errorAlert', {
@@ -934,6 +999,8 @@
 				}
 
 				query = $.param( displayParams );
+
+				formatItems = Util.formatRequest( displayParams, params );
 
 				// Force a 'fm' format with wrappedhtml=1, if available
 				if ( params.format !== undefined ) {
@@ -959,35 +1026,39 @@
 				page.setupOutlineItem = function () {
 					this.outlineItem.setLabel( mw.message( 'apisandbox-results' ).text() );
 				};
+
+				if ( !formatDropdown ) {
+					formatDropdown = new OO.ui.DropdownWidget( {
+						menu: { items: [] }
+					} );
+					formatDropdown.getMenu().on( 'choose', Util.onFormatDropdownChange );
+				}
+
+				menu = formatDropdown.getMenu();
+				selectedLabel = menu.getSelectedItem() ? menu.getSelectedItem().getLabel() : '';
+				if ( typeof selectedLabel !== 'string' ) {
+					selectedLabel = selectedLabel.text();
+				}
+				menu.clearItems().addItems( formatItems );
+				menu.chooseItem( menu.getItemFromLabel( selectedLabel ) );
+
+				// Fire the event to update field visibilities
+				Util.onFormatDropdownChange();
+
 				page.$element.empty()
 					.append(
 						new OO.ui.FieldLayout(
-							new OO.ui.TextInputWidget( {
-								readOnly: true,
-								value: mw.util.wikiScript( 'api' ) + '?' + query
-							} ), {
-								label: Util.parseMsg( 'apisandbox-request-url-label' )
+							formatDropdown, {
+								label: Util.parseMsg( 'apisandbox-request-selectformat-label' )
 							}
 						).$element,
-						new OO.ui.FieldLayout(
-							jsonInput = new OO.ui.TextInputWidget( {
-								classes: [ 'mw-apisandbox-textInputCode' ],
-								readOnly: true,
-								multiline: true,
-								autosize: true,
-								maxRows: 6,
-								value: JSON.stringify( displayParams, null, '\t' )
-							} ), {
-								label: Util.parseMsg( 'apisandbox-request-params-json' )
-							}
-						).$element,
+						$.map( formatItems, function ( item ) {
+							return item.getData().$element;
+						} ),
 						$result
 					);
 				ApiSandbox.updateUI();
 				booklet.setPage( '|results|' );
-
-				// Resize the multiline input once visible
-				jsonInput.adjustSize();
 
 				location.href = oldhash = '#' + query;
 
