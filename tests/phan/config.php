@@ -167,7 +167,7 @@ return [
 	 */
 	'analyze_signature_compatibility' => true,
 
-	// Emit all issues. They are then supressed via
+	// Emit all issues. They are then suppressed via
 	// suppress_issue_types, rather than a minimum
 	// severity.
 	"minimum_severity" => 0,
