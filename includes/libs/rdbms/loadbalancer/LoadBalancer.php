@@ -241,10 +241,14 @@ class LoadBalancer implements ILoadBalancer {
 
 				$host = $this->getServerName( $i );
 				if ( $lag === false && !is_infinite( $maxServerLag ) ) {
-					$this->replLogger->error( "Server $host (#$i) is not replicating?" );
+					$this->replLogger->error(
+						"Server {host} (#$i) is not replicating?", [ 'host' => $host ] );
 					unset( $loads[$i] );
 				} elseif ( $lag > $maxServerLag ) {
-					$this->replLogger->warning( "Server $host (#$i) has >= $lag seconds of lag" );
+					$this->replLogger->warning(
+						"Server {host} (#$i) has {lag} seconds of lag (>= {maxlag})",
+						[ 'host' => $host, 'lag' => $lag, 'maxlag' => $maxServerLag ]
+					);
 					unset( $loads[$i] );
 				}
 			}
@@ -503,8 +507,10 @@ class LoadBalancer implements ILoadBalancer {
 
 		if ( $result == -1 || is_null( $result ) ) {
 			// Timed out waiting for replica DB, use master instead
-			$msg = __METHOD__ . ": Timed out waiting on $server pos {$this->mWaitForPos}";
-			$this->replLogger->warning( "$msg" );
+			$this->replLogger->warning(
+				__METHOD__ . ": Timed out waiting on {host} pos {$this->mWaitForPos}",
+				[ 'host' => $server ]
+			);
 			$ok = false;
 		} else {
 			$this->replLogger->info( __METHOD__ . ": Done" );
