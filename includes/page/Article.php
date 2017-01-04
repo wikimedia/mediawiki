@@ -1673,6 +1673,10 @@ class Article implements Page {
 		$title = $this->getTitle();
 		$ctx = $this->getContext();
 		$outputPage = $ctx->getOutput();
+		$outputPage->addModules( 'mediawiki.reasonSuggest' );
+		$outputPage->addJsConfigVars( [
+			'reasons' => 'deletereason-dropdown'
+		] );
 		$useMediaWikiUIEverywhere = $ctx->getConfig()->get( 'UseMediaWikiUIEverywhere' );
 		$outputPage->setPageTitle( wfMessage( 'delete-confirm', $title->getPrefixedText() ) );
 		$outputPage->addBacklinkSubtitle( $title );

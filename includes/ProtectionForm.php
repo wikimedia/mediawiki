@@ -183,9 +183,14 @@ class ProtectionForm {
 		}
 
 		if ( $this->mContext->getRequest()->wasPosted() ) {
+			$out = $this->mContext->getOutput();
+			$out->addModules( 'mediawiki.reasonSuggest' );
+			$out->addJsConfigVars( [
+				'reasons' => 'protect-dropdown'
+			] );
 			if ( $this->save() ) {
 				$q = $this->mArticle->isRedirect() ? 'redirect=no' : '';
-				$this->mContext->getOutput()->redirect( $this->mTitle->getFullURL( $q ) );
+				$out->redirect( $this->mTitle->getFullURL( $q ) );
 			}
 		} else {
 			$this->show();
