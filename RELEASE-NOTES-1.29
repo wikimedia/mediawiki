@@ -163,6 +163,10 @@ changes to languages because of Phabricator reports.
 * Hook UnknownAction (deprecated in 1.19) was actually deprecated (it will now emit warnings).
   Create a subclass of Action, and add it to $wgActions instead.
 * WikiRevision:getText() (deprecated since 1.21) is no longer marked deprecated.
+* Linker:getInterwikiLinkAttributes (deprecated since 1.25) was removed.
+* Linker:getInternalLinkAttributes (deprecated since 1.25) was removed.
+* Linker:getInternalLinkAttributesObj (deprecated since 1.25) was removed.
+* Linker:getLinkAttributesInternal (deprecated since 1.25) was removed.
 
 == Compatibility ==
 
