@@ -141,7 +141,7 @@
 						message = action === 'watch' ? 'addedwatchtext' : 'removedwatchtext';
 					}
 
-					mw.notify( mw.message( message, title ).parseDom(), {
+					mw.notify( mw.message( message, mwTitle.getPrefixedText() ).parseDom(), {
 						tag: 'watch-self'
 					} );
 
