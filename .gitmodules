@@ -9,7 +9,6 @@
 [submodule "extensions/SemanticForms"]
 	path = extensions/SemanticForms
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/SemanticForms
-	branch = 3.7
 [submodule "extensions/SemanticMediaWiki"]
 	path = extensions/SemanticMediaWiki
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/SemanticMediaWiki
