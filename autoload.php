@@ -139,6 +139,7 @@ $wgAutoloadLocalClasses = [
 	'ApiRsd' => __DIR__ . '/includes/api/ApiRsd.php',
 	'ApiSerializable' => __DIR__ . '/includes/api/ApiSerializable.php',
 	'ApiSetNotificationTimestamp' => __DIR__ . '/includes/api/ApiSetNotificationTimestamp.php',
+	'ApiSetPageLanguage' => __DIR__ . '/includes/api/ApiSetPageLanguage.php',
 	'ApiStashEdit' => __DIR__ . '/includes/api/ApiStashEdit.php',
 	'ApiTag' => __DIR__ . '/includes/api/ApiTag.php',
 	'ApiTokens' => __DIR__ . '/includes/api/ApiTokens.php',
