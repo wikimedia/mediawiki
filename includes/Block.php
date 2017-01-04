@@ -1467,9 +1467,54 @@ class Block {
 		}
 
 		// Set the cookie. Reformat the MediaWiki datetime as a Unix timestamp for the cookie.
-		$cookieValue = $setEmpty ? '' : $this->getId();
+		$cookieValue = $setEmpty ? '' : $this->getCookieValue();
 		$expiryValue = DateTime::createFromFormat( "YmdHis", $expiryTime );
 		$response->setCookie( 'BlockID', $cookieValue, $expiryValue->format( "U" ) );
+	}
+
+	/**
+	 * Get the BlockID cookie's value for this block. This is usually the block ID concatenated
+	 * with an HMAC in order to avoid spoofing (T152951), but if wgSecretKey is not set will just
+	 * be the block ID.
+	 * @return string The block ID, probably concatenated with "!" and the HMAC.
+	 */
+	public function getCookieValue() {
+		$config = RequestContext::getMain()->getConfig();
+		$id = $this->getId();
+		$secretKey = $config->get( 'SecretKey' );
+		if ( !$secretKey ) {
+			// If there's no secret key, don't append a HMAC.
+			return $id;
+		}
+		$hmac = MWCryptHash::hmac( $id, $secretKey, false );
+		$cookieValue =  $id . '!' . $hmac;
+		return $cookieValue;
+	}
+
+	/**
+	 * Get the stored ID from the 'BlockID' cookie. The cookie's value is usually a combination of
+	 * the ID and a HMAC (see Block::setCookie), but will sometimes only be the ID.
+	 * @param string $cookieValue The string in which to find the ID.
+	 * @return integer|null The block ID, or null if the HMAC is present and invalid.
+	 */
+	public static function getIdFromCookieValue( $cookieValue ) {
+		// Extract the ID prefix from the cookie value (may be the whole value, if no bang found).
+		$bangPos = strpos( $cookieValue, '!' );
+		$id = ( $bangPos === false ) ? $cookieValue : substr( $cookieValue, 0, $bangPos );
+		// Get the site-wide secret key.
+		$config = RequestContext::getMain()->getConfig();
+		$secretKey = $config->get( 'SecretKey' );
+		if ( !$secretKey ) {
+			// If there's no secret key, just use the ID as given.
+			return $id;
+		}
+		$storedHmac = substr( $cookieValue, $bangPos + 1 );
+		$calculatedHmac = MWCryptHash::hmac( $id, $secretKey, false );
+		if ( $calculatedHmac === $storedHmac ) {
+			return $id;
+		} else {
+			return null;
+		}
 	}
 
 	/**

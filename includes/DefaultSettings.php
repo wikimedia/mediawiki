@@ -5989,7 +5989,10 @@ $wgSessionName = false;
 
 /**
  * Whether to set a cookie when a user is autoblocked. Doing so means that a blocked user, even
- * after logging out and moving to a new IP address, will still be blocked.
+ * after logging out and moving to a new IP address, will still be blocked. This cookie will contain
+ * an authentication code if $wgSecretKey is set, or otherwise will just be the block ID (in
+ * which case there is a possibility of an attacker discovering the names of revdeleted users, so
+ * it is best to use this in conjunction with $wgSecretKey being set).
  */
 $wgCookieSetOnAutoblock = false;
 
