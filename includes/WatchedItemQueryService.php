@@ -471,7 +471,7 @@ class WatchedItemQueryService {
 	}
 
 	private function getStartEndConds( IDatabase $db, array $options ) {
-		if ( !isset( $options['start'] ) && ! isset( $options['end'] ) ) {
+		if ( !isset( $options['start'] ) && !isset( $options['end'] ) ) {
 			return [];
 		}
 

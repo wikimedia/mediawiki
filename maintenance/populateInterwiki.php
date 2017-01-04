@@ -129,7 +129,7 @@ TEXT
 				__METHOD__
 			);
 
-			if ( ! $row ) {
+			if ( !$row ) {
 				$dbw->insert(
 					'interwiki',
 					[
