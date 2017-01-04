@@ -1262,8 +1262,9 @@ class Sanitizer {
 	static function escapeHtmlAllowEntities( $html ) {
 		$html = Sanitizer::decodeCharReferences( $html );
 		# It seems wise to escape ' as well as ", as a matter of course.  Can't
-		# hurt.
-		$html = htmlspecialchars( $html, ENT_QUOTES );
+		# hurt. Use ENT_SUBSTITUTE so that incorrectly truncated multibyte characters
+		# don't cause the entire string to disappear.
+		$html = htmlspecialchars( $html, ENT_QUOTES | ENT_SUBSTITUTE );
 		return $html;
 	}
 
