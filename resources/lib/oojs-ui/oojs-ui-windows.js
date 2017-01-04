@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.2
+ * OOjs UI v0.18.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
- * Copyright 2011–2016 OOjs UI Team and other contributors.
+ * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-12-06T23:32:53Z
+ * Date: 2017-01-04T00:22:40Z
  */
 ( function ( OO ) {
 
@@ -1987,7 +1987,7 @@ OO.ui.Window.prototype.getReadyProcess = function () {
 /**
  * Get the 'hold' process.
  *
- * The hold proccess is used to keep a window from being used in a particular context,
+ * The hold process is used to keep a window from being used in a particular context,
  * based on the `data` argument. This method is called during the closing phase of the window’s
  * lifecycle.
  *
@@ -2881,10 +2881,18 @@ OO.ui.MessageDialog.prototype.setDimensions = function ( dim ) {
 	// Twiddle the overflow property, otherwise an unnecessary scrollbar will be produced.
 	// Need to do it after transition completes (250ms), add 50ms just in case.
 	setTimeout( function () {
-		var oldOverflow = $scrollable[ 0 ].style.overflow;
+		var oldOverflow = $scrollable[ 0 ].style.overflow,
+			activeElement = document.activeElement;
+
 		$scrollable[ 0 ].style.overflow = 'hidden';
 
 		OO.ui.Element.static.reconsiderScrollbars( $scrollable[ 0 ] );
+
+		// Check reconsiderScrollbars didn't destroy our focus, as we
+		// are doing this after the ready process.
+		if ( activeElement && activeElement !== document.activeElement && activeElement.focus ) {
+			activeElement.focus();
+		}
 
 		$scrollable[ 0 ].style.overflow = oldOverflow;
 	}, 300 );
@@ -3153,10 +3161,20 @@ OO.ui.ProcessDialog.prototype.initialize = function () {
  * @inheritdoc
  */
 OO.ui.ProcessDialog.prototype.getActionWidgets = function ( actions ) {
-	var i, len, widgets = [];
+	var i, len, config,
+		isMobile = OO.ui.isMobile(),
+		widgets = [];
+
 	for ( i = 0, len = actions.length; i < len; i++ ) {
+		config = $.extend( { framed: !OO.ui.isMobile() }, actions[ i ] );
+		if ( isMobile && ( config.flags === 'back' || config.flags.indexOf( 'back' ) !== -1 ) ) {
+			$.extend( config, {
+				icon: 'previous',
+				label: ''
+			} );
+		}
 		widgets.push(
-			new OO.ui.ActionWidget( $.extend( { framed: true }, actions[ i ] ) )
+			new OO.ui.ActionWidget( config )
 		);
 	}
 	return widgets;
@@ -3421,6 +3439,57 @@ OO.ui.confirm = function ( text, options ) {
 		return opened.then( function ( closing ) {
 			return closing.then( function ( data ) {
 				return $.Deferred().resolve( !!( data && data.action === 'accept' ) );
+			} );
+		} );
+	} );
+};
+
+/**
+ * Display a quick modal prompt dialog, using a OO.ui.MessageDialog. While the dialog is open,
+ * the rest of the page will be dimmed out and the user won't be able to interact with it. The
+ * dialog has a text input widget and two action buttons, one to confirm an operation (labelled "OK")
+ * and one to cancel it (labelled "Cancel").
+ *
+ * A window manager is created automatically when this function is called for the first time.
+ *
+ *     @example
+ *     OO.ui.prompt( 'Choose a line to go to', { textInput: { placeholder: 'Line number' } } ).done( function ( result ) {
+ *         if ( result !== null ) {
+ *             console.log( 'User typed "' + result + '" then clicked "OK".' );
+ *         } else {
+ *             console.log( 'User clicked "Cancel" or closed the dialog.' );
+ *         }
+ *     } );
+ *
+ * @param {jQuery|string} text Message text to display
+ * @param {Object} [options] Additional options, see OO.ui.MessageDialog#getSetupProcess
+ * @cfg {Object} [textInput] Additional options for text input widget, see OO.ui.TextInputWidget
+ * @return {jQuery.Promise} Promise resolved when the user closes the dialog. If the user chose to
+ *  confirm, the promise will resolve with the value of the text input widget; otherwise, it will
+ *  resolve to `null`.
+ */
+OO.ui.prompt = function ( text, options ) {
+	var manager = OO.ui.getWindowManager(),
+		textInput = new OO.ui.TextInputWidget( ( options && options.textInput ) || {} ),
+		textField = new OO.ui.FieldLayout( textInput, {
+			align: 'top',
+			label: text
+		} );
+
+	// TODO: This is a little hacky, and could be done by extending MessageDialog instead.
+
+	return manager.openWindow( 'messageDialog', $.extend( {
+		message: textField.$element,
+		verbose: true
+	}, options ) ).then( function ( opened ) {
+		// After ready
+		textInput.on( 'enter', function () {
+			manager.getCurrentWindow().close( { action: 'accept' } );
+		} );
+		textInput.focus();
+		return opened.then( function ( closing ) {
+			return closing.then( function ( data ) {
+				return $.Deferred().resolve( data && data.action === 'accept' ? textInput.getValue() : null );
 			} );
 		} );
 	} );

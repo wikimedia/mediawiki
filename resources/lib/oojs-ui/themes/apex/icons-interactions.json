@@ -9,7 +9,7 @@
 	},
 	"images": {
 		"beta": { "file": "images/icons/beta.svg" },
-		"betaLaunch": { "file": "images/icons/betaLaunch.svg" },
+		"betaLaunch": { "file": "images/icons/logo-wikimediaDiscovery.svg" },
 		"bookmark": { "file": {
 			"ltr": "images/icons/bookmark-ltr.svg",
 			"rtl": "images/icons/bookmark-rtl.svg"

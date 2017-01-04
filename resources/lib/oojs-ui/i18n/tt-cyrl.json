@@ -18,5 +18,7 @@
 	"ooui-dialog-process-retry": "Кабатлау",
 	"ooui-dialog-process-continue": "Дәвам итү",
 	"ooui-selectfile-button-select": "Файлны сайлагыз",
-	"ooui-selectfile-placeholder": "Файл сайланмаган"
+	"ooui-selectfile-not-supported": "Файл сайлау хупланмый",
+	"ooui-selectfile-placeholder": "Файл сайланмаган",
+	"ooui-selectfile-dragdrop-placeholder": "Файлны монда куегыз"
 }

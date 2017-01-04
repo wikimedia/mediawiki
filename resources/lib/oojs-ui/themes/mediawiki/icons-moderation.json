@@ -24,38 +24,50 @@
 	"images": {
 		"block": { "file": "images/icons/block.svg", "variants": [ "destructive" ] },
 		"blockUndo": { "file": {
-			"ltr": "images/icons/blockUndo-ltr.svg",
-			"rtl": "images/icons/blockUndo-rtl.svg"
+			"ltr": "images/icons/unBlock-ltr.svg",
+			"rtl": "images/icons/unBlock-rtl.svg"
+		} },
+		"unBlock": { "file": {
+			"ltr": "images/icons/unBlock-ltr.svg",
+			"rtl": "images/icons/unBlock-rtl.svg"
 		} },
 		"flag": { "file": {
 			"ltr": "images/icons/flag-ltr.svg",
 			"rtl": "images/icons/flag-rtl.svg"
 		} },
+		"unFlag": { "file": {
+			"ltr": "images/icons/unFlag-ltr.svg",
+			"rtl": "images/icons/unFlag-rtl.svg"
+		} },
 		"flagUndo": { "file": {
-			"ltr": "images/icons/flagUndo-ltr.svg",
-			"rtl": "images/icons/flagUndo-rtl.svg"
+			"ltr": "images/icons/unFlag-ltr.svg",
+			"rtl": "images/icons/unFlag-rtl.svg"
 		} },
 		"lock": { "file": {
 			"ltr": "images/icons/lock-ltr.svg",
 			"rtl": "images/icons/lock-rtl.svg"
 		}, "variants": [ "destructive" ] },
+		"unLock": { "file": {
+			"ltr": "images/icons/unLock-ltr.svg",
+			"rtl": "images/icons/unLock-rtl.svg"
+		}, "variants": [ "destructive" ] },
+		"star": { "file": "images/icons/star.svg", "variants": [ "constructive", "progressive" ] },
+		"unStar": { "file": "images/icons/unStar.svg", "variants": [ "constructive", "progressive" ] },
+		"trash": { "file": "images/icons/trash.svg" },
+		"unTrash": { "file": {
+			"ltr": "images/icons/unTrash-ltr.svg",
+			"rtl": "images/icons/unTrash-rtl.svg"
+		} },
+		"trashUndo": { "file": {
+			"ltr": "images/icons/unTrash-ltr.svg",
+			"rtl": "images/icons/unTrash-rtl.svg"
+		} },
 		"ongoingConversation": {
 			"file": {
 				"ltr": "images/icons/ongoingConversation-ltr.svg",
 				"rtl": "images/icons/ongoingConversation-rtl.svg"
 			},
 			"variants": [ "progressive" ]
-		},
-		"star": { "file": "images/icons/star.svg", "variants": [ "constructive", "progressive" ] },
-		"trash": { "file": "images/icons/trash.svg" },
-		"trashUndo": { "file": {
-			"ltr": "images/icons/trashUndo-ltr.svg",
-			"rtl": "images/icons/trashUndo-rtl.svg"
-		} },
-		"unLock": { "file": {
-			"ltr": "images/icons/unLock-ltr.svg",
-			"rtl": "images/icons/unLock-rtl.svg"
-		}, "variants": [ "destructive" ] },
-		"unStar": { "file": "images/icons/unStar.svg", "variants": [ "constructive", "progressive" ] }
+		}
 	}
 }

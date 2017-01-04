@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.2
+ * OOjs UI v0.18.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
- * Copyright 2011–2016 OOjs UI Team and other contributors.
+ * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-12-06T23:32:57Z
+ * Date: 2017-01-04T00:22:45Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -231,9 +231,6 @@
      -moz-box-sizing: border-box;
           box-sizing: border-box;
 }
-.oo-ui-floatableElement-hidden {
-  display: none;
-}
 .oo-ui-iconElement .oo-ui-iconElement-icon,
 .oo-ui-iconElement.oo-ui-iconElement-icon {
   background-size: contain;
@@ -403,6 +400,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   white-space: normal;
   float: left;
 }
+.oo-ui-fieldsetLayout.oo-ui-labelElement > .oo-ui-labelElement-label:empty {
+  display: none;
+}
 .oo-ui-fieldsetLayout-group {
   clear: both;
 }
@@ -414,7 +414,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-help .oo-ui-fieldsetLayout-help-content {
   padding: 0.5em 0.75em;
-  line-height: 1.5;
+  line-height: 1.4;
 }
 .oo-ui-fieldsetLayout + .oo-ui-fieldsetLayout,
 .oo-ui-fieldsetLayout + .oo-ui-formLayout {
@@ -449,6 +449,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-panelLayout-scrollable {
   overflow-y: auto;
+  /* Make scrolling smooth */
+  -webkit-transform: translate3d(0, 0, 0);
 }
 .oo-ui-panelLayout-expanded {
   position: absolute;
@@ -713,7 +715,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   position: relative;
 }
 .oo-ui-popupButtonWidget .oo-ui-popupWidget {
-  position: absolute;
   cursor: auto;
 }
 .oo-ui-popupButtonWidget.oo-ui-buttonElement-frameless > .oo-ui-popupWidget {
@@ -1169,9 +1170,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-progressBarWidget-bar {
   height: 1em;
   border-right: 1px solid #ccc;
-  -webkit-transition: width 250ms ease, margin-left 250ms ease;
-     -moz-transition: width 250ms ease, margin-left 250ms ease;
-          transition: width 250ms ease, margin-left 250ms ease;
+  -webkit-transition: width 250ms ease;
+     -moz-transition: width 250ms ease;
+          transition: width 250ms ease;
   background-color: #cde7f4;
   background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #eaf4fa), color-stop(100%, #b0d9ee));
   background-image: -webkit-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
@@ -1184,7 +1185,10 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
      -moz-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
           animation: oo-ui-progressBarWidget-slide 2s infinite linear;
   width: 40%;
-  margin-left: -10%;
+  -webkit-transform: translate(-25%);
+     -moz-transform: translate(-25%);
+      -ms-transform: translate(-25%);
+          transform: translate(-25%);
   border-left: 1px solid #a6cee1;
 }
 .oo-ui-progressBarWidget.oo-ui-widget-disabled {
@@ -1192,25 +1196,43 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
   from {
-    margin-left: -40%;
+    -webkit-transform: translate(-100%);
+       -moz-transform: translate(-100%);
+        -ms-transform: translate(-100%);
+            transform: translate(-100%);
   }
   to {
-    margin-left: 100%;
+    -webkit-transform: translate(350%);
+       -moz-transform: translate(350%);
+        -ms-transform: translate(350%);
+            transform: translate(350%);
   }
 }
 @-moz-keyframes oo-ui-progressBarWidget-slide {
   from {
-    margin-left: -40%;
+    -webkit-transform: translate(-100%);
+       -moz-transform: translate(-100%);
+        -ms-transform: translate(-100%);
+            transform: translate(-100%);
   }
   to {
-    margin-left: 100%;
+    -webkit-transform: translate(350%);
+       -moz-transform: translate(350%);
+        -ms-transform: translate(350%);
+            transform: translate(350%);
   }
 }
 @keyframes oo-ui-progressBarWidget-slide {
   from {
-    margin-left: -40%;
+    -webkit-transform: translate(-100%);
+       -moz-transform: translate(-100%);
+        -ms-transform: translate(-100%);
+            transform: translate(-100%);
   }
   to {
-    margin-left: 100%;
+    -webkit-transform: translate(350%);
+       -moz-transform: translate(350%);
+        -ms-transform: translate(350%);
+            transform: translate(350%);
   }
 }

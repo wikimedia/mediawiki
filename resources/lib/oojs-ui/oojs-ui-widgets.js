@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.2
+ * OOjs UI v0.18.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
- * Copyright 2011–2016 OOjs UI Team and other contributors.
+ * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-12-06T23:32:53Z
+ * Date: 2017-01-04T00:22:40Z
  */
 ( function ( OO ) {
 
@@ -1642,7 +1642,7 @@ OO.ui.MenuLayout.prototype.getMenuPosition = function () {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {boolean} [continuous=false] Show all pages, one after another
- * @cfg {boolean} [autoFocus=true] Focus on the first focusable element when a new page is displayed.
+ * @cfg {boolean} [autoFocus=true] Focus on the first focusable element when a new page is displayed. Disabled on mobile.
  * @cfg {boolean} [outlined=false] Show the outline. The outline is used to navigate through the pages of the booklet.
  * @cfg {boolean} [editable=false] Show controls for adding, removing and reordering pages
  */
@@ -1781,7 +1781,7 @@ OO.ui.BookletLayout.prototype.onStackLayoutSet = function ( page ) {
 	if ( !this.scrolling && page ) {
 		page.scrollElementIntoView( {
 			complete: function () {
-				if ( layout.autoFocus ) {
+				if ( layout.autoFocus && !OO.ui.isMobile() ) {
 					layout.focus();
 				}
 			}
@@ -2112,6 +2112,7 @@ OO.ui.BookletLayout.prototype.setPage = function ( name ) {
 				// meaningless because the next page is not visible yet and thus can't hold focus.
 				if (
 					this.autoFocus &&
+					!OO.ui.isMobile() &&
 					this.stackLayout.continuous &&
 					OO.ui.findFocusable( page.$element ).length !== 0
 				) {
@@ -2188,7 +2189,7 @@ OO.ui.BookletLayout.prototype.selectFirstSelectablePage = function () {
  * @param {Object} [config] Configuration options
  * @cfg {boolean} [continuous=false] Show all cards, one after another
  * @cfg {boolean} [expanded=true] Expand the content panel to fill the entire parent element.
- * @cfg {boolean} [autoFocus=true] Focus on the first focusable element when a new card is displayed.
+ * @cfg {boolean} [autoFocus=true] Focus on the first focusable element when a new card is displayed. Disabled on mobile.
  */
 OO.ui.IndexLayout = function OoUiIndexLayout( config ) {
 	// Configuration initialization
@@ -2291,7 +2292,7 @@ OO.ui.IndexLayout.prototype.onStackLayoutSet = function ( card ) {
 	if ( card ) {
 		card.scrollElementIntoView( {
 			complete: function () {
-				if ( layout.autoFocus ) {
+				if ( layout.autoFocus && !OO.ui.isMobile() ) {
 					layout.focus();
 				}
 			}
@@ -2556,6 +2557,7 @@ OO.ui.IndexLayout.prototype.setCard = function ( name ) {
 				// meaningless because the next card is not visible yet and thus can't hold focus.
 				if (
 					this.autoFocus &&
+					!OO.ui.isMobile() &&
 					this.stackLayout.continuous &&
 					OO.ui.findFocusable( card.$element ).length !== 0
 				) {
@@ -5234,11 +5236,9 @@ OO.ui.NumberInputWidget.prototype.validateNumber = function ( value ) {
 		return false;
 	}
 
-	/* eslint-disable no-bitwise */
-	if ( this.isInteger && ( n | 0 ) !== n ) {
+	if ( this.isInteger && Math.floor( n ) !== n ) {
 		return false;
 	}
-	/* eslint-enable no-bitwise */
 
 	if ( n < this.min || n > this.max ) {
 		return false;

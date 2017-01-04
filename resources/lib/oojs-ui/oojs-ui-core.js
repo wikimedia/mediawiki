@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.2
+ * OOjs UI v0.18.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
- * Copyright 2011–2016 OOjs UI Team and other contributors.
+ * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-12-06T23:32:53Z
+ * Date: 2017-01-04T00:22:40Z
  */
 ( function ( OO ) {
 
@@ -483,6 +483,22 @@ OO.ui.isSafeUrl = function ( url ) {
 		return true;
 	}
 
+	return false;
+};
+
+/**
+ * Check if the user has a 'mobile' device.
+ *
+ * For our purposes this means the user is primarily using an
+ * on-screen keyboard, touch input instead of a mouse and may
+ * have a physically small display.
+ *
+ * It is left up to implementors to decide how to compute this
+ * so the default implementation always returns false.
+ *
+ * @return {boolean} Use is on a mobile device
+ */
+OO.ui.isMobile = function () {
 	return false;
 };
 
@@ -1368,6 +1384,13 @@ OO.ui.Element.prototype.setElementGroup = function ( group ) {
  * @return {jQuery.Promise} Promise which resolves when the scroll is complete
  */
 OO.ui.Element.prototype.scrollElementIntoView = function ( config ) {
+	if (
+		!this.isElementAttached() ||
+		!this.isVisible() ||
+		( this.getElementGroup() && !this.getElementGroup().isVisible() )
+	) {
+		return $.Deferred().resolve();
+	}
 	return OO.ui.Element.static.scrollIntoView( this.$element[ 0 ], config );
 };
 
@@ -4103,9 +4126,13 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 	extraHeight = $container.outerHeight() - this.$clippable.outerHeight();
 	extraWidth = $container.outerWidth() - this.$clippable.outerWidth();
 	ccOffset = $container.offset();
-	$scrollableContainer = this.$clippableScrollableContainer.is( 'html, body' ) ?
-		this.$clippableWindow : this.$clippableScrollableContainer;
-	scOffset = $scrollableContainer.offset() || { top: 0, left: 0 };
+	if ( this.$clippableScrollableContainer.is( 'html, body' ) ) {
+		$scrollableContainer = this.$clippableWindow;
+		scOffset = { top: 0, left: 0 };
+	} else {
+		$scrollableContainer = this.$clippableScrollableContainer;
+		scOffset = $scrollableContainer.offset();
+	}
 	scHeight = $scrollableContainer.innerHeight() - buffer;
 	scWidth = $scrollableContainer.innerWidth() - buffer;
 	ccWidth = $container.outerWidth() + buffer;
@@ -7197,10 +7224,10 @@ OO.ui.mixin.FloatableElement.prototype.position = function () {
 	}
 
 	if ( !this.isElementInViewport( this.$floatableContainer, this.$floatableClosestScrollable ) ) {
-		this.$floatable.addClass( 'oo-ui-floatableElement-hidden' );
+		this.$floatable.addClass( 'oo-ui-element-hidden' );
 		return;
 	} else {
-		this.$floatable.removeClass( 'oo-ui-floatableElement-hidden' );
+		this.$floatable.removeClass( 'oo-ui-element-hidden' );
 	}
 
 	if ( !this.needsCustomPosition ) {
@@ -8657,9 +8684,6 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 		blur: this.onBlur.bind( this ),
 		focus: this.onFocus.bind( this )
 	} );
-	this.$input.one( {
-		focus: this.onElementAttach.bind( this )
-	} );
 	this.$icon.on( 'mousedown', this.onIconMouseDown.bind( this ) );
 	this.$indicator.on( 'mousedown', this.onIndicatorMouseDown.bind( this ) );
 	this.on( 'labelChange', this.updatePosition.bind( this ) );
@@ -8704,6 +8728,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 		this.$input.attr( 'rows', config.rows );
 	}
 	if ( this.label || config.autosize ) {
+		this.isWaitingToBeAttached = true;
 		this.installParentChangeDetector();
 	}
 };
@@ -8814,6 +8839,11 @@ OO.ui.TextInputWidget.prototype.onBlur = function () {
  * @param {jQuery.Event} e Focus event
  */
 OO.ui.TextInputWidget.prototype.onFocus = function () {
+	if ( this.isWaitingToBeAttached ) {
+		// If we've received focus, then we must be attached to the document, and if
+		// isWaitingToBeAttached is still true, that means the handler never fired. Fire it now.
+		this.onElementAttach();
+	}
 	this.setValidityFlag( true );
 };
 
@@ -8824,6 +8854,7 @@ OO.ui.TextInputWidget.prototype.onFocus = function () {
  * @param {jQuery.Event} e Element attach event
  */
 OO.ui.TextInputWidget.prototype.onElementAttach = function () {
+	this.isWaitingToBeAttached = false;
 	// Any previously calculated size is now probably invalid if we reattached elsewhere
 	this.valCache = null;
 	this.adjustSize();
@@ -8936,7 +8967,7 @@ OO.ui.TextInputWidget.prototype.installParentChangeDetector = function () {
 	if ( MutationObserver ) {
 		// The new way. If only it wasn't so ugly.
 
-		if ( this.$element.closest( 'html' ).length ) {
+		if ( this.isElementAttached() ) {
 			// Widget is attached already, do nothing. This breaks the functionality of this function when
 			// the widget is detached and reattached. Alas, doing this correctly with MutationObserver
 			// would require observation of the whole document, which would hurt performance of other,
@@ -8971,7 +9002,7 @@ OO.ui.TextInputWidget.prototype.installParentChangeDetector = function () {
 
 		onRemove = function () {
 			// If the node was attached somewhere else, report it
-			if ( widget.$element.closest( 'html' ).length ) {
+			if ( widget.isElementAttached() ) {
 				widget.onElementAttach();
 			}
 			mutationObserver.disconnect();
@@ -8999,6 +9030,11 @@ OO.ui.TextInputWidget.prototype.installParentChangeDetector = function () {
 OO.ui.TextInputWidget.prototype.adjustSize = function () {
 	var scrollHeight, innerHeight, outerHeight, maxInnerHeight, measurementError,
 		idealHeight, newHeight, scrollWidth, property;
+
+	if ( this.isWaitingToBeAttached ) {
+		// #onElementAttach will be called soon, which calls this method
+		return this;
+	}
 
 	if ( this.multiline && this.$input.val() !== this.valCache ) {
 		if ( this.autosize ) {
@@ -9386,6 +9422,12 @@ OO.ui.TextInputWidget.prototype.updateSearchIndicator = function () {
  */
 OO.ui.TextInputWidget.prototype.positionLabel = function () {
 	var after, rtl, property;
+
+	if ( this.isWaitingToBeAttached ) {
+		// #onElementAttach will be called soon, which calls this method
+		return this;
+	}
+
 	// Clear old values
 	this.$input
 		// Clear old values if present
@@ -9577,6 +9619,9 @@ OO.ui.ComboBoxInputWidget = function OoUiComboBoxInputWidget( config ) {
 	config = $.extend( {
 		autocomplete: false
 	}, config );
+
+	// ComboBoxInputWidget shouldn't support multiline
+	config.multiline = false;
 
 	// Parent constructor
 	OO.ui.ComboBoxInputWidget.parent.call( this, config );
