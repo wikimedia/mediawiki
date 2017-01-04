@@ -1467,9 +1467,41 @@ class Block {
 		}
 
 		// Set the cookie. Reformat the MediaWiki datetime as a Unix timestamp for the cookie.
-		$cookieValue = $setEmpty ? '' : $this->getId();
+		$cookieValue = $setEmpty ? '' : $this->getCookieValue();
 		$expiryValue = DateTime::createFromFormat( "YmdHis", $expiryTime );
 		$response->setCookie( 'BlockID', $cookieValue, $expiryValue->format( "U" ) );
+	}
+
+	/**
+	 * Get the BlockID cookie's value for this block. This is the block ID concatenated with an
+	 * HMAC in order to avoid spoofing (T152951).
+	 * @return string The concatenation of the block ID, "!", and the HMAC.
+	 */
+	public function getCookieValue() {
+		$config = RequestContext::getMain()->getConfig();
+		$id = $this->getId();
+		$hmac = MWCryptHash::hmac( $id, $config->get( 'SecretKey' ), false );
+		$cookieValue =  $id . '!' . $hmac;
+		return $cookieValue;
+	}
+
+	/**
+	 * Get the stored ID from the 'BlockID' cookie. The cookie's value is a combination of the ID
+	 * and a HMAC (see Block::setCookie), so here we check the authenticity of the code and return
+	 * null if it's invalid.
+	 * @return integer The block ID.
+	 */
+	public static function getIdFromCookieValue( $cookieValue ) {
+		$bangPos = strpos( $cookieValue, '!' );
+		$id = substr( $cookieValue, 0, $bangPos );
+		$storedHmac = substr( $cookieValue, $bangPos + 1 );
+		$config = RequestContext::getMain()->getConfig();
+		$calculatedHmac = MWCryptHash::hmac( $id, $config->get( 'SecretKey' ), false );
+		if ( $calculatedHmac === $storedHmac ) {
+			return $id;
+		} else {
+			return null;
+		}
 	}
 
 	/**
