@@ -107,6 +107,9 @@
 									e.stopPropagation();
 								} );
 						} );
+					}, function ( errorMsg ) {
+						booklet.getPage( 'upload' ).$element.msg( errorMsg );
+						return $.Deferred().resolve();
 					} )
 				);
 			}

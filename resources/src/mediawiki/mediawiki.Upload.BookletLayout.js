@@ -176,16 +176,9 @@
 
 		return this.upload.getApi().then(
 			function ( api ) {
-				return $.when(
-					booklet.upload.loadConfig().then(
-						null,
-						function ( errorMsg ) {
-							booklet.getPage( 'upload' ).$element.msg( errorMsg );
-							return $.Deferred().resolve();
-						}
-					),
-					// If the user can't upload anything, don't give them the option to.
-					api.getUserInfo().then( function ( userInfo ) {
+				// If the user can't upload anything, don't give them the option to.
+				return api.getUserInfo().then(
+					function ( userInfo ) {
 						if ( userInfo.rights.indexOf( 'upload' ) === -1 ) {
 							if ( mw.user.isAnon() ) {
 								booklet.getPage( 'upload' ).$element.msg( 'api-error-mustbeloggedin' );
@@ -194,9 +187,7 @@
 							}
 						}
 						return $.Deferred().resolve();
-					} )
-				).then(
-					null,
+					},
 					// Always resolve, never reject
 					function () { return $.Deferred().resolve(); }
 				);
