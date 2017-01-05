@@ -175,10 +175,13 @@ class SpecialPageLanguage extends FormSpecialPage {
 		if ( $newLanguage === $oldLanguage ) {
 			// Check if old language does not exist
 			if ( !$oldLanguage ) {
-				return Status::newFatal(
-					'pagelang-unchanged-language-default',
-					wfEscapeWikiText( $title->getPrefixedText() )
-				);
+				return Status::newFatal( ApiMessage::create(
+					[
+						'pagelang-unchanged-language-default',
+						wfEscapeWikiText( $title->getPrefixedText() )
+					],
+					'pagelang-unchanged-language'
+				) );
 			}
 			return Status::newFatal(
 				'pagelang-unchanged-language',
