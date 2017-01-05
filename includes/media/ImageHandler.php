@@ -66,6 +66,13 @@ abstract class ImageHandler extends MediaHandler {
 	}
 
 	public function parseParamString( $str ) {
+		// Allow extensions to override this method altogether
+		$params = false;
+		Hooks::run( 'ImageHandlerParseParamString', [ $str, &$params ] );
+		if ( is_array( $params ) ) {
+			return $params;
+		}
+
 		$m = false;
 		if ( preg_match( '/^(\d+)px$/', $str, $m ) ) {
 			return [ 'width' => $m[1] ];
