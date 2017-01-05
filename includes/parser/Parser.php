@@ -4990,7 +4990,7 @@ class Parser {
 			$descQuery = false;
 			Hooks::run( 'BeforeParserFetchFileAndTitle',
 				[ $this, $title, &$options, &$descQuery ] );
-			# Don't register it now, as ImageGallery does that later.
+			# Don't register it now, as TraditionalImageGallery does that later.
 			$file = $this->fetchFileNoRegister( $title, $options );
 			$handler = $file ? $file->getHandler() : false;
 
