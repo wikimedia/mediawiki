@@ -227,6 +227,43 @@ class BitmapHandler extends TransformationalImageHandler {
 		$rotation = isset( $params['disableRotation'] ) ? 0 : $this->getRotation( $image );
 		list( $width, $height ) = $this->extractPreRotationDimensions( $params, $rotation );
 
+		// For the -thumbnail option a "!" is needed to force exact size,
+		// or ImageMagick may decide your ratio is wrong and slice off
+		// a pixel.
+		$thumbnail = [ '-thumbnail', "{$width}x{$height}!" ];
+		$crop = [];
+		if ( $params['crop'] ) {
+			$originalWidth = $params['originalWidth'];
+			$originalHeight = $params['originalHeight'];
+
+			// If -1 or 0 is passed as height, we automatically give the
+			// thumbnail a height based on the thumbnail width specifie
+			// and the source aspect ratio
+			if ( $originalHeight <= 0 ) {
+				$originalHeight = $params['originalHeight'] = round( ( $width * $originalWidth ) / $height, 0 );
+			}
+
+			$thumbAspectRatio = $originalWidth / $originalHeight;
+			$sourceAspectRatio = $width / $height;
+
+			// Aspect ratio of desired thumbnail is less than aspect ratio of
+			// source image, so we conclude that desired image is more portrait-y
+			// and we should set heightPreference = true.
+			$heightPreference = $thumbAspectRatio < $sourceAspectRatio;
+
+			$crop = [ '-gravity', 'center', '-crop', "{$originalWidth}x{$originalHeight}+0+0" ];
+			if ( $heightPreference ) {
+				$thumbnail = [ '-thumbnail', "x{$originalHeight}" ];
+			} else {
+				$thumbnail = [ '-thumbnail', "{$originalWidth}x" ];
+			}
+		}
+
+		Hooks::run(
+			'ConstructImageConvertCommand',
+			[ $params, &$quality ]
+		);
+
 		$cmd = call_user_func_array( 'wfEscapeShellArg', array_merge(
 			[ $wgImageMagickConvertCommand ],
 			$quality,
@@ -236,10 +273,8 @@ class BitmapHandler extends TransformationalImageHandler {
 			$decoderHint,
 			[ $this->escapeMagickInput( $params['srcPath'], $scene ) ],
 			$animation_pre,
-			// For the -thumbnail option a "!" is needed to force exact size,
-			// or ImageMagick may decide your ratio is wrong and slice off
-			// a pixel.
-			[ '-thumbnail', "{$width}x{$height}!" ],
+			$thumbnail,
+			$crop,
 			// Add the source url as a comment to the thumb, but don't add the flag if there's no comment
 			( $params['comment'] !== ''
 				? [ '-set', 'comment', $this->escapeMagickProperty( $params['comment'] ) ]
@@ -255,7 +290,10 @@ class BitmapHandler extends TransformationalImageHandler {
 
 		wfDebug( __METHOD__ . ": running ImageMagick: $cmd\n" );
 		$retval = 0;
-		$err = wfShellExecWithStderr( $cmd, $retval, $env );
+		if ( Hooks::run( 'ImageConvert', [ $params ] ) ) {
+			$err = wfShellExecWithStderr( $cmd, $retval, $env );
+			Hooks::run( 'ImageConvertComplete', [ $params ] );
+		}
 
 		if ( $retval !== 0 ) {
 			$this->logErrorForExternalProcess( $retval, $err, $cmd );
