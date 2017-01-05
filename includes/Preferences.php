@@ -1409,7 +1409,7 @@ class Preferences {
 				# Max is +14:00 and min is -12:00, see:
 				# https://en.wikipedia.org/wiki/Timezone
 				$minDiff = min( $minDiff, 840 );  # 14:00
-				$minDiff = max( $minDiff, - 720 ); # -12:00
+				$minDiff = max( $minDiff, -720 ); # -12:00
 				return 'Offset|' . $minDiff;
 		}
 	}
