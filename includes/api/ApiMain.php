@@ -106,6 +106,7 @@ class ApiMain extends ApiBase {
 		'managetags' => 'ApiManageTags',
 		'tag' => 'ApiTag',
 		'mergehistory' => 'ApiMergeHistory',
+		'setpagelanguage' => 'ApiSetPageLanguage',
 	];
 
 	/**
