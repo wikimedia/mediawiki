@@ -1354,7 +1354,7 @@
 	"apihelp-setnotificationtimestamp-example-allpages": "Reset the notification status for pages in the <kbd>{{ns:user}}</kbd> namespace.",
 
 	"apihelp-setpagelanguage-description": "Change the language of a page.",
-	"apihelp-setpagelanguage-description-disabled": "Changing the language of a page is not allowed on this wiki.\n\nEnable <var>[[mw:Manual:$wgPageLanguageUseDB|$wgPageLanguageUseDB]]</var> to use the API.",
+	"apihelp-setpagelanguage-description-disabled": "Changing the language of a page is not allowed on this wiki.\n\nEnable <var>[[mw:Manual:$wgPageLanguageUseDB|$wgPageLanguageUseDB]]</var> to use this action.",
 	"apihelp-setpagelanguage-param-title": "Title of the page whose language you wish to change. Cannot be used together with <var>$1pageid</var>.",
 	"apihelp-setpagelanguage-param-pageid": "Page ID of the page whose language you wish to change. Cannot be used together with <var>$1title</var>.",
 	"apihelp-setpagelanguage-param-lang": "Language code of the language to change the page to. Use <kbd>default</kbd> to reset the page to the wiki's default content language.",
