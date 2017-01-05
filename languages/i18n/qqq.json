@@ -1547,7 +1547,7 @@
 	"rcfilters-activefilters": "Title for the filters selection showing the active filters.",
 	"rcfilters-search-placeholder": "Placeholder for the filter search input.",
 	"rcfilters-invalid-filter": "A label for an ivalid filter.",
-	"rcfilters-filterlist-title": "Title for the filters list.",
+	"rcfilters-filterlist-title": "Title for the filters list.\n{{Identical|Filter}}",
 	"rcfilters-filterlist-noresults": "Message showing no results found for searching a filter.",
 	"rcfilters-filtergroup-authorship": "Title for the filter group for edit authorship.",
 	"rcfilters-filter-editsbyself-label": "Label for the filter for showing edits made by the current user.",

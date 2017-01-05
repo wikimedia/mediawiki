@@ -1795,6 +1795,7 @@
 	"apisandbox-results": "ফলাফল",
 	"apisandbox-sending-request": "API অনুরোধ পাঠানো হচ্ছে...",
 	"apisandbox-loading-results": "API ফলাফল গ্রহণ করা হচ্ছে...",
+	"apisandbox-request-params-json": "JSON প্যারামিটার:",
 	"apisandbox-request-url-label": "অনুরোধের URL:",
 	"apisandbox-request-time": "অনুরোধের সময়: {{PLURAL:$1|$1 মি.সে.}}",
 	"apisandbox-results-fixtoken": "টোকেন সংশোধন ও পুনরায় জমা",

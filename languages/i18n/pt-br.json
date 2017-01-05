@@ -902,7 +902,7 @@
 	"rev-deleted-comment": "(resumo da edição suprimido)",
 	"rev-deleted-user": "(nome de usuário(a) removido)",
 	"rev-deleted-event": "(registros de detalhes eliminados)",
-	"rev-deleted-user-contribs": "[nome de usuário(a) ou endereço de IP eliminado – edição ocultada das contribuições]",
+	"rev-deleted-user-contribs": "[nome de usuário(a) ou endereço de IP ocultado no histórico – edição invisível nas contribuições públicas]",
 	"rev-deleted-text-permission": "Esta revisão desta página foi '''eliminada'''.\nPodem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminações].",
 	"rev-suppressed-text-permission": "A revisão desta página foi '''eliminada'''.\nVocê pode visualizá-la; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de eliminação].",
 	"rev-deleted-text-unhide": "Esta revisão desta página foi '''removida'''.\nPoderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].\nVocê ainda pode [$1 ver esta revisão] se deseja prosseguir.",

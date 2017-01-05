@@ -1298,6 +1298,8 @@
 	"recentchanges-legend-heading": "<strong>Легенда:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (глядзіце таксама [[Special:NewPages|сьпіс новых старонак]])",
 	"recentchanges-submit": "Паказаць",
+	"rcfilters-activefilters": "Актыўныя фільтры",
+	"rcfilters-search-placeholder": "Фільтар апошніх зьменаў (праглядзець або пачніце друкаваць)",
 	"rcnotefrom": "Ніжэй {{PLURAL:$5|знаходзіцца зьмена|знаходзяцца зьмены}} з <strong>$4 $3</strong> (да <strong>$1</strong> на старонку).",
 	"rclistfrom": "Паказаць зьмены з $2 $3",
 	"rcshowhideminor": "$1 дробныя праўкі",

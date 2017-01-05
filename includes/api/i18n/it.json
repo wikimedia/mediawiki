@@ -587,6 +587,7 @@
 	"apihelp-revisiondelete-param-hide": "Cosa nascondere per ogni versione.",
 	"apihelp-revisiondelete-param-show": "Cosa mostrare per ogni versione.",
 	"apihelp-revisiondelete-param-reason": "Motivo per l'eliminazione o il ripristino.",
+	"apihelp-setpagelanguage-description": "Cambia la lingua di una pagina.",
 	"apihelp-stashedit-param-title": "Titolo della pagina che si sta modificando.",
 	"apihelp-stashedit-param-sectiontitle": "Il titolo per una nuova sezione.",
 	"apihelp-stashedit-param-text": "Contenuto della pagina.",

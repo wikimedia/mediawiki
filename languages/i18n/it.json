@@ -3696,6 +3696,7 @@
 	"pagelang-use-default": "Utilizza la lingua predefinita",
 	"pagelang-select-lang": "Seleziona lingua",
 	"pagelang-submit": "Invia",
+	"pagelang-nonexistent-page": "La pagina $1 non esiste.",
 	"right-pagelang": "Modifica la lingua della pagina",
 	"action-pagelang": "modificare la lingua della pagina",
 	"log-name-pagelang": "Modifiche lingua",
