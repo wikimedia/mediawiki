@@ -526,6 +526,14 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		parent::addModules();
 		$out = $this->getOutput();
 		$out->addModules( 'mediawiki.special.recentchanges' );
+		if ( $this->getUser()->getOption(
+				'rcenhancedfilters',
+				/*default=*/ null,
+				/*ignoreHidden=*/ true
+			)
+		) {
+			$out->addModules( 'mediawiki.rcfilters.filters' );
+		}
 	}
 
 	/**
