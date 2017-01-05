@@ -530,6 +530,8 @@ Extra newlines between heading and content are swallowed
 
 !! test
 Heading with line break in nowiki
+!! options
+parsoid=wt2html
 !! wikitext
 == A <nowiki>B
 C</nowiki> ==
@@ -537,6 +539,9 @@ C</nowiki> ==
 <h2><span class="mw-headline" id="A_B.0AC">A B
 C</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: A B&#10;C">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
+!! html/parsoid
+<h2 id="A_B.0AC">A <span typeof="mw:Nowiki">B
+C</span> </h2>
 !! end
 
 !! test
@@ -6477,6 +6482,14 @@ parsoid=wt2html,html2html
 !! end
 
 !! test
+Break on | in element attribute name in template
+!! wikitext
+{{echo|<div cla|ss="hiho">ha</div>}}
+!! html/parsoid
+<p about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"},{"k":"ss","named":true}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;div cla"},"ss":{"wt":"\"hiho\">ha&lt;/div>"}},"i":0}}]}'>&lt;div cla</p>
+!! end
+
+!! test
 Don't break on | in extension attribute in template
 !! wikitext
 {{echo|<ref name="hi|ho">ha</ref>}}
@@ -10933,7 +10946,8 @@ BUG 553: link with two variables in a piped link
 
 !! html/parsoid
 <table>
-<tbody><tr><td>[[<span about="#mwt5" typeof="mw:Param" data-parsoid='{"src":"{{{1}}}"}'>{{{1}}}</span>|<span about="#mwt2" typeof="mw:Param" data-parsoid='{"src":"{{{2}}}"}'>{{{2}}}</span>]]</td></tr>
+<tbody><tr><td>[[<span about="#mwt5" typeof="mw:Param" data-mw='{"parts":[{"templatearg":{"target":{"wt":"1"},"params":{},"i":0}}]}'>{{{1}}}</span>|<span about="#mwt2" typeof="mw:Param" data-mw='{"parts":[{"templatearg":{"target":{"wt":"2"},"params":{},"i":0}}]}'>{{{2}}}</span>]]</td></tr>
+</tbody></table>
 !! end
 
 # See: T2553
@@ -11625,7 +11639,7 @@ parsoid=wt2html
 |c
 |}
 !!html/parsoid
-<meta typeof="mw:Includes/IncludeOnly" data-parsoid='{"src":"&lt;includeonly>a&lt;/includeonly>"}'/><meta typeof="mw:Includes/IncludeOnly/End" data-parsoid='{"src":""}'/><table about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"a":{"{{{b}}}":null},"sa":{"{{{b}}}":""}}' data-mw='{"attribs":[[{"txt":"{{{b}}}","html":"&lt;span about=\"#mwt1\" typeof=\"mw:Param\" data-parsoid=&#39;{\"dsr\":[31,38,null,null],\"src\":\"{{{b}}}\"}&#39;>{{{b}}}&lt;/span>"},{"html":""}]]}'>
+<meta typeof="mw:Includes/IncludeOnly" data-parsoid='{"src":"&lt;includeonly>a&lt;/includeonly>"}'/><meta typeof="mw:Includes/IncludeOnly/End" data-parsoid='{"src":""}'/><table about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"a":{"{{{b}}}":null},"sa":{"{{{b}}}":""}}' data-mw='{"attribs":[[{"txt":"{{{b}}}","html":"&lt;span about=\"#mwt1\" typeof=\"mw:Param\" data-parsoid=&#39;{\"pi\":[[]],\"dsr\":[31,38,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"templatearg\":{\"target\":{\"wt\":\"b\"},\"params\":{},\"i\":0}}]}&#39;>{{{b}}}&lt;/span>"},{"html":""}]]}'>
 <tbody><tr><td>c</td></tr>
 </tbody></table>
 !!end
@@ -12514,11 +12528,16 @@ Templates: Ugly templates: 6. Template encapsulation test: Cyclical nesting of t
 Templates: Parameters substituted at the top-level
 !! wikitext
 {{{foo|''who'' {{echo|me}}? '''never!'''}}}
+
+{{{foo|bar|baz}}}
 !! html/php
 <p><i>who</i> me? <b>never!</b>
+</p><p>bar
 </p>
 !! html/parsoid
-<p about="#mwt2" typeof="mw:Param" data-parsoid="{&quot;src&quot;:&quot;{{{foo|''who'' {{echo|me}}? '''never!'''}}}&quot;}"><i>who</i> me? <b>never!</b></p>
+<p about="#mwt2" typeof="mw:Param" data-mw='{"parts":[{"templatearg":{"target":{"wt":"foo"},"params":{"1":{"wt":"&#39;&#39;who&#39;&#39; {{echo|me}}? &#39;&#39;&#39;never!&#39;&#39;&#39;"}},"i":0}}]}'><i>who</i> me? <b>never!</b></p>
+
+<p about="#mwt3" typeof="mw:Param" data-mw='{"parts":[{"templatearg":{"target":{"wt":"foo"},"params":{"1":{"wt":"bar"},"2":{"wt":"baz"}},"i":0}}]}'>bar</p>
 !! end
 
 !!test
@@ -17689,6 +17708,8 @@ http://===r:::https://b
 # Known to produce bad XML for now
 !! test
 Fuzz testing: Parser24
+!! options
+parsoid=wt2html
 !! wikitext
 {|
 {{{|
@@ -17698,7 +17719,7 @@ Fuzz testing: Parser24
 
 MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 |
-!! html
+!! html/php
 <table>
 {{{|
 <u class="&#124;">}}}} &gt;
@@ -17711,6 +17732,14 @@ MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 </tr>
 </table>
 
+!! html/parsoid
+<p data-parsoid='{"fostered":true,"autoInsertedEnd":true}'>{{{|
+<u class="|" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->&lt;noinclude>}}}}":null},"sa":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->&lt;noinclude>}}}}":""},"autoInsertedEnd":true}' data-mw='{"attribs":[[{"txt":"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->}}}}","html":"{&lt;span about=\"#mwt1\" typeof=\"mw:Param\" data-parsoid=&#39;{\"pi\":[[]],\"dsr\":[21,79,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"templatearg\":{\"target\":{\"wt\":\"SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->&amp;lt;noinclude>\"},\"params\":{},\"i\":0}}]}&#39;>{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->}}}&lt;/span>}"},{"html":""}]]}'>
+<br style="onmouseover='alert(document.cookie);' " data-parsoid='{"stx":"html","selfClose":true}'/></u></p><p data-parsoid='{"fostered":true,"autoInsertedEnd":true}'><u class="|" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->&lt;noinclude>}}}}":null},"sa":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->&lt;noinclude>}}}}":""},"autoInsertedEnd":true,"autoInsertedStart":true}' data-mw='{"attribs":[[{"txt":"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->}}}}","html":"{&lt;span about=\"#mwt1\" typeof=\"mw:Param\" data-parsoid=&#39;{\"pi\":[[]],\"dsr\":[21,79,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"templatearg\":{\"target\":{\"wt\":\"SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->&amp;lt;noinclude>\"},\"params\":{},\"i\":0}}]}&#39;>{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->}}}&lt;/span>}"},{"html":""}]]}'>MOVE YOUR MOUSE CURSOR OVER THIS TEXT</u></p><table data-parsoid='{"autoInsertedEnd":true}'>
+
+
+
+<tbody><tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td data-parsoid='{"autoInsertedEnd":true}'></td></tr></tbody></table>
 !! end
 
 # Note: the current result listed for this is not what the original one was,
@@ -17729,9 +17758,12 @@ Fuzz testing: Parser25 (bug 6055)
 <LI CLASS=||
  >
 }}}blah" onmouseover="alert('hello world');" align="left"'''MOVE MOUSE CURSOR OVER HERE
-!! html
+!! html/php
 <p>&lt;LI CLASS=blah" onmouseover="alert('hello world');" align="left"<b>MOVE MOUSE CURSOR OVER HERE</b>
 </p>
+!! html/parsoid
+<span about="#mwt1" typeof="mw:Param" data-parsoid='{"pi":[[{"k":"1"},{"k":"2"},{"k":"3"}]]}' data-mw='{"parts":[{"templatearg":{"target":{"wt":"\n"},"params":{"1":{"wt":" \n&lt;LI CLASS="},"2":{"wt":""},"3":{"wt":"\n >\n"}},"i":0}},"blah\" onmouseover=\"alert(&#39;hello world&#39;);\" align=\"left\"&#39;&#39;&#39;MOVE MOUSE CURSOR OVER HERE"]}'> 
+</span><p about="#mwt1">&lt;LI CLASS=blah" onmouseover="alert('hello world');" align="left"<b>MOVE MOUSE CURSOR OVER HERE</b></p>
 !! end
 
 !!test
