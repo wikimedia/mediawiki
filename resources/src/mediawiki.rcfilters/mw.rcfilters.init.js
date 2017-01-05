@@ -67,7 +67,7 @@
 				}
 			} );
 
-			$( '.mw-specialpage-summary' ).after( widget.$element );
+			$( '.rcoptions' ).before( widget.$element );
 
 			// Initialize values
 			controller.initialize();
