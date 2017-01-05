@@ -1088,13 +1088,13 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			// B/C for old extensions that haven't been converted to AuthManager (or have been
 			// but somebody is using the old version) and still use templates via the
 			// UserCreateForm/UserLoginForm hook.
-			// 'header' used by ConfirmEdit, CondfirmAccount, Persona, WikimediaIncubator, SemanticSignup
+			// 'header' used by ConfirmEdit, ConfirmAccount, Persona, WikimediaIncubator, SemanticSignup
 			// 'formheader' used by MobileFrontend
 			$fieldDefinitions['header'] = [
 				'type' => 'info',
 				'raw' => true,
 				'default' => $template->get( 'header' ) ?: $template->get( 'formheader' ),
-				'weight' => - 110,
+				'weight' => -110,
 			];
 		}
 		if ( $this->mEntryError ) {
