@@ -89,6 +89,12 @@ class SpecialPageLanguage extends FormSpecialPage {
 			'default' => $this->getConfig()->get( 'LanguageCode' ),
 		];
 
+		// Allow user to enter a comment explaining the change
+		$page['reason'] = [
+			'type' => 'text',
+			'label-message' => 'pagelang-reason'
+		];
+
 		return $page;
 	}
 
@@ -132,18 +138,24 @@ class SpecialPageLanguage extends FormSpecialPage {
 		// Url to redirect to after the operation
 		$this->goToUrl = $title->getFullURL();
 
-		return self::changePageLanguage( $this->getContext(), $title, $newLanguage );
+		return self::changePageLanguage(
+			$this->getContext(),
+			$title,
+			$newLanguage,
+			$data['reason'] === null ? '' : $data['reason']
+		);
 	}
 
 	/**
 	 * @param IContextSource $context
 	 * @param Title $title
 	 * @param string $newLanguage Language code
+	 * @param string $reason Reason for the change
 	 * @param array $tags Change tags to apply to the log entry
 	 * @return Status
 	 */
 	public static function changePageLanguage( IContextSource $context, Title $title,
-		$newLanguage, array $tags = [] ) {
+		$newLanguage, $reason, array $tags = [] ) {
 		// Get the default language for the wiki
 		$defLang = $context->getConfig()->get( 'LanguageCode' );
 
@@ -218,6 +230,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 		$entry->setPerformer( $context->getUser() );
 		$entry->setTarget( $title );
 		$entry->setParameters( $logParams );
+		$entry->setComment( $reason );
 		$entry->setTags( $tags );
 
 		$logid = $entry->insert();
