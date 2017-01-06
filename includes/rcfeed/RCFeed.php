@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,20 +19,41 @@
  */
 
 /**
- * Interface for RC feed formatters
- *
- * @since 1.22
+ * @see $wgRCFeeds
+ * @since 1.29
  */
-interface RCFeedFormatter {
+abstract class RCFeed {
 	/**
-	 * Formats the line to be sent by an engine
-	 *
-	 * @param array $feed The feed, as configured in an associative array.
-	 * @param RecentChange $rc The RecentChange object showing what sort
-	 *                         of event has taken place.
-	 * @param string|null $actionComment
-	 * @return string|null The text to send.  If the formatter returns null,
-	 *  the line will not be sent.
+	 * @param array $params
 	 */
-	public function getLine( array $feed, RecentChange $rc, $actionComment = null );
+	public function __construct( array $params = [] ) {
+	}
+
+	/**
+	 * Dispatch the recent changes notification.
+	 *
+	 * @param RecentChange $rc
+	 * @param string|null $actionComment
+	 * @return bool Success
+	 */
+	abstract public function notify( RecentChange $rc, $actionComment = null );
+
+	/**
+	 * @param array $params
+	 * @return RCFeedEngine
+	 * @throws Exception
+	 */
+	final public static function factory( array $params ) {
+		if ( !isset( $params['class'] ) ) {
+			if ( !isset( $params['uri'] ) ) {
+				throw new Exception( "RCFeeds must have a 'class' or 'uri' set." );
+			}
+			$params['class'] = RecentChange::getEngine( $params['uri'] );
+		}
+		$class = $params['class'];
+		if ( !class_exists( $class ) ) {
+			throw new Exception( "Unknown class '$class'." );
+		}
+		return new $class( $params );
+	}
 }

@@ -389,8 +389,8 @@ class RecentChange {
 
 		$performer = $this->getPerformer();
 
-		foreach ( $feeds as $feed ) {
-			$feed += [
+		foreach ( $feeds as $params ) {
+			$params += [
 				'omit_bots' => false,
 				'omit_anon' => false,
 				'omit_user' => false,
@@ -399,17 +399,15 @@ class RecentChange {
 			];
 
 			if (
-				( $feed['omit_bots'] && $this->mAttribs['rc_bot'] ) ||
-				( $feed['omit_anon'] && $performer->isAnon() ) ||
-				( $feed['omit_user'] && !$performer->isAnon() ) ||
-				( $feed['omit_minor'] && $this->mAttribs['rc_minor'] ) ||
-				( $feed['omit_patrolled'] && $this->mAttribs['rc_patrolled'] ) ||
+				( $params['omit_bots'] && $this->mAttribs['rc_bot'] ) ||
+				( $params['omit_anon'] && $performer->isAnon() ) ||
+				( $params['omit_user'] && !$performer->isAnon() ) ||
+				( $params['omit_minor'] && $this->mAttribs['rc_minor'] ) ||
+				( $params['omit_patrolled'] && $this->mAttribs['rc_patrolled'] ) ||
 				$this->mAttribs['rc_type'] == RC_EXTERNAL
 			) {
 				continue;
 			}
-
-			$engine = self::getEngine( $feed['uri'] );
 
 			if ( isset( $this->mExtra['actionCommentIRC'] ) ) {
 				$actionComment = $this->mExtra['actionCommentIRC'];
@@ -417,40 +415,28 @@ class RecentChange {
 				$actionComment = null;
 			}
 
-			/** @var $formatter RCFeedFormatter */
-			$formatter = is_object( $feed['formatter'] ) ? $feed['formatter'] : new $feed['formatter']();
-			$line = $formatter->getLine( $feed, $this, $actionComment );
-			if ( !$line ) {
-				// T109544
-				// If a feed formatter returns null, this will otherwise cause an
-				// error in at least RedisPubSubFeedEngine.
-				// Not sure where/how this should best be handled.
-				continue;
-			}
-
-			$engine->send( $feed, $line );
+			$feed = RCFeed::factory( $params );
+			$feed->notify( $this, $actionComment );
 		}
 	}
 
 	/**
-	 * Gets the stream engine object for a given URI from $wgRCEngines
-	 *
+	 * @since 1.22
+	 * @deprecated since 1.29 Use RCFeed::factory() instead
 	 * @param string $uri URI to get the engine object for
+	 * @return RCFeedEngine
 	 * @throws MWException
-	 * @return RCFeedEngine The engine object
 	 */
 	public static function getEngine( $uri ) {
+		// TODO: Merge into RCFeed::factory().
 		global $wgRCEngines;
-
 		$scheme = parse_url( $uri, PHP_URL_SCHEME );
 		if ( !$scheme ) {
-			throw new MWException( __FUNCTION__ . ": Invalid stream logger URI: '$uri'" );
+			throw new MWException( "Invalid RCFeed uri: '$uri'" );
 		}
-
 		if ( !isset( $wgRCEngines[$scheme] ) ) {
-			throw new MWException( __FUNCTION__ . ": Unknown stream logger URI scheme: $scheme" );
+			throw new MWException( "Unknown RCFeedEngine scheme: '$scheme'" );
 		}
-
 		return new $wgRCEngines[$scheme];
 	}
 
