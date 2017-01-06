@@ -84,7 +84,8 @@ class ApiSetPageLanguage extends ApiBase {
 			$this,
 			$titleObj,
 			$params['lang'],
-			$params['tags'] ?: []
+			$params['tags'] ?: [],
+			$params['reason'] ?: ''
 		);
 
 		if ( !$status->isOK() ) {
@@ -121,6 +122,7 @@ class ApiSetPageLanguage extends ApiBase {
 				),
 				ApiBase::PARAM_REQUIRED => true,
 			],
+			'reason' => null,
 			'tags' => [
 				ApiBase::PARAM_TYPE => 'tags',
 				ApiBase::PARAM_ISMULTI => true,
