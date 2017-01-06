@@ -1360,6 +1360,7 @@
 	"apihelp-setpagelanguage-param-title": "Title of the page whose language you wish to change. Cannot be used together with <var>$1pageid</var>.",
 	"apihelp-setpagelanguage-param-pageid": "Page ID of the page whose language you wish to change. Cannot be used together with <var>$1title</var>.",
 	"apihelp-setpagelanguage-param-lang": "Language code of the language to change the page to. Use <kbd>default</kbd> to reset the page to the wiki's default content language.",
+	"apihelp-setpagelanguage-param-reason": "Reason for the change.",
 	"apihelp-setpagelanguage-param-tags": "Change tags to apply to the log entry resulting from this action.",
 	"apihelp-setpagelanguage-example-language": "Change the language of <kbd>Main Page</kbd> to Basque.",
 	"apihelp-setpagelanguage-example-default": "Change the language of the page with ID 123 to the wiki's default content language.",
