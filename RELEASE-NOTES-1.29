@@ -41,6 +41,8 @@ production.
   via mw.config.get('wgPageParseReport').
 * Added $wgSoftBlockRanges, to allow for automatically blocking anonymous edits
   from certain IP ranges (e.g. private IPs).
+* (T59603) Added new magic word {{PAGELANGUAGE}} which returns the language code
+  of the page being parsed.
 
 === External library changes in 1.29 ===
 

@@ -2812,6 +2812,9 @@ class Parser {
 			case 'contentlanguage':
 				global $wgLanguageCode;
 				return $wgLanguageCode;
+			case 'pagelanguage':
+				$value = $pageLang->getCode();
+				break;
 			case 'cascadingsources':
 				$value = CoreParserFunctions::cascadingsources( $this );
 				break;
