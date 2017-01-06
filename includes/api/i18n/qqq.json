@@ -1268,6 +1268,7 @@
 	"apihelp-setpagelanguage-param-title": "{{doc-apihelp-param|setpagelanguage|title}}",
 	"apihelp-setpagelanguage-param-pageid": "{{doc-apihelp-param|setpagelanguage|pageid}}",
 	"apihelp-setpagelanguage-param-lang": "{{doc-apihelp-param|setpagelanguage|lang}}",
+	"apihelp-setpagelanguage-param-reason": "{{doc-apihelp-param|setpagelanguage|reason}}",
 	"apihelp-setpagelanguage-param-tags": "{{doc-apihelp-param|setpagelanguage|tags}}",
 	"apihelp-setpagelanguage-example-language": "{{doc-apihelp-example|setpagelanguage}}",
 	"apihelp-setpagelanguage-example-default": "{{doc-apihelp-example|setpagelanguage}}",

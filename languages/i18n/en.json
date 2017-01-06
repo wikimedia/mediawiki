@@ -4063,6 +4063,7 @@
 	"pagelang-language": "Language",
 	"pagelang-use-default": "Use default language",
 	"pagelang-select-lang": "Select language",
+	"pagelang-reason": "Reason",
 	"pagelang-submit": "Submit",
 	"pagelang-nonexistent-page": "The page $1 does not exist.",
 	"pagelang-unchanged-language": "The page $1 is already set to language $2.",
