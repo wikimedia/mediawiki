@@ -39,6 +39,8 @@ production.
   downloading the XML dump during a transwiki import in seconds.
 * Parser limit report is now available in machine-readable format to JavaScript
   via mw.config.get('wgPageParseReport').
+* (T59603) Added new magic word {{PAGELANGUAGE}} which returns the language code
+  of the page being parsed.
 
 === External library changes in 1.29 ===
 

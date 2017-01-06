@@ -10290,6 +10290,17 @@ Magic Word: {{SITENAME}}
 !! end
 
 !! test
+Magic Word: {{PAGELANGUAGE}}
+!! options
+language=fr
+!! wikitext
+{{PAGELANGUAGE}}
+!! html
+<p>fr
+</p>
+!! end
+
+!! test
 Case-sensitive magic words, when cased differently, should just be template transclusions
 !! wikitext
 {{CurrentMonth}}
