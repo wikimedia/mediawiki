@@ -25,7 +25,7 @@
 		// Events
 		// Add the filterInput as trigger
 		this.filterInput.$input
-			.on( 'focus', this.onFocusForPopup.bind( this ) );
+			.on( 'focus', this.focus.bind( this ) );
 
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterCapsuleMultiselectWidget' );
@@ -49,12 +49,22 @@
 	/**
 	 * @inheritdoc
 	 */
-	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.onFocusForPopup = function () {
+	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.focus = function () {
 		// Override this method; we don't want to focus on the popup, and we
 		// don't want to bind the size to the handle.
 		if ( !this.isDisabled() ) {
 			this.popup.toggle( true );
+			this.filterInput.$input.get( 0 ).focus();
 		}
+		return this;
+	};
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.onFocusForPopup = function () {
+		// HACK can be removed once I21b8cff4048 is merged in oojs-ui
+		this.focus();
 	};
 
 	/**
