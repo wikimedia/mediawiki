@@ -14,27 +14,19 @@
 				widget = new mw.rcfilters.ui.FilterWrapperWidget( controller, model );
 
 			model.initializeFilters( {
-				authorship: {
-					title: mw.msg( 'rcfilters-filtergroup-authorship' ),
-					// Type 'send_unselected_if_any' means that the controller will go over
-					// all unselected filters in the group and use their parameters
-					// as truthy in the query string.
-					// This is to handle the "negative" filters. We are showing users
-					// a positive message ("Show xxx") but the filters themselves are
-					// based on "hide YYY". The purpose of this is to correctly map
-					// the functionality to the UI, whether we are dealing with 2
-					// parameters in the group or more.
+				registration: {
+					title: mw.msg( 'rcfilters-filtergroup-registration' ),
 					type: 'send_unselected_if_any',
 					filters: [
 						{
-							name: 'hidemyself',
-							label: mw.msg( 'rcfilters-filter-editsbyself-label' ),
-							description: mw.msg( 'rcfilters-filter-editsbyself-description' )
+							name: 'hideliu',
+							label: mw.msg( 'rcfilters-filter-registered-label' ),
+							description: mw.msg( 'rcfilters-filter-registered-description' )
 						},
 						{
-							name: 'hidebyothers',
-							label: mw.msg( 'rcfilters-filter-editsbyother-label' ),
-							description: mw.msg( 'rcfilters-filter-editsbyother-description' )
+							name: 'hideanon',
+							label: mw.msg( 'rcfilters-filter-unregistered-label' ),
+							description: mw.msg( 'rcfilters-filter-unregistered-description' )
 						}
 					]
 				},
@@ -62,6 +54,88 @@
 							name: 'experienced',
 							label: mw.msg( 'rcfilters-filter-userExpLevel-experienced-label' ),
 							description: mw.msg( 'rcfilters-filter-userExpLevel-experienced-description' )
+						}
+					]
+				},
+				authorship: {
+					title: mw.msg( 'rcfilters-filtergroup-authorship' ),
+					// Type 'send_unselected_if_any' means that the controller will go over
+					// all unselected filters in the group and use their parameters
+					// as truthy in the query string.
+					// This is to handle the "negative" filters. We are showing users
+					// a positive message ("Show xxx") but the filters themselves are
+					// based on "hide YYY". The purpose of this is to correctly map
+					// the functionality to the UI, whether we are dealing with 2
+					// parameters in the group or more.
+					type: 'send_unselected_if_any',
+					filters: [
+						{
+							name: 'hidemyself',
+							label: mw.msg( 'rcfilters-filter-editsbyself-label' ),
+							description: mw.msg( 'rcfilters-filter-editsbyself-description' )
+						},
+						{
+							name: 'hidebyothers',
+							label: mw.msg( 'rcfilters-filter-editsbyother-label' ),
+							description: mw.msg( 'rcfilters-filter-editsbyother-description' )
+						}
+					]
+				},
+				automated: {
+					title: mw.msg( 'rcfilters-filtergroup-automated' ),
+					type: 'send_unselected_if_any',
+					filters: [
+						{
+							name: 'hidebots',
+							label: mw.msg( 'rcfilters-filter-bots-label' ),
+							description: mw.msg( 'rcfilters-filter-bots-description' )
+						},
+						{
+							name: 'hidehumans',
+							label: mw.msg( 'rcfilters-filter-humans-label' ),
+							description: mw.msg( 'rcfilters-filter-humans-description' )
+						}
+					]
+				},
+				significance: {
+					title: mw.msg( 'rcfilters-filtergroup-significance' ),
+					type: 'send_unselected_if_any',
+					filters: [
+						{
+							name: 'hideminor',
+							label: mw.msg( 'rcfilters-filter-minor-label' ),
+							description: mw.msg( 'rcfilters-filter-minor-description' )
+						},
+						{
+							name: 'hidemajor',
+							label: mw.msg( 'rcfilters-filter-major-label' ),
+							description: mw.msg( 'rcfilters-filter-major-description' )
+						}
+					]
+				},
+				changetype: {
+					title: mw.msg( 'rcfilters-filtergroup-changetype' ),
+					type: 'send_unselected_if_any',
+					filters: [
+						{
+							name: 'hidepageedits',
+							label: mw.msg( 'rcfilters-filter-pageedits-label' ),
+							description: mw.msg( 'rcfilters-filter-pageedits-description' )
+						},
+						{
+							name: 'hidenewpages',
+							label: mw.msg( 'rcfilters-filter-newpages-label' ),
+							description: mw.msg( 'rcfilters-filter-newpages-description' )
+						},
+						{
+							name: 'hidecategorization',
+							label: mw.msg( 'rcfilters-filter-categorization-label' ),
+							description: mw.msg( 'rcfilters-filter-categorization-description' )
+						},
+						{
+							name: 'hidelog',
+							label: mw.msg( 'rcfilters-filter-logactions-label' ),
+							description: mw.msg( 'rcfilters-filter-logactions-description' )
 						}
 					]
 				}
