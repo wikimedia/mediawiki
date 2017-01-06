@@ -129,6 +129,15 @@ class SpecialPageLanguage extends FormSpecialPage {
 			return Status::newFatal( $ex->getMessageObject() );
 		}
 
+		// Check if user is allowed to edit the page
+		$errors = $title->getUserPermissionsErrors( 'edit', $this->getUser() );
+		if ( $errors ) {
+			$out = $this->getOutput();
+			$wikitext = $out->formatPermissionsErrorMessage( $errors );
+			// Hack to get our wikitext parsed
+			return Status::newFatal( new RawMessage( '$1', [ $wikitext ] ) );
+		}
+
 		// Url to redirect to after the operation
 		$this->goToUrl = $title->getFullURL();
 
@@ -136,9 +145,16 @@ class SpecialPageLanguage extends FormSpecialPage {
 	}
 
 	/**
+	 * Sets the language of a page in the database, and stores a log entry for the
+	 * change.
+	 *
+	 * This function does no user permission checking. Before calling it, you must
+	 * confirm that $wgPageLanguageUseDB is set to true.
+	 *
 	 * @param IContextSource $context
 	 * @param Title $title
-	 * @param string $newLanguage Language code
+	 * @param string $newLanguage Language code, or 'default' to clear the stored
+	 *   language
 	 * @param array $tags Change tags to apply to the log entry
 	 * @return Status
 	 */
