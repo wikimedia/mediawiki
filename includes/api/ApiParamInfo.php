@@ -426,6 +426,15 @@ class ApiParamInfo extends ApiBase {
 					( is_array( $item['type'] ) || $item['type'] === 'namespace' ) ) {
 					$item['allspecifier'] = $allSpecifier;
 				}
+
+				if ( $item['type'] === 'namespace' &&
+					isset( $settings[ApiBase::PARAM_EXTRA_NAMESPACES] ) &&
+					is_array( $settings[ApiBase::PARAM_EXTRA_NAMESPACES] )
+				) {
+					$item['extranamespaces'] = $settings[ApiBase::PARAM_EXTRA_NAMESPACES];
+					ApiResult::setArrayType( $item['extranamespaces'], 'array' );
+					ApiResult::setIndexedTagName( $item['extranamespaces'], 'ns' );
+				}
 			}
 			if ( isset( $settings[ApiBase::PARAM_MAX] ) ) {
 				$item['max'] = $settings[ApiBase::PARAM_MAX];

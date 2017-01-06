@@ -180,6 +180,12 @@ abstract class ApiBase extends ContextSource {
 	 */
 	const PARAM_ALL = 17;
 
+	/**
+	 * (int[]) When PARAM_TYPE is 'namespace', include these as additional possible values.
+	 * @since 1.29
+	 */
+	const PARAM_EXTRA_NAMESPACES = 18;
+
 	/**@}*/
 
 	const ALL_DEFAULT_STRING = '*';
@@ -900,6 +906,34 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Get a Title object from a title or pageid param, if possible.
+	 * Can die, if no param is set or if the title or page id is not valid.
+	 *
+	 * @since 1.29
+	 * @param array $params
+	 * @return Title
+	 */
+	public function getTitleFromTitleOrPageId( $params ) {
+		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
+
+		$titleObj = null;
+		if ( isset( $params['title'] ) ) {
+			$titleObj = Title::newFromText( $params['title'] );
+			if ( !$titleObj || $titleObj->isExternal() ) {
+				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['title'] ) ] );
+			}
+			return $titleObj;
+		} elseif ( isset( $params['pageid'] ) ) {
+			$titleObj = Title::newFromID( $params['pageid'] );
+			if ( !$titleObj ) {
+				$this->dieWithError( [ 'apierror-nosuchpageid', $params['pageid'] ] );
+			}
+		}
+
+		return $titleObj;
+	}
+
+	/**
 	 * Return true if we're to watch the page, false if not, null if no change.
 	 * @param string $watchlist Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
 	 * @param Title $titleObj The page under consideration
@@ -953,44 +987,41 @@ abstract class ApiBase extends ContextSource {
 		// Some classes may decide to change parameter names
 		$encParamName = $this->encodeParamName( $paramName );
 
+		// Shorthand
 		if ( !is_array( $paramSettings ) ) {
-			$default = $paramSettings;
-			$multi = false;
-			$type = gettype( $paramSettings );
-			$dupes = false;
-			$deprecated = false;
-			$required = false;
-			$allowAll = false;
-		} else {
-			$default = isset( $paramSettings[self::PARAM_DFLT] )
-				? $paramSettings[self::PARAM_DFLT]
-				: null;
-			$multi = isset( $paramSettings[self::PARAM_ISMULTI] )
-				? $paramSettings[self::PARAM_ISMULTI]
-				: false;
-			$type = isset( $paramSettings[self::PARAM_TYPE] )
-				? $paramSettings[self::PARAM_TYPE]
-				: null;
-			$dupes = isset( $paramSettings[self::PARAM_ALLOW_DUPLICATES] )
-				? $paramSettings[self::PARAM_ALLOW_DUPLICATES]
-				: false;
-			$deprecated = isset( $paramSettings[self::PARAM_DEPRECATED] )
-				? $paramSettings[self::PARAM_DEPRECATED]
-				: false;
-			$required = isset( $paramSettings[self::PARAM_REQUIRED] )
-				? $paramSettings[self::PARAM_REQUIRED]
-				: false;
-			$allowAll = isset( $paramSettings[self::PARAM_ALL] )
-				? $paramSettings[self::PARAM_ALL]
-				: false;
+			$paramSettings = [
+				self::PARAM_DFLT => $paramSettings,
+			];
+		}
 
-			// When type is not given, and no choices, the type is the same as $default
-			if ( !isset( $type ) ) {
-				if ( isset( $default ) ) {
-					$type = gettype( $default );
-				} else {
-					$type = 'NULL'; // allow everything
-				}
+		$default = isset( $paramSettings[self::PARAM_DFLT] )
+			? $paramSettings[self::PARAM_DFLT]
+			: null;
+		$multi = isset( $paramSettings[self::PARAM_ISMULTI] )
+			? $paramSettings[self::PARAM_ISMULTI]
+			: false;
+		$type = isset( $paramSettings[self::PARAM_TYPE] )
+			? $paramSettings[self::PARAM_TYPE]
+			: null;
+		$dupes = isset( $paramSettings[self::PARAM_ALLOW_DUPLICATES] )
+			? $paramSettings[self::PARAM_ALLOW_DUPLICATES]
+			: false;
+		$deprecated = isset( $paramSettings[self::PARAM_DEPRECATED] )
+			? $paramSettings[self::PARAM_DEPRECATED]
+			: false;
+		$required = isset( $paramSettings[self::PARAM_REQUIRED] )
+			? $paramSettings[self::PARAM_REQUIRED]
+			: false;
+		$allowAll = isset( $paramSettings[self::PARAM_ALL] )
+			? $paramSettings[self::PARAM_ALL]
+			: false;
+
+		// When type is not given, and no choices, the type is the same as $default
+		if ( !isset( $type ) ) {
+			if ( isset( $default ) ) {
+				$type = gettype( $default );
+			} else {
+				$type = 'NULL'; // allow everything
 			}
 		}
 
@@ -1034,6 +1065,11 @@ abstract class ApiBase extends ContextSource {
 
 			if ( isset( $value ) && $type == 'namespace' ) {
 				$type = MWNamespace::getValidNamespaces();
+				if ( isset( $paramSettings[self::PARAM_EXTRA_NAMESPACES] ) &&
+					is_array( $paramSettings[self::PARAM_EXTRA_NAMESPACES] )
+				) {
+					$type = array_merge( $type, $paramSettings[self::PARAM_EXTRA_NAMESPACES] );
+				}
 				// By default, namespace parameters allow ALL_DEFAULT_STRING to be used to specify
 				// all namespaces.
 				$allowAll = true;
