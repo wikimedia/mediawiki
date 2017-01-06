@@ -169,6 +169,7 @@ class MagicWord {
 		'localtimestamp',
 		'directionmark',
 		'contentlanguage',
+		'pagelanguage',
 		'numberofadmins',
 		'cascadingsources',
 	];

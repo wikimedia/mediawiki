@@ -10503,6 +10503,17 @@ __proto__
 </p>
 !!end
 
+!! test
+Magic Word: {{PAGELANGUAGE}}
+!! options
+language=fr
+!! wikitext
+{{#time:j F Y|2013-10-02|{{PAGELANGUAGE}}}}
+!! html
+<p>2 octobre 2013
+</p>
+!! end
+
 ###
 ### Magic links
 ###
