@@ -66,7 +66,13 @@ class CheckStyleSuppressor extends Suppressor {
 	 */
 	public function suppress( $input ) {
 		$dom = new DOMDocument();
-		$dom->loadXML( $input );
+		$xmlLoadSuccess = $dom->loadXML( $input );
+
+		echo "START INPUT OUTPUT\n";
+		var_dump( $input );
+		echo "END INPUT OUTPUT\n";
+		die();
+
 		$hasErrors = false;
 		// DOMNodeList's are "live", convert to an array so it works as expected
 		$files = [];
