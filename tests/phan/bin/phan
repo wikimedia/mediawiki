@@ -66,11 +66,8 @@ export RUN="${ISSUES}/issues-${REV}"
 # issues file.
 $PHAN \
 	--project-root-directory "$ROOT" \
-	--config-file "$CONFIG_FILE" \
-	--output "php://stdout" \
-	"${@}" \
-	| php "$MW_INSTALL_PATH/tests/phan/bin/postprocess-phan.php" "${@}" \
-	> $RUN
+	--config-file "$CONFIG_FILE"
+exit
 
 EXIT_CODE="$?"
 
