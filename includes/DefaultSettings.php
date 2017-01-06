@@ -6589,51 +6589,64 @@ $wgRCLinkLimits = [ 50, 100, 250, 500 ];
 $wgRCLinkDays = [ 1, 3, 7, 14, 30 ];
 
 /**
- * Destinations to which notifications about recent changes
- * should be sent.
+ * Configuration for feeds to which notifications about recent changes will be sent.
  *
- * As of MediaWiki 1.22, there are 2 supported 'engine' parameter option in core:
- *   * 'UDPRCFeedEngine', which is used to send recent changes over UDP to the
- *      specified server.
- *   * 'RedisPubSubFeedEngine', which is used to send recent changes to Redis.
+ * The following feed classes are available by default:
+ * - 'UDPRCFeedEngine' - sends recent changes over UDP to the specified server.
+ * - 'RedisPubSubFeedEngine' - send recent changes to Redis.
  *
- * The common options are:
- *   * 'uri' -- the address to which the notices are to be sent.
- *   * 'formatter' -- the class name (implementing RCFeedFormatter) which will
- *     produce the text to send. This can also be an object of the class.
- *   * 'omit_bots' -- whether the bot edits should be in the feed
- *   * 'omit_anon' -- whether anonymous edits should be in the feed
- *   * 'omit_user' -- whether edits by registered users should be in the feed
- *   * 'omit_minor' -- whether minor edits should be in the feed
- *   * 'omit_patrolled' -- whether patrolled edits should be in the feed
+ * Only 'class' or 'uri' is required. If 'uri' is set instead of 'class', then
+ * RecentChange::getEngine() is used to determine the class. All options are
+ * passed to the constructor.
  *
- *  The IRC-specific options are:
- *   * 'add_interwiki_prefix' -- whether the titles should be prefixed with
- *     the first entry in the $wgLocalInterwikis array (or the value of
- *     $wgLocalInterwiki, if set)
+ * Common options:
+ * - 'class' -- The class to use for this feed (must implement RCFeed).
+ * - 'omit_bots' -- Exclude bot edits from the feed. (default: false)
+ * - 'omit_anon' -- Exclude anonymous edits from the feed. (default: false)
+ * - 'omit_user' -- Exclude edits by registered users from the feed. (default: false)
+ * - 'omit_minor' -- Exclude minor edits from the feed. (default: false)
+ * - 'omit_patrolled' -- Exclude patrolled edits from the feed. (default: false)
  *
- *  The JSON-specific options are:
- *   * 'channel' -- if set, the 'channel' parameter is also set in JSON values.
+ * FormattedRCFeed-specific options:
+ * - 'uri' -- [required] The address to which the messages are sent.
+ *   The uri scheme of this string will be looked up in $wgRCEngines
+ *   to determine which RCFeedEngine class to use.
+ * - 'formatter' -- [required] The class (implementing RCFeedFormatter) which will
+ *   produce the text to send. This can also be an object of the class.
+ *   Formatters available by default: JSONRCFeedFormatter, XMLRCFeedFormatter,
+ *   IRCColourfulRCFeedFormatter.
+ *
+ * IRCColourfulRCFeedFormatter-specific options:
+ * - 'add_interwiki_prefix' -- whether the titles should be prefixed with
+ *   the first entry in the $wgLocalInterwikis array (or the value of
+ *   $wgLocalInterwiki, if set)
+ *
+ * JSONRCFeedFormatter-specific options:
+ * - 'channel' -- if set, the 'channel' parameter is also set in JSON values.
  *
  * @example $wgRCFeeds['example'] = [
+ *		'uri' => 'udp://localhost:1336',
  *		'formatter' => 'JSONRCFeedFormatter',
- *		'uri' => "udp://localhost:1336",
  *		'add_interwiki_prefix' => false,
  *		'omit_bots' => true,
  *	];
- * @example $wgRCFeeds['exampleirc'] = [
+ * @example $wgRCFeeds['example'] = [
+ *		'uri' => 'udp://localhost:1338',
  *		'formatter' => 'IRCColourfulRCFeedFormatter',
- *		'uri' => "udp://localhost:1338",
  *		'add_interwiki_prefix' => false,
  *		'omit_bots' => true,
+ *	];
+ * @example $wgRCFeeds['example'] = [
+ *      'class' => 'ExampleRCFeed',
  *	];
  * @since 1.22
  */
 $wgRCFeeds = [];
 
 /**
- * Used by RecentChange::getEngine to find the correct engine to use for a given URI scheme.
- * Keys are scheme names, values are names of engine classes.
+ * Used by RecentChange::getEngine to find the correct engine for a given URI scheme.
+ * Keys are scheme names, values are names of FormattedRCFeed sub classes.
+ * @since 1.22
  */
 $wgRCEngines = [
 	'redis' => 'RedisPubSubFeedEngine',

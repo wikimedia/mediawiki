@@ -15,7 +15,9 @@ class RCFeedIntegrationTest extends MediaWikiTestCase {
 	/**
 	 * @covers RecentChange::notifyRCFeeds
 	 * @covers RecentChange::getEngine
-	 * @covers RCFeedEngine
+	 * @covers RCFeed::factory
+	 * @covers FormattedRCFeed::__construct
+	 * @covers FormattedRCFeed::notify
 	 * @covers JSONRCFeedFormatter::formatArray
 	 * @covers MachineReadableRCFeedFormatter::getLine
 	 */
