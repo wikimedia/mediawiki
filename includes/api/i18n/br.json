@@ -30,5 +30,6 @@
 	"apihelp-login-example-login": "Kevreañ.",
 	"apihelp-move-description": "Dilec'hiañ ur bajenn.",
 	"apihelp-move-param-noredirect": "Chom hep krouiñ un adkas.",
-	"apihelp-protect-example-protect": "Gwareziñ ur bajenn."
+	"apihelp-protect-example-protect": "Gwareziñ ur bajenn.",
+	"apihelp-rollback-param-tags": "Tikedennoù da lakaat e talvoud war an distroioù."
 }

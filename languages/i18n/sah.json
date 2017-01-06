@@ -1299,6 +1299,8 @@
 	"recentchanges-legend-heading": "<strong>Легендата:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (өссө көр: [[Special:NewPages|Саҥа сирэйдэр тиһиктэрэ]])",
 	"recentchanges-submit": "Көрдөр",
+	"rcfilters-filterlist-title": "Сиидэ",
+	"rcfilters-filterlist-noresults": "Сиидэ көстүбэтэ",
 	"rcnotefrom": "Манна {{PLURAL:$5|уларытыы көрдөрүлүннэ|уларытыылар көһүннүлэр}} баччаттан <strong>$3, $4</strong> (баччаттан элбэх көстүбэт <strong>$1</strong>).",
 	"rclistfrom": "Бу кэм $3 $2 кэнниттэн оҥоһуллубуттары көрдөр",
 	"rcshowhideminor": "$1 кыра уларыйыылары",

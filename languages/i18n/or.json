@@ -2802,7 +2802,7 @@
 	"lag-warn-high": "ଅଧିକ ଡାଟାବେସ ସର୍ଭର ପଛୁଆ ଅବସ୍ଥା ହେତୁ $1 {{PLURAL:$1|ସେକେଣ୍ଡ|ସେକେଣ୍ଡ}}ରୁ ନୂଆ ବଦଳସବୁ ଏହି ତାଲିକାରେ ଦେଖାଯିବ ନାହିଁ ।",
 	"watchlistedit-normal-title": "ଦେଖଣାତାଲିକା ସମ୍ପାଦନା କରିବେ",
 	"watchlistedit-normal-legend": "ଦେଖିଥିବା ପୃଷ୍ଠାଗୁଡିକରୁ ଶିରୋନାମା ହଟାଇବେ ।",
-	"watchlistedit-normal-explain": "ଆପଣଙ୍କର ଦେଖଣା ତାଲିକାର ଶିରୋନାମାଗୁଡିକ ତଳେ ଦେଖା ଯାଇଛି ।\nଶିରୋନାମା  ହଟାଇବାକୁ ଚାହୁଁଥିଲେ, ଏହାର ପାଖରେ ଥିବା ବାକ୍ସରେ ଟିକ ମାରନ୍ତୁ ଏବଂ \"{{int:Watchlistedit-normal-submit}}\"ରେ କ୍ଲିକ କରନ୍ତୁ ।\nଆପଣ [[Special:EditWatchlist/raw|edit the raw list]] ମଧ୍ୟ କରିପାରିବେ ।",
+	"watchlistedit-normal-explain": "ଆପଣଙ୍କର ଦେଖଣା ତାଲିକାର ଶିରୋନାମଗୁଡ଼ିକ ତଳେ ଦେଖା ଯାଇଛି ।\nଶିରୋନାମ ହଟାଇବାକୁ ଚାହୁଁଥିଲେ, ଏହାର ପାଖରେ ଥିବା ବାକ୍ସରେ ଟିକ ମାରନ୍ତୁ ଏବଂ \"{{int:Watchlistedit-normal-submit}}\"ରେ କ୍ଲିକ କରନ୍ତୁ ।\nଆପଣ [[Special:EditWatchlist/raw|edit the raw list]] ମଧ୍ୟ କରିପାରିବେ ।",
 	"watchlistedit-normal-submit": "ଶିରୋନାମାଗୁଡିକୁ ଲିଭାଇବେ",
 	"watchlistedit-normal-done": "{{PLURAL:$1|ଗୋଟିଏ ନାମ|$1 ଗୋଟି ନାମ}} ଆପଣଙ୍କ ଦେଖଣାତାଲିକାରୁ କାଢ଼ିଦିଆଗଲା:",
 	"watchlistedit-raw-title": "ଫାଙ୍କା ଦେଖା ତାଲିକାଟିର ସମ୍ପାଦନା କରିବେ",
