@@ -3669,6 +3669,7 @@
 	"pagelang-language": "언어",
 	"pagelang-use-default": "기본 언어 사용",
 	"pagelang-select-lang": "언어 선택",
+	"pagelang-reason": "이유",
 	"pagelang-submit": "제출",
 	"pagelang-nonexistent-page": "$1 문서가 존재하지 않습니다.",
 	"pagelang-unchanged-language": "$1 문서는 이미 $2 언어로 설정되어 있습니다.",

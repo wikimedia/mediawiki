@@ -15,7 +15,8 @@
 			"Carlosedepaula",
 			"Macofe",
 			"Karmwiki",
-			"Matma Rex"
+			"Matma Rex",
+			"Rafaneta"
 		]
 	},
 	"tog-underline": "Sublinear ligamines:",
@@ -2341,6 +2342,7 @@
 	"proxyblockreason": "Tu adresse IP ha essite blocate proque illo es un proxy aperte.\nPer favor contacta tu providitor de servicio internet o supporto technic e informa les de iste problema grave de securitate.",
 	"sorbsreason": "Tu adresse IP es listate como proxy aperte in le DNSBL usate per {{SITENAME}}.",
 	"sorbs_create_account_reason": "Tu adresse IP es listate como proxy aperte in le DNSBL usate per {{SITENAME}}.\nTu non pote crear un conto",
+	"softblockrangesreason": "Contributiones anonime non son permittite de vostre adresse de IP ($1). Si il vos place, identifica vos.",
 	"xffblockreason": "Un adresse IP presente in le capite X-Forwarded-For, o le tue o illo de un servitor proxy que tu usa, ha essite blocate. Le motivo original pro le blocada es: $1",
 	"cant-see-hidden-user": "Le usator que tu tenta blocar ha ja essite blocate e celate. Post que tu non ha le derecto hideuser, tu non pote vider o modificar le blocada del usator.",
 	"ipbblocked": "Tu non pote blocar o disblocar altere usatores, proque tu mesme es blocate",
@@ -3599,6 +3601,7 @@
 	"pagelang-language": "Lingua",
 	"pagelang-use-default": "Usar lingua predefinite",
 	"pagelang-select-lang": "Selige lingua",
+	"pagelang-reason": "Ration",
 	"pagelang-submit": "Submitter",
 	"pagelang-nonexistent-page": "Le pagina $1 non existe.",
 	"pagelang-unchanged-language": "Le pagina $1 es jam fixate sur le lingua $2.",

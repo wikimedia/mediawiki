@@ -2421,6 +2421,7 @@
 	"proxyblockreason": "Deine IP-Adresse wurde gesperrt, da sie ein offener Proxy ist. Bitte kontaktiere deinen Internet-Provider oder deine Systemadministratoren und informiere sie über dieses mögliche Sicherheitsproblem.",
 	"sorbsreason": "Die IP-Adresse ist in der DNSBL von {{SITENAME}} als offener PROXY gelistet.",
 	"sorbs_create_account_reason": "Die IP-Adresse ist in der DNSBL von {{SITENAME}} als offener PROXY gelistet. Das Anlegen neuer Benutzer ist nicht möglich.",
+	"softblockrangesreason": "Anonyme Beiträge von deiner IP-Adresse ($1) sind nicht erlaubt. Bitte melde dich an.",
 	"xffblockreason": "Eine IP-Adresse im X-Forwarded-For-Header wurde gesperrt, entweder deine oder die des benutzten Proxyservers. Der ursprüngliche Sperrgrund war: $1",
 	"cant-see-hidden-user": "Der Benutzer, den du versuchst zu sperren, wurde bereits gesperrt und verborgen. Da du das „hideuser“-Recht nicht hast, kannst du die Benutzersperre nicht sehen und nicht bearbeiten.",
 	"ipbblocked": "Du kannst keine anderen Benutzer sperren oder entsperren, da du selbst gesperrt bist",
