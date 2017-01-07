@@ -344,7 +344,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$this->validateLimit( 'limit', $this->params['limit'], 1, $userMax, $botMax );
 		}
 
-		$this->rootTitle = $this->getTitleOrPageId( $this->params )->getTitle();
+		$this->rootTitle = $this->getTitleFromTitleOrPageId( $this->params );
 
 		// only image titles are allowed for the root in imageinfo mode
 		if ( !$this->hasNS && $this->rootTitle->getNamespace() !== NS_FILE ) {

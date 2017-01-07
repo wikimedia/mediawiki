@@ -617,7 +617,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			],
 			'namespace' => [
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => 'namespace'
+				ApiBase::PARAM_TYPE => 'namespace',
+				ApiBase::PARAM_EXTRA_NAMESPACES => [ NS_MEDIA, NS_SPECIAL ],
 			],
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user'

@@ -435,7 +435,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			],
 			'title' => null,
 			'namespace' => [
-				ApiBase::PARAM_TYPE => 'namespace'
+				ApiBase::PARAM_TYPE => 'namespace',
+				ApiBase::PARAM_EXTRA_NAMESPACES => [ NS_MEDIA, NS_SPECIAL ],
 			],
 			'prefix' => [],
 			'tag' => null,
