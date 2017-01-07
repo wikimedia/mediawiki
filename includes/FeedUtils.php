@@ -236,18 +236,18 @@ class FeedUtils {
 	 */
 	public static function applyDiffStyle( $text ) {
 		$styles = [
-			'diff'             => 'background-color: white; color:black;',
-			'diff-otitle'      => 'background-color: white; color:black; text-align: center;',
-			'diff-ntitle'      => 'background-color: white; color:black; text-align: center;',
-			'diff-addedline'   => 'color:black; font-size: 88%; border-style: solid; '
+			'diff'             => 'background-color: #fff; color:#000;',
+			'diff-otitle'      => 'background-color: #fff; color:#000; text-align: center;',
+			'diff-ntitle'      => 'background-color: #fff; color:#000; text-align: center;',
+			'diff-addedline'   => 'color: #000; font-size: 88%; border-style: solid; '
 				. 'border-width: 1px 1px 1px 4px; border-radius: 0.33em; border-color: #a3d3ff; '
 				. 'vertical-align: top; white-space: pre-wrap;',
-			'diff-deletedline' => 'color:black; font-size: 88%; border-style: solid; '
+			'diff-deletedline' => 'color: #000; font-size: 88%; border-style: solid; '
 				. 'border-width: 1px 1px 1px 4px; border-radius: 0.33em; border-color: #ffe49c; '
 				. 'vertical-align: top; white-space: pre-wrap;',
-			'diff-context'     => 'background-color: #f9f9f9; color: #333333; font-size: 88%; '
+			'diff-context'     => 'background-color: #f8f9fa; color: #222; font-size: 88%; '
 				. 'border-style: solid; border-width: 1px 1px 1px 4px; border-radius: 0.33em; '
-				. 'border-color: #e6e6e6; vertical-align: top; white-space: pre-wrap;',
+				. 'border-color: #eaecf0; vertical-align: top; white-space: pre-wrap;',
 			'diffchange'       => 'font-weight: bold; text-decoration: none;',
 		];
 
