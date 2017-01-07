@@ -59,7 +59,7 @@ td.diff-marker {
 	white-space: pre-wrap;
 	border-style: solid;
 	border-width: 1px 1px 1px 4px;
-	border-radius: 0.33em;
+	border-radius: 2px;
 }
 
 .diff-addedline {
@@ -71,9 +71,9 @@ td.diff-marker {
 }
 
 .diff-context {
-	background: #f9f9f9;
-	border-color: #e6e6e6;
-	color: #333;
+	background: #f8f9fa;
+	border-color: #eaecf0;
+	color: #222;
 }
 
 .diffchange {
@@ -83,7 +83,7 @@ td.diff-marker {
 
 .diff-addedline .diffchange,
 .diff-deletedline .diffchange {
-	border-radius: 0.33em;
+	border-radius: 2px;
 	padding: 0.25em 0;
 }
 
