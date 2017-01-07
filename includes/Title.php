@@ -2423,7 +2423,7 @@ class Title implements LinkTarget {
 	 *
 	 * @param string $action The action to check
 	 * @param bool $short Short circuit on first error
-	 * @return array List of errors
+	 * @return array Array containing an error message key and any parameters
 	 */
 	private function missingPermissionError( $action, $short ) {
 		// We avoid expensive display logic for quickUserCan's and such
@@ -2431,19 +2431,7 @@ class Title implements LinkTarget {
 			return [ 'badaccess-group0' ];
 		}
 
-		$groups = array_map( [ 'User', 'makeGroupLinkWiki' ],
-			User::getGroupsWithPermission( $action ) );
-
-		if ( count( $groups ) ) {
-			global $wgLang;
-			return [
-				'badaccess-groups',
-				$wgLang->commaList( $groups ),
-				count( $groups )
-			];
-		} else {
-			return [ 'badaccess-group0' ];
-		}
+		return User::newFatalPermissionDeniedStatus( $action )->getErrorsArray()[0];
 	}
 
 	/**
