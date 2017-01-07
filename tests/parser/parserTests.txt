@@ -10301,6 +10301,15 @@ language=fr
 !! end
 
 !! test
+Magic Word: {{PAGELANGUAGE}} on a page with no explicitly set language
+!! wikitext
+{{PAGELANGUAGE}}
+!! html
+<p>en
+</p>
+!! end
+
+!! test
 Case-sensitive magic words, when cased differently, should just be template transclusions
 !! wikitext
 {{CurrentMonth}}
