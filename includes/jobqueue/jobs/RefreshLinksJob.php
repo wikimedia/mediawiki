@@ -247,6 +247,11 @@ class RefreshLinksJob extends Job {
 			$parserOutput
 		);
 
+		// For legacy hook handlers doing updates via LinksUpdateConstructed, make sure
+		// any pending writes they made get flushed before the doUpdate() calls below.
+		// This avoids snapshot-clearing errors in LinksUpdate::acquirePageLock().
+		$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+
 		foreach ( $updates as $key => $update ) {
 			// FIXME: This code probably shouldn't be here?
 			// Needed by things like Echo notifications which need
