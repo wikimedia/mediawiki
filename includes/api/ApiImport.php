@@ -64,6 +64,14 @@ class ApiImport extends ApiBase {
 			$this->dieStatus( $source );
 		}
 
+		// Check if user can add the log entry tags which were requested
+		if ( count( $params['tags'] ) ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			if ( !$ableToTag->isOK() ) {
+				$this->dieStatus( $ableToTag );
+			}
+		}
+
 		$importer = new WikiImporter( $source->value, $this->getConfig() );
 		if ( isset( $params['namespace'] ) ) {
 			$importer->setTargetNamespace( $params['namespace'] );
@@ -79,6 +87,7 @@ class ApiImport extends ApiBase {
 			$params['interwikisource'],
 			$params['summary']
 		);
+		$reporter->setChangeTags( $params['tags'] );
 
 		try {
 			$importer->doImport();
@@ -140,6 +149,10 @@ class ApiImport extends ApiBase {
 				ApiBase::PARAM_TYPE => 'namespace'
 			],
 			'rootpage' => null,
+			'tags' => [
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
+			],
 		];
 	}
 
