@@ -963,7 +963,7 @@ class MessageCache {
 		} else {
 			// XXX: This is not cached in process cache, should it?
 			$message = false;
-			Hooks::run( 'MessagesPreLoad', [ $title, &$message ] );
+			Hooks::run( 'MessagesPreLoad', [ $title, &$message, $code ] );
 			if ( $message !== false ) {
 				return $message;
 			}
