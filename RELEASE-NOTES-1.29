@@ -43,6 +43,7 @@ production.
   from certain IP ranges (e.g. private IPs).
 * (T59603) Added new magic word {{PAGELANGUAGE}} which returns the language code
   of the page being parsed.
+* Added LogExtract to SpecialContentModel.
 
 === External library changes in 1.29 ===
 
