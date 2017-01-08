@@ -275,8 +275,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$checkKeysForAll = [];
 		$checkKeysByKey = [];
 		$checkKeysFlat = [];
-		foreach ( $checkKeys as $i => $keys ) {
-			$prefixed = self::prefixCacheKeys( (array)$keys, self::TIME_KEY_PREFIX );
+		foreach ( $checkKeys as $i => $checkKeyGroup ) {
+			$prefixed = self::prefixCacheKeys( (array)$checkKeyGroup, self::TIME_KEY_PREFIX );
 			$checkKeysFlat = array_merge( $checkKeysFlat, $prefixed );
 			// Is this check keys for a specific cache key, or for all keys being fetched?
 			if ( is_int( $i ) ) {
