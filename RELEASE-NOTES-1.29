@@ -167,6 +167,8 @@ changes to languages because of Phabricator reports.
 * Linker:getInternalLinkAttributes (deprecated since 1.25) was removed.
 * Linker:getInternalLinkAttributesObj (deprecated since 1.25) was removed.
 * Linker:getLinkAttributesInternal (deprecated since 1.25) was removed.
+* (T141598) Added new tooltip for login link in private wiki.  The ID of <li> element
+  containing login link has changed from 'pt-login' to 'pt-login-private' in private wikis.
 
 == Compatibility ==
 
