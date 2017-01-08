@@ -33,6 +33,15 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		}
 	}
 
+	protected function postText() {
+		$contentModelLogPage = new LogPage( 'contentmodel' );
+		$text = Xml::element( 'h2', null, $contentModelLogPage->getName()->text() );
+		$out = '';
+		LogEventsList::showLogExtract( $out, 'contentmodel', $this->title );
+		$text .= $out;
+		return $text;
+	}
+
 	protected function getDisplayFormat() {
 		return 'ooui';
 	}
