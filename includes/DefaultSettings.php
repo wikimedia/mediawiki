@@ -2808,8 +2808,9 @@ $wgUsePrivateIPs = false;
  * MediaWiki out of the box. Not all languages listed there have translations,
  * see languages/messages/ for the list of languages with some localisation.
  *
- * Warning: Don't use language codes listed in $wgDummyLanguageCodes like "no"
- * for Norwegian (use "nb" instead), or things will break unexpectedly.
+ * Warning: Don't use any of MediaWiki's deprecated language codes listed in
+ * Language::getDeprecatedCodeMapping or $wgDummyLanguageCodes, like "no"
+ * for Norwegian (use "nb" instead). If you do, things will break unexpectedly.
  *
  * This defines the default interface language for all users, but users can
  * change it in their preferences.
@@ -2869,24 +2870,17 @@ $wgExtraLanguageNames = [];
 
 /**
  * List of language codes that don't correspond to an actual language.
- * These codes are mostly left-offs from renames, or other legacy things.
  * This array makes them not appear as a selectable language on the installer,
  * and excludes them when running the transstat.php script.
+ *
+ * In Setup.php, these codes are combined with a list of "deprecated" codes,
+ * which are mostly left-offs from renames, or other legacy things, as well as
+ * the internal codes 'qqq' and 'qqx'.
  */
 $wgDummyLanguageCodes = [
-	'als' => 'gsw',
-	'bat-smg' => 'sgs',
-	'be-x-old' => 'be-tarask',
 	'bh' => 'bho',
-	'fiu-vro' => 'vro',
 	'no' => 'nb',
-	'qqq' => 'qqq', # Used for message documentation.
-	'qqx' => 'qqx', # Used for viewing message keys.
-	'roa-rup' => 'rup',
 	'simple' => 'en',
-	'zh-classical' => 'lzh',
-	'zh-min-nan' => 'nan',
-	'zh-yue' => 'yue',
 ];
 
 /**

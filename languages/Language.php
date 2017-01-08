@@ -399,6 +399,34 @@ class Language {
 	}
 
 	/**
+	 * Returns a mapping of deprecated language codes that were used in previous
+	 * versions of MediaWiki to up-to-date, current language codes. This mapping
+	 * also includes the fake language codes 'qqq' and 'qqx', which are used
+	 * internally by MediaWiki's localisation system.
+	 *
+	 * This array is merged into $wgDummyLanguageCodes in Setup.php.
+	 *
+	 * @since 1.29
+	 * @return array
+	 */
+	public static function getDeprecatedCodeMapping() {
+		return [
+			// Note that als is actually a valid ISO 639 code (Tosk Albanian), but it
+			// was previously used in MediaWiki for Alsatian, which comes under gsw
+			'als' => 'gsw',
+			'bat-smg' => 'sgs',
+			'be-x-old' => 'be-tarask',
+			'fiu-vro' => 'vro',
+			'qqq' => 'qqq', // Used for message documentation
+			'qqx' => 'qqx', // Used for viewing message keys
+			'roa-rup' => 'rup',
+			'zh-classical' => 'lzh',
+			'zh-min-nan' => 'nan',
+			'zh-yue' => 'yue',
+		];
+	}
+
+	/**
 	 * Get the LocalisationCache instance
 	 *
 	 * @return LocalisationCache

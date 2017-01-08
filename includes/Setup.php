@@ -403,6 +403,9 @@ if ( is_array( $wgExtraNamespaces ) ) {
 	$wgCanonicalNamespaceNames = $wgCanonicalNamespaceNames + $wgExtraNamespaces;
 }
 
+// Merge in the nasty legacy language codes, unless overridden in the config
+$wgDummyLanguageCodes = $wgDummyLanguageCodes + Language::getDeprecatedCodeMapping();
+
 // These are now the same, always
 // To determine the user language, use $wgLang->getCode()
 $wgContLanguageCode = $wgLanguageCode;
