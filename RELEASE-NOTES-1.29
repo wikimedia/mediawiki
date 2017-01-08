@@ -167,6 +167,7 @@ changes to languages because of Phabricator reports.
 * Linker:getInternalLinkAttributes (deprecated since 1.25) was removed.
 * Linker:getInternalLinkAttributesObj (deprecated since 1.25) was removed.
 * Linker:getLinkAttributesInternal (deprecated since 1.25) was removed.
+* Added diffrent tooltip on log-in link in private wiki.
 
 == Compatibility ==
 
