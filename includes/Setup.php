@@ -403,6 +403,14 @@ if ( is_array( $wgExtraNamespaces ) ) {
 	$wgCanonicalNamespaceNames = $wgCanonicalNamespaceNames + $wgExtraNamespaces;
 }
 
+// Merge in the nasty legacy language codes, unless overridden in the config
+if ( !isset( $wgDummyLanguageCodes ) ) {
+	$wgDummyLanguageCodes = [
+		'qqq' => 'qqq', // Used for message documentation
+		'qqx' => 'qqx', // Used for viewing message keys
+	] + $wgExtraLanguageCodes + Language::getDeprecatedCodeMapping();
+}
+
 // These are now the same, always
 // To determine the user language, use $wgLang->getCode()
 $wgContLanguageCode = $wgLanguageCode;
