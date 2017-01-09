@@ -223,7 +223,7 @@
 	"config-profile": "Profilo dei diritti utente:",
 	"config-profile-wiki": "Wiki aperto",
 	"config-profile-no-anon": "Creazione utenza obbligatoria",
-	"config-profile-fishbowl": "Solo editori autorizzati",
+	"config-profile-fishbowl": "Solo utenti autorizzati",
 	"config-profile-private": "Wiki privato",
 	"config-profile-help": "I wiki funzionano meglio se si permette a molte persone di poterli modificare.\nIn MediaWiki, è semplice controllare le ultime modifiche, e ripristinare i danni causati da utenti inesperti o malintenzionati.\n\nTuttavia, molti hanno trovato MediaWiki essere utile in un'ampia varietà di ruoli, e a volte non è facile convincere tutti dei vantaggi della modalità wiki.\nPerciò, fa' la tua scelta.\n\nIl modello <strong>{{int:config-profile-wiki}}</strong> consente a chiunque di modificare, anche senza effettuare l'accesso.\nUn wiki con <strong>{{int:config-profile-no-anon}}</strong> offre una maggiore responsabilità, ma potrebbe scoraggiare i contributori occasionali.\n\nLo scenario <strong>{{int:config-profile-fishbowl}}</strong> consente agli utenti autorizzati di modificare, ma il pubblico può visualizzare le pagine, compresa la cronologia.\nUn <strong>{{int:config-profile-private}}</strong> consente solo agli utenti autorizzati di visualizzare le pagine, lo stesso gruppo può modificarle.\n\nConfigurazioni di diritti utente più complesse sono disponibili dopo l'installazione, vedi la  [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:User_rights parte relativa del manuale].",
 	"config-license": "Copyright e licenza:",
