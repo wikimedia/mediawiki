@@ -33,11 +33,13 @@ INSERT INTO &mw_prefix.mwuser
 
 CREATE TABLE &mw_prefix.user_groups (
   ug_user   NUMBER      DEFAULT 0 NOT NULL,
-  ug_group  VARCHAR2(255)     NOT NULL
+  ug_group  VARCHAR2(255)     NOT NULL,
+  ug_expiry TIMESTAMP(6) WITH TIME ZONE NULL
 );
+ALTER TABLE &mw_prefix.user_groups ADD CONSTRAINT &mw_prefix.user_groups_pk PRIMARY KEY (ug_user,ug_group);
 ALTER TABLE &mw_prefix.user_groups ADD CONSTRAINT &mw_prefix.user_groups_fk1 FOREIGN KEY (ug_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX &mw_prefix.user_groups_u01 ON &mw_prefix.user_groups (ug_user,ug_group);
 CREATE INDEX &mw_prefix.user_groups_i01 ON &mw_prefix.user_groups (ug_group);
+CREATE INDEX &mw_prefix.user_groups_i02 ON &mw_prefix.user_groups (ug_expiry);
 
 CREATE TABLE &mw_prefix.user_former_groups (
   ufg_user   NUMBER      DEFAULT 0 NOT NULL,

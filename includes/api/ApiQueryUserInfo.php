@@ -120,6 +120,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	protected function getCurrentUserInfo() {
+		global $wgContLang;
+
 		$user = $this->getUser();
 		$vals = [];
 		$vals['id'] = intval( $user->getId() );
@@ -141,6 +143,19 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['groups'] = $user->getEffectiveGroups();
 			ApiResult::setArrayType( $vals['groups'], 'array' ); // even if empty
 			ApiResult::setIndexedTagName( $vals['groups'], 'g' ); // even if empty
+		}
+
+		if ( isset( $this->prop['groupmemberships'] ) ) {
+			$ugms = $user->getGroupMemberships();
+			$vals['groupmemberships'] = [];
+			foreach ( $ugms as $group => $ugm ) {
+				$vals['groupmemberships'][] = [
+					'group' => $group,
+					'expiry' => $wgContLang->formatExpiry( $ugm->getExpiry(), TS_ISO_8601 ),
+				];
+			}
+			ApiResult::setArrayType( $vals['groupmemberships'], 'array' ); // even if empty
+			ApiResult::setIndexedTagName( $vals['groupmemberships'], 'groupmembership' ); // even if empty
 		}
 
 		if ( isset( $this->prop['implicitgroups'] ) ) {
@@ -302,6 +317,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'blockinfo',
 					'hasmsg',
 					'groups',
+					'groupmemberships',
 					'implicitgroups',
 					'rights',
 					'changeablegroups',
