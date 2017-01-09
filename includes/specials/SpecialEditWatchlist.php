@@ -629,7 +629,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		if ( $title->exists() ) {
 			$tools['history'] = $linkRenderer->makeKnownLink(
 				$title,
-				$this->msg( 'history_short' )->text(),
+				$this->msg( 'history_small' )->text(),
 				[],
 				[ 'action' => 'history' ]
 			);
