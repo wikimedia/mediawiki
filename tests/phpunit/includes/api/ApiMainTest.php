@@ -546,7 +546,9 @@ class ApiMainTest extends ApiTestCase {
 						[ 'code' => 'existing-error', 'text' => 'existing error', 'module' => 'main' ],
 						[ 'code' => 'ue', 'text' => "Usage exception!", 'data' => [ 'foo' => 'bar' ] ]
 					],
-					'docref' => "See $doclink for API usage.",
+					'docref' => "See $doclink for API usage. Subscribe to " .
+						"mediawiki-api-announce@lists.wikimedia.org for notice of API deprecations " .
+						"and breaking changes.",
 					'servedby' => wfHostname(),
 				]
 			],
@@ -564,7 +566,9 @@ class ApiMainTest extends ApiTestCase {
 						[ 'code' => 'sv-error1', 'text' => 'An error', 'module' => 'foo+bar' ],
 						[ 'code' => 'sv-error2', 'text' => 'Another error', 'module' => 'foo+bar' ],
 					],
-					'docref' => "See $doclink for API usage.",
+					'docref' => "See $doclink for API usage. Subscribe to " .
+						"mediawiki-api-announce@lists.wikimedia.org for notice of API deprecations " .
+						"and breaking changes.",
 					'servedby' => wfHostname(),
 				]
 			],
