@@ -1718,6 +1718,18 @@ abstract class ApiBase extends ContextSource {
 			$this->logFeatureUsage( $feature );
 		}
 		$this->addWarning( $msg, 'deprecation', $data );
+
+		// No real need to deduplicate here, ApiErrorFormatter does that for
+		// us (assuming the hook is deterministic).
+		$msgs = [ $this->msg( 'api-usage-mailinglist-ref' ) ];
+		Hooks::run( 'ApiDeprecationHelp', [ &$msgs ] );
+		if ( count( $msgs ) > 1 ) {
+			$key = '$' . join( ' $', range( 1, count( $msgs ) ) );
+			$msg = ( new RawMessage( $key ) )->params( $msgs );
+		} else {
+			$msg = reset( $msgs );
+		}
+		$this->getMain()->addWarning( $msg, 'deprecation-help' );
 	}
 
 	/**
