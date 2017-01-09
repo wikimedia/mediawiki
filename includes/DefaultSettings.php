@@ -4788,7 +4788,7 @@ $wgReservedUsernames = [
  */
 $wgDefaultUserOptions = [
 	'ccmeonemails' => 0,
-	'cols' => 80,
+	'cols' => 80, // @deprecated since 1.29 No longer used in core
 	'date' => 'default',
 	'diffonly' => 0,
 	'disablemail' => 0,
@@ -4818,7 +4818,7 @@ $wgDefaultUserOptions = [
 	'rcdays' => 7,
 	'rcenhancedfilters' => 0,
 	'rclimit' => 50,
-	'rows' => 25,
+	'rows' => 25, // @deprecated since 1.29 No longer used in core
 	'showhiddencats' => 0,
 	'shownumberswatching' => 1,
 	'showtoolbar' => 1,

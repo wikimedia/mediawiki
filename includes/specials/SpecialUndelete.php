@@ -1141,8 +1141,8 @@ class SpecialUndelete extends SpecialPage {
 				'textarea',
 				[
 					'readonly' => 'readonly',
-					'cols' => $user->getIntOption( 'cols' ),
-					'rows' => $user->getIntOption( 'rows' )
+					'cols' => 80,
+					'rows' => 25
 				],
 				$content->getNativeData() . "\n"
 			);
