@@ -1109,7 +1109,11 @@ class ApiMain extends ApiBase {
 			$result->addContentValue(
 				$path,
 				'docref',
-				$this->msg( 'api-usage-docref', $link )->inLanguage( $formatter->getLanguage() )->text()
+				trim(
+					$this->msg( 'api-usage-docref', $link )->inLanguage( $formatter->getLanguage() )->text()
+					. ' '
+					. $this->msg( 'api-usage-mailinglist-ref' )->inLanguage( $formatter->getLanguage() )->text()
+				)
 			);
 		} else {
 			if ( $config->get( 'ShowExceptionDetails' ) ) {
