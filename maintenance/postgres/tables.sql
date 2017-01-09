@@ -58,10 +58,13 @@ INSERT INTO mwuser
   VALUES (DEFAULT,'Anonymous','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,now(),now());
 
 CREATE TABLE user_groups (
-  ug_user   INTEGER      NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  ug_group  TEXT     NOT NULL
+  ug_user    INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  ug_group   TEXT         NOT NULL,
+  ug_expiry  TIMESTAMPTZ  NULL,
+  PRIMARY KEY(ug_user, ug_group)
 );
-CREATE UNIQUE INDEX user_groups_unique ON user_groups (ug_user, ug_group);
+CREATE INDEX user_groups_group  ON user_groups (ug_group);
+CREATE INDEX user_groups_expiry ON user_groups (ug_expiry);
 
 CREATE TABLE user_former_groups (
   ufg_user   INTEGER      NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
