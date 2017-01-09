@@ -365,6 +365,11 @@ $user: Current user
  * 1.27+: IApiMessage, or a key or key+parameters in ApiBase::$messageMap.
  * Earlier: A key or key+parameters in ApiBase::$messageMap.
 
+'ApiDeprecationHelp': Add messages to the 'deprecation-help' warning generated
+from ApiBase::addDeprecation().
+&$msgs: Message[] Messages to include in the help. Multiple messages will be
+  joined with spaces.
+
 'APIEditBeforeSave': DEPRECATED! Use EditFilterMergedContent instead.
 Before saving a page with api.php?action=edit, after
 processing request parameters. Return false to let the request fail, returning
