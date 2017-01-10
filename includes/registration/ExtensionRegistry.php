@@ -41,11 +41,6 @@ class ExtensionRegistry {
 	const MERGE_STRATEGY = '_merge_strategy';
 
 	/**
-	 * @var BagOStuff
-	 */
-	protected $cache;
-
-	/**
 	 * Array of loaded things, keyed by name, values are credits information
 	 *
 	 * @var array
@@ -88,16 +83,6 @@ class ExtensionRegistry {
 		}
 
 		return self::$instance;
-	}
-
-	public function __construct() {
-		// We use a try/catch because we don't want to fail here
-		// if $wgObjectCaches is not configured properly for APC setup
-		try {
-			$this->cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
-		} catch ( MWException $e ) {
-			$this->cache = new EmptyBagOStuff();
-		}
 	}
 
 	/**
@@ -144,12 +129,19 @@ class ExtensionRegistry {
 			'mediawiki' => $wgVersion
 		];
 
+		// We use a try/catch because we don't want to fail here
+		// if $wgObjectCaches is not configured properly for APC setup
+		try {
+			$cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
+		} catch ( MWException $e ) {
+			$cache = new EmptyBagOStuff();
+		}
 		// See if this queue is in APC
 		$key = wfMemcKey(
 			'registration',
 			md5( json_encode( $this->queued + $versions ) )
 		);
-		$data = $this->cache->get( $key );
+		$data = $cache->get( $key );
 		if ( $data ) {
 			$this->exportExtractedData( $data );
 		} else {
@@ -159,7 +151,7 @@ class ExtensionRegistry {
 			// did that, but it should be cached
 			$data['globals']['wgAutoloadClasses'] += $data['autoload'];
 			unset( $data['autoload'] );
-			$this->cache->set( $key, $data, 60 * 60 * 24 );
+			$cache->set( $key, $data, 60 * 60 * 24 );
 		}
 		$this->queued = [];
 	}
