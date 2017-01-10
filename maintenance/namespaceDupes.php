@@ -25,6 +25,7 @@
  */
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -224,7 +225,7 @@ class NamespaceConflictChecker extends Maintenance {
 	 * @return array
 	 */
 	private function getInterwikiList() {
-		$result = Interwiki::getAllPrefixes();
+		$result = MediaWikiServices::getInstance()->getInterwikiLookup()->getAllPrefixes();
 		$prefixes = [];
 		foreach ( $result as $row ) {
 			$prefixes[] = $row['iw_prefix'];

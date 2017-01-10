@@ -23,6 +23,7 @@
  * @file
  * @ingroup SpecialPage
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Imports a XML dump from a file (either from file upload, files on disk, or HTTP)
@@ -148,7 +149,8 @@ class ImportStreamSource implements ImportSource {
 		# Look up the first interwiki prefix, and let the foreign site handle
 		# subsequent interwiki prefixes
 		$firstIwPrefix = strtok( $interwiki, ':' );
-		$firstIw = Interwiki::fetch( $firstIwPrefix );
+		$interwikiLookup = MediaWikiServices::getInstance()->getInterwikiLookup();
+		$firstIw = $interwikiLookup->fetch( $firstIwPrefix );
 		if ( !$firstIw ) {
 			return Status::newFatal( 'importbadinterwiki' );
 		}

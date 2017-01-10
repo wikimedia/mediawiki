@@ -23,6 +23,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * A query action to return meta information about the wiki site.
@@ -388,7 +389,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$langCode = isset( $params['inlanguagecode'] ) ? $params['inlanguagecode'] : '';
 		$langNames = Language::fetchLanguageNames( $langCode );
 
-		$getPrefixes = Interwiki::getAllPrefixes( $local );
+		$getPrefixes = MediaWikiServices::getInstance()->getInterwikiLookup()->getAllPrefixes( $local );
 		$extraLangPrefixes = $this->getConfig()->get( 'ExtraInterlanguageLinkPrefixes' );
 		$localInterwikis = $this->getConfig()->get( 'LocalInterwikis' );
 		$data = [];

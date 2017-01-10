@@ -21,6 +21,7 @@
  * @license GPL 2+
  * @author Daniel Kinzler
  */
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\LinkTarget;
 
 /**
@@ -309,6 +310,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 			if ( preg_match( $prefixRegexp, $dbkey, $m ) ) {
 				$p = $m[1];
 				$ns = $this->language->getNsIndex( $p );
+				$interwikiLookup = MediaWikiServices::getInstance()->getInterwikiLookup();
 				if ( $ns !== false ) {
 					# Ordinary namespace
 					$dbkey = $m[2];
@@ -318,13 +320,13 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 						if ( $this->language->getNsIndex( $x[1] ) ) {
 							# Disallow Talk:File:x type titles...
 							throw new MalformedTitleException( 'title-invalid-talk-namespace', $text );
-						} elseif ( Interwiki::isValidInterwiki( $x[1] ) ) {
+						} elseif ( $interwikiLookup->isValidInterwiki( $x[1] ) ) {
 							// TODO: get rid of global state!
 							# Disallow Talk:Interwiki:x type titles...
 							throw new MalformedTitleException( 'title-invalid-talk-namespace', $text );
 						}
 					}
-				} elseif ( Interwiki::isValidInterwiki( $p ) ) {
+				} elseif ( $interwikiLookup->isValidInterwiki( $p ) ) {
 					# Interwiki link
 					$dbkey = $m[2];
 					$parts['interwiki'] = $this->language->lc( $p );
