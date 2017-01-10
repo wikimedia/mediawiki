@@ -81,6 +81,11 @@ class SpecialVersion extends SpecialPage {
 				$wikiText = '{{int:version-credits-not-found}}';
 				if ( $extName === 'MediaWiki' ) {
 					$wikiText = file_get_contents( $IP . '/CREDITS' );
+					// Put the contributor list into columns
+					$wikiText = str_replace(
+						[ '<!-- BEGIN CONTRIBUTOR LIST -->', '<!-- END CONTRIBUTOR LIST -->' ],
+						[ '<div style="column-width: 18em">', '</div>' ],
+						$wikiText );
 				} elseif ( ( $extNode !== null ) && isset( $extNode['path'] ) ) {
 					$file = $this->getExtAuthorsFileName( dirname( $extNode['path'] ) );
 					if ( $file ) {
