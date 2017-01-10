@@ -148,7 +148,8 @@ class ImportStreamSource implements ImportSource {
 		# Look up the first interwiki prefix, and let the foreign site handle
 		# subsequent interwiki prefixes
 		$firstIwPrefix = strtok( $interwiki, ':' );
-		$firstIw = Interwiki::fetch( $firstIwPrefix );
+		$interwikiLookup = MediaWiki\MediaWikiServices::getInstance()->getInterwikiLookup();
+		$firstIw = $interwikiLookup->fetch( $firstIwPrefix );
 		if ( !$firstIw ) {
 			return Status::newFatal( 'importbadinterwiki' );
 		}

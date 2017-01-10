@@ -224,7 +224,7 @@ class NamespaceConflictChecker extends Maintenance {
 	 * @return array
 	 */
 	private function getInterwikiList() {
-		$result = Interwiki::getAllPrefixes();
+		$result = MediaWiki\MediaWikiServices::getInstance()->getInterwikiLookup()->getAllPrefixes();
 		$prefixes = [];
 		foreach ( $result as $row ) {
 			$prefixes[] = $row['iw_prefix'];
