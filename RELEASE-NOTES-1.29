@@ -6,8 +6,8 @@ MediaWiki 1.29 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.29 ===
-* Default cookie expiration time has been reduced to 30 days. Login cookie expiration time is
-  kept at 180 days.
+* Default cookie expiration time has been reduced to 30 days. Login cookie
+  expiration time is kept at 180 days.
 * A new configuration variable has been added: $wgCookieSetOnAutoblock. This
   determines whether to set a cookie when a user is autoblocked. Doing so means
   that a blocked user, even after logging out and moving to a new IP address,
@@ -22,15 +22,16 @@ production.
   code for ApiBase::parseMsg() will no longer work.
 * ApiBase::$messageMap is no longer public. Code attempting to access it will
   result in a PHP fatal error.
-* $wgUserEmailUseReplyTo is now true by default to work around restrictive DMARC policies.
+* $wgUserEmailUseReplyTo is now true by default to work around restrictive DMARC
+  policies.
 * Subpages are now enabled by default in the Template namespace. Set
   $wgNamespacesWithSubpages[NS_TEMPLATE] to false to keep the old behavior.
 * $wgRunJobsAsync is now false by default (T142751). This change only affects
   wikis with $wgJobRunRate > 0.
 
 === New features in 1.29 ===
-* (T5233) A cookie can now be set when a user is autoblocked, to track that user if
-  they move to a new IP address. This is disabled by default.
+* (T5233) A cookie can now be set when a user is autoblocked, to track that user
+  if they move to a new IP address. This is disabled by default.
 * Added ILocalizedException interface to standardize the use of localized
   exceptions, largely so the API can handle them more sensibly.
 * Blocks created automatically by MediaWiki, such as for configured proxies or
@@ -143,7 +144,7 @@ changes to languages because of Phabricator reports.
 * Xml::escapeJsString() (deprecated in 1.21) was removed.
 * Article::getText() and Article::prepareTextForEdit() (deprecated in 1.21)
   were removed.
-* Article::getAutosummary() and WikiPage::getAutosummary (deprecated in 1.21)
+* Article::getAutosummary() and WikiPage::getAutosummary() (deprecated in 1.21)
   were removed.
 * Hooks ArticleViewCustom, EditPageGetDiffText and ShowRawCssJs (deprecated in 1.21)
   were removed.
@@ -154,19 +155,19 @@ changes to languages because of Phabricator reports.
 * User::getPassword() (deprecated in 1.27) was removed.
 * User::getTemporaryPassword() (deprecated in 1.27) was removed.
 * User::isPasswordReminderThrottled() (deprecated in 1.27) was removed.
-* FSRepo (deprecated in 1.19) was removed.
+* Class FSRepo (deprecated in 1.19) was removed.
 * WebRequest::checkSessionCookie() (deprecated in 1.27) was removed. Use
-\MediaWiki\Session\SessionManager::singleton()->getPersistedSessionId() instead.
+  \MediaWiki\Session\SessionManager::singleton()->getPersistedSessionId() instead.
 * Class ImageGallery (deprecated in 1.22) was removed.
   Use ImageGalleryBase::factory instead.
 * Title::moveNoAuth() (deprecated in 1.25) was removed. Use MovePage class instead.
-* Hook UnknownAction (deprecated in 1.19) was actually deprecated (it will now emit warnings).
-  Create a subclass of Action, and add it to $wgActions instead.
-* WikiRevision:getText() (deprecated since 1.21) is no longer marked deprecated.
-* Linker:getInterwikiLinkAttributes (deprecated since 1.25) was removed.
-* Linker:getInternalLinkAttributes (deprecated since 1.25) was removed.
-* Linker:getInternalLinkAttributesObj (deprecated since 1.25) was removed.
-* Linker:getLinkAttributesInternal (deprecated since 1.25) was removed.
+* Hook UnknownAction (deprecated in 1.19) was actually deprecated (it will now
+  emit warnings). Create a subclass of Action and add it to $wgActions instead.
+* WikiRevision::getText() (deprecated since 1.21) is no longer marked deprecated.
+* Linker::getInterwikiLinkAttributes() (deprecated since 1.25) was removed.
+* Linker::getInternalLinkAttributes() (deprecated since 1.25) was removed.
+* Linker::getInternalLinkAttributesObj() (deprecated since 1.25) was removed.
+* Linker::getLinkAttributesInternal() (deprecated since 1.25) was removed.
 
 == Compatibility ==
 
