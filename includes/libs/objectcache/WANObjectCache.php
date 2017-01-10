@@ -1358,7 +1358,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			return false;
 		}
 
-		// Lifecycle is: new, ramp-up refresh chance, full refresh chance
+		// Lifecycle is: new, ramp-up refresh chance, full refresh chance.
+		// Note that the "expected # of refreshes" for the ramp-up time range is half of what it
+		// would be if P(refresh) was at its full value during that time range.
 		$refreshWindowSec = max( $timeTillRefresh - $ageNew - self::RAMPUP_TTL / 2, 1 );
 		// P(refresh) * (# hits in $refreshWindowSec) = (expected # of refreshes)
 		// P(refresh) * ($refreshWindowSec * $popularHitsPerSec) = 1
