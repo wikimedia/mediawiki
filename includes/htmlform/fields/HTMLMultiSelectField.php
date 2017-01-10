@@ -25,6 +25,8 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		if ( isset( $params['flatlist'] ) ) {
 			$this->mClass .= ' mw-htmlform-flatlist';
 		}
+
+		$this->mClass .= ' mw-htmlform-multiselect';
 	}
 
 	public function validate( $value, $alldata ) {

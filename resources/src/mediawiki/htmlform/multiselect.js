@@ -16,15 +16,16 @@
 			'data-placeholder': dataPlaceholder.plain(),
 			'class': 'htmlform-chzn-select mw-input ' + oldClass
 		} );
-		$oldContainer.find( 'input' ).each( function () {
-			var $oldInput = $( this ),
+		$oldContainer.find( '.mw-htmlform-flatlist-item' ).each( function () {
+			var $oldInput = $( this ).find( 'input' ),
+				$oldLabel = $( this ).find( 'label' ),
 				checked = $oldInput.prop( 'checked' ),
 				$option = $( '<option>' );
 			$option.prop( 'value', $oldInput.prop( 'value' ) );
 			if ( checked ) {
 				$option.prop( 'selected', true );
 			}
-			$option.text( $oldInput.prop( 'value' ) );
+			$option.text( $oldLabel.text() );
 			$select.append( $option );
 		} );
 		$container.append( $select );
@@ -55,6 +56,10 @@
 	function convertCheckboxesWidgetToCapsules( fieldLayout ) {
 		var checkboxesWidget, checkboxesOptions, capsulesOptions, capsulesWidget;
 
+		if ( !fieldLayout.hasOwnProperty( 'fieldWidget' ) ) {
+			return;
+		}
+
 		checkboxesWidget = fieldLayout.fieldWidget;
 		checkboxesOptions = checkboxesWidget.checkboxMultiselectWidget.getItems();
 		capsulesOptions = checkboxesOptions.map( function ( option ) {
@@ -83,7 +88,7 @@
 	}
 
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
-		var $dropdowns = $root.find( '.mw-htmlform-field-HTMLMultiSelectField.mw-htmlform-dropdown' );
+		var $dropdowns = $root.find( '.mw-htmlform-multiselect.mw-htmlform-dropdown' );
 		if ( $dropdowns.length ) {
 			$dropdowns.each( function () {
 				var $el = $( this ),
