@@ -4,7 +4,6 @@ namespace MediaWiki\Session;
 
 use Psr\Log\LogLevel;
 use MediaWikiTestCase;
-use User;
 
 /**
  * @group Session
