@@ -128,9 +128,10 @@ class SpecialBlock extends FormSpecialPage {
 	protected function getFormFields() {
 		global $wgBlockAllowsUTEdit;
 		if ( !wfMessage( 'ipbreason-dropdown' )->inContentLanguage()->isDisabled() ) {
+			$reasonsList =  Xml::dropdownToArray( wfMessage( 'ipbreason-dropdown' )->inContentLanguage()->text() );
 			$this->getOutput()->addModules( 'mediawiki.reasonSuggest' );
 			$this->getOutput()->addJsConfigVars( [
-				'reasons' => 'ipbreason-dropdown'
+				'reasons' => $reasonsList
 			] );
 		}
 		$user = $this->getUser();
