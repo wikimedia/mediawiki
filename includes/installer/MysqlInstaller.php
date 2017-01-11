@@ -312,7 +312,7 @@ class MysqlInstaller extends DatabaseInstaller {
 				'IS_GRANTABLE' => 1,
 			], __METHOD__ );
 		foreach ( $res as $row ) {
-			$regex = $conn->likeToRegex( $row->TABLE_SCHEMA );
+			$regex = $this->likeToRegex( $row->TABLE_SCHEMA );
 			if ( preg_match( $regex, $this->getVar( 'wgDBname' ) ) ) {
 				unset( $grantOptions[$row->PRIVILEGE_TYPE] );
 			}
@@ -323,6 +323,19 @@ class MysqlInstaller extends DatabaseInstaller {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Convert a wildcard (as used in LIKE) to a regex
+	 * Slashes are escaped, slash terminators included
+	 */
+	protected function likeToRegex( $wildcard ) {
+		$r = preg_quote( $wildcard, '/' );
+		$r = strtr( $r, [
+			'%' => '.*',
+			'_' => '.'
+		] );
+		return "/$r/s";
 	}
 
 	/**
