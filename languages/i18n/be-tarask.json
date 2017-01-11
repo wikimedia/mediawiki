@@ -1310,6 +1310,8 @@
 	"rcfilters-filter-editsbyother-description": "Праўкі, зробленыя іншымі ўдзельнікамі (ня вамі)",
 	"rcfilters-filtergroup-userExpLevel": "Узровень досьведу ўдзельнікаў",
 	"rcfilters-filter-userExpLevel-newcomer-label": "Навічкі",
+	"rcfilters-filter-userExpLevel-newcomer-description": "Зусім новыя рэдактары: менш за 10 правак і 4 дні актыўнасьці.",
+	"rcfilters-filter-userExpLevel-learner-label": "Вучні",
 	"rcnotefrom": "Ніжэй {{PLURAL:$5|знаходзіцца зьмена|знаходзяцца зьмены}} з <strong>$4 $3</strong> (да <strong>$1</strong> на старонку).",
 	"rclistfrom": "Паказаць зьмены з $2 $3",
 	"rcshowhideminor": "$1 дробныя праўкі",

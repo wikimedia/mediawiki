@@ -2741,7 +2741,7 @@
 	"pageinfo-recent-edits": "最近编辑数（过去$1内）",
 	"pageinfo-recent-authors": "最近的不同作者数",
 	"pageinfo-magic-words": "魔术字（$1）",
-	"pageinfo-hidden-categories": "隐藏分类（$1）",
+	"pageinfo-hidden-categories": "隐藏{{PLURAL:$1|分类}}（$1）",
 	"pageinfo-templates": "使用的模板（$1）",
 	"pageinfo-transclusions": "包含该页的页面（$1）",
 	"pageinfo-toolboxlink": "页面信息",
