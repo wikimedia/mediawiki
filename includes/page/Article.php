@@ -1674,9 +1674,12 @@ class Article implements Page {
 		$ctx = $this->getContext();
 		$outputPage = $ctx->getOutput();
 		if ( !wfMessage( 'deletereason-dropdown' )->inContentLanguage()->isDisabled() ) {
+			$reasonsList =  Xml::dropdownToArray(
+				wfMessage( 'deletereason-dropdown' )->inContentLanguage()->text()
+			);
 			$outputPage->addModules( 'mediawiki.reasonSuggest' );
 			$outputPage->addJsConfigVars( [
-				'reasons' => 'deletereason-dropdown'
+				'reasons' => $reasonsList
 			] );
 		}
 		$useMediaWikiUIEverywhere = $ctx->getConfig()->get( 'UseMediaWikiUIEverywhere' );
@@ -1693,7 +1696,6 @@ class Article implements Page {
 		Hooks::run( 'ArticleConfirmDelete', [ $this, $outputPage, &$reason ] );
 
 		$user = $this->getContext()->getUser();
-
 		if ( $user->isAllowed( 'suppressrevision' ) ) {
 			$suppress = Html::openElement( 'div', [ 'id' => 'wpDeleteSuppressRow' ] ) .
 				Xml::checkLabel( wfMessage( 'revdelete-suppress' )->text(),
@@ -1703,7 +1705,6 @@ class Article implements Page {
 			$suppress = '';
 		}
 		$checkWatch = $user->getBoolOption( 'watchdeletion' ) || $user->isWatched( $title );
-
 		$form = Html::openElement( 'form', [ 'method' => 'post',
 			'action' => $title->getLocalURL( 'action=delete' ), 'id' => 'deleteconfirm' ] ) .
 			Html::openElement( 'fieldset', [ 'id' => 'mw-delete-table' ] ) .

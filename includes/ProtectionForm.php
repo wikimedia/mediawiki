@@ -184,9 +184,12 @@ class ProtectionForm {
 
 		$out = $this->mContext->getOutput();
 		if ( !wfMessage( 'protect-dropdown' )->inContentLanguage()->isDisabled() ) {
+			$reasonsList =  Xml::dropdownToArray(
+				wfMessage( 'protect-dropdown' )->inContentLanguage()->text()
+			);
 			$out->addModules( 'mediawiki.reasonSuggest' );
 			$out->addJsConfigVars( [
-				'reasons' => 'protect-dropdown'
+				'reasons' => $reasonsList
 			] );
 		}
 
