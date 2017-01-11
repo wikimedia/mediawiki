@@ -175,6 +175,8 @@ changes to languages because of Phabricator reports.
 * Linker::getInternalLinkAttributesObj() (deprecated since 1.25) was removed.
 * Linker::getLinkAttributesInternal() (deprecated since 1.25) was removed.
 * RedisConnectionPool::handleException (deprecated since 1.23) was removed.
+* The static properties mw.Api.errors and mw.Api.warnings, containing incomplete
+  and outdated lists of errors/warnings returned by the API, are now deprecated.
 
 == Compatibility ==
 
