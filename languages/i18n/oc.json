@@ -16,7 +16,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Xð",
-			"Nicolas Eynaud"
+			"Nicolas Eynaud",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Soslinhar los ligams :",
@@ -1727,7 +1728,7 @@
 	"linksearch-error": "Los caractèrs « joker » pòdon pas èsser utilizats qu’al començament del nom de domeni.",
 	"listusersfrom": "Afichar los utilizaires a partir de :",
 	"listusers-submit": "Mostrar",
-	"listusers-noresult": "S'es pas trobat de noms d'utilizaires correspondents. Cercatz tanben amb de majusculas e minusculas.",
+	"listusers-noresult": "Cap d’utilizaires pas trobat.",
 	"listusers-blocked": "(blocat)",
 	"activeusers": "Lista dels utilizaires actius",
 	"activeusers-intro": "Aquò es una lista dels utilizaires qu'an exerçat una activitat quina que siá al cors {{PLURAL:$1|de la darrièra jornada|dels $1 darrièrs jorns}}.",

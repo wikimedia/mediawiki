@@ -11,7 +11,8 @@
 			"Elyashiv",
 			"Umherirrender",
 			"Macofe",
-			"MojoMann"
+			"MojoMann",
+			"Mikey641"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|תיעוד]]\n* [[mw:API:FAQ|שו\"ת]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api רשימת דיוור]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce הודעות על API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R באגים ובקשות]\n</div>\n<strong>מצב:</strong> כל האפשרויות שמוצגות בדף הזה אמורות לעבוד, אבל ה־API עדיין בפיתוח פעיל, ויכול להשתנות בכל זמן. עשו מינוי ל[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ רשימת הדיוור mediawiki-api-announce] להודעות על עדכונים.\n\n<strong>בקשות שגויות:</strong> כשבקשות שגויות נשלחות ל־API, תישלח כותרת HTTP עם המפתח \"MediaWiki-API-Error\" ואז גם הערך של הכותרת וגם קוד השגיאה יוגדרו לאותו ערך. למידע נוסף ר' [[mw:API:Errors_and_warnings|API: שגיאות ואזהרות]].\n\n<strong>בדיקה:</strong> לבדיקה קלה יותר של בקשות ר' [[Special:ApiSandbox]].",
@@ -1261,6 +1262,9 @@
 	"apihelp-setnotificationtimestamp-example-page": "אתחול מצב ההודעה עבור <kbd>Main Page</kbd>.",
 	"apihelp-setnotificationtimestamp-example-pagetimestamp": "הגדרת חותם־הזמן להודעה ל־<kbd>Main page</kbd> כך שכל העריכות מאז 1 בינואר 2012 מוגדרות בתור כאלה שלא נצפו.",
 	"apihelp-setnotificationtimestamp-example-allpages": "אתחול מצב ההודעה עבור דפים במרחב השם <kbd>{{ns:user}}</kbd>.",
+	"apihelp-setpagelanguage-description": "שנה את השפה של דף",
+	"apihelp-setpagelanguage-description-disabled": "שינוי השפה של דף לא מורשה בוויקי זה.\n\nהפעל את <var>[[mw:Manual:$wgPageLanguageUseDB|$wgPageLanguageUseDB]]</var> על מנת להשתמש בפעולה זו",
+	"apihelp-setpagelanguage-param-title": "כותרת הדף שאת שפתו ברצונך לשנות. לא אפשרי להשתמש באפשרות עם <var>$1pageid</var>.",
 	"apihelp-setpagelanguage-param-tags": "אילו תגי שינוי להחיל על העיול ביומן שמתבצע כתוצאה מהפעולה הזאת.",
 	"apihelp-stashedit-description": "הכנת עריכה במטמון משותף.\n\nזה מיועד לשימוש דרך AJAX מתוך ערך כדי לשפר את הביצועים של שמירת הדף.",
 	"apihelp-stashedit-param-title": "כותרת הדף הנערך.",

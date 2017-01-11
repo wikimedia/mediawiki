@@ -1333,7 +1333,7 @@
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "Näytä",
 	"rcnotefrom": "Alla ovat muutokset <strong>$3, $4</strong> lähtien. (Enintään <strong>$1</strong> näytetään.)",
-	"rclistfrom": "Näytä uudet muutokset $3 $2 alkaen",
+	"rclistfrom": "Näytä uudet muutokset $3 kello $2 alkaen",
 	"rcshowhideminor": "$1 pienet muutokset",
 	"rcshowhideminor-show": "Näytä",
 	"rcshowhideminor-hide": "Piilota",

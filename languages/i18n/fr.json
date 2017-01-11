@@ -150,7 +150,8 @@
 			"Mabroukb",
 			"Pymouss",
 			"Derugon",
-			"Benoit Rochon"
+			"Benoit Rochon",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -2046,7 +2047,7 @@
 	"linksearch-error": "Les caractères jokers ne peuvent être utilisés qu'au début du nom de domaine de l'hôte.",
 	"listusersfrom": "Afficher les utilisateurs à partir de :",
 	"listusers-submit": "Lister",
-	"listusers-noresult": "Aucun utilisateur trouvé. Vérifiez aussi les variantes de casse.",
+	"listusers-noresult": "Aucun utilisateur trouvé.",
 	"listusers-blocked": "(bloqué{{GENDER:$1||e}})",
 	"activeusers": "Liste des utilisateurs actifs",
 	"activeusers-intro": "Ceci est une liste des utilisateurs qui ont exercé une quelconque activité au cours {{PLURAL:$1|de la dernière journée|des $1 derniers jours}}.",
