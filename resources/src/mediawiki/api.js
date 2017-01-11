@@ -427,9 +427,8 @@
 	/**
 	 * @static
 	 * @property {Array}
-	 * List of errors we might receive from the API.
-	 * For now, this just documents our expectation that there should be similar messages
-	 * available.
+	 * Very incomplete and outdated list of errors we might receive from the API. Do not use.
+	 * @deprecated since 1.29
 	 */
 	mw.Api.errors = [
 		// occurs when POST aborted
@@ -487,17 +486,18 @@
 		'stashwrongowner',
 		'stashnosuchfilekey'
 	];
+	mw.log.deprecate( mw.Api, 'errors', mw.Api.errors );
 
 	/**
 	 * @static
 	 * @property {Array}
-	 * List of warnings we might receive from the API.
-	 * For now, this just documents our expectation that there should be similar messages
-	 * available.
+	 * Very incomplete and outdated list of warnings we might receive from the API. Do not use.
+	 * @deprecated since 1.29
 	 */
 	mw.Api.warnings = [
 		'duplicate',
 		'exists'
 	];
+	mw.log.deprecate( mw.Api, 'warnings', mw.Api.warnings );
 
 }( mediaWiki, jQuery ) );
