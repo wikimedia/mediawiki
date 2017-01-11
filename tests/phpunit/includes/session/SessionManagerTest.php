@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Session;
 
-use AuthPlugin;
 use MediaWikiTestCase;
 use Psr\Log\LogLevel;
 use User;

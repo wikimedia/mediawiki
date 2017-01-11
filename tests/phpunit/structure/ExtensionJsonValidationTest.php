@@ -16,9 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-use Composer\Spdx\SpdxLicenses;
-use JsonSchema\Validator;
-
 /**
  * Validates all loaded extensions and skins using the ExtensionRegistry
  * against the extension.json schema in the docs/ folder.
