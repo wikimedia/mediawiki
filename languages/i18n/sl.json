@@ -1726,6 +1726,7 @@
 	"uncategorizedcategories": "Nekategorizirane kategorije",
 	"uncategorizedimages": "Nekategorizirane datoteke",
 	"uncategorizedtemplates": "Nekategorizirane predloge",
+	"uncategorized-categories-exceptionlist": " # Contains a list of catgeories, which shouldn't be mentioned on Special:UncategorizedCategories. One per line, starting with \"*\". Lines starting with another character (including whitespaces) are ignored. Use \"#\" for comments.",
 	"unusedcategories": "Osirotele kategorije",
 	"unusedimages": "Osirotele datoteke",
 	"wantedcategories": "Želene kategorije",

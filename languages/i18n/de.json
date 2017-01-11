@@ -1805,6 +1805,7 @@
 	"uncategorizedcategories": "Nicht kategorisierte Kategorien",
 	"uncategorizedimages": "Nicht kategorisierte Dateien",
 	"uncategorizedtemplates": "Nicht kategorisierte Vorlagen",
+	"uncategorized-categories-exceptionlist": " # Enthält eine Liste der Kategorien, die nicht auf Spezial:Nicht_kategorisierte_Kategorien erwähnt werden sollen. Eine pro Zeile. Beginne mit „*“. Zeilen, die mit einem anderen Zeichen beginnen (inklusive Leerzeichen), werden ignoriert. Für Kommentare verwende „#“.",
 	"unusedcategories": "Verwaiste Kategorien",
 	"unusedimages": "Verwaiste Dateien",
 	"wantedcategories": "Gewünschte Kategorien",

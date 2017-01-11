@@ -905,7 +905,7 @@
 	"revdelete-hide-image": "Приховати вміст файлу",
 	"revdelete-hide-name": "Приховати цілі та параметри",
 	"revdelete-hide-comment": "Коментар редагування",
-	"revdelete-hide-user": "Ім'я автора/IP адреса",
+	"revdelete-hide-user": "Ім'я редактора/IP-адреса",
 	"revdelete-hide-restricted": "Приховати дані також і від адміністраторів",
 	"revdelete-radio-same": "(не змінювати)",
 	"revdelete-radio-set": "Приховано",
