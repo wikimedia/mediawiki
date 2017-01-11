@@ -1196,6 +1196,29 @@ class ApiResult implements ApiSerializable {
 		}
 	}
 
+	/**
+	 * Format an expiry timestamp for API output
+	 * @since 1.29
+	 * @param string $expiry Expiry timestamp, likely from the database
+	 * @param string $infinity Use this string for infinite expiry
+	 *  (only use this to maintain backward compatibility with existing output)
+	 * @return string Formatted expiry
+	 */
+	public static function formatExpiry( $expiry, $infinity = 'infinity' ) {
+		static $dbInfinity;
+		if ( $dbInfinity === null ) {
+			$dbInfinity = wfGetDB( DB_REPLICA )->getInfinity();
+		}
+
+		if ( $expiry === '' || $expiry === null || $expiry === false ||
+			wfIsInfinity( $expiry ) || $expiry === $dbInfinity
+		) {
+			return $infinity;
+		} else {
+			return wfTimestamp( TS_ISO_8601, $expiry );
+		}
+	}
+
 	/**@}*/
 
 }
