@@ -7,6 +7,8 @@ This is not a release yet!
   wikis with $wgJobRunRate > 0.
 * Fix fatal from "WaitConditionLoop" not being found, experienced when a wiki has
   more than one database server setup.
+* (T154670) A missing method causing the MySQL installer to fatal in rare
+  circumstances was restored.
 
 == MediaWiki 1.28 ==
 
