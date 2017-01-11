@@ -335,7 +335,8 @@
 						} );
 					} else if ( Util.apiBool( pi.multi ) ) {
 						widget = new OO.ui.CapsuleMultiselectWidget( {
-							allowArbitrary: true
+							allowArbitrary: true,
+							allowDuplicates: Util.apiBool( pi.allowsduplicates )
 						} );
 						widget.paramInfo = pi;
 						$.extend( widget, WidgetMethods.capsuleWidget );
@@ -532,6 +533,7 @@
 
 				widget = new OO.ui.CapsuleMultiselectWidget( {
 					allowArbitrary: true,
+					allowDuplicates: Util.apiBool( pi.allowsduplicates ),
 					popup: {
 						classes: [ 'mw-apisandbox-popup' ],
 						$content: $content
