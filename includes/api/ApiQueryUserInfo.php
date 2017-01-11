@@ -67,16 +67,13 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	 *  - systemblocktype - system block type, if any
 	 */
 	public static function getBlockInfo( Block $block ) {
-		global $wgContLang;
 		$vals = [];
 		$vals['blockid'] = $block->getId();
 		$vals['blockedby'] = $block->getByName();
 		$vals['blockedbyid'] = $block->getBy();
 		$vals['blockreason'] = $block->mReason;
 		$vals['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $block->mTimestamp );
-		$vals['blockexpiry'] = $wgContLang->formatExpiry(
-			$block->getExpiry(), TS_ISO_8601, 'infinite'
-		);
+		$vals['blockexpiry'] = ApiResult::formatExpiry( $block->getExpiry(), 'infinite' );
 		if ( $block->getSystemBlockType() !== null ) {
 			$vals['systemblocktype'] = $block->getSystemBlockType();
 		}

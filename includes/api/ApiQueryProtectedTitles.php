@@ -135,8 +135,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 				}
 
 				if ( isset( $prop['expiry'] ) ) {
-					global $wgContLang;
-					$vals['expiry'] = $wgContLang->formatExpiry( $row->pt_expiry, TS_ISO_8601 );
+					$vals['expiry'] = ApiResult::formatExpiry( $row->pt_expiry );
 				}
 
 				if ( isset( $prop['level'] ) ) {
