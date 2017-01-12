@@ -64,9 +64,11 @@ INSERT INTO /*_*/mwuser (user_name) VALUES ('##Anonymous##');
 CREATE TABLE /*_*/user_groups (
    ug_user  INT     NOT NULL REFERENCES /*_*/mwuser(user_id) ON DELETE CASCADE,
    ug_group NVARCHAR(255) NOT NULL DEFAULT '',
+   ug_expiry varchar(14) DEFAULT NULL,
+   PRIMARY KEY(ug_user, ug_group)
 );
-CREATE UNIQUE clustered INDEX /*i*/ug_user_group ON /*_*/user_groups (ug_user, ug_group);
 CREATE INDEX /*i*/ug_group ON /*_*/user_groups(ug_group);
+CREATE INDEX /*i*/ug_expiry ON /*_*/user_groups(ug_expiry);
 
 -- Stores the groups the user has once belonged to.
 -- The user may still belong to these groups (check user_groups).
