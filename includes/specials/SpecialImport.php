@@ -536,6 +536,7 @@ class SpecialImport extends SpecialPage {
  */
 class ImportReporter extends ContextSource {
 	private $reason = false;
+	private $logTags = [];
 	private $mOriginalLogCallback = null;
 	private $mOriginalPageOutCallback = null;
 	private $mLogItemCount = 0;
@@ -556,6 +557,16 @@ class ImportReporter extends ContextSource {
 		$this->mIsUpload = $upload;
 		$this->mInterwiki = $interwiki;
 		$this->reason = $reason;
+	}
+
+	/**
+	 * Sets change tags to apply to the import log entry and null revision.
+	 *
+	 * @param array $tags
+	 * @since 1.29
+	 */
+	public function setChangeTags( array $tags ) {
+		$this->logTags = $tags;
 	}
 
 	function open() {
@@ -628,14 +639,6 @@ class ImportReporter extends ContextSource {
 					. $this->reason;
 			}
 
-			$logEntry = new ManualLogEntry( 'import', $action );
-			$logEntry->setTarget( $title );
-			$logEntry->setComment( $this->reason );
-			$logEntry->setPerformer( $this->getUser() );
-			$logEntry->setParameters( $logParams );
-			$logid = $logEntry->insert();
-			$logEntry->publish( $logid );
-
 			$comment = $detail; // quick
 			$dbw = wfGetDB( DB_MASTER );
 			$latest = $title->getLatestRevID();
@@ -647,8 +650,9 @@ class ImportReporter extends ContextSource {
 				$this->getUser()
 			);
 
+			$nullRevId = null;
 			if ( !is_null( $nullRevision ) ) {
-				$nullRevision->insertOn( $dbw );
+				$nullRevId = $nullRevision->insertOn( $dbw );
 				$page = WikiPage::factory( $title );
 				# Update page record
 				$page->updateRevisionOn( $dbw, $nullRevision );
@@ -657,6 +661,22 @@ class ImportReporter extends ContextSource {
 					[ $page, $nullRevision, $latest, $this->getUser() ]
 				);
 			}
+
+			// Create the import log entry
+			$logEntry = new ManualLogEntry( 'import', $action );
+			$logEntry->setTarget( $title );
+			$logEntry->setComment( $this->reason );
+			$logEntry->setPerformer( $this->getUser() );
+			$logEntry->setParameters( $logParams );
+			$logid = $logEntry->insert();
+			if ( count( $this->logTags ) ) {
+				$logEntry->setTags( $this->logTags );
+			}
+			// Make sure the null revision will be tagged as well
+			$logEntry->setAssociatedRevId( $nullRevId );
+
+			$logEntry->publish( $logid );
+
 		} else {
 			$this->getOutput()->addHTML( "<li>" . $linkRenderer->makeKnownLink( $title ) . " " .
 				$this->msg( 'import-nonewrevisions' )->escaped() . "</li>\n" );
