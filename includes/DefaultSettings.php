@@ -2808,8 +2808,9 @@ $wgUsePrivateIPs = false;
  * MediaWiki out of the box. Not all languages listed there have translations,
  * see languages/messages/ for the list of languages with some localisation.
  *
- * Warning: Don't use language codes listed in $wgDummyLanguageCodes like "no"
- * for Norwegian (use "nb" instead), or things will break unexpectedly.
+ * Warning: Don't use any of MediaWiki's deprecated language codes listed in
+ * LanguageCode::getDeprecatedCodeMapping or $wgDummyLanguageCodes, like "no"
+ * for Norwegian (use "nb" instead). If you do, things will break unexpectedly.
  *
  * This defines the default interface language for all users, but users can
  * change it in their preferences.
@@ -2868,25 +2869,22 @@ $wgExtraInterlanguageLinkPrefixes = [];
 $wgExtraLanguageNames = [];
 
 /**
- * List of language codes that don't correspond to an actual language.
- * These codes are mostly left-offs from renames, or other legacy things.
- * This array makes them not appear as a selectable language on the installer,
- * and excludes them when running the transstat.php script.
+ * List of mappings from one language code to another.
+ * This array makes the codes not appear as a selectable language on the
+ * installer, and excludes them when running the transstat.php script.
+ *
+ * In Setup.php, the variable $wgDummyLanguageCodes is created by combining
+ * these codes with a list of "deprecated" codes, which are mostly leftovers
+ * from renames or other legacy things, and the internal codes 'qqq' and 'qqx'.
+ * If a mapping in $wgExtraLanguageCodes collide with a built-in mapping, the
+ * value in $wgExtraLanguageCodes will be used.
+ *
+ * @since 1.29
  */
-$wgDummyLanguageCodes = [
-	'als' => 'gsw',
-	'bat-smg' => 'sgs',
-	'be-x-old' => 'be-tarask',
-	'bh' => 'bho',
-	'fiu-vro' => 'vro',
-	'no' => 'nb',
-	'qqq' => 'qqq', # Used for message documentation.
-	'qqx' => 'qqx', # Used for viewing message keys.
-	'roa-rup' => 'rup',
-	'simple' => 'en',
-	'zh-classical' => 'lzh',
-	'zh-min-nan' => 'nan',
-	'zh-yue' => 'yue',
+$wgExtraLanguageCodes = [
+	'bh' => 'bho', // Bihari language family
+	'no' => 'nb', // Norwegian language family
+	'simple' => 'en', // Simple English
 ];
 
 /**
