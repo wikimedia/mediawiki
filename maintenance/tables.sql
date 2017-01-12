@@ -160,11 +160,17 @@ CREATE TABLE /*_*/user_groups (
   -- with particular permissions. A user will have the combined
   -- permissions of any group they're explicitly in, plus
   -- the implicit '*' and 'user' groups.
-  ug_group varbinary(255) NOT NULL default ''
+  ug_group varbinary(255) NOT NULL default '',
+
+  -- Time at which the user group membership will expire. Set to
+  -- NULL for a non-expiring (infinite) membership.
+  ug_expiry varbinary(14) NULL default NULL,
+
+  PRIMARY KEY (ug_user, ug_group)
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/ug_user_group ON /*_*/user_groups (ug_user,ug_group);
 CREATE INDEX /*i*/ug_group ON /*_*/user_groups (ug_group);
+CREATE INDEX /*i*/ug_expiry ON /*_*/user_groups (ug_expiry);
 
 -- Stores the groups the user has once belonged to.
 -- The user may still belong to these groups (check user_groups).

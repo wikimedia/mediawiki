@@ -222,24 +222,48 @@ class Preferences {
 			'section' => 'personal/info',
 		];
 
+		$lang = $context->getLanguage();
+
 		# Get groups to which the user belongs
 		$userEffectiveGroups = $user->getEffectiveGroups();
-		$userGroups = $userMembers = [];
+		$userGroupMemberships = $user->getGroupMemberships();
+		$userGroups = $userMembers = $userTempGroups = $userTempMembers = [];
 		foreach ( $userEffectiveGroups as $ueg ) {
 			if ( $ueg == '*' ) {
 				// Skip the default * group, seems useless here
 				continue;
 			}
-			$groupName = User::getGroupName( $ueg );
-			$userGroups[] = User::makeGroupLinkHTML( $ueg, $groupName );
 
-			$memberName = User::getGroupMember( $ueg, $userName );
-			$userMembers[] = User::makeGroupLinkHTML( $ueg, $memberName );
+			if ( isset( $userGroupMemberships[$ueg] ) ) {
+				$groupStringOrObject = $userGroupMemberships[$ueg];
+			} else {
+				$groupStringOrObject = $ueg;
+			}
+
+			$userG = UserGroupMembership::getLink( $groupStringOrObject, $context, 'html' );
+			$userM = UserGroupMembership::getLink( $groupStringOrObject, $context, 'html',
+				$userName );
+
+			// Store expiring groups separately, so we can place them before non-expiring
+			// groups in the list. This is to avoid the ambiguity of something like
+			// "administrator, bureaucrat (until X date)" -- users might wonder whether the
+			// expiry date applies to both groups, or just the last one
+			if ( $groupStringOrObject instanceof UserGroupMembership &&
+				$groupStringOrObject->getExpiry()
+			) {
+				$userTempGroups[] = $userG;
+				$userTempMembers[] = $userM;
+			} else {
+				$userGroups[] = $userG;
+				$userMembers[] = $userM;
+			}
 		}
-		asort( $userGroups );
-		asort( $userMembers );
-
-		$lang = $context->getLanguage();
+		sort( $userGroups );
+		sort( $userMembers );
+		sort( $userTempGroups );
+		sort( $userTempMembers );
+		$userGroups = array_merge( $userTempGroups, $userGroups );
+		$userMembers = array_merge( $userTempMembers, $userMembers );
 
 		$defaultPreferences['usergroups'] = [
 			'type' => 'info',

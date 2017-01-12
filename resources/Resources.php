@@ -1956,6 +1956,7 @@ return [
 		],
 	],
 	'mediawiki.special.userrights' => [
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.userrights.css',
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.userrights.js',
 		'dependencies' => [
 			'mediawiki.notification.convertmessagebox',

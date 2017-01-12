@@ -28,6 +28,9 @@ production.
   $wgNamespacesWithSubpages[NS_TEMPLATE] to false to keep the old behavior.
 * $wgRunJobsAsync is now false by default (T142751). This change only affects
   wikis with $wgJobRunRate > 0.
+* A temporary feature flag, $wgDisableUserGroupExpiry, is provided to disable
+  new features that rely on the schema changes to the user_groups table. This
+  feature flag will likely be removed before 1.29 is released.
 
 === New features in 1.29 ===
 * (T5233) A cookie can now be set when a user is autoblocked, to track that user
@@ -48,6 +51,7 @@ production.
   browsers had poor support for them, but modern browsers handle them fine.
   This might affect some forms that used them and only worked because the
   attributes were not actually being set.
+* Expiry times can now be specified when users are added to user groups.
 
 === External library changes in 1.29 ===
 
@@ -208,6 +212,20 @@ changes to languages because of Phabricator reports.
 * ContentHandler::runLegacyHooks() was removed.
 * refreshLinks.php now can be limited to a particular category with --category=...
   or a tracking category with --tracking-category=...
+* User-like objects that are passed to SpecialUserRights and its subclasses are
+  now required to have a getGroupMemberships() method. See UserRightsProxy for
+  an example.
+* User::$mGroups (instance variable) was marked private. Use User::getGroups()
+  instead.
+* User::getGroupName(), User::getGroupMember(), User:getGroupPage(),
+  User::makeGroupLinkHTML(), and User::makeGroupLinkWiki() were deprecated.
+  Use equivalent methods on the UserGroupMembership class.
+* Maintenance scripts and tests that call User::addGroup() must now ensure that
+  User objects have been added to the database prior to calling addGroup().
+* Protected function UsersPager::getGroups() was removed, and protected function
+  UsersPager::buildGroupLink() was changed from a static to an instance method.
+* The third parameter ($cache) to the UsersPagerDoBatchLookups hook was changed;
+  see docs/hooks.txt.
 
 == Compatibility ==
 
