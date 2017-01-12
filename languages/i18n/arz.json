@@ -745,8 +745,6 @@
 	"saveprefs": "حفظ",
 	"restoreprefs": "استرجع التظبيطات الاصليه",
 	"prefs-editing": "تعديل",
-	"rows": "صفوف:",
-	"columns": "عمدان:",
 	"searchresultshead": "تدوير",
 	"stub-threshold": "الحد لتنسيق <a href=\"#\" class=\"stub\">لينك البذرة</a>:",
 	"stub-threshold-disabled": "معطل",

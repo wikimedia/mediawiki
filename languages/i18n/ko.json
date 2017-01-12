@@ -1049,8 +1049,6 @@
 	"saveprefs": "저장",
 	"restoreprefs": "(모든 부분에서) 모두 기본 설정으로 되돌리기",
 	"prefs-editing": "편집",
-	"rows": "줄 수:",
-	"columns": "열 수:",
 	"searchresultshead": "검색",
 	"stub-threshold": "링크를 토막글 형식으로 보여줄 문서 크기 ($1):",
 	"stub-threshold-sample-link": "샘플",

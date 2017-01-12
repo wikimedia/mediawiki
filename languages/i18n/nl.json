@@ -1069,8 +1069,6 @@
 	"saveprefs": "Opslaan",
 	"restoreprefs": "Voorkeuren herstellen (voor alle instellingen)",
 	"prefs-editing": "Bewerken",
-	"rows": "Regels:",
-	"columns": "Kolommen:",
 	"searchresultshead": "Zoekresultaten",
 	"stub-threshold": "Drempel voor markering als beginnetje ($1):",
 	"stub-threshold-sample-link": "voorbeeld",

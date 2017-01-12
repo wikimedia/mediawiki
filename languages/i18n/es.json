@@ -1143,8 +1143,6 @@
 	"saveprefs": "Guardar",
 	"restoreprefs": "Restaurar la configuración predeterminada (en todas las secciones)",
 	"prefs-editing": "Edición",
-	"rows": "Filas:",
-	"columns": "Columnas:",
 	"searchresultshead": "Búsquedas",
 	"stub-threshold": "Límite para enlazar con el estilo de esbozo ($1):",
 	"stub-threshold-sample-link": "muestra",

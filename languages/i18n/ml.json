@@ -954,8 +954,6 @@
 	"saveprefs": "സേവ് ചെയ്യുക",
 	"restoreprefs": "സ്വതേയുള്ള ക്രമീകരണങ്ങൾ പുനഃസ്ഥാപിക്കുക (എല്ലാ ഭാഗങ്ങളിലേയും)",
 	"prefs-editing": "തിരുത്തൽ",
-	"rows": "വരി:",
-	"columns": "നിര:",
 	"searchresultshead": "തിരയൂ",
 	"stub-threshold": "അപൂർണ്ണമായ കണ്ണിയെന്നു സ്ഥാപിക്കാനുള്ള ത്വരകം ($1):",
 	"stub-threshold-sample-link": "സാമ്പിൾ",

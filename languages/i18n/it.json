@@ -1089,8 +1089,6 @@
 	"saveprefs": "Salva",
 	"restoreprefs": "Ripristina le impostazioni predefinite (in tutte le sezioni)",
 	"prefs-editing": "Casella di modifica",
-	"rows": "Righe:",
-	"columns": "Colonne:",
 	"searchresultshead": "Ricerca",
 	"stub-threshold": "Soglia per i collegamenti agli abbozzi ($1):",
 	"stub-threshold-sample-link": "esempio",

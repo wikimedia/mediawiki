@@ -946,8 +946,6 @@
 	"saveprefs": "儲存",
 	"restoreprefs": "恢復全部預設設定（喺所有項目）",
 	"prefs-editing": "編輯中",
-	"rows": "行數：",
-	"columns": "列數：",
 	"searchresultshead": "搵嘢",
 	"stub-threshold": "楔位連結格式門檻 ($1):",
 	"stub-threshold-sample-link": "樣辦",

@@ -852,8 +852,6 @@
 	"saveprefs": "Saglabāt",
 	"restoreprefs": "Atjaunot noklusētos uzstādījumus (visās sadaļās)",
 	"prefs-editing": "Labošana",
-	"rows": "Rindiņu skaits:",
-	"columns": "Simbolu skaits rindiņā:",
 	"searchresultshead": "Meklēšana",
 	"stub-threshold": "Slieksnis <a href=\"#\" class=\"stub\">aizmetņa saites</a> formatēšanai (baiti):",
 	"stub-threshold-sample-link": "piemērs",

@@ -949,8 +949,6 @@
 	"saveprefs": "Enregistrar las preferéncias",
 	"restoreprefs": "Restablir totes los paramètres per defaut (dins totas las seccions)",
 	"prefs-editing": "Fenèstra de modificacion",
-	"rows": "Rengadas :",
-	"columns": "Colomnas :",
 	"searchresultshead": "Recèrca",
 	"stub-threshold": "Limit pel formatatge dels ligams d’esbòs ($1) :",
 	"stub-threshold-sample-link": "exemple",

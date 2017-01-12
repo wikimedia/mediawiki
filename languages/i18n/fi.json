@@ -1035,8 +1035,6 @@
 	"saveprefs": "Tallenna asetukset",
 	"restoreprefs": "Palauta kaikki oletusasetuksiin (kaikissa osioissa)",
 	"prefs-editing": "Muokkaus",
-	"rows": "Rivejä",
-	"columns": "Sarakkeita",
 	"searchresultshead": "Haku",
 	"stub-threshold": "Tynkälinkkien muotoilun kynnysarvo ($1):",
 	"stub-threshold-sample-link": "näyte",

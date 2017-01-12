@@ -1041,8 +1041,6 @@
 	"saveprefs": "Desa les preferències",
 	"restoreprefs": "Restaura les preferències per defecte",
 	"prefs-editing": "Caixa d'edició",
-	"rows": "Files",
-	"columns": "Columnes",
 	"searchresultshead": "Preferències de la cerca",
 	"stub-threshold": "Límit per a formatar com a enllaç a esborrany ($1):",
 	"stub-threshold-sample-link": "mostra",

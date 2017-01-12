@@ -945,8 +945,6 @@
 	"saveprefs": "Spremi",
 	"restoreprefs": "Vrati sve postavke na prvotno zadane",
 	"prefs-editing": "Širina okvira za uređivanje",
-	"rows": "Redova",
-	"columns": "Stupaca",
 	"searchresultshead": "Prikaz rezultata pretrage",
 	"stub-threshold": "Prag za formatiranje poveznice na mrve ($1):",
 	"stub-threshold-disabled": "Onemogućeno",

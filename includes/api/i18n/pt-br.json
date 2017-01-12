@@ -9,7 +9,8 @@
 			"Almondega",
 			"Raphaelras",
 			"Caçador de Palavras",
-			"LucyDiniz"
+			"LucyDiniz",
+			"Eduardo Addad de Oliveira"
 		]
 	},
 	"apihelp-main-param-action": "Qual ação executar.",
@@ -17,6 +18,7 @@
 	"apihelp-main-param-smaxage": "Define o cabeçalho <code>s-maxage</code> para esta quantidade de segundos. Os erros não são armazenados em cache.",
 	"apihelp-main-param-maxage": "Define o cabeçalho <code>max-age</code> para esta quantidade de segundos. Os erros não são armazenados em cache.",
 	"apihelp-main-param-requestid": "Qualquer valor dado aqui será incluído na resposta. Pode ser usado para distinguir requisições.",
+	"apihelp-main-param-servedby": "Inclua o nome de host que atendeu a solicitação nos resultados.",
 	"apihelp-main-param-curtimestamp": "Inclui a data atual no resultado.",
 	"apihelp-block-description": "Bloquear um usuário",
 	"apihelp-block-param-user": "Nome de usuário, endereço IP ou faixa de IP para bloquear.",

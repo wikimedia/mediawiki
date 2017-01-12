@@ -17,7 +17,8 @@
 			"아라",
 			"Pymouss",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"Trizek (WMF)"
 		]
 	},
 	"tog-underline": "Liammoù islinennet",
@@ -355,7 +356,7 @@
 	"actionthrottledtext": "A-benn dizarbenn ar strob, n'haller ket implijout an ober-mañ re alies en ur frapad amzer lakaet, hag aet oc'h dreist ar muzul. Klaskit en-dro a-benn un nebeut munutennoù.",
 	"protectedpagetext": "Prennet eo bet ar bajenn-mañ kuit na vefe skrivet pe cheñchet un dra bennak enni",
 	"viewsourcetext": "Gallout a rit gwelet hag eilañ danvez ar bajenn-mañ",
-	"viewyourtext": "Gallout a rit gwelet hag eilañ mammenn ho '''kemmoù''' d'ar bajenn-mañ :",
+	"viewyourtext": "Gallout a rit gwelet hag eilañ mammenn ho <strong>kemmoù</strong> d'ar bajenn-mañ.",
 	"protectedinterface": "Testenn ar bajenn-mañ a dalvez evit etrefas ar meziant er wiki-mañ. Setu perak eo bet gwarezet ar bajenn.",
 	"editinginterface": "'''Diwallit :''' Emaoc'h o kempenn ur bajenn a dalvez da sevel skridoù evit etrefas ar meziant. Ar c'hemmoù graet d'ar bajenn-mañ a cheñcho etrefas an holl implijerien. Mar fell deoc'h skoazellañ evit treiñ traoù, soñjit kentoc'h implijout [https://translatewiki.net/wiki/Main_Page?setlang=br translatewiki.net], ar raktres evit lec'helaat MediaWiki.",
 	"cascadeprotected": "Gwarezet eo ar bajenn-mañ; n'haller ket kemmañ anezhi ken p'he c'haver {{PLURAL:$1|er bajenn|e-mesk ar pajennoù}} da-heul zo bet gwarezet en ur zibab an dibarzh \"skalierad\" :\n$2",
@@ -945,8 +946,6 @@
 	"saveprefs": "Enrollañ ar penndibaboù",
 	"restoreprefs": "Adlakaat an holl arventennoù dre ziouer (en holl gevrennoù)",
 	"prefs-editing": "Prenestr skridaozañ",
-	"rows": "Linennoù :",
-	"columns": "Bannoù",
 	"searchresultshead": "Klask",
 	"stub-threshold": "Bevenn uhelañ evit al liammoù war-du an danvez pennadoù ($1) :",
 	"stub-threshold-sample-link": "skouer",

@@ -593,8 +593,6 @@
 	"prefs-rendering": "Aspekto",
 	"saveprefs": "Registragar",
 	"prefs-editing": "Grandeso dil areo por texto",
-	"rows": "Linei:",
-	"columns": "Kolumni:",
 	"searchresultshead": "Preferaji di la rezultaji dil sercho",
 	"recentchangesdays": "Dii montrota en la recenta chanji:",
 	"recentchangesdays-max": "Maximo $1 {{PLURAL:$1|dio|dii}}",

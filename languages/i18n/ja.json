@@ -1056,8 +1056,6 @@
 	"saveprefs": "保存",
 	"restoreprefs": "すべて初期設定に戻す (すべての節について)",
 	"prefs-editing": "編集",
-	"rows": "行数:",
-	"columns": "列数:",
 	"searchresultshead": "検索",
 	"stub-threshold": "スタブリンク形式 ($1)として表示する閾値 :",
 	"stub-threshold-sample-link": "サンプル",

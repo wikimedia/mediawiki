@@ -965,8 +965,6 @@
 	"saveprefs": "Сачувај",
 	"restoreprefs": "Врати све на подразумевано (у свим одељцима)",
 	"prefs-editing": "Уређивање",
-	"rows": "Редова:",
-	"columns": "Колона",
 	"searchresultshead": "Претрага",
 	"stub-threshold": "Праг за обликовање везе као клице ($1):",
 	"stub-threshold-sample-link": "пример",
