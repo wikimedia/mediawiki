@@ -345,18 +345,18 @@ class UserTest extends MediaWikiTestCase {
 		$user = $this->getMutableTestUser()->getUser();
 
 		$user->setOption( 'userjs-someoption', 'test' );
-		$user->setOption( 'cols', 200 );
+		$user->setOption( 'rclimit', 200 );
 		$user->saveSettings();
 
 		$user = User::newFromName( $user->getName() );
 		$user->load( User::READ_LATEST );
 		$this->assertEquals( 'test', $user->getOption( 'userjs-someoption' ) );
-		$this->assertEquals( 200, $user->getOption( 'cols' ) );
+		$this->assertEquals( 200, $user->getOption( 'rclimit' ) );
 
 		$user = User::newFromName( $user->getName() );
 		MediaWikiServices::getInstance()->getMainWANObjectCache()->clearProcessCache();
 		$this->assertEquals( 'test', $user->getOption( 'userjs-someoption' ) );
-		$this->assertEquals( 200, $user->getOption( 'cols' ) );
+		$this->assertEquals( 200, $user->getOption( 'rclimit' ) );
 	}
 
 	/**
@@ -367,7 +367,7 @@ class UserTest extends MediaWikiTestCase {
 	public function testAnonOptions() {
 		global $wgDefaultUserOptions;
 		$this->user->setOption( 'userjs-someoption', 'test' );
-		$this->assertEquals( $wgDefaultUserOptions['cols'], $this->user->getOption( 'cols' ) );
+		$this->assertEquals( $wgDefaultUserOptions['rclimit'], $this->user->getOption( 'rclimit' ) );
 		$this->assertEquals( 'test', $this->user->getOption( 'userjs-someoption' ) );
 	}
 

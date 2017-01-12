@@ -4441,8 +4441,8 @@ HTML
 		$attribs = $customAttribs + [
 				'accesskey' => ',',
 				'id' => $name,
-				'cols' => $user->getIntOption( 'cols' ),
-				'rows' => $user->getIntOption( 'rows' ),
+				'cols' => 80,
+				'rows' => 25,
 				// Avoid PHP notices when appending preferences
 				// (appending allows customAttribs['style'] to still work).
 				'style' => ''
