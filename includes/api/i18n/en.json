@@ -820,7 +820,7 @@
 	"apihelp-query+imageinfo-param-extmetadatamultilang": "If translations for extmetadata property are available, fetch all of them.",
 	"apihelp-query+imageinfo-param-extmetadatafilter": "If specified and non-empty, only these keys will be returned for $1prop=extmetadata.",
 	"apihelp-query+imageinfo-param-urlparam": "A handler specific parameter string. For example, PDFs might use <kbd>page15-100px</kbd>. <var>$1urlwidth</var> must be used and be consistent with <var>$1urlparam</var>.",
-	"apihelp-query+imageinfo-param-badfilecontexttitle": "If <kbd>$2prop=badfile</kbd> is set, this is the page title used when evaluting the [[MediaWiki:Bad image list]]",
+	"apihelp-query+imageinfo-param-badfilecontexttitle": "If <kbd>$2prop=badfile</kbd> is set, this is the page title used when evaluating the [[MediaWiki:Bad image list]]",
 	"apihelp-query+imageinfo-param-localonly": "Look only for files in the local repository.",
 	"apihelp-query+imageinfo-example-simple": "Fetch information about the current version of [[:File:Albert Einstein Head.jpg]].",
 	"apihelp-query+imageinfo-example-dated": "Fetch information about versions of [[:File:Test.jpg]] from 2008 and later.",
