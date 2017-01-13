@@ -50,12 +50,15 @@ class UncategorizedCategoriesPage extends UncategorizedPagesPage {
 			$exList = $this->msg( 'uncategorized-categories-exceptionlist' )
 				->inContentLanguage()->plain();
 			$proposedTitles = explode( "\n", $exList );
-			foreach ( $proposedTitles as $count => $title ) {
-				if ( strpos( $title, '*' ) !== 0 ) {
+			foreach ( $proposedTitles as $count => $titleStr ) {
+				if ( strpos( $titleStr, '*' ) !== 0 ) {
 					continue;
 				}
-				$title = preg_replace( "/^\\*\\s*/", '', $title );
-				$title = Title::newFromText( $title, NS_CATEGORY );
+				$titleStr = preg_replace( "/^\\*\\s*/", '', $titleStr );
+				$title = Title::newFromText( $titleStr, NS_CATEGORY );
+				if ( $title && $title->getNamespace() !== NS_CATEGORY ) {
+					$title = Title::makeTitleSafe( NS_CATEGORY, $titleStr );
+				}
 				if ( $title ) {
 					$this->exceptionList[] = $title->getDBKey();
 				}
