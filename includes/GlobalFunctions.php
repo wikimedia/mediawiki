@@ -1999,10 +1999,6 @@ function wfRestoreWarnings() {
 	MediaWiki\suppressWarnings( true );
 }
 
-# Autodetect, convert and provide timestamps of various types
-
-require_once __DIR__ . '/libs/time/defines.php';
-
 /**
  * Get a timestamp string in one of various formats
  *
