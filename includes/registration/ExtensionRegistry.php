@@ -36,7 +36,7 @@ class ExtensionRegistry {
 	/**
 	 * Bump whenever the registration cache needs resetting
 	 */
-	const CACHE_VERSION = 6;
+	const CACHE_VERSION = 7;
 
 	/**
 	 * Special key that defines the merge strategy

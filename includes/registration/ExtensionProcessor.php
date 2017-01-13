@@ -163,6 +163,11 @@ class ExtensionProcessor implements Processor {
 	protected $credits = [];
 
 	/**
+	 * @var array
+	 */
+	protected $config = [];
+
+	/**
 	 * Any thing else in the $info that hasn't
 	 * already been processed
 	 *
@@ -290,6 +295,7 @@ class ExtensionProcessor implements Processor {
 
 		return [
 			'globals' => $this->globals,
+			'config' => $this->config,
 			'defines' => $this->defines,
 			'callbacks' => $this->callbacks,
 			'credits' => $this->credits,
@@ -493,6 +499,11 @@ class ExtensionProcessor implements Processor {
 					$value = "$dir/$value";
 				}
 				$this->addConfigGlobal( "$prefix$key", $value, $info['name'] );
+				$data['providedby'] = $info['name'];
+				if ( isset( $info['ConfigRegistry'][0] ) ) {
+					$data['configregistry'] = array_keys( $info['ConfigRegistry'] )[0];
+				}
+				$this->config[$key] = $data;
 			}
 		}
 	}
