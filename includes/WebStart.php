@@ -133,9 +133,7 @@ if ( ob_get_level() == 0 ) {
 	ob_start( 'wfOutputHandler' );
 }
 
-if ( !defined( 'MW_NO_SETUP' ) ) {
-	require_once "$IP/includes/Setup.php";
-}
+require_once "$IP/includes/Setup.php";
 
 # Multiple DBs or commits might be used; keep the request as transactional as possible
 if ( isset( $_SERVER['REQUEST_METHOD'] ) && $_SERVER['REQUEST_METHOD'] === 'POST' ) {
