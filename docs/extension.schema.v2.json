@@ -705,7 +705,11 @@
 						},
 						"description": {
 							"type": ["string", "array"],
-							"description": "A description of the config setting, mostly for documentation/developers"
+							"description": "A description of the config setting, mostly for documentation/developers. The value of descriptionmsg will override this in most UIs, if set."
+						},
+						"decriptionmsg": {
+							"type": "string",
+							"description": "The message key which should be used as a description for this configuration option in a user interface. If empty, description will be used, otherwise it overwrites it."
 						},
 						"public": {
 							"type": "boolean",
