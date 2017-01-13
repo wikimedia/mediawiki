@@ -350,7 +350,7 @@
 		notify: function ( message, options ) {
 			var notif;
 			options = $.extend( {}, notification.defaults, options );
-
+			this.autoHideSeconds = options.autoHideSeconds;
 			notif = new Notification( message, options );
 
 			if ( isPageReady ) {
@@ -370,6 +370,9 @@
 		 *   A boolean indicating whether the notifification should automatically
 		 *   be hidden after shown. Or if it should persist.
 		 *
+		 * - autoHideSeconds:
+		 *   Number of seconds to wait before auto-hiding notifications.
+		 *
 		 * - tag:
 		 *   An optional string. When a notification is tagged only one message
 		 *   with that tag will be displayed. Trying to display a new notification
@@ -387,6 +390,7 @@
 		 */
 		defaults: {
 			autoHide: true,
+			autoHideSeconds: 5,
 			tag: false,
 			title: undefined,
 			type: false
