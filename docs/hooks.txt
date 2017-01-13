@@ -764,6 +764,7 @@ $revision: New Revision of the article
 $status: Status object about to be returned by doEditContent()
 $baseRevId: the rev ID (or false) this edit was based on
 $undidRevId: the rev ID (or 0) this edit undid
+$undidAfterRevId: the rev ID (or 0) this edit restored (possibly amended)
 
 'ArticleUndelete': When one or more revisions of an article are restored.
 &$title: Title corresponding to the article restored
@@ -2295,8 +2296,10 @@ $new: the ?new= param value from the url
 edit.
 $wikiPage: the WikiPage edited
 $rev: the new revision
-$baseID: the revision ID this was based off, if any
+$baseID: the revision ID this was based off (exact copy), if any
 $user: the editing user
+$undidID: the revision ID that was reverted, if any
+$undidAfterID: the revision ID that was restored, possibly amended, if any
 
 'OldChangesListRecentChangesLine': Customize entire recent changes line, or
 return false to omit the line from RecentChanges and Watchlist special pages.
@@ -2397,6 +2400,7 @@ $revision: New Revision of the article (can be null for edits that change
 $status: Status object about to be returned by doEditContent()
 $baseRevId: the rev ID (or false) this edit was based on
 $undidRevId: the rev ID (or 0) this edit undid
+$undidAfterRevId: the rev ID (or 0) this edit restored (possibly ammended)
 
 'PageHistoryBeforeList': When a history page list is about to be constructed.
 &$article: the article that the history is loading for
