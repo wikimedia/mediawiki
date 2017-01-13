@@ -61,6 +61,10 @@ class ApiImport extends ApiBase {
 			$source = ImportStreamSource::newFromUpload( 'xml' );
 		}
 		if ( !$source->isOK() ) {
+			// transform HTTP errors and the like into 'cantopenfile'
+			if ( $source->hasMessage( 'importcantdownload' ) ) {
+				$this->dieWithError( $source->value->getMessage(), 'cantopenfile' );
+			}
 			$this->dieStatus( $source );
 		}
 

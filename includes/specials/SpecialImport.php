@@ -176,8 +176,12 @@ class SpecialImport extends SpecialPage {
 
 		$out = $this->getOutput();
 		if ( !$source->isGood() ) {
+			// Display the message of the inner Status for transwiki import failures
+			if ( $source->hasMessage( 'importcantdownload' ) ) {
+				$source = $source->value;
+			}
 			$out->wrapWikiMsg(
-				"<p class=\"error\">\n$1\n</p>",
+				"<div class=\"error\">\n$1\n</div>",
 				[ 'importfailed', $source->getWikiText() ]
 			);
 		} else {

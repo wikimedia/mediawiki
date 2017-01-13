@@ -24,6 +24,7 @@
  * @ingroup SpecialPage
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Logger\LoggerFactory;
 
 /**
  * Imports a XML dump from a file (either from file upload, files on disk, or HTTP)
@@ -106,29 +107,41 @@ class ImportStreamSource implements ImportSource {
 	 */
 	static function newFromURL( $url, $method = 'GET' ) {
 		global $wgHTTPImportTimeout;
+
 		wfDebug( __METHOD__ . ": opening $url\n" );
-		# Use the standard HTTP fetch function; it times out
-		# quicker and sorts out user-agent problems which might
-		# otherwise prevent importing from large sites, such
-		# as the Wikimedia cluster, etc.
-		$data = Http::request(
-			$method,
+
+		// Use the standard HTTP request class; it times out quicker and sorts out
+		// user-agent problems which might otherwise prevent importing from large
+		// sites, such as the Wikimedia cluster.
+		$req = MWHttpRequest::factory(
 			$url,
 			[
+				'method' => $method,
 				'followRedirects' => true,
-				'timeout' => $wgHTTPImportTimeout
+				'timeout' => $wgHTTPImportTimeout,
+				'connectTimeout' => 'default'
 			],
-			__METHOD__
-		);
-		if ( $data !== false ) {
-			$file = tmpfile();
-			fwrite( $file, $data );
-			fflush( $file );
-			fseek( $file, 0 );
-			return Status::newGood( new ImportStreamSource( $file ) );
-		} else {
-			return Status::newFatal( 'importcantopen' );
+			__METHOD__ );
+		$status = $req->execute();
+
+		if ( !$status->isOK() ) {
+			$errors = $status->getErrorsByType( 'error' );
+
+			// Log the errors to the HTTP debug log
+			$logger = LoggerFactory::getInstance( 'http' );
+			$logger->warning( Status::wrap( $status )->getWikiText( false, false, 'en' ),
+				[ 'error' => $errors, 'caller' => __METHOD__, 'content' => $req->getContent() ] );
+
+			$result = Status::newFatal( 'importcantdownload' );
+			$result->value = $status;
+			return $result;
 		}
+
+		$file = tmpfile();
+		fwrite( $file, $req->getContent() );
+		fflush( $file );
+		fseek( $file, 0 );
+		return Status::newGood( new ImportStreamSource( $file ) );
 	}
 
 	/**
