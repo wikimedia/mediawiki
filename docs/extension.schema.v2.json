@@ -706,6 +706,11 @@
 						"description": {
 							"type": ["string", "array"],
 							"description": "A description of the config setting, mostly for documentation/developers"
+						},
+						"public": {
+							"type": "boolean",
+							"default": false,
+							"description": "Whether this configuration option and its value is allowed to be revealed in public or not."
 						}
 					}
 				}
