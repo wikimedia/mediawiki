@@ -1,0 +1,24 @@
+/* Make images fullwidth, if we can ensure aspect ratio */
+@supports (object-fit: contain) {
+	div.thumbinner {
+		width: 100% !important;
+	}
+	div.thumbinner .thumbimage {
+		width: 100%;
+		object-fit: contain;
+		/* Never more than 60 percent of viewport height,
+		 * to make sure upright images don't fillout the entire screen */
+		max-height: 60vh;
+	}
+
+	/* This isn't really pretty with normal frames, so make them transparents */
+	div.thumbinner {
+		box-sizing: border-box;
+		border: 0;
+		background-color: transparent;
+	}
+	html .thumbimage {
+		border: 0;
+		background-color: transparent;
+	}
+}
