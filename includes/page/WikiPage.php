@@ -1818,7 +1818,7 @@ class WikiPage implements Page, IDBAccessObject {
 			}
 
 			Hooks::run( 'NewRevisionFromEditComplete',
-				[ $this, $revision, $meta['baseRevId'], $user ] );
+				[ $this, $revision, $meta['baseRevId'], $user, $meta['undidRevId'] ] );
 
 			// Update recentchanges
 			if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
@@ -3253,7 +3253,8 @@ class WikiPage implements Page, IDBAccessObject {
 			$target->getId(),
 			$guser,
 			null,
-			$tags
+			$tags,
+			$current->getId()
 		);
 
 		// Set patrolling and bot flag on the edits, which gets rollbacked.
