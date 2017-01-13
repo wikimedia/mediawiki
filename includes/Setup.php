@@ -876,7 +876,6 @@ if ( !$wgCommandLineMode ) {
 	Pingback::schedulePingback();
 }
 
-wfDebug( "Fully initialised\n" );
 $wgFullyInitialised = true;
 
 Profiler::instance()->scopedProfileOut( $ps_extensions );
