@@ -153,6 +153,11 @@ class ExtensionProcessor implements Processor {
 	protected $credits = [];
 
 	/**
+	 * @var array
+	 */
+	protected $config = [];
+
+	/**
 	 * Any thing else in the $info that hasn't
 	 * already been processed
 	 *
@@ -208,6 +213,7 @@ class ExtensionProcessor implements Processor {
 
 		return [
 			'globals' => $this->globals,
+			'config' => $this->config,
 			'defines' => $this->defines,
 			'callbacks' => $this->callbacks,
 			'credits' => $this->credits,
@@ -397,7 +403,7 @@ class ExtensionProcessor implements Processor {
 		}
 		if ( isset( $info['config'] ) ) {
 			foreach ( $info['config'] as $key => $data ) {
-				$value = $data['value'];
+				$value = &$data['value'];
 				if ( isset( $data['merge_strategy'] ) ) {
 					$value[ExtensionRegistry::MERGE_STRATEGY] = $data['merge_strategy'];
 				}
@@ -405,6 +411,7 @@ class ExtensionProcessor implements Processor {
 					$value = "$dir/$value";
 				}
 				$this->globals["$prefix$key"] = $value;
+				$this->config[$key] = $data;
 			}
 		}
 	}
