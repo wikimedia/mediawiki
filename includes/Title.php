@@ -3672,9 +3672,12 @@ class Title implements LinkTarget {
 	 * @param string $reason The reason for the move
 	 * @param bool $createRedirect Whether to create a redirect from the old title to the new title.
 	 *  Ignored if the user doesn't have the suppressredirect right.
+	 * @param array $changeTags Applied to the entry in the move log and redirect page revision
 	 * @return array|bool True on success, getUserPermissionsErrors()-like array on failure
 	 */
-	public function moveTo( &$nt, $auth = true, $reason = '', $createRedirect = true ) {
+	public function moveTo( &$nt, $auth = true, $reason = '', $createRedirect = true,
+		array $changeTags = [] ) {
+
 		global $wgUser;
 		$err = $this->isValidMoveOperation( $nt, $auth, $reason );
 		if ( is_array( $err ) ) {
@@ -3688,7 +3691,7 @@ class Title implements LinkTarget {
 		}
 
 		$mp = new MovePage( $this, $nt );
-		$status = $mp->move( $wgUser, $reason, $createRedirect );
+		$status = $mp->move( $wgUser, $reason, $createRedirect, $changeTags );
 		if ( $status->isOK() ) {
 			return true;
 		} else {
@@ -3704,12 +3707,15 @@ class Title implements LinkTarget {
 	 * @param string $reason The reason for the move
 	 * @param bool $createRedirect Whether to create redirects from the old subpages to
 	 *     the new ones Ignored if the user doesn't have the 'suppressredirect' right
+	 * @param array $changeTags Applied to the entry in the move log and redirect page revision
 	 * @return array Array with old page titles as keys, and strings (new page titles) or
 	 *     getUserPermissionsErrors()-like arrays (errors) as values, or a
 	 *     getUserPermissionsErrors()-like error array with numeric indices if
 	 *     no pages were moved
 	 */
-	public function moveSubpages( $nt, $auth = true, $reason = '', $createRedirect = true ) {
+	public function moveSubpages( $nt, $auth = true, $reason = '', $createRedirect = true,
+		array $changeTags = [] ) {
+
 		global $wgMaximumMovedPages;
 		// Check permissions
 		if ( !$this->userCan( 'move-subpages' ) ) {
@@ -3764,7 +3770,7 @@ class Title implements LinkTarget {
 			# be longer than 255 characters.
 			$newSubpage = Title::makeTitleSafe( $newNs, $newPageName );
 
-			$success = $oldSubpage->moveTo( $newSubpage, $auth, $reason, $createRedirect );
+			$success = $oldSubpage->moveTo( $newSubpage, $auth, $reason, $createRedirect, $changeTags );
 			if ( $success === true ) {
 				$retval[$oldSubpage->getPrefixedText()] = $newSubpage->getPrefixedText();
 			} else {
