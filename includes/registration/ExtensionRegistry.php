@@ -304,6 +304,13 @@ class ExtensionRegistry {
 					throw new UnexpectedValueException( "Unknown merge strategy '$mergeStrategy'" );
 			}
 		}
+		foreach ( $info['credits'] as $name => $data ) {
+			$configRegistryName = str_replace( ' ', '' , strtolower( $name ) );
+
+			if ( !isset( $GLOBALS['wgConfigRegistry'][$configRegistryName] ) ) {
+				$GLOBALS['wgConfigRegistry'][$configRegistryName] = 'GlobalVarConfig::newInstance';
+			}
+		}
 
 		foreach ( $info['defines'] as $name => $val ) {
 			define( $name, $val );
@@ -313,6 +320,7 @@ class ExtensionRegistry {
 		}
 
 		$this->loaded += $info['credits'];
+
 		if ( $info['attributes'] ) {
 			if ( !$this->attributes ) {
 				$this->attributes = $info['attributes'];
