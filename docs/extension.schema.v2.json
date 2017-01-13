@@ -707,6 +707,10 @@
 							"type": ["string", "array"],
 							"description": "A description of the config setting, mostly for documentation/developers"
 						},
+						"decriptionmsg": {
+							"type": "string",
+							"description": "The message key which should be used as a description for this configuration option in a user interface. If empty, description will be used."
+						},
 						"public": {
 							"type": "boolean",
 							"default": false,
