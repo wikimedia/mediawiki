@@ -101,6 +101,12 @@ return [
 		'styles' => [
 			'resources/src/mediawiki.skinning/elements.css' => [ 'media' => 'screen' ],
 			'resources/src/mediawiki.skinning/content.css' => [ 'media' => 'screen' ],
+			'resources/src/mediawiki.skinning/content-narrow.less' => [ 'media' => 'screen'],
+			'resources/src/mediawiki.skinning/content-narrow.less' => [ 'media' => 'screen and (max-width:500px)' ],
+			'resources/src/mediawiki.skinning/content-narrow-hidpi.less' => [
+				'media' => 'screen and (max-width:500px) and (-webkit-min-device-pixel-ratio: 1.5),' .
+				'screen and (max-width:500px) and (min-resolution: 1.5dppx)'
+			],
 		],
 	],
 	// Used in the web installer. Test it after modifying this definition!
@@ -109,6 +115,11 @@ return [
 		'styles' => [
 			'resources/src/mediawiki.skinning/elements.css' => [ 'media' => 'screen' ],
 			'resources/src/mediawiki.skinning/content.css' => [ 'media' => 'screen' ],
+			'resources/src/mediawiki.skinning/content-narrow.less' => [ 'media' => 'screen and (max-width:500px)' ],
+			'resources/src/mediawiki.skinning/content-narrow-hidpi.less' => [
+				'media' => 'screen and (max-width:500px) and (-webkit-min-device-pixel-ratio: 1.5),' .
+				'screen and (max-width:500px) and (min-resolution: 1.5dppx)'
+			],
 			'resources/src/mediawiki.skinning/interface.css' => [ 'media' => 'screen' ],
 		],
 	],

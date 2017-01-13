@@ -1,0 +1,33 @@
+/* !important is used to ignore inline styling */
+/* Center clear tables */
+.mw-content-ltr table,
+.mw-content-rtl table {
+	float: none !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+.mw-content-ltr table,
+.mw-content-rtl table {
+	margin: 1em 0;
+	overflow: auto;
+	overflow-y: hidden;
+	overflow-x: auto;
+	display: block;
+	max-width: 100% !important;
+}
+
+/* Center and clear thumbnails */
+div.thumb {
+	float: none;
+	clear: none;
+	margin: .5em auto;
+}
+div.thumbinner {
+	margin: 0 auto;
+	/* Make sure we don't overflow the viewport */
+	max-width: 100%;
+}
+div.thumbinner .thumbimage {
+	max-width: 100%;
+	height: auto;
+}
