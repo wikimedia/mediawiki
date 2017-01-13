@@ -343,7 +343,7 @@
 		},
 		"ConfigRegistry": {
 			"type": "object",
-			"description": "Registry of factory functions to create Config objects"
+			"description": "Registry of factory functions to create Config objects. This option is optional, the extension registration system will create an entry for your extension automatically. The config name is the extension name in lower case letters."
 		},
 		"SessionProviders": {
 			"type": "object",

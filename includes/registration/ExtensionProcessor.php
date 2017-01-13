@@ -196,6 +196,12 @@ class ExtensionProcessor implements Processor {
 				$this->storeToArray( $path, $key, $val, $this->attributes );
 			}
 		}
+
+		// auto-registering the ConfigRegistry, if it's not set already by the extension
+		$configRegistryName = str_replace( ' ', '' , strtolower( $name ) );
+		if ( !isset( $this->globals['wgConfigRegistry'][$configRegistryName] ) ) {
+			$this->globals['wgConfigRegistry'][$configRegistryName] = 'GlobalVarConfig::newInstance';
+		}
 	}
 
 	public function getExtractedInfo() {
