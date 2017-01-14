@@ -2406,6 +2406,14 @@ foo
 !! end
 
 !! test
+Non-breaking spaces after §
+!! wikitext
+U.S § 152
+!! html
+U.S §&#160;152
+!! end
+
+!! test
 HTML pre followed by indent-pre
 !! wikitext
 <pre>foo</pre>
