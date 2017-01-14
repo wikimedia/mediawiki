@@ -72,6 +72,7 @@ audio/basic au snd
 audio/midi mid midi kar
 audio/mpeg mpga mp2 mp3
 audio/ogg oga ogg spx opus
+audio/opus opus oga ogg
 video/webm webm
 audio/webm webm
 audio/x-aiff aif aiff aifc
