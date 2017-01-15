@@ -3061,7 +3061,7 @@ class OutputPage extends ContextSource {
 	 * @return array
 	 */
 	public function getJSVars() {
-		global $wgContLang;
+		global $wgContLang, $wgSearchSuggestNameSpace;
 
 		$curRevisionId = 0;
 		$articleId = 0;
@@ -3132,6 +3132,7 @@ class OutputPage extends ContextSource {
 			'wgRelevantPageName' => $relevantTitle->getPrefixedDBkey(),
 			'wgRelevantArticleId' => $relevantTitle->getArticleID(),
 			'wgRequestId' => WebRequest::getRequestId(),
+			'wgSearchSuggestNameSpace' => $wgSearchSuggestNameSpace,
 		];
 
 		if ( $user->isLoggedIn() ) {

@@ -6372,6 +6372,15 @@ $wgNamespacesToBeSearchedDefault = [
 ];
 
 /**
+ * List of namespaces which are searched by default.
+ *
+ * Same as above.
+ */
+$wgSearchSuggestNameSpace = [
+	NS_MAIN,
+];
+
+/**
  * Disable the internal MySQL-based search, to allow it to be
  * implemented by an extension instead.
  */
