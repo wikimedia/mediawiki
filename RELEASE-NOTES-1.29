@@ -184,6 +184,15 @@ changes to languages because of Phabricator reports.
     RewriteEngine On
     RewriteBase /
     RewriteRule ^/w/wiki\.phtml$ /w/index.php [R=301,L]
+* ArticleAfterFetchContent was removed. Use ArticleAfterFetchContentObject instead.
+* ArticleInsertComplete was removed. Use PageContentInsertComplete instead.
+* ArticleSave was removed. Use PageContentSave instead.
+* ArticleSaveComplete was removed. Use PageContentSaveComplete instead.
+* ArticleViewCustom was removed. Use ArticleContentViewCustom instead.
+* EditFilterMerged was removed. Use EditFilterMergedContent instead.
+* EditPageGetPreviewText was removed. Use EditPageGetPreviewContent instead.
+* TitleIsCssOrJsPage was removed. Use ContentHandlerDefaultModelFor instead.
+* TitleIsWikitextPage was removed. Use ContentHandlerDefaultModelFor instead.
 
 == Compatibility ==
 

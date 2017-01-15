@@ -1508,68 +1508,6 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Change an existing article or create a new article. Updates RC and all necessary caches,
 	 * optionally via the deferred update array.
 	 *
-	 * @param string $text New text
-	 * @param string $summary Edit summary
-	 * @param int $flags Bitfield:
-	 *      EDIT_NEW
-	 *          Article is known or assumed to be non-existent, create a new one
-	 *      EDIT_UPDATE
-	 *          Article is known or assumed to be pre-existing, update it
-	 *      EDIT_MINOR
-	 *          Mark this edit minor, if the user is allowed to do so
-	 *      EDIT_SUPPRESS_RC
-	 *          Do not log the change in recentchanges
-	 *      EDIT_FORCE_BOT
-	 *          Mark the edit a "bot" edit regardless of user rights
-	 *      EDIT_AUTOSUMMARY
-	 *          Fill in blank summaries with generated text where possible
-	 *      EDIT_INTERNAL
-	 *          Signal that the page retrieve/save cycle happened entirely in this request.
-	 *
-	 * If neither EDIT_NEW nor EDIT_UPDATE is specified, the status of the
-	 * article will be detected. If EDIT_UPDATE is specified and the article
-	 * doesn't exist, the function will return an edit-gone-missing error. If
-	 * EDIT_NEW is specified and the article does exist, an edit-already-exists
-	 * error will be returned. These two conditions are also possible with
-	 * auto-detection due to MediaWiki's performance-optimised locking strategy.
-	 *
-	 * @param bool|int $baseRevId The revision ID this edit was based off, if any.
-	 *   This is not the parent revision ID, rather the revision ID for older
-	 *   content used as the source for a rollback, for example.
-	 * @param User $user The user doing the edit
-	 *
-	 * @throws MWException
-	 * @return Status Possible errors:
-	 *   edit-hook-aborted: The ArticleSave hook aborted the edit but didn't
-	 *     set the fatal flag of $status
-	 *   edit-gone-missing: In update mode, but the article didn't exist.
-	 *   edit-conflict: In update mode, the article changed unexpectedly.
-	 *   edit-no-change: Warning that the text was the same as before.
-	 *   edit-already-exists: In creation mode, but the article already exists.
-	 *
-	 * Extensions may define additional errors.
-	 *
-	 * $return->value will contain an associative array with members as follows:
-	 *     new: Boolean indicating if the function attempted to create a new article.
-	 *     revision: The revision object for the inserted revision, or null.
-	 *
-	 * Compatibility note: this function previously returned a boolean value
-	 * indicating success/failure
-	 *
-	 * @deprecated since 1.21: use doEditContent() instead.
-	 */
-	public function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) {
-		wfDeprecated( __METHOD__, '1.21' );
-
-		$content = ContentHandler::makeContent( $text, $this->getTitle() );
-
-		return $this->doEditContent( $content, $summary, $flags, $baseRevId, $user );
-	}
-
-	/**
-	 * Change an existing article or create a new article. Updates RC and all necessary caches,
-	 * optionally via the deferred update array.
-	 *
 	 * @param Content $content New content
 	 * @param string $summary Edit summary
 	 * @param int $flags Bitfield:
@@ -1608,8 +1546,6 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @throws MWException
 	 * @return Status Possible errors:
-	 *     edit-hook-aborted: The ArticleSave hook aborted the edit but didn't
-	 *       set the fatal flag of $status.
 	 *     edit-gone-missing: In update mode, but the article didn't exist.
 	 *     edit-conflict: In update mode, the article changed unexpectedly.
 	 *     edit-no-change: Warning that the text was the same as before.
@@ -1663,9 +1599,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$hook_args = [ &$wikiPage, &$user, &$content, &$summary,
 							$flags & EDIT_MINOR, null, null, &$flags, &$hookStatus ];
 		// Check if the hook rejected the attempted save
-		if ( !Hooks::run( 'PageContentSave', $hook_args )
-			|| !ContentHandler::runLegacyHooks( 'ArticleSave', $hook_args, '1.21' )
-		) {
+		if ( !Hooks::run( 'PageContentSave', $hook_args ) ) {
 			if ( $hookStatus->isOK() ) {
 				// Hook returned false but didn't call fatal(); use generic message
 				$hookStatus->fatal( 'edit-hook-aborted' );
@@ -2015,7 +1949,6 @@ class WikiPage implements Page, IDBAccessObject {
 					// Trigger post-create hook
 					$params = [ &$wikiPage, &$user, $content, $summary,
 						$flags & EDIT_MINOR, null, null, &$flags, $revision ];
-					ContentHandler::runLegacyHooks( 'ArticleInsertComplete', $params, '1.21' );
 					Hooks::run( 'PageContentInsertComplete', $params );
 					// Trigger post-save hook
 					$params = array_merge( $params, [ &$status, $meta['baseRevId'] ] );
