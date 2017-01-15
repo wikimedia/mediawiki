@@ -3132,6 +3132,7 @@ class OutputPage extends ContextSource {
 			'wgRelevantPageName' => $relevantTitle->getPrefixedDBkey(),
 			'wgRelevantArticleId' => $relevantTitle->getArticleID(),
 			'wgRequestId' => WebRequest::getRequestId(),
+			'wgSearchSuggestNameSpace' => $wgSearchSuggestNameSpace,
 		];
 
 		if ( $user->isLoggedIn() ) {
