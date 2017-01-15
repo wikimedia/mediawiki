@@ -428,10 +428,9 @@ class Article implements Page {
 		$this->mContentObject = $content;
 		$this->mRevIdFetched = $this->mRevision->getId();
 
-		ContentHandler::runLegacyHooks(
+		Hooks::run(
 			'ArticleAfterFetchContentObject',
-			[ &$this, &$this->mContentObject ],
-			'1.21'
+			[ &$this, &$this->mContentObject ]
 		);
 
 		return $this->mContentObject;

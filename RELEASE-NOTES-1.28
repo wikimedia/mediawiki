@@ -10,6 +10,7 @@ This is not a release yet!
 * (T152717) Better escaping for PHP mail() command
 * (T154670) A missing method causing the MySQL installer to fatal in rare
   circumstances was restored.
+* (T154672) Un-deprecate ArticleAfterFetchContentObject hook.
 
 == MediaWiki 1.28 ==
 
