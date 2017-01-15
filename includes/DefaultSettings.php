@@ -6903,6 +6903,9 @@ $wgUnwatchedPageThreshold = false;
  * $wgRecentChangesFlags['flag'] => [
  *   // message for the letter displayed next to rows on changes lists
  *   'letter' => 'letter-msg',
+ *   // message for the space displayed in the corresponding "column" in
+ *   // change rows which do not have this flag
+ *   'space' => 'space-msg',
  *   // message for the tooltip of the letter
  *   'title' => 'tooltip-msg',
  *   // optional (defaults to 'tooltip-msg'), message to use in the legend box
@@ -6921,12 +6924,14 @@ $wgUnwatchedPageThreshold = false;
 $wgRecentChangesFlags = [
 	'newpage' => [
 		'letter' => 'newpageletter',
+		'space' => 'newpagespace',
 		'title' => 'recentchanges-label-newpage',
 		'legend' => 'recentchanges-legend-newpage',
 		'grouping' => 'any',
 	],
 	'minor' => [
 		'letter' => 'minoreditletter',
+		'space' => 'minoreditspace',
 		'title' => 'recentchanges-label-minor',
 		'legend' => 'recentchanges-legend-minor',
 		'class' => 'minoredit',
@@ -6934,6 +6939,7 @@ $wgRecentChangesFlags = [
 	],
 	'bot' => [
 		'letter' => 'boteditletter',
+		'space' => 'boteditspace',
 		'title' => 'recentchanges-label-bot',
 		'legend' => 'recentchanges-legend-bot',
 		'class' => 'botedit',
@@ -6941,6 +6947,7 @@ $wgRecentChangesFlags = [
 	],
 	'unpatrolled' => [
 		'letter' => 'unpatrolledletter',
+		'space' => 'unpatrolledspace',
 		'title' => 'recentchanges-label-unpatrolled',
 		'legend' => 'recentchanges-legend-unpatrolled',
 		'grouping' => 'any',

@@ -145,16 +145,19 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * Returns the appropriate flags for new page, minor change and patrolling
+	 *
 	 * @param array $flags Associative array of 'flag' => Bool
-	 * @param string $nothing To use for empty space
+	 * @param bool $blanksAsSpaces Set to false for no blanks between flags. This
+	 *   parameter was a string before 1.29, so some callers set it to an empty
+	 *   string for the same effect as passing false.
 	 * @return string
 	 */
-	public function recentChangesFlags( $flags, $nothing = '&#160;' ) {
+	public function recentChangesFlags( $flags, $blanksAsSpaces = true ) {
 		$f = '';
 		foreach ( array_keys( $this->getConfig()->get( 'RecentChangesFlags' ) ) as $flag ) {
-			$f .= isset( $flags[$flag] ) && $flags[$flag]
-				? self::flag( $flag, $this->getContext() )
-				: $nothing;
+			if ( $blanksAsSpaces || ( isset( $flags[$flag] ) && $flags[$flag] ) ) {
+				$f .= self::flag( $flag, $this->getContext(), isset( $flags[$flag] ) && $flags[$flag] );
+			}
 		}
 
 		return $f;
@@ -211,14 +214,17 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * Make an "<abbr>" element for a given change flag. The flag indicating a new page, minor edit,
-	 * bot edit, or unpatrolled edit. In English it typically contains "N", "m", "b", or "!".
+	 * Make an "<abbr>" element for a given change. The flag indicating a new page,
+	 * minor edit, bot edit, or unpatrolled edit. In English it typically contains
+	 * "N", "m", "b", or "!".
 	 *
 	 * @param string $flag One key of $wgRecentChangesFlags
 	 * @param IContextSource $context
+	 * @param bool $showFlag True to emit the actual flag character, false to emit
+	 *   the appropriate space
 	 * @return string HTML
 	 */
-	public static function flag( $flag, IContextSource $context = null ) {
+	public static function flag( $flag, IContextSource $context = null, $showFlag = true ) {
 		static $map = [ 'minoredit' => 'minor', 'botedit' => 'bot' ];
 		static $flagInfos = null;
 
@@ -227,6 +233,7 @@ class ChangesList extends ContextSource {
 			$flagInfos = [];
 			foreach ( $wgRecentChangesFlags as $key => $value ) {
 				$flagInfos[$key]['letter'] = $value['letter'];
+				$flagInfos[$key]['space'] = isset( $value['space'] ) ? $value['space'] : null;
 				$flagInfos[$key]['title'] = $value['title'];
 				// Allow customized class name, fall back to flag name
 				$flagInfos[$key]['class'] = isset( $value['class'] ) ? $value['class'] : $key;
@@ -241,10 +248,19 @@ class ChangesList extends ContextSource {
 		}
 
 		$info = $flagInfos[$flag];
-		return Html::element( 'abbr', [
-			'class' => $info['class'],
-			'title' => wfMessage( $info['title'] )->setContext( $context )->text(),
-		], wfMessage( $info['letter'] )->setContext( $context )->text() );
+		if ( $showFlag ) {
+			return Html::element( 'abbr', [
+				'class' => $info['class'],
+				'title' => wfMessage( $info['title'] )->setContext( $context )->text(),
+			], wfMessage( $info['letter'] )->setContext( $context )->text() );
+		} elseif ( $info['space'] ) {
+			return Html::element( 'span', [
+				'class' => $info['class'] . '-space',
+			], wfMessage( $info['space'] )->setContext( $context )->text() );
+		} else {
+			// back-compat: fall back to returning a non-breaking character
+			return '&#160;';
+		}
 	}
 
 	/**
