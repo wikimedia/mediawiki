@@ -215,12 +215,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * Return an array of conditions depending of options set in $opts
 	 *
 	 * @param FormOptions $opts
+	 * @param string $tableAlias The alias to use for the recentchanges table
 	 * @return array
 	 */
-	public function buildMainQueryConds( FormOptions $opts ) {
+	public function buildMainQueryConds( FormOptions $opts, $tableAlias = null ) {
 		$dbr = $this->getDB();
 		$user = $this->getUser();
 		$conds = [];
+
+		$alias = ( $tableAlias ? "$tableAlias." : '' );
 
 		// It makes no sense to hide both anons and logged-in users. When this occurs, try a guess on
 		// what the user meant and either show only bots or force anons to be shown.
@@ -236,64 +239,64 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		// Toggles
 		if ( $opts['hideminor'] ) {
-			$conds[] = 'rc_minor = 0';
+			$conds["{$alias}rc_minor"] = 0;
 		}
 		if ( $opts['hidemajor'] ) {
-			$conds[] = 'rc_minor = 1';
+			$conds[] = "{$alias}rc_minor = 1";
 		}
 		if ( $opts['hidebots'] ) {
-			$conds['rc_bot'] = 0;
+			$conds["{$alias}rc_bot"] = 0;
 		}
 		if ( $opts['hidehumans'] ) {
-			$conds[] = 'rc_bot = 1';
+			$conds[] = "{$alias}rc_bot = 1";
 		}
 		if ( $user->useRCPatrol() ) {
 			if ( $opts['hidepatrolled'] ) {
-				$conds[] = 'rc_patrolled = 0';
+				$conds[] = "{$alias}rc_patrolled = 0";
 			}
 			if ( $opts['hideunpatrolled'] ) {
-				$conds[] = 'rc_patrolled = 1';
+				$conds[] = "{$alias}rc_patrolled = 1";
 			}
 		}
 		if ( $botsonly ) {
-			$conds['rc_bot'] = 1;
+			$conds["{$alias}rc_bot"] = 1;
 		} else {
 			if ( $opts['hideliu'] ) {
-				$conds[] = 'rc_user = 0';
+				$conds[] = "{$alias}rc_user = 0";
 			}
 			if ( $hideanons ) {
-				$conds[] = 'rc_user != 0';
+				$conds[] = "{$alias}rc_user != 0";
 			}
 		}
 
 		if ( $opts['hidemyself'] ) {
 			if ( $user->getId() ) {
-				$conds[] = 'rc_user != ' . $dbr->addQuotes( $user->getId() );
+				$conds[] = "{$alias}rc_user != " . $dbr->addQuotes( $user->getId() );
 			} else {
-				$conds[] = 'rc_user_text != ' . $dbr->addQuotes( $user->getName() );
+				$conds[] = "{$alias}rc_user_text != " . $dbr->addQuotes( $user->getName() );
 			}
 		}
 		if ( $opts['hidebyothers'] ) {
 			if ( $user->getId() ) {
-				$conds[] = 'rc_user = ' . $dbr->addQuotes( $user->getId() );
+				$conds[] = "{$alias}rc_user = " . $dbr->addQuotes( $user->getId() );
 			} else {
-				$conds[] = 'rc_user_text = ' . $dbr->addQuotes( $user->getName() );
+				$conds[] = "{$alias}rc_user_text = " . $dbr->addQuotes( $user->getName() );
 			}
 		}
 
 		if ( $this->getConfig()->get( 'RCWatchCategoryMembership' )
 			&& $opts['hidecategorization'] === true
 		) {
-			$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_CATEGORIZE );
+			$conds[] = "{$alias}rc_type != " . $dbr->addQuotes( RC_CATEGORIZE );
 		}
 		if ( $opts['hidepageedits'] ) {
-			$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_EDIT );
+			$conds[] = "{$alias}rc_type != " . $dbr->addQuotes( RC_EDIT );
 		}
 		if ( $opts['hidenewpages'] ) {
-			$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_NEW );
+			$conds[] = "{$alias}rc_type != " . $dbr->addQuotes( RC_NEW );
 		}
 		if ( $opts['hidelog'] ) {
-			$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_LOG );
+			$conds[] = "{$alias}rc_type != " . $dbr->addQuotes( RC_LOG );
 		}
 
 		// Namespace filtering
@@ -304,15 +307,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 			// Namespace association (bug 2429)
 			if ( !$opts['associated'] ) {
-				$condition = "rc_namespace $operator $selectedNS";
+				$condition = "{$alias}rc_namespace $operator $selectedNS";
 			} else {
 				// Also add the associated namespace
 				$associatedNS = $dbr->addQuotes(
 					MWNamespace::getAssociated( $opts['namespace'] )
 				);
-				$condition = "(rc_namespace $operator $selectedNS "
+				$condition = "({$alias}rc_namespace $operator $selectedNS "
 					. $boolean
-					. " rc_namespace $operator $associatedNS)";
+					. " {$alias}rc_namespace $operator $associatedNS)";
 			}
 
 			$conds[] = $condition;

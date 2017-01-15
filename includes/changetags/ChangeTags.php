@@ -628,7 +628,8 @@ class ChangeTags {
 	 * @throws MWException When unable to determine appropriate JOIN condition for tagging
 	 */
 	public static function modifyDisplayQuery( &$tables, &$fields, &$conds,
-										&$join_conds, &$options, $filter_tag = false ) {
+		&$join_conds, &$options, $filter_tag = false ) {
+
 		global $wgRequest, $wgUseTagFilter;
 
 		if ( $filter_tag === false ) {
@@ -636,18 +637,20 @@ class ChangeTags {
 		}
 
 		// Figure out which conditions can be done.
-		if ( in_array( 'recentchanges', $tables ) ) {
-			$join_cond = 'ct_rc_id=rc_id';
-		} elseif ( in_array( 'logging', $tables ) ) {
-			$join_cond = 'ct_log_id=log_id';
-		} elseif ( in_array( 'revision', $tables ) ) {
-			$join_cond = 'ct_rev_id=rev_id';
-		} elseif ( in_array( 'archive', $tables ) ) {
-			$join_cond = 'ct_rev_id=ar_rev_id';
+		if ( ( $alias = array_search( 'recentchanges', $tables ) ) !== false ) {
+			$join_cond = 'ct_rc_id = ' . ( is_string( $alias ) ? "$alias.rc_id" : 'rc_id' );
+		} elseif ( ( $alias = array_search( 'logging', $tables ) ) !== false ) {
+			$join_cond = 'ct_log_id = ' . ( is_string( $alias ) ? "$alias.log_id" : 'log_id' );
+		} elseif ( ( $alias = array_search( 'revision', $tables ) ) !== false ) {
+			$join_cond = 'ct_rev_id = ' . ( is_string( $alias ) ? "$alias.rev_id" : 'rev_id' );
+		} elseif ( ( $alias = array_search( 'archive', $tables ) ) !== false ) {
+			$join_cond = 'ct_rev_id = ' . ( is_string( $alias ) ? "$alias.ar_rev_id" : 'ar_rev_id' );
 		} else {
 			throw new MWException( 'Unable to determine appropriate JOIN condition for tagging.' );
 		}
 
+		// @todo Why does this use a GROUP_CONCAT when we have the tag_summary table
+		// precisely to avoid this?
 		$fields['ts_tags'] = wfGetDB( DB_REPLICA )->buildGroupConcatField(
 			',', 'change_tag', 'ct_tag', $join_cond
 		);
