@@ -1522,8 +1522,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 *      EDIT_FORCE_BOT
 	 *          Mark the edit a "bot" edit regardless of user rights
 	 *      EDIT_AUTOSUMMARY
-	 *          Fill in blank summaries with generated text where possible
-	 *      EDIT_INTERNAL
+ 	 *          Fill in blank summaries with generated text where possible
+	 *      EDIT_INTERNA L
 	 *          Signal that the page retrieve/save cycle happened entirely in this request.
 	 *
 	 * If neither EDIT_NEW nor EDIT_UPDATE is specified, the status of the
@@ -1541,7 +1541,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @throws MWException
 	 * @return Status Possible errors:
 	 *   edit-hook-aborted: The ArticleSave hook aborted the edit but didn't
-	 *     set the fatal flag of $status
+ 	 *     set the fatal flag of $status
 	 *   edit-gone-missing: In update mode, but the article didn't exist.
 	 *   edit-conflict: In update mode, the article changed unexpectedly.
 	 *   edit-no-change: Warning that the text was the same as before.
@@ -1608,8 +1608,6 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @throws MWException
 	 * @return Status Possible errors:
-	 *     edit-hook-aborted: The ArticleSave hook aborted the edit but didn't
-	 *       set the fatal flag of $status.
 	 *     edit-gone-missing: In update mode, but the article didn't exist.
 	 *     edit-conflict: In update mode, the article changed unexpectedly.
 	 *     edit-no-change: Warning that the text was the same as before.
@@ -1663,9 +1661,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$hook_args = [ &$wikiPage, &$user, &$content, &$summary,
 							$flags & EDIT_MINOR, null, null, &$flags, &$hookStatus ];
 		// Check if the hook rejected the attempted save
-		if ( !Hooks::run( 'PageContentSave', $hook_args )
-			|| !ContentHandler::runLegacyHooks( 'ArticleSave', $hook_args, '1.21' )
-		) {
+		if ( !Hooks::run( 'PageContentSave', $hook_args ) ) {
 			if ( $hookStatus->isOK() ) {
 				// Hook returned false but didn't call fatal(); use generic message
 				$hookStatus->fatal( 'edit-hook-aborted' );
@@ -1893,7 +1889,6 @@ class WikiPage implements Page, IDBAccessObject {
 					$params = [ &$wikiPage, &$user, $content, $summary, $flags & EDIT_MINOR,
 						null, null, &$flags, $revision, &$status, $meta['baseRevId'],
 						$meta['undidRevId'] ];
-					ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $params );
 					Hooks::run( 'PageContentSaveComplete', $params );
 				}
 			),
@@ -2015,13 +2010,10 @@ class WikiPage implements Page, IDBAccessObject {
 					// Trigger post-create hook
 					$params = [ &$wikiPage, &$user, $content, $summary,
 						$flags & EDIT_MINOR, null, null, &$flags, $revision ];
-					ContentHandler::runLegacyHooks( 'ArticleInsertComplete', $params, '1.21' );
 					Hooks::run( 'PageContentInsertComplete', $params );
 					// Trigger post-save hook
 					$params = array_merge( $params, [ &$status, $meta['baseRevId'] ] );
-					ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $params, '1.21' );
 					Hooks::run( 'PageContentSaveComplete', $params );
-
 				}
 			),
 			DeferredUpdates::PRESEND
