@@ -3107,6 +3107,8 @@ class OutputPage extends ContextSource {
 
 		$user = $this->getUser();
 
+		$search_namespace = SearchEngine::userNamespaces( $user );
+
 		$vars = [
 			'wgCanonicalNamespace' => $canonicalNamespace,
 			'wgCanonicalSpecialPageName' => $canonicalSpecialPageName,
@@ -3133,6 +3135,7 @@ class OutputPage extends ContextSource {
 			'wgRelevantPageName' => $relevantTitle->getPrefixedDBkey(),
 			'wgRelevantArticleId' => $relevantTitle->getArticleID(),
 			'wgRequestId' => WebRequest::getRequestId(),
+			'wgNamespacesToBeSearchedDefault' => $search_namespace,
 		];
 
 		if ( $user->isLoggedIn() ) {
