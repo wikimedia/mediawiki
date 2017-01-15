@@ -152,8 +152,9 @@ changes to languages because of Phabricator reports.
   were removed.
 * Article::getAutosummary() and WikiPage::getAutosummary() (deprecated in 1.21)
   were removed.
-* Hooks ArticleViewCustom, EditPageGetDiffText and ShowRawCssJs (deprecated in 1.21)
-  were removed.
+* Hook ArticleViewCustom (deprecated in 1.21) was removed. Use ArticleContentViewCustom
+  instead.
+* Hooks EditPageGetDiffText and ShowRawCssJs (deprecated in 1.21) were removed.
 * Class RevisiondeleteAction (deprecated in 1.25) was removed.
 * WikiPage::prepareTextForEdit() (deprecated in 1.21) was removed.
 * WikiPage::getText() (deprecated in 1.21) was removed.
@@ -184,6 +185,22 @@ changes to languages because of Phabricator reports.
     RewriteEngine On
     RewriteBase /
     RewriteRule ^/w/wiki\.phtml$ /w/index.php [R=301,L]
+* Hook ArticleAfterFetchContent (deprecated in 1.21) was removed.
+  Use ArticleAfterFetchContentObject instead.
+* Hook ArticleInsertComplete (deprecated in 1.21) was removed.
+  Use PageContentInsertComplete instead.
+* Hook ArticleSave (deprecated in 1.21) was removed.
+  Use PageContentSave instead.
+* Hook ArticleSaveComplete (deprecated in 1.21) was removed.
+  Use PageContentSaveComplete instead.
+* Hook EditFilterMerged (deprecated in 1.21) was removed.
+  Use EditFilterMergedContent instead.
+* Hook EditPageGetPreviewText (deprecated in 1.21) was removed.
+  Use EditPageGetPreviewContent instead.
+* Hook TitleIsCssOrJsPage (deprecated in 1.21) was removed.
+  Use ContentHandlerDefaultModelFor instead.
+* Hook TitleIsWikitextPage (deprecated in 1.21) was removed.
+  Use ContentHandlerDefaultModelFor instead.
 
 == Compatibility ==
 

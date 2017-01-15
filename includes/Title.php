@@ -1233,12 +1233,6 @@ class Title implements LinkTarget {
 			&& ( $this->hasContentModel( CONTENT_MODEL_CSS )
 				|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) );
 
-		# @note This hook is also called in ContentHandler::getDefaultModel.
-		#   It's called here again to make sure hook functions can force this
-		#   method to return true even outside the MediaWiki namespace.
-
-		Hooks::run( 'TitleIsCssOrJsPage', [ $this, &$isCssOrJsPage ], '1.25' );
-
 		return $isCssOrJsPage;
 	}
 

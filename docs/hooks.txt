@@ -603,12 +603,6 @@ a chance to hide their (unrelated) log entries.
   AND in the final query)
 $logTypes: Array of log types being queried
 
-'ArticleAfterFetchContent': DEPRECATED! Use ArticleAfterFetchContentObject
-instead.
-After fetching content of an article from the database.
-&$article: the article (object) being loaded from the database
-&$content: the content (string) of the article
-
 'ArticleAfterFetchContentObject': After fetching content of an article from the
 database.
 &$article: the article (object) being loaded from the database
@@ -677,18 +671,6 @@ Wiki::articleFromTitle().
 &$article: Article (object) that will be returned
 $context: IContextSource (object)
 
-'ArticleInsertComplete': DEPRECATED! Use PageContentInsertComplete.
-After a new article is created.
-$wikiPage: WikiPage created
-$user: User creating the article
-$text: New content
-$summary: Edit summary/comment
-$isMinor: Whether or not the edit was marked as minor
-$isWatch: (No longer used)
-$section: (No longer used)
-$flags: Flags passed to WikiPage::doEditContent()
-$revision: New Revision of the article
-
 'ArticleMergeComplete': After merging to article using Special:Mergehistory.
 $targetTitle: target title (object)
 $destTitle: destination title (object)
@@ -739,31 +721,6 @@ $wikiPage: the WikiPage that was edited
 $user: the user who did the rollback
 $revision: the revision the page was reverted back to
 $current: the reverted revision
-
-'ArticleSave': DEPRECATED! Use PageContentSave instead.
-Before an article is saved.
-$wikiPage: the WikiPage (object) being saved
-$user: the user (object) saving the article
-$text: the new article text
-$summary: the article summary (comment)
-$isminor: minor flag
-$iswatch: watch flag
-$section: section #
-
-'ArticleSaveComplete': DEPRECATED! Use PageContentSaveComplete instead.
-After an article has been updated.
-$wikiPage: WikiPage modified
-$user: User performing the modification
-$text: New content
-$summary: Edit summary/comment
-$isMinor: Whether or not the edit was marked as minor
-$isWatch: (No longer used)
-$section: (No longer used)
-$flags: Flags passed to WikiPage::doEditContent()
-$revision: New Revision of the article
-$status: Status object about to be returned by doEditContent()
-$baseRevId: the rev ID (or false) this edit was based on
-$undidRevId: the rev ID (or 0) this edit undid
 
 'ArticleUndelete': When one or more revisions of an article are restored.
 &$title: Title corresponding to the article restored
@@ -1334,12 +1291,6 @@ $section: Section being edited
 &$error: Error message to return
 $summary: Edit summary for page
 
-'EditFilterMerged': DEPRECATED! Use EditFilterMergedContent instead.
-Post-section-merge edit filter.
-$editor: EditPage instance (object)
-$text: content of the edit box
-&$error: error message to return
-$summary: Edit summary for page
 
 'EditFilterMergedContent': Post-section-merge edit filter.
 This may be triggered by the EditPage or any other facility that modifies page
@@ -1447,13 +1398,6 @@ previewed. Note that it is preferable to implement previews for different data
 types using the ContentHandler facility.
 $editPage: EditPage object
 &$content: Content object to be previewed (may be replaced by hook function)
-
-'EditPageGetPreviewText': DEPRECATED! Use EditPageGetPreviewContent instead.
-Allow modifying the wikitext that will be previewed. Note that it is preferable
-to implement previews for different data types using the ContentHandler
-facility.
-$editPage: EditPage object
-&$toparse: wikitext that will be parsed
 
 'EditPageNoSuchSection': When a section edit request is given for an
 non-existent section
@@ -3315,13 +3259,6 @@ by the isKnown method.
 $title: Title object that is being checked
 &$isKnown: Boolean|null; whether MediaWiki currently thinks this page is known
 
-'TitleIsCssOrJsPage': DEPRECATED! Use ContentHandlerDefaultModelFor instead.
-Called when determining if a page is a CSS or JS page.
-$title: Title object that is being checked
-&$result: Boolean; whether MediaWiki currently thinks this is a CSS/JS page.
-  Hooks may change this value to override the return value of
-  Title::isCssOrJsPage().
-
 'TitleIsMovable': Called when determining if it is possible to move a page. Note
 that this hook is not called for interwiki pages or pages in immovable
 namespaces: for these, isMovable() always returns false.
@@ -3330,13 +3267,6 @@ $title: Title object that is being checked
   Hooks may change this value to override the return value of
   Title::isMovable().
 
-'TitleIsWikitextPage': DEPRECATED! Use ContentHandlerDefaultModelFor instead.
-Called when determining if a page is a wikitext or should
-be handled by separate handler (via ArticleViewCustom).
-$title: Title object that is being checked
-&$result: Boolean; whether MediaWiki currently thinks this is a wikitext page.
-  Hooks may change this value to override the return value of
-  Title::isWikitextPage()
 
 'TitleMove': Before moving an article (title).
 $old: old title
