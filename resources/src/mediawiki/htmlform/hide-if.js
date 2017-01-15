@@ -277,7 +277,7 @@
 							if ( self.wasDisabled === undefined ) {
 								self.wasDisabled = self.fieldWidget.isDisabled();
 							}
-							self.fieldWidget.setDisabled( false );
+							self.fieldWidget.setDisabled( true );
 						} else if ( self.wasDisabled !== undefined ) {
 							self.fieldWidget.setDisabled( self.wasDisabled );
 						}
