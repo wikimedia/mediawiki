@@ -9,7 +9,7 @@
 				formatversion: 2,
 				action: 'opensearch',
 				search: query,
-				namespace: namespace || 0,
+				namespace: namespace || mw.config.get( 'wgSearchSuggestNamespaces' ),
 				limit: maxRows,
 				suggest: true
 			} ).done( function ( data, jqXHR ) {
