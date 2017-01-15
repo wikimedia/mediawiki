@@ -198,9 +198,6 @@ abstract class ContentHandler {
 			$ext = $m[1];
 		}
 
-		// Hook can force JS/CSS
-		Hooks::run( 'TitleIsCssOrJsPage', [ $title, &$isCodePage ], '1.21' );
-
 		// Is this a user subpage containing code?
 		$isCodeSubpage = NS_USER == $ns
 			&& !$isCodePage
@@ -212,9 +209,6 @@ abstract class ContentHandler {
 		// Is this wikitext, according to $wgNamespaceContentModels or the DefaultModelFor hook?
 		$isWikitext = is_null( $model ) || $model == CONTENT_MODEL_WIKITEXT;
 		$isWikitext = $isWikitext && !$isCodePage && !$isCodeSubpage;
-
-		// Hook can override $isWikitext
-		Hooks::run( 'TitleIsWikitextPage', [ $title, &$isWikitext ], '1.21' );
 
 		if ( !$isWikitext ) {
 			switch ( $ext ) {
@@ -1093,65 +1087,6 @@ abstract class ContentHandler {
 	 */
 	public function supportsDirectApiEditing() {
 		return $this->supportsDirectEditing();
-	}
-
-	/**
-	 * Call a legacy hook that uses text instead of Content objects.
-	 * Will log a warning when a matching hook function is registered.
-	 * If the textual representation of the content is changed by the
-	 * hook function, a new Content object is constructed from the new
-	 * text.
-	 *
-	 * @param string $event Event name
-	 * @param array $args Parameters passed to hook functions
-	 * @param string|null $deprecatedVersion Emit a deprecation notice
-	 *   when the hook is run for the provided version
-	 *
-	 * @return bool True if no handler aborted the hook
-	 */
-	public static function runLegacyHooks( $event, $args = [],
-		$deprecatedVersion = null
-	) {
-
-		if ( !Hooks::isRegistered( $event ) ) {
-			return true; // nothing to do here
-		}
-
-		// convert Content objects to text
-		$contentObjects = [];
-		$contentTexts = [];
-
-		foreach ( $args as $k => $v ) {
-			if ( $v instanceof Content ) {
-				/* @var Content $v */
-
-				$contentObjects[$k] = $v;
-
-				$v = $v->serialize();
-				$contentTexts[$k] = $v;
-				$args[$k] = $v;
-			}
-		}
-
-		// call the hook functions
-		$ok = Hooks::run( $event, $args, $deprecatedVersion );
-
-		// see if the hook changed the text
-		foreach ( $contentTexts as $k => $orig ) {
-			/* @var Content $content */
-
-			$modified = $args[$k];
-			$content = $contentObjects[$k];
-
-			if ( $modified !== $orig ) {
-				// text was changed, create updated Content object
-				$content = $content->getContentHandler()->unserializeContent( $modified );
-			}
-
-			$args[$k] = $content;
-		}
-
-		return $ok;
 	}
 
 	/**
