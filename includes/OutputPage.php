@@ -3062,7 +3062,7 @@ class OutputPage extends ContextSource {
 	 * @return array
 	 */
 	public function getJSVars() {
-		global $wgContLang;
+		global $wgContLang, $wgNamespacesToBeSearchedDefault;
 
 		$curRevisionId = 0;
 		$articleId = 0;
@@ -3107,6 +3107,12 @@ class OutputPage extends ContextSource {
 
 		$user = $this->getUser();
 
+		if ( $user->isLoggedIn() ) {
+			$search_namespace = SearchEngine::userNamespaces( $this->getUser() );
+		} else {
+			$search_namespace = SearchEngine::defaultNamespaces();
+		}
+
 		$vars = [
 			'wgCanonicalNamespace' => $canonicalNamespace,
 			'wgCanonicalSpecialPageName' => $canonicalSpecialPageName,
@@ -3133,6 +3139,7 @@ class OutputPage extends ContextSource {
 			'wgRelevantPageName' => $relevantTitle->getPrefixedDBkey(),
 			'wgRelevantArticleId' => $relevantTitle->getArticleID(),
 			'wgRequestId' => WebRequest::getRequestId(),
+			'wgNamespacesToBeSearchedDefault' => $search_namespace,
 		];
 
 		if ( $user->isLoggedIn() ) {
