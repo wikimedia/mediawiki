@@ -388,15 +388,6 @@ class Article implements Page {
 		$this->mContentObject = $content;
 		$this->mRevIdFetched = $this->mRevision->getId();
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$articlePage = $this;
-
-		ContentHandler::runLegacyHooks(
-			'ArticleAfterFetchContentObject',
-			[ &$articlePage, &$this->mContentObject ],
-			'1.21'
-		);
-
 		return $this->mContentObject;
 	}
 

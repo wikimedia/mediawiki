@@ -198,9 +198,6 @@ abstract class ContentHandler {
 			$ext = $m[1];
 		}
 
-		// Hook can force JS/CSS
-		Hooks::run( 'TitleIsCssOrJsPage', [ $title, &$isCodePage ], '1.21' );
-
 		// Is this a user subpage containing code?
 		$isCodeSubpage = NS_USER == $ns
 			&& !$isCodePage
@@ -213,8 +210,6 @@ abstract class ContentHandler {
 		$isWikitext = is_null( $model ) || $model == CONTENT_MODEL_WIKITEXT;
 		$isWikitext = $isWikitext && !$isCodePage && !$isCodeSubpage;
 
-		// Hook can override $isWikitext
-		Hooks::run( 'TitleIsWikitextPage', [ $title, &$isWikitext ], '1.21' );
 
 		if ( !$isWikitext ) {
 			switch ( $ext ) {
