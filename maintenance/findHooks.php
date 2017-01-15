@@ -48,7 +48,7 @@ class FindHooks extends Maintenance {
 	/*
 	 * Hooks that are ignored
 	 */
-	protected static $ignore = [ 'testRunLegacyHooks', 'Test' ];
+	protected static $ignore = [ 'Test' ];
 
 	public function __construct() {
 		parent::__construct();
@@ -238,7 +238,7 @@ class FindHooks extends Maintenance {
 		$m = [];
 		preg_match_all(
 			// All functions which runs hooks
-			'/(?:wfRunHooks|Hooks\:\:run|ContentHandler\:\:runLegacyHooks)\s*\(\s*' .
+			'/(?:wfRunHooks|Hooks\:\:run)\s*\(\s*' .
 				// First argument is the hook name as string
 				'([\'"])(.*?)\1' .
 				// Comma for second argument

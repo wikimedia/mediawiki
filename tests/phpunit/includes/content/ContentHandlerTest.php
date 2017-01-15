@@ -367,22 +367,6 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertFalse( $handler->supportsDirectEditing(), 'direct editing is not supported' );
 	}
 
-	/**
-	 * @covers ContentHandler::runLegacyHooks
-	 */
-	public function testRunLegacyHooks() {
-		Hooks::register( 'testRunLegacyHooks', __CLASS__ . '::dummyHookHandler' );
-
-		$content = new WikitextContent( 'test text' );
-		$ok = ContentHandler::runLegacyHooks(
-			'testRunLegacyHooks',
-			[ 'foo', &$content, 'bar' ]
-		);
-
-		$this->assertTrue( $ok, "runLegacyHooks should have returned true" );
-		$this->assertEquals( "TEST TEXT", $content->getNativeData() );
-	}
-
 	public static function dummyHookHandler( $foo, &$text, $bar ) {
 		if ( $text === null || $text === false ) {
 			return false;

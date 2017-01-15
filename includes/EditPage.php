@@ -1621,15 +1621,7 @@ class EditPage {
 	 */
 	protected function runPostMergeFilters( Content $content, Status $status, User $user ) {
 		// Run old style post-section-merge edit filter
-		if ( !ContentHandler::runLegacyHooks( 'EditFilterMerged',
-			[ $this, $content, &$this->hookError, $this->summary ],
-			'1.21'
-		) ) {
-			# Error messages etc. could be handled within the hook...
-			$status->fatal( 'hookaborted' );
-			$status->value = self::AS_HOOK_ERROR;
-			return false;
-		} elseif ( $this->hookError != '' ) {
+		if ( $this->hookError != '' ) {
 			# ...or the hook could be expecting us to produce an error
 			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR_EXPECTED;
@@ -3779,7 +3771,6 @@ HTML
 			}
 
 			$hook_args = [ $this, &$content ];
-			ContentHandler::runLegacyHooks( 'EditPageGetPreviewText', $hook_args, '1.25' );
 			Hooks::run( 'EditPageGetPreviewContent', $hook_args );
 
 			$parserResult = $this->doPreviewParse( $content );
