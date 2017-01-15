@@ -13,6 +13,8 @@
  * @author לערי ריינהארט
  */
 
+$fallback = 'bs, sr-el, hr';
+
 $namespaceNames = [
 	NS_SPECIAL          => 'Posebno',
 	NS_TALK             => 'Razgovor',
@@ -29,6 +31,8 @@ $namespaceNames = [
 	NS_CATEGORY         => 'Kategorija',
 	NS_CATEGORY_TALK    => 'Razgovor_o_kategoriji',
 ];
+
+$namespaceGenderAliases = [];
 
 $specialPageAliases = [
 	'Activeusers'               => [ 'Aktivni_korisnici' ],
@@ -203,3 +207,16 @@ $magicWords = [
 
 $linkTrail = '/^([a-zčćđžš]+)(.*)$/sDu';
 
+$defaultDateFormat = 'dmy';
+$datePreferences = [
+	'default',
+	'dmy',
+	'ymd',
+	'ISO 8601',
+];
+$datePreferenceMigrationMap = [
+	'default',
+	'mdy',
+	'dmy',
+	'ymd'
+];
