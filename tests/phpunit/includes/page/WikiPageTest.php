@@ -156,60 +156,6 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers WikiPage::doEdit
-	 * @deprecated since 1.21. Should be removed when WikiPage::doEdit() gets removed
-	 */
-	public function testDoEdit() {
-		$this->hideDeprecated( "WikiPage::doEdit" );
-		$this->hideDeprecated( "Revision::getText" );
-
-		// NOTE: assume help namespace will default to wikitext
-		$title = Title::newFromText( "Help:WikiPageTest_testDoEdit" );
-
-		$page = $this->newPage( $title );
-
-		$text = "[[Lorem ipsum]] dolor sit amet, consetetur sadipscing elitr, sed diam "
-			. " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.";
-
-		$page->doEdit( $text, "[[testing]] 1" );
-
-		$this->assertTrue( $title->getArticleID() > 0, "Title object should have new page id" );
-		$this->assertTrue( $page->getId() > 0, "WikiPage should have new page id" );
-		$this->assertTrue( $title->exists(), "Title object should indicate that the page now exists" );
-		$this->assertTrue( $page->exists(), "WikiPage object should indicate that the page now exists" );
-
-		$id = $page->getId();
-
-		# ------------------------
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'pagelinks', '*', [ 'pl_from' => $id ] );
-		$n = $res->numRows();
-		$res->free();
-
-		$this->assertEquals( 1, $n, 'pagelinks should contain one link from the page' );
-
-		# ------------------------
-		$text = "At vero eos et accusam et justo duo [[dolores]] et ea rebum. "
-			. "Stet clita kasd [[gubergren]], no sea takimata sanctus est.";
-
-		$page->doEdit( $text, "testing 2" );
-
-		# ------------------------
-		$page = new WikiPage( $title );
-
-		$retrieved = $page->getContent()->getNativeData();
-		$this->assertEquals( $text, $retrieved, 'retrieved text doesn\'t equal original' );
-
-		# ------------------------
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'pagelinks', '*', [ 'pl_from' => $id ] );
-		$n = $res->numRows();
-		$res->free();
-
-		$this->assertEquals( 2, $n, 'pagelinks should contain two links from the page' );
-	}
-
-	/**
 	 * @covers WikiPage::doDeleteArticle
 	 */
 	public function testDoDeleteArticle() {
