@@ -333,4 +333,3 @@ class TestFileReader {
 		$this->requirements[$type][$name] = true;
 	}
 }
-

@@ -244,4 +244,3 @@ $imageFiles = [
 	'button-italic'   => 'be-tarask/button_italic.png',
 	'button-link'     => 'be-tarask/button_link.png',
 ];
-

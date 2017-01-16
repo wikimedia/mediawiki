@@ -148,4 +148,3 @@ $magicWords = [
 	'talkspacee'                => [ '1', 'TAKIPREKIE', 'OVERLEGRUIMTEE', 'TALKSPACEE' ],
 	'special'                   => [ '0', 'spesyal', 'speciaal', 'special' ],
 ];
-

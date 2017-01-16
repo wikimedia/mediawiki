@@ -32,4 +32,3 @@ $namespaceNames = [
 ];
 
 $fallback = 'lv';
-

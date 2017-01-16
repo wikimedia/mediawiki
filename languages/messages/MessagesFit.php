@@ -9,4 +9,3 @@
  */
 
 $fallback = 'fi';
-

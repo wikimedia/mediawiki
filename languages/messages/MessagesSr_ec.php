@@ -405,4 +405,3 @@ $magicWords = [
 	'pagesincategory_files'     => [ '0', 'датотеке', 'files' ],
 ];
 $separatorTransformTable = [ ',' => '.', '.' => ',' ];
-

@@ -351,4 +351,3 @@ $datePreferenceMigrationMap = [
 
 $linkTrail = "/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sDu";
 $separatorTransformTable = [ ',' => '.', '.' => ',' ];
-

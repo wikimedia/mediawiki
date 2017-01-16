@@ -140,4 +140,3 @@ $dateFormats = [
 	'dmy date' => 'j. xg Y',
 	'dmy both' => 'j. xg Y, H:i',
 ];
-

@@ -54,4 +54,3 @@ $namespaceAliases = [
 	'Kategori' => NS_CATEGORY,
 	'Kategoridiskussion' => NS_CATEGORY_TALK
 ];
-

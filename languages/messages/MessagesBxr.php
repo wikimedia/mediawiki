@@ -67,4 +67,3 @@ $specialPageAliases = [
 	'Userlogin'                 => [ 'Нэбтэрхэ' ],
 	'Userlogout'                => [ 'Гараха' ],
 ];
-

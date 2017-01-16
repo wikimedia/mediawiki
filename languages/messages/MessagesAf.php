@@ -196,4 +196,3 @@ $specialPageAliases = [
 # glibc is wrong in this respect in some versions
 $separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
 $linkTrail = "/^([a-z]+)(.*)$/sD";
-

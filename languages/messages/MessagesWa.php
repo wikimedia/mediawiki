@@ -83,4 +83,3 @@ $separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
 
 # $linkTrail = '/^([a-zåâêîôûçéèA-ZÅÂÊÎÔÛÇÉÈ]+)(.*)$/sDu';
 $linkTrail = '/^([a-zåâêîôûçéè]+)(.*)$/sDu';
-

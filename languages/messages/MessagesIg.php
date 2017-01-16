@@ -69,4 +69,3 @@ $magicWords = [
 	'displaytitle'              => [ '1', 'ZIÍSHÍ', 'DISPLAYTITLE' ],
 	'pagesize'                  => [ '1', 'ÀSÁIHÜ', 'PAGESIZE' ],
 ];
-

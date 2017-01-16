@@ -138,4 +138,3 @@ $dateFormats = [
 	'cdo date' => 'Y "nièng" n "nguŏk" j "hô̤" (l)',
 	'cdo both' => 'Y "nièng" n "nguŏk" j "hô̤" (D) H:i',
 ];
-

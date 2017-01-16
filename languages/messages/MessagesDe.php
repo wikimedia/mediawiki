@@ -357,4 +357,3 @@ $imageFiles = [
 	'button-bold'     => 'de/button_bold.png',
 	'button-italic'   => 'de/button_italic.png',
 ];
-

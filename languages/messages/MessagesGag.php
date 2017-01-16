@@ -88,4 +88,3 @@ $specialPageAliases = [
 $magicWords = [
 	'redirect'                  => [ '0', '#YÖNNENDİRMÄKLER', '#YÖNNENDİR', '#YÖNNENDİRMÄ', '#YÖNLENDİRME', '#YÖNLENDİR', '#REDIRECT' ],
 ];
-

@@ -277,4 +277,3 @@ $magicWords = [
 	'protectionlevel'           => [ '1', 'HAYKAAMACHAY', 'IMASINCHIAMACHAY', 'NIVELDEPROTECCIÓN', 'PROTECTIONLEVEL' ],
 	'formatdate'                => [ '0', 'punchawrikchakuy', 'formatodefecha', 'formatearfecha', 'formatdate', 'dateformat' ],
 ];
-

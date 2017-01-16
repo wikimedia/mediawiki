@@ -35,4 +35,3 @@ class MssqlField implements Field {
 		return $this->type;
 	}
 }
-

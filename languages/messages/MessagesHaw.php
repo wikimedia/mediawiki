@@ -117,4 +117,3 @@ $magicWords = [
 	'pagesincategory_pages'     => [ '0', 'ʻaoʻao', 'aoao', 'pages' ],
 	'pagesincategory_files'     => [ '0', 'waihona', 'files' ],
 ];
-

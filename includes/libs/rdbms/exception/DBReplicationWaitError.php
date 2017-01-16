@@ -25,4 +25,3 @@
  */
 class DBReplicationWaitError extends DBExpectedError {
 }
-

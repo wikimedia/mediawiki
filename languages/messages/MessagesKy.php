@@ -32,4 +32,3 @@ $namespaceNames = [
 	NS_HELP             => 'Жардам',
 	NS_CATEGORY         => 'Категория',
 ];
-
