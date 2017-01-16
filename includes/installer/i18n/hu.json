@@ -68,6 +68,7 @@
 	"config-memory-bad": "'''Figyelmeztetés:''' A PHP <code>memory_limit</code> beállításának értéke $1.\nEz az érték valószínűleg túl kevés, a telepítés sikertelen lehet.",
 	"config-xcache": "Az [http://xcache.lighttpd.net/ XCache] telepítve van",
 	"config-apc": "Az [http://www.php.net/apc APC] telepítve van",
+	"config-apcu": "Az [http://www.php.net/apcu APCu] telepítve van",
 	"config-wincache": "A [http://www.iis.net/download/WinCacheForPhp WinCache] telepítve van",
 	"config-diff3-bad": "GNU diff3 nem található.",
 	"config-git": "Megtaláltam a Git verziókezelő szoftvert: <code>$1</code>.",

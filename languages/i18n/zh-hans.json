@@ -2331,7 +2331,7 @@
 	"ipaddressorusername": "IP地址或用户名：",
 	"ipbexpiry": "终止时间：",
 	"ipbreason": "原因：",
-	"ipbreason-dropdown": "*常见封禁原因\n** 插入虚假信息\n** 删除页面内容\n** 添加垃圾外部链接\n** 插入无意义文字\n** 恐吓行为/骚扰\n** 滥用多个账户\n** 不能接受的用户名",
+	"ipbreason-dropdown": "*常见封禁原因\n** 插入虚假信息\n** 移除页面内容\n** 添加垃圾外部链接\n** 插入无意义文字\n** 恐吓行为/骚扰\n** 滥用多个账户\n** 不能接受的用户名",
 	"ipb-hardblock": "阻止登录用户使用该IP地址编辑",
 	"ipbcreateaccount": "阻止创建新账号",
 	"ipbemailban": "阻止用户发送电子邮件",

@@ -2062,7 +2062,7 @@
 	"emailccsubject": "Cópia de sua mensagem para $1: $2",
 	"emailsent": "E-mail enviado",
 	"emailsenttext": "Sua mensagem foi enviada.",
-	"emailuserfooter": "Esta mensagem foi enviada {{GENDER:$1|pelo usuários|pela usuária}} $1 para {{GENDER:$2|$2}} através da opção \"{{int:emailuser}}\" da wiki {{SITENAME}}. {{GENDER:$2|A sua}} resposta será enviada diretamente para {{GENDER:$1|o|a}} remetente original, e irá revelar-lhe {{GENDER:$2|o seu}} e-mail.",
+	"emailuserfooter": "Esta mensagem foi enviada {{GENDER:$1|pelo usuário|pela usuária}} $1 para {{GENDER:$2|$2}} através da opção “{{int:emailuser}}” do projeto {{SITENAME}}. {{GENDER:$2|A sua}} resposta será enviada diretamente para {{GENDER:$1|o|a}} remetente original, e revelar-lhe-á {{GENDER:$2|o seu}} endereço de e-mail.",
 	"usermessage-summary": "Deixar mensagem de sistema.",
 	"usermessage-editor": "Mensagens de sistema",
 	"watchlist": "Páginas vigiadas",

@@ -22,7 +22,8 @@
 			"Ильнар",
 			"Macofe",
 			"StasR",
-			"Irus"
+			"Irus",
+			"Mailman"
 		]
 	},
 	"config-desc": "Инсталлятор MediaWiki",
@@ -31,7 +32,7 @@
 	"config-localsettings-upgrade": "Обнаружен файл <code>LocalSettings.php</code>.\nДля обновления этой установки, пожалуйста, введите значение <code>$wgUpgradeKey</code>.\nЕго можно найти в файле <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "Обнаружен файл <code>LocalSettings.php</code>.\nДля обновления этой установки, пожалуйста, запустите <code>update.php</code>",
 	"config-localsettings-key": "Ключ обновления:",
-	"config-localsettings-badkey": "Вы указали неправильный ключ обновления",
+	"config-localsettings-badkey": "Вы указали неверный ключ обновления.",
 	"config-upgrade-key-missing": "Обнаружена существующая установленная копия MediaWiki.\nЧтобы обновить обнаруженную установку, пожалуйста, добавьте следующую строку в конец вашего файла <code>LocalSettings.php</code>:\n\n$1",
 	"config-localsettings-incomplete": "Похоже, что существующий файл <code>LocalSettings.php</code> неполон.\nНе установлена переменная $1.\nПожалуйста, измените <code>LocalSettings.php</code> так, чтобы значение этой переменной было задано, затем нажмите «{{int:Config-continue}}».",
 	"config-localsettings-connection-error": "Произошла ошибка при подключении к базе данных с использованием настроек, указанных в <code>LocalSettings.php</code>. Пожалуйста, исправьте эти настройки и повторите попытку.\n\n$1",

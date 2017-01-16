@@ -601,7 +601,7 @@
 	"botpasswords-label-delete": "Eliminar",
 	"botpasswords-label-resetpassword": "Redefinir palavra-passe",
 	"botpasswords-label-grants": "Concessões de permissões aplicáveis:",
-	"botpasswords-help-grants": "As concessões de permissões permitem acesso a permissões já detidas pela sua conta de utilizador. Fazer uma concessão aqui não fornece acesso a quaisquer permissões que a usa conta de utilizador não possua. Consulte a [[Special:ListGrants|tabela de concessões]] para mais informação.",
+	"botpasswords-help-grants": "As concessões de permissões permitem acesso a permissões já detidas pela sua conta de utilizador. Fazer uma concessão aqui não fornece acesso a quaisquer permissões que a sua conta de utilizador não possua. Consulte a [[Special:ListGrants|tabela de concessões]] para mais informação.",
 	"botpasswords-label-grants-column": "Concedido",
 	"botpasswords-bad-appid": "O nome do robô \"$1\" não é válido.",
 	"botpasswords-insert-failed": "Falhou ao adicionar o nome do robô \"$1\". Já foi adicionado?",
