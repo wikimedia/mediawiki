@@ -187,6 +187,11 @@ class ImportImages extends Maintenance {
 		if ( $count > 0 ) {
 
 			foreach ( $files as $file ) {
+
+				if ( $sleep && ( $processed > 0 ) ) {
+					sleep( $sleep );
+				}
+
 				$base = UtfNormal\Validator::cleanUp( wfBaseName( $file ) );
 
 				# Validate a title
@@ -374,10 +379,6 @@ class ImportImages extends Maintenance {
 
 				if ( $limit && $processed >= $limit ) {
 					break;
-				}
-
-				if ( $sleep ) {
-					sleep( $sleep );
 				}
 			}
 
