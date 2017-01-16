@@ -1398,8 +1398,8 @@
 	"apihelp-tokens-example-emailmove": "Retrieve an email token and a move token.",
 
 	"apihelp-unblock-description": "Unblock a user.",
-	"apihelp-unblock-param-id": "ID of the block to unblock (obtained through <kbd>list=blocks</kbd>). Cannot be used together with <var>$1user</var> or <var>$luserid</var>.",
-	"apihelp-unblock-param-user": "Username, IP address or IP address range to unblock. Cannot be used together with <var>$1id</var> or <var>$luserid</var>.",
+	"apihelp-unblock-param-id": "ID of the block to unblock (obtained through <kbd>list=blocks</kbd>). Cannot be used together with <var>$1user</var> or <var>$1userid</var>.",
+	"apihelp-unblock-param-user": "Username, IP address or IP address range to unblock. Cannot be used together with <var>$1id</var> or <var>$1userid</var>.",
 	"apihelp-unblock-param-userid": "User ID to unblock. Cannot be used together with <var>$1id</var> or <var>$1user</var>.",
 	"apihelp-unblock-param-reason": "Reason for unblock.",
 	"apihelp-unblock-param-tags": "Change tags to apply to the entry in the block log.",
