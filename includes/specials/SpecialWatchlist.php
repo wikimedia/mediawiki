@@ -30,6 +30,9 @@ use MediaWiki\MediaWikiServices;
  * @ingroup SpecialPage
  */
 class SpecialWatchlist extends ChangesListSpecialPage {
+	/** @var array Recent change types that are not considered revisions */
+	protected $nonRevisionTypes;
+
 	public function __construct( $page = 'Watchlist', $restriction = 'viewmywatchlist' ) {
 		parent::__construct( $page, $restriction );
 	}
@@ -84,6 +87,13 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$output->redirect( $this->getPageTitle()->getFullURL( $opts->getChangedValues() ) );
 
 			return;
+		}
+
+		if ( !$opts['extended'] ) {
+			// In the old-style watchlist, we show all non-revision changes for a page,
+			// not just the "top" one
+			$this->nonRevisionTypes = [ RC_LOG ];
+			Hooks::run( 'SpecialWatchlistGetNonRevisionTypes', [ &$this->nonRevisionTypes ] );
 		}
 
 		parent::execute( $subpage );
@@ -180,6 +190,16 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
+	 * Return 'rc', the alias that this class uses for the recentchanges table in
+	 * database queries. Used by the parent class.
+	 *
+	 * @return string
+	 */
+	public function getRecentChangesAlias() {
+		return 'rc';
+	}
+
+	/**
 	 * Return an array of conditions depending of options set in $opts
 	 *
 	 * @param FormOptions $opts
@@ -191,7 +211,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		// Calculate cutoff
 		if ( $opts['days'] > 0 ) {
-			$conds[] = 'rc_timestamp > ' .
+			$conds[] = "rc.rc_timestamp > " .
 				$dbr->addQuotes( $dbr->timestamp( time() - intval( $opts['days'] * 86400 ) ) );
 		}
 
@@ -209,40 +229,65 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$dbr = $this->getDB();
 		$user = $this->getUser();
 
-		# Toggle watchlist content (all recent edits or just the latest)
+		// Toggle watchlist content (all recent edits or just the latest)
 		if ( $opts['extended'] ) {
 			$limitWatchlist = $user->getIntOption( 'wllimit' );
 			$usePage = false;
 		} else {
-			# Top log Ids for a page are not stored
-			$nonRevisionTypes = [ RC_LOG ];
-			Hooks::run( 'SpecialWatchlistGetNonRevisionTypes', [ &$nonRevisionTypes ] );
-			if ( $nonRevisionTypes ) {
-				$conds[] = $dbr->makeList(
-					[
-						'rc_this_oldid=page_latest',
-						'rc_type' => $nonRevisionTypes,
-					],
-					LIST_OR
-				);
-			}
 			$limitWatchlist = 0;
 			$usePage = true;
 		}
 
-		$tables = [ 'recentchanges', 'watchlist' ];
-		$fields = RecentChange::selectFields();
-		$query_options = [ 'ORDER BY' => 'rc_timestamp DESC' ];
+		$tables = [ 'watchlist', 'rc' => 'recentchanges' ];
+		$fields = array_map( function( $field ) {
+			return "rc.$field";
+		}, RecentChange::selectFields() );
+		$query_options = [ 'ORDER BY' => 'rc.rc_timestamp DESC' ];
 		$join_conds = [
-			'watchlist' => [
+			'rc' => [
 				'INNER JOIN',
 				[
 					'wl_user' => $user->getId(),
-					'wl_namespace=rc_namespace',
-					'wl_title=rc_title'
+					'wl_namespace = rc.rc_namespace',
+					'wl_title = rc.rc_title'
 				],
 			],
 		];
+
+		// For the old-style watchlist, show the topmost non-bot or non-minor edit
+		// if the user has chosen to hide bot/minor edits
+		if ( !$opts['extended'] ) {
+			// Bring in another copy of the recentchanges table, which we will use to
+			// look at newer changes than in `rc` (the original copy of recentchanges)
+			// and identify when there are no newer non-bot/non-minor edits
+			$tables['rcnext'] = 'recentchanges';
+			$join_conds['rcnext'] = [
+				'LEFT JOIN',
+				[
+					'rcnext.rc_cur_id = rc.rc_cur_id',
+
+					// Preserve the legacy behaviour of showing all log entries in the
+					// user's selected timespan
+					'rc.rc_type NOT IN (' . $dbr->makeList( $this->nonRevisionTypes ) . ')',
+					'rcnext.rc_type NOT IN (' . $dbr->makeList( $this->nonRevisionTypes ) . ')',
+
+					// Unfortunately, timestamps are not unique, so if the same page is edited
+					// twice in the same second, we will end up with two rows in the watchlist
+					// for that page.
+					// We don't use rc_id here; although it is unique, it is not monotonic
+					// with respect to time, so we would sometimes show a change that is not
+					// the most recent edit to that page
+					'rcnext.rc_timestamp > rc.rc_timestamp',
+				]
+			];
+			$conds[] = 'rcnext.rc_id IS NULL';
+			if ( $opts['hidebots'] ) {
+				$join_conds['rcnext'][1]['rcnext.rc_bot'] = 0;
+			}
+			if ( $opts['hideminor'] ) {
+				$join_conds['rcnext'][1]['rcnext.rc_minor'] = 0;
+			}
+		}
 
 		if ( $this->getConfig()->get( 'ShowUpdatedMarker' ) ) {
 			$fields[] = 'wl_notificationtimestamp';
@@ -254,7 +299,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$rollbacker = $user->isAllowed( 'rollback' );
 		if ( $usePage || $rollbacker ) {
 			$tables[] = 'page';
-			$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
+			$join_conds['page'] = [ 'LEFT JOIN', 'rc.rc_cur_id = page_id' ];
 			if ( $rollbacker ) {
 				$fields[] = 'page_latest';
 			}
@@ -271,8 +316,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 		if ( $bitmask ) {
 			$conds[] = $dbr->makeList( [
-				'rc_type != ' . RC_LOG,
-				$dbr->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask",
+				'rc.rc_type != ' . RC_LOG,
+				$dbr->bitAnd( 'rc.rc_deleted', $bitmask ) . " != $bitmask",
 			], LIST_OR );
 		}
 
@@ -295,17 +340,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$query_options,
 			$join_conds
 		);
-	}
-
-	protected function runMainQueryHook( &$tables, &$fields, &$conds, &$query_options,
-		&$join_conds, $opts
-	) {
-		return parent::runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds, $opts )
-			&& Hooks::run(
-				'SpecialWatchlistQuery',
-				[ &$conds, &$tables, &$join_conds, &$fields, $opts ],
-				'1.23'
-			);
 	}
 
 	/**
