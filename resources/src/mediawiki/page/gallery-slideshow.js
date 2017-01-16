@@ -39,9 +39,12 @@
 		);
 
 		// Disable thumbnails' link, instead show the image in the carousel
-		this.$galleryBox.on( 'click', function ( e ) {
-			this.$currentImage = $( e.currentTarget );
+		// We want the entire list item to be clickable
+		// But need a more specific selector so that MMV doesn't open
+		this.$galleryBox.add( '.gallerybox a' ).on( 'click', function ( e ) {
+			this.$currentImage = $( e.currentTarget ).closest( '.gallerybox' );
 			this.showCurrentImage();
+			e.stopImmediatePropagation(); // Don't let MMV open
 			return false;
 		}.bind( this ) );
 	};
