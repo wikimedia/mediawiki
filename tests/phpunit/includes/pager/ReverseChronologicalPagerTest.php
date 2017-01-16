@@ -66,4 +66,3 @@ class ReverseChronologicalPagerTest extends MediaWikiLangTestCase {
 		}
 	}
 }
-

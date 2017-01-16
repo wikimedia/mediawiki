@@ -62,4 +62,3 @@ $namespaceAliases = [
 
 // Remove Polish gender aliases
 $namespaceGenderAliases = [];
-

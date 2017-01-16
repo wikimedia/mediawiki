@@ -56,4 +56,3 @@ $namespaceAliases = [
 ];
 
 $namespaceGenderAliases = [];
-

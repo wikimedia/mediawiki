@@ -103,4 +103,3 @@ class MySQLField implements Field {
 		return $this->is_zerofill;
 	}
 }
-

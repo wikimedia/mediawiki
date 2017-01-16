@@ -21,4 +21,3 @@ $dateFormats = [
 	'ymd date' => 'Y xg j',
 	'ymd both' => 'H:i, Y xg j',
 ];
-

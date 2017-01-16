@@ -345,4 +345,3 @@ $bookstoreList = [
 	'Barnes & Noble' => 'http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
 	'Amazon.com'     => 'http://www.amazon.com/exec/obidos/ISBN=$1'
 ];
-

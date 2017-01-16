@@ -24,4 +24,3 @@
  */
 function register_postsend_function( $callback ) {
 }
-

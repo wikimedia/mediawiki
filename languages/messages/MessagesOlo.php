@@ -30,4 +30,3 @@ $namespaceNames = [
 ];
 
 $linkTrail = '/^([a-zčČšŠžŽäÄöÖ]+)(.*)$/sDu';
-

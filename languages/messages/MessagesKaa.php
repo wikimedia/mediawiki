@@ -142,4 +142,3 @@ $dateFormats = [
 
 $linkTrail = "/^((?:[a-zıʼ’“»]|'(?!'))+)(.*)$/sDu";
 $linkPrefixCharset = 'a-zıA-Zİ\\x80-\\xff';
-

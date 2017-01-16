@@ -36,4 +36,3 @@ $namespaceAliases = [
 	'Pitulung_Dhiskusi' => NS_HELP_TALK,
 	'Kategori_Dhiskusi' => NS_CATEGORY_TALK,
 ];
-

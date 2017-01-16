@@ -802,4 +802,3 @@ class UserrightsPage extends SpecialPage {
 		return 'users';
 	}
 }
-

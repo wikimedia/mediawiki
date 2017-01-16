@@ -70,4 +70,3 @@ $separatorTransformTable = [
 ];
 
 $linkTrail = '/^([абвгґджзеёжзійклмнопрстуўфхцчшыьэюяćčłńśšŭźža-z]+)(.*)$/sDu';
-

@@ -6,4 +6,3 @@
  */
 class MWContentSerializationException extends MWException {
 }
-

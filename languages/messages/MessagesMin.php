@@ -159,4 +159,3 @@ $magicWords = [
 	'pagesincategory_pages'     => [ '0', 'laman', 'halaman', 'pages' ],
 	'pagesincategory_files'     => [ '0', 'berkas', 'files' ],
 ];
-

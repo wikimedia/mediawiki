@@ -227,4 +227,3 @@ $dateFormats = [
 	'yue ymd date' => 'Y-n-j',
 	'yue ymd both' => 'Y-n-j H:i',
 ];
-

@@ -10,4 +10,3 @@
 
 $fallback = 'de';
 $separatorTransformTable = [ ',' => "'", '.' => ',' ];
-

@@ -103,4 +103,3 @@ $bookstoreList = [
 ];
 
 $linkTrail = "/^([àáâèéêìíîïòóôûŵŷa-z]+)(.*)$/sDu";
-

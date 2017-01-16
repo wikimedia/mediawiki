@@ -1331,4 +1331,3 @@ abstract class DatabaseMysqlBase extends Database {
 		return in_array( $name, $this->listViews( $prefix ) );
 	}
 }
-

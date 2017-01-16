@@ -201,4 +201,3 @@ class DbTestPreviewer extends TestRecorder {
 			. " and $postDate";
 	}
 }
-

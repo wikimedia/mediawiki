@@ -33,4 +33,3 @@ $specialPageAliases = [
 	'Newimages'                 => [ 'FixesNova' ],
 	'Newpages'                  => [ 'PajesNova' ],
 ];
-

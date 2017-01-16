@@ -211,4 +211,3 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'Wat wiest hier hen' ],
 	'Withoutinterwiki'          => [ 'Sieden ahn Spraaklenken' ],
 ];
-

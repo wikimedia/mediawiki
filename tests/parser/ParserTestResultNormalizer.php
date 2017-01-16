@@ -84,4 +84,3 @@ class ParserTestResultNormalizer {
 			[ '<body>' => '', '</body>' => '' ] );
 	}
 }
-

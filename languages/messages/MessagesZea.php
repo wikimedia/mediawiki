@@ -40,4 +40,3 @@ $namespaceNames = [
 	NS_CATEGORY         => 'Categorie',
 	NS_CATEGORY_TALK    => 'Overleg_categorie',
 ];
-

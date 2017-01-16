@@ -329,4 +329,3 @@ $magicWords = [
 	'staticredirect'            => [ '1', '__REDIRECIONAMENTOESTATICO__', '__REDIRECIONAMENTOESTÁTICO__', '__STATICREDIRECT__' ],
 	'protectionlevel'           => [ '1', 'NIVELDEPROTECAO', 'NÍVELDEPROTEÇÃO', 'PROTECTIONLEVEL' ],
 ];
-

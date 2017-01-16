@@ -75,4 +75,3 @@ $specialPageAliases = [
 	'Upload'                    => [ 'Quetza', 'Subir' ],
 	'Userlogin'                 => [ 'Tlacalaquiliztli', 'Registrarse' ],
 ];
-
