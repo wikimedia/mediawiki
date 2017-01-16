@@ -13,8 +13,8 @@ purposes of updating the link tables. This application is now deprecated.
 
 To create a batch, you can use the following code:
 
-$pages = array( 'Main Page', 'Project:Help', /* ... */ );
-$titles = array();
+$pages = [ 'Main Page', 'Project:Help', /* ... */ ];
+$titles = [];
 
 foreach( $pages as $page ){
 	$titles[] = Title::newFromText( $page );

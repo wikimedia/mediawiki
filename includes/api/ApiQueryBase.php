@@ -252,7 +252,7 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * Equivalent to addWhere(array($field => $value))
+	 * Equivalent to addWhere( [ $field => $value ] )
 	 * @param string $field Field name
 	 * @param string|string[] $value Value; ignored if null or empty array
 	 */

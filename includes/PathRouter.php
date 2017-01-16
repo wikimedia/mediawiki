@@ -53,8 +53,8 @@
  *   - In a pattern $1, $2, etc... will be replaced with the relevant contents
  *   - If you used a keyed array as a path pattern, $key will be replaced with
  *     the relevant contents
- *   - The default behavior is equivalent to `array( 'title' => '$1' )`,
- *     if you don't want the title parameter you can explicitly use `array( 'title' => false )`
+ *   - The default behavior is equivalent to `[ 'title' => '$1' ]`,
+ *     if you don't want the title parameter you can explicitly use `[ 'title' => false ]`
  *   - You can specify a value that won't have replacements in it
  *     using `'foo' => [ 'value' => 'bar' ];`
  *
@@ -80,7 +80,7 @@ class PathRouter {
 	/**
 	 * Protected helper to do the actual bulk work of adding a single pattern.
 	 * This is in a separate method so that add() can handle the difference between
-	 * a single string $path and an array() $path that contains multiple path
+	 * a single string $path and an array $path that contains multiple path
 	 * patterns each with an associated $key to pass on.
 	 * @param string $path
 	 * @param array $params
@@ -247,9 +247,9 @@ class PathRouter {
 		}
 
 		// We know the difference between null (no matches) and
-		// array() (a match with no data) but our WebRequest caller
-		// expects array() even when we have no matches so return
-		// a array() when we have null
+		// [] (a match with no data) but our WebRequest caller
+		// expects [] even when we have no matches so return
+		// a [] when we have null
 		return $matches ?? [];
 	}
 

@@ -5427,20 +5427,20 @@ $wgAutoConfirmCount = 0;
  *
  * The basic syntax for `$wgAutopromote` is:
  *
- *     $wgAutopromote = array(
+ *     $wgAutopromote = [
  *         'groupname' => cond,
  *         'group2' => cond2,
- *     );
+ *     ];
  *
  * A `cond` may be:
  *  - a single condition without arguments:
  *      Note that Autopromote wraps a single non-array value into an array
  *      e.g. `APCOND_EMAILCONFIRMED` OR
- *           array( `APCOND_EMAILCONFIRMED` )
+ *           [ `APCOND_EMAILCONFIRMED` ]
  *  - a single condition with arguments:
- *      e.g. `array( APCOND_EDITCOUNT, 100 )`
+ *      e.g. `[ APCOND_EDITCOUNT, 100 ]`
  *  - a set of conditions:
- *      e.g. `array( 'operand', cond1, cond2, ... )`
+ *      e.g. `[ 'operand', cond1, cond2, ... ]`
  *
  * When constructing a set of conditions, the following conditions are available:
  *  - `&` (**AND**):
@@ -5451,25 +5451,25 @@ $wgAutoConfirmCount = 0;
  *      promote if user matches **ONLY ONE OF THE CONDITIONS**
  *  - `!` (**NOT**):
  *      promote if user matces **NO** condition
- *  - array( APCOND_EMAILCONFIRMED ):
+ *  - [ APCOND_EMAILCONFIRMED ]:
  *      true if user has a confirmed e-mail
- *  - array( APCOND_EDITCOUNT, number of edits ):
+ *  - [ APCOND_EDITCOUNT, number of edits ]:
  *      true if user has the at least the number of edits as the passed parameter
- *  - array( APCOND_AGE, seconds since registration ):
+ *  - [ APCOND_AGE, seconds since registration ]:
  *      true if the length of time since the user created his/her account
  *      is at least the same length of time as the passed parameter
- *  - array( APCOND_AGE_FROM_EDIT, seconds since first edit ):
+ *  - [ APCOND_AGE_FROM_EDIT, seconds since first edit ]:
  *      true if the length of time since the user made his/her first edit
  *      is at least the same length of time as the passed parameter
- *  - array( APCOND_INGROUPS, group1, group2, ... ):
+ *  - [ APCOND_INGROUPS, group1, group2, ... ]:
  *      true if the user is a member of each of the passed groups
- *  - array( APCOND_ISIP, ip ):
+ *  - [ APCOND_ISIP, ip ]:
  *      true if the user has the passed IP address
- *  - array( APCOND_IPINRANGE, range ):
+ *  - [ APCOND_IPINRANGE, range ]:
  *      true if the user has an IP address in the range of the passed parameter
- *  - array( APCOND_BLOCKED ):
+ *  - [ APCOND_BLOCKED ]:
  *      true if the user is blocked
- *  - array( APCOND_ISBOT ):
+ *  - [ APCOND_ISBOT ]:
  *      true if the user is a bot
  *  - similar constructs can be defined by extensions
  *
@@ -6423,7 +6423,7 @@ $wgDeprecationReleaseLimit = false;
  *
  * @code
  *   $wgProfiler['class'] = 'ProfilerXhprof';
- *   $wgProfiler['output'] = array( 'ProfilerOutputDb' );
+ *   $wgProfiler['output'] = [ 'ProfilerOutputDb' ];
  *   $wgProfiler['sampling'] = 50; // one every 50 requests
  * @endcode
  *

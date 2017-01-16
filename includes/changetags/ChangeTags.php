@@ -603,8 +603,8 @@ class ChangeTags {
 	 * ChangeTags::updateTags() instead, unless directly handling a user request
 	 * to add or remove tags from an existing revision or log entry.
 	 *
-	 * @param array|null $tagsToAdd If none, pass array() or null
-	 * @param array|null $tagsToRemove If none, pass array() or null
+	 * @param array|null $tagsToAdd If none, pass [] or null
+	 * @param array|null $tagsToRemove If none, pass [] or null
 	 * @param int|null $rc_id The rc_id of the change to add the tags to
 	 * @param int|null $rev_id The rev_id of the change to add the tags to
 	 * @param int|null $log_id The log_id of the change to add the tags to

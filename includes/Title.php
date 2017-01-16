@@ -1979,7 +1979,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 *
 	 * @param string|string[] $query An optional query string,
 	 *   not used for interwiki links. Can be specified as an associative array as well,
-	 *   e.g., array( 'action' => 'edit' ) (keys and values will be URL-escaped).
+	 *   e.g., [ 'action' => 'edit' ] (keys and values will be URL-escaped).
 	 *   Some query patterns will trigger various shorturl path replacements.
 	 * @param string|string[]|bool $query2 An optional secondary query array. This one MUST
 	 *   be an array. If a string is passed it will be interpreted as a deprecated

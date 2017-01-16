@@ -1140,7 +1140,7 @@ HTML;
 	/**
 	 * Parse the Accept-Language header sent by the client into an array
 	 *
-	 * @return array Array( languageCode => q-value ) sorted by q-value in
+	 * @return array [ languageCode => q-value ] sorted by q-value in
 	 *   descending order then appearing time in the header in ascending order.
 	 * May contain the "language" '*', which applies to languages other than those explicitly listed.
 	 * This is aligned with rfc2616 section 14.4

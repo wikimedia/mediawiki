@@ -86,7 +86,7 @@ STR;
 	/**
 	 * Checks that the request's result matches the expected results.
 	 * Assumes no rawcontinue and a complete batch.
-	 * @param array $values Array is a two element array( request, expected_results )
+	 * @param array $values Array is a two element [ request, expected_results ]
 	 * @param array|null $session
 	 * @param bool $appendModule
 	 * @param User|null $user

@@ -812,7 +812,7 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		// ... and generate the description; which can be a parameterized l10n message
-		// in the form array( <msgname>, <parameter>, <parameter>... ) or just a straight
+		// in the form [ <msgname>, <parameter>, <parameter>... ] or just a straight
 		// up string
 		if ( isset( $extension['descriptionmsg'] ) ) {
 			// Localized description of extension
