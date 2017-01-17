@@ -40,7 +40,7 @@ class UncategorizedCategoriesPage extends UncategorizedPagesPage {
 	}
 
 	/**
-	 * Returns an array of categorie titles (usually without the namespace), which
+	 * Returns an array of category titles (usually without the namespace), which
 	 * shouldn't be listed on this page, even if they're uncategorized.
 	 *
 	 * @return array
