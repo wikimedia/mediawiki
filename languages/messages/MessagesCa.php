@@ -8,6 +8,8 @@
  *
  */
 
+$fallback = 'oc';
+
 $namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Especial',
@@ -157,6 +159,14 @@ $dateFormats = [
 	'ymd date' => 'Y M j',
 	'ymd both' => 'H:i, Y M j',
 ];
+
+$datePreferences = [
+	'default',
+	'dmy',
+	'ymd',
+	'ISO 8601',
+];
+$defaultDateFormat = 'dmy';
 
 $bookstoreList = [
 	'Catàleg Col·lectiu de les Universitats de Catalunya' => 'http://ccuc.cbuc.es/cgi-bin/vtls.web.gateway?searchtype=control+numcard&searcharg=$1',
