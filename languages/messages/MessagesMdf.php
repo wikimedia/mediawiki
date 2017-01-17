@@ -137,4 +137,3 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'МезеньСюлмафкстТяса' ],
 	'Withoutinterwiki'          => [ 'Интервикифтома' ],
 ];
-

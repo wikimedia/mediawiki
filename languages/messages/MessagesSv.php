@@ -338,4 +338,3 @@ $dateFormats = [
 	'ymd date' => 'Y F j',
 	'ymd both' => 'Y F j "kl." H.i',
 ];
-

@@ -20,4 +20,3 @@ $linkPrefixExtension = true;
 
 # Same as the French (bug 8485)
 $separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
-

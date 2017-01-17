@@ -317,4 +317,3 @@ $magicWords = [
 	'pagesincategory_pages'     => [ '0', 'strony', 'pages' ],
 	'pagesincategory_files'     => [ '0', 'pliki', 'files' ],
 ];
-

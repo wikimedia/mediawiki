@@ -23,4 +23,3 @@ $specialPageAliases = [
 	'Version'                   => [ 'Versione' ],
 	'Watchlist'                 => [ 'PàggeneCondrollete' ],
 ];
-

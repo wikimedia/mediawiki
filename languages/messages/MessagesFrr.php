@@ -11,4 +11,3 @@
 $fallback = 'de';
 
 $linkTrail = '/^([a-zäöüßåāđē]+)(.*)$/sDu';
-

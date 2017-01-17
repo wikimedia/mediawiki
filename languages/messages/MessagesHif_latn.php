@@ -24,4 +24,3 @@ $namespaceNames = [
 	NS_CATEGORY         => 'vibhag',
 	NS_CATEGORY_TALK    => 'voibhag_ke_baat',
 ];
-

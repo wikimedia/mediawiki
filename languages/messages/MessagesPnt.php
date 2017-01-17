@@ -55,4 +55,3 @@ $dateFormats = [
 	'pnt date' => 'j xg Y',
 	'pnt both' => 'H:i, j xg Y',
 ];
-

@@ -59,4 +59,3 @@ $magicWords = [
 	'servername'                => [ '0', 'EMNISERVERIT', 'EMRIISERVERIT', 'SERVERNAME' ],
 	'currentweek'               => [ '1', 'JAVAAKTUALE', 'JAVAMOMENTALE', 'CURRENTWEEK' ],
 ];
-

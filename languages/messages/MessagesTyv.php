@@ -120,4 +120,3 @@ $bookstoreList = [
 	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
 	'Barnes & Noble' => 'http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1'
 ];
-

@@ -151,4 +151,3 @@ $digitTransformTable = [
 	'.' => '點',
 	',' => '',
 ];
-

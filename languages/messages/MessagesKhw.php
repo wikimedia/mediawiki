@@ -30,4 +30,3 @@ $namespaceNames = [
 	NS_CATEGORY         => 'زمرہ',
 	NS_CATEGORY_TALK    => 'تبادلۂ_خیال_زمرہ',
 ];
-

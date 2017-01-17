@@ -31,4 +31,3 @@ $namespaceNames = [
 $namespaceAliases = [
 	'$1_談詑' => NS_PROJECT_TALK,
 ];
-

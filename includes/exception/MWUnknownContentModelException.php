@@ -23,4 +23,3 @@ class MWUnknownContentModelException extends MWException {
 		return $this->modelId;
 	}
 }
-

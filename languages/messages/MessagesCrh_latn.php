@@ -94,4 +94,3 @@ $dateFormats = [
 $separatorTransformTable = [ ',' => '.', '.' => ',' ];
 $linkTrail = '/^([a-zâçğıñöşüа-яё“»]+)(.*)$/sDu';
 $linkPrefixCharset = 'a-zâçğıñöşüA-ZÂÇĞİÑÖŞÜa-яёА-ЯЁ«„';
-

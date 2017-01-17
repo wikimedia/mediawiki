@@ -177,4 +177,3 @@ $magicWords = [
 	'img_left'                  => [ '1', 'cierda', 'izquierda', 'izda', 'izq', 'left' ],
 	'img_none'                  => [ '1', 'dinguna', 'dinguno', 'ninguna', 'nada', 'no', 'ninguno', 'none' ],
 ];
-

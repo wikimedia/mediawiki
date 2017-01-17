@@ -34,4 +34,3 @@ $namespaceNames = [
 
 // Remove Spanish gender aliases (bug 37090)
 $namespaceGenderAliases = [];
-

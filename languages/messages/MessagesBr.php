@@ -162,4 +162,3 @@ $dateFormats = [
 
 $separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
 $linkTrail = "/^((?:c\'h|C\'H|C\'h|c’h|C’H|C’h|[a-zA-ZàâçéèêîôûäëïöüùñÇÉÂÊÎÔÛÄËÏÖÜÀÈÙÑ])+)(.*)$/sDu";
-

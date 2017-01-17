@@ -330,4 +330,3 @@ $magicWords = [
 	'url_path'                  => [ '0', 'STI', 'PATH' ],
 	'url_query'                 => [ '0', 'SPØRRING', 'QUERY' ],
 ];
-
