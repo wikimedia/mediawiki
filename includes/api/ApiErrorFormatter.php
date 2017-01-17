@@ -414,12 +414,17 @@ class ApiErrorFormatter_BackCompat extends ApiErrorFormatter {
 
 		if ( $tag === 'error' ) {
 			// In BC mode, only one error
-			$value = [
-				'code' => $msg->getApiCode(),
-				'info' => $value,
-			] + $msg->getApiData();
-			$this->result->addValue( null, 'error', $value,
-				ApiResult::OVERRIDE | ApiResult::ADD_ON_TOP | ApiResult::NO_SIZE_CHECK );
+			$existingError = $this->result->getResultData( [ 'error' ] );
+			if ( !is_array( $existingError ) ||
+				!isset( $existingError['code'] ) || !isset( $existingError['info'] )
+			) {
+				$value = [
+					'code' => $msg->getApiCode(),
+					'info' => $value,
+				] + $msg->getApiData();
+				$this->result->addValue( null, 'error', $value,
+					ApiResult::OVERRIDE | ApiResult::ADD_ON_TOP | ApiResult::NO_SIZE_CHECK );
+			}
 		} else {
 			if ( $modulePath === null ) {
 				$moduleName = 'unknown';

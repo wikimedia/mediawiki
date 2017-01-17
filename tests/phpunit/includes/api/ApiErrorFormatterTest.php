@@ -439,8 +439,8 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 		$formatter->addMessagesFromStatus( 'status', $status );
 		$this->assertSame( [
 			'error' => [
-				'code' => 'parentheses',
-				'info' => $parensPlain,
+				'code' => 'mainpage',
+				'info' => $mainpagePlain,
 			],
 			'warnings' => [
 				'status' => [
@@ -502,6 +502,17 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 			$formatter->arrayFromStatus( $status, 'warning' ),
 			'arrayFromStatus test for warning'
 		);
+
+		$result->reset();
+		$result->addValue( null, 'error', [ 'bogus' ] );
+		$formatter->addError( 'err', 'mainpage' );
+		$this->assertSame( [
+			'error' => [
+				'code' => 'mainpage',
+				'info' => $mainpagePlain,
+			],
+			ApiResult::META_TYPE => 'assoc',
+		], $result->getResultData(), 'Overwrites bogus "error" value with real error' );
 	}
 
 	/**
