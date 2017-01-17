@@ -299,6 +299,22 @@ function wfStreamThumb( array $params ) {
 		}
 	}
 
+	// If the requested width is larger than the original width, redirect to the original
+	if ( $params['width'] >= $img->getWidth() ) {
+		$response = RequestContext::getMain()->getRequest()->response();
+		$response->statusHeader( 302 );
+		$response->header( 'Location: ' . $img->getFullUrl() );
+		$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', time() + 7 * 86400 ) . ' GMT' );
+		if ( $wgVaryOnXFP ) {
+			$varyHeader[] = 'X-Forwarded-Proto';
+		}
+		if ( count( $varyHeader ) ) {
+			$response->header( 'Vary: ' . implode( ', ', $varyHeader ) );
+		}
+		$response->header( 'Content-Length: 0' );
+		return;
+	}
+
 	$dispositionType = isset( $params['download'] ) ? 'attachment' : 'inline';
 
 	// Suggest a good name for users downloading this thumbnail
@@ -354,11 +370,6 @@ function wfStreamThumb( array $params ) {
 		$errorCode = $thumb->getHttpStatusCode();
 	} elseif ( !$thumb->hasFile() ) {
 		$errorMsg = $msg->rawParams( 'No path supplied in thumbnail object' )->escaped();
-	} elseif ( $thumb->fileIsSource() ) {
-		$errorMsg = $msg
-			->rawParams( 'Image was not scaled, is the requested width bigger than the source?' )
-			->escaped();
-		$errorCode = 400;
 	}
 
 	if ( $errorMsg !== false ) {
