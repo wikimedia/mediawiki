@@ -109,6 +109,12 @@ In the "maintenance" directory, run the updateDoubleWidthSearch.php
 script.  This will update the searchindex table for those pages that
 contain double-byte latin characters.
 
+== Upgrading from 1.10 or earlier ==
+
+If upgrading from before 1.11, and you are using a wiki as a commons
+repository, make sure that it is updated as well. Otherwise, errors may arise
+due to database schema changes.
+
 == Upgrading from 1.8 or earlier ==
 
 MediaWiki 1.9 and later no longer keep default localized message text
@@ -135,6 +141,9 @@ to set only specific items as recommended in DefaultSettings.php.
 
 $wgLocalTZoffset was in hours, it is now using minutes.
 
+If upgrading from before 1.7, you may want to run refreshLinks.php to ensure
+new database fields are filled with data.
+
 == Upgrading from 1.5 or earlier ==
 
 Major changes have been made to the schema from 1.4.x. The updater
@@ -149,7 +158,7 @@ UTF-8; an experimental command-line upgrade helper script,
 'upgrade1_5.php', can do this -- run it prior to 'update.php' or
 the web upgrader.
 
-NOTE that upgrade1_5.php does not work properly with recent version
+NOTE that upgrade1_5.php does not work properly with recent versions
 of MediaWiki. If upgrading a 1.4.x wiki, you should upgrade to 1.5
 first.  upgrade1_5.php has been removed from MediaWiki 1.21.
 
