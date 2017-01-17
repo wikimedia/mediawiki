@@ -184,7 +184,8 @@
 			"Matěj Suchánek",
 			"Chaduvari",
 			"MarcoAurelio",
-			"Joao Xavier"
+			"Joao Xavier",
+			"Winstonyin"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -1546,7 +1547,7 @@
 	"recentchanges-submit": "Label for submit button in [[Special:RecentChanges]]\n{{Identical|Show}}",
 	"rcfilters-activefilters": "Title for the filters selection showing the active filters.",
 	"rcfilters-search-placeholder": "Placeholder for the filter search input.",
-	"rcfilters-invalid-filter": "A label for an ivalid filter.",
+	"rcfilters-invalid-filter": "A label for an invalid filter.",
 	"rcfilters-filterlist-title": "Title for the filters list.\n{{Identical|Filter}}",
 	"rcfilters-filterlist-noresults": "Message showing no results found for searching a filter.",
 	"rcfilters-filtergroup-authorship": "Title for the filter group for edit authorship. This filter group allows the user to choose between \"Your own edits\" and \"Edits by others\". More info: https://phabricator.wikimedia.org/T149859\n\n{{doc-important|This is another typical example of ambiguity in the English language. Only the documentation will reveal that this message means \"(filter by) authorship of these edits\", not \"edit the authorship\". That is, \"edit\" is a modifying noun, not a verb.}}",

@@ -119,7 +119,7 @@
 	"apierror-noimageredirect-anon": "Leis utilizaires anonims pòdon pas crear de redireccions d'imatge.",
 	"apierror-noimageredirect": "Avètz pas lei drechs necessaris per crear de redireccions d'imatge.",
 	"apierror-nosuchsection": "I a ges seccion $1",
-	"apierror-nosuchsection-what": "I a ges seccion $1 dins $1",
+	"apierror-nosuchsection-what": "I a pas de seccion $1 dins $2.",
 	"apierror-permissiondenied-generic": "Autorizacion refusada.",
 	"apierror-unknownerror-nocode": "Error desconeguda.",
 	"apierror-unknownerror": "Error desconeguda : $1",

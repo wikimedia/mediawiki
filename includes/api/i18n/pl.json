@@ -518,7 +518,7 @@
 	"apihelp-stashedit-param-text": "Zawartość strony.",
 	"apihelp-tag-param-reason": "Powód zmiany.",
 	"apihelp-unblock-description": "Odblokuj użytkownika.",
-	"apihelp-unblock-param-user": "Nazwa użytkownika, adres IP albo zakres adresów IP, które chcesz odblokować. Nie można używać jednocześnie z <var>$1id</var> lub <var>$luserid</var>.",
+	"apihelp-unblock-param-user": "Nazwa użytkownika, adres IP albo zakres adresów IP, które chcesz odblokować. Nie można używać jednocześnie z <var>$1id</var> lub <var>$1userid</var>.",
 	"apihelp-unblock-param-reason": "Powód odblokowania.",
 	"apihelp-undelete-param-reason": "Powód przywracania.",
 	"apihelp-upload-param-filename": "Nazwa pliku docelowego.",

@@ -486,7 +486,7 @@
 	"apihelp-tag-param-reason": "변경 이유.",
 	"apihelp-tokens-param-type": "요청할 토큰의 종류.",
 	"apihelp-unblock-description": "사용자를 차단 해제합니다.",
-	"apihelp-unblock-param-user": "차단을 해제할 사용자 이름, IP 주소, IP 주소 대역입니다. <var>$1id</var> 또는 <var>$luserid</var>와(과) 함께 사용할 수 없습니다.",
+	"apihelp-unblock-param-user": "차단을 해제할 사용자 이름, IP 주소, IP 주소 대역입니다. <var>$1id</var> 또는 <var>$1userid</var>와(과) 함께 사용할 수 없습니다.",
 	"apihelp-unblock-param-userid": "차단을 해제할 사용자 ID입니다. <var>$1id</var> 또는 <var>$1user</var>와(과) 함께 사용할 수 없습니다.",
 	"apihelp-unblock-param-reason": "차단 해제 이유.",
 	"apihelp-upload-param-ignorewarnings": "모든 경고를 무시합니다.",

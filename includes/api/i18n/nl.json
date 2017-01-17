@@ -184,7 +184,7 @@
 	"apihelp-query+watchlist-paramvalue-type-log": "Logboekregels.",
 	"apihelp-query+watchlist-paramvalue-type-categorize": "Wijzigingen in categorielidmaatschap.",
 	"apihelp-stashedit-param-text": "Pagina-inhoud.",
-	"apihelp-unblock-param-user": "Gebruikersnaam, IP-adres of IP-range om te deblokkeren. Kan niet samen worden gebruikt met <var>$1id</var> of <var>$luserid</var>.",
+	"apihelp-unblock-param-user": "Gebruikersnaam, IP-adres of IP-range om te deblokkeren. Kan niet samen worden gebruikt met <var>$1id</var> of <var>$1userid</var>.",
 	"apihelp-unblock-param-userid": "Gebruikers-ID om te deblokkeren. Kan niet worden gebruikt in combinatie met <var>$1id</var> of <var>$1user</var>.",
 	"apihelp-json-param-formatversion": "Uitvoeropmaak:\n;1:Achterwaarts compatibele opmaak (XML-stijl booleans, <samp>*</samp>-sleutels voor contentnodes, enzovoort).\n;2:Experimentele moderne opmaak. Details kunnen wijzigen!\n;latest:Gebruik de meest recente opmaak (op het moment <kbd>2</kbd>), kan zonder waarschuwing wijzigen.",
 	"apihelp-php-param-formatversion": "Uitvoeropmaak:\n;1:Achterwaarts compatibele opmaak (XML-stijl booleans, <samp>*</samp>-sleutels voor contentnodes, enzovoort).\n;2:Experimentele moderne opmaak. Details kunnen wijzigen!\n;latest:Gebruik de meest recente opmaak (op het moment <kbd>2</kbd>), kan zonder waarschuwing wijzigen.",

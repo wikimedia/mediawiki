@@ -337,7 +337,7 @@
 	"apihelp-revisiondelete-description": "удалить и восстановить редакции",
 	"apihelp-stashedit-param-sectiontitle": "Заголовок нового раздела.",
 	"apihelp-unblock-description": "Разблокировать пользователя.",
-	"apihelp-unblock-param-user": "Имя участника, IP-адрес или диапазон IP-адресов, которые вы хотите разблокировать. Нельзя использовать одновременно с <var>$1id</var> или <var>$luserid</var>.",
+	"apihelp-unblock-param-user": "Имя участника, IP-адрес или диапазон IP-адресов, которые вы хотите разблокировать. Нельзя использовать одновременно с <var>$1id</var> или <var>$1userid</var>.",
 	"apihelp-unblock-param-userid": "ID участника, которого вы хотите разблокировать. Нельзя использовать одновременно с <var>$1id</var> или <var>$1user</var>.",
 	"apihelp-unblock-param-reason": "Причина разблокировки",
 	"apihelp-unblock-example-id": "Разблокировать блок с идентификатором #<kbd>105</kbd>.",
