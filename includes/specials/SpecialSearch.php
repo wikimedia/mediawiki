@@ -27,7 +27,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Widget\Search\BasicSearchResultSetWidget;
 use MediaWiki\Widget\Search\InterwikiSearchResultSetWidget;
 use MediaWiki\Widget\Search\FullSearchResultWidget;
-use MediaWiki\Widget\Search\SimpleSearchResultWidget;
+use MediaWiki\Widget\Search\InterwikiSearchResultWidget;
 
 /**
  * implements Special:Search - Run text & title search and display the output
@@ -385,7 +385,7 @@ class SpecialSearch extends SpecialPage {
 		// results to display.
 		$linkRenderer = $this->getLinkRenderer();
 		$mainResultWidget = new FullSearchResultWidget( $this, $linkRenderer );
-		$sidebarResultWidget = new SimpleSearchResultWidget( $this, $linkRenderer );
+		$sidebarResultWidget = new InterwikiSearchResultWidget( $this, $linkRenderer );
 		$sidebarResultsWidget = new InterwikiSearchResultSetWidget(
 			$this,
 			$sidebarResultWidget,
