@@ -1468,8 +1468,9 @@ class Block {
 
 		// Set the cookie. Reformat the MediaWiki datetime as a Unix timestamp for the cookie.
 		$cookieValue = $setEmpty ? '' : $this->getId();
-		$expiryValue = DateTime::createFromFormat( "YmdHis", $expiryTime );
-		$response->setCookie( 'BlockID', $cookieValue, $expiryValue->format( "U" ) );
+		$expiryValue = DateTime::createFromFormat( "YmdHis", $expiryTime )->format( 'U' );
+		$cookieOptions = [ 'httpOnly' => false ];
+		$response->setCookie( 'BlockID', $cookieValue, $expiryValue, $cookieOptions );
 	}
 
 	/**
