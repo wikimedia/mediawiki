@@ -135,6 +135,42 @@ class OutputPageTest extends MediaWikiTestCase {
 		] );
 	}
 
+	public static function provideTransformFilePath() {
+		$baseDir = dirname( __DIR__ ) . '/data/media';
+		return [
+			// File that matches basePath, and exists. Hash found and appended.
+			[ 'baseDir' => $baseDir, 'basePath' => '/w', '/w/test.jpg', '/w/test.jpg?edcf2' ],
+			// File that matches basePath, but not found on disk. Empty query.
+			[ 'baseDir' => $baseDir, 'basePath' => '/w', '/w/unknown.png', '/w/unknown.png?' ],
+			// File not matching basePath. Ignored.
+			[ 'baseDir' => $baseDir, 'basePath' => '/w', '/files/test.jpg' ],
+			// Empty string. Ignored.
+			[ 'baseDir' => $baseDir, 'basePath' => '/w', '', '' ],
+			// Similar path, but with domain component. Ignored.
+			[ 'baseDir' => $baseDir, 'basePath' => '/w', '//example.org/w/test.jpg' ],
+			[ 'baseDir' => $baseDir, 'basePath' => '/w', 'https://example.org/w/test.jpg' ],
+			// Unrelated path with domain component. Ignored.
+			[ 'baseDir' => $baseDir, 'basePath' => '/w', 'https://example.org/files/test.jpg' ],
+			[ 'baseDir' => $baseDir, 'basePath' => '/w', '//example.org/files/test.jpg' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideTransformFilePath
+	 * @covers OutputPage::transformFilePath
+	 * @covers OutputPage::transformResourcePath
+	 */
+	public function testTransformResourcePath( $baseDir, $basePath, $path, $expected = null ) {
+		$this->setMwGlobals( 'IP', $baseDir );
+		$conf = new HashConfig( [ 'ResourceBasePath' => $basePath ] );
+
+		MediaWiki\suppressWarnings();
+		$actual = OutputPage::transformResourcePath( $conf, $path );
+		MediaWiki\restoreWarnings();
+
+		$this->assertEquals( $expected ?: $path, $actual );
+	}
+
 	public static function provideMakeResourceLoaderLink() {
 		// @codingStandardsIgnoreStart Generic.Files.LineLength
 		return [
@@ -287,7 +323,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	/**
 	 * @covers OutputPage::haveCacheVaryCookies
 	 */
-	function testHaveCacheVaryCookies() {
+	public function testHaveCacheVaryCookies() {
 		$request = new FauxRequest();
 		$context = new RequestContext();
 		$context->setRequest( $request );
@@ -309,7 +345,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::addCategoryLinks
 	 * @covers OutputPage::getCategories
 	 */
-	function testGetCategories() {
+	public function testGetCategories() {
 		$fakeResultWrapper = new FakeResultWrapper( [
 			(object) [
 				'pp_value' => 1,
