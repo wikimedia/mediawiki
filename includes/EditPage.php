@@ -2318,12 +2318,9 @@ class EditPage {
 	}
 
 	public function setHeaders() {
-		global $wgOut, $wgUser, $wgAjaxEditStash, $wgCookieSetOnAutoblock;
+		global $wgOut, $wgUser, $wgAjaxEditStash;
 
 		$wgOut->addModules( 'mediawiki.action.edit' );
-		if ( $wgCookieSetOnAutoblock === true ) {
-			$wgOut->addModules( 'mediawiki.user.blockcookie' );
-		}
 		$wgOut->addModuleStyles( 'mediawiki.action.edit.styles' );
 
 		if ( $wgUser->getOption( 'showtoolbar' ) ) {
