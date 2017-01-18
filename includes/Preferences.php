@@ -495,9 +495,9 @@ class Preferences {
 					} else {
 						$disableEmailPrefs = true;
 						$emailauthenticated = $context->msg( 'emailnotauthenticated' )->parse() . '<br />' .
-							Linker::linkKnown(
+							$linkRenderer->makeKnownLink(
 								SpecialPage::getTitleFor( 'Confirmemail' ),
-								$context->msg( 'emailconfirmlink' )->escaped()
+								$context->msg( 'emailconfirmlink' )->text()
 							) . '<br />';
 						$emailauthenticationclass = "mw-email-not-authenticated";
 					}
@@ -956,11 +956,12 @@ class Preferences {
 				'raw' => [ 'EditWatchlist', 'raw' ],
 				'clear' => [ 'EditWatchlist', 'clear' ],
 			];
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 			foreach ( $editWatchlistModes as $editWatchlistMode => $mode ) {
 				// Messages: prefs-editwatchlist-edit, prefs-editwatchlist-raw, prefs-editwatchlist-clear
-				$editWatchlistLinks[] = Linker::linkKnown(
+				$editWatchlistLinks[] = $linkRenderer->makeKnownLink(
 					SpecialPage::getTitleFor( $mode[0], $mode[1] ),
-					$context->msg( "prefs-editwatchlist-{$editWatchlistMode}" )->parse()
+					new HtmlArmor( $context->msg( "prefs-editwatchlist-{$editWatchlistMode}" )->parse() )
 				);
 			}
 

@@ -843,7 +843,8 @@ class SpecialSearch extends SpecialPage {
 			$parsed = wfParseUrl( wfExpandUrl( $interwiki ? $interwiki->getURL() : '/' ) );
 			$caption = $this->msg( 'search-interwiki-default', $parsed['host'] )->text();
 		}
-		$searchLink = Linker::linkKnown(
+		$linkRenderer = $this->getLinkRenderer();
+		$searchLink = $linkRenderer->makeKnownLink(
 			Title::newFromText( "$iwPrefix:Special:Search" ),
 			$this->msg( 'search-interwiki-more' )->text(),
 			[],

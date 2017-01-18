@@ -19,6 +19,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Class for viewing MediaWiki article and history.
@@ -867,6 +868,7 @@ class Article implements Page {
 		}
 		$redirectTargetUrl = $this->getTitle()->getLinkURL( $query );
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( isset( $this->mRedirectedFrom ) ) {
 			// Avoid PHP 7.1 warning of passing $this by reference
 			$articlePage = $this;
@@ -874,7 +876,7 @@ class Article implements Page {
 			// This is an internally redirected page view.
 			// We'll need a backlink to the source page for navigation.
 			if ( Hooks::run( 'ArticleViewRedirect', [ &$articlePage ] ) ) {
-				$redir = Linker::linkKnown(
+				$redir = $linkRenderer->makeKnownLink(
 					$this->mRedirectedFrom,
 					null,
 					[],
@@ -1103,9 +1105,10 @@ class Article implements Page {
 			$outputPage->addModules( 'mediawiki.page.patrol.ajax' );
 		}
 
-		$link = Linker::linkKnown(
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$link = $linkRenderer->makeKnownLink(
 			$title,
-			$markPatrolledMsg->escaped(),
+			$markPatrolledMsg->text(),
 			[],
 			[
 				'action' => 'markpatrolled',
@@ -1351,19 +1354,20 @@ class Article implements Page {
 				->parse() .
 			"</div>";
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$lnk = $current
 			? $context->msg( 'currentrevisionlink' )->escaped()
-			: Linker::linkKnown(
+			: $linkRenderer->makeKnownLink(
 				$this->getTitle(),
-				$context->msg( 'currentrevisionlink' )->escaped(),
+				$context->msg( 'currentrevisionlink' )->text(),
 				[],
 				$extraParams
 			);
 		$curdiff = $current
 			? $context->msg( 'diff' )->escaped()
-			: Linker::linkKnown(
+			: $linkRenderer->makeKnownLink(
 				$this->getTitle(),
-				$context->msg( 'diff' )->escaped(),
+				$context->msg( 'diff' )->text(),
 				[],
 				[
 					'diff' => 'cur',
@@ -1372,9 +1376,9 @@ class Article implements Page {
 			);
 		$prev = $this->getTitle()->getPreviousRevisionID( $oldid );
 		$prevlink = $prev
-			? Linker::linkKnown(
+			? $linkRenderer->makeKnownLink(
 				$this->getTitle(),
-				$context->msg( 'previousrevision' )->escaped(),
+				$context->msg( 'previousrevision' )->text(),
 				[],
 				[
 					'direction' => 'prev',
@@ -1383,9 +1387,9 @@ class Article implements Page {
 			)
 			: $context->msg( 'previousrevision' )->escaped();
 		$prevdiff = $prev
-			? Linker::linkKnown(
+			? $linkRenderer->makeKnownLink(
 				$this->getTitle(),
-				$context->msg( 'diff' )->escaped(),
+				$context->msg( 'diff' )->text(),
 				[],
 				[
 					'diff' => 'prev',
@@ -1395,9 +1399,9 @@ class Article implements Page {
 			: $context->msg( 'diff' )->escaped();
 		$nextlink = $current
 			? $context->msg( 'nextrevision' )->escaped()
-			: Linker::linkKnown(
+			: $linkRenderer->makeKnownLink(
 				$this->getTitle(),
-				$context->msg( 'nextrevision' )->escaped(),
+				$context->msg( 'nextrevision' )->text(),
 				[],
 				[
 					'direction' => 'next',
@@ -1406,9 +1410,9 @@ class Article implements Page {
 			);
 		$nextdiff = $current
 			? $context->msg( 'diff' )->escaped()
-			: Linker::linkKnown(
+			: $linkRenderer->makeKnownLink(
 				$this->getTitle(),
-				$context->msg( 'diff' )->escaped(),
+				$context->msg( 'diff' )->text(),
 				[],
 				[
 					'diff' => 'next',
@@ -1468,16 +1472,27 @@ class Article implements Page {
 		}
 
 		$html = '<ul class="redirectText">';
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		/** @var Title $title */
 		foreach ( $target as $title ) {
-			$html .= '<li>' . Linker::link(
-				$title,
-				htmlspecialchars( $title->getFullText() ),
-				[],
-				// Make sure wiki page redirects are not followed
-				$title->isRedirect() ? [ 'redirect' => 'no' ] : [],
-				( $forceKnown ? [ 'known', 'noclasses' ] : [] )
-			) . '</li>';
+			if ( $forceKnown ) {
+				$html .= '<li>' . $linkRenderer->makeKnownLink(
+						$title,
+						$title->getFullText(),
+						[],
+						// Make sure wiki page redirects are not followed
+						$title->isRedirect() ? [ 'redirect' => 'no' ] : []
+					) . '</li>';
+			} else {
+				$html .= '<li>' . $linkRenderer->makeLink(
+						$title,
+						$title->getFullText(),
+						[],
+						// Make sure wiki page redirects are not followed
+						$title->isRedirect() ? [ 'redirect' => 'no' ] : []
+					) . '</li>';
+			}
+
 		}
 		$html .= '</ul>';
 
@@ -1637,12 +1652,13 @@ class Article implements Page {
 				__METHOD__
 			);
 
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 			// @todo FIXME: i18n issue/patchwork message
 			$context->getOutput()->addHTML(
 				'<strong class="mw-delete-warning-revisions">' .
 				$context->msg( 'historywarning' )->numParams( $revisions )->parse() .
-				$context->msg( 'word-separator' )->escaped() . Linker::linkKnown( $title,
-					$context->msg( 'history' )->escaped(),
+				$context->msg( 'word-separator' )->escaped() . $linkRenderer->makeKnownLink( $title,
+					$context->msg( 'history' )->text(),
 					[],
 					[ 'action' => 'history' ] ) .
 				'</strong>'
@@ -1756,9 +1772,10 @@ class Article implements Page {
 			Xml::closeElement( 'form' );
 
 			if ( $user->isAllowed( 'editinterface' ) ) {
-				$link = Linker::linkKnown(
+				$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+				$link = $linkRenderer->makeKnownLink(
 					$ctx->msg( 'deletereason-dropdown' )->inContentLanguage()->getTitle(),
-					wfMessage( 'delete-edit-reasonlist' )->escaped(),
+					wfMessage( 'delete-edit-reasonlist' )->text(),
 					[],
 					[ 'action' => 'edit' ]
 				);

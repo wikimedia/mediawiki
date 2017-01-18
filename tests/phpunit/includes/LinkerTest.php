@@ -377,7 +377,8 @@ class LinkerTest extends MediaWikiLangTestCase {
 
 		$this->setMwGlobals( 'wgHooks', [ 'LinkBegin' => [ $callback ] ] );
 		$title = SpecialPage::getTitleFor( 'Blankpage' );
-		$out = Linker::link( $title );
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$out = $linkRenderer->makeLink( $title );
 		$this->assertEquals( $expected, $out );
 	}
 
@@ -420,8 +421,9 @@ class LinkerTest extends MediaWikiLangTestCase {
 
 		$this->setMwGlobals( 'wgHooks', [ 'LinkEnd' => [ $callback ] ] );
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$title = SpecialPage::getTitleFor( 'Blankpage' );
-		$out = Linker::link( $title );
+		$out = $linkRenderer->makeLink( $title );
 		$this->assertEquals( $expected, $out );
 	}
 
@@ -454,24 +456,29 @@ class LinkerTest extends MediaWikiLangTestCase {
 			0 // redir
 		);
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$linkRenderer->setStubThreshold( 0 );
 		$this->assertEquals(
 			'',
-			Linker::getLinkColour( $foobarTitle, 0 )
+			$linkRenderer->getLinkClasses( $foobarTitle )
 		);
 
+		$linkRenderer->setStubThreshold( 20 );
 		$this->assertEquals(
 			'stub',
-			Linker::getLinkColour( $foobarTitle, 20 )
+			$linkRenderer->getLinkClasses( $foobarTitle )
 		);
 
+		$linkRenderer->setStubThreshold( 0 );
 		$this->assertEquals(
 			'mw-redirect',
-			Linker::getLinkColour( $redirectTitle, 0 )
+			$linkRenderer->getLinkClasses( $redirectTitle )
 		);
 
+		$linkRenderer->setStubThreshold( 20 );
 		$this->assertEquals(
 			'',
-			Linker::getLinkColour( $userTitle, 20 )
+			$linkRenderer->getLinkClasses( $userTitle )
 		);
 	}
 }
