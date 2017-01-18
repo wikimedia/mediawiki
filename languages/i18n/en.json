@@ -4277,7 +4277,7 @@
 	"usercssispublic": "Please note: CSS subpages should not contain confidential data as they are viewable by other users.",
 	"restrictionsfield-badip": "Invalid IP address or range: $1",
 	"restrictionsfield-label": "Allowed IP ranges:",
-	"restrictionsfield-help": "One IP address or CIDR range per line. To enable everything, use<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"restrictionsfield-help": "One IP address or CIDR range per line. To enable everything, use:<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "revision $1",
 	"pageid": "page ID $1"
 }
