@@ -1654,9 +1654,7 @@ class User implements IDBAccessObject {
 					$block = $tmpBlock;
 					$this->blockTrigger = 'cookie-block';
 				} else {
-					// If the block is not valid, clear the block cookie (but don't delete it,
-					// because it needs to be cleared from LocalStorage as well and an empty string
-					// value is checked for in the mediawiki.user.blockcookie module).
+					// If the block is not valid, remove the cookie.
 					$tmpBlock->setCookie( $this->getRequest()->response(), true );
 				}
 			}
