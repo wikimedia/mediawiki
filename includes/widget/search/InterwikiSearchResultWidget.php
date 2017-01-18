@@ -11,7 +11,7 @@ use Title;
 /**
  * Renders a simple one-line result
  */
-class SimpleSearchResultWidget implements SearchResultWidget {
+class InterwikiSearchResultWidget implements SearchResultWidget {
 	/** @var SpecialSearch */
 	protected $specialSearch;
 	/** @var LinkRenderer */
@@ -28,9 +28,12 @@ class SimpleSearchResultWidget implements SearchResultWidget {
 	 * @param int $position The result position, including offset
 	 * @return string HTML
 	 */
-	public function render( SearchResult $result, $terms, $position, $iwPrefix = null ) {
+	public function render( SearchResult $result, $terms, $position, $iwPrefix ) {
+
 		$title = $result->getTitle();
 		$titleSnippet = $result->getTitleSnippet();
+		$snippet = $result->getTextSnippet( $terms[0] );
+
 		if ( $titleSnippet ) {
 			$titleSnippet = new HtmlArmor( $titleSnippet );
 		} else {
@@ -42,20 +45,27 @@ class SimpleSearchResultWidget implements SearchResultWidget {
 		$redirectTitle = $result->getRedirectTitle();
 		$redirect = '';
 		if ( $redirectTitle !== null ) {
-			$redirectText = $result->getRedirectSnippet();
-			if ( $redirectText ) {
-				$redirectText = new HtmlArmor( $redirectText );
-			} else {
-				$redirectText = null;
-			}
+			$redirectText = $result->getRedirectSnippet() ?: null;
 			$redirect =
-				"<span class='searchalttitle'>" .
+				"<span class='iw-result__redirect'>" .
 					$this->specialSearch->msg( 'search-redirect' )->rawParams(
 						$this->linkRenderer->makeLink( $redirectTitle, $redirectText )
 					)->text() .
 				"</span>";
 		}
 
-		return "<li>{$link} {$redirect}</li>";
+		switch ( $iwPrefix ) {
+			case 'wikt':
+				return "<div class='iw-result__content'>" .
+							"<span class='iw-result__title'>{$link} {$redirect}: </span>" .
+							$snippet .
+						"</div>";
+			case 'q':
+				return "<div class='iw-result__content'>{$snippet}</div>" .
+						"<div class='iw-result__title'>{$link} {$redirect}</div>";
+			default:
+				return "<div class='iw-result__title'>{$link} {$redirect}</div>" .
+						"<div class='iw-result__content'>{$snippet}</div>";
+		};
 	}
 }
