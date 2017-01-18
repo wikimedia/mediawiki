@@ -643,11 +643,26 @@ class EditPage {
 	}
 
 	/**
+	 * Get a list of errors that are preventing the current user from editing this page.
+	 *
+	 * This also loads the mediawiki.user.blockcookie module for tracking any block cookie in
+	 * LocalStorage to guard against cookie removal. This is loaded here rather than above in
+	 * EditPage::edit() because it helps to load a permission error and needs to be loaded both
+	 * when the user is currently blocked as well as when they're not (but perhaps will be on the
+	 * next request after the block cookie is loaded).
+	 *
 	 * @param string $rigor Same format as Title::getUserPermissionErrors()
 	 * @return array
 	 */
 	protected function getEditPermissionErrors( $rigor = 'secure' ) {
-		global $wgUser;
+		global $wgUser, $wgOut;
+
+		// Add JS for tracking block ID cookies in localStorage.
+		$config = RequestContext::getMain()->getConfig();
+		if ( $config->get( 'CookieSetOnAutoblock' ) === true ) {
+			$wgOut->addModules( 'mediawiki.user.blockcookie' );
+			$wgOut->addJsConfigVars( 'wgAutoblockExpiry', $config->get( 'AutoblockExpiry' ) );
+		}
 
 		$permErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser, $rigor );
 		# Can this title be created?
@@ -2318,12 +2333,9 @@ class EditPage {
 	}
 
 	public function setHeaders() {
-		global $wgOut, $wgUser, $wgAjaxEditStash, $wgCookieSetOnAutoblock;
+		global $wgOut, $wgUser, $wgAjaxEditStash;
 
 		$wgOut->addModules( 'mediawiki.action.edit' );
-		if ( $wgCookieSetOnAutoblock === true ) {
-			$wgOut->addModules( 'mediawiki.user.blockcookie' );
-		}
 		$wgOut->addModuleStyles( 'mediawiki.action.edit.styles' );
 
 		if ( $wgUser->getOption( 'showtoolbar' ) ) {
