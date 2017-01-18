@@ -225,7 +225,7 @@ class DateFormatter {
 	 * @param bool $link
 	 * @return string
 	 */
-	public function formatDate( $bits, $link = true ) {
+	private function formatDate( $bits, $link = true ) {
 		$format = $this->targets[$this->mTarget];
 
 		if ( !$link ) {
@@ -323,7 +323,7 @@ class DateFormatter {
 	 * Return a regex that can be used to find month names in string
 	 * @return string regex to find the months with
 	 */
-	public function getMonthRegex() {
+	private function getMonthRegex() {
 		$names = [];
 		for ( $i = 1; $i <= 12; $i++ ) {
 			$names[] = $this->lang->getMonthName( $i );
@@ -337,7 +337,7 @@ class DateFormatter {
 	 * @param string $monthName Month name
 	 * @return string ISO month name
 	 */
-	public function makeIsoMonth( $monthName ) {
+	private function makeIsoMonth( $monthName ) {
 		$n = $this->xMonths[$this->lang->lc( $monthName )];
 		return sprintf( '%02d', $n );
 	}
@@ -347,7 +347,7 @@ class DateFormatter {
 	 * @param string $year Year name
 	 * @return string ISO year name
 	 */
-	public function makeIsoYear( $year ) {
+	private function makeIsoYear( $year ) {
 		# Assumes the year is in a nice format, as enforced by the regex
 		if ( substr( $year, -2 ) == 'BC' ) {
 			$num = intval( substr( $year, 0, -3 ) ) - 1;
@@ -366,7 +366,7 @@ class DateFormatter {
 	 * @return int|string int representing year number in case of AD dates, or string containing
 	 *   year number and 'BC' at the end otherwise.
 	 */
-	public function makeNormalYear( $iso ) {
+	private function makeNormalYear( $iso ) {
 		if ( $iso[0] == '-' ) {
 			$text = ( intval( substr( $iso, 1 ) ) + 1 ) . ' BC';
 		} else {
