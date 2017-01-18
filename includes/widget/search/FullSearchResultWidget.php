@@ -32,9 +32,10 @@ class FullSearchResultWidget implements SearchResultWidget {
 	 * @param SearchResult $result The result to render
 	 * @param string $terms Terms to be highlighted (@see SearchResult::getTextSnippet)
 	 * @param int $position The result position, including offset
+	 * @param string $iwPrefix The result interwiki prefix, in this case set to false
 	 * @return string HTML
 	 */
-	public function render( SearchResult $result, $terms, $position ) {
+	public function render( SearchResult $result, $terms, $position, $iwPrefix = false ) {
 		// If the page doesn't *exist*... our search index is out of date.
 		// The least confusing at this point is to drop the result.
 		// You may get less results, but... on well. :P
