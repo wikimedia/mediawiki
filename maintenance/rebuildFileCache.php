@@ -122,6 +122,9 @@ class RebuildFileCache extends Maintenance {
 				$article = Article::newFromTitle( $title, $context );
 				$context->setWikiPage( $article->getPage() );
 
+				// Some extensions like FlaggedRevs while error out if this is unset
+				RequestContext::getMain()->setTitle( $title );
+
 				// If the article is cacheable, then load it
 				if ( $article->isFileCacheable( HTMLFileCache::MODE_REBUILD ) ) {
 					$viewCache = new HTMLFileCache( $title, 'view' );
