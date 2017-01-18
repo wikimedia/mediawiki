@@ -2231,6 +2231,7 @@ $text: new contents of the page.
 'MessagesPreLoad': When loading a message from the database.
 $title: title of the message (string)
 &$message: value (string), change it to the message you want to define
+$code: code (string) denoting the language to try.
 
 'MimeMagicGuessFromContent': Allows MW extensions guess the MIME by content.
 $mimeMagic: Instance of MimeMagic.
