@@ -134,7 +134,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 		$queryString = [];
 
 		Hooks::run( 'ShowSearchHitTitle',
-			[ $title, &$snippet, $result, $terms, $this->specialPage, &$queryString ] );
+			[ &$title, &$snippet, $result, $terms, $this->specialPage, &$queryString ] );
 
 		$link = $this->linkRenderer->makeLink(
 			$title,
