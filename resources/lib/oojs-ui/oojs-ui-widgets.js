@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.3
+ * OOjs UI v0.18.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-01-04T00:22:40Z
+ * Date: 2017-01-18T00:07:07Z
  */
 ( function ( OO ) {
 
@@ -3575,6 +3575,7 @@ OO.ui.CapsuleItemWidget.prototype.focus = function () {
  * @param {Object} [config] Configuration options
  * @cfg {string} [placeholder] Placeholder text
  * @cfg {boolean} [allowArbitrary=false] Allow data items to be added even if not present in the menu.
+ * @cfg {boolean} [allowDuplicates=false] Allow duplicate items to be added.
  * @cfg {Object} [menu] (required) Configuration options to pass to the
  *  {@link OO.ui.MenuSelectWidget menu select widget}.
  * @cfg {Object} [popup] Configuration options to pass to the {@link OO.ui.PopupWidget popup widget}.
@@ -3596,6 +3597,7 @@ OO.ui.CapsuleMultiselectWidget = function OoUiCapsuleMultiselectWidget( config )
 	// Configuration initialization
 	config = $.extend( {
 		allowArbitrary: false,
+		allowDuplicates: false,
 		$overlay: this.$element
 	}, config );
 
@@ -3627,6 +3629,7 @@ OO.ui.CapsuleMultiselectWidget = function OoUiCapsuleMultiselectWidget( config )
 	// Properties
 	this.$content = $( '<div>' );
 	this.allowArbitrary = config.allowArbitrary;
+	this.allowDuplicates = config.allowDuplicates;
 	this.$overlay = config.$overlay;
 	this.menu = new OO.ui.FloatingMenuSelectWidget( $.extend(
 		{
@@ -3642,7 +3645,7 @@ OO.ui.CapsuleMultiselectWidget = function OoUiCapsuleMultiselectWidget( config )
 	// Events
 	if ( this.popup ) {
 		$tabFocus.on( {
-			focus: this.onFocusForPopup.bind( this )
+			focus: this.focus.bind( this )
 		} );
 		this.popup.$element.on( 'focusout', this.onPopupFocusOut.bind( this ) );
 		if ( this.popup.$autoCloseIgnore ) {
@@ -3826,7 +3829,7 @@ OO.ui.CapsuleMultiselectWidget.prototype.addItemsFromData = function ( datas ) {
 	$.each( datas, function ( i, data ) {
 		var item;
 
-		if ( !widget.getItemFromData( data ) ) {
+		if ( !widget.getItemFromData( data ) || widget.allowDuplicates ) {
 			item = menu.getItemFromData( data );
 			if ( item ) {
 				item = widget.createItemWidget( data, item.label );
@@ -4048,20 +4051,6 @@ OO.ui.CapsuleMultiselectWidget.prototype.onInputFocus = function () {
 OO.ui.CapsuleMultiselectWidget.prototype.onInputBlur = function () {
 	this.addItemFromLabel( this.$input.val() );
 	this.clearInput();
-};
-
-/**
- * Handle focus events
- *
- * @private
- * @param {jQuery.Event} event
- */
-OO.ui.CapsuleMultiselectWidget.prototype.onFocusForPopup = function () {
-	if ( !this.isDisabled() ) {
-		this.popup.setSize( this.$handle.width() );
-		this.popup.toggle( true );
-		OO.ui.findFocusable( this.popup.$element ).focus();
-	}
 };
 
 /**
@@ -4329,10 +4318,21 @@ OO.ui.CapsuleMultiselectWidget.prototype.focus = function () {
 };
 
 /**
+ * The old name for the CapsuleMultiselectWidget widget, provided for backwards-compatibility.
+ *
  * @class
+ * @extends OO.ui.CapsuleMultiselectWidget
+ *
+ * @constructor
  * @deprecated since 0.17.3; use OO.ui.CapsuleMultiselectWidget instead
  */
-OO.ui.CapsuleMultiSelectWidget = OO.ui.CapsuleMultiselectWidget;
+OO.ui.CapsuleMultiSelectWidget = function OoUiCapsuleMultiSelectWidget() {
+	OO.ui.warnDeprecation( 'CapsuleMultiSelectWidget is deprecated. Use the CapsuleMultiselectWidget instead.' );
+	// Parent constructor
+	OO.ui.TextInputMenuSelectWidget.parent.apply( this, arguments );
+};
+
+OO.inheritClass( OO.ui.CapsuleMultiSelectWidget, OO.ui.CapsuleMultiselectWidget );
 
 /**
  * SelectFileWidgets allow for selecting files, using the HTML5 File API. These

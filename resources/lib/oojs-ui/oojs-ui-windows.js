@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.3
+ * OOjs UI v0.18.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-01-04T00:22:40Z
+ * Date: 2017-01-18T00:07:07Z
  */
 ( function ( OO ) {
 
@@ -2702,7 +2702,8 @@ OO.ui.MessageDialog.static.name = 'message';
 
 OO.ui.MessageDialog.static.size = 'small';
 
-OO.ui.MessageDialog.static.verbose = false;
+// @deprecated since v0.18.4 as default; TODO: Remove
+OO.ui.MessageDialog.static.verbose = true;
 
 /**
  * Dialog title.
@@ -2810,7 +2811,6 @@ OO.ui.MessageDialog.prototype.getActionProcess = function ( action ) {
  * @param {Object} [data] Dialog opening data
  * @param {jQuery|string|Function|null} [data.title] Description of the action being confirmed
  * @param {jQuery|string|Function|null} [data.message] Description of the action's consequence
- * @param {boolean} [data.verbose] Message is verbose and should be styled as a long message
  * @param {Object[]} [data.actions] List of OO.ui.ActionOptionWidget configuration options for each
  *   action item
  */
@@ -2826,6 +2826,7 @@ OO.ui.MessageDialog.prototype.getSetupProcess = function ( data ) {
 			this.message.setLabel(
 				data.message !== undefined ? data.message : this.constructor.static.message
 			);
+			// @deprecated since v0.18.4 as default; TODO: Remove and make default instead.
 			this.message.$element.toggleClass(
 				'oo-ui-messageDialog-message-verbose',
 				data.verbose !== undefined ? data.verbose : this.constructor.static.verbose
@@ -3397,7 +3398,6 @@ OO.ui.getWindowManager = function () {
 OO.ui.alert = function ( text, options ) {
 	return OO.ui.getWindowManager().openWindow( 'messageDialog', $.extend( {
 		message: text,
-		verbose: true,
 		actions: [ OO.ui.MessageDialog.static.actions[ 0 ] ]
 	}, options ) ).then( function ( opened ) {
 		return opened.then( function ( closing ) {
@@ -3433,8 +3433,7 @@ OO.ui.alert = function ( text, options ) {
  */
 OO.ui.confirm = function ( text, options ) {
 	return OO.ui.getWindowManager().openWindow( 'messageDialog', $.extend( {
-		message: text,
-		verbose: true
+		message: text
 	}, options ) ).then( function ( opened ) {
 		return opened.then( function ( closing ) {
 			return closing.then( function ( data ) {
@@ -3479,8 +3478,7 @@ OO.ui.prompt = function ( text, options ) {
 	// TODO: This is a little hacky, and could be done by extending MessageDialog instead.
 
 	return manager.openWindow( 'messageDialog', $.extend( {
-		message: textField.$element,
-		verbose: true
+		message: textField.$element
 	}, options ) ).then( function ( opened ) {
 		// After ready
 		textInput.on( 'enter', function () {
