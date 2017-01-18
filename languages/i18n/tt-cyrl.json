@@ -26,7 +26,8 @@
 			"Selimcan",
 			"Исмаил Садуев",
 			"Matma Rex",
-			"Irus"
+			"Irus",
+			"Ifs"
 		]
 	},
 	"tog-underline": "Сылтамаларны сызымлау:",
@@ -429,11 +430,14 @@
 	"createacct-reason-ph": "Нигә сез яңа зисап язмасы төзисез",
 	"createacct-submit": "Хисап язмасы төзү",
 	"createacct-another-submit": "Хисап язмасын төзү",
+	"createacct-continue-submit": "Хисап язмасын ясауны дәвам итү",
+	"createacct-another-continue-submit": "Хисап язмасын ясауны дәвам итү",
 	"createacct-benefit-heading": "{{SITENAME}} — сезнең шикелле кешеләрнең хезмәте.",
 	"createacct-benefit-body1": "{{PLURAL:$1|төзәтмә}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|мәкалә}}",
 	"createacct-benefit-body3": "Соңгы вакытта {{PLURAL:$1|кулланучы}}",
 	"badretype": "Кертелгән серсүзләр бер үк түгел.",
+	"usernameinprogress": "Бу кулланучы исеме хисап язмасы булдыру башланды инде. Зинһар көтегез.",
 	"userexists": "Кертелгән исем кулланыла.\nЗинһар, башка исем сайлагыз.",
 	"loginerror": "Керү хатасы",
 	"createacct-error": "Хисап язмазын булдыруда хата китте",
@@ -470,6 +474,7 @@
 	"emailconfirmlink": "Электрон почта адресыгызны дәлилләгез.",
 	"invalidemailaddress": "Электрон почта адресы кабул ителә алмый, чөнки ул дөрес форматка туры килми. Зинһар, дөрес адрес кертегез яки юлны буш калдырыгыз.",
 	"cannotchangeemail": "Бу хисап язмасының электрон почта адресы бу викида үзгәртелә алмый",
+	"emaildisabled": "Бу сайт электрон хатлар җибәрә алмый.",
 	"accountcreated": "Хисап язмасы төзелде",
 	"accountcreatedtext": "[[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|бәхәс]]) кулланучысы өчен хисап язмасы төзелде.",
 	"createaccount-title": "{{SITENAME}}: теркәлү",

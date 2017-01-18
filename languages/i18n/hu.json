@@ -1726,6 +1726,7 @@
 	"uncategorizedcategories": "Kategorizálatlan kategóriák",
 	"uncategorizedimages": "Kategorizálatlan fájlok",
 	"uncategorizedtemplates": "Kategorizálatlan sablonok",
+	"uncategorized-categories-exceptionlist": "# Lista azokról a kategóriákról, amiknek nem szabad szerepelniük a Special:UncategorizedCategories oldalon. Soronként egy, „*” jellel kezdve. Más karakterrel (akár szóközzel) kezdődő sorok nem számítanak. Használd a „#” karaktert megjegyzésekhez.",
 	"unusedcategories": "Nem használt kategóriák",
 	"unusedimages": "Nem használt fájlok",
 	"wantedcategories": "Keresett kategóriák",

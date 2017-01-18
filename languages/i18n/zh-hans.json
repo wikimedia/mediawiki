@@ -771,7 +771,7 @@
 	"edit_form_incomplete": "<strong>编辑表格的某些部分没有到达服务器，请检查您的编辑是否完整并重试。</strong>",
 	"editing": "编辑“$1”",
 	"creating": "创建“$1”",
-	"editingsection": "编辑“$1（段落）”",
+	"editingsection": "编辑“$1”（段落）",
 	"editingcomment": "编辑“$1”（新段落）",
 	"editconflict": "编辑冲突：$1",
 	"explainconflict": "其他用户在您开始编辑后更改了该页面。上面的文字区含有该页面当前的文字。下面的文字区显示您的更改。您必须把您的更改合并至现有文字。<strong>只有</strong>当您单击“{{int:savearticle}}”后，上面的文字区中的文字才会被保存。",

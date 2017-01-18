@@ -2698,7 +2698,7 @@
 	"creditspage": "Créditos da página",
 	"nocredits": "Não há informações disponíveis sobre os créditos desta página.",
 	"spamprotectiontitle": "Filtro de proteção contra spam",
-	"spamprotectiontext": "O texto que deseja salvar foi bloqueado pelo filtro de spam.\nIsso é provavelmente causado por um link para um site externo que está na lista negra.",
+	"spamprotectiontext": "O texto que desejava salvar foi bloqueado pelo filtro de ''spam''.\nProvavelmente isso foi causado por um link para um site externo que está na lista negra.",
 	"spamprotectionmatch": "O seguinte texto ativou o filtro de spam: $1",
 	"spambot_username": "MediaWiki limpeza de spam",
 	"spam_reverting": "Revertendo para a última versão que não contém links para $1",
