@@ -1450,13 +1450,9 @@ class Block {
 	 * Set the 'BlockID' cookie to this block's ID and expiry time. The cookie's expiry will be
 	 * the same as the block's, to a maximum of 24 hours.
 	 *
-	 * An empty value can also be set, in order to retain the cookie but remove the block ID
-	 * (e.g. as used in User::getBlockedStatus).
-	 *
 	 * @param WebResponse $response The response on which to set the cookie.
-	 * @param boolean $setEmpty Whether to set the cookie's value to the empty string.
 	 */
-	public function setCookie( WebResponse $response, $setEmpty = false ) {
+	public function setCookie( WebResponse $response ) {
 		// Calculate the default expiry time.
 		$maxExpiryTime = wfTimestamp( TS_MW, wfTimestamp() + ( 24 * 60 * 60 ) );
 
@@ -1467,10 +1463,19 @@ class Block {
 		}
 
 		// Set the cookie. Reformat the MediaWiki datetime as a Unix timestamp for the cookie.
-		$cookieValue = $setEmpty ? '' : $this->getCookieValue();
 		$expiryValue = DateTime::createFromFormat( 'YmdHis', $expiryTime )->format( 'U' );
 		$cookieOptions = [ 'httpOnly' => false ];
+		$cookieValue = $this->getCookieValue();
 		$response->setCookie( 'BlockID', $cookieValue, $expiryValue, $cookieOptions );
+	}
+
+	/**
+	 * Unset the 'BlockID' cookie.
+	 *
+	 * @param WebResponse $response The response on which to unset the cookie.
+	 */
+	public static function clearCookie( WebResponse $response ) {
+		$response->clearCookie( 'BlockID', [ 'httpOnly' => false ] );
 	}
 
 	/**
