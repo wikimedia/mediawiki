@@ -3975,10 +3975,11 @@ class Language {
 	 *
 	 * @param string $str The validated block duration in English
 	 * @param User $user User object to use timezone from or null for $wgUser
+	 * @param int $now Current timestamp, for formatting relative block durations
 	 * @return string Somehow translated block duration
 	 * @see LanguageFi.php for example implementation
 	 */
-	function translateBlockExpiry( $str, User $user = null ) {
+	function translateBlockExpiry( $str, User $user = null, $now = 0 ) {
 		$duration = SpecialBlock::getSuggestedDurations( $this );
 		foreach ( $duration as $show => $value ) {
 			if ( strcmp( $str, $value ) == 0 ) {
@@ -3995,10 +3996,10 @@ class Language {
 		}
 
 		// If all else fails, return a standard duration or timestamp description.
-		$time = strtotime( $str, 0 );
+		$time = strtotime( $str, $now );
 		if ( $time === false ) { // Unknown format. Return it as-is in case.
 			return $str;
-		} elseif ( $time !== strtotime( $str, 1 ) ) { // It's a relative timestamp.
+		} elseif ( $time !== strtotime( $str, $now ) ) { // It's a relative timestamp.
 			// $time is relative to 0 so it's a duration length.
 			return $this->formatDuration( $time );
 		} else { // It's an absolute timestamp.
