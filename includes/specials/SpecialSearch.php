@@ -371,7 +371,7 @@ class SpecialSearch extends SpecialPage {
 		// Show the create link ahead
 		$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
 
-		Hooks::run( 'SpecialSearchResults', [ $term, $titleMatches, $textMatches ] );
+		Hooks::run( 'SpecialSearchResults', [ $term, &$titleMatches, &$textMatches ] );
 
 		// If we have no results and have not already displayed an error message
 		if ( $num === 0 && !$hasErrors ) {
