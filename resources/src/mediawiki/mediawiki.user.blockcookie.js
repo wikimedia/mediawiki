@@ -1,23 +1,59 @@
 ( function ( mw ) {
+	'use strict';
 
 	// If a user has been autoblocked, a cookie is set.
 	// Its value is replicated here in localStorage to guard against cookie-removal.
+	// The localStorage item expires after $wgAutoblockExpiry (default 86400 seconds).
 	// This module will only be loaded when $wgCookieSetOnAutoblock is true.
-	// Ref: https://phabricator.wikimedia.org/T5233
+	// Ref: T5233
+	//
+	// The localStorage value used to be only the block ID, but for T152952 it was changed to also store an expiry time
+	// in order that the localStorage data be removed after $wgAutoblockExpiry. After an old-style localStorage item is
+	// updated to have an expiry date, it can actually live for another day after the expiry of the cookie; this will
+	// not result in the recreation of a block though.
+	//
+	// Note that the cookie's name has an uppercase 'B' but the storage name has a lowercase 'b'.
+	mw.requestIdleCallback( function () {
+		var expiry, cookieValue, storedValue, storedObject;
 
-	if ( !mw.cookie.get( 'BlockID' ) && mw.storage.get( 'blockID' ) ) {
-		// The block ID exists in storage, but not in the cookie.
-		mw.cookie.set( 'BlockID', mw.storage.get( 'blockID' ) );
+		// Calculate the expiry time in seconds since the epoch.
+		expiry = ( mw.now() / 1000 ) + mw.config.get( 'wgAutoblockExpiry' );
 
-	} else if ( parseInt( mw.cookie.get( 'BlockID' ), 10 ) > 0 && !mw.storage.get( 'blockID' ) ) {
-		// The block ID exists in the cookie, but not in storage.
-		// (When a block expires the cookie remains but its value is '', hence the integer check above.)
-		mw.storage.set( 'blockID', mw.cookie.get( 'BlockID' ) );
+		// Add expiry time to an old-style localStorage value.
+		storedValue = mw.storage.get( 'blockID' );
+		if ( storedValue ) {
+			storedObject = JSON.parse( storedValue );
+			if ( storedObject.expiry === undefined ) {
+				// If there's no 'expiry' property, this must be an old-style localStorage item, so we give it an expiry
+				// date and save it. Also set storedValue here to we don't have to re-read the storage value below.
+				storedObject = { data: storedValue, expiry: expiry };
+				storedValue = JSON.stringify( storedObject );
+				mw.storage.set( 'blockID', storedValue );
+			}
+		}
 
-	} else if ( mw.cookie.get( 'BlockID' ) === '' && mw.storage.get( 'blockID' ) ) {
-		// If only the empty string is in the cookie, remove the storage value. The block is no longer valid.
-		mw.storage.remove( 'blockID' );
+		// There are two parts to this next bit:
+		// 1. there's no cookie and there is something in localStorage; and
+		// 2. there is a cookie and there's nothing in localStorage.
 
-	}
+		cookieValue = mw.cookie.get( 'BlockID' );
+		if ( !cookieValue && storedObject ) {
+			// The block ID exists in storage, but the cookie doesn't exist, so we re-create the cookie.
+			// The storedValue variable at this point always has the 'data' and 'expiry' properties.
+			if ( storedObject.expiry >= ( mw.now() / 1000 ) ) {
+				// localStorage data hasn't expired, so use it to recreate the cookie.
+				mw.cookie.set( 'BlockID', storedObject.data, { expires: storedObject.expiry } );
+			} else {
+				// localStorage has expired, so we delete it.
+				mw.storage.remove( 'blockID' );
+			}
+
+		} else if ( cookieValue && !storedObject ) {
+			// The block ID exists in the cookie, but not in storage.
+			storedObject = { data: cookieValue, expiry: expiry };
+			mw.storage.set( 'blockID', JSON.stringify( storedObject ) );
+
+		}
+	} );
 
 }( mediaWiki ) );
