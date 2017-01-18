@@ -50,6 +50,10 @@ class InterwikiSearchResultSetWidget {
 
 		$this->loadCustomCaptions();
 
+		$specialSearchOut = $this->specialSearch->getOutput();
+		$specialSearchOut->addModules( 'mediawiki.special.search.commonsInterwikiWidget' );
+		$specialSearchOut->addModuleStyles( 'mediawiki.special.search.interwikiwidget.styles' );
+
 		$iwResults = [];
 		foreach ( $resultSets as $resultSet ) {
 			$result = $resultSet->next();
@@ -62,24 +66,23 @@ class InterwikiSearchResultSetWidget {
 		}
 
 		$out = '';
+		$out .= "<div id='mw-interwiki-results'>";
+		$out .= "<p class='iw-headline'>Results from Sister Projects</p>";
+		$out .= "<ul class='iw-results'>";
 		foreach ( $iwResults as $iwPrefix => $results ) {
-			$out .= $this->headerHtml( $iwPrefix, $term );
-			$out .= "<ul class='mw-search-iwresults'>";
 			// TODO: Assumes interwiki results are never paginated
 			$position = 0;
+			$out .= "<li class='iw-result iw-result--{$iwPrefix}'>";
+			$out .= $this->headerHtml( $iwPrefix, $term );
 			foreach ( $results as $result ) {
-				$out .= $this->resultWidget->render( $result, $term, $position++ );
+				$out .= $this->resultWidget->render( $result, $term, $position++, $iwPrefix );
 			}
-			$out .= "</ul>";
+			$out .= $this->footerHtml( $iwPrefix );
+			$out .= "</li>";
 		}
-
-		return
-			"<div id='mw-search-interwiki'>" .
-				"<div id='mw-search-interwiki-caption'>" .
-					$this->specialSearch->msg( 'search-interwiki-caption' )->text() .
-				'</div>' .
-				$out .
-			"</div>";
+		$out .= "</ul>";
+		$out .= "</div>";
+		return $out;
 	}
 
 	/**
@@ -106,12 +109,28 @@ class InterwikiSearchResultSetWidget {
 				'fulltext' => 1,
 			]
 		);
+
 		return
-			"<div class='mw-search-interwiki-project'>" .
-				"<span class='mw-search-interwiki-more'>{$searchLink}</span>" .
+			"<div class='iw-result__header'>" .
+				"<span class='iw-result__icon iw-result__icon--{$iwPrefix}'></span>" .
 				$caption .
 	        "</div>";
 	}
+
+	protected function footerHtml( $iwPrefix ) {
+		$searchLink = $this->linkRenderer->makeLink(
+			Title::newFromText( "$iwPrefix:Special:Search" ),
+			$this->specialSearch->msg( 'search-interwiki-more' )->text(),
+			[],
+			[
+				'search' => $term,
+				'fulltext' => 1,
+			]
+		);
+
+		return "<div class='iw-result__footer'>{$searchLink}</div>";
+	}
+
 
 	protected function loadCustomCaptions() {
 		if ( $this->customCaptions !== null ) {

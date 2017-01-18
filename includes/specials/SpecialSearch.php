@@ -27,7 +27,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Widget\Search\BasicSearchResultSetWidget;
 use MediaWiki\Widget\Search\InterwikiSearchResultSetWidget;
 use MediaWiki\Widget\Search\FullSearchResultWidget;
-use MediaWiki\Widget\Search\SimpleSearchResultWidget;
+use MediaWiki\Widget\Search\InterwikiSearchResultWidget;
 
 /**
  * implements Special:Search - Run text & title search and display the output
@@ -340,8 +340,11 @@ class SpecialSearch extends SpecialPage {
 
 		// did you mean... suggestions
 		if ( $textMatches ) {
-			$dymWidget = new MediaWiki\Widget\Search\DidYouMeanWidget( $this );
-			$out->addHTML( $dymWidget->render( $term, $textMatches ) );
+			if ( $textMatches->hasRewrittenQuery() ) {
+				$out->addHTML( $this->getDidYouMeanRewrittenHtml( $term, $textMatches ) );
+			} elseif ( $textMatches->hasSuggestion() ) {
+				$out->addHTML( $this->getDidYouMeanHtml( $textMatches ) );
+			}
 		}
 
 		$out->addHTML( "<div class='searchresults'>" );
@@ -371,7 +374,7 @@ class SpecialSearch extends SpecialPage {
 		// Show the create link ahead
 		$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
 
-		Hooks::run( 'SpecialSearchResults', [ $term, &$titleMatches, &$textMatches ] );
+		Hooks::run( 'SpecialSearchResults', [ $term, $titleMatches, $textMatches ] );
 
 		// If we have no results and have not already displayed an error message
 		if ( $num === 0 && !$hasErrors ) {
@@ -385,7 +388,7 @@ class SpecialSearch extends SpecialPage {
 		// results to display.
 		$linkRenderer = $this->getLinkRenderer();
 		$mainResultWidget = new FullSearchResultWidget( $this, $linkRenderer );
-		$sidebarResultWidget = new SimpleSearchResultWidget( $this, $linkRenderer );
+		$sidebarResultWidget = new InterwikiSearchResultWidget( $this, $linkRenderer );
 		$sidebarResultsWidget = new InterwikiSearchResultSetWidget(
 			$this,
 			$sidebarResultWidget,
@@ -424,6 +427,93 @@ class SpecialSearch extends SpecialPage {
 		$out->addHTML( "</div>" );
 
 		Hooks::run( 'SpecialSearchResultsAppend', [ $this, $out, $term ] );
+	}
+
+	/**
+	 * Generates HTML shown to the user when we have a suggestion about a query
+	 * that might give more results than their current query.
+	 */
+	protected function getDidYouMeanHtml( SearchResultSet $textMatches ) {
+		# mirror Go/Search behavior of original request ..
+		$params = [ 'search' => $textMatches->getSuggestionQuery() ];
+		if ( $this->fulltext === null ) {
+			$params['fulltext'] = 'Search';
+		} else {
+			$params['fulltext'] = $this->fulltext;
+		}
+		$stParams = array_merge( $params, $this->powerSearchOptions() );
+
+		$linkRenderer = $this->getLinkRenderer();
+
+		$snippet = $textMatches->getSuggestionSnippet() ?: null;
+		if ( $snippet !== null ) {
+			$snippet = new HtmlArmor( $snippet );
+		}
+
+		$suggest = $linkRenderer->makeKnownLink(
+			$this->getPageTitle(),
+			$snippet,
+			[ 'id' => 'mw-search-DYM-suggestion' ],
+			$stParams
+		);
+
+		# HTML of did you mean... search suggestion link
+		return Html::rawElement(
+			'div',
+			[ 'class' => 'searchdidyoumean' ],
+			$this->msg( 'search-suggest' )->rawParams( $suggest )->parse()
+		);
+	}
+
+	/**
+	 * Generates HTML shown to user when their query has been internally rewritten,
+	 * and the results of the rewritten query are being returned.
+	 *
+	 * @param string $term The users search input
+	 * @param SearchResultSet $textMatches The response to the users initial search request
+	 * @return string HTML linking the user to their original $term query, and the one
+	 *  suggested by $textMatches.
+	 */
+	protected function getDidYouMeanRewrittenHtml( $term, SearchResultSet $textMatches ) {
+		// Showing results for '$rewritten'
+		// Search instead for '$orig'
+
+		$params = [ 'search' => $textMatches->getQueryAfterRewrite() ];
+		if ( $this->fulltext === null ) {
+			$params['fulltext'] = 'Search';
+		} else {
+			$params['fulltext'] = $this->fulltext;
+		}
+		$stParams = array_merge( $params, $this->powerSearchOptions() );
+
+		$linkRenderer = $this->getLinkRenderer();
+
+		$snippet = $textMatches->getQueryAfterRewriteSnippet() ?: null;
+		if ( $snippet !== null ) {
+			$snippet = new HtmlArmor( $snippet );
+		}
+
+		$rewritten = $linkRenderer->makeKnownLink(
+			$this->getPageTitle(),
+			$snippet,
+			[ 'id' => 'mw-search-DYM-rewritten' ],
+			$stParams
+		);
+
+		$stParams['search'] = $term;
+		$stParams['runsuggestion'] = 0;
+		$original = $linkRenderer->makeKnownLink(
+			$this->getPageTitle(),
+			$term,
+			[ 'id' => 'mw-search-DYM-original' ],
+			$stParams
+		);
+
+		return Html::rawElement(
+			'div',
+			[ 'class' => 'searchdidyoumean' ],
+			$this->msg( 'search-rewritten' )->rawParams( $rewritten, $original )->escaped()
+		);
 	}
 
 	/**
@@ -503,7 +593,7 @@ class SpecialSearch extends SpecialPage {
 		$out->addModules( 'mediawiki.special.search' );
 		$out->addModuleStyles( [
 			'mediawiki.special', 'mediawiki.special.search.styles', 'mediawiki.ui', 'mediawiki.ui.button',
-			'mediawiki.ui.input', 'mediawiki.widgets.SearchInputWidget.styles',
+			'mediawiki.ui.input', 'mediawiki.widgets.SearchInputWidget.styles'
 		] );
 	}
 
@@ -536,12 +626,10 @@ class SpecialSearch extends SpecialPage {
 
 	/**
 	 * Reconstruct the 'power search' options for links
-	 * TODO: Instead of exposing this publicly, could we instead expose
-	 *  a function for creating search links?
 	 *
 	 * @return array
 	 */
-	public function powerSearchOptions() {
+	protected function powerSearchOptions() {
 		$opt = [];
 		if ( $this->isPowerSearch() ) {
 			foreach ( $this->namespaces as $n ) {

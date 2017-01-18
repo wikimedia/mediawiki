@@ -1,0 +1,232 @@
+/* interwiki search results */
+/*==========================*/
+
+#mw-interwiki-results {
+	float: right;
+	width: 30%;
+}
+
+.iw-headline {
+	font-weight: bold;
+    font-size: 1rem;
+    font-size: 16px;
+    opacity: 0.7;
+}
+
+.iw-results {
+    list-style: none;
+	margin: 0;
+}
+
+.iw-result {
+	margin-bottom: 1.2em;
+	background-color:#f2f4f7;
+    vertical-align: top;
+    width: 100%;
+    float: left;
+}
+
+/* clearfix */
+.iw-result:after {
+    visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
+* html .interwiki-result             { zoom: 1; } /* IE6 */
+*:first-child+html .iw-result { zoom: 1; } /* IE7 */
+
+/* padding each .iw-result section seperately.
+This allows us greater flexibility in the design.
+For example changing the background color on the
+header and footer. */
+.iw-result__header,
+.iw-result__title,
+.iw-result__content,
+.iw-result__footer {
+    padding-left: 0.85em;
+    padding-right: 0.85em;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+}
+
+/* want the wiktionary title to appear as an inline,
+to resemble a traditional dictionary definition */
+.iw-result--wikt .iw-result__title {
+    display: inline;
+    padding: 0;
+}
+
+.iw-result > div:first-child {
+    padding-top: 0.85em;
+}
+
+.iw-result > div:last-child {
+    padding-bottom: 0.85em;
+}
+
+.iw-result__title {
+    font-size: 16px; /* rem fallback */
+    font-size: 1rem;
+}
+
+.iw-result__title a.extiw {
+    color: #252525;
+    font-weight: bold;
+}
+
+.iw-result__content:after { /* clearfix */
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+}
+
+.iw-result__footer {
+    float: right;
+}
+
+.iw-result__icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-right: 0.25em;
+    background: url(/w/resources/src/mediawiki.special/images/special.search/wiktionary-icon.svg) no-repeat 0 0;
+    background-size: 100% 100%;
+}
+.iw-result__icon--wikt {
+  background-image: url(/w/resources/src/mediawiki.special/images/special.search/commons-icon.svg);
+}
+
+.iw-result__icon--wikt {
+  background-image: url(/w/resources/src/mediawiki.special/images/special.search/wiktionary-icon.svg);
+}
+
+.iw-result__icon--voy {
+  background-image: url(/w/resources/src/mediawiki.special/images/special.search/wikivoyage-icon.svg);
+}
+
+.iw-result__icon--q {
+  background-image: url(/w/resources/src/mediawiki.special/images/special.search/wikiquote-icon.svg);
+}
+
+.iw-result__icon--b {
+  background-image: url(/w/resources/src/mediawiki.special/images/special.search/wikibooks-icon.svg);
+}
+
+.iw-result__icon--n {
+  background-image: url(/w/resources/src/mediawiki.special/images/special.search/wikinews-icon.svg);
+}
+
+.iw-result__icon--s {
+  background-image: url(/w/resources/src/mediawiki.special/images/special.search/wikinews-icon.svg);
+}
+
+.iw-result__icon--v {
+  background-image: url(/w/resources/src/mediawiki.special/images/special.search/wikiversity-icon.svg);
+}
+
+.iw-result__icon--image {
+  background-image: url(/w/resources/src/mediawiki.special/images/special.search/commons-icon.svg);
+}
+
+/* image search result */
+.iw-result__mini-gallery {
+    position: relative;
+    float:left;
+    width: 60%;
+    height: 200px;
+    box-sizing: border-box;
+    padding: 0.25rem;
+}
+
+.iw-result__mini-gallery__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.iw-result__mini-gallery__image > span { /* image gallery text */
+    position: absolute;
+    top: 40%; /* approximatly vertically centered-ish */
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0,0,0,0.4); /* improves legibility on white background*/
+}
+
+.iw-result__mini-gallery:nth-child(2),
+.iw-result__mini-gallery:nth-child(3) { /* second and third images are small */
+    width: 40%;
+    height: 100px;
+}
+
+/* different types of interwiki result boxes */
+/* wikiquote box */
+.iw-result--q .iw-result__content {
+    border-left: 4px solid #afb1b5;
+    margin-left: 1em;
+    padding-top: 0;
+    margin-top: 0.25em;
+}
+.iw-result--q .iw-result__title {
+    margin-left: 1em;
+}
+.iw-result--q .iw-result__title:before {
+    content: ' — ';
+    display: inline-block;
+}
+.iw-result--q .iw-result__footer {
+    text-align: right;
+}
+
+/* no results
+span the interwiki results across the bottom of the page.
+*/
+
+.mw-search-nonefound ~ #mw-search-interwiki {
+    width: 100%;
+}
+
+.mw-search-nonefound ~ #mw-search-interwiki .iw-result {
+    width: 30%;
+    max-width: 300px;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+/* mobile */
+@media only screen and ( max-width:768px ) {
+    #mw-interwiki-results {
+        width: 100%;
+    }
+    .mw-search-results {
+        max-width: none !important;
+    }
+    .iw-result {
+        width: 45% !important;
+        margin-left: 0.5em !important;
+        margin-right: 0.5em !important;
+    }
+
+}
+
+@media only screen and ( max-width:600px ) {
+        .iw-result {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        max-width: none !important;
+    }
+}
