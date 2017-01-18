@@ -365,9 +365,7 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::loadOptions
 	 */
 	public function testAnonOptions() {
-		global $wgDefaultUserOptions;
 		$this->user->setOption( 'userjs-someoption', 'test' );
-		$this->assertEquals( $wgDefaultUserOptions['rclimit'], $this->user->getOption( 'rclimit' ) );
 		$this->assertEquals( 'test', $this->user->getOption( 'userjs-someoption' ) );
 	}
 
