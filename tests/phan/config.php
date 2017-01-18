@@ -203,7 +203,7 @@ return [
 	 * with complicated cross-file globals that you have no
 	 * hope of fixing.
 	 */
-	'ignore_undeclared_variables_in_global_scope' => false,
+	'ignore_undeclared_variables_in_global_scope' => true,
 
 	/**
 	 * Set to true in order to attempt to detect dead
@@ -339,8 +339,6 @@ return [
 		"PhanUndeclaredProperty",
 		// approximate error count: 3
 		"PhanUndeclaredStaticMethod",
-		// approximate error count: 79
-		"PhanUndeclaredVariable",
 	],
 
 	/**

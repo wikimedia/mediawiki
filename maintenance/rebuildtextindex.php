@@ -108,9 +108,8 @@ class RebuildTextIndex extends Maintenance {
 			);
 
 			foreach ( $res as $s ) {
+				$title = Title::makeTitle( $s->page_namespace, $s->page_title );
 				try {
-					$title = Title::makeTitle( $s->page_namespace, $s->page_title );
-
 					$rev = new Revision( $s );
 					$content = $rev->getContent();
 

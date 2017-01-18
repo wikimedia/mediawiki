@@ -100,7 +100,7 @@ abstract class LBFactory implements ILBFactory {
 				trigger_error( E_USER_WARNING, get_class( $e ) . ': ' . $e->getMessage() );
 			};
 
-		$this->profiler = isset( $params['profiler'] ) ? $params['profiler'] : null;
+		$this->profiler = isset( $conf['profiler'] ) ? $conf['profiler'] : null;
 		$this->trxProfiler = isset( $conf['trxProfiler'] )
 			? $conf['trxProfiler']
 			: new TransactionProfiler();
@@ -111,9 +111,9 @@ abstract class LBFactory implements ILBFactory {
 			'ChronologyProtection' => 'true'
 		];
 
-		$this->cliMode = isset( $params['cliMode'] ) ? $params['cliMode'] : PHP_SAPI === 'cli';
+		$this->cliMode = isset( $conf['cliMode'] ) ? $conf['cliMode'] : PHP_SAPI === 'cli';
 		$this->hostname = isset( $conf['hostname'] ) ? $conf['hostname'] : gethostname();
-		$this->agent = isset( $params['agent'] ) ? $params['agent'] : '';
+		$this->agent = isset( $conf['agent'] ) ? $conf['agent'] : '';
 
 		$this->ticket = mt_rand();
 	}
