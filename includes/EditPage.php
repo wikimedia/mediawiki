@@ -2326,12 +2326,17 @@ class EditPage {
 	}
 
 	function setHeaders() {
-		global $wgOut, $wgUser, $wgAjaxEditStash, $wgCookieSetOnAutoblock;
+		global $wgOut, $wgUser, $wgAjaxEditStash;
 
 		$wgOut->addModules( 'mediawiki.action.edit' );
-		if ( $wgCookieSetOnAutoblock === true ) {
+
+		// Add JS for tracking block ID cookies in localStorage.
+		$config = RequestContext::getMain()->getConfig();
+		if ( $config->get( 'CookieSetOnAutoblock' ) === true ) {
 			$wgOut->addModules( 'mediawiki.user.blockcookie' );
+			$wgOut->addJsConfigVars( 'wgAutoblockExpiry', $config->get( 'AutoblockExpiry' ) );
 		}
+
 		$wgOut->addModuleStyles( 'mediawiki.action.edit.styles' );
 
 		if ( $wgUser->getOption( 'showtoolbar' ) ) {
