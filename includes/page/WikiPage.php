@@ -2150,8 +2150,12 @@ class WikiPage implements Page, IDBAccessObject {
 				);
 			} else {
 				// Try to avoid a second parse if {{REVISIONID}} is used
-				$edit->popts->setSpeculativeRevIdCallback( function () {
-					return 1 + (int)wfGetDB( DB_MASTER )->selectField(
+				$dbIndex = ( $this->mDataLoadedFrom & self::READ_LATEST ) === self::READ_LATEST
+					? DB_MASTER // use the best possible guess
+					: DB_REPLICA; // T154554
+
+				$edit->popts->setSpeculativeRevIdCallback( function () use ( $dbIndex ) {
+					return 1 + (int)wfGetDB( $dbIndex )->selectField(
 						'revision',
 						'MAX(rev_id)',
 						[],
