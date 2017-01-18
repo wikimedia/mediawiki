@@ -1,4 +1,5 @@
 <?php
+use MediaWiki\MediaWikiServices;
 
 /**
  * @group Database
@@ -101,7 +102,8 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 			$this->user->getEditCount()
 		);
 
-		$titleLink = Linker::link( $this->title, null, [], [] );
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$titleLink = $linkRenderer->makeLink( $this->title, null, [], [] );
 
 		// $paramsWithoutTools and $paramsWithTools should be only different
 		// in index 0
@@ -121,8 +123,9 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	 * @covers LogFormatter::getActionText
 	 */
 	public function testLogParamsTypeRaw() {
-		$params = [ '4:raw:raw' => Linker::link( $this->title, null, [], [] ) ];
-		$expected = Linker::link( $this->title, null, [], [] );
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$params = [ '4:raw:raw' => $linkRenderer->makeLink( $this->title, null, [], [] ) ];
+		$expected = $linkRenderer->makeLink( $this->title, null, [], [] );
 
 		$entry = $this->newLogEntry( 'param', $params );
 		$formatter = LogFormatter::newFromEntry( $entry );
@@ -211,8 +214,9 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	 * @covers LogFormatter::getActionText
 	 */
 	public function testLogParamsTypeTitleLink() {
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$params = [ '4:title-link:titleLink' => $this->title->getText() ];
-		$expected = Linker::link( $this->title, null, [], [] );
+		$expected = $linkRenderer->makeLink( $this->title, null, [], [] );
 
 		$entry = $this->newLogEntry( 'param', $params );
 		$formatter = LogFormatter::newFromEntry( $entry );

@@ -20,6 +20,7 @@
  * @file
  * @ingroup Pager
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * IndexPager is an efficient pager which uses a (roughly unique) index in the
@@ -476,7 +477,8 @@ abstract class IndexPager extends ContextSource implements Pager {
 			$attrs['class'] = "mw-{$type}link";
 		}
 
-		return Linker::linkKnown(
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		return $linkRenderer->makeKnownLink(
 			$this->getTitle(),
 			$text,
 			$attrs,

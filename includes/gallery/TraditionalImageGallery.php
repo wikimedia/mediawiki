@@ -19,6 +19,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 class TraditionalImageGallery extends ImageGalleryBase {
 	/**
@@ -46,6 +47,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			[ 'class' => 'gallery mw-gallery-' . $this->mMode ], $this->mAttribs );
 
 		$modules = $this->getModules();
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
 		if ( $this->mParser ) {
 			$this->mParser->getOutput()->addModules( $modules );
@@ -116,9 +118,9 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				# The image is blacklisted, just show it as a text link.
 				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: ' .
 					( $this->getThumbPadding() + $this->mHeights ) . 'px;">' .
-					Linker::linkKnown(
+					$linkRenderer->makeKnownLink(
 						$nt,
-						htmlspecialchars( $nt->getText() )
+						$nt->getText()
 					) .
 					'</div>';
 			} else {
@@ -187,9 +189,9 @@ class TraditionalImageGallery extends ImageGalleryBase {
 
 			$textlink = $this->mShowFilename ?
 				// Preloaded into LinkCache above
-				Linker::linkKnown(
+				$linkRenderer->makeKnownLink(
 					$nt,
-					htmlspecialchars(
+					(
 						$this->mCaptionLength !== true ?
 							$lang->truncate( $nt->getText(), $this->mCaptionLength ) :
 							$nt->getText()
