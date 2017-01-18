@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.3
+ * OOjs UI v0.18.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-01-04T00:22:45Z
+ * Date: 2017-01-18T00:07:12Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -211,7 +211,8 @@
 .oo-ui-buttonElement-framed.oo-ui-widget-disabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-widget-disabled.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
   opacity: 0.5;
-  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
   box-shadow: none;
   color: #333;
   background: #eee;
@@ -230,6 +231,7 @@
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
+  min-height: 3.125em;
 }
 .oo-ui-iconElement .oo-ui-iconElement-icon,
 .oo-ui-iconElement.oo-ui-iconElement-icon {
@@ -277,57 +279,77 @@
 .oo-ui-fieldLayout:after {
   clear: both;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label,
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-help,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-help,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
   display: block;
   float: left;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
   text-align: right;
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body {
   display: table;
+  width: 100%;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
   display: table-cell;
   vertical-align: middle;
 }
-.oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-top > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
-  display: inline-block;
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
+  width: 1px;
 }
-.oo-ui-fieldLayout > .oo-ui-fieldLayout-help {
+.oo-ui-fieldLayout .oo-ui-fieldLayout-help {
   float: right;
 }
-.oo-ui-fieldLayout > .oo-ui-fieldLayout-help > .oo-ui-popupWidget > .oo-ui-popupWidget-popup {
+.oo-ui-fieldLayout .oo-ui-fieldLayout-help > .oo-ui-popupWidget > .oo-ui-popupWidget-popup {
   z-index: 1;
 }
-.oo-ui-fieldLayout > .oo-ui-fieldLayout-help .oo-ui-fieldLayout-help-content {
+.oo-ui-fieldLayout .oo-ui-fieldLayout-help .oo-ui-fieldLayout-help-content {
   padding: 0.5em 0.75em;
   line-height: 1.5;
+}
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-top .oo-ui-fieldLayout-help,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline .oo-ui-fieldLayout-help {
+  margin-top: -0.3em;
 }
 .oo-ui-fieldLayout:last-child {
   margin-bottom: 0;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label,
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
-  padding-top: 0.5em;
-  margin-right: 5%;
-  width: 35%;
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-help,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-help {
+  margin-right: 0;
+  margin-left: -1.875em;
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
   width: 60%;
 }
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
+  margin-right: 5%;
+  width: 35%;
+}
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header > .oo-ui-labelElement-label,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header > .oo-ui-labelElement-label {
+  display: block;
+  padding-top: 0.5em;
+}
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline {
   margin-bottom: 1.25em;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
-  padding: 0.25em 0.25em 0.25em 0.5em;
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body {
+  max-width: 50em;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-top.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
+  padding: 0.25em 0 0.25em 0.5em;
+}
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-top.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
+  max-width: 50em;
   padding: 0.5em 0;
 }
 .oo-ui-fieldLayout > .oo-ui-popupButtonWidget {
@@ -337,7 +359,7 @@
 .oo-ui-fieldLayout > .oo-ui-popupButtonWidget:last-child {
   margin-right: 0;
 }
-.oo-ui-fieldLayout-disabled > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
+.oo-ui-fieldLayout-disabled > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header > .oo-ui-labelElement-label {
   color: #ccc;
 }
 .oo-ui-fieldLayout-messages {
@@ -362,9 +384,6 @@
   line-height: 1.5em;
   vertical-align: middle;
 }
-.oo-ui-actionFieldLayout {
-  max-width: 50em;
-}
 .oo-ui-actionFieldLayout-input,
 .oo-ui-actionFieldLayout-button {
   display: table-cell;
@@ -377,6 +396,9 @@
   width: 1%;
   white-space: nowrap;
 }
+.oo-ui-actionFieldLayout.oo-ui-fieldLayout-align-top {
+  max-width: 50em;
+}
 .oo-ui-fieldsetLayout {
   position: relative;
   min-width: 0;
@@ -387,11 +409,11 @@
 body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   display: table-cell;
 }
-.oo-ui-fieldsetLayout.oo-ui-iconElement > .oo-ui-iconElement-icon {
+.oo-ui-fieldsetLayout.oo-ui-iconElement > .oo-ui-fieldsetLayout-header > .oo-ui-iconElement-icon {
   display: block;
   position: absolute;
 }
-.oo-ui-fieldsetLayout.oo-ui-labelElement > .oo-ui-labelElement-label {
+.oo-ui-fieldsetLayout.oo-ui-labelElement > .oo-ui-fieldsetLayout-header {
   color: inherit;
   display: inline-table;
   box-sizing: border-box;
@@ -400,44 +422,48 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   white-space: normal;
   float: left;
 }
-.oo-ui-fieldsetLayout.oo-ui-labelElement > .oo-ui-labelElement-label:empty {
+.oo-ui-fieldsetLayout.oo-ui-labelElement > .oo-ui-fieldsetLayout-header > .oo-ui-labelElement-label:empty {
   display: none;
 }
 .oo-ui-fieldsetLayout-group {
   clear: both;
 }
-.oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-help {
+.oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-help {
   float: right;
 }
-.oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-help > .oo-ui-popupWidget > .oo-ui-popupWidget-popup {
+.oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-help > .oo-ui-popupWidget > .oo-ui-popupWidget-popup {
   z-index: 1;
 }
-.oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-help .oo-ui-fieldsetLayout-help-content {
+.oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-help .oo-ui-fieldsetLayout-help-content {
   padding: 0.5em 0.75em;
   line-height: 1.4;
+}
+.oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-header {
+  width: 50em;
 }
 .oo-ui-fieldsetLayout + .oo-ui-fieldsetLayout,
 .oo-ui-fieldsetLayout + .oo-ui-formLayout {
   margin-top: 2em;
 }
-.oo-ui-fieldsetLayout.oo-ui-labelElement > .oo-ui-labelElement-label {
+.oo-ui-fieldsetLayout.oo-ui-labelElement > .oo-ui-fieldsetLayout-header > .oo-ui-labelElement-label {
+  display: inline-block;
   font-size: 1.1em;
   margin-bottom: 0.5em;
   padding: 0.25em 0;
   font-weight: bold;
 }
-.oo-ui-fieldsetLayout.oo-ui-iconElement > .oo-ui-labelElement-label {
+.oo-ui-fieldsetLayout.oo-ui-iconElement > .oo-ui-fieldsetLayout-header > .oo-ui-labelElement-label {
   padding-left: 2em;
   line-height: 1.8em;
 }
-.oo-ui-fieldsetLayout.oo-ui-iconElement > .oo-ui-iconElement-icon {
+.oo-ui-fieldsetLayout.oo-ui-iconElement > .oo-ui-fieldsetLayout-header > .oo-ui-iconElement-icon {
   left: 0;
   top: 0.25em;
 }
-.oo-ui-fieldsetLayout > .oo-ui-popupButtonWidget {
+.oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-header > .oo-ui-popupButtonWidget {
   margin-right: 0;
 }
-.oo-ui-fieldsetLayout > .oo-ui-popupButtonWidget:last-child {
+.oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-header > .oo-ui-popupButtonWidget:last-child {
   margin-right: 0;
 }
 .oo-ui-formLayout + .oo-ui-fieldsetLayout,
@@ -449,8 +475,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-panelLayout-scrollable {
   overflow-y: auto;
-  /* Make scrolling smooth */
-  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
 }
 .oo-ui-panelLayout-expanded {
   position: absolute;
@@ -464,7 +490,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-panelLayout-framed {
   border-radius: 0.5em;
-  box-shadow: 0 0.25em 1em rgba(0, 0, 0, 0.25);
 }
 .oo-ui-panelLayout-padded.oo-ui-panelLayout-framed {
   margin: 1em 0;
@@ -598,7 +623,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-radius: 0.3em;
   margin-right: 0.5em;
 }
-.oo-ui-buttonGroupWidget .oo-ui-buttonElement-active .oo-ui-buttonElement-button {
+.oo-ui-buttonGroupWidget .oo-ui-buttonWidget.oo-ui-buttonElement-active .oo-ui-buttonElement-button {
   cursor: default;
 }
 .oo-ui-buttonGroupWidget:last-child {
@@ -640,8 +665,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-popupWidget-anchored .oo-ui-popupWidget-anchor {
   display: block;
   position: absolute;
-  top: 0;
-  /* @noflip */
+  /* `top` property is to be set in theme's selector due to specific `@size-anchor` values
+			/* @noflip */
   left: 0;
   background-repeat: no-repeat;
 }
@@ -669,8 +694,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-radius: 0.25em;
   box-shadow: 0 0.15em 0.5em 0 rgba(0, 0, 0, 0.2);
 }
-.oo-ui-popupWidget-anchored .oo-ui-popupWidget-popup {
+.oo-ui-popupWidget-anchored {
   margin-top: 6px;
+}
+.oo-ui-popupWidget-anchored .oo-ui-popupWidget-anchor {
+  top: -6px;
 }
 .oo-ui-popupWidget-anchored .oo-ui-popupWidget-anchor:before,
 .oo-ui-popupWidget-anchored .oo-ui-popupWidget-anchor:after {
@@ -872,6 +900,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+}
+.oo-ui-textInputWidget-php > .oo-ui-iconElement-icon,
+.oo-ui-textInputWidget-php > .oo-ui-indicatorElement-indicator,
+.oo-ui-textInputWidget-php > .oo-ui-labelElement-label {
+  pointer-events: none;
 }
 .oo-ui-textInputWidget input,
 .oo-ui-textInputWidget textarea {

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.3
+ * OOjs UI v0.18.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-01-04T00:22:45Z
+ * Date: 2017-01-18T00:07:12Z
  */
 .oo-ui-tool.oo-ui-widget-enabled {
   -webkit-transition: background-color 100ms;
@@ -243,7 +243,7 @@
   margin: 0 -1px;
   border: 1px solid #c8ccd1;
   background-color: #fff;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25);
   min-width: 16em;
 }
 .oo-ui-popupToolGroup .oo-ui-tool-link {
@@ -402,11 +402,11 @@
   pointer-events: none;
 }
 .oo-ui-toolbar-bar {
-  border-bottom: 1px solid #c8ccd1;
   background-color: #fff;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-  font-weight: 500;
   color: #222;
+  border-bottom: 1px solid #c8ccd1;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+  font-weight: 500;
 }
 .oo-ui-toolbar-bar .oo-ui-toolbar-bar {
   border-bottom: 0;
