@@ -2515,9 +2515,10 @@ class OutputPage extends ContextSource {
 					$query['returntoquery'] = wfArrayToCgi( $returntoquery );
 				}
 			}
-			$loginLink = Linker::linkKnown(
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+			$loginLink = $linkRenderer->makeKnownLink(
 				SpecialPage::getTitleFor( 'Userlogin' ),
-				$this->msg( 'loginreqlink' )->escaped(),
+				$this->msg( 'loginreqlink' )->text(),
 				[],
 				$query
 			);
