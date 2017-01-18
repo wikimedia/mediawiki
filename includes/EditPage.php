@@ -565,6 +565,14 @@ class EditPage {
 					$user->spreadAnyEditBlock();
 				} );
 			}
+
+			// Add JS for tracking block ID cookies in localStorage.
+			$config = RequestContext::getMain()->getConfig();
+			if ( $config->get( 'CookieSetOnAutoblock' ) === true ) {
+				$wgOut->addModules( 'mediawiki.user.blockcookie' );
+				$wgOut->addJsConfigVars( 'wgAutoblockExpiry', $config->get( 'AutoblockExpiry' ) );
+			}
+
 			$this->displayPermissionsError( $permErrors );
 
 			return;
@@ -2326,12 +2334,9 @@ class EditPage {
 	}
 
 	public function setHeaders() {
-		global $wgOut, $wgUser, $wgAjaxEditStash, $wgCookieSetOnAutoblock;
+		global $wgOut, $wgUser, $wgAjaxEditStash;
 
 		$wgOut->addModules( 'mediawiki.action.edit' );
-		if ( $wgCookieSetOnAutoblock === true ) {
-			$wgOut->addModules( 'mediawiki.user.blockcookie' );
-		}
 		$wgOut->addModuleStyles( 'mediawiki.action.edit.styles' );
 
 		if ( $wgUser->getOption( 'showtoolbar' ) ) {
