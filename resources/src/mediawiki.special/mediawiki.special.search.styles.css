@@ -29,13 +29,11 @@
 .mw-search-nonefound + .mw-search-interwiki-header {
 	margin-top: 0;
 }
-.searchresult {
-	font-size: 95%;
-	max-width: 38em;
-}
+
 .mw-search-results {
-	margin-left: 0;
+	margin: 0;
 	float: left;
+	max-width: 60%;
 }
 .mw-search-visualclear {
 	clear: both;
@@ -93,6 +91,10 @@
 	float: left;
 	width: 100%;
 }
+
+/* Advanced options menu */
+/*==========================*/
+
 #mw-searchoptions {
 	margin: 0;
 	padding: 0.5em 0.75em 0.75em 0.75em;
@@ -127,12 +129,14 @@
 	padding-left: 6em;
 	font-size: 85%;
 }
+
 #mw-search-interwiki {
 	float: right;
 	width: 18em;
 	border: 1px solid #a2a9b1;
 	margin-top: 2ex;
 }
+
 .searchalttitle,
 #mw-search-interwiki li {
 	font-size: 95%;
@@ -153,6 +157,7 @@
 	background-color: #eaecf0;
 	border-top: 1px solid #c8ccd1;
 }
+
 .searchdidyoumean {
 	font-size: 127%;
 	margin-top: 0.8em;

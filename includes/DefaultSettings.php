@@ -8541,6 +8541,21 @@ $wgExperiencedUserEdits = 500;
 $wgExperiencedUserMemberSince = 30; # days
 
 /**
+ * Describes types of content that an interwiki search index contains.
+ * Used to visually differenciate search results based on their interwiki
+ * prefix.
+ */
+$wgInterwikiPrefixContentTypes = [
+	'wikt' => 'definition',
+	'b' => 'textbook',
+	'n' => 'news',
+	'q' => 'quotation',
+	's' => 'book',
+	'voy'=> 'travel',
+	'v' =>  'course'
+];
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
