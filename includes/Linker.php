@@ -944,7 +944,11 @@ class Linker {
 			}
 			$contribsPage = SpecialPage::getTitleFor( 'Contributions', $userText );
 
-			$items[] = self::link( $contribsPage, wfMessage( 'contribslink' )->escaped(), $attribs );
+			$items[] = self::link(
+				$contribsPage,
+				wfMessage( 'contribslink' )->escaped(),
+				$attribs
+			);
 		}
 		if ( $blockable && $wgUser->isAllowed( 'block' ) ) {
 			$items[] = self::blockLink( $userId, $userText );
@@ -1815,10 +1819,10 @@ class Linker {
 				$html = $context->msg( 'rollbacklinkcount' )->numParams( $editCount )->parse();
 			}
 
-			return self::link( $title, $html, $attrs, $query, $options );
+			return self::link( $title, $html, $attrs, $query );
 		} else {
 			$html = $context->msg( 'rollbacklink' )->escaped();
-			return self::link( $title, $html, $attrs, $query, $options );
+			return self::link( $title, $html, $attrs, $query );
 		}
 	}
 

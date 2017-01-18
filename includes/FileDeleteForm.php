@@ -21,6 +21,7 @@
  * @author Rob Church <robchur@gmail.com>
  * @ingroup Media
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * File deletion user interface
@@ -301,9 +302,10 @@ class FileDeleteForm {
 
 			if ( $wgUser->isAllowed( 'editinterface' ) ) {
 				$title = wfMessage( 'filedelete-reason-dropdown' )->inContentLanguage()->getTitle();
-				$link = Linker::linkKnown(
+				$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+				$link = $linkRenderer->makeKnownLink(
 					$title,
-					wfMessage( 'filedelete-edit-reasonlist' )->escaped(),
+					wfMessage( 'filedelete-edit-reasonlist' )->text(),
 					[],
 					[ 'action' => 'edit' ]
 				);
