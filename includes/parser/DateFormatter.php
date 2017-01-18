@@ -217,15 +217,17 @@ class DateFormatter {
 			}
 		}
 
-		return $this->formatDate( $bits, $linked );
+		return $this->formatDate( $bits, $linked, $matches[0] );
 	}
 
 	/**
 	 * @param array $bits
 	 * @param bool $link
+	 * @param string $orig Original input string, to be returned
+	 *  on formatting failure.
 	 * @return string
 	 */
-	public function formatDate( $bits, $link = true ) {
+	public function formatDate( $bits, $link = true, $orig = '_FORMAT_DATE_FAILURE_' ) {
 		$format = $this->targets[$this->mTarget];
 
 		if ( !$link ) {
@@ -300,8 +302,9 @@ class DateFormatter {
 			}
 		}
 		if ( $fail ) {
-			/** @todo FIXME: $matches doesn't exist here, what's expected? */
-			$text = $matches[0];
+			// This occurs when parsing a date with day or month outside the bounds
+			// of possibilities.
+			$text = $orig;
 		}
 
 		$isoBits = [];

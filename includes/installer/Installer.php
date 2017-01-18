@@ -1421,7 +1421,7 @@ abstract class Installer {
 		$wgAutoloadClasses += $data['autoload'];
 
 		$hooksWeWant = isset( $wgHooks['LoadExtensionSchemaUpdates'] ) ?
-			$wgHooks['LoadExtensionSchemaUpdates'] : [];
+			$GLOBALS['wgHooks']['LoadExtensionSchemaUpdates'] : [];
 
 		if ( isset( $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
 			$hooksWeWant = array_merge_recursive(

@@ -54,6 +54,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$batch = new LinkBatch();
 		# Give some pointers to make (last) links
 		$this->mForm->prevId = [];
+		$rev_id = null;
 		foreach ( $this->mResult as $row ) {
 			$batch->addObj( Title::makeTitleSafe( NS_USER, $row->user_name ) );
 			$batch->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->user_name ) );

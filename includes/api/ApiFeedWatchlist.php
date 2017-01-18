@@ -52,6 +52,7 @@ class ApiFeedWatchlist extends ApiBase {
 	public function execute() {
 		$config = $this->getConfig();
 		$feedClasses = $config->get( 'FeedClasses' );
+		$params = [];
 		try {
 			$params = $this->extractRequestParams();
 

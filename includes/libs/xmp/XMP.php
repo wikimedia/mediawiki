@@ -1086,7 +1086,7 @@ class XMPReader implements LoggerAwareInterface {
 				}
 			} else {
 				array_unshift( $this->mode, self::MODE_IGNORE );
-				array_unshift( $this->curItem, $elm );
+				array_unshift( $this->curItem, $ns . ' ' . $tag );
 
 				return;
 			}

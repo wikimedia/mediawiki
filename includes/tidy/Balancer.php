@@ -1410,6 +1410,7 @@ class BalanceActiveFormattingElements {
 	private $noahTableStack = [ [] ];
 
 	public function __destruct() {
+		$next = null;
 		for ( $node = $this->head; $node; $node = $next ) {
 			$next = $node->nextAFE;
 			$node->prevAFE = $node->nextAFE = $node->nextNoah = null;

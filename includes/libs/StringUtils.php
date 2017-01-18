@@ -168,6 +168,7 @@ class StringUtils {
 	) {
 		$inputPos = 0;
 		$outputPos = 0;
+		$contentPos = 0;
 		$output = '';
 		$foundStart = false;
 		$encStart = preg_quote( $startDelim, '!' );
