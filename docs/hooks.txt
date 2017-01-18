@@ -2877,7 +2877,7 @@ $terms: Search terms, for highlighting
   function returned false.
 
 'ShowSearchHitTitle': Customise display of search hit title/link.
-$title: Title to link to
+&$title: Title to link to
 &$text: Text to use for the link
 $result: The search result
 $terms: The search terms entered
