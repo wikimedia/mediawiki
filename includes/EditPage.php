@@ -3581,6 +3581,7 @@ HTML
 	 */
 	public function getCancelLink() {
 		$cancelParams = [];
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( !$this->isConflict && $this->oldid > 0 ) {
 			$cancelParams['oldid'] = $this->oldid;
 		} elseif ( $this->getContextTitle()->isRedirect() ) {
@@ -3588,9 +3589,9 @@ HTML
 		}
 		$attrs = [ 'id' => 'mw-editform-cancel' ];
 
-		return Linker::linkKnown(
+		return $linkRenderer->makeKnownLink(
 			$this->getContextTitle(),
-			$this->context->msg( 'cancel' )->parse(),
+			new HtmlArmor( $this->context->msg( 'cancel' )->parse() ),
 			Html::buttonAttributes( $attrs, [ 'mw-ui-quiet' ] ),
 			$cancelParams
 		);

@@ -22,6 +22,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Handles the page protection UI and backend
@@ -554,9 +555,10 @@ class ProtectionForm {
 		$out .= Xml::closeElement( 'fieldset' );
 
 		if ( $user->isAllowed( 'editinterface' ) ) {
-			$link = Linker::linkKnown(
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+			$link = $linkRenderer->makeKnownLink(
 				$context->msg( 'protect-dropdown' )->inContentLanguage()->getTitle(),
-				$context->msg( 'protect-edit-reasonlist' )->escaped(),
+				$context->msg( 'protect-edit-reasonlist' )->text(),
 				[],
 				[ 'action' => 'edit' ]
 			);
