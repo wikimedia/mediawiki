@@ -152,6 +152,9 @@ class OutputPageTest extends MediaWikiTestCase {
 			// Unrelated path with domain component. Ignored.
 			[ 'baseDir' => $baseDir, 'basePath' => '/w', 'https://example.org/files/test.jpg' ],
 			[ 'baseDir' => $baseDir, 'basePath' => '/w', '//example.org/files/test.jpg' ],
+			// Unrelated path with domain, and empty base path (root mw install). Ignored.
+			[ 'baseDir' => $baseDir, 'basePath' => '', 'https://example.org/files/test.jpg' ],
+			[ 'baseDir' => $baseDir, 'basePath' => '', '//example.org/files/test.jpg' ], // T155310
 		];
 	}
 
