@@ -126,7 +126,7 @@ class BasicSearchResultSetWidget {
 		$hits = [];
 		$result = $resultSet->next();
 		while ( $result ) {
-			$hits[] .= $this->resultWidget->render( $result, $terms, $offset++ );
+			$hits[] .= $this->resultWidget->render( $result, $terms, $offset++, null );
 			$result = $resultSet->next();
 		}
 

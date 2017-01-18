@@ -2024,6 +2024,18 @@ return [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.search.styles.css',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.special.search.interwikiwidget.styles' => [
+	'styles' => 'resources/src/mediawiki.special/mediawiki.special.search.interwikiwidget.styles.less',
+		'targets' => [ 'desktop', 'mobile' ]
+	],
+	'mediawiki.special.search.commonsInterwikiWidget' => [
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.search.commonsInterwikiWidget.js',
+		'dependencies' => [
+			'mediawiki.Uri',
+			'mediawiki.ForeignApi'
+		],
+		'targets' => [ 'desktop', 'mobile' ]
+	],
 	'mediawiki.special.undelete' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.undelete.js',
 	],
