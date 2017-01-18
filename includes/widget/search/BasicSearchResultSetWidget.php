@@ -22,7 +22,7 @@ class BasicSearchResultSetWidget {
 	public function __construct(
 		SpecialSearch $specialPage,
 		SearchResultWidget $resultWidget,
-		InterwikiSearchResultSetWidget $sidebarWidget
+		SearchResultSetWidget $sidebarWidget
 	) {
 		$this->specialPage = $specialPage;
 		$this->resultWidget = $resultWidget;

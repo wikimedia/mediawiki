@@ -25,9 +25,11 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Widget\Search\BasicSearchResultSetWidget;
-use MediaWiki\Widget\Search\InterwikiSearchResultSetWidget;
 use MediaWiki\Widget\Search\FullSearchResultWidget;
+use MediaWiki\Widget\Search\InterwikiSearchResultWidget;
+use MediaWiki\Widget\Search\InterwikiSearchResultSetWidget;
 use MediaWiki\Widget\Search\SimpleSearchResultWidget;
+use MediaWiki\Widget\Search\SimpleSearchResultSetWidget;
 
 /**
  * implements Special:Search - Run text & title search and display the output
@@ -385,13 +387,26 @@ class SpecialSearch extends SpecialPage {
 		// results to display.
 		$linkRenderer = $this->getLinkRenderer();
 		$mainResultWidget = new FullSearchResultWidget( $this, $linkRenderer );
-		$sidebarResultWidget = new SimpleSearchResultWidget( $this, $linkRenderer );
-		$sidebarResultsWidget = new InterwikiSearchResultSetWidget(
-			$this,
-			$sidebarResultWidget,
-			$linkRenderer,
-			MediaWikiServices::getInstance()->getInterwikiLookup()
-		);
+
+		if ( $search->getFeatureData( 'enable-new-crossproject-page' ) ) {
+
+			$sidebarResultWidget = new InterwikiSearchResultWidget( $this, $linkRenderer );
+			$sidebarResultsWidget = new InterwikiSearchResultSetWidget(
+				$this,
+				$sidebarResultWidget,
+				$linkRenderer,
+				MediaWikiServices::getInstance()->getInterwikiLookup()
+			);
+		} else {
+			$sidebarResultWidget = new SimpleSearchResultWidget( $this, $linkRenderer );
+			$sidebarResultsWidget = new SimpleSearchResultSetWidget(
+				$this,
+				$sidebarResultWidget,
+				$linkRenderer,
+				MediaWikiServices::getInstance()->getInterwikiLookup()
+			);
+		}
+
 		$widget = new BasicSearchResultSetWidget( $this, $mainResultWidget, $sidebarResultsWidget );
 
 		$out->addHTML( $widget->render(
