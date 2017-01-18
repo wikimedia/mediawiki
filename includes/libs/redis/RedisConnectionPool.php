@@ -74,7 +74,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	 * @throws Exception
 	 */
 	protected function __construct( array $options ) {
-		if ( !class_exists( 'Redis' ) ) {
+		if ( !class_exists( 'Redis' ) && !extension_loaded( 'redis' ) ) {
 			throw new RuntimeException(
 				__CLASS__ . ' requires a Redis client library. ' .
 				'See https://www.mediawiki.org/wiki/Redis#Setup' );
