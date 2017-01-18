@@ -19,6 +19,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * @defgroup Skins Skins
@@ -452,13 +453,14 @@ abstract class Skin extends ContextSource {
 		$s = '';
 		$colon = $this->msg( 'colon-separator' )->escaped();
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( !empty( $allCats['normal'] ) ) {
 			$t = $embed . implode( "{$pop}{$embed}", $allCats['normal'] ) . $pop;
 
-			$msg = $this->msg( 'pagecategories' )->numParams( count( $allCats['normal'] ) )->escaped();
+			$msg = $this->msg( 'pagecategories' )->numParams( count( $allCats['normal'] ) )->text();
 			$linkPage = wfMessage( 'pagecategorieslink' )->inContentLanguage()->text();
 			$title = Title::newFromText( $linkPage );
-			$link = $title ? Linker::link( $title, $msg ) : $msg;
+			$link = $title ? $linkRenderer->makeLink( $title, $msg ) : $msg;
 			$s .= '<div id="mw-normal-catlinks" class="mw-normal-catlinks">' .
 				$link . $colon . '<ul>' . $t . '</ul>' . '</div>';
 		}
@@ -507,6 +509,7 @@ abstract class Skin extends ContextSource {
 	function drawCategoryBrowser( $tree ) {
 		$return = '';
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		foreach ( $tree as $element => $parent ) {
 			if ( empty( $parent ) ) {
 				# element start a new list
@@ -518,7 +521,7 @@ abstract class Skin extends ContextSource {
 
 			# add our current element to the list
 			$eltitle = Title::newFromText( $element );
-			$return .= Linker::link( $eltitle, htmlspecialchars( $eltitle->getText() ) );
+			$return .= $linkRenderer->makeLink( $eltitle, $eltitle->getText() );
 		}
 
 		return $return;
@@ -645,10 +648,11 @@ abstract class Skin extends ContextSource {
 					$msg = 'viewdeleted';
 				}
 
+				$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 				return $this->msg( $msg )->rawParams(
-					Linker::linkKnown(
+					$linkRenderer->makeKnownLink(
 						SpecialPage::getTitleFor( 'Undelete', $this->getTitle()->getPrefixedDBkey() ),
-						$this->msg( 'restorelink' )->numParams( $n )->escaped() )
+						$this->msg( 'restorelink' )->numParams( $n )->text() )
 					)->escaped();
 			}
 		}
@@ -671,6 +675,7 @@ abstract class Skin extends ContextSource {
 			return $subpages;
 		}
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( $out->isArticle() && MWNamespace::hasSubpages( $title->getNamespace() ) ) {
 			$ptext = $title->getPrefixedText();
 			if ( strpos( $ptext, '/' ) !== false ) {
@@ -687,9 +692,9 @@ abstract class Skin extends ContextSource {
 					$linkObj = Title::newFromText( $growinglink );
 
 					if ( is_object( $linkObj ) && $linkObj->isKnown() ) {
-						$getlink = Linker::linkKnown(
+						$getlink = $linkRenderer->makeKnownLink(
 							$linkObj,
-							htmlspecialchars( $display )
+							$display
 						);
 
 						$c++;
@@ -760,9 +765,10 @@ abstract class Skin extends ContextSource {
 			$msg = 'copyright';
 		}
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( $wgRightsPage ) {
 			$title = Title::newFromText( $wgRightsPage );
-			$link = Linker::linkKnown( $title, $wgRightsText );
+			$link = $linkRenderer->makeKnownLink( $title, $wgRightsText );
 		} elseif ( $wgRightsUrl ) {
 			$link = Linker::makeExternalLink( $wgRightsUrl, $wgRightsText );
 		} elseif ( $wgRightsText ) {
@@ -917,9 +923,10 @@ abstract class Skin extends ContextSource {
 	 * @return string
 	 */
 	function mainPageLink() {
-		$s = Linker::linkKnown(
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$s = $linkRenderer->makeKnownLink(
 			Title::newMainPage(),
-			$this->msg( 'mainpage' )->escaped()
+			$this->msg( 'mainpage' )->text()
 		);
 
 		return $s;
@@ -937,9 +944,10 @@ abstract class Skin extends ContextSource {
 			return '';
 		}
 
-		return Linker::linkKnown(
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		return $linkRenderer->makeKnownLink(
 			$title,
-			$this->msg( $desc )->escaped()
+			$this->msg( $desc )->text()
 		);
 	}
 
@@ -1385,16 +1393,17 @@ abstract class Skin extends ContextSource {
 			// 999 signifies "more than one revision". We don't know how many, and even if we did,
 			// the number of revisions or authors is not necessarily the same as the number of
 			// "messages".
-			$newMessagesLink = Linker::linkKnown(
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+			$newMessagesLink = $linkRenderer->makeKnownLink(
 				$uTalkTitle,
-				$this->msg( 'newmessageslinkplural' )->params( $plural )->escaped(),
+				$this->msg( 'newmessageslinkplural' )->params( $plural )->text(),
 				[],
 				[ 'redirect' => 'no' ]
 			);
 
-			$newMessagesDiffLink = Linker::linkKnown(
+			$newMessagesDiffLink = $linkRenderer->makeKnownLink(
 				$uTalkTitle,
-				$this->msg( 'newmessagesdifflinkplural' )->params( $plural )->escaped(),
+				$this->msg( 'newmessagesdifflinkplural' )->params( $plural )->text(),
 				[],
 				$lastSeenRev !== null
 					? [ 'oldid' => $lastSeenRev->getId(), 'diff' => 'cur' ]
@@ -1560,12 +1569,13 @@ abstract class Skin extends ContextSource {
 
 		$linksHtml = [];
 		foreach ( $links as $k => $linkDetails ) {
-			$linksHtml[] = Linker::link(
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRendererFactory()
+				->createFromLegacyOptions( $linkDetails['options'] );
+			$linksHtml[] = $linkRenderer->makeLink(
 				$linkDetails['targetTitle'],
 				$linkDetails['text'],
 				$linkDetails['attribs'],
-				$linkDetails['query'],
-				$linkDetails['options']
+				$linkDetails['query']
 			);
 		}
 
