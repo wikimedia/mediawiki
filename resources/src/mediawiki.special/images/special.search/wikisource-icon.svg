@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>wikisource-icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M25.9612634,4.16259168 C25.9612634,3.05318514 26.8209364,1.88015355 27.8804771,1.5831456 C27.8804771,1.5831456 45.019739,-4.60039908 52.9189989,7.7430239 C52.8276879,7.87091176 53.3244937,43.6894771 53.0961715,43.801598 C38.1346526,39.2213878 27.8617804,43.2196252 27.8617804,43.2196252 C26.8121538,43.5410399 25.9612634,42.9124575 25.9612634,41.7928397 L25.9612634,4.16259168 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="27.195528" height="43.7625003" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <path d="M1.08483248,4.15020908 C1.08483248,3.04080253 1.94450542,1.86777094 3.00404616,1.57076299 C3.00404616,1.57076299 20.1433081,-4.61278168 28.0425679,7.73064129 C27.951257,7.85852916 28.4480627,43.6770945 28.2197406,43.7892154 C13.2582217,39.2090052 2.98534945,43.2072426 2.98534945,43.2072426 C1.93572291,43.5286573 1.08483248,42.9000749 1.08483248,41.7804571 L1.08483248,4.15020908 Z" id="path-3"></path>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="27.195528" height="43.7625003" fill="white">
+            <use xlink:href="#path-3"></use>
+        </mask>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="wikisource">
+            <g id="Group-2" transform="translate(3.000000, 7.000000)">
+                <g id="Group">
+                    <rect id="Rectangle-3" fill="#000000" x="19.5269846" y="36.730429" width="15.1876547" height="9.47882039" rx="4.7394102"></rect>
+                    <rect id="Rectangle" fill="#000000" x="0" y="8.29396785" width="55.3264563" height="35.5455765" rx="2"></rect>
+                    <use id="Rectangle-2" stroke="#000000" mask="url(#mask-2)" stroke-width="4" fill="#FFFFFF" transform="translate(39.559027, 21.920348) scale(-1, 1) translate(-39.559027, -21.920348) " xlink:href="#path-1"></use>
+                    <use id="Rectangle-2" stroke="#000000" mask="url(#mask-4)" stroke-width="4" fill="#FFFFFF" xlink:href="#path-3"></use>
+                </g>
+                <path d="M5.94322419,22.653192 C15.2672322,19.3261075 22.9765332,23.990418 22.9765332,23.990418" id="Line" stroke="#000000" stroke-width="2" stroke-linecap="round"></path>
+                <path d="M5.94322419,16.7331266 C15.2672322,13.4060421 22.9765332,18.0703525 22.9765332,18.0703525" id="Line" stroke="#000000" stroke-width="2" stroke-linecap="round"></path>
+                <path d="M5.94322419,11.0846878 C15.2672322,7.75760327 22.9765332,12.4219137 22.9765332,12.4219137" id="Line" stroke="#000000" stroke-width="2" stroke-linecap="round"></path>
+                <path d="M5.94322419,28.5732575 C15.2672322,25.246173 22.9765332,29.9104834 22.9765332,29.9104834" id="Line" stroke="#000000" stroke-width="2" stroke-linecap="round"></path>
+                <path d="M5.94322419,34.4933229 C15.2672322,31.1662384 22.9765332,35.8305489 22.9765332,35.8305489" id="Line" stroke="#000000" stroke-width="2" stroke-linecap="round"></path>
+                <path d="M31.8963536,26.2991517 C41.2203616,22.7867165 48.9296626,27.2977748 48.9296626,27.2977748" id="Line" stroke="#000000" stroke-width="2" stroke-linecap="round"></path>
+                <path d="M31.8963536,32.2192172 C41.2203616,28.7067819 48.9296626,33.2178402 48.9296626,33.2178402" id="Line" stroke="#000000" stroke-width="2" stroke-linecap="round"></path>
+                <path d="M32.1957977,11.8254134 C32.1957977,11.8254134 34.7092977,10.1127027 40.1604435,10.1337008 C45.6115894,10.1546989 47.8024685,11.8254134 47.8024685,11.8254134 L47.8024685,21.3219156 C47.8024685,21.3219156 43.8085467,20.1940894 39.931856,20.1940894 C36.0551653,20.1940894 32.1957977,21.3219156 32.1957977,21.3219156 L32.1957977,11.8254134 Z" id="Rectangle-4" fill="#000000"></path>
+            </g>
+        </g>
+    </g>
+</svg>
