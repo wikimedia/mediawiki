@@ -223,6 +223,8 @@ changes to languages because of Phabricator reports.
   Use ContentHandlerDefaultModelFor instead.
 * Hook TitleIsWikitextPage (deprecated in 1.21) was removed.
   Use ContentHandlerDefaultModelFor instead.
+* User right editusercssjs removed (deprecated in 1.16) was removed
+  Use editusercss and edituserjs instead.
 * Article::getContent() (deprecated in 1.21) was removed.
 * Revision::getText() (deprecated in 1.21) was removed.
 * Article::doEdit() and WikiPage::doEdit() (deprecated in 1.21) were removed.
