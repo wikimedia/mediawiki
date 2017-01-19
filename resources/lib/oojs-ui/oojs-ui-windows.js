@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.3
+ * OOjs UI v0.18.3-fix (803aa6ac56)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-01-04T00:22:40Z
+ * Date: 2017-01-19T20:36:18Z
  */
 ( function ( OO ) {
 
@@ -3167,7 +3167,9 @@ OO.ui.ProcessDialog.prototype.getActionWidgets = function ( actions ) {
 
 	for ( i = 0, len = actions.length; i < len; i++ ) {
 		config = $.extend( { framed: !OO.ui.isMobile() }, actions[ i ] );
-		if ( isMobile && ( config.flags === 'back' || config.flags.indexOf( 'back' ) !== -1 ) ) {
+		if ( isMobile &&
+			( config.flags === 'back' || ( Array.isArray( config.flags ) && config.flags.indexOf( 'back' ) !== -1 ) )
+		) {
 			$.extend( config, {
 				icon: 'previous',
 				label: ''
