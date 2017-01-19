@@ -223,8 +223,7 @@ class Preprocessor_DOM extends Preprocessor {
 
 		$searchBase = "[{<\n"; # }
 		if ( !$wgDisableLangConversion ) {
-			// FIXME: disabled due to T153761
-			// $searchBase .= '-';
+			$searchBase .= '-';
 		}
 
 		// For fast reverse searches
@@ -277,6 +276,13 @@ class Preprocessor_DOM extends Preprocessor {
 				$search = $searchBase;
 				if ( $stack->top === false ) {
 					$currentClosing = '';
+				} elseif (
+					$stack->top->close === '}-' &&
+					$stack->top->count > 2
+				) {
+					# adjust closing for -{{{...{{
+					$currentClosing = '}';
+					$search .= $currentClosing;
 				} else {
 					$currentClosing = $stack->top->close;
 					$search .= $currentClosing;
@@ -333,11 +339,15 @@ class Preprocessor_DOM extends Preprocessor {
 					} elseif ( isset( $this->rules[$curChar] ) ) {
 						$found = 'open';
 						$rule = $this->rules[$curChar];
-					} elseif ( $curChar == '-' ) {
-						$found = 'dash';
 					} else {
-						# Some versions of PHP have a strcspn which stops on null characters
-						# Ignore and continue
+						# Some versions of PHP have a strcspn which stops on
+						# null characters; ignore these and continue.
+						# We also may get '-' and '}' characters here which
+						# don't match -{ or $currentClosing.  Add these to
+						# output and continue.
+						if ( $curChar == '-' || $curChar == '}' ) {
+							$accum .= $curChar;
+						}
 						++$i;
 						continue;
 					}
@@ -615,7 +625,10 @@ class Preprocessor_DOM extends Preprocessor {
 			} elseif ( $found == 'open' ) {
 				# count opening brace characters
 				$curLen = strlen( $curChar );
-				$count = ( $curLen > 1 ) ? 1 : strspn( $text, $curChar, $i );
+				$count = ( $curLen > 1 ) ?
+					# allow the final character to repeat
+					strspn( $text, $curChar[$curLen-1], $i+1 ) + 1 :
+					strspn( $text, $curChar, $i );
 
 				# we need to add to stack only if opening brace count is enough for one of the rules
 				if ( $count >= $rule['min'] ) {
@@ -635,17 +648,25 @@ class Preprocessor_DOM extends Preprocessor {
 					# Add literal brace(s)
 					$accum .= htmlspecialchars( str_repeat( $curChar, $count ) );
 				}
-				$i += $curLen * $count;
+				$i += $count;
 			} elseif ( $found == 'close' ) {
 				$piece = $stack->top;
 				# lets check if there are enough characters for closing brace
 				$maxCount = $piece->count;
+				if ( $piece->close === '}-' && $curChar === '}' ) {
+					$maxCount--; # don't try to match closing '-' as a '}'
+				}
 				$curLen = strlen( $curChar );
-				$count = ( $curLen > 1 ) ? 1 : strspn( $text, $curChar, $i, $maxCount );
+				$count = ( $curLen > 1 ) ? $curLen :
+					strspn( $text, $curChar, $i, $maxCount );
 
 				# check for maximum matching characters (if there are 5 closing
 				# characters, we will probably need only 3 - depending on the rules)
 				$rule = $this->rules[$piece->open];
+				if ( $piece->close === '}-' && $piece->count > 2 ) {
+					# tweak for -{..{{ }}..}-
+					$rule = $this->rules['{'];
+				}
 				if ( $count > $rule['max'] ) {
 					# The specified maximum exists in the callback array, unless the caller
 					# has made an error
@@ -663,14 +684,16 @@ class Preprocessor_DOM extends Preprocessor {
 				if ( $matchingCount <= 0 ) {
 					# No matching element found in callback array
 					# Output a literal closing brace and continue
-					$accum .= htmlspecialchars( str_repeat( $curChar, $count ) );
-					$i += $curLen * $count;
+					$endText = substr( $text, $i, $count );
+					$accum .= htmlspecialchars( $endText );
+					$i += $count;
 					continue;
 				}
 				$name = $rule['names'][$matchingCount];
 				if ( $name === null ) {
 					// No element, just literal text
-					$element = $piece->breakSyntax( $matchingCount ) . str_repeat( $rule['end'], $matchingCount );
+					$endText = substr( $text, $i, $matchingCount );
+					$element = $piece->breakSyntax( $matchingCount ) . $endText;
 				} else {
 					# Create XML element
 					# Note: $parts is already XML, does not need to be encoded further
@@ -703,7 +726,7 @@ class Preprocessor_DOM extends Preprocessor {
 				}
 
 				# Advance input pointer
-				$i += $curLen * $matchingCount;
+				$i += $matchingCount;
 
 				# Unwind the stack
 				$stack->pop();
@@ -719,7 +742,12 @@ class Preprocessor_DOM extends Preprocessor {
 						$stack->push( $piece );
 						$accum =& $stack->getAccum();
 					} else {
-						$accum .= str_repeat( $piece->open, $piece->count );
+						$s = substr( $piece->open, 0, -1 );
+						$s .= str_repeat(
+							substr( $piece->open, -1 ),
+							$piece->count - strlen( $s )
+						);
+						$accum .= $s;
 					}
 				}
 				$flags = $stack->getFlags();
@@ -924,7 +952,11 @@ class PPDStackElement {
 			if ( $openingCount === false ) {
 				$openingCount = $this->count;
 			}
-			$s = str_repeat( $this->open, $openingCount );
+			$s = substr( $this->open, 0, -1 );
+			$s .= str_repeat(
+				substr( $this->open, -1 ),
+				$openingCount - strlen( $s )
+			);
 			$first = true;
 			foreach ( $this->parts as $part ) {
 				if ( $first ) {
