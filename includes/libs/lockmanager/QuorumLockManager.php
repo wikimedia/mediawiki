@@ -127,6 +127,39 @@ abstract class QuorumLockManager extends LockManager {
 	 * @return StatusValue
 	 */
 	final protected function doLockingRequestBucket( $bucket, array $pathsByType ) {
+		return $this->collectPledgeQuorum(
+			$bucket,
+			function ( $lockSrv ) use ( $pathsByType ) {
+				return $this->getLocksOnServer( $lockSrv, $pathsByType );
+			}
+		);
+	}
+
+	/**
+	 * Attempt to release locks with the peers for a bucket
+	 *
+	 * @param int $bucket
+	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
+	 * @return StatusValue
+	 */
+	final protected function doUnlockingRequestBucket( $bucket, array $pathsByType ) {
+		return $this->releasePledges(
+			$bucket,
+			function ( $lockSrv ) use ( $pathsByType ) {
+				return $this->freeLocksOnServer( $lockSrv, $pathsByType );
+			}
+		);
+	}
+
+	/**
+	 * Attempt to acquire pledges with the peers for a bucket.
+	 * This is all or nothing; if any key is already pledged then this totally fails.
+	 *
+	 * @param int $bucket
+	 * @param callable $callback Pledge method taking a server name and yeilding a StatusValue
+	 * @return StatusValue
+	 */
+	final protected function collectPledgeQuorum( $bucket, callable $callback ) {
 		$status = StatusValue::newGood();
 
 		$yesVotes = 0; // locks made on trustable servers
@@ -141,7 +174,7 @@ abstract class QuorumLockManager extends LockManager {
 				continue; // server down?
 			}
 			// Attempt to acquire the lock on this peer
-			$status->merge( $this->getLocksOnServer( $lockSrv, $pathsByType ) );
+			$status->merge( $callback( $lockSrv ) );
 			if ( !$status->isOK() ) {
 				return $status; // vetoed; resource locked
 			}
@@ -162,13 +195,13 @@ abstract class QuorumLockManager extends LockManager {
 	}
 
 	/**
-	 * Attempt to release locks with the peers for a bucket
+	 * Attempt to release pledges with the peers for a bucket
 	 *
 	 * @param int $bucket
-	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
+	 * @param callable $callback Pledge method taking a server name and yeilding a StatusValue
 	 * @return StatusValue
 	 */
-	final protected function doUnlockingRequestBucket( $bucket, array $pathsByType ) {
+	final protected function releasePledges( $bucket, callable $callback ) {
 		$status = StatusValue::newGood();
 
 		$yesVotes = 0; // locks freed on trustable servers
@@ -180,7 +213,7 @@ abstract class QuorumLockManager extends LockManager {
 				$status->warning( 'lockmanager-fail-svr-release', $lockSrv );
 			} else {
 				// Attempt to release the lock on this peer
-				$status->merge( $this->freeLocksOnServer( $lockSrv, $pathsByType ) );
+				$status->merge( $callback( $lockSrv ) );
 				++$yesVotes; // success for this peer
 				// Normally the first peers form the quorum, and the others are ignored.
 				// Ignore them in this case, but not when an alternative quorum was used.
