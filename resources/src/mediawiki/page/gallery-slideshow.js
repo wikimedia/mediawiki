@@ -147,7 +147,7 @@
 
 		// Containers for the current image, caption etc.
 		this.$img = $( '<img>' );
-		this.$imgLink = $( '<a>' ).append( this.$img );
+		this.$imgLink = $( '<a>' ).addClass ( 'image' ).append( this.$img );
 		this.$imgCaption = $( '<p>' ).attr( 'class', 'mw-gallery-slideshow-caption' );
 		this.$imgContainer = $( '<div>' )
 			.attr( 'class', 'mw-gallery-slideshow-img-container' )
@@ -284,6 +284,7 @@
 		this.loadImage( this.$thumbnail ).done( function ( info, $img ) {
 			// Show this image to the user only if its still the current one
 			if ( this.$thumbnail.attr( 'src' ) === $img.attr( 'src' ) ) {
+				mw.hook( 'wikipage.content').fire( this.$gallery );
 				this.$img.attr( 'src', info.thumburl );
 				this.setImageSize();
 
