@@ -275,18 +275,6 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers Revision::getText
-	 */
-	public function testGetText() {
-		$this->hideDeprecated( 'Revision::getText' );
-
-		$orig = $this->makeRevision( [ 'text' => 'hello hello.' ] );
-		$rev = Revision::newFromId( $orig->getId() );
-
-		$this->assertEquals( 'hello hello.', $rev->getText() );
-	}
-
-	/**
 	 * @covers Revision::getContent
 	 */
 	public function testGetContent_failure() {

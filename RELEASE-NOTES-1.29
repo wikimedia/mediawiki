@@ -201,7 +201,8 @@ changes to languages because of Phabricator reports.
   Use ContentHandlerDefaultModelFor instead.
 * Hook TitleIsWikitextPage (deprecated in 1.21) was removed.
   Use ContentHandlerDefaultModelFor instead.
-* Article::getContent (deprecated in 1.21) was removed.
+* Article::getContent() (deprecated in 1.21) was removed.
+* Revision::getText() (deprecated in 1.21) was removed.
 
 == Compatibility ==
 
