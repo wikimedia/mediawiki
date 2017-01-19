@@ -329,6 +329,9 @@ changes to languages because of Phabricator reports.
   tooltipAccessKeyRegexp, updateTooltipAccessKeys.
 * The ID of the <li> element containing the login link has changed from
   'pt-login' to 'pt-login-private' in private wikis.
+* (T146304) Preprocessor handling of LanguageConverter markup has been fixed.
+  As a result of the new uniform handling, '-{' may need to be escaped
+  (for example, as '-<nowiki/>{') where it occurs inside template arguments.
 
 == Compatibility ==
 
