@@ -2025,6 +2025,7 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.29. Use WikiPage::doEditContent() directly instead
 	 * @see WikiPage::doEditContent
 	 */
 	public function doEditContent( Content $content, $summary, $flags = 0, $baseRevId = false,
