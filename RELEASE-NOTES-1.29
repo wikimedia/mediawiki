@@ -201,7 +201,8 @@ changes to languages because of Phabricator reports.
   Use ContentHandlerDefaultModelFor instead.
 * Hook TitleIsWikitextPage (deprecated in 1.21) was removed.
   Use ContentHandlerDefaultModelFor instead.
-
+* User right editusercssjs removed (deprecated in 1.16) was removed
+  Use editusercss and edituserjs instead.
 == Compatibility ==
 
 MediaWiki 1.29 requires PHP 5.5.9 or later. There is experimental support for
