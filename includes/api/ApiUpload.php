@@ -637,7 +637,8 @@ class ApiUpload extends ApiBase {
 				break;
 
 			case UploadBase::HOOK_ABORTED:
-				$this->dieWithError( $params, 'hookaborted', [ 'details' => $verification['error'] ] );
+				$msg = $verification['error'] === '' ? 'hookaborted' : $verification['error'];
+				$this->dieWithError( $msg, 'hookaborted', [ 'details' => $verification['error'] ] );
 				break;
 			default:
 				$this->dieWithError( 'apierror-unknownerror-nocode', 'unknown-error',

@@ -1421,6 +1421,7 @@ abstract class Installer {
 		$wgAutoloadClasses += $data['autoload'];
 
 		$hooksWeWant = isset( $wgHooks['LoadExtensionSchemaUpdates'] ) ?
+			/** @suppress PhanUndeclaredVariable $wgHooks is set by DefaultSettings */
 			$wgHooks['LoadExtensionSchemaUpdates'] : [];
 
 		if ( isset( $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
