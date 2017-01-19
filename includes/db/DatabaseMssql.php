@@ -187,7 +187,7 @@ class DatabaseMssql extends Database {
 			$success = (bool)$stmt;
 		}
 
-		// make a copy so that anything we add below does not get reflected in future queries
+		// make a copy to prevent anything that we add below does not get reflected in future queries
 		$ignoreErrors = $this->mIgnoreErrors;
 
 		if ( $this->mIgnoreDupKeyErrors ) {
@@ -520,7 +520,7 @@ class DatabaseMssql extends Database {
 	public function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		# This does not return the same info as MYSQL would, but that's OK
 		# because MediaWiki never uses the returned value except to check for
-		# the existance of indexes.
+		# the existence of indexes.
 		$sql = "sp_helpindex '" . $this->tableName( $table ) . "'";
 		$res = $this->query( $sql, $fname );
 
@@ -609,7 +609,7 @@ class DatabaseMssql extends Database {
 
 		foreach ( $arrToInsert as $a ) {
 			// start out with empty identity column, this is so we can return
-			// it as a result of the insert logic
+			// it as a result of the INSERT logic
 			$sqlPre = '';
 			$sqlPost = '';
 			$identityClause = '';
