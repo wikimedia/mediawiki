@@ -50,6 +50,9 @@ changes to languages because of Phabricator reports.
 * mw.user.bucket (deprecated in 1.23) was removed.
 * LoadBalancer::getServerInfo() and LoadBalancer::setServerInfo() are
   deprecated. There are no known callers.
+* (T146304) Preprocessor handling of LanguageConverter markup has been fixed.
+  As a result of the new uniform handling, '-{' may need to be escaped
+  (for example, as '-<nowiki/>{') where it occurs inside template arguments.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
