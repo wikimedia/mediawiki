@@ -8134,19 +8134,32 @@ Link with multiple ":" in a subpage-supporting namespace (bug 63636)
 Handle title parsing for subpages
 !! options
 title=[[/123123]]
+subpage
 !! wikitext
 123
+!! html/php
+<p>123
+</p>
 !! html/parsoid
 <p>123</p>
 !! end
 
-## FIXME: Add a working php section here
+!! article
+User:Test/123
+!! text
+test 123
+!! endarticle
+
 !! test
 Link to a subpage from a namespace other than main
 !! options
-title=[[User:test]]
+title=[[User:Test]]
+subpage
 !! wikitext
 [[/123]]
+!! html/php
+<p><a href="/wiki/User:Test/123" title="User:Test/123">/123</a>
+</p>
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./User:Test/123" title="User:Test/123" data-parsoid='{"stx":"simple","a":{"href":"./User:Test/123"},"sa":{"href":"/123"}}'>/123</a></p>
 !! end
@@ -8168,7 +8181,8 @@ parsoid=wt2html
 !! test
 Purely hash wikilink
 !! options
-title=[[User:test/123]]
+title=[[User:Test/123]]
+subpage
 !! wikitext
 [[#a|b]]
 !! html/php

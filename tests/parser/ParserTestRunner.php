@@ -974,7 +974,10 @@ class ParserTestRunner {
 			'wgEnableUploads' => self::getOptionValue( 'wgEnableUploads', $opts, true ),
 			'wgLanguageCode' => $langCode,
 			'wgRawHtml' => self::getOptionValue( 'wgRawHtml', $opts, false ),
-			'wgNamespacesWithSubpages' => [ 0 => isset( $opts['subpage'] ) ],
+			'wgNamespacesWithSubpages' => [
+				0 => isset( $opts['subpage'] ),
+				2 => isset( $opts['subpage'] ),
+            ],
 			'wgMaxTocLevel' => $maxtoclevel,
 			'wgAllowExternalImages' => self::getOptionValue( 'wgAllowExternalImages', $opts, true ),
 			'wgThumbLimits' => [ self::getOptionValue( 'thumbsize', $opts, 180 ) ],
