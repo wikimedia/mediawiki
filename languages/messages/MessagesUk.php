@@ -121,7 +121,7 @@ $dateFormats = [
 ];
 
 $bookstoreList = [
-	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+	'Amazon.com' => 'https://www.amazon.com/exec/obidos/ISBN=$1'
 ];
 
 // Russian names are kept for backwards compatibility
