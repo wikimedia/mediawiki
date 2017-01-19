@@ -518,11 +518,6 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->title->getUserPermissionsErrors( 'bogus',
 				$this->user ) );
 
-		$this->setUserPerm( 'editusercssjs' );
-		$this->assertEquals( [ [ 'badaccess-group0' ] ],
-			$this->title->getUserPermissionsErrors( 'bogus',
-				$this->user ) );
-
 		$this->setUserPerm( [ 'edituserjs', 'editusercss' ] );
 		$this->assertEquals( [ [ 'badaccess-group0' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus',
