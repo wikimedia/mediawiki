@@ -9,9 +9,11 @@
 	var rcfilters = {
 		/** */
 		init: function () {
-			var model = new mw.rcfilters.dm.FiltersViewModel(),
+			var $newStaticFilters,
+				model = new mw.rcfilters.dm.FiltersViewModel(),
 				controller = new mw.rcfilters.Controller( model ),
-				widget = new mw.rcfilters.ui.FilterWrapperWidget( controller, model );
+				widget = new mw.rcfilters.ui.FilterWrapperWidget( controller, model ),
+				$existingStaticFilters = $( '.rcshowhide' );
 
 			model.initializeFilters( {
 				registration: {
@@ -24,7 +26,7 @@
 							description: mw.msg( 'rcfilters-filter-registered-description' )
 						},
 						{
-							name: 'hideanon',
+							name: 'hideanons',
 							label: mw.msg( 'rcfilters-filter-unregistered-label' ),
 							description: mw.msg( 'rcfilters-filter-unregistered-description' )
 						}
@@ -145,6 +147,10 @@
 
 			// Initialize values
 			controller.initialize();
+
+			// Replace the existing filter display
+			$newStaticFilters = controller.rebuildStaticFilterList( $existingStaticFilters );
+			$existingStaticFilters.replaceWith( $newStaticFilters );
 
 			$( '.rcoptions form' ).submit( function () {
 				var $form = $( this );
