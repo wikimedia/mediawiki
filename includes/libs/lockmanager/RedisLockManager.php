@@ -37,7 +37,7 @@
  * @ingroup LockManager
  * @since 1.22
  */
-class RedisLockManager extends QuorumLockManager {
+class RedisLockManager extends QuorumLockManager implements InterruptMutexManager {
 	/** @var array Mapping of lock types to the type actually used */
 	protected $lockTypeMap = [
 		self::LOCK_SH => self::LOCK_SH,
