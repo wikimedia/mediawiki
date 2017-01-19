@@ -8231,7 +8231,19 @@ $wgRedirectOnLogin = null;
  * The remaining elements are passed through to the class as constructor
  * parameters.
  *
- * @par Example:
+ * @par Example using local redis instance:
+ * @code
+ *   $wgPoolCounterConf = [ 'ArticleView' => [
+ *     'class' => 'PoolCounterRedis',
+ *     'timeout' => 15, // wait timeout in seconds
+ *     'workers' => 1, // maximum number of active threads in each pool
+ *     'maxqueue' => 5, // maximum number of total threads in each pool
+ *     'servers' => [ '127.0.0.1' ],
+ *     'redisConfig' => []
+ *   ] ];
+ * @endcode
+ *
+ * @par Example using C daemon from https://www.mediawiki.org/wiki/Extension:PoolCounter:
  * @code
  *   $wgPoolCounterConf = [ 'ArticleView' => [
  *     'class' => 'PoolCounter_Client',
@@ -8239,7 +8251,7 @@ $wgRedirectOnLogin = null;
  *     'workers' => 5, // maximum number of active threads in each pool
  *     'maxqueue' => 50, // maximum number of total threads in each pool
  *     ... any extension-specific options...
- *   ];
+ *   ] ];
  * @endcode
  */
 $wgPoolCounterConf = null;
