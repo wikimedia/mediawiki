@@ -203,6 +203,8 @@ changes to languages because of Phabricator reports.
   Use ContentHandlerDefaultModelFor instead.
 * Article::getContent() (deprecated in 1.21) was removed.
 * Revision::getText() (deprecated in 1.21) was removed.
+* Article::doEditContent() was marked as deprecated, to be removed in 1.30
+  or later.
 
 == Compatibility ==
 

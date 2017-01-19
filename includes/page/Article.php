@@ -2041,6 +2041,7 @@ class Article implements Page {
 	public function doEditContent( Content $content, $summary, $flags = 0, $baseRevId = false,
 		User $user = null, $serialFormat = null
 	) {
+		wfDeprecated( __METHOD__, '1.29' );
 		return $this->mPage->doEditContent( $content, $summary, $flags, $baseRevId,
 			$user, $serialFormat
 		);
