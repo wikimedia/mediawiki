@@ -15,7 +15,7 @@ use Wikimedia\Rdbms\DBError;
  *
  * @ingroup LockManager
  */
-class MySqlLockManager extends DBLockManager {
+class MySqlLockManager extends DBLockManager implements InterruptMutexManager {
 	/** @var array Mapping of lock types to the type actually used */
 	protected $lockTypeMap = [
 		self::LOCK_SH => self::LOCK_SH,
@@ -137,5 +137,49 @@ class MySqlLockManager extends DBLockManager {
 		}
 
 		return $status;
+	}
+
+	public function acquireQueuedMutex( $key, $timeout = 0 ) {
+		return $this->collectPledgeQuorum(
+			$this->getBucketFromPath( $key ),
+			function ( $lockSrv ) use ( $key, $timeout ) {
+				$status = StatusValue::newGood();
+
+				$db = $this->getConnection( $lockSrv );
+				$res = $db->query(
+					"SELECT GET_LOCK({$db->addQuotes( $key )},$timeout) AS status",
+					__METHOD__
+				);
+
+				$row = $res->fetchObject();
+				if ( $row->status == 1 ) {
+					$status->fatal( 'lockmanager-fail-acquirelock', $key );
+				}
+
+				return $status;
+			}
+		);
+	}
+
+	public function releaseQueuedMutex( $key ) {
+		return $this->releasePledges(
+			$this->getBucketFromPath( $key ),
+			function ( $lockSrv ) use ( $key ) {
+				$status = StatusValue::newGood();
+
+				$db = $this->getConnection( $lockSrv );
+				$res = $db->query(
+					"SELECT RELEASE_LOCK({$db->addQuotes( $key )}) AS status",
+					__METHOD__
+				);
+
+				$row = $res->fetchObject();
+				if ( $row->status == 1 ) {
+					$status->fatal( 'lockmanager-fail-releaselock', $key );
+				}
+
+				return $status;
+			}
+		);
 	}
 }
