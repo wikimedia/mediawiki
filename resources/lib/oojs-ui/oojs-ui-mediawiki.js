@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.4
+ * OOjs UI v0.18.4-fix (d4045dee45)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-01-18T00:07:07Z
+ * Date: 2017-01-19T20:22:26Z
  */
 ( function ( OO ) {
 
@@ -82,3 +82,5 @@ OO.ui.MediaWikiTheme.prototype.getDialogTransitionDuration = function () {
 OO.ui.theme = new OO.ui.MediaWikiTheme();
 
 }( OO ) );
+
+//# sourceMappingURL=oojs-ui-mediawiki.js.map
