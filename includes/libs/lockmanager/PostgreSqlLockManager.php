@@ -8,7 +8,7 @@ use Wikimedia\Rdbms\DBError;
  *
  * @ingroup LockManager
  */
-class PostgreSqlLockManager extends DBLockManager {
+class PostgreSqlLockManager extends DBLockManager implements InterruptMutexManager {
 	/** @var array Mapping of lock types to the type actually used */
 	protected $lockTypeMap = [
 		self::LOCK_SH => self::LOCK_SH,
@@ -78,5 +78,56 @@ class PostgreSqlLockManager extends DBLockManager {
 		}
 
 		return $status;
+	}
+
+	public function acquireQueuedMutex( $key, $timeout = 0 ) {
+		return $this->collectPledgeQuorum(
+			$this->getBucketFromPath( $key ),
+			function ( $lockSrv ) use ( $key, $timeout ) {
+				$status = StatusValue::newGood();
+				$bigint = Wikimedia\base_convert( substr( sha1( $key ), 0, 15 ), 16, 10 );
+				$timeoutMs = $timeout * 1000;
+
+				$db = $this->getConnection( $lockSrv );
+				// https://www.postgresql.org/docs/9.3/static/runtime-config-client.html
+				$db->query( "SET lock_timeout TO {$db->addQuotes( $timeoutMs )}", __METHOD__ );
+				$res = $db->query(
+					"SELECT pg_advisory_lock({$db->addQuotes( $bigint )}) AS status",
+					__METHOD__,
+					true // ignore timeout errors
+				);
+				$db->query( "SET lock_timeout TO DEFAULT", __METHOD__ );
+
+				$row = $res ? $res->fetchObject() : false;
+				if ( !$row || $row->status === 'f' ) {
+					$status->fatal( 'lockmanager-fail-acquirelock', $key );
+				}
+
+				return $status;
+			}
+		);
+	}
+
+	public function releaseQueuedMutex( $key ) {
+		return $this->releasePledges(
+			$this->getBucketFromPath( $key ),
+			function ( $lockSrv ) use ( $key ) {
+				$status = StatusValue::newGood();
+				$bigint = Wikimedia\base_convert( substr( sha1( $key ), 0, 15 ), 16, 10 );
+
+				$db = $this->getConnection( $lockSrv );
+				$res = $db->query(
+					"SELECT pg_advisory_unlock({$db->addQuotes( $bigint )}) AS status",
+					__METHOD__
+				);
+
+				$row = $res->fetchObject();
+				if ( $row->status === 'f' ) {
+					$status->fatal( 'lockmanager-fail-releaselock', $key );
+				}
+
+				return $status;
+			}
+		);
 	}
 }

@@ -647,6 +647,7 @@ $wgAutoloadLocalClasses = [
 	'Installer' => __DIR__ . '/includes/installer/Installer.php',
 	'InstallerOverrides' => __DIR__ . '/includes/installer/InstallerOverrides.php',
 	'InstallerSessionProvider' => __DIR__ . '/includes/installer/InstallerSessionProvider.php',
+	'InterruptMutexManager' => __DIR__ . '/includes/libs/lockmanager/InterruptMutexManager.php',
 	'Interwiki' => __DIR__ . '/includes/interwiki/Interwiki.php',
 	'InvalidPassword' => __DIR__ . '/includes/password/InvalidPassword.php',
 	'InvalidateUserSesssions' => __DIR__ . '/maintenance/invalidateUserSessions.php',
