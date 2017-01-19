@@ -187,7 +187,7 @@ $dateFormats = [
 $bookstoreList = [
 	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
 	'Barnes & Noble' => 'http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
-	'Amazon.com' => 'http://www.amazon.com/gp/search/?field-isbn=$1'
+	'Amazon.com' => 'https://www.amazon.com/gp/search/?field-isbn=$1'
 ];
 
 /**
