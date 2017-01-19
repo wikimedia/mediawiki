@@ -27,6 +27,66 @@
 	};
 
 	/**
+	 * Take the existing static filter list and rebuild it so that only
+	 * filters that are not reimplemented as filters in the current system
+	 * are appearing.
+	 *
+	 * This method expects the jQuery object of the children() of static
+	 * Special:RecentChanges under the span.rcshowhide block, and will return
+	 * a suitable element to replace its contents.
+	 *
+	 * HACK: This entire method is a hack, to make sure that existing filters that
+	 * are not implemented yet are still visible and operable to the user, but
+	 * filters that are implemented in the new system aren't. Just hiding the
+	 * spans of those filters creates a very ugly string that includes multiple
+	 * pipes (" | | | | existing filter") so this method rebuilds the structure
+	 * using only the relevant non-implemented filters, preserving current view.
+	 *
+	 * NOTE: Since the entire method is one big hack, individual "HACK!" comments
+	 * were spared below. To the observant pedantic reader - please mentally add
+	 * "HACK" before each line of code.
+	 *
+	 * @param {jQuery} $filterList jQuery block of the current static filters list
+	 * @return {jQuery} jQuery block of the new static filters to display
+	 */
+	mw.rcfilters.Controller.prototype.rebuildStaticFilterList = function ( $filterList ) {
+		var filters = {},
+			controller = this,
+			$newStructure = $filterList.clone( true );
+
+		$newStructure
+			.empty()
+			.addClass( 'mw-rcfilters-rcshowhide' );
+		// Extract the filters
+		$filterList.children().each( function () {
+			var name,
+				classes = $( this ).attr( 'class' ).split( ' ' );
+
+			// Remove the 'rcshowhideoption' class; We're only doing
+			// this to make sure that we don't pick the wrong class
+			// if split() gave us the wrong order
+			classes.splice( classes.indexOf( 'rcshowhideoption' ), 1 );
+
+			// Get rid of the 'rcshow' prefix
+			// This is absolutely terrible, because we're making
+			// an assumption that all prefixes are these, but
+			// since the entire method is a temporary hack, we
+			// will pinch our noses and do it
+			name = classes[ 0 ].substr( 'rcshow'.length );
+
+			// Ignore filters that exist in the view model
+			if ( !controller.model.getItemByName( name ) ) {
+				// This filter doesn't exist, add its element
+				// back into the new structure
+				$newStructure.append( $( this ) );
+			}
+		} );
+
+		// Return the contents
+		return $newStructure;
+	};
+
+	/**
 	 * Update the state of a filter
 	 *
 	 * @param {string} filterName Filter name
