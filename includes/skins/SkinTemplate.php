@@ -56,6 +56,10 @@ class SkinTemplate extends Skin {
 	public $username;
 	public $userpageUrlDetails;
 
+	private $extraStylesMap = [
+		'printNoExternalLinks' => 'mediawiki.styles.printNoExternalLinks',
+	];
+
 	/**
 	 * Add specific styles for this skin
 	 *
@@ -69,6 +73,13 @@ class SkinTemplate extends Skin {
 		];
 		if ( $out->isSyndicated() ) {
 			$moduleStyles[] = 'mediawiki.feedlink';
+		}
+
+		$extraStyles = explode( '|', $out->getRequest()->getVal( 'extrastyles', '' ) );
+		foreach ( $extraStyles as $styleKey ) {
+			if ( array_key_exists( $styleKey, $this->extraStylesMap ) ) {
+				$moduleStyles[] = $this->extraStylesMap[$styleKey];
+			}
 		}
 
 		// Deprecated since 1.26: Unconditional loading of mediawiki.ui.button

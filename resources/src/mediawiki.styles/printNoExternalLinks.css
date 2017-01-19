@@ -1,0 +1,9 @@
+.mw-body a.external.text:after,
+.mw-body a.external.autonumber:after {
+    content: "";
+}
+
+.mw-body a.external.text[href^='//']:after,
+.mw-body a.external.autonumber[href^='//']:after {
+    content: "";
+}

@@ -2133,6 +2133,15 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
+	/* MediaWiki alternate styles */
+
+	'mediawiki.styles.printNoExternalLinks' => [
+		'styles' => [
+			'resources/src/mediawiki.styles/printNoExternalLinks.css' => [ 'media' => 'print' ]
+		],
+		'dependencies' => 'mediawiki.legacy.commonPrint',
+	],
+
 	/* MediaWiki UI */
 
 	'mediawiki.ui' => [
