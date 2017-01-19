@@ -11669,6 +11669,176 @@ parsoid
 !!end
 
 ###
+### Preprocessor precedence tests
+### See: https://www.mediawiki.org/wiki/Preprocessor_ABNF
+###
+##{{[[-{{{{{{[[Foo|bar}}]]}-}}}}}]]
+!! test
+Preprocessor precedence 1: link is rightmost opening
+!! wikitext
+{{[[Foo|bar}}]]
+!! html
+<p>{{<a href="/wiki/Foo" title="Foo">bar}}</a>
+</p>
+!! end
+
+!! test
+Preprocessor precedence 2: template is rightmost opening
+!! options
+language=zh
+!! wikitext
+-{{echo|foo}-}}-
+!! html
+<p>-foo}--
+</p>
+!! end
+
+!! test
+Preprocessor precedence 3: language converter is rightmost opening
+!! options
+language=zh
+!! wikitext
+{{-{R|raw}}}-
+!! html
+<p>{{raw}}
+</p>
+!! end
+
+!! test
+Preprocessor precedence 4: left-most angle bracket
+!! options
+language=zh
+!! wikitext
+<!--{raw}-->
+!! html
+!! end
+
+!! article
+Template:Precedence5
+!! text
+{{{{{1}}}}}
+!! endarticle
+
+!! test
+Preprocessor precedence 5: tplarg takes precedence over template
+!! wikitext
+{{Precedence5|Bullet}}
+!! html
+<ul><li> Bar</li></ul>
+
+!! end
+
+!! test
+Preprocessor precedence 6: broken link is rightmost opening
+!! wikitext
+{{echo|[[Foo|bar|bat}}
+!! html
+<p>{{echo|[[Foo|bar|bat}}
+</p>
+!! end
+
+!! test
+Preprocessor precedence 7: broken template is rightmost opening
+!! wikitext
+[[Foo{{echo|Bar]]
+!! html
+<p>[[Foo{{echo|Bar]]
+</p>
+!! end
+
+!! test
+Preprocessor precedence 8: broken language converter is rightmost opening
+!! options
+language=zh
+!! wikitext
+[[Foo-{R|raw]]
+!! html
+<p>[[Foo-{R|raw]]
+</p>
+!! end
+
+!! article
+Template:Preprocessor_precedence_9
+!! text
+;4: {{{{1}}}}
+;5: {{{{{2}}}}}
+;6: {{{{{{3}}}}}}
+;7: {{{{{{{4}}}}}}}
+!! endarticle
+
+!! test
+Preprocessor precedence 9: groups of braces
+!! wikitext
+{{Preprocessor precedence 9|Four|Bullet|1|2}}
+!! html
+<dl><dt>4</dt>
+<dd> {Four}</dd>
+<dt>5</dt>
+<dd> </dd></dl>
+<ul><li> Bar</li></ul>
+<dl><dt>6</dt>
+<dd> Four</dd>
+<dt>7</dt>
+<dd> {Bullet}</dd></dl>
+
+!! end
+
+!! article
+Template:Preprocessor_precedence_10
+!! text
+;1: -{R|raw}-
+;2: -{{Bullet}}-
+;3: -{{{1}}}-
+;4: -{{{{2}}}}-
+;5: -{{{{{3}}}}}-
+;6: -{{{{{{4}}}}}}-
+;7: -{{{{{{{5}}}}}}}-
+!! endarticle
+
+!! test
+Preprocessor precedence 10: groups of braces with leading dash
+!! options
+language=zh
+!! wikitext
+{{Preprocessor precedence 10|Three|raw2|Bullet|1|2}}
+!! html
+<dl><dt>1</dt>
+<dd> raw</dd>
+<dt>2</dt>
+<dd> -</dd></dl>
+<ul><li> Bar-</li></ul>
+<dl><dt>3</dt>
+<dd> -Three-</dd>
+<dt>4</dt>
+<dd> raw2</dd>
+<dt>5</dt>
+<dd> -</dd></dl>
+<ul><li> Bar-</li></ul>
+<dl><dt>6</dt>
+<dd> -Three-</dd>
+<dt>7</dt>
+<dd> raw2</dd></dl>
+
+!! end
+
+!! test
+Preprocessor precedence 11: found during visual diff testing
+!! wikitext
+{{#tag:span|-{{#tag:span|-{{echo|x}}}}}}
+
+{{echo|-{{echo|-{{echo|x}}}}}}
+
+{{echo|-{{echo|x}}}}
+!! html
+<p><span>-<span>-x</span></span>
+</p><p>--x
+</p><p>-x
+</p>
+!! end
+
+
+
+###
 ### Token Stream Patcher tests
 ###
 ### These tests won't always pass wt2wt and other modes because
@@ -20831,12 +21001,10 @@ language=sr variant=sr-ec
 </p>
 !! end
 
-# FIXME: This test is currently broken in the PHP parser T153761
 !! test
 T146304: Don't break template parsing if language converter markup is in the parameter.
 !! options
 language=sr variant=sr-ec
-disabled
 !! wikitext
 {{echo|-{R|foo}-}}
 !! html/php
