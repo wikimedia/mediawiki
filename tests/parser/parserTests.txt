@@ -11841,6 +11841,326 @@ parsoid
 !!end
 
 ###
+### Preprocessor precedence tests
+### See: https://www.mediawiki.org/wiki/Preprocessor_ABNF
+###
+##{{[[-{{{{{{[[Foo|bar}}]]}-}}}}}]]
+!! test
+Preprocessor precedence 1: link is rightmost opening
+!! wikitext
+{{[[Foo|bar}}]]
+
+But close-brace is not a valid character in a link title:
+{{[[Foo}}|bar]]
+
+However, we can still tell this was handled as a link in the preprocessor:
+{{echo|[[Foo}}|bar]]|bat}}
+!! html
+<p>{{<a href="/wiki/Foo" title="Foo">bar}}</a>
+</p><p>But close-brace is not a valid character in a link title:
+{{[[Foo}}|bar]]
+</p><p>However, we can still tell this was handled as a link in the preprocessor:
+[[Foo}}|bar]]
+</p>
+!! end
+
+!! test
+Preprocessor precedence 2: template is rightmost opening
+!! options
+language=zh
+!! wikitext
+-{{echo|foo}-}}-
+!! html
+<p>-foo}--
+</p>
+!! end
+
+!! test
+Preprocessor precedence 3: language converter is rightmost opening
+!! options
+language=zh
+!! wikitext
+{{echo|hi}}
+
+{{-{R|echo|hi}}}-
+
+[[-{R|raw]]}-
+!! html
+<p>hi
+</p><p>{{echo|hi}}
+</p><p>[[raw]]
+</p>
+!! end
+
+!! test
+Preprocessor precedence 4: left-most angle bracket
+!! options
+language=zh
+!! wikitext
+<!--{raw}-->
+!! html
+!! end
+
+!! article
+Template:Precedence5
+!! text
+{{{{{1}}}}}
+!! endarticle
+
+!! test
+Preprocessor precedence 5: tplarg takes precedence over template
+!! wikitext
+{{Precedence5|Bullet}}
+!! html
+<ul><li> Bar</li></ul>
+
+!! end
+
+!! test
+Preprocessor precedence 6: broken link is rightmost opening
+!! wikitext
+{{echo|[[Foo}}
+
+{{echo|[[Foo|bar|bat=baz}}
+!! html
+<p>{{echo|[[Foo}}
+</p><p>{{echo|[[Foo|bar|bat=baz}}
+</p>
+!! end
+
+# This next test exposes a difference between PHP and Parsoid:
+# Given [[Foo|{{echo|Bar]]x}}y]]z:
+# 1) Both PHP and Parsoid ignore the `]]` inside the `echo` in the
+# "preprocessor" stage.  The `{{echo` extends until the `x}}`, and the
+# outer `[[Foo` extends until the `y]]`
+# 2a) But then the PHP preprocessor emits `[[Foo|Bar]]xy]]z` as an
+# intermediate result (after template expansion), and link processing
+# happens on this intermediate result, which moves the wikilink
+# boundary leftward to `[[Foo|Bar]]`
+# 2b) Parsoid works in a single step, so it's going to keep the
+# wikilink as extending to the `y]]`
+# 3a) Then PHP does linktrail processing which slurps up the trailing
+# `xy` inside the link.
+# 3b) Parsoid will do linktrail processing to slurp up the trailing
+# `z` inside the link.
+# This is "correct" behavior.  Parsoid's basic worldview is that the
+# `]]` inside the template shouldn't be allowed to leak out to affect
+# the surrounding wikilink.  PHP may match Parsoid (in the future)
+# if you use {{#balance}} (T114445).
+
+!! test
+Preprocessor precedence 7: broken template is rightmost opening
+!! wikitext
+[[Foo|{{echo|Bar]]
+
+[[Foo|{{echo|Bar]]-x}}-y]]-z
+
+Careful: linktrails can move the end of the wikilink:
+[[Foo|{{echo|y']]a}}l]]l
+!! html
+<p><a href="/wiki/Foo" title="Foo">{{echo|Bar</a>
+</p><p><a href="/wiki/Foo" title="Foo">Bar</a>-x-y]]-z
+</p><p>Careful: linktrails can move the end of the wikilink:
+<a href="/wiki/Foo" title="Foo">y'al</a>]]l
+</p>
+!! end
+
+!! test
+Preprocessor precedence 8: broken language converter is rightmost opening
+!! options
+language=zh
+!! wikitext
+[[Foo-{R|raw]]
+!! html
+<p>[[Foo-{R|raw]]
+</p>
+!! end
+
+!! article
+Template:Preprocessor_precedence_9
+!! text
+;4: {{{{1}}}}
+;5: {{{{{2}}}}}
+;6: {{{{{{3}}}}}}
+;7: {{{{{{{4}}}}}}}
+!! endarticle
+
+!! test
+Preprocessor precedence 9: groups of braces
+!! wikitext
+{{Preprocessor precedence 9|Four|Bullet|1|2}}
+!! html
+<dl><dt>4</dt>
+<dd> {Four}</dd>
+<dt>5</dt>
+<dd> </dd></dl>
+<ul><li> Bar</li></ul>
+<dl><dt>6</dt>
+<dd> Four</dd>
+<dt>7</dt>
+<dd> {Bullet}</dd></dl>
+
+!! end
+
+!! article
+Template:Preprocessor_precedence_10
+!! text
+;1: -{R|raw}-
+;2: -{{Bullet}}-
+;3: -{{{1}}}-
+;4: -{{{{2}}}}-
+;5: -{{{{{3}}}}}-
+;6: -{{{{{{4}}}}}}-
+;7: -{{{{{{{5}}}}}}}-
+!! endarticle
+
+!! test
+Preprocessor precedence 10: groups of braces with leading dash
+!! options
+language=zh
+!! wikitext
+{{Preprocessor precedence 10|Three|raw2|Bullet|1|2}}
+!! html
+<dl><dt>1</dt>
+<dd> raw</dd>
+<dt>2</dt>
+<dd> -</dd></dl>
+<ul><li> Bar-</li></ul>
+<dl><dt>3</dt>
+<dd> -Three-</dd>
+<dt>4</dt>
+<dd> raw2</dd>
+<dt>5</dt>
+<dd> -</dd></dl>
+<ul><li> Bar-</li></ul>
+<dl><dt>6</dt>
+<dd> -Three-</dd>
+<dt>7</dt>
+<dd> raw2</dd></dl>
+
+!! end
+
+!! test
+Preprocessor precedence 11: found during visual diff testing
+!! wikitext
+{{#tag:span|-{{#tag:span|-{{echo|x}}}}}}
+
+{{echo|-{{echo|-{{echo|x}}}}}}
+
+{{echo|-{{echo|x}}}}
+!! html
+<p><span>-<span>-x</span></span>
+</p><p>--x
+</p><p>-x
+</p>
+!! end
+
+!! test
+Preprocessor precedence 12: broken language converter closed by brace.
+!! wikitext
+This form breaks the template, which is unfortunate:
+* {{echo|foo-{bar}bat}}
+
+But if the broken language converter markup is inside an extension
+tag, nothing bad happens:
+* <nowiki>foo-{bar}bat</nowiki>
+* {{echo|<nowiki>foo-{bar}bat</nowiki>}}
+* <pre>foo-{bar}bat</pre>
+* {{echo|<pre>foo-{bar}bat</pre>}}
+
+<tag>foo-{bar}bat</tag>
+{{echo|<tag>foo-{bar}bat</tag>}}
+
+!! html+tidy
+<p>This form breaks the template, which is unfortunate:</p>
+<ul>
+<li>{{echo|foo-{bar}bat}}</li>
+</ul>
+<p>But if the broken language converter markup is inside an extension tag, nothing bad happens:</p>
+<ul>
+<li>foo-{bar}bat</li>
+<li>foo-{bar}bat</li>
+<li>
+<pre>
+foo-{bar}bat
+</pre></li>
+<li>
+<pre>
+foo-{bar}bat
+</pre></li>
+</ul>
+<pre>
+'foo-{bar}bat'
+array (
+)
+</pre>
+<pre>
+'foo-{bar}bat'
+array (
+)
+</pre>
+!! end
+
+!! test
+Preprocessor precedence, 13: broken language converter in external link
+!! wikitext
+* [http://example.com/-{foo Example in URL]
+* [http://example.com Example in -{link} description]
+* {{echo|[http://example.com/-{foo Breaks template, however]}}
+!! html+tidy
+<ul>
+<li><a rel="nofollow" class="external text" href="http://example.com/-{foo">Example in URL</a></li>
+<li><a rel="nofollow" class="external text" href="http://example.com">Example in -{link} description</a></li>
+<li>{{echo|<a rel="nofollow" class="external text" href="http://example.com/-{foo">Breaks template, however</a>}}</li>
+</ul>
+!! end
+
+!! test
+Preprocessor precedence, 14: broken language converter in comment
+!! wikitext
+* <!--{{foo}}--> ...should be ok
+* <!---{{foo}}--> ...extra dashes
+* {{echo|foo<!-- -{bar} -->bat}} ...should be ok
+!! html+tidy
+<ul>
+<li>...should be ok</li>
+<li>...extra dashes</li>
+<li>foobat ...should be ok</li>
+</ul>
+!! end
+
+!! test
+Preprocessor precedence, 15: broken brace markup in headings
+!! wikitext
+__NOTOC__ __NOEDITSECTION__
+===1 foo[bar 1===
+1
+===2 foo[[bar 2===
+2
+===3 foo{bar 3===
+3
+===4 foo{{bar 4===
+4
+===5 foo{{{bar 5===
+5
+===6 foo-{bar 6===
+6
+!! html+tidy
+<h3><span class="mw-headline" id="1_foo.5Bbar_1">1 foo[bar 1</span></h3>
+<p>1</p>
+<h3><span class="mw-headline" id="2_foo.5B.5Bbar_2">2 foo[[bar 2</span></h3>
+<p>2</p>
+<h3><span class="mw-headline" id="3_foo.7Bbar_3">3 foo{bar 3</span></h3>
+<p>3</p>
+<h3><span class="mw-headline" id="4_foo.7B.7Bbar_4">4 foo{{bar 4</span></h3>
+<p>4</p>
+<h3><span class="mw-headline" id="5_foo.7B.7B.7Bbar_5">5 foo{{{bar 5</span></h3>
+<p>5</p>
+<h3><span class="mw-headline" id="6_foo-.7Bbar_6">6 foo-{bar 6</span></h3>
+<p>6</p>
+!! end
+
+###
 ### Token Stream Patcher tests
 ###
 ### These tests won't always pass wt2wt and other modes because
@@ -20947,6 +21267,28 @@ Raw: -{R|zh:China;zh-tw:Taiwan}-
 !! end
 
 !! test
+Nested markup inside raw output of variant escape tags (R flag)
+!! options
+language=zh variant=zh-tw
+!! wikitext
+Nested raw: -{R|nested -{zh:China;zh-tw:Taiwan}- nested}-
+!! html
+<p>Nested raw: nested Taiwan nested
+</p>
+!! end
+
+!! test
+Templates inside raw output of variant escape tags (R flag)
+!! options
+language=zh variant=zh-tw
+!! wikitext
+Nested raw: -{R|nested {{echo|hi}} templates}-
+!! html
+<p>Nested raw: nested hi templates
+</p>
+!! end
+
+!! test
 Strings evaluating false shouldn't be ignored by Language converter (T51072)
 !! options
 language=zh variant=zh-cn
@@ -21113,12 +21455,10 @@ language=sr variant=sr-ec
 </p>
 !! end
 
-# FIXME: This test is currently broken in the PHP parser T153761
 !! test
 T146304: Don't break template parsing if language converter markup is in the parameter.
 !! options
 language=sr variant=sr-ec
-disabled
 !! wikitext
 {{echo|-{R|foo}-}}
 !! html/php
