@@ -1440,6 +1440,7 @@ abstract class UploadBase {
 			'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
 			'http://www.w3.org/2000/svg',
 			'http://www.w3.org/tr/rec-rdf-syntax/',
+			'http://www.w3.org/2000/01/rdf-schema#',
 		];
 
 		// Inkscape mangles namespace definitions created by Adobe Illustrator.
