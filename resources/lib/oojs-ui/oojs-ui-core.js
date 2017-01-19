@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.4
+ * OOjs UI v0.18.4-fix (d4045dee45)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-01-18T00:07:07Z
+ * Date: 2017-01-19T20:22:26Z
  */
 ( function ( OO ) {
 
@@ -68,7 +68,7 @@ OO.ui.elementId = 0;
  */
 OO.ui.generateElementId = function () {
 	OO.ui.elementId++;
-	return 'ooui-' + OO.ui.elementId;
+	return 'oojsui-' + OO.ui.elementId;
 };
 
 /**
@@ -10586,3 +10586,5 @@ OO.inheritClass( OO.ui.HorizontalLayout, OO.ui.Layout );
 OO.mixinClass( OO.ui.HorizontalLayout, OO.ui.mixin.GroupElement );
 
 }( OO ) );
+
+//# sourceMappingURL=oojs-ui-core.js.map

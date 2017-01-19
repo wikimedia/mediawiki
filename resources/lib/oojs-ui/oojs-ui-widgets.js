@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.4
+ * OOjs UI v0.18.4-fix (d4045dee45)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-01-18T00:07:07Z
+ * Date: 2017-01-19T20:22:26Z
  */
 ( function ( OO ) {
 
@@ -4329,7 +4329,7 @@ OO.ui.CapsuleMultiselectWidget.prototype.focus = function () {
 OO.ui.CapsuleMultiSelectWidget = function OoUiCapsuleMultiSelectWidget() {
 	OO.ui.warnDeprecation( 'CapsuleMultiSelectWidget is deprecated. Use the CapsuleMultiselectWidget instead.' );
 	// Parent constructor
-	OO.ui.TextInputMenuSelectWidget.parent.apply( this, arguments );
+	OO.ui.CapsuleMultiSelectWidget.parent.apply( this, arguments );
 };
 
 OO.inheritClass( OO.ui.CapsuleMultiSelectWidget, OO.ui.CapsuleMultiselectWidget );
@@ -5345,3 +5345,5 @@ OO.ui.NumberInputWidget.prototype.setDisabled = function ( disabled ) {
 };
 
 }( OO ) );
+
+//# sourceMappingURL=oojs-ui-widgets.js.map
