@@ -20,7 +20,7 @@
  */
 
 $bookstoreList = [
-	'Amazon.fr' => 'http://www.amazon.fr/exec/obidos/ISBN=$1'
+	'Amazon.fr' => 'https://www.amazon.fr/exec/obidos/ISBN=$1'
 ];
 
 $namespaceNames = [
