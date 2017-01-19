@@ -71,6 +71,11 @@ class SkinTemplate extends Skin {
 			$moduleStyles[] = 'mediawiki.feedlink';
 		}
 
+		$style = $out->getRequest()->getVal( 'style', null );
+		if ( $style ){
+			$moduleStyles[] = 'mediawiki.styles.' . $style;
+		}
+
 		// Deprecated since 1.26: Unconditional loading of mediawiki.ui.button
 		// on every page is deprecated. Express a dependency instead.
 		if ( strpos( $out->getHTML(), 'mw-ui-button' ) !== false ) {

@@ -43,7 +43,7 @@ class SkinTemplateTest extends MediaWikiTestCase {
 	/**
 	 * @return PHPUnit_Framework_MockObject_MockObject|OutputPage
 	 */
-	private function getMockOutputPage( $isSyndicated, $html ) {
+	private function getMockOutputPage( $isSyndicated, $html, $requestStyle = null ) {
 		$mock = $this->getMock( OutputPage::class );
 		$mock->expects( $this->once() )
 			->method( 'isSyndicated' )
@@ -51,6 +51,9 @@ class SkinTemplateTest extends MediaWikiTestCase {
 		$mock->expects( $this->once() )
 			->method( 'getHTML' )
 			->will( $this->returnValue( $html ) );
+		$mock->expects( $this->once() )
+			->method( 'getRequest' )
+			->will( $this->returnValue( new FauxRequest( [ 'style' => $requestStyle ] ) ) );
 		return $mock;
 	}
 
@@ -62,6 +65,7 @@ class SkinTemplateTest extends MediaWikiTestCase {
 		];
 		$buttonStyle = 'mediawiki.ui.button';
 		$feedStyle = 'mediawiki.feedlink';
+		$someStyle = 'mediawiki.styles.someStyle';
 		return [
 			[
 				$this->getMockOutputPage( false, '' ),
@@ -78,6 +82,22 @@ class SkinTemplateTest extends MediaWikiTestCase {
 			[
 				$this->getMockOutputPage( true, 'FOO mw-ui-button BAR' ),
 				array_merge( $defaultStyles, [ $feedStyle, $buttonStyle ] )
+			],
+			[
+				$this->getMockOutputPage( false, '', 'someStyle' ),
+				array_merge( $defaultStyles, [ $someStyle ] )
+			],
+			[
+				$this->getMockOutputPage( true, '', 'someStyle' ),
+				array_merge( $defaultStyles, [ $feedStyle, $someStyle ] )
+			],
+			[
+				$this->getMockOutputPage( false, 'FOO mw-ui-button BAR', 'someStyle' ),
+				array_merge( $defaultStyles, [ $someStyle, $buttonStyle ] )
+			],
+			[
+				$this->getMockOutputPage( true, 'FOO mw-ui-button BAR', 'someStyle' ),
+				array_merge( $defaultStyles, [ $feedStyle, $someStyle, $buttonStyle ] )
 			],
 		];
 	}
