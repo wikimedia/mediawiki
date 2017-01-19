@@ -205,6 +205,8 @@ changes to languages because of Phabricator reports.
 * Revision::getText() (deprecated in 1.21) was removed.
 * Article::doEdit() and WikiPage::doEdit() (deprecated in 1.21) were removed.
 * Parser::replaceUnusualEscapes() (deprecated in 1.24) was removed.
+* Article::doEditContent() was marked as deprecated, to be removed in 1.30
+  or later.
 
 == Compatibility ==
 
