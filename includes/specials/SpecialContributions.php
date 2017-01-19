@@ -529,7 +529,6 @@ class SpecialContributions extends IncludableSpecialPage {
 			'text',
 			[
 				'size' => '40',
-				'required' => '',
 				'class' => [
 					'mw-input',
 					'mw-ui-input-inline',
