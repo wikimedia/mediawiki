@@ -3562,7 +3562,6 @@ class OutputPage extends ContextSource {
 	protected function buildExemptModules() {
 		global $wgContLang;
 
-		$resourceLoader = $this->getResourceLoader();
 		$chunks = [];
 		// Things that go after the ResourceLoaderDynamicStyles marker
 		$append = [];
