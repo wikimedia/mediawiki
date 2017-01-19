@@ -3703,9 +3703,8 @@ class OutputPage extends ContextSource {
 		} else {
 			$remotePath = $remotePathPrefix;
 		}
-		if ( strpos( $path, $remotePath ) !== 0 || substr( $path, 0, 2 ) === '//' ) {
-			// - Path is outside wgResourceBasePath, ignore.
-			// - Path is protocol-relative. Fixes T155310. Not supported by RelPath lib.
+		if ( strpos( $path, $remotePath ) !== 0 ) {
+			// Path is outside wgResourceBasePath, ignore.
 			return $path;
 		}
 		$path = RelPath\getRelativePath( $path, $remotePath );
