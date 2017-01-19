@@ -51,9 +51,9 @@ abstract class Preprocessor {
 		],
 		'-{' => [
 			'end' => '}-',
-			'names' => [ 1 => null ],
-			'min' => 1,
-			'max' => 1,
+			'names' => [ 2 => null ],
+			'min' => 2,
+			'max' => 2,
 		],
 	];
 

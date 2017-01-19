@@ -327,6 +327,9 @@ changes to languages because of Phabricator reports.
   mwCustomEditButtons, injectSpinner, removeSpinner, escapeQuotes,
   escapeQuotesHTML, jsMsg, addPortletLink, appendCSS, tooltipAccessKeyPrefix,
   tooltipAccessKeyRegexp, updateTooltipAccessKeys.
+* (T146304) Preprocessor handling of LanguageConverter markup has been fixed.
+  As a result of the new uniform handling, '-{' may need to be escaped
+  (for example, as '-<nowiki/>{') were it occurs inside template arguments.
 
 == Compatibility ==
 
