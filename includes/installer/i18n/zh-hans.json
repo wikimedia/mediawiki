@@ -80,7 +80,7 @@
 	"config-memory-bad": "<strong>警告：</strong>PHP的内存使用上限<code>memory_limit</code>为$1。\n该设定可能过低，并导致安装失败！",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache]已安装",
 	"config-apc": "[http://www.php.net/apc APC]已安装",
-	"config-apcu": "[http://www.php.net/apcu APCu]已安装",
+	"config-apcu": "已安装[http://www.php.net/apcu APCu]",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache]已安装",
 	"config-no-cache-apcu": "<strong>警告：</strong>找不到[http://www.php.net/apcu APCu]、[http://xcache.lighttpd.net/ XCache]或[http://www.iis.net/download/WinCacheForPhp WinCache]。\n对象缓存未启用。",
 	"config-mod-security": "<strong>警告：</strong>您的web服务器已启用[http://modsecurity.org/ mod_security]/mod_security2。它的很多常见配置可能导致MediaWiki及其他软件允许用户发布任意内容的问题。如果可能，这应当被禁用。否则，当您遭遇随机错误时，请参考[http://modsecurity.org/documentation/ mod_security 文档]或联络您的主机支持。",

@@ -605,6 +605,7 @@
 	"apierror-missingtitle-byname": "Strona $1 nie istnieje.",
 	"apierror-moduledisabled": "Moduł <kbd>$1</kbd> został wyłączony.",
 	"apierror-mustbeloggedin-generic": "Musisz być zalogowany.",
+	"apierror-mustbeloggedin": "Musisz się zalogować, aby mieć możliwość $1.",
 	"apierror-noedit-anon": "Niezarejestrowani użytkownicy nie mogą edytować stron.",
 	"apierror-noedit": "Nie masz uprawnień do edytowania stron.",
 	"apierror-permissiondenied": "Nie masz uprawnień do $1.",
