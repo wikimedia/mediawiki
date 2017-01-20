@@ -34,19 +34,24 @@ return [
 	 * project. directory_list won't find .inc files so
 	 * we augment it here.
 	 */
-	'file_list' => [
-		'maintenance/7zip.inc',
-		'maintenance/backupPrefetch.inc',
-		'maintenance/commandLine.inc',
-		'maintenance/sqlite.inc',
-		'maintenance/userOptions.inc',
-		'maintenance/backup.inc',
-		'maintenance/cleanupTable.inc',
-		'maintenance/importImages.inc',
-		'maintenance/userDupes.inc',
-		'maintenance/language/checkLanguage.inc',
-		'maintenance/language/languages.inc',
-	],
+	'file_list' => array_merge(
+		function_exists( 'register_postsend_function' ) ? [] : [ 'tests/phan/stubs/hhvm.php' ],
+		function_exists( 'wikidiff2_do_diff' ) ? [] : [ 'tests/phan/stubs/wikidiff.php' ],
+		class_exists( PEAR::class ) ? [] : [ 'tests/phan/stubs/mail.php' ],
+		[
+			'maintenance/7zip.inc',
+			'maintenance/backupPrefetch.inc',
+			'maintenance/commandLine.inc',
+			'maintenance/sqlite.inc',
+			'maintenance/userOptions.inc',
+			'maintenance/backup.inc',
+			'maintenance/cleanupTable.inc',
+			'maintenance/importImages.inc',
+			'maintenance/userDupes.inc',
+			'maintenance/language/checkLanguage.inc',
+			'maintenance/language/languages.inc',
+		]
+	),
 
 	/**
 	 * A list of directories that should be parsed for class and
@@ -65,7 +70,6 @@ return [
 		'resources/',
 		'skins/',
 		'vendor/',
-		'tests/phan/stubs/',
 	],
 
 	/**
@@ -96,7 +100,7 @@ return [
 		// External class
 		'includes/libs/jsminplus.php',
 		// separate repositories
-		'skins/'
+		'skins/',
 	],
 
 	/**
@@ -129,7 +133,7 @@ return [
 	 * ```php
 	 * <?php
 	 * function test($arg):int {
-	 * 	return $arg;
+	 *    return $arg;
 	 * }
 	 * test("abc");
 	 * ```

@@ -1,11 +1,11 @@
 <?php
 
-// @codingStandardsIgnoreFile
-
 /**
  * Minimal set of classes necessary for UserMailer to be happy. Types
  * taken from documentation at pear.php.net.
+ * @codingStandardsIgnoreFile
  */
+
 class PEAR {
 	/**
 	 * @param mixed $data
