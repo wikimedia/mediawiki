@@ -27,6 +27,10 @@
  * @ingroup Cache
  */
 class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
+
+	/** @var MemcachedClient */
+	protected $client;
+
 	/**
 	 * Available parameters are:
 	 *   - servers:             The list of IP:port combinations holding the memcached servers.

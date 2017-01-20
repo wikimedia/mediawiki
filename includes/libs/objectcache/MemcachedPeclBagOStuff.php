@@ -28,6 +28,9 @@
  */
 class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 
+	/** @var Memcached */
+	protected $client;
+
 	/**
 	 * Constructor
 	 *

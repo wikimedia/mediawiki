@@ -1,14 +1,18 @@
 <?php
+
+class InstantiableMemcachedBagOStuff extends MemcachedBagOStuff {}
+
 /**
  * @group BagOStuff
  */
 class MemcachedBagOStuffTest extends MediaWikiTestCase {
-	/** @var MemcachedBagOStuff */
+	/** @var InstantiableMemcachedBagOStuff */
 	private $cache;
 
 	protected function setUp() {
+
 		parent::setUp();
-		$this->cache = new MemcachedBagOStuff( [ 'keyspace' => 'test' ] );
+		$this->cache = new InstantiableMemcachedBagOStuff( [ 'keyspace' => 'test' ] );
 	}
 
 	/**
