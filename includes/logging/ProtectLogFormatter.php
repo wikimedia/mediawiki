@@ -21,6 +21,7 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  * @since 1.26
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * This class formats protect log entries.
@@ -84,11 +85,12 @@ class ProtectLogFormatter extends LogFormatter {
 			return '';
 		}
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		// Show history link for all changes after the protection
 		$title = $this->entry->getTarget();
 		$links = [
-			Linker::link( $title,
-				$this->msg( 'hist' )->escaped(),
+			$linkRenderer->makeLink( $title,
+				$this->msg( 'hist' )->text(),
 				[],
 				[
 					'action' => 'history',
@@ -99,9 +101,9 @@ class ProtectLogFormatter extends LogFormatter {
 
 		// Show change protection link
 		if ( $this->context->getUser()->isAllowed( 'protect' ) ) {
-			$links[] = Linker::linkKnown(
+			$links[] = $linkRenderer->makeKnownLink(
 				$title,
-				$this->msg( 'protect_change' )->escaped(),
+				$this->msg( 'protect_change' )->text(),
 				[],
 				[ 'action' => 'protect' ]
 			);

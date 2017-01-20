@@ -22,6 +22,7 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  * @since 1.19
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Implements the default log formatting.
@@ -610,7 +611,8 @@ class LogFormatter {
 	 */
 	protected function makePageLink( Title $title = null, $parameters = [], $html = null ) {
 		if ( !$this->plaintext ) {
-			$link = Linker::link( $title, $html, [], $parameters );
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+			$link = $linkRenderer->makeKnownLink( $title, new HtmlArmor( $html ), [], $parameters );
 		} else {
 			if ( !$title instanceof Title ) {
 				throw new MWException( "Expected title, got null" );
