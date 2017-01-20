@@ -207,6 +207,7 @@ changes to languages because of Phabricator reports.
 * Parser::replaceUnusualEscapes() (deprecated in 1.24) was removed.
 * Article::doEditContent() was marked as deprecated, to be removed in 1.30
   or later.
+* ContentHandler::runLegacyHooks() was removed.
 
 == Compatibility ==
 
