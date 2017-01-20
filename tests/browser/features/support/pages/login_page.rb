@@ -10,10 +10,12 @@ class LoginPage
   button(:login, id: 'wpLoginAttempt')
   li(:logout, id: 'pt-logout')
   text_field(:password, id: 'wpPassword1')
+  element(:password_error, css: 'input#wpPassword1:required:invalid')
   a(:password_strength, text: 'password strength')
   a(:phishing, text: 'phishing')
   text_field(:username, id: 'wpName1')
   a(:username_displayed, title: /Your user page/)
+  element(:username_error, css: 'input#wpName1:required:invalid')
 
   def logged_in_as_element
     @browser.div(id: 'mw-content-text').p.b
