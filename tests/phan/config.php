@@ -38,6 +38,7 @@ return [
 		function_exists( 'register_postsend_function' ) ? [] : [ 'tests/phan/stubs/hhvm.php' ],
 		function_exists( 'wikidiff2_do_diff' ) ? [] : [ 'tests/phan/stubs/wikidiff.php' ],
 		class_exists( PEAR::class ) ? [] : [ 'tests/phan/stubs/mail.php' ],
+		class_exists( Imagick::class ) ? [] : [ 'tests/phan/stubs/imagick.php' ],
 		[
 			'maintenance/7zip.inc',
 			'maintenance/backupPrefetch.inc',
