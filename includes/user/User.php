@@ -4833,7 +4833,8 @@ class User implements IDBAccessObject {
 		}
 		$title = self::getGroupPage( $group );
 		if ( $title ) {
-			return Linker::link( $title, htmlspecialchars( $text ) );
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+			return $linkRenderer->makeLink( $title, $text );
 		} else {
 			return htmlspecialchars( $text );
 		}

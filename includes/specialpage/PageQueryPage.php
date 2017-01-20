@@ -52,8 +52,9 @@ abstract class PageQueryPage extends QueryPage {
 		$title = Title::makeTitleSafe( $row->namespace, $row->title );
 
 		if ( $title instanceof Title ) {
+			$linkRenderer = $this->getLinkRenderer();
 			$text = $wgContLang->convert( $title->getPrefixedText() );
-			return Linker::link( $title, htmlspecialchars( $text ) );
+			return $linkRenderer->makeLink( $title, $text );
 		} else {
 			return Html::element( 'span', [ 'class' => 'mw-invalidtitle' ],
 				Linker::getInvalidTitleDescription( $this->getContext(), $row->namespace, $row->title ) );
