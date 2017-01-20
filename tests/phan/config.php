@@ -40,6 +40,7 @@ return [
 		class_exists( PEAR::class ) ? [] : [ 'tests/phan/stubs/mail.php' ],
 		class_exists( Imagick::class ) ? [] : [ 'tests/phan/stubs/imagick.php' ],
 		class_exists( Redis::class ) ? [] : [ 'tests/phan/stubs/redis.php' ],
+		class_exists( Memcached::class ) ? [] : [ 'tests/phan/stubs/memcached.php' ],
 		[
 			'maintenance/7zip.inc',
 			'maintenance/backupPrefetch.inc',
