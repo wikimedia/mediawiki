@@ -22,6 +22,7 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  * @since 1.19
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Implements the default log formatting.
@@ -604,13 +605,14 @@ class LogFormatter {
 	 * value in consideration.
 	 * @param Title $title The page
 	 * @param array $parameters Query parameters
-	 * @param string|null $html Linktext of the link as raw html
+	 * @param string|null $text Linktext of the link as text
 	 * @throws MWException
 	 * @return string
 	 */
-	protected function makePageLink( Title $title = null, $parameters = [], $html = null ) {
+	protected function makePageLink( Title $title = null, $parameters = [], $text = null ) {
 		if ( !$this->plaintext ) {
-			$link = Linker::link( $title, $html, [], $parameters );
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+			$link = $linkRenderer->makeLink( $title, $text, [], $parameters );
 		} else {
 			if ( !$title instanceof Title ) {
 				throw new MWException( "Expected title, got null" );

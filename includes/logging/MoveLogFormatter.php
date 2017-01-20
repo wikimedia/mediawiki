@@ -22,6 +22,7 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  * @since 1.22
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * This class formats move log entries.
@@ -71,9 +72,10 @@ class MoveLogFormatter extends LogFormatter {
 			return '';
 		}
 
-		$revert = Linker::linkKnown(
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$revert = $linkRenderer->makeKnownLink(
 			SpecialPage::getTitleFor( 'Movepage' ),
-			$this->msg( 'revertmove' )->escaped(),
+			$this->msg( 'revertmove' )->text(),
 			[],
 			[
 				'wpOldTitle' => $destTitle->getPrefixedDBkey(),
