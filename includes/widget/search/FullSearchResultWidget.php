@@ -131,16 +131,16 @@ class FullSearchResultWidget implements SearchResultWidget {
 
 		// clone to prevent hook from changing the title stored inside $result
 		$title = clone $result->getTitle();
-		$queryString = [];
+		$query = [];
 
 		Hooks::run( 'ShowSearchHitTitle',
-			[ &$title, &$snippet, $result, $terms, $this->specialPage, &$queryString ] );
+			[ &$title, &$snippet, $result, $terms, $this->specialPage, &$query ] );
 
 		$link = $this->linkRenderer->makeLink(
 			$title,
 			$snippet,
 			[ 'data-serp-pos' => $position ],
-			$queryString
+			$query
 		);
 
 		return $link;
