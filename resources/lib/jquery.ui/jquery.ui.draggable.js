@@ -133,9 +133,9 @@ $.widget("ui.draggable", $.ui.mouse, {
 		});
 
 		//Generate the original position
-		this.originalPosition = this.position = this._generatePosition(event);
 		this.originalPageX = event.pageX;
 		this.originalPageY = event.pageY;
+		this.originalPosition = this.position = this._generatePosition(event);
 
 		//Adjust the mouse offset relative to the helper if 'cursorAt' is supplied
 		(o.cursorAt && this._adjustOffsetFromHelper(o.cursorAt));
