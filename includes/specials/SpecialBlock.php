@@ -127,15 +127,7 @@ class SpecialBlock extends FormSpecialPage {
 	 */
 	protected function getFormFields() {
 		global $wgBlockAllowsUTEdit;
-		if ( !wfMessage( 'ipbreason-dropdown' )->inContentLanguage()->isDisabled() ) {
-			$reasonsList = Xml::getArrayFromWikiTextList(
-				wfMessage( 'ipbreason-dropdown' )->inContentLanguage()->text()
-			);
-			$this->getOutput()->addModules( 'mediawiki.reasonSuggest' );
-			$this->getOutput()->addJsConfigVars( [
-				'reasons' => $reasonsList
-			] );
-		}
+
 		$user = $this->getUser();
 
 		$suggestedDurations = self::getSuggestedDurations();
