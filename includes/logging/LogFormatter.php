@@ -353,7 +353,11 @@ class LogFormatter {
 							$rawDuration = $parameters['5::duration'];
 							$rawFlags = $parameters['6::flags'];
 						}
-						$duration = $wgContLang->translateBlockExpiry( $rawDuration );
+						$duration = $wgContLang->translateBlockExpiry(
+							$rawDuration,
+							null,
+							wfTimestamp( TS_UNIX, $entry->getTimestamp() )
+						);
 						$flags = BlockLogFormatter::formatBlockFlags( $rawFlags, $wgContLang );
 						$text = wfMessage( 'blocklogentry' )
 							->rawParams( $target, $duration, $flags )->inContentLanguage()->escaped();
@@ -363,7 +367,11 @@ class LogFormatter {
 							->rawParams( $target )->inContentLanguage()->escaped();
 						break;
 					case 'reblock':
-						$duration = $wgContLang->translateBlockExpiry( $parameters['5::duration'] );
+						$duration = $wgContLang->translateBlockExpiry(
+							$parameters['5::duration'],
+							null,
+							wfTimestamp( TS_UNIX, $entry->getTimestamp() )
+						);
 						$flags = BlockLogFormatter::formatBlockFlags( $parameters['6::flags'], $wgContLang );
 						$text = wfMessage( 'reblock-logentry' )
 							->rawParams( $target, $duration, $flags )->inContentLanguage()->escaped();
