@@ -2589,7 +2589,7 @@
 	"pageinfo-toolboxlink": "Πληροφορίες σελίδας",
 	"pageinfo-redirectsto": "Ανακατευθύνει σε",
 	"pageinfo-redirectsto-info": "πληροφορίες",
-	"pageinfo-contentpage": "Καταμετράται ως σελίδα περιεχομένου",
+	"pageinfo-contentpage": "Προσμετράται ως σελίδα περιεχομένου",
 	"pageinfo-contentpage-yes": "Ναι",
 	"pageinfo-protect-cascading": "Οι προστασίες ξεκινούν τη διαδοχή τους από εδώ",
 	"pageinfo-protect-cascading-yes": "Ναι",

@@ -1173,6 +1173,7 @@
 	"listgrouprights-addgroup-self-all": "အုပ်စုအားလုံးကို မိမိ၏အကောင့်သို့ ပေါင်းထည့်ရန်",
 	"listgrouprights-removegroup-self-all": "မိမိ၏အကောင့်မှ အုပ်စုအားလုံးကို ဖယ်ရှားရန်",
 	"trackingcategories": "နောက်ယောင်ခံ ကဏ္ဍများ",
+	"trackingcategories-msg": "နောက်ယောင်ခံ ကဏ္ဍ",
 	"mailnologin": "ပို့ရန်လိပ်စာ မရှိပါ",
 	"emailuser": "ဤ​အ​သုံး​ပြု​သူ​အား​ အီး​မေး​ပို့​ပါ​",
 	"emailuser-title-target": "{{GENDER:$1|အသုံးပြုသူ}}ကို အီးမေးပို့ရန်",

@@ -3076,7 +3076,7 @@
 	"autoredircomment": "Преусмерење на [[$1]]",
 	"autosumm-new": "Нова страница: $1",
 	"autosumm-newblank": "Направљена празна страница",
-	"size-bytes": "$1 B",
+	"size-bytes": "$1 {{PLURAL:$1|бајт|бајта|бајтова}}",
 	"size-kilobytes": "$1 kB",
 	"size-megabytes": "$1 MB",
 	"size-gigabytes": "$1 GB",

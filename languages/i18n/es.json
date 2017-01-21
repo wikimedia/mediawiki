@@ -3954,7 +3954,7 @@
 	"usercssispublic": "Recuerda: las subpáginas CSS no deberían contener datos confidenciales, pues otros usuarios los pueden ver.",
 	"restrictionsfield-badip": "Dirección o intervalo IP no válidos: $1",
 	"restrictionsfield-label": "Intervalos de IP permitidos:",
-	"restrictionsfield-help": "Una dirección IP o intervalo de CIDR por renglón. Para habilitar todo, utiliza <pre>0.0.0.0/0\n::/0</pre>",
+	"restrictionsfield-help": "Una dirección IP o intervalo de CIDR por renglón. Para activarlo todo, utiliza <pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "revisión $1",
 	"pageid": "ID de página $1"
 }

@@ -1166,6 +1166,7 @@
 	"right-managechangetags": "ایجاد و حذف [[Special:Tags|برچسب‌ها]] از پایگاه داده",
 	"right-applychangetags": "تائید [[Special:Tags|برچسب]] بر روی تغییرات یک نفر",
 	"right-changetags": "افزودن یا حذف [[Special:Tags|برچسب]] قراردادی بر روی نسخه یا سیاهه ورودی‌ها",
+	"right-deletechangetags": "[[Special:Tags|tags]] را اژ پایگاه پاک بکه",
 	"grant-generic": "حقوق \"$1\" بسته",
 	"grant-group-page-interaction": "تعاول با صفحه",
 	"grant-group-file-interaction": "تعامل با میدیا",
