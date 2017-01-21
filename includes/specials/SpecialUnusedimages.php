@@ -50,8 +50,6 @@ class UnusedimagesPage extends ImageQueryPage {
 				'namespace' => NS_FILE,
 				'title' => 'img_name',
 				'value' => 'img_timestamp',
-				'img_user', 'img_user_text',
-				'img_description'
 			],
 			'conds' => [ 'il_to IS NULL' ],
 			'join_conds' => [ 'imagelinks' => [ 'LEFT JOIN', 'il_to = img_name' ] ]
