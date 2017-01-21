@@ -44,8 +44,6 @@ production.
   from certain IP ranges (e.g. private IPs).
 * (T59603) Added new magic word {{PAGELANGUAGE}} which returns the language code
   of the page being parsed.
-* Added JavaScript that provides as-you-type suggestions for reason
-  on the block, delete and protect forms.
 * HTML5 form validation attributes will no longer be suppressed. Originally
   browsers had poor support for them, but modern browsers handle them fine.
   This might affect some forms that used them and only worked because the
