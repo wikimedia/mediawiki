@@ -111,7 +111,8 @@ class MIMEsearchPage extends QueryPage {
 	function getPageHeader() {
 		$formDescriptor = [
 			'mime' => [
-				'type' => 'text',
+				'type' => 'combobox',
+				'options' => $this->getSuggestionsForTypes(),
 				'name' => 'mime',
 				'label-message' => 'mimetype',
 				'required' => true,
@@ -125,6 +126,33 @@ class MIMEsearchPage extends QueryPage {
 			->setMethod( 'get' )
 			->prepareForm()
 			->displayForm( false );
+	}
+
+	protected function getSuggestionsForTypes() {
+		$dbr = wfGetDB( DB_REPLICA );
+		$lastMajor = null;
+		$suggestions = [];
+		$result = $dbr->select(
+			[ 'image' ],
+			// We ignore img_media_type, but using it in the query is needed for MySQL to choose a
+			// sensible execution plan
+			[ 'img_media_type', 'img_major_mime', 'img_minor_mime' ],
+			[],
+			__METHOD__,
+			[ 'GROUP BY' => [ 'img_media_type', 'img_major_mime', 'img_minor_mime' ] ]
+		);
+		foreach ( $result as $row ) {
+			$major = $row->img_major_mime;
+			$minor = $row->img_minor_mime;
+			$suggestions[ "$major/$minor" ] = "$major/$minor";
+			if ( $lastMajor === $major ) {
+				// If there are at least two with the same major mime type, also include the wildcard
+				$suggestions[ "$major/*" ] = "$major/*";
+			}
+			$lastMajor = $major;
+		}
+		ksort( $suggestions );
+		return $suggestions;
 	}
 
 	public function execute( $par ) {
