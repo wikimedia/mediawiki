@@ -1672,15 +1672,6 @@ class Article implements Page {
 		$title = $this->getTitle();
 		$ctx = $this->getContext();
 		$outputPage = $ctx->getOutput();
-		if ( !wfMessage( 'deletereason-dropdown' )->inContentLanguage()->isDisabled() ) {
-			$reasonsList = Xml::getArrayFromWikiTextList(
-				wfMessage( 'deletereason-dropdown' )->inContentLanguage()->text()
-			);
-			$outputPage->addModules( 'mediawiki.reasonSuggest' );
-			$outputPage->addJsConfigVars( [
-				'reasons' => $reasonsList
-			] );
-		}
 		$useMediaWikiUIEverywhere = $ctx->getConfig()->get( 'UseMediaWikiUIEverywhere' );
 		$outputPage->setPageTitle( wfMessage( 'delete-confirm', $title->getPrefixedText() ) );
 		$outputPage->addBacklinkSubtitle( $title );

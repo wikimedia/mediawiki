@@ -1395,13 +1395,6 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'mediawiki.reasonSuggest' => [
-		'scripts' => 'resources/src/mediawiki/mediawiki.reasonSuggest.js',
-		'dependencies' => [
-			'jquery.suggestions',
-			'mediawiki.api.messages'
-		]
-	],
 	'mediawiki.userSuggest' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.userSuggest.js',
 		'dependencies' => [
