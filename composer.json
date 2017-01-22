@@ -55,6 +55,7 @@
 		"justinrainbow/json-schema": "~3.0",
 		"mediawiki/mediawiki-codesniffer": "0.8.0",
 		"monolog/monolog": "~1.22.1",
+		"seld/jsonlint": "1.5.0",
 		"nikic/php-parser": "2.1.0",
 		"nmred/kafka-php": "0.1.5",
 		"phpunit/phpunit": "4.8.35",
