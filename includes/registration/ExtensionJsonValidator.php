@@ -21,6 +21,8 @@
 
 use Composer\Spdx\SpdxLicenses;
 use JsonSchema\Validator;
+use Seld\JsonLint\JsonParser;
+use Seld\JsonLint\ParsingException;
 
 /**
  * @since 1.29
@@ -53,6 +55,10 @@ class ExtensionJsonValidator {
 				'The spdx-licenses library cannot be found, please install it through composer.'
 			);
 			return false;
+		} elseif ( !class_exists( JsonParser::class ) ) {
+			call_user_func( $this->missingDepCallback,
+				'The JSON lint library cannot be found, please install it through composer.'
+			);
 		}
 
 		return true;
@@ -64,8 +70,14 @@ class ExtensionJsonValidator {
 	 * @throws ExtensionJsonValidationError on any failure
 	 */
 	public function validate( $path ) {
-		$data = json_decode( file_get_contents( $path ) );
-		if ( !is_object( $data ) ) {
+		$contents = file_get_contents( $path );
+		$jsonParser = new JsonParser();
+		try {
+			$data = $jsonParser->parse( $contents, JsonParser::DETECT_KEY_CONFLICTS );
+		} catch ( ParsingException $e ) {
+			if ( $e instanceof \Seld\JsonLint\DuplicateKeyException ) {
+				throw new ExtensionJsonValidationError( $e->getMessage() );
+			}
 			throw new ExtensionJsonValidationError( "$path is not valid JSON" );
 		}
 
