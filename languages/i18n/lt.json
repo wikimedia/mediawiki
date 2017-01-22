@@ -1837,7 +1837,6 @@
 	"apisandbox-results": "Rezultatai",
 	"apisandbox-sending-request": "API prašymas siunčiamas...",
 	"apisandbox-loading-results": "API rezultatai gaunami...",
-	"apisandbox-request-params-json": "JSON parametrai:",
 	"apisandbox-request-url-label": "Prašyti URL:",
 	"apisandbox-request-time": "Užklausos laikas: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "Pataisykite žetoną ir pateikite iš naujo",

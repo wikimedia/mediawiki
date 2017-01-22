@@ -1887,7 +1887,6 @@
 	"apisandbox-sending-request": "傳送 API 請求中...",
 	"apisandbox-loading-results": "接收 API 結果中...",
 	"apisandbox-results-error": "讀取 API 查詢回應時發生錯誤：$1。",
-	"apisandbox-request-params-json": "JSON參數：",
 	"apisandbox-request-url-label": "請求 URL：",
 	"apisandbox-request-time": "請求時間：{{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "更正密鑰並重新送出",

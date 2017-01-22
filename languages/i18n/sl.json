@@ -1848,7 +1848,6 @@
 	"apisandbox-sending-request": "Pošiljanje zahteve API ...",
 	"apisandbox-loading-results": "Prejemanje zahteve API ...",
 	"apisandbox-results-error": "Med nalaganjem odgovora poizvedbe API je prišlo do napake: $1.",
-	"apisandbox-request-params-json": "Parametri JSON:",
 	"apisandbox-request-url-label": "URL zahteve:",
 	"apisandbox-request-time": "Trajanje zahteve: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "Popravite žeton in ponovno pošljite",

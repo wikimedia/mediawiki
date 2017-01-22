@@ -461,6 +461,7 @@
 	"emailnotauthenticated": "Vua e-postal adreso ne ja autentikigesas.\nNula mesaji sendesos por irga di la sequanta funcioni.",
 	"noemailprefs": "Prizentez e-postal adreso en vua preferaji por disponar ita funcioni.",
 	"emailconfirmlink": "Konfirmez vua adreso di e-posto",
+	"cannotchangeemail": "E-posto-adreso dil konto ne povas chanjesar ye ta wikio.",
 	"emaildisabled": "Ita ret-sito ne povas sendar e-mesaji.",
 	"accountcreated": "Konto kreesis",
 	"accountcreatedtext": "La uzerokonto por [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|diskuto]]) kreesis.",

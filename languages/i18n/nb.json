@@ -1886,7 +1886,6 @@
 	"apisandbox-sending-request": "Sender API-forespørsel...",
 	"apisandbox-loading-results": "Mottar API-resultater...",
 	"apisandbox-results-error": "En feil oppsto under lasting av API-spørringssvaret: $1.",
-	"apisandbox-request-params-json": "JSON-parametre:",
 	"apisandbox-request-url-label": "Forespurt URL:",
 	"apisandbox-request-time": "Forespørselstid: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "Fiks nøkkelen og send på nytt",

@@ -1911,7 +1911,6 @@
 	"apisandbox-sending-request": "Invio richiesta di API...",
 	"apisandbox-loading-results": "Ricezione dei risultati di API in corso...",
 	"apisandbox-results-error": "Si è verificato un errore durante il caricamento della risposta all'interrogazione API: $1",
-	"apisandbox-request-params-json": "Parametri JSON:",
 	"apisandbox-request-url-label": "URL di richiesta:",
 	"apisandbox-request-time": "Tempo richiesto: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "Correggi token e reinvia",

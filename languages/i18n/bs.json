@@ -2463,6 +2463,7 @@
 	"pageinfo-category-files": "Broj datoteka",
 	"markaspatrolleddiff": "Označi kao patrolirano",
 	"markaspatrolledtext": "Označi stranicu kao patroliranu",
+	"markaspatrolledtext-file": "Označi ovu verziju datoteke kao patroliranu",
 	"markedaspatrolled": "Označeno kao patrolirano",
 	"markedaspatrolledtext": "Izabrana revizija [[:$1]] je bila označena kao patrolirana.",
 	"rcpatroldisabled": "Patroliranje nedavnih izmjena onemogućeno",

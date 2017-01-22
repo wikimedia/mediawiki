@@ -1848,7 +1848,6 @@
 	"apisandbox-sending-request": "Unviando solicitú a la API...",
 	"apisandbox-loading-results": "Recibiendo los resultaos de la API...",
 	"apisandbox-results-error": "Asocedió un error al cargar la respuesta de la consulta API: $1.",
-	"apisandbox-request-params-json": "Parámetros JSON:",
 	"apisandbox-request-url-label": "URL de la solicitú:",
 	"apisandbox-request-time": "Duración de la solicitú: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "Igua'l token y vuelve a unviar",

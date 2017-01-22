@@ -1927,7 +1927,6 @@
 	"apisandbox-sending-request": "Sende API-Anfrage …",
 	"apisandbox-loading-results": "Rufe API-Ergebnisse ab …",
 	"apisandbox-results-error": "Beim Laden der API-Anfragenantwort ist ein Fehler aufgetreten: $1.",
-	"apisandbox-request-params-json": "JSON-Parameter:",
 	"apisandbox-request-url-label": "Anforderungs-URL:",
 	"apisandbox-request-time": "Dauer der Anfrage: {{PLURAL:$1|Eine Millisekunde|$1 Millisekunden}}",
 	"apisandbox-results-fixtoken": "Token korrigieren und erneut übertragen",

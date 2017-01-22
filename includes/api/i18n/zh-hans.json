@@ -1618,7 +1618,7 @@
 	"apierror-show": "不正确的参数——不可提供互斥值。",
 	"apierror-siteinfo-includealldenied": "除非<var>$wgShowHostNames</var>为真，否则不能查看所有服务器的信息。",
 	"apierror-sizediffdisabled": "大小差异在Miser模式中被禁用。",
-	"apierror-spamdetected": "您的编辑被拒绝，因为它包含破坏性碎片：<code>$1</code>。",
+	"apierror-spamdetected": "您的编辑被拒绝，因为它包含垃圾部分：<code>$1</code>。",
 	"apierror-specialpage-cantexecute": "您没有权限查看此特殊页面的结果。",
 	"apierror-stashedfilenotfound": "无法在暂存处找到文件：$1。",
 	"apierror-stashfailed-complete": "大块上传已经完成，检查状态以获取详情。",

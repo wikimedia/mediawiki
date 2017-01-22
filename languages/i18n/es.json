@@ -1989,7 +1989,6 @@
 	"apisandbox-sending-request": "Enviando pedido a la API...",
 	"apisandbox-loading-results": "Recibiendo resultados de la API...",
 	"apisandbox-results-error": "Ocurrió un error durante la carga de la respuesta a la consulta API: $1",
-	"apisandbox-request-params-json": "Parámetros JSON:",
 	"apisandbox-request-url-label": "URL solicitante:",
 	"apisandbox-request-time": "Tiempo de solicitud: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "Corrige el token y vuelve a enviar",

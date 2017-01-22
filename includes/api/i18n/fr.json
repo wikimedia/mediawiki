@@ -182,7 +182,7 @@
 	"apihelp-feedrecentchanges-description": "Renvoie un fil de modifications récentes.",
 	"apihelp-feedrecentchanges-param-feedformat": "Le format du flux.",
 	"apihelp-feedrecentchanges-param-namespace": "Espace de noms auquel limiter les résultats.",
-	"apihelp-feedrecentchanges-param-invert": "Tous les espaces de nom sauf le sélectionné.",
+	"apihelp-feedrecentchanges-param-invert": "Tous les espaces de noms sauf celui sélectionné.",
 	"apihelp-feedrecentchanges-param-associated": "Inclure l’espace de noms associé (discussion ou principal).",
 	"apihelp-feedrecentchanges-param-days": "Jours auxquels limiter le résultat.",
 	"apihelp-feedrecentchanges-param-limit": "Nombre maximal de résultats à renvoyer.",

@@ -1915,7 +1915,6 @@
 	"apisandbox-sending-request": "API-verzoek verzenden...",
 	"apisandbox-loading-results": "API-resultaten ontvangen...",
 	"apisandbox-results-error": "Er is een fout opgetreden tijdens het laden van het antwoord op het API-verzoek: $1.",
-	"apisandbox-request-params-json": "JSON parameters:",
 	"apisandbox-request-url-label": "Verzoek-URL:",
 	"apisandbox-request-time": "Doorlooptijd verzoek: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "Token corrigeren en opnieuw verzenden",

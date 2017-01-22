@@ -1935,7 +1935,6 @@
 	"apisandbox-sending-request": "Отправка API-запроса…",
 	"apisandbox-loading-results": "Получение API-результатов…",
 	"apisandbox-results-error": "Произошла ошибка при загрузке API-ответа на запрос: $1.",
-	"apisandbox-request-params-json": "JSON-параметры:",
 	"apisandbox-request-url-label": "URL-адрес запроса:",
 	"apisandbox-request-time": "Время запроса: {{PLURAL:$1|$1 мс}}",
 	"apisandbox-results-fixtoken": "Исправьте токен и повторите отправку",

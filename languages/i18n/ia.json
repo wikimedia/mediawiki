@@ -1849,7 +1849,6 @@
 	"apisandbox-sending-request": "Invia requesta API...",
 	"apisandbox-loading-results": "Recipe resultatos API...",
 	"apisandbox-results-error": "Un error ha occurrite durante le cargamento del responsa al consulta API: $1.",
-	"apisandbox-request-params-json": "Parametros JSON:",
 	"apisandbox-request-url-label": "URL de requesta:",
 	"apisandbox-request-time": "Duration del requesta: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "Corrige le indicio e reinvia",

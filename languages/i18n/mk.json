@@ -1862,7 +1862,6 @@
 	"apisandbox-sending-request": "Испраќам барање до извршникот...",
 	"apisandbox-loading-results": "Добивам исход од извршникот...",
 	"apisandbox-results-error": "Се појави грешка при вчитувањето на одговорот од барањето до извршникот: $1.",
-	"apisandbox-request-params-json": "JSON-параметри:",
 	"apisandbox-request-url-label": "URL на барањето:",
 	"apisandbox-request-time": "Време за барањето: {{PLURAL:$1|$1 милисекунда|$1 милисекунди}}",
 	"apisandbox-results-fixtoken": "Исправи ја шифрата и поднеси одново",

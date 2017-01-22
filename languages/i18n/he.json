@@ -1871,7 +1871,6 @@
 	"apisandbox-sending-request": "בקשת ה־API בשליחה...",
 	"apisandbox-loading-results": "תוצאות ה־API בתהליך קבלה...",
 	"apisandbox-results-error": "אירעה שגיאה בעת טעינת תשובת ה־API לבקשה: $1.",
-	"apisandbox-request-params-json": "הפרמטרים בפורמט JSON:",
 	"apisandbox-request-url-label": "כתובת ה־URL של הבקשה:",
 	"apisandbox-request-time": "זמן הבקשה: {{PLURAL:$1|מילישנייה אחת|$1 מילישניות}}",
 	"apisandbox-results-fixtoken": "אנא תקנו את האסימון ושלחו שוב",

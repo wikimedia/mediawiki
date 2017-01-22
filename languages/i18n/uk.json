@@ -1891,7 +1891,6 @@
 	"apisandbox-sending-request": "Надсилання запиту API…",
 	"apisandbox-loading-results": "Отримання результатів API…",
 	"apisandbox-results-error": "Сталася помилка при завантаженні відповіді на запит API: $1.",
-	"apisandbox-request-params-json": "Параметри JSON:",
 	"apisandbox-request-url-label": "URL-адреса запиту:",
 	"apisandbox-request-time": "Час запиту: {{PLURAL:$1|$1 мс}}",
 	"apisandbox-results-fixtoken": "Виправте токен і надішліть ще раз",

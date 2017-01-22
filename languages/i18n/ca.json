@@ -1856,7 +1856,6 @@
 	"apisandbox-sending-request": "S'està enviant una sol·licitud API...",
 	"apisandbox-loading-results": "S'estan reben els resultats de l'API...",
 	"apisandbox-results-error": "S'ha produït un error en carregar la resposta de la consulta de l'API: $1.",
-	"apisandbox-request-params-json": "Paràmetres JSON:",
 	"apisandbox-request-url-label": "Sol·licita URL:",
 	"apisandbox-request-time": "Temps de sol·licitud: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "Corregeix el testimoni i torna-ho a enviar",
