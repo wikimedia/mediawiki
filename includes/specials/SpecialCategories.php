@@ -51,6 +51,10 @@ class SpecialCategories extends SpecialPage {
 		$this->getOutput()->addHTML(
 			Html::openElement( 'div', [ 'class' => 'mw-spcontent' ] ) .
 				$this->msg( 'categoriespagetext', $cap->getNumRows() )->parseAsBlock() .
+				Html::closeElement( 'div' )
+		);
+		$this->getOutput()->addHTML(
+			Html::openElement( 'div', [ 'class' => 'mw-spcontent' ] ) .
 				$cap->getStartForm( $from ) .
 				$cap->getNavigationBar() .
 				'<ul>' . $cap->getBody() . '</ul>' .
