@@ -1621,6 +1621,7 @@
 	"apierror-spamdetected": "您的编辑被拒绝，因为它包含垃圾部分：<code>$1</code>。",
 	"apierror-specialpage-cantexecute": "您没有权限查看此特殊页面的结果。",
 	"apierror-stashedfilenotfound": "无法在暂存处找到文件：$1。",
+	"apierror-stashedit-missingtext": "提供的哈希中找不到暂存文本。",
 	"apierror-stashfailed-complete": "大块上传已经完成，检查状态以获取详情。",
 	"apierror-stashfailed-nosession": "没有带此关键词的大块上传会话。",
 	"apierror-stashfilestorage": "不能在暂存处存储上传：$1",

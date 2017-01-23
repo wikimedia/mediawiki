@@ -3114,6 +3114,7 @@
 	"exif-compression-6": "JPEG (antiguo)",
 	"exif-copyrighted-true": "Con derechos de autor",
 	"exif-copyrighted-false": "No se ha definido el estado del copyright",
+	"exif-photometricinterpretation-0": "Blanco y negro (blanco es 0)",
 	"exif-photometricinterpretation-1": "Blanco y negro (el negro es 0)",
 	"exif-photometricinterpretation-4": "Máscara de transparencia",
 	"exif-photometricinterpretation-5": "Separados (Probablemente CMYK)",

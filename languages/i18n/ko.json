@@ -1357,7 +1357,7 @@
 	"rcfilters-filter-editsbyself-description": "당신의 편집.",
 	"rcfilters-filter-editsbyother-label": "다른 사용자의 편집",
 	"rcfilters-filter-editsbyother-description": "다른 사용자에 의한 편집. (당신의 편집이 아님)",
-	"rcfilters-filtergroup-userExpLevel": "사용자 경험 수준",
+	"rcfilters-filtergroup-userExpLevel": "경험 수준 (등록된 사용자 전용)",
 	"rcfilters-filter-userExpLevel-newcomer-label": "신규 사용자",
 	"rcfilters-filter-userExpLevel-newcomer-description": "신규 편집자: 10개 미만의 편집 및 4일 미만의 활동.",
 	"rcfilters-filter-userExpLevel-learner-label": "학습자",

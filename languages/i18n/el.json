@@ -3433,7 +3433,7 @@
 	"limitreport-templateargumentsize-value": "$1 από $2 {{PLURAL:$2|byte|bytes}}",
 	"limitreport-expansiondepth": "Μεγαλύτερο βάθος ανάπτυξης",
 	"limitreport-expensivefunctioncount": "Πλήθος ακριβών συναρτήσεων συντακτικού αναλυτή",
-	"expandtemplates": "Επέκτεινε τα πρότυπα",
+	"expandtemplates": "Επέκταση προτύπων",
 	"expand_templates_intro": "Αυτή η ειδική σελίδα παίρνει κείμενο και αναπτύσσει όλα τα πρότυπα σε αυτό αναδρομικά. \nΕπίσης αναπτύσσει συναρτήσεις συντακτικού αναλυτή όπως η\n<nowiki>{{</nowiki>#language:…}}, και μεταβλητές όπως η\n<nowiki>{{</nowiki>CURRENTDAY}}.\nΟυσιαστικά επεκτείνει οτιδήποτε βρίσκεται σε διπλές αγκύλες.",
 	"expand_templates_title": "Τίτλων συμφραζόμενων, για την {{FULLPAGENAME}} κ.τ.λ.:",
 	"expand_templates_input": "Κείμενο εισόδου:",
