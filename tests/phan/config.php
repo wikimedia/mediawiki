@@ -37,6 +37,7 @@ return [
 	'file_list' => array_merge(
 		function_exists( 'register_postsend_function' ) ? [] : [ 'tests/phan/stubs/hhvm.php' ],
 		function_exists( 'wikidiff2_do_diff' ) ? [] : [ 'tests/phan/stubs/wikidiff.php' ],
+		function_exists( 'xcache_get' ) ? [] : [ 'tests/phan/stubs/xcache.php' ],
 		class_exists( PEAR::class ) ? [] : [ 'tests/phan/stubs/mail.php' ],
 		class_exists( Imagick::class ) ? [] : [ 'tests/phan/stubs/imagick.php' ],
 		class_exists( Redis::class ) ? [] : [ 'tests/phan/stubs/redis.php' ],
