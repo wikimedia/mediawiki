@@ -37,6 +37,7 @@ return [
 	'file_list' => array_merge(
 		function_exists( 'register_postsend_function' ) ? [] : [ 'tests/phan/stubs/hhvm.php' ],
 		function_exists( 'wikidiff2_do_diff' ) ? [] : [ 'tests/phan/stubs/wikidiff.php' ],
+		function_exists( 'tideways_enable' ) ? [] : [ 'tests/phan/stubs/tideways.php' ],
 		class_exists( PEAR::class ) ? [] : [ 'tests/phan/stubs/mail.php' ],
 		[
 			'maintenance/7zip.inc',
