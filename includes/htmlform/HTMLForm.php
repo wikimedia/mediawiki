@@ -112,6 +112,9 @@ use Wikimedia\ObjectFactory;
  *                             The expressions will be given to a JavaScript frontend
  *                             module which will continually update the field's
  *                             visibility.
+ *     'nodata'             -- if set (to any value, which evaluates to true in !empty()), the data
+ *                             for this field will not be loaded from the actual request. Instead,
+ *                             always the default data is set as the value of this field.
  *
  * Since 1.20, you can chain mutators to ease the form generation:
  * @par Example:
