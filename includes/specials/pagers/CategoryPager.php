@@ -104,12 +104,8 @@ class CategoryPager extends AlphabeticPager {
 				'default' => $from,
 			],
 		];
-		$hiddenFields = [
-			'title' => $this->getTitle()->getPrefixedText(),
-		];
 
 		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
-			->addHiddenFields( $hiddenFields )
 			->setSubmitTextMsg( 'categories-submit' )
 			->setWrapperLegendMsg( 'categories' )
 			->setMethod( 'get' );
