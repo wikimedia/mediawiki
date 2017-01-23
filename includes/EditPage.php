@@ -498,6 +498,9 @@ class EditPage {
 		$this->enableApiEditOverride = $enableOverride;
 	}
 
+	/**
+	 * @deprecated since 1.29, call edit directly
+	 */
 	function submit() {
 		$this->edit();
 	}
