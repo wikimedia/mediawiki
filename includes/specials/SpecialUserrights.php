@@ -49,19 +49,25 @@ class UserrightsPage extends SpecialPage {
 	}
 
 	/**
-	 * @param User $user
-	 * @param bool $checkIfSelf
+	 * Check whether the current user (from context) can change the target user's rights.
+	 *
+	 * @param User $targetUser User whose rights are being changed
+	 * @param bool $checkIfSelf If false, assume that the current user can add/remove groups defined
+	 *   in $wgGroupsAddToSelf / $wgGroupsRemoveFromSelf, without checking if it's the same as target
+	 *   user
 	 * @return bool
 	 */
-	public function userCanChangeRights( $user, $checkIfSelf = true ) {
+	public function userCanChangeRights( $targetUser, $checkIfSelf = true ) {
+		$isself = $this->getUser()->equals( $targetUser );
+
 		$available = $this->changeableGroups();
-		if ( $user->getId() == 0 ) {
+		if ( $targetUser->getId() == 0 ) {
 			return false;
 		}
 
 		return !empty( $available['add'] )
 			|| !empty( $available['remove'] )
-			|| ( ( $this->isself || !$checkIfSelf ) &&
+			|| ( ( $isself || !$checkIfSelf ) &&
 				( !empty( $available['add-self'] )
 					|| !empty( $available['remove-self'] ) ) );
 	}
