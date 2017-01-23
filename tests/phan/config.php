@@ -40,6 +40,7 @@ return [
 		function_exists( 'xcache_get' ) ? [] : [ 'tests/phan/stubs/xcache.php' ],
 		function_exists( 'tideways_enable' ) ? [] : [ 'tests/phan/stubs/tideways.php' ],
 		class_exists( Collator::class ) ? [] : [ 'tests/phan/stubs/collator.php' ],
+		class_exists( Normalizer::class ) ? [] : [ 'tests/phan/stubs/normalizer.php' ],
 		class_exists( PEAR::class ) ? [] : [ 'tests/phan/stubs/mail.php' ],
 		class_exists( Imagick::class ) ? [] : [ 'tests/phan/stubs/imagick.php' ],
 		class_exists( Redis::class ) ? [] : [ 'tests/phan/stubs/redis.php' ],
