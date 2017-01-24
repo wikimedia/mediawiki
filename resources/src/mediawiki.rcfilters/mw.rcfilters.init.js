@@ -11,7 +11,9 @@
 		init: function () {
 			var model = new mw.rcfilters.dm.FiltersViewModel(),
 				controller = new mw.rcfilters.Controller( model ),
-				widget = new mw.rcfilters.ui.FilterWrapperWidget( controller, model );
+				$overlay = $( '<div>' )
+					.addClass( 'mw-rcfilters-ui-overlay' ),
+				widget = new mw.rcfilters.ui.FilterWrapperWidget( controller, model, { $overlay: $overlay } );
 
 			model.initializeFilters( {
 				registration: {
@@ -148,6 +150,7 @@
 			} );
 
 			$( '.rcoptions' ).before( widget.$element );
+			$( 'body' ).append( $overlay )
 
 			// Initialize values
 			controller.initialize();
