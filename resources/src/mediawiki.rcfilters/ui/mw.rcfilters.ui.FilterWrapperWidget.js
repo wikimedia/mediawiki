@@ -52,10 +52,6 @@
 		this.textInput.connect( this, {
 			change: 'onTextInputChange'
 		} );
-		this.capsule.connect( this, {
-			remove: 'onCapsuleRemoveItem'
-		} );
-
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget' )
 			.append( this.capsule.$element, this.textInput.$element );
@@ -77,23 +73,6 @@
 	};
 
 	/**
-	 * Respond to an event where an item is removed from the capsule.
-	 * This is the case where a user actively removes a filter box from the capsule widget.
-	 *
-	 * @param {string[]} filterNames An array of filter names that were removed
-	 */
-	mw.rcfilters.ui.FilterWrapperWidget.prototype.onCapsuleRemoveItem = function ( filterNames ) {
-		var filterItem,
-			widget = this;
-
-		filterNames.forEach( function ( filterName ) {
-			// Go over filters
-			filterItem = widget.model.getItemByName( filterName );
-			filterItem.toggleSelected( false );
-		} );
-	};
-
-	/**
 	 * Respond to model update event and set up the available filters to choose
 	 * from.
 	 */
@@ -107,7 +86,7 @@
 
 		// Insert hidden options for the capsule to get its item data from
 		items = filters.map( function ( filterItem ) {
-			return new OO.ui.MenuOptionWidget( {
+			return new mw.rcfilters.ui.CapsuleMenuItemWidget( {
 				data: filterItem.getName(),
 				label: filterItem.getLabel()
 			} );
@@ -121,7 +100,7 @@
 		// object to add
 		filters.forEach( function ( filterItem ) {
 			if ( filterItem.isSelected() ) {
-				wrapper.addCapsuleItemFromName( filterItem.getName() );
+				wrapper.capsule.addItemByName( filterItem.getName() );
 			}
 		} );
 	};
@@ -133,12 +112,6 @@
 	 */
 	mw.rcfilters.ui.FilterWrapperWidget.prototype.onModelItemUpdate = function ( item ) {
 		var widget = this;
-
-		if ( item.isSelected() ) {
-			this.addCapsuleItemFromName( item.getName() );
-		} else {
-			this.capsule.removeItemsFromData( [ item.getName() ] );
-		}
 
 		// Toggle the active state of the group
 		this.filterPopup.getItems().forEach( function ( groupWidget ) {
@@ -156,10 +129,6 @@
 	mw.rcfilters.ui.FilterWrapperWidget.prototype.addCapsuleItemFromName = function ( itemName ) {
 		var item = this.model.getItemByName( itemName );
 
-		this.capsule.addItemsFromData( [ itemName ] );
-
-		// Deal with active/inactive capsule filter items
-		this.capsule.getItemFromData( itemName ).$element
-			.toggleClass( 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-item-inactive', !item.isActive() );
+		this.capsule.addItemByName( [ itemName ] );
 	};
 }( mediaWiki ) );

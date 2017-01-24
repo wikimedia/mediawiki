@@ -2,6 +2,7 @@
 	/**
 	 * Filter-specific CapsuleMultiselectWidget
 	 *
+	 * @class
 	 * @extends OO.ui.CapsuleMultiselectWidget
 	 *
 	 * @constructor
@@ -91,7 +92,16 @@
 
 	/* Methods */
 
-	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.onModelItemUpdate = function () {
+	/**
+	 * Respond to model itemUpdate event
+	 */
+	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.onModelItemUpdate = function ( item ) {
+		if ( item.isSelected() ) {
+			this.addItemByName( item.getName() );
+		} else {
+			this.removeItemByName( item.getName() );
+		}
+
 		// Re-evaluate reset state
 		this.reevaluateResetRestoreState();
 	};
@@ -132,6 +142,46 @@
 	/**
 	 * @inheritdoc
 	 */
+	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.createItemWidget = function ( data ) {
+		var item = this.model.getItemByName( data );
+
+		if ( !item ) {
+			return;
+		}
+
+		return new mw.rcfilters.ui.CapsuleItemWidget( item );
+	};
+
+	/**
+	 * Add items by their filter name
+	 *
+	 * @param {string} name Filter name
+	 */
+	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.addItemByName = function ( name ) {
+		var item = this.model.getItemByName( name );
+
+		if ( !item ) {
+			return;
+		}
+
+		// Check that the item isn't already added
+		if ( !this.getItemFromData( name ) ) {
+			this.addItems( [ this.createItemWidget( name ) ] );
+		}
+	};
+
+	/**
+	 * Remove items by their filter name
+	 *
+	 * @param {string} name Filter name
+	 */
+	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.removeItemByName = function ( name ) {
+		this.removeItemsFromData( [ name ] );
+	};
+
+	/**
+	 * @inheritdoc
+	 */
 	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.focus = function () {
 		// Override this method; we don't want to focus on the popup, and we
 		// don't want to bind the size to the handle.
@@ -154,10 +204,17 @@
 	 * @inheritdoc
 	 */
 	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.removeItems = function ( items ) {
+		var filterData = {};
+
 		// Parent
 		mw.rcfilters.ui.FilterCapsuleMultiselectWidget.parent.prototype.removeItems.call( this, items );
 
-		this.emit( 'remove', items.map( function ( item ) { return item.getData(); } ) );
+		items.forEach( function ( itemWidget ) {
+			filterData[ itemWidget.getData() ] = false;
+		} );
+
+		// Update the model
+		this.model.updateFilters( filterData );
 	};
 
 	/**
