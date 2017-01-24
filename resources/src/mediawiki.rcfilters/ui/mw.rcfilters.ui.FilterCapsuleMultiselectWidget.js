@@ -2,6 +2,7 @@
 	/**
 	 * Filter-specific CapsuleMultiselectWidget
 	 *
+	 * @class
 	 * @extends OO.ui.CapsuleMultiselectWidget
 	 *
 	 * @constructor
@@ -9,6 +10,7 @@
 	 * @param {mw.rcfilters.dm.FiltersViewModel} model RCFilters view model
 	 * @param {OO.ui.InputWidget} filterInput A filter input that focuses the capsule widget
 	 * @param {Object} config Configuration object
+	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
 	 */
 	mw.rcfilters.ui.FilterCapsuleMultiselectWidget = function MwRcfiltersUiFilterCapsuleMultiselectWidget( controller, model, filterInput, config ) {
 		// Parent
@@ -18,6 +20,8 @@
 
 		this.controller = controller;
 		this.model = model;
+		this.$overlay = config.$overlay || this.$element;
+
 		this.filterInput = filterInput;
 
 		this.$content.prepend(
@@ -91,7 +95,18 @@
 
 	/* Methods */
 
-	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.onModelItemUpdate = function () {
+	/**
+	 * Respond to model itemUpdate event
+	 *
+	 * @param {mw.rcfilters.dm.FilterItem} item Filter item model
+	 */
+	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.onModelItemUpdate = function ( item ) {
+		if ( item.isSelected() ) {
+			this.addItemByName( item.getName() );
+		} else {
+			this.removeItemByName( item.getName() );
+		}
+
 		// Re-evaluate reset state
 		this.reevaluateResetRestoreState();
 	};
@@ -132,6 +147,46 @@
 	/**
 	 * @inheritdoc
 	 */
+	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.createItemWidget = function ( data ) {
+		var item = this.model.getItemByName( data );
+
+		if ( !item ) {
+			return;
+		}
+
+		return new mw.rcfilters.ui.CapsuleItemWidget( item, { $overlay: this.$overlay } );
+	};
+
+	/**
+	 * Add items by their filter name
+	 *
+	 * @param {string} name Filter name
+	 */
+	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.addItemByName = function ( name ) {
+		var item = this.model.getItemByName( name );
+
+		if ( !item ) {
+			return;
+		}
+
+		// Check that the item isn't already added
+		if ( !this.getItemFromData( name ) ) {
+			this.addItems( [ this.createItemWidget( name ) ] );
+		}
+	};
+
+	/**
+	 * Remove items by their filter name
+	 *
+	 * @param {string} name Filter name
+	 */
+	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.removeItemByName = function ( name ) {
+		this.removeItemsFromData( [ name ] );
+	};
+
+	/**
+	 * @inheritdoc
+	 */
 	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.focus = function () {
 		// Override this method; we don't want to focus on the popup, and we
 		// don't want to bind the size to the handle.
@@ -154,10 +209,17 @@
 	 * @inheritdoc
 	 */
 	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.removeItems = function ( items ) {
+		var filterData = {};
+
 		// Parent
 		mw.rcfilters.ui.FilterCapsuleMultiselectWidget.parent.prototype.removeItems.call( this, items );
 
-		this.emit( 'remove', items.map( function ( item ) { return item.getData(); } ) );
+		items.forEach( function ( itemWidget ) {
+			filterData[ itemWidget.getData() ] = false;
+		} );
+
+		// Update the model
+		this.model.updateFilters( filterData );
 	};
 
 	/**
