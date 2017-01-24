@@ -13,6 +13,45 @@ class OutputPageTest extends MediaWikiTestCase {
 	const SCREEN_ONLY_MEDIA_QUERY = 'only screen and (min-width: 982px)';
 
 	/**
+	 * @covers OutputPage::addMeta
+	 * @covers OutputPage::getMetaTags
+	 * @covers OutputPage::getHeadLinksArray
+	 */
+	public function testMetaTags() {
+		$outputPage = $this->newInstance();
+		$outputPage->addMeta( 'http:expires', '0' );
+		$outputPage->addMeta( 'keywords', 'first' );
+		$outputPage->addMeta( 'keywords', 'second' );
+
+		$expected = [
+			[ 'http:expires', '0' ],
+			[ 'keywords', 'first' ],
+			[ 'keywords', 'second' ],
+		];
+		$this->assertSame( $expected, $outputPage->getMetaTags() );
+
+		$links = $outputPage->getHeadLinksArray();
+		$this->assertContains( '<meta http-equiv="expires" content="0"/>', $links );
+		$this->assertContains( '<meta name="keywords" content="first"/>', $links );
+		$this->assertContains( '<meta name="keywords" content="second"/>', $links );
+		$this->assertArrayNotHasKey( 'meta-robots', $links );
+	}
+
+	/**
+	 * @covers OutputPage::setIndexPolicy
+	 * @covers OutputPage::setFollowPolicy
+	 * @covers OutputPage::getHeadLinksArray
+	 */
+	public function testRobotsPolicies() {
+		$outputPage = $this->newInstance();
+		$outputPage->setIndexPolicy( 'noindex' );
+		$outputPage->setFollowPolicy( 'nofollow' );
+
+		$links = $outputPage->getHeadLinksArray();
+		$this->assertContains( '<meta name="robots" content="noindex,nofollow"/>', $links );
+	}
+
+	/**
 	 * Tests a particular case of transformCssMedia, using the given input, globals,
 	 * expected return, and message
 	 *
@@ -373,6 +412,29 @@ class OutputPageTest extends MediaWikiTestCase {
 		$this->assertEquals( [ 0 => 'Test', '1' => 'Test2' ], $outputPage->getCategories() );
 		$this->assertEquals( [ 0 => 'Test2' ], $outputPage->getCategories( 'normal' ) );
 		$this->assertEquals( [ 0 => 'Test' ], $outputPage->getCategories( 'hidden' ) );
+	}
+
+	/**
+	 * @return OutputPage
+	 */
+	private function newInstance() {
+		$context = new RequestContext();
+
+		$context->setConfig( new HashConfig( [
+			'AppleTouchIcon' => false,
+			'DisableLangConversion' => true,
+			'EnableAPI' => false,
+			'EnableCanonicalServerLink' => false,
+			'Favicon' => false,
+			'Feed' => false,
+			'LanguageCode' => false,
+			'ReferrerPolicy' => false,
+			'RightsPage' => false,
+			'RightsUrl' => false,
+			'UniversalEditButton' => false,
+		] ) );
+
+		return new OutputPage( $context );
 	}
 }
 
