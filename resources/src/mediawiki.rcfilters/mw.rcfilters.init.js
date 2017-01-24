@@ -24,7 +24,7 @@
 							description: mw.msg( 'rcfilters-filter-registered-description' )
 						},
 						{
-							name: 'hideanon',
+							name: 'hideanons',
 							label: mw.msg( 'rcfilters-filter-unregistered-label' ),
 							description: mw.msg( 'rcfilters-filter-unregistered-description' )
 						}
