@@ -1326,7 +1326,7 @@ class SkinTemplate extends Skin {
 				$nav_urls['userrights'] = [
 					'text' => $this->msg(
 						$canChange ? 'tool-link-userrights' : 'tool-link-userrights-readonly',
-						$this->getUser()->getName()
+						$rootUser
 					)->text(),
 					'href' => self::makeSpecialUrlSubpage( 'Userrights', $rootUser )
 				];
