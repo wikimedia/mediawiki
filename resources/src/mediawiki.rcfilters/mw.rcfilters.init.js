@@ -146,6 +146,44 @@
 			// Initialize values
 			controller.initialize();
 
+			// HACK: Remove old-style filter links for filters handled by the widget
+			// Ideally the widget would handle all filters and we'd just remove .rcshowhide entirely
+			$( '.rcshowhide' ).children().each( function () {
+				// HACK: Interpret the class name to get the filter name
+				// This should really be set as a data attribute
+				var i,
+					name = null,
+					// Some of the older browsers we support don't have .classList,
+					// so we have to interpret the class attribute manually.
+					classes = this.getAttribute( 'class' ).split( ' ' );
+				for ( i = 0; i < classes.length; i++ ) {
+					if ( classes[ i ].substr( 0, 'rcshow'.length ) === 'rcshow' ) {
+						name = classes[ i ].substr( 'rcshow'.length );
+						break;
+					}
+				}
+				if ( name === null ) {
+					return;
+				}
+				if ( name === 'hidemine' ) {
+					// HACK: the span for hidemyself is called hidemine
+					name = 'hidemyself';
+				}
+				// This span corresponds to a filter that's in our model, so remove it
+				if ( model.getItemByName( name ) ) {
+					// HACK: Remove the text node after the span.
+					// If there isn't one, we're at the end, so remove the text node before the span.
+					// This would be unnecessary if we added separators with CSS.
+					if ( this.nextSibling && this.nextSibling.nodeType === Node.TEXT_NODE ) {
+						this.parentNode.removeChild( this.nextSibling );
+					} else if ( this.previousSibling && this.previousSibling.nodeType === Node.TEXT_NODE ) {
+						this.parentNode.removeChild( this.previousSibling );
+					}
+					// Remove the span itself
+					this.parentNode.removeChild( this );
+				}
+			} );
+
 			$( '.rcoptions form' ).submit( function () {
 				var $form = $( this );
 
