@@ -232,11 +232,7 @@
 			.removeAttr( 'height' );
 
 		// Stretch image to take up the required size
-		if ( this.$thumbnail.width() > this.$thumbnail.height() ) {
-			this.$img.attr( 'width', this.imageWidth + 'px' );
-		} else {
-			this.$img.attr( 'height', this.imageHeight + 'px' );
-		}
+		this.$img.attr( 'height', ( this.imageHeight - this.$imgCaption.outerHeight() ) + 'px' );
 
 		// Make the image smaller in case the current image
 		// size is larger than the original file size.
@@ -262,25 +258,28 @@
 		var imageLi = this.getCurrentImage(),
 			caption = imageLi.find( '.gallerytext' );
 
-		// Highlight current thumbnail
+		// The order of the following is important for size calculations
+		// 1. Highlight current thumbnail
 		this.$gallery
 			.find( '.gallerybox.slideshow-current' )
 			.removeClass( 'slideshow-current' );
 		imageLi.addClass( 'slideshow-current' );
 
-		// Show thumbnail stretched to the right size while the image loads
+		// 2. Show thumbnail
 		this.$thumbnail = imageLi.find( 'img' );
 		this.$img.attr( 'src', this.$thumbnail.attr( 'src' ) );
 		this.$img.attr( 'alt', this.$thumbnail.attr( 'alt' ) );
 		this.$imgLink.attr( 'href', imageLi.find( 'a' ).eq( 0 ).attr( 'href' ) );
-		this.setImageSize();
 
-		// Copy caption
+		// 3. Copy caption
 		this.$imgCaption
 			.empty()
 			.append( caption.clone() );
 
-		// Load image at the required size
+		// 4. Stretch thumbnail to correct size
+		this.setImageSize();
+
+		// 5. Load image at the required size
 		this.loadImage( this.$thumbnail ).done( function ( info, $img ) {
 			// Show this image to the user only if its still the current one
 			if ( this.$thumbnail.attr( 'src' ) === $img.attr( 'src' ) ) {
