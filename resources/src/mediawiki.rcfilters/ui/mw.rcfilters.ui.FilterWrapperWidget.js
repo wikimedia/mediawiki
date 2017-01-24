@@ -107,9 +107,10 @@
 
 		// Insert hidden options for the capsule to get its item data from
 		items = filters.map( function ( filterItem ) {
-			return new OO.ui.MenuOptionWidget( {
+			return new mw.rcfilters.ui.CapsuleMenuItemWidget( {
 				data: filterItem.getName(),
-				label: filterItem.getLabel()
+				label: filterItem.getLabel(),
+				description: filterItem.getDescription()
 			} );
 		} );
 

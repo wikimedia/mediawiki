@@ -2,6 +2,7 @@
 	/**
 	 * Filter-specific CapsuleMultiselectWidget
 	 *
+	 * @class
 	 * @extends OO.ui.CapsuleMultiselectWidget
 	 *
 	 * @constructor
@@ -127,6 +128,53 @@
 
 		this.resetButton.toggle( !hideResetButton );
 		this.emptyFilterMessage.toggle( currFiltersAreEmpty );
+	};
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.createItemWidget = function ( data, label, description ) {
+		if ( label === '' ) {
+			return null;
+		}
+		return new mw.rcfilters.ui.CapsuleItemWidget( { data: data, label: label, description: description } );
+	};
+
+	/**
+	 * Slightly adjust addItemsFromData to allow for item description to be sent
+	 * so we can have a popup
+	 *
+	 * @chainable
+	 * @param {Mixed[]} datas
+	 * @return {OO.ui.CapsuleMultiselectWidget}
+	 */
+	OO.ui.CapsuleMultiselectWidget.prototype.addItemsFromData = function ( datas ) {
+		var widget = this,
+			menu = this.menu,
+			items = [];
+
+		$.each( datas, function ( i, data ) {
+			var item;
+
+			if ( !widget.getItemFromData( data ) ) {
+				item = menu.getItemFromData( data );
+				if ( item ) {
+					// Allow for description for the popup
+					item = widget.createItemWidget( data, item.label, item.getDescription() );
+				} else if ( widget.allowArbitrary ) {
+					item = widget.createItemWidget( data, String( data ) );
+				}
+				if ( item ) {
+					items.push( item );
+				}
+			}
+		} );
+
+		if ( items.length ) {
+			this.addItems( items );
+		}
+
+		return this;
 	};
 
 	/**

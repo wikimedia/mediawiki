@@ -1741,6 +1741,8 @@ return [
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FiltersListWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterGroupWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterItemWidget.js',
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.CapsuleItemWidget.js',
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.CapsuleMenuItemWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterCapsuleMultiselectWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterWrapperWidget.js',
 			'resources/src/mediawiki.rcfilters/mw.rcfilters.Controller.js',
