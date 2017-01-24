@@ -3262,6 +3262,11 @@ class OutputPage extends ContextSource {
 			if ( 0 == strcasecmp( 'http:', substr( $tag[0], 0, 5 ) ) ) {
 				$a = 'http-equiv';
 				$tag[0] = substr( $tag[0], 5 );
+			} elseif (
+				substr( $tag[0], 0, 3 ) === 'og:' ||
+				substr( $tag[0], 0, 7 ) === 'schema:'
+			) {
+				$a = 'property';
 			} else {
 				$a = 'name';
 			}
