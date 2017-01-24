@@ -146,6 +146,39 @@
 			// Initialize values
 			controller.initialize();
 
+			// Remove old-style filter links for filters handled by the widget
+			$( '.rcshowhide' ).children().each( function () {
+				// Some of the older browsers we support don't have .classList :(
+				var i,
+					name = null,
+					classes = this.getAttribute( 'class' ).split( ' ' );
+				for ( i = 0; i < classes.length; i++ ) {
+					if ( classes[ i ].substr( 0, 'rcshow'.length ) === 'rcshow' ) {
+						name = classes[ i ].substr( 'rcshow'.length );
+						break;
+					}
+				}
+				if ( name === null ) {
+					return;
+				}
+				if ( name === 'hidemine' ) {
+					// HACK: the span for hidemyself is called hidemine
+					name = 'hidemyself';
+				}
+				// This span corresponds to a filter that's in our model, so remove it
+				if ( model.getItemByName( name ) ) {
+					// Remove the text node after the span.
+					// If there isn't one, we're at the end, so remove the text node before the span.
+					if ( this.nextSibling && this.nextSibling.nodeType === Node.TEXT_NODE ) {
+						this.parentNode.removeChild( this.nextSibling );
+					} else if ( this.previousSibling && this.previousSibling.nodeType === Node.TEXT_NODE ) {
+						this.parentNode.removeChild( this.previousSibling );
+					}
+					// Remove the span itself
+					this.parentNode.removeChild( this );
+				}
+			} );
+
 			$( '.rcoptions form' ).submit( function () {
 				var $form = $( this );
 
