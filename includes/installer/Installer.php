@@ -1656,8 +1656,13 @@ abstract class Installer {
 	 */
 	protected function createMainpage( DatabaseInstaller $installer ) {
 		$status = Status::newGood();
+		$title = Title::newMainPage();
+		if ( $title->exists() ) {
+			$status->warning( 'config-install-mainpage-exists' );
+			return $status;
+		}
 		try {
-			$page = WikiPage::factory( Title::newMainPage() );
+			$page = WikiPage::factory( $title );
 			$content = new WikitextContent(
 				wfMessage( 'mainpagetext' )->inContentLanguage()->text() . "\n\n" .
 				wfMessage( 'mainpagedocfooter' )->inContentLanguage()->text()
