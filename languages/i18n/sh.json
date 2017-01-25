@@ -970,7 +970,7 @@
 	"badsig": "Loš sirovi potpis.\nProvjerite HTML tagove.",
 	"badsiglength": "Vaš potpis je predug.\nMora biti manji od $1 {{PLURAL:$1|znaka|znaka|znakova}}.",
 	"yourgender": "Kako želite da se predstavite?",
-	"gender-unknown": "Kad vas spominje, softver će pokušati koristiti srednji rod kad god je to moguće",
+	"gender-unknown": "Kad Vas spominje, softver će pokušati izbjegavati rod kad god je to moguće",
 	"gender-male": "On uređuje wiki stranice",
 	"gender-female": "Ona uređuje wiki stranice",
 	"prefs-help-gender": "Postavljanje ove preferencije nije obavezno.\nSoftver koristi ovu vrijednost kako bi vam se obratio i spomenuo vas drugima koristeći vaš gramatički rod.\nOva informacija će biti javna.",

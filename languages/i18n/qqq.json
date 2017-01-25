@@ -1574,7 +1574,7 @@
 	"rcfilters-filter-bots-label": "Label for the filter for showing edits made by automated tools.\n{{Identical|Bot}}",
 	"rcfilters-filter-bots-description": "Description for the filter for showing edits made by automated tools.",
 	"rcfilters-filter-humans-label": "Label for the filter for showing edits made by human editors.",
-	"rcfilters-filter-humans-description": " Description for the filter for showing edits made by human editors.",
+	"rcfilters-filter-humans-description": "Description for the filter for showing edits made by human editors.",
 	"rcfilters-filtergroup-significance": "Title for the filter group for edit significance.\n{{Identical|Significance}}",
 	"rcfilters-filter-minor-label": "Label for the filter for showing edits marked as minor.",
 	"rcfilters-filter-minor-description": "Description for the filter for showing edits marked as minor.",
