@@ -99,6 +99,7 @@
 	 */
 	mw.rcfilters.ui.FilterWrapperWidget.prototype.onModelInitialize = function () {
 		var items,
+			wrapper = this,
 			filters = this.model.getItems();
 
 		// Reset
@@ -113,6 +114,16 @@
 		} );
 
 		this.capsule.getMenu().addItems( items );
+
+		// Add defaults to capsule. We have to do this
+		// after we added to the capsule menu, since that's
+		// how the capsule multiselect widget knows which
+		// object to add
+		filters.forEach( function ( filterItem ) {
+			if ( filterItem.isSelected() ) {
+				wrapper.addCapsuleItemFromName( filterItem.getName() );
+			}
+		} );
 	};
 
 	/**
@@ -124,11 +135,7 @@
 		var widget = this;
 
 		if ( item.isSelected() ) {
-			this.capsule.addItemsFromData( [ item.getName() ] );
-
-			// Deal with active/inactive capsule filter items
-			this.capsule.getItemFromData( item.getName() ).$element
-				.toggleClass( 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-item-inactive', !item.isActive() );
+			this.addCapsuleItemFromName( item.getName() );
 		} else {
 			this.capsule.removeItemsFromData( [ item.getName() ] );
 		}
@@ -139,5 +146,20 @@
 				groupWidget.toggleActiveState( widget.model.isFilterGroupActive( groupWidget.getName() ) );
 			}
 		} );
+	};
+
+	/**
+	 * Add a capsule item by its filter name
+	 *
+	 * @param {string} itemName Filter name
+	 */
+	mw.rcfilters.ui.FilterWrapperWidget.prototype.addCapsuleItemFromName = function ( itemName ) {
+		var item = this.model.getItemByName( itemName );
+
+		this.capsule.addItemsFromData( [ itemName ] );
+
+		// Deal with active/inactive capsule filter items
+		this.capsule.getItemFromData( itemName ).$element
+			.toggleClass( 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-item-inactive', !item.isActive() );
 	};
 }( mediaWiki ) );
