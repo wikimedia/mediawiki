@@ -1747,7 +1747,6 @@ return [
 			'resources/src/mediawiki.rcfilters/mw.rcfilters.init.js',
 		],
 		'styles' => [
-			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.FilterItemWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.FilterGroupWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.FiltersListWidget.less',
