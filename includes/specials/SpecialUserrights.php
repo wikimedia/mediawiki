@@ -472,29 +472,6 @@ class UserrightsPage extends SpecialPage {
 	}
 
 	/**
-	 * Go through used and available groups and return the ones that this
-	 * form will be able to manipulate based on the current user's system
-	 * permissions.
-	 *
-	 * @param array $groups List of groups the given user is in
-	 * @return array Tuple of addable, then removable groups
-	 */
-	protected function splitGroups( $groups ) {
-		list( $addable, $removable, $addself, $removeself ) = array_values( $this->changeableGroups() );
-
-		$removable = array_intersect(
-			array_merge( $this->isself ? $removeself : [], $removable ),
-			$groups
-		); // Can't remove groups the user doesn't have
-		$addable = array_diff(
-			array_merge( $this->isself ? $addself : [], $addable ),
-			$groups
-		); // Can't add groups the user does have
-
-		return [ $addable, $removable ];
-	}
-
-	/**
 	 * Show the form to edit group memberships.
 	 *
 	 * @param User|UserRightsProxy $user User or UserRightsProxy you're editing
