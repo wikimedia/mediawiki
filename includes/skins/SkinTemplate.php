@@ -1322,7 +1322,7 @@ class SkinTemplate extends Skin {
 			if ( !$user->isAnon() ) {
 				$sur = new UserrightsPage;
 				$sur->setContext( $this->getContext() );
-				$canChange = $sur->userCanChangeRights( $this->getUser(), false );
+				$canChange = $sur->userCanChangeRights( $user );
 				$nav_urls['userrights'] = [
 					'text' => $this->msg(
 						$canChange ? 'tool-link-userrights' : 'tool-link-userrights-readonly',
