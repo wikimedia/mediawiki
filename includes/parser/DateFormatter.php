@@ -192,6 +192,10 @@ class DateFormatter {
 			// Another horrible hack
 			$this->mLinked = $linked;
 			$text = preg_replace_callback( $regex, [ &$this, 'replace' ], $text );
+			if ( $text === null ) {
+				wfDebugLog( 'AdHocDebug', 'Empty regex processing '
+					. RequestContext::getMain()->getTitle()->getPrefixedText() );
+			}
 			unset( $this->mLinked );
 		}
 		return $text;
