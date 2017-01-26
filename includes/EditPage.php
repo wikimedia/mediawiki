@@ -501,7 +501,7 @@ class EditPage {
 	/**
 	 * @deprecated since 1.29, call edit directly
 	 */
-	function submit() {
+	public function submit() {
 		$this->edit();
 	}
 
@@ -516,7 +516,7 @@ class EditPage {
 	 * is made and all is well do we actually save and redirect to
 	 * the newly-edited page.
 	 */
-	function edit() {
+	public function edit() {
 		global $wgOut, $wgRequest, $wgUser;
 		// Allow extensions to modify/prevent this form or submission
 		if ( !Hooks::run( 'AlternateEdit', [ $this ] ) ) {
@@ -840,7 +840,7 @@ class EditPage {
 	 * @param WebRequest $request
 	 * @throws ErrorPageError
 	 */
-	function importFormData( &$request ) {
+	public function importFormData( &$request ) {
 		global $wgContLang, $wgUser;
 
 		# Section edit can come from either the form or a link
@@ -1071,7 +1071,7 @@ class EditPage {
 	 * Called on the first invocation, e.g. when a user clicks an edit link
 	 * @return bool If the requested section is valid
 	 */
-	function initialiseForm() {
+	public function initialiseForm() {
 		global $wgUser;
 		$this->edittime = $this->page->getTimestamp();
 		$this->editRevId = $this->page->getLatest();
@@ -1423,7 +1423,7 @@ class EditPage {
 	 * @return bool
 	 * @private
 	 */
-	function tokenOk( &$request ) {
+	public function tokenOk( &$request ) {
 		global $wgUser;
 		$token = $request->getVal( 'wpEditToken' );
 		$this->mTokenOk = $wgUser->matchEditToken( $token );
@@ -1717,7 +1717,7 @@ class EditPage {
 	 *   AS_BLOCKED_PAGE_FOR_USER. All that stuff needs to be cleaned up some
 	 * time.
 	 */
-	function internalAttemptSave( &$result, $bot = false ) {
+	public function internalAttemptSave( &$result, $bot = false ) {
 		global $wgUser, $wgRequest, $wgParser, $wgMaxArticleSize;
 		global $wgContentHandlerUseDB;
 
@@ -2273,7 +2273,7 @@ class EditPage {
 	 *        one might think of X as the "base revision", which is NOT what this returns.
 	 * @return Revision Current version when the edit was started
 	 */
-	function getBaseRevision() {
+	public function getBaseRevision() {
 		if ( !$this->mBaseRevision ) {
 			$db = wfGetDB( DB_MASTER );
 			$this->mBaseRevision = $this->editRevId
@@ -2325,7 +2325,7 @@ class EditPage {
 		return false;
 	}
 
-	function setHeaders() {
+	public function setHeaders() {
 		global $wgOut, $wgUser, $wgAjaxEditStash, $wgCookieSetOnAutoblock;
 
 		$wgOut->addModules( 'mediawiki.action.edit' );
@@ -2585,7 +2585,7 @@ class EditPage {
 	 * The $formCallback parameter is deprecated since MediaWiki 1.25. Please
 	 * use the EditPage::showEditForm:fields hook instead.
 	 */
-	function showEditForm( $formCallback = null ) {
+	public function showEditForm( $formCallback = null ) {
 		global $wgOut, $wgUser;
 
 		# need to parse the preview early so that we know which templates are used,
@@ -3027,7 +3027,7 @@ class EditPage {
 	 *
 	 * @return array An array in the format [ $label, $input ]
 	 */
-	function getSummaryInput( $summary = "", $labelText = null,
+	public function getSummaryInput( $summary = "", $labelText = null,
 		$inputAttrs = null, $spanLabelAttrs = null
 	) {
 		// Note: the maxlength is overridden in JS to 255 and to make it use UTF-8 bytes, not characters.
@@ -3301,7 +3301,7 @@ HTML
 	 * If this is a section edit, we'll replace the section as for final
 	 * save and then make a comparison.
 	 */
-	function showDiff() {
+	public function showDiff() {
 		global $wgUser, $wgContLang, $wgOut;
 
 		$oldtitlemsg = 'currentrev';
@@ -3679,7 +3679,7 @@ HTML
 	 * @throws MWException
 	 * @return string
 	 */
-	function getPreviewText() {
+	public function getPreviewText() {
 		global $wgOut, $wgRawHtml, $wgLang;
 		global $wgAllowUserCss, $wgAllowUserJs;
 
@@ -3855,7 +3855,7 @@ HTML
 	/**
 	 * @return array
 	 */
-	function getTemplates() {
+	public function getTemplates() {
 		if ( $this->preview || $this->section != '' ) {
 			$templates = [];
 			if ( !isset( $this->mParserOutput ) ) {
@@ -3879,7 +3879,7 @@ HTML
 	 * @param Title $title Title object for the page being edited (optional)
 	 * @return string
 	 */
-	static function getEditToolbar( $title = null ) {
+	public static function getEditToolbar( $title = null ) {
 		global $wgContLang, $wgOut;
 		global $wgEnableUploads, $wgForeignFileRepos;
 
@@ -4132,7 +4132,7 @@ HTML
 	 * Creates a basic error page which informs the user that
 	 * they have attempted to edit a nonexistent section.
 	 */
-	function noSuchSectionPage() {
+	public function noSuchSectionPage() {
 		global $wgOut;
 
 		$wgOut->prepareErrorPage( $this->context->msg( 'nosuchsectiontitle' ) );
