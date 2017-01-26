@@ -1167,6 +1167,7 @@ $wgAutoloadLocalClasses = [
 	'RecentChange' => __DIR__ . '/includes/changes/RecentChange.php',
 	'RecentChangesUpdateJob' => __DIR__ . '/includes/jobqueue/jobs/RecentChangesUpdateJob.php',
 	'RecompressTracked' => __DIR__ . '/maintenance/storage/recompressTracked.php',
+	'RecountCategories' => __DIR__ . '/maintenance/recountCategories.php',
 	'RedirectSpecialArticle' => __DIR__ . '/includes/specialpage/RedirectSpecialPage.php',
 	'RedirectSpecialPage' => __DIR__ . '/includes/specialpage/RedirectSpecialPage.php',
 	'RedisBagOStuff' => __DIR__ . '/includes/libs/objectcache/RedisBagOStuff.php',
