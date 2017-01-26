@@ -114,6 +114,7 @@ changes to languages because of Phabricator reports.
   RC/history lines. EnhancedChangesListModifyBlockLineData can do that via the
   $data['attribs'] subarray.
 * (T130632) The OutputPage::enableTOC() method was removed.
+* Article::viewRedirect() is deprecated.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
