@@ -226,6 +226,8 @@ changes to languages because of Phabricator reports.
   UsersPager::buildGroupLink() was changed from a static to an instance method.
 * The third parameter ($cache) to the UsersPagerDoBatchLookups hook was changed;
   see docs/hooks.txt.
+* User::crypt() (deprecated in 1.24) was removed.
+* User::comparePasswords() (deprecated in 1.24) was removed.
 
 == Compatibility ==
 
