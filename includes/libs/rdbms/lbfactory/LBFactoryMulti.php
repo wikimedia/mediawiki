@@ -21,6 +21,13 @@
  * @ingroup Database
  */
 
+namespace Wikimedia\Rdbms;
+
+use LoadBalancer;
+use IDatabase;
+use DatabaseDomain;
+use InvalidArgumentException;
+
 /**
  * A multi-database, multi-master factory for Wikimedia and similar installations.
  * Ignores the old configuration globals.

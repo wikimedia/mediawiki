@@ -171,6 +171,16 @@ abstract class MWLBFactory {
 			);
 		}
 
+		$compat = [
+			'LBFactorySingle' => 'Wikimedia\Rdbms\LBFactorySingle',
+			'LBFactorySimple' => 'Wikimedia\Rdbms\LBFactorySimple',
+			'LBFactoryMulti' => 'Wikimedia\Rdbms\LBFactoryMulti'
+		];
+
+		if ( isset( $compat[$class] ) ) {
+			$class = $compat[$class];
+		}
+
 		return $class;
 	}
 }
