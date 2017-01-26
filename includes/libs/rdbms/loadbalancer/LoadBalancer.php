@@ -21,8 +21,10 @@
  * @ingroup Database
  */
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\TransactionProfiler;
+use Wikimedia\Rdbms\ILoadMonitor;
 
 /**
  * Database connection, tracking, load balancing, and transaction manager for a cluster
@@ -195,7 +197,7 @@ class LoadBalancer implements ILoadBalancer {
 			};
 
 		foreach ( [ 'replLogger', 'connLogger', 'queryLogger', 'perfLogger' ] as $key ) {
-			$this->$key = isset( $params[$key] ) ? $params[$key] : new \Psr\Log\NullLogger();
+			$this->$key = isset( $params[$key] ) ? $params[$key] : new NullLogger();
 		}
 
 		$this->host = isset( $params['hostname'] )
@@ -212,7 +214,17 @@ class LoadBalancer implements ILoadBalancer {
 	 */
 	private function getLoadMonitor() {
 		if ( !isset( $this->loadMonitor ) ) {
+			$compat = [
+				'LoadMonitor' => Wikimedia\Rdbms\LoadMonitor::class,
+				'LoadMonitorNull' => Wikimedia\Rdbms\LoadMonitorNull:class,
+				'LoadMonitorMySQL' => Wikimedia\Rdbms\LoadMonitorMySQL:class,
+			];
+
 			$class = $this->loadMonitorConfig['class'];
+			if ( isset( $compat[$class] ) ) {
+				$class = $compat[$class];
+			}
+
 			$this->loadMonitor = new $class(
 				$this, $this->srvCache, $this->memCache, $this->loadMonitorConfig );
 			$this->loadMonitor->setLogger( $this->replLogger );
@@ -1472,8 +1484,9 @@ class LoadBalancer implements ILoadBalancer {
 
 	/**
 	 * @param IDatabase $conn
-	 * @param DBMasterPos|false $pos
+	 * @param DBMasterPos|bool $pos
 	 * @param int $timeout
+	 * @return bool
 	 */
 	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = 10 ) {
 		if ( $this->getServerCount() <= 1 || !$conn->getLBInfo( 'replica' ) ) {
