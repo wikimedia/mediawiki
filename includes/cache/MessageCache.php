@@ -89,10 +89,12 @@ class MessageCache {
 	 */
 	protected $mInParser = false;
 
-	/** @var BagOStuff */
-	protected $mMemc;
 	/** @var WANObjectCache */
 	protected $wanCache;
+	/** @var BagOStuff */
+	protected $clusterCache;
+	/** @var BagOStuff */
+	protected $srvCache;
 
 	/**
 	 * Singleton instance
@@ -109,9 +111,13 @@ class MessageCache {
 	 */
 	public static function singleton() {
 		if ( self::$instance === null ) {
-			global $wgUseDatabaseMessages, $wgMsgCacheExpiry;
+			global $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgUseLocalMessageCache;
 			self::$instance = new self(
+				MediaWikiServices::getInstance()->getMainWANObjectCache(),
 				wfGetMessageCacheStorage(),
+				$wgUseLocalMessageCache
+					? MediaWikiServices::getInstance()->getLocalServerObjectCache()
+					: new EmptyBagOStuff(),
 				$wgUseDatabaseMessages,
 				$wgMsgCacheExpiry
 			);
@@ -149,24 +155,25 @@ class MessageCache {
 	}
 
 	/**
-	 * @param BagOStuff $memCached A cache instance. If none, fall back to CACHE_NONE.
-	 * @param bool $useDB
+	 * @param WANObjectCache $wanCache WAN cache instance
+	 * @param BagOStuff $clusterCache Cluster cache instance
+	 * @param BagOStuff $srvCache Server cache instance
+	 * @param bool $useDB Whether to look for message overrides (e.g. MediaWiki: pages)
 	 * @param int $expiry Lifetime for cache. @see $mExpiry.
 	 */
-	function __construct( BagOStuff $memCached, $useDB, $expiry ) {
-		global $wgUseLocalMessageCache;
+	public function __construct(
+		WANObjectCache $wanCache,
+		BagOStuff $clusterCache,
+		BagOStuff $srvCache,
+		$useDB,
+		$expiry
+	) {
+		$this->wanCache = $wanCache;
+		$this->clusterCache = $clusterCache;
+		$this->srvCache = $srvCache;
 
-		$this->mMemc = $memCached;
 		$this->mDisable = !$useDB;
 		$this->mExpiry = $expiry;
-
-		if ( $wgUseLocalMessageCache ) {
-			$this->localCache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
-		} else {
-			$this->localCache = new EmptyBagOStuff();
-		}
-
-		$this->wanCache = ObjectCache::getMainWANInstance();
 	}
 
 	/**
@@ -203,7 +210,7 @@ class MessageCache {
 	protected function getLocalCache( $code ) {
 		$cacheKey = wfMemcKey( __CLASS__, $code );
 
-		return $this->localCache->get( $cacheKey );
+		return $this->srvCache->get( $cacheKey );
 	}
 
 	/**
@@ -214,7 +221,7 @@ class MessageCache {
 	 */
 	protected function saveToLocalCache( $code, $cache ) {
 		$cacheKey = wfMemcKey( __CLASS__, $code );
-		$this->localCache->set( $cacheKey, $cache );
+		$this->srvCache->set( $cacheKey, $cache );
 	}
 
 	/**
@@ -300,7 +307,7 @@ class MessageCache {
 					# below, and use the local stale value if it was not acquired.
 					$where[] = 'global cache is presumed expired';
 				} else {
-					$cache = $this->mMemc->get( $cacheKey );
+					$cache = $this->clusterCache->get( $cacheKey );
 					if ( !$cache ) {
 						$where[] = 'global cache is empty';
 					} elseif ( $this->isCacheExpired( $cache ) ) {
@@ -381,12 +388,10 @@ class MessageCache {
 	 * @return bool|string True on success or one of ("cantacquire", "disabled")
 	 */
 	protected function loadFromDBWithLock( $code, array &$where, $mode = null ) {
-		global $wgUseLocalMessageCache;
-
 		# If cache updates on all levels fail, give up on message overrides.
 		# This is to avoid easy site outages; see $saveSuccess comments below.
 		$statusKey = wfMemcKey( 'messages', $code, 'status' );
-		$status = $this->mMemc->get( $statusKey );
+		$status = $this->clusterCache->get( $statusKey );
 		if ( $status === 'error' ) {
 			$where[] = "could not load; method is still globally disabled";
 			return 'disabled';
@@ -424,8 +429,8 @@ class MessageCache {
 			 * incurring a loadFromDB() overhead on every request, and thus saves the
 			 * wiki from complete downtime under moderate traffic conditions.
 			 */
-			if ( !$wgUseLocalMessageCache ) {
-				$this->mMemc->set( $statusKey, 'error', 60 * 5 );
+			if ( $this->srvCache instanceof EmptyBagOStuff ) {
+				$this->clusterCache->set( $statusKey, 'error', 60 * 5 );
 				$where[] = 'could not save cache, disabled globally for 5 minutes';
 			} else {
 				$where[] = "could not save global cache";
@@ -660,7 +665,7 @@ class MessageCache {
 	protected function saveToCaches( array $cache, $dest, $code = false ) {
 		if ( $dest === 'all' ) {
 			$cacheKey = wfMemcKey( 'messages', $code );
-			$success = $this->mMemc->set( $cacheKey, $cache );
+			$success = $this->clusterCache->set( $cacheKey, $cache );
 			$this->setValidationHash( $code, $cache );
 		} else {
 			$success = true;
@@ -732,7 +737,7 @@ class MessageCache {
 	 * @return null|ScopedCallback
 	 */
 	protected function getReentrantScopedLock( $key, $timeout = self::WAIT_SEC ) {
-		return $this->mMemc->getScopedLock( $key, $timeout, self::LOCK_TTL, __METHOD__ );
+		return $this->clusterCache->getScopedLock( $key, $timeout, self::LOCK_TTL, __METHOD__ );
 	}
 
 	/**
