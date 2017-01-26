@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Rdbms\LBFactorySimple;
+use Wikimedia\Rdbms\LBFactoryMulti;
 use Wikimedia\Rdbms\ChronologyProtector;
 
 /**
@@ -54,9 +56,9 @@ class LBFactoryTest extends MediaWikiTestCase {
 	public function getLBFactoryClassProvider() {
 		return [
 			# Format: new class, old class
-			[ 'LBFactorySimple', 'LBFactory_Simple' ],
-			[ 'LBFactorySingle', 'LBFactory_Single' ],
-			[ 'LBFactoryMulti', 'LBFactory_Multi' ],
+			[ 'Wikimedia\Rdbms\LBFactorySimple', 'LBFactory_Simple' ],
+			[ 'Wikimedia\Rdbms\LBFactorySingle', 'LBFactory_Single' ],
+			[ 'Wikimedia\Rdbms\LBFactoryMulti', 'LBFactory_Multi' ],
 		];
 	}
 

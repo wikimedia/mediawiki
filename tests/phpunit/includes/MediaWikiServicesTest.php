@@ -308,7 +308,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'SearchEngineFactory' => [ 'SearchEngineFactory', SearchEngineFactory::class ],
 			'SearchEngineConfig' => [ 'SearchEngineConfig', SearchEngineConfig::class ],
 			'SkinFactory' => [ 'SkinFactory', SkinFactory::class ],
-			'DBLoadBalancerFactory' => [ 'DBLoadBalancerFactory', 'LBFactory' ],
+			'DBLoadBalancerFactory' => [ 'DBLoadBalancerFactory', 'Wikimedia\Rdbms\LBFactory' ],
 			'DBLoadBalancer' => [ 'DBLoadBalancer', 'LoadBalancer' ],
 			'WatchedItemStore' => [ 'WatchedItemStore', WatchedItemStore::class ],
 			'WatchedItemQueryService' => [ 'WatchedItemQueryService', WatchedItemQueryService::class ],
