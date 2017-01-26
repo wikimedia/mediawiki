@@ -363,8 +363,8 @@ class EditPage {
 	/** @var bool */
 	public $bot = true;
 
-	/** @var null|string */
-	public $contentModel = null;
+	/** @var string */
+	public $contentModel;
 
 	/** @var null|string */
 	public $contentFormat = null;
@@ -1255,11 +1255,7 @@ class EditPage {
 		}
 		$revision = $this->mArticle->getRevisionFetched();
 		if ( $revision === null ) {
-			if ( !$this->contentModel ) {
-				$this->contentModel = $this->getTitle()->getContentModel();
-			}
 			$handler = ContentHandler::getForModelID( $this->contentModel );
-
 			return $handler->makeEmptyContent();
 		}
 		$content = $revision->getContent( Revision::FOR_THIS_USER, $user );
@@ -1299,11 +1295,7 @@ class EditPage {
 		$content = $rev ? $rev->getContent( Revision::RAW ) : null;
 
 		if ( $content === false || $content === null ) {
-			if ( !$this->contentModel ) {
-				$this->contentModel = $this->getTitle()->getContentModel();
-			}
 			$handler = ContentHandler::getForModelID( $this->contentModel );
-
 			return $handler->makeEmptyContent();
 		} elseif ( !$this->undidRev ) {
 			// Content models should always be the same since we error
