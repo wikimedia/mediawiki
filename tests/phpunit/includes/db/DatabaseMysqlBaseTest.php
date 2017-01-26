@@ -25,6 +25,8 @@
  * @copyright © 2013 Wikimedia Foundation Inc.
  */
 
+use Wikimedia\Rdbms\TransactionProfiler;
+
 /**
  * Fake class around abstract class so we can call concrete methods.
  */

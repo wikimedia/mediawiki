@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Rdbms\TransactionProfiler;
+
 /**
  * Helper for testing the methods from the Database class
  * @since 1.22
