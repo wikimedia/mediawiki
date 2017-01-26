@@ -21,10 +21,21 @@
  * @ingroup Database
  */
 
+namespace Wikimedia\Rdbms;
+
 use Psr\Log\LoggerInterface;
 use Wikimedia\ScopedCallback;
-use Wikimedia\Rdbms\TransactionProfiler;
-use Wikimedia\Rdbms\ChronologyProtector;
+use BagOStuff;
+use EmptyBagOStuff;
+use WANObjectCache;
+use DatabaseDomain;
+use Exception;
+use RuntimeException;
+use ILoadBalancer;
+use IDatabase;
+use LoadBalancer;
+use DBTransactionError;
+use DBReplicationWaitError;
 
 /**
  * An interface for generating database load balancers

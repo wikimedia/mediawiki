@@ -20,6 +20,7 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\LBFactory;
 
 /**
  * Job to add recent change entries mentioning category membership changes
