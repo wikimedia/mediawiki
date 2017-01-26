@@ -21,6 +21,14 @@
  * @ingroup Database
  */
 
+namespace Wikimedia\Rdbms;
+
+use InvalidArgumentException;
+use ILoadBalancer;
+use LoadBalancer;
+use DBTransactionError;
+use DBReplicationWaitError;
+
 /**
  * An interface for generating database load balancers
  * @ingroup Database
@@ -178,7 +186,7 @@ interface ILBFactory {
 	 * @param string $fname Caller name
 	 * @param array $options Options map:
 	 *   - maxWriteDuration: abort if more than this much time was spent in write queries
-	 * @throws Exception
+	 * @throws DBTransactionError
 	 */
 	public function commitMasterChanges( $fname = __METHOD__, array $options = [] );
 

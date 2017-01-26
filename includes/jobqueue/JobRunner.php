@@ -27,6 +27,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Rdbms\LBFactory;
 
 /**
  * Job queue runner utility methods
