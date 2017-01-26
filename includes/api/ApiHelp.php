@@ -564,7 +564,8 @@ class ApiHelp extends ApiBase {
 									break;
 
 								case 'tags':
-									$tags = ChangeTags::listExplicitlyDefinedTags();
+									$changeTagsContext = new ChangeTagsContext( $context->getConfig() );
+									$tags = array_keys( $changeTagsContext()->getUserTags() );
 									$count = count( $tags );
 									$info[] = $context->msg( 'api-help-param-list' )
 										->params( $multi ? 2 : 1 )

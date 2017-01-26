@@ -24,11 +24,6 @@
 class ChangeTags {
 
 	/**
-	 * @var string[]
-	 */
-	private static $coreTags = [ 'mw-contentmodelchange' ];
-
-	/**
 	 * Creates HTML for the given tags
 	 *
 	 * @param string $tags Comma-separated list of tags
@@ -133,23 +128,6 @@ class ChangeTags {
 	}
 
 	/**
-	 * Is it OK to allow the user to apply all the specified tags at the same time
-	 * as they edit/make the change?
-	 *
-	 * @param array $tags Tags that you are interested in applying
-	 * @param User|null $user User whose permission you wish to check, or null if
-	 * you don't care (e.g. maintenance scripts)
-	 * @return Status
-	 * @since 1.25
-	 */
-	public static function canAddTagsAccompanyingChange( array $tags,
-		User $user = null ) {
-		$lang = RequestContext::getMain()->getLanguage();
-		$updater = new ChangeTagsUpdater( $user, $lang );
-		return $updater->canAddTagsAccompanyingChange( $tags );
-	}
-
-	/**
 	 * Applies all tags-related changes to a query.
 	 * Handles selecting tags, and filtering.
 	 * Needs $tables to be set up properly, so we can figure out which join conditions to use.
@@ -217,8 +195,16 @@ class ChangeTags {
 		}
 
 		$config = $context->getConfig();
-		if ( !$config->get( 'UseTagFilter' ) || !count( self::listDefinedTags() ) ) {
+		// check config
+		if ( !$config->get( 'UseTagFilter' ) ) {
 			return [];
+		} else {
+			// check if some tags are defined
+			$changeTagsContext = new ChangeTagsContext( $config );
+			$tagList = $changeTagsContext->getDefinedTags();
+			if ( !count( $tagList ) ) {
+				return [];
+			}
 		}
 
 		$data = [
@@ -249,254 +235,106 @@ class ChangeTags {
 	}
 
 	/**
-	 * Lists those tags which core or extensions report as being "active".
-	 *
-	 * @return array
+	 * @see ChangeTagsContext::canAddTagsAccompanyingChange
 	 * @since 1.25
+	 * @todo deprecate
 	 */
-	public static function listSoftwareActivatedTags() {
-		// core active tags
-		$tags = self::$coreTags;
-		if ( !Hooks::isRegistered( 'ChangeTagsListActive' ) ) {
-			return $tags;
-		}
-		return ObjectCache::getMainWANInstance()->getWithSetCallback(
-			wfMemcKey( 'active-tags' ),
-			WANObjectCache::TTL_MINUTE * 5,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags ) {
-				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
-
-				// Ask extensions which tags they consider active
-				Hooks::run( 'ChangeTagsListActive', [ &$tags ] );
-				return $tags;
-			},
-			[
-				'checkKeys' => [ wfMemcKey( 'active-tags' ) ],
-				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
-				'pcTTL' => WANObjectCache::TTL_PROC_LONG
-			]
-		);
+	public static function canAddTagsAccompanyingChange( array $tags,
+		User $user = null ) {
+		$changeTagsContext = new ChangeTagsContext( RequestContext::getMain()->getConfig() );
+		$lang = RequestContext::getMain()->getLanguage();
+		$manager = new ChangeTagsUpdater( $changeTagsContext, $user, $lang );
+		return $manager->canAddTagsAccompanyingChange( $tags );
 	}
 
 	/**
-	 * @see listSoftwareActivatedTags
-	 * @deprecated since 1.28 call listSoftwareActivatedTags directly
-	 * @return array
+	 * @deprecated since 1.28, use ChangeTagsContext class instead
+	 * @since 1.28
+	 */
+	public static function listSoftwareActivatedTags() {
+		wfDeprecated( __METHOD__, '1.28' );
+		$changeTagsContext = new ChangeTagsContext( RequestContext::getMain()->getConfig() );
+		$tags = [];
+		$registered = $changeTagsContext->getSoftwareTags();
+		foreach ( $registered as $tag => &$val ) {
+			if ( $changeTagsContext->isActive( $tag ) ) {
+				$tags[] = $tag;
+			}
+		}
+		return $tags;
+	}
+
+	/**
+	 * @deprecated since 1.28, use ChangeTagsContext class instead
+	 * @since 1.25
 	 */
 	public static function listExtensionActivatedTags() {
-		wfDeprecated( __METHOD__, '1.28' );
 		return self::listSoftwareActivatedTags();
 	}
 
 	/**
-	 * Basically lists defined tags which count even if they aren't applied to anything.
-	 * It returns a union of the results of listExplicitlyDefinedTags() and
-	 * listExtensionDefinedTags().
-	 *
-	 * @return string[] Array of strings: tags
+	 * @deprecated since 1.28, use ChangeTagsContext class instead
 	 */
 	public static function listDefinedTags() {
-		$tags1 = self::listExplicitlyDefinedTags();
-		$tags2 = self::listSoftwareDefinedTags();
-		return array_values( array_unique( array_merge( $tags1, $tags2 ) ) );
+		wfDeprecated( __METHOD__, '1.28' );
+		$changeTagsContext = new ChangeTagsContext( RequestContext::getMain()->getConfig() );
+		return array_keys( $changeTagsContext->getDefinedTags() );
 	}
 
 	/**
-	 * Lists tags explicitly defined in the `valid_tag` table of the database.
-	 * Tags in table 'change_tag' which are not in table 'valid_tag' are not
-	 * included.
-	 *
-	 * Tries memcached first.
-	 *
-	 * @return string[] Array of strings: tags
+	 * @deprecated since 1.28, use ChangeTagsContext class instead
+	 * @since 1.28
+	 */
+	public static function listSoftwareDefinedTags() {
+		wfDeprecated( __METHOD__, '1.28' );
+		$changeTagsContext = new ChangeTagsContext( RequestContext::getMain()->getConfig() );
+		return $changeTagsContext->getSoftwareTags();
+	}
+
+	/**
+	 * @deprecated since 1.28, use ChangeTagsContext class instead
 	 * @since 1.25
 	 */
 	public static function listExplicitlyDefinedTags() {
-		$fname = __METHOD__;
-
-		return ObjectCache::getMainWANInstance()->getWithSetCallback(
-			wfMemcKey( 'valid-tags-db' ),
-			WANObjectCache::TTL_MINUTE * 5,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
-				$dbr = wfGetDB( DB_REPLICA );
-
-				$setOpts += Database::getCacheSetOptions( $dbr );
-
-				$tags = $dbr->selectFieldValues( 'valid_tag', 'vt_tag', [], $fname );
-
-				return array_filter( array_unique( $tags ) );
-			},
-			[
-				'checkKeys' => [ wfMemcKey( 'valid-tags-db' ) ],
-				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
-				'pcTTL' => WANObjectCache::TTL_PROC_LONG
-			]
-		);
+		wfDeprecated( __METHOD__, '1.28' );
+		$changeTagsContext = new ChangeTagsContext( RequestContext::getMain()->getConfig() );
+		return array_keys( $changeTagsContext->getUserTags() );
 	}
 
 	/**
-	 * Lists tags defined by core or extensions using the ListDefinedTags hook.
-	 * Extensions need only define those tags they deem to be in active use.
-	 *
-	 * Tries memcached first.
-	 *
-	 * @return string[] Array of strings: tags
+	 * @deprecated since 1.28, use ChangeTagsContext class instead
 	 * @since 1.25
-	 */
-	public static function listSoftwareDefinedTags() {
-		// core defined tags
-		$tags = self::$coreTags;
-		if ( !Hooks::isRegistered( 'ListDefinedTags' ) ) {
-			return $tags;
-		}
-		return ObjectCache::getMainWANInstance()->getWithSetCallback(
-			wfMemcKey( 'valid-tags-hook' ),
-			WANObjectCache::TTL_MINUTE * 5,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags ) {
-				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
-
-				Hooks::run( 'ListDefinedTags', [ &$tags ] );
-				return array_filter( array_unique( $tags ) );
-			},
-			[
-				'checkKeys' => [ wfMemcKey( 'valid-tags-hook' ) ],
-				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
-				'pcTTL' => WANObjectCache::TTL_PROC_LONG
-			]
-		);
-	}
-
-	/**
-	 * Call listSoftwareDefinedTags directly
-	 *
-	 * @see listSoftwareDefinedTags
-	 * @deprecated since 1.28
 	 */
 	public static function listExtensionDefinedTags() {
 		wfDeprecated( __METHOD__, '1.28' );
-		return self::listSoftwareDefinedTags();
+		$changeTagsContext = new ChangeTagsContext( RequestContext::getMain()->getConfig() );
+		return array_keys( $changeTagsContext->getSoftwareTags() );
 	}
 
 	/**
-	 * Invalidates the short-term cache of defined tags used by the
-	 * list*DefinedTags functions, as well as the tag statistics cache.
+	 * @deprecated since 1.28, use ChangeTagsContext::purgeTagCacheAll() instead
 	 * @since 1.25
 	 */
-	public static function purgeTagCacheAll() {
-		self::purgeStoredTagsCache();
-		self::purgeRegisteredTagsCache();
-		self::purgeTagUsageCache();
-	}
-
-	/**
-	 * Invalidates the stored tags cache only.
-	 * @since 1.28
-	 */
-	public static function purgeStoredTagsCache() {
-		$cache = ObjectCache::getMainWANInstance();
-
-		$cache->touchCheckKey( wfMemcKey( 'valid-tags-db' ) );
-	}
-
-	/**
-	 * Invalidates the registered tags caches only.
-	 * @since 1.28
-	 */
 	public static function purgeRegisteredTagsCache() {
-		$cache = ObjectCache::getMainWANInstance();
-
-		$cache->touchCheckKey( wfMemcKey( 'valid-tags-hook' ) );
-		$cache->touchCheckKey( wfMemcKey( 'active-tags' ) );
+		wfDeprecated( __METHOD__, '1.28' );
+		ChangeTagsCache::purgeTagCacheAll();
 	}
 
 	/**
-	 * Invalidates the tag statistics cache only.
+	 * @deprecated since 1.28, use ChangeTagsContext::purgeTagUsageCache() instead
 	 * @since 1.25
 	 */
 	public static function purgeTagUsageCache() {
-		$cache = ObjectCache::getMainWANInstance();
-
-		$cache->touchCheckKey( wfMemcKey( 'change-tag-statistics' ) );
+		wfDeprecated( __METHOD__, '1.28' );
+		ChangeTagsCache::purgeTagUsageCache();
 	}
 
 	/**
-	 * Returns a map of any tags used on the wiki to number of edits
-	 * tagged with them, ordered descending by the hitcount.
-	 * This does not include tags defined somewhere that have never been applied.
-	 *
-	 * Keeps a short-term cache in memory, so calling this multiple times in the
-	 * same request should be fine.
-	 *
-	 * @return array Array of string => int
+	 * @deprecated since 1.28, use ChangeTagsContext::getStats() instead
 	 */
 	public static function tagUsageStatistics() {
-		$fname = __METHOD__;
-		return ObjectCache::getMainWANInstance()->getWithSetCallback(
-			wfMemcKey( 'change-tag-statistics' ),
-			WANObjectCache::TTL_MINUTE * 5,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
-				global $wgUseChangeTagStatisticsTable;
-				$dbr = wfGetDB( DB_REPLICA, 'vslow' );
-
-				$setOpts += Database::getCacheSetOptions( $dbr );
-
-				if ( $wgUseChangeTagStatisticsTable > 1 ) {
-					// fetch from change_tag_statistics table
-					$res = $dbr->select(
-						'change_tag_statistics',
-						[ 'cts_tag', 'cts_count' ],
-						[],
-						$fname,
-						[ 'ORDER BY' => 'cts_count DESC' ]
-					);
-
-					$out = [];
-					foreach ( $res as $row ) {
-						if ( $row->cts_count ) {
-							$out[$row->cts_tag] = $row->cts_count;
-						}
-					}
-				} else {
-					// fetch from change_tag table (expansive)
-					$res = $dbr->select(
-						'change_tag',
-						[ 'ct_tag', 'hitcount' => 'count(*)' ],
-						[],
-						$fname,
-						[ 'GROUP BY' => 'ct_tag', 'ORDER BY' => 'hitcount DESC' ]
-					);
-
-					$out = [];
-					foreach ( $res as $row ) {
-						$out[$row->ct_tag] = $row->hitcount;
-					}
-				}
-
-				return $out;
-			},
-			[
-				'checkKeys' => [ wfMemcKey( 'change-tag-statistics' ) ],
-				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
-				'pcTTL' => WANObjectCache::TTL_PROC_LONG
-			]
-		);
-	}
-
-	/**
-	 * Indicate whether change tag editing UI is relevant
-	 *
-	 * Returns true if the user has the necessary right and there are any
-	 * editable tags defined.
-	 *
-	 * This intentionally doesn't check "any addable || any deletable", because
-	 * it seems like it would be more confusing than useful if the checkboxes
-	 * suddenly showed up because some abuse filter stopped defining a tag and
-	 * then suddenly disappeared when someone deleted all uses of that tag.
-	 *
-	 * @param User $user
-	 * @return bool
-	 */
-	public static function showTagEditingUI( User $user ) {
-		return $user->isAllowed( 'changetags' ) && (bool)self::listExplicitlyDefinedTags();
+		wfDeprecated( __METHOD__, '1.28' );
+		$changeTagsContext = new ChangeTagsContext( RequestContext::getMain()->getConfig() );
+		return $changeTagsContext->getStats();
 	}
 }
