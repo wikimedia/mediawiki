@@ -210,6 +210,7 @@ changes to languages because of Phabricator reports.
   or a tracking category with --tracking-category=...
 * User::crypt() (deprecated in 1.24) was removed.
 * User::comparePasswords() (deprecated in 1.24) was removed.
+* ArchivedFile::getUserText() (deprecated in 1.23) was removed.
 
 == Compatibility ==
 
