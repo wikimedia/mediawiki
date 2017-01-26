@@ -1486,6 +1486,7 @@
 	"apierror-blockedfrommail": "{{doc-apierror}}",
 	"apierror-blocked": "{{doc-apierror}}",
 	"apierror-botsnotsupported": "{{doc-apierror}}",
+	"apierror-cannot-async-upload-file": "{{doc-apierror}}",
 	"apierror-cannotreauthenticate": "{{doc-apierror}}",
 	"apierror-cannotviewtitle": "{{doc-apierror}}\n\nParameters:\n* $1 - Title.",
 	"apierror-cantblock-email": "{{doc-apierror}}",
