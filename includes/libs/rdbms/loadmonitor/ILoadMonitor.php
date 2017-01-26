@@ -20,7 +20,12 @@
  * @file
  * @ingroup Database
  */
+
+namespace Wikimedia\Rdbms;
+
 use Psr\Log\LoggerAwareInterface;
+use BagOStuff;
+use ILoadBalancer;
 
 /**
  * An interface for database load monitoring
