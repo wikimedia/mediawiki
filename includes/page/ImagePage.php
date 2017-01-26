@@ -115,23 +115,11 @@ class ImagePage extends Article {
 
 		if ( $this->getTitle()->getNamespace() == NS_FILE && $this->mPage->getFile()->getRedirected() ) {
 			if ( $this->getTitle()->getDBkey() == $this->mPage->getFile()->getName() || $diff !== null ) {
-				// mTitle is the same as the redirect target so ask Article
-				// to perform the redirect for us.
 				$request->setVal( 'diffonly', 'true' );
-				parent::view();
-				return;
-			} else {
-				// mTitle is not the same as the redirect target so it is
-				// probably the redirect page itself. Fake the redirect symbol
-				$out->setPageTitle( $this->getTitle()->getPrefixedText() );
-				$out->addHTML( $this->viewRedirect(
-					Title::makeTitle( NS_FILE, $this->mPage->getFile()->getName() ),
-					/* $appendSubtitle */ true,
-					/* $forceKnown */ true )
-				);
-				$this->mPage->doViewUpdates( $this->getContext()->getUser(), $this->getOldID() );
-				return;
 			}
+
+			parent::view();
+			return;
 		}
 
 		if ( $wgShowEXIF && $this->displayImg->exists() ) {

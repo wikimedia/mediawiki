@@ -126,6 +126,7 @@ changes to languages because of Phabricator reports.
   ParserOptions that would pollute the parser cache. Callers should use
   WikiPage::makeParserOptions() to create the ParserOptions object and only
   change options that affect the parser cache key.
+* Article::viewRedirect() is deprecated.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
