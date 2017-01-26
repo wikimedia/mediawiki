@@ -1104,7 +1104,6 @@ abstract class ContentHandler {
 			'category',
 			SearchIndexField::INDEX_TYPE_TEXT
 		);
-
 		$fields['category']->setFlag( SearchIndexField::FLAG_CASEFOLD );
 
 		$fields['external_link'] = $engine->makeSearchFieldMapping(
@@ -1121,8 +1120,12 @@ abstract class ContentHandler {
 			'template',
 			SearchIndexField::INDEX_TYPE_KEYWORD
 		);
-
 		$fields['template']->setFlag( SearchIndexField::FLAG_CASEFOLD );
+
+		$fields['content_model'] = $engine->makeSearchFieldMapping(
+			'content_model',
+			SearchIndexField::INDEX_TYPE_KEYWORD
+		);
 
 		return $fields;
 	}
@@ -1170,6 +1173,7 @@ abstract class ContentHandler {
 			$fieldData['text'] = $text;
 			$fieldData['source_text'] = $text;
 			$fieldData['text_bytes'] = $content->getSize();
+			$fieldData['content_model'] = $content->getModel();
 		}
 
 		Hooks::run( 'SearchDataForIndex', [ &$fieldData, $this, $page, $output, $engine ] );
