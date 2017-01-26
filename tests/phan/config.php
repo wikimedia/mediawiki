@@ -35,9 +35,24 @@ return [
 	 * we augment it here.
 	 */
 	'file_list' => array_merge(
+		// Stubs contained in this repo
 		function_exists( 'register_postsend_function' ) ? [] : [ 'tests/phan/stubs/hhvm.php' ],
 		function_exists( 'wikidiff2_do_diff' ) ? [] : [ 'tests/phan/stubs/wikidiff.php' ],
 		class_exists( PEAR::class ) ? [] : [ 'tests/phan/stubs/mail.php' ],
+		// Stubs in the phpstorm-stubs repo
+		function_exists( 'xcache_get' ) ? []
+			: [ 'vendor/mediawiki/phpstorm-stubs/standard/xcache.php' ],
+		class_exists( Normalizer::class ) ? []
+			: [ 'vendor/mediawiki/phpstorm-stubs/standard/intl.php' ],
+		class_exists( Collator::class ) ? []
+			: [ 'vendor/mediawiki/phpstorm-stubs/standard/intl.php' ],
+		class_exists( Memcached::class ) ? []
+			: [ 'vendor/mediawiki/phpstorm-stubs/standard/memcached.php', ],
+		class_exists( Redis::class ) ? []
+			: [ 'vendor/mediawiki/phpstorm-stubs/standard/Redis.php', ],
+		class_exists( Imagick::class ) ? []
+			: [ 'vendor/mediawiki/phpstorm-stubs/standard/imagick.php', ],
+		// .inc files
 		[
 			'maintenance/7zip.inc',
 			'maintenance/backupPrefetch.inc',
