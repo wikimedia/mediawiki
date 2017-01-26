@@ -286,11 +286,19 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		// If there is just one item, provide the user with a multi-select field
 		$list = $this->getList();
 		$tags = [];
+		$changeTagsContext = new ChangeTagsContext( $this->getConfig() );
+		$disallowedTags = $changeTagsContext->getSoftwareTags();
 		if ( $list->length() == 1 ) {
 			$list->reset();
 			$tags = $list->current()->getTags();
 			if ( $tags ) {
 				$tags = explode( ',', $tags );
+				// remove disallowed tags
+				foreach ( $tags as $key => $tag ) {
+					if ( isset( $disallowedTags[$tag] ) ) {
+						unset( $tags[$index] );
+					}
+				}
 			} else {
 				$tags = [];
 			}
@@ -319,20 +327,30 @@ class SpecialEditTags extends UnlistedSpecialPage {
 				}
 			}
 			$tags = array_unique( $tags );
+			// remove disallowed tags
+			foreach ( $tags as $key => $tag ) {
+				if ( isset( $disallowedTags[$tag] ) ) {
+					unset( $tags[$index] );
+				}
+			}
 
 			$html = '<table id="mw-edittags-tags-selector-multi"><tr><td>';
 			$tagSelect = $this->getTagSelect( [], $this->msg( 'tags-edit-add' )->plain() );
 			$html .= '<p>' . $tagSelect[0] . '</p>' . $tagSelect[1] . '</td><td>';
-			$html .= Xml::element( 'p', null, $this->msg( 'tags-edit-remove' )->plain() );
-			$html .= Xml::checkLabel( $this->msg( 'tags-edit-remove-all-tags' )->plain(),
-				'wpRemoveAllTags', 'mw-edittags-remove-all' );
-			$i = 0; // used for generating checkbox IDs only
-			foreach ( $tags as $tag ) {
-				$html .= Xml::element( 'br' ) . "\n" . Xml::checkLabel( $tag,
-					'wpTagsToRemove[]', 'mw-edittags-remove-' . $i++, false, [
-						'value' => $tag,
-						'class' => 'mw-edittags-remove-checkbox',
-					] );
+			if ( $tags ) {
+				$html .= Xml::element( 'p', null, $this->msg( 'tags-edit-remove' )->plain() );
+				$html .= Xml::checkLabel( $this->msg( 'tags-edit-remove-all-tags' )->plain(),
+					'wpRemoveAllTags', 'mw-edittags-remove-all' );
+				$i = 0; // used for generating checkbox IDs only
+				foreach ( $tags as $tag ) {
+					$html .= Xml::element( 'br' ) . "\n" . Xml::checkLabel( $tag,
+						'wpTagsToRemove[]', 'mw-edittags-remove-' . $i++, false, [
+							'value' => $tag,
+							'class' => 'mw-edittags-remove-checkbox',
+						] );
+				}
+			} else {
+				$html .= $this->msg( 'tags-edit-existing-tags-none' )->parse();
 			}
 		}
 
@@ -350,7 +368,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	 *
 	 * @param array $selectedTags The tags that should be preselected in the
 	 * list. Any tags in this list, but not in the list returned by
-	 * ChangeTags::listExplicitlyDefinedTags, will be appended to the <select>
+	 * ChangeTagsContext::getUserTags, will be appended to the <select>
 	 * element.
 	 * @param string $label The text of a <label> to precede the <select>
 	 * @return array HTML <label> element at index 0, HTML <select> element at
@@ -364,11 +382,19 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$select->setAttribute( 'multiple', 'multiple' );
 		$select->setAttribute( 'size', '8' );
 
-		$tags = ChangeTags::listExplicitlyDefinedTags();
-		$tags = array_unique( array_merge( $tags, $selectedTags ) );
+		$changeTagsContext = new ChangeTagsContext( $this->getConfig() );
+		$storedTags = $changeTagsContext->getUserTags();
 
+		$tags = [];
 		// Values of $tags are also used as <option> labels
-		$select->addOptions( array_combine( $tags, $tags ) );
+		foreach ( $storedTags  as $tag => &$val ) {
+			$select->addOption( $tag, $tag );
+		}
+		foreach ( $selectedTags as $tag ) {
+			if ( !isset( $storedTags[$tag] ) ) {
+				$select->addOption( $tag, $tag );
+			}
+		}
 
 		$result[1] = $select->getHTML();
 		return $result;
@@ -419,6 +445,8 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		if ( !$tagsToAdd && !$tagsToRemove ) {
 			$status = Status::newFatal( 'tags-edit-none-selected' );
 		} else {
+			$changeTagsContext = new ChangeTagsContext( $this->getConfig() );
+			$this->getList()->setChangeTagsContext( $changeTagsContext );
 			$status = $this->getList()->updateChangeTagsOnAll( $tagsToAdd,
 				$tagsToRemove, null, $this->reason, $this->getUser() );
 		}

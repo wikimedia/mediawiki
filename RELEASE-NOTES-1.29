@@ -48,6 +48,12 @@ production.
   browsers had poor support for them, but modern browsers handle them fine.
   This might affect some forms that used them and only worked because the
   attributes were not actually being set.
+* A new hook, ChangeTagsRegister, can be used to define tags added by
+ extensions, along with their active status and additional data.
+** The hooks ListDefinedTags and ChangeTagsListActive are deprecated in favor
+  of ChangeTagsRegister. In addition, the ChangeTagCanDelete hook is removed,
+  and the new ChangeTagsRegister hook must be used to allow admins to delete
+  extension-defined tags.
 
 === External library changes in 1.29 ===
 
