@@ -3274,14 +3274,14 @@ HTML
 	 */
 	protected function showPreview( $text ) {
 		global $wgOut;
-		if ( $this->mTitle->getNamespace() == NS_CATEGORY ) {
+		if ( $this->mArticle instanceof CategoryPage ) {
 			$this->mArticle->openShowCategory();
 		}
 		# This hook seems slightly odd here, but makes things more
 		# consistent for extensions.
 		Hooks::run( 'OutputPageBeforeHTML', [ &$wgOut, &$text ] );
 		$wgOut->addHTML( $text );
-		if ( $this->mTitle->getNamespace() == NS_CATEGORY ) {
+		if ( $this->mArticle instanceof CategoryPage) {
 			$this->mArticle->closeShowCategory();
 		}
 	}
