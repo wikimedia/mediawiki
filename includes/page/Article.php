@@ -1434,6 +1434,8 @@ class Article implements Page {
 	 * @param bool $appendSubtitle [optional]
 	 * @param bool $forceKnown Should the image be shown as a bluelink regardless of existence?
 	 * @return string Containing HTML with redirect link
+	 *
+	 * @deprecated since 1.30
 	 */
 	public function viewRedirect( $target, $appendSubtitle = true, $forceKnown = false ) {
 		$lang = $this->getTitle()->getPageLanguage();
