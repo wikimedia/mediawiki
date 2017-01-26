@@ -20,6 +20,7 @@
  * @file
  * @ingroup Deployment
  */
+use Wikimedia\Rdbms\LBFactorySingle;
 
 /**
  * Base class for DBMS-specific installation helper classes.

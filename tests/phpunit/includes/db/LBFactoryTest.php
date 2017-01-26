@@ -1,4 +1,9 @@
 <?php
+
+use Wikimedia\Rdbms\LBFactorySimple;
+use Wikimedia\Rdbms\LBFactoryMulti;
+use Wikimedia\Rdbms\ChronologyProtector;
+
 /**
  * Holds tests for LBFactory abstract MediaWiki class.
  *
