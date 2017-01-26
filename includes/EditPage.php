@@ -363,8 +363,8 @@ class EditPage {
 	/** @var bool */
 	public $bot = true;
 
-	/** @var null|string */
-	public $contentModel = null;
+	/** @var string */
+	public $contentModel;
 
 	/** @var null|string */
 	public $contentFormat = null;
@@ -1259,7 +1259,6 @@ class EditPage {
 				throw new RuntimeException( 'EditPage contentModel was false' );
 			}
 			$handler = ContentHandler::getForModelID( $this->contentModel );
-
 			return $handler->makeEmptyContent();
 		}
 		$content = $revision->getContent( Revision::FOR_THIS_USER, $user );
@@ -1303,7 +1302,6 @@ class EditPage {
 				throw new RuntimeException( 'EditPage contentModel was false' );
 			}
 			$handler = ContentHandler::getForModelID( $this->contentModel );
-
 			return $handler->makeEmptyContent();
 		} elseif ( !$this->undidRev ) {
 			// Content models should always be the same since we error
