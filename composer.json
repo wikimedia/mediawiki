@@ -50,6 +50,7 @@
 		"jakub-onderka/php-parallel-lint": "0.9.2",
 		"justinrainbow/json-schema": "~3.0",
 		"mediawiki/mediawiki-codesniffer": "0.7.2",
+		"jetbrains/phpstorm-stubs": "dev-master",
 		"monolog/monolog": "~1.18.2",
 		"nikic/php-parser": "2.1.0",
 		"nmred/kafka-php": "0.1.5",
