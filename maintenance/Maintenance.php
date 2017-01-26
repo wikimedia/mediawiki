@@ -38,6 +38,7 @@ $maintClass = false;
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\LBFactory;
 
 /**
  * Abstract maintenance class for quickly writing and churning out
