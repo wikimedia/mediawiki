@@ -21,7 +21,9 @@
  * @ingroup Database
  */
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Rdbms\ILoadMonitor;
 
 /**
  * Database connection, tracking, load balancing, and transaction manager for a cluster
@@ -194,7 +196,7 @@ class LoadBalancer implements ILoadBalancer {
 			};
 
 		foreach ( [ 'replLogger', 'connLogger', 'queryLogger', 'perfLogger' ] as $key ) {
-			$this->$key = isset( $params[$key] ) ? $params[$key] : new \Psr\Log\NullLogger();
+			$this->$key = isset( $params[$key] ) ? $params[$key] : new NullLogger();
 		}
 
 		$this->host = isset( $params['hostname'] )
@@ -211,7 +213,17 @@ class LoadBalancer implements ILoadBalancer {
 	 */
 	private function getLoadMonitor() {
 		if ( !isset( $this->loadMonitor ) ) {
+			$compat = [
+				'LoadMonitor' => 'Wikimedia\\Rdbms\\LoadMonitor',
+				'LoadMonitorNull' => 'Wikimedia\\Rdbms\\LoadMonitorNull',
+				'LoadMonitorMySQL' => 'Wikimedia\\Rdbms\\LoadMonitorMySQL'
+			];
+
 			$class = $this->loadMonitorConfig['class'];
+			if ( isset( $compat[$class] ) ) {
+				$class = $compat[$class];
+			}
+
 			$this->loadMonitor = new $class(
 				$this, $this->srvCache, $this->memCache, $this->loadMonitorConfig );
 			$this->loadMonitor->setLogger( $this->replLogger );
