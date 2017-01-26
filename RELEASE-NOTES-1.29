@@ -206,6 +206,8 @@ changes to languages because of Phabricator reports.
 * Article::doEditContent() was marked as deprecated, to be removed in 1.30
   or later.
 * ContentHandler::runLegacyHooks() was removed.
+* refreshLinks.php now can be limited to a particular category with --category=...
+  or a tracking category with --tracking-category=...
 
 == Compatibility ==
 
