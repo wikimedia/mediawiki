@@ -208,6 +208,8 @@ changes to languages because of Phabricator reports.
 * ContentHandler::runLegacyHooks() was removed.
 * refreshLinks.php now can be limited to a particular category with --category=...
   or a tracking category with --tracking-category=...
+* User::crypt() (deprecated in 1.24) was removed.
+* User::comparePasswords() (deprecated in 1.24) was removed.
 
 == Compatibility ==
 

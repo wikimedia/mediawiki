@@ -5092,54 +5092,6 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Make a new-style password hash
-	 *
-	 * @param string $password Plain-text password
-	 * @param bool|string $salt Optional salt, may be random or the user ID.
-	 *  If unspecified or false, will generate one automatically
-	 * @return string Password hash
-	 * @deprecated since 1.24, use Password class
-	 */
-	public static function crypt( $password, $salt = false ) {
-		wfDeprecated( __METHOD__, '1.24' );
-		$passwordFactory = new PasswordFactory();
-		$passwordFactory->init( RequestContext::getMain()->getConfig() );
-		$hash = $passwordFactory->newFromPlaintext( $password );
-		return $hash->toString();
-	}
-
-	/**
-	 * Compare a password hash with a plain-text password. Requires the user
-	 * ID if there's a chance that the hash is an old-style hash.
-	 *
-	 * @param string $hash Password hash
-	 * @param string $password Plain-text password to compare
-	 * @param string|bool $userId User ID for old-style password salt
-	 *
-	 * @return bool
-	 * @deprecated since 1.24, use Password class
-	 */
-	public static function comparePasswords( $hash, $password, $userId = false ) {
-		wfDeprecated( __METHOD__, '1.24' );
-
-		// Check for *really* old password hashes that don't even have a type
-		// The old hash format was just an md5 hex hash, with no type information
-		if ( preg_match( '/^[0-9a-f]{32}$/', $hash ) ) {
-			global $wgPasswordSalt;
-			if ( $wgPasswordSalt ) {
-				$password = ":B:{$userId}:{$hash}";
-			} else {
-				$password = ":A:{$hash}";
-			}
-		}
-
-		$passwordFactory = new PasswordFactory();
-		$passwordFactory->init( RequestContext::getMain()->getConfig() );
-		$hash = $passwordFactory->newFromCiphertext( $hash );
-		return $hash->equals( $password );
-	}
-
-	/**
 	 * Add a newuser log entry for this user.
 	 * Before 1.19 the return value was always true.
 	 *
