@@ -494,6 +494,13 @@ class ApiUpload extends ApiBase {
 				$this->mParams['filekey'], $this->mParams['filename'], !$this->mParams['async']
 			);
 		} elseif ( isset( $this->mParams['file'] ) ) {
+			// Can't async upload directly from a POSTed file, we'd have to
+			// stash the file and then queue the publish job. The user should
+			// just submit the two API queries to perform those two steps.
+			if ( $this->mParams['async'] ) {
+				$this->dieWithError( 'apierror-cannot-async-upload-file' );
+			}
+
 			$this->mUpload = new UploadFromFile();
 			$this->mUpload->initialize(
 				$this->mParams['filename'],

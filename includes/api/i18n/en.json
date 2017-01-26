@@ -1594,6 +1594,7 @@
 	"apierror-blockedfrommail": "You have been blocked from sending email.",
 	"apierror-blocked": "You have been blocked from editing.",
 	"apierror-botsnotsupported": "This interface is not supported for bots.",
+	"apierror-cannot-async-upload-file": "The parameters <var>async</var> and <var>file</var> cannot be combined. If you want asynchronous processing of your uploaded file, first upload it to stash (using the <var>stash</var> parameter) and then publish the stashed file asynchronously (using <var>filekey</var> and <var>async</var>).",
 	"apierror-cannotreauthenticate": "This action is not available as your identity cannot be verified.",
 	"apierror-cannotviewtitle": "You are not allowed to view $1.",
 	"apierror-cantblock-email": "You don't have permission to block users from sending email through the wiki.",
