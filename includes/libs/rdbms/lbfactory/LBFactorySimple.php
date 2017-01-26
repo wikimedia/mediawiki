@@ -21,6 +21,11 @@
  * @ingroup Database
  */
 
+namespace Wikimedia\Rdbms;
+
+use LoadBalancer;
+use InvalidArgumentException;
+
 /**
  * A simple single-master LBFactory that gets its configuration from the b/c globals
  */

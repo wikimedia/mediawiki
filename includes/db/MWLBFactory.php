@@ -171,6 +171,6 @@ abstract class MWLBFactory {
 			);
 		}
 
-		return $class;
+		return "Wikimedia\\Rdbms\\{$class}";
 	}
 }
