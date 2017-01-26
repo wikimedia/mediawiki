@@ -20,9 +20,16 @@
  * @file
  * @ingroup Database
  */
+
+namespace Wikimedia\Rdbms;
+
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Wikimedia\WaitConditionLoop;
+use BagOStuff;
+use DBMasterPos;
+use ILoadBalancer;
 
 /**
  * Class for ensuring a consistent ordering of events as seen by the user, despite replication.
@@ -72,7 +79,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 		$this->clientId = md5( $client['ip'] . "\n" . $client['agent'] );
 		$this->key = $store->makeGlobalKey( __CLASS__, $this->clientId );
 		$this->waitForPosTime = $posTime;
-		$this->logger = new \Psr\Log\NullLogger();
+		$this->logger = new NullLogger();
 	}
 
 	public function setLogger( LoggerInterface $logger ) {

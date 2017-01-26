@@ -23,6 +23,8 @@
 
 use Psr\Log\LoggerInterface;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Rdbms\TransactionProfiler;
+use Wikimedia\Rdbms\ChronologyProtector;
 
 /**
  * An interface for generating database load balancers
