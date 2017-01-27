@@ -409,6 +409,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertArrayHasKey( 'external_link', $fields );
 		$this->assertArrayHasKey( 'outgoing_link', $fields );
 		$this->assertArrayHasKey( 'template', $fields );
+		$this->assertArrayHasKey( 'content_model', $fields );
 	}
 
 	private function newSearchEngine() {
@@ -445,6 +446,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertArrayHasKey( 'language', $data );
 		$this->assertArrayHasKey( 'testDataField', $data );
 		$this->assertEquals( 'test content', $data['testDataField'] );
+		$this->assertEquals( 'wikitext', $data['content_model'] );
 	}
 
 	/**
