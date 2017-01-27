@@ -1283,11 +1283,9 @@ class SkinTemplate extends Skin {
 				'href' => $this->getTitle()->getLocalURL( "action=info" )
 			];
 
-			if ( $this->getTitle()->exists() ) {
-				$nav_urls['recentchangeslinked'] = [
-					'href' => SpecialPage::getTitleFor( 'Recentchangeslinked', $this->thispage )->getLocalURL()
-				];
-			}
+			$nav_urls['recentchangeslinked'] = [
+			  'href' => SpecialPage::getTitleFor( 'Recentchangeslinked', $this->thispage )->getLocalURL()
+			];
 		}
 
 		$user = $this->getRelevantUser();
