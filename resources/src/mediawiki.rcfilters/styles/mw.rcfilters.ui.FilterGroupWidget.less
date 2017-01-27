@@ -1,3 +1,5 @@
+@import "mediawiki.mixins";
+
 .mw-rcfilters-ui-filterGroupWidget {
 	padding-bottom: 0.5em;
 
@@ -6,6 +8,7 @@
 		background: #eaecf0;
 		padding: 0.5em 0.75em;
 		color: #555a5d;
+		.box-sizing( border-box );
 	}
 
 	&-active {
@@ -14,13 +17,5 @@
 		}
 	}
 
-	&-invalid-notice {
-		padding: 0.5em;
-		font-style: italic;
-		display: none;
-
-		.mw-rcfilters-ui-filterGroupWidget-invalid & {
-			display: block;
-		}
 	}
 }
