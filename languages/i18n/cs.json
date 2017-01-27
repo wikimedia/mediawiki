@@ -1731,6 +1731,7 @@
 	"uncategorizedcategories": "Nekategorizované kategorie",
 	"uncategorizedimages": "Nekategorizované soubory",
 	"uncategorizedtemplates": "Nekategorizované šablony",
+	"uncategorized-categories-exceptionlist": " # Obsahuje seznam kategorií, které se nemají objevovat na Speciální:Nekategorizované kategorie. Jedna kategorie na každém řádku, uvozená pomocí „*“. Řádky začínající jiným znakem (včetně bílých znaků) se ignorují. Komentáře vkládejte za „#“.",
 	"unusedcategories": "Nepoužívané kategorie",
 	"unusedimages": "Nepoužívané soubory",
 	"wantedcategories": "Chybějící kategorie",
@@ -1829,7 +1830,6 @@
 	"apisandbox-sending-request": "Odesílá se API požadavek…",
 	"apisandbox-loading-results": "Přijímají se API výsledky…",
 	"apisandbox-results-error": "Došlo k chybě při načítání odpovědi na API dotaz: $1.",
-	"apisandbox-request-params-json": "Parametry v JSON:",
 	"apisandbox-request-url-label": "URL požadavku:",
 	"apisandbox-request-time": "Trvání požadavku: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "Opravit token a znovu odeslat",
@@ -1972,7 +1972,7 @@
 	"emailccsubject": "Kopie Vaší zprávy pro uživatele $1: $2",
 	"emailsent": "E-mail odeslán",
 	"emailsenttext": "Váš e-mail byl odeslán.",
-	"emailuserfooter": "Tento e-mail byl odeslán z {{grammar:2sg|{{SITENAME}}}} pomocí funkce „{{int:emailuser}}“; {{GENDER:$1|odeslal ho uživatel|odeslala ho uživatelka}} $1 {{GENDER:$2|uživateli|uživatelce}} $2. Váš e-mail bude odeslán přímo {{GENDER:$1|původnímu odesílateli, čímž mu|původní odesílatelce, čímž jí}} prozradíte svou e-mailovou adresu.",
+	"emailuserfooter": "Tento e-mail byl odeslán z {{grammar:2sg|{{SITENAME}}}} pomocí funkce „{{int:emailuser}}“; {{GENDER:$1|odeslal ho uživatel|odeslala ho uživatelka}} $1 {{GENDER:$2|uživateli|uživatelce}} $2. Pokud na něj odpovíte, bude váš e-mail odeslán přímo {{GENDER:$1|původnímu odesílateli, čímž mu|původní odesílatelce, čímž jí}} prozradíte svou e-mailovou adresu.",
 	"usermessage-summary": "Doručena zpráva od systému.",
 	"usermessage-editor": "Systémový poslíček",
 	"watchlist": "Sledované stránky",
@@ -3836,7 +3836,7 @@
 	"usercssispublic": "Uvědomte si prosím, že podstránky s CSS by neměly obsahovat tajné údaje, protože jsou viditelné ostatním uživatelům.",
 	"restrictionsfield-badip": "Neplatná IP adresa nebo rozsah: $1",
 	"restrictionsfield-label": "Povolené rozsahy IP adres:",
-	"restrictionsfield-help": "Jedna IP adresa nebo CIDR rozsah na řádek. Všechno povolíte pomocí<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"restrictionsfield-help": "Jedna IP adresa nebo CIDR rozsah na řádek. Všechno povolíte pomocí:<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "revize $1",
 	"pageid": "Stránka s ID $1"
 }

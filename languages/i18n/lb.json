@@ -1268,6 +1268,8 @@
 	"recentchanges-legend-plusminus": "''(±123)''",
 	"recentchanges-submit": "Weisen",
 	"rcfilters-activefilters": "Aktiv Filteren",
+	"rcfilters-restore-default-filters": "Standardfiltere restauréieren",
+	"rcfilters-clear-all-filters": "All Filteren eidelmaachen",
 	"rcfilters-search-placeholder": "Rezent Ännerunge filteren (duerchsichen oder ufänke mat tippen)",
 	"rcfilters-invalid-filter": "Net valabele Filter",
 	"rcfilters-filterlist-title": "Filteren",

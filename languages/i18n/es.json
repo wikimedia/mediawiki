@@ -2134,7 +2134,7 @@
 	"emailccsubject": "Copia de tu mensaje a $1: $2",
 	"emailsent": "Correo electrónico enviado",
 	"emailsenttext": "Se ha enviado tu mensaje de correo electrónico.",
-	"emailuserfooter": "Este correo electrónico fue {{GENDER:$1|enviado}} por $1 a {{GENDER:$2|$2}} a través de la función «{{int:emailuser}}» en {{SITENAME}}. {{GENDER:$2|Tu}} correo electrónico se enviará directamente {{GENDER:$1|al emisor|a la emisora}} original, y {{GENDER:$1|le}} revelará {{GENDER:$2|tu}} dirección de correo electrónico.",
+	"emailuserfooter": "Este correo electrónico fue {{GENDER:$1|enviado}} por $1 a {{GENDER:$2|$2}} a través de la función «{{int:emailuser}}» en {{SITENAME}}. Si {{GENDER:$2|respondes}}, tu correo electrónico se enviará directamente {{GENDER:$1|al emisor|a la emisora}} original, y {{GENDER:$1|le}} revelará {{GENDER:$2|tu}} dirección de correo electrónico.",
 	"usermessage-summary": "Dejando un mensaje de sistema.",
 	"usermessage-editor": "Mensajero del sistema",
 	"watchlist": "Lista de seguimiento",
