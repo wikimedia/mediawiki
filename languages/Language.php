@@ -4000,8 +4000,9 @@ class Language {
 		if ( $time === false ) { // Unknown format. Return it as-is in case.
 			return $str;
 		} elseif ( $time !== strtotime( $str, $now + 1 ) ) { // It's a relative timestamp.
-			// The result differs based on current time, so it's a duration length.
-			return $this->formatDuration( $time );
+			// The result differs based on current time, so the difference
+			// is a fixed duration length.
+			return $this->formatDuration( $time - $now );
 		} else { // It's an absolute timestamp.
 			if ( $time === 0 ) {
 				// wfTimestamp() handles 0 as current time instead of epoch.
