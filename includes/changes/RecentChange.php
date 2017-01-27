@@ -451,6 +451,9 @@ class RecentChange {
 			throw new MWException( __FUNCTION__ . ": Unknown stream logger URI scheme: $scheme" );
 		}
 
+		if ( defined( 'MW_PHPUNIT_TEST' ) && is_object( $wgRCEngines[$scheme] ) ) {
+			return $wgRCEngines[$scheme];
+		}
 		return new $wgRCEngines[$scheme];
 	}
 
