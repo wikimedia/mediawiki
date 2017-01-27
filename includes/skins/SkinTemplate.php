@@ -1283,7 +1283,7 @@ class SkinTemplate extends Skin {
 				'href' => $this->getTitle()->getLocalURL( "action=info" )
 			];
 
-			if ( $this->getTitle()->exists() ) {
+			if ( $this->getTitle()->exists() || ($this->getTitle()->getNamespace() == NS_CATEGORY)) {
 				$nav_urls['recentchangeslinked'] = [
 					'href' => SpecialPage::getTitleFor( 'Recentchangeslinked', $this->thispage )->getLocalURL()
 				];
