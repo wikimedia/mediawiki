@@ -165,9 +165,9 @@ class ActiveUsersPager extends UsersPager {
 		$list = [];
 		$user = User::newFromId( $row->user_id );
 
-		$groups_list = self::getGroups( intval( $row->user_id ), $this->userGroupCache );
-		foreach ( $groups_list as $group ) {
-			$list[] = self::buildGroupLink( $group, $userName );
+		$ugms = self::getGroupMemberships( intval( $row->user_id ), $this->userGroupCache );
+		foreach ( $ugms as $ugm ) {
+			$list[] = $this->buildGroupLink( $ugm, $userName );
 		}
 
 		$groups = $lang->commaList( $list );
