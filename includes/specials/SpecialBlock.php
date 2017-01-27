@@ -829,7 +829,7 @@ class SpecialBlock extends FormSpecialPage {
 		$logEntry->setRelations( [ 'ipb_id' => $blockIds ] );
 		$logId = $logEntry->insert();
 
-		if ( count( $data['Tags'] ) ) {
+		if ( isset( $data['Tags'] ) && count( $data['Tags'] ) ) {
 			$logEntry->setTags( $data['Tags'] );
 		}
 
