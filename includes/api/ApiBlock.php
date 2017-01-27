@@ -110,7 +110,7 @@ class ApiBlock extends ApiBase {
 			'Reblock' => $params['reblock'],
 			'Watch' => $params['watchuser'],
 			'Confirm' => true,
-			'Tags' => $params['tags'],
+			'Tags' => $params['tags'] ?: [],
 		];
 
 		$retval = SpecialBlock::processForm( $data, $this->getContext() );
