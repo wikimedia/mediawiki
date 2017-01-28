@@ -31,14 +31,36 @@ class ExtensionRegistry {
 	/**
 	 * Bump whenever the registration cache needs resetting
 	 */
-	const CACHE_VERSION = 5;
+	const CACHE_VERSION = 6;
 
 	/**
-	 * Special key that defines the merge strategy
-	 *
-	 * @since 1.26
+	 * This constant is no longer needed and can be safely removed
+	 * once Flow unit tests no longer rely on it.
 	 */
 	const MERGE_STRATEGY = '_merge_strategy';
+
+	/**
+	 * Mapping of global settings to their specific merge strategies,
+	 * when not 'array_merge'.
+	 *
+	 * @see ExtensionRegistry::exportExtractedData
+	 * @var array
+	 */
+	protected static $mergeStrategies = [
+		'wgAuthManagerAutoConfig' => 'array_plus_2d',
+		'wgCapitalLinkOverrides' => 'array_plus',
+		'wgExtensionCredits' => 'array_merge_recursive',
+		'wgExtraGenderNamespaces' => 'array_plus',
+		'wgGrantPermissions' => 'array_plus_2d',
+		'wgGroupPermissions' => 'array_plus_2d',
+		'wgHooks' => 'array_merge_recursive',
+		'wgNamespaceContentModels' => 'array_plus',
+		'wgNamespaceProtection' => 'array_plus',
+		'wgNamespacesWithSubpages' => 'array_plus',
+		'wgPasswordPolicy' => 'array_merge_recursive',
+		'wgRateLimits' => 'array_plus_2d',
+		'wgRevokePermissions' => 'array_plus_2d',
+	];
 
 	/**
 	 * Array of loaded things, keyed by name, values are credits information
@@ -111,7 +133,7 @@ class ExtensionRegistry {
 	 *  be loaded then).
 	 */
 	public function loadFromQueue() {
-		global $wgVersion;
+		global $wgVersion, $wgConfigRegistry;
 		if ( !$this->queued ) {
 			return;
 		}
@@ -153,6 +175,29 @@ class ExtensionRegistry {
 			unset( $data['autoload'] );
 			$cache->set( $key, $data, 60 * 60 * 24 );
 		}
+
+		// register extension configs
+		$configs = isset( $data['configs'] ) ? $data['configs'] : [];
+		$mergeStrategies = isset( $data['configMergeStrategies'] ) ?
+			$data['configMergeStrategies'] : [];
+		foreach ( $configs as $name => $configHash ) {
+			$mergeStrategy = isset( $mergeStrategies[$name] ) ? $mergeStrategies[$name] : [];
+
+			$globalPrefix = isset( $data[$name]['config_prefix'] ) ?
+				$data[$name]['config_prefix'] :
+				( isset( $data[$name]['config']['_prefix'] ) ?
+					$data[$name]['config']['_prefix'] : 'wg' );
+
+			$populateGlobals = !isset( $data[$name]['config_remove_globals'] );
+
+			$wgConfigRegistry[$name] = function() use (
+				$configHash, $mergeStrategy, $globalPrefix, $populateGlobals
+			) {
+				return new LocalConfig( $configHash, $mergeStrategy, 'array_merge',
+					$globalPrefix, $populateGlobals );
+			};
+		}
+
 		$this->queued = [];
 	}
 
@@ -263,11 +308,11 @@ class ExtensionRegistry {
 
 	protected function exportExtractedData( array $info ) {
 		foreach ( $info['globals'] as $key => $val ) {
-			// If a merge strategy is set, read it and remove it from the value
-			// so it doesn't accidentally end up getting set.
-			if ( is_array( $val ) && isset( $val[self::MERGE_STRATEGY] ) ) {
-				$mergeStrategy = $val[self::MERGE_STRATEGY];
-				unset( $val[self::MERGE_STRATEGY] );
+			// If a merge strategy is set, read it.
+			if ( is_array( $val ) && isset( $info['globalMergeStrategies'][$key] ) ) {
+				$mergeStrategy = $info['globalMergeStrategies'][$key];
+			} elseif ( is_array( $val ) && isset( self::$mergeStrategies[$key] ) ) {
+				$mergeStrategy = self::$mergeStrategies[$key];
 			} else {
 				$mergeStrategy = 'array_merge';
 			}
@@ -299,6 +344,9 @@ class ExtensionRegistry {
 					break;
 				case 'array_merge':
 					$GLOBALS[$key] = array_merge( $val, $GLOBALS[$key] );
+					break;
+				case 'override':
+					// nothing to do
 					break;
 				default:
 					throw new UnexpectedValueException( "Unknown merge strategy '$mergeStrategy'" );
