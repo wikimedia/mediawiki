@@ -61,7 +61,7 @@ class SkinTemplate extends Skin {
 	 *
 	 * @param OutputPage $out
 	 */
-	function setupSkinUserCss( OutputPage $out ) {
+	public function setupSkinUserCss( OutputPage $out ) {
 		$moduleStyles = [
 			'mediawiki.legacy.shared',
 			'mediawiki.legacy.commonPrint',
