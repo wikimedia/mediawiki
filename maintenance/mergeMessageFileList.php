@@ -176,7 +176,7 @@ foreach ( $mmfl['setupFiles'] as $fileName ) {
 
 if ( $queue ) {
 	$registry = new ExtensionRegistry();
-	$data = $registry->readFromQueue( $queue );
+	$data = $registry->readFromQueue( $queue, $wgVersion );
 	foreach ( [ 'wgExtensionMessagesFiles', 'wgMessagesDirs' ] as $var ) {
 		if ( isset( $data['globals'][$var] ) ) {
 			$GLOBALS[$var] = array_merge( $data['globals'][$var], $GLOBALS[$var] );

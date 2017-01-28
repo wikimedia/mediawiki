@@ -31,14 +31,36 @@ class ExtensionRegistry {
 	/**
 	 * Bump whenever the registration cache needs resetting
 	 */
-	const CACHE_VERSION = 5;
+	const CACHE_VERSION = 6;
 
 	/**
-	 * Special key that defines the merge strategy
-	 *
-	 * @since 1.26
+	 * This constant is no longer needed and can be safely removed
+	 * once Flow unit tests no longer rely on it.
 	 */
 	const MERGE_STRATEGY = '_merge_strategy';
+
+	/**
+	 * Mapping of global settings to their specific merge strategies,
+	 * when not 'array_merge'.
+	 *
+	 * @see ExtensionRegistry::exportExtractedData
+	 * @var array
+	 */
+	protected static $mergeStrategies = [
+		'wgAuthManagerAutoConfig' => 'array_plus_2d',
+		'wgCapitalLinkOverrides' => 'array_plus',
+		'wgExtensionCredits' => 'array_merge_recursive',
+		'wgExtraGenderNamespaces' => 'array_plus',
+		'wgGrantPermissions' => 'array_plus_2d',
+		'wgGroupPermissions' => 'array_plus_2d',
+		'wgHooks' => 'array_merge_recursive',
+		'wgNamespaceContentModels' => 'array_plus',
+		'wgNamespaceProtection' => 'array_plus',
+		'wgNamespacesWithSubpages' => 'array_plus',
+		'wgPasswordPolicy' => 'array_merge_recursive',
+		'wgRateLimits' => 'array_plus_2d',
+		'wgRevokePermissions' => 'array_plus_2d',
+	];
 
 	/**
 	 * Array of loaded things, keyed by name, values are credits information
@@ -87,11 +109,10 @@ class ExtensionRegistry {
 
 	/**
 	 * @param string $path Absolute path to the JSON file
+	 * @param int|false Time to check for cache invalidation,
+	 * see doc for $wgExtensionInfoMTime
 	 */
-	public function queue( $path ) {
-		global $wgExtensionInfoMTime;
-
-		$mtime = $wgExtensionInfoMTime;
+	public function queue( $path, $mtime = false ) {
 		if ( $mtime === false ) {
 			if ( file_exists( $path ) ) {
 				$mtime = filemtime( $path );
@@ -109,9 +130,10 @@ class ExtensionRegistry {
 	/**
 	 * @throws MWException If the queue is already marked as finished (no further things should
 	 *  be loaded then).
+	 * @param string $mwVersion
+	 * @param array &$configRegistry
 	 */
-	public function loadFromQueue() {
-		global $wgVersion;
+	public function loadFromQueue( $mwVersion, array &$configRegistry ) {
 		if ( !$this->queued ) {
 			return;
 		}
@@ -126,7 +148,7 @@ class ExtensionRegistry {
 		// A few more things to vary the cache on
 		$versions = [
 			'registration' => self::CACHE_VERSION,
-			'mediawiki' => $wgVersion
+			'mediawiki' => $mwVersion,
 		];
 
 		// We use a try/catch because we don't want to fail here
@@ -145,7 +167,7 @@ class ExtensionRegistry {
 		if ( $data ) {
 			$this->exportExtractedData( $data );
 		} else {
-			$data = $this->readFromQueue( $this->queued );
+			$data = $this->readFromQueue( $this->queued, $mwVersion );
 			$this->exportExtractedData( $data );
 			// Do this late since we don't want to extract it since we already
 			// did that, but it should be cached
@@ -153,6 +175,29 @@ class ExtensionRegistry {
 			unset( $data['autoload'] );
 			$cache->set( $key, $data, 60 * 60 * 24 );
 		}
+
+		// register extension configs
+		$configs = isset( $data['configs'] ) ? $data['configs'] : [];
+		$mergeStrategies = isset( $data['configMergeStrategies'] ) ?
+			$data['configMergeStrategies'] : [];
+		foreach ( $configs as $name => $configHash ) {
+			$mergeStrategy = isset( $mergeStrategies[$name] ) ? $mergeStrategies[$name] : [];
+
+			$globalPrefix = isset( $data[$name]['config_prefix'] ) ?
+				$data[$name]['config_prefix'] :
+				( isset( $data[$name]['config']['_prefix'] ) ?
+					$data[$name]['config']['_prefix'] : 'wg' );
+
+			$populateGlobals = !isset( $data[$name]['config_remove_globals'] );
+
+			$configRegistry[$name] = function() use (
+				$configHash, $mergeStrategy, $globalPrefix, $populateGlobals
+			) {
+				return new LocalConfig( $configHash, $mergeStrategy, 'array_merge',
+					$globalPrefix, $populateGlobals );
+			};
+		}
+
 		$this->queued = [];
 	}
 
@@ -187,15 +232,19 @@ class ExtensionRegistry {
 	 * Process a queue of extensions and return their extracted data
 	 *
 	 * @param array $queue keys are filenames, values are ignored
+	 * @param string $mwVersion MediaWiki version to check
 	 * @return array extracted info
 	 * @throws Exception
 	 */
-	public function readFromQueue( array $queue ) {
-		global $wgVersion;
+	public function readFromQueue( array $queue, $mwVersion = false ) {
+		if ( $mwVersion === false ) {
+			global $wgVersion;
+			$mwVersion = $wgVersion;
+		}
 		$autoloadClasses = [];
 		$autoloaderPaths = [];
 		$processor = new ExtensionProcessor();
-		$versionChecker = new VersionChecker( $wgVersion );
+		$versionChecker = new VersionChecker( $mwVersion );
 		$extDependencies = [];
 		$incompatible = [];
 		foreach ( $queue as $path => $mtime ) {
@@ -263,11 +312,11 @@ class ExtensionRegistry {
 
 	protected function exportExtractedData( array $info ) {
 		foreach ( $info['globals'] as $key => $val ) {
-			// If a merge strategy is set, read it and remove it from the value
-			// so it doesn't accidentally end up getting set.
-			if ( is_array( $val ) && isset( $val[self::MERGE_STRATEGY] ) ) {
-				$mergeStrategy = $val[self::MERGE_STRATEGY];
-				unset( $val[self::MERGE_STRATEGY] );
+			// If a merge strategy is set, read it.
+			if ( is_array( $val ) && isset( $info['globalMergeStrategies'][$key] ) ) {
+				$mergeStrategy = $info['globalMergeStrategies'][$key];
+			} elseif ( is_array( $val ) && isset( self::$mergeStrategies[$key] ) ) {
+				$mergeStrategy = self::$mergeStrategies[$key];
 			} else {
 				$mergeStrategy = 'array_merge';
 			}
@@ -299,6 +348,9 @@ class ExtensionRegistry {
 					break;
 				case 'array_merge':
 					$GLOBALS[$key] = array_merge( $val, $GLOBALS[$key] );
+					break;
+				case 'override':
+					// nothing to do
 					break;
 				default:
 					throw new UnexpectedValueException( "Unknown merge strategy '$mergeStrategy'" );
@@ -335,9 +387,10 @@ class ExtensionRegistry {
 	 * @param string $path Absolute path to the JSON file
 	 */
 	public function load( $path ) {
-		$this->loadFromQueue(); // First clear the queue
+		global $wgVersion, $wgConfigRegistry;
+		$this->loadFromQueue( $wgVersion, $wgConfigRegistry ); // First clear the queue
 		$this->queue( $path );
-		$this->loadFromQueue();
+		$this->loadFromQueue( $wgVersion, $wgConfigRegistry );
 	}
 
 	/**

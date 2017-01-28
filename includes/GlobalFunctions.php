@@ -109,11 +109,12 @@ if ( !function_exists( 'hash_equals' ) ) {
  * @since 1.25
  */
 function wfLoadExtension( $ext, $path = null ) {
+	global $wgExtensionInfoMTime;
 	if ( !$path ) {
 		global $wgExtensionDirectory;
 		$path = "$wgExtensionDirectory/$ext/extension.json";
 	}
-	ExtensionRegistry::getInstance()->queue( $path );
+	ExtensionRegistry::getInstance()->queue( $path, $wgExtensionInfoMTime );
 }
 
 /**
@@ -130,10 +131,10 @@ function wfLoadExtension( $ext, $path = null ) {
  * @since 1.25
  */
 function wfLoadExtensions( array $exts ) {
-	global $wgExtensionDirectory;
+	global $wgExtensionDirectory, $wgExtensionInfoMTime;
 	$registry = ExtensionRegistry::getInstance();
 	foreach ( $exts as $ext ) {
-		$registry->queue( "$wgExtensionDirectory/$ext/extension.json" );
+		$registry->queue( "$wgExtensionDirectory/$ext/extension.json", $wgExtensionInfoMTime );
 	}
 }
 
@@ -146,11 +147,12 @@ function wfLoadExtensions( array $exts ) {
  * @since 1.25
  */
 function wfLoadSkin( $skin, $path = null ) {
+	global $wgExtensionInfoMTime;
 	if ( !$path ) {
 		global $wgStyleDirectory;
 		$path = "$wgStyleDirectory/$skin/skin.json";
 	}
-	ExtensionRegistry::getInstance()->queue( $path );
+	ExtensionRegistry::getInstance()->queue( $path, $wgExtensionInfoMTime );
 }
 
 /**
@@ -161,10 +163,10 @@ function wfLoadSkin( $skin, $path = null ) {
  * @since 1.25
  */
 function wfLoadSkins( array $skins ) {
-	global $wgStyleDirectory;
+	global $wgStyleDirectory, $wgExtensionInfoMTime;
 	$registry = ExtensionRegistry::getInstance();
 	foreach ( $skins as $skin ) {
-		$registry->queue( "$wgStyleDirectory/$skin/skin.json" );
+		$registry->queue( "$wgStyleDirectory/$skin/skin.json", $wgExtensionInfoMTime );
 	}
 }
 

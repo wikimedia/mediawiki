@@ -127,7 +127,7 @@ class WebInstallerOutput {
 	 * @return string
 	 */
 	public function getCSS() {
-		global $wgStyleDirectory;
+		global $wgStyleDirectory, $wgVersion;
 
 		$moduleNames = [
 			// See SkinTemplate::setupSkinUserCss
@@ -144,7 +144,7 @@ class WebInstallerOutput {
 			$registry = new ExtensionRegistry();
 			$data = $registry->readFromQueue( [
 				"$wgStyleDirectory/Vector/skin.json" => 1,
-			] );
+			], $wgVersion );
 			if ( isset( $data['globals']['wgResourceModules'] ) ) {
 				$resourceLoader->register( $data['globals']['wgResourceModules'] );
 			}

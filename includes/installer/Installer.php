@@ -1417,7 +1417,8 @@ abstract class Installer {
 		}
 
 		$registry = new ExtensionRegistry();
-		$data = $registry->readFromQueue( $queue );
+		global $wgVersion;
+		$data = $registry->readFromQueue( $queue, $wgVersion );
 		$wgAutoloadClasses += $data['autoload'];
 
 		$hooksWeWant = isset( $wgHooks['LoadExtensionSchemaUpdates'] ) ?
