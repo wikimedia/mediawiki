@@ -3259,9 +3259,11 @@ class OutputPage extends ContextSource {
 		}
 
 		foreach ( $this->mMetatags as $tag ) {
-			if ( 0 == strcasecmp( 'http:', substr( $tag[0], 0, 5 ) ) ) {
+			if ( strncasecmp( $tag[0], 'http:', 5 ) === 0 ) {
 				$a = 'http-equiv';
 				$tag[0] = substr( $tag[0], 5 );
+			} elseif ( strncasecmp( $tag[0], 'og:', 3 ) === 0 ) {
+				$a = 'property';
 			} else {
 				$a = 'name';
 			}

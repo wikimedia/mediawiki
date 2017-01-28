@@ -22,11 +22,13 @@ class OutputPageTest extends MediaWikiTestCase {
 		$outputPage->addMeta( 'http:expires', '0' );
 		$outputPage->addMeta( 'keywords', 'first' );
 		$outputPage->addMeta( 'keywords', 'second' );
+		$outputPage->addMeta( 'og:title', 'Ta-duh' );
 
 		$expected = [
 			[ 'http:expires', '0' ],
 			[ 'keywords', 'first' ],
 			[ 'keywords', 'second' ],
+			[ 'og:title', 'Ta-duh' ],
 		];
 		$this->assertSame( $expected, $outputPage->getMetaTags() );
 
@@ -34,6 +36,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		$this->assertContains( '<meta http-equiv="expires" content="0"/>', $links );
 		$this->assertContains( '<meta name="keywords" content="first"/>', $links );
 		$this->assertContains( '<meta name="keywords" content="second"/>', $links );
+		$this->assertContains( '<meta property="og:title" content="Ta-duh"/>', $links );
 		$this->assertArrayNotHasKey( 'meta-robots', $links );
 	}
 
