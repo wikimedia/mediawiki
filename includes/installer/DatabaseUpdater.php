@@ -154,7 +154,8 @@ abstract class DatabaseUpdater {
 		$registry->clearQueue();
 
 		// This will automatically add "AutoloadClasses" to $wgAutoloadClasses
-		$data = $registry->readFromQueue( $queue );
+		global $wgVersion;
+		$data = $registry->readFromQueue( $queue, $wgVersion );
 		$hooks = [ 'wgHooks' => [ 'LoadExtensionSchemaUpdates' => [] ] ];
 		if ( isset( $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
 			$hooks = $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'];
