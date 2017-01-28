@@ -251,8 +251,9 @@ abstract class ApiFormatBase extends ApiBase {
 			}
 
 			if ( $this->getIsWrappedHtml() ) {
+				global $wgRequestTime; // use global since request time is not a config option
 				// This is a special output mode mainly intended for ApiSandbox use
-				$time = microtime( true ) - $this->getConfig()->get( 'RequestTime' );
+				$time = microtime( true ) - $wgRequestTime;
 				$json = FormatJson::encode(
 					[
 						'status' => (int)( $this->mHttpStatus ?: 200 ),
