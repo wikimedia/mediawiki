@@ -22,7 +22,8 @@
 			"MaxBioHazard",
 			"Kareyac",
 			"Mailman",
-			"Ping08"
+			"Ping08",
+			"Ivan-r"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Документация]]\n* [[mw:API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почтовая рассылка]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> Все отображаемые на этой странице функции должны работать, однако API находится в статусе активной разработки и может измениться в любой момент. Подпишитесь на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом «MediaWiki-API-Error», после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:API:Errors_and_warnings|API: Ошибки и предупреждения]].\n\n<strong>Тестирование:</strong> для удобства тестирования API-запросов, см. [[Special:ApiSandbox]].",
@@ -240,7 +241,7 @@
 	"apihelp-protect-example-unprotect": "Снять защиту страницы, установив ограничения <kbd>all</kbd> (т. е. любой желающий может принять меры).",
 	"apihelp-protect-example-unprotect2": "Бер ниндәй сикләүҙәр ҡуймай биттән һаҡлауҙы алырға.",
 	"apihelp-purge-param-forcelinkupdate": "Обновление связей таблиц.",
-	"apihelp-purge-param-forcerecursivelinkupdate": "Һылтанманы һәм таблицаны яңыртығыҙ һәм был битте шаблон итеп ҡулланған башҡа биттәр өсөн һылтанмаларҙы ла яңыртығыҙ.",
+	"apihelp-purge-param-forcerecursivelinkupdate": "Обновить таблицу ссылок для данной страницы, а также всех страниц, использующих данную как шаблон.",
 	"apihelp-purge-example-generator": "Продувка первые 10 страниц в основном пространстве имен.",
 	"apihelp-query-param-list": "Какие списки использовать",
 	"apihelp-query-param-meta": "Какие метаданные использовать",

@@ -316,6 +316,7 @@
 	"config-install-subscribe-fail": "Impossibile sottoscrivere mediawiki-announce: $1",
 	"config-install-subscribe-notpossible": "cURL non è installato e <code>allow_url_fopen</code> non è disponibile.",
 	"config-install-mainpage": "Creazione della pagina principale con contenuto predefinito",
+	"config-install-mainpage-exists": "La pagina principale già esiste, saltata",
 	"config-install-extension-tables": "Creazione delle tabelle per le estensioni attivate",
 	"config-install-mainpage-failed": "Impossibile inserire la pagina principale: $1",
 	"config-install-done": "<strong>Complimenti!</strong>\nHai installato MediaWiki.\n\nIl programma di installazione ha generato un file <code>LocalSettings.php</code> che contiene tutte le impostazioni.\n\nDevi scaricarlo ed inserirlo nella directory base del tuo wiki (la stessa dove è presente index.php). Il download dovrebbe partire automaticamente.\n\nSe il download non si avvia, o se è stato annullato, puoi riavviarlo cliccando sul collegamento di seguito:\n\n$3\n\n<strong>Nota:</strong> se esci ora dall'installazione senza scaricare il file di configurazione che è stato generato, questo poi non sarà più disponibile in seguito.\n\nQuando hai fatto, puoi <strong>[$2 entrare nel tuo wiki]</strong>.",

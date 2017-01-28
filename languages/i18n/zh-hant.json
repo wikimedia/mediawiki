@@ -3437,7 +3437,7 @@
 	"tags-edit-revision-legend": "加入或移除此標籤自{{PLURAL:$1|此修訂|全部 $1 筆修訂}}",
 	"tags-edit-logentry-legend": "加入或移除此標籤自{{PLURAL:$1|此日誌項目|全部 $1 筆日誌項目}}",
 	"tags-edit-existing-tags": "已存在的標籤：",
-	"tags-edit-existing-tags-none": "''無''",
+	"tags-edit-existing-tags-none": "<em>無</em>",
 	"tags-edit-new-tags": "新標籤：",
 	"tags-edit-add": "加入這些標籤：",
 	"tags-edit-remove": "移除這些標籤：",

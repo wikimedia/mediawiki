@@ -612,7 +612,7 @@
 	"apihelp-upload-example-url": "Carica da un URL.",
 	"apihelp-userrights-param-user": "Nome utente.",
 	"apihelp-userrights-param-userid": "ID utente.",
-	"apihelp-userrights-param-add": "Aggiungi l'utente a questi gruppi.",
+	"apihelp-userrights-param-add": "Aggiungere l'utente a questi gruppi, o se sono già membri, aggiornare la scadenza della loro appartenenza a quel gruppo.",
 	"apihelp-userrights-param-remove": "Rimuovi l'utente da questi gruppi.",
 	"apihelp-userrights-param-reason": "Motivo del cambiamento.",
 	"apihelp-validatepassword-description": "Convalida una password seguendo le politiche del wiki sulle password.\n\nLa validità è riportata come <samp>Good</samp> se la password è accettabile, <samp>Change</samp> se la password può essere utilizzata per l'accesso ma deve essere modificata, o <samp>Invalid</samp> se la password non è utilizzabile.",

@@ -5,7 +5,8 @@
 			"Михајло Анђелковић",
 			"Milicevic01",
 			"Aktron",
-			"Сербијана"
+			"Сербијана",
+			"Zoranzoki21"
 		]
 	},
 	"config-desc": "Инсталација за Медијавики",
@@ -82,6 +83,7 @@
 	"config-skins": "Теме",
 	"config-install-step-done": "готово",
 	"config-install-step-failed": "није успело",
+	"config-install-mainpage-exists": "Главна страна већ постоји, прескакање",
 	"config-help": "помоћ",
 	"config-help-tooltip": "кликните да проширите",
 	"mainpagetext": "<strong>Медијавики је успешно инсталиран.</strong>",

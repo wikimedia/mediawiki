@@ -7,7 +7,8 @@
 			"Tauhid16",
 			"Aftabuzzaman",
 			"Hasive",
-			"আজিজ"
+			"আজিজ",
+			"Elias Ahmmad"
 		]
 	},
 	"config-desc": "মিডিয়াউইকির জন্য ইন্সটলার",
@@ -137,6 +138,7 @@
 	"config-install-user-alreadyexists": "ব্যবহারকারী \"$1\" ইতিমধ্যে বিদ্যমান আছে",
 	"config-install-tables": "টেবিল তৈরি",
 	"config-install-keys": "গোপন কি তৈরি",
+	"config-install-mainpage-exists": "মুখ্য পৃষ্ঠা ইতিমধ্যেই বিদ্যমান, skipping",
 	"config-help": "সাহায্য",
 	"config-help-tooltip": "প্রসারিত করতে ক্লিক করুন",
 	"mainpagetext": "<strong>মিডিয়াউইকি ইনস্টল করা হয়েছে।</strong>",

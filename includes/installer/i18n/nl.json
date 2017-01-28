@@ -18,7 +18,8 @@
 			"JaapDeKleine",
 			"Macofe",
 			"Hex",
-			"Mainframe98"
+			"Mainframe98",
+			"Rcdeboer"
 		]
 	},
 	"config-desc": "Het installatieprogramma voor MediaWiki",
@@ -317,6 +318,7 @@
 	"config-install-subscribe-fail": "Het is niet mogelijk te abonneren op mediawiki-announce: $1",
 	"config-install-subscribe-notpossible": "cURL is niet geïnstalleerd en <code>allow_url_fopen</code> is niet beschikbaar.",
 	"config-install-mainpage": "Hoofdpagina aanmaken met standaard inhoud",
+	"config-install-mainpage-exists": "Hoofdpagina bestaat al, overslaan",
 	"config-install-extension-tables": "Tabellen voor ingeschakelde uitbreidingen worden aangemaakt",
 	"config-install-mainpage-failed": "Het was niet mogelijk de hoofdpagina in te voegen: $1",
 	"config-install-done": "<strong>Gefeliciteerd!</strong>\nU hebt MediaWiki geïnstalleerd.\n\nHet installatieprogramma heeft het bestand <code>LocalSettings.php</code> aangemaakt.\nDit bevat al uw instellingen.\n\nU moet het bestand downloaden en in de hoofdmap van uw wiki-installatie plaatsen, in dezelfde map als index.php.\nDe download zou automatisch moeten zijn gestart.\n\nAls de download niet is gestart of als u de download hebt geannuleerd, dan kunt u de download opnieuw starten door op de onderstaande koppeling te klikken:\n\n$3\n\n<strong>Let op:</strong> als u dit niet nu doet, dan is het bestand als u later de installatieprocedure afsluit zonder het bestand te downloaden niet meer beschikbaar.\n\nNa het plaatsen van het bestand met instellingen kunt u <strong>[$2 uw wiki gebruiken]</strong>.",

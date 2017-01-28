@@ -2129,7 +2129,7 @@
 	"monday-at": "Pirmdiena $1",
 	"bad_image_list": "Formāts:\n\nTiek ņemti vērā tikai ieraksti rindiņā kas sākas ar *\nPirmajai saitei rindiņā ir jābūt uz attiecīgo failu\nJebkuras sekojošas saites tiks uzskatītas par izņēmumiem t.i. lapām kurās fails drīkt tikt izmantots",
 	"metadata": "Metadati",
-	"metadata-help": "Šis fails satur papildu informāciju, kuru visticamk ir pievienojis digitālais fotoaparāts vai skeneris, kas šo failu izveidoja. Ja šis fails pēc tam ir ticis modificēts, šie dati var neatbilst izmaiņām (var būt novecojuši).",
+	"metadata-help": "Šis fails satur papildu informāciju, kuru visticamāk ir pievienojis digitālais fotoaparāts vai skeneris, kas šo failu izveidoja. Ja šis fails pēc tam ir ticis modificēts, šie dati var neatbilst izmaiņām (var būt novecojuši).",
 	"metadata-expand": "Parādīt papildu detaļas",
 	"metadata-collapse": "Paslēpt papildu detaļas",
 	"metadata-fields": "Šajā paziņojumā esošie metadatu lauki būs redzami attēla lapā arī tad, kad metadatu tabula būs sakļauta.\nPārējie lauki, pēc noklusējuma, būs paslēpti.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",

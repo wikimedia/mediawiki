@@ -199,6 +199,7 @@
 	"config-install-updates": "Net néideg Aktualiséierungen net maachen",
 	"config-install-sysop": "Administrateur Benotzerkont gëtt ugeluecht",
 	"config-install-mainpage": "Haaptsäit mat Standard-Inhalt gëtt ugeluecht",
+	"config-install-mainpage-exists": "Haaptsäit gëtt et schonn, iwwersprangen",
 	"config-install-extension-tables": "D'Tabelle fir déi aktivéiert Erweiderunge ginn ugeluecht",
 	"config-install-mainpage-failed": "D'Haaptsäit konnt net dragesat ginn: $1",
 	"config-download-localsettings": "<code>LocalSettings.php</code> eroflueden",

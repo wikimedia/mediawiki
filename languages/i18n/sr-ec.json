@@ -31,7 +31,8 @@
 			"Macofe",
 			"Сербијана",
 			"Xð",
-			"Matma Rex"
+			"Matma Rex",
+			"Zoranzoki21"
 		]
 	},
 	"tog-underline": "Подвлачење веза:",
@@ -1248,6 +1249,9 @@
 	"recentchanges-legend-heading": "<strong>Легенда:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|списак нових страница]])",
 	"recentchanges-submit": "Прикажи",
+	"rcfilters-restore-default-filters": "Враћање подразумеваних филтера",
+	"rcfilters-clear-all-filters": "Уклони све филтере",
+	"rcfilters-empty-filter": "Нема активних филтера. Сви доприноси су приказани.",
 	"rcfilters-filter-userExpLevel-newcomer-label": "Новајлије",
 	"rcfilters-filter-userExpLevel-experienced-label": "Искусни корисници",
 	"rcnotefrom": "Испод {{PLURAL:$5|је измена|су измене}} од <strong>$3, $4</strong> (до <strong>$1</strong> приказано).",

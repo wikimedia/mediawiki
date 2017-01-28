@@ -1880,7 +1880,7 @@
 	"rollbacklink": "vrati",
 	"rollbacklinkcount": "vrati $1 {{PLURAL:$1|izmjenu|izmjene|izmjena}}",
 	"rollbacklinkcount-morethan": "vrati više od $1 {{PLURAL:$1|izmjene|izmjene|izmjena}}",
-	"rollbackfailed": "Neuspešno vraćanje",
+	"rollbackfailed": "Neuspješno vraćanje",
 	"cantrollback": "Ne mogu vratiti izmjenu;\nposljednji autor je ujedno i jedini.",
 	"alreadyrolled": "Ne može se vratiti posljednja izmjena [[:$1]] od korisnika [[User:$2|$2]] ([[User talk:$2|razgovor]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); neko je već izmijenio ili vratio članak na prethodnu provjerenu verziju.\n\nPosljednju izmjenu napravio je korisnik [[User:$3|$3]] ([[User talk:$3|razgovor]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "Sažetak izmjene je bio: <em>$1</em>.",

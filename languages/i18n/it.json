@@ -103,7 +103,8 @@
 			"Anto",
 			"Saracrovetto",
 			"Tosky",
-			"Selven"
+			"Selven",
+			"Margherita.mignanelli"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -1186,6 +1187,7 @@
 	"userrights-nodatabase": "Il database $1 non esiste o non è un database locale.",
 	"userrights-changeable-col": "Gruppi modificabili",
 	"userrights-unchangeable-col": "Gruppi non modificabili",
+	"userrights-expiry-none": "Non ha scadenza",
 	"userrights-conflict": "Conflitto di modifica dei diritti utente! Controlla e conferma le tue modifiche.",
 	"group": "Gruppo:",
 	"group-user": "Utenti",
