@@ -6,7 +6,9 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 	 * @covers ExtensionRegistry::exportExtractedData
 	 * @dataProvider provideExportExtractedDataGlobals
 	 */
-	public function testExportExtractedDataGlobals( $desc, $before, $globals, $expected ) {
+	public function testExportExtractedDataGlobals( $desc, $before, $globals,
+		$globalMergeStrategies, $expected
+	) {
 		// Set globals for test
 		if ( $before ) {
 			foreach ( $before as $key => $value ) {
@@ -21,6 +23,7 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 
 		$info = [
 			'globals' => $globals,
+			'globalMergeStrategies' => $globalMergeStrategies,
 			'callbacks' => [],
 			'defines' => [],
 			'credits' => [],
@@ -60,6 +63,7 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 					'mwtestFooBarDefault' => 1234,
 					'mwtestFooBarConfig' => false,
 				],
+				[],
 				[
 					'mwtestFooBarConfig' => true,
 					'mwtestFooBarConfig2' => 'string',
@@ -74,6 +78,7 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 						'foobar' => true,
 					]
 				],
+				[],
 				[
 					'mwtestDefaultOptions' => [
 						'foobar' => true,
@@ -94,6 +99,7 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 						'foobar' => false,
 					],
 				],
+				[],
 				[
 					'mwtestDefaultOptions' => [
 						'barbaz' => 12345,
@@ -115,6 +121,7 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 						'barbaz',
 					],
 				],
+				[],
 				[
 					'mwAvailableRights' => [
 						'barbaz',
@@ -135,9 +142,9 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 					'mwNamespacesFoo' => [
 						100 => false,
 						500 => true,
-						ExtensionRegistry::MERGE_STRATEGY => 'array_plus',
 					],
 				],
+				[ 'mwNamespacesFoo' => 'array_plus' ],
 				[
 					'mwNamespacesFoo' => [
 						100 => true,
@@ -156,9 +163,9 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 						'FooBarEvent' => [
 							'FooBarClass::onFooBarEvent'
 						],
-						ExtensionRegistry::MERGE_STRATEGY => 'array_merge_recursive'
 					],
 				],
+				[ 'wgHooks' => 'array_merge_recursive' ],
 				[
 					'wgHooks' => [
 						'FooBarEvent' => [
@@ -184,9 +191,9 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 						'FooBarEvent' => [
 							'BazBarClass::onFooBarEvent',
 						],
-						ExtensionRegistry::MERGE_STRATEGY => 'array_merge_recursive',
 					],
 				],
+				[ 'wgHooks' => 'array_merge_recursive', ],
 				[
 					'wgHooks' => [
 						'FooBarEvent' => [
@@ -221,9 +228,9 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 							'somethingtwo' => false,
 							'nonduplicated' => true,
 						],
-						ExtensionRegistry::MERGE_STRATEGY => 'array_plus_2d',
 					],
 				],
+				[ 'wgGroupPermissions' => 'array_plus_2d' ],
 				[
 					'wgGroupPermissions' => [
 						'customgroup' => [
@@ -248,6 +255,7 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 				[
 					'mwtestT100767' => true,
 				],
+				[],
 				[
 					'mwtestT100767' => false,
 				],
@@ -271,9 +279,9 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 								'username' => 'foo',
 							],
 						],
-						ExtensionRegistry::MERGE_STRATEGY => 'array_replace_recursive',
 					],
 				],
+				[ 'mwtestJsonConfigs' => 'array_replace_recursive', ],
 				[
 					'mwtestJsonConfigs' => [
 						'JsonZeroConfig' => [

@@ -215,7 +215,7 @@ $wgLoadScript = false;
  * @since 1.3
  */
 $wgStylePath = false;
-$wgStyleSheetPath = &$wgStylePath;
+$wgStyleSheetPath = false; // set to $wgStylePath in setup.php if not customized
 
 /**
  * The URL path of the skins directory. Should not point to an external domain.
@@ -5424,10 +5424,12 @@ $wgAutoConfirmCount = 0;
  * user who has provided an e-mail address.
  */
 $wgAutopromote = [
+	/** Set to this in setup.php if not customized:
 	'autoconfirmed' => [ '&',
 		[ APCOND_EDITCOUNT, &$wgAutoConfirmCount ],
 		[ APCOND_AGE, &$wgAutoConfirmAge ],
 	],
+	*/
 ];
 
 /**

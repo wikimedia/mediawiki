@@ -44,7 +44,7 @@ MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->setRequestInfo( [
 
 // Set up ResourceLoader
 $resourceLoader = new ResourceLoader(
-	ConfigFactory::getDefaultInstance()->makeConfig( 'main' ),
+	MediaWikiServices::getInstance()->getMainConfig(),
 	LoggerFactory::getInstance( 'resourceloader' )
 );
 $context = new ResourceLoaderContext( $resourceLoader, $wgRequest );

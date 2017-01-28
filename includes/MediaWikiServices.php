@@ -7,7 +7,7 @@ use CryptHKDF;
 use CryptRand;
 use EventRelayerGroup;
 use GenderCache;
-use GlobalVarConfig;
+use BootstrapConfig;
 use Hooks;
 use Wikimedia\Rdbms\LBFactory;
 use LinkCache;
@@ -96,11 +96,11 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public static function getInstance() {
 		if ( self::$instance === null ) {
-			// NOTE: constructing GlobalVarConfig here is not particularly pretty,
-			// but some information from the global scope has to be injected here,
-			// even if it's just a file name or database credentials to load
-			// configuration from.
-			$bootstrapConfig = new GlobalVarConfig();
+			// the BootstrapConfig only depends on the config registry and wiring files
+			// these are global variables, but they are unset in Setup.php
+			// the first call here hapenned before that, and a new instance is created
+			// on reset
+			$bootstrapConfig = new BootstrapConfig();
 			self::$instance = self::newInstance( $bootstrapConfig, 'load' );
 		}
 

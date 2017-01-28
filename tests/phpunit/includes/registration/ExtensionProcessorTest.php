@@ -41,7 +41,6 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	}
 
 	public static function provideRegisterHooks() {
-		$merge = [ ExtensionRegistry::MERGE_STRATEGY => 'array_merge_recursive' ];
 		// Format:
 		// Current $wgHooks
 		// Content in extension.json
@@ -51,25 +50,25 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 			[
 				[],
 				self::$default,
-				$merge,
+				[],
 			],
 			// No current hooks, adding one for "FooBaz" in string format
 			[
 				[],
 				[ 'Hooks' => [ 'FooBaz' => 'FooBazCallback' ] ] + self::$default,
-				[ 'FooBaz' => [ 'FooBazCallback' ] ] + $merge,
+				[ 'FooBaz' => [ 'FooBazCallback' ] ],
 			],
 			// Hook for "FooBaz", adding another one
 			[
 				[ 'FooBaz' => [ 'PriorCallback' ] ],
 				[ 'Hooks' => [ 'FooBaz' => 'FooBazCallback' ] ] + self::$default,
-				[ 'FooBaz' => [ 'PriorCallback', 'FooBazCallback' ] ] + $merge,
+				[ 'FooBaz' => [ 'PriorCallback', 'FooBazCallback' ] ],
 			],
 			// No current hooks, adding one for "FooBaz" in verbose array format
 			[
 				[],
 				[ 'Hooks' => [ 'FooBaz' => [ 'FooBazCallback' ] ] ] + self::$default,
-				[ 'FooBaz' => [ 'FooBazCallback' ] ] + $merge,
+				[ 'FooBaz' => [ 'FooBazCallback' ] ],
 			],
 			// Hook for "BarBaz", adding one for "FooBaz"
 			[
@@ -78,7 +77,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 				[
 					'BarBaz' => [ 'BarBazCallback' ],
 					'FooBaz' => [ 'FooBazCallback' ],
-				] + $merge,
+				],
 			],
 			// Callbacks for FooBaz wrapped in an array
 			[
@@ -86,7 +85,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 				[ 'Hooks' => [ 'FooBaz' => [ 'Callback1' ] ] ] + self::$default,
 				[
 					'FooBaz' => [ 'Callback1' ],
-				] + $merge,
+				],
 			],
 			// Multiple callbacks for FooBaz hook
 			[
@@ -94,7 +93,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 				[ 'Hooks' => [ 'FooBaz' => [ 'Callback1', 'Callback2' ] ] ] + self::$default,
 				[
 					'FooBaz' => [ 'Callback1', 'Callback2' ],
-				] + $merge,
+				],
 			],
 		];
 	}
@@ -458,7 +457,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 			true
 		);
 		$missing = [];
-		foreach ( $globalSettings as $global ) {
+		foreach ( $globalSettings as $global => &$t ) {
 			if ( !isset( $schema['properties'][$global] ) ) {
 				$missing[] = $global;
 			}

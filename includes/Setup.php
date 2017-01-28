@@ -36,6 +36,13 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 $fname = 'Setup.php';
 $ps_setup = Profiler::instance()->scopedProfileIn( $fname );
 
+// register the main mediawiki config
+$wgConfigRegistry['main'] = function() {
+	// @todo: once extensions use their own config separately from the main config,
+	// replace with a LocalConfig based on core defaults
+	return new GlobalVarConfig();
+};
+
 // Load queued extensions
 ExtensionRegistry::getInstance()->loadFromQueue();
 // Don't let any other extensions load
@@ -79,10 +86,15 @@ if ( $wgResourceBasePath === null ) {
 if ( $wgStylePath === false ) {
 	$wgStylePath = "$wgResourceBasePath/skins";
 }
+if ( $wgStyleSheetPath === false ) {
+	$wgStyleSheetPath = $wgStylePath;
+}
+
 if ( $wgLocalStylePath === false ) {
 	// Avoid wgResourceBasePath here since that may point to a different domain (e.g. CDN)
 	$wgLocalStylePath = "$wgScriptPath/skins";
 }
+
 if ( $wgExtensionAssetsPath === false ) {
 	$wgExtensionAssetsPath = "$wgResourceBasePath/extensions";
 }
@@ -290,6 +302,13 @@ $wgDefaultUserOptions['watchlistdays'] = min(
 	ceil( $rcMaxAgeDays )
 );
 unset( $rcMaxAgeDays );
+
+if ( !isset( $wgAutopromote['autoconfirmed'] ) && $wgAutoConfirmCount && $wgAutoConfirmAge ) {
+	$wgAutopromote['autoconfirmed'] = [ '&',
+		[ APCOND_EDITCOUNT, $wgAutoConfirmCount ],
+		[ APCOND_AGE, $wgAutoConfirmAge ],
+	];
+}
 
 if ( $wgSkipSkin ) {
 	$wgSkipSkins[] = $wgSkipSkin;
@@ -507,7 +526,7 @@ if ( $wgDebugToolbar && !$wgCommandLineMode ) {
 
 // Reset the global service locator, so any services that have already been created will be
 // re-created while taking into account any custom settings and extensions.
-MediaWikiServices::resetGlobalInstance( new GlobalVarConfig(), 'quick' );
+MediaWikiServices::resetGlobalInstance( new BootstrapConfig(), 'quick' );
 
 if ( $wgSharedDB && $wgSharedTables ) {
 	// Apply $wgSharedDB table aliases for the local LB (all non-foreign DB connections)

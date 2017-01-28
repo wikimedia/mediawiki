@@ -678,6 +678,11 @@
 			"default": "wg",
 			"description": "Prefix to put in front of configuration settings when exporting them to $GLOBALS"
 		},
+		"config_remove_globals": {
+			"type": "bool",
+			"default": false,
+			"description": "Whether globals should be unset after being read from local settings. Set to true only if you do not use any global config variables in your extension, which is recommended."
+		},
 		"config": {
 			"type": "object",
 			"description": "Configuration options for this extension",
@@ -695,7 +700,8 @@
 								"array_replace_recursive",
 								"array_plus_2d",
 								"array_plus",
-								"array_merge"
+								"array_merge",
+								"override"
 							],
 							"default": "array_merge"
 						},
