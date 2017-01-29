@@ -28,6 +28,14 @@
 	};
 
 	/**
+	 * Get the view model.
+	 * @return {mw.rcfilters.FiltersViewModel} View model
+	 */
+	mw.rcfilters.Controller.prototype.getModel = function () {
+		return this.model;
+	};
+
+	/**
 	 * Reset to default filters
 	 */
 	mw.rcfilters.Controller.prototype.resetToDefaults = function () {

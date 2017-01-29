@@ -236,6 +236,16 @@
 	};
 
 	/**
+	 * Get the definition object for an individual group.
+	 * @param {string} groupName Group name
+	 * @return {Object|null} Filter group
+	 * @see #getFilterGroups
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getFilterGroup = function ( groupName ) {
+		return this.groups[ groupName ] || null;
+	};
+
+	/**
 	 * Get the current state of the filters.
 	 *
 	 * Checks whether the filter group is active. This means at least one
