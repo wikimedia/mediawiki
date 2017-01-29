@@ -249,6 +249,7 @@
 	"permissionserrorstext": "Ó la bele halo ne'e; {{PLURAL:$1|motivu|motivu sira}}:",
 	"permissionserrorstext-withaction": "Ita la bele $2. {{PLURAL:$1|Razaun|Razaun sira}}:",
 	"currentrev": "Versaun atuál",
+	"currentrev-asof": "Versaun atuál $1 nian",
 	"revisionasof": "Versaun $1 nian",
 	"revision-info": "Revisaun loron $4, tempu $5, husi {{GENDER:$6|$2}}$7",
 	"previousrevision": "←Versaun tuan liu",

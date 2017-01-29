@@ -160,7 +160,7 @@
 	"apihelp-imagerotate-description": "하나 이상의 그림을 회전합니다.",
 	"apihelp-imagerotate-param-rotation": "시계 방향으로 회전할 그림의 각도.",
 	"apihelp-import-param-xml": "업로드한 XML 파일.",
-	"apihelp-login-param-name": "계정 이름.",
+	"apihelp-login-param-name": "사용자 이름.",
 	"apihelp-login-param-password": "비밀번호.",
 	"apihelp-login-param-domain": "도메인 (선택).",
 	"apihelp-login-param-token": "처음 요청에서 로그인 토큰을 취득했습니다.",

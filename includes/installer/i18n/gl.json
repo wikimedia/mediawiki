@@ -306,6 +306,7 @@
 	"config-install-subscribe-fail": "Non se puido subscribir á lista mediawiki-announce: $1",
 	"config-install-subscribe-notpossible": "cURL non está instalado e <code>allow_url_fopen</code> non está dispoñible.",
 	"config-install-mainpage": "Creando a páxina principal co contido por defecto",
+	"config-install-mainpage-exists": "A páxina principal xa existe, saltando",
 	"config-install-extension-tables": "Creando as táboas para as extensións activadas",
 	"config-install-mainpage-failed": "Non se puido inserir a páxina principal: $1",
 	"config-install-done": "<strong>Parabéns!</strong>\nInstalou MediaWiki.\n\nO programa de instalación xerou un ficheiro <code>LocalSettings.php</code>.\nEste ficheiro contén toda a súa configuración.\n\nTerá que descargalo e poñelo na base da instalación do seu wiki (no mesmo directorio ca index.php). A descarga debería comezar automaticamente.\n\nSe non comezou a descarga ou se a cancelou, pode facer que comece de novo premendo na ligazón que aparece a continuación:\n\n$3\n\n<strong>Nota:</strong> Se non fai iso agora, este ficheiro de configuración xerado non estará dispoñible máis adiante se sae da instalación sen descargalo.\n\nCando faga todo isto, xa poderá <strong>[$2 entrar no seu wiki]</strong>.",

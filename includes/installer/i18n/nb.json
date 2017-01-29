@@ -308,6 +308,7 @@
 	"config-install-subscribe-fail": "Ikke mulig å abonnere på mediawiki-announce: $1",
 	"config-install-subscribe-notpossible": "cURL er ikke installert og <code>allow_url_fopen</code> er ikke tilgjengelig.",
 	"config-install-mainpage": "Oppretter hovedside med standard innhold",
+	"config-install-mainpage-exists": "Hovedsiden eksisterer allerede, hopper over",
 	"config-install-extension-tables": "Oppretter tabeller for aktiviserte utvidelser",
 	"config-install-mainpage-failed": "Kunne ikke sette inn hovedside: $1",
 	"config-install-done": "<strong>Gratulrerer!</strong>\nDu har lykkes i å installere MediaWiki.\n\nInstallasjonsprogrammet har generert en <code>LocalSettings.php</code>-fil.\nDen inneholder alle dine konfigureringer.\n\nDu må laste den ned og legge den på hovedfolderen for din wiki-installasjon (der index.php ligger). Nedlastingen skulle ha startet automatisk.\n\nHvis ingen nedlasting ble tilbudt, eller du avbrøt den, kan du få den i gang ved å klikke på lenken under:\n\n$3\n\n<strong>OBS:</strong> Hvis du ikke gjør dette nå, vil den genererte konfigurasjonsfilen ikke være tilgjengelig for deg senere.\n\nNår dette er gjort, kan du <strong>[$2 gå inn i wikien]</strong>.",
