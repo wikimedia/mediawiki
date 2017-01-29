@@ -134,7 +134,8 @@ changes to languages because of Phabricator reports.
   Some configurations (such as date formats and gender namespaces) have also
   been updated when using the fallback language's configuration was inadequate.
   The new or reinstated language fallbacks are (after cs ↔ sk in 1.28):
-  hsb ↔ dsb, io → eo, mdf → ru, pnt → el, roa-tara → it.
+  ca ↔ oc; hsb ↔ dsb; io → eo; mdf → ru; pnt → el; roa-tara → it; rup → ro;
+  sh → bs, sr-el, hr.
 
 ==== No fallback for Ukrainian ====
 * (T39314) The fallback from Ukrainian to Russian was removed. The Ukrainian
