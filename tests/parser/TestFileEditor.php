@@ -125,7 +125,7 @@ class TestFileEditor {
 		$line = $this->lines[$this->pos++];
 		$heading = $this->getHeading( $line );
 		$expectedEnd = 'end' . $heading;
-		$contents = $line;
+		$contents = "$line\n";
 
 		do {
 			$line = $this->lines[$this->pos++];
