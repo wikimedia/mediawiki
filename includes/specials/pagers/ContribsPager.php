@@ -223,7 +223,10 @@ class ContribsPager extends ReverseChronologicalPager {
 					'LEFT JOIN', [
 						'ug_user = rev_user',
 						'ug_group' => $groupsWithBotPermission,
-						'ug_expiry IS NULL OR ug_expiry >= ' . $this->mDb->addQuotes( $this->mDb->timestamp() )
+						$this->getConfig()->get( 'DisableUserGroupExpiry' ) ?
+							'1' :
+							'ug_expiry IS NULL OR ug_expiry >= ' .
+								$this->mDb->addQuotes( $this->mDb->timestamp() )
 					]
 				];
 			}
