@@ -67,7 +67,9 @@ class NewFilesPager extends ReverseChronologicalPager {
 					[
 						'ug_group' => $groupsWithBotPermission,
 						'ug_user = img_user',
-						'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
+						$this->getConfig()->get( 'DisableUserGroupExpiry' ) ?
+							'1' :
+							'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
 					]
 				];
 			}

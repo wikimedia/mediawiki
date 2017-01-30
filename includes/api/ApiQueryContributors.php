@@ -163,7 +163,9 @@ class ApiQueryContributors extends ApiQueryBase {
 				[
 					'ug_user=rev_user',
 					'ug_group' => $limitGroups,
-					'ug_expiry IS NULL OR ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
+					$this->getConfig()->get( 'DisableUserGroupExpiry' ) ?
+						'1' :
+						'ug_expiry IS NULL OR ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
 				]
 			] ] );
 			$this->addWhereIf( 'ug_user IS NULL', $excludeGroups );
