@@ -720,8 +720,21 @@ abstract class SearchEngine {
 	public function getSearchIndexFields() {
 		$models = ContentHandler::getContentModels();
 		$fields = [];
+		$seenHandlers = new SplObjectStorage();
 		foreach ( $models as $model ) {
-			$handler = ContentHandler::getForModelID( $model );
+			try {
+				$handler = ContentHandler::getForModelID( $model );
+			}
+			catch ( MWUnknownContentModelException $e ) {
+				// If we can find no handler, ignore it
+				continue;
+			}
+			// Several models can have the same handler, so avoid processing it repeatedly
+			if ( $seenHandlers->contains( $handler ) ) {
+				// We already did this one
+				continue;
+			}
+			$seenHandlers->attach( $handler );
 			$handlerFields = $handler->getFieldsForSearchIndex( $this );
 			foreach ( $handlerFields as $fieldName => $fieldData ) {
 				if ( empty( $fields[$fieldName] ) ) {
