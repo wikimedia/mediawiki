@@ -275,3 +275,8 @@ textarea {
 table.small {
 	font-size: 100%;
 }
+
+/* We rewrite <big> in wikitext to <span class="mw-big"> in HTML */
+.mw-big {
+	font-size: 1.2em;
+}

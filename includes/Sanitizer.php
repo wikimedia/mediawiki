@@ -587,13 +587,22 @@ class Sanitizer {
 							$badtag = true;
 						}
 
+						$extraAttrs = [];
+						# Add class="mw-big" to wikitext <big>
+						if ( $t == 'big' ) {
+							$extraAttrs['class'] = 'mw-big';
+						}
 						# Strip non-approved attributes from the tag
-						$newparams = Sanitizer::fixTagAttributes( $params, $t );
+						$newparams = Sanitizer::fixTagAttributes( $params, $t, false, $extraAttrs );
 					}
 					if ( !$badtag ) {
 						$rest = str_replace( '>', '&gt;', $rest );
 						$close = ( $brace == '/>' && !$slash ) ? ' /' : '';
-						$text .= "<$slash$t$newparams$close>$rest";
+						$realTag = $t;
+						if ( $t == 'big' ) {
+							$realTag = 'span';
+						}
+						$text .= "<$slash$realTag$newparams$close>$rest";
 						continue;
 					}
 				}
@@ -1066,15 +1075,27 @@ class Sanitizer {
 	 * @param string $text
 	 * @param string $element
 	 * @param bool $sorted Whether to sort the attributes (default: false)
+	 * @param array $extraAttrs Any extra attributes to add in
 	 * @return string
 	 */
-	static function fixTagAttributes( $text, $element, $sorted = false ) {
-		if ( trim( $text ) == '' ) {
+	static function fixTagAttributes( $text, $element, $sorted = false, $extraAttrs = [] ) {
+		$emptyText = trim( $text ) == '';
+		if ( $emptyText && !$extraAttrs ) {
+			# Nothing to do here
 			return '';
 		}
 
-		$decoded = Sanitizer::decodeTagAttributes( $text );
-		$stripped = Sanitizer::validateTagAttributes( $decoded, $element );
+		if ( $emptyText ) {
+			# If there's no text, we can skip trying to parse stuff out of it
+			$stripped = [];
+		} else {
+			$decoded = Sanitizer::decodeTagAttributes( $text );
+			$stripped = Sanitizer::validateTagAttributes( $decoded, $element );
+		}
+
+		if ( $extraAttrs ) {
+			$stripped = Sanitizer::mergeAttributes( $extraAttrs, $stripped );
+		}
 
 		if ( $sorted ) {
 			ksort( $stripped );

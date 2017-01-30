@@ -1164,16 +1164,27 @@ parsoid=wt2html,wt2wt
 Non-html5 tags should be accepted
 !! wikitext
 <center>''foo''</center>
-<big>''foo''</big>
 <font>''foo''</font>
 <strike>''foo''</strike>
 <tt>''foo''</tt>
 !! html
 <center><i>foo</i></center>
-<p><big><i>foo</i></big>
-<font><i>foo</i></font>
+<p><font><i>foo</i></font>
 <strike><i>foo</i></strike>
 <tt><i>foo</i></tt>
+</p>
+!! end
+
+!! test
+big is transformed into span
+!! wikitext
+<big>plain big</big>
+<big class="bar">classes merged</big>
+<big style="color: red;">attributes preserved</big>
+!! html
+<p><span class="mw-big">plain big</span>
+<span class="mw-big bar">classes merged</span>
+<span class="mw-big" style="color: red;">attributes preserved</span>
 </p>
 !! end
 
