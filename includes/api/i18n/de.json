@@ -1017,6 +1017,7 @@
 	"apiwarn-validationfailed": "Validierungsfehler für <kbd>$1</kbd>: $2",
 	"api-feed-error-title": "Fehler ($1)",
 	"api-usage-docref": "Siehe $1 zur Verwendung der API.",
+	"api-usage-mailinglist-ref": "Abonniere die Mailingliste „mediawiki-api-announce“ auf &lt;https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce&gt; zum Feststellen von API-Veralterungen und „Breaking Changes“.",
 	"api-credits-header": "Danksagungen",
 	"api-credits": "API-Entwickler:\n* Roan Kattouw (Hauptentwickler von September 2007 bis 2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (Autor, Hauptentwickler von September 2006 bis September 2007)\n* Brad Jorsch (Hauptentwickler seit 2013)\n\nBitte sende deine Kommentare, Vorschläge und Fragen an mediawiki-api@lists.wikimedia.org\noder reiche einen Fehlerbericht auf https://phabricator.wikimedia.org/ ein."
 }

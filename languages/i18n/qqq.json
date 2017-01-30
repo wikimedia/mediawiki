@@ -2044,7 +2044,7 @@
 	"wantedcategories": "{{doc-special|WantedCategories}}",
 	"wantedcategories-summary": "{{doc-specialpagesummary|wantedcategories}}",
 	"wantedpages": "{{doc-special|WantedPages}}\n{{Identical|Wanted page}}",
-	"wantedpages-summary": "ఇతర పేజీల నుండి అనేక లింకులు ఉండి కూడా \"ఉనికిలో లేని పేజీల\" జాబితా ఇది. దారిమార్పు పేజీల నుండి మాత్రమే లింకులు ఉన్న పేజీలు ఇందులో ఉండవు. ఆ పేజీ పేర్ల జాబితా కోసం [[{{#special:BrokenRedirects}}|తెగిపోయిన దారిమార్పుల జాబితా]] చూడండి.",
+	"wantedpages-summary": "{{doc-specialpagesummary|wantedpages}}",
 	"wantedpages-badtitle": "Error message shown when [[Special:WantedPages]] is listing a page with a title that shouldn't exist.\n\nParameters:\n* $1 - a page title",
 	"wantedfiles": "{{doc-special|WantedFiles}}",
 	"wantedfiles-summary": "{{doc-specialpagesummary|wantedfiles}}",

@@ -1100,6 +1100,8 @@
 	"userrights-changeable-col": "Групы, якія Вы можаце мяняць",
 	"userrights-unchangeable-col": "Групы, якія Вы ня можаце мяняць",
 	"userrights-expiry-current": "Сканчаецца $1",
+	"userrights-expiry-none": "Бестэрмінова",
+	"userrights-expiry": "Сканчаецца:",
 	"userrights-conflict": "Канфлікт пры зьмене правоў удзельнікаў! Калі ласка, праверце і захавайце вашыя зьмены.",
 	"group": "Група:",
 	"group-user": "Удзельнікі",
