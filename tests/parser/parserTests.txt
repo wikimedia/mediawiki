@@ -16242,13 +16242,13 @@ HTML tag with leading space is parsed as text
 
 # This test case is fixed in Parsoid by domino 1.0.12. (bug 50604)
 # Note that html2wt is considerably more difficult if we use <b> in
-# the test case, instead of <big>
+# the test case, instead of <small>
 !! test
 Ensure that HTML adoption agency algorithm is properly implemented.
 !! wikitext
-<big>X<big>Y</big>Z</big>
+<small>X<small>Y</small>Z</small>
 !! html
-<p><big>X<big>Y</big>Z</big>
+<p><small>X<small>Y</small>Z</small>
 </p>
 !! end
 
