@@ -1694,6 +1694,7 @@
 	"apiwarn-wgDebugAPI": "{{doc-apierror}}",
 	"api-feed-error-title": "Used as a feed item title when an error occurs in <kbd>action=feedwatchlist</kbd>.\n\nParameters:\n* $1 - API error code\n{{Identical|Error}}",
 	"api-usage-docref": "\n\nParameters:\n* $1 - URL of the API auto-generated documentation.",
+	"api-usage-mailinglist-ref": "{{doc-apierror}} Also used in the error response.",
 	"api-exception-trace": "\n\nParameters:\n* $1 - Exception class.\n* $2 - File from which the exception was thrown.\n* $3 - Line number from which the exception was thrown.\n* $4 - Exception backtrace.",
 	"api-credits-header": "Header for the API credits section in the API help output\n{{Identical|Credit}}",
 	"api-credits": "API credits text, displayed in the API help output"
