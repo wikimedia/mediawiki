@@ -69,19 +69,12 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 
 		$diff = [ 'curid' => 5, 'diff' => 191, 'oldid' => 190 ];
 		$cur = [ 'curid' => 5, 'diff' => 0, 'oldid' => 191 ];
-		$this->assertQueryLink( 'cur', $cur, $cacheEntry->curlink, 'cur link' );
-		$this->assertQueryLink( 'prev', $diff, $cacheEntry->lastlink, 'prev link' );
-		$this->assertQueryLink( 'diff', $diff, $cacheEntry->difflink, 'diff link' );
+		$this->assertQueryLink( 'cur', $cur, $cacheEntry->curlink );
+		$this->assertQueryLink( 'prev', $diff, $cacheEntry->lastlink );
+		$this->assertQueryLink( 'diff', $diff, $cacheEntry->difflink );
 	}
 
 	public function testNewForDeleteChange() {
-		$expected = [
-			'title' => 'Abc',
-			'user' => 'TestRecentChangesUser',
-			'timestamp' => '21:21',
-			'numberofWatchingusers' => 0,
-			'unpatrolled' => false
-		];
 		$user = $this->getMutableTestUser()->getUser();
 		$recentChange = $this->testRecentChangesHelper->makeLogRecentChange(
 			'delete',
