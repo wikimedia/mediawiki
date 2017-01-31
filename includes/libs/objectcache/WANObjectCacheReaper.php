@@ -23,6 +23,7 @@
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\ScopedCallback;
 
 /**
  * Class for scanning through chronological, log-structured data or change logs
