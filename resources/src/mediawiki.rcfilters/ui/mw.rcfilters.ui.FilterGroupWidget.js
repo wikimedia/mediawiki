@@ -7,22 +7,27 @@
 	 * @mixins OO.ui.mixin.LabelElement
 	 *
 	 * @constructor
-	 * @param {string} name Group name
+	 * @param {mw.rcfilters.dm.FilterGroup} model Filter group model
 	 * @param {Object} config Configuration object
 	 */
-	mw.rcfilters.ui.FilterGroupWidget = function MwRcfiltersUiFilterGroupWidget( name, config ) {
+	mw.rcfilters.ui.FilterGroupWidget = function MwRcfiltersUiFilterGroupWidget( model, config ) {
 		config = config || {};
 
 		// Parent
 		mw.rcfilters.ui.FilterGroupWidget.parent.call( this, config );
+
+		this.model = model;
+
 		// Mixin constructors
 		OO.ui.mixin.GroupWidget.call( this, config );
 		OO.ui.mixin.LabelElement.call( this, $.extend( {}, config, {
+			label: this.model.getTitle(),
 			$label: $( '<div>' )
 				.addClass( 'mw-rcfilters-ui-filterGroupWidget-title' )
 		} ) );
 
-		this.name = name;
+
+		this.model.connect( this, { update: 'onModelUpdate' } );
 
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterGroupWidget' )
@@ -40,12 +45,22 @@
 	OO.mixinClass( mw.rcfilters.ui.FilterGroupWidget, OO.ui.mixin.LabelElement );
 
 	/**
+	 * Respond to model update event
+	 */
+	mw.rcfilters.ui.FilterGroupWidget.prototype.onModelUpdate = function () {
+		this.$element.toggleClass(
+			'mw-rcfilters-ui-filterGroupWidget-active',
+			this.model.isActive()
+		);
+	};
+
+	/**
 	 * Get the group name
 	 *
 	 * @return {string} Group name
 	 */
 	mw.rcfilters.ui.FilterGroupWidget.prototype.getName = function () {
-		return this.name;
+		return this.model.getName();
 	};
 
 	/**
@@ -54,7 +69,6 @@
 	 * @param {boolean} isActive The group is active
 	 */
 	mw.rcfilters.ui.FilterGroupWidget.prototype.toggleActiveState = function ( isActive ) {
-		this.$element.toggleClass( 'mw-rcfilters-ui-filterGroupWidget-active', isActive );
 	};
 
 }( mediaWiki, jQuery ) );

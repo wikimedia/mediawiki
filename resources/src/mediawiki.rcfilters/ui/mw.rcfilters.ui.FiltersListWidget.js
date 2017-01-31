@@ -60,7 +60,8 @@
 	 * Respond to initialize event from the model
 	 */
 	mw.rcfilters.ui.FiltersListWidget.prototype.onModelInitialize = function () {
-		var i, group, groupWidget,
+		var i, group, groupWidget, groupModel,
+			widget = this,
 			itemWidgets = [],
 			groupWidgets = [],
 			groups = this.model.getFilterGroups();
@@ -69,28 +70,22 @@
 		this.clearItems();
 
 		for ( group in groups ) {
-			groupWidget = new mw.rcfilters.ui.FilterGroupWidget( group, {
-				label: groups[ group ].title
-			} );
+			groupModel = groups[ group ];
+			groupWidget = new mw.rcfilters.ui.FilterGroupWidget( groupModel );
 			groupWidgets.push( groupWidget );
 
-			itemWidgets = [];
-			if ( groups[ group ].filters ) {
-				for ( i = 0; i < groups[ group ].filters.length; i++ ) {
-					itemWidgets.push(
-						new mw.rcfilters.ui.FilterItemWidget(
-							this.controller,
-							groups[ group ].filters[ i ],
-							{
-								label: groups[ group ].filters[ i ].getLabel(),
-								description: groups[ group ].filters[ i ].getDescription()
-							}
-						)
-					);
-				}
+			itemWidgets = groupModel.getItems().map( function ( filterItem ) {
+				return new mw.rcfilters.ui.FilterItemWidget(
+					widget.controller,
+					filterItem,
+					{
+						label: filterItem.getLabel(),
+						description: filterItem.getDescription()
+					}
+				);
+			} );
 
-				groupWidget.addItems( itemWidgets );
-			}
+			groupWidget.addItems( itemWidgets );
 		}
 
 		this.addItems( groupWidgets );

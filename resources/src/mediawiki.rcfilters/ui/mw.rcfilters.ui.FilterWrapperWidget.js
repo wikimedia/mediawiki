@@ -139,13 +139,6 @@
 		} else {
 			this.capsule.removeItemsFromData( [ item.getName() ] );
 		}
-
-		// Toggle the active state of the group
-		this.filterPopup.getItems().forEach( function ( groupWidget ) {
-			if ( groupWidget.getName() === item.getGroup() ) {
-				groupWidget.toggleActiveState( widget.model.isFilterGroupActive( groupWidget.getName() ) );
-			}
-		} );
 	};
 
 	/**

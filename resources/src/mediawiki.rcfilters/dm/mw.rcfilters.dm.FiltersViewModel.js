@@ -54,8 +54,33 @@
 		// Reapply the active state of filters
 		this.reapplyActiveFilters( item );
 
+		// Recheck group activity state
+		this.groups[ item.getGroup() ].checkActive();
+
 		this.emit( 'itemUpdate', item );
 	};
+
+	/**
+	 * Get the current state of the filters.
+	 *
+	 * Checks whether the filter group is active. This means at least one
+	 * filter is selected, but not all filters are selected.
+	 *
+	 * @param {string} groupName Group name
+	 * @return {boolean} Filter group is active
+	 */
+	// mw.rcfilters.dm.FiltersViewModel.prototype.isFilterGroupActive = function ( groupName ) {
+	// 	var count = 0;
+
+	// 	this.groups[ groupName ].getItems().forEach( function ( filterItem ) {
+	// 		count += Number( filterItem.isSelected() );
+	// 	} );
+
+	// 	return (
+	// 		count > 0 &&
+	// 		count < filters.length
+	// 	);
+	// };
 
 	/**
 	 * Calculate the active state of the filters, based on selected filters in the group.
@@ -67,8 +92,8 @@
 			group = item.getGroup(),
 			model = this;
 		if (
-			!this.groups[ group ].exclusionType ||
-			this.groups[ group ].exclusionType === 'default'
+			!this.groups[ group ].getExclusionType() ||
+			this.groups[ group ].getExclusionType() === 'default'
 		) {
 			// Default behavior
 			// If any parameter is selected, but:
@@ -76,16 +101,16 @@
 			// - If the entire group is selected, all are inactive
 
 			// Check what's selected in the group
-			selectedItemsCount = this.groups[ group ].filters.filter( function ( filterItem ) {
+			selectedItemsCount = this.groups[ group ].getItems().filter( function ( filterItem ) {
 				return filterItem.isSelected();
 			} ).length;
 
-			this.groups[ group ].filters.forEach( function ( filterItem ) {
+			this.groups[ group ].getItems().forEach( function ( filterItem ) {
 				filterItem.toggleActive(
 					selectedItemsCount > 0 ?
 						// If some items are selected
 						(
-							selectedItemsCount === model.groups[ group ].filters.length ?
+							selectedItemsCount === model.groups[ group ].getItemCount() ?
 							// If **all** items are selected, they're all inactive
 							false :
 							// If not all are selected, then the selected are active
@@ -96,7 +121,7 @@
 						true
 				);
 			} );
-		} else if ( this.groups[ group ].exclusionType === 'explicit' ) {
+		} else if ( this.groups[ group ].getExclusionType() === 'explicit' ) {
 			// Explicit behavior
 			// - Go over the list of excluded filters to change their
 			//   active states accordingly
@@ -157,13 +182,14 @@
 		this.excludedByMap = {};
 
 		$.each( filters, function ( group, data ) {
-			model.groups[ group ] = model.groups[ group ] || {};
-			model.groups[ group ].filters = model.groups[ group ].filters || [];
-
-			model.groups[ group ].title = data.title;
-			model.groups[ group ].type = data.type;
-			model.groups[ group ].separator = data.separator || '|';
-			model.groups[ group ].exclusionType = data.exclusionType || 'default';
+			if ( !model.groups[ group ] ) {
+				model.groups[ group ] = new mw.rcfilters.dm.FilterGroup( {
+					type: data.type,
+					title: data.title,
+					separator: data.separator,
+					exclusionType: data.exclusionType
+				} );
+			}
 
 			selectedFilterNames = [];
 			for ( i = 0; i < data.filters.length; i++ ) {
@@ -192,7 +218,7 @@
 					selectedFilterNames.push( data.filters[ i ].name );
 				}
 
-				model.groups[ group ].filters.push( filterItem );
+				model.groups[ group ].addItems( filterItem );
 				items.push( filterItem );
 			}
 
@@ -200,7 +226,7 @@
 				// Store the default parameter group state
 				// For this group, the parameter is group name and value is the names
 				// of selected items
-				model.defaultParams[ group ] = model.sanitizeStringOptionGroup( group, selectedFilterNames ).join( model.groups[ group ].separator );
+				model.defaultParams[ group ] = model.sanitizeStringOptionGroup( group, selectedFilterNames ).join( model.groups[ group ].getSeparator() );
 			}
 		} );
 
@@ -231,9 +257,19 @@
 	 *
 	 * @return {Object} Filter groups
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.getFilterGroups = function () {
-		return this.groups;
-	};
+	// mw.rcfilters.dm.FiltersViewModel.prototype.getFilterGroups = function () {
+	// 	return this.groups;
+	// };
+
+
+
+
+
+
+
+
+
+
 
 	/**
 	 * Get the current state of the filters.
@@ -244,19 +280,18 @@
 	 * @param {string} groupName Group name
 	 * @return {boolean} Filter group is active
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.isFilterGroupActive = function ( groupName ) {
-		var count = 0,
-			filters = this.groups[ groupName ].filters;
+	// mw.rcfilters.dm.FiltersViewModel.prototype.isFilterGroupActive = function ( groupName ) {
+	// 	var count = 0;
 
-		filters.forEach( function ( filterItem ) {
-			count += Number( filterItem.isSelected() );
-		} );
+	// 	this.groups[ groupName ].getItems().forEach( function ( filterItem ) {
+	// 		count += Number( filterItem.isSelected() );
+	// 	} );
 
-		return (
-			count > 0 &&
-			count < filters.length
-		);
-	};
+	// 	return (
+	// 		count > 0 &&
+	// 		count < filters.length
+	// 	);
+	// };
 
 	/**
 	 * Update the representation of the parameters. These are the back-end
@@ -404,7 +439,7 @@
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.sanitizeStringOptionGroup = function( groupName, valueArray ) {
 		var result = [],
-			validNames = this.groups[ groupName ].filters.map( function ( filterItem ) {
+			validNames = this.groups[ groupName ].getItems().map( function ( filterItem ) {
 				return filterItem.getName();
 			} );
 
@@ -500,7 +535,7 @@
 			} else if ( model.groups.hasOwnProperty( paramName ) ) {
 				// This parameter represents a group (values are the filters)
 				// this is equivalent to checking if the group is 'string_options'
-				groupMap[ paramName ] = { filters: model.groups[ paramName ].filters };
+				groupMap[ paramName ] = { filters: model.groups[ paramName ].getItems() };
 			}
 		} );
 
@@ -510,7 +545,7 @@
 			var paramValues, filterItem,
 				allItemsInGroup = data.filters;
 
-			if ( model.groups[ group ].type === 'send_unselected_if_any' ) {
+			if ( model.groups[ group ].getType() === 'send_unselected_if_any' ) {
 				for ( i = 0; i < allItemsInGroup.length; i++ ) {
 					filterItem = allItemsInGroup[ i ];
 
@@ -523,8 +558,8 @@
 						// group, which means the state is false
 						false;
 				}
-			} else if ( model.groups[ group ].type === 'string_options' ) {
-				paramValues = model.sanitizeStringOptionGroup( group, params[ group ].split( model.groups[ group ].separator ) );
+			} else if ( model.groups[ group ].getType() === 'string_options' ) {
+				paramValues = model.sanitizeStringOptionGroup( group, params[ group ].split( model.groups[ group ].getSeparator() ) );
 
 				for ( i = 0; i < allItemsInGroup.length; i++ ) {
 					filterItem = allItemsInGroup[ i ];
@@ -533,7 +568,7 @@
 							// If it is the word 'all'
 							paramValues.length === 1 && paramValues[ 0 ] === 'all' ||
 							// All values are written
-							paramValues.length === model.groups[ group ].filters.length
+							paramValues.length === model.groups[ group ].getItemCount()
 						) ?
 						// All true (either because all values are written or the term 'all' is written)
 						// is the same as all filters set to false
