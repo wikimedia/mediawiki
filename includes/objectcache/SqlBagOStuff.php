@@ -23,6 +23,7 @@
 
 use \MediaWiki\MediaWikiServices;
 use \Wikimedia\WaitConditionLoop;
+use \Wikimedia\Rdbms\TransactionProfiler;
 
 /**
  * Class to store objects in the database

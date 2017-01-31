@@ -22,6 +22,7 @@
  */
 use Psr\Log\LoggerInterface;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Rdbms\TransactionProfiler;
 
 /**
  * Database connection, tracking, load balancing, and transaction manager for a cluster

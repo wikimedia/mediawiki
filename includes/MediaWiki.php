@@ -22,6 +22,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ChronologyProtector;
 
 /**
  * The MediaWiki class is the helper class for the index.php entry point.
