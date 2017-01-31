@@ -56,6 +56,7 @@ class RCFeedIntegrationTest extends MediaWikiTestCase {
 						'server_name' => 'example.org',
 						'server_script_path' => '/w',
 						'wiki' => 'example',
+						'tags' => [ 'hello' ],
 					] ),
 					$line
 				);
@@ -91,6 +92,7 @@ class RCFeedIntegrationTest extends MediaWikiTestCase {
 				'pet' => 'cat',
 			] )
 		);
+		$rc->addTags( [ 'hello' ] );
 		$rc->notifyRCFeeds();
 	}
 }

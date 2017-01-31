@@ -944,6 +944,23 @@ class RecentChange {
 	}
 
 	/**
+	 * Gets the change tags associated with the RC entry.
+	 *
+	 * @return string[]
+	 * @since 1.29
+	 */
+	public function getTags() {
+		$tags = [];
+		// any existing tags?
+		if ( $this->getAttribute( 'rc_id' ) ) {
+			$tags = ChangeTags::getTags( $this->getAttribute( 'rc_id' ) );
+		}
+		// append the tags that we are going to add (or have just added) to the DB
+		$tags = array_unique( array_merge( $tags, $this->tags ) );
+		return $tags;
+	}
+
+	/**
 	 * Gets the end part of the diff URL associated with this object
 	 * Blank if no diff link should be displayed
 	 * @param bool $forceCur

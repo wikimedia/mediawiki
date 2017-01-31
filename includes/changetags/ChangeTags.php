@@ -37,7 +37,8 @@ class ChangeTags {
 	/**
 	 * Creates HTML for the given tags
 	 *
-	 * @param string $tags Comma-separated list of tags
+	 * @param string[]|string $tags Array of tags, or a string containing a
+	 * comma-separated list of tags
 	 * @param string $page A label for the type of action which is being displayed,
 	 *   for example: 'history', 'contributions' or 'newpages'
 	 * @param IContextSource|null $context
@@ -51,13 +52,14 @@ class ChangeTags {
 		if ( !$tags ) {
 			return [ '', [] ];
 		}
+		if ( !is_array( $tags ) ) {
+			$tags = explode( ',', $tags );
+		}
 		if ( !$context ) {
 			$context = RequestContext::getMain();
 		}
 
 		$classes = [];
-
-		$tags = explode( ',', $tags );
 		$displayTags = [];
 		foreach ( $tags as $tag ) {
 			if ( !$tag ) {
@@ -115,6 +117,45 @@ class ChangeTags {
 
 		// Message exists and isn't disabled, use it.
 		return $msg->parse();
+	}
+
+	/**
+	 * Fetches the tags on a particular revision or log entry.
+	 *
+	 * This function runs an additional SELECT query. In most cases, finding the
+	 * tags on a revision or log entry should be done by adding a join to an
+	 * existing query; see ChangeTags::modifyDisplayQuery.
+	 *
+	 * @param int|null $rc_id The rc_id of the change to query
+	 * @param int|null $rev_id The rev_id of the change to query
+	 * @param int|null $log_id The log_id of the change to query
+	 * @param IDatabase $db The database to use, or null to default to DB_REPLICA
+	 * @return array The tags applied to the revision or log entry
+	 *
+	 * @throws InvalidArgumentException
+	 * @since 1.29
+	 */
+	public static function getTags( $rc_id = null, $rev_id = null, $log_id = null,
+		IDatabase $db = null ) {
+
+		if ( !$db ) {
+			$db = wfGetDB( DB_REPLICA );
+		}
+
+		if ( !$rc_id && !$rev_id && !$log_id ) {
+			throw new InvalidArgumentException( 'At least one of: RCID, revision ID, ' .
+				'and log ID MUST be specified when fetching tags for a change!' );
+		}
+
+		$tsConds = array_filter( [
+			'ts_rc_id' => $rc_id,
+			'ts_rev_id' => $rev_id,
+			'ts_log_id' => $log_id
+		] );
+		$tags = $db->selectField( 'tag_summary', 'ts_tags', $tsConds, __METHOD__ );
+		$tags = $tags ? $tags : '';
+		$tags = array_filter( explode( ',', $tags ) );
+		return $tags;
 	}
 
 	/**
@@ -316,23 +357,14 @@ class ChangeTags {
 	protected static function updateTagSummaryRow( &$tagsToAdd, &$tagsToRemove,
 		$rc_id, $rev_id, $log_id, &$prevTags = [] ) {
 
-		$dbw = wfGetDB( DB_MASTER );
-
-		$tsConds = array_filter( [
-			'ts_rc_id' => $rc_id,
-			'ts_rev_id' => $rev_id,
-			'ts_log_id' => $log_id
-		] );
-
 		// Can't both add and remove a tag at the same time...
 		$tagsToAdd = array_diff( $tagsToAdd, $tagsToRemove );
 
 		// Update the summary row.
 		// $prevTags can be out of date on replica DBs, especially when addTags is called consecutively,
 		// causing loss of tags added recently in tag_summary table.
-		$prevTags = $dbw->selectField( 'tag_summary', 'ts_tags', $tsConds, __METHOD__ );
-		$prevTags = $prevTags ? $prevTags : '';
-		$prevTags = array_filter( explode( ',', $prevTags ) );
+		$dbw = wfGetDB( DB_MASTER );
+		$prevTags = self::getTags( $rc_id, $rev_id, $log_id, $dbw );
 
 		// add tags
 		$tagsToAdd = array_values( array_diff( $tagsToAdd, $prevTags ) );
@@ -348,6 +380,12 @@ class ChangeTags {
 			// No change.
 			return false;
 		}
+
+		$tsConds = array_filter( [
+			'ts_rc_id' => $rc_id,
+			'ts_rev_id' => $rev_id,
+			'ts_log_id' => $log_id
+		] );
 
 		if ( !$newTags ) {
 			// no tags left, so delete the row altogether
@@ -507,8 +545,8 @@ class ChangeTags {
 	 * valid combination. That is up to you to enforce. See ApiTag::execute() for
 	 * an example.
 	 *
-	 * @param array|null $tagsToAdd If none, pass array() or null
-	 * @param array|null $tagsToRemove If none, pass array() or null
+	 * @param array|null $tagsToAdd If none, pass [] or null
+	 * @param array|null $tagsToRemove If none, pass [] or null
 	 * @param int|null $rc_id The rc_id of the change to add the tags to
 	 * @param int|null $rev_id The rev_id of the change to add the tags to
 	 * @param int|null $log_id The log_id of the change to add the tags to
