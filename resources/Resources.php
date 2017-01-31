@@ -1737,6 +1737,7 @@ return [
 		'scripts' => [
 			'resources/src/mediawiki.rcfilters/mw.rcfilters.js',
 			'resources/src/mediawiki.rcfilters/dm/mw.rcfilters.dm.FilterItem.js',
+			'resources/src/mediawiki.rcfilters/dm/mw.rcfilters.dm.FilterGroup.js',
 			'resources/src/mediawiki.rcfilters/dm/mw.rcfilters.dm.FiltersViewModel.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FiltersListWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterGroupWidget.js',
