@@ -198,15 +198,7 @@ class UserRightsProxy {
 	 * @return array
 	 */
 	function getGroups() {
-		$res = $this->db->select( 'user_groups',
-			[ 'ug_group' ],
-			[ 'ug_user' => $this->id ],
-			__METHOD__ );
-		$groups = [];
-		foreach ( $res as $row ) {
-			$groups[] = $row->ug_group;
-		}
-		return $groups;
+		return array_keys( self::getGroupMemberships() );
 	}
 
 	/**
@@ -216,15 +208,7 @@ class UserRightsProxy {
 	 * @since 1.29
 	 */
 	function getGroupMemberships() {
-		$res = $this->db->select( 'user_groups',
-			UserGroupMembership::selectFields(),
-			[ 'ug_user' => $this->id ],
-			__METHOD__ );
-		$ugms = [];
-		foreach ( $res as $row ) {
-			$ugms[$row->ug_group] = UserGroupMembership::newFromRow( $row );
-		}
-		return $ugms;
+		return UserGroupMembership::getMembershipsForUser( $this->id, $this->db );
 	}
 
 	/**

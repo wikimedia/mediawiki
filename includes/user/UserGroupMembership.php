@@ -313,7 +313,7 @@ class UserGroupMembership {
 	 * @param IDatabase|null $db Optional database connection
 	 * @return array Associative array of (group name => UserGroupMembership object)
 	 */
-	public static function getMembershipsForUser( $userId, $db = null ) {
+	public static function getMembershipsForUser( $userId, IDatabase $db = null ) {
 		if ( !$db ) {
 			$db = wfGetDB( DB_REPLICA );
 		}
