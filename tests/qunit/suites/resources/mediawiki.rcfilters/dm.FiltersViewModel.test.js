@@ -102,7 +102,7 @@
 		var matches,
 			definition = {
 				group1: {
-					title: 'Group 1',
+					title: 'Group 1 title',
 					type: 'send_unselected_if_any',
 					filters: [
 						{
@@ -118,7 +118,7 @@
 					]
 				},
 				group2: {
-					title: 'Group 2',
+					title: 'Group 2 title',
 					type: 'send_unselected_if_any',
 					filters: [
 						{
@@ -128,46 +128,59 @@
 						},
 						{
 							name: 'group2filter2',
-							label: 'Group 2: Filter 2',
+							label: 'xGroup 2: Filter 2',
 							description: 'Description of Filter 2 in Group 2'
 						}
 					]
 				}
 			},
-			model = new mw.rcfilters.dm.FiltersViewModel();
+			testCases = [
+				{
+					query: 'group',
+					expectedMatches: {
+						group1: [ 'group1filter1', 'group1filter2' ],
+						group2: [ 'group2filter1' ]
+					},
+					reason: 'Finds filters starting with the query string'
+				},
+				{
+					query: 'filter 2 in group',
+					expectedMatches: {
+						group1: [ 'group1filter2' ],
+						group2: [ 'group2filter2' ]
+					},
+					reason: 'Finds filters containing the query string in their description'
+				},
+				{
+					query: 'title',
+					expectedMatches: {
+						group1: [ 'group1filter1', 'group1filter2' ],
+						group2: [ 'group2filter1', 'group2filter2' ]
+					},
+					reason: 'Finds filters containing the query string in their group title'
+				}
+			],
+			model = new mw.rcfilters.dm.FiltersViewModel(),
+			extractNames = function ( matches ) {
+				var result = {};
+				Object.keys( matches ).forEach( function ( groupName ) {
+					result[ groupName ] = matches[ groupName ].map( function ( item ) {
+						return item.getName();
+					} );
+				} );
+				return result;
+			};
 
 		model.initializeFilters( definition );
 
-		matches = model.findMatches( 'group 1' );
-		assert.equal(
-			matches.group1.length,
-			2,
-			'findMatches finds correct group with correct number of results'
-		);
-
-		assert.deepEqual(
-			matches.group1.map( function ( item ) { return item.getName(); } ),
-			[ 'group1filter1', 'group1filter2' ],
-			'findMatches finds the correct items within a single group'
-		);
-
-		matches = model.findMatches( 'filter 1' );
-		assert.ok(
-			matches.group1.length === 1 && matches.group2.length === 1,
-			'findMatches finds correct number of results in multiple groups'
-		);
-
-		assert.deepEqual(
-			[
-				matches.group1.map( function ( item ) { return item.getName(); } ),
-				matches.group2.map( function ( item ) { return item.getName(); } )
-			],
-			[
-				[ 'group1filter1' ],
-				[ 'group2filter1' ]
-			],
-			'findMatches finds the correct items within multiple groups'
-		);
+		testCases.forEach( function ( testCase ) {
+			matches = model.findMatches( testCase.query );
+			assert.deepEqual(
+				extractNames( matches ),
+				testCase.expectedMatches,
+				testCase.reason
+			);
+		} );
 
 		matches = model.findMatches( 'foo' );
 		assert.ok(
