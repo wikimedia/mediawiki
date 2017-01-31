@@ -137,7 +137,9 @@ class SpecialJavaScriptTest extends SpecialPage {
 		$code .= '(function () {'
 			. 'var start = window.__karma__ ? window.__karma__.start : QUnit.start;'
 			. 'try {'
-			. 'mw.loader.using( ' . Xml::encodeJsVar( $modules ) . ' ).always( start );'
+			. 'mw.loader.using( ' . Xml::encodeJsVar( $modules ) . ' )'
+			. '.always( start )'
+			. '.fail( function ( e ) { throw e; } );'
 			. '} catch ( e ) { start(); throw e; }'
 			. '}());';
 
