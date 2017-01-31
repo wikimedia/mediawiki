@@ -1088,6 +1088,8 @@ $title: the Title in question
 'ContentHandlerForModelID': Called when a ContentHandler is requested for
 a given content model name, but no entry for that model exists in
 $wgContentHandlers.
+Note: if your extension implements additional models via this hook, please
+use GetContentModels hook to make them known to core. 
 $modeName: the requested content model name
 &$handler: set this to a ContentHandler object, if desired.
 
@@ -1557,6 +1559,9 @@ notifications.
 &$title: Title object of page
 &$url: string value as output (out parameter, can modify)
 $query: query options passed to Title::getCanonicalURL()
+
+'GetContentModels': Add content models to the list of available models.
+&$models: array containing current model list, as strings. Extensions should add to this list.
 
 'GetDefaultSortkey': Override the default sortkey for a page.
 $title: Title object that we need to get a sortkey for
