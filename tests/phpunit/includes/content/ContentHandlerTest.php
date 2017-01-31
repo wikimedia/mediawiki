@@ -461,4 +461,13 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertContains( 'one who smiths', $out->getRawText() );
 	}
 
+	/**
+	 * @covers ContentHandler::getContentModels
+	 */
+	public function testGetContentModelsHook() {
+		$this->setTemporaryHook( 'GetContentModels', function ( &$models ) {
+			$models[] = 'Ferrari';
+		} );
+		$this->assertContains( 'Ferrari', ContentHandler::getContentModels() );
+	}
 }
