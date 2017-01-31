@@ -60,40 +60,19 @@
 	 * Respond to initialize event from the model
 	 */
 	mw.rcfilters.ui.FiltersListWidget.prototype.onModelInitialize = function () {
-		var i, group, groupWidget,
-			itemWidgets = [],
-			groupWidgets = [],
-			groups = this.model.getFilterGroups();
+		var widget = this;
 
 		// Reset
 		this.clearItems();
 
-		for ( group in groups ) {
-			groupWidget = new mw.rcfilters.ui.FilterGroupWidget( group, {
-				label: groups[ group ].title
-			} );
-			groupWidgets.push( groupWidget );
-
-			itemWidgets = [];
-			if ( groups[ group ].filters ) {
-				for ( i = 0; i < groups[ group ].filters.length; i++ ) {
-					itemWidgets.push(
-						new mw.rcfilters.ui.FilterItemWidget(
-							this.controller,
-							groups[ group ].filters[ i ],
-							{
-								label: groups[ group ].filters[ i ].getLabel(),
-								description: groups[ group ].filters[ i ].getDescription()
-							}
-						)
-					);
-				}
-
-				groupWidget.addItems( itemWidgets );
-			}
-		}
-
-		this.addItems( groupWidgets );
+		this.addItems(
+			this.model.getFilterGroups().map( function ( groupName, groupModel ) {
+				return new mw.rcfilters.ui.FilterGroupWidget(
+					widget.controller,
+					groupModel
+				);
+			} )
+		);
 	};
 
 	/**
