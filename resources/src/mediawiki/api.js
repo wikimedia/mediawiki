@@ -150,6 +150,9 @@
 		/**
 		 * Massage parameters from the nice format we accept into a format suitable for the API.
 		 *
+		 * NOTE: A value of undefined/null in an array will be represented by Array#join()
+		 * as the empty string. Should we filter silently? Warn? Leave as-is?
+		 *
 		 * @private
 		 * @param {Object} parameters (modified in-place)
 		 * @param {boolean} useUS Whether to use U+001F when joining multi-valued parameters.
