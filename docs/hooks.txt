@@ -1558,6 +1558,9 @@ notifications.
 &$url: string value as output (out parameter, can modify)
 $query: query options passed to Title::getCanonicalURL()
 
+'GetContentModels': Add content models to the list of available models.
+&$models: Current model list, as strings. Extensions should add to this list.
+
 'GetDefaultSortkey': Override the default sortkey for a page.
 $title: Title object that we need to get a sortkey for
 &$sortkey: Sortkey to use.
