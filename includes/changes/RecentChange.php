@@ -944,6 +944,17 @@ class RecentChange {
 	}
 
 	/**
+	 * Gets the change tags associated with the RC entry. This hits the DB with
+	 * no caching.
+	 *
+	 * @return array
+	 * @since 1.29
+	 */
+	public function getTags() {
+		return ChangeTags::getTags( $this->getAttribute( 'rc_id' ) );
+	}
+
+	/**
 	 * Gets the end part of the diff URL associated with this object
 	 * Blank if no diff link should be displayed
 	 * @param bool $forceCur
