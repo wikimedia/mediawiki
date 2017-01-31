@@ -19,6 +19,12 @@
  * @ingroup Database
  */
 
+namespace Wikimedia\Rdbms;
+
+use ILoadBalancer;
+use IDatabase;
+use BagOStuff;
+
 /**
  * Basic MySQL load monitor with no external dependencies
  * Uses memcached to cache the replication lag for a short time
