@@ -2038,7 +2038,7 @@
 	"emailccsubject": "Kopia Twojej wiadomości do $1: $2",
 	"emailsent": "Wiadomość została wysłana",
 	"emailsenttext": "Twoja wiadomość została wysłana.",
-	"emailuserfooter": "Ten e-mail został {{GENDER:$1|wysłany}} z {{GRAMMAR:D.lp|{{SITENAME}}}} do {{GENDER:$2|$2}} przez $1 przy użyciu funkcji „{{int:emailuser}}”. Jeśli {{GENDER:$2|Twoja}} odpowiedź na ten e-mail zostanie wysłana do {{GENDER:$1|oryginalnego nadawcy}}, wówczas {{GENDER:$2|Twój}} adres e-mail zostanie {{GENDER:$1|mu|jej}} ujawniony.",
+	"emailuserfooter": "Ten e-mail został {{GENDER:$1|wysłany}} z {{GRAMMAR:D.lp|{{SITENAME}}}} do {{GENDER:$2|$2}} przez $1 przy użyciu funkcji „{{int:emailuser}}”. Jeśli wyślesz odpowiedź na ten e-mail do {{GENDER:$1|oryginalnego nadawcy}}, wówczas {{GENDER:$2|Twój}} adres e-mail zostanie {{GENDER:$1|mu|jej}} ujawniony.",
 	"usermessage-summary": "Pozostawianie komunikatu systemowego.",
 	"usermessage-editor": "Nadawca komunikatów systemowych",
 	"watchlist": "Obserwowane",

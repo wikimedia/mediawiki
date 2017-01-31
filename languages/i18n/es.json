@@ -3493,7 +3493,7 @@
 	"tags-deactivate": "desactivar",
 	"tags-hitcount": "$1 {{PLURAL:$1|cambio|cambios}}",
 	"tags-manage-no-permission": "No tienes permiso para gestionar las etiquetas de cambios.",
-	"tags-manage-blocked": "No puedes gestionar etiquetas de cambio mientras estés {{GÉNERO:$1|bloqueado|bloqueada}}.",
+	"tags-manage-blocked": "No puedes gestionar etiquetas de cambio mientras estés {{GENDER:$1|bloqueado|bloqueada}}.",
 	"tags-create-heading": "Crear una etiqueta",
 	"tags-create-explanation": "De manera predeterminada, las etiquetas nuevas estarán disponibles para su uso por usuarios y bots.",
 	"tags-create-tag-name": "Nombre de la etiqueta:",

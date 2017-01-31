@@ -942,7 +942,7 @@
 	"last": "diff",
 	"page_first": "première",
 	"page_last": "dernière",
-	"histlegend": "Diff de sélection : cochez les boîtes radio des versions à comparer et appuyez sur entrée ou sur le bouton en bas.<br />\nLégende: <strong>({{int:cur}})</strong> = différence avec la dernière version, <strong>({{int:last}})</strong> = différence avec la précédente version, <strong>{{int:minoreditletter}}</strong> = modification mineure.",
+	"histlegend": "Sélection du diff : cochez les boutons radio des versions à comparer et appuyez sur entrée ou sur le bouton en bas.<br />\nLégende : <strong>({{int:cur}})</strong> = différence avec la dernière version, <strong>({{int:last}})</strong> = différence avec la version précédente, <strong>{{int:minoreditletter}}</strong> = modification mineure.",
 	"history-fieldset-title": "Naviguer dans l’historique",
 	"history-show-deleted": "Supprimés seulement",
 	"histfirst": "les plus anciennes",

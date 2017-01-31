@@ -1929,6 +1929,7 @@
 	"apisandbox-results-error": "Er is een fout opgetreden tijdens het laden van het antwoord op het API-verzoek: $1.",
 	"apisandbox-request-selectformat-label": "Toon resultaat als:",
 	"apisandbox-request-url-label": "Verzoek-URL:",
+	"apisandbox-request-json-label": "Verzoek JSON:",
 	"apisandbox-request-time": "Doorlooptijd verzoek: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "Token corrigeren en opnieuw verzenden",
 	"apisandbox-results-fixtoken-fail": "Het ophalen van het token van type \"$1\" is mislukt.",

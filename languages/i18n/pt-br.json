@@ -105,7 +105,8 @@
 			"Bruno.S.Alves 270",
 			"!Silent",
 			"Joao Xavier",
-			"Nahime2015"
+			"Nahime2015",
+			"Alex Great"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -766,7 +767,7 @@
 	"userpage-userdoesnotexist": "A conta \"<nowiki>$1</nowiki>\" não se encontra registrada.\nVerifique se deseja mesmo criar/editar esta página.",
 	"userpage-userdoesnotexist-view": "A conta de usuário \"$1\" não está registrada.",
 	"blocked-notice-logextract": "Este usuário está atualmente bloqueado.\nO registro de bloqueio mais recente é fornecido abaixo, para referência:",
-	"clearyourcache": "<strong>Nota:</strong> Após salvar, você pode ter que limpar o \"cache\" do seu navegador para ver as alterações.\n*<strong>Firefox / Safari:</strong> Pressione <em>Shift</em> enquanto clica <em>Recarregar</em>, ou pressione <em>Ctrl-F5</em> ou <em>Ctrl-R</em> (<em>⌘-R</em> no Mac)\n*<strong>Google Chorme:</strong> Pressione <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> no Mac)\n* <strong>Internet Explorer:</strong> Pressione<em>Ctrl</em> enquanto clica <em>Recarregar</em>, ou Pressione <em>Ctrl-F5</em>\n* <strong>Opera:</strong> Vá para <em>Menu → Configurações</em> (<em>Opera → Preferencias</em> no Mac) e depois para <em>Privacidade e Segurança → Limpar dados de navegação → Imagens e arquivos em cache</em>.",
+	"clearyourcache": "<strong>Nota:</strong> Após salvar, você pode ter que limpar o \"cache\" do seu navegador para ver as alterações.\n*<strong>Firefox / Safari:</strong> Pressione <em>Shift</em> enquanto clica <em>Recarregar</em>, ou pressione <em>Ctrl-F5</em> ou <em>Ctrl-R</em> (<em>⌘-R</em> no Mac)\n*<strong>Google Chrome:</strong> Pressione <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> no Mac)\n* <strong>Internet Explorer:</strong> Pressione<em>Ctrl</em> enquanto clica <em>Recarregar</em>, ou Pressione <em>Ctrl-F5</em>\n* <strong>Opera:</strong> Vá para <em>Menu → Configurações</em> (<em>Opera → Preferencias</em> no Mac) e depois para <em>Privacidade e Segurança → Limpar dados de navegação → Imagens e arquivos em cache</em>.",
 	"usercssyoucanpreview": "'''Dica:''' Utilize o botão \"{{int:showpreview}}\" para testar seu novo CSS antes de salvar.",
 	"userjsyoucanpreview": "'''Dica:''' Utilize o botão \"{{int:showpreview}}\" para testar seu novo JavaScript antes de salvar.",
 	"usercsspreview": "'''Lembre-se de que você está apenas previsualizando o seu CSS particular.'''\n'''Ele ainda não foi salvo!'''",

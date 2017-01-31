@@ -405,7 +405,7 @@
 	"userloginnocreate": "Lumagda",
 	"logout": "Umalis sa pagkaka-login",
 	"userlogout": "Umalis sa pagkaka-login",
-	"notloggedin": "Hindi nakalagda",
+	"notloggedin": "Hindi naka-login",
 	"userlogin-noaccount": "Wala ka pa bang account?",
 	"userlogin-joinproject": "Sumali sa {{SITENAME}}",
 	"nologin": "Wala ka pang account? $1.",
