@@ -128,8 +128,10 @@ class RecentChangesUpdateJob extends Job {
 				$dbw->setSessionOptions( [ 'connTimeout' => 900 ] );
 
 				$lockKey = wfWikiID() . '-activeusers';
-				if ( !$dbw->lock( $lockKey, __METHOD__, 1 ) ) {
-					return; // exclusive update (avoids duplicate entries)
+				if ( !$dbw->lockIsFree( $lockKey, __METHOD__ ) || !$dbw->lock( $lockKey, __METHOD__, 1 ) ) {
+					// Exclusive update (avoids duplicate entries)… it's usually fine to just drop out here,
+					// if the Job is already running.
+					return;
 				}
 
 				$nowUnix = time();
@@ -168,15 +170,6 @@ class RecentChangesUpdateJob extends Job {
 					$names[$row->rc_user_text] = $row->lastedittime;
 				}
 
-				// Rotate out users that have not edited in too long (according to old data set)
-				$dbw->delete( 'querycachetwo',
-					[
-						'qcc_type' => 'activeusers',
-						'qcc_value < ' . $dbw->addQuotes( $nowUnix - $days * 86400 ) // TS_UNIX
-					],
-					__METHOD__
-				);
-
 				// Find which of the recently active users are already accounted for
 				if ( count( $names ) ) {
 					$res = $dbw->select( 'querycachetwo',
@@ -184,9 +177,13 @@ class RecentChangesUpdateJob extends Job {
 						[
 							'qcc_type' => 'activeusers',
 							'qcc_namespace' => NS_USER,
-							'qcc_title' => array_keys( $names ) ],
+							'qcc_title' => array_keys( $names ),
+							'qcc_value >= ' . $dbw->addQuotes( $nowUnix - $days * 86400 ), // TS_UNIX
+						 ],
 						__METHOD__
 					);
+					// Note: In order for this to be actually consistent, we would need
+					// to update these rows with the new lastedittime.
 					foreach ( $res as $row ) {
 						unset( $names[$row->user_name] );
 					}
@@ -224,6 +221,16 @@ class RecentChangesUpdateJob extends Job {
 				);
 
 				$dbw->unlock( $lockKey, __METHOD__ );
+
+				// Rotate out users that have not edited in too long (according to old data set)
+				$dbw->delete( 'querycachetwo',
+					[
+						'qcc_type' => 'activeusers',
+						'qcc_value < ' . $dbw->addQuotes( $nowUnix - $days * 86400 ) // TS_UNIX
+					],
+					__METHOD__
+				);
+
 			},
 			__METHOD__
 		);
