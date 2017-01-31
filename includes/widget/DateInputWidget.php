@@ -19,6 +19,7 @@ class DateInputWidget extends \OOUI\TextInputWidget {
 
 	protected $inputFormat = null;
 	protected $displayFormat = null;
+	protected $longDisplayFormat = null;
 	protected $placeholderLabel = null;
 	protected $placeholderDateFormat = null;
 	protected $precision = null;
@@ -36,6 +37,9 @@ class DateInputWidget extends \OOUI\TextInputWidget {
 	 *   while the widget is inactive. Should be as unambiguous as possible (for example, prefer
 	 *   to spell out the month, rather than rely on the order), even if that makes it longer.
 	 *   Applicable only if the widget is infused. (default: language-specific)
+	 * @param string $config['longDisplayFormat'] If a custom displayFormat is not specified, use
+	 *   unabbreviated day of the week and month names in the default language-specific
+	 *   displayFormat. (default: false)
 	 * @param string $config['placeholderLabel'] Placeholder text shown when the widget is not
 	 *   selected. Applicable only if the widget is infused. (default: taken from message
 	 *   `mw-widgets-dateinput-no-date`)
@@ -58,6 +62,7 @@ class DateInputWidget extends \OOUI\TextInputWidget {
 		$config = array_merge( [
 			// Default config values
 			'precision' => 'day',
+			'longDisplayFormat' => false,
 		], $config );
 
 		// Properties
@@ -78,6 +83,9 @@ class DateInputWidget extends \OOUI\TextInputWidget {
 		// Properties stored for the infused JS widget
 		if ( isset( $config['displayFormat'] ) ) {
 			$this->displayFormat = $config['displayFormat'];
+		}
+		if ( isset( $config['longDisplayFormat'] ) ) {
+			$this->longDisplayFormat = $config['longDisplayFormat'];
 		}
 		if ( isset( $config['placeholderLabel'] ) ) {
 			$this->placeholderLabel = $config['placeholderLabel'];
@@ -133,6 +141,9 @@ class DateInputWidget extends \OOUI\TextInputWidget {
 		}
 		if ( $this->displayFormat !== null ) {
 			$config['displayFormat'] = $this->displayFormat;
+		}
+		if ( $this->longDisplayFormat !== null ) {
+			$config['longDisplayFormat'] = $this->longDisplayFormat;
 		}
 		if ( $this->placeholderLabel !== null ) {
 			$config['placeholderLabel'] = $this->placeholderLabel;
