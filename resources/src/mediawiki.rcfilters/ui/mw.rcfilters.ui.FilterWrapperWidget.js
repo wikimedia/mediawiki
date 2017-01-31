@@ -132,20 +132,11 @@
 	 * @param {mw.rcfilters.dm.FilterItem} item Filter item that was updated
 	 */
 	mw.rcfilters.ui.FilterWrapperWidget.prototype.onModelItemUpdate = function ( item ) {
-		var widget = this;
-
 		if ( item.isSelected() ) {
 			this.addCapsuleItemFromName( item.getName() );
 		} else {
 			this.capsule.removeItemsFromData( [ item.getName() ] );
 		}
-
-		// Toggle the active state of the group
-		this.filterPopup.getItems().forEach( function ( groupWidget ) {
-			if ( groupWidget.getName() === item.getGroup() ) {
-				groupWidget.toggleActiveState( widget.model.isFilterGroupActive( groupWidget.getName() ) );
-			}
-		} );
 	};
 
 	/**
