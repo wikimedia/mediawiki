@@ -162,9 +162,12 @@ class WikiFilePage extends WikiPage {
 		return $this->mDupes;
 	}
 
-	public function doPurge( $flags = self::PURGE_ALL ) {
+	/**
+	 * Override handling of action=purge
+	 * @return bool
+	 */
+	public function doPurge() {
 		$this->loadFile();
-
 		if ( $this->mFile->exists() ) {
 			wfDebug( 'ImagePage::doPurge purging ' . $this->mFile->getName() . "\n" );
 			DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this->mTitle, 'imagelinks' ) );
@@ -180,8 +183,7 @@ class WikiFilePage extends WikiPage {
 			// Purge redirect cache
 			$this->mRepo->invalidateImageRedirect( $this->mTitle );
 		}
-
-		return parent::doPurge( $flags );
+		return parent::doPurge();
 	}
 
 	/**
