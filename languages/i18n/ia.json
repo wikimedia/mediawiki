@@ -1100,7 +1100,7 @@
 	"userrights-nodatabase": "Le base de datos $1 non existe o non es local.",
 	"userrights-changeable-col": "Gruppos que tu pote modificar",
 	"userrights-unchangeable-col": "Gruppos que tu non pote modificar",
-	"userrights-expiry-current": "Expiration: $2",
+	"userrights-expiry-current": "Expiration: $1",
 	"userrights-expiry-none": "Non expira",
 	"userrights-expiry": "Expiration:",
 	"userrights-expiry-existing": "Expiration existente: le $2 a $3",

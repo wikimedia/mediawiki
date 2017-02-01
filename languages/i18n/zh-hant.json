@@ -1376,7 +1376,7 @@
 	"rcfilters-filter-userExpLevel-newcomer-label": "新手",
 	"rcfilters-filter-userExpLevel-newcomer-description": "編輯數低於 10 次，活躍低於 4 天。",
 	"rcfilters-filter-userExpLevel-learner-label": "初學者",
-	"rcfilters-filter-userExpLevel-learner-description": "活躍的天數以及編輯數比 '新手' 多，但比 '有經驗的使用者' 少。",
+	"rcfilters-filter-userExpLevel-learner-description": "活躍的天數以及編輯數比「新手」多，但比「有經驗的使用者」少。",
 	"rcfilters-filter-userExpLevel-experienced-label": "有經驗的使用者",
 	"rcfilters-filter-userExpLevel-experienced-description": "活躍超過 30 天，編輯超過 500 次。",
 	"rcnotefrom": "以下{{PLURAL:$5|為}}自 <strong>$3 $4</strong> 以來的變更 (最多顯示 <strong>$1</strong> 筆)。",
@@ -3850,7 +3850,7 @@
 	"usercssispublic": "請注意：CSS 子頁面可被其他使用者檢視，不應包含憑証資料。",
 	"restrictionsfield-badip": "無效的 IP 位址或範圍：$1",
 	"restrictionsfield-label": "允許的 IP 範圍：",
-	"restrictionsfield-help": "一個 IP 位址或 CIDR 範圍一行，要開啟所有範圍可使用 <br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"restrictionsfield-help": "一個 IP 位址或 CIDR 範圍一行，要開啟所有範圍可使用：<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "修訂 $1",
 	"pageid": "頁面 ID $1"
 }

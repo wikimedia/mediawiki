@@ -850,7 +850,7 @@
 	"post-expand-template-inclusion-warning": "<strong>Attenzione:</strong> la dimensione dei template inclusi è troppo grande.\nAlcuni template non verranno inclusi.",
 	"post-expand-template-inclusion-category": "Pagine per le quali la dimensione dei template inclusi supera il limite consentito",
 	"post-expand-template-argument-warning": "'''Attenzione:''' questa pagina contiene uno o più argomenti di template troppo grandi per essere espansi. Tali argomenti verranno omessi.",
-	"post-expand-template-argument-category": "Pagine contenenti template con argomenti mancanti",
+	"post-expand-template-argument-category": "Pagine contenenti template con parametri omessi",
 	"parser-template-loop-warning": "Rilevato loop del template: [[$1]]",
 	"parser-template-recursion-depth-warning": "È stato raggiunto il limite di ricorsione nel template ($1)",
 	"language-converter-depth-warning": "Limite di profondità del convertitore di lingua superato ($1)",

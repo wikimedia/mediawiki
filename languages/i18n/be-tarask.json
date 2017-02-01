@@ -1104,6 +1104,8 @@
 	"userrights-expiry": "Сканчаецца:",
 	"userrights-expiry-existing": "Цяперашні час сканчэньня: $3 $2",
 	"userrights-expiry-othertime": "Іншы час:",
+	"userrights-expiry-options": "1 дзень:1 day,1 тыдзень:1 week,1 месяц:1 month,3 месяцы:3 months,6 месяцаў:6 months,1 год:1 year",
+	"userrights-invalid-expiry": "Тэрмін заканчэньня для групы «$1» зьяўляецца няслушным.",
 	"userrights-conflict": "Канфлікт пры зьмене правоў удзельнікаў! Калі ласка, праверце і захавайце вашыя зьмены.",
 	"group": "Група:",
 	"group-user": "Удзельнікі",

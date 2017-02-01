@@ -28,7 +28,8 @@
 			"Velg",
 			"1917 Ekim Devrimi",
 			"Gambollar",
-			"Dılmıc"
+			"Dılmıc",
+			"Archaeodontosaurus"
 		]
 	},
 	"tog-underline": "Bınê gırey de xete bance:",
@@ -167,7 +168,7 @@
 	"about": "Heqa",
 	"article": "Wesiqe",
 	"newwindow": "(Teqaya newi de abena)",
-	"cancel": "Bıtexelne",
+	"cancel": "Annuler",
 	"moredotdotdot": "Vêşi...",
 	"morenotlisted": "Na lista qay kemi ya.",
 	"mypage": "Per",
@@ -224,7 +225,7 @@
 	"specialpage": "Perra xısusiye",
 	"personaltools": "Hacetê şexsiy",
 	"articlepage": "Pera zerreki bıvin",
-	"talk": "Werênayış",
+	"talk": "Diskusiyon",
 	"views": "Asayışi",
 	"toolbox": "Haceti",
 	"tool-link-userrights": "Grubanê {{GENDER:$1|karberi}} bıvırnë",
