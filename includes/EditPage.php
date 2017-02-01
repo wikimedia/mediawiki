@@ -3543,15 +3543,7 @@ HTML
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$editPage = $this;
 		if ( Hooks::run( 'EditPageBeforeConflictDiff', [ &$editPage, &$wgOut ] ) ) {
-			$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
-			$stats->increment( 'edit.failures.conflict' );
-			// Only include 'standard' namespaces to avoid creating unknown numbers of statsd metrics
-			if (
-				$this->mTitle->getNamespace() >= NS_MAIN &&
-				$this->mTitle->getNamespace() <= NS_CATEGORY_TALK
-			) {
-				$stats->increment( 'edit.failures.conflict.byNamespaceId.' . $this->mTitle->getNamespace() );
-			}
+			$this->incrementConflictStats();
 
 			$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
 
@@ -3568,6 +3560,18 @@ HTML
 
 			$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourtext" );
 			$this->showTextbox2();
+		}
+	}
+
+	private function incrementConflictStats() {
+		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$stats->increment( 'edit.failures.conflict' );
+		// Only include 'standard' namespaces to avoid creating unknown numbers of statsd metrics
+		if (
+			$this->mTitle->getNamespace() >= NS_MAIN &&
+			$this->mTitle->getNamespace() <= NS_CATEGORY_TALK
+		) {
+			$stats->increment( 'edit.failures.conflict.byNamespaceId.' . $this->mTitle->getNamespace() );
 		}
 	}
 
@@ -3683,8 +3687,6 @@ HTML
 		global $wgOut, $wgRawHtml, $wgLang;
 		global $wgAllowUserCss, $wgAllowUserJs;
 
-		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
-
 		if ( $wgRawHtml && !$this->mTokenOk ) {
 			// Could be an offsite preview attempt. This is very unsafe if
 			// HTML is enabled, as it could be an attack.
@@ -3697,7 +3699,7 @@ HTML
 					$this->context->msg( 'session_fail_preview_html' )->text() . "</div>",
 					true, /* interface */true );
 			}
-			$stats->increment( 'edit.failures.session_loss' );
+			$this->incrementEditFailureStats( 'session_loss' );
 			return $parsedNote;
 		}
 
@@ -3721,15 +3723,15 @@ HTML
 			if ( $this->mTriedSave && !$this->mTokenOk ) {
 				if ( $this->mTokenOkExceptSuffix ) {
 					$note = $this->context->msg( 'token_suffix_mismatch' )->plain();
-					$stats->increment( 'edit.failures.bad_token' );
+					$this->incrementEditFailureStats( 'bad_token' );
 				} else {
 					$note = $this->context->msg( 'session_fail_preview' )->plain();
-					$stats->increment( 'edit.failures.session_loss' );
+					$this->incrementEditFailureStats( 'session_loss' );
 				}
 			} elseif ( $this->incompleteForm ) {
 				$note = $this->context->msg( 'edit_form_incomplete' )->plain();
 				if ( $this->mTriedSave ) {
-					$stats->increment( 'edit.failures.incomplete_form' );
+					$this->incrementEditFailureStats( 'incomplete_form' );
 				}
 			} else {
 				$note = $this->context->msg( 'previewnote' )->plain() . ' ' . $continueEditing;
@@ -3815,6 +3817,11 @@ HTML
 		$previewHTML = Html::rawElement( 'div', $attribs, $previewHTML );
 
 		return $previewhead . $previewHTML . $this->previewTextAfterContent;
+	}
+
+	private function incrementEditFailureStats( $failureType ) {
+		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$stats->increment( 'edit.failures.' . $failureType );
 	}
 
 	/**
