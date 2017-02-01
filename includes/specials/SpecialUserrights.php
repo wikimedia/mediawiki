@@ -257,6 +257,7 @@ class UserrightsPage extends SpecialPage {
 		$addgroup = [];
 		$groupExpiries = []; // associative array of (group name => expiry)
 		$removegroup = [];
+		$existingUGMs = $user->getGroupMemberships();
 
 		// This could possibly create a highly unlikely race condition if permissions are changed between
 		//  when the form is loaded and when the form is saved. Ignoring it for the moment.
@@ -269,12 +270,14 @@ class UserrightsPage extends SpecialPage {
 				if ( $this->canProcessExpiries() ) {
 					// read the expiry information from the request
 					$expiryDropdown = $this->getRequest()->getVal( "wpExpiry-$group" );
+					if ( $expiryDropdown === 'existing' ) {
+						continue;
+					}
+
 					if ( $expiryDropdown === 'other' ) {
 						$expiryValue = $this->getRequest()->getVal( "wpExpiry-$group-other" );
-					} elseif ( $expiryDropdown !== 'existing' ) {
-						$expiryValue = $expiryDropdown;
 					} else {
-						continue;
+						$expiryValue = $expiryDropdown;
 					}
 
 					// validate the expiry
@@ -288,6 +291,16 @@ class UserrightsPage extends SpecialPage {
 					if ( $groupExpiries[$group] && $groupExpiries[$group] < wfTimestampNow() ) {
 						return Status::newFatal( 'userrights-expiry-in-past', $group );
 					}
+
+					// if the user can only add this group (not remove it), the expiry time
+					// cannot be brought forward (T156784)
+					if ( !$this->canRemove( $group ) &&
+						isset( $existingUGMs[$group] ) &&
+						( $existingUGMs[$group]->getExpiry() ?: 'infinity' ) >
+							( $groupExpiries[$group] ?: 'infinity' )
+					) {
+						return Status::newFatal( 'userrights-cannot-shorten-expiry', $group );
+					}
 				}
 			} else {
 				$removegroup[] = $group;
@@ -300,7 +313,8 @@ class UserrightsPage extends SpecialPage {
 	}
 
 	/**
-	 * Save user groups changes in the database.
+	 * Save user groups changes in the database. This function does not throw errors;
+	 * instead, it ignores groups that the performer does not have permission to set.
 	 *
 	 * @param User|UserRightsProxy $user
 	 * @param array $add Array of groups to add
@@ -317,6 +331,7 @@ class UserrightsPage extends SpecialPage {
 		// Validate input set...
 		$isself = $user->getName() == $this->getUser()->getName();
 		$groups = $user->getGroups();
+		$ugms = $user->getGroupMemberships();
 		$changeable = $this->changeableGroups();
 		$addable = array_merge( $changeable['add'], $isself ? $changeable['add-self'] : [] );
 		$removable = array_merge( $changeable['remove'], $isself ? $changeable['remove-self'] : [] );
@@ -325,9 +340,19 @@ class UserrightsPage extends SpecialPage {
 			array_intersect( (array)$remove, $removable, $groups ) );
 		$add = array_intersect( (array)$add, $addable );
 
-		// add only groups that are not already present or that need their expiry updated
+		// add only groups that are not already present or that need their expiry updated,
+		// UNLESS the user can only add this group (not remove it) and the expiry time
+		// is being brought forward (T156784)
 		$add = array_filter( $add,
-			function( $group ) use ( $groups, $groupExpiries ) {
+			function( $group ) use ( $groups, $groupExpiries, $removable, $ugms ) {
+				if ( isset( $groupExpiries[$group] ) &&
+					!in_array( $group, $removable ) &&
+					isset( $ugms[$group] ) &&
+					( $ugms[$group]->getExpiry() ?: 'infinity' ) >
+						( $groupExpiries[$group] ?: 'infinity' )
+				) {
+					return false;
+				}
 				return !in_array( $group, $groups ) || array_key_exists( $group, $groupExpiries );
 			} );
 
@@ -757,22 +782,30 @@ class UserrightsPage extends SpecialPage {
 
 		foreach ( $allgroups as $group ) {
 			$set = isset( $usergroups[$group] );
+			// Users who can add the group, but not remove it, can only lengthen
+			// expiries, not shorten them. So they should only see the expiry
+			// dropdown if the group currently has a finite expiry
+			$canOnlyLengthenExpiry = ( $set && $this->canAdd( $group ) &&
+				 !$this->canRemove( $group ) && $usergroups[$group]->getExpiry() );
 			// Should the checkbox be disabled?
-			$disabled = !(
+			$disabledCheckbox = !(
 				( $set && $this->canRemove( $group ) ) ||
 				( !$set && $this->canAdd( $group ) ) );
+			// Should the expiry elements be disabled?
+			$disabledExpiry = $disabledCheckbox && !$canOnlyLengthenExpiry;
 			// Do we need to point out that this action is irreversible?
-			$irreversible = !$disabled && (
+			$irreversible = !$disabledCheckbox && (
 				( $set && !$this->canAdd( $group ) ) ||
 				( !$set && !$this->canRemove( $group ) ) );
 
 			$checkbox = [
 				'set' => $set,
-				'disabled' => $disabled,
+				'disabled' => $disabledCheckbox,
+				'disabled-expiry' => $disabledExpiry,
 				'irreversible' => $irreversible
 			];
 
-			if ( $disabled ) {
+			if ( $disabledCheckbox && $disabledExpiry ) {
 				$columns['unchangeable'][$group] = $checkbox;
 			} else {
 				$columns['changeable'][$group] = $checkbox;
@@ -806,12 +839,14 @@ class UserrightsPage extends SpecialPage {
 				$member = UserGroupMembership::getGroupMemberName( $group, $user->getName() );
 				if ( $checkbox['irreversible'] ) {
 					$text = $this->msg( 'userrights-irreversible-marker', $member )->text();
+				} elseif ( $checkbox['disabled'] && !$checkbox['disabled-expiry'] ) {
+					$text = $this->msg( 'userrights-no-shorten-expiry-marker', $member )->text();
 				} else {
 					$text = $member;
 				}
 				$checkboxHtml = Xml::checkLabel( $text, "wpGroup-" . $group,
 					"wpGroup-" . $group, $checkbox['set'], $attr );
-				$ret .= "\t\t" . ( $checkbox['disabled']
+				$ret .= "\t\t" . ( ( $checkbox['disabled'] && $checkbox['disabled-expiry'] )
 					? Xml::tags( 'div', [ 'class' => 'mw-userrights-disabled' ], $checkboxHtml )
 					: Xml::tags( 'div', [], $checkboxHtml )
 				) . "\n";
@@ -824,9 +859,11 @@ class UserrightsPage extends SpecialPage {
 						$usergroups[$group]->getExpiry() :
 						null;
 
-					// If the user can't uncheck this checkbox, print the current expiry below
+					// If the user can't modify the expiry, print the current expiry below
 					// it in plain text. Otherwise provide UI to set/change the expiry
-					if ( $checkbox['set'] && ( $checkbox['irreversible'] || $checkbox['disabled'] ) ) {
+					if ( $checkbox['set'] &&
+						( $checkbox['irreversible'] || $checkbox['disabled-expiry'] )
+					) {
 						if ( $currentExpiry ) {
 							$expiryFormatted = $uiLanguage->userTimeAndDate( $currentExpiry, $uiUser );
 							$expiryFormattedD = $uiLanguage->userDate( $currentExpiry, $uiUser );
@@ -848,7 +885,7 @@ class UserrightsPage extends SpecialPage {
 							"mw-input-wpExpiry-$group", // forward compatibility with HTMLForm
 							$currentExpiry ? 'existing' : 'infinite'
 						);
-						if ( $checkbox['disabled'] ) {
+						if ( $checkbox['disabled-expiry'] ) {
 							$expiryFormOptions->setAttribute( 'disabled', 'disabled' );
 						}
 
@@ -883,10 +920,16 @@ class UserrightsPage extends SpecialPage {
 
 						// Add custom expiry field
 						$attribs = [ 'id' => "mw-input-wpExpiry-$group-other" ];
-						if ( $checkbox['disabled'] ) {
+						if ( $checkbox['disabled-expiry'] ) {
 							$attribs['disabled'] = 'disabled';
 						}
 						$expiryHtml .= Xml::input( "wpExpiry-$group-other", 30, '', $attribs );
+
+						// If the user group is set but the checkbox is disabled, mimic a
+						// checked checkbox in the form submission
+						if ( $checkbox['set'] && $checkbox['disabled'] ) {
+							$expiryHtml .= Html::hidden( "wpGroup-$group", 1 );
+						}
 
 						$expiryHtml .= Xml::closeElement( 'span' );
 					}
