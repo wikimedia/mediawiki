@@ -136,18 +136,24 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 
 		$this->mRecursive = $recursive;
 
-		Hooks::run( 'LinksUpdateConstructed', [ &$this ] );
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$linksUpdate = $this;
+		Hooks::run( 'LinksUpdateConstructed', [ &$linksUpdate ] );
 	}
 
 	/**
 	 * Update link tables with outgoing links from an updated article
 	 */
 	public function doUpdate() {
-		Hooks::run( 'LinksUpdate', [ &$this ] );
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$linksUpdate = $this;
+		Hooks::run( 'LinksUpdate', [ &$linksUpdate ] );
 		$this->doIncrementalUpdate();
 
 		$this->mDb->onTransactionIdle( function() {
-			Hooks::run( 'LinksUpdateComplete', [ &$this ] );
+			// Avoid PHP 7.1 warning from passing $this by reference
+			$linksUpdate = $this;
+			Hooks::run( 'LinksUpdateComplete', [ &$linksUpdate ] );
 		} );
 	}
 

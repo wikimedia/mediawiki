@@ -312,7 +312,9 @@ class RecentChange {
 		$this->mAttribs['rc_id'] = $dbw->insertId();
 
 		# Notify extensions
-		Hooks::run( 'RecentChange_save', [ &$this ] );
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$rc = $this;
+		Hooks::run( 'RecentChange_save', [ &$rc ] );
 
 		# Notify external application via UDP
 		if ( !$noudp ) {

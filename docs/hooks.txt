@@ -212,9 +212,13 @@ related to a particular event, like so:
 		# ...
 		function protect() {
 			global $wgUser;
-			if ( Hooks::run( 'ArticleProtect', array( &$this, &$wgUser ) ) ) {
+
+			// Avoid PHP 7.1 warning from passing $this by reference
+			$article = $this;
+
+			if ( Hooks::run( 'ArticleProtect', [ &$article, &$wgUser ] ) ) {
 				# protect the article
-				Hooks::run( 'ArticleProtectComplete', array( &$this, &$wgUser ) );
+				Hooks::run( 'ArticleProtectComplete', [ &$article, &$wgUser ] );
 			}
 		}
 	}
