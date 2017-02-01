@@ -84,9 +84,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	protected $mLinksUpdated = '19700101000000';
 
-	const PURGE_CDN_CACHE = 1; // purge CDN cache for page variant URLs
-	const PURGE_CLUSTER_PCACHE = 2; // purge parser cache in the local datacenter
-	const PURGE_GLOBAL_PCACHE = 4; // set page_touched to clear parser cache in all datacenters
+	/** @deprecated since 1.29. Added in 1.28 for partial purging, no longer used. */
+	const PURGE_CDN_CACHE = 1;
+	const PURGE_CLUSTER_PCACHE = 2;
+	const PURGE_GLOBAL_PCACHE = 4;
 	const PURGE_ALL = 7;
 
 	/**
@@ -1119,10 +1120,11 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * Perform the actions of a page purging
-	 * @param integer $flags Bitfield of WikiPage::PURGE_* constants
 	 * @return bool
+	 * @note In 1.28 (and only 1.28), this took a $flags parameter that
+	 *  controlled how much purging was done.
 	 */
-	public function doPurge( $flags = self::PURGE_ALL ) {
+	public function doPurge() {
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$wikiPage = $this;
 
@@ -1130,30 +1132,15 @@ class WikiPage implements Page, IDBAccessObject {
 			return false;
 		}
 
-		if ( ( $flags & self::PURGE_GLOBAL_PCACHE ) == self::PURGE_GLOBAL_PCACHE ) {
-			// Set page_touched in the database to invalidate all DC caches
-			$this->mTitle->invalidateCache();
-		} elseif ( ( $flags & self::PURGE_CLUSTER_PCACHE ) == self::PURGE_CLUSTER_PCACHE ) {
-			// Delete the parser options key in the local cluster to invalidate the DC cache
-			ParserCache::singleton()->deleteOptionsKey( $this );
-			// Avoid sending HTTP 304s in ViewAction to the client who just issued the purge
-			$cache = ObjectCache::getLocalClusterInstance();
-			$cache->set(
-				$cache->makeKey( 'page', 'last-dc-purge', $this->getId() ),
-				wfTimestamp( TS_MW ),
-				$cache::TTL_HOUR
-			);
-		}
+		$this->mTitle->invalidateCache();
 
-		if ( ( $flags & self::PURGE_CDN_CACHE ) == self::PURGE_CDN_CACHE ) {
-			// Clear any HTML file cache
-			HTMLFileCache::clearFileCache( $this->getTitle() );
-			// Send purge after any page_touched above update was committed
-			DeferredUpdates::addUpdate(
-				new CdnCacheUpdate( $this->mTitle->getCdnUrls() ),
-				DeferredUpdates::PRESEND
-			);
-		}
+		// Clear file cache
+		HTMLFileCache::clearFileCache( $this->getTitle() );
+		// Send purge after above page_touched update was committed
+		DeferredUpdates::addUpdate(
+			new CdnCacheUpdate( $this->mTitle->getCdnUrls() ),
+			DeferredUpdates::PRESEND
+		);
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			$messageCache = MessageCache::singleton();
@@ -1168,11 +1155,11 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @return string|bool TS_MW timestamp or false
 	 * @since 1.28
+	 * @deprecated since 1.29. It will always return false.
 	 */
 	public function getLastPurgeTimestamp() {
-		$cache = ObjectCache::getLocalClusterInstance();
-
-		return $cache->get( $cache->makeKey( 'page', 'last-dc-purge', $this->getId() ) );
+		wfDeprecated( __METHOD__, '1.29' );
+		return false;
 	}
 
 	/**
