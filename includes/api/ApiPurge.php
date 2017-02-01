@@ -56,7 +56,7 @@ class ApiPurge extends ApiBase {
 			$page = WikiPage::factory( $title );
 			if ( !$user->pingLimiter( 'purge' ) ) {
 				// Directly purge and skip the UI part of purge()
-				$page->doPurge( WikiPage::PURGE_ALL );
+				$page->doPurge();
 				$r['purged'] = true;
 			} else {
 				$this->addWarning( 'apierror-ratelimited' );
