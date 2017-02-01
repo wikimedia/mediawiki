@@ -136,6 +136,7 @@ changes to languages because of Phabricator reports.
   The new or reinstated language fallbacks are (after cs ↔ sk in 1.28):
   ca ↔ oc; hsb ↔ dsb; io → eo; mdf → ru; pnt → el; roa-tara → it; rup → ro;
   sh → bs, sr-el, hr.
+* (T155957) Talk Namespaces for Javanese language (jv) have been updated.
 
 ==== No fallback for Ukrainian ====
 * (T39314) The fallback from Ukrainian to Russian was removed. The Ukrainian
