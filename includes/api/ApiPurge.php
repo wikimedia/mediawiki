@@ -37,11 +37,6 @@ class ApiPurge extends ApiBase {
 	 * Purges the cache of a page
 	 */
 	public function execute() {
-		$main = $this->getMain();
-		if ( !$main->isInternalMode() && !$main->getRequest()->wasPosted() ) {
-			$this->addDeprecation( 'apiwarn-deprecation-purge-get', 'purge-via-GET' );
-		}
-
 		$params = $this->extractRequestParams();
 
 		$continuationManager = new ApiContinuationManager( $this, [], [] );
@@ -60,12 +55,8 @@ class ApiPurge extends ApiBase {
 			ApiQueryBase::addTitleInfo( $r, $title );
 			$page = WikiPage::factory( $title );
 			if ( !$user->pingLimiter( 'purge' ) ) {
-				$flags = WikiPage::PURGE_ALL;
-				if ( !$this->getRequest()->wasPosted() ) {
-					$flags ^= WikiPage::PURGE_GLOBAL_PCACHE; // skip DB_MASTER write
-				}
 				// Directly purge and skip the UI part of purge()
-				$page->doPurge( $flags );
+				$page->doPurge( WikiPage::PURGE_ALL );
 				$r['purged'] = true;
 			} else {
 				$this->addWarning( 'apierror-ratelimited' );
@@ -157,20 +148,7 @@ class ApiPurge extends ApiBase {
 	}
 
 	public function mustBePosted() {
-		// Anonymous users are not allowed a non-POST request
-		return !$this->getUser()->isAllowed( 'purge' );
-	}
-
-	protected function getHelpFlags() {
-		$flags = parent::getHelpFlags();
-
-		// Claim that we must be posted for the purposes of help and paraminfo.
-		// @todo Remove this when self::mustBePosted() is updated for T145649
-		if ( !in_array( 'mustbeposted', $flags, true ) ) {
-			$flags[] = 'mustbeposted';
-		}
-
-		return $flags;
+		return true;
 	}
 
 	public function getAllowedParams( $flags = 0 ) {
