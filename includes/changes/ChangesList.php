@@ -444,8 +444,10 @@ class ChangesList extends ContextSource {
 
 		# TODO: Deprecate the $s argument, it seems happily unused.
 		$s = '';
+		# Avoid PHP 7.1 warning from passing $this by reference
+		$changesList = $this;
 		Hooks::run( 'ChangesListInsertArticleLink',
-			[ &$this, &$articlelink, &$s, &$rc, $unpatrolled, $watched ] );
+			[ &$changesList, &$articlelink, &$s, &$rc, $unpatrolled, $watched ] );
 
 		return "{$s} {$articlelink}";
 	}

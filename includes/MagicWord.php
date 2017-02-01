@@ -526,7 +526,7 @@ class MagicWord {
 		$this->mFound = false;
 		$text = preg_replace_callback(
 			$this->getRegex(),
-			[ &$this, 'pregRemoveAndRecord' ],
+			[ $this, 'pregRemoveAndRecord' ],
 			$text
 		);
 
@@ -541,7 +541,7 @@ class MagicWord {
 		$this->mFound = false;
 		$text = preg_replace_callback(
 			$this->getRegexStart(),
-			[ &$this, 'pregRemoveAndRecord' ],
+			[ $this, 'pregRemoveAndRecord' ],
 			$text
 		);
 

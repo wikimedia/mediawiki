@@ -336,7 +336,7 @@ class ImagePage extends Article {
 			$filename = wfEscapeWikiText( $this->displayImg->getName() );
 			$linktext = $filename;
 
-			// Use of &$this in hooks triggers warnings in PHP 7.1
+			// Avoid PHP 7.1 warning from passing $this by reference
 			$imagePage = $this;
 
 			Hooks::run( 'ImageOpenShowImageInlineBefore', [ &$imagePage, &$out ] );
