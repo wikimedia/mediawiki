@@ -259,6 +259,9 @@ changes to languages because of Phabricator reports.
 
   Also, some related hooks were deprecated, but this is not yet a
   breaking change.
+* Article::getLastPurgeTimestamp(), WikiPage::getLastPurgeTimestamp(), and the
+  WikiPage::PURGE_* constants are deprecated, and the functions will always
+  return false. They were a hack for an issue that has since been fixed.
 
 == Compatibility ==
 
