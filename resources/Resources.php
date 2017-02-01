@@ -2367,6 +2367,15 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.widgets.UsersMultiselectWidget' => [
+		'scripts' => [
+			'resources/src/mediawiki.widgets/mw.widgets.UsersMultiselectWidget.js',
+		],
+		'dependencies' => [
+			'oojs-ui-widgets',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.widgets.SearchInputWidget' => [
 		'scripts' => [
 			'resources/src/mediawiki.widgets/mw.widgets.SearchInputWidget.js',
