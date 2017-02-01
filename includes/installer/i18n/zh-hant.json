@@ -17,8 +17,7 @@
 			"Macofe",
 			"Reke",
 			"Suchichi02",
-			"Winstonyin",
-			"Wehwei"
+			"Winstonyin"
 		]
 	},
 	"config-desc": "MediaWiki 安裝程式",
@@ -314,7 +313,6 @@
 	"config-install-subscribe-fail": "無法訂閱 mediawiki-announce：$1",
 	"config-install-subscribe-notpossible": "未安裝 cURL，因此無法使用 <code>allow_url_fopen</code> 設定項目。",
 	"config-install-mainpage": "正在使用預設的內容建立首頁",
-	"config-install-mainpage-exists": "首頁已存在，略過中",
 	"config-install-extension-tables": "正在建立已啟動的擴充套件的資料表",
 	"config-install-mainpage-failed": "無法插入首頁: $1",
 	"config-install-done": "<strong>恭喜！</strong>\n您已經成功安裝MediaWiki。\n\n安裝程式已自動產生<code>LocalSettings.php</code>檔案，\n該檔案中包含了您所有的設定項目。\n\n您需要下載該檔案，並將其放置在您的Wiki的根目錄（index.php所在的目錄）中，下載應已自動開始。\n\n若瀏覽器沒有提示您下載，或者您取消了下載，您可以點選下方連結重新下載：\n\n$3\n\n<strong>注意：</strong>如果您現在不下載此檔案，稍後結束安裝程式之後將無法再下載設定檔。\n\n當您完成本步驟後，您可以<strong>[$2 進入您的Wiki]</strong>。",

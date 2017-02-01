@@ -302,7 +302,6 @@
 	"config-install-subscribe-fail": "Impossibile subscriber a mediawiki-announce: $1",
 	"config-install-subscribe-notpossible": "cURL non es installate e <code>allow_url_fopen</code> non es disponibile.",
 	"config-install-mainpage": "Crea pagina principal con contento predefinite",
-	"config-install-mainpage-exists": "Le pagina principal jam existe, es omittite",
 	"config-install-extension-tables": "Creation de tabellas pro le extensiones activate",
 	"config-install-mainpage-failed": "Non poteva inserer le pagina principal: $1",
 	"config-install-done": "<strong>Felicitationes!</strong>\nTu ha installate MediaWiki.\n\nLe installator ha generate un file <code>LocalSettings.php</code>.\nIste contine tote le configuration.\n\nEs necessari discargar lo e poner lo in le base del installation wiki (le mesme directorio que index.php).\nLe discargamento debe haber comenciate automaticamente.\n\nSi le discargamento non ha comenciate, o si illo esseva cancellate, recomencia le discargamento con un clic sur le ligamine sequente:\n\n$3\n\n<strong>Nota:</strong> Si tu non discarga iste file de configuration ora, illo non essera disponibile plus tarde.\n\nPost facer isto, tu pote <strong>[$2 entrar in tu wiki]</strong>.",

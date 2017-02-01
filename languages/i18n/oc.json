@@ -528,7 +528,6 @@
 	"botpasswords-label-grants": "Dreits aplicables :",
 	"botpasswords-label-grants-column": "Acordat",
 	"botpasswords-bad-appid": "Lo nom del robòt «$1» es pas valid.",
-	"botpasswords-insert-failed": "Fracàs de l’apondon del nom de robòt « $1 ». Es ja estat apondut ?",
 	"botpasswords-created-title": "Senhau de bot creat",
 	"botpasswords-created-body": "Lo senhau dau bot per lo bot $1 de l'utilizaire $2 es estat creat",
 	"botpasswords-updated-title": "Senhau dau bot més a jorn",
@@ -3215,7 +3214,6 @@
 	"logentry-managetags-activate": "$1 {{GENDER:$2|a activat}} la balisa \"$4\" per l’usatge dels utilizaires e dels robòts",
 	"logentry-managetags-deactivate": "$1 {{GENDER:$2|a desactivat}} la balisa « $4 » per l’usatge dels utilizaires e dels robòts",
 	"log-name-tag": "Jornal de las balisas",
-	"logentry-tag-update-revision": "$1 {{GENDER:$2|a mes a jorn}} las balisas de la revision $4 de la pagina $3 ($6 {{PLURAL:$7|aponduda|apondudas}} ; $8 {{PLURAL:$9|suprimida|suprimidas}})",
 	"rightsnone": "(cap)",
 	"revdelete-summary": "modificar lo somari",
 	"feedback-adding": "Apondon de vòstres comentaris a la pagina...",
@@ -3410,7 +3408,6 @@
 	"linkaccounts": "Liar lei còmptes",
 	"linkaccounts-success-text": "Lo còmpte èra estat liat.",
 	"linkaccounts-submit": "Liar lei còmptes",
-	"restrictionsfield-badip": "Adreça IP o plaja invalida : $1",
 	"revid": "Revision $1",
 	"pageid": "Pagina ID $1"
 }
