@@ -50,7 +50,9 @@ class OldChangesList extends ChangesList {
 				$rc->mAttribs['rc_namespace'] . '-' . $rc->mAttribs['rc_title'] );
 		}
 
-		if ( !Hooks::run( 'OldChangesListRecentChangesLine', [ &$this, &$html, $rc, &$classes ] ) ) {
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$list = $this;
+		if ( !Hooks::run( 'OldChangesListRecentChangesLine', [ &$list, &$html, $rc, &$classes ] ) ) {
 			return false;
 		}
 

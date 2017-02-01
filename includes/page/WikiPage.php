@@ -323,7 +323,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$row = $dbr->selectRow( 'page', $fields, $conditions, __METHOD__, $options );
 
-		Hooks::run( 'ArticlePageDataAfter', [ &$this, &$row ] );
+		Hooks::run( 'ArticlePageDataAfter', [ &$wikiPage, &$row ] );
 
 		return $row;
 	}
