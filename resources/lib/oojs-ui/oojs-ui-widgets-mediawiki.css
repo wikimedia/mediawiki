@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.4-fix (d4045dee45)
+ * OOjs UI v0.19.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-01-19T20:22:32Z
+ * Date: 2017-02-01T23:04:44Z
  */
 .oo-ui-draggableElement-handle,
 .oo-ui-draggableElement-handle.oo-ui-widget {
@@ -805,6 +805,14 @@
 .oo-ui-capsuleMultiselectWidget-group {
   display: inline;
 }
+.oo-ui-capsuleMultiselectWidget-popup > .oo-ui-popupWidget-popup > .oo-ui-popupWidget-body > * {
+  display: block;
+}
+.oo-ui-capsuleMultiselectWidget-focusTrap {
+  display: inline-block;
+  height: 1px;
+  width: 1px;
+}
 .oo-ui-capsuleMultiselectWidget-handle {
   min-height: 2.4em;
   margin-right: 0.5em;
@@ -869,17 +877,11 @@
   top: 0;
   margin: 0.3em;
 }
-.oo-ui-capsuleMultiselectWidget .oo-ui-popupWidget {
-  width: 100%;
+.oo-ui-capsuleMultiselectWidget-popup {
   margin-top: -1px;
 }
-.oo-ui-capsuleMultiselectWidget .oo-ui-popupWidget-popup {
-  min-width: 100%;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  border-width: 0 1px;
-  border-radius: 0 0 2px 2px;
+.oo-ui-capsuleMultiselectWidget-popup > .oo-ui-popupWidget-popup {
+  border: 0;
 }
 .oo-ui-capsuleMultiselectWidget.oo-ui-widget-enabled .oo-ui-capsuleMultiselectWidget-handle {
   background-color: #fff;
@@ -1009,11 +1011,6 @@
 .oo-ui-numberInputWidget-buttoned .oo-ui-textInputWidget {
   display: table-cell;
 }
-.oo-ui-numberInputWidget-buttoned .oo-ui-buttonElement-button {
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-}
 .oo-ui-numberInputWidget-field {
   display: table;
   table-layout: fixed;
@@ -1024,6 +1021,7 @@
 }
 .oo-ui-numberInputWidget-buttoned .oo-ui-buttonElement-button {
   display: block;
+  min-width: 2.5em;
   min-height: 2.5em;
   padding-left: 0;
   padding-right: 0;

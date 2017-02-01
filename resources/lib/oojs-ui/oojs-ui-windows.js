@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.4-fix (d4045dee45)
+ * OOjs UI v0.19.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-01-19T20:22:26Z
+ * Date: 2017-02-01T23:04:40Z
  */
 ( function ( OO ) {
 
@@ -1455,11 +1455,8 @@ OO.ui.WindowManager.prototype.addWindows = function ( windows ) {
 		list = {};
 		for ( i = 0, len = windows.length; i < len; i++ ) {
 			name = windows[ i ].constructor.static.name;
-			if ( typeof name !== 'string' ) {
-				throw new Error( 'Cannot add window' );
-			}
 			if ( !name ) {
-				OO.ui.warnDeprecation( 'OO.ui.WindowManager#addWindows: Windows must have a `name` static property defined.' );
+				throw new Error( 'Windows must have a `name` static property defined.' );
 			}
 			list[ name ] = windows[ i ];
 		}
@@ -3496,5 +3493,3 @@ OO.ui.prompt = function ( text, options ) {
 };
 
 }( OO ) );
-
-//# sourceMappingURL=oojs-ui-windows.js.map

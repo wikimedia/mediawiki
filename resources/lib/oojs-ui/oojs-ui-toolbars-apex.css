@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.4-fix (d4045dee45)
+ * OOjs UI v0.19.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-01-19T20:22:32Z
+ * Date: 2017-02-01T23:04:44Z
  */
 .oo-ui-popupTool .oo-ui-popupWidget-popup,
 .oo-ui-popupTool .oo-ui-popupWidget-anchor {
@@ -276,11 +276,16 @@
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff1f7fb', endColorstr='#ffffffff' )";
 }
 .oo-ui-popupToolGroup .oo-ui-toolGroup-tools {
-  top: 2.5em;
   margin: 0 -1px;
   border: 1px solid #ccc;
   background-color: #fff;
   box-shadow: 0 0.3125em 1.25em rgba(0, 0, 0, 0.25);
+}
+.oo-ui-toolbar-position-top .oo-ui-popupToolGroup .oo-ui-toolGroup-tools {
+  top: 2.5em;
+}
+.oo-ui-toolbar-position-bottom .oo-ui-popupToolGroup .oo-ui-toolGroup-tools {
+  bottom: 2.5em;
 }
 .oo-ui-popupToolGroup .oo-ui-tool-link {
   padding: 0.3125em 0 0.3125em 0.3125em;
@@ -455,13 +460,18 @@
   pointer-events: none;
 }
 .oo-ui-toolbar-bar {
-  border-bottom: 1px solid #ccc;
   background-color: #f8fbfd;
   background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #fff), color-stop(100%, #F1F7FB));
   background-image: -webkit-linear-gradient(top, #fff 0, #F1F7FB 100%);
   background-image:    -moz-linear-gradient(top, #fff 0, #F1F7FB 100%);
   background-image:         linear-gradient(to bottom, #fff 0, #F1F7FB 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffffff', endColorstr='#fff1f7fb' )";
+}
+.oo-ui-toolbar-position-top .oo-ui-toolbar-bar {
+  border-bottom: 1px solid #ccc;
+}
+.oo-ui-toolbar-position-bottom .oo-ui-toolbar-bar {
+  border-top: 1px solid #ccc;
 }
 .oo-ui-toolbar-bar .oo-ui-toolbar-bar {
   border: 0;

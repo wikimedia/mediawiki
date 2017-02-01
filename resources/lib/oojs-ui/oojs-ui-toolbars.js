@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.4-fix (d4045dee45)
+ * OOjs UI v0.19.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-01-19T20:22:26Z
+ * Date: 2017-02-01T23:04:40Z
  */
 ( function ( OO ) {
 
@@ -293,6 +293,7 @@
  *  in the toolbar, but are not configured as tools. By default, actions are displayed on the right side of
  *  the toolbar.
  * @cfg {boolean} [shadow] Add a shadow below the toolbar.
+ * @cfg {string} [position='top'] Whether the toolbar is positioned above ('top') or below ('bottom') content.
  */
 OO.ui.Toolbar = function OoUiToolbar( toolFactory, toolGroupFactory, config ) {
 	// Allow passing positional parameters inside the config object
@@ -317,6 +318,7 @@ OO.ui.Toolbar = function OoUiToolbar( toolFactory, toolGroupFactory, config ) {
 	this.toolGroupFactory = toolGroupFactory;
 	this.groups = [];
 	this.tools = {};
+	this.position = config.position || 'top';
 	this.$bar = $( '<div>' );
 	this.$actions = $( '<div>' );
 	this.initialized = false;
@@ -339,7 +341,7 @@ OO.ui.Toolbar = function OoUiToolbar( toolFactory, toolGroupFactory, config ) {
 	if ( config.shadow ) {
 		this.$bar.append( '<div class="oo-ui-toolbar-shadow"></div>' );
 	}
-	this.$element.addClass( 'oo-ui-toolbar' ).append( this.$bar );
+	this.$element.addClass( 'oo-ui-toolbar oo-ui-toolbar-position-' + this.position ).append( this.$bar );
 };
 
 /* Setup */
@@ -1775,7 +1777,9 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 	}
 
 	// Configuration initialization
-	config = config || {};
+	config = $.extend( {
+		indicator: toolbar.position === 'bottom' ? 'up' : 'down'
+	}, config );
 
 	// Parent constructor
 	OO.ui.PopupToolGroup.parent.call( this, toolbar, config );
@@ -2010,7 +2014,6 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
  *             // Configurations for list toolgroup.
  *             type: 'list',
  *             label: 'ListToolGroup',
- *             indicator: 'down',
  *             icon: 'ellipsis',
  *             title: 'This is the title, displayed when user moves the mouse over the list toolgroup',
  *             header: 'This is the header',
@@ -2240,7 +2243,6 @@ OO.ui.ListToolGroup.prototype.updateCollapsibleState = function () {
  *             type: 'menu',
  *             header: 'This is the (optional) header',
  *             title: 'This is the (optional) title',
- *             indicator: 'down',
  *             include: [ 'settings', 'stuff' ]
  *         }
  *     ] );
@@ -2329,5 +2331,3 @@ OO.ui.MenuToolGroup.prototype.onUpdateState = function () {
 };
 
 }( OO ) );
-
-//# sourceMappingURL=oojs-ui-toolbars.js.map

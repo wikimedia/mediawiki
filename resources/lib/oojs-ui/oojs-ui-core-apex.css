@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.4-fix (d4045dee45)
+ * OOjs UI v0.19.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-01-19T20:22:32Z
+ * Date: 2017-02-01T23:04:44Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -19,6 +19,9 @@
 .oo-ui-buttonElement > .oo-ui-buttonElement-button {
   cursor: pointer;
   display: inline-block;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
   vertical-align: middle;
   font-family: inherit;
   font-size: inherit;
@@ -309,10 +312,6 @@
 .oo-ui-fieldLayout .oo-ui-fieldLayout-help > .oo-ui-popupWidget > .oo-ui-popupWidget-popup {
   z-index: 1;
 }
-.oo-ui-fieldLayout .oo-ui-fieldLayout-help .oo-ui-fieldLayout-help-content {
-  padding: 0.5em 0.75em;
-  line-height: 1.5;
-}
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-top .oo-ui-fieldLayout-help,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline .oo-ui-fieldLayout-help {
   margin-top: -0.3em;
@@ -434,10 +433,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-help > .oo-ui-popupWidget > .oo-ui-popupWidget-popup {
   z-index: 1;
 }
-.oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-help .oo-ui-fieldsetLayout-help-content {
-  padding: 0.5em 0.75em;
-  line-height: 1.4;
-}
 .oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-header {
   max-width: 50em;
 }
@@ -489,7 +484,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   padding: 1.25em;
 }
 .oo-ui-panelLayout-framed {
+  border: 1px solid #ccc;
   border-radius: 0.5em;
+  box-shadow: 0 0.25em 1em rgba(0, 0, 0, 0.25);
 }
 .oo-ui-panelLayout-padded.oo-ui-panelLayout-framed {
   margin: 1em 0;
@@ -686,7 +683,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-popupWidget-body {
   clear: both;
-  overflow: hidden;
+}
+.oo-ui-popupWidget-body.oo-ui-clippableElement-clippable {
+  min-height: 1em;
 }
 .oo-ui-popupWidget-popup {
   background-color: #fff;
@@ -736,8 +735,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-popupWidget-head > .oo-ui-labelElement-label {
   margin: 0.75em 1em;
 }
+.oo-ui-popupWidget-body {
+  line-height: 1.4;
+}
 .oo-ui-popupWidget-body-padded {
-  padding: 0 1em;
+  margin: 0.75em 1em;
 }
 .oo-ui-popupButtonWidget {
   position: relative;
@@ -745,13 +747,13 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-popupButtonWidget .oo-ui-popupWidget {
   cursor: auto;
 }
-.oo-ui-popupButtonWidget.oo-ui-buttonElement-frameless > .oo-ui-popupWidget {
+.oo-ui-popupWidget.oo-ui-popupButtonWidget-frameless-popup {
   /* @noflip */
-  left: 0.9375em;
+  margin-left: 0.9375em;
 }
-.oo-ui-popupButtonWidget.oo-ui-buttonElement-framed > .oo-ui-popupWidget {
+.oo-ui-popupWidget.oo-ui-popupButtonWidget-framed-popup {
   /* @noflip */
-  left: 1.2375em;
+  margin-left: 1.2375em;
 }
 .oo-ui-inputWidget {
   margin-right: 0.5em;
@@ -861,20 +863,41 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   display: none;
 }
 .oo-ui-textInputWidget.oo-ui-iconElement > .oo-ui-iconElement-icon,
-.oo-ui-textInputWidget.oo-ui-indicatorElement > .oo-ui-indicatorElement-indicator,
-.oo-ui-textInputWidget > .oo-ui-labelElement-label {
+.oo-ui-textInputWidget.oo-ui-indicatorElement > .oo-ui-indicatorElement-indicator {
   display: block;
   position: absolute;
   top: 0;
-}
-.oo-ui-textInputWidget.oo-ui-iconElement > .oo-ui-iconElement-icon,
-.oo-ui-textInputWidget.oo-ui-indicatorElement > .oo-ui-indicatorElement-indicator {
   height: 100%;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+}
+.oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-iconElement-icon,
+.oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-indicatorElement-indicator {
+  cursor: text;
+}
+.oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-textInputWidget-type-search > .oo-ui-indicatorElement-indicator {
+  cursor: pointer;
+}
+.oo-ui-textInputWidget.oo-ui-widget-disabled input,
+.oo-ui-textInputWidget.oo-ui-widget-disabled textarea {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-labelElement-label {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.oo-ui-textInputWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
+  display: block;
 }
 .oo-ui-textInputWidget > .oo-ui-iconElement-icon,
 .oo-ui-textInputWidget-labelPosition-before > .oo-ui-labelElement-label {
@@ -884,22 +907,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-textInputWidget-labelPosition-after > .oo-ui-labelElement-label {
   right: 0;
 }
-.oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-iconElement-icon,
-.oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-indicatorElement-indicator,
-.oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-labelElement-label {
-  cursor: text;
-}
-.oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-textInputWidget-type-search > .oo-ui-indicatorElement-indicator {
-  cursor: pointer;
-}
-.oo-ui-textInputWidget.oo-ui-widget-disabled input,
-.oo-ui-textInputWidget.oo-ui-widget-disabled textarea,
-.oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-labelElement-label {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+.oo-ui-textInputWidget > .oo-ui-labelElement-label {
+  position: absolute;
+  top: 0;
 }
 .oo-ui-textInputWidget-php > .oo-ui-iconElement-icon,
 .oo-ui-textInputWidget-php > .oo-ui-indicatorElement-indicator,
@@ -997,6 +1007,12 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   height: 0;
   overflow: hidden;
   opacity: 0;
+}
+.oo-ui-menuSelectWidget.oo-ui-clippableElement-clippable {
+  min-height: 2.6em;
+}
+.oo-ui-menuSelectWidget-invisible {
+  display: none;
 }
 .oo-ui-menuOptionWidget {
   position: relative;
@@ -1116,9 +1132,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-comboBoxInputWidget-dropdownButton > .oo-ui-buttonElement-button {
   display: block;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
   overflow: hidden;
 }
 .oo-ui-comboBoxInputWidget.oo-ui-comboBoxInputWidget-empty .oo-ui-comboBoxInputWidget-dropdownButton {
@@ -1129,8 +1142,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   position: absolute;
   right: 0;
   top: 0;
-  height: 2.5em;
   width: 2.5em;
+  height: 2.5em;
   padding: 0;
 }
 .oo-ui-comboBoxInputWidget-php > .oo-ui-indicatorElement-indicator {
