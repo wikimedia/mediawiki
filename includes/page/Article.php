@@ -2042,16 +2042,20 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::doPurge
+	 * @note In 1.28 (and only 1.28), this took a $flags parameter that
+	 *  controlled how much purging was done.
 	 */
-	public function doPurge( $flags = WikiPage::PURGE_ALL ) {
-		return $this->mPage->doPurge( $flags );
+	public function doPurge() {
+		return $this->mPage->doPurge();
 	}
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getLastPurgeTimestamp
+	 * @deprecated since 1.29
 	 */
 	public function getLastPurgeTimestamp() {
+		wfDeprecated( __METHOD__, '1.29' );
 		return $this->mPage->getLastPurgeTimestamp();
 	}
 
