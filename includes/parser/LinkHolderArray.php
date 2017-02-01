@@ -617,7 +617,7 @@ class LinkHolderArray {
 
 		$text = preg_replace_callback(
 			'/<!--(LINK|IWLINK) (.*?)-->/',
-			[ &$this, 'replaceTextCallback' ],
+			[ $this, 'replaceTextCallback' ],
 			$text );
 
 		return $text;
