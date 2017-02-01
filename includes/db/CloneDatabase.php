@@ -107,6 +107,22 @@ class CloneDatabase {
 			wfDebug( __METHOD__ . " duplicating $oldTableName to $newTableName\n" );
 			$this->db->duplicateTableStructure(
 				$oldTableName, $newTableName, $this->useTemporaryTables );
+
+			# SiteStats breaks if the singleton row in site_stats is missing,
+			# so make sure it's created.
+			if ( $tbl === 'site_stats' ) {
+				$this->db->insert( 'site_stats',
+					[
+						'ss_row_id' => 1,
+						'ss_total_edits' => 0,
+						'ss_good_articles' => 0,
+						'ss_total_pages' => 0,
+						'ss_users' => 0,
+						'ss_images' => 0
+					],
+					__METHOD__, 'IGNORE'
+				);
+			}
 		}
 	}
 
