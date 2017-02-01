@@ -582,12 +582,10 @@ class WikiPage implements Page, IDBAccessObject {
 		$row = null;
 		while ( $continue ) {
 			$row = $db->selectRow(
-				[ 'page', 'revision' ],
+				[ 'revision' ],
 				$revSelectFields,
 				[
-					'page_namespace' => $this->mTitle->getNamespace(),
-					'page_title' => $this->mTitle->getDBkey(),
-					'rev_page = page_id'
+					'rev_page' => $this->getId()
 				],
 				__METHOD__,
 				[
