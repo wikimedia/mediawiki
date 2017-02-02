@@ -48,10 +48,14 @@
 	 * @param {boolean} isSelected Filter selected state
 	 */
 	mw.rcfilters.Controller.prototype.updateFilter = function ( filterName, isSelected ) {
-		var obj = {};
+		var obj = {},
+			filterItem = this.model.getItemByName( filterName );
 
 		obj[ filterName ] = isSelected;
 		this.model.updateFilters( obj );
+
+		// Check filter interactions
+		this.model.reassessFilterInteractions( filterItem );
 	};
 
 	/**
