@@ -2287,8 +2287,9 @@ $new: the ?new= param value from the url
 edit.
 $wikiPage: the WikiPage edited
 $rev: the new revision
-$baseID: the revision ID this was based off, if any
+$baseID: the revision ID this was based off (exact copy), or false if none
 $user: the editing user
+$editResult: EditResult
 
 'OldChangesListRecentChangesLine': Customize entire recent changes line, or
 return false to omit the line from RecentChanges and Watchlist special pages.
@@ -2391,8 +2392,8 @@ $flags: Flags passed to WikiPage::doEditContent()
 $revision: New Revision of the article (can be null for edits that change
   nothing)
 $status: Status object about to be returned by doEditContent()
-$baseRevId: the rev ID (or false) this edit was based on
-$undidRevId: the rev ID (or 0) this edit undid
+$baseRevId: the rev ID (or false) this edit was based on (exact copy)
+$editResult: EditResult|null
 
 'PageHistoryBeforeList': When a history page list is about to be constructed.
 &$article: the article that the history is loading for

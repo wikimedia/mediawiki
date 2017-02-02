@@ -414,6 +414,7 @@ $wgAutoloadLocalClasses = [
 	'EditAction' => __DIR__ . '/includes/actions/EditAction.php',
 	'EditCLI' => __DIR__ . '/maintenance/edit.php',
 	'EditPage' => __DIR__ . '/includes/EditPage.php',
+	'EditResult' => __DIR__ . '/includes/EditResult.php',
 	'EditWatchlistCheckboxSeriesField' => __DIR__ . '/includes/specials/SpecialEditWatchlist.php',
 	'EditWatchlistNormalHTMLForm' => __DIR__ . '/includes/specials/SpecialEditWatchlist.php',
 	'EmailConfirmation' => __DIR__ . '/includes/specials/SpecialConfirmemail.php',

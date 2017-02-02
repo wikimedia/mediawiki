@@ -207,6 +207,7 @@ class ApiEditPage extends ApiBase {
 			if ( is_null( $undoafterRev ) || $undoafterRev->isDeleted( Revision::DELETED_TEXT ) ) {
 				$this->dieWithError( [ 'apierror-nosuchrevid', $params['undoafter'] ] );
 			}
+			$params['undoafter'] = $undoafterRev->getId();
 
 			if ( $undoRev->getPage() != $pageObj->getId() ) {
 				$this->dieWithError( [ 'apierror-revwrongpage', $undoRev->getId(),
@@ -277,9 +278,10 @@ class ApiEditPage extends ApiBase {
 			$requestArray['wpSectionTitle'] = $params['sectiontitle'];
 		}
 
-		// TODO: Pass along information from 'undoafter' as well
 		if ( $params['undo'] > 0 ) {
 			$requestArray['wpUndidRevision'] = $params['undo'];
+			// $params['undoafter'] is necessarily set and > 0
+			$requestArray['wpUndidAfterRevision'] = $params['undoafter'];
 		}
 
 		// Watch out for basetimestamp == '' or '0'
