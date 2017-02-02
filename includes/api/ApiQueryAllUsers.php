@@ -167,7 +167,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 					'ug_user=user_id',
 					$this->getConfig()->get( 'DisableUserGroupExpiry' ) ?
 						'1' :
-						'ug1.ug_expiry IS NULL OR ug1.ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
+						'ug_expiry IS NULL OR ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
 				] )
 			] );
 		}
