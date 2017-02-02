@@ -111,7 +111,9 @@ class ActiveUsersPager extends UsersPager {
 					'user_groups', '1', [
 						'ug_user = user_id',
 						'ug_group' => $group,
-						'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
+						$this->getConfig()->get( 'DisableUserGroupExpiry' ) ?
+							'1' :
+							'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
 					]
 				) . ')';
 			}
