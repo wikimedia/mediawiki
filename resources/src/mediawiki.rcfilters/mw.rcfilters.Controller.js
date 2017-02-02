@@ -15,15 +15,27 @@
 
 	/**
 	 * Initialize the filter and parameter states
+	 *
+	 * @param {Object} filterStructure Filter definition and structure for the model
 	 */
-	mw.rcfilters.Controller.prototype.initialize = function () {
+	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure ) {
 		var uri = new mw.Uri();
 
-		// Give the model a full parameter state from which to
-		// update the filters
+		// Initialize the model
+		this.model.initializeFilters( filterStructure );
+
+		// Set filter states based on defaults and URL params
 		this.model.updateFilters(
-			// Translate the url params to filter select states
-			this.model.getFiltersFromParameters( uri.query )
+			this.model.getFiltersFromParameters(
+				// Merge defaults with URL params for initialization
+				$.extend(
+					true,
+					{},
+					this.model.getDefaultParams(),
+					// URI query overrides defaults
+					uri.query
+				)
+			)
 		);
 	};
 
@@ -48,10 +60,14 @@
 	 * @param {boolean} isSelected Filter selected state
 	 */
 	mw.rcfilters.Controller.prototype.updateFilter = function ( filterName, isSelected ) {
-		var obj = {};
+		var obj = {},
+			filterItem = this.model.getItemByName( filterName );
 
 		obj[ filterName ] = isSelected;
 		this.model.updateFilters( obj );
+
+		// Check filter interactions
+		this.model.reassessFilterInteractions( filterItem );
 	};
 
 	/**
