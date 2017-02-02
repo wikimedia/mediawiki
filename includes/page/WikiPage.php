@@ -1543,6 +1543,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Callers are responsible for permission checks
 	 * (with ChangeTags::canAddTagsAccompanyingChange)
 	 * @param Int $undidRevId Id of revision that was undone or 0
+	 * @param Int $undidAfterRevId Id of revision that was restored,
+	 * possibly amended (by subsequent editing or post-undo edits), or 0
 	 *
 	 * @throws MWException
 	 * @return Status Possible errors:
@@ -1564,7 +1566,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function doEditContent(
 		Content $content, $summary, $flags = 0, $baseRevId = false,
-		User $user = null, $serialFormat = null, $tags = [], $undidRevId = 0
+		User $user = null, $serialFormat = null, $tags = [],
+		$undidRevId = 0, $undidAfterRevId = 0
 	) {
 		global $wgUser, $wgUseAutomaticEditSummaries;
 
@@ -1645,7 +1648,8 @@ class WikiPage implements Page, IDBAccessObject {
 			'oldIsRedirect' => $this->isRedirect(),
 			'oldCountable' => $this->isCountable(),
 			'tags' => ( $tags !== null ) ? (array)$tags : [],
-			'undidRevId' => $undidRevId
+			'undidRevId' => $undidRevId,
+			'undidAfterRevId' => $undidAfterRevId,
 		];
 
 		// Actually create the revision and create/update the page
@@ -1754,7 +1758,8 @@ class WikiPage implements Page, IDBAccessObject {
 			}
 
 			Hooks::run( 'NewRevisionFromEditComplete',
-				[ $this, $revision, $meta['baseRevId'], $user ] );
+				[ $this, $revision, $meta['baseRevId'], $user,
+					$meta['undidRevId'], $meta['undidAfterRevId'] ] );
 
 			// Update recentchanges
 			if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
@@ -1828,7 +1833,7 @@ class WikiPage implements Page, IDBAccessObject {
 					// Trigger post-save hook
 					$params = [ &$wikiPage, &$user, $content, $summary, $flags & EDIT_MINOR,
 						null, null, &$flags, $revision, &$status, $meta['baseRevId'],
-						$meta['undidRevId'] ];
+						$meta['undidRevId'], $meta['undidAfterRevId'] ];
 					Hooks::run( 'PageContentSaveComplete', $params );
 				}
 			),
@@ -1904,7 +1909,7 @@ class WikiPage implements Page, IDBAccessObject {
 			throw new MWException( "Failed to update page row to use new revision." );
 		}
 
-		Hooks::run( 'NewRevisionFromEditComplete', [ $this, $revision, false, $user ] );
+		Hooks::run( 'NewRevisionFromEditComplete', [ $this, $revision, false, $user, 0, 0 ] );
 
 		// Update recentchanges
 		if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
@@ -2499,7 +2504,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$wikiPage = $this;
 
 			Hooks::run( 'NewRevisionFromEditComplete',
-				[ $this, $nullRevision, $latest, $user ] );
+				[ $this, $nullRevision, $latest, $user, 0, 0 ] );
 			Hooks::run( 'ArticleProtectComplete', [ &$wikiPage, &$user, $limit, $reason ] );
 		} else { // Protection of non-existing page (also known as "title protection")
 			// Cascade protection is meaningless in this case
@@ -3185,7 +3190,9 @@ class WikiPage implements Page, IDBAccessObject {
 			$target->getId(),
 			$guser,
 			null,
-			$tags
+			$tags,
+			$current->getId(),
+			$target->getId()
 		);
 
 		// Set patrolling and bot flag on the edits, which gets rollbacked.
