@@ -66,7 +66,7 @@
 		this.$element
 			.toggleClass(
 				'mw-rcfilters-ui-filterCapsuleMultiselectWidget-item-inactive',
-				!this.model.isActive()
+				this.model.isIncluded() || this.model.isConflicted()
 			);
 	};
 

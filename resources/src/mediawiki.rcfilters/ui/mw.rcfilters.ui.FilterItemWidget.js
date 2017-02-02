@@ -80,8 +80,8 @@
 		this.checkboxWidget.setSelected( this.model.isSelected() );
 
 		this.$element.toggleClass(
-			'mw-rcfilters-ui-filterItemWidget-inactive',
-			!this.model.isActive()
+			'mw-rcfilters-ui-filterItemWidget-muted',
+			this.model.isConflicted() || this.model.isIncluded()
 		);
 	};
 

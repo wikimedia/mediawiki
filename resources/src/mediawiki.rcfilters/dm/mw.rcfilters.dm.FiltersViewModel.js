@@ -13,13 +13,12 @@
 		OO.EmitterList.call( this );
 
 		this.groups = {};
-		this.excludedByMap = {};
 		this.defaultParams = {};
 		this.defaultFiltersEmpty = null;
 
 		// Events
 		this.aggregate( { update: 'filterItemUpdate' } );
-		this.connect( this, { filterItemUpdate: 'onFilterItemUpdate' } );
+		this.connect( this, { filterItemUpdate: [ 'emit', 'itemUpdate' ] } );
 	};
 
 	/* Initialization */
@@ -45,96 +44,50 @@
 	/* Methods */
 
 	/**
-	 * Respond to filter item change.
+	 * Re-assess the states of filter items based on the interactions between them
 	 *
-	 * @param {mw.rcfilters.dm.FilterItem} item Updated filter
-	 * @fires itemUpdate
-	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.onFilterItemUpdate = function ( item ) {
-		// Reapply the active state of filters
-		this.reapplyActiveFilters( item );
-
-		// Recheck group activity state
-		this.getGroup( item.getGroup() ).checkActive();
-
-		this.emit( 'itemUpdate', item );
-	};
-
-	/**
-	 * Calculate the active state of the filters, based on selected filters in the group.
+	 * NOTE: The group-level state for 'fullCoverage' is reassessed at the group
+	 * level. This, however, requires knowledge of all filters regardless of grouping
+	 * (because conflicts and/or subsets may arise between groups) and so this is
+	 * done in the general view model.
+	 * This method should not worry about the group-level coverage case.
 	 *
 	 * @param {mw.rcfilters.dm.FilterItem} item Changed item
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.reapplyActiveFilters = function ( item ) {
-		var selectedItemsCount,
-			group = item.getGroup(),
-			model = this;
-		if (
-			!this.getGroup( group ).getExclusionType() ||
-			this.getGroup( group ).getExclusionType() === 'default'
-		) {
-			// Default behavior
-			// If any parameter is selected, but:
-			// - If there are unselected items in the group, they are inactive
-			// - If the entire group is selected, all are inactive
-
-			// Check what's selected in the group
-			selectedItemsCount = this.getGroupFilters( group ).filter( function ( filterItem ) {
-				return filterItem.isSelected();
-			} ).length;
-
-			this.getGroupFilters( group ).forEach( function ( filterItem ) {
-				filterItem.toggleActive(
-					selectedItemsCount > 0 ?
-						// If some items are selected
-						(
-							selectedItemsCount === model.groups[ group ].getItemCount() ?
-							// If **all** items are selected, they're all inactive
-							false :
-							// If not all are selected, then the selected are active
-							// and the unselected are inactive
-							filterItem.isSelected()
-						) :
-						// No item is selected, everything is active
-						true
-				);
-			} );
-		} else if ( this.getGroup( group ).getExclusionType() === 'explicit' ) {
-			// Explicit behavior
-			// - Go over the list of excluded filters to change their
-			//   active states accordingly
-
-			// For each item in the list, see if there are other selected
-			// filters that also exclude it. If it does, it will still be
-			// inactive.
-
-			item.getExcludedFilters().forEach( function ( filterName ) {
-				var filterItem = model.getItemByName( filterName );
-
-				// Note to reduce confusion:
-				// - item is the filter whose state changed and should exclude the other filters
-				//   in its list of exclusions
-				// - filterItem is the filter that is potentially being excluded by the current item
-				// - anotherExcludingFilter is any other filter that excludes filterItem; we must check
-				//   if that filter is selected, because if it is, we should not touch the excluded item
+	mw.rcfilters.dm.FiltersViewModel.prototype.reassessFilterInteractions = function ( item ) {
+		var model = this,
+			changeIncludedIfNeeded = function( itemAffecting, itemInSubset ) {
 				if (
-					// Check if there are any filters (other than the current one)
-					// that also exclude the filterName
-					!model.excludedByMap[ filterName ].some( function ( anotherExcludingFilterName ) {
-						var anotherExcludingFilter = model.getItemByName( anotherExcludingFilterName );
-
-						return (
-							anotherExcludingFilterName !== item.getName() &&
-							anotherExcludingFilter.isSelected()
-						);
-					} )
+					itemAffecting.getName() !== itemInSubset.getName() &&
+					itemAffecting.existsInSubset( itemInSubset.getName() )
 				) {
-					// Only change the state for filters that aren't
-					// also affected by other excluding selected filters
-					filterItem.toggleActive( !item.isSelected() );
+					// itemInSubset is in itemA's subsets. Check first if itemInSubset
+					// is in any other **selected** items that also have it as their
+					// subset
+					if (
+						// If any of itemInSubset's supersets are selected (not including
+						// itemAffecting), it means that we shouldn't touch the state
+						// of this item's included status
+						!itemInSubset.getSuperset().some( function ( supersetName ) {
+							return (
+								itemAffecting.getName() !== supersetName &&
+								model.getItemByName( supersetName ).isSelected()
+							);
+						} )
+					) {
+						itemInSubset.toggleIncluded( itemAffecting.isSelected() );
+					}
 				}
-			} );
-		}
+			};
+
+		// Check for interactions
+		this.getItems().forEach( function ( filterItem ) {
+			// Check for subsets (included filters):
+			// 1. Check if item is a subset of filterItem (hence, item.toggleIncluded( ... ))
+			changeIncludedIfNeeded( item, filterItem );
+			// 2. Check if filterItem is a subset of item (hence, filterItem.toggleIncluded( ... ))
+			changeIncludedIfNeeded( filterItem, item );
+		} );
 	};
 
 	/**
@@ -144,46 +97,80 @@
 	 * @param {Object} filters Filter group definition
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.initializeFilters = function ( filters ) {
-		var i, filterItem, selectedFilterNames, excludedFilters,
+		var i, filterItem, selectedFilterNames,
 			model = this,
 			items = [],
-			addToMap = function ( excludedFilters ) {
-				excludedFilters.forEach( function ( filterName ) {
-					model.excludedByMap[ filterName ] = model.excludedByMap[ filterName ] || [];
-					model.excludedByMap[ filterName ].push( filterItem.getName() );
+			addArrayElementsUnique = function ( arr, elements ) {
+				elements = Array.isArray( elements ) ? elements : [ elements ];
+
+				elements.forEach( function ( element ) {
+					if ( arr.indexOf( element ) === -1 ) {
+						arr.push( element );
+					}
 				} );
-			};
+
+				return arr;
+			},
+			conflictMap = {},
+			supersetMap = {};
 
 		// Reset
 		this.clearItems();
 		this.groups = {};
-		this.excludedByMap = {};
 
 		$.each( filters, function ( group, data ) {
 			if ( !model.groups[ group ] ) {
-				model.groups[ group ] = new mw.rcfilters.dm.FilterGroup( {
+				model.groups[ group ] = new mw.rcfilters.dm.FilterGroup( group, {
 					type: data.type,
 					title: data.title,
-					separator: data.separator,
-					exclusionType: data.exclusionType
+					separator: data.separator
 				} );
 			}
 
 			selectedFilterNames = [];
 			for ( i = 0; i < data.filters.length; i++ ) {
-				excludedFilters = data.filters[ i ].excludes || [];
-
 				filterItem = new mw.rcfilters.dm.FilterItem( data.filters[ i ].name, {
 					group: group,
 					label: data.filters[ i ].label,
 					description: data.filters[ i ].description,
-					selected: data.filters[ i ].selected,
-					excludes: excludedFilters,
-					'default': data.filters[ i ].default
+					subset: data.filters[ i ].subset
 				} );
 
-				// Map filters and what excludes them
-				addToMap( excludedFilters );
+				// For convenience, we should store each filter's "supersets" -- these are
+				// the filters that have that item in their subset list. This will just
+				// make it easier to go through whether the item has any other items
+				// that affect it (and are selected) at any given time
+				if ( data.filters[ i ].subset ) {
+					data.filters[ i ].subset.forEach( function ( subsetFilterName ) { // eslint-disable-line no-loop-func
+						supersetMap[ subsetFilterName ] = supersetMap[ subsetFilterName ] || [];
+						addArrayElementsUnique(
+							supersetMap[ subsetFilterName ],
+							filterItem.getName()
+						);
+					} );
+				}
+
+				// Conflicts are bi-directional, which means FilterA can define having
+				// a conflict with FilterB, and this conflict should appear in **both**
+				// filter definitions.
+				// We need to remap all the 'conflicts' so they reflect the entire state
+				// in either direction regardless of which filter defined the other as conflicting.
+				if ( data.filters[ i ].conflicts ) {
+					conflictMap[ filterItem.getName() ] = conflictMap[ filterItem.getName() ] || [];
+					addArrayElementsUnique(
+						conflictMap[ filterItem.getName() ],
+						data.filters[ i ].conflicts
+					);
+
+					data.filters[ i ].conflicts.forEach( function ( conflictingFilterName ) { // eslint-disable-line no-loop-func
+						// Add this filter to the conflicts of each of the filters in its list
+						conflictMap[ conflictingFilterName ] = conflictMap[ conflictingFilterName ] || [];
+						addArrayElementsUnique(
+							conflictMap[ conflictingFilterName ],
+							filterItem.getName()
+						);
+					} );
+				}
 
 				if ( data.type === 'send_unselected_if_any' ) {
 					// Store the default parameter state
@@ -208,6 +195,17 @@
 			}
 		} );
 
+		items.forEach( function ( filterItem ) {
+			// Apply conflict map to the items
+			// Now that we mapped all items and conflicts bi-directionally
+			// we need to apply the definition to each filter again
+			filterItem.setConflicts( conflictMap[ filterItem.getName() ] );
+
+			// Apply the superset map
+			filterItem.setSuperset( supersetMap[ filterItem.getName() ] );
+		} );
+
+		// Add items to the model
 		this.addItems( items );
 
 		this.emit( 'initialize' );
@@ -229,26 +227,6 @@
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getFilterGroups = function () {
 		return this.groups;
-	};
-
-	/**
-	 * Update the representation of the parameters. These are the back-end
-	 * parameters representing the filters, but they represent the given
-	 * current state regardless of validity.
-	 *
-	 * This should only run after filters are already set.
-	 *
-	 * @param {Object} params Parameter state
-	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.updateParameters = function ( params ) {
-		var model = this;
-
-		$.each( params, function ( name, value ) {
-			// Only store the parameters that exist in the system
-			if ( model.getItemByName( name ) ) {
-				model.parameters[ name ] = value;
-			}
-		} );
 	};
 
 	/**
@@ -291,7 +269,8 @@
 		for ( i = 0; i < items.length; i++ ) {
 			result[ items[ i ].getName() ] = {
 				selected: items[ i ].isSelected(),
-				active: items[ i ].isActive()
+				conflicted: items[ i ].isConflicted(),
+				included: items[ i ].isIncluded()
 			};
 		}
 
