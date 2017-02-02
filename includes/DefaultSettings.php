@@ -5681,7 +5681,7 @@ $wgRateLimits = [
 ];
 
 /**
- * Array of IPs which should be excluded from rate limits.
+ * Array of IPs / CIDR ranges which should be excluded from rate limits.
  * This may be useful for whitelisting NAT gateways for conferences, etc.
  */
 $wgRateLimitsExcludedIPs = [];
