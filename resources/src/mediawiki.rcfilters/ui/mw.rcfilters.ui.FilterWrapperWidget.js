@@ -149,8 +149,11 @@
 
 		this.capsule.addItemsFromData( [ itemName ] );
 
-		// Deal with active/inactive capsule filter items
+		// Check whether the item needs to appear 'muted'
 		this.capsule.getItemFromData( itemName ).$element
-			.toggleClass( 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-item-inactive', !item.isActive() );
+			.toggleClass(
+				'mw-rcfilters-ui-filterCapsuleMultiselectWidget-item-muted',
+				item.isIncluded() || item.isConflicted()
+			);
 	};
 }( mediaWiki ) );
