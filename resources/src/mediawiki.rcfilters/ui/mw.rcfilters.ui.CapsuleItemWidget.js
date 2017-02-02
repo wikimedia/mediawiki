@@ -57,6 +57,8 @@
 			.addClass( 'mw-rcfilters-ui-capsuleItemWidget' )
 			.on( 'mouseover', this.onHover.bind( this, true ) )
 			.on( 'mouseout', this.onHover.bind( this, false ) );
+
+		this.setCurrentMuteState();
 	};
 
 	OO.inheritClass( mw.rcfilters.ui.CapsuleItemWidget, OO.ui.CapsuleItemWidget );
@@ -66,11 +68,19 @@
 	 * Respond to model update event
 	 */
 	mw.rcfilters.ui.CapsuleItemWidget.prototype.onModelUpdate = function () {
-		// Deal with active/inactive capsule filter items
+		this.setCurrentMuteState();
+	};
+
+	/**
+	 * Set the current mute state for this item
+	 */
+	mw.rcfilters.ui.CapsuleItemWidget.prototype.setCurrentMuteState = function () {
 		this.$element
 			.toggleClass(
-				'mw-rcfilters-ui-filterCapsuleMultiselectWidget-item-inactive',
-				!this.model.isActive()
+				'mw-rcfilters-ui-capsuleItemWidget-muted',
+				this.model.isIncluded() ||
+				this.model.isConflicted() ||
+				this.model.isFullyCovered()
 			);
 	};
 

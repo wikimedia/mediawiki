@@ -6,6 +6,7 @@
 	 *
 	 * @constructor
 	 * @param {string} name Filter name
+	 * @param {mw.rcfilters.dm.FilterGroup} groupModel Filter group model
 	 * @param {Object} config Configuration object
 	 * @cfg {string} [group] The group this item belongs to
 	 * @cfg {string} [label] The label for the filter
@@ -13,23 +14,32 @@
 	 * @cfg {boolean} [active=true] The filter is active and affecting the result
 	 * @cfg {string[]} [excludes=[]] A list of filter names this filter, if
 	 *  selected, makes inactive.
-	 * @cfg {boolean} [default] The default state of this filter
+	 * @cfg {boolean} [selected] The item is selected
+	 * @cfg {string[]} [subset] Defining the names of filters that are a subset of this filter
+	 * @cfg {string[]} [conflictsWith] Defining the names of filters that conflict with this item
 	 */
-	mw.rcfilters.dm.FilterItem = function MwRcfiltersDmFilterItem( name, config ) {
+	mw.rcfilters.dm.FilterItem = function MwRcfiltersDmFilterItem( name, groupModel, config ) {
 		config = config || {};
 
 		// Mixin constructor
 		OO.EventEmitter.call( this );
 
 		this.name = name;
-		this.group = config.group || '';
+		this.groupModel = groupModel;
+
 		this.label = config.label || this.name;
 		this.description = config.description;
-		this.default = !!config.default;
+		this.selected = !!config.selected;
 
-		this.active = config.active === undefined ? true : !!config.active;
-		this.excludes = config.excludes || [];
-		this.selected = this.default;
+		// Interaction definitions
+		this.subset = config.subset || [];
+		this.conflicts = config.conflicts || [];
+		this.superset = [];
+
+		// Interaction states
+		this.included = false;
+		this.conflicted = false;
+		this.fullyCovered = false;
 	};
 
 	/* Initialization */
@@ -57,12 +67,21 @@
 	};
 
 	/**
+	 * Get the model of the group this filter belongs to
+	 *
+	 * @return {mw.rcfilters.dm.FilterGroup} Filter group model
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.getGroupModel = function () {
+		return this.groupModel;
+	};
+
+	/**
 	 * Get the group name this filter belongs to
 	 *
 	 * @return {string} Filter group name
 	 */
-	mw.rcfilters.dm.FilterItem.prototype.getGroup = function () {
-		return this.group;
+	mw.rcfilters.dm.FilterItem.prototype.getGroupName = function () {
+		return this.groupModel.getName();
 	};
 
 	/**
@@ -93,6 +112,28 @@
 	};
 
 	/**
+	 * Get filter subset
+	 * This is a list of filter names that are defined to be included
+	 * when this filter is selected.
+	 *
+	 * @return {string[]} Filter subset
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.getSubset = function () {
+		return this.subset;
+	};
+
+	/**
+	 * Get filter superset
+	 * This is a generated list of filters that define this filter
+	 * to be included when either of them is selected.
+	 *
+	 * @return {string[]} Filter superset
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.getSuperset = function () {
+		return this.superset;
+	};
+
+	/**
 	 * Get the selected state of this filter
 	 *
 	 * @return {boolean} Filter is selected
@@ -102,43 +143,111 @@
 	};
 
 	/**
-	 * Check if this filter is active
+	 * Check whether the filter is currently in a conflict state
 	 *
-	 * @return {boolean} Filter is active
+	 * @return {boolean} Filter is in conflict state
 	 */
-	mw.rcfilters.dm.FilterItem.prototype.isActive = function () {
-		return this.active;
+	mw.rcfilters.dm.FilterItem.prototype.isConflicted = function () {
+		return this.conflicted;
 	};
 
 	/**
-	 * Check if this filter has a list of excluded filters
+	 * Check whether the filter is currently in an already included subset
 	 *
-	 * @return {boolean} Filter has a list of excluded filters
+	 * @return {boolean} Filter is in an already-included subset
 	 */
-	mw.rcfilters.dm.FilterItem.prototype.hasExcludedFilters = function () {
-		return !!this.excludes.length;
+	mw.rcfilters.dm.FilterItem.prototype.isIncluded = function () {
+		return this.included;
 	};
 
 	/**
-	 * Get this filter's list of excluded filters
+	 * Check whether the filter is currently fully covered
 	 *
-	 * @return {string[]} Array of excluded filter names
+	 * @return {boolean} Filter is in fully-covered state
 	 */
-	mw.rcfilters.dm.FilterItem.prototype.getExcludedFilters = function () {
-		return this.excludes;
+	mw.rcfilters.dm.FilterItem.prototype.isFullyCovered = function () {
+		return this.fullyCovered;
 	};
 
 	/**
-	 * Toggle the active state of the item
+	 * Get filter conflicts
 	 *
-	 * @param {boolean} [isActive] Filter is active
+	 * @return {string[]} Filter conflicts
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.getConflicts = function () {
+		return this.conflicts;
+	};
+
+	/**
+	 * Set filter conflicts
+	 *
+	 * @param {string[]} conflicts Filter conflicts
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.setConflicts = function ( conflicts ) {
+		this.conflicts = conflicts || [];
+	};
+
+	/**
+	 * Set filter superset
+	 *
+	 * @param {string[]} superset Filter superset
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.setSuperset = function ( superset ) {
+		this.superset = superset || [];
+	};
+
+	/**
+	 * Check whether a filter exists in the subset list for this filter
+	 *
+	 * @param {string} filterName Filter name
+	 * @return {boolean} Filter name is in the subset list
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.existsInSubset = function ( filterName ) {
+		return this.subset.indexOf( filterName ) > -1;
+	};
+
+	/**
+	 * Check whether this item has a potential conflict with the given item
+	 *
+	 * This checks whether the given item is in the list of conflicts of
+	 * the current item, but makes no judgment about whether the conflict
+	 * is currently at play (either one of the items may not be selected)
+	 *
+	 * @param {mw.rcfilters.dm.FilterItem} filterItem Filter item
+	 * @return {boolean} This item has a conflict with the given item
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.hasConflictWith = function ( filterItem ) {
+		return this.conflicts.indexOf( filterItem.getName() ) > -1;
+	};
+
+	/**
+	 * Set the state of this filter as being conflicted
+	 * (This means any filters in its conflicts are selected)
+	 *
+	 * @param {boolean} [conflicted] Filter is in conflict state
 	 * @fires update
 	 */
-	mw.rcfilters.dm.FilterItem.prototype.toggleActive = function ( isActive ) {
-		isActive = isActive === undefined ? !this.active : isActive;
+	mw.rcfilters.dm.FilterItem.prototype.toggleConflicted = function ( conflicted ) {
+		conflicted = conflicted === undefined ? !this.conflicted : conflicted;
 
-		if ( this.active !== isActive ) {
-			this.active = isActive;
+		if ( this.conflicted !== conflicted ) {
+			this.conflicted = conflicted;
+			this.emit( 'update' );
+		}
+	};
+
+	/**
+	 * Set the state of this filter as being already included
+	 * (This means any filters in its superset are selected)
+	 *
+	 * @param {boolean} [included] Filter is included as part of a subset
+	 * @fires update
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.toggleIncluded = function ( included ) {
+		included = included === undefined ? !this.included : included;
+
+		if ( this.included !== included ) {
+			this.included = included;
 			this.emit( 'update' );
 		}
 	};
@@ -154,6 +263,21 @@
 
 		if ( this.selected !== isSelected ) {
 			this.selected = isSelected;
+			this.emit( 'update' );
+		}
+	};
+
+	/**
+	 * Toggle the fully covered state of the item
+	 *
+	 * @param {boolean} [isFullyCovered] Filter is fully covered
+	 * @fires update
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.toggleFullyCovered = function ( isFullyCovered ) {
+		isFullyCovered = isFullyCovered === undefined ? !this.fullycovered : isFullyCovered;
+
+		if ( this.fullyCovered !== isFullyCovered ) {
+			this.fullyCovered = isFullyCovered;
 			this.emit( 'update' );
 		}
 	};
