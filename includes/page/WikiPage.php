@@ -1542,7 +1542,12 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param array|null $tags Change tags to apply to this edit
 	 * Callers are responsible for permission checks
 	 * (with ChangeTags::canAddTagsAccompanyingChange)
-	 * @param Int $undidRevId Id of revision that was undone or 0
+	 * @param int $revertedRevId Id of the revision that was reverted
+	 * (the latest if multiple revisions were reverted), or 0
+	 * @param int $restoredRevId Id of the revision that was restored,
+	 * possibly amended (by subsequent editing or conflicts), or 0
+	 * @param string|false $autoSummHash md5 hash of the autosummary provided,
+	 * if any, can be used to check if the user entered a custom summary
 	 *
 	 * @throws MWException
 	 * @return Status Possible errors:
@@ -1564,7 +1569,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function doEditContent(
 		Content $content, $summary, $flags = 0, $baseRevId = false,
-		User $user = null, $serialFormat = null, $tags = [], $undidRevId = 0
+		User $user = null, $serialFormat = null, $tags = [],
+		$revertedRevId = 0, $restoredRevId = 0, $autoSummHash = false
 	) {
 		global $wgUser, $wgUseAutomaticEditSummaries;
 
@@ -1621,6 +1627,7 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $wgUseAutomaticEditSummaries && ( $flags & EDIT_AUTOSUMMARY ) && $summary == '' ) {
 			$handler = $content->getContentHandler();
 			$summary = $handler->getAutosummary( $old_content, $content, $flags );
+			$autoSummHash = md5( $summary );
 		}
 
 		// Avoid statsd noise and wasted cycles check the edit stash (T136678)
@@ -1645,7 +1652,9 @@ class WikiPage implements Page, IDBAccessObject {
 			'oldIsRedirect' => $this->isRedirect(),
 			'oldCountable' => $this->isCountable(),
 			'tags' => ( $tags !== null ) ? (array)$tags : [],
-			'undidRevId' => $undidRevId
+			'revertedRevId' => $revertedRevId,
+			'restoredRevId' => $restoredRevId,
+			'autoSummHash' => $autoSummHash,
 		];
 
 		// Actually create the revision and create/update the page
@@ -1753,8 +1762,23 @@ class WikiPage implements Page, IDBAccessObject {
 				throw new MWException( "Failed to update page row to use new revision." );
 			}
 
+			// if revert, create Revert object
+			$revertedRevId = $meta['revertedRevId'];
+			$restoredRevId = $meta['restoredRevId'];
+			if ( $revertedRevId && $restoredRevId ) {
+				// it's a revert
+				if ( $meta['baseRevId'] !== false ) {
+					$isExactRevert = true; // rollback
+				} else {
+					$isExactRevert = null; // we don't know
+				}
+				$revert = new Revert( $revision, $revertedRevId, $restoredRevId, $isExactRevert );
+			} else {
+				$revert = null;
+			}
+
 			Hooks::run( 'NewRevisionFromEditComplete',
-				[ $this, $revision, $meta['baseRevId'], $user ] );
+				[ $this, $revision, $meta['baseRevId'], $user, $revert ] );
 
 			// Update recentchanges
 			if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
@@ -1811,24 +1835,28 @@ class WikiPage implements Page, IDBAccessObject {
 				__METHOD__,
 				function () use (
 					$revision, &$user, $content, $summary, &$flags,
-					$changed, $meta, &$status
+					$changed, $meta, &$status, $revert
 				) {
+					$options = [
+						'changed' => $changed,
+						'oldcountable' => $meta['oldCountable'],
+						'oldrevision' => $meta['oldRevision']
+					];
+					if ( $revert !== null ) {
+						$options['revert'] = $revert;
+					}
 					// Update links tables, site stats, etc.
 					$this->doEditUpdates(
 						$revision,
 						$user,
-						[
-							'changed' => $changed,
-							'oldcountable' => $meta['oldCountable'],
-							'oldrevision' => $meta['oldRevision']
-						]
+						$options
 					);
 					// Avoid PHP 7.1 warning of passing $this by reference
 					$wikiPage = $this;
 					// Trigger post-save hook
 					$params = [ &$wikiPage, &$user, $content, $summary, $flags & EDIT_MINOR,
-						null, null, &$flags, $revision, &$status, $meta['baseRevId'],
-						$meta['undidRevId'] ];
+						null, null, &$flags, $revision, &$status, $meta['baseRevId'], $revert,
+						$meta['autoSummHash'] ];
 					Hooks::run( 'PageContentSaveComplete', $params );
 				}
 			),
@@ -1904,7 +1932,7 @@ class WikiPage implements Page, IDBAccessObject {
 			throw new MWException( "Failed to update page row to use new revision." );
 		}
 
-		Hooks::run( 'NewRevisionFromEditComplete', [ $this, $revision, false, $user ] );
+		Hooks::run( 'NewRevisionFromEditComplete', [ $this, $revision, false, $user, 0, 0 ] );
 
 		// Update recentchanges
 		if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
@@ -1952,7 +1980,10 @@ class WikiPage implements Page, IDBAccessObject {
 						$flags & EDIT_MINOR, null, null, &$flags, $revision ];
 					Hooks::run( 'PageContentInsertComplete', $params );
 					// Trigger post-save hook
-					$params = array_merge( $params, [ &$status, $meta['baseRevId'] ] );
+					$params = array_merge(
+						$params,
+						[ &$status, $meta['baseRevId'], null, $meta['autoSummHash'] ]
+					);
 					Hooks::run( 'PageContentSaveComplete', $params );
 				}
 			),
@@ -2144,6 +2175,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   - null: if created is false, don't update the article count; if created
 	 *     is true, do update the article count
 	 *   - 'no-change': don't update the article count, ever
+	 * - revert: in case the edit was a revert, the associated Revert object
 	 */
 	public function doEditUpdates( Revision $revision, User $user, array $options = [] ) {
 		global $wgRCWatchCategoryMembership;
@@ -2201,6 +2233,9 @@ class WikiPage implements Page, IDBAccessObject {
 				if ( $update instanceof LinksUpdate ) {
 					$update->setRevision( $revision );
 					$update->setTriggeringUser( $user );
+					if ( isset( $options['revert'] ) ) {
+						$update->setRevert( $options['revert'] );
+					}
 				}
 				DeferredUpdates::addUpdate( $update );
 			}
@@ -2499,7 +2534,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$wikiPage = $this;
 
 			Hooks::run( 'NewRevisionFromEditComplete',
-				[ $this, $nullRevision, $latest, $user ] );
+				[ $this, $nullRevision, $latest, $user, 0, 0 ] );
 			Hooks::run( 'ArticleProtectComplete', [ &$wikiPage, &$user, $limit, $reason ] );
 		} else { // Protection of non-existing page (also known as "title protection")
 			// Cascade protection is meaningless in this case
@@ -3153,8 +3188,11 @@ class WikiPage implements Page, IDBAccessObject {
 		];
 		if ( $summary instanceof Message ) {
 			$summary = $summary->params( $args )->inContentLanguage()->text();
+			$autoSummHash = md5( $summary );
 		} else {
 			$summary = wfMsgReplaceArgs( $summary, $args );
+			// @todo: allow to specify via the API if the summary was automatic
+			$autoSummHash = false;
 		}
 
 		// Trim spaces on user supplied text
@@ -3185,7 +3223,10 @@ class WikiPage implements Page, IDBAccessObject {
 			$target->getId(),
 			$guser,
 			null,
-			$tags
+			$tags,
+			$current->getId(),
+			$target->getId(),
+			$autoSummHash
 		);
 
 		// Set patrolling and bot flag on the edits, which gets rollbacked.

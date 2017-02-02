@@ -1237,6 +1237,7 @@ $wgAutoloadLocalClasses = [
 	'RevDelRevisionList' => __DIR__ . '/includes/revisiondelete/RevDelRevisionList.php',
 	'ReverseArrayIterator' => __DIR__ . '/includes/libs/ReverseArrayIterator.php',
 	'ReverseChronologicalPager' => __DIR__ . '/includes/pager/ReverseChronologicalPager.php',
+	'Revert' => __DIR__ . '/includes/Revert.php',
 	'RevertAction' => __DIR__ . '/includes/actions/RevertAction.php',
 	'Revision' => __DIR__ . '/includes/Revision.php',
 	'RevisionDeleteUser' => __DIR__ . '/includes/revisiondelete/RevisionDeleteUser.php',
