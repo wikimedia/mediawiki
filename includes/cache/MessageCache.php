@@ -584,7 +584,8 @@ class MessageCache {
 					return;
 				}
 				// Load the messages from the master DB to avoid race conditions
-				$this->loadFromDB( $code, self::FOR_UPDATE );
+				$cache = $this->loadFromDB( $code, self::FOR_UPDATE );
+				$this->mCache[$code] = $cache;
 				// Load the process cache values and set the per-title cache keys
 				$page = WikiPage::factory( Title::makeTitle( NS_MEDIAWIKI, $title ) );
 				$page->loadPageData( $page::READ_LATEST );
