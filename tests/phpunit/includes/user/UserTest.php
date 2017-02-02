@@ -782,4 +782,25 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertNull( $wgUser->getBlock() );
 	}
 
+	public function testIsPingLimitable() {
+		$request = new FauxRequest();
+		$request->setIP( '1.2.3.4' );
+		$user = User::newFromSession( $request );
+
+		$this->setMwGlobals( 'wgRateLimitsExcludedIPs', [] );
+		$this->assertTrue( $user->isPingLimitable() );
+
+		$this->setMwGlobals( 'wgRateLimitsExcludedIPs', [ '1.2.3.4' ] );
+		$this->assertFalse( $user->isPingLimitable() );
+
+		$this->setMwGlobals( 'wgRateLimitsExcludedIPs', [ '1.2.3.0/8' ] );
+		$this->assertFalse( $user->isPingLimitable() );
+
+		$this->setMwGlobals( 'wgRateLimitsExcludedIPs', [] );
+		$noRateLimitUser = $this->getMockBuilder( User::class )->disableOriginalConstructor()
+			->setMethods( [ 'getIP', 'getRights' ] )->getMock();
+		$noRateLimitUser->expects( $this->any() )->method( 'getIP' )->willReturn( '1.2.3.4' );
+		$noRateLimitUser->expects( $this->any() )->method( 'getRights' )->willReturn( [ 'noratelimit' ] );
+		$this->assertFalse( $noRateLimitUser->isPingLimitable() );
+	}
 }
