@@ -72,6 +72,9 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	/** @var Revision Revision for which this update has been triggered */
 	private $mRevision;
 
+	/** @var EditResult object of the edit that triggered this update */
+	private $mEditResult;
+
 	/**
 	 * @var null|array Added links if calculated.
 	 */
@@ -1003,6 +1006,25 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	 */
 	public function getRevision() {
 		return $this->mRevision;
+	}
+
+	/**
+	 * Set EditResult for the edit that triggered this update
+	 *
+	 * @since 1.29
+	 *
+	 * @param EditResult $editResult
+	 */
+	public function setEditResult( EditResult $editResult ) {
+		$this->mEditResult = $editResult;
+	}
+
+	/**
+	 * @since 1.29
+	 * @return null|EditResult
+	 */
+	public function getEditResult() {
+		return $this->mEditResult;
 	}
 
 	/**
