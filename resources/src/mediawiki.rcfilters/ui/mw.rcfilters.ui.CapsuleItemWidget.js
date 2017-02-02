@@ -69,8 +69,8 @@
 		// Deal with active/inactive capsule filter items
 		this.$element
 			.toggleClass(
-				'mw-rcfilters-ui-filterCapsuleMultiselectWidget-item-inactive',
-				!this.model.isActive()
+				'mw-rcfilters-ui-capsuleItemWidget-muted',
+				this.model.isIncluded() || this.model.isConflicted()
 			);
 	};
 
