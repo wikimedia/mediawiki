@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.4-fix (d4045dee45)
+ * OOjs UI v0.19.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-01-19T20:22:26Z
+ * Date: 2017-02-01T23:04:40Z
  */
 ( function ( OO ) {
 
@@ -1779,11 +1779,9 @@ OO.ui.BookletLayout.prototype.onStackLayoutVisibleItemChange = function ( page )
 OO.ui.BookletLayout.prototype.onStackLayoutSet = function ( page ) {
 	var layout = this;
 	if ( !this.scrolling && page ) {
-		page.scrollElementIntoView( {
-			complete: function () {
-				if ( layout.autoFocus && !OO.ui.isMobile() ) {
-					layout.focus();
-				}
+		page.scrollElementIntoView().done( function () {
+			if ( layout.autoFocus && !OO.ui.isMobile() ) {
+				layout.focus();
 			}
 		} );
 	}
@@ -2290,11 +2288,9 @@ OO.ui.IndexLayout.prototype.onStackLayoutFocus = function ( e ) {
 OO.ui.IndexLayout.prototype.onStackLayoutSet = function ( card ) {
 	var layout = this;
 	if ( card ) {
-		card.scrollElementIntoView( {
-			complete: function () {
-				if ( layout.autoFocus && !OO.ui.isMobile() ) {
-					layout.focus();
-				}
+		card.scrollElementIntoView().done( function () {
+			if ( layout.autoFocus && !OO.ui.isMobile() ) {
+				layout.focus();
 			}
 		} );
 	}
@@ -3615,7 +3611,11 @@ OO.ui.CapsuleMultiselectWidget = function OoUiCapsuleMultiselectWidget( config )
 			align: 'forwards',
 			anchor: false
 		} );
-		OO.ui.mixin.PopupElement.call( this, config );
+		OO.ui.mixin.PopupElement.call( this, $.extend( true, {}, config, {
+			popup: {
+				$floatableContainer: this.$element
+			}
+		} ) );
 		$tabFocus = $( '<span>' );
 		OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: $tabFocus } ) );
 	} else {
@@ -3695,11 +3695,15 @@ OO.ui.CapsuleMultiselectWidget = function OoUiCapsuleMultiselectWidget( config )
 	this.$element.addClass( 'oo-ui-capsuleMultiselectWidget' )
 		.append( this.$handle );
 	if ( this.popup ) {
+		this.popup.$element.addClass( 'oo-ui-capsuleMultiselectWidget-popup' );
 		this.$content.append( $tabFocus );
 		this.$overlay.append( this.popup.$element );
 	} else {
 		this.$content.append( this.$input );
 		this.$overlay.append( this.menu.$element );
+	}
+	if ( $tabFocus ) {
+		$tabFocus.addClass( 'oo-ui-capsuleMultiselectWidget-focusTrap' );
 	}
 
 	// Input size needs to be calculated after everything else is rendered
@@ -4305,7 +4309,7 @@ OO.ui.CapsuleMultiselectWidget.prototype.setDisabled = function ( disabled ) {
 OO.ui.CapsuleMultiselectWidget.prototype.focus = function () {
 	if ( !this.isDisabled() ) {
 		if ( this.popup ) {
-			this.popup.setSize( this.$handle.width() );
+			this.popup.setSize( this.$handle.outerWidth() );
 			this.popup.toggle( true );
 			OO.ui.findFocusable( this.popup.$element ).focus();
 		} else {
@@ -5345,5 +5349,3 @@ OO.ui.NumberInputWidget.prototype.setDisabled = function ( disabled ) {
 };
 
 }( OO ) );
-
-//# sourceMappingURL=oojs-ui-widgets.js.map

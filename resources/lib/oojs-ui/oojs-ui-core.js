@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.4-fix (d4045dee45)
+ * OOjs UI v0.19.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-01-19T20:22:26Z
+ * Date: 2017-02-01T23:04:40Z
  */
 ( function ( OO ) {
 
@@ -2923,17 +2923,6 @@ OO.ui.mixin.LabelElement.prototype.getLabel = function () {
 };
 
 /**
- * Fit the label.
- *
- * @chainable
- * @deprecated since 0.16.0
- */
-OO.ui.mixin.LabelElement.prototype.fitLabel = function () {
-	OO.ui.warnDeprecation( 'LabelElement#fitLabel: This is a deprecated no-op.' );
-	return this;
-};
-
-/**
  * Set the content of the label.
  *
  * Do not call this method until after the label element has been set by #setLabelElement.
@@ -3981,6 +3970,216 @@ OO.ui.mixin.PendingElement.prototype.popPending = function () {
 };
 
 /**
+ * Element that will stick under a specified container, even when it is inserted elsewhere in the
+ * document (for example, in a OO.ui.Window's $overlay).
+ *
+ * The elements's position is automatically calculated and maintained when window is resized or the
+ * page is scrolled. If you reposition the container manually, you have to call #position to make
+ * sure the element is still placed correctly.
+ *
+ * As positioning is only possible when both the element and the container are attached to the DOM
+ * and visible, it's only done after you call #togglePositioning. You might want to do this inside
+ * the #toggle method to display a floating popup, for example.
+ *
+ * @abstract
+ * @class
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {jQuery} [$floatable] Node to position, assigned to #$floatable, omit to use #$element
+ * @cfg {jQuery} [$floatableContainer] Node to position below
+ */
+OO.ui.mixin.FloatableElement = function OoUiMixinFloatableElement( config ) {
+	// Configuration initialization
+	config = config || {};
+
+	// Properties
+	this.$floatable = null;
+	this.$floatableContainer = null;
+	this.$floatableWindow = null;
+	this.$floatableClosestScrollable = null;
+	this.onFloatableScrollHandler = this.position.bind( this );
+	this.onFloatableWindowResizeHandler = this.position.bind( this );
+
+	// Initialization
+	this.setFloatableContainer( config.$floatableContainer );
+	this.setFloatableElement( config.$floatable || this.$element );
+};
+
+/* Methods */
+
+/**
+ * Set floatable element.
+ *
+ * If an element is already set, it will be cleaned up before setting up the new element.
+ *
+ * @param {jQuery} $floatable Element to make floatable
+ */
+OO.ui.mixin.FloatableElement.prototype.setFloatableElement = function ( $floatable ) {
+	if ( this.$floatable ) {
+		this.$floatable.removeClass( 'oo-ui-floatableElement-floatable' );
+		this.$floatable.css( { left: '', top: '' } );
+	}
+
+	this.$floatable = $floatable.addClass( 'oo-ui-floatableElement-floatable' );
+	this.position();
+};
+
+/**
+ * Set floatable container.
+ *
+ * The element will be always positioned under the specified container.
+ *
+ * @param {jQuery|null} $floatableContainer Container to keep visible, or null to unset
+ */
+OO.ui.mixin.FloatableElement.prototype.setFloatableContainer = function ( $floatableContainer ) {
+	this.$floatableContainer = $floatableContainer;
+	if ( this.$floatable ) {
+		this.position();
+	}
+};
+
+/**
+ * Toggle positioning.
+ *
+ * Do not turn positioning on until after the element is attached to the DOM and visible.
+ *
+ * @param {boolean} [positioning] Enable positioning, omit to toggle
+ * @chainable
+ */
+OO.ui.mixin.FloatableElement.prototype.togglePositioning = function ( positioning ) {
+	var closestScrollableOfContainer;
+
+	if ( !this.$floatable || !this.$floatableContainer ) {
+		return this;
+	}
+
+	positioning = positioning === undefined ? !this.positioning : !!positioning;
+
+	if ( this.positioning !== positioning ) {
+		this.positioning = positioning;
+
+		closestScrollableOfContainer = OO.ui.Element.static.getClosestScrollableContainer( this.$floatableContainer[ 0 ] );
+		this.needsCustomPosition = !OO.ui.contains( this.$floatableContainer[ 0 ], this.$floatable[ 0 ] );
+		// If the scrollable is the root, we have to listen to scroll events
+		// on the window because of browser inconsistencies.
+		if ( $( closestScrollableOfContainer ).is( 'html, body' ) ) {
+			closestScrollableOfContainer = OO.ui.Element.static.getWindow( closestScrollableOfContainer );
+		}
+
+		if ( positioning ) {
+			this.$floatableWindow = $( this.getElementWindow() );
+			this.$floatableWindow.on( 'resize', this.onFloatableWindowResizeHandler );
+
+			this.$floatableClosestScrollable = $( closestScrollableOfContainer );
+			this.$floatableClosestScrollable.on( 'scroll', this.onFloatableScrollHandler );
+
+			// Initial position after visible
+			this.position();
+		} else {
+			if ( this.$floatableWindow ) {
+				this.$floatableWindow.off( 'resize', this.onFloatableWindowResizeHandler );
+				this.$floatableWindow = null;
+			}
+
+			if ( this.$floatableClosestScrollable ) {
+				this.$floatableClosestScrollable.off( 'scroll', this.onFloatableScrollHandler );
+				this.$floatableClosestScrollable = null;
+			}
+
+			this.$floatable.css( { left: '', top: '' } );
+		}
+	}
+
+	return this;
+};
+
+/**
+ * Check whether the bottom edge of the given element is within the viewport of the given container.
+ *
+ * @private
+ * @param {jQuery} $element
+ * @param {jQuery} $container
+ * @return {boolean}
+ */
+OO.ui.mixin.FloatableElement.prototype.isElementInViewport = function ( $element, $container ) {
+	var elemRect, contRect,
+		leftEdgeInBounds = false,
+		bottomEdgeInBounds = false,
+		rightEdgeInBounds = false;
+
+	elemRect = $element[ 0 ].getBoundingClientRect();
+	if ( $container[ 0 ] === window ) {
+		contRect = {
+			top: 0,
+			left: 0,
+			right: document.documentElement.clientWidth,
+			bottom: document.documentElement.clientHeight
+		};
+	} else {
+		contRect = $container[ 0 ].getBoundingClientRect();
+	}
+
+	// For completeness, if we still cared about topEdgeInBounds, that'd be:
+	// elemRect.top >= contRect.top && elemRect.top <= contRect.bottom
+	if ( elemRect.left >= contRect.left && elemRect.left <= contRect.right ) {
+		leftEdgeInBounds = true;
+	}
+	if ( elemRect.bottom >= contRect.top && elemRect.bottom <= contRect.bottom ) {
+		bottomEdgeInBounds = true;
+	}
+	if ( elemRect.right >= contRect.left && elemRect.right <= contRect.right ) {
+		rightEdgeInBounds = true;
+	}
+
+	// We only care that any part of the bottom edge is visible
+	return bottomEdgeInBounds && ( leftEdgeInBounds || rightEdgeInBounds );
+};
+
+/**
+ * Position the floatable below its container.
+ *
+ * This should only be done when both of them are attached to the DOM and visible.
+ *
+ * @chainable
+ */
+OO.ui.mixin.FloatableElement.prototype.position = function () {
+	var pos;
+
+	if ( !this.positioning ) {
+		return this;
+	}
+
+	if ( !this.isElementInViewport( this.$floatableContainer, this.$floatableClosestScrollable ) ) {
+		this.$floatable.addClass( 'oo-ui-element-hidden' );
+		return;
+	} else {
+		this.$floatable.removeClass( 'oo-ui-element-hidden' );
+	}
+
+	if ( !this.needsCustomPosition ) {
+		return;
+	}
+
+	pos = OO.ui.Element.static.getRelativePosition( this.$floatableContainer, this.$floatable.offsetParent() );
+
+	// Position under container
+	pos.top += this.$floatableContainer.height();
+	this.$floatable.css( pos );
+
+	// We updated the position, so re-evaluate the clipping state.
+	// (ClippableElement does not listen to 'scroll' events on $floatableContainer's parent, and so
+	// will not notice the need to update itself.)
+	// TODO: This is terrible, we shouldn't need to know about ClippableElement at all here. Why does
+	// it not listen to the right events in the right places?
+	if ( this.clip ) {
+		this.clip();
+	}
+
+	return this;
+};
+
+/**
  * Element that can be automatically clipped to visible boundaries.
  *
  * Whenever the element's natural height changes, you have to call
@@ -4283,6 +4482,7 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
  * @extends OO.ui.Widget
  * @mixins OO.ui.mixin.LabelElement
  * @mixins OO.ui.mixin.ClippableElement
+ * @mixins OO.ui.mixin.FloatableElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -4328,6 +4528,7 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 		$clippable: this.$body,
 		$clippableContainer: this.$popup
 	} ) );
+	OO.ui.mixin.FloatableElement.call( this, config );
 
 	// Properties
 	this.$anchor = $( '<div>' );
@@ -4392,6 +4593,7 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 OO.inheritClass( OO.ui.PopupWidget, OO.ui.Widget );
 OO.mixinClass( OO.ui.PopupWidget, OO.ui.mixin.LabelElement );
 OO.mixinClass( OO.ui.PopupWidget, OO.ui.mixin.ClippableElement );
+OO.mixinClass( OO.ui.PopupWidget, OO.ui.mixin.FloatableElement );
 
 /* Methods */
 
@@ -4515,6 +4717,8 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 	OO.ui.PopupWidget.parent.prototype.toggle.call( this, show );
 
 	if ( change ) {
+		this.togglePositioning( show && !!this.$floatableContainer );
+
 		if ( show ) {
 			if ( this.autoClose ) {
 				this.bindMouseDownListener();
@@ -4737,13 +4941,23 @@ OO.ui.mixin.PopupElement.prototype.getPopup = function () {
  *
  * @constructor
  * @param {Object} [config] Configuration options
+ * @cfg {jQuery} [$overlay] Render the popup into a separate layer. This configuration is useful in cases where
+ *  the expanded popup is larger than its containing `<div>`. The specified overlay layer is usually on top of the
+ *  containing `<div>` and has a larger area. By default, the popup uses relative positioning.
  */
 OO.ui.PopupButtonWidget = function OoUiPopupButtonWidget( config ) {
 	// Parent constructor
 	OO.ui.PopupButtonWidget.parent.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.PopupElement.call( this, config );
+	OO.ui.mixin.PopupElement.call( this, $.extend( true, {}, config, {
+		popup: {
+			$floatableContainer: this.$element
+		}
+	} ) );
+
+	// Properties
+	this.$overlay = config.$overlay || this.$element;
 
 	// Events
 	this.connect( this, { click: 'onAction' } );
@@ -4751,8 +4965,12 @@ OO.ui.PopupButtonWidget = function OoUiPopupButtonWidget( config ) {
 	// Initialization
 	this.$element
 		.addClass( 'oo-ui-popupButtonWidget' )
-		.attr( 'aria-haspopup', 'true' )
-		.append( this.popup.$element );
+		.attr( 'aria-haspopup', 'true' );
+	this.popup.$element
+		.addClass( 'oo-ui-popupButtonWidget-popup' )
+		.toggleClass( 'oo-ui-popupButtonWidget-framed-popup', this.isFramed() )
+		.toggleClass( 'oo-ui-popupButtonWidget-frameless-popup', !this.isFramed() );
+	this.$overlay.append( this.popup.$element );
 };
 
 /* Setup */
@@ -5052,6 +5270,19 @@ OO.ui.OptionWidget.prototype.setPressed = function ( state ) {
 		this.updateThemeClasses();
 	}
 	return this;
+};
+
+/**
+ * Get text to match search strings against.
+ *
+ * The default implementation returns the label text, but subclasses
+ * can override this to provide more complex behavior.
+ *
+ * @return {string|boolean} String to match search string against
+ */
+OO.ui.OptionWidget.prototype.getMatchText = function () {
+	var label = this.getLabel();
+	return typeof label === 'string' ? label : this.$label.text();
 };
 
 /**
@@ -5498,7 +5729,7 @@ OO.ui.SelectWidget.prototype.onKeyPress = function ( e ) {
  * @protected
  * @param {string} s String to match against items
  * @param {boolean} [exact=false] Only accept exact matches
- * @return {Function} function ( OO.ui.OptionItem ) => boolean
+ * @return {Function} function ( OO.ui.OptionWidget ) => boolean
  */
 OO.ui.SelectWidget.prototype.getItemMatcher = function ( s, exact ) {
 	var re;
@@ -5513,14 +5744,11 @@ OO.ui.SelectWidget.prototype.getItemMatcher = function ( s, exact ) {
 	}
 	re = new RegExp( re, 'i' );
 	return function ( item ) {
-		var l = item.getLabel();
-		if ( typeof l !== 'string' ) {
-			l = item.$label.text();
+		var matchText = item.getMatchText();
+		if ( matchText.normalize ) {
+			matchText = matchText.normalize();
 		}
-		if ( l.normalize ) {
-			l = l.normalize();
-		}
-		return re.test( l );
+		return re.test( matchText );
 	};
 };
 
@@ -6192,7 +6420,8 @@ OO.ui.MenuSelectWidget.prototype.onKeyDown = function ( e ) {
  * @protected
  */
 OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
-	var i, item,
+	var i, item, visible,
+		anyVisible = false,
 		len = this.items.length,
 		showAll = !this.isVisible(),
 		filter = showAll ? null : this.getItemMatcher( this.$input.val() );
@@ -6200,9 +6429,13 @@ OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
 	for ( i = 0; i < len; i++ ) {
 		item = this.items[ i ];
 		if ( item instanceof OO.ui.OptionWidget ) {
-			item.toggle( showAll || filter( item ) );
+			visible = showAll || filter( item );
+			anyVisible = anyVisible || visible;
+			item.toggle( visible );
 		}
 	}
+
+	this.$element.toggleClass( 'oo-ui-menuSelectWidget-invisible', !anyVisible );
 
 	// Reevaluate clipping
 	this.clip();
@@ -7118,213 +7351,6 @@ OO.ui.CheckboxMultiselectWidget.prototype.onClick = function ( e ) {
 	if ( $nowClicked.length ) {
 		this.$lastClicked = $nowClicked;
 	}
-};
-
-/**
- * Element that will stick under a specified container, even when it is inserted elsewhere in the
- * document (for example, in a OO.ui.Window's $overlay).
- *
- * The elements's position is automatically calculated and maintained when window is resized or the
- * page is scrolled. If you reposition the container manually, you have to call #position to make
- * sure the element is still placed correctly.
- *
- * As positioning is only possible when both the element and the container are attached to the DOM
- * and visible, it's only done after you call #togglePositioning. You might want to do this inside
- * the #toggle method to display a floating popup, for example.
- *
- * @abstract
- * @class
- *
- * @constructor
- * @param {Object} [config] Configuration options
- * @cfg {jQuery} [$floatable] Node to position, assigned to #$floatable, omit to use #$element
- * @cfg {jQuery} [$floatableContainer] Node to position below
- */
-OO.ui.mixin.FloatableElement = function OoUiMixinFloatableElement( config ) {
-	// Configuration initialization
-	config = config || {};
-
-	// Properties
-	this.$floatable = null;
-	this.$floatableContainer = null;
-	this.$floatableWindow = null;
-	this.$floatableClosestScrollable = null;
-	this.onFloatableScrollHandler = this.position.bind( this );
-	this.onFloatableWindowResizeHandler = this.position.bind( this );
-
-	// Initialization
-	this.setFloatableContainer( config.$floatableContainer );
-	this.setFloatableElement( config.$floatable || this.$element );
-};
-
-/* Methods */
-
-/**
- * Set floatable element.
- *
- * If an element is already set, it will be cleaned up before setting up the new element.
- *
- * @param {jQuery} $floatable Element to make floatable
- */
-OO.ui.mixin.FloatableElement.prototype.setFloatableElement = function ( $floatable ) {
-	if ( this.$floatable ) {
-		this.$floatable.removeClass( 'oo-ui-floatableElement-floatable' );
-		this.$floatable.css( { left: '', top: '' } );
-	}
-
-	this.$floatable = $floatable.addClass( 'oo-ui-floatableElement-floatable' );
-	this.position();
-};
-
-/**
- * Set floatable container.
- *
- * The element will be always positioned under the specified container.
- *
- * @param {jQuery|null} $floatableContainer Container to keep visible, or null to unset
- */
-OO.ui.mixin.FloatableElement.prototype.setFloatableContainer = function ( $floatableContainer ) {
-	this.$floatableContainer = $floatableContainer;
-	if ( this.$floatable ) {
-		this.position();
-	}
-};
-
-/**
- * Toggle positioning.
- *
- * Do not turn positioning on until after the element is attached to the DOM and visible.
- *
- * @param {boolean} [positioning] Enable positioning, omit to toggle
- * @chainable
- */
-OO.ui.mixin.FloatableElement.prototype.togglePositioning = function ( positioning ) {
-	var closestScrollableOfContainer, closestScrollableOfFloatable;
-
-	positioning = positioning === undefined ? !this.positioning : !!positioning;
-
-	if ( this.positioning !== positioning ) {
-		this.positioning = positioning;
-
-		closestScrollableOfContainer = OO.ui.Element.static.getClosestScrollableContainer( this.$floatableContainer[ 0 ] );
-		closestScrollableOfFloatable = OO.ui.Element.static.getClosestScrollableContainer( this.$floatable[ 0 ] );
-		this.needsCustomPosition = closestScrollableOfContainer !== closestScrollableOfFloatable;
-		// If the scrollable is the root, we have to listen to scroll events
-		// on the window because of browser inconsistencies.
-		if ( $( closestScrollableOfContainer ).is( 'html, body' ) ) {
-			closestScrollableOfContainer = OO.ui.Element.static.getWindow( closestScrollableOfContainer );
-		}
-
-		if ( positioning ) {
-			this.$floatableWindow = $( this.getElementWindow() );
-			this.$floatableWindow.on( 'resize', this.onFloatableWindowResizeHandler );
-
-			this.$floatableClosestScrollable = $( closestScrollableOfContainer );
-			this.$floatableClosestScrollable.on( 'scroll', this.onFloatableScrollHandler );
-
-			// Initial position after visible
-			this.position();
-		} else {
-			if ( this.$floatableWindow ) {
-				this.$floatableWindow.off( 'resize', this.onFloatableWindowResizeHandler );
-				this.$floatableWindow = null;
-			}
-
-			if ( this.$floatableClosestScrollable ) {
-				this.$floatableClosestScrollable.off( 'scroll', this.onFloatableScrollHandler );
-				this.$floatableClosestScrollable = null;
-			}
-
-			this.$floatable.css( { left: '', top: '' } );
-		}
-	}
-
-	return this;
-};
-
-/**
- * Check whether the bottom edge of the given element is within the viewport of the given container.
- *
- * @private
- * @param {jQuery} $element
- * @param {jQuery} $container
- * @return {boolean}
- */
-OO.ui.mixin.FloatableElement.prototype.isElementInViewport = function ( $element, $container ) {
-	var elemRect, contRect,
-		leftEdgeInBounds = false,
-		bottomEdgeInBounds = false,
-		rightEdgeInBounds = false;
-
-	elemRect = $element[ 0 ].getBoundingClientRect();
-	if ( $container[ 0 ] === window ) {
-		contRect = {
-			top: 0,
-			left: 0,
-			right: document.documentElement.clientWidth,
-			bottom: document.documentElement.clientHeight
-		};
-	} else {
-		contRect = $container[ 0 ].getBoundingClientRect();
-	}
-
-	// For completeness, if we still cared about topEdgeInBounds, that'd be:
-	// elemRect.top >= contRect.top && elemRect.top <= contRect.bottom
-	if ( elemRect.left >= contRect.left && elemRect.left <= contRect.right ) {
-		leftEdgeInBounds = true;
-	}
-	if ( elemRect.bottom >= contRect.top && elemRect.bottom <= contRect.bottom ) {
-		bottomEdgeInBounds = true;
-	}
-	if ( elemRect.right >= contRect.left && elemRect.right <= contRect.right ) {
-		rightEdgeInBounds = true;
-	}
-
-	// We only care that any part of the bottom edge is visible
-	return bottomEdgeInBounds && ( leftEdgeInBounds || rightEdgeInBounds );
-};
-
-/**
- * Position the floatable below its container.
- *
- * This should only be done when both of them are attached to the DOM and visible.
- *
- * @chainable
- */
-OO.ui.mixin.FloatableElement.prototype.position = function () {
-	var pos;
-
-	if ( !this.positioning ) {
-		return this;
-	}
-
-	if ( !this.isElementInViewport( this.$floatableContainer, this.$floatableClosestScrollable ) ) {
-		this.$floatable.addClass( 'oo-ui-element-hidden' );
-		return;
-	} else {
-		this.$floatable.removeClass( 'oo-ui-element-hidden' );
-	}
-
-	if ( !this.needsCustomPosition ) {
-		return;
-	}
-
-	pos = OO.ui.Element.static.getRelativePosition( this.$floatableContainer, this.$floatable.offsetParent() );
-
-	// Position under container
-	pos.top += this.$floatableContainer.height();
-	this.$floatable.css( pos );
-
-	// We updated the position, so re-evaluate the clipping state.
-	// (ClippableElement does not listen to 'scroll' events on $floatableContainer's parent, and so
-	// will not notice the need to update itself.)
-	// TODO: This is terrible, we shouldn't need to know about ClippableElement at all here. Why does
-	// it not listen to the right events in the right places?
-	if ( this.clip ) {
-		this.clip();
-	}
-
-	return this;
 };
 
 /**
@@ -9930,7 +9956,7 @@ OO.ui.ComboBoxInputWidget.prototype.setOptions = function ( options ) {
  * @throws {Error} An error is thrown if no widget is specified
  */
 OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
-	var hasInputWidget, $div;
+	var hasInputWidget;
 
 	// Allow passing positional parameters inside the config object
 	if ( OO.isPlainObject( fieldWidget ) && config === undefined ) {
@@ -9966,20 +9992,18 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	this.align = null;
 	if ( config.help ) {
 		this.popupButtonWidget = new OO.ui.PopupButtonWidget( {
+			popup: {
+				padded: true
+			},
 			classes: [ 'oo-ui-fieldLayout-help' ],
 			framed: false,
 			icon: 'info'
 		} );
-
-		$div = $( '<div>' );
 		if ( config.help instanceof OO.ui.HtmlSnippet ) {
-			$div.html( config.help.toString() );
+			this.popupButtonWidget.getPopup().$body.html( config.help.toString() );
 		} else {
-			$div.text( config.help );
+			this.popupButtonWidget.getPopup().$body.text( config.help );
 		}
-		this.popupButtonWidget.getPopup().$body.append(
-			$div.addClass( 'oo-ui-fieldLayout-help-content' )
-		);
 		this.$help = this.popupButtonWidget.$element;
 	} else {
 		this.$help = $( [] );
@@ -10283,8 +10307,6 @@ OO.inheritClass( OO.ui.ActionFieldLayout, OO.ui.FieldLayout );
  *  For important messages, you are advised to use `notices`, as they are always shown.
  */
 OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
-	var $div;
-
 	// Configuration initialization
 	config = config || {};
 
@@ -10300,20 +10322,18 @@ OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 	this.$header = $( '<div>' );
 	if ( config.help ) {
 		this.popupButtonWidget = new OO.ui.PopupButtonWidget( {
+			popup: {
+				padded: true
+			},
 			classes: [ 'oo-ui-fieldsetLayout-help' ],
 			framed: false,
 			icon: 'info'
 		} );
-
-		$div = $( '<div>' );
 		if ( config.help instanceof OO.ui.HtmlSnippet ) {
-			$div.html( config.help.toString() );
+			this.popupButtonWidget.getPopup().$body.html( config.help.toString() );
 		} else {
-			$div.text( config.help );
+			this.popupButtonWidget.getPopup().$body.text( config.help );
 		}
-		this.popupButtonWidget.getPopup().$body.append(
-			$div.addClass( 'oo-ui-fieldsetLayout-help-content' )
-		);
 		this.$help = this.popupButtonWidget.$element;
 	} else {
 		this.$help = $( [] );
@@ -10586,5 +10606,3 @@ OO.inheritClass( OO.ui.HorizontalLayout, OO.ui.Layout );
 OO.mixinClass( OO.ui.HorizontalLayout, OO.ui.mixin.GroupElement );
 
 }( OO ) );
-
-//# sourceMappingURL=oojs-ui-core.js.map

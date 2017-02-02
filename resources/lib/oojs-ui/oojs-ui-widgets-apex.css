@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.4-fix (d4045dee45)
+ * OOjs UI v0.19.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-01-19T20:22:32Z
+ * Date: 2017-02-01T23:04:44Z
  */
 .oo-ui-draggableElement-handle,
 .oo-ui-draggableElement-handle.oo-ui-widget {
@@ -729,6 +729,14 @@
 .oo-ui-capsuleMultiselectWidget-group {
   display: inline;
 }
+.oo-ui-capsuleMultiselectWidget-popup > .oo-ui-popupWidget-popup > .oo-ui-popupWidget-body > * {
+  display: block;
+}
+.oo-ui-capsuleMultiselectWidget-focusTrap {
+  display: inline-block;
+  height: 1px;
+  width: 1px;
+}
 .oo-ui-capsuleMultiselectWidget-handle {
   background-color: #fff;
   cursor: text;
@@ -792,6 +800,9 @@
 .oo-ui-capsuleMultiselectWidget.oo-ui-widget-disabled .oo-ui-capsuleMultiselectWidget-handle > .oo-ui-iconElement-icon,
 .oo-ui-capsuleMultiselectWidget.oo-ui-widget-disabled .oo-ui-capsuleMultiselectWidget-handle > .oo-ui-indicatorElement-indicator {
   opacity: 0.2;
+}
+.oo-ui-capsuleMultiselectWidget-popup > .oo-ui-popupWidget-popup {
+  border: 0;
 }
 .oo-ui-capsuleItemWidget {
   position: relative;
@@ -879,11 +890,6 @@
 .oo-ui-numberInputWidget-buttoned .oo-ui-buttonWidget,
 .oo-ui-numberInputWidget-buttoned .oo-ui-textInputWidget {
   display: table-cell;
-}
-.oo-ui-numberInputWidget-buttoned .oo-ui-buttonElement-button {
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
 }
 .oo-ui-numberInputWidget-field {
   display: table;
