@@ -32,7 +32,7 @@ abstract class FormattedRCFeed extends RCFeed {
 	 *  - 'formatter'
 	 * @see $wgRCFeeds
 	 */
-	public function __construct( array $params ) {
+	public function __construct( array $params = [] ) {
 		$this->params = $params;
 	}
 
