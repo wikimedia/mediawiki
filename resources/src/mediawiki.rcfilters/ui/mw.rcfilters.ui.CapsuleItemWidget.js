@@ -66,7 +66,9 @@
 		this.$element
 			.toggleClass(
 				'mw-rcfilters-ui-filterCapsuleMultiselectWidget-item-inactive',
-				!this.model.isActive()
+				item.isIncluded() || item.isConflicted() ||
+				// If the group is full coverage **and** all items are selected
+				( item.getGroupModel().isFullCoverage() && item.getGroupModel().areAllSelected() )
 			);
 	};
 
