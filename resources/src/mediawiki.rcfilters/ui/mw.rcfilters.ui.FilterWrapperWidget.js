@@ -145,12 +145,18 @@
 	 * @param {string} itemName Filter name
 	 */
 	mw.rcfilters.ui.FilterWrapperWidget.prototype.addCapsuleItemFromName = function ( itemName ) {
-		var item = this.model.getItemByName( itemName );
+		var item = this.model.getItemByName( itemName ),
+			groupModel = this.model.getGroup( item.getGroup() );
 
 		this.capsule.addItemsFromData( [ itemName ] );
 
-		// Deal with active/inactive capsule filter items
+		// Check whether the item needs to appear 'muted'
 		this.capsule.getItemFromData( itemName ).$element
-			.toggleClass( 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-item-inactive', !item.isActive() );
+			.toggleClass(
+				'mw-rcfilters-ui-filterCapsuleMultiselectWidget-item-muted',
+				item.isIncluded() || item.isConflicted() ||
+				// If the group is full coverage **and** all items are selected
+				( groupModel.isFullCoverage() && groupModel.areAllSelected() )
+			);
 	};
 }( mediaWiki ) );
