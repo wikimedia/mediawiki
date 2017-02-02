@@ -25,10 +25,11 @@
 			new mw.rcfilters.ui.FormWrapperWidget(
 				changesListModel, $( '.rcoptions form' ) );
 
-			filtersModel.initializeFilters( {
+			controller.initialize( {
 				registration: {
 					title: mw.msg( 'rcfilters-filtergroup-registration' ),
 					type: 'send_unselected_if_any',
+					fullCoverage: true,
 					filters: [
 						{
 							name: 'hideliu',
@@ -51,21 +52,25 @@
 					// ** In this case, the parameter name is the group name. **
 					type: 'string_options',
 					separator: ',',
+					fullCoverage: false,
 					filters: [
 						{
 							name: 'newcomer',
 							label: mw.msg( 'rcfilters-filter-userExpLevel-newcomer-label' ),
-							description: mw.msg( 'rcfilters-filter-userExpLevel-newcomer-description' )
+							description: mw.msg( 'rcfilters-filter-userExpLevel-newcomer-description' ),
+							conflicts: [ 'hideanons' ]
 						},
 						{
 							name: 'learner',
 							label: mw.msg( 'rcfilters-filter-userExpLevel-learner-label' ),
-							description: mw.msg( 'rcfilters-filter-userExpLevel-learner-description' )
+							description: mw.msg( 'rcfilters-filter-userExpLevel-learner-description' ),
+							conflicts: [ 'hideanons' ]
 						},
 						{
 							name: 'experienced',
 							label: mw.msg( 'rcfilters-filter-userExpLevel-experienced-label' ),
-							description: mw.msg( 'rcfilters-filter-userExpLevel-experienced-description' )
+							description: mw.msg( 'rcfilters-filter-userExpLevel-experienced-description' ),
+							conflicts: [ 'hideanons' ]
 						}
 					]
 				},
@@ -80,6 +85,7 @@
 					// the functionality to the UI, whether we are dealing with 2
 					// parameters in the group or more.
 					type: 'send_unselected_if_any',
+					fullCoverage: true,
 					filters: [
 						{
 							name: 'hidemyself',
@@ -96,6 +102,7 @@
 				automated: {
 					title: mw.msg( 'rcfilters-filtergroup-automated' ),
 					type: 'send_unselected_if_any',
+					fullCoverage: true,
 					filters: [
 						{
 							name: 'hidebots',
@@ -114,6 +121,7 @@
 				significance: {
 					title: mw.msg( 'rcfilters-filtergroup-significance' ),
 					type: 'send_unselected_if_any',
+					fullCoverage: true,
 					filters: [
 						{
 							name: 'hideminor',
@@ -130,6 +138,7 @@
 				changetype: {
 					title: mw.msg( 'rcfilters-filtergroup-changetype' ),
 					type: 'send_unselected_if_any',
+					fullCoverage: true,
 					filters: [
 						{
 							name: 'hidepageedits',
@@ -161,9 +170,6 @@
 
 			$( '.rcoptions' ).before( filtersWidget.$element );
 			$( 'body' ).append( $overlay );
-
-			// Initialize values
-			controller.initialize();
 
 			// HACK: Remove old-style filter links for filters handled by the widget
 			// Ideally the widget would handle all filters and we'd just remove .rcshowhide entirely

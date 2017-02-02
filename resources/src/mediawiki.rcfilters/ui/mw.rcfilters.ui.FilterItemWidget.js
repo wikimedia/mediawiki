@@ -48,6 +48,7 @@
 		// Event
 		this.checkboxWidget.connect( this, { userChange: 'onCheckboxChange' } );
 		this.model.connect( this, { update: 'onModelUpdate' } );
+		this.model.getGroupModel().connect( this, { update: 'onGroupModelUpdate' } );
 
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterItemWidget' )
@@ -79,12 +80,33 @@
 	mw.rcfilters.ui.FilterItemWidget.prototype.onModelUpdate = function () {
 		this.checkboxWidget.setSelected( this.model.isSelected() );
 
-		this.$element.toggleClass(
-			'mw-rcfilters-ui-filterItemWidget-inactive',
-			!this.model.isActive()
-		);
+		this.setCurrentMuteState();
 	};
 
+	/**
+	 * Respond to item group model update event
+	 */
+	mw.rcfilters.ui.FilterItemWidget.prototype.onGroupModelUpdate = function () {
+		this.setCurrentMuteState();
+	};
+
+	/**
+	 * Set the current mute state for this item
+	 */
+	mw.rcfilters.ui.FilterItemWidget.prototype.setCurrentMuteState = function () {
+		this.$element.toggleClass(
+			'mw-rcfilters-ui-filterItemWidget-muted',
+			this.model.isConflicted() ||
+			this.model.isIncluded() ||
+			this.model.isFullyCovered() ||
+			(
+				// Item is also muted when any of the items in its group is active
+				this.model.getGroupModel().isActive() &&
+				// But it isn't selected
+				!this.model.isSelected()
+			)
+		);
+	};
 	/**
 	 * Get the name of this filter
 	 *
