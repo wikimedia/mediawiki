@@ -72,6 +72,9 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	/** @var Revision Revision for which this update has been triggered */
 	private $mRevision;
 
+	/** @var Revert object if this update was triggered by a revert */
+	private $mRevert;
+
 	/**
 	 * @var null|array Added links if calculated.
 	 */
@@ -997,6 +1000,25 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	 */
 	public function getRevision() {
 		return $this->mRevision;
+	}
+
+	/**
+	 * Set the revert corresponding to this LinksUpdate, if any
+	 *
+	 * @since 1.29
+	 *
+	 * @param Revert $revert
+	 */
+	public function setRevert( Revert $revert ) {
+		$this->mRevert = $revert;
+	}
+
+	/**
+	 * @since 1.29
+	 * @return null|Revert
+	 */
+	public function getRevert() {
+		return $this->mRevert;
 	}
 
 	/**
