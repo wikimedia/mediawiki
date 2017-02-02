@@ -96,6 +96,7 @@ production.
   no longer returns a 'message' on success.
 * Added action=validatepassword to validate passwords for the account creation
   and password change forms.
+* action=purge now requires a POST.
 
 === Action API internal changes in 1.29 ===
 * New methods were added to ApiBase to handle errors and warnings using i18n
