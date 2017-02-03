@@ -1297,7 +1297,7 @@
 	"uploaddisabledtext": "Otpremanje datoteka je onemogućeno.",
 	"php-uploaddisabledtext": "Otpremanje datoteka je onemogućeno u PHP-u.\nProverite podešavanja file_uploads.",
 	"uploadscripted": "Datoteka sadrži HTML ili skriptni kod koji može biti pogrešno protumačen od strane pregledača.",
-	"uploadscriptednamespace": "Ova SVG datoteka sadrži pogrešan imenski prostor „$1“",
+	"uploadscriptednamespace": "Ova SVG datoteka sadrži pogrešan imenski prostor „<nowiki>$1</nowiki>“",
 	"uploadvirus": "Datoteka sadrži virus!\nDetalji: $1",
 	"uploadjava": "Datoteka je formata ZIP koji sadrži java .class element.\nSlanje java datoteka nije dozvoljeno jer one mogu izazvati zaobilaženje sigurnosnih ograničenja.",
 	"upload-source": "Izvorna datoteka",

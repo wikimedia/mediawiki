@@ -1483,7 +1483,7 @@
 	"uploaded-setting-handler-svg": "Tán bloquiaos los ficheros SVG que configuren l'atributu «handler» con remote/data/script. Alcontróse <code>$1=\"$2\"</code> nel ficheru SVG xubíu.",
 	"uploaded-remote-url-svg": "Tán bloquiaos los ficheros SVG que configuren atributos d'estilu con URL remotes. Alcontróse <code>$1=\"$2\"</code> nel ficheru SVG xubíu.",
 	"uploaded-image-filter-svg": "Alcontróse un filtru d'imaxe con URL: <code>&lt;$1 $2=\"$3\"&gt;</code> nel ficheru SVG xubíu.",
-	"uploadscriptednamespace": "Esti ficheru SVG contien l'espaciu de nomes illegal «$1»",
+	"uploadscriptednamespace": "Esti ficheru SVG contien l'espaciu de nomes illegal «<nowiki>$1</nowiki>»",
 	"uploadinvalidxml": "Nun pudo interpretase'l XML del ficheru cargáu.",
 	"uploadvirus": "¡El ficheru tien un virus!\nDetalles: $1",
 	"uploadjava": "El ficheru ye un archivu ZIP que contien un ficheru .class de Java.\nXubir ficheros Java nun ta permitío, porque puede facer que se salten les torgues de seguridá.",

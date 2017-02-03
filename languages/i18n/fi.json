@@ -1468,7 +1468,7 @@
 	"uploaded-setting-handler-svg": "SVG that sets the \"handler\" attribute with remote/data/script is blocked. Found <code>$1=\"$2\"</code> in the uploaded SVG file.",
 	"uploaded-remote-url-svg": "SVG that sets any style attribute with remote URL is blocked. Found <code>$1=\"$2\"</code> in the uploaded SVG file.",
 	"uploaded-image-filter-svg": "Found image filter with URL: <code>&lt;$1 $2=\"$3\"&gt;</code> in the uploaded SVG file.",
-	"uploadscriptednamespace": "Tämä SVG-tiedosto sisältää nimiavaruuden ”$1”, joka ei ole sallittu.",
+	"uploadscriptednamespace": "Tämä SVG-tiedosto sisältää nimiavaruuden ”<nowiki>$1</nowiki>”, joka ei ole sallittu.",
 	"uploadinvalidxml": "Ladatun tiedoston XML-koodia ei voitu jäsentää kunnolla.",
 	"uploadvirus": "Tiedosto sisältää viruksen. Tarkemmat tiedot: $1",
 	"uploadjava": "Tämä tiedosto on ZIP-tiedosto, joka sisältää Java .class-tiedoston.\nJava-tiedostojen tallentaminen ei ole sallittua, sillä ne saattavat aiheuttaa tietoturvariskejä.",

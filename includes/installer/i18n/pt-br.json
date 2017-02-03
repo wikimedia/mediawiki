@@ -20,7 +20,8 @@
 			"Walesson",
 			"Almondega",
 			"Luk3",
-			"Eduardo Addad de Oliveira"
+			"Eduardo Addad de Oliveira",
+			"Warley Felipe C."
 		]
 	},
 	"config-desc": "O instalador do MediaWiki",
@@ -253,6 +254,7 @@
 	"config-install-pg-commit": "Enviando alterações",
 	"config-install-user": "Criando usuário de banco de dados",
 	"config-install-user-alreadyexists": "O usuário \"$1\" já existe!",
+	"config-install-user-create-failed": "Criando usuário \"$1\" falhou: $2",
 	"config-install-user-missing": "O usuário especificado, \"$1\", não existe.",
 	"config-install-user-missing-create": "O usuário especificado \" $1 \" não existe.\nPor favor, clique na opção de \"criar conta\" abaixo se você deseja criá-lo.",
 	"config-install-tables": "Criando tabelas",
@@ -267,6 +269,7 @@
 	"config-install-subscribe-fail": "Não foi possível subscrever o mediawiki-announce: $1",
 	"config-install-subscribe-notpossible": "cURL não está instalada e <code>allow_url_fopen</code> não está disponível.",
 	"config-install-mainpage": "Criando página principal com o conteúdo padrão",
+	"config-install-mainpage-exists": "A página principal já existe, pulando",
 	"config-install-extension-tables": "Criando tabelas para extensões habilitadas",
 	"config-install-mainpage-failed": "Não foi possível inserir a página principal: $1",
 	"config-install-done": "<strong>Parabéns!</strong>\nVocê instalou do MediaWiki.\n\nO instalador gerou um arquivo <code>LocalSettings.php</code>.\nEste arquivo contém todas as suas configurações.\n\nVocê precisa fazer o download desse arquivo e colocá-lo na raiz da sua instalação (o mesmo diretório onde está o arquivo <code>index.php</code>). Este download deve ter sido iniciado automaticamente.\n\nSe o download não foi iniciado, ou se ele foi cancelado, pode recomeçá-lo clicando no link abaixo:\n\n$3\n\n<strong>Nota</strong>: Se não fizer isto agora, o arquivo que foi gerado não estará disponível depois que você sair do processo de instalação sem baixá-lo.\n\nQuando isso tiver sido feito, pode <strong>[$2 entrar na sua wiki]</strong>.",

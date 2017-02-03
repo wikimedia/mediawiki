@@ -1257,7 +1257,7 @@
 	"uploaddisabledtext": "Nahraće datajow je znjemóžnjene.",
 	"php-uploaddisabledtext": "Nahraća PHP-datajow su znjemóžnjene. Prošu skontroluj nastajenje file_uploads.",
 	"uploadscripted": "Dataja wobsahuje HTML- abo skriptowy kod, kotryž móhł so mylnje přez wobhladowak wuwjesć.",
-	"uploadscriptednamespace": "Tuta SVG-dataja wobsahuje njedowoleny mjenowy rum '$1'",
+	"uploadscriptednamespace": "Tuta SVG-dataja wobsahuje njedowoleny mjenowy rum '<nowiki>$1</nowiki>'",
 	"uploadinvalidxml": "XML w nahratej dataji njeda so parsować.",
 	"uploadvirus": "Dataja wirus wobsahuje! Podrobnosće: $1",
 	"uploadjava": "Tuta dataja je ZIP-dataja, kotraž .class-dataju z Javy wobsahuje.\nNahraće datajow Javy njeje dowolene, dokelž móhli wobeńdźenje wěstotnych wobmjezowanjow zmóžnić.",

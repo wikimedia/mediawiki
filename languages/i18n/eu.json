@@ -3063,6 +3063,7 @@
 	"logentry-newusers-create": "$1 erabiltzaile kontua {{GENDER:$2|sortu da}}",
 	"logentry-newusers-create2": "$1 wikilariak $3 erabiltzaile kontua sortu du",
 	"logentry-newusers-byemail": "$1(e)k $3 erabiltzaile kontua {{GENDER:$2|sortu du}} eta pasahitza emailez bidali da",
+	"logentry-newusers-autocreate": "$1 erabiltzaile kontua automatikoki {{GENDER:$2|sortu da}}",
 	"logentry-upload-upload": "$1(e)k $3 {{GENDER:$2|igo du}}",
 	"log-name-tag": "Etiketen erregistroa",
 	"rightsnone": "(bat ere ez)",

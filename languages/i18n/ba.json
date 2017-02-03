@@ -1418,7 +1418,7 @@
 	"uploaded-setting-handler-svg": "SVG«handler» атрибутын өҫтәүсе SVG блокланды.Тейәлгән SVG-файлда  <code>$1=\"$2\"</code> конструкцияһы табылды.",
 	"uploaded-remote-url-svg": "SVG«handler» атрибутын өҫтәүсе SVG блокланды.Тейәлгән SVG-файлда  <code>$1=\"$2\"</code> конструкцияһы табылды.",
 	"uploaded-image-filter-svg": "Тейәлгән SVG-файлда рәсемдәр фильтры табылды URL-адресом <code>&lt;$1 $2=\"$3\"&gt;</code>.",
-	"uploadscriptednamespace": " SVG-файлында ярамаған исем бар '$1'",
+	"uploadscriptednamespace": " SVG-файлында ярамаған исем бар '<nowiki>$1</nowiki>'",
 	"uploadinvalidxml": "Тейәлгән файлда анализлап булмай XML .",
 	"uploadvirus": "Файлда вирус бар!\nТулыраҡ мәғлүмәт: $1",
 	"uploadjava": "Был, эсендә Java .class файлы булған ZIP-архив.\nИменлек өсөн Java-файлдарын тейәү тыйылған.",

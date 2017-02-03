@@ -1424,7 +1424,7 @@
 	"uploaded-setting-handler-svg": "o SVG ch'o l'imposta l'attributo \"handler\" con remote/data/script o l'è bloccou. Trovou <code>$1=\"$2\"</code>into file SVG caregou.",
 	"uploaded-remote-url-svg": "o SVG ch'o l'imposta qua-se-sæ attributo de stile con di URL remoti o l'è bloccato. Trovou <code>$1=\"$2\"</code> into file SVG caregou.",
 	"uploaded-image-filter-svg": "Trovou filtro immaggine con URL: <code>&lt;$1 $2=\"$3\"&gt;</code> into file in formato SVG caregou.",
-	"uploadscriptednamespace": "Questo file SVG o conten un namespace '$1' non consentio",
+	"uploadscriptednamespace": "Questo file SVG o conten un namespace '<nowiki>$1</nowiki>' non consentio",
 	"uploadinvalidxml": "O codiçe XML into file caregou o no poeu ese elaboou.",
 	"uploadvirus": "Questo file o conten un virus! Dettaggi: $1",
 	"uploadjava": "Questo file o l'è un file ZIP ch'o conten un file .class Java.\nCaregâ i file Java no l'è consentio, perché poeuan caosâ l'aggiamento de restriçioin de segueçça.",

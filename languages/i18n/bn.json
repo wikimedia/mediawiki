@@ -1454,7 +1454,7 @@
 	"uploaded-hostile-svg": "আপলোড করা SVG ফাইলের শৈলী উপাদানে অনিরাপদ সিএসএস পাওয়া গেছে।",
 	"uploaded-href-unsafe-target-svg": "অনিরাপদ উপাত্তে href পাওয়া গেছে: আপলোডকৃত SVG ফাইলে URI লক্ষ্য ছিল <code>&lt;$1 $2=\"$3\"&gt;</code>।",
 	"uploaded-image-filter-svg": "আপলোডকৃত SVG ফাইলে URL: <code>&lt;$1 $2=\"$3\"&gt;</code> সহ ছবি পরিশোধক পাওয়া গেছে।",
-	"uploadscriptednamespace": "এই SVG ফাইলে অবৈধ নামস্থান \"$1\" রয়েছে",
+	"uploadscriptednamespace": "এই SVG ফাইলে অবৈধ নামস্থান \"<nowiki>$1</nowiki>\" রয়েছে",
 	"uploadinvalidxml": "আপলোডকৃত ফাইলে XML পার্স করা যাবে না।",
 	"uploadvirus": "এই ফাইলটিতে ভাইরাস আছে! ব্যাখ্যা: $1",
 	"uploadjava": "এটি একটি ZIP ফরম্যাটের ফাইল, যেখানে একটি জাভা .class ফরম্যাটের ফাইল রয়েছে।\nজাভা ফাইল আপলোডের কোনো অনুমতি নেই, কারণ এই ধরনের ফাইল সিস্টেমে নিরাপত্তা ত্রুটি তৈরী করতে পারে।",

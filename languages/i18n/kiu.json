@@ -8,7 +8,8 @@
 			"아라",
 			"Macofe",
 			"Kumkumuk",
-			"Asmen"
+			"Asmen",
+			"Gırd"
 		]
 	},
 	"tog-underline": "Bınê gırey de xete bonce:",
@@ -557,8 +558,6 @@
 	"prefs-rendering": "Asais",
 	"saveprefs": "Qeyd ke",
 	"prefs-editing": "Vurnais",
-	"rows": "Rêji:",
-	"columns": "Ustıni:",
 	"searchresultshead": "Cıcêre",
 	"stub-threshold": "Tertibê şêmıga <a href=\"#\" class=\"stub\">stub link</a> (''bytes''):",
 	"recentchangesdays": "Rozê ke vurnaisunê peyênun de asenê:",
@@ -662,7 +661,7 @@
 	"rcshowhidebots": "Botu $1",
 	"rcshowhideliu": "karberê qeydbiyayeyi $1",
 	"rcshowhideanons": "$1 karberê anonimi",
-	"rcshowhidepatr": "Vurnayışê cıyê vênıtey $1",
+	"rcshowhidepatr": "Vırnayışê cıyê vênıtey $1",
 	"rcshowhidemine": "Vurnayisanê mı $1",
 	"rclinks": "Peyniya $2 rozu de $1 vurnayisu bıasne <br />$3",
 	"diff": "ferq",

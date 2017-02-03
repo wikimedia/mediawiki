@@ -1300,7 +1300,7 @@
 	"uploaded-setting-handler-svg": "SVG datoteka koja koristi atribut \"handler\" sa udaljenom/podatkovnoj/skriptnom vrijednosti je blokirana. Pronađeno <code>$1=\"$2\"</code> u postavljenoj SVG datoteci.",
 	"uploaded-remote-url-svg": "SVG datoteka koja postavlja stilski atribut koristeći se vanjskim linkom je blokiranja. Pronađeno <code>$1=\"$2\"</code> u postavljenoj SVG datoteci.",
 	"uploaded-image-filter-svg": "Pronađen slikovni filter sa URLom: <code>&lt;$1 $2=\"$3\"&gt;</code> u postavljenoj SVG datoteci.",
-	"uploadscriptednamespace": "Ova SVG datoteka sadrži pogrešan imenski prostor „$1“",
+	"uploadscriptednamespace": "Ova SVG datoteka sadrži pogrešan imenski prostor „<nowiki>$1</nowiki>“",
 	"uploadinvalidxml": "XML u postavljenoj datoteci nije mogao biti parsiran.",
 	"uploadvirus": "Fajl sadrži virus!  Detalji:  $1",
 	"uploadjava": "Datoteka je ZIP datoteka koja sadrži Java .class datoteku.\nPostavljanje Java datoteka nije dopušteno, jer one mogu prouzrokovati zaobilaženje sigurnosnih ograničenja.",

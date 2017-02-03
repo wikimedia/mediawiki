@@ -1506,7 +1506,7 @@
 	"uploaded-setting-handler-svg": "Az SVG kódok, amelyek a \"handler\" attribútumot távolra/adatra/szkriptre állítják, le vannak tiltva. A feltöltött SVG fájlban a következőt találtam: <code>$1=\"$2\"</code>.",
 	"uploaded-remote-url-svg": "Az SVG kódok, amelyek bármely stílus-attribútumot távoli URL-ra állítják, le vannak tiltva. A feltöltött SVG fájlban a következőt találtam: <code>$1=\"$2\"</code>.",
 	"uploaded-image-filter-svg": "A feltöltött SVG fájl URL-t tartalmazó képfiltert tartalmaz: <code>&lt;$1 $2=\"$3\"&gt;</code>.",
-	"uploadscriptednamespace": "Ez az SVG fájl érvénytelen névteret (\"$1\") tartalmaz.",
+	"uploadscriptednamespace": "Ez az SVG fájl érvénytelen névteret (\"<nowiki>$1</nowiki>\") tartalmaz.",
 	"uploadinvalidxml": "A feltöltött XML fájlt nem lehet feldolgozni.",
 	"uploadvirus": "Ez a fájl vírust tartalmaz! A részletek: $1",
 	"uploadjava": "A fájl egy ZIP-fájl, ami egy Java .class fájlt tartalmaz.\nJava fájlok feltöltése nem engedélyezett, mert segítségükkel kijátszhatóak a biztonsági korlátozások.",

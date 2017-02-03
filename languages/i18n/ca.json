@@ -1523,7 +1523,7 @@
 	"uploaded-event-handler-on-svg": "No es permet establir els atributs de gestió d’esdeveniments <code>$1=\"$2\"</code> en fitxers SVG.",
 	"uploaded-href-unsafe-target-svg": "S’ha trobat un element «href» amb dades no segures: destinació URI <code>&lt;$1 $2=\"$3\"&gt;</code> en el fitxer SVG carregat.",
 	"uploaded-animate-svg": "S'ha trobat l'etiqueta «animate» que pot estar canviant l'href mitjançant l'atribut <code>&lt;$1 $2=\"$3\"&gt;</code> en el fitxer SVG carregat.",
-	"uploadscriptednamespace": "Aquest fitxer SVG conté un espai de noms \"$1\" no autoritzat",
+	"uploadscriptednamespace": "Aquest fitxer SVG conté un espai de noms \"<nowiki>$1</nowiki>\" no autoritzat",
 	"uploadinvalidxml": "No s'ha pogut analitzar l'XML del fitxer carregat.",
 	"uploadvirus": "El fitxer conté un virus! Detalls: $1",
 	"uploadjava": "El fitxer és un arxiu ZIP que conté un fitxer .class de Java. No està permesa la càrrega de fitxers Java, perquè poden passar per alt les restriccions de seguretat.",

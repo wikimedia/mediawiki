@@ -1542,7 +1542,7 @@
 	"uploaded-setting-handler-svg": "A configuração do atributo \"handler\" com destino remoto/de dados/<i>script</i> em ficheiros SVG está bloqueada. Foi detetado <code>$1=\"$2\"</code> no ficheiro SVG carregado.",
 	"uploaded-remote-url-svg": "A configuração de qualquer atributo de estilo com um URL remoto em ficheiros SVG está bloqueada. Foi detetado <code>$1=\"$2\"</code> no ficheiro SVG carregado.",
 	"uploaded-image-filter-svg": "Foi encontrado um filtro de imagem com o URL: <code>&lt;$1 $2=\"$3\"&gt;</code> no ficheiro SVG carregado.",
-	"uploadscriptednamespace": "Este ficheiro SVG contém um domínio que não é permitido \"$1\".",
+	"uploadscriptednamespace": "Este ficheiro SVG contém um domínio que não é permitido \"<nowiki>$1</nowiki>\".",
 	"uploadinvalidxml": "Erro detectado na análise do XML do ficheiro carregado.",
 	"uploadvirus": "O ficheiro contém um vírus! \nDetalhes: $1",
 	"uploadjava": "Este é um ficheiro ZIP que contém um ficheiro .class de Java.\nNão é permitido o carregamento de ficheiros Java, porque estes podem contornar as restrições de segurança.",

@@ -1335,7 +1335,7 @@
 	"uploaddisabledtext": "Lokað er fyrir að hlaða inn skrám.",
 	"php-uploaddisabledtext": "Innhleðsla skráa er óvirk í PHP.\nAthugaðu file_uploads stillinguna.",
 	"uploadscripted": "Þetta skjal inniheldur (X)HTML eða forskriftu sem gæti valdið villum í vöfrum.",
-	"uploadscriptednamespace": "Þessi SVG-skrá inniheldur ógilt nafnrými \"$1\".",
+	"uploadscriptednamespace": "Þessi SVG-skrá inniheldur ógilt nafnrými \"<nowiki>$1</nowiki>\".",
 	"uploadvirus": "Skráin inniheldur veiru! Nánari upplýsingar: $1",
 	"uploadjava": "Þessi skrá er ZIP skrá sem inniheldur Java .class skráasnið.\nInnhleðsla Java skráa er óheimil, því þær geta farið framhjá öryggiskröfum.",
 	"upload-source": "Upprunaleg skrá",

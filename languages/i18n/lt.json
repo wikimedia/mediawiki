@@ -1474,7 +1474,7 @@
 	"uploaded-setting-handler-svg": "SVG, kurie nustato \"handler\" atributą naudodami remote/data/script, yra užblokuoti. Įkeltame SVG faile rasta <code>$1=\"$2\"</code>.",
 	"uploaded-remote-url-svg": "Užblokuoti SVG, kurie nustato style atributą naudodami nuotolinį URL. Įkeltame SVG faile rasta <code>$1=\"$2\"</code>.",
 	"uploaded-image-filter-svg": "Įkeltame SVG faile rastas paveikslėlio filtras su URL: <code>&lt;$1 $2=\"$3\"&gt;</code>.",
-	"uploadscriptednamespace": "Šis SVG failas turi neteisėtą vietą vardui '$1'",
+	"uploadscriptednamespace": "Šis SVG failas turi neteisėtą vietą vardui '<nowiki>$1</nowiki>'",
 	"uploadinvalidxml": "XML įkeltoje rinkmenoje negali būti išnagrinėtas.",
 	"uploadvirus": "Šiame faile yra virusas! Smulkiau: $1",
 	"uploadjava": "Ši rinkmena tai ZIP rinkmena, kurioje yra Java .class rinkmena.\nĮkelti Java rinkmenų neleidžiama, nes jos gali padėti apeiti saugumo apribojimus.",

@@ -1544,7 +1544,7 @@
 	"uploaded-setting-handler-svg": "SVG som anger \"handler\"-attributet med remote/data/skript är blockerat. Hittade <code>$1=\"$2\"</code> i den uppladdade SVG-filen.",
 	"uploaded-remote-url-svg": "SVG som anger style-attributet med en fjärr-URL är blockerat. Hittade <code>$1=\"$2\"</code> i den uppladdade SVG-filen.",
 	"uploaded-image-filter-svg": "Hittade bildfilter med URL: <code>&lt;$1 $2=\"$3\"&gt;</code> i den uppladdade SVG-filen.",
-	"uploadscriptednamespace": "Denna SVG-fil innehåller den ogiltiga namnrymden \"$1\".",
+	"uploadscriptednamespace": "Denna SVG-fil innehåller den ogiltiga namnrymden \"<nowiki>$1</nowiki>\".",
 	"uploadinvalidxml": "XML-koden i den uppladdade filen kunde inte tolkas.",
 	"uploadvirus": "Filen innehåller virus! Detaljer: $1",
 	"uploadjava": "Filen är en ZIP-fil som innehåller en Java .class-fil.\nUppladdning av Java filer tillåts inte eftersom de kan orsaka att säkerhetsbegränsningar kan kringgås.",

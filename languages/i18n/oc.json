@@ -528,6 +528,7 @@
 	"botpasswords-label-grants": "Dreits aplicables :",
 	"botpasswords-label-grants-column": "Acordat",
 	"botpasswords-bad-appid": "Lo nom del robòt «$1» es pas valid.",
+	"botpasswords-insert-failed": "Fracàs de l’apondon del nom de robòt « $1 ». Es ja estat apondut ?",
 	"botpasswords-created-title": "Senhau de bot creat",
 	"botpasswords-created-body": "Lo senhau dau bot per lo bot $1 de l'utilizaire $2 es estat creat",
 	"botpasswords-updated-title": "Senhau dau bot més a jorn",
@@ -1363,7 +1364,7 @@
 	"uploaddisabledtext": "L'impòrt de fichièrs cap al servidor es desactivat.",
 	"php-uploaddisabledtext": "Lo telecargament de fichièrs es estat desactivat dins PHP. Verificatz l'opcion de configuracion file_uploads.",
 	"uploadscripted": "Aqueste fichièr conten de còdi HTML o un escript que poiriá èsser interpretat d'un biais incorrècte per un navigador Internet.",
-	"uploadscriptednamespace": "Aqueste fichièr SVG conten un espaci de noms '$1' pas autorizat.",
+	"uploadscriptednamespace": "Aqueste fichièr SVG conten un espaci de noms '<nowiki>$1</nowiki>' pas autorizat.",
 	"uploadinvalidxml": "Lo XML dins lo fichièr importat a pas pogut èsser analisat.",
 	"uploadvirus": "Aqueste fichièr conten un virús ! Per mai de detalhs, consultatz : $1",
 	"uploadjava": "Es un fichièr ZIP que conten un fichièr Java .class.\nLo telecargament de fichièrs Java es pas autorizat, perque pòdon contornar de restriccions de seguretat.",
@@ -3214,6 +3215,7 @@
 	"logentry-managetags-activate": "$1 {{GENDER:$2|a activat}} la balisa \"$4\" per l’usatge dels utilizaires e dels robòts",
 	"logentry-managetags-deactivate": "$1 {{GENDER:$2|a desactivat}} la balisa « $4 » per l’usatge dels utilizaires e dels robòts",
 	"log-name-tag": "Jornal de las balisas",
+	"logentry-tag-update-revision": "$1 {{GENDER:$2|a mes a jorn}} las balisas de la revision $4 de la pagina $3 ($6 {{PLURAL:$7|aponduda|apondudas}} ; $8 {{PLURAL:$9|suprimida|suprimidas}})",
 	"rightsnone": "(cap)",
 	"revdelete-summary": "modificar lo somari",
 	"feedback-adding": "Apondon de vòstres comentaris a la pagina...",
@@ -3408,6 +3410,7 @@
 	"linkaccounts": "Liar lei còmptes",
 	"linkaccounts-success-text": "Lo còmpte èra estat liat.",
 	"linkaccounts-submit": "Liar lei còmptes",
+	"restrictionsfield-badip": "Adreça IP o plaja invalida : $1",
 	"revid": "Revision $1",
 	"pageid": "Pagina ID $1"
 }

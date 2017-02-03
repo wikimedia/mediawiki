@@ -1579,7 +1579,7 @@
 	"uploaded-setting-handler-svg": "A configuração do atributo \"handler\" com destino remoto/de dados/<i>script</i> em arquivos SVG está bloqueada. Foi detetado <code>$1=\"$2\"</code> no arquivo SVG carregado.",
 	"uploaded-remote-url-svg": "A configuração de qualquer atributo de estilo com um URL remoto em arquivos SVG está bloqueada. Foi detetado <code>$1=\"$2\"</code> no arquivo SVG carregado.",
 	"uploaded-image-filter-svg": "Foi encontrado um filtro de imagem com o URL: <code>&lt;$1 $2=\"$3\"&gt;</code> no arquivo SVG carregado.",
-	"uploadscriptednamespace": "Este aruivo SVG contém um espaço nominal probido \"$1\"",
+	"uploadscriptednamespace": "Este aruivo SVG contém um espaço nominal probido \"<nowiki>$1</nowiki>\"",
 	"uploadinvalidxml": "O XML no arquivo enviado não pôde ser analisado.",
 	"uploadvirus": "O arquivo contém vírus!\nDetalhes: $1",
 	"uploadjava": "Este é um arquivo ZIP que contém um arquivo .class de Java.\nNão é permitido o upload de arquivos Java já que eles podem contornar as restrições de segurança.",

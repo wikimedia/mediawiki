@@ -1562,7 +1562,7 @@
 	"ncategories": "$1 {{PLURAL:$1|kategorija|kategorije|kategorija}}",
 	"ninterwikis": "$1 međuwiki {{PLURAL:$1|poveznica|poveznice|poveznica}}",
 	"nlinks": "$1 {{PLURAL:$1|poveznica|poveznice|poveznica}}",
-	"nmembers": "$1 {{PLURAL:$1|član|članova}}",
+	"nmembers": "$1 {{PLURAL:$1|član|člana|članova}}",
 	"nrevisions": "$1 {{PLURAL:$1|inačica|inačice|inačica}}",
 	"nimagelinks": "Koristi se na $1 {{PLURAL:$1|stranici|stranice|stranica}}",
 	"ntransclusions": "koristi se na $1 {{PLURAL:$1|stranici|stranice|stranica}}",

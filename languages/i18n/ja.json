@@ -1497,7 +1497,7 @@
 	"uploaded-setting-handler-svg": "リモート/データ/スクリプトの「handler」属性を設定するSVGがブロックされています。アップロードされたSVGファイルに <code>$1=\"$2\"</code> が見つかりました。",
 	"uploaded-remote-url-svg": "リモート URL の任意のスタイルを設定するSVGがブロックされています。アップロードされたSVGファイルに <code>$1=\"$2\"</code> が見つかりました。",
 	"uploaded-image-filter-svg": "URL に画像フィルターが見つかりました: アップロードされたSVGファイルの <code>&lt;$1 $2=\"$3\"&gt;</code>。",
-	"uploadscriptednamespace": "この SVG ファイルは無効な名前空間「$1」を含んでいます。",
+	"uploadscriptednamespace": "この SVG ファイルは無効な名前空間「<nowiki>$1</nowiki>」を含んでいます。",
 	"uploadinvalidxml": "アップロードされたファイルに含まれる XML が構文解析できませんでした。",
 	"uploadvirus": "このファイルはウイルスを含んでいます!\n詳細: $1",
 	"uploadjava": "このファイルは、Javaの.classファイルを含むZIPファイルです。\nセキュリティ上の制限を回避されるおそれがあるため、Javaファイルのアップロードは許可されていません。",

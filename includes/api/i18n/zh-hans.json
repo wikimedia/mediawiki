@@ -1353,6 +1353,7 @@
 	"apihelp-userrights-param-user": "用户名。",
 	"apihelp-userrights-param-userid": "用户ID。",
 	"apihelp-userrights-param-add": "将用户加入至这些组中，或如果其已作为成员，更新其所在用户组成员资格的终止时间。",
+	"apihelp-userrights-param-expiry": "到期时间戳。可以是相对值（例如<kbd>5 months</kbd>或<kbd>2 weeks</kbd>）或绝对值（例如<kbd>2014-09-18T12:34:56Z</kbd>）。如果只设置一个时间戳，它将被用于所有传递给<var>$1add</var>参数的组。对于永不过时的用户组，使用<kbd>infinite</kbd>、<kbd>indefinite</kbd>、<kbd>infinity</kbd>或<kbd>never</kbd>。",
 	"apihelp-userrights-param-remove": "将用户从这些组中移除。",
 	"apihelp-userrights-param-reason": "更改原因。",
 	"apihelp-userrights-param-tags": "要在用户权限日志中应用到实体的更改标签。",

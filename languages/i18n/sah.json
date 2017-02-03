@@ -1446,7 +1446,7 @@
 	"uploaded-setting-handler-svg": "«Handler» атрибууту аадырыс/дааннай/скрипт көмөтүнэн быһаарар SVG хааччахтаммыт. Угуллубут SVG-билэҕэ <code>$1=\"$2\"</code> конструкция көстүбүт.",
 	"uploaded-remote-url-svg": "Тэйиччи URL-лунан атрибууттуур SVG хааччахтаммыт. Киллэриллибит SVG-билэҕэ <code>$1=\"$2\"</code> көстүбүт.",
 	"uploaded-image-filter-svg": "Хачайдаммыт SVG-билэҕэ маннык URL-аадырыстаах ойуу сиидэтэ көстүбүт <code>&lt;$1 $2=\"$3\"&gt;</code>.",
-	"uploadscriptednamespace": "Бу SVG-билэ алҕастаах аат даллаах эбит: '$1'",
+	"uploadscriptednamespace": "Бу SVG-билэ алҕастаах аат даллаах эбит: '<nowiki>$1</nowiki>'",
 	"uploadinvalidxml": "Хачайдаммит билэҕэ XML анаалыстанар кыаҕа суох.",
 	"uploadvirus": "Бу билэ вирустаах! Көр: $1",
 	"uploadjava": "Билэ Java .class билэлээх ZIP-архыып эбит.\nКуттал суох буолбатын диэн Java-билэрэри манна угар бобуллар.",

@@ -1510,7 +1510,7 @@
 	"uploaded-setting-handler-svg": "SVGa dosiero kiu ensignas la traktilan atributon (''<span lang=\"en\">handler</span>'') kun fora/datena/skripta estas blokita. Trovis <code>$1=\"$2\"</code> en la alsûtita SVGa dosiero.",
 	"uploaded-remote-url-svg": "SVG-a dosiero kiu asignas ajnan stilan atributon kun fora URL estas blokita. Ni trovis <code>$1=\"$2\"</code> en la alsûtita SVG-a dosiero.",
 	"uploaded-image-filter-svg": "Trovis bildan filtrilon kun URL:  <code>&lt;$1 $2=\"$3\"&gt;</code> en la alŝutita SVGa dosiero.",
-	"uploadscriptednamespace": "Ĉi tiu SVG-dosiero enhavas nevalidan nomspacon \"$1\"",
+	"uploadscriptednamespace": "Ĉi tiu SVG-dosiero enhavas nevalidan nomspacon \"<nowiki>$1</nowiki>\"",
 	"uploadinvalidxml": "Ne eblas interpreti la XML-sintakson en la alŝutita dosiero",
 	"uploadvirus": "Viruso troviĝas en la dosiero! Detaloj: $1",
 	"uploadjava": "La dosiero estas ZIP-dosiero kiu enhavas .class-dosieron de Java.\nAlŝutante Java-dosieron estas malpermesita, ĉar ili povas kaŭzi sekureco-limigojn esti preterpasitaj.",

@@ -1417,7 +1417,7 @@
 	"uploaddisabledtext": "ปิดใช้งานการอัปโหลดไฟล์",
 	"php-uploaddisabledtext": "ปิดการใช้งานการอัปโหลดไฟล์ในพีเอชพี\nกรุณาตรวจสอบการตั้งค่า file_uploads",
 	"uploadscripted": "ไฟล์นี้มีโค้ดเอชทีเอ็มแอลหรือสคริปต์ ซึ่งอาจก่อให้การแปลคำสั่งของเบราว์เซอร์ผิดพลาด",
-	"uploadscriptednamespace": "ไฟล์ SVG นี้มีเนมสเปซไม่ถูกต้อง \"$1\"",
+	"uploadscriptednamespace": "ไฟล์ SVG นี้มีเนมสเปซไม่ถูกต้อง \"<nowiki>$1</nowiki>\"",
 	"uploadvirus": "ไฟล์นี้มีไวรัส! \nรายละเอียด: $1",
 	"upload-source": "ไฟล์ต้นทาง",
 	"sourcefilename": "ชื่อไฟล์ต้นทาง:",
