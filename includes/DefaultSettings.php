@@ -8563,6 +8563,7 @@ $wgCSPFalsePositiveUrls = [
 	'https://atpixel.alephd.com' => true,
 	'https://rtb.metrigo.com' => true,
 	'https://d5p.de17a.com' => true,
+	'https://ad.lkqd.net/vpaid/vpaid.js' => true,
 ];
 
 /**
