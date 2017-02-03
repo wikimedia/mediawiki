@@ -753,6 +753,47 @@ more stuff
 	 */
 
 	/**
+	 * @covers WikiPage::getOldestRevision
+	 */
+	public function testGetOldestRevision() {
+		$page = $this->newPage( "WikiPageTest_testGetOldestRevision" );
+		$page->doEditContent(
+			new WikitextContent( 'one' ),
+			"first edit",
+			EDIT_NEW
+		);
+		$rev1 = $page->getRevision();
+
+		$page = new WikiPage( $page->getTitle() );
+		$page->doEditContent(
+			new WikitextContent( 'two' ),
+			"second edit",
+			EDIT_UPDATE
+		);
+
+		$page = new WikiPage( $page->getTitle() );
+		$page->doEditContent(
+			new WikitextContent( 'three' ),
+			"third edit",
+			EDIT_UPDATE
+		);
+
+		// sanity check
+		$this->assertNotEquals(
+			$rev1->getId(),
+			$page->getRevision()->getId(),
+			'$page->getRevision()->getId()'
+		);
+
+		// actual test
+		$this->assertEquals(
+			$rev1->getId(),
+			$page->getOldestRevision()->getId(),
+			'$page->getOldestRevision()->getId()'
+		);
+	}
+
+	/**
 	 * @todo FIXME: this is a better rollback test than the one below, but it
 	 * keeps failing in jenkins for some reason.
 	 */
