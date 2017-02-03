@@ -8576,6 +8576,25 @@ $wgExperiencedUserEdits = 500;
 $wgExperiencedUserMemberSince = 30; # days
 
 /**
+ * Mapping of interwiki index prefixes to descriptors that
+ * can be used to change the display of interwiki search results.
+ *
+ * Descriptors are appended to CSS classes of interwiki results
+ * which using InterwikiSearchResultWidget.
+ *
+ * Predefined descriptors include the following words:
+ * definition, textbook, news, quotation, book, travel, course
+ *
+ * @par Example:
+ * @code
+ * $wgInterwikiPrefixDisplayTypes = [
+ *	'iwprefix' => 'definition'
+ *];
+ * @endcode
+ */
+$wgInterwikiPrefixDisplayTypes = [];
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
