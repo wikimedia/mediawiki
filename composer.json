@@ -55,7 +55,9 @@
 		"nikic/php-parser": "2.1.0",
 		"nmred/kafka-php": "0.1.5",
 		"phpunit/phpunit": "4.8.31",
-		"wikimedia/avro": "1.7.7"
+		"wikimedia/avro": "1.7.7",
+		"hamcrest/hamcrest-php": "^2.0",
+		"wmde/hamcrest-html-matchers": "0.1.x-dev"
 	},
 	"suggest": {
 		"ext-apc": "Local data and opcode cache",
@@ -73,6 +75,12 @@
 		"psr-0": {
 			"ComposerHookHandler": "includes/composer"
 		}
+	},
+	"autoload-dev": {
+		"files": [
+			"vendor/hamcrest/hamcrest-php/hamcrest/Hamcrest.php",
+			"vendor/wmde/hamcrest-html-matchers/src/functions.php"
+		]
 	},
 	"scripts": {
 		"lint": "parallel-lint --exclude vendor",
