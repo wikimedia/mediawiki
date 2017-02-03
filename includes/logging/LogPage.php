@@ -493,6 +493,10 @@ class LogPage {
 	public function isRestricted() {
 		$restriction = $this->getRestriction();
 
-		return $restriction !== '' && $restriction !== '*';
+		if ( $restriction === '' || $restriction === '*' ) {
+			return true;
+		}
+
+		return User::isEveryoneAllowed( $restriction );
 	}
 }
