@@ -389,7 +389,7 @@
 	"apihelp-protect-example-unprotect": "Unprotect a page by setting restrictions to <kbd>all</kbd> (i.e. everyone is allowed to take the action).",
 	"apihelp-protect-example-unprotect2": "Unprotect a page by setting no restrictions.",
 
-	"apihelp-purge-description": "Purge the cache for the given titles.\n\nRequires a POST request if the user is not logged in.",
+	"apihelp-purge-description": "Purge the cache for the given titles.",
 	"apihelp-purge-param-forcelinkupdate": "Update the links tables.",
 	"apihelp-purge-param-forcerecursivelinkupdate": "Update the links table, and update the links tables for any page that uses this page as a template.",
 	"apihelp-purge-example-simple": "Purge the <kbd>Main Page</kbd> and the <kbd>API</kbd> page.",
