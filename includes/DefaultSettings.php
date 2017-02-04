@@ -6704,7 +6704,7 @@ $wgRCLinkDays = [ 1, 3, 7, 14, 30 ];
  *		'omit_bots' => true,
  *	];
  * @example $wgRCFeeds['example'] = [
- *      'class' => 'ExampleRCFeed',
+ *		'class' => 'ExampleRCFeed',
  *	];
  * @since 1.22
  */

@@ -429,7 +429,7 @@ class RecentChange {
 	 * @return RCFeedEngine The engine object
 	 * @throws MWException
 	 */
-	public static function getEngine( $uri ) {
+	public static function getEngine( $uri, $params = [] ) {
 		// TODO: Merge into RCFeed::factory().
 		global $wgRCEngines;
 		$scheme = parse_url( $uri, PHP_URL_SCHEME );
@@ -442,7 +442,7 @@ class RecentChange {
 		if ( defined( 'MW_PHPUNIT_TEST' ) && is_object( $wgRCEngines[$scheme] ) ) {
 			return $wgRCEngines[$scheme];
 		}
-		return new $wgRCEngines[$scheme];
+		return new $wgRCEngines[$scheme]( $params );
 	}
 
 	/**
