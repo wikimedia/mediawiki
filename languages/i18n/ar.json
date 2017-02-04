@@ -1537,7 +1537,7 @@
 	"uploaded-setting-handler-svg": "SVG الذي يضبط سمة \"handler\" مع خارجي/بيانات/سكريبت ممنوع. تم العثور على <code>$1=\"$2\"</code> في ملف SVG المرفوع.",
 	"uploaded-remote-url-svg": "SVG الذي يضبط أي سمة شكل مع URL خارجي ممنوع. تم العثور على <code>$1=\"$2\"</code> في ملف SVG المرفوع.",
 	"uploaded-image-filter-svg": "تم العثور على فلتر صورة مع URL: <code>&lt;$1 $2=\"$3\"&gt;</code> في ملف SVG المرفوع.",
-	"uploadscriptednamespace": "يحتوي ملف SVG هذا على اسم نطاق غير مشروع \" <nowiki>$1</nowiki> \"",
+	"uploadscriptednamespace": "يحتوي ملف SVG هذا على اسم نطاق غير مشروع \"<nowiki>$1</nowiki>\"",
 	"uploadinvalidxml": "تعذر تحليل XML في الملف المرفوع.",
 	"uploadvirus": "الملف يحتوي على فيروس! التفاصيل: $1",
 	"uploadjava": "يحتوي ملف ZIP هذا على ملفات جافا .class.\nلا يسمح برفع ملفات جافا لأنها تتيح تخطي القيود الأمنية.",

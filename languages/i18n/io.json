@@ -349,6 +349,7 @@
 	"title-invalid-characters": "La demandita pagino-titulo kontenas ne-valida literi: \"$1\".",
 	"perfcached": "La sequanta datumi esas kashizita* e li povus ne aktualigesar nuntempe. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
 	"viewsource": "Vidar font-kodo",
+	"actionthrottled": "Agado limitizita",
 	"protectedpagetext": "Ta pagino protektesis por preventar redaktadi od altra agi.",
 	"viewsourcetext": "Vu povas vidar ed kopiar la fonto-kodexo di ta pagino.",
 	"viewyourtext": "Vu darfas vidar e kopiar la fonto di <strong>vua redakti</strong> ad ita pagino.",

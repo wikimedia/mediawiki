@@ -3736,7 +3736,7 @@
 	"mediastatistics-summary": "Statistiken über hochgeladene Dateitypen. Dies beinhaltet nur die aktuellste Version einer Datei. Alte oder gelöschte Dateiversionen sind ausgeschlossen.",
 	"mediastatistics-nfiles": "$1 ($2 %)",
 	"mediastatistics-nbytes": "{{PLURAL:$1|Ein Byte|$1 Bytes}} ($2; $3 %)",
-	"mediastatistics-bytespertype": "Gesamte Dateigröße für diesen Abschnitt: {{PLURAL:$1|Ein Byte|$1 Bytes}} ($2; $3%).",
+	"mediastatistics-bytespertype": "Gesamte Dateigröße für diesen Abschnitt: {{PLURAL:$1|Ein Byte|$1 Bytes}} ($2; $3 %).",
 	"mediastatistics-allbytes": "Gesamte Dateigröße für alle Dateien: {{PLURAL:$1|Ein Byte|$1 Bytes}} ($2).",
 	"mediastatistics-table-mimetype": "MIME-Typ",
 	"mediastatistics-table-extensions": "Mögliche Erweiterungen",
