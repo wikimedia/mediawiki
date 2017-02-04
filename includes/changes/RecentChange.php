@@ -764,6 +764,7 @@ class RecentChange {
 				$pageStatus = 'restored';
 				break;
 			case 'upload-upload':
+                        case 'newredirect-new_redir'
 				$pageStatus = 'created';
 				break;
 			case 'upload-overwrite':
