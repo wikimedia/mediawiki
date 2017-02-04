@@ -402,7 +402,7 @@ class ContribsPager extends ReverseChronologicalPager {
 				$difftext = $linkRenderer->makeKnownLink(
 					$page,
 					new HtmlArmor( $this->messages['diff'] ),
-					[],
+					[ 'class' => 'mw-changeslist-diff' ],
 					[
 						'diff' => 'prev',
 						'oldid' => $row->rev_id
@@ -414,7 +414,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			$histlink = $linkRenderer->makeKnownLink(
 				$page,
 				new HtmlArmor( $this->messages['hist'] ),
-				[],
+				[ 'class' => 'mw-changeslist-history' ],
 				[ 'action' => 'history' ]
 			);
 
