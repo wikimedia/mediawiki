@@ -601,6 +601,23 @@ class MovePage {
 				$redirectArticle->doEditUpdates( $redirectRevision, $user, [ 'created' => true ] );
 
 				ChangeTags::addTags( $changeTags, null, $redirectRevId, null );
+                                $logTitle = clone $this->oldTitle;
+			// Build comment for log
+			$comment = wfMessage(
+				'newredir_1movedto2',
+				$this->oldTitle->getPrefixedText(),
+				$this->newTitle->getPrefixedText()
+			)->inContentLanguage()->text();
+
+                                # Log in redirect creation log
+				$creationlogEntry = new ManualLogEntry( 'newredirect', 'new_redir' );
+				$creationlogEntry->setPerformer( $user );
+				$creationlogEntry->setTarget( $logTitle );
+				$creationlogEntry->setComment( $comment );
+				$creationlogEntry->setAssociatedRevId( $redirectRevId );
+				$creationlogEntry->setIsPatrollable (true)
+				$creationlogid = $creationlogEntry->insert();
+				$creationlogEntry->publish( $creationlogid );
 			}
 		}
 

@@ -7603,6 +7603,7 @@ $wgLogActionsHandlers = [
 	'merge/merge' => 'MergeLogFormatter',
 	'move/move' => 'MoveLogFormatter',
 	'move/move_redir' => 'MoveLogFormatter',
+	'newredirect/new_redir' => 'NewRedirectLogFormatter',
 	'patrol/patrol' => 'PatrolLogFormatter',
 	'patrol/autopatrol' => 'PatrolLogFormatter',
 	'protect/modify' => 'ProtectLogFormatter',
