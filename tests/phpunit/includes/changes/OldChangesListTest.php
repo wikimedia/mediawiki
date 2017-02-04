@@ -94,7 +94,7 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 		);
 
 		$this->assertRegExp(
-			'/title=Cat&amp;curid=20131103212153&amp;action=history"/',
+			'/title=Cat&amp;curid=20131103212153&amp;action=history&amp;class=mw-changeslist-history"/',
 			$line,
 			'assert history link'
 		);
