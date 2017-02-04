@@ -2549,6 +2549,29 @@ class Title implements LinkTarget {
 	 *   protection, or false if there's none.
 	 */
 	public function getTitleProtection() {
+		$protection = $this->getTitleProtectionInternal();
+		if ( $protection ) {
+			if ( $protection['permission'] == 'sysop' ) {
+				$protection['permission'] = 'editprotected'; // B/C
+			}
+			if ( $protection['permission'] == 'autoconfirmed' ) {
+				$protection['permission'] = 'editsemiprotected'; // B/C
+			}
+		}
+		return $protection;
+	}
+
+	/**
+	 * Fetch title protection settings
+	 *
+	 * To work correctly, $this->loadRestrictions() needs to have access to the
+	 * actual protections in the database without munging 'sysop' =>
+	 * 'editprotected' and 'autoconfirmed' => 'editsemiprotected'. Other
+	 * callers probably want $this->getTitleProtection() instead.
+	 *
+	 * @return array|bool
+	 */
+	protected function getTitleProtectionInternal() {
 		// Can't protect pages in special namespaces
 		if ( $this->getNamespace() < 0 ) {
 			return false;
@@ -2576,12 +2599,6 @@ class Title implements LinkTarget {
 			// fetchRow returns false if there are no rows.
 			$row = $dbr->fetchRow( $res );
 			if ( $row ) {
-				if ( $row['permission'] == 'sysop' ) {
-					$row['permission'] = 'editprotected'; // B/C
-				}
-				if ( $row['permission'] == 'autoconfirmed' ) {
-					$row['permission'] = 'editsemiprotected'; // B/C
-				}
 				$row['expiry'] = $dbr->decodeExpiry( $row['expiry'] );
 			}
 			$this->mTitleProtection = $row;
@@ -2979,7 +2996,7 @@ class Title implements LinkTarget {
 
 			$this->loadRestrictionsFromRows( $rows, $oldFashionedRestrictions );
 		} else {
-			$title_protection = $this->getTitleProtection();
+			$title_protection = $this->getTitleProtectionInternal();
 
 			if ( $title_protection ) {
 				$now = wfTimestampNow();
