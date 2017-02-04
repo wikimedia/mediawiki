@@ -185,7 +185,8 @@
 			"Chaduvari",
 			"MarcoAurelio",
 			"Joao Xavier",
-			"Winstonyin"
+            "Winstonyin",
+            "GeoffreyT2000"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -2441,7 +2442,10 @@
 	"logentry-contentmodel-new": "{{Logentry}}\n$4 is not used.\n$5 is the new content model.",
 	"logentry-contentmodel-change": "{{Logentry}}\n$4 is the original content model.\n$5 is the new content model.",
 	"logentry-contentmodel-change-revertlink": "Text on a link that reverts the content model change. {{identical|revertmove}}.",
-	"logentry-contentmodel-change-revert": "Prefilled edit summary when reverting a content model change. {{identical|revertmove}}",
+    "logentry-contentmodel-change-revert": "Prefilled edit summary when reverting a content model change. {{identical|revertmove}}",
+    "newredirectlogpage": "{{doc-logpage}}\n\nTitle of [[Special:Log/newredirect]].",
+    "newredirectlogtext": "Text in [[Special:Log/newredirect]].",
+    "newredir_1movedto2": "Parameters:\n* $1 - source page title \n* $2 - target page title",
 	"protectlogpage": "{{doc-logpage}}\n\nTitle of [[Special:Log/protect]].",
 	"protectlogtext": "Text in [[Special:Log/protect]].",
 	"protectedarticle": "This is a ''logentry'' message only used on IRC.\nText describing an action. $1 is a page title.",
@@ -4115,7 +4119,8 @@
 	"logentry-move-move_redir-noredirect": "{{Logentry|[[Special:Log/move]]}}\nParameter $4, the target page, is also not visible to parser functions.",
 	"logentry-patrol-patrol": "{{Logentry|[[Special:Log/patrol]]}}\n* $4 - a formatted revision number, maybe linked to the diff.\n\nSee also:\n* {{msg-mw|logentry-patrol-patrol-auto}}",
 	"logentry-patrol-patrol-auto": "{{Logentry|[[Special:Log/patrol]]}}\n* $4 - a formatted revision number, maybe linked to the diff.\n\"Automatically\" refers to users with autopatrol right who mark revisions automatically patrolled when editing.\n\nSee also:\n* {{msg-mw|logentry-patrol-patrol}}",
-	"logentry-newusers-newusers": "The user (previously unregistered) has registered on the wiki, creating an account for self.\n----\n{{Logentry|[[Special:Log/newusers]]}}",
+	"logentry-newredirect-new_redir":  "{{Logentry|[[Special:Log/newredirect]]}}",
+    "logentry-newusers-newusers": "The user (previously unregistered) has registered on the wiki, creating an account for self.\n----\n{{Logentry|[[Special:Log/newusers]]}}",
 	"logentry-newusers-create": "{{Logentry|[[Special:Log/newusers]]}}\n\n$4 is the gender of the target user.",
 	"logentry-newusers-create2": "{{Logentry|[[Special:Log/newusers]]}}\n\n$4 is the name of the user that was created.",
 	"logentry-newusers-byemail": "{{Logentry|[[Special:Log/newusers]]}}\n\n$4 is the name of the user that was created.",
