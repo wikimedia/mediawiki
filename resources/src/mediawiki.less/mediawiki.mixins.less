@@ -94,6 +94,13 @@
 	display: @display;
 }
 
+.flex-wrap( @wrap: wrap ) {
+	-webkit-flex-wrap: @wrap; // iOS 6-, Safari 3.1-6
+	-moz-flex-wrap: @wrap; // Firefox 21-
+	-ms-flex-wrap: @wrap; // IE 10
+	flex-wrap: @wrap;
+}
+
 .flex( @grow: 1, @shrink: 1, @width: auto, @order: 1 ) {
 	// For 2009/2012 spec alignment consistency with current default
 	-webkit-box-pack: justify; // iOS 6-, Safari 3.1-6
