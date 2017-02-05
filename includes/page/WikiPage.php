@@ -1705,27 +1705,27 @@ class WikiPage implements Page, IDBAccessObject {
 			throw new MWException( "Could not find text for current revision {$oldid}." );
 		}
 
-		// @TODO: pass content object?!
-		$revision = new Revision( [
-			'page'       => $this->getId(),
-			'title'      => $this->mTitle, // for determining the default content model
-			'comment'    => $summary,
-			'minor_edit' => $meta['minor'],
-			'text'       => $meta['serialized'],
-			'len'        => $newsize,
-			'parent_id'  => $oldid,
-			'user'       => $user->getId(),
-			'user_text'  => $user->getName(),
-			'timestamp'  => $now,
-			'content_model' => $content->getModel(),
-			'content_format' => $meta['serialFormat'],
-		] );
-
 		$changed = !$content->equals( $oldContent );
 
 		$dbw = wfGetDB( DB_MASTER );
 
 		if ( $changed ) {
+			// @TODO: pass content object?!
+			$revision = new Revision( [
+				'page'       => $this->getId(),
+				'title'      => $this->mTitle, // for determining the default content model
+				'comment'    => $summary,
+				'minor_edit' => $meta['minor'],
+				'text'       => $meta['serialized'],
+				'len'        => $newsize,
+				'parent_id'  => $oldid,
+				'user'       => $user->getId(),
+				'user_text'  => $user->getName(),
+				'timestamp'  => $now,
+				'content_model' => $content->getModel(),
+				'content_format' => $meta['serialFormat'],
+			] );
+
 			$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
 			$status->merge( $prepStatus );
 			if ( !$status->isOK() ) {
@@ -1791,11 +1791,9 @@ class WikiPage implements Page, IDBAccessObject {
 		} else {
 			// T34948: revision ID must be set to page {{REVISIONID}} and
 			// related variables correctly. Likewise for {{REVISIONUSER}} (T135261).
-			$revision->setId( $this->getLatest() );
-			$revision->setUserIdAndName(
-				$this->getUser( Revision::RAW ),
-				$this->getUserText( Revision::RAW )
-			);
+			// Since we don't insert a new revision into the database, the least
+			// error-prone way is to reuse given old revision.
+			$revision = $meta['oldRevision'];
 		}
 
 		if ( $changed ) {
