@@ -204,7 +204,7 @@
 	"apihelp-feedwatchlist-description": "Renvoie un flux de liste de suivi.",
 	"apihelp-feedwatchlist-param-feedformat": "Le format du flux.",
 	"apihelp-feedwatchlist-param-hours": "Lister les pages modifiées lors de ce nombre d’heures depuis maintenant.",
-	"apihelp-feedwatchlist-param-linktosections": "Lier directement pour modifier les sections si possible.",
+	"apihelp-feedwatchlist-param-linktosections": "Lier directement vers les sections modifées si possible.",
 	"apihelp-feedwatchlist-example-default": "Afficher le flux de la liste de suivi",
 	"apihelp-feedwatchlist-example-all6hrs": "Afficher toutes les modifications sur les pages suivies dans les dernières 6 heures",
 	"apihelp-filerevert-description": "Rétablir un fichier dans une ancienne version.",

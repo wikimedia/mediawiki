@@ -1162,6 +1162,7 @@
 	"userrights-nodatabase": "資料庫 $1 不存在或不在本地主機的。",
 	"userrights-changeable-col": "您可變更的群組",
 	"userrights-unchangeable-col": "您不可變更的群組",
+	"userrights-expiry-othertime": "其他時間：",
 	"userrights-conflict": "使用者權限變更發生衝突！請檢閱並確認你的變更。",
 	"group": "群組：",
 	"group-user": "使用者",

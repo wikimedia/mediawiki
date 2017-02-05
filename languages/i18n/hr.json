@@ -3299,6 +3299,8 @@
 	"log-action-filter-rights-autopromote": "automatska promjena",
 	"log-action-filter-upload-upload": "novo postavljanje",
 	"log-action-filter-upload-overwrite": "ponovno postavljanje",
+	"authmanager-authn-autocreate-failed": "Automatsko stvaranje lokalnoga računa nije uspjelo: $1",
+	"authmanager-autocreate-noperm": "Automatsko stvaranje računa nije dopušteno.",
 	"authmanager-provider-password": "Autorizacija zaporkom",
 	"authmanager-provider-temporarypassword": "Privremena zaporka",
 	"changecredentials": "Promjena vjerodajnica",
