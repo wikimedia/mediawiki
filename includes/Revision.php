@@ -901,6 +901,7 @@ class Revision implements IDBAccessObject {
 	 * This should only be used for proposed revisions that turn out to be null edits
 	 *
 	 * @since 1.28
+	 * @deprecated since 1.31, please reuse old Revision object
 	 * @param int $id User ID
 	 * @param string $name User name
 	 */
