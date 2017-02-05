@@ -757,21 +757,6 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * Set the user ID/name
-	 *
-	 * This should only be used for proposed revisions that turn out to be null edits
-	 *
-	 * @since 1.28
-	 * @param int $id User ID
-	 * @param string $name User name
-	 */
-	public function setUserIdAndName( $id, $name ) {
-		$this->mUser = (int)$id;
-		$this->mUserText = $name;
-		$this->mOrigUserText = $name;
-	}
-
-	/**
 	 * Get text row ID
 	 *
 	 * @return int|null
