@@ -219,7 +219,9 @@
 				// Commaying is more complex, so we handle it here separately.
 				// When unformatting, we just use separatorTransformTable.
 				pattern = mw.language.getData( mw.config.get( 'wgUserLanguage' ),
-					'digitGroupingPattern' ) || '#,##0.###';
+					'digitGroupingPattern' ) || '#,##0';
+				// Add decimal section to pattern
+				pattern += '.###';
 				numberString = mw.language.commafy( num, pattern );
 			}
 
