@@ -59,6 +59,7 @@
 			}
 
 			params = {
+				formatversion: 2,
 				action: 'stashedit',
 				title: mw.config.get( 'wgPageName' ),
 				section: section,
