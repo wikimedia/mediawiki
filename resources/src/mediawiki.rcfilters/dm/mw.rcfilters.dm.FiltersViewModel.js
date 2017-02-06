@@ -46,16 +46,11 @@
 	/**
 	 * Re-assess the states of filter items based on the interactions between them
 	 *
-	 * NOTE: The group-level state for 'fullCoverage' is reassessed at the group
-	 * level. This, however, requires knowledge of all filters regardless of grouping
-	 * (because conflicts and/or subsets may arise between groups) and so this is
-	 * done in the general view model.
-	 * This method should not worry about the group-level coverage case.
-	 *
 	 * @param {mw.rcfilters.dm.FilterItem} item Changed item
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.reassessFilterInteractions = function ( item ) {
 		var model = this,
+			groupModel = this.getGroup( item.getGroup() ),
 			/**
 			 * Check the inclusion state (subset) of the items, specifically whether
 			 * itemInSubset exists in the itemAffecting's subset list.
@@ -100,6 +95,13 @@
 			// 2. Check if filterItem is a subset of item (hence, filterItem.toggleIncluded( ... ))
 			changeIncludedIfNeeded( filterItem, item );
 		} );
+
+		// Update coverage for the group
+		if ( groupModel.isFullCoverage() ) {
+			groupModel.getItems().forEach( function ( filterItem ) {
+				filterItem.toggleFullyCovered( groupModel.areAllSelected() );
+			} );
+		}
 	};
 
 	/**
@@ -135,7 +137,8 @@
 				model.groups[ group ] = new mw.rcfilters.dm.FilterGroup( group, {
 					type: data.type,
 					title: data.title,
-					separator: data.separator
+					separator: data.separator,
+					fullCoverage: !!data.fullCoverage
 				} );
 			}
 
