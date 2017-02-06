@@ -1,6 +1,7 @@
 <?php
 
 use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Helper class to handle automatically marking connections as reusable (via RAII pattern)
