@@ -28,7 +28,6 @@ use Wikimedia\ScopedCallback;
 use BagOStuff;
 use EmptyBagOStuff;
 use WANObjectCache;
-use DatabaseDomain;
 use Exception;
 use RuntimeException;
 use ILoadBalancer;
