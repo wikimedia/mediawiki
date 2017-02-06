@@ -56,6 +56,7 @@
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.reassessFilterInteractions = function ( item ) {
 		var model = this,
+			groupModel = this.getGroup( item.getGroup() ),
 			/**
 			 * Check the inclusion state (subset) of the items, specifically whether
 			 * itemInSubset exists in the itemAffecting's subset list.
@@ -100,6 +101,13 @@
 			// 2. Check if filterItem is a subset of item (hence, filterItem.toggleIncluded( ... ))
 			changeIncludedIfNeeded( filterItem, item );
 		} );
+
+		// Update coverage for the group
+		if ( groupModel.isFullCoverage() ) {
+			groupModel.getItems().forEach( function ( filterItem ) {
+				filterItem.toggleFullyCovered( groupModel.areAllSelected() );
+			} );
+		}
 	};
 
 	/**
@@ -135,7 +143,8 @@
 				model.groups[ group ] = new mw.rcfilters.dm.FilterGroup( group, {
 					type: data.type,
 					title: data.title,
-					separator: data.separator
+					separator: data.separator,
+					fullCoverage: !!data.fullCoverage
 				} );
 			}
 

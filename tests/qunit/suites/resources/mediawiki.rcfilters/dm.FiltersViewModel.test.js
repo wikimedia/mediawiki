@@ -928,4 +928,127 @@
 			'Removing all supersets also un-includes the subsets.'
 		);
 	} );
+
+	QUnit.test( 'Filter interaction: full coverage', function ( assert ) {
+		var definition = {
+				group1: {
+					title: 'Group 1',
+					type: 'string_options',
+					fullCoverage: false,
+					filters: [
+						{ name: 'filter1' },
+						{ name: 'filter2' },
+						{ name: 'filter3' },
+					]
+				},
+				group2: {
+					title: 'Group 2',
+					type: 'send_unselected_if_any',
+					fullCoverage: true,
+					filters: [
+						{ name: 'filter4' },
+						{ name: 'filter5' },
+						{ name: 'filter6' },
+					]
+				}
+			},
+			isCapsuleItemMuted = function ( filterName ) {
+				var itemModel = model.getItemByName( filterName ),
+					groupModel = model.getGroup( itemModel.getGroup() );
+
+				// This is the logic inside the capsule widget
+				return (
+					// The capsule item widget only appears if the item is selected
+					itemModel.isSelected() &&
+					// Muted state is only valid if group is full coverage and all items are selected
+					groupModel.isFullCoverage() && groupModel.areAllSelected()
+				);
+			},
+			getCurrentItemsMutedState = function () {
+				return {
+					filter1: isCapsuleItemMuted( 'filter1' ),
+					filter2: isCapsuleItemMuted( 'filter2' ),
+					filter3: isCapsuleItemMuted( 'filter3' ),
+					filter4: isCapsuleItemMuted( 'filter4' ),
+					filter5: isCapsuleItemMuted( 'filter5' ),
+					filter6: isCapsuleItemMuted( 'filter6' )
+				};
+			},
+			baseMuteState = {
+				filter1: false,
+				filter2: false,
+				filter3: false,
+				filter4: false,
+				filter5: false,
+				filter6: false
+			},
+			model = new mw.rcfilters.dm.FiltersViewModel();
+
+		model.initializeFilters( definition );
+
+		// Starting state, no selection, all items are non-muted
+		assert.deepEqual(
+			getCurrentItemsMutedState(),
+			baseMuteState,
+			'No selection - all items are non-muted'
+		);
+
+		// Select most (but not all) items in each group
+		model.updateFilters( {
+			filter1: true,
+			filter2: true,
+			filter4: true,
+			filter5: true
+		} );
+
+		// Both groups have multiple (but not all) items selected, all items are non-muted
+		assert.deepEqual(
+			getCurrentItemsMutedState(),
+			baseMuteState,
+			'Not all items in the group selected - all items are non-muted'
+		);
+
+		// Select all items in 'fullCoverage' group (group2)
+		model.updateFilters( {
+			filter6: true
+		} );
+
+		// Group2 (full coverage) has all items selected, all its items are muted
+		assert.deepEqual(
+			getCurrentItemsMutedState(),
+			$.extend( {}, baseMuteState, {
+				filter4: true,
+				filter5: true,
+				filter6: true
+			} ),
+			'All items in \'full coverage\' group are selected - all items in the group are muted'
+		);
+
+		// Select all items in non 'fullCoverage' group (group1)
+		model.updateFilters( {
+			filter3: true
+		} );
+
+		// Group1 (full coverage) has all items selected, no items in it are muted (non full coverage)
+		assert.deepEqual(
+			getCurrentItemsMutedState(),
+			$.extend( {}, baseMuteState, {
+				filter4: true,
+				filter5: true,
+				filter6: true
+			} ),
+			'All items in a non \'full coverage\' group are selected - none of the items in the group are muted'
+		);
+
+		// Uncheck an item from each group
+		model.updateFilters( {
+			filter3: false,
+			filter5: false
+		} );
+		assert.deepEqual(
+			getCurrentItemsMutedState(),
+			baseMuteState,
+			'Not all items in the group are checked - all items are non-muted regardless of group coverage'
+		);
+	} );
 }( mediaWiki, jQuery ) );
