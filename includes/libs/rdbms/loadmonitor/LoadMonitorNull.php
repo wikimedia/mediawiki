@@ -22,7 +22,6 @@
 namespace Wikimedia\Rdbms;
 
 use Psr\Log\LoggerInterface;
-use ILoadBalancer;
 use BagOStuff;
 
 class LoadMonitorNull implements ILoadMonitor {

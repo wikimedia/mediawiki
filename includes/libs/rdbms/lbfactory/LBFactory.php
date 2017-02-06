@@ -31,7 +31,6 @@ use WANObjectCache;
 use DatabaseDomain;
 use Exception;
 use RuntimeException;
-use ILoadBalancer;
 use IDatabase;
 use LoadBalancer;
 use DBTransactionError;

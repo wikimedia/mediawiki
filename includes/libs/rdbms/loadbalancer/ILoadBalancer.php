@@ -21,6 +21,19 @@
  * @ingroup Database
  * @author Aaron Schulz
  */
+namespace Wikimedia\Rdbms;
+
+use IDatabase;
+use Database;
+use DBConnRef;
+use MaintainableDBConnRef;
+use DBError;
+use DBAccessError;
+use DBMasterPos;
+use DBTransactionError;
+use DBExpectedError;
+use Exception;
+use InvalidArgumentException;
 
 /**
  * Database cluster connection, tracking, load balancing, and transaction manager interface
@@ -447,7 +460,7 @@ interface ILoadBalancer {
 	/**
 	 * @note This method may trigger a DB connection if not yet done
 	 * @param string|bool $domain Domain ID, or false for the current domain
-	 * @param IDatabase|null DB master connection; used to avoid loops [optional]
+	 * @param IDatabase|null $conn DB master connection; used to avoid loops [optional]
 	 * @return string|bool Reason the master is read-only or false if it is not
 	 */
 	public function getReadOnlyReason( $domain = false, IDatabase $conn = null );
