@@ -4347,5 +4347,6 @@
 	"linkaccounts-submit": "Text of the main submit button on [[Special:LinkAccounts]] (when there is one)",
 	"unlinkaccounts": "Title of the special page [[Special:UnlinkAccounts]] which allows the user to remove linked remote accounts.",
 	"unlinkaccounts-success": "Account unlinking form success message",
-	"authenticationdatachange-ignored": "Shown when authentication data change was unsuccessful due to configuration problems."
+	"authenticationdatachange-ignored": "Shown when authentication data change was unsuccessful due to configuration problems.",
+	"rawhtml-notallowed": "Error message given when $wgRawHtml = true; is set and a user uses an &lt;html&gt; tag in a system message or somewhere other than a normal page."
 }

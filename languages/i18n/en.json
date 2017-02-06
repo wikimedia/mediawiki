@@ -4169,5 +4169,6 @@
 	"linkaccounts-submit": "Link accounts",
 	"unlinkaccounts": "Unlink accounts",
 	"unlinkaccounts-success": "The account was unlinked.",
-	"authenticationdatachange-ignored": "The authentication data change was not handled. Maybe no provider was configured?"
+	"authenticationdatachange-ignored": "The authentication data change was not handled. Maybe no provider was configured?",
+	"rawhtml-notallowed": "&lt;html&gt; tags cannot be used outside of normal pages."
 }
