@@ -48,7 +48,7 @@ abstract class RCFeed {
 			if ( !isset( $params['uri'] ) ) {
 				throw new Exception( "RCFeeds must have a 'class' or 'uri' set." );
 			}
-			return RecentChange::getEngine( $params['uri'] );
+			return RecentChange::getEngine( $params['uri'], $params );
 		}
 		$class = $params['class'];
 		if ( !class_exists( $class ) ) {
