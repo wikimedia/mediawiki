@@ -81,7 +81,8 @@
 	 * @param {string} [options.method='splitAndHighlight'] Method of matching to use, one of:
 	 *   - 'splitAndHighlight': Split `matchString` on spaces, then match each word separately.
 	 *   - 'prefixHighlight': Match `matchString` at the beginning of text only.
-	 * @return {[type]} [description]
+	 * @return {jQuery}
+	 * @chainable
 	 */
 	$.fn.highlightText = function ( matchString, options ) {
 		options = options || {};
