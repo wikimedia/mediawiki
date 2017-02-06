@@ -6,7 +6,6 @@
 	 *
 	 * @constructor
 	 * @param {string} name Filter name
-	 * @param {mw.rcfilters.dm.FilterGroup} groupModel Reference to the item's group model
 	 * @param {Object} config Configuration object
 	 * @cfg {string} [group] The group this item belongs to
 	 * @cfg {string} [label] The label for the filter
@@ -18,14 +17,13 @@
 	 * @cfg {string[]} [subset] Defining the names of filters that are a subset of this filter
 	 * @cfg {string[]} [conflictsWith] Defining the names of filters that conflic with this item
 	 */
-	mw.rcfilters.dm.FilterItem = function MwRcfiltersDmFilterItem( name, groupModel, config ) {
+	mw.rcfilters.dm.FilterItem = function MwRcfiltersDmFilterItem( name, config ) {
 		config = config || {};
 
 		// Mixin constructor
 		OO.EventEmitter.call( this );
 
 		this.name = name;
-		this.groupModel = groupModel;
 		this.group = config.group || '';
 		this.label = config.label || this.name;
 		this.description = config.description;
@@ -39,7 +37,7 @@
 		// Interaction states
 		this.included = false;
 		this.conflicted = false;
-
+		this.fullycovered = false;
 	};
 
 	/* Initialization */
@@ -148,6 +146,15 @@
 	};
 
 	/**
+	 * Check whether the filter is currently fully covered
+	 *
+	 * @return {boolean} Filter is in fully-covered state
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.isFullyCovered = function () {
+		return this.fullycovered;
+	};
+
+	/**
 	 * Get filter conflicts
 	 *
 	 * @return {string[]} Filter conflicts
@@ -246,6 +253,21 @@
 
 		if ( this.selected !== isSelected ) {
 			this.selected = isSelected;
+			this.emit( 'update' );
+		}
+	};
+
+	/**
+	 * Toggle the fully covered state of the item
+	 *
+	 * @param {boolean} [isFullyCovered] Filter is fully covered
+	 * @fires update
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.toggleFullyCovered = function ( isFullyCovered ) {
+		isFullyCovered = isFullyCovered === undefined ? !this.fullycovered : isFullyCovered;
+
+		if ( this.fullycovered !== isFullyCovered ) {
+			this.fullycovered = isFullyCovered;
 			this.emit( 'update' );
 		}
 	};

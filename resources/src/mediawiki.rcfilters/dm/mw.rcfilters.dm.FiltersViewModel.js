@@ -56,6 +56,7 @@
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.reassessFilterInteractions = function ( item ) {
 		var model = this,
+			groupModel = this.getGroup( item.getGroup() ),
 			changeIncludedIfNeeded = function( itemAffecting, itemInSubset ) {
 				if (
 					itemAffecting.getName() !== itemInSubset.getName() &&
@@ -88,6 +89,13 @@
 			// 2. Check if filterItem is a subset of item (hence, filterItem.toggleIncluded( ... ))
 			changeIncludedIfNeeded( filterItem, item );
 		} );
+
+		// Update coverage for the group
+		if ( groupModel.isFullCoverage() ) {
+			groupModel.getItems().forEach( function ( filterItem ) {
+				filterItem.toggleFullyCovered( groupModel.areAllSelected() );
+			} );
+		}
 	};
 
 	/**
@@ -123,13 +131,14 @@
 				model.groups[ group ] = new mw.rcfilters.dm.FilterGroup( group, {
 					type: data.type,
 					title: data.title,
-					separator: data.separator
+					separator: data.separator,
+					fullCoverage: !!data.fullCoverage
 				} );
 			}
 
 			selectedFilterNames = [];
 			for ( i = 0; i < data.filters.length; i++ ) {
-				filterItem = new mw.rcfilters.dm.FilterItem( data.filters[ i ].name, model.groups[ group ], {
+				filterItem = new mw.rcfilters.dm.FilterItem( data.filters[ i ].name, {
 					group: group,
 					label: data.filters[ i ].label,
 					description: data.filters[ i ].description,
