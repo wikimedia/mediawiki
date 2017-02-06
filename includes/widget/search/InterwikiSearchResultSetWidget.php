@@ -109,7 +109,7 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 			Html::rawElement(
 				'p',
 				[ 'class' => 'iw-headline' ],
-				$this->specialSearch->msg( 'search-interwiki-caption' )->parsed()
+				$this->specialSearch->msg( 'search-interwiki-caption' )->parse()
 			) .
 			Html::rawElement(
 				'ul', [ 'class' => 'iw-results', ], $iwResultListOutput
