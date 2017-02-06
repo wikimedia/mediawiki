@@ -1,4 +1,7 @@
 <?php
+
+use Wikimedia\Rdbms\DatabaseDomain;
+
 /**
  * Helper class to handle automatically marking connections as reusable (via RAII pattern)
  * as well handling deferring the actual network connection until the handle is used

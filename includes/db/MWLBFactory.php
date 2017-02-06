@@ -23,6 +23,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
  * MediaWiki-specific class for generating database load balancers
