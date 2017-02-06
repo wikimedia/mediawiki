@@ -31,6 +31,8 @@ production.
 * A temporary feature flag, $wgDisableUserGroupExpiry, is provided to disable
   new features that rely on the schema changes to the user_groups table. This
   feature flag will likely be removed before 1.29 is released.
+* (T151408) Bot rights no longer apply to NS_MEDIAWIKI or other user's personal
+  css/js. This behaviour is controlled by $wgRestrictBotEditsToScripts.
 
 === New features in 1.29 ===
 * (T5233) A cookie can now be set when a user is autoblocked, to track that user

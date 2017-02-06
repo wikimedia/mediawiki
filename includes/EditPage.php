@@ -1474,12 +1474,54 @@ class EditPage {
 		global $wgUser;
 
 		# Allow bots to exempt some edits from bot flagging
-		$bot = $wgUser->isAllowed( 'bot' ) && $this->bot;
+		$bot = $this->shouldBeConsideredBotEdit( $wgUser );
 		$status = $this->internalAttemptSave( $resultDetails, $bot );
 
 		Hooks::run( 'EditPage::attemptSave:after', [ $this, $status, $resultDetails ] );
 
 		return $status;
+	}
+
+	/**
+	 * Is this edit a bot edit?
+	 *
+	 * @since 1.29
+	 * @param User $user The user in question
+	 * @return bool
+	 */
+	protected function shouldBeConsideredBotEdit( User $user ) {
+		global $wgRestrictBotEditsToScripts;
+
+		if ( !$user->isAllowed( 'bot' ) ) {
+			// User is not a bot
+			return false;
+		}
+
+		if ( !$this->bot ) {
+			// User added ?bot=0 to the url.
+			return false;
+		}
+
+		if ( !$wgRestrictBotEditsToScripts ) {
+			// bail out early
+			return true;
+		}
+
+		if ( !preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $this->mTitle->getText() ) &&
+			( $this->mTitle->isJsSubpage() || $this->mTitle->isCssSubpage() )
+		) {
+			// Do not allow bots to make hidden edits to other
+			// people's JS/CSS pages
+			return false;
+		}
+
+		if ( $this->mTitle->inNamespace( NS_MEDIAWIKI ) ) {
+			// Do not let bots make hidden edits to MediaWiki:
+			// pages (To avoid hidden edits to raw html messages
+			// or pages like MediaWiki:Common.js)
+			return false;
+		}
+		return true;
 	}
 
 	/**
