@@ -167,6 +167,10 @@ CREATE TABLE /*_*/user_groups (
   ug_expiry varbinary(14) NULL default NULL,
 
   PRIMARY KEY (ug_user, ug_group)
+
+  -- ,
+  -- CONSTRAINT `ug_user_fk` FOREIGN KEY (`ug_user`)
+  -- REFERENCES `user` (`user_id`)
 ) /*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/ug_group ON /*_*/user_groups (ug_group);
@@ -179,6 +183,10 @@ CREATE TABLE /*_*/user_former_groups (
   -- Key to user_id
   ufg_user int unsigned NOT NULL default 0,
   ufg_group varbinary(255) NOT NULL default ''
+
+  -- ,
+  -- CONSTRAINT `ufg_user_fk` FOREIGN KEY (`ufg_user`)
+  -- REFERENCES `user` (`user_id`)
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/ufg_user_group ON /*_*/user_former_groups (ufg_user,ufg_group);
@@ -196,6 +204,10 @@ CREATE TABLE /*_*/user_newtalk (
   -- The highest timestamp of revisions of the talk page viewed
   -- by this user
   user_last_timestamp varbinary(14) NULL default NULL
+
+  -- ,
+  -- CONSTRAINT `user_id_fk` FOREIGN KEY (`user_id`)
+  -- REFERENCES `user` (`user_id`)
 ) /*$wgDBTableOptions*/;
 
 -- Indexes renamed for SQLite in 1.14
@@ -221,6 +233,10 @@ CREATE TABLE /*_*/user_properties (
 
   -- Property value as a string.
   up_value blob
+
+  -- ,
+  -- CONSTRAINT `up_user_fk` FOREIGN KEY (`up_user`)
+  -- REFERENCES `user` (`user_id`)
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/user_properties_user_property ON /*_*/user_properties (up_user,up_property);
@@ -250,6 +266,10 @@ CREATE TABLE /*_*/bot_passwords (
   bp_grants blob NOT NULL,
 
   PRIMARY KEY ( bp_user, bp_app_id )
+
+  -- ,
+  -- CONSTRAINT `bp_user_fk` FOREIGN KEY (`bp_user`)
+  -- REFERENCES `user` (`user_id`)
 ) /*$wgDBTableOptions*/;
 
 --
@@ -309,6 +329,12 @@ CREATE TABLE /*_*/page (
 
   -- Page content language
   page_lang varbinary(35) DEFAULT NULL
+
+  -- ,
+  -- CONSTRAINT `pr_page_fk` FOREIGN KEY (`pr_page`)
+  -- REFERENCES `page` (`page_namespace`),
+  -- CONSTRAINT `pr_user_fk` FOREIGN KEY (`pr_user`)
+  -- REFERENCES `user` (`user_id`)
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/name_title ON /*_*/page (page_namespace,page_title);
@@ -372,6 +398,15 @@ CREATE TABLE /*_*/revision (
   -- content format, see CONTENT_FORMAT_XXX constants
   rev_content_format varbinary(64) DEFAULT NULL
 
+  -- ,
+  -- CONSTRAINT `rev_page_fk` FOREIGN KEY (`rev_page`)
+  -- REFERENCES `page` (`page_id`),
+  -- CONSTRAINT `rev_text_id_fk` FOREIGN KEY (`rev_text_id`)
+  -- REFERENCES `text` (`old_id`),
+  -- CONSTRAINT `rev_user_fk` FOREIGN KEY (`rev_user`)
+  -- REFERENCES `user` (`user_id`),
+  -- CONSTRAINT `rev_parent_id_fk` FOREIGN KEY (`rev_parent_id`)
+  -- REFERENCES `revision` (`rev_id`)
 ) /*$wgDBTableOptions*/ MAX_ROWS=10000000 AVG_ROW_LENGTH=1024;
 -- In case tables are created as MyISAM, use row hints for MySQL <5.0 to avoid 4GB limit
 
@@ -497,6 +532,12 @@ CREATE TABLE /*_*/archive (
 
   -- content format, see CONTENT_FORMAT_XXX constants
   ar_content_format varbinary(64) DEFAULT NULL
+
+  -- ,
+  -- CONSTRAINT `ar_page_id` FOREIGN KEY (`ar_page_id`)
+  -- REFERENCES `page` (`page_id`),
+  -- CONSTRAINT `ar_user` FOREIGN KEY (`ar_user`)
+  -- REFERENCES `user` (`user_id`)
 ) /*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/name_title_timestamp ON /*_*/archive (ar_namespace,ar_title,ar_timestamp);
@@ -519,6 +560,10 @@ CREATE TABLE /*_*/pagelinks (
   -- goes by.
   pl_namespace int NOT NULL default 0,
   pl_title varchar(255) binary NOT NULL default ''
+
+  -- ,
+  -- CONSTRAINT `pl_from_fk` FOREIGN KEY (`pl_from`)
+  -- REFERENCES `page` (`page_id`)
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/pl_from ON /*_*/pagelinks (pl_from,pl_namespace,pl_title);
@@ -541,6 +586,10 @@ CREATE TABLE /*_*/templatelinks (
   -- goes by.
   tl_namespace int NOT NULL default 0,
   tl_title varchar(255) binary NOT NULL default ''
+
+  -- ,
+  -- CONSTRAINT `tl_from_fk` FOREIGN KEY (`tl_from`)
+  -- REFERENCES `page` (`page_id`)
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/tl_from ON /*_*/templatelinks (tl_from,tl_namespace,tl_title);
@@ -563,6 +612,10 @@ CREATE TABLE /*_*/imagelinks (
   -- This is also the page_title of the file's description page;
   -- all such pages are in namespace 6 (NS_FILE).
   il_to varchar(255) binary NOT NULL default ''
+
+  --,
+  -- CONSTRAINT `il_from_fk` FOREIGN KEY (`il_from`)
+  -- REFERENCES `page` (`page_id`)
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/il_from ON /*_*/imagelinks (il_from,il_to);
@@ -613,6 +666,10 @@ CREATE TABLE /*_*/categorylinks (
   -- after the page is created, since none of these page types can be moved to
   -- any other.
   cl_type ENUM('page', 'subcat', 'file') NOT NULL default 'page'
+
+  -- ,
+  -- CONSTRAINT `cl_from_fk` FOREIGN KEY (`cl_from`)
+  -- REFERENCES `page` (`page_id`)
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/cl_from ON /*_*/categorylinks (cl_from,cl_to);
@@ -688,6 +745,10 @@ CREATE TABLE /*_*/externallinks (
   -- aren't supported by a partial index.
   -- @todo Drop the default once this is deployed everywhere and code is populating it.
   el_index_60 varbinary(60) NOT NULL default ''
+
+  -- ,
+  -- CONSTRAINT `el_from_fk` FOREIGN KEY (`el_from`)
+  -- REFERENCES `page` (`page_id`)
 ) /*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/el_from ON /*_*/externallinks (el_from, el_to(40));
@@ -708,6 +769,10 @@ CREATE TABLE /*_*/langlinks (
 
   -- Title of the target, including namespace
   ll_title varchar(255) binary NOT NULL default ''
+
+  -- ,
+  -- CONSTRAINT `ll_from_fk` FOREIGN KEY (`ll_from`)
+  -- REFERENCES `page` (`page_id`)
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/ll_from ON /*_*/langlinks (ll_from, ll_lang);
@@ -726,6 +791,10 @@ CREATE TABLE /*_*/iwlinks (
 
   -- Title of the target, including namespace
   iwl_title varchar(255) binary NOT NULL default ''
+
+  -- ,
+  -- CONSTRAINT `iwl_from_fk` FOREIGN KEY (`iwl_from`)
+  -- REFERENCES `page` (`page_id`)
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/iwl_from ON /*_*/iwlinks (iwl_from, iwl_prefix, iwl_title);
@@ -835,6 +904,13 @@ CREATE TABLE /*_*/ipblocks (
   -- deletes the autoblocks
   ipb_parent_block_id int default NULL
 
+  -- ,
+  -- CONSTRAINT `ipb_user_fk` FOREIGN KEY (`ipb_user`)
+  -- REFERENCES `user` (`user_id`),
+  -- CONSTRAINT `ipb_by_fk` FOREIGN KEY (`ipb_by`)
+  -- REFERENCES `user` (`user_id`),
+  -- CONSTRAINT `ipb_parent_block_id_fk` FOREIGN KEY (`ipb_parent_block_id`)
+  -- REFERENCES `ipblocks` (`ipb_id`)
 ) /*$wgDBTableOptions*/;
 
 -- Unique index to support "user already blocked" messages
@@ -897,6 +973,10 @@ CREATE TABLE /*_*/image (
 
   -- SHA-1 content hash in base-36
   img_sha1 varbinary(32) NOT NULL default ''
+
+  -- ,
+  -- CONSTRAINT `img_user_fk` FOREIGN KEY (`img_user`)
+  -- REFERENCES `user` (`user_id`)
 ) /*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/img_usertext_timestamp ON /*_*/image (img_user_text,img_timestamp);
@@ -939,6 +1019,10 @@ CREATE TABLE /*_*/oldimage (
   oi_minor_mime varbinary(100) NOT NULL default "unknown",
   oi_deleted tinyint unsigned NOT NULL default 0,
   oi_sha1 varbinary(32) NOT NULL default ''
+
+  -- ,
+  -- CONSTRAINT `oi_user_fk` FOREIGN KEY (`oi_user`)
+  -- REFERENCES `user` (`user_id`)
 ) /*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/oi_usertext_timestamp ON /*_*/oldimage (oi_user_text,oi_timestamp);
@@ -997,6 +1081,14 @@ CREATE TABLE /*_*/filearchive (
 
   -- sha1 hash of file content
   fa_sha1 varbinary(32) NOT NULL default ''
+
+  -- ,
+  -- CONSTRAINT `fa_name_fk` FOREIGN KEY (`fa_name`)
+  -- REFERENCES `image` (`img_name`),
+  -- CONSTRAINT `fa_deleted_user_fk` FOREIGN KEY (`fa_deleted_user`)
+  -- REFERENCES `user` (`user_id`),
+  -- CONSTRAINT `fa_user_fk` FOREIGN KEY (`fa_user`)
+  -- REFERENCES `user` (`user_id`),
 ) /*$wgDBTableOptions*/;
 
 -- pick out by image name
@@ -1057,6 +1149,9 @@ CREATE TABLE /*_*/uploadstash (
   us_image_height int unsigned,
   us_image_bits smallint unsigned
 
+  -- ,
+  -- CONSTRAINT `us_user_fk` FOREIGN KEY (`us_user`)
+  -- REFERENCES `user` (`user_id`)
 ) /*$wgDBTableOptions*/;
 
 -- sometimes there's a delete for all of a user's stuff.
@@ -1140,6 +1235,18 @@ CREATE TABLE /*_*/recentchanges (
   rc_log_action varbinary(255) NULL default NULL,
   -- Log params
   rc_params blob NULL
+
+  -- ,
+  -- CONSTRAINT `rc_user_fk` FOREIGN KEY (`rc_user`)
+  -- REFERENCES `user` (`user_id`),
+  -- CONSTRAINT `rc_cur_id_fk` FOREIGN KEY (`rc_cur_id`)
+  -- REFERENCES `page` (`page_id`)
+  -- CONSTRAINT `rc_this_oldid_fk` FOREIGN KEY (`rc_this_oldid`)
+  -- REFERENCES `revision` (`rev_id`),
+  -- CONSTRAINT `rc_last_oldid_fk` FOREIGN KEY (`rc_last_oldid`)
+  -- REFERENCES `revision` (`rev_id`),
+  -- CONSTRAINT `rc_log_id_fk` FOREIGN KEY (`rc_log_id`)
+  -- REFERENCES `logging` (`log_id`),
 ) /*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/rc_timestamp ON /*_*/recentchanges (rc_timestamp);
@@ -1168,6 +1275,9 @@ CREATE TABLE /*_*/watchlist (
   -- of the page, which means that they should be sent an e-mail on the next change.
   wl_notificationtimestamp varbinary(14)
 
+  -- ,
+  -- CONSTRAINT `wl_user_fk` FOREIGN KEY (`wl_user`)
+  -- REFERENCES `user` (`user_id`)
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/wl_user ON /*_*/watchlist (wl_user, wl_namespace, wl_title);
@@ -1192,6 +1302,10 @@ CREATE TABLE /*_*/searchindex (
 
   -- Munged version of body text
   si_text mediumtext NOT NULL
+
+  -- ,
+  -- CONSTRAINT `si_page_fk` FOREIGN KEY (`si_page`)
+  -- REFERENCES `page` (`page_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE UNIQUE INDEX /*i*/si_page ON /*_*/searchindex (si_page);
@@ -1303,6 +1417,12 @@ CREATE TABLE /*_*/logging (
 
   -- rev_deleted for logs
   log_deleted tinyint unsigned NOT NULL default 0
+
+  -- ,
+  -- CONSTRAINT `log_user_fk` FOREIGN KEY (`log_user`)
+  -- REFERENCES `user` (`user_id`)
+  -- CONSTRAINT `log_page_fk` FOREIGN KEY (`log_page`)
+  -- REFERENCES `page` (`page_id`)
 ) /*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/type_time ON /*_*/logging (log_type, log_timestamp);
@@ -1323,6 +1443,10 @@ CREATE TABLE /*_*/log_search (
   ls_value varchar(255) NOT NULL,
   -- Key to log_id
   ls_log_id int unsigned NOT NULL default 0
+
+  -- ,
+  -- CONSTRAINT `ls_log_id_fk` FOREIGN KEY (`ls_log_id`)
+  -- REFERENCES `logging` (`log_id`)
 ) /*$wgDBTableOptions*/;
 CREATE UNIQUE INDEX /*i*/ls_field_val ON /*_*/log_search (ls_field,ls_value,ls_log_id);
 CREATE INDEX /*i*/ls_log_id ON /*_*/log_search (ls_log_id);
@@ -1398,6 +1522,10 @@ CREATE TABLE /*_*/redirect (
   rd_title varchar(255) binary NOT NULL default '',
   rd_interwiki varchar(32) default NULL,
   rd_fragment varchar(255) binary default NULL
+
+  -- ,
+  -- CONSTRAINT `rd_from_fk` FOREIGN KEY (`rd_from`)
+  -- REFERENCES `page` (`page_id`)
 ) /*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/rd_ns_title ON /*_*/redirect (rd_namespace,rd_title,rd_from);
@@ -1458,6 +1586,10 @@ CREATE TABLE /*_*/protected_titles (
   pt_timestamp binary(14) NOT NULL,
   pt_expiry varbinary(14) NOT NULL default '',
   pt_create_perm varbinary(60) NOT NULL
+
+  -- ,
+  -- CONSTRAINT `pt_user_fk` FOREIGN KEY (`pt_user`)
+  -- REFERENCES `user` (`user_id`)
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/pt_namespace_title ON /*_*/protected_titles (pt_namespace,pt_title);
@@ -1470,6 +1602,10 @@ CREATE TABLE /*_*/page_props (
   pp_propname varbinary(60) NOT NULL,
   pp_value blob NOT NULL,
   pp_sortkey float DEFAULT NULL
+
+  -- ,
+  -- CONSTRAINT `pp_page_fk` FOREIGN KEY (`pp_page`)
+  -- REFERENCES `page` (`page_id`)
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/pp_page_propname ON /*_*/page_props (pp_page,pp_propname);
@@ -1496,6 +1632,14 @@ CREATE TABLE /*_*/change_tag (
   ct_tag varchar(255) NOT NULL,
   -- Parameters for the tag, presently unused
   ct_params blob NULL
+
+  -- ,
+  -- CONSTRAINT `ct_log_id_fk` FOREIGN KEY (`ct_log_id`)
+  -- REFERENCES `logging` (`log_id`),
+  -- CONSTRAINT `ct_rc_id_fk` FOREIGN KEY (`ct_rc_id`)
+  -- REFERENCES `recentchanges` (`rc_id`),
+  -- CONSTRAINT `ct_rev_id_fk` FOREIGN KEY (`ct_rev_id`)
+  -- REFERENCES `revision` (`rev_id`)
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/change_tag_rc_tag ON /*_*/change_tag (ct_rc_id,ct_tag);
@@ -1517,6 +1661,14 @@ CREATE TABLE /*_*/tag_summary (
   ts_rev_id int NULL,
   -- Comma-separated list of tags
   ts_tags blob NOT NULL
+
+  -- ,
+  -- CONSTRAINT `ts_rc_id_fk` FOREIGN KEY (`ts_rc_id`)
+  -- REFERENCES `recentchanges` (`rc_id`),
+  -- CONSTRAINT `ts_log_id_fk` FOREIGN KEY (`ts_log_id`)
+  -- REFERENCES `logging` (`log_id`),
+  -- CONSTRAINT `ts_rev_id_fk` FOREIGN KEY (`ts_rev_id`)
+  -- REFERENCES `revision` (`rev_id`)
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/tag_summary_rc_id ON /*_*/tag_summary (ts_rc_id);
@@ -1611,6 +1763,10 @@ CREATE TABLE /*_*/site_identifiers (
 
   -- local key value, ie 'en' or 'wiktionary'
   si_key                     varbinary(32)       NOT NULL
+
+  -- ,
+  -- CONSTRAINT `si_site_fk` FOREIGN KEY (`si_site`)
+  -- REFERENCES `sites` (`site_id`)
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/site_ids_type ON /*_*/site_identifiers (si_type, si_key);
