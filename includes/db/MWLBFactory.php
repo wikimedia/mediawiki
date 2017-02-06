@@ -171,6 +171,17 @@ abstract class MWLBFactory {
 			);
 		}
 
+		// For configuration backward compatibility after moving classes to namespaces (1.29)
+		$compat = [
+			'LBFactorySingle' => Wikimedia\Rdbms\LBFactorySingle::class,
+			'LBFactorySimple' => Wikimedia\Rdbms\LBFactorySimple::class,
+			'LBFactoryMulti' => Wikimedia\Rdbms\LBFactoryMulti::class
+		];
+
+		if ( isset( $compat[$class] ) ) {
+			$class = $compat[$class];
+		}
+
 		return $class;
 	}
 }
