@@ -77,7 +77,7 @@ class SimpleSearchResultSetWidget implements SearchResultSetWidget{
 		return
 			"<div id='mw-search-interwiki'>" .
 				"<div id='mw-search-interwiki-caption'>" .
-					$this->specialSearch->msg( 'search-interwiki-caption' )->escaped() .
+					$this->specialSearch->msg( 'search-interwiki-caption' )->parsed() .
 				'</div>' .
 				$out .
 			"</div>";
