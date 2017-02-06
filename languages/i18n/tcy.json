@@ -1218,5 +1218,6 @@
 	"logentry-newusers-create": "ಬಳಕೆದಾರೆರೆ ಕಾತೆ $1 ನ್ನು {{GENDER:$2|ಸ್ರಿಸ್ಟಿ ಮಲ್ತಾಂಡ್}}",
 	"logentry-upload-upload": "$1 {{GENDER:$2|ಅಪ್ಲೋಡ್ ಮಲ್ತ್‌ದೆರ್}} $3",
 	"searchsuggest-search": "{{SITENAME}}ನ್ ನಾಡ್‍ಲೆ",
-	"pagelang-reason": "ಕಾರಣೊ"
+	"pagelang-reason": "ಕಾರಣೊ",
+	"mw-widgets-usersmultiselect-placeholder": "ನನಾತ್ ಸೇರಲೇ..."
 }

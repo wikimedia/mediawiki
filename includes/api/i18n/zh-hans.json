@@ -377,7 +377,7 @@
 	"apihelp-protect-example-protect": "保护一个页面。",
 	"apihelp-protect-example-unprotect": "通过设置限制为<kbd>all</kbd>解除保护一个页面（就是说任何人都可以执行操作）。",
 	"apihelp-protect-example-unprotect2": "通过设置没有限制解除保护一个页面。",
-	"apihelp-purge-description": "为指定标题刷新缓存。\n\n如果用户尚未登录的话，就需要POST请求。",
+	"apihelp-purge-description": "为指定标题刷新缓存。",
 	"apihelp-purge-param-forcelinkupdate": "更新链接表。",
 	"apihelp-purge-param-forcerecursivelinkupdate": "更新链接表中，并更新任何使用此页作为模板的页面的链接表。",
 	"apihelp-purge-example-simple": "刷新<kbd>Main Page</kbd>和<kbd>API</kbd>页面。",

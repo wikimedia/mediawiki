@@ -382,7 +382,7 @@
 	"apihelp-protect-example-protect": "Proteger una página",
 	"apihelp-protect-example-unprotect": "Desproteger una página estableciendo la restricción a <kbd>all</kbd> («todos», es decir, cualquier usuario puede realizar la acción).",
 	"apihelp-protect-example-unprotect2": "Desproteger una página anulando las restricciones.",
-	"apihelp-purge-description": "Purgar la caché de los títulos proporcionados.\n\nSe requiere una solicitud POST si el usuario no ha iniciado sesión.",
+	"apihelp-purge-description": "Purgar la caché de los títulos proporcionados.",
 	"apihelp-purge-param-forcelinkupdate": "Actualizar las tablas de enlaces.",
 	"apihelp-purge-param-forcerecursivelinkupdate": "Actualizar la tabla de enlaces y todas las tablas de enlaces de cualquier página que use esta página como una plantilla.",
 	"apihelp-purge-example-simple": "Purgar la <kbd>Main Page</kbd> y la página <kbd>API</kbd>.",

@@ -339,7 +339,7 @@
 	"apihelp-protect-example-protect": "Schützt eine Seite",
 	"apihelp-protect-example-unprotect": "Entsperrt eine Seite, indem die Einschränkungen durch den Schutz auf <kbd>all</kbd> gestellt werden (z.&nbsp;B. darf jeder die Aktion ausführen).",
 	"apihelp-protect-example-unprotect2": "Eine Seite entsperren, indem keine Einschränkungen übergeben werden",
-	"apihelp-purge-description": "Setzt den Cache der angegebenen Seiten zurück.\n\nFalls kein Benutzer angemeldet ist, müssen POST-Anfragen genutzt werden.",
+	"apihelp-purge-description": "Setzt den Cache der angegebenen Seiten zurück.",
 	"apihelp-purge-param-forcelinkupdate": "Aktualisiert die Linktabellen.",
 	"apihelp-purge-param-forcerecursivelinkupdate": "Aktualisiert die Linktabelle der Seite und alle Linktabellen der Seiten, die sie als Vorlage einbinden.",
 	"apihelp-purge-example-simple": "Purgt die <kbd>Main Page</kbd> und die <kbd>API</kbd>-Seite.",

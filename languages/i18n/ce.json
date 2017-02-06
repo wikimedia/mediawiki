@@ -891,7 +891,7 @@
 	"restoreprefs": "МеттахӀоттабе гӀирс Iад битарца",
 	"prefs-editing": "Тадар",
 	"searchresultshead": "Лахар",
-	"stub-threshold": "Кеч яран доза <a href=\"#\" class=\"stub\">коьртамогӀамна хьажоргаш</a> (байташках):",
+	"stub-threshold": "Кеч яран доза коьртан хьажоргашна ($1):",
 	"stub-threshold-sample-link": "масала",
 	"stub-threshold-disabled": "ДӀадайина",
 	"recentchangesdays": "Керла нисдар гайта динахь:",
