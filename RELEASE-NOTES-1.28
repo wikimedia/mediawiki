@@ -13,6 +13,7 @@ This is not a release yet!
 * (T154672) Un-deprecate ArticleAfterFetchContentObject hook.
 * (T158766) Avoid SQL error on MSSQL when using selectRowCount()
 * (T145635) Fix too long index error when installing with MSSQL
+* (T156184) $wgRawHtml will no longer apply to internationalization messages.
 
 == MediaWiki 1.28 ==
 
