@@ -134,11 +134,11 @@ class TextContent extends AbstractContent {
 	 * and then returns the text string. The conversion may be lossy.
 	 *
 	 * @note this allows any text-based content to be transcluded as if it was wikitext.
-	 *
+	 * @param Title $refTitle The referenced Title. Optional.
 	 * @return string|bool The raw text, or false if the conversion failed.
 	 */
-	public function getWikitextForTransclusion() {
-		$wikitext = $this->convert( CONTENT_MODEL_WIKITEXT, 'lossy' );
+	public function getWikitextForTransclusion( $refTitle = null ) {
+		$wikitext = $this->convert( CONTENT_MODEL_WIKITEXT, 'lossy', $refTitle );
 
 		if ( $wikitext ) {
 			return $wikitext->getNativeData();
@@ -298,13 +298,13 @@ class TextContent extends AbstractContent {
 	 * @param string $toModel The desired content model, use the CONTENT_MODEL_XXX flags.
 	 * @param string $lossy Flag, set to "lossy" to allow lossy conversion. If lossy conversion is not
 	 *     allowed, full round-trip conversion is expected to work without losing information.
-	 *
+	 * @param Title $refTitle The referenced title.
 	 * @return Content|bool A content object with the content model $toModel, or false if that
 	 *     conversion is not supported.
 	 *
 	 * @see Content::convert()
 	 */
-	public function convert( $toModel, $lossy = '' ) {
+	public function convert( $toModel, $lossy = '', $refTitle = null ) {
 		$converted = parent::convert( $toModel, $lossy );
 
 		if ( $converted !== false ) {

@@ -439,12 +439,13 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @param string $toModel
 	 * @param string $lossy
+	 * @param Title $refTitle The referenced Title. Optional.
 	 *
 	 * @return Content|bool
 	 *
 	 * @see Content::convert()
 	 */
-	public function convert( $toModel, $lossy = '' ) {
+	public function convert( $toModel, $lossy = '', $refTitle = null ) {
 		if ( $this->getModel() === $toModel ) {
 			// nothing to do, shorten out.
 			return $this;
