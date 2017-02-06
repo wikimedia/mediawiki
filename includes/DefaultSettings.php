@@ -8576,6 +8576,21 @@ $wgExperiencedUserEdits = 500;
 $wgExperiencedUserMemberSince = 30; # days
 
 /**
+ * Prevent the bot right from hiding edits to JS files.
+ *
+ * When set to true, users with the bot right cannot apply the
+ * bot right to edits in NS_MEDIAWIKI or edits to User:Foo/bar.js
+ * (Where Foo is not the name of the bot user).
+ *
+ * This is intended to ensure that any compromised bot with admin
+ * rights can be discovered very quickly.
+ *
+ * @since 1.29
+ * @var bool
+ */
+$wgRestrictBotEditsToScripts = true;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
