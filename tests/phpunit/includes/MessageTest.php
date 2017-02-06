@@ -1,4 +1,5 @@
 <?php
+use MediaWiki\MediaWikiServices;
 
 class MessageTest extends MediaWikiLangTestCase {
 
@@ -304,6 +305,22 @@ class MessageTest extends MediaWikiLangTestCase {
 		$msg = new RawMessage( 'example &' );
 		$this->assertEquals( 'example &', $msg->plain() );
 		$this->assertEquals( 'example &amp;', $msg->escaped() );
+	}
+
+	public function testRawHtmlInMsg() {
+		global $wgParserConf;
+		$this->setMwGlobals( 'wgRawHtml', true );
+		// We have to reset the core hook registration.
+		// to register the html hook
+		MessageCache::destroyInstance();
+		$this->setMwGlobals( 'wgParser',
+			ObjectFactory::constructClassInstance( $wgParserConf['class'], [ $wgParserConf ] )
+		);
+
+		$msg = new RawMessage( '<html><script>alert("xss")</script></html>' );
+		$txt = '<span class="error">&lt;html&gt; tags cannot be' .
+			' used outside of normal pages.</span>';
+		$this->assertSame( $txt, $msg->parse() );
 	}
 
 	/**
