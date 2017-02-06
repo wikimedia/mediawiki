@@ -47,7 +47,7 @@ interface Content {
 
 	/**
 	 * @since 1.21
-	 *
+	 * @param Title $refTitle The referenced Title. Optional.
 	 * @return string|bool The wikitext to include when another page includes this
 	 * content, or false if the content is not includable in a wikitext page.
 	 *
@@ -57,7 +57,7 @@ interface Content {
 	 * @todo Used in WikiPage and MessageCache to get message text. Not so
 	 *  nice. What should we use instead?!
 	 */
-	public function getWikitextForTransclusion();
+	public function getWikitextForTransclusion( $refTitle = null );
 
 	/**
 	 * Returns a textual representation of the content suitable for use in edit
@@ -512,11 +512,12 @@ interface Content {
 	 * @param string $lossy Optional flag, set to "lossy" to allow lossy conversion. If lossy
 	 * conversion is not allowed, full round-trip conversion is expected to work without losing
 	 * information.
+	 * @param Title $refTitle The referenced Title. Optional.
 	 *
 	 * @return Content|bool A content object with the content model $toModel, or false if
 	 * that conversion is not supported.
 	 */
-	public function convert( $toModel, $lossy = '' );
+	public function convert( $toModel, $lossy = '', $refTitle );
 	// @todo ImagePage and CategoryPage interfere with per-content action handlers
 	// @todo nice&sane integration of GeSHi syntax highlighting
 	//   [11:59] <vvv> Hooks are ugly; make CodeHighlighter interface and a

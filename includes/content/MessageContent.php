@@ -97,11 +97,12 @@ class MessageContent extends AbstractContent {
 	}
 
 	/**
+	 * @param Title $refTitle The referenced Title. Optional.
 	 * @return string
 	 *
 	 * @see Content::getWikitextForTransclusion
 	 */
-	public function getWikitextForTransclusion() {
+	public function getWikitextForTransclusion( $refTitle = null ) {
 		return $this->getWikitext();
 	}
 

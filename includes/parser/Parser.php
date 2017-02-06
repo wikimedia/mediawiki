@@ -3625,7 +3625,7 @@ class Parser {
 
 			if ( $rev ) {
 				$content = $rev->getContent();
-				$text = $content ? $content->getWikitextForTransclusion() : null;
+				$text = $content ? $content->getWikitextForTransclusion( $title ) : null;
 
 				Hooks::run( 'ParserFetchTemplate',
 					[ $parser, $title, $rev, &$text, &$deps ] );
