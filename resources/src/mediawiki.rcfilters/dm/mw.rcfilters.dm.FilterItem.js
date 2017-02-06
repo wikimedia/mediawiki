@@ -37,7 +37,7 @@
 		// Interaction states
 		this.included = false;
 		this.conflicted = false;
-
+		this.fullyCovered = false;
 	};
 
 	/* Initialization */
@@ -150,6 +150,15 @@
 	};
 
 	/**
+	 * Check whether the filter is currently fully covered
+	 *
+	 * @return {boolean} Filter is in fully-covered state
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.isFullyCovered = function () {
+		return this.fullyCovered;
+	};
+
+	/**
 	 * Get filter conflicts
 	 *
 	 * @return {string[]} Filter conflicts
@@ -243,6 +252,21 @@
 
 		if ( this.selected !== isSelected ) {
 			this.selected = isSelected;
+			this.emit( 'update' );
+		}
+	};
+
+	/**
+	 * Toggle the fully covered state of the item
+	 *
+	 * @param {boolean} [isFullyCovered] Filter is fully covered
+	 * @fires update
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.toggleFullyCovered = function ( isFullyCovered ) {
+		isFullyCovered = isFullyCovered === undefined ? !this.fullycovered : isFullyCovered;
+
+		if ( this.fullyCovered !== isFullyCovered ) {
+			this.fullyCovered = isFullyCovered;
 			this.emit( 'update' );
 		}
 	};
