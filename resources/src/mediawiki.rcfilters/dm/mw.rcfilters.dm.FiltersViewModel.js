@@ -123,7 +123,8 @@
 				model.groups[ group ] = new mw.rcfilters.dm.FilterGroup( group, {
 					type: data.type,
 					title: data.title,
-					separator: data.separator
+					separator: data.separator,
+					fullCoverage: !!data.fullCoverage
 				} );
 			}
 
