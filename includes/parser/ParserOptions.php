@@ -226,6 +226,22 @@ class ParserOptions {
 	function getMaxGeneratedPPNodeCount()       { return $this->mMaxGeneratedPPNodeCount; }
 	function getMaxPPExpandDepth()              { return $this->mMaxPPExpandDepth; }
 	function getMaxTemplateDepth()              { return $this->mMaxTemplateDepth; }
+
+	/**
+	 * If the wiki is configured to allow raw html ($wgRawHtml = true)
+	 * is it allowed in the specific case of parsing this page.
+	 *
+	 * This is meant to disable unsafe parser tags in cases where
+	 * a malicious user may control the input to the parser.
+	 *
+	 * @note This is expected to be true for normal pages even if the
+	 *  wiki has $wgRawHtml disabled in general. The setting only
+	 *  signifies that raw html would be unsafe in the current context
+	 *  provided that raw html is allowed at all.
+	 * @var boolean
+	 */
+	private $allowUnsafeRawHtml = true;
+
 	/* @since 1.20 */
 	function getExpensiveParserFunctionLimit()  { return $this->mExpensiveParserFunctionLimit; }
 	function getRemoveComments()                { return $this->mRemoveComments; }
@@ -311,6 +327,15 @@ class ParserOptions {
 	function setMaxPPNodeCount( $x )            { return wfSetVar( $this->mMaxPPNodeCount, $x ); }
 	function setMaxGeneratedPPNodeCount( $x )   { return wfSetVar( $this->mMaxGeneratedPPNodeCount, $x ); }
 	function setMaxTemplateDepth( $x )          { return wfSetVar( $this->mMaxTemplateDepth, $x ); }
+
+	/**
+	 * @since 1.29 1.23.16
+	 * @return bool
+	 */
+	public function getAllowUnsafeRawHtml() {
+		return $this->allowUnsafeRawHtml;
+	}
+
 	/* @since 1.20 */
 	function setExpensiveParserFunctionLimit( $x ) { return wfSetVar( $this->mExpensiveParserFunctionLimit, $x ); }
 	function setRemoveComments( $x )            { return wfSetVar( $this->mRemoveComments, $x ); }
@@ -334,6 +359,15 @@ class ParserOptions {
 	function setIsPreview( $x )                 { return wfSetVar( $this->mIsPreview, $x ); }
 	function setIsSectionPreview( $x )          { return wfSetVar( $this->mIsSectionPreview, $x ); }
 	function setIsPrintable( $x )               { return wfSetVar( $this->mIsPrintable, $x ); }
+
+	/**
+	 * @param bool|null Value to set or null to get current value
+	 * @return bool Current value for allowUnsafeRawHtml
+	 * @since 1.29 and 1.23.16
+	 */
+	public function setAllowUnsafeRawHtml( $x ) {
+		return wfSetVar( $this->allowUnsafeRawHtml, $x );
+	}
 
 	/**
 	 * Extra key that should be present in the parser cache key.

@@ -145,6 +145,22 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertEquals( '(Заглавная страница $1)', wfMessage( 'parentheses' )->rawParams( 'Заглавная страница $1' )->plain() );
 	}
 
+	public function testRawHtmlInMsg() {
+		global $wgParserConf;
+		$this->setMwGlobals( 'wgRawHtml', true );
+		// We have to reset the core hook registration.
+		// to register the html hook
+		MessageCache::destroyInstance();
+		$this->setMwGlobals( 'wgParser',
+			ObjectFactory::constructClassInstance( $wgParserConf['class'], array( $wgParserConf ) )
+		);
+
+		$msg = new RawMessage( '<html><script>alert("xss")</script></html>' );
+		$txt = '<span class="error">&lt;html&gt; tags cannot be' .
+			' used outside of normal pages.</span>';
+		$this->assertSame( $txt, $msg->parse() );
+	}
+
 	/**
 	 * @covers Message::__construct
 	 * @covers Message::params

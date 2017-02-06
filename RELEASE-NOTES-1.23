@@ -7,6 +7,7 @@ This is not a release yet!
 === Changes since 1.23.15 ===
 * (T68404) CSS3 attr() function with url type is no longer allowed
   in inline styles.
+* (T156184) $wgRawHtml will no longer apply to internationalization messages.
 
 == MediaWiki 1.23.15 ==
 

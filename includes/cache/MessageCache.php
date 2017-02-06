@@ -147,6 +147,10 @@ class MessageCache {
 		if ( !$this->mParserOptions ) {
 			$this->mParserOptions = new ParserOptions;
 			$this->mParserOptions->setEditSection( false );
+			// Messages may take parameters that could come
+			// from malicious sources. As a precaution, disable
+			// the <html> parser tag when parsing messages.
+			$this->mParserOptions->setAllowUnsafeRawHtml( false );
 		}
 
 		return $this->mParserOptions;

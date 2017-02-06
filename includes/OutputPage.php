@@ -1418,6 +1418,7 @@ class OutputPage extends ContextSource {
 		if ( !$this->mParserOptions ) {
 			$this->mParserOptions = ParserOptions::newFromContext( $this->getContext() );
 			$this->mParserOptions->setEditSection( false );
+			$this->mParserOptions->setAllowUnsafeRawHtml( false );
 		}
 		return wfSetVar( $this->mParserOptions, $options );
 	}

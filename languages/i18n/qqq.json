@@ -3699,5 +3699,6 @@ n* $1 - the action specified in the url.",
     "expand_templates_generate_rawhtml": "Used as checkbox label.",
     "expand_templates_preview": "{{Identical|Preview}}",
     "expand_templates_preview_fail_html": "Used as error message in Preview section of [[Special:ExpandTemplates]] page.",
-    "expand_templates_preview_fail_html_anon": "Used as error message in Preview section of [[Special:ExpandTemplates]] page."
+    "expand_templates_preview_fail_html_anon": "Used as error message in Preview section of [[Special:ExpandTemplates]] page.",
+    "rawhtml-notallowed": "Error message given when $wgRawHtml = true; is set and a user uses an &lt;html&gt; tag in a system message or somewhere other than a normal page."
 }
