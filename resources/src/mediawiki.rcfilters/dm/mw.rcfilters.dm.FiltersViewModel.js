@@ -57,6 +57,8 @@
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.reassessFilterInteractions = function ( item ) {
 		var model = this,
+			itemsCurrentlyConflicted = [],
+			itemsCurrentlyNotConflicted = [],
 			iterationItems = item !== undefined ? [ item ] : this.getItems();
 
 		iterationItems.forEach( function ( checkedItem ) {
@@ -79,6 +81,55 @@
 					itemInSubset.toggleIncluded( checkedItem.isSelected() );
 				}
 			} );
+		} );
+
+		// Check for conflicts
+		// In this case, we must go over all items, since
+		// conflicts are bidirectional and depend not only on
+		// individual items, but also on the selected states of
+		// the groups they're in.
+
+		// Since conflicts are bidirectional, we must first map them.
+		// One item in the "pair" could have the 'dry rules' of being
+		// conflicted while the other doesn't - but if one conflicts,
+		// the other must as well. The only way to achieve this is
+		// to map all current conflicts according to the rules, and
+		// then override the 'false' state of any filter whose 'pair'
+		// is conflicting as well. (See examples in unit tests)
+		this.getItems().forEach( function ( filterItem ) {
+			var inConflict = false,
+				filterItemGroup = model.getGroup( filterItem.getGroup() );
+
+			// For each item, see if that item is still conflicting
+			$.each( model.groups, function ( groupName, groupModel ) {
+				if ( inConflict ) {
+					// If we already know that this item is in conflict,
+					// there is no need to continue checking
+					return;
+				}
+
+				if ( filterItem.getGroup() === groupName ) {
+					// Check inside the group
+					inConflict = groupModel.areAnySelectedInConflictWith( filterItem );
+				} else {
+					// Check if the entire group conflicts with the entire item's group
+					inConflict = (
+						// The foreign group is in conflict with this item
+						groupModel.areAllSelectedInConflictWith( filterItem ) &&
+						(
+							// Every selected member of the item's own group is also
+							// in conflict with the other group
+							filterItemGroup.getSelectedItems().every( function ( otherGroupItem ) {
+								return groupModel.areAllSelectedInConflictWith( otherGroupItem );
+							} )
+						)
+					);
+				}
+
+			} );
+
+			// Toggle the item state
+			filterItem.toggleConflicted( inConflict );
 		} );
 	};
 
