@@ -292,9 +292,12 @@ EOD;
 			$this->readFile( $file );
 		}
 
-		// Legacy aliases
+		// Legacy aliases (1.28)
 		$this->forceClassPath( 'DatabaseBase',
 			$this->basepath . '/includes/libs/rdbms/database/Database.php' );
+		// Legacy aliases (1.29)
+		$this->forceClassPath( 'Blob',
+			$this->basepath . '/includes/libs/rdbms/encasing/Blob.php' );
 	}
 }
 
