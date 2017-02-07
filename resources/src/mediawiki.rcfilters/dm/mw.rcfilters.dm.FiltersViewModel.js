@@ -77,6 +77,72 @@
 				} );
 			}
 		} );
+
+		// Check for conflicts
+		// In this case, we must go over all items, since
+		// conflicts are bidirectional and depend not only on
+		// individual items, but also on the selected states of
+		// the groups they're in.
+		this.getItems().forEach( function ( filterItem ) {
+			var inConflict = false,
+				filterItemGroup =filterItem.getGroupModel();
+
+			// For each item, see if that item is still conflicting
+			$.each( model.groups, function ( groupName, groupModel ) {
+				if ( filterItem.getGroupName() === groupName ) {
+					// Check inside the group
+					inConflict = groupModel.areAnySelectedInConflictWith( filterItem );
+				} else {
+					// According to the spec, if two items conflict from two different
+					// groups, the conflict only lasts if the groups **only have selected
+					// items that are conflicting**. If a group has selected items that
+					// are conflicting and non-conflicting, the scope of the result has
+					// expanded enough to completely remove the conflict.
+
+					// For example, see two groups with conflicts:
+					// userExpLevel: [
+					//   {
+					//   	name: 'experienced',
+					//   	conflicts: [ 'unregistered' ]
+					//   }
+					// ],
+					// registration: [
+					//   {
+					//   	name: 'registered',
+					//   },
+					//   {
+					//   	name: 'unregistered',
+					//   }
+					// ]
+					// If we select 'experienced', then 'unregistered' is in conflict (and vise versa),
+					// because, inherently, 'experienced' filter only includes registered users, and so
+					// both filters are in conflict with one another.
+					// However, the minute we select 'registered', the scope of our results
+					// has expanded to no longer have a conflict with 'experienced' filter, and
+					// so the conflict is removed.
+
+					// In our case, we need to check if the entire group conflicts with
+					// the entire item's group, so we follow the above spec
+					inConflict = (
+						// The foreign group is in conflict with this item
+						groupModel.areAllSelectedInConflictWith( filterItem ) &&
+						// Every selected member of the item's own group is also
+						// in conflict with the other group
+						filterItemGroup.getSelectedItems().every( function ( otherGroupItem ) {
+							return groupModel.areAllSelectedInConflictWith( otherGroupItem );
+						} )
+					);
+				}
+
+				// If we're in conflict, this will return 'false' which
+				// will break the loop. Otherwise, we're not in conflict
+				// and the loop continues
+				return !inConflict;
+			} );
+
+			// Toggle the item state
+			filterItem.toggleConflicted( inConflict );
+		} );
 	};
 
 	/**
