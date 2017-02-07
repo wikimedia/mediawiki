@@ -21,6 +21,7 @@
  * @file
  * @ingroup Database
  */
+use Wikimedia\Rdbms\Blob;
 
 /**
  * @ingroup Database

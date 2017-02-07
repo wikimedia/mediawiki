@@ -20,6 +20,7 @@
  * @file
  * @ingroup Database
  */
+use Wikimedia\Rdbms\Blob;
 
 /**
  * The oci8 extension is fairly weak and doesn't support oci_num_rows, among
