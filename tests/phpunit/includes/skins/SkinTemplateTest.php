@@ -44,7 +44,9 @@ class SkinTemplateTest extends MediaWikiTestCase {
 	 * @return PHPUnit_Framework_MockObject_MockObject|OutputPage
 	 */
 	private function getMockOutputPage( $isSyndicated, $html ) {
-		$mock = $this->getMock( OutputPage::class );
+		$mock = $this->getMockBuilder( OutputPage::class )
+			->disableOriginalConstructor()
+			->getMock();
 		$mock->expects( $this->once() )
 			->method( 'isSyndicated' )
 			->will( $this->returnValue( $isSyndicated ) );
