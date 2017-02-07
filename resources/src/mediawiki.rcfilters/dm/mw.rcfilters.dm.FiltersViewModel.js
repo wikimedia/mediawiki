@@ -583,23 +583,42 @@
 	/**
 	 * Find items whose labels match the given string
 	 *
-	 * @param {string} str Search string
+	 * @param {string} query Search string
 	 * @return {Object} An object of items to show
 	 *  arranged by their group names
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.findMatches = function ( str ) {
+	mw.rcfilters.dm.FiltersViewModel.prototype.findMatches = function ( query ) {
 		var i,
+			groupTitle,
 			result = {},
 			items = this.getItems();
 
 		// Normalize so we can search strings regardless of case
-		str = str.toLowerCase();
+		query = query.toLowerCase();
+
+		// item label starting with the query string
 		for ( i = 0; i < items.length; i++ ) {
-			if ( items[ i ].getLabel().toLowerCase().indexOf( str ) > -1 ) {
+			if ( items[ i ].getLabel().toLowerCase().indexOf( query ) === 0 ) {
 				result[ items[ i ].getGroup() ] = result[ items[ i ].getGroup() ] || [];
 				result[ items[ i ].getGroup() ].push( items[ i ] );
 			}
 		}
+
+		if ( $.isEmptyObject( result ) ) {
+			// item containing the query string in their label, description, or group title
+			for ( i = 0; i < items.length; i++ ) {
+				groupTitle = this.getGroup( items[ i ].getGroup() ).getTitle();
+				if (
+					items[ i ].getLabel().toLowerCase().indexOf( query ) > -1 ||
+					items[ i ].getDescription().toLowerCase().indexOf( query ) > -1 ||
+					groupTitle.toLowerCase().indexOf( query ) > -1
+				) {
+					result[ items[ i ].getGroup() ] = result[ items[ i ].getGroup() ] || [];
+					result[ items[ i ].getGroup() ].push( items[ i ] );
+				}
+			}
+		}
+
 		return result;
 	};
 
