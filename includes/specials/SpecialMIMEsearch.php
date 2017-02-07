@@ -85,6 +85,7 @@ class MIMEsearchPage extends QueryPage {
 					MEDIATYPE_TEXT,
 					MEDIATYPE_EXECUTABLE,
 					MEDIATYPE_ARCHIVE,
+					MEDIATYPE_3D,
 				],
 			] + $minorType,
 		];

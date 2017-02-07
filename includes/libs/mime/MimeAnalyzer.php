@@ -533,6 +533,9 @@ EOT;
 
 			// XML formats we sure hope we recognize reliably
 			'svg',
+
+			// 3D formats
+			'stl',
 		];
 		return in_array( strtolower( $extension ), $types );
 	}
@@ -798,6 +801,21 @@ EOT;
 		if ( strpos( $tail, "PK\x05\x06" ) !== false ) {
 			$this->logger->info( __METHOD__ . ": ZIP header present in $file\n" );
 			return $this->detectZipType( $head, $tail, $ext );
+		}
+
+		// Check for STL (3D) files
+		// @see https://en.wikipedia.org/wiki/STL_(file_format)
+		if ( $fsize >= 15 && stripos( $head, 'SOLID ' ) === 0 && preg_match( '/\RENDSOLID .*$/i', $tail ) ) {
+			// ASCII STL file
+			return 'application/sla';
+		} elseif ( $fsize > 84 ) {
+			// binary STL file
+			$triangles = substr( $head, 80, 4 );
+			$triangles = unpack( 'V', $triangles );
+			$triangles = reset( $triangles );
+			if ( $triangles !== false && $fsize === 84 + ( $triangles * 50 ) ) {
+				return 'application/sla';
+			}
 		}
 
 		MediaWiki\suppressWarnings();
