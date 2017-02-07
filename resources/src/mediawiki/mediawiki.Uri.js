@@ -179,7 +179,8 @@
 		 *  override each other (`true`) or automagically convert them to an array (`false`).
 		 */
 		function Uri( uri, options ) {
-			var prop,
+			var prop, hrefCur,
+				hasOptions = ( options !== undefined ),
 				defaultUri = getDefaultUri();
 
 			options = typeof options === 'object' ? options : { strictMode: !!options };
@@ -208,8 +209,12 @@
 						this.query = {};
 					}
 				}
+			} else if ( hasOptions ) {
+				// We didn't get a URI in the constructor, but we got options.
+				hrefCur = typeof documentLocation === 'string' ? documentLocation : documentLocation();
+				this.parse( hrefCur, options );
 			} else {
-				// If we didn't get a URI in the constructor, use the default one.
+				// We didn't get a URI or options in the constructor, use the default instance.
 				return defaultUri.clone();
 			}
 
