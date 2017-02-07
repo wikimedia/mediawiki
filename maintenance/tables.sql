@@ -865,7 +865,7 @@ CREATE TABLE /*_*/image (
   img_bits int NOT NULL default 0,
 
   -- Media type as defined by the MEDIATYPE_xxx constants
-  img_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE") default NULL,
+  img_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D") default NULL,
 
   -- major part of a MIME media type as defined by IANA
   -- see https://www.iana.org/assignments/media-types/

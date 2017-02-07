@@ -294,6 +294,7 @@ class MysqlUpdater extends DatabaseUpdater {
 
 			// 1.29
 			[ 'addField', 'externallinks', 'el_index_60', 'patch-externallinks-el_index_60.sql' ],
+			[ 'modifyField', 'image', 'img_media_type', 'patch-add-3d.sql' ],
 		];
 	}
 
