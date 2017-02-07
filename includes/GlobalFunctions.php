@@ -3072,7 +3072,7 @@ function wfSplitWikiID( $wiki ) {
  * @todo Replace calls to wfGetDB with calls to LoadBalancer::getConnection()
  *       on an injected instance of LoadBalancer.
  *
- * @return Database
+ * @return \Wikimedia\Rdbms\Database
  */
 function wfGetDB( $db, $groups = [], $wiki = false ) {
 	return wfGetLB( $wiki )->getConnection( $db, $groups, $wiki );

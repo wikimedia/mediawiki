@@ -24,6 +24,8 @@
  * @file
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * This is the main query class. It behaves similar to ApiMain: based on the
  * parameters given, it will create a list of titles to work on (an ApiPageSet
@@ -168,7 +170,7 @@ class ApiQuery extends ApiBase {
 	 * @param string $name Name to assign to the database connection
 	 * @param int $db One of the DB_* constants
 	 * @param array $groups Query groups
-	 * @return Database
+	 * @return IDatabase
 	 */
 	public function getNamedDB( $name, $db, $groups ) {
 		if ( !array_key_exists( $name, $this->mNamedDB ) ) {

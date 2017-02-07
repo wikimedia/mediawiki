@@ -20,10 +20,18 @@
  * @file
  * @ingroup Database
  */
-use Wikimedia\Rdbms\DBMasterPos;
-use Wikimedia\Rdbms\MySQLMasterPos;
-use Wikimedia\Rdbms\MySQLField;
-use Wikimedia\Rdbms\ResultWrapper;
+namespace Wikimedia\Rdbms;
+
+use DateTime;
+use DateTimeZone;
+use MediaWiki;
+use InvalidArgumentException;
+use DBError;
+use DBExpectedError;
+use DBUnexpectedError;
+use DBConnectionError;
+use Exception;
+use stdClass;
 
 /**
  * Database abstraction object for MySQL.
