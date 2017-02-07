@@ -118,6 +118,34 @@
 	};
 
 	/**
+	 * Check whether all selected items are in conflict with the given item
+	 *
+	 * @param {mw.rcfilters.dm.FilterItem} filterItem Filter item to test
+	 * @return {boolean} All selected items are in conflict with this item
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.areAllSelectedInConflictWith = function ( filterItem ) {
+		var selectedItems = this.getSelectedItems( filterItem );
+
+		return selectedItems.length > 0 && selectedItems.every( function ( selectedFilter ) {
+			return selectedFilter.existsInConflicts( filterItem );
+		} );
+	};
+
+	/**
+	 * Check whether any of the selected items are in conflict with the given item
+	 *
+	 * @param {mw.rcfilters.dm.FilterItem} filterItem Filter item to test
+	 * @return {boolean} Any of the selected items are in conflict with this item
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.areAnySelectedInConflictWith = function ( filterItem ) {
+		var selectedItems = this.getSelectedItems( filterItem );
+
+		return selectedItems.length > 0 && selectedItems.some( function ( selectedFilter ) {
+			return selectedFilter.existsInConflicts( filterItem );
+		} );
+	};
+
+	/**
 	 * Get group type
 	 *
 	 * @return {string} Group type
