@@ -370,7 +370,7 @@ interface ILoadBalancer {
 	 *
 	 * Use this only for mutli-database commits
 	 *
-	 * @param integer $type IDatabase::TRIGGER_* constant
+	 * @param int $type IDatabase::TRIGGER_* constant
 	 * @return Exception|null The first exception or null if there were none
 	 */
 	public function runMasterPostTrxCallbacks( $type );
@@ -532,10 +532,10 @@ interface ILoadBalancer {
 	 *
 	 * @param IDatabase $conn Replica DB
 	 * @param DBMasterPos|bool $pos Master position; default: current position
-	 * @param integer|null $timeout Timeout in seconds [optional]
+	 * @param int $timeout Timeout in seconds [optional]
 	 * @return bool Success
 	 */
-	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = null );
+	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = 10 );
 
 	/**
 	 * Set a callback via IDatabase::setTransactionListener() on
