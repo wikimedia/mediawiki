@@ -21,6 +21,8 @@
  * @ingroup Change tagging
  */
 
+use Wikimedia\Rdbms\Database;
+
 class ChangeTags {
 	/**
 	 * Can't delete tags with more than this many uses. Similar in intent to

@@ -21,9 +21,18 @@
  * @file
  * @ingroup Database
  */
-use Wikimedia\Rdbms\Blob;
-use Wikimedia\Rdbms\SQLiteField;
-use Wikimedia\Rdbms\ResultWrapper;
+namespace Wikimedia\Rdbms;
+
+use PDO;
+use PDOException;
+use LockManager;
+use FSLockManager;
+use DBConnectionError;
+use DBReadOnlyError;
+use InvalidArgumentException;
+use RuntimeException;
+use DBError;
+use stdClass;
 
 /**
  * @ingroup Database
@@ -116,8 +125,10 @@ class DatabaseSqlite extends Database {
 		$p['dbFilePath'] = $filename;
 		$p['schema'] = false;
 		$p['tablePrefix'] = '';
+		/** @var DatabaseSqlite $db */
+		$db = Database::factory( 'sqlite', $p );
 
-		return Database::factory( 'sqlite', $p );
+		return $db;
 	}
 
 	/**
@@ -1048,3 +1059,6 @@ class DatabaseSqlite extends Database {
 		return 'SQLite ' . (string)$this->mConn->getAttribute( PDO::ATTR_SERVER_VERSION );
 	}
 }
+
+class_alias( DatabaseSqlite::class, 'DatabaseSqlite' );
+
