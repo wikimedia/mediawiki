@@ -20,12 +20,14 @@
  * @file
  * @ingroup Database
  */
+namespace Wikimedia\Rdbms;
+
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WaitConditionLoop;
-use Wikimedia\Rdbms\Blob;
-use Wikimedia\Rdbms\PostgresBlob;
-use Wikimedia\Rdbms\PostgresField;
-use Wikimedia\Rdbms\ResultWrapper;
+use MediaWiki;
+use DBUnexpectedError;
+use DBConnectionError;
+use Exception;
 
 /**
  * @ingroup Database
@@ -859,10 +861,10 @@ __INDEXATTR__;
 	 *
 	 * @since 1.19
 	 * @param string $text Postgreql array returned in a text form like {a,b}
-	 * @param string $output
+	 * @param string[] $output
 	 * @param int|bool $limit
 	 * @param int $offset
-	 * @return string
+	 * @return string[]
 	 */
 	private function pg_array_parse( $text, &$output, $limit = false, $offset = 1 ) {
 		if ( false === $limit ) {
@@ -1383,6 +1385,8 @@ SQL;
 	 * @return string Integer
 	 */
 	private function bigintFromLockName( $lockName ) {
-		return Wikimedia\base_convert( substr( sha1( $lockName ), 0, 15 ), 16, 10 );
+		return \Wikimedia\base_convert( substr( sha1( $lockName ), 0, 15 ), 16, 10 );
 	}
 }
+
+class_alias( DatabasePostgres::class, 'DatabasePostgres' );
