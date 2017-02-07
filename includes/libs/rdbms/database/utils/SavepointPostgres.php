@@ -19,6 +19,7 @@
  * @ingroup Database
  */
 use Psr\Log\LoggerInterface;
+use Wikimedia\Rdbms\DatabasePostgres;
 
 /**
  * Manage savepoints within a transaction

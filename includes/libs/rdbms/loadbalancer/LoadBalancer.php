@@ -26,6 +26,7 @@ use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\Rdbms\ILoadMonitor;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\Database;
 
 /**
  * Database connection, tracking, load balancing, and transaction manager for a cluster

@@ -26,6 +26,7 @@
  */
 
 use Wikimedia\Rdbms\TransactionProfiler;
+use Wikimedia\Rdbms\DatabaseMysqlBase;
 
 /**
  * Fake class around abstract class so we can call concrete methods.

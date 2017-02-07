@@ -1,6 +1,7 @@
 <?php
 
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\Database;
 
 /**
  * Helper class to handle automatically marking connections as reusable (via RAII pattern)
