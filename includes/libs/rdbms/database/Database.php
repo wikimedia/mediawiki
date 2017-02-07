@@ -23,18 +23,22 @@
  * @file
  * @ingroup Database
  */
+namespace Wikimedia\Rdbms;
+
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ScopedCallback;
-use Wikimedia\Rdbms\TransactionProfiler;
-use Wikimedia\Rdbms\LikeMatch;
-use Wikimedia\Rdbms\DatabaseDomain;
-use Wikimedia\Rdbms\ResultWrapper;
-use Wikimedia\Rdbms\DBMasterPos;
-use Wikimedia\Rdbms\Blob;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
-use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\IMaintainableDatabase;
+use MediaWiki;
+use BagOStuff;
+use HashBagOStuff;
+use InvalidArgumentException;
+use DBQueryError;
+use DBUnexpectedError;
+use DBConnectionError;
+use DBReadOnlyError;
+use Exception;
+use RuntimeException;
 
 /**
  * Relational database abstraction object
@@ -367,7 +371,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				" no viable database extension found for type '$dbType'" );
 		}
 
-		$class = 'Database' . ucfirst( $driver );
+		$class = 'Wikimedia\\Rdbms\\Database' . ucfirst( $driver );
 		if ( class_exists( $class ) && is_subclass_of( $class, IDatabase::class ) ) {
 			// Resolve some defaults for b/c
 			$p['host'] = isset( $p['host'] ) ? $p['host'] : false;
@@ -3479,4 +3483,5 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 }
 
-class_alias( Database::class, 'DatabaseBase' );
+class_alias( Database::class, 'DatabaseBase' ); // b/c for old name
+class_alias( Database::class, 'Database' ); // b/c global alias
