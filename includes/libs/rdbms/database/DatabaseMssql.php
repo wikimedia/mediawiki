@@ -24,6 +24,8 @@
  * @author Ryan Biesemeyer <v-ryanbi at microsoft dot com>
  * @author Ryan Schmidt <skizzerz at gmail dot com>
  */
+use Wikimedia\Rdbms\Blob;
+use Wikimedia\Rdbms\MssqlBlob;
 
 /**
  * @ingroup Database
