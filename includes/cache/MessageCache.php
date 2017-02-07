@@ -23,6 +23,7 @@
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
 use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\Rdbms\Database;
 
 /**
  * MediaWiki message cache structure version.

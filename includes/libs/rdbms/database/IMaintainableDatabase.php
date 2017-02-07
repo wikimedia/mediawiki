@@ -279,4 +279,4 @@ interface IMaintainableDatabase extends IDatabase {
 	public function unlockTables( $method );
 }
 
-class_alias( 'Wikimedia\Rdbms\IMaintainableDatabase', 'IMaintainableDatabase' );
+class_alias( IMaintainableDatabase::class, 'IMaintainableDatabase' );

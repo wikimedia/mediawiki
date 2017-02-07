@@ -28,6 +28,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\DatabaseSqlite;
 
 /**
  * Maintenance script that rebuilds search index table from scratch.

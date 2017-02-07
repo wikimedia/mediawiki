@@ -1426,7 +1426,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Get the database connection (read-only)
-	 * @return Database
+	 * @return IDatabase
 	 */
 	protected function getDB() {
 		return $this->mDbSource->getDB();
