@@ -23,6 +23,8 @@
  * @ingroup SpecialPage
  */
 
+use Mediawiki\MediaWikiServices;
+
 /**
  * A special page that allows users to export pages in a XML file
  *
@@ -374,7 +376,7 @@ class SpecialExport extends SpecialPage {
 			$buffer = WikiExporter::BUFFER;
 		} else {
 			// Use an unbuffered query; histories may be very long!
-			$lb = wfGetLBFactory()->newMainLB();
+			$lb = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->newMainLB();
 			$db = $lb->getConnection( DB_REPLICA );
 			$buffer = WikiExporter::STREAM;
 

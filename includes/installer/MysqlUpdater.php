@@ -20,6 +20,7 @@
  * @file
  * @ingroup Deployment
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Mysql update list and mysql-specific update functions.
@@ -853,7 +854,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			foreach ( $res as $row ) {
 				$count = ( $count + 1 ) % 100;
 				if ( $count == 0 ) {
-					wfGetLBFactory()->waitForReplication( [ 'wiki' => wfWikiID() ] );
+					$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+					$lbFactory->waitForReplication( [ 'wiki' => wfWikiID() ] );
 				}
 				$this->db->insert( 'templatelinks',
 					[

@@ -2,6 +2,7 @@
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\Assert;
 use Wikimedia\ScopedCallback;
 
@@ -734,7 +735,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 					global $wgUpdateRowsPerQuery;
 
 					$dbw = $this->getConnectionRef( DB_MASTER );
-					$factory = wfGetLBFactory();
+					$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 					$ticket = $factory->getEmptyTransactionTicket( __METHOD__ );
 
 					$watchersChunks = array_chunk( $watchers, $wgUpdateRowsPerQuery );
