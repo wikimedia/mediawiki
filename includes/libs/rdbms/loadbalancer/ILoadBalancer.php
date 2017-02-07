@@ -23,7 +23,6 @@
  */
 namespace Wikimedia\Rdbms;
 
-use Database;
 use DBError;
 use DBAccessError;
 use DBTransactionError;

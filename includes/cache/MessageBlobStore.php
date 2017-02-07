@@ -26,6 +26,7 @@
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\Rdbms\Database;
 
 /**
  * This class generates message blobs for use by ResourceLoader modules.

@@ -25,7 +25,6 @@ namespace Wikimedia\Rdbms;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\ScopedCallback;
-use Database;
 use BagOStuff;
 use EmptyBagOStuff;
 use WANObjectCache;
@@ -87,7 +86,7 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var LoggerInterface */
 	protected $perfLogger;
 
-	/** @var \Database Database connection that caused a problem */
+	/** @var Database DB connection object that caused a problem */
 	private $errorConnection;
 	/** @var integer The generic (not query grouped) replica DB index (of $mServers) */
 	private $mReadIndex;

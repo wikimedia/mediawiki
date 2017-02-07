@@ -21,6 +21,8 @@
  * @ingroup Deployment
  */
 
+use Wikimedia\Rdbms\DatabasePostgres;
+
 /**
  * Class for setting up the MediaWiki database using Postgres.
  *

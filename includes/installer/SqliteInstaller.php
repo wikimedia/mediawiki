@@ -21,6 +21,8 @@
  * @ingroup Deployment
  */
 
+use Wikimedia\Rdbms\DatabaseSqlite;
+
 /**
  * Class for setting up the MediaWiki database using SQLLite.
  *

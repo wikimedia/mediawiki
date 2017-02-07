@@ -21,6 +21,8 @@
  * @ingroup Deployment
  */
 
+use Wikimedia\Rdbms\DatabaseMssql;
+
 /**
  * Class for setting up the MediaWiki database using Microsoft SQL Server.
  *

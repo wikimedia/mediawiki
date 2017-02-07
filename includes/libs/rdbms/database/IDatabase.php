@@ -1808,4 +1808,4 @@ interface IDatabase {
 	public function setTableAliases( array $aliases );
 }
 
-class_alias( 'Wikimedia\Rdbms\IDatabase', 'IDatabase' );
+class_alias( IDatabase::class, 'IDatabase' );
