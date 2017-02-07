@@ -20,6 +20,9 @@
  * @file
  * @ingroup Database
  */
+namespace Wikimedia\Rdbms;
+
+use DBConnectionError;
 
 /**
  * Database abstraction object for PHP extension mysql.

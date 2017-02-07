@@ -24,11 +24,15 @@
  * @author Ryan Biesemeyer <v-ryanbi at microsoft dot com>
  * @author Ryan Schmidt <skizzerz at gmail dot com>
  */
-use Wikimedia\Rdbms\Blob;
-use Wikimedia\Rdbms\MssqlBlob;
-use Wikimedia\Rdbms\MssqlField;
-use Wikimedia\Rdbms\ResultWrapper;
-use Wikimedia\Rdbms\MssqlResultWrapper;
+
+namespace Wikimedia\Rdbms;
+
+use MediaWiki;
+use DBConnectionError;
+use DBUnexpectedError;
+use DBQueryError;
+use Exception;
+use stdClass;
 
 /**
  * @ingroup Database
