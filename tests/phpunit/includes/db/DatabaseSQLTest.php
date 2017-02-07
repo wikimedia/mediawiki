@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Rdbms\LikeMatch;
+
 /**
  * Test the abstract database layer
  * This is a non DBMS depending test.

@@ -24,6 +24,7 @@
  * @ingroup Database
  */
 use Wikimedia\ScopedCallback;
+use Wikimedia\Rdbms\LikeMatch;
 
 /**
  * Basic database interface for live and lazy-loaded relation database handles

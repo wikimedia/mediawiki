@@ -27,6 +27,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\TransactionProfiler;
+use Wikimedia\Rdbms\LikeMatch;
 
 /**
  * Relational database abstraction object
