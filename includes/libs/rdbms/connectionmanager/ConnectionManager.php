@@ -2,7 +2,6 @@
 
 namespace Wikimedia\Rdbms;
 
-use Database;
 use InvalidArgumentException;
 
 /**

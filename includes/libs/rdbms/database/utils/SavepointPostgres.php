@@ -18,6 +18,9 @@
  * @file
  * @ingroup Database
  */
+
+namespace Wikimedia\Rdbms;
+
 use Psr\Log\LoggerInterface;
 
 /**
