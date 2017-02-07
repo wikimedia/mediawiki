@@ -10,6 +10,7 @@ application/ogg ogx ogg ogm ogv oga spx opus
 application/pdf pdf
 application/postscript ai eps ps
 application/rdf+xml rdf
+application/sla stl
 application/smil smi smil
 application/srgs gram
 application/srgs+xml grxml
@@ -21,6 +22,7 @@ application/vnd.wap.wmlc wmlc
 application/vnd.wap.wmlscriptc wmlsc
 application/voicexml+xml vxml
 application/x-7z-compressed 7z
+application/x-amf amf
 application/x-bcpio bcpio
 application/x-bzip bz
 application/x-bzip2 bz2

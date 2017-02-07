@@ -1,0 +1,2 @@
+ALTER TABLE /*$wgDBprefix*/image
+	MODIFY img_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D") default NULL;
