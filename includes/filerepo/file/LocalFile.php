@@ -21,7 +21,8 @@
  * @ingroup FileAbstraction
  */
 
-use \MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 
 /**

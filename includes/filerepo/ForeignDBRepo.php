@@ -21,6 +21,7 @@
  * @ingroup FileRepo
  */
 
+use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 
 /**

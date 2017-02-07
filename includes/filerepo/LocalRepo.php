@@ -23,6 +23,7 @@
  */
 
 use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 
 /**

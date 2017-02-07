@@ -20,6 +20,7 @@
  * @file
  */
 
+use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 
 /**

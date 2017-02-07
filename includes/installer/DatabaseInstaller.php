@@ -21,6 +21,7 @@
  * @ingroup Deployment
  */
 use Wikimedia\Rdbms\LBFactorySingle;
+use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
