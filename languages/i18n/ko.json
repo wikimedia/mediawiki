@@ -1905,6 +1905,7 @@
 	"apisandbox-sending-request": "API 요청을 보내는 중...",
 	"apisandbox-loading-results": "API 결과를 받는 중...",
 	"apisandbox-results-error": "API 질의 응답을 불러오는 도중 오류 발생: $1.",
+	"apisandbox-request-selectformat-label": "요청한 데이터를 보여주기:",
 	"apisandbox-request-format-url-label": "URL 쿼리 문자열",
 	"apisandbox-request-url-label": "요청 URL:",
 	"apisandbox-request-json-label": "JSON 요청:",

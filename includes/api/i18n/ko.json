@@ -184,6 +184,7 @@
 	"apihelp-opensearch-param-limit": "반환할 결과의 최대 수",
 	"apihelp-opensearch-param-namespace": "검색할 이름공간.",
 	"apihelp-opensearch-param-format": "출력 포맷.",
+	"apihelp-opensearch-example-te": "<kbd>Te</kbd>로 시작하는 문서를 찾기.",
 	"apihelp-options-param-reset": "사이트 기본으로 설정 초기화",
 	"apihelp-options-example-reset": "모든 설정 초기화",
 	"apihelp-paraminfo-description": "API 모듈의 정보를 가져옵니다.",

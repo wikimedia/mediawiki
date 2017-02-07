@@ -3829,6 +3829,7 @@
 	"authmanager-create-disabled": "Het aanmaken van accounts is uitgeschakeld.",
 	"authmanager-create-from-login": "Om een account aan te maken, gelieve de velden in te vullen.",
 	"authmanager-authplugin-setpass-failed-title": "Wachtwoord wijzigen is mislukt",
+	"authmanager-authplugin-setpass-denied": "De verificatie-invoegtoepassing staat het wijzigen van wachtwoorden niet toe.",
 	"authmanager-authplugin-setpass-bad-domain": "Ongeldig domein.",
 	"authmanager-autocreate-noperm": "Het automatisch aanmaken van accounts is niet toegestaan.",
 	"authmanager-autocreate-exception": "Het automatisch aanmaken van accounts is tijdelijk uitgeschakelijk vanwege eerdere fouten.",
