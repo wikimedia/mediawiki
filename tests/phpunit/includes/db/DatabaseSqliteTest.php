@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Rdbms\Blob;
+
 class DatabaseSqliteMock extends DatabaseSqlite {
 	private $lastQuery;
 
