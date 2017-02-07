@@ -18,7 +18,7 @@
 
 		// Events
 		this.aggregate( { update: 'filterItemUpdate' } );
-		this.connect( this, { filterItemUpdate: 'onFilterItemUpdate' } );
+		this.connect( this, { filterItemUpdate: [ 'emit', 'itemUpdate' ] } );
 	};
 
 	/* Initialization */
@@ -44,16 +44,6 @@
 	/* Methods */
 
 	/**
-	 * Respond to filter item change.
-	 *
-	 * @param {mw.rcfilters.dm.FilterItem} item Updated filter
-	 * @fires itemUpdate
-	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.onFilterItemUpdate = function ( item ) {
-		this.emit( 'itemUpdate', item );
-	};
-
-	/**
 	 * Re-assess the states of filter items based on the interactions between them
 	 *
 	 * NOTE: The group-level state for 'fullCoverage' is reassessed at the group
@@ -66,6 +56,7 @@
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.reassessFilterInteractions = function ( item ) {
 		var model = this,
+			itemGroup = this.getGroup( item.getGroup() ),
 			changeIncludedIfNeeded = function( itemAffecting, itemInSubset ) {
 				if (
 					itemAffecting.getName() !== itemInSubset.getName() &&
@@ -92,11 +83,34 @@
 
 		// Check for interactions
 		this.getItems().forEach( function ( filterItem ) {
+			var inConflict = false;
+
 			// Check for subsets (included filters):
 			// 1. Check if item is a subset of filterItem (hence, item.toggleIncluded( ... ))
 			changeIncludedIfNeeded( item, filterItem );
 			// 2. Check if filterItem is a subset of item (hence, filterItem.toggleIncluded( ... ))
 			changeIncludedIfNeeded( filterItem, item );
+
+			// Check for conflicts
+			// For each item, see if that item is still conflicting
+			$.each( model.groups, function ( groupName, groupModel ) {
+				if ( inConflict ) {
+					// If we already know that this item is in conflict,
+					// there is no need to continue checking
+					return;
+				}
+
+				if ( filterItem.getGroup() === groupName ) {
+					// Check inside the group
+					inConflict = groupModel.areAnySelectedInConflictWith( filterItem );
+				} else {
+					// Check if the entire group conflicts with the item
+					inConflict = groupModel.areAllSelectedInConflictWith( filterItem );
+				}
+			} );
+
+			// Change the item state
+			filterItem.toggleConflicted( inConflict );
 		} );
 	};
 
