@@ -2,7 +2,6 @@
 
 namespace Wikimedia\Rdbms;
 
-use Database;
 use InvalidArgumentException;
 
 /**
@@ -605,4 +604,4 @@ class DBConnRef implements IDatabase {
 	}
 }
 
-class_alias( 'Wikimedia\Rdbms\DBConnRef', 'DBConnRef' );
+class_alias( DBConnRef::class, 'DBConnRef' );

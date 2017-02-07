@@ -18,6 +18,7 @@
  * @file
  * @ingroup Database
  */
+use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 
 /**

@@ -21,6 +21,8 @@
  * @ingroup Deployment
  */
 
+use Wikimedia\Rdbms\DatabasePostgres;
+
 /**
  * Class for handling updates to Postgres databases.
  *

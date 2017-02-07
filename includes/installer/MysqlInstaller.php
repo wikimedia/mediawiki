@@ -21,6 +21,8 @@
  * @ingroup Deployment
  */
 
+use Wikimedia\Rdbms\Database;
+
 /**
  * Class for setting up the MediaWiki database using MySQL.
  *

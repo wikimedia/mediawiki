@@ -2,8 +2,6 @@
 
 namespace Wikimedia\Rdbms;
 
-use Database;
-
 /**
  * Database connection manager.
  *
