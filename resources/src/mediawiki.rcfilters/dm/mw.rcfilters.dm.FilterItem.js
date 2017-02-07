@@ -216,7 +216,7 @@
 	 * @param {mw.rcfilters.dm.FilterItem} filterItem Filter item
 	 * @return {boolean} This item has a conflict with the given item
 	 */
-	mw.rcfilters.dm.FilterItem.prototype.hasConflictWith = function ( filterItem ) {
+	mw.rcfilters.dm.FilterItem.prototype.existsInConflicts = function ( filterItem ) {
 		return this.conflicts.indexOf( filterItem.getName() ) > -1;
 	};
 
