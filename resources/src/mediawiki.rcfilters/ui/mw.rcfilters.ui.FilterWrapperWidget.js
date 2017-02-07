@@ -40,7 +40,8 @@
 		this.capsule = new mw.rcfilters.ui.FilterCapsuleMultiselectWidget( controller, this.model, this.textInput, {
 			popup: {
 				$content: this.filterPopup.$element,
-				classes: [ 'mw-rcfilters-ui-filterWrapperWidget-popup' ]
+				classes: [ 'mw-rcfilters-ui-filterWrapperWidget-popup' ],
+				width: 650
 			}
 		} );
 
