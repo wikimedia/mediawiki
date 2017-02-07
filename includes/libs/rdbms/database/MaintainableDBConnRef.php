@@ -70,4 +70,4 @@ class MaintainableDBConnRef extends DBConnRef implements IMaintainableDatabase {
 	}
 }
 
-class_alias( 'Wikimedia\Rdbms\MaintainableDBConnRef', 'MaintainableDBConnRef' );
+class_alias( MaintainableDBConnRef::class, 'MaintainableDBConnRef' );

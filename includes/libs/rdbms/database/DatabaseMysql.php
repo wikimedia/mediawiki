@@ -20,6 +20,9 @@
  * @file
  * @ingroup Database
  */
+namespace Wikimedia\Rdbms;
+
+use DBConnectionError;
 
 /**
  * Database abstraction object for PHP extension mysql.
@@ -202,3 +205,5 @@ class DatabaseMysql extends DatabaseMysqlBase {
 		return mysql_real_escape_string( $s, $conn );
 	}
 }
+
+class_alias( DatabaseMysql::class, 'DatabaseMysql' );
