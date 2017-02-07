@@ -908,4 +908,122 @@
 			'Removing all supersets also un-includes the subsets.'
 		);
 	} );
+
+	QUnit.test( 'Filter interaction: conflicts', function ( assert ) {
+		var definition = {
+				group1: {
+					title: 'Group 1',
+					type: 'string_options',
+					filters: [
+						{
+							name: 'filter1',
+							conflicts: [ 'filter2', 'filter4' ]
+						},
+						{
+							name: 'filter2',
+							conflicts: [ 'filter6' ]
+						},
+						{
+							name: 'filter3'
+						}
+					]
+				},
+				group2: {
+					title: 'Group 2',
+					type: 'send_unselected_if_any',
+					filters: [
+						{
+							name: 'filter4'
+						},
+						{
+							name: 'filter5',
+							conflicts: [ 'filter3' ]
+						},
+						{
+							name: 'filter6',
+						}
+					]
+				}
+			},
+			baseFullState = {
+				filter1: { selected: false, conflicted: false, included: false },
+				filter2: { selected: false, conflicted: false, included: false },
+				filter3: { selected: false, conflicted: false, included: false },
+				filter4: { selected: false, conflicted: false, included: false },
+				filter5: { selected: false, conflicted: false, included: false },
+				filter6: { selected: false, conflicted: false, included: false }
+			},
+			model = new mw.rcfilters.dm.FiltersViewModel();
+
+		model.initializeFilters( definition );
+
+		assert.deepEqual(
+			model.getFullState(),
+			baseFullState,
+			'Initial state: no conflicts because no selections.'
+		);
+
+		// Select a filter that has a conflict with another
+		model.updateFilters( {
+			filter1: true // conflicts: filter2, filter4
+		} );
+
+		model.reassessFilterInteractions( model.getItemByName( 'filter1' ) );
+
+		assert.deepEqual(
+			model.getFullState(),
+			$.extend( true, {}, baseFullState, {
+				filter1: { selected: true },
+				filter2: { conflicted: true },
+				filter4: { conflicted: true },
+			} ),
+			'Selecting a filter set its conflicts list as "conflicted".'
+		);
+
+		// Select one of the conflicts (both filters are now conflicted and selected)
+		model.updateFilters( {
+			filter4: true // conflicts: filter 1
+		} );
+		model.reassessFilterInteractions( model.getItemByName( 'filter4' ) );
+
+		assert.deepEqual(
+			model.getFullState(),
+			$.extend( true, {}, baseFullState, {
+				filter1: { selected: true, conflicted: true },
+				filter2: { conflicted: true },
+				filter4: { selected: true, conflicted: true },
+			} ),
+			'Selecting a conflicting filter sets both sides to conflicted and selected.'
+		);
+
+		// Select another filter from filter4 group, meaning:
+		// - now filter1 no longer conflicts with filter4
+		// - but filter4 DOES conflict with filter1 because it's the only one in its group
+
+//		   ^^ IS THIS CORRECT BEHAVIOR??
+//
+//		   or should we tell filter4 that it shouldn't conflict anymore either?
+//		   If so, then the test isn't just "am I conflicting with filter1's group"
+//		   but rather "is my opposing filter also conflicts with me" --> which is
+//		   a slightly different strategy.
+//		   In this case, what results do we see? Is filter4 still really conflicted?
+//		   Are conflicts truly bi-directional or only the relationship is, but the
+//		   state is separate? I'm not 100% sure.
+
+		model.updateFilters( {
+			filter6: true // conflicts: filter2
+		} );
+		model.reassessFilterInteractions( model.getItemByName( 'filter6' ) );
+
+		assert.deepEqual(
+			model.getFullState(),
+			$.extend( true, {}, baseFullState, {
+				filter1: { selected: true, conflicted: false }, // No longer conflicts (filter4 is not the only in the group)
+				filter2: { conflicted: true }, // While not selected, still in conflict with filter1, which is selected
+				filter4: { selected: true, conflicted: true }, // This is *still* conflicted (because filter1 is the only selected filter in the group to conflict with it)
+				filter6: { selected: true, conflicted: false }
+			} ),
+			'Selecting a non-conflicting filter from a conflicting group removes the conflict'
+		);
+	} );
 }( mediaWiki, jQuery ) );
