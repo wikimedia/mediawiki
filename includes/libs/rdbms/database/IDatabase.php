@@ -23,7 +23,22 @@
  * @file
  * @ingroup Database
  */
+namespace Wikimedia\Rdbms;
+
 use Wikimedia\ScopedCallback;
+use DBError;
+use DBConnectionError;
+use DBUnexpectedError;
+use DBQueryError;
+use Exception;
+use RuntimeException;
+use UnexpectedValueException;
+use ResultWrapper;
+use Field;
+use LikeMatch;
+use Blob;
+use DBMasterPos;
+use stdClass;
 
 /**
  * Basic database interface for live and lazy-loaded relation database handles

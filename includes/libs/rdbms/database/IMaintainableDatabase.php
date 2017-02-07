@@ -22,6 +22,12 @@
  * @file
  * @ingroup Database
  */
+namespace Wikimedia\Rdbms;
+
+use ResultWrapper;
+use Exception;
+use RuntimeException;
+use DBUnexpectedError;
 
 /**
  * Advanced database interface for IDatabase handles that include maintenance methods

@@ -22,7 +22,6 @@
 namespace Wikimedia\Rdbms;
 
 use ILoadBalancer;
-use IDatabase;
 use BagOStuff;
 
 /**

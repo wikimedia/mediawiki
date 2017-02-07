@@ -27,6 +27,8 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\TransactionProfiler;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
  * Relational database abstraction object
@@ -34,7 +36,11 @@ use Wikimedia\Rdbms\TransactionProfiler;
  * @ingroup Database
  * @since 1.28
  */
-abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAwareInterface {
+abstract class Database
+	implements IDatabase, IMaintainableDatabase, LoggerAwareInterface,
+	// Implement compat.php interfaces until that is removed
+	\IDatabase, \IMaintainableDatabase
+{
 	/** Number of times to re-try an operation in case of deadlock */
 	const DEADLOCK_TRIES = 4;
 	/** Minimum time to wait before retry, in microseconds */
@@ -360,7 +366,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		$class = 'Database' . ucfirst( $driver );
-		if ( class_exists( $class ) && is_subclass_of( $class, 'IDatabase' ) ) {
+		if ( class_exists( $class ) && is_subclass_of( $class, IDatabase::class ) ) {
 			// Resolve some defaults for b/c
 			$p['host'] = isset( $p['host'] ) ? $p['host'] : false;
 			$p['user'] = isset( $p['user'] ) ? $p['user'] : false;

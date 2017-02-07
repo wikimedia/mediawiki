@@ -25,6 +25,7 @@ use Psr\Log\NullLogger;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\Rdbms\ILoadMonitor;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Database connection, tracking, load balancing, and transaction manager for a cluster
@@ -1349,7 +1350,7 @@ class LoadBalancer implements ILoadBalancer {
 
 	/**
 	 * @param string $domain Domain ID, or false for the current domain
-	 * @param IDatabase|null DB master connectionl used to avoid loops [optional]
+	 * @param IDatabase|null $conn DB master connectionl used to avoid loops [optional]
 	 * @return bool
 	 */
 	private function masterRunningReadOnly( $domain, IDatabase $conn = null ) {

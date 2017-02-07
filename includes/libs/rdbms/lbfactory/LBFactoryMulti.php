@@ -24,7 +24,6 @@
 namespace Wikimedia\Rdbms;
 
 use LoadBalancer;
-use IDatabase;
 use DatabaseDomain;
 use InvalidArgumentException;
 

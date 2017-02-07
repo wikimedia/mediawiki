@@ -25,7 +25,6 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\ScopedCallback;
 use ILoadBalancer;
-use IDatabase;
 use BagOStuff;
 
 /**
