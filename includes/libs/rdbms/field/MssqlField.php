@@ -1,4 +1,7 @@
 <?php
+
+namespace Wikimedia\Rdbms;
+
 class MssqlField implements Field {
 	private $name, $tableName, $default, $max_length, $nullable, $type;
 
