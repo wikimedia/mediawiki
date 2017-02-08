@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.19.0
+ * OOjs UI v0.19.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-02-01T23:04:40Z
+ * Date: 2017-02-08T00:38:31Z
  */
 ( function ( OO ) {
 
@@ -241,6 +241,7 @@ OO.ui.mixin.DraggableGroupElement = function OoUiMixinDraggableGroupElement( con
 	}
 	this.$element
 		.addClass( 'oo-ui-draggableGroupElement' )
+		.attr( 'role', 'listbox' )
 		.append( this.$status )
 		.toggleClass( 'oo-ui-draggableGroupElement-horizontal', this.orientation === 'horizontal' );
 };
@@ -3057,12 +3058,30 @@ OO.inheritClass( OO.ui.OutlineOptionWidget, OO.ui.DecoratedOptionWidget );
 
 /* Static Properties */
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.OutlineOptionWidget.static.highlightable = true;
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.OutlineOptionWidget.static.scrollIntoViewOnSelect = true;
 
+/**
+ * @static
+ * @inheritable
+ * @property {string}
+ */
 OO.ui.OutlineOptionWidget.static.levelClass = 'oo-ui-outlineOptionWidget-level-';
 
+/**
+ * @static
+ * @inheritable
+ * @property {number}
+ */
 OO.ui.OutlineOptionWidget.static.levels = 3;
 
 /* Methods */
@@ -3258,9 +3277,18 @@ OO.mixinClass( OO.ui.ButtonOptionWidget, OO.ui.mixin.TitledElement );
 
 /* Static Properties */
 
-// Allow button mouse down events to pass through so they can be handled by the parent select widget
+/**
+ * Allow button mouse down events to pass through so they can be handled by the parent select widget
+ *
+ * @static
+ * @inheritdoc
+ */
 OO.ui.ButtonOptionWidget.static.cancelButtonMouseDownEvents = false;
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.ButtonOptionWidget.static.highlightable = false;
 
 /* Methods */
@@ -3371,6 +3399,10 @@ OO.inheritClass( OO.ui.TabOptionWidget, OO.ui.OptionWidget );
 
 /* Static Properties */
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.TabOptionWidget.static.highlightable = false;
 
 /**

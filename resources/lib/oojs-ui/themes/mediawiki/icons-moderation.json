@@ -52,6 +52,10 @@
 			"rtl": "images/icons/unLock-rtl.svg"
 		}, "variants": [ "destructive" ] },
 		"star": { "file": "images/icons/star.svg", "variants": [ "constructive", "progressive" ] },
+		"halfStar": { "file": {
+			"ltr": "images/icons/halfStar-ltr.svg",
+			"rtl": "images/icons/halfStar-rtl.svg"
+		}, "variants": [ "constructive", "progressive" ] },
 		"unStar": { "file": "images/icons/unStar.svg", "variants": [ "constructive", "progressive" ] },
 		"trash": { "file": "images/icons/trash.svg" },
 		"unTrash": { "file": {

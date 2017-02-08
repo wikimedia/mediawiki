@@ -29,6 +29,10 @@
 			"rtl": "images/icons/unLock-rtl.svg"
 		} },
 		"star": { "file": "images/icons/star.svg" },
+		"halfStar": { "file": {
+			"ltr": "images/icons/halfStar-ltr.svg",
+			"rtl": "images/icons/halfStar-rtl.svg"
+		} },
 		"unStar": { "file": "images/icons/unStar.svg" },
 		"trash": { "file": "images/icons/trash.svg" },
 		"unTrash": { "file": {

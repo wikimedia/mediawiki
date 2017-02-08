@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.19.0
+ * OOjs UI v0.19.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-02-01T23:04:44Z
+ * Date: 2017-02-08T00:38:35Z
  */
 .oo-ui-popupTool .oo-ui-popupWidget-popup,
 .oo-ui-popupTool .oo-ui-popupWidget-anchor {
@@ -421,8 +421,7 @@
   position: relative;
 }
 .oo-ui-toolbar-tools,
-.oo-ui-toolbar-actions,
-.oo-ui-toolbar-shadow {
+.oo-ui-toolbar-actions {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -452,13 +451,6 @@
       -ms-user-select: all;
           user-select: all;
 }
-.oo-ui-toolbar-shadow {
-  background-position: left top;
-  background-repeat: repeat-x;
-  position: absolute;
-  width: 100%;
-  pointer-events: none;
-}
 .oo-ui-toolbar-bar {
   background-color: #f8fbfd;
   background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #fff), color-stop(100%, #F1F7FB));
@@ -467,15 +459,18 @@
   background-image:         linear-gradient(to bottom, #fff 0, #F1F7FB 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffffff', endColorstr='#fff1f7fb' )";
 }
-.oo-ui-toolbar-position-top .oo-ui-toolbar-bar {
+.oo-ui-toolbar-position-top > .oo-ui-toolbar-bar {
   border-bottom: 1px solid #ccc;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
 }
-.oo-ui-toolbar-position-bottom .oo-ui-toolbar-bar {
+.oo-ui-toolbar-position-bottom > .oo-ui-toolbar-bar {
   border-top: 1px solid #ccc;
+  box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.1);
 }
 .oo-ui-toolbar-bar .oo-ui-toolbar-bar {
   border: 0;
   background: none;
+  box-shadow: none;
 }
 .oo-ui-toolbar-actions > .oo-ui-buttonElement-framed,
 .oo-ui-toolbar-actions > .oo-ui-buttonElement-framed:last-child {
@@ -496,13 +491,4 @@
 .oo-ui-toolbar-actions > .oo-ui-buttonElement-frameless:last-child.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
   margin: 0 1em;
   line-height: 3.40625em;
-}
-.oo-ui-toolbar-shadow {
-  background-image: /* @embed */ url(themes/apex/images/toolbar-shadow.png);
-  bottom: -9px;
-  height: 9px;
-  opacity: 0.5;
-  -webkit-transition: opacity 500ms ease;
-     -moz-transition: opacity 500ms ease;
-          transition: opacity 500ms ease;
 }

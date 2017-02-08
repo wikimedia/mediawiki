@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.19.0
+ * OOjs UI v0.19.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-02-01T23:04:44Z
+ * Date: 2017-02-08T00:38:35Z
  */
 .oo-ui-tool.oo-ui-widget-enabled {
   -webkit-transition: background-color 100ms;
@@ -368,8 +368,7 @@
   position: relative;
 }
 .oo-ui-toolbar-tools,
-.oo-ui-toolbar-actions,
-.oo-ui-toolbar-shadow {
+.oo-ui-toolbar-actions {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -399,24 +398,17 @@
       -ms-user-select: all;
           user-select: all;
 }
-.oo-ui-toolbar-shadow {
-  background-position: left top;
-  background-repeat: repeat-x;
-  position: absolute;
-  width: 100%;
-  pointer-events: none;
-}
 .oo-ui-toolbar-bar {
   background-color: #fff;
   color: #222;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
-  font-weight: 500;
 }
-.oo-ui-toolbar-position-top .oo-ui-toolbar-bar {
+.oo-ui-toolbar-position-top > .oo-ui-toolbar-bar {
   border-bottom: 1px solid #c8ccd1;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
 }
-.oo-ui-toolbar-position-bottom .oo-ui-toolbar-bar {
+.oo-ui-toolbar-position-bottom > .oo-ui-toolbar-bar {
   border-top: 1px solid #c8ccd1;
+  box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.1);
 }
 .oo-ui-toolbar-bar .oo-ui-toolbar-bar {
   border: 0;

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.19.0
+ * OOjs UI v0.19.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-02-01T23:04:40Z
+ * Date: 2017-02-08T00:38:31Z
  */
 ( function ( OO ) {
 
@@ -3463,6 +3463,7 @@ OO.mixinClass( OO.ui.ButtonWidget, OO.ui.mixin.AccessKeyedElement );
 /* Static Properties */
 
 /**
+ * @static
  * @inheritdoc
  */
 OO.ui.ButtonWidget.static.cancelButtonMouseDownEvents = false;
@@ -3697,6 +3698,10 @@ OO.mixinClass( OO.ui.IconWidget, OO.ui.mixin.FlaggedElement );
 
 /* Static Properties */
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.IconWidget.static.tagName = 'span';
 
 /**
@@ -3750,6 +3755,10 @@ OO.mixinClass( OO.ui.IndicatorWidget, OO.ui.mixin.TitledElement );
 
 /* Static Properties */
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.IndicatorWidget.static.tagName = 'span';
 
 /**
@@ -3805,12 +3814,10 @@ OO.ui.LabelWidget = function OoUiLabelWidget( config ) {
 	// Properties
 	this.input = config.input;
 
-	// Events
-	if ( this.input instanceof OO.ui.InputWidget ) {
-		this.$element.on( 'click', this.onClick.bind( this ) );
-	}
-
 	// Initialization
+	if ( this.input instanceof OO.ui.InputWidget ) {
+		this.$element.attr( 'for', this.input.getInputId() );
+	}
 	this.$element.addClass( 'oo-ui-labelWidget' );
 };
 
@@ -3822,20 +3829,11 @@ OO.mixinClass( OO.ui.LabelWidget, OO.ui.mixin.TitledElement );
 
 /* Static Properties */
 
-OO.ui.LabelWidget.static.tagName = 'span';
-
-/* Methods */
-
 /**
- * Handles label mouse click events.
- *
- * @private
- * @param {jQuery.Event} e Mouse click event
+ * @static
+ * @inheritdoc
  */
-OO.ui.LabelWidget.prototype.onClick = function () {
-	this.input.simulateLabelClick();
-	return false;
-};
+OO.ui.LabelWidget.static.tagName = 'label';
 
 /**
  * PendingElement is a mixin that is used to create elements that notify users that something is happening
@@ -3853,6 +3851,7 @@ OO.ui.LabelWidget.prototype.onClick = function () {
  *     }
  *     OO.inheritClass( MessageDialog, OO.ui.MessageDialog );
  *
+ *     MessageDialog.static.name = 'myMessageDialog';
  *     MessageDialog.static.actions = [
  *         { action: 'save', label: 'Done', flags: 'primary' },
  *         { label: 'Cancel', flags: 'safe' }
@@ -5144,12 +5143,40 @@ OO.mixinClass( OO.ui.OptionWidget, OO.ui.mixin.AccessKeyedElement );
 
 /* Static Properties */
 
+/**
+ * Whether this option can be selected. See #setSelected.
+ *
+ * @static
+ * @inheritable
+ * @property {boolean}
+ */
 OO.ui.OptionWidget.static.selectable = true;
 
+/**
+ * Whether this option can be highlighted. See #setHighlighted.
+ *
+ * @static
+ * @inheritable
+ * @property {boolean}
+ */
 OO.ui.OptionWidget.static.highlightable = true;
 
+/**
+ * Whether this option can be pressed. See #setPressed.
+ *
+ * @static
+ * @inheritable
+ * @property {boolean}
+ */
 OO.ui.OptionWidget.static.pressable = true;
 
+/**
+ * Whether this option will be scrolled into view when it is selected.
+ *
+ * @static
+ * @inheritable
+ * @property {boolean}
+ */
 OO.ui.OptionWidget.static.scrollIntoViewOnSelect = false;
 
 /* Methods */
@@ -6232,6 +6259,10 @@ OO.inheritClass( OO.ui.MenuOptionWidget, OO.ui.DecoratedOptionWidget );
 
 /* Static Properties */
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.MenuOptionWidget.static.scrollIntoViewOnSelect = true;
 
 /**
@@ -6285,8 +6316,16 @@ OO.inheritClass( OO.ui.MenuSectionOptionWidget, OO.ui.DecoratedOptionWidget );
 
 /* Static Properties */
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.MenuSectionOptionWidget.static.selectable = false;
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.MenuSectionOptionWidget.static.highlightable = false;
 
 /**
@@ -6819,12 +6858,28 @@ OO.inheritClass( OO.ui.RadioOptionWidget, OO.ui.OptionWidget );
 
 /* Static Properties */
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.RadioOptionWidget.static.highlightable = false;
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.RadioOptionWidget.static.scrollIntoViewOnSelect = true;
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.RadioOptionWidget.static.pressable = false;
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.RadioOptionWidget.static.tagName = 'label';
 
 /* Methods */
@@ -7154,6 +7209,10 @@ OO.inheritClass( OO.ui.CheckboxMultioptionWidget, OO.ui.MultioptionWidget );
 
 /* Static Properties */
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.CheckboxMultioptionWidget.static.tagName = 'label';
 
 /* Methods */
@@ -7514,6 +7573,10 @@ OO.inheritClass( OO.ui.ProgressBarWidget, OO.ui.Widget );
 
 /* Static Properties */
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.ProgressBarWidget.static.tagName = 'div';
 
 /* Methods */
@@ -7615,6 +7678,10 @@ OO.mixinClass( OO.ui.InputWidget, OO.ui.mixin.AccessKeyedElement );
 
 /* Static Properties */
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.InputWidget.static.supportsSimpleLabel = true;
 
 /* Static Methods */
@@ -7666,6 +7733,25 @@ OO.ui.InputWidget.static.gatherPreInfuseState = function ( node, config ) {
  */
 OO.ui.InputWidget.prototype.getInputElement = function () {
 	return $( '<input>' );
+};
+
+/**
+ * Get input element's ID.
+ *
+ * If the element already has an ID then that is returned, otherwise unique ID is
+ * generated, set on the element, and returned.
+ *
+ * @return {string} The ID of the element
+ */
+OO.ui.InputWidget.prototype.getInputId = function () {
+	var id = this.$input.attr( 'id' );
+
+	if ( id === undefined ) {
+		id = OO.ui.generateElementId();
+		this.$input.attr( 'id', id );
+	}
+
+	return id;
 };
 
 /**
@@ -7756,6 +7842,7 @@ OO.ui.InputWidget.prototype.cleanUpValue = function ( value ) {
  * called directly.
  */
 OO.ui.InputWidget.prototype.simulateLabelClick = function () {
+	OO.ui.warnDeprecation( 'InputWidget: simulateLabelClick() is deprecated.' );
 	if ( !this.isDisabled() ) {
 		if ( this.$input.is( ':checkbox, :radio' ) ) {
 			this.$input.click();
@@ -7887,6 +7974,9 @@ OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.mixin.TitledElement );
 /**
  * Disable generating `<label>` elements for buttons. One would very rarely need additional label
  * for a button, and it's already a big clickable target, and it causes unexpected rendering.
+ *
+ * @static
+ * @inheritdoc
  */
 OO.ui.ButtonInputWidget.static.supportsSimpleLabel = false;
 
@@ -8410,6 +8500,10 @@ OO.inheritClass( OO.ui.RadioSelectInputWidget, OO.ui.InputWidget );
 
 /* Static Properties */
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.RadioSelectInputWidget.static.supportsSimpleLabel = false;
 
 /* Static Methods */
@@ -8533,7 +8627,7 @@ OO.ui.RadioSelectInputWidget.prototype.setOptions = function ( options ) {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {Object[]} [options=[]] Array of menu options in the format `{ data: …, label: … }`
+ * @cfg {Object[]} [options=[]] Array of menu options in the format `{ data: …, label: …, disabled: … }`
  */
 OO.ui.CheckboxMultiselectInputWidget = function OoUiCheckboxMultiselectInputWidget( config ) {
 	// Configuration initialization
@@ -8565,6 +8659,10 @@ OO.inheritClass( OO.ui.CheckboxMultiselectInputWidget, OO.ui.InputWidget );
 
 /* Static Properties */
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.CheckboxMultiselectInputWidget.static.supportsSimpleLabel = false;
 
 /* Static Methods */
@@ -8658,7 +8756,7 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.setDisabled = function ( state ) 
 /**
  * Set the options available for this input.
  *
- * @param {Object[]} options Array of menu options in the format `{ data: …, label: … }`
+ * @param {Object[]} options Array of menu options in the format `{ data: …, label: …, disabled: … }`
  * @chainable
  */
 OO.ui.CheckboxMultiselectInputWidget.prototype.setOptions = function ( options ) {
@@ -8668,12 +8766,14 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.setOptions = function ( options )
 	this.checkboxMultiselectWidget
 		.clearItems()
 		.addItems( options.map( function ( opt ) {
-			var optValue, item;
+			var optValue, item, optDisabled;
 			optValue =
 				OO.ui.CheckboxMultiselectInputWidget.parent.prototype.cleanUpValue.call( widget, opt.data );
+			optDisabled = opt.disabled !== undefined ? opt.disabled : false;
 			item = new OO.ui.CheckboxMultioptionWidget( {
 				data: optValue,
-				label: opt.label !== undefined ? opt.label : optValue
+				label: opt.label !== undefined ? opt.label : optValue,
+				disabled: optDisabled
 			} );
 			// Set the 'name' and 'value' for form submission
 			item.checkbox.$input.attr( 'name', widget.inputName );
@@ -9956,8 +10056,6 @@ OO.ui.ComboBoxInputWidget.prototype.setOptions = function ( options ) {
  * @throws {Error} An error is thrown if no widget is specified
  */
 OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
-	var hasInputWidget;
-
 	// Allow passing positional parameters inside the config object
 	if ( OO.isPlainObject( fieldWidget ) && config === undefined ) {
 		config = fieldWidget;
@@ -9969,8 +10067,6 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 		throw new Error( 'Widget not found' );
 	}
 
-	hasInputWidget = fieldWidget.constructor.static.supportsSimpleLabel;
-
 	// Configuration initialization
 	config = $.extend( { align: 'left' }, config );
 
@@ -9978,7 +10074,9 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	OO.ui.FieldLayout.parent.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.LabelElement.call( this, config );
+	OO.ui.mixin.LabelElement.call( this, $.extend( {}, config, {
+		$label: $( '<label>' )
+	} ) );
 	OO.ui.mixin.TitledElement.call( this, $.extend( {}, config, { $titled: this.$label } ) );
 
 	// Properties
@@ -9988,7 +10086,7 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	this.$field = $( '<div>' );
 	this.$messages = $( '<ul>' );
 	this.$header = $( '<div>' );
-	this.$body = $( '<' + ( hasInputWidget ? 'label' : 'div' ) + '>' );
+	this.$body = $( '<div>' );
 	this.align = null;
 	if ( config.help ) {
 		this.popupButtonWidget = new OO.ui.PopupButtonWidget( {
@@ -10010,12 +10108,12 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	}
 
 	// Events
-	if ( hasInputWidget ) {
-		this.$label.on( 'click', this.onLabelClick.bind( this ) );
-	}
 	this.fieldWidget.connect( this, { disable: 'onFieldDisable' } );
 
 	// Initialization
+	if ( fieldWidget.constructor.static.supportsSimpleLabel ) {
+		this.$label.attr( 'for', this.fieldWidget.getInputId() );
+	}
 	this.$element
 		.addClass( 'oo-ui-fieldLayout' )
 		.toggleClass( 'oo-ui-fieldLayout-disabled', this.fieldWidget.isDisabled() )
@@ -10048,17 +10146,6 @@ OO.mixinClass( OO.ui.FieldLayout, OO.ui.mixin.TitledElement );
  */
 OO.ui.FieldLayout.prototype.onFieldDisable = function ( value ) {
 	this.$element.toggleClass( 'oo-ui-fieldLayout-disabled', value );
-};
-
-/**
- * Handle label mouse click events.
- *
- * @private
- * @param {jQuery.Event} e Mouse click event
- */
-OO.ui.FieldLayout.prototype.onLabelClick = function () {
-	this.fieldWidget.simulateLabelClick();
-	return false;
 };
 
 /**
@@ -10361,6 +10448,10 @@ OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.mixin.GroupElement );
 
 /* Static Properties */
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.FieldsetLayout.static.tagName = 'fieldset';
 
 /**
@@ -10474,6 +10565,10 @@ OO.mixinClass( OO.ui.FormLayout, OO.ui.mixin.GroupElement );
 
 /* Static Properties */
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.FormLayout.static.tagName = 'form';
 
 /* Methods */
