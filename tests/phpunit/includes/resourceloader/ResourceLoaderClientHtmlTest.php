@@ -54,6 +54,18 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 			'test.scripts.mixed.user' => [ 'group' => 'user' ],
 			'test.scripts.mixed.user.empty' => [ 'group' => 'user', 'isKnownEmpty' => true ],
 			'test.scripts.raw' => [ 'isRaw' => true ],
+
+			'test.target.all' => [ 'targets' => [ 'phpunit', 'smoigel' ] ],
+			'test.target.phpunit' => [ 'targets' => [ 'phpunit' ] ],
+			'test.target.smoigel' => [ 'targets' => [ 'smoigel' ] ],
+			'test.target.styles.phpunit' => [
+				'type' => ResourceLoaderModule::LOAD_STYLES,
+				'targets' => [ 'phpunit' ],
+			],
+			'test.target.scripts.phpunit' => [
+				'type' => ResourceLoaderModule::LOAD_STYLES,
+				'targets' => [ 'phpunit' ],
+			],
 		];
 		return array_map( function ( $options ) {
 			return self::makeModule( $options );
@@ -132,6 +144,83 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 					'test.private.top',
 				],
 			],
+		];
+
+		$access = TestingAccessWrapper::newFromObject( $client );
+		$this->assertEquals( $expected, $access->getData() );
+	}
+
+	public static function provideTargetFilter() {
+		return [
+			[
+				'target' => null,
+				'expect' => [
+					'general' => [
+						'test.target.all',
+						'test.target.phpunit',
+						'test.target.smoigel',
+					],
+					'styles' => [ 'test.target.styles.phpunit' ],
+					'scripts' => [ 'test.target.scripts.phpunit' ],
+				],
+			],
+			[
+				'target' => 'phpunit',
+				'expect' => [
+					'general' => [
+						'test.target.all',
+						'test.target.phpunit',
+					],
+					'styles' => [ 'test.target.styles.phpunit' ],
+					'scripts' => [ 'test.target.scripts.phpunit' ],
+				],
+			],
+			[
+				'target' => 'smoigel',
+				'expect' => [
+					'general' => [
+						'test.target.all',
+						'test.target.smoigel',
+					],
+					'styles' => [],
+					'scripts' => [],
+				],
+			],
+			[
+				'target' => 'woosh',
+				'expect' => [
+					'general' => [],
+					'styles' => [],
+					'scripts' => [],
+				],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideTargetFilter
+	 * @covers ResourceLoaderClientHtml::getData
+	 */
+	public function testGetDataTargetFilter( $target, $expect ) {
+		$context = self::makeContext();
+		$context->getResourceLoader()->register( self::makeSampleModules() );
+		// Input
+		$client = new ResourceLoaderClientHtml( $context, $target );
+		$client->setModules( [
+			'test.target.all',
+			'test.target.phpunit',
+			'test.target.smoigel',
+		] );
+		$client->setModuleStyles( [ 'test.target.styles.phpunit' ] );
+		$client->setModuleScripts( [ 'test.target.scripts.phpunit' ] );
+		// Expected output
+		$expected = [
+			'states' => array_fill_keys( $expect['styles'], 'ready' )
+				+ array_fill_keys( $expect['scripts'], 'loading' ),
+			'general' => $expect['general'],
+			'styles' => $expect['styles'],
+			'scripts' => $expect['scripts'],
+			'embed' => [ 'styles' => [], 'general' => [] ],
 		];
 
 		$access = TestingAccessWrapper::newFromObject( $client );

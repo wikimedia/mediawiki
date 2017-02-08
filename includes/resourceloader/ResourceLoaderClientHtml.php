@@ -145,7 +145,7 @@ class ResourceLoaderClientHtml {
 
 		foreach ( $this->modules as $name ) {
 			$module = $rl->getModule( $name );
-			if ( !$module ) {
+			if ( !$module || !$this->targetFilter( $module ) ) {
 				continue;
 			}
 
@@ -164,7 +164,7 @@ class ResourceLoaderClientHtml {
 
 		foreach ( $this->moduleStyles as $name ) {
 			$module = $rl->getModule( $name );
-			if ( !$module ) {
+			if ( !$module || !$this->targetFilter( $module ) ) {
 				continue;
 			}
 
@@ -199,7 +199,7 @@ class ResourceLoaderClientHtml {
 
 		foreach ( $this->moduleScripts as $name ) {
 			$module = $rl->getModule( $name );
-			if ( !$module ) {
+			if ( !$module || !$this->targetFilter( $module ) ) {
 				continue;
 			}
 
@@ -324,6 +324,23 @@ class ResourceLoaderClientHtml {
 	 */
 	public function getBodyHtml() {
 		return '';
+	}
+
+	/**
+	 * @return bool True for accepted, False for rejected.
+	 */
+	private function targetFilter( ResourceLoaderModule $module ) {
+		if ( $this->target && !in_array( $this->target, $module->getTargets() ) ) {
+			// Log violations in anticipation of removing targets (T140675, T127268).
+			$logger = $this->resourceLoader->getLogger();
+			$logger->debug( 'Module "{module}" not loadable on target "{target}".', [
+				'module' => $module->getName(),
+				'target' => $this->target,
+			] );
+			return false;
+		}
+
+		return true;
 	}
 
 	private function getContext( $group, $type ) {
