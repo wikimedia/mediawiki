@@ -22,6 +22,7 @@
  */
 use Wikimedia\Rdbms\DBMasterPos;
 use Wikimedia\Rdbms\MySQLMasterPos;
+use Wikimedia\Rdbms\MySQLField;
 
 /**
  * Database abstraction object for MySQL.
