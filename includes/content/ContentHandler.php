@@ -361,7 +361,9 @@ abstract class ContentHandler {
 	public static function getContentModels() {
 		global $wgContentHandlers;
 
-		return array_keys( $wgContentHandlers );
+		$models = array_keys( $wgContentHandlers );
+		Hooks::run( 'GetContentModels', [ &$models ] );
+		return $models;
 	}
 
 	public static function getAllContentFormats() {
