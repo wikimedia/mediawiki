@@ -21,6 +21,7 @@
  * @ingroup Database
  */
 use Wikimedia\WaitConditionLoop;
+use Wikimedia\Rdbms\PostgresField;
 
 /**
  * @ingroup Database

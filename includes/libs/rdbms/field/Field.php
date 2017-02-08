@@ -1,4 +1,7 @@
 <?php
+
+namespace Wikimedia\Rdbms;
+
 /**
  * Base for all database-specific classes representing information about database fields
  * @ingroup Database

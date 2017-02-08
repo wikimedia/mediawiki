@@ -21,6 +21,7 @@
  * @file
  * @ingroup Database
  */
+use Wikimedia\Rdbms\SQLiteField;
 
 /**
  * @ingroup Database

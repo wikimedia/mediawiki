@@ -20,6 +20,7 @@
  * @file
  * @ingroup Database
  */
+use Wikimedia\Rdbms\MySQLField;
 
 /**
  * Database abstraction object for MySQL.
