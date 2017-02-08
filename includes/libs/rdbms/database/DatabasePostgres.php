@@ -23,6 +23,7 @@
 use Wikimedia\WaitConditionLoop;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\PostgresBlob;
+use Wikimedia\Rdbms\PostgresField;
 
 /**
  * @ingroup Database
