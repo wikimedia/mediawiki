@@ -29,7 +29,6 @@ use Psr\Log\NullLogger;
 use Wikimedia\WaitConditionLoop;
 use BagOStuff;
 use DBMasterPos;
-use ILoadBalancer;
 
 /**
  * Class for ensuring a consistent ordering of events as seen by the user, despite replication.
