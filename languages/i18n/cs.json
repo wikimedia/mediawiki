@@ -879,7 +879,7 @@
 	"revdelete-failure": "'''Nepodařilo se nastavit viditelnost revize:'''\n$1",
 	"logdelete-success": "Viditelnost události úspěšně nastavena.",
 	"logdelete-failure": "'''Nepodařilo se nastavit viditelnost protokolu:'''\n$1",
-	"revdel-restore": "Změnit viditelnost",
+	"revdel-restore": "změnit viditelnost",
 	"pagehist": "Historie stránky",
 	"deletedhist": "Smazaná historie",
 	"revdelete-hide-current": "Chyba při skrývání položky z $1 $2: jedná se o současnou revizi.\nTu nelze skrýt.",

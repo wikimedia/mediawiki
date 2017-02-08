@@ -1936,7 +1936,7 @@
 	"apisandbox-loading-results": "Pobieranie wyników API...",
 	"apisandbox-results-error": "Wystąpił błąd podczas pobierania odpowiedzi na zapytanie API: $1.",
 	"apisandbox-request-selectformat-label": "Pokaż dane z zapytania jako:",
-	"apisandbox-request-format-url-label": "zapytanie w URL",
+	"apisandbox-request-format-url-label": "zapytanie w adresie URL",
 	"apisandbox-request-url-label": "URL zapytania:",
 	"apisandbox-request-json-label": "Zapytanie JSON:",
 	"apisandbox-request-time": "Czas przetwarzania zapytania: {{PLURAL:$1|$1 ms}}",

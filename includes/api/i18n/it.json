@@ -231,7 +231,7 @@
 	"apihelp-protect-example-protect": "Proteggi una pagina.",
 	"apihelp-protect-example-unprotect": "Sproteggi una pagina impostando restrizione su <kbd>all</kbd> (cioè a tutti è consentito intraprendere l'azione).",
 	"apihelp-protect-example-unprotect2": "Sproteggi una pagina impostando nessuna restrizione.",
-	"apihelp-purge-description": "Elimina il nascondiglio per i titoli dati.",
+	"apihelp-purge-description": "Pulisce la cache per i titoli indicati.",
 	"apihelp-purge-param-forcelinkupdate": "Aggiorna la tabella dei collegamenti.",
 	"apihelp-purge-param-forcerecursivelinkupdate": "Aggiorna la tabella dei collegamenti per questa pagina, e per ogni pagina che usa questa pagina come template.",
 	"apihelp-query-param-list": "Quali elenchi ottenere.",

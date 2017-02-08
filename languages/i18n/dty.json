@@ -695,7 +695,7 @@
 	"rev-suppressed-text-unhide": "यै पानाको पुनरावलोकन '''दमन''' गरियाको छ ।\nविस्तृत जानकारी [{{fullurl:{{#Special:Log}}/delete|पानो={{FULLPAGENAMEE}}}} दमन लग] पाउन सकिन्छ ।\nयदि तम अगाडि बढ्ड चाहन्छौ भण्या पनि तमीले  [$1 यि संशोधनहरू हेद्द] पाउन्या हौ ।",
 	"rev-delundel": "दधेखाउने/लुकाउन्या",
 	"rev-showdeleted": "धेकाउन्या",
-	"revisiondelete": "मेटाउन्या/मेटाईया रद्दगर्ने  पुनरावलोकनहरू",
+	"revisiondelete": "पुनरावलोकनअन मेट्याऽ/मेट्याऽ रद्द अद्द्या",
 	"revdelete-nooldid-title": "अमान्य पुनरावलोकन लक्ष",
 	"revdelete-no-file": "खुलाइएको पाना अस्तित्वमी छैन",
 	"revdelete-show-file-submit": "हो",
