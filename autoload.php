@@ -1588,6 +1588,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\DatabaseDomain' => __DIR__ . '/includes/libs/rdbms/database/DatabaseDomain.php',
 	'Wikimedia\\Rdbms\\ILBFactory' => __DIR__ . '/includes/libs/rdbms/lbfactory/ILBFactory.php',
 	'Wikimedia\\Rdbms\\ILoadMonitor' => __DIR__ . '/includes/libs/rdbms/loadmonitor/ILoadMonitor.php',
+	'Wikimedia\\Rdbms\\IResultWrapper' => __DIR__ . '/includes/libs/rdbms/database/resultwrapper/IResultWrapper.php',
 	'Wikimedia\\Rdbms\\LBFactory' => __DIR__ . '/includes/libs/rdbms/lbfactory/LBFactory.php',
 	'Wikimedia\\Rdbms\\LBFactoryMulti' => __DIR__ . '/includes/libs/rdbms/lbfactory/LBFactoryMulti.php',
 	'Wikimedia\\Rdbms\\LBFactorySimple' => __DIR__ . '/includes/libs/rdbms/lbfactory/LBFactorySimple.php',
