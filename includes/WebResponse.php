@@ -39,6 +39,12 @@ class WebResponse {
 	 * @param null|int $http_response_code Forces the HTTP response code to the specified value.
 	 */
 	public function header( $string, $replace = true, $http_response_code = null ) {
+		static $senders = [];
+
+		$senders[] = wfGetCaller();
+		if ( headers_sent() ) {
+			MWDebug::warning( 'Headers already sent by:' . implode( ',', $senders ), 2 );
+		}
 		if ( $http_response_code ) {
 			header( $string, $replace, $http_response_code );
 		} else {
