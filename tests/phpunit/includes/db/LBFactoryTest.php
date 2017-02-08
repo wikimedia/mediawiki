@@ -3,6 +3,7 @@
 use Wikimedia\Rdbms\LBFactorySimple;
 use Wikimedia\Rdbms\LBFactoryMulti;
 use Wikimedia\Rdbms\ChronologyProtector;
+use Wikimedia\Rdbms\MySQLMasterPos;
 
 /**
  * Holds tests for LBFactory abstract MediaWiki class.

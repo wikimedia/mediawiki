@@ -21,6 +21,7 @@
  * @ingroup Database
  * @author Aaron Schulz
  */
+use Wikimedia\Rdbms\DBMasterPos;
 
 /**
  * Database cluster connection, tracking, load balancing, and transaction manager interface

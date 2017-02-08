@@ -25,6 +25,7 @@
  */
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\LikeMatch;
+use Wikimedia\Rdbms\DBMasterPos;
 
 /**
  * Basic database interface for live and lazy-loaded relation database handles
