@@ -149,6 +149,16 @@ class ResourceLoaderClientHtml {
 				continue;
 			}
 
+			if ( $this->target && !in_array( $this->target, $module->getTargets() ) ) {
+				$logger = $rl->getLogger();
+				// Log violations in anticipation of removing targets (T140675, T127268).
+				$logger->debug( 'Module "{module}" not loadable on target "{target}".', [
+					'module' => $name,
+					'target' => $this->target,
+				] );
+				continue;
+			}
+
 			$group = $module->getGroup();
 
 			if ( $group === 'private' ) {
