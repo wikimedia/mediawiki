@@ -178,10 +178,10 @@
 		);
 	} );
 
-	QUnit.test( 'Constructor( empty )', 4, function ( assert ) {
+	QUnit.test( 'Constructor( empty[, Object ] )', 5, function ( assert ) {
 		var testuri, MyUri, uri;
 
-		testuri = 'http://example.org/w/index.php';
+		testuri = 'http://example.org/w/index.php?a=1&a=2';
 		MyUri = mw.UriRelative( testuri );
 
 		uri = new MyUri();
@@ -195,6 +195,9 @@
 
 		uri = new MyUri( '' );
 		assert.equal( uri.toString(), testuri, 'empty string' );
+
+		uri = new MyUri( null, { overrideKeys: true } );
+		assert.equal( uri.query, { a: '2' }, 'null, with options' );
 	} );
 
 	QUnit.test( 'Properties', 8, function ( assert ) {
