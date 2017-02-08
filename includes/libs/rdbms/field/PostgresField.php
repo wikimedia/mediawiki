@@ -1,4 +1,9 @@
 <?php
+
+namespace Wikimedia\Rdbms;
+
+use DatabasePostgres;
+
 class PostgresField implements Field {
 	private $name, $tablename, $type, $nullable, $max_length, $deferred, $deferrable, $conname,
 		$has_default, $default;
