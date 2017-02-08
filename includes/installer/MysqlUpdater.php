@@ -20,6 +20,8 @@
  * @file
  * @ingroup Deployment
  */
+use Wikimedia\Rdbms\Field;
+use Wikimedia\Rdbms\MySQLField;
 use MediaWiki\MediaWikiServices;
 
 /**

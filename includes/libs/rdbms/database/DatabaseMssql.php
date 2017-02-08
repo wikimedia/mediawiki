@@ -26,6 +26,7 @@
  */
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\MssqlBlob;
+use Wikimedia\Rdbms\MssqlField;
 
 /**
  * @ingroup Database
