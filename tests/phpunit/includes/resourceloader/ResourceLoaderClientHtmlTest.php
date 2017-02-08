@@ -54,6 +54,10 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 			'test.scripts.mixed.user' => [ 'group' => 'user' ],
 			'test.scripts.mixed.user.empty' => [ 'group' => 'user', 'isKnownEmpty' => true ],
 			'test.scripts.raw' => [ 'isRaw' => true ],
+
+			'test.target.all' => [ 'targets' => [ 'phpunit', 'smoigel' ] ],
+			'test.target.phpunit' => [ 'targets' => [ 'phpunit' ] ],
+			'test.target.smoigel' => [ 'targets' => [ 'smoigel' ] ],
 		];
 		return array_map( function ( $options ) {
 			return self::makeModule( $options );
@@ -132,6 +136,65 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 					'test.private.top',
 				],
 			],
+		];
+
+		$access = TestingAccessWrapper::newFromObject( $client );
+		$this->assertEquals( $expected, $access->getData() );
+	}
+
+	public static function provideTargetFilter() {
+		return [
+			[
+				'target' => null,
+				'expect' => [
+					'test.target.all',
+					'test.target.phpunit',
+					'test.target.smoigel',
+				],
+			],
+			[
+				'target' => 'phpunit',
+				'expect' => [
+					'test.target.all',
+					'test.target.phpunit',
+				],
+			],
+			[
+				'target' => 'smoigel',
+				'expect' => [
+					'test.target.all',
+					'test.target.smoigel',
+				],
+			],
+			[
+				'target' => 'woosh',
+				'expect' => [
+				],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideTargetFilter
+	 * @covers ResourceLoaderClientHtml::getData
+	 */
+	public function testGetDataTargetFilter( $target, $expect ) {
+		$context = self::makeContext();
+		$context->getResourceLoader()->register( self::makeSampleModules() );
+		// Input
+		$client = new ResourceLoaderClientHtml( $context, $target );
+		$client->setModules( [
+			'test.target.all',
+			'test.target.phpunit',
+			'test.target.smoigel',
+		] );
+		// Expected output
+		$expected = [
+			'states' => [],
+			'general' => $expect,
+			'styles' => [],
+			'scripts' => [],
+			'embed' => [ 'styles' => [], 'general' => [] ],
 		];
 
 		$access = TestingAccessWrapper::newFromObject( $client );
