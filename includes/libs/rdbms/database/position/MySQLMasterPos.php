@@ -1,4 +1,7 @@
 <?php
+
+namespace Wikimedia\Rdbms;
+
 /**
  * DBMasterPos class for MySQL/MariaDB
  *

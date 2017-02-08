@@ -29,6 +29,7 @@ use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\Rdbms\LikeMatch;
 use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\DBMasterPos;
 
 /**
  * Relational database abstraction object

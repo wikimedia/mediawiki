@@ -28,7 +28,6 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\WaitConditionLoop;
 use BagOStuff;
-use DBMasterPos;
 use ILoadBalancer;
 
 /**
