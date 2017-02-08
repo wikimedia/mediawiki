@@ -1,6 +1,7 @@
 <?php
 
 use Wikimedia\Rdbms\TransactionProfiler;
+use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
  * Helper for testing the methods from the Database class

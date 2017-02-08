@@ -1,7 +1,9 @@
 <?php
 
+use Wikimedia\Rdbms\DatabaseDomain;
+
 /**
- * @covers DatabaseDomain
+ * @covers Wikimedia\Rdbms\DatabaseDomain
  */
 class DatabaseDomainTest extends PHPUnit_Framework_TestCase {
 	public static function provideConstruct() {
