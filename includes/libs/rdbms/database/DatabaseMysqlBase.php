@@ -20,6 +20,8 @@
  * @file
  * @ingroup Database
  */
+use Wikimedia\Rdbms\DBMasterPos;
+use Wikimedia\Rdbms\MySQLMasterPos;
 
 /**
  * Database abstraction object for MySQL.
