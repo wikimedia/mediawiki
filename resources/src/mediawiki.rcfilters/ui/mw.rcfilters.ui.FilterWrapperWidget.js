@@ -44,7 +44,8 @@
 			$overlay: this.$overlay,
 			popup: {
 				$content: this.filterPopup.$element,
-				classes: [ 'mw-rcfilters-ui-filterWrapperWidget-popup' ]
+				classes: [ 'mw-rcfilters-ui-filterWrapperWidget-popup' ],
+				width: 650
 			}
 		} );
 
