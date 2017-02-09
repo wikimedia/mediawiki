@@ -162,6 +162,7 @@
 		$.each( filters, function ( group, data ) {
 			if ( !model.groups[ group ] ) {
 				model.groups[ group ] = new mw.rcfilters.dm.FilterGroup( {
+					name: group,
 					type: data.type,
 					title: data.title,
 					separator: data.separator,
