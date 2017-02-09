@@ -7,6 +7,7 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
+	 * @cfg {string} [name] Group name
 	 * @cfg {string} [type='send_unselected_if_any'] Group type
 	 * @cfg {string} [title] Group title
 	 * @cfg {string} [separator='|'] Value separator for 'string_options' groups
@@ -20,6 +21,7 @@
 		OO.EventEmitter.call( this );
 		OO.EmitterList.call( this );
 
+		this.name = config.name;
 		this.type = config.type || 'send_unselected_if_any';
 		this.title = config.title;
 		this.separator = config.separator || '|';
@@ -74,6 +76,15 @@
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.isActive = function () {
 		return this.active;
+	};
+
+	/**
+	 * Get group name
+	 *
+	 * @return {string} Group name
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.getName = function () {
+		return this.name;
 	};
 
 	/**
