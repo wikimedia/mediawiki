@@ -29,6 +29,9 @@
  * @ingroup Database
  */
 class DatabaseMssql extends Database {
+	protected $mPort;
+	protected $mUseWindowsAuth = false;
+
 	protected $mInsertId = null;
 	protected $mLastResult = null;
 	protected $mAffectedRows = null;
@@ -40,8 +43,6 @@ class DatabaseMssql extends Database {
 	protected $mIgnoreDupKeyErrors = false;
 	protected $mIgnoreErrors = [];
 
-	protected $mPort;
-
 	public function implicitGroupby() {
 		return false;
 	}
@@ -52,6 +53,13 @@ class DatabaseMssql extends Database {
 
 	public function unionSupportsOrderAndLimit() {
 		return false;
+	}
+
+	public function __construct( array $params ) {
+		$this->mPort = $params['port'];
+		$this->mUseWindowsAuth = $params['UseWindowsAuth'];
+
+		parent::__construct( $params );
 	}
 
 	/**
@@ -73,8 +81,6 @@ class DatabaseMssql extends Database {
 			);
 		}
 
-		global $wgDBport, $wgDBWindowsAuthentication;
-
 		# e.g. the class is being loaded
 		if ( !strlen( $user ) ) {
 			return null;
@@ -82,7 +88,6 @@ class DatabaseMssql extends Database {
 
 		$this->close();
 		$this->mServer = $server;
-		$this->mPort = $wgDBport;
 		$this->mUser = $user;
 		$this->mPassword = $password;
 		$this->mDBname = $dbName;
@@ -95,7 +100,7 @@ class DatabaseMssql extends Database {
 
 		// Decide which auth scenerio to use
 		// if we are using Windows auth, then don't add credentials to $connectionInfo
-		if ( !$wgDBWindowsAuthentication ) {
+		if ( !$this->mUseWindowsAuth ) {
 			$connectionInfo['UID'] = $user;
 			$connectionInfo['PWD'] = $password;
 		}
@@ -141,15 +146,10 @@ class DatabaseMssql extends Database {
 
 	/**
 	 * @param string $sql
-	 * @return bool|MssqlResult
+	 * @return bool|MssqlResultWrapper|resource
 	 * @throws DBUnexpectedError
 	 */
 	protected function doQuery( $sql ) {
-		if ( $this->getFlag( DBO_DEBUG ) ) {
-			wfDebug( "SQL: [$sql]\n" );
-		}
-		$this->offset = 0;
-
 		// several extensions seem to think that all databases support limits
 		// via LIMIT N after the WHERE clause, but  MSSQL uses SELECT TOP N,
 		// so to catch any of those extensions we'll do a quick check for a
@@ -328,7 +328,8 @@ class DatabaseMssql extends Database {
 	 * @return string
 	 */
 	private function formatError( $err ) {
-		return '[SQLSTATE ' . $err['SQLSTATE'] . '][Error Code ' . $err['code'] . ']' . $err['message'];
+		return '[SQLSTATE ' .
+			$err['SQLSTATE'] . '][Error Code ' . $err['code'] . ']' . $err['message'];
 	}
 
 	/**
@@ -607,6 +608,7 @@ class DatabaseMssql extends Database {
 			$this->mIgnoreDupKeyErrors = true;
 		}
 
+		$ret = true;
 		foreach ( $arrToInsert as $a ) {
 			// start out with empty identity column, this is so we can return
 			// it as a result of the INSERT logic
@@ -677,21 +679,23 @@ class DatabaseMssql extends Database {
 			}
 			$this->mScrollableCursor = true;
 
-			if ( !is_null( $identity ) ) {
-				// then we want to get the identity column value we were assigned and save it off
+			if ( !is_null( $identity ) && $ret ) {
+				// Then we want to get the identity column value we were assigned and save it off
 				$row = $ret->fetchObject();
 				if ( is_object( $row ) ) {
 					$this->mInsertId = $row->$identity;
-
-					// it seems that mAffectedRows is -1 sometimes when OUTPUT INSERTED.identity is used
-					// if we got an identity back, we know for sure a row was affected, so adjust that here
+					// It seems that mAffectedRows is -1 sometimes when OUTPUT INSERTED.identity is
+					// used if we got an identity back, we know for sure a row was affected, so
+					// adjust that here
 					if ( $this->mAffectedRows == -1 ) {
 						$this->mAffectedRows = 1;
 					}
 				}
 			}
 		}
+
 		$this->mIgnoreDupKeyErrors = false;
+
 		return $ret;
 	}
 
@@ -866,7 +870,7 @@ class DatabaseMssql extends Database {
 			$select = $orderby = [];
 			$s1 = preg_match( '#SELECT\s+(.+?)\s+FROM#Dis', $sql, $select );
 			$s2 = preg_match( '#(ORDER BY\s+.+?)(\s*FOR XML .*)?$#Dis', $sql, $orderby );
-			$overOrder = $postOrder = '';
+			$postOrder = '';
 			$first = $offset + 1;
 			$last = $offset + $limit;
 			$sub1 = 'sub_' . $this->mSubqueryId;
@@ -954,13 +958,12 @@ class DatabaseMssql extends Database {
 
 		if ( $db !== false ) {
 			// remote database
-			wfDebug( "Attempting to call tableExists on a remote table" );
+			$this->queryLogger->error( "Attempting to call tableExists on a remote table" );
 			return false;
 		}
 
 		if ( $schema === false ) {
-			global $wgDBmwschema;
-			$schema = $wgDBmwschema;
+			$schema = $this->mSchema;
 		}
 
 		$res = $this->query( "SELECT 1 FROM INFORMATION_SCHEMA.TABLES
@@ -986,7 +989,7 @@ class DatabaseMssql extends Database {
 
 		if ( $db !== false ) {
 			// remote database
-			wfDebug( "Attempting to call fieldExists on a remote table" );
+			$this->queryLogger->error( "Attempting to call fieldExists on a remote table" );
 			return false;
 		}
 
@@ -1005,7 +1008,7 @@ class DatabaseMssql extends Database {
 
 		if ( $db !== false ) {
 			// remote database
-			wfDebug( "Attempting to call fieldInfo on a remote table" );
+			$this->queryLogger->error( "Attempting to call fieldInfo on a remote table" );
 			return false;
 		}
 
@@ -1046,32 +1049,6 @@ class DatabaseMssql extends Database {
 	protected function doRollback( $fname = __METHOD__ ) {
 		sqlsrv_rollback( $this->mConn );
 		$this->mTrxLevel = 0;
-	}
-
-	/**
-	 * Escapes a identifier for use inm SQL.
-	 * Throws an exception if it is invalid.
-	 * Reference: http://msdn.microsoft.com/en-us/library/aa224033%28v=SQL.80%29.aspx
-	 * @param string $identifier
-	 * @throws InvalidArgumentException
-	 * @return string
-	 */
-	private function escapeIdentifier( $identifier ) {
-		if ( strlen( $identifier ) == 0 ) {
-			throw new InvalidArgumentException( "An identifier must not be empty" );
-		}
-		if ( strlen( $identifier ) > 128 ) {
-			throw new InvalidArgumentException( "The identifier '$identifier' is too long (max. 128)" );
-		}
-		if ( ( strpos( $identifier, '[' ) !== false )
-			|| ( strpos( $identifier, ']' ) !== false )
-		) {
-			// It may be allowed if you quoted with double quotation marks, but
-			// that would break if QUOTED_IDENTIFIER is OFF
-			throw new InvalidArgumentException( "Square brackets are not allowed in '$identifier'" );
-		}
-
-		return "[$identifier]";
 	}
 
 	/**
@@ -1197,10 +1174,6 @@ class DatabaseMssql extends Database {
 		return [ $startOpts, '', $tailOpts, '', '' ];
 	}
 
-	/**
-	 * Get the type of the DBMS, as it appears in $wgDBtype.
-	 * @return string
-	 */
 	public function getType() {
 		return 'mssql';
 	}
@@ -1359,7 +1332,12 @@ class DatabaseMssql extends Database {
 	 * @return bool|null
 	 */
 	public function prepareStatements( $value = null ) {
-		return wfSetVar( $this->mPrepareStatements, $value );
+		$old = $this->mPrepareStatements;
+		if ( $value !== null ) {
+			$this->mPrepareStatements = $value;
+		}
+
+		return $old;
 	}
 
 	/**
@@ -1369,16 +1347,11 @@ class DatabaseMssql extends Database {
 	 * @return bool|null
 	 */
 	public function scrollableCursor( $value = null ) {
-		return wfSetVar( $this->mScrollableCursor, $value );
-	}
+		$old = $this->mScrollableCursor;
+		if ( $value !== null ) {
+			$this->mScrollableCursor = $value;
+		}
 
-	/**
-	 * Called in the installer and updater.
-	 * Probably doesn't need to be called anywhere else in the codebase.
-	 * @param array|null $value
-	 * @return array|null
-	 */
-	public function ignoreErrors( array $value = null ) {
-		return wfSetVar( $this->mIgnoreErrors, $value );
+		return $old;
 	}
-} // end DatabaseMssql class
+}
