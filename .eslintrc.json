@@ -9,7 +9,6 @@
 		"require": false,
 		"module": false,
 		"mediaWiki": false,
-		"mwPerformance": false,
 		"OO": false
 	},
 	"rules": {

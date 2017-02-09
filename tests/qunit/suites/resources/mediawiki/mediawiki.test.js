@@ -64,6 +64,15 @@
 		);
 	} );
 
+	QUnit.test( 'mw.now', function ( assert ) {
+		assert.equal( typeof mw.now(), 'number', 'Return a number' );
+		assert.equal(
+			String( Math.round( mw.now() ) ).length,
+			String( +new Date() ).length,
+			'Match size of current timestamp'
+		);
+	} );
+
 	QUnit.test( 'mw.Map', function ( assert ) {
 		var arry, conf, funky, globalConf, nummy, someValues;
 

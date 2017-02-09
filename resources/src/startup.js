@@ -6,11 +6,19 @@
 
 /* global mw, $VARS, $CODE */
 
-// eslint-disable-next-line no-unused-vars
-var mediaWikiLoadStart = ( new Date() ).getTime(),
-	mwPerformance = ( window.performance && performance.mark ) ? performance : {
+var mwPerformance = ( window.performance && performance.mark ) ? performance : {
 		mark: function () {}
-	};
+	},
+	// Define now() here to ensure valid comparison with mediaWikiLoadEnd (T153819).
+	mwNow = ( function () {
+		var perf = window.performance,
+			navStart = perf && perf.timing && perf.timing.navigationStart;
+		return navStart && typeof perf.now === 'function' ?
+			function () { return navStart + perf.now(); } :
+			function () { return +new Date(); };
+	}() ),
+	// eslint-disable-next-line no-unused-vars
+	mediaWikiLoadStart = mwNow();
 
 mwPerformance.mark( 'mwLoadStart' );
 

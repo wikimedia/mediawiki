@@ -8,6 +8,7 @@
  * @singleton
  */
 
+/* global mwNow */
 /* eslint-disable no-use-before-define */
 
 ( function ( $ ) {
@@ -524,13 +525,8 @@
 		 *
 		 * @return {number} Current time
 		 */
-		now: ( function () {
-			var perf = window.performance,
-				navStart = perf && perf.timing && perf.timing.navigationStart;
-			return navStart && typeof perf.now === 'function' ?
-				function () { return navStart + perf.now(); } :
-				function () { return +new Date(); };
-		}() ),
+		now: mwNow,
+		// mwNow is defined in startup.js
 
 		/**
 		 * Format a string. Replace $1, $2 ... $N with positional arguments.
@@ -2785,6 +2781,7 @@
 			return $.when.apply( $, all );
 		} );
 		loading.then( function () {
+			/* global mwPerformance */
 			mwPerformance.mark( 'mwLoadEnd' );
 			mw.hook( 'resourceloader.loadEnd' ).fire();
 		} );
