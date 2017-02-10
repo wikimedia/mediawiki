@@ -21,6 +21,8 @@
  * @ingroup Database
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Trivial LoadBalancer that always returns an injected connection handle
  */

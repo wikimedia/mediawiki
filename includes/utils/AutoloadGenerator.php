@@ -295,6 +295,11 @@ EOD;
 		// Legacy aliases
 		$this->forceClassPath( 'DatabaseBase',
 			$this->basepath . '/includes/libs/rdbms/database/Database.php' );
+		// Legacy aliases (1.29)
+		$this->forceClassPath( 'IDatabase',
+			$this->basepath . '/includes/libs/rdbms/database/IDatabase.php' );
+		$this->forceClassPath( 'IMaintainableDatabase',
+			$this->basepath . '/includes/libs/rdbms/database/IMaintainableDatabase.php' );
 	}
 }
 
