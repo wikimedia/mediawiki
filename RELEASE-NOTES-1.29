@@ -267,6 +267,13 @@ changes to languages because of Phabricator reports.
 * WikiRevision::$fileIsTemp was deprecated.
 * WikiRevision::$importer was deprecated.
 * WikiRevision::$user was deprecated.
+* Two new hooks, LogEventsListLineEnding and NewPagesLineEnding were added for
+  manipulating Special:Log and Special:NewPages lines.
+* The OldChangesListRecentChangesLine, EnhancedChangesListModifyLineData,
+  PageHistoryLineEnding, ContributionsLineEnding and DeletedContributionsLineEnding
+  hooks have an additional parameter, for manipulating HTML data attributes of
+  RC/history lines. EnhancedChangesListModifyBlockLineData can do that via the
+  $data['attribs'] subarray.
 
 == Compatibility ==
 
