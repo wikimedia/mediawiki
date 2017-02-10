@@ -628,7 +628,8 @@ class ChangeTags {
 	 * @throws MWException When unable to determine appropriate JOIN condition for tagging
 	 */
 	public static function modifyDisplayQuery( &$tables, &$fields, &$conds,
-										&$join_conds, &$options, $filter_tag = false ) {
+		&$join_conds, &$options, $filter_tag = false
+	) {
 		global $wgRequest, $wgUseTagFilter;
 
 		if ( $filter_tag === false ) {
@@ -637,7 +638,13 @@ class ChangeTags {
 
 		// Figure out which conditions can be done.
 		if ( in_array( 'recentchanges', $tables ) ) {
-			$join_cond = 'ct_rc_id=rc_id';
+			// in case a custom name was given to the rc table (e.g. as necessary in a self-join)
+			$rcTable = array_keys( $tables, 'recentchanges' )[0];
+			if ( is_int( $rcTable ) ) {
+				$join_cond = 'ct_rc_id=rc_id';
+			} else {
+				$join_cond = "ct_rc_id=$rcTable.rc_id";
+			}
 		} elseif ( in_array( 'logging', $tables ) ) {
 			$join_cond = 'ct_log_id=log_id';
 		} elseif ( in_array( 'revision', $tables ) ) {

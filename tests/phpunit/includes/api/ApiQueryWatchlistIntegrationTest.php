@@ -101,7 +101,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		/** @var Revision $rev */
 		$rev = $status->value['revision'];
 		$rc = $rev->getRecentChange();
-		$rc->doMarkPatrolled( $patrollingUser, false, [] );
+		$rc->doMarkPatrolled( $patrollingUser, [] );
 	}
 
 	private function deletePage( LinkTarget $target, $reason ) {

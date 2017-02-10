@@ -64,7 +64,7 @@ class ApiPatrol extends ApiBase {
 			}
 		}
 
-		$retval = $rc->doMarkPatrolled( $user, false, $tags );
+		$retval = $rc->doMarkPatrolled( $user, $tags );
 
 		if ( $retval ) {
 			$this->dieStatus( $this->errorArrayToStatus( $retval, $user ) );

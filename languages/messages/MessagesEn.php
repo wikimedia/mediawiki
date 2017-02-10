@@ -462,6 +462,7 @@ $specialPageAliases = [
 	'Mytalk'                    => [ 'MyTalk' ],
 	'Myuploads'                 => [ 'MyUploads', 'MyFiles' ],
 	'Newimages'                 => [ 'NewFiles', 'NewImages' ],
+	'Newmoves'                  => [ 'NewMoves', 'RecentMoves' ],
 	'Newpages'                  => [ 'NewPages' ],
 	'PagesWithProp'             => [ 'PagesWithProp', 'Pageswithprop', 'PagesByProp', 'Pagesbyprop' ],
 	'PageLanguage'              => [ 'PageLanguage' ],
