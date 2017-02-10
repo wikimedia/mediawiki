@@ -19,7 +19,7 @@
 
 			// eslint-disable-next-line no-new
 			new mw.rcfilters.ui.ChangesListWrapperWidget(
-				changesListModel, $( '.mw-changeslist, .mw-changeslist-empty' ) );
+				filtersModel, changesListModel, $( '.mw-changeslist, .mw-changeslist-empty' ) );
 
 			// eslint-disable-next-line no-new
 			new mw.rcfilters.ui.FormWrapperWidget(
@@ -34,12 +34,14 @@
 						{
 							name: 'hideliu',
 							label: mw.msg( 'rcfilters-filter-registered-label' ),
-							description: mw.msg( 'rcfilters-filter-registered-description' )
+							description: mw.msg( 'rcfilters-filter-registered-description' ),
+							'class': 'mw-changeslist-liu'
 						},
 						{
 							name: 'hideanons',
 							label: mw.msg( 'rcfilters-filter-unregistered-label' ),
-							description: mw.msg( 'rcfilters-filter-unregistered-description' )
+							description: mw.msg( 'rcfilters-filter-unregistered-description' ),
+							'class': 'mw-changeslist-anon'
 						}
 					]
 				},
@@ -58,19 +60,22 @@
 							name: 'newcomer',
 							label: mw.msg( 'rcfilters-filter-userExpLevel-newcomer-label' ),
 							description: mw.msg( 'rcfilters-filter-userExpLevel-newcomer-description' ),
-							conflicts: [ 'hideanons' ]
+							conflicts: [ 'hideanons' ],
+							'class': 'mw-changeslist-user-newcomer'
 						},
 						{
 							name: 'learner',
 							label: mw.msg( 'rcfilters-filter-userExpLevel-learner-label' ),
 							description: mw.msg( 'rcfilters-filter-userExpLevel-learner-description' ),
-							conflicts: [ 'hideanons' ]
+							conflicts: [ 'hideanons' ],
+							'class': 'mw-changeslist-user-learner'
 						},
 						{
 							name: 'experienced',
 							label: mw.msg( 'rcfilters-filter-userExpLevel-experienced-label' ),
 							description: mw.msg( 'rcfilters-filter-userExpLevel-experienced-description' ),
-							conflicts: [ 'hideanons' ]
+							conflicts: [ 'hideanons' ],
+							'class': 'mw-changeslist-user-experienced'
 						}
 					]
 				},
@@ -90,12 +95,14 @@
 						{
 							name: 'hidemyself',
 							label: mw.msg( 'rcfilters-filter-editsbyself-label' ),
-							description: mw.msg( 'rcfilters-filter-editsbyself-description' )
+							description: mw.msg( 'rcfilters-filter-editsbyself-description' ),
+							'class': 'mw-changeslist-self'
 						},
 						{
 							name: 'hidebyothers',
 							label: mw.msg( 'rcfilters-filter-editsbyother-label' ),
-							description: mw.msg( 'rcfilters-filter-editsbyother-description' )
+							description: mw.msg( 'rcfilters-filter-editsbyother-description' ),
+							'class': 'mw-changeslist-others'
 						}
 					]
 				},
@@ -108,13 +115,15 @@
 							name: 'hidebots',
 							label: mw.msg( 'rcfilters-filter-bots-label' ),
 							description: mw.msg( 'rcfilters-filter-bots-description' ),
-							'default': true
+							'default': true,
+							'class': 'mw-changeslist-bot'
 						},
 						{
 							name: 'hidehumans',
 							label: mw.msg( 'rcfilters-filter-humans-label' ),
 							description: mw.msg( 'rcfilters-filter-humans-description' ),
-							'default': false
+							'default': false,
+							'class': 'mw-changeslist-human'
 						}
 					]
 				},
@@ -126,12 +135,14 @@
 						{
 							name: 'hideminor',
 							label: mw.msg( 'rcfilters-filter-minor-label' ),
-							description: mw.msg( 'rcfilters-filter-minor-description' )
+							description: mw.msg( 'rcfilters-filter-minor-description' ),
+							'class': 'mw-changeslist-minor'
 						},
 						{
 							name: 'hidemajor',
 							label: mw.msg( 'rcfilters-filter-major-label' ),
-							description: mw.msg( 'rcfilters-filter-major-description' )
+							description: mw.msg( 'rcfilters-filter-major-description' ),
+							'class': 'mw-changeslist-major'
 						}
 					]
 				},
@@ -144,25 +155,30 @@
 							name: 'hidepageedits',
 							label: mw.msg( 'rcfilters-filter-pageedits-label' ),
 							description: mw.msg( 'rcfilters-filter-pageedits-description' ),
-							'default': false
+							'default': false,
+							'class': 'mw-changeslist-src-mw-edit'
+
 						},
 						{
 							name: 'hidenewpages',
 							label: mw.msg( 'rcfilters-filter-newpages-label' ),
 							description: mw.msg( 'rcfilters-filter-newpages-description' ),
-							'default': false
+							'default': false,
+							'class': 'mw-changeslist-src-mw-new'
 						},
 						{
 							name: 'hidecategorization',
 							label: mw.msg( 'rcfilters-filter-categorization-label' ),
 							description: mw.msg( 'rcfilters-filter-categorization-description' ),
-							'default': true
+							'default': true,
+							'class': 'mw-changeslist-src-mw-categorize'
 						},
 						{
 							name: 'hidelog',
 							label: mw.msg( 'rcfilters-filter-logactions-label' ),
 							description: mw.msg( 'rcfilters-filter-logactions-description' ),
-							'default': false
+							'default': false,
+							'class': 'mw-changeslist-src-mw-log'
 						}
 					]
 				}
