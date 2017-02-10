@@ -18,6 +18,7 @@
  * @file
  * @ingroup Database
  */
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Base class for the more common types of database errors. These are known to occur

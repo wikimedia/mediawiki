@@ -2,7 +2,6 @@
 
 namespace Wikimedia\Rdbms;
 
-use IDatabase;
 use stdClass;
 use RuntimeException;
 

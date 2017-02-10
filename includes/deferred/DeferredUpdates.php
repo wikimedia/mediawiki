@@ -19,6 +19,7 @@
  *
  * @file
  */
+use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\LoadBalancer;

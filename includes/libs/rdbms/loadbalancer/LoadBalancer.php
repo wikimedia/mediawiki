@@ -25,7 +25,6 @@ namespace Wikimedia\Rdbms;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\ScopedCallback;
-use IDatabase;
 use Database;
 use DBConnRef;
 use MaintainableDBConnRef;
