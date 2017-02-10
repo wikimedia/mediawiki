@@ -1,26 +1,37 @@
 @import "mediawiki.mixins";
 
 .mw-rcfilters-ui-filterItemWidget {
-	padding-left: 0.5em;
+	padding: 0 0.5em;
 	.box-sizing( border-box );
 
-	&-label {
-		&-title {
-			font-weight: bold;
-			font-size: 1.2em;
-			color: #222;
+	.mw-rcfilters-ui-table {
+		padding-top: 0.5em;
+	}
+
+	&-filterCheckbox {
+		&-label {
+			&-title {
+				font-weight: bold;
+				font-size: 1.2em;
+				color: #222;
+			}
+			&-desc {
+				color: #464a4f;
+			}
 		}
-		&-desc {
-			color: #464a4f;
+
+		.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline {
+			// Override margin-top and -bottom rules from FieldLayout
+			margin: 0 !important;
+		}
+
+		&-muted {
+			opacity: 0.5;
 		}
 	}
 
-	.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline {
-		// Override margin-top and -bottom rules from FieldLayout
-		margin: 0 !important;
-	}
-
-	&-muted {
-		opacity: 0.5;
+	&-highlightButton {
+		width: 4em;
+		padding-left: 1em;
 	}
 }
