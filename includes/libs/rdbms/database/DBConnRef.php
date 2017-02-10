@@ -3,6 +3,7 @@
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\DBMasterPos;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Helper class to handle automatically marking connections as reusable (via RAII pattern)
