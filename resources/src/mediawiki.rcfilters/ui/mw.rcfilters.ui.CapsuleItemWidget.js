@@ -45,6 +45,9 @@
 		// Set initial text for the popup - the description
 		descLabelWidget.setLabel( this.model.getDescription() );
 
+		this.$highlight = $( '<div>' )
+			.addClass( 'mw-rcfilters-ui-capsuleItemWidget-highlight' );
+
 		// Events
 		this.model.connect( this, { update: 'onModelUpdate' } );
 
@@ -53,12 +56,14 @@
 		// Initialization
 		this.$overlay.append( this.popup.$element );
 		this.$element
+			.prepend( this.$highlight )
 			.attr( 'aria-haspopup', 'true' )
 			.addClass( 'mw-rcfilters-ui-capsuleItemWidget' )
 			.on( 'mouseover', this.onHover.bind( this, true ) )
 			.on( 'mouseout', this.onHover.bind( this, false ) );
 
 		this.setCurrentMuteState();
+		this.setHighlightColor();
 	};
 
 	OO.inheritClass( mw.rcfilters.ui.CapsuleItemWidget, OO.ui.CapsuleItemWidget );
@@ -69,6 +74,19 @@
 	 */
 	mw.rcfilters.ui.CapsuleItemWidget.prototype.onModelUpdate = function () {
 		this.setCurrentMuteState();
+
+		this.setHighlightColor();
+	};
+
+	mw.rcfilters.ui.CapsuleItemWidget.prototype.setHighlightColor = function () {
+		var selectedColor = this.model.isHighlightEnabled() ? this.model.getHighlightColor() : null;
+
+		this.$highlight
+			.attr( 'data-color', selectedColor )
+			.toggleClass(
+				'mw-rcfilters-ui-capsuleItemWidget-highlight-highlighted',
+				!!selectedColor
+			);
 	};
 
 	/**
@@ -78,6 +96,7 @@
 		this.$element
 			.toggleClass(
 				'mw-rcfilters-ui-capsuleItemWidget-muted',
+				!this.model.isSelected() ||
 				this.model.isIncluded() ||
 				this.model.isConflicted() ||
 				this.model.isFullyCovered()
@@ -106,6 +125,7 @@
 	 */
 	mw.rcfilters.ui.CapsuleItemWidget.prototype.onCapsuleRemovedByUser = function () {
 		this.controller.updateFilter( this.model.getName(), false );
+		this.controller.clearHighlightColor( this.model.getName() );
 	};
 
 	/**

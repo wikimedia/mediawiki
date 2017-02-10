@@ -1,0 +1,32 @@
+@import "mw.rcfilters.mixins";
+
+.mw-rcfilters-ui-filterItemHighlightButton {
+
+	&-circle {
+		display: inline-block;
+		vertical-align: middle;
+		background-image: none;
+		margin-right: 0.2em;
+
+		&-color {
+			&-c1 {
+				// These values duplicate the sizing of the icon
+				// width/height 1.875em and 'left' (which is essentially
+				// a padding-right value for the indicator) of 0.2em
+				.mw-rcfilters-mixin-circle( @highlight-c1, 1.875em, 0 );
+			}
+			&-c2 {
+				.mw-rcfilters-mixin-circle( @highlight-c2, 1.875em, 0 );
+			}
+			&-c3 {
+				.mw-rcfilters-mixin-circle( @highlight-c3, 1.875em, 0 );
+			}
+			&-c4 {
+				.mw-rcfilters-mixin-circle( @highlight-c4, 1.875em, 0 );
+			}
+			&-c5 {
+				.mw-rcfilters-mixin-circle( @highlight-c5, 1.875em, 0 );
+			}
+		}
+	}
+}
