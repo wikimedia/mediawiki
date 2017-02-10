@@ -1,0 +1,31 @@
+@import "mw.rcfilters.mixins";
+
+.mw-rcfilters-ui-filterItemHighlightButton {
+
+	&.oo-ui-buttonElement-framed > .oo-ui-buttonElement-button {
+		padding: 0;
+	}
+
+	&-circle {
+		display: inline-block;
+
+		&-color {
+			&-none {}
+			&-yellow {
+				.mw-rcfilters-mixin-circle( @highlight-yellow );
+			}
+			&-blue {
+				.mw-rcfilters-mixin-circle( @highlight-blue );
+			}
+			&-green {
+				.mw-rcfilters-mixin-circle( @highlight-green );
+			}
+			&-orange {
+				.mw-rcfilters-mixin-circle( @highlight-orange );
+			}
+			&-red {
+				.mw-rcfilters-mixin-circle( @highlight-red );
+			}
+		}
+	}
+}

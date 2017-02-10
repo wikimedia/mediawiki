@@ -1,0 +1,15 @@
+@import "mediawiki.mixins";
+@import "mw.rcfilters.variables";
+
+.mw-rcfilters-mixin-circle( @color: white, @radius: 2em, @padding: 0.5em ) {
+	border-radius: 50%;
+	min-width: @radius;
+	width: @radius;
+	min-height: @radius;
+	height: @radius;
+	margin: @padding;
+	.box-sizing( border-box );
+
+	background-color: @color;
+	border: 1px solid #666;
+}
