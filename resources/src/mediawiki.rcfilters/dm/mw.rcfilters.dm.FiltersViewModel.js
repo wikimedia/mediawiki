@@ -15,6 +15,7 @@
 		this.groups = {};
 		this.defaultParams = {};
 		this.defaultFiltersEmpty = null;
+		this.highlightEnabled = false;
 
 		// Events
 		this.aggregate( { update: 'filterItemUpdate' } );
@@ -39,6 +40,13 @@
 	 * @param {mw.rcfilters.dm.FilterItem} item Filter item updated
 	 *
 	 * Filter item has changed
+	 */
+
+	/**
+	 * @event highlightChange
+	 * @param {boolean} Highlight feature is enabled
+	 *
+	 * Highlight feature has been toggled enabled or disabled
 	 */
 
 	/* Methods */
@@ -191,7 +199,8 @@
 					group: group,
 					label: data.filters[ i ].label,
 					description: data.filters[ i ].description,
-					subset: data.filters[ i ].subset
+					subset: data.filters[ i ].subset,
+					'class': data.filters[ i ].class
 				} );
 
 				// For convenience, we should store each filter's "supersets" -- these are
@@ -399,6 +408,20 @@
 			}
 		} );
 
+		return result;
+	};
+
+	/**
+	 * Get the highlight parameters based on current filter configuration
+	 *
+	 * @return {object} Object where keys are "<filter name>_color" and values
+	 *                   are the selected highlight colors.
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getHighlightParameters = function () {
+		var result = { highlight: this.isHighlightEnabled() };
+		this.getItems().forEach( function ( filterItem ) {
+			result[ filterItem.getName() + '_color' ] = filterItem.getHighlightColor();
+		} );
 		return result;
 	};
 
@@ -659,4 +682,58 @@
 		return result;
 	};
 
+	/**
+	 * Toggle the highlight feature on and off.
+	 * Propagate the change to filter items.
+	 *
+	 * @param {boolean} enable Highlight should be enabled
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.toggleHighlight = function ( enable ) {
+		enable = enable === undefined ? !this.highlightEnabled : enable;
+		if ( enable === this.highlightEnabled ) {
+			return;
+		}
+
+		this.highlightEnabled = enable;
+		this.getItems().forEach( function ( filterItem ) {
+			filterItem.toggleHighlight( this.highlightEnabled );
+		}.bind( this ) );
+		this.emit( 'highlightChange', this.highlightEnabled );
+	};
+
+	/**
+	 * Check if the highlight feature is enabled
+	 * @return {boolean}
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.isHighlightEnabled = function () {
+		return this.highlightEnabled;
+	};
+
+	/**
+	 * Set highlight color for a specific filter item
+	 *
+	 * @param {string} filterName Name of the filter item
+	 * @param {string} color Selected color
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.setHighlightColor = function ( filterName, color ) {
+		this.getItemByName( filterName ).setHighlightColor( color );
+	};
+
+	/**
+	 * Clear highlight for a specific filter item
+	 *
+	 * @param {string} filterName Name of the filter item
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.clearHighlightColor = function ( filterName ) {
+		this.getItemByName( filterName ).clearHighlightColor();
+	};
+
+	/**
+	 * Clear highlight for all filter items
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.clearAllHighlightColors = function () {
+		this.getItems().forEach( function ( filterItem ) {
+			filterItem.clearHighlightColor();
+		} );
+	};
 }( mediaWiki, jQuery ) );

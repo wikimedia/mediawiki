@@ -1767,6 +1767,9 @@ return [
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterWrapperWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.ChangesListWrapperWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FormWrapperWidget.js',
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterItemHighlightButton.js',
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.HighlightColorPickerWidget.js',
+			'resources/src/mediawiki.rcfilters/mw.rcfilters.HighlightColors.js',
 			'resources/src/mediawiki.rcfilters/mw.rcfilters.Controller.js',
 			'resources/src/mediawiki.rcfilters/mw.rcfilters.init.js',
 		],
@@ -1778,6 +1781,7 @@ return [
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.FiltersListWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.FilterWrapperWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.FilterCapsuleMultiselectWidget.less',
+			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.ChangesListWrapperWidget.less',
 		],
 		'messages' => [
 			'rcfilters-activefilters',
@@ -1824,6 +1828,8 @@ return [
 			'rcfilters-filter-categorization-description',
 			'rcfilters-filter-logactions-label',
 			'rcfilters-filter-logactions-description',
+			'rcfilters-highlightbutton-title',
+			'rcfilters-highlightmenu-title',
 			'recentchanges-noresult',
 		],
 		'dependencies' => [

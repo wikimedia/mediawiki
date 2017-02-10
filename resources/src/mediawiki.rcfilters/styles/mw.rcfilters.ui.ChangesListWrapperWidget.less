@@ -1,0 +1,136 @@
+@blue: #3366CC;
+@green: #00AF89;
+@yellow: #FFCC33;
+@orange: #FF6D22;
+@red: #DD3333;
+
+.mw-rcfilters-ui-ChangesListWrapperWidget {
+	.blue {
+		background-color: tint(@blue, 70%);
+	}
+
+	.green {
+		background-color: tint(@green, 70%);
+	}
+
+	.yellow {
+		background-color: tint(@yellow, 70%);
+	}
+
+	.orange {
+		background-color: tint(@orange, 70%);
+	}
+
+	.red {
+		background-color: tint(@red, 70%);
+	}
+
+	//Mixing 2 colors: tint(average(_,_),50%);
+	.blue.green {
+		background-color: tint(average(@blue, @green),50%);
+	}
+
+	.green.yellow {
+		background-color: tint(average(@green, @yellow),50%);
+	}
+
+	.yellow.orange {
+		background-color: tint(average(@yellow, @orange),50%);
+	}
+
+	.orange.red {
+		background-color: tint(average(@orange, @red),50%);
+	}
+
+	.blue.yellow {
+		background-color: tint(average(@blue, @yellow),50%);
+	}
+
+	.green.orange {
+		background-color: tint(average(@green, @orange),50%);
+	}
+
+	.yellow.red {
+		background-color: tint(average( @yellow, @red),50%);
+	}
+
+	.blue.orange {
+		background-color: tint(average( @blue, @orange),50%);
+	}
+
+
+	.green.red {
+		background-color: tint(average( @green, @red),50%);
+	}
+
+	.blue.red {
+		background-color: tint(average( @blue, @red),50%);
+	}
+
+	//Mixing 3 colors:
+	.blue.green.yellow {
+		background-color: tint(mix(@blue,average( @green, @yellow),33%),30%);
+	}
+
+	.green.yellow.orange {
+		background-color: tint(mix(@green,average( @yellow, @orange),33%),30%);
+	}
+
+	.green.orange.red {
+		background-color: tint(mix(@green,average( @orange, @red),33%),30%);
+	}
+
+	.yellow.orange.red {
+		background-color: tint(mix(@yellow,average( @orange, @red),33%),30%);
+	}
+
+	.blue.green.orange {
+		background-color: tint(mix(@blue,average( @green, @orange),33%),30%);
+	}
+
+	.green.yellow.red {
+		background-color: tint(mix(@green,average( @yellow, @red),33%),30%);
+	}
+
+	.blue.green.red {
+		background-color: tint(mix(@blue,average( @green, @red),33%),30%);
+	}
+
+	.blue.yellow.orange {
+		background-color: tint(mix(@blue,average( @yellow, @orange),33%),30%);
+	}
+
+	.blue.yellow.red {
+		background-color: tint(mix(@blue,average( @yellow, @red),33%),30%);
+	}
+
+	.blue.orange.red {
+		background-color: tint(mix(@blue,average( @orange, @red),33%),30%);
+	}
+
+	//Mixing 4 colors:
+	.blue.green.yellow.orange {
+		background-color: tint(mix(@blue,mix(@green,average( @yellow, @orange),25%),25%),25%);
+	}
+
+	.blue.green.yellow.red {
+		background-color: tint(mix(@blue,mix(@green,average( @yellow, @red),25%),25%),25%);
+	}
+
+	.blue.green.orange.red {
+		background-color: tint(mix(@blue,mix(@green,average( @orange, @red),25%),25%),25%);
+	}
+
+	.blue.yellow.orange.red {
+		background-color: tint(mix(@blue,mix(@yellow,average( @orange, @red),25%),25%),25%);
+	}
+
+	.green.yellow.orange.red {
+		background-color: tint(mix(@green,mix(@yellow,average( @orange, @red),25%),25%),25%);
+	}
+
+	//Mixing 5 colors:
+	.blue.green.yellow.orange.red {
+		background-color: tint(mix(@blue,mix(@green,mix(@yellow,average( @orange, @red),20%),20%),20%),15%);
+	}
+}
