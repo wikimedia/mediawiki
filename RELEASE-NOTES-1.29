@@ -237,6 +237,10 @@ changes to languages because of Phabricator reports.
 * User::comparePasswords() (deprecated in 1.24) was removed.
 * ArchivedFile::getUserText() (deprecated in 1.23) was removed.
 * HTMLFileCache::newFromTitle() (deprecated in 1.24) was removed.
+* The OldChangesListRecentChangesLine, EnhancedChangesListModifyLineData and
+  PageHistoryLineEnding hooks have an additional parameter, for manipulating
+  HTML attributes of RC/history lines. EnhancedChangesListModifyBlockLineData
+  can do that via the $data['attribs'] subarray.
 
 == Compatibility ==
 
