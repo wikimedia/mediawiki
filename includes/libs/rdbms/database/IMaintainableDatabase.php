@@ -22,6 +22,12 @@
  * @file
  * @ingroup Database
  */
+namespace Wikimedia\Rdbms;
+
+use ResultWrapper;
+use Exception;
+use RuntimeException;
+use DBUnexpectedError;
 
 /**
  * Advanced database interface for IDatabase handles that include maintenance methods
@@ -206,3 +212,5 @@ interface IMaintainableDatabase extends IDatabase {
 		$oldName, $newName, $temporary = false, $fname = __METHOD__
 	);
 }
+
+class_alias( 'Wikimedia\Rdbms\IMaintainableDatabase', 'IMaintainableDatabase' );

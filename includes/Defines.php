@@ -25,6 +25,8 @@ require_once __DIR__ . '/libs/time/defines.php';
 require_once __DIR__ . '/libs/rdbms/defines.php';
 require_once __DIR__ . '/compat/normal/UtfNormalDefines.php';
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * @defgroup Constants MediaWiki constants
  */

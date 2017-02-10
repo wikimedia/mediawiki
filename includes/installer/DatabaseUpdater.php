@@ -20,6 +20,7 @@
  * @file
  * @ingroup Deployment
  */
+use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\MediaWikiServices;
 
 require_once __DIR__ . '/../../maintenance/Maintenance.php';

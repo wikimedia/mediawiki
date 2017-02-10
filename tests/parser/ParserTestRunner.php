@@ -25,6 +25,7 @@
  * @file
  * @ingroup Testing
  */
+use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
 

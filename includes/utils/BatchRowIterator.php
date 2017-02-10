@@ -1,4 +1,7 @@
 <?php
+
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Allows iterating a large number of rows in batches transparently.
  * By default when iterated over returns the full query result as an

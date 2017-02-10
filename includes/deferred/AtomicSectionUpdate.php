@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Deferrable Update for closure/callback updates via IDatabase::doAtomicSection()
  * @since 1.27

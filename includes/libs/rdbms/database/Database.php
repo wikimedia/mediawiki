@@ -31,6 +31,8 @@ use Wikimedia\Rdbms\LikeMatch;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DBMasterPos;
 use Wikimedia\Rdbms\Blob;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
  * Relational database abstraction object
@@ -364,7 +366,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		$class = 'Database' . ucfirst( $driver );
-		if ( class_exists( $class ) && is_subclass_of( $class, 'IDatabase' ) ) {
+		if ( class_exists( $class ) && is_subclass_of( $class, IDatabase::class ) ) {
 			// Resolve some defaults for b/c
 			$p['host'] = isset( $p['host'] ) ? $p['host'] : false;
 			$p['user'] = isset( $p['user'] ) ? $p['user'] : false;
