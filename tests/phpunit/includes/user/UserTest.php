@@ -826,7 +826,8 @@ class UserTest extends MediaWikiTestCase {
 	 * The BlockID cookie is normally verified with a HMAC, but not if wgSecretKey is not set.
 	 * This checks that a non-authenticated cookie still works.
 	 */
-	public function testAutoblockCookieNoSecretKey() {
+	public function testAutoblockCookieNoSecretKey()
+	{
 		// Set up the bits of global configuration that we use.
 		$this->setMwGlobals( [
 			'wgCookieSetOnAutoblock' => true,
@@ -861,5 +862,54 @@ class UserTest extends MediaWikiTestCase {
 
 		// Clean up.
 		$block->delete();
+	}
+
+	public function provideExperienceLevel() {
+		return [
+			[ 2, 2, 'newcomer' ],
+			[ 12, 3, 'newcomer' ],
+			[ 8, 5, 'newcomer' ],
+			[ 15, 10, 'learner' ],
+			[ 450, 20, 'learner' ],
+			[ 460, 33, 'learner' ],
+			[ 525, 28, 'learner' ],
+			[ 538, 33, 'experienced' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideExperienceLevel
+	 */
+	public function testExperienceLevel( $editCount, $memberSince, $expLevel ) {
+		$this->setMwGlobals( [
+			'wgLearnerEdits' => 10,
+			'wgLearnerMemberSince' => 4,
+			'wgExperiencedUserEdits' => 500,
+			'wgExperiencedUserMemberSince' => 30,
+		] );
+
+		$db = wfGetDB( DB_MASTER );
+
+		$data = new stdClass();
+		$data->user_id = 1;
+		$data->user_name = 'name';
+		$data->user_real_name = 'Real Name';
+		$data->user_touched = 1;
+		$data->user_token = 'token';
+		$data->user_email = 'a@a.a';
+		$data->user_email_authenticated = null;
+		$data->user_email_token = 'token';
+		$data->user_email_token_expires = null;
+		$data->user_editcount = $editCount;
+		$data->user_registration = $db->timestamp( time() - $memberSince * 86400 );
+		$user = User::newFromRow( $data );
+
+		$this->assertEquals( $expLevel, $user->getExperienceLevel() );
+	}
+
+	public function testExperienceLevelAnon() {
+		$user = User::newFromName( '10.11.12.13', false );
+
+		$this->assertFalse( $user->getExperienceLevel() );
 	}
 }
