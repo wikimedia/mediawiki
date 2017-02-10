@@ -1758,8 +1758,9 @@ class WikiPage implements Page, IDBAccessObject {
 			// Update recentchanges
 			if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
 				// Mark as patrolled if the user can do so
-				$patrolled = $wgUseRCPatrol && !count(
-						$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
+				$patrolled = $wgUseRCPatrol &&
+					( $this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) === [] ||
+					$this->mTitle->getUserPermissionsErrors( 'autopatrol-limited', $user ) === [] );
 				// Add RC row to the DB
 				RecentChange::notifyEdit(
 					$now,
@@ -1909,7 +1910,7 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
 			// Mark as patrolled if the user can do so
 			$patrolled = ( $wgUseRCPatrol || $wgUseNPPatrol ) &&
-				!count( $this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
+				$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) === [];
 			// Add RC row to the DB
 			RecentChange::notifyNew(
 				$now,
