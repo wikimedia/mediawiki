@@ -23,12 +23,14 @@ module.exports = function ( grunt ) {
 		eslint: {
 			all: [
 				'**/*.js',
+				'!webpack.config.js',
 				'!docs/**',
 				'!tests/**',
 				'!node_modules/**',
 				'!resources/lib/**',
 				'!resources/src/jquery.tipsy/**',
 				'!resources/src/jquery/jquery.farbtastic.js',
+				'!resources/src/mediawiki/mediawiki.js',
 				'!resources/src/mediawiki.libs/**',
 				'!vendor/**',
 				// Explicitly say "**/*.js" here in case of symlinks
