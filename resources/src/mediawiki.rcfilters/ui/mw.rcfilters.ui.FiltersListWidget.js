@@ -25,6 +25,14 @@
 
 		this.controller = controller;
 		this.model = model;
+		this.$overlay = config.$overlay || this.$element;
+
+		this.highlightButton = new OO.ui.ButtonWidget( {
+			label: mw.message( 'rcfilters-highlightbutton-title' ).text(),
+			classes: [ 'mw-rcfilters-ui-filtersListWidget-hightlightButton' ]
+		} );
+
+		this.$label.append( this.highlightButton.$element );
 
 		this.noResultsLabel = new OO.ui.LabelWidget( {
 			label: mw.msg( 'rcfilters-filterlist-noresults' ),
@@ -32,8 +40,10 @@
 		} );
 
 		// Events
+		this.highlightButton.connect( this, { click: 'onHighlightButtonClick' } );
 		this.model.connect( this, {
-			initialize: 'onModelInitialize'
+			initialize: 'onModelInitialize',
+			highlightChange: 'onHighlightChange'
 		} );
 
 		// Initialize
@@ -69,10 +79,24 @@
 			Object.keys( this.model.getFilterGroups() ).map( function ( groupName ) {
 				return new mw.rcfilters.ui.FilterGroupWidget(
 					widget.controller,
-					widget.model.getGroup( groupName )
+					widget.model.getGroup( groupName ),
+					{
+						$overlay: this.$overlay
+					}
 				);
 			} )
 		);
+	};
+
+	mw.rcfilters.ui.FiltersListWidget.prototype.onHighlightChange = function ( highlightEnabled ) {
+		this.highlightButton.setActive( highlightEnabled );
+	};
+
+	/**
+	 * Respond to highlight button click
+	 */
+	mw.rcfilters.ui.FiltersListWidget.prototype.onHighlightButtonClick = function () {
+		this.controller.toggleHighlight();
 	};
 
 	/**

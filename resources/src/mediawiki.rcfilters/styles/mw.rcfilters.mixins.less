@@ -1,0 +1,33 @@
+@import "mediawiki.mixins";
+@import "mw.rcfilters.variables";
+
+// This is a general mixin for a color circle
+.mw-rcfilters-mixin-circle( @color: white, @diameter: 2em, @padding: 0.5em, @border: false ) {
+	border-radius: 50%;
+	min-width: @diameter;
+	width: @diameter;
+	min-height: @diameter;
+	height: @diameter;
+	margin: @padding;
+	.box-sizing( border-box );
+
+	background-color: @color;
+
+	& when (@border = true) {
+		border: 1px solid #666;
+	}
+}
+
+// This is the circle that appears next to the results
+// Its visibility is directly dependent on whether there is
+// a color class on its parent element
+.result-circle( @colorName: 'none' ) {
+	&-@{colorName} {
+		.mw-rcfilters-mixin-circle( ~"@{highlight-@{colorName}}", @result-circle-diameter, 0 );
+		display: none;
+
+		.@{colorName} & {
+			display: inline-block;
+		}
+	}
+}
