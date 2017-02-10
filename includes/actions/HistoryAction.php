@@ -770,14 +770,15 @@ class HistoryPager extends ReverseChronologicalPager {
 			$s2 .= " $tagSummary";
 		}
 
+		$attribs = [ 'data-mw-revid' => $rev->getId() ];
+
 		# Include separator between character difference and following text
 		if ( $s2 !== '' ) {
 			$s .= ' <span class="mw-changeslist-separator">. .</span> ' . $s2;
 		}
 
-		Hooks::run( 'PageHistoryLineEnding', [ $this, &$row, &$s, &$classes ] );
+		Hooks::run( 'PageHistoryLineEnding', [ $this, &$row, &$s, &$classes, &$attribs ] );
 
-		$attribs = [];
 		if ( $classes ) {
 			$attribs['class'] = implode( ' ', $classes );
 		}
