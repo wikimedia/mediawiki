@@ -459,6 +459,7 @@ class RecentChange {
 
 	/**
 	 * Mark a given change as patrolled
+	 * @deprecated since 1.29 Use RecentChange::doMarkPatrolled() instead
 	 *
 	 * @param RecentChange|int $change RecentChange or corresponding rc_id
 	 * @param bool $auto For automatic patrol
@@ -467,6 +468,7 @@ class RecentChange {
 	 * @return array See doMarkPatrolled(), or null if $change is not an existing rc_id
 	 */
 	public static function markPatrolled( $change, $auto = false, $tags = null ) {
+		wfDeprecated( __METHOD__, '1.29' );
 		global $wgUser;
 
 		$change = $change instanceof RecentChange
@@ -486,35 +488,34 @@ class RecentChange {
 	 * NOTE: Can also return 'rcpatroldisabled', 'hookaborted' and
 	 * 'markedaspatrollederror-noautopatrol' as errors
 	 * @param User $user User object doing the action
-	 * @param bool $auto For automatic patrol
 	 * @param string|string[] $tags Change tags to add to the patrol log entry
 	 *   ($user should be able to add the specified tags before this is called)
 	 * @return array Array of permissions errors, see Title::getUserPermissionsErrors()
 	 */
-	public function doMarkPatrolled( User $user, $auto = false, $tags = null ) {
-		global $wgUseRCPatrol, $wgUseNPPatrol, $wgUseFilePatrol;
+	public function doMarkPatrolled( User $user, $tags = null ) {
+		global $wgUseRCPatrol, $wgUseNPPatrol, $wgUseFilePatrol, $wgUseMovePatrol;
 
 		$errors = [];
 		// If recentchanges patrol is disabled, only new pages or new file versions
 		// can be patrolled, provided the appropriate config variable is set
 		if ( !$wgUseRCPatrol && ( !$wgUseNPPatrol || $this->getAttribute( 'rc_type' ) != RC_NEW ) &&
 			( !$wgUseFilePatrol || !( $this->getAttribute( 'rc_type' ) == RC_LOG &&
-			$this->getAttribute( 'rc_log_type' ) == 'upload' ) ) ) {
+			$this->getAttribute( 'rc_log_type' ) == 'upload' ) ) &&
+			( !$wgUseMovePatrol || !( $this->getAttribute( 'rc_type' ) == RC_LOG &&
+			$this->getAttribute( 'rc_log_type' ) == 'move' ) )
+		) {
 			$errors[] = [ 'rcpatroldisabled' ];
 		}
-		// Automatic patrol needs "autopatrol", ordinary patrol needs "patrol"
-		$right = $auto ? 'autopatrol' : 'patrol';
-		$errors = array_merge( $errors, $this->getTitle()->getUserPermissionsErrors( $right, $user ) );
+
+		$errors = array_merge( $errors, $this->getTitle()->getUserPermissionsErrors( 'patrol', $user ) );
 		if ( !Hooks::run( 'MarkPatrolled',
-					[ $this->getAttribute( 'rc_id' ), &$user, false, $auto ] )
+					[ $this->getAttribute( 'rc_id' ), &$user, false, false ] )
 		) {
 			$errors[] = [ 'hookaborted' ];
 		}
-		// Users without the 'autopatrol' right can't patrol their
-		// own revisions
-		if ( $user->getName() === $this->getAttribute( 'rc_user_text' )
-			&& !$user->isAllowed( 'autopatrol' )
-		) {
+		// Users can't patrol their own revisions - if the user were autopatrolled, this
+		// would already have been patrolled (and this shouldn't be retroactive)
+		if ( $user->getName() === $this->getAttribute( 'rc_user_text' ) ) {
 			$errors[] = [ 'markedaspatrollederror-noautopatrol' ];
 		}
 		if ( $errors ) {
@@ -527,11 +528,11 @@ class RecentChange {
 		// Actually set the 'patrolled' flag in RC
 		$this->reallyMarkPatrolled();
 		// Log this patrol event
-		PatrolLog::record( $this, $auto, $user, $tags );
+		PatrolLog::record( $this, false, $user, $tags );
 
 		Hooks::run(
 			'MarkPatrolledComplete',
-			[ $this->getAttribute( 'rc_id' ), &$user, false, $auto ]
+			[ $this->getAttribute( 'rc_id' ), &$user, false, false ]
 		);
 
 		return [];
@@ -789,7 +790,19 @@ class RecentChange {
 		}
 
 		// Allow unpatrolled status for patrollable log entries
-		$markPatrolled = $isPatrollable ? $user->isAllowed( 'autopatrol' ) : true;
+		if ( $isPatrollable ) {
+			// automatically mark patrolled for autopatrolled users
+			switch ( $type ) {
+				case 'move':
+					$markPatrolled = $user->isAllowed( 'autopatrol' ) ||
+						$user->isAllowed( 'autopatrol-limited' );
+					break;
+				default:
+					$markPatrolled = $user->isAllowed( 'autopatrol' );
+			}
+		} else {
+			$markPatrolled = true;
+		}
 
 		$rc = new RecentChange;
 		$rc->mTitle = $target;

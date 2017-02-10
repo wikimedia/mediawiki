@@ -955,7 +955,8 @@ class Article implements Page {
 	 * @return bool
 	 */
 	public function showPatrolFooter() {
-		global $wgUseNPPatrol, $wgUseRCPatrol, $wgUseFilePatrol, $wgEnableAPI, $wgEnableWriteAPI;
+		global $wgUseNPPatrol, $wgUseRCPatrol, $wgUseFilePatrol, $wgUseMovePatrol;
+		global $wgEnableAPI, $wgEnableWriteAPI;
 
 		$outputPage = $this->getContext()->getOutput();
 		$user = $this->getContext()->getUser();
@@ -963,7 +964,7 @@ class Article implements Page {
 		$rc = false;
 
 		if ( !$title->quickUserCan( 'patrol', $user )
-			|| !( $wgUseRCPatrol || $wgUseNPPatrol
+			|| !( $wgUseRCPatrol || $wgUseNPPatrol || $wgUseMovePatrol
 				|| ( $wgUseFilePatrol && $title->inNamespace( NS_FILE ) ) )
 		) {
 			// Patrolling is disabled or the user isn't allowed to
@@ -1056,11 +1057,49 @@ class Article implements Page {
 			}
 		}
 
-		if ( !$recentPageCreation && !$recentFileUpload ) {
-			// Page creation and latest upload (for files) is too old to be in RC
+		// Move patrol: Get the timestamp of the latest move for this page,
+		// check whether it is within the RC lifespan and if it is, we try
+		// to get the recentchanges row belonging to that entry
+		// (with rc_type = RC_LOG, rc_log_type = move).
+		$recentPageMove = false;
+		if ( ( !$rc || $rc->getAttribute( 'rc_patrolled' ) ) && $wgUseMovePatrol ) {
+			// Retrieve timestamp of most recent move
+			$newestMoveTimestamp = $dbr->selectField(
+				'logging',
+				'MAX( log_timestamp )',
+				[
+					'log_type' => 'move',
+					'log_page' => $title->getArticleID(),
+				],
+				__METHOD__
+			);
+			if ( $newestMoveTimestamp
+				&& RecentChange::isInRCLifespan( $newestMoveTimestamp, 21600 )
+			) {
+				// 6h tolerance because the RC might not be cleaned out regularly
+				$recentPageMove = true;
+				$rc = RecentChange::newFromConds(
+					[
+						'rc_type' => RC_LOG,
+						'rc_log_type' => 'move',
+						'rc_timestamp' => $newestMoveTimestamp,
+						'rc_cur_id' => $title->getArticleID()
+					],
+					__METHOD__,
+					[ 'USE INDEX' => 'rc_timestamp' ]
+				);
+				if ( $rc ) {
+					// Use patrol message specific to files
+					$markPatrolledMsg = wfMessage( 'markaspatrolledtext-move' );
+				}
+			}
+		}
+
+		if ( !$recentPageCreation && !$recentFileUpload && !$recentPageMove ) {
+			// Page creation/move and latest upload (for files) is too old to be in RC
 
 			// We definitely can't patrol so cache the information
-			// When a new file version is uploaded, the cache is cleared
+			// When a new file version is uploaded or a page is moved, the cache is cleared
 			$cache->set( $key, '1' );
 
 			return false;
@@ -1068,8 +1107,8 @@ class Article implements Page {
 
 		if ( !$rc ) {
 			// Don't cache: This can be hit if the page gets accessed very fast after
-			// its creation / latest upload or in case we have high replica DB lag. In case
-			// the revision is too old, we will already return above.
+			// its creation / move / latest upload or in case we have high replica DB lag.
+			// In case the revision is too old, we will already return above.
 			return false;
 		}
 

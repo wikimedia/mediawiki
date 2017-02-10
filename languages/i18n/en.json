@@ -1229,7 +1229,8 @@
 	"right-import": "Import pages from other wikis",
 	"right-importupload": "Import pages from a file upload",
 	"right-patrol": "Mark others' edits as patrolled",
-	"right-autopatrol": "Have one's own edits automatically marked as patrolled",
+	"right-autopatrol": "Have one's own new pages, edits and moves automatically marked as patrolled",
+	"right-autopatrol-limited": "Have one's own edits and moves automatically marked as patrolled",
 	"right-patrolmarks": "View recent changes patrol marks",
 	"right-unwatchedpages": "View a list of unwatched pages",
 	"right-mergehistory": "Merge the history of pages",
@@ -3024,6 +3025,7 @@
 	"markaspatrolledlink": "[$1]",
 	"markaspatrolledtext": "Mark this page as patrolled",
 	"markaspatrolledtext-file": "Mark this file version as patrolled",
+	"markaspatrolledtext-move": "Mark this move as patrolled",
 	"markedaspatrolled": "Marked as patrolled",
 	"markedaspatrolledtext": "The selected revision of [[:$1]] has been marked as patrolled.",
 	"rcpatroldisabled": "Recent changes patrol disabled",
@@ -4382,5 +4384,6 @@
 	"pagedata-title": "Page data",
 	"pagedata-text": "This page provides a data interface to pages. Please provide the page title in the URL, using subpage syntax.\n* Content negotiation applies based on your client's Accept header. This means that the page data will be provided in the format preferred by your client.",
 	"pagedata-not-acceptable": "No matching format found. Supported MIME types: $1",
-	"pagedata-bad-title": "Invalid title: $1."
+	"pagedata-bad-title": "Invalid title: $1.",
+	"newmoves": "New moves"
 }

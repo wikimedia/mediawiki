@@ -6839,6 +6839,13 @@ $wgUseNPPatrol = true;
 $wgUseFilePatrol = true;
 
 /**
+ * Use move patrolling to check page moves on Special:NewMoves
+ *
+ * @since 1.29
+ */
+$wgUseMovePatrol = true;
+
+/**
  * Log autopatrol actions to the log table
  */
 $wgLogAutopatrol = true;

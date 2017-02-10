@@ -534,7 +534,13 @@ class MovePage {
 		}
 
 		$nullRevId = $nullRevision->insertOn( $dbw );
+
+		# Associate the null rev to the log entry (for change tags, patrol, etc)
 		$logEntry->setAssociatedRevId( $nullRevId );
+
+		# Ensure the log entry and associated recent change have the same timestamp as
+		# the null revision
+		$logEntry->setTimestamp( $nullRevision->getTimestamp() );
 
 		# Change the name of the target page:
 		$dbw->update( 'page',
@@ -575,6 +581,9 @@ class MovePage {
 
 		WikiPage::onArticleCreate( $nt );
 
+		// clear patrol cache
+		Article::purgePatrolFooterCache( $oldid );
+
 		# Recreate the redirect, this time in the other direction.
 		if ( $redirectContent ) {
 			$redirectArticle = WikiPage::factory( $this->oldTitle );
@@ -597,9 +606,13 @@ class MovePage {
 
 				$redirectArticle->doEditUpdates( $redirectRevision, $user, [ 'created' => true ] );
 
+				// no rc here, so we need to directly add the tags
 				ChangeTags::addTags( $changeTags, null, $redirectRevId, null );
 			}
 		}
+
+		# Make log entry patrollable
+		$logEntry->setIsPatrollable( true );
 
 		# Log the move
 		$logid = $logEntry->insert();

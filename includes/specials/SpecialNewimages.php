@@ -51,6 +51,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		$opts->add( 'newbies', false );
 		$opts->add( 'hidepatrolled', false );
 		$opts->add( 'mediatype', $this->mediaTypes );
+		$opts->add( 'hidepatrolled', $this->getUser()->getBoolOption( 'newpageshidepatrolled' ) );
 		$opts->add( 'limit', 50 );
 		$opts->add( 'offset', '' );
 		$opts->add( 'start', '' );

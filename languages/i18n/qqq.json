@@ -1422,6 +1422,7 @@
 	"right-importupload": "{{doc-right|importupload}}",
 	"right-patrol": "{{doc-right|patrol}}",
 	"right-autopatrol": "{{doc-right|autopatrol}}",
+	"right-autopatrol-limited": "{{doc-right|autopatrol-limited}}",
 	"right-patrolmarks": "{{doc-right|patrolmarks}}",
 	"right-unwatchedpages": "{{doc-right|unwatchedpages}}",
 	"right-mergehistory": "{{doc-right|mergehistory}}",
@@ -3216,6 +3217,7 @@
 	"markaspatrolledlink": "{{notranslate}}\nParameters:\n* $1 - link which has text {{msg-mw|Markaspatrolledtext}}",
 	"markaspatrolledtext": "{{doc-actionlink}}\nSee also:\n* {{msg-mw|Markaspatrolleddiff}}",
 	"markaspatrolledtext-file": "Same as markaspatrolledtext, but for files (new versions included) instead of pages.\n\nSee: {{msg-mw|markaspatrolledtext}}",
+	"markaspatrolledtext-move": "Same as markaspatrolledtext, but for moves instead of creations.\n\nSee: {{msg-mw|markaspatrolledtext}}",
 	"markedaspatrolled": "Used as title of the message {{msg-mw|Markedaspatrolledtext}}, when marking a change as patrolled.\n{{Related|Markedaspatrolled}}",
 	"markedaspatrolledtext": "Used when marking a change as patrolled.\n\nThe title for this message is {{msg-mw|Markedaspatrolled}}.\n\nParameters:\n* $1 - page title\n{{Related|Markedaspatrolled}}",
 	"rcpatroldisabled": "Used as title of the error message {{msg-mw|Rcpatroldisabledtext}}, when marking a change as patrolled.\n{{Related|Markedaspatrolled}}",
@@ -4574,5 +4576,6 @@
 	"pagedata-title": "Title shown on the special page when a form or text is presented",
 	"pagedata-text": "Error shown when none of the formats acceptable to the client is supported (HTTP error 406). Parameters:\n* $1 - the list of supported MIME types",
 	"pagedata-not-acceptable": "No matching format found. Supported MIME types: $1",
-	"pagedata-bad-title": "Error shown when the requested title is invalid. Parameters:\n* $1: the malformed ID"
+	"pagedata-bad-title": "Error shown when the requested title is invalid. Parameters:\n* $1: the malformed ID",
+	"newmoves": "{{doc-special|NewMoves}}"
 }

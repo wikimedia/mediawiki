@@ -103,6 +103,8 @@ class MarkpatrolledAction extends FormAction {
 			$returnTo = 'Newpages';
 		} elseif ( $rc->getAttribute( 'rc_log_type' ) == 'upload' ) {
 			$returnTo = 'Newfiles';
+		} elseif ( $rc->getAttribute( 'rc_log_type' ) == 'move' ) {
+			$returnTo = 'Newmoves';
 		} else {
 			$returnTo = 'Recentchanges';
 		}

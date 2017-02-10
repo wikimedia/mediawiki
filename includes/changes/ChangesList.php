@@ -711,10 +711,16 @@ class ChangesList extends ContextSource {
 			$isPatrolled = $rc->mAttribs['rc_patrolled'];
 			$rcType = $rc->mAttribs['rc_type'];
 			$rcLogType = $rc->mAttribs['rc_log_type'];
+			$rcTimestamp = $rc->mAttribs['rc_timestamp'];
+			$rcTitle = $rc->mAttribs['rc_title'];
+			$rcCurId = $rc->mAttribs['rc_cur_id'];
 		} else {
 			$isPatrolled = $rc->rc_patrolled;
 			$rcType = $rc->rc_type;
 			$rcLogType = $rc->rc_log_type;
+			$rcTimestamp = $rc->rc_timestamp;
+			$rcTitle = $rc->rc_title;
+			$rcCurId = $rc->rc_cur_id;
 		}
 
 		if ( !$isPatrolled ) {
@@ -725,7 +731,35 @@ class ChangesList extends ContextSource {
 				return true;
 			}
 			if ( $user->useFilePatrol() && $rcLogType == 'upload' ) {
-				return true;
+				// Retrieve timestamp of most recent upload
+				$newestUploadTimestamp = wfGetDB( DB_REPLICA )->selectField(
+					'image',
+					'MAX( img_timestamp )',
+					[ 'img_name' => $rcTitle ],
+					__METHOD__
+				);
+				// only the most recent upload can be patrolled, don't show more
+				// ancient ones as unpatrolled
+				if ( $rcTimestamp >= $newestUploadTimestamp ) {
+					return true;
+				}
+			}
+			if ( $user->useMovePatrol() && $rcLogType == 'move' ) {
+				// Retrieve timestamp of most recent move
+				$newestMoveTimestamp = wfGetDB( DB_REPLICA )->selectField(
+					'logging',
+					'MAX( log_timestamp )',
+					[
+						'log_type' => 'move',
+						'log_page' => $rcCurId,
+					],
+					__METHOD__
+				);
+				// only the most recent move can be patrolled, don't show more
+				// ancient ones as unpatrolled
+				if ( $rcTimestamp >= $newestMoveTimestamp ) {
+					return true;
+				}
 			}
 		}
 
