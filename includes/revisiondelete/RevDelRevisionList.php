@@ -20,6 +20,7 @@
  */
 
 use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * List for revision table items

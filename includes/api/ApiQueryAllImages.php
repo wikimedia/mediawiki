@@ -26,6 +26,8 @@
  * @file
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Query module to enumerate all available pages.
  *

@@ -24,6 +24,7 @@
  * @ingroup Database
  */
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 
 class CloneDatabase {
 	/** @var string Table prefix for cloning */

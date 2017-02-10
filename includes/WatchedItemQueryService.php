@@ -1,5 +1,6 @@
 <?php
 
+use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Linker\LinkTarget;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\LoadBalancer;

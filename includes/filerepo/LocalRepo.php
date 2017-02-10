@@ -23,6 +23,7 @@
  */
 
 use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * A repository that stores files in the local filesystem and registers them

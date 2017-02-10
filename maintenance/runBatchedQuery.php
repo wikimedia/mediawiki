@@ -25,6 +25,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Maintenance script to run a database query in batches and wait for replica DBs.
  *

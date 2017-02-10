@@ -22,6 +22,7 @@
  */
 
 use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Variant of QueryPage which formats the result as a simple link to the page

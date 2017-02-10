@@ -22,6 +22,8 @@
  * @author Matthew Flaschen
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Represents a filter group with multiple string options. They are passed to the server as
  * a single form parameter separated by a delimiter.  The parameter name is the

@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * The oci8 extension is fairly weak and doesn't support oci_num_rows, among
  * other things. We use a wrapper class to handle that and other

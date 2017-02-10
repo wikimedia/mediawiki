@@ -18,6 +18,7 @@
  * @file
  * @ingroup Database
  */
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Database error base class

@@ -21,6 +21,7 @@
  * @ingroup Deployment
  */
 use Wikimedia\Rdbms\LBFactorySingle;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Base class for DBMS-specific installation helper classes.
