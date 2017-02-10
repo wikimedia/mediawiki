@@ -39,7 +39,13 @@ changes to languages because of Phabricator reports.
 * …
 
 === Other changes in 1.30 ===
-* …
+* Two new hooks, LogEventsListLineEnding and NewPagesLineEnding were added for
+  manipulating Special:Log and Special:NewPages lines.
+* The OldChangesListRecentChangesLine, EnhancedChangesListModifyLineData,
+  PageHistoryLineEnding, ContributionsLineEnding and DeletedContributionsLineEnding
+  hooks have an additional parameter, for manipulating HTML data attributes of
+  RC/history lines. EnhancedChangesListModifyBlockLineData can do that via the
+  $data['attribs'] subarray.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for

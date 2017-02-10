@@ -1148,6 +1148,9 @@ $page: SpecialPage object for contributions
 &$ret: the HTML line
 $row: the DB row for this line
 &$classes: the classes to add to the surrounding <li>
+&$attribs: associative array of other HTML attributes for the <li> element.
+  Currently only data attributes reserved to MediaWiki are allowed
+  (see Sanitizer::isReservedDataAttribute).
 
 'ContributionsToolLinks': Change tool links above Special:Contributions
 $id: User identifier
@@ -1193,6 +1196,9 @@ $page: SpecialPage object for DeletedContributions
 &$ret: the HTML line
 $row: the DB row for this line
 &$classes: the classes to add to the surrounding <li>
+&$attribs: associative array of other HTML attributes for the <li> element.
+  Currently only data attributes reserved to MediaWiki are allowed
+  (see Sanitizer::isReservedDataAttribute).
 
 'DifferenceEngineAfterLoadNewText': called in DifferenceEngine::loadNewText()
 after the new revision's content has been loaded into the class member variable
@@ -1505,6 +1511,9 @@ $changesList: EnhancedChangesList object
 $block: An array of RecentChange objects in that block
 $rc: The RecentChange object for this line
 &$classes: An array of classes to change
+&$attribs: associative array of other HTML attributes for the <tr> element.
+  Currently only data attributes reserved to MediaWiki are allowed
+  (see Sanitizer::isReservedDataAttribute).
 
 'EnhancedChangesListModifyBlockLineData': to alter data used to build
 a non-grouped recent change line in EnhancedChangesList.
@@ -1999,6 +2008,16 @@ $file: the File object or false if broken link
 &$attribs: the attributes to be applied
 &$ret: the value to return if your hook returns false
 
+'LogEventsListLineEnding': Called before a Special:Log line is finished
+$page: the LogEventsList object
+&$ret: the HTML line
+$entry: the DatabaseLogEntry object for this row
+&$classes: the classes to add to the surrounding <li>
+&$attribs: associative array of other HTML attributes for the <li> element.
+  Currently only data attributes reserved to MediaWiki are allowed
+  (see Sanitizer::isReservedDataAttribute).
+
+
 'HtmlPageLinkRendererBegin':
 Used when generating internal and interwiki links in
 LinkRenderer, before processing starts.  Return false to skip default
@@ -2284,6 +2303,16 @@ $title: the diff page title (nullable)
 $old: the ?old= param value from the url
 $new: the ?new= param value from the url
 
+'NewPagesLineEnding': Called before a NewPages line is finished.
+$page: the SpecialNewPages object
+&$ret: the HTML line
+$row: the database row for this page (the recentchanges record and a few extras - see
+  NewPagesPager::getQueryInfo)
+&$classes: the classes to add to the surrounding <li>
+&$attribs: associative array of other HTML attributes for the <li> element.
+  Currently only data attributes reserved to MediaWiki are allowed
+  (see Sanitizer::isReservedDataAttribute).
+
 'NewRevisionFromEditComplete': Called when a revision was inserted due to an
 edit.
 $wikiPage: the WikiPage edited
@@ -2296,7 +2325,10 @@ return false to omit the line from RecentChanges and Watchlist special pages.
 &$changeslist: The OldChangesList instance.
 &$s: HTML of the form "<li>...</li>" containing one RC entry.
 $rc: The RecentChange object.
-&$classes: array of css classes for the <li> element
+&$classes: array of css classes for the <li> element.
+&$attribs: associative array of other HTML attributes for the <li> element.
+  Currently only data attributes reserved to MediaWiki are allowed
+  (see Sanitizer::isReservedDataAttribute).
 
 'OpenSearchUrls': Called when constructing the OpenSearch description XML. Hooks
 can alter or append to the array of URLs for search & suggestion formats.
@@ -2404,6 +2436,9 @@ $historyAction: the action object
 &$row: the revision row for this line
 &$s: the string representing this parsed line
 &$classes: array containing the <li> element classes
+&$attribs: associative array of other HTML attributes for the <li> element.
+  Currently only data attributes reserved to MediaWiki are allowed
+  (see Sanitizer::isReservedDataAttribute).
 
 'PageHistoryPager::doBatchLookups': Called after the pager query was run, before
 any output is generated, to allow batch lookups for prefetching information

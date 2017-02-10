@@ -354,9 +354,9 @@ class ContribsPager extends ReverseChronologicalPager {
 	 * @return string
 	 */
 	function formatRow( $row ) {
-
 		$ret = '';
 		$classes = [];
+		$attribs = [];
 
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
@@ -377,7 +377,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		MediaWiki\restoreWarnings();
 
 		if ( $validRevision ) {
-			$classes = [];
+			$attribs['data-mw-revid'] = $rev->getId();
 
 			$page = Title::newFromRow( $row );
 			$link = $linkRenderer->makeLink(
@@ -526,19 +526,21 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 
 		// Let extensions add data
-		Hooks::run( 'ContributionsLineEnding', [ $this, &$ret, $row, &$classes ] );
+		Hooks::run( 'ContributionsLineEnding', [ $this, &$ret, $row, &$classes, &$attribs ] );
+		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isReservedDataAttribute' ] );
 
 		// TODO: Handle exceptions in the catch block above.  Do any extensions rely on
 		// receiving empty rows?
 
-		if ( $classes === [] && $ret === '' ) {
+		if ( $classes === [] && $attribs === [] && $ret === '' ) {
 			wfDebug( "Dropping Special:Contribution row that could not be formatted\n" );
 			return "<!-- Could not format Special:Contribution row. -->\n";
 		}
+		$attribs['class'] = $classes;
 
 		// FIXME: The signature of the ContributionsLineEnding hook makes it
 		// very awkward to move this LI wrapper into the template.
-		return Html::rawElement( 'li', [ 'class' => $classes ], $ret ) . "\n";
+		return Html::rawElement( 'li', $attribs, $ret ) . "\n";
 	}
 
 	/**
