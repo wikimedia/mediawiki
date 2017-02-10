@@ -1157,4 +1157,116 @@
 			'Selecting a non-conflicting filter from a conflicting group removes the conflict'
 		);
 	} );
+
+	QUnit.test( 'Filter highlights', function ( assert ) {
+		var definition = {
+				group1: {
+					title: 'Group 1',
+					type: 'string_options',
+					filters: [
+						{ name: 'filter1', class: 'class1' },
+						{ name: 'filter2', class: 'class2' },
+						{ name: 'filter3', class: 'class3' },
+						{ name: 'filter4', class: 'class4' },
+						{ name: 'filter5', class: 'class5' },
+						{ name: 'filter6' }
+					]
+				}
+			},
+			model = new mw.rcfilters.dm.FiltersViewModel();
+
+		model.initializeFilters( definition );
+
+		assert.ok(
+			!model.isHighlightEnabled(),
+			'Initially, highlight is disabled.'
+		);
+
+		model.toggleHighlight( true );
+		assert.ok(
+			model.isHighlightEnabled(),
+			'Highlight is enabled on toggle.'
+		);
+
+		model.setHighlightColor( 'filter1', 'color1' );
+		model.setHighlightColor( 'filter2', 'color2' );
+
+		assert.deepEqual(
+			model.getHighlightedItems().map( function ( item ) {
+				return item.getName();
+			} ),
+			[
+				'filter1',
+				'filter2'
+			],
+			'Highlighted items are highlighted.'
+		);
+
+		assert.equal(
+			model.getItemByName( 'filter1' ).getHighlightColor(),
+			'color1',
+			'Item highlight color is set.'
+		);
+
+		model.setHighlightColor( 'filter1', 'color1changed' );
+		assert.equal(
+			model.getItemByName( 'filter1' ).getHighlightColor(),
+			'color1changed',
+			'Item highlight color is changed on setHighlightColor.'
+		);
+
+		model.clearHighlightColor( 'filter1' );
+		assert.deepEqual(
+			model.getHighlightedItems().map( function ( item ) {
+				return item.getName();
+			} ),
+			[
+				'filter2'
+			],
+			'Clear highlight from an item results in the item no longer being highlighted.'
+		);
+
+		// Reset
+		model = new mw.rcfilters.dm.FiltersViewModel();
+		model.initializeFilters( definition );
+
+		model.setHighlightColor( 'filter1', 'color1' );
+		model.setHighlightColor( 'filter2', 'color2' );
+		model.setHighlightColor( 'filter3', 'color3' );
+
+		assert.deepEqual(
+			model.getHighlightedItems().map( function ( item ) {
+				return item.getName();
+			} ),
+			[
+				'filter1',
+				'filter2',
+				'filter3'
+			],
+			'Even if highlights are not enabled, the items remember their highlight state'
+			// NOTE: When actually displaying the highlights, the UI checks whether
+			// highlighting is generally active and then goes over the highlighted
+			// items. The item models, however, and the view model in general, still
+			// retains the knowledge about which filters have different colors, so we
+			// can seamlessly return to the colors the user previously chose if they
+			// reapply highlights.
+		);
+
+		// Reset
+		model = new mw.rcfilters.dm.FiltersViewModel();
+		model.initializeFilters( definition );
+
+		model.setHighlightColor( 'filter1', 'color1' );
+		model.setHighlightColor( 'filter6', 'color6' );
+
+		assert.deepEqual(
+			model.getHighlightedItems().map( function ( item ) {
+				return item.getName();
+			} ),
+			[
+				'filter1'
+			],
+			'Items without a specified class identifier are not highlighted.'
+		);
+	} );
 }( mediaWiki, jQuery ) );
