@@ -25,8 +25,8 @@ $namespaceNames = [
 	NS_TEMPLATE_TALK    => 'Prantilla_caraba',
 	NS_HELP             => 'Ayua',
 	NS_HELP_TALK        => 'Ayua_caraba',
-	NS_CATEGORY         => 'Categoria',
-	NS_CATEGORY_TALK    => 'Categoria_caraba',
+	NS_CATEGORY         => 'Categoría',
+	NS_CATEGORY_TALK    => 'Categoría_caraba',
 ];
 
 $namespaceGenderAliases = [
