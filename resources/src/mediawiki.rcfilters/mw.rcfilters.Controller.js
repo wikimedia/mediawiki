@@ -41,6 +41,15 @@
 
 		// Check all filter interactions
 		this.filtersModel.reassessFilterInteractions();
+
+		// todo: figure out if this should go in updateFilters() below
+		this.filtersModel.toggleHighlight( !!Number( uri.query.highlight ) );
+		this.filtersModel.getItems().forEach( function ( filterItem ) {
+			var color = uri.query[ filterItem.getName() + '_color' ];
+			if ( color ) {
+				filterItem.chooseHighlightColor( color );
+			}
+		} );
 	};
 
 	/**
@@ -92,6 +101,8 @@
 		// and see if current state of a specific filter is needed?
 		uri.extend( this.filtersModel.getParametersFromFilters() );
 
+		uri.extend( { highlight: Number( this.filtersModel.isHighlightEnabled() ) } );
+
 		// Update the URL itself
 		window.history.pushState( { tag: 'rcfilters' }, document.title, uri.toString() );
 	};
@@ -130,4 +141,23 @@
 				}
 			}.bind( this ) );
 	};
+
+	/**
+	 * Toggle highlight feature
+	 */
+	mw.rcfilters.Controller.prototype.toggleHighlight = function () {
+		this.filtersModel.toggleHighlight();
+		this.updateURL();
+	};
+
+	mw.rcfilters.Controller.prototype.chooseHighlightColor = function ( filterName, color ) {
+		this.filtersModel.chooseHighlightColor( filterName, color );
+		this.updateURL();
+	};
+
+	mw.rcfilters.Controller.prototype.clearHighlight = function ( filterName ) {
+		this.filtersModel.clearHighlight( filterName );
+		this.updateURL();
+	};
+
 }( mediaWiki, jQuery ) );
