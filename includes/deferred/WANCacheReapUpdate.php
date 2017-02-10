@@ -1,6 +1,7 @@
 <?php
 
 use Psr\Log\LoggerInterface;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Class for fixing stale WANObjectCache keys using a purge event source

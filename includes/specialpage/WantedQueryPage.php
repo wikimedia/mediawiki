@@ -22,6 +22,7 @@
  */
 
 use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Class definition for a wanted query page like

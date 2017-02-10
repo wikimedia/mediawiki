@@ -24,6 +24,8 @@
  * @file
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * This abstract class implements many basic API functions, and is the base of
  * all API classes.

@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Version of FileJournal that logs to a DB table

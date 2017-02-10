@@ -23,7 +23,6 @@
 
 namespace Wikimedia\Rdbms;
 
-use IDatabase;
 use InvalidArgumentException;
 use BadMethodCallException;
 

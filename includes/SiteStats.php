@@ -20,6 +20,8 @@
  * @file
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Static accessor class for site_stats and related things
  */

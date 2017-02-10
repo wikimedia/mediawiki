@@ -25,6 +25,7 @@
  */
 
 use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Special:ListDuplicatedFiles Lists all files where the current version is

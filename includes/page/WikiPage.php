@@ -23,6 +23,7 @@
 use \MediaWiki\Logger\LoggerFactory;
 use \MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Class representing a MediaWiki article and history.

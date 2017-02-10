@@ -22,6 +22,7 @@
  */
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Special page which uses a ChangesList to show query results.

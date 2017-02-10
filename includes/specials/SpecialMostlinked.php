@@ -26,6 +26,7 @@
  */
 
 use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * A special page to show pages ordered by the number of pages linking to them.

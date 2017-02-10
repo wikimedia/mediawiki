@@ -1,5 +1,6 @@
 <?php
 
+use Wikimedia\Rdbms\IDatabase;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;

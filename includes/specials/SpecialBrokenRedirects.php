@@ -22,6 +22,7 @@
  */
 
 use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * A special page listing redirects to non existent page. Those should be
