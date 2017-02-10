@@ -1430,6 +1430,7 @@
 	"right-importupload": "{{doc-right|importupload}}",
 	"right-patrol": "{{doc-right|patrol}}",
 	"right-autopatrol": "{{doc-right|autopatrol}}",
+	"right-autopatrol-limited": "{{doc-right|autopatrol-limited}}",
 	"right-patrolmarks": "{{doc-right|patrolmarks}}",
 	"right-unwatchedpages": "{{doc-right|unwatchedpages}}",
 	"right-mergehistory": "{{doc-right|mergehistory}}",
@@ -3143,6 +3144,7 @@
 	"markaspatrolledlink": "{{notranslate}}\nParameters:\n* $1 - link which has text {{msg-mw|Markaspatrolledtext}}",
 	"markaspatrolledtext": "{{doc-actionlink}}\nSee also:\n* {{msg-mw|Markaspatrolleddiff}}",
 	"markaspatrolledtext-file": "Same as markaspatrolledtext, but for files (new versions included) instead of pages.\n\nSee: {{msg-mw|markaspatrolledtext}}",
+	"markaspatrolledtext-move": "Same as markaspatrolledtext, but for moves instead of creations.\n\nSee: {{msg-mw|markaspatrolledtext}}",
 	"markedaspatrolled": "Used as title of the message {{msg-mw|Markedaspatrolledtext}}, when marking a change as patrolled.\n{{Related|Markedaspatrolled}}",
 	"markedaspatrolledtext": "Used when marking a change as patrolled.\n\nThe title for this message is {{msg-mw|Markedaspatrolled}}.\n\nParameters:\n* $1 - page title\n{{Related|Markedaspatrolled}}",
 	"rcpatroldisabled": "Used as title of the error message {{msg-mw|Rcpatroldisabledtext}}, when marking a change as patrolled.\n{{Related|Markedaspatrolled}}",
@@ -4470,5 +4472,6 @@
 	"restrictionsfield-label": "Field label shown for restriction fields (e.g. on Special:BotPassword).",
 	"restrictionsfield-help": "Placeholder text displayed in restriction fields (e.g. on Special:BotPassword).",
 	"revid": "Used to format a revision ID number in text. Parameters:\n* $1 - Revision ID number.\n{{Identical|Revision}}",
-	"pageid": "Used to format a page ID number in text. Parameters:\n* $1 - Page ID number."
+	"pageid": "Used to format a page ID number in text. Parameters:\n* $1 - Page ID number.",
+	"newmoves": "{{doc-special|NewMoves}}"
 }
