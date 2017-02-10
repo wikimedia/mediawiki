@@ -1751,8 +1751,9 @@ class WikiPage implements Page, IDBAccessObject {
 				throw new MWException( "Failed to update page row to use new revision." );
 			}
 
+			$tags = $meta['tags'];
 			Hooks::run( 'NewRevisionFromEditComplete',
-				[ $this, $revision, $meta['baseRevId'], $user ] );
+				[ $this, $revision, $meta['baseRevId'], $user, &$tags ] );
 
 			// Update recentchanges
 			if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
@@ -1774,7 +1775,7 @@ class WikiPage implements Page, IDBAccessObject {
 					$newsize,
 					$revisionId,
 					$patrolled,
-					$meta['tags']
+					$tags
 				);
 			}
 
