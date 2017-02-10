@@ -89,7 +89,7 @@
 		return api.post( { action: 'test' }, { contentType: 'multipart/form-data' } );
 	} );
 
-	QUnit.test( 'Converting arrays to pipe-separated', function ( assert ) {
+	QUnit.test( 'Converting arrays to pipe-separated (string)', function ( assert ) {
 		var api = new mw.Api();
 
 		this.server.respond( function ( request ) {
@@ -98,6 +98,29 @@
 		} );
 
 		return api.get( { test: [ 'foo', 'bar', 'baz' ] } );
+	} );
+
+	QUnit.test( 'Converting arrays to pipe-separated (mw.Title)', function ( assert ) {
+		var api = new mw.Api();
+
+		this.server.respond( function ( request ) {
+			assert.ok( request.url.match( /test=Foo%7CBar/ ), 'Pipe-separated value was submitted' );
+			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
+		} );
+
+		return api.get( { test: [ new mw.Title( 'Foo' ), new mw.Title( 'Bar' ) ] } );
+	} );
+
+	QUnit.test( 'Converting arrays to pipe-separated (misc primitives)', function ( assert ) {
+		var api = new mw.Api();
+
+		this.server.respond( function ( request ) {
+			assert.ok( request.url.match( /test=true%7Cfalse%7C%7C%7C0%7C1%2E2/ ), 'Pipe-separated value was submitted: ' + request.url );
+			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
+		} );
+
+		// undefined/null will become empty string
+		return api.get( { test: [ true, false, undefined, null, 0, 1.2 ] } );
 	} );
 
 	QUnit.test( 'Omitting false booleans', function ( assert ) {
