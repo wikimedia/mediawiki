@@ -28,7 +28,7 @@
 		"oojs/oojs-ui": "0.19.1",
 		"oyejorge/less.php": "1.7.0.10",
 		"php": ">=5.5.9",
-		"psr/log": "1.0.0",
+		"psr/log": "1.0.2",
 		"wikimedia/assert": "0.2.2",
 		"wikimedia/base-convert": "1.0.1",
 		"wikimedia/cdb": "1.4.1",
