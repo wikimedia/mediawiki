@@ -22,6 +22,7 @@
  */
 
 use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * SpecialShortpages extends QueryPage. It is used to return the shortest

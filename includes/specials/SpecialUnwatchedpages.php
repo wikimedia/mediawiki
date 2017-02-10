@@ -25,6 +25,7 @@
  */
 
 use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * A special page that displays a list of pages that are not on anyones watchlist.

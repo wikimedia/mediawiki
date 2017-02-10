@@ -30,7 +30,6 @@ use EmptyBagOStuff;
 use WANObjectCache;
 use Exception;
 use RuntimeException;
-use IDatabase;
 use DBTransactionError;
 use DBReplicationWaitError;
 

@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Deferrable Update for closure/callback updates that should use auto-commit mode
  * @since 1.28

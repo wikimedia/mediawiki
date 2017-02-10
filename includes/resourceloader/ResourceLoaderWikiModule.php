@@ -22,6 +22,8 @@
  * @author Roan Kattouw
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Abstraction for ResourceLoader modules which pull from wiki pages
  *

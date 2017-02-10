@@ -19,6 +19,8 @@
  *
  * @file
  */
+
+use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ResultWrapper;

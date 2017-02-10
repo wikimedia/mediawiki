@@ -21,6 +21,7 @@
  */
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Update object handling the cleanup of links tables after a page was deleted.
