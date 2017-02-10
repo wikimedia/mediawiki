@@ -101,7 +101,7 @@
 	 * @param {mw.rcfilters.dm.FilterItem} item Filter item model
 	 */
 	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.onModelItemUpdate = function ( item ) {
-		if ( item.isSelected() ) {
+		if ( item.isSelected() || item.getHighlightColor() ) {
 			this.addItemByName( item.getName() );
 		} else {
 			this.removeItemByName( item.getName() );
@@ -247,4 +247,5 @@
 		} );
 	};
 
+	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.editItem = function () {};
 }( mediaWiki, jQuery ) );
