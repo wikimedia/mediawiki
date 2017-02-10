@@ -1,3 +1,5 @@
+@import "mw.rcfilters.mixins";
+
 .mw-rcfilters-ui-capsuleItemWidget {
 	&-popup {
 		padding: 1em;
@@ -8,7 +10,44 @@
 		margin-top: 1em;
 	}
 
+	.oo-ui-labelElement-label {
+		vertical-align: middle;
+	}
+
 	&-muted {
-		opacity: 0.5;
+		// Muted state
+		// We want everything muted except the circle
+		background-color: rgba( 251, 252, 252, @muted-state );
+
+		.oo-ui-labelElement-label,
+		.oo-ui-buttonWidget {
+			opacity: @muted-state;
+		}
+	}
+
+	&-highlight {
+		display: none;
+		padding-right: 0.5em;
+
+		&-highlighted {
+			display: inline-block;
+
+		}
+
+		&[data-color="c1"] {
+			.mw-rcfilters-mixin-circle( @highlight-c1, 0.7em, ~"0 0.5em 0 0" );
+		}
+		&[data-color="c2"] {
+			.mw-rcfilters-mixin-circle( @highlight-c2, 0.7em, ~"0 0.5em 0 0" );
+		}
+		&[data-color="c3"] {
+			.mw-rcfilters-mixin-circle( @highlight-c3, 0.7em, ~"0 0.5em 0 0" );
+		}
+		&[data-color="c4"] {
+			.mw-rcfilters-mixin-circle( @highlight-c4, 0.7em, ~"0 0.5em 0 0" );
+		}
+		&[data-color="c5"] {
+			.mw-rcfilters-mixin-circle( @highlight-c5, 0.7em, ~"0 0.5em 0 0" );
+		}
 	}
 }

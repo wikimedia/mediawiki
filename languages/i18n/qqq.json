@@ -1564,6 +1564,8 @@
 	"rcfilters-invalid-filter": "A label for an invalid filter.",
 	"rcfilters-empty-filter": "Placeholder for the filter list when no filters were chosen.",
 	"rcfilters-filterlist-title": "Title for the filters list.\n{{Identical|Filter}}",
+	"rcfilters-highlightbutton-title": "Title for the highlight button used to toggle the highlight feature on and off.",
+	"rcfilters-highlightmenu-title": "Title for the highlight menu used to select the highlight color for an individual filter.",
 	"rcfilters-filterlist-noresults": "Message showing no results found for searching a filter.",
 	"rcfilters-filtergroup-registration": "Title for the filter group for editor registration type.",
 	"rcfilters-filter-registered-label": "Label for the filter for showing edits made by logged-in users.\n{{Identical|Registered}}",

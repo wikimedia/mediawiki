@@ -1378,6 +1378,8 @@
 	"rcfilters-invalid-filter": "Invalid filter",
 	"rcfilters-empty-filter": "No active filters. All contributions are shown.",
 	"rcfilters-filterlist-title": "Filters",
+	"rcfilters-highlightbutton-title": "Highlight results",
+	"rcfilters-highlightmenu-title": "Select a color",
 	"rcfilters-filterlist-noresults": "No filters found",
 	"rcfilters-filtergroup-registration": "User registration",
 	"rcfilters-filter-registered-label": "Registered",
