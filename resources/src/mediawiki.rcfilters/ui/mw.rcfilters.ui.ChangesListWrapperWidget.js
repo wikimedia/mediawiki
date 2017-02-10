@@ -6,27 +6,43 @@
 	 * @mixins OO.ui.mixin.PendingElement
 	 *
 	 * @constructor
-	 * @param {mw.rcfilters.dm.ChangesListViewModel} model View model
+	 * @param {mw.rcfilters.dm.ChangesListViewModel} filtersViewModel View model
+	 * @param {mw.rcfilters.dm.FiltersViewModel} changesListViewModel View model
 	 * @param {jQuery} $changesListRoot Root element of the changes list to attach to
 	 * @param {Object} config Configuration object
 	 */
-	mw.rcfilters.ui.ChangesListWrapperWidget = function MwRcfiltersUiChangesListWrapperWidget( model, $changesListRoot, config ) {
-		config = config || {};
+	mw.rcfilters.ui.ChangesListWrapperWidget = function MwRcfiltersUiChangesListWrapperWidget(
+		filtersViewModel,
+		changesListViewModel,
+		$changesListRoot,
+		config
+	) {
+		config = $.extend( {}, config, {
+			$element: $changesListRoot
+		} );
 
 		// Parent
-		mw.rcfilters.ui.ChangesListWrapperWidget.parent.call( this, $.extend( {}, config, {
-			$element: $changesListRoot
-		} ) );
+		mw.rcfilters.ui.ChangesListWrapperWidget.parent.call( this, config );
 		// Mixin constructors
 		OO.ui.mixin.PendingElement.call( this, config );
 
-		this.model = model;
+		this.filtersViewModel = filtersViewModel;
+		this.changesListViewModel = changesListViewModel;
 
 		// Events
-		this.model.connect( this, {
+		this.filtersViewModel.connect( this, {
+			itemUpdate: 'onItemUpdate',
+			highlightChange: 'onHighlightChange'
+		} );
+		this.changesListViewModel.connect( this, {
 			invalidate: 'onModelInvalidate',
 			update: 'onModelUpdate'
 		} );
+
+		this.$element.addClass( 'mw-rcfilters-ui-changesListWrapperWidget' );
+
+		// Set up highlight containers
+		this.setupHighlightContainers( this.$element );
 	};
 
 	/* Initialization */
@@ -35,26 +51,116 @@
 	OO.mixinClass( mw.rcfilters.ui.ChangesListWrapperWidget, OO.ui.mixin.PendingElement );
 
 	/**
-	 * Respond to model invalidate
+	 * Respond to the highlight feature being toggled on and off
+	 *
+	 * @param {boolean} highlightEnabled
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onHighlightChange = function ( highlightEnabled ) {
+		if ( highlightEnabled ) {
+			this.applyHighlight();
+		} else {
+			this.clearHighlight();
+		}
+	};
+
+	/**
+	 * Respond to a filter item model update
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onItemUpdate = function () {
+		if ( this.filtersViewModel.isHighlightEnabled() ) {
+			this.clearHighlight();
+			this.applyHighlight();
+		}
+	};
+
+	/**
+	 * Respond to changes list model invalidate
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onModelInvalidate = function () {
 		this.pushPending();
 	};
 
 	/**
-	 * Respond to model update
+	 * Respond to changes list model update
 	 *
-	 * @param {jQuery|string} changesListContent The content of the updated changes list
+	 * @param {jQuery|string} $changesListContent The content of the updated changes list
 	 */
-	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onModelUpdate = function ( changesListContent ) {
-		var isEmpty = changesListContent === 'NO_RESULTS';
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onModelUpdate = function ( $changesListContent ) {
+		var isEmpty = $changesListContent === 'NO_RESULTS';
+
 		this.$element.toggleClass( 'mw-changeslist', !isEmpty );
 		this.$element.toggleClass( 'mw-changeslist-empty', isEmpty );
-		this.$element.empty().append(
-			isEmpty ?
-			document.createTextNode( mw.message( 'recentchanges-noresult' ).text() ) :
-			changesListContent
-		);
+		if ( isEmpty ) {
+			this.$changesListContent = null;
+			this.$element.empty().append(
+				document.createTextNode( mw.message( 'recentchanges-noresult' ).text() )
+			);
+		} else {
+			this.$changesListContent = $changesListContent;
+			this.$element.empty().append( this.$changesListContent );
+			// Set up highlight containers
+			this.setupHighlightContainers( this.$element );
+
+			// Apply highlight
+			this.applyHighlight();
+		}
 		this.popPending();
+	};
+
+	/**
+	 * Set up the highlight containers with all color circle indicators.
+	 *
+	 * @param {jQuery|string} $content The content of the updated changes list
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.setupHighlightContainers = function ( $content ) {
+		var $highlights = $( '<div>' )
+				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlights' )
+				.append(
+					$( '<div>' )
+						.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlights-color-none' )
+						.prop( 'data-color', 'none' )
+				);
+
+		mw.rcfilters.HighlightColors.forEach( function ( color ) {
+			$highlights.append(
+				$( '<div>' )
+					.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlights-color-' + color )
+					.prop( 'data-color', color )
+			);
+		} );
+
+		$content.find( 'ul.special li' )
+			.prepend( $highlights.clone() );
+	};
+
+	/**
+	 * Apply color classes based on filters highlight configuration
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.applyHighlight = function () {
+		if ( !this.filtersViewModel.isHighlightEnabled() ) {
+			return;
+		}
+
+		this.filtersViewModel.getHighlightedItems().forEach( function ( filterItem ) {
+			// Add highlight class to all highligted list items
+			this.$element.find( 'ul.special li.' + filterItem.getIdentifier() )
+				.addClass( filterItem.getHighlightColor() );
+		}.bind( this ) );
+
+		// Turn on highlights
+		this.$element.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlighted' );
+	};
+
+	/**
+	 * Remove all color classes
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.clearHighlight = function () {
+		// Remove highlight classes
+		mw.rcfilters.HighlightColors.forEach( function ( color ) {
+			this.$element.find( '.' + color ).removeClass( color );
+		}.bind( this ) );
+
+		// Turn off highlights
+		this.$element.removeClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlighted' );
 	};
 }( mediaWiki ) );
