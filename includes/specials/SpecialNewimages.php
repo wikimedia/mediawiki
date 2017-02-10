@@ -40,7 +40,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 
 		$opts->add( 'like', '' );
 		$opts->add( 'showbots', false );
-		$opts->add( 'hidepatrolled', false );
+		$opts->add( 'hidepatrolled', $this->getUser()->getBoolOption( 'newpageshidepatrolled' ) );
 		$opts->add( 'limit', 50 );
 		$opts->add( 'offset', '' );
 

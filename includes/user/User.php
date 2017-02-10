@@ -121,6 +121,7 @@ class User implements IDBAccessObject {
 		'autoconfirmed',
 		'autocreateaccount',
 		'autopatrol',
+		'autopatrol-limited',
 		'bigdelete',
 		'block',
 		'blockemail',
@@ -3563,6 +3564,18 @@ class User implements IDBAccessObject {
 		global $wgUseRCPatrol, $wgUseFilePatrol;
 		return (
 			( $wgUseRCPatrol || $wgUseFilePatrol )
+				&& ( $this->isAllowedAny( 'patrol', 'patrolmarks' ) )
+		);
+	}
+
+	/**
+	 * Check whether to enable moves patrol features for this user
+	 * @return bool True or false
+	 */
+	public function useMovePatrol() {
+		global $wgUseRCPatrol, $wgUseMovePatrol;
+		return (
+			( $wgUseRCPatrol || $wgUseMovePatrol )
 				&& ( $this->isAllowedAny( 'patrol', 'patrolmarks' ) )
 		);
 	}
