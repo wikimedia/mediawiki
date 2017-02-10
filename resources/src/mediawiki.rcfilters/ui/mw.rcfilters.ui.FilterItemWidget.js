@@ -40,6 +40,9 @@
 			);
 		}
 
+		this.highlightButton = new mw.rcfilters.ui.FilterItemHighlightButton( this.controller, this.model );
+		this.highlightButton.toggle( false );
+
 		layout = new OO.ui.FieldLayout( this.checkboxWidget, {
 			label: $label,
 			align: 'inline'
@@ -52,9 +55,8 @@
 
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterItemWidget' )
-			.append(
-				layout.$element
-			);
+			.append( layout.$element )
+			.append( this.highlightButton.$element );
 	};
 
 	/* Initialization */
@@ -106,6 +108,8 @@
 				!this.model.isSelected()
 			)
 		);
+
+		this.highlightButton.toggle( this.model.isHighlightEnabled() );
 	};
 	/**
 	 * Get the name of this filter
@@ -115,5 +119,4 @@
 	mw.rcfilters.ui.FilterItemWidget.prototype.getName = function () {
 		return this.model.getName();
 	};
-
 }( mediaWiki, jQuery ) );
