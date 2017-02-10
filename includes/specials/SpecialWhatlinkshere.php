@@ -21,6 +21,8 @@
  * @todo Use some variant of Pager or something; the pagination here is lousy.
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Implements Special:Whatlinkshere
  *

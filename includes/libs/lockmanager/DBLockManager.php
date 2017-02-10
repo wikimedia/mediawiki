@@ -21,6 +21,7 @@
  * @ingroup LockManager
  */
 
+use Wikimedia\Rdbms\IDatabase;
 /**
  * Version of LockManager based on using named/row DB locks.
  *

@@ -20,6 +20,8 @@
  * @file
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Represents a "user group membership" -- a specific instance of a user belonging
  * to a group. For example, the fact that user Mary belongs to the sysop group is a

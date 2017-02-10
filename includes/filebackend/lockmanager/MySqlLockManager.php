@@ -1,4 +1,6 @@
 <?php
+
+use Wikimedia\Rdbms\IDatabase;
 /**
  * MySQL version of DBLockManager that supports shared locks.
  *

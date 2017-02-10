@@ -298,6 +298,10 @@ EOD;
 		// Legacy aliases (1.29)
 		$this->forceClassPath( 'Blob',
 			$this->basepath . '/includes/libs/rdbms/encasing/Blob.php' );
+		$this->forceClassPath( 'IDatabase',
+			$this->basepath . '/includes/libs/rdbms/database/IDatabase.php' );
+		$this->forceClassPath( 'IMaintainableDatabase',
+			$this->basepath . '/includes/libs/rdbms/database/IMaintainableDatabase.php' );
 	}
 }
 
