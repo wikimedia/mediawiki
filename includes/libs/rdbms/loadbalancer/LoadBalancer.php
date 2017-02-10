@@ -491,7 +491,10 @@ class LoadBalancer implements ILoadBalancer {
 		$key = $this->srvCache->makeGlobalKey( __CLASS__, 'last-known-pos', $server );
 		/** @var DBMasterPos $knownReachedPos */
 		$knownReachedPos = $this->srvCache->get( $key );
-		if ( $knownReachedPos && $knownReachedPos->hasReached( $this->mWaitForPos ) ) {
+		if (
+			$knownReachedPos instanceof DBMasterPos &&
+			$knownReachedPos->hasReached( $this->mWaitForPos )
+		) {
 			$this->replLogger->debug( __METHOD__ .
 				": replica DB $server known to be caught up (pos >= $knownReachedPos)." );
 			return true;
