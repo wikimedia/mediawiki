@@ -206,7 +206,8 @@ class FileDeleteForm {
 					$dbw->endAtomic( __METHOD__ );
 				} else {
 					// Page deleted but file still there? rollback page delete
-					wfGetLBFactory()->rollbackMasterChanges( __METHOD__ );
+					$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+					$lbFactory->rollbackMasterChanges( __METHOD__ );
 				}
 			} else {
 				// Done; nothing changed
