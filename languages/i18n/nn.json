@@ -3018,7 +3018,7 @@
 	"limitreport-cputime": "CPU-tidsbruk",
 	"limitreport-cputime-value": "{{PLURAL:$1|eitt sekund|$1 sekund}}",
 	"limitreport-walltime-value": "{{PLURAL:$1|eitt sekund|$1 sekund}}",
-	"limitreport-ppvisitednodes": "Nodevitjingar av preprosessor",
+	"limitreport-ppvisitednodes": "Nodar vitja av preprosessor",
 	"limitreport-ppgeneratednodes": "Nodar laga av preprosessor",
 	"limitreport-postexpandincludesize": "Inkluderingsstorleik etter utviding",
 	"limitreport-postexpandincludesize-value": "$1/$2 byte",

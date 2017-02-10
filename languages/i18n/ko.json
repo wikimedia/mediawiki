@@ -1092,6 +1092,7 @@
 	"youremail": "이메일:",
 	"username": "{{GENDER:$1|사용자 이름}}:",
 	"prefs-memberingroups": "{{GENDER:$2|소속}} {{PLURAL:$1|그룹}}:",
+	"group-membership-link-with-expiry": "$1 ($2 까지)",
 	"prefs-registration": "등록 시간:",
 	"yourrealname": "실명:",
 	"yourlanguage": "언어:",
@@ -2050,7 +2051,7 @@
 	"emailccsubject": "$1에게 보낸 메시지의 복사본: $2",
 	"emailsent": "이메일 보냄",
 	"emailsenttext": "이메일을 보냈습니다.",
-	"emailuserfooter": "이 이메일은 {{SITENAME}}의 $1님이 $2에게 \"{{int:emailuser}}\" 기능을 통해 보냈습니다.",
+	"emailuserfooter": "이 이메일은 {{SITENAME}}의 $1님이 $2에게 \"{{int:emailuser}}\" 기능을 통해 보냈습니다. 만약, {{GENDER:$2|당신}}이 이 이메일을 답장하면, {{GENDER:$2|당신}}의 이메일은 {{GENDER:$1|원래 사용자}}에게 {{GENDER:$2|당신}}의 이메일 주소가  {{GENDER:$1|원래 사용자}}에게 공개되면서 보내집니다.",
 	"usermessage-summary": "시스템 메시지 남기기",
 	"usermessage-editor": "시스템 메신저",
 	"usermessage-template": "MediaWiki:UserMessage",
@@ -3868,7 +3869,7 @@
 	"usercssispublic": "주목해 주십시오: CSS의 하위 문서들은 다른 사용자들이 볼 수 있기 때문에 기밀 데이터를 포함해서는 안 됩니다.",
 	"restrictionsfield-badip": "유효하지 않은 IP 주소나 대역: $1",
 	"restrictionsfield-label": "허용된 IP 대역:",
-	"restrictionsfield-help": "줄 단위의 하나의 IP 주소 또는 CIDR 대역입니다. 모든 곳에 적용하려면, 다음을 사용하세요<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+	"restrictionsfield-help": "줄 단위의 하나의 IP 주소 또는 CIDR 대역입니다. 모든 곳에 적용하려면, 다음을 사용하세요:<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "$1 판",
 	"pageid": "페이지 ID $1"
 }

@@ -3674,6 +3674,7 @@
 	"mw-widgets-titleinput-description-new-page": "pagina non existe ancora",
 	"mw-widgets-titleinput-description-redirect": "redirection a $1",
 	"mw-widgets-categoryselector-add-category-placeholder": "Adder un categoria…",
+	"mw-widgets-usersmultiselect-placeholder": "Adder plus...",
 	"sessionmanager-tie": "Impossibile combinar plure typos de authentication de requesta: $1.",
 	"sessionprovider-generic": "sessiones $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sessiones basate sur cookies",

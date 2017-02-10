@@ -3515,7 +3515,7 @@
 	"logentry-suppress-event-legacy": "$1 {{GENDER:$2|已暗中變更}} $3 中日誌的可見性",
 	"logentry-suppress-revision-legacy": "$1 {{GENDER:$2|已暗中更改}}頁面 $3 中修訂的可見性",
 	"revdelete-content-hid": "已隱藏內容",
-	"revdelete-summary-hid": "己隱藏摘要",
+	"revdelete-summary-hid": "已隱藏摘要",
 	"revdelete-uname-hid": "隱藏使用者名稱",
 	"revdelete-content-unhid": "取消隱藏內容",
 	"revdelete-summary-unhid": "取消隱藏編輯摘要",

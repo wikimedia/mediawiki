@@ -222,6 +222,7 @@
 	"apihelp-protect-description": "문서의 보호 수준을 변경합니다.",
 	"apihelp-protect-param-reason": "보호 또는 보호 해제의 이유.",
 	"apihelp-protect-example-protect": "문서 보호",
+	"apihelp-purge-description": "주어진 제목을 위한 캐시를 새로 고침.",
 	"apihelp-purge-param-forcelinkupdate": "링크 테이블을 업데이트합니다.",
 	"apihelp-query-param-prop": "조회된 페이지에 대해 가져올 속성입니다.",
 	"apihelp-query-param-list": "가져올 목록입니다.",
