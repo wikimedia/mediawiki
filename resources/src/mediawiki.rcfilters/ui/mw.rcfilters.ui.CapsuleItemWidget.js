@@ -59,6 +59,7 @@
 			.on( 'mouseout', this.onHover.bind( this, false ) );
 
 		this.setCurrentMuteState();
+		this.setHighlightColor();
 	};
 
 	OO.inheritClass( mw.rcfilters.ui.CapsuleItemWidget, OO.ui.CapsuleItemWidget );
@@ -69,6 +70,12 @@
 	 */
 	mw.rcfilters.ui.CapsuleItemWidget.prototype.onModelUpdate = function () {
 		this.setCurrentMuteState();
+		this.setHighlightColor();
+	};
+
+	mw.rcfilters.ui.CapsuleItemWidget.prototype.setHighlightColor = function () {
+		var color = this.model.isHighlightEnabled() ? this.model.getColor() || '' : '';
+		this.$element.css( 'background-color', color );
 	};
 
 	/**
