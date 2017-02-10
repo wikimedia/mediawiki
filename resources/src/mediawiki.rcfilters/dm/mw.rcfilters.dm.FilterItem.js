@@ -17,6 +17,7 @@
 	 * @cfg {boolean} [selected] The item is selected
 	 * @cfg {string[]} [subset] Defining the names of filters that are a subset of this filter
 	 * @cfg {string[]} [conflictsWith] Defining the names of filters that conflict with this item
+	 * @cfg {string} [identifier] The class identifying the results that match this filter
 	 */
 	mw.rcfilters.dm.FilterItem = function MwRcfiltersDmFilterItem( name, groupModel, config ) {
 		config = config || {};
@@ -40,6 +41,12 @@
 		this.included = false;
 		this.conflicted = false;
 		this.fullyCovered = false;
+
+		// Highlight
+		// TODO: Rename to cssClass
+		this.identifier = config.identifier;
+		this.highlightColor = null;
+		this.highlightEnabled = false;
 	};
 
 	/* Initialization */
@@ -280,5 +287,82 @@
 			this.fullyCovered = isFullyCovered;
 			this.emit( 'update' );
 		}
+	};
+
+	/**
+	 * Set the highlight color
+	 *
+	 * @param {string|null} highlightColor
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.setHighlightColor = function ( highlightColor ) {
+		if ( this.highlightColor !== highlightColor ) {
+			this.highlightColor = highlightColor;
+			this.emit( 'update' );
+		}
+	};
+
+	/**
+	 * Clear the highlight color
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.clearHighlightColor = function () {
+		this.setHighlightColor( null );
+	};
+
+	/**
+	 * Get the highlight color, or 'null' if none is configured
+	 *
+	 * @return {string|null}
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.getHighlightColor = function () {
+		return this.highlightColor;
+	};
+
+	/**
+	 * Get the identifier (css class) decorating changes that match this filter
+	 * or 'null' if none is configured
+	 *
+	 * @return {string|null}
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.getIdentifier = function () {
+		return this.identifier;
+	};
+
+	/**
+	 * Toggle the highlight feature on and off for this filter.
+	 * It only works if highlight is supported for this filter.
+	 *
+	 * @param {boolean} enable Highlight should be enabled
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.toggleHighlight = function ( enable ) {
+		enable = enable === undefined ? !this.highlightEnabled : enable;
+
+		if ( !this.isHighlightSupported() ) {
+			return;
+		}
+
+		if ( enable === this.highlightEnabled ) {
+			return;
+		}
+
+		this.highlightEnabled = enable;
+		this.emit( 'update' );
+	};
+
+	/**
+	 * Check if the highlight feature is currently enabled for this filter
+	 *
+	 * @return {boolean}
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.isHighlightEnabled = function () {
+		return !!this.highlightEnabled;
+	};
+
+	/**
+	 * Check if the highlight feature is supported for this filter
+	 *
+	 * @return {boolean}
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.isHighlightSupported = function () {
+		return !!this.getIdentifier();
 	};
 }( mediaWiki ) );

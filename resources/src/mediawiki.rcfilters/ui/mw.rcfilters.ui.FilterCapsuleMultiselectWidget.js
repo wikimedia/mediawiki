@@ -44,7 +44,10 @@
 
 		// Events
 		this.resetButton.connect( this, { click: 'onResetButtonClick' } );
-		this.model.connect( this, { itemUpdate: 'onModelItemUpdate' } );
+		this.model.connect( this, {
+			itemUpdate: 'onModelItemUpdate',
+			highlightChange: 'onModelHighlightChange'
+		} );
 		// Add the filterInput as trigger
 		this.filterInput.$input
 			.on( 'focus', this.focus.bind( this ) );
@@ -101,7 +104,14 @@
 	 * @param {mw.rcfilters.dm.FilterItem} item Filter item model
 	 */
 	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.onModelItemUpdate = function ( item ) {
-		if ( item.isSelected() ) {
+		if (
+			item.isSelected() ||
+			(
+				this.model.isHighlightEnabled() &&
+				item.isHighlightSupported() &&
+				item.getHighlightColor()
+			)
+		) {
 			this.addItemByName( item.getName() );
 		} else {
 			this.removeItemByName( item.getName() );
@@ -109,6 +119,24 @@
 
 		// Re-evaluate reset state
 		this.reevaluateResetRestoreState();
+	};
+
+	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.onModelHighlightChange = function ( isHighlightEnabled ) {
+		var highlightedItems = this.model.getHighlightedItems();
+
+		if ( isHighlightEnabled ) {
+			// Add capsule widgets
+			highlightedItems.forEach( function ( filterItem ) {
+				this.addItemByName( filterItem.getName() );
+			}.bind( this ) );
+		} else {
+			// Remove capsule widgets if they're not selected
+			highlightedItems.forEach( function ( filterItem ) {
+				if ( !filterItem.isSelected() ) {
+					this.removeItemByName( filterItem.getName() );
+				}
+			}.bind( this ) );
+		}
 	};
 
 	/**

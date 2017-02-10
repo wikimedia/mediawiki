@@ -28,7 +28,8 @@
 			this.controller,
 			this.model,
 			{
-				label: mw.msg( 'rcfilters-filterlist-title' )
+				label: mw.msg( 'rcfilters-filterlist-title' ),
+				$overlay: this.$overlay
 			}
 		);
 
