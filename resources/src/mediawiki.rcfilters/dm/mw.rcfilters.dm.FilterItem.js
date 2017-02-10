@@ -17,6 +17,7 @@
 	 * @cfg {boolean} [selected] The item is selected
 	 * @cfg {string[]} [subset] Defining the names of filters that are a subset of this filter
 	 * @cfg {string[]} [conflictsWith] Defining the names of filters that conflict with this item
+	 * @cfg {string} [class] The class identifying the results that match this filter
 	 */
 	mw.rcfilters.dm.FilterItem = function MwRcfiltersDmFilterItem( name, groupModel, config ) {
 		config = config || {};
@@ -40,6 +41,11 @@
 		this.included = false;
 		this.conflicted = false;
 		this.fullyCovered = false;
+
+		// Highlight
+		this.class = config.class;
+		this.color = null;
+		this.highlightEnabled = false;
 	};
 
 	/* Initialization */
@@ -280,5 +286,47 @@
 			this.fullyCovered = isFullyCovered;
 			this.emit( 'update' );
 		}
+	};
+
+	mw.rcfilters.dm.FilterItem.prototype.chooseHighlightColor = function ( color ) {
+		if ( this.color !== color ) {
+			this.color = color;
+			this.emit( 'update' );
+		}
+	};
+
+	mw.rcfilters.dm.FilterItem.prototype.clearHighlight = function () {
+		this.chooseHighlightColor( null );
+	};
+
+	mw.rcfilters.dm.FilterItem.prototype.getColor = function () {
+		return this.color;
+	};
+
+	mw.rcfilters.dm.FilterItem.prototype.getClass = function () {
+		return this.class;
+	};
+
+	mw.rcfilters.dm.FilterItem.prototype.toggleHighlight = function ( enable ) {
+		enable = enable === undefined ? !this.highlightEnabled : enable;
+
+		if ( !this.isHighlightSupported() ) {
+			return;
+		}
+
+		if ( enable === this.highlightEnabled ) {
+			return;
+		}
+
+		this.highlightEnabled = enable;
+		this.emit( 'update' );
+	};
+
+	mw.rcfilters.dm.FilterItem.prototype.isHighlightEnabled = function () {
+		return !!this.highlightEnabled;
+	};
+
+	mw.rcfilters.dm.FilterItem.prototype.isHighlightSupported = function () {
+		return !!this.getClass();
 	};
 }( mediaWiki ) );
