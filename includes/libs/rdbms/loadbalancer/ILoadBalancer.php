@@ -29,7 +29,6 @@ use DBConnRef;
 use MaintainableDBConnRef;
 use DBError;
 use DBAccessError;
-use DBMasterPos;
 use DBTransactionError;
 use DBExpectedError;
 use Exception;

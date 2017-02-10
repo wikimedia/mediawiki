@@ -27,6 +27,7 @@
 
 use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\MySQLMasterPos;
 
 /**
  * Fake class around abstract class so we can call concrete methods.
