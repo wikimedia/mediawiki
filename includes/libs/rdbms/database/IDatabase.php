@@ -23,8 +23,21 @@
  * @file
  * @ingroup Database
  */
+namespace Wikimedia\Rdbms;
+
 use Wikimedia\ScopedCallback;
-use Wikimedia\Rdbms\LikeMatch;
+use DBError;
+use DBConnectionError;
+use DBUnexpectedError;
+use DBQueryError;
+use Exception;
+use RuntimeException;
+use UnexpectedValueException;
+use ResultWrapper;
+use Field;
+use Blob;
+use DBMasterPos;
+use stdClass;
 
 /**
  * Basic database interface for live and lazy-loaded relation database handles
@@ -1794,3 +1807,5 @@ interface IDatabase {
 	 */
 	public function setTableAliases( array $aliases );
 }
+
+class_alias( 'Wikimedia\Rdbms\IDatabase', 'IDatabase' );

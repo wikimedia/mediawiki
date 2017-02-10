@@ -1,4 +1,7 @@
 <?php
+
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Result wrapper for grabbing data queried from an IDatabase object
  *
