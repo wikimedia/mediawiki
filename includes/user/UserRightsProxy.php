@@ -20,6 +20,8 @@
  * @file
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Cut-down copy of User interface for local-interwiki-database
  * user rights manipulation.

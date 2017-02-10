@@ -28,6 +28,8 @@
  * @since 1.19
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Interface for log entries. Every log entry has these methods.
  *

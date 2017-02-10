@@ -21,6 +21,7 @@
  */
 
 use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * DB accessable external objects.

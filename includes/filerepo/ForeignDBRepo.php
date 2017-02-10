@@ -21,6 +21,8 @@
  * @ingroup FileRepo
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * A foreign repository with an accessible MediaWiki database
  *

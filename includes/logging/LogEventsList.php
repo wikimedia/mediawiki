@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
 
 class LogEventsList extends ContextSource {
 	const NO_ACTION_LINK = 1;

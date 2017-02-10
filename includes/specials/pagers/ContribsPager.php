@@ -26,6 +26,7 @@
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
 
 class ContribsPager extends ReverseChronologicalPager {
 

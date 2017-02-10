@@ -4,7 +4,6 @@ namespace Wikimedia\Rdbms;
 
 use Database;
 use DBConnRef;
-use IDatabase;
 use InvalidArgumentException;
 
 /**

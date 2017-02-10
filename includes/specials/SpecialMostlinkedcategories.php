@@ -25,6 +25,7 @@
  */
 
 use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * A querypage to show categories ordered in descending order by the pages in them
