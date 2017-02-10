@@ -181,22 +181,63 @@ class OutputPageTest extends MediaWikiTestCase {
 		$baseDir = dirname( __DIR__ ) . '/data/media';
 		return [
 			// File that matches basePath, and exists. Hash found and appended.
-			[ 'baseDir' => $baseDir, 'basePath' => '/w', '/w/test.jpg', '/w/test.jpg?edcf2' ],
+			[
+				'baseDir' => $baseDir, 'basePath' => '/w',
+				'/w/test.jpg',
+				'/w/test.jpg?edcf2'
+			],
 			// File that matches basePath, but not found on disk. Empty query.
-			[ 'baseDir' => $baseDir, 'basePath' => '/w', '/w/unknown.png', '/w/unknown.png?' ],
+			[
+				'baseDir' => $baseDir, 'basePath' => '/w',
+				'/w/unknown.png',
+				'/w/unknown.png?'
+			],
 			// File not matching basePath. Ignored.
-			[ 'baseDir' => $baseDir, 'basePath' => '/w', '/files/test.jpg' ],
+			[
+				'baseDir' => $baseDir, 'basePath' => '/w',
+				'/files/test.jpg'
+			],
 			// Empty string. Ignored.
-			[ 'baseDir' => $baseDir, 'basePath' => '/w', '', '' ],
+			[
+				'baseDir' => $baseDir, 'basePath' => '/w',
+				'',
+				''
+			],
 			// Similar path, but with domain component. Ignored.
-			[ 'baseDir' => $baseDir, 'basePath' => '/w', '//example.org/w/test.jpg' ],
-			[ 'baseDir' => $baseDir, 'basePath' => '/w', 'https://example.org/w/test.jpg' ],
+			[
+				'baseDir' => $baseDir, 'basePath' => '/w',
+				'//example.org/w/test.jpg'
+			],
+			[
+				'baseDir' => $baseDir, 'basePath' => '/w',
+				'https://example.org/w/test.jpg'
+			],
 			// Unrelated path with domain component. Ignored.
-			[ 'baseDir' => $baseDir, 'basePath' => '/w', 'https://example.org/files/test.jpg' ],
-			[ 'baseDir' => $baseDir, 'basePath' => '/w', '//example.org/files/test.jpg' ],
+			[
+				'baseDir' => $baseDir, 'basePath' => '/w',
+				'https://example.org/files/test.jpg'
+			],
+			[
+				'baseDir' => $baseDir, 'basePath' => '/w',
+				'//example.org/files/test.jpg'
+			],
 			// Unrelated path with domain, and empty base path (root mw install). Ignored.
-			[ 'baseDir' => $baseDir, 'basePath' => '', 'https://example.org/files/test.jpg' ],
-			[ 'baseDir' => $baseDir, 'basePath' => '', '//example.org/files/test.jpg' ], // T155310
+			[
+				'baseDir' => $baseDir, 'basePath' => '',
+				'https://example.org/files/test.jpg'
+			],
+			[
+				'baseDir' => $baseDir, 'basePath' => '',
+				// T155310
+				'//example.org/files/test.jpg'
+			],
+			// Check UploadPath before ResourceBasePath (T155146)
+			[
+				'baseDir' => dirname( $baseDir ), 'basePath' => '',
+				'uploadDir' => $baseDir, 'uploadPath' => '/images',
+				'/images/test.jpg',
+				'/images/test.jpg?edcf2'
+			],
 		];
 	}
 
@@ -205,9 +246,20 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::transformFilePath
 	 * @covers OutputPage::transformResourcePath
 	 */
-	public function testTransformResourcePath( $baseDir, $basePath, $path, $expected = null ) {
+	public function testTransformResourcePath( $baseDir, $basePath, $uploadDir = null, $uploadPath = null, $path = null, $expected = null ) {
+		if ( $path === null ) {
+			// Skip optional $uploadDir and $uploadPath
+			$path = $uploadDir;
+			$expected = $uploadPath;
+			$uploadDir = "$baseDir/images";
+			$uploadPath = "$basePath/images";
+		}
 		$this->setMwGlobals( 'IP', $baseDir );
-		$conf = new HashConfig( [ 'ResourceBasePath' => $basePath ] );
+		$conf = new HashConfig( [
+			'ResourceBasePath' => $basePath,
+			'UploadDirectory' => $uploadDir,
+			'UploadPath' => $uploadPath,
+		] );
 
 		MediaWiki\suppressWarnings();
 		$actual = OutputPage::transformResourcePath( $conf, $path );

@@ -3697,6 +3697,7 @@ class OutputPage extends ContextSource {
 	 */
 	public static function transformResourcePath( Config $config, $path ) {
 		global $IP;
+		$localDir = $IP;
 		$remotePathPrefix = $config->get( 'ResourceBasePath' );
 		if ( $remotePathPrefix === '' ) {
 			// The configured base path is required to be empty string for
@@ -3710,8 +3711,18 @@ class OutputPage extends ContextSource {
 			// - Path is protocol-relative. Fixes T155310. Not supported by RelPath lib.
 			return $path;
 		}
+		// For files in resources, extensions/ or skins/, ResourceBasePath is preferred here.
+		// For other misc files in $IP, we'll fallback to that as well. There is, however, a fourth
+		// supported dir/path pair in the configuration (wgUploadDirectory, wgUploadPath).
+		// Which is not expected to be in wgResourceBasePath on CDNs. (T155146)
+		$uploadPath = $config->get( 'UploadPath' );
+		if ( strpos( $path, $uploadPath ) === 0 ) {
+			$localDir = $config->get( 'UploadDirectory' );
+			$remotePathPrefix = $remotePath = $uploadPath;
+		}
+
 		$path = RelPath\getRelativePath( $path, $remotePath );
-		return self::transformFilePath( $remotePathPrefix, $IP, $path );
+		return self::transformFilePath( $remotePathPrefix, $localDir, $path );
 	}
 
 	/**
