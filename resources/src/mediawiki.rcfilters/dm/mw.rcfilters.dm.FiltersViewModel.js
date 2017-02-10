@@ -41,6 +41,13 @@
 	 * Filter item has changed
 	 */
 
+	/**
+	 * @event highlightChange
+	 * @param {boolean} Highlight feature is enabled
+	 *
+	 * Highlight feature has been toggled enabled or disabled
+	 */
+
 	/* Methods */
 
 	/**
@@ -191,7 +198,8 @@
 					group: group,
 					label: data.filters[ i ].label,
 					description: data.filters[ i ].description,
-					subset: data.filters[ i ].subset
+					subset: data.filters[ i ].subset,
+					'class': data.filters[ i ].class
 				} );
 
 				// For convenience, we should store each filter's "supersets" -- these are
@@ -659,4 +667,28 @@
 		return result;
 	};
 
+	mw.rcfilters.dm.FiltersViewModel.prototype.toggleHighlight = function ( enable ) {
+		enable = enable === undefined ? !this.highlightEnabled : enable;
+		if ( enable === this.highlightEnabled ) {
+			return;
+		}
+
+		this.highlightEnabled = enable;
+		this.getItems().forEach( function ( filterItem ) {
+			filterItem.toggleHighlight( this.highlightEnabled );
+		}.bind( this ) );
+		this.emit( 'highlightChange', this.highlightEnabled );
+	};
+
+	mw.rcfilters.dm.FiltersViewModel.prototype.isHighlightEnabled = function () {
+		return this.highlightEnabled;
+	};
+
+	mw.rcfilters.dm.FiltersViewModel.prototype.chooseHighlightColor = function ( filterName, color ) {
+		this.getItemByName( filterName ).chooseHighlightColor( color );
+	};
+
+	mw.rcfilters.dm.FiltersViewModel.prototype.clearHighlight = function ( filterName ) {
+		this.getItemByName( filterName ).clearHighlight();
+	};
 }( mediaWiki, jQuery ) );
