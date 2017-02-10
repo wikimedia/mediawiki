@@ -358,7 +358,7 @@ class EnhancedChangesList extends ChangesList {
 	protected function getLineData( array $block, RCCacheEntry $rcObj, array $queryParams = [] ) {
 		$RCShowChangedSize = $this->getConfig()->get( 'RCShowChangedSize' );
 
-		$classes = [ 'mw-enhanced-rc' ];
+		$classes = [ 'mw-enhanced-rc' ] + $this->getHTMLClassesForFilters( $rcObj );
 		$type = $rcObj->mAttribs['rc_type'];
 		$data = [];
 		$lineParams = [];
