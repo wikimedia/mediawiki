@@ -390,9 +390,18 @@ class LogEventsList extends ContextSource {
 			[ 'mw-logline-' . $entry->getType() ],
 			$newClasses
 		);
+		$attribs = [
+			'data-mw-logid' => $entry->getId(),
+			'data-mw-logaction' => $entry->getFullType(),
+		];
+		$ret = "$del $time $action $comment $revert $tagDisplay";
 
-		return Html::rawElement( 'li', [ 'class' => $classes ],
-			"$del $time $action $comment $revert $tagDisplay" ) . "\n";
+		// Let extensions add data
+		Hooks::run( 'LogEventsListLineEnding', [ $this, &$ret, $entry, &$classes, &$attribs ] );
+		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isReservedDataAttribute' ] );
+		$attribs['class'] = implode( ' ', $classes );
+
+		return Html::rawElement( 'li', $attribs, $ret ) . "\n";
 	}
 
 	/**

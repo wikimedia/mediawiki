@@ -447,13 +447,16 @@ class EnhancedChangesList extends ChangesList {
 		# Tags
 		$data['tags'] = $this->getTags( $rcObj, $classes );
 
+		$attribs = $this->getDataAttributes( $rcObj );
+
 		// give the hook a chance to modify the data
 		$success = Hooks::run( 'EnhancedChangesListModifyLineData',
-			[ $this, &$data, $block, $rcObj, &$classes ] );
+			[ $this, &$data, $block, $rcObj, &$classes, &$attribs ] );
 		if ( !$success ) {
 			// skip entry if hook aborted it
 			return [];
 		}
+		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isReservedDataAttribute' ] );
 
 		$lineParams['recentChangesFlagsRaw'] = [];
 		if ( isset( $data['recentChangesFlags'] ) ) {
@@ -469,6 +472,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		$lineParams['classes'] = array_values( $classes );
+		$lineParams['attribs'] = Html::expandAttributes( $attribs );
 
 		// everything else: makes it easier for extensions to add or remove data
 		$lineParams['data'] = array_values( $data );
@@ -671,6 +675,8 @@ class EnhancedChangesList extends ChangesList {
 		# Show how many people are watching this if enabled
 		$data['watchingUsers'] = $this->numberofWatchingusers( $rcObj->numberofWatchingusers );
 
+		$data['attribs'] = array_merge( $this->getDataAttributes( $rcObj ), [ 'class' => $classes ] );
+
 		// give the hook a chance to modify the data
 		$success = Hooks::run( 'EnhancedChangesListModifyBlockLineData',
 			[ $this, &$data, $rcObj ] );
@@ -678,9 +684,11 @@ class EnhancedChangesList extends ChangesList {
 			// skip entry if hook aborted it
 			return '';
 		}
+		$attribs = $data['attribs'];
+		unset( $data['attribs'] );
+		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isReservedDataAttribute' ] );
 
-		$line = Html::openElement( 'table', [ 'class' => $classes ] ) .
-			Html::openElement( 'tr' );
+		$line = Html::openElement( 'table', $attribs ) . Html::openElement( 'tr' );
 		$line .= '<td class="mw-enhanced-rc"><span class="mw-enhancedchanges-arrow-space"></span>';
 
 		if ( isset( $data['recentChangesFlags'] ) ) {
