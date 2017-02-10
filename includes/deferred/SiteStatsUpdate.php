@@ -19,6 +19,7 @@
  */
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Class for handling updates to the site_stats table

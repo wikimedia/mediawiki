@@ -22,6 +22,7 @@
  */
 
 use \MediaWiki\Logger\LoggerFactory;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Class to represent a local file in the wiki's own database

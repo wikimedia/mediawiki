@@ -21,7 +21,6 @@
 
 namespace Wikimedia\Rdbms;
 
-use IDatabase;
 use BagOStuff;
 
 /**

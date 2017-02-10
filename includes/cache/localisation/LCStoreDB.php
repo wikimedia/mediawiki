@@ -18,6 +18,8 @@
  * @file
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * LCStore implementation which uses the standard DB functions to store data.
  * This will work on any MediaWiki installation.

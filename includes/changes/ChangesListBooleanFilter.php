@@ -22,6 +22,8 @@
  * @author Matthew Flaschen
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * An individual filter in a boolean group
  *

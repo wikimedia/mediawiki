@@ -20,6 +20,7 @@
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Used to show archived pages and eventually restore them.
