@@ -27,6 +27,7 @@
 			$label: $( '<div>' )
 				.addClass( 'mw-rcfilters-ui-filterGroupWidget-title' )
 		} ) );
+		this.$overlay = config.$overlay || this.$element;
 
 		// Populate
 		this.populateFromModel();
@@ -68,7 +69,8 @@
 					filterItem,
 					{
 						label: filterItem.getLabel(),
-						description: filterItem.getDescription()
+						description: filterItem.getDescription(),
+						$overlay: widget.$overlay
 					}
 				);
 			} )
