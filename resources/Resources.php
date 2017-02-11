@@ -1751,13 +1751,30 @@ return [
 
 	/* MediaWiki Special pages */
 
-	'mediawiki.rcfilters.filters' => [
+	'mediawiki.rcfilters.filters.dm' => [
 		'scripts' => [
 			'resources/src/mediawiki.rcfilters/mw.rcfilters.js',
 			'resources/src/mediawiki.rcfilters/dm/mw.rcfilters.dm.FilterItem.js',
 			'resources/src/mediawiki.rcfilters/dm/mw.rcfilters.dm.FilterGroup.js',
 			'resources/src/mediawiki.rcfilters/dm/mw.rcfilters.dm.FiltersViewModel.js',
 			'resources/src/mediawiki.rcfilters/dm/mw.rcfilters.dm.ChangesListViewModel.js',
+		],
+		'dependencies' => [
+			'oojs',
+		],
+	],
+	'mediawiki.rcfilters.filters.controller' => [
+		'scripts' => [
+			'resources/src/mediawiki.rcfilters/mw.rcfilters.Controller.js',
+		],
+		'dependencies' => [
+			'oojs',
+			'mediawiki.rcfilters.filters.dm',
+			'mediawiki.Uri',
+		],
+	],
+	'mediawiki.rcfilters.filters.ui' => [
+		'scripts' => [
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.CheckboxInputWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FiltersListWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterGroupWidget.js',
@@ -1767,7 +1784,6 @@ return [
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterWrapperWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.ChangesListWrapperWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FormWrapperWidget.js',
-			'resources/src/mediawiki.rcfilters/mw.rcfilters.Controller.js',
 			'resources/src/mediawiki.rcfilters/mw.rcfilters.init.js',
 		],
 		'styles' => [
@@ -1828,7 +1844,7 @@ return [
 		],
 		'dependencies' => [
 			'oojs-ui',
-			'mediawiki.Uri',
+			'mediawiki.rcfilters.filters.controller',
 			'oojs-ui.styles.icons-moderation'
 		],
 	],
