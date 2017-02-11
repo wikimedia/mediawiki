@@ -17,12 +17,12 @@
 
 textarea {
 	/* Support Firefox: Border rule required to override system appearance on Linux */
-	border: 1px solid #c0c0c0;
+	border: 1px solid #a2a9b1;
 }
 
 .editOptions {
-	background-color: #f0f0f0;
-	border: 1px solid #c0c0c0;
+	background-color: #f8f9fa;
+	border: 1px solid #c8ccd1;
 	border-top: none;
 	padding: 1em 1em 1.5em 1em;
 	margin-bottom: 2em;
