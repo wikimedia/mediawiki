@@ -358,7 +358,7 @@ class PageArchive {
 	 * This also sets Status objects, $this->fileStatus and $this->revisionStatus
 	 * (depending what operations are attempted).
 	 *
-	 * @param array $timestamps Pass an empty array to restore all revisions,
+	 * @param array $revids Pass an empty array to restore all revisions,
 	 *   otherwise list the ones to undelete.
 	 * @param string $comment
 	 * @param array $fileVersions
@@ -369,14 +369,14 @@ class PageArchive {
 	 * @return array(number of file revisions restored, number of image revisions
 	 *   restored, log message) on success, false on failure.
 	 */
-	function undelete( $timestamps, $comment = '', $fileVersions = [],
+	function undelete( $revids, $comment = '', $fileVersions = [],
 		$unsuppress = false, User $user = null, $tags = null
 	) {
 		// If both the set of text revisions and file revisions are empty,
 		// restore everything. Otherwise, just restore the requested items.
-		$restoreAll = empty( $timestamps ) && empty( $fileVersions );
+		$restoreAll = empty( $revids ) && empty( $fileVersions );
 
-		$restoreText = $restoreAll || !empty( $timestamps );
+		$restoreText = $restoreAll || !empty( $revids );
 		$restoreFiles = $restoreAll || !empty( $fileVersions );
 
 		if ( $restoreFiles && $this->title->getNamespace() == NS_FILE ) {
@@ -392,7 +392,7 @@ class PageArchive {
 		}
 
 		if ( $restoreText ) {
-			$this->revisionStatus = $this->undeleteRevisions( $timestamps, $unsuppress, $comment );
+			$this->revisionStatus = $this->undeleteRevisions( $revids, $unsuppress, $comment );
 			if ( !$this->revisionStatus->isOK() ) {
 				return false;
 			}
@@ -446,14 +446,14 @@ class PageArchive {
 	 * This is the meaty bit -- It restores archived revisions of the given page
 	 * to the revision table.
 	 *
-	 * @param array $timestamps Pass an empty array to restore all revisions,
+	 * @param array $revids Pass an empty array to restore all revisions,
 	 *   otherwise list the ones to undelete.
 	 * @param bool $unsuppress Remove all ar_deleted/fa_deleted restrictions of seletected revs
 	 * @param string $comment
 	 * @throws ReadOnlyError
 	 * @return Status Status object containing the number of revisions restored on success
 	 */
-	private function undeleteRevisions( $timestamps, $unsuppress = false, $comment = '' ) {
+	private function undeleteRevisions( $revids, $unsuppress = false, $comment = '' ) {
 		if ( wfReadOnly() ) {
 			throw new ReadOnlyError();
 		}
@@ -461,7 +461,7 @@ class PageArchive {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->startAtomic( __METHOD__ );
 
-		$restoreAll = empty( $timestamps );
+		$restoreAll = empty( $revids );
 
 		# Does this page already exist? We'll have to update it...
 		$article = WikiPage::factory( $this->title );
@@ -507,7 +507,7 @@ class PageArchive {
 			'ar_title' => $this->title->getDBkey(),
 		];
 		if ( !$restoreAll ) {
-			$oldWhere['ar_timestamp'] = array_map( [ &$dbw, 'timestamp' ], $timestamps );
+			$oldWhere['ar_rev_id'] = array_map( [ &$dbw, 'rev_id' ], $revids );
 		}
 
 		$fields = [
@@ -562,7 +562,7 @@ class PageArchive {
 		$restoreFailedArIds = [];
 
 		// Map rev_id to the ar_id that is allowed to use it.  When checking later,
-		// if it doesn't match, the current ar_id can not be restored.
+		// if it doesn't match, the current ar_id cannot be restored.
 
 		// Value can be an ar_id or -1 (-1 means no ar_id can use it, since the
 		// rev_id is taken before we even start the restore).
@@ -759,7 +759,7 @@ class SpecialUndelete extends SpecialPage {
 	private	$mRevdel;
 	private	$mInvert;
 	private	$mFilename;
-	private	$mTargetTimestamp;
+	private	$mTargetRevid;
 	private	$mAllowed;
 	private	$mCanView;
 	private	$mComment;
@@ -825,20 +825,20 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		if ( $this->mRestore || $this->mInvert ) {
-			$timestamps = [];
+			$revids = [];
 			$this->mFileVersions = [];
 			foreach ( $request->getValues() as $key => $val ) {
 				$matches = [];
-				if ( preg_match( '/^ts(\d{14})$/', $key, $matches ) ) {
-					array_push( $timestamps, $matches[1] );
+				if ( preg_match( '/^revid(\d{14})$/', $key, $matches ) ) {
+					array_push( $revids, $matches[1] );
 				}
 
 				if ( preg_match( '/^fileid(\d+)$/', $key, $matches ) ) {
 					$this->mFileVersions[] = intval( $matches[1] );
 				}
 			}
-			rsort( $timestamps );
-			$this->mTargetTimestamp = $timestamps;
+			rsort( $revids );
+			$this->mTargetRevid = $revids;
 		}
 	}
 
@@ -1525,17 +1525,18 @@ class SpecialUndelete extends SpecialPage {
 			] );
 
 		$revTextSize = '';
+		$revid = $row->ar_rev_id;
 		$ts = wfTimestamp( TS_MW, $row->ar_timestamp );
 		// Build checkboxen...
 		if ( $this->mAllowed ) {
 			if ( $this->mInvert ) {
-				if ( in_array( $ts, $this->mTargetTimestamp ) ) {
-					$checkBox = Xml::check( "ts$ts" );
+				if ( in_array( $ts, $this->mTargetRevid ) ) {
+					$checkBox = Xml::check( "revid$revid" );
 				} else {
-					$checkBox = Xml::check( "ts$ts", true );
+					$checkBox = Xml::check( "revid$revid", true );
 				}
 			} else {
-				$checkBox = Xml::check( "ts$ts" );
+				$checkBox = Xml::check( "revid$revid" );
 			}
 		} else {
 			$checkBox = '';
@@ -1783,7 +1784,7 @@ class SpecialUndelete extends SpecialPage {
 		$archive = new PageArchive( $this->mTargetObj, $this->getConfig() );
 		Hooks::run( 'UndeleteForm::undelete', [ &$archive, $this->mTargetObj ] );
 		$ok = $archive->undelete(
-			$this->mTargetTimestamp,
+			$this->mTargetRevid,
 			$this->mComment,
 			$this->mFileVersions,
 			$this->mUnsuppress,
