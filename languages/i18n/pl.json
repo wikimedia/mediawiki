@@ -1161,7 +1161,7 @@
 	"userrights-user-editname": "Wprowadź nazwę użytkownika:",
 	"editusergroup": "Wczytaj grupy użytkownika",
 	"editinguser": "Zmiana uprawnień {{GENDER:$1|użytkownika|użytkowniczki}} <strong>[[User:$1|$1]]</strong> $2",
-	"viewinguserrights": "Przeglądanie grup do których należy {{GENDER:$1|użytkownik|użytkowniczka}} <strong>[[User:$1|$1]]</strong> $2",
+	"viewinguserrights": "Przeglądanie grup, do których należy {{GENDER:$1|użytkownik|użytkowniczka}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-editusergroup": "Edytuj grupy {{GENDER:$1|użytkownika|użytkowniczki}}",
 	"userrights-viewusergroup": "Przeglądanie grup {{GENDER:$1|użytkownika|użytkowniczki}}",
 	"saveusergroups": "Zapisz grupy {{GENDER:$1|użytkownika|użytkowniczki}}",
