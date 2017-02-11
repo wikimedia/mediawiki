@@ -107,4 +107,17 @@
 	mw.rcfilters.ui.CapsuleItemWidget.prototype.onCapsuleRemovedByUser = function () {
 		this.controller.updateFilter( this.model.getName(), false );
 	};
+
+	/**
+	 * Remove and destroy external elements of this widget
+	 */
+	mw.rcfilters.ui.CapsuleItemWidget.prototype.destroy = function () {
+		// Destroy the popup
+		this.popup.toggle( false );
+		this.popup.$element.detach();
+
+		// Disconnect events
+		this.model.disconnect( this );
+		this.closeButton.disconnect( this );
+	};
 }( mediaWiki, jQuery ) );
