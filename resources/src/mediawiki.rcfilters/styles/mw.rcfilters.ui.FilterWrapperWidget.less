@@ -1,5 +1,7 @@
 .mw-rcfilters-ui-filterWrapperWidget {
 	width: 100%;
+	// Make sure this uses the interface direction, not the content direction
+	direction: ltr;
 
 	&-popup {
 		// We have to override OOUI's definition, which is set
@@ -13,7 +15,9 @@
 		margin-top: -0.5em;
 
 		input {
-			// Make sure this uses the interface direction, not the content direction
+			// We need to reiterate the directionality
+			// for the input as well to literally override
+			// a MediaWiki CSS rule that turns it 'ltr'
 			direction: ltr;
 		}
 	}
