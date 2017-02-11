@@ -192,10 +192,31 @@
 	 * @inheritdoc
 	 */
 	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.focus = function () {
+		var pos;
+
 		// Override this method; we don't want to focus on the popup, and we
 		// don't want to bind the size to the handle.
 		if ( !this.isDisabled() ) {
 			this.popup.toggle( true );
+
+			// Fix for RTL
+			// TODO: This should be fixed upstream; now that PopupWidget is also
+			// a FloatableElement, the positioning of both elements are interfering
+			// with one another, and neither one of them corrects itself for RTL
+			if ( OO.ui.Element.static.getDir( this.$element ) === 'rtl' ) {
+				pos = this.popup.$element.offset();
+				this.popup.$element.css(
+					'left',
+					pos.left + this.filterInput.$element.width() - this.popup.$element.width()
+				);
+			}
+
+			// The 'margin-left' correct that arrives from PopupWidget
+			// is wrong here. It makes the popup shift to the left, aligning
+			// the scrollbar outside the bounds of the input.
+			// TODO: This should be fixed upstream in OOUI
+			this.popup.$element.css( 'margin-left', 'auto' );
+
 			this.filterInput.$input.get( 0 ).focus();
 		}
 		return this;
