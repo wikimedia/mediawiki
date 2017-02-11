@@ -69,6 +69,7 @@ production.
   to the page content language, not wiki content language.
 * (T27187) Search suggestions based on jquery.suggestions will now correctly only
   highlight prefix matches in the results.
+* (T157035) mediawiki.Uri: Don't ignore options param when using default uri
 
 === Action API changes in 1.29 ===
 * Submitting sensitive authentication request parameters to action=clientlogin,
