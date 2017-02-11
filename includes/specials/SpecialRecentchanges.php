@@ -532,7 +532,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				/*ignoreHidden=*/ true
 			)
 		) {
-			$out->addModules( 'mediawiki.rcfilters.filters' );
+			$out->addModules( 'mediawiki.rcfilters.filters.ui' );
 		}
 	}
 
