@@ -81,6 +81,6 @@ class InterwikiSearchResultWidget implements SearchResultWidget {
 			default:
 				return "<div class='iw-result__title'>{$link} {$redirect}</div>" .
 					"<div class='iw-result__content'>{$snippet}</div>";
-		};
+		}
 	}
 }

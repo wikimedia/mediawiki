@@ -835,7 +835,7 @@ class InfoAction extends FormlessAction {
 		$real_names = [];
 		$user_names = [];
 		$anon_ips = [];
-		$linkRenderer = MediaWikiServices::getLinkRenderer();
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
 		# Sift for real versus user names
 		/** @var $user User */

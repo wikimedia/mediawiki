@@ -1085,24 +1085,18 @@ class DatabaseOracle extends Database {
 		}
 	}
 
-	/**
-	 * defines must comply with ^define\s*([^\s=]*)\s*=\s?'\{\$([^\}]*)\}';
-	 *
-	 * @param resource $fp
-	 * @param bool|string $lineCallback
-	 * @param bool|callable $resultCallback
-	 * @param string $fname
-	 * @param bool|callable $inputCallback
-	 * @return bool|string
-	 */
-	function sourceStream( $fp, $lineCallback = false, $resultCallback = false,
-		$fname = __METHOD__, $inputCallback = false ) {
+	function sourceStream(
+		$fp,
+		callable $lineCallback = null,
+		callable $resultCallback = null,
+		$fname = __METHOD__, callable $inputCallback = null
+	) {
 		$cmd = '';
 		$done = false;
 		$dollarquote = false;
 
 		$replacements = [];
-
+		// Defines must comply with ^define\s*([^\s=]*)\s*=\s?'\{\$([^\}]*)\}';
 		while ( !feof( $fp ) ) {
 			if ( $lineCallback ) {
 				call_user_func( $lineCallback );
