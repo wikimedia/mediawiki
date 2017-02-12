@@ -388,7 +388,7 @@
 	"apihelp-purge-example-simple": "Purger les pages <kbd>Main Page</kbd> et <kbd>API</kbd>.",
 	"apihelp-purge-example-generator": "Purger les 10 premières pages de l’espace de noms principal",
 	"apihelp-query-description": "Extraire des données de et sur MediaWiki.\n\nToutes les modifications de données devront d’abord utiliser une requête pour obtenir un jeton, afin d’éviter les abus de la part de sites malveillants.",
-	"apihelp-query-param-prop": "Quelles propriétés obtenir des pages demandées.",
+	"apihelp-query-param-prop": "Quelles propriétés obtenir pour les pages demandées.",
 	"apihelp-query-param-list": "Quelles listes obtenir.",
 	"apihelp-query-param-meta": "Quelles métadonnées obtenir.",
 	"apihelp-query-param-indexpageids": "Inclure une section pageids supplémentaire listant tous les IDs de page renvoyés.",
