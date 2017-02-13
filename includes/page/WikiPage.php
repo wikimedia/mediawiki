@@ -3390,30 +3390,11 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Returns a list of hidden categories this page is a member of.
 	 * Uses the page_props and categorylinks tables.
 	 *
+	 * @deprecated since 1.29 use Title::getHiddenCategories()
 	 * @return array Array of Title objects
 	 */
 	public function getHiddenCategories() {
-		$result = [];
-		$id = $this->getId();
-
-		if ( $id == 0 ) {
-			return [];
-		}
-
-		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->select( [ 'categorylinks', 'page_props', 'page' ],
-			[ 'cl_to' ],
-			[ 'cl_from' => $id, 'pp_page=page_id', 'pp_propname' => 'hiddencat',
-				'page_namespace' => NS_CATEGORY, 'page_title=cl_to' ],
-			__METHOD__ );
-
-		if ( $res !== false ) {
-			foreach ( $res as $row ) {
-				$result[] = Title::makeTitle( NS_CATEGORY, $row->cl_to );
-			}
-		}
-
-		return $result;
+		return $this->mTitle->getHiddenCategories();
 	}
 
 	/**
