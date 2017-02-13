@@ -22,10 +22,6 @@
 	 *
 	 * @class mw.SafeStorage
 	 * @private
-	 */
-
-	/**
-	 * @ignore
 	 * @param {Object|undefined} store The Storage instance to wrap around
 	 */
 	function SafeStorage( store ) {
@@ -75,6 +71,9 @@
 	};
 
 	/**
+	 * A wrapper for the HTML5 `localStorage` interface
+	 * that is safe to call on all browsers.
+	 *
 	 * @class
 	 * @singleton
 	 * @extends mw.SafeStorage
@@ -82,6 +81,9 @@
 	mw.storage = new SafeStorage( localStorage );
 
 	/**
+	 * A wrapper for the HTML5 `sessionStorage` interface
+	 * that is safe to call on all browsers.
+	 *
 	 * @class
 	 * @singleton
 	 * @extends mw.SafeStorage
