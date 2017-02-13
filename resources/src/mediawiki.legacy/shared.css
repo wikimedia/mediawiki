@@ -185,8 +185,22 @@ td.mw-submit {
 }
 
 input#wpSummary {
+	background-color: #fff;
+	color: #000;
 	width: 80%;
 	margin-bottom: 1em;
+	padding: 0.625em 0.546875em 0.546875em;
+	border: 1px solid #a2a9b1;
+	border-radius: 2px;
+	font-family: inherit;
+	font-size: inherit;
+}
+
+input#wpSummary:focus,
+input#wpSummary:active {
+	outline: 0;
+	border-color: #36c;
+	box-shadow: inset 0 0 0 1px #36c;
 }
 
 .mw-input-with-label {
