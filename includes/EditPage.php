@@ -25,6 +25,14 @@ use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
 
 /**
+ * @deprecated since 1.29
+ *
+ * This class has been replaced by the EditAttempt class that handles saving
+ * based on an Edit object, the EditFacilitator class that handles processing
+ * a Web request into an Edit object and passes it to an EditAttempt, the
+ * Editor classes that provides a user interface for editing, and the EditView
+ * classes that contain the UI elements for an editor.
+ *
  * The edit page/HTML interface (split from Article)
  * The actual database and text munging is still in Article,
  * but it should get easier to call those from alternate
@@ -415,6 +423,7 @@ class EditPage {
 
 	/**
 	 * @param Article $article
+	 * @deprecated since 1.29, use the Editor class
 	 */
 	public function __construct( Article $article ) {
 		$this->mArticle = $article;
