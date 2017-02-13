@@ -8595,6 +8595,11 @@ $wgExperiencedUserMemberSince = 30; # days
 $wgInterwikiPrefixDisplayTypes = [];
 
 /**
+ * Use a new, experimental, behind-the-scenes refactoring of the editor
+ */
+$wgUseNewEditorBackend = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
