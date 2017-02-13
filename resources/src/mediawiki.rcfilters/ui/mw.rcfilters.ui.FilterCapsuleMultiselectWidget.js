@@ -230,4 +230,21 @@
 		this.menu.selectItem();
 		this.menu.highlightItem();
 	};
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.removeItems = function ( items ) {
+		// Parent call
+		mw.rcfilters.ui.FilterCapsuleMultiselectWidget.parent.prototype.removeItems.call( this, items );
+
+		// Destroy the item widget when it is removed
+		// This is done because we re-add items by recreating them, rather than hiding them
+		// and items include popups, that will just continue to be created and appended
+		// unnecessarily.
+		items.forEach( function ( widget ) {
+			widget.destroy();
+		} );
+	};
+
 }( mediaWiki, jQuery ) );
