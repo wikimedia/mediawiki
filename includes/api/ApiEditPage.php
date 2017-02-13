@@ -256,149 +256,239 @@ class ApiEditPage extends ApiBase {
 			$this->dieWithError( 'apierror-badmd5' );
 		}
 
-		// EditPage wants to parse its stuff from a WebRequest
-		// That interface kind of sucks, but it's workable
-		$requestArray = [
-			'wpTextbox1' => $params['text'],
-			'format' => $contentFormat,
-			'model' => $contentModel,
-			'wpEditToken' => $params['token'],
-			'wpIgnoreBlankSummary' => true,
-			'wpIgnoreBlankArticle' => true,
-			'wpIgnoreSelfRedirect' => true,
-			'bot' => $params['bot'],
-		];
+		global $wgUseNewEditorBackend;
+		if ( $wgUseNewEditorBackend ) {
+			$edit = new Edit();
+			$edit->setText( $params['text'] );
+			$edit->setContentModelAndFormat( $contentModel, $contentFormat );
 
-		if ( !is_null( $params['summary'] ) ) {
-			$requestArray['wpSummary'] = $params['summary'];
-		}
-
-		if ( !is_null( $params['sectiontitle'] ) ) {
-			$requestArray['wpSectionTitle'] = $params['sectiontitle'];
-		}
-
-		// TODO: Pass along information from 'undoafter' as well
-		if ( $params['undo'] > 0 ) {
-			$requestArray['wpUndidRevision'] = $params['undo'];
-		}
-
-		// Watch out for basetimestamp == '' or '0'
-		// It gets treated as NOW, almost certainly causing an edit conflict
-		if ( $params['basetimestamp'] !== null && (bool)$this->getMain()->getVal( 'basetimestamp' ) ) {
-			$requestArray['wpEdittime'] = $params['basetimestamp'];
-		} else {
-			$requestArray['wpEdittime'] = $pageObj->getTimestamp();
-		}
-
-		if ( $params['starttimestamp'] !== null ) {
-			$requestArray['wpStarttime'] = $params['starttimestamp'];
-		} else {
-			$requestArray['wpStarttime'] = wfTimestampNow(); // Fake wpStartime
-		}
-
-		if ( $params['minor'] || ( !$params['notminor'] && $user->getOption( 'minordefault' ) ) ) {
-			$requestArray['wpMinoredit'] = '';
-		}
-
-		if ( $params['recreate'] ) {
-			$requestArray['wpRecreate'] = '';
-		}
-
-		if ( !is_null( $params['section'] ) ) {
-			$section = $params['section'];
-			if ( !preg_match( '/^((T-)?\d+|new)$/', $section ) ) {
-				$this->dieWithError( 'apierror-invalidsection' );
+			if ( !is_null( $params['section'] ) ) {
+				$section = $params['section'];
+				if ( !preg_match( '/^((T-)?\d+|new)$/', $section ) ) {
+					$this->dieWithError( 'apierror-invalidsection' );
+				}
+				$content = $pageObj->getContent();
+				if ( $section !== '0' && $section != 'new'
+					&& ( !$content || !$content->getSection( $section ) )
+				) {
+					$this->dieWithError( [ 'apierror-nosuchsection', $section ] );
+				}
+				$edit->setSection( $params['section'] );
 			}
-			$content = $pageObj->getContent();
-			if ( $section !== '0' && $section != 'new'
-				&& ( !$content || !$content->getSection( $section ) )
-			) {
-				$this->dieWithError( [ 'apierror-nosuchsection', $section ] );
+
+			if ( !is_null( $params['summary'] ) ) {
+				$edit->setSummary( $params['summary'] );
 			}
-			$requestArray['wpSection'] = $params['section'];
-		} else {
-			$requestArray['wpSection'] = '';
-		}
 
-		$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj );
+			if ( !is_null( $params['sectiontitle'] ) ) {
+				$edit->setSectionTitle( $params['sectiontitle'] );
+			}
 
-		// Deprecated parameters
-		if ( $params['watch'] ) {
-			$watch = true;
-		} elseif ( $params['unwatch'] ) {
-			$watch = false;
-		}
-
-		if ( $watch ) {
-			$requestArray['wpWatchthis'] = '';
-		}
-
-		// Apply change tags
-		if ( count( $params['tags'] ) ) {
-			$tagStatus = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
-			if ( $tagStatus->isOK() ) {
-				$requestArray['wpChangeTags'] = implode( ',', $params['tags'] );
+			// Watch out for basetimestamp == '' or '0'
+			// It gets treated as NOW, almost certainly causing an edit conflict
+			if ( $params['basetimestamp'] !== null && (bool)$this->getMain()->getVal( 'basetimestamp' ) ) {
+				$edit->setLastRevisionTime( $params['basetimestamp'] );
 			} else {
-				$this->dieStatus( $tagStatus );
-			}
-		}
-
-		// Pass through anything else we might have been given, to support extensions
-		// This is kind of a hack but it's the best we can do to make extensions work
-		$requestArray += $this->getRequest()->getValues();
-
-		global $wgTitle, $wgRequest;
-
-		$req = new DerivativeRequest( $this->getRequest(), $requestArray, true );
-
-		// Some functions depend on $wgTitle == $ep->mTitle
-		// TODO: Make them not or check if they still do
-		$wgTitle = $titleObj;
-
-		$articleContext = new RequestContext;
-		$articleContext->setRequest( $req );
-		$articleContext->setWikiPage( $pageObj );
-		$articleContext->setUser( $this->getUser() );
-
-		/** @var $articleObject Article */
-		$articleObject = Article::newFromWikiPage( $pageObj, $articleContext );
-
-		$ep = new EditPage( $articleObject );
-
-		$ep->setApiEditOverride( true );
-		$ep->setContextTitle( $titleObj );
-		$ep->importFormData( $req );
-		$content = $ep->textbox1;
-
-		// Run hooks
-		// Handle APIEditBeforeSave parameters
-		$r = [];
-		// Deprecated in favour of EditFilterMergedContent
-		if ( !Hooks::run( 'APIEditBeforeSave', [ $ep, $content, &$r ], '1.28' ) ) {
-			if ( count( $r ) ) {
-				$r['result'] = 'Failure';
-				$apiResult->addValue( null, $this->getModuleName(), $r );
-
-				return;
+				$edit->setLastRevisionTime( $pageObj->getTimestamp() );
 			}
 
-			$this->dieWithError( 'hookaborted' );
+			if ( $params['starttimestamp'] !== null ) {
+				$edit->setStartTime( $params['starttimestamp'] );
+			} else {
+				$edit->setStartTime( wfTimestampNow() ); // Fake wpStartime
+			}
+
+			Hooks::run( 'APIPrepareEditData', [ $this, $pageObj, $edit ] );
+
+			// Apply change tags
+			if ( count( $params['tags'] ) ) {
+				$changeTags = array_filter( array_map( 'trim', $params['tags'] ) );
+			} else {
+				$changeTags = [];
+			}
+
+			// TODO: Pass along information from 'undoafter' as well
+			if ( $params['undo'] > 0 ) {
+				$undidRevId = $params['undo'];
+			} else {
+				$undidRevId = 0;
+			}
+
+			$info = [
+				'changeTags' => $changeTags,
+				'undidRevId' => $undidRevId,
+				'autoSumm' => md5( '' ),
+			];
+			if ( $params['watch'] ) {
+				$watch = true;
+			} elseif ( $params['unwatch'] ) {
+				$watch = false;
+			} else {
+				$watch = null;
+			}
+			$options = [
+				'allowBlankArticle' => true,
+				'allowBlankSummary' => true,
+				'allowSelfRedirect' => true,
+				'bot' => $params['bot'],
+				'recreate' => $params['recreate'],
+				'minorEdit' => $params['minor'] || ( !$params['notminor'] &&
+					$user->getOption( 'minordefault' ) ),
+				'watchThis' => $watch,
+			];
+
+			// Do the actual save
+			$editAttempt = new EditAttempt( $pageObj, $user, $edit );
+			$result = null;
+			$oldRevId = $pageObj->getLatest();
+			$status = $editAttempt->performSave( $info, $options, $result );
+			$r = [];
+		} else {
+			// EditPage wants to parse its stuff from a WebRequest
+			// That interface kind of sucks, but it's workable
+			$requestArray = [
+				'wpTextbox1' => $params['text'],
+				'format' => $contentFormat,
+				'model' => $contentModel,
+				'wpEditToken' => $params['token'],
+				'wpIgnoreBlankSummary' => true,
+				'wpIgnoreBlankArticle' => true,
+				'wpIgnoreSelfRedirect' => true,
+				'bot' => $params['bot'],
+			];
+
+			if ( !is_null( $params['summary'] ) ) {
+				$requestArray['wpSummary'] = $params['summary'];
+			}
+
+			if ( !is_null( $params['sectiontitle'] ) ) {
+				$requestArray['wpSectionTitle'] = $params['sectiontitle'];
+			}
+
+			// TODO: Pass along information from 'undoafter' as well
+			if ( $params['undo'] > 0 ) {
+				$requestArray['wpUndidRevision'] = $params['undo'];
+			}
+
+			// Watch out for basetimestamp == '' or '0'
+			// It gets treated as NOW, almost certainly causing an edit conflict
+			if ( $params['basetimestamp'] !== null && (bool)$this->getMain()->getVal( 'basetimestamp' ) ) {
+				$requestArray['wpEdittime'] = $params['basetimestamp'];
+			} else {
+				$requestArray['wpEdittime'] = $pageObj->getTimestamp();
+			}
+
+			if ( $params['starttimestamp'] !== null ) {
+				$requestArray['wpStarttime'] = $params['starttimestamp'];
+			} else {
+				$requestArray['wpStarttime'] = wfTimestampNow(); // Fake wpStartime
+			}
+
+			if ( $params['minor'] || ( !$params['notminor'] && $user->getOption( 'minordefault' ) ) ) {
+				$requestArray['wpMinoredit'] = '';
+			}
+
+			if ( $params['recreate'] ) {
+				$requestArray['wpRecreate'] = '';
+			}
+
+			if ( !is_null( $params['section'] ) ) {
+				$section = $params['section'];
+				if ( !preg_match( '/^((T-)?\d+|new)$/', $section ) ) {
+					$this->dieWithError( 'apierror-invalidsection' );
+				}
+				$content = $pageObj->getContent();
+				if ( $section !== '0' && $section != 'new'
+					&& ( !$content || !$content->getSection( $section ) )
+				) {
+					$this->dieWithError( [ 'apierror-nosuchsection', $section ] );
+				}
+				$requestArray['wpSection'] = $params['section'];
+			} else {
+				$requestArray['wpSection'] = '';
+			}
+
+			$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj );
+
+			// Deprecated parameters
+			if ( $params['watch'] ) {
+				$watch = true;
+			} elseif ( $params['unwatch'] ) {
+				$watch = false;
+			}
+
+			if ( $watch ) {
+				$requestArray['wpWatchthis'] = '';
+			}
+
+			// Apply change tags
+			if ( count( $params['tags'] ) ) {
+				$tagStatus = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+				if ( $tagStatus->isOK() ) {
+					$requestArray['wpChangeTags'] = implode( ',', $params['tags'] );
+				} else {
+					$this->dieStatus( $tagStatus );
+				}
+			}
+
+			// Pass through anything else we might have been given, to support extensions
+			// This is kind of a hack but it's the best we can do to make extensions work
+			$requestArray += $this->getRequest()->getValues();
+
+			$req = new DerivativeRequest( $this->getRequest(), $requestArray, true );
+
+			$articleContext = new RequestContext;
+			$articleContext->setRequest( $req );
+			$articleContext->setWikiPage( $pageObj );
+			$articleContext->setUser( $this->getUser() );
+
+			/** @var $articleObject Article */
+			$articleObject = Article::newFromWikiPage( $pageObj, $articleContext );
+
+			global $wgTitle, $wgRequest;
+
+			// Some functions depend on $wgTitle == $ep->mTitle
+			// TODO: Make them not or check if they still do
+			$wgTitle = $titleObj;
+
+			$ep = new EditPage( $articleObject );
+
+			$ep->setApiEditOverride( true );
+			$ep->setContextTitle( $titleObj );
+			$ep->importFormData( $req );
+			$content = $ep->textbox1;
+
+			// Run hooks
+			// Handle APIEditBeforeSave parameters
+			$r = [];
+			// Deprecated in favour of EditFilterMergedContent
+			if ( !Hooks::run( 'APIEditBeforeSave', [ $ep, $content, &$r ], '1.28' ) ) {
+				if ( count( $r ) ) {
+					$r['result'] = 'Failure';
+					$apiResult->addValue( null, $this->getModuleName(), $r );
+
+					return;
+				}
+
+				$this->dieWithError( 'hookaborted' );
+			}
+
+			// Do the actual save
+			$oldRevId = $articleObject->getRevIdFetched();
+			$result = null;
+			// Fake $wgRequest for some hooks inside EditPage
+			// @todo FIXME: This interface SUCKS
+			$oldRequest = $wgRequest;
+			$wgRequest = $req;
+
+			$status = $ep->attemptSave( $result );
+			$wgRequest = $oldRequest;
 		}
-
-		// Do the actual save
-		$oldRevId = $articleObject->getRevIdFetched();
-		$result = null;
-		// Fake $wgRequest for some hooks inside EditPage
-		// @todo FIXME: This interface SUCKS
-		$oldRequest = $wgRequest;
-		$wgRequest = $req;
-
-		$status = $ep->attemptSave( $result );
-		$wgRequest = $oldRequest;
 
 		switch ( $status->value ) {
-			case EditPage::AS_HOOK_ERROR:
-			case EditPage::AS_HOOK_ERROR_EXPECTED:
+			case EditAttempt::AS_HOOK_ERROR:
+			case EditAttempt::AS_HOOK_ERROR_EXPECTED:
+			case EditAttempt::AS_HOOK_ERROR_RESUME:
 				if ( isset( $status->apiHookResult ) ) {
 					$r = $status->apiHookResult;
 					$r['result'] = 'Failure';
@@ -410,26 +500,26 @@ class ApiEditPage extends ApiBase {
 				}
 				$this->dieStatus( $status );
 
-			case EditPage::AS_BLOCKED_PAGE_FOR_USER:
+			case EditAttempt::AS_BLOCKED_PAGE_FOR_USER:
 				$this->dieWithError(
 					'apierror-blocked',
 					'blocked',
 					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
 				);
 
-			case EditPage::AS_READ_ONLY_PAGE:
+			case EditAttempt::AS_READ_ONLY_PAGE:
 				$this->dieReadOnly();
 
-			case EditPage::AS_SUCCESS_NEW_ARTICLE:
+			case EditAttempt::AS_SUCCESS_NEW_ARTICLE:
 				$r['new'] = true;
 				// fall-through
 
-			case EditPage::AS_SUCCESS_UPDATE:
+			case EditAttempt::AS_SUCCESS_UPDATE:
 				$r['result'] = 'Success';
 				$r['pageid'] = intval( $titleObj->getArticleID() );
 				$r['title'] = $titleObj->getPrefixedText();
-				$r['contentmodel'] = $articleObject->getContentModel();
-				$newRevId = $articleObject->getLatest();
+				$r['contentmodel'] = $pageObj->getContentModel();
+				$newRevId = $pageObj->getLatest();
 				if ( $newRevId == $oldRevId ) {
 					$r['nochange'] = true;
 				} else {
@@ -446,51 +536,51 @@ class ApiEditPage extends ApiBase {
 					// any actual error messages. Supply defaults for those cases.
 					switch ( $status->value ) {
 						// Currently needed
-						case EditPage::AS_IMAGE_REDIRECT_ANON:
+						case EditAttempt::AS_IMAGE_REDIRECT_ANON:
 							$status->fatal( 'apierror-noimageredirect-anon' );
 							break;
-						case EditPage::AS_IMAGE_REDIRECT_LOGGED:
+						case EditAttempt::AS_IMAGE_REDIRECT_LOGGED:
 							$status->fatal( 'apierror-noimageredirect-logged' );
 							break;
-						case EditPage::AS_CONTENT_TOO_BIG:
-						case EditPage::AS_MAX_ARTICLE_SIZE_EXCEEDED:
+						case EditAttempt::AS_CONTENT_TOO_BIG:
+						case EditAttempt::AS_MAX_ARTICLE_SIZE_EXCEEDED:
 							$status->fatal( 'apierror-contenttoobig', $this->getConfig()->get( 'MaxArticleSize' ) );
 							break;
-						case EditPage::AS_READ_ONLY_PAGE_ANON:
+						case EditAttempt::AS_READ_ONLY_PAGE_ANON:
 							$status->fatal( 'apierror-noedit-anon' );
 							break;
-						case EditPage::AS_NO_CHANGE_CONTENT_MODEL:
+						case EditAttempt::AS_NO_CHANGE_CONTENT_MODEL:
 							$status->fatal( 'apierror-cantchangecontentmodel' );
 							break;
-						case EditPage::AS_ARTICLE_WAS_DELETED:
+						case EditAttempt::AS_ARTICLE_WAS_DELETED:
 							$status->fatal( 'apierror-pagedeleted' );
 							break;
-						case EditPage::AS_CONFLICT_DETECTED:
+						case EditAttempt::AS_CONFLICT_DETECTED:
 							$status->fatal( 'editconflict' );
 							break;
 
 						// Currently shouldn't be needed, but here in case
 						// hooks use them without setting appropriate
 						// errors on the status.
-						case EditPage::AS_SPAM_ERROR:
+						case EditAttempt::AS_SPAM_ERROR:
 							$status->fatal( 'apierror-spamdetected', $result['spam'] );
 							break;
-						case EditPage::AS_READ_ONLY_PAGE_LOGGED:
+						case EditAttempt::AS_READ_ONLY_PAGE_LOGGED:
 							$status->fatal( 'apierror-noedit' );
 							break;
-						case EditPage::AS_RATE_LIMITED:
+						case EditAttempt::AS_RATE_LIMITED:
 							$status->fatal( 'apierror-ratelimited' );
 							break;
-						case EditPage::AS_NO_CREATE_PERMISSION:
+						case EditAttempt::AS_NO_CREATE_PERMISSION:
 							$status->fatal( 'nocreate-loggedin' );
 							break;
-						case EditPage::AS_BLANK_ARTICLE:
+						case EditAttempt::AS_BLANK_ARTICLE:
 							$status->fatal( 'apierror-emptypage' );
 							break;
-						case EditPage::AS_TEXTBOX_EMPTY:
+						case EditAttempt::AS_TEXTBOX_EMPTY:
 							$status->fatal( 'apierror-emptynewsection' );
 							break;
-						case EditPage::AS_SUMMARY_NEEDED:
+						case EditAttempt::AS_SUMMARY_NEEDED:
 							$status->fatal( 'apierror-summaryrequired' );
 							break;
 						default:

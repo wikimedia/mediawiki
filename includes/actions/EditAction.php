@@ -26,7 +26,7 @@
 /**
  * Page edition handler
  *
- * This is a wrapper that will call the EditPage class or a custom editor from an extension.
+ * This is a wrapper that will call the Editor class or a custom editor from an extension.
  *
  * @ingroup Actions
  */
@@ -41,6 +41,7 @@ class EditAction extends FormlessAction {
 	}
 
 	public function show() {
+		global $wgUseNewEditorBackend;
 		$this->useTransactionalTimeLimit();
 
 		$out = $this->getOutput();
@@ -51,12 +52,17 @@ class EditAction extends FormlessAction {
 				'mediawiki.ui.checkbox',
 			] );
 		}
-		$page = $this->page;
+		$article = $this->page;
 		$user = $this->getUser();
 
-		if ( Hooks::run( 'CustomEditor', [ $page, $user ] ) ) {
-			$editor = new EditPage( $page );
-			$editor->edit();
+		if ( Hooks::run( 'CustomEditor', [ $article, $user ] ) ) {
+			if ( $wgUseNewEditorBackend ) {
+				$editor = new StandardEditor( $article, $user, $article->getTitle() );
+				$editor->edit();
+			} else {
+				$editPage = new EditPage( $article );
+				$editPage->edit();
+			}
 		}
 	}
 
