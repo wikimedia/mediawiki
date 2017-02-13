@@ -3588,6 +3588,7 @@
 	"logentry-tag-update-logentry": "$1님이 $3 문서의 기록 항목 $5에 있는 태그를 {{GENDER:$2|업데이트했습니다}} ($6 {{PLURAL:$7|추가함}}; $8 {{PLURAL:$9|제거함}})",
 	"rightsnone": "(없음)",
 	"revdelete-summary": "편집 요약",
+	"rightslogentry-temporary-group": "$1 (일시적, $2까지)",
 	"feedback-adding": "문서에 피드백을 올리는 중...",
 	"feedback-back": "뒤로",
 	"feedback-bugcheck": "감사합니다! 혹시 해당 사항이 [$1 기존의 버그 보고서]에 올라와 있는지 확인해주세요.",

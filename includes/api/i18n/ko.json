@@ -108,6 +108,7 @@
 	"apihelp-edit-param-redirect": "자동으로 넘겨주기 처리하기.",
 	"apihelp-edit-param-contentmodel": "새 콘텐츠의 콘텐츠 모델.",
 	"apihelp-edit-example-edit": "문서 편집",
+	"apihelp-edit-example-undo": "자동 편집요약으로 13579판에서 13585판까지 되돌리기.",
 	"apihelp-emailuser-description": "사용자에게 이메일을 보냅니다.",
 	"apihelp-emailuser-param-target": "이메일을 받을 사용자.",
 	"apihelp-emailuser-param-subject": "제목 헤더.",
