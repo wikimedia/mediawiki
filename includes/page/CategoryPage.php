@@ -43,7 +43,7 @@ class CategoryPage extends Article {
 		return new WikiCategoryPage( $title );
 	}
 
-	function view() {
+	public function view() {
 		$request = $this->getContext()->getRequest();
 		$diff = $request->getVal( 'diff' );
 		$diffOnly = $request->getBool( 'diffonly',
@@ -61,27 +61,24 @@ class CategoryPage extends Article {
 			return;
 		}
 
-		$title = $this->getTitle();
-		if ( $title->inNamespace( NS_CATEGORY ) ) {
-			$this->openShowCategory();
-		}
-
 		parent::view();
 
-		if ( $title->inNamespace( NS_CATEGORY ) ) {
-			$this->closeShowCategory();
-		}
+		$outputPage = $this->getContext()->getOutput();
+
+		// show category list
+		$outputPage->addHTML( $this->getCategoryList() );
+
+		$this->addHelpLink( 'Help:Categories' );
 
 		# Use adaptive TTLs for CDN so delayed/failed purges are noticed less often
-		$outputPage = $this->getContext()->getOutput();
 		$outputPage->adaptCdnTTL( $this->mPage->getTouched(), IExpiringStore::TTL_MINUTE );
 	}
 
-	function openShowCategory() {
-		# For overloading
-	}
-
-	function closeShowCategory() {
+	/**
+	 * HTML of the list of categories to display
+	 * @return string
+	 */
+	public function getCategoryList() {
 		// Use these as defaults for back compat --catrope
 		$request = $this->getContext()->getRequest();
 		$oldFrom = $request->getVal( 'from' );
@@ -113,8 +110,6 @@ class CategoryPage extends Article {
 			$until,
 			$reqArray
 		);
-		$out = $this->getContext()->getOutput();
-		$out->addHTML( $viewer->getHTML() );
-		$this->addHelpLink( 'Help:Categories' );
+		return $viewer->getHTML();
 	}
 }
