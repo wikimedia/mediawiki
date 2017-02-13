@@ -1,0 +1,544 @@
+<?php
+/**
+ * Controller for page editing via the standard UI.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
+
+/**
+ * A basic MediaWiki Web editor
+ *
+ * It allows to:
+ *  - save an edit.
+ */
+class BasicEditor extends Editor {
+
+	protected $viewClass = 'BasicEditView';
+
+	/**
+	 * Protected
+	 */
+
+	/** @var string */
+	protected $formType = 'undefined';
+
+	/** @var bool */
+	protected $firstTime = false;
+
+	/**
+	 * Internal
+	 */
+	/** @var bool */
+	private $isCssJsSubpage = false;
+
+	/** @var bool */
+	private $isCssSubpage = false;
+
+	/** @var bool */
+	private $isJsSubpage = false;
+
+	/** @var bool|int */
+	private $contentLength = false;
+
+	/**
+	 * This is the function that gets called for "action=edit". It
+	 * sets up various member variables, then passes execution to
+	 * another function, usually showEditForm()
+	 *
+	 * The edit form is self-submitting, so that when things like
+	 * preview and edit conflicts occur, we get the same form back
+	 * with the extra stuff added.  Only when the final submission
+	 * is made and all is well do we actually save and redirect to
+	 * the newly-edited page.
+	 *
+	 * @param Revision|null The revision we want to edit, or null for a new page.
+	 */
+	public function edit( Revision $revision = null ) {
+		// Allow extensions to modify/prevent this form or submission
+		if ( !Hooks::run( 'EditorAlternateEdit', [ $this ] ) ) {
+			return;
+		}
+
+		wfDebug( __METHOD__ . ": enter\n" );
+
+		$request = $this->user->getRequest();
+
+		// If they used redlink=1 and the page exists, redirect to the main article
+		if ( $request->getBool( 'redlink' ) && $this->title->exists() ) {
+			$this->output->redirect( $this->title->getFullURL() );
+			return;
+		}
+
+		$this->controller->importFormData( $request );
+
+		if ( !$this->data->parentRevId && $revision !== null ) {
+			$this->data->parentRevId = $revision->getId();
+		}
+
+		if ( wfReadOnly() && $this->data->save ) {
+			$this->handleReadOnly();
+		}
+
+		$this->parseFormType( $request );
+
+		$permErrors = $this->getEditPermissionErrors( $this->data->save ? 'secure' : 'full' );
+		if ( $permErrors ) {
+			wfDebug( __METHOD__ . ": User can't edit\n" );
+			// Auto-block user's IP if the account was "hard" blocked
+			if ( !wfReadOnly() ) {
+				$user = $this->user;
+				DeferredUpdates::addCallableUpdate( function () use ( $user ) {
+					$user->spreadAnyEditBlock();
+				} );
+			}
+			$this->displayPermissionsError( $permErrors, $revision );
+
+			return;
+		}
+
+		// Disallow editing revisions with content models different from the current one
+		// Undo edits being an exception in order to allow reverting content model changes.
+		if ( $revision
+			&& $revision->getContentModel() !== $this->data->contentModel
+		) {
+			$prevRev = null;
+			if ( $this->data->undidRevId ) {
+				$undidRevObj = Revision::newFromId( $this->data->undidRevId );
+				$prevRev = $undidRevObj ? $undidRevObj->getPrevious() : null;
+			}
+			if ( !$this->data->undidRevId
+				|| !$prevRev
+				|| $prevRev->getContentModel() !== $this->data->contentModel
+			) {
+				$this->disallowDifferentContentModel( $revision );
+				return;
+			}
+		}
+
+		// css / js subpages of user pages get a special treatment
+		$this->isCssJsSubpage = $this->title->isCssJsSubpage();
+		$this->isCssSubpage = $this->title->isCssSubpage();
+		$this->isJsSubpage = $this->title->isJsSubpage();
+
+		# Show applicable editing introductions
+		if ( $this->formType === 'initial' || $this->firstTime ) {
+			$customIntro = $request->getText( 'editintro',
+				// Custom edit intro for new sections
+				$this->data->section === 'new' ? 'MediaWiki:addsection-editintro' : '' );
+			$this->view->showIntro( $this->user->isLoggedIn(), $customIntro );
+		}
+
+		# Attempt submission here.  This will check for edit conflicts,
+		# and redundantly check for locked database, blocked IPs, etc.
+		# that edit() already checked just in case someone tries to sneak
+		# in the back door with a hand-edited submission URL.
+
+		if ( $this->formType === 'save'  ) {
+			$resultDetails = null;
+			$status = $this->controller->attemptSave( $resultDetails );
+			if ( !$this->handleStatus( $status, $resultDetails ) ) {
+				return;
+			}
+		}
+
+		Hooks::run( 'EditorBeforeInitialiseForm', [ $this->page, $this->user, $this->context, $this->data ] );
+
+		# First time through: get contents, set time for conflict
+		# checking, etc.
+		if ( $this->formType === 'initial' || $this->firstTime ) {
+			if ( $this->initialiseForm( $revision ) === false ) {
+				$this->view->noSuchSectionPage();
+				return;
+			}
+
+			if ( !$this->title->getArticleID() ) {
+				Hooks::run( 'EditFormPreloadText', [ &$this->data->textbox1, $this->title ] );
+			} else {
+				Hooks::run( 'EditorEditFormInitialText', [ $this->page ] );
+			}
+
+		}
+
+		// populate needed view fields
+		$this->view->setIsConflict( $this->isConflict );
+		$this->view->setMissingSummary( $this->missingSummary );
+
+		$options = [
+			'showtoolbar' => $this->user->getOption( 'showtoolbar' ),
+			'uselivepreview' => $this->user->getOption( 'uselivepreview' ),
+			'useeditwarning' => $this->user->getOption( 'useeditwarning' ),
+		];
+
+		$this->beforeStartEditForm();
+
+		$this->view->startEditForm( $options );
+
+		if ( !$this->isConflict &&
+			$this->data->section != '' &&
+			!$this->controller->isSectionEditSupported() ) {
+			// We use $this->data->section to much before this and getVal('wgSection') directly in other places
+			// at this point we can't reset $this->data->section to '' to fallback to non-section editing.
+			// Someone is welcome to try refactoring though
+			$this->output->showErrorPage( 'sectioneditnotsupported-title', 'sectioneditnotsupported-text' );
+			return;
+		}
+
+		$isUnicodeCompliant = $this->checkUnicodeCompliantBrowser();
+
+		$this->showHeader( $revision, $isUnicodeCompliant );
+
+		$lastDelete = null;
+		$wasDeleted = $this->controller->wasDeletedSinceLastEdit( $lastDelete );
+
+		$showToolbar = true;
+		if ( $wasDeleted ) {
+			if ( $this->formType == 'save' ) {
+				// Hide the toolbar and edit area, user can click preview to get it back
+				// Add an confirmation checkbox and explanation.
+				$showToolbar = false;
+			} else {
+				$this->output->wrapWikiMsg( "<div class='error mw-deleted-while-editing'>\n$1\n</div>",
+					'deletedwhileediting' );
+			}
+		}
+
+		$this->view->showEditFormTop();
+
+		$this->beforeEditForm();
+
+		$this->view->showBeforeEditForm( $isUnicodeCompliant );
+
+		if ( $wasDeleted && $this->formType === 'save' ) {
+			// Quick paranoid permission checks...
+			if ( $lastDelete->log_deleted & LogPage::DELETED_USER ) {
+				$username = $this->context->msg( 'rev-deleted-user' )->escaped();
+			} else {
+				$username = $lastDelete->user_name;
+			}
+
+			if ( $lastDelete->log_deleted & LogPage::DELETED_COMMENT ) {
+				$comment = $this->context->msg( 'rev-deleted-comment' )->escaped();
+			} else {
+				$comment = $lastDelete->log_comment;
+			}			
+
+			// It is better to not parse the comment at all than to have templates expanded in the middle
+			// TODO: can the checkLabel be moved outside of the div so that wrapWikiMsg could be used?
+			$key = $comment === ''
+				? 'confirmrecreate-noreason'
+				: 'confirmrecreate';
+			$this->output->addHTML(
+				'<div class="mw-confirm-recreate">' .
+					$this->context->msg( $key, $username, "<nowiki>$comment</nowiki>" )->parse() .
+				Xml::checkLabel( $this->context->msg( 'recreate' )->text(), 'wpRecreate', 'wpRecreate', false,
+					[ 'title' => Linker::titleAttrib( 'recreate' ), 'tabindex' => 1, 'id' => 'wpRecreate' ]
+				) .
+				'</div>'
+			);
+		}
+
+		$this->addHiddenInputFields();
+
+		if ( !$this->isCssJsSubpage && $showToolbar && $this->user->getOption( 'showtoolbar' ) ) {
+			$this->output->addHTML( EditUtilities::getEditToolbar( $this->output, $this->title ) );
+		}
+
+		$displayNone = $wasDeleted && $this->formType == 'save';
+		$isOldRev = $revision !== null && !$revision->isCurrent();
+		$font = $this->user->getOption( 'editfont' );
+		if ( $this->isConflict ) {
+			// In an edit conflict bypass the overridable content form method
+			// and fallback to the raw wpTextbox1 since editconflicts can't be
+			// resolved between page source edits and custom ui edits using the
+			// custom edit ui.
+			$this->onBeforeShowMainTextboxOnConflict();
+
+			$content = $this->model->getCurrentContent();
+			$this->data->textbox1 = $this->model->toEditText( $content );
+
+			$this->view->showMainTextbox( $displayNone, $isUnicodeCompliant, $isOldRev, $font );
+		} else {
+			$this->view->showContentForm( $displayNone, $isUnicodeCompliant, $isOldRev, $font );
+		}
+
+		$this->view->showMinorCheck( $this->user->isAllowed( 'minoredit' ) );
+		$this->view->showWatchCheck( $this->user->isLoggedIn() );
+
+		$this->view->showAfterEditForm();
+
+		$this->insertToken();
+
+		$this->afterEditForm( $isUnicodeCompliant );
+
+		$this->view->showBeforeEditEnd();
+
+		$this->endEdit();
+	}
+
+	protected function handleReadOnly() {
+		$this->data->save = false;
+	}
+
+	protected function parseFormType( $request ) {
+		if ( $this->data->save ) {
+			$this->formType = 'save';
+		} else { # First time through
+			$this->firstTime = true;
+			$this->formType = 'initial';
+		}
+	}
+
+	protected function beforeStartEditForm() {
+	}
+
+	protected function beforeEditForm() {
+	}
+
+	protected function afterEditForm( $isUnicodeCompliant ) {
+	}
+
+	protected function onBeforeShowMainTextboxOnConflict() {
+	}
+
+	protected function endEdit() {
+	}
+
+	/**
+	 * To make it harder for someone to slip a user a page
+	 * which submits an edit form to the wiki without their
+	 * knowledge, a random token is associated with the login
+	 * session. If it's not passed back with the submission,
+	 * we won't save the page, or render user JavaScript and
+	 * CSS previews.
+	 *
+	 * For anon editors, who may not have a session, we just
+	 * include the constant suffix to prevent editing from
+	 * broken text-mangling proxies.
+	 */
+	private function insertToken() {
+		$this->output->addHTML( "\n" . Html::hidden( "wpEditToken", $this->user->getEditToken() ) . "\n" );
+	}
+
+	public function showHeader( $revision, $isUnicodeCompliant ) {
+		global $wgAllowUserCss, $wgAllowUserJs;
+
+		if ( $this->isConflict ) {
+			$this->addExplainConflictHeader();
+			$this->data->editRevId = $this->page->getLatest();
+		} else {
+			if ( $this->data->section != '' && $this->data->section != 'new' ) {
+				if ( !$this->data->summary && !$this->data->preview && !$this->data->diff ) {
+					$sectionTitle = EditUtilities::extractSectionTitle( $this->data->textbox1 ); // FIXME: use Content object
+					if ( $sectionTitle !== false ) {
+						$this->data->summary = "/* $sectionTitle */ ";
+					}
+				}
+			}
+
+			if ( $this->missingComment ) {
+				$this->output->wrapWikiMsg( "<div id='mw-missingcommenttext'>\n$1\n</div>", 'missingcommenttext' );
+			}
+
+			if ( $this->missingSummary && $this->data->section != 'new' ) {
+				$this->output->wrapWikiMsg( "<div id='mw-missingsummary'>\n$1\n</div>", 'missingsummary' );
+			}
+
+			if ( $this->missingSummary && $this->data->section == 'new' ) {
+				$this->output->wrapWikiMsg( "<div id='mw-missingcommentheader'>\n$1\n</div>", 'missingcommentheader' );
+			}
+
+			if ( $this->blankArticle ) {
+				$this->output->wrapWikiMsg( "<div id='mw-blankarticle'>\n$1\n</div>", 'blankarticle' );
+			}
+
+			if ( $this->selfRedirect ) {
+				$this->output->wrapWikiMsg( "<div id='mw-selfredirect'>\n$1\n</div>", 'selfredirect' );
+			}
+
+			if ( $this->hookStatus !== null ) {
+				$this->output->addWikiText( '<div class="error">' ."\n" .
+					$this->hookStatus->getWikiText( false, false, $this->context->getLanguage() )
+				. '</div>' );
+			}
+
+			if ( !$isUnicodeCompliant ) {
+				$this->output->addWikiMsg( 'nonunicodebrowser' );
+			}
+
+			if ( $this->data->section != 'new' ) {
+				if ( $revision ) {
+					// Let sysop know that this will make private content public if saved
+
+					if ( !$revision->userCan( Revision::DELETED_TEXT, $this->user ) ) {
+						$this->output->wrapWikiMsg(
+							"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
+							'rev-deleted-text-permission'
+						);
+					} elseif ( $revision->isDeleted( Revision::DELETED_TEXT ) ) {
+						$this->output->wrapWikiMsg(
+							"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
+							'rev-deleted-text-view'
+						);
+					}
+
+					if ( !$revision->isCurrent() ) {
+						$this->output->addWikiMsg( 'editingold' );
+					}
+				} elseif ( $this->title->exists() ) {
+					// Something went wrong
+
+					$this->output->wrapWikiMsg( "<div class='errorbox'>\n$1\n</div>\n",
+						[ 'missing-revision', $this->data->oldid ] );
+				}
+			}
+		}
+
+		if ( wfReadOnly() ) {
+			$this->output->wrapWikiMsg(
+				"<div id=\"mw-read-only-warning\">\n$1\n</div>",
+				[ 'readonlywarning', wfReadOnlyReason() ]
+			);
+		} elseif ( $this->user->isAnon() ) {
+			$this->view->outputAnonWarning();
+		} else {
+			if ( $this->isCssJsSubpage ) {
+				# Check the skin exists
+				if ( $this->isWrongCaseCssJsPage() ) {
+					$this->output->wrapWikiMsg(
+						"<div class='error' id='mw-userinvalidcssjstitle'>\n$1\n</div>",
+						[ 'userinvalidcssjstitle', $this->title->getSkinFromCssJsSubpage() ]
+					);
+				}
+				if ( $this->title->isSubpageOf( $user->getUserPage() ) ) {
+					$this->output->wrapWikiMsg( '<div class="mw-usercssjspublic">$1</div>',
+						$this->isCssSubpage ? 'usercssispublic' : 'userjsispublic'
+					);
+					if ( $this->showCssJsWarnings() ) {
+						if ( $this->isCssSubpage && $wgAllowUserCss ) {
+							$this->output->wrapWikiMsg(
+								"<div id='mw-usercssyoucanpreview'>\n$1\n</div>",
+								[ 'usercssyoucanpreview' ]
+							);
+						}
+
+						if ( $this->isJsSubpage && $wgAllowUserJs ) {
+							$this->output->wrapWikiMsg(
+								"<div id='mw-userjsyoucanpreview'>\n$1\n</div>",
+								[ 'userjsyoucanpreview' ]
+							);
+						}
+					}
+				}
+			}
+		}
+
+		$this->view->addPageProtectionWarningHeaders();
+
+		if ( $this->contentLength === false ) {
+			$this->contentLength = strlen( $this->data->textbox1 );
+		}
+		$this->view->addLongPageWarningHeader( $this->contentLength, $this->tooBig );
+
+		# Add header copyright warning
+		$this->view->showHeaderCopyrightWarning();
+	}
+
+	protected function showCssJsWarnings() {
+		return true;
+	}
+
+	/**
+	 * @since 1.29
+	 */
+	protected function addExplainConflictHeader() {
+	}
+
+	protected function addHiddenInputFields() {
+		# When the summary is hidden, also hide them on preview/show changes
+		if ( $this->data->noSummary ) {
+			$this->output->addHTML( Html::hidden( 'nosummary', true ) );
+		}
+
+		# If a blank edit summary was previously provided, and the appropriate
+		# user preference is active, pass a hidden tag as wpIgnoreBlankSummary. This will stop the
+		# user being bounced back more than once in the event that a summary
+		# is not required.
+		# ####
+		# For a bit more sophisticated detection of blank summaries, hash the
+		# automatic one and pass that in the hidden field wpAutoSummary.
+		if ( $this->missingSummary || ( $this->data->section == 'new' && $this->data->noSummary ) ) {
+			$this->output->addHTML( Html::hidden( 'wpIgnoreBlankSummary', true ) );
+		}
+
+		if ( $this->data->undidRevId ) {
+			$this->output->addHTML( Html::hidden( 'wpUndidRevision', $this->data->undidRevId ) );
+		}
+
+		if ( $this->selfRedirect ) {
+			$this->output->addHTML( Html::hidden( 'wpIgnoreSelfRedirect', true ) );
+		}
+
+		if ( $this->controller->hasPresetSummary() ) {
+			// If a summary has been preset using &summary= we don't want to prompt for
+			// a different summary. Only prompt for a summary if the summary is blanked.
+			// (Bug 17416)
+			$autosumm = md5( '' );
+		} elseif ( $this->controller->getAutoSummary() ) {
+			$autosumm = $this->controller->getAutoSummary();
+		} else {
+			$autosumm = md5( $this->data->summary );
+		}
+
+		$this->output->addHTML( Html::hidden( 'wpAutoSummary', $autosumm ) );
+
+		$this->output->addHTML( Html::hidden( 'oldid', $this->data->oldid ) );
+		$this->output->addHTML( Html::hidden( 'parentRevId', $this->data->parentRevId ) );
+
+		$this->output->addHTML( Html::hidden( 'format', $this->data->contentFormat ) );
+		$this->output->addHTML( Html::hidden( 'model', $this->data->contentModel ) );
+
+		if ( $this->blankArticle ) {
+			$this->output->addHTML( Html::hidden( 'wpIgnoreBlankArticle', true ) );
+		}
+	}
+
+	/**
+	 * Display a permissions error page, like OutputPage::showPermissionsErrorPage()
+	 *
+	 * @since 1.19
+	 * @param array $permErrors Array of permissions errors, as returned by
+	 *    Title::getUserPermissionsErrors().
+	 * @throws PermissionsError
+	 */
+	protected function displayPermissionsError( array $permErrors, $revision ) {
+		$action = $this->title->exists() ? 'edit' :
+			( $this->title->isTalkPage() ? 'createtalk' : 'createpage' );
+		throw new PermissionsError( $action, $permErrors );
+	}
+
+	protected function disallowDifferentContentModel( $revision ) {
+		throw new FatalError(
+			$this->context->msg(
+				'contentmodelediterror',
+				$revision->getContentModel(),
+				$this->data->contentModel
+			)->plain()
+		);
+	}
+
+}

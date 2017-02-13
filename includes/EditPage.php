@@ -25,6 +25,7 @@ use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
 
 /**
+ *
  * The edit page/HTML interface (split from Article)
  * The actual database and text munging is still in Article,
  * but it should get easier to call those from alternate
@@ -415,6 +416,7 @@ class EditPage {
 
 	/**
 	 * @param Article $article
+	 * @deprecated since 1.29, use the Editor class
 	 */
 	public function __construct( Article $article ) {
 		$this->mArticle = $article;

@@ -347,58 +347,72 @@ class ApiEditPage extends ApiBase {
 		// This is kind of a hack but it's the best we can do to make extensions work
 		$requestArray += $this->getRequest()->getValues();
 
-		global $wgTitle, $wgRequest;
+		global $wgUseNewEditorBackend;
+		if ( $wgUseNewEditorBackend ) {
+			$controller = new ApiEditController( $pageObj, $this->getUser() );
+			$controller->getModel()->enableContentModelOverride();
+			$controller->importFormData( $requestArray );
+			$oldRevId = $pageObj->getLatest();
 
-		$req = new DerivativeRequest( $this->getRequest(), $requestArray, true );
+			// Do the actual save
+			$result = null;
+			$status = $controller->attemptSave( $result );
+			$r = [];
+		} else {
+			$req = new DerivativeRequest( $this->getRequest(), $requestArray, true );
 
-		// Some functions depend on $wgTitle == $ep->mTitle
-		// TODO: Make them not or check if they still do
-		$wgTitle = $titleObj;
+			$articleContext = new RequestContext;
+			$articleContext->setRequest( $req );
+			$articleContext->setWikiPage( $pageObj );
+			$articleContext->setUser( $this->getUser() );
 
-		$articleContext = new RequestContext;
-		$articleContext->setRequest( $req );
-		$articleContext->setWikiPage( $pageObj );
-		$articleContext->setUser( $this->getUser() );
+			/** @var $articleObject Article */
+			$articleObject = Article::newFromWikiPage( $pageObj, $articleContext );
 
-		/** @var $articleObject Article */
-		$articleObject = Article::newFromWikiPage( $pageObj, $articleContext );
+			global $wgTitle, $wgRequest;
 
-		$ep = new EditPage( $articleObject );
+			// Some functions depend on $wgTitle == $ep->mTitle
+			// TODO: Make them not or check if they still do
+			$wgTitle = $titleObj;
 
-		$ep->setApiEditOverride( true );
-		$ep->setContextTitle( $titleObj );
-		$ep->importFormData( $req );
-		$content = $ep->textbox1;
+			$ep = new EditPage( $articleObject );
 
-		// Run hooks
-		// Handle APIEditBeforeSave parameters
-		$r = [];
-		// Deprecated in favour of EditFilterMergedContent
-		if ( !Hooks::run( 'APIEditBeforeSave', [ $ep, $content, &$r ], '1.28' ) ) {
-			if ( count( $r ) ) {
-				$r['result'] = 'Failure';
-				$apiResult->addValue( null, $this->getModuleName(), $r );
+			$ep->setApiEditOverride( true );
+			$ep->setContextTitle( $titleObj );
+			$ep->importFormData( $req );
+			$content = $ep->textbox1;
 
-				return;
+			// Run hooks
+			// Handle APIEditBeforeSave parameters
+			$r = [];
+			// Deprecated in favour of EditFilterMergedContent
+			if ( !Hooks::run( 'APIEditBeforeSave', [ $ep, $content, &$r ], '1.28' ) ) {
+				if ( count( $r ) ) {
+					$r['result'] = 'Failure';
+					$apiResult->addValue( null, $this->getModuleName(), $r );
+
+					return;
+				}
+
+				$this->dieWithError( 'hookaborted' );
 			}
 
-			$this->dieWithError( 'hookaborted' );
+			// Do the actual save
+			$oldRevId = $articleObject->getRevIdFetched();
+			$result = null;
+			// Fake $wgRequest for some hooks inside EditPage
+			// @todo FIXME: This interface SUCKS
+			$oldRequest = $wgRequest;
+			$wgRequest = $req;
+
+			$status = $ep->attemptSave( $result );
+			$wgRequest = $oldRequest;
 		}
 
-		// Do the actual save
-		$oldRevId = $articleObject->getRevIdFetched();
-		$result = null;
-		// Fake $wgRequest for some hooks inside EditPage
-		// @todo FIXME: This interface SUCKS
-		$oldRequest = $wgRequest;
-		$wgRequest = $req;
-
-		$status = $ep->attemptSave( $result );
-		$wgRequest = $oldRequest;
-
 		switch ( $status->value ) {
-			case EditPage::AS_HOOK_ERROR:
-			case EditPage::AS_HOOK_ERROR_EXPECTED:
+			case EditAttempt::AS_HOOK_ERROR:
+			case EditAttempt::AS_HOOK_ERROR_EXPECTED:
+			case EditAttempt::AS_HOOK_ERROR_RESUME:
 				if ( isset( $status->apiHookResult ) ) {
 					$r = $status->apiHookResult;
 					$r['result'] = 'Failure';
@@ -410,26 +424,26 @@ class ApiEditPage extends ApiBase {
 				}
 				$this->dieStatus( $status );
 
-			case EditPage::AS_BLOCKED_PAGE_FOR_USER:
+			case EditAttempt::AS_BLOCKED_PAGE_FOR_USER:
 				$this->dieWithError(
 					'apierror-blocked',
 					'blocked',
 					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
 				);
 
-			case EditPage::AS_READ_ONLY_PAGE:
+			case EditAttempt::AS_READ_ONLY_PAGE:
 				$this->dieReadOnly();
 
-			case EditPage::AS_SUCCESS_NEW_ARTICLE:
+			case EditAttempt::AS_SUCCESS_NEW_ARTICLE:
 				$r['new'] = true;
 				// fall-through
 
-			case EditPage::AS_SUCCESS_UPDATE:
+			case EditAttempt::AS_SUCCESS_UPDATE:
 				$r['result'] = 'Success';
 				$r['pageid'] = intval( $titleObj->getArticleID() );
 				$r['title'] = $titleObj->getPrefixedText();
-				$r['contentmodel'] = $articleObject->getContentModel();
-				$newRevId = $articleObject->getLatest();
+				$r['contentmodel'] = $pageObj->getContentModel();
+				$newRevId = $pageObj->getLatest();
 				if ( $newRevId == $oldRevId ) {
 					$r['nochange'] = true;
 				} else {
@@ -446,51 +460,51 @@ class ApiEditPage extends ApiBase {
 					// any actual error messages. Supply defaults for those cases.
 					switch ( $status->value ) {
 						// Currently needed
-						case EditPage::AS_IMAGE_REDIRECT_ANON:
+						case EditAttempt::AS_IMAGE_REDIRECT_ANON:
 							$status->fatal( 'apierror-noimageredirect-anon' );
 							break;
-						case EditPage::AS_IMAGE_REDIRECT_LOGGED:
+						case EditAttempt::AS_IMAGE_REDIRECT_LOGGED:
 							$status->fatal( 'apierror-noimageredirect-logged' );
 							break;
-						case EditPage::AS_CONTENT_TOO_BIG:
-						case EditPage::AS_MAX_ARTICLE_SIZE_EXCEEDED:
+						case EditAttempt::AS_CONTENT_TOO_BIG:
+						case EditAttempt::AS_MAX_ARTICLE_SIZE_EXCEEDED:
 							$status->fatal( 'apierror-contenttoobig', $this->getConfig()->get( 'MaxArticleSize' ) );
 							break;
-						case EditPage::AS_READ_ONLY_PAGE_ANON:
+						case EditAttempt::AS_READ_ONLY_PAGE_ANON:
 							$status->fatal( 'apierror-noedit-anon' );
 							break;
-						case EditPage::AS_NO_CHANGE_CONTENT_MODEL:
+						case EditAttempt::AS_NO_CHANGE_CONTENT_MODEL:
 							$status->fatal( 'apierror-cantchangecontentmodel' );
 							break;
-						case EditPage::AS_ARTICLE_WAS_DELETED:
+						case EditAttempt::AS_ARTICLE_WAS_DELETED:
 							$status->fatal( 'apierror-pagedeleted' );
 							break;
-						case EditPage::AS_CONFLICT_DETECTED:
+						case EditAttempt::AS_CONFLICT_DETECTED:
 							$status->fatal( 'editconflict' );
 							break;
 
 						// Currently shouldn't be needed, but here in case
 						// hooks use them without setting appropriate
 						// errors on the status.
-						case EditPage::AS_SPAM_ERROR:
+						case EditAttempt::AS_SPAM_ERROR:
 							$status->fatal( 'apierror-spamdetected', $result['spam'] );
 							break;
-						case EditPage::AS_READ_ONLY_PAGE_LOGGED:
+						case EditAttempt::AS_READ_ONLY_PAGE_LOGGED:
 							$status->fatal( 'apierror-noedit' );
 							break;
-						case EditPage::AS_RATE_LIMITED:
+						case EditAttempt::AS_RATE_LIMITED:
 							$status->fatal( 'apierror-ratelimited' );
 							break;
-						case EditPage::AS_NO_CREATE_PERMISSION:
+						case EditAttempt::AS_NO_CREATE_PERMISSION:
 							$status->fatal( 'nocreate-loggedin' );
 							break;
-						case EditPage::AS_BLANK_ARTICLE:
+						case EditAttempt::AS_BLANK_ARTICLE:
 							$status->fatal( 'apierror-emptypage' );
 							break;
-						case EditPage::AS_TEXTBOX_EMPTY:
+						case EditAttempt::AS_TEXTBOX_EMPTY:
 							$status->fatal( 'apierror-emptynewsection' );
 							break;
-						case EditPage::AS_SUMMARY_NEEDED:
+						case EditAttempt::AS_SUMMARY_NEEDED:
 							$status->fatal( 'apierror-summaryrequired' );
 							break;
 						default:
