@@ -30,6 +30,7 @@ use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\Rdbms\LikeMatch;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DBMasterPos;
+use Wikimedia\Rdbms\Blob;
 
 /**
  * Relational database abstraction object

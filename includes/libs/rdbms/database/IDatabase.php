@@ -24,6 +24,7 @@
  * @ingroup Database
  */
 use Wikimedia\ScopedCallback;
+use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\LikeMatch;
 use Wikimedia\Rdbms\DBMasterPos;
 
