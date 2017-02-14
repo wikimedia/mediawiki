@@ -27,8 +27,8 @@
 		this.name = name;
 		this.groupModel = groupModel;
 
-		this.label = config.label || this.name;
-		this.description = config.description;
+		this.label = config.label ? mw.msg( config.label ) : this.name;
+		this.description = mw.msg( config.description );
 		this.selected = !!config.selected;
 
 		// Interaction definitions
