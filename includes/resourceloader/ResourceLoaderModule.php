@@ -468,14 +468,14 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		try {
 			// If the list has been modified since last time we cached it, update the cache
 			if ( $localFileRefs !== $this->getFileDependencies( $context ) ) {
+				$vary = $context->getSkin() . '|' . $context->getLanguage();
 				$cache = ObjectCache::getLocalClusterInstance();
-				$key = $cache->makeKey( __METHOD__, $this->getName() );
+				$key = $cache->makeKey( __METHOD__, $this->getName(), $vary );
 				$scopeLock = $cache->getScopedLock( $key, 0 );
 				if ( !$scopeLock ) {
 					return; // T124649; avoid write slams
 				}
 
-				$vary = $context->getSkin() . '|' . $context->getLanguage();
 				// Use relative paths to avoid ghost entries when $IP changes (T111481)
 				$deps = FormatJson::encode( self::getRelativePaths( $localFileRefs ) );
 				$dbw = wfGetDB( DB_MASTER );
