@@ -476,14 +476,18 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 				}
 
 				$vary = $context->getSkin() . '|' . $context->getLanguage();
+				// Use relative paths to avoid ghost entries when $IP changes (T111481)
+				$deps = FormatJson::encode( self::getRelativePaths( $localFileRefs ) );
 				$dbw = wfGetDB( DB_MASTER );
-				$dbw->replace( 'module_deps',
-					[ [ 'md_module', 'md_skin' ] ],
+				$dbw->upsert( 'module_deps',
 					[
 						'md_module' => $this->getName(),
 						'md_skin' => $vary,
-						// Use relative paths to avoid ghost entries when $IP changes (T111481)
-						'md_deps' => FormatJson::encode( self::getRelativePaths( $localFileRefs ) ),
+						'md_deps' => $deps,
+					],
+					[ 'md_module', 'md_skin' ],
+					[
+						'md_deps' => $deps,
 					]
 				);
 
