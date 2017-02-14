@@ -574,7 +574,7 @@
 	"changeemail-newemail": "Novela adreça electronica:",
 	"changeemail-none": "(pas cap)",
 	"changeemail-password": "Vòstre senhal sus {{SITENAME}} :",
-	"changeemail-submit": "Cambiar l'adreça electronica:",
+	"changeemail-submit": "Cambiar l'adreça electronica :",
 	"changeemail-throttled": "Avètz fait tròp de temptativas de connexion.\nEsperatz $1 abans d’ensajar tornarmai.",
 	"resettokens": "Reïnicializar los getons",
 	"resettokens-text": "Aici, podètz reïnicializar los getons que permeton d’accedir a d'unas donadas privadas associadas a vòstre compte.\n\nLo vos caldriá far se las avètz partejats accidentalament amb qualqu'un o se vòstre compte es estat compromés.",

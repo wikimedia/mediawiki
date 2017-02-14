@@ -76,7 +76,8 @@
 			"Wassan.anmol",
 			"Ziyaurr",
 			"NehalDaveND",
-			"Susant purohit"
+			"Susant purohit",
+			"Jayprakash12345"
 		]
 	},
 	"tog-underline": "कड़ियाँ अधोरेखन:",
@@ -1353,6 +1354,7 @@
 	"recentchanges-legend-heading": "<strong>कुंजी:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|नए पन्नों की सूची]] को भी देखें)",
 	"recentchanges-submit": "दिखाएँ",
+	"rcfilters-filter-bots-label": "बॉट",
 	"rcnotefrom": "नीचे <strong>$2</strong> के बाद से (<strong>$1</strong> तक) {{PLURAL:$5|हुआ बदलाव दर्शाया गया है|हुए बदलाव दर्शाए गये हैं}}।",
 	"rclistfrom": "$3 $2 से नये बदलाव दिखाएँ",
 	"rcshowhideminor": "छोटे बदलाव $1",

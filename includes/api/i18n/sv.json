@@ -257,6 +257,7 @@
 	"apihelp-patrol-example-revid": "Patrullera en sidversion",
 	"apihelp-protect-description": "Ändra skyddsnivån för en sida.",
 	"apihelp-protect-example-protect": "Skydda en sida",
+	"apihelp-purge-description": "Rensa cachen för angivna titlar.",
 	"apihelp-query-param-list": "Vilka listor att hämta.",
 	"apihelp-query-param-meta": "Vilka metadata att hämta.",
 	"apihelp-query-example-allpages": "Hämta sidversioner av sidor som börjar med <kbd>API/</kbd>.",
