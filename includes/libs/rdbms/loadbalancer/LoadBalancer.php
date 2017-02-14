@@ -488,7 +488,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		// Check if we already know that the DB has reached this point
 		$server = $this->getServerName( $index );
-		$key = $this->srvCache->makeGlobalKey( __CLASS__, 'last-known-pos', $server );
+		$key = $this->srvCache->makeGlobalKey( __CLASS__, 'last-known-pos', $server, 'v1' );
 		/** @var DBMasterPos $knownReachedPos */
 		$knownReachedPos = $this->srvCache->get( $key );
 		if (
