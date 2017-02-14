@@ -17,7 +17,7 @@
 	/**
 	 * Initialize the filter and parameter states
 	 *
-	 * @param {Object} filterStructure Filter definition and structure for the model
+	 * @param {Array} filterStructure Filter definition and structure for the model
 	 */
 	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure ) {
 		// Initialize the model
