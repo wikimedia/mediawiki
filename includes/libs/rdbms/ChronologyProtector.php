@@ -119,7 +119,10 @@ class ChronologyProtector implements LoggerAwareInterface {
 		$this->initPositions();
 
 		$masterName = $lb->getServerName( $lb->getWriterIndex() );
-		if ( !empty( $this->startupPositions[$masterName] ) ) {
+		if (
+			isset( $this->startupPositions[$masterName] ) &&
+			$this->startupPositions[$masterName] instanceof DBMasterPos
+		) {
 			$pos = $this->startupPositions[$masterName];
 			$this->logger->info( __METHOD__ . ": LB for '$masterName' set to pos $pos\n" );
 			$lb->waitFor( $pos );
