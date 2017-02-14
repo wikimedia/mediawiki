@@ -28,7 +28,7 @@
 		this.name = name;
 		this.groupModel = groupModel;
 
-		this.label = config.label || this.name;
+		this.label = config.label ? config.label : this.name;
 		this.description = config.description;
 		this.selected = !!config.selected;
 
