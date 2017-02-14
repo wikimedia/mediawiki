@@ -34,9 +34,10 @@ class EnhancedChangesList extends ChangesList {
 
 	/**
 	 * @param IContextSource|Skin $obj
+	 * @param array $filterGroups Array of ChangesListFilterGroup objects (currently optional)
 	 * @throws MWException
 	 */
-	public function __construct( $obj ) {
+	public function __construct( $obj, array $filterGroups = [] ) {
 		if ( $obj instanceof Skin ) {
 			// @todo: deprecate constructing with Skin
 			$context = $obj->getContext();
@@ -49,7 +50,7 @@ class EnhancedChangesList extends ChangesList {
 			$context = $obj;
 		}
 
-		parent::__construct( $context );
+		parent::__construct( $context, $filterGroups );
 
 		// message is set by the parent ChangesList class
 		$this->cacheEntryFactory = new RCCacheEntryFactory(

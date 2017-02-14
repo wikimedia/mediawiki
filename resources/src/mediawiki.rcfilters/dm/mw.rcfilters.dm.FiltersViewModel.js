@@ -151,7 +151,7 @@
 	 * Set filters and preserve a group relationship based on
 	 * the definition given by an object
 	 *
-	 * @param {Object} filters Filter group definition
+	 * @param {Array} filters Filter group definition
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.initializeFilters = function ( filters ) {
 		var i, filterItem, selectedFilterNames,
@@ -175,7 +175,9 @@
 		this.clearItems();
 		this.groups = {};
 
-		$.each( filters, function ( group, data ) {
+		$.each( filters, function ( _, data ) {
+			var group = data.name;
+
 			if ( !model.groups[ group ] ) {
 				model.groups[ group ] = new mw.rcfilters.dm.FilterGroup( group, {
 					type: data.type,
@@ -187,6 +189,10 @@
 
 			selectedFilterNames = [];
 			for ( i = 0; i < data.filters.length; i++ ) {
+				data.filters[ i ].subset = $.map( data.filters[ i ].subset, function ( el ) {
+					return el.filter;
+				} );
+
 				filterItem = new mw.rcfilters.dm.FilterItem( data.filters[ i ].name, model.groups[ group ], {
 					group: group,
 					label: data.filters[ i ].label,
