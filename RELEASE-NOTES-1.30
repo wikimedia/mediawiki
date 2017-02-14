@@ -9,7 +9,8 @@ production.
 * …
 
 === New features in 1.30 ===
-* …
+* Added 'ChangeTagsAllowedAdd' hook, enabling extensions to allow software-
+  specific tags to be added by users.
 
 === External library changes in 1.30 ===
 

@@ -1070,6 +1070,13 @@ $params: tag params
 $rc: RecentChange being tagged when the tagging accompanies the action or null
 $user: User who performed the tagging when the tagging is subsequent to the action or null
 
+'ChangeTagsAllowedAdd': Called when checking if a user can add tags to a change.
+&$allowedTags: List of all the tags the user is allowed to add. Any tags the
+  user wants to add ($addTags) that are not in this array will cause it to fail.
+  You may add or remove tags to this array as required.
+$addTags: List of tags user intends to add.
+$user: User who is adding the tags.
+
 'ChangeUserGroups': Called before user groups are changed.
 $performer: The User who will perform the change
 $user: The User whose groups will be changed
