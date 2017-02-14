@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.19.1
+ * OOjs UI v0.19.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-02-08T00:38:31Z
+ * Date: 2017-02-14T22:47:20Z
  */
 ( function ( OO ) {
 
@@ -3123,9 +3123,9 @@ OO.ui.OutlineOptionWidget.prototype.getLevel = function () {
 OO.ui.OutlineOptionWidget.prototype.setPressed = function ( state ) {
 	OO.ui.OutlineOptionWidget.parent.prototype.setPressed.call( this, state );
 	if ( this.pressed ) {
-		this.setFlags( 'progressive' );
+		this.setFlags( { progressive: true } );
 	} else if ( !this.selected ) {
-		this.clearFlags();
+		this.setFlags( { progressive: false } );
 	}
 	return this;
 };
@@ -3164,9 +3164,9 @@ OO.ui.OutlineOptionWidget.prototype.setRemovable = function ( removable ) {
 OO.ui.OutlineOptionWidget.prototype.setSelected = function ( state ) {
 	OO.ui.OutlineOptionWidget.parent.prototype.setSelected.call( this, state );
 	if ( this.selected ) {
-		this.setFlags( 'progressive' );
+		this.setFlags( { progressive: true } );
 	} else {
-		this.clearFlags();
+		this.setFlags( { progressive: false } );
 	}
 	return this;
 };
@@ -3757,6 +3757,10 @@ OO.mixinClass( OO.ui.CapsuleMultiselectWidget, OO.ui.mixin.TabIndexedElement );
 OO.mixinClass( OO.ui.CapsuleMultiselectWidget, OO.ui.mixin.IndicatorElement );
 OO.mixinClass( OO.ui.CapsuleMultiselectWidget, OO.ui.mixin.IconElement );
 
+/* Static Properties */
+
+OO.ui.CapsuleMultiselectWidget.static.supportsSimpleLabel = true;
+
 /* Events */
 
 /**
@@ -3790,6 +3794,26 @@ OO.ui.CapsuleMultiselectWidget.prototype.createItemWidget = function ( data, lab
 		return null;
 	}
 	return new OO.ui.CapsuleItemWidget( { data: data, label: label } );
+};
+
+/**
+ * Get the widget's input's id, or generate one, if it has an input.
+ *
+ * @return {string}
+ */
+OO.ui.CapsuleMultiselectWidget.prototype.getInputId = function () {
+	var id;
+	if ( !this.$input ) {
+		return false;
+	}
+
+	id = this.$input.attr( 'id' );
+	if ( id === undefined ) {
+		id = OO.ui.generateElementId();
+		this.$input.attr( 'id', id );
+	}
+
+	return id;
 };
 
 /**

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.19.1
+ * OOjs UI v0.19.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-02-08T00:38:31Z
+ * Date: 2017-02-14T22:47:20Z
  */
 ( function ( OO ) {
 
@@ -2399,7 +2399,6 @@ OO.ui.Dialog = function OoUiDialog( config ) {
 	// Events
 	this.actions.connect( this, {
 		click: 'onActionClick',
-		resize: 'onActionResize',
 		change: 'onActionsChange'
 	} );
 
@@ -2491,16 +2490,6 @@ OO.ui.Dialog.prototype.onDialogKeyDown = function ( e ) {
 			e.stopPropagation();
 		}
 	}
-};
-
-/**
- * Handle action resized events.
- *
- * @private
- * @param {OO.ui.ActionWidget} action Action that was resized
- */
-OO.ui.Dialog.prototype.onActionResize = function () {
-	// Override in subclass
 };
 
 /**
@@ -2798,14 +2787,6 @@ OO.ui.MessageDialog.prototype.setManager = function ( manager ) {
 	} );
 
 	return this;
-};
-
-/**
- * @inheritdoc
- */
-OO.ui.MessageDialog.prototype.onActionResize = function ( action ) {
-	this.fitActions();
-	return OO.ui.MessageDialog.parent.prototype.onActionResize.call( this, action );
 };
 
 /**
@@ -3144,16 +3125,6 @@ OO.ui.ProcessDialog.prototype.onDismissErrorButtonClick = function () {
 OO.ui.ProcessDialog.prototype.onRetryButtonClick = function () {
 	this.hideErrors();
 	this.executeAction( this.currentAction );
-};
-
-/**
- * @inheritdoc
- */
-OO.ui.ProcessDialog.prototype.onActionResize = function ( action ) {
-	if ( this.actions.isSpecial( action ) ) {
-		this.fitLabel();
-	}
-	return OO.ui.ProcessDialog.parent.prototype.onActionResize.call( this, action );
 };
 
 /**
