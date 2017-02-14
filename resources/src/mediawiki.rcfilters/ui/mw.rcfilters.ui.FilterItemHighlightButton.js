@@ -16,18 +16,23 @@
 
 		// Parent
 		mw.rcfilters.ui.FilterItemHighlightButton.parent.call( this, $.extend( {}, config, {
-			icon: 'flag',
+			// icon: 'flag',
 			indicator: 'down',
 			popup: {
 				anchor: false,
 				padded: true,
-				width: '415px',
+				align: 'backwards',
+				width: 415,
 				$content: this.colorPickerWidget.$element
 			}
 		} ) );
 
 		this.controller = controller;
 		this.model = model;
+
+		this.$label
+			.addClass( 'mw-rcfilters-ui-filterItemHighlightButton-circle' )
+			.addClass( 'mw-rcfilters-ui-filterItemHighlightButton-circle-color-none' );
 
 		// Event
 		this.model.connect( this, { update: 'onModelUpdate' } );
@@ -47,7 +52,19 @@
 	 * Respond to item model update event
 	 */
 	mw.rcfilters.ui.FilterItemHighlightButton.prototype.onModelUpdate = function () {
-		this.$button.css( 'background-color', this.model.getHighlightColor() || '' );
+		var currentColor = this.model.getHighlightColor() || 'none',
+			// TODO: We should do this better. Maybe the model can give us available
+			// colors?
+			colors = [ 'none', 'blue', 'green', 'yellow', 'orange', 'red' ],
+			widget = this;
+
+		colors.forEach( function ( c ) {
+			widget.$label
+				.toggleClass(
+					'mw-rcfilters-ui-filterItemHighlightButton-circle-color-' + c,
+					c === currentColor
+				);
+		} );
 	};
 
 	mw.rcfilters.ui.FilterItemHighlightButton.prototype.onChooseColor = function () {

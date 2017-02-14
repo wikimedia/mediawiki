@@ -24,22 +24,32 @@
 		this.controller = controller;
 		this.model = model;
 
+		this.currentSelection = '';
 		this.buttonSelect = new OO.ui.ButtonSelectWidget( {
 			items: colors.map( function ( color ) {
 				return new OO.ui.ButtonOptionWidget( {
+					icon: color === 'none' ? 'check' : null,
 					data: color,
-					label: color
+					// label: color,
+					classes: [ 'mw-rcfilters-ui-highlightColorPickerWidget-buttonSelect-color-' + color ],
+					framed: false
 				} );
-			} )
+			} ),
+			classes: 'mw-rcfilters-ui-highlightColorPickerWidget-buttonSelect'
 		} );
+		this.selectColor( 'none' );
 
 		// Event
 		this.model.connect( this, { update: 'onModelUpdate' } );
 		this.buttonSelect.connect( this, { choose: 'onChooseColor' } );
 
 		this.$element
-			.addClass( 'mw-rcfilters-ui-HighlightColorPickerWidget' )
-			.append( this.buttonSelect.$element );
+			.addClass( 'mw-rcfilters-ui-highlightColorPickerWidget' )
+			.append(
+				this.$label
+					.addClass( 'mw-rcfilters-ui-highlightColorPickerWidget-label' ),
+				this.buttonSelect.$element
+			);
 	};
 
 	/* Initialization */
@@ -62,11 +72,25 @@
 	 * Respond to item model update event
 	 */
 	mw.rcfilters.ui.HighlightColorPickerWidget.prototype.onModelUpdate = function () {
-		var color = this.model.getHighlightColor();
-		// todo: update which icon is selected
-		this.buttonSelect.getItems().forEach( function ( button ) {
-			button.setActive( button.data === color );
-		} );
+		this.selectColor( this.model.getHighlightColor() || 'none' );
+	};
+
+	mw.rcfilters.ui.HighlightColorPickerWidget.prototype.selectColor = function ( color ) {
+		var previousItem = this.buttonSelect.getItemFromData( this.currentSelection ),
+			selectedItem = this.buttonSelect.getItemFromData( color );
+
+		if ( this.currentSelection !== color ) {
+			this.currentSelection = color;
+
+			this.buttonSelect.selectItem( selectedItem );
+			if ( previousItem ) {
+				previousItem.setIcon( null );
+			}
+
+			if ( selectedItem ) {
+				selectedItem.setIcon( 'check' );
+			}
+		}
 	};
 
 	mw.rcfilters.ui.HighlightColorPickerWidget.prototype.onChooseColor = function ( button ) {
