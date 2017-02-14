@@ -982,7 +982,9 @@ $rows: The data that will be rendered. May be a ResultWrapper instance or
 $unpatrolled: Whether or not we are showing unpatrolled changes.
 $watched: Whether or not the change is watched by the user.
 
-'ChangesListSpecialPageFilters': Called after building form options on pages
+'ChangesListSpecialPageFilters': DEPRECATED! Use 'ChangesListSpecialPageStructuredFilters'
+instead.
+Called after building form options on pages
 inheriting from ChangesListSpecialPage (in core: RecentChanges,
 RecentChangesLinked and Watchlist).
 $special: ChangesListSpecialPage instance
@@ -993,6 +995,10 @@ $special: ChangesListSpecialPage instance
 'ChangesListSpecialPageQuery': Called when building SQL query on pages
 inheriting from ChangesListSpecialPage (in core: RecentChanges,
 RecentChangesLinked and Watchlist).
+
+Do not use this to implement individual filters.  Instead use ChangesListFilter
+and ChangesListFilterGroup.  If necessary, it can be used to implement custom
+behavior that is not an individual filter.
 $name: name of the special page, e.g. 'Watchlist'
 &$tables: array of tables to be queried
 &$fields: array of columns to select
@@ -1000,6 +1006,15 @@ $name: name of the special page, e.g. 'Watchlist'
 &$query_options: array of options for the database request
 &$join_conds: join conditions for the tables
 $opts: FormOptions for this request
+
+'ChangesListSpecialPageStructuredFilters': Called to allow extensions to register
+filters for pages inheriting from ChangesListSpecialPage (in core: RecentChanges,
+RecentChangesLinked, and Watchlist).  Generally, you will want to construct
+new ChangesListFilter objects.  You can then either add them to existing
+ChangesListFilterGroup objects (accessed through $special->getFilterGroup), or
+create your own.  If you create new groups, you must register them with
+$special->registerFilterGroup.
+$special: ChangesListSpecialPage instance
 
 'ChangeTagAfterDelete': Called after a change tag has been deleted (that is,
 removed from all revisions and log entries to which it was applied). This gives
@@ -1093,7 +1108,7 @@ $title: the Title in question
 a given content model name, but no entry for that model exists in
 $wgContentHandlers.
 Note: if your extension implements additional models via this hook, please
-use GetContentModels hook to make them known to core. 
+use GetContentModels hook to make them known to core.
 $modeName: the requested content model name
 &$handler: set this to a ContentHandler object, if desired.
 
@@ -3095,7 +3110,7 @@ use this to change some selection criteria or substitute a different title.
 &$title: If the hook returns false, a Title object to use instead of the
   result from the normal query
 
-'SpecialRecentChangesFilters': DEPRECATED! Use ChangesListSpecialPageFilters
+'SpecialRecentChangesFilters': DEPRECATED! Use ChangesListSpecialPageStructuredFilters
 instead.
 Called after building form options at RecentChanges.
 $special: the special page object
@@ -3108,8 +3123,8 @@ SpecialRecentChanges.
 &$extraOpts: array of added items, to which can be added
 $opts: FormOptions for this request
 
-'SpecialRecentChangesQuery': DEPRECATED! Use ChangesListSpecialPageQuery
-instead.
+'SpecialRecentChangesQuery': DEPRECATED! Use ChangesListSpecialPageStructuredFilters
+or ChangesListSpecialPageQuery instead.
 Called when building SQL query for SpecialRecentChanges and
 SpecialRecentChangesLinked.
 &$conds: array of WHERE conditionals for query
@@ -3211,7 +3226,7 @@ Special:Upload.
 $wgVersion: Current $wgVersion for you to use
 &$versionUrl: Raw url to link to (eg: release notes)
 
-'SpecialWatchlistFilters': DEPRECATED! Use ChangesListSpecialPageFilters
+'SpecialWatchlistFilters': DEPRECATED! Use ChangesListSpecialPageStructuredFilters
 instead.
 Called after building form options at Watchlist.
 $special: the special page object
@@ -3224,7 +3239,8 @@ SpecialWatchlist. Allows extensions to register custom values they have
 inserted to rc_type so they can be returned as part of the watchlist.
 &$nonRevisionTypes: array of values in the rc_type field of recentchanges table
 
-'SpecialWatchlistQuery': DEPRECATED! Use ChangesListSpecialPageQuery instead.
+'SpecialWatchlistQuery': DEPRECATED! Use ChangesListSpecialPageStructuredFilters
+or ChangesListSpecialPageQuery instead.
 Called when building sql query for SpecialWatchlist.
 &$conds: array of WHERE conditionals for query
 &$tables: array of tables to be queried
