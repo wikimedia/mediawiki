@@ -52,6 +52,8 @@ production.
   This might affect some forms that used them and only worked because the
   attributes were not actually being set.
 * Expiry times can now be specified when users are added to user groups.
+* Added 'ChangeTagsAllowedAdd' hook, enabling extensions to allow software-
+  specific tags to be added by users.
 
 === External library changes in 1.29 ===
 
