@@ -2,8 +2,8 @@
 	QUnit.module( 'mediawiki.rcfilters - FiltersViewModel' );
 
 	QUnit.test( 'Setting up filters', function ( assert ) {
-		var definition = {
-				group1: {
+		var definition = [ {
+					name: 'group1',
 					title: 'Group 1',
 					type: 'send_unselected_if_any',
 					filters: [
@@ -18,8 +18,8 @@
 							description: 'Description of Filter 2 in Group 1'
 						}
 					]
-				},
-				group2: {
+				}, {
+					name: 'group2',
 					title: 'Group 2',
 					type: 'send_unselected_if_any',
 					filters: [
@@ -34,8 +34,8 @@
 							description: 'Description of Filter 2 in Group 2'
 						}
 					]
-				},
-				group3: {
+				}, {
+					name: 'group3',
 					title: 'Group 3',
 					type: 'string_options',
 					filters: [
@@ -51,7 +51,7 @@
 						}
 					]
 				}
-			},
+			],
 			model = new mw.rcfilters.dm.FiltersViewModel();
 
 		model.initializeFilters( definition );
@@ -100,8 +100,8 @@
 
 	QUnit.test( 'Finding matching filters', function ( assert ) {
 		var matches,
-			definition = {
-				group1: {
+			definition = [ {
+					name: 'group1',
 					title: 'Group 1 title',
 					type: 'send_unselected_if_any',
 					filters: [
@@ -116,8 +116,8 @@
 							description: 'Description of Filter 2 in Group 1'
 						}
 					]
-				},
-				group2: {
+				}, {
+					name: 'group2',
 					title: 'Group 2 title',
 					type: 'send_unselected_if_any',
 					filters: [
@@ -133,7 +133,7 @@
 						}
 					]
 				}
-			},
+			],
 			testCases = [
 				{
 					query: 'group',
@@ -190,8 +190,8 @@
 	} );
 
 	QUnit.test( 'getParametersFromFilters', function ( assert ) {
-		var definition = {
-				group1: {
+		var definition = [ {
+					name: 'group1',
 					title: 'Group 1',
 					type: 'send_unselected_if_any',
 					filters: [
@@ -211,8 +211,8 @@
 							description: 'Description of Filter 3 in Group 1'
 						}
 					]
-				},
-				group2: {
+				}, {
+					name: 'group2',
 					title: 'Group 2',
 					type: 'send_unselected_if_any',
 					filters: [
@@ -232,8 +232,8 @@
 							description: 'Description of Filter 3 in Group 2'
 						}
 					]
-				},
-				group3: {
+				}, {
+					name: 'group3',
 					title: 'Group 3',
 					type: 'string_options',
 					separator: ',',
@@ -255,7 +255,7 @@
 						}
 					]
 				}
-			},
+			],
 			model = new mw.rcfilters.dm.FiltersViewModel();
 
 		model.initializeFilters( definition );
@@ -425,8 +425,8 @@
 	} );
 
 	QUnit.test( 'getFiltersFromParameters', function ( assert ) {
-		var definition = {
-				group1: {
+		var definition = [ {
+					name: 'group1',
 					title: 'Group 1',
 					type: 'send_unselected_if_any',
 					filters: [
@@ -448,8 +448,8 @@
 							default: true
 						}
 					]
-				},
-				group2: {
+				}, {
+					name:  'group2',
 					title: 'Group 2',
 					type: 'send_unselected_if_any',
 					filters: [
@@ -470,8 +470,9 @@
 							description: 'Description of Filter 3 in Group 2'
 						}
 					]
-				},
-				group3: {
+				}, {
+
+					name: 'group3',
 					title: 'Group 3',
 					type: 'string_options',
 					separator: ',',
@@ -494,7 +495,7 @@
 						}
 					]
 				}
-			},
+			],
 			defaultFilterRepresentation = {
 				// Group 1 and 2, "send_unselected_if_any", the values of the filters are "flipped" from the values of the parameters
 				hidefilter1: false,
@@ -677,8 +678,8 @@
 	} );
 
 	QUnit.test( 'sanitizeStringOptionGroup', function ( assert ) {
-		var definition = {
-				group1: {
+		var definition = [ {
+					name: 'group1',
 					title: 'Group 1',
 					type: 'string_options',
 					filters: [
@@ -699,7 +700,7 @@
 						}
 					]
 				}
-			},
+			],
 			model = new mw.rcfilters.dm.FiltersViewModel();
 
 		model.initializeFilters( definition );
@@ -724,8 +725,8 @@
 	} );
 
 	QUnit.test( 'setFiltersToDefaults', function ( assert ) {
-		var definition = {
-				group1: {
+		var definition = [ {
+					name: 'group1',
 					title: 'Group 1',
 					type: 'send_unselected_if_any',
 					filters: [
@@ -747,8 +748,8 @@
 							default: true
 						}
 					]
-				},
-				group2: {
+				}, {
+					name: 'group2',
 					title: 'Group 2',
 					type: 'send_unselected_if_any',
 					filters: [
@@ -770,7 +771,7 @@
 						}
 					]
 				}
-			},
+			],
 			defaultFilterRepresentation = {
 				// Group 1 and 2, "send_unselected_if_any", the values of the filters are "flipped" from the values of the parameters
 				hidefilter1: false,
@@ -812,8 +813,8 @@
 	} );
 
 	QUnit.test( 'Filter interaction: subsets', function ( assert ) {
-		var definition = {
-				group1: {
+		var definition = [ {
+					name: 'group1',
 					title: 'Group 1',
 					type: 'string_options',
 					filters: [
@@ -834,8 +835,8 @@
 							description: 'Description of Filter 3 in Group 1'
 						}
 					]
-				},
-				group2: {
+				}, {
+					name: 'group2',
 					title: 'Group 2',
 					type: 'send_unselected_if_any',
 					filters: [
@@ -857,7 +858,7 @@
 						}
 					]
 				}
-			},
+			],
 			baseFullState = {
 				filter1: { selected: false, conflicted: false, included: false },
 				filter2: { selected: false, conflicted: false, included: false },
@@ -930,8 +931,8 @@
 	} );
 
 	QUnit.test( 'Filter interaction: full coverage', function ( assert ) {
-		var definition = {
-				group1: {
+		var definition = [ {
+					name: 'group1',
 					title: 'Group 1',
 					type: 'string_options',
 					fullCoverage: false,
@@ -940,8 +941,8 @@
 						{ name: 'filter2' },
 						{ name: 'filter3' }
 					]
-				},
-				group2: {
+				}, {
+					name: 'group2',
 					title: 'Group 2',
 					type: 'send_unselected_if_any',
 					fullCoverage: true,
@@ -951,7 +952,7 @@
 						{ name: 'filter6' }
 					]
 				}
-			},
+			],
 			model = new mw.rcfilters.dm.FiltersViewModel(),
 			isCapsuleItemMuted = function ( filterName ) {
 				var itemModel = model.getItemByName( filterName ),
@@ -1053,8 +1054,8 @@
 	} );
 
 	QUnit.test( 'Filter interaction: conflicts', function ( assert ) {
-		var definition = {
-				group1: {
+		var definition = [ {
+					name: 'group1',
 					title: 'Group 1',
 					type: 'string_options',
 					filters: [
@@ -1070,8 +1071,8 @@
 							name: 'filter3'
 						}
 					]
-				},
-				group2: {
+				}, {
+					name: 'group2',
 					title: 'Group 2',
 					type: 'send_unselected_if_any',
 					filters: [
@@ -1087,7 +1088,7 @@
 						}
 					]
 				}
-			},
+			],
 			baseFullState = {
 				filter1: { selected: false, conflicted: false, included: false },
 				filter2: { selected: false, conflicted: false, included: false },
@@ -1159,8 +1160,8 @@
 	} );
 
 	QUnit.test( 'Filter highlights', function ( assert ) {
-		var definition = {
-				group1: {
+		var definition = [ {
+					name: 'group1',
 					title: 'Group 1',
 					type: 'string_options',
 					filters: [
@@ -1172,7 +1173,7 @@
 						{ name: 'filter6' }
 					]
 				}
-			},
+			],
 			model = new mw.rcfilters.dm.FiltersViewModel();
 
 		model.initializeFilters( definition );
