@@ -17,6 +17,8 @@ production.
 * (T37247) Output from Parser::parse() will now be wrapped in a div with
   class="mw-parser-output" by default. This may be changed or disabled using
   ParserOptions::setWrapOutputClass().
+* Added 'ChangeTagsAllowedAdd' hook, enabling extensions to allow software-
+  specific tags to be added by users.
 
 === External library changes in 1.30 ===
 
