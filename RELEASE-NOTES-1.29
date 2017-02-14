@@ -70,6 +70,8 @@ production.
   This will be removed later and OOjs UI will become the only option.
   To make testing easier, users can also force either mode by adding
   &ooui=true or &ooui=false to the action=edit URL.
+* Added 'ChangeTagsAllowedAdd' hook, enabling extensions to allow software-
+  specific tags to be added by users.
 
 === External library changes in 1.29 ===
 

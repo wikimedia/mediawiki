@@ -404,8 +404,8 @@ class ChangeTags {
 		}
 
 		// to be applied, a tag has to be explicitly defined
-		// @todo Allow extensions to define tags that can be applied by users...
 		$allowedTags = self::listExplicitlyDefinedTags();
+		Hooks::run( 'ChangeTagsAllowedAdd', [ &$allowedTags, $tags, $user ] );
 		$disallowedTags = array_diff( $tags, $allowedTags );
 		if ( $disallowedTags ) {
 			return self::restrictedTagError( 'tags-apply-not-allowed-one',
