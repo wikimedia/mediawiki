@@ -24,13 +24,18 @@
 		this.controller = controller;
 		this.model = model;
 
+		this.currentSelection = 'none';
 		this.buttonSelect = new OO.ui.ButtonSelectWidget( {
 			items: colors.map( function ( color ) {
 				return new OO.ui.ButtonOptionWidget( {
+					icon: color === 'none' ? 'check' : null,
 					data: color,
-					label: color
+					// label: color,
+					classes: [ 'mw-rcfilters-ui-HighlightColorPickerWidget-buttonSelect-color-' + color ],
+					framed: false
 				} );
-			} )
+			} ),
+			classes: 'mw-rcfilters-ui-HighlightColorPickerWidget-buttonSelect'
 		} );
 
 		// Event
@@ -39,7 +44,7 @@
 
 		this.$element
 			.addClass( 'mw-rcfilters-ui-HighlightColorPickerWidget' )
-			.append( this.buttonSelect.$element );
+			.append( this.$label, this.buttonSelect.$element );
 	};
 
 	/* Initialization */
@@ -62,11 +67,25 @@
 	 * Respond to item model update event
 	 */
 	mw.rcfilters.ui.HighlightColorPickerWidget.prototype.onModelUpdate = function () {
-		var color = this.model.getColor();
-		// todo: update which icon is selected
-		this.buttonSelect.getItems().forEach( function ( button ) {
-			button.setActive( button.data === color );
-		} );
+		var color = this.model.getColor(),
+			previousItem = this.buttonSelect.getItemFromData( this.currentSelection ),
+			selectedItem = this.buttonSelect.getItemFromData( color );
+
+		if ( this.currentSelection !== color ) {
+			this.buttonSelect.selectItem( color );
+			this.currentSelection = color;
+
+			if ( previousItem ) {
+				previousItem.setIcon( null );
+			}
+
+			if ( selectedItem ) {
+				selectedItem.setIcon( 'check' );
+			}
+		}
+		// this.buttonSelect.getItems().forEach( function ( button ) {
+		// 	button.setActive( button.data === color );
+		// } );
 	};
 
 	mw.rcfilters.ui.HighlightColorPickerWidget.prototype.onChooseColor = function ( button ) {

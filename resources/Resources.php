@@ -1773,6 +1773,9 @@ return [
 			'resources/src/mediawiki.rcfilters/mw.rcfilters.init.js',
 		],
 		'styles' => [
+			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.mixins.less',
+			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.variables.less',
+			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.Overlay.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.FilterItemWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.CapsuleItemWidget.less',
@@ -1781,6 +1784,8 @@ return [
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.FilterWrapperWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.FilterCapsuleMultiselectWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.ChangesListWrapperWidget.less',
+			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.HighlightColorPickerWidget.less',
+			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.FilterItemHighlightButton.less',
 		],
 		'messages' => [
 			'rcfilters-activefilters',

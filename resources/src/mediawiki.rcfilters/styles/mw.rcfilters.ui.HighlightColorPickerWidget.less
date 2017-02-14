@@ -1,0 +1,52 @@
+@import "mw.rcfilters.mixins";
+
+.mw-rcfilters-ui-HighlightColorPickerWidget {
+
+	&-buttonSelect {
+		&-color {
+			&-none {
+				.mw-rcfilters-mixin-circle( transparent );
+			}
+			&-yellow {
+				.mw-rcfilters-mixin-circle-highlight( 'yellow' );
+
+				&.oo-ui-buttonOptionWidget.oo-ui-buttonElement-active,
+				&.oo-ui-buttonOptionWidget.oo-ui-optionWidget-selected {
+					background-color: @highlight-yellow;
+				}
+			}
+			&-blue {
+				.mw-rcfilters-mixin-circle-highlight( 'blue' );
+
+				&.oo-ui-buttonOptionWidget.oo-ui-buttonElement-active,
+				&.oo-ui-buttonOptionWidget.oo-ui-optionWidget-selected {
+					background-color: @highlight-blue;
+				}
+			}
+			&-green {
+				.mw-rcfilters-mixin-circle-highlight( 'green' );
+
+				&.oo-ui-buttonOptionWidget.oo-ui-buttonElement-active,
+				&.oo-ui-buttonOptionWidget.oo-ui-optionWidget-selected {
+					background-color: @highlight-green;
+				}
+			}
+			&-orange {
+				.mw-rcfilters-mixin-circle-highlight( 'orange' );
+
+				&.oo-ui-buttonOptionWidget.oo-ui-buttonElement-active,
+				&.oo-ui-buttonOptionWidget.oo-ui-optionWidget-selected {
+					background-color: @highlight-orange;
+				}
+			}
+			&-red {
+				.mw-rcfilters-mixin-circle-highlight( 'red' );
+
+				&.oo-ui-buttonOptionWidget.oo-ui-buttonElement-active,
+				&.oo-ui-buttonOptionWidget.oo-ui-optionWidget-selected {
+					background-color: @highlight-red;
+				}
+			}
+		}
+	}
+}

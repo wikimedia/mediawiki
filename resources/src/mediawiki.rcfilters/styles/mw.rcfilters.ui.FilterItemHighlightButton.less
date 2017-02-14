@@ -1,0 +1,33 @@
+@import "mw.rcfilters.mixins";
+
+.mw-rcfilters-ui-filterItemHighlightButton {
+
+	&.oo-ui-buttonElement-framed > .oo-ui-buttonElement-button {
+		padding: 0;
+	}
+
+	&-circle {
+		display: inline-block;
+
+		&-color {
+			&-none {
+				.mw-rcfilters-mixin-circle-highlight( 'none', 0.5em, 0.1em );
+			}
+			&-yellow {
+				.mw-rcfilters-mixin-circle-highlight( 'yellow', 0.5em, 0.1em );
+			}
+			&-blue {
+				.mw-rcfilters-mixin-circle-highlight( 'blue', 0.5em, 0.1em );
+			}
+			&-green {
+				.mw-rcfilters-mixin-circle-highlight( 'green', 0.5em, 0.1em );
+			}
+			&-orange {
+				.mw-rcfilters-mixin-circle-highlight( 'orange', 0.5em, 0.1em );
+			}
+			&-red {
+				.mw-rcfilters-mixin-circle-highlight( 'red', 0.5em, 0.1em );
+			}
+		}
+	}
+}

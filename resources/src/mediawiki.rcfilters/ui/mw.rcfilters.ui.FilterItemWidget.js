@@ -55,8 +55,22 @@
 
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterItemWidget' )
-			.append( layout.$element )
-			.append( this.highlightButton.$element );
+			.append(
+				$( '<div>' )
+					.addClass( 'mw-rcfilters-ui-table' )
+					.append(
+						$( '<div>' )
+							.addClass( 'mw-rcfilters-ui-row' )
+							.append(
+								$( '<div>' )
+									.addClass( 'mw-rcfilters-ui-cell mw-rcfilters-ui-filterItemWidget-filterCheckbox' )
+									.append( layout.$element ),
+								$( '<div>' )
+									.addClass( 'mw-rcfilters-ui-cell mw-rcfilters-ui-filterItemWidget-highlightButton' )
+									.append( this.highlightButton.$element )
+							)
+					)
+			);
 	};
 
 	/* Initialization */
