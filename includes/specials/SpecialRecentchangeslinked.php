@@ -46,7 +46,12 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$opts['target'] = $par;
 	}
 
-	public function doMainQuery( $conds, $opts ) {
+	/**
+	 * @inheritdoc
+	 */
+	protected function doMainQuery( $tables, $select, $conds, $query_options,
+		$join_conds, FormOptions $opts ) {
+
 		$target = $opts['target'];
 		$showlinkedto = $opts['showlinkedto'];
 		$limit = $opts['limit'];
@@ -79,10 +84,8 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$ns = $title->getNamespace();
 		$dbkey = $title->getDBkey();
 
-		$tables = [ 'recentchanges' ];
-		$select = RecentChange::selectFields();
-		$join_conds = [];
-		$query_options = [];
+		$tables[] = 'recentchanges';
+		$select = array_merge( RecentChange::selectFields(), $select );
 
 		// left join with watchlist table to highlight watched rows
 		$uid = $this->getUser()->getId();
