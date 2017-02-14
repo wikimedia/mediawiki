@@ -53,7 +53,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		}
 
 		// 10 seconds server-side caching max
-		$this->getOutput()->setCdnMaxage( 10 );
+		$out = $this->getOutput();
+		$out->setCdnMaxage( 10 );
 		// Check if the client has a cached version
 		$lastmod = $this->checkLastModified();
 		if ( $lastmod === false ) {
@@ -65,6 +66,65 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			true
 		);
 		parent::execute( $subpage );
+
+		if ( $this->isStructuredFilterUiEnabled() ) {
+			$jsData = $this->getStructuredFilterJsData();
+
+			$messages = [];
+			foreach ( $jsData['messageKeys'] as $key ){
+				$messages[$key] = $this->msg( $key )->plain();
+			}
+
+			$out->addHTML(
+				ResourceLoader::makeInlineScript(
+					Xml::encodeJsCall( 'mw.messages.set', [
+						$messages
+					] )
+				)
+			);
+
+			$out->addJsConfigVars( 'wgStructuredChangeFilters', $jsData['groups'] );
+		}
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	protected function registerFiltersFromDefinitions( array $definition ) {
+		foreach ( $definition as $groupName => &$groupDefinition ) {
+			foreach ( $groupDefinition['filters'] as &$filterDefinition ) {
+				if ( isset( $filterDefinition['showHideSuffix'] ) ) {
+					$filterDefinition['showHide'] = 'rc' . $filterDefinition['showHideSuffix'];
+				}
+			}
+		}
+
+		parent::registerFiltersFromDefinitions( $definition );
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	protected function registerFilters() {
+		parent::registerFilters();
+
+		$user = $this->getUser();
+
+		$significance = $this->getFilterGroup( 'significance' );
+		$hideMinor = $significance->getFilter( 'hideminor' );
+		$hideMinor->setDefault( $user->getBoolOption( 'hideminor' ) );
+
+		$automated = $this->getFilterGroup( 'automated' );
+		$hideBots = $automated->getFilter( 'hidebots' );
+		$hideBots->setDefault( true );
+
+		$reviewStatus = $this->getFilterGroup( 'reviewStatus' );
+		$hidePatrolled = $reviewStatus->getFilter( 'hidepatrolled' );
+		$hidePatrolled->setDefault( $user->getBoolOption( 'hidepatrolled' ) );
+
+		$changeType = $this->getFilterGroup( 'changeType' );
+		$hideCategorization = $changeType->getFilter( 'hidecategorization' );
+		$hideCategorization->setDefault( $user->getBoolOption( 'hidecategorization' ) );
 	}
 
 	/**
@@ -80,19 +140,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$opts->add( 'limit', $user->getIntOption( 'rclimit' ) );
 		$opts->add( 'from', '' );
 
-		$opts->add( 'hideminor', $user->getBoolOption( 'hideminor' ) );
-		$opts->add( 'hidebots', true );
-		$opts->add( 'hideanons', false );
-		$opts->add( 'hideliu', false );
-		$opts->add( 'hidepatrolled', $user->getBoolOption( 'hidepatrolled' ) );
-		$opts->add( 'hidemyself', false );
-		$opts->add( 'hidecategorization', $user->getBoolOption( 'hidecategorization' ) );
-
 		$opts->add( 'categories', '' );
 		$opts->add( 'categories_any', false );
 		$opts->add( 'tagfilter', '' );
-
-		$opts->add( 'userExpLevel', 'all' );
 
 		return $opts;
 	}
@@ -118,36 +168,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @param FormOptions $opts
 	 */
 	public function parseParameters( $par, FormOptions $opts ) {
+		parent::parseParameters( $par, $opts );
+
 		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
 		foreach ( $bits as $bit ) {
-			if ( 'hidebots' === $bit ) {
-				$opts['hidebots'] = true;
-			}
-			if ( 'bots' === $bit ) {
-				$opts['hidebots'] = false;
-			}
-			if ( 'hideminor' === $bit ) {
-				$opts['hideminor'] = true;
-			}
-			if ( 'minor' === $bit ) {
-				$opts['hideminor'] = false;
-			}
-			if ( 'hideliu' === $bit ) {
-				$opts['hideliu'] = true;
-			}
-			if ( 'hidepatrolled' === $bit ) {
-				$opts['hidepatrolled'] = true;
-			}
-			if ( 'hideanons' === $bit ) {
-				$opts['hideanons'] = true;
-			}
-			if ( 'hidemyself' === $bit ) {
-				$opts['hidemyself'] = true;
-			}
-			if ( 'hidecategorization' === $bit ) {
-				$opts['hidecategorization'] = true;
-			}
-
 			if ( is_numeric( $bit ) ) {
 				$opts['limit'] = $bit;
 			}
@@ -174,14 +198,14 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Return an array of conditions depending of options set in $opts
-	 *
-	 * @param FormOptions $opts
-	 * @return array
+	 * @inheritdoc
 	 */
-	public function buildMainQueryConds( FormOptions $opts ) {
+	protected function buildQuery( &$tables, &$fields, &$conds,
+		&$query_options, &$join_conds, FormOptions $opts ) {
+
 		$dbr = $this->getDB();
-		$conds = parent::buildMainQueryConds( $opts );
+		parent::buildQuery( $tables, $fields, $conds,
+			$query_options, $join_conds, $opts );
 
 		// Calculate cutoff
 		$cutoff_unixtime = time() - ( $opts['days'] * 86400 );
@@ -196,25 +220,17 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		}
 
 		$conds[] = 'rc_timestamp >= ' . $dbr->addQuotes( $cutoff );
-
-		return $conds;
 	}
 
 	/**
-	 * Process the query
-	 *
-	 * @param array $conds
-	 * @param FormOptions $opts
-	 * @return bool|ResultWrapper Result or false (for Recentchangeslinked only)
+	 * @inheritdoc
 	 */
-	public function doMainQuery( $conds, $opts ) {
+	protected function doMainQuery( $tables, $fields, $conds, $query_options, $join_conds, FormOptions $opts ) {
 		$dbr = $this->getDB();
 		$user = $this->getUser();
 
-		$tables = [ 'recentchanges' ];
-		$fields = RecentChange::selectFields();
-		$query_options = [];
-		$join_conds = [];
+		$tables[] = 'recentchanges';
+		$fields = array_merge( RecentChange::selectFields(), $fields );
 
 		// JOIN on watchlist for users
 		if ( $user->getId() && $user->isAllowed( 'viewmywatchlist' ) ) {
@@ -242,8 +258,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$query_options,
 			$opts['tagfilter']
 		);
-
-		$this->filterOnUserExperienceLevel( $tables, $conds, $join_conds, $opts );
 
 		if ( !$this->runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds,
 			$opts )
@@ -331,7 +345,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$dbr = $this->getDB();
 
 		$counter = 1;
-		$list = ChangesList::newFromContext( $this->getContext() );
+		$list = ChangesList::newFromContext( $this->getContext(), $this->filterGroups );
 		$list->initChangesListRows( $rows );
 
 		$userShowHiddenCats = $this->getUser()->getBoolOption( 'showhiddencats' );
@@ -538,13 +552,24 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	/**
+	 * Check whether the structured filter UI is enabled
+	 *
+	 * @return bool
+	 */
+	protected function isStructuredFilterUiEnabled() {
+		return $this->getUser()->getOption(
+			'rcenhancedfilters'
+		);
+	}
+
+	/**
 	 * Add page-specific modules.
 	 */
 	protected function addModules() {
 		parent::addModules();
 		$out = $this->getOutput();
 		$out->addModules( 'mediawiki.special.recentchanges' );
-		if ( $this->getUser()->getOption( 'rcenhancedfilters' ) ) {
+		if ( $this->isStructuredFilterUiEnabled() ) {
 			$out->addModules( 'mediawiki.rcfilters.filters.ui' );
 			$out->addModuleStyles( 'mediawiki.rcfilters.filters.base.styles' );
 		}
@@ -760,49 +785,45 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		}
 		$dl = $lang->pipeList( $dl );
 
-		// show/hide links
-		$filters = [
-			'hideminor' => 'rcshowhideminor',
-			'hidebots' => 'rcshowhidebots',
-			'hideanons' => 'rcshowhideanons',
-			'hideliu' => 'rcshowhideliu',
-			'hidepatrolled' => 'rcshowhidepatr',
-			'hidemyself' => 'rcshowhidemine'
-		];
-
-		if ( $config->get( 'RCWatchCategoryMembership' ) ) {
-			$filters['hidecategorization'] = 'rcshowhidecategorization';
-		}
-
 		$showhide = [ 'show', 'hide' ];
 
-		foreach ( $this->getRenderableCustomFilters( $this->getCustomFilters() ) as $key => $params ) {
-			$filters[$key] = $params['msg'];
-		}
-
-		// Disable some if needed
-		if ( !$user->useRCPatrol() ) {
-			unset( $filters['hidepatrolled'] );
-		}
-
 		$links = [];
-		foreach ( $filters as $key => $msg ) {
-			// The following messages are used here:
-			// rcshowhideminor-show, rcshowhideminor-hide, rcshowhidebots-show, rcshowhidebots-hide,
-			// rcshowhideanons-show, rcshowhideanons-hide, rcshowhideliu-show, rcshowhideliu-hide,
-			// rcshowhidepatr-show, rcshowhidepatr-hide, rcshowhidemine-show, rcshowhidemine-hide,
-			// rcshowhidecategorization-show, rcshowhidecategorization-hide.
-			$linkMessage = $this->msg( $msg . '-' . $showhide[1 - $options[$key]] );
-			// Extensions can define additional filters, but don't need to define the corresponding
-			// messages. If they don't exist, just fall back to 'show' and 'hide'.
-			if ( !$linkMessage->exists() ) {
-				$linkMessage = $this->msg( $showhide[1 - $options[$key]] );
-			}
 
-			$link = $this->makeOptionsLink( $linkMessage->text(),
-				[ $key => 1 - $options[$key] ], $nondefaults );
-			$links[] = "<span class=\"$msg rcshowhideoption\">"
-				. $this->msg( $msg )->rawParams( $link )->escaped() . '</span>';
+		$filterGroups = $this->getFilterGroups();
+
+		$context = $this->getContext();
+		foreach ( $filterGroups as $groupName => $group ) {
+			if ( !$group->isPerGroupRequestParameter() ) {
+				foreach ( $group->getFilters() as $key => $filter ) {
+					if ( $filter->displaysOnUnstructuredUi( $this ) ) {
+						$msg = $filter->getShowHide();
+						$linkMessage = $this->msg( $msg . '-' . $showhide[1 - $options[$key]] );
+						// Extensions can define additional filters, but don't need to define the corresponding
+						// messages. If they don't exist, just fall back to 'show' and 'hide'.
+						if ( !$linkMessage->exists() ) {
+							$linkMessage = $this->msg( $showhide[1 - $options[$key]] );
+						}
+
+						$link = $this->makeOptionsLink( $linkMessage->text(),
+							[ $key => 1 - $options[$key] ], $nondefaults );
+
+						$attribs = [
+							'class' => "$msg rcshowhideoption",
+							'data-filter-name' => $filter->getName(),
+						];
+
+						if ( $filter->isFeatureAvailableOnStructuredUi( $this ) ) {
+							$attribs['data-feature-in-structured-ui'] = true;
+						}
+
+						$links[] = Html::rawElement(
+							'span',
+							$attribs,
+							$this->msg( $msg )->rawParams( $link )->escaped()
+						);
+					}
+				}
+			}
 		}
 
 		// show from this onward link
@@ -831,66 +852,4 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	protected function getCacheTTL() {
 		return 60 * 5;
 	}
-
-	function filterOnUserExperienceLevel( &$tables, &$conds, &$join_conds, $opts ) {
-		global $wgLearnerEdits,
-			$wgExperiencedUserEdits,
-			$wgLearnerMemberSince,
-			$wgExperiencedUserMemberSince;
-
-		$selectedExpLevels = explode( ',', strtolower( $opts['userExpLevel'] ) );
-		// remove values that are not recognized
-		$selectedExpLevels = array_intersect(
-			$selectedExpLevels,
-			[ 'newcomer', 'learner', 'experienced' ]
-		);
-		sort( $selectedExpLevels );
-
-		if ( $selectedExpLevels ) {
-			$tables[] = 'user';
-			$join_conds['user'] = [ 'LEFT JOIN', 'rc_user = user_id' ];
-
-			$now = time();
-			$secondsPerDay = 86400;
-			$learnerCutoff = $now - $wgLearnerMemberSince * $secondsPerDay;
-			$experiencedUserCutoff = $now - $wgExperiencedUserMemberSince * $secondsPerDay;
-
-			$aboveNewcomer = $this->getDB()->makeList(
-				[
-					'user_editcount >= ' . intval( $wgLearnerEdits ),
-					'user_registration <= ' . $this->getDB()->timestamp( $learnerCutoff ),
-				],
-				IDatabase::LIST_AND
-			);
-
-			$aboveLearner = $this->getDB()->makeList(
-				[
-					'user_editcount >= ' . intval( $wgExperiencedUserEdits ),
-					'user_registration <= ' . $this->getDB()->timestamp( $experiencedUserCutoff ),
-				],
-				IDatabase::LIST_AND
-			);
-
-			if ( $selectedExpLevels === [ 'newcomer' ] ) {
-				$conds[] =  "NOT ( $aboveNewcomer )";
-			} elseif ( $selectedExpLevels === [ 'learner' ] ) {
-				$conds[] = $this->getDB()->makeList(
-					[ $aboveNewcomer, "NOT ( $aboveLearner )" ],
-					IDatabase::LIST_AND
-				);
-			} elseif ( $selectedExpLevels === [ 'experienced' ] ) {
-				$conds[] = $aboveLearner;
-			} elseif ( $selectedExpLevels === [ 'learner', 'newcomer' ] ) {
-				$conds[] = "NOT ( $aboveLearner )";
-			} elseif ( $selectedExpLevels === [ 'experienced', 'newcomer' ] ) {
-				$conds[] = $this->getDB()->makeList(
-					[ "NOT ( $aboveNewcomer )", $aboveLearner ],
-					IDatabase::LIST_OR
-				);
-			} elseif ( $selectedExpLevels === [ 'experienced', 'learner' ] ) {
-				$conds[] = $aboveNewcomer;
-			}
-		}
-	}
-
 }

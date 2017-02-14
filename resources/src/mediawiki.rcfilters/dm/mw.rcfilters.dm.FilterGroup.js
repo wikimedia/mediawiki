@@ -23,7 +23,7 @@
 
 		this.name = name;
 		this.type = config.type || 'send_unselected_if_any';
-		this.title = config.title;
+		this.title = mw.msg( config.title );
 		this.separator = config.separator || '|';
 
 		this.active = !!config.active;
