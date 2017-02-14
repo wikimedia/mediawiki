@@ -104,6 +104,56 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
+	 * @inheritdoc
+	 */
+	protected function registerFiltersFromDefinitions( array $definition ) {
+		foreach ( $definition as $groupName => &$groupDefinition ) {
+			foreach ( $groupDefinition['filters'] as &$filterDefinition ) {
+				if ( isset( $filterDefinition['showHideSuffix'] ) ) {
+					$filterDefinition['showHide'] = 'wl' . $filterDefinition['showHideSuffix'];
+				}
+			}
+		}
+
+		parent::registerFiltersFromDefinitions( $definition );
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	protected function registerFilters() {
+		parent::registerFilters();
+
+		$user = $this->getUser();
+
+		$significance = $this->getFilterGroup( 'significance' );
+		$hideMinor = $significance->getFilter( 'hideminor' );
+		$hideMinor->setDefault( $user->getBoolOption( 'watchlisthideminor' ) );
+
+		$automated = $this->getFilterGroup( 'automated' );
+		$hideBots = $automated->getFilter( 'hidebots' );
+		$hideBots->setDefault( $user->getBoolOption( 'watchlisthidebots' ) );
+
+		$registration = $this->getFilterGroup( 'registration' );
+		$hideAnons = $registration->getFilter( 'hideanons' );
+		$hideAnons->setDefault( $user->getBoolOption( 'watchlisthideanons' ) );
+		$hideLiu = $registration->getFilter( 'hideliu' );
+		$hideLiu->setDefault( $user->getBoolOption( 'watchlisthideliu' ) );
+
+		$reviewStatus = $this->getFilterGroup( 'reviewStatus' );
+		$hidePatrolled = $reviewStatus->getFilter( 'hidepatrolled' );
+		$hidePatrolled->setDefault( $user->getBoolOption( 'watchlisthidepatrolled' ) );
+
+		$authorship = $this->getFilterGroup( 'authorship' );
+		$hideMyself = $authorship->getFilter( 'hidemyself' );
+		$hideMyself->setDefault( $user->getBoolOption( 'watchlisthideown' ) );
+
+		$changeType = $this->getFilterGroup( 'changeType' );
+		$hideCategorization = $changeType->getFilter( 'hidecategorization' );
+		$hideCategorization->setDefault( $user->getBoolOption( 'watchlisthidecategorization' ) );
+	}
+
+	/**
 	 * Get a FormOptions object containing the default options
 	 *
 	 * @return FormOptions
@@ -118,14 +168,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			// The user has submitted the form, so we dont need the default values
 			return $opts;
 		}
-
-		$opts->add( 'hideminor', $user->getBoolOption( 'watchlisthideminor' ) );
-		$opts->add( 'hidebots', $user->getBoolOption( 'watchlisthidebots' ) );
-		$opts->add( 'hideanons', $user->getBoolOption( 'watchlisthideanons' ) );
-		$opts->add( 'hideliu', $user->getBoolOption( 'watchlisthideliu' ) );
-		$opts->add( 'hidepatrolled', $user->getBoolOption( 'watchlisthidepatrolled' ) );
-		$opts->add( 'hidemyself', $user->getBoolOption( 'watchlisthideown' ) );
-		$opts->add( 'hidecategorization', $user->getBoolOption( 'watchlisthidecategorization' ) );
 
 		return $opts;
 	}
@@ -180,32 +222,26 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Return an array of conditions depending of options set in $opts
-	 *
-	 * @param FormOptions $opts
-	 * @return array
+	 * @inheritdoc
 	 */
-	public function buildMainQueryConds( FormOptions $opts ) {
+	protected function buildQuery( &$tables, &$fields, &$conds, &$query_options,
+		&$join_conds, FormOptions $opts ) {
+
 		$dbr = $this->getDB();
-		$conds = parent::buildMainQueryConds( $opts );
+		parent::buildQuery( $tables, $fields, $conds, $query_options, $join_conds,
+			$opts );
 
 		// Calculate cutoff
 		if ( $opts['days'] > 0 ) {
 			$conds[] = 'rc_timestamp > ' .
 				$dbr->addQuotes( $dbr->timestamp( time() - intval( $opts['days'] * 86400 ) ) );
 		}
-
-		return $conds;
 	}
 
 	/**
-	 * Process the query
-	 *
-	 * @param array $conds
-	 * @param FormOptions $opts
-	 * @return bool|ResultWrapper Result or false (for Recentchangeslinked only)
+	 * @inheritdoc
 	 */
-	public function doMainQuery( $conds, $opts ) {
+	protected function doMainQuery( $tables, $fields, $conds, $query_options, $join_conds, FormOptions $opts ) {
 		$dbr = $this->getDB();
 		$user = $this->getUser();
 
@@ -230,19 +266,23 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$usePage = true;
 		}
 
-		$tables = [ 'recentchanges', 'watchlist' ];
-		$fields = RecentChange::selectFields();
-		$query_options = [ 'ORDER BY' => 'rc_timestamp DESC' ];
-		$join_conds = [
-			'watchlist' => [
-				'INNER JOIN',
-				[
-					'wl_user' => $user->getId(),
-					'wl_namespace=rc_namespace',
-					'wl_title=rc_title'
+		$tables = array_merge( [ 'recentchanges', 'watchlist' ], $tables );
+		$fields = array_merge( RecentChange::selectFields(), $fields );
+
+		$query_options = array_merge( [ 'ORDER BY' => 'rc_timestamp DESC' ], $query_options );
+		$join_conds = array_merge(
+			[
+				'watchlist' => [
+					'INNER JOIN',
+					[
+						'wl_user' => $user->getId(),
+						'wl_namespace=rc_namespace',
+						'wl_title=rc_title'
+					],
 				],
 			],
-		];
+			$join_conds
+		);
 
 		if ( $this->getConfig()->get( 'ShowUpdatedMarker' ) ) {
 			$fields[] = 'wl_notificationtimestamp';
@@ -447,31 +487,23 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$cutofflinks = $this->msg( 'wlshowtime' ) . ' ' . $this->cutoffselector( $opts );
 
 		# Spit out some control panel links
-		$filters = [
-			'hideminor' => 'wlshowhideminor',
-			'hidebots' => 'wlshowhidebots',
-			'hideanons' => 'wlshowhideanons',
-			'hideliu' => 'wlshowhideliu',
-			'hidemyself' => 'wlshowhidemine',
-			'hidepatrolled' => 'wlshowhidepatr'
-		];
-
-		if ( $this->getConfig()->get( 'RCWatchCategoryMembership' ) ) {
-			$filters['hidecategorization'] = 'wlshowhidecategorization';
-		}
-
-		foreach ( $this->getRenderableCustomFilters( $this->getCustomFilters() ) as $key => $params ) {
-			$filters[$key] = $params['msg'];
-		}
-
-		// Disable some if needed
-		if ( !$user->useRCPatrol() ) {
-			unset( $filters['hidepatrolled'] );
-		}
-
 		$links = [];
-		foreach ( $filters as $name => $msg ) {
-			$links[] = $this->showHideCheck( $nondefaults, $msg, $name, $opts[$name] );
+		$context = $this->getContext();
+		$namesOfDisplayedFilters = [];
+		foreach( $this->getFilterGroups() as $groupName => $group ) {
+			if ( !$group->isPerGroupRequestParameter() ) {
+				foreach ( $group->getFilters() as $filterName => $filter ) {
+					if ( $filter->displaysOnUnstructuredUi( $context ) ) {
+						$namesOfDisplayedFilters[] = $filterName;
+						$links[] = $this->showHideCheck(
+							$nondefaults,
+							$filter->getShowHide(),
+							$filterName,
+							$opts[$filterName]
+						);
+					}
+				}
+			}
 		}
 
 		$hiddenFields = $nondefaults;
@@ -480,8 +512,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		unset( $hiddenFields['invert'] );
 		unset( $hiddenFields['associated'] );
 		unset( $hiddenFields['days'] );
-		foreach ( $filters as $key => $value ) {
-			unset( $hiddenFields[$key] );
+		foreach ( $namesOfDisplayedFilters as $filterName ) {
+			unset( $hiddenFields[$filterName] );
 		}
 
 		# Create output

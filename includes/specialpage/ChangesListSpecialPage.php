@@ -38,6 +38,279 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/** @var array */
 	protected $customFilters;
 
+	// Order of both groups and filters is significant; first is top-most priority,
+	// descending from there.
+	// 'showHideSuffix' is a shortcut to and avoid spelling out
+	// details specific to subclasses here.
+	/**
+	 * Definition information for the filters and their groups
+	 *
+	 * The value is $groupDefinition, a parameter to the FilterGroup constructor.
+	 * However, priority is dynamically added for the core groups, to ease maintenance.
+	 *
+	 * Groups are displayed to the user in the structured UI.  However, if necessary,
+	 * all of the filters in a group can be configured to only display on the
+	 * unstuctured UI, in which case you don't need a group title.  This is done in
+	 * registerFiltersFromLegacyCustomFilters, for example.
+	 *
+	 * @var array $filterGroupDefinitions
+	 */
+	private $filterGroupDefinitions;
+
+	/**
+	 * Filter groups, and their contained filters
+	 * This is an associative array (with group name as key) of FilterGroup objects.
+	 *
+	 * @var array $filterGroups
+	 */
+	protected $filterGroups = [];
+
+	public function __construct( $name, $restriction ) {
+		parent::__construct( $name, $restriction );
+
+		$this->filterGroupDefinitions = [
+			[
+				'name' => 'registration',
+				'title' => 'rcfilters-filtergroup-registration',
+				'type' => FilterGroup::SEND_UNSELECTED_IF_ANY,
+				'filters' => [
+					[
+						'name' => 'hideliu',
+						'label' => 'rcfilters-filter-registered-label',
+						'description' => 'rcfilters-filter-registered-description',
+						// rcshowhideliu-show, rcshowhideliu-hide,
+						// wlshowhideliu
+						'showHideSuffix' => 'showhideliu',
+						'default' => false,
+						'queryCallable' => function ( $dbr, $ctx, &$tables, &$fields, &$conds, &$query_options, &$join_conds ) {
+							$conds[] = 'rc_user = 0';
+						}
+
+					],
+					[	'name' => 'hideanons',
+						'label' => 'rcfilters-filter-unregistered-label',
+						'description' => 'rcfilters-filter-unregistered-description',
+						// rcshowhideanons-show, rcshowhideanons-hide,
+						// wlshowhideanons
+						'showHideSuffix' => 'showhideanons',
+						'default' => false,
+						'queryCallable' => function ( $dbr, $ctx, &$tables, &$fields, &$conds, &$query_options, &$join_conds ) {
+							$conds[] = 'rc_user != 0';
+						}
+					]
+				],
+			],
+
+			[
+				'name' => 'userExpLevel',
+				'title' => 'rcfilters-filtergroup-userExpLevel',
+				'type' => FilterGroup::STRING_OPTIONS,
+				'filters' => [
+					[
+						'name' => 'newcomer',
+						'label' => 'rcfilters-filter-userExpLevel-newcomer-label',
+						'description' => 'rcfilters-filter-userExpLevel-newcomer-description',
+					],
+					[
+						'name' => 'learner',
+						'label' => 'rcfilters-filter-userExpLevel-learner-label',
+						'description' => 'rcfilters-filter-userExpLevel-learner-description',
+					],
+					[
+						'name' => 'experienced',
+						'label' => 'rcfilters-filter-userExpLevel-experienced-label',
+						'description' => 'rcfilters-filter-userExpLevel-experienced-description',
+					]
+				],
+				'default' => FilterGroup::ALL,
+				'queryCallable' => [ $this, 'filterOnUserExperienceLevel' ],
+			],
+
+			[
+				'name' => 'authorship',
+				'title' => 'rcfilters-filtergroup-authorship',
+				'type' => FilterGroup::SEND_UNSELECTED_IF_ANY,
+				'filters' => [
+					[
+						'name' => 'hidemyself',
+						'label' => 'rcfilters-filter-editsbyself-label',
+						'description' => 'rcfilters-filter-editsbyself-description',
+						// rcshowhidemine-show, rcshowhidemine-hide,
+						// wlshowhidemine
+						'showHideSuffix' => 'showhidemine',
+						'default' => false,
+						'queryCallable' => function ( $dbr, $ctx, &$tables, &$fields, &$conds, &$query_options, &$join_conds ) {
+							$user = $ctx->getUser();
+							if ( $user->getId() ) {
+								$conds[] = 'rc_user != ' . $dbr->addQuotes( $user->getId() );
+							} else {
+								$conds[] = 'rc_user_text != ' . $dbr->addQuotes( $user->getName() );
+							}
+						}
+					],
+					[
+						'name' => 'hidebyothers',
+						'label' => 'rcfilters-filter-editsbyother-label',
+						'description' => 'rcfilters-filter-editsbyother-description',
+						'default' => false,
+						'queryCallable' => function ( $dbr, $ctx, &$tables, &$fields, &$conds, &$query_options, &$join_conds ) {
+							$user = $ctx->getUser();
+							if ( $user->getId() ) {
+								$conds[] = 'rc_user = ' . $dbr->addQuotes( $user->getId() );
+							} else {
+								$conds[] = 'rc_user_text = ' . $dbr->addQuotes( $user->getName() );
+							}
+						}
+					]
+				]
+			],
+
+			[
+				'name' => 'automated',
+				'title' => 'rcfilters-filtergroup-automated',
+				'type' => FilterGroup::SEND_UNSELECTED_IF_ANY,
+				'filters' => [
+					[
+						'name' => 'hidebots',
+						'label' => 'rcfilters-filter-bots-label',
+						'description' => 'rcfilters-filter-bots-description',
+						// rcshowhidebots-show, rcshowhidebots-hide,
+						// wlshowhidebots
+						'showHideSuffix' => 'showhidebots',
+						'default' => false,
+						'queryCallable' => function ( $dbr, $ctx, &$tables, &$fields, &$conds, &$query_options, &$join_conds ) {
+							$conds['rc_bot'] = 0;
+						}
+					],
+					[
+						'name' => 'hidehumans',
+						'label' => 'rcfilters-filter-humans-label',
+						'description' => 'rcfilters-filter-humans-description',
+						'default' => false,
+						'queryCallable' => function ( $dbr, $ctx, &$tables, &$fields, &$conds, &$query_options, &$join_conds ) {
+							$conds[] = 'rc_bot = 1';
+						}
+					]
+				]
+			],
+
+			[
+				'name' => 'reviewStatus',
+				'title' => 'rcfilters-filtergroup-reviewstatus',
+				'type' => FilterGroup::SEND_UNSELECTED_IF_ANY,
+				'filters' => [
+					[
+						'name' => 'hidepatrolled',
+						'label' => 'rcfilters-filter-patrolled-label',
+						'description' => 'rcfilters-filter-patrolled-description',
+						// rcshowhidepatr-show, rcshowhidepatr-hide
+						// wlshowhidepatr
+						'showHideSuffix' => 'showhidepatr',
+						'default' => false,
+						'isAllowedCallable' => function ( $context ) {
+							return $context->getUser()->useRCPatrol();
+						},
+						'queryCallable' => function ( $dbr, $ctx, &$tables, &$fields, &$conds, &$query_options, &$join_conds ) {
+							$conds[] = 'rc_patrolled = 0';
+						}
+					],
+					[
+						'name' => 'hideunpatrolled',
+						'label' => 'rcfilters-filter-unpatrolled-label',
+						'description' => 'rcfilters-filter-unpatrolled-description',
+						'default' => false,
+						'isAllowedCallable' => function ( $context ) {
+							return $context->getUser()->useRCPatrol();
+						},
+						'queryCallable' => function ( $dbr, $ctx, &$tables, &$fields, &$conds, &$query_options, &$join_conds ) {
+							$conds[] = 'rc_patrolled = 1';
+						}
+					],
+				],
+			],
+
+			[
+				'name' => 'significance',
+				'title' => 'rcfilters-filtergroup-significance',
+				'type' => FilterGroup::SEND_UNSELECTED_IF_ANY,
+				'filters' => [
+					[
+						'name' => 'hideminor',
+						'label' => 'rcfilters-filter-minor-label',
+						'description' => 'rcfilters-filter-minor-description',
+						// rcshowhideminor-show, rcshowhideminor-hide,
+						// wlshowhideminor
+						'showHideSuffix' => 'showhideminor',
+						'default' => false,
+						'queryCallable' => function ( $dbr, $ctx, &$tables, &$fields, &$conds, &$query_options, &$join_conds ) {
+							$conds[] = 'rc_minor = 0';
+						}
+					],
+					[
+						'name' => 'hidemajor',
+						'label' => 'rcfilters-filter-major-label',
+						'description' => 'rcfilters-filter-major-description',
+						'default' => false,
+						'queryCallable' => function ( $dbr, $ctx, &$tables, &$fields, &$conds, &$query_options, &$join_conds ) {
+							$conds[] = 'rc_minor = 1';
+						}
+					]
+				]
+			],
+
+			[
+				'name' => 'changeType',
+				'title' => 'rcfilters-filtergroup-changetype',
+				'type' => FilterGroup::SEND_UNSELECTED_IF_ANY,
+				'filters' => [
+					[
+						'name' => 'hidepageedits',
+						'label' => 'rcfilters-filter-pageedits-label',
+						'description' => 'rcfilters-filter-pageedits-description',
+						'default' => false,
+						'queryCallable' => function ( $dbr, $ctx, &$tables, &$fields, &$conds, &$query_options, &$join_conds ) {
+							$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_EDIT );
+						}
+					],
+					[
+						'name' => 'hidenewpages',
+						'label' => 'rcfilters-filter-newpages-label',
+						'description' => 'rcfilters-filter-newpages-description',
+						'default' => false,
+						'queryCallable' => function ( $dbr, $ctx, &$tables, &$fields, &$conds, &$query_options, &$join_conds ) {
+							$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_NEW );
+						}
+					],
+					[
+						'name' => 'hidecategorization',
+						'label' => 'rcfilters-filter-categorization-label',
+						'description' => 'rcfilters-filter-categorization-description',
+						// rcshowhidecategorization-show, rcshowhidecategorization-hide.
+						// wlshowhidecategorization
+						'showHideSuffix' => 'showhidecategorization',
+						'isAllowedCallable' => function ( $context ) {
+							return $context->getConfig()->get( 'RCWatchCategoryMembership' );
+						},
+						'default' => false,
+						'queryCallable' => function ( $dbr, $ctx, &$tables, &$fields, &$conds, &$query_options, &$join_conds ) {
+							$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_CATEGORIZE );
+						}
+					],
+					[
+						'name' => 'hidelog',
+						'label' => 'rcfilters-filter-logactions-label',
+						'description' => 'rcfilters-filter-logactions-description',
+						'default' => false,
+						'queryCallable' => function ( $dbr, $ctx, &$tables, &$fields, &$conds, &$query_options, &$join_conds ) {
+							$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_LOG );
+						}
+					]
+				]
+			]
+		];
+
+	}
+
 	/**
 	 * Main execution point
 	 *
@@ -95,9 +368,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	public function getRows() {
 		$opts = $this->getOptions();
-		$conds = $this->buildMainQueryConds( $opts );
 
-		return $this->doMainQuery( $conds, $opts );
+		$tables = [];
+		$fields = [];
+		$conds = [];
+		$query_options = [];
+		$join_conds = [];
+		$this->buildQuery( $tables, $fields, $conds, $query_options, $join_conds, $opts );
+
+		return $this->doMainQuery( $tables, $fields, $conds, $query_options, $join_conds, $opts );
 	}
 
 	/**
@@ -114,17 +393,86 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Create a FormOptions object with options as specified by the user
+	 * Register all filters and their groups, plus conflicts
+	 *
+	 * You might want to customize these in the same method, in subclasses.  You can
+	 * call getFilterGroup to access a group, and (on the group) getFilter to access a
+	 * filter, then make necessary modfications to the filter or group (e.g. with
+	 * setDefault).
+	 */
+	protected function registerFilters() {
+		$this->registerFiltersFromDefinitions( $this->filterGroupDefinitions );
+
+		Hooks::run( 'ChangesListSpecialPageStructuredFilters', [ $this ] );
+
+		$this->registerFiltersFromLegacyCustomFilters( $this->getCustomFilters() );
+
+		$userExperienceLevel = $this->getFilterGroup( 'userExpLevel' );
+
+		$registration = $this->getFilterGroup( 'registration' );
+		$anons = $registration->getFilter( 'hideanons');
+
+		// This means there is a conflict between any item in user experience level
+		// being checked and only anons being *shown* (hideliu=1&hideanons=0 in the
+		// URL, or equivalent).
+		$userExperienceLevel->conflictsWith( $anons );
+	}
+
+	/**
+	 * Register filters from a definition object
+	 *
+	 * Associative array specifying groups and their filters; see Filter and
+	 * FilterGroup constructors.
+	 *
+	 * There is light processing to simplify core maintenance.  See overrides
+	 * of this method as well.
+	 */
+	protected function registerFiltersFromDefinitions( array $definition ) {
+		$priority = -1;
+		foreach ( $definition as $groupDefinition ) {
+			$groupDefinition['priority'] = $priority;
+			$priority--;
+			$this->registerFilterGroup( new FilterGroup( $groupDefinition ) );
+		}
+	}
+
+	/**
+	 * Register filters from legacy custom filters
+	 *
+	 * @param array Custom filters from legacy hooks
+	 */
+	protected function registerFiltersFromLegacyCustomFilters( $customFilters ) {
+		// Special internal unstructured group
+		$unstructuredGroupDefinition = [
+			'name' => 'unstructured',
+			'type' => FilterGroup::SEND_UNSELECTED_IF_ANY,
+			'priority' => -1, // Won't display in structured
+			'filters' => [],
+		];
+
+		foreach ( $customFilters as $name => $params ) {
+			$unstructuredGroupDefinition['filters'][] = [
+				'name' => $name,
+				'showHide' => $params['msg'],
+				'default' => $params['default'],
+			];
+		}
+
+		$this->registerFilterGroup( new FilterGroup( $unstructuredGroupDefinition ) );
+	}
+
+	/**
+	 * Register all the filters, including legacy hook-driven ones.
+	 * Then create a FormOptions object with options as specified by the user
 	 *
 	 * @param array $parameters
 	 *
 	 * @return FormOptions
 	 */
 	public function setup( $parameters ) {
+		$this->registerFilters();
+
 		$opts = $this->getDefaultOptions();
-		foreach ( $this->getCustomFilters() as $key => $params ) {
-			$opts->add( $key, $params['default'] );
-		}
 
 		$opts = $this->fetchOptionsFromRequest( $opts );
 
@@ -139,8 +487,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Get a FormOptions object containing the default options. By default returns some basic options,
-	 * you might want to not call parent method and discard them, or to override default values.
+	 * Get a FormOptions object containing the default options. By default, returns
+	 * some basic options.  The filters listed explicitly here are overriden in this
+	 * method, in subclasses, but most filters (e.g. hideminor, userExpLevel filters,
+	 * and more) are structured.  Strucutred filters are overriden in registerFilters.
+	 * not here.
 	 *
 	 * @return FormOptions
 	 */
@@ -148,23 +499,18 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$config = $this->getConfig();
 		$opts = new FormOptions();
 
-		$opts->add( 'hideminor', false );
-		$opts->add( 'hidemajor', false );
-		$opts->add( 'hidebots', false );
-		$opts->add( 'hidehumans', false );
-		$opts->add( 'hideanons', false );
-		$opts->add( 'hideliu', false );
-		$opts->add( 'hidepatrolled', false );
-		$opts->add( 'hideunpatrolled', false );
-		$opts->add( 'hidemyself', false );
-		$opts->add( 'hidebyothers', false );
-
-		if ( $config->get( 'RCWatchCategoryMembership' ) ) {
-			$opts->add( 'hidecategorization', false );
+		// Add all filters
+		foreach( $this->filterGroups as $filterGroup ) {
+			// URL parameters can be per-group, like 'userExpLevel',
+			// or per-filter, like 'hideminor'.
+			if ( $filterGroup->isPerGroupRequestParameter() ) {
+				$opts->add( $filterGroup->getName(), $filterGroup->getDefault() );
+			} else {
+				foreach ( $filterGroup->getFilters() as $filter ) {
+					$opts->add( $filter->getName(), $filter->getDefault() );
+				}
+			}
 		}
-		$opts->add( 'hidepageedits', false );
-		$opts->add( 'hidenewpages', false );
-		$opts->add( 'hidelog', false );
 
 		$opts->add( 'namespace', '', FormOptions::INTNULL );
 		$opts->add( 'invert', false );
@@ -174,7 +520,65 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Get custom show/hide filters
+	 * Register a structured changes list filter group
+	 *
+	 * @param FilterGroup $group
+	 */
+	public function registerFilterGroup( FilterGroup $group ) {
+		$groupName = $group->getName();
+
+		$this->filterGroups[$groupName] = $group;
+	}
+
+	/**
+	 * Gets the currently registered filters groups
+	 *
+	 * @return array Associative array of FilterGroup objects, with group name as key
+	 */
+	protected function getFilterGroups() {
+		return $this->filterGroups;
+	}
+
+	/**
+	 * Gets a specified FilterGroup by name
+	 *
+	 * @param string $groupName Name of group
+	 *
+	 * @return FilterGroup
+	 */
+	public function getFilterGroup( $groupName ) {
+		return $this->filterGroups[$groupName];
+	}
+
+	// Currently, this intentionally only includes filters that display
+	// in the structured UI.  This can be changed easily, though, if we want
+	// to include data on filters that use the unstructured UI.
+	/**
+	 * Gets structured filter information in the format needed by JS
+	 *
+	 * @return array Associatve array with required format
+	 */
+	public function getStructuredFilterJsData() {
+		$output = [];
+		$context = $this->getContext();
+
+		usort( $this->filterGroups, function ( $a, $b ) {
+			return $b->getPriority() - $a->getPriority();
+		} );
+
+		foreach ( $this->filterGroups as $groupName => $group ) {
+			$groupOutput = $group->getJsData( $context );
+			if ( $groupOutput !== null ) {
+				$output[] = $groupOutput;
+			}
+		}
+
+		return $output;
+	}
+
+	/**
+	 * Get custom show/hide filters using deprecated ChangesListSpecialPageFilters
+	 * hook.
 	 *
 	 * @return array Map of filter URL param names to properties (msg/default)
 	 */
@@ -223,86 +627,37 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/**
 	 * Return an array of conditions depending of options set in $opts
 	 *
-	 * @param FormOptions $opts
+	 * @param array &$tables Array of tables; see IDatabase::select $table
+	 * @param array &$fields Array of fields; see IDatabase::select $vars
+	 * @param array &$conds Array of conditions; see IDatabase::select $conds
+	 * @param array &$query_options Array of query options; see IDatabase::select $options
+	 * @param array &$join_conds Array of join conditions; see IDatabase::select $join_conds
+o	 * @param FormOptions $opts
 	 * @return array
 	 */
-	public function buildMainQueryConds( FormOptions $opts ) {
+	protected function buildQuery( &$tables, &$fields, &$conds, &$query_options,
+		&$join_conds, FormOptions $opts ) {
+
 		$dbr = $this->getDB();
 		$user = $this->getUser();
-		$conds = [];
 
-		// It makes no sense to hide both anons and logged-in users. When this occurs, try a guess on
-		// what the user meant and either show only bots or force anons to be shown.
-		$botsonly = false;
-		$hideanons = $opts['hideanons'];
-		if ( $opts['hideanons'] && $opts['hideliu'] ) {
-			if ( $opts['hidebots'] ) {
-				$hideanons = false;
+		$context = $this->getContext();
+		foreach( $this->filterGroups as $filterGroup ) {
+			// URL parameters can be per-group, like 'userExpLevel',
+			// or per-filter, like 'hideminor'.
+			if ( $filterGroup->isPerGroupRequestParameter() &&
+				$opts[$filterGroup->getName()] !== '' ) {
+
+				$filterGroup->modifyQuery( $dbr, $context, $tables, $fields, $conds,
+					$query_options, $join_conds, $opts[$filterGroup->getName()] );
 			} else {
-				$botsonly = true;
+				foreach ( $filterGroup->getFilters() as $filter ) {
+					if ( $opts[$filter->getName()] && $filter->isAllowed( $context ) ) {
+						$filter->modifyQuery( $dbr, $context, $tables, $fields, $conds,
+							$query_options, $join_conds );
+					}
+				}
 			}
-		}
-
-		// Toggles
-		if ( $opts['hideminor'] ) {
-			$conds[] = 'rc_minor = 0';
-		}
-		if ( $opts['hidemajor'] ) {
-			$conds[] = 'rc_minor = 1';
-		}
-		if ( $opts['hidebots'] ) {
-			$conds['rc_bot'] = 0;
-		}
-		if ( $opts['hidehumans'] ) {
-			$conds[] = 'rc_bot = 1';
-		}
-		if ( $user->useRCPatrol() ) {
-			if ( $opts['hidepatrolled'] ) {
-				$conds[] = 'rc_patrolled = 0';
-			}
-			if ( $opts['hideunpatrolled'] ) {
-				$conds[] = 'rc_patrolled = 1';
-			}
-		}
-		if ( $botsonly ) {
-			$conds['rc_bot'] = 1;
-		} else {
-			if ( $opts['hideliu'] ) {
-				$conds[] = 'rc_user = 0';
-			}
-			if ( $hideanons ) {
-				$conds[] = 'rc_user != 0';
-			}
-		}
-
-		if ( $opts['hidemyself'] ) {
-			if ( $user->getId() ) {
-				$conds[] = 'rc_user != ' . $dbr->addQuotes( $user->getId() );
-			} else {
-				$conds[] = 'rc_user_text != ' . $dbr->addQuotes( $user->getName() );
-			}
-		}
-		if ( $opts['hidebyothers'] ) {
-			if ( $user->getId() ) {
-				$conds[] = 'rc_user = ' . $dbr->addQuotes( $user->getId() );
-			} else {
-				$conds[] = 'rc_user_text = ' . $dbr->addQuotes( $user->getName() );
-			}
-		}
-
-		if ( $this->getConfig()->get( 'RCWatchCategoryMembership' )
-			&& $opts['hidecategorization'] === true
-		) {
-			$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_CATEGORIZE );
-		}
-		if ( $opts['hidepageedits'] ) {
-			$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_EDIT );
-		}
-		if ( $opts['hidenewpages'] ) {
-			$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_NEW );
-		}
-		if ( $opts['hidelog'] ) {
-			$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_LOG );
 		}
 
 		// Namespace filtering
@@ -326,22 +681,22 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 			$conds[] = $condition;
 		}
-
-		return $conds;
 	}
 
 	/**
 	 * Process the query
 	 *
-	 * @param array $conds
+	 * @param array $tables Array of tables; see IDatabase::select $table
+	 * @param array $fields Array of fields; see IDatabase::select $vars
+	 * @param array $conds Array of conditions; see IDatabase::select $conds
+	 * @param array $query_options Array of query options; see IDatabase::select $options
+	 * @param array $join_conds Array of join conditions; see IDatabase::select $join_conds
 	 * @param FormOptions $opts
 	 * @return bool|ResultWrapper Result or false
 	 */
-	public function doMainQuery( $conds, $opts ) {
-		$tables = [ 'recentchanges' ];
-		$fields = RecentChange::selectFields();
-		$query_options = [];
-		$join_conds = [];
+	protected function doMainQuery( $tables, $fields, $conds, $query_options, $join_conds, FormOptions $opts ) {
+		$tables[] = 'recentchanges';
+		$fields = array_merge( RecentChange::selectFields(), $fields );
 
 		ChangeTags::modifyDisplayQuery(
 			$tables,
@@ -351,6 +706,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$query_options,
 			''
 		);
+
+		// It makes no sense to hide both anons and logged-in users. When this occurs, try a guess on
+		// what the user meant and either show only bots or force anons to be shown.
+		//
+		// -------
+		//
+		// XXX: We're no longer doing this handling.  To preserve back-compat, we need to complete
+		// T151873 (particularly the hideanons/hideliu/hidebots/hidehumans part) in conjunction
+		// with merging this.
 
 		if ( !$this->runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds,
 			$opts )
@@ -455,7 +819,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/**
 	 * Get options to be displayed in a form
 	 * @todo This should handle options returned by getDefaultOptions().
-	 * @todo Not called by anything, should be called by something… doHeader() maybe?
+	 * @todo Not called by anything in this class (but is in subclasses), should be
+	 * called by something… doHeader() maybe?
 	 *
 	 * @param FormOptions $opts
 	 * @return array
@@ -531,22 +896,64 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		return 'changes';
 	}
 
-	/**
-	 * Get filters that can be rendered.
-	 *
-	 * Filters with 'msg' => false can be used to filter data but won't
-	 * be presented as show/hide toggles in the UI. They are not returned
-	 * by this function.
-	 *
-	 * @param array $allFilters Map of filter URL param names to properties (msg/default)
-	 * @return array Map of filter URL param names to properties (msg/default)
-	 */
-	protected function getRenderableCustomFilters( $allFilters ) {
-		return array_filter(
-			$allFilters,
-			function( $filter ) {
-				return isset( $filter['msg'] ) && ( $filter['msg'] !== false );
-			}
+	public function filterOnUserExperienceLevel( $dbr, $context, &$tables, &$fields, &$conds, &$query_options, &$join_conds, $value ) {
+		global $wgLearnerEdits,
+			   $wgExperiencedUserEdits,
+			   $wgLearnerMemberSince,
+			   $wgExperiencedUserMemberSince;
+
+		$selectedExpLevels = explode( ',', strtolower( $value ) );
+		// remove values that are not recognized
+		$selectedExpLevels = array_intersect(
+			$selectedExpLevels,
+			[ 'newcomer', 'learner', 'experienced' ]
 		);
+		sort( $selectedExpLevels );
+
+		if ( $selectedExpLevels ) {
+			$tables[] = 'user';
+			$join_conds['user'] = [ 'LEFT JOIN', 'rc_user = user_id' ];
+
+			$now = time();
+			$secondsPerDay = 86400;
+			$learnerCutoff = $now - $wgLearnerMemberSince * $secondsPerDay;
+			$experiencedUserCutoff = $now - $wgExperiencedUserMemberSince * $secondsPerDay;
+
+			$aboveNewcomer = $dbr->makeList(
+				[
+					'user_editcount >= ' . intval( $wgLearnerEdits ),
+					'user_registration <= ' . $dbr->timestamp( $learnerCutoff ),
+				],
+				IDatabase::LIST_AND
+			);
+
+			$aboveLearner = $dbr->makeList(
+				[
+					'user_editcount >= ' . intval( $wgExperiencedUserEdits ),
+					'user_registration <= ' . $dbr->timestamp( $experiencedUserCutoff ),
+				],
+				IDatabase::LIST_AND
+			);
+
+			if ( $selectedExpLevels === [ 'newcomer' ] ) {
+				$conds[] =  "NOT ( $aboveNewcomer )";
+			} elseif ( $selectedExpLevels === [ 'learner' ] ) {
+				$conds[] = $dbr->makeList(
+					[ $aboveNewcomer, "NOT ( $aboveLearner )" ],
+					IDatabase::LIST_AND
+				);
+			} elseif ( $selectedExpLevels === [ 'experienced' ] ) {
+				$conds[] = $aboveLearner;
+			} elseif ( $selectedExpLevels === [ 'learner', 'newcomer' ] ) {
+				$conds[] = "NOT ( $aboveLearner )";
+			} elseif ( $selectedExpLevels === [ 'experienced', 'newcomer' ] ) {
+				$conds[] = $dbr->makeList(
+					[ "NOT ( $aboveNewcomer )", $aboveLearner ],
+					IDatabase::LIST_OR
+				);
+			} elseif ( $selectedExpLevels === [ 'experienced', 'learner' ] ) {
+				$conds[] = $aboveNewcomer;
+			}
+		}
 	}
 }
