@@ -26,6 +26,8 @@ use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ResultWrapper;
 
 class ChangesList extends ContextSource {
+	const CSS_CLASS_PREFIX = 'mw-changeslist-';
+
 	/**
 	 * @var Skin
 	 */
@@ -48,11 +50,17 @@ class ChangesList extends ContextSource {
 	protected $linkRenderer;
 
 	/**
+	 * @var array
+	 */
+	protected $filterGroups;
+
+	/**
 	 * Changeslist constructor
 	 *
 	 * @param Skin|IContextSource $obj
+	 * @param array $filterGroups Array of ChangesListFilterGroup objects (currently optional)
 	 */
-	public function __construct( $obj ) {
+	public function __construct( $obj, array $filterGroups = [] ) {
 		if ( $obj instanceof IContextSource ) {
 			$this->setContext( $obj );
 			$this->skin = $obj->getSkin();
@@ -63,6 +71,7 @@ class ChangesList extends ContextSource {
 		$this->preCacheMessages();
 		$this->watchMsgCache = new HashBagOStuff( [ 'maxKeys' => 50 ] );
 		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$this->filterGroups = $filterGroups;
 	}
 
 	/**
@@ -70,16 +79,19 @@ class ChangesList extends ContextSource {
 	 * Some users might want to use an enhanced list format, for instance
 	 *
 	 * @param IContextSource $context
+	 * @param array $groups Array of ChangesListFilterGroup objects (currently optional)
 	 * @return ChangesList
 	 */
-	public static function newFromContext( IContextSource $context ) {
+	public static function newFromContext( IContextSource $context, array $groups = [] ) {
 		$user = $context->getUser();
 		$sk = $context->getSkin();
 		$list = null;
 		if ( Hooks::run( 'FetchChangesList', [ $user, &$sk, &$list ] ) ) {
 			$new = $context->getRequest()->getBool( 'enhanced', $user->getOption( 'usenewrc' ) );
 
-			return $new ? new EnhancedChangesList( $context ) : new OldChangesList( $context );
+			return $new ?
+				new EnhancedChangesList( $context, $groups ) :
+				new OldChangesList( $context, $groups );
 		} else {
 			return $list;
 		}
@@ -159,42 +171,40 @@ class ChangesList extends ContextSource {
 	protected function getHTMLClasses( $rc, $watched ) {
 		$classes = [];
 		$logType = $rc->mAttribs['rc_log_type'];
-		$prefix = 'mw-changeslist-';
 
 		if ( $logType ) {
-			$classes[] = Sanitizer::escapeClass( $prefix . 'log-' . $logType );
+			$classes[] = Sanitizer::escapeClass( self::CSS_CLASS_PREFIX . 'log-' . $logType );
 		} else {
-			$classes[] = Sanitizer::escapeClass( $prefix . 'ns' .
+			$classes[] = Sanitizer::escapeClass( self::CSS_CLASS_PREFIX . 'ns' .
 				$rc->mAttribs['rc_namespace'] . '-' . $rc->mAttribs['rc_title'] );
 		}
 
 		// Indicate watched status on the line to allow for more
 		// comprehensive styling.
 		$classes[] = $watched && $rc->mAttribs['rc_timestamp'] >= $watched
-			? $prefix . 'line-watched'
-			: $prefix . 'line-not-watched';
+			? self::CSS_CLASS_PREFIX . 'line-watched'
+			: self::CSS_CLASS_PREFIX . 'line-not-watched';
 
 		$classes = array_merge( $classes, $this->getHTMLClassesForFilters( $rc ) );
 
 		return $classes;
 	}
 
+	/**
+	 * Get an array of CSS classes attributed to filters for this row
+	 *
+	 * @param RecentChange $rc
+	 * @return array Array of CSS classes
+	 */
 	protected function getHTMLClassesForFilters( $rc ) {
 		$classes = [];
-		$prefix = 'mw-changeslist-';
 
-		$classes[] = $prefix . ( $rc->getAttribute( 'rc_bot' ) ? 'bot' : 'human' );
-		$classes[] = $prefix . ( $rc->getAttribute( 'rc_user' ) ? 'liu' : 'anon' );
-		$classes[] = $prefix . ( $rc->getAttribute( 'rc_minor' ) ? 'minor' : 'major' );
-		$classes[] = $prefix .
-			( $rc->getAttribute( 'rc_patrolled' ) ? 'patrolled' : 'unpatrolled' );
-		$classes[] = $prefix .
-			( $this->getUser()->equals( $rc->getPerformer() ) ? 'self' : 'others' );
-		$classes[] = $prefix . 'src-' . str_replace( '.', '-', $rc->getAttribute( 'rc_source' ) );
-
-		$performer = $rc->getPerformer();
-		if ( $performer && $performer->isLoggedIn() ) {
-			$classes[] = $prefix . 'user-' . $performer->getExperienceLevel();
+		if ( $this->filterGroups !== null ) {
+			foreach ( $this->filterGroups as $filterGroup ) {
+				foreach ( $filterGroup->getFilters() as $filter ) {
+					$filter->applyCssClassIfNeeded( $this, $rc, $classes );
+				}
+			}
 		}
 
 		return $classes;
