@@ -54,6 +54,9 @@ production.
   This might affect some forms that used them and only worked because the
   attributes were not actually being set.
 * Expiry times can now be specified when users are added to user groups.
+* Completely new user interface for the RecentChanges page, which
+  structures filters into user-friendly groups.  This has corresponding
+  changes to how filters are registered by core and extensions.
 
 === External library changes in 1.29 ===
 
@@ -245,6 +248,15 @@ changes to languages because of Phabricator reports.
 * User::comparePasswords() (deprecated in 1.24) was removed.
 * ArchivedFile::getUserText() (deprecated in 1.23) was removed.
 * HTMLFileCache::newFromTitle() (deprecated in 1.24) was removed.
+* BREAKING CHANGE: Internal signature changes to ChangesListSpecialPage
+  and subclasses.  It should only break if you call buildMainQueryConds
+  (changed to buildQuery with new signature) or doMainQuery (new
+  signature).  Subclasses are likely to call at least doMainQuery
+  (possibly both), but other classes might too, because they were
+  public.
+
+  Also, some related hooks were deprecated, but this is not yet a
+  breaking change.
 
 == Compatibility ==
 
