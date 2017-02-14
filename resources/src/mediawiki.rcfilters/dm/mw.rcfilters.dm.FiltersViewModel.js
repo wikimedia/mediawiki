@@ -159,7 +159,7 @@
 	 * Set filters and preserve a group relationship based on
 	 * the definition given by an object
 	 *
-	 * @param {Object} filters Filter group definition
+	 * @param {Array} filters Filter group definition
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.initializeFilters = function ( filters ) {
 		var i, filterItem, selectedFilterNames,
@@ -183,11 +183,13 @@
 		this.clearItems();
 		this.groups = {};
 
-		$.each( filters, function ( group, data ) {
+		filters.forEach( function ( data ) {
+			var group = data.name;
+
 			if ( !model.groups[ group ] ) {
 				model.groups[ group ] = new mw.rcfilters.dm.FilterGroup( group, {
 					type: data.type,
-					title: data.title,
+					title: mw.msg( data.title ),
 					separator: data.separator,
 					fullCoverage: !!data.fullCoverage
 				} );
@@ -195,12 +197,16 @@
 
 			selectedFilterNames = [];
 			for ( i = 0; i < data.filters.length; i++ ) {
+				data.filters[ i ].subset = data.filters[ i ].subset.map( function ( el ) {
+					return el.filter;
+				} );
+
 				filterItem = new mw.rcfilters.dm.FilterItem( data.filters[ i ].name, model.groups[ group ], {
 					group: group,
-					label: data.filters[ i ].label,
-					description: data.filters[ i ].description,
+					label: mw.msg( data.filters[ i ].label ),
+					description: mw.msg( data.filters[ i ].description ),
 					subset: data.filters[ i ].subset,
-					cssClass: data.filters[ i ].class
+					cssClass: data.filters[ i ].cssClass
 				} );
 
 				// For convenience, we should store each filter's "supersets" -- these are
@@ -400,7 +406,7 @@
 					}
 				}
 
-				if ( values.length === 0 || values.length === filterItems.length ) {
+				if ( values.length === filterItems.length ) {
 					result[ group ] = 'all';
 				} else {
 					result[ group ] = values.join( model.getSeparator() );
