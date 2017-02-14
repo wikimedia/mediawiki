@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.19.1
+ * OOjs UI v0.19.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-02-08T00:38:31Z
+ * Date: 2017-02-14T22:47:20Z
  */
 ( function ( OO ) {
 
@@ -793,10 +793,10 @@ OO.ui.Tool.prototype.setActive = function ( state ) {
 	this.active = !!state;
 	if ( this.active ) {
 		this.$element.addClass( 'oo-ui-tool-active' );
-		this.setFlags( 'progressive' );
+		this.setFlags( { progressive: true } );
 	} else {
 		this.$element.removeClass( 'oo-ui-tool-active' );
-		this.clearFlags();
+		this.setFlags( { progressive: false } );
 	}
 };
 

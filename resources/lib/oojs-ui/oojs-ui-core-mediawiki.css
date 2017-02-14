@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.19.1
+ * OOjs UI v0.19.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-02-08T00:38:35Z
+ * Date: 2017-02-14T22:47:25Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -381,6 +381,9 @@
      -moz-box-sizing: border-box;
           box-sizing: border-box;
   min-height: 3.125em;
+}
+.oo-ui-floatableElement {
+  position: absolute;
 }
 .oo-ui-iconElement .oo-ui-iconElement-icon,
 .oo-ui-iconElement.oo-ui-iconElement-icon {
@@ -803,7 +806,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-popupWidget {
   position: absolute;
-  /* @noflip */
   left: 0;
 }
 .oo-ui-popupWidget-popup {
@@ -818,8 +820,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-popupWidget-anchored .oo-ui-popupWidget-anchor {
   display: block;
   position: absolute;
-  /* `top` property is to be set in theme's selector due to specific `@size-anchor` values
-			/* @noflip */
+  /* `top` property is to be set in theme's selector due to specific `@size-anchor` values */
   left: 0;
   background-repeat: no-repeat;
 }
@@ -904,11 +905,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   cursor: auto;
 }
 .oo-ui-popupWidget.oo-ui-popupButtonWidget-frameless-popup {
-  /* @noflip */
   margin-left: 0.9375em;
 }
 .oo-ui-popupWidget.oo-ui-popupButtonWidget-framed-popup {
-  /* @noflip */
   margin-left: 1.5em;
 }
 .oo-ui-inputWidget {

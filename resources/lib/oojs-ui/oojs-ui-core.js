@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.19.1
+ * OOjs UI v0.19.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-02-08T00:38:31Z
+ * Date: 2017-02-14T22:47:20Z
  */
 ( function ( OO ) {
 
@@ -3816,7 +3816,9 @@ OO.ui.LabelWidget = function OoUiLabelWidget( config ) {
 
 	// Initialization
 	if ( this.input instanceof OO.ui.InputWidget ) {
-		this.$element.attr( 'for', this.input.getInputId() );
+		if ( this.input.getInputId() ) {
+			this.$element.attr( 'for', this.input.getInputId() );
+		}
 	}
 	this.$element.addClass( 'oo-ui-labelWidget' );
 };
@@ -4086,7 +4088,7 @@ OO.ui.mixin.FloatableElement.prototype.togglePositioning = function ( positionin
 				this.$floatableClosestScrollable = null;
 			}
 
-			this.$floatable.css( { left: '', top: '' } );
+			this.$floatable.css( { left: '', right: '', top: '' } );
 		}
 	}
 
@@ -4161,9 +4163,14 @@ OO.ui.mixin.FloatableElement.prototype.position = function () {
 	}
 
 	pos = OO.ui.Element.static.getRelativePosition( this.$floatableContainer, this.$floatable.offsetParent() );
-
 	// Position under container
 	pos.top += this.$floatableContainer.height();
+	// In LTR, we position from the left, and pos.left is already set
+	// In RTL, we position from the right instead.
+	if ( this.$floatableContainer.css( 'direction' ) === 'rtl' ) {
+		pos.right = this.$floatable.offsetParent().width() - pos.left - this.$floatableContainer.outerWidth();
+		delete pos.left;
+	}
 	this.$floatable.css( pos );
 
 	// We updated the position, so re-evaluate the clipping state.
@@ -4421,8 +4428,11 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 	clipHeight = allotedHeight < naturalHeight;
 
 	if ( clipWidth ) {
+		// The order matters here. If overflow is not set first, Chrome displays bogus scrollbars. (T157672)
+		// Forcing a reflow is a smaller workaround than calling reconsiderScrollbars() for this case.
+		this.$clippable.css( 'overflowX', 'scroll' );
+		void this.$clippable[ 0 ].offsetHeight; // Force reflow
 		this.$clippable.css( {
-			overflowX: 'scroll',
 			width: Math.max( 0, allotedWidth ),
 			maxWidth: ''
 		} );
@@ -4434,8 +4444,11 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 		} );
 	}
 	if ( clipHeight ) {
+		// The order matters here. If overflow is not set first, Chrome displays bogus scrollbars. (T157672)
+		// Forcing a reflow is a smaller workaround than calling reconsiderScrollbars() for this case.
+		this.$clippable.css( 'overflowY', 'scroll' );
+		void this.$clippable[ 0 ].offsetHeight; // Force reflow
 		this.$clippable.css( {
-			overflowY: 'scroll',
 			height: Math.max( 0, allotedHeight ),
 			maxHeight: ''
 		} );
@@ -4766,14 +4779,27 @@ OO.ui.PopupWidget.prototype.setSize = function ( width, height, transition ) {
  */
 OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 	var popupOffset, originOffset, containerLeft, containerWidth, containerRight,
-		popupLeft, popupRight, overlapLeft, overlapRight, anchorWidth,
-		align = this.align,
+		popupLeft, popupRight, overlapLeft, overlapRight, anchorWidth, direction,
+		dirFactor, align,
+		alignMap = {
+			ltr: {
+				'force-left': 'backwards',
+				'force-right': 'forwards'
+			},
+			rtl: {
+				'force-left': 'forwards',
+				'force-right': 'backwards'
+			}
+		},
 		widget = this;
 
 	if ( !this.$container ) {
 		// Lazy-initialize $container if not specified in constructor
 		this.$container = $( this.getClosestScrollableElementContainer() );
 	}
+	direction = this.$container.css( 'direction' );
+	dirFactor = direction === 'rtl' ? -1 : 1;
+	align = alignMap[ direction ][ this.align ] || this.align;
 
 	// Set height and width before measuring things, since it might cause our measurements
 	// to change (e.g. due to scrollbars appearing or disappearing)
@@ -4782,34 +4808,24 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 		height: this.height !== null ? this.height : 'auto'
 	} );
 
-	// If we are in RTL, we need to flip the alignment, unless it is center
-	if ( align === 'forwards' || align === 'backwards' ) {
-		if ( this.$container.css( 'direction' ) === 'rtl' ) {
-			align = ( { forwards: 'force-left', backwards: 'force-right' } )[ this.align ];
-		} else {
-			align = ( { forwards: 'force-right', backwards: 'force-left' } )[ this.align ];
-		}
-
-	}
-
 	// Compute initial popupOffset based on alignment
-	popupOffset = this.width * ( { 'force-left': -1, center: -0.5, 'force-right': 0 } )[ align ];
+	popupOffset = this.width * ( { backwards: -1, center: -0.5, forwards: 0 } )[ align ];
 
 	// Figure out if this will cause the popup to go beyond the edge of the container
 	originOffset = this.$element.offset().left;
 	containerLeft = this.$container.offset().left;
 	containerWidth = this.$container.innerWidth();
 	containerRight = containerLeft + containerWidth;
-	popupLeft = popupOffset - this.containerPadding;
-	popupRight = popupOffset + this.containerPadding + this.width + this.containerPadding;
+	popupLeft = dirFactor * popupOffset - this.containerPadding;
+	popupRight = dirFactor * popupOffset + this.containerPadding + this.width + this.containerPadding;
 	overlapLeft = ( originOffset + popupLeft ) - containerLeft;
 	overlapRight = containerRight - ( originOffset + popupRight );
 
 	// Adjust offset to make the popup not go beyond the edge, if needed
 	if ( overlapRight < 0 ) {
-		popupOffset += overlapRight;
+		popupOffset += dirFactor * overlapRight;
 	} else if ( overlapLeft < 0 ) {
-		popupOffset -= overlapLeft;
+		popupOffset -= dirFactor * overlapLeft;
 	}
 
 	// Adjust offset to avoid anchor being rendered too close to the edge
@@ -4830,7 +4846,7 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 	}
 
 	// Position body relative to anchor
-	this.$popup.css( 'margin-left', popupOffset );
+	this.$popup.css( direction === 'rtl' ? 'margin-right' : 'margin-left', popupOffset );
 
 	if ( transition ) {
 		// Prevent transitioning after transition is complete
@@ -9562,6 +9578,15 @@ OO.ui.TextInputWidget.prototype.getValidity = function () {
 		}
 	}
 
+	// Check browser validity and reject if it is invalid
+	if (
+		this.$input[ 0 ].checkValidity !== undefined &&
+		this.$input[ 0 ].checkValidity() === false
+	) {
+		return rejectOrResolve( false );
+	}
+
+	// Run our checks if the browser thinks the field is valid
 	if ( this.validate instanceof Function ) {
 		result = this.validate( this.getValue() );
 		if ( result && $.isFunction( result.promise ) ) {
@@ -10112,7 +10137,9 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 
 	// Initialization
 	if ( fieldWidget.constructor.static.supportsSimpleLabel ) {
-		this.$label.attr( 'for', this.fieldWidget.getInputId() );
+		if ( this.fieldWidget.getInputId() ) {
+			this.$label.attr( 'for', this.fieldWidget.getInputId() );
+		}
 	}
 	this.$element
 		.addClass( 'oo-ui-fieldLayout' )
