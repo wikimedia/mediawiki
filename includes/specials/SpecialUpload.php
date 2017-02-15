@@ -675,73 +675,27 @@ class SpecialUpload extends SpecialPage {
 	 * @throws MWException
 	 */
 	protected function processVerificationError( $details ) {
-		switch ( $details['status'] ) {
+		$error = $this->getVerificationErrorMessage( $details );
 
+		switch ( $details['status'] ) {
 			/** Statuses that only require name changing **/
 			case UploadBase::MIN_LENGTH_PARTNAME:
-				$this->showRecoverableUploadError( $this->msg( 'minlength1' )->escaped() );
-				break;
 			case UploadBase::ILLEGAL_FILENAME:
-				$this->showRecoverableUploadError( $this->msg( 'illegalfilename',
-					$details['filtered'] )->parse() );
-				break;
 			case UploadBase::FILENAME_TOO_LONG:
-				$this->showRecoverableUploadError( $this->msg( 'filename-toolong' )->escaped() );
-				break;
 			case UploadBase::FILETYPE_MISSING:
-				$this->showRecoverableUploadError( $this->msg( 'filetype-missing' )->parse() );
-				break;
 			case UploadBase::WINDOWS_NONASCII_FILENAME:
-				$this->showRecoverableUploadError( $this->msg( 'windows-nonascii-filename' )->parse() );
+				$this->showRecoverableUploadError( $error );
 				break;
 
 			/** Statuses that require reuploading **/
 			case UploadBase::EMPTY_FILE:
-				$this->showUploadError( $this->msg( 'emptyfile' )->escaped() );
-				break;
 			case UploadBase::FILE_TOO_LARGE:
-				$this->showUploadError( $this->msg( 'largefileserver' )->escaped() );
-				break;
 			case UploadBase::FILETYPE_BADTYPE:
-				$msg = $this->msg( 'filetype-banned-type' );
-				if ( isset( $details['blacklistedExt'] ) ) {
-					$msg->params( $this->getLanguage()->commaList( $details['blacklistedExt'] ) );
-				} else {
-					$msg->params( $details['finalExt'] );
-				}
-				$extensions = array_unique( $this->getConfig()->get( 'FileExtensions' ) );
-				$msg->params( $this->getLanguage()->commaList( $extensions ),
-					count( $extensions ) );
-
-				// Add PLURAL support for the first parameter. This results
-				// in a bit unlogical parameter sequence, but does not break
-				// old translations
-				if ( isset( $details['blacklistedExt'] ) ) {
-					$msg->params( count( $details['blacklistedExt'] ) );
-				} else {
-					$msg->params( 1 );
-				}
-
-				$this->showUploadError( $msg->parse() );
-				break;
 			case UploadBase::VERIFICATION_ERROR:
-				unset( $details['status'] );
-				$code = array_shift( $details['details'] );
-				$this->showUploadError( $this->msg( $code, $details['details'] )->parse() );
-				break;
 			case UploadBase::HOOK_ABORTED:
-				if ( is_array( $details['error'] ) ) { # allow hooks to return error details in an array
-					$args = $details['error'];
-					$error = array_shift( $args );
-				} else {
-					$error = $details['error'];
-					$args = null;
-				}
-
-				$this->showUploadError( $this->msg( $error, $args )->parse() );
+				$error = $this->getVerificationErrorMessage( $details );
+				$this->showUploadError( $error );
 				break;
-			default:
-				throw new MWException( __METHOD__ . ": Unknown value `{$details['status']}`" );
 		}
 	}
 
@@ -765,6 +719,76 @@ class SpecialUpload extends SpecialPage {
 	}
 
 	/*** Functions for formatting warnings ***/
+
+	/**
+	 * Formats a result of UploadBase::verifyUpload as HTML
+	 *
+	 * @param array $details The result of UploadBase::verifyUpload
+	 * @return string
+	 * @throws MWException
+	 */
+	public static function getVerificationErrorMessage( $details ) {
+		$context = RequestContext::getMain();
+		$language = $context->getLanguage();
+		$config = $context->getConfig();
+
+		switch ( $details['status'] ) {
+			/** Statuses that only require name changing **/
+			case UploadBase::MIN_LENGTH_PARTNAME:
+				return wfMessage( 'minlength1' )->escaped();
+			case UploadBase::ILLEGAL_FILENAME:
+				return wfMessage( 'illegalfilename', $details['filtered'] )->parse();
+			case UploadBase::FILENAME_TOO_LONG:
+				return wfMessage( 'filename-toolong' )->escaped();
+			case UploadBase::FILETYPE_MISSING:
+				return wfMessage( 'filetype-missing' )->parse();
+			case UploadBase::WINDOWS_NONASCII_FILENAME:
+				return wfMessage( 'windows-nonascii-filename' )->parse();
+
+			/** Statuses that require reuploading **/
+			case UploadBase::EMPTY_FILE:
+				return wfMessage( 'emptyfile' )->escaped();
+			case UploadBase::FILE_TOO_LARGE:
+				return wfMessage( 'largefileserver' )->escaped();
+			case UploadBase::FILETYPE_BADTYPE:
+				$msg = wfMessage( 'filetype-banned-type' );
+				if ( isset( $details['blacklistedExt'] ) ) {
+					$msg->params( $language->commaList( $details['blacklistedExt'] ) );
+				} else {
+					$msg->params( $details['finalExt'] );
+				}
+				$extensions = array_unique( $config->get( 'FileExtensions' ) );
+				$msg->params( $language->commaList( $extensions ),
+					count( $extensions ) );
+
+				// Add PLURAL support for the first parameter. This results
+				// in a bit unlogical parameter sequence, but does not break
+				// old translations
+				if ( isset( $details['blacklistedExt'] ) ) {
+					$msg->params( count( $details['blacklistedExt'] ) );
+				} else {
+					$msg->params( 1 );
+				}
+
+				return $msg->parse();
+			case UploadBase::VERIFICATION_ERROR:
+				unset( $details['status'] );
+				$code = array_shift( $details['details'] );
+				return wfMessage( $code, $details['details'] )->parse();
+			case UploadBase::HOOK_ABORTED:
+				if ( is_array( $details['error'] ) ) { # allow hooks to return error details in an array
+					$args = $details['error'];
+					$error = array_shift( $args );
+				} else {
+					$error = $details['error'];
+					$args = null;
+				}
+
+				return wfMessage( $error, $args )->parse();
+			default:
+				throw new MWException( __METHOD__ . ": Unknown value `{$details['status']}`" );
+		}
+	}
 
 	/**
 	 * Formats a result of UploadBase::getExistsWarning as HTML

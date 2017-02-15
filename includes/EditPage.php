@@ -1760,15 +1760,29 @@ class EditPage {
 			return $status;
 		}
 
-		# Check image redirect
-		if ( $this->mTitle->getNamespace() == NS_FILE &&
-			$textbox_content->isRedirect() &&
-			!$wgUser->isAllowed( 'upload' )
-		) {
+		if ( $this->mTitle->getNamespace() === NS_FILE ) {
+			if ( $textbox_content->isRedirect() && !$wgUser->isAllowed( 'upload' ) ) {
+				# Check image redirect
 				$code = $wgUser->isAnon() ? self::AS_IMAGE_REDIRECT_ANON : self::AS_IMAGE_REDIRECT_LOGGED;
 				$status->setResult( false, $code );
 
 				return $status;
+			} else {
+				# Check image filename
+				# Initialize a bogus upload by this name, to utilize its
+				# filename validation code
+				$request = new WebRequestUpload( $wgRequest, 'null' );
+				$upload = new UploadFromFile();
+				$upload->initialize( $this->mTitle->getDBkey(), $request );
+
+				$validate = $upload->validateName();
+				if ( $validate !== true ) {
+					$html = SpecialUpload::getVerificationErrorMessage( $validate );
+					$message = new RawMessage( $html );
+					$status->fatal( $message );
+					return $status;
+				}
+			}
 		}
 
 		# Check for spam
