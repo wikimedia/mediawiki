@@ -3453,7 +3453,7 @@
 	"expand_templates_remove_nowiki": "Поништава ефекат <nowiki> тагова у приказу чланака",
 	"expand_templates_generate_xml": "Прикажи XML стабло",
 	"expand_templates_generate_rawhtml": "Прикажи сиров HTML",
-	"expand_templates_preview": "Приказ",
+	"expand_templates_preview": "Претпреглед",
 	"pagelang-name": "Страница",
 	"pagelang-language": "Језик",
 	"pagelang-select-lang": "Изабери језик",

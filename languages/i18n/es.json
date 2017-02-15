@@ -787,7 +787,7 @@
 	"selfredirect": "<strong>Advertencia:</strong> estás redirigiendo esta página a sí misma.\nPuede que hayas especificado erróneamente el destino de la redirección, o quizá estés editando la página equivocada. En cualquier caso, si haces clic de nuevo en \"{{int:savearticle}}\", se creará la redirección.",
 	"missingcommenttext": "Escribe un comentario a continuación.",
 	"missingcommentheader": "<strong>Atención:</strong> no has escrito un asunto para este comentario.\nSi haces clic nuevamente en \"{{int:savearticle}}\" tu edición se grabará sin él.",
-	"summary-preview": "Previsualización del resumen:",
+	"summary-preview": "Previsualización del resumen de edición:",
 	"subject-preview": "Previsualización del asunto:",
 	"previewerrortext": "Se ha producido un error al intentar la vista previa de los cambios.",
 	"blockedtitle": "El usuario está bloqueado",

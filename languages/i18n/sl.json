@@ -645,7 +645,7 @@
 	"selfredirect": "<strong>Opozorilo:</strong> Stran preusmerjate na samo nase.\nMorda ste za cilj preusmeritve navedli napačno stran ali pa morda urejate napačno stran.\nČe ponovno kliknete »{{int:savearticle}}«, bomo preusmeritev vseeno ustvarili.",
 	"missingcommenttext": "Prosimo, vpišite v spodnje polje komentar.",
 	"missingcommentheader": "<strong>Opozorilo:</strong> Niste vnesli zadeve za ta komentar.\nČe boste ponovno kliknili »{{int:savearticle}}«, bo vaše urejanje shranjeno brez nje.",
-	"summary-preview": "Predogled povzetka",
+	"summary-preview": "Predogled povzetka urejanja:",
 	"subject-preview": "Predogled zadeve:",
 	"previewerrortext": "Med poskusom prikaza predogleda vaših sprememb je prišlo do napake.",
 	"blockedtitle": "Uporabnik je blokiran",

@@ -790,7 +790,7 @@
 	"selfredirect": "<strong>Attention :</strong> vous êtes en train de rediriger la page vers elle-même.\nVous pouvez avoir spécifié la mauvaise cible pour la redirection, ou vous modifiez peut-être la mauvaise page.\nSi vous cliquez de nouveau sur « {{int:savearticle}} », la redirection sera tout de même créée.",
 	"missingcommenttext": "Veuillez entrer un commentaire ci-dessous.",
 	"missingcommentheader": "<strong>Rappel :</strong> vous n’avez pas fourni de sujet pour ce commentaire.\nSi vous cliquez de nouveau sur « {{int:Savearticle}} », votre modification sera enregistrée sans sujet.",
-	"summary-preview": "Aperçu du résumé :",
+	"summary-preview": "Aperçu du résumé de modification :",
 	"subject-preview": "Aperçu du sujet :",
 	"previewerrortext": "Une erreur s’est produite lors de la tentative de prévisualisation de vos modifications.",
 	"blockedtitle": "L’utilisateur est bloqué.",

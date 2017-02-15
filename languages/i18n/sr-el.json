@@ -3344,7 +3344,7 @@
 	"expand_templates_remove_nowiki": "Poništava efekat <nowiki> tagova u prikazu članaka",
 	"expand_templates_generate_xml": "Prikaži XML stablo",
 	"expand_templates_generate_rawhtml": "Prikaži sirov HTML",
-	"expand_templates_preview": "Prikaz",
+	"expand_templates_preview": "Pretpregled",
 	"pagelang-name": "Stranica",
 	"pagelang-language": "Jezik",
 	"pagelang-select-lang": "Izaberi jezik",
