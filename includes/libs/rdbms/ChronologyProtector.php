@@ -75,7 +75,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	public function __construct( BagOStuff $store, array $client, $posTime = null ) {
 		$this->store = $store;
 		$this->clientId = md5( $client['ip'] . "\n" . $client['agent'] );
-		$this->key = $store->makeGlobalKey( __CLASS__, $this->clientId );
+		$this->key = $store->makeGlobalKey( __CLASS__, $this->clientId, 'v1' );
 		$this->waitForPosTime = $posTime;
 		$this->logger = new NullLogger();
 	}
@@ -301,8 +301,9 @@ class ChronologyProtector implements LoggerAwareInterface {
 
 		$min = null;
 		foreach ( $data['positions'] as $pos ) {
-			/** @var DBMasterPos $pos */
-			$min = $min ? min( $pos->asOfTime(), $min ) : $pos->asOfTime();
+			if ( $pos instanceof DBMasterPos ) {
+				$min = $min ? min( $pos->asOfTime(), $min ) : $pos->asOfTime();
+			}
 		}
 
 		return $min;
@@ -321,8 +322,10 @@ class ChronologyProtector implements LoggerAwareInterface {
 			$curPositions = $curValue['positions'];
 			// Use the newest positions for each DB master
 			foreach ( $shutdownPositions as $db => $pos ) {
-				if ( !isset( $curPositions[$db] )
-					|| $pos->asOfTime() > $curPositions[$db]->asOfTime()
+				if (
+					!isset( $curPositions[$db] ) ||
+					!( $curPositions[$db] instanceof DBMasterPos ) ||
+					$pos->asOfTime() > $curPositions[$db]->asOfTime()
 				) {
 					$curPositions[$db] = $pos;
 				}
