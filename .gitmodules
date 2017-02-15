@@ -666,3 +666,7 @@
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/mediawiki/vendor
 	branch = wmf/1.29.0-wmf.12
+[submodule "extensions/Dashiki"]
+	path = extensions/Dashiki
+	url = gerrit:mediawiki/extensions/Dashiki
+	branch = wmf/1.29.0-wmf.12
