@@ -534,12 +534,30 @@ class OutputPage extends ContextSource {
 			if ( $module instanceof ResourceLoaderModule
 				&& $module->getOrigin() <= $this->getAllowedModules( $type )
 				&& ( is_null( $position ) || $module->getPosition() == $position )
-				&& ( !$this->mTarget || in_array( $this->mTarget, $module->getTargets() ) )
 			) {
+				if ( $this->mTarget && !in_array( $this->mTarget, $module->getTargets() ) ) {
+					$this->warnModuleTargetFilter( $module->getName() );
+					continue;
+				}
 				$filteredModules[] = $val;
 			}
 		}
 		return $filteredModules;
+	}
+
+	private function warnModuleTargetFilter( $moduleName ) {
+		static $warnings = [];
+		if ( isset( $warnings[$this->mTarget][$moduleName] ) ) {
+			return;
+		}
+		$warnings[$this->mTarget][$moduleName] = true;
+		$this->getResourceLoader()->getLogger()->debug(
+			'Module "{module}" not loadable on target "{target}".',
+			[
+				'module' => $moduleName,
+				'target' => $this->mTarget,
+			]
+		);
 	}
 
 	/**
