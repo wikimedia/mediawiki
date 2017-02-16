@@ -45,9 +45,12 @@ class ContentHandlerSanityTest extends MediaWikiTestCase {
 		$handlerClass = get_class( $handler );
 		$contentClass = get_class( $content );
 
-		$this->assertTrue(
-			$content->isValid(),
-			"$handlerClass::makeEmptyContent() did not return a valid content ($contentClass::isValid())"
-		);
+		if ( $handler->supportsDirectEditing() ) {
+			$this->assertTrue(
+				$content->isValid(),
+				"$handlerClass::makeEmptyContent() did not return a valid content ($contentClass::isValid())"
+			);
+		}
 	}
+
 }
