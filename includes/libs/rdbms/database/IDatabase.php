@@ -908,6 +908,8 @@ interface IDatabase {
 	 * @param array $values An array of values to SET. For each array element,
 	 *   the key gives the field name, and the value gives the data to set
 	 *   that field to. The data will be quoted by IDatabase::addQuotes().
+	 *   Values with integer keys form unquoted SET statements, which can be used for
+	 *   things like "field = field + 1" or similar computed values.
 	 * @param array $conds An array of conditions (WHERE). See
 	 *   IDatabase::select() for the details of the format of condition
 	 *   arrays. Use '*' to update all rows.
@@ -1151,6 +1153,8 @@ interface IDatabase {
 	 * @param array $set An array of values to SET. For each array element, the
 	 *   key gives the field name, and the value gives the data to set that
 	 *   field to. The data will be quoted by IDatabase::addQuotes().
+	 *   Values with integer keys form unquoted SET statements, which can be used for
+	 *   things like "field = field + 1" or similar computed values.
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 * @throws Exception
 	 * @return bool
