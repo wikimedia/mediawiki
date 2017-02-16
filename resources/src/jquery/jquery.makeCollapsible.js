@@ -278,6 +278,7 @@
 					.text( collapseText )
 					.wrap( '<span class="mw-collapsible-toggle"></span>' )
 						.parent()
+						.css( 'margin-left', '0.3em' )
 						.prepend( '<span class="mw-collapsible-bracket">[</span>' )
 						.append( '<span class="mw-collapsible-bracket">]</span>' )
 						.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler );
