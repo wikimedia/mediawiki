@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'mediawiki_selenium', '~> 1.7', '>= 1.7.4'
-gem 'rake', '~> 11.1', '>= 11.1.1'
-gem 'rubocop', '~> 0.32.1', require: false
+# This will fail until https://gerrit.wikimedia.org/r/#/c/338137/ is merged
+# and a new version of the gem is released
+gem 'mediawiki_selenium', '~> 1.8'
