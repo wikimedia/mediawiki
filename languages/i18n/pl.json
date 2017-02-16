@@ -3382,7 +3382,7 @@
 	"version-software": "Zainstalowane oprogramowanie",
 	"version-software-product": "Nazwa",
 	"version-software-version": "Wersja",
-	"version-entrypoints": "Adres URL punktu wejścia",
+	"version-entrypoints": "Adresy URL punktów wejścia",
 	"version-entrypoints-header-entrypoint": "Punkt wejścia",
 	"version-entrypoints-header-url": "URL",
 	"version-libraries": "Zainstalowane biblioteki",
