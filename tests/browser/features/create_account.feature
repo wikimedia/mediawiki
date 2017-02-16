@@ -15,3 +15,8 @@ Feature: Create account
     Given I go to Create account page at Special:CreateAccount
     When I submit the form
     Then an error message is displayed
+
+  Scenario: Create account via the API
+    Given I have created account via the API
+    When I log in as the new user
+    Then I am logged in
