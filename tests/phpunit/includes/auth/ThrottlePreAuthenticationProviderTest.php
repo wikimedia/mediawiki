@@ -226,7 +226,7 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 		$provider->postAuthentication( \User::newFromName( 'SomeUser' ),
 			AuthenticationResponse::newPass() );
 		$this->assertSame( [
-			[ \Psr\Log\LogLevel::ERROR, 'throttler data not found for {user}' ],
+			[ \Psr\Log\LogLevel::INFO, 'throttler data not found for {user}' ],
 		], $logger->getBuffer() );
 	}
 }
