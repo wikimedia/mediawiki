@@ -19,7 +19,7 @@
  * @author לערי ריינהארט
  */
 
-$fallback = 'ca';
+$fallback = 'ca, fr';
 
 $bookstoreList = [
 	'Amazon.fr' => 'https://www.amazon.fr/exec/obidos/ISBN=$1'
