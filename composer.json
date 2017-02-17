@@ -38,6 +38,7 @@
 		"wikimedia/ip-set": "1.1.0",
 		"wikimedia/php-session-serializer": "1.0.4",
 		"wikimedia/relpath": "1.0.3",
+		"wikimedia/remex-html": "dev-master",
 		"wikimedia/running-stat": "1.1.0",
 		"wikimedia/scoped-callback": "1.0.0",
 		"wikimedia/utfnormal": "1.1.0",
@@ -59,6 +60,12 @@
 		"hamcrest/hamcrest-php": "^2.0",
 		"wmde/hamcrest-html-matchers": "^0.1.0"
 	},
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "/srv/remex-html"
+		}
+	],
 	"suggest": {
 		"ext-apc": "Local data and opcode cache",
 		"ext-fileinfo": "Improved mime magic detection",
