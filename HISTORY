@@ -326,6 +326,27 @@ There's usually someone online in #mediawiki on irc.freenode.net.
 
 = MediaWiki 1.27 =
 
+== MediaWiki 1.27.1 ==
+
+This is a maintenance release of the MediaWiki 1.27 branch.
+
+=== Changes since 1.27.0 ===
+* BREAKING CHANGE: $wgHTTPProxy is now *required* for all external requests
+  made by MediaWiki via a proxy. Relying on the http_proxy environment
+  variable is no longer supported.
+* (T139565) SECURITY: API: Generate head items in the context of the given title
+* (T137264) SECURITY: XSS in unclosed internal links
+* (T133147) SECURITY: Escape '<' and ']]>' in inline <style> blocks
+* (T133147) SECURITY: Require login to preview user CSS pages
+* (T132926) SECURITY: Do not allow undeleting a revision deleted file if it is
+  the top file
+* (T129738) SECURITY: Make $wgBlockDisablesLogin also restrict logged in
+  permissions
+* (T129738) SECURITY: Make blocks log users out if $wgBlockDisablesLogin is true
+* (T115333) SECURITY: Check read permission when loading page content in ApiParse
+* (T57548) Remove support for $wgWellFormedXml = false, all output is now well formed
+* (T139670) Move 'UserGetRights' call before application of Session::getAllowedUserRights()
+
 == MediaWiki 1.27.0 ==
 
 === PHP version requirement in 1.27 ===
@@ -909,6 +930,55 @@ For notes on 1.26.x and older releases, see HISTORY.
 
 = MediaWiki 1.26 =
 
+== MediaWiki 1.26.4 ==
+
+This is a maintenance release of the MediaWiki 1.26 branch.
+
+=== Changes since 1.26.3 ===
+* BREAKING CHANGE: $wgHTTPProxy is now *required* for all external requests
+  made by MediaWiki via a proxy. Relying on the http_proxy environment
+  variable is no longer supported.
+* (T124163) Fixed fatal error in DifferenceEngine under HHVM.
+* (T139565) SECURITY: API: Generate head items in the context of the given title
+* (T137264) SECURITY: XSS in unclosed internal links
+* (T133147) SECURITY: Escape '<' and ']]>' in inline <style> blocks
+* (T133147) SECURITY: Require login to preview user CSS pages
+* (T132926) SECURITY: Do not allow undeleting a revision deleted file if it is
+  the top file
+* (T129738) SECURITY: Make $wgBlockDisablesLogin also restrict logged in
+  permissions
+* (T129738) SECURITY: Make blocks log users out if $wgBlockDisablesLogin is true
+* (T115333) SECURITY: Check read permission when loading page content in ApiParse
+* Remove support for $wgWellFormedXml = false, all output is now well formed
+
+== MediaWiki 1.26.3 ==
+
+This is a maintenance release of the MediaWiki 1.26 branch.
+
+=== Changes since 1.26.2 ===
+* (T116266) Fixed undefined property notices in DairikiDiff under HHVM.
+* (T123166) Fix fatal error when importing pages to titles which cannot be
+  created, such as invalid titles or titles the user is not allowed to edit.
+* (T122056) Old tokens are remaining valid within a new session
+* (T127114) Login throttle can be tricked using non-canonicalized usernames
+* (T123653) Cross-domain policy regexp is too narrow
+* (T123071) Incorrectly identifying http link in a's href attributes, due to
+  m modifier in regex
+* (T129506) MediaWiki:Gadget-popups.js isn't renderable
+* (T125283) Users occasionally logged in as different users after
+  SessionManager deployment
+* (T103239) Patrol allows click catching and patrolling of any page
+* (T122807) [tracking] Check php crypto primatives
+* (T98313) Graphs can leak tokens, leading to CSRF
+* (T130947) Diff generation should use PoolCounter
+* (T133507) Careless use of $wgExternalLinkTarget is insecure
+* (T132874) API action=move is not rate limited
+* (T110143) strip markers can be used to get around html attribute escaping in
+  (many?) parser tags
+* (T116030) Increase pbkdf2 parameter strengths
+* (T127420) Pbkdf2Password does not check if hash_pbkdf2() succeeded
+* (T126685) Globally throttle password attempts
+
 == MediaWiki 1.26.2 ==
 
 This is a maintenance release of the MediaWiki 1.26 branch.
@@ -1186,6 +1256,33 @@ changes to languages because of Phabricator reports.
 * DeferredUpdates::addHTMLCacheUpdate() was removed.
 
 = MediaWiki 1.25 =
+
+== MediaWiki 1.25.6 ==
+
+This is a maintenance release of the MediaWiki 1.25 branch.
+
+== Changes since 1.25.5 ==
+* (T123166) Fix fatal error when importing pages to titles which cannot be
+  created, such as invalid titles or titles the user is not allowed to edit.
+* (T122056) Old tokens are remaining valid within a new session
+* (T127114) Login throttle can be tricked using non-canonicalized usernames
+* (T123653) Cross-domain policy regexp is too narrow
+* (T123071) Incorrectly identifying http link in a's href attributes, due to
+  m modifier in regex
+* (T129506) MediaWiki:Gadget-popups.js isn't renderable
+* (T125283) Users occasionally logged in as different users after
+  SessionManager deployment
+* (T103239) Patrol allows click catching and patrolling of any page
+* (T122807) [tracking] Check php crypto primatives
+* (T98313) Graphs can leak tokens, leading to CSRF
+* (T130947) Diff generation should use PoolCounter
+* (T133507) Careless use of $wgExternalLinkTarget is insecure
+* (T132874) API action=move is not rate limited
+* (T110143) strip markers can be used to get around html attribute escaping in
+  (many?) parser tags
+* (T116030) Increase pbkdf2 parameter strengths
+* (T127420) Pbkdf2Password does not check if hash_pbkdf2() succeeded
+* (T126685) Globally throttle password attempts
 
 == MediaWiki 1.25.5 ==
 
@@ -2572,6 +2669,26 @@ of files that are no longer available follows.
 * skins/common/images/ksh/button_S_italic.png
 
 = MediaWiki 1.23 =
+
+== MediaWiki 1.23.15 ==
+
+This is a maintenance release of the MediaWiki 1.23 branch.
+
+== Changes since 1.23.14 ==
+* BREAKING CHANGE: $wgHTTPProxy is now *required* for all external requests
+  made by MediaWiki via a proxy. Relying on the http_proxy environment
+  variable is no longer supported.
+* (T139565) SECURITY: API: Generate head items in the context of the given title
+* (T137264) SECURITY: XSS in unclosed internal links
+* (T133147) SECURITY: Escape '<' and ']]>' in inline <style> blocks
+* (T133147) SECURITY: Require login to preview user CSS pages
+* (T132926) SECURITY: Do not allow undeleting a revision deleted file if it is
+  the top file
+* (T129738) SECURITY: Make $wgBlockDisablesLogin also restrict logged in
+  permissions
+* (T129738) SECURITY: Make blocks log users out if $wgBlockDisablesLogin is true
+* (T115333) SECURITY: Check read permission when loading page content in ApiParse
+* Remove support for $wgWellFormedXml = false, all output is now well formed
 
 == MediaWiki 1.23.13 ==
 
