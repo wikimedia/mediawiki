@@ -1,6 +1,10 @@
 == MediaWiki 1.27.2 ==
 This is not a release yet!
 
+ApiCreateAccount was removed in 1.27.0. It was incorrectly still marked as
+deprecated (rather than already removed) in the RELEASE-NOTES at the point 1.27.0
+was released.
+
 === Changes since 1.27.1 ===
 
 * (T68404) CSS3 attr() function with url type argument is no longer allowed
@@ -361,7 +365,7 @@ The following PHP extensions are strongly recommended:
 * ApiMain::addFormat() was removed (deprecated in 1.21).
 * ApiMain::getFormats() was removed (deprecated in 1.21).
 * ApiPageSet::finishPageSetGeneration() was removed (deprecated in 1.21).
-* ApiCreateAccount is deprecated, and will be removed soon.
+* ApiCreateAccount was removed.
 
 === Languages updated in 1.27 ===
 
