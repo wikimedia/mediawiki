@@ -933,13 +933,14 @@ class Linker {
 		if ( $userId ) {
 			// check if the user has an edit
 			$attribs = [];
+			$attribs['class'] = 'mw-usertoollinks-contribs';
 			if ( $redContribsWhenNoEdits ) {
 				if ( intval( $edits ) === 0 && $edits !== 0 ) {
 					$user = User::newFromId( $userId );
 					$edits = $user->getEditCount();
 				}
 				if ( $edits === 0 ) {
-					$attribs['class'] = 'new';
+					$attribs['class'] .= ' new';
 				}
 			}
 			$contribsPage = SpecialPage::getTitleFor( 'Contributions', $userText );
@@ -986,7 +987,10 @@ class Linker {
 	 */
 	public static function userTalkLink( $userId, $userText ) {
 		$userTalkPage = Title::makeTitle( NS_USER_TALK, $userText );
-		$userTalkLink = self::link( $userTalkPage, wfMessage( 'talkpagelinktext' )->escaped() );
+		$moreLinkAttribs['class'] = 'mw-usertoollinks-talk';
+		$userTalkLink = self::link( $userTalkPage,
+                                           wfMessage( 'talkpagelinktext' )->escaped(),
+                                           $moreLinkAttribs );
 		return $userTalkLink;
 	}
 
@@ -998,7 +1002,8 @@ class Linker {
 	 */
 	public static function blockLink( $userId, $userText ) {
 		$blockPage = SpecialPage::getTitleFor( 'Block', $userText );
-		$blockLink = self::link( $blockPage, wfMessage( 'blocklink' )->escaped() );
+		$moreLinkAttribs['class'] = 'mw-usertoollinks-block';
+		$blockLink = self::link( $blockPage, wfMessage( 'blocklink' )->escaped(), $moreLinkAttribs );
 		return $blockLink;
 	}
 
@@ -1009,7 +1014,8 @@ class Linker {
 	 */
 	public static function emailLink( $userId, $userText ) {
 		$emailPage = SpecialPage::getTitleFor( 'Emailuser', $userText );
-		$emailLink = self::link( $emailPage, wfMessage( 'emaillink' )->escaped() );
+		$moreLinkAttribs['class'] = 'mw-usertoollinks-mail';
+		$emailLink = self::link( $emailPage, wfMessage( 'emaillink' )->escaped(), $moreLinkAttribs );
 		return $emailLink;
 	}
 
