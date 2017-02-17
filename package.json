@@ -15,12 +15,12 @@
     "grunt-eslint": "19.0.0",
     "grunt-jsonlint": "1.1.0",
     "grunt-karma": "2.0.0",
-    "grunt-stylelint": "0.6.0",
+    "grunt-stylelint": "0.7.0",
     "karma": "1.1.0",
     "karma-chrome-launcher": "2.0.0",
     "karma-firefox-launcher": "1.0.0",
     "karma-qunit": "1.0.0",
     "qunitjs": "1.22.0",
-    "stylelint-config-wikimedia": "0.3.0"
+    "stylelint-config-wikimedia": "0.4.1"
   }
 }
