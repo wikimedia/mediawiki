@@ -3858,7 +3858,7 @@
 	"authmanager-create-not-in-progress": "アカウントの作成が行われていない、またはセッションデータが失われました。最初からやり直してください。",
 	"authmanager-create-no-primary": "指定された証明情報は、アカウントの作成に使用できませんでした。",
 	"authmanager-link-no-primary": "指定された証明情報は、アカウントの関連付けに使用できませんでした。",
-	"authmanager-link-not-in-progress": "アカウントの関連付けが行われていない、またはセッションデータが失われました。最初からやり直してください。",
+	"authmanager-link-not-in-progress": "アカウントの関連付けが処理されていないか、セッションデータが失われています。最初からやり直してください。",
 	"authmanager-authplugin-setpass-failed-title": "パスワードの変更に失敗しました",
 	"authmanager-authplugin-setpass-failed-message": "パスワードの変更は、認証プラグインによって拒否されました。",
 	"authmanager-authplugin-create-fail": "アカウントの作成は、認証プラグインによって拒否されました。",

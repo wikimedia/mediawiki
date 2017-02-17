@@ -1101,6 +1101,7 @@
 	"statistics-articles": "موادي صفحا",
 	"statistics-pages": "صفحا",
 	"statistics-files": "چاڙهيل فائيل",
+	"statistics-edits": "{{SITENAME}} جي ٺھڻ کان صفحن ۾ ڪيل سموريون ترميمون",
 	"statistics-edits-average": "سراسري ترميمون في صفحو",
 	"statistics-users": "کاتيدار [[Special:ListUsers|يُوزرس]]",
 	"statistics-users-active": "سرگرم يُوزرس",
