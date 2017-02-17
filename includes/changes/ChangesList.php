@@ -375,11 +375,12 @@ class ChangesList extends ContextSource {
 				'diff' => $rc->mAttribs['rc_this_oldid'],
 				'oldid' => $rc->mAttribs['rc_last_oldid']
 			];
+			$extraDiffAttribs['class'] = 'mw-changeslist-diff';
 
 			$diffLink = $this->linkRenderer->makeKnownLink(
 				$rc->getTitle(),
 				new HtmlArmor( $this->message['diff'] ),
-				[],
+				$extraDiffAttribs,
 				$query
 			);
 		}
@@ -387,11 +388,13 @@ class ChangesList extends ContextSource {
 			$diffhist = $diffLink . $this->message['pipe-separator'] . $this->message['hist'];
 		} else {
 			$diffhist = $diffLink . $this->message['pipe-separator'];
+
 			# History link
+			$extraHistAttribs['class'] = 'mw-changeslist-history';
 			$diffhist .= $this->linkRenderer->makeKnownLink(
 				$rc->getTitle(),
 				new HtmlArmor( $this->message['hist'] ),
-				[],
+				$extraHistAttribs,
 				[
 					'curid' => $rc->mAttribs['rc_cur_id'],
 					'action' => 'history'
