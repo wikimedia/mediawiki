@@ -247,4 +247,9 @@
 		} );
 	};
 
+	/**
+	 * Override 'editItem' since it tries to use $input which does
+	 * not exist when a popup is available.
+	 */
+	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.editItem = function () {};
 }( mediaWiki, jQuery ) );
