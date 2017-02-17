@@ -1,5 +1,5 @@
 When(/^I click User profile$/) do
-  visit(PreferencesPage).user_profile_link_element.when_present.click
+  visit(PreferencesPage).user_profile_link_element.click
 end
 
 Then(/^I can change my gender$/) do
