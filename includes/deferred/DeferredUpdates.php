@@ -21,6 +21,7 @@
  */
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * Class for managing the deferred updates

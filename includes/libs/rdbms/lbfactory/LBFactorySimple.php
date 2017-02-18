@@ -23,7 +23,6 @@
 
 namespace Wikimedia\Rdbms;
 
-use LoadBalancer;
 use InvalidArgumentException;
 
 /**
