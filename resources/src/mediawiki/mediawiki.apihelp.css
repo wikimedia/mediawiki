@@ -68,7 +68,7 @@ div.apihelp-linktrail {
 }
 
 .apihelp-parameters dt:after {
-	content: ':\A0'
+	content: ':\A0';
 }
 
 .apihelp-parameters dd {

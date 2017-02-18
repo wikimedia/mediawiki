@@ -2,7 +2,7 @@
  * Diff rendering
  */
 table.diff {
-	border: none;
+	border: 0;
 	border-spacing: 4px;
 	margin: 0;
 	width: 100%;
