@@ -291,15 +291,6 @@ EOD;
 		foreach ( glob( $this->basepath . '/*.php' ) as $file ) {
 			$this->readFile( $file );
 		}
-
-		// Legacy aliases (1.28)
-		$this->forceClassPath( 'DatabaseBase',
-			$this->basepath . '/includes/libs/rdbms/database/Database.php' );
-		// Legacy aliases (1.29)
-		$this->forceClassPath( 'Blob',
-			$this->basepath . '/includes/libs/rdbms/encasing/Blob.php' );
-		$this->forceClassPath( 'Field',
-			$this->basepath . '/includes/libs/rdbms/field/Field.php' );
 	}
 }
 
@@ -336,6 +327,7 @@ class ClassCollector {
 		$this->namespace = '';
 		$this->classes = [];
 		$this->startToken = null;
+		$this->alias = null;
 		$this->tokens = [];
 
 		foreach ( token_get_all( $code ) as $token ) {
@@ -365,6 +357,12 @@ class ClassCollector {
 		case T_TRAIT:
 		case T_DOUBLE_COLON:
 			$this->startToken = $token;
+			break;
+		case T_STRING:
+			if ( $token[1] === 'class_alias' ) {
+				$this->startToken = $token;
+				$this->alias = array();
+			}
 		}
 	}
 
@@ -385,6 +383,36 @@ class ClassCollector {
 				$this->namespace = $this->implodeTokens() . '\\';
 			} else {
 				$this->tokens[] = $token;
+			}
+			break;
+
+		case T_STRING:
+			if ( $this->alias !== null ) {
+				// Normal flow:
+				// - T_STRING  class_alias
+				// - '('
+				// - T_CONSTANT_ENCAPSED_STRING 'TargetClass'
+				// - ','
+				// - T_WHITESPACE
+				// - T_CONSTANT_ENCAPSED_STRING 'AliasName'
+				// - ')'
+				if ( $token === '(' ) {
+					// Start of a function call to class_alias()
+					$this->alias = array( 'target' => null, 'name' => null );
+				} elseif ( is_array( $token ) && $token[0] === T_CONSTANT_ENCAPSED_STRING ) {
+					if ( $this->alias['target'] === null ) {
+						// First argument (strip quotes)
+						$this->alias['target'] = substr( $token[1], 1, -1 );
+					} else {
+						// Second argument (strip quotes)
+						$this->alias['name'] = substr( $token[1], 1, -1 );
+					}
+				} elseif ( $token === ')' ) {
+					// End of function call
+					$this->classes[] = $this->alias['name'];
+					$this->alias = null;
+					$this->startToken = null;
+				}
 			}
 			break;
 
