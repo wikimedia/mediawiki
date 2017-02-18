@@ -165,7 +165,7 @@ img {
 .toc {
 	border: 1px solid #bba;
 	background-color: #f7f8ff;
-	padding: 5px;
+	padding: 7px;
 	font-size: 95%;
 	text-align: center;
 	display: inline-block;
@@ -173,9 +173,7 @@ img {
 
 	/* IE7 and earlier */
 	zoom: 1;
-	*display: inline;
-
-	padding: 7px;
+	*display: inline; /* stylelint-disable-line declaration-block-no-duplicate-properties */
 }
 
 /* CSS for backwards-compatibility with cached page renders and creative uses in wikitext */

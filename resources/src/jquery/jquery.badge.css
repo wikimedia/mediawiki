@@ -21,7 +21,7 @@
 	display: inline-block;
 	/* Hack for IE6 and IE7 (bug 47926) */
 	zoom: 1;
-	*display: inline;
+	*display: inline; /* stylelint-disable-line declaration-block-no-duplicate-properties */
 
 }
 .mw-badge-overlay {
