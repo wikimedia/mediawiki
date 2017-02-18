@@ -2483,7 +2483,7 @@ class Parser {
 	 *
 	 * @private
 	 *
-	 * @param int $index
+	 * @param string $index Magic variable identifier as mapped in MagicWord::$mVariableIDs
 	 * @param bool|PPFrame $frame
 	 *
 	 * @throws MWException
