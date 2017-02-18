@@ -566,7 +566,7 @@
 	"userinvalidcssjstitle": "'''Ocio:'''  No ghe xe nissuna skin con nome \"$1\". Nota che le pagine par i .css e .js personalizà le gà l'iniziale del titolo minuscola, par esenpio {{ns:user}}:Esenpio/vector.css e no {{ns:user}}:Esenpio/Vector.css.",
 	"updated": "(Agiornà)",
 	"note": "'''Nota:'''",
-	"previewnote": "Sta cua ła xe soło n'anteprima; i canbiamenti a ła pajina NO i xe gnancora stà salvài!",
+	"previewnote": "'''Tiente in mente che sta qua la xe solo n'anteprima.'''\nI to canbiamenti NO i xe gnancora stà salvài!",
 	"continue-editing": "Va a l'area de modifega",
 	"previewconflict": "Sta anteprima la corisponde al testo ne la casèla de edizion de sora, e la fa védar come vegnarà fora la pagina se te machi \"Salva la pagina\" in sto momento.",
 	"session_fail_preview": "No xè stà possibiłe salvar le to modifiche parché i dati de la session i xè andai persi.\nPar piaser, riproa da novo.\nSe no funsiona gnancora, proa a [[Special:UserLogout|scołegarte]] e a cołegarte de novo.'''",
