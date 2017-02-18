@@ -2,6 +2,7 @@
 
 use MediaWiki\Linker\LinkTarget;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * Class performing complex database queries related to WatchedItems.

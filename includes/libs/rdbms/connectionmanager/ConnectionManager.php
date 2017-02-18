@@ -6,7 +6,6 @@ use Database;
 use DBConnRef;
 use IDatabase;
 use InvalidArgumentException;
-use LoadBalancer;
 
 /**
  * Database connection manager.
