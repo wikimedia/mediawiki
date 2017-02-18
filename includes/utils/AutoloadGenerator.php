@@ -291,15 +291,6 @@ EOD;
 		foreach ( glob( $this->basepath . '/*.php' ) as $file ) {
 			$this->readFile( $file );
 		}
-
-		// Legacy aliases (1.28)
-		$this->forceClassPath( 'DatabaseBase',
-			$this->basepath . '/includes/libs/rdbms/database/Database.php' );
-		// Legacy aliases (1.29)
-		$this->forceClassPath( 'Blob',
-			$this->basepath . '/includes/libs/rdbms/encasing/Blob.php' );
-		$this->forceClassPath( 'Field',
-			$this->basepath . '/includes/libs/rdbms/field/Field.php' );
 	}
 }
 
@@ -336,6 +327,7 @@ class ClassCollector {
 		$this->namespace = '';
 		$this->classes = [];
 		$this->startToken = null;
+		$this->alias = null;
 		$this->tokens = [];
 
 		foreach ( token_get_all( $code ) as $token ) {
@@ -358,6 +350,8 @@ class ClassCollector {
 		if ( is_string( $token ) ) {
 			return;
 		}
+		// Note: When changing class name discovery logic,
+		// AutoLoaderTest.php may also need to be updated.
 		switch ( $token[0] ) {
 		case T_NAMESPACE:
 		case T_CLASS:
@@ -365,6 +359,12 @@ class ClassCollector {
 		case T_TRAIT:
 		case T_DOUBLE_COLON:
 			$this->startToken = $token;
+			break;
+		case T_STRING:
+			if ( $token[1] === 'class_alias' ) {
+				$this->startToken = $token;
+				$this->alias = [];
+			}
 		}
 	}
 
@@ -385,6 +385,49 @@ class ClassCollector {
 				$this->namespace = $this->implodeTokens() . '\\';
 			} else {
 				$this->tokens[] = $token;
+			}
+			break;
+
+		case T_STRING:
+			if ( $this->alias !== null ) {
+				// Flow 1 - Two string literals:
+				// - T_STRING  class_alias
+				// - '('
+				// - T_CONSTANT_ENCAPSED_STRING 'TargetClass'
+				// - ','
+				// - T_WHITESPACE
+				// - T_CONSTANT_ENCAPSED_STRING 'AliasName'
+				// - ')'
+				// Flow 2 - Use of ::class syntax for first parameter
+				// - T_STRING  class_alias
+				// - '('
+				// - T_STRING TargetClass
+				// - T_DOUBLE_COLON ::
+				// - T_CLASS class
+				// - ','
+				// - T_WHITESPACE
+				// - T_CONSTANT_ENCAPSED_STRING 'AliasName'
+				// - ')'
+				if ( $token === '(' ) {
+					// Start of a function call to class_alias()
+					$this->alias = [ 'target' => false, 'name' => false ];
+				} elseif ( $token === ',' ) {
+					// Record that we're past the first parameter
+					if ( $this->alias['target'] === false ) {
+						$this->alias['target'] = true;
+					}
+				} elseif ( is_array( $token ) && $token[0] === T_CONSTANT_ENCAPSED_STRING ) {
+					if ( $this->alias['target'] === true ) {
+						// We already saw a first argument, this must be the second.
+						// Strip quotes from the string literal.
+						$this->alias['name'] = substr( $token[1], 1, -1 );
+					}
+				} elseif ( $token === ')' ) {
+					// End of function call
+					$this->classes[] = $this->alias['name'];
+					$this->alias = null;
+					$this->startToken = null;
+				}
 			}
 			break;
 
