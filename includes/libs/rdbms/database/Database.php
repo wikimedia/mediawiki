@@ -3467,4 +3467,4 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 }
 
-class_alias( 'Database', 'DatabaseBase' );
+class_alias( Database::class, 'DatabaseBase' );
