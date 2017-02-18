@@ -20,14 +20,29 @@
  * @file
  * @ingroup Database
  */
+namespace Wikimedia\Rdbms;
+
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\ScopedCallback;
-use Wikimedia\Rdbms\TransactionProfiler;
-use Wikimedia\Rdbms\ILoadMonitor;
-use Wikimedia\Rdbms\DatabaseDomain;
-use Wikimedia\Rdbms\ILoadBalancer;
-use Wikimedia\Rdbms\DBMasterPos;
+use IDatabase;
+use Database;
+use DBConnRef;
+use MaintainableDBConnRef;
+use BagOStuff;
+use EmptyBagOStuff;
+use WANObjectCache;
+use ArrayUtils;
+use DBError;
+use DBAccessError;
+use DBExpectedError;
+use DBUnexpectedError;
+use DBTransactionError;
+use DBTransactionSizeError;
+use DBConnectionError;
+use InvalidArgumentException;
+use RuntimeException;
+use Exception;
 
 /**
  * Database connection, tracking, load balancing, and transaction manager for a cluster
@@ -218,9 +233,9 @@ class LoadBalancer implements ILoadBalancer {
 	private function getLoadMonitor() {
 		if ( !isset( $this->loadMonitor ) ) {
 			$compat = [
-				'LoadMonitor' => Wikimedia\Rdbms\LoadMonitor::class,
-				'LoadMonitorNull' => Wikimedia\Rdbms\LoadMonitorNull::class,
-				'LoadMonitorMySQL' => Wikimedia\Rdbms\LoadMonitorMySQL::class,
+				'LoadMonitor' => LoadMonitor::class,
+				'LoadMonitorNull' => LoadMonitorNull::class,
+				'LoadMonitorMySQL' => LoadMonitorMySQL::class,
 			];
 
 			$class = $this->loadMonitorConfig['class'];
@@ -1355,7 +1370,7 @@ class LoadBalancer implements ILoadBalancer {
 
 	/**
 	 * @param string $domain Domain ID, or false for the current domain
-	 * @param IDatabase|null DB master connectionl used to avoid loops [optional]
+	 * @param IDatabase|null $conn DB master connectionl used to avoid loops [optional]
 	 * @return bool
 	 */
 	private function masterRunningReadOnly( $domain, IDatabase $conn = null ) {
@@ -1591,3 +1606,5 @@ class LoadBalancer implements ILoadBalancer {
 		$this->disable();
 	}
 }
+
+class_alias( 'Wikimedia\Rdbms\LoadBalancer', 'LoadBalancer' );
