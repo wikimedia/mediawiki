@@ -5,6 +5,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\Assert;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * Storage layer class for WatchedItems.
