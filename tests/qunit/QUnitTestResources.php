@@ -137,7 +137,7 @@ return [
 			'mediawiki.util',
 			'mediawiki.viewport',
 			'mediawiki.special.recentchanges',
-			'mediawiki.rcfilters.filters',
+			'mediawiki.rcfilters.filters.dm',
 			'mediawiki.language',
 			'mediawiki.cldr',
 			'mediawiki.cookie',
