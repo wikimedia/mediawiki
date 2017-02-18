@@ -55,7 +55,7 @@ table.toc td {
 #toc h2,
 .toc h2 {
 	display: inline;
-	border: none;
+	border: 0;
 	padding: 0;
 	font-size: 100%;
 	font-weight: bold;
@@ -161,7 +161,7 @@ html .thumbimage {
 }
 
 html .thumbcaption {
-	border: none;
+	border: 0;
 	line-height: 1.4em;
 	padding: 3px;
 	font-size: 94%;

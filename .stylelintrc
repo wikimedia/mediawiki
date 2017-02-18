@@ -1,26 +1,23 @@
 {
+	"extends": "stylelint-config-wikimedia",
 	"rules": {
-		"color-hex-case": [ "lower" ],
-		"color-hex-length": [ "short" ],
-		"color-named": [ "never" ],
-		"color-no-invalid-hex": true,
+		"declaration-block-no-duplicate-properties": null,
+		"declaration-no-important": null,
 
-		"declaration-bang-space-after": [ "never" ],
-		"declaration-bang-space-before": [ "always" ],
-		"declaration-colon-space-after": [ "always" ],
-		"declaration-colon-space-before": [ "never" ],
+		"indentation": null,
 
-		"font-family-name-quotes": [ "always-unless-keyword" ],
-		"font-weight-notation": [ "named-where-possible" ],
+		"no-descending-specificity": null,
+		"no-duplicate-selectors": null,
 
-		"function-calc-no-unspaced-operator": true,
-		"function-comma-newline-after": "never-multi-line",
-		"function-comma-newline-before": "never-multi-line",
-		"function-comma-space-after": [ "always" ],
-		"function-comma-space-before": [ "never" ],
-		"function-parentheses-newline-inside": [ "never-multi-line" ],
-		"function-parentheses-space-inside": [ "always" ],
-		"function-url-quotes": [ "never" ],
-		"function-whitespace-after": [ "always" ],
+		"number-leading-zero": null,
+
+		"selector-list-comma-newline-after": null,
+		"selector-no-id": null,
+		"selector-pseudo-class-parentheses-space-inside": null,
+		"selector-pseudo-element-colon-notation": null,
+
+		"string-quotes": null,
+
+		"value-keyword-case": null
 	}
 }
