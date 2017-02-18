@@ -300,6 +300,10 @@ EOD;
 			$this->basepath . '/includes/libs/rdbms/encasing/Blob.php' );
 		$this->forceClassPath( 'Field',
 			$this->basepath . '/includes/libs/rdbms/field/Field.php' );
+		$this->forceClassPath( 'LoadBalancer',
+			$this->basepath . '/includes/libs/rdbms/loadbalancer/LoadBalancer.php' );
+		$this->forceClassPath( 'LoadBalancerSingle',
+			$this->basepath . '/includes/libs/rdbms/loadbalancer/LoadBalancerSingle.php' );
 	}
 }
 
