@@ -20,14 +20,29 @@
  * @file
  * @ingroup Database
  */
+namespace Wikimedia\Rdbms;
+
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\ScopedCallback;
-use Wikimedia\Rdbms\TransactionProfiler;
-use Wikimedia\Rdbms\ILoadMonitor;
-use Wikimedia\Rdbms\DatabaseDomain;
-use Wikimedia\Rdbms\ILoadBalancer;
-use Wikimedia\Rdbms\DBMasterPos;
+use IDatabase;
+use Database;
+use DBConnRef;
+use MaintainableDBConnRef;
+use BagOStuff;
+use EmptyBagOStuff;
+use WANObjectCache;
+use ArrayUtils;
+use DBError;
+use DBAccessError;
+use DBExpectedError;
+use DBUnexpectedError;
+use DBTransactionError;
+use DBTransactionSizeError;
+use DBConnectionError;
+use InvalidArgumentException;
+use RuntimeException;
+use Exception;
 
 /**
  * Database connection, tracking, load balancing, and transaction manager for a cluster
@@ -37,7 +52,7 @@ use Wikimedia\Rdbms\DBMasterPos;
 class LoadBalancer implements ILoadBalancer {
 	/** @var array[] Map of (server index => server config array) */
 	private $mServers;
-	/** @var IDatabase[][][] Map of local/foreignUsed/foreignFree => server index => IDatabase array */
+	/** @var Database[][][] Map of local/foreignUsed/foreignFree => server index => IDatabase array */
 	private $mConns;
 	/** @var float[] Map of (server index => weight) */
 	private $mLoads;
@@ -73,8 +88,8 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var LoggerInterface */
 	protected $perfLogger;
 
-	/** @var bool|IDatabase Database connection that caused a problem */
-	private $mErrorConnection;
+	/** @var Database Database connection that caused a problem */
+	private $errorConnection;
 	/** @var integer The generic (not query grouped) replica DB index (of $mServers) */
 	private $mReadIndex;
 	/** @var bool|DBMasterPos False if not set */
@@ -146,7 +161,6 @@ class LoadBalancer implements ILoadBalancer {
 		];
 		$this->mLoads = [];
 		$this->mWaitForPos = false;
-		$this->mErrorConnection = false;
 		$this->mAllowLagged = false;
 
 		if ( isset( $params['readOnlyReason'] ) && is_string( $params['readOnlyReason'] ) ) {
@@ -218,9 +232,9 @@ class LoadBalancer implements ILoadBalancer {
 	private function getLoadMonitor() {
 		if ( !isset( $this->loadMonitor ) ) {
 			$compat = [
-				'LoadMonitor' => Wikimedia\Rdbms\LoadMonitor::class,
-				'LoadMonitorNull' => Wikimedia\Rdbms\LoadMonitorNull::class,
-				'LoadMonitorMySQL' => Wikimedia\Rdbms\LoadMonitorMySQL::class,
+				'LoadMonitor' => LoadMonitor::class,
+				'LoadMonitorNull' => LoadMonitorNull::class,
+				'LoadMonitorMySQL' => LoadMonitorMySQL::class,
 			];
 
 			$class = $this->loadMonitorConfig['class'];
@@ -722,7 +736,7 @@ class LoadBalancer implements ILoadBalancer {
 				$this->mConns['local'][$i][0] = $conn;
 			} else {
 				$this->connLogger->warning( "Failed to connect to database $i at '$serverName'." );
-				$this->mErrorConnection = $conn;
+				$this->errorConnection = $conn;
 				$conn = false;
 			}
 		}
@@ -732,7 +746,7 @@ class LoadBalancer implements ILoadBalancer {
 			// Do not return a handle that will just throw exceptions on use,
 			// but let the calling code (e.g. getReaderIndex) try another server.
 			// See DatabaseMyslBase::ping() for how this can happen.
-			$this->mErrorConnection = $conn;
+			$this->errorConnection = $conn;
 			$conn = false;
 		}
 
@@ -751,7 +765,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * it has been freed first with reuseConnection().
 	 *
 	 * On error, returns false, and the connection which caused the
-	 * error will be available via $this->mErrorConnection.
+	 * error will be available via $this->errorConnection.
 	 *
 	 * @note If disable() was called on this LoadBalancer, this method will throw a DBAccessError.
 	 *
@@ -783,7 +797,7 @@ class LoadBalancer implements ILoadBalancer {
 			if ( strlen( $dbName ) && !$conn->selectDB( $dbName ) ) {
 				$this->mLastError = "Error selecting database '$dbName' on server " .
 					$conn->getServer() . " from client host {$this->host}";
-				$this->mErrorConnection = $conn;
+				$this->errorConnection = $conn;
 				$conn = false;
 			} else {
 				$conn->tablePrefix( $prefix );
@@ -804,7 +818,7 @@ class LoadBalancer implements ILoadBalancer {
 			$conn = $this->reallyOpenConnection( $server, $dbName );
 			if ( !$conn->isOpen() ) {
 				$this->connLogger->warning( __METHOD__ . ": connection error for $i/$domain" );
-				$this->mErrorConnection = $conn;
+				$this->errorConnection = $conn;
 				$conn = false;
 			} else {
 				$conn->tablePrefix( $prefix );
@@ -912,7 +926,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @throws DBConnectionError
 	 */
 	private function reportConnectionError() {
-		$conn = $this->mErrorConnection; // the connection which caused the error
+		$conn = $this->errorConnection; // the connection which caused the error
 		$context = [
 			'method' => __METHOD__,
 			'last_error' => $this->mLastError,
@@ -1355,7 +1369,7 @@ class LoadBalancer implements ILoadBalancer {
 
 	/**
 	 * @param string $domain Domain ID, or false for the current domain
-	 * @param IDatabase|null DB master connectionl used to avoid loops [optional]
+	 * @param IDatabase|null $conn DB master connectionl used to avoid loops [optional]
 	 * @return bool
 	 */
 	private function masterRunningReadOnly( $domain, IDatabase $conn = null ) {
@@ -1591,3 +1605,5 @@ class LoadBalancer implements ILoadBalancer {
 		$this->disable();
 	}
 }
+
+class_alias( 'Wikimedia\Rdbms\LoadBalancer', 'LoadBalancer' );

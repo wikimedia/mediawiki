@@ -3,7 +3,7 @@
 namespace Wikimedia\Tests\Rdbms;
 
 use IDatabase;
-use LoadBalancer;
+use Wikimedia\Rdbms\LoadBalancer;
 use PHPUnit_Framework_MockObject_MockObject;
 use Wikimedia\Rdbms\SessionConsistentConnectionManager;
 

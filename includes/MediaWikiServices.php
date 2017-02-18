@@ -12,7 +12,7 @@ use Hooks;
 use Wikimedia\Rdbms\LBFactory;
 use LinkCache;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
-use LoadBalancer;
+use Wikimedia\Rdbms\LoadBalancer;
 use MediaHandlerFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;

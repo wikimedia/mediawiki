@@ -20,6 +20,8 @@
  * @file
  */
 
+use Wikimedia\Rdbms\LoadBalancer;
+
 /**
  * DB accessable external objects.
  *
@@ -106,9 +108,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @return LoadBalancer
 	 */
 	private function getLoadBalancer( $cluster ) {
-		$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : false;
-
-		return wfGetLBFactory()->getExternalLB( $cluster, $wiki );
+		return wfGetLBFactory()->getExternalLB( $cluster );
 	}
 
 	/**
