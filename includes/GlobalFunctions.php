@@ -28,7 +28,6 @@ use Liuggio\StatsdClient\Sender\SocketSender;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Session\SessionManager;
 use Wikimedia\ScopedCallback;
-use Wikimedia\Rdbms\LBFactory;
 
 // Hide compatibility functions from Doxygen
 /// @cond
@@ -3085,7 +3084,7 @@ function wfGetDB( $db, $groups = [], $wiki = false ) {
  *              or MediaWikiServices::getDBLoadBalancerFactory() instead.
  *
  * @param string|bool $wiki Wiki ID, or false for the current wiki
- * @return LoadBalancer
+ * @return \Wikimedia\Rdbms\LoadBalancer
  */
 function wfGetLB( $wiki = false ) {
 	if ( $wiki === false ) {
@@ -3101,7 +3100,7 @@ function wfGetLB( $wiki = false ) {
  *
  * @deprecated since 1.27, use MediaWikiServices::getDBLoadBalancerFactory() instead.
  *
- * @return LBFactory
+ * @return \Wikimedia\Rdbms\LBFactory
  */
 function wfGetLBFactory() {
 	return \MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory();

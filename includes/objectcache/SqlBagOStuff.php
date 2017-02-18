@@ -24,6 +24,7 @@
 use \MediaWiki\MediaWikiServices;
 use \Wikimedia\WaitConditionLoop;
 use \Wikimedia\Rdbms\TransactionProfiler;
+use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * Class to store objects in the database
