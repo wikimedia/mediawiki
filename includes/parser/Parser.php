@@ -2483,7 +2483,8 @@ class Parser {
 	 *
 	 * @private
 	 *
-	 * @param int $index
+	 * @param string $index Magic variable identifier. Note that it's lowercase by the time 
+         *  this function is called.
 	 * @param bool|PPFrame $frame
 	 *
 	 * @throws MWException
