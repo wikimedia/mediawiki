@@ -189,13 +189,6 @@ a.new,
 a.stub {
 	color: #000 !important;
 	text-decoration: none !important;
-}
-
-/* Continue ... */
-a,
-a.external,
-a.new,
-a.stub {
 	color: inherit !important;
 	text-decoration: inherit !important;
 }
