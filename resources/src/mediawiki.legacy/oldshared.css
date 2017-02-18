@@ -331,23 +331,12 @@ li span.deleted {
 /* Classes for Exif data display */
 table.mw_metadata {
 	margin-left: 0.5em;
+	border: 0;
+	border-collapse: collapse;
 }
 
 table.mw_metadata caption {
 	font-weight: bold;
-}
-
-table.mw_metadata th {
-	font-weight: normal;
-}
-
-table.mw_metadata td {
-	padding: 0.1em;
-}
-
-table.mw_metadata {
-	border: 0;
-	border-collapse: collapse;
 }
 
 table.mw_metadata td,
@@ -359,10 +348,12 @@ table.mw_metadata th {
 
 table.mw_metadata th {
 	background-color: #f9f9f9;
+	font-weight: normal;
 }
 
 table.mw_metadata td {
 	background-color: #fcfcfc;
+	padding: 0.1em;
 }
 
 table.mw_metadata td.spacer {

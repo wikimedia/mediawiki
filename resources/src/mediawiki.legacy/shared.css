@@ -166,6 +166,7 @@ div.patrollink {
  */
 td.mw-label {
 	text-align: right;
+	vertical-align: middle;
 }
 
 td.mw-input {
@@ -174,13 +175,6 @@ td.mw-input {
 
 td.mw-submit {
 	text-align: left;
-}
-
-td.mw-label {
-	vertical-align: middle;
-}
-
-td.mw-submit {
 	white-space: nowrap;
 }
 
