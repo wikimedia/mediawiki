@@ -23,7 +23,7 @@ textarea {
 .editOptions {
 	background-color: #f8f9fa;
 	border: 1px solid #c8ccd1;
-	border-top: none;
+	border-top: 0;
 	padding: 1em 1em 1.5em 1em;
 	margin-bottom: 2em;
 }
