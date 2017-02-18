@@ -18,4 +18,4 @@ class Blob implements IBlob {
 	}
 }
 
-class_alias( 'Wikimedia\Rdbms\Blob', 'Blob' );
+class_alias( Blob::class, 'Blob' );

@@ -32,4 +32,4 @@ interface Field {
 	function isNullable();
 }
 
-class_alias( 'Wikimedia\Rdbms\Field', 'Field' );
+class_alias( Field::class, 'Field' );
