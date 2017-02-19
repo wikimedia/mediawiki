@@ -292,6 +292,7 @@ EOD;
 			$this->readFile( $file );
 		}
 
+		// @TODO: get some sort of automated detection that passes unit tests
 		// Legacy aliases (1.28)
 		$this->forceClassPath( 'DatabaseBase',
 			$this->basepath . '/includes/libs/rdbms/database/Database.php' );
@@ -300,6 +301,10 @@ EOD;
 			$this->basepath . '/includes/libs/rdbms/encasing/Blob.php' );
 		$this->forceClassPath( 'Field',
 			$this->basepath . '/includes/libs/rdbms/field/Field.php' );
+		$this->forceClassPath( 'ResultWrapper',
+			$this->basepath . '/includes/libs/rdbms/database/resultwrapper/ResultWrapper.php' );
+		$this->forceClassPath( 'FakeResultWrapper',
+			$this->basepath . '/includes/libs/rdbms/database/resultwrapper/FakeResultWrapper.php' );
 	}
 }
 

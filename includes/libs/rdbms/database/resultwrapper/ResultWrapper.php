@@ -1,6 +1,10 @@
 <?php
 
-use Wikimedia\Rdbms\IResultWrapper;
+namespace Wikimedia\Rdbms;
+
+use IDatabase;
+use stdClass;
+use RuntimeException;
 
 /**
  * Result wrapper for grabbing data queried from an IDatabase object
@@ -115,3 +119,5 @@ class ResultWrapper implements IResultWrapper {
 		return $this->current() !== false;
 	}
 }
+
+class_alias( 'Wikimedia\Rdbms\ResultWrapper', 'ResultWrapper' );
