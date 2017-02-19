@@ -27,6 +27,7 @@
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\MssqlBlob;
 use Wikimedia\Rdbms\MssqlField;
+use Wikimedia\Rdbms\MssqlResultWrapper;
 
 /**
  * @ingroup Database
