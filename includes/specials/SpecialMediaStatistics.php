@@ -22,6 +22,8 @@
  * @author Brian Wolff
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * @ingroup SpecialPage
  */

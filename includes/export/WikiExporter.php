@@ -27,6 +27,8 @@
  * @defgroup Dump Dump
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * @ingroup SpecialPage Dump
  */

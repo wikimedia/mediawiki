@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ResultWrapper;
 
 /**
  * Used to show archived pages and eventually restore them.

@@ -24,6 +24,7 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ResultWrapper;
 
 /**
  * This class contains a list of pages that the client has requested.

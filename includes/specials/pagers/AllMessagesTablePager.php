@@ -19,6 +19,8 @@
  * @ingroup Pager
  */
 
+use Wikimedia\Rdbms\FakeResultWrapper;
+
 /**
  * Use TablePager for prettified output. We have to pretend that we're
  * getting data from a table when in fact not all of it comes from the database.

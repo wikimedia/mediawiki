@@ -23,6 +23,8 @@
  * @ingroup Pager
  */
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\FakeResultWrapper;
 
 class DeletedContribsPager extends IndexPager {
 

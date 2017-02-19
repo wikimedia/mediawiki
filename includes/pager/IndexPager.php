@@ -21,6 +21,8 @@
  * @ingroup Pager
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * IndexPager is an efficient pager which uses a (roughly unique) index in the
  * data set to implement paging, rather than a "LIMIT offset,limit" clause.

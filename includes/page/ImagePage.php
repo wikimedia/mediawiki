@@ -20,6 +20,8 @@
  * @file
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * Class for viewing MediaWiki file description pages
  *

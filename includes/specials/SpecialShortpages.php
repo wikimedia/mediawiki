@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * SpecialShortpages extends QueryPage. It is used to return the shortest
  * pages in the database.

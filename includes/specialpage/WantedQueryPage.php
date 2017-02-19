@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * Class definition for a wanted query page like
  * WantedPages, WantedTemplates, etc

@@ -23,6 +23,7 @@
  */
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ResultWrapper;
 
 class ChangesList extends ContextSource {
 	/**

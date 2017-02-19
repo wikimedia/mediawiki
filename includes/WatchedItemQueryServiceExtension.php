@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * Extension mechanism for WatchedItemQueryService
  *

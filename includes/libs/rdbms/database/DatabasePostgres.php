@@ -25,6 +25,7 @@ use Wikimedia\WaitConditionLoop;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\PostgresBlob;
 use Wikimedia\Rdbms\PostgresField;
+use Wikimedia\Rdbms\ResultWrapper;
 
 /**
  * @ingroup Database

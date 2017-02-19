@@ -26,6 +26,7 @@
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ResultWrapper;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -571,7 +572,7 @@ class NamespaceConflictChecker extends Maintenance {
 	/**
 	 * Merge page histories
 	 *
-	 * @param integer $id The page_id
+	 * @param stdClass $row Page row
 	 * @param Title $newTitle The new title
 	 * @return bool
 	 */
