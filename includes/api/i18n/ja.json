@@ -873,7 +873,7 @@
 	"apihelp-unblock-param-tags": "ブロック記録の項目に適用する変更タグ。",
 	"apihelp-unblock-example-id": "ブロックID #<kbd>105</kbd> を解除する。",
 	"apihelp-unblock-example-user": "<kbd>Sorry Bob</kbd> という理由で利用者 <kbd>Bob</kbd> のブロックを解除する。",
-	"apihelp-undelete-description": "削除されたページの版を復元します。\n\n削除された版の一覧 (タイムスタンプを含む) は[[Special:ApiHelp/query+deletedrevs|list=deletedrevs]]に、また削除されたファイルのID一覧は[[Special:ApiHelp/query+filearchive|list=filearchive]]で見つけることができます。",
+	"apihelp-undelete-description": "削除されたページの版を復元します。\n\n削除された版の一覧 (タイムスタンプを含む) は[[Special:ApiHelp/query+deletedrevisions|prop=deletedrevisions]]に、また削除されたファイルのID一覧は[[Special:ApiHelp/query+filearchive|list=filearchive]]で見つけることができます。",
 	"apihelp-undelete-param-title": "復元するページ名。",
 	"apihelp-undelete-param-reason": "復元の理由。",
 	"apihelp-undelete-param-tags": "削除記録の項目に適用する変更タグ。",

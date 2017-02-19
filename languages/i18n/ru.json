@@ -1171,7 +1171,7 @@
 	"userrights": "Управление правами участника",
 	"userrights-lookup-user": "Выбор участника",
 	"userrights-user-editname": "Введите имя учётной записи:",
-	"editusergroup": "Загрузка групп участников",
+	"editusergroup": "Загрузить группы участников",
 	"editinguser": "Изменение прав {{GENDER:$1|участника|участницы}} <strong>[[User:$1|$1]]</strong> $2",
 	"viewinguserrights": "Просмотр прав {{GENDER:$1|участника|участницы}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-editusergroup": "Изменение групп {{GENDER:$1|участника|участницы}}",

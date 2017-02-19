@@ -1302,7 +1302,7 @@
 	"apihelp-unblock-param-tags": "As etiquetas de modificação a aplicar à entrada no registo de bloqueios.",
 	"apihelp-unblock-example-id": "Desfazer o bloqueio com o identificador #<kbd>105</kbd>.",
 	"apihelp-unblock-example-user": "Desbloquear o utilizador <kbd>Bob</kbd> com o motivo <kbd>Sorry Bob</kbd>.",
-	"apihelp-undelete-description": "Restaurar revisões de uma página eliminada.\n\nPode obter-se uma lista de revisões eliminadas (incluindo as datas e horas de eliminação) com [[Special:ApiHelp/query+deletedrevs|list=deletedrevs]] e uma lista de identificadores de ficheiros eliminados com [[Special:ApiHelp/query+filearchive|list=filearchive]].",
+	"apihelp-undelete-description": "Restaurar revisões de uma página eliminada.\n\nPode obter-se uma lista de revisões eliminadas (incluindo as datas e horas de eliminação) com [[Special:ApiHelp/query+deletedrevisions|prop=deletedrevisions]] e uma lista de identificadores de ficheiros eliminados com [[Special:ApiHelp/query+filearchive|list=filearchive]].",
 	"apihelp-undelete-param-title": "Título da página a restaurar.",
 	"apihelp-undelete-param-reason": "Motivo para restaurar a página.",
 	"apihelp-undelete-param-tags": "Etiquetas de modificação a aplicar à entrada no registo de eliminações.",

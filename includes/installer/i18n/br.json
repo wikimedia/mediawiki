@@ -259,6 +259,7 @@
 	"config-install-subscribe-fail": "N'haller ket koumanantiñ da mediawiki-announce : $1",
 	"config-install-subscribe-notpossible": "cURL n'eo ket staliet ha ne c'haller ket ober gant <code>allow_url_fopen</code>.",
 	"config-install-mainpage": "O krouiñ ar bajenn bennañ gant un endalc'had dre ziouer",
+	"config-install-mainpage-exists": "Bez' ez eus eus ar bajenn bennañ c'hoazh, lezel a-gostez",
 	"config-install-extension-tables": "O krouiñ taolennoù evit an astennoù gweredekaet",
 	"config-install-mainpage-failed": "Ne c'haller ket ensoc'hañ ar bajenn bennañ: $1",
 	"config-download-localsettings": "Pellgargañ <code>LocalSettings.php</code>",

@@ -1309,7 +1309,7 @@
 	"apihelp-unblock-param-tags": "Cambiar as etiquetas a aplicar na entrada do rexistro de bloqueo.",
 	"apihelp-unblock-example-id": "Desbloquear bloqueo ID #<kbd>105</kbd>.",
 	"apihelp-unblock-example-user": "Desbloquear usuario <kbd>Bob</kbd> con razón <kbd>Síntoo Bob</kbd>.",
-	"apihelp-undelete-description": "Restaurar modificacións dunha páxina borrada.\n\nUnha lista de modificacións borradas (incluíndo os seus selos de tempo) pode consultarse a través de [[Special:ApiHelp/query+deletedrevs|list=deletedrevs]], e unha lista de IDs de ficheiros borrados pode consultarse a través de [[Special:ApiHelp/query+filearchive|list=filearchive]].",
+	"apihelp-undelete-description": "Restaurar modificacións dunha páxina borrada.\n\nUnha lista de modificacións borradas (incluíndo os seus selos de tempo) pode consultarse a través de [[Special:ApiHelp/query+deletedrevisions|prop=deletedrevisions]], e unha lista de IDs de ficheiros borrados pode consultarse a través de [[Special:ApiHelp/query+filearchive|list=filearchive]].",
 	"apihelp-undelete-param-title": "Título da páxina a restaurar.",
 	"apihelp-undelete-param-reason": "Razón para restaurar.",
 	"apihelp-undelete-param-tags": "Cambiar as etiquetas a aplicar na entrada do rexistro de borrado.",

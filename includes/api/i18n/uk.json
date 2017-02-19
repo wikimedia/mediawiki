@@ -1310,7 +1310,7 @@
 	"apihelp-unblock-param-tags": "Змінити теги, що мають бути застосовані до запису в журналі блокувань.",
 	"apihelp-unblock-example-id": "Зняти блокування з ідентифікатором #<kbd>105</kbd>.",
 	"apihelp-unblock-example-user": "Розблокувати користувача <kbd>Bob</kbd> з причиною <kbd>Sorry Bob</kbd>.",
-	"apihelp-undelete-description": "Відновити версії вилученої сторінки.\n\nСписок вилучених версій (включено з часовими мітками) може бути отримано через [[Special:ApiHelp/query+deletedrevs|list=deletedrevs]], а список ідентифікаторів вилучених файлів може бути отримано через [[Special:ApiHelp/query+filearchive|list=filearchive]].",
+	"apihelp-undelete-description": "Відновити версії вилученої сторінки.\n\nСписок вилучених версій (включено з часовими мітками) може бути отримано через [[Special:ApiHelp/query+deletedrevisions|prop=deletedrevisions]], а список ідентифікаторів вилучених файлів може бути отримано через [[Special:ApiHelp/query+filearchive|list=filearchive]].",
 	"apihelp-undelete-param-title": "Назва сторінки, яку слід відновити.",
 	"apihelp-undelete-param-reason": "Причина відновлення.",
 	"apihelp-undelete-param-tags": "Змінити теги, що мають бути застосовані до запису в журналі вилучень.",

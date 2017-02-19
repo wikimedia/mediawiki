@@ -404,6 +404,7 @@
 	"hiddencategories": "Na starna przënôleżi do w {{PLURAL:$1|1 zatacony kategòrëji|$1 zataconych kategòrëjów}}:",
 	"permissionserrorstext-withaction": "Ni môsz przëstãpù do $2, z {{PLURAL:$1|nôslédny przëczënë|nôslédnych przëczënów}}:",
 	"recreate-moveddeleted-warn": "'''Bôczënk! Chcesz usadzëc starnã, chtërna wczasni òsta rëmniãtô.'''\n\nÙgwësni sã, czë pònowné ùsôdzenié ti starnë je kònieczné. \nNiżi je widzec register rëmaniów i zmian pòzwë ti starnë:",
+	"undo-summary": "Anulowanié wersje $1 aùtora [[Special:Contributions/$2|$2]] ([[User talk:$2|diskùsjô]])",
 	"viewpagelogs": "Òbôczë rejestrë dzéjanió dlô ti starnë",
 	"currentrev": "Aktualnô wersëjô",
 	"currentrev-asof": "Aktualnô wersëjô na dzéń $1",

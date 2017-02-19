@@ -1325,7 +1325,7 @@
 	"apihelp-unblock-param-tags": "Modifier les balises à appliquer à l’entrée dans le journal de blocage.",
 	"apihelp-unblock-example-id": "Lever le blocage d’ID #<kbd>105</kbd>.",
 	"apihelp-unblock-example-user": "Débloquer l’utilisateur <kbd>Bob</kbd> avec le motif <kbd>Désolé Bob</kbd>.",
-	"apihelp-undelete-description": "Restaurer les révisions d’une page supprimée.\n\nUne liste des révisions supprimées (avec les horodatages) peut être récupérée via [[Special:ApiHelp/query+deletedrevs|list=deletedrevs]], et une liste d’IDs de fichier supprimé peut être récupérée via [[Special:ApiHelp/query+filearchive|list=filearchive]].",
+	"apihelp-undelete-description": "Restaurer les révisions d’une page supprimée.\n\nUne liste des révisions supprimées (avec les horodatages) peut être récupérée via [[Special:ApiHelp/query+deletedrevisions|prop=deletedrevisions]], et une liste d’IDs de fichier supprimé peut être récupérée via [[Special:ApiHelp/query+filearchive|list=filearchive]].",
 	"apihelp-undelete-param-title": "Titre de la page à restaurer.",
 	"apihelp-undelete-param-reason": "Motif de restauration.",
 	"apihelp-undelete-param-tags": "Modifier les balises à appliquer à l’entrée dans le journal de suppression.",

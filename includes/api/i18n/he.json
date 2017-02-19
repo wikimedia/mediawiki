@@ -1299,7 +1299,7 @@
 	"apihelp-unblock-param-tags": "תגי שינוי שיחולו על העיול ביומן החסימה.",
 	"apihelp-unblock-example-id": "לשחרר את החסימה עם מזהה #<kbd>105</kbd>.",
 	"apihelp-unblock-example-user": "לשחרר את החסימה של המשתמש <kbd>Bob</kbd> עם הסיבה <kbd>Sorry Bob</kbd>.",
-	"apihelp-undelete-description": "שחזור גרסאות של דף מחוק.\n\nאפשר לאחזר רשימת גרסאות מחוקות (כולל חותמי־זמן) דרך [[Special:ApiHelp/query+deletedrevs|list=deletedrevs]], ואפשר לאחזר רשימת מזהי קבצים מחוקים דרך [[Special:ApiHelp/query+filearchive|list=filearchive]].",
+	"apihelp-undelete-description": "שחזור גרסאות של דף מחוק.\n\nאפשר לאחזר רשימת גרסאות מחוקות (כולל חותמי־זמן) דרך [[Special:ApiHelp/query+deletedrevisions|prop=deletedrevisions]], ואפשר לאחזר רשימת מזהי קבצים מחוקים דרך [[Special:ApiHelp/query+filearchive|list=filearchive]].",
 	"apihelp-undelete-param-title": "שם הדף לשחזור ממחיקה.",
 	"apihelp-undelete-param-reason": "סיבה לשחזור.",
 	"apihelp-undelete-param-tags": "תגי שינוי שיחולו על העיול ביומן המחיקה.",

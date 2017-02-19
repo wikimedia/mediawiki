@@ -1634,7 +1634,7 @@
 	"whatlinkshere-filters": "Mga panara",
 	"whatlinkshere-submit": "Kadto-a",
 	"block": "Pugngi an gumaramit",
-	"blockip": "Pugngi an{{GENDER:$1|gumaramit}}",
+	"blockip": "Pugngi an {{GENDER:$1|gumaramit}}",
 	"blockip-legend": "Pugngi an gumaramit",
 	"ipaddressorusername": "IP address o agnay-hit-gumaramit:",
 	"ipbexpiry": "Matitima an dulot:",

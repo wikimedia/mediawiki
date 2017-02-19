@@ -1318,7 +1318,7 @@
 	"apihelp-unblock-param-tags": "要在封禁日志中应用到实体的更改标签。",
 	"apihelp-unblock-example-id": "解封封禁ID #<kbd>105</kbd>。",
 	"apihelp-unblock-example-user": "解封用户<kbd>Bob</kbd>，原因<kbd>Sorry Bob</kbd>。",
-	"apihelp-undelete-description": "恢复一个被删除页面的修订。\n\n被删除修订的列表（包括时间戳）可通过[[Special:ApiHelp/query+deletedrevs|list=deletedrevs]]检索到，并且被删除的文件ID列表可通过[[Special:ApiHelp/query+filearchive|list=filearchive]]检索到。",
+	"apihelp-undelete-description": "恢复一个被删除页面的修订。\n\n被删除修订的列表（包括时间戳）可通过[[Special:ApiHelp/query+deletedrevisions|prop=deletedrevisions]]检索到，并且被删除的文件ID列表可通过[[Special:ApiHelp/query+filearchive|list=filearchive]]检索到。",
 	"apihelp-undelete-param-title": "要恢复的页面标题。",
 	"apihelp-undelete-param-reason": "恢复的原因。",
 	"apihelp-undelete-param-tags": "要在删除日志中应用到实体的更改标签。",
