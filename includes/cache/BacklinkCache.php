@@ -26,6 +26,9 @@
  * @copyright © 2011, Antoine Musso
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\FakeResultWrapper;
+
 /**
  * Class for fetching backlink lists, approximate backlink counts and
  * partitions. This is a shared cache.

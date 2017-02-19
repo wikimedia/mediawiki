@@ -22,6 +22,8 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * Special page lists templates with a large number of
  * transclusion links, i.e. "most used" templates

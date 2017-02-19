@@ -28,6 +28,7 @@ use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\LikeMatch;
 use Wikimedia\Rdbms\DBMasterPos;
 use Wikimedia\Rdbms\Field;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Basic database interface for live and lazy-loaded relation database handles
@@ -363,7 +364,7 @@ interface IDatabase {
 	 * member variables.
 	 * If no more rows are available, false is returned.
 	 *
-	 * @param ResultWrapper|stdClass $res Object as returned from IDatabase::query(), etc.
+	 * @param IResultWrapper|stdClass $res Object as returned from IDatabase::query(), etc.
 	 * @return stdClass|bool
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
@@ -374,7 +375,7 @@ interface IDatabase {
 	 * form. Fields are retrieved with $row['fieldname'].
 	 * If no more rows are available, false is returned.
 	 *
-	 * @param ResultWrapper $res Result object as returned from IDatabase::query(), etc.
+	 * @param IResultWrapper $res Result object as returned from IDatabase::query(), etc.
 	 * @return array|bool
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
@@ -517,7 +518,7 @@ interface IDatabase {
 	 * @param bool $tempIgnore Whether to avoid throwing an exception on errors...
 	 *     maybe best to catch the exception instead?
 	 * @throws DBError
-	 * @return bool|ResultWrapper True for a successful write query, ResultWrapper object
+	 * @return bool|IResultWrapper True for a successful write query, IResultWrapper object
 	 *     for a successful read query, or false on failure if $tempIgnore set
 	 */
 	public function query( $sql, $fname = __METHOD__, $tempIgnore = false );
@@ -731,7 +732,7 @@ interface IDatabase {
 	 *
 	 *    [ 'page' => [ 'LEFT JOIN', 'page_latest=rev_id' ] ]
 	 *
-	 * @return ResultWrapper|bool If the query returned no rows, a ResultWrapper
+	 * @return IResultWrapper|bool If the query returned no rows, a IResultWrapper
 	 *   with no rows in it will be returned. If there was a query error, a
 	 *   DBQueryError exception will be thrown, except if the "ignore errors"
 	 *   option was set, in which case false will be returned.
@@ -1196,7 +1197,7 @@ interface IDatabase {
 	 *   for the format. Use $conds == "*" to delete all rows
 	 * @param string $fname Name of the calling function
 	 * @throws DBUnexpectedError
-	 * @return bool|ResultWrapper
+	 * @return bool|IResultWrapper
 	 */
 	public function delete( $table, $conds, $fname = __METHOD__ );
 
@@ -1224,7 +1225,7 @@ interface IDatabase {
 	 * @param array $selectOptions Options for the SELECT part of the query, see
 	 *    IDatabase::select() for details.
 	 *
-	 * @return ResultWrapper
+	 * @return IResultWrapper
 	 */
 	public function insertSelect( $destTable, $srcTable, $varMap, $conds,
 		$fname = __METHOD__,

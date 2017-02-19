@@ -20,6 +20,8 @@
  * @file
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * Feed to Special:RecentChanges and Special:RecentChangesLiked
  *

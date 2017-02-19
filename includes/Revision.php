@@ -21,6 +21,8 @@
  */
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
  * @todo document
@@ -1781,6 +1783,7 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @param Title $title
 	 * @param int $id
+	 * @param int $flags
 	 * @return string|bool False if not found
 	 */
 	static function getTimestampFromId( $title, $id, $flags = 0 ) {

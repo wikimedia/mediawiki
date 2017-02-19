@@ -21,6 +21,7 @@
  * @ingroup Database
  */
 use Wikimedia\Rdbms\Blob;
+use Wikimedia\Rdbms\ResultWrapper;
 
 /**
  * @ingroup Database

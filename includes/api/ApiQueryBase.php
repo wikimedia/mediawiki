@@ -24,6 +24,8 @@
  * @file
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * This is a base class for all Query modules.
  * It provides some common functionality such as constructing various SQL

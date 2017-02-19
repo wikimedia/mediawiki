@@ -23,6 +23,7 @@
 use Wikimedia\Rdbms\DBMasterPos;
 use Wikimedia\Rdbms\MySQLMasterPos;
 use Wikimedia\Rdbms\MySQLField;
+use Wikimedia\Rdbms\ResultWrapper;
 
 /**
  * Database abstraction object for MySQL.

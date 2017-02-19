@@ -24,6 +24,8 @@
  * @author Brian Wolff
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * Special:ListDuplicatedFiles Lists all files where the current version is
  *   a duplicate of the current version of some other file.

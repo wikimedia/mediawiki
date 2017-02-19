@@ -24,6 +24,8 @@
  * @author Umherirrender
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * A special page that listed pages that have highest interwiki count
  *

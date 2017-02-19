@@ -24,6 +24,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * Maintenance script that sends SQL queries from the specified file to the database.
  *
@@ -50,7 +52,7 @@ class MwSql extends Maintenance {
 		$wiki = $this->hasOption( 'wikidb' ) ? $this->getOption( 'wikidb' ) : false;
 		// Get the appropriate load balancer (for this wiki)
 		if ( $this->hasOption( 'cluster' ) ) {
-			$lb = wfGetLBFactory()->getExternalLB( $this->getOption( 'cluster' ), $wiki );
+			$lb = wfGetLBFactory()->getExternalLB( $this->getOption( 'cluster' ) );
 		} else {
 			$lb = wfGetLB( $wiki );
 		}
@@ -159,7 +161,7 @@ class MwSql extends Maintenance {
 
 	/**
 	 * Print the results, callback for $db->sourceStream()
-	 * @param ResultWrapper $res The results object
+	 * @param ResultWrapper|bool $res The results object
 	 * @param IDatabase $db
 	 */
 	public function sqlPrintResult( $res, $db ) {

@@ -25,6 +25,8 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * A special page to show pages ordered by the number of pages linking to them.
  *
