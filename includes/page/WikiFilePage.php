@@ -20,6 +20,8 @@
  * @file
  */
 
+use Wikimedia\Rdbms\FakeResultWrapper;
+
 /**
  * Special handling for file pages
  *

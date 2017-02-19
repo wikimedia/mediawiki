@@ -19,6 +19,8 @@
  * @ingroup RevisionDelete
  */
 
+use Wikimedia\Rdbms\FakeResultWrapper;
+
 /**
  * List for revision table items
  *

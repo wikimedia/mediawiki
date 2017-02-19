@@ -1,4 +1,7 @@
 <?php
+
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * This class is used for different SQL-based search engines shipped with MediaWiki
  * @ingroup Search

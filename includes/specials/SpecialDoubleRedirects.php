@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * A special page listing redirects to redirecting page.
  * The software will automatically not follow double redirects, to prevent loops.

@@ -23,6 +23,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * Maintenance script to convert user options to the new `user_properties` table.
  *

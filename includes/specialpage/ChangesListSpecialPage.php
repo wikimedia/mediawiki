@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\Rdbms\ResultWrapper;
 
 /**
  * Special page which uses a ChangesList to show query results.

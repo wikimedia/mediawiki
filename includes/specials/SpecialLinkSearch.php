@@ -22,6 +22,8 @@
  * @author Brion Vibber
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * Special:LinkSearch to search the external-links table.
  * @ingroup SpecialPage
