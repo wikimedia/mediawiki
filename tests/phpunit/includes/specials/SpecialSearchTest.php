@@ -73,7 +73,7 @@ class SpecialSearchTest extends MediaWikiTestCase {
 			[
 				$EMPTY_REQUEST, $NO_USER_PREF,
 				'default', $defaultNS,
-				'Bug 33270: No request nor user preferences should give default profile'
+				'T35270: No request nor user preferences should give default profile'
 			],
 			[
 				[ 'ns5' => 1 ], $NO_USER_PREF,
@@ -88,7 +88,7 @@ class SpecialSearchTest extends MediaWikiTestCase {
 				return "searchNs$ns";
 			}, $defaultNS ), 0 ),
 				'advanced', [ 2, 14 ],
-				'Bug 33583: search with no option should honor User search preferences'
+				'T35583: search with no option should honor User search preferences'
 					. ' and have all other namespace disabled'
 			],
 		];

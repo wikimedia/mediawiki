@@ -39,7 +39,7 @@
 	});
 	*/
 
-	QUnit.test( 'Stripping of single initial newline from textarea\'s literal contents (bug 12130)', function ( assert ) {
+	QUnit.test( 'Stripping of single initial newline from textarea\'s literal contents (T14130)', function ( assert ) {
 		var maxn, n,
 			expected, $textarea;
 

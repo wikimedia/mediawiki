@@ -13,7 +13,7 @@ class ApiQueryAllPagesTest extends ApiTestCase {
 	}
 
 	/**
-	 *Test bug 25702
+	 *Test T27702
 	 *Prefixes of API search requests are not handled with case sensitivity and may result
 	 *in wrong search results
 	 */

@@ -256,7 +256,7 @@
 				url: {
 					print: [ urlStyleTest( '.mw-test-implement-b1', 'text-align', 'center' ) ],
 					screen: [
-						// bug 40834: Make sure it actually works with more than 1 stylesheet reference
+						// T42834: Make sure it actually works with more than 1 stylesheet reference
 						urlStyleTest( '.mw-test-implement-b2', 'float', 'left' ),
 						urlStyleTest( '.mw-test-implement-b3', 'float', 'right' )
 					]
@@ -315,7 +315,7 @@
 			'test.implement.d',
 			function () {
 				assertStyleAsync( assert, $element, 'float', 'right', function () {
-					assert.notEqual( $element2.css( 'text-align' ), 'center', 'print style is not applied (bug 40500)' );
+					assert.notEqual( $element2.css( 'text-align' ), 'center', 'print style is not applied (T42500)' );
 					done();
 				} );
 			},
@@ -328,7 +328,7 @@
 		mw.loader.load( 'test.implement.d' );
 	} );
 
-	// @import (bug 31676)
+	// @import (T33676)
 	QUnit.test( '.implement( styles has @import )', 7, function ( assert ) {
 		var isJsExecuted, $element,
 			done = assert.async();
@@ -429,14 +429,12 @@
 	} );
 
 	QUnit.test( '.implement( only messages )', 2, function ( assert ) {
-		assert.assertFalse( mw.messages.exists( 'bug_29107' ), 'Verify that the test message doesn\'t exist yet' );
+		assert.assertFalse( mw.messages.exists( 'T31107' ), 'Verify that the test message doesn\'t exist yet' );
 
-		// jscs: disable requireCamelCaseOrUpperCaseIdentifiers
-		mw.loader.implement( 'test.implement.msgs', [], {}, { bug_29107: 'loaded' } );
-		// jscs: enable requireCamelCaseOrUpperCaseIdentifiers
+		mw.loader.implement( 'test.implement.msgs', [], {}, { T31107: 'loaded' } );
 
 		return mw.loader.using( 'test.implement.msgs', function () {
-			assert.ok( mw.messages.exists( 'bug_29107' ), 'Bug 29107: messages-only module should implement ok' );
+			assert.ok( mw.messages.exists( 'T31107' ), 'T31107: messages-only module should implement ok' );
 		}, function () {
 			assert.ok( false, 'Error callback fired while implementing "test.implement.msgs" module' );
 		} );

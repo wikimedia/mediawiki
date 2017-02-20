@@ -101,7 +101,7 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @bug 2429
+	 * T4429
 	 * @dataProvider provideNamespacesAssociations
 	 */
 	public function testRcNsFilterAssociation( $ns1, $ns2 ) {
@@ -120,7 +120,7 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @bug 2429
+	 * T4429
 	 * @dataProvider provideNamespacesAssociations
 	 */
 	public function testRcNsFilterAssociationWithInversion( $ns1, $ns2 ) {

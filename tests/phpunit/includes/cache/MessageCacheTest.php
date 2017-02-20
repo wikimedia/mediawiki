@@ -92,7 +92,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 			// Existing message with customizations on the fallbacks
 			[ 'sunday', 'ab', 'амҽыш' ],
 
-			// bug 46579
+			// T48579
 			[ 'FallbackLanguageTest-NoDervContLang', 'de', 'de/none' ],
 			// UI language different from content language should only use de/none as last option
 			[ 'FallbackLanguageTest-NoDervContLang', 'fit', 'de/none' ],

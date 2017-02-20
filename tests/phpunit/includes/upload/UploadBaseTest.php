@@ -297,31 +297,31 @@ class UploadBaseTest extends MediaWikiTestCase {
 				'<?xml version="1.0" encoding="UTF-8" standalone="no"?> <svg xmlns:xlink="http://www.w3.org/1999/xlink"> <image xlink:href="https://upload.wikimedia.org/wikipedia/commons/3/34/Bahnstrecke_Zeitz-Camburg_1930.png" /> </svg>',
 				true,
 				true,
-				'SVG with non-local image href (bug 65839)'
+				'SVG with non-local image href (T67839)'
 			],
 			[
 				'<?xml version="1.0" ?> <?xml-stylesheet type="text/xsl" href="/w/index.php?title=User:Jeeves/test.xsl&amp;action=raw&amp;format=xml" ?> <svg> <height>50</height> <width>100</width> </svg>',
 				true,
 				true,
-				'SVG with remote stylesheet (bug 57550)'
+				'SVG with remote stylesheet (T59550)'
 			],
 			[
 				'<svg xmlns="http://www.w3.org/2000/svg" viewbox="-1 -1 15 15"> <rect y="0" height="13" width="12" stroke="#179" rx="1" fill="#2ac"/> <text x="1.5" y="11" font-family="courier" stroke="white" font-size="16"><![CDATA[B]]></text> <iframe xmlns="http://www.w3.org/1999/xhtml" srcdoc="&#x3C;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;&#x3E;&#x61;&#x6C;&#x65;&#x72;&#x74;&#x28;&#x27;&#x58;&#x53;&#x53;&#x45;&#x44;&#x20;&#x3D;&#x3E;&#x20;&#x44;&#x6F;&#x6D;&#x61;&#x69;&#x6E;&#x28;&#x27;&#x2B;&#x74;&#x6F;&#x70;&#x2E;&#x64;&#x6F;&#x63;&#x75;&#x6D;&#x65;&#x6E;&#x74;&#x2E;&#x64;&#x6F;&#x6D;&#x61;&#x69;&#x6E;&#x2B;&#x27;&#x29;&#x27;&#x29;&#x3B;&#x3C;&#x2F;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;&#x3E;"></iframe> </svg>',
 				true,
 				true,
-				'SVG with rembeded iframe (bug 60771)'
+				'SVG with rembeded iframe (T62771)'
 			],
 			[
 				'<svg xmlns="http://www.w3.org/2000/svg" viewBox="6 3 177 153" xmlns:xlink="http://www.w3.org/1999/xlink"> <style>@import url("https://fonts.googleapis.com/css?family=Bitter:700&amp;text=WebPlatform.org");</style> <g transform="translate(-.5,-.5)"> <text fill="#474747" x="95" y="150" text-anchor="middle" font-family="Bitter" font-size="20" font-weight="bold">WebPlatform.org</text> </g> </svg>',
 				true,
 				true,
-				'SVG with @import in style element (bug 69008)'
+				'SVG with @import in style element (T71008)'
 			],
 			[
 				'<svg xmlns="http://www.w3.org/2000/svg" viewBox="6 3 177 153" xmlns:xlink="http://www.w3.org/1999/xlink"> <style>@import url("https://fonts.googleapis.com/css?family=Bitter:700&amp;text=WebPlatform.org");<foo/></style> <g transform="translate(-.5,-.5)"> <text fill="#474747" x="95" y="150" text-anchor="middle" font-family="Bitter" font-size="20" font-weight="bold">WebPlatform.org</text> </g> </svg>',
 				true,
 				true,
-				'SVG with @import in style element and child element (bug 69008#c11)'
+				'SVG with @import in style element and child element (T71008#c11)'
 			],
 			[
 				'<svg xmlns="http://www.w3.org/2000/svg" viewBox="6 3 177 153" xmlns:xlink="http://www.w3.org/1999/xlink"> <style>@imporT "https://fonts.googleapis.com/css?family=Bitter:700&amp;text=WebPlatform.org";</style> <g transform="translate(-.5,-.5)"> <text fill="#474747" x="95" y="150" text-anchor="middle" font-family="Bitter" font-size="20" font-weight="bold">WebPlatform.org</text> </g> </svg>',
@@ -333,19 +333,19 @@ class UploadBaseTest extends MediaWikiTestCase {
 				'<svg xmlns="http://www.w3.org/2000/svg"> <rect width="100" height="100" style="background-image:url(https://www.google.com/images/srpr/logo11w.png)"/> </svg>',
 				true,
 				true,
-				'SVG with remote background image (bug 69008)'
+				'SVG with remote background image (T71008)'
 			],
 			[
 				'<svg xmlns="http://www.w3.org/2000/svg"> <rect width="100" height="100" style="background-image:\55rl(https://www.google.com/images/srpr/logo11w.png)"/> </svg>',
 				true,
 				true,
-				'SVG with remote background image, encoded (bug 69008)'
+				'SVG with remote background image, encoded (T71008)'
 			],
 			[
 				'<svg xmlns="http://www.w3.org/2000/svg"> <style> #a { background-image:\55rl(\'https://www.google.com/images/srpr/logo11w.png\'); } </style> <rect width="100" height="100" id="a"/> </svg>',
 				true,
 				true,
-				'SVG with remote background image, in style element (bug 69008)'
+				'SVG with remote background image, in style element (T71008)'
 			],
 			[
 				// This currently doesn't seem to work in any browsers, but in case
@@ -353,7 +353,7 @@ class UploadBaseTest extends MediaWikiTestCase {
 				'<svg xmlns="http://www.w3.org/2000/svg"> <rect width="100" height="100" style="background-image:image(\'sprites.svg#xywh=40,0,20,20\')"/> </svg>',
 				true,
 				true,
-				'SVG with remote background image using image() (bug 69008)'
+				'SVG with remote background image using image() (T71008)'
 			],
 			[
 				// As reported by Cure53

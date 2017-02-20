@@ -84,7 +84,7 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * per bug 26425
+	 * per T28425
 	 */
 	public function testBug26425BlockTimestampDefaultsToTime() {
 		// delta to stop one-off errors when things happen to go over a second mark.
@@ -99,7 +99,7 @@ class BlockTest extends MediaWikiLangTestCase {
 	/**
 	 * CheckUser since being changed to use Block::newFromTarget started failing
 	 * because the new function didn't accept empty strings like Block::load()
-	 * had. Regression bug 29116.
+	 * had. Regression T31116.
 	 *
 	 * @dataProvider provideBug29116Data
 	 * @covers Block::newFromTarget

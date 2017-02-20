@@ -338,7 +338,7 @@
 
 		extTest( 'MediaWiki:Vector.js', 'js' );
 		extTest( 'User:Example/common.css', 'css' );
-		extTest( 'File:Example.longextension', 'longextension', 'Extension parsing not limited (bug 36151)' );
+		extTest( 'File:Example.longextension', 'longextension', 'Extension parsing not limited (T38151)' );
 		extTest( 'Example/information.json', 'json', 'Extension parsing not restricted from any namespace' );
 		extTest( 'Foo.', null, 'Trailing dot is not an extension' );
 		extTest( 'Foo..', null, 'Trailing dots are not an extension' );

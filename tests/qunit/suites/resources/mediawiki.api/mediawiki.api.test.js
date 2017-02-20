@@ -201,7 +201,7 @@
 			]
 		) );
 
-		// Don't cache error (bug 65268)
+		// Don't cache error (T67268)
 		return api.getToken( 'testerror' )
 			.then( null, function ( err ) {
 				assert.equal( err, 'bite-me', 'Expected error' );

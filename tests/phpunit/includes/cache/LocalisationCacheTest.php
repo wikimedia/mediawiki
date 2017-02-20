@@ -75,7 +75,7 @@ class LocalisationCacheTest extends MediaWikiTestCase {
 
 	public function testRecacheFallbacksWithHooks() {
 		// Use hook to provide updates for messages. This is what the
-		// LocalisationUpdate extension does. See bug 68781.
+		// LocalisationUpdate extension does. See T70781.
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
 			'LocalisationCacheRecacheFallback' => [
 				function (

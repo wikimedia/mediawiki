@@ -51,7 +51,7 @@ class ParserPreloadTest extends MediaWikiTestCase {
 		$this->assertPreloaded(
 			'<pre>monospaced</pre>',
 			'<pre>monospaced</pre>',
-			'<pre> in preloaded text must be unstripped (bug 27467)'
+			'<pre> in preloaded text must be unstripped (T29467)'
 		);
 	}
 
@@ -62,7 +62,7 @@ class ParserPreloadTest extends MediaWikiTestCase {
 		$this->assertPreloaded(
 			'<nowiki>[[Dummy title]]</nowiki>',
 			'<nowiki>[[Dummy title]]</nowiki>',
-			'<nowiki> in preloaded text must be unstripped (bug 27467)'
+			'<nowiki> in preloaded text must be unstripped (T29467)'
 		);
 	}
 

@@ -10,7 +10,7 @@ class JavaScriptMinifierTest extends PHPUnit_Framework_TestCase {
 			[ "/* Foo *\n*bar\n*/", "" ],
 
 			/**
-			 * Slashes used inside block comments (bug 26931).
+			 * Slashes used inside block comments (T28931).
 			 * At some point there was a bug that caused this comment to be ended at '* /',
 			 * causing /M... to be left as the beginning of a regex.
 			 */
@@ -60,7 +60,7 @@ class JavaScriptMinifierTest extends PHPUnit_Framework_TestCase {
 			[ "5.3.\nx;", "5.3.x;" ],
 
 			// Semicolon insertion between an expression having an inline
-			// comment after it, and a statement on the next line (bug 27046).
+			// comment after it, and a statement on the next line (T29046).
 			[
 				"var a = this //foo bar \n for ( b = 0; c < d; b++ ) {}",
 				"var a=this\nfor(b=0;c<d;b++){}"
@@ -127,7 +127,7 @@ class JavaScriptMinifierTest extends PHPUnit_Framework_TestCase {
 			// newline insertion after 1000 chars: break after the "++", not before
 			[ str_repeat( ';', 996 ) . "if(x++);", str_repeat( ';', 996 ) . "if(x++\n);" ],
 
-			// Unicode letter characters should pass through ok in identifiers (bug 31187)
+			// Unicode letter characters should pass through ok in identifiers (T33187)
 			[ "var KaŝSkatolVal = {}", 'var KaŝSkatolVal={}' ],
 
 			// Per spec unicode char escape values should work in identifiers,
