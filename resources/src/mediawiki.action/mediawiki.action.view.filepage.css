@@ -33,7 +33,7 @@
 
 /*
  * Add a checkered background image on hover for file
- * description pages. (bug 26470)
+ * description pages. (T28470)
  */
 .filehistory a img,
 #file img:hover {

@@ -149,7 +149,7 @@
 					updateWatchLink( $link, otherAction );
 
 					// Update the "Watch this page" checkbox on action=edit when the
-					// page is watched or unwatched via the tab (bug 12395).
+					// page is watched or unwatched via the tab (T14395).
 					$( '#wpWatchthis' ).prop( 'checked', watchResponse.watched === true );
 				} )
 				.fail( function () {

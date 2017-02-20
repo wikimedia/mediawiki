@@ -69,7 +69,7 @@ a.new:visited, #p-personal a.new:visited {
 }
 
 .mw-body a.external:visited {
-	color: #636; /* bug 3112 */
+	color: #636; /* T5112 */
 }
 
 .mw-body a.external:active {
