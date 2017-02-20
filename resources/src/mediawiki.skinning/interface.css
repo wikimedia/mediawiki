@@ -34,7 +34,7 @@ textarea {
 	color: #000;
 	font-weight: bold;
 	margin: 2em 0 1em;
-	padding: .5em 1em;
+	padding: 0.5em 1em;
 	vertical-align: middle;
 }
 
@@ -49,7 +49,7 @@ textarea {
 }
 
 .firstHeading {
-	margin-bottom: .1em;
+	margin-bottom: 0.1em;
 	/* These two rules hack around bug 2013 (fix for more limited bug 11325).
 	 * When bug 2013 is fixed properly, they should be removed. */
 	line-height: 1.2em;

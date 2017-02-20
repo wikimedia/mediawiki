@@ -8,8 +8,6 @@
 		"no-descending-specificity": null,
 		"no-duplicate-selectors": null,
 
-		"number-leading-zero": null,
-
 		"selector-list-comma-newline-after": null,
 		"selector-no-id": null,
 		"selector-pseudo-class-parentheses-space-inside": null,

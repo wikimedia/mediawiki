@@ -15,7 +15,7 @@
 	display: inline !ie;
 }
 .searchresults {
-	margin: 1em 0 1em .4em;
+	margin: 1em 0 1em 0.4em;
 }
 /* needs extra specificity to override `.mw-body p` selector */
 .mw-body .mw-search-nonefound {

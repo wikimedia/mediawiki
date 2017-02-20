@@ -78,7 +78,7 @@ table.rimage {
 
 /* thumbnails */
 div.thumb {
-	margin-bottom: .5em;
+	margin-bottom: 0.5em;
 	border-style: solid;
 	border-color: #fff;
 	width: auto;
@@ -136,15 +136,15 @@ div.magnify a {
 div.tright {
 	clear: right;
 	float: right;
-	border-width: .5em 0 .8em 1.4em;
+	border-width: 0.5em 0 0.8em 1.4em;
 }
 
 /* @noflip */
 div.tleft {
 	float: left;
 	clear: left;
-	margin-right: .5em;
-	border-width: .5em 1.4em .8em 0;
+	margin-right: 0.5em;
+	border-width: 0.5em 1.4em 0.8em 0;
 }
 
 img.thumbborder {
