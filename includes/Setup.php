@@ -521,35 +521,6 @@ if ( $wgSharedDB && $wgSharedTables ) {
 // is complete.
 define( 'MW_SERVICE_BOOTSTRAP_COMPLETE', 1 );
 
-// Install a header callback to prevent caching of responses with cookies (T127993)
-if ( !$wgCommandLineMode ) {
-	header_register_callback( function () {
-		$headers = [];
-		foreach ( headers_list() as $header ) {
-			list( $name, $value ) = explode( ':', $header, 2 );
-			$headers[strtolower( trim( $name ) )][] = trim( $value );
-		}
-
-		if ( isset( $headers['set-cookie'] ) ) {
-			$cacheControl = isset( $headers['cache-control'] )
-				? implode( ', ', $headers['cache-control'] )
-				: '';
-
-			if ( !preg_match( '/(?:^|,)\s*(?:private|no-cache|no-store)\s*(?:$|,)/i', $cacheControl ) ) {
-				header( 'Expires: Thu, 01 Jan 1970 00:00:00 GMT' );
-				header( 'Cache-Control: private, max-age=0, s-maxage=0' );
-				MediaWiki\Logger\LoggerFactory::getInstance( 'cache-cookies' )->warning(
-					'Cookies set on {url} with Cache-Control "{cache-control}"', [
-						'url' => WebRequest::getGlobalRequestURL(),
-						'cookies' => $headers['set-cookie'],
-						'cache-control' => $cacheControl ?: '<not set>',
-					]
-				);
-			}
-		}
-	} );
-}
-
 MWExceptionHandler::installHandler();
 
 require_once "$IP/includes/compat/normal/UtfNormalUtil.php";
