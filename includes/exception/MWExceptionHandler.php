@@ -20,6 +20,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Psr\Log\LogLevel;
 
 /**
  * Handler class for MWExceptions
@@ -174,31 +175,37 @@ class MWExceptionHandler {
 		switch ( $level ) {
 			case E_RECOVERABLE_ERROR:
 				$levelName = 'Error';
+				$severity = LogLevel::ERROR;
 				break;
 			case E_WARNING:
 			case E_CORE_WARNING:
 			case E_COMPILE_WARNING:
 			case E_USER_WARNING:
 				$levelName = 'Warning';
+				$severity = LogLevel::WARNING;
 				break;
 			case E_NOTICE:
 			case E_USER_NOTICE:
 				$levelName = 'Notice';
+				$severity = LogLevel::INFO;
 				break;
 			case E_STRICT:
 				$levelName = 'Strict Standards';
+				$severity = LogLevel::DEBUG;
 				break;
 			case E_DEPRECATED:
 			case E_USER_DEPRECATED:
 				$levelName = 'Deprecated';
+				$severity = LogLevel::INFO;
 				break;
 			default:
 				$levelName = 'Unknown error';
+				$severity = LogLevel::ERROR;
 				break;
 		}
 
 		$e = new ErrorException( "PHP $levelName: $message", 0, $level, $file, $line );
-		self::logError( $e, 'error' );
+		self::logError( $e, 'error', $severity );
 
 		// This handler is for logging only. Return false will instruct PHP
 		// to continue regular handling.
@@ -621,8 +628,11 @@ TXT;
 	 * @since 1.25
 	 * @param ErrorException $e
 	 * @param string $channel
+	 * @param Psr\Log\LogLevel $level
 	*/
-	protected static function logError( ErrorException $e, $channel ) {
+	protected static function logError(
+		ErrorException $e, $channel, $level = LogLevel::ERROR
+	) {
 		$catcher = self::CAUGHT_BY_HANDLER;
 		// The set_error_handler callback is independent from error_reporting.
 		// Filter out unwanted errors manually (e.g. when
@@ -630,7 +640,8 @@ TXT;
 		$suppressed = ( error_reporting() & $e->getSeverity() ) === 0;
 		if ( !$suppressed ) {
 			$logger = LoggerFactory::getInstance( $channel );
-			$logger->error(
+			$logger->log(
+				$level,
 				self::getLogMessage( $e ),
 				self::getLogContext( $e, $catcher )
 			);
@@ -640,7 +651,7 @@ TXT;
 		$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK, $catcher );
 		if ( $json !== false ) {
 			$logger = LoggerFactory::getInstance( "{$channel}-json" );
-			$logger->error( $json, [ 'private' => true ] );
+			$logger->log( $level, $json, [ 'private' => true ] );
 		}
 
 		Hooks::run( 'LogException', [ $e, $suppressed ] );
