@@ -252,7 +252,7 @@
 				// Output result
 				if ( $( '#wpDestFile' ).length ) {
 					// Call decodeURIComponent function to remove possible URL-encoded characters
-					// from the file name (bug 30390). Especially likely with upload-form-url.
+					// from the file name (T32390). Especially likely with upload-form-url.
 					// decodeURIComponent can throw an exception if input is invalid utf-8
 					try {
 						$( '#wpDestFile' ).val( decodeURIComponent( fname ) );

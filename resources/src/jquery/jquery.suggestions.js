@@ -681,7 +681,7 @@
 								// Don't interfere with special clicks (e.g. to open in new tab)
 								if ( !( e.which !== 1 || e.altKey || e.ctrlKey || e.shiftKey || e.metaKey ) ) {
 									// This will hide the link we're just clicking on, which causes problems
-									// when done synchronously in at least Firefox 3.6 (bug 62858).
+									// when done synchronously in at least Firefox 3.6 (T64858).
 									setTimeout( function () {
 										$.suggestions.hide( context );
 									}, 0 );
@@ -713,7 +713,7 @@
 								// Don't interfere with special clicks (e.g. to open in new tab)
 								if ( !( e.which !== 1 || e.altKey || e.ctrlKey || e.shiftKey || e.metaKey ) ) {
 									// This will hide the link we're just clicking on, which causes problems
-									// when done synchronously in at least Firefox 3.6 (bug 62858).
+									// when done synchronously in at least Firefox 3.6 (T64858).
 									setTimeout( function () {
 										$.suggestions.hide( context );
 									}, 0 );

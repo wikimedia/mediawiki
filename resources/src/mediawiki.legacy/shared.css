@@ -244,7 +244,7 @@ input#wpSummary:active {
 #catlinks {
 	/**
 	 * Overrides text justification (user preference)
-	 * See bug 31990
+	 * See T33990
 	 */
 	text-align: left;
 }
@@ -274,7 +274,7 @@ input#wpSummary:active {
 	border-left: 0;
 }
 
-/* (bug 5346) make category redirects italic */
+/* (T7346) make category redirects italic */
 .catlinks li a.mw-redirect {
 	font-style: italic;
 }
@@ -346,7 +346,7 @@ th.mw-revdel-checkbox {
 	text-align: center;
 }
 
-/* red links; see bug 36276 */
+/* red links; see T38276 */
 a.new {
 	color: #ba0000;
 }
@@ -358,7 +358,7 @@ a.new {
 	padding: 0 !important;
 }
 
-/* External URLs should always be treated as LTR (bug 4330) */
+/* External URLs should always be treated as LTR (T6330) */
 /* @noflip */ .rtl a.external.free,
 .rtl a.external.autonumber {
 	direction: ltr;
@@ -576,7 +576,7 @@ table.wikitable > caption {
 	background-repeat: no-repeat;
 }
 
-/* Language specific height correction for titles. Ref Bug 29405 and Bug 30809 */
+/* Language specific height correction for titles. Ref T31405 and T32809 */
 /* Languages like hi or ml require slightly more vertical space to show diacritics properly */
 h1:lang( anp ),
 h1:lang( as ),
@@ -742,7 +742,7 @@ table.floatleft {
 	position: relative;
 }
 
-/* bug 12205 */
+/* T14205 */
 #mw-credits a {
 	unicode-bidi: embed;
 }

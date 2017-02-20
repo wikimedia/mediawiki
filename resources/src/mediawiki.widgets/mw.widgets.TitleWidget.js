@@ -255,7 +255,7 @@
 		} );
 
 		// If not found, run value through mw.Title to avoid treating a match as a
-		// mismatch where normalisation would make them matching (bug 48476)
+		// mismatch where normalisation would make them matching (T50476)
 
 		pageExistsExact = (
 			Object.prototype.hasOwnProperty.call( pageData, this.getQueryValue() ) &&

@@ -63,7 +63,7 @@
 		var $node = $( node ),
 			// Use data-sort-value attribute.
 			// Use data() instead of attr() so that live value changes
-			// are processed as well (bug 38152).
+			// are processed as well (T40152).
 			data = $node.data( 'sortValue' );
 
 		if ( data !== null && data !== undefined ) {
