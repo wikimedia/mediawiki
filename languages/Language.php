@@ -3286,14 +3286,14 @@ class Language {
 	public function parseFormattedNumber( $number ) {
 		$s = $this->digitTransformTable();
 		if ( $s ) {
-			// eliminate empty array values such as ''. (bug 64347)
+			// eliminate empty array values such as ''. (T66347)
 			$s = array_filter( $s );
 			$number = strtr( $number, array_flip( $s ) );
 		}
 
 		$s = $this->separatorTransformTable();
 		if ( $s ) {
-			// eliminate empty array values such as ''. (bug 64347)
+			// eliminate empty array values such as ''. (T66347)
 			$s = array_filter( $s );
 			$number = strtr( $number, array_flip( $s ) );
 		}
@@ -3497,7 +3497,7 @@ class Language {
 				$string = $ellipsis . $string;
 			}
 		}
-		# Do not truncate if the ellipsis makes the string longer/equal (bug 22181).
+		# Do not truncate if the ellipsis makes the string longer/equal (T24181).
 		# This check is *not* redundant if $adjustLength, due to the single case where
 		# LEN($ellipsis) > ABS($limit arg); $stringOriginal could be shorter than $string.
 		if ( strlen( $string ) < strlen( $stringOriginal ) ) {

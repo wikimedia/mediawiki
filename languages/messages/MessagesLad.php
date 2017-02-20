@@ -70,7 +70,7 @@ $namespaceAliases = [
 	'Diskusyón_de_Katēggoría'  => NS_CATEGORY_TALK,
 ];
 
-// Remove Spanish gender aliases (bug 37090)
+// Remove Spanish gender aliases (T39090)
 $namespaceGenderAliases = [];
 
 $specialPageAliases = [
