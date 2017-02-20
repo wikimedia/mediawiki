@@ -663,14 +663,12 @@ TXT;
 		// Filter out unwanted errors manually (e.g. when
 		// MediaWiki\suppressWarnings is active).
 		$suppressed = ( error_reporting() & $e->getSeverity() ) === 0;
-		if ( !$suppressed ) {
-			$logger = LoggerFactory::getInstance( $channel );
-			$logger->log(
-				$level,
-				self::getLogNormalMessage( $e ),
-				self::getLogContext( $e, $catcher )
-			);
-		}
+		$logger = LoggerFactory::getInstance( $suppressed ? "$channel-suppressed" : $channel );
+		$logger->log(
+			$level,
+			self::getLogNormalMessage( $e ),
+			self::getLogContext( $e, $catcher )
+		);
 
 		// Include all errors in the json log (surpressed errors will be flagged)
 		$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK, $catcher );
