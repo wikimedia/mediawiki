@@ -154,7 +154,7 @@
 	"apihelp-filerevert-description": "파일을 이전 판으로 되돌립니다.",
 	"apihelp-filerevert-param-comment": "업로드 댓글입니다.",
 	"apihelp-filerevert-example-revert": "<kbd>Wiki.png</kbd>를 <kbd>2011-03-05T15:27:40Z</kbd> 판으로 되돌립니다.",
-	"apihelp-help-description": "지정된 모듈의 도움말을 보여줍니다.",
+	"apihelp-help-description": "지정된 모듈의 도움말을 표시합니다.",
 	"apihelp-help-param-helpformat": "도움말 출력 포맷.",
 	"apihelp-help-example-main": "메인 모듈의 도움말입니다.",
 	"apihelp-help-example-recursive": "모든 도움말을 한 페이지로 모읍니다.",

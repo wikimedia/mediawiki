@@ -1863,6 +1863,7 @@
 	"searchsuggest-containing": "dihundirîne...",
 	"api-error-unknownerror": "Çewtiya nenas: \"$1\".",
 	"duration-years": "$1 {{PLURAL:$1|sal}}",
+	"duration-centuries": "$1 {{PLURAL:$1|sedsal}}",
 	"expand_templates_output": "Encam",
 	"expand_templates_ok": "Baş e",
 	"expand_templates_preview": "Pêşdîtin",

@@ -931,7 +931,7 @@
 	"difference-title": "$1: Porovnání verzí",
 	"difference-title-multipage": "$1 a $2: Porovnání stránek",
 	"difference-multipage": "(Rozdíly mezi stránkami)",
-	"lineno": "Řádka $1:",
+	"lineno": "Řádek $1:",
 	"compareselectedversions": "Porovnat vybrané verze",
 	"showhideselectedversions": "Zobrazit/skrýt vybrané revize",
 	"editundo": "zrušit editaci",

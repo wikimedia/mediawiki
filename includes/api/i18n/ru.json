@@ -411,7 +411,7 @@
 	"api-help-param-continue": "Когда доступно больше результатов, использовать этот чтобы продолжить.",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(описание отсутствует)</span>",
 	"api-help-examples": "Пример{{PLURAL:$1||ы}}:",
-	"api-help-permissions": "{{PLURAL:$1|Permission|Permissions}}:",
+	"api-help-permissions": "{{PLURAL:$1|Разрешение|Разрешения}}:",
 	"api-help-permissions-granted-to": "{{PLURAL:$1|Granted to}}: $2",
 	"apierror-integeroutofrange-abovemax": "<var>$1</var> не может быть более $2 (на $3) для пользователей.",
 	"apierror-nosuchuserid": "Нет пользователя с ID $1.",

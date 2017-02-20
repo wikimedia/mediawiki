@@ -367,7 +367,7 @@
 	"apihelp-protect-example-protect": "Захистити сторінку.",
 	"apihelp-protect-example-unprotect": "Зняти захист зі сторінки, встановивши обмеження для <kbd>all</kbd> (тобто будь-хто зможе робити дії).",
 	"apihelp-protect-example-unprotect2": "Зняти захист з сторінки, встановивши відсутність обмежень.",
-	"apihelp-purge-description": "Очистити кеш для вказаних заголовків.\n\nВимагає запиту POST, якщо користувач не ввійшов у систему.",
+	"apihelp-purge-description": "Очистити кеш для вказаних заголовків.",
 	"apihelp-purge-param-forcelinkupdate": "Оновити таблиці посилань.",
 	"apihelp-purge-param-forcerecursivelinkupdate": "Оновити таблицю посилань, і оновити таблиці посилань для кожної сторінки, що використовує цю сторінку як шаблон.",
 	"apihelp-purge-example-simple": "Очистити кеш <kbd>Main Page</kbd> і сторінки <kbd>API</kbd>.",

@@ -1648,7 +1648,7 @@
 	"zip-file-open-error": "Wystąpił błąd podczas otwierania pliku ZIP, aby go sprawdzić.",
 	"zip-wrong-format": "Wybrany plik nie jest w formacie ZIP.",
 	"zip-bad": "Plik ZIP jest uszkodzony lub w inny sposób niemożliwy do odczytania. \nNie może zostać odpowiednio sprawdzony pod kątem bezpieczeństwa.",
-	"zip-unsupported": "Plik jest w formacie ZIP ale wykorzystuje funkcje, które nie są obsługiwane przez MediaWiki.\nPlik nie może zostać odpowiednio sprawdzony pod kątem bezpieczeństwa.",
+	"zip-unsupported": "Plik jest w formacie ZIP, ale wykorzystuje funkcje, które nie są obsługiwane przez MediaWiki.\nPlik nie może zostać odpowiednio sprawdzony pod kątem bezpieczeństwa.",
 	"uploadstash": "Schowek z przesłanymi plikami",
 	"uploadstash-summary": "Ta strona umożliwia dostęp do przesłanych lub właśnie przesyłanych plików, ale jeszcze nie opublikowanych na wiki. Pliki widzi wyłącznie użytkownik, które je przesłał.",
 	"uploadstash-clear": "Wyczyść schowek z plikami",
