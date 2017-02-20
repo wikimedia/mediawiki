@@ -361,7 +361,7 @@ class SpecialExport extends SpecialPage {
 
 			$pages = array_keys( $pageSet );
 
-			// Normalize titles to the same format and remove dupes, see bug 17374
+			// Normalize titles to the same format and remove dupes, see T19374
 			foreach ( $pages as $k => $v ) {
 				$pages[$k] = str_replace( " ", "_", $v );
 			}
@@ -394,7 +394,7 @@ class SpecialExport extends SpecialPage {
 			$exporter->allPages();
 		} else {
 			foreach ( $pages as $page ) {
-				# Bug 8824: Only export pages the user can read
+				# T10824: Only export pages the user can read
 				$title = Title::newFromText( $page );
 				if ( is_null( $title ) ) {
 					// @todo Perhaps output an <error> tag or something.

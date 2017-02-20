@@ -668,7 +668,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	function makeOptionsLink( $title, $override, $options, $active = false ) {
 		$params = $override + $options;
 
-		// Bug 36524: false values have be converted to "0" otherwise
+		// T38524: false values have be converted to "0" otherwise
 		// wfArrayToCgi() will omit it them.
 		foreach ( $params as &$value ) {
 			if ( $value === false ) {
