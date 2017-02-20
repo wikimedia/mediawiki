@@ -359,7 +359,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				[ 'page' => $userpage->getPrefixedText() ]
 			);
 
-			# Suppression log link (bug 59120)
+			# Suppression log link (T61120)
 			if ( $sp->getUser()->isAllowed( 'suppressionlog' ) ) {
 				$tools['log-suppression'] = $linkRenderer->makeKnownLink(
 					SpecialPage::getTitleFor( 'Log', 'suppress' ),
