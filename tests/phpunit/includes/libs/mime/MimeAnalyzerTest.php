@@ -52,7 +52,7 @@ class MimeMagicTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Test to make sure that encoder=ffmpeg2theora doesn't trigger
-	 * MEDIATYPE_VIDEO (bug 63584)
+	 * MEDIATYPE_VIDEO (T65584)
 	 */
 	function testOggRecognize() {
 		$oggFile = __DIR__ . '/../../../data/media/say-test.ogg';

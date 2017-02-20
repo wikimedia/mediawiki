@@ -287,7 +287,7 @@
 		assert.deepEqual(
 			original.query,
 			{ one: '1', two: '2' },
-			'Properties is deep cloned (bug 37708)'
+			'Properties is deep cloned (T39708)'
 		);
 	} );
 
@@ -488,7 +488,7 @@
 		assert.equal( uri.toString(), 'http://en.wiki.local/foo.com', 'handle absolute paths by supplying host from document in strict mode' );
 	} );
 
-	QUnit.test( 'bug 35658', 2, function ( assert ) {
+	QUnit.test( 'T37658', 2, function ( assert ) {
 		var testProtocol, testServer, testPort, testPath, UriClass, uri, href;
 
 		testProtocol = 'https://';

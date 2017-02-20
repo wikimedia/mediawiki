@@ -50,7 +50,7 @@ class HttpTest extends MediaWikiTestCase {
 
 	/**
 	 * Test Http::isValidURI()
-	 * @bug 27854 : Http::isValidURI is too lax
+	 * T29854 : Http::isValidURI is too lax
 	 * @dataProvider provideURI
 	 * @covers Http::isValidURI
 	 */
@@ -145,7 +145,7 @@ class HttpTest extends MediaWikiTestCase {
 	 *
 	 * These tests are for code that makes use of an artifact of how CURL
 	 * handles header reporting on redirect pages, and will need to be
-	 * rewritten when bug 29232 is taken care of (high-level handling of
+	 * rewritten when T31232 is taken care of (high-level handling of
 	 * HTTP redirects).
 	 */
 	public function testRelativeRedirections() {
@@ -483,7 +483,7 @@ class HttpTest extends MediaWikiTestCase {
 	 * Added this test based on an issue experienced with HHVM 3.3.0-dev
 	 * where it did not define a cURL constant.
 	 *
-	 * @bug 70570
+	 * @T72570
 	 * @dataProvider provideCurlConstants
 	 */
 	public function testCurlConstants( $value ) {

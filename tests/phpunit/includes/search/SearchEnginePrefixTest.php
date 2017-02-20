@@ -230,7 +230,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 				],
 			] ],
 			[ [
-				'Exact match not on top (bug 70958)',
+				'Exact match not on top (T72958)',
 				'provision' => [
 					'Barcelona',
 					'Bar',
@@ -244,7 +244,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 				],
 			] ],
 			[ [
-				'Exact match missing (bug 70958)',
+				'Exact match missing (T72958)',
 				'provision' => [
 					'Barcelona',
 					'Barbara',

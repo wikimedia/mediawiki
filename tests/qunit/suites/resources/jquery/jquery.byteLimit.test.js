@@ -72,7 +72,7 @@
 	} );
 
 	byteLimitTest( {
-		description: 'Plain text input. Calling byteLimit with no parameters and no maxlength attribute (bug 36310)',
+		description: 'Plain text input. Calling byteLimit with no parameters and no maxlength attribute (T38310)',
 		$input: $( '<input>' ).attr( 'type', 'text' )
 			.byteLimit(),
 		sample: simpleSample,
@@ -172,7 +172,7 @@
 		expected: '1234'
 	} );
 
-	// Regression tests for bug 41450
+	// Regression tests for T43450
 	byteLimitTest( {
 		description: 'Input filter of which the base exceeds the limit',
 		$input: $( '<input>' ).attr( 'type', 'text' )
@@ -232,7 +232,7 @@
 		var $el;
 
 		// Use a new <input /> because the bug only occurs on the first time
-		// the limit it reached (bug 40850)
+		// the limit it reached (T42850)
 		$el = $( '<input>' ).attr( 'type', 'text' )
 			.appendTo( '#qunit-fixture' )
 			.byteLimit( 3 )

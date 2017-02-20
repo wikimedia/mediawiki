@@ -255,6 +255,6 @@
 		} );
 	} );
 
-	// TODO add numbers sorting tests for bug 8115 with a different language
+	// TODO add numbers sorting tests for T10115 with a different language
 
 }( jQuery, mediaWiki ) );
