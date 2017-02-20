@@ -1384,7 +1384,7 @@ class ApiPageSet extends ApiBase {
 	 * @return array
 	 */
 	private static function getPositiveIntegers( $array ) {
-		// bug 25734 API: possible issue with revids validation
+		// T27734 API: possible issue with revids validation
 		// It seems with a load of revision rows, MySQL gets upset
 		// Remove any < 0 integers, as they can't be valid
 		foreach ( $array as $i => $int ) {

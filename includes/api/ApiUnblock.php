@@ -44,7 +44,7 @@ class ApiUnblock extends ApiBase {
 		if ( !$user->isAllowed( 'block' ) ) {
 			$this->dieWithError( 'apierror-permissiondenied-unblock', 'permissiondenied' );
 		}
-		# bug 15810: blocked admins should have limited access here
+		# T17810: blocked admins should have limited access here
 		if ( $user->isBlocked() ) {
 			$status = SpecialBlock::checkUnblockSelf( $params['user'], $user );
 			if ( $status !== true ) {

@@ -186,7 +186,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				],
 			] ] );
 
-			// Actually count the actions using a subquery (bug 64505 and bug 64507)
+			// Actually count the actions using a subquery (T66505 and T66507)
 			$timestamp = $db->timestamp( wfTimestamp( TS_UNIX ) - $activeUserSeconds );
 			$this->addFields( [
 				'recentactions' => '(' . $db->selectSQLText(

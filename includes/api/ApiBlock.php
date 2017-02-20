@@ -46,7 +46,7 @@ class ApiBlock extends ApiBase {
 
 		$this->requireOnlyOneParameter( $params, 'user', 'userid' );
 
-		# bug 15810: blocked admins should have limited access here
+		# T17810: blocked admins should have limited access here
 		if ( $user->isBlocked() ) {
 			$status = SpecialBlock::checkUnblockSelf( $params['user'], $user );
 			if ( $status !== true ) {
@@ -69,7 +69,7 @@ class ApiBlock extends ApiBase {
 		} else {
 			$target = User::newFromName( $params['user'] );
 
-			// Bug 38633 - if the target is a user (not an IP address), but it
+			// T40633 - if the target is a user (not an IP address), but it
 			// doesn't exist or is unusable, error.
 			if ( $target instanceof User &&
 				( $target->isAnon() /* doesn't exist */ || !User::isUsableName( $target->getName() ) )

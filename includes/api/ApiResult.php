@@ -364,7 +364,7 @@ class ApiResult implements ApiSerializable {
 			}
 		}
 		if ( is_array( $value ) ) {
-			// Work around PHP bug 45959 by copying to a temporary
+			// Work around https://bugs.php.net/bug.php?id=45959 by copying to a temporary
 			// (in this case, foreach gets $k === "1" but $tmp[$k] assigns as if $k === 1)
 			$tmp = [];
 			foreach ( $value as $k => $v ) {
