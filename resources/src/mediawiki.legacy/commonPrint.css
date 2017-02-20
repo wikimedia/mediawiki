@@ -258,7 +258,7 @@ html .thumbimage {
 }
 
 html .thumbcaption {
-	border: none;
+	border: 0;
 	text-align: left;
 	line-height: 1.4em;
 	padding: 3px;

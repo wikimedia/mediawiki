@@ -86,7 +86,7 @@ abbr[title],
 @supports (text-decoration: underline dotted) {
 	abbr[title],
 	.explain[title] {
-		border-bottom: none;
+		border-bottom: 0;
 		text-decoration: underline dotted;
 	}
 }
@@ -271,7 +271,7 @@ input#wpSummary:active {
 
 .catlinks li:first-child {
 	padding-left: 0.25em;
-	border-left: none;
+	border-left: 0;
 }
 
 /* (bug 5346) make category redirects italic */
@@ -433,7 +433,7 @@ table.wikitable > caption {
 	font-weight: bold;
 	display: inline;
 	margin: 0 .5em 0 0;
-	border: none;
+	border: 0;
 }
 
 .errorbox {

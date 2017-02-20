@@ -7,9 +7,9 @@
 
 .arrowSteps li {
 	float: left;
-	padding: 0px;
-	margin: 0px;
-	border: 0 none;
+	padding: 0;
+	margin: 0;
+	border: 0;
 }
 
 .arrowSteps li div {
