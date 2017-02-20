@@ -772,7 +772,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function appendProtocols( $property ) {
-		// Make a copy of the global so we don't try to set the _element key of it - bug 45130
+		// Make a copy of the global so we don't try to set the _element key of it - T47130
 		$protocols = array_values( $this->getConfig()->get( 'UrlProtocols' ) );
 		ApiResult::setArrayType( $protocols, 'BCarray' );
 		ApiResult::setIndexedTagName( $protocols, 'p' );
