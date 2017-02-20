@@ -336,13 +336,13 @@ table.listing td {
 .catlinks li {
 	display: inline-block;
 	line-height: 1.15em;
-	padding: 0 .4em;
+	padding: 0 0.4em;
 	border-left: 1pt solid #aaa;
 	margin: 0.1em 0;
 }
 
 .catlinks li:first-child {
-	padding-left: .2em;
+	padding-left: 0.2em;
 	border-left: 0;
 }
 
