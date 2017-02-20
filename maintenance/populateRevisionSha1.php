@@ -156,10 +156,10 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 		} catch ( Exception $e ) {
 			$this->output( "Data of revision with {$idCol}={$row->$idCol} unavailable!\n" );
 
-			return false; // bug 22624?
+			return false; // T24624?
 		}
 		if ( !is_string( $text ) ) {
-			# This should not happen, but sometimes does (bug 20757)
+			# This should not happen, but sometimes does (T22757)
 			$this->output( "Data of revision with {$idCol}={$row->$idCol} unavailable!\n" );
 
 			return false;
@@ -185,11 +185,11 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 		} catch ( Exception $e ) {
 			$this->output( "Text of revision with timestamp {$row->ar_timestamp} unavailable!\n" );
 
-			return false; // bug 22624?
+			return false; // T24624?
 		}
 		$text = $rev->getSerializedData();
 		if ( !is_string( $text ) ) {
-			# This should not happen, but sometimes does (bug 20757)
+			# This should not happen, but sometimes does (T22757)
 			$this->output( "Data of revision with timestamp {$row->ar_timestamp} unavailable!\n" );
 
 			return false;

@@ -137,7 +137,7 @@ class MwSql extends Maintenance {
 			}
 			if ( $historyFile ) {
 				# Delimiter is eated by streamStatementEnd, we add it
-				# up in the history (bug 37020)
+				# up in the history (T39020)
 				readline_add_history( $wholeLine . ';' );
 				readline_write_history( $historyFile );
 			}
