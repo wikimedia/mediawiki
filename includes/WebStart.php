@@ -104,6 +104,9 @@ if ( !interface_exists( 'Psr\Log\LoggerInterface' ) ) {
 	die( 1 );
 }
 
+# Install a header callback
+MediaWiki\HeaderCallback::register();
+
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Use a callback function to configure MediaWiki
 	call_user_func( MW_CONFIG_CALLBACK );

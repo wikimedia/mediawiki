@@ -818,6 +818,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @return void
 	 */
 	protected function sendResponseHeaders( ResourceLoaderContext $context, $etag, $errors ) {
+		\MediaWiki\HeaderCallback::warnIfHeadersSent();
 		$rlMaxage = $this->config->get( 'ResourceLoaderMaxage' );
 		// Use a short cache expiry so that updates propagate to clients quickly, if:
 		// - No version specified (shared resources, e.g. stylesheets)
