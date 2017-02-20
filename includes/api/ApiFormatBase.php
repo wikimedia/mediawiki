@@ -186,7 +186,7 @@ abstract class ApiFormatBase extends ApiBase {
 
 		$this->getMain()->getRequest()->response()->header( "Content-Type: $mime; charset=utf-8" );
 
-		// Set X-Frame-Options API results (bug 39180)
+		// Set X-Frame-Options API results (T41180)
 		$apiFrameOptions = $this->getConfig()->get( 'ApiFrameOptions' );
 		if ( $apiFrameOptions ) {
 			$this->getMain()->getRequest()->response()->header( "X-Frame-Options: $apiFrameOptions" );
@@ -269,7 +269,7 @@ abstract class ApiFormatBase extends ApiBase {
 					false, FormatJson::ALL_OK
 				);
 
-				// Bug 66776: wfMangleFlashPolicy() is needed to avoid a nasty bug in
+				// T68776: wfMangleFlashPolicy() is needed to avoid a nasty bug in
 				// Flash, but what it does isn't friendly for the API, so we need to
 				// work around it.
 				if ( preg_match( '/\<\s*cross-domain-policy\s*\>/i', $json ) ) {
