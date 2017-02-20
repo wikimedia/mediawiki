@@ -75,7 +75,7 @@ class DoubleRedirectsPage extends QueryPage {
 			'conds' => [
 				'ra.rd_from = pa.page_id',
 
-				// Filter out redirects where the target goes interwiki (bug 40353).
+				// Filter out redirects where the target goes interwiki (T42353).
 				// This isn't an optimization, it is required for correct results,
 				// otherwise a non-double redirect like Bar -> w:Foo will show up
 				// like "Bar -> Foo -> w:Foo".

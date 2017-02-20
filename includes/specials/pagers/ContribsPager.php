@@ -160,7 +160,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		$user = $this->getUser();
 		$conds = array_merge( $userCond, $this->getNamespaceCond() );
 
-		// Paranoia: avoid brute force searches (bug 17342)
+		// Paranoia: avoid brute force searches (T19342)
 		if ( !$user->isAllowed( 'deletedhistory' ) ) {
 			$conds[] = $this->mDb->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0';
 		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
@@ -420,7 +420,7 @@ class ContribsPager extends ReverseChronologicalPager {
 
 			if ( $row->rev_parent_id === null ) {
 				// For some reason rev_parent_id isn't populated for this row.
-				// Its rumoured this is true on wikipedia for some revisions (bug 34922).
+				// Its rumoured this is true on wikipedia for some revisions (T36922).
 				// Next best thing is to have the total number of bytes.
 				$chardiff = ' <span class="mw-changeslist-separator">. .</span> ';
 				$chardiff .= Linker::formatRevisionSize( $row->rev_len );

@@ -186,7 +186,7 @@ class SpecialUnblock extends SpecialPage {
 			return [ [ 'ipb_cant_unblock', $target ] ];
 		}
 
-		# bug 15810: blocked admins should have limited access here.  This
+		# T17810: blocked admins should have limited access here.  This
 		# won't allow sysops to remove autoblocks on themselves, but they
 		# should have ipblock-exempt anyway
 		$status = SpecialBlock::checkUnblockSelf( $target, $performer );

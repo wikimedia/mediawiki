@@ -449,7 +449,7 @@ class ImageListPager extends TablePager {
 					$imgfile = $this->msg( 'imgfile' )->text();
 				}
 
-				// Weird files can maybe exist? Bug 22227
+				// Weird files can maybe exist? T24227
 				$filePage = Title::makeTitleSafe( NS_FILE, $value );
 				if ( $filePage ) {
 					$link = $linkRenderer->makeKnownLink(
