@@ -136,3 +136,30 @@
 	padding: 0;
 	overflow: hidden;
 }
+
+.mixin-placeholder( @rules ) {
+	// WebKit, Blink, Edge
+	&::-webkit-input-placeholder { // stylelint-disable-line selector-no-vendor-prefix
+		@rules(); // stylelint-disable-line at-rule-no-unknown
+	}
+	// Internet Explorer 10-11
+	&:-ms-input-placeholder { // stylelint-disable-line selector-no-vendor-prefix
+		@rules(); // stylelint-disable-line at-rule-no-unknown
+	}
+	// Firefox 19-
+	&::-moz-placeholder { // stylelint-disable-line selector-no-vendor-prefix
+		@rules(); // stylelint-disable-line at-rule-no-unknown
+	}
+	// Firefox 4-18
+	&:-moz-placeholder { // stylelint-disable-line selector-no-vendor-prefix
+		@rules(); // stylelint-disable-line at-rule-no-unknown
+	}
+	// W3C Standard Selectors Level 4
+	&::placeholder {
+		@rules(); // stylelint-disable-line at-rule-no-unknown
+	}
+	// For inputs that use jquery.placeholder.js e.g. IE9
+	&.placeholder {
+		@rules(); // stylelint-disable-line at-rule-no-unknown
+	}
+}
