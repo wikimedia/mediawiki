@@ -762,7 +762,7 @@ abstract class MediaHandler {
 	 * @param string $cmd
 	 */
 	protected function logErrorForExternalProcess( $retval, $err, $cmd ) {
-		# Keep error output limited (bug 57985)
+		# Keep error output limited (T59985)
 		$errMessage = trim( substr( $err, 0, self::MAX_ERR_LOG_SIZE ) );
 
 		wfDebugLog( 'thumbnail',

@@ -151,7 +151,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return WikiPage|null
 	 */
 	public static function newFromID( $id, $from = 'fromdb' ) {
-		// page id's are never 0 or negative, see bug 61166
+		// page ids are never 0 or negative, see T63166
 		if ( $id < 1 ) {
 			return null;
 		}
@@ -257,7 +257,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$this->mTimestamp = '';
 		$this->mIsRedirect = false;
 		$this->mLatest = false;
-		// Bug 57026: do not clear mPreparedEdit since prepareTextForEdit() already checks
+		// T59026: do not clear mPreparedEdit since prepareTextForEdit() already checks
 		// the requested rev ID and content against the cached one for equality. For most
 		// content types, the output should not change during the lifetime of this cache.
 		// Clearing it can cause extra parses on edit for no reason.
@@ -424,7 +424,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$this->mLinksUpdated = wfTimestampOrNull( TS_MW, $data->page_links_updated );
 			$this->mIsRedirect = intval( $data->page_is_redirect );
 			$this->mLatest = intval( $data->page_latest );
-			// Bug 37225: $latest may no longer match the cached latest Revision object.
+			// T39225: $latest may no longer match the cached latest Revision object.
 			// Double-check the ID of any cached latest Revision object for consistency.
 			if ( $this->mLastRevision && $this->mLastRevision->getId() != $this->mLatest ) {
 				$this->mLastRevision = null;
@@ -619,7 +619,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		if ( $this->mDataLoadedFrom == self::READ_LOCKING ) {
-			// Bug 37225: if session S1 loads the page row FOR UPDATE, the result always
+			// T39225: if session S1 loads the page row FOR UPDATE, the result always
 			// includes the latest changes committed. This is true even within REPEATABLE-READ
 			// transactions, where S1 normally only sees changes committed before the first S1
 			// SELECT. Thus we need S1 to also gets the revision row FOR UPDATE; otherwise, it
@@ -1460,7 +1460,7 @@ class WikiPage implements Page, IDBAccessObject {
 					$this->getContentHandler()->getModelID() );
 			}
 
-			// Bug 30711: always use current version when adding a new section
+			// T32711: always use current version when adding a new section
 			if ( is_null( $baseRevId ) || $sectionId === 'new' ) {
 				$oldContent = $this->getContent();
 			} else {
@@ -1695,7 +1695,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 			return $status;
 		} elseif ( !$oldContent ) {
-			// Sanity check for bug 37225
+			// Sanity check for T39225
 			throw new MWException( "Could not find text for current revision {$oldid}." );
 		}
 
@@ -1783,7 +1783,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$dbw->endAtomic( __METHOD__ );
 			$this->mTimestamp = $now;
 		} else {
-			// Bug 32948: revision ID must be set to page {{REVISIONID}} and
+			// T34948: revision ID must be set to page {{REVISIONID}} and
 			// related variables correctly. Likewise for {{REVISIONUSER}} (T135261).
 			$revision->setId( $this->getLatest() );
 			$revision->setUserIdAndName(
@@ -2023,7 +2023,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$user = is_null( $user ) ? $wgUser : $user;
 		// XXX: check $user->getId() here???
 
-		// Use a sane default for $serialFormat, see bug 57026
+		// Use a sane default for $serialFormat, see T59026
 		if ( $serialFormat === null ) {
 			$serialFormat = $content->getContentHandler()->getDefaultFormat();
 		}
@@ -2195,7 +2195,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Update the links tables and other secondary data
 		if ( $content ) {
-			$recursive = $options['changed']; // bug 50785
+			$recursive = $options['changed']; // T52785
 			$updates = $content->getSecondaryDataUpdates(
 				$this->getTitle(), null, $recursive, $editInfo->output
 			);
@@ -2297,7 +2297,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		if ( $options['created'] ) {
 			self::onArticleCreate( $this->mTitle );
-		} elseif ( $options['changed'] ) { // bug 50785
+		} elseif ( $options['changed'] ) { // T52785
 			self::onArticleEdit( $this->mTitle, $revision );
 		}
 
@@ -2911,7 +2911,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$dbw->onTransactionPreCommitOrIdle(
 			function () use ( $dbw, $logEntry, $logid ) {
-				// Bug 56776: avoid deadlocks (especially from FileDeleteForm)
+				// T58776: avoid deadlocks (especially from FileDeleteForm)
 				$logEntry->publish( $logid );
 			},
 			__METHOD__
@@ -3191,7 +3191,7 @@ class WikiPage implements Page, IDBAccessObject {
 		);
 
 		// Set patrolling and bot flag on the edits, which gets rollbacked.
-		// This is done even on edit failure to have patrolling in that case (bug 62157).
+		// This is done even on edit failure to have patrolling in that case (T64157).
 		$set = [];
 		if ( $bot && $guser->isAllowed( 'markbotedits' ) ) {
 			// Mark all reverted edits as bot

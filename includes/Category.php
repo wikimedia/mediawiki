@@ -96,7 +96,7 @@ class Category {
 		$this->mSubcats = $row->cat_subcats;
 		$this->mFiles = $row->cat_files;
 
-		# (bug 13683) If the count is negative, then 1) it's obviously wrong
+		# (T15683) If the count is negative, then 1) it's obviously wrong
 		# and should not be kept, and 2) we *probably* don't have to scan many
 		# rows to obtain the correct figure, so let's risk a one-time recount.
 		if ( $this->mPages < 0 || $this->mSubcats < 0 || $this->mFiles < 0 ) {

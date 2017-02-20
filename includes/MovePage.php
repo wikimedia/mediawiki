@@ -501,7 +501,7 @@ class MovePage {
 		$defaultContentModelChanging = ( $oldDefault !== $newDefault
 			&& $oldDefault === $contentModel );
 
-		// bug 57084: log_page should be the ID of the *moved* page
+		// T59084: log_page should be the ID of the *moved* page
 		$oldid = $this->oldTitle->getArticleID();
 		$logTitle = clone $this->oldTitle;
 
@@ -550,13 +550,13 @@ class MovePage {
 		);
 
 		if ( !$redirectContent ) {
-			// Clean up the old title *before* reset article id - bug 45348
+			// Clean up the old title *before* reset article id - T47348
 			WikiPage::onArticleDelete( $this->oldTitle );
 		}
 
 		$this->oldTitle->resetArticleID( 0 ); // 0 == non existing
 		$nt->resetArticleID( $oldid );
-		$newpage->loadPageData( WikiPage::READ_LOCKING ); // bug 46397
+		$newpage->loadPageData( WikiPage::READ_LOCKING ); // T48397
 
 		$newpage->updateRevisionOn( $dbw, $nullRevision );
 
@@ -581,7 +581,7 @@ class MovePage {
 		# Recreate the redirect, this time in the other direction.
 		if ( $redirectContent ) {
 			$redirectArticle = WikiPage::factory( $this->oldTitle );
-			$redirectArticle->loadFromRow( false, WikiPage::READ_LOCKING ); // bug 46397
+			$redirectArticle->loadFromRow( false, WikiPage::READ_LOCKING ); // T48397
 			$newid = $redirectArticle->insertOn( $dbw );
 			if ( $newid ) { // sanity
 				$this->oldTitle->resetArticleID( $newid );

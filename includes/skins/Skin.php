@@ -381,7 +381,7 @@ abstract class Skin extends ContextSource {
 
 		if ( $title->isSpecialPage() ) {
 			$type = 'ns-special';
-			// bug 23315: provide a class based on the canonical special page name without subpages
+			// T25315: provide a class based on the canonical special page name without subpages
 			list( $canonicalName ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
 			if ( $canonicalName ) {
 				$type .= ' ' . Sanitizer::escapeClass( "mw-special-$canonicalName" );
@@ -1283,7 +1283,7 @@ abstract class Skin extends ContextSource {
 					$line = array_map( 'trim', explode( '|', $line, 2 ) );
 					if ( count( $line ) !== 2 ) {
 						// Second sanity check, could be hit by people doing
-						// funky stuff with parserfuncs... (bug 33321)
+						// funky stuff with parserfuncs... (T35321)
 						continue;
 					}
 
@@ -1538,7 +1538,7 @@ abstract class Skin extends ContextSource {
 
 		$attribs = [];
 		if ( !is_null( $tooltip ) ) {
-			# Bug 25462: undo double-escaping.
+			# T27462: undo double-escaping.
 			$tooltip = Sanitizer::decodeCharReferences( $tooltip );
 			$attribs['title'] = wfMessage( 'editsectionhint' )->rawParams( $tooltip )
 				->inLanguage( $lang )->text();

@@ -46,7 +46,7 @@
  * }
  * @endcode
  *
- * @see bug 37627
+ * @see T39627
  * @since 1.20
  * @ingroup Exception
  */

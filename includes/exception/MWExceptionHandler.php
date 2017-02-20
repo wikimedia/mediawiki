@@ -342,7 +342,7 @@ TXT;
 				$text .= "{$pad}#{$level} {$frame['file']}({$frame['line']}): ";
 			} else {
 				// 'file' and 'line' are unset for calls via call_user_func
-				// (bug 55634) This matches behaviour of
+				// (T57634) This matches behaviour of
 				// Exception::getTraceAsString to instead display "[internal
 				// function]".
 				$text .= "{$pad}#{$level} [internal function]: ";

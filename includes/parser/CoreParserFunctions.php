@@ -157,7 +157,7 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * urlencodes a string according to one of three patterns: (bug 22474)
+	 * urlencodes a string according to one of three patterns: (T24474)
 	 *
 	 * By default (for HTTP "query" strings), spaces are encoded as '+'.
 	 * Or to encode a value for the HTTP "path", spaces are encoded as '%20'.

@@ -30,7 +30,7 @@
  */
 class TextContentHandler extends ContentHandler {
 
-	// @codingStandardsIgnoreStart bug 57585
+	// @codingStandardsIgnoreStart T59585
 	public function __construct( $modelId = CONTENT_MODEL_TEXT, $formats = [ CONTENT_FORMAT_TEXT ] ) {
 		parent::__construct( $modelId, $formats );
 	}

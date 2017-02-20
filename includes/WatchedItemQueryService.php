@@ -504,7 +504,7 @@ class WatchedItemQueryService {
 			$conds[] = 'rc_user_text != ' . $db->addQuotes( $options['notByUser'] );
 		}
 
-		// Avoid brute force searches (bug 17342)
+		// Avoid brute force searches (T19342)
 		$bitmask = 0;
 		if ( !$user->isAllowed( 'deletedhistory' ) ) {
 			$bitmask = Revision::DELETED_USER;

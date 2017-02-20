@@ -134,7 +134,7 @@ class Title implements LinkTarget {
 
 	/**
 	 * @var int Namespace index when there is no namespace. Don't change the
-	 *   following default, NS_MAIN is hardcoded in several places. See bug 696.
+	 *   following default, NS_MAIN is hardcoded in several places. See T2696.
 	 *   Zero except in {{transclusion}} tags.
 	 */
 	public $mDefaultNamespace = NS_MAIN;
@@ -307,7 +307,7 @@ class Title implements LinkTarget {
 			}
 		}
 
-		// Convert things like &eacute; &#257; or &#x3017; into normalized (bug 14952) text
+		// Convert things like &eacute; &#257; or &#x3017; into normalized (T16952) text
 		$filteredText = Sanitizer::decodeCharReferencesAndNormalize( $text );
 
 		$t = new Title();
@@ -3741,14 +3741,14 @@ class Title implements LinkTarget {
 			}
 			$newPageName = preg_replace(
 					'#^' . preg_quote( $this->getDBkey(), '#' ) . '#',
-					StringUtils::escapeRegexReplacement( $nt->getDBkey() ), # bug 21234
+					StringUtils::escapeRegexReplacement( $nt->getDBkey() ), # T23234
 					$oldSubpage->getDBkey() );
 			if ( $oldSubpage->isTalkPage() ) {
 				$newNs = $nt->getTalkPage()->getNamespace();
 			} else {
 				$newNs = $nt->getSubjectPage()->getNamespace();
 			}
-			# Bug 14385: we need makeTitleSafe because the new page names may
+			# T16385: we need makeTitleSafe because the new page names may
 			# be longer than 255 characters.
 			$newSubpage = Title::makeTitleSafe( $newNs, $newPageName );
 

@@ -213,7 +213,7 @@ class ImagePage extends Article {
 		}
 
 		$out->addModuleStyles( [
-			'filepage', // always show the local local Filepage.css, bug 29277
+			'filepage', // always show the local local Filepage.css, T31277
 			'mediawiki.action.view.filepage', // Add MediaWiki styles for a file page
 		] );
 	}
@@ -534,7 +534,7 @@ class ImagePage extends Article {
 				// this will get messy.
 				// The dirmark, however, must not be immediately adjacent
 				// to the filename, because it can get copied with it.
-				// See bug 25277.
+				// See T27277.
 				// @codingStandardsIgnoreStart Ignore long line
 				$out->addWikiText( <<<EOT
 <div class="fullMedia"><span class="dangerousLink">{$medialink}</span> $dirmark<span class="fileInfo">$longDesc</span></div>

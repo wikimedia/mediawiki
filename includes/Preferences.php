@@ -120,7 +120,7 @@ class Preferences {
 			}
 		}
 
-		# # Make sure that form fields have their parent set. See bug 41337.
+		# # Make sure that form fields have their parent set. See T43337.
 		$dummyForm = new HTMLForm( [], $context );
 
 		$disable = !$user->isAllowed( 'editmyoptions' );
@@ -1201,8 +1201,7 @@ class Preferences {
 
 		if ( $dateopts ) {
 			if ( !in_array( 'default', $dateopts ) ) {
-				$dateopts[] = 'default'; // Make sure default is always valid
-										// Bug 19237
+				$dateopts[] = 'default'; // Make sure default is always valid T21237
 			}
 
 			// FIXME KLUGE: site default might not be valid for user language

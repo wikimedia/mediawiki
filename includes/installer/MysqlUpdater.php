@@ -824,7 +824,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	/**
 	 * Set page_random field to a random value where it is equals to 0.
 	 *
-	 * @see bug 3946
+	 * @see T5946
 	 */
 	protected function doPageRandomUpdate() {
 		$page = $this->db->tableName( 'page' );

@@ -322,7 +322,7 @@ abstract class QueryPage extends SpecialPage {
 							$value = wfTimestamp( TS_UNIX,
 								$row->value );
 						} else {
-							$value = intval( $row->value ); // @bug 14414
+							$value = intval( $row->value ); // T16414
 						}
 					} else {
 						$value = 0;

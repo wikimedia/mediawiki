@@ -79,7 +79,7 @@ class CloneDatabase {
 		foreach ( $this->tablesToClone as $tbl ) {
 			if ( $wgSharedDB && in_array( $tbl, $wgSharedTables, true ) ) {
 				// Shared tables don't work properly when cloning due to
-				// how prefixes are handled (bug 65654)
+				// how prefixes are handled (T67654)
 				throw new RuntimeException( "Cannot clone shared table $tbl." );
 			}
 			# Clean up from previous aborted run.  So that table escaping
