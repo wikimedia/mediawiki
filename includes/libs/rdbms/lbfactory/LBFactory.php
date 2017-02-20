@@ -337,7 +337,7 @@ abstract class LBFactory implements ILBFactory {
 		$masterPositions = array_fill( 0, count( $lbs ), false );
 		foreach ( $lbs as $i => $lb ) {
 			if ( $lb->getServerCount() <= 1 ) {
-				// Bug 27975 - Don't try to wait for replica DBs if there are none
+				// T29975 - Don't try to wait for replica DBs if there are none
 				// Prevents permission error when getting master position
 				continue;
 			} elseif ( $opts['ifWritesSince']
