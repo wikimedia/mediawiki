@@ -895,7 +895,7 @@ class XMPReader implements LoggerAwareInterface {
 		if ( $elm === self::NS_RDF . ' Seq' ) {
 			array_unshift( $this->mode, self::MODE_LI );
 		} elseif ( $elm === self::NS_RDF . ' Bag' ) {
-			# bug 27105
+			# T29105
 			$this->logger->info( __METHOD__ . ' Expected an rdf:Seq, but got an rdf:Bag. Pretending'
 				. ' it is a Seq, since some buggy software is known to screw this up.' );
 			array_unshift( $this->mode, self::MODE_LI );
