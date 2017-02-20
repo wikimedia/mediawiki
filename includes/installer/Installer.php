@@ -216,7 +216,7 @@ abstract class Installer {
 		'_UpgradeKeySupplied' => false,
 		'_ExistingDBSettings' => false,
 
-		// $wgLogo is probably wrong (bug 48084); set something that will work.
+		// $wgLogo is probably wrong (T50084); set something that will work.
 		// Single quotes work fine here, as LocalSettingsGenerator outputs this unescaped.
 		'wgLogo' => '$wgResourceBasePath/resources/assets/wiki.png',
 		'wgAuthenticationTokenVersion' => 1,
@@ -1431,7 +1431,7 @@ abstract class Installer {
 			);
 		}
 		// Unset everyone else's hooks. Lord knows what someone might be doing
-		// in ParserFirstCallInit (see bug 27171)
+		// in ParserFirstCallInit (see T29171)
 		$GLOBALS['wgHooks'] = [ 'LoadExtensionSchemaUpdates' => $hooksWeWant ];
 
 		return Status::newGood();

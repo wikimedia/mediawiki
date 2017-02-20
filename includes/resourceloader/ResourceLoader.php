@@ -714,7 +714,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			$module = $this->getModule( $name );
 			if ( $module ) {
 				// Do not allow private modules to be loaded from the web.
-				// This is a security issue, see bug 34907.
+				// This is a security issue, see T36907.
 				if ( $module->getGroup() === 'private' ) {
 					$this->logger->debug( "Request for private module '$name' denied" );
 					$this->errors[] = "Cannot show private module \"$name\"";
@@ -1216,7 +1216,7 @@ MESSAGE;
 			$styles = (array)$styles;
 			foreach ( $styles as $style ) {
 				$style = trim( $style );
-				// Don't output an empty "@media print { }" block (bug 40498)
+				// Don't output an empty "@media print { }" block (T42498)
 				if ( $style !== '' ) {
 					// Transform the media type based on request params and config
 					// The way that this relies on $wgRequest to propagate request params is slightly evil
@@ -1633,7 +1633,7 @@ MESSAGE;
 	 */
 	public function getLessCompiler( $extraVars = [] ) {
 		// When called from the installer, it is possible that a required PHP extension
-		// is missing (at least for now; see bug 47564). If this is the case, throw an
+		// is missing (at least for now; see T49564). If this is the case, throw an
 		// exception (caught by the installer) to prevent a fatal error later on.
 		if ( !class_exists( 'Less_Parser' ) ) {
 			throw new MWException( 'MediaWiki requires the less.php parser' );

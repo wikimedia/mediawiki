@@ -545,7 +545,7 @@ class Sanitizer {
 							$badtag = true;
 						} elseif ( in_array( $t, $tagstack ) && !isset( $htmlnest[$t] ) ) {
 							$badtag = true;
-						#  Is it a self closed htmlpair ? (bug 5487)
+						#  Is it a self closed htmlpair ? (T7487)
 						} elseif ( $brace == '/>' && isset( $htmlpairs[$t] ) ) {
 							// Eventually we'll just remove the self-closing
 							// slash, in order to be consistent with HTML5
@@ -922,7 +922,7 @@ class Sanitizer {
 
 		// Normalize Halfwidth and Fullwidth Unicode block that IE6 might treat as ascii
 		$value = preg_replace_callback(
-			'/[！-［］-ｚ]/u', // U+FF01 to U+FF5A, excluding U+FF3C (bug 58088)
+			'/[！-［］-ｚ]/u', // U+FF01 to U+FF5A, excluding U+FF3C (T60088)
 			function ( $matches ) {
 				$cp = UtfNormal\Utils::utf8ToCodepoint( $matches[0] );
 				if ( $cp === false ) {
@@ -1508,7 +1508,7 @@ class Sanitizer {
 
 	/**
 	 * Decode any character references, numeric or named entities,
-	 * in the next and normalize the resulting string. (bug 14952)
+	 * in the next and normalize the resulting string. (T16952)
 	 *
 	 * This is useful for page titles, not for text to be displayed,
 	 * MediaWiki allows HTML entities to escape normalization as a feature.
@@ -1926,7 +1926,7 @@ class Sanitizer {
 	 *   3.5.
 	 *
 	 * This function is an implementation of the specification as requested in
-	 * bug 22449.
+	 * T24449.
 	 *
 	 * Client-side forms will use the same standard validation rules via JS or
 	 * HTML 5 validation; additional restrictions can be enforced server-side
@@ -1949,7 +1949,7 @@ class Sanitizer {
 
 		// Please note strings below are enclosed in brackets [], this make the
 		// hyphen "-" a range indicator. Hence it is double backslashed below.
-		// See bug 26948
+		// See T28948
 		$rfc5322_atext = "a-z0-9!#$%&'*+\\-\/=?^_`{|}~";
 		$rfc1034_ldh_str = "a-z0-9\\-";
 

@@ -132,7 +132,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 		foreach ( $members as $o ) {
 			if ( isset( $options[$o] ) ) {
 				// ensure that MWHttpRequest::method is always
-				// uppercased. Bug 36137
+				// uppercased. T38137
 				if ( $o == 'method' ) {
 					$options[$o] = strtoupper( $options[$o] );
 				}
@@ -580,7 +580,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 *
 	 * Note that the multiple Location: headers are an artifact of
 	 * CURL -- they shouldn't actually get returned this way. Rewrite
-	 * this when bug 29232 is taken care of (high-level redirect
+	 * this when T31232 is taken care of (high-level redirect
 	 * handling rewrite).
 	 *
 	 * @return string

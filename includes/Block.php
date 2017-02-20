@@ -265,7 +265,7 @@ class Block {
 		}
 
 		# Be aware that the != '' check is explicit, since empty values will be
-		# passed by some callers (bug 29116)
+		# passed by some callers (T31116)
 		if ( $vagueTarget != '' ) {
 			list( $target, $type ) = self::parseTarget( $vagueTarget );
 			switch ( $type ) {
@@ -358,7 +358,7 @@ class Block {
 		if ( $end === null ) {
 			$end = $start;
 		}
-		# Per bug 14634, we want to include relevant active rangeblocks; for
+		# Per T16634, we want to include relevant active rangeblocks; for
 		# rangeblocks, we want to include larger ranges which enclose the given
 		# range. We know that all blocks must be smaller than $wgBlockCIDRLimit,
 		# so we can improve performance by filtering on a LIKE clause
@@ -553,7 +553,7 @@ class Block {
 		$affected = $dbw->affectedRows();
 
 		if ( $this->isAutoblocking() ) {
-			// update corresponding autoblock(s) (bug 48813)
+			// update corresponding autoblock(s) (T50813)
 			$dbw->update(
 				'ipblocks',
 				$this->getAutoblockUpdateArray(),
@@ -1117,7 +1117,7 @@ class Block {
 		} elseif ( $target === null && $vagueTarget == '' ) {
 			# We're not going to find anything useful here
 			# Be aware that the == '' check is explicit, since empty values will be
-			# passed by some callers (bug 29116)
+			# passed by some callers (T31116)
 			return null;
 
 		} elseif ( in_array(

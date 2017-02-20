@@ -176,7 +176,7 @@ class PasswordReset implements LoggerAwareInterface {
 		$firstUser = $users[0];
 
 		if ( !$firstUser instanceof User || !$firstUser->getId() ) {
-			// Don't parse username as wikitext (bug 65501)
+			// Don't parse username as wikitext (T67501)
 			return StatusValue::newFatal( wfMessage( 'nosuchuser', wfEscapeWikiText( $username ) ) );
 		}
 
@@ -192,7 +192,7 @@ class PasswordReset implements LoggerAwareInterface {
 				wfEscapeWikiText( $firstUser->getName() ) ) );
 		}
 
-		// We need to have a valid IP address for the hook, but per bug 18347, we should
+		// We need to have a valid IP address for the hook, but per T20347, we should
 		// send the user's name if they're logged in.
 		$ip = $performingUser->getRequest()->getIP();
 		if ( !$ip ) {

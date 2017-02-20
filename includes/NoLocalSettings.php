@@ -20,7 +20,7 @@
  * @file
  */
 
-# bug 30219 : can not use pathinfo() on URLs since slashes do not match
+# T32219 : can not use pathinfo() on URLs since slashes do not match
 $matches = [];
 $ext = 'php';
 $path = '/';

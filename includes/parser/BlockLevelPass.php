@@ -299,7 +299,7 @@ class BlockLevelPass {
 
 				if ( $openMatch || $closeMatch ) {
 					$pendingPTag = false;
-					# @todo bug 5718: paragraph closed
+					# @todo T7718: paragraph closed
 					$output .= $this->closeParagraph();
 					if ( $preOpenMatch && !$preCloseMatch ) {
 						$this->inPre = true;
@@ -353,7 +353,7 @@ class BlockLevelPass {
 					}
 				}
 			}
-			# somewhere above we forget to get out of pre block (bug 785)
+			# somewhere above we forget to get out of pre block (T2785)
 			if ( $preCloseMatch && $this->inPre ) {
 				$this->inPre = false;
 			}

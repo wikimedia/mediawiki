@@ -590,7 +590,7 @@ class Linker {
 
 		# ThumbnailImage::toHtml() already adds page= onto the end of DjVu URLs
 		# So we don't need to pass it here in $query. However, the URL for the
-		# zoom icon still needs it, so we make a unique query for it. See bug 14771
+		# zoom icon still needs it, so we make a unique query for it. See T16771
 		$url = $title->getLocalURL( $query );
 		if ( $page ) {
 			$url = wfAppendQuery( $url, [ 'page' => $page ] );
@@ -892,7 +892,7 @@ class Linker {
 			if ( $altUserName === false ) {
 				$altUserName = IP::prettifyIP( $userName );
 			}
-			$classes .= ' mw-anonuserlink'; // Separate link class for anons (bug 43179)
+			$classes .= ' mw-anonuserlink'; // Separate link class for anons (T45179)
 		} else {
 			$page = Title::makeTitle( NS_USER, $userName );
 		}
@@ -1086,7 +1086,7 @@ class Linker {
 	) {
 		# Sanitize text a bit:
 		$comment = str_replace( "\n", " ", $comment );
-		# Allow HTML entities (for bug 13815)
+		# Allow HTML entities (for T15815)
 		$comment = Sanitizer::escapeHtmlAllowEntities( $comment );
 
 		# Render autocomments and make links:
@@ -1155,7 +1155,7 @@ class Linker {
 						$section = str_replace( '[[', '', $section );
 						$section = str_replace( ']]', '', $section );
 
-						$section = Sanitizer::normalizeSectionNameWhitespace( $section ); # bug 22784
+						$section = Sanitizer::normalizeSectionNameWhitespace( $section ); # T24784
 						if ( $local ) {
 							$sectionTitle = Title::newFromText( '#' . $section );
 						} else {
@@ -1364,7 +1364,7 @@ class Linker {
 			} else {
 				$suffix = '';
 			}
-			# bug 7425
+			# T9425
 			$target = trim( $target );
 			# Look at the first character
 			if ( $target != '' && $target[0] === '/' ) {
@@ -1787,7 +1787,7 @@ class Linker {
 
 		if ( $context->getRequest()->getBool( 'bot' ) ) {
 			$query['bot'] = '1';
-			$query['hidediff'] = '1'; // bug 15999
+			$query['hidediff'] = '1'; // T17999
 		}
 
 		$disableRollbackEditCount = false;

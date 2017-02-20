@@ -428,7 +428,7 @@ class RequestContext implements IContextSource, MutableContext {
 				}
 
 				// Normalize the key in case the user is passing gibberish
-				// or has old preferences (bug 69566).
+				// or has old preferences (T71566).
 				$normalized = Skin::normalizeKey( $userSkin );
 
 				// Skin::normalizeKey will also validate it, so

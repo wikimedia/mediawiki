@@ -759,7 +759,7 @@ class Html {
 		$attribs['name'] = $name;
 
 		if ( substr( $value, 0, 1 ) == "\n" ) {
-			// Workaround for bug 12130: browsers eat the initial newline
+			// Workaround for T14130: browsers eat the initial newline
 			// assuming that it's just for show, but they do keep the later
 			// newlines, which we may want to preserve during editing.
 			// Prepending a single newline

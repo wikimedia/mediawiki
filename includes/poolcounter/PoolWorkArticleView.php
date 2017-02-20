@@ -129,7 +129,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 			return false;
 		}
 
-		// Reduce effects of race conditions for slow parses (bug 46014)
+		// Reduce effects of race conditions for slow parses (T48014)
 		$cacheTime = wfTimestampNow();
 
 		$time = - microtime( true );

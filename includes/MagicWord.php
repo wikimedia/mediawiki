@@ -502,7 +502,7 @@ class MagicWord {
 			# multiple matched parts (variable match); some will be empty because of
 			# synonyms. The variable will be the second non-empty one so remove any
 			# blank elements and re-sort the indices.
-			# See also bug 6526
+			# See also T8526
 
 			$matches = array_values( array_filter( $matches ) );
 

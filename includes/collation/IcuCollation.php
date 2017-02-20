@@ -513,8 +513,12 @@ class IcuCollation extends Collation {
 	 * can't be determined.
 	 *
 	 * The constant INTL_ICU_VERSION this function refers to isn't really
-	 * documented. It is available since PHP 5.3.7 (see PHP bug 54561).
-	 * This function will return false on older PHPs.
+	 * documented. It is available since PHP 5.3.7 (see PHP 54561
+	 * https://bugs.php.net/bug.php?id=54561). This function will return
+	 * false on older PHPs.
+	 *
+	 * TODO: Remove the backwards-compatibility as MediaWiki now requires
+	 * higher levels of PHP.
 	 *
 	 * @since 1.21
 	 * @return string|bool

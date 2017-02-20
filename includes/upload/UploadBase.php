@@ -895,7 +895,7 @@ abstract class UploadBase {
 			return $this->mTitle;
 		}
 
-		// Windows may be broken with special characters, see bug 1780
+		// Windows may be broken with special characters, see T3780
 		if ( !preg_match( '/^[\x0-\x7f]*$/', $nt->getText() )
 			&& !RepoGroup::singleton()->getLocalRepo()->backendSupportsUnicodePaths()
 		) {
@@ -1209,7 +1209,7 @@ abstract class UploadBase {
 		}
 
 		// Some browsers will interpret obscure xml encodings as UTF-8, while
-		// PHP/expat will interpret the given encoding in the xml declaration (bug 47304)
+		// PHP/expat will interpret the given encoding in the xml declaration (T49304)
 		if ( $extension == 'svg' || strpos( $mime, 'image/svg' ) === 0 ) {
 			if ( self::checkXMLEncodingMissmatch( $file ) ) {
 				return true;
@@ -1361,8 +1361,8 @@ abstract class UploadBase {
 			[ 'processing_instruction_handler' => 'UploadBase::checkSvgPICallback' ]
 		);
 		if ( $check->wellFormed !== true ) {
-			// Invalid xml (bug 58553)
-			// But only when non-partial (bug 65724)
+			// Invalid xml (T60553)
+			// But only when non-partial (T67724)
 			return $partial ? false : [ 'uploadinvalidxml' ];
 		} elseif ( $check->filterMatch ) {
 			if ( $this->mSVGNSError ) {
@@ -1382,7 +1382,7 @@ abstract class UploadBase {
 	 * @return bool (true if the filter identified something bad)
 	 */
 	public static function checkSvgPICallback( $target, $data ) {
-		// Don't allow external stylesheets (bug 57550)
+		// Don't allow external stylesheets (T59550)
 		if ( preg_match( '/xml-stylesheet/i', $target ) ) {
 			return [ 'upload-scripted-pi-callback' ];
 		}
@@ -1401,7 +1401,7 @@ abstract class UploadBase {
 		list( $namespace, $strippedElement ) = $this->splitXmlNamespace( $element );
 
 		// We specifically don't include:
-		// http://www.w3.org/1999/xhtml (bug 60771)
+		// http://www.w3.org/1999/xhtml (T62771)
 		static $validNamespaces = [
 			'',
 			'adobe:ns:meta/',
