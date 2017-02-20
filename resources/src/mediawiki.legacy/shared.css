@@ -266,7 +266,7 @@ input#wpSummary:active {
 	margin: 0.125em 0;
 	padding: 0 0.5em;
 	zoom: 1;
-	display: inline !ie;
+	display: inline !ie; /* stylelint-disable-line declaration-block-no-duplicate-properties */
 }
 
 .catlinks li:first-child {
@@ -422,7 +422,7 @@ table.wikitable > caption {
 	margin-bottom: 1em;
 	display: inline-block;
 	zoom: 1;
-	*display: inline;
+	*display: inline; /* stylelint-disable-line declaration-block-no-duplicate-properties */
 }
 
 .errorbox h2,
