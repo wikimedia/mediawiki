@@ -20,7 +20,7 @@ $fallback = 'nl';
 
 /**
  * Namespace names
- * (bug 8708)
+ * (T10708)
  */
 $namespaceNames = [
 	NS_MEDIA            => 'Media',
