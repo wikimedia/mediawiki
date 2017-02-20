@@ -177,7 +177,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		# 1. When switching accounts, it sucks to get automatically logged out
 		# 2. Do not return to PasswordReset after a successful password change
-		#    but goto Wiki start page (Main_Page) instead ( bug 33997 )
+		#    but goto Wiki start page (Main_Page) instead ( T35997 )
 		$returnToTitle = Title::newFromText( $this->mReturnTo );
 		if ( is_object( $returnToTitle )
 			&& ( $returnToTitle->isSpecial( 'Userlogout' )
@@ -727,7 +727,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$user = $this->getUser();
 		$template = new FakeAuthTemplate();
 
-		// Pre-fill username (if not creating an account, bug 44775).
+		// Pre-fill username (if not creating an account, T46775).
 		if ( $data->mUsername == '' && $this->isSignup() ) {
 			if ( $user->isLoggedIn() ) {
 				$data->mUsername = $user->getName();

@@ -546,7 +546,7 @@ class WikiImporter {
 	public function doImport() {
 		// Calls to reader->read need to be wrapped in calls to
 		// libxml_disable_entity_loader() to avoid local file
-		// inclusion attacks (bug 46932).
+		// inclusion attacks (T48932).
 		$oldDisable = libxml_disable_entity_loader( true );
 		$this->reader->read();
 

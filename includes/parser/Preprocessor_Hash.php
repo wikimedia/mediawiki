@@ -107,7 +107,7 @@ class Preprocessor_Hash extends Preprocessor {
 	 *                                 included. Default is to assume a direct page view.
 	 *
 	 * The generated DOM tree must depend only on the input text and the flags.
-	 * The DOM tree must be the same in OT_HTML and OT_WIKI mode, to avoid a regression of bug 4899.
+	 * The DOM tree must be the same in OT_HTML and OT_WIKI mode, to avoid a regression of T6899.
 	 *
 	 * Any flag added to the $flags parameter here, or any other parameter liable to cause a
 	 * change in the DOM tree for a given text, must be passed through the section identifier

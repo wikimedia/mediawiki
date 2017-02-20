@@ -197,7 +197,7 @@ class ResourceLoaderContext {
 		if ( $this->direction === null ) {
 			$this->direction = $this->getRequest()->getRawVal( 'dir' );
 			if ( !$this->direction ) {
-				// Determine directionality based on user language (bug 6100)
+				// Determine directionality based on user language (T8100)
 				$this->direction = Language::factory( $this->getLanguage() )->getDir();
 			}
 		}

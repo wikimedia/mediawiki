@@ -781,7 +781,7 @@ class OutputPage extends ContextSource {
 			'epoch' => $config->get( 'CacheEpoch' )
 		];
 		if ( $config->get( 'UseSquid' ) ) {
-			// bug 44570: the core page itself may not change, but resources might
+			// T46570: the core page itself may not change, but resources might
 			$modifiedTimes['sepoch'] = wfTimestamp( TS_MW, time() - $config->get( 'SquidMaxage' ) );
 		}
 		Hooks::run( 'OutputPageCheckLastModified', [ &$modifiedTimes, $this ] );
@@ -1466,7 +1466,7 @@ class OutputPage extends ContextSource {
 			ResourceLoaderModule::ORIGIN_CORE_INDIVIDUAL
 		);
 
-		// Site-wide styles are controlled by a config setting, see bug 71621
+		// Site-wide styles are controlled by a config setting, see T73621
 		// for background on why. User styles are never allowed.
 		if ( $this->getConfig()->get( 'AllowSiteCSSOnRestrictedPages' ) ) {
 			$styleOrigin = ResourceLoaderModule::ORIGIN_USER_SITEWIDE;
@@ -2502,7 +2502,7 @@ class OutputPage extends ContextSource {
 		) {
 			$displayReturnto = null;
 
-			# Due to bug 32276, if a user does not have read permissions,
+			# Due to T34276, if a user does not have read permissions,
 			# $this->getTitle() will just give Special:Badtitle, which is
 			# not especially useful as a returnto parameter. Use the title
 			# from the request instead, if there was one.
@@ -3084,7 +3084,7 @@ class OutputPage extends ContextSource {
 
 		$curRevisionId = 0;
 		$articleId = 0;
-		$canonicalSpecialPageName = false; # bug 21115
+		$canonicalSpecialPageName = false; # T23115
 
 		$title = $this->getTitle();
 		$ns = $title->getNamespace();
@@ -3094,7 +3094,7 @@ class OutputPage extends ContextSource {
 
 		$sk = $this->getSkin();
 		// Get the relevant title so that AJAX features can use the correct page name
-		// when making API requests from certain special pages (bug 34972).
+		// when making API requests from certain special pages (T36972).
 		$relevantTitle = $sk->getRelevantTitle();
 		$relevantUser = $sk->getRelevantUser();
 
@@ -3855,7 +3855,7 @@ class OutputPage extends ContextSource {
 	 *    $wgOut->addWikiText( "<div class='error'>\n"
 	 *        . wfMessage( 'some-error' )->plain() . "\n</div>" );
 	 *
-	 * The newline after the opening div is needed in some wikitext. See bug 19226.
+	 * The newline after the opening div is needed in some wikitext. See T21226.
 	 *
 	 * @param string $wrap
 	 */

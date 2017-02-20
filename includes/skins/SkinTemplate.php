@@ -582,7 +582,7 @@ class SkinTemplate extends Skin {
 		/* set up the default links for the personal toolbar */
 		$personal_urls = [];
 
-		# Due to bug 32276, if a user does not have read permissions,
+		# Due to T34276, if a user does not have read permissions,
 		# $this->getTitle() will just give Special:Badtitle, which is
 		# not especially useful as a returnto parameter. Use the title
 		# from the request instead, if there was one.
@@ -663,7 +663,7 @@ class SkinTemplate extends Skin {
 					'text' => $this->msg( 'pt-userlogout' )->text(),
 					'href' => self::makeSpecialUrl( 'Userlogout',
 						// userlogout link must always contain an & character, otherwise we might not be able
-						// to detect a buggy precaching proxy (bug 17790)
+						// to detect a buggy precaching proxy (T19790)
 						$title->isSpecial( 'Preferences' ) ? 'noreturnto' : $returnto ),
 					'active' => false
 				];
@@ -1120,7 +1120,7 @@ class SkinTemplate extends Skin {
 			$content_navigation['namespaces']['special'] = [
 				'class' => 'selected',
 				'text' => $this->msg( 'nstab-special' )->text(),
-				'href' => $request->getRequestURL(), // @see: bug 2457, bug 2510
+				'href' => $request->getRequestURL(), // @see: T4457, T4510
 				'context' => 'subject'
 			];
 

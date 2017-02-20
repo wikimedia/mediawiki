@@ -216,7 +216,7 @@ class WebRequest {
 
 			$host = $parts[0];
 			if ( $wgAssumeProxiesUseDefaultProtocolPorts && isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ) {
-				// Bug 70021: Assume that upstream proxy is running on the default
+				// T72021: Assume that upstream proxy is running on the default
 				// port based on the protocol. We have no reliable way to determine
 				// the actual port in use upstream.
 				$port = $stdPort;
@@ -308,7 +308,7 @@ class WebRequest {
 	 * available variant URLs.
 	 */
 	public function interpolateTitle() {
-		// bug 16019: title interpolation on API queries is useless and sometimes harmful
+		// T18019: title interpolation on API queries is useless and sometimes harmful
 		if ( defined( 'MW_API' ) ) {
 			return;
 		}
@@ -1229,7 +1229,7 @@ HTML;
 				if (
 					IP::isPublic( $ipchain[$i + 1] ) ||
 					$wgUsePrivateIPs ||
-					$proxyLookup->isConfiguredProxy( $curIP ) // bug 48919; treat IP as sane
+					$proxyLookup->isConfiguredProxy( $curIP ) // T50919; treat IP as sane
 				) {
 					// Follow the next IP according to the proxy
 					$nextIP = IP::canonicalize( $ipchain[$i + 1] );

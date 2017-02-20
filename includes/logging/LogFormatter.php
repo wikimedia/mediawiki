@@ -167,7 +167,7 @@ class LogFormatter {
 
 	/**
 	 * Even uglier hack to maintain backwards compatibilty with IRC bots
-	 * (bug 34508).
+	 * (T36508).
 	 * @see getActionText()
 	 * @return string Text
 	 */
@@ -188,7 +188,7 @@ class LogFormatter {
 
 	/**
 	 * Even uglier hack to maintain backwards compatibilty with IRC bots
-	 * (bug 34508).
+	 * (T36508).
 	 * @see getActionText()
 	 * @return string Text
 	 */
