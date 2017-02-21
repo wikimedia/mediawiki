@@ -70,6 +70,7 @@ production.
 * Update Moment.js from v2.8.4 to v2.15.0.
 * Updated oyejorge/less.php from v1.7.0.10 to v1.7.0.13.
 * Added wikimedia/remex-html v1.0.1.
+* Updated monolog from v1.18.2 to 1.22.1.
 
 ==== New external libraries ====
 
