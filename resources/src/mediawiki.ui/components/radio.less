@@ -43,7 +43,7 @@
 	line-height: @radioSize;
 
 	* {
-		// reset font sizes (see bug 72727)
+		// reset font sizes (see T74727)
 		font: inherit;
 		vertical-align: middle;
 	}
@@ -55,7 +55,7 @@
 		// ensure the invisible radio takes up the required width
 		width: @radioSize;
 		height: @radioSize;
-		// This is needed for Firefox mobile (See bug 71750 to workaround default Firefox stylesheet)
+		// This is needed for Firefox mobile (See T73750 to workaround default Firefox stylesheet)
 		max-width: none;
 		margin-right: 0.4em;
 

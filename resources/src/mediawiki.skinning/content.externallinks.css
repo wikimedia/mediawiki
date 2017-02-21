@@ -2,7 +2,7 @@
  * Icons and colors for external links.
  */
 
-/* Bug 66091 is blocking is from converting this file to LESS
+/* T68091 is blocking is from converting this file to LESS
  * and using the .background-image-svg mixin. */
 
 /* SVG support using a transparent gradient to guarantee cross-browser

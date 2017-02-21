@@ -1252,7 +1252,7 @@
 					el.media = media;
 				}
 				// If you end up here from an IE exception "SCRIPT: Invalid property value.",
-				// see #addEmbeddedCSS, bug 31676, and bug 47277 for details.
+				// see #addEmbeddedCSS, T33676, and T49277 for details.
 				el.href = url;
 
 				$( getMarker() ).before( el );
@@ -1923,7 +1923,7 @@
 				 *     { <media>: css }
 				 *     { <media>: [url, ..] }
 				 *
-				 * The reason css strings are not concatenated anymore is bug 31676. We now check
+				 * The reason css strings are not concatenated anymore is T33676. We now check
 				 * whether it's safe to extend the stylesheet.
 				 *
 				 * @protected
@@ -2042,7 +2042,7 @@
 								// Support: IE 7-8
 								// Use properties instead of attributes as IE throws security
 								// warnings when inserting a <link> tag with a protocol-relative
-								// URL set though attributes - when on HTTPS. See bug 41331.
+								// URL set though attributes - when on HTTPS. See T43331.
 								l = document.createElement( 'link' );
 								l.rel = 'stylesheet';
 								l.href = modules;

@@ -18,7 +18,7 @@ jQuery( function ( $ ) {
 		// inside the heading (e.g. to do things like copy URL, open in new tab, ..).
 		// e.target can be the heading, but it can also be anything inside the heading.
 		if ( e.target.nodeName.toLowerCase() !== 'a' ) {
-			// Trigger native HTMLElement click instead of opening URL (bug 43052)
+			// Trigger native HTMLElement click instead of opening URL (T45052)
 			e.preventDefault();
 			$edit.get( 0 ).click();
 		}

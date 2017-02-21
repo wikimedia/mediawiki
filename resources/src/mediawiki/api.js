@@ -51,7 +51,7 @@
 	}
 
 	// Pre-populate with fake ajax promises to save http requests for tokens
-	// we already have on the page via the user.tokens module (bug 34733).
+	// we already have on the page via the user.tokens module (T36733).
 	promises[ defaultOptions.ajax.url ] = {};
 	$.each( mw.user.tokens.get(), function ( key, value ) {
 		// This requires #getToken to use the same key as user.tokens.

@@ -43,7 +43,7 @@
 	display: table;
 
 	* {
-		// reset font sizes (see bug 72727)
+		// reset font sizes (see T74727)
 		font: inherit;
 		vertical-align: middle;
 	}
@@ -58,7 +58,7 @@
 		// ensure the invisible checkbox takes up the required width
 		width: @checkboxSize;
 		height: @checkboxSize;
-		// This is needed for Firefox mobile (See bug 71750 to workaround default Firefox stylesheet)
+		// This is needed for Firefox mobile (See T73750 to workaround default Firefox stylesheet)
 		max-width: none;
 		margin: 0 0.4em 0 0;
 		display: table-cell;
