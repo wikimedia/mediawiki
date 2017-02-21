@@ -408,7 +408,7 @@ class WebRequest {
 	 * @since 1.28
 	 * @param string $name
 	 * @param string|null $default Optional default
-	 * @return string
+	 * @return string|null
 	 */
 	public function getRawVal( $name, $default = null ) {
 		$name = strtr( $name, '.', '_' ); // See comment in self::getGPCVal()
@@ -432,7 +432,7 @@ class WebRequest {
 	 *
 	 * @param string $name
 	 * @param string $default Optional default (or null)
-	 * @return string
+	 * @return string|null
 	 */
 	public function getVal( $name, $default = null ) {
 		$val = $this->getGPCVal( $this->data, $name, $default );
@@ -482,7 +482,7 @@ class WebRequest {
 	 *
 	 * @param string $name
 	 * @param array $default Optional default (or null)
-	 * @return array
+	 * @return array|null
 	 */
 	public function getArray( $name, $default = null ) {
 		$val = $this->getGPCVal( $this->data, $name, $default );
