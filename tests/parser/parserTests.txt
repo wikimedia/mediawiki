@@ -609,7 +609,7 @@ Italics and bold
 
 !! end
 
-# this example taken from the [[simple:Moon]] article (bug 47326)
+# this example taken from the [[simple:Moon]] article (T49326)
 !! test
 Italics and possessives (1)
 !! wikitext
@@ -619,7 +619,7 @@ obtained by ''[[Lunar Prospector]]'''s gamma-ray spectrometer
 </p>
 !! end
 
-# this example taken from [[en:Flaming Pie]] (bug 49926)
+# this example taken from [[en:Flaming Pie]] (T51926)
 !! test
 Italics and possessives (2)
 !! wikitext
@@ -629,7 +629,7 @@ Italics and possessives (2)
 </p>
 !! end
 
-# this example taken from [[en:Dictionary]] (bug 49926)
+# this example taken from [[en:Dictionary]] (T51926)
 !! test
 Italics and possessives (3)
 !! wikitext
@@ -1178,7 +1178,7 @@ Non-html5 tags should be accepted
 !! end
 
 !! test
-<wbr> is valid wikitext (bug 52468)
+<wbr> is valid wikitext (T54468)
 !! wikitext
 <wbr>
 !! html
@@ -1293,7 +1293,7 @@ Ruby markup (W3C-style)
 
 # The next two test different paths in the sanitizer.
 !! test
-Non-word characters don't terminate tag names (bug 17663, 40670, 52022)
+Non-word characters don't terminate tag names (T19663, T42670, T54022)
 !! wikitext
 <blockquote|>a</blockquote>
 
@@ -1364,7 +1364,7 @@ array (
 !! end
 
 !! test
-Isolated close tags should be treated as literal text (bug 52760)
+Isolated close tags should be treated as literal text (T54760)
 !! options
 parsoid=wt2html
 !! wikitext
@@ -1382,7 +1382,7 @@ parsoid=wt2html
 ###
 
 !! test
-Bare pipe character (bug 52363)
+Bare pipe character (T54363)
 !! wikitext
 |
 !! html
@@ -1391,7 +1391,7 @@ Bare pipe character (bug 52363)
 !! end
 
 !! test
-Bare pipe character from a template (bug 52363)
+Bare pipe character from a template (T54363)
 !! wikitext
 {{pipe}}
 !! html
@@ -2162,7 +2162,7 @@ Regression with preformatted in <center>
 !! end
 
 !! test
-Bug 52763: Preformatted in <blockquote>
+T54763: Preformatted in <blockquote>
 !! wikitext
 <blockquote>
  Blah
@@ -2186,7 +2186,7 @@ Bug 52763: Preformatted in <blockquote>
 !! end
 
 !! test
-Bug 51086: Double newlines in blockquotes should be turned into paragraphs
+T53086: Double newlines in blockquotes should be turned into paragraphs
 !! wikitext
 <blockquote>
 Foo
@@ -2203,7 +2203,7 @@ Bar
 !! end
 
 !! test
-Bug 15491: <ins>/<del> in blockquote
+T17491: <ins>/<del> in blockquote
 !! wikitext
 <blockquote>
 Foo <del>bar</del> <ins>baz</ins> quux
@@ -2218,9 +2218,9 @@ Foo <del>bar</del> <ins>baz</ins> quux
 
 # Note that the p-wrapping is newline sensitive, which could be
 # considered a bug: tidy will wrap only the 'Foo' in the example
-# below in a <p> tag. (see comment 23-25 of bug #6200)
+# below in a <p> tag. (see comment 23-25 of T8200)
 !! test
-Bug 15491: <ins>/<del> in blockquote (2)
+T17491: <ins>/<del> in blockquote (2)
 !! wikitext
 <blockquote>Foo <del>bar</del> <ins>baz</ins> quux
 </blockquote>
@@ -2235,7 +2235,7 @@ Bug 15491: <ins>/<del> in blockquote (2)
 !! end
 
 !! test
-<pre> with attributes (bug 3202)
+<pre> with attributes (T5202)
 !! wikitext
 <pre style="background: blue; color:white">Bluescreen of WikiDeath</pre>
 !! html
@@ -2244,7 +2244,7 @@ Bug 15491: <ins>/<del> in blockquote (2)
 !! end
 
 !! test
-<pre> with width attribute (bug 3202)
+<pre> with width attribute (T5202)
 !! wikitext
 <pre width="8">Narrow screen goodies</pre>
 !! html
@@ -2253,7 +2253,7 @@ Bug 15491: <ins>/<del> in blockquote (2)
 !! end
 
 !! test
-<pre> with forbidden attribute (bug 3202)
+<pre> with forbidden attribute (T5202)
 !! wikitext
 <pre width="8" onmouseover="alert(document.cookie)">Narrow screen goodies</pre>
 !! html
@@ -2271,7 +2271,7 @@ Entities inside <pre>
 !! end
 
 !! test
-<pre> with forbidden attribute values (bug 3202)
+<pre> with forbidden attribute values (T5202)
 !! wikitext
 <pre width="8" style="border-width: expression(alert(document.cookie))">Narrow screen goodies</pre>
 !! html
@@ -2280,7 +2280,7 @@ Entities inside <pre>
 !! end
 
 !! test
-<nowiki> inside <pre> (bug 13238)
+<nowiki> inside <pre> (T15238)
 !! wikitext
 <pre>
 <nowiki>
@@ -2365,7 +2365,7 @@ Entities inside <pre>
 
 # Parsoid doesn't strip empty tags, like Tidy does.
 !! test
-Empty pre; pre inside other HTML tags (bug 54946)
+Empty pre; pre inside other HTML tags (T56946)
 !! options
 parsoid=wt2html,wt2wt
 !! wikitext
@@ -2566,7 +2566,7 @@ Barack Obama <President> of the United States
 !! end
 
 !! test
-Handle broken pre-like tags (bug 64025)
+Handle broken pre-like tags (T66025)
 !! options
 parsoid=wt2html
 !! wikitext
@@ -2782,7 +2782,7 @@ Templates: Handle comments in the target
 !!end
 
 !! test
-Templates: Handle comments in parameter names (bug 67657)
+Templates: Handle comments in parameter names (T69657)
 !! wikitext
 {{echo|1
 <!-- should be ignored -->
@@ -2812,7 +2812,7 @@ Templates: Handle comments in parameter names (bug 67657)
 !!end
 
 !! test
-Templates: Other wikitext in parameter names (bug 67657)
+Templates: Other wikitext in parameter names (T69657)
 !! wikitext
 {{echo|''1''=foo}}
 !! html/php
@@ -2900,7 +2900,7 @@ parsoid=html2wt,wt2wt
 </p>
 !! end
 
-## Bug 52824
+## T54824
 !! test
 Templates: '=' char in nested transclusions should not trigger nowiki escapes or conversion to named param
 !! options
@@ -2913,7 +2913,7 @@ parsoid=html2wt,wt2wt
 <p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"{{echo|1=bar}}"}},"i":0}}]}'>bar</p>
 !! end
 
-## Bug 56733
+## T58733
 !! test
 Templates parameters with special tokenizing behavior dont get modified because of arg escaping
 !! wikitext
@@ -2924,7 +2924,7 @@ Templates parameters with special tokenizing behavior dont get modified because 
 <p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"a : b"}},"i":0}}]}'>a<span typeof="mw:DisplaySpace mw:Placeholder" data-parsoid='{"isDisplayHack":true}'> </span>: b</p>
 !! end
 
-## Bug T73412
+## T73412
 !! test
 Templates: Preserve blank parameter names
 !! wikitext
@@ -3041,7 +3041,7 @@ c
 !!end
 
 !!test
-2c. Indent-Pre and tables (bug 42252)
+2c. Indent-Pre and tables (T44252)
 !! wikitext
 {|
  |+ foo
@@ -3112,7 +3112,7 @@ a
 !!end
 
 !! test
-2g. Indented table markup mixed with indented pre content (proposed in bug 6200)
+2g. Indented table markup mixed with indented pre content (proposed in T8200)
 !! wikitext
  <table>
  <tr>
@@ -3709,7 +3709,7 @@ Definition lists: excess closed tags
 !! end
 
 !! test
-Bug 11748: Literal closing tags
+T13748: Literal closing tags
 !! wikitext
 <dl>
 <dt>test 1</dt>
@@ -3836,7 +3836,7 @@ should be left alone
 !! end
 
 !! test
-Definition Lists: Hacky use to indent tables, with comments (bug 63979)
+Definition Lists: Hacky use to indent tables, with comments (T65979)
 !! wikitext
 <!-- foo -->
 ::{|
@@ -4542,7 +4542,7 @@ Non-bracketed: http://example.com
 </p>
 !! end
 
-# parsoid doesn't explicitly mark autonumbered links, see bug 53505
+# parsoid doesn't explicitly mark autonumbered links, see T55505
 !! test
 External links: numbered
 !! wikitext
@@ -4587,7 +4587,7 @@ http://example.com/1$2345
 </p>
 !! end
 
-# parsoid doesn't explicitly mark autonumbered links, see bug 53505
+# parsoid doesn't explicitly mark autonumbered links, see T55505
 !! test
 External links: dollar sign in URL (autonumber)
 !! wikitext
@@ -4600,7 +4600,7 @@ External links: dollar sign in URL (autonumber)
 !!end
 
 !! test
-External links: open square bracket forbidden in URL (bug 4377)
+External links: open square bracket forbidden in URL (T6377)
 !! options
 parsoid=wt2html,wt2wt,html2html
 !! wikitext
@@ -4613,7 +4613,7 @@ http://example.com/1[2345
 !! end
 
 !! test
-External links: open square bracket forbidden in URL (named) (bug 4377)
+External links: open square bracket forbidden in URL (named) (T6377)
 !! options
 parsoid=wt2html,html2html
 !! wikitext
@@ -4627,7 +4627,7 @@ parsoid=wt2html,html2html
 
 # parsoid adds a space before the link name
 !! test
-External links: open square bracket forbidden in URL (named) (bug 4377)
+External links: open square bracket forbidden in URL (named) (T6377)
 Parsoid variant.
 !! wikitext
 [http://example.com/1 [2345]
@@ -4637,7 +4637,7 @@ Parsoid variant.
 !!end
 
 !! test
-External links: nowiki in URL link text (bug 6230)
+External links: nowiki in URL link text (T8230)
 !! wikitext
 [http://example.com/ <nowiki>''example site''</nowiki>]
 !! html
@@ -4646,7 +4646,7 @@ External links: nowiki in URL link text (bug 6230)
 !! end
 
 !! test
-External links: newline forbidden in text (bug 6230 regression check)
+External links: newline forbidden in text (T8230 regression check)
 !! wikitext
 [http://example.com/ first
 second]
@@ -4674,7 +4674,7 @@ External links: protocol-relative URL in brackets
 </p>
 !! end
 
-# parsoid doesn't explicitly mark autonumbered links, see bug 53505
+# parsoid doesn't explicitly mark autonumbered links, see T55505
 !! test
 External links: protocol-relative URL in brackets without text
 !! wikitext
@@ -4696,7 +4696,7 @@ External links: protocol-relative URL in free text is left alone
 !!end
 
 !! test
-External links: protocol-relative URL in the middle of a word is left alone (bug 30269)
+External links: protocol-relative URL in the middle of a word is left alone (T32269)
 !! wikitext
 foo//example.com/Foo
 !! html
@@ -4847,7 +4847,7 @@ bitcoin:;
 !! end
 
 !! test
-External links: No preceding word characters allowed (bug 65278)
+External links: No preceding word characters allowed (T67278)
 !! wikitext
 NOPEhttp://example.com
 N0http://example.com
@@ -4992,7 +4992,7 @@ Old &amp; use: http://x&amp;y
 !! end
 
 !! test
-External links: encoded equals (bug 6102)
+External links: encoded equals (T8102)
 !! wikitext
 http://example.com/?foo&#61;bar
 !! html/php
@@ -5004,7 +5004,7 @@ http://example.com/?foo&#61;bar
 
 ##
 ## Note that parsoid doesn't explicit mark autonumbered links, nor
-## does it number them.  As discussed in bug 53505, we can identify
+## does it number them.  As discussed in T55505, we can identify
 ## autonumbered links via CSS.
 ##
 
@@ -5048,7 +5048,7 @@ External links: [raw equals]
 # note that parsoid html is identical to [raw equals] case; so html2wt
 # mode will return the [raw equals] wikitext
 !! test
-External links: [encoded equals] (bug 6102)
+External links: [encoded equals] (T8102)
 !! options
 parsoid=wt2html,wt2wt,html2html
 !! wikitext
@@ -5108,7 +5108,7 @@ http://e&zwnj;xample.com/
 !! end
 
 !! test
-External links: www.jpeg.org (bug 554)
+External links: www.jpeg.org (T2554)
 !! wikitext
 http://www.jpeg.org
 !! html
@@ -5116,9 +5116,9 @@ http://www.jpeg.org
 </p>
 !! end
 
-# parsoid doesn't explicitly mark autonumbered links, see bug 53505
+# parsoid doesn't explicitly mark autonumbered links, see T55505
 !! test
-External links: URL within URL (original bug 2)
+External links: URL within URL (T2002)
 !! wikitext
 [http://www.unausa.org/newindex.asp?place=http://www.unausa.org/programs/mun.asp]
 !! html/php
@@ -5129,7 +5129,7 @@ External links: URL within URL (original bug 2)
 !! end
 
 !! test
-BUG 361: URL inside bracketed URL
+T2361: URL inside bracketed URL
 !! wikitext
 [http://www.example.com/foo http://www.example.com/bar]
 !! html
@@ -5138,7 +5138,7 @@ BUG 361: URL inside bracketed URL
 !! end
 
 !! test
-BUG 361: URL within URL, not bracketed
+T2361: URL within URL, not bracketed
 !! wikitext
 http://www.example.com/foo?=http://www.example.com/bar
 !! html
@@ -5147,7 +5147,7 @@ http://www.example.com/foo?=http://www.example.com/bar
 !! end
 
 !! test
-BUG 289: ">"-token in URL-tail
+T2289: ">"-token in URL-tail
 !! wikitext
 http://www.example.com/<hello>
 !! html
@@ -5156,7 +5156,7 @@ http://www.example.com/<hello>
 !!end
 
 !! test
-BUG 289: literal ">"-token in URL-tail
+T2289: literal ">"-token in URL-tail
 !! wikitext
 http://www.example.com/<b>html</b>
 !! html/php
@@ -5167,7 +5167,7 @@ http://www.example.com/<b>html</b>
 !! end
 
 !! test
-BUG 289: ">"-token in bracketed URL
+T2289: ">"-token in bracketed URL
 !! wikitext
 [http://www.example.com/<hello> stuff]
 !! html
@@ -5176,7 +5176,7 @@ BUG 289: ">"-token in bracketed URL
 !!end
 
 !! test
-BUG 289: literal ">"-token in bracketed URL
+T2289: literal ">"-token in bracketed URL
 !! wikitext
 [http://www.example.com/<b>html</b> stuff]
 !! html
@@ -5185,7 +5185,7 @@ BUG 289: literal ">"-token in bracketed URL
 !!end
 
 !! test
-BUG 289: literal double quote at end of URL
+T2289: literal double quote at end of URL
 !! wikitext
 http://www.example.com/"hello"
 !! html
@@ -5194,7 +5194,7 @@ http://www.example.com/"hello"
 !!end
 
 !! test
-BUG 289: literal double quote in bracketed URL
+T2289: literal double quote in bracketed URL
 !! wikitext
 [http://www.example.com/"hello" stuff]
 !! html
@@ -5203,7 +5203,7 @@ BUG 289: literal double quote in bracketed URL
 !!end
 
 !! test
-External links: multiple legal whitespace is fine, Magnus. Don't break it please. (bug 5081)
+External links: multiple legal whitespace is fine, Magnus. Don't break it please. (T7081)
 !! wikitext
 [http://www.example.com  test]
 !! html
@@ -5223,7 +5223,7 @@ External links: link text with spaces
 !! end
 
 !! test
-External links: wiki links within external link (Bug 3695)
+External links: wiki links within external link (T5695)
 !! options
 parsoid=wt2html,html2html
 !! wikitext
@@ -5236,7 +5236,7 @@ parsoid=wt2html,html2html
 !! end
 
 !! test
-BUG 787: Links with one slash after the url protocol are invalid
+T2787: Links with one slash after the url protocol are invalid
 !! wikitext
 http:/example.com
 
@@ -5257,7 +5257,7 @@ Bracketed external links with template-generated invalid target
 !! end
 
 !! test
-Bug 2702: Mismatched <i>, <b> and <a> tags are invalid
+T4702: Mismatched <i>, <b> and <a> tags are invalid
 !! wikitext
 ''[http://example.com text'']
 [http://example.com '''text]'''
@@ -5275,7 +5275,7 @@ Bug 2702: Mismatched <i>, <b> and <a> tags are invalid
 
 
 !! test
-Bug 4781: %26 in URL
+T6781: %26 in URL
 !! wikitext
 http://www.example.com/?title=AT%26T
 !! html/php
@@ -5288,7 +5288,7 @@ http://www.example.com/?title=AT%26T
 # According to https://www.w3.org/TR/2011/WD-html5-20110525/Overview.html#parsing-urls a plain
 # % is actually legal in HTML5. Any change in output would need testing though.
 !! test
-Bug 4781, 5267: %25 in URL
+T6781, T7267: %25 in URL
 !! wikitext
 http://www.example.com/?title=100%25_Bran
 !! html/php
@@ -5299,7 +5299,7 @@ http://www.example.com/?title=100%25_Bran
 !! end
 
 !! test
-Bug 4781, 5267: %28, %29 in URL
+T6781, T7267: %28, %29 in URL
 !! wikitext
 http://www.example.com/?title=Ben-Hur_%281959_film%29
 !! html/php
@@ -5311,7 +5311,7 @@ http://www.example.com/?title=Ben-Hur_%281959_film%29
 
 
 !! test
-Bug 4781: %26 in autonumber URL
+T6781: %26 in autonumber URL
 !! wikitext
 [http://www.example.com/?title=AT%26T]
 !! html/php
@@ -5322,7 +5322,7 @@ Bug 4781: %26 in autonumber URL
 !! end
 
 !! test
-Bug 4781, 5267: %26 in autonumber URL
+T6781, T7267: %26 in autonumber URL
 !! wikitext
 [http://www.example.com/?title=100%25_Bran]
 !! html/php
@@ -5333,7 +5333,7 @@ Bug 4781, 5267: %26 in autonumber URL
 !! end
 
 !! test
-Bug 4781, 5267: %28, %29 in autonumber URL
+T6781, T7267: %28, %29 in autonumber URL
 !! wikitext
 [http://www.example.com/?title=Ben-Hur_%281959_film%29]
 !! html/php
@@ -5345,7 +5345,7 @@ Bug 4781, 5267: %28, %29 in autonumber URL
 
 
 !! test
-Bug 4781: %26 in bracketed URL
+T6781: %26 in bracketed URL
 !! wikitext
 [http://www.example.com/?title=AT%26T link]
 !! html/php
@@ -5356,7 +5356,7 @@ Bug 4781: %26 in bracketed URL
 !! end
 
 !! test
-Bug 4781, 5267: %25 in bracketed URL
+T6781, T7267: %25 in bracketed URL
 !! wikitext
 [http://www.example.com/?title=100%25_Bran link]
 !! html
@@ -5365,7 +5365,7 @@ Bug 4781, 5267: %25 in bracketed URL
 !! end
 
 !! test
-Bug 4781, 5267: %28, %29 in bracketed URL
+T6781, T7267: %28, %29 in bracketed URL
 !! wikitext
 [http://www.example.com/?title=Ben-Hur_%281959_film%29 link]
 !! html/php
@@ -5376,7 +5376,7 @@ Bug 4781, 5267: %28, %29 in bracketed URL
 !! end
 
 !! test
-External link containing a period in the anchor. (bug 63947)
+External link containing a period in the anchor. (T65947)
 !! wikitext
 [//foo.org/bar#baz. bang]
 
@@ -5391,7 +5391,7 @@ External link containing a period in the anchor. (bug 63947)
 !! end
 
 !! test
-External link containing a single quote. (bug 63947)
+External link containing a single quote. (T65947)
 !! wikitext
 [//foo.org/bar'baz]
 
@@ -5406,7 +5406,7 @@ External link containing a single quote. (bug 63947)
 !! end
 
 !! test
-External link containing double-single-quotes in text '' (bug 4598 sanity check)
+External link containing double-single-quotes in text '' (T6598 sanity check)
 !! wikitext
 Some [http://example.com/ pretty ''italics'' and stuff]!
 !! html
@@ -5415,7 +5415,7 @@ Some [http://example.com/ pretty ''italics'' and stuff]!
 !! end
 
 !! test
-External link containing double-single-quotes in text embedded in italics (bug 4598 sanity check)
+External link containing double-single-quotes in text embedded in italics (T6598 sanity check)
 !! wikitext
 ''Some [http://example.com/ pretty ''italics'' and stuff]!''
 !! html
@@ -6375,7 +6375,7 @@ Nested table
 !! end
 
 !! test
-Invalid attributes in table cell (bug 1830)
+Invalid attributes in table cell (T3830)
 !! wikitext
 {|
 |Cell:|broken
@@ -7095,7 +7095,7 @@ Table cells not properly parsed in an implicit-td context
 !! end
 
 !! test
-Parsoid: Round-trip tables directly followed by content (bug 51219)
+Parsoid: Round-trip tables directly followed by content (T53219)
 !! options
 parsoid=wt2html,wt2wt
 !! wikitext
@@ -7122,7 +7122,7 @@ parsoid=wt2html,wt2wt
 !! end
 
 !! test
-Parsoid: Default to a newline after tables in new content (bug 51219)
+Parsoid: Default to a newline after tables in new content (T53219)
 !! options
 parsoid=html2wt
 !! html/parsoid
@@ -7606,7 +7606,7 @@ Some text
 !! endarticle
 
 !! test
-Bug 43661: Piped links with identical prefixes
+T45661: Piped links with identical prefixes
 !! wikitext
 [[prefixed article|prefixed articles with spaces]]
 
@@ -7685,7 +7685,7 @@ Link with multiple pipes
 !! end
 
 !! test
-Anchor containing a #. (bug 63430)
+Anchor containing a #. (T65430)
 !! wikitext
 [[Main Page#And#Link]]
 !! html/php
@@ -7721,7 +7721,7 @@ This is an article in the MemoryAlpha namespace
 !! endarticle
 
 !! test
-Namespace takes precedence over interwiki link (bug 51680)
+Namespace takes precedence over interwiki link (T53680)
 !! wikitext
 [[MemoryAlpha:AlphaTest]]
 !! html
@@ -7860,7 +7860,7 @@ Link containing a tilde
 !! end
 
 !! test
-Link containing double-single-quotes '' (bug 4598)
+Link containing double-single-quotes '' (T6598)
 !! wikitext
 [[Lista d''e paise d''o munno]]
 !! html/php
@@ -7882,7 +7882,7 @@ Link containing double quotes and spaces
 !! end
 
 !! test
-Link containing double-single-quotes '' in text (bug 4598 sanity check)
+Link containing double-single-quotes '' in text (T6598 sanity check)
 !! wikitext
 Some [[Link|pretty ''italics'' and stuff]]!
 !! html/php
@@ -7893,7 +7893,7 @@ Some [[Link|pretty ''italics'' and stuff]]!
 !! end
 
 !! test
-Link containing double-single-quotes '' in text embedded in italics (bug 4598 sanity check)
+Link containing double-single-quotes '' in text embedded in italics (T6598 sanity check)
 !! wikitext
 ''Some [[Link|pretty ''italics'' and stuff]]!''
 !! html
@@ -7925,7 +7925,7 @@ Link with double quotes in title part (literal) and alternate part (interpreted)
 !! end
 
 !! test
-Broken image links with HTML captions (bug 39700)
+Broken image links with HTML captions (T41700)
 !! wikitext
 [[File:Nonexistent|<script></script>]]
 [[File:Nonexistent|100x100px|<script></script>]]
@@ -8020,7 +8020,7 @@ Piped link to URL: [[http://www.example.com|an example URL]]
 !! end
 
 !! test
-BUG 2: [[page|http://url/]] should link to page, not http://url/
+T2002: [[page|http://url/]] should link to page, not http://url/
 !! wikitext
 [[Main Page|http://url/]]
 !! html/php
@@ -8032,7 +8032,7 @@ BUG 2: [[page|http://url/]] should link to page, not http://url/
 
 # Parsoid does not mark self-links, by design.
 !! test
-BUG 337: Escaped self-links should be bold
+T2337: Escaped self-links should be bold
 !! options
 title=[[Bug462]]
 !! wikitext
@@ -8104,7 +8104,7 @@ Non-breaking spaces in title
 !!end
 
 !! test
-Internal link with ca linktrail, surrounded by bold apostrophes (bug 27473 primary issue)
+Internal link with ca linktrail, surrounded by bold apostrophes (T29473 primary issue)
 !! options
 language=ca
 !! wikitext
@@ -8115,7 +8115,7 @@ language=ca
 !! end
 
 !! test
-Internal link with ca linktrail, surrounded by italic apostrophes (bug 27473 primary issue)
+Internal link with ca linktrail, surrounded by italic apostrophes (T29473 primary issue)
 !! options
 language=ca
 !! wikitext
@@ -8126,7 +8126,7 @@ language=ca
 !! end
 
 !! test
-Internal link with en linktrail: no apostrophes (bug 27473)
+Internal link with en linktrail: no apostrophes (T29473)
 !! options
 language=en
 !! wikitext
@@ -8137,7 +8137,7 @@ language=en
 !! end
 
 !! test
-Internal link with ca linktrail with apostrophes (bug 27473)
+Internal link with ca linktrail with apostrophes (T29473)
 !! options
 language=ca
 !! wikitext
@@ -8148,7 +8148,7 @@ language=ca
 !! end
 
 !! test
-Internal link with kaa linktrail with apostrophes (bug 27473)
+Internal link with kaa linktrail with apostrophes (T29473)
 !! options
 language=kaa
 !! wikitext
@@ -8159,7 +8159,7 @@ language=kaa
 !! end
 
 !! test
-Link with multiple ":" in a subpage-supporting namespace (bug 63636)
+Link with multiple ":" in a subpage-supporting namespace (T65636)
 !! wikitext
 [[User:Foo/Test/63636:Bar|Test]]
 !! html/php
@@ -8378,7 +8378,7 @@ parsoid=wt2html,wt2wt,html2html
 !! end
 
 !! test
-Inline interwiki link with empty title (bug 2372)
+Inline interwiki link with empty title (T4372)
 !! options
 parsoid=wt2html,wt2wt,html2html
 !! wikitext
@@ -8391,7 +8391,7 @@ parsoid=wt2html,wt2wt,html2html
 !! end
 
 !! test
-Interwiki link encoding conversion (bug 1636)
+Interwiki link encoding conversion (T3636)
 !! wikitext
 *[[Wikipedia:ro:Olteni&#0355;a]]
 *[[Wikipedia:ro:Olteni&#355;a]]
@@ -8407,7 +8407,7 @@ Interwiki link encoding conversion (bug 1636)
 !! end
 
 !! test
-Interwiki link with fragment (bug 2130)
+Interwiki link with fragment (T4130)
 !! wikitext
 [[MeatBall:SoftSecurity#foo]]
 !! html
@@ -8533,7 +8533,7 @@ parsoid=wt2html,wt2wt,html2html
 !! end
 
 !! test
-Local interwiki link: prefix only (bug 64167)
+Local interwiki link: prefix only (T66167)
 !! options
 parsoid=wt2html,wt2wt,html2html
 !! wikitext
@@ -8546,7 +8546,7 @@ parsoid=wt2html,wt2wt,html2html
 !! end
 
 !! test
-Local interwiki link: with additional interwiki prefix (bug 61357)
+Local interwiki link: with additional interwiki prefix (T63357)
 !! options
 parsoid=wt2html,wt2wt,html2html
 !! wikitext
@@ -8688,7 +8688,7 @@ Blah blah blah
 !! end
 
 !! test
-Double interlanguage link, with prefix links (bug 8897)
+Double interlanguage link, with prefix links (T10897)
 !! options
 language=ln
 !! wikitext
@@ -8705,7 +8705,7 @@ Blah blah blah
 !! end
 
 !! test
-"Extra" interlanguage links (bug 32189 / gerrit 111390)
+"Extra" interlanguage links (T34189 / gerrit 111390)
 !! wikitext
 Blah blah blah
 [[mul:Article]]
@@ -8757,7 +8757,7 @@ language=ln
 !! end
 
 !! test
-Parsoid bug 53221: Wikilinks should be properly entity-escaped
+Parsoid T55221: Wikilinks should be properly entity-escaped
 !! options
 parsoid={ "modes": ["html2wt"], "suppressErrors": true }
 !! html/parsoid
@@ -8834,7 +8834,7 @@ parsoid=wt2html,wt2wt,html2html
 !! end
 
 !! test
-Handle interwiki links pointing to the current wiki as plain wiki links (bug 45209)
+Handle interwiki links pointing to the current wiki as plain wiki links (T47209)
 !! wikitext
 [[mi:Foo]]
 !! html/php
@@ -8845,7 +8845,7 @@ Handle interwiki links pointing to the current wiki as plain wiki links (bug 452
 !! end
 
 !! test
-Interlanguage link with preceding local interwiki link (bug 68085)
+Interlanguage link with preceding local interwiki link (T70085)
 !! options
 parsoid=wt2html,wt2wt,html2html
 !! wikitext
@@ -9092,7 +9092,7 @@ Broken br tag sanitization
 </p>
 !! end
 
-# TODO: Fix html2html mode (bug 51055)!
+# TODO: Fix html2html mode (T53055)!
 !! test
 Parsoid: Broken br tag recognition
 !! options
@@ -9476,7 +9476,7 @@ parsoid
 !! end
 
 !! test
-List items are not parsed correctly following a <pre> block (bug 785)
+List items are not parsed correctly following a <pre> block (T2785)
 !! wikitext
 * <pre>foo</pre>
 * <pre>bar</pre>
@@ -9685,7 +9685,7 @@ Unbalanced closing block tags break a list
 !! end
 
 # Parsoid fails this test, but it might be tricky to support properly.
-# See bug 68395.
+# See T70395.
 !! test
 Unbalanced closing non-block tags don't break a list
 (php parser relies on Tidy to fix up)
@@ -9727,7 +9727,7 @@ parsoid=wt2html,wt2wt,html2html
 <li><s> b </s></li></ol>
 !! end
 
-# See bug 68395.
+# See T70395.
 !!test
 1. List embedded in a formatting tag
 !! wikitext
@@ -9919,7 +9919,7 @@ Magic Word: {{CURRENTHOUR}}
 !! end
 
 !! test
-Magic Word: {{CURRENTWEEK}} (@bug 4594)
+Magic Word: {{CURRENTWEEK}} (T6594)
 !! wikitext
 {{CURRENTWEEK}}
 !! html
@@ -10266,7 +10266,7 @@ title=[['foo & bar = baz']]
 !! end
 
 !! test
-Magic Word: {{PAGENAME}} with metacharacters (bug 26781)
+Magic Word: {{PAGENAME}} with metacharacters (T28781)
 !! options
 title=[[*RFC 1234 http://example.com/]]
 !! wikitext
@@ -10290,7 +10290,7 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 !! end
 
 !! test
-Magic Word: {{PAGENAMEE}} with metacharacters (bug 26781)
+Magic Word: {{PAGENAMEE}} with metacharacters (T28781)
 !! options
 title=[[*RFC 1234 http://example.com/]]
 !! wikitext
@@ -10441,7 +10441,7 @@ Namespace 1 {{ns:01}}
 !! end
 
 !! test
-Namespace 0 {{ns:0}} (bug 4783)
+Namespace 0 {{ns:0}} (T6783)
 !! wikitext
 {{ns:0}}
 !! html
@@ -10449,7 +10449,7 @@ Namespace 0 {{ns:0}} (bug 4783)
 !! end
 
 !! test
-Namespace 0 {{ns:00}} (bug 4783)
+Namespace 0 {{ns:00}} (T6783)
 !! wikitext
 {{ns:00}}
 !! html
@@ -10593,7 +10593,7 @@ __proto__
 ### Magic links
 ###
 !! test
-Magic links: internal link to RFC (bug 479)
+Magic links: internal link to RFC (T2479)
 !! wikitext
 [[RFC 123]]
 !! html/php
@@ -10604,7 +10604,7 @@ Magic links: internal link to RFC (bug 479)
 !! end
 
 !! test
-Magic links: RFC (bug 479)
+Magic links: RFC (T2479)
 !! wikitext
 RFC 822
 !! html/php
@@ -10615,7 +10615,7 @@ RFC 822
 !! end
 
 !! test
-Magic links: RFC (bug 65278)
+Magic links: RFC (T67278)
 !! wikitext
 This is RFC 822 but thisRFC 822 is not RFC 822linked.
 !! html/php
@@ -10626,7 +10626,7 @@ This is RFC 822 but thisRFC 822 is not RFC 822linked.
 !! end
 
 !! test
-Magic links: RFC (w/ non-newline whitespace, bug 28950/29025)
+Magic links: RFC (w/ non-newline whitespace, T30950/T31025)
 !! wikitext
 RFC &nbsp;&#160;&#0160;&#xA0;&#Xa0; 822
 RFC
@@ -10643,7 +10643,7 @@ RFC
 !! end
 
 !! test
-Magic links: ISBN (bug 1937)
+Magic links: ISBN (T3937)
 !! wikitext
 ISBN 0-306-40615-2
 !! html/php
@@ -10654,7 +10654,7 @@ ISBN 0-306-40615-2
 !! end
 
 !! test
-Magic links: ISBN (bug 65278)
+Magic links: ISBN (T67278)
 !! wikitext
 This is ISBN 978-0-316-09811-3 but thisISBN 978-0-316-09811-3 is not ISBN 978-0-316-09811-3linked.
 !! html/php
@@ -10665,7 +10665,7 @@ This is ISBN 978-0-316-09811-3 but thisISBN 978-0-316-09811-3 is not ISBN 978-0-
 !! end
 
 !! test
-Magic links: ISBN (w/ non-newline whitespace, bug 28950/29025)
+Magic links: ISBN (w/ non-newline whitespace, T30950/T31025)
 !! wikitext
 ISBN &nbsp;&#160;&#0160;&#xA0;&#Xa0; 978&nbsp;0&#160;316&#0160;09811&#xA0;3
 ISBN
@@ -10699,7 +10699,7 @@ PMID 1234
 !! end
 
 !! test
-Magic links: PMID (bug 65278)
+Magic links: PMID (T67278)
 !! wikitext
 This is PMID 1234 but thisPMID 1234 is not PMID 1234linked.
 !! html/php
@@ -10710,7 +10710,7 @@ This is PMID 1234 but thisPMID 1234 is not PMID 1234linked.
 !! end
 
 !! test
-Magic links: PMID (w/ non-newline whitespace, bug 28950/29025)
+Magic links: PMID (w/ non-newline whitespace, T30950/T31025)
 !! wikitext
 PMID &nbsp;&#160;&#0160;&#xA0;&#Xa0; 1234
 PMID
@@ -10801,7 +10801,7 @@ Template with invalid target containing wikilink
 !! end
 
 !! test
-Template with just whitespace in it, bug #68421
+Template with just whitespace in it, T70421
 !! wikitext
 {{echo|{{ }}}}
 !! html/parsoid
@@ -11019,7 +11019,7 @@ Template with complex arguments
 !! end
 
 !! test
-BUG 553: link with two variables in a piped link
+T2553: link with two variables in a piped link
 !! wikitext
 {|
 |[[{{{1}}}|{{{2}}}]]
@@ -11180,7 +11180,7 @@ Template:table
 !! endarticle
 
 !! test
-BUG 529: Template with table, not included at beginning of line
+T2529: Template with table, not included at beginning of line
 !! wikitext
 foo {{table}}
 !! html
@@ -11199,7 +11199,7 @@ foo {{table}}
 !! end
 
 !! test
-BUG 523: Template shouldn't eat newline (or add an extra one before table)
+T2523: Template shouldn't eat newline (or add an extra one before table)
 !! wikitext
 foo
 {{table}}
@@ -11219,7 +11219,7 @@ foo
 !! end
 
 !! test
-BUG 41: Template parameters shown as broken links
+T2041: Template parameters shown as broken links
 !! wikitext
 {{{parameter}}}
 !! html
@@ -11467,7 +11467,7 @@ Template:Includeonly section
 !!endarticle
 
 !! test
-Bug 6563: Edit link generation for section shown by <includeonly>
+T8563: Edit link generation for section shown by <includeonly>
 !! wikitext
 {{includeonly section}}
 !! html
@@ -11478,7 +11478,7 @@ Bug 6563: Edit link generation for section shown by <includeonly>
 
 # Uses same input as the contents of [[Template:Includeonly section]]
 !! test
-Bug 6563: Section extraction for section shown by <includeonly>
+T8563: Section extraction for section shown by <includeonly>
 !! options
 section=T-2
 !! wikitext
@@ -11491,7 +11491,7 @@ section=T-2
 !! end
 
 !! test
-Bug 6563: Edit link generation for section suppressed by <includeonly>
+T8563: Edit link generation for section suppressed by <includeonly>
 !! wikitext
 <includeonly>
 ==Includeonly section==
@@ -11503,7 +11503,7 @@ Bug 6563: Edit link generation for section suppressed by <includeonly>
 !! end
 
 !! test
-Bug 6563: Section extraction for section suppressed by <includeonly>
+T8563: Section extraction for section suppressed by <includeonly>
 !! options
 section=1
 !! wikitext
@@ -12266,11 +12266,11 @@ Templates: HTML Tables: 5. Proper fostering of categories from inside
 parsoid=wt2html,wt2wt
 !! wikitext
 <table>[[Category:foo1]]<tr><td>foo</td></tr></table>
-<!--Two categories (Bug 50330)-->
+<!--Two categories (T52330)-->
 <table>[[Category:bar1]][[Category:bar2]]<tr><td>foo</td></tr></table>
 !! html
 <link rel="mw:PageProp/Category" href="./Category:Foo1"><table><tbody><tr><td>foo</td></tr></tbody></table>
-<!--Two categories (Bug 50330)-->
+<!--Two categories (T52330)-->
 <link rel="mw:PageProp/Category" href="./Category:Bar1"><link rel="mw:PageProp/Category" href="./Category:Bar2"><table><tbody><tr><td>foo</td></tr></tbody></table>
 !!end
 
@@ -12582,7 +12582,7 @@ Templates: Ugly templates: 4. newline-only template parameter inconsistency
 </p>
 !! end
 
-# Bug 64017 -- ugly wikitext with fostered content generates two template ranges that
+# T66017 -- ugly wikitext with fostered content generates two template ranges that
 # have a true overlap (T1-start - T2-start - T1-end - T2-end).
 !! test
 Templates: Ugly templates: 5. Template encapsulation test: Non-trivial overlap of template ranges is properly handled
@@ -12596,7 +12596,7 @@ Templates: Ugly templates: 5. Template encapsulation test: Non-trivial overlap o
 </table>
 !! end
 
-# Bug 64017 -- ugly wikitext with fostered content generates two template ranges
+# T66017 -- ugly wikitext with fostered content generates two template ranges
 # that are "identical" and generate nesting cycles in the algorithm
 !! test
 Templates: Ugly templates: 6. Template encapsulation test: Cyclical nesting of template ranges is properly handled
@@ -12687,7 +12687,7 @@ pst
 MediaWiki
 !! end
 
-# This is bug 89, which I fixed. -- wtm
+# This is T2089, which I fixed. -- wtm
 !! test
 pre-save transform: subst: templates with parameters
 !! options
@@ -12705,7 +12705,7 @@ Template:nowikitest
 !! endarticle
 
 !! test
-pre-save transform: nowiki in subst (bug 1188)
+pre-save transform: nowiki in subst (T3188)
 !! options
 pst
 !! wikitext
@@ -12721,7 +12721,7 @@ This template has <!-- a comment --> in it.
 !! endarticle
 
 !! test
-pre-save transform: comment in subst (bug 1936)
+pre-save transform: comment in subst (T3936)
 !! options
 pst
 !! wikitext
@@ -12770,7 +12770,7 @@ Template:dangerous
 !!endarticle
 
 !!test
-(confirming safety of fix for subst bug 1936)
+(confirming safety of fix for subst T3936)
 !! wikitext
 {{Template:dangerous}}
 !! html
@@ -12779,7 +12779,7 @@ Template:dangerous
 !! end
 
 !! test
-pre-save transform: comment containing gallery (bug 5024)
+pre-save transform: comment containing gallery (T7024)
 !! options
 pst
 !! wikitext
@@ -12809,7 +12809,7 @@ pst
 !!end
 
 !! test
-pre-save transform: <noinclude> in subst (bug 3298)
+pre-save transform: <noinclude> in subst (T5298)
 !! options
 pst
 !! wikitext
@@ -12819,7 +12819,7 @@ Foobar
 !! end
 
 !! test
-pre-save transform: <onlyinclude> in subst (bug 3298)
+pre-save transform: <onlyinclude> in subst (T5298)
 !! options
 pst
 !! wikitext
@@ -12841,7 +12841,7 @@ Template:SafeSubstTest
 !! endarticle
 
 !! test
-bug 22297: safesubst: works during PST
+T24297: safesubst: works during PST
 !! options
 pst
 !! wikitext
@@ -12851,7 +12851,7 @@ FoobarFoobar
 !! end
 
 !! test
-bug 22297: safesubst: works during normal parse
+T24297: safesubst: works during normal parse
 !! wikitext
 {{SafeSubstTest}}
 !! html
@@ -13009,7 +13009,7 @@ pst title=[[Ns:Somearticle (IGNORED), Context]]
 !! end
 
 !! test
-pre-save transform: context links ("pipe trick") with full-width parens and no space (Japanese and Chinese style, bug 30149)
+pre-save transform: context links ("pipe trick") with full-width parens and no space (Japanese and Chinese style, T32149)
 !! options
 pst
 !! wikitext
@@ -13029,7 +13029,7 @@ pst
 !! end
 
 !! test
-pre-save transform: context links ("pipe trick") with full-width parens and space (Japanese and Chinese style, bug 30149)
+pre-save transform: context links ("pipe trick") with full-width parens and space (Japanese and Chinese style, T32149)
 !! options
 pst
 !! wikitext
@@ -13049,7 +13049,7 @@ pst
 !! end
 
 !! test
-pre-save transform: context links ("pipe trick") with parens and no space (Korean style, bug 30149)
+pre-save transform: context links ("pipe trick") with parens and no space (Korean style, T32149)
 !! options
 pst
 !! wikitext
@@ -13069,7 +13069,7 @@ pst
 !! end
 
 !! test
-pre-save transform: context links ("pipe trick") with commas (bug 21660)
+pre-save transform: context links ("pipe trick") with commas (T23660)
 !! options
 pst
 !! wikitext
@@ -13120,7 +13120,7 @@ pst
 
 
 !! test
-pre-save transform: Signature expansion in nowiki tags (bug 93)
+pre-save transform: Signature expansion in nowiki tags (T2093)
 !! options
 pst disabled
 !! wikitext
@@ -13243,7 +13243,7 @@ msg
 !! end
 
 !! test
-message transform: <noinclude> in transcluded template (bug 4926)
+message transform: <noinclude> in transcluded template (T6926)
 !! options
 msg
 !! wikitext
@@ -13253,7 +13253,7 @@ Foobar
 !! end
 
 !! test
-message transform: <onlyinclude> in transcluded template (bug 4926)
+message transform: <onlyinclude> in transcluded template (T6926)
 !! options
 msg
 !! wikitext
@@ -13375,7 +13375,7 @@ Image with caption
 !! end
 
 !! test
-Image with caption, bug 53312 #1
+Image with caption, T55312 #1
 !! wikitext
 [[File:Foobar.jpg|right|Caption page stuff]]
 !! html/php
@@ -13386,7 +13386,7 @@ Image with caption, bug 53312 #1
 !! end
 
 !! test
-Image with caption, bug 53312 #2
+Image with caption, T55312 #2
 !! wikitext
 [[File:Foobar.jpg|right|Caption page=]]
 !! html/php
@@ -13397,7 +13397,7 @@ Image with caption, bug 53312 #2
 !! end
 
 !! test
-Image with caption, bug 53312 #3
+Image with caption, T55312 #3
 !! wikitext
 [[File:Foobar.jpg|right|Caption page=stuff]]
 !! html/php
@@ -13408,7 +13408,7 @@ Image with caption, bug 53312 #3
 !! end
 
 !! test
-Allow empty links in image captions (Bug 60753)
+Allow empty links in image captions (T62753)
 !! options
 thumbsize=220
 !! wikitext
@@ -13570,7 +13570,7 @@ Image with multiple widths -- use last
 !! end
 
 !! test
-Image with multiple alignments -- use first (bug 48664)
+Image with multiple alignments -- use first (T50664)
 !! options
 thumbsize=220
 !! wikitext
@@ -13605,7 +13605,7 @@ Image with width attribute at different positions
 
 # a sad bit of backward-compatibility
 !! test
-Image with size specified with pxpx (bug 13500, 51628)
+Image with size specified with pxpx (T15500, T53628)
 !! options
 parsoid=wt2html,wt2wt,html2html
 !! wikitext
@@ -13630,7 +13630,7 @@ Image with link parameter, wiki target
 <p><span class="mw-default-size" typeof="mw:Image"><a href="./Main_Page"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></span></p>
 !! end
 
-# parsoid bug 49293 (part 1)
+# parsoid T51293 (part 1)
 !! test
 Image with link parameter, URL target
 !! wikitext
@@ -13642,7 +13642,7 @@ Image with link parameter, URL target
 <p><span class="mw-default-size" typeof="mw:Image"><a href="http://example.com/"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></span></p>
 !! end
 
-# parsoid bug 49293 (part 2)
+# parsoid T51293 (part 2)
 !! test
 Image with link parameter, protocol-less URL target
 !! wikitext
@@ -14092,7 +14092,7 @@ Add test with existing image page
 !! end
 
 !! test
-bug 18784  Link to non-existent image page with caption should use caption as link text
+T20784  Link to non-existent image page with caption should use caption as link text
 !! wikitext
 [[:Image:test|caption]]
 !! html
@@ -14177,7 +14177,7 @@ parsoid=wt2html,wt2wt,html2html
 !! end
 
 !! test
-BUG 1887: A ISBN with a thumbnail
+T3887: A ISBN with a thumbnail
 !! wikitext
 [[File:Foobar.jpg|thumb|ISBN 1235467890]]
 !! html/php
@@ -14188,7 +14188,7 @@ BUG 1887: A ISBN with a thumbnail
 !! end
 
 !! test
-BUG 1887: A RFC with a thumbnail
+T3887: A RFC with a thumbnail
 !! wikitext
 [[File:Foobar.jpg|thumb|This is RFC 12354]]
 !! html/php
@@ -14199,7 +14199,7 @@ BUG 1887: A RFC with a thumbnail
 !! end
 
 !! test
-BUG 1887: A mailto link with a thumbnail
+T3887: A mailto link with a thumbnail
 !! wikitext
 [[File:Foobar.jpg|thumb|Please mailto:nobody@example.com]]
 !! html/php
@@ -14209,9 +14209,9 @@ BUG 1887: A mailto link with a thumbnail
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption>Please <a rel="mw:ExtLink" href="mailto:nobody@example.com">mailto:nobody@example.com</a></figcaption></figure>
 !! end
 
-# Pending resolution to bug 368
+# Pending resolution to T2368
 !! test
-BUG 648: Frameless image caption with a link
+T2648: Frameless image caption with a link
 !! wikitext
 [[File:Foobar.jpg|text with a [[link]] in it]]
 !! html/php
@@ -14222,7 +14222,7 @@ BUG 648: Frameless image caption with a link
 !! end
 
 !! test
-BUG 648: Frameless image caption with a link (suffix)
+T2648: Frameless image caption with a link (suffix)
 !! wikitext
 [[File:Foobar.jpg|text with a [[link]]foo in it]]
 !! html/php
@@ -14233,7 +14233,7 @@ BUG 648: Frameless image caption with a link (suffix)
 !! end
 
 !! test
-BUG 648: Frameless image caption with an interwiki link
+T2648: Frameless image caption with an interwiki link
 !! wikitext
 [[File:Foobar.jpg|text with a [[MeatBall:Link]] in it]]
 !! html/php
@@ -14244,7 +14244,7 @@ BUG 648: Frameless image caption with an interwiki link
 !! end
 
 !! test
-BUG 648: Frameless image caption with a piped interwiki link
+T2648: Frameless image caption with a piped interwiki link
 !! wikitext
 [[File:Foobar.jpg|text with a [[MeatBall:Link|link]] in it]]
 !! html/php
@@ -14298,7 +14298,7 @@ Entities in file name and attributes
 !! end
 
 !! test
-BUG 499: Alt text should have &#1234;, not &amp;1234;
+T2499: Alt text should have &#1234;, not &amp;1234;
 !! wikitext
 [[File:Foobar.jpg|&#9792;]]
 !! html/php
@@ -14382,7 +14382,7 @@ and some more text.]]
 !! end
 
 !! test
-Bug 3090: External links other than http: in image captions
+T5090: External links other than http: in image captions
 !! wikitext
 [[File:Foobar.jpg|thumb|200x200px|This caption has [irc://example.net irc] and [https://example.com Secure] ext links in it.]]
 !! html/php
@@ -14461,7 +14461,7 @@ parsoid=wt2html,wt2wt,html2html
 
 # Note that 'right' is the default alignment, despite the misspelled 'righ' below
 !! test
-Invalid image attributes (bug 62500)
+Invalid image attributes (T64500)
 !! options
 thumbsize=220
 parsoid=wt2html,wt2wt,html2html
@@ -14830,7 +14830,7 @@ Parsoid: dot-slash prefixed wikilinks
 !! end
 
 !! test
-Render invalid page names as plain text (bug 51090)
+Render invalid page names as plain text (T53090)
 !! wikitext
 [[./../foo|bar]]
 [[foo�|bar]]
@@ -14912,7 +14912,7 @@ Disabled subpages
 !! end
 
 !! test
-BUG 561: {{/Subpage}}
+T2561: {{/Subpage}}
 !! options
 subpage title=[[Page]]
 !! wikitext
@@ -15111,7 +15111,7 @@ Bar
 ##
 ## The whitespace on the empty line is part of the test. Please do not delete
 !! test
-1. Categories and newlines: All preceding newlines should be suppressed (courtesy bug 87)
+1. Categories and newlines: All preceding newlines should be suppressed (courtesy T2087)
 !! options
 parsoid=wt2html
 !! wikitext
@@ -15140,7 +15140,7 @@ This
 ##
 ## The whitespace on the empty line is part of the test. Please do not delete
 !! test
-2. Categories and newlines: All preceding newlines should be suppressed (courtesy bug 87)
+2. Categories and newlines: All preceding newlines should be suppressed (courtesy T2087)
 !! options
 parsoid=wt2html
 !! wikitext
@@ -15336,7 +15336,7 @@ parsoid
 !! end
 
 !! test
-Normalize hrefs properly before testing for invalid link targets (bug 70894)
+Normalize hrefs properly before testing for invalid link targets (T72894)
 !! options
 parsoid=html2wt
 !! html/parsoid
@@ -15381,7 +15381,7 @@ es:Alimento fr:Nourriture zh:食品
 !! end
 
 !! test
-Duplicate interlanguage links (bug 24502)
+Duplicate interlanguage links (T26502)
 !! options
 ill
 !! wikitext
@@ -15608,7 +15608,7 @@ __FORCETOC__
 !! end
 
 !! test
-TOC with wgMaxTocLevel=3 (bug 6204)
+TOC with wgMaxTocLevel=3 (T8204)
 !! options
 wgMaxTocLevel=3
 !! wikitext
@@ -15645,7 +15645,7 @@ wgMaxTocLevel=3
 !! end
 
 !! test
-TOC with wgMaxTocLevel=3 and two level four headings (bug 6204)
+TOC with wgMaxTocLevel=3 and two level four headings (T8204)
 !! options
 wgMaxTocLevel=3
 !! wikitext
@@ -15687,7 +15687,7 @@ Resolving duplicate section names
 !! end
 
 !! test
-Resolving duplicate section names with differing case (bug 10721)
+Resolving duplicate section names with differing case (T12721)
 !! wikitext
 == Foo bar ==
 == Foo Bar ==
@@ -15766,7 +15766,7 @@ __TOC__
 !! end
 
 !! test
-BUG 1219 URL next to image (good)
+T3219 URL next to image (good)
 !! wikitext
 http://example.com [[File:Foobar.jpg]]
 !! html/php
@@ -15777,7 +15777,7 @@ http://example.com [[File:Foobar.jpg]]
 !!end
 
 !! test
-Short headings with trailing space should match behavior of Parser::doHeadings (bug 19910)
+Short headings with trailing space should match behavior of Parser::doHeadings (T21910)
 !! wikitext
 === 
 The line above must have a trailing space!
@@ -15794,7 +15794,7 @@ But just in case it doesn't...
 !! end
 
 !! test
-Header with special characters (bug 25462)
+Header with special characters (T27462)
 !! wikitext
 The tooltips shall not show entities to the user (ie. be double escaped)
 
@@ -15937,7 +15937,7 @@ Headers with excess '=' characters
 !! end
 
 !! test
-HTML headers vs TOC (bug 23393)
+HTML headers vs TOC (T25393)
 (__NOEDITSECTION__ for clearer output, doesn't matter here)
 !! wikitext
 <h1>Header 1</h1>
@@ -15994,7 +15994,7 @@ c3-->
 !! end
 
 !! test
-BUG 1219 URL next to image (broken)
+T3219 URL next to image (broken)
 !! wikitext
 http://example.com[[File:Foobar.jpg]]
 !! html/php
@@ -16005,7 +16005,7 @@ http://example.com[[File:Foobar.jpg]]
 !!end
 
 !! test
-Bug 1186 news: in the middle of text
+T3186 news: in the middle of text
 !! wikitext
 http://en.wikinews.org/wiki/Wikinews:Workplace
 !! html
@@ -16263,10 +16263,10 @@ HTML tag with leading space is parsed as text
 !! end
 
 ###
-### Nesting tests (see bug 41545, 50604, 51081)
+### Nesting tests (see T43545, T52604, T53081)
 ###
 
-# This test case is fixed in Parsoid by domino 1.0.12. (bug 50604)
+# This test case is fixed in Parsoid by domino 1.0.12. (T52604)
 # Note that html2wt is considerably more difficult if we use <b> in
 # the test case, instead of <small>
 !! test
@@ -16278,7 +16278,7 @@ Ensure that HTML adoption agency algorithm is properly implemented.
 </p>
 !! end
 
-# This was bug 41545 in the PHP parser.
+# This was T43545 in the PHP parser.
 # Note that tidy doesn't handle this correctly.
 !! test
 Nesting of <kbd>
@@ -16289,9 +16289,9 @@ Nesting of <kbd>
 </p>
 !! end
 
-# The following cases were bug 51081 in the PHP parser.
+# The following cases were T53081 in the PHP parser.
 # Note that there are some other nestable tags (b, i, etc) which are
-# not covered; see bug 51081 for discussion.
+# not covered; see T53081 for discussion.
 
 # Note that tidy doesn't handle this correctly.
 !! test
@@ -16379,7 +16379,7 @@ Media link with nasty text
 !! end
 
 !! test
-Media link to nonexistent file (bug 1702)
+Media link to nonexistent file (T3702)
 !! wikitext
 [[Media:No such.jpg]]
 !! html
@@ -16388,7 +16388,7 @@ Media link to nonexistent file (bug 1702)
 !! end
 
 !! test
-Image link to nonexistent file (bug 1850 - good)
+Image link to nonexistent file (T3850 - good)
 !! wikitext
 [[File:No_such.jpg]]
 !! html/php
@@ -16399,7 +16399,7 @@ Image link to nonexistent file (bug 1850 - good)
 !! end
 
 !! test
-:Image link to nonexistent file (bug 1850 - bad)
+:Image link to nonexistent file (T3850 - bad)
 !! wikitext
 [[:Image:No such.jpg]]
 !! html/php
@@ -16412,7 +16412,7 @@ Image link to nonexistent file (bug 1850 - good)
 
 
 !! test
-Character reference normalization in link text (bug 1938)
+Character reference normalization in link text (T3938)
 !! wikitext
 [[Main Page|this&that]]
 !! html
@@ -16429,7 +16429,7 @@ The page's name is U+05d0 U+05b7, with non-canonical form U+FB2E
 !! endarticle
 
 !! test
-(bug 19451) Links should refer to the normalized form.
+(T21451) Links should refer to the normalized form.
 !! wikitext
 [[&#xFB2E;]]
 [[&#x5d0;&#x5b7;]]
@@ -16446,7 +16446,7 @@ The page's name is U+05d0 U+05b7, with non-canonical form U+FB2E
 !! end
 
 !! test
-Empty attribute crash test (bug 2067)
+Empty attribute crash test (T4067)
 !! wikitext
 <font color="">foo</font>
 !! html
@@ -16455,7 +16455,7 @@ Empty attribute crash test (bug 2067)
 !! end
 
 !! test
-Empty attribute crash test single-quotes (bug 2067)
+Empty attribute crash test single-quotes (T4067)
 !! wikitext
 <font color=''>foo</font>
 !! html
@@ -16514,7 +16514,7 @@ parsoid=wt2html,html2html
 !! end
 
 !! test
-Bug 2095: link with three closing brackets
+T4095: link with three closing brackets
 !! wikitext
 [[Main Page]]]
 !! html/php
@@ -16525,7 +16525,7 @@ Bug 2095: link with three closing brackets
 !! end
 
 !! test
-Bug 2095: link with pipe and three closing brackets
+T4095: link with pipe and three closing brackets
 !! wikitext
 [[Main Page|link]]]
 !! html/php
@@ -16536,7 +16536,7 @@ Bug 2095: link with pipe and three closing brackets
 !! end
 
 !! test
-Bug 2095: link with pipe and three closing brackets, version 2
+T4095: link with pipe and three closing brackets, version 2
 !! wikitext
 [[Main Page|[http://example.com/]]]
 !! html/php
@@ -16570,7 +16570,7 @@ Template:Div style
 !! endarticle
 
 !! test
-Bug 2304: HTML attribute safety (safe template; regression bug 2309)
+T4304: HTML attribute safety (safe template; regression T4309)
 !! wikitext
 <div title="{{test}}"></div>
 !! html/php
@@ -16582,7 +16582,7 @@ Bug 2304: HTML attribute safety (safe template; regression bug 2309)
 
 # Parsoid has enough context to handle this case
 !! test
-Bug 2304: HTML attribute safety (dangerous template; 2309)
+T4304: HTML attribute safety (dangerous template; 2309)
 !! wikitext
 <div title="{{dangerous attribute}}"></div>
 !! html/php
@@ -16593,7 +16593,7 @@ Bug 2304: HTML attribute safety (dangerous template; 2309)
 !! end
 
 !! test
-Bug 2304: HTML attribute safety (dangerous style template; 2309)
+T4304: HTML attribute safety (dangerous style template; 2309)
 !! wikitext
 <div style="{{dangerous style attribute}}"></div>
 !! html/php
@@ -16604,7 +16604,7 @@ Bug 2304: HTML attribute safety (dangerous style template; 2309)
 !! end
 
 !! test
-Bug 2304: HTML attribute safety (safe parameter; 2309)
+T4304: HTML attribute safety (safe parameter; 2309)
 !! wikitext
 {{div style|width: 200px}}
 !! html/php
@@ -16615,7 +16615,7 @@ Bug 2304: HTML attribute safety (safe parameter; 2309)
 !! end
 
 !! test
-Bug 2304: HTML attribute safety (unsafe parameter; 2309)
+T4304: HTML attribute safety (unsafe parameter; 2309)
 !! wikitext
 {{div style|width: expression(alert(document.cookie))}}
 !! html/php
@@ -16627,7 +16627,7 @@ Bug 2304: HTML attribute safety (unsafe parameter; 2309)
 
 ## Parsoid output here differs; needs investigation.
 !! test
-Bug 2304: HTML attribute safety (unsafe breakout parameter; 2309)
+T4304: HTML attribute safety (unsafe breakout parameter; 2309)
 !! wikitext
 {{div style|"><script>alert(document.cookie)</script>}}
 !! html
@@ -16637,7 +16637,7 @@ Bug 2304: HTML attribute safety (unsafe breakout parameter; 2309)
 
 ## Parsoid output here differs; needs investigation.
 !! test
-Bug 2304: HTML attribute safety (unsafe breakout parameter 2; 2309)
+T4304: HTML attribute safety (unsafe breakout parameter 2; 2309)
 !! wikitext
 {{div style|" ><script>alert(document.cookie)</script>}}
 !! html
@@ -16646,7 +16646,7 @@ Bug 2304: HTML attribute safety (unsafe breakout parameter 2; 2309)
 !! end
 
 !! test
-Bug 2304: HTML attribute safety (link)
+T4304: HTML attribute safety (link)
 !! wikitext
 <div title="[[Main Page]]"></div>
 !! html
@@ -16655,7 +16655,7 @@ Bug 2304: HTML attribute safety (link)
 !! end
 
 !! test
-Bug 2304: HTML attribute safety (italics)
+T4304: HTML attribute safety (italics)
 !! wikitext
 <div title="''foobar''"></div>
 !! html
@@ -16664,7 +16664,7 @@ Bug 2304: HTML attribute safety (italics)
 !! end
 
 !! test
-Bug 2304: HTML attribute safety (bold)
+T4304: HTML attribute safety (bold)
 !! wikitext
 <div title="'''foobar'''"></div>
 !! html
@@ -16673,7 +16673,7 @@ Bug 2304: HTML attribute safety (bold)
 !! end
 
 !! test
-Bug 2304: HTML attribute safety (ISBN)
+T4304: HTML attribute safety (ISBN)
 !! wikitext
 <div title="ISBN 1234567890"></div>
 !! html
@@ -16682,7 +16682,7 @@ Bug 2304: HTML attribute safety (ISBN)
 !! end
 
 !! test
-Bug 2304: HTML attribute safety (RFC)
+T4304: HTML attribute safety (RFC)
 !! wikitext
 <div title="RFC 1234"></div>
 !! html
@@ -16691,7 +16691,7 @@ Bug 2304: HTML attribute safety (RFC)
 !! end
 
 !! test
-Bug 2304: HTML attribute safety (PMID)
+T4304: HTML attribute safety (PMID)
 !! wikitext
 <div title="PMID 1234567890"></div>
 !! html
@@ -16700,7 +16700,7 @@ Bug 2304: HTML attribute safety (PMID)
 !! end
 
 !! test
-Bug 2304: HTML attribute safety (web link)
+T4304: HTML attribute safety (web link)
 !! wikitext
 <div title="http://example.com/"></div>
 !! html
@@ -16709,7 +16709,7 @@ Bug 2304: HTML attribute safety (web link)
 !! end
 
 !! test
-Bug 2304: HTML attribute safety (named web link)
+T4304: HTML attribute safety (named web link)
 !! wikitext
 <div title="[http://example.com/ link]"></div>
 !! html
@@ -16718,7 +16718,7 @@ Bug 2304: HTML attribute safety (named web link)
 !! end
 
 !! test
-Bug 3244: HTML attribute safety (extension; safe)
+T5244: HTML attribute safety (extension; safe)
 !! wikitext
 <div style="<nowiki>background:blue</nowiki>"></div>
 !! html/php
@@ -16729,7 +16729,7 @@ Bug 3244: HTML attribute safety (extension; safe)
 !! end
 
 !! test
-Bug 3244: HTML attribute safety (extension; unsafe)
+T5244: HTML attribute safety (extension; unsafe)
 !! wikitext
 <div style="<nowiki>border-left:expression(alert(document.cookie))</nowiki>"></div>
 !! html/php
@@ -16786,7 +16786,7 @@ MSIE CSS safety test: comment in expression
 !! end
 
 !! test
-CSS safety test (all browsers): vertical tab (bug 55332 / CVE-2013-4567)
+CSS safety test (all browsers): vertical tab (T57332 / CVE-2013-4567)
 !! wikitext
 <p style="font-size: 100px; background-image:url\b(https://www.google.com/images/srpr/logo6w.png)">A</p>
 !! html/php
@@ -16797,7 +16797,7 @@ CSS safety test (all browsers): vertical tab (bug 55332 / CVE-2013-4567)
 !! end
 
 !! test
-MSIE 6 CSS safety test: Fullwidth (bug 55332)
+MSIE 6 CSS safety test: Fullwidth (T57332)
 !! wikitext
 <p style="font-size: 100px; color: ｅｘｐｒｅｓｓｉｏｎ((title='XSSed'),'red')">A</p>
 <div style="top:ＥＸＰＲＥＳＳＩＯＮ(alert())">B</div>
@@ -16811,7 +16811,7 @@ MSIE 6 CSS safety test: Fullwidth (bug 55332)
 !! end
 
 !! test
-MSIE 6 CSS safety test: IPA extensions (bug 55332)
+MSIE 6 CSS safety test: IPA extensions (T57332)
 !! wikitext
 <div style="background-image:uʀʟ(javascript:alert())">A</div>
 <p style="font-size: 100px; color: expʀessɪoɴ((title='XSSed'),'red')">B</p>
@@ -16825,7 +16825,7 @@ MSIE 6 CSS safety test: IPA extensions (bug 55332)
 !! end
 
 !! test
-MSIE 6 CSS safety test: sup/sub script (bug 55332)
+MSIE 6 CSS safety test: sup/sub script (T57332)
 !! wikitext
 <div style="background-image:url⁽javascript:alert())">A</div>
 <div style="background-image:url₍javascript:alert())">B</div>
@@ -16857,7 +16857,7 @@ style="-o-link:attr(title);-o-link-source:current">X</div>
 !! end
 
 !! test
-MSIE 6 CSS safety test: Repetition markers (bug 55332)
+MSIE 6 CSS safety test: Repetition markers (T57332)
 !! wikitext
 <p style="font-size: 100px; color: expres〱ion((title='XSSed'),'red')">A</p>
 <p style="font-size: 100px; color: expresゝion((title='XSSed'),'red')">B</p>
@@ -16938,7 +16938,7 @@ Template:Identity
 !! endarticle
 
 !! test
-Expansion of multi-line templates in attribute values (bug 6255)
+Expansion of multi-line templates in attribute values (T8255)
 !! wikitext
 <div style="background: {{identity|#00FF00}}">-</div>
 !! html
@@ -16947,20 +16947,20 @@ Expansion of multi-line templates in attribute values (bug 6255)
 !! end
 
 !! test
-Expansion of multi-line templates in attribute values (bug 6255 sanity check)
+Expansion of multi-line templates in attribute values (T8255 sanity check)
 !! wikitext
-<div style="background: 
+<div style="background:
 #00FF00">-</div>
 !! html/php
 <div style="background: #00FF00">-</div>
 
 !! html/parsoid
-<div style="background: 
+<div style="background:
 #00FF00">-</div>
 !! end
 
 !! test
-Expansion of multi-line templates in attribute values (bug 6255 sanity check 2)
+Expansion of multi-line templates in attribute values (T8255 sanity check 2)
 !! wikitext
 <div style="background: &#10;#00FF00">-</div>
 !! html
@@ -17136,7 +17136,7 @@ array (
 !! end
 
 !! test
-Parser hook: argument containing a forward slash (bug 5344)
+Parser hook: argument containing a forward slash (T7344)
 !! wikitext
 <tag filename="/tmp/bla"></tag>
 !! html/php
@@ -17153,7 +17153,7 @@ array (
 
 ## Don't expect parsoid to rt this form.
 !! test
-Parser hook: empty input using terminated empty elements (bug 2374)
+Parser hook: empty input using terminated empty elements (T4374)
 !! options
 parsoid=wt2html,html2html
 !! wikitext
@@ -17173,7 +17173,7 @@ array (
 ## </tag> should be output literally since there is no matching tag that begins it
 ## Don't expect parsoid to rt this form.
 !! test
-Parser hook: basic arguments using terminated empty elements (bug 2374)
+Parser hook: basic arguments using terminated empty elements (T4374)
 !! options
 parsoid=wt2html
 !! wikitext
@@ -17337,7 +17337,7 @@ Sanitizer: Escaping of spaces, multibyte characters, colons & other stuff in id=
 # In HTML5, the restrictions are that id must contain at least one character,
 # and must not contain any space characters.
 !! test
-Sanitizer: Validating the contents of the id attribute (bug 4515)
+Sanitizer: Validating the contents of the id attribute (T6515)
 !! options
 disabled
 !! wikitext
@@ -17348,7 +17348,7 @@ Something ...
 
 # In HTML5, id must be unique amongst all the ids in the element's home subtree.
 !! test
-Sanitizer: Validating id attribute uniqueness (bug 4515, bug 6301)
+Sanitizer: Validating id attribute uniqueness (T6515, T8301)
 !! options
 disabled
 !! wikitext
@@ -17382,7 +17382,7 @@ Sanitizer: Validating that <meta> and <link> work, but only for Microdata
 !! end
 
 !! test
-Language converter: output gets cut off unexpectedly (bug 5757)
+Language converter: output gets cut off unexpectedly (T7757)
 !! options
 language=zh
 !! wikitext
@@ -17402,7 +17402,7 @@ all additional text is vanished
 !! end
 
 !! test
-Self closed html pairs (bug 5487)
+Self closed html pairs (T7487)
 !! options
 !! wikitext
 <center><font id="bug" />Centered text</center>
@@ -17427,7 +17427,7 @@ C'est grave !
 !! end
 
 !! test
-Punctuation: CSS !important (bug 11874)
+Punctuation: CSS !important (T13874)
 !! wikitext
 <div style="width:50% !important">important</div>
 !! html
@@ -17436,7 +17436,7 @@ Punctuation: CSS !important (bug 11874)
 !!end
 
 !! test
-Punctuation: CSS ! important (bug 11874; with space after)
+Punctuation: CSS ! important (T13874; with space after)
 !! wikitext
 <div style="width:50% ! important">important</div>
 !! html
@@ -17445,7 +17445,7 @@ Punctuation: CSS ! important (bug 11874; with space after)
 !!end
 
 !! test
-HTML bullet list, closed tags (bug 5497)
+HTML bullet list, closed tags (T7497)
 !! wikitext
 <ul>
 <li>One</li>
@@ -17466,7 +17466,7 @@ HTML bullet list, closed tags (bug 5497)
 !! end
 
 !! test
-HTML bullet list, unclosed tags (bug 5497)
+HTML bullet list, unclosed tags (T7497)
 !! wikitext
 <ul>
 <li>One
@@ -17486,7 +17486,7 @@ HTML bullet list, unclosed tags (bug 5497)
 !! end
 
 !! test
-HTML ordered list, closed tags (bug 5497)
+HTML ordered list, closed tags (T7497)
 !! wikitext
 <ol>
 <li>One</li>
@@ -17507,7 +17507,7 @@ HTML ordered list, closed tags (bug 5497)
 !! end
 
 !! test
-HTML ordered list, unclosed tags (bug 5497)
+HTML ordered list, unclosed tags (T7497)
 !! options
 !! wikitext
 <ol>
@@ -17528,7 +17528,7 @@ HTML ordered list, unclosed tags (bug 5497)
 !! end
 
 !! test
-HTML nested bullet list, closed tags (bug 5497)
+HTML nested bullet list, closed tags (T7497)
 !! wikitext
 <ul>
 <li>One</li>
@@ -17563,7 +17563,7 @@ HTML nested bullet list, closed tags (bug 5497)
 !! end
 
 !! test
-HTML nested bullet list, open tags (bug 5497)
+HTML nested bullet list, open tags (T7497)
 !! wikitext
 <ul>
 <li>One
@@ -17600,7 +17600,7 @@ HTML nested bullet list, open tags (bug 5497)
 !! end
 
 !! test
-HTML nested ordered list, closed tags (bug 5497)
+HTML nested ordered list, closed tags (T7497)
 !! wikitext
 <ol>
 <li>One</li>
@@ -17625,7 +17625,7 @@ HTML nested ordered list, closed tags (bug 5497)
 !! end
 
 !! test
-HTML nested ordered list, open tags (bug 5497)
+HTML nested ordered list, open tags (T7497)
 !! wikitext
 <ol>
 <li>One
@@ -17672,9 +17672,9 @@ HTML ordered list item with parameters oddity
 
 !! end
 
-# parsoid doesn't explicitly mark autonumbered links, see bug 53505
+# parsoid doesn't explicitly mark autonumbered links, see T55505
 !!test
-bug 5918: autonumbering
+T7918: autonumbering
 !! wikitext
 [http://first/] [http://second] [ftp://ftp]
 
@@ -17881,7 +17881,7 @@ MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 # <li class="&#124;&#124;">
 # }}}blah" onmouseover="alert('hello world');" align="left"<b>MOVE MOUSE CURSOR OVER HERE</b>
 !!test
-Fuzz testing: Parser25 (bug 6055)
+Fuzz testing: Parser25 (T8055)
 !! wikitext
 {{{
 | 
@@ -17946,7 +17946,7 @@ Fuzz testing: image with bogus manual thumbnail
 !!end
 
 !! test
-Fuzz testing: encoded newline in generated HTML replacements (bug 6577)
+Fuzz testing: encoded newline in generated HTML replacements (T8577)
 !! wikitext
 <pre dir="&#10;"></pre>
 !! html
@@ -17955,7 +17955,7 @@ Fuzz testing: encoded newline in generated HTML replacements (bug 6577)
 !! end
 
 !! test
-Parsing optional HTML elements (Bug 6171)
+Parsing optional HTML elements (T8171)
 !! options
 !! wikitext
 <table>
@@ -17977,7 +17977,7 @@ Parsing optional HTML elements (Bug 6171)
 !! end
 
 !! test
-Correct handling of <td>, <tr> (Bug 6171)
+Correct handling of <td>, <tr> (T8171)
 !! options
 !! wikitext
 <table>
@@ -18073,7 +18073,7 @@ Special page transclusion
 !! end
 
 !! test
-Special page transclusion twice (bug 5021)
+Special page transclusion twice (T7021)
 !! options
 !! wikitext
 {{Special:Prefixindex/Xyzzyx}}
@@ -18454,7 +18454,7 @@ section=2
 ==b==
 !! end
 
-# Formerly testing for bug 2587, now resolved by the use of unmarked sections
+# Formerly testing for T4587, now resolved by the use of unmarked sections
 # instead of respecting commented sections
 !! test
 Section extraction prefixed by comment (section 1)
@@ -18478,7 +18478,7 @@ section=2
 
 !!end
 
-# Formerly testing for bug 2607, now resolved by the use of unmarked sections
+# Formerly testing for T4607, now resolved by the use of unmarked sections
 # instead of respecting HTML-style headings
 !! test
 Section extraction, mixed wiki and html (section 1)
@@ -18513,7 +18513,7 @@ two
 !! end
 
 
-# Formerly testing for bug 3342
+# Formerly testing for T5342
 !! test
 Section extraction, heading surrounded by <noinclude>
 !! options
@@ -18525,7 +18525,7 @@ section=1
 ==marked==
 !!end
 
-# Test behavior of bug 19910
+# Test behavior of T21910
 !! test
 Sectiion with all-equals
 !! options
@@ -18873,7 +18873,7 @@ xxx
 !! end
 
 !! test
-Section replacement test with initial whitespace (bug 13728)
+Section replacement test with initial whitespace (T15728)
 !! options
 replace=2,"xxx"
 !! wikitext
@@ -18888,7 +18888,7 @@ xxx
 
 
 !! test
-Section extraction, heading followed by pre with 20 spaces (bug 6398)
+Section extraction, heading followed by pre with 20 spaces (T8398)
 !! options
 section=1
 !! wikitext
@@ -18900,7 +18900,7 @@ section=1
 !! end
 
 !! test
-Section extraction, heading followed by pre with 19 spaces (bug 6398 sanity check)
+Section extraction, heading followed by pre with 19 spaces (T8398 sanity check)
 !! options
 section=1
 !! wikitext
@@ -18913,7 +18913,7 @@ section=1
 
 
 !! test
-Section extraction, <pre> around bogus header (bug 10309)
+Section extraction, <pre> around bogus header (T12309)
 !! options
 section=2
 !! wikitext
@@ -18930,7 +18930,7 @@ stuff
 !! end
 
 !! test
-Section replacement, <pre> around bogus header (bug 10309)
+Section replacement, <pre> around bogus header (T12309)
 !! options
 replace=2,"xxx"
 !! wikitext
@@ -19649,7 +19649,7 @@ parsoid=wt2html,wt2wt,html2html
 !! end
 
 !! test
-HTML Hex character encoding bogus encoding (bug 26437 regression check)
+HTML Hex character encoding bogus encoding (T28437 regression check)
 !! wikitext
 &#xsee;&#XSEE;
 !! html/php
@@ -19788,7 +19788,7 @@ ISBN 1234567890
 !! end
 
 !! test
-Bug 22905: <abbr> followed by ISBN followed by </a>
+T24905: <abbr> followed by ISBN followed by </a>
 !! wikitext
 <abbr>(fr)</abbr> ISBN 2753300917 [http://www.example.com example.com]
 !! html/php
@@ -20223,7 +20223,7 @@ ISBN 12345678901
 
 
 !! test
-ISBN with trailing year (bug 8110)
+ISBN with trailing year (T9110)
 !! wikitext
 ISBN 1-234-56789-0 - 2006
 
@@ -20272,7 +20272,7 @@ anchorencode deals with templates
 !! end
 
 !! test
-anchorencode encodes like the TOC generator: (bug 18431)
+anchorencode encodes like the TOC generator: (T20431)
 !! wikitext
 === _ +:.3A%3A&&amp;]] ===
 {{anchorencode: _ +:.3A%3A&&amp;]] }}
@@ -20284,7 +20284,7 @@ __NOEDITSECTION__
 !! end
 
 !! test
-Bug 6200: blockquotes and paragraph formatting
+T8200: blockquotes and paragraph formatting
 !! wikitext
 <blockquote>
 foo
@@ -20305,7 +20305,7 @@ bar
 !! end
 
 !! test
-Bug 8293: Use of center tag ruins paragraph formatting
+T10293: Use of center tag ruins paragraph formatting
 !! wikitext
 <center>
 foo
@@ -20467,7 +20467,7 @@ blah
 ## This wikitext usage is going to be fairly uncommon in production and
 ## selser will take care of preserving formatting in those scenarios.
 !! test
-Don't convert blue categorylinks to another variant (bug 33210)
+Don't convert blue categorylinks to another variant (T35210)
 !! options
 cat
 language=zh
@@ -20636,7 +20636,7 @@ Should be stripped<span title="Exclamation">!</span>
 !! end
 
 !! test
-Bug 24072: more test on conversion rule for title
+T26072: more test on conversion rule for title
 !! options
 language=zh variant=zh-tw showtitle
 !! wikitext
@@ -21002,7 +21002,7 @@ language=sr variant=sr-ec
 !! end
 
 !! test
-Bug 529: Uncovered bullet
+T2529: Uncovered bullet
 !! wikitext
 * Foo {{bullet}}
 !! html
@@ -21018,7 +21018,7 @@ Bug 529: Uncovered bullet
 # To test realistic parsing behavior, apply a tidy-like transformation to both
 # the expected output and your parser's output.
 !! test
-Bug 529: Uncovered bullet leaving empty list, normally removed by tidy
+T2529: Uncovered bullet leaving empty list, normally removed by tidy
 !! wikitext
 ******* Foo {{bullet}}
 !! html
@@ -21028,7 +21028,7 @@ Bug 529: Uncovered bullet leaving empty list, normally removed by tidy
 !! end
 
 !! test
-Bug 529: Uncovered table already at line-start
+T2529: Uncovered table already at line-start
 !! wikitext
 x
 
@@ -21051,7 +21051,7 @@ y
 !! end
 
 !! test
-Bug 529: Uncovered bullet in parser function result
+T2529: Uncovered bullet in parser function result
 !! wikitext
 * Foo {{lc:{{bullet}} }}
 !! html
@@ -21061,7 +21061,7 @@ Bug 529: Uncovered bullet in parser function result
 !! end
 
 !! test
-Bug 5678: Double-parsed template argument
+T7678: Double-parsed template argument
 !! wikitext
 {{lc:{{{1}}}|hello}}
 !! html
@@ -21070,7 +21070,7 @@ Bug 5678: Double-parsed template argument
 !! end
 
 !! test
-Bug 5678: Double-parsed template invocation
+T7678: Double-parsed template invocation
 !! wikitext
 {{lc:{{paramtest {{!}} param = hello }} }}
 !! html
@@ -21079,7 +21079,7 @@ Bug 5678: Double-parsed template invocation
 !! end
 
 !! test
-Case insensitivity of parser functions for non-ASCII characters (bug 8143)
+Case insensitivity of parser functions for non-ASCII characters (T10143)
 !! options
 language=cs
 title=[[Main Page]]
@@ -21224,9 +21224,9 @@ B</strong>
 </p>
 !! end
 
-# Bug 6200: <blockquote> should behave like <div> with respect to line breaks
+# T8200: <blockquote> should behave like <div> with respect to line breaks
 !! test
-Bug 6200: paragraphs inside blockquotes (no extra line breaks)
+T8200: paragraphs inside blockquotes (no extra line breaks)
 !! wikitext
 <blockquote>Line one
 
@@ -21242,7 +21242,7 @@ Line two</blockquote>
 !! end
 
 !! test
-Bug 6200: paragraphs inside blockquotes (extra line break on open)
+T8200: paragraphs inside blockquotes (extra line break on open)
 !! wikitext
 <blockquote>
 Line one
@@ -21261,7 +21261,7 @@ Line two</blockquote>
 !! end
 
 !! test
-Bug 6200: paragraphs inside blockquotes (extra line break on close)
+T8200: paragraphs inside blockquotes (extra line break on close)
 !! wikitext
 <blockquote>Line one
 
@@ -21281,7 +21281,7 @@ Line two
 !! end
 
 !! test
-Bug 6200: paragraphs inside blockquotes (extra line break on open and close)
+T8200: paragraphs inside blockquotes (extra line break on open and close)
 !! wikitext
 <blockquote>
 Line one
@@ -21386,7 +21386,7 @@ Free external link invading image caption
 !! end
 
 !! test
-Bug 15196: localised external link numbers
+T17196: localised external link numbers
 !! options
 language=fa
 !! wikitext
@@ -21523,7 +21523,7 @@ comment local title=[[Main Page]]
 !!end
 
 !! test
-Edit comment with subpage link (bug 14080)
+Edit comment with subpage link (T16080)
 !! options
 comment
 subpage
@@ -21535,7 +21535,7 @@ Poked at a <a href="/wiki/Subpage_test/subpage" title="Subpage test/subpage">/su
 !!end
 
 !! test
-Edit comment with subpage link and link text (bug 14080)
+Edit comment with subpage link and link text (T16080)
 !! options
 comment
 subpage
@@ -21547,7 +21547,7 @@ Poked at a <a href="/wiki/Subpage_test/subpage" title="Subpage test/subpage">nea
 !!end
 
 !! test
-Edit comment with bogus subpage link in non-subpage NS (bug 14080)
+Edit comment with bogus subpage link in non-subpage NS (T16080)
 !! options
 comment
 title=[[Subpage test]]
@@ -21623,7 +21623,7 @@ Created page with &quot;&lt;noinclude&gt;<a href="/index.php?title=Category:Requ
 !! end
 
 !! test
-Space normalisation on autocomment (bug 22784)
+Space normalisation on autocomment (T24784)
 !! options
 comment
 title=[[Main Page]]
@@ -21634,7 +21634,7 @@ title=[[Main Page]]
 !! end
 
 !! test
-percent-encoding and + signs in comments (Bug 26410)
+percent-encoding and + signs in comments (T28410)
 !! options
 comment
 !! wikitext
@@ -21643,7 +21643,7 @@ comment
 <a href="/index.php?title=ABC3D%25_%2B%2B&amp;action=edit&amp;redlink=1" class="new" title="ABC3D% ++ (page does not exist)">ABC3D% ++</a> <a href="/index.php?title=ABC3D%25_%2B%2B&amp;action=edit&amp;redlink=1" class="new" title="ABC3D% ++ (page does not exist)">+%20</a>
 !! end
 
-# Parsoid doesn't support this yet: see bug 73581
+# Parsoid doesn't support this yet: see T75581
 # but it *should* omit the 'src' attribute if the image is bad.
 # PHP side of tests was disabled in
 # mediawiki/core:6bd31e7d95161a6e88fa86df60871051da997c3c
@@ -21659,7 +21659,7 @@ Bad images - basic functionality
 !! end
 
 !! test
-Bad images - bug 16039: text after bad image disappears
+Bad images - T18039: text after bad image disappears
 !! wikitext
 Foo bar
 [[File:Bad.jpg]]
@@ -21675,7 +21675,7 @@ Bar foo</p>
 !! end
 
 !! test
-Verify that displaytitle works (bug #22501) no displaytitle
+Verify that displaytitle works (T24501) no displaytitle
 !! options
 showtitle
 !! config
@@ -21690,7 +21690,7 @@ Parser test
 !! end
 
 !! test
-Verify that displaytitle works (bug #22501) RestrictDisplayTitle=false
+Verify that displaytitle works (T24501) RestrictDisplayTitle=false
 !! options
 showtitle
 title=[[Screen]]
@@ -21707,7 +21707,7 @@ whatever
 !! end
 
 !! test
-Verify that displaytitle works (bug #22501) RestrictDisplayTitle=true mismatch
+Verify that displaytitle works (T24501) RestrictDisplayTitle=true mismatch
 !! options
 showtitle
 title=[[Screen]]
@@ -21724,7 +21724,7 @@ Screen
 !! end
 
 !! test
-Verify that displaytitle works (bug #22501) RestrictDisplayTitle=true matching
+Verify that displaytitle works (T24501) RestrictDisplayTitle=true matching
 !! options
 showtitle
 title=[[Screen]]
@@ -21741,7 +21741,7 @@ screen
 !! end
 
 !! test
-Verify that displaytitle works (bug #22501) AllowDisplayTitle=false
+Verify that displaytitle works (T24501) AllowDisplayTitle=false
 !! options
 showtitle
 title=[[Screen]]
@@ -21758,7 +21758,7 @@ Screen
 !! end
 
 !! test
-Verify that displaytitle works (bug #22501) AllowDisplayTitle=false no DISPLAYTITLE
+Verify that displaytitle works (T24501) AllowDisplayTitle=false no DISPLAYTITLE
 !! options
 showtitle
 title=[[Screen]]
@@ -21773,7 +21773,7 @@ Screen
 !! end
 
 !! test
-Verify that displaytitle handles inline CSS styles (bug 26547) - rejected value
+Verify that displaytitle handles inline CSS styles (T28547) - rejected value
 !! options
 showtitle
 title=[[Screen]]
@@ -21790,7 +21790,7 @@ this is not the the title
 !! end
 
 !! test
-Verify that displaytitle handles inline CSS styles (bug 26547) - accepted value
+Verify that displaytitle handles inline CSS styles (T28547) - accepted value
 !! options
 showtitle
 title=[[Screen]]
@@ -21923,7 +21923,7 @@ preload
 !! end
 
 !! test
-Play a bit with r67090 and bug 3158
+Play a bit with r67090 and T5158
 !! wikitext
 <div style="width:50% !important">&nbsp;</div>
 <div style="width:50%&nbsp;!important">&nbsp;</div>
@@ -21970,7 +21970,7 @@ Strip reserved data attributes
 !! end
 
 !! test
-percent-encoding and + signs in internal links (Bug 26410)
+percent-encoding and + signs in internal links (T28410)
 !! wikitext
 [[User:+%]] [[Page+title%]]
 [[%+]] [[%+|%20]] [[%+ ]] [[%+r]]
@@ -21990,7 +21990,7 @@ percent-encoding and + signs in internal links (Bug 26410)
 !! end
 
 !! test
-Special characters in embedded file links (bug 27679)
+Special characters in embedded file links (T29679)
 !! wikitext
 [[File:Contains & ampersand.jpg]]
 [[File:Does not exist.jpg|Title with & ampersand]]
@@ -22013,7 +22013,7 @@ Text&apos;s been normalized?
 !! end
 
 !! test
-Bug 19052 U+3000 IDEOGRAPHIC SPACE should terminate free external links
+T21052 U+3000 IDEOGRAPHIC SPACE should terminate free external links
 !! wikitext
 http://www.example.org/　<-- U+3000 (vim: ^Vu3000)
 !! html
@@ -22022,7 +22022,7 @@ http://www.example.org/　<-- U+3000 (vim: ^Vu3000)
 !! end
 
 !! test
-Bug 19052 U+3000 IDEOGRAPHIC SPACE should terminate bracketed external links
+T21052 U+3000 IDEOGRAPHIC SPACE should terminate bracketed external links
 !! wikitext
 [http://www.example.org/　ideograms]
 !! html
@@ -22031,7 +22031,7 @@ Bug 19052 U+3000 IDEOGRAPHIC SPACE should terminate bracketed external links
 !! end
 
 !! test
-Bug 19052 U+3000 IDEOGRAPHIC SPACE should terminate external images links
+T21052 U+3000 IDEOGRAPHIC SPACE should terminate external images links
 !! wikitext
 http://www.example.org/pic.png　<-- U+3000 (vim: ^Vu3000)
 !! html
@@ -22059,7 +22059,7 @@ Template:Identical
 !! endarticle
 
 !! test
-Bug 31098 Template which includes system messages which includes the template
+T33098 Template which includes system messages which includes the template
 !! wikitext
 {{Identical}}
 !! html
@@ -22069,7 +22069,7 @@ Bug 31098 Template which includes system messages which includes the template
 !! end
 
 !! test
-Bug31490 Turkish: ucfirst 'blah'
+T33490 Turkish: ucfirst 'blah'
 !! options
 language=tr
 !! wikitext
@@ -22080,7 +22080,7 @@ language=tr
 !! end
 
 !! test
-Bug31490 Turkish: ucfirst 'ix'
+T33490 Turkish: ucfirst 'ix'
 !! options
 language=tr
 !! wikitext
@@ -22091,7 +22091,7 @@ language=tr
 !! end
 
 !! test
-Bug31490 Turkish: lcfirst 'BLAH'
+T33490 Turkish: lcfirst 'BLAH'
 !! options
 language=tr
 !! wikitext
@@ -22102,7 +22102,7 @@ language=tr
 !! end
 
 !! test
-Bug31490 Turkish: ucfırst (with a dotless i)
+T33490 Turkish: ucfırst (with a dotless i)
 !! options
 language=tr
 !! wikitext
@@ -22113,7 +22113,7 @@ language=tr
 !! end
 
 !! test
-Bug31490 ucfırst (with a dotless i) with English language
+T33490 ucfırst (with a dotless i) with English language
 !! options
 language=en
 !! wikitext
@@ -22124,7 +22124,7 @@ language=en
 !! end
 
 !! test
-Bug 26375: TOC with italics
+T28375: TOC with italics
 !! options
 title=[[Main Page]]
 !! wikitext
@@ -22142,7 +22142,7 @@ __TOC__
 !! end
 
 !! test
-Bug 26375: TOC with bold
+T28375: TOC with bold
 !! options
 title=[[Main Page]]
 !! wikitext
@@ -22160,7 +22160,7 @@ __TOC__
 !! end
 
 !! test
-Bug 33845: Headings become cursive in TOC when they contain an image
+T35845: Headings become cursive in TOC when they contain an image
 !! options
 title=[[Main Page]]
 !! wikitext
@@ -22178,7 +22178,7 @@ __TOC__
 !! end
 
 !! test
-Bug 33845 (2): Headings become bold in TOC when they contain a blockquote
+T35845 (2): Headings become bold in TOC when they contain a blockquote
 !! options
 title=[[Main Page]]
 !! wikitext
@@ -22333,7 +22333,7 @@ __TOC__
 !! end
 
 !! test
-Bug 72884: bdi element in ToC
+T74884: bdi element in ToC
 !! wikitext
 __TOC__
 == <bdi>test</bdi> ==
@@ -22396,17 +22396,17 @@ __TOC__
 !! end
 
 !! article
-MediaWiki:Bug32057
+MediaWiki:T34057
 !! text
 == {{int:headline_sample}} ==
 !! endarticle
 
 !! test
-Bug 32057: Title needed when expanding <h> nodes.
+T34057: Title needed when expanding <h> nodes.
 !! options
 title=[[Main Page]]
 !! wikitext
-{{int:Bug32057}}
+{{int:T34057}}
 !! html
 <h2><span class="mw-headline" id="Headline_text">Headline text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Headline text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
@@ -22470,7 +22470,7 @@ language=be-tarask
 !! end
 
 !! test
-Wrong option for formatNum (bug 56199)
+Wrong option for formatNum (T58199)
 !! wikitext
 {{formatnum:1,234.56|Random}}
 {{formatnum:1,234.56|EVERYTHING}}
@@ -22521,7 +22521,7 @@ Strip marker in anchorencode
 !! end
 
 !! test
-nowiki inside link inside heading (bug 18295)
+nowiki inside link inside heading (T20295)
 !! wikitext
 ==[[foo|x<nowiki>y</nowiki>z]]==
 !! html
@@ -22530,7 +22530,7 @@ nowiki inside link inside heading (bug 18295)
 !! end
 
 !! test
-new support for bdi element (bug 31817)
+new support for bdi element (T33817)
 !! wikitext
 <p dir="rtl" lang="he">ולדימיר לנין (ברוסית: <bdi lang="ru">Владимир Ленин</bdi>, 24 באפריל 1870–22 בינואר 1924) הוא מנהיג פוליטי קומוניסטי רוסי.</p>
 !! html
@@ -22558,7 +22558,7 @@ Ignore pipe between table row attributes
 !! end
 
 !!test
-Gallery override link with WikiLink (bug 34852)
+Gallery override link with WikiLink (T36852)
 !! wikitext
 <gallery>
 File:foobar.jpg|caption|alt=galleryalt|link=InterWikiLink
@@ -22610,7 +22610,7 @@ Special:Foobar
 !! end
 
 !!test
-Bug 34939 - Case insensitive link parsing ([HttP://])
+T36939 - Case insensitive link parsing ([HttP://])
 !! wikitext
 [HttP://MediaWiki.Org/]
 !! html/php
@@ -22621,7 +22621,7 @@ Bug 34939 - Case insensitive link parsing ([HttP://])
 !! end
 
 !!test
-Bug 34939 - Case insensitive link parsing ([HttP:// title])
+T36939 - Case insensitive link parsing ([HttP:// title])
 !! wikitext
 [HttP://MediaWiki.Org/ MediaWiki]
 !! html
@@ -22630,7 +22630,7 @@ Bug 34939 - Case insensitive link parsing ([HttP:// title])
 !! end
 
 !!test
-Bug 34939 - Case insensitive link parsing (HttP://)
+T36939 - Case insensitive link parsing (HttP://)
 !! wikitext
 HttP://MediaWiki.Org/
 !! html/php
@@ -22692,7 +22692,7 @@ parsoid=wt2html,wt2wt
 #### Parsoid-specific functionality tests
 #### -----------------------------------------------------------------
 
-# Bug 63642/66749: Formatting elt fixup around images is cleaned up.
+# T65642/T68749: Formatting elt fixup around images is cleaned up.
 # We know wt2wt will fail, but we expect selser to pass.
 # Due to the nature of our testing, wt2wt and selser tests will enter the
 # blacklist and we'll catch selser regressions based on changes to the
@@ -24430,7 +24430,7 @@ parsoid=html2wt
 !! end
 
 !! test
-Links 6. Add <nowiki/>s between text-nodes and url-links when required (bug 64300)
+Links 6. Add <nowiki/>s between text-nodes and url-links when required (T66300)
 !! options
 parsoid=html2wt
 !! html/parsoid
@@ -24465,7 +24465,7 @@ http://example.com(x<nowiki/>)
 !! end
 
 !! test
-Links 7a. Don't add spurious <nowiki/>s between text-nodes and url-links (bug 64300)
+Links 7a. Don't add spurious <nowiki/>s between text-nodes and url-links (T66300)
 !! options
 parsoid=html2wt
 !! html/parsoid
@@ -24500,7 +24500,7 @@ y
 !! end
 
 !! test
-Links 7b. Don't add spurious <nowiki/>s between text-nodes and url-links (bug 64300)
+Links 7b. Don't add spurious <nowiki/>s between text-nodes and url-links (T66300)
 !! options
 parsoid=html2wt
 !! html/parsoid
@@ -24516,7 +24516,7 @@ http://example.com.,;:!?\
 !! end
 
 !! test
-Links 8. Add <nowiki/>s between text-nodes and RFC-links when required (bug 64300)
+Links 8. Add <nowiki/>s between text-nodes and RFC-links when required (T66300)
 !! options
 parsoid=html2wt
 !! html/parsoid
@@ -24530,7 +24530,7 @@ X<nowiki/>RFC 123<nowiki/>y
 !! end
 
 !! test
-Links 9. Don't add spurious <nowiki/>s between text-nodes and RFC-links (bug 64300)
+Links 9. Don't add spurious <nowiki/>s between text-nodes and RFC-links (T66300)
 !! options
 parsoid=html2wt
 !! html/parsoid
@@ -24550,7 +24550,7 @@ RFC 123&foo
 !! end
 
 !! test
-Links 10. Add <nowiki/>s between text-nodes and PMID-links when required (bug 64300)
+Links 10. Add <nowiki/>s between text-nodes and PMID-links when required (T66300)
 !! options
 parsoid=html2wt
 !! html/parsoid
@@ -24564,7 +24564,7 @@ X<nowiki/>PMID 123<nowiki/>y
 !! end
 
 !! test
-Links 11. Don't add spurious <nowiki/>s between text-nodes and PMID-links (bug 64300)
+Links 11. Don't add spurious <nowiki/>s between text-nodes and PMID-links (T66300)
 !! options
 parsoid=html2wt
 !! html/parsoid
@@ -24584,7 +24584,7 @@ PMID 123&foo
 !! end
 
 !! test
-Links 12. Add <nowiki/>s between text-nodes and ISBN-links when required (bug 64300)
+Links 12. Add <nowiki/>s between text-nodes and ISBN-links when required (T66300)
 !! options
 parsoid=html2wt
 !! html/parsoid
@@ -24599,7 +24599,7 @@ a<nowiki/>ISBN 1234567890<nowiki/>b
 !! end
 
 !! test
-Links 13. Don't add spurious <nowiki/>s between text-nodes and ISBN-links (bug 64300)
+Links 13. Don't add spurious <nowiki/>s between text-nodes and ISBN-links (T66300)
 !! options
 parsoid=html2wt
 !! html/parsoid
@@ -25045,7 +25045,7 @@ parsoid=html2wt
 
 ## The quote-char in the input is necessary for triggering the bug
 !! test
-(Bug 52035) Nowiki-escaping should not get tripped by " :" in text
+(T54035) Nowiki-escaping should not get tripped by " :" in text
 !! options
 parsoid=html2wt
 !! html/parsoid
@@ -25732,7 +25732,7 @@ parsoid=wt2html
 </table>
 !!end
 
-# Parsoid only for bug 64747
+# Parsoid only for T66747
 !! test
 Properly encapsulate empty-content transclusions in fosterable positions
 !! wikitext
@@ -25828,7 +25828,7 @@ http://en.wikipedia.org/wiki/Foobar
 
 # 'mi' is a localinterwiki prefix as well as a language
 !! test
-Serialize interwiki links pointing to the current wiki as plain wiki links (bug 65869)
+Serialize interwiki links pointing to the current wiki as plain wiki links (T67869)
 !! options
 parsoid=html2wt
 !! html/parsoid
@@ -25980,7 +25980,7 @@ parsoid={
 !!end
 
 !! test
-Image: Modifying alignment of an image (bug 48665)
+Image: Modifying alignment of an image (T50665)
 !! options
 parsoid={
   "modes": ["wt2wt"],
@@ -25996,7 +25996,7 @@ parsoid={
 !! end
 
 !! test
-Image: Modifying mw-default-size of an frameless image (bug 62805)
+Image: Modifying mw-default-size of an frameless image (T64805)
 !! options
 parsoid={
   "modes": ["wt2wt"],
@@ -26011,7 +26011,7 @@ parsoid={
 !! end
 
 !! test
-Image: Modifying valign of an image (bug 49221)
+Image: Modifying valign of an image (T51221)
 !! options
 parsoid={
   "modes": ["wt2wt"],
@@ -26027,7 +26027,7 @@ parsoid={
 !! end
 
 !! test
-Image: Modifying alt attribute of an image (bug 56400)
+Image: Modifying alt attribute of an image (T58400)
 !! options
 parsoid={
   "modes": ["wt2wt"],
@@ -26057,7 +26057,7 @@ parsoid={
 !!end
 
 !! test
-Image: empty alt attribute (bug 48924)
+Image: empty alt attribute (T50924)
 !! options
 parsoid
 !! wikitext
@@ -26067,7 +26067,7 @@ parsoid
 !! end
 
 !! test
-Image: new attributes should be serialized in wiki's language for RTL languages (bug 51852)
+Image: new attributes should be serialized in wiki's language for RTL languages (T53852)
 !! options
 parsoid=html2wt
 language=ar
@@ -26672,7 +26672,7 @@ parsoid={
 #------------------------------
 
 !!test
-Bug 54262: New entities
+T56262: New entities
 !! options
 parsoid=html2wt
 !! html/parsoid
