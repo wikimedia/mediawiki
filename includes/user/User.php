@@ -1862,7 +1862,7 @@ class User implements IDBAccessObject {
 	 */
 	public function isPingLimitable() {
 		global $wgRateLimitsExcludedIPs;
-		if ( in_array( $this->getRequest()->getIP(), $wgRateLimitsExcludedIPs ) ) {
+		if ( IP::isInRanges( $this->getRequest()->getIP(), $wgRateLimitsExcludedIPs ) ) {
 			// No other good way currently to disable rate limits
 			// for specific IPs. :P
 			// But this is a crappy hack and should die.
