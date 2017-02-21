@@ -10,7 +10,7 @@
 		}
 	} );
 
-	QUnit.test( 'render', 2, function ( assert ) {
+	QUnit.test( 'render', function ( assert ) {
 		var html, htmlPartial, data, partials,
 			template = mw.template.get( 'stub', 'test_greeting.mustache' ),
 			partial = mw.template.get( 'stub', 'test_greeting_suffix.mustache' );

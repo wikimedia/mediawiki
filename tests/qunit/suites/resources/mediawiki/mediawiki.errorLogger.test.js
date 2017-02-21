@@ -1,7 +1,7 @@
 ( function ( $, mw ) {
 	QUnit.module( 'mediawiki.errorLogger', QUnit.newMwEnvironment() );
 
-	QUnit.test( 'installGlobalHandler', 7, function ( assert ) {
+	QUnit.test( 'installGlobalHandler', function ( assert ) {
 		var w = {},
 			errorMessage = 'Foo',
 			errorUrl = 'http://example.com',

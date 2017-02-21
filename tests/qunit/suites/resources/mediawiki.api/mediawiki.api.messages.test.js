@@ -6,7 +6,7 @@
 		}
 	} ) );
 
-	QUnit.test( '.getMessages()', 1, function ( assert ) {
+	QUnit.test( '.getMessages()', function ( assert ) {
 		this.server.respondWith( /ammessages=foo%7Cbaz/, [
 			200,
 			{ 'Content-Type': 'application/json' },

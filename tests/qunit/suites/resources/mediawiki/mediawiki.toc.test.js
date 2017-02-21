@@ -6,7 +6,7 @@
 		}
 	} ) );
 
-	QUnit.asyncTest( 'toggleToc', 4, function ( assert ) {
+	QUnit.asyncTest( 'toggleToc', function ( assert ) {
 		var tocHtml, $toggleLink, $tocList;
 
 		assert.strictEqual( $( '#toc' ).length, 0, 'There is no table of contents on the page at the beginning' );

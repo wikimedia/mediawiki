@@ -220,7 +220,6 @@
 				expected: '<span class="highlight">بو</span>ل إيردوس'
 			}
 		];
-		QUnit.expect( cases.length );
 
 		$.each( cases, function ( i, item ) {
 			$fixture = $( '<p>' ).text( item.text ).highlightText( item.highlight );

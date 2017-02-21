@@ -442,7 +442,7 @@
 		}
 	} );
 
-	QUnit.test( '#abort', 3, function ( assert ) {
+	QUnit.test( '#abort', function ( assert ) {
 		this.api.get( {
 			a: 1
 		} );
