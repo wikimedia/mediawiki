@@ -458,22 +458,32 @@ abstract class QueryPage extends SpecialPage {
 		$dbr = wfGetDB( DB_REPLICA );
 		$options = [];
 		if ( $limit !== false ) {
-			$options['LIMIT'] = intval( $limit );
+			$options[ 'LIMIT' ] = intval( $limit );
 		}
+
 		if ( $offset !== false ) {
-			$options['OFFSET'] = intval( $offset );
+			$options[ 'OFFSET' ] = intval( $offset );
 		}
+
+		$orderFields = $this->getOrderFields();
+		$options[ 'ORDER BY' ] = [];
 		if ( $this->sortDescending() ) {
-			$options['ORDER BY'] = 'qc_value DESC';
+			foreach ( $orderFields as $field ) {
+				$options[ 'ORDER BY' ][] = "qc_$field DESC";
+			}
 		} else {
-			$options['ORDER BY'] = 'qc_value ASC';
+			foreach ( $orderFields as $field ) {
+				$options[ 'ORDER BY' ][] = "qc_$field";
+			}
 		}
+
 		return $dbr->select( 'querycache', [ 'qc_type',
 				'namespace' => 'qc_namespace',
 				'title' => 'qc_title',
 				'value' => 'qc_value' ],
 				[ 'qc_type' => $this->getName() ],
-				__METHOD__, $options
+				__METHOD__,
+				$options
 		);
 	}
 
