@@ -120,7 +120,7 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 	/**
 	 * Feeds testAddIdentifierQuotes
 	 *
-	 * Named per bug 20281 convention.
+	 * Named per T22281 convention.
 	 */
 	function provideDiapers() {
 		return [

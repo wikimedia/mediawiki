@@ -362,7 +362,7 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Bug 37963
+	 * T39963
 	 * Make sure defaults are loaded when setOption is called.
 	 * @covers User::loadOptions
 	 */

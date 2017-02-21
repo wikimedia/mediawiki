@@ -14,7 +14,7 @@ class SpecialBooksourcesTest extends SpecialPageTestBase {
 			[ '9780136091817', false ],
 			[ '123456789X', true ],
 
-			// Bug 67021
+			// T69021
 			[ '1413304541', false ],
 			[ '141330454X', false ],
 			[ '1413304540', true ],

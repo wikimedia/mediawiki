@@ -5,7 +5,7 @@
  */
 class ArticleTablesTest extends MediaWikiLangTestCase {
 	/**
-	 * Make sure that bug 14404 doesn't strike again. We don't want
+	 * Make sure that T16404 doesn't strike again. We don't want
 	 * templatelinks based on the user language when {{int:}} is used, only the
 	 * content language.
 	 *
@@ -13,7 +13,7 @@ class ArticleTablesTest extends MediaWikiLangTestCase {
 	 * @covers Title::getLinksFrom
 	 */
 	public function testTemplatelinksUsesContentLanguage() {
-		$title = Title::newFromText( 'Bug 14404' );
+		$title = Title::newFromText( 'T16404' );
 		$page = WikiPage::factory( $title );
 		$user = new User();
 		$user->mRights = [ 'createpage', 'edit', 'purge' ];
@@ -22,7 +22,7 @@ class ArticleTablesTest extends MediaWikiLangTestCase {
 
 		$page->doEditContent(
 			new WikitextContent( '{{:{{int:history}}}}' ),
-			'Test code for bug 14404',
+			'Test code for T16404',
 			0,
 			false,
 			$user
@@ -35,7 +35,7 @@ class ArticleTablesTest extends MediaWikiLangTestCase {
 		// We need an edit, a purge is not enough to regenerate the tables
 		$page->doEditContent(
 			new WikitextContent( '{{:{{int:history}}}}' ),
-			'Test code for bug 14404',
+			'Test code for T16404',
 			EDIT_UPDATE,
 			false,
 			$user

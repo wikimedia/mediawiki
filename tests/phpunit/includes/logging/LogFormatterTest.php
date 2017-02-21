@@ -309,7 +309,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * The testIrcMsgForAction* tests are supposed to cover the hacky
-	 * LogFormatter::getIRCActionText / bug 34508
+	 * LogFormatter::getIRCActionText / T36508
 	 *
 	 * Third parties bots listen to those messages. They are clever enough
 	 * to fetch the i18n messages from the wiki and then analyze the IRC feed

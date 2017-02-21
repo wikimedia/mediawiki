@@ -83,7 +83,7 @@ class XmlTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			'<input name="name" value="0" />',
 			Xml::input( 'name', false, 0 ),
-			'Input with a value of 0 (bug 23797)'
+			'Input with a value of 0 (T25797)'
 		);
 	}
 

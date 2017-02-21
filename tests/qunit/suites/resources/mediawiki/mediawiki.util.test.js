@@ -232,13 +232,13 @@
 		assert.strictEqual( mw.util.getParamValue( 'bar', url ), null, 'Return null when not found' );
 
 		url = 'http://example.org/#&foo=bad';
-		assert.strictEqual( mw.util.getParamValue( 'foo', url ), null, 'Ignore hash if param is not in querystring but in hash (bug 27427)' );
+		assert.strictEqual( mw.util.getParamValue( 'foo', url ), null, 'Ignore hash if param is not in querystring but in hash (T29427)' );
 
 		url = 'example.org?' + $.param( { TEST: 'a b+c' } );
-		assert.strictEqual( mw.util.getParamValue( 'TEST', url ), 'a b+c', 'Bug 30441: getParamValue must understand "+" encoding of space' );
+		assert.strictEqual( mw.util.getParamValue( 'TEST', url ), 'a b+c', 'T32441: getParamValue must understand "+" encoding of space' );
 
 		url = 'example.org?' + $.param( { TEST: 'a b+c d' } ); // check for sloppy code from r95332 :)
-		assert.strictEqual( mw.util.getParamValue( 'TEST', url ), 'a b+c d', 'Bug 30441: getParamValue must understand "+" encoding of space (multiple spaces)' );
+		assert.strictEqual( mw.util.getParamValue( 'TEST', url ), 'a b+c d', 'T32441: getParamValue must understand "+" encoding of space (multiple spaces)' );
 	} );
 
 	QUnit.test( '$content', 2, function ( assert ) {
@@ -320,7 +320,7 @@
 		assert.equal(
 			$( '#p-test-custom #c-barmenu ul li' ).length,
 			1,
-			'addPortletLink did not add the item to all <ul> elements in the portlet (bug 35082)'
+			'addPortletLink did not add the item to all <ul> elements in the portlet (T37082)'
 		);
 
 		tbRLDM = mw.util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/RL/DM',

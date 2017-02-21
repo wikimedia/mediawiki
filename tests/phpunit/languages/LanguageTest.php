@@ -1337,7 +1337,7 @@ class LanguageTest extends LanguageClassesTestCase {
 					"Acteur%7CAlbert%20Robbins%7CAnglais%7CAnn%20Donahue%7CAnthony%20E.%20Zuiker%7CCarol%20Mendelsohn"
 				)
 			],
-			// The following two data sets come from bug 36839. They fail if checkTitleEncoding uses a regexp to test for
+			// The following two data sets come from T38839. They fail if checkTitleEncoding uses a regexp to test for
 			// valid UTF-8 encoding and the pcre.recursion_limit is low (like, say, 1024). They succeed if checkTitleEncoding
 			// uses mb_check_encoding for its test.
 			[
