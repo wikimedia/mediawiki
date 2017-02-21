@@ -530,7 +530,7 @@ class EnhancedChangesList extends ChangesList {
 				$links['total-changes'] = $this->linkRenderer->makeKnownLink(
 					$block0->getTitle(),
 					new HtmlArmor( $nchanges[$n] ),
-					[],
+					['class' => 'mw-changeslist-diff'],
 					$queryParams + [
 						'diff' => $currentRevision,
 						'oldid' => $last->mAttribs['rc_last_oldid'],
@@ -540,7 +540,7 @@ class EnhancedChangesList extends ChangesList {
 					$links['total-changes-since-last'] = $this->linkRenderer->makeKnownLink(
 							$block0->getTitle(),
 							new HtmlArmor( $sinceLastVisitMsg[$sinceLast] ),
-							[],
+							['class' => 'mw-changeslist-diff'],
 							$queryParams + [
 								'diff' => $currentRevision,
 								'oldid' => $unvisitedOldid,
@@ -562,7 +562,7 @@ class EnhancedChangesList extends ChangesList {
 			$links['history'] = $this->linkRenderer->makeKnownLink(
 					$block0->getTitle(),
 					new HtmlArmor( $this->message['enhancedrc-history'] ),
-					[],
+					['class' => 'mw-changeslist-history'],
 					$params
 				);
 		}
@@ -717,7 +717,7 @@ class EnhancedChangesList extends ChangesList {
 					. $this->linkRenderer->makeKnownLink(
 						$pageTitle,
 						new HtmlArmor( $this->message['hist'] ),
-						[],
+						['class' => 'mw-changeslist-history'],
 						$query
 					) )->escaped();
 		return $retVal;
