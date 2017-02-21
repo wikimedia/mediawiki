@@ -43,12 +43,11 @@
 	 *  immediate execution after this amount of time (in milliseconds) if it didn't run
 	 *  by that time.
 	 */
-	mw.requestIdleCallback = mw.requestIdleCallbackInternal;
-	/*
-	// XXX: Polyfill disabled due to https://bugs.chromium.org/p/chromium/issues/detail?id=647870
-	mw.requestIdleCallback = window.requestIdleCallback
+	mw.requestIdleCallback = window.requestIdleCallback ?
 		// Bind because it throws TypeError if context is not window
-		? window.requestIdleCallback.bind( window )
-		: mw.requestIdleCallbackInternal;
-	*/
+		window.requestIdleCallback.bind( window ) :
+		mw.requestIdleCallbackInternal;
+	// Note: Polyfill was previously disabled due to
+	// https://bugs.chromium.org/p/chromium/issues/detail?id=647870
+	// See also <http://codepen.io/Krinkle/full/XNGEvv>
 }( mediaWiki ) );
