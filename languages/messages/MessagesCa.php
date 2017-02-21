@@ -128,6 +128,7 @@ $specialPageAliases = [
 ];
 
 $magicWords = [
+	'redirect'                  => [ '0', '#REDIRECCIÓ', '#REDIRECCIO', '#REDIRECT' ],
 	'numberofarticles'          => [ '1', 'NOMBRED\'ARTICLES', 'NUMBEROFARTICLES' ],
 	'numberoffiles'             => [ '1', 'NOMBRED\'ARXIUS', 'NUMBEROFFILES' ],
 	'numberofusers'             => [ '1', 'NOMBRED\'USUARIS', 'NUMBEROFUSERS' ],
@@ -169,8 +170,7 @@ $datePreferences = [
 $defaultDateFormat = 'dmy';
 
 $bookstoreList = [
-	'Catàleg Col·lectiu de les Universitats de Catalunya' => 'http://ccuc.cbuc.es/cgi-bin/vtls.web.gateway?searchtype=control+numcard&searcharg=$1',
-	'Totselsllibres.com' => 'http://www.totselsllibres.com/tel/publi/busquedaAvanzadaLibros.do?ISBN=$1',
+	'Catàleg Col·lectiu de les Universitats de Catalunya' => 'http://ccuc.cbuc.cat/search*cat/X?SEARCH=$1',
 	'inherit' => true,
 ];
 
