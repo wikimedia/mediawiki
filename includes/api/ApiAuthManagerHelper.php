@@ -208,6 +208,7 @@ class ApiAuthManagerHelper {
 			$res->status === AuthenticationResponse::RESTART
 		) {
 			$this->formatMessage( $ret, 'message', $res->message );
+			$ret['messagecode'] = ApiMessage::create( $res->message )->getApiCode();
 		}
 
 		if ( $res->status === AuthenticationResponse::FAIL ||
