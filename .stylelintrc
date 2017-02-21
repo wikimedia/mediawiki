@@ -6,7 +6,6 @@
 		"indentation": null,
 
 		"no-descending-specificity": null,
-		"no-duplicate-selectors": null,
 
 		"selector-list-comma-newline-after": null,
 		"selector-no-id": null,
