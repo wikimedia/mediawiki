@@ -407,7 +407,7 @@ abstract class QueryPage extends SpecialPage {
 			$options = isset( $query['options'] ) ? (array)$query['options'] : [];
 			$join_conds = isset( $query['join_conds'] ) ? (array)$query['join_conds'] : [];
 
-			if ( count( $order ) ) {
+			if ( $order ) {
 				$options['ORDER BY'] = $order;
 			}
 
@@ -460,21 +460,43 @@ abstract class QueryPage extends SpecialPage {
 		if ( $limit !== false ) {
 			$options['LIMIT'] = intval( $limit );
 		}
+
 		if ( $offset !== false ) {
 			$options['OFFSET'] = intval( $offset );
 		}
-		if ( $this->sortDescending() ) {
-			$options['ORDER BY'] = 'qc_value DESC';
+
+		$DESC = $this->sortDescending() ? ' DESC' : '';
+		if ( $this->fetchCacheUseOrder() ) {
+			$orderFields = $this->getOrderFields();
+			$order = [];
+			foreach ( $orderFields as $field ) {
+				$order[] = "qc_{$field}{$DESC}";
+			}
+			if ( $order ) {
+				$options['ORDER BY'] = $order;
+			}
 		} else {
-			$options['ORDER BY'] = 'qc_value ASC';
+			$options['ORDER BY'] = "qc_value{$DESC}";
 		}
+
 		return $dbr->select( 'querycache', [ 'qc_type',
 				'namespace' => 'qc_namespace',
 				'title' => 'qc_title',
 				'value' => 'qc_value' ],
 				[ 'qc_type' => $this->getName() ],
-				__METHOD__, $options
+				__METHOD__,
+				$options
 		);
+	}
+
+	/**
+	 * Return whether to use the order fields returned by getOrderFields
+	 * when running fetchFromCache or to always use "ORDER BY value" which
+	 * was the default prior to this function.
+	 * @return bool
+	 */
+	function fetchCacheUseOrder() {
+		return false;
 	}
 
 	public function getCachedTimestamp() {
