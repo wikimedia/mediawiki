@@ -186,7 +186,7 @@ class RCCacheEntryFactory {
 			$curLink = $curMessage;
 		} else {
 			$curUrl = htmlspecialchars( $cacheEntry->getTitle()->getLinkURL( $queryParams ) );
-			$curLink = "<a href=\"$curUrl\">$curMessage</a>";
+			$curLink = "<a class=\"mw-changeslist-diff-cur\" href=\"$curUrl\">$curMessage</a>";
 		}
 
 		return $curLink;
@@ -229,16 +229,18 @@ class RCCacheEntryFactory {
 				return $diffMessage;
 			}
 			$diffUrl = htmlspecialchars( $pageTitle->getLinkURL( $queryParams ) );
-			$diffLink = "<a href=\"$diffUrl\">$diffMessage</a>";
+			$diffLink = "<a class=\"mw-changeslist-diff\" href=\"$diffUrl\">$diffMessage</a>";
 		} else {
 			$diffUrl = htmlspecialchars( $cacheEntry->getTitle()->getLinkURL( $queryParams ) );
-			$diffLink = "<a href=\"$diffUrl\">$diffMessage</a>";
+			$diffLink = "<a class=\"mw-changeslist-diff\" href=\"$diffUrl\">$diffMessage</a>";
 		}
 
 		return $diffLink;
 	}
 
 	/**
+	 * Builds the link to the previous version
+	 *
 	 * @param RecentChange $cacheEntry
 	 * @param bool $showDiffLinks
 	 *
@@ -257,7 +259,7 @@ class RCCacheEntryFactory {
 			$lastLink = $this->linkRenderer->makeKnownLink(
 				$cacheEntry->getTitle(),
 				new HtmlArmor( $lastMessage ),
-				[],
+				[ 'class' => 'mw-changeslist-diff' ],
 				$this->buildDiffQueryParams( $cacheEntry )
 			);
 		}
