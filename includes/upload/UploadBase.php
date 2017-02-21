@@ -20,6 +20,7 @@
  * @file
  * @ingroup Upload
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * @defgroup Upload Upload related
@@ -2083,7 +2084,7 @@ abstract class UploadBase {
 	public static function getSessionStatus( User $user, $statusKey ) {
 		$key = wfMemcKey( 'uploadstatus', $user->getId() ?: md5( $user->getName() ), $statusKey );
 
-		return ObjectCache::getMainStashInstance()->get( $key );
+		return MediaWikiServices::getInstance()->getMainObjectStash()->get( $key );
 	}
 
 	/**
@@ -2099,7 +2100,7 @@ abstract class UploadBase {
 	public static function setSessionStatus( User $user, $statusKey, $value ) {
 		$key = wfMemcKey( 'uploadstatus', $user->getId() ?: md5( $user->getName() ), $statusKey );
 
-		$cache = ObjectCache::getMainStashInstance();
+		$cache = MediaWikiServices::getInstance()->getMainObjectStash();
 		if ( $value === false ) {
 			$cache->delete( $key );
 		} else {
