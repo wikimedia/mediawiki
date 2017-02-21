@@ -1791,7 +1791,7 @@
 	"apiwarn-tokens-origin": "Tokens may not be obtained when the same-origin policy is not applied.",
 	"apiwarn-toomanyvalues": "Too many values supplied for parameter <var>$1</var>: the limit is $2.",
 	"apiwarn-truncatedresult": "This result was truncated because it would otherwise be larger than the limit of $1 bytes.",
-	"apiwarn-unclearnowtimestamp": "Passing \"$2\" for timestamp parameter <var>$1</var> has been deprecated. If for some reason you need to explicitly specify the current time without calculating it client-side, use <kbd>now<kbd>.",
+	"apiwarn-unclearnowtimestamp": "Passing \"$2\" for timestamp parameter <var>$1</var> has been deprecated. If for some reason you need to explicitly specify the current time without calculating it client-side, use <kbd>now</kbd>.",
 	"apiwarn-unrecognizedvalues": "Unrecognized {{PLURAL:$3|value|values}} for parameter <var>$1</var>: $2.",
 	"apiwarn-unsupportedarray": "Parameter <var>$1</var> uses unsupported PHP array syntax.",
 	"apiwarn-urlparamwidth": "Ignoring width value set in <var>$1urlparam</var> ($2) in favor of width value derived from <var>$1urlwidth</var>/<var>$1urlheight</var> ($3).",
