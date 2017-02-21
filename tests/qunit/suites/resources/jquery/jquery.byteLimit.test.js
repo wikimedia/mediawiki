@@ -185,7 +185,7 @@
 		expected: ''
 	} );
 
-	QUnit.test( 'Confirm properties and attributes set', 4, function ( assert ) {
+	QUnit.test( 'Confirm properties and attributes set', function ( assert ) {
 		var $el, $elA, $elB;
 
 		$el = $( '<input>' ).attr( 'type', 'text' )
@@ -228,7 +228,7 @@
 		$el.byteLimit();
 	} );
 
-	QUnit.test( 'Trim from insertion when limit exceeded', 2, function ( assert ) {
+	QUnit.test( 'Trim from insertion when limit exceeded', function ( assert ) {
 		var $el;
 
 		// Use a new <input /> because the bug only occurs on the first time

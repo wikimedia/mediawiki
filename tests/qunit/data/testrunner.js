@@ -479,7 +479,7 @@
 		}
 	} ) );
 
-	QUnit.test( 'Setup', 3, function ( assert ) {
+	QUnit.test( 'Setup', function ( assert ) {
 		assert.equal( mw.html.escape( 'foo' ), 'mocked', 'setup() callback was ran.' );
 		assert.equal( mw.config.get( 'testVar' ), 'foo', 'config object applied' );
 		assert.equal( mw.messages.get( 'testMsg' ), 'Foo.', 'messages object applied' );
@@ -488,12 +488,12 @@
 		mw.messages.set( 'testMsg', 'Bar.' );
 	} );
 
-	QUnit.test( 'Teardown', 2, function ( assert ) {
+	QUnit.test( 'Teardown', function ( assert ) {
 		assert.equal( mw.config.get( 'testVar' ), 'foo', 'config object restored and re-applied after test()' );
 		assert.equal( mw.messages.get( 'testMsg' ), 'Foo.', 'messages object restored and re-applied after test()' );
 	} );
 
-	QUnit.test( 'Loader status', 2, function ( assert ) {
+	QUnit.test( 'Loader status', function ( assert ) {
 		var i, len, state,
 			modules = mw.loader.getModuleNames(),
 			error = [],
@@ -512,7 +512,7 @@
 		assert.deepEqual( missing, [], 'Modules in missing state' );
 	} );
 
-	QUnit.test( 'htmlEqual', 8, function ( assert ) {
+	QUnit.test( 'htmlEqual', function ( assert ) {
 		assert.htmlEqual(
 			'<div><p class="some classes" data-length="10">Child paragraph with <a href="http://example.com">A link</a></p>Regular text<span>A span</span></div>',
 			'<div><p data-length=\'10\'  class=\'some classes\'>Child paragraph with <a href=\'http://example.com\' >A link</a></p>Regular text<span>A span</span></div>',
@@ -564,7 +564,7 @@
 
 	QUnit.module( 'test.mediawiki.qunit.testrunner-after', QUnit.newMwEnvironment() );
 
-	QUnit.test( 'Teardown', 3, function ( assert ) {
+	QUnit.test( 'Teardown', function ( assert ) {
 		assert.equal( mw.html.escape( '<' ), '&lt;', 'teardown() callback was ran.' );
 		assert.equal( mw.config.get( 'testVar' ), null, 'config object restored to live in next module()' );
 		assert.equal( mw.messages.get( 'testMsg' ), null, 'messages object restored to live in next module()' );

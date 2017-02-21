@@ -147,14 +147,14 @@
 
 	QUnit.module( 'startup', QUnit.newMwEnvironment() );
 
-	QUnit.test( 'isCompatible( featureTestable )', testcases.tested.length, function ( assert ) {
+	QUnit.test( 'isCompatible( featureTestable )', function ( assert ) {
 		$.each( testcases.tested, function ( i, ua ) {
 				assert.strictEqual( isCompatible( ua ), true, ua );
 			}
 		);
 	} );
 
-	QUnit.test( 'isCompatible( blacklisted )', testcases.blacklisted.length, function ( assert ) {
+	QUnit.test( 'isCompatible( blacklisted )', function ( assert ) {
 		$.each( testcases.blacklisted, function ( i, ua ) {
 				assert.strictEqual( isCompatible( ua ), false, ua );
 			}

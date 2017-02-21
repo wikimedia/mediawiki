@@ -6,7 +6,7 @@
 		}
 	} ) );
 
-	QUnit.test( 'saveOption', 2, function ( assert ) {
+	QUnit.test( 'saveOption', function ( assert ) {
 		var api = new mw.Api(),
 			stub = this.sandbox.stub( mw.Api.prototype, 'saveOptions' );
 
@@ -16,7 +16,7 @@
 		assert.deepEqual( stub.getCall( 0 ).args, [ { foo: 'bar' } ], '#saveOptions called correctly' );
 	} );
 
-	QUnit.test( 'saveOptions without Unit Separator', 13, function ( assert ) {
+	QUnit.test( 'saveOptions without Unit Separator', function ( assert ) {
 		var api = new mw.Api( { useUS: false } );
 
 		// We need to respond to the request for token first, otherwise the other requests won't be sent
@@ -74,7 +74,7 @@
 		);
 	} );
 
-	QUnit.test( 'saveOptions with Unit Separator', 14, function ( assert ) {
+	QUnit.test( 'saveOptions with Unit Separator', function ( assert ) {
 		var api = new mw.Api( { useUS: true } );
 
 		// We need to respond to the request for token first, otherwise the other requests won't be sent
