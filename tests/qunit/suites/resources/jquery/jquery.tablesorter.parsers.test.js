@@ -54,7 +54,7 @@
 	 * @param {function($table)} callback something to do before we start the testcase
 	 */
 	function parserTest( msg, parserId, data, callback ) {
-		QUnit.test( msg, data.length * 2, function ( assert ) {
+		QUnit.test( msg, function ( assert ) {
 			var extractedR, extractedF, parser;
 
 			if ( callback !== undefined ) {
@@ -73,7 +73,7 @@
 		} );
 	}
 
-	text  = [
+	text = [
 		[ 'Mars', true, 'mars', 'Simple text' ],
 		[ 'Mẘas', true, 'mẘas', 'Non ascii character' ],
 		[ 'A sentence', true, 'a sentence', 'A sentence with space chars' ]

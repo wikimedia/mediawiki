@@ -1,7 +1,7 @@
 ( function ( $ ) {
 	QUnit.module( 'jquery.colorUtil', QUnit.newMwEnvironment() );
 
-	QUnit.test( 'getRGB', 18, function ( assert ) {
+	QUnit.test( 'getRGB', function ( assert ) {
 		assert.strictEqual( $.colorUtil.getRGB(), undefined, 'No arguments' );
 		assert.strictEqual( $.colorUtil.getRGB( '' ), undefined, 'Empty string' );
 		assert.deepEqual( $.colorUtil.getRGB( [ 0, 100, 255 ] ), [ 0, 100, 255 ], 'Parse array of rgb values' );
@@ -26,7 +26,7 @@
 		assert.strictEqual( $.colorUtil.getRGB( 'mediaWiki' ), undefined, 'Inexisting color name' );
 	} );
 
-	QUnit.test( 'rgbToHsl', 1, function ( assert ) {
+	QUnit.test( 'rgbToHsl', function ( assert ) {
 		var hsl, ret;
 
 		// Cross-browser differences in decimals...
@@ -42,7 +42,7 @@
 		assert.deepEqual( ret, [ 0.33, 0.73, 0.75 ], 'rgb(144, 238, 144): hsl(0.33, 0.73, 0.75)' );
 	} );
 
-	QUnit.test( 'hslToRgb', 1, function ( assert ) {
+	QUnit.test( 'hslToRgb', function ( assert ) {
 		var rgb, ret;
 		rgb = $.colorUtil.hslToRgb( 0.3, 0.7, 0.8 );
 
@@ -52,7 +52,7 @@
 		assert.deepEqual( ret, [ 183, 240, 168 ], 'hsl(0.3, 0.7, 0.8): rgb(183, 240, 168)' );
 	} );
 
-	QUnit.test( 'getColorBrightness', 2, function ( assert ) {
+	QUnit.test( 'getColorBrightness', function ( assert ) {
 		var a, b;
 		a = $.colorUtil.getColorBrightness( 'red', +0.1 );
 		assert.equal( a, 'rgb(255,50,50)', 'Start with named color "red", brighten 10%' );

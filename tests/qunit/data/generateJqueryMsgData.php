@@ -16,7 +16,7 @@
 /*
  * @example QUnit
  * <code>
-	QUnit.test( 'Output matches PHP parser', mw.libs.phpParserData.tests.length, function ( assert ) {
+	QUnit.test( 'Output matches PHP parser', function ( assert ) {
 		mw.messages.set( mw.libs.phpParserData.messages );
 		$.each( mw.libs.phpParserData.tests, function ( i, test ) {
 			QUnit.stop();

@@ -5,7 +5,7 @@
 ( function ( $ ) {
 	QUnit.module( 'mediawiki.jscompat', QUnit.newMwEnvironment() );
 
-	QUnit.test( 'Variable with Unicode letter in name', 3, function ( assert ) {
+	QUnit.test( 'Variable with Unicode letter in name', function ( assert ) {
 		var orig, ŝablono;
 
 		orig = 'some token';
@@ -44,7 +44,6 @@
 			expected, $textarea;
 
 		maxn = 4;
-		QUnit.expect( maxn * 2 );
 
 		function repeat( str, n ) {
 			var out;

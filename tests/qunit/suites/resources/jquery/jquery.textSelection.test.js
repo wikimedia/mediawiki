@@ -32,12 +32,7 @@
 		}, opt.after );
 
 		QUnit.test( opt.description, function ( assert ) {
-			var $textarea, start, end, options, text, selected,
-				tests = 1;
-			if ( opt.after.selected !== null ) {
-				tests++;
-			}
-			QUnit.expect( tests );
+			var $textarea, start, end, options, text, selected;
 
 			$textarea = $( '<textarea>' );
 
@@ -215,7 +210,7 @@
 	} );
 
 	function caretTest( options ) {
-		QUnit.test( options.description, 2, function ( assert ) {
+		QUnit.test( options.description, function ( assert ) {
 			var pos,
 				$textarea = $( '<textarea>' ).text( options.text );
 
