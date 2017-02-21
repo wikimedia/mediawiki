@@ -407,7 +407,7 @@ abstract class QueryPage extends SpecialPage {
 			$options = isset( $query['options'] ) ? (array)$query['options'] : [];
 			$join_conds = isset( $query['join_conds'] ) ? (array)$query['join_conds'] : [];
 
-			if ( count( $order ) ) {
+			if ( $order ) {
 				$options['ORDER BY'] = $order;
 			}
 
@@ -460,20 +460,33 @@ abstract class QueryPage extends SpecialPage {
 		if ( $limit !== false ) {
 			$options['LIMIT'] = intval( $limit );
 		}
+
 		if ( $offset !== false ) {
 			$options['OFFSET'] = intval( $offset );
 		}
+
+		$orderFields = $this->getOrderFields();
+		$order = [];
 		if ( $this->sortDescending() ) {
-			$options['ORDER BY'] = 'qc_value DESC';
+			foreach ( $orderFields as $field ) {
+				$order[] = "qc_$field DESC";
+			}
 		} else {
-			$options['ORDER BY'] = 'qc_value ASC';
+			foreach ( $orderFields as $field ) {
+				$order[] = "qc_$field";
+			}
 		}
+		if ( $order ) {
+			$options['ORDER BY'] = $order;
+		}
+
 		return $dbr->select( 'querycache', [ 'qc_type',
 				'namespace' => 'qc_namespace',
 				'title' => 'qc_title',
 				'value' => 'qc_value' ],
 				[ 'qc_type' => $this->getName() ],
-				__METHOD__, $options
+				__METHOD__,
+				$options
 		);
 	}
 
