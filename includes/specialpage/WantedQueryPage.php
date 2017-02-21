@@ -119,4 +119,34 @@ abstract class WantedQueryPage extends QueryPage {
 		$label = $this->msg( 'nlinks' )->numParams( $result->value )->escaped();
 		return Linker::link( $wlh, $label );
 	}
+
+	/**
+	 * Order by title, overwrites QueryPage::getOrderFields
+	 *
+	 * @return array
+	 */
+	function getOrderFields() {
+		return [ 'value DESC', 'namespace', 'title' ];
+	}
+
+	/**
+	 * Do not order descending for all order fields.  We will use DESC only on one field, see
+	 * getOrderFields above. This overwrites sortDescending from QueryPage::getOrderFields().
+	 * Do NOT change this to true unless you remove the phrase DESC in getOrderFiels above.
+	 * If you do a database error will be thrown due to double adding DESC to query!
+	 *
+	 * @return bool
+	 */
+	function sortDescending() {
+		return false;
+	}
+
+	/**
+	 * Also use the order fields returned by getOrderFields when fetching from the cache.
+	 * @return bool
+	 */
+	function fetchCacheUseOrder() {
+		return true;
+	}
+
 }
