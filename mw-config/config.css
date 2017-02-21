@@ -18,7 +18,8 @@
 	margin-bottom: 0.2em;
 }
 
-.config-block-label label, .config-label {
+.config-block-label label,
+.config-label {
 	font-weight: bold;
 	padding-right: 0.5em;
 	padding-top: 0.2em;
