@@ -297,7 +297,7 @@ abstract class UploadBase {
 	 * @param string $srcPath The source path
 	 * @return string|bool The real path if it was a virtual URL Returns false on failure
 	 */
-	function getRealPath( $srcPath ) {
+	public function getRealPath( $srcPath ) {
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		if ( $repo->isVirtualUrl( $srcPath ) ) {
 			/** @todo Just make uploads work with storage paths UploadFromStash
@@ -560,7 +560,7 @@ abstract class UploadBase {
 	 *
 	 * @param array $entry
 	 */
-	function zipEntryCallback( $entry ) {
+	public function zipEntryCallback( $entry ) {
 		$names = [ $entry['name'] ];
 
 		// If there is a null character, cut off the name at it, because JDK's
