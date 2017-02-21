@@ -407,7 +407,7 @@ abstract class QueryPage extends SpecialPage {
 			$options = isset( $query['options'] ) ? (array)$query['options'] : [];
 			$join_conds = isset( $query['join_conds'] ) ? (array)$query['join_conds'] : [];
 
-			if ( count( $order ) ) {
+			if ( $order ) {
 				$options['ORDER BY'] = $order;
 			}
 
@@ -457,24 +457,43 @@ abstract class QueryPage extends SpecialPage {
 	public function fetchFromCache( $limit, $offset = false ) {
 		$dbr = wfGetDB( DB_REPLICA );
 		$options = [];
+
 		if ( $limit !== false ) {
 			$options['LIMIT'] = intval( $limit );
 		}
+
 		if ( $offset !== false ) {
 			$options['OFFSET'] = intval( $offset );
 		}
-		if ( $this->sortDescending() ) {
-			$options['ORDER BY'] = 'qc_value DESC';
-		} else {
-			$options['ORDER BY'] = 'qc_value ASC';
+
+		$DESC = $this->sortDescending() ? ' DESC' : '';
+		$order = [];
+		foreach ( $this->getCacheOrderFields() as $field ) {
+			$order[] = "qc_{$field}{$DESC}";
 		}
-		return $dbr->select( 'querycache', [ 'qc_type',
+		if ( $order ) {
+			$options['ORDER BY'] = $order;
+		}
+
+		return $dbr->select( 'querycache',
+				[ 'qc_type',
 				'namespace' => 'qc_namespace',
 				'title' => 'qc_title',
 				'value' => 'qc_value' ],
 				[ 'qc_type' => $this->getName() ],
-				__METHOD__, $options
+				__METHOD__,
+				$options
 		);
+	}
+
+	/**
+	 * Return the order fields for fetchFromCache. Default is to always use
+	 * "ORDER BY value" which was the default prior to this function.
+	 * @return array
+	 * @since 1.29
+	 */
+	function getCacheOrderFields() {
+		return [ 'value' ];
 	}
 
 	public function getCachedTimestamp() {
