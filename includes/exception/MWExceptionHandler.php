@@ -170,6 +170,8 @@ class MWExceptionHandler {
 	public static function handleError(
 		$level, $message, $file = null, $line = null
 	) {
+		global $wgPropagateErrors;
+
 		if ( in_array( $level, self::$fatalErrorTypes ) ) {
 			return call_user_func_array(
 				'MWExceptionHandler::handleFatalError', func_get_args()
@@ -213,9 +215,10 @@ class MWExceptionHandler {
 		$e = new ErrorException( "PHP $levelName: $message", 0, $level, $file, $line );
 		self::logError( $e, 'error', $severity );
 
-		// This handler is for logging only. Return false will instruct PHP
-		// to continue regular handling.
-		return false;
+		// If $wgPropagateErrors is true return false so PHP shows/logs the error normally.
+		// Ignore $wgPropagateErrors if the error should break execution, or track_errors is set
+		// (which means someone is counting on regular PHP error handling behavior).
+		return !( $wgPropagateErrors || $level == E_RECOVERABLE_ERROR || ini_get( 'track_errors' ) );
 	}
 
 	/**

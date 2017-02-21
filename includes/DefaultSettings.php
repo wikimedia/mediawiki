@@ -6286,6 +6286,12 @@ $wgShowDBErrorBacktrace = false;
 $wgLogExceptionBacktrace = true;
 
 /**
+ * If true, the MediaWiki error handler passes errors/warnings to the default error handler
+ * after logging them. The setting is ignored when the track_errors php.ini flag is true.
+ */
+$wgPropagateErrors = true;
+
+/**
  * Expose backend server host names through the API and various HTML comments
  */
 $wgShowHostnames = false;
