@@ -1,7 +1,7 @@
 ( function ( mw, $ ) {
 	QUnit.module( 'mediawiki.api.upload', QUnit.newMwEnvironment( {} ) );
 
-	QUnit.test( 'Basic functionality', 2, function ( assert ) {
+	QUnit.test( 'Basic functionality', function ( assert ) {
 		var api = new mw.Api();
 		assert.ok( api.upload );
 		assert.throws( function () {
@@ -9,7 +9,7 @@
 		} );
 	} );
 
-	QUnit.test( 'Set up iframe upload', 5, function ( assert ) {
+	QUnit.test( 'Set up iframe upload', function ( assert ) {
 		var $iframe, $form, $input,
 			api = new mw.Api();
 

@@ -75,7 +75,7 @@
 		);
 	}
 
-	QUnit.test( 'Basic', 2, function ( assert ) {
+	QUnit.test( 'Basic', function ( assert ) {
 		var isAwesomeDone;
 
 		mw.loader.testCallback = function () {
@@ -94,7 +94,7 @@
 		} );
 	} );
 
-	QUnit.test( 'Object method as module name', 2, function ( assert ) {
+	QUnit.test( 'Object method as module name', function ( assert ) {
 		var isAwesomeDone;
 
 		mw.loader.testCallback = function () {
@@ -113,7 +113,7 @@
 		} );
 	} );
 
-	QUnit.test( '.using( .. ) Promise', 2, function ( assert ) {
+	QUnit.test( '.using( .. ) Promise', function ( assert ) {
 		var isAwesomeDone;
 
 		mw.loader.testCallback = function () {
@@ -176,11 +176,11 @@
 		).always( done );
 	} );
 
-	QUnit.test( '.load() - Error: Unregistered (ignored)', 0, function ( assert ) {
+	QUnit.test( '.load() - Error: Unregistered (ignored)', function ( assert ) {
 		mw.loader.load( 'test.using.unreg2' );
 	} );
 
-	QUnit.test( '.implement( styles={ "css": [text, ..] } )', 2, function ( assert ) {
+	QUnit.test( '.implement( styles={ "css": [text, ..] } )', function ( assert ) {
 		var $element = $( '<div class="mw-test-implement-a"></div>' ).appendTo( '#qunit-fixture' );
 
 		assert.notEqual(
@@ -206,7 +206,7 @@
 		return mw.loader.using( 'test.implement.a' );
 	} );
 
-	QUnit.test( '.implement( styles={ "url": { <media>: [url, ..] } } )', 7, function ( assert ) {
+	QUnit.test( '.implement( styles={ "url": { <media>: [url, ..] } } )', function ( assert ) {
 		var $element1 = $( '<div class="mw-test-implement-b1"></div>' ).appendTo( '#qunit-fixture' ),
 			$element2 = $( '<div class="mw-test-implement-b2"></div>' ).appendTo( '#qunit-fixture' ),
 			$element3 = $( '<div class="mw-test-implement-b3"></div>' ).appendTo( '#qunit-fixture' ),
@@ -268,7 +268,7 @@
 	} );
 
 	// Backwards compatibility
-	QUnit.test( '.implement( styles={ <media>: text } ) (back-compat)', 2, function ( assert ) {
+	QUnit.test( '.implement( styles={ <media>: text } ) (back-compat)', function ( assert ) {
 		var $element = $( '<div class="mw-test-implement-c"></div>' ).appendTo( '#qunit-fixture' );
 
 		assert.notEqual(
@@ -295,7 +295,7 @@
 	} );
 
 	// Backwards compatibility
-	QUnit.test( '.implement( styles={ <media>: [url, ..] } ) (back-compat)', 4, function ( assert ) {
+	QUnit.test( '.implement( styles={ <media>: [url, ..] } ) (back-compat)', function ( assert ) {
 		var $element = $( '<div class="mw-test-implement-d"></div>' ).appendTo( '#qunit-fixture' ),
 			$element2 = $( '<div class="mw-test-implement-d2"></div>' ).appendTo( '#qunit-fixture' ),
 			done = assert.async();
@@ -329,7 +329,7 @@
 	} );
 
 	// @import (bug 31676)
-	QUnit.test( '.implement( styles has @import )', 7, function ( assert ) {
+	QUnit.test( '.implement( styles has @import )', function ( assert ) {
 		var isJsExecuted, $element,
 			done = assert.async();
 
@@ -372,7 +372,7 @@
 		} );
 	} );
 
-	QUnit.test( '.implement( dependency with styles )', 4, function ( assert ) {
+	QUnit.test( '.implement( dependency with styles )', function ( assert ) {
 		var $element = $( '<div class="mw-test-implement-e"></div>' ).appendTo( '#qunit-fixture' ),
 			$element2 = $( '<div class="mw-test-implement-e2"></div>' ).appendTo( '#qunit-fixture' );
 
@@ -423,12 +423,12 @@
 		return mw.loader.using( 'test.implement.e' );
 	} );
 
-	QUnit.test( '.implement( only scripts )', 1, function ( assert ) {
+	QUnit.test( '.implement( only scripts )', function ( assert ) {
 		mw.loader.implement( 'test.onlyscripts', function () {} );
 		assert.strictEqual( mw.loader.getState( 'test.onlyscripts' ), 'ready' );
 	} );
 
-	QUnit.test( '.implement( only messages )', 2, function ( assert ) {
+	QUnit.test( '.implement( only messages )', function ( assert ) {
 		assert.assertFalse( mw.messages.exists( 'bug_29107' ), 'Verify that the test message doesn\'t exist yet' );
 
 		// jscs: disable requireCamelCaseOrUpperCaseIdentifiers
@@ -442,12 +442,12 @@
 		} );
 	} );
 
-	QUnit.test( '.implement( empty )', 1, function ( assert ) {
+	QUnit.test( '.implement( empty )', function ( assert ) {
 		mw.loader.implement( 'test.empty' );
 		assert.strictEqual( mw.loader.getState( 'test.empty' ), 'ready' );
 	} );
 
-	QUnit.test( 'Broken indirect dependency', 4, function ( assert ) {
+	QUnit.test( 'Broken indirect dependency', function ( assert ) {
 		// don't emit an error event
 		this.sandbox.stub( mw, 'track' );
 
@@ -466,7 +466,7 @@
 		assert.strictEqual( mw.track.callCount, 1 );
 	} );
 
-	QUnit.test( 'Out-of-order implementation', 9, function ( assert ) {
+	QUnit.test( 'Out-of-order implementation', function ( assert ) {
 		mw.loader.register( [
 			[ 'test.module4', '0' ],
 			[ 'test.module5', '0', [ 'test.module4' ] ],
@@ -486,7 +486,7 @@
 		assert.strictEqual( mw.loader.getState( 'test.module6' ), 'ready', 'Expected "ready" state for test.module6' );
 	} );
 
-	QUnit.test( 'Missing dependency', 13, function ( assert ) {
+	QUnit.test( 'Missing dependency', function ( assert ) {
 		mw.loader.register( [
 			[ 'test.module7', '0' ],
 			[ 'test.module8', '0', [ 'test.module7' ] ],
@@ -533,7 +533,7 @@
 		);
 	} );
 
-	QUnit.test( 'Dependency handling', 5, function ( assert ) {
+	QUnit.test( 'Dependency handling', function ( assert ) {
 		var done = assert.async();
 		mw.loader.register( [
 			// [module, version, dependencies, group, source]
@@ -571,7 +571,7 @@
 		);
 	} );
 
-	QUnit.test( 'Skip-function handling', 5, function ( assert ) {
+	QUnit.test( 'Skip-function handling', function ( assert ) {
 		mw.loader.register( [
 			// [module, version, dependencies, group, source, skip]
 			[ 'testSkipped', '1', [], null, 'testloader', 'return true;' ],
@@ -601,7 +601,7 @@
 		);
 	} );
 
-	QUnit.asyncTest( '.load( "//protocol-relative" ) - T32825', 2, function ( assert ) {
+	QUnit.asyncTest( '.load( "//protocol-relative" ) - T32825', function ( assert ) {
 		// This bug was actually already fixed in 1.18 and later when discovered in 1.17.
 		// Test is for regressions!
 
@@ -622,7 +622,7 @@
 		mw.loader.load( target );
 	} );
 
-	QUnit.asyncTest( '.load( "/absolute-path" )', 2, function ( assert ) {
+	QUnit.asyncTest( '.load( "/absolute-path" )', function ( assert ) {
 		// Forge a URL to the test callback script
 		var target = QUnit.fixurl(
 			mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/qunitOkCall.js'
@@ -655,7 +655,7 @@
 		} );
 	} );
 
-	QUnit.test( 'Executing race - T112232', 2, function ( assert ) {
+	QUnit.test( 'Executing race - T112232', function ( assert ) {
 		var done = false;
 
 		// The red herring schedules its CSS buffer first. In T112232, a bug in the
@@ -738,7 +738,7 @@
 			} );
 	} );
 
-	QUnit.test( 'require()', 6, function ( assert ) {
+	QUnit.test( 'require()', function ( assert ) {
 		mw.loader.register( [
 			[ 'test.require1', '0' ],
 			[ 'test.require2', '0' ],

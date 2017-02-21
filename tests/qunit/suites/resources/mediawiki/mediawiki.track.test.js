@@ -1,7 +1,7 @@
 ( function ( mw ) {
 	QUnit.module( 'mediawiki.track' );
 
-	QUnit.test( 'track', 1, function ( assert ) {
+	QUnit.test( 'track', function ( assert ) {
 		var sequence = [];
 		mw.trackSubscribe( 'simple', function ( topic, data ) {
 			sequence.push( [ topic, data ] );
@@ -15,7 +15,7 @@
 		], 'Events after subscribing' );
 	} );
 
-	QUnit.test( 'trackSubscribe', 4, function ( assert ) {
+	QUnit.test( 'trackSubscribe', function ( assert ) {
 		var now,
 			sequence = [];
 		mw.track( 'before', { key: 1 } );
@@ -40,7 +40,7 @@
 		} );
 	} );
 
-	QUnit.test( 'trackUnsubscribe', 1, function ( assert ) {
+	QUnit.test( 'trackUnsubscribe', function ( assert ) {
 		var sequence = [];
 		function unsubber( topic, data ) {
 			sequence.push( [ topic, data ] );
