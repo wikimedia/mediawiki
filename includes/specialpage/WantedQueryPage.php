@@ -117,4 +117,55 @@ abstract class WantedQueryPage extends QueryPage {
 		$label = $this->msg( 'nlinks' )->numParams( $result->value )->escaped();
 		return Linker::link( $wlh, $label );
 	}
+
+	/**
+	 * Order by title, overwrites QueryPage::getOrderFields
+	 *
+	 * @return array
+	 */
+	function getOrderFields() {
+		return [ 'value DESC', 'namespace', 'title' ];
+	}
+
+	/**
+	 * Do not order descending for all order fields.  We will use DESC only on one field, see
+	 *  getOrderFields above. This overwrites sortDescending from QueryPage::getOrderFields().
+	 *  Do NOT change this to true unless you remove the phrase DESC in getOrderFiels above.
+	 *  If you do a database error will be thrown due to double adding DESC to query!
+	 *
+	 * @return bool
+	 */
+	function sortDescending() {
+		return false;
+	}
+
+	/**
+	 * Fetch the query results from the query cache
+	 * @param int|bool $limit Numerical limit or false for no limit
+	 * @param int|bool $offset Numerical offset or false for no offset
+	 * @return ResultWrapper
+	 */
+	public function fetchFromCache( $limit, $offset = false ) {
+		$dbr = wfGetDB( DB_REPLICA );
+		$options = [];
+		if ( $limit !== false ) {
+			$options['LIMIT'] = intval( $limit );
+		}
+
+		if ( $offset !== false ) {
+			$options['OFFSET'] = intval( $offset );
+		}
+
+		$options['ORDER BY'] = 'qc_value DESC, qc_namespace, qc_title';
+
+
+		return $dbr->select( 'querycache', [ 'qc_type',
+				'namespace' => 'qc_namespace',
+				'title' => 'qc_title',
+				'value' => 'qc_value' ],
+				[ 'qc_type' => $this->getName() ],
+				__METHOD__, $options
+		);
+	}
+
 }
