@@ -1677,7 +1677,7 @@
 	"apiwarn-tokennotallowed": "操作“$1”不允许当前用户使用。",
 	"apiwarn-toomanyvalues": "参数<var>$1</var>指定了太多的值：上限为$2。",
 	"apiwarn-truncatedresult": "此结果被缩短，否则其将大于$1字节的限制。",
-	"apiwarn-unclearnowtimestamp": "为时间戳参数<var>$1</var>传递“$2”已被弃用。如因某些原因您需要明确指定当前时间而不计算客户端，请使用<kbd>now<kbd>。",
+	"apiwarn-unclearnowtimestamp": "为时间戳参数<var>$1</var>传递“$2”已被弃用。如因某些原因您需要明确指定当前时间而不计算客户端，请使用<kbd>now</kbd>。",
 	"apiwarn-unrecognizedvalues": "参数<var>$1</var>有无法识别的{{PLURAL:$3|值}}：$2。",
 	"apiwarn-unsupportedarray": "参数<var>$1</var>使用未受支持的PHP数组语法。",
 	"apiwarn-validationfailed-badchars": "关键词中的字符无效（只允许<code>a-z</code>、<code>A-Z</code>、<code>0-9</code>、<code>_</code>和<code>-</code>）。",

@@ -1992,7 +1992,7 @@
 	"listgrouprights-key": "범례:\n* <span class=\"listgrouprights-granted\">부여된 권한</span>\n* <span class=\"listgrouprights-revoked\">해제된 권한</span>",
 	"listgrouprights-group": "그룹",
 	"listgrouprights-rights": "권한",
-	"listgrouprights-helppage": "위키백과:사용자 권한",
+	"listgrouprights-helppage": "Help:사용자 권한",
 	"listgrouprights-members": "(사용자 목록)",
 	"listgrouprights-addgroup": "{{PLURAL:$2|권한}} 부여: $1",
 	"listgrouprights-removegroup": "{{PLURAL:$2|권한}} 회수: $1",
