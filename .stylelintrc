@@ -3,8 +3,6 @@
 	"rules": {
 		"declaration-no-important": null,
 
-		"indentation": null,
-
 		"no-descending-specificity": null,
 
 		"selector-list-comma-newline-after": null,
