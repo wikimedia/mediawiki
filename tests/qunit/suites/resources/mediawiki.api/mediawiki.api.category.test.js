@@ -6,7 +6,7 @@
 		}
 	} ) );
 
-	QUnit.test( '.getCategoriesByPrefix()', 1, function ( assert ) {
+	QUnit.test( '.getCategoriesByPrefix()', function ( assert ) {
 		this.server.respondWith( [ 200, { 'Content-Type': 'application/json' },
 			'{ "query": { "allpages": [ ' +
 				'{ "title": "Category:Food" },' +

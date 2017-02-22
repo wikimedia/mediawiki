@@ -25,7 +25,7 @@
 		}
 	} ) );
 
-	QUnit.test( 'isElementInViewport', 6, function ( assert ) {
+	QUnit.test( 'isElementInViewport', function ( assert ) {
 		var viewport = $.extend( {}, DEFAULT_VIEWPORT );
 		assert.ok( mw.viewport.isElementInViewport( this.el, viewport ),
 			'It should return true when the element is fully enclosed in the viewport' );
@@ -60,7 +60,7 @@
 			'It should default to the window object if no viewport is given' );
 	} );
 
-	QUnit.test( 'isElementInViewport with scrolled page', 1, function ( assert ) {
+	QUnit.test( 'isElementInViewport with scrolled page', function ( assert ) {
 		var viewport = {
 				top: 2000,
 				left: 0,
@@ -83,7 +83,7 @@
 		window.scrollTo( 0, 0 );
 	} );
 
-	QUnit.test( 'isElementCloseToViewport', 3, function ( assert ) {
+	QUnit.test( 'isElementCloseToViewport', function ( assert ) {
 		var
 			viewport = {
 				top: 90,

@@ -17,7 +17,7 @@
 		}
 	} ) );
 
-	QUnit.test( 'mw.language getData and setData', 3, function ( assert ) {
+	QUnit.test( 'mw.language getData and setData', function ( assert ) {
 		mw.language.setData( 'en', 'testkey', 'testvalue' );
 		assert.equal( mw.language.getData( 'en', 'testkey' ), 'testvalue', 'Getter setter test for mw.language' );
 		assert.equal( mw.language.getData( 'en', 'invalidkey' ), undefined, 'Getter setter test for mw.language with invalid key' );
@@ -25,7 +25,7 @@
 		assert.equal( mw.language.getData( 'en-US', 'testkey' ), 'testvalue', 'Case insensitive test for mw.language' );
 	} );
 
-	QUnit.test( 'mw.language.commafy test', 9, function ( assert ) {
+	QUnit.test( 'mw.language.commafy test', function ( assert ) {
 		mw.language.setData( 'en', 'digitGroupingPattern', null );
 		mw.language.setData( 'en', 'digitTransformTable', null );
 		mw.language.setData( 'en', 'separatorTransformTable', null );
@@ -43,7 +43,7 @@
 		assert.equal( mw.language.commafy( 123456789.567, '###,###,#0.00' ), '1,234,567,89.56', 'Decimal part as group of 3 and last one 2' );
 	} );
 
-	QUnit.test( 'mw.language.convertNumber', 2, function ( assert ) {
+	QUnit.test( 'mw.language.convertNumber', function ( assert ) {
 		mw.language.setData( 'en', 'digitGroupingPattern', null );
 		mw.language.setData( 'en', 'digitTransformTable', null );
 		mw.language.setData( 'en', 'separatorTransformTable', { ',': '.', '.': ',' } );
@@ -82,7 +82,6 @@
 		// The test works only if the content language is opt.language
 		// because it requires [lang].js to be loaded.
 		QUnit.test( 'Grammar test for lang=' + langCode, function ( assert ) {
-			QUnit.expect( test.length );
 
 			for ( var i = 0; i < test.length; i++ ) {
 				assert.equal(
@@ -580,7 +579,7 @@
 		}
 	} );
 
-	QUnit.test( 'List to text test', 4, function ( assert ) {
+	QUnit.test( 'List to text test', function ( assert ) {
 		assert.equal( mw.language.listToText( [] ), '', 'Blank list' );
 		assert.equal( mw.language.listToText( [ 'a' ] ), 'a', 'Single item' );
 		assert.equal( mw.language.listToText( [ 'a', 'b' ] ), 'a and b', 'Two items' );
