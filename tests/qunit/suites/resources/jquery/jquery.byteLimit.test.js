@@ -46,21 +46,17 @@
 			expected: ''
 		}, options );
 
-		QUnit.asyncTest( opt.description, 1, function ( assert ) {
-			setTimeout( function () {
-				opt.$input.appendTo( '#qunit-fixture' );
+		QUnit.test( opt.description, function ( assert ) {
+			opt.$input.appendTo( '#qunit-fixture' );
 
-				// Simulate pressing keys for each of the sample characters
-				addChars( opt.$input, opt.sample );
+			// Simulate pressing keys for each of the sample characters
+			addChars( opt.$input, opt.sample );
 
-				assert.equal(
-					opt.$input.val(),
-					opt.expected,
-					'New value matches the expected string'
-				);
-
-				QUnit.start();
-			} );
+			assert.equal(
+				opt.$input.val(),
+				opt.expected,
+				'New value matches the expected string'
+			);
 		} );
 	}
 
@@ -186,7 +182,7 @@
 	} );
 
 	QUnit.test( 'Confirm properties and attributes set', function ( assert ) {
-		var $el, $elA, $elB;
+		var $el;
 
 		$el = $( '<input>' ).attr( 'type', 'text' )
 			.attr( 'maxlength', '7' )
@@ -211,12 +207,12 @@
 
 		assert.strictEqual( $el.attr( 'maxlength' ), undefined, 'maxlength attribute removed for limit with callback' );
 
-		$elA = $( '<input>' ).attr( 'type', 'text' )
+		$( '<input>' ).attr( 'type', 'text' )
 			.addClass( 'mw-test-byteLimit-foo' )
 			.attr( 'maxlength', '7' )
 			.appendTo( '#qunit-fixture' );
 
-		$elB = $( '<input>' ).attr( 'type', 'text' )
+		$( '<input>' ).attr( 'type', 'text' )
 			.addClass( 'mw-test-byteLimit-foo' )
 			.attr( 'maxlength', '12' )
 			.appendTo( '#qunit-fixture' );
@@ -231,7 +227,7 @@
 	QUnit.test( 'Trim from insertion when limit exceeded', function ( assert ) {
 		var $el;
 
-		// Use a new <input /> because the bug only occurs on the first time
+		// Use a new <input> because the bug only occurs on the first time
 		// the limit it reached (T42850)
 		$el = $( '<input>' ).attr( 'type', 'text' )
 			.appendTo( '#qunit-fixture' )
