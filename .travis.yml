@@ -16,7 +16,7 @@ matrix:
     - env: dbtype=postgres
       php: 5.5
     - env: dbtype=mysql
-      php: hhvm
+      php: hhvm-3.12
     - env: dbtype=mysql
       php: 7
 
