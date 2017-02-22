@@ -585,6 +585,8 @@ EOT
 		} else {
 			# Image does not exist
 			if ( !$this->getId() ) {
+				$dbr = wfGetDB( DB_REPLICA );
+
 				# No article exists either
 				# Show deletion log to be consistent with normal articles
 				LogEventsList::showLogExtract(
@@ -593,7 +595,7 @@ EOT
 					$this->getTitle()->getPrefixedText(),
 					'',
 					[ 'lim' => 10,
-						'conds' => [ "log_action != 'revision'" ],
+						'conds' => [ 'log_action != ' . $dbr->addQuotes( 'revision' ) ],
 						'showIfEmpty' => false,
 						'msgKey' => [ 'moveddeleted-notice' ]
 					]

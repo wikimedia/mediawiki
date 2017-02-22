@@ -2483,11 +2483,13 @@ class EditPage {
 		}
 		# Give a notice if the user is editing a deleted/moved page...
 		if ( !$this->mTitle->exists() ) {
+			$dbr = wfGetDB( DB_REPLICA );
+
 			LogEventsList::showLogExtract( $wgOut, [ 'delete', 'move' ], $this->mTitle,
 				'',
 				[
 					'lim' => 10,
-					'conds' => [ "log_action != 'revision'" ],
+					'conds' => [ 'log_action != ' . $dbr->addQuotes( 'revision' ) ],
 					'showIfEmpty' => false,
 					'msgKey' => [ 'recreate-moveddeleted-warn' ]
 				]
