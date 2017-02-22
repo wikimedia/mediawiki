@@ -1256,7 +1256,7 @@ class EditPage {
 		$revision = $this->mArticle->getRevisionFetched();
 		if ( $revision === null ) {
 			if ( !$this->contentModel ) {
-				$this->contentModel = $this->getTitle()->getContentModel();
+				throw new RuntimeException( 'EditPage contentModel was false' );
 			}
 			$handler = ContentHandler::getForModelID( $this->contentModel );
 
@@ -1300,7 +1300,7 @@ class EditPage {
 
 		if ( $content === false || $content === null ) {
 			if ( !$this->contentModel ) {
-				$this->contentModel = $this->getTitle()->getContentModel();
+				throw new RuntimeException( 'EditPage contentModel was false' );
 			}
 			$handler = ContentHandler::getForModelID( $this->contentModel );
 
