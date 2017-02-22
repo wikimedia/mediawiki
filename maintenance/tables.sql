@@ -606,7 +606,7 @@ CREATE TABLE /*_*/categorylinks (
   -- yet updated.  '' means no collation, this is a legacy row that needs to be
   -- updated by updateCollation.php.  In the future, it might be possible to
   -- specify different collations per category.
-  cl_collation varbinary(32) NOT NULL default '',
+  cl_collation varbinary(50) NOT NULL default '',
 
   -- Stores whether cl_from is a category, file, or other page, so we can
   -- paginate the three categories separately.  This never has to be updated
