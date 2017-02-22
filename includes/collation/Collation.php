@@ -67,7 +67,7 @@ abstract class Collation {
 				return new CollationFa;
 			default:
 				$match = [];
-				if ( preg_match( '/^uca-([a-z@=-]+)$/', $collationName, $match ) ) {
+				if ( preg_match( '/^uca-([A-Za-z@=-]+)$/', $collationName, $match ) ) {
 					return new IcuCollation( $match[1] );
 				}
 
