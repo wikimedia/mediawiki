@@ -1116,7 +1116,9 @@ class ApiMain extends ApiBase {
 				)
 			);
 		} else {
-			if ( $config->get( 'ShowExceptionDetails' ) ) {
+			if ( $config->get( 'ShowExceptionDetails' ) &&
+				( !$e instanceof DBError || $config->get( 'ShowDBErrorBacktrace' ) )
+			) {
 				$result->addContentValue(
 					$path,
 					'trace',

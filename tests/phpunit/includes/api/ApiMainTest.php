@@ -451,7 +451,10 @@ class ApiMainTest extends ApiTestCase {
 		$context->setRequest( new FauxRequest( [ 'errorformat' => 'plaintext' ] ) );
 		$context->setLanguage( 'en' );
 		$context->setConfig( new MultiConfig( [
-			new HashConfig( [ 'ShowHostnames' => true, 'ShowSQLErrors' => false ] ),
+			new HashConfig( [
+				'ShowHostnames' => true, 'ShowSQLErrors' => false,
+				'ShowExceptionDetails' => true, 'ShowDBErrorBacktrace' => true,
+			] ),
 			$context->getConfig()
 		] ) );
 
