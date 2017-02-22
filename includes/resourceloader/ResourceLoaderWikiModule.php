@@ -357,6 +357,11 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			}
 		}
 
+		if ( !$wikiModules ) {
+			// Nothing to preload
+			return;
+		}
+
 		$pageNames = array_keys( $allPages );
 		sort( $pageNames );
 		$hash = sha1( implode( '|', $pageNames ) );
