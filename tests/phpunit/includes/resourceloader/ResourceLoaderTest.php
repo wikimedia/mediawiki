@@ -18,6 +18,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 			// to avoid notices during testMakeModuleResponse for missing
 			// wgResourceLoaderLESSVars keys in extension hooks.
 			'wgHooks' => [],
+			'wgShowExceptionDetails' => true,
 		] );
 	}
 
