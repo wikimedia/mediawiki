@@ -48,9 +48,34 @@
 		mw.language.setData( 'en', 'digitTransformTable', null );
 		mw.language.setData( 'en', 'separatorTransformTable', { ',': '.', '.': ',' } );
 		mw.config.set( 'wgUserLanguage', 'en' );
+		mw.config.set( 'wgTranslateNumerals', true );
 
 		assert.equal( mw.language.convertNumber( 1800 ), '1.800', 'formatting' );
 		assert.equal( mw.language.convertNumber( '1.800', true ), '1800', 'unformatting' );
+	} );
+
+	QUnit.test( 'mw.language.convertNumber - digitTransformTable', function ( assert ) {
+		mw.config.set( 'wgUserLanguage', 'hi' );
+		mw.config.set( 'wgTranslateNumerals', true );
+		mw.language.setData( 'hi', 'digitGroupingPattern', null );
+		mw.language.setData( 'hi', 'separatorTransformTable', { ',': '.', '.': ',' } );
+
+		// Example from Hindi (MessagesHi.php)
+		mw.language.setData( 'hi', 'digitTransformTable', {
+			0: '०',
+			1: '१',
+			2: '२'
+		} );
+
+		assert.equal( mw.language.convertNumber( 1200 ), '१.२००', 'format' );
+		assert.equal( mw.language.convertNumber( '१.२००', true ), '1200', 'unformat from digit transform' );
+		assert.equal( mw.language.convertNumber( '1.200', true ), '1200', 'unformat plain' );
+
+		mw.config.set( 'wgTranslateNumerals', false );
+
+		assert.equal( mw.language.convertNumber( 1200 ), '1.200', 'format (digit transform disabled)' );
+		assert.equal( mw.language.convertNumber( '१.२००', true ), '1200', 'unformat from digit transform (when disabled)' );
+		assert.equal( mw.language.convertNumber( '1.200', true ), '1200', 'unformat plain (digit transform disabled)' );
 	} );
 
 	function grammarTest( langCode, test ) {
