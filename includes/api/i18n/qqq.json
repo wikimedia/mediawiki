@@ -1664,7 +1664,7 @@
 	"apiwarn-deprecation-parse-headitems": "{{doc-apierror}}",
 	"apiwarn-deprecation-purge-get": "{{doc-apierror}}",
 	"apiwarn-deprecation-withreplacement": "{{doc-apierror}}\n\nParameters:\n* $1 - Query string fragment that is deprecated, e.g. \"action=tokens\".\n* $2 - Query string fragment to use instead, e.g. \"action=tokens\".",
-	"apiwarn-difftohidden": "{{doc-apierror}}\n\nParameters:\n* $1 - Revision ID number.",
+	"apiwarn-difftohidden": "{{doc-apierror}}\n\nParameters:\n* $1 - Revision ID number.\n\n\"r\" is short for \"revision\". You may translate it.",
 	"apiwarn-errorprinterfailed": "{{doc-apierror}}",
 	"apiwarn-errorprinterfailed-ex": "{{doc-apierror}}\n\nParameters:\n* $1 - Exception message, which may already end in punctuation. Probably in English.",
 	"apiwarn-invalidcategory": "{{doc-apierror}}\n\nParameters:\n* $1 - Supplied category name.",

@@ -2829,7 +2829,7 @@
 	"variantname-gan-hans": "‪中文(简体)",
 	"variantname-gan-hant": "‪中文(繁體)",
 	"metadata": "詮釋資料",
-	"metadata-help": "此檔案包含額外的資訊，可能由數位相機或掃描機所建立的。\n若修改此檔案，部份資訊將無法保留。",
+	"metadata-help": "此檔案包含額外的資訊，可能由數位相機或掃描機所建立的。\n\n如果已自檔案初始狀態修改，一些詳細說明可能無法反映修改後的檔案。",
 	"metadata-expand": "顯示詳細資料",
 	"metadata-collapse": "隱藏詳細資料",
 	"metadata-fields": "在本訊息中所列出的 EXIF 詮釋資料域將包含在圖片顯示頁面，當詮釋資料表損壞時只顯示以下訊息。\n其他的詮釋資料預設為隱藏。\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",

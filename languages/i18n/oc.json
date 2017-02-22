@@ -695,7 +695,7 @@
 	"permissionserrorstext": "Avètz pas la permission d’efectuar l’operacion demandada per {{PLURAL:$1|la rason seguenta|las rasons seguentas}} :",
 	"permissionserrorstext-withaction": "Sètz pas autorizat(ada) a $2, per {{PLURAL:$1|la rason seguenta|las rasons seguentas}} :",
 	"recreate-moveddeleted-warn": "'''Atencion : sètz a tornar crear una pagina qu'es estada suprimida precedentament.'''\n\nDemandatz-vos s'es vertadièrament apropriat de contunhar de l’editar.\nL’istoric de las supressions e dels cambiaments de nom es afichat çaijós :",
-	"moveddeleted-notice": "Aquesta pagina es estat suprimida.\nL'istoric de las supressions e dels cambiaments de nom es afichat çaijós coma referéncia.",
+	"moveddeleted-notice": "Aquesta pagina es estada suprimida.\nL'istoric de las supressions e dels cambiaments de nom es afichat çaijós coma referéncia.",
 	"log-fulllog": "Veire lo jornal complet",
 	"edit-hook-aborted": "Modificacion fracassada per croquet.\nCap d'explicacion pas balhada.",
 	"edit-gone-missing": "A pas pogut metre a jorn la pagina.\nSembla que siá estada suprimida.",
