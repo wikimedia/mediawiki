@@ -101,7 +101,6 @@
 				// testing custom / localized namespace
 				100: 'Penguins'
 			},
-			// jscs: disable requireCamelCaseOrUpperCaseIdentifiers
 			wgNamespaceIds: {
 				media: -2,
 				special: -1,
@@ -129,7 +128,6 @@
 				penguins: 100,
 				antarctic_waterfowl: 100
 			},
-			// jscs: enable requireCamelCaseOrUpperCaseIdentifiers
 			wgCaseSensitiveNamespaces: []
 		}
 	} ) );
@@ -140,7 +138,6 @@
 			title = new mw.Title( cases.valid[ i ] );
 		}
 		for ( i = 0; i < cases.invalid.length; i++ ) {
-			/*jshint loopfunc:true */
 			title = cases.invalid[ i ];
 			assert.throws( function () {
 				return new mw.Title( title );

@@ -133,7 +133,6 @@ class GenerateJqueryMsgData extends Maintenance {
 				. "// languages, and parser modes. Intended for use by a unit test framework by looping\n"
 				. "// through the object and comparing its parser return value with the 'result' property.\n"
 				. '// Last generated with ' . basename( __FILE__ ) . ' at ' . gmdate( 'r' ) . "\n"
-				. "//jscs:disable\n"
 				. "\n"
 				. 'mediaWiki.libs.phpParserData = ' . FormatJson::encode( $phpParserData, true ) . ";\n";
 

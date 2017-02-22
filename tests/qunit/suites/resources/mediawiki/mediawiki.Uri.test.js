@@ -132,7 +132,6 @@
 		} );
 		assert.equal( uri.toString(), 'http://example.com/bar/baz', 'normalize URI without protocol or // in loose mode' );
 
-		/*jshint -W001 */
 		uri = new mw.Uri( 'http://example.com/index.php?key=key&hasOwnProperty=hasOwnProperty&constructor=constructor&watch=watch' );
 		assert.deepEqual(
 			uri.query,
@@ -144,7 +143,6 @@
 			},
 			'Keys in query strings support names of Object prototypes (bug T114344)'
 		);
-		/*jshint +W001 */
 	} );
 
 	QUnit.test( 'Constructor( Object )', function ( assert ) {
