@@ -45,7 +45,6 @@
 		},
 		config: {
 			wgArticlePath: '/wiki/$1',
-			// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 			wgNamespaceIds: {
 				template: 10,
 				template_talk: 11,
@@ -53,7 +52,6 @@
 				szablon: 10,
 				dyskusja_szablonu: 11
 			},
-			// jscs:enable requireCamelCaseOrUpperCaseIdentifiers
 			wgFormattedNamespaces: {
 				// Localised
 				10: 'Szablon',
@@ -126,7 +124,6 @@
 	 *  that may be asynchronous. Invoke the callback parameter when done.
 	 */
 	function process( tasks ) {
-		/*jshint latedef:false */
 		function abort() {
 			tasks.splice( 0, tasks.length );
 			next();

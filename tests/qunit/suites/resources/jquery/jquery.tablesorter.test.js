@@ -245,7 +245,6 @@
 		$tr.appendTo( $thead );
 
 		for ( i = 0; i < data.length; i++ ) {
-			/*jshint loopfunc: true */
 			$tr = $( '<tr>' );
 			$.each( data[ i ], function ( j, str ) {
 				var $td = $( '<td>' );
