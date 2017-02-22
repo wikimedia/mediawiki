@@ -21,11 +21,11 @@
 						'jul', 'aug', 'sep', 'oct', 'nov', 'dec' ]
 				},
 				names: [ 'January', 'February', 'March', 'April', 'May', 'June',
-						'July', 'August', 'September', 'October', 'November', 'December' ],
+					'July', 'August', 'September', 'October', 'November', 'December' ],
 				genitive: [ 'January', 'February', 'March', 'April', 'May', 'June',
-						'July', 'August', 'September', 'October', 'November', 'December' ],
+					'July', 'August', 'September', 'October', 'November', 'December' ],
 				abbrev: [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-						'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]
+					'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]
 			};
 		},
 		teardown: function () {

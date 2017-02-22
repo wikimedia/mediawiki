@@ -1,8 +1,8 @@
-/*global CompletenessTest, sinon */
+/* global CompletenessTest, sinon */
 ( function ( $, mw, QUnit ) {
 	'use strict';
 
-	var mwTestIgnore, mwTester, addons;
+	var mwTestIgnore, addons;
 
 	/**
 	 * Add bogus to url to prevent IE crazy caching
@@ -26,6 +26,7 @@
 	QUnit.config.testTimeout = 60 * 1000;
 
 	// Reduce default animation duration from 400ms to 0ms for unit tests
+	// eslint-disable-next-line no-underscore-dangle
 	$.fx.speeds._default = 0;
 
 	// Add a checkbox to QUnit header to toggle MediaWiki ResourceLoader debug mode.
@@ -157,7 +158,8 @@
 			return false;
 		};
 
-		mwTester = new CompletenessTest( mw, mwTestIgnore );
+		// eslint-disable-next-line no-new
+		new CompletenessTest( mw, mwTestIgnore );
 	}
 
 	/**
@@ -209,7 +211,7 @@
 		}
 
 		function freshMessagesCopy( custom ) {
-			return $.extend( /*deep=*/true, {}, liveMessages.get(), custom );
+			return $.extend( /* deep */true, {}, liveMessages.get(), custom );
 		}
 
 		/**

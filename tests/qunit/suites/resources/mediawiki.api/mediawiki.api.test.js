@@ -311,7 +311,7 @@
 
 		return api.postWithToken( 'testassertpost', { action: 'example', key: 'foo', assert: 'user' } )
 			// Cast error to success and vice versa
-			.then( function ( ) {
+			.then( function () {
 				return $.Deferred().reject( 'Unexpected success' );
 			}, function ( errorCode ) {
 				assert.equal( errorCode, 'assertuserfailed', 'getToken fails assert' );
@@ -329,28 +329,28 @@
 		this.server.respond( [ 200, { 'Content-Type': 'application/json' }, '{ "example": "quux" }' ] );
 
 		return api.postWithToken( 'csrf',
-				{ action: 'example' },
-				{
-					headers: {
-						'X-Foo': 'Bar'
-					}
+			{ action: 'example' },
+			{
+				headers: {
+					'X-Foo': 'Bar'
 				}
-			)
-			.then( function () {
-				assert.equal( test.server.requests[ 0 ].requestHeaders[ 'X-Foo' ], 'Bar', 'Header sent' );
+			}
+		)
+		.then( function () {
+			assert.equal( test.server.requests[ 0 ].requestHeaders[ 'X-Foo' ], 'Bar', 'Header sent' );
 
-				return api.postWithToken( 'csrf',
-					{ action: 'example' },
-					function () {
-						assert.ok( false, 'This parameter cannot be a callback' );
-					}
-				);
-			} )
-			.then( function ( data ) {
-				assert.equal( data.example, 'quux' );
+			return api.postWithToken( 'csrf',
+				{ action: 'example' },
+				function () {
+					assert.ok( false, 'This parameter cannot be a callback' );
+				}
+			);
+		} )
+		.then( function ( data ) {
+			assert.equal( data.example, 'quux' );
 
-				assert.equal( test.server.requests.length, 2, 'Request made' );
-			} );
+			assert.equal( test.server.requests.length, 2, 'Request made' );
+		} );
 	} );
 
 	QUnit.test( 'postWithToken() - badtoken', function ( assert ) {

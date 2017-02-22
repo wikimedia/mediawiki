@@ -4,7 +4,7 @@
 	QUnit.test( 'getAttrs()', function ( assert ) {
 		var attrs = {
 				foo: 'bar',
-				'class': 'lorem',
+				class: 'lorem',
 				'data-foo': 'data value'
 			},
 			$el = $( '<div>' ).attr( attrs );

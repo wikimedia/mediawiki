@@ -24,12 +24,13 @@ module.exports = function ( grunt ) {
 			all: [
 				'**/*.js',
 				'!docs/**',
-				'!tests/**',
 				'!node_modules/**',
 				'!resources/lib/**',
 				'!resources/src/jquery.tipsy/**',
 				'!resources/src/jquery/jquery.farbtastic.js',
 				'!resources/src/mediawiki.libs/**',
+				// Third-party code of PHPUnit coverage report
+				'!tests/coverage/**',
 				'!vendor/**',
 				// Explicitly say "**/*.js" here in case of symlinks
 				'!extensions/**/*.js',

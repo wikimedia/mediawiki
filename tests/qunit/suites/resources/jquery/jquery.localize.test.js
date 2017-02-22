@@ -51,6 +51,7 @@
 	} );
 
 	QUnit.test( 'Options', function ( assert ) {
+		var html, $lc, x, sitename = 'Wikipedia';
 		mw.messages.set( {
 			'foo-lorem': 'Lorem',
 			'foo-ipsum': 'Ipsum',
@@ -60,7 +61,6 @@
 			'foo-bazz-label': 'The Bazz ($1)',
 			'foo-welcome': 'Welcome to $1! (last visit: $2)'
 		} );
-		var html, $lc, x, sitename = 'Wikipedia';
 
 		// Message key prefix
 		html = '<div><span title-msg="lorem"><html:msg key="ipsum" /></span></div>';

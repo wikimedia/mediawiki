@@ -12,6 +12,7 @@
  *
  * @author Timo Tijhof, 2011-2012
  */
+/* eslint-env qunit */
 ( function ( mw, $ ) {
 	'use strict';
 

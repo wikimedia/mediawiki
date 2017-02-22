@@ -24,7 +24,7 @@
 		w.onerror( errorMessage, errorUrl, errorLine, errorColumn, errorObject );
 		sinon.assert.calledWithExactly( mw.track, 'global.error',
 			sinon.match( { errorMessage: errorMessage, url: errorUrl, lineNumber: errorLine,
-			columnNumber: errorColumn, errorObject: errorObject } ) );
+				columnNumber: errorColumn, errorObject: errorObject } ) );
 
 		w = { onerror: oldHandler };
 

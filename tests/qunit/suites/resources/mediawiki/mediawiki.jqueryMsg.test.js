@@ -1,4 +1,5 @@
 ( function ( mw, $ ) {
+	/* eslint-disable camelcase */
 	var formatText, formatParse, formatnumTests, specialCharactersPageName, expectedListUsers,
 		expectedListUsersSitename, expectedLinkPagenamee, expectedEntrypoints,
 		mwLanguageCache = {},
@@ -126,16 +127,18 @@
 	function process( tasks ) {
 		function abort() {
 			tasks.splice( 0, tasks.length );
+			// eslint-disable-next-line no-use-before-define
 			next();
 		}
 		function next() {
+			var task;
 			if ( !tasks ) {
 				// This happens if after the process is completed, one of our callbacks is
 				// invoked. This can happen if a test timed out but the process was still
 				// running. In that case, ignore it. Don't invoke complete() a second time.
 				return;
 			}
-			var task = tasks.shift();
+			task = tasks.shift();
 			if ( task ) {
 				task( next, abort );
 			} else {
@@ -362,14 +365,17 @@
 	} );
 
 	QUnit.test( 'Match PHP parser', function ( assert ) {
+		var tasks;
 		mw.messages.set( mw.libs.phpParserData.messages );
-		var tasks = $.map( mw.libs.phpParserData.tests, function ( test ) {
+		tasks = $.map( mw.libs.phpParserData.tests, function ( test ) {
 			var done = assert.async();
 			return function ( next, abort ) {
 				getMwLanguage( test.lang )
 					.then( function ( langClass ) {
+						var parser;
 						mw.config.set( 'wgUserLanguage', test.lang );
-						var parser = new mw.jqueryMsg.parser( { language: langClass } );
+						// eslint-disable-next-line new-cap
+						parser = new mw.jqueryMsg.parser( { language: langClass } );
 						assert.equal(
 							parser.parse( test.key, test.args ).html(),
 							test.result,
@@ -889,15 +895,18 @@
 	];
 
 	QUnit.test( 'formatnum', function ( assert ) {
+		var queue;
 		mw.messages.set( 'formatnum-msg', '{{formatnum:$1}}' );
 		mw.messages.set( 'formatnum-msg-int', '{{formatnum:$1|R}}' );
-		var queue = $.map( formatnumTests, function ( test ) {
+		queue = $.map( formatnumTests, function ( test ) {
 			var done = assert.async();
 			return function ( next, abort ) {
 				getMwLanguage( test.lang )
 					.then( function ( langClass ) {
+						var parser;
 						mw.config.set( 'wgUserLanguage', test.lang );
-						var parser = new mw.jqueryMsg.parser( { language: langClass } );
+						// eslint-disable-next-line new-cap
+						parser = new mw.jqueryMsg.parser( { language: langClass } );
 						assert.equal(
 							parser.parse( test.integer ? 'formatnum-msg-int' : 'formatnum-msg',
 								[ test.number ] ).html(),
@@ -1125,10 +1134,11 @@
 	} );
 
 	QUnit.test( 'Behavior in case of invalid wikitext', function ( assert ) {
+		var logSpy;
 		mw.messages.set( 'invalid-wikitext', '<b>{{FAIL}}</b>' );
 
 		this.suppressWarnings();
-		var logSpy = this.sandbox.spy( mw.log, 'warn' );
+		logSpy = this.sandbox.spy( mw.log, 'warn' );
 
 		assert.equal(
 			formatParse( 'invalid-wikitext' ),

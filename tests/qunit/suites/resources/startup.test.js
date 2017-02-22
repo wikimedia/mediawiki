@@ -1,4 +1,4 @@
-/*global isCompatible: true */
+/* global isCompatible: true */
 ( function ( $ ) {
 	var testcases = {
 		tested: [
@@ -149,15 +149,13 @@
 
 	QUnit.test( 'isCompatible( featureTestable )', function ( assert ) {
 		$.each( testcases.tested, function ( i, ua ) {
-				assert.strictEqual( isCompatible( ua ), true, ua );
-			}
-		);
+			assert.strictEqual( isCompatible( ua ), true, ua );
+		} );
 	} );
 
 	QUnit.test( 'isCompatible( blacklisted )', function ( assert ) {
 		$.each( testcases.blacklisted, function ( i, ua ) {
-				assert.strictEqual( isCompatible( ua ), false, ua );
-			}
-		);
+			assert.strictEqual( isCompatible( ua ), false, ua );
+		} );
 	} );
 }( jQuery ) );

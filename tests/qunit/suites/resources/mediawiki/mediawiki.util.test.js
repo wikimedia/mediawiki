@@ -29,7 +29,7 @@
 			[ false, ':::' ],
 			[ false, '::0:', 'IPv6 ending in a lone ":"' ],
 
-			[ true,  '::', 'IPv6 zero address' ],
+			[ true, '::', 'IPv6 zero address' ],
 
 			[ false, '::fc:100:a:d:1:e:ac:0', 'IPv6 with "::" and 8 words' ],
 			[ false, '::fc:100:a:d:1:e:ac:0:1', 'IPv6 with 9 words' ],
@@ -38,15 +38,15 @@
 			[ false, 'fc::100:', 'IPv6 ending with lone ":"' ],
 			[ false, 'fc:::100', 'IPv6 with ":::" in the middle' ],
 
-			[ true,  'fc::100', 'IPv6 with "::" and 2 words' ],
-			[ true,  'fc::100:a', 'IPv6 with "::" and 3 words' ],
-			[ true,  'fc::100:a:d', 'IPv6 with "::" and 4 words' ],
-			[ true,  'fc::100:a:d:1', 'IPv6 with "::" and 5 words' ],
-			[ true,  'fc::100:a:d:1:e', 'IPv6 with "::" and 6 words' ],
-			[ true,  'fc::100:a:d:1:e:ac', 'IPv6 with "::" and 7 words' ],
-			[ true,  '2001::df', 'IPv6 with "::" and 2 words' ],
-			[ true,  '2001:5c0:1400:a::df', 'IPv6 with "::" and 5 words' ],
-			[ true,  '2001:5c0:1400:a::df:2', 'IPv6 with "::" and 6 words' ],
+			[ true, 'fc::100', 'IPv6 with "::" and 2 words' ],
+			[ true, 'fc::100:a', 'IPv6 with "::" and 3 words' ],
+			[ true, 'fc::100:a:d', 'IPv6 with "::" and 4 words' ],
+			[ true, 'fc::100:a:d:1', 'IPv6 with "::" and 5 words' ],
+			[ true, 'fc::100:a:d:1:e', 'IPv6 with "::" and 6 words' ],
+			[ true, 'fc::100:a:d:1:e:ac', 'IPv6 with "::" and 7 words' ],
+			[ true, '2001::df', 'IPv6 with "::" and 2 words' ],
+			[ true, '2001:5c0:1400:a::df', 'IPv6 with "::" and 5 words' ],
+			[ true, '2001:5c0:1400:a::df:2', 'IPv6 with "::" and 6 words' ],
 
 			[ false, 'fc::100:a:d:1:e:ac:0', 'IPv6 with "::" and 8 words' ],
 			[ false, 'fc::100:a:d:1:e:ac:0:1', 'IPv6 with 9 words' ]
