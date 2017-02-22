@@ -461,13 +461,28 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * @param array $localFileRefs List of files
 	 */
 	protected function saveFileDependencies( ResourceLoaderContext $context, $localFileRefs ) {
-		// Normalise array
-		$localFileRefs = array_values( array_unique( $localFileRefs ) );
-		sort( $localFileRefs );
 
 		try {
+			// Related bugs and performance considerations:
+			// 1. Don't needlessly change the database value with the same list in a
+			//    different order or with duplicates.
+			// 2. Use relative paths to avoid ghost entries when $IP changes. (T111481)
+			// 3. Don't needlessly replace the database with the same value
+			//    just because $IP changed (e.g. when upgrading a wiki).
+			// 4. Don't create an endless replace loop on every request for this
+			//    module when '../' is used anywhere. Eventhough both are expanded
+			//    (one expanded by getFileDependencies from the DB, the other is
+			//    still raw as originally read by RL), the latter has not
+			//    been normalized yet.
+
+			// Normalise
+			$localFileRefs = array_values( array_unique( $localFileRefs ) );
+			sort( $localFileRefs );
+			$localPaths = self::getRelativePaths( $localFileRefs );
+
+			$storedPaths = self::getRelativePaths( $this->getFileDependencies( $context ) );
 			// If the list has been modified since last time we cached it, update the cache
-			if ( $localFileRefs !== $this->getFileDependencies( $context ) ) {
+			if ( $localPaths !== $storedPaths ) {
 				$vary = $context->getSkin() . '|' . $context->getLanguage();
 				$cache = ObjectCache::getLocalClusterInstance();
 				$key = $cache->makeKey( __METHOD__, $this->getName(), $vary );
@@ -476,8 +491,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 					return; // T124649; avoid write slams
 				}
 
-				// Use relative paths to avoid ghost entries when $IP changes (T111481)
-				$deps = FormatJson::encode( self::getRelativePaths( $localFileRefs ) );
+				$deps = FormatJson::encode( $localPaths );
 				$dbw = wfGetDB( DB_MASTER );
 				$dbw->upsert( 'module_deps',
 					[
