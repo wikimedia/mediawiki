@@ -299,6 +299,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addField', 'externallinks', 'el_index_60', 'patch-externallinks-el_index_60.sql' ],
 			[ 'dropIndex', 'user_groups', 'ug_user_group', 'patch-user_groups-primary-key.sql' ],
 			[ 'addField', 'user_groups', 'ug_expiry', 'patch-user_groups-ug_expiry.sql' ],
+			[ 'modifyField', 'categorylinks', 'cl_collation', 'patch-categorylinks-collation-modify.sql' ],
 		];
 	}
 
