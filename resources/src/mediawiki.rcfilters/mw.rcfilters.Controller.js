@@ -48,6 +48,9 @@
 	 */
 	mw.rcfilters.Controller.prototype.resetToDefaults = function () {
 		this.filtersModel.setFiltersToDefaults();
+		// Check all filter interactions
+		this.filtersModel.reassessFilterInteractions();
+
 		this.updateURL();
 		this.updateChangesList();
 	};
@@ -59,6 +62,9 @@
 		this.filtersModel.emptyAllFilters();
 		this.updateURL();
 		this.updateChangesList();
+
+		// Check all filter interactions
+		this.filtersModel.reassessFilterInteractions();
 	};
 
 	/**
