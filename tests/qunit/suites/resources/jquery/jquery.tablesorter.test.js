@@ -205,11 +205,11 @@
 						'jul', 'aug', 'sep', 'oct', 'nov', 'dec' ]
 				},
 				names: [ 'January', 'February', 'March', 'April', 'May', 'June',
-						'July', 'August', 'September', 'October', 'November', 'December' ],
+					'July', 'August', 'September', 'October', 'November', 'December' ],
 				genitive: [ 'January', 'February', 'March', 'April', 'May', 'June',
-						'July', 'August', 'September', 'October', 'November', 'December' ],
+					'July', 'August', 'September', 'October', 'November', 'December' ],
 				abbrev: [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-						'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]
+					'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]
 			};
 		},
 		teardown: function () {
@@ -246,6 +246,7 @@
 
 		for ( i = 0; i < data.length; i++ ) {
 			$tr = $( '<tr>' );
+			// eslint-disable-next-line no-loop-func
 			$.each( data[ i ], function ( j, str ) {
 				var $td = $( '<td>' );
 				$td.text( str ).appendTo( $tr );
@@ -491,13 +492,14 @@
 		simple,
 		simpleAsc,
 		function ( $table ) {
+			var event;
 			$table.tablesorter(
 				{ sortList: [ { 0: 'desc' }, { 1: 'desc' } ] }
 			);
 			$table.find( '.headerSort:eq(0)' ).click();
 
 			// Pretend to click while pressing the multi-sort key
-			var event = $.Event( 'click' );
+			event = $.Event( 'click' );
 			event[ $table.data( 'tablesorter' ).config.sortMultiSortKey ] = true;
 			$table.find( '.headerSort:eq(1)' ).trigger( event );
 		}

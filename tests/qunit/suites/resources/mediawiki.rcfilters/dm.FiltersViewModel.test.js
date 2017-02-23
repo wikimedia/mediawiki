@@ -270,7 +270,7 @@
 				hidefilter4: 0,
 				hidefilter5: 0,
 				hidefilter6: 0,
-				group3: 'all',
+				group3: 'all'
 			},
 			'Unselected filters return all parameters falsey or \'all\'.'
 		);
@@ -938,7 +938,7 @@
 					filters: [
 						{ name: 'filter1' },
 						{ name: 'filter2' },
-						{ name: 'filter3' },
+						{ name: 'filter3' }
 					]
 				},
 				group2: {
@@ -948,10 +948,11 @@
 					filters: [
 						{ name: 'filter4' },
 						{ name: 'filter5' },
-						{ name: 'filter6' },
+						{ name: 'filter6' }
 					]
 				}
 			},
+			model = new mw.rcfilters.dm.FiltersViewModel(),
 			isCapsuleItemMuted = function ( filterName ) {
 				var itemModel = model.getItemByName( filterName ),
 					groupModel = itemModel.getGroupModel();
@@ -981,8 +982,7 @@
 				filter4: false,
 				filter5: false,
 				filter6: false
-			},
-			model = new mw.rcfilters.dm.FiltersViewModel();
+			};
 
 		model.initializeFilters( definition );
 
@@ -1083,7 +1083,7 @@
 							conflicts: [ 'filter3' ]
 						},
 						{
-							name: 'filter6',
+							name: 'filter6'
 						}
 					]
 				}
@@ -1118,7 +1118,7 @@
 			$.extend( true, {}, baseFullState, {
 				filter1: { selected: true },
 				filter2: { conflicted: true },
-				filter4: { conflicted: true },
+				filter4: { conflicted: true }
 			} ),
 			'Selecting a filter set its conflicts list as "conflicted".'
 		);
@@ -1134,7 +1134,7 @@
 			$.extend( true, {}, baseFullState, {
 				filter1: { selected: true, conflicted: true },
 				filter2: { conflicted: true },
-				filter4: { selected: true, conflicted: true },
+				filter4: { selected: true, conflicted: true }
 			} ),
 			'Selecting a conflicting filter sets both sides to conflicted and selected.'
 		);

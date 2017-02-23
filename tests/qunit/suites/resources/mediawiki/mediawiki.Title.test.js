@@ -1,79 +1,80 @@
 ( function ( mw, $ ) {
+	/* eslint-disable camelcase */
 	var repeat = function ( input, multiplier ) {
-		return new Array( multiplier + 1 ).join( input );
-	},
-	cases = {
+			return new Array( multiplier + 1 ).join( input );
+		},
 		// See also TitleTest.php#testSecureAndSplit
-		valid: [
-			'Sandbox',
-			'A "B"',
-			'A \'B\'',
-			'.com',
-			'~',
-			'"',
-			'\'',
-			'Talk:Sandbox',
-			'Talk:Foo:Sandbox',
-			'File:Example.svg',
-			'File_talk:Example.svg',
-			'Foo/.../Sandbox',
-			'Sandbox/...',
-			'A~~',
-			':A',
-			// Length is 256 total, but only title part matters
-			'Category:' + repeat( 'x', 248 ),
-			repeat( 'x', 252 )
-		],
-		invalid: [
-			'',
-			':',
-			'__  __',
-			'  __  ',
-			// Bad characters forbidden regardless of wgLegalTitleChars
-			'A [ B',
-			'A ] B',
-			'A { B',
-			'A } B',
-			'A < B',
-			'A > B',
-			'A | B',
-			'A \t B',
-			'A \n B',
-			// URL encoding
-			'A%20B',
-			'A%23B',
-			'A%2523B',
-			// XML/HTML character entity references
-			// Note: The ones with # are commented out as those are interpreted as fragment and
-			// as such end up being valid.
-			'A &eacute; B',
-			// 'A &#233; B',
-			// 'A &#x00E9; B',
-			// Subject of NS_TALK does not roundtrip to NS_MAIN
-			'Talk:File:Example.svg',
-			// Directory navigation
-			'.',
-			'..',
-			'./Sandbox',
-			'../Sandbox',
-			'Foo/./Sandbox',
-			'Foo/../Sandbox',
-			'Sandbox/.',
-			'Sandbox/..',
-			// Tilde
-			'A ~~~ Name',
-			'A ~~~~ Signature',
-			'A ~~~~~ Timestamp',
-			repeat( 'x', 256 ),
-			// Extension separation is a js invention, for length
-			// purposes it is part of the title
-			repeat( 'x', 252 ) + '.json',
-			// Namespace prefix without actual title
-			'Talk:',
-			'Category: ',
-			'Category: #bar'
-		]
-	};
+		cases = {
+			valid: [
+				'Sandbox',
+				'A "B"',
+				'A \'B\'',
+				'.com',
+				'~',
+				'"',
+				'\'',
+				'Talk:Sandbox',
+				'Talk:Foo:Sandbox',
+				'File:Example.svg',
+				'File_talk:Example.svg',
+				'Foo/.../Sandbox',
+				'Sandbox/...',
+				'A~~',
+				':A',
+				// Length is 256 total, but only title part matters
+				'Category:' + repeat( 'x', 248 ),
+				repeat( 'x', 252 )
+			],
+			invalid: [
+				'',
+				':',
+				'__  __',
+				'  __  ',
+				// Bad characters forbidden regardless of wgLegalTitleChars
+				'A [ B',
+				'A ] B',
+				'A { B',
+				'A } B',
+				'A < B',
+				'A > B',
+				'A | B',
+				'A \t B',
+				'A \n B',
+				// URL encoding
+				'A%20B',
+				'A%23B',
+				'A%2523B',
+				// XML/HTML character entity references
+				// Note: The ones with # are commented out as those are interpreted as fragment and
+				// as such end up being valid.
+				'A &eacute; B',
+				// 'A &#233; B',
+				// 'A &#x00E9; B',
+				// Subject of NS_TALK does not roundtrip to NS_MAIN
+				'Talk:File:Example.svg',
+				// Directory navigation
+				'.',
+				'..',
+				'./Sandbox',
+				'../Sandbox',
+				'Foo/./Sandbox',
+				'Foo/../Sandbox',
+				'Sandbox/.',
+				'Sandbox/..',
+				// Tilde
+				'A ~~~ Name',
+				'A ~~~~ Signature',
+				'A ~~~~~ Timestamp',
+				repeat( 'x', 256 ),
+				// Extension separation is a js invention, for length
+				// purposes it is part of the title
+				repeat( 'x', 252 ) + '.json',
+				// Namespace prefix without actual title
+				'Talk:',
+				'Category: ',
+				'Category: #bar'
+			]
+		};
 
 	QUnit.module( 'mediawiki.Title', QUnit.newMwEnvironment( {
 		// mw.Title relies on these three config vars
@@ -139,6 +140,7 @@
 		}
 		for ( i = 0; i < cases.invalid.length; i++ ) {
 			title = cases.invalid[ i ];
+			// eslint-disable-next-line no-loop-func
 			assert.throws( function () {
 				return new mw.Title( title );
 			}, cases.invalid[ i ] );

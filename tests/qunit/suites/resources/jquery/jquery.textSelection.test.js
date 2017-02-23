@@ -1,4 +1,28 @@
 ( function ( $ ) {
+	var caretSample,
+		sig = {
+			pre: '--~~~~'
+		},
+		bold = {
+			pre: '\'\'\'',
+			peri: 'Bold text',
+			post: '\'\'\''
+		},
+		h2 = {
+			pre: '== ',
+			peri: 'Heading 2',
+			post: ' ==',
+			regex: /^(\s*)(={1,6})(.*?)\2(\s*)$/,
+			regexReplace: '$1==$3==$4',
+			ownline: true
+		},
+		ulist = {
+			pre: '* ',
+			peri: 'Bulleted list item',
+			post: '',
+			ownline: true,
+			splitlines: true
+		};
 
 	QUnit.module( 'jquery.textSelection', QUnit.newMwEnvironment() );
 
@@ -60,31 +84,6 @@
 
 		} );
 	}
-
-	var caretSample,
-		sig = {
-			pre: '--~~~~'
-		},
-		bold = {
-			pre: '\'\'\'',
-			peri: 'Bold text',
-			post: '\'\'\''
-		},
-		h2 = {
-			pre: '== ',
-			peri: 'Heading 2',
-			post: ' ==',
-			regex: /^(\s*)(={1,6})(.*?)\2(\s*)$/,
-			regexReplace: '$1==$3==$4',
-			ownline: true
-		},
-		ulist = {
-			pre: '* ',
-			peri: 'Bulleted list item',
-			post: '',
-			ownline: true,
-			splitlines: true
-		};
 
 	encapsulateTest( {
 		description: 'Adding sig to end of text',

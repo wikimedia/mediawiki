@@ -12,8 +12,7 @@
 
 	// This test is first because if it fails, then almost all of the latter tests are meaningless.
 	QUnit.test( 'testing hooks/triggers', function ( assert ) {
-		var test = this,
-			$collapsible = prepareCollapsible(
+		var $collapsible = prepareCollapsible(
 				'<div class="mw-collapsible">' + loremIpsum + '</div>'
 			),
 			$content = $collapsible.find( '.mw-collapsible-content' ),
@@ -45,8 +44,7 @@
 	} );
 
 	QUnit.test( 'basic operation (<div>)', function ( assert ) {
-		var test = this,
-			$collapsible = prepareCollapsible(
+		var $collapsible = prepareCollapsible(
 				'<div class="mw-collapsible">' + loremIpsum + '</div>'
 			),
 			$content = $collapsible.find( '.mw-collapsible-content' ),
@@ -71,8 +69,7 @@
 	} );
 
 	QUnit.test( 'basic operation (<table>)', function ( assert ) {
-		var test = this,
-			$collapsible = prepareCollapsible(
+		var $collapsible = prepareCollapsible(
 				'<table class="mw-collapsible">' +
 					'<tr><td>' + loremIpsum + '</td><td>' + loremIpsum + '</td></tr>' +
 					'<tr><td>' + loremIpsum + '</td><td>' + loremIpsum + '</td></tr>' +
@@ -319,8 +316,7 @@
 	} );
 
 	QUnit.test( 'cloned collapsibles can be made collapsible again', function ( assert ) {
-		var test = this,
-			$collapsible = prepareCollapsible(
+		var $collapsible = prepareCollapsible(
 				'<div class="mw-collapsible">' + loremIpsum + '</div>'
 			),
 			$clone = $collapsible.clone() // clone without data and events

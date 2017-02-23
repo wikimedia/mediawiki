@@ -32,10 +32,10 @@
 
 		function isCssImportApplied() {
 			// Trigger reflow, repaint, redraw, whatever (cross-browser)
-			var x = $element.css( 'height' );
-			x = el.innerHTML;
+			$element.css( 'height' );
+			el.innerHTML;
 			el.className = el.className;
-			x = document.documentElement.clientHeight;
+			document.documentElement.clientHeight;
 
 			return $element.css( prop ) === val;
 		}

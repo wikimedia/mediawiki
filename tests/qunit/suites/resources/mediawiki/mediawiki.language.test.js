@@ -1,6 +1,8 @@
 ( function ( mw, $ ) {
 	'use strict';
 
+	var grammarTests;
+
 	QUnit.module( 'mediawiki.language', QUnit.newMwEnvironment( {
 		setup: function () {
 			this.liveLangData = mw.language.data;
@@ -82,8 +84,8 @@
 		// The test works only if the content language is opt.language
 		// because it requires [lang].js to be loaded.
 		QUnit.test( 'Grammar test for lang=' + langCode, function ( assert ) {
-
-			for ( var i = 0; i < test.length; i++ ) {
+			var i;
+			for ( i = 0; i < test.length; i++ ) {
 				assert.equal(
 					mw.language.convertGrammar( test[ i ].word, test[ i ].grammarForm ),
 					test[ i ].expected,
@@ -94,7 +96,7 @@
 	}
 
 	// These tests run only for the current UI language.
-	var grammarTests = {
+	grammarTests = {
 		bs: [
 			{
 				word: 'word',
