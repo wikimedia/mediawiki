@@ -59,6 +59,9 @@
 	 */
 	mw.rcfilters.Controller.prototype.resetToDefaults = function () {
 		this.filtersModel.setFiltersToDefaults();
+		// Check all filter interactions
+		this.filtersModel.reassessFilterInteractions();
+
 		this.updateURL();
 		this.updateChangesList();
 	};
@@ -69,6 +72,9 @@
 	mw.rcfilters.Controller.prototype.emptyFilters = function () {
 		this.filtersModel.emptyAllFilters();
 		this.filtersModel.clearAllHighlightColors();
+		// Check all filter interactions
+		this.filtersModel.reassessFilterInteractions();
+
 		this.updateURL();
 		this.updateChangesList();
 	};
