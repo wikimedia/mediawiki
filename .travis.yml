@@ -7,6 +7,12 @@
 # complement that setup by testing MediaWiki on travis
 #
 language: php
+# Using HHVM-3.6+ requires Trusty (Travis default: precise)
+# https://docs.travis-ci.com/user/languages/php#HHVM-versions
+# https://github.com/travis-ci/travis-ci/issues/7368
+sudo: required
+group: edge
+dist: trusty
 
 matrix:
   fast_finish: true
@@ -44,7 +50,7 @@ before_script:
       --pass travis
       --dbtype "$dbtype"
       --dbname traviswiki
-      --dbuser travis
+      --dbuser root
       --dbpass ""
       --scriptpath "/w"
 
