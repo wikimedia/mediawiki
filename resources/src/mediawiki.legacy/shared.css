@@ -56,22 +56,22 @@ wbr {
 
 /* Input types that should follow user direction, like buttons */
 /* TODO: What about buttons in wikipage content ? */
-input[type="submit"],
-input[type="button"],
-input[type="reset"],
-input[type="file"] {
+input[type='submit'],
+input[type='button'],
+input[type='reset'],
+input[type='file'] {
 	direction: ltr;
 }
 
 /* Override default values */
-textarea[dir="ltr"],
-input[dir="ltr"] {
+textarea[dir='ltr'],
+input[dir='ltr'] {
 	/* @noflip */
 	direction: ltr;
 }
 
-textarea[dir="rtl"],
-input[dir="rtl"] {
+textarea[dir='rtl'],
+input[dir='rtl'] {
 	/* @noflip */
 	direction: rtl;
 }
