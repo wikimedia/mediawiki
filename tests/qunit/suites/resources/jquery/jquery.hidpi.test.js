@@ -7,8 +7,8 @@
 	} );
 
 	QUnit.test( 'bracketedDevicePixelRatio', function ( assert ) {
-		var devicePixelRatio = $.devicePixelRatio();
-		assert.equal( typeof devicePixelRatio, 'number', '$.bracketedDevicePixelRatio() returns a number' );
+		var ratio = $.bracketedDevicePixelRatio();
+		assert.equal( typeof ratio, 'number', '$.bracketedDevicePixelRatio() returns a number' );
 	} );
 
 	QUnit.test( 'bracketDevicePixelRatio', function ( assert ) {
