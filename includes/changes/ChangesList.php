@@ -403,7 +403,7 @@ class ChangesList extends ContextSource {
 			$diffLink = $this->linkRenderer->makeKnownLink(
 				$rc->getTitle(),
 				new HtmlArmor( $this->message['diff'] ),
-				[],
+				[ 'class' => 'mw-changeslist-diff' ],
 				$query
 			);
 		}
@@ -415,7 +415,7 @@ class ChangesList extends ContextSource {
 			$diffhist .= $this->linkRenderer->makeKnownLink(
 				$rc->getTitle(),
 				new HtmlArmor( $this->message['hist'] ),
-				[],
+				[ 'class' => 'mw-changeslist-history' ],
 				[
 					'curid' => $rc->mAttribs['rc_cur_id'],
 					'action' => 'history'
