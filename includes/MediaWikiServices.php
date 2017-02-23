@@ -14,6 +14,7 @@ use LinkCache;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use LoadBalancer;
 use MediaHandlerFactory;
+use MediaWiki\Cdn\CdnUpdateController;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Services\SalvageableService;
@@ -654,6 +655,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getVirtualRESTServiceClient() {
 		return $this->getService( 'VirtualRESTServiceClient' );
+	}
+
+	/**
+	 * @since 1.29
+	 * @return CdnUpdateController
+	 */
+	public function getCdnController() {
+		return $this->getService( 'CdnUpdateController' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

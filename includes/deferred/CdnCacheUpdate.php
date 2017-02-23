@@ -55,8 +55,9 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	 */
 	public static function newFromTitles( $titles, $urlArr = [] ) {
 		/** @var Title $title */
+		$cdnCtrl = MediaWikiServices::getInstance()->getCdnController();
 		foreach ( $titles as $title ) {
-			$urlArr = array_merge( $urlArr, $title->getCdnUrls() );
+			$urlArr = array_merge( $urlArr, $cdnCtrl->getDependentResources( $title ) );
 		}
 
 		return new CdnCacheUpdate( $urlArr );
@@ -68,7 +69,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	 * @deprecated since 1.27
 	 */
 	public static function newSimplePurge( Title $title ) {
-		return new CdnCacheUpdate( $title->getCdnUrls() );
+		return self::newFromTitles( [ $title ] );
 	}
 
 	/**
@@ -76,6 +77,9 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	 */
 	public function doUpdate() {
 		global $wgCdnReboundPurgeDelay;
+
+		//FIXME: delegate to CdnUpdateController; CdnCacheUpdate should use CdnUpdateController,
+		// not the other way around.
 
 		self::purge( $this->urls );
 

@@ -37,6 +37,9 @@
  *      MediaWiki code base.
  */
 
+use MediaWiki\Cdn\ActiveCdnController;
+use MediaWiki\Cdn\NoCdnUpdateController;
+use MediaWiki\Cdn\CdnController;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
@@ -402,6 +405,26 @@ return [
 		}
 
 		return $vrsClient;
+	},
+
+	'CdnUpdateController' => function( MediaWikiServices $services ) {
+		// TODO: inject more CDN configuration
+		$config = $services->getMainConfig();
+		$useSquid = $config->get( 'UseSquid' );
+
+		if ( $useSquid ) {
+			$squidServers = $services->getMainConfig()->get( 'SquidServers' );
+			$squidMaxAge = $services->getMainConfig()->get( 'SquidMaxAge' );
+
+			$cdnCtrl = new CdnController( $squidMaxAge, $squidServers );
+
+			$cdnCtrl->setUseESI( $config->get( 'UseESI' ) );
+			$cdnCtrl->setUseKeyHeader( $config->get( 'UseKeyHeader' ) );
+
+			return $cdnCtrl;
+		}
+
+		return new NoCdnUpdateController();
 	},
 
 	///////////////////////////////////////////////////////////////////////////
