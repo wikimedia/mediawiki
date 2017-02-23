@@ -13,7 +13,11 @@
 			comment: true,
 			text: true,
 			watchlist: true,
-			ignorewarnings: true
+			ignorewarnings: true,
+			chunk: true,
+			offset: true,
+			filesize: true,
+			async: true
 		};
 
 	/**
@@ -267,7 +271,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		uploadWithFormData: function ( file, data ) {
-			var key,
+			var key, request,
 				deferred = $.Deferred();
 
 			for ( key in data ) {
@@ -277,14 +281,16 @@
 			}
 
 			data = $.extend( {}, this.defaults.parameters, { action: 'upload' }, data );
-			data.file = file;
+			if ( !data.chunk ) {
+				data.file = file;
+			}
 
 			if ( !data.filename && !data.stash ) {
 				throw new Error( 'Filename not included in file data.' );
 			}
 
 			// Use this.postWithEditToken() or this.post()
-			this[ this.needToken() ? 'postWithEditToken' : 'post' ]( data, {
+			request = this[ this.needToken() ? 'postWithEditToken' : 'post' ]( data, {
 				// Use FormData (if we got here, we know that it's available)
 				contentType: 'multipart/form-data',
 				// No timeout (default from mw.Api is 30 seconds)
@@ -317,7 +323,147 @@
 					deferred.reject( errorCode, result );
 				} );
 
-			return deferred.promise();
+			return deferred.promise( { abort: request.abort } );
+		},
+
+		/**
+		 * Upload a file in several chunks.
+		 *
+		 * @param {File} file
+		 * @param {Object} data Other upload options, see action=upload API docs for more
+		 * @param {number} [chunkSize] Size (in bytes) per chunk (default: 5MB)
+		 * @param {number} [chunkRetries] Amount of times to retry a failed chunk (default: 1)
+		 * @returns {jQuery.Promise}
+		 */
+		chunkedUpload: function ( file, data, chunkSize, chunkRetries ) {
+			var start, end, promise, next, active,
+				deferred = $.Deferred();
+
+			chunkSize = chunkSize === undefined ? 5 * 1024 * 1024 : chunkSize;
+			chunkRetries = chunkRetries === undefined ? 1 : chunkRetries;
+
+			if ( !data.filename ) {
+				throw new Error( 'Filename not included in file data.' );
+			}
+
+			// Submit first chunk to get the filekey
+			active = promise = this.uploadChunk( file, data, 0, chunkSize, '', chunkRetries )
+				.fail( deferred.reject )
+				.progress( deferred.notify );
+
+			// Now iteratively submit the rest of the chunks
+			for ( start = chunkSize; start < file.size; start += chunkSize ) {
+				end = Math.min( start + chunkSize, file.size );
+				next = $.Deferred();
+
+				// We could simply chain one this.uploadChunk after another with
+				// .then(), but then we'd hit an `Uncaught RangeError: Maximum
+				// call stack size exceeded` at as low as 1024 calls in Firefox
+				// 47. This'll work around it, but comes with the drawback of
+				// having to properly relay the results to the returned promise.
+				// eslint-disable-next-line no-loop-func
+				promise.done( function ( start, end, next, result ) {
+					var filekey = result.upload.filekey;
+					active = this.uploadChunk( file, data, start, end, filekey, chunkRetries )
+						.done( end === file.size ? deferred.resolve : next.resolve )
+						.fail( deferred.reject )
+						.progress( deferred.notify );
+				// start, end & next must be bound to closure, or they'd have
+				// changed by the time the promises are resolved
+				}.bind( this, start, end, next ) );
+
+				promise = next;
+			}
+
+			return deferred.promise( { abort: active.abort } );
+		},
+
+		/**
+		 * Uploads 1 chunk.
+		 *
+		 * @private
+		 * @param {File} file
+		 * @param {Object} data Other upload options, see action=upload API docs for more
+		 * @param {number} start Chunk start position
+		 * @param {number} end Chunk end position
+		 * @param {string} [filekey] File key, for follow-up chunks
+		 * @param {number} [retries] Amount of times to retry request
+		 * @return {jQuery.Promise}
+		 */
+		uploadChunk: function ( file, data, start, end, filekey, retries ) {
+			var upload, retry,
+				api = this,
+				chunk = this.slice( file, start, end ),
+				deferred = $.Deferred();
+
+			// When uploading in chunks, we're going to be issuing a lot more
+			// requests and there's always a chance of 1 getting dropped.
+			// In such case, it could be useful to try again: a network hickup
+			// doesn't necessarily have to result in upload failure...
+			retries = retries === undefined ? 1 : retries;
+			retry = function ( code, result ) {
+				var deferred = $.Deferred(),
+					callback = function () {
+						api.uploadChunk( file, data, start, end, filekey, retries - 1 )
+							.then( deferred.resolve, deferred.reject );
+					};
+
+				// Don't retry if the request failed because we aborted it (or
+				// if it's another kind of request failure)
+				if ( code !== 'http' || result.textStatus === 'abort' ) {
+					return deferred.reject( code, result );
+				}
+
+				setTimeout( callback, 1000 );
+				return deferred.promise();
+			};
+
+			data.filesize = file.size;
+			data.chunk = chunk;
+			data.offset = start;
+
+			// filekey must only be added when uploading follow-up chunks; the
+			// first chunk should never have a filekey (it'll be generated)
+			if ( filekey && start !== 0 ) {
+				data.filekey = filekey;
+			}
+
+			upload = this.uploadWithFormData( file, data );
+			return upload.then(
+					null,
+					// If the call fails, we may want to try again...
+					retries === 0 ? deferred.reject : retry,
+					function ( fraction ) {
+						// Since we're only uploading small parts of a file, we
+						// need to adjust the reported progress to reflect where
+						// we actually are in the combined upload
+						return ( start + fraction * ( end - start ) ) / file.size;
+					}
+				).promise( { abort: upload.abort } );
+		},
+
+		/**
+		 * Slice a chunk out of a File object.
+		 *
+		 * @private
+		 * @param {File} file
+		 * @param {number} start
+		 * @param {number} stop
+		 * @returns {Blob}
+		 */
+		slice: function ( file, start, stop ) {
+			if ( file.mozSlice ) {
+				// FF <= 12
+				return file.mozSlice( start, stop, file.type );
+			} else if ( file.webkitSlice ) {
+				// Chrome <= 20
+				return file.webkitSlice( start, stop, file.type );
+			} else {
+				// On really old browser versions (before slice was prefixed),
+				// slice() would take (start, length) instead of (start, end)
+				// We'll ignore that here...
+				return file.slice( start, stop, file.type );
+			}
 		},
 
 		/**
