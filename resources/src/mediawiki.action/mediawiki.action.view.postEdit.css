@@ -32,7 +32,7 @@
 }
 
 .skin-monobook .postedit {
-	top: 6em !important;
+	top: 6em !important; /* stylelint-disable-line declaration-no-important */
 }
 
 .postedit-faded {

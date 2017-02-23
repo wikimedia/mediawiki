@@ -152,8 +152,8 @@
 }
 
 .config-plainlink a {
-	background: none !important;
-	padding: 0 !important;
+	background: none !important; /* stylelint-disable-line declaration-no-important */
+	padding: 0 !important; /* stylelint-disable-line declaration-no-important */
 }
 
 .config-download-link {
