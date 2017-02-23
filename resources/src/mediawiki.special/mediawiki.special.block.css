@@ -2,7 +2,7 @@
  * Styling for Special:Block
  */
 
-label[for="mw-input-wpConfirm"] {
+label[for='mw-input-wpConfirm'] {
 	font-weight: bold;
 }
 
