@@ -11,12 +11,12 @@
  * automatically when content is modified.
  */
 .mw-body-content {
-	counter-reset: mw-NumberedExtLink;
+	counter-reset: mw-numberedextlink;
 }
 
 .mw-body-content a[rel~='mw:ExtLink']:empty:after {
-	content: '[' counter( mw-NumberedExtLink ) ']';
-	counter-increment: mw-NumberedExtLink;
+	content: '[' counter( mw-numberedextlink ) ']';
+	counter-increment: mw-numberedextlink;
 }
 
 /**

@@ -4,8 +4,6 @@
 		"no-descending-specificity": null,
 
 		"selector-no-id": null,
-		"selector-pseudo-element-colon-notation": null,
-
-		"value-keyword-case": null
+		"selector-pseudo-element-colon-notation": null
 	}
 }
