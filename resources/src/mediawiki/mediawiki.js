@@ -2195,6 +2195,8 @@
 					// Whether the store is in use on this page.
 					enabled: null,
 
+					// Modules whose string representation exceeds 100 kB are
+					// ineligible for storage. See bug T66721.
 					MODULE_SIZE_MAX: 100 * 1000,
 
 					// The contents of the store, mapping '[name]@[version]' keys
