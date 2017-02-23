@@ -99,26 +99,26 @@ img {
  * MediaWiki-specific elements
  */
 #globalWrapper {
-	width: 100% !important;
-	min-width: 0 !important;
+	width: 100% !important; /* stylelint-disable-line declaration-no-important */
+	min-width: 0 !important; /* stylelint-disable-line declaration-no-important */
 }
 
 .mw-body {
 	background: #fff;
 	color: #000;
-	border: 0 !important;
-	padding: 0 !important;
-	margin: 0 !important;
+	border: 0 !important; /* stylelint-disable-line declaration-no-important */
+	padding: 0 !important; /* stylelint-disable-line declaration-no-important */
+	margin: 0 !important; /* stylelint-disable-line declaration-no-important */
 	direction: ltr;
 }
 
 #column-content {
-	margin: 0 !important;
+	margin: 0 !important; /* stylelint-disable-line declaration-no-important */
 }
 
 #column-content .mw-body {
 	padding: 1em;
-	margin: 0 !important;
+	margin: 0 !important; /* stylelint-disable-line declaration-no-important */
 }
 
 #toc {
@@ -164,8 +164,8 @@ img {
  * Links
  */
 a {
-	background: none !important;
-	padding: 0 !important;
+	background: none !important; /* stylelint-disable-line declaration-no-important */
+	padding: 0 !important; /* stylelint-disable-line declaration-no-important */
 }
 
 /* Expand URLs for printing */
@@ -187,11 +187,11 @@ a.external,
 a.new,
 a.stub {
 	/* IE 6 & 7 don't understand `inherit` */
-	color: #000 !important;
-	text-decoration: none !important;
+	color: #000 !important; /* stylelint-disable-line declaration-no-important */
+	text-decoration: none !important; /* stylelint-disable-line declaration-no-important */
 	/* Modern browser will apply this, IE 6 & 7 ignore the unknown */
-	color: inherit !important; /* stylelint-disable-line declaration-block-no-duplicate-properties */
-	text-decoration: inherit !important; /* stylelint-disable-line declaration-block-no-duplicate-properties */
+	color: inherit !important; /* stylelint-disable-line declaration-block-no-duplicate-properties, declaration-no-important */
+	text-decoration: inherit !important; /* stylelint-disable-line declaration-block-no-duplicate-properties, declaration-no-important */
 }
 
 /**

@@ -26,7 +26,7 @@ table.mw-htmlform-nolabel td.mw-label {
 }
 
 tr.mw-htmlform-vertical-label td.mw-label {
-	text-align: left !important;
+	text-align: left !important; /* stylelint-disable-line declaration-no-important */
 }
 
 .mw-icon-question {

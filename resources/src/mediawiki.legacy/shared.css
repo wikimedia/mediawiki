@@ -348,8 +348,8 @@ a.new {
 /* Plainlinks - this can be used to switch
  * off special external link styling */
 .plainlinks a.external {
-	background: none !important;
-	padding: 0 !important;
+	background: none !important; /* stylelint-disable-line declaration-no-important */
+	padding: 0 !important; /* stylelint-disable-line declaration-no-important */
 }
 
 /* External URLs should always be treated as LTR (T6330) */
@@ -563,7 +563,7 @@ table.wikitable > caption {
 }
 
 .mw-small-spinner {
-	padding: 10px !important;
+	padding: 10px !important; /* stylelint-disable-line declaration-no-important */
 	margin-right: 0.6em;
 	background-image: url( images/spinner.gif );
 	background-position: center center;
@@ -593,7 +593,7 @@ h1:lang( pi ),
 h1:lang( sa ),
 h1:lang( ta ),
 h1:lang( te ) {
-	line-height: 1.6em !important;
+	line-height: 1.6em !important; /* stylelint-disable-line declaration-no-important */
 }
 
 /* stylelint-disable selector-list-comma-newline-after */
