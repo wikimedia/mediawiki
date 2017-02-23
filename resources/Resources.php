@@ -1962,6 +1962,8 @@ return [
 		'dependencies' => [
 			'jquery.byteLimit',
 			'mediawiki.widgets',
+                        'oojs-ui-core',
+                        'oojs-ui-windows',
 		],
 	],
 	'mediawiki.special.movePage.styles' => [
