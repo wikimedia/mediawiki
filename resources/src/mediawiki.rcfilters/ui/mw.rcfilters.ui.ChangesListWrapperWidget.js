@@ -105,7 +105,7 @@
 			this.applyHighlight();
 
 			// Make sure enhanced RC re-initializes correctly
-			mw.hook( 'wikipage.content' ).fire( this.$changesListContent );
+			mw.hook( 'wikipage.content' ).fire( this.$element );
 		}
 		this.popPending();
 	};
