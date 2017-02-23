@@ -79,6 +79,8 @@ class SearchFormWidget {
 	 * @return string HTML
 	 */
 	protected function shortDialogHtml( $profile, $term, $numResults, $totalResults, $offset ) {
+		$html = '';
+
 		$searchWidget = new SearchInputWidget( [
 			'id' => 'searchText',
 			'name' => 'search',
@@ -96,11 +98,7 @@ class SearchFormWidget {
 			'align' => 'top',
 		] );
 
-		$html =
-			Html::hidden( 'title', $this->specialSearch->getPageTitle()->getPrefixedText() ) .
-			Html::hidden( 'profile', $profile ) .
-			Html::hidden( 'fulltext', '1' ) .
-			$layout;
+		$html .= $layout;
 
 		if ( $totalResults > 0 && $offset < $totalResults ) {
 			$html .= Xml::tags(
@@ -112,6 +110,11 @@ class SearchFormWidget {
 					->parse()
 			);
 		}
+
+		$html .=
+			Html::hidden( 'title', $this->specialSearch->getPageTitle()->getPrefixedText() ) .
+			Html::hidden( 'profile', $profile ) .
+			Html::hidden( 'fulltext', '1' );
 
 		return $html;
 	}
