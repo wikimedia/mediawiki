@@ -489,7 +489,7 @@
 		'stashwrongowner',
 		'stashnosuchfilekey'
 	];
-	mw.log.deprecate( mw.Api, 'errors', mw.Api.errors, 'mw.Api.errors' );
+	mw.log.deprecate( mw.Api, 'errors', mw.Api.errors, null, 'mw.Api.errors' );
 
 	/**
 	 * @static
@@ -501,6 +501,6 @@
 		'duplicate',
 		'exists'
 	];
-	mw.log.deprecate( mw.Api, 'warnings', mw.Api.warnings, 'mw.Api.warnings' );
+	mw.log.deprecate( mw.Api, 'warnings', mw.Api.warnings, null, 'mw.Api.warnings' );
 
 }( mediaWiki, jQuery ) );
