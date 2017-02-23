@@ -14,8 +14,8 @@
 	counter-reset: mw-NumberedExtLink;
 }
 
-.mw-body-content a[rel~="mw:ExtLink"]:empty:after {
-	content: "[" counter( mw-NumberedExtLink ) "]";
+.mw-body-content a[rel~='mw:ExtLink']:empty:after {
+	content: '[' counter( mw-NumberedExtLink ) ']';
 	counter-increment: mw-NumberedExtLink;
 }
 
@@ -133,7 +133,7 @@ figure[typeof~='mw:Image/Frame'] > *:first-child > img,
 }
 
 /* Hide the caption for frameless and plain floated images */
-figure[typeof~="mw:Image/Frameless"] > figcaption,
-figure[typeof~="mw:Image"] > figcaption {
+figure[typeof~='mw:Image/Frameless'] > figcaption,
+figure[typeof~='mw:Image'] > figcaption {
 	display: none;
 }
