@@ -7,6 +7,10 @@
 # complement that setup by testing MediaWiki on travis
 #
 language: php
+# Using HHVM-3.6+ requires Trusty (Travis CI default: precise)
+# https://docs.travis-ci.com/user/languages/php#HHVM-versions
+# http://dl.hhvm.com/ubuntu/dists/
+dist: trusty
 
 matrix:
   fast_finish: true
