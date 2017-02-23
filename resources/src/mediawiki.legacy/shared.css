@@ -596,6 +596,7 @@ h1:lang( te ) {
 	line-height: 1.6em !important;
 }
 
+/* stylelint-disable selector-list-comma-newline-after */
 h2:lang( anp ), h3:lang( anp ), h4:lang( anp ), h5:lang( anp ), h6:lang( anp ),
 h2:lang( as ), h3:lang( as ), h4:lang( as ), h5:lang( as ), h6:lang( as ),
 h2:lang( bho ), h3:lang( bho ), h4:lang( bho ), h5:lang( bho ), h6:lang( bho ),
@@ -619,6 +620,7 @@ h2:lang( ta ), h3:lang( ta ), h4:lang( ta ), h5:lang( ta ), h6:lang( ta ),
 h2:lang( te ), h3:lang( te ), h4:lang( te ), h5:lang( te ), h6:lang( te ) {
 	line-height: 1.2em;
 }
+/* stylelint-enable selector-list-comma-newline-after */
 
 /* Localised ordered list numbering for some languages */
 ol:lang( azb ) li,
@@ -658,7 +660,8 @@ ol:lang( or ) li {
 	list-style-type: oriya;
 }
 
-#toc ul, .toc ul {
+#toc ul,
+.toc ul {
 	margin: 0.3em 0;
 }
 

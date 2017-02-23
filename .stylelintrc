@@ -5,7 +5,6 @@
 
 		"no-descending-specificity": null,
 
-		"selector-list-comma-newline-after": null,
 		"selector-no-id": null,
 		"selector-pseudo-element-colon-notation": null,
 

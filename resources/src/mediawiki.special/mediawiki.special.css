@@ -16,7 +16,8 @@
 }
 
 /* Common for Special:Allpages and Special:PrefixIndex */
-.mw-allpages-body, .mw-prefixindex-body {
+.mw-allpages-body,
+.mw-prefixindex-body {
 	columns: 22em 3;
 	-moz-columns: 22em 3;
 	-webkit-columns: 22em 3;
