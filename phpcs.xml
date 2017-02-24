@@ -12,6 +12,7 @@
 		</properties>
 	</rule>
 	<file>.</file>
+	<arg name="bootstrap" value="tests/phpcs/bootstrap-ci.php"/>
 	<arg name="encoding" value="utf8"/>
 	<arg name="extensions" value="php,php5,inc,sample"/>
 	<rule ref="Generic.Files.LineLength">
