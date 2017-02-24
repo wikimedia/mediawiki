@@ -11,7 +11,6 @@ language: php
 # - Package 'djvulibre-bin' is not yet whitelisted for trusty containers.
 #   https://github.com/travis-ci/apt-package-whitelist/issues/4036
 sudo: required
-group: edge
 # Use Trusty instead of Travis default (precise)
 # - Required in order to use HHVM 3.6 or higher.
 # - Required for non-buggy xml library for XmlTypeCheck/UploadBaseTest (T75176).
@@ -45,9 +44,11 @@ branches:
     - master
     - /^travis-ci\/.*$/
 
-before_install:
-  - sudo apt-get install -qq djvulibre-bin tidy
-  - composer self-update --quiet --no-interaction
+addons:
+  apt:
+    packages:
+    - djvulibre-bin
+    - tidy
 
 before_script:
   - composer install --prefer-source --quiet --no-interaction
