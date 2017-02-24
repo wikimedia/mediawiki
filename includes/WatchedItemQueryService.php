@@ -402,7 +402,7 @@ class WatchedItemQueryService {
 		if ( !isset( $options['start'] ) && !isset( $options['end'] ) ) {
 			if ( $db->getType() === 'mysql' ) {
 				// This is an index optimization for mysql
-				$conds[] = "rc_timestamp > ''";
+				$conds[] = 'rc_timestamp > ' . $db->addQuotes( '' );
 			}
 		}
 

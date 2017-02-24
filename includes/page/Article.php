@@ -1171,7 +1171,10 @@ class Article implements Page {
 		$loggedIn = $this->getContext()->getUser()->isLoggedIn();
 		if ( $loggedIn || $cache->get( $key ) ) {
 			$logTypes = [ 'delete', 'move' ];
-			$conds = [ "log_action != 'revision'" ];
+
+			$dbr = wfGetDB( DB_REPLICA );
+
+			$conds = [ 'log_action != ' . $dbr->addQuotes( 'revision' ) ];
 			// Give extensions a chance to hide their (unrelated) log entries
 			Hooks::run( 'Article::MissingArticleConditions', [ &$conds, $logTypes ] );
 			LogEventsList::showLogExtract(
