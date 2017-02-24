@@ -24,6 +24,8 @@
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\DBConnectionError;
+use Wikimedia\Rdbms\DBUnexpectedError;
 
 /**
  * @ingroup Database

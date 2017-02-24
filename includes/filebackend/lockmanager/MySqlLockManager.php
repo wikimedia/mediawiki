@@ -1,6 +1,7 @@
 <?php
 
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\DBError;
 
 /**
  * MySQL version of DBLockManager that supports shared locks.

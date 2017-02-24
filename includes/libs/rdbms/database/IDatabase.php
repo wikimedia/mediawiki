@@ -26,10 +26,6 @@
 namespace Wikimedia\Rdbms;
 
 use Wikimedia\ScopedCallback;
-use DBError;
-use DBConnectionError;
-use DBUnexpectedError;
-use DBQueryError;
 use Exception;
 use RuntimeException;
 use UnexpectedValueException;

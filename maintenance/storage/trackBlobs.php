@@ -22,6 +22,8 @@
  * @see wfWaitForSlaves()
  */
 
+use Wikimedia\Rdbms\DBConnectionError;
+
 require __DIR__ . '/../commandLine.inc';
 
 if ( count( $args ) < 1 ) {

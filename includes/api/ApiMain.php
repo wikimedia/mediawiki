@@ -1,7 +1,5 @@
 <?php
 /**
- *
- *
  * Created on Sep 4, 2006
  *
  * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
@@ -28,6 +26,8 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Timestamp\TimestampException;
+use Wikimedia\Rdbms\DBQueryError;
+use Wikimedia\Rdbms\DBError;
 
 /**
  * This is the main API class, used for both external and internal processing.
@@ -1044,7 +1044,8 @@ class ApiMain extends ApiBase {
 		} else {
 			// Something is seriously wrong
 			$config = $this->getConfig();
-			$code = 'internal_api_error_' . get_class( $e );
+			$class = preg_replace( '#^Wikimedia\\\Rdbms\\\#', '', get_class( $e ) );
+			$code = 'internal_api_error_' . $class;
 			if ( ( $e instanceof DBQueryError ) && !$config->get( 'ShowSQLErrors' ) ) {
 				$params = [ 'apierror-databaseerror', WebRequest::getRequestId() ];
 			} else {

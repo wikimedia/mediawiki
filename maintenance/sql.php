@@ -26,6 +26,7 @@ require_once __DIR__ . '/Maintenance.php';
 
 use Wikimedia\Rdbms\ResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\DBQueryError;
 
 /**
  * Maintenance script that sends SQL queries from the specified file to the database.

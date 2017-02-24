@@ -3,7 +3,6 @@
 namespace Wikimedia\Rdbms;
 
 use Iterator;
-use DBUnexpectedError;
 use stdClass;
 
 /**

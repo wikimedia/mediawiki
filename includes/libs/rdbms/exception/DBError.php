@@ -18,7 +18,10 @@
  * @file
  * @ingroup Database
  */
-use Wikimedia\Rdbms\IDatabase;
+
+namespace Wikimedia\Rdbms;
+
+use Exception;
 
 /**
  * Database error base class
@@ -38,3 +41,5 @@ class DBError extends Exception {
 		parent::__construct( $error );
 	}
 }
+
+class_alias( DBError::class, 'DBError' );

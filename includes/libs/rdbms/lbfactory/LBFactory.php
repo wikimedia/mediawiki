@@ -30,8 +30,6 @@ use EmptyBagOStuff;
 use WANObjectCache;
 use Exception;
 use RuntimeException;
-use DBTransactionError;
-use DBReplicationWaitError;
 
 /**
  * An interface for generating database load balancers

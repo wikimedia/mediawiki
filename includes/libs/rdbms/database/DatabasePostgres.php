@@ -25,8 +25,6 @@ namespace Wikimedia\Rdbms;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WaitConditionLoop;
 use MediaWiki;
-use DBUnexpectedError;
-use DBConnectionError;
 use Exception;
 
 /**

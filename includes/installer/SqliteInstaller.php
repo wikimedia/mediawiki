@@ -23,6 +23,7 @@
 
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseSqlite;
+use Wikimedia\Rdbms\DBConnectionError;
 
 /**
  * Class for setting up the MediaWiki database using SQLLite.

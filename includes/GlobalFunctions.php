@@ -28,6 +28,7 @@ use Liuggio\StatsdClient\Sender\SocketSender;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Session\SessionManager;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Rdbms\DBReplicationWaitError;
 
 // Hide compatibility functions from Doxygen
 /// @cond
