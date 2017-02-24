@@ -8,26 +8,31 @@
 		padding-top: 0.5em;
 	}
 
-	&-filterCheckbox {
-		&-label {
-			&-title {
-				font-weight: bold;
-				font-size: 1.2em;
-				color: #222;
-			}
-			&-desc {
-				color: #464a4f;
-			}
+	&-muted {
+		background-color: #f8f9fa; // Base90 AAA
+		.mw-rcfilters-ui-filterItemWidget-label-title,
+		.mw-rcfilters-ui-filterItemWidget-label-desc {
+			color: #54595d; // Base20 AAA
 		}
+	}
 
+	&-label {
+		&-title {
+			font-weight: bold;
+			font-size: 1.2em;
+			color: #222;
+		}
+		&-desc {
+			color: #464a4f;
+		}
+	}
+
+	&-filterCheckbox {
 		.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline {
 			// Override margin-top and -bottom rules from FieldLayout
 			margin: 0 !important;
 		}
 
-		&-muted {
-			opacity: 0.5;
-		}
 	}
 
 	&-highlightButton {
