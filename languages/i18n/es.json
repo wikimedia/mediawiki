@@ -2240,7 +2240,7 @@
 	"rollback-success": "Revertidas las ediciones de $1; recuperada la última versión de $2.",
 	"rollback-success-notify": "Revertidas las ediciones de $1 hasta la última revisión de $2. [$3 Ver cambios]",
 	"sessionfailure-title": "Error de sesión",
-	"sessionfailure": "Parece que hay un problema con tu sesión;\nesta acción ha sido cancelada como medida de precaución contra secuestros de sesión.\nPor favor, pulsa «Atrás», recarga la página de la que viniste e inténtalo de nuevo.",
+	"sessionfailure": "Parece que hay un problema con tu sesión;\nse ha cancelado esta acción como medida de precaución contra el robo de sesiones.\nVuelve a la página anterior, recárgala e inténtalo de nuevo.",
 	"changecontentmodel": "Cambiar el modelo de contenido de una página",
 	"changecontentmodel-legend": "Cambiar el modelo de contenido",
 	"changecontentmodel-title-label": "Título de página",

@@ -1261,6 +1261,8 @@
 	"rcfilters-invalid-filter": "Sivana tsy azo raisina",
 	"rcfilters-empty-filter": "Tsy misy sivana miasa. Aseho avokoa ireo fandraisan'anjara.",
 	"rcfilters-filterlist-title": "Sivana",
+	"rcfilters-highlightbutton-title": "Hampibaribary ny valiny",
+	"rcfilters-highlightmenu-title": "Hisafidy loko",
 	"rcfilters-filterlist-noresults": "Tsy nahitana sivana",
 	"rcfilters-filtergroup-registration": "Fisoratan'ny mpikambana",
 	"rcfilters-filter-registered-label": "Nisoratra anarana",

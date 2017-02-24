@@ -100,7 +100,8 @@
 			"Mailman",
 			"Аль-Гимравий",
 			"Gamliel Fishkin",
-			"Ping08"
+			"Ping08",
+			"Yuryleb"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -1401,6 +1402,8 @@
 	"rcfilters-invalid-filter": "Недопустимый фильтр",
 	"rcfilters-empty-filter": "Нет активных фильтров. Показываются все правки.",
 	"rcfilters-filterlist-title": "Фильтры",
+	"rcfilters-highlightbutton-title": "Выделить результаты",
+	"rcfilters-highlightmenu-title": "Выберите цвет",
 	"rcfilters-filterlist-noresults": "Фильтры не найдены",
 	"rcfilters-filtergroup-registration": "Регистрация участников",
 	"rcfilters-filter-registered-label": "Зарегистрированные",
@@ -2196,7 +2199,7 @@
 	"editcomment": "Было дано описание изменения: <em>$1</em>.",
 	"revertpage": "Откат правок [[Special:Contributions/$2|$2]] ([[User talk:$2|обсуждение]]) к версии [[User:$1|$1]]",
 	"revertpage-nouser": "Откат правок (имя участника скрыто) к версии {{GENDER:$1|[[User:$1|$1]]}}",
-	"rollback-success": "Откачены правки $1; возврат к версии $2.",
+	"rollback-success": "Откачены правки {{GENDER:$3|$1}}; возврат к версии {{GENDER:$4|$2}}.",
 	"rollback-success-notify": "Откачены правки $1; возврат к последней версии $2. [$3 Показать изменения]",
 	"sessionfailure-title": "Ошибка сеанса",
 	"sessionfailure": "Похоже, возникли проблемы с текущим сеансом работы;\nэто действие было отменено в целях предотвращения «захвата сеанса».\nПожалуйста, нажмите кнопку «Назад» и перезагрузите страницу, с которой вы пришли.",

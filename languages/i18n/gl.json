@@ -1325,6 +1325,8 @@
 	"rcfilters-invalid-filter": "Filtro no válido",
 	"rcfilters-empty-filter": "Non hai filtros activos. Móstranse tódalas contribucións.",
 	"rcfilters-filterlist-title": "Filtros",
+	"rcfilters-highlightbutton-title": "Resaltar resultados",
+	"rcfilters-highlightmenu-title": "Seleccione unha cor",
 	"rcfilters-filterlist-noresults": "Non se atoparon filtros",
 	"rcfilters-filtergroup-registration": "Rexistro de usuario",
 	"rcfilters-filter-registered-label": "Rexistrado",

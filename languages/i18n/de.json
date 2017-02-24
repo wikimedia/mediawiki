@@ -2769,7 +2769,7 @@
 	"pageinfo-few-visiting-watchers": "Es könnte einen beobachtenden Benutzer geben oder nicht, der die letzten Bearbeitungen besucht hat",
 	"pageinfo-redirects-name": "Anzahl der Weiterleitungen zu dieser Seite",
 	"pageinfo-redirects-value": "$1",
-	"pageinfo-subpages-name": "Unterseiten dieser Seite",
+	"pageinfo-subpages-name": "Anzahl der Unterseiten dieser Seite",
 	"pageinfo-subpages-value": "$1 ($2 {{PLURAL:$2|Weiterleitung|Weiterleitungen}}; $3 {{PLURAL:$3|Unterseite|Unterseiten}})",
 	"pageinfo-firstuser": "Seitenersteller",
 	"pageinfo-firsttime": "Datum der Seitenerstellung",

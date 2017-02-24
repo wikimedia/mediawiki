@@ -1325,6 +1325,7 @@
 	"rcfilters-invalid-filter": "অকার্যকর ফিল্টার",
 	"rcfilters-empty-filter": "কোনো সক্রিয় ফিল্টার নেই। সমস্ত অবদান দেখানো হয়েছে।",
 	"rcfilters-filterlist-title": "ছাঁকনি",
+	"rcfilters-highlightmenu-title": "একটি রং নির্বাচন করুন",
 	"rcfilters-filterlist-noresults": "কোনও ফিল্টার পাওয়া যায়নি",
 	"rcfilters-filtergroup-registration": "ব্যবহারকারী নিবন্ধন",
 	"rcfilters-filter-registered-label": "নিবন্ধিত",

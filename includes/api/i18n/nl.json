@@ -41,6 +41,7 @@
 	"apihelp-block-param-autoblock": "Blokkeer automatisch het laatst gebruikte IP-adres en ieder volgend IP-adres van waaruit ze proberen aan te melden.",
 	"apihelp-block-param-noemail": "Gebruiker weerhouden van het sturen van e-mail. (Vereist het <code>blockemail</code> recht).",
 	"apihelp-block-param-hidename": "Verberg de gebruikersnaam uit het blokkeerlogboek. (Vereist het <code>hideuser</code> recht).",
+	"apihelp-block-param-allowusertalk": "De gebruiker toestaan om hun eigen overlegpagina te bewerken (afhankelijk van <var>[[mw:Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
 	"apihelp-block-param-reblock": "De huidige blokkade aanpassen als de gebruiker al geblokkeerd is.",
 	"apihelp-block-param-watchuser": "De gebruikerspagina en overlegpagina van de gebruiker of het IP-adres volgen.",
 	"apihelp-block-param-tags": "Wijzigingslabels om toe te passen op de regel in het blokkeerlogboek.",

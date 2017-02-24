@@ -77,7 +77,8 @@
 			"Ziyaurr",
 			"NehalDaveND",
 			"Susant purohit",
-			"Jayprakash12345"
+			"Jayprakash12345",
+			"Dr. Shikha Jaggi"
 		]
 	},
 	"tog-underline": "कड़ियाँ अधोरेखन:",
@@ -1385,6 +1386,8 @@
 	"rcfilters-filter-editsbyself-label": "आपके अपने संपादन",
 	"rcfilters-filter-editsbyself-description": "आपके द्वारा संपादित",
 	"rcfilters-filter-editsbyother-label": "दूसरों के द्वारा संपादित",
+	"rcfilters-filter-userExpLevel-newcomer-label": "अपरिचित",
+	"rcfilters-filter-userExpLevel-learner-label": "शिक्षार्थियों",
 	"rcfilters-filter-bots-label": "बॉट",
 	"rcfilters-filter-humans-label": "मानव (बॉट नहीं)",
 	"rcfilters-filter-humans-description": "मानव संपादक द्वारा किए गए संपादन।",
