@@ -1,6 +1,6 @@
 <?php
 /**
- * Remove cache entries for removed ResourceLoader modules from the database.
+ * Remove all cache entries for ResourceLoader modules from the database.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,42 +19,33 @@
  *
  * @file
  * @ingroup Maintenance
- * @author Roan Kattouw
+ * @author Timo Tijhof
  */
-
-use MediaWiki\MediaWikiServices;
 
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Maintenance script to remove cache entries for removed ResourceLoader modules
- * from the database.
+ * Maintenance script to purge the module_deps database cache table.
  *
  * @ingroup Maintenance
  */
-class CleanupRemovedModules extends Maintenance {
-
+class PurgeModuleDeps extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription(
-			'Remove cache entries for removed ResourceLoader modules from the database' );
+			'Remove all cache entries for ResourceLoader modules from the database' );
 		$this->setBatchSize( 500 );
 	}
 
 	public function execute() {
 		$dbw = $this->getDB( DB_MASTER );
-		$rl = new ResourceLoader( MediaWikiServices::getInstance()->getMainConfig() );
-		$moduleNames = $rl->getModuleNames();
-		$moduleList = implode( ', ', array_map( [ $dbw, 'addQuotes' ], $moduleNames ) );
 		$limit = (int)$this->mBatchSize;
 
 		$this->output( "Cleaning up module_deps table...\n" );
 		$i = 1;
 		$modDeps = $dbw->tableName( 'module_deps' );
 		do {
-			// $dbw->delete() doesn't support LIMIT :(
-			$where = $moduleList ? "md_module NOT IN ($moduleList)" : '1=1';
-			$dbw->query( "DELETE FROM $modDeps WHERE $where LIMIT $limit", __METHOD__ );
+			$dbw->query( "DELETE FROM $modDeps WHERE LIMIT $limit", __METHOD__ );
 			$numRows = $dbw->affectedRows();
 			$this->output( "Batch $i: $numRows rows\n" );
 			$i++;
@@ -64,5 +55,5 @@ class CleanupRemovedModules extends Maintenance {
 	}
 }
 
-$maintClass = "CleanupRemovedModules";
+$maintClass = 'PurgeModuleDeps';
 require_once RUN_MAINTENANCE_IF_MAIN;
