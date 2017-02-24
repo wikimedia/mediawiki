@@ -59,6 +59,9 @@ abstract class MWLBFactory {
 			'readOnlyReason' => wfConfiguredReadOnlyReason(),
 		];
 
+		// When making changes here, remember to also specify MediaWiki-specific options
+		// for Database classes in the relevant Installer subclass.
+		// Such as MysqlInstaller::openConnection and PostgresInstaller::openConnectionWithParams.
 		if ( $lbConf['class'] === 'LBFactorySimple' ) {
 			if ( isset( $lbConf['servers'] ) ) {
 				// Server array is already explicitly configured; leave alone
