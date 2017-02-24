@@ -95,6 +95,15 @@
 				payload += $.byteLength( module.script.toString() );
 			}
 
+			// Tally templates and messages. Calculate their JSON size so that keys
+			// are included in the module size - in the case of messages, keys can be
+			// longer than values - and so that empty objects are also included.
+			$.each( [ module.templates, module.messages ], function ( i, object ) {
+				if ( object ) {
+					payload += $.byteLength( JSON.stringify( object ) );
+				}
+			} );
+
 			return payload;
 		},
 
