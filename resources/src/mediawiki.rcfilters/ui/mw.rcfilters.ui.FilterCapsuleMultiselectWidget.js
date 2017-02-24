@@ -13,6 +13,13 @@
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
 	 */
 	mw.rcfilters.ui.FilterCapsuleMultiselectWidget = function MwRcfiltersUiFilterCapsuleMultiselectWidget( controller, model, filterInput, config ) {
+		var title = new OO.ui.LabelWidget( {
+				label: mw.msg( 'rcfilters-activefilters' ),
+				classes: [ 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-wrapper-content-title' ]
+			} ),
+			$contentWrapper = $( '<div>' )
+				.addClass( 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-wrapper' );
+
 		this.$overlay = config.$overlay || this.$element;
 
 		// Parent
@@ -25,12 +32,6 @@
 
 		this.filterInput = filterInput;
 
-		this.$content.prepend(
-			$( '<div>' )
-				.addClass( 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-content-title' )
-				.text( mw.msg( 'rcfilters-activefilters' ) )
-		);
-
 		this.resetButton = new OO.ui.ButtonWidget( {
 			icon: 'trash',
 			framed: false,
@@ -42,6 +43,7 @@
 			label: mw.msg( 'rcfilters-empty-filter' ),
 			classes: [ 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-emptyFilters' ]
 		} );
+		this.$content.append( this.emptyFilterMessage.$element );
 
 		// Events
 		this.resetButton.connect( this, { click: 'onResetButtonClick' } );
@@ -53,30 +55,32 @@
 		this.filterInput.$input
 			.on( 'focus', this.focus.bind( this ) );
 
+		// Build the content
+		$contentWrapper.append(
+			title.$element,
+			$( '<div>' )
+				.addClass( 'mw-rcfilters-ui-table' )
+				.append(
+					// The filter list and button should appear side by side regardless of how
+					// wide the button is; the button also changes its width depending
+					// on language and its state, so the safest way to present both side
+					// by side is with a table layout
+					$( '<div>' )
+						.addClass( 'mw-rcfilters-ui-row' )
+						.append(
+							this.$content
+								.addClass( 'mw-rcfilters-ui-cell' )
+								.addClass( 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-cell-filters' ),
+							$( '<div>' )
+								.addClass( 'mw-rcfilters-ui-cell' )
+								.addClass( 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-cell-reset' )
+								.append( this.resetButton.$element )
+						)
+				)
+		);
+
 		// Initialize
-		this.$content.append( this.emptyFilterMessage.$element );
-		this.$handle
-			.append(
-				// The content and button should appear side by side regardless of how
-				// wide the button is; the button also changes its width depending
-				// on language and its state, so the safest way to present both side
-				// by side is with a table layout
-				$( '<div>' )
-					.addClass( 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-table' )
-					.append(
-						$( '<div>' )
-							.addClass( 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-row' )
-							.append(
-								$( '<div>' )
-									.addClass( 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-content' )
-									.addClass( 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-cell' )
-									.append( this.$content ),
-								$( '<div>' )
-									.addClass( 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-cell' )
-									.append( this.resetButton.$element )
-							)
-					)
-			);
+		this.$handle.append( $contentWrapper );
 
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterCapsuleMultiselectWidget' );
