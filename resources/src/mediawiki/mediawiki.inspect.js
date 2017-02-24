@@ -95,6 +95,23 @@
 				payload += $.byteLength( module.script.toString() );
 			}
 
+			// Tally templates
+			if ( !$.isEmptyObject( module.templates ) ) {
+				$.each( module.templates, function ( i, template ) {
+					payload += $.byteLength( template );
+				} );
+			}
+
+			// Tally messages
+			if ( !$.isEmptyObject( module.messages ) ) {
+				$.each( module.messages, function ( key, message ) {
+
+					// The keys can be longer than the values for some modules.
+					payload += $.byteLength( key );
+					payload += $.byteLength( message );
+				} );
+			}
+
 			return payload;
 		},
 
