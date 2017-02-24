@@ -240,9 +240,6 @@ interface ILoadBalancer {
 	 * Index must be an actual index into the array.
 	 * If the server is already open, returns it.
 	 *
-	 * On error, returns false, and the connection which caused the
-	 * error will be available via $this->mErrorConnection.
-	 *
 	 * @note If disable() was called on this LoadBalancer, this method will throw a DBAccessError.
 	 *
 	 * @param int $i Server index or DB_MASTER/DB_REPLICA
