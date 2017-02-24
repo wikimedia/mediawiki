@@ -52,7 +52,7 @@
 		// Events
 		this.model.connect( this, { update: 'onModelUpdate' } );
 
-		this.closeButton.connect( this, { click: 'onCapsuleRemovedByUser' } );
+		this.closeButton.$element.on( 'mousedown', this.onCloseButtonMouseDown.bind( this ) );
 
 		// Initialization
 		this.$overlay.append( this.popup.$element );
@@ -77,6 +77,32 @@
 		this.setCurrentMuteState();
 
 		this.setHighlightColor();
+	};
+
+	/**
+	 * Override mousedown event to prevent its propagation to the parent,
+	 * since the parent (the multiselect widget) focuses the popup when its
+	 * mousedown event is fired.
+	 *
+	 * @param {jQuery.Event} e Event
+	 */
+	mw.rcfilters.ui.CapsuleItemWidget.prototype.onCloseButtonMouseDown = function ( e ) {
+		e.stopPropagation();
+	};
+
+	/**
+	 * Override the event listening to the item close button click
+	 */
+	mw.rcfilters.ui.CapsuleItemWidget.prototype.onCloseClick = function () {
+		var element = this.getElementGroup();
+
+		if ( element && $.isFunction( element.removeItems ) ) {
+			element.removeItems( [ this ] );
+		}
+
+		// Respond to user removing the filter
+		this.controller.updateFilter( this.model.getName(), false );
+		this.controller.clearHighlightColor( this.model.getName() );
 	};
 
 	mw.rcfilters.ui.CapsuleItemWidget.prototype.setHighlightColor = function () {
@@ -119,14 +145,6 @@
 				this.positioned = true;
 			}
 		}
-	};
-
-	/**
-	 * Respond to the user removing the capsule with the close button
-	 */
-	mw.rcfilters.ui.CapsuleItemWidget.prototype.onCapsuleRemovedByUser = function () {
-		this.controller.updateFilter( this.model.getName(), false );
-		this.controller.clearHighlightColor( this.model.getName() );
 	};
 
 	/**
