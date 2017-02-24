@@ -1,6 +1,6 @@
 <?php
 /**
- * Remove cache entries for removed ResourceLoader modules from the database.
+ * Remove all cache entries for ResourceLoader modules from the database.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
  *
  * @file
  * @ingroup Maintenance
- * @author Roan Kattouw
+ * @author Timo Tijhof
  */
 
 use MediaWiki\MediaWikiServices;
@@ -27,17 +27,15 @@ use MediaWiki\MediaWikiServices;
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Maintenance script to remove cache entries for removed ResourceLoader modules
- * from the database.
+ * Maintenance script to purge the module_deps database cache table.
  *
  * @ingroup Maintenance
  */
-class CleanupRemovedModules extends Maintenance {
-
+class PurgeModuleDeps extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription(
-			'Remove cache entries for removed ResourceLoader modules from the database' );
+			'Remove all cache entries for ResourceLoader modules from the database' );
 		$this->setBatchSize( 500 );
 	}
 
@@ -45,13 +43,7 @@ class CleanupRemovedModules extends Maintenance {
 		$this->output( "Cleaning up module_deps table...\n" );
 
 		$dbw = $this->getDB( DB_MASTER );
-		$rl = new ResourceLoader( MediaWikiServices::getInstance()->getMainConfig() );
-		$moduleNames = $rl->getModuleNames();
-		$res = $dbw->select( 'module_deps',
-			[ 'md_module', 'md_skin' ],
-			$moduleNames ? 'md_module NOT IN (' . $dbw->makeList( $moduleNames ) . ')' : '1=1',
-			__METHOD__
-		);
+		$res = $dbw->select( 'module_deps', [ 'md_module', 'md_skin' ], [], __METHOD__ );
 		$rows = iterator_to_array( $res, false );
 
 		$modDeps = $dbw->tableName( 'module_deps' );
@@ -76,5 +68,5 @@ class CleanupRemovedModules extends Maintenance {
 	}
 }
 
-$maintClass = 'CleanupRemovedModules';
+$maintClass = 'PurgeModuleDeps';
 require_once RUN_MAINTENANCE_IF_MAIN;
