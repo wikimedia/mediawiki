@@ -22,6 +22,8 @@
 				anchor: false,
 				padded: true,
 				align: 'backwards',
+				horizontalPosition: 'end',
+				$floatableContainer: this.$element,
 				width: 290,
 				$content: this.colorPickerWidget.$element
 			}
