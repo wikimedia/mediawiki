@@ -160,6 +160,9 @@ class ApiErrorFormatter {
 		if ( $exception instanceof ILocalizedException ) {
 			$msg = $exception->getMessageObject();
 			$params = [];
+		} elseif ( $exception instanceof MessageSpecifier ) {
+			$msg = Message::newFromSpecifier( $exception );
+			$params = [];
 		} else {
 			// Extract code and data from the exception, if applicable
 			if ( $exception instanceof UsageException ) {
