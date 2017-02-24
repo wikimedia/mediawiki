@@ -14,7 +14,7 @@
 	 */
 	mw.rcfilters.ui.CapsuleItemWidget = function MwRcfiltersUiCapsuleItemWidget( controller, model, config ) {
 		var $popupContent = $( '<div>' )
-			.addClass( 'mw-rcfilters-ui-capsuleItemWidget-popup' ),
+				.addClass( 'mw-rcfilters-ui-capsuleItemWidget-popup-content' ),
 			descLabelWidget = new OO.ui.LabelWidget();
 
 		// Configuration initialization
@@ -34,11 +34,12 @@
 		// Mixin constructors
 		OO.ui.mixin.PopupElement.call( this, $.extend( {
 			popup: {
-				padded: true,
+				padded: false,
 				align: 'center',
 				$content: $popupContent
 					.append( descLabelWidget.$element ),
-				$floatableContainer: this.$element
+				$floatableContainer: this.$element,
+				classes: [ 'mw-rcfilters-ui-capsuleItemWidget-popup' ]
 			}
 		}, config ) );
 
