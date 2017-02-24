@@ -23,8 +23,6 @@ namespace Wikimedia\Rdbms;
 
 use IDatabase;
 use MessageSpecifier;
-use ILocalizedException;
-use Message;
 
 /**
  * Base class for the more common types of database errors. These are known to occur
@@ -33,7 +31,7 @@ use Message;
  * @ingroup Database
  * @since 1.23
  */
-class DBExpectedError extends DBError implements MessageSpecifier, ILocalizedException {
+class DBExpectedError extends DBError implements MessageSpecifier {
 	/** @var string[] Message parameters */
 	protected $params;
 
@@ -48,14 +46,6 @@ class DBExpectedError extends DBError implements MessageSpecifier, ILocalizedExc
 
 	public function getParams() {
 		return $this->params;
-	}
-
-	/**
-	 * @inheritdoc
-	 * @since 1.29
-	 */
-	public function getMessageObject() {
-		return Message::newFromSpecifier( $this );
 	}
 }
 
