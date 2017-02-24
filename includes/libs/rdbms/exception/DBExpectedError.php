@@ -19,6 +19,13 @@
  * @ingroup Database
  */
 
+namespace Wikimedia\Rdbms;
+
+use IDatabase;
+use MessageSpecifier;
+use ILocalizedException;
+use Message;
+
 /**
  * Base class for the more common types of database errors. These are known to occur
  * frequently, so we try to give friendly error messages for them.
@@ -51,3 +58,5 @@ class DBExpectedError extends DBError implements MessageSpecifier, ILocalizedExc
 		return Message::newFromSpecifier( $this );
 	}
 }
+
+class_alias( DBExpectedError::class, 'DBExpectedError' );

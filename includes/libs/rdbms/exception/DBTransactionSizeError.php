@@ -19,6 +19,8 @@
  * @ingroup Database
  */
 
+namespace Wikimedia\Rdbms;
+
 /**
  * @ingroup Database
  */
@@ -27,3 +29,5 @@ class DBTransactionSizeError extends DBTransactionError {
 		return 'transaction-duration-limit-exceeded';
 	}
 }
+
+class_alias( DBTransactionSizeError::class, 'DBTransactionSizeError' );
