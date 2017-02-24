@@ -19,8 +19,13 @@
  * @ingroup Database
  */
 
+namespace Wikimedia\Rdbms;
+
 /**
  * @ingroup Database
  */
 class DBTransactionError extends DBExpectedError {
 }
+
+class_alias( DBTransactionError::class, 'DBTransactionError' );
+

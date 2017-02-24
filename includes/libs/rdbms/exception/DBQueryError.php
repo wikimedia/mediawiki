@@ -21,6 +21,11 @@
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 
+namespace Wikimedia\Rdbms;
+
+use IDatabase;
+use Database;
+
 /**
  * @ingroup Database
  */
@@ -63,3 +68,5 @@ class DBQueryError extends DBExpectedError {
 		$this->fname = $fname;
 	}
 }
+
+class_alias( DBQueryError::class, 'DBQueryError' );
