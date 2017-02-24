@@ -1787,6 +1787,7 @@ function wfHttpError( $code, $label, $desc ) {
 		$wgOut->sendCacheControl();
 	}
 
+	MediaWiki\HeaderCallback::warnIfHeadersSent();
 	header( 'Content-type: text/html; charset=utf-8' );
 	print '<!DOCTYPE html>' .
 		'<html><head><title>' .

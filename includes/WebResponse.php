@@ -39,9 +39,7 @@ class WebResponse {
 	 * @param null|int $http_response_code Forces the HTTP response code to the specified value.
 	 */
 	public function header( $string, $replace = true, $http_response_code = null ) {
-		if ( headers_sent() ) {
-			MWDebug::warning( 'Headers already sent, should send headers earlier than ' . wfGetCaller() );
-		}
+		\MediaWiki\HeaderCallback::warnIfHeadersSent();
 		if ( $http_response_code ) {
 			header( $string, $replace, $http_response_code );
 		} else {
