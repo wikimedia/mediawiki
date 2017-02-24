@@ -95,12 +95,14 @@
 				payload += $.byteLength( module.script.toString() );
 			}
 
-			// Tally templates
-			if ( !$.isEmptyObject( module.templates ) ) {
-				$.each( module.templates, function ( i, template ) {
-					payload += $.byteLength( template );
-				} );
-			}
+			// Tally templates and messages
+			$.each( [ 'templates', 'messages' ], function ( i, type ) {
+				if ( module.hasOwnProperty( type ) && !$.isEmptyObject( module.templates ) ) {
+					$.each( module[ type ], function ( i, template ) {
+						payload += $.byteLength( template );
+					} );
+				}
+			} );
 
 			return payload;
 		},
