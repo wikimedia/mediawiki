@@ -95,6 +95,13 @@
 				payload += $.byteLength( module.script.toString() );
 			}
 
+			// Tally templates
+			if ( !$.isEmptyObject( module.templates ) ) {
+				$.each( module.templates, function ( i, template ) {
+					payload += $.byteLength( template );
+				} );
+			}
+
 			return payload;
 		},
 
