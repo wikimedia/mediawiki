@@ -19,8 +19,12 @@
  * @ingroup Database
  */
 
+namespace Wikimedia\Rdbms;
+
 /**
  * @ingroup Database
  */
 class DBReadOnlyError extends DBExpectedError {
 }
+
+class_alias( DBReadOnlyError::class, 'DBReadOnlyError' );

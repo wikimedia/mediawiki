@@ -19,8 +19,12 @@
  * @ingroup Database
  */
 
+namespace Wikimedia\Rdbms;
+
 /**
  * @ingroup Database
  */
 class DBUnexpectedError extends DBError {
 }
+
+class_alias( DBUnexpectedError::class, 'DBUnexpectedError' );
