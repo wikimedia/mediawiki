@@ -160,4 +160,76 @@ class WikitextContentHandler extends TextContentHandler {
 		return $fields;
 	}
 
+	public function getAutosummary(
+		Content $oldContent = null,
+		Content $newContent = null,
+		$flags
+	) {
+		// We can't specify WikitextContent in function signature, because PHP thinks it's incompatible
+		// with ContentHandler::getAutosummary() and generates a warning
+		if ( $oldContent && !( $oldContent instanceof WikitextContent ) ) {
+			throw new InvalidArgumentException( '$oldContent must be a WikitextContent' );
+		}
+		if ( $newContent && !( $newContent instanceof WikitextContent ) ) {
+			throw new InvalidArgumentException( '$newContent must be a WikitextContent' );
+		}
+
+		$summary = parent::getAutosummary( $oldContent, $newContent, $flags );
+		if ( $summary ) {
+			return $summary;
+		}
+
+		// New section added auto-summary
+		$addedSection = $this->getAddedSectionAnchor( $oldContent, $newContent );
+		if ( $addedSection ) {
+			return wfMessage( 'newsectionsummary' )
+				->rawParams( $addedSection )->inContentLanguage()->text();
+		}
+
+		return '';
+	}
+
+	/**
+	 * Analyze the sections present in old and new content, and if exactly one section has been added
+	 * (and none removed, and no headings changed), returns the anchor that can be used to link to
+	 * that section.
+	 *
+	 * @param WikitextContent $oldContent
+	 * @param WikitextContent $newContent
+	 * @return string|bool Added section's anchor, or false on failure
+	 */
+	private function getAddedSectionAnchor( WikitextContent $oldContent, WikitextContent $newContent ) {
+		global $wgParser;
+
+		$oldSections = array_values( $wgParser->getSectionList( $oldContent->getNativeData() ) );
+		$newSections = array_values( $wgParser->getSectionList( $newContent->getNativeData() ) );
+		$addedSectionWikitext = null;
+		if ( count( $newSections ) > count( $oldSections ) ) {
+			$oldIdx = 0;
+			$newIdx = 0;
+			while ( isset( $newSections[$newIdx] ) ) {
+				if ( isset( $oldSections[$oldIdx] ) && $oldSections[$oldIdx] === $newSections[$newIdx] ) {
+					// Common prefix continues
+					$oldIdx++;
+					$newIdx++;
+				} elseif ( $addedSectionWikitext == null ) {
+					// First mismatch - if this is the only one, we've detected a newly added section
+					$addedSectionWikitext = $newSections[$newIdx];
+					$newIdx++;
+				} else {
+					// Second mismatch - the situation is more complicated, either multiple sections were
+					// added or they were moved around, bail
+					$addedSectionWikitext = null;
+					break;
+				}
+			}
+		}
+		// If $addedSectionWikitext is null, either we found no new sections, or we had multiple
+		// mismatches and bailed
+		if ( $addedSectionWikitext ) {
+			return $wgParser->extractSectionAnchor( $addedSectionWikitext );
+		}
+		return false;
+	}
+
 }
