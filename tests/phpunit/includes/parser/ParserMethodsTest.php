@@ -91,7 +91,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		global $wgParser;
 
 		// Normal parses test passing PPNodes. Test passing an array.
-		$title = Title::newFromText( str_replace( '::', '__', __METHOD__ ) );
+		$title = Title::newFromText( str_replace( '::', ' ', __METHOD__ ) );
 		$wgParser->startExternalParse( $title, new ParserOptions(), Parser::OT_HTML );
 		$frame = $wgParser->getPreprocessor()->newFrame();
 		$ret = $wgParser->callParserFunction( $frame, '#tag',
@@ -112,7 +112,9 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		global $wgParser;
 
 		$title = Title::newFromText( str_replace( '::', '__', __METHOD__ ) );
-		$out = $wgParser->parse( "==foo==\n<h2>bar</h2>\n==baz==\n", $title, new ParserOptions() );
+		$input = "==foo==\n<h2>bar</h2>\n=={{PAGENAMEE}}==\n==baz==\n";
+
+		$out = $wgParser->parse( $input, $title, new ParserOptions() );
 		$this->assertSame( [
 			[
 				'toclevel' => 1,
@@ -137,14 +139,24 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 			[
 				'toclevel' => 1,
 				'level' => '2',
-				'line' => 'baz',
+				'line' => 'ParserMethodsTest_testGetSections',
 				'number' => '3',
 				'index' => '2',
 				'fromtitle' => $title->getPrefixedDBkey(),
 				'byteoffset' => 21,
+				'anchor' => 'ParserMethodsTest_testGetSections',
+			],
+			[
+				'toclevel' => 1,
+				'level' => '2',
+				'line' => 'baz',
+				'number' => '4',
+				'index' => '3',
+				'fromtitle' => $title->getPrefixedDBkey(),
+				'byteoffset' => 39,
 				'anchor' => 'baz',
 			],
-		], $out->getSections(), 'getSections() with proper value when <h2> is used' );
+		], $out->getSections(), 'getSections() with proper value when <h2> or {{PAGENAMEE}} is used' );
 	}
 
 	/**
