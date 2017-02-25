@@ -1448,6 +1448,7 @@
 	"rcfilters-invalid-filter": "Filtro no válido",
 	"rcfilters-empty-filter": "No hay filtros activos. Se muestran todas las contribuciones.",
 	"rcfilters-filterlist-title": "Filtros",
+	"rcfilters-highlightmenu-title": "Selecciona un color",
 	"rcfilters-filterlist-noresults": "No se encontraron filtros",
 	"rcfilters-filtergroup-registration": "Registro de usuario",
 	"rcfilters-filter-registered-label": "Registrados",

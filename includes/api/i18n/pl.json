@@ -681,6 +681,7 @@
 	"apiwarn-invalidcategory": "„$1” nie jest kategorią.",
 	"apiwarn-invalidtitle": "„$1” nie jest poprawnym tytułem.",
 	"apiwarn-notfile": "„$1” nie jest plikiem.",
+	"apiwarn-toomanyvalues": "Podano zbyt wiele wartości dla parametru <var>$1</var>. Ograniczenie do $2.",
 	"apiwarn-validationfailed": "Błąd walidacji dla <kbd>$1</kbd>: $2",
 	"api-feed-error-title": "Błąd ($1)",
 	"api-exception-trace": "$1 w $2($3)\n$4",

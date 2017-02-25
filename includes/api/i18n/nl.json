@@ -25,6 +25,7 @@
 	"apihelp-main-param-smaxage": "Stelt de <code>s-maxage</code> HTTP cache controle header in op het aangegeven aantal seconden. Foutmeldingen komen nooit in de cache.",
 	"apihelp-main-param-maxage": "Stelt de <code>max-age</code> HTTP cache controle header in op het aangegeven aantal seconden. Foutmeldingen komen nooit in de cache.",
 	"apihelp-main-param-assert": "Controleer of de gebruiker is aangemeld als <kbd>user</kbd> is meegegeven, en of de gebruiker het robotgebruikersrecht heeft als <kbd>bot</kbd> is meegegeven.",
+	"apihelp-main-param-assertuser": "Bevestig dat de huidige gebruiker de genoemde gebruiker is.",
 	"apihelp-main-param-requestid": "Elke waarde die hier gegeven wordt, wordt aan het antwoord toegevoegd. Dit kan gebruikt worden om verzoeken te onderscheiden.",
 	"apihelp-main-param-servedby": "Voeg de hostnaam van de server die de aanvraag heeft afgehandeld toe aan het antwoord.",
 	"apihelp-main-param-curtimestamp": "Huidige tijd aan het antwoord toevoegen.",

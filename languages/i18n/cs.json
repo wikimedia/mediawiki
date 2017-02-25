@@ -2084,7 +2084,7 @@
 	"editcomment": "Shrnutí editace bylo: <em>$1</em>.",
 	"revertpage": "Editace uživatele „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|diskuse]]) vráceny do předchozího stavu, jehož autorem je „[[User:$1|$1]]“",
 	"revertpage-nouser": "Editace skrytého uživatele vráceny do předchozího stavu, jehož {{GENDER:$1|autorem|autorkou}} je „[[User:$1|$1]]“",
-	"rollback-success": "Editace uživatele $1 byly vráceny na poslední verzi od uživatele $2.",
+	"rollback-success": "Editace {{GENDER:$3|uživatele|uživatelky}} $1 byly vráceny na poslední verzi od {{GENDER:$4|uživatele|uživatelky}} $2.",
 	"rollback-success-notify": "Editace uživatele $1 byly vráceny;\nobnovena poslední verze od uživatele $2. [$3 Zobrazit změny]",
 	"sessionfailure-title": "Chyba relace",
 	"sessionfailure": "Zřejmě je nějaký problém s vaším přihlášením;\nvámi požadovaná činnost byla stornována jako prevence před neoprávněným přístupem.\nStiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli, a zkuste činnost znovu.",

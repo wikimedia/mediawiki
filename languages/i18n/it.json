@@ -104,7 +104,8 @@
 			"Saracrovetto",
 			"Tosky",
 			"Selven",
-			"Margherita.mignanelli"
+			"Margherita.mignanelli",
+			"Redredsonia"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -1400,6 +1401,7 @@
 	"rcfilters-invalid-filter": "Filtro non valido",
 	"rcfilters-empty-filter": "Nessun filtro attivo. Sono mostrati tutti i contributi.",
 	"rcfilters-filterlist-title": "Filtri",
+	"rcfilters-highlightmenu-title": "Selezionare un colore",
 	"rcfilters-filterlist-noresults": "Nessun filtro trovato",
 	"rcfilters-filtergroup-registration": "Registrazione utente",
 	"rcfilters-filter-registered-label": "Registrato",
