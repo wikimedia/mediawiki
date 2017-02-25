@@ -129,13 +129,6 @@ class FeedUtils {
 		}
 
 		if ( $oldid ) {
-
-			# $diffText = $de->getDiff( wfMessage( 'revisionasof',
-			# 	$wgLang->timeanddate( $timestamp ),
-			# 	$wgLang->date( $timestamp ),
-			# 	$wgLang->time( $timestamp ) )->text(),
-			# 	wfMessage( 'currentrev' )->text() );
-
 			$diffText = '';
 			// Don't bother generating the diff if we won't be able to show it
 			if ( $wgFeedDiffCutoff > 0 ) {
