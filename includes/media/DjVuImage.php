@@ -277,9 +277,9 @@ class DjVuImage {
 				$reg = <<<EOR
 					/\(page\s[\d-]*\s[\d-]*\s[\d-]*\s[\d-]*\s*"
 					((?>    # Text to match is composed of atoms of either:
-					  \\\\. # - any escaped character
-					  |     # - any character different from " and \
-					  [^"\\\\]+
+						\\\\. # - any escaped character
+						|     # - any character different from " and \
+						[^"\\\\]+
 					)*?)
 					"\s*\)
 					| # Or page can be empty ; in this case, djvutxt dumps ()

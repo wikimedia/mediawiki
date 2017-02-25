@@ -2158,12 +2158,10 @@ class Language {
 	 * the date preference they're supposed to use, it should be used in
 	 * all children.
 	 *
-	 *<code>
-	 * function timeanddate([...], $format = true) {
-	 * 	$datePreference = $this->dateFormat($format);
-	 * [...]
-	 * }
-	 *</code>
+	 *     function timeanddate([...], $format = true) {
+	 *       $datePreference = $this->dateFormat($format);
+	 *       [...]
+	 *     }
 	 *
 	 * @param int|string|bool $usePrefs If true, the user's preference is used
 	 *   if false, the site/language default is used

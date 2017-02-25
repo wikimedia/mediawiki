@@ -1259,7 +1259,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @param string|array|Status $elements The set of errors/warnings to process.
 	 * @param string $elementsType Should warnings or errors be returned.  This is meant
-	 * 	for Status objects, all other valid types are always considered as errors.
+	 *     for Status objects, all other valid types are always considered as errors.
 	 * @return string
 	 */
 	public function getErrorsOrWarnings( $elements, $elementsType ) {

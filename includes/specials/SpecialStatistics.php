@@ -95,9 +95,11 @@ class SpecialStatistics extends SpecialPage {
 			if ( !$msg->isDisabled() ) {
 				$descriptionHtml = $this->msg( 'parentheses' )->rawParams( $msg->parse() )
 					->escaped();
-				$text .= "<br />" .
-					  Html::rawElement( 'small', [ 'class' => 'mw-statistic-desc' ],
-										" $descriptionHtml" );
+				$text .= "<br />" . Html::rawElement(
+					'small',
+					[ 'class' => 'mw-statistic-desc' ],
+					" $descriptionHtml"
+				);
 			}
 		}
 

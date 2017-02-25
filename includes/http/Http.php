@@ -46,8 +46,8 @@ class Http {
 	 *    - caInfo              Provide CA information
 	 *    - maxRedirects        Maximum number of redirects to follow (defaults to 5)
 	 *    - followRedirects     Whether to follow redirects (defaults to false).
-	 *		                    Note: this should only be used when the target URL is trusted,
-	 *		                    to avoid attacks on intranet services accessible by HTTP.
+	 *                          Note: this should only be used when the target URL is trusted,
+	 *                          to avoid attacks on intranet services accessible by HTTP.
 	 *    - userAgent           A user agent, if you want to override the default
 	 *                          MediaWiki/$wgVersion
 	 *    - logger              A \Psr\Logger\LoggerInterface instance for debug logging

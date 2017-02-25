@@ -35,19 +35,19 @@ class LanguageOs extends Language {
 	 *
 	 * Depending on word there are four different ways of converting to other cases.
 	 * 1) Word consist of not cyrillic letters or is an abbreviation.
-	 * 		Then result word is: word + hyphen + case ending.
+	 *    Then result word is: word + hyphen + case ending.
 	 *
 	 * 2) Word consist of cyrillic letters.
 	 * 2.1) Word is in plural.
-	 * 		Then result word is: word - last letter + case ending. Ending of allative case here is 'æм'.
+	 *      Then result word is: word - last letter + case ending. Ending of allative case here is 'æм'.
 	 *
 	 * 2.2) Word is in singular.
 	 * 2.2.1) Word ends on consonant.
-	 * 		Then result word is: word + case ending.
+	 *        Then result word is: word + case ending.
 	 *
 	 * 2.2.2) Word ends on vowel.
-	 * 		Then result word is: word + 'й' + case ending for cases != allative or comitative
-	 * 		and word + case ending for allative or comitative. Ending of allative case here is 'æ'.
+	 *        Then result word is: word + 'й' + case ending for cases != allative or comitative
+	 *        and word + case ending for allative or comitative. Ending of allative case here is 'æ'.
 	 *
 	 * @param string $word
 	 * @param string $case

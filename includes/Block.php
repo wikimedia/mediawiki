@@ -1142,7 +1142,7 @@ class Block {
 	 * Get all blocks that match any IP from an array of IP addresses
 	 *
 	 * @param array $ipChain List of IPs (strings), usually retrieved from the
-	 *	   X-Forwarded-For header of the request
+	 *     X-Forwarded-For header of the request
 	 * @param bool $isAnon Exclude anonymous-only blocks if false
 	 * @param bool $fromMaster Whether to query the master or replica DB
 	 * @return array Array of Blocks
@@ -1223,9 +1223,9 @@ class Block {
 	 *
 	 * @param array $blocks Array of Block objects
 	 * @param array $ipChain List of IPs (strings). This is used to determine how "close"
-	 * 	  a block is to the server, and if a block matches exactly, or is in a range.
-	 *	  The order is furthest from the server to nearest e.g., (Browser, proxy1, proxy2,
-	 *	  local-squid, ...)
+	 *     a block is to the server, and if a block matches exactly, or is in a range.
+	 *     The order is furthest from the server to nearest e.g., (Browser, proxy1, proxy2,
+	 *     local-squid, ...)
 	 * @throws MWException
 	 * @return Block|null The "best" block from the list
 	 */

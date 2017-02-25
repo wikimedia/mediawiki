@@ -29,7 +29,7 @@ use MediaWiki\MediaWikiServices;
  *   - a) Recursive jobs to update links for backlink pages for a given title.
  *        These jobs have (recursive:true,table:<table>) set.
  *   - b) Jobs to update links for a set of pages (the job title is ignored).
- *	      These jobs have (pages:(<page ID>:(<namespace>,<title>),...) set.
+ *        These jobs have (pages:(<page ID>:(<namespace>,<title>),...) set.
  *   - c) Jobs to update links for a single page (the job title)
  *        These jobs need no extra fields set.
  *

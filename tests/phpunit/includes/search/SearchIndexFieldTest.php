@@ -10,7 +10,7 @@ class SearchIndexFieldTest extends MediaWikiTestCase {
 		return [
 			[ 0, 'test', 0, 'test', true ],
 			[ SearchIndexField::INDEX_TYPE_NESTED, 'test',
-			  SearchIndexField::INDEX_TYPE_NESTED, 'test', false ],
+				SearchIndexField::INDEX_TYPE_NESTED, 'test', false ],
 			[ 0, 'test', 0, 'test2', true ],
 			[ 0, 'test', 1, 'test', false ],
 		];

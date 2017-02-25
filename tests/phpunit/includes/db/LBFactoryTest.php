@@ -157,12 +157,12 @@ class LBFactoryTest extends MediaWikiTestCase {
 				],
 			],
 			'serverTemplate' => [
-				'dbname'	  => $wgDBname,
-				'user'		  => $wgDBuser,
-				'password'	  => $wgDBpassword,
-				'type'		  => $wgDBtype,
+				'dbname'      => $wgDBname,
+				'user'        => $wgDBuser,
+				'password'    => $wgDBpassword,
+				'type'        => $wgDBtype,
 				'dbDirectory' => $wgSQLiteDataDir,
-				'flags'		  => DBO_DEFAULT
+				'flags'       => DBO_DEFAULT
 			],
 			'hostsByName' => [
 				'test-db1'  => $wgDBserver,

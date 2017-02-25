@@ -324,12 +324,12 @@ abstract class BaseTemplate extends QuickTemplate {
 	 *
 	 * If a "data" key is present, it must be an array, where the keys represent
 	 * the data-xxx properties with their provided values. For example,
-	 *  $item['data'] = [
-	 *  	 'foo' => 1,
-	 *  	 'bar' => 'baz',
-	 *  ];
+	 *     $item['data'] = [
+	 *       'foo' => 1,
+	 *       'bar' => 'baz',
+	 *     ];
 	 * will render as element properties:
-	 *  data-foo='1' data-bar='baz'
+	 *     data-foo='1' data-bar='baz'
 	 *
 	 * @param array $options Can be used to affect the output of a link.
 	 * Possible options are:
