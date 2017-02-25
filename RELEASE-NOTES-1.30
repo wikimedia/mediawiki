@@ -55,6 +55,8 @@ section).
   just been unwatched.
 * Added $wgParserTestMediaHandlers, where mock media handlers can be passed to
   MediaHandlerFactory for parser tests.
+* (T22307) Adding a new section to a page will now generate an automatic
+  edit summary.
 
 === Languages updated in 1.30 ===
 

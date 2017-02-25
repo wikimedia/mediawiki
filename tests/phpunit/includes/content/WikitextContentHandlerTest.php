@@ -208,6 +208,118 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 				0,
 				'/^$/'
 			],
+
+			// Cases for automatic summary like /* Section */ when a section heading is added manually
+			// (and verifying that nothing funny happens when more complicated section changes are made).
+			[
+				// Section addition
+				"== foo ==\n== bar ==\n",
+				"== foo ==\n== bar ==\n== asd ==\n",
+				0,
+				'/\/\* asd \*\//'
+			],
+			[
+				// Section removal
+				"== foo ==\n== bar ==\n== asd ==\n",
+				"== foo ==\n== asd ==\n",
+				0,
+				'/^$/'
+			],
+			[
+				// Section addition + change
+				"== foo ==\n== bar ==\n",
+				"== foo ==\n== baz ==\n== asd ==\n",
+				0,
+				'/^$/'
+			],
+			[
+				// Section addition + removal
+				"== foo ==\n== bar ==\n",
+				"== asd ==\n== foo ==\n",
+				0,
+				'/^$/'
+			],
+			[
+				// Level three section addition
+				"== foo ==\n== bar ==\n",
+				"== foo ==\n=== asd ===\n== bar ==\n",
+				0,
+				'/\/\* asd \*\//'
+			],
+			[
+				// Multiple section addition
+				"== bar ==\n",
+				"== foo ==\n== bar ==\n== asd ==\n",
+				0,
+				'/^$/'
+			],
+			[
+				// Section addition on empty page
+				"",
+				"== asd ==\n",
+				0,
+				'/\/\* asd \*\//'
+			],
+			[
+				// Section addition with a link in section heading
+				"== foo ==\n",
+				"== foo ==\n== [[asd]] ==\n",
+				0,
+				'/\/\* asd \*\//'
+			],
+			[
+				// Section addition with an external link in section heading
+				"== foo ==\n",
+				"== foo ==\n== [http://example.org asd] ==\n",
+				0,
+				'/\/\* asd \*\//'
+			],
+			[
+				// Section addition with italics in section heading
+				"== foo ==\n",
+				"== foo ==\n== ''asd'' ==\n",
+				0,
+				'/\/\* asd \*\//'
+			],
+			[
+				// Section addition with `<nowiki>` in section heading
+				"== foo ==\n",
+				"== foo ==\n== <nowiki>asd</nowiki> ==\n",
+				0,
+				'/\/\* asd \*\//'
+			],
+			[
+				// Section addition with a parser function in section heading
+				"== foo ==\n",
+				"== foo ==\n== {{PAGENAME}} ==\n",
+				0,
+				'/\/\* {{PAGENAME}} \*\//'
+			],
+			[
+				// `<h2>` does not create a section
+				"== foo ==\n",
+				"== foo ==\n<h2>asd</h2>\n",
+				0,
+				'//'
+			],
+
+			[
+				// No conflicts with other automated summaries
+				null,
+				"== Hello world! ==\n",
+				EDIT_NEW,
+				'/^Created page .*Hello/'
+			],
+			[
+				// No conflicts with other automated summaries
+				'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+				eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+				voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+				clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+				"== Hello world! ==\n",
+				0,
+				'/^Replaced .*Hello/'
+			],
 		];
 	}
 
