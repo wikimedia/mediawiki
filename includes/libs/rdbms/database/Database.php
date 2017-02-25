@@ -1141,12 +1141,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$preLimitTail .= $this->makeOrderBy( $options );
 
-		// if (isset($options['LIMIT'])) {
-		// 	$tailOpts .= $this->limitResult('', $options['LIMIT'],
-		// 		isset($options['OFFSET']) ? $options['OFFSET']
-		// 		: false);
-		// }
-
 		if ( isset( $noKeyOptions['FOR UPDATE'] ) ) {
 			$postLimitTail .= ' FOR UPDATE';
 		}
