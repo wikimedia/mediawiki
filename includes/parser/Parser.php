@@ -5521,6 +5521,7 @@ class Parser {
 	 *   for "replace", the whole page with the section replaced.
 	 */
 	private function extractSections( $text, $sectionId, $mode, $newText = '' ) {
+		// TODO Does this need to use $wgTitle, or can we just use *any* title?
 		global $wgTitle; # not generally used but removes an ugly failure mode
 
 		$magicScopeVariable = $this->lock();
@@ -5633,7 +5634,7 @@ class Parser {
 
 	/**
 	 * This function returns the text of a section, specified by a number ($section).
-	 * A section is text under a heading like == Heading == or \<h1\>Heading\</h1\>, or
+	 * A section is text under a heading like == Heading ==, or
 	 * the first section before any such heading (section 0).
 	 *
 	 * If a section contains subsections, these are also returned.
@@ -5663,6 +5664,54 @@ class Parser {
 	 */
 	public function replaceSection( $oldText, $sectionId, $newText ) {
 		return $this->extractSections( $oldText, $sectionId, 'replace', $newText );
+	}
+
+	/**
+	 * Return a list of sections in the given text. A section is introduced by a heading like
+	 * == Heading ==.
+	 *
+	 * Note that section 0 (the first section before any such heading) is not included.
+	 *
+	 * The list returned by this function may be used for tasks related to section editing. It must
+	 * not be used to generate a table of contents; for that, see ParserOutput::getSections(). Among
+	 * other differences, this function does not parse magic words like {{PAGENAME}} in section names,
+	 * and does not handle HTML headings like \<h2\>\</h2\>.
+	 *
+	 * @param string $text Text of an article
+	 * @param int $flags Flags for the preprocessor, see preprocessToDom()
+	 * @return array Associative array of (section id) => (heading wikitext). Note that the array
+	 *   keys do not include 0, and may be strings like 'T-1'.
+	 *   - Section identifier is a number or string (e.g. 1 or 'T-1'). It can be passed to
+	 *     getSection() to retrieve wikitext for the whole section.
+	 *   - Heading wikitext includes the '==' syntax before and after. It can be passed to
+	 *     extractSectionAnchor() to generate an anchor for linking.
+	 */
+	public function getSectionList( $text, $flags = 0 ) {
+		// Heavily simplified from extractSections()
+
+		// TODO Does this need to use $wgTitle, or can we just use *any* title?
+		global $wgTitle; # not generally used but removes an ugly failure mode
+
+		$magicScopeVariable = $this->lock();
+		$this->startParse( $wgTitle, new ParserOptions, self::OT_PLAIN, true );
+
+		$frame = $this->getPreprocessor()->newFrame();
+		$root = $this->preprocessToDom( $text, $flags );
+
+		# <h> nodes indicate section breaks
+		# They can only occur at the top level, so we can find them by iterating the root's children
+		$node = $root->getFirstChild();
+		$sections = [];
+		while ( $node ) {
+			if ( $node->getName() === 'h' ) {
+				$bits = $node->splitHeading();
+				$headingWikitext = $frame->expand( $bits['contents'], PPFrame::RECOVER_ORIG );
+				$sections[ $bits['i'] ] = $headingWikitext;
+			}
+			$node = $node->getNextSibling();
+		}
+
+		return $sections;
 	}
 
 	/**
@@ -5868,6 +5917,22 @@ class Parser {
 		# Strip HTML tags
 		$text = StringUtils::delimiterReplace( '<', '>', '', $text );
 		return $text;
+	}
+
+	/**
+	 * Extract the section anchor, if any, from given section wikitext. This anchor can be used to
+	 * link to the section.
+	 *
+	 * @param string $text
+	 * @return string|bool String or false
+	 */
+	public function extractSectionAnchor( $text ) {
+		preg_match( "/^(=+)(.+)\\1\\s*(\n|$)/i", $text, $matches );
+		if ( !empty( $matches[2] ) ) {
+			return $this->stripSectionName( trim( $matches[2] ) );
+		} else {
+			return false;
+		}
 	}
 
 	/**
