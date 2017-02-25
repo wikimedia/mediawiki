@@ -2878,17 +2878,13 @@ class EditPage {
 	/**
 	 * Extract the section title from current section text, if any.
 	 *
+	 * @deprecated since 1.29 Use Parser::extractSectionAnchor() instead.
 	 * @param string $text
 	 * @return string|bool String or false
 	 */
 	public static function extractSectionTitle( $text ) {
-		preg_match( "/^(=+)(.+)\\1\\s*(\n|$)/i", $text, $matches );
-		if ( !empty( $matches[2] ) ) {
-			global $wgParser;
-			return $wgParser->stripSectionName( trim( $matches[2] ) );
-		} else {
-			return false;
-		}
+		global $wgParser;
+		return $wgParser->extractSectionAnchor( $text );
 	}
 
 	protected function showHeader() {
@@ -2901,7 +2897,7 @@ class EditPage {
 		} else {
 			if ( $this->section != '' && $this->section != 'new' ) {
 				if ( !$this->summary && !$this->preview && !$this->diff ) {
-					$sectionTitle = self::extractSectionTitle( $this->textbox1 ); // FIXME: use Content object
+					$sectionTitle = self::extractSectionTitle( $this->textbox1 );
 					if ( $sectionTitle !== false ) {
 						$this->summary = "/* $sectionTitle */ ";
 					}

@@ -27,6 +27,8 @@ production.
 * File storage backends that supports headers (eg. Swift) now store an
   X-Content-Dimensions header for originals that contain the media's dimensions
   as page ranges keyed by dimensions.
+* (T22307) Adding a new section to a page will now generate an automatic
+  edit summary.
 
 === External library changes in 1.30 ===
 
