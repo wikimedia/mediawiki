@@ -35,6 +35,8 @@ production.
   LanguageConverter variant.  This allows English-speaking developers
   to develop and test LanguageConverter more easily.  Pig Latin can be
   enabled by setting $wgUsePigLatinVariant to true.
+* (T22307) Adding a new section to a page will now generate an automatic
+  edit summary.
 
 === Languages updated in 1.30 ===
 
