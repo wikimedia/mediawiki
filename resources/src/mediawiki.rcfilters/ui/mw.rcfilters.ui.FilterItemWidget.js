@@ -21,6 +21,7 @@
 
 		this.controller = controller;
 		this.model = model;
+		this.selected = false;
 
 		this.checkboxWidget = new mw.rcfilters.ui.CheckboxInputWidget( {
 			value: this.model.getName(),
@@ -110,6 +111,21 @@
 	 */
 	mw.rcfilters.ui.FilterItemWidget.prototype.onGroupModelUpdate = function () {
 		this.setCurrentMuteState();
+	};
+
+	/**
+	 * Set selected state on this widget
+	 *
+	 * @param {boolean} [isSelected] Widget is selected
+	 */
+	mw.rcfilters.ui.FilterItemWidget.prototype.toggleSelected = function ( isSelected ) {
+		isSelected = isSelected !== undefined ? isSelected : !this.selected;
+
+		if ( this.selected !== isSelected ) {
+			this.selected = isSelected;
+
+			this.$element.toggleClass( 'mw-rcfilters-ui-filterItemWidget-selected', this.selected );
+		}
 	};
 
 	/**

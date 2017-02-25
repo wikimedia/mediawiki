@@ -32,6 +32,7 @@
 		this.controller = controller;
 		this.model = model;
 		this.filterInput = filterInput;
+		this.isSelecting = false;
 
 		this.topScrollOffset = config.topScrollOffset || 10;
 
@@ -55,6 +56,7 @@
 			highlightChange: 'onModelHighlightChange'
 		} );
 		this.popup.connect( this, { toggle: 'onPopupToggle' } );
+		this.aggregate( { click: 'capsuleItemClick' } );
 
 		// Add the filterInput as trigger
 		this.filterInput.$input
