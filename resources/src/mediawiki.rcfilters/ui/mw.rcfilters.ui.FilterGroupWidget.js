@@ -19,6 +19,7 @@
 
 		this.controller = controller;
 		this.model = model;
+		this.filters = {};
 
 		// Mixin constructors
 		OO.ui.mixin.GroupWidget.call( this, config );
@@ -36,6 +37,7 @@
 
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterGroupWidget' )
+			.addClass( 'mw-rcfilters-ui-filterGroupWidget-name-' + this.model.getName() )
 			.append(
 				this.$label,
 				this.$group
@@ -59,12 +61,28 @@
 		);
 	};
 
+	/**
+	 * Get an item widget from its filter name
+	 *
+	 * @param {string} filterName Filter name
+	 * @return {mw.rcfilters.ui.FilterItemWidget} Item widget
+	 */
+	mw.rcfilters.ui.FilterGroupWidget.prototype.getItemWidget = function ( filterName ) {
+		return this.filters[ filterName ];
+	};
+
+	/**
+	 * Populate data from the model
+	 */
 	mw.rcfilters.ui.FilterGroupWidget.prototype.populateFromModel = function () {
 		var widget = this;
 
+		this.clearItems();
+		this.filters = {};
+
 		this.addItems(
 			this.model.getItems().map( function ( filterItem ) {
-				return new mw.rcfilters.ui.FilterItemWidget(
+				var groupWidget = new mw.rcfilters.ui.FilterItemWidget(
 					widget.controller,
 					filterItem,
 					{
@@ -73,6 +91,10 @@
 						$overlay: widget.$overlay
 					}
 				);
+
+				widget.filters[ filterItem.getName() ] = groupWidget;
+
+				return groupWidget;
 			} )
 		);
 	};

@@ -91,6 +91,14 @@
 	};
 
 	/**
+	 * Emit a click event when the capsule is clicked so we can aggregate this
+	 * in the parent (the capsule)
+	 */
+	mw.rcfilters.ui.CapsuleItemWidget.prototype.onClick = function () {
+		this.emit( 'click' );
+	};
+
+	/**
 	 * Override the event listening to the item close button click
 	 */
 	mw.rcfilters.ui.CapsuleItemWidget.prototype.onCloseClick = function () {
