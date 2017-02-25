@@ -2618,7 +2618,7 @@ class EditPage {
 			return;
 		}
 
-	 	$this->showHeader();
+		$this->showHeader();
 
 		$wgOut->addHTML( $this->editFormPageTop );
 

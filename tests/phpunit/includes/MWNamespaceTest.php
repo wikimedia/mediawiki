@@ -161,7 +161,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	public function testExists() {
 		// Remove the following lines when you implement this test.
 		$this->markTestIncomplete(
-		  'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
+			'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
 		);
 	}
 	*/
@@ -223,7 +223,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	public function testGetCanonicalNamespaces() {
 		// Remove the following lines when you implement this test.
 		$this->markTestIncomplete(
-		  'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
+			'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
 		);
 	}
 	*/
@@ -234,7 +234,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		public function testGetCanonicalName() {
 			// Remove the following lines when you implement this test.
 			$this->markTestIncomplete(
-			  'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
+				'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
 			);
 		}
 	*/
@@ -245,7 +245,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	public function testGetCanonicalIndex() {
 		// Remove the following lines when you implement this test.
 		$this->markTestIncomplete(
-		  'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
+			'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
 		);
 	}
 	*/
@@ -257,7 +257,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	public function testGetValidNamespaces() {
 		// Remove the following lines when you implement this test.
 		$this->markTestIncomplete(
-		  'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
+			'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
 		);
 	}
 	*/

@@ -1824,7 +1824,7 @@ class Balancer {
 	 * Regex borrowed from Tim Starling's "remex-html" project.
 	 */
 	const VALID_COMMENT_REGEX = "~ !--
-		(                             # 1. Comment match detector
+		(                           # 1. Comment match detector
 			> | -> | # Invalid short close
 			(                         # 2. Comment contents
 				(?:
@@ -1839,15 +1839,15 @@ class Balancer {
 			(                         # 3. Comment close
 				--> |   # Normal close
 				--!> |  # Comment end bang
-				(                     # 4. Indicate matches requiring EOF
-					--! |   # EOF in comment end bang state
-					-- |    # EOF in comment end state
-					-  |    # EOF in comment end dash state
-					        # EOF in comment state
+				(                       # 4. Indicate matches requiring EOF
+					--! |                   # EOF in comment end bang state
+					-- |                    # EOF in comment end state
+					-  |                    # EOF in comment end dash state
+					(?#nothing)             # EOF in comment state
 				)
 			)
 		)
-		([^<]*) \z                    # 5. Non-tag text after the comment
+		([^<]*) \z                  # 5. Non-tag text after the comment
 		~xs";
 
 	/**

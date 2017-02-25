@@ -299,9 +299,9 @@ class WebInstallerOutput {
 
 <div id="mw-panel">
 	<div class="portal" id="p-logo">
-	  <a style="background-image: url(images/installer-logo.png);"
-		href="https://www.mediawiki.org/"
-		title="Main Page"></a>
+		<a style="background-image: url(images/installer-logo.png);"
+			href="https://www.mediawiki.org/"
+			title="Main Page"></a>
 	</div>
 <?php
 	$message = wfMessage( 'config-sidebar' )->plain();

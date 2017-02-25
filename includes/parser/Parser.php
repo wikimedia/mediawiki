@@ -1450,15 +1450,16 @@ class Parser {
 		$spdash = "(?:-|$space)"; # a dash or a non-newline space
 		$spaces = "$space++"; # possessive match of 1 or more spaces
 		$text = preg_replace_callback(
-			'!(?:                            # Start cases
-				(<a[ \t\r\n>].*?</a>) |      # m[1]: Skip link text
-				(<.*?>) |                    # m[2]: Skip stuff inside
-				                             #       HTML elements' . "
-				(\b(?i:$prots)($addr$urlChar*)) | # m[3]: Free external links
-				                             # m[4]: Post-protocol path
-				\b(?:RFC|PMID) $spaces       # m[5]: RFC or PMID, capture number
+			'!(?:                        # Start cases
+				(<a[ \t\r\n>].*?</a>) |    # m[1]: Skip link text
+				(<.*?>) |                  # m[2]: Skip stuff inside HTML elements' . "
+				(\b                        # m[3]: Free external links
+					(?i:$prots)
+					($addr$urlChar*)         # m[4]: Post-protocol path
+				) |
+				\b(?:RFC|PMID) $spaces     # m[5]: RFC or PMID, capture number
 					([0-9]+)\b |
-				\bISBN $spaces (             # m[6]: ISBN, capture number
+				\bISBN $spaces (           # m[6]: ISBN, capture number
 					(?: 97[89] $spdash? )?   #  optional 13-digit ISBN prefix
 					(?: [0-9]  $spdash? ){9} #  9 digits with opt. delimiters
 					[0-9Xx]                  #  check digit

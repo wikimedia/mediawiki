@@ -63,13 +63,11 @@ class LanguageKsh extends Language {
 	 *
 	 * Possible values for the type of genitive are:
 	 *	Sing, Iehr            prepositioned genitive = possessive dative
-	 *	Vun, Fon, -omitted-   postpositioned genitive
-	 *	                               = preposition "vun" with dative
+	 *	Vun, Fon, -omitted-   postpositioned genitive = preposition "vun" with dative
 	 *
 	 * Values of case overrides & prepositions, in the order of preceedence:
 	 *	Sing, Iehr            possessive dative = prepositioned genitive
-	 *	Vun, Fon              preposition "vun" with dative
-	 *	                                     = postpositioned genitive
+	 *	Vun, Fon              preposition "vun" with dative = postpositioned genitive
 	 *	En, em                preposition "en" with dative
 	 *
 	 * Values for object gender specifiers of the possessive dative, or
