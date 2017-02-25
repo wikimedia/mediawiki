@@ -817,9 +817,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 	function filterOnUserExperienceLevel( &$tables, &$conds, &$join_conds, $opts ) {
 		global $wgLearnerEdits,
-			   $wgExperiencedUserEdits,
-			   $wgLearnerMemberSince,
-			   $wgExperiencedUserMemberSince;
+			$wgExperiencedUserEdits,
+			$wgLearnerMemberSince,
+			$wgExperiencedUserMemberSince;
 
 		$selectedExpLevels = explode( ',', strtolower( $opts['userExpLevel'] ) );
 		// remove values that are not recognized

@@ -107,7 +107,7 @@ class DateFormatter {
 		$this->targets[self::ISO2] = '[[y-m-d]]';
 
 		# Rules
-		#            pref    source 	  target
+		#            pref       source      target
 		$this->rules[self::DMY][self::MD] = self::DM;
 		$this->rules[self::ALL][self::MD] = self::MD;
 		$this->rules[self::MDY][self::DM] = self::MD;
@@ -127,7 +127,7 @@ class DateFormatter {
 	 * Get a DateFormatter object
 	 *
 	 * @param Language|string|null $lang In which language to format the date
-	 * 		Defaults to the site content language
+	 *     Defaults to the site content language
 	 * @return DateFormatter
 	 */
 	public static function getInstance( $lang = null ) {

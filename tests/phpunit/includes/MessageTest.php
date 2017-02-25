@@ -315,14 +315,14 @@ class MessageTest extends MediaWikiLangTestCase {
 		return [
 			[ '<span>foo</span>', 'parse', '<span>foo</span>', '<span>foo</span>' ],
 			[ '<span>foo</span>', 'escaped', '&lt;span&gt;foo&lt;/span&gt;',
-			  '<span>foo</span>' ],
+				'<span>foo</span>' ],
 			[ '<span>foo</span>', 'plain', '<span>foo</span>', '<span>foo</span>' ],
 			[ '<script>alert(1)</script>', 'parse', '&lt;script&gt;alert(1)&lt;/script&gt;',
 				'&lt;script&gt;alert(1)&lt;/script&gt;' ],
 			[ '<script>alert(1)</script>', 'escaped', '&lt;script&gt;alert(1)&lt;/script&gt;',
 				'&lt;script&gt;alert(1)&lt;/script&gt;' ],
 			[ '<script>alert(1)</script>', 'plain', '<script>alert(1)</script>',
-			  '&lt;script&gt;alert(1)&lt;/script&gt;' ],
+				'&lt;script&gt;alert(1)&lt;/script&gt;' ],
 		];
 	}
 

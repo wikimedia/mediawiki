@@ -45,7 +45,7 @@ class UIDGeneratorTest extends PHPUnit_Framework_TestCase {
 				$last_timestamp_bin,
 				$timestamp_bin,
 				"timestamp ($timestamp_bin) of current ID ($id_bin) >= timestamp ($last_timestamp_bin) " .
-				  "of prior one ($lastId_bin)" );
+					"of prior one ($lastId_bin)" );
 
 			$hostbits_bin = substr( $id_bin, -$hostbits );
 			$last_hostbits_bin = substr( $lastId_bin, -$hostbits );
@@ -55,7 +55,7 @@ class UIDGeneratorTest extends PHPUnit_Framework_TestCase {
 					$hostbits_bin,
 					$last_hostbits_bin,
 					"Host ID ($hostbits_bin) of current ID ($id_bin) is same as host ID ($last_hostbits_bin) " .
-					  "of prior one ($lastId_bin)." );
+						"of prior one ($lastId_bin)." );
 			}
 
 			$lastId = $id;

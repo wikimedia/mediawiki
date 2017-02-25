@@ -1157,8 +1157,11 @@ abstract class ContentHandler {
 	 * @return array Map of name=>value for fields
 	 * @since 1.28
 	 */
-	public function getDataForSearchIndex( WikiPage $page, ParserOutput $output,
-	                                       SearchEngine $engine ) {
+	public function getDataForSearchIndex(
+		WikiPage $page,
+		ParserOutput $output,
+		SearchEngine $engine
+	) {
 		$fieldData = [];
 		$content = $page->getContent();
 

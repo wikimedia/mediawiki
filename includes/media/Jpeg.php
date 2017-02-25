@@ -112,8 +112,8 @@ class JpegHandler extends ExifBitmapHandler {
 			wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
 
 			/* This used to use 0 (ExifBitmapHandler::OLD_BROKEN_FILE) for the cases
-			 * 	* No metadata in the file
-			 * 	* Something is broken in the file.
+			 *   * No metadata in the file
+			 *   * Something is broken in the file.
 			 * However, if the metadata support gets expanded then you can't tell if the 0 is from
 			 * a broken file, or just no props found. A broken file is likely to stay broken, but
 			 * a file which had no props could have props once the metadata support is improved.
