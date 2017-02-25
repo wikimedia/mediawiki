@@ -26,6 +26,8 @@
 		this.controller = controller;
 		this.model = model;
 		this.$overlay = config.$overlay || this.$element;
+		this.groups = {};
+		this.selected = null;
 
 		this.highlightButton = new OO.ui.ButtonWidget( {
 			label: mw.message( 'rcfilters-highlightbutton-title' ).text(),
@@ -74,16 +76,20 @@
 
 		// Reset
 		this.clearItems();
+		this.groups = {};
 
 		this.addItems(
 			Object.keys( this.model.getFilterGroups() ).map( function ( groupName ) {
-				return new mw.rcfilters.ui.FilterGroupWidget(
+				var groupWidget = new mw.rcfilters.ui.FilterGroupWidget(
 					widget.controller,
 					widget.model.getGroup( groupName ),
 					{
 						$overlay: widget.$overlay
 					}
 				);
+
+				widget.groups[ groupName ] = groupWidget;
+				return groupWidget;
 			} )
 		);
 	};
@@ -97,6 +103,59 @@
 	 */
 	mw.rcfilters.ui.FiltersListWidget.prototype.onHighlightButtonClick = function () {
 		this.controller.toggleHighlight();
+	};
+
+	/**
+	 * Find the filter item widget that corresponds to the item name
+	 *
+	 * @param {string} itemName Filter name
+	 * @return {mw.rcfilters.ui.FilterItemWidget} Filter widget
+	 */
+	mw.rcfilters.ui.FiltersListWidget.prototype.getItemWidget = function ( itemName ) {
+		var filterItem = this.model.getItemByName( itemName ),
+			// Find the group
+			groupWidget = this.groups[ filterItem.getGroupName() ];
+
+		// Find the item inside the group
+		return groupWidget.getItemWidget( itemName );
+	};
+
+	/**
+	 * Mark an item widget as selected
+	 *
+	 * @param {string} itemName Filter name
+	 */
+	mw.rcfilters.ui.FiltersListWidget.prototype.select = function ( itemName ) {
+		var filterWidget;
+
+		if ( this.selected !== itemName ) {
+			// Unselect previous
+			if ( this.selected ) {
+				filterWidget = this.getItemWidget( this.selected );
+				filterWidget.toggleSelected( false );
+			}
+
+			// Select new one
+			this.selected = itemName;
+			if ( this.selected ) {
+				filterWidget = this.getItemWidget( this.selected );
+				filterWidget.toggleSelected( true );
+			}
+		}
+	};
+
+	/**
+	 * Reset selection and remove selected states from all items
+	 */
+	mw.rcfilters.ui.FiltersListWidget.prototype.resetSelection = function () {
+		if ( this.selected !== null ) {
+			this.selected = null;
+			this.getItems().forEach( function ( groupWidget ) {
+				groupWidget.getItems().forEach( function ( filterItemWidget ) {
+					filterItemWidget.toggleSelected( false );
+				} );
+			} );
+		}
 	};
 
 	/**

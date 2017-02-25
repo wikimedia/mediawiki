@@ -55,6 +55,10 @@
 		this.textInput.connect( this, {
 			change: 'onTextInputChange'
 		} );
+		this.capsule.connect( this, { capsuleItemClick: 'onCapsuleItemClick' } );
+		this.capsule.popup.connect( this, { toggle: 'onCapsulePopupToggle' } );
+
+		// Initialize
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget' )
 			.append( this.capsule.$element, this.textInput.$element );
@@ -66,11 +70,59 @@
 	OO.mixinClass( mw.rcfilters.ui.FilterWrapperWidget, OO.ui.mixin.PendingElement );
 
 	/**
+	 * Respond to capsule item click and make the popup scroll down to the requested item
+	 *
+	 * @param {mw.rcfilters.ui.CapsuleItemWidget} item Clicked item
+	 */
+	mw.rcfilters.ui.FilterWrapperWidget.prototype.onCapsuleItemClick = function ( item ) {
+		var filterName = item.getData(),
+			// Find the item in the popup
+			filterWidget = this.filterPopup.getItemWidget( filterName );
+
+		// Highlight item
+		this.filterPopup.select( filterName );
+
+		this.scrollToTop( filterWidget.$element );
+	};
+
+	/**
+	 * Scroll the element to top within its container
+	 *
+	 * @param {jQuery} $element Element to position
+	 * @param {number} [marginFromTop] When scrolling the entire widget to the top, leave this
+	 *  much space (in pixels) above the widget.
+	 */
+	mw.rcfilters.ui.FilterWrapperWidget.prototype.scrollToTop = function ( $element, marginFromTop ) {
+		var container = OO.ui.Element.static.getClosestScrollableContainer( $element[ 0 ], 'y' ),
+			pos = OO.ui.Element.static.getRelativePosition( $element, $( container ) );
+
+		// Scroll to item
+		$( container ).animate( {
+			scrollTop: $( container ).scrollTop() + pos.top + ( marginFromTop || 0 )
+		} );
+	};
+
+	/**
+	 * Respond to popup toggle event. Reset selection in the list when the popup is closed.
+	 *
+	 * @param {boolean} isVisible Popup is visible
+	 */
+	mw.rcfilters.ui.FilterWrapperWidget.prototype.onCapsulePopupToggle = function ( isVisible ) {
+		if ( !isVisible ) {
+			this.filterPopup.resetSelection();
+		} else {
+			this.scrollToTop( this.capsule.$element, 10 );
+		}
+	};
+
+	/**
 	 * Respond to text input change
 	 *
 	 * @param {string} newValue Current value
 	 */
 	mw.rcfilters.ui.FilterWrapperWidget.prototype.onTextInputChange = function ( newValue ) {
+		this.filterPopup.resetSelection();
+
 		// Filter the results
 		this.filterPopup.filter( this.model.findMatches( newValue ) );
 	};
