@@ -3777,9 +3777,9 @@ class User implements IDBAccessObject {
 	 */
 	public function getExperienceLevel() {
 		global $wgLearnerEdits,
-			   $wgExperiencedUserEdits,
-			   $wgLearnerMemberSince,
-			   $wgExperiencedUserMemberSince;
+			$wgExperiencedUserEdits,
+			$wgLearnerMemberSince,
+			$wgExperiencedUserMemberSince;
 
 		if ( $this->isAnon() ) {
 			return false;

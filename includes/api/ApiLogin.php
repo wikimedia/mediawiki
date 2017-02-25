@@ -202,7 +202,7 @@ class ApiLogin extends ApiBase {
 
 			case 'Aborted':
 				$result['reason'] = 'Authentication requires user interaction, ' .
-				   'which is not supported by action=login.';
+					'which is not supported by action=login.';
 				if ( $this->getConfig()->get( 'EnableBotPasswords' ) ) {
 					$result['reason'] .= ' To be able to login with action=login, see [[Special:BotPasswords]].';
 					$result['reason'] .= ' To continue using main-account login, see action=clientlogin.';

@@ -244,9 +244,9 @@ class SqliteInstaller extends DatabaseInstaller {
 			$sql =
 <<<EOT
 	CREATE TABLE IF NOT EXISTS objectcache (
-	  keyname BLOB NOT NULL default '' PRIMARY KEY,
-	  value BLOB,
-	  exptime TEXT
+		keyname BLOB NOT NULL default '' PRIMARY KEY,
+		value BLOB,
+		exptime TEXT
 	)
 EOT;
 			$conn->query( $sql );

@@ -103,9 +103,9 @@ class UserMailer {
 	 * @param string $subject Email's subject.
 	 * @param string $body Email's text or Array of two strings to be the text and html bodies
 	 * @param array $options:
-	 * 		'replyTo' MailAddress
-	 * 		'contentType' string default 'text/plain; charset=UTF-8'
-	 * 		'headers' array Extra headers to set
+	 *     'replyTo' MailAddress
+	 *     'contentType' string default 'text/plain; charset=UTF-8'
+	 *     'headers' array Extra headers to set
 	 *
 	 * @throws MWException
 	 * @throws Exception
@@ -197,9 +197,9 @@ class UserMailer {
 	 * @param string $subject Email's subject.
 	 * @param string $body Email's text or Array of two strings to be the text and html bodies
 	 * @param array $options:
-	 * 		'replyTo' MailAddress
-	 * 		'contentType' string default 'text/plain; charset=UTF-8'
-	 * 		'headers' array Extra headers to set
+	 *     'replyTo' MailAddress
+	 *     'contentType' string default 'text/plain; charset=UTF-8'
+	 *     'headers' array Extra headers to set
 	 *
 	 * @throws MWException
 	 * @throws Exception

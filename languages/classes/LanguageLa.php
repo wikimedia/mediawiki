@@ -50,12 +50,12 @@ class LanguageLa extends Language {
 		case 'genitive':
 			// only a few declensions, and even for those mostly the singular only
 			$in = [
-				'/u[ms]$/',                	# 2nd declension singular
-				'/ommunia$/',              	# 3rd declension neuter plural (partly)
-				'/a$/',                    	# 1st declension singular
+				'/u[ms]$/',                          # 2nd declension singular
+				'/ommunia$/',                        # 3rd declension neuter plural (partly)
+				'/a$/',                              # 1st declension singular
 				'/libri$/', '/nuntii$/', '/datae$/', # 2nd declension plural (partly)
-				'/tio$/', '/ns$/', '/as$/',	# 3rd declension singular (partly)
-				'/es$/'                    	# 5th declension singular
+				'/tio$/', '/ns$/', '/as$/',          # 3rd declension singular (partly)
+				'/es$/'                              # 5th declension singular
 			];
 			$out = [
 				'i',
@@ -69,12 +69,12 @@ class LanguageLa extends Language {
 		case 'accusative':
 			// only a few declensions, and even for those mostly the singular only
 			$in = [
-				'/u[ms]$/',                	# 2nd declension singular
-				'/a$/',                    	# 1st declension singular
-				'/ommuniam$/',              # 3rd declension neuter plural (partly)
+				'/u[ms]$/',                          # 2nd declension singular
+				'/a$/',                              # 1st declension singular
+				'/ommuniam$/',                       # 3rd declension neuter plural (partly)
 				'/libri$/', '/nuntii$/', '/datam$/', # 2nd declension plural (partly)
-				'/tio$/', '/ns$/', '/as$/',	# 3rd declension singular (partly)
-				'/es$/'                    	# 5th declension singular
+				'/tio$/', '/ns$/', '/as$/',          # 3rd declension singular (partly)
+				'/es$/'                              # 5th declension singular
 			];
 			$out = [
 				'um',
@@ -88,12 +88,12 @@ class LanguageLa extends Language {
 		case 'ablative':
 			// only a few declensions, and even for those mostly the singular only
 			$in = [
-				'/u[ms]$/',                	# 2nd declension singular
-				'/ommunia$/',              	# 3rd declension neuter plural (partly)
-				'/a$/',                    	# 1st declension singular
-				'/libri$/', '/nuntii$/', '/data$/', # 2nd declension plural (partly)
-				'/tio$/', '/ns$/', '/as$/',	# 3rd declension singular (partly)
-				'/es$/'                    	# 5th declension singular
+				'/u[ms]$/',                          # 2nd declension singular
+				'/ommunia$/',                        # 3rd declension neuter plural (partly)
+				'/a$/',                              # 1st declension singular
+				'/libri$/', '/nuntii$/', '/data$/',  # 2nd declension plural (partly)
+				'/tio$/', '/ns$/', '/as$/',          # 3rd declension singular (partly)
+				'/es$/'                              # 5th declension singular
 			];
 			$out = [
 				'o',

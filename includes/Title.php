@@ -3865,7 +3865,7 @@ class Title implements LinkTarget {
 	 * categories' names.
 	 *
 	 * @return array Array of parents in the form:
-	 *	  $parent => $currentarticle
+	 *     $parent => $currentarticle
 	 */
 	public function getParentCategories() {
 		global $wgContLang;

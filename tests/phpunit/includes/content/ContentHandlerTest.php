@@ -434,8 +434,13 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$page = new WikiPage( $title );
 
 		$this->setTemporaryHook( 'SearchDataForIndex',
-			function ( &$fields, ContentHandler $handler, WikiPage $page, ParserOutput $output,
-					   SearchEngine $engine ) {
+			function (
+				&$fields,
+				ContentHandler $handler,
+				WikiPage $page,
+				ParserOutput $output,
+				SearchEngine $engine
+			) {
 				$fields['testDataField'] = 'test content';
 			} );
 

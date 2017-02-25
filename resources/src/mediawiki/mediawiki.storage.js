@@ -42,12 +42,12 @@
 	};
 
 	/**
-	  * Set a value in device storage.
-	  *
-	  * @param {string} key Key name to store under
-	  * @param {string} value Value to be stored
-	  * @return {boolean} Whether the save succeeded or not
-	  */
+	 * Set a value in device storage.
+	 *
+	 * @param {string} key Key name to store under
+	 * @param {string} value Value to be stored
+	 * @return {boolean} Whether the save succeeded or not
+	 */
 	SafeStorage.prototype.set = function ( key, value ) {
 		try {
 			this.store.setItem( key, value );
@@ -57,11 +57,11 @@
 	};
 
 	/**
-	  * Remove a value from device storage.
-	  *
-	  * @param {string} key Key of item to remove
-	  * @return {boolean} Whether the save succeeded or not
-	  */
+	 * Remove a value from device storage.
+	 *
+	 * @param {string} key Key of item to remove
+	 * @return {boolean} Whether the save succeeded or not
+	 */
 	SafeStorage.prototype.remove = function ( key ) {
 		try {
 			this.store.removeItem( key );

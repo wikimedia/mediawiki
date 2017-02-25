@@ -222,18 +222,18 @@ function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
 /**
  * Merge arrays in the style of getUserPermissionsErrors, with duplicate removal
  * e.g.
- *	wfMergeErrorArrays(
- *		[ [ 'x' ] ],
- *		[ [ 'x', '2' ] ],
- *		[ [ 'x' ] ],
- *		[ [ 'y' ] ]
- *	);
+ *     wfMergeErrorArrays(
+ *       [ [ 'x' ] ],
+ *       [ [ 'x', '2' ] ],
+ *       [ [ 'x' ] ],
+ *       [ [ 'y' ] ]
+ *     );
  * returns:
- * 		[
- *   		[ 'x', '2' ],
- *   		[ 'x' ],
- *   		[ 'y' ]
- *   	]
+ *     [
+ *       [ 'x', '2' ],
+ *       [ 'x' ],
+ *       [ 'y' ]
+ *     ]
  *
  * @param array $array1,...
  * @return array
@@ -2573,8 +2573,8 @@ function wfInitShellLocale() {
  * @param string $script MediaWiki cli script path
  * @param array $parameters Arguments and options to the script
  * @param array $options Associative array of options:
- * 		'php': The path to the php executable
- * 		'wrapper': Path to a PHP wrapper to handle the maintenance script
+ *     'php': The path to the php executable
+ *     'wrapper': Path to a PHP wrapper to handle the maintenance script
  * @return string
  */
 function wfShellWikiCmd( $script, array $parameters = [], array $options = [] ) {
