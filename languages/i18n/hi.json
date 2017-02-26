@@ -78,7 +78,8 @@
 			"NehalDaveND",
 			"Susant purohit",
 			"Jayprakash12345",
-			"Dr. Shikha Jaggi"
+			"Dr. Shikha Jaggi",
+			"Shyamal"
 		]
 	},
 	"tog-underline": "कड़ियाँ अधोरेखन:",
@@ -1377,6 +1378,8 @@
 	"rcfilters-invalid-filter": "अमान्य फ़िल्टर",
 	"rcfilters-empty-filter": "कोई सक्रिय फिल्टर नहीं। सभी योगदान दिखाए गए है।",
 	"rcfilters-filterlist-title": "फिल्टर",
+	"rcfilters-highlightbutton-title": "परिणाम रेखांकन करें",
+	"rcfilters-highlightmenu-title": "रंग चुनें",
 	"rcfilters-filterlist-noresults": "कोई फिल्टर नहीं पाया",
 	"rcfilters-filtergroup-registration": "उपयोगकर्ता पंजीकरण",
 	"rcfilters-filter-registered-label": "पंजीकृत:",

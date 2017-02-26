@@ -744,6 +744,7 @@
 	"invalid-content-data": "ข้อมูลเนื้อหาไม่ถูกต้อง",
 	"content-not-allowed-here": "ไม่อนุญาตเนื้อหา \"$1\" ในหน้า [[$2]]",
 	"editwarning-warning": "การออกจากหน้านี้อาจทำให้ความเปลี่ยนแปลงที่คุณดำเนินการสูญหาย\nถ้าคุณล็อกอินแล้ว คุณสามารถปิดคำเตือนนี้ได้ที่ส่วน \"{{int:prefs-editing}}\" ในการตั้งค่าของคุณ",
+	"editpage-invalidcontentmodel-title": "ไม่รองรับรูปแบบเนื้อหานี้",
 	"editpage-notsupportedcontentformat-title": "รูปแบบเนื้อหาไม่ได้รับการรองรับ",
 	"editpage-notsupportedcontentformat-text": "ตัวแบบเนื้อหา $2 ไม่รองรับตัวแบบเนื้อหา $1",
 	"content-model-wikitext": "ข้อความวิกิ",

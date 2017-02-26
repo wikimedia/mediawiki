@@ -1327,6 +1327,8 @@
 	"rcfilters-invalid-filter": "Неважечки филтер",
 	"rcfilters-empty-filter": "Нема активни филтри. Прикажани се сите придонеси.",
 	"rcfilters-filterlist-title": "Филтри",
+	"rcfilters-highlightbutton-title": "Истакнување на исход",
+	"rcfilters-highlightmenu-title": "Изберете боја",
 	"rcfilters-filterlist-noresults": "Не пронајдов ниеден филтер",
 	"rcfilters-filtergroup-registration": "Регистрација на корисници",
 	"rcfilters-filter-registered-label": "Регистрирани",

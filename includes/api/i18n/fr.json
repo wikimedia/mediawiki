@@ -1687,7 +1687,7 @@
 	"apiwarn-redirectsandrevids": "La résolution de la redirection ne peut pas être utilisée avec le paramètre <var>revids</var>. Toutes les redirections vers lesquelles pointent <var>revids</var> n’ont pas été résolues.",
 	"apiwarn-tokennotallowed": "L'action « $1 » n'est pas autorisée pour l'utilisateur actuel.",
 	"apiwarn-tokens-origin": "Les jetons ne peuvent pas être obtenus quand la politique de même origine n’est pas appliquée.",
-	"apiwarn-toomanyvalues": "Trop de valeurs fournies pour le paramètre <var>$1</var>: la limite est $2.",
+	"apiwarn-toomanyvalues": "Trop de valeurs fournies pour le paramètre <var>$1</var>. La  limite est $2.",
 	"apiwarn-truncatedresult": "Ce résultat a été tronqué parce que sinon, il dépasserait la limite de $1 octets.",
 	"apiwarn-unclearnowtimestamp": "Passer « $2 » comme paramètre d’horodatage <var>$1</var> a été rendu obsolète. Si, pour une raison quelconque, vous avez besoin de spécifier explicitement l’heure courante sans la recalculer du côté client, utilisez <kbd>now</kbd>.",
 	"apiwarn-unrecognizedvalues": "{{PLURAL:$3|Valeur non reconnue|Valeurs non reconnues}} pour le paramètre <var>$1</var> : $2.",
