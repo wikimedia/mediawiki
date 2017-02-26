@@ -1356,7 +1356,7 @@
 
 		Util.fetchModuleInfo( this.apiModule )
 			.done( function ( pi ) {
-				var prefix, i, j, dl, widget, $widgetLabel, widgetField, helpField, tmp, flag, count,
+				var prefix, i, j, desciptionContainer, widget, $widgetLabel, widgetField, helpField, tmp, flag, count,
 					items = [],
 					deprecatedItems = [],
 					buttons = [],
@@ -1463,14 +1463,14 @@
 							that.tokenWidget = widget;
 						}
 
-						dl = $( '<dl>' );
-						dl.append( $( '<dd>', {
+						desciptionContainer = $( '<div>' );
+						desciptionContainer.append( $( '<div>', {
 							addClass: 'description',
 							append: Util.parseHTML( pi.parameters[ i ].description )
 						} ) );
 						if ( pi.parameters[ i ].info && pi.parameters[ i ].info.length ) {
 							for ( j = 0; j < pi.parameters[ i ].info.length; j++ ) {
-								dl.append( $( '<dd>', {
+								desciptionContainer.append( $( '<div>', {
 									addClass: 'info',
 									append: Util.parseHTML( pi.parameters[ i ].info[ j ] )
 								} ) );
@@ -1486,7 +1486,7 @@
 
 							case 'limit':
 								if ( pi.parameters[ i ].highmax !== undefined ) {
-									dl.append( $( '<dd>', {
+									desciptionContainer.append( $( '<div>', {
 										addClass: 'info',
 										append: [
 											Util.parseMsg(
@@ -1497,7 +1497,7 @@
 										]
 									} ) );
 								} else {
-									dl.append( $( '<dd>', {
+									desciptionContainer.append( $( '<div>', {
 										addClass: 'info',
 										append: [
 											Util.parseMsg( 'api-help-param-limit', pi.parameters[ i ].max ),
@@ -1517,7 +1517,7 @@
 									tmp += 'max';
 								}
 								if ( tmp !== '' ) {
-									dl.append( $( '<dd>', {
+									desciptionContainer.append( $( '<div>', {
 										addClass: 'info',
 										append: Util.parseMsg(
 											'api-help-param-integer-' + tmp,
@@ -1553,7 +1553,7 @@
 								);
 							}
 							if ( tmp.length ) {
-								dl.append( $( '<dd>', {
+								desciptionContainer.append( $( '<div>', {
 									addClass: 'info',
 									append: Util.parseHTML( tmp.join( ' ' ) )
 								} ) );
@@ -1566,7 +1566,7 @@
 							} ), {
 								align: 'inline',
 								classes: [ 'mw-apisandbox-help-field' ],
-								label: dl
+								label: desciptionContainer
 							}
 						);
 
