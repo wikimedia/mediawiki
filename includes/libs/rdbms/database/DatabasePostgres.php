@@ -1079,8 +1079,8 @@ __INDEXATTR__;
 		$q = <<<SQL
 	SELECT 1 FROM pg_class, pg_namespace, pg_trigger
 		WHERE relnamespace=pg_namespace.oid AND relkind='r'
-			  AND tgrelid=pg_class.oid
-			  AND nspname=%s AND relname=%s AND tgname=%s
+			AND tgrelid=pg_class.oid
+			AND nspname=%s AND relname=%s AND tgname=%s
 SQL;
 		$res = $this->query(
 			sprintf(
@@ -1251,12 +1251,6 @@ SQL;
 		$preLimitTail .= $this->makeGroupByWithHaving( $options );
 
 		$preLimitTail .= $this->makeOrderBy( $options );
-
-		// if ( isset( $options['LIMIT'] ) ) {
-		// 	$tailOpts .= $this->limitResult( '', $options['LIMIT'],
-		// 		isset( $options['OFFSET'] ) ? $options['OFFSET']
-		// 		: false );
-		// }
 
 		if ( isset( $options['FOR UPDATE'] ) ) {
 			$postLimitTail .= ' FOR UPDATE OF ' .
