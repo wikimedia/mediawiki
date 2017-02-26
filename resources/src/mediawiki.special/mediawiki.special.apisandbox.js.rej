@@ -1,0 +1,20 @@
+--- resources/src/mediawiki.special/mediawiki.special.apisandbox.js
++++ resources/src/mediawiki.special/mediawiki.special.apisandbox.js
+@@ -1463,14 +1463,14 @@
+ 							that.tokenWidget = widget;
+ 						}
+ 
+-						dl = $( '<dl>' );
+-						dl.append( $( '<dd>', {
++						paragraph = $( '<p>' );
++						paragraph.append( $( '<span>', {
+ 							addClass: 'description',
+ 							append: Util.parseHTML( pi.parameters[ i ].description )
+ 						} ) );
+ 						if ( pi.parameters[ i ].info && pi.parameters[ i ].info.length ) {
+ 							for ( j = 0; j < pi.parameters[ i ].info.length; j++ ) {
+-								dl.append( $( '<dd>', {
++								paragraph.append( $( '<span>', {
+ 									addClass: 'info',
+ 									append: Util.parseHTML( pi.parameters[ i ].info[ j ] )
+ 								} ) );
