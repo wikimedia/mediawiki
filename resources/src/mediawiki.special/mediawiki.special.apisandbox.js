@@ -1463,14 +1463,14 @@
 							that.tokenWidget = widget;
 						}
 
-						dl = $( '<dl>' );
-						dl.append( $( '<dd>', {
+						dl = $( '<p>' );
+						dl.append( $( '<span>', {
 							addClass: 'description',
 							append: Util.parseHTML( pi.parameters[ i ].description )
 						} ) );
 						if ( pi.parameters[ i ].info && pi.parameters[ i ].info.length ) {
 							for ( j = 0; j < pi.parameters[ i ].info.length; j++ ) {
-								dl.append( $( '<dd>', {
+								dl.append( $( '<span>', {
 									addClass: 'info',
 									append: Util.parseHTML( pi.parameters[ i ].info[ j ] )
 								} ) );
