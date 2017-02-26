@@ -3563,7 +3563,10 @@ HTML
 		}
 	}
 
-	private function incrementConflictStats() {
+	/**
+	 * @since 1.29
+	 */
+	protected function incrementConflictStats() {
 		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 		$stats->increment( 'edit.failures.conflict' );
 		// Only include 'standard' namespaces to avoid creating unknown numbers of statsd metrics
