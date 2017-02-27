@@ -24,6 +24,8 @@
 		this.model = model;
 		this.$overlay = config.$overlay || this.$element;
 		this.positioned = false;
+		this.popupTimeoutShow = null;
+		this.popupTimeoutHide = null;
 
 		// Parent constructor
 		mw.rcfilters.ui.CapsuleItemWidget.parent.call( this, $.extend( {
@@ -60,8 +62,8 @@
 			.prepend( this.$highlight )
 			.attr( 'aria-haspopup', 'true' )
 			.addClass( 'mw-rcfilters-ui-capsuleItemWidget' )
-			.on( 'mouseover', this.onHover.bind( this, true ) )
-			.on( 'mouseout', this.onHover.bind( this, false ) );
+			.on( 'mouseenter', this.onMouseEnter.bind( this ) )
+			.on( 'mouseleave', this.onMouseLeave.bind( this ) );
 
 		this.setCurrentMuteState();
 		this.setHighlightColor();
@@ -131,20 +133,38 @@
 	};
 
 	/**
-	 * Respond to hover event on the capsule item.
-	 *
-	 * @param {boolean} isHovering Mouse is hovering on the item
+	 * Respond to mouse enter event
 	 */
-	mw.rcfilters.ui.CapsuleItemWidget.prototype.onHover = function ( isHovering ) {
+	mw.rcfilters.ui.CapsuleItemWidget.prototype.onMouseEnter = function () {
 		if ( this.model.getDescription() ) {
-			this.popup.toggle( isHovering );
-
-			if ( isHovering && !this.positioned ) {
+			if ( !this.positioned ) {
 				// Recalculate position to be center of the capsule item
 				this.popup.$element.css( 'margin-left', ( this.$element.width() / 2 ) );
 				this.positioned = true;
 			}
+
+			// Set timeout for the popup to show
+			this.popupTimeoutShow = setTimeout( function () {
+				this.popup.toggle( true );
+			}.bind( this ), 500 );
+
+			// Cancel the hide timeout
+			clearTimeout( this.popupTimeoutHide );
+			this.popupTimeoutHide = null;
 		}
+	};
+
+	/**
+	 * Respond to mouse leave event
+	 */
+	mw.rcfilters.ui.CapsuleItemWidget.prototype.onMouseLeave = function () {
+		this.popupTimeoutHide = setTimeout( function () {
+			this.popup.toggle( false );
+		}.bind( this ), 250 );
+
+		// Clear the show timeout
+		clearTimeout( this.popupTimeoutShow );
+		this.popupTimeoutShow = null;
 	};
 
 	/**
