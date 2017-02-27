@@ -89,13 +89,15 @@ class Parser {
 	# Everything except bracket, space, or control characters
 	# \p{Zs} is unicode 'separator, space' category. It covers the space 0x20
 	# as well as U+3000 is IDEOGRAPHIC SPACE for T21052
-	const EXT_LINK_URL_CLASS = '[^][<>"\\x00-\\x20\\x7F\p{Zs}]';
+	# \x{FFFD} is the Unicode replacement character, which Preprocessor_DOM
+	# uses to replace invalid HTML characters.
+	const EXT_LINK_URL_CLASS = '[^][<>"\\x00-\\x20\\x7F\p{Zs}\x{FFFD}]';
 	# Simplified expression to match an IPv4 or IPv6 address, or
 	# at least one character of a host name (embeds EXT_LINK_URL_CLASS)
-	const EXT_LINK_ADDR = '(?:[0-9.]+|\\[(?i:[0-9a-f:.]+)\\]|[^][<>"\\x00-\\x20\\x7F\p{Zs}])';
+	const EXT_LINK_ADDR = '(?:[0-9.]+|\\[(?i:[0-9a-f:.]+)\\]|[^][<>"\\x00-\\x20\\x7F\p{Zs}\x{FFFD}])';
 	# RegExp to make image URLs (embeds IPv6 part of EXT_LINK_ADDR)
 	// @codingStandardsIgnoreStart Generic.Files.LineLength
-	const EXT_IMAGE_REGEX = '/^(http:\/\/|https:\/\/)((?:\\[(?i:[0-9a-f:.]+)\\])?[^][<>"\\x00-\\x20\\x7F\p{Zs}]+)
+	const EXT_IMAGE_REGEX = '/^(http:\/\/|https:\/\/)((?:\\[(?i:[0-9a-f:.]+)\\])?[^][<>"\\x00-\\x20\\x7F\p{Zs}\x{FFFD}]+)
 		\\/([A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]+)\\.((?i)gif|png|jpg|jpeg)$/Sxu';
 	// @codingStandardsIgnoreEnd
 
@@ -264,7 +266,7 @@ class Parser {
 		$this->mUrlProtocols = wfUrlProtocols();
 		$this->mExtLinkBracketedRegex = '/\[(((?i)' . $this->mUrlProtocols . ')' .
 			self::EXT_LINK_ADDR .
-			self::EXT_LINK_URL_CLASS . '*)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F]*?)\]/Su';
+			self::EXT_LINK_URL_CLASS . '*)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F\\x{FFFD}]*?)\]/Su';
 		if ( isset( $conf['preprocessorClass'] ) ) {
 			$this->mPreprocessorClass = $conf['preprocessorClass'];
 		} elseif ( defined( 'HPHP_VERSION' ) ) {
@@ -417,6 +419,8 @@ class Parser {
 			$text = strtr( $text, "\x7f", "?" );
 			$magicScopeVariable = $this->lock();
 		}
+		// Strip U+0000 NULL (T159174)
+		$text = str_replace( "\000", '', $text );
 
 		$this->startParse( $title, $options, self::OT_HTML, $clearState );
 
@@ -4462,6 +4466,9 @@ class Parser {
 		}
 		$this->startParse( $title, $options, self::OT_WIKI, $clearState );
 		$this->setUser( $user );
+
+		// Strip U+0000 NULL (T159174)
+		$text = str_replace( "\000", '', $text );
 
 		// We still normalize line endings for backwards-compatibility
 		// with other code that just calls PST, but this should already
