@@ -73,6 +73,7 @@
 	mw.rcfilters.ui.FilterWrapperWidget.prototype.onTextInputChange = function ( newValue ) {
 		// Filter the results
 		this.filterPopup.filter( this.model.findMatches( newValue ) );
+		this.capsule.popup.clip();
 	};
 
 	/**
