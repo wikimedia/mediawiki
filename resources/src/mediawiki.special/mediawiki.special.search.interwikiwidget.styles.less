@@ -1,9 +1,17 @@
 /* interwiki search results */
 /*==========================*/
 
-#mw-interwiki-results {
-	float: right;
-	width: 30%;
+@media only screen and ( max-width: 769px ) {
+
+	#mw-interwiki-results {
+		float: right;
+		width: 30%;
+	}
+
+	.searchresults .mw-search-results {
+		max-width: 60%;
+	}
+
 }
 
 .iw-headline {
@@ -200,12 +208,6 @@ span the interwiki results across the bottom of the page.
 
 /* mobile */
 @media only screen and ( max-width: 768px ) {
-	#mw-interwiki-results {
-		width: 100%;
-	}
-	.mw-search-results {
-		max-width: none !important;
-	}
 	.iw-resultset {
 		width: 45% !important;
 		margin-left: 0.5em !important;
