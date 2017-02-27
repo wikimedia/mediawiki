@@ -120,7 +120,6 @@
 			'mw-rcfilters-ui-filterItemWidget-muted',
 			this.model.isConflicted() ||
 			this.model.isIncluded() ||
-			this.model.isFullyCovered() ||
 			(
 				// Item is also muted when any of the items in its group is active
 				this.model.getGroupModel().isActive() &&
