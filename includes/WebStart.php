@@ -1,12 +1,11 @@
 <?php
 /**
  * This does the initial set up for a web request.
- * It does some security checks, starts the profiler and loads the
- * configuration, and optionally loads Setup.php depending on whether
- * MW_NO_SETUP is defined.
  *
- * Setup.php (if loaded) then sets up GlobalFunctions, the AutoLoader,
- * and the configuration globals.
+ * It does some security checks, loads autoloaders, constants, and
+ * global functions, starts the profiler, loads the configuration,
+ * and loads Setup.php, which loads extensions using the extension
+ * registration system and initializes the application's global state.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
