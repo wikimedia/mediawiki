@@ -380,6 +380,7 @@ class LanguageConverter {
 		$literalBlob = '';
 
 		// Guard against delimiter nulls in the input
+		// (should never happen: see T159174)
 		$text = str_replace( "\000", '', $text );
 
 		$markupMatches = null;
