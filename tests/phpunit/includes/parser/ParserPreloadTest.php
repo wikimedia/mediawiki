@@ -2,6 +2,30 @@
 /**
  * Basic tests for Parser::getPreloadText
  * @author Antoine Musso
+ *
+ * @covers Parser
+ * @covers StripState
+ *
+ * @covers Preprocessor_DOM
+ * @covers PPDStack
+ * @covers PPDStackElement
+ * @covers PPDPart
+ * @covers PPFrame_DOM
+ * @covers PPTemplateFrame_DOM
+ * @covers PPCustomFrame_DOM
+ * @covers PPNode_DOM
+ *
+ * @covers Preprocessor_Hash
+ * @covers PPDStack_Hash
+ * @covers PPDStackElement_Hash
+ * @covers PPDPart_Hash
+ * @covers PPFrame_Hash
+ * @covers PPTemplateFrame_Hash
+ * @covers PPCustomFrame_Hash
+ * @covers PPNode_Hash_Tree
+ * @covers PPNode_Hash_Text
+ * @covers PPNode_Hash_Array
+ * @covers PPNode_Hash_Attr
  */
 class ParserPreloadTest extends MediaWikiTestCase {
 	/**
@@ -37,16 +61,10 @@ class ParserPreloadTest extends MediaWikiTestCase {
 		unset( $this->title );
 	}
 
-	/**
-	 * @covers Parser::getPreloadText
-	 */
 	public function testPreloadSimpleText() {
 		$this->assertPreloaded( 'simple', 'simple' );
 	}
 
-	/**
-	 * @covers Parser::getPreloadText
-	 */
 	public function testPreloadedPreIsUnstripped() {
 		$this->assertPreloaded(
 			'<pre>monospaced</pre>',
@@ -55,9 +73,6 @@ class ParserPreloadTest extends MediaWikiTestCase {
 		);
 	}
 
-	/**
-	 * @covers Parser::getPreloadText
-	 */
 	public function testPreloadedNowikiIsUnstripped() {
 		$this->assertPreloaded(
 			'<nowiki>[[Dummy title]]</nowiki>',
