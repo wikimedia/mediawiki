@@ -13,7 +13,12 @@ class BalancerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Tidy\Balancer::balance
+	 * @covers MediaWiki\Tidy\Balancer
+	 * @covers MediaWiki\Tidy\BalanceSets
+	 * @covers MediaWiki\Tidy\BalanceElement
+	 * @covers MediaWiki\Tidy\BalanceStack
+	 * @covers MediaWiki\Tidy\BalanceMarker
+	 * @covers MediaWiki\Tidy\BalanceActiveFormattingElements
 	 * @dataProvider provideBalancerTests
 	 */
 	public function testBalancer( $description, $input, $expected, $useTidy ) {
