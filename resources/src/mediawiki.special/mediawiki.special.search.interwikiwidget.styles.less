@@ -1,11 +1,6 @@
 /* interwiki search results */
 /*==========================*/
 
-#mw-interwiki-results {
-	float: right;
-	width: 30%;
-}
-
 .iw-headline {
 	font-weight: bold;
 	font-size: 1rem;
@@ -198,15 +193,23 @@ span the interwiki results across the bottom of the page.
 	margin-right: 0.5em;
 }
 
+/* desktop only */
+
+@media only screen and ( min-width: 769px ) {
+
+	#mw-interwiki-results {
+		float: right;
+		width: 30%;
+	}
+
+	.searchresults .mw-search-results {
+		max-width: 60%;
+	}
+}
+
 /* mobile */
 /* stylelint-disable declaration-no-important */
 @media only screen and ( max-width: 768px ) {
-	#mw-interwiki-results {
-		width: 100%;
-	}
-	.mw-search-results {
-		max-width: none !important;
-	}
 	.iw-resultset {
 		width: 45% !important;
 		margin-left: 0.5em !important;
