@@ -1,16 +1,6 @@
 /* interwiki search results */
 /*==========================*/
 
-#mw-interwiki-results {
-	width: 30%;
-	display: inline-block;
-	margin-left: 10%;
-}
-
-.searchresults .mw-search-createlink {
-	float: left;
-}
-
 .iw-headline {
 	font-weight: bold;
 	font-size: 1rem;
@@ -187,37 +177,20 @@ to resemble a traditional dictionary definition */
 	text-align: right;
 }
 
-/* no results
-span the interwiki results across the bottom of the page.
-*/
+/* desktop only */
 
-.mw-search-nonefound ~ #mw-search-interwiki {
-	width: 100%;
-}
+@media only screen and ( min-width: @deviceWidthTablet ) {
 
-.mw-search-nonefound ~ #mw-search-interwiki .iw-resultset {
-	width: 30%;
-	max-width: 300px;
-	margin-left: 0.5em;
-	margin-right: 0.5em;
-}
-
-/* mobile */
-/* stylelint-disable declaration-no-important */
-@media only screen and ( max-width: 768px ) {
 	#mw-interwiki-results {
-		width: 100%;
-		margin-left: 0;
+		width: 30%;
+		display: inline-block; /* used to align iw sidebar with the top of the main search results*/
+		margin-left: 10%;
 	}
-	.mw-search-results {
-		max-width: none !important;
-	}
-	.iw-resultset {
-		width: 100% !important;
-		margin-left: 0 !important;
-		margin-right: 0 !important;
-		max-width: none !important;
+	.searchresults .mw-search-createlink,
+	.searchresults .mw-search-nonefound,
+	.searchresults .mw-search-results {
+		float: left;
+		width: 60%;
 	}
 
 }
-/* stylelint-enable declaration-no-important */
