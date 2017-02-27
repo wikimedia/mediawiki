@@ -7,7 +7,8 @@
 			"Wolliger Mensch",
 			"ОйЛ",
 			"아라",
-			"Илья Драконов"
+			"Илья Драконов",
+			"Vvs-dm"
 		]
 	},
 	"tog-oldsig": "нꙑнѣшьн҄ь аѵтографъ :",
@@ -365,7 +366,6 @@
 	"prefs-resetpass": "таина словєсє иꙁмѣнѥниѥ",
 	"saveprefs": "съхранѥниѥ",
 	"prefs-editing": "исправлѥниѥ",
-	"rows": "рѧдꙑ :",
 	"searchresultshead": "исканиѥ",
 	"savedprefs": "твои строи иꙁмѣнєнъ ѥстъ",
 	"localtime": "мѣстьно врѣмѧ :",
@@ -467,6 +467,7 @@
 	"sourcefilename": "источьна дѣла имꙗ :",
 	"watchthisupload": "си дѣла блюдєниѥ",
 	"upload-dialog-button-cancel": "отъмѣтаниѥ",
+	"upload-form-label-infoform-categories": "Катигории",
 	"license": "прощєниѥ :",
 	"license-header": "прощєниѥ",
 	"imgfile": "дѣло",

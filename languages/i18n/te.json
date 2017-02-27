@@ -1244,6 +1244,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|కొత్త పేజీల జాబితా]]ను కూడా చూడండి)",
 	"recentchanges-submit": "చూపించు",
 	"rcfilters-filterlist-title": "వడపోతలు",
+	"rcfilters-highlightmenu-title": "ఒక రంగును ఎంచుకోండి",
 	"rcfilters-filtergroup-registration": "వాడుకరి నమోదు",
 	"rcfilters-filter-editsbyself-label": "మీ స్వంత దిద్దుబాట్లు",
 	"rcfilters-filter-editsbyself-description": "మీ దిద్దుబాట్లు.",

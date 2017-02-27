@@ -152,7 +152,8 @@
 			"Derugon",
 			"Benoit Rochon",
 			"Fitoschido",
-			"Archaeodontosaurus"
+			"Archaeodontosaurus",
+			"Trizek (WMF)"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -1472,7 +1473,7 @@
 	"rcfilters-filtergroup-registration": "Inscription de l’utilisateur",
 	"rcfilters-filter-registered-label": "Enregistré",
 	"rcfilters-filter-registered-description": "Éditeurs connectés.",
-	"rcfilters-filter-unregistered-label": "Désinscrit",
+	"rcfilters-filter-unregistered-label": "Non connectés",
 	"rcfilters-filter-unregistered-description": "Éditeurs qui ne sont pas connectés.",
 	"rcfilters-filtergroup-authorship": "Modifier la paternité",
 	"rcfilters-filter-editsbyself-label": "Vos propres modifications",
