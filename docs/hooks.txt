@@ -467,6 +467,12 @@ can alter or append to the array.
       (url), 'width', 'height', 'alt', 'align'.
     - url: Url for the given title.
 
+'ApiParseMakeOutputPage': Called when preparing the OutputPage object for
+ApiParse. This is mainly intended for calling OutputPage::addContentOverride()
+or OutputPage::addContentOverrideCallback().
+$module: ApiBase (which is also a ContextSource)
+$output: OutputPage
+
 'ApiQuery::moduleManager': Called when ApiQuery has finished initializing its
 module manager. Can be used to conditionally register API query modules.
 $moduleManager: ApiModuleManager Module manager instance
