@@ -54,6 +54,9 @@ production.
   This might affect some forms that used them and only worked because the
   attributes were not actually being set.
 * Expiry times can now be specified when users are added to user groups.
+* (T112474) Generalized the ResourceLoader mechanism for overriding modules
+  using a particular page during edit previews.
+* Added 'ApiParseOutputPageForHeadHtml' hook.
 
 === External library changes in 1.29 ===
 
@@ -129,6 +132,7 @@ production.
   various methods now take a module path rather than a module name.
 * ApiMessageTrait::getApiCode() now strips 'apierror-' and 'apiwarn-' prefixes
   from the message key, and maps some message keys for backwards compatibility.
+* Added 'ApiParseOutputPageForHeadHtml' hook.
 
 === Languages updated in 1.29 ===
 

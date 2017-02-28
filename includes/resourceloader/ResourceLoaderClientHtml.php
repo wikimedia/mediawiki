@@ -149,7 +149,7 @@ class ResourceLoaderClientHtml {
 				continue;
 			}
 
-			$group = $module->getGroup();
+			$group = $module->shouldEmbedModule( $this->context ) ? 'private' : $module->getGroup();
 
 			if ( $group === 'private' ) {
 				// Embed via mw.loader.implement per T36907.
@@ -179,7 +179,7 @@ class ResourceLoaderClientHtml {
 				$data['states'][$name] = 'ready';
 			}
 
-			$group = $module->getGroup();
+			$group = $module->shouldEmbedModule( $this->context ) ? 'private' : $module->getGroup();
 			$context = $this->getContext( $group, ResourceLoaderModule::TYPE_STYLES );
 			if ( $module->isKnownEmpty( $context ) ) {
 				// Avoid needless request for empty module
@@ -203,7 +203,7 @@ class ResourceLoaderClientHtml {
 				continue;
 			}
 
-			$group = $module->getGroup();
+			$group = $module->shouldEmbedModule( $this->context ) ? 'private' : $module->getGroup();
 			$context = $this->getContext( $group, ResourceLoaderModule::TYPE_SCRIPTS );
 			if ( $module->isKnownEmpty( $context ) ) {
 				// Avoid needless request for empty module
@@ -347,7 +347,9 @@ class ResourceLoaderClientHtml {
 		}
 		$context = new ResourceLoaderContext( $mainContext->getResourceLoader(), $req );
 		// Allow caller to setVersion() and setModules()
-		return new DerivativeResourceLoaderContext( $context );
+		$ret = new DerivativeResourceLoaderContext( $context );
+		$ret->setContentOverrideCallback( $mainContext->getContentOverrideCallback() );
+		return $ret;
 	}
 
 	/**
@@ -392,25 +394,44 @@ class ResourceLoaderClientHtml {
 		foreach ( $sortedModules as $source => $groups ) {
 			foreach ( $groups as $group => $grpModules ) {
 				$context = self::makeContext( $mainContext, $group, $only, $extraQuery );
-				$context->setModules( array_keys( $grpModules ) );
 
+				// Separate linked and embedded modules
+				$embedModules = [];
+				$linkModules = [];
 				if ( $group === 'private' ) {
+					$embedModules = $grpModules;
+				} else {
+					foreach ( $grpModules as $name => $module ) {
+						if ( $module->shouldEmbedModule( $context ) ) {
+							$embedModules[$name] = $module;
+						} else {
+							$linkModules[$name] = $module;
+						}
+					}
+				}
+
+				if ( $embedModules ) {
+					$context->setModules( array_keys( $embedModules ) );
 					// Decide whether to use style or script element
 					if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
 						$chunks[] = Html::inlineStyle(
-							$rl->makeModuleResponse( $context, $grpModules )
+							$rl->makeModuleResponse( $context, $embedModules )
 						);
 					} else {
 						$chunks[] = ResourceLoader::makeInlineScript(
-							$rl->makeModuleResponse( $context, $grpModules )
+							$rl->makeModuleResponse( $context, $embedModules )
 						);
 					}
+				}
+
+				if ( !$linkModules ) {
 					continue;
 				}
+				$context->setModules( array_keys( $linkModules ) );
 
 				// See if we have one or more raw modules
 				$isRaw = false;
-				foreach ( $grpModules as $key => $module ) {
+				foreach ( $linkModules as $key => $module ) {
 					$isRaw |= $module->isRaw();
 				}
 

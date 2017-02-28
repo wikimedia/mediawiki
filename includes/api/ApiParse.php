@@ -360,6 +360,8 @@ class ApiParse extends ApiBase {
 			// RequestContext at the root of the stack.
 			$output = new OutputPage( $context );
 			$output->addParserOutputMetadata( $p_result );
+			$output->addContentOverride( $titleObj, $this->content );
+			Hooks::run( 'ApiParseOutputPageForHeadHtml', [ $this, $output ] );
 
 			$result_array['headhtml'] = $output->headElement( $context->getSkin() );
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'headhtml';
