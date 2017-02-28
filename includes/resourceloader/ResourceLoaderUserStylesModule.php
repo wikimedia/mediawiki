@@ -58,8 +58,9 @@ class ResourceLoaderUserStylesModule extends ResourceLoaderWikiModule {
 			}
 		}
 
-		// Hack for T28283: Allow excluding pages for preview on a CSS/JS page.
-		// The excludepage parameter is set by OutputPage.
+		// This is obsolete since 1.32 (T112474). It was formerly used by
+		// OutputPage to implement previewing of user CSS and JS.
+		// @todo: Remove it once we're sure nothing else is using the parameter
 		$excludepage = $context->getRequest()->getVal( 'excludepage' );
 		if ( isset( $pages[$excludepage] ) ) {
 			unset( $pages[$excludepage] );

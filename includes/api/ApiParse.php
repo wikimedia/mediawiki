@@ -314,6 +314,9 @@ class ApiParse extends ApiBase {
 
 			$outputPage = new OutputPage( $context );
 			$outputPage->addParserOutputMetadata( $p_result );
+			if ( $this->content ) {
+				$outputPage->addContentOverride( $titleObj, $this->content );
+			}
 			$context->setOutput( $outputPage );
 
 			if ( $skin ) {
@@ -324,6 +327,8 @@ class ApiParse extends ApiBase {
 					$outputPage->addModules( $group );
 				}
 			}
+
+			Hooks::run( 'ApiParseMakeOutputPage', [ $this, $outputPage ] );
 		}
 
 		if ( !is_null( $oldid ) ) {

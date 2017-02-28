@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
@@ -154,9 +155,6 @@ class OutputPage extends ContextSource {
 
 	/** @var ResourceLoaderContext */
 	private $rlClientContext;
-
-	/** @var string */
-	private $rlUserModuleState;
 
 	/** @var array */
 	private $rlExemptStyleModules;
@@ -294,6 +292,12 @@ class OutputPage extends ContextSource {
 
 	/** @var array Profiling data */
 	private $limitReportJSData = [];
+
+	/** @var array Map Title to Content */
+	private $contentOverrides = [];
+
+	/** @var callable[] */
+	private $contentOverrideCallbacks = [];
 
 	/**
 	 * Link: header contents
@@ -620,6 +624,39 @@ class OutputPage extends ContextSource {
 	 */
 	public function setTarget( $target ) {
 		$this->mTarget = $target;
+	}
+
+	/**
+	 * Add a mapping from a LinkTarget to a Content, for things like page preview.
+	 * @see self::addContentOverrideCallback()
+	 * @since 1.32
+	 * @param LinkTarget $target
+	 * @param Content $content
+	 */
+	public function addContentOverride( LinkTarget $target, Content $content ) {
+		if ( !$this->contentOverrides ) {
+			// Register a callback for $this->contentOverrides on the first call
+			$this->addContentOverrideCallback( function ( LinkTarget $target ) {
+				$key = $target->getNamespace() . ':' . $target->getDBkey();
+				return isset( $this->contentOverrides[$key] )
+					? $this->contentOverrides[$key]
+					: null;
+			} );
+		}
+
+		$key = $target->getNamespace() . ':' . $target->getDBkey();
+		$this->contentOverrides[$key] = $content;
+	}
+
+	/**
+	 * Add a callback for mapping from a Title to a Content object, for things
+	 * like page preview.
+	 * @see ResourceLoaderContext::getContentOverrideCallback()
+	 * @since 1.32
+	 * @param callable $callback
+	 */
+	public function addContentOverrideCallback( callable $callback ) {
+		$this->contentOverrideCallbacks[] = $callback;
 	}
 
 	/**
@@ -2723,6 +2760,18 @@ class OutputPage extends ContextSource {
 				$this->getResourceLoader(),
 				new FauxRequest( $query )
 			);
+			if ( $this->contentOverrideCallbacks ) {
+				$this->rlClientContext = new DerivativeResourceLoaderContext( $this->rlClientContext );
+				$this->rlClientContext->setContentOverrideCallback( function ( Title $title ) {
+					foreach ( $this->contentOverrideCallbacks as $callback ) {
+						$content = call_user_func( $callback, $title );
+						if ( $content !== null ) {
+							return $content;
+						}
+					}
+					return null;
+				} );
+			}
 		}
 		return $this->rlClientContext;
 	}
@@ -2743,6 +2792,7 @@ class OutputPage extends ContextSource {
 			$context = $this->getRlClientContext();
 			$rl = $this->getResourceLoader();
 			$this->addModules( [
+				'user',
 				'user.options',
 				'user.tokens',
 			] );
@@ -2771,11 +2821,6 @@ class OutputPage extends ContextSource {
 				function ( $name ) use ( $rl, $context, &$exemptGroups, &$exemptStates ) {
 					$module = $rl->getModule( $name );
 					if ( $module ) {
-						if ( $name === 'user.styles' && $this->isUserCssPreview() ) {
-							$exemptStates[$name] = 'ready';
-							// Special case in buildExemptModules()
-							return false;
-						}
 						$group = $module->getGroup();
 						if ( isset( $exemptGroups[$group] ) ) {
 							$exemptStates[$name] = 'ready';
@@ -2790,18 +2835,6 @@ class OutputPage extends ContextSource {
 				}
 			);
 			$this->rlExemptStyleModules = $exemptGroups;
-
-			$isUserModuleFiltered = !$this->filterModules( [ 'user' ] );
-			// If this page filters out 'user', makeResourceLoaderLink will drop it.
-			// Avoid indefinite "loading" state or untrue "ready" state (T145368).
-			if ( !$isUserModuleFiltered ) {
-				// Manually handled by getBottomScripts()
-				$userModule = $rl->getModule( 'user' );
-				$userState = $userModule->isKnownEmpty( $context ) && !$this->isUserJsPreview()
-					? 'ready'
-					: 'loading';
-				$this->rlUserModuleState = $exemptStates['user'] = $userState;
-			}
 
 			$rlClient = new ResourceLoaderClientHtml( $context, [
 				'target' => $this->getTarget(),
@@ -2959,20 +2992,6 @@ class OutputPage extends ContextSource {
 		return WrappedString::join( "\n", $chunks );
 	}
 
-	private function isUserJsPreview() {
-		return $this->getConfig()->get( 'AllowUserJs' )
-			&& $this->getTitle()
-			&& $this->getTitle()->isUserJsConfigPage()
-			&& $this->userCanPreview();
-	}
-
-	protected function isUserCssPreview() {
-		return $this->getConfig()->get( 'AllowUserCss' )
-			&& $this->getTitle()
-			&& $this->getTitle()->isUserCssConfigPage()
-			&& $this->userCanPreview();
-	}
-
 	/**
 	 * JS stuff to put at the bottom of the `<body>`.
 	 * These are legacy scripts ($this->mScripts), and user JS.
@@ -2985,40 +3004,6 @@ class OutputPage extends ContextSource {
 
 		// Legacy non-ResourceLoader scripts
 		$chunks[] = $this->mScripts;
-
-		// Exempt 'user' module
-		// - May need excludepages for live preview. (T28283)
-		// - Must use TYPE_COMBINED so its response is handled by mw.loader.implement() which
-		//   ensures execution is scheduled after the "site" module.
-		// - Don't load if module state is already resolved as "ready".
-		if ( $this->rlUserModuleState === 'loading' ) {
-			if ( $this->isUserJsPreview() ) {
-				$chunks[] = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_COMBINED,
-					[ 'excludepage' => $this->getTitle()->getPrefixedDBkey() ]
-				);
-				$chunks[] = ResourceLoader::makeInlineScript(
-					Xml::encodeJsCall( 'mw.loader.using', [
-						[ 'user', 'site' ],
-						new XmlJsCode(
-							'function () {'
-								. Xml::encodeJsCall( '$.globalEval', [
-									$this->getRequest()->getText( 'wpTextbox1' )
-								] )
-								. '}'
-						)
-					] )
-				);
-				// FIXME: If the user is previewing, say, ./vector.js, his ./common.js will be loaded
-				// asynchronously and may arrive *after* the inline script here. So the previewed code
-				// may execute before ./common.js runs. Normally, ./common.js runs before ./vector.js.
-				// Similarly, when previewing ./common.js and the user module does arrive first,
-				// it will arrive without common.js and the inline script runs after.
-				// Thus running common after the excluded subpage.
-			} else {
-				// Load normally
-				$chunks[] = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_COMBINED );
-			}
-		}
 
 		if ( $this->limitReportJSData ) {
 			$chunks[] = ResourceLoader::makeInlineScript(
@@ -3193,7 +3178,7 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * To make it harder for someone to slip a user a fake
-	 * user-JavaScript or user-CSS preview, a random token
+	 * JavaScript or CSS preview, a random token
 	 * is associated with the login session. If it's not
 	 * passed back with the preview request, we won't render
 	 * the code.
@@ -3204,7 +3189,6 @@ class OutputPage extends ContextSource {
 		$request = $this->getRequest();
 		if (
 			$request->getVal( 'action' ) !== 'submit' ||
-			!$request->getCheck( 'wpPreview' ) ||
 			!$request->wasPosted()
 		) {
 			return false;
@@ -3221,17 +3205,6 @@ class OutputPage extends ContextSource {
 		}
 
 		$title = $this->getTitle();
-		if (
-			!$title->isUserJsConfigPage()
-			&& !$title->isUserCssConfigPage()
-		) {
-			return false;
-		}
-		if ( !$title->isSubpageOf( $user->getUserPage() ) ) {
-			// Don't execute another user's CSS or JS on preview (T85855)
-			return false;
-		}
-
 		$errors = $title->getUserPermissionsErrors( 'edit', $user );
 		if ( count( $errors ) !== 0 ) {
 			return false;
@@ -3570,28 +3543,9 @@ class OutputPage extends ContextSource {
 	 * @return string|WrappedStringList HTML
 	 */
 	protected function buildExemptModules() {
-		global $wgContLang;
-
 		$chunks = [];
 		// Things that go after the ResourceLoaderDynamicStyles marker
 		$append = [];
-
-		// Exempt 'user' styles module (may need 'excludepages' for live preview)
-		if ( $this->isUserCssPreview() ) {
-			$append[] = $this->makeResourceLoaderLink(
-				'user.styles',
-				ResourceLoaderModule::TYPE_STYLES,
-				[ 'excludepage' => $this->getTitle()->getPrefixedDBkey() ]
-			);
-
-			// Load the previewed CSS. Janus it if needed.
-			// User-supplied CSS is assumed to in the wiki's content language.
-			$previewedCSS = $this->getRequest()->getText( 'wpTextbox1' );
-			if ( $this->getLanguage()->getDir() !== $wgContLang->getDir() ) {
-				$previewedCSS = CSSJanus::transform( $previewedCSS, true, false );
-			}
-			$append[] = Html::inlineStyle( $previewedCSS );
-		}
 
 		// We want site, private and user styles to override dynamically added styles from
 		// general modules, but we want dynamically added styles to override statically added
