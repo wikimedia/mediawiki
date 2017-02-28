@@ -62,7 +62,6 @@
 		// Check all filter interactions
 		this.filtersModel.reassessFilterInteractions();
 
-		this.updateURL();
 		this.updateChangesList();
 	};
 
@@ -75,7 +74,6 @@
 		// Check all filter interactions
 		this.filtersModel.reassessFilterInteractions();
 
-		this.updateURL();
 		this.updateChangesList();
 	};
 
@@ -93,7 +91,6 @@
 			obj[ filterName ] = isSelected;
 			this.filtersModel.updateFilters( obj );
 
-			this.updateURL();
 			this.updateChangesList();
 
 			// Check filter interactions
@@ -103,9 +100,17 @@
 
 	/**
 	 * Update the URL of the page to reflect current filters
+	 *
+	 * @param {Object} [params] Extra parameters to add to the API call
 	 */
-	mw.rcfilters.Controller.prototype.updateURL = function () {
-		var uri = this.getUpdatedUri();
+	mw.rcfilters.Controller.prototype.updateURL = function ( params ) {
+		var uri;
+
+		params = params || {};
+
+		uri = this.getUpdatedUri( params );
+		uri.extend( params );
+
 		window.history.pushState( { tag: 'rcfilters' }, document.title, uri.toString() );
 	};
 
@@ -147,7 +152,7 @@
 			latestRequest = function () {
 				return requestId === this.requestCounter;
 			}.bind( this );
-		uri.extend( this.filtersModel.getParametersFromFilters() );
+
 		return $.ajax( uri.toString(), { contentType: 'html' } )
 			.then( function ( html ) {
 				return latestRequest() ?
@@ -160,10 +165,13 @@
 
 	/**
 	 * Update the list of changes and notify the model
+	 *
+	 * @param {Object} [params] Extra parameters to add to the API call
 	 */
-	mw.rcfilters.Controller.prototype.updateChangesList = function () {
+	mw.rcfilters.Controller.prototype.updateChangesList = function ( params ) {
+		this.updateURL( params );
 		this.changesListModel.invalidate();
-		this.fetchChangesList()
+		this.fetchChangesList( params )
 			.always( function ( changesListContent ) {
 				if ( changesListContent ) {
 					this.changesListModel.update( changesListContent );

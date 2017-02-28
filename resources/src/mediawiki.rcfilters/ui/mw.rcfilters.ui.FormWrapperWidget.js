@@ -6,10 +6,11 @@
 	 *
 	 * @constructor
 	 * @param {mw.rcfilters.dm.ChangesListViewModel} model Changes list view model
+	 * @param {mw.rcfilters.Controller} controller RCfilters controller
 	 * @param {jQuery} $formRoot Root element of the form to attach to
 	 * @param {Object} config Configuration object
 	 */
-	mw.rcfilters.ui.FormWrapperWidget = function MwRcfiltersUiFormWrapperWidget( model, $formRoot, config ) {
+	mw.rcfilters.ui.FormWrapperWidget = function MwRcfiltersUiFormWrapperWidget( model, controller, $formRoot, config ) {
 		config = config || {};
 
 		// Parent
@@ -18,7 +19,16 @@
 		} ) );
 
 		this.model = model;
-		this.$submitButton = this.$element.find( 'input[type=submit]' );
+		this.controller = controller;
+		this.$submitButton = this.$element.find( 'form input[type=submit]' );
+
+		this.$element
+			.find( 'a[data-params]' )
+			.on( 'click', this.onLinkClick.bind( this ) );
+
+		this.$element
+			.find( 'form' )
+			.on( 'submit', this.onFormSubmit.bind( this ) );
 
 		// Events
 		this.model.connect( this, {
@@ -30,6 +40,50 @@
 	/* Initialization */
 
 	OO.inheritClass( mw.rcfilters.ui.FormWrapperWidget, OO.ui.Widget );
+
+	/**
+	 * Respond to link click
+	 *
+	 * @param {jQuery.Event} e Event
+	 * @return {boolean} false
+	 */
+	mw.rcfilters.ui.FormWrapperWidget.prototype.onLinkClick = function ( e ) {
+		var data = $( e.target ).data( 'params' );
+
+		this.controller.updateChangesList( data );
+		return false;
+	};
+
+	/**
+	 * Respond to form submit event
+	 *
+	 * @param {jQuery.Event} e Event
+	 * @return {boolean} false
+	 */
+	mw.rcfilters.ui.FormWrapperWidget.prototype.onFormSubmit = function ( e ) {
+		var data = {};
+
+		// Collect all data from form
+		$( e.target ).find( 'input:not([type="hidden"],[type="submit"]), select' ).each( function () {
+			var val;
+
+			if (
+				!$( this ).is( ':checkbox' ) ||
+				(
+					$( this ).is( ':checkbox' ) && $( this ).is( ':checked' )
+				)
+			) {
+				val = $( this ).val();
+			}
+
+			if ( val ) {
+				data[ $( this ).prop( 'name' ) ] = val;
+			}
+		} );
+
+		this.controller.updateChangesList( data );
+		return false;
+	};
 
 	/**
 	 * Respond to model invalidate

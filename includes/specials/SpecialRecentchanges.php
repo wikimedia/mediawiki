@@ -430,7 +430,11 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				);
 				$out .= Xml::tags(
 					'td',
-					[ 'class' => 'mw-input' ],
+					[
+						'class' => 'mw-input',
+						'data-name' => $name,
+
+					],
 					$optionRow[1] . $addSubmit
 				);
 			} else {
@@ -681,7 +685,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$title = new HtmlArmor( '<strong>' . htmlspecialchars( $title ) . '</strong>' );
 		}
 
-		return $this->getLinkRenderer()->makeKnownLink( $this->getPageTitle(), $title, [], $params );
+		return $this->getLinkRenderer()->makeKnownLink( $this->getPageTitle(), $title, [
+			'data-params' => json_encode( $override )
+		], $params );
 	}
 
 	/**
