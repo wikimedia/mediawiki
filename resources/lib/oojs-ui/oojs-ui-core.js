@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.19.2
+ * OOjs UI v0.19.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-02-14T22:47:20Z
+ * Date: 2017-02-28T23:19:40Z
  */
 ( function ( OO ) {
 
@@ -1073,6 +1073,73 @@ OO.ui.Element.static.getDimensions = function ( el ) {
 };
 
 /**
+ * Get the number of pixels that an element's content is scrolled to the left.
+ *
+ * Adapted from <https://github.com/othree/jquery.rtl-scroll-type>.
+ * Original code copyright 2012 Wei-Ko Kao, licensed under the MIT License.
+ *
+ * This function smooths out browser inconsistencies (nicely described in the README at
+ * <https://github.com/othree/jquery.rtl-scroll-type>) and produces a result consistent
+ * with Firefox's 'scrollLeft', which seems the sanest.
+ *
+ * @static
+ * @method
+ * @param {HTMLElement|Window} el Element to measure
+ * @return {number} Scroll position from the left.
+ *  If the element's direction is LTR, this is a positive number between `0` (initial scroll position)
+ *  and `el.scrollWidth - el.clientWidth` (furthest possible scroll position).
+ *  If the element's direction is RTL, this is a negative number between `0` (initial scroll position)
+ *  and `-el.scrollWidth + el.clientWidth` (furthest possible scroll position).
+ */
+OO.ui.Element.static.getScrollLeft = ( function () {
+	var rtlScrollType = null;
+
+	function test() {
+		var $definer = $( '<div dir="rtl" style="font-size: 14px; width: 1px; height: 1px; position: absolute; top: -1000px; overflow: scroll">A</div>' ),
+			definer = $definer[ 0 ];
+
+		$definer.appendTo( 'body' );
+		if ( definer.scrollLeft > 0 ) {
+			// Safari, Chrome
+			rtlScrollType = 'default';
+		} else {
+			definer.scrollLeft = 1;
+			if ( definer.scrollLeft === 0 ) {
+				// Firefox, old Opera
+				rtlScrollType = 'negative';
+			} else {
+				// Internet Explorer, Edge
+				rtlScrollType = 'reverse';
+			}
+		}
+		$definer.remove();
+	}
+
+	return function getScrollLeft( el ) {
+		var isRoot = el.window === el ||
+				el === el.ownerDocument.body ||
+				el === el.ownerDocument.documentElement,
+			scrollLeft = isRoot ? $( window ).scrollLeft() : el.scrollLeft,
+			// All browsers use the correct scroll type ('negative') on the root, so don't
+			// do any fixups when looking at the root element
+			direction = isRoot ? 'ltr' : $( el ).css( 'direction' );
+
+		if ( direction === 'rtl' ) {
+			if ( rtlScrollType === null ) {
+				test();
+			}
+			if ( rtlScrollType === 'reverse' ) {
+				scrollLeft = -scrollLeft;
+			} else if ( rtlScrollType === 'default' ) {
+				scrollLeft = scrollLeft - el.scrollWidth + el.clientWidth;
+			}
+		}
+
+		return scrollLeft;
+	};
+}() );
+
+/**
  * Get scrollable object parent
  *
  * documentElement can't be used to get or set the scrollTop
@@ -1117,7 +1184,8 @@ OO.ui.Element.static.getRootScrollableElement = function ( el ) {
  */
 OO.ui.Element.static.getClosestScrollableContainer = function ( el, dimension ) {
 	var i, val,
-		// props = [ 'overflow' ] doesn't work due to https://bugzilla.mozilla.org/show_bug.cgi?id=889091
+		// Browsers do not correctly return the computed value of 'overflow' when 'overflow-x' and
+		// 'overflow-y' have different values, so we need to check the separate properties.
 		props = [ 'overflow-x', 'overflow-y' ],
 		$parent = $( el ).parent();
 
@@ -1132,6 +1200,11 @@ OO.ui.Element.static.getClosestScrollableContainer = function ( el, dimension ) 
 		i = props.length;
 		while ( i-- ) {
 			val = $parent.css( props[ i ] );
+			// We assume that elements with 'overflow' (in any direction) set to 'hidden' will never be
+			// scrolled in that direction, but they can actually be scrolled programatically. The user can
+			// unintentionally perform a scroll in such case even if the application doesn't scroll
+			// programatically, e.g. when jumping to an anchor, or when using built-in find functionality.
+			// This could cause funny issues...
 			if ( val === 'auto' || val === 'scroll' ) {
 				return $parent[ 0 ];
 			}
@@ -3818,6 +3891,11 @@ OO.ui.LabelWidget = function OoUiLabelWidget( config ) {
 	if ( this.input instanceof OO.ui.InputWidget ) {
 		if ( this.input.getInputId() ) {
 			this.$element.attr( 'for', this.input.getInputId() );
+		} else {
+			this.$label.on( 'click', function () {
+				this.fieldWidget.focus();
+				return false;
+			}.bind( this ) );
 		}
 	}
 	this.$element.addClass( 'oo-ui-labelWidget' );
@@ -3971,8 +4049,8 @@ OO.ui.mixin.PendingElement.prototype.popPending = function () {
 };
 
 /**
- * Element that will stick under a specified container, even when it is inserted elsewhere in the
- * document (for example, in a OO.ui.Window's $overlay).
+ * Element that will stick adjacent to a specified container, even when it is inserted elsewhere
+ * in the document (for example, in an OO.ui.Window's $overlay).
  *
  * The elements's position is automatically calculated and maintained when window is resized or the
  * page is scrolled. If you reposition the container manually, you have to call #position to make
@@ -3988,7 +4066,19 @@ OO.ui.mixin.PendingElement.prototype.popPending = function () {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {jQuery} [$floatable] Node to position, assigned to #$floatable, omit to use #$element
- * @cfg {jQuery} [$floatableContainer] Node to position below
+ * @cfg {jQuery} [$floatableContainer] Node to position adjacent to
+ * @cfg {string} [verticalPosition='below'] Where to position $floatable vertically:
+ *  'below': Directly below $floatableContainer, aligning f's top edge with fC's bottom edge
+ *  'above': Directly above $floatableContainer, aligning f's bottom edge with fC's top edge
+ *  'top': Align the top edge with $floatableContainer's top edge
+ *  'bottom': Align the bottom edge with $floatableContainer's bottom edge
+ *  'center': Vertically align the center with $floatableContainer's center
+ * @cfg {string} [horizontalPosition='start'] Where to position $floatable horizontally:
+ *  'before': Directly before $floatableContainer, aligning f's end edge with fC's start edge
+ *  'after': Directly after $floatableContainer, algining f's start edge with fC's end edge
+ *  'start': Align the start (left in LTR, right in RTL) edge with $floatableContainer's start edge
+ *  'end': Align the end (right in LTR, left in RTL) edge with $floatableContainer's end edge
+ *  'center': Horizontally align the center with $floatableContainer's center
  */
 OO.ui.mixin.FloatableElement = function OoUiMixinFloatableElement( config ) {
 	// Configuration initialization
@@ -4005,6 +4095,8 @@ OO.ui.mixin.FloatableElement = function OoUiMixinFloatableElement( config ) {
 	// Initialization
 	this.setFloatableContainer( config.$floatableContainer );
 	this.setFloatableElement( config.$floatable || this.$element );
+	this.setVerticalPosition( config.verticalPosition || 'below' );
+	this.setHorizontalPosition( config.horizontalPosition || 'start' );
 };
 
 /* Methods */
@@ -4029,12 +4121,42 @@ OO.ui.mixin.FloatableElement.prototype.setFloatableElement = function ( $floatab
 /**
  * Set floatable container.
  *
- * The element will be always positioned under the specified container.
+ * The element will be positioned relative to the specified container.
  *
  * @param {jQuery|null} $floatableContainer Container to keep visible, or null to unset
  */
 OO.ui.mixin.FloatableElement.prototype.setFloatableContainer = function ( $floatableContainer ) {
 	this.$floatableContainer = $floatableContainer;
+	if ( this.$floatable ) {
+		this.position();
+	}
+};
+
+/**
+ * Change how the element is positioned vertically.
+ *
+ * @param {string} position 'below', 'above', 'top', 'bottom' or 'center'
+ */
+OO.ui.mixin.FloatableElement.prototype.setVerticalPosition = function ( position ) {
+	if ( [ 'below', 'above', 'top', 'bottom', 'center' ].indexOf( position ) === -1 ) {
+		throw new Error( 'Invalid value for vertical position: ' + position );
+	}
+	this.verticalPosition = position;
+	if ( this.$floatable ) {
+		this.position();
+	}
+};
+
+/**
+ * Change how the element is positioned horizontally.
+ *
+ * @param {string} position 'before', 'after', 'start', 'end' or 'center'
+ */
+OO.ui.mixin.FloatableElement.prototype.setHorizontalPosition = function ( position ) {
+	if ( [ 'before', 'after', 'start', 'end', 'center' ].indexOf( position ) === -1 ) {
+		throw new Error( 'Invalid value for horizontal position: ' + position );
+	}
+	this.horizontalPosition = position;
 	if ( this.$floatable ) {
 		this.position();
 	}
@@ -4057,11 +4179,20 @@ OO.ui.mixin.FloatableElement.prototype.togglePositioning = function ( positionin
 
 	positioning = positioning === undefined ? !this.positioning : !!positioning;
 
+	if ( positioning && !this.warnedUnattached && !this.isElementAttached() ) {
+		OO.ui.warnDeprecation( 'FloatableElement#togglePositioning: Before calling this method, the element must be attached to the DOM.' );
+		this.warnedUnattached = true;
+	}
+
 	if ( this.positioning !== positioning ) {
 		this.positioning = positioning;
 
+		this.needsCustomPosition =
+			this.verticalPostion !== 'below' ||
+			this.horizontalPosition !== 'start' ||
+			!OO.ui.contains( this.$floatableContainer[ 0 ], this.$floatable[ 0 ] );
+
 		closestScrollableOfContainer = OO.ui.Element.static.getClosestScrollableContainer( this.$floatableContainer[ 0 ] );
-		this.needsCustomPosition = !OO.ui.contains( this.$floatableContainer[ 0 ], this.$floatable[ 0 ] );
 		// If the scrollable is the root, we have to listen to scroll events
 		// on the window because of browser inconsistencies.
 		if ( $( closestScrollableOfContainer ).is( 'html, body' ) ) {
@@ -4104,10 +4235,9 @@ OO.ui.mixin.FloatableElement.prototype.togglePositioning = function ( positionin
  * @return {boolean}
  */
 OO.ui.mixin.FloatableElement.prototype.isElementInViewport = function ( $element, $container ) {
-	var elemRect, contRect,
-		leftEdgeInBounds = false,
-		bottomEdgeInBounds = false,
-		rightEdgeInBounds = false;
+	var elemRect, contRect, topEdgeInBounds, bottomEdgeInBounds, leftEdgeInBounds, rightEdgeInBounds,
+		startEdgeInBounds, endEdgeInBounds,
+		direction = $element.css( 'direction' );
 
 	elemRect = $element[ 0 ].getBoundingClientRect();
 	if ( $container[ 0 ] === window ) {
@@ -4121,20 +4251,35 @@ OO.ui.mixin.FloatableElement.prototype.isElementInViewport = function ( $element
 		contRect = $container[ 0 ].getBoundingClientRect();
 	}
 
-	// For completeness, if we still cared about topEdgeInBounds, that'd be:
-	// elemRect.top >= contRect.top && elemRect.top <= contRect.bottom
-	if ( elemRect.left >= contRect.left && elemRect.left <= contRect.right ) {
-		leftEdgeInBounds = true;
-	}
-	if ( elemRect.bottom >= contRect.top && elemRect.bottom <= contRect.bottom ) {
-		bottomEdgeInBounds = true;
-	}
-	if ( elemRect.right >= contRect.left && elemRect.right <= contRect.right ) {
-		rightEdgeInBounds = true;
+	topEdgeInBounds = elemRect.top >= contRect.top && elemRect.top <= contRect.bottom;
+	bottomEdgeInBounds = elemRect.bottom >= contRect.top && elemRect.bottom <= contRect.bottom;
+	leftEdgeInBounds = elemRect.left >= contRect.left && elemRect.left <= contRect.right;
+	rightEdgeInBounds = elemRect.right >= contRect.left && elemRect.right <= contRect.right;
+	if ( direction === 'rtl' ) {
+		startEdgeInBounds = rightEdgeInBounds;
+		endEdgeInBounds = leftEdgeInBounds;
+	} else {
+		startEdgeInBounds = leftEdgeInBounds;
+		endEdgeInBounds = rightEdgeInBounds;
 	}
 
-	// We only care that any part of the bottom edge is visible
-	return bottomEdgeInBounds && ( leftEdgeInBounds || rightEdgeInBounds );
+	if ( this.verticalPosition === 'below' && !bottomEdgeInBounds ) {
+		return false;
+	}
+	if ( this.verticalPosition === 'above' && !topEdgeInBounds ) {
+		return false;
+	}
+	if ( this.horizontalPosition === 'before' && !startEdgeInBounds ) {
+		return false;
+	}
+	if ( this.horizontalPosition === 'after' && !endEdgeInBounds ) {
+		return false;
+	}
+
+	// The other positioning values are all about being inside the container,
+	// so in those cases all we care about is that any part of the container is visible.
+	return elemRect.top <= contRect.bottom && elemRect.bottom >= contRect.top &&
+		elemRect.left <= contRect.right && elemRect.right >= contRect.left;
 };
 
 /**
@@ -4145,7 +4290,9 @@ OO.ui.mixin.FloatableElement.prototype.isElementInViewport = function ( $element
  * @chainable
  */
 OO.ui.mixin.FloatableElement.prototype.position = function () {
-	var pos;
+	var containerPos, direction, $offsetParent, isBody, scrollableX, scrollableY,
+		horizScrollbarHeight, vertScrollbarWidth, scrollTop, scrollLeft,
+		newPos = { top: '', left: '', bottom: '', right: '' };
 
 	if ( !this.positioning ) {
 		return this;
@@ -4162,16 +4309,106 @@ OO.ui.mixin.FloatableElement.prototype.position = function () {
 		return;
 	}
 
-	pos = OO.ui.Element.static.getRelativePosition( this.$floatableContainer, this.$floatable.offsetParent() );
-	// Position under container
-	pos.top += this.$floatableContainer.height();
-	// In LTR, we position from the left, and pos.left is already set
-	// In RTL, we position from the right instead.
-	if ( this.$floatableContainer.css( 'direction' ) === 'rtl' ) {
-		pos.right = this.$floatable.offsetParent().width() - pos.left - this.$floatableContainer.outerWidth();
-		delete pos.left;
+	direction = this.$floatableContainer.css( 'direction' );
+	$offsetParent = this.$floatable.offsetParent();
+	if ( $offsetParent.is( 'html' ) ) {
+		// The innerHeight/Width and clientHeight/Width calculations don't work well on the
+		// <html> element, but they do work on the <body>
+		$offsetParent = $( $offsetParent[ 0 ].ownerDocument.body );
 	}
-	this.$floatable.css( pos );
+	isBody = $offsetParent.is( 'body' );
+	scrollableX = $offsetParent.css( 'overflow-x' ) === 'scroll' || $offsetParent.css( 'overflow-x' ) === 'auto';
+	scrollableY = $offsetParent.css( 'overflow-y' ) === 'scroll' || $offsetParent.css( 'overflow-y' ) === 'auto';
+
+	vertScrollbarWidth = $offsetParent.innerWidth() - $offsetParent.prop( 'clientWidth' );
+	horizScrollbarHeight = $offsetParent.innerHeight() - $offsetParent.prop( 'clientHeight' );
+	// We don't need to compute and add scrollTop and scrollLeft if the scrollable container is the body,
+	// or if it isn't scrollable
+	scrollTop = scrollableY && !isBody ? $offsetParent.scrollTop() : 0;
+	scrollLeft = scrollableX && !isBody ? OO.ui.Element.static.getScrollLeft( $offsetParent[ 0 ] ) : 0;
+
+	// Avoid passing the <body> to getRelativePosition(), because it won't return what we expect
+	// if the <body> has a margin
+	containerPos = isBody ?
+		this.$floatableContainer.offset() :
+		OO.ui.Element.static.getRelativePosition( this.$floatableContainer, $offsetParent );
+	containerPos.bottom = containerPos.top + this.$floatableContainer.outerHeight();
+	containerPos.right = containerPos.left + this.$floatableContainer.outerWidth();
+	containerPos.start = direction === 'rtl' ? containerPos.right : containerPos.left;
+	containerPos.end = direction === 'rtl' ? containerPos.left : containerPos.right;
+
+	if ( this.verticalPosition === 'below' ) {
+		newPos.top = containerPos.bottom;
+	} else if ( this.verticalPosition === 'above' ) {
+		newPos.bottom = $offsetParent.outerHeight() - containerPos.top;
+	} else if ( this.verticalPosition === 'top' ) {
+		newPos.top = containerPos.top;
+	} else if ( this.verticalPosition === 'bottom' ) {
+		newPos.bottom = $offsetParent.outerHeight() - containerPos.bottom;
+	} else if ( this.verticalPosition === 'center' ) {
+		newPos.top = containerPos.top +
+			( this.$floatableContainer.height() - this.$floatable.height() ) / 2;
+	}
+
+	if ( this.horizontalPosition === 'before' ) {
+		newPos.end = containerPos.start;
+	} else if ( this.horizontalPosition === 'after' ) {
+		newPos.start = containerPos.end;
+	} else if ( this.horizontalPosition === 'start' ) {
+		newPos.start = containerPos.start;
+	} else if ( this.horizontalPosition === 'end' ) {
+		newPos.end = containerPos.end;
+	} else if ( this.horizontalPosition === 'center' ) {
+		newPos.left = containerPos.left +
+			( this.$floatableContainer.width() - this.$floatable.width() ) / 2;
+	}
+
+	if ( newPos.start !== undefined ) {
+		if ( direction === 'rtl' ) {
+			newPos.right = ( isBody ? $( $offsetParent[ 0 ].ownerDocument.documentElement ) : $offsetParent ).outerWidth() - newPos.start;
+		} else {
+			newPos.left = newPos.start;
+		}
+		delete newPos.start;
+	}
+	if ( newPos.end !== undefined ) {
+		if ( direction === 'rtl' ) {
+			newPos.left = newPos.end;
+		} else {
+			newPos.right = ( isBody ? $( $offsetParent[ 0 ].ownerDocument.documentElement ) : $offsetParent ).outerWidth() - newPos.end;
+		}
+		delete newPos.end;
+	}
+
+	// Account for scroll position
+	if ( newPos.top !== '' ) {
+		newPos.top += scrollTop;
+	}
+	if ( newPos.bottom !== '' ) {
+		newPos.bottom -= scrollTop;
+	}
+	if ( newPos.left !== '' ) {
+		newPos.left += scrollLeft;
+	}
+	if ( newPos.right !== '' ) {
+		newPos.right -= scrollLeft;
+	}
+
+	// Account for scrollbar gutter
+	if ( newPos.bottom !== '' ) {
+		newPos.bottom -= horizScrollbarHeight;
+	}
+	if ( direction === 'rtl' ) {
+		if ( newPos.left !== '' ) {
+			newPos.left -= vertScrollbarWidth;
+		}
+	} else {
+		if ( newPos.right !== '' ) {
+			newPos.right -= vertScrollbarWidth;
+		}
+	}
+
+	this.$floatable.css( newPos );
 
 	// We updated the position, so re-evaluate the clipping state.
 	// (ClippableElement does not listen to 'scroll' events on $floatableContainer's parent, and so
@@ -4280,6 +4517,11 @@ OO.ui.mixin.ClippableElement.prototype.setClippableContainer = function ( $clipp
  */
 OO.ui.mixin.ClippableElement.prototype.toggleClipping = function ( clipping ) {
 	clipping = clipping === undefined ? !this.clipping : !!clipping;
+
+	if ( clipping && !this.warnedUnattached && !this.isElementAttached() ) {
+		OO.ui.warnDeprecation( 'ClippableElement#toggleClipping: Before calling this method, the element must be attached to the DOM.' );
+		this.warnedUnattached = true;
+	}
 
 	if ( this.clipping !== clipping ) {
 		this.clipping = clipping;
@@ -4475,6 +4717,8 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
  * PopupWidget is a container for content. The popup is overlaid and positioned absolutely.
  * By default, each popup has an anchor that points toward its origin.
  * Please see the [OOjs UI documentation on Mediawiki] [1] for more information and examples.
+ *
+ * Unlike most widgets, PopupWidget is initially hidden and must be shown by calling #toggle.
  *
  *     @example
  *     // A popup widget.
@@ -4717,6 +4961,14 @@ OO.ui.PopupWidget.prototype.hasAnchor = function () {
 };
 
 /**
+ * Toggle visibility of the popup. The popup is initially hidden and must be shown by calling
+ * `.toggle( true )` after its #$element is attached to the DOM.
+ *
+ * Do not show the popup while it is not attached to the DOM. The calculations required to display
+ * it in the right place and with the right dimensions only work correctly while it is attached.
+ * Side-effects may include broken interface and exceptions being thrown. This wasn't always
+ * strictly enforced, so currently it only generates a warning in the browser console.
+ *
  * @inheritdoc
  */
 OO.ui.PopupWidget.prototype.toggle = function ( show ) {
@@ -4724,6 +4976,11 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 	show = show === undefined ? !this.isVisible() : !!show;
 
 	change = show !== this.isVisible();
+
+	if ( show && !this.warnedUnattached && !this.isElementAttached() ) {
+		OO.ui.warnDeprecation( 'PopupWidget#toggle: Before calling this method, the popup must be attached to the DOM.' );
+		this.warnedUnattached = true;
+	}
 
 	// Parent method
 	OO.ui.PopupWidget.parent.prototype.toggle.call( this, show );
@@ -6362,6 +6619,8 @@ OO.ui.MenuSectionOptionWidget.static.highlightable = false;
  * - Down-arrow key: highlight the next menu option
  * - Esc key: hide the menu
  *
+ * Unlike most widgets, MenuSelectWidget is initially hidden and must be shown by calling #toggle.
+ *
  * Please see the [OOjs UI documentation on MediaWiki][1] for more information.
  * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options
  *
@@ -6381,6 +6640,7 @@ OO.ui.MenuSectionOptionWidget.static.highlightable = false;
  *  that toggles the menu's visibility on click, the menu will be hidden then re-shown when the user clicks
  *  that button, unless the button (or its parent widget) is passed in here.
  * @cfg {boolean} [autoHide=true] Hide the menu when the mouse is pressed outside the menu.
+ * @cfg {boolean} [hideOnChoose=true] Hide the menu when the user chooses an option.
  * @cfg {boolean} [filterFromInput=false] Filter the displayed options from the input
  */
 OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
@@ -6395,6 +6655,7 @@ OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 
 	// Properties
 	this.autoHide = config.autoHide === undefined || !!config.autoHide;
+	this.hideOnChoose = config.hideOnChoose === undefined || !!config.hideOnChoose;
 	this.filterFromInput = !!config.filterFromInput;
 	this.$input = config.$input ? config.$input : config.input ? config.input.$input : null;
 	this.$widget = config.widget ? config.widget.$element : null;
@@ -6548,7 +6809,7 @@ OO.ui.MenuSelectWidget.prototype.unbindKeyPressListener = function () {
 /**
  * Choose an item.
  *
- * When a user chooses an item, the menu is closed.
+ * When a user chooses an item, the menu is closed, unless the hideOnChoose config option is set to false.
  *
  * Note that ‘choose’ should never be modified programmatically. A user can choose an option with the keyboard
  * or mouse and it becomes selected. To select an item programmatically, use the #selectItem method.
@@ -6558,7 +6819,9 @@ OO.ui.MenuSelectWidget.prototype.unbindKeyPressListener = function () {
  */
 OO.ui.MenuSelectWidget.prototype.chooseItem = function ( item ) {
 	OO.ui.MenuSelectWidget.parent.prototype.chooseItem.call( this, item );
-	this.toggle( false );
+	if ( this.hideOnChoose ) {
+		this.toggle( false );
+	}
 	return this;
 };
 
@@ -6602,6 +6865,14 @@ OO.ui.MenuSelectWidget.prototype.clearItems = function () {
 };
 
 /**
+ * Toggle visibility of the menu. The menu is initially hidden and must be shown by calling
+ * `.toggle( true )` after its #$element is attached to the DOM.
+ *
+ * Do not show the menu while it is not attached to the DOM. The calculations required to display
+ * it in the right place and with the right dimensions only work correctly while it is attached.
+ * Side-effects may include broken interface and exceptions being thrown. This wasn't always
+ * strictly enforced, so currently it only generates a warning in the browser console.
+ *
  * @inheritdoc
  */
 OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
@@ -6609,6 +6880,11 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 
 	visible = ( visible === undefined ? !this.visible : !!visible ) && !!this.items.length;
 	change = visible !== this.isVisible();
+
+	if ( visible && !this.warnedUnattached && !this.isElementAttached() ) {
+		OO.ui.warnDeprecation( 'MenuSelectWidget#toggle: Before calling this method, the menu must be attached to the DOM.' );
+		this.warnedUnattached = true;
+	}
 
 	// Parent method
 	OO.ui.MenuSelectWidget.parent.prototype.toggle.call( this, visible );
@@ -10077,6 +10353,7 @@ OO.ui.ComboBoxInputWidget.prototype.setOptions = function ( options ) {
  * @cfg {string|OO.ui.HtmlSnippet} [help] Help text. When help text is specified, a "help" icon will appear
  *  in the upper-right corner of the rendered field; clicking it will display the text in a popup.
  *  For important messages, you are advised to use `notices`, as they are always shown.
+ * @cfg {jQuery} [$overlay] Passed to OO.ui.PopupButtonWidget for help popup, if `help` is given.
  *
  * @throws {Error} An error is thrown if no widget is specified
  */
@@ -10115,6 +10392,7 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	this.align = null;
 	if ( config.help ) {
 		this.popupButtonWidget = new OO.ui.PopupButtonWidget( {
+			$overlay: config.$overlay,
 			popup: {
 				padded: true
 			},
@@ -10139,6 +10417,11 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	if ( fieldWidget.constructor.static.supportsSimpleLabel ) {
 		if ( this.fieldWidget.getInputId() ) {
 			this.$label.attr( 'for', this.fieldWidget.getInputId() );
+		} else {
+			this.$label.on( 'click', function () {
+				this.fieldWidget.focus();
+				return false;
+			}.bind( this ) );
 		}
 	}
 	this.$element
@@ -10419,6 +10702,7 @@ OO.inheritClass( OO.ui.ActionFieldLayout, OO.ui.FieldLayout );
  * @cfg {string|OO.ui.HtmlSnippet} [help] Help text. When help text is specified, a "help" icon will appear
  *  in the upper-right corner of the rendered field; clicking it will display the text in a popup.
  *  For important messages, you are advised to use `notices`, as they are always shown.
+ * @cfg {jQuery} [$overlay] Passed to OO.ui.PopupButtonWidget for help popup, if `help` is given.
  */
 OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 	// Configuration initialization
@@ -10436,6 +10720,7 @@ OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 	this.$header = $( '<div>' );
 	if ( config.help ) {
 		this.popupButtonWidget = new OO.ui.PopupButtonWidget( {
+			$overlay: config.$overlay,
 			popup: {
 				padded: true
 			},

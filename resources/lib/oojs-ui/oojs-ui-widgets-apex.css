@@ -1,13 +1,15 @@
 /*!
- * OOjs UI v0.19.2
+ * OOjs UI v0.19.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-02-14T22:47:25Z
+ * Date: 2017-02-28T23:19:44Z
  */
+/* stylelint-disable selector-no-vendor-prefix, at-rule-no-unknown */
+/* stylelint-enable selector-no-vendor-prefix, at-rule-no-unknown */
 .oo-ui-draggableElement-handle,
 .oo-ui-draggableElement-handle.oo-ui-widget {
   cursor: move;
@@ -33,7 +35,7 @@
   display: inline-block;
 }
 .oo-ui-bookletLayout-stackLayout.oo-ui-stackLayout-continuous > .oo-ui-panelLayout-scrollable {
-  overflow-y: hidden;
+  overflow: hidden;
 }
 .oo-ui-bookletLayout-stackLayout > .oo-ui-panelLayout {
   width: 100%;
@@ -41,19 +43,13 @@
      -moz-box-sizing: border-box;
           box-sizing: border-box;
 }
-.oo-ui-bookletLayout-stackLayout > .oo-ui-panelLayout-scrollable {
-  overflow-y: auto;
-}
-.oo-ui-bookletLayout-stackLayout > .oo-ui-panelLayout-padded {
-  padding: 2em;
-}
 .oo-ui-bookletLayout-outlinePanel-editable > .oo-ui-outlineSelectWidget {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 3em;
-  overflow-y: auto;
+  overflow: auto;
 }
 .oo-ui-bookletLayout-outlinePanel > .oo-ui-outlineControlsWidget {
   position: absolute;
@@ -353,6 +349,8 @@
 .oo-ui-selectFileWidget-info > .oo-ui-indicatorElement-indicator,
 .oo-ui-selectFileWidget-info > .oo-ui-iconElement-icon {
   position: absolute;
+  top: 0;
+  height: 100%;
 }
 .oo-ui-widget-disabled .oo-ui-selectFileWidget-info {
   cursor: default;
@@ -483,15 +481,11 @@
   border-width: 1px 0 1px 1px;
 }
 .oo-ui-selectFileWidget-info > .oo-ui-iconElement-icon {
-  top: 0;
   left: 0;
-  height: 2.3em;
   margin-left: 0.3em;
 }
 .oo-ui-selectFileWidget-info > .oo-ui-indicatorElement-indicator {
-  top: 0;
   right: 0;
-  height: 2.3em;
   margin-right: 0.775em;
 }
 .oo-ui-selectFileWidget-label {
@@ -621,15 +615,6 @@
   background-color: #a7dcff;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
 }
-.oo-ui-outlineOptionWidget.oo-ui-flaggedElement-important {
-  font-weight: bold;
-}
-.oo-ui-outlineOptionWidget.oo-ui-flaggedElement-empty .oo-ui-iconElement-icon {
-  opacity: 0.5;
-}
-.oo-ui-outlineOptionWidget.oo-ui-flaggedElement-empty .oo-ui-labelElement-label {
-  color: #777;
-}
 .oo-ui-outlineControlsWidget {
   height: 3em;
   background-color: #fff;
@@ -720,6 +705,12 @@
   display: block;
   position: relative;
 }
+.oo-ui-capsuleMultiselectWidget-handle > .oo-ui-iconElement-icon,
+.oo-ui-capsuleMultiselectWidget-handle > .oo-ui-indicatorElement-indicator {
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
 .oo-ui-capsuleMultiselectWidget-content {
   position: relative;
 }
@@ -752,10 +743,6 @@
 .oo-ui-capsuleMultiselectWidget-handle:last-child {
   margin-right: 0;
 }
-.oo-ui-capsuleMultiselectWidget-handle > .oo-ui-indicatorElement-indicator,
-.oo-ui-capsuleMultiselectWidget-handle > .oo-ui-iconElement-icon {
-  position: absolute;
-}
 .oo-ui-capsuleMultiselectWidget-handle > .oo-ui-capsuleMultiselectWidget-content > input {
   border: 0;
   line-height: 1.675em;
@@ -767,25 +754,45 @@
   background-color: transparent;
   color: #000;
   vertical-align: middle;
+  /* stylelint-disable indentation */
+  /* stylelint-enable indentation */
+}
+.oo-ui-capsuleMultiselectWidget-handle > .oo-ui-capsuleMultiselectWidget-content > input::-webkit-input-placeholder {
+  color: #72777d;
+  opacity: 1;
+}
+.oo-ui-capsuleMultiselectWidget-handle > .oo-ui-capsuleMultiselectWidget-content > input:-ms-input-placeholder {
+  color: #72777d;
+  opacity: 1;
+}
+.oo-ui-capsuleMultiselectWidget-handle > .oo-ui-capsuleMultiselectWidget-content > input::-moz-placeholder {
+  color: #72777d;
+  opacity: 1;
+}
+.oo-ui-capsuleMultiselectWidget-handle > .oo-ui-capsuleMultiselectWidget-content > input:-moz-placeholder {
+  color: #72777d;
+  opacity: 1;
+}
+.oo-ui-capsuleMultiselectWidget-handle > .oo-ui-capsuleMultiselectWidget-content > input::placeholder {
+  color: #72777d;
+  opacity: 1;
 }
 .oo-ui-capsuleMultiselectWidget-handle > .oo-ui-capsuleMultiselectWidget-content > input:focus {
-  outline: none;
-}
-.oo-ui-capsuleMultiselectWidget.oo-ui-indicatorElement .oo-ui-capsuleMultiselectWidget-handle {
-  padding-right: 2.4875em;
-}
-.oo-ui-capsuleMultiselectWidget.oo-ui-indicatorElement .oo-ui-capsuleMultiselectWidget-handle > .oo-ui-indicatorElement-indicator {
-  right: 0;
-  top: 0;
-  margin: 0.775em;
+  outline: 0;
 }
 .oo-ui-capsuleMultiselectWidget.oo-ui-iconElement .oo-ui-capsuleMultiselectWidget-handle {
   padding-left: 2.475em;
 }
 .oo-ui-capsuleMultiselectWidget.oo-ui-iconElement .oo-ui-capsuleMultiselectWidget-handle > .oo-ui-iconElement-icon {
   left: 0;
-  top: 0;
-  margin: 0.3em;
+  margin: 0 0.3em;
+}
+.oo-ui-capsuleMultiselectWidget.oo-ui-indicatorElement .oo-ui-capsuleMultiselectWidget-handle {
+  padding-right: 2.4875em;
+}
+.oo-ui-capsuleMultiselectWidget.oo-ui-indicatorElement .oo-ui-capsuleMultiselectWidget-handle > .oo-ui-indicatorElement-indicator {
+  right: 0;
+  margin: 0 0.775em;
 }
 .oo-ui-capsuleMultiselectWidget:hover .oo-ui-capsuleMultiselectWidget-handle {
   border-color: rgba(0, 0, 0, 0.2);
@@ -836,7 +843,7 @@
   cursor: text;
 }
 .oo-ui-capsuleItemWidget:focus {
-  outline: none;
+  outline: 0;
   border-color: #087ecc;
 }
 .oo-ui-capsuleItemWidget.oo-ui-widget-disabled {

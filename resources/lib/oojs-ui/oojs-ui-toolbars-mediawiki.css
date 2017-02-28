@@ -1,13 +1,15 @@
 /*!
- * OOjs UI v0.19.2
+ * OOjs UI v0.19.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-02-14T22:47:25Z
+ * Date: 2017-02-28T23:19:44Z
  */
+/* stylelint-disable selector-no-vendor-prefix, at-rule-no-unknown */
+/* stylelint-enable selector-no-vendor-prefix, at-rule-no-unknown */
 .oo-ui-tool.oo-ui-widget-enabled {
   -webkit-transition: background-color 100ms;
      -moz-transition: background-color 100ms;
@@ -36,9 +38,6 @@
 .oo-ui-toolGroupTool > .oo-ui-popupToolGroup > .oo-ui-popupToolGroup-handle .oo-ui-iconElement-icon {
   height: 2.5em;
   width: 1.875em;
-}
-.oo-ui-toolGroupTool > .oo-ui-popupToolGroup.oo-ui-labelElement > .oo-ui-popupToolGroup-handle .oo-ui-labelElement-label {
-  line-height: 2.1;
 }
 .oo-ui-toolGroup {
   display: inline-block;
@@ -261,10 +260,6 @@
   height: 2.5em;
   width: 1.875em;
   min-width: 1.875em;
-}
-.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-title,
-.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-accel {
-  line-height: 2;
 }
 .oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-title {
   padding-left: 0.5em;

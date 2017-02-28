@@ -1,13 +1,15 @@
 /*!
- * OOjs UI v0.19.2
+ * OOjs UI v0.19.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-02-14T22:47:25Z
+ * Date: 2017-02-28T23:19:44Z
  */
+/* stylelint-disable selector-no-vendor-prefix, at-rule-no-unknown */
+/* stylelint-enable selector-no-vendor-prefix, at-rule-no-unknown */
 .oo-ui-window {
   background: transparent;
 }
@@ -265,22 +267,22 @@
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless:active {
   background-color: rgba(0, 0, 0, 0.1);
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-constructive:hover,
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive .oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-constructive:hover,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-constructive:hover,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive .oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-constructive:hover {
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive:hover,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive:hover,
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-constructive:hover,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-constructive:hover {
   background-color: rgba(8, 126, 204, 0.05);
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-constructive:active,
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive .oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-constructive:active,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-constructive:active,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive .oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-constructive:active {
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive:active,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive:active,
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-constructive:active,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-constructive:active {
   background-color: rgba(8, 126, 204, 0.1);
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-constructive .oo-ui-labelElement-label,
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive .oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-constructive .oo-ui-labelElement-label,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-constructive .oo-ui-labelElement-label,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive .oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-constructive .oo-ui-labelElement-label {
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive .oo-ui-labelElement-label,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive .oo-ui-labelElement-label,
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-constructive .oo-ui-labelElement-label,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-constructive .oo-ui-labelElement-label {
   font-weight: bold;
 }
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-destructive:hover,

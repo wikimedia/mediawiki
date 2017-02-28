@@ -20,6 +20,10 @@
 		} },
 		"clear": { "file": "images/icons/clear.svg" },
 		"clock": { "file": "images/icons/clock.svg" },
+		"feedback": { "file": {
+			"ltr": "images/icons/feedback-ltr.svg",
+			"rtl": "images/icons/feedback-rtl.svg"
+		} },
 		"funnel": { "file": {
 			"ltr": "images/icons/funnel-ltr.svg",
 			"rtl": "images/icons/funnel-rtl.svg"
