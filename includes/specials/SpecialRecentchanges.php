@@ -697,7 +697,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$title = new HtmlArmor( '<strong>' . htmlspecialchars( $title ) . '</strong>' );
 		}
 
-		return $this->getLinkRenderer()->makeKnownLink( $this->getPageTitle(), $title, [], $params );
+		return $this->getLinkRenderer()->makeKnownLink( $this->getPageTitle(), $title, [
+			'data-params' => json_encode( $override ),
+			'data-keys' => implode( ',', array_keys( $override ) ),
+		], $params );
 	}
 
 	/**

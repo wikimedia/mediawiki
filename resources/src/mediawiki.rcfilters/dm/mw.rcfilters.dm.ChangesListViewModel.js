@@ -11,6 +11,8 @@
 		OO.EventEmitter.call( this );
 
 		this.valid = true;
+
+		this.$fieldset = null;
 	};
 
 	/* Initialization */
@@ -50,10 +52,11 @@
 	 * Update the model with an updated list of changes
 	 *
 	 * @param {jQuery|string} changesListContent
+	 * @param {jQuery} $fieldset
 	 */
-	mw.rcfilters.dm.ChangesListViewModel.prototype.update = function ( changesListContent ) {
+	mw.rcfilters.dm.ChangesListViewModel.prototype.update = function ( changesListContent, $fieldset ) {
 		this.valid = true;
-		this.emit( 'update', changesListContent );
+		this.emit( 'update', changesListContent, $fieldset );
 	};
 
 }( mediaWiki ) );
