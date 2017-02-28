@@ -1064,6 +1064,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-rightsinfo": "{{doc-apihelp-paramvalue|query+siteinfo|prop|rightsinfo}}",
 	"apihelp-query+siteinfo-paramvalue-prop-restrictions": "{{doc-apihelp-paramvalue|query+siteinfo|prop|restrictions}}",
 	"apihelp-query+siteinfo-paramvalue-prop-languages": "{{doc-apihelp-paramvalue|query+siteinfo|prop|languages}}",
+	"apihelp-query+siteinfo-paramvalue-prop-variants": "{{doc-apihelp-paramvalue|query+siteinfo|prop|variants}}",
 	"apihelp-query+siteinfo-paramvalue-prop-skins": "{{doc-apihelp-paramvalue|query+siteinfo|prop|skins}}",
 	"apihelp-query+siteinfo-paramvalue-prop-extensiontags": "{{doc-apihelp-paramvalue|query+siteinfo|prop|extensiontags}}",
 	"apihelp-query+siteinfo-paramvalue-prop-functionhooks": "{{doc-apihelp-paramvalue|query+siteinfo|prop|functionhooks}}",
