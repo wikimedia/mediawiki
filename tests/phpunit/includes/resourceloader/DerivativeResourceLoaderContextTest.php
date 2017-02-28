@@ -119,6 +119,21 @@ class DerivativeResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( $derived->getHash(), 'nl|fallback||Example|scripts|||||' );
 	}
 
+	public function testContentOverrides() {
+		$derived = new DerivativeResourceLoaderContext( self::getContext() );
+
+		$this->assertNull( $derived->getContentOverrideCallback() );
+
+		$override = function ( Title $t ) {
+			return null;
+		};
+		$derived->setContentOverrideCallback( $override );
+		$this->assertSame( $override, $derived->getContentOverrideCallback() );
+
+		$derived2 = new DerivativeResourceLoaderContext( $derived );
+		$this->assertSame( $override, $derived2->getContentOverrideCallback() );
+	}
+
 	public function testAccessors() {
 		$context = self::getContext();
 		$derived = new DerivativeResourceLoaderContext( $context );

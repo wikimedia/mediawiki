@@ -351,7 +351,9 @@ class ResourceLoaderClientHtml {
 		}
 		$context = new ResourceLoaderContext( $mainContext->getResourceLoader(), $req );
 		// Allow caller to setVersion() and setModules()
-		return new DerivativeResourceLoaderContext( $context );
+		$ret = new DerivativeResourceLoaderContext( $context );
+		$ret->setContentOverrideCallback( $mainContext->getContentOverrideCallback() );
+		return $ret;
 	}
 
 	/**
