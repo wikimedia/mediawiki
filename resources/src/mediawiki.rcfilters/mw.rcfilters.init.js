@@ -23,7 +23,7 @@
 
 			// eslint-disable-next-line no-new
 			new mw.rcfilters.ui.FormWrapperWidget(
-				changesListModel, $( '.rcoptions form' ) );
+				changesListModel, controller, $( '.rcoptions' ) );
 
 			controller.initialize( {
 				registration: {
@@ -226,7 +226,6 @@
 			} );
 
 			window.addEventListener( 'popstate', function () {
-				controller.updateFromURL();
 				controller.updateChangesList();
 			} );
 		}
