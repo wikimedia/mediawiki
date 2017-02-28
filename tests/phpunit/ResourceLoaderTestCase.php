@@ -93,6 +93,7 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 	protected $isKnownEmpty = false;
 	protected $type = ResourceLoaderModule::LOAD_GENERAL;
 	protected $targets = [ 'phpunit' ];
+	protected $shouldEmbed = false;
 
 	public function __construct( $options = [] ) {
 		foreach ( $options as $key => $value ) {
@@ -140,6 +141,10 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 	}
 	public function isKnownEmpty( ResourceLoaderContext $context ) {
 		return $this->isKnownEmpty;
+	}
+
+	public function shouldEmbedModule( ResourceLoaderContext $context ) {
+		return $this->shouldEmbed;
 	}
 
 	public function enableModuleContentVersion() {

@@ -3778,6 +3778,9 @@ HTML
 			$previewHTML = $parserResult['html'];
 			$this->mParserOutput = $parserOutput;
 			$wgOut->addParserOutputMetadata( $parserOutput );
+			if ( $wgOut->userCanPreview() ) {
+				$wgOut->addContentOverride( $this->getTitle(), $content );
+			}
 
 			if ( count( $parserOutput->getWarnings() ) ) {
 				$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );

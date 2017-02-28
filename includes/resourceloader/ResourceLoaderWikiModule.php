@@ -141,15 +141,32 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 	/**
 	 * @param string $titleText
+	 * @param ResourceLoaderContext|null $context (but passing null is deprecated)
 	 * @return null|string
+	 * @since 1.29 added the $context parameter
 	 */
-	protected function getContent( $titleText ) {
+	protected function getContent( $titleText, ResourceLoaderContext $context = null ) {
+		if ( $context === null ) {
+			wfDeprecated( __METHOD__ . ' without a ResourceLoader context', '1.29' );
+		}
+
 		$title = Title::newFromText( $titleText );
 		if ( !$title ) {
 			return null;
 		}
 
-		$handler = ContentHandler::getForTitle( $title );
+		$overrideCallback = $context ? $context->getContentOverrideCallback() : null;
+		$content = $overrideCallback ? call_user_func( $overrideCallback, $title ) : null;
+		if ( $content ) {
+			if ( !$content instanceof Content ) {
+				wfDebugLog( 'resourceloader', __METHOD__ . ": bad content override for $titleText!" );
+				return null;
+			}
+			$handler = $content->getContentHandler();
+		} else {
+			$handler = ContentHandler::getForTitle( $title );
+		}
+
 		if ( $handler->isSupportedFormat( CONTENT_FORMAT_CSS ) ) {
 			$format = CONTENT_FORMAT_CSS;
 		} elseif ( $handler->isSupportedFormat( CONTENT_FORMAT_JAVASCRIPT ) ) {
@@ -158,20 +175,40 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			return null;
 		}
 
-		$revision = Revision::newKnownCurrent( wfGetDB( DB_REPLICA ), $title->getArticleID(),
-			$title->getLatestRevID() );
-		if ( !$revision ) {
-			return null;
-		}
-		$revision->setTitle( $title );
-		$content = $revision->getContent( Revision::RAW );
-
 		if ( !$content ) {
-			wfDebugLog( 'resourceloader', __METHOD__ . ': failed to load content of JS/CSS page!' );
-			return null;
+			$revision = Revision::newKnownCurrent( wfGetDB( DB_REPLICA ), $title->getArticleID(),
+				$title->getLatestRevID() );
+			if ( !$revision ) {
+				return null;
+			}
+			$revision->setTitle( $title );
+			$content = $revision->getContent( Revision::RAW );
+
+			if ( !$content ) {
+				wfDebugLog( 'resourceloader', __METHOD__ . ': failed to load content of JS/CSS page!' );
+				return null;
+			}
 		}
 
 		return $content->serialize( $format );
+	}
+
+	/**
+	 * @param ResourceLoaderContext $context
+	 * @return bool
+	 */
+	public function shouldEmbedModule( ResourceLoaderContext $context ) {
+		$overrideCallback = $context->getContentOverrideCallback();
+		if ( $overrideCallback && $this->getSource() === 'local' ) {
+			foreach ( $this->getPages( $context ) as $page => $info ) {
+				$title = Title::newFromText( $page );
+				if ( $title && call_user_func( $overrideCallback, $title ) !== null ) {
+					return true;
+				}
+			}
+		}
+
+		return parent::shouldEmbedModule( $context );
 	}
 
 	/**
@@ -184,7 +221,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			if ( $options['type'] !== 'script' ) {
 				continue;
 			}
-			$script = $this->getContent( $titleText );
+			$script = $this->getContent( $titleText, $context );
 			if ( strval( $script ) !== '' ) {
 				$script = $this->validateScriptFile( $titleText, $script );
 				$scripts .= ResourceLoader::makeComment( $titleText ) . $script . "\n";
@@ -204,7 +241,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 				continue;
 			}
 			$media = isset( $options['media'] ) ? $options['media'] : 'all';
-			$style = $this->getContent( $titleText );
+			$style = $this->getContent( $titleText, $context );
 			if ( strval( $style ) === '' ) {
 				continue;
 			}
@@ -294,7 +331,25 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		sort( $pageNames );
 		$key = implode( '|', $pageNames );
 		if ( !isset( $this->titleInfo[$key] ) ) {
-			$this->titleInfo[$key] = static::fetchTitleInfo( $dbr, $pageNames, __METHOD__ );
+			$titleInfo = static::fetchTitleInfo( $dbr, $pageNames, __METHOD__ );
+
+			// Override the title info from the overrides, if any
+			$overrideCallback = $context->getContentOverrideCallback();
+			if ( $overrideCallback ) {
+				foreach ( $pageNames as $page => $info ) {
+					$title = Title::newFromText( $page );
+					$content = $title ? call_user_func( $overrideCallback, $title ) : null;
+					if ( $content !== null ) {
+						$titleInfo[$title->getPrefixedText()] = [
+							'page_len' => $content->getSize(),
+							'page_latest' => 'TBD',
+							'page_touched' => wfTimestamp( TS_MW ),
+						];
+					}
+				}
+			}
+
+			$this->titleInfo[$key] = $titleInfo;
 		}
 		return $this->titleInfo[$key];
 	}

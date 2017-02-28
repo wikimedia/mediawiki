@@ -214,6 +214,44 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 		$module = TestingAccessWrapper::newFromObject( $module );
 		$this->assertEquals( $expected, $module->getTitleInfo( $context ), 'Title info' );
 	}
+
+	public function testContentOverrides() {
+		$pages = [
+			'MediaWiki:Common.css' => [ 'type' => 'style' ],
+		];
+
+		$module = $this->getMockBuilder( 'TestResourceLoaderWikiModule' )
+			->setMethods( [ 'getPages' ] )
+			->getMock();
+		$module->method( 'getPages' )->willReturn( $pages );
+
+		$rl = new EmptyResourceLoader();
+		$rl->register( 'testmodule', $module );
+		$context = new DerivativeResourceLoaderContext(
+			new ResourceLoaderContext( $rl, new FauxRequest() )
+		);
+		$context->setContentOverrideCallback( function ( Title $t ) {
+			if ( $t->getPrefixedText() === 'MediaWiki:Common.css' ) {
+				return new CssContent( '.override{}' );
+			}
+			return null;
+		} );
+
+		$this->assertTrue( $module->shouldEmbedModule( $context ) );
+		$this->assertEquals( [
+			'all' => [
+				"/*\nMediaWiki:Common.css\n*/\n.override{}"
+			]
+		], $module->getStyles( $context ) );
+
+		$context->setContentOverrideCallback( function ( Title $t ) {
+			if ( $t->getPrefixedText() === 'MediaWiki:Skin.css' ) {
+				return new CssContent( '.override{}' );
+			}
+			return null;
+		} );
+		$this->assertFalse( $module->shouldEmbedModule( $context ) );
+	}
 }
 
 class TestResourceLoaderWikiModule extends ResourceLoaderWikiModule {
