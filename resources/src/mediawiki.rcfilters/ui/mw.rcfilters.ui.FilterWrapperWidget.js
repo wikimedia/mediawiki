@@ -94,6 +94,7 @@
 
 		// Highlight item
 		this.filterPopup.select( filterName );
+		this.capsule.select( item );
 
 		this.scrollToTop( filterWidget.$element );
 	};
@@ -106,6 +107,7 @@
 	mw.rcfilters.ui.FilterWrapperWidget.prototype.onCapsulePopupToggle = function ( isVisible ) {
 		if ( !isVisible ) {
 			this.filterPopup.resetSelection();
+			this.capsule.resetSelection();
 		} else {
 			this.scrollToTop( this.capsule.$element, 10 );
 		}
