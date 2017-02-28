@@ -79,6 +79,9 @@ production.
   extensions. Pass --with-extensions to enable that feature.
 * (T184791) rc_patrolled now has three states: "0" for unpatrolled,
   "1" for manually patrolled and "2" for autopatrolled actions.
+* (T112474) Generalized the ResourceLoader mechanism for overriding modules
+  using a particular page during edit previews.
+* Added 'ApiParseMakeOutputPage' hook.
 
 === External library changes in 1.31 ===
 
@@ -123,6 +126,7 @@ production.
 * ApiBase::getProfileDBTime was removed (deprecated since 1.25)
 * ApiBase::getModuleProfileName was removed (deprecated since 1.25)
 * ApiBase::getProfileTime was removed (deprecated since 1.25)
+* Added 'ApiParseMakeOutputPage' hook.
 
 === Languages updated in 1.31 ===
 MediaWiki supports over 350 languages. Many localisations are updated

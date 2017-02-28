@@ -31,6 +31,7 @@ class ResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( null, $ctx->getOnly() );
 		$this->assertEquals( 'fallback', $ctx->getSkin() );
 		$this->assertEquals( null, $ctx->getUser() );
+		$this->assertNull( $ctx->getContentOverrideCallback() );
 
 		// Misc
 		$this->assertEquals( 'ltr', $ctx->getDirection() );
