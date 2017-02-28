@@ -12,7 +12,9 @@ production.
 * …
 
 === New features in 1.32 ===
-* …
+* (T112474) Generalized the ResourceLoader mechanism for overriding modules
+  using a particular page during edit previews.
+* Added 'ApiParseMakeOutputPage' hook.
 
 === External library changes in 1.32 ===
 * …
@@ -33,7 +35,7 @@ production.
 * …
 
 === Action API internal changes in 1.32 ===
-* …
+* Added 'ApiParseMakeOutputPage' hook.
 
 === Languages updated in 1.32 ===
 MediaWiki supports over 350 languages. Many localisations are updated
