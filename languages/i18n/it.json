@@ -1023,7 +1023,7 @@
 	"nextn-title": "{{PLURAL:$1|Risultato successivo|$1 risultati successivi}}",
 	"shown-title": "Mostra {{PLURAL:$1|un risultato|$1 risultati}} per pagina",
 	"viewprevnext": "Vedi ($1 {{int:pipe-separator}} $2) ($3).",
-	"searchmenu-exists": "'''Sul sito esiste una pagina il cui nome è \"[[:$1]]\"'''",
+	"searchmenu-exists": "<strong>Su questo wiki esiste una pagina il cui nome è \"[[:$1]]\".</strong> {{PLURAL:$2|0=|Vedi anche gli altri risultati trovati.}}",
 	"searchmenu-new": "<strong>Crea la pagina \"[[:$1]]\" su questo wiki!</strong> {{PLURAL:$2|0=|Vedi anche la pagina trovata con la tua ricerca|Vedi anche i risultati della ricerca}}",
 	"searchprofile-articles": "Pagine di contenuti",
 	"searchprofile-images": "Multimedia",
