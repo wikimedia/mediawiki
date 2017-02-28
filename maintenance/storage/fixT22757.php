@@ -1,6 +1,6 @@
 <?php
 /**
- * Script to fix bug 20757.
+ * Script to fix T22757.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,11 +24,11 @@
 require_once __DIR__ . '/../Maintenance.php';
 
 /**
- * Maintenance script to fix bug 20757.
+ * Maintenance script to fix T22757.
  *
  * @ingroup Maintenance ExternalStorage
  */
-class FixBug20757 extends Maintenance {
+class FixT22757 extends Maintenance {
 	public $batchSize = 10000;
 	public $mapCache = [];
 	public $mapCacheSize = 0;
@@ -36,7 +36,7 @@ class FixBug20757 extends Maintenance {
 
 	function __construct() {
 		parent::__construct();
-		$this->addDescription( 'Script to fix bug 20757 assuming that blob_tracking is intact' );
+		$this->addDescription( 'Script to fix T22757 assuming that blob_tracking is intact' );
 		$this->addOption( 'dry-run', 'Report only' );
 		$this->addOption( 'start', 'old_id to start at', false, true );
 	}
@@ -345,5 +345,5 @@ class FixBug20757 extends Maintenance {
 	}
 }
 
-$maintClass = 'FixBug20757';
+$maintClass = 'FixT22757';
 require_once RUN_MAINTENANCE_IF_MAIN;
