@@ -75,16 +75,17 @@ class PHPVersionCheck {
 	 * @return $this
 	 */
 	function checkRequiredPHPVersion() {
-		if ( !function_exists( 'version_compare' )
-		     || version_compare( $this->getPHPImplVersion(), $this->minimumVersionPHP ) < 0
+		if (
+			!function_exists( 'version_compare' )
+			|| version_compare( $this->getPHPImplVersion(), $this->minimumVersionPHP ) < 0
 		) {
 			$shortText = "MediaWiki $this->mwVersion requires at least PHP version"
-			             . " $this->minimumVersionPHP, you are using PHP {$this->getPHPImplVersion()}.";
+				. " $this->minimumVersionPHP, you are using PHP {$this->getPHPImplVersion()}.";
 
 			$longText = "Error: You might be using on older PHP version. \n"
-			            . "MediaWiki $this->mwVersion needs PHP $this->minimumVersionPHP or higher.\n\n"
-			            . "Check if you have a newer php executable with a different name, "
-			            . "such as php5.\n\n";
+				. "MediaWiki $this->mwVersion needs PHP $this->minimumVersionPHP or higher.\n\n"
+				. "Check if you have a newer php executable with a different name, "
+				. "such as php5.\n\n";
 
 			$longHtml = <<<HTML
 			Please consider <a href="http://www.php.net/downloads.php">upgrading your copy of PHP</a>.
@@ -112,10 +113,10 @@ HTML;
 			$shortText = "Installing some external dependencies (e.g. via composer) is required.";
 
 			$longText = "Error: You are missing some external dependencies. \n"
-			            . "MediaWiki now also has some external dependencies that need to be installed\n"
-			            . "via composer or from a separate git repo. Please see\n"
-			            . "https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries\n"
-			            . "for help on installing the required components.";
+				. "MediaWiki now also has some external dependencies that need to be installed\n"
+				. "via composer or from a separate git repo. Please see\n"
+				. "https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries\n"
+				. "for help on installing the required components.";
 
 			$longHtml = <<<HTML
 		MediaWiki now also has some external dependencies that need to be installed via
@@ -150,12 +151,12 @@ HTML;
 			foreach ( $missingExtensions as $ext ) {
 				$missingExtText .= " * $ext <$baseUrl/$ext>\n";
 				$missingExtHtml .= "<li><b>$ext</b> "
-				                   . "(<a href=\"$baseUrl/$ext\">more information</a>)</li>";
+					. "(<a href=\"$baseUrl/$ext\">more information</a>)</li>";
 			}
 
 			$cliText = "Error: Missing one or more required components of PHP.\n"
-			           . "You are missing a required extension to PHP that MediaWiki needs.\n"
-			           . "Please install:\n" . $missingExtText;
+				. "You are missing a required extension to PHP that MediaWiki needs.\n"
+				. "Please install:\n" . $missingExtText;
 
 			$longHtml = <<<HTML
 		You are missing a required extension to PHP that MediaWiki
@@ -198,7 +199,7 @@ HTML;
 		}
 		$encLogo =
 			htmlspecialchars( str_replace( '//', '/', $dirname . '/' ) .
-			                  'resources/assets/mediawiki.png' );
+				'resources/assets/mediawiki.png' );
 		$shortHtml = htmlspecialchars( $shortText );
 
 		header( 'Content-type: text/html; charset=UTF-8' );

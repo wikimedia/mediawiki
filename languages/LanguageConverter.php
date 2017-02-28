@@ -99,13 +99,13 @@ class LanguageConverter {
 			// '+' add rules for alltext
 			// 'E' the gave flags is error
 			// these flags above are reserved for program
-			'A' => 'A',	  // add rule for convert code (all text convert)
-			'T' => 'T',	  // title convert
-			'R' => 'R',	  // raw content
-			'D' => 'D',	  // convert description (subclass implement)
-			'-' => '-',	  // remove convert (not implement)
-			'H' => 'H',	  // add rule for convert code (but no display in placed code)
-			'N' => 'N'	  // current variant name
+			'A' => 'A',   // add rule for convert code (all text convert)
+			'T' => 'T',   // title convert
+			'R' => 'R',   // raw content
+			'D' => 'D',   // convert description (subclass implement)
+			'-' => '-',   // remove convert (not implement)
+			'H' => 'H',   // add rule for convert code (but no display in placed code)
+			'N' => 'N',   // current variant name
 		];
 		$this->mFlags = array_merge( $defaultflags, $flags );
 		foreach ( $this->mVariants as $v ) {
@@ -357,10 +357,10 @@ class LanguageConverter {
 		}
 
 		/* we convert everything except:
-		   1. HTML markups (anything between < and >)
-		   2. HTML entities
-		   3. placeholders created by the parser
-		*/
+		 * 1. HTML markups (anything between < and >)
+		 * 2. HTML entities
+		 * 3. placeholders created by the parser
+		 */
 		$marker = '|' . Parser::MARKER_PREFIX . '[\-a-zA-Z0-9]+';
 
 		// this one is needed when the text is inside an HTML markup
@@ -1085,12 +1085,12 @@ class LanguageConverter {
 			// text should be splited by ";" only if a valid variant
 			// name exist after the markup, for example:
 			//  -{zh-hans:<span style="font-size:120%;">xxx</span>;zh-hant:\
-			// 	<span style="font-size:120%;">yyy</span>;}-
+			//  <span style="font-size:120%;">yyy</span>;}-
 			// we should split it as:
 			//  [
-			// 	  [0] => 'zh-hans:<span style="font-size:120%;">xxx</span>'
-			// 	  [1] => 'zh-hant:<span style="font-size:120%;">yyy</span>'
-			// 	  [2] => ''
+			//    [0] => 'zh-hans:<span style="font-size:120%;">xxx</span>'
+			//    [1] => 'zh-hant:<span style="font-size:120%;">yyy</span>'
+			//    [2] => ''
 			//  ]
 			$pat = '/;\s*(?=';
 			foreach ( $this->mVariants as $variant ) {

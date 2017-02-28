@@ -93,7 +93,7 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 	public function merge( SearchIndexField $that ) {
 		// TODO: which definitions may be compatible?
 		if ( ( $that instanceof self ) && $this->type === $that->type &&
-		     $this->flags === $that->flags && $this->type !== self::INDEX_TYPE_NESTED
+			$this->flags === $that->flags && $this->type !== self::INDEX_TYPE_NESTED
 		) {
 			return $that;
 		}

@@ -32,7 +32,7 @@
  * @par Example:
  * @code
  * if( $user->isAnon() ) {
- * 	throw new UserNotLoggedIn();
+ *   throw new UserNotLoggedIn();
  * }
  * @endcode
  *
@@ -42,7 +42,7 @@
  * @par Example:
  * @code
  * if( $user->isAnon() ) {
- * 	throw new UserNotLoggedIn( 'action-require-loggedin' );
+ *   throw new UserNotLoggedIn( 'action-require-loggedin' );
  * }
  * @endcode
  *

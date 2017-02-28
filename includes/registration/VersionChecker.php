@@ -87,17 +87,17 @@ class VersionChecker {
 	 * installed extensions in the $credits array.
 	 *
 	 * Example $extDependencies:
-	 *	{
-	 *		'FooBar' => {
-	 *			'MediaWiki' => '>= 1.25.0',
-	 * 			'extensions' => {
-	 * 				'FooBaz' => '>= 1.25.0'
-	 * 			},
-	 * 			'skins' => {
-	 * 				'BazBar' => '>= 1.0.0'
-	 * 			}
-	 *		}
-	 *	}
+	 *     {
+	 *       'FooBar' => {
+	 *         'MediaWiki' => '>= 1.25.0',
+	 *         'extensions' => {
+	 *           'FooBaz' => '>= 1.25.0'
+	 *         },
+	 *         'skins' => {
+	 *           'BazBar' => '>= 1.0.0'
+	 *         }
+	 *       }
+	 *     }
 	 *
 	 * @param array $extDependencies All extensions that depend on other ones
 	 * @return array

@@ -344,12 +344,12 @@ class Sanitizer {
 			$space = '[\x09\x0a\x0c\x0d\x20]';
 			self::$attribsRegex =
 				"/(?:^|$space)({$attribFirst}{$attrib}*)
-				  ($space*=$space*
+					($space*=$space*
 					(?:
-					 # The attribute value: quoted or alone
-					  \"([^\"]*)(?:\"|\$)
-					 | '([^']*)(?:'|\$)
-					 |  (((?!$space|>).)*)
+						# The attribute value: quoted or alone
+						\"([^\"]*)(?:\"|\$)
+						| '([^']*)(?:'|\$)
+						| (((?!$space|>).)*)
 					)
 				)?(?=$space|\$)/sx";
 		}

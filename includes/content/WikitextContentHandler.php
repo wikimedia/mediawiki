@@ -128,16 +128,20 @@ class WikitextContentHandler extends TextContentHandler {
 
 		$fields['opening_text'] =
 			$engine->makeSearchFieldMapping( 'opening_text', SearchIndexField::INDEX_TYPE_TEXT );
-		$fields['opening_text']->setFlag( SearchIndexField::FLAG_SCORING |
-		                                  SearchIndexField::FLAG_NO_HIGHLIGHT );
+		$fields['opening_text']->setFlag(
+			SearchIndexField::FLAG_SCORING | SearchIndexField::FLAG_NO_HIGHLIGHT
+		);
 		// Until we have full first-class content handler for files, we invoke it explicitly here
 		$fields = array_merge( $fields, $this->getFileHandler()->getFieldsForSearchIndex( $engine ) );
 
 		return $fields;
 	}
 
-	public function getDataForSearchIndex( WikiPage $page, ParserOutput $parserOutput,
-	                                       SearchEngine $engine ) {
+	public function getDataForSearchIndex(
+		WikiPage $page,
+		ParserOutput $parserOutput,
+		SearchEngine $engine
+	) {
 		$fields = parent::getDataForSearchIndex( $page, $parserOutput, $engine );
 
 		$structure = new WikiTextStructure( $parserOutput );

@@ -147,7 +147,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		/* Build our basic query. Namely, something along the lines of:
 		 * SELECT * FROM recentchanges WHERE rc_timestamp > $start
-		 * 		AND rc_timestamp < $end AND rc_namespace = $namespace
+		 *   AND rc_timestamp < $end AND rc_namespace = $namespace
 		 */
 		$this->addTables( 'recentchanges' );
 		$this->addTimestampWhereRange( 'rc_timestamp', $params['dir'], $params['start'], $params['end'] );

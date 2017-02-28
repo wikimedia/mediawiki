@@ -230,7 +230,7 @@ class BatchRowIterator implements RecursiveIterator {
 	 * `=` conditions while the final key uses a `>` condition
 	 *
 	 * Example output:
-	 * 	  [ '( foo = 42 AND bar > 7 ) OR ( foo > 42 )' ]
+	 *     [ '( foo = 42 AND bar > 7 ) OR ( foo > 42 )' ]
 	 *
 	 * @return array The SQL conditions necessary to select the next set
 	 *  of rows in the batched query

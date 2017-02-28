@@ -702,7 +702,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 */
 	protected function getFakeTemplate( $msg, $msgType ) {
 		global $wgAuth, $wgEnableEmail, $wgHiddenPrefs, $wgEmailConfirmToEdit, $wgEnableUserEmail,
-			   $wgSecureLogin, $wgPasswordResetRoutes;
+			$wgSecureLogin, $wgPasswordResetRoutes;
 
 		// make a best effort to get the value of fields which used to be fixed in the old login
 		// template but now might or might not exist depending on what providers are used
@@ -772,7 +772,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$resetLink = $this->isSignup()
 			? null
 			: is_array( $wgPasswordResetRoutes )
-			  && in_array( true, array_values( $wgPasswordResetRoutes ), true );
+				&& in_array( true, array_values( $wgPasswordResetRoutes ), true );
 
 		$template->set( 'header', '' );
 		$template->set( 'formheader', '' );

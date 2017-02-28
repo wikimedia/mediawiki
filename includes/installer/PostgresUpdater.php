@@ -496,8 +496,8 @@ class PostgresUpdater extends DatabaseUpdater {
 		$q = <<<END
 SELECT attname, attnum FROM pg_namespace, pg_class, pg_attribute
 	WHERE pg_class.relnamespace = pg_namespace.oid
-	  AND attrelid=pg_class.oid AND attnum > 0
-	  AND relname=%s AND nspname=%s
+		AND attrelid=pg_class.oid AND attnum > 0
+		AND relname=%s AND nspname=%s
 END;
 		$res = $this->db->query( sprintf( $q,
 			$this->db->addQuotes( $table ),
@@ -523,9 +523,9 @@ END;
 		$q = <<<END
 SELECT indkey, indrelid FROM pg_namespace, pg_class, pg_index
 	WHERE nspname=%s
-	  AND pg_class.relnamespace = pg_namespace.oid
-	  AND relname=%s
-	  AND indexrelid=pg_class.oid
+		AND pg_class.relnamespace = pg_namespace.oid
+		AND relname=%s
+		AND indexrelid=pg_class.oid
 END;
 		$res = $this->db->query(
 			sprintf(
@@ -551,8 +551,8 @@ END;
 			$query = <<<END
 SELECT attname FROM pg_class, pg_attribute
 	WHERE attrelid=$relid
-	  AND attnum=%d
-	  AND attrelid=pg_class.oid
+		AND attnum=%d
+		AND attrelid=pg_class.oid
 END;
 			$r2 = $this->db->query( sprintf( $query, $rid ) );
 			if ( !$r2 ) {
@@ -572,8 +572,8 @@ END;
 		$q = <<<END
 SELECT confdeltype FROM pg_constraint, pg_namespace
 	WHERE connamespace=pg_namespace.oid
-	  AND nspname=%s
-	  AND conname=%s;
+		AND nspname=%s
+		AND conname=%s;
 END;
 		$r = $this->db->query(
 			sprintf(
@@ -594,8 +594,8 @@ END;
 		$q = <<<END
 SELECT definition FROM pg_rules
 	WHERE schemaname = %s
-	  AND tablename = %s
-	  AND rulename = %s
+		AND tablename = %s
+		AND rulename = %s
 END;
 		$r = $this->db->query(
 			sprintf(

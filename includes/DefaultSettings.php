@@ -1442,14 +1442,19 @@ $wgUseTinyRGBForJPGThumbnails = false;
  * Default parameters for the "<gallery>" tag
  */
 $wgGalleryOptions = [
-	'imagesPerRow' => 0, // Default number of images per-row in the gallery. 0 -> Adapt to screensize
-	'imageWidth' => 120, // Width of the cells containing images in galleries (in "px")
-	'imageHeight' => 120, // Height of the cells containing images in galleries (in "px")
-	'captionLength' => true, // Deprecated @since 1.28
-	                         // Length to truncate filename to in caption when using "showfilename".
-	                         // A value of 'true' will truncate the filename to one line using CSS
-	                         // and will be the behaviour after deprecation.
-	'showBytes' => true, // Show the filesize in bytes in categories
+	// Default number of images per-row in the gallery. 0 -> Adapt to screensize
+	'imagesPerRow' => 0,
+	// Width of the cells containing images in galleries (in "px")
+	'imageWidth' => 120,
+	// Height of the cells containing images in galleries (in "px")
+	'imageHeight' => 120,
+	// Length to truncate filename to in caption when using "showfilename".
+	// A value of 'true' will truncate the filename to one line using CSS
+	// and will be the behaviour after deprecation.
+	// @deprecated since 1.28
+	'captionLength' => true,
+	// Show the filesize in bytes in categories
+	'showBytes' => true,
 	'mode' => 'traditional',
 ];
 
@@ -4565,8 +4570,8 @@ $wgAuthManagerAutoConfig = [
 		],
 		// Linking during login is experimental, enable at your own risk - T134952
 		// MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider::class => [
-		// 	'class' => MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider::class,
-		// 	'sort' => 100,
+		//   'class' => MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider::class,
+		//   'sort' => 100,
 		// ],
 		MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider::class => [
 			'class' => MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider::class,

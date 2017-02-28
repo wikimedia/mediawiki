@@ -89,7 +89,7 @@
 
 	/**
 	 * @property {jQuery} $container If the gallery contained in an element that is
-	 * 	not the main content element, then it stores that element.
+	 *   not the main content element, then it stores that element.
 	 */
 
 	/**
@@ -102,7 +102,7 @@
 
 	/**
 	 * @property {number} imageHeight Height of the image based on viewport size
-	 * 	the URLs in the required size.
+	 *   the URLs in the required size.
 	 */
 
 	/* Setup */

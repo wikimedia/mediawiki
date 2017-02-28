@@ -343,7 +343,7 @@ class WikiExporter {
 				# query optimization for history stub dumps
 				if ( $this->text == WikiExporter::STUB && $orderRevs ) {
 					$tables = [ 'revision', 'page' ];
-				        $opts[] = 'STRAIGHT_JOIN';
+					$opts[] = 'STRAIGHT_JOIN';
 					$opts['ORDER BY'] = [ 'rev_page ASC', 'rev_id ASC' ];
 					$opts['USE INDEX']['revision'] = 'rev_page_id';
 					$join['page'] = [ 'INNER JOIN', 'rev_page=page_id' ];

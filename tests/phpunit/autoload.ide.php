@@ -86,9 +86,12 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 }
 
 if ( $maintenance->getDbType() === Maintenance::DB_NONE ) {
-	if ( $wgLocalisationCacheConf['storeClass'] === false
-		 && ( $wgLocalisationCacheConf['store'] == 'db'
-			  || ( $wgLocalisationCacheConf['store'] == 'detect' && !$wgCacheDirectory ) )
+	if (
+		$wgLocalisationCacheConf['storeClass'] === false
+		&& (
+			$wgLocalisationCacheConf['store'] == 'db'
+			|| ( $wgLocalisationCacheConf['store'] == 'detect' && !$wgCacheDirectory )
+		)
 	) {
 		$wgLocalisationCacheConf['storeClass'] = 'LCStoreNull';
 	}

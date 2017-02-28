@@ -497,7 +497,7 @@ class ImportImages extends Maintenance {
 	# (preferably batching files too).
 	private function getFileCommentFromSourceWiki( $wiki_host, $file ) {
 		$url = $wiki_host . '/api.php?action=query&format=xml&titles=File:'
-			   . rawurlencode( $file ) . '&prop=imageinfo&&iiprop=comment';
+			. rawurlencode( $file ) . '&prop=imageinfo&&iiprop=comment';
 		$body = Http::get( $url, [], __METHOD__ );
 		if ( preg_match( '#<ii comment="([^"]*)" />#', $body, $matches ) == 0 ) {
 			return false;
@@ -508,7 +508,7 @@ class ImportImages extends Maintenance {
 
 	private function getFileUserFromSourceWiki( $wiki_host, $file ) {
 		$url = $wiki_host . '/api.php?action=query&format=xml&titles=File:'
-			   . rawurlencode( $file ) . '&prop=imageinfo&&iiprop=user';
+			. rawurlencode( $file ) . '&prop=imageinfo&&iiprop=user';
 		$body = Http::get( $url, [], __METHOD__ );
 		if ( preg_match( '#<ii user="([^"]*)" />#', $body, $matches ) == 0 ) {
 			return false;

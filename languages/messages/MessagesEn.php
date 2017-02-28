@@ -105,7 +105,7 @@ $namespaceAliases = [];
  * Example:
  * @code
  * $namespaceGenderAliases = [
- * 	NS_USER => [ 'male' => 'Male_user', 'female' => 'Female_user' ],
+ *   NS_USER => [ 'male' => 'Male_user', 'female' => 'Female_user' ],
  * ];
  * @endcode
  */

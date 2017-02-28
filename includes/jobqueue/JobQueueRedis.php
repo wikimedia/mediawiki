@@ -793,9 +793,9 @@ LUA;
 	private function getGlobalKey( $name ) {
 		$parts = [ 'global', 'jobqueue', $name ];
 		foreach ( $parts as $part ) {
-		    if ( !preg_match( '/[a-zA-Z0-9_-]+/', $part ) ) {
-		        throw new InvalidArgumentException( "Key part characters are out of range." );
-		    }
+			if ( !preg_match( '/[a-zA-Z0-9_-]+/', $part ) ) {
+				throw new InvalidArgumentException( "Key part characters are out of range." );
+			}
 		}
 
 		return implode( ':', $parts );

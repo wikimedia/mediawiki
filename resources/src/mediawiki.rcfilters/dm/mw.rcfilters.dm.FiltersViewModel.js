@@ -112,16 +112,16 @@
 					// For example, see two groups with conflicts:
 					// userExpLevel: [
 					//   {
-					//   	name: 'experienced',
-					//   	conflicts: [ 'unregistered' ]
+					//     name: 'experienced',
+					//     conflicts: [ 'unregistered' ]
 					//   }
 					// ],
 					// registration: [
 					//   {
-					//   	name: 'registered',
+					//     name: 'registered',
 					//   },
 					//   {
-					//   	name: 'unregistered',
+					//     name: 'unregistered',
 					//   }
 					// ]
 					// If we select 'experienced', then 'unregistered' is in conflict (and vice versa),

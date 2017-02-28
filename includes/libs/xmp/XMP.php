@@ -647,7 +647,7 @@ class XMPReader implements LoggerAwareInterface {
 	private function endElementNested( $elm ) {
 
 		/* cur item must be the same as $elm, unless if in MODE_STRUCT
-		   in which case it could also be rdf:Description */
+		 * in which case it could also be rdf:Description */
 		if ( $this->curItem[0] !== $elm
 			&& !( $elm === self::NS_RDF . ' Description'
 				&& $this->mode[0] === self::MODE_STRUCT )

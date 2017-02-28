@@ -46,8 +46,8 @@
  * $magicWords = [];
  *
  * $magicWords['en'] = [
- * 	'magicwordkey' => [ 0, 'case_insensitive_magic_word' ],
- * 	'magicwordkey2' => [ 1, 'CASE_sensitive_magic_word2' ],
+ *   'magicwordkey' => [ 0, 'case_insensitive_magic_word' ],
+ *   'magicwordkey2' => [ 1, 'CASE_sensitive_magic_word2' ],
  * ];
  * @endcode
  *
