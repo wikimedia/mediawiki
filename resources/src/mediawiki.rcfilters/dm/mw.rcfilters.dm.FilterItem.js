@@ -64,6 +64,20 @@
 	/* Methods */
 
 	/**
+	 * Return the representation of the state of this item.
+	 *
+	 * @return {Object} State of the object
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.getState = function () {
+		return {
+			selected: this.isSelected(),
+			included: this.isIncluded(),
+			conflicted: this.isConflicted(),
+			fullyCovered: this.isFullyCovered()
+		};
+	};
+
+	/**
 	 * Get the name of this filter
 	 *
 	 * @return {string} Filter name
