@@ -49,6 +49,9 @@ production.
 * Style tags with a 'data-mw-deduplicate' attribute will be deduplicated as a
   ParserOutput::getText() post-cache transformation. This may be disabled by
   passing 'deduplicateStyles' => false to that method.
+* (T112474) Generalized the ResourceLoader mechanism for overriding modules
+  using a particular page during edit previews.
+* Added 'ApiParseMakeOutputPage' hook.
 
 === External library changes in 1.31 ===
 
@@ -88,7 +91,7 @@ production.
   returned regardless.
 
 === Action API internal changes in 1.31 ===
-* …
+* Added 'ApiParseMakeOutputPage' hook.
 
 === Languages updated in 1.31 ===
 MediaWiki supports over 350 languages. Many localisations are updated
