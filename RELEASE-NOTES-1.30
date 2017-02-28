@@ -27,6 +27,9 @@ production.
 * File storage backends that supports headers (eg. Swift) now store an
   X-Content-Dimensions header for originals that contain the media's dimensions
   as page ranges keyed by dimensions.
+* (T112474) Generalized the ResourceLoader mechanism for overriding modules
+  using a particular page during edit previews.
+* Added 'ApiParseOutputPageForHeadHtml' hook.
 
 === External library changes in 1.30 ===
 
@@ -51,7 +54,7 @@ production.
   formatted as specified by the error formatter parameters.
 
 === Action API internal changes in 1.30 ===
-* …
+* Added 'ApiParseOutputPageForHeadHtml' hook.
 
 === Languages updated in 1.30 ===
 MediaWiki supports over 350 languages. Many localisations are updated
