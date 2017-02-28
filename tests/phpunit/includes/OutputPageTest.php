@@ -441,11 +441,8 @@ class OutputPageTest extends MediaWikiTestCase {
 		$ctx->setLanguage( 'en' );
 		$outputPage = $this->getMockBuilder( OutputPage::class )
 			->setConstructorArgs( [ $ctx ] )
-			->setMethods( [ 'isUserCssPreview', 'buildCssLinksArray' ] )
+			->setMethods( [ 'buildCssLinksArray' ] )
 			->getMock();
-		$outputPage->expects( $this->any() )
-			->method( 'isUserCssPreview' )
-			->willReturn( false );
 		$outputPage->expects( $this->any() )
 			->method( 'buildCssLinksArray' )
 			->willReturn( [] );
