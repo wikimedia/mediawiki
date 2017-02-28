@@ -154,7 +154,7 @@ class StatusValue {
 	}
 
 	/**
-	 * Change operation resuklt
+	 * Change operation result
 	 *
 	 * @param bool $ok Whether the operation completed
 	 * @param mixed $value
