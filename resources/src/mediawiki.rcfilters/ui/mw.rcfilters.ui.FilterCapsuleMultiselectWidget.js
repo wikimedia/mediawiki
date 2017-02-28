@@ -11,8 +11,6 @@
 	 * @param {OO.ui.InputWidget} filterInput A filter input that focuses the capsule widget
 	 * @param {Object} config Configuration object
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
-	 * @cfg {number} [topScrollOffset=10] When scrolling the entire widget to the top, leave this
-	 *  much space (in pixels) above the widget.
 	 */
 	mw.rcfilters.ui.FilterCapsuleMultiselectWidget = function MwRcfiltersUiFilterCapsuleMultiselectWidget( controller, model, filterInput, config ) {
 		var title = new OO.ui.LabelWidget( {
@@ -32,8 +30,7 @@
 		this.controller = controller;
 		this.model = model;
 		this.filterInput = filterInput;
-
-		this.topScrollOffset = config.topScrollOffset || 10;
+		this.isSelecting = false;
 
 		this.resetButton = new OO.ui.ButtonWidget( {
 			icon: 'trash',
@@ -54,7 +51,7 @@
 			itemUpdate: 'onModelItemUpdate',
 			highlightChange: 'onModelHighlightChange'
 		} );
-		this.popup.connect( this, { toggle: 'onPopupToggle' } );
+		this.aggregate( { click: 'capsuleItemClick' } );
 
 		// Add the filterInput as trigger
 		this.filterInput.$input
@@ -165,28 +162,6 @@
 			// Reset to have no filters
 			this.controller.emptyFilters();
 		}
-	};
-
-	/**
-	 * Respond to popup toggle event
-	 *
-	 * @param {boolean} isVisible Popup is visible
-	 */
-	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.onPopupToggle = function ( isVisible ) {
-		if ( isVisible ) {
-			this.scrollToTop();
-		}
-	};
-
-	/**
-	 * Scroll the capsule to the top of the screen
-	 */
-	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.scrollToTop = function () {
-		var container = OO.ui.Element.static.getClosestScrollableContainer( this.$element[ 0 ], 'y' );
-
-		$( container ).animate( {
-			scrollTop: this.$element.offset().top - this.topScrollOffset
-		} );
 	};
 
 	/**
