@@ -13,6 +13,7 @@
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
 	 */
 	mw.rcfilters.ui.FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget( controller, model, config ) {
+		var $footer = $( '<div>' );
 		config = config || {};
 
 		// Parent
@@ -33,6 +34,16 @@
 			}
 		);
 
+		$footer.append(
+			new OO.ui.ButtonWidget( {
+				framed: false,
+				icon: 'feedback',
+				flags: [ 'progressive' ],
+				label: mw.msg( 'rcfilters-filterlist-feedbacklink' ),
+				href: 'https://www.mediawiki.org/wiki/Help_talk:Edit_Review_Improvements/RC_filters'
+			} ).$element
+		);
+
 		this.textInput = new OO.ui.TextInputWidget( {
 			classes: [ 'mw-rcfilters-ui-filterWrapperWidget-search' ],
 			icon: 'search',
@@ -43,6 +54,7 @@
 			$overlay: this.$overlay,
 			popup: {
 				$content: this.filterPopup.$element,
+				$footer: $footer,
 				classes: [ 'mw-rcfilters-ui-filterWrapperWidget-popup' ],
 				width: 650
 			}
