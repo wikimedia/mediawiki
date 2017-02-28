@@ -70,6 +70,9 @@ production.
   This will be removed later and OOjs UI will become the only option.
   To make testing easier, users can also force either mode by adding
   &ooui=true or &ooui=false to the action=edit URL.
+* (T112474) Generalized the ResourceLoader mechanism for overriding modules
+  using a particular page during edit previews.
+* Added 'ApiParseOutputPageForHeadHtml' hook.
 
 === External library changes in 1.29 ===
 
@@ -177,6 +180,7 @@ production.
   from the message key, and maps some message keys for backwards compatibility.
 * API parameters may now be marked as "sensitive" to keep their values out of
   the logs.
+* Added 'ApiParseOutputPageForHeadHtml' hook.
 
 === Languages updated in 1.29 ===
 
