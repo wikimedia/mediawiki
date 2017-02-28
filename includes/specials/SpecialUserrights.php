@@ -170,8 +170,8 @@ class UserrightsPage extends SpecialPage {
 			}
 
 			$targetUser = $this->mFetchedUser;
-			if ( $targetUser instanceof User ) { // UserRightsProxy doesn't have this method (bug 61252)
-				$targetUser->clearInstanceCache(); // bug 38989
+			if ( $targetUser instanceof User ) { // UserRightsProxy doesn't have this method (T63252)
+				$targetUser->clearInstanceCache(); // T40989
 			}
 
 			if ( $request->getVal( 'conflictcheck-originalgroups' )

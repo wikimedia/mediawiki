@@ -793,7 +793,7 @@ class EditWatchlistCheckboxSeriesField extends HTMLMultiSelectField {
 	 * HTMLMultiSelectField throws validation errors if we get input data
 	 * that doesn't match the data set in the form setup. This causes
 	 * problems if something gets removed from the watchlist while the
-	 * form is open (bug 32126), but we know that invalid items will
+	 * form is open (T34126), but we know that invalid items will
 	 * be harmless so we can override it here.
 	 *
 	 * @param string $value The value the field was submitted with
