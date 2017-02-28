@@ -229,6 +229,8 @@
 				controller.updateFromURL();
 				controller.updateChangesList();
 			} );
+
+			$( 'a.mw-helplink' ).attr( 'href', 'https://www.mediawiki.org/wiki/Help:Edit_Review_Improvements/RC_filters/Quick_tour' );
 		}
 	};
 
