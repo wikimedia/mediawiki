@@ -574,7 +574,7 @@ class ApiMain extends ApiBase {
 	 * @param Exception $e
 	 */
 	protected function handleException( Exception $e ) {
-		// Bug 63145: Rollback any open database transactions
+		// T65145: Rollback any open database transactions
 		if ( !( $e instanceof ApiUsageException || $e instanceof UsageException ) ) {
 			// UsageExceptions are intentional, so don't rollback if that's the case
 			try {
@@ -1668,7 +1668,7 @@ class ApiMain extends ApiBase {
 		$ret = $this->getRequest()->getVal( $name );
 		if ( $ret === null ) {
 			if ( $this->getRequest()->getArray( $name ) !== null ) {
-				// See bug 10262 for why we don't just implode( '|', ... ) the
+				// See T12262 for why we don't just implode( '|', ... ) the
 				// array.
 				$this->addWarning( [ 'apiwarn-unsupportedarray', $name ] );
 			}

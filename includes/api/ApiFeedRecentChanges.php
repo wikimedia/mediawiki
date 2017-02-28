@@ -57,7 +57,7 @@ class ApiFeedRecentChanges extends ApiBase {
 
 		$this->getMain()->setCacheMode( 'public' );
 		if ( !$this->getMain()->getParameter( 'smaxage' ) ) {
-			// bug 63249: This page gets hit a lot, cache at least 15 seconds.
+			// T65249: This page gets hit a lot, cache at least 15 seconds.
 			$this->getMain()->setCacheMaxAge( 15 );
 		}
 

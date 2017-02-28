@@ -152,7 +152,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		if ( $this->params['filterredir'] == 'redirects' ) {
 			$this->addWhereFld( 'page_is_redirect', 1 );
 		} elseif ( $this->params['filterredir'] == 'nonredirects' && !$this->redirect ) {
-			// bug 22245 - Check for !redirect, as filtering nonredirects, when
+			// T24245 - Check for !redirect, as filtering nonredirects, when
 			// getting what links to them is contradictory
 			$this->addWhereFld( 'page_is_redirect', 0 );
 		}

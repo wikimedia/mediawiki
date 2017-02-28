@@ -700,7 +700,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return array
 	 */
 	public function extractRequestParams( $parseLimit = true ) {
-		// Cache parameters, for performance and to avoid bug 24564.
+		// Cache parameters, for performance and to avoid T26564.
 		if ( !isset( $this->mParamCache[$parseLimit] ) ) {
 			$params = $this->getFinalParams();
 			$results = [];
@@ -1326,7 +1326,7 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		if ( !$allowMultiple && count( $valuesList ) != 1 ) {
-			// Bug 33482 - Allow entries with | in them for non-multiple values
+			// T35482 - Allow entries with | in them for non-multiple values
 			if ( in_array( $value, $allowedValues, true ) ) {
 				return $value;
 			}

@@ -103,7 +103,7 @@ class ApiMove extends ApiBase {
 		// a redirect to the new title. This is not safe, but what we did before was
 		// even worse: we just determined whether a redirect should have been created,
 		// and reported that it was created if it should have, without any checks.
-		// Also note that isRedirect() is unreliable because of bug 37209.
+		// Also note that isRedirect() is unreliable because of T39209.
 		$r['redirectcreated'] = $fromTitle->exists();
 
 		$r['moveoverredirect'] = $toTitleExists;
