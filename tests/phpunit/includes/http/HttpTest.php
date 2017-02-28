@@ -483,7 +483,7 @@ class HttpTest extends MediaWikiTestCase {
 	 * Added this test based on an issue experienced with HHVM 3.3.0-dev
 	 * where it did not define a cURL constant.
 	 *
-	 * @T72570
+	 * T72570
 	 * @dataProvider provideCurlConstants
 	 */
 	public function testCurlConstants( $value ) {
