@@ -189,7 +189,7 @@ class FeedUtils {
 
 			if ( $html === null ) {
 
-				// Omit large new page diffs, bug 29110
+				// Omit large new page diffs, T31110
 				// Also use diff link for non-textual content
 				$diffText = self::getDiffLink( $title, $newid );
 			} else {

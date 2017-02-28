@@ -409,7 +409,7 @@ class ParserOptions {
 	 * when the page is rendered based on the language of the user.
 	 *
 	 * @note When saving, this will return the default language instead of the user's.
-	 * {{int: }} uses this which used to produce inconsistent link tables (bug 14404).
+	 * {{int: }} uses this which used to produce inconsistent link tables (T16404).
 	 *
 	 * @return Language
 	 * @since 1.19

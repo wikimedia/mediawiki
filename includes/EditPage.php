@@ -993,7 +993,7 @@ class EditPage {
 			$this->recreate = false;
 
 			// When creating a new section, we can preload a section title by passing it as the
-			// preloadtitle parameter in the URL (Bug 13100)
+			// preloadtitle parameter in the URL (T15100)
 			if ( $this->section == 'new' && $request->getVal( 'preloadtitle' ) ) {
 				$this->sectiontitle = $request->getVal( 'preloadtitle' );
 				// Once wpSummary isn't being use for setting section titles, we should delete this.
@@ -1911,7 +1911,7 @@ class EditPage {
 
 			// Don't save a new page if it's blank or if it's a MediaWiki:
 			// message with content equivalent to default (allow empty pages
-			// in this case to disable messages, see bug 50124)
+			// in this case to disable messages, see T52124)
 			$defaultMessageText = $this->mTitle->getDefaultMessageText();
 			if ( $this->mTitle->getNamespace() === NS_MEDIAWIKI && $defaultMessageText !== false ) {
 				$defaultText = $defaultMessageText;
@@ -2731,7 +2731,7 @@ class EditPage {
 		if ( $this->hasPresetSummary ) {
 			// If a summary has been preset using &summary= we don't want to prompt for
 			// a different summary. Only prompt for a summary if the summary is blanked.
-			// (Bug 17416)
+			// (T19416)
 			$this->autoSumm = md5( '' );
 		}
 

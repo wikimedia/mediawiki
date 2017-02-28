@@ -949,7 +949,7 @@ class User implements IDBAccessObject {
 
 		// Ensure that the username isn't longer than 235 bytes, so that
 		// (at least for the builtin skins) user javascript and css files
-		// will work. (bug 23080)
+		// will work. (T25080)
 		if ( strlen( $name ) > 235 ) {
 			wfDebugLog( 'username', __METHOD__ .
 				": '$name' invalid due to length" );
@@ -1074,7 +1074,7 @@ class User implements IDBAccessObject {
 		}
 
 		// Clean up name according to title rules,
-		// but only when validation is requested (bug 12654)
+		// but only when validation is requested (T14654)
 		$t = ( $validate !== false ) ?
 			Title::newFromText( $name, NS_USER ) : Title::makeTitle( NS_USER, $name );
 		// Check for invalid titles
@@ -1664,7 +1664,7 @@ class User implements IDBAccessObject {
 			}
 		}
 
-		// (bug 23343) Apply IP blocks to the contents of XFF headers, if enabled
+		// (T25343) Apply IP blocks to the contents of XFF headers, if enabled
 		if ( !$block instanceof Block
 			&& $wgApplyIpBlocksToXff
 			&& $ip !== null
@@ -1787,7 +1787,7 @@ class User implements IDBAccessObject {
 		$found = false;
 		// @todo FIXME: IPv6 ???  (https://bugs.php.net/bug.php?id=33170)
 		if ( IP::isIPv4( $ip ) ) {
-			// Reverse IP, bug 21255
+			// Reverse IP, T23255
 			$ipReversed = implode( '.', array_reverse( explode( '.', $ip ) ) );
 
 			foreach ( (array)$bases as $base ) {
@@ -4125,7 +4125,7 @@ class User implements IDBAccessObject {
 	 *   }
 	 *   // do something with $user...
 	 *
-	 * However, this was vulnerable to a race condition (bug 16020). By
+	 * However, this was vulnerable to a race condition (T18020). By
 	 * initialising the user object if the user exists, we aim to support this
 	 * calling sequence as far as possible.
 	 *
@@ -4238,7 +4238,7 @@ class User implements IDBAccessObject {
 			return $this->mBlock;
 		}
 
-		# bug 13611: if the IP address the user is trying to create an account from is
+		# T15611: if the IP address the user is trying to create an account from is
 		# blocked with createaccount disabled, prevent new account creation there even
 		# when the user is logged in
 		if ( $this->mBlockedFromCreateAccount === false && !$this->isAllowed( 'ipblock-exempt' ) ) {
@@ -4531,7 +4531,7 @@ class User implements IDBAccessObject {
 	 * @note Since these URLs get dropped directly into emails, using the
 	 * short English names avoids insanely long URL-encoded links, which
 	 * also sometimes can get corrupted in some browsers/mailers
-	 * (bug 6957 with Gmail and Internet Explorer).
+	 * (T8957 with Gmail and Internet Explorer).
 	 *
 	 * @param string $page Special page
 	 * @param string $token Token
@@ -5391,7 +5391,7 @@ class User implements IDBAccessObject {
 		# Note that the pattern requirement will always be satisfied if the
 		# input is empty, so we need required in all cases.
 
-		# @todo FIXME: Bug 23769: This needs to not claim the password is required
+		# @todo FIXME: T25769: This needs to not claim the password is required
 		# if e-mail confirmation is being used.  Since HTML5 input validation
 		# is b0rked anyway in some browsers, just return nothing.  When it's
 		# re-enabled, fix this code to not output required for e-mail

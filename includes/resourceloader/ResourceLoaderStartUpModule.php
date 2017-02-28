@@ -82,7 +82,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgSearchType' => $conf->get( 'SearchType' ),
 			'wgVariantArticlePath' => $conf->get( 'VariantArticlePath' ),
 			// Force object to avoid "empty" associative array from
-			// becoming [] instead of {} in JS (bug 34604)
+			// becoming [] instead of {} in JS (T36604)
 			'wgActionPaths' => (object)$conf->get( 'ActionPaths' ),
 			'wgServer' => $conf->get( 'Server' ),
 			'wgServerName' => $conf->get( 'ServerName' ),

@@ -82,7 +82,7 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Set this to true to add debug info to the HTML output.
 	 * Warning: this may cause RSS readers to spuriously mark articles as "new"
-	 * (bug 20601)
+	 * (T22601)
 	 */
 	public $enableDebugComment = false;
 

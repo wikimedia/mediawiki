@@ -311,7 +311,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$operator = $opts['invert'] ? '!=' : '=';
 			$boolean = $opts['invert'] ? 'AND' : 'OR';
 
-			// Namespace association (bug 2429)
+			// Namespace association (T4429)
 			if ( !$opts['associated'] ) {
 				$condition = "rc_namespace $operator $selectedNS";
 			} else {

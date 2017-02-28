@@ -891,7 +891,7 @@ class LocalFile extends File {
 				$files[] = $file;
 			}
 		} catch ( FileBackendError $e ) {
-		} // suppress (bug 54674)
+		} // suppress (T56674)
 
 		return $files;
 	}
@@ -1353,7 +1353,7 @@ class LocalFile extends File {
 				}
 			}
 
-			# (bug 34993) Note: $oldver can be empty here, if the previous
+			# (T36993) Note: $oldver can be empty here, if the previous
 			# version of the file was broken. Allow registration of the new
 			# version to continue anyway, because that's better than having
 			# an image that's not fixable by user operations.
@@ -2007,7 +2007,7 @@ class LocalFile extends File {
 			$dbw = $this->repo->getMasterDB();
 			$makesTransaction = !$dbw->trxLevel();
 			$dbw->startAtomic( self::ATOMIC_SECTION_LOCK );
-			// Bug 54736: use simple lock to handle when the file does not exist.
+			// T56736: use simple lock to handle when the file does not exist.
 			// SELECT FOR UPDATE prevents changes, not other SELECTs with FOR UPDATE.
 			// Also, that would cause contention on INSERT of similarly named rows.
 			$status = $this->acquireFileLock(); // represents all versions of the file
@@ -3035,7 +3035,7 @@ class LocalFileMoveBatch {
 			$status->failCount++;
 		}
 		$status->successCount += $oldRowCount;
-		// Bug 34934: oldCount is based on files that actually exist.
+		// T36934: oldCount is based on files that actually exist.
 		// There may be more DB rows than such files, in which case $affected
 		// can be greater than $total. We use max() to avoid negatives here.
 		$status->failCount += max( 0, $this->oldCount - $oldRowCount );

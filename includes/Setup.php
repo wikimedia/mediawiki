@@ -329,7 +329,7 @@ if ( $wgEnableEmail ) {
 	$wgUseEnotif = $wgEnotifUserTalk || $wgEnotifWatchlist;
 } else {
 	// Disable all other email settings automatically if $wgEnableEmail
-	// is set to false. - bug 63678
+	// is set to false. - T65678
 	$wgAllowHTMLEmail = false;
 	$wgEmailAuthentication = false; // do not require auth if you're not sending email anyway
 	$wgEnableUserEmail = false;

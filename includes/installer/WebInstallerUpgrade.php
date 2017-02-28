@@ -67,7 +67,7 @@ class WebInstallerUpgrade extends WebInstallerPage {
 
 			if ( $result ) {
 				// If they're going to possibly regenerate LocalSettings, we
-				// need to create the upgrade/secret keys. Bug 26481
+				// need to create the upgrade/secret keys. T28481
 				if ( !$this->getVar( '_ExistingDBSettings' ) ) {
 					$this->parent->generateKeys();
 				}

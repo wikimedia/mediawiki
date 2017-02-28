@@ -651,7 +651,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 					&& substr( rtrim( $scripts ), -1 ) !== ';'
 				) {
 					// Append semicolon to prevent weird bugs caused by files not
-					// terminating their statements right (bug 27054)
+					// terminating their statements right (T29054)
 					$scripts .= ";\n";
 				}
 			}
@@ -662,7 +662,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		if ( $context->shouldIncludeStyles() ) {
 			$styles = [];
 			// Don't create empty stylesheets like [ '' => '' ] for modules
-			// that don't *have* any stylesheets (bug 38024).
+			// that don't *have* any stylesheets (T40024).
 			$stylePairs = $this->getStyles( $context );
 			if ( count( $stylePairs ) ) {
 				// If we are in debug mode without &only= set, we'll want to return an array of URLs

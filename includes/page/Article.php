@@ -726,7 +726,7 @@ class Article implements Page {
 
 		$ns = $this->getTitle()->getNamespace();
 
-		# Don't index user and user talk pages for blocked users (bug 11443)
+		# Don't index user and user talk pages for blocked users (T13443)
 		if ( ( $ns == NS_USER || $ns == NS_USER_TALK ) && !$this->getTitle()->isSubpage() ) {
 			$specificTarget = null;
 			$vagueTarget = null;
@@ -784,7 +784,7 @@ class Article implements Page {
 		}
 
 		if ( isset( $wgArticleRobotPolicies[$this->getTitle()->getPrefixedText()] ) ) {
-			# (bug 14900) site config can override user-defined __INDEX__ or __NOINDEX__
+			# (T16900) site config can override user-defined __INDEX__ or __NOINDEX__
 			$policy = array_merge(
 				$policy,
 				self::formatRobotPolicy( $wgArticleRobotPolicies[$this->getTitle()->getPrefixedText()] )

@@ -1337,7 +1337,7 @@ $wgXMLMimeTypes = [
  * to reduce disk usage, limits can only be selected from a list.
  * The user preference is saved as an array offset in the database, by default
  * the offset is set with $wgDefaultUserOptions['imagesize']. Make sure you
- * change it if you alter the array (see bug 8858).
+ * change it if you alter the array (see T10858).
  * This is the list of settings the user can choose from:
  */
 $wgImageLimits = [
@@ -3357,7 +3357,7 @@ $wgDisableOutputCompression = false;
  *
  * Currently this appears to work fine in all browsers, but it's disabled by
  * default because it normalizes id's a bit too aggressively, breaking preexisting
- * content (particularly Cite).  See bug 27733, bug 27694, bug 27474.
+ * content (particularly Cite).  See T29733, T29694, T29474.
  */
 $wgExperimentalHtmlIds = false;
 
@@ -4081,7 +4081,7 @@ $wgMaxRedirects = 1;
  * Attempting to create a redirect to any of the pages in this array
  * will make the redirect fail.
  * Userlogout is hard-coded, so it does not need to be listed here.
- * (bug 10569) Disallow Mypage and Mytalk as well.
+ * (T12569) Disallow Mypage and Mytalk as well.
  *
  * As of now, this only checks special pages. Redirects to pages in
  * other namespaces cannot be invalidated by this variable.
@@ -8372,7 +8372,7 @@ $wgPagePropsHaveSortkey = true;
 /**
  * Port where you have HTTPS running
  * Supports HTTPS on non-standard ports
- * @see bug 65184
+ * @see T67184
  * @since 1.24
  */
 $wgHttpsPort = 443;

@@ -346,7 +346,7 @@ class JobQueueDB extends JobQueue {
 					continue; // try the other direction
 				}
 			} else { // table *may* have >= MAX_OFFSET rows
-				// Bug 42614: "ORDER BY job_random" with a job_random inequality causes high CPU
+				// T44614: "ORDER BY job_random" with a job_random inequality causes high CPU
 				// in MySQL if there are many rows for some reason. This uses a small OFFSET
 				// instead of job_random for reducing excess claim retries.
 				$row = $dbw->selectRow( 'job', self::selectFields(), // find a random job

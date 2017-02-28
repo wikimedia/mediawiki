@@ -405,7 +405,7 @@ class SqlBagOStuff extends BagOStuff {
 				$exptime = $this->convertExpiry( $exptime );
 				$encExpiry = $db->timestamp( $exptime );
 			}
-			// (bug 24425) use a replace if the db supports it instead of
+			// (T26425) use a replace if the db supports it instead of
 			// delete/insert to avoid clashes with conflicting keynames
 			$db->update(
 				$tableName,
@@ -480,7 +480,7 @@ class SqlBagOStuff extends BagOStuff {
 				], __METHOD__, 'IGNORE' );
 
 			if ( $db->affectedRows() == 0 ) {
-				// Race condition. See bug 28611
+				// Race condition. See T30611
 				$newValue = null;
 			}
 		} catch ( DBError $e ) {

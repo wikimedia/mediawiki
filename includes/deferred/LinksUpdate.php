@@ -145,7 +145,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 			# If the sortkey is longer then 255 bytes,
 			# it truncated by DB, and then doesn't get
 			# matched when comparing existing vs current
-			# categories, causing bug 25254.
+			# categories, causing T27254.
 			# Also. substr behaves weird when given "".
 			if ( $sortkey !== '' ) {
 				$sortkey = substr( $sortkey, 0, 255 );

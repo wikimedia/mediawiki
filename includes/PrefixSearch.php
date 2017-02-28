@@ -231,7 +231,7 @@ abstract class PrefixSearch {
 			}
 		}
 
-		# normalize searchKey, so aliases with spaces can be found - bug 25675
+		# normalize searchKey, so aliases with spaces can be found - T27675
 		$searchKey = str_replace( ' ', '_', $searchKey );
 		$searchKey = $wgContLang->caseFold( $searchKey );
 
@@ -243,7 +243,7 @@ abstract class PrefixSearch {
 		}
 
 		foreach ( $wgContLang->getSpecialPageAliases() as $page => $aliases ) {
-			if ( !in_array( $page, SpecialPageFactory::getNames() ) ) {# bug 20885
+			if ( !in_array( $page, SpecialPageFactory::getNames() ) ) {# T22885
 				continue;
 			}
 
@@ -256,7 +256,7 @@ abstract class PrefixSearch {
 		$matches = [];
 		foreach ( $keys as $pageKey => $page ) {
 			if ( $searchKey === '' || strpos( $pageKey, $searchKey ) === 0 ) {
-				// bug 27671: Don't use SpecialPage::getTitleFor() here because it
+				// T29671: Don't use SpecialPage::getTitleFor() here because it
 				// localizes its input leading to searches for e.g. Special:All
 				// returning Spezial:MediaWiki-Systemnachrichten and returning
 				// Spezial:Alle_Seiten twice when $wgLanguageCode == 'de'

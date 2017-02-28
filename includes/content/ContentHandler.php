@@ -899,7 +899,7 @@ abstract class ContentHandler {
 			$onlyAuthor = $row->rev_user_text;
 			// Try to find a second contributor
 			foreach ( $res as $row ) {
-				if ( $row->rev_user_text != $onlyAuthor ) { // Bug 22999
+				if ( $row->rev_user_text != $onlyAuthor ) { // T24999
 					$onlyAuthor = false;
 					break;
 				}
