@@ -918,6 +918,20 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		return false;
 	}
 
+	/**
+	 * Check whether this module should be embeded rather than linked
+	 *
+	 * Modules returning true here will be embedded rather than loaded by
+	 * ResourceLoaderClientHtml.
+	 *
+	 * @since 1.30
+	 * @param ResourceLoaderContext $context
+	 * @return bool
+	 */
+	public function shouldEmbedModule( ResourceLoaderContext $context ) {
+		return false;
+	}
+
 	/** @var JSParser Lazy-initialized; use self::javaScriptParser() */
 	private static $jsParser;
 	private static $parseCacheVersion = 1;
