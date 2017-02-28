@@ -105,6 +105,8 @@ production.
 * Added action=validatepassword to validate passwords for the account creation
   and password change forms.
 * action=purge now requires a POST.
+* There is a new `variants` siprop for action=query&meta=siteinfo, which
+  returns a list of languages with active LanguageConverter instances.
 
 === Action API internal changes in 1.29 ===
 * New methods were added to ApiBase to handle errors and warnings using i18n
