@@ -177,7 +177,6 @@ class EnhancedChangesList extends ChangesList {
 			&& $block[0]->mAttribs['rc_timestamp'] >= $block[0]->watched
 		) {
 			$tableClasses[] = 'mw-changeslist-line-watched';
-			$tableClasses = array_merge( $tableClasses, $this->getHTMLClassesForFilters( $block[0] ) );
 		} else {
 			$tableClasses[] = 'mw-changeslist-line-not-watched';
 		}
@@ -367,7 +366,7 @@ class EnhancedChangesList extends ChangesList {
 		if ( $rcObj->watched
 			&& $rcObj->mAttribs['rc_timestamp'] >= $rcObj->watched
 		) {
-			$classes[] = [ 'mw-enhanced-watched' ];
+			$classes[] = 'mw-enhanced-watched';
 		}
 		$classes = array_merge( $classes, $this->getHTMLClassesForFilters( $rcObj ) );
 
