@@ -22,6 +22,9 @@ production.
 * As a first pass in standardizing dialog boxes across the MediaWiki product,
   Html class now provides helper methods for messageBox, successBox, errorBox and
   warningBox generation.
+* (T112474) Generalized the ResourceLoader mechanism for overriding modules
+  using a particular page during edit previews.
+* Added 'ApiParseMakeOutputPage' hook.
 
 === External library changes in 1.31 ===
 
@@ -48,7 +51,7 @@ production.
 * …
 
 === Action API internal changes in 1.31 ===
-* …
+* Added 'ApiParseMakeOutputPage' hook.
 
 === Languages updated in 1.31 ===
 MediaWiki supports over 350 languages. Many localisations are updated

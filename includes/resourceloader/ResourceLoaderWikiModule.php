@@ -144,24 +144,26 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 	/**
 	 * @param string $titleText
+	 * @param ResourceLoaderContext|null $context (but passing null is deprecated)
 	 * @return null|string
+	 * @since 1.31 added the $context parameter
 	 */
-	protected function getContent( $titleText ) {
+	protected function getContent( $titleText, ResourceLoaderContext $context = null ) {
+		if ( $context === null ) {
+			wfDeprecated( __METHOD__ . ' without a ResourceLoader context', '1.31' );
+		}
+
 		$title = Title::newFromText( $titleText );
 		if ( !$title ) {
 			return null; // Bad title
 		}
 
-		// If the page is a redirect, follow the redirect.
-		if ( $title->isRedirect() ) {
-			$content = $this->getContentObj( $title );
-			$title = $content ? $content->getUltimateRedirectTarget() : null;
-			if ( !$title ) {
-				return null; // Dead redirect
-			}
+		$content = $this->getContentObj( $title, $context );
+		if ( !$content ) {
+			return null; // No content found
 		}
 
-		$handler = ContentHandler::getForTitle( $title );
+		$handler = $content->getContentHandler();
 		if ( $handler->isSupportedFormat( CONTENT_FORMAT_CSS ) ) {
 			$format = CONTENT_FORMAT_CSS;
 		} elseif ( $handler->isSupportedFormat( CONTENT_FORMAT_JAVASCRIPT ) ) {
@@ -170,31 +172,81 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			return null; // Bad content model
 		}
 
-		$content = $this->getContentObj( $title );
-		if ( !$content ) {
-			return null; // No content found
-		}
-
 		return $content->serialize( $format );
 	}
 
 	/**
 	 * @param Title $title
+	 * @param ResourceLoaderContext|null $context (but passing null is deprecated)
+	 * @param int|null $maxRedirects Maximum number of redirects to follow. If
+	 *  null, uses $wgMaxRedirects
 	 * @return Content|null
+	 * @since 1.31 added the $context and $maxRedirects parameter
 	 */
-	protected function getContentObj( Title $title ) {
-		$revision = Revision::newKnownCurrent( wfGetDB( DB_REPLICA ), $title->getArticleID(),
-			$title->getLatestRevID() );
-		if ( !$revision ) {
-			return null;
+	protected function getContentObj(
+		Title $title, ResourceLoaderContext $context = null, $maxRedirects = null
+	) {
+		if ( $context === null ) {
+			wfDeprecated( __METHOD__ . ' without a ResourceLoader context', '1.31' );
 		}
-		$revision->setTitle( $title );
-		$content = $revision->getContent( Revision::RAW );
-		if ( !$content ) {
-			wfDebugLog( 'resourceloader', __METHOD__ . ': failed to load content of JS/CSS page!' );
-			return null;
+
+		$overrideCallback = $context ? $context->getContentOverrideCallback() : null;
+		$content = $overrideCallback ? call_user_func( $overrideCallback, $title ) : null;
+		if ( $content ) {
+			if ( !$content instanceof Content ) {
+				$this->getLogger()->warning(
+					'Bad content override for "{title}" in ' . __METHOD__,
+					[ 'title' => $title->getPrefixedText() ]
+				);
+				return null;
+			}
+		} else {
+			$revision = Revision::newKnownCurrent( wfGetDB( DB_REPLICA ), $title->getArticleID(),
+				$title->getLatestRevID() );
+			if ( !$revision ) {
+				return null;
+			}
+			$revision->setTitle( $title );
+			$content = $revision->getContent( Revision::RAW );
+
+			if ( !$content ) {
+				$this->getLogger()->info(
+					'Failed to load content of JS/CSS page "{title}" in ' . __METHOD__,
+					[ 'title' => $title->getPrefixedText() ]
+				);
+				return null;
+			}
 		}
+
+		if ( $content && $content->isRedirect() ) {
+			if ( $maxRedirects === null ) {
+				$maxRedirects = $this->getConfig()->get( 'MaxRedirects' ) ?: 0;
+			}
+			if ( $maxRedirects > 0 ) {
+				$newTitle = $content->getRedirectTarget();
+				return $newTitle ? $this->getContentObj( $newTitle, $context, $maxRedirects - 1 ) : null;
+			}
+		}
+
 		return $content;
+	}
+
+	/**
+	 * @param ResourceLoaderContext $context
+	 * @return bool
+	 */
+	public function shouldEmbedModule( ResourceLoaderContext $context ) {
+		$overrideCallback = $context->getContentOverrideCallback();
+		if ( $overrideCallback && $this->getSource() === 'local' ) {
+			foreach ( $this->getPages( $context ) as $page => $info ) {
+				$title = Title::newFromText( $page );
+				if ( $title && call_user_func( $overrideCallback, $title ) !== null ) {
+					return true;
+				}
+			}
+		}
+
+		return parent::shouldEmbedModule( $context );
 	}
 
 	/**
@@ -207,7 +259,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			if ( $options['type'] !== 'script' ) {
 				continue;
 			}
-			$script = $this->getContent( $titleText );
+			$script = $this->getContent( $titleText, $context );
 			if ( strval( $script ) !== '' ) {
 				$script = $this->validateScriptFile( $titleText, $script );
 				$scripts .= ResourceLoader::makeComment( $titleText ) . $script . "\n";
@@ -227,7 +279,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 				continue;
 			}
 			$media = isset( $options['media'] ) ? $options['media'] : 'all';
-			$style = $this->getContent( $titleText );
+			$style = $this->getContent( $titleText, $context );
 			if ( strval( $style ) === '' ) {
 				continue;
 			}
@@ -319,7 +371,26 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		if ( !isset( $this->titleInfo[$key] ) ) {
 			$this->titleInfo[$key] = static::fetchTitleInfo( $dbr, $pageNames, __METHOD__ );
 		}
-		return $this->titleInfo[$key];
+
+		$titleInfo = $this->titleInfo[$key];
+
+		// Override the title info from the overrides, if any
+		$overrideCallback = $context->getContentOverrideCallback();
+		if ( $overrideCallback ) {
+			foreach ( $pageNames as $page ) {
+				$title = Title::newFromText( $page );
+				$content = $title ? call_user_func( $overrideCallback, $title ) : null;
+				if ( $content !== null ) {
+					$titleInfo[$title->getPrefixedText()] = [
+						'page_len' => $content->getSize(),
+						'page_latest' => 'TBD',
+						'page_touched' => wfTimestamp( TS_MW ),
+					];
+				}
+			}
+		}
+
+		return $titleInfo;
 	}
 
 	protected static function fetchTitleInfo( IDatabase $db, array $pages, $fname = __METHOD__ ) {
