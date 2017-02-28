@@ -1,5 +1,5 @@
 When(/^I click Appearance$/) do
-  visit(PreferencesPage).appearance_link_element.when_present.click
+  visit(PreferencesPage).appearance_link_element.click
 end
 
 When(/^I navigate to Preferences$/) do
