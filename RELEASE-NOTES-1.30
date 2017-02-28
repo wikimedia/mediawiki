@@ -35,6 +35,9 @@ production.
   LanguageConverter variant.  This allows English-speaking developers
   to develop and test LanguageConverter more easily.  Pig Latin can be
   enabled by setting $wgUsePigLatinVariant to true.
+* (T112474) Generalized the ResourceLoader mechanism for overriding modules
+  using a particular page during edit previews.
+* Added 'ApiParseMakeOutputPage' hook.
 
 === Languages updated in 1.30 ===
 
@@ -77,6 +80,7 @@ production.
   and "apihelp-*-extended-description".
 * (T123931) Individual values of multi-valued parameters can now be marked as
   deprecated.
+* Added 'ApiParseMakeOutputPage' hook.
 
 === Languages updated in 1.30 ===
 MediaWiki supports over 350 languages. Many localisations are updated

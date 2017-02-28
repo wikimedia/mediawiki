@@ -321,47 +321,69 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 		$module = TestingAccessWrapper::newFromObject( $module );
 		$this->assertEquals(
 			$expected,
-			$module->getContent( $titleText )
+			$module->getContent( $titleText, $context )
 		);
 	}
 
 	/**
-	 * @covers ResourceLoaderWikiModule::getContent
+	 * @covers ResourceLoaderWikiModule::getContentObj
 	 */
-	public function testGetContentForRedirects() {
-		// Set up context and module object
-		$context = $this->getResourceLoaderContext( [], new EmptyResourceLoader );
-		$module = $this->getMockBuilder( 'ResourceLoaderWikiModule' )
-			->setMethods( [ 'getPages', 'getContentObj' ] )
+	public function testContentOverrides() {
+		$pages = [
+			'MediaWiki:Common.css' => [ 'type' => 'style' ],
+		];
+
+		$module = $this->getMockBuilder( 'TestResourceLoaderWikiModule' )
+			->setMethods( [ 'getPages' ] )
 			->getMock();
-		$module->expects( $this->any() )
-			->method( 'getPages' )
-			->will( $this->returnValue( [
-				'MediaWiki:Redirect.js' => [ 'type' => 'script' ]
-			] ) );
-		$module->expects( $this->any() )
-			->method( 'getContentObj' )
-			->will( $this->returnCallback( function ( Title $title ) {
-				if ( $title->getPrefixedText() === 'MediaWiki:Redirect.js' ) {
-					$handler = new JavaScriptContentHandler();
-					return $handler->makeRedirectContent(
-						Title::makeTitle( NS_MEDIAWIKI, 'Target.js' )
-					);
-				} elseif ( $title->getPrefixedText() === 'MediaWiki:Target.js' ) {
-					return new JavaScriptContent( 'target;' );
-				} else {
-					return null;
-				}
-			} ) );
+		$module->method( 'getPages' )->willReturn( $pages );
 
-		// Mock away Title's db queries with LinkCache
-		MediaWikiServices::getInstance()->getLinkCache()->addGoodLinkObj(
-			1, // id
-			new TitleValue( NS_MEDIAWIKI, 'Redirect.js' ),
-			1, // len
-			1 // redirect
+		$rl = new EmptyResourceLoader();
+		$rl->register( 'testmodule', $module );
+		$context = new DerivativeResourceLoaderContext(
+			new ResourceLoaderContext( $rl, new FauxRequest() )
 		);
+		$context->setContentOverrideCallback( function ( Title $t ) {
+			if ( $t->getPrefixedText() === 'MediaWiki:Common.css' ) {
+				return new CssContent( '.override{}' );
+			}
+			return null;
+		} );
 
+		$this->assertTrue( $module->shouldEmbedModule( $context ) );
+		$this->assertEquals( [
+			'all' => [
+				"/*\nMediaWiki:Common.css\n*/\n.override{}"
+			]
+		], $module->getStyles( $context ) );
+
+		$context->setContentOverrideCallback( function ( Title $t ) {
+			if ( $t->getPrefixedText() === 'MediaWiki:Skin.css' ) {
+				return new CssContent( '.override{}' );
+			}
+			return null;
+		} );
+		$this->assertFalse( $module->shouldEmbedModule( $context ) );
+
+		$pages = [
+			'MediaWiki:Redirect.js' => [ 'type' => 'script' ],
+		];
+		$module = $this->getMockBuilder( 'TestResourceLoaderWikiModule' )
+			->setMethods( [ 'getPages' ] )
+			->getMock();
+		$module->method( 'getPages' )->willReturn( $pages );
+		$context->setContentOverrideCallback( function ( Title $title ) {
+			if ( $title->getPrefixedText() === 'MediaWiki:Redirect.js' ) {
+				$handler = new JavaScriptContentHandler();
+				return $handler->makeRedirectContent(
+					Title::makeTitle( NS_MEDIAWIKI, 'Target.js' )
+				);
+			} elseif ( $title->getPrefixedText() === 'MediaWiki:Target.js' ) {
+				return new JavaScriptContent( 'target;' );
+			} else {
+				return null;
+			}
+		} );
 		$this->assertEquals(
 			"/*\nMediaWiki:Redirect.js\n*/\ntarget;\n",
 			$module->getScript( $context ),
