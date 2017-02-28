@@ -31,6 +31,7 @@
 		this.model = model;
 		this.filterInput = filterInput;
 		this.isSelecting = false;
+		this.selected = null;
 
 		this.resetButton = new OO.ui.ButtonWidget( {
 			icon: 'trash',
@@ -182,6 +183,38 @@
 
 		this.resetButton.toggle( !hideResetButton );
 		this.emptyFilterMessage.toggle( currFiltersAreEmpty );
+	};
+
+	/**
+	 * Mark an item widget as selected
+	 *
+	 * @param {mw.rcfilters.ui.CapsuleItemWidget} item Capsule widget
+	 */
+	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.select = function ( item ) {
+		if ( this.selected !== item ) {
+			// Unselect previous
+			if ( this.selected ) {
+				this.selected.toggleSelected( false );
+			}
+
+			// Select new one
+			this.selected = item;
+			if ( this.selected ) {
+				item.toggleSelected( true );
+			}
+		}
+	};
+
+	/**
+	 * Reset selection and remove selected states from all items
+	 */
+	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.resetSelection = function () {
+		if ( this.selected !== null ) {
+			this.selected = null;
+			this.getItems().forEach( function ( capsuleWidget ) {
+				capsuleWidget.toggleSelected( false );
+			} );
+		}
 	};
 
 	/**
