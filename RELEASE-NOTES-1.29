@@ -241,6 +241,7 @@ changes to languages because of Phabricator reports.
 * User::comparePasswords() (deprecated in 1.24) was removed.
 * ArchivedFile::getUserText() (deprecated in 1.23) was removed.
 * HTMLFileCache::newFromTitle() (deprecated in 1.24) was removed.
+* Calling Parser::transformMsg() without setting $title to a valid Title object is deprecated.
 
 == Compatibility ==
 

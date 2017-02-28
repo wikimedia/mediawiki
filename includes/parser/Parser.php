@@ -4627,9 +4627,8 @@ class Parser {
 	 */
 	public function cleanSig( $text, $parsing = false ) {
 		if ( !$parsing ) {
-			global $wgTitle;
 			$magicScopeVariable = $this->lock();
-			$this->startParse( $wgTitle, new ParserOptions, self::OT_PREPROCESS, true );
+			$this->startParse( Title::newMainPage(), new ParserOptions, self::OT_PREPROCESS, true );
 		}
 
 		# Option to disable this feature
@@ -4704,7 +4703,7 @@ class Parser {
 	 *
 	 * @param string $text The text to preprocess
 	 * @param ParserOptions $options Options
-	 * @param Title|null $title Title object or null to use $wgTitle
+	 * @param Title|null $title Title object or null to use $wgTitle (deprecated)
 	 * @return string
 	 */
 	public function transformMsg( $text, $options, $title = null ) {
@@ -4717,8 +4716,8 @@ class Parser {
 		$executing = true;
 
 		if ( !$title ) {
-			global $wgTitle;
-			$title = $wgTitle;
+			$title = RequestContext::getMain()->getTitle();
+			wfDeprecated( __METHOD__ . ' with $text = null', '1.29' );
 		}
 
 		$text = $this->preprocess( $text, $title, $options );
@@ -5504,10 +5503,9 @@ class Parser {
 	 *   for "replace", the whole page with the section replaced.
 	 */
 	private function extractSections( $text, $sectionId, $mode, $newText = '' ) {
-		global $wgTitle; # not generally used but removes an ugly failure mode
-
 		$magicScopeVariable = $this->lock();
-		$this->startParse( $wgTitle, new ParserOptions, self::OT_PLAIN, true );
+		$title = Title::newMainPage(); # not generally used but removes an ugly failure mode
+		$this->startParse( $title, new ParserOptions, self::OT_PLAIN, true );
 		$outText = '';
 		$frame = $this->getPreprocessor()->newFrame();
 
