@@ -88,6 +88,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'languages':
 					$fit = $this->appendLanguages( $p );
 					break;
+				case 'languagevariants':
+					$fit = $this->appendLanguageVariants( $p );
+					break;
 				case 'skins':
 					$fit = $this->appendSkins( $p );
 					break;
@@ -713,6 +716,49 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
+	// Export information about which page languages will trigger
+	// language conversion. (T153341)
+	public function appendLanguageVariants( $property ) {
+		$langNames = LanguageConverter::$languagesWithVariants;
+		if ( $this->getConfig()->get( 'DisableLangConversion' ) ) {
+			// Ensure result is empty if language conversion is disabled.
+			$langNames = [];
+		}
+		sort( $langNames );
+
+		$data = [];
+		foreach ( $langNames as $langCode ) {
+			$lang = Language::factory( $langCode );
+			if ( $lang->getConverter() instanceof FakeConverter ) {
+				// Only languages which do not return instances of
+				// FakeConverter implement language conversion.
+				continue;
+			}
+			$data[$langCode] = [];
+			ApiResult::setIndexedTagName( $data[$langCode], 'variant' );
+			ApiResult::setArrayType($data[$langCode], 'kvp', 'code' );
+
+			$variants = $lang->getVariants();
+			sort( $variants );
+			foreach ( $variants as $v ) {
+				$fallbacks = $lang->getConverter()->getVariantFallbacks( $v );
+				if ( !is_array( $fallbacks ) ) {
+					$fallbacks = [ $fallbacks ];
+				}
+				$data[$langCode][$v] = [
+					'fallbacks' => $fallbacks,
+				];
+				ApiResult::setIndexedTagName(
+					$data[$langCode][$v]['fallbacks'], 'lang'
+				);
+			}
+		}
+		ApiResult::setIndexedTagName( $data, 'lang' );
+		ApiResult::setArrayType( $data, 'kvp', 'code' );
+
+		return $this->getResult()->addValue( 'query', $property, $data );
+	}
+
 	public function appendSkins( $property ) {
 		$data = [];
 		$allowed = Skin::getAllowedSkins();
@@ -851,6 +897,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'rightsinfo',
 					'restrictions',
 					'languages',
+					'languagevariants',
 					'skins',
 					'extensiontags',
 					'functionhooks',

@@ -1139,6 +1139,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-rightsinfo": "Returns wiki rights (license) information if available.",
 	"apihelp-query+siteinfo-paramvalue-prop-restrictions": "Returns information on available restriction (protection) types.",
 	"apihelp-query+siteinfo-paramvalue-prop-languages": "Returns a list of languages MediaWiki supports (optionally localised by using <var>$1inlanguagecode</var>).",
+	"apihelp-query+siteinfo-paramvalue-prop-languagevariants": "Returns a list of language codes for which [[mw:LanguageConverter|LanguageConverter]] is enabled, and the variants supported for each.",
 	"apihelp-query+siteinfo-paramvalue-prop-skins": "Returns a list of all enabled skins (optionally localised by using <var>$1inlanguagecode</var>, otherwise in the content language).",
 	"apihelp-query+siteinfo-paramvalue-prop-extensiontags": "Returns a list of parser extension tags.",
 	"apihelp-query+siteinfo-paramvalue-prop-functionhooks": "Returns a list of parser function hooks.",
