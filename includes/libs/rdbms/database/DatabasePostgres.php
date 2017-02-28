@@ -985,7 +985,7 @@ __INDEXATTR__;
 				/**
 				 * Prepend our schema (e.g. 'mediawiki') in front
 				 * of the search path
-				 * Fixes bug 15816
+				 * Fixes T17816
 				 */
 				$search_path = $this->getSearchPath();
 				array_unshift( $search_path,
@@ -1026,7 +1026,7 @@ __INDEXATTR__;
 				// Normal client
 				$this->numericVersion = $versionInfo['server'];
 			} else {
-				// Bug 16937: broken pgsql extension from PHP<5.3
+				// T18937: broken pgsql extension from PHP<5.3
 				$this->numericVersion = pg_parameter_status( $conn, 'server_version' );
 			}
 		}

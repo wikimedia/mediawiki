@@ -237,7 +237,7 @@ class CSSMin {
 		//       * Otherwise remap the URL to work in generated stylesheets
 
 		// Guard against trailing slashes, because "some/remote/../foo.png"
-		// resolves to "some/remote/foo.png" on (some?) clients (bug 27052).
+		// resolves to "some/remote/foo.png" on (some?) clients (T29052).
 		if ( substr( $remote, -1 ) == '/' ) {
 			$remote = substr( $remote, 0, -1 );
 		}
