@@ -1,6 +1,28 @@
 @import "mw.rcfilters.mixins";
 
 .mw-rcfilters-ui-capsuleItemWidget {
+	background-color: #ffffff;
+	border-color: #979797;
+	color: #222222;
+
+	&-muted {
+		// Muted state
+		background-color: #eaecf0;
+		border-color: #c8ccd1;
+		.oo-ui-labelElement-label {
+			color: #72777d;
+		}
+
+		.oo-ui-buttonWidget {
+			opacity: @muted-opacity;
+		}
+	}
+
+	&-selected {
+		background-color: #eaf3ff;
+		border-color: #3366cc;
+	}
+
 	&-popup-content {
 		padding: 0.5em;
 		color: #54595d;
@@ -9,17 +31,6 @@
 	&.oo-ui-labelElement .oo-ui-labelElement-label {
 		vertical-align: middle;
 		cursor: pointer;
-	}
-
-	&-muted {
-		// Muted state
-		// We want everything muted except the circle
-		background-color: rgba( 255, 255, 255, @muted-opacity );
-
-		.oo-ui-labelElement-label,
-		.oo-ui-buttonWidget {
-			opacity: @muted-opacity;
-		}
 	}
 
 	&-highlight {

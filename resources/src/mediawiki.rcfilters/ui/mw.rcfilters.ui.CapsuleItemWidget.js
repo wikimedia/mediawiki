@@ -156,6 +156,21 @@
 	};
 
 	/**
+	 * Set selected state on this widget
+	 *
+	 * @param {boolean} [isSelected] Widget is selected
+	 */
+	mw.rcfilters.ui.CapsuleItemWidget.prototype.toggleSelected = function ( isSelected ) {
+		isSelected = isSelected !== undefined ? isSelected : !this.selected;
+
+		if ( this.selected !== isSelected ) {
+			this.selected = isSelected;
+
+			this.$element.toggleClass( 'mw-rcfilters-ui-capsuleItemWidget-selected', this.selected );
+		}
+	};
+
+	/**
 	 * Remove and destroy external elements of this widget
 	 */
 	mw.rcfilters.ui.CapsuleItemWidget.prototype.destroy = function () {
