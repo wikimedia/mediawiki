@@ -103,26 +103,40 @@
 
 	/**
 	 * Update the URL of the page to reflect current filters
+	 *
+	 * @param {Object} [params] Extra parameters to add to the API call
 	 */
-	mw.rcfilters.Controller.prototype.updateURL = function () {
-		var uri = this.getUpdatedUri();
+	mw.rcfilters.Controller.prototype.updateURL = function ( params ) {
+		var uri;
+
+		params = params || {};
+
+		uri = this.getUpdatedUri( params );
+
 		window.history.pushState( { tag: 'rcfilters' }, document.title, uri.toString() );
 	};
 
 	/**
 	 * Get an updated mw.Uri object based on the model state
 	 *
+	 * @param {Object} [params] Extra parameters to add to the API call
 	 * @return {mw.Uri} Updated Uri
 	 */
-	mw.rcfilters.Controller.prototype.getUpdatedUri = function () {
+	mw.rcfilters.Controller.prototype.getUpdatedUri = function ( params ) {
 		var uri = new mw.Uri(),
 			highlightParams = this.filtersModel.getHighlightParameters();
+
+		params = params || {};
+
 
 		// Add to existing queries in URL
 		// TODO: Clean up the list of filters; perhaps 'falsy' filters
 		// shouldn't appear at all? Or compare to existing query string
 		// and see if current state of a specific filter is needed?
 		uri.extend( this.filtersModel.getParametersFromFilters() );
+
+		// Add or change params if they exist
+		uri.extend( params );
 
 		// highlight params
 		Object.keys( highlightParams ).forEach( function ( paramName ) {
@@ -139,15 +153,16 @@
 	/**
 	 * Fetch the list of changes from the server for the current filters
 	 *
+	 * @param {Object} [params] Extra parameters to add to the API call
 	 * @return {jQuery.Promise} Promise object that will resolve with the changes list
 	 */
-	mw.rcfilters.Controller.prototype.fetchChangesList = function () {
-		var uri = this.getUpdatedUri(),
+	mw.rcfilters.Controller.prototype.fetchChangesList = function ( params ) {
+		var uri = this.getUpdatedUri( params ),
 			requestId = ++this.requestCounter,
 			latestRequest = function () {
 				return requestId === this.requestCounter;
 			}.bind( this );
-		uri.extend( this.filtersModel.getParametersFromFilters() );
+
 		return $.ajax( uri.toString(), { contentType: 'html' } )
 			.then( function ( html ) {
 				return latestRequest() ?
@@ -160,10 +175,12 @@
 
 	/**
 	 * Update the list of changes and notify the model
+	 *
+	 * @param {Object} [params] Extra parameters to add to the API call
 	 */
-	mw.rcfilters.Controller.prototype.updateChangesList = function () {
+	mw.rcfilters.Controller.prototype.updateChangesList = function ( params ) {
 		this.changesListModel.invalidate();
-		this.fetchChangesList()
+		this.fetchChangesList( params )
 			.always( function ( changesListContent ) {
 				if ( changesListContent ) {
 					this.changesListModel.update( changesListContent );
