@@ -13,7 +13,8 @@
 			"Macofe",
 			"MojoMann",
 			"Mikey641",
-			"Esh77"
+			"Esh77",
+			"שמזן"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|תיעוד]]\n* [[mw:API:FAQ|שו\"ת]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api רשימת דיוור]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce הודעות על API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R באגים ובקשות]\n</div>\n<strong>מצב:</strong> כל האפשרויות שמוצגות בדף הזה אמורות לעבוד, אבל ה־API עדיין בפיתוח פעיל, ויכול להשתנות בכל זמן. עשו מינוי ל[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ רשימת הדיוור mediawiki-api-announce] להודעות על עדכונים.\n\n<strong>בקשות שגויות:</strong> כשבקשות שגויות נשלחות ל־API, תישלח כותרת HTTP עם המפתח \"MediaWiki-API-Error\" ואז גם הערך של הכותרת וגם קוד השגיאה יוגדרו לאותו ערך. למידע נוסף ר' [[mw:API:Errors_and_warnings|API: שגיאות ואזהרות]].\n\n<strong>בדיקה:</strong> לבדיקה קלה יותר של בקשות ר' [[Special:ApiSandbox]].",
@@ -1273,6 +1274,7 @@
 	"apihelp-setpagelanguage-description": "שנה את השפה של דף",
 	"apihelp-setpagelanguage-description-disabled": "שינוי השפה של דף לא מורשה בוויקי זה.\n\nהפעל את <var>[[mw:Manual:$wgPageLanguageUseDB|$wgPageLanguageUseDB]]</var> על מנת להשתמש בפעולה זו",
 	"apihelp-setpagelanguage-param-title": "כותרת הדף שאת שפתו ברצונך לשנות. לא אפשרי להשתמש באפשרות עם <var>$1pageid</var>.",
+	"apihelp-setpagelanguage-param-pageid": "מזהה הדף שאת שפתו ברצונך לשנות. לא אפשרי להשתמש באפשרות עם <var>$1title</var>.",
 	"apihelp-setpagelanguage-param-reason": "הסיבה לשינוי.",
 	"apihelp-setpagelanguage-param-tags": "אילו תגי שינוי להחיל על העיול ביומן שמתבצע כתוצאה מהפעולה הזאת.",
 	"apihelp-setpagelanguage-example-language": "שינוי השפה של <kbd>Main Page</kbd> לבסקית.",

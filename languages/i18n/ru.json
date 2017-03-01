@@ -101,7 +101,8 @@
 			"Аль-Гимравий",
 			"Gamliel Fishkin",
 			"Ping08",
-			"Yuryleb"
+			"Yuryleb",
+			"Redredsonia"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -238,7 +239,7 @@
 	"broken-file-category": "Страницы с неработающими файловыми ссылками",
 	"about": "Описание",
 	"article": "Статья",
-	"newwindow": "&nbsp;(в новом окне)",
+	"newwindow": "(в новом окне)",
 	"cancel": "Отменить",
 	"moredotdotdot": "Далее…",
 	"morenotlisted": "Этот список может быть неполным.",
@@ -1402,6 +1403,7 @@
 	"rcfilters-invalid-filter": "Недопустимый фильтр",
 	"rcfilters-empty-filter": "Нет активных фильтров. Показываются все правки.",
 	"rcfilters-filterlist-title": "Фильтры",
+	"rcfilters-filterlist-feedbacklink": "Оставить отзыв о новых (бета) фильтрах",
 	"rcfilters-highlightbutton-title": "Выделить результаты",
 	"rcfilters-highlightmenu-title": "Выберите цвет",
 	"rcfilters-filterlist-noresults": "Фильтры не найдены",

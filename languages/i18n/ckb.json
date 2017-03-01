@@ -2216,6 +2216,8 @@
 	"exif-imagelength": "بەرزی",
 	"exif-orientation": "ئاڕاستە",
 	"exif-ycbcrpositioning": "شوێنی Y و C",
+	"exif-xresolution": "شێوازی ئاسۆیی",
+	"exif-yresolution": "شێوازی ستوونی",
 	"exif-datetime": "ڕێکەوتی و کاتی گۆڕانی پەڕگە",
 	"exif-imagedescription": "ناونیشانی وێنە",
 	"exif-make": "بەرھەمھێنەری کامێرا",

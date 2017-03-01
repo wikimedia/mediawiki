@@ -1397,6 +1397,7 @@
 	"rcfilters-invalid-filter": "无效过滤器",
 	"rcfilters-empty-filter": "没有活跃的过滤器。已显示所有贡献。",
 	"rcfilters-filterlist-title": "过滤器",
+	"rcfilters-filterlist-feedbacklink": "在新（测试版）过滤器中提供反馈",
 	"rcfilters-highlightbutton-title": "高亮结果",
 	"rcfilters-highlightmenu-title": "选择颜色",
 	"rcfilters-filterlist-noresults": "找不到过滤器",

@@ -1371,6 +1371,7 @@
 	"rcfilters-invalid-filter": "مرشح غير صحيح",
 	"rcfilters-empty-filter": "لا مرشحات فعالة. كل المساهمات معروضة.",
 	"rcfilters-filterlist-title": "مرشحات",
+	"rcfilters-filterlist-feedbacklink": "تقديم مراجعات لمرشحات (بيتا) الجديدة",
 	"rcfilters-highlightbutton-title": "التعليم على النتائج",
 	"rcfilters-highlightmenu-title": "اختر لونًا",
 	"rcfilters-filterlist-noresults": "لم يتم العثور على مرشحات",

@@ -1471,7 +1471,7 @@
 	"rcfilters-highlightmenu-title": "Choisir une couleur",
 	"rcfilters-filterlist-noresults": "Aucun filtre trouvé",
 	"rcfilters-filtergroup-registration": "Inscription de l’utilisateur",
-	"rcfilters-filter-registered-label": "Enregistré",
+	"rcfilters-filter-registered-label": "Connectés",
 	"rcfilters-filter-registered-description": "Éditeurs connectés.",
 	"rcfilters-filter-unregistered-label": "Non connectés",
 	"rcfilters-filter-unregistered-description": "Éditeurs qui ne sont pas connectés.",

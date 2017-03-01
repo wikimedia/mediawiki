@@ -1315,6 +1315,7 @@
 	"rcfilters-invalid-filter": "Neveljaven filter",
 	"rcfilters-empty-filter": "Ni dejavnih filtrov. Prikazani so vsi prispevki.",
 	"rcfilters-filterlist-title": "Filtri",
+	"rcfilters-filterlist-feedbacklink": "Podajte povratne informacije o novih (preizkusnih) filtrih",
 	"rcfilters-highlightbutton-title": "Označi rezultate",
 	"rcfilters-highlightmenu-title": "Izberite barvo",
 	"rcfilters-filterlist-noresults": "Nismo našli nobenega filtra",

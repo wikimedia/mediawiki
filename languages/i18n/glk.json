@@ -408,6 +408,7 @@
 	"recentchanges-label-unpatrolled": "اي دچينواچين هلئه گشتزني نۊبؤ",
 	"recentchanges-label-plusminus": "ولگˇ حجم اي مقدار بايتˇ واويراز تغيير بؤده",
 	"recentchanges-legend-heading": "<strong>اختصارؤن:</strong>",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}}( [[Special:NewPages|تازه ولگؤنˇ ليسته]] بينين)",
 	"rclistfrom": "تازه تغييرؤنˇ نۊشؤن دأنˇ سرأگيري $3 $2ˇ جي",
 	"rcshowhideminor": "$1 نيميزگره دچينواچينؤن",
 	"rcshowhideminor-show": "نۊشؤن دأن",

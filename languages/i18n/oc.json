@@ -741,7 +741,7 @@
 	"undo-failure": "Aquesta modificacion a pas pogut èsser desfaita a causa de conflictes amb de modificacions intermediàrias.",
 	"undo-norev": "La modificacion a pas pogut èsser desfaita perque siá es inexistenta siá es estada suprimida.",
 	"undo-nochange": "Sembla que la modificacion es ja estada anullada.",
-	"undo-summary": "Anullacion de las modificacions $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discutir]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])",
+	"undo-summary": "Anullacion de las modificacions $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]])",
 	"undo-summary-username-hidden": "Anullar la revision $1 per un utilizaire amagat",
 	"cantcreateaccount-text": "La creacion de compte dempuèi aquesta adreça IP ('''$1''') es estada blocada per [[User:$3|$3]].\n\nLa rason balhada per $3 èra ''$2''.",
 	"cantcreateaccount-range-text": "La creacion de compte dempuèi las adreças IP dins la plaja <strong>$1</strong>, que compren vòstra agreça IP (<strong>$4</strong>) son estadas blocadas per [[User:$3|$3]].\n\nLo motiu provesit per $3 es <em>$2</em>",
