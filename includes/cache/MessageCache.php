@@ -630,7 +630,7 @@ class MessageCache {
 
 				Hooks::run( 'MessageCacheReplace', [ $title, $text ] );
 			},
-			DeferredUpdates::PRESEND
+			DeferredUpdates::POSTSEND
 		);
 	}
 
