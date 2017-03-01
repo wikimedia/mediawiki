@@ -60,7 +60,7 @@
 		margin-right: 0.4em;
 
 		// the pseudo before element of the label after the radio now looks like a radio
-		& + label::before {
+		& + label:before {
 			content: '';
 			background-color: #fff;
 			.background-image-svg( 'images/radio_checked.svg', 'images/radio_checked.png' );
@@ -79,33 +79,33 @@
 		}
 
 		// when the input is checked, style the label pseudo before element that followed as a checked radio
-		&:checked + label::before {
+		&:checked + label:before {
 			.background-size( 100%, 100% );
 		}
 
-		&:active + label::before {
+		&:active + label:before {
 			background-color: @colorGray13;
 			border-color: @colorGray13;
 		}
 
-		&:focus + label::before {
+		&:focus + label:before {
 			border-width: 2px;
 		}
 
-		&:focus:hover + label::before,
-		&:hover + label::before {
+		&:focus:hover + label:before,
+		&:hover + label:before {
 			border-bottom-width: 3px;
 		}
 
 		// disabled radios have a gray background
-		&:disabled + label::before {
+		&:disabled + label:before {
 			background-color: @colorGray14;
 			border-color: @colorGray14;
 			cursor: default;
 		}
 
 		// disabled and checked radios have a white circle
-		&:disabled:checked + label::before {
+		&:disabled:checked + label:before {
 			.background-image-svg( 'images/radio_disabled.svg', 'images/radio_disabled.png' );
 		}
 	}
