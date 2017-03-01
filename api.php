@@ -63,7 +63,7 @@ RequestContext::getMain()->setTitle( $wgTitle );
 try {
 	/* Construct an ApiMain with the arguments passed via the URL. What we get back
 	 * is some form of an ApiMain, possibly even one that produces an error message,
-	 * but we don't care here, as that is handled by the ctor.
+	 * but we don't care here, as that is handled by the constructor.
 	 */
 	$processor = new ApiMain( RequestContext::getMain(), $wgEnableWriteAPI );
 
