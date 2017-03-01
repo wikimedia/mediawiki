@@ -1751,6 +1751,11 @@ return [
 
 	/* MediaWiki Special pages */
 
+	'mediawiki.rcfilters.filters.base.styles' => [
+		'styles' => [
+			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.less',
+		],
+	],
 	'mediawiki.rcfilters.filters.dm' => [
 		'scripts' => [
 			'resources/src/mediawiki.rcfilters/mw.rcfilters.js',

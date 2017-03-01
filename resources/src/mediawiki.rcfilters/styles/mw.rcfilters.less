@@ -1,9 +1,31 @@
 // Corrections for the standard special page
-.rcoptions {
-	border: 0;
-	border-bottom: 1px solid #a2a9b1;
+.client-js{
+	.rcoptions {
+		border: 0;
+		border-bottom: 1px solid #a2a9b1;
 
-	legend {
-		display: none;
+		legend {
+			display: none;
+		}
+
+		&:not( .mw-rcfilters-ui-ready ) {
+			/* @embed */
+			background-image: url( ../images/pending.gif );
+			margin: 0;
+
+			* {
+				visibility: hidden;
+			}
+		}
+	}
+
+	.rcfilters-container {
+		min-height: 100px;
+		margin: 0;
+
+		&:not( .mw-rcfilters-ui-ready ) {
+			/* @embed */
+			background-image: url( ../images/pending.gif );
+		}
 	}
 }
