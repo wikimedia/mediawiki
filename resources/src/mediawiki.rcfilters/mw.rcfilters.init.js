@@ -226,6 +226,7 @@
 			} );
 
 			window.addEventListener( 'popstate', function () {
+				controller.updateStateBasedOnUrl();
 				controller.updateChangesList();
 			} );
 		}

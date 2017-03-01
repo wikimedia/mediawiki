@@ -20,10 +20,17 @@
 	 * @param {Object} filterStructure Filter definition and structure for the model
 	 */
 	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure ) {
-		var uri = new mw.Uri();
-
 		// Initialize the model
 		this.filtersModel.initializeFilters( filterStructure );
+		this.updateStateBasedOnUrl();
+	};
+
+	/**
+	 * Update filter state (selection and highlighting) based
+	 * on current URL and default values.
+	 */
+	mw.rcfilters.Controller.prototype.updateStateBasedOnUrl = function () {
+		var uri = new mw.Uri();
 
 		// Set filter states based on defaults and URL params
 		this.filtersModel.updateFilters(
@@ -43,11 +50,11 @@
 		this.filtersModel.toggleHighlight( !!uri.query.highlight );
 		this.filtersModel.getItems().forEach( function ( filterItem ) {
 			var color = uri.query[ filterItem.getName() + '_color' ];
-			if ( !color ) {
-				return;
+			if ( color ) {
+				filterItem.setHighlightColor( color );
+			} else {
+				filterItem.clearHighlightColor();
 			}
-
-			filterItem.setHighlightColor( color );
 		} );
 
 		// Check all filter interactions
@@ -110,14 +117,17 @@
 	 * @param {Object} [params] Extra parameters to add to the API call
 	 */
 	mw.rcfilters.Controller.prototype.updateURL = function ( params ) {
-		var uri;
+		var uri,
+			currentUri = new mw.Uri();
 
 		params = params || {};
 
 		uri = this.getUpdatedUri();
 		uri.extend( params );
 
-		window.history.pushState( { tag: 'rcfilters' }, document.title, uri.toString() );
+		if ( !OO.compare( uri.query, currentUri.query ) ) {
+			window.history.pushState( { tag: 'rcfilters' }, document.title, uri.toString() );
+		}
 	};
 
 	/**
