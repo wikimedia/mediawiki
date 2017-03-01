@@ -432,6 +432,15 @@ class ClassCollector {
 					$this->classes[] = $this->alias['name'];
 					$this->alias = null;
 					$this->startToken = null;
+				} elseif ( !is_array( $token ) || (
+					$token[0] !== T_STRING &&
+					$token[0] !== T_DOUBLE_COLON &&
+					$token[0] !== T_CLASS &&
+					$token[0] !== T_WHITESPACE
+				) ) {
+					// Ignore this call to class_alias() - compat/Timestamp.php
+					$this->alias = null;
+					$this->startToken = null;
 				}
 			}
 			break;

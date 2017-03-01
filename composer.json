@@ -41,6 +41,7 @@
 		"wikimedia/running-stat": "1.1.0",
 		"wikimedia/scoped-callback": "1.0.0",
 		"wikimedia/utfnormal": "1.1.0",
+		"wikimedia/timestamp": "1.0.0",
 		"wikimedia/wait-condition-loop": "1.0.1",
 		"wikimedia/wrappedstring": "2.2.0",
 		"zordius/lightncandy": "0.23"
@@ -75,7 +76,10 @@
 	"autoload": {
 		"psr-0": {
 			"ComposerHookHandler": "includes/composer"
-		}
+		},
+		"files": [
+			"includes/compat/Timestamp.php"
+		]
 	},
 	"autoload-dev": {
 		"files": [

@@ -20,6 +20,7 @@
  * @file
  * @ingroup Database
  */
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WaitConditionLoop;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\PostgresBlob;
