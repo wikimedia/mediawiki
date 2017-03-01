@@ -111,7 +111,7 @@
 		}
 
 		// Respond to user removing the filter
-		this.controller.updateFilter( this.model.getName(), false );
+		this.controller.toggleFilterSelect( this.model.getName(), false );
 		this.controller.clearHighlightColor( this.model.getName() );
 	};
 

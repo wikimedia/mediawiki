@@ -66,7 +66,8 @@
 			itemUpdate: 'onModelItemUpdate'
 		} );
 		this.textInput.connect( this, {
-			change: 'onTextInputChange'
+			change: 'onTextInputChange',
+			enter: 'onTextInputEnter'
 		} );
 		this.capsule.connect( this, { capsuleItemClick: 'onCapsuleItemClick' } );
 		this.capsule.popup.connect( this, { toggle: 'onCapsulePopupToggle' } );
@@ -106,8 +107,11 @@
 	 */
 	mw.rcfilters.ui.FilterWrapperWidget.prototype.onCapsulePopupToggle = function ( isVisible ) {
 		if ( !isVisible ) {
-			this.filterPopup.resetSelection();
-			this.capsule.resetSelection();
+			if ( !this.textInput.getValue() ) {
+				// Only reset selection if we are not filtering
+				this.filterPopup.resetSelection();
+				this.capsule.resetSelection();
+			}
 		} else {
 			this.scrollToTop( this.capsule.$element, 10 );
 		}
@@ -119,11 +123,28 @@
 	 * @param {string} newValue Current value
 	 */
 	mw.rcfilters.ui.FilterWrapperWidget.prototype.onTextInputChange = function ( newValue ) {
-		this.filterPopup.resetSelection();
-
 		// Filter the results
 		this.filterPopup.filter( this.model.findMatches( newValue ) );
+
+		if ( !newValue ) {
+			// If the value is empty, we didn't actually
+			// filter anything. the filter method will run
+			// and show all, but then will select the
+			// top item - but in this case, no selection
+			// should be made.
+			this.filterPopup.resetSelection();
+		}
 		this.capsule.popup.clip();
+	};
+
+	/**
+	 * Respond to text input enter event
+	 */
+	mw.rcfilters.ui.FilterWrapperWidget.prototype.onTextInputEnter = function () {
+		var filter = this.filterPopup.getSelectedFilter();
+
+		// Toggle the filter
+		this.controller.toggleFilterSelect( filter );
 	};
 
 	/**
@@ -149,7 +170,9 @@
 	 * any actual interaction with the system resets the selection state of any item.
 	 */
 	mw.rcfilters.ui.FilterWrapperWidget.prototype.onModelItemUpdate = function () {
-		this.filterPopup.resetSelection();
+		if ( !this.textInput.getValue() ) {
+			this.filterPopup.resetSelection();
+		}
 	};
 
 	/**
