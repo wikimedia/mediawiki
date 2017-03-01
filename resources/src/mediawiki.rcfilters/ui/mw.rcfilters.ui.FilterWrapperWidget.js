@@ -74,6 +74,7 @@
 		// Initialize
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget' )
+			.addClass( 'mw-rcfilters-ui-ready' )
 			.append( this.capsule.$element, this.textInput.$element );
 	};
 

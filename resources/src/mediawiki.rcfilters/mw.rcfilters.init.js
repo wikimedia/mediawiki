@@ -23,7 +23,7 @@
 
 			// eslint-disable-next-line no-new
 			new mw.rcfilters.ui.FormWrapperWidget(
-				changesListModel, $( '.rcoptions form' ) );
+				changesListModel, $( '.rcoptions' ) );
 
 			controller.initialize( {
 				registration: {
@@ -184,7 +184,7 @@
 				}
 			} );
 
-			$( '.rcoptions' ).before( filtersWidget.$element );
+			$( '.rcfilters-container' ).append( filtersWidget.$element );
 			$( 'body' ).append( $overlay );
 
 			// HACK: Remove old-style filter links for filters handled by the widget
