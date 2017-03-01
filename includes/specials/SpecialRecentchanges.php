@@ -456,8 +456,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$panelString = implode( "\n", $panel );
 
 		// Insert a placeholder for RCFilters
-		if ( $this->getUser()->getOption( 'rcenhancedfilters' ) ) {
-			$this->getOutput()->addModuleStyles( 'mediawiki.rcfilters.filters.base.styles' );
+		if ( $this->getUser()->getOption(
+				'rcenhancedfilters',
+				/*default=*/ null,
+				/*ignoreHidden=*/ true
+			)
+		) {
 			$this->getOutput()->addHTML(
 				Html::element(
 					'div',
@@ -544,6 +548,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			)
 		) {
 			$out->addModules( 'mediawiki.rcfilters.filters.ui' );
+			$out->addModuleStyles( 'mediawiki.rcfilters.filters.base.styles' );
 		}
 	}
 
