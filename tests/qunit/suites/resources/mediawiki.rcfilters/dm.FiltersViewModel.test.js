@@ -79,7 +79,7 @@
 			'Initial state of filters'
 		);
 
-		model.updateFilters( {
+		model.toggleFiltersSelected( {
 			group1filter1: true,
 			group2filter2: true,
 			group3filter1: true
@@ -276,7 +276,7 @@
 		);
 
 		// Select 1 filter
-		model.updateFilters( {
+		model.toggleFiltersSelected( {
 			hidefilter1: true,
 			hidefilter2: false,
 			hidefilter3: false,
@@ -302,7 +302,7 @@
 		);
 
 		// Select 2 filters
-		model.updateFilters( {
+		model.toggleFiltersSelected( {
 			hidefilter1: true,
 			hidefilter2: true,
 			hidefilter3: false,
@@ -328,7 +328,7 @@
 		);
 
 		// Select 3 filters
-		model.updateFilters( {
+		model.toggleFiltersSelected( {
 			hidefilter1: true,
 			hidefilter2: true,
 			hidefilter3: true,
@@ -354,7 +354,7 @@
 		);
 
 		// Select 1 filter from string_options
-		model.updateFilters( {
+		model.toggleFiltersSelected( {
 			filter7: true,
 			filter8: false,
 			filter9: false
@@ -377,7 +377,7 @@
 		);
 
 		// Select 2 filters from string_options
-		model.updateFilters( {
+		model.toggleFiltersSelected( {
 			filter7: true,
 			filter8: true,
 			filter9: false
@@ -400,7 +400,7 @@
 		);
 
 		// Select 3 filters from string_options
-		model.updateFilters( {
+		model.toggleFiltersSelected( {
 			filter7: true,
 			filter8: true,
 			filter9: true
@@ -550,23 +550,23 @@
 		// This test is demonstrating wrong usage of the method;
 		// We should be aware that getFiltersFromParameters is stateless,
 		// so each call gives us a filter state that only reflects the query given.
-		// This means that the two calls to updateFilters() below collide.
+		// This means that the two calls to toggleFiltersSelected() below collide.
 		// The result of the first is overridden by the result of the second,
 		// since both get a full state object from getFiltersFromParameters that **only** relates
 		// to the input it receives.
-		model.updateFilters(
+		model.toggleFiltersSelected(
 			model.getFiltersFromParameters( {
 				hidefilter1: '1'
 			} )
 		);
 
-		model.updateFilters(
+		model.toggleFiltersSelected(
 			model.getFiltersFromParameters( {
 				hidefilter6: '1'
 			} )
 		);
 
-		// The result here is ignoring the first updateFilters call
+		// The result here is ignoring the first toggleFiltersSelected call
 		// We should receive default values + hidefilter6 as false
 		assert.deepEqual(
 			model.getSelectedState(),
@@ -581,12 +581,12 @@
 		model = new mw.rcfilters.dm.FiltersViewModel();
 		model.initializeFilters( definition );
 
-		model.updateFilters(
+		model.toggleFiltersSelected(
 			model.getFiltersFromParameters( {
 				hidefilter1: '0'
 			} )
 		);
-		model.updateFilters(
+		model.toggleFiltersSelected(
 			model.getFiltersFromParameters( {
 				hidefilter1: '1'
 			} )
@@ -600,7 +600,7 @@
 			'After checking and then unchecking a \'send_unselected_if_any\' filter (without touching other filters in that group), results are default'
 		);
 
-		model.updateFilters(
+		model.toggleFiltersSelected(
 			model.getFiltersFromParameters( {
 				group3: 'filter7'
 			} )
@@ -615,7 +615,7 @@
 			'A \'string_options\' parameter containing 1 value, results in the corresponding filter as checked'
 		);
 
-		model.updateFilters(
+		model.toggleFiltersSelected(
 			model.getFiltersFromParameters( {
 				group3: 'filter7,filter8'
 			} )
@@ -630,7 +630,7 @@
 			'A \'string_options\' parameter containing 2 values, results in both corresponding filters as checked'
 		);
 
-		model.updateFilters(
+		model.toggleFiltersSelected(
 			model.getFiltersFromParameters( {
 				group3: 'filter7,filter8,filter9'
 			} )
@@ -645,7 +645,7 @@
 			'A \'string_options\' parameter containing all values, results in all filters of the group as unchecked.'
 		);
 
-		model.updateFilters(
+		model.toggleFiltersSelected(
 			model.getFiltersFromParameters( {
 				group3: 'filter7,all,filter9'
 			} )
@@ -660,7 +660,7 @@
 			'A \'string_options\' parameter containing the value \'all\', results in all filters of the group as unchecked.'
 		);
 
-		model.updateFilters(
+		model.toggleFiltersSelected(
 			model.getFiltersFromParameters( {
 				group3: 'filter7,foo,filter9'
 			} )
@@ -797,7 +797,7 @@
 			'Initial state: default filters are not selected (controller selects defaults explicitly).'
 		);
 
-		model.updateFilters( {
+		model.toggleFiltersSelected( {
 			hidefilter1: false,
 			hidefilter3: false
 		} );
@@ -870,7 +870,7 @@
 
 		model.initializeFilters( definition );
 		// Select a filter that has subset with another filter
-		model.updateFilters( {
+		model.toggleFiltersSelected( {
 			filter1: true
 		} );
 
@@ -886,7 +886,7 @@
 		);
 
 		// Select another filter that has a subset with the same previous filter
-		model.updateFilters( {
+		model.toggleFiltersSelected( {
 			filter4: true
 		} );
 		model.reassessFilterInteractions( model.getItemByName( 'filter4' ) );
@@ -903,7 +903,7 @@
 		);
 
 		// Remove one filter (but leave the other) that affects filter2
-		model.updateFilters( {
+		model.toggleFiltersSelected( {
 			filter1: false
 		} );
 		model.reassessFilterInteractions( model.getItemByName( 'filter1' ) );
@@ -918,7 +918,7 @@
 			'Removing a filter only un-includes its subset if there is no other filter affecting.'
 		);
 
-		model.updateFilters( {
+		model.toggleFiltersSelected( {
 			filter4: false
 		} );
 		model.reassessFilterInteractions( model.getItemByName( 'filter4' ) );
@@ -994,7 +994,7 @@
 		);
 
 		// Select most (but not all) items in each group
-		model.updateFilters( {
+		model.toggleFiltersSelected( {
 			filter1: true,
 			filter2: true,
 			filter4: true,
@@ -1009,7 +1009,7 @@
 		);
 
 		// Select all items in 'fullCoverage' group (group2)
-		model.updateFilters( {
+		model.toggleFiltersSelected( {
 			filter6: true
 		} );
 
@@ -1025,7 +1025,7 @@
 		);
 
 		// Select all items in non 'fullCoverage' group (group1)
-		model.updateFilters( {
+		model.toggleFiltersSelected( {
 			filter3: true
 		} );
 
@@ -1041,7 +1041,7 @@
 		);
 
 		// Uncheck an item from each group
-		model.updateFilters( {
+		model.toggleFiltersSelected( {
 			filter3: false,
 			filter5: false
 		} );
@@ -1107,7 +1107,7 @@
 		);
 
 		// Select a filter that has a conflict with another
-		model.updateFilters( {
+		model.toggleFiltersSelected( {
 			filter1: true // conflicts: filter2, filter4
 		} );
 
@@ -1124,7 +1124,7 @@
 		);
 
 		// Select one of the conflicts (both filters are now conflicted and selected)
-		model.updateFilters( {
+		model.toggleFiltersSelected( {
 			filter4: true // conflicts: filter 1
 		} );
 		model.reassessFilterInteractions( model.getItemByName( 'filter4' ) );
@@ -1141,7 +1141,7 @@
 
 		// Select another filter from filter4 group, meaning:
 		// now filter1 no longer conflicts with filter4
-		model.updateFilters( {
+		model.toggleFiltersSelected( {
 			filter6: true // conflicts: filter2
 		} );
 		model.reassessFilterInteractions( model.getItemByName( 'filter6' ) );

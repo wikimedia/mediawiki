@@ -111,8 +111,7 @@
 		}
 
 		// Respond to user removing the filter
-		this.controller.toggleFilterSelect( this.model.getName(), false );
-		this.controller.clearHighlightColor( this.model.getName() );
+		this.controller.clearFilter( this.model.getName() );
 	};
 
 	mw.rcfilters.ui.CapsuleItemWidget.prototype.setHighlightColor = function () {

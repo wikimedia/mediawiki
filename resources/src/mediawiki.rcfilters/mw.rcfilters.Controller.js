@@ -20,13 +20,20 @@
 	 * @param {Object} filterStructure Filter definition and structure for the model
 	 */
 	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure ) {
-		var uri = new mw.Uri();
-
 		// Initialize the model
 		this.filtersModel.initializeFilters( filterStructure );
+		this.updateStateBasedOnUrl();
+	};
+
+	/**
+	 * Update filter state (selection and highlighting) based
+	 * on current URL and default values.
+	 */
+	mw.rcfilters.Controller.prototype.updateStateBasedOnUrl = function () {
+		var uri = new mw.Uri();
 
 		// Set filter states based on defaults and URL params
-		this.filtersModel.updateFilters(
+		this.filtersModel.toggleFiltersSelected(
 			this.filtersModel.getFiltersFromParameters(
 				// Merge defaults with URL params for initialization
 				$.extend(
@@ -43,11 +50,11 @@
 		this.filtersModel.toggleHighlight( !!uri.query.highlight );
 		this.filtersModel.getItems().forEach( function ( filterItem ) {
 			var color = uri.query[ filterItem.getName() + '_color' ];
-			if ( !color ) {
-				return;
+			if ( color ) {
+				filterItem.setHighlightColor( color );
+			} else {
+				filterItem.clearHighlightColor();
 			}
-
-			filterItem.setHighlightColor( color );
 		} );
 
 		// Check all filter interactions
@@ -84,19 +91,17 @@
 	 * @param {boolean} [isSelected] Filter selected state
 	 */
 	mw.rcfilters.Controller.prototype.toggleFilterSelect = function ( filterName, isSelected ) {
-		var obj = {},
-			filterItem = this.filtersModel.getItemByName( filterName );
+		var filterItem = this.filtersModel.getItemByName( filterName );
 
 		isSelected = isSelected === undefined ? !filterItem.isSelected() : isSelected;
 
 		if ( filterItem.isSelected() !== isSelected ) {
-			obj[ filterName ] = isSelected;
-			this.filtersModel.updateFilters( obj );
+			this.filtersModel.toggleFilterSelected( filterName, isSelected );
 
 			this.updateChangesList();
 
 			// Check filter interactions
-			this.filtersModel.reassessFilterInteractions( this.filtersModel.getItemByName( filterName ) );
+			this.filtersModel.reassessFilterInteractions( filterItem );
 		}
 	};
 
@@ -112,14 +117,22 @@
 	 * @param {Object} [params] Extra parameters to add to the API call
 	 */
 	mw.rcfilters.Controller.prototype.updateURL = function ( params ) {
-		var uri;
+		var updatedUri,
+			notEquivalent = function ( obj1, obj2 ) {
+				var keys = Object.keys( obj1 ).concat( Object.keys( obj2 ) );
+				return keys.some( function ( key ) {
+					return obj1[ key ] != obj2[ key ]; // eslint-disable-line eqeqeq
+				} );
+			};
 
 		params = params || {};
 
-		uri = this.getUpdatedUri();
-		uri.extend( params );
+		updatedUri = this.getUpdatedUri();
+		updatedUri.extend( params );
 
-		window.history.pushState( { tag: 'rcfilters' }, document.title, uri.toString() );
+		if ( notEquivalent( updatedUri.query, new mw.Uri().query ) ) {
+			window.history.pushState( { tag: 'rcfilters' }, document.title, updatedUri.toString() );
+		}
 	};
 
 	/**
@@ -246,5 +259,33 @@
 	mw.rcfilters.Controller.prototype.clearHighlightColor = function ( filterName ) {
 		this.filtersModel.clearHighlightColor( filterName );
 		this.updateURL();
+	};
+
+	/**
+	 * Clear both highlight and selection of a filter
+	 *
+	 * @param {string} filterName Name of the filter item
+	 */
+	mw.rcfilters.Controller.prototype.clearFilter = function ( filterName ) {
+		var filterItem = this.filtersModel.getItemByName( filterName );
+
+		if ( filterItem.isSelected() || filterItem.isHighlighted() ) {
+			this.filtersModel.clearHighlightColor( filterName );
+			this.filtersModel.toggleFilterSelected( filterName, false );
+			this.updateChangesList();
+			this.filtersModel.reassessFilterInteractions( filterItem );
+		}
+	};
+
+	/**
+	 * Synchronize the URL with the current state of the filters
+	 * without adding an history entry.
+	 */
+	mw.rcfilters.Controller.prototype.replaceUrl = function () {
+		window.history.replaceState(
+			{ tag: 'rcfilters' },
+			document.title,
+			this.getUpdatedUri().toString()
+		);
 	};
 }( mediaWiki, jQuery ) );
