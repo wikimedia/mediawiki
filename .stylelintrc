@@ -5,8 +5,6 @@
 
 		"no-descending-specificity": null,
 
-		"selector-no-id": null,
-
-		"value-keyword-case": null
+		"selector-no-id": null
 	}
 }
