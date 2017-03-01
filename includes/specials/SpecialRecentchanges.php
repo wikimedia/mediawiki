@@ -455,6 +455,17 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$panel[] = $form;
 		$panelString = implode( "\n", $panel );
 
+		// Insert a placeholder for RCFilters
+		if ( $this->getUser()->getOption( 'rcenhancedfilters' ) ) {
+			$this->getOutput()->addModuleStyles( 'mediawiki.rcfilters.filters.base.styles' );
+			$this->getOutput()->addHTML(
+				Xml::tags(
+					'div',
+					[ 'class' => 'rcfilters-container' ]
+				)
+			);
+		}
+
 		$this->getOutput()->addHTML(
 			Xml::fieldset(
 				$this->msg( 'recentchanges-legend' )->text(),

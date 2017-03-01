@@ -18,13 +18,17 @@
 		} ) );
 
 		this.model = model;
-		this.$submitButton = this.$element.find( 'input[type=submit]' );
+		this.$submitButton = this.$element.find( 'form input[type=submit]' );
 
 		// Events
 		this.model.connect( this, {
 			invalidate: 'onModelInvalidate',
 			update: 'onModelUpdate'
 		} );
+
+		this.$element
+			.addClass( 'mw-rcfilters-ui-FormWrapperWidget' )
+			.addClass( 'mw-rcfilters-ui-ready' );
 	};
 
 	/* Initialization */
