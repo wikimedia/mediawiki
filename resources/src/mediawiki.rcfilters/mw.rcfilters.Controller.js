@@ -80,14 +80,16 @@
 	};
 
 	/**
-	 * Update the state of a filter
+	 * Update the selected state of a filter
 	 *
 	 * @param {string} filterName Filter name
-	 * @param {boolean} isSelected Filter selected state
+	 * @param {boolean} [isSelected] Filter selected state
 	 */
 	mw.rcfilters.Controller.prototype.updateFilter = function ( filterName, isSelected ) {
 		var obj = {},
 			filterItem = this.filtersModel.getItemByName( filterName );
+
+		isSelected = isSelected === undefined ? !filterItem.isSelected() : isSelected;
 
 		if ( filterItem.isSelected() !== isSelected ) {
 			obj[ filterName ] = isSelected;
