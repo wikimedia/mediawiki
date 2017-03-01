@@ -418,7 +418,7 @@
 	 *                  are the selected highlight colors.
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getHighlightParameters = function () {
-		var result = { highlight: this.isHighlightEnabled() };
+		var result = { highlight: Number( this.isHighlightEnabled() ) };
 
 		this.getItems().forEach( function ( filterItem ) {
 			result[ filterItem.getName() + '_color' ] = filterItem.getHighlightColor();
@@ -602,14 +602,19 @@
 	 * This is equivalent to display all.
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.emptyAllFilters = function () {
-		var filters = {};
-
 		this.getItems().forEach( function ( filterItem ) {
-			filters[ filterItem.getName() ] = false;
-		} );
+			this.updateFilter( filterItem.getName(), false );
+		}.bind( this ) );
+	};
 
-		// Update filters
-		this.updateFilters( filters );
+	/**
+	 * Toggle selected state of one item
+	 *
+	 * @param {string} name Name of the filter item
+	 * @param {boolean} value Value of the filter
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.updateFilter = function ( name, value ) {
+		this.getItemByName( name ).toggleSelected( value );
 	};
 
 	/**
@@ -618,12 +623,9 @@
 	 * @param {Object} filterDef Filter definitions
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.updateFilters = function ( filterDef ) {
-		var name, filterItem;
-
-		for ( name in filterDef ) {
-			filterItem = this.getItemByName( name );
-			filterItem.toggleSelected( filterDef[ name ] );
-		}
+		Object.keys( filterDef ).forEach( function ( name ) {
+			this.updateFilter( name, filterDef[ name ] );
+		}.bind( this ) );
 	};
 
 	/**
@@ -726,7 +728,7 @@
 	 * @return {boolean}
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.isHighlightEnabled = function () {
-		return this.highlightEnabled;
+		return !!this.highlightEnabled;
 	};
 
 	/**

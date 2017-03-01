@@ -193,6 +193,7 @@
 			$( '.rcfilters-head' ).addClass( 'mw-rcfilters-ui-ready' );
 
 			window.addEventListener( 'popstate', function () {
+				controller.updateStateBasedOnUrl();
 				controller.updateChangesList();
 			} );
 
@@ -200,6 +201,8 @@
 				'href',
 				'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:New_filters_for_edit_review'
 			);
+
+			controller.replaceUrl();
 		}
 	};
 
