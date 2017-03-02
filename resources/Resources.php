@@ -715,8 +715,6 @@ return [
 	],
 
 	/* json2 */
-
-	// Deprecated since MediaWiki 1.29.0
 	'json' => [
 		'deprecated' => 'Use of the "json" module is deprecated since MediaWiki 1.29.0',
 		'targets' => [ 'desktop', 'mobile' ],
@@ -2448,18 +2446,14 @@ return [
 			'oojs-ui-core',
 		],
 	],
+
 	/* es5-shim */
 	'es5-shim' => [
-		'scripts' => [
-			'resources/lib/es5-shim/es5-shim.js',
-			'resources/src/polyfill-object-create.js',
-		],
+		'deprecated' => 'Use of the "es5-shim" module is deprecated since MediaWiki 1.29.0',
 		'targets' => [ 'desktop', 'mobile' ],
-		'skipFunction' => 'resources/src/es5-skip.js',
 	],
 
 	/* dom-level2-shim */
-	// Deprecated since MediaWiki 1.29.0
 	'dom-level2-shim' => [
 		'deprecated' => 'Use of the "dom-level2-shim" module is deprecated since MediaWiki 1.29.0',
 		'targets' => [ 'desktop', 'mobile' ],
@@ -2472,9 +2466,6 @@ return [
 			'resources/src/oojs-global.js',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
-		'dependencies' => [
-			'es5-shim',
-		],
 	],
 
 	'mediawiki.router' => [
