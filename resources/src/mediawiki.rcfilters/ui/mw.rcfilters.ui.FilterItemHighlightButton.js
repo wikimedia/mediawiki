@@ -16,7 +16,7 @@
 
 		// Parent
 		mw.rcfilters.ui.FilterItemHighlightButton.parent.call( this, $.extend( {}, config, {
-			icon: 'edit',
+			icon: 'highlight',
 			indicator: 'down',
 			popup: {
 				anchor: false,
