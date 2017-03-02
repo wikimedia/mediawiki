@@ -189,6 +189,13 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$changed = $this->opts->getChangedValues();
 		unset( $changed['offset'] ); // Reset offset if query type changes
 
+		// wfArrayToCgi(), called from LinkRenderer/Title, will not output null and false values
+		// to the URL, which would omit some options (T158504). Fix it by explicitly setting them
+		// to 0 or 1.
+		$changed = array_map( function ( $value ) {
+			return $value ? '1' : '0';
+		}, $changed );
+
 		$self = $this->getPageTitle();
 		$linkRenderer = $this->getLinkRenderer();
 		foreach ( $filters as $key => $msg ) {
