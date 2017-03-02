@@ -628,6 +628,7 @@ $wgAutoloadLocalClasses = [
 	'InfoAction' => __DIR__ . '/includes/actions/InfoAction.php',
 	'InitEditCount' => __DIR__ . '/maintenance/initEditCount.php',
 	'InitSiteStats' => __DIR__ . '/maintenance/initSiteStats.php',
+	'InitUserPreference' => __DIR__ . '/maintenance/initUserPreference.php',
 	'InstallDocFormatter' => __DIR__ . '/includes/installer/InstallDocFormatter.php',
 	'Installer' => __DIR__ . '/includes/installer/Installer.php',
 	'InstallerOverrides' => __DIR__ . '/includes/installer/InstallerOverrides.php',
