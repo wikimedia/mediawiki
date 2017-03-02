@@ -268,6 +268,8 @@ changes to languages because of Phabricator reports.
 * WikiRevision::$fileIsTemp was deprecated.
 * WikiRevision::$importer was deprecated.
 * WikiRevision::$user was deprecated.
+* Browser support for non-ES5 JavaScript browsers, including Android 2, Opera 12,
+  and Internet Explorer 9, was lowered from Grade A to Grade C.
 
 == Compatibility ==
 
