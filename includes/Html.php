@@ -220,8 +220,10 @@ class Html {
 	 * Identical to rawElement(), but HTML-escapes $contents (like
 	 * Xml::element()).
 	 *
-	 * @param string $element
-	 * @param array $attribs
+	 * @param string $element Name of the element, e.g., 'a'
+	 * @param array $attribs Associative array of attributes, e.g., [
+	 *   'href' => 'https://www.mediawiki.org/' ]. See expandAttributes() for
+	 *   further documentation.
 	 * @param string $contents
 	 *
 	 * @return string
@@ -239,8 +241,10 @@ class Html {
 	 * Identical to rawElement(), but has no third parameter and omits the end
 	 * tag (and the self-closing '/' in XML mode for empty elements).
 	 *
-	 * @param string $element
-	 * @param array $attribs
+	 * @param string $element Name of the element, e.g., 'a'
+	 * @param array $attribs Associative array of attributes, e.g., [
+	 *   'href' => 'https://www.mediawiki.org/' ]. See expandAttributes() for
+	 *   further documentation.
 	 *
 	 * @return string
 	 */
@@ -459,7 +463,7 @@ class Html {
 	 *
 	 * @param array $attribs Associative array of attributes, e.g., [
 	 *   'href' => 'https://www.mediawiki.org/' ].  Values will be HTML-escaped.
-	 *   A value of false means to omit the attribute.  For boolean attributes,
+	 *   A value of false or null means to omit the attribute.  For boolean attributes,
 	 *   you can omit the key, e.g., [ 'checked' ] instead of
 	 *   [ 'checked' => 'checked' ] or such.
 	 *

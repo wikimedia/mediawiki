@@ -59,8 +59,8 @@ class Xml {
 	 * Given an array of ('attributename' => 'value'), it generates the code
 	 * to set the XML attributes : attributename="value".
 	 * The values are passed to Sanitizer::encodeAttribute.
-	 * Return null if no attributes given.
-	 * @param array $attribs Array of attributes for an XML element
+	 * Returns null or empty string if no attributes given.
+	 * @param array|null $attribs Array of attributes for an XML element
 	 * @throws MWException
 	 * @return null|string
 	 */
