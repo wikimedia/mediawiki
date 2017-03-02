@@ -244,6 +244,8 @@ changes to languages because of Phabricator reports.
 * User::comparePasswords() (deprecated in 1.24) was removed.
 * ArchivedFile::getUserText() (deprecated in 1.23) was removed.
 * HTMLFileCache::newFromTitle() (deprecated in 1.24) was removed.
+* Browser support for non-ES5 browsers, including Android 2, Opera 12, and
+  Internet Explorer 9, was lowered from Grade A to Grade C.
 
 == Compatibility ==
 
