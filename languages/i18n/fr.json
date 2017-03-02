@@ -1467,6 +1467,7 @@
 	"rcfilters-invalid-filter": "Filtre non valide",
 	"rcfilters-empty-filter": "Aucun filtre actif. Toutes les contributions sont affichées.",
 	"rcfilters-filterlist-title": "Filtres",
+	"rcfilters-filterlist-feedbacklink": "Fournir un commentaire sur les nouveaux filtres (en bêta)",
 	"rcfilters-highlightbutton-title": "Mettre en valeur les résultats",
 	"rcfilters-highlightmenu-title": "Choisir une couleur",
 	"rcfilters-filterlist-noresults": "Aucun filtre trouvé",

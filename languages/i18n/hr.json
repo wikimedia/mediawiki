@@ -288,7 +288,7 @@
 	"youhavenewmessages": "Imate $1 ($2).",
 	"youhavenewmessagesfromusers": "Imate $1 {{PLURAL:$3||od $3 suradnika|od $3 suradnika}} ($2).",
 	"youhavenewmessagesmanyusers": "Imate $1 od više suradnika ($2).",
-	"newmessageslinkplural": "{{PLURAL:$1|novu poruku|$1 nove poruke|999=novih poruka}}",
+	"newmessageslinkplural": "{{PLURAL:$1|novu poruku|999=nove poruke}}",
 	"newmessagesdifflinkplural": "{{PLURAL:$1|posljednje uređivanje|posljednja $1 uređivanja|posljednjih $1 uređivanja}} na stranici za razgovor",
 	"youhavenewmessagesmulti": "Imate nove poruke na $1",
 	"editsection": "uredi",

@@ -1516,7 +1516,7 @@
 	"largefileserver": "Il file supera le dimensioni consentite dalla configurazione del server.",
 	"emptyfile": "Il file appena caricato sembra essere vuoto. Ciò potrebbe essere dovuto ad un errore nel nome del file. Verificare che si intenda realmente caricare questo file.",
 	"windows-nonascii-filename": "Questo wiki non supporta nomi di file con caratteri speciali.",
-	"fileexists": "Un file con questo nome esiste già.\nVerificare prima <strong>[[:$1]]</strong> se non si è sicuri di volerlo sovrascrivere.\n[[$1|thumb]]",
+	"fileexists": "Un file con questo nome esiste già, verifica prima <strong>[[:$1]]</strong> se non si è sicuri di volerlo sovrascrivere.\n[[$1|thumb]]",
 	"filepageexists": "La pagina di descrizione di questo file è già stata creata all'indirizzo <strong>[[:$1]]</strong>, anche se non esiste ancora un file con questo nome. La descrizione dell'oggetto inserita in fase di caricamento non apparirà sulla pagina di descrizione. Per far sì che l'oggetto compaia sulla pagina di descrizione, sarà necessario modificarla manualmente.\n[[$1|thumb]]",
 	"fileexists-extension": "Un file con nome simile a questo esiste già: [[$2|thumb]]\n* Nome del file caricato: <strong>[[:$1]]</strong>\n* Nome del file esistente: <strong>[[:$2]]</strong>\nForse vuoi scegliere un nome più caratteristico?.",
 	"fileexists-thumbnail-yes": "Il file caricato sembra essere una miniatura ''(thumbnail)''. [[$1|thumb]]\nVerificare, per confronto, il file <strong>[[:$1]]</strong>.\nSe si tratta della stessa immagine, nelle dimensioni originali, non è necessario caricarne altre miniature.",
