@@ -62,7 +62,6 @@
 		// Check all filter interactions
 		this.filtersModel.reassessFilterInteractions();
 
-		this.updateURL();
 		this.updateChangesList();
 	};
 
@@ -75,7 +74,6 @@
 		// Check all filter interactions
 		this.filtersModel.reassessFilterInteractions();
 
-		this.updateURL();
 		this.updateChangesList();
 	};
 
@@ -93,7 +91,6 @@
 			obj[ filterName ] = isSelected;
 			this.filtersModel.updateFilters( obj );
 
-			this.updateURL();
 			this.updateChangesList();
 
 			// Check filter interactions
@@ -103,9 +100,23 @@
 
 	/**
 	 * Update the URL of the page to reflect current filters
+	 *
+	 * This should not be called directly from outside the controller.
+	 * If an action requires changing the URL, it should either use the
+	 * highlighting actions below, or call #updateChangesList which does
+	 * the uri corrections already.
+	 *
+	 * @private
+	 * @param {Object} [params] Extra parameters to add to the API call
 	 */
-	mw.rcfilters.Controller.prototype.updateURL = function () {
-		var uri = this.getUpdatedUri();
+	mw.rcfilters.Controller.prototype.updateURL = function ( params ) {
+		var uri;
+
+		params = params || {};
+
+		uri = this.getUpdatedUri();
+		uri.extend( params );
+
 		window.history.pushState( { tag: 'rcfilters' }, document.title, uri.toString() );
 	};
 
@@ -140,6 +151,7 @@
 	 * Fetch the list of changes from the server for the current filters
 	 *
 	 * @return {jQuery.Promise} Promise object that will resolve with the changes list
+	 *  or with a string denoting no results.
 	 */
 	mw.rcfilters.Controller.prototype.fetchChangesList = function () {
 		var uri = this.getUpdatedUri(),
@@ -147,28 +159,63 @@
 			latestRequest = function () {
 				return requestId === this.requestCounter;
 			}.bind( this );
-		uri.extend( this.filtersModel.getParametersFromFilters() );
+
 		return $.ajax( uri.toString(), { contentType: 'html' } )
-			.then( function ( html ) {
-				return latestRequest() ?
-					$( $.parseHTML( html ) ).find( '.mw-changeslist' ).first().contents() :
-					null;
-			} ).then( null, function () {
-				return latestRequest() ? 'NO_RESULTS' : null;
-			} );
+			.then(
+				// Success
+				function ( html ) {
+					var $parsed;
+					if ( !latestRequest() ) {
+						return $.Deferred().reject();
+					}
+
+					$parsed = $( $.parseHTML( html ) );
+
+					return {
+						// Changes list
+						changes: $parsed.find( '.mw-changeslist' ).first().contents(),
+						// Fieldset
+						fieldset: $parsed.find( 'fieldset.rcoptions' ).first()
+					};
+				},
+				// Failure
+				function ( responseObj ) {
+					var $parsed;
+
+					if ( !latestRequest() ) {
+						return $.Deferred().reject();
+					}
+
+					$parsed = $( $.parseHTML( responseObj.responseText ) );
+
+					// Force a resolve state to this promise
+					return $.Deferred().resolve( {
+						changes: 'NO_RESULTS',
+						fieldset: $parsed.find( 'fieldset.rcoptions' ).first()
+					} ).promise();
+				}
+			);
 	};
 
 	/**
 	 * Update the list of changes and notify the model
+	 *
+	 * @param {Object} [params] Extra parameters to add to the API call
 	 */
-	mw.rcfilters.Controller.prototype.updateChangesList = function () {
+	mw.rcfilters.Controller.prototype.updateChangesList = function ( params ) {
+		this.updateURL( params );
 		this.changesListModel.invalidate();
 		this.fetchChangesList()
-			.always( function ( changesListContent ) {
-				if ( changesListContent ) {
-					this.changesListModel.update( changesListContent );
-				}
-			}.bind( this ) );
+			.then(
+				// Success
+				function ( pieces ) {
+					var $changesListContent = pieces.changes,
+						$fieldset = pieces.fieldset;
+
+					this.changesListModel.update( $changesListContent, $fieldset );
+				}.bind( this )
+				// Do nothing for failure
+			);
 	};
 
 	/**
