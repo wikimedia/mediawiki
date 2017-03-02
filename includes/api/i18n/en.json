@@ -1642,7 +1642,7 @@
 	"apierror-invalidexpiry": "Invalid expiry time \"$1\".",
 	"apierror-invalid-file-key": "Not a valid file key.",
 	"apierror-invalidlang": "Invalid language code for parameter <var>$1</var>.",
-	"apierror-invalidoldimage": "The oldimage parameter has invalid format.",
+	"apierror-invalidoldimage": "The <var>oldimage</var> parameter has an invalid format.",
 	"apierror-invalidparammix-cannotusewith": "The <kbd>$1</kbd> parameter cannot be used with <kbd>$2</kbd>.",
 	"apierror-invalidparammix-mustusewith": "The <kbd>$1</kbd> parameter may only be used with <kbd>$2</kbd>.",
 	"apierror-invalidparammix-parse-new-section": "<kbd>section=new</kbd> cannot be combined with the <var>oldid</var>, <var>pageid</var> or <var>page</var> parameters. Please use <var>title</var> and <var>text</var>.",
