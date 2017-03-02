@@ -26,6 +26,7 @@ mwPerformance.mark( 'mwLoadStart' );
  * See <https://www.mediawiki.org/wiki/Compatibility#Browsers>
  *
  * Capabilities required for modern run-time:
+ * - ECMAScript 5
  * - DOM Level 4 & Selectors API Level 1
  * - HTML5 & Web Storage
  * - DOM Level 2 Events
@@ -33,12 +34,12 @@ mwPerformance.mark( 'mwLoadStart' );
  *
  * Browsers we support in our modern run-time (Grade A):
  * - Chrome 4+
- * - IE 9+
- * - Firefox 3.5+
- * - Safari 5+
- * - Opera 10.5+
- * - Mobile Safari (iOS 4+)
- * - Android 2.0+
+ * - IE 10+
+ * - Firefox 4+
+ * - Safari 6+
+ * - Opera 15+
+ * - Mobile Safari 6+ (iOS 5+)
+ * - Android 3, 4.1+
  *
  * Browsers we support in our no-javascript run-time (Grade C):
  * - Chrome 1+
@@ -46,6 +47,8 @@ mwPerformance.mark( 'mwLoadStart' );
  * - Firefox 3+
  * - Safari 3+
  * - Opera 10+
+ * - Mobile Safari 5+ (iOS 4+)
+ * - Android 2.0+
  * - WebOS < 1.5
  * - PlayStation
  * - Symbian-based browsers
@@ -64,6 +67,12 @@ mwPerformance.mark( 'mwLoadStart' );
 function isCompatible( str ) {
 	var ua = str || navigator.userAgent;
 	return !!(
+		// http://caniuse.com/#feat=es5
+		( function () {
+			'use strict';
+			return !this && !!Function.prototype.bind;
+		}() ) &&
+
 		// http://caniuse.com/#feat=queryselector
 		'querySelector' in document &&
 
