@@ -1647,7 +1647,7 @@
 	"apierror-invalidparammix-mustusewith": "The <kbd>$1</kbd> parameter may only be used with <kbd>$2</kbd>.",
 	"apierror-invalidparammix-parse-new-section": "<kbd>section=new</kbd> cannot be combined with the <var>oldid</var>, <var>pageid</var> or <var>page</var> parameters. Please use <var>title</var> and <var>text</var>.",
 	"apierror-invalidparammix": "The {{PLURAL:$2|parameters}} $1 can not be used together.",
-	"apierror-invalidsection": "The section parameter must be a valid section ID or <kbd>new</kbd>.",
+	"apierror-invalidsection": "The <var>section</var> parameter must be a valid section ID or <kbd>new</kbd>.",
 	"apierror-invalidsha1base36hash": "The SHA1Base36 hash provided is not valid.",
 	"apierror-invalidsha1hash": "The SHA1 hash provided is not valid.",
 	"apierror-invalidtitle": "Bad title \"$1\".",
