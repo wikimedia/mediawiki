@@ -1243,7 +1243,8 @@
 
 				if ( page.tokenWidget ) {
 					k = page.apiModule + page.tokenWidget.paramInfo.name;
-					tokenWait[ k ] = page.tokenWidget.fetchToken()
+					tokenWait[ k ] = page.tokenWidget.fetchToken();
+					tokenWait[ k ]
 						.done( success.bind( page.tokenWidget, k ) )
 						.fail( failure.bind( page.tokenWidget, k ) );
 				}
