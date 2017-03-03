@@ -121,6 +121,15 @@
 	};
 
 	/**
+	 * Get the current selection
+	 *
+	 * @return {string|null} Selected filter. Null if none is selected.
+	 */
+	mw.rcfilters.ui.FiltersListWidget.prototype.getSelectedFilter = function () {
+		return this.selected;
+	};
+
+	/**
 	 * Mark an item widget as selected
 	 *
 	 * @param {string} itemName Filter name
@@ -175,13 +184,15 @@
 	 *  arranged by their group names
 	 */
 	mw.rcfilters.ui.FiltersListWidget.prototype.filter = function ( groupItems ) {
-		var i, j, groupName, itemWidgets,
+		var i, j, groupName, itemWidgets, topItem, isVisible,
 			groupWidgets = this.getItems(),
 			hasItemWithName = function ( itemArr, name ) {
 				return !!itemArr.filter( function ( item ) {
 					return item.getName() === name;
 				} ).length;
 			};
+
+		this.resetSelection();
 
 		if ( $.isEmptyObject( groupItems ) ) {
 			// No results. Hide everything, show only 'no results'
@@ -206,11 +217,19 @@
 			// We have items to show
 			itemWidgets = groupWidgets[ i ].getItems();
 			for ( j = 0; j < itemWidgets.length; j++ ) {
+				isVisible = hasItemWithName( groupItems[ groupName ], itemWidgets[ j ].getName() );
 				// Only show items that are in the filtered list
-				itemWidgets[ j ].toggle(
-					hasItemWithName( groupItems[ groupName ], itemWidgets[ j ].getName() )
-				);
+				itemWidgets[ j ].toggle( isVisible );
+
+				if ( !topItem && isVisible ) {
+					topItem = itemWidgets[ j ];
+				}
 			}
+		}
+
+		// Select the first item
+		if ( topItem ) {
+			this.select( topItem.getName() );
 		}
 	};
 }( mediaWiki, jQuery ) );

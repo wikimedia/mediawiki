@@ -94,7 +94,7 @@
 	 * @param {boolean} isSelected The checkbox is selected
 	 */
 	mw.rcfilters.ui.FilterItemWidget.prototype.onCheckboxChange = function ( isSelected ) {
-		this.controller.updateFilter( this.model.getName(), isSelected );
+		this.controller.toggleFilterSelect( this.model.getName(), isSelected );
 	};
 
 	/**
