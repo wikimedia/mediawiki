@@ -1,16 +1,18 @@
 ( function ( mw ) {
 	/**
 	 * Wrapper for the RC form with hide/show links
+	 * Must be constructed after the model is initialized.
 	 *
 	 * @extends OO.ui.Widget
 	 *
 	 * @constructor
-	 * @param {mw.rcfilters.dm.ChangesListViewModel} model Changes list view model
+	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersModel Changes list view model
+	 * @param {mw.rcfilters.dm.ChangesListViewModel} changeListModel Changes list view model
 	 * @param {mw.rcfilters.Controller} controller RCfilters controller
 	 * @param {jQuery} $formRoot Root element of the form to attach to
 	 * @param {Object} config Configuration object
 	 */
-	mw.rcfilters.ui.FormWrapperWidget = function MwRcfiltersUiFormWrapperWidget( model, controller, $formRoot, config ) {
+	mw.rcfilters.ui.FormWrapperWidget = function MwRcfiltersUiFormWrapperWidget( filtersModel, changeListModel, controller, $formRoot, config ) {
 		config = config || {};
 
 		// Parent
@@ -20,7 +22,8 @@
 		// Mixin constructors
 		OO.ui.mixin.PendingElement.call( this, config );
 
-		this.model = model;
+		this.changeListModel = changeListModel;
+		this.filtersModel = filtersModel;
 		this.controller = controller;
 		this.$submitButton = this.$element.find( 'form input[type=submit]' );
 
@@ -31,13 +34,13 @@
 			.on( 'submit', 'form', this.onFormSubmit.bind( this ) );
 
 		// Events
-		this.model.connect( this, {
-			invalidate: 'onModelInvalidate',
-			update: 'onModelUpdate'
+		this.changeListModel.connect( this, {
+			invalidate: 'onChangesModelInvalidate',
+			update: 'onChangesModelUpdate'
 		} );
 
 		// Initialize
-		this.cleanupForm();
+		this.cleanUpFieldset();
 		this.$element
 			.addClass( 'mw-rcfilters-ui-FormWrapperWidget' )
 			.addClass( 'mw-rcfilters-ui-ready' );
@@ -49,43 +52,13 @@
 	OO.mixinClass( mw.rcfilters.ui.FormWrapperWidget, OO.ui.mixin.PendingElement );
 
 	/**
-	 * Clean up the base form we're getting from the back-end.
-	 * Remove <strong> tags and replace those with classes, so
-	 * we can toggle those on click.
-	 */
-	mw.rcfilters.ui.FormWrapperWidget.prototype.cleanupForm = function () {
-		this.$element.find( '[data-keys] strong' ).each( function () {
-			$( this )
-				.parent().addClass( 'mw-rcfilters-staticfilters-selected' );
-
-			$( this )
-				.replaceWith( $( this ).contents() );
-		} );
-	};
-
-	/**
 	 * Respond to link click
 	 *
 	 * @param {jQuery.Event} e Event
 	 * @return {boolean} false
 	 */
 	mw.rcfilters.ui.FormWrapperWidget.prototype.onLinkClick = function ( e ) {
-		var $element = $( e.target ),
-			data = $element.data( 'params' ),
-			keys = $element.data( 'keys' ),
-			$similarElements = $element.parent().find( '[data-keys="' + keys + '"]' );
-
-		// Only highlight choice if this link isn't a show/hide link
-		if ( !$element.parents( '.rcshowhideoption' ).length ) {
-			// Remove the class from similar elements
-			$similarElements.removeClass( 'mw-rcfilters-staticfilters-selected' );
-			// Add the class to this element
-			$element.addClass( 'mw-rcfilters-staticfilters-selected' );
-		}
-
-		e.stopPropagation();
-
-		this.controller.updateChangesList( data );
+		this.controller.updateChangesList( $( e.target ).data( 'params' ) );
 		return false;
 	};
 
@@ -112,7 +85,7 @@
 	/**
 	 * Respond to model invalidate
 	 */
-	mw.rcfilters.ui.FormWrapperWidget.prototype.onModelInvalidate = function () {
+	mw.rcfilters.ui.FormWrapperWidget.prototype.onChangesModelInvalidate = function () {
 		this.pushPending();
 		this.$submitButton.prop( 'disabled', true );
 	};
@@ -124,24 +97,60 @@
 	 * @param {jQuery|string} $changesList Updated changes list
 	 * @param {jQuery} $fieldset Updated fieldset
 	 */
-	mw.rcfilters.ui.FormWrapperWidget.prototype.onModelUpdate = function ( $changesList, $fieldset ) {
+	mw.rcfilters.ui.FormWrapperWidget.prototype.onChangesModelUpdate = function ( $changesList, $fieldset ) {
 		this.$submitButton.prop( 'disabled', false );
 
-		// Replace the links we have in the content
-		// We don't want to replace the entire thing, because there is a big difference between
-		// the links in the backend and the links we have initialized, since we are removing
-		// the ones that are implemented in the new system
-		this.$element.find( '.rcshowhide' ).children().each( function () {
-			// Go over existing links and replace only them
-			var classes = $( this ).attr( 'class' ).split( ' ' ),
-				// Look for that item in the fieldset from the server
-				$remoteItem = $fieldset.find( '.' + classes.join( '.' ) );
+		// Replace the entire fieldset
+		this.$element.empty().append( $fieldset.contents() );
 
-			if ( $remoteItem ) {
-				$( this ).replaceWith( $remoteItem );
-			}
-		} );
+		this.cleanUpFieldset();
 
 		this.popPending();
+	};
+
+	/**
+	 * Clean up the old-style show/hide that we have implemented in the filter list
+	 */
+	mw.rcfilters.ui.FormWrapperWidget.prototype.cleanUpFieldset = function () {
+		var widget = this;
+
+		// HACK: Remove old-style filter links for filters handled by the widget
+		// Ideally the widget would handle all filters and we'd just remove .rcshowhide entirely
+		this.$element.find( '.rcshowhide' ).children().each( function () {
+			// HACK: Interpret the class name to get the filter name
+			// This should really be set as a data attribute
+			var i,
+				name = null,
+				// Some of the older browsers we support don't have .classList,
+				// so we have to interpret the class attribute manually.
+				classes = this.getAttribute( 'class' ).split( ' ' );
+			for ( i = 0; i < classes.length; i++ ) {
+				if ( classes[ i ].substr( 0, 'rcshow'.length ) === 'rcshow' ) {
+					name = classes[ i ].substr( 'rcshow'.length );
+					break;
+				}
+			}
+			if ( name === null ) {
+				return;
+			}
+			if ( name === 'hidemine' ) {
+				// HACK: the span for hidemyself is called hidemine
+				name = 'hidemyself';
+			}
+
+			// This span corresponds to a filter that's in our model, so remove it
+			if ( widget.filtersModel.getItemByName( name ) ) {
+				// HACK: Remove the text node after the span.
+				// If there isn't one, we're at the end, so remove the text node before the span.
+				// This would be unnecessary if we added separators with CSS.
+				if ( this.nextSibling && this.nextSibling.nodeType === Node.TEXT_NODE ) {
+					this.parentNode.removeChild( this.nextSibling );
+				} else if ( this.previousSibling && this.previousSibling.nodeType === Node.TEXT_NODE ) {
+					this.parentNode.removeChild( this.previousSibling );
+				}
+				// Remove the span itself
+				this.parentNode.removeChild( this );
+			}
+		} );
 	};
 }( mediaWiki ) );
