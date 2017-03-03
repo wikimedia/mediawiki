@@ -82,10 +82,6 @@
 	padding-left: 0.5em;
 }
 
-.oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-indicatorElement-indicator.mw-apisandbox-clickable-indicator {
-	cursor: pointer;
-}
-
 .mw-apisandbox-textInputCode .oo-ui-inputWidget-input {
 	font-family: monospace, monospace;
 	font-size: 0.8125em;
