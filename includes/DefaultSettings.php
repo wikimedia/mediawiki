@@ -4870,9 +4870,7 @@ $wgDefaultUserOptions = [
 /**
  * An array of preferences to not show for the user
  */
-$wgHiddenPrefs = [
-	'rcenhancedfilters',
-];
+$wgHiddenPrefs = [];
 
 /**
  * Characters to prevent during new account creations.
