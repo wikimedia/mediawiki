@@ -326,15 +326,7 @@
 
 				case 'string':
 				case 'user':
-					if ( pi.tokentype ) {
-						widget = new TextInputWithIndicatorWidget( {
-							input: {
-								indicator: 'previous',
-								indicatorTitle: mw.message( 'apisandbox-fetch-token' ).text(),
-								required: Util.apiBool( pi.required )
-							}
-						} );
-					} else if ( Util.apiBool( pi.multi ) ) {
+					if ( Util.apiBool( pi.multi ) ) {
 						widget = new OO.ui.CapsuleMultiselectWidget( {
 							allowArbitrary: true,
 							allowDuplicates: Util.apiBool( pi.allowsduplicates )
@@ -352,11 +344,9 @@
 						widget.setValidation( Validators.generic );
 					}
 					if ( pi.tokentype ) {
+						widget.paramInfo = pi;
+						$.extend( widget, WidgetMethods.textInputWidget );
 						$.extend( widget, WidgetMethods.tokenWidget );
-						widget.input.paramInfo = pi;
-						$.extend( widget.input, WidgetMethods.textInputWidget );
-						$.extend( widget.input, WidgetMethods.tokenWidget );
-						widget.on( 'indicator', widget.fetchToken, [], widget );
 					}
 					break;
 
@@ -1357,7 +1347,7 @@
 
 		Util.fetchModuleInfo( this.apiModule )
 			.done( function ( pi ) {
-				var prefix, i, j, descriptionContainer, widget, $widgetLabel, widgetField, helpField, tmp, flag, count,
+				var prefix, i, j, descriptionContainer, widget, $widgetLabel, layoutConfig, button, widgetField, helpField, tmp, flag, count,
 					items = [],
 					deprecatedItems = [],
 					buttons = [],
@@ -1574,15 +1564,23 @@
 						);
 
 						$widgetLabel = $( '<span>' );
-						widgetField = new OO.ui.FieldLayout(
-							widget,
-							{
-								align: 'left',
-								classes: [ 'mw-apisandbox-widget-field' ],
-								label: prefix + pi.parameters[ i ].name,
-								$label: $widgetLabel
-							}
-						);
+						layoutConfig = {
+							align: 'left',
+							classes: [ 'mw-apisandbox-widget-field' ],
+							label: prefix + pi.parameters[ i ].name,
+							$label: $widgetLabel
+						};
+
+						if ( pi.parameters[ i ].tokentype ) {
+							button = new OO.ui.ButtonWidget( {
+								label: mw.message( 'apisandbox-fetch-token' ).text()
+							} );
+							button.on( 'click', widget.fetchToken, [], widget );
+
+							widgetField = new OO.ui.ActionFieldLayout( widget, button, layoutConfig );
+						} else {
+							widgetField = new OO.ui.FieldLayout( widget, layoutConfig );
+						}
 
 						// FieldLayout only does click for InputElement
 						// widgets. So supply our own click handler.
@@ -1772,66 +1770,6 @@
 			}
 		} );
 		return ret;
-	};
-
-	/**
-	 * A text input with a clickable indicator
-	 *
-	 * @class
-	 * @private
-	 * @constructor
-	 * @param {Object} [config] Configuration options
-	 */
-	function TextInputWithIndicatorWidget( config ) {
-		var k;
-
-		config = config || {};
-		TextInputWithIndicatorWidget[ 'super' ].call( this, config );
-
-		this.$indicator = $( '<span>' ).addClass( 'mw-apisandbox-clickable-indicator' );
-		OO.ui.mixin.TabIndexedElement.call(
-			this, $.extend( {}, config, { $tabIndexed: this.$indicator } )
-		);
-
-		this.input = new OO.ui.TextInputWidget( $.extend( {
-			$indicator: this.$indicator,
-			disabled: this.isDisabled()
-		}, config.input ) );
-
-		// Forward most methods for convenience
-		for ( k in this.input ) {
-			if ( $.isFunction( this.input[ k ] ) && !this[ k ] ) {
-				this[ k ] = this.input[ k ].bind( this.input );
-			}
-		}
-
-		this.$indicator.on( {
-			click: this.onIndicatorClick.bind( this ),
-			keypress: this.onIndicatorKeyPress.bind( this )
-		} );
-
-		this.$element.append( this.input.$element );
-	}
-	OO.inheritClass( TextInputWithIndicatorWidget, OO.ui.Widget );
-	OO.mixinClass( TextInputWithIndicatorWidget, OO.ui.mixin.TabIndexedElement );
-	TextInputWithIndicatorWidget.prototype.onIndicatorClick = function ( e ) {
-		if ( !this.isDisabled() && e.which === 1 ) {
-			this.emit( 'indicator' );
-		}
-		return false;
-	};
-	TextInputWithIndicatorWidget.prototype.onIndicatorKeyPress = function ( e ) {
-		if ( !this.isDisabled() && ( e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER ) ) {
-			this.emit( 'indicator' );
-			return false;
-		}
-	};
-	TextInputWithIndicatorWidget.prototype.setDisabled = function ( disabled ) {
-		TextInputWithIndicatorWidget[ 'super' ].prototype.setDisabled.call( this, disabled );
-		if ( this.input ) {
-			this.input.setDisabled( this.isDisabled() );
-		}
-		return this;
 	};
 
 	/**
