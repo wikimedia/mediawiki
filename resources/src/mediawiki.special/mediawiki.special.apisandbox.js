@@ -1015,6 +1015,7 @@
 				deferreds = [],
 				paramsAreForced = !!params,
 				displayParams = {},
+				tokenWidgets = [],
 				checkPages = [ pages.main ];
 
 			// Blur any focused widget before submit, because
@@ -1033,6 +1034,9 @@
 			params = {};
 			while ( checkPages.length ) {
 				page = checkPages.shift();
+				if ( page.tokenWidget ) {
+					tokenWidgets.push( page.tokenWidget );
+				}
 				deferreds.push( page.apiCheckValid() );
 				page.getQueryParams( params, displayParams );
 				subpages = page.getSubpages();
@@ -1049,19 +1053,46 @@
 			}
 
 			$.when.apply( $, deferreds ).done( function () {
-				var formatItems, menu, selectedLabel;
+				var formatItems, menu, selectedLabel, deferred, actions;
 
 				if ( $.inArray( false, arguments ) !== -1 ) {
-					windowManager.openWindow( 'errorAlert', {
-						title: Util.parseMsg( 'apisandbox-submit-invalid-fields-title' ),
-						message: Util.parseMsg( 'apisandbox-submit-invalid-fields-message' ),
-						actions: [
-							{
-								action: 'accept',
-								label: OO.ui.msg( 'ooui-dialog-process-dismiss' ),
-								flags: 'primary'
+					actions = [
+						{
+							action: 'accept',
+							label: OO.ui.msg( 'ooui-dialog-process-dismiss' ),
+							flags: 'primary'
+						}
+					];
+					if ( tokenWidgets.length ) {
+						// Check all token widgets' validity separately
+						deferred = $.when.apply( $, tokenWidgets.map( function ( w ) {
+							return w.apiCheckValid();
+						} ) );
+
+						deferred.done( function () {
+							// If any of the tokens are invalid, offer to fix them
+							if ( $.inArray( false, arguments ) !== -1 ) {
+								delete actions[ 0 ].flags;
+								actions.push( {
+									action: 'fix',
+									label: mw.message( 'apisandbox-results-fixtoken' ).text(),
+									flags: 'primary'
+								} );
 							}
-						]
+						} );
+					} else {
+						deferred = $.Deferred().resolve();
+					}
+					deferred.always( function () {
+						windowManager.openWindow( 'errorAlert', {
+							title: Util.parseMsg( 'apisandbox-submit-invalid-fields-title' ),
+							message: Util.parseMsg( 'apisandbox-submit-invalid-fields-message' ),
+							actions: actions
+						} ).closed.then( function ( data ) {
+							if ( data && data.action === 'fix' ) {
+								ApiSandbox.fixTokenAndResend();
+							}
+						} );
 					} );
 					return;
 				}
