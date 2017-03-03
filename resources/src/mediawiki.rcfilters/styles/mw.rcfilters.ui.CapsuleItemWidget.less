@@ -5,23 +5,39 @@
 	border-color: #979797;
 	color: #222;
 
-	&-muted {
-		// Muted state
-		background-color: #eaecf0;
-		border-color: #c8ccd1;
-		.oo-ui-labelElement-label {
-			color: #72777d;
+	// Background and color of the capsule widget need a bit
+	// more specificity to override ooui internals
+	// &.oo-ui-capsuleItemWidget.oo-ui-widget-enabled {
+		&-muted.oo-ui-capsuleItemWidget.oo-ui-widget-enabled {
+			// Muted state
+			background-color: #eaecf0;
+			border-color: #c8ccd1;
+
+			.oo-ui-labelElement-label {
+				color: #72777d;
+			}
+			.oo-ui-buttonWidget {
+				opacity: @muted-opacity;
+			}
 		}
 
-		.oo-ui-buttonWidget {
-			opacity: @muted-opacity;
-		}
-	}
+		&-conflicted.oo-ui-capsuleItemWidget.oo-ui-widget-enabled {
+			background-color: #fee7e6; // Red90 AAA
+			border-color: #b32424; // Red30 AAA
 
-	&-selected {
-		background-color: #eaf3ff;
-		border-color: #36c;
-	}
+			.oo-ui-labelElement-label {
+				color: #b32424;
+			}
+			.oo-ui-buttonWidget {
+				opacity: @muted-opacity;
+			}
+		}
+
+		&-selected.oo-ui-capsuleItemWidget.oo-ui-widget-enabled {
+			background-color: #eaf3ff;
+			border-color: #36c;
+		}
+	// }
 
 	&-popup-content {
 		padding: 0.5em;
