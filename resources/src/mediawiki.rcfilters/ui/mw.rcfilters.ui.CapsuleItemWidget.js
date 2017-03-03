@@ -135,8 +135,11 @@
 				'mw-rcfilters-ui-capsuleItemWidget-muted',
 				!this.model.isSelected() ||
 				this.model.isIncluded() ||
-				this.model.isConflicted() ||
 				this.model.isFullyCovered()
+			)
+			.toggleClass(
+				'mw-rcfilters-ui-capsuleItemWidget-conflicted',
+				this.model.isConflicted()
 			);
 	};
 
