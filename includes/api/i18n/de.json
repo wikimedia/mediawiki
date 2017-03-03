@@ -805,6 +805,7 @@
 	"apihelp-query+search-param-limit": "Wie viele Seiten insgesamt zurückgegeben werden sollen.",
 	"apihelp-query+search-example-simple": "Nach <kbd>meaning</kbd> suchen.",
 	"apihelp-query+search-example-text": "Texte nach <kbd>meaning</kbd> durchsuchen.",
+	"apihelp-query+siteinfo-paramvalue-prop-languagevariants": "Gibt eine Liste für die Sprachcodes zurück, bei denen der [[mw:LanguageConverter|Sprachkonverter]] aktiviert ist und die unterstützten Varianten für jede Sprache.",
 	"apihelp-query+siteinfo-example-simple": "Websiteinformationen abrufen",
 	"apihelp-query+stashimageinfo-param-sessionkey": "Alias für $1filekey, für die Rückwärtskompatibilität.",
 	"apihelp-query+stashimageinfo-example-simple": "Gibt Informationen für eine gespeicherte Datei zurück.",

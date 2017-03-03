@@ -3720,7 +3720,7 @@
 	"htmlform-user-not-exists": "<strong>$1</strong> n’existe pas.",
 	"htmlform-user-not-valid": "<strong>$1</strong> n’est pas un nom d’utilisateur valide.",
 	"logentry-delete-delete": "$1 {{GENDER:$2|a supprimé}} la page $3",
-	"logentry-delete-delete_redir": "$1 {{GENDER:$2|supprimé}} redirigé vers $3 par écrasement.",
+	"logentry-delete-delete_redir": "$1 a {{GENDER:$2|supprimé}} la redirection vers $3 par écrasement.",
 	"logentry-delete-restore": "$1 {{GENDER:$2|a restauré}} la page $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|a modifié}} la visibilité {{PLURAL:$5|d'un événement du journal|de $5 événements du journal}} sur $3: $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|a modifié}} la visibilité {{PLURAL:$5|d'une révision|de $5 révisions}} sur la page $3 : $4",

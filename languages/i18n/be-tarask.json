@@ -3759,6 +3759,7 @@
 	"authmanager-create-from-login": "Каб стварыць рахунак, калі ласка, запоўніце палі.",
 	"authmanager-create-not-in-progress": "Стварэньне рахунку не выконваецца або страчаныя зьвесткі пра сэсію. Калі ласка, пачніце наноў з самага пачатку.",
 	"authmanager-create-no-primary": "Пададзеныя ўліковыя зьвесткі ня могуць быць выкарыстаныя для стварэньня рахунку.",
+	"authmanager-link-no-primary": "Пададзеныя ўліковыя зьвесткі ня могуць быць выкарыстаныя для злучэньня рахункаў.",
 	"authmanager-realname-label": "Сапраўднае імя",
 	"authmanager-provider-temporarypassword": "Часовы пароль",
 	"changecredentials": "Зьмена ўліковых зьвестак",

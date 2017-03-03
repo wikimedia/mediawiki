@@ -831,7 +831,7 @@
 	"lineno": "Line $1:",
 	"compareselectedversions": "Samanlikn valde versjonar",
 	"showhideselectedversions": "Vis/løyn valde versjonar",
-	"editundo": "angre",
+	"editundo": "fjern endringa",
 	"diff-empty": "(Ingen skilnad)",
 	"diff-multi-sameuser": "({{PLURAL:$1|Éin mellomversjon|$1 mellomversjonar}} av den same brukaren er ikkje {{PLURAL:$1|vist|viste}})",
 	"diff-multi-otherusers": "({{PLURAL:$1|Éin mellomliggjande versjon|$1 mellomliggjande versjonar}} av {{PLURAL:$2|éin annan brukar|$2 brukarar}} er ikkje {{PLURAL:$1|vist|viste}})",
@@ -1354,6 +1354,7 @@
 	"listfiles-delete": "slett",
 	"listfiles-summary": "Spesialsida viser alle opplasta filer.\nNår ho er filtrert etter brukar, vert berre filene der brukaren lasta opp den siste versjonen viste.",
 	"listfiles_search_for": "Søk etter filnamn:",
+	"listfiles-userdoesnotexist": "Brukarkontoen «$1» er ikkje oppretta.",
 	"imgfile": "fil",
 	"listfiles": "Filliste",
 	"listfiles_thumb": "Miniatyrbilete",
@@ -1870,6 +1871,7 @@
 	"mycontris": "Bidrag",
 	"anoncontribs": "Bidrag",
 	"contribsub2": "For {{GENDER:$3|$1}} ($2)",
+	"contributions-userdoesnotexist": "Brukarkontoen «$1» er ikkje oppretta.",
 	"nocontribs": "Det vart ikkje funne nokon endringar gjorde av denne brukaren.",
 	"uctop": "(gjeldande)",
 	"month": "Månad:",
@@ -3083,6 +3085,7 @@
 	"mw-widgets-titleinput-description-new-page": "sida finst ikkje enno",
 	"mw-widgets-titleinput-description-redirect": "omdiriger til $1",
 	"randomrootpage": "Tilfeldig rotsida",
+	"authmanager-userdoesnotexist": "Brukarkontoen «$1» er ikkje oppretta.",
 	"userjsispublic": "Merk: JavaScript-undersider bør ikkje innehalda konfidensielle data sidan dei er synlege for andre brukarar.",
 	"usercssispublic": "Merk: CSS-undersider bør ikkje innehalda konfidensielle data sidan dei er synlege for andre brukarar."
 }
