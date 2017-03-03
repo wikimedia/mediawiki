@@ -40,7 +40,7 @@
 				icon: 'feedback',
 				flags: [ 'progressive' ],
 				label: mw.msg( 'rcfilters-filterlist-feedbacklink' ),
-				href: 'https://www.mediawiki.org/wiki/Help_talk:Edit_Review_Improvements/RC_filters'
+				href: 'https://www.mediawiki.org/wiki/Help_talk:New_filters_for_edit_review'
 			} ).$element
 		);
 
