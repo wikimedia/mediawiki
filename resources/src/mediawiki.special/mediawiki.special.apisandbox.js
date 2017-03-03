@@ -1441,6 +1441,7 @@
 
 				if ( pi.helpurls.length ) {
 					buttons.push( new OO.ui.PopupButtonWidget( {
+						$overlay: $( '#mw-apisandbox-ui' ),
 						label: mw.message( 'apisandbox-helpurls' ).text(),
 						icon: 'help',
 						popup: {
@@ -1457,6 +1458,7 @@
 
 				if ( pi.examples.length ) {
 					buttons.push( new OO.ui.PopupButtonWidget( {
+						$overlay: $( '#mw-apisandbox-ui' ),
 						label: mw.message( 'apisandbox-examples' ).text(),
 						icon: 'code',
 						popup: {
