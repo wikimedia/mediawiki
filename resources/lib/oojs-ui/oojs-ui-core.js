@@ -6,7 +6,7 @@
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-02-28T23:19:40Z
+ * Date: 2017-03-03T23:20:41Z
  */
 ( function ( OO ) {
 
@@ -4079,6 +4079,8 @@ OO.ui.mixin.PendingElement.prototype.popPending = function () {
  *  'start': Align the start (left in LTR, right in RTL) edge with $floatableContainer's start edge
  *  'end': Align the end (right in LTR, left in RTL) edge with $floatableContainer's end edge
  *  'center': Horizontally align the center with $floatableContainer's center
+ * @cfg {boolean} [hideWhenOutOfView=true] Whether to hide the floatable element if the container
+ *  is out of view
  */
 OO.ui.mixin.FloatableElement = function OoUiMixinFloatableElement( config ) {
 	// Configuration initialization
@@ -4097,6 +4099,7 @@ OO.ui.mixin.FloatableElement = function OoUiMixinFloatableElement( config ) {
 	this.setFloatableElement( config.$floatable || this.$element );
 	this.setVerticalPosition( config.verticalPosition || 'below' );
 	this.setHorizontalPosition( config.horizontalPosition || 'start' );
+	this.hideWhenOutOfView = config.hideWhenOutOfView === undefined ? true : !!config.hideWhenOutOfView;
 };
 
 /* Methods */
@@ -4298,7 +4301,7 @@ OO.ui.mixin.FloatableElement.prototype.position = function () {
 		return this;
 	}
 
-	if ( !this.isElementInViewport( this.$floatableContainer, this.$floatableClosestScrollable ) ) {
+	if ( this.hideWhenOutOfView && !this.isElementInViewport( this.$floatableContainer, this.$floatableClosestScrollable ) ) {
 		this.$floatable.addClass( 'oo-ui-element-hidden' );
 		return;
 	} else {
@@ -5172,9 +5175,14 @@ OO.ui.mixin.PopupElement = function OoUiMixinPopupElement( config ) {
 
 	// Properties
 	this.popup = new OO.ui.PopupWidget( $.extend(
-		{ autoClose: true },
+		{
+			autoClose: true,
+			$floatableContainer: this.$element
+		},
 		config.popup,
-		{ $autoCloseIgnore: this.$element.add( config.popup && config.popup.$autoCloseIgnore ) }
+		{
+			$autoCloseIgnore: this.$element.add( config.popup && config.popup.$autoCloseIgnore )
+		}
 	) );
 };
 
@@ -5222,11 +5230,7 @@ OO.ui.PopupButtonWidget = function OoUiPopupButtonWidget( config ) {
 	OO.ui.PopupButtonWidget.parent.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.PopupElement.call( this, $.extend( true, {}, config, {
-		popup: {
-			$floatableContainer: this.$element
-		}
-	} ) );
+	OO.ui.mixin.PopupElement.call( this, config );
 
 	// Properties
 	this.$overlay = config.$overlay || this.$element;
@@ -10081,6 +10085,10 @@ OO.ui.SearchInputWidget.prototype.setReadOnly = function ( state ) {
  * - by choosing a value from the menu. The value of the chosen option will then appear in the text
  *   input field.
  *
+ * After the user chooses an option, its `data` will be used as a new value for the widget.
+ * A `label` also can be specified for each option: if given, it will be shown instead of the
+ * `data` in the dropdown menu.
+ *
  * This widget can be used inside an HTML form, such as a OO.ui.FormLayout.
  *
  * For more information about menus and options, please see the [OOjs UI documentation on MediaWiki][1].
@@ -10088,32 +10096,33 @@ OO.ui.SearchInputWidget.prototype.setReadOnly = function ( state ) {
  *     @example
  *     // Example: A ComboBoxInputWidget.
  *     var comboBox = new OO.ui.ComboBoxInputWidget( {
- *         label: 'ComboBoxInputWidget',
  *         value: 'Option 1',
- *         menu: {
- *             items: [
- *                 new OO.ui.MenuOptionWidget( {
- *                     data: 'Option 1',
- *                     label: 'Option One'
- *                 } ),
- *                 new OO.ui.MenuOptionWidget( {
- *                     data: 'Option 2',
- *                     label: 'Option Two'
- *                 } ),
- *                 new OO.ui.MenuOptionWidget( {
- *                     data: 'Option 3',
- *                     label: 'Option Three'
- *                 } ),
- *                 new OO.ui.MenuOptionWidget( {
- *                     data: 'Option 4',
- *                     label: 'Option Four'
- *                 } ),
- *                 new OO.ui.MenuOptionWidget( {
- *                     data: 'Option 5',
- *                     label: 'Option Five'
- *                 } )
- *             ]
- *         }
+ *         options: [
+ *             { data: 'Option 1' },
+ *             { data: 'Option 2' },
+ *             { data: 'Option 3' }
+ *         ]
+ *     } );
+ *     $( 'body' ).append( comboBox.$element );
+ *
+ *     @example
+ *     // Example: A ComboBoxInputWidget with additional option labels.
+ *     var comboBox = new OO.ui.ComboBoxInputWidget( {
+ *         value: 'Option 1',
+ *         options: [
+ *             {
+ *                 data: 'Option 1',
+ *                 label: 'Option One'
+ *             },
+ *             {
+ *                 data: 'Option 2',
+ *                 label: 'Option Two'
+ *             },
+ *             {
+ *                 data: 'Option 3',
+ *                 label: 'Option Three'
+ *             }
+ *         ]
  *     } );
  *     $( 'body' ).append( comboBox.$element );
  *
