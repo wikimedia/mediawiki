@@ -75,6 +75,7 @@ return [
 			'tests/qunit/suites/resources/mediawiki/mediawiki.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.loader.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.html.test.js',
+			'tests/qunit/suites/resources/mediawiki/mediawiki.inspect.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.Title.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.toc.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.track.test.js',
@@ -142,6 +143,7 @@ return [
 			'mediawiki.cldr',
 			'mediawiki.cookie',
 			'mediawiki.experiments',
+			'mediawiki.inspect',
 			'test.mediawiki.qunit.testrunner',
 		],
 	]
