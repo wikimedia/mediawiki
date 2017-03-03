@@ -1015,6 +1015,7 @@
 				deferreds = [],
 				paramsAreForced = !!params,
 				displayParams = {},
+				tokenWidgets = [],
 				checkPages = [ pages.main ];
 
 			// Blur any focused widget before submit, because
@@ -1033,7 +1034,10 @@
 			params = {};
 			while ( checkPages.length ) {
 				page = checkPages.shift();
-				deferreds.push( page.apiCheckValid() );
+				if ( page.tokenWidget ) {
+					tokenWidgets.push( page.tokenWidget );
+				}
+				deferreds = deferreds.concat( page.apiCheckValid() );
 				page.getQueryParams( params, displayParams );
 				subpages = page.getSubpages();
 				for ( i = 0; i < subpages.length; i++ ) {
@@ -1049,19 +1053,60 @@
 			}
 
 			$.when.apply( $, deferreds ).done( function () {
-				var formatItems, menu, selectedLabel;
+				var formatItems, menu, selectedLabel, deferred, actions, errorCount;
 
-				if ( $.inArray( false, arguments ) !== -1 ) {
-					windowManager.openWindow( 'errorAlert', {
-						title: Util.parseMsg( 'apisandbox-submit-invalid-fields-title' ),
-						message: Util.parseMsg( 'apisandbox-submit-invalid-fields-message' ),
-						actions: [
-							{
-								action: 'accept',
-								label: OO.ui.msg( 'ooui-dialog-process-dismiss' ),
-								flags: 'primary'
+				// Count how many times `value` occurs in `array`.
+				function countValues( value, array ) {
+					var count, i;
+					count = 0;
+					for ( i = 0; i < array.length; i++ ) {
+						if ( array[ i ] === value ) {
+							count++;
+						}
+					}
+					return count;
+				}
+
+				errorCount = countValues( false, arguments );
+				if ( errorCount > 0 ) {
+					actions = [
+						{
+							action: 'accept',
+							label: OO.ui.msg( 'ooui-dialog-process-dismiss' ),
+							flags: 'primary'
+						}
+					];
+					if ( tokenWidgets.length ) {
+						// Check all token widgets' validity separately
+						deferred = $.when.apply( $, tokenWidgets.map( function ( w ) {
+							return w.apiCheckValid();
+						} ) );
+
+						deferred.done( function () {
+							// If only the tokens are invalid, offer to fix them
+							var tokenErrorCount = countValues( false, arguments );
+							if ( tokenErrorCount === errorCount ) {
+								delete actions[ 0 ].flags;
+								actions.push( {
+									action: 'fix',
+									label: mw.message( 'apisandbox-results-fixtoken' ).text(),
+									flags: 'primary'
+								} );
 							}
-						]
+						} );
+					} else {
+						deferred = $.Deferred().resolve();
+					}
+					deferred.always( function () {
+						windowManager.openWindow( 'errorAlert', {
+							title: Util.parseMsg( 'apisandbox-submit-invalid-fields-title' ),
+							message: Util.parseMsg( 'apisandbox-submit-invalid-fields-message' ),
+							actions: actions
+						} ).closed.then( function ( data ) {
+							if ( data && data.action === 'fix' ) {
+								ApiSandbox.fixTokenAndResend();
+							}
+						} );
 					} );
 					return;
 				}
@@ -1795,17 +1840,18 @@
 	/**
 	 * Check that all widgets on the page are in a valid state.
 	 *
-	 * @return {boolean}
+	 * @return {jQuery.Promise[]} One promise for each widget, resolved with `false` if invalid
 	 */
 	ApiSandbox.PageLayout.prototype.apiCheckValid = function () {
-		var that = this;
+		var promises, that = this;
 
 		if ( this.paramInfo === null ) {
-			return $.Deferred().resolve( false ).promise();
+			return [];
 		} else {
-			return $.when.apply( $, $.map( this.widgets, function ( widget ) {
+			promises = $.map( this.widgets, function ( widget ) {
 				return widget.apiCheckValid();
-			} ) ).then( function () {
+			} );
+			$.when.apply( $, promises ).then( function () {
 				that.apiIsValid = $.inArray( false, arguments ) === -1;
 				if ( that.getOutlineItem() ) {
 					that.getOutlineItem().setIcon( that.apiIsValid || suppressErrors ? null : 'alert' );
@@ -1813,8 +1859,8 @@
 						that.apiIsValid || suppressErrors ? '' : mw.message( 'apisandbox-alert-page' ).plain()
 					);
 				}
-				return $.Deferred().resolve( that.apiIsValid ).promise();
 			} );
+			return promises;
 		}
 	};
 
