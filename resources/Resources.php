@@ -251,7 +251,6 @@ return [
 		'scripts' => 'resources/src/jquery/jquery.highlightText.js',
 		'dependencies' => [
 			'mediawiki.RegExp',
-			'dom-level2-shim',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -345,7 +344,6 @@ return [
 		'styles' => 'resources/src/jquery/jquery.tablesorter.less',
 		'messages' => [ 'sort-descending', 'sort-ascending' ],
 		'dependencies' => [
-			'dom-level2-shim',
 			'mediawiki.RegExp',
 			'mediawiki.language.months',
 		],
@@ -736,7 +734,7 @@ return [
 
 	// Deprecated since MediaWiki 1.29.0
 	'json' => [
-		'deprecated' => 'Use of the "json" MediaWiki module is deprecated since MediaWiki 1.29.0',
+		'deprecated' => 'Use of the "json" module is deprecated since MediaWiki 1.29.0',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
@@ -937,7 +935,6 @@ return [
 	'mediawiki.api.upload' => [
 		'scripts' => 'resources/src/mediawiki/api/upload.js',
 		'dependencies' => [
-			'dom-level2-shim',
 			'mediawiki.api',
 			'mediawiki.api.edit',
 		],
@@ -1220,7 +1217,6 @@ return [
 	'mediawiki.Upload' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.Upload.js',
 		'dependencies' => [
-			'dom-level2-shim',
 			'mediawiki.api.upload',
 		],
 	],
@@ -1612,7 +1608,6 @@ return [
 			'mediawiki.util',
 			'mediawiki.language',
 			'user.options',
-			'dom-level2-shim',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -2490,11 +2485,10 @@ return [
 	],
 
 	/* dom-level2-shim */
-	// IE 8
+	// Deprecated since MediaWiki 1.29.0
 	'dom-level2-shim' => [
-		'scripts' => 'resources/src/polyfill-nodeTypes.js',
+		'deprecated' => 'Use of the "dom-level2-shim" module is deprecated since MediaWiki 1.29.0',
 		'targets' => [ 'desktop', 'mobile' ],
-		'skipFunction' => 'resources/src/dom-level2-skip.js',
 	],
 
 	/* OOjs */
