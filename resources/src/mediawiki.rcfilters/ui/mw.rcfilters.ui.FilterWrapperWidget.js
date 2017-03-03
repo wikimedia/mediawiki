@@ -56,7 +56,8 @@
 				$content: this.filterPopup.$element,
 				$footer: $footer,
 				classes: [ 'mw-rcfilters-ui-filterWrapperWidget-popup' ],
-				width: 650
+				width: 650,
+				hideWhenOutOfView: false
 			}
 		} );
 
