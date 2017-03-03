@@ -211,7 +211,6 @@
 				function ( pieces ) {
 					var $changesListContent = pieces.changes,
 						$fieldset = pieces.fieldset;
-
 					this.changesListModel.update( $changesListContent, $fieldset );
 				}.bind( this )
 				// Do nothing for failure
