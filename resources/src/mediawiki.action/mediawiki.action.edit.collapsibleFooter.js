@@ -24,7 +24,7 @@
 
 	handleOne = function ( $list, $toggler, storeKey ) {
 		// Collapsed by default
-		var isCollapsed = mw.storage.get( storeKey ) !== 'expanded';
+		var isCollapsed = mw.storage.get( storeKey ) !== '1';
 
 		// Style the toggler with an arrow icon and add a tabIndex and a role for accessibility
 		$toggler.addClass( 'mw-editfooter-toggler' ).prop( 'tabIndex', 0 ).attr( 'role', 'button' );
@@ -41,12 +41,12 @@
 
 		$list.on( 'beforeExpand.mw-collapsible', function () {
 			$toggler.removeClass( 'mw-icon-arrow-collapsed' ).addClass( 'mw-icon-arrow-expanded' );
-			mw.storage.set( storeKey, 'expanded' );
+			mw.storage.set( storeKey, '1' );
 		} );
 
 		$list.on( 'beforeCollapse.mw-collapsible', function () {
 			$toggler.removeClass( 'mw-icon-arrow-expanded' ).addClass( 'mw-icon-arrow-collapsed' );
-			mw.storage.set( storeKey, 'collapsed' );
+			mw.storage.set( storeKey, '0' );
 		} );
 	};
 
