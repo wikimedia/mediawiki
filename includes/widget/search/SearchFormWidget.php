@@ -206,16 +206,13 @@ class SearchFormWidget {
 	 */
 	protected function optionsHtml( $term, $isPowerSearch, $profile ) {
 		$html = '';
-		$opts = [
-			'profile' => $profile,
-		];
 
 		if ( $isPowerSearch ) {
-			$html .= $this->powerSearchBox( $term, $opts );
+			$html .= $this->powerSearchBox( $term, [] );
 		} else {
 			$form = '';
 			Hooks::run( 'SpecialSearchProfileForm', [
-				$this->specialSearch, &$form, $profile, $term, $opts
+				$this->specialSearch, &$form, $profile, $term, []
 			] );
 			$html .= $form;
 		}
