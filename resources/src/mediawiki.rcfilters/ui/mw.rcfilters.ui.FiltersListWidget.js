@@ -34,8 +34,6 @@
 			classes: [ 'mw-rcfilters-ui-filtersListWidget-hightlightButton' ]
 		} );
 
-		this.$label.append( this.highlightButton.$element );
-
 		this.noResultsLabel = new OO.ui.LabelWidget( {
 			label: mw.msg( 'rcfilters-filterlist-noresults' ),
 			classes: [ 'mw-rcfilters-ui-filtersListWidget-noresults' ]
@@ -53,7 +51,24 @@
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filtersListWidget' )
 			.append(
-				this.$label,
+				$( '<div>' )
+					.addClass( 'mw-rcfilters-ui-table' )
+					.addClass( 'mw-rcfilters-ui-filtersListWidget-header' )
+					.append(
+						$( '<div>' )
+							.addClass( 'mw-rcfilters-ui-row' )
+							.append(
+								$( '<div>' )
+									.addClass( 'mw-rcfilters-ui-cell' )
+									.addClass( 'mw-rcfilters-ui-filtersListWidget-header-title' )
+									.append( this.$label ),
+								$( '<div>' )
+									.addClass( 'mw-rcfilters-ui-cell' )
+									.addClass( 'mw-rcfilters-ui-filtersListWidget-header-highlight' )
+									.append( this.highlightButton.$element )
+							)
+					),
+				// this.$label,
 				this.$group
 					.addClass( 'mw-rcfilters-ui-filtersListWidget-group' ),
 				this.noResultsLabel.$element
