@@ -82,9 +82,8 @@
 	 *  copied in one direction only. Changes to globals do not reflect in the map.
 	 */
 	function Map( global ) {
-		this.internalValues = {};
+		this.values = {};
 		if ( global === true ) {
-
 			// Override #set to also set the global variable
 			this.set = function ( selection, value ) {
 				var s;
@@ -102,15 +101,6 @@
 				return false;
 			};
 		}
-
-		// Deprecated since MediaWiki 1.28
-		log.deprecate(
-			this,
-			'values',
-			this.internalValues,
-			'mw.Map#values is deprecated. Use mw.Map#get() instead.',
-			'Map-values'
-		);
 	}
 
 	/**
@@ -123,7 +113,7 @@
 	 * @param {Mixed} value
 	 */
 	function setGlobalMapValue( map, key, value ) {
-		map.internalValues[ key ] = value;
+		map.values[ key ] = value;
 		log.deprecate(
 				window,
 				key,
@@ -164,14 +154,13 @@
 			}
 
 			if ( typeof selection === 'string' ) {
-				if ( !hasOwn.call( this.internalValues, selection ) ) {
-					return fallback;
-				}
-				return this.internalValues[ selection ];
+				return hasOwn.call( this.values, selection ) ?
+					this.values[ selection ] :
+					fallback;
 			}
 
 			if ( selection === undefined ) {
-				return this.internalValues;
+				return this.values;
 			}
 
 			// Invalid selection key
@@ -190,12 +179,12 @@
 
 			if ( $.isPlainObject( selection ) ) {
 				for ( s in selection ) {
-					this.internalValues[ s ] = selection[ s ];
+					this.values[ s ] = selection[ s ];
 				}
 				return true;
 			}
 			if ( typeof selection === 'string' && arguments.length > 1 ) {
-				this.internalValues[ selection ] = value;
+				this.values[ selection ] = value;
 				return true;
 			}
 			return false;
@@ -208,17 +197,16 @@
 		 * @return {boolean} True if the key(s) exist
 		 */
 		exists: function ( selection ) {
-			var s;
-
+			var i;
 			if ( $.isArray( selection ) ) {
-				for ( s = 0; s < selection.length; s++ ) {
-					if ( typeof selection[ s ] !== 'string' || !hasOwn.call( this.internalValues, selection[ s ] ) ) {
+				for ( i = 0; i < selection.length; i++ ) {
+					if ( typeof selection[ i ] !== 'string' || !hasOwn.call( this.values, selection[ i ] ) ) {
 						return false;
 					}
 				}
 				return true;
 			}
-			return typeof selection === 'string' && hasOwn.call( this.internalValues, selection );
+			return typeof selection === 'string' && hasOwn.call( this.values, selection );
 		}
 	};
 
