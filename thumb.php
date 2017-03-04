@@ -92,6 +92,34 @@ function wfStreamThumb( array $params ) {
 	global $wgVaryOnXFP;
 
 	$headers = []; // HTTP headers to send
+	$publicWiki = in_array( 'read', User::getGroupPermissions( [ '*' ] ), true );
+	if ( !$publicWiki ) {
+		// For private wikis, run extra auth checks and set cache control headers
+		$headers[] = 'Cache-Control: private';
+		$headers[] = 'Vary: Cookie';
+
+		$name = $params['f'];
+		$title = Title::makeTitleSafe( NS_FILE, $name );
+		if ( !$title instanceof Title ) { // files have valid titles
+			wfForbidden( 'img-auth-accessdenied', 'img-auth-badtitle', $name );
+			return;
+		}
+
+		// Run hook for extension authorization plugins
+		/** @var $result array */
+		$result = null;
+		if ( !Hooks::run( 'ImgAuthBeforeStream', array( &$title, &$path, &$name, &$result ) ) ) {
+			wfForbidden( $result[0], $result[1], array_slice( $result, 2 ) );
+			return;
+		}
+
+		// Check user authorization for this title
+		// Checks Whitelist too
+		if ( !$title->userCan( 'read' ) ) {
+			wfForbidden( 'img-auth-accessdenied', 'img-auth-noread', $name );
+			return;
+		}
+	}
 
 	$fileName = isset( $params['f'] ) ? $params['f'] : '';
 
