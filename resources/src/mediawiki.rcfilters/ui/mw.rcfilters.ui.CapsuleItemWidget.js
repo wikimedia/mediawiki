@@ -38,6 +38,7 @@
 			popup: {
 				padded: false,
 				align: 'center',
+				position: 'above',
 				$content: $popupContent
 					.append( descLabelWidget.$element ),
 				$floatableContainer: this.$element,
@@ -149,8 +150,8 @@
 	mw.rcfilters.ui.CapsuleItemWidget.prototype.onMouseEnter = function () {
 		if ( this.model.getDescription() ) {
 			if ( !this.positioned ) {
-				// Recalculate position to be center of the capsule item
-				this.popup.$element.css( 'margin-left', ( this.$element.width() / 2 ) );
+				// Recalculate anchor position to be center of the capsule item
+				this.popup.$anchor.css( 'margin-left', ( this.$element.width() / 2 ) );
 				this.positioned = true;
 			}
 
