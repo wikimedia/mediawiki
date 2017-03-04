@@ -52,6 +52,7 @@
 		/* eslint-enable no-bitwise */
 	}
 
+	// <https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Set>
 	StringSet = window.Set || ( function () {
 		/**
 		 * @private
@@ -64,7 +65,7 @@
 			this.set[ value ] = true;
 		};
 		StringSet.prototype.has = function ( value ) {
-			return this.set.hasOwnProperty( value );
+			return hasOwn.call( this.set, value );
 		};
 		return StringSet;
 	}() );
@@ -133,22 +134,22 @@
 		 *
 		 * @param {string|Array} [selection] Key or array of keys to retrieve values for.
 		 * @param {Mixed} [fallback=null] Value for keys that don't exist.
-		 * @return {Mixed|Object| null} If selection was a string, returns the value,
+		 * @return {Mixed|Object|null} If selection was a string, returns the value,
 		 *  If selection was an array, returns an object of key/values.
-		 *  If no selection is passed, the internal container is returned. (Beware that,
-		 *  as is the default in JavaScript, the object is returned by reference.)
+		 *  If no selection is passed, a new object with all key/values is returned.
 		 */
 		get: function ( selection, fallback ) {
 			var results, i;
-			// If we only do this in the `return` block, it'll fail for the
-			// call to get() from the mutli-selection block.
 			fallback = arguments.length > 1 ? fallback : null;
 
 			if ( $.isArray( selection ) ) {
-				selection = slice.call( selection );
 				results = {};
 				for ( i = 0; i < selection.length; i++ ) {
-					results[ selection[ i ] ] = this.get( selection[ i ], fallback );
+					if ( typeof selection[ i ] === 'string' ) {
+						results[ selection[ i ] ] = hasOwn.call( this.values, selection ) ?
+							this.values[ selection[ i ] ] :
+							fallback;
+					}
 				}
 				return results;
 			}
@@ -160,11 +161,15 @@
 			}
 
 			if ( selection === undefined ) {
-				return this.values;
+				results = {};
+				for ( i in this.values ) {
+					results[ i ] = this.values[ i ];
+				}
+				return results;
 			}
 
 			// Invalid selection key
-			return null;
+			return fallback;
 		},
 
 		/**
