@@ -152,7 +152,7 @@ class AutoloadGenerator {
 		ksort( $json[$key] );
 
 		// Return the whole JSON file
-		return FormatJson::encode( $json, true ) . "\n";
+		return FormatJson::encode( $json, "\t", FormatJson::ALL_OK ) . "\n";
 	}
 
 	/**
