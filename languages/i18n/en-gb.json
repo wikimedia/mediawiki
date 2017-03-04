@@ -27,7 +27,8 @@
 			"SamanthaNguyen",
 			"Usandaru555",
 			"Aefgh39622",
-			"Anomie"
+			"Anomie",
+			"Dr. Shikha Jaggi"
 		]
 	},
 	"tog-underline": "Link underlining:",
@@ -171,9 +172,9 @@
 	"and": "&#32;and",
 	"qbfind": "Find",
 	"qbbrowse": "Browse",
-	"qbedit": "Edit",
-	"qbpageoptions": "This page",
-	"qbmyoptions": "My pages",
+	"qbedit": "संपादित करें",
+	"qbpageoptions": "यह पन्ना",
+	"qbmyoptions": "मेरे पृष्ठों",
 	"faq": "FAQ",
 	"faqpage": "Project:FAQ",
 	"actions": "Actions",

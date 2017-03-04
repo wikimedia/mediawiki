@@ -323,7 +323,7 @@
 	"internalerror_info": "Interna greška: $1",
 	"internalerror-fatal-exception": "Fatalna greška tipa \"$1\"",
 	"filecopyerror": "Ne može se kopirati \"$1\" na \"$2\".",
-	"filerenameerror": "Ne može se promjeniti ime datoteke \"$1\" u \"$2\".",
+	"filerenameerror": "Ne mogu preimenovati datoteku \"$1\" u \"$2\".",
 	"filedeleteerror": "Ne može se izbrisati datoteka \"$1\".",
 	"directorycreateerror": "Nije moguće napraviti direktorijum \"$1\".",
 	"directoryreadonlyerror": "Direktorij \"$1\" je samo za čitanje.",

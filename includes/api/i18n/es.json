@@ -1449,7 +1449,7 @@
 	"apierror-invalidparammix-mustusewith": "El parámetro <kbd>$1</kbd> solo se puede utilizar junto con <kbd>$2</kbd>.",
 	"apierror-invalidparammix-parse-new-section": "<kbd>section=new</kbd> no se puede combinar con los parámetros <var>oldid</var>, <var>pageid</var> y <var>page</var>. Por favor, utiliza <var>title</var> y <var>text</var>.",
 	"apierror-invalidparammix": "{{PLURAL:$2|Los parámetros}} $1 no se pueden utilizar juntos.",
-	"apierror-invalidsection": "El parámetro de sección debe ser un ID de sección válido, o bien <kbd>new</kbd>.",
+	"apierror-invalidsection": "El parámetro <var>section</var> debe ser un identificador de sección válido, o bien <kbd>new</kbd>.",
 	"apierror-invalidsha1base36hash": "El hash SHA1Base36 proporcionado no es válido.",
 	"apierror-invalidsha1hash": "El hash SHA1 proporcionado no es válido.",
 	"apierror-invalidtitle": "Título incorrecto \"$1\".",
