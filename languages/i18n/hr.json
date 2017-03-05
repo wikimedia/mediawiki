@@ -2361,7 +2361,7 @@
 	"lastmodifiedatby": "Ovu je stranicu posljednji put {{GENDER:$4|mijenjao suradnik|mijenjala suradnica}} $3 dana $1 u $2.",
 	"othercontribs": "Temelji se na doprinosu suradnika $1.",
 	"others": "drugih",
-	"siteusers": "{{SITENAME}} {{PLURAL:$2|suradnik|suradnici}} $1",
+	"siteusers": "{{SITENAME}} {{PLURAL:$2|{{GENDER:$1|suradnik|suradnica}}|suradnici}} $1",
 	"anonusers": "{{SITENAME}} {{PLURAL:$2|anonimni suradnik|anonimni suradnici}} $1",
 	"creditspage": "Autori stranice",
 	"nocredits": "Za ovu stranicu nema podataka o autorima.",

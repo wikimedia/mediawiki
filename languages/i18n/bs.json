@@ -3067,7 +3067,7 @@
 	"monthsall": "sve",
 	"confirmemail": "Potvrdite adresu e-pošte",
 	"confirmemail_noemail": "Niste unijeli tačnu e-mail adresu u Vaše [[Special:Preferences|korisničke postavke]].",
-	"confirmemail_text": "Ova viki zahtjeva da potvrdite adresu Vaše e-pošte prije nego što koristite mogućnosti e-pošte. Aktivirajte dugme ispod kako bi ste poslali poštu za potvrdu na Vašu adresu. Pošta uključuje link koji sadrži kod; učitajte link u Vaš preglednik da bi ste potvrdili da je adresa Vaše e-pošte validna.",
+	"confirmemail_text": "{{SITENAME}} zahtijeva da potvrdite adresu Vaše e-pošte prije nego što koristite mogućnosti e-pošte.\nAktivirajte dugme ispod kako biste poslali poštu za potvrdu na Vašu adresu.\nPošta uključuje link koji sadrži kod;\nučitajte link u Vaš preglednik da biste potvrdili da je adresa Vaše e-pošte validna.",
 	"confirmemail_pending": "Potvrdni kod Vam je već poslan e-poštom;\nako ste nedavno otvorili račun, trebali biste pričekati nekoliko minuta da poslana pošta stigne, prije nego što ponovo zahtijevate novi kod.",
 	"confirmemail_send": "Pošaljite kod za potvrdu",
 	"confirmemail_sent": "E-pošta za potvrđivanje poslata.",

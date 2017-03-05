@@ -3425,7 +3425,7 @@
 	"feedback-thanks": "Teşekkürler! Görüşleriniz \"[$2 $1]\" sayfasında paylaşılmıştır.",
 	"feedback-thanks-title": "Teşekkürler!",
 	"feedback-useragent": "Kullanıcı temsilcisi",
-	"searchsuggest-search": "Ara",
+	"searchsuggest-search": "{{SITENAME}} üzerinde ara",
 	"searchsuggest-containing": "içeren...",
 	"api-error-badtoken": "İç hata: Bozuk anahtar.",
 	"api-error-emptypage": "Yeni, boş bir sayfa oluşturmaya izin verilmez.",

@@ -13,7 +13,8 @@
 			"Skalcaa",
 			"Janezdrilc",
 			"Matma Rex",
-			"NegativeTwelveDollars"
+			"NegativeTwelveDollars",
+			"Xð"
 		]
 	},
 	"tog-underline": "Podčrtavanje povezav:",
@@ -206,7 +207,7 @@
 	"unprotectthispage": "Spremeni zaščito strani",
 	"newpage": "Nova stran",
 	"talkpage": "Pogovorite se o strani",
-	"talkpagelinktext": "Pogovor",
+	"talkpagelinktext": "pogovor",
 	"specialpage": "Posebna stran",
 	"personaltools": "Osebna orodja",
 	"articlepage": "Prikaže članek",

@@ -19,7 +19,8 @@
 			"Macofe",
 			"Nemo bis",
 			"Matma Rex",
-			"Kaldari"
+			"Kaldari",
+			"Xð"
 		]
 	},
 	"tog-underline": "Потцртување на врски:",
@@ -212,7 +213,7 @@
 	"unprotectthispage": "Измена на заштитата на страницава",
 	"newpage": "Нова страница",
 	"talkpage": "Разговор",
-	"talkpagelinktext": "Разговор",
+	"talkpagelinktext": "разговор",
 	"specialpage": "Службена страница",
 	"personaltools": "Лични алатки",
 	"articlepage": "Преглед на содржината",

@@ -2819,7 +2819,7 @@
 	"feedback-subject": "Предмет:",
 	"feedback-submit": "Одослати",
 	"feedback-thanks": "Дякуєме! Ваш коментарь быв приданый на сторінку „[$2 $1]“.",
-	"searchsuggest-search": "Глядати",
+	"searchsuggest-search": "Глядати {{SITENAME}}",
 	"searchsuggest-containing": "обсягуючій...",
 	"api-error-badtoken": "Внутрїшня хыба: планый знак.",
 	"api-error-emptypage": "Створїня новых, порожнїх сторінк неслободно.",
