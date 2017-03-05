@@ -21,6 +21,8 @@
  * @ingroup Database
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * Database abstraction object for PHP extension mysqli.
  *

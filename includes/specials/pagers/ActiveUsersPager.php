@@ -101,12 +101,21 @@ class ActiveUsersPager extends UsersPager {
 			$tables[] = 'user_groups';
 			$conds[] = 'ug_user = user_id';
 			$conds['ug_group'] = $this->groups;
+			if ( !$this->getConfig()->get( 'DisableUserGroupExpiry' ) ) {
+				$conds[] = 'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() );
+			}
 		}
 		if ( $this->excludegroups !== [] ) {
 			foreach ( $this->excludegroups as $group ) {
 				$conds[] = 'NOT EXISTS (' . $dbr->selectSQLText(
-						'user_groups', '1', [ 'ug_user = user_id', 'ug_group' => $group ]
-					) . ')';
+					'user_groups', '1', [
+						'ug_user = user_id',
+						'ug_group' => $group,
+						$this->getConfig()->get( 'DisableUserGroupExpiry' ) ?
+							'1' :
+							'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
+					]
+				) . ')';
 			}
 		}
 		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
@@ -165,9 +174,9 @@ class ActiveUsersPager extends UsersPager {
 		$list = [];
 		$user = User::newFromId( $row->user_id );
 
-		$groups_list = self::getGroups( intval( $row->user_id ), $this->userGroupCache );
-		foreach ( $groups_list as $group ) {
-			$list[] = self::buildGroupLink( $group, $userName );
+		$ugms = self::getGroupMemberships( intval( $row->user_id ), $this->userGroupCache );
+		foreach ( $ugms as $ugm ) {
+			$list[] = $this->buildGroupLink( $ugm, $userName );
 		}
 
 		$groups = $lang->commaList( $list );

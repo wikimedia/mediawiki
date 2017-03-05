@@ -29,8 +29,6 @@
  */
 class ApiProtect extends ApiBase {
 	public function execute() {
-		global $wgContLang;
-
 		$params = $this->extractRequestParams();
 
 		$pageObj = $this->getTitleOrPageId( $params, 'fromdbmaster' );
@@ -101,7 +99,7 @@ class ApiProtect extends ApiBase {
 			}
 			$resultProtections[] = [
 				$p[0] => $protections[$p[0]],
-				'expiry' => $wgContLang->formatExpiry( $expiryarray[$p[0]], TS_ISO_8601, 'infinite' ),
+				'expiry' => ApiResult::formatExpiry( $expiryarray[$p[0]], 'infinite' ),
 			];
 		}
 

@@ -66,7 +66,7 @@ class User implements IDBAccessObject {
 	/**
 	 * @const int Serialized record version.
 	 */
-	const VERSION = 10;
+	const VERSION = 11;
 
 	/**
 	 * Exclude user options that are set to their default value.
@@ -104,7 +104,7 @@ class User implements IDBAccessObject {
 		'mRegistration',
 		'mEditCount',
 		// user_groups table
-		'mGroups',
+		'mGroupMemberships',
 		// user_properties table
 		'mOptionOverrides',
 	];
@@ -225,8 +225,13 @@ class User implements IDBAccessObject {
 	protected $mRegistration;
 	/** @var int */
 	protected $mEditCount;
-	/** @var array */
-	public $mGroups;
+	/**
+	 * @var array No longer used since 1.29; use User::getGroups() instead
+	 * @deprecated since 1.29
+	 */
+	private $mGroups;
+	/** @var array Associative array of (group name => UserGroupMembership object) */
+	protected $mGroupMemberships;
 	/** @var array */
 	protected $mOptionOverrides;
 	// @}
@@ -283,9 +288,7 @@ class User implements IDBAccessObject {
 	/** @var array */
 	public $mOptions;
 
-	/**
-	 * @var WebRequest
-	 */
+	/** @var WebRequest */
 	private $mRequest;
 
 	/** @var Block */
@@ -301,7 +304,8 @@ class User implements IDBAccessObject {
 	protected $queryFlagsUsed = self::READ_NORMAL;
 
 	/** @var string Indicates type of block (used for eventlogging)
-	 * Permitted values: 'cookie-block', 'proxy-block', 'openproxy-block', 'xff-block'
+	 * Permitted values: 'cookie-block', 'proxy-block', 'openproxy-block', 'xff-block',
+	 * 'config-block'
 	 */
 	public $blockTrigger = false;
 
@@ -465,6 +469,17 @@ class User implements IDBAccessObject {
 	 */
 	protected function getCacheKey( WANObjectCache $cache ) {
 		return $cache->makeGlobalKey( 'user', 'id', wfWikiID(), $this->mId );
+	}
+
+	/**
+	 * @param WANObjectCache $cache
+	 * @return string[]
+	 * @since 1.28
+	 */
+	public function getMutableCacheKeys( WANObjectCache $cache ) {
+		$id = $this->getId();
+
+		return $id ? [ $this->getCacheKey( $cache ) ] : [];
 	}
 
 	/**
@@ -934,7 +949,7 @@ class User implements IDBAccessObject {
 
 		// Ensure that the username isn't longer than 235 bytes, so that
 		// (at least for the builtin skins) user javascript and css files
-		// will work. (bug 23080)
+		// will work. (T25080)
 		if ( strlen( $name ) > 235 ) {
 			wfDebugLog( 'username', __METHOD__ .
 				": '$name' invalid due to length" );
@@ -1059,7 +1074,7 @@ class User implements IDBAccessObject {
 		}
 
 		// Clean up name according to title rules,
-		// but only when validation is requested (bug 12654)
+		// but only when validation is requested (T14654)
 		$t = ( $validate !== false ) ?
 			Title::newFromText( $name, NS_USER ) : Title::makeTitle( NS_USER, $name );
 		// Check for invalid titles
@@ -1137,7 +1152,7 @@ class User implements IDBAccessObject {
 		$this->mEmailToken = '';
 		$this->mEmailTokenExpires = null;
 		$this->mRegistration = wfTimestamp( TS_MW );
-		$this->mGroups = [];
+		$this->mGroupMemberships = [];
 
 		Hooks::run( 'UserLoadDefaults', [ $this, $name ] );
 	}
@@ -1249,7 +1264,7 @@ class User implements IDBAccessObject {
 		if ( $s !== false ) {
 			// Initialise user table data
 			$this->loadFromRow( $s );
-			$this->mGroups = null; // deferred
+			$this->mGroupMemberships = null; // deferred
 			$this->getEditCount(); // revalidation for nulls
 			return true;
 		} else {
@@ -1266,13 +1281,16 @@ class User implements IDBAccessObject {
 	 * @param stdClass $row Row from the user table to load.
 	 * @param array $data Further user data to load into the object
 	 *
-	 *	user_groups		Array with groups out of the user_groups table
-	 *	user_properties		Array with properties out of the user_properties table
+	 *  user_groups   Array of arrays or stdClass result rows out of the user_groups
+	 *                table. Previously you were supposed to pass an array of strings
+	 *                here, but we also need expiry info nowadays, so an array of
+	 *                strings is ignored.
+	 *  user_properties   Array with properties out of the user_properties table
 	 */
 	protected function loadFromRow( $row, $data = null ) {
 		$all = true;
 
-		$this->mGroups = null; // deferred
+		$this->mGroupMemberships = null; // deferred
 
 		if ( isset( $row->user_name ) ) {
 			$this->mName = $row->user_name;
@@ -1341,7 +1359,18 @@ class User implements IDBAccessObject {
 
 		if ( is_array( $data ) ) {
 			if ( isset( $data['user_groups'] ) && is_array( $data['user_groups'] ) ) {
-				$this->mGroups = $data['user_groups'];
+				if ( !count( $data['user_groups'] ) ) {
+					$this->mGroupMemberships = [];
+				} else {
+					$firstGroup = reset( $data['user_groups'] );
+					if ( is_array( $firstGroup ) || is_object( $firstGroup ) ) {
+						$this->mGroupMemberships = [];
+						foreach ( $data['user_groups'] as $row ) {
+							$ugm = UserGroupMembership::newFromRow( (object)$row );
+							$this->mGroupMemberships[$ugm->getGroup()] = $ugm;
+						}
+					}
+				}
 			}
 			if ( isset( $data['user_properties'] ) && is_array( $data['user_properties'] ) ) {
 				$this->loadOptions( $data['user_properties'] );
@@ -1365,18 +1394,12 @@ class User implements IDBAccessObject {
 	 * Load the groups from the database if they aren't already loaded.
 	 */
 	private function loadGroups() {
-		if ( is_null( $this->mGroups ) ) {
+		if ( is_null( $this->mGroupMemberships ) ) {
 			$db = ( $this->queryFlagsUsed & self::READ_LATEST )
 				? wfGetDB( DB_MASTER )
 				: wfGetDB( DB_REPLICA );
-			$res = $db->select( 'user_groups',
-				[ 'ug_group' ],
-				[ 'ug_user' => $this->mId ],
-				__METHOD__ );
-			$this->mGroups = [];
-			foreach ( $res as $row ) {
-				$this->mGroups[] = $row->ug_group;
-			}
+			$this->mGroupMemberships = UserGroupMembership::getMembershipsForUser(
+				$this->mId, $db );
 		}
 	}
 
@@ -1508,7 +1531,7 @@ class User implements IDBAccessObject {
 		$this->mRights = null;
 		$this->mEffectiveGroups = null;
 		$this->mImplicitGroups = null;
-		$this->mGroups = null;
+		$this->mGroupMemberships = null;
 		$this->mOptions = null;
 		$this->mOptionsLoaded = false;
 		$this->mEditCount = null;
@@ -1581,7 +1604,7 @@ class User implements IDBAccessObject {
 	 *   Check when actually saving should be done against master.
 	 */
 	private function getBlockedStatus( $bFromSlave = true ) {
-		global $wgProxyWhitelist, $wgUser, $wgApplyIpBlocksToXff;
+		global $wgProxyWhitelist, $wgUser, $wgApplyIpBlocksToXff, $wgSoftBlockRanges;
 
 		if ( -1 != $this->mBlockedby ) {
 			return;
@@ -1614,29 +1637,9 @@ class User implements IDBAccessObject {
 		// User/IP blocking
 		$block = Block::newFromTarget( $this, $ip, !$bFromSlave );
 
-		// If no block has been found, check for a cookie indicating that the user is blocked.
-		$blockCookieVal = (int)$this->getRequest()->getCookie( 'BlockID' );
-		if ( !$block instanceof Block && $blockCookieVal > 0 ) {
-			// Load the Block from the ID in the cookie.
-			$tmpBlock = Block::newFromID( $blockCookieVal );
-			if ( $tmpBlock instanceof Block ) {
-				// Check the validity of the block.
-				$blockIsValid = $tmpBlock->getType() == Block::TYPE_USER
-					&& !$tmpBlock->isExpired()
-					&& $tmpBlock->isAutoblocking();
-				$config = RequestContext::getMain()->getConfig();
-				$useBlockCookie = ( $config->get( 'CookieSetOnAutoblock' ) === true );
-				if ( $blockIsValid && $useBlockCookie ) {
-					// Use the block.
-					$block = $tmpBlock;
-					$this->blockTrigger = 'cookie-block';
-				} else {
-					// If the block is not valid, clear the block cookie (but don't delete it,
-					// because it needs to be cleared from LocalStorage as well and an empty string
-					// value is checked for in the mediawiki.user.blockcookie module).
-					$tmpBlock->setCookie( $this->getRequest()->response(), true );
-				}
-			}
+		// Cookie blocking
+		if ( !$block instanceof Block ) {
+			$block = $this->getBlockFromCookieValue( $this->getRequest()->getCookie( 'BlockID' ) );
 		}
 
 		// Proxy blocking
@@ -1661,7 +1664,7 @@ class User implements IDBAccessObject {
 			}
 		}
 
-		// (bug 23343) Apply IP blocks to the contents of XFF headers, if enabled
+		// (T25343) Apply IP blocks to the contents of XFF headers, if enabled
 		if ( !$block instanceof Block
 			&& $wgApplyIpBlocksToXff
 			&& $ip !== null
@@ -1678,6 +1681,21 @@ class User implements IDBAccessObject {
 				$block->mReason = wfMessage( 'xffblockreason', $block->mReason )->text();
 				$this->blockTrigger = 'xff-block';
 			}
+		}
+
+		if ( !$block instanceof Block
+			&& $ip !== null
+			&& $this->isAnon()
+			&& IP::isInRanges( $ip, $wgSoftBlockRanges )
+		) {
+			$block = new Block( [
+				'address' => $ip,
+				'byText' => 'MediaWiki default',
+				'reason' => wfMessage( 'softblockrangesreason', $ip )->text(),
+				'anonOnly' => true,
+				'systemBlock' => 'wgSoftBlockRanges',
+			] );
+			$this->blockTrigger = 'config-block';
 		}
 
 		if ( $block instanceof Block ) {
@@ -1698,6 +1716,43 @@ class User implements IDBAccessObject {
 		$user = $this;
 		// Extensions
 		Hooks::run( 'GetBlockedStatus', [ &$user ] );
+	}
+
+	/**
+	 * Try to load a Block from an ID given in a cookie value.
+	 * @param string|null $blockCookieVal The cookie value to check.
+	 * @return Block|bool The Block object, or false if none could be loaded.
+	 */
+	protected function getBlockFromCookieValue( $blockCookieVal ) {
+		// Make sure there's something to check. The cookie value must start with a number.
+		if ( strlen( $blockCookieVal ) < 1 || !is_numeric( substr( $blockCookieVal, 0, 1 ) ) ) {
+			return false;
+		}
+		// Load the Block from the ID in the cookie.
+		$blockCookieId = Block::getIdFromCookieValue( $blockCookieVal );
+		if ( $blockCookieId !== null ) {
+			// An ID was found in the cookie.
+			$tmpBlock = Block::newFromID( $blockCookieId );
+			if ( $tmpBlock instanceof Block ) {
+				// Check the validity of the block.
+				$blockIsValid = $tmpBlock->getType() == Block::TYPE_USER
+					&& !$tmpBlock->isExpired()
+					&& $tmpBlock->isAutoblocking();
+				$config = RequestContext::getMain()->getConfig();
+				$useBlockCookie = ( $config->get( 'CookieSetOnAutoblock' ) === true );
+				if ( $blockIsValid && $useBlockCookie ) {
+					// Use the block.
+					$this->blockTrigger = 'cookie-block';
+					return $tmpBlock;
+				} else {
+					// If the block is not valid, clear the block cookie (but don't delete it,
+					// because it needs to be cleared from LocalStorage as well and an empty string
+					// value is checked for in the mediawiki.user.blockcookie module).
+					$tmpBlock->setCookie( $this->getRequest()->response(), true );
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -1732,7 +1787,7 @@ class User implements IDBAccessObject {
 		$found = false;
 		// @todo FIXME: IPv6 ???  (https://bugs.php.net/bug.php?id=33170)
 		if ( IP::isIPv4( $ip ) ) {
-			// Reverse IP, bug 21255
+			// Reverse IP, T23255
 			$ipReversed = implode( '.', array_reverse( explode( '.', $ip ) ) );
 
 			foreach ( (array)$bases as $base ) {
@@ -1807,7 +1862,7 @@ class User implements IDBAccessObject {
 	 */
 	public function isPingLimitable() {
 		global $wgRateLimitsExcludedIPs;
-		if ( in_array( $this->getRequest()->getIP(), $wgRateLimitsExcludedIPs ) ) {
+		if ( IP::isInRanges( $this->getRequest()->getIP(), $wgRateLimitsExcludedIPs ) ) {
 			// No other good way currently to disable rate limits
 			// for specific IPs. :P
 			// But this is a crappy hack and should die.
@@ -3206,7 +3261,20 @@ class User implements IDBAccessObject {
 	public function getGroups() {
 		$this->load();
 		$this->loadGroups();
-		return $this->mGroups;
+		return array_keys( $this->mGroupMemberships );
+	}
+
+	/**
+	 * Get the list of explicit group memberships this user has, stored as
+	 * UserGroupMembership objects. Implicit groups are not included.
+	 *
+	 * @return array Associative array of (group name as string => UserGroupMembership object)
+	 * @since 1.29
+	 */
+	public function getGroupMemberships() {
+		$this->load();
+		$this->loadGroups();
+		return $this->mGroupMemberships;
 	}
 
 	/**
@@ -3317,34 +3385,35 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Add the user to the given group.
-	 * This takes immediate effect.
+	 * Add the user to the given group. This takes immediate effect.
+	 * If the user is already in the group, the expiry time will be updated to the new
+	 * expiry time. (If $expiry is omitted or null, the membership will be altered to
+	 * never expire.)
+	 *
 	 * @param string $group Name of the group to add
+	 * @param string $expiry Optional expiry timestamp in any format acceptable to
+	 *   wfTimestamp(), or null if the group assignment should not expire
 	 * @return bool
 	 */
-	public function addGroup( $group ) {
+	public function addGroup( $group, $expiry = null ) {
 		$this->load();
+		$this->loadGroups();
 
-		if ( !Hooks::run( 'UserAddGroup', [ $this, &$group ] ) ) {
+		if ( $expiry ) {
+			$expiry = wfTimestamp( TS_MW, $expiry );
+		}
+
+		if ( !Hooks::run( 'UserAddGroup', [ $this, &$group, &$expiry ] ) ) {
 			return false;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
-		if ( $this->getId() ) {
-			$dbw->insert( 'user_groups',
-				[
-					'ug_user' => $this->getId(),
-					'ug_group' => $group,
-				],
-				__METHOD__,
-				[ 'IGNORE' ] );
+		// create the new UserGroupMembership and put it in the DB
+		$ugm = new UserGroupMembership( $this->mId, $group, $expiry );
+		if ( !$ugm->insert( true ) ) {
+			return false;
 		}
 
-		$this->loadGroups();
-		$this->mGroups[] = $group;
-		// In case loadGroups was not called before, we now have the right twice.
-		// Get rid of the duplicate.
-		$this->mGroups = array_unique( $this->mGroups );
+		$this->mGroupMemberships[$group] = $ugm;
 
 		// Refresh the groups caches, and clear the rights cache so it will be
 		// refreshed on the next call to $this->getRights().
@@ -3364,29 +3433,19 @@ class User implements IDBAccessObject {
 	 */
 	public function removeGroup( $group ) {
 		$this->load();
+
 		if ( !Hooks::run( 'UserRemoveGroup', [ $this, &$group ] ) ) {
 			return false;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'user_groups',
-			[
-				'ug_user' => $this->getId(),
-				'ug_group' => $group,
-			], __METHOD__
-		);
-		// Remember that the user was in this group
-		$dbw->insert( 'user_former_groups',
-			[
-				'ufg_user' => $this->getId(),
-				'ufg_group' => $group,
-			],
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
+		$ugm = UserGroupMembership::getMembership( $this->mId, $group );
+		// delete the membership entry
+		if ( !$ugm || !$ugm->delete() ) {
+			return false;
+		}
 
 		$this->loadGroups();
-		$this->mGroups = array_diff( $this->mGroups, [ $group ] );
+		unset( $this->mGroupMemberships[$group] );
 
 		// Refresh the groups caches, and clear the rights cache so it will be
 		// refreshed on the next call to $this->getRights().
@@ -3712,6 +3771,42 @@ class User implements IDBAccessObject {
 	}
 
 	/**
+	 * Compute experienced level based on edit count and registration date.
+	 *
+	 * @return string 'newcomer', 'learner', or 'experienced'
+	 */
+	public function getExperienceLevel() {
+		global $wgLearnerEdits,
+			$wgExperiencedUserEdits,
+			$wgLearnerMemberSince,
+			$wgExperiencedUserMemberSince;
+
+		if ( $this->isAnon() ) {
+			return false;
+		}
+
+		$editCount = $this->getEditCount();
+		$registration = $this->getRegistration();
+		$now = time();
+		$learnerRegistration = wfTimestamp( TS_MW, $now - $wgLearnerMemberSince * 86400 );
+		$experiencedRegistration = wfTimestamp( TS_MW, $now - $wgExperiencedUserMemberSince * 86400 );
+
+		if (
+			$editCount < $wgLearnerEdits ||
+			$registration > $learnerRegistration
+		) {
+			return 'newcomer';
+		} elseif (
+			$editCount > $wgExperiencedUserEdits &&
+			$registration <= $experiencedRegistration
+		) {
+			return 'experienced';
+		} else {
+			return 'learner';
+		}
+	}
+
+	/**
 	 * Set a cookie on the user's client. Wrapper for
 	 * WebResponse::setCookie
 	 * @deprecated since 1.27
@@ -4030,7 +4125,7 @@ class User implements IDBAccessObject {
 	 *   }
 	 *   // do something with $user...
 	 *
-	 * However, this was vulnerable to a race condition (bug 16020). By
+	 * However, this was vulnerable to a race condition (T18020). By
 	 * initialising the user object if the user exists, we aim to support this
 	 * calling sequence as far as possible.
 	 *
@@ -4143,7 +4238,7 @@ class User implements IDBAccessObject {
 			return $this->mBlock;
 		}
 
-		# bug 13611: if the IP address the user is trying to create an account from is
+		# T15611: if the IP address the user is trying to create an account from is
 		# blocked with createaccount disabled, prevent new account creation there even
 		# when the user is logged in
 		if ( $this->mBlockedFromCreateAccount === false && !$this->isAllowed( 'ipblock-exempt' ) ) {
@@ -4436,7 +4531,7 @@ class User implements IDBAccessObject {
 	 * @note Since these URLs get dropped directly into emails, using the
 	 * short English names avoids insanely long URL-encoded links, which
 	 * also sometimes can get corrupted in some browsers/mailers
-	 * (bug 6957 with Gmail and Internet Explorer).
+	 * (T8957 with Gmail and Internet Explorer).
 	 *
 	 * @param string $page Special page
 	 * @param string $token Token
@@ -4720,25 +4815,27 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Get the localized descriptive name for a group, if it exists
+	 * @deprecated since 1.29 Use UserGroupMembership::getGroupName instead
 	 *
 	 * @param string $group Internal group name
 	 * @return string Localized descriptive group name
 	 */
 	public static function getGroupName( $group ) {
-		$msg = wfMessage( "group-$group" );
-		return $msg->isBlank() ? $group : $msg->text();
+		wfDeprecated( __METHOD__, '1.29' );
+		return UserGroupMembership::getGroupName( $group );
 	}
 
 	/**
 	 * Get the localized descriptive name for a member of a group, if it exists
+	 * @deprecated since 1.29 Use UserGroupMembership::getGroupMemberName instead
 	 *
 	 * @param string $group Internal group name
 	 * @param string $username Username for gender (since 1.19)
 	 * @return string Localized name for group member
 	 */
 	public static function getGroupMember( $group, $username = '#' ) {
-		$msg = wfMessage( "group-$group-member", $username );
-		return $msg->isBlank() ? $group : $msg->text();
+		wfDeprecated( __METHOD__, '1.29' );
+		return UserGroupMembership::getGroupMemberName( $group, $username );
 	}
 
 	/**
@@ -4788,34 +4885,33 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Get the title of a page describing a particular group
+	 * @deprecated since 1.29 Use UserGroupMembership::getGroupPage instead
 	 *
 	 * @param string $group Internal group name
 	 * @return Title|bool Title of the page if it exists, false otherwise
 	 */
 	public static function getGroupPage( $group ) {
-		$msg = wfMessage( 'grouppage-' . $group )->inContentLanguage();
-		if ( $msg->exists() ) {
-			$title = Title::newFromText( $msg->text() );
-			if ( is_object( $title ) ) {
-				return $title;
-			}
-		}
-		return false;
+		wfDeprecated( __METHOD__, '1.29' );
+		return UserGroupMembership::getGroupPage( $group );
 	}
 
 	/**
 	 * Create a link to the group in HTML, if available;
 	 * else return the group name.
+	 * @deprecated since 1.29 Use UserGroupMembership::getLink instead, or
+	 * make the link yourself if you need custom text
 	 *
 	 * @param string $group Internal name of the group
 	 * @param string $text The text of the link
 	 * @return string HTML link to the group
 	 */
 	public static function makeGroupLinkHTML( $group, $text = '' ) {
+		wfDeprecated( __METHOD__, '1.29' );
+
 		if ( $text == '' ) {
-			$text = self::getGroupName( $group );
+			$text = UserGroupMembership::getGroupName( $group );
 		}
-		$title = self::getGroupPage( $group );
+		$title = UserGroupMembership::getGroupPage( $group );
 		if ( $title ) {
 			return Linker::link( $title, htmlspecialchars( $text ) );
 		} else {
@@ -4826,16 +4922,20 @@ class User implements IDBAccessObject {
 	/**
 	 * Create a link to the group in Wikitext, if available;
 	 * else return the group name.
+	 * @deprecated since 1.29 Use UserGroupMembership::getLink instead, or
+	 * make the link yourself if you need custom text
 	 *
 	 * @param string $group Internal name of the group
 	 * @param string $text The text of the link
 	 * @return string Wikilink to the group
 	 */
 	public static function makeGroupLinkWiki( $group, $text = '' ) {
+		wfDeprecated( __METHOD__, '1.29' );
+
 		if ( $text == '' ) {
-			$text = self::getGroupName( $group );
+			$text = UserGroupMembership::getGroupName( $group );
 		}
-		$title = self::getGroupPage( $group );
+		$title = UserGroupMembership::getGroupPage( $group );
 		if ( $title ) {
 			$page = $title->getFullText();
 			return "[[$page|$text]]";
@@ -5076,54 +5176,6 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Make a new-style password hash
-	 *
-	 * @param string $password Plain-text password
-	 * @param bool|string $salt Optional salt, may be random or the user ID.
-	 *  If unspecified or false, will generate one automatically
-	 * @return string Password hash
-	 * @deprecated since 1.24, use Password class
-	 */
-	public static function crypt( $password, $salt = false ) {
-		wfDeprecated( __METHOD__, '1.24' );
-		$passwordFactory = new PasswordFactory();
-		$passwordFactory->init( RequestContext::getMain()->getConfig() );
-		$hash = $passwordFactory->newFromPlaintext( $password );
-		return $hash->toString();
-	}
-
-	/**
-	 * Compare a password hash with a plain-text password. Requires the user
-	 * ID if there's a chance that the hash is an old-style hash.
-	 *
-	 * @param string $hash Password hash
-	 * @param string $password Plain-text password to compare
-	 * @param string|bool $userId User ID for old-style password salt
-	 *
-	 * @return bool
-	 * @deprecated since 1.24, use Password class
-	 */
-	public static function comparePasswords( $hash, $password, $userId = false ) {
-		wfDeprecated( __METHOD__, '1.24' );
-
-		// Check for *really* old password hashes that don't even have a type
-		// The old hash format was just an md5 hex hash, with no type information
-		if ( preg_match( '/^[0-9a-f]{32}$/', $hash ) ) {
-			global $wgPasswordSalt;
-			if ( $wgPasswordSalt ) {
-				$password = ":B:{$userId}:{$hash}";
-			} else {
-				$password = ":A:{$hash}";
-			}
-		}
-
-		$passwordFactory = new PasswordFactory();
-		$passwordFactory->init( RequestContext::getMain()->getConfig() );
-		$hash = $passwordFactory->newFromCiphertext( $hash );
-		return $hash->equals( $password );
-	}
-
-	/**
 	 * Add a newuser log entry for this user.
 	 * Before 1.19 the return value was always true.
 	 *
@@ -5339,7 +5391,7 @@ class User implements IDBAccessObject {
 		# Note that the pattern requirement will always be satisfied if the
 		# input is empty, so we need required in all cases.
 
-		# @todo FIXME: Bug 23769: This needs to not claim the password is required
+		# @todo FIXME: T25769: This needs to not claim the password is required
 		# if e-mail confirmation is being used.  Since HTML5 input validation
 		# is b0rked anyway in some browsers, just return nothing.  When it's
 		# re-enabled, fix this code to not output required for e-mail
@@ -5395,10 +5447,10 @@ class User implements IDBAccessObject {
 	static function newFatalPermissionDeniedStatus( $permission ) {
 		global $wgLang;
 
-		$groups = array_map(
-			[ 'User', 'makeGroupLinkWiki' ],
-			User::getGroupsWithPermission( $permission )
-		);
+		$groups = [];
+		foreach ( User::getGroupsWithPermission( $permission ) as $group ) {
+			$groups[] = UserGroupMembership::getLink( $group, RequestContext::getMain(), 'wiki' );
+		}
 
 		if ( $groups ) {
 			return Status::newFatal( 'badaccess-groups', $wgLang->commaList( $groups ), count( $groups ) );

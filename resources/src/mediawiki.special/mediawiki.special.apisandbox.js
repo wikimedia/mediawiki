@@ -3,6 +3,7 @@
 	'use strict';
 	var ApiSandbox, Util, WidgetMethods, Validators,
 		$content, panel, booklet, oldhash, windowManager, fullscreenButton,
+		formatDropdown,
 		api = new mw.Api(),
 		bookletPages = [],
 		availableFormats = {},
@@ -335,7 +336,8 @@
 						} );
 					} else if ( Util.apiBool( pi.multi ) ) {
 						widget = new OO.ui.CapsuleMultiselectWidget( {
-							allowArbitrary: true
+							allowArbitrary: true,
+							allowDuplicates: Util.apiBool( pi.allowsduplicates )
 						} );
 						widget.paramInfo = pi;
 						$.extend( widget, WidgetMethods.capsuleWidget );
@@ -532,6 +534,7 @@
 
 				widget = new OO.ui.CapsuleMultiselectWidget( {
 					allowArbitrary: true,
+					allowDuplicates: Util.apiBool( pi.allowsduplicates ),
 					popup: {
 						classes: [ 'mw-apisandbox-popup' ],
 						$content: $content
@@ -624,6 +627,70 @@
 				.filter( '[href]:not([target])' )
 				.attr( 'target', '_blank' );
 			return $html;
+		},
+
+		/**
+		 * Format a request and return a bunch of menu option widgets
+		 *
+		 * @param {Object} displayParams Query parameters, sanitized for display.
+		 * @param {Object} rawParams Query parameters. You should probably use displayParams instead.
+		 * @return {OO.ui.MenuOptionWidget[]} Each item's data should be an OO.ui.FieldLayout
+		 */
+		formatRequest: function ( displayParams, rawParams ) {
+			var jsonInput,
+				items = [
+					new OO.ui.MenuOptionWidget( {
+						label: Util.parseMsg( 'apisandbox-request-format-url-label' ),
+						data: new OO.ui.FieldLayout(
+							new OO.ui.TextInputWidget( {
+								readOnly: true,
+								value: mw.util.wikiScript( 'api' ) + '?' + $.param( displayParams )
+							} ), {
+								label: Util.parseMsg( 'apisandbox-request-url-label' )
+							}
+						)
+					} ),
+					new OO.ui.MenuOptionWidget( {
+						label: Util.parseMsg( 'apisandbox-request-format-json-label' ),
+						data: new OO.ui.FieldLayout(
+							jsonInput = new OO.ui.TextInputWidget( {
+								classes: [ 'mw-apisandbox-textInputCode' ],
+								readOnly: true,
+								multiline: true,
+								autosize: true,
+								maxRows: 6,
+								value: JSON.stringify( displayParams, null, '\t' )
+							} ), {
+								label: Util.parseMsg( 'apisandbox-request-json-label' )
+							}
+						).on( 'toggle', function ( visible ) {
+							if ( visible ) {
+								// Call updatePosition instead of adjustSize
+								// because the latter has weird caching
+								// behavior and the former bypasses it.
+								jsonInput.updatePosition();
+							}
+						} )
+					} )
+				];
+
+			mw.hook( 'apisandbox.formatRequest' ).fire( items, displayParams, rawParams );
+
+			return items;
+		},
+
+		/**
+		 * Event handler for when formatDropdown's selection changes
+		 */
+		onFormatDropdownChange: function () {
+			var i,
+				menu = formatDropdown.getMenu(),
+				items = menu.getItems(),
+				selectedField = menu.getSelectedItem() ? menu.getSelectedItem().getData() : null;
+
+			for ( i = 0; i < items.length; i++ ) {
+				items[ i ].getData().toggle( items[ i ].getData() === selectedField );
+			}
 		}
 	};
 
@@ -916,6 +983,8 @@
 			}
 
 			$.when.apply( $, deferreds ).done( function () {
+				var formatItems, menu, selectedLabel;
+
 				if ( $.inArray( false, arguments ) !== -1 ) {
 					windowManager.openWindow( 'errorAlert', {
 						title: Util.parseMsg( 'apisandbox-submit-invalid-fields-title' ),
@@ -932,6 +1001,8 @@
 				}
 
 				query = $.param( displayParams );
+
+				formatItems = Util.formatRequest( displayParams, params );
 
 				// Force a 'fm' format with wrappedhtml=1, if available
 				if ( params.format !== undefined ) {
@@ -957,16 +1028,35 @@
 				page.setupOutlineItem = function () {
 					this.outlineItem.setLabel( mw.message( 'apisandbox-results' ).text() );
 				};
+
+				if ( !formatDropdown ) {
+					formatDropdown = new OO.ui.DropdownWidget( {
+						menu: { items: [] }
+					} );
+					formatDropdown.getMenu().on( 'choose', Util.onFormatDropdownChange );
+				}
+
+				menu = formatDropdown.getMenu();
+				selectedLabel = menu.getSelectedItem() ? menu.getSelectedItem().getLabel() : '';
+				if ( typeof selectedLabel !== 'string' ) {
+					selectedLabel = selectedLabel.text();
+				}
+				menu.clearItems().addItems( formatItems );
+				menu.chooseItem( menu.getItemFromLabel( selectedLabel ) || menu.getFirstSelectableItem() );
+
+				// Fire the event to update field visibilities
+				Util.onFormatDropdownChange();
+
 				page.$element.empty()
 					.append(
 						new OO.ui.FieldLayout(
-							new OO.ui.TextInputWidget( {
-								readOnly: true,
-								value: mw.util.wikiScript( 'api' ) + '?' + query
-							} ), {
-								label: Util.parseMsg( 'apisandbox-request-url-label' )
+							formatDropdown, {
+								label: Util.parseMsg( 'apisandbox-request-selectformat-label' )
 							}
 						).$element,
+						$.map( formatItems, function ( item ) {
+							return item.getData().$element;
+						} ),
 						$result
 					);
 				ApiSandbox.updateUI();
@@ -1066,6 +1156,7 @@
 										booklet.setPage( '|results|' );
 									} ).setDisabled( !paramsAreForced ) ).$element,
 									new OO.ui.PopupButtonWidget( {
+										$overlay: $( '#mw-apisandbox-ui' ),
 										framed: false,
 										icon: 'info',
 										popup: {
@@ -1127,7 +1218,8 @@
 
 				if ( page.tokenWidget ) {
 					k = page.apiModule + page.tokenWidget.paramInfo.name;
-					tokenWait[ k ] = page.tokenWidget.fetchToken()
+					tokenWait[ k ] = page.tokenWidget.fetchToken();
+					tokenWait[ k ]
 						.done( success.bind( page.tokenWidget, k ) )
 						.fail( failure.bind( page.tokenWidget, k ) );
 				}
@@ -1265,7 +1357,7 @@
 
 		Util.fetchModuleInfo( this.apiModule )
 			.done( function ( pi ) {
-				var prefix, i, j, dl, widget, $widgetLabel, widgetField, helpField, tmp, flag, count,
+				var prefix, i, j, descriptionContainer, widget, $widgetLabel, widgetField, helpField, tmp, flag, count,
 					items = [],
 					deprecatedItems = [],
 					buttons = [],
@@ -1324,6 +1416,7 @@
 
 				if ( pi.helpurls.length ) {
 					buttons.push( new OO.ui.PopupButtonWidget( {
+						$overlay: $( '#mw-apisandbox-ui' ),
 						label: mw.message( 'apisandbox-helpurls' ).text(),
 						icon: 'help',
 						popup: {
@@ -1340,6 +1433,7 @@
 
 				if ( pi.examples.length ) {
 					buttons.push( new OO.ui.PopupButtonWidget( {
+						$overlay: $( '#mw-apisandbox-ui' ),
 						label: mw.message( 'apisandbox-examples' ).text(),
 						icon: 'code',
 						popup: {
@@ -1372,14 +1466,14 @@
 							that.tokenWidget = widget;
 						}
 
-						dl = $( '<dl>' );
-						dl.append( $( '<dd>', {
+						descriptionContainer = $( '<div>' );
+						descriptionContainer.append( $( '<div>', {
 							addClass: 'description',
 							append: Util.parseHTML( pi.parameters[ i ].description )
 						} ) );
 						if ( pi.parameters[ i ].info && pi.parameters[ i ].info.length ) {
 							for ( j = 0; j < pi.parameters[ i ].info.length; j++ ) {
-								dl.append( $( '<dd>', {
+								descriptionContainer.append( $( '<div>', {
 									addClass: 'info',
 									append: Util.parseHTML( pi.parameters[ i ].info[ j ] )
 								} ) );
@@ -1395,7 +1489,7 @@
 
 							case 'limit':
 								if ( pi.parameters[ i ].highmax !== undefined ) {
-									dl.append( $( '<dd>', {
+									descriptionContainer.append( $( '<div>', {
 										addClass: 'info',
 										append: [
 											Util.parseMsg(
@@ -1406,7 +1500,7 @@
 										]
 									} ) );
 								} else {
-									dl.append( $( '<dd>', {
+									descriptionContainer.append( $( '<div>', {
 										addClass: 'info',
 										append: [
 											Util.parseMsg( 'api-help-param-limit', pi.parameters[ i ].max ),
@@ -1426,7 +1520,7 @@
 									tmp += 'max';
 								}
 								if ( tmp !== '' ) {
-									dl.append( $( '<dd>', {
+									descriptionContainer.append( $( '<div>', {
 										addClass: 'info',
 										append: Util.parseMsg(
 											'api-help-param-integer-' + tmp,
@@ -1462,7 +1556,7 @@
 								);
 							}
 							if ( tmp.length ) {
-								dl.append( $( '<dd>', {
+								descriptionContainer.append( $( '<div>', {
 									addClass: 'info',
 									append: Util.parseHTML( tmp.join( ' ' ) )
 								} ) );
@@ -1475,7 +1569,7 @@
 							} ), {
 								align: 'inline',
 								classes: [ 'mw-apisandbox-help-field' ],
-								label: dl
+								label: descriptionContainer
 							}
 						);
 

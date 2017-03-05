@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.18.2
+ * OOjs UI v0.19.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
- * Copyright 2011–2016 OOjs UI Team and other contributors.
+ * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-12-06T23:32:53Z
+ * Date: 2017-02-28T23:19:40Z
  */
 ( function ( OO ) {
 
@@ -241,6 +241,7 @@ OO.ui.mixin.DraggableGroupElement = function OoUiMixinDraggableGroupElement( con
 	}
 	this.$element
 		.addClass( 'oo-ui-draggableGroupElement' )
+		.attr( 'role', 'listbox' )
 		.append( this.$status )
 		.toggleClass( 'oo-ui-draggableGroupElement-horizontal', this.orientation === 'horizontal' );
 };
@@ -1642,7 +1643,7 @@ OO.ui.MenuLayout.prototype.getMenuPosition = function () {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {boolean} [continuous=false] Show all pages, one after another
- * @cfg {boolean} [autoFocus=true] Focus on the first focusable element when a new page is displayed.
+ * @cfg {boolean} [autoFocus=true] Focus on the first focusable element when a new page is displayed. Disabled on mobile.
  * @cfg {boolean} [outlined=false] Show the outline. The outline is used to navigate through the pages of the booklet.
  * @cfg {boolean} [editable=false] Show controls for adding, removing and reordering pages
  */
@@ -1779,11 +1780,9 @@ OO.ui.BookletLayout.prototype.onStackLayoutVisibleItemChange = function ( page )
 OO.ui.BookletLayout.prototype.onStackLayoutSet = function ( page ) {
 	var layout = this;
 	if ( !this.scrolling && page ) {
-		page.scrollElementIntoView( {
-			complete: function () {
-				if ( layout.autoFocus ) {
-					layout.focus();
-				}
+		page.scrollElementIntoView().done( function () {
+			if ( layout.autoFocus && !OO.ui.isMobile() ) {
+				layout.focus();
 			}
 		} );
 	}
@@ -2112,6 +2111,7 @@ OO.ui.BookletLayout.prototype.setPage = function ( name ) {
 				// meaningless because the next page is not visible yet and thus can't hold focus.
 				if (
 					this.autoFocus &&
+					!OO.ui.isMobile() &&
 					this.stackLayout.continuous &&
 					OO.ui.findFocusable( page.$element ).length !== 0
 				) {
@@ -2188,7 +2188,7 @@ OO.ui.BookletLayout.prototype.selectFirstSelectablePage = function () {
  * @param {Object} [config] Configuration options
  * @cfg {boolean} [continuous=false] Show all cards, one after another
  * @cfg {boolean} [expanded=true] Expand the content panel to fill the entire parent element.
- * @cfg {boolean} [autoFocus=true] Focus on the first focusable element when a new card is displayed.
+ * @cfg {boolean} [autoFocus=true] Focus on the first focusable element when a new card is displayed. Disabled on mobile.
  */
 OO.ui.IndexLayout = function OoUiIndexLayout( config ) {
 	// Configuration initialization
@@ -2289,11 +2289,9 @@ OO.ui.IndexLayout.prototype.onStackLayoutFocus = function ( e ) {
 OO.ui.IndexLayout.prototype.onStackLayoutSet = function ( card ) {
 	var layout = this;
 	if ( card ) {
-		card.scrollElementIntoView( {
-			complete: function () {
-				if ( layout.autoFocus ) {
-					layout.focus();
-				}
+		card.scrollElementIntoView().done( function () {
+			if ( layout.autoFocus && !OO.ui.isMobile() ) {
+				layout.focus();
 			}
 		} );
 	}
@@ -2556,6 +2554,7 @@ OO.ui.IndexLayout.prototype.setCard = function ( name ) {
 				// meaningless because the next card is not visible yet and thus can't hold focus.
 				if (
 					this.autoFocus &&
+					!OO.ui.isMobile() &&
 					this.stackLayout.continuous &&
 					OO.ui.findFocusable( card.$element ).length !== 0
 				) {
@@ -3059,12 +3058,30 @@ OO.inheritClass( OO.ui.OutlineOptionWidget, OO.ui.DecoratedOptionWidget );
 
 /* Static Properties */
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.OutlineOptionWidget.static.highlightable = true;
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.OutlineOptionWidget.static.scrollIntoViewOnSelect = true;
 
+/**
+ * @static
+ * @inheritable
+ * @property {string}
+ */
 OO.ui.OutlineOptionWidget.static.levelClass = 'oo-ui-outlineOptionWidget-level-';
 
+/**
+ * @static
+ * @inheritable
+ * @property {number}
+ */
 OO.ui.OutlineOptionWidget.static.levels = 3;
 
 /* Methods */
@@ -3106,9 +3123,9 @@ OO.ui.OutlineOptionWidget.prototype.getLevel = function () {
 OO.ui.OutlineOptionWidget.prototype.setPressed = function ( state ) {
 	OO.ui.OutlineOptionWidget.parent.prototype.setPressed.call( this, state );
 	if ( this.pressed ) {
-		this.setFlags( 'progressive' );
+		this.setFlags( { progressive: true } );
 	} else if ( !this.selected ) {
-		this.clearFlags();
+		this.setFlags( { progressive: false } );
 	}
 	return this;
 };
@@ -3147,9 +3164,9 @@ OO.ui.OutlineOptionWidget.prototype.setRemovable = function ( removable ) {
 OO.ui.OutlineOptionWidget.prototype.setSelected = function ( state ) {
 	OO.ui.OutlineOptionWidget.parent.prototype.setSelected.call( this, state );
 	if ( this.selected ) {
-		this.setFlags( 'progressive' );
+		this.setFlags( { progressive: true } );
 	} else {
-		this.clearFlags();
+		this.setFlags( { progressive: false } );
 	}
 	return this;
 };
@@ -3260,9 +3277,18 @@ OO.mixinClass( OO.ui.ButtonOptionWidget, OO.ui.mixin.TitledElement );
 
 /* Static Properties */
 
-// Allow button mouse down events to pass through so they can be handled by the parent select widget
+/**
+ * Allow button mouse down events to pass through so they can be handled by the parent select widget
+ *
+ * @static
+ * @inheritdoc
+ */
 OO.ui.ButtonOptionWidget.static.cancelButtonMouseDownEvents = false;
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.ButtonOptionWidget.static.highlightable = false;
 
 /* Methods */
@@ -3373,6 +3399,10 @@ OO.inheritClass( OO.ui.TabOptionWidget, OO.ui.OptionWidget );
 
 /* Static Properties */
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.TabOptionWidget.static.highlightable = false;
 
 /**
@@ -3573,6 +3603,7 @@ OO.ui.CapsuleItemWidget.prototype.focus = function () {
  * @param {Object} [config] Configuration options
  * @cfg {string} [placeholder] Placeholder text
  * @cfg {boolean} [allowArbitrary=false] Allow data items to be added even if not present in the menu.
+ * @cfg {boolean} [allowDuplicates=false] Allow duplicate items to be added.
  * @cfg {Object} [menu] (required) Configuration options to pass to the
  *  {@link OO.ui.MenuSelectWidget menu select widget}.
  * @cfg {Object} [popup] Configuration options to pass to the {@link OO.ui.PopupWidget popup widget}.
@@ -3594,6 +3625,7 @@ OO.ui.CapsuleMultiselectWidget = function OoUiCapsuleMultiselectWidget( config )
 	// Configuration initialization
 	config = $.extend( {
 		allowArbitrary: false,
+		allowDuplicates: false,
 		$overlay: this.$element
 	}, config );
 
@@ -3611,7 +3643,11 @@ OO.ui.CapsuleMultiselectWidget = function OoUiCapsuleMultiselectWidget( config )
 			align: 'forwards',
 			anchor: false
 		} );
-		OO.ui.mixin.PopupElement.call( this, config );
+		OO.ui.mixin.PopupElement.call( this, $.extend( true, {}, config, {
+			popup: {
+				$floatableContainer: this.$element
+			}
+		} ) );
 		$tabFocus = $( '<span>' );
 		OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: $tabFocus } ) );
 	} else {
@@ -3625,6 +3661,7 @@ OO.ui.CapsuleMultiselectWidget = function OoUiCapsuleMultiselectWidget( config )
 	// Properties
 	this.$content = $( '<div>' );
 	this.allowArbitrary = config.allowArbitrary;
+	this.allowDuplicates = config.allowDuplicates;
 	this.$overlay = config.$overlay;
 	this.menu = new OO.ui.FloatingMenuSelectWidget( $.extend(
 		{
@@ -3640,7 +3677,7 @@ OO.ui.CapsuleMultiselectWidget = function OoUiCapsuleMultiselectWidget( config )
 	// Events
 	if ( this.popup ) {
 		$tabFocus.on( {
-			focus: this.onFocusForPopup.bind( this )
+			focus: this.focus.bind( this )
 		} );
 		this.popup.$element.on( 'focusout', this.onPopupFocusOut.bind( this ) );
 		if ( this.popup.$autoCloseIgnore ) {
@@ -3690,11 +3727,15 @@ OO.ui.CapsuleMultiselectWidget = function OoUiCapsuleMultiselectWidget( config )
 	this.$element.addClass( 'oo-ui-capsuleMultiselectWidget' )
 		.append( this.$handle );
 	if ( this.popup ) {
+		this.popup.$element.addClass( 'oo-ui-capsuleMultiselectWidget-popup' );
 		this.$content.append( $tabFocus );
 		this.$overlay.append( this.popup.$element );
 	} else {
 		this.$content.append( this.$input );
 		this.$overlay.append( this.menu.$element );
+	}
+	if ( $tabFocus ) {
+		$tabFocus.addClass( 'oo-ui-capsuleMultiselectWidget-focusTrap' );
 	}
 
 	// Input size needs to be calculated after everything else is rendered
@@ -3715,6 +3756,10 @@ OO.mixinClass( OO.ui.CapsuleMultiselectWidget, OO.ui.mixin.PopupElement );
 OO.mixinClass( OO.ui.CapsuleMultiselectWidget, OO.ui.mixin.TabIndexedElement );
 OO.mixinClass( OO.ui.CapsuleMultiselectWidget, OO.ui.mixin.IndicatorElement );
 OO.mixinClass( OO.ui.CapsuleMultiselectWidget, OO.ui.mixin.IconElement );
+
+/* Static Properties */
+
+OO.ui.CapsuleMultiselectWidget.static.supportsSimpleLabel = true;
 
 /* Events */
 
@@ -3749,6 +3794,26 @@ OO.ui.CapsuleMultiselectWidget.prototype.createItemWidget = function ( data, lab
 		return null;
 	}
 	return new OO.ui.CapsuleItemWidget( { data: data, label: label } );
+};
+
+/**
+ * Get the widget's input's id, or generate one, if it has an input.
+ *
+ * @return {string}
+ */
+OO.ui.CapsuleMultiselectWidget.prototype.getInputId = function () {
+	var id;
+	if ( !this.$input ) {
+		return false;
+	}
+
+	id = this.$input.attr( 'id' );
+	if ( id === undefined ) {
+		id = OO.ui.generateElementId();
+		this.$input.attr( 'id', id );
+	}
+
+	return id;
 };
 
 /**
@@ -3824,7 +3889,7 @@ OO.ui.CapsuleMultiselectWidget.prototype.addItemsFromData = function ( datas ) {
 	$.each( datas, function ( i, data ) {
 		var item;
 
-		if ( !widget.getItemFromData( data ) ) {
+		if ( !widget.getItemFromData( data ) || widget.allowDuplicates ) {
 			item = menu.getItemFromData( data );
 			if ( item ) {
 				item = widget.createItemWidget( data, item.label );
@@ -4046,20 +4111,6 @@ OO.ui.CapsuleMultiselectWidget.prototype.onInputFocus = function () {
 OO.ui.CapsuleMultiselectWidget.prototype.onInputBlur = function () {
 	this.addItemFromLabel( this.$input.val() );
 	this.clearInput();
-};
-
-/**
- * Handle focus events
- *
- * @private
- * @param {jQuery.Event} event
- */
-OO.ui.CapsuleMultiselectWidget.prototype.onFocusForPopup = function () {
-	if ( !this.isDisabled() ) {
-		this.popup.setSize( this.$handle.width() );
-		this.popup.toggle( true );
-		OO.ui.findFocusable( this.popup.$element ).focus();
-	}
 };
 
 /**
@@ -4314,7 +4365,7 @@ OO.ui.CapsuleMultiselectWidget.prototype.setDisabled = function ( disabled ) {
 OO.ui.CapsuleMultiselectWidget.prototype.focus = function () {
 	if ( !this.isDisabled() ) {
 		if ( this.popup ) {
-			this.popup.setSize( this.$handle.width() );
+			this.popup.setSize( this.$handle.outerWidth() );
 			this.popup.toggle( true );
 			OO.ui.findFocusable( this.popup.$element ).focus();
 		} else {
@@ -4327,10 +4378,21 @@ OO.ui.CapsuleMultiselectWidget.prototype.focus = function () {
 };
 
 /**
+ * The old name for the CapsuleMultiselectWidget widget, provided for backwards-compatibility.
+ *
  * @class
+ * @extends OO.ui.CapsuleMultiselectWidget
+ *
+ * @constructor
  * @deprecated since 0.17.3; use OO.ui.CapsuleMultiselectWidget instead
  */
-OO.ui.CapsuleMultiSelectWidget = OO.ui.CapsuleMultiselectWidget;
+OO.ui.CapsuleMultiSelectWidget = function OoUiCapsuleMultiSelectWidget() {
+	OO.ui.warnDeprecation( 'CapsuleMultiSelectWidget is deprecated. Use the CapsuleMultiselectWidget instead.' );
+	// Parent constructor
+	OO.ui.CapsuleMultiSelectWidget.parent.apply( this, arguments );
+};
+
+OO.inheritClass( OO.ui.CapsuleMultiSelectWidget, OO.ui.CapsuleMultiselectWidget );
 
 /**
  * SelectFileWidgets allow for selecting files, using the HTML5 File API. These
@@ -5234,11 +5296,9 @@ OO.ui.NumberInputWidget.prototype.validateNumber = function ( value ) {
 		return false;
 	}
 
-	/* eslint-disable no-bitwise */
-	if ( this.isInteger && ( n | 0 ) !== n ) {
+	if ( this.isInteger && Math.floor( n ) !== n ) {
 		return false;
 	}
-	/* eslint-enable no-bitwise */
 
 	if ( n < this.min || n > this.max ) {
 		return false;

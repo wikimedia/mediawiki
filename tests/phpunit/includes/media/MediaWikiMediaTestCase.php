@@ -19,7 +19,7 @@ abstract class MediaWikiMediaTestCase extends MediaWikiTestCase {
 		if ( $this->createsThumbnails() ) {
 			// We need a temp directory for the thumbnails
 			// the container is named 'temp-thumb' because it is the
-			// thumb directory for a FSRepo named "temp".
+			// thumb directory for a repo named "temp".
 			$containers['temp-thumb'] = $this->getNewTempDirectory();
 		}
 
@@ -33,7 +33,7 @@ abstract class MediaWikiMediaTestCase extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return array Argument for FSRepo constructor
+	 * @return array Argument for FileRepo constructor
 	 */
 	protected function getRepoOptions() {
 		return [

@@ -116,8 +116,7 @@ $bookstoreList = [
 	'ОЗОН' => 'http://www.ozon.ru/?context=advsearch_book&isbn=$1',
 	'Books.Ru' => 'http://www.books.ru/shop/search/advanced?as%5Btype%5D=books&as%5Bname%5D=&as%5Bisbn%5D=$1&as%5Bauthor%5D=&as%5Bmaker%5D=&as%5Bcontents%5D=&as%5Binfo%5D=&as%5Bdate_after%5D=&as%5Bdate_before%5D=&as%5Bprice_less%5D=&as%5Bprice_more%5D=&as%5Bstrict%5D=%E4%E0&as%5Bsub%5D=%E8%F1%EA%E0%F2%FC&x=22&y=8',
 	'Яндекс.Маркет' => 'http://market.yandex.ru/search.xml?text=$1',
-	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1',
+	'Amazon.com' => 'https://www.amazon.com/exec/obidos/ISBN=$1',
 	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
 	'Barnes & Noble' => 'http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1'
 ];
-

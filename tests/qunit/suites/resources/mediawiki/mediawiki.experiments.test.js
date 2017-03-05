@@ -17,7 +17,7 @@
 
 	QUnit.module( 'mediawiki.experiments' );
 
-	QUnit.test( 'getBucket( experiment, token )', 4, function ( assert ) {
+	QUnit.test( 'getBucket( experiment, token )', function ( assert ) {
 		var experiment = createExperiment(),
 			token = '123457890';
 

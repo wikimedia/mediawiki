@@ -20,6 +20,8 @@
  * @file
  * @ingroup SpecialPage
  */
+use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\Rdbms\ResultWrapper;
 
 /**
  * Special page which uses a ChangesList to show query results.
@@ -77,6 +79,14 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$this->webOutput( $rows, $opts );
 
 		$rows->free();
+
+		if ( $this->getConfig()->get( 'EnableWANCacheReaper' ) ) {
+			// Clean up any bad page entries for titles showing up in RC
+			DeferredUpdates::addUpdate( new WANCacheReapUpdate(
+				$this->getDB(),
+				LoggerFactory::getInstance( 'objectcache' )
+			) );
+		}
 	}
 
 	/**
@@ -302,7 +312,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$operator = $opts['invert'] ? '!=' : '=';
 			$boolean = $opts['invert'] ? 'AND' : 'OR';
 
-			// Namespace association (bug 2429)
+			// Namespace association (T4429)
 			if ( !$opts['associated'] ) {
 				$condition = "rc_namespace $operator $selectedNS";
 			} else {

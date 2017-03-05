@@ -1,10 +1,9 @@
-{{int:version-credits-summary}}
-<!--
+{{int:version-credits-summary}} <!--
 MediaWiki 1.28 is a collaborative project released under the
 GNU General Public License v2. We would like to recognize the
 following names for their contribution to the product.
--->
-<!-- Please notice that the following can be found parsed under Special:Version/Credits -->
+
+The following list can be found parsed under Special:Version/Credits -->
 
 == Contributors ==
 <!-- Updates to this list made with maintenance/updateCredits.php -->

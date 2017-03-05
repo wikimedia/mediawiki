@@ -227,7 +227,7 @@
 	"apihelp-query+watchlistraw-description": "Získat všechny stránky, které jsou aktuálním uživatelem sledovány.",
 	"apihelp-query+watchlistraw-example-simple": "Seznam sledovaných stránek uživatele.",
 	"apihelp-stashedit-param-summary": "Změnit shrnutí.",
-	"apihelp-unblock-param-user": "Uživatel, IP adresa nebo rozsah IP adres k odblokování. Nelze použít dohromady s <var>$1id</var> nebo <var>$luserid</var>.",
+	"apihelp-unblock-param-user": "Uživatel, IP adresa nebo rozsah IP adres k odblokování. Nelze použít dohromady s <var>$1id</var> nebo <var>$1userid</var>.",
 	"apihelp-watch-example-watch": "Sledovat stránku <kbd>Main Page</kbd>.",
 	"apihelp-watch-example-generator": "Zobrazit prvních několik stránek z hlavního jmenného prostoru.",
 	"apihelp-format-example-generic": "Výsledek dotazu vrátit ve formátu $1.",

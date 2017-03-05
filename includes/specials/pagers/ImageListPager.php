@@ -23,6 +23,8 @@
  * @ingroup Pager
  */
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\FakeResultWrapper;
 
 class ImageListPager extends TablePager {
 
@@ -449,7 +451,7 @@ class ImageListPager extends TablePager {
 					$imgfile = $this->msg( 'imgfile' )->text();
 				}
 
-				// Weird files can maybe exist? Bug 22227
+				// Weird files can maybe exist? T24227
 				$filePage = Title::makeTitleSafe( NS_FILE, $value );
 				if ( $filePage ) {
 					$link = $linkRenderer->makeKnownLink(

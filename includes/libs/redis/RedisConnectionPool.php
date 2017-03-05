@@ -325,21 +325,6 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	 * not. The safest response for us is to explicitly destroy the connection
 	 * object and let it be reopened during the next request.
 	 *
-	 * @param string $server
-	 * @param RedisConnRef $cref
-	 * @param RedisException $e
-	 * @deprecated since 1.23
-	 */
-	public function handleException( $server, RedisConnRef $cref, RedisException $e ) {
-		$this->handleError( $cref, $e );
-	}
-
-	/**
-	 * The redis extension throws an exception in response to various read, write
-	 * and protocol errors. Sometimes it also closes the connection, sometimes
-	 * not. The safest response for us is to explicitly destroy the connection
-	 * object and let it be reopened during the next request.
-	 *
 	 * @param RedisConnRef $cref
 	 * @param RedisException $e
 	 */

@@ -23,7 +23,7 @@
 	},
 	"images": {
 		"beta": { "file": "images/icons/beta.svg" },
-		"betaLaunch": { "file": "images/icons/betaLaunch.svg" },
+		"betaLaunch": { "file": "images/icons/logo-wikimediaDiscovery.svg" },
 		"bookmark": { "file": {
 			"ltr": "images/icons/bookmark-ltr.svg",
 			"rtl": "images/icons/bookmark-rtl.svg"
@@ -34,6 +34,13 @@
 		} },
 		"clear": { "file": "images/icons/clear.svg" },
 		"clock": { "file": "images/icons/clock.svg" },
+		"feedback": {
+			"file": {
+				"ltr": "images/icons/feedback-ltr.svg",
+				"rtl": "images/icons/feedback-rtl.svg"
+			},
+			"variants": [ "progressive" ]
+		},
 		"funnel": { "file": {
 			"ltr": "images/icons/funnel-ltr.svg",
 			"rtl": "images/icons/funnel-rtl.svg"

@@ -176,6 +176,7 @@
 	"searcharticle": "ಪೋಲೆ",
 	"history": "ಪುಟೊತ ಚರಿತ್ರೆ",
 	"history_short": "ಇತಿಹಾಸೊ",
+	"history_small": "ಇತಿಹಾಸೊ",
 	"updatedmarker": "ಎನ್ನ ಅಕೇರಿದ ವೀಕ್ಷಣೆ ಡ್ದ್ ಬುಕ್ಕ ಆಯಿನ ಬದಲಾವಣೆಲು",
 	"printableversion": "ಪ್ರಿಂಟ್ ಆವೃತ್ತಿ",
 	"permalink": "ಸ್ತಿರೊ ಕೊಂಡಿ",
@@ -645,8 +646,6 @@
 	"prefs-rendering": "ಗೋಚರೊ",
 	"saveprefs": "ಒರಿಪಾಲೆ",
 	"prefs-editing": "ಸಂಪೊಲಿಪು",
-	"rows": "ಸಾಲ್‘ಲು",
-	"columns": "ಸಾಲ್‍ಕುಲು:",
 	"searchresultshead": " \nನಾಡ್’ಲೆ",
 	"stub-threshold-sample-link": "ಸಾಂಪಲ್",
 	"stub-threshold-disabled": "ಕ್ರಿಯೆ ಉಂತ್‍ದ್ಂಡ್",
@@ -745,6 +744,7 @@
 	"recentchanges-legend-heading": "<strong>ಲೆಜೆಂಡ್:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ಬೊಕ್ಕೊಲಾ ತೂಲೆ [[Special:NewPages|ಪೊಸ ಪುಟೊದ ಪಟ್ಟಿ]])",
 	"recentchanges-submit": "ತೋಜಾಲೆ",
+	"rcfilters-filter-userExpLevel-learner-label": "ಕಲ್ಪುನರ್",
 	"rclistfrom": "$3 $2 ರ್ದ್ ಸುರುವಾತಿನ ಪೊಸ ಬದಲಾವಣೆಲೆನ್ ತೊಜ್ಪಾವು",
 	"rcshowhideminor": "$1 ಎಲ್ಯೆಲ್ಯ ಬದಲಾವಣೆಲು",
 	"rcshowhideminor-show": "ತೋಜಾಲೆ",
@@ -1217,5 +1217,7 @@
 	"logentry-move-move": "$1 {{GENDER:$2|ಜಾರಲೆ}} ಪುಟೊ $3 ಡ್ದ್ $4",
 	"logentry-newusers-create": "ಬಳಕೆದಾರೆರೆ ಕಾತೆ $1 ನ್ನು {{GENDER:$2|ಸ್ರಿಸ್ಟಿ ಮಲ್ತಾಂಡ್}}",
 	"logentry-upload-upload": "$1 {{GENDER:$2|ಅಪ್ಲೋಡ್ ಮಲ್ತ್‌ದೆರ್}} $3",
-	"searchsuggest-search": "{{SITENAME}}ನ್ ನಾಡ್‍ಲೆ"
+	"searchsuggest-search": "{{SITENAME}}ನ್ ನಾಡ್‍ಲೆ",
+	"pagelang-reason": "ಕಾರಣೊ",
+	"mw-widgets-usersmultiselect-placeholder": "ನನಾತ್ ಸೇರಲೇ..."
 }

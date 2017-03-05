@@ -37,4 +37,3 @@ $specialPageAliases = [
 	'Newpages'                  => [ 'አዳዲስ_ገጾች' ],
 	'Shortpages'                => [ 'አጫጭር_ገጾች' ],
 ];
-

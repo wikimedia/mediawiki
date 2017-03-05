@@ -152,7 +152,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		if ( $this->params['filterredir'] == 'redirects' ) {
 			$this->addWhereFld( 'page_is_redirect', 1 );
 		} elseif ( $this->params['filterredir'] == 'nonredirects' && !$this->redirect ) {
-			// bug 22245 - Check for !redirect, as filtering nonredirects, when
+			// T24245 - Check for !redirect, as filtering nonredirects, when
 			// getting what links to them is contradictory
 			$this->addWhereFld( 'page_is_redirect', 0 );
 		}
@@ -344,7 +344,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$this->validateLimit( 'limit', $this->params['limit'], 1, $userMax, $botMax );
 		}
 
-		$this->rootTitle = $this->getTitleOrPageId( $this->params )->getTitle();
+		$this->rootTitle = $this->getTitleFromTitleOrPageId( $this->params );
 
 		// only image titles are allowed for the root in imageinfo mode
 		if ( !$this->hasNS && $this->rootTitle->getNamespace() !== NS_FILE ) {

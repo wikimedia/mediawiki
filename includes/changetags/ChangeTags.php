@@ -757,11 +757,13 @@ class ChangeTags {
 	 * @param User $user Who to attribute the action to
 	 * @param int $tagCount For deletion only, how many usages the tag had before
 	 * it was deleted.
+	 * @param array $logEntryTags Change tags to apply to the entry
+	 * that will be created in the tag management log
 	 * @return int ID of the inserted log entry
 	 * @since 1.25
 	 */
 	protected static function logTagManagementAction( $action, $tag, $reason,
-		User $user, $tagCount = null ) {
+		User $user, $tagCount = null, array $logEntryTags = [] ) {
 
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -778,6 +780,7 @@ class ChangeTags {
 		}
 		$logEntry->setParameters( $params );
 		$logEntry->setRelations( [ 'Tag' => $tag ] );
+		$logEntry->setTags( $logEntryTags );
 
 		$logId = $logEntry->insert( $dbw );
 		$logEntry->publish( $logId );
@@ -830,12 +833,14 @@ class ChangeTags {
 	 * @param string $reason
 	 * @param User $user Who to give credit for the action
 	 * @param bool $ignoreWarnings Can be used for API interaction, default false
+	 * @param array $logEntryTags Change tags to apply to the entry
+	 * that will be created in the tag management log
 	 * @return Status If successful, the Status contains the ID of the added log
 	 * entry as its value
 	 * @since 1.25
 	 */
 	public static function activateTagWithChecks( $tag, $reason, User $user,
-		$ignoreWarnings = false ) {
+		$ignoreWarnings = false, array $logEntryTags = [] ) {
 
 		// are we allowed to do this?
 		$result = self::canActivateTag( $tag, $user );
@@ -848,7 +853,9 @@ class ChangeTags {
 		self::defineTag( $tag );
 
 		// log it
-		$logId = self::logTagManagementAction( 'activate', $tag, $reason, $user );
+		$logId = self::logTagManagementAction( 'activate', $tag, $reason, $user,
+			null, $logEntryTags );
+
 		return Status::newGood( $logId );
 	}
 
@@ -889,12 +896,14 @@ class ChangeTags {
 	 * @param string $reason
 	 * @param User $user Who to give credit for the action
 	 * @param bool $ignoreWarnings Can be used for API interaction, default false
+	 * @param array $logEntryTags Change tags to apply to the entry
+	 * that will be created in the tag management log
 	 * @return Status If successful, the Status contains the ID of the added log
 	 * entry as its value
 	 * @since 1.25
 	 */
 	public static function deactivateTagWithChecks( $tag, $reason, User $user,
-		$ignoreWarnings = false ) {
+		$ignoreWarnings = false, array $logEntryTags = [] ) {
 
 		// are we allowed to do this?
 		$result = self::canDeactivateTag( $tag, $user );
@@ -907,7 +916,9 @@ class ChangeTags {
 		self::undefineTag( $tag );
 
 		// log it
-		$logId = self::logTagManagementAction( 'deactivate', $tag, $reason, $user );
+		$logId = self::logTagManagementAction( 'deactivate', $tag, $reason, $user,
+			null, $logEntryTags );
+
 		return Status::newGood( $logId );
 	}
 
@@ -968,12 +979,14 @@ class ChangeTags {
 	 * @param string $reason
 	 * @param User $user Who to give credit for the action
 	 * @param bool $ignoreWarnings Can be used for API interaction, default false
+	 * @param array $logEntryTags Change tags to apply to the entry
+	 * that will be created in the tag management log
 	 * @return Status If successful, the Status contains the ID of the added log
 	 * entry as its value
 	 * @since 1.25
 	 */
 	public static function createTagWithChecks( $tag, $reason, User $user,
-		$ignoreWarnings = false ) {
+		$ignoreWarnings = false, array $logEntryTags = [] ) {
 
 		// are we allowed to do this?
 		$result = self::canCreateTag( $tag, $user );
@@ -986,7 +999,9 @@ class ChangeTags {
 		self::defineTag( $tag );
 
 		// log it
-		$logId = self::logTagManagementAction( 'create', $tag, $reason, $user );
+		$logId = self::logTagManagementAction( 'create', $tag, $reason, $user,
+			null, $logEntryTags );
+
 		return Status::newGood( $logId );
 	}
 
@@ -1095,12 +1110,14 @@ class ChangeTags {
 	 * @param string $reason
 	 * @param User $user Who to give credit for the action
 	 * @param bool $ignoreWarnings Can be used for API interaction, default false
+	 * @param array $logEntryTags Change tags to apply to the entry
+	 * that will be created in the tag management log
 	 * @return Status If successful, the Status contains the ID of the added log
 	 * entry as its value
 	 * @since 1.25
 	 */
 	public static function deleteTagWithChecks( $tag, $reason, User $user,
-		$ignoreWarnings = false ) {
+		$ignoreWarnings = false, array $logEntryTags = [] ) {
 
 		// are we allowed to do this?
 		$result = self::canDeleteTag( $tag, $user );
@@ -1120,7 +1137,9 @@ class ChangeTags {
 		}
 
 		// log it
-		$logId = self::logTagManagementAction( 'delete', $tag, $reason, $user, $hitcount );
+		$logId = self::logTagManagementAction( 'delete', $tag, $reason, $user,
+			$hitcount, $logEntryTags );
+
 		$deleteResult->value = $logId;
 		return $deleteResult;
 	}

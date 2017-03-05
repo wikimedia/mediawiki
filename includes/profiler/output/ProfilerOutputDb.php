@@ -41,7 +41,7 @@ class ProfilerOutputDb extends ProfilerOutput {
 	}
 
 	public function canUse() {
-		# Do not log anything if database is readonly (bug 5375)
+		# Do not log anything if database is readonly (T7375)
 		return !wfReadOnly();
 	}
 

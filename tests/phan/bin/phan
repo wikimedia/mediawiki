@@ -7,6 +7,12 @@ if ! which realpath > /dev/null; then
 	}
 fi
 
+if hash php7.0 2>/dev/null; then
+	export PHP="php7.0"
+else
+	export PHP="php"
+fi
+
 # Note that this isn't loaded in via composer because then composer can
 # only be run with php7.0
 if [ ! -f "$PHAN" ]; then
@@ -19,7 +25,7 @@ if [ ! -f "$PHAN" ]; then
 		exit 1
 	fi
 else
-	export PHAN="php7.0 $PHAN"
+	export PHAN="$PHP $PHAN"
 fi
 
 if [ -z "$MW_INSTALL_PATH" ]; then
@@ -31,7 +37,7 @@ fi
 
 # If the first argument doesn't start with a -, then it's a path
 # to another project (extension, skin, etc.) to analyze
-if [[ "$1" != "-"* ]]; then
+if [[ -n "$1" && "$1" != "-"* ]]; then
 	cd $1
 	shift
 else

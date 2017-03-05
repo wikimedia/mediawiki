@@ -2,6 +2,7 @@
 
 use MediaWiki\Linker\LinkTarget;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * Class performing complex database queries related to WatchedItems.
@@ -401,7 +402,7 @@ class WatchedItemQueryService {
 		if ( !isset( $options['start'] ) && !isset( $options['end'] ) ) {
 			if ( $db->getType() === 'mysql' ) {
 				// This is an index optimization for mysql
-				$conds[] = "rc_timestamp > ''";
+				$conds[] = 'rc_timestamp > ' . $db->addQuotes( '' );
 			}
 		}
 
@@ -471,7 +472,7 @@ class WatchedItemQueryService {
 	}
 
 	private function getStartEndConds( IDatabase $db, array $options ) {
-		if ( !isset( $options['start'] ) && ! isset( $options['end'] ) ) {
+		if ( !isset( $options['start'] ) && !isset( $options['end'] ) ) {
 			return [];
 		}
 
@@ -504,7 +505,7 @@ class WatchedItemQueryService {
 			$conds[] = 'rc_user_text != ' . $db->addQuotes( $options['notByUser'] );
 		}
 
-		// Avoid brute force searches (bug 17342)
+		// Avoid brute force searches (T19342)
 		$bitmask = 0;
 		if ( !$user->isAllowed( 'deletedhistory' ) ) {
 			$bitmask = Revision::DELETED_USER;

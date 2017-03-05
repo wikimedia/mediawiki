@@ -193,6 +193,9 @@ class ParserOutput extends CacheTime {
 	 */
 	private $mLimitReportData = [];
 
+	/** @var array Parser limit report data for JSON */
+	private $mLimitReportJSData = [];
+
 	/**
 	 * @var array $mParseStartTime Timestamps for getTimeSinceStart().
 	 */
@@ -409,6 +412,10 @@ class ParserOutput extends CacheTime {
 
 	public function getLimitReportData() {
 		return $this->mLimitReportData;
+	}
+
+	public function getLimitReportJSData() {
+		return $this->mLimitReportJSData;
 	}
 
 	public function getTOCEnabled() {
@@ -689,6 +696,8 @@ class ParserOutput extends CacheTime {
 	 * to SpecialTrackingCategories::$coreTrackingCategories, and extensions
 	 * should add to "TrackingCategories" in their extension.json.
 	 *
+	 * @todo Migrate some code to TrackingCategories
+	 *
 	 * @param string $msg Message key
 	 * @param Title $title title of the page which is being tracked
 	 * @return bool Whether the addition was successful
@@ -700,7 +709,7 @@ class ParserOutput extends CacheTime {
 			return false;
 		}
 
-		// Important to parse with correct title (bug 31469)
+		// Important to parse with correct title (T33469)
 		$cat = wfMessage( $msg )
 			->title( $title )
 			->inContentLanguage()
@@ -1010,6 +1019,26 @@ class ParserOutput extends CacheTime {
 	 */
 	public function setLimitReportData( $key, $value ) {
 		$this->mLimitReportData[$key] = $value;
+
+		if ( is_array( $value ) ) {
+			if ( array_keys( $value ) === [ 0, 1 ]
+				&& is_numeric( $value[0] )
+				&& is_numeric( $value[1] )
+			) {
+				$data = [ 'value' => $value[0], 'limit' => $value[1] ];
+			} else {
+				$data = $value;
+			}
+		} else {
+			$data = $value;
+		}
+
+		if ( strpos( $key, '-' ) ) {
+			list( $ns, $name ) = explode( '-', $key, 2 );
+			$this->mLimitReportJSData[$ns][$name] = $data;
+		} else {
+			$this->mLimitReportJSData[$key] = $data;
+		}
 	}
 
 	/**

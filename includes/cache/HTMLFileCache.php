@@ -36,19 +36,6 @@ class HTMLFileCache extends FileCacheBase {
 	const MODE_REBUILD = 2; // background cache rebuild mode
 
 	/**
-	 * Construct an HTMLFileCache object from a Title and an action
-	 *
-	 * @deprecated since 1.24, instantiate this class directly
-	 * @param Title|string $title Title object or prefixed DB key string
-	 * @param string $action
-	 * @throws MWException
-	 * @return HTMLFileCache
-	 */
-	public static function newFromTitle( $title, $action ) {
-		return new self( $title, $action );
-	}
-
-	/**
 	 * @param Title|string $title Title object or prefixed DB key string
 	 * @param string $action
 	 * @throws MWException

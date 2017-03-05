@@ -45,4 +45,3 @@ $specialPageAliases = [
 	'Allpages'                  => [ 'بارلىق_بەتلەر' ],
 	'Ancientpages'              => [ 'كونا_بەتلەر' ],
 ];
-

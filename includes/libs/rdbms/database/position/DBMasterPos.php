@@ -1,4 +1,7 @@
 <?php
+
+namespace Wikimedia\Rdbms;
+
 /**
  * An object representing a master or replica DB position in a replicated setup.
  *

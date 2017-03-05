@@ -21,6 +21,8 @@
  */
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
  * @todo document
@@ -216,7 +218,7 @@ class Revision implements IDBAccessObject {
 			// Pre-1.5 ar_text row
 			$attribs['text'] = self::getRevisionText( $row, 'ar_' );
 			if ( $attribs['text'] === false ) {
-				throw new MWException( 'Unable to load text from archive row (possibly bug 22624)' );
+				throw new MWException( 'Unable to load text from archive row (possibly T24624)' );
 			}
 		}
 		return new self( $attribs );
@@ -1036,28 +1038,6 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * Fetch revision text if it's available to the specified audience.
-	 * If the specified audience does not have the ability to view this
-	 * revision, an empty string will be returned.
-	 *
-	 * @param int $audience One of:
-	 *   Revision::FOR_PUBLIC       to be displayed to all users
-	 *   Revision::FOR_THIS_USER    to be displayed to the given user
-	 *   Revision::RAW              get the text regardless of permissions
-	 * @param User $user User object to check for, only if FOR_THIS_USER is passed
-	 *   to the $audience parameter
-	 *
-	 * @deprecated since 1.21, use getContent() instead
-	 * @return string
-	 */
-	public function getText( $audience = self::FOR_PUBLIC, User $user = null ) {
-		wfDeprecated( __METHOD__, '1.21' );
-
-		$content = $this->getContent( $audience, $user );
-		return ContentHandler::getContentText( $content ); # returns the raw content text, if applicable
-	}
-
-	/**
 	 * Fetch revision content if it's available to the specified audience.
 	 * If the specified audience does not have the ability to view this
 	 * revision, null will be returned.
@@ -1803,6 +1783,7 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @param Title $title
 	 * @param int $id
+	 * @param int $flags
 	 * @return string|bool False if not found
 	 */
 	static function getTimestampFromId( $title, $id, $flags = 0 ) {

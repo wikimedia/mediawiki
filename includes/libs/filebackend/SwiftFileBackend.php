@@ -1089,7 +1089,7 @@ class SwiftFileBackend extends FileBackendStore {
 			// good
 		} elseif ( $rcode === 404 ) {
 			$status->fatal( 'backend-fail-stream', $params['src'] );
-			// Per bug 41113, nasty things can happen if bad cache entries get
+			// Per T43113, nasty things can happen if bad cache entries get
 			// stuck in cache. It's also possible that this error can come up
 			// with simple race conditions. Clear out the stat cache to be safe.
 			$this->clearCache( [ $params['src'] ] );

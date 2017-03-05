@@ -24,6 +24,8 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * A special page that displays a list of pages that are not on anyones watchlist.
  *

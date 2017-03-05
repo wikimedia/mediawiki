@@ -344,7 +344,7 @@ $dateFormats = [
 $capitalizeAllNouns = true;
 $bookstoreList = [
 	'abebooks.de' => 'http://www.abebooks.de/servlet/BookSearchPL?ph=2&isbn=$1',
-	'amazon.de' => 'http://www.amazon.de/gp/search/field-isbn=$1',
+	'amazon.de' => 'https://www.amazon.de/gp/search/field-isbn=$1',
 	'buch.de' => 'http://www.buch.de/shop/home/suche/?sswg=BUCH&sq=$1',
 	'Karlsruher Virtueller Katalog (KVK)' => 'http://www.ubka.uni-karlsruhe.de/kvk.html?SB=$1',
 	'Lehmanns Fachbuchhandlung' => 'http://www.lob.de/cgi-bin/work/suche?flag=new&stich1=$1'
@@ -357,4 +357,3 @@ $imageFiles = [
 	'button-bold'     => 'de/button_bold.png',
 	'button-italic'   => 'de/button_italic.png',
 ];
-

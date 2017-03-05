@@ -21,6 +21,11 @@
  * @ingroup Database
  */
 
+namespace Wikimedia\Rdbms;
+
+use IDatabase;
+use InvalidArgumentException;
+
 /**
  * A multi-database, multi-master factory for Wikimedia and similar installations.
  * Ignores the old configuration globals.

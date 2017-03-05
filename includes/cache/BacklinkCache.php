@@ -26,6 +26,9 @@
  * @copyright © 2011, Antoine Musso
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\FakeResultWrapper;
+
 /**
  * Class for fetching backlink lists, approximate backlink counts and
  * partitions. This is a shared cache.
@@ -407,7 +410,7 @@ class BacklinkCache {
 
 		// 4) ... finally fetch from the slow database :(
 		$cacheEntry = [ 'numRows' => 0, 'batches' => [] ]; // final result
-		// Do the selects in batches to avoid client-side OOMs (bug 43452).
+		// Do the selects in batches to avoid client-side OOMs (T45452).
 		// Use a LIMIT that plays well with $batchSize to keep equal sized partitions.
 		$selectSize = max( $batchSize, 200000 - ( 200000 % $batchSize ) );
 		$start = false;

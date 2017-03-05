@@ -92,11 +92,42 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 			// Existing message with customizations on the fallbacks
 			[ 'sunday', 'ab', 'амҽыш' ],
 
-			// bug 46579
+			// T48579
 			[ 'FallbackLanguageTest-NoDervContLang', 'de', 'de/none' ],
 			// UI language different from content language should only use de/none as last option
 			[ 'FallbackLanguageTest-NoDervContLang', 'fit', 'de/none' ],
 		];
+	}
+
+	public function testReplaceMsg() {
+		global $wgContLang;
+
+		$messageCache = MessageCache::singleton();
+		$message = 'go';
+		$uckey = $wgContLang->ucfirst( $message );
+		$oldText = $messageCache->get( $message ); // "Ausführen"
+
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->startAtomic( __METHOD__ ); // simulate request and block deferred updates
+		$messageCache->replace( $uckey, 'Allez!' );
+		$this->assertEquals( 'Allez!',
+			$messageCache->getMsgFromNamespace( $uckey, 'de' ),
+			'Updates are reflected in-process immediately' );
+		$this->assertEquals( 'Allez!',
+			$messageCache->get( $message ),
+			'Updates are reflected in-process immediately' );
+		$this->makePage( 'Go', 'de', 'Race!' );
+		$dbw->endAtomic( __METHOD__ );
+
+		$this->assertEquals( 0,
+			DeferredUpdates::pendingUpdatesCount(),
+			'Post-commit deferred update triggers a run of all updates' );
+
+		$this->assertEquals( 'Race!', $messageCache->get( $message ), 'Correct final contents' );
+
+		$this->makePage( 'Go', 'de', $oldText );
+		$messageCache->replace( $uckey, $oldText ); // deferred update runs immediately
+		$this->assertEquals( $oldText, $messageCache->get( $message ), 'Content restored' );
 	}
 
 	/**

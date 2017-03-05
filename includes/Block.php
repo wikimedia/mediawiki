@@ -265,7 +265,7 @@ class Block {
 		}
 
 		# Be aware that the != '' check is explicit, since empty values will be
-		# passed by some callers (bug 29116)
+		# passed by some callers (T31116)
 		if ( $vagueTarget != '' ) {
 			list( $target, $type ) = self::parseTarget( $vagueTarget );
 			switch ( $type ) {
@@ -358,7 +358,7 @@ class Block {
 		if ( $end === null ) {
 			$end = $start;
 		}
-		# Per bug 14634, we want to include relevant active rangeblocks; for
+		# Per T16634, we want to include relevant active rangeblocks; for
 		# rangeblocks, we want to include larger ranges which enclose the given
 		# range. We know that all blocks must be smaller than $wgBlockCIDRLimit,
 		# so we can improve performance by filtering on a LIKE clause
@@ -553,7 +553,7 @@ class Block {
 		$affected = $dbw->affectedRows();
 
 		if ( $this->isAutoblocking() ) {
-			// update corresponding autoblock(s) (bug 48813)
+			// update corresponding autoblock(s) (T50813)
 			$dbw->update(
 				'ipblocks',
 				$this->getAutoblockUpdateArray(),
@@ -1117,7 +1117,7 @@ class Block {
 		} elseif ( $target === null && $vagueTarget == '' ) {
 			# We're not going to find anything useful here
 			# Be aware that the == '' check is explicit, since empty values will be
-			# passed by some callers (bug 29116)
+			# passed by some callers (T31116)
 			return null;
 
 		} elseif ( in_array(
@@ -1142,7 +1142,7 @@ class Block {
 	 * Get all blocks that match any IP from an array of IP addresses
 	 *
 	 * @param array $ipChain List of IPs (strings), usually retrieved from the
-	 *	   X-Forwarded-For header of the request
+	 *     X-Forwarded-For header of the request
 	 * @param bool $isAnon Exclude anonymous-only blocks if false
 	 * @param bool $fromMaster Whether to query the master or replica DB
 	 * @return array Array of Blocks
@@ -1223,9 +1223,9 @@ class Block {
 	 *
 	 * @param array $blocks Array of Block objects
 	 * @param array $ipChain List of IPs (strings). This is used to determine how "close"
-	 * 	  a block is to the server, and if a block matches exactly, or is in a range.
-	 *	  The order is furthest from the server to nearest e.g., (Browser, proxy1, proxy2,
-	 *	  local-squid, ...)
+	 *     a block is to the server, and if a block matches exactly, or is in a range.
+	 *     The order is furthest from the server to nearest e.g., (Browser, proxy1, proxy2,
+	 *     local-squid, ...)
 	 * @throws MWException
 	 * @return Block|null The "best" block from the list
 	 */
@@ -1467,9 +1467,55 @@ class Block {
 		}
 
 		// Set the cookie. Reformat the MediaWiki datetime as a Unix timestamp for the cookie.
-		$cookieValue = $setEmpty ? '' : $this->getId();
-		$expiryValue = DateTime::createFromFormat( "YmdHis", $expiryTime );
-		$response->setCookie( 'BlockID', $cookieValue, $expiryValue->format( "U" ) );
+		$cookieValue = $setEmpty ? '' : $this->getCookieValue();
+		$expiryValue = DateTime::createFromFormat( 'YmdHis', $expiryTime )->format( 'U' );
+		$cookieOptions = [ 'httpOnly' => false ];
+		$response->setCookie( 'BlockID', $cookieValue, $expiryValue, $cookieOptions );
+	}
+
+	/**
+	 * Get the BlockID cookie's value for this block. This is usually the block ID concatenated
+	 * with an HMAC in order to avoid spoofing (T152951), but if wgSecretKey is not set will just
+	 * be the block ID.
+	 * @return string The block ID, probably concatenated with "!" and the HMAC.
+	 */
+	public function getCookieValue() {
+		$config = RequestContext::getMain()->getConfig();
+		$id = $this->getId();
+		$secretKey = $config->get( 'SecretKey' );
+		if ( !$secretKey ) {
+			// If there's no secret key, don't append a HMAC.
+			return $id;
+		}
+		$hmac = MWCryptHash::hmac( $id, $secretKey, false );
+		$cookieValue =  $id . '!' . $hmac;
+		return $cookieValue;
+	}
+
+	/**
+	 * Get the stored ID from the 'BlockID' cookie. The cookie's value is usually a combination of
+	 * the ID and a HMAC (see Block::setCookie), but will sometimes only be the ID.
+	 * @param string $cookieValue The string in which to find the ID.
+	 * @return integer|null The block ID, or null if the HMAC is present and invalid.
+	 */
+	public static function getIdFromCookieValue( $cookieValue ) {
+		// Extract the ID prefix from the cookie value (may be the whole value, if no bang found).
+		$bangPos = strpos( $cookieValue, '!' );
+		$id = ( $bangPos === false ) ? $cookieValue : substr( $cookieValue, 0, $bangPos );
+		// Get the site-wide secret key.
+		$config = RequestContext::getMain()->getConfig();
+		$secretKey = $config->get( 'SecretKey' );
+		if ( !$secretKey ) {
+			// If there's no secret key, just use the ID as given.
+			return $id;
+		}
+		$storedHmac = substr( $cookieValue, $bangPos + 1 );
+		$calculatedHmac = MWCryptHash::hmac( $id, $secretKey, false );
+		if ( $calculatedHmac === $storedHmac ) {
+			return $id;
+		} else {
+			return null;
+		}
 	}
 
 	/**

@@ -83,7 +83,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 			$showme = $from;
 		}
 
-		// Bug 27864: if transcluded, show all pages instead of the form.
+		// T29864: if transcluded, show all pages instead of the form.
 		if ( $this->including() || $showme != '' || $ns !== null ) {
 			$this->showPrefixChunk( $namespace, $showme, $from );
 		} else {

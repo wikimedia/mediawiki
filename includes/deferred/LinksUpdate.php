@@ -145,7 +145,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 			# If the sortkey is longer then 255 bytes,
 			# it truncated by DB, and then doesn't get
 			# matched when comparing existing vs current
-			# categories, causing bug 25254.
+			# categories, causing T27254.
 			# Also. substr behaves weird when given "".
 			if ( $sortkey !== '' ) {
 				$sortkey = substr( $sortkey, 0, 255 );
@@ -154,7 +154,9 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 
 		$this->mRecursive = $recursive;
 
-		Hooks::run( 'LinksUpdateConstructed', [ &$this ] );
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$linksUpdate = $this;
+		Hooks::run( 'LinksUpdateConstructed', [ &$linksUpdate ] );
 	}
 
 	/**
@@ -169,7 +171,9 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 			$scopedLock = self::acquirePageLock( $this->getDB(), $this->mId );
 		}
 
-		Hooks::run( 'LinksUpdate', [ &$this ] );
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$linksUpdate = $this;
+		Hooks::run( 'LinksUpdate', [ &$linksUpdate ] );
 		$this->doIncrementalUpdate();
 
 		// Commit and release the lock (if set)
@@ -177,7 +181,9 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 		// Run post-commit hooks without DBO_TRX
 		$this->getDB()->onTransactionIdle(
 			function () {
-				Hooks::run( 'LinksUpdateComplete', [ &$this, $this->ticket ] );
+				// Avoid PHP 7.1 warning from passing $this by reference
+				$linksUpdate = $this;
+				Hooks::run( 'LinksUpdateComplete', [ &$linksUpdate, $this->ticket ] );
 			},
 			__METHOD__
 		);

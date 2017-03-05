@@ -105,5 +105,4 @@ $magicWords = [
 	'img_center'                => [ '1', 'erdian', 'center', 'centre' ],
 ];
 
-$separatorTransformTable = [ ',' => '.', '.' => ',' ]; /* Bug 15717 */
-
+$separatorTransformTable = [ ',' => '.', '.' => ',' ]; /* T17717 */

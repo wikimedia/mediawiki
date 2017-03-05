@@ -632,11 +632,12 @@ class CategoryViewer extends ContextSource {
 	private function pagingLinks( $first, $last, $type = '' ) {
 		$prevLink = $this->msg( 'prev-page' )->text();
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( $first != '' ) {
 			$prevQuery = $this->query;
 			$prevQuery["{$type}until"] = $first;
 			unset( $prevQuery["{$type}from"] );
-			$prevLink = Linker::linkKnown(
+			$prevLink = $linkRenderer->makeKnownLink(
 				$this->addFragmentToTitle( $this->title, $type ),
 				$prevLink,
 				[],
@@ -650,7 +651,7 @@ class CategoryViewer extends ContextSource {
 			$lastQuery = $this->query;
 			$lastQuery["{$type}from"] = $last;
 			unset( $lastQuery["{$type}until"] );
-			$nextLink = Linker::linkKnown(
+			$nextLink = $linkRenderer->makeKnownLink(
 				$this->addFragmentToTitle( $this->title, $type ),
 				$nextLink,
 				[],

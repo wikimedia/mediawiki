@@ -81,4 +81,3 @@ class DbTestRecorder extends TestRecorder {
 		$this->db->commit( __METHOD__ );
 	}
 }
-

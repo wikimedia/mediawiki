@@ -413,7 +413,7 @@ $bookstoreList = [
 	'Яндекс.Маркет' => 'http://market.yandex.ru/search.xml?text=$1',
 	'ОЗОН' => 'http://www.ozon.ru/?context=advsearch_book&isbn=$1',
 	'Books.Ru' => 'http://www.books.ru/shop/search?query=$1',
-	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+	'Amazon.com' => 'https://www.amazon.com/exec/obidos/ISBN=$1'
 ];
 
 /**
@@ -439,4 +439,3 @@ $imageFiles = [
 ];
 
 $linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюя]+)(.*)$/sDu';
-

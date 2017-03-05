@@ -22,10 +22,6 @@
 	 *
 	 * @class mw.SafeStorage
 	 * @private
-	 */
-
-	/**
-	 * @ignore
 	 * @param {Object|undefined} store The Storage instance to wrap around
 	 */
 	function SafeStorage( store ) {
@@ -46,12 +42,12 @@
 	};
 
 	/**
-	  * Set a value in device storage.
-	  *
-	  * @param {string} key Key name to store under
-	  * @param {string} value Value to be stored
-	  * @return {boolean} Whether the save succeeded or not
-	  */
+	 * Set a value in device storage.
+	 *
+	 * @param {string} key Key name to store under
+	 * @param {string} value Value to be stored
+	 * @return {boolean} Whether the save succeeded or not
+	 */
 	SafeStorage.prototype.set = function ( key, value ) {
 		try {
 			this.store.setItem( key, value );
@@ -61,11 +57,11 @@
 	};
 
 	/**
-	  * Remove a value from device storage.
-	  *
-	  * @param {string} key Key of item to remove
-	  * @return {boolean} Whether the save succeeded or not
-	  */
+	 * Remove a value from device storage.
+	 *
+	 * @param {string} key Key of item to remove
+	 * @return {boolean} Whether the save succeeded or not
+	 */
 	SafeStorage.prototype.remove = function ( key ) {
 		try {
 			this.store.removeItem( key );
@@ -75,6 +71,9 @@
 	};
 
 	/**
+	 * A wrapper for the HTML5 `localStorage` interface
+	 * that is safe to call on all browsers.
+	 *
 	 * @class
 	 * @singleton
 	 * @extends mw.SafeStorage
@@ -82,6 +81,9 @@
 	mw.storage = new SafeStorage( localStorage );
 
 	/**
+	 * A wrapper for the HTML5 `sessionStorage` interface
+	 * that is safe to call on all browsers.
+	 *
 	 * @class
 	 * @singleton
 	 * @extends mw.SafeStorage

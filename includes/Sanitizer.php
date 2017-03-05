@@ -344,12 +344,12 @@ class Sanitizer {
 			$space = '[\x09\x0a\x0c\x0d\x20]';
 			self::$attribsRegex =
 				"/(?:^|$space)({$attribFirst}{$attrib}*)
-				  ($space*=$space*
+					($space*=$space*
 					(?:
-					 # The attribute value: quoted or alone
-					  \"([^\"]*)(?:\"|\$)
-					 | '([^']*)(?:'|\$)
-					 |  (((?!$space|>).)*)
+						# The attribute value: quoted or alone
+						\"([^\"]*)(?:\"|\$)
+						| '([^']*)(?:'|\$)
+						| (((?!$space|>).)*)
 					)
 				)?(?=$space|\$)/sx";
 		}
@@ -545,7 +545,7 @@ class Sanitizer {
 							$badtag = true;
 						} elseif ( in_array( $t, $tagstack ) && !isset( $htmlnest[$t] ) ) {
 							$badtag = true;
-						#  Is it a self closed htmlpair ? (bug 5487)
+						#  Is it a self closed htmlpair ? (T7487)
 						} elseif ( $brace == '/>' && isset( $htmlpairs[$t] ) ) {
 							// Eventually we'll just remove the self-closing
 							// slash, in order to be consistent with HTML5
@@ -922,7 +922,7 @@ class Sanitizer {
 
 		// Normalize Halfwidth and Fullwidth Unicode block that IE6 might treat as ascii
 		$value = preg_replace_callback(
-			'/[！-［］-ｚ]/u', // U+FF01 to U+FF5A, excluding U+FF3C (bug 58088)
+			'/[！-［］-ｚ]/u', // U+FF01 to U+FF5A, excluding U+FF3C (T60088)
 			function ( $matches ) {
 				$cp = UtfNormal\Utils::utf8ToCodepoint( $matches[0] );
 				if ( $cp === false ) {
@@ -1119,6 +1119,7 @@ class Sanitizer {
 			'>'    => '&gt;',   // we've received invalid input
 			'"'    => '&quot;', // which should have been escaped.
 			'{'    => '&#123;',
+			'}'    => '&#125;', // prevent unpaired language conversion syntax
 			'['    => '&#91;',
 			"''"   => '&#39;&#39;',
 			'ISBN' => '&#73;SBN',
@@ -1262,8 +1263,9 @@ class Sanitizer {
 	static function escapeHtmlAllowEntities( $html ) {
 		$html = Sanitizer::decodeCharReferences( $html );
 		# It seems wise to escape ' as well as ", as a matter of course.  Can't
-		# hurt.
-		$html = htmlspecialchars( $html, ENT_QUOTES );
+		# hurt. Use ENT_SUBSTITUTE so that incorrectly truncated multibyte characters
+		# don't cause the entire string to disappear.
+		$html = htmlspecialchars( $html, ENT_QUOTES | ENT_SUBSTITUTE );
 		return $html;
 	}
 
@@ -1506,7 +1508,7 @@ class Sanitizer {
 
 	/**
 	 * Decode any character references, numeric or named entities,
-	 * in the next and normalize the resulting string. (bug 14952)
+	 * in the next and normalize the resulting string. (T16952)
 	 *
 	 * This is useful for page titles, not for text to be displayed,
 	 * MediaWiki allows HTML entities to escape normalization as a feature.
@@ -1924,7 +1926,7 @@ class Sanitizer {
 	 *   3.5.
 	 *
 	 * This function is an implementation of the specification as requested in
-	 * bug 22449.
+	 * T24449.
 	 *
 	 * Client-side forms will use the same standard validation rules via JS or
 	 * HTML 5 validation; additional restrictions can be enforced server-side
@@ -1947,7 +1949,7 @@ class Sanitizer {
 
 		// Please note strings below are enclosed in brackets [], this make the
 		// hyphen "-" a range indicator. Hence it is double backslashed below.
-		// See bug 26948
+		// See T28948
 		$rfc5322_atext = "a-z0-9!#$%&'*+\\-\/=?^_`{|}~";
 		$rfc1034_ldh_str = "a-z0-9\\-";
 

@@ -16,7 +16,7 @@
 	position: relative;
 	top: 0.6em;
 	left: -50%;
-	padding: .6em 3.6em .6em 1.1em;
+	padding: 0.6em 3.6em 0.6em 1.1em;
 	line-height: 1.5625em;
 	color: #626465;
 	background-color: #f4f4f4;
@@ -32,7 +32,7 @@
 }
 
 .skin-monobook .postedit {
-	top: 6em !important;
+	top: 6em !important; /* stylelint-disable-line declaration-no-important */
 }
 
 .postedit-faded {
@@ -55,7 +55,7 @@
 
 .postedit-close {
 	position: absolute;
-	padding: 0 .8em;
+	padding: 0 0.8em;
 	right: 0;
 	top: 0;
 	font-size: 1.25em;

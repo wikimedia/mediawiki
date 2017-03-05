@@ -1,4 +1,9 @@
 <?php
+
+namespace Wikimedia\Rdbms;
+
+use InvalidArgumentException;
+
 /**
  * DBMasterPos class for MySQL/MariaDB
  *

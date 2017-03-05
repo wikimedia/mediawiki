@@ -647,7 +647,7 @@ class XMPReader implements LoggerAwareInterface {
 	private function endElementNested( $elm ) {
 
 		/* cur item must be the same as $elm, unless if in MODE_STRUCT
-		   in which case it could also be rdf:Description */
+		 * in which case it could also be rdf:Description */
 		if ( $this->curItem[0] !== $elm
 			&& !( $elm === self::NS_RDF . ' Description'
 				&& $this->mode[0] === self::MODE_STRUCT )
@@ -895,7 +895,7 @@ class XMPReader implements LoggerAwareInterface {
 		if ( $elm === self::NS_RDF . ' Seq' ) {
 			array_unshift( $this->mode, self::MODE_LI );
 		} elseif ( $elm === self::NS_RDF . ' Bag' ) {
-			# bug 27105
+			# T29105
 			$this->logger->info( __METHOD__ . ' Expected an rdf:Seq, but got an rdf:Bag. Pretending'
 				. ' it is a Seq, since some buggy software is known to screw this up.' );
 			array_unshift( $this->mode, self::MODE_LI );
@@ -1086,7 +1086,7 @@ class XMPReader implements LoggerAwareInterface {
 				}
 			} else {
 				array_unshift( $this->mode, self::MODE_IGNORE );
-				array_unshift( $this->curItem, $elm );
+				array_unshift( $this->curItem, $ns . ' ' . $tag );
 
 				return;
 			}

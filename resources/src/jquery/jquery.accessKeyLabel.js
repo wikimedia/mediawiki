@@ -24,7 +24,7 @@
 	 *
 	 * @private
 	 * @param {Object} [ua] An object with a 'userAgent' and 'platform' property.
-	 * @return {Array} Array with 0 or more of the string values: ctrl, option, alt, shift, esc
+	 * @return {Array} Array with 1 or more of the string values, in this order: ctrl, option, alt, shift, esc
 	 */
 	function getAccessKeyModifiers( ua ) {
 		var profile, accessKeyModifiers;
@@ -35,49 +35,58 @@
 		}
 
 		profile = $.client.profile( ua );
-		accessKeyModifiers = [ 'alt' ];
 
-		// Classic Opera on any platform
-		if ( profile.name === 'opera' && profile.versionNumber < 15 ) {
-			accessKeyModifiers = [ 'shift', 'esc' ];
-
-		// Chrome and modern Opera on any platform
-		} else if ( profile.name === 'chrome' || profile.name === 'opera' ) {
-			accessKeyModifiers = (
-				profile.platform === 'mac' ?
-					// Chrome on Mac
-					[ 'ctrl', 'option' ] :
-					// Chrome on Windows or Linux
+		switch ( profile.name ) {
+			case 'chrome':
+			case 'opera':
+				if ( profile.name === 'opera' && profile.versionNumber < 15 ) {
+					accessKeyModifiers = [ 'shift', 'esc' ];
+				} else if ( profile.platform === 'mac' ) {
+					accessKeyModifiers = [ 'ctrl', 'option' ];
+				} else {
+					// Chrome/Opera on Windows or Linux
 					// (both alt- and alt-shift work, but alt with E, D, F etc does not
 					// work since they are browser shortcuts)
-					[ 'alt', 'shift' ]
-			);
-
-		// Non-Windows Safari with webkit_version > 526
-		} else if ( profile.platform !== 'win' &&
-			profile.name === 'safari' &&
-			profile.layoutVersion > 526
-		) {
-			accessKeyModifiers = [ 'ctrl', 'alt' ];
-
-		// Safari/Konqueror on any platform, or any browser on Mac
-		// (but not Safari on Windows)
-		} else if (
-			!( profile.platform === 'win' && profile.name === 'safari' ) &&
-			(
-				profile.name === 'safari' ||
-				profile.platform === 'mac' ||
-				profile.name === 'konqueror'
-			)
-		) {
-			accessKeyModifiers = [ 'ctrl' ];
-
-		// Firefox/Iceweasel 2.x and later
-		} else if (
-			( profile.name === 'firefox' || profile.name === 'iceweasel' ) &&
-			profile.versionBase > '1'
-		) {
-			accessKeyModifiers = [ 'alt', 'shift' ];
+					accessKeyModifiers = [ 'alt', 'shift' ];
+				}
+				break;
+			case 'firefox':
+			case 'iceweasel':
+				if ( profile.versionBase < 2 ) {
+					// Before v2, Firefox used alt, though it was rebindable in about:config
+					accessKeyModifiers = [ 'alt' ];
+				} else {
+					if ( profile.platform === 'mac' ) {
+						if ( profile.versionNumber < 14 ) {
+							accessKeyModifiers = [ 'ctrl' ];
+						} else {
+							accessKeyModifiers = [ 'ctrl', 'option' ];
+						}
+					} else {
+						accessKeyModifiers = [ 'alt', 'shift' ];
+					}
+				}
+				break;
+			case 'safari':
+			case 'konqueror':
+				if ( profile.platform === 'win' ) {
+					accessKeyModifiers = [ 'alt' ];
+				} else {
+					if ( profile.layoutVersion > 526 ) {
+						// Non-Windows Safari with webkit_version > 526
+						accessKeyModifiers = [ 'ctrl', profile.platform === 'mac' ? 'option' : 'alt' ];
+					} else {
+						accessKeyModifiers = [ 'ctrl' ];
+					}
+				}
+				break;
+			case 'msie':
+			case 'edge':
+				accessKeyModifiers = [ 'alt' ];
+				break;
+			default:
+				accessKeyModifiers = profile.platform === 'mac' ? [ 'ctrl' ] : [ 'alt' ];
+				break;
 		}
 
 		// cache modifiers

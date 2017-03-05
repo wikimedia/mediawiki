@@ -300,4 +300,3 @@ $dateFormats = [
 
 $separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
 $linkTrail = '/^([a-záéíóúñ]+)(.*)$/sDu';
-

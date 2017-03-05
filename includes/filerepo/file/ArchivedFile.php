@@ -493,22 +493,6 @@ class ArchivedFile {
 	}
 
 	/**
-	 * Return the user name of the uploader.
-	 *
-	 * @deprecated since 1.23 Use getUser( 'text' ) instead.
-	 * @return string|int
-	 */
-	public function getUserText() {
-		wfDeprecated( __METHOD__, '1.23' );
-		$this->load();
-		if ( $this->isDeleted( File::DELETED_USER ) ) {
-			return 0;
-		} else {
-			return $this->user_text;
-		}
-	}
-
-	/**
 	 * Return upload description.
 	 *
 	 * @return string|int

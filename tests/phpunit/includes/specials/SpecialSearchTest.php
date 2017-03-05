@@ -73,7 +73,7 @@ class SpecialSearchTest extends MediaWikiTestCase {
 			[
 				$EMPTY_REQUEST, $NO_USER_PREF,
 				'default', $defaultNS,
-				'Bug 33270: No request nor user preferences should give default profile'
+				'T35270: No request nor user preferences should give default profile'
 			],
 			[
 				[ 'ns5' => 1 ], $NO_USER_PREF,
@@ -88,7 +88,7 @@ class SpecialSearchTest extends MediaWikiTestCase {
 				return "searchNs$ns";
 			}, $defaultNS ), 0 ),
 				'advanced', [ 2, 14 ],
-				'Bug 33583: search with no option should honor User search preferences'
+				'T35583: search with no option should honor User search preferences'
 					. ' and have all other namespace disabled'
 			],
 		];
@@ -121,13 +121,15 @@ class SpecialSearchTest extends MediaWikiTestCase {
 		] );
 
 		# Initialize [[Special::Search]]
+		$ctx = new RequestContext();
+		$term = '{{SITENAME}}';
+		$ctx->setRequest( new FauxRequest( [ 'search' => $term, 'fulltext' => 1 ] ) );
+		$ctx->setTitle( Title::newFromText( 'Special:Search' ) );
 		$search = new SpecialSearch();
-		$search->getContext()->setTitle( Title::newFromText( 'Special:Search' ) );
-		$search->load();
+		$search->setContext( $ctx );
 
 		# Simulate a user searching for a given term
-		$term = '{{SITENAME}}';
-		$search->showResults( $term );
+		$search->execute( '' );
 
 		# Lookup the HTML page title set for that page
 		$pageTitle = $search
@@ -202,6 +204,27 @@ class SpecialSearchTest extends MediaWikiTestCase {
 			->will( $this->returnValue( $results ) );
 
 		return $mock;
+	}
+
+	public function testSubPageRedirect() {
+		$this->setMwGlobals( [
+			'wgScript' => '/w/index.php',
+		] );
+
+		$ctx = new RequestContext;
+		$sp = Title::newFromText( 'Special:Search/foo_bar' );
+		SpecialPageFactory::executePath( $sp, $ctx );
+		$url = $ctx->getOutput()->getRedirect();
+		// some older versions of hhvm have a bug that doesn't parse relative
+		// urls with a port, so help it out a little bit.
+		// https://github.com/facebook/hhvm/issues/7136
+		$url = wfExpandUrl( $url, PROTO_CURRENT );
+
+		$parts = parse_url( $url );
+		$this->assertEquals( '/w/index.php', $parts['path'] );
+		parse_str( $parts['query'], $query );
+		$this->assertEquals( 'Special:Search', $query['title'] );
+		$this->assertEquals( 'foo bar', $query['search'] );
 	}
 }
 

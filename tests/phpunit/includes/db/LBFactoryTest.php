@@ -1,4 +1,10 @@
 <?php
+
+use Wikimedia\Rdbms\LBFactorySimple;
+use Wikimedia\Rdbms\LBFactoryMulti;
+use Wikimedia\Rdbms\ChronologyProtector;
+use Wikimedia\Rdbms\MySQLMasterPos;
+
 /**
  * Holds tests for LBFactory abstract MediaWiki class.
  *
@@ -51,9 +57,12 @@ class LBFactoryTest extends MediaWikiTestCase {
 	public function getLBFactoryClassProvider() {
 		return [
 			# Format: new class, old class
-			[ 'LBFactorySimple', 'LBFactory_Simple' ],
-			[ 'LBFactorySingle', 'LBFactory_Single' ],
-			[ 'LBFactoryMulti', 'LBFactory_Multi' ],
+			[ Wikimedia\Rdbms\LBFactorySimple::class, 'LBFactory_Simple' ],
+			[ Wikimedia\Rdbms\LBFactorySingle::class, 'LBFactory_Single' ],
+			[ Wikimedia\Rdbms\LBFactoryMulti::class, 'LBFactory_Multi' ],
+			[ Wikimedia\Rdbms\LBFactorySimple::class, 'LBFactorySimple' ],
+			[ Wikimedia\Rdbms\LBFactorySingle::class, 'LBFactorySingle' ],
+			[ Wikimedia\Rdbms\LBFactoryMulti::class, 'LBFactoryMulti' ],
 		];
 	}
 
@@ -148,12 +157,12 @@ class LBFactoryTest extends MediaWikiTestCase {
 				],
 			],
 			'serverTemplate' => [
-				'dbname'	  => $wgDBname,
-				'user'		  => $wgDBuser,
-				'password'	  => $wgDBpassword,
-				'type'		  => $wgDBtype,
+				'dbname'      => $wgDBname,
+				'user'        => $wgDBuser,
+				'password'    => $wgDBpassword,
+				'type'        => $wgDBtype,
 				'dbDirectory' => $wgSQLiteDataDir,
-				'flags'		  => DBO_DEFAULT
+				'flags'       => DBO_DEFAULT
 			],
 			'hostsByName' => [
 				'test-db1'  => $wgDBserver,

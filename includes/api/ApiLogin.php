@@ -70,14 +70,7 @@ class ApiLogin extends ApiBase {
 			return;
 		}
 
-		try {
-			$this->requirePostedParameters( [ 'password', 'token' ] );
-		} catch ( ApiUsageException $ex ) {
-			// Make this a warning for now, upgrade to an error in 1.29.
-			foreach ( $ex->getStatusValue()->getErrors() as $error ) {
-				$this->addDeprecation( $error, 'login-params-in-query-string' );
-			}
-		}
+		$this->requirePostedParameters( [ 'password', 'token' ] );
 
 		$params = $this->extractRequestParams();
 
@@ -209,7 +202,7 @@ class ApiLogin extends ApiBase {
 
 			case 'Aborted':
 				$result['reason'] = 'Authentication requires user interaction, ' .
-				   'which is not supported by action=login.';
+					'which is not supported by action=login.';
 				if ( $this->getConfig()->get( 'EnableBotPasswords' ) ) {
 					$result['reason'] .= ' To be able to login with action=login, see [[Special:BotPasswords]].';
 					$result['reason'] .= ' To continue using main-account login, see action=clientlogin.';

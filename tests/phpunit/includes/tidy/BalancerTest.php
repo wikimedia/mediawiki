@@ -1,7 +1,6 @@
 <?php
 
 class BalancerTest extends MediaWikiTestCase {
-	private $balancer;
 
 	/**
 	 * Anything that needs to happen before your tests should go here.
@@ -11,20 +10,25 @@ class BalancerTest extends MediaWikiTestCase {
 		// This makes sure that all the various cleanup and restorations
 		// happen as they should (including the restoration for setMwGlobals).
 		parent::setUp();
-		$this->balancer = new MediaWiki\Tidy\Balancer( [
-			'strict' => false, /* not strict */
-			'allowedHtmlElements' => null, /* no sanitization */
-			'tidyCompat' => false, /* standard parser */
-			'allowComments' => true, /* comment parsing */
-		] );
 	}
 
 	/**
-	 * @covers MediaWiki\Tidy\Balancer::balance
+	 * @covers MediaWiki\Tidy\Balancer
+	 * @covers MediaWiki\Tidy\BalanceSets
+	 * @covers MediaWiki\Tidy\BalanceElement
+	 * @covers MediaWiki\Tidy\BalanceStack
+	 * @covers MediaWiki\Tidy\BalanceMarker
+	 * @covers MediaWiki\Tidy\BalanceActiveFormattingElements
 	 * @dataProvider provideBalancerTests
 	 */
-	public function testBalancer( $description, $input, $expected ) {
-		$output = $this->balancer->balance( $input );
+	public function testBalancer( $description, $input, $expected, $useTidy ) {
+		$balancer = new MediaWiki\Tidy\Balancer( [
+			'strict' => false, /* not strict */
+			'allowedHtmlElements' => null, /* no sanitization */
+			'tidyCompat' => $useTidy, /* standard parser */
+			'allowComments' => true, /* comment parsing */
+		] );
+		$output = $balancer->balance( $input );
 
 		// Ignore self-closing tags
 		$output = preg_replace( '/\s*\/>/', '>', $output );
@@ -86,7 +90,7 @@ class BalancerTest extends MediaWikiTestCase {
 					// Skip tests involving unusual doctypes.
 					continue;
 				}
-				$literalre = "~ <rdar: | <isindex | < /? (
+				$literalre = "~ <rdar: | < /? (
 					html | head | body | frame | frameset | plaintext
 				) > ~xi";
 				if ( preg_match( $literalre, $case['data'] ) ) {
@@ -146,10 +150,20 @@ class BalancerTest extends MediaWikiTestCase {
 				$tests[] = [
 					$filename, # use better description?
 					$data,
-					$html
+					$html,
+					false # strict HTML5 compat mode, no tidy
 				];
 			}
 		}
+
+		# Some additional tests for mediawiki-specific features
+		$tests[] = [
+			'Round-trip serialization for <pre>/<listing>/<textarea>',
+			"<pre>\n\na</pre><listing>\n\nb</listing><textarea>\n\nc</textarea>",
+			"<pre>\n\na</pre><listing>\n\nb</listing><textarea>\n\nc</textarea>",
+			true # use the tidy-compatible mode
+		];
+
 		return $tests;
 	}
 }

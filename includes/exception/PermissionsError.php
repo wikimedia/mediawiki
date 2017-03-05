@@ -45,10 +45,10 @@ class PermissionsError extends ErrorPageError {
 		$this->permission = $permission;
 
 		if ( !count( $errors ) ) {
-			$groups = array_map(
-				[ 'User', 'makeGroupLinkWiki' ],
-				User::getGroupsWithPermission( $this->permission )
-			);
+			$groups = [];
+			foreach ( User::getGroupsWithPermission( $this->permission ) as $group ) {
+				$groups[] = UserGroupMembership::getLink( $group, RequestContext::getMain(), 'wiki' );
+			}
 
 			if ( $groups ) {
 				$errors[] = [ 'badaccess-groups', $wgLang->commaList( $groups ), count( $groups ) ];

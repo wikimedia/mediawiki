@@ -21,6 +21,9 @@
  * @file
  * @ingroup Database
  */
+use Wikimedia\Rdbms\Blob;
+use Wikimedia\Rdbms\SQLiteField;
+use Wikimedia\Rdbms\ResultWrapper;
 
 /**
  * @ingroup Database

@@ -70,7 +70,7 @@ $namespaceAliases = [
 	'Diskusyón_de_Katēggoría'  => NS_CATEGORY_TALK,
 ];
 
-// Remove Spanish gender aliases (bug 37090)
+// Remove Spanish gender aliases (T39090)
 $namespaceGenderAliases = [];
 
 $specialPageAliases = [
@@ -177,4 +177,3 @@ $magicWords = [
 	'img_left'                  => [ '1', 'cierda', 'izquierda', 'izda', 'izq', 'left' ],
 	'img_none'                  => [ '1', 'dinguna', 'dinguno', 'ninguna', 'nada', 'no', 'ninguno', 'none' ],
 ];
-

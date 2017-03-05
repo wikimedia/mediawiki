@@ -112,7 +112,9 @@ abstract class BaseTemplate extends QuickTemplate {
 			$toolbox['info']['id'] = 't-info';
 		}
 
-		Hooks::run( 'BaseTemplateToolbox', [ &$this, &$toolbox ] );
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$template = $this;
+		Hooks::run( 'BaseTemplateToolbox', [ &$template, &$toolbox ] );
 		return $toolbox;
 	}
 
@@ -227,7 +229,9 @@ abstract class BaseTemplate extends QuickTemplate {
 			ob_start();
 			// We pass an extra 'true' at the end so extensions using BaseTemplateToolbox
 			// can abort and avoid outputting double toolbox links
-			Hooks::run( 'SkinTemplateToolboxEnd', [ &$this, true ] );
+			// Avoid PHP 7.1 warning from passing $this by reference
+			$template = $this;
+			Hooks::run( 'SkinTemplateToolboxEnd', [ &$template, true ] );
 			$hookContents = ob_get_contents();
 			ob_end_clean();
 			if ( !trim( $hookContents ) ) {
@@ -320,12 +324,12 @@ abstract class BaseTemplate extends QuickTemplate {
 	 *
 	 * If a "data" key is present, it must be an array, where the keys represent
 	 * the data-xxx properties with their provided values. For example,
-	 *  $item['data'] = [
-	 *  	 'foo' => 1,
-	 *  	 'bar' => 'baz',
-	 *  ];
+	 *     $item['data'] = [
+	 *       'foo' => 1,
+	 *       'bar' => 'baz',
+	 *     ];
 	 * will render as element properties:
-	 *  data-foo='1' data-bar='baz'
+	 *     data-foo='1' data-bar='baz'
 	 *
 	 * @param array $options Can be used to affect the output of a link.
 	 * Possible options are:

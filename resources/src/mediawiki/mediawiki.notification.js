@@ -71,6 +71,7 @@
 		$notificationContent.appendTo( $notification );
 
 		// Private state parameters, meant for internal use only
+		// autoHideSeconds: String alias for number of seconds for timeout of auto-hiding notifications.
 		// isOpen: Set to true after .start() is called to avoid double calls.
 		//         Set back to false after .close() to avoid duplicating the close animation.
 		// isPaused: false after .resume(), true after .pause(). Avoids duplicating or breaking the hide timeouts.
@@ -79,6 +80,9 @@
 		//          to stop replacement of a tagged notification with another notification using the same message.
 		// options: The options passed to the notification with a little sanitization. Used by various methods.
 		// $notification: jQuery object containing the notification DOM node.
+		this.autoHideSeconds = options.autoHideSeconds &&
+			notification.autoHideSeconds[ options.autoHideSeconds ] ||
+			notification.autoHideSeconds.short;
 		this.isOpen = false;
 		this.isPaused = true;
 		this.message = message;
@@ -190,7 +194,7 @@
 				// Already finished, so don't try to re-clear it
 				delete notif.timeout;
 				notif.close();
-			}, notification.autoHideSeconds * 1000 );
+			}, this.autoHideSeconds * 1000 );
 		}
 	};
 
@@ -370,6 +374,10 @@
 		 *   A boolean indicating whether the notifification should automatically
 		 *   be hidden after shown. Or if it should persist.
 		 *
+		 * - autoHideSeconds:
+		 *   Key to #autoHideSeconds for number of seconds for timeout of auto-hide
+		 *   notifications.
+		 *
 		 * - tag:
 		 *   An optional string. When a notification is tagged only one message
 		 *   with that tag will be displayed. Trying to display a new notification
@@ -387,26 +395,30 @@
 		 */
 		defaults: {
 			autoHide: true,
+			autoHideSeconds: 'short',
 			tag: false,
 			title: undefined,
 			type: false
 		},
 
 		/**
-		 * @property {number}
-		 * Number of seconds to wait before auto-hiding notifications.
+		 * @private
+		 * @property {Object}
 		 */
-		autoHideSeconds: 5,
+		autoHideSeconds: {
+			'short': 5,
+			'long': 30
+		},
 
 		/**
 		 * @property {number}
-		 * Maximum number of notifications to count down auto-hide timers for.
-		 * Only the first #autoHideLimit notifications being displayed will
-		 * auto-hide. Any notifications further down in the list will only start
-		 * counting down to auto-hide after the first few messages have closed.
+		 * Maximum number of simultaneous notifications to start auto-hide timers for.
+		 * Only this number of notifications being displayed will be auto-hidden at one time.
+		 * Any additional notifications in the list will only start counting their timeout for
+		 * auto-hiding after the previous messages have been closed.
 		 *
-		 * This basically represents the number of notifications the user should
-		 * be able to process in #autoHideSeconds time.
+		 * This basically represents the minimal number of notifications the user should
+		 * be able to process during the {@link #defaults default} #autoHideSeconds time.
 		 */
 		autoHideLimit: 3
 	};

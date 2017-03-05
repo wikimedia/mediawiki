@@ -299,4 +299,3 @@ $digitTransformTable = [
 $linkTrail = "/^([a-z\x{0900}-\x{0963}\x{0966}-\x{A8E0}-\x{A8FF}]+)(.*)$/sDu";
 
 $digitGroupingPattern = "##,##,###";
-

@@ -4,7 +4,7 @@
 ( function ( $ ) {
 	if ( document.selection && document.selection.createRange ) {
 		// On IE, patch the focus() method to restore the windows' scroll position
-		// (bug 32241)
+		// (T34241)
 		$.fn.extend( {
 			focus: ( function ( jqFocus ) {
 				return function () {
@@ -56,7 +56,7 @@
 		 */
 		function activateElementOnIE( element ) {
 			if ( element.setActive ) {
-				element.setActive(); // bug 32241: doesn't scroll
+				element.setActive(); // T34241: doesn't scroll
 			} else {
 				$( element ).focus(); // may scroll (but we patched it above)
 			}
@@ -172,7 +172,7 @@
 							// IE
 
 							// Note that IE9 will trigger the next section unless we check this first.
-							// See bug 35201.
+							// See bug T37201.
 
 							activateElementOnIE( this );
 							if ( context ) {
@@ -312,7 +312,7 @@
 						// IE doesn't properly report non-selected caret position through
 						// the selection ranges when textarea isn't focused. This can
 						// lead to saving a bogus empty selection, which then screws up
-						// whatever we do later (bug 31847).
+						// whatever we do later (T33847).
 						activateElementOnIE( e );
 
 						preFinished = false;

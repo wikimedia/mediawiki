@@ -21,6 +21,18 @@
  * @ingroup Database
  * @author Aaron Schulz
  */
+namespace Wikimedia\Rdbms;
+
+use IDatabase;
+use Database;
+use DBConnRef;
+use MaintainableDBConnRef;
+use DBError;
+use DBAccessError;
+use DBTransactionError;
+use DBExpectedError;
+use Exception;
+use InvalidArgumentException;
 
 /**
  * Database cluster connection, tracking, load balancing, and transaction manager interface
@@ -228,9 +240,6 @@ interface ILoadBalancer {
 	 * Index must be an actual index into the array.
 	 * If the server is already open, returns it.
 	 *
-	 * On error, returns false, and the connection which caused the
-	 * error will be available via $this->mErrorConnection.
-	 *
 	 * @note If disable() was called on this LoadBalancer, this method will throw a DBAccessError.
 	 *
 	 * @param int $i Server index or DB_MASTER/DB_REPLICA
@@ -370,7 +379,7 @@ interface ILoadBalancer {
 	 *
 	 * Use this only for mutli-database commits
 	 *
-	 * @param integer $type IDatabase::TRIGGER_* constant
+	 * @param int $type IDatabase::TRIGGER_* constant
 	 * @return Exception|null The first exception or null if there were none
 	 */
 	public function runMasterPostTrxCallbacks( $type );
@@ -447,7 +456,7 @@ interface ILoadBalancer {
 	/**
 	 * @note This method may trigger a DB connection if not yet done
 	 * @param string|bool $domain Domain ID, or false for the current domain
-	 * @param IDatabase|null DB master connection; used to avoid loops [optional]
+	 * @param IDatabase|null $conn DB master connection; used to avoid loops [optional]
 	 * @return string|bool Reason the master is read-only or false if it is not
 	 */
 	public function getReadOnlyReason( $domain = false, IDatabase $conn = null );
@@ -532,10 +541,10 @@ interface ILoadBalancer {
 	 *
 	 * @param IDatabase $conn Replica DB
 	 * @param DBMasterPos|bool $pos Master position; default: current position
-	 * @param integer|null $timeout Timeout in seconds [optional]
+	 * @param int $timeout Timeout in seconds [optional]
 	 * @return bool Success
 	 */
-	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = null );
+	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = 10 );
 
 	/**
 	 * Set a callback via IDatabase::setTransactionListener() on

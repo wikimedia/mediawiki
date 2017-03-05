@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Session;
 
-use AuthPlugin;
 use MediaWikiTestCase;
 use Psr\Log\LogLevel;
 use User;
@@ -1005,7 +1004,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( [
 			[
-				LogLevel::WARNING,
+				LogLevel::INFO,
 				'Session "{session}": Unverified user provided and no metadata to auth it',
 			]
 		], $logger->getBuffer() );

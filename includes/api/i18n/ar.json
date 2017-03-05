@@ -8,7 +8,8 @@
 			"Hiba Alshawi",
 			"Maroen1990",
 			"محمد أحمد عبد الفتاح",
-			"ديفيد"
+			"ديفيد",
+			"ASHmed"
 		]
 	},
 	"apihelp-main-param-action": "أي فعل للعمل.",
@@ -311,6 +312,7 @@
 	"apihelp-protect-example-protect": "حماية صفحة.",
 	"apihelp-protect-example-unprotect": "إلغاء حماية الصفحة من خلال وضع قيود ل<kbd>all</kbd> (أي يُسمَح أي شخص باتخاذ الإجراءات).",
 	"apihelp-protect-example-unprotect2": "إلغاء حماية الصفحة عن طريق عدم وضع أية قيود.",
+	"apihelp-purge-description": "مسح ذاكرة التخزين المؤقت للعناوين المعطاة",
 	"apihelp-purge-param-forcelinkupdate": "تحديث جداول الروابط.",
 	"apihelp-purge-param-forcerecursivelinkupdate": "تحديث جدول الروابط، وتحديث جداول الروابط لأية صفحة تستخدم هذه الصفحة كقالب.",
 	"apihelp-purge-example-simple": "إفراغ كاش <kbd>Main Page</kbd> وصفحة <kbd>API</kbd>.",

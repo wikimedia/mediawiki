@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * This is a class for doing query pages; since they're almost all the same,
  * we factor out some of the functionality into a superclass, and let
@@ -322,7 +324,7 @@ abstract class QueryPage extends SpecialPage {
 							$value = wfTimestamp( TS_UNIX,
 								$row->value );
 						} else {
-							$value = intval( $row->value ); // @bug 14414
+							$value = intval( $row->value ); // T16414
 						}
 					} else {
 						$value = 0;

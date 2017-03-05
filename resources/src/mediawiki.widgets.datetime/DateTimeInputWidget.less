@@ -1,4 +1,5 @@
-@import "mediawiki.widgets.datetime.definitions";
+/* stylelint-disable no-duplicate-selectors */
+@import 'mediawiki.widgets.datetime.definitions';
 
 .mw-widgets-datetime-dateTimeInputWidget {
 	display: inline-block;
@@ -52,7 +53,6 @@
 		margin: 0;
 		background-color: #fff;
 		color: #000;
-		border: solid 1px #ccc;
 		box-shadow: inset 0 0 0 0 @progressive;
 		border-radius: 0.1em;
 		.oo-ui-transition(box-shadow @quick-ease);
@@ -92,7 +92,7 @@
 		font-family: inherit;
 		background-color: transparent;
 		color: inherit;
-		border: none;
+		border: 0;
 		box-shadow: none;
 		text-align: center;
 		vertical-align: middle;

@@ -24,12 +24,13 @@ module.exports = function ( grunt ) {
 			all: [
 				'**/*.js',
 				'!docs/**',
-				'!tests/**',
 				'!node_modules/**',
 				'!resources/lib/**',
 				'!resources/src/jquery.tipsy/**',
 				'!resources/src/jquery/jquery.farbtastic.js',
 				'!resources/src/mediawiki.libs/**',
+				// Third-party code of PHPUnit coverage report
+				'!tests/coverage/**',
 				'!vendor/**',
 				// Explicitly say "**/*.js" here in case of symlinks
 				'!extensions/**/*.js',
@@ -58,7 +59,7 @@ module.exports = function ( grunt ) {
 			options: {
 				syntax: 'less'
 			},
-			src: '{resources/src/*,mw-config/**}/*.{css,less}'
+			src: '{resources/src,mw-config}/**/*.{css,less}'
 		},
 		watch: {
 			files: [
@@ -87,6 +88,9 @@ module.exports = function ( grunt ) {
 			},
 			main: {
 				browsers: [ 'Chrome' ]
+			},
+			chromium: {
+				browsers: [ 'Chromium' ]
 			},
 			more: {
 				browsers: [ 'Chrome', 'Firefox' ]

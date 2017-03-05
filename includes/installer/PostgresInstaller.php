@@ -156,10 +156,13 @@ class PostgresInstaller extends DatabaseInstaller {
 		try {
 			$db = Database::factory( 'postgres', [
 				'host' => $this->getVar( 'wgDBserver' ),
+				'port' => $this->getVar( 'wgDBport' ),
 				'user' => $user,
 				'password' => $password,
 				'dbname' => $dbName,
-				'schema' => $schema ] );
+				'schema' => $schema,
+				'keywordTableMap' => [ 'user' => 'mwuser', 'text' => 'pagecontent' ],
+			] );
 			$status->value = $db;
 		} catch ( DBConnectionError $e ) {
 			$status->fatal( 'config-connection-error', $e->getMessage() );

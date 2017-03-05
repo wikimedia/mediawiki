@@ -197,7 +197,10 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 					'LEFT JOIN',
 					[
 						'ug_group' => User::getGroupsWithPermission( 'bot' ),
-						'ug_user = img_user'
+						'ug_user = img_user',
+						$this->getConfig()->get( 'DisableUserGroupExpiry' ) ?
+							'1' :
+							'ug_expiry IS NULL OR ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
 					]
 				] ] );
 				$groupCond = ( $params['filterbots'] == 'nobots' ? 'NULL' : 'NOT NULL' );

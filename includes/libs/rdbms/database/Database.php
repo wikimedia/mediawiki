@@ -26,6 +26,13 @@
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Rdbms\TransactionProfiler;
+use Wikimedia\Rdbms\LikeMatch;
+use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\DBMasterPos;
+use Wikimedia\Rdbms\Blob;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Relational database abstraction object
@@ -841,7 +848,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		// Add trace comment to the begin of the sql string, right after the operator.
-		// Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (bug 42598)
+		// Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (T44598)
 		$commentedSql = preg_replace( '/\s|$/', " /* $fname {$this->agent} */ ", $sql, 1 );
 
 		# Start implicit transactions that wrap the request if DBO_TRX is enabled
@@ -1020,8 +1027,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	private function handleSessionLoss() {
 		$this->mTrxLevel = 0;
-		$this->mTrxIdleCallbacks = []; // bug 65263
-		$this->mTrxPreCommitCallbacks = []; // bug 65263
+		$this->mTrxIdleCallbacks = []; // T67263
+		$this->mTrxPreCommitCallbacks = []; // T67263
 		$this->mSessionTempTables = [];
 		$this->mNamedLocksHeld = [];
 		try {
@@ -1135,12 +1142,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$preLimitTail .= $this->makeGroupByWithHaving( $options );
 
 		$preLimitTail .= $this->makeOrderBy( $options );
-
-		// if (isset($options['LIMIT'])) {
-		// 	$tailOpts .= $this->limitResult('', $options['LIMIT'],
-		// 		isset($options['OFFSET']) ? $options['OFFSET']
-		// 		: false);
-		// }
 
 		if ( isset( $noKeyOptions['FOR UPDATE'] ) ) {
 			$postLimitTail .= ' FOR UPDATE';
@@ -2313,7 +2314,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$selectOptions );
 
 		if ( is_array( $srcTable ) ) {
-			$srcTable = implode( ',', array_map( [ &$this, 'tableName' ], $srcTable ) );
+			$srcTable = implode( ',', array_map( [ $this, 'tableName' ], $srcTable ) );
 		} else {
 			$srcTable = $this->tableName( $srcTable );
 		}
@@ -3462,4 +3463,4 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 }
 
-class_alias( 'Database', 'DatabaseBase' );
+class_alias( Database::class, 'DatabaseBase' );

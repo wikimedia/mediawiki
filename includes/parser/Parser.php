@@ -330,7 +330,9 @@ class Parser {
 		CoreTagHooks::register( $this );
 		$this->initialiseVariables();
 
-		Hooks::run( 'ParserFirstCallInit', [ &$this ] );
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$parser = $this;
+		Hooks::run( 'ParserFirstCallInit', [ &$parser ] );
 	}
 
 	/**
@@ -381,7 +383,9 @@ class Parser {
 
 		$this->mProfiler = new SectionProfiler();
 
-		Hooks::run( 'ParserClearState', [ &$this ] );
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$parser = $this;
+		Hooks::run( 'ParserClearState', [ &$parser ] );
 	}
 
 	/**
@@ -435,11 +439,13 @@ class Parser {
 			$this->mRevisionSize = null;
 		}
 
-		Hooks::run( 'ParserBeforeStrip', [ &$this, &$text, &$this->mStripState ] );
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$parser = $this;
+		Hooks::run( 'ParserBeforeStrip', [ &$parser, &$text, &$this->mStripState ] );
 		# No more strip!
-		Hooks::run( 'ParserAfterStrip', [ &$this, &$text, &$this->mStripState ] );
+		Hooks::run( 'ParserAfterStrip', [ &$parser, &$text, &$this->mStripState ] );
 		$text = $this->internalParse( $text );
-		Hooks::run( 'ParserAfterParse', [ &$this, &$text, &$this->mStripState ] );
+		Hooks::run( 'ParserAfterParse', [ &$parser, &$text, &$this->mStripState ] );
 
 		$text = $this->internalParseHalfParsed( $text, true, $linestart );
 
@@ -547,18 +553,32 @@ class Parser {
 			$limitReport = str_replace( [ '-', '&' ], [ '‐', '&amp;' ], $limitReport );
 			$text .= "\n<!-- \n$limitReport-->\n";
 
-			// Add on template profiling data
+			// Add on template profiling data in human/machine readable way
 			$dataByFunc = $this->mProfiler->getFunctionStats();
 			uasort( $dataByFunc, function ( $a, $b ) {
 				return $a['real'] < $b['real']; // descending order
 			} );
-			$profileReport = "Transclusion expansion time report (%,ms,calls,template)\n";
+			$profileReport = [];
 			foreach ( array_slice( $dataByFunc, 0, 10 ) as $item ) {
-				$profileReport .= sprintf( "%6.2f%% %8.3f %6d - %s\n",
+				$profileReport[] = sprintf( "%6.2f%% %8.3f %6d %s",
 					$item['%real'], $item['real'], $item['calls'],
 					htmlspecialchars( $item['name'] ) );
 			}
-			$text .= "\n<!-- \n$profileReport-->\n";
+			$text .= "<!--\nTransclusion expansion time report (%,ms,calls,template)\n";
+			$text .= implode( "\n", $profileReport ) . "\n-->\n";
+
+			$this->mOutput->setLimitReportData( 'limitreport-timingprofile', $profileReport );
+
+			// Add other cache related metadata
+			if ( $wgShowHostnames ) {
+				$this->mOutput->setLimitReportData( 'cachereport-origin', wfHostname() );
+			}
+			$this->mOutput->setLimitReportData( 'cachereport-timestamp',
+				$this->mOutput->getCacheTime() );
+			$this->mOutput->setLimitReportData( 'cachereport-ttl',
+				$this->mOutput->getCacheExpiry() );
+			$this->mOutput->setLimitReportData( 'cachereport-transientcontent',
+				$this->mOutput->hasDynamicContent() );
 
 			if ( $this->mGeneratedPPNodeCount > $this->mOptions->getMaxGeneratedPPNodeCount() / 10 ) {
 				wfDebugLog( 'generated-pp-node-count', $this->mGeneratedPPNodeCount . ' ' .
@@ -601,8 +621,10 @@ class Parser {
 	 * @return string UNSAFE half-parsed HTML
 	 */
 	public function recursiveTagParse( $text, $frame = false ) {
-		Hooks::run( 'ParserBeforeStrip', [ &$this, &$text, &$this->mStripState ] );
-		Hooks::run( 'ParserAfterStrip', [ &$this, &$text, &$this->mStripState ] );
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$parser = $this;
+		Hooks::run( 'ParserBeforeStrip', [ &$parser, &$text, &$this->mStripState ] );
+		Hooks::run( 'ParserAfterStrip', [ &$parser, &$text, &$this->mStripState ] );
 		$text = $this->internalParse( $text, false, $frame );
 		return $text;
 	}
@@ -649,8 +671,10 @@ class Parser {
 		if ( $revid !== null ) {
 			$this->mRevisionId = $revid;
 		}
-		Hooks::run( 'ParserBeforeStrip', [ &$this, &$text, &$this->mStripState ] );
-		Hooks::run( 'ParserAfterStrip', [ &$this, &$text, &$this->mStripState ] );
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$parser = $this;
+		Hooks::run( 'ParserBeforeStrip', [ &$parser, &$text, &$this->mStripState ] );
+		Hooks::run( 'ParserAfterStrip', [ &$parser, &$text, &$this->mStripState ] );
 		$text = $this->replaceVariables( $text, $frame );
 		$text = $this->mStripState->unstripBoth( $text );
 		return $text;
@@ -1245,8 +1269,11 @@ class Parser {
 
 		$origText = $text;
 
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$parser = $this;
+
 		# Hook to suspend the parser in this state
-		if ( !Hooks::run( 'ParserBeforeInternalParse', [ &$this, &$text, &$this->mStripState ] ) ) {
+		if ( !Hooks::run( 'ParserBeforeInternalParse', [ &$parser, &$text, &$this->mStripState ] ) ) {
 			return $text;
 		}
 
@@ -1266,16 +1293,16 @@ class Parser {
 			$text = $this->replaceVariables( $text );
 		}
 
-		Hooks::run( 'InternalParseBeforeSanitize', [ &$this, &$text, &$this->mStripState ] );
+		Hooks::run( 'InternalParseBeforeSanitize', [ &$parser, &$text, &$this->mStripState ] );
 		$text = Sanitizer::removeHTMLtags(
 			$text,
-			[ &$this, 'attributeStripCallback' ],
+			[ $this, 'attributeStripCallback' ],
 			false,
 			array_keys( $this->mTransparentTagHooks ),
 			[],
-			[ &$this, 'addTrackingCategory' ]
+			[ $this, 'addTrackingCategory' ]
 		);
-		Hooks::run( 'InternalParseBeforeLinks', [ &$this, &$text, &$this->mStripState ] );
+		Hooks::run( 'InternalParseBeforeLinks', [ &$parser, &$text, &$this->mStripState ] );
 
 		# Tables need to come after variable replacement for things to work
 		# properly; putting them before other transformations should keep
@@ -1314,8 +1341,11 @@ class Parser {
 	private function internalParseHalfParsed( $text, $isMain = true, $linestart = true ) {
 		$text = $this->mStripState->unstripGeneral( $text );
 
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$parser = $this;
+
 		if ( $isMain ) {
-			Hooks::run( 'ParserAfterUnstrip', [ &$this, &$text ] );
+			Hooks::run( 'ParserAfterUnstrip', [ &$parser, &$text ] );
 		}
 
 		# Clean up special characters, only run once, next-to-last before doBlockLevels
@@ -1354,7 +1384,7 @@ class Parser {
 		$text = $this->mStripState->unstripNoWiki( $text );
 
 		if ( $isMain ) {
-			Hooks::run( 'ParserBeforeTidy', [ &$this, &$text ] );
+			Hooks::run( 'ParserBeforeTidy', [ &$parser, &$text ] );
 		}
 
 		$text = $this->replaceTransparentTags( $text );
@@ -1395,7 +1425,7 @@ class Parser {
 		}
 
 		if ( $isMain ) {
-			Hooks::run( 'ParserAfterTidy', [ &$this, &$text ] );
+			Hooks::run( 'ParserAfterTidy', [ &$parser, &$text ] );
 		}
 
 		return $text;
@@ -1420,20 +1450,21 @@ class Parser {
 		$spdash = "(?:-|$space)"; # a dash or a non-newline space
 		$spaces = "$space++"; # possessive match of 1 or more spaces
 		$text = preg_replace_callback(
-			'!(?:                            # Start cases
-				(<a[ \t\r\n>].*?</a>) |      # m[1]: Skip link text
-				(<.*?>) |                    # m[2]: Skip stuff inside
-				                             #       HTML elements' . "
-				(\b(?i:$prots)($addr$urlChar*)) | # m[3]: Free external links
-				                             # m[4]: Post-protocol path
-				\b(?:RFC|PMID) $spaces       # m[5]: RFC or PMID, capture number
+			'!(?:                        # Start cases
+				(<a[ \t\r\n>].*?</a>) |    # m[1]: Skip link text
+				(<.*?>) |                  # m[2]: Skip stuff inside HTML elements' . "
+				(\b                        # m[3]: Free external links
+					(?i:$prots)
+					($addr$urlChar*)         # m[4]: Post-protocol path
+				) |
+				\b(?:RFC|PMID) $spaces     # m[5]: RFC or PMID, capture number
 					([0-9]+)\b |
-				\bISBN $spaces (             # m[6]: ISBN, capture number
+				\bISBN $spaces (           # m[6]: ISBN, capture number
 					(?: 97[89] $spdash? )?   #  optional 13-digit ISBN prefix
 					(?: [0-9]  $spdash? ){9} #  9 digits with opt. delimiters
 					[0-9Xx]                  #  check digit
 				)\b
-			)!xu", [ &$this, 'magicLinkCallback' ], $text );
+			)!xu", [ $this, 'magicLinkCallback' ], $text );
 		return $text;
 	}
 
@@ -1936,18 +1967,6 @@ class Parser {
 	/**
 	 * Replace unusual escape codes in a URL with their equivalent characters
 	 *
-	 * @deprecated since 1.24, use normalizeLinkUrl
-	 * @param string $url
-	 * @return string
-	 */
-	public static function replaceUnusualEscapes( $url ) {
-		wfDeprecated( __METHOD__, '1.24' );
-		return self::normalizeLinkUrl( $url );
-	}
-
-	/**
-	 * Replace unusual escape codes in a URL with their equivalent characters
-	 *
 	 * This generally follows the syntax defined in RFC 3986, with special
 	 * consideration for HTTP query strings.
 	 *
@@ -2199,7 +2218,7 @@ class Parser {
 				continue;
 			}
 
-			$origLink = $m[1];
+			$origLink = ltrim( $m[1], ' ' );
 
 			# Don't allow internal links to pages containing
 			# PROTO: where PROTO is a valid URL protocol; these
@@ -2465,7 +2484,7 @@ class Parser {
 	 *
 	 * @private
 	 *
-	 * @param int $index
+	 * @param string $index Magic variable identifier as mapped in MagicWord::$mVariableIDs
 	 * @param bool|PPFrame $frame
 	 *
 	 * @throws MWException
@@ -2484,18 +2503,21 @@ class Parser {
 				. ' called while parsing (no title set)' );
 		}
 
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$parser = $this;
+
 		/**
 		 * Some of these require message or data lookups and can be
 		 * expensive to check many times.
 		 */
-		if ( Hooks::run( 'ParserGetVariableValueVarCache', [ &$this, &$this->mVarCache ] ) ) {
+		if ( Hooks::run( 'ParserGetVariableValueVarCache', [ &$parser, &$this->mVarCache ] ) ) {
 			if ( isset( $this->mVarCache[$index] ) ) {
 				return $this->mVarCache[$index];
 			}
 		}
 
 		$ts = wfTimestamp( TS_UNIX, $this->mOptions->getTimestamp() );
-		Hooks::run( 'ParserGetVariableValueTs', [ &$this, &$ts ] );
+		Hooks::run( 'ParserGetVariableValueTs', [ &$parser, &$ts ] );
 
 		$pageLang = $this->getFunctionLang();
 
@@ -2798,6 +2820,9 @@ class Parser {
 			case 'contentlanguage':
 				global $wgLanguageCode;
 				return $wgLanguageCode;
+			case 'pagelanguage':
+				$value = $pageLang->getCode();
+				break;
 			case 'cascadingsources':
 				$value = CoreParserFunctions::cascadingsources( $this );
 				break;
@@ -2805,7 +2830,7 @@ class Parser {
 				$ret = null;
 				Hooks::run(
 					'ParserGetVariableValueSwitch',
-					[ &$this, &$this->mVarCache, &$index, &$ret, &$frame ]
+					[ &$parser, &$this->mVarCache, &$index, &$ret, &$frame ]
 				);
 
 				return $ret;
@@ -3349,7 +3374,10 @@ class Parser {
 			throw new MWException( "Tag hook for $function is not callable\n" );
 		}
 
-		$allArgs = [ &$this ];
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$parser = $this;
+
+		$allArgs = [ &$parser ];
 		if ( $flags & self::SFH_OBJECT_ARGS ) {
 			# Convert arguments to PPNodes and collect for appending to $allArgs
 			$funcArgs = [];
@@ -3858,7 +3886,9 @@ class Parser {
 					throw new MWException( "Tag hook for $name is not callable\n" );
 				}
 
-				$output = call_user_func_array( $callback, [ &$this, $frame, $content, $attributes ] );
+				// Avoid PHP 7.1 warning from passing $this by reference
+				$parser = $this;
+				$output = call_user_func_array( $callback, [ &$parser, $frame, $content, $attributes ] );
 			} else {
 				$output = '<span class="error">Invalid tag extension name: ' .
 					htmlspecialchars( $name ) . '</span>';
@@ -4961,7 +4991,9 @@ class Parser {
 		}
 		$ig->setAdditionalOptions( $params );
 
-		Hooks::run( 'BeforeParserrenderImageGallery', [ &$this, &$ig ] );
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$parser = $this;
+		Hooks::run( 'BeforeParserrenderImageGallery', [ &$parser, &$ig ] );
 
 		$lines = StringUtils::explode( "\n", $text );
 		foreach ( $lines as $line ) {
@@ -4990,7 +5022,7 @@ class Parser {
 			$descQuery = false;
 			Hooks::run( 'BeforeParserFetchFileAndTitle',
 				[ $this, $title, &$options, &$descQuery ] );
-			# Don't register it now, as ImageGallery does that later.
+			# Don't register it now, as TraditionalImageGallery does that later.
 			$file = $this->fetchFileNoRegister( $title, $options );
 			$handler = $file ? $file->getHandler() : false;
 
@@ -5258,7 +5290,7 @@ class Parser {
 						case 'framed':
 						case 'thumbnail':
 							// use first appearing option, discard others.
-							$validated = ! $seenformat;
+							$validated = !$seenformat;
 							$seenformat = true;
 							break;
 						default:

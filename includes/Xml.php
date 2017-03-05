@@ -59,8 +59,8 @@ class Xml {
 	 * Given an array of ('attributename' => 'value'), it generates the code
 	 * to set the XML attributes : attributename="value".
 	 * The values are passed to Sanitizer::encodeAttribute.
-	 * Return null if no attributes given.
-	 * @param array $attribs Array of attributes for an XML element
+	 * Returns null or empty string if no attributes given.
+	 * @param array|null $attribs Array of attributes for an XML element
 	 * @throws MWException
 	 * @return null|string
 	 */
@@ -561,6 +561,36 @@ class Xml {
 			. $options
 			. "\n"
 			. Xml::closeElement( 'select' );
+	}
+
+	/**
+	 * Converts textual drop-down list to array
+	 *
+	 * @param string $list Correctly formatted text (newline delimited) to be
+	 *   used to generate the options.
+	 * @return array
+	 */
+	public static function getArrayFromWikiTextList( $list = '' ) {
+		$options = [];
+
+		foreach ( explode( "\n", $list ) as $option ) {
+			$value = trim( $option );
+			if ( $value == '' ) {
+				continue;
+			} elseif ( substr( $value, 0, 1 ) == '*' && substr( $value, 1, 1 ) != '*' ) {
+				// A new group is starting ...
+				$value = trim( substr( $value, 1 ) );
+				$options[] = $value;
+			} elseif ( substr( $value, 0, 2 ) == '**' ) {
+				// groupmember
+				$value = trim( substr( $value, 2 ) );
+				$options[] = $value;
+			} else {
+				// groupless reason list
+				$options[] = $value;
+			}
+		}
+		return $options;
 	}
 
 	/**

@@ -6,7 +6,8 @@
 			"아라",
 			"Amire80",
 			"Jojit fb",
-			"Macofe"
+			"Macofe",
+			"Emem.calist"
 		]
 	},
 	"config-desc": "Ang tagapagluklok para sa MediaWiki",
@@ -279,6 +280,7 @@
 	"config-install-subscribe-fail": "Hindi nagawang magpasipi mula sa mediawiki-announce: $1",
 	"config-install-subscribe-notpossible": "Hindi nakalagak ang cURL at hindi makukuha ang <code>allow_url_fopen</code>",
 	"config-install-mainpage": "Nililikha ang pangunahing pahina na may likas na nakatakdang nilalaman",
+	"config-install-mainpage-exists": "Ang pangunahing pahina ay nakasaad na, ipagpatuloy ang paglalathala",
 	"config-install-extension-tables": "Nililikha ang mga talahanayan para sa pinagaganang mga dugtong",
 	"config-install-mainpage-failed": "Hindi maisingit ang pangunahing pahina: $1",
 	"config-install-done": "'''Maligayang bati!'''\nMatagumpay mong nailuklok ang MediaWiki.\n\nAng tagapagluklok ay nakagawa ng isang talaksan ng <code>LocalSettings.php</code>.\nNaglalaman ito ng lahat ng iyong mga pagsasaayos.\n\nKailangan mo itong ikargang paibaba at ilagay ito sa lipon ng iyong pagluluklok ng wiki (katulad ng direktoryo ng index.php).  Ang pagkakargang paibaba ay dapat na kusang magsimula.\n\nKung ang pagkakargang paibaba ay hindi inialok, o kung hindi mo ito itinuloy, maaari mong muling simulan ang pagkakargang paibaba sa pamamagitan ng pagpindot sa kawing na nasa ibaba:\n\n$3\n\n'''Paunawa''': Kapag hindi mo ito ginawa ngayon, ang nagawang talaksang ito ng pagkakaayos ay hindi mo na makukuha mamaya kapag lumabas ka mula sa pagluluklok na hindi ikinakarga itong paibaba.\n\nKapag nagawa na iyan, maaari ka nang '''[$2 pumasok sa wiki mo]'''.",

@@ -1,0 +1,34 @@
+.mw-rcfilters-ui-filterWrapperWidget {
+	width: 100%;
+	// Make sure this uses the interface direction, not the content direction
+	direction: ltr;
+
+	&-popup {
+		// We have to override OOUI's definition, which is set
+		// on the inline style of the popup
+		margin-top: 2.4em !important; /* stylelint-disable-line declaration-no-important */
+		max-width: 650px;
+
+		.oo-ui-popupWidget-body {
+			max-height: 70vh;
+		}
+
+		.oo-ui-popupWidget-footer {
+			background-color: #f8f9fa;
+			text-align: right;
+			padding: 0.5em;
+		}
+	}
+
+	&-search {
+		max-width: none;
+		margin-top: -0.5em;
+
+		input {
+			// We need to reiterate the directionality
+			// for the input as well to literally override
+			// a MediaWiki CSS rule that turns it 'ltr'
+			direction: ltr;
+		}
+	}
+}

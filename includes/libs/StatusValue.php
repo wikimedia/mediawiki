@@ -85,7 +85,7 @@ class StatusValue {
 	 * defined as:
 	 * [
 	 *     0 => object(StatusValue) # the StatusValue with error messages, only
-	 * 	   1 => object(StatusValue) # The StatusValue with warning messages, only
+	 *     1 => object(StatusValue) # The StatusValue with warning messages, only
 	 * ]
 	 *
 	 * @return StatusValue[]
@@ -154,7 +154,7 @@ class StatusValue {
 	}
 
 	/**
-	 * Change operation resuklt
+	 * Change operation result
 	 *
 	 * @param bool $ok Whether the operation completed
 	 * @param mixed $value

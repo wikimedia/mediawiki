@@ -9,7 +9,8 @@
 			"Yona b",
 			"Rotemliss",
 			"Macofe",
-			"Guycn2"
+			"Guycn2",
+			"שמזן"
 		]
 	},
 	"config-desc": "תכנית ההתקנה של מדיה־ויקי",
@@ -119,7 +120,7 @@
 	"config-type-mssql": "Microsoft SQL Server",
 	"config-support-info": "מדיה־ויקי תומכת במערכות מסדי הנתונים הבאות:\n\n$1\n\nאם אינך רואה את מסד הנתונים שלך ברשימה, יש לעקוב אחר ההוראות המקושרות לעיל כדי להפעיל את התמיכה.",
 	"config-dbsupport-mysql": "* [{{int:version-db-mysql-url}} MySQL] הוא היעד העיקרי עבור מדיה־ויקי ולו התמיכה הטובה ביותר. מדיה־ויקי עובדת גם עם [{{int:version-db-mariadb-url}} MariaDB] ועם [{{int:version-db-percona-url}} Percona Server], שתואמים ל־MySQL. (ר׳ [http://www.php.net/manual/en/mysql.installation.php how to compile PHP with MySQL support])",
-	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] הוא מסד נתונים נפוץ בקוד פתוח והוא נפוץ בתור חלופה ל־MySQL. ייתכן שיש בתצורה הזאת באגים מסוימים והיא לא מומלצת לסביבות מבצעיות. (ר׳ [http://www.php.net/manual/en/pgsql.installation.php how to compile PHP with PostgreSQL support]).",
+	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] הוא מסד נתונים נפוץ בקוד פתוח והוא נפוץ בתור חלופה ל־MySQL. (ר׳ [http://www.php.net/manual/en/pgsql.installation.php how to compile PHP with PostgreSQL support]).",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] הוא מסד נתונים קליל עם תמיכה טובה מאוד. (ר׳ [http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], משתמש ב־PDO)",
 	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle] הוא מסד נתונים עסקי מסחרי. (ר׳ [http://www.php.net/manual/en/oci8.installation.php How to compile PHP with OCI8 support])",
 	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] הוא מסד נתונים עסקי מסחרי לחלונות. ([http://www.php.net/manual/en/sqlsrv.installation.php How to compile PHP with SQLSRV support])",
@@ -254,7 +255,7 @@
 	"config-cache-options": "הגדרות למטמון עצמים (object caching):",
 	"config-cache-help": "מטמון עצמים משמש לשיפור המהירות של מדיה־ויקי על־ידי שמירה של נתונים שהשימוש בהם נפוץ במטמון.\nלאתרים בינוניים וגדולים כדאי מאוד להפעיל את זה, וגם אתרים קטנים ייהנו מזה.",
 	"config-cache-none": "ללא מטמון (שום יכולת אינה מוּסרת, אבל הביצועים באתרים גדולים ייפגעו)",
-	"config-cache-accel": "מטמון עצמים (object caching) של PHP&rlm; (APC&rlm;, XCache או WinCache)",
+	"config-cache-accel": "מטמון עצמים (object caching) של PHP&rlm; (APC,&rlm; APCu,&rlm; XCache או WinCache)",
 	"config-cache-memcached": "להשתמש ב־Memcached (דורש התקנות והגדרות נוספות)",
 	"config-memcached-servers": "שרתי Memcached:",
 	"config-memcached-help": "רשימת כתובות IP ש־Memcached ישתמש בהן.\nיש לרשום כתובת אחת בכל שורה ולציין את הפִּתְחָה (port), למשל:\n 127.0.0.1:11211\n 192.168.1.25:1234",
@@ -305,6 +306,7 @@
 	"config-install-subscribe-fail": "הרישום ל־mediawiki-announce לא הצליח: $1",
 	"config-install-subscribe-notpossible": "cURL אינה מותקנת ו־<code>allow_url_fopen</code> אינה זמינה.",
 	"config-install-mainpage": "יצירת דף ראשי עם תוכן התחלתי",
+	"config-install-mainpage-exists": "העמוד הראשי כבר קיים, לדלג",
 	"config-install-extension-tables": "יצירת טבלאות להרחבות מופעלות",
 	"config-install-mainpage-failed": "לא הצליחה הכנסת דף ראשי: $1.",
 	"config-install-done": "<strong>מזל טוב!</strong>\nהתקנת את תוכנת מדיה־ויקי.\n\nתוכנת ההתקנה יצרה את הקובץ <code>LocalSettings.php</code>.\nהוא מכיל את כל ההגדרות שלך.\n\nיש להוריד אותו ולהכניס אותו לתיקיית הבסיס שבה הותקן הוויקי שלך (אותה התיקייה שבה נמצא הקובץ index.php). ההורדה אמורה להתחיל באופן אוטומטי.\n\nאם ההורדה לא התחילה, או אם ביטלת אותה, אפשר להתחיל אותה מחדש באמצעות לחיצה על הקישור הבא:\n\n$3\n\n<strong>לתשומת לבך:</strong> אם ההורדה לא תבוצע כעת, קובץ ההגדרות <strong>לא</strong> יהיה זמין מאוחר יותר אם תוכנת ההתקנה תיסגר לפני שהקובץ יורד.\n\nלאחר שביצעת את הפעולות שלהלן, באפשרותך <strong>[$2 להיכנס לאתר הוויקי שלך]</strong>.",
@@ -315,5 +317,5 @@
 	"config-nofile": "הקובץ \"$1\" לא נמצא. האם הוא נמחק?",
 	"config-extension-link": "הידעת שמדיה־ויקי תומכת ב־[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions הרחבות]?\n\nבאפשרותך לעיין ב־[https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category הרחבות לפי קטגוריה].",
 	"mainpagetext": "<strong>תוכנת מדיה־ויקי הותקנה בהצלחה.</strong>",
-	"mainpagedocfooter": "היעזרו ב[https://meta.wikimedia.org/wiki/Help:Contents מדריך למשתמש] למידע על שימוש בתוכנת הוויקי.\n\n== קישורים שימושיים ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings רשימת ההגדרות]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ שאלות ותשובות על מדיה־ויקי]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce רשימת התפוצה על השקת גרסאות]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources תרגום מדיה־ויקי לשפה שלך]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam איך להיאבק נגד ספאם באתר הוויקי שלך]"
+	"mainpagedocfooter": "היעזרו ב[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents מדריך למשתמש] למידע על שימוש בתוכנת הוויקי.\n\n== קישורים שימושיים ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings רשימת ההגדרות]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ שאלות ותשובות על מדיה־ויקי]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce רשימת התפוצה על השקת גרסאות]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources תרגום מדיה־ויקי לשפה שלך]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam איך להיאבק נגד ספאם באתר הוויקי שלך]"
 }

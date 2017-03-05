@@ -39,8 +39,6 @@ class ApiBlock extends ApiBase {
 	 * of success. If it fails, the result will specify the nature of the error.
 	 */
 	public function execute() {
-		global $wgContLang;
-
 		$this->checkUserRightsAny( 'block' );
 
 		$user = $this->getUser();
@@ -48,7 +46,7 @@ class ApiBlock extends ApiBase {
 
 		$this->requireOnlyOneParameter( $params, 'user', 'userid' );
 
-		# bug 15810: blocked admins should have limited access here
+		# T17810: blocked admins should have limited access here
 		if ( $user->isBlocked() ) {
 			$status = SpecialBlock::checkUnblockSelf( $params['user'], $user );
 			if ( $status !== true ) {
@@ -71,12 +69,19 @@ class ApiBlock extends ApiBase {
 		} else {
 			$target = User::newFromName( $params['user'] );
 
-			// Bug 38633 - if the target is a user (not an IP address), but it
+			// T40633 - if the target is a user (not an IP address), but it
 			// doesn't exist or is unusable, error.
 			if ( $target instanceof User &&
 				( $target->isAnon() /* doesn't exist */ || !User::isUsableName( $target->getName() ) )
 			) {
 				$this->dieWithError( [ 'nosuchusershort', $params['user'] ], 'nosuchuser' );
+			}
+		}
+
+		if ( $params['tags'] ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			if ( !$ableToTag->isOK() ) {
+				$this->dieStatus( $ableToTag );
 			}
 		}
 
@@ -105,6 +110,7 @@ class ApiBlock extends ApiBase {
 			'Reblock' => $params['reblock'],
 			'Watch' => $params['watchuser'],
 			'Confirm' => true,
+			'Tags' => $params['tags'],
 		];
 
 		$retval = SpecialBlock::processForm( $data, $this->getContext() );
@@ -118,7 +124,7 @@ class ApiBlock extends ApiBase {
 
 		$block = Block::newFromTarget( $target, null, true );
 		if ( $block instanceof Block ) {
-			$res['expiry'] = $wgContLang->formatExpiry( $block->mExpiry, TS_ISO_8601, 'infinite' );
+			$res['expiry'] = ApiResult::formatExpiry( $block->mExpiry, 'infinite' );
 			$res['id'] = $block->getId();
 		} else {
 			# should be unreachable
@@ -164,6 +170,10 @@ class ApiBlock extends ApiBase {
 			'allowusertalk' => false,
 			'reblock' => false,
 			'watchuser' => false,
+			'tags' => [
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
+			],
 		];
 	}
 

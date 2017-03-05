@@ -17,7 +17,7 @@
 	},
 	"require": {
 		"composer/semver": "1.4.2",
-		"cssjanus/cssjanus": "1.1.2",
+		"cssjanus/cssjanus": "1.1.3",
 		"ext-ctype": "*",
 		"ext-iconv": "*",
 		"ext-json": "*",
@@ -25,10 +25,10 @@
 		"ext-xml": "*",
 		"liuggio/statsd-php-client": "1.0.18",
 		"mediawiki/at-ease": "1.1.0",
-		"oojs/oojs-ui": "0.18.2",
+		"oojs/oojs-ui": "0.19.4",
 		"oyejorge/less.php": "1.7.0.10",
 		"php": ">=5.5.9",
-		"psr/log": "1.0.0",
+		"psr/log": "1.0.2",
 		"wikimedia/assert": "0.2.2",
 		"wikimedia/base-convert": "1.0.1",
 		"wikimedia/cdb": "1.4.1",
@@ -41,6 +41,7 @@
 		"wikimedia/running-stat": "1.1.0",
 		"wikimedia/scoped-callback": "1.0.0",
 		"wikimedia/utfnormal": "1.1.0",
+		"wikimedia/timestamp": "1.0.0",
 		"wikimedia/wait-condition-loop": "1.0.1",
 		"wikimedia/wrappedstring": "2.2.0",
 		"zordius/lightncandy": "0.23"
@@ -50,11 +51,15 @@
 		"jakub-onderka/php-parallel-lint": "0.9.2",
 		"justinrainbow/json-schema": "~3.0",
 		"mediawiki/mediawiki-codesniffer": "0.7.2",
+		"jetbrains/phpstorm-stubs": "dev-master#1b9906084d6635456fcf3f3a01f0d7d5b99a578a",
 		"monolog/monolog": "~1.18.2",
 		"nikic/php-parser": "2.1.0",
 		"nmred/kafka-php": "0.1.5",
 		"phpunit/phpunit": "4.8.31",
-		"wikimedia/avro": "1.7.7"
+		"wikimedia/avro": "1.7.7",
+		"hamcrest/hamcrest-php": "^2.0",
+		"wmde/hamcrest-html-matchers": "^0.1.0",
+		"psy/psysh": "0.8.1"
 	},
 	"suggest": {
 		"ext-apc": "Local data and opcode cache",
@@ -71,7 +76,16 @@
 	"autoload": {
 		"psr-0": {
 			"ComposerHookHandler": "includes/composer"
-		}
+		},
+		"files": [
+			"includes/compat/Timestamp.php"
+		]
+	},
+	"autoload-dev": {
+		"files": [
+			"vendor/hamcrest/hamcrest-php/hamcrest/Hamcrest.php",
+			"vendor/wmde/hamcrest-html-matchers/src/functions.php"
+		]
 	},
 	"scripts": {
 		"lint": "parallel-lint --exclude vendor",

@@ -22,7 +22,7 @@ class BaseDumpTest extends MediaWikiTestCase {
 			$this->dump->close();
 		}
 
-		// Bug 37458, parent teardown need to be done after closing the
+		// T39458, parent teardown need to be done after closing the
 		// dump or it might cause some permissions errors.
 		parent::tearDown();
 	}

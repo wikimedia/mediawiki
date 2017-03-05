@@ -35,7 +35,7 @@
 
 	/* IE7 and earlier */
 	zoom: 1;
-	*display: inline;
+	*display: inline; /* stylelint-disable declaration-block-no-duplicate-properties */
 
 	padding: 7px;
 }
@@ -55,7 +55,7 @@ table.toc td {
 #toc h2,
 .toc h2 {
 	display: inline;
-	border: none;
+	border: 0;
 	padding: 0;
 	font-size: 100%;
 	font-weight: bold;
@@ -121,18 +121,20 @@ table.toc td {
 }
 
 /* Images */
-/* @noflip */div.floatright, table.floatright {
-	margin: 0 0 .5em .5em;
-	border: 0;
+/* @noflip */
+div.floatright,
+table.floatright {
+	margin: 0 0 0.5em 0.5em;
 }
 
 div.floatright p {
 	font-style: italic;
 }
 
-/* @noflip */div.floatleft, table.floatleft {
-	margin: 0 .5em .5em 0;
-	border: 0;
+/* @noflip */
+div.floatleft,
+table.floatleft {
+	margin: 0 0.5em 0.5em 0;
 }
 
 div.floatleft p {
@@ -141,7 +143,7 @@ div.floatleft p {
 
 /* Thumbnails */
 div.thumb {
-	margin-bottom: .5em;
+	margin-bottom: 0.5em;
 	width: auto;
 	background-color: transparent;
 }
@@ -163,7 +165,7 @@ html .thumbimage {
 }
 
 html .thumbcaption {
-	border: none;
+	border: 0;
 	line-height: 1.4em;
 	padding: 3px;
 	font-size: 94%;
@@ -247,12 +249,12 @@ img.thumbborder {
 
 /* @noflip */
 div.tright {
-	margin: .5em 0 1.3em 1.4em;
+	margin: 0.5em 0 1.3em 1.4em;
 }
 
 /* @noflip */
 div.tleft {
-	margin: .5em 1.4em 1.3em 0;
+	margin: 0.5em 1.4em 1.3em 0;
 }
 
 /* Hide elements that are marked as "empty" according to legacy Tidy rules,

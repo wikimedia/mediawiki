@@ -89,4 +89,3 @@ $specialPageAliases = [
 	'Wantedpages'               => [ 'ErunBueem', 'EmpayanGluyasikieem' ],
 	'Watchlist'                 => [ 'Suzdasiki' ],
 ];
-

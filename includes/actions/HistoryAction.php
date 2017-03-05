@@ -24,6 +24,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
  * This class handles printing the history page for an article. In order to
@@ -146,6 +148,9 @@ class HistoryAction extends FormlessAction {
 				$out->setStatusCode( 404 );
 			}
 			$out->addWikiMsg( 'nohistory' );
+
+			$dbr = wfGetDB( DB_REPLICA );
+
 			# show deletion/move log if there is an entry
 			LogEventsList::showLogExtract(
 				$out,
@@ -153,7 +158,7 @@ class HistoryAction extends FormlessAction {
 				$this->getTitle(),
 				'',
 				[ 'lim' => 10,
-					'conds' => [ "log_action != 'revision'" ],
+					'conds' => [ 'log_action != ' . $dbr->addQuotes( 'revision' ) ],
 					'showIfEmpty' => false,
 					'msgKey' => [ 'moveddeleted-notice' ]
 				]

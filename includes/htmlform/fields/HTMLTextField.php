@@ -187,6 +187,7 @@ class HTMLTextField extends HTMLFormField {
 			'name' => $this->mName,
 			'value' => $value,
 			'type' => $type,
+			'dir' => $this->mDir,
 		] + $attribs );
 	}
 

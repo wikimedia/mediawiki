@@ -165,6 +165,7 @@ class HTMLForm extends ContextSource {
 		'url' => 'HTMLTextField',
 		'title' => 'HTMLTitleTextField',
 		'user' => 'HTMLUserTextField',
+		'usersmultiselect' => 'HTMLUsersMultiselectField',
 	];
 
 	public $mFieldData;
@@ -1061,6 +1062,9 @@ class HTMLForm extends ContextSource {
 		if ( $this->mName ) {
 			$attribs['name'] = $this->mName;
 		}
+		if ( $this->needsJSForHtml5FormValidation() ) {
+			$attribs['novalidate'] = true;
+		}
 		return $attribs;
 	}
 
@@ -1255,7 +1259,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @param string|array|Status $elements The set of errors/warnings to process.
 	 * @param string $elementsType Should warnings or errors be returned.  This is meant
-	 * 	for Status objects, all other valid types are always considered as errors.
+	 *     for Status objects, all other valid types are always considered as errors.
 	 * @return string
 	 */
 	public function getErrorsOrWarnings( $elements, $elementsType ) {
@@ -1875,5 +1879,23 @@ class HTMLForm extends ContextSource {
 	 */
 	protected function getMessage( $value ) {
 		return Message::newFromSpecifier( $value )->setContext( $this );
+	}
+
+	/**
+	 * Whether this form, with its current fields, requires the user agent to have JavaScript enabled
+	 * for the client-side HTML5 form validation to work correctly. If this function returns true, a
+	 * 'novalidate' attribute will be added on the `<form>` element. It will be removed if the user
+	 * agent has JavaScript support, in htmlform.js.
+	 *
+	 * @return boolean
+	 * @since 1.29
+	 */
+	public function needsJSForHtml5FormValidation() {
+		foreach ( $this->mFlatFields as $fieldname => $field ) {
+			if ( $field->needsJSForHtml5FormValidation() ) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

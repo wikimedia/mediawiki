@@ -365,7 +365,11 @@ class ResourceLoaderClientHtml {
 		$rl = $mainContext->getResourceLoader();
 		$chunks = [];
 
+		// Sort module names so requests are more uniform
+		sort( $modules );
+
 		if ( $mainContext->getDebug() && count( $modules ) > 1 ) {
+
 			$chunks = [];
 			// Recursively call us for every item
 			foreach ( $modules as $name ) {
@@ -374,8 +378,6 @@ class ResourceLoaderClientHtml {
 			return new WrappedStringList( "\n", $chunks );
 		}
 
-		// Sort module names so requests are more uniform
-		sort( $modules );
 		// Create keyed-by-source and then keyed-by-group list of module objects from modules list
 		$sortedModules = [];
 		foreach ( $modules as $name ) {
@@ -415,7 +417,7 @@ class ResourceLoaderClientHtml {
 				// Special handling for the user group; because users might change their stuff
 				// on-wiki like user pages, or user preferences; we need to find the highest
 				// timestamp of these user-changeable modules so we can ensure cache misses on change
-				// This should NOT be done for the site group (bug 27564) because anons get that too
+				// This should NOT be done for the site group (T29564) because anons get that too
 				// and we shouldn't be putting timestamps in CDN-cached HTML
 				if ( $group === 'user' ) {
 					// Must setModules() before makeVersionQuery()

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>wikibooks-icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="wikibooks">
+            <g id="Group-2" transform="translate(7.000000, 6.000000)">
+                <rect id="Rectangle" fill="#000000" x="0" y="0" width="13.4872062" height="46.9333333" rx="1"></rect>
+                <rect id="Rectangle" fill="#000000" x="16.3773218" y="0" width="13.4872062" height="46.9333333" rx="1"></rect>
+                <rect id="Rectangle-2" fill="#FFFFFF" x="18.3040656" y="3.2" width="9.63371872" height="2.13333333" rx="1"></rect>
+                <rect id="Rectangle-2" fill="#FFFFFF" x="18.3040656" y="7.46666667" width="9.63371872" height="2.13333333" rx="1"></rect>
+                <rect id="Rectangle-2" fill="#FFFFFF" x="18.3040656" y="42.6666667" width="9.63371872" height="2.13333333" rx="1"></rect>
+                <g id="Group" transform="translate(41.629197, 24.582549) rotate(-15.000000) translate(-41.629197, -24.582549) translate(36.629197, 2.082549)">
+                    <rect id="Rectangle" fill="#000000" x="-9.14823772e-14" y="1.0658141e-14" width="9.63371872" height="44.8" rx="1"></rect>
+                    <rect id="Rectangle-2" fill="#FFFFFF" x="1.37624553" y="3.05454545" width="6.88122765" height="2.03636364" rx="1"></rect>
+                    <rect id="Rectangle-2" fill="#FFFFFF" x="4.12873659" y="18.3272727" width="2.0643683" height="8.14545455" rx="1"></rect>
+                    <rect id="Rectangle-2" fill="#FFFFFF" x="1.37624553" y="40.7272727" width="6.88122765" height="2.03636364" rx="1"></rect>
+                </g>
+                <rect id="Rectangle-2" fill="#FFFFFF" x="1.92674374" y="42.6666667" width="9.63371872" height="2.13333333" rx="1"></rect>
+                <rect id="Rectangle-2" fill="#FFFFFF" x="3.85348749" y="21.3333333" width="5.78023123" height="6.4" rx="1"></rect>
+                <rect id="Rectangle-2" fill="#FFFFFF" x="20.2308093" y="21.3333333" width="5.78023123" height="6.4" rx="1"></rect>
+                <rect id="Rectangle-2" fill="#FFFFFF" x="1.92674374" y="2.13333333" width="9.63371872" height="6.4" rx="1"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

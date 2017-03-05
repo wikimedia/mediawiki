@@ -1,7 +1,7 @@
 ( function ( $ ) {
 	QUnit.module( 'jquery.byteLength', QUnit.newMwEnvironment() );
 
-	QUnit.test( 'Simple text', 5, function ( assert ) {
+	QUnit.test( 'Simple text', function ( assert ) {
 		var azLc = 'abcdefghijklmnopqrstuvwxyz',
 			azUc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 			num = '0123456789',
@@ -16,7 +16,7 @@
 
 	} );
 
-	QUnit.test( 'Special text', 4, function ( assert ) {
+	QUnit.test( 'Special text', function ( assert ) {
 		// https://en.wikipedia.org/wiki/UTF-8
 		var u0024 = '$',
 			// Cent symbol

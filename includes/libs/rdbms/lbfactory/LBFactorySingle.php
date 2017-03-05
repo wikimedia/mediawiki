@@ -21,6 +21,12 @@
  * @ingroup Database
  */
 
+namespace Wikimedia\Rdbms;
+
+use IDatabase;
+use InvalidArgumentException;
+use BadMethodCallException;
+
 /**
  * An LBFactory class that always returns a single database object.
  */

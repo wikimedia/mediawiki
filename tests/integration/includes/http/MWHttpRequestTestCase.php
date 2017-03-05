@@ -241,4 +241,3 @@ class MWHttpRequestTestCase extends PHPUnit_Framework_TestCase {
 			array_change_key_case( $cookieJar->cookie, CASE_LOWER ) );
 	}
 }
-

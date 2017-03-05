@@ -1,13 +1,15 @@
 /*!
- * OOjs UI v0.18.2
+ * OOjs UI v0.19.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
- * Copyright 2011–2016 OOjs UI Team and other contributors.
+ * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-12-06T23:32:57Z
+ * Date: 2017-02-28T23:19:44Z
  */
+/* stylelint-disable selector-no-vendor-prefix, at-rule-no-unknown */
+/* stylelint-enable selector-no-vendor-prefix, at-rule-no-unknown */
 .oo-ui-tool.oo-ui-widget-enabled {
   -webkit-transition: background-color 100ms;
      -moz-transition: background-color 100ms;
@@ -37,9 +39,6 @@
   height: 2.5em;
   width: 1.875em;
 }
-.oo-ui-toolGroupTool > .oo-ui-popupToolGroup.oo-ui-labelElement > .oo-ui-popupToolGroup-handle .oo-ui-labelElement-label {
-  line-height: 2.1;
-}
 .oo-ui-toolGroup {
   display: inline-block;
   vertical-align: middle;
@@ -63,10 +62,6 @@
 }
 .oo-ui-toolbar-narrow .oo-ui-toolGroup + .oo-ui-toolGroup {
   margin-left: 0;
-}
-.oo-ui-barToolGroup > .oo-ui-iconElement-icon,
-.oo-ui-barToolGroup > .oo-ui-labelElement-label {
-  display: none;
 }
 .oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool {
   display: inline-block;
@@ -243,12 +238,17 @@
   left: 0;
 }
 .oo-ui-popupToolGroup .oo-ui-toolGroup-tools {
-  top: 3.125em;
   margin: 0 -1px;
   border: 1px solid #c8ccd1;
   background-color: #fff;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25);
   min-width: 16em;
+}
+.oo-ui-toolbar-position-top .oo-ui-popupToolGroup .oo-ui-toolGroup-tools {
+  top: 3.125em;
+}
+.oo-ui-toolbar-position-bottom .oo-ui-popupToolGroup .oo-ui-toolGroup-tools {
+  bottom: 3.125em;
 }
 .oo-ui-popupToolGroup .oo-ui-tool-link {
   padding: 0.4em 0.625em;
@@ -260,10 +260,6 @@
   height: 2.5em;
   width: 1.875em;
   min-width: 1.875em;
-}
-.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-title,
-.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-accel {
-  line-height: 2;
 }
 .oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-title {
   padding-left: 0.5em;
@@ -367,8 +363,7 @@
   position: relative;
 }
 .oo-ui-toolbar-tools,
-.oo-ui-toolbar-actions,
-.oo-ui-toolbar-shadow {
+.oo-ui-toolbar-actions {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -398,22 +393,20 @@
       -ms-user-select: all;
           user-select: all;
 }
-.oo-ui-toolbar-shadow {
-  background-position: left top;
-  background-repeat: repeat-x;
-  position: absolute;
-  width: 100%;
-  pointer-events: none;
-}
 .oo-ui-toolbar-bar {
-  border-bottom: 1px solid #c8ccd1;
   background-color: #fff;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-  font-weight: 500;
   color: #222;
 }
+.oo-ui-toolbar-position-top > .oo-ui-toolbar-bar {
+  border-bottom: 1px solid #c8ccd1;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+}
+.oo-ui-toolbar-position-bottom > .oo-ui-toolbar-bar {
+  border-top: 1px solid #c8ccd1;
+  box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.1);
+}
 .oo-ui-toolbar-bar .oo-ui-toolbar-bar {
-  border-bottom: 0;
+  border: 0;
   background-color: transparent;
   box-shadow: none;
 }

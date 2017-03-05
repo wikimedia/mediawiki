@@ -87,6 +87,8 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 			return;
 		}
 
+		$this->getOutput()->addBacklinkSubtitle( $this->getPageTitle() );
+
 		$status = $this->trySubmit();
 
 		if ( $status === false || !$status->isOK() ) {

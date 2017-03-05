@@ -317,7 +317,7 @@ $magicWords = [
 	'pagesincategory_files'     => [ '0', 'فايلات', 'ملفات', 'files' ],
 ];
 
-// (bug 16469) Override Eastern Arabic numberals, use Western
+// (T18469) Override Eastern Arabic numberals, use Western
 $digitTransformTable = [
 	'0' => '0',
 	'1' => '1',
@@ -332,4 +332,3 @@ $digitTransformTable = [
 	'.' => '.',
 	',' => ',',
 ];
-

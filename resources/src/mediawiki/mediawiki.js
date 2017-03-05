@@ -8,6 +8,7 @@
  * @singleton
  */
 
+/* global mwNow */
 /* eslint-disable no-use-before-define */
 
 ( function ( $ ) {
@@ -524,13 +525,8 @@
 		 *
 		 * @return {number} Current time
 		 */
-		now: ( function () {
-			var perf = window.performance,
-				navStart = perf && perf.timing && perf.timing.navigationStart;
-			return navStart && typeof perf.now === 'function' ?
-				function () { return navStart + perf.now(); } :
-				function () { return +new Date(); };
-		}() ),
+		now: mwNow,
+		// mwNow is defined in startup.js
 
 		/**
 		 * Format a string. Replace $1, $2 ... $N with positional arguments.
@@ -1256,7 +1252,7 @@
 					el.media = media;
 				}
 				// If you end up here from an IE exception "SCRIPT: Invalid property value.",
-				// see #addEmbeddedCSS, bug 31676, and bug 47277 for details.
+				// see #addEmbeddedCSS, T33676, and T49277 for details.
 				el.href = url;
 
 				$( getMarker() ).before( el );
@@ -1927,7 +1923,7 @@
 				 *     { <media>: css }
 				 *     { <media>: [url, ..] }
 				 *
-				 * The reason css strings are not concatenated anymore is bug 31676. We now check
+				 * The reason css strings are not concatenated anymore is T33676. We now check
 				 * whether it's safe to extend the stylesheet.
 				 *
 				 * @protected
@@ -2046,7 +2042,7 @@
 								// Support: IE 7-8
 								// Use properties instead of attributes as IE throws security
 								// warnings when inserting a <link> tag with a protocol-relative
-								// URL set though attributes - when on HTTPS. See bug 41331.
+								// URL set though attributes - when on HTTPS. See T43331.
 								l = document.createElement( 'link' );
 								l.rel = 'stylesheet';
 								l.href = modules;
@@ -2199,6 +2195,8 @@
 					// Whether the store is in use on this page.
 					enabled: null,
 
+					// Modules whose string representation exceeds 100 kB are
+					// ineligible for storage. See bug T66721.
 					MODULE_SIZE_MAX: 100 * 1000,
 
 					// The contents of the store, mapping '[name]@[version]' keys
@@ -2785,6 +2783,7 @@
 			return $.when.apply( $, all );
 		} );
 		loading.then( function () {
+			/* global mwPerformance */
 			mwPerformance.mark( 'mwLoadEnd' );
 			mw.hook( 'resourceloader.loadEnd' ).fire();
 		} );

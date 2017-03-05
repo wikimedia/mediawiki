@@ -39,7 +39,7 @@
 		] );
 
 		return new mw.Api().parse( new mw.Title( 'Earth' ) ).done( function ( html ) {
-			assert.equal( html, '<p><b>Earth</b> is a planet.</p>', 'Parse page by Title object'  );
+			assert.equal( html, '<p><b>Earth</b> is a planet.</p>', 'Parse page by Title object' );
 		} );
 	} );
 }( mediaWiki ) );

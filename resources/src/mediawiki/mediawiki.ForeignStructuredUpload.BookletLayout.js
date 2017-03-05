@@ -107,6 +107,9 @@
 									e.stopPropagation();
 								} );
 						} );
+					}, function ( errorMsg ) {
+						booklet.getPage( 'upload' ).$element.msg( errorMsg );
+						return $.Deferred().resolve();
 					} )
 				);
 			}
@@ -125,7 +128,14 @@
 	 * @return {mw.Upload}
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.createUpload = function () {
-		return new mw.ForeignStructuredUpload( this.target );
+		return new mw.ForeignStructuredUpload( this.target, {
+			parameters: {
+				errorformat: 'html',
+				errorlang: mw.config.get( 'wgUserLanguage' ),
+				errorsuselocal: 1,
+				formatversion: 2
+			}
+		} );
 	};
 
 	/* Form renderers */

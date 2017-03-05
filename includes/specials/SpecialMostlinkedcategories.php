@@ -24,6 +24,8 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * A querypage to show categories ordered in descending order by the pages in them
  *

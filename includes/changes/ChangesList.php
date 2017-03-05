@@ -23,6 +23,7 @@
  */
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ResultWrapper;
 
 class ChangesList extends ContextSource {
 	/**
@@ -158,19 +159,43 @@ class ChangesList extends ContextSource {
 	protected function getHTMLClasses( $rc, $watched ) {
 		$classes = [];
 		$logType = $rc->mAttribs['rc_log_type'];
+		$prefix = 'mw-changeslist-';
 
 		if ( $logType ) {
-			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-log-' . $logType );
+			$classes[] = Sanitizer::escapeClass( $prefix . 'log-' . $logType );
 		} else {
-			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-ns' .
+			$classes[] = Sanitizer::escapeClass( $prefix . 'ns' .
 				$rc->mAttribs['rc_namespace'] . '-' . $rc->mAttribs['rc_title'] );
 		}
 
 		// Indicate watched status on the line to allow for more
 		// comprehensive styling.
 		$classes[] = $watched && $rc->mAttribs['rc_timestamp'] >= $watched
-			? 'mw-changeslist-line-watched'
-			: 'mw-changeslist-line-not-watched';
+			? $prefix . 'line-watched'
+			: $prefix . 'line-not-watched';
+
+		$classes = array_merge( $classes, $this->getHTMLClassesForFilters( $rc ) );
+
+		return $classes;
+	}
+
+	protected function getHTMLClassesForFilters( $rc ) {
+		$classes = [];
+		$prefix = 'mw-changeslist-';
+
+		$classes[] = $prefix . ( $rc->getAttribute( 'rc_bot' ) ? 'bot' : 'human' );
+		$classes[] = $prefix . ( $rc->getAttribute( 'rc_user' ) ? 'liu' : 'anon' );
+		$classes[] = $prefix . ( $rc->getAttribute( 'rc_minor' ) ? 'minor' : 'major' );
+		$classes[] = $prefix .
+			( $rc->getAttribute( 'rc_patrolled' ) ? 'patrolled' : 'unpatrolled' );
+		$classes[] = $prefix .
+			( $this->getUser()->equals( $rc->getPerformer() ) ? 'self' : 'others' );
+		$classes[] = $prefix . 'src-' . str_replace( '.', '-', $rc->getAttribute( 'rc_source' ) );
+
+		$performer = $rc->getPerformer();
+		if ( $performer && $performer->isLoggedIn() ) {
+			$classes[] = $prefix . 'user-' . $performer->getExperienceLevel();
+		}
 
 		return $classes;
 	}
@@ -379,7 +404,7 @@ class ChangesList extends ContextSource {
 			$diffLink = $this->linkRenderer->makeKnownLink(
 				$rc->getTitle(),
 				new HtmlArmor( $this->message['diff'] ),
-				[],
+				[ 'class' => 'mw-changeslist-diff' ],
 				$query
 			);
 		}
@@ -391,7 +416,7 @@ class ChangesList extends ContextSource {
 			$diffhist .= $this->linkRenderer->makeKnownLink(
 				$rc->getTitle(),
 				new HtmlArmor( $this->message['hist'] ),
-				[],
+				[ 'class' => 'mw-changeslist-history' ],
 				[
 					'curid' => $rc->mAttribs['rc_cur_id'],
 					'action' => 'history'
@@ -444,8 +469,10 @@ class ChangesList extends ContextSource {
 
 		# TODO: Deprecate the $s argument, it seems happily unused.
 		$s = '';
+		# Avoid PHP 7.1 warning from passing $this by reference
+		$changesList = $this;
 		Hooks::run( 'ChangesListInsertArticleLink',
-			[ &$this, &$articlelink, &$s, &$rc, $unpatrolled, $watched ] );
+			[ &$changesList, &$articlelink, &$s, &$rc, $unpatrolled, $watched ] );
 
 		return "{$s} {$articlelink}";
 	}

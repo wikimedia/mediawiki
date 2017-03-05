@@ -106,10 +106,10 @@ $specialPageAliases = [
 	'Mostlinkedtemplates'       => [ 'Nejpoužívanější_šablony', 'Nejpouzivanejsi_sablony' ],
 	'Mostrevisions'             => [ 'Stránky_s_nejvíce_editacemi', 'Stranky_s_nejvice_editacemi', 'Stránky_s_nejvyšším_počtem_editací' ],
 	'Movepage'                  => [ 'Přesunout_stránku', 'Přejmenovat_stránku' ],
-	'Mycontributions'           => [ 'Mé_příspěvky', 'Me_prispevky' ],
+	'Mycontributions'           => [ 'Moje_příspěvky', 'Mé_příspěvky', 'Me_prispevky' ],
 	'MyLanguage'                => [ 'V_mém_jazyce', 'Můj_jazyk' ],
-	'Mypage'                    => [ 'Moje_stránka', 'Moje_stranka' ],
-	'Mytalk'                    => [ 'Moje_diskuse' ],
+	'Mypage'                    => [ 'Moje_stránka', 'Moje_stranka', 'Má_stránka' ],
+	'Mytalk'                    => [ 'Moje_diskuse', 'Má_diskuse' ],
 	'Myuploads'                 => [ 'Moje_soubory', 'Mé_soubory' ],
 	'Newimages'                 => [ 'Nové_obrázky', 'Galerie_nových_obrázků', 'Nove_obrazky' ],
 	'Newpages'                  => [ 'Nové_stránky', 'Nove_stranky', 'Nejnovější_stránky', 'Nejnovejsi_stranky' ],
@@ -356,4 +356,3 @@ $bookstoreList = [
 $linkTrail = '/^([a-záčďéěíňóřšťúůýž]+)(.*)$/sDu';
 
 $separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
-

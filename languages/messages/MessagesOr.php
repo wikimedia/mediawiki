@@ -252,4 +252,3 @@ $magicWords = [
 ];
 
 $digitGroupingPattern = "##,##,###";
-

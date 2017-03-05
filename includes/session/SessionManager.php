@@ -773,7 +773,8 @@ final class SessionManager implements SessionManagerInterface {
 					return $failHandler();
 				}
 			} elseif ( !$info->getUserInfo()->isVerified() ) {
-				$this->logger->warning(
+				// probably just a session timeout
+				$this->logger->info(
 					'Session "{session}": Unverified user provided and no metadata to auth it',
 					[
 						'session' => $info,

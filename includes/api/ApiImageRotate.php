@@ -42,6 +42,14 @@ class ApiImageRotate extends ApiBase {
 			'invalidTitles', 'special', 'missingIds', 'missingRevIds', 'interwikiTitles',
 		] );
 
+		// Check if user can add tags
+		if ( count( $params['tags'] ) ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $this->getUser() );
+			if ( !$ableToTag->isOK() ) {
+				$this->dieStatus( $ableToTag );
+			}
+		}
+
 		foreach ( $pageSet->getTitles() as $title ) {
 			$r = [];
 			$r['id'] = $title->getArticleID();
@@ -104,8 +112,16 @@ class ApiImageRotate extends ApiBase {
 				$comment = wfMessage(
 					'rotate-comment'
 				)->numParams( $rotation )->inContentLanguage()->text();
-				$status = $file->upload( $dstPath,
-					$comment, $comment, 0, false, false, $this->getUser() );
+				$status = $file->upload(
+					$dstPath,
+					$comment,
+					$comment,
+					0,
+					false,
+					false,
+					$this->getUser(),
+					$params['tags'] ?: []
+				);
 				if ( $status->isGood() ) {
 					$r['result'] = 'Success';
 				} else {
@@ -156,6 +172,10 @@ class ApiImageRotate extends ApiBase {
 			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			],
+			'tags' => [
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
 			],
 		];
 		if ( $flags ) {

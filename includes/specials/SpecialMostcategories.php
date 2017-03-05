@@ -24,6 +24,8 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * A special page that list pages that have highest category count
  *

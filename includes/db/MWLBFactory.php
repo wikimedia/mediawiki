@@ -23,6 +23,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
  * MediaWiki-specific class for generating database load balancers
@@ -58,6 +59,9 @@ abstract class MWLBFactory {
 			'readOnlyReason' => wfConfiguredReadOnlyReason(),
 		];
 
+		// When making changes here, remember to also specify MediaWiki-specific options
+		// for Database classes in the relevant Installer subclass.
+		// Such as MysqlInstaller::openConnection and PostgresInstaller::openConnectionWithParams.
 		if ( $lbConf['class'] === 'LBFactorySimple' ) {
 			if ( isset( $lbConf['servers'] ) ) {
 				// Server array is already explicitly configured; leave alone
@@ -71,7 +75,13 @@ abstract class MWLBFactory {
 							// Work around the reserved word usage in MediaWiki schema
 							'keywordTableMap' => [ 'user' => 'mwuser', 'text' => 'pagecontent' ]
 						];
+					} elseif ( $server['type'] === 'mssql' ) {
+						$server += [
+							'port' => $mainConfig->get( 'DBport' ),
+							'useWindowsAuth' => $mainConfig->get( 'DBWindowsAuthentication' )
+						];
 					}
+
 					if ( in_array( $server['type'], $typesWithSchema, true ) ) {
 						$server += [ 'schema' => $mainConfig->get( 'DBmwschema' ) ];
 					}
@@ -111,6 +121,9 @@ abstract class MWLBFactory {
 					$server['port'] = $mainConfig->get( 'DBport' );
 					// Work around the reserved word usage in MediaWiki schema
 					$server['keywordTableMap'] = [ 'user' => 'mwuser', 'text' => 'pagecontent' ];
+				} elseif ( $server['type'] === 'mssql' ) {
+					$server['port'] = $mainConfig->get( 'DBport' );
+					$server['useWindowsAuth'] = $mainConfig->get( 'DBWindowsAuthentication' );
 				}
 				$lbConf['servers'] = [ $server ];
 			}
@@ -169,6 +182,17 @@ abstract class MWLBFactory {
 				'$wgLBFactoryConf must be updated. See RELEASE-NOTES for details',
 				'1.23'
 			);
+		}
+
+		// For configuration backward compatibility after moving classes to namespaces (1.29)
+		$compat = [
+			'LBFactorySingle' => Wikimedia\Rdbms\LBFactorySingle::class,
+			'LBFactorySimple' => Wikimedia\Rdbms\LBFactorySimple::class,
+			'LBFactoryMulti' => Wikimedia\Rdbms\LBFactoryMulti::class
+		];
+
+		if ( isset( $compat[$class] ) ) {
+			$class = $compat[$class];
 		}
 
 		return $class;

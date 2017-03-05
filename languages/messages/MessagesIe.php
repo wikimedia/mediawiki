@@ -119,4 +119,3 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'Quo_catenunes_ci' ],
 	'Withoutinterwiki'          => [ 'Sin_interwiki' ],
 ];
-

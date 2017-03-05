@@ -281,10 +281,12 @@ class SpecialUpload extends SpecialPage {
 		$desiredTitleObj = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
 		$delNotice = ''; // empty by default
 		if ( $desiredTitleObj instanceof Title && !$desiredTitleObj->exists() ) {
+			$dbr = wfGetDB( DB_REPLICA );
+
 			LogEventsList::showLogExtract( $delNotice, [ 'delete', 'move' ],
 				$desiredTitleObj,
 				'', [ 'lim' => 10,
-					'conds' => [ "log_action != 'revision'" ],
+					'conds' => [ 'log_action != ' . $dbr->addQuotes( 'revision' ) ],
 					'showIfEmpty' => false,
 					'msgKey' => [ 'upload-recreate-warning' ] ]
 			);
@@ -1090,12 +1092,14 @@ class UploadForm extends HTMLForm {
 				global $wgContLang;
 
 				$mto = $file->transform( [ 'width' => 120 ] );
-				$this->addHeaderText(
-					'<div class="thumb t' . $wgContLang->alignEnd() . '">' .
-					Html::element( 'img', [
-						'src' => $mto->getUrl(),
-						'class' => 'thumbimage',
-					] ) . '</div>', 'description' );
+				if ( $mto ) {
+					$this->addHeaderText(
+						'<div class="thumb t' . $wgContLang->alignEnd() . '">' .
+						Html::element( 'img', [
+							'src' => $mto->getUrl(),
+							'class' => 'thumbimage',
+						] ) . '</div>', 'description' );
+				}
 			}
 		}
 
@@ -1118,7 +1122,7 @@ class UploadForm extends HTMLForm {
 					? 'filereuploadsummary'
 					: 'fileuploadsummary',
 				'default' => $this->mComment,
-				'cols' => $this->getUser()->getIntOption( 'cols' ),
+				'cols' => 80,
 				'rows' => 8,
 			]
 		];

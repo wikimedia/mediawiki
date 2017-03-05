@@ -86,13 +86,13 @@ class SVGReader {
 		}
 
 		// Expand entities, since Adobe Illustrator uses them for xmlns
-		// attributes (bug 31719). Note that libxml2 has some protection
+		// attributes (T33719). Note that libxml2 has some protection
 		// against large recursive entity expansions so this is not as
 		// insecure as it might appear to be. However, it is still extremely
 		// insecure. It's necessary to wrap any read() calls with
 		// libxml_disable_entity_loader() to avoid arbitrary local file
 		// inclusion, or even arbitrary code execution if the expect
-		// extension is installed (bug 46859).
+		// extension is installed (T48859).
 		$oldDisable = libxml_disable_entity_loader( true );
 		$this->reader->setParserProperty( XMLReader::SUBST_ENTITIES, true );
 

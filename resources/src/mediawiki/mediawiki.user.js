@@ -118,18 +118,18 @@
 		},
 
 		/**
-		 * Get an automatically generated random ID (stored in a session cookie)
+		 * Get an automatically generated random ID (persisted in sessionStorage)
 		 *
-		 * This ID is ephemeral for everyone, staying in their browser only until they close
-		 * their browser.
+		 * This ID is ephemeral for everyone, staying in their browser only until they
+		 * close their browsing session.
 		 *
 		 * @return {string} Random session ID
 		 */
 		sessionId: function () {
-			var sessionId = mw.cookie.get( 'mwuser-sessionId' );
-			if ( sessionId === null ) {
+			var sessionId = mw.storage.session.get( 'mwuser-sessionId' );
+			if ( !sessionId ) {
 				sessionId = mw.user.generateRandomSessionId();
-				mw.cookie.set( 'mwuser-sessionId', sessionId, { expires: null } );
+				mw.storage.session.set( 'mwuser-sessionId', sessionId );
 			}
 			return sessionId;
 		},

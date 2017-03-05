@@ -57,4 +57,3 @@ $dateFormats = [
 	'my long date' => 'Y "ဇန်နဝါရီ" F"လ" j "ရက်"',
 	'my long both' => 'H:i"၊" Y "ဇန်နဝါရီ" F"လ" j "ရက်"',
 ];
-

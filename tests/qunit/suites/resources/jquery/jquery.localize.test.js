@@ -1,7 +1,7 @@
 ( function ( $, mw ) {
 	QUnit.module( 'jquery.localize', QUnit.newMwEnvironment() );
 
-	QUnit.test( 'Handle basic replacements', 4, function ( assert ) {
+	QUnit.test( 'Handle basic replacements', function ( assert ) {
 		var html, $lc;
 		mw.messages.set( 'basic', 'Basic stuff' );
 
@@ -30,7 +30,7 @@
 		assert.strictEqual( $lc.attr( 'placeholder' ), 'Basic stuff', 'Attribute: placeholder-msg' );
 	} );
 
-	QUnit.test( 'Proper escaping', 2, function ( assert ) {
+	QUnit.test( 'Proper escaping', function ( assert ) {
 		var html, $lc;
 		mw.messages.set( 'properfoo', '<proper esc="test">' );
 
@@ -50,7 +50,8 @@
 		assert.strictEqual( $lc.attr( 'title' ), mw.msg( 'properfoo' ), 'Attributes are not inserted raw.' );
 	} );
 
-	QUnit.test( 'Options', 7, function ( assert ) {
+	QUnit.test( 'Options', function ( assert ) {
+		var html, $lc, x, sitename = 'Wikipedia';
 		mw.messages.set( {
 			'foo-lorem': 'Lorem',
 			'foo-ipsum': 'Ipsum',
@@ -60,7 +61,6 @@
 			'foo-bazz-label': 'The Bazz ($1)',
 			'foo-welcome': 'Welcome to $1! (last visit: $2)'
 		} );
-		var html, $lc, x, sitename = 'Wikipedia';
 
 		// Message key prefix
 		html = '<div><span title-msg="lorem"><html:msg key="ipsum" /></span></div>';
@@ -114,7 +114,7 @@
 		assert.strictEqual( $lc.attr( 'title' ), 'Read more about bazz at Wikipedia (last modified: 3 minutes ago)', 'Combination of options prefix, params and keys - attr' );
 	} );
 
-	QUnit.test( 'Handle data text', 2, function ( assert ) {
+	QUnit.test( 'Handle data text', function ( assert ) {
 		var html, $lc;
 		mw.messages.set( 'option-one', 'Item 1' );
 		mw.messages.set( 'option-two', 'Item 2' );
@@ -124,7 +124,7 @@
 		assert.strictEqual( $lc.eq( 1 ).text(), mw.msg( 'option-two' ), 'data-msg-text becomes text of options' );
 	} );
 
-	QUnit.test( 'Handle data html', 2, function ( assert ) {
+	QUnit.test( 'Handle data html', function ( assert ) {
 		var html, $lc;
 		mw.messages.set( 'html', 'behold... there is a <a>link</a> here!!' );
 		html = '<div><div data-msg-html="html"></div></div>';

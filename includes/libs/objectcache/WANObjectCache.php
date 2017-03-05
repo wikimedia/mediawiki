@@ -275,8 +275,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$checkKeysForAll = [];
 		$checkKeysByKey = [];
 		$checkKeysFlat = [];
-		foreach ( $checkKeys as $i => $keys ) {
-			$prefixed = self::prefixCacheKeys( (array)$keys, self::TIME_KEY_PREFIX );
+		foreach ( $checkKeys as $i => $checkKeyGroup ) {
+			$prefixed = self::prefixCacheKeys( (array)$checkKeyGroup, self::TIME_KEY_PREFIX );
 			$checkKeysFlat = array_merge( $checkKeysFlat, $prefixed );
 			// Is this check keys for a specific cache key, or for all keys being fetched?
 			if ( is_int( $i ) ) {
@@ -448,7 +448,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 				$wrapExtra[self::FLD_FLAGS] = self::FLG_STALE; // mark as stale
 			// Case B: any long-running transaction; ignore this set()
 			} elseif ( $age > self::MAX_READ_LAG ) {
-				$this->logger->warning( "Rejected set() for $key due to snapshot lag." );
+				$this->logger->info( "Rejected set() for $key due to snapshot lag." );
 
 				return true; // no-op the write for being unsafe
 			// Case C: high replication lag; lower TTL instead of ignoring all set()s
@@ -457,7 +457,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 				$this->logger->warning( "Lowered set() TTL for $key due to replication lag." );
 			// Case D: medium length request with medium replication lag; ignore this set()
 			} else {
-				$this->logger->warning( "Rejected set() for $key due to high read lag." );
+				$this->logger->info( "Rejected set() for $key due to high read lag." );
 
 				return true; // no-op the write for being unsafe
 			}
@@ -1128,6 +1128,65 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
+	 * Locally set a key to expire soon if it is stale based on $purgeTimestamp
+	 *
+	 * This sets stale keys' time-to-live at HOLDOFF_TTL seconds, which both avoids
+	 * broadcasting in mcrouter setups and also avoids races with new tombstones.
+	 *
+	 * @param string $key Cache key
+	 * @param int $purgeTimestamp UNIX timestamp of purge
+	 * @param bool &$isStale Whether the key is stale
+	 * @return bool Success
+	 * @since 1.28
+	 */
+	public function reap( $key, $purgeTimestamp, &$isStale = false ) {
+		$minAsOf = $purgeTimestamp + self::HOLDOFF_TTL;
+		$wrapped = $this->cache->get( self::VALUE_KEY_PREFIX . $key );
+		if ( is_array( $wrapped ) && $wrapped[self::FLD_TIME] < $minAsOf ) {
+			$isStale = true;
+			$this->logger->warning( "Reaping stale value key '$key'." );
+			$ttlReap = self::HOLDOFF_TTL; // avoids races with tombstone creation
+			$ok = $this->cache->changeTTL( self::VALUE_KEY_PREFIX . $key, $ttlReap );
+			if ( !$ok ) {
+				$this->logger->error( "Could not complete reap of key '$key'." );
+			}
+
+			return $ok;
+		}
+
+		$isStale = false;
+
+		return true;
+	}
+
+	/**
+	 * Locally set a "check" key to expire soon if it is stale based on $purgeTimestamp
+	 *
+	 * @param string $key Cache key
+	 * @param int $purgeTimestamp UNIX timestamp of purge
+	 * @param bool &$isStale Whether the key is stale
+	 * @return bool Success
+	 * @since 1.28
+	 */
+	public function reapCheckKey( $key, $purgeTimestamp, &$isStale = false ) {
+		$purge = $this->parsePurgeValue( $this->cache->get( self::TIME_KEY_PREFIX . $key ) );
+		if ( $purge && $purge[self::FLD_TIME] < $purgeTimestamp ) {
+			$isStale = true;
+			$this->logger->warning( "Reaping stale check key '$key'." );
+			$ok = $this->cache->changeTTL( self::TIME_KEY_PREFIX . $key, 1 );
+			if ( !$ok ) {
+				$this->logger->error( "Could not complete reap of check key '$key'." );
+			}
+
+			return $ok;
+		}
+
+		$isStale = false;
+
+		return false;
+	}
+
+	/**
 	 * @see BagOStuff::makeKey()
 	 * @param string ... Key component
 	 * @return string
@@ -1358,7 +1417,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			return false;
 		}
 
-		// Lifecycle is: new, ramp-up refresh chance, full refresh chance
+		// Lifecycle is: new, ramp-up refresh chance, full refresh chance.
+		// Note that the "expected # of refreshes" for the ramp-up time range is half of what it
+		// would be if P(refresh) was at its full value during that time range.
 		$refreshWindowSec = max( $timeTillRefresh - $ageNew - self::RAMPUP_TTL / 2, 1 );
 		// P(refresh) * (# hits in $refreshWindowSec) = (expected # of refreshes)
 		// P(refresh) * ($refreshWindowSec * $popularHitsPerSec) = 1

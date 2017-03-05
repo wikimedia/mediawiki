@@ -2100,17 +2100,15 @@ class Language {
 		$data = explode( '|', $tz, 3 );
 
 		if ( $data[0] == 'ZoneInfo' ) {
-			MediaWiki\suppressWarnings();
-			$userTZ = timezone_open( $data[2] );
-			MediaWiki\restoreWarnings();
-			if ( $userTZ !== false ) {
-				$date = date_create( $ts, timezone_open( 'UTC' ) );
-				date_timezone_set( $date, $userTZ );
-				$date = date_format( $date, 'YmdHis' );
-				return $date;
+			try {
+				$userTZ = new DateTimeZone( $data[2] );
+				$date = new DateTime( $ts, new DateTimeZone( 'UTC' ) );
+				$date->setTimezone( $userTZ );
+				return $date->format( 'YmdHis' );
+			} catch ( Exception $e ) {
+				// Unrecognized timezone, default to 'Offset' with the stored offset.
+				$data[0] = 'Offset';
 			}
-			# Unrecognized timezone, default to 'Offset' with the stored offset.
-			$data[0] = 'Offset';
 		}
 
 		if ( $data[0] == 'System' || $tz == '' ) {
@@ -2160,12 +2158,10 @@ class Language {
 	 * the date preference they're supposed to use, it should be used in
 	 * all children.
 	 *
-	 *<code>
-	 * function timeanddate([...], $format = true) {
-	 * 	$datePreference = $this->dateFormat($format);
-	 * [...]
-	 * }
-	 *</code>
+	 *     function timeanddate([...], $format = true) {
+	 *       $datePreference = $this->dateFormat($format);
+	 *       [...]
+	 *     }
 	 *
 	 * @param int|string|bool $usePrefs If true, the user's preference is used
 	 *   if false, the site/language default is used
@@ -3288,14 +3284,14 @@ class Language {
 	public function parseFormattedNumber( $number ) {
 		$s = $this->digitTransformTable();
 		if ( $s ) {
-			// eliminate empty array values such as ''. (bug 64347)
+			// eliminate empty array values such as ''. (T66347)
 			$s = array_filter( $s );
 			$number = strtr( $number, array_flip( $s ) );
 		}
 
 		$s = $this->separatorTransformTable();
 		if ( $s ) {
-			// eliminate empty array values such as ''. (bug 64347)
+			// eliminate empty array values such as ''. (T66347)
 			$s = array_filter( $s );
 			$number = strtr( $number, array_flip( $s ) );
 		}
@@ -3499,7 +3495,7 @@ class Language {
 				$string = $ellipsis . $string;
 			}
 		}
-		# Do not truncate if the ellipsis makes the string longer/equal (bug 22181).
+		# Do not truncate if the ellipsis makes the string longer/equal (T24181).
 		# This check is *not* redundant if $adjustLength, due to the single case where
 		# LEN($ellipsis) > ABS($limit arg); $stringOriginal could be shorter than $string.
 		if ( strlen( $string ) < strlen( $stringOriginal ) ) {
@@ -3977,10 +3973,11 @@ class Language {
 	 *
 	 * @param string $str The validated block duration in English
 	 * @param User $user User object to use timezone from or null for $wgUser
+	 * @param int $now Current timestamp, for formatting relative block durations
 	 * @return string Somehow translated block duration
 	 * @see LanguageFi.php for example implementation
 	 */
-	function translateBlockExpiry( $str, User $user = null ) {
+	function translateBlockExpiry( $str, User $user = null, $now = 0 ) {
 		$duration = SpecialBlock::getSuggestedDurations( $this );
 		foreach ( $duration as $show => $value ) {
 			if ( strcmp( $str, $value ) == 0 ) {
@@ -3997,12 +3994,13 @@ class Language {
 		}
 
 		// If all else fails, return a standard duration or timestamp description.
-		$time = strtotime( $str, 0 );
+		$time = strtotime( $str, $now );
 		if ( $time === false ) { // Unknown format. Return it as-is in case.
 			return $str;
-		} elseif ( $time !== strtotime( $str, 1 ) ) { // It's a relative timestamp.
-			// $time is relative to 0 so it's a duration length.
-			return $this->formatDuration( $time );
+		} elseif ( $time !== strtotime( $str, $now + 1 ) ) { // It's a relative timestamp.
+			// The result differs based on current time, so the difference
+			// is a fixed duration length.
+			return $this->formatDuration( $time - $now );
 		} else { // It's an absolute timestamp.
 			if ( $time === 0 ) {
 				// wfTimestamp() handles 0 as current time instead of epoch.
@@ -4508,7 +4506,7 @@ class Language {
 		# such as action=raw much more expensive than they need to be.
 		# This will hopefully cover most cases.
 		$talk = preg_replace_callback( '/{{grammar:(.*?)\|(.*?)}}/i',
-			[ &$this, 'replaceGrammarInNamespace' ], $talk );
+			[ $this, 'replaceGrammarInNamespace' ], $talk );
 		return str_replace( ' ', '_', $talk );
 	}
 

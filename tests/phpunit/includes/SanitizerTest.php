@@ -211,7 +211,7 @@ class SanitizerTest extends MediaWikiTestCase {
 			[ [ 'foo6' => 'baz' ], 'foo6=baz', 'Numbers are allowed' ],
 
 			# This bit is more relaxed than XML rules, but some extensions use
-			# it, like ProofreadPage (see bug 27539)
+			# it, like ProofreadPage (see T29539)
 			[ [ '1foo' => 'baz' ], '1foo=baz', 'Leading numbers are allowed' ],
 			[ [], 'foo$=baz', 'Symbols are not allowed' ],
 			[ [], 'foo@=baz', 'Symbols are not allowed' ],
@@ -286,7 +286,7 @@ class SanitizerTest extends MediaWikiTestCase {
 			[ ' ', '/* /* */' ],
 			[ 'display: block;', "display:/* foo */block;" ],
 			[ 'display: block;', "display:\\2f\\2a foo \\2a\\2f block;",
-				'Backslash-escaped comments must be stripped (bug 28450)' ],
+				'Backslash-escaped comments must be stripped (T30450)' ],
 			[ '', '/* unfinished comment structure',
 				'Remove anything after a comment-start token' ],
 			[ '', "\\2f\\2a unifinished comment'",

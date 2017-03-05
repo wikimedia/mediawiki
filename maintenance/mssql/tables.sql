@@ -64,9 +64,11 @@ INSERT INTO /*_*/mwuser (user_name) VALUES ('##Anonymous##');
 CREATE TABLE /*_*/user_groups (
    ug_user  INT     NOT NULL REFERENCES /*_*/mwuser(user_id) ON DELETE CASCADE,
    ug_group NVARCHAR(255) NOT NULL DEFAULT '',
+   ug_expiry varchar(14) DEFAULT NULL,
+   PRIMARY KEY(ug_user, ug_group)
 );
-CREATE UNIQUE clustered INDEX /*i*/ug_user_group ON /*_*/user_groups (ug_user, ug_group);
 CREATE INDEX /*i*/ug_group ON /*_*/user_groups(ug_group);
+CREATE INDEX /*i*/ug_expiry ON /*_*/user_groups(ug_expiry);
 
 -- Stores the groups the user has once belonged to.
 -- The user may still belong to these groups (check user_groups).
@@ -299,7 +301,7 @@ CREATE TABLE /*_*/categorylinks (
   -- conversion algorithm is run.  We store this so that we can update
   -- collations without reparsing all pages.
   -- Note: If you change the length of this field, you also need to change
-  -- code in LinksUpdate.php. See bug 25254.
+  -- code in LinksUpdate.php. See T27254.
   cl_sortkey_prefix varbinary(255) NOT NULL default 0x,
 
   -- This isn't really used at present. Provided for an optional
@@ -526,7 +528,7 @@ CREATE TABLE /*_*/ipblocks (
   -- Size chosen to allow IPv6
   -- FIXME: these fields were originally blank for single-IP blocks,
   -- but now they are populated. No migration was ever done. They
-  -- should be fixed to be blank again for such blocks (bug 49504).
+  -- should be fixed to be blank again for such blocks (T51504).
   ipb_range_start varchar(255) NOT NULL,
   ipb_range_end varchar(255) NOT NULL,
 

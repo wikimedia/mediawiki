@@ -5,6 +5,7 @@
  * @license The MIT License (MIT); see LICENSE.txt
  */
 
+/* stylelint-disable no-duplicate-selectors */
 @import 'mediawiki.mixins';
 
 @calendarWidth: 21em;
@@ -26,10 +27,10 @@
 .mw-widget-calendarWidget-header .mw-widget-calendarWidget-labelButton {
 	margin: 0 auto;
 	display: block;
-	width: @calendarWidth - 2*3em;
+	width: @calendarWidth - 2 * 3em;
 
 	.oo-ui-buttonElement-button {
-		width: @calendarWidth - 2*3em;
+		width: @calendarWidth - 2 * 3em;
 		text-align: center;
 	}
 }
@@ -67,8 +68,8 @@
 	}
 
 	.mw-widget-calendarWidget-body:not( .mw-widget-calendarWidget-old-body ):first-child {
-		margin-top: -@calendarHeight;
-		margin-left: -@calendarWidth;
+		margin-top: -@calendarHeight; /* stylelint-disable-line value-keyword-case */
+		margin-left: -@calendarWidth; /* stylelint-disable-line value-keyword-case */
 	}
 
 	.mw-widget-calendarWidget-body:not( .mw-widget-calendarWidget-old-body ):last-child {
@@ -82,8 +83,8 @@
 	height: @calendarHeight;
 
 	.mw-widget-calendarWidget-body:first-child {
-		margin-top: 0 !important;
-		margin-left: 0 !important;
+		margin-top: 0 !important; /* stylelint-disable-line declaration-no-important */
+		margin-left: 0 !important; /* stylelint-disable-line declaration-no-important */
 		.transition( margin-left 500ms );
 	}
 }
@@ -93,8 +94,8 @@
 	height: @calendarHeight;
 
 	.mw-widget-calendarWidget-body:first-child {
-		margin-left: -@calendarWidth !important;
-		margin-top: 0 !important;
+		margin-left: -@calendarWidth !important; /* stylelint-disable-line value-keyword-case, declaration-no-important */
+		margin-top: 0 !important; /* stylelint-disable-line declaration-no-important */
 		.transition( margin-left 500ms );
 	}
 }
@@ -108,8 +109,8 @@
 	}
 
 	.mw-widget-calendarWidget-body:first-child {
-		margin-left: 0 !important;
-		margin-top: 0 !important;
+		margin-left: 0 !important; /* stylelint-disable-line declaration-no-important */
+		margin-top: 0 !important; /* stylelint-disable-line declaration-no-important */
 		.transition( margin-top 500ms );
 	}
 }
@@ -123,8 +124,8 @@
 	}
 
 	.mw-widget-calendarWidget-body:first-child {
-		margin-left: 0 !important;
-		margin-top: -@calendarHeight !important;
+		margin-left: 0 !important; /* stylelint-disable-line declaration-no-important */
+		margin-top: -@calendarHeight !important; /* stylelint-disable-line value-keyword-case, declaration-no-important */
 		.transition( margin-top 500ms );
 	}
 }

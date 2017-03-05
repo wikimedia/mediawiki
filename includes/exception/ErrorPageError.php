@@ -39,7 +39,7 @@ class ErrorPageError extends MWException implements ILocalizedException {
 		$this->msg = $msg;
 		$this->params = $params;
 
-		// Bug 44111: Messages in the log files should be in English and not
+		// T46111: Messages in the log files should be in English and not
 		// customized by the local wiki. So get the default English version for
 		// passing to the parent constructor. Our overridden report() below
 		// makes sure that the page shown to the user is not forced to English.

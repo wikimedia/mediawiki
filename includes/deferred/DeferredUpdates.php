@@ -20,6 +20,8 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * Class for managing the deferred updates
@@ -332,6 +334,21 @@ class DeferredUpdates {
 	 */
 	public static function pendingUpdatesCount() {
 		return count( self::$preSendUpdates ) + count( self::$postSendUpdates );
+	}
+
+	/**
+	 * @param integer $stage DeferredUpdates constant (PRESEND, POSTSEND, or ALL)
+	 * @since 1.29
+	 */
+	public static function getPendingUpdates( $stage = self::ALL ) {
+		$updates = [];
+		if ( $stage === self::ALL || $stage === self::PRESEND ) {
+			$updates = array_merge( $updates, self::$preSendUpdates );
+		}
+		if ( $stage === self::ALL || $stage === self::POSTSEND ) {
+			$updates = array_merge( $updates, self::$postSendUpdates );
+		}
+		return $updates;
 	}
 
 	/**

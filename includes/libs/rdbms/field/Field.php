@@ -1,4 +1,7 @@
 <?php
+
+namespace Wikimedia\Rdbms;
+
 /**
  * Base for all database-specific classes representing information about database fields
  * @ingroup Database
@@ -28,3 +31,5 @@ interface Field {
 	 */
 	function isNullable();
 }
+
+class_alias( Field::class, 'Field' );

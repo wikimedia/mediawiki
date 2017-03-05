@@ -110,6 +110,20 @@ abstract class SearchEngine {
 	}
 
 	/**
+	 * Way to retrieve custom data set by setFeatureData
+	 * or by the engine itself.
+	 * @since 1.29
+	 * @param string $feature feature name
+	 * @return mixed the feature value or null if unset
+	 */
+	public function getFeatureData( $feature ) {
+		if ( isset ( $this->features[$feature] ) ) {
+			return $this->features[$feature];
+		}
+		return null;
+	}
+
+	/**
 	 * When overridden in derived class, performs database-specific conversions
 	 * on text to be used for searching or updating search index.
 	 * Default implementation does nothing (simply returns $string).
@@ -706,8 +720,21 @@ abstract class SearchEngine {
 	public function getSearchIndexFields() {
 		$models = ContentHandler::getContentModels();
 		$fields = [];
+		$seenHandlers = new SplObjectStorage();
 		foreach ( $models as $model ) {
-			$handler = ContentHandler::getForModelID( $model );
+			try {
+				$handler = ContentHandler::getForModelID( $model );
+			}
+			catch ( MWUnknownContentModelException $e ) {
+				// If we can find no handler, ignore it
+				continue;
+			}
+			// Several models can have the same handler, so avoid processing it repeatedly
+			if ( $seenHandlers->contains( $handler ) ) {
+				// We already did this one
+				continue;
+			}
+			$seenHandlers->attach( $handler );
 			$handlerFields = $handler->getFieldsForSearchIndex( $this );
 			foreach ( $handlerFields as $fieldName => $fieldData ) {
 				if ( empty( $fields[$fieldName] ) ) {

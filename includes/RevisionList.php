@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ResultWrapper;
 
 /**
  * List for revision table items for a single page
@@ -363,13 +364,14 @@ class RevisionItem extends RevisionItemBase {
 	 * @return string
 	 */
 	protected function getRevisionLink() {
-		$date = htmlspecialchars( $this->list->getLanguage()->userTimeAndDate(
-			$this->revision->getTimestamp(), $this->list->getUser() ) );
+		$date = $this->list->getLanguage()->userTimeAndDate(
+			$this->revision->getTimestamp(), $this->list->getUser() );
 
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
-			return $date;
+			return htmlspecialchars( $date );
 		}
-		return Linker::linkKnown(
+		$linkRenderer = $this->getLinkRenderer();
+		return $linkRenderer->makeKnownLink(
 			$this->list->title,
 			$date,
 			[],
@@ -391,9 +393,10 @@ class RevisionItem extends RevisionItemBase {
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return $this->context->msg( 'diff' )->escaped();
 		} else {
-			return Linker::linkKnown(
+			$linkRenderer = $this->getLinkRenderer();
+			return $linkRenderer->makeKnownLink(
 					$this->list->title,
-					$this->list->msg( 'diff' )->escaped(),
+					$this->list->msg( 'diff' )->text(),
 					[],
 					[
 						'diff' => $this->revision->getId(),

@@ -51,7 +51,7 @@
 	}
 
 	// Pre-populate with fake ajax promises to save http requests for tokens
-	// we already have on the page via the user.tokens module (bug 34733).
+	// we already have on the page via the user.tokens module (T36733).
 	promises[ defaultOptions.ajax.url ] = {};
 	$.each( mw.user.tokens.get(), function ( key, value ) {
 		// This requires #getToken to use the same key as user.tokens.
@@ -149,6 +149,9 @@
 
 		/**
 		 * Massage parameters from the nice format we accept into a format suitable for the API.
+		 *
+		 * NOTE: A value of undefined/null in an array will be represented by Array#join()
+		 * as the empty string. Should we filter silently? Warn? Leave as-is?
 		 *
 		 * @private
 		 * @param {Object} parameters (modified in-place)
@@ -427,9 +430,8 @@
 	/**
 	 * @static
 	 * @property {Array}
-	 * List of errors we might receive from the API.
-	 * For now, this just documents our expectation that there should be similar messages
-	 * available.
+	 * Very incomplete and outdated list of errors we might receive from the API. Do not use.
+	 * @deprecated since 1.29
 	 */
 	mw.Api.errors = [
 		// occurs when POST aborted
@@ -487,17 +489,18 @@
 		'stashwrongowner',
 		'stashnosuchfilekey'
 	];
+	mw.log.deprecate( mw.Api, 'errors', mw.Api.errors, null, 'mw.Api.errors' );
 
 	/**
 	 * @static
 	 * @property {Array}
-	 * List of warnings we might receive from the API.
-	 * For now, this just documents our expectation that there should be similar messages
-	 * available.
+	 * Very incomplete and outdated list of warnings we might receive from the API. Do not use.
+	 * @deprecated since 1.29
 	 */
 	mw.Api.warnings = [
 		'duplicate',
 		'exists'
 	];
+	mw.log.deprecate( mw.Api, 'warnings', mw.Api.warnings, null, 'mw.Api.warnings' );
 
 }( mediaWiki, jQuery ) );

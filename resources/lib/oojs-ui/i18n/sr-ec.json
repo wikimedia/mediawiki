@@ -3,7 +3,8 @@
 		"authors": [
 			"Milicevic01",
 			"Nikola Smolenski",
-			"Милан Јелисавчић"
+			"Милан Јелисавчић",
+			"Zoranzoki21"
 		]
 	},
 	"ooui-outline-control-move-down": "Премести ставку на доле",
@@ -19,5 +20,7 @@
 	"ooui-dialog-process-retry": "Покушај поново",
 	"ooui-dialog-process-continue": "Настави",
 	"ooui-selectfile-button-select": "Изабери датотеку",
-	"ooui-selectfile-placeholder": "Није изабрана ниједна датотека"
+	"ooui-selectfile-not-supported": "Избор датотеке није подржан",
+	"ooui-selectfile-placeholder": "Није изабрана ниједна датотека",
+	"ooui-selectfile-dragdrop-placeholder": "Додајте датотеку овде"
 }

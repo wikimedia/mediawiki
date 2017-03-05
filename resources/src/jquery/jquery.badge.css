@@ -19,9 +19,9 @@
 .mw-badge-inline {
 	margin-left: 3px;
 	display: inline-block;
-	/* Hack for IE6 and IE7 (bug 47926) */
+	/* Hack for IE6 and IE7 (T49926) */
 	zoom: 1;
-	*display: inline;
+	*display: inline; /* stylelint-disable-line declaration-block-no-duplicate-properties */
 
 }
 .mw-badge-overlay {

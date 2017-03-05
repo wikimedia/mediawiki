@@ -26,6 +26,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\Timestamp\TimestampException;
 
 /**
  * This is the main API class, used for both external and internal processing.
@@ -106,6 +107,7 @@ class ApiMain extends ApiBase {
 		'managetags' => 'ApiManageTags',
 		'tag' => 'ApiTag',
 		'mergehistory' => 'ApiMergeHistory',
+		'setpagelanguage' => 'ApiSetPageLanguage',
 	];
 
 	/**
@@ -573,7 +575,7 @@ class ApiMain extends ApiBase {
 	 * @param Exception $e
 	 */
 	protected function handleException( Exception $e ) {
-		// Bug 63145: Rollback any open database transactions
+		// T65145: Rollback any open database transactions
 		if ( !( $e instanceof ApiUsageException || $e instanceof UsageException ) ) {
 			// UsageExceptions are intentional, so don't rollback if that's the case
 			try {
@@ -1108,10 +1110,16 @@ class ApiMain extends ApiBase {
 			$result->addContentValue(
 				$path,
 				'docref',
-				$this->msg( 'api-usage-docref', $link )->inLanguage( $formatter->getLanguage() )->text()
+				trim(
+					$this->msg( 'api-usage-docref', $link )->inLanguage( $formatter->getLanguage() )->text()
+					. ' '
+					. $this->msg( 'api-usage-mailinglist-ref' )->inLanguage( $formatter->getLanguage() )->text()
+				)
 			);
 		} else {
-			if ( $config->get( 'ShowExceptionDetails' ) ) {
+			if ( $config->get( 'ShowExceptionDetails' ) &&
+				( !$e instanceof DBError || $config->get( 'ShowDBErrorBacktrace' ) )
+			) {
 				$result->addContentValue(
 					$path,
 					'trace',
@@ -1661,7 +1669,7 @@ class ApiMain extends ApiBase {
 		$ret = $this->getRequest()->getVal( $name );
 		if ( $ret === null ) {
 			if ( $this->getRequest()->getArray( $name ) !== null ) {
-				// See bug 10262 for why we don't just implode( '|', ... ) the
+				// See T12262 for why we don't just implode( '|', ... ) the
 				// array.
 				$this->addWarning( [ 'apiwarn-unsupportedarray', $name ] );
 			}

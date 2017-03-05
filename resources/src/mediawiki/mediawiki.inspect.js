@@ -73,29 +73,41 @@
 		 */
 		getModuleSize: function ( moduleName ) {
 			var module = mw.loader.moduleRegistry[ moduleName ],
-				payload = 0;
+				args, i;
 
 			if ( mw.loader.getState( moduleName ) !== 'ready' ) {
 				return null;
 			}
 
 			if ( !module.style && !module.script ) {
-				return null;
+				return 0;
 			}
 
-			// Tally CSS
-			if ( module.style && $.isArray( module.style.css ) ) {
-				$.each( module.style.css, function ( i, stylesheet ) {
-					payload += $.byteLength( stylesheet );
-				} );
+			// Reverse-engineer the load.php response for this module.
+			// For example: `mw.loader.implement("example", function(){}, );`
+			// @see mw.loader.store.set().
+			args = [
+				JSON.stringify( moduleName ),
+				// function, array of urls, or eval string
+				typeof module.script === 'function' ?
+						String( module.script ) :
+						JSON.stringify( module.script ),
+				JSON.stringify( module.style ),
+				JSON.stringify( module.messages ),
+				JSON.stringify( module.templates )
+			];
+			// Trim trailing null or empty object, as load.php would have done.
+			// @see ResourceLoader::makeLoaderImplementScript and ResourceLoader::trimArray.
+			i = args.length;
+			while ( i-- ) {
+				if ( args[ i ] === '{}' || args[ i ] === 'null' ) {
+					args.splice( i, 1 );
+				} else {
+					break;
+				}
 			}
 
-			// Tally JavaScript
-			if ( $.isFunction( module.script ) ) {
-				payload += $.byteLength( module.script.toString() );
-			}
-
-			return payload;
+			return $.byteLength( args.join( ',' ) );
 		},
 
 		/**

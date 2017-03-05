@@ -52,10 +52,20 @@ class MimeMagicTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Test to make sure that encoder=ffmpeg2theora doesn't trigger
-	 * MEDIATYPE_VIDEO (bug 63584)
+	 * MEDIATYPE_VIDEO (T65584)
 	 */
 	function testOggRecognize() {
 		$oggFile = __DIR__ . '/../../../data/media/say-test.ogg';
+		$actualType = $this->mimeAnalyzer->getMediaType( $oggFile, 'application/ogg' );
+		$this->assertEquals( $actualType, MEDIATYPE_AUDIO );
+	}
+
+	/**
+	 * Test to make sure that Opus audio files don't trigger
+	 * MEDIATYPE_MULTIMEDIA (bug T151352)
+	 */
+	function testOpusRecognize() {
+		$oggFile = __DIR__ . '/../../../data/media/say-test.opus';
 		$actualType = $this->mimeAnalyzer->getMediaType( $oggFile, 'application/ogg' );
 		$this->assertEquals( $actualType, MEDIATYPE_AUDIO );
 	}

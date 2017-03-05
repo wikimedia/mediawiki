@@ -443,7 +443,6 @@ $wgImgAuthUrlPathMap = [];
  * Properties required for all repos:
  *   - class            The class name for the repository. May come from the core or an extension.
  *                      The core repository classes are FileRepo, LocalRepo, ForeignDBRepo.
- *                      FSRepo is also supported for backwards compatibility.
  *
  *   - name             A unique name for the repository (but $wgLocalFileRepo should be 'local').
  *                      The name should consist of alpha-numeric characters.
@@ -1338,7 +1337,7 @@ $wgXMLMimeTypes = [
  * to reduce disk usage, limits can only be selected from a list.
  * The user preference is saved as an array offset in the database, by default
  * the offset is set with $wgDefaultUserOptions['imagesize']. Make sure you
- * change it if you alter the array (see bug 8858).
+ * change it if you alter the array (see T10858).
  * This is the list of settings the user can choose from:
  */
 $wgImageLimits = [
@@ -1443,14 +1442,19 @@ $wgUseTinyRGBForJPGThumbnails = false;
  * Default parameters for the "<gallery>" tag
  */
 $wgGalleryOptions = [
-	'imagesPerRow' => 0, // Default number of images per-row in the gallery. 0 -> Adapt to screensize
-	'imageWidth' => 120, // Width of the cells containing images in galleries (in "px")
-	'imageHeight' => 120, // Height of the cells containing images in galleries (in "px")
-	'captionLength' => true, // Deprecated @since 1.28
-	                         // Length to truncate filename to in caption when using "showfilename".
-	                         // A value of 'true' will truncate the filename to one line using CSS
-	                         // and will be the behaviour after deprecation.
-	'showBytes' => true, // Show the filesize in bytes in categories
+	// Default number of images per-row in the gallery. 0 -> Adapt to screensize
+	'imagesPerRow' => 0,
+	// Width of the cells containing images in galleries (in "px")
+	'imageWidth' => 120,
+	// Height of the cells containing images in galleries (in "px")
+	'imageHeight' => 120,
+	// Length to truncate filename to in caption when using "showfilename".
+	// A value of 'true' will truncate the filename to one line using CSS
+	// and will be the behaviour after deprecation.
+	// @deprecated since 1.28
+	'captionLength' => true,
+	// Show the filesize in bytes in categories
+	'showBytes' => true,
 	'mode' => 'traditional',
 ];
 
@@ -2342,6 +2346,19 @@ $wgWANObjectCaches = [
 	]
 	*/
 ];
+
+/**
+ * Verify and enforce WAN cache purges using reliable DB sources as streams.
+ *
+ * These secondary cache purges are de-duplicated via simple cache mutexes.
+ * This improves consistency when cache purges are lost, which becomes more likely
+ * as more cache servers are added or if there are multiple datacenters. Only keys
+ * related to important mutable content will be checked.
+ *
+ * @var bool
+ * @since 1.29
+ */
+$wgEnableWANCacheReaper = false;
 
 /**
  * Main object stash type. This should be a fast storage system for storing
@@ -3345,7 +3362,7 @@ $wgDisableOutputCompression = false;
  *
  * Currently this appears to work fine in all browsers, but it's disabled by
  * default because it normalizes id's a bit too aggressively, breaking preexisting
- * content (particularly Cite).  See bug 27733, bug 27694, bug 27474.
+ * content (particularly Cite).  See T29733, T29694, T29474.
  */
 $wgExperimentalHtmlIds = false;
 
@@ -4069,7 +4086,7 @@ $wgMaxRedirects = 1;
  * Attempting to create a redirect to any of the pages in this array
  * will make the redirect fail.
  * Userlogout is hard-coded, so it does not need to be listed here.
- * (bug 10569) Disallow Mypage and Mytalk as well.
+ * (T12569) Disallow Mypage and Mytalk as well.
  *
  * As of now, this only checks special pages. Redirects to pages in
  * other namespaces cannot be invalidated by this variable.
@@ -4553,8 +4570,8 @@ $wgAuthManagerAutoConfig = [
 		],
 		// Linking during login is experimental, enable at your own risk - T134952
 		// MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider::class => [
-		// 	'class' => MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider::class,
-		// 	'sort' => 100,
+		//   'class' => MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider::class,
+		//   'sort' => 100,
 		// ],
 		MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider::class => [
 			'class' => MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider::class,
@@ -4774,6 +4791,7 @@ $wgReservedUsernames = [
 	'Maintenance script', // Maintenance scripts which perform editing, image import script
 	'Template namespace initialisation script', // Used in 1.2->1.3 upgrade
 	'ScriptImporter', // Default user name used by maintenance/importSiteScripts.php
+	'Unknown user', // Used in WikiImporter when importing revisions with no author
 	'msg:double-redirect-fixer', // Automatic double redirect fix
 	'msg:usermessage-editor', // Default user for leaving user messages
 	'msg:proxyblocker', // For $wgProxyList and Special:Blockme (removed in 1.22)
@@ -4789,7 +4807,7 @@ $wgReservedUsernames = [
  */
 $wgDefaultUserOptions = [
 	'ccmeonemails' => 0,
-	'cols' => 80,
+	'cols' => 80, // @deprecated since 1.29 No longer used in core
 	'date' => 'default',
 	'diffonly' => 0,
 	'disablemail' => 0,
@@ -4817,8 +4835,9 @@ $wgDefaultUserOptions = [
 	'previewonfirst' => 0,
 	'previewontop' => 1,
 	'rcdays' => 7,
+	'rcenhancedfilters' => 0,
 	'rclimit' => 50,
-	'rows' => 25,
+	'rows' => 25, // @deprecated since 1.29 No longer used in core
 	'showhiddencats' => 0,
 	'shownumberswatching' => 1,
 	'showtoolbar' => 1,
@@ -5323,26 +5342,60 @@ $wgAutoConfirmAge = 0;
 $wgAutoConfirmCount = 0;
 
 /**
- * Automatically add a usergroup to any user who matches certain conditions.
+ * Array containing the conditions of automatic promotion of a user to specific groups.
  *
- * @todo Redocument $wgAutopromote
+ * The basic syntax for `$wgAutopromote` is:
  *
- * The format is
- *   [ '&' or '|' or '^' or '!', cond1, cond2, ... ]
- * where cond1, cond2, ... are themselves conditions; *OR*
- *   APCOND_EMAILCONFIRMED, *OR*
- *   [ APCOND_EMAILCONFIRMED ], *OR*
- *   [ APCOND_EDITCOUNT, number of edits ], *OR*
- *   [ APCOND_AGE, seconds since registration ], *OR*
- *   [ APCOND_INGROUPS, group1, group2, ... ], *OR*
- *   [ APCOND_ISIP, ip ], *OR*
- *   [ APCOND_IPINRANGE, range ], *OR*
- *   [ APCOND_AGE_FROM_EDIT, seconds since first edit ], *OR*
- *   [ APCOND_BLOCKED ], *OR*
- *   [ APCOND_ISBOT ], *OR*
- *   similar constructs defined by extensions.
+ *     $wgAutopromote = array(
+ *         'groupname' => cond,
+ *         'group2' => cond2,
+ *     );
  *
- * If $wgEmailAuthentication is off, APCOND_EMAILCONFIRMED will be true for any
+ * A `cond` may be:
+ *  - a single condition without arguments:
+ *      Note that Autopromote wraps a single non-array value into an array
+ *      e.g. `APCOND_EMAILCONFIRMED` OR
+ *           array( `APCOND_EMAILCONFIRMED` )
+ *  - a single condition with arguments:
+ *      e.g. `array( APCOND_EDITCOUNT, 100 )`
+ *  - a set of conditions:
+ *      e.g. `array( 'operand', cond1, cond2, ... )`
+ *
+ * When constructing a set of conditions, the following conditions are available:
+ *  - `&` (**AND**):
+ *      promote if user matches **ALL** conditions
+ *  - `|` (**OR**):
+ *      promote if user matches **ANY** condition
+ *  - `^` (**XOR**):
+ *      promote if user matches **ONLY ONE OF THE CONDITIONS**
+ *  - `!` (**NOT**):
+ *      promote if user matces **NO** condition
+ *  - array( APCOND_EMAILCONFIRMED ):
+ *      true if user has a confirmed e-mail
+ *  - array( APCOND_EDITCOUNT, number of edits ):
+ *      true if user has the at least the number of edits as the passed parameter
+ *  - array( APCOND_AGE, seconds since registration ):
+ *      true if the length of time since the user created his/her account
+ *      is at least the same length of time as the passed parameter
+ *  - array( APCOND_AGE_FROM_EDIT, seconds since first edit ):
+ *      true if the length of time since the user made his/her first edit
+ *      is at least the same length of time as the passed parameter
+ *  - array( APCOND_INGROUPS, group1, group2, ... ):
+ *      true if the user is a member of each of the passed groups
+ *  - array( APCOND_ISIP, ip ):
+ *      true if the user has the passed IP address
+ *  - array( APCOND_IPINRANGE, range ):
+ *      true if the user has an IP address in the range of the passed parameter
+ *  - array( APCOND_BLOCKED ):
+ *      true if the user is blocked
+ *  - array( APCOND_ISBOT ):
+ *      true if the user is a bot
+ *  - similar constructs can be defined by extensions
+ *
+ * The sets of conditions are evaluated recursively, so you can use nested sets of conditions
+ * linked by operands.
+ *
+ * Note that if $wgEmailAuthentication is disabled, APCOND_EMAILCONFIRMED will be true for any
  * user who has provided an e-mail address.
  */
 $wgAutopromote = [
@@ -5513,6 +5566,15 @@ $wgDnsBlacklistUrls = [ 'http.dnsbl.sorbs.net.' ];
 $wgProxyWhitelist = [];
 
 /**
+ * IP ranges that should be considered soft-blocked (anon-only, account
+ * creation allowed). The intent is to use this to prevent anonymous edits from
+ * shared resources such as Wikimedia Labs.
+ * @since 1.29
+ * @var string[]
+ */
+$wgSoftBlockRanges = [];
+
+/**
  * Whether to look at the X-Forwarded-For header's list of (potentially spoofed)
  * IPs and apply IP blocks to them. This allows for IP blocks to work with correctly-configured
  * (transparent) proxies without needing to block the proxies themselves.
@@ -5623,7 +5685,7 @@ $wgRateLimits = [
 ];
 
 /**
- * Array of IPs which should be excluded from rate limits.
+ * Array of IPs / CIDR ranges which should be excluded from rate limits.
  * This may be useful for whitelisting NAT gateways for conferences, etc.
  */
 $wgRateLimitsExcludedIPs = [];
@@ -5825,6 +5887,15 @@ $wgBotPasswordsCluster = false;
  */
 $wgBotPasswordsDatabase = false;
 
+/**
+ * Whether to disable user group expiry. This is a transitional feature flag
+ * in accordance with WMF schema change policy, and will be removed later
+ * (hopefully before MW 1.29 release).
+ *
+ * @since 1.29
+ */
+$wgDisableUserGroupExpiry = false;
+
 /** @} */ # end of user rights settings
 
 /************************************************************************//**
@@ -5922,7 +5993,10 @@ $wgSessionName = false;
 
 /**
  * Whether to set a cookie when a user is autoblocked. Doing so means that a blocked user, even
- * after logging out and moving to a new IP address, will still be blocked.
+ * after logging out and moving to a new IP address, will still be blocked. This cookie will contain
+ * an authentication code if $wgSecretKey is set, or otherwise will just be the block ID (in
+ * which case there is a possibility of an attacker discovering the names of revdeleted users, so
+ * it is best to use this in conjunction with $wgSecretKey being set).
  */
 $wgCookieSetOnAutoblock = false;
 
@@ -6589,51 +6663,64 @@ $wgRCLinkLimits = [ 50, 100, 250, 500 ];
 $wgRCLinkDays = [ 1, 3, 7, 14, 30 ];
 
 /**
- * Destinations to which notifications about recent changes
- * should be sent.
+ * Configuration for feeds to which notifications about recent changes will be sent.
  *
- * As of MediaWiki 1.22, there are 2 supported 'engine' parameter option in core:
- *   * 'UDPRCFeedEngine', which is used to send recent changes over UDP to the
- *      specified server.
- *   * 'RedisPubSubFeedEngine', which is used to send recent changes to Redis.
+ * The following feed classes are available by default:
+ * - 'UDPRCFeedEngine' - sends recent changes over UDP to the specified server.
+ * - 'RedisPubSubFeedEngine' - send recent changes to Redis.
  *
- * The common options are:
- *   * 'uri' -- the address to which the notices are to be sent.
- *   * 'formatter' -- the class name (implementing RCFeedFormatter) which will
- *     produce the text to send. This can also be an object of the class.
- *   * 'omit_bots' -- whether the bot edits should be in the feed
- *   * 'omit_anon' -- whether anonymous edits should be in the feed
- *   * 'omit_user' -- whether edits by registered users should be in the feed
- *   * 'omit_minor' -- whether minor edits should be in the feed
- *   * 'omit_patrolled' -- whether patrolled edits should be in the feed
+ * Only 'class' or 'uri' is required. If 'uri' is set instead of 'class', then
+ * RecentChange::getEngine() is used to determine the class. All options are
+ * passed to the constructor.
  *
- *  The IRC-specific options are:
- *   * 'add_interwiki_prefix' -- whether the titles should be prefixed with
- *     the first entry in the $wgLocalInterwikis array (or the value of
- *     $wgLocalInterwiki, if set)
+ * Common options:
+ * - 'class' -- The class to use for this feed (must implement RCFeed).
+ * - 'omit_bots' -- Exclude bot edits from the feed. (default: false)
+ * - 'omit_anon' -- Exclude anonymous edits from the feed. (default: false)
+ * - 'omit_user' -- Exclude edits by registered users from the feed. (default: false)
+ * - 'omit_minor' -- Exclude minor edits from the feed. (default: false)
+ * - 'omit_patrolled' -- Exclude patrolled edits from the feed. (default: false)
  *
- *  The JSON-specific options are:
- *   * 'channel' -- if set, the 'channel' parameter is also set in JSON values.
+ * FormattedRCFeed-specific options:
+ * - 'uri' -- [required] The address to which the messages are sent.
+ *   The uri scheme of this string will be looked up in $wgRCEngines
+ *   to determine which RCFeedEngine class to use.
+ * - 'formatter' -- [required] The class (implementing RCFeedFormatter) which will
+ *   produce the text to send. This can also be an object of the class.
+ *   Formatters available by default: JSONRCFeedFormatter, XMLRCFeedFormatter,
+ *   IRCColourfulRCFeedFormatter.
+ *
+ * IRCColourfulRCFeedFormatter-specific options:
+ * - 'add_interwiki_prefix' -- whether the titles should be prefixed with
+ *   the first entry in the $wgLocalInterwikis array (or the value of
+ *   $wgLocalInterwiki, if set)
+ *
+ * JSONRCFeedFormatter-specific options:
+ * - 'channel' -- if set, the 'channel' parameter is also set in JSON values.
  *
  * @example $wgRCFeeds['example'] = [
+ *		'uri' => 'udp://localhost:1336',
  *		'formatter' => 'JSONRCFeedFormatter',
- *		'uri' => "udp://localhost:1336",
  *		'add_interwiki_prefix' => false,
  *		'omit_bots' => true,
  *	];
- * @example $wgRCFeeds['exampleirc'] = [
+ * @example $wgRCFeeds['example'] = [
+ *		'uri' => 'udp://localhost:1338',
  *		'formatter' => 'IRCColourfulRCFeedFormatter',
- *		'uri' => "udp://localhost:1338",
  *		'add_interwiki_prefix' => false,
  *		'omit_bots' => true,
+ *	];
+ * @example $wgRCFeeds['example'] = [
+ *		'class' => 'ExampleRCFeed',
  *	];
  * @since 1.22
  */
 $wgRCFeeds = [];
 
 /**
- * Used by RecentChange::getEngine to find the correct engine to use for a given URI scheme.
- * Keys are scheme names, values are names of engine classes.
+ * Used by RecentChange::getEngine to find the correct engine for a given URI scheme.
+ * Keys are scheme names, values are names of FormattedRCFeed sub classes.
+ * @since 1.22
  */
 $wgRCEngines = [
 	'redis' => 'RedisPubSubFeedEngine',
@@ -8056,6 +8143,12 @@ $wgShellLocale = 'en_US.utf8';
 $wgHTTPTimeout = 25;
 
 /**
+ * Timeout for HTTP requests done internally for transwiki imports, in seconds.
+ * @since 1.29
+ */
+$wgHTTPImportTimeout = 25;
+
+/**
  * Timeout for Asynchronous (background) HTTP requests, in seconds.
  */
 $wgAsyncHTTPTimeout = 25;
@@ -8180,7 +8273,19 @@ $wgRedirectOnLogin = null;
  * The remaining elements are passed through to the class as constructor
  * parameters.
  *
- * @par Example:
+ * @par Example using local redis instance:
+ * @code
+ *   $wgPoolCounterConf = [ 'ArticleView' => [
+ *     'class' => 'PoolCounterRedis',
+ *     'timeout' => 15, // wait timeout in seconds
+ *     'workers' => 1, // maximum number of active threads in each pool
+ *     'maxqueue' => 5, // maximum number of total threads in each pool
+ *     'servers' => [ '127.0.0.1' ],
+ *     'redisConfig' => []
+ *   ] ];
+ * @endcode
+ *
+ * @par Example using C daemon from https://www.mediawiki.org/wiki/Extension:PoolCounter:
  * @code
  *   $wgPoolCounterConf = [ 'ArticleView' => [
  *     'class' => 'PoolCounter_Client',
@@ -8188,7 +8293,7 @@ $wgRedirectOnLogin = null;
  *     'workers' => 5, // maximum number of active threads in each pool
  *     'maxqueue' => 50, // maximum number of total threads in each pool
  *     ... any extension-specific options...
- *   ];
+ *   ] ];
  * @endcode
  */
 $wgPoolCounterConf = null;
@@ -8270,7 +8375,7 @@ $wgPagePropsHaveSortkey = true;
 /**
  * Port where you have HTTPS running
  * Supports HTTPS on non-standard ports
- * @see bug 65184
+ * @see T67184
  * @since 1.24
  */
 $wgHttpsPort = 443;
@@ -8476,6 +8581,25 @@ $wgLearnerEdits = 10;
 $wgLearnerMemberSince = 4; # days
 $wgExperiencedUserEdits = 500;
 $wgExperiencedUserMemberSince = 30; # days
+
+/**
+ * Mapping of interwiki index prefixes to descriptors that
+ * can be used to change the display of interwiki search results.
+ *
+ * Descriptors are appended to CSS classes of interwiki results
+ * which using InterwikiSearchResultWidget.
+ *
+ * Predefined descriptors include the following words:
+ * definition, textbook, news, quotation, book, travel, course
+ *
+ * @par Example:
+ * @code
+ * $wgInterwikiPrefixDisplayTypes = [
+ *	'iwprefix' => 'definition'
+ *];
+ * @endcode
+ */
+$wgInterwikiPrefixDisplayTypes = [];
 
 /**
  * For really cool vim folding this needs to be at the end:

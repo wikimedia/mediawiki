@@ -212,9 +212,13 @@ related to a particular event, like so:
 		# ...
 		function protect() {
 			global $wgUser;
-			if ( Hooks::run( 'ArticleProtect', array( &$this, &$wgUser ) ) ) {
+
+			// Avoid PHP 7.1 warning from passing $this by reference
+			$article = $this;
+
+			if ( Hooks::run( 'ArticleProtect', [ &$article, &$wgUser ] ) ) {
 				# protect the article
-				Hooks::run( 'ArticleProtectComplete', array( &$this, &$wgUser ) );
+				Hooks::run( 'ArticleProtectComplete', [ &$article, &$wgUser ] );
 			}
 		}
 	}
@@ -364,6 +368,11 @@ $user: Current user
    pass to ApiBase::dieWithError().
  * 1.27+: IApiMessage, or a key or key+parameters in ApiBase::$messageMap.
  * Earlier: A key or key+parameters in ApiBase::$messageMap.
+
+'ApiDeprecationHelp': Add messages to the 'deprecation-help' warning generated
+from ApiBase::addDeprecation().
+&$msgs: Message[] Messages to include in the help. Multiple messages will be
+  joined with spaces.
 
 'APIEditBeforeSave': DEPRECATED! Use EditFilterMergedContent instead.
 Before saving a page with api.php?action=edit, after
@@ -603,12 +612,6 @@ a chance to hide their (unrelated) log entries.
   AND in the final query)
 $logTypes: Array of log types being queried
 
-'ArticleAfterFetchContent': DEPRECATED! Use ArticleAfterFetchContentObject
-instead.
-After fetching content of an article from the database.
-&$article: the article (object) being loaded from the database
-&$content: the content (string) of the article
-
 'ArticleAfterFetchContentObject': After fetching content of an article from the
 database.
 &$article: the article (object) being loaded from the database
@@ -677,18 +680,6 @@ Wiki::articleFromTitle().
 &$article: Article (object) that will be returned
 $context: IContextSource (object)
 
-'ArticleInsertComplete': DEPRECATED! Use PageContentInsertComplete.
-After a new article is created.
-$wikiPage: WikiPage created
-$user: User creating the article
-$text: New content
-$summary: Edit summary/comment
-$isMinor: Whether or not the edit was marked as minor
-$isWatch: (No longer used)
-$section: (No longer used)
-$flags: Flags passed to WikiPage::doEditContent()
-$revision: New Revision of the article
-
 'ArticleMergeComplete': After merging to article using Special:Mergehistory.
 $targetTitle: target title (object)
 $destTitle: destination title (object)
@@ -739,31 +730,6 @@ $wikiPage: the WikiPage that was edited
 $user: the user who did the rollback
 $revision: the revision the page was reverted back to
 $current: the reverted revision
-
-'ArticleSave': DEPRECATED! Use PageContentSave instead.
-Before an article is saved.
-$wikiPage: the WikiPage (object) being saved
-$user: the user (object) saving the article
-$text: the new article text
-$summary: the article summary (comment)
-$isminor: minor flag
-$iswatch: watch flag
-$section: section #
-
-'ArticleSaveComplete': DEPRECATED! Use PageContentSaveComplete instead.
-After an article has been updated.
-$wikiPage: WikiPage modified
-$user: User performing the modification
-$text: New content
-$summary: Edit summary/comment
-$isMinor: Whether or not the edit was marked as minor
-$isWatch: (No longer used)
-$section: (No longer used)
-$flags: Flags passed to WikiPage::doEditContent()
-$revision: New Revision of the article
-$status: Status object about to be returned by doEditContent()
-$baseRevId: the rev ID (or false) this edit was based on
-$undidRevId: the rev ID (or 0) this edit undid
 
 'ArticleUndelete': When one or more revisions of an article are restored.
 &$title: Title corresponding to the article restored
@@ -1126,6 +1092,8 @@ $title: the Title in question
 'ContentHandlerForModelID': Called when a ContentHandler is requested for
 a given content model name, but no entry for that model exists in
 $wgContentHandlers.
+Note: if your extension implements additional models via this hook, please
+use GetContentModels hook to make them known to core. 
 $modeName: the requested content model name
 &$handler: set this to a ContentHandler object, if desired.
 
@@ -1334,12 +1302,6 @@ $section: Section being edited
 &$error: Error message to return
 $summary: Edit summary for page
 
-'EditFilterMerged': DEPRECATED! Use EditFilterMergedContent instead.
-Post-section-merge edit filter.
-$editor: EditPage instance (object)
-$text: content of the edit box
-&$error: error message to return
-$summary: Edit summary for page
 
 'EditFilterMergedContent': Post-section-merge edit filter.
 This may be triggered by the EditPage or any other facility that modifies page
@@ -1447,13 +1409,6 @@ previewed. Note that it is preferable to implement previews for different data
 types using the ContentHandler facility.
 $editPage: EditPage object
 &$content: Content object to be previewed (may be replaced by hook function)
-
-'EditPageGetPreviewText': DEPRECATED! Use EditPageGetPreviewContent instead.
-Allow modifying the wikitext that will be previewed. Note that it is preferable
-to implement previews for different data types using the ContentHandler
-facility.
-$editPage: EditPage object
-&$toparse: wikitext that will be parsed
 
 'EditPageNoSuchSection': When a section edit request is given for an
 non-existent section
@@ -1608,6 +1563,9 @@ notifications.
 &$title: Title object of page
 &$url: string value as output (out parameter, can modify)
 $query: query options passed to Title::getCanonicalURL()
+
+'GetContentModels': Add content models to the list of available models.
+&$models: array containing current model list, as strings. Extensions should add to this list.
 
 'GetDefaultSortkey': Override the default sortkey for a page.
 $title: Title object that we need to get a sortkey for
@@ -2231,6 +2189,7 @@ $text: new contents of the page.
 'MessagesPreLoad': When loading a message from the database.
 $title: title of the message (string)
 &$message: value (string), change it to the message you want to define
+$code: code (string) denoting the language to try.
 
 'MimeMagicGuessFromContent': Allows MW extensions guess the MIME by content.
 $mimeMagic: Instance of MimeMagic.
@@ -2878,11 +2837,11 @@ $terms: Search terms, for highlighting
 
 'ShowSearchHitTitle': Customise display of search hit title/link.
 &$title: Title to link to
-&$text: Text to use for the link
-$result: The search result
-$terms: The search terms entered
-$page: The SpecialSearch object
-&$query: Query string to be appended to the link
+&$titleSnippet: Label for the link representing the search result. Typically the article title.
+$result: The SearchResult object
+$terms: String of the search terms entered
+$specialSearch: The SpecialSearch object
+&$query: Array of query string parameters for the link representing the search result.
 
 'SidebarBeforeOutput': Allows to edit sidebar just before it is output by skins.
 Warning: This hook is run on each display. You should consider to use
@@ -3314,13 +3273,6 @@ by the isKnown method.
 $title: Title object that is being checked
 &$isKnown: Boolean|null; whether MediaWiki currently thinks this page is known
 
-'TitleIsCssOrJsPage': DEPRECATED! Use ContentHandlerDefaultModelFor instead.
-Called when determining if a page is a CSS or JS page.
-$title: Title object that is being checked
-&$result: Boolean; whether MediaWiki currently thinks this is a CSS/JS page.
-  Hooks may change this value to override the return value of
-  Title::isCssOrJsPage().
-
 'TitleIsMovable': Called when determining if it is possible to move a page. Note
 that this hook is not called for interwiki pages or pages in immovable
 namespaces: for these, isMovable() always returns false.
@@ -3329,13 +3281,6 @@ $title: Title object that is being checked
   Hooks may change this value to override the return value of
   Title::isMovable().
 
-'TitleIsWikitextPage': DEPRECATED! Use ContentHandlerDefaultModelFor instead.
-Called when determining if a page is a wikitext or should
-be handled by separate handler (via ArticleViewCustom).
-$title: Title object that is being checked
-&$result: Boolean; whether MediaWiki currently thinks this is a wikitext page.
-  Hooks may change this value to override the return value of
-  Title::isWikitextPage()
 
 'TitleMove': Before moving an article (title).
 $old: old title
@@ -3420,8 +3365,9 @@ Since 1.24: Paths pointing to a directory will be recursively scanned for
 test case files matching the suffix "Test.php".
 &$paths: list of test cases and directories to search.
 
-'UnknownAction': An unknown "action" has occurred (useful for defining your own
-actions).
+'UnknownAction': DEPRECATED! To add an action in an extension,
+create a subclass of Action, and add a new key to $wgActions.
+An unknown "action" has occurred (useful for defining your own actions).
 $action: action name
 $article: article "acted on"
 
@@ -3520,10 +3466,12 @@ temporary password
 &$ip: IP of the user who sent the message out
 &$u: the account whose new password will be set
 
-'UserAddGroup': Called when adding a group; return false to override
-stock group addition.
+'UserAddGroup': Called when adding a group or changing a group's expiry; return
+false to override stock group addition.
 $user: the user object that is to have a group added
-&$group: the group to add, can be modified
+&$group: the group to add; can be modified
+&$expiry: the expiry time in TS_MW format, or null if the group is not to
+expire; can be modified
 
 'UserArrayFromResult': Called when creating an UserArray object from a database
 result.
@@ -3766,7 +3714,8 @@ their data into the cache array so that things like global user groups are
 displayed correctly in Special:ListUsers.
 $dbr: Read-only database handle
 $userIds: Array of user IDs whose groups we should look up
-&$cache: Array of user ID -> internal user group name (e.g. 'sysop') mappings
+&$cache: Array of user ID -> (array of internal group name (e.g. 'sysop') ->
+UserGroupMembership object)
 &$groups: Array of group name -> bool true mappings for members of a given user
 group
 

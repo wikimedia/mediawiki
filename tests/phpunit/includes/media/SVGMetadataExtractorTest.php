@@ -75,7 +75,7 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 			],
 			[
 				"$base/Toll_Texas_1.svg",
-				// This file triggered bug 31719, needs entity expansion in the xmlns checks
+				// This file triggered T33719, needs entity expansion in the xmlns checks
 				[
 					'width' => 385,
 					'height' => 385,

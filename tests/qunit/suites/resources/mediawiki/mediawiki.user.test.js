@@ -95,6 +95,13 @@
 
 		result2 = mw.user.generateRandomSessionId();
 		assert.notEqual( result, result2, 'different when called multiple times' );
+	} );
 
+	QUnit.test( 'sessionId', function ( assert ) {
+		var result = mw.user.sessionId(),
+			result2 = mw.user.sessionId();
+		assert.equal( typeof result, 'string', 'type' );
+		assert.equal( $.trim( result ), result, 'no leading or trailing whitespace' );
+		assert.equal( result2, result, 'retained' );
 	} );
 }( mediaWiki, jQuery ) );

@@ -29,7 +29,7 @@
 			[ false, ':::' ],
 			[ false, '::0:', 'IPv6 ending in a lone ":"' ],
 
-			[ true,  '::', 'IPv6 zero address' ],
+			[ true, '::', 'IPv6 zero address' ],
 
 			[ false, '::fc:100:a:d:1:e:ac:0', 'IPv6 with "::" and 8 words' ],
 			[ false, '::fc:100:a:d:1:e:ac:0:1', 'IPv6 with 9 words' ],
@@ -38,15 +38,15 @@
 			[ false, 'fc::100:', 'IPv6 ending with lone ":"' ],
 			[ false, 'fc:::100', 'IPv6 with ":::" in the middle' ],
 
-			[ true,  'fc::100', 'IPv6 with "::" and 2 words' ],
-			[ true,  'fc::100:a', 'IPv6 with "::" and 3 words' ],
-			[ true,  'fc::100:a:d', 'IPv6 with "::" and 4 words' ],
-			[ true,  'fc::100:a:d:1', 'IPv6 with "::" and 5 words' ],
-			[ true,  'fc::100:a:d:1:e', 'IPv6 with "::" and 6 words' ],
-			[ true,  'fc::100:a:d:1:e:ac', 'IPv6 with "::" and 7 words' ],
-			[ true,  '2001::df', 'IPv6 with "::" and 2 words' ],
-			[ true,  '2001:5c0:1400:a::df', 'IPv6 with "::" and 5 words' ],
-			[ true,  '2001:5c0:1400:a::df:2', 'IPv6 with "::" and 6 words' ],
+			[ true, 'fc::100', 'IPv6 with "::" and 2 words' ],
+			[ true, 'fc::100:a', 'IPv6 with "::" and 3 words' ],
+			[ true, 'fc::100:a:d', 'IPv6 with "::" and 4 words' ],
+			[ true, 'fc::100:a:d:1', 'IPv6 with "::" and 5 words' ],
+			[ true, 'fc::100:a:d:1:e', 'IPv6 with "::" and 6 words' ],
+			[ true, 'fc::100:a:d:1:e:ac', 'IPv6 with "::" and 7 words' ],
+			[ true, '2001::df', 'IPv6 with "::" and 2 words' ],
+			[ true, '2001:5c0:1400:a::df', 'IPv6 with "::" and 5 words' ],
+			[ true, '2001:5c0:1400:a::df:2', 'IPv6 with "::" and 6 words' ],
 
 			[ false, 'fc::100:a:d:1:e:ac:0', 'IPv6 with "::" and 8 words' ],
 			[ false, 'fc::100:a:d:1:e:ac:0:1', 'IPv6 with 9 words' ]
@@ -88,11 +88,11 @@
 		}
 	} ) );
 
-	QUnit.test( 'rawurlencode', 1, function ( assert ) {
+	QUnit.test( 'rawurlencode', function ( assert ) {
 		assert.equal( mw.util.rawurlencode( 'Test:A & B/Here' ), 'Test%3AA%20%26%20B%2FHere' );
 	} );
 
-	QUnit.test( 'escapeId', 17, function ( assert ) {
+	QUnit.test( 'escapeId', function ( assert ) {
 		mw.config.set( 'wgExperimentalHtmlIds', false );
 		$.each( {
 			'+': '.2B',
@@ -117,7 +117,7 @@
 		} );
 	} );
 
-	QUnit.test( 'wikiUrlencode', 11, function ( assert ) {
+	QUnit.test( 'wikiUrlencode', function ( assert ) {
 		assert.equal( mw.util.wikiUrlencode( 'Test:A & B/Here' ), 'Test:A_%26_B/Here' );
 		// See also wfUrlencodeTest.php#provideURLS
 		$.each( {
@@ -136,7 +136,7 @@
 		} );
 	} );
 
-	QUnit.test( 'getUrl', 14, function ( assert ) {
+	QUnit.test( 'getUrl', function ( assert ) {
 		var href;
 		mw.config.set( {
 			wgScript: '/w/index.php',
@@ -189,7 +189,7 @@
 		assert.equal( href, '/w/index.php?action=edit#.2B.26.3D:.3B.40.24-_..21.2A.2F.5B.5D.3C.3E.27.C2.A7', 'fragment with various characters' );
 	} );
 
-	QUnit.test( 'wikiScript', 4, function ( assert ) {
+	QUnit.test( 'wikiScript', function ( assert ) {
 		mw.config.set( {
 			// customized wgScript for T41103
 			wgScript: '/w/i.php',
@@ -210,7 +210,7 @@
 		assert.equal( mw.util.wikiScript( 'api' ), '/w/api.php', 'API path' );
 	} );
 
-	QUnit.test( 'addCSS', 3, function ( assert ) {
+	QUnit.test( 'addCSS', function ( assert ) {
 		var $el, style;
 		$el = $( '<div>' ).attr( 'id', 'mw-addcsstest' ).appendTo( '#qunit-fixture' );
 
@@ -224,7 +224,7 @@
 		$( style.ownerNode ).remove();
 	} );
 
-	QUnit.test( 'getParamValue', 5, function ( assert ) {
+	QUnit.test( 'getParamValue', function ( assert ) {
 		var url;
 
 		url = 'http://example.org/?foo=wrong&foo=right#&foo=bad';
@@ -232,16 +232,16 @@
 		assert.strictEqual( mw.util.getParamValue( 'bar', url ), null, 'Return null when not found' );
 
 		url = 'http://example.org/#&foo=bad';
-		assert.strictEqual( mw.util.getParamValue( 'foo', url ), null, 'Ignore hash if param is not in querystring but in hash (bug 27427)' );
+		assert.strictEqual( mw.util.getParamValue( 'foo', url ), null, 'Ignore hash if param is not in querystring but in hash (T29427)' );
 
 		url = 'example.org?' + $.param( { TEST: 'a b+c' } );
-		assert.strictEqual( mw.util.getParamValue( 'TEST', url ), 'a b+c', 'Bug 30441: getParamValue must understand "+" encoding of space' );
+		assert.strictEqual( mw.util.getParamValue( 'TEST', url ), 'a b+c', 'T32441: getParamValue must understand "+" encoding of space' );
 
 		url = 'example.org?' + $.param( { TEST: 'a b+c d' } ); // check for sloppy code from r95332 :)
-		assert.strictEqual( mw.util.getParamValue( 'TEST', url ), 'a b+c d', 'Bug 30441: getParamValue must understand "+" encoding of space (multiple spaces)' );
+		assert.strictEqual( mw.util.getParamValue( 'TEST', url ), 'a b+c d', 'T32441: getParamValue must understand "+" encoding of space (multiple spaces)' );
 	} );
 
-	QUnit.test( '$content', 2, function ( assert ) {
+	QUnit.test( '$content', function ( assert ) {
 		assert.ok( mw.util.$content instanceof jQuery, 'mw.util.$content instance of jQuery' );
 		assert.strictEqual( mw.util.$content.length, 1, 'mw.util.$content must have length of 1' );
 	} );
@@ -252,7 +252,7 @@
 	 * Previously, test elements where invisible to the selector since only
 	 * one element can have a given id.
 	 */
-	QUnit.test( 'addPortletLink', 13, function ( assert ) {
+	QUnit.test( 'addPortletLink', function ( assert ) {
 		var pTestTb, pCustom, vectorTabs, tbRL, cuQuux, $cuQuux, tbMW, $tbMW, tbRLDM, caFoo,
 			addedAfter, tbRLDMnonexistentid, tbRLDMemptyjquery;
 
@@ -320,7 +320,7 @@
 		assert.equal(
 			$( '#p-test-custom #c-barmenu ul li' ).length,
 			1,
-			'addPortletLink did not add the item to all <ul> elements in the portlet (bug 35082)'
+			'addPortletLink did not add the item to all <ul> elements in the portlet (T37082)'
 		);
 
 		tbRLDM = mw.util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/RL/DM',
@@ -349,7 +349,7 @@
 		assert.equal( tbRLDMemptyjquery, $( '#p-test-tb li:last' )[ 0 ], 'Fallback to adding at the end (nextnode as empty jQuery object)' );
 	} );
 
-	QUnit.test( 'validateEmail', 6, function ( assert ) {
+	QUnit.test( 'validateEmail', function ( assert ) {
 		assert.strictEqual( mw.util.validateEmail( '' ), null, 'Should return null for empty string ' );
 		assert.strictEqual( mw.util.validateEmail( 'user@localhost' ), true, 'Return true for a valid e-mail address' );
 
@@ -362,19 +362,19 @@
 		assert.strictEqual( mw.util.validateEmail( 'userfoo@ex-ample.org' ), true, 'Emails may contain a hyphen' );
 	} );
 
-	QUnit.test( 'isIPv6Address', 40, function ( assert ) {
+	QUnit.test( 'isIPv6Address', function ( assert ) {
 		$.each( IPV6_CASES, function ( i, ipCase ) {
 			assert.strictEqual( mw.util.isIPv6Address( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
 		} );
 	} );
 
-	QUnit.test( 'isIPv4Address', 11, function ( assert ) {
+	QUnit.test( 'isIPv4Address', function ( assert ) {
 		$.each( IPV4_CASES, function ( i, ipCase ) {
 			assert.strictEqual( mw.util.isIPv4Address( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
 		} );
 	} );
 
-	QUnit.test( 'isIPAddress', 51, function ( assert ) {
+	QUnit.test( 'isIPAddress', function ( assert ) {
 		$.each( IPV4_CASES, function ( i, ipCase ) {
 			assert.strictEqual( mw.util.isIPv4Address( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
 		} );

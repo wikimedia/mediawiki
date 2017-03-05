@@ -461,29 +461,47 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * @param array $localFileRefs List of files
 	 */
 	protected function saveFileDependencies( ResourceLoaderContext $context, $localFileRefs ) {
-		// Normalise array
-		$localFileRefs = array_values( array_unique( $localFileRefs ) );
-		sort( $localFileRefs );
 
 		try {
+			// Related bugs and performance considerations:
+			// 1. Don't needlessly change the database value with the same list in a
+			//    different order or with duplicates.
+			// 2. Use relative paths to avoid ghost entries when $IP changes. (T111481)
+			// 3. Don't needlessly replace the database with the same value
+			//    just because $IP changed (e.g. when upgrading a wiki).
+			// 4. Don't create an endless replace loop on every request for this
+			//    module when '../' is used anywhere. Even though both are expanded
+			//    (one expanded by getFileDependencies from the DB, the other is
+			//    still raw as originally read by RL), the latter has not
+			//    been normalized yet.
+
+			// Normalise
+			$localFileRefs = array_values( array_unique( $localFileRefs ) );
+			sort( $localFileRefs );
+			$localPaths = self::getRelativePaths( $localFileRefs );
+
+			$storedPaths = self::getRelativePaths( $this->getFileDependencies( $context ) );
 			// If the list has been modified since last time we cached it, update the cache
-			if ( $localFileRefs !== $this->getFileDependencies( $context ) ) {
+			if ( $localPaths !== $storedPaths ) {
+				$vary = $context->getSkin() . '|' . $context->getLanguage();
 				$cache = ObjectCache::getLocalClusterInstance();
-				$key = $cache->makeKey( __METHOD__, $this->getName() );
+				$key = $cache->makeKey( __METHOD__, $this->getName(), $vary );
 				$scopeLock = $cache->getScopedLock( $key, 0 );
 				if ( !$scopeLock ) {
 					return; // T124649; avoid write slams
 				}
 
-				$vary = $context->getSkin() . '|' . $context->getLanguage();
+				$deps = FormatJson::encode( $localPaths );
 				$dbw = wfGetDB( DB_MASTER );
-				$dbw->replace( 'module_deps',
-					[ [ 'md_module', 'md_skin' ] ],
+				$dbw->upsert( 'module_deps',
 					[
 						'md_module' => $this->getName(),
 						'md_skin' => $vary,
-						// Use relative paths to avoid ghost entries when $IP changes (T111481)
-						'md_deps' => FormatJson::encode( self::getRelativePaths( $localFileRefs ) ),
+						'md_deps' => $deps,
+					],
+					[ 'md_module', 'md_skin' ],
+					[
+						'md_deps' => $deps,
 					]
 				);
 
@@ -633,7 +651,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 					&& substr( rtrim( $scripts ), -1 ) !== ';'
 				) {
 					// Append semicolon to prevent weird bugs caused by files not
-					// terminating their statements right (bug 27054)
+					// terminating their statements right (T29054)
 					$scripts .= ";\n";
 				}
 			}
@@ -644,7 +662,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		if ( $context->shouldIncludeStyles() ) {
 			$styles = [];
 			// Don't create empty stylesheets like [ '' => '' ] for modules
-			// that don't *have* any stylesheets (bug 38024).
+			// that don't *have* any stylesheets (T40024).
 			$stylePairs = $this->getStyles( $context );
 			if ( count( $stylePairs ) ) {
 				// If we are in debug mode without &only= set, we'll want to return an array of URLs

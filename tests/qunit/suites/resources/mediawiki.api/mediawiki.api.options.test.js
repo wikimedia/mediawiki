@@ -6,7 +6,7 @@
 		}
 	} ) );
 
-	QUnit.test( 'saveOption', 2, function ( assert ) {
+	QUnit.test( 'saveOption', function ( assert ) {
 		var api = new mw.Api(),
 			stub = this.sandbox.stub( mw.Api.prototype, 'saveOptions' );
 
@@ -16,7 +16,7 @@
 		assert.deepEqual( stub.getCall( 0 ).args, [ { foo: 'bar' } ], '#saveOptions called correctly' );
 	} );
 
-	QUnit.test( 'saveOptions without Unit Separator', 13, function ( assert ) {
+	QUnit.test( 'saveOptions without Unit Separator', function ( assert ) {
 		var api = new mw.Api( { useUS: false } );
 
 		// We need to respond to the request for token first, otherwise the other requests won't be sent
@@ -30,25 +30,25 @@
 
 		// Requests are POST, match requestBody instead of url
 		this.server.respond( function ( request ) {
-			switch ( request.requestBody ) {
+			if ( $.inArray( request.requestBody, [
 				// simple
-				case 'action=options&format=json&formatversion=2&change=foo%3Dbar&token=%2B%5C':
+				'action=options&format=json&formatversion=2&change=foo%3Dbar&token=%2B%5C',
 				// two options
-				case 'action=options&format=json&formatversion=2&change=foo%3Dbar%7Cbaz%3Dquux&token=%2B%5C':
+				'action=options&format=json&formatversion=2&change=foo%3Dbar%7Cbaz%3Dquux&token=%2B%5C',
 				// not bundleable
-				case 'action=options&format=json&formatversion=2&optionname=foo&optionvalue=bar%7Cquux&token=%2B%5C':
-				case 'action=options&format=json&formatversion=2&optionname=bar&optionvalue=a%7Cb%7Cc&token=%2B%5C':
-				case 'action=options&format=json&formatversion=2&change=baz%3Dquux&token=%2B%5C':
+				'action=options&format=json&formatversion=2&optionname=foo&optionvalue=bar%7Cquux&token=%2B%5C',
+				'action=options&format=json&formatversion=2&optionname=bar&optionvalue=a%7Cb%7Cc&token=%2B%5C',
+				'action=options&format=json&formatversion=2&change=baz%3Dquux&token=%2B%5C',
 				// reset an option
-				case 'action=options&format=json&formatversion=2&change=foo&token=%2B%5C':
+				'action=options&format=json&formatversion=2&change=foo&token=%2B%5C',
 				// reset an option, not bundleable
-				case 'action=options&format=json&formatversion=2&optionname=foo%7Cbar%3Dquux&token=%2B%5C':
-					assert.ok( true, 'Repond to ' + request.requestBody );
-					request.respond( 200, { 'Content-Type': 'application/json' },
-						'{ "options": "success" }' );
-					break;
-				default:
-					assert.ok( false, 'Unexpected request: ' + request.requestBody );
+				'action=options&format=json&formatversion=2&optionname=foo%7Cbar%3Dquux&token=%2B%5C'
+			] ) !== -1 ) {
+				assert.ok( true, 'Repond to ' + request.requestBody );
+				request.respond( 200, { 'Content-Type': 'application/json' },
+					'{ "options": "success" }' );
+			} else {
+				assert.ok( false, 'Unexpected request: ' + request.requestBody );
 			}
 		} );
 
@@ -74,7 +74,7 @@
 		);
 	} );
 
-	QUnit.test( 'saveOptions with Unit Separator', 14, function ( assert ) {
+	QUnit.test( 'saveOptions with Unit Separator', function ( assert ) {
 		var api = new mw.Api( { useUS: true } );
 
 		// We need to respond to the request for token first, otherwise the other requests won't be sent
@@ -88,26 +88,26 @@
 
 		// Requests are POST, match requestBody instead of url
 		this.server.respond( function ( request ) {
-			switch ( request.requestBody ) {
+			if ( $.inArray( request.requestBody, [
 				// simple
-				case 'action=options&format=json&formatversion=2&change=foo%3Dbar&token=%2B%5C':
+				'action=options&format=json&formatversion=2&change=foo%3Dbar&token=%2B%5C',
 				// two options
-				case 'action=options&format=json&formatversion=2&change=foo%3Dbar%7Cbaz%3Dquux&token=%2B%5C':
+				'action=options&format=json&formatversion=2&change=foo%3Dbar%7Cbaz%3Dquux&token=%2B%5C',
 				// bundleable with unit separator
-				case 'action=options&format=json&formatversion=2&change=%1Ffoo%3Dbar%7Cquux%1Fbar%3Da%7Cb%7Cc%1Fbaz%3Dquux&token=%2B%5C':
+				'action=options&format=json&formatversion=2&change=%1Ffoo%3Dbar%7Cquux%1Fbar%3Da%7Cb%7Cc%1Fbaz%3Dquux&token=%2B%5C',
 				// not bundleable with unit separator
-				case 'action=options&format=json&formatversion=2&optionname=baz%3Dbaz&optionvalue=quux&token=%2B%5C':
-				case 'action=options&format=json&formatversion=2&change=%1Ffoo%3Dbar%7Cquux%1Fbar%3Da%7Cb%7Cc&token=%2B%5C':
+				'action=options&format=json&formatversion=2&optionname=baz%3Dbaz&optionvalue=quux&token=%2B%5C',
+				'action=options&format=json&formatversion=2&change=%1Ffoo%3Dbar%7Cquux%1Fbar%3Da%7Cb%7Cc&token=%2B%5C',
 				// reset an option
-				case 'action=options&format=json&formatversion=2&change=foo&token=%2B%5C':
+				'action=options&format=json&formatversion=2&change=foo&token=%2B%5C',
 				// reset an option, not bundleable
-				case 'action=options&format=json&formatversion=2&optionname=foo%7Cbar%3Dquux&token=%2B%5C':
-					assert.ok( true, 'Repond to ' + request.requestBody );
-					request.respond( 200, { 'Content-Type': 'application/json' },
+				'action=options&format=json&formatversion=2&optionname=foo%7Cbar%3Dquux&token=%2B%5C'
+			] ) !== -1 ) {
+				assert.ok( true, 'Repond to ' + request.requestBody );
+				request.respond( 200, { 'Content-Type': 'application/json' },
 						'{ "options": "success" }' );
-					break;
-				default:
-					assert.ok( false, 'Unexpected request: ' + request.requestBody );
+			} else {
+				assert.ok( false, 'Unexpected request: ' + request.requestBody );
 			}
 		} );
 

@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ResultWrapper;
 
 /**
  * Used to show archived pages and eventually restore them.
@@ -465,7 +466,7 @@ class PageArchive {
 
 		# Does this page already exist? We'll have to update it...
 		$article = WikiPage::factory( $this->title );
-		# Load latest data for the current page (bug 31179)
+		# Load latest data for the current page (T33179)
 		$article->loadPageData( 'fromdbmaster' );
 		$oldcountable = $article->isCountable();
 
@@ -1141,8 +1142,8 @@ class SpecialUndelete extends SpecialPage {
 				'textarea',
 				[
 					'readonly' => 'readonly',
-					'cols' => $user->getIntOption( 'cols' ),
-					'rows' => $user->getIntOption( 'rows' )
+					'cols' => 80,
+					'rows' => 25
 				],
 				$content->getNativeData() . "\n"
 			);

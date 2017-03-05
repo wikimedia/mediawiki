@@ -77,7 +77,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$request = $this->getRequest();
 		$target = !is_null( $par ) ? $par : $request->getVal( 'target' );
 
-		// Yes, the use of getVal() and getText() is wanted, see bug 20365
+		// Yes, the use of getVal() and getText() is wanted, see T22365
 
 		$oldTitleText = $request->getVal( 'wpOldTitle', $target );
 		$this->oldTitle = Title::newFromText( $oldTitleText );
@@ -620,7 +620,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			// a redirect to the new title. This is not safe, but what we did before was
 			// even worse: we just determined whether a redirect should have been created,
 			// and reported that it was created if it should have, without any checks.
-			// Also note that isRedirect() is unreliable because of bug 37209.
+			// Also note that isRedirect() is unreliable because of T39209.
 			$msgName = 'movepage-moved-redirect';
 		} else {
 			$msgName = 'movepage-moved-noredirect';
@@ -630,7 +630,9 @@ class MovePageForm extends UnlistedSpecialPage {
 			$newLink )->params( $oldText, $newText )->parseAsBlock() );
 		$out->addWikiMsg( $msgName );
 
-		Hooks::run( 'SpecialMovepageAfterMove', [ &$this, &$ot, &$nt ] );
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$movePage = $this;
+		Hooks::run( 'SpecialMovepageAfterMove', [ &$movePage, &$ot, &$nt ] );
 
 		# Now we move extra pages we've been asked to move: subpages and talk
 		# pages.  First, if the old page or the new page is a talk page, we
@@ -706,7 +708,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 			$newPageName = preg_replace(
 				'#^' . preg_quote( $ot->getDBkey(), '#' ) . '#',
-				StringUtils::escapeRegexReplacement( $nt->getDBkey() ), # bug 21234
+				StringUtils::escapeRegexReplacement( $nt->getDBkey() ), # T23234
 				$oldSubpage->getDBkey()
 			);
 
@@ -719,7 +721,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				$newNs = $nt->getSubjectPage()->getNamespace();
 			}
 
-			# Bug 14385: we need makeTitleSafe because the new page names may
+			# T16385: we need makeTitleSafe because the new page names may
 			# be longer than 255 characters.
 			$newSubpage = Title::makeTitleSafe( $newNs, $newPageName );
 			if ( !$newSubpage ) {

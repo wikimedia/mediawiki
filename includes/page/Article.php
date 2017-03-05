@@ -198,24 +198,6 @@ class Article implements Page {
 	}
 
 	/**
-	 * Note that getContent does not follow redirects anymore.
-	 * If you need to fetch redirectable content easily, try
-	 * the shortcut in WikiPage::getRedirectTarget()
-	 *
-	 * This function has side effects! Do not use this function if you
-	 * only want the real revision text if any.
-	 *
-	 * @deprecated since 1.21; use WikiPage::getContent() instead
-	 *
-	 * @return string Return the text of this revision
-	 */
-	public function getContent() {
-		wfDeprecated( __METHOD__, '1.21' );
-		$content = $this->getContentObject();
-		return ContentHandler::getContentText( $content );
-	}
-
-	/**
 	 * Returns a Content object representing the pages effective display content,
 	 * not necessarily the revision's content!
 	 *
@@ -391,10 +373,9 @@ class Article implements Page {
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$articlePage = $this;
 
-		ContentHandler::runLegacyHooks(
+		Hooks::run(
 			'ArticleAfterFetchContentObject',
-			[ &$articlePage, &$this->mContentObject ],
-			'1.21'
+			[ &$articlePage, &$this->mContentObject ]
 		);
 
 		return $this->mContentObject;
@@ -745,7 +726,7 @@ class Article implements Page {
 
 		$ns = $this->getTitle()->getNamespace();
 
-		# Don't index user and user talk pages for blocked users (bug 11443)
+		# Don't index user and user talk pages for blocked users (T13443)
 		if ( ( $ns == NS_USER || $ns == NS_USER_TALK ) && !$this->getTitle()->isSubpage() ) {
 			$specificTarget = null;
 			$vagueTarget = null;
@@ -803,7 +784,7 @@ class Article implements Page {
 		}
 
 		if ( isset( $wgArticleRobotPolicies[$this->getTitle()->getPrefixedText()] ) ) {
-			# (bug 14900) site config can override user-defined __INDEX__ or __NOINDEX__
+			# (T16900) site config can override user-defined __INDEX__ or __NOINDEX__
 			$policy = array_merge(
 				$policy,
 				self::formatRobotPolicy( $wgArticleRobotPolicies[$this->getTitle()->getPrefixedText()] )
@@ -1190,7 +1171,10 @@ class Article implements Page {
 		$loggedIn = $this->getContext()->getUser()->isLoggedIn();
 		if ( $loggedIn || $cache->get( $key ) ) {
 			$logTypes = [ 'delete', 'move' ];
-			$conds = [ "log_action != 'revision'" ];
+
+			$dbr = wfGetDB( DB_REPLICA );
+
+			$conds = [ 'log_action != ' . $dbr->addQuotes( 'revision' ) ];
 			// Give extensions a chance to hide their (unrelated) log entries
 			Hooks::run( 'Article::MissingArticleConditions', [ &$conds, $logTypes ] );
 			LogEventsList::showLogExtract(
@@ -1687,7 +1671,6 @@ class Article implements Page {
 		Hooks::run( 'ArticleConfirmDelete', [ $this, $outputPage, &$reason ] );
 
 		$user = $this->getContext()->getUser();
-
 		if ( $user->isAllowed( 'suppressrevision' ) ) {
 			$suppress = Html::openElement( 'div', [ 'id' => 'wpDeleteSuppressRow' ] ) .
 				Xml::checkLabel( wfMessage( 'revdelete-suppress' )->text(),
@@ -1697,7 +1680,6 @@ class Article implements Page {
 			$suppress = '';
 		}
 		$checkWatch = $user->getBoolOption( 'watchdeletion' ) || $user->isWatched( $title );
-
 		$form = Html::openElement( 'form', [ 'method' => 'post',
 			'action' => $title->getLocalURL( 'action=delete' ), 'id' => 'deleteconfirm' ] ) .
 			Html::openElement( 'fieldset', [ 'id' => 'mw-delete-table' ] ) .
@@ -2037,22 +2019,13 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
-	 * @see WikiPage::doEdit
-	 *
-	 * @deprecated since 1.21: use doEditContent() instead.
-	 */
-	public function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) {
-		wfDeprecated( __METHOD__, '1.21' );
-		return $this->mPage->doEdit( $text, $summary, $flags, $baseRevId, $user );
-	}
-
-	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.29. Use WikiPage::doEditContent() directly instead
 	 * @see WikiPage::doEditContent
 	 */
 	public function doEditContent( Content $content, $summary, $flags = 0, $baseRevId = false,
 		User $user = null, $serialFormat = null
 	) {
+		wfDeprecated( __METHOD__, '1.29' );
 		return $this->mPage->doEditContent( $content, $summary, $flags, $baseRevId,
 			$user, $serialFormat
 		);

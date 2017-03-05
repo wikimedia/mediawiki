@@ -299,6 +299,9 @@ class OutputPage extends ContextSource {
 	 */
 	private $copyrightUrl;
 
+	/** @var array Profiling data */
+	private $limitReportJSData = [];
+
 	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
@@ -531,12 +534,30 @@ class OutputPage extends ContextSource {
 			if ( $module instanceof ResourceLoaderModule
 				&& $module->getOrigin() <= $this->getAllowedModules( $type )
 				&& ( is_null( $position ) || $module->getPosition() == $position )
-				&& ( !$this->mTarget || in_array( $this->mTarget, $module->getTargets() ) )
 			) {
+				if ( $this->mTarget && !in_array( $this->mTarget, $module->getTargets() ) ) {
+					$this->warnModuleTargetFilter( $module->getName() );
+					continue;
+				}
 				$filteredModules[] = $val;
 			}
 		}
 		return $filteredModules;
+	}
+
+	private function warnModuleTargetFilter( $moduleName ) {
+		static $warnings = [];
+		if ( isset( $warnings[$this->mTarget][$moduleName] ) ) {
+			return;
+		}
+		$warnings[$this->mTarget][$moduleName] = true;
+		$this->getResourceLoader()->getLogger()->debug(
+			'Module "{module}" not loadable on target "{target}".',
+			[
+				'module' => $moduleName,
+				'target' => $this->mTarget,
+			]
+		);
 	}
 
 	/**
@@ -760,7 +781,7 @@ class OutputPage extends ContextSource {
 			'epoch' => $config->get( 'CacheEpoch' )
 		];
 		if ( $config->get( 'UseSquid' ) ) {
-			// bug 44570: the core page itself may not change, but resources might
+			// T46570: the core page itself may not change, but resources might
 			$modifiedTimes['sepoch'] = wfTimestamp( TS_MW, time() - $config->get( 'SquidMaxage' ) );
 		}
 		Hooks::run( 'OutputPageCheckLastModified', [ &$modifiedTimes, $this ] );
@@ -1445,7 +1466,7 @@ class OutputPage extends ContextSource {
 			ResourceLoaderModule::ORIGIN_CORE_INDIVIDUAL
 		);
 
-		// Site-wide styles are controlled by a config setting, see bug 71621
+		// Site-wide styles are controlled by a config setting, see T73621
 		// for background on why. User styles are never allowed.
 		if ( $this->getConfig()->get( 'AllowSiteCSSOnRestrictedPages' ) ) {
 			$styleOrigin = ResourceLoaderModule::ORIGIN_USER_SITEWIDE;
@@ -1804,9 +1825,14 @@ class OutputPage extends ContextSource {
 			}
 		}
 
-		// enable OOUI if requested via ParserOutput
+		// Enable OOUI if requested via ParserOutput
 		if ( $parserOutput->getEnableOOUI() ) {
 			$this->enableOOUI();
+		}
+
+		// Include parser limit report
+		if ( !$this->limitReportJSData ) {
+			$this->limitReportJSData = $parserOutput->getLimitReportJSData();
 		}
 
 		// Link flags are ignored for now, but may in the future be
@@ -2476,7 +2502,7 @@ class OutputPage extends ContextSource {
 		) {
 			$displayReturnto = null;
 
-			# Due to bug 32276, if a user does not have read permissions,
+			# Due to T34276, if a user does not have read permissions,
 			# $this->getTitle() will just give Special:Badtitle, which is
 			# not especially useful as a returnto parameter. Use the title
 			# from the request instead, if there was one.
@@ -2507,9 +2533,10 @@ class OutputPage extends ContextSource {
 					$query['returntoquery'] = wfArrayToCgi( $returntoquery );
 				}
 			}
-			$loginLink = Linker::linkKnown(
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+			$loginLink = $linkRenderer->makeKnownLink(
 				SpecialPage::getTitleFor( 'Userlogin' ),
-				$this->msg( 'loginreqlink' )->escaped(),
+				$this->msg( 'loginreqlink' )->text(),
 				[],
 				$query
 			);
@@ -3005,6 +3032,14 @@ class OutputPage extends ContextSource {
 			}
 		}
 
+		if ( $this->limitReportJSData ) {
+			$chunks[] = ResourceLoader::makeInlineScript(
+				ResourceLoader::makeConfigSetScript(
+					[ 'wgPageParseReport' => $this->limitReportJSData ]
+				)
+			);
+		}
+
 		return self::combineWrappedStrings( $chunks );
 	}
 
@@ -3049,7 +3084,7 @@ class OutputPage extends ContextSource {
 
 		$curRevisionId = 0;
 		$articleId = 0;
-		$canonicalSpecialPageName = false; # bug 21115
+		$canonicalSpecialPageName = false; # T23115
 
 		$title = $this->getTitle();
 		$ns = $title->getNamespace();
@@ -3059,7 +3094,7 @@ class OutputPage extends ContextSource {
 
 		$sk = $this->getSkin();
 		// Get the relevant title so that AJAX features can use the correct page name
-		// when making API requests from certain special pages (bug 34972).
+		// when making API requests from certain special pages (T36972).
 		$relevantTitle = $sk->getRelevantTitle();
 		$relevantUser = $sk->getRelevantUser();
 
@@ -3242,9 +3277,11 @@ class OutputPage extends ContextSource {
 		}
 
 		foreach ( $this->mMetatags as $tag ) {
-			if ( 0 == strcasecmp( 'http:', substr( $tag[0], 0, 5 ) ) ) {
+			if ( strncasecmp( $tag[0], 'http:', 5 ) === 0 ) {
 				$a = 'http-equiv';
 				$tag[0] = substr( $tag[0], 5 );
+			} elseif ( strncasecmp( $tag[0], 'og:', 3 ) === 0 ) {
+				$a = 'property';
 			} else {
 				$a = 'name';
 			}
@@ -3546,7 +3583,6 @@ class OutputPage extends ContextSource {
 	protected function buildExemptModules() {
 		global $wgContLang;
 
-		$resourceLoader = $this->getResourceLoader();
 		$chunks = [];
 		// Things that go after the ResourceLoaderDynamicStyles marker
 		$append = [];
@@ -3679,6 +3715,8 @@ class OutputPage extends ContextSource {
 	 */
 	public static function transformResourcePath( Config $config, $path ) {
 		global $IP;
+
+		$localDir = $IP;
 		$remotePathPrefix = $config->get( 'ResourceBasePath' );
 		if ( $remotePathPrefix === '' ) {
 			// The configured base path is required to be empty string for
@@ -3687,12 +3725,23 @@ class OutputPage extends ContextSource {
 		} else {
 			$remotePath = $remotePathPrefix;
 		}
-		if ( strpos( $path, $remotePath ) !== 0 ) {
-			// Path is outside wgResourceBasePath, ignore.
+		if ( strpos( $path, $remotePath ) !== 0 || substr( $path, 0, 2 ) === '//' ) {
+			// - Path is outside wgResourceBasePath, ignore.
+			// - Path is protocol-relative. Fixes T155310. Not supported by RelPath lib.
 			return $path;
 		}
+		// For files in resources, extensions/ or skins/, ResourceBasePath is preferred here.
+		// For other misc files in $IP, we'll fallback to that as well. There is, however, a fourth
+		// supported dir/path pair in the configuration (wgUploadDirectory, wgUploadPath)
+		// which is not expected to be in wgResourceBasePath on CDNs. (T155146)
+		$uploadPath = $config->get( 'UploadPath' );
+		if ( strpos( $path, $uploadPath ) === 0 ) {
+			$localDir = $config->get( 'UploadDirectory' );
+			$remotePathPrefix = $remotePath = $uploadPath;
+		}
+
 		$path = RelPath\getRelativePath( $path, $remotePath );
-		return self::transformFilePath( $remotePathPrefix, $IP, $path );
+		return self::transformFilePath( $remotePathPrefix, $localDir, $path );
 	}
 
 	/**
@@ -3806,7 +3855,7 @@ class OutputPage extends ContextSource {
 	 *    $wgOut->addWikiText( "<div class='error'>\n"
 	 *        . wfMessage( 'some-error' )->plain() . "\n</div>" );
 	 *
-	 * The newline after the opening div is needed in some wikitext. See bug 19226.
+	 * The newline after the opening div is needed in some wikitext. See T21226.
 	 *
 	 * @param string $wrap
 	 */

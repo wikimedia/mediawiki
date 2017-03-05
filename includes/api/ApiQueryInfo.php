@@ -535,7 +535,6 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * Get information about protections and put it in $protections
 	 */
 	private function getProtectionInfo() {
-		global $wgContLang;
 		$this->protections = [];
 		$db = $this->getDB();
 
@@ -554,7 +553,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				$a = [
 					'type' => $row->pr_type,
 					'level' => $row->pr_level,
-					'expiry' => $wgContLang->formatExpiry( $row->pr_expiry, TS_ISO_8601 )
+					'expiry' => ApiResult::formatExpiry( $row->pr_expiry )
 				];
 				if ( $row->pr_cascade ) {
 					$a['cascade'] = true;
@@ -614,7 +613,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				$this->protections[$row->pt_namespace][$row->pt_title][] = [
 					'type' => 'create',
 					'level' => $row->pt_create_perm,
-					'expiry' => $wgContLang->formatExpiry( $row->pt_expiry, TS_ISO_8601 )
+					'expiry' => ApiResult::formatExpiry( $row->pt_expiry )
 				];
 			}
 		}
@@ -652,7 +651,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				$this->protections[$row->tl_namespace][$row->tl_title][] = [
 					'type' => $row->pr_type,
 					'level' => $row->pr_level,
-					'expiry' => $wgContLang->formatExpiry( $row->pr_expiry, TS_ISO_8601 ),
+					'expiry' => ApiResult::formatExpiry( $row->pr_expiry ),
 					'source' => $source->getPrefixedText()
 				];
 			}
@@ -675,7 +674,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				$this->protections[NS_FILE][$row->il_to][] = [
 					'type' => $row->pr_type,
 					'level' => $row->pr_level,
-					'expiry' => $wgContLang->formatExpiry( $row->pr_expiry, TS_ISO_8601 ),
+					'expiry' => ApiResult::formatExpiry( $row->pr_expiry ),
 					'source' => $source->getPrefixedText()
 				];
 			}

@@ -112,6 +112,9 @@ class UsersPager extends AlphabeticPager {
 
 		if ( $this->requestedGroup != '' ) {
 			$conds['ug_group'] = $this->requestedGroup;
+			if ( !$this->getConfig()->get( 'DisableUserGroupExpiry' ) ) {
+				$conds[] = 'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() );
+			}
 		}
 
 		if ( $this->requestedUser != '' ) {
@@ -161,7 +164,7 @@ class UsersPager extends AlphabeticPager {
 	 * @return string
 	 */
 	function formatRow( $row ) {
-		if ( $row->user_id == 0 ) { # Bug 16487
+		if ( $row->user_id == 0 ) { # T18487
 			return '';
 		}
 
@@ -177,12 +180,12 @@ class UsersPager extends AlphabeticPager {
 		$lang = $this->getLanguage();
 
 		$groups = '';
-		$groups_list = self::getGroups( intval( $row->user_id ), $this->userGroupCache );
+		$ugms = self::getGroupMemberships( intval( $row->user_id ), $this->userGroupCache );
 
-		if ( !$this->including && count( $groups_list ) > 0 ) {
+		if ( !$this->including && count( $ugms ) > 0 ) {
 			$list = [];
-			foreach ( $groups_list as $group ) {
-				$list[] = self::buildGroupLink( $group, $userName );
+			foreach ( $ugms as $ugm ) {
+				$list[] = $this->buildGroupLink( $ugm, $userName );
 			}
 			$groups = $lang->commaList( $list );
 		}
@@ -231,15 +234,18 @@ class UsersPager extends AlphabeticPager {
 		$dbr = wfGetDB( DB_REPLICA );
 		$groupRes = $dbr->select(
 			'user_groups',
-			[ 'ug_user', 'ug_group' ],
+			UserGroupMembership::selectFields(),
 			[ 'ug_user' => $userIds ],
 			__METHOD__
 		);
 		$cache = [];
 		$groups = [];
 		foreach ( $groupRes as $row ) {
-			$cache[intval( $row->ug_user )][] = $row->ug_group;
-			$groups[$row->ug_group] = true;
+			$ugm = UserGroupMembership::newFromRow( $row );
+			if ( !$ugm->isExpired() ) {
+				$cache[$row->ug_user][$row->ug_group] = $ugm;
+				$groups[$row->ug_group] = true;
+			}
 		}
 
 		// Give extensions a chance to add things like global user group data
@@ -250,7 +256,7 @@ class UsersPager extends AlphabeticPager {
 
 		// Add page of groups to link batch
 		foreach ( $groups as $group => $unused ) {
-			$groupPage = User::getGroupPage( $group );
+			$groupPage = UserGroupMembership::getGroupPage( $group );
 			if ( $groupPage ) {
 				$batch->addObj( $groupPage );
 			}
@@ -340,7 +346,7 @@ class UsersPager extends AlphabeticPager {
 	function getAllGroups() {
 		$result = [];
 		foreach ( User::getAllGroups() as $group ) {
-			$result[$group] = User::getGroupName( $group );
+			$result[$group] = UserGroupMembership::getGroupName( $group );
 		}
 		asort( $result );
 
@@ -365,36 +371,30 @@ class UsersPager extends AlphabeticPager {
 	}
 
 	/**
-	 * Get a list of groups the specified user belongs to
+	 * Get an associative array containing groups the specified user belongs to,
+	 * and the relevant UserGroupMembership objects
 	 *
 	 * @param int $uid User id
 	 * @param array|null $cache
-	 * @return array
+	 * @return array (group name => UserGroupMembership object)
 	 */
-	protected static function getGroups( $uid, $cache = null ) {
+	protected static function getGroupMemberships( $uid, $cache = null ) {
 		if ( $cache === null ) {
 			$user = User::newFromId( $uid );
-			$effectiveGroups = $user->getEffectiveGroups();
+			return $user->getGroupMemberships();
 		} else {
-			$effectiveGroups = isset( $cache[$uid] ) ? $cache[$uid] : [];
+			return isset( $cache[$uid] ) ? $cache[$uid] : [];
 		}
-		$groups = array_diff( $effectiveGroups, User::getImplicitGroups() );
-
-		return $groups;
 	}
 
 	/**
 	 * Format a link to a group description page
 	 *
-	 * @param string $group Group name
+	 * @param string|UserGroupMembership $group Group name or UserGroupMembership object
 	 * @param string $username Username
 	 * @return string
 	 */
-	protected static function buildGroupLink( $group, $username ) {
-		return User::makeGroupLinkHTML(
-			$group,
-			User::getGroupMember( $group, $username )
-		);
+	protected function buildGroupLink( $group, $username ) {
+		return UserGroupMembership::getLink( $group, $this->getContext(), 'html', $username );
 	}
-
 }

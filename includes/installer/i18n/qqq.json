@@ -317,6 +317,7 @@
 	"config-install-subscribe-fail": "{{doc-important|\"[[m:mail:mediawiki-announce|mediawiki-announce]]\" is the name of a mailing list and should not be translated.}}\nA message displayed if the MediaWiki installer encounters an error making a request to lists.wikimedia.org which hosts the mailing list.\n* $1 - the HTTP error encountered, reproduced as is (English string)",
 	"config-install-subscribe-notpossible": "Error shown when automatically subscribing to the MediaWiki announcements mailing list fails.",
 	"config-install-mainpage": "*{{msg-mw|Config-install-database}}\n*{{msg-mw|Config-install-tables}}\n*{{msg-mw|Config-install-schema}}\n*{{msg-mw|Config-install-user}}\n*{{msg-mw|Config-install-interwiki}}\n*{{msg-mw|Config-install-stats}}\n*{{msg-mw|Config-install-keys}}\n*{{msg-mw|Config-install-sysop}}\n*{{msg-mw|Config-install-mainpage}}",
+	"config-install-mainpage-exists": "Warning shown when installer attempts to create main page but it already exists.",
 	"config-install-extension-tables": "Notice shown to the user during the install about progress.",
 	"config-install-mainpage-failed": "Used as error message. Parameters:\n* $1 - detailed error message",
 	"config-install-done": "Parameters:\n* $1 is the URL to LocalSettings download\n* $2 is a link to the wiki.\n* $3 is a download link with attached download icon. The config-download-localsettings message will be used as the link text.",

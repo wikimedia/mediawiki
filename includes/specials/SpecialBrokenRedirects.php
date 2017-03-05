@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * A special page listing redirects to non existent page. Those should be
  * fixed to point to an existing page.

@@ -11,7 +11,8 @@
 			"Hwangjy9",
 			"Macofe",
 			"Mooozi",
-			"Ykhwong"
+			"Ykhwong",
+			"Jerrykim306"
 		]
 	},
 	"config-desc": "미디어위키를 위한 설치 관리자",
@@ -308,6 +309,7 @@
 	"config-install-subscribe-fail": "미디어위키 알림을 구독할 수 없습니다: $1",
 	"config-install-subscribe-notpossible": "cURL이 설치되어 있지 않고 <code>allow_url_fopen</code>을 사용할 수 없습니다.",
 	"config-install-mainpage": "기본 내용으로 대문을 만드는 중",
+	"config-install-mainpage-exists": "대문은 이미 존재함, 건너뜀",
 	"config-install-extension-tables": "활성화된 확장 기능을 위한 테이블을 만드는 중",
 	"config-install-mainpage-failed": "대문을 삽입할 수 없습니다: $1",
 	"config-install-done": "<strong>축하합니다!</strong>\n미디어위키를 설치했습니다.\n\n설치 관리자가 <code>LocalSettings.php</code> 파일을 만들었습니다.\n여기에 모든 설정이 포함되어 있습니다.\n\n파일을 다운로드하여 위키 설치의 거점에 넣어야 합니다. (index.php와 같은 디렉터리) 다운로드가 자동으로 시작됩니다.\n\n다운로드가 제공되지 않을 경우나 그것을 취소한 경우에는 아래의 링크를 클릭하여 다운로드를 다시 시작할 수 있습니다:\n\n$3\n\n<strong>참고:</strong> 이 생성한 설정 파일을 다운로드하지 않고 설치를 끝내면 이 파일은 나중에 사용할 수 없습니다.\n\n완료되었으면 <strong>[$2 위키에 들어갈 수 있습니다]</strong>.",
@@ -318,5 +320,5 @@
 	"config-nofile": "\"$1\" 파일을 찾을 수 없습니다. 이미 삭제되었나요?",
 	"config-extension-link": "당신의 위키가 [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions 확장 기능]을 지원한다는 것을 알고 계십니까?\n\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category 분류별 확장 기능]을 찾아보실 수 있습니다.",
 	"mainpagetext": "<strong>미디어위키가 설치되었습니다.</strong>",
-	"mainpagedocfooter": "[https://meta.wikimedia.org/wiki/Help:Contents 이곳]에서 위키 소프트웨어에 대한 정보를 얻을 수 있습니다.\n\n== 시작하기 ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings 설정하기 목록]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ 미디어위키 FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce 미디어위키 릴리스 메일링 리스트]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources 내 언어로 미디어위키 지역화]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam 당신의 위키에서 스팸에 대처하는 법을 배우세요]"
+	"mainpagedocfooter": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 이곳]에서 위키 소프트웨어에 대한 정보를 얻을 수 있습니다.\n\n== 시작하기 ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings 설정하기 목록]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ 미디어위키 FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce 미디어위키 릴리스 메일링 리스트]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources 내 언어로 미디어위키 지역화]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam 당신의 위키에서 스팸에 대처하는 법을 배우세요]"
 }

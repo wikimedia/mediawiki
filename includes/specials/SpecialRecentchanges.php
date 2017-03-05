@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ResultWrapper;
 
 /**
  * A special page that lists last changes made to the wiki
@@ -455,6 +456,16 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$panel[] = $form;
 		$panelString = implode( "\n", $panel );
 
+		// Insert a placeholder for RCFilters
+		if ( $this->getUser()->getOption( 'rcenhancedfilters' ) ) {
+			$this->getOutput()->addHTML(
+				Html::element(
+					'div',
+					[ 'class' => 'rcfilters-container' ]
+				)
+			);
+		}
+
 		$this->getOutput()->addHTML(
 			Xml::fieldset(
 				$this->msg( 'recentchanges-legend' )->text(),
@@ -526,6 +537,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		parent::addModules();
 		$out = $this->getOutput();
 		$out->addModules( 'mediawiki.special.recentchanges' );
+		if ( $this->getUser()->getOption( 'rcenhancedfilters' ) ) {
+			$out->addModules( 'mediawiki.rcfilters.filters.ui' );
+			$out->addModuleStyles( 'mediawiki.rcfilters.filters.base.styles' );
+		}
 	}
 
 	/**
@@ -660,7 +675,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	function makeOptionsLink( $title, $override, $options, $active = false ) {
 		$params = $override + $options;
 
-		// Bug 36524: false values have be converted to "0" otherwise
+		// T38524: false values have be converted to "0" otherwise
 		// wfArrayToCgi() will omit it them.
 		foreach ( $params as &$value ) {
 			if ( $value === false ) {
@@ -673,7 +688,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$title = new HtmlArmor( '<strong>' . htmlspecialchars( $title ) . '</strong>' );
 		}
 
-		return $this->getLinkRenderer()->makeKnownLink( $this->getPageTitle(), $title, [], $params );
+		return $this->getLinkRenderer()->makeKnownLink( $this->getPageTitle(), $title, [
+			'data-params' => json_encode( $override ),
+			'data-keys' => implode( ',', array_keys( $override ) ),
+		], $params );
 	}
 
 	/**
@@ -809,9 +827,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 	function filterOnUserExperienceLevel( &$tables, &$conds, &$join_conds, $opts ) {
 		global $wgLearnerEdits,
-			   $wgExperiencedUserEdits,
-			   $wgLearnerMemberSince,
-			   $wgExperiencedUserMemberSince;
+			$wgExperiencedUserEdits,
+			$wgLearnerMemberSince,
+			$wgExperiencedUserMemberSince;
 
 		$selectedExpLevels = explode( ',', strtolower( $opts['userExpLevel'] ) );
 		// remove values that are not recognized

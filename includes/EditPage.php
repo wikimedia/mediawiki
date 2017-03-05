@@ -498,7 +498,10 @@ class EditPage {
 		$this->enableApiEditOverride = $enableOverride;
 	}
 
-	function submit() {
+	/**
+	 * @deprecated since 1.29, call edit directly
+	 */
+	public function submit() {
 		$this->edit();
 	}
 
@@ -513,7 +516,7 @@ class EditPage {
 	 * is made and all is well do we actually save and redirect to
 	 * the newly-edited page.
 	 */
-	function edit() {
+	public function edit() {
 		global $wgOut, $wgRequest, $wgUser;
 		// Allow extensions to modify/prevent this form or submission
 		if ( !Hooks::run( 'AlternateEdit', [ $this ] ) ) {
@@ -837,7 +840,7 @@ class EditPage {
 	 * @param WebRequest $request
 	 * @throws ErrorPageError
 	 */
-	function importFormData( &$request ) {
+	public function importFormData( &$request ) {
 		global $wgContLang, $wgUser;
 
 		# Section edit can come from either the form or a link
@@ -990,7 +993,7 @@ class EditPage {
 			$this->recreate = false;
 
 			// When creating a new section, we can preload a section title by passing it as the
-			// preloadtitle parameter in the URL (Bug 13100)
+			// preloadtitle parameter in the URL (T15100)
 			if ( $this->section == 'new' && $request->getVal( 'preloadtitle' ) ) {
 				$this->sectiontitle = $request->getVal( 'preloadtitle' );
 				// Once wpSummary isn't being use for setting section titles, we should delete this.
@@ -1068,7 +1071,7 @@ class EditPage {
 	 * Called on the first invocation, e.g. when a user clicks an edit link
 	 * @return bool If the requested section is valid
 	 */
-	function initialiseForm() {
+	public function initialiseForm() {
 		global $wgUser;
 		$this->edittime = $this->page->getTimestamp();
 		$this->editRevId = $this->page->getLatest();
@@ -1253,7 +1256,7 @@ class EditPage {
 		$revision = $this->mArticle->getRevisionFetched();
 		if ( $revision === null ) {
 			if ( !$this->contentModel ) {
-				$this->contentModel = $this->getTitle()->getContentModel();
+				throw new RuntimeException( 'EditPage contentModel was false' );
 			}
 			$handler = ContentHandler::getForModelID( $this->contentModel );
 
@@ -1297,7 +1300,7 @@ class EditPage {
 
 		if ( $content === false || $content === null ) {
 			if ( !$this->contentModel ) {
-				$this->contentModel = $this->getTitle()->getContentModel();
+				throw new RuntimeException( 'EditPage contentModel was false' );
 			}
 			$handler = ContentHandler::getForModelID( $this->contentModel );
 
@@ -1420,7 +1423,7 @@ class EditPage {
 	 * @return bool
 	 * @private
 	 */
-	function tokenOk( &$request ) {
+	public function tokenOk( &$request ) {
 		global $wgUser;
 		$token = $request->getVal( 'wpEditToken' );
 		$this->mTokenOk = $wgUser->matchEditToken( $token );
@@ -1621,15 +1624,7 @@ class EditPage {
 	 */
 	protected function runPostMergeFilters( Content $content, Status $status, User $user ) {
 		// Run old style post-section-merge edit filter
-		if ( !ContentHandler::runLegacyHooks( 'EditFilterMerged',
-			[ $this, $content, &$this->hookError, $this->summary ],
-			'1.21'
-		) ) {
-			# Error messages etc. could be handled within the hook...
-			$status->fatal( 'hookaborted' );
-			$status->value = self::AS_HOOK_ERROR;
-			return false;
-		} elseif ( $this->hookError != '' ) {
+		if ( $this->hookError != '' ) {
 			# ...or the hook could be expecting us to produce an error
 			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR_EXPECTED;
@@ -1722,7 +1717,7 @@ class EditPage {
 	 *   AS_BLOCKED_PAGE_FOR_USER. All that stuff needs to be cleaned up some
 	 * time.
 	 */
-	function internalAttemptSave( &$result, $bot = false ) {
+	public function internalAttemptSave( &$result, $bot = false ) {
 		global $wgUser, $wgRequest, $wgParser, $wgMaxArticleSize;
 		global $wgContentHandlerUseDB;
 
@@ -1916,7 +1911,7 @@ class EditPage {
 
 			// Don't save a new page if it's blank or if it's a MediaWiki:
 			// message with content equivalent to default (allow empty pages
-			// in this case to disable messages, see bug 50124)
+			// in this case to disable messages, see T52124)
 			$defaultMessageText = $this->mTitle->getDefaultMessageText();
 			if ( $this->mTitle->getNamespace() === NS_MEDIAWIKI && $defaultMessageText !== false ) {
 				$defaultText = $defaultMessageText;
@@ -2278,7 +2273,7 @@ class EditPage {
 	 *        one might think of X as the "base revision", which is NOT what this returns.
 	 * @return Revision Current version when the edit was started
 	 */
-	function getBaseRevision() {
+	public function getBaseRevision() {
 		if ( !$this->mBaseRevision ) {
 			$db = wfGetDB( DB_MASTER );
 			$this->mBaseRevision = $this->editRevId
@@ -2330,7 +2325,7 @@ class EditPage {
 		return false;
 	}
 
-	function setHeaders() {
+	public function setHeaders() {
 		global $wgOut, $wgUser, $wgAjaxEditStash, $wgCookieSetOnAutoblock;
 
 		$wgOut->addModules( 'mediawiki.action.edit' );
@@ -2488,11 +2483,13 @@ class EditPage {
 		}
 		# Give a notice if the user is editing a deleted/moved page...
 		if ( !$this->mTitle->exists() ) {
+			$dbr = wfGetDB( DB_REPLICA );
+
 			LogEventsList::showLogExtract( $wgOut, [ 'delete', 'move' ], $this->mTitle,
 				'',
 				[
 					'lim' => 10,
-					'conds' => [ "log_action != 'revision'" ],
+					'conds' => [ 'log_action != ' . $dbr->addQuotes( 'revision' ) ],
 					'showIfEmpty' => false,
 					'msgKey' => [ 'recreate-moveddeleted-warn' ]
 				]
@@ -2590,7 +2587,7 @@ class EditPage {
 	 * The $formCallback parameter is deprecated since MediaWiki 1.25. Please
 	 * use the EditPage::showEditForm:fields hook instead.
 	 */
-	function showEditForm( $formCallback = null ) {
+	public function showEditForm( $formCallback = null ) {
 		global $wgOut, $wgUser;
 
 		# need to parse the preview early so that we know which templates are used,
@@ -2621,7 +2618,7 @@ class EditPage {
 			return;
 		}
 
-	 	$this->showHeader();
+		$this->showHeader();
 
 		$wgOut->addHTML( $this->editFormPageTop );
 
@@ -2734,7 +2731,7 @@ class EditPage {
 		if ( $this->hasPresetSummary ) {
 			// If a summary has been preset using &summary= we don't want to prompt for
 			// a different summary. Only prompt for a summary if the summary is blanked.
-			// (Bug 17416)
+			// (T19416)
 			$this->autoSumm = md5( '' );
 		}
 
@@ -2843,7 +2840,7 @@ class EditPage {
 	 * @param Title[] $templates
 	 * @return string HTML
 	 */
-	protected function makeTemplatesOnThisPageList( array $templates ) {
+	public function makeTemplatesOnThisPageList( array $templates ) {
 		$templateListFormatter = new TemplatesOnThisPageFormatter(
 			$this->context, MediaWikiServices::getInstance()->getLinkRenderer()
 		);
@@ -3032,7 +3029,7 @@ class EditPage {
 	 *
 	 * @return array An array in the format [ $label, $input ]
 	 */
-	function getSummaryInput( $summary = "", $labelText = null,
+	public function getSummaryInput( $summary = "", $labelText = null,
 		$inputAttrs = null, $spanLabelAttrs = null
 	) {
 		// Note: the maxlength is overridden in JS to 255 and to make it use UTF-8 bytes, not characters.
@@ -3287,14 +3284,14 @@ HTML
 	 */
 	protected function showPreview( $text ) {
 		global $wgOut;
-		if ( $this->mTitle->getNamespace() == NS_CATEGORY ) {
+		if ( $this->mArticle instanceof CategoryPage ) {
 			$this->mArticle->openShowCategory();
 		}
 		# This hook seems slightly odd here, but makes things more
 		# consistent for extensions.
 		Hooks::run( 'OutputPageBeforeHTML', [ &$wgOut, &$text ] );
 		$wgOut->addHTML( $text );
-		if ( $this->mTitle->getNamespace() == NS_CATEGORY ) {
+		if ( $this->mArticle instanceof CategoryPage ) {
 			$this->mArticle->closeShowCategory();
 		}
 	}
@@ -3306,7 +3303,7 @@ HTML
 	 * If this is a section edit, we'll replace the section as for final
 	 * save and then make a comparison.
 	 */
-	function showDiff() {
+	public function showDiff() {
 		global $wgUser, $wgContLang, $wgOut;
 
 		$oldtitlemsg = 'currentrev';
@@ -3548,15 +3545,7 @@ HTML
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$editPage = $this;
 		if ( Hooks::run( 'EditPageBeforeConflictDiff', [ &$editPage, &$wgOut ] ) ) {
-			$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
-			$stats->increment( 'edit.failures.conflict' );
-			// Only include 'standard' namespaces to avoid creating unknown numbers of statsd metrics
-			if (
-				$this->mTitle->getNamespace() >= NS_MAIN &&
-				$this->mTitle->getNamespace() <= NS_CATEGORY_TALK
-			) {
-				$stats->increment( 'edit.failures.conflict.byNamespaceId.' . $this->mTitle->getNamespace() );
-			}
+			$this->incrementConflictStats();
 
 			$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
 
@@ -3576,11 +3565,24 @@ HTML
 		}
 	}
 
+	protected function incrementConflictStats() {
+		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$stats->increment( 'edit.failures.conflict' );
+		// Only include 'standard' namespaces to avoid creating unknown numbers of statsd metrics
+		if (
+			$this->mTitle->getNamespace() >= NS_MAIN &&
+			$this->mTitle->getNamespace() <= NS_CATEGORY_TALK
+		) {
+			$stats->increment( 'edit.failures.conflict.byNamespaceId.' . $this->mTitle->getNamespace() );
+		}
+	}
+
 	/**
 	 * @return string
 	 */
 	public function getCancelLink() {
 		$cancelParams = [];
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( !$this->isConflict && $this->oldid > 0 ) {
 			$cancelParams['oldid'] = $this->oldid;
 		} elseif ( $this->getContextTitle()->isRedirect() ) {
@@ -3588,9 +3590,9 @@ HTML
 		}
 		$attrs = [ 'id' => 'mw-editform-cancel' ];
 
-		return Linker::linkKnown(
+		return $linkRenderer->makeKnownLink(
 			$this->getContextTitle(),
-			$this->context->msg( 'cancel' )->parse(),
+			new HtmlArmor( $this->context->msg( 'cancel' )->parse() ),
 			Html::buttonAttributes( $attrs, [ 'mw-ui-quiet' ] ),
 			$cancelParams
 		);
@@ -3683,11 +3685,9 @@ HTML
 	 * @throws MWException
 	 * @return string
 	 */
-	function getPreviewText() {
+	public function getPreviewText() {
 		global $wgOut, $wgRawHtml, $wgLang;
 		global $wgAllowUserCss, $wgAllowUserJs;
-
-		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 
 		if ( $wgRawHtml && !$this->mTokenOk ) {
 			// Could be an offsite preview attempt. This is very unsafe if
@@ -3701,7 +3701,7 @@ HTML
 					$this->context->msg( 'session_fail_preview_html' )->text() . "</div>",
 					true, /* interface */true );
 			}
-			$stats->increment( 'edit.failures.session_loss' );
+			$this->incrementEditFailureStats( 'session_loss' );
 			return $parsedNote;
 		}
 
@@ -3725,15 +3725,15 @@ HTML
 			if ( $this->mTriedSave && !$this->mTokenOk ) {
 				if ( $this->mTokenOkExceptSuffix ) {
 					$note = $this->context->msg( 'token_suffix_mismatch' )->plain();
-					$stats->increment( 'edit.failures.bad_token' );
+					$this->incrementEditFailureStats( 'bad_token' );
 				} else {
 					$note = $this->context->msg( 'session_fail_preview' )->plain();
-					$stats->increment( 'edit.failures.session_loss' );
+					$this->incrementEditFailureStats( 'session_loss' );
 				}
 			} elseif ( $this->incompleteForm ) {
 				$note = $this->context->msg( 'edit_form_incomplete' )->plain();
 				if ( $this->mTriedSave ) {
-					$stats->increment( 'edit.failures.incomplete_form' );
+					$this->incrementEditFailureStats( 'incomplete_form' );
 				}
 			} else {
 				$note = $this->context->msg( 'previewnote' )->plain() . ' ' . $continueEditing;
@@ -3779,7 +3779,6 @@ HTML
 			}
 
 			$hook_args = [ $this, &$content ];
-			ContentHandler::runLegacyHooks( 'EditPageGetPreviewText', $hook_args, '1.25' );
 			Hooks::run( 'EditPageGetPreviewContent', $hook_args );
 
 			$parserResult = $this->doPreviewParse( $content );
@@ -3822,6 +3821,11 @@ HTML
 		return $previewhead . $previewHTML . $this->previewTextAfterContent;
 	}
 
+	private function incrementEditFailureStats( $failureType ) {
+		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$stats->increment( 'edit.failures.' . $failureType );
+	}
+
 	/**
 	 * Get parser options for a preview
 	 * @return ParserOptions
@@ -3860,7 +3864,7 @@ HTML
 	/**
 	 * @return array
 	 */
-	function getTemplates() {
+	public function getTemplates() {
 		if ( $this->preview || $this->section != '' ) {
 			$templates = [];
 			if ( !isset( $this->mParserOutput ) ) {
@@ -3884,7 +3888,7 @@ HTML
 	 * @param Title $title Title object for the page being edited (optional)
 	 * @return string
 	 */
-	static function getEditToolbar( $title = null ) {
+	public static function getEditToolbar( $title = null ) {
 		global $wgContLang, $wgOut;
 		global $wgEnableUploads, $wgForeignFileRepos;
 
@@ -4137,7 +4141,7 @@ HTML
 	 * Creates a basic error page which informs the user that
 	 * they have attempted to edit a nonexistent section.
 	 */
-	function noSuchSectionPage() {
+	public function noSuchSectionPage() {
 		global $wgOut;
 
 		$wgOut->prepareErrorPage( $this->context->msg( 'nosuchsectiontitle' ) );
@@ -4441,8 +4445,8 @@ HTML
 		$attribs = $customAttribs + [
 				'accesskey' => ',',
 				'id' => $name,
-				'cols' => $user->getIntOption( 'cols' ),
-				'rows' => $user->getIntOption( 'rows' ),
+				'cols' => 80,
+				'rows' => 25,
 				// Avoid PHP notices when appending preferences
 				// (appending allows customAttribs['style'] to still work).
 				'style' => ''

@@ -25,4 +25,3 @@ $specialPageAliases = [
 	'ComparePages'              => [ '頁面比較' ],
 	'Unblock'                   => [ '解除封禁' ],
 ];
-

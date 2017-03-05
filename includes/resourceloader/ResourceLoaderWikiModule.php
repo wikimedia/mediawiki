@@ -268,7 +268,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			return true;
 		}
 
-		// Bug 68488: For other modules (i.e. ones that are called in cached html output) only check
+		// T70488: For other modules (i.e. ones that are called in cached html output) only check
 		// page existance. This ensures that, if some pages in a module are temporarily blanked,
 		// we don't end omit the module's script or link tag on some pages.
 		return count( $revisions ) === 0;
@@ -355,6 +355,11 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 					$allPages += $module->getPages( $context );
 				}
 			}
+		}
+
+		if ( !$wikiModules ) {
+			// Nothing to preload
+			return;
 		}
 
 		$pageNames = array_keys( $allPages );

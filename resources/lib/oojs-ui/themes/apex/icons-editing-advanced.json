@@ -56,6 +56,7 @@
 			"rtl": "images/icons/articleRedirect-rtl.svg"
 		} },
 		"searchCaseSensitive": { "file": "images/icons/case-sensitive.svg" },
+		"searchDiacritics": { "file": "images/icons/diacritic.svg" },
 		"searchRegularExpression": { "file": "images/icons/regular-expression.svg" },
 		"specialCharacter": { "file": "images/icons/specialCharacter.svg" },
 		"table": { "file": "images/icons/table.svg" },

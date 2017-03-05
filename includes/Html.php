@@ -220,8 +220,10 @@ class Html {
 	 * Identical to rawElement(), but HTML-escapes $contents (like
 	 * Xml::element()).
 	 *
-	 * @param string $element
-	 * @param array $attribs
+	 * @param string $element Name of the element, e.g., 'a'
+	 * @param array $attribs Associative array of attributes, e.g., [
+	 *   'href' => 'https://www.mediawiki.org/' ]. See expandAttributes() for
+	 *   further documentation.
 	 * @param string $contents
 	 *
 	 * @return string
@@ -239,8 +241,10 @@ class Html {
 	 * Identical to rawElement(), but has no third parameter and omits the end
 	 * tag (and the self-closing '/' in XML mode for empty elements).
 	 *
-	 * @param string $element
-	 * @param array $attribs
+	 * @param string $element Name of the element, e.g., 'a'
+	 * @param array $attribs Associative array of attributes, e.g., [
+	 *   'href' => 'https://www.mediawiki.org/' ]. See expandAttributes() for
+	 *   further documentation.
 	 *
 	 * @return string
 	 */
@@ -459,7 +463,7 @@ class Html {
 	 *
 	 * @param array $attribs Associative array of attributes, e.g., [
 	 *   'href' => 'https://www.mediawiki.org/' ].  Values will be HTML-escaped.
-	 *   A value of false means to omit the attribute.  For boolean attributes,
+	 *   A value of false or null means to omit the attribute.  For boolean attributes,
 	 *   you can omit the key, e.g., [ 'checked' ] instead of
 	 *   [ 'checked' => 'checked' ] or such.
 	 *
@@ -484,22 +488,6 @@ class Html {
 			// Not technically required in HTML5 but we'd like consistency
 			// and better compression anyway.
 			$key = strtolower( $key );
-
-			// Bug 23769: Blacklist all form validation attributes for now.  Current
-			// (June 2010) WebKit has no UI, so the form just refuses to submit
-			// without telling the user why, which is much worse than failing
-			// server-side validation.  Opera is the only other implementation at
-			// this time, and has ugly UI, so just kill the feature entirely until
-			// we have at least one good implementation.
-
-			// As the default value of "1" for "step" rejects decimal
-			// numbers to be entered in 'type="number"' fields, allow
-			// the special case 'step="any"'.
-
-			if ( in_array( $key, [ 'max', 'min', 'pattern', 'required' ] )
-				|| $key === 'step' && $value !== 'any' ) {
-				continue;
-			}
 
 			// https://www.w3.org/TR/html401/index/attributes.html ("space-separated")
 			// https://www.w3.org/TR/html5/index.html#attributes-1 ("space-separated")
@@ -775,7 +763,7 @@ class Html {
 		$attribs['name'] = $name;
 
 		if ( substr( $value, 0, 1 ) == "\n" ) {
-			// Workaround for bug 12130: browsers eat the initial newline
+			// Workaround for T14130: browsers eat the initial newline
 			// assuming that it's just for show, but they do keep the later
 			// newlines, which we may want to preserve during editing.
 			// Prepending a single newline

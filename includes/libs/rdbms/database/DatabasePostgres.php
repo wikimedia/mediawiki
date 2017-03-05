@@ -20,7 +20,12 @@
  * @file
  * @ingroup Database
  */
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WaitConditionLoop;
+use Wikimedia\Rdbms\Blob;
+use Wikimedia\Rdbms\PostgresBlob;
+use Wikimedia\Rdbms\PostgresField;
+use Wikimedia\Rdbms\ResultWrapper;
 
 /**
  * @ingroup Database
@@ -698,7 +703,7 @@ __INDEXATTR__;
 		list( $startOpts, $useIndex, $tailOpts, $ignoreIndex ) =
 			$this->makeSelectOptions( $selectOptions );
 		if ( is_array( $srcTable ) ) {
-			$srcTable = implode( ',', array_map( [ &$this, 'tableName' ], $srcTable ) );
+			$srcTable = implode( ',', array_map( [ $this, 'tableName' ], $srcTable ) );
 		} else {
 			$srcTable = $this->tableName( $srcTable );
 		}
@@ -982,7 +987,7 @@ __INDEXATTR__;
 				/**
 				 * Prepend our schema (e.g. 'mediawiki') in front
 				 * of the search path
-				 * Fixes bug 15816
+				 * Fixes T17816
 				 */
 				$search_path = $this->getSearchPath();
 				array_unshift( $search_path,
@@ -1023,7 +1028,7 @@ __INDEXATTR__;
 				// Normal client
 				$this->numericVersion = $versionInfo['server'];
 			} else {
-				// Bug 16937: broken pgsql extension from PHP<5.3
+				// T18937: broken pgsql extension from PHP<5.3
 				$this->numericVersion = pg_parameter_status( $conn, 'server_version' );
 			}
 		}
@@ -1076,8 +1081,8 @@ __INDEXATTR__;
 		$q = <<<SQL
 	SELECT 1 FROM pg_class, pg_namespace, pg_trigger
 		WHERE relnamespace=pg_namespace.oid AND relkind='r'
-			  AND tgrelid=pg_class.oid
-			  AND nspname=%s AND relname=%s AND tgname=%s
+			AND tgrelid=pg_class.oid
+			AND nspname=%s AND relname=%s AND tgname=%s
 SQL;
 		$res = $this->query(
 			sprintf(
@@ -1249,15 +1254,9 @@ SQL;
 
 		$preLimitTail .= $this->makeOrderBy( $options );
 
-		// if ( isset( $options['LIMIT'] ) ) {
-		// 	$tailOpts .= $this->limitResult( '', $options['LIMIT'],
-		// 		isset( $options['OFFSET'] ) ? $options['OFFSET']
-		// 		: false );
-		// }
-
 		if ( isset( $options['FOR UPDATE'] ) ) {
 			$postLimitTail .= ' FOR UPDATE OF ' .
-				implode( ', ', array_map( [ &$this, 'tableName' ], $options['FOR UPDATE'] ) );
+				implode( ', ', array_map( [ $this, 'tableName' ], $options['FOR UPDATE'] ) );
 		} elseif ( isset( $noKeyOptions['FOR UPDATE'] ) ) {
 			$postLimitTail .= ' FOR UPDATE';
 		}

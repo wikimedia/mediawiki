@@ -92,21 +92,24 @@ class CategoryPager extends AlphabeticPager {
 	}
 
 	public function getStartForm( $from ) {
-		return Xml::tags(
-			'form',
-			[ 'method' => 'get', 'action' => wfScript() ],
-			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
-			Xml::fieldset(
-				$this->msg( 'categories' )->text(),
-				Xml::inputLabel(
-					$this->msg( 'categoriesfrom' )->text(),
-					'from', 'from', 20, $from, [ 'class' => 'mw-ui-input-inline' ] ) .
-				' ' .
-				Html::submitButton(
-					$this->msg( 'categories-submit' )->text(),
-					[], [ 'mw-ui-progressive' ]
-				)
-			)
-		);
+		$formDescriptor = [
+			'from' => [
+				'type' => 'title',
+				'namespace' => NS_CATEGORY,
+				'relative' => true,
+				'label-message' => 'categoriesfrom',
+				'name' => 'from',
+				'id' => 'from',
+				'size' => 20,
+				'default' => $from,
+			],
+		];
+
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
+			->setSubmitTextMsg( 'categories-submit' )
+			->setWrapperLegendMsg( 'categories' )
+			->setMethod( 'get' );
+		return $htmlForm->prepareForm()->getHTML( false );
 	}
+
 }

@@ -215,7 +215,7 @@ $magicWords = [
 
 $bookstoreList = [
 	'OZ.by' => 'http://oz.by/search.phtml?what=books&isbn=$1',
-	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+	'Amazon.com' => 'https://www.amazon.com/exec/obidos/ISBN=$1'
 ];
 
 $datePreferences = [
@@ -244,4 +244,3 @@ $imageFiles = [
 	'button-italic'   => 'be-tarask/button_italic.png',
 	'button-link'     => 'be-tarask/button_link.png',
 ];
-

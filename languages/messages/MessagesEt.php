@@ -146,7 +146,7 @@ $bookstoreList = [
 	'Raamatukoi' => 'http://www.raamatukoi.ee/cgi-bin/index?valik=otsing&paring=$1',
 	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
 	'Barnes & Noble' => 'http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
-	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+	'Amazon.com' => 'https://www.amazon.com/exec/obidos/ISBN=$1'
 ];
 
 $magicWords = [
@@ -289,4 +289,3 @@ $dateFormats = [
 	'et roman date' => 'j. xrm Y',
 	'et roman both' => 'j. xrm Y, "kell" H:i',
 ];
-

@@ -346,7 +346,7 @@ class SpecialPageFactory {
 			return [ null, null ];
 		}
 
-		if ( !isset( $bits[1] ) ) { // bug 2087
+		if ( !isset( $bits[1] ) ) { // T4087
 			$par = null;
 		} else {
 			$par = $bits[1];
@@ -512,7 +512,7 @@ class SpecialPageFactory {
 		// @todo FIXME: Redirects broken due to this call
 		$bits = explode( '/', $title->getDBkey(), 2 );
 		$name = $bits[0];
-		if ( !isset( $bits[1] ) ) { // bug 2087
+		if ( !isset( $bits[1] ) ) { // T4087
 			$par = null;
 		} else {
 			$par = $bits[1];

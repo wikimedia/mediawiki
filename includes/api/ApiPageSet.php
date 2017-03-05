@@ -24,6 +24,7 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ResultWrapper;
 
 /**
  * This class contains a list of pages that the client has requested.
@@ -64,6 +65,7 @@ class ApiPageSet extends ApiBase {
 	private $mMissingPageIDs = [];
 	private $mRedirectTitles = [];
 	private $mSpecialTitles = [];
+	private $mAllSpecials = []; // separate from mAllPages to avoid breaking getAllTitlesByNamespace()
 	private $mNormalizedTitles = [];
 	private $mInterwikiTitles = [];
 	/** @var Title[] */
@@ -1061,7 +1063,7 @@ class ApiPageSet extends ApiBase {
 	 * @return LinkBatch
 	 */
 	private function getRedirectTargets() {
-		$lb = new LinkBatch();
+		$titlesToResolve = [];
 		$db = $this->getDB();
 
 		$res = $db->select(
@@ -1088,8 +1090,8 @@ class ApiPageSet extends ApiBase {
 			unset( $this->mPendingRedirectIDs[$rdfrom] );
 			if ( $to->isExternal() ) {
 				$this->mInterwikiTitles[$to->getPrefixedText()] = $to->getInterwiki();
-			} elseif ( !isset( $this->mAllPages[$row->rd_namespace][$row->rd_title] ) ) {
-				$lb->add( $row->rd_namespace, $row->rd_title );
+			} elseif ( !isset( $this->mAllPages[$to->getNamespace()][$to->getDBkey()] ) ) {
+				$titlesToResolve[] = $to;
 			}
 			$this->mRedirectTitles[$from] = $to;
 		}
@@ -1104,7 +1106,11 @@ class ApiPageSet extends ApiBase {
 					// What the hell. Let's just ignore this
 					continue;
 				}
-				$lb->addObj( $rt );
+				if ( $rt->isExternal() ) {
+					$this->mInterwikiTitles[$rt->getPrefixedText()] = $rt->getInterwiki();
+				} elseif ( !isset( $this->mAllPages[$rt->getNamespace()][$rt->getDBkey()] ) ) {
+					$titlesToResolve[] = $rt;
+				}
 				$from = $title->getPrefixedText();
 				$this->mResolvedRedirectTitles[$from] = $title;
 				$this->mRedirectTitles[$from] = $rt;
@@ -1112,7 +1118,7 @@ class ApiPageSet extends ApiBase {
 			}
 		}
 
-		return $lb;
+		return $this->processTitlesArray( $titlesToResolve );
 	}
 
 	/**
@@ -1151,12 +1157,14 @@ class ApiPageSet extends ApiBase {
 					$titleObj = Title::newFromTextThrow( $title, $this->mDefaultNamespace );
 				} catch ( MalformedTitleException $ex ) {
 					// Handle invalid titles gracefully
-					$this->mAllPages[0][$title] = $this->mFakePageId;
-					$this->mInvalidTitles[$this->mFakePageId] = [
-						'title' => $title,
-						'invalidreason' => $this->getErrorFormatter()->formatException( $ex, [ 'bc' => true ] ),
-					];
-					$this->mFakePageId--;
+					if ( !isset( $this->mAllPages[0][$title] ) ) {
+						$this->mAllPages[0][$title] = $this->mFakePageId;
+						$this->mInvalidTitles[$this->mFakePageId] = [
+							'title' => $title,
+							'invalidreason' => $this->getErrorFormatter()->formatException( $ex, [ 'bc' => true ] ),
+						];
+						$this->mFakePageId--;
+					}
 					continue; // There's nothing else we can do
 				}
 			} else {
@@ -1184,8 +1192,13 @@ class ApiPageSet extends ApiBase {
 				if ( $titleObj->getNamespace() < 0 ) {
 					// Handle Special and Media pages
 					$titleObj = $titleObj->fixSpecialName();
-					$this->mSpecialTitles[$this->mFakePageId] = $titleObj;
-					$this->mFakePageId--;
+					$ns = $titleObj->getNamespace();
+					$dbkey = $titleObj->getDBkey();
+					if ( !isset( $this->mAllSpecials[$ns][$dbkey] ) ) {
+						$this->mAllSpecials[$ns][$dbkey] = $this->mFakePageId;
+						$this->mSpecialTitles[$this->mFakePageId] = $titleObj;
+						$this->mFakePageId--;
+					}
 				} else {
 					// Regular page
 					$linkBatch->addObj( $titleObj );
@@ -1384,7 +1397,7 @@ class ApiPageSet extends ApiBase {
 	 * @return array
 	 */
 	private static function getPositiveIntegers( $array ) {
-		// bug 25734 API: possible issue with revids validation
+		// T27734 API: possible issue with revids validation
 		// It seems with a load of revision rows, MySQL gets upset
 		// Remove any < 0 integers, as they can't be valid
 		foreach ( $array as $i => $int ) {

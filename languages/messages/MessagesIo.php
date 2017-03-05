@@ -103,4 +103,3 @@ $specialPageAliases = [
 	'Watchlist'                 => [ 'Surveyaji' ],
 	'Whatlinkshere'             => [ 'QuoLigasHike' ],
 ];
-

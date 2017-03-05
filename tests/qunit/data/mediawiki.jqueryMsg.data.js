@@ -2,7 +2,7 @@
 // languages, and parser modes. Intended for use by a unit test framework by looping
 // through the object and comparing its parser return value with the 'result' property.
 // Last generated with generateJqueryMsgData.php at Fri, 10 Jul 2015 11:44:08 +0000
-//jscs:disable
+/* eslint-disable */
 
 mediaWiki.libs.phpParserData = {
     "messages": {

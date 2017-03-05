@@ -216,7 +216,7 @@ abstract class Installer {
 		'_UpgradeKeySupplied' => false,
 		'_ExistingDBSettings' => false,
 
-		// $wgLogo is probably wrong (bug 48084); set something that will work.
+		// $wgLogo is probably wrong (T50084); set something that will work.
 		// Single quotes work fine here, as LocalSettingsGenerator outputs this unescaped.
 		'wgLogo' => '$wgResourceBasePath/resources/assets/wiki.png',
 		'wgAuthenticationTokenVersion' => 1,
@@ -1421,6 +1421,7 @@ abstract class Installer {
 		$wgAutoloadClasses += $data['autoload'];
 
 		$hooksWeWant = isset( $wgHooks['LoadExtensionSchemaUpdates'] ) ?
+			/** @suppress PhanUndeclaredVariable $wgHooks is set by DefaultSettings */
 			$wgHooks['LoadExtensionSchemaUpdates'] : [];
 
 		if ( isset( $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
@@ -1430,7 +1431,7 @@ abstract class Installer {
 			);
 		}
 		// Unset everyone else's hooks. Lord knows what someone might be doing
-		// in ParserFirstCallInit (see bug 27171)
+		// in ParserFirstCallInit (see T29171)
 		$GLOBALS['wgHooks'] = [ 'LoadExtensionSchemaUpdates' => $hooksWeWant ];
 
 		return Status::newGood();
@@ -1655,8 +1656,13 @@ abstract class Installer {
 	 */
 	protected function createMainpage( DatabaseInstaller $installer ) {
 		$status = Status::newGood();
+		$title = Title::newMainPage();
+		if ( $title->exists() ) {
+			$status->warning( 'config-install-mainpage-exists' );
+			return $status;
+		}
 		try {
-			$page = WikiPage::factory( Title::newMainPage() );
+			$page = WikiPage::factory( $title );
 			$content = new WikitextContent(
 				wfMessage( 'mainpagetext' )->inContentLanguage()->text() . "\n\n" .
 				wfMessage( 'mainpagedocfooter' )->inContentLanguage()->text()

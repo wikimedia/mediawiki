@@ -34,19 +34,27 @@ return [
 	 * project. directory_list won't find .inc files so
 	 * we augment it here.
 	 */
-	'file_list' => [
-		'maintenance/7zip.inc',
-		'maintenance/backupPrefetch.inc',
-		'maintenance/commandLine.inc',
-		'maintenance/sqlite.inc',
-		'maintenance/userOptions.inc',
-		'maintenance/backup.inc',
-		'maintenance/cleanupTable.inc',
-		'maintenance/importImages.inc',
-		'maintenance/userDupes.inc',
-		'maintenance/language/checkLanguage.inc',
-		'maintenance/language/languages.inc',
-	],
+	'file_list' => array_merge(
+		function_exists( 'register_postsend_function' ) ? [] : [ 'tests/phan/stubs/hhvm.php' ],
+		function_exists( 'wikidiff2_do_diff' ) ? [] : [ 'tests/phan/stubs/wikidiff.php' ],
+		function_exists( 'tideways_enable' ) ? [] : [ 'tests/phan/stubs/tideways.php' ],
+		class_exists( PEAR::class ) ? [] : [ 'tests/phan/stubs/mail.php' ],
+		class_exists( Memcached::class ) ? [] : [ 'tests/phan/stubs/memcached.php' ],
+		[
+			'maintenance/7zip.inc',
+			'maintenance/backup.inc',
+			'maintenance/backupPrefetch.inc',
+			'maintenance/cleanupTable.inc',
+			'maintenance/CodeCleanerGlobalsPass.inc',
+			'maintenance/commandLine.inc',
+			'maintenance/importImages.inc',
+			'maintenance/sqlite.inc',
+			'maintenance/userDupes.inc',
+			'maintenance/userOptions.inc',
+			'maintenance/language/checkLanguage.inc',
+			'maintenance/language/languages.inc',
+		]
+	),
 
 	/**
 	 * A list of directories that should be parsed for class and
@@ -65,7 +73,6 @@ return [
 		'resources/',
 		'skins/',
 		'vendor/',
-		'tests/phan/stubs/',
 	],
 
 	/**
@@ -75,10 +82,7 @@ return [
 	 * This is useful for excluding hopelessly unanalyzable
 	 * files that can't be removed for whatever reason.
 	 */
-	'exclude_file_list' => function_exists( 'xcache_get' ) ? [] : [
-		// References xcache which probably isn't installed
-		'includes/libs/objectcache/XCacheBagOStuff.php'
-	],
+	'exclude_file_list' => [],
 
 	/**
 	 * A list of directories holding code that we want
@@ -96,7 +100,7 @@ return [
 		// External class
 		'includes/libs/jsminplus.php',
 		// separate repositories
-		'skins/'
+		'skins/',
 	],
 
 	/**
@@ -129,7 +133,7 @@ return [
 	 * ```php
 	 * <?php
 	 * function test($arg):int {
-	 * 	return $arg;
+	 *    return $arg;
 	 * }
 	 * test("abc");
 	 * ```
@@ -167,7 +171,7 @@ return [
 	 */
 	'analyze_signature_compatibility' => true,
 
-	// Emit all issues. They are then supressed via
+	// Emit all issues. They are then suppressed via
 	// suppress_issue_types, rather than a minimum
 	// severity.
 	"minimum_severity" => 0,
@@ -203,7 +207,7 @@ return [
 	 * with complicated cross-file globals that you have no
 	 * hope of fixing.
 	 */
-	'ignore_undeclared_variables_in_global_scope' => false,
+	'ignore_undeclared_variables_in_global_scope' => true,
 
 	/**
 	 * Set to true in order to attempt to detect dead
@@ -337,10 +341,8 @@ return [
 		"PhanUndeclaredMethod",
 		// approximate error count: 1342
 		"PhanUndeclaredProperty",
-		// approximate error count: 9
+		// approximate error count: 3
 		"PhanUndeclaredStaticMethod",
-		// approximate error count: 79
-		"PhanUndeclaredVariable",
 	],
 
 	/**

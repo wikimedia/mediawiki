@@ -1,0 +1,63 @@
+@import 'mediawiki.mixins';
+@import 'mw.rcfilters.variables';
+
+// This is a general mixin for a color circle
+.mw-rcfilters-mixin-circle( @color: white, @diameter: 2em, @padding: 0.5em, @border: false ) {
+	border-radius: 50%;
+	min-width: @diameter;
+	width: @diameter;
+	min-height: @diameter;
+	height: @diameter;
+	margin: @padding;
+	.box-sizing( border-box );
+
+	background-color: @color;
+
+	& when (@border = true) {
+		border: 1px solid #565656;
+	}
+}
+
+// This is the circle that appears next to the results
+// Its visibility is directly dependent on whether there is
+// a color class on its parent element
+.result-circle( @colorName: 'none' ) {
+	&-@{colorName} {
+		.mw-rcfilters-mixin-circle( ~'@{highlight-@{colorName}}', @result-circle-diameter, 0 );
+		display: none;
+
+		.mw-rcfilters-highlight-color-@{colorName} & {
+			display: inline-block;
+		}
+	}
+}
+
+// This mixin produces color mixes for two, three and four colors
+.highlight-color-mix( @color1, @color2, @color3: false, @color4: false ) {
+	@highlight-color-class-var: ~'.mw-rcfilters-highlight-color-@{color1}.mw-rcfilters-highlight-color-@{color2}';
+
+	// The nature of these variables and them being inside
+	// a 'tint' and 'average' LESS functions is such where
+	// the parsing is failing if it is done inside those functions.
+	// Instead, we first construct their LESS variable names,
+	// and then we call them inside those functions by calling @@var
+	@c1var: ~'highlight-@{color1}';
+	@c2var: ~'highlight-@{color2}';
+
+	// Two colors
+	@{highlight-color-class-var} when ( @color3 = false ) and ( @color4 = false ) and not ( @color1 = false ), ( @color2 = false ) {
+		background-color: tint( average( @@c1var, @@c2var ), 50% );
+	}
+	// Three colors
+	@{highlight-color-class-var}.mw-rcfilters-highlight-color-@{color3} when ( @color4 = false ) and not ( @color3 = false ) {
+		@c3var: ~'highlight-@{color3}';
+		background-color: tint( mix( @@c1var, average( @@c2var, @@c3var ), 33% ), 30% );
+	}
+
+	// Four colors
+	@{highlight-color-class-var}.mw-rcfilters-highlight-color-@{color3}.mw-rcfilters-highlight-color-@{color4} when not ( @color4 = false ) {
+		@c3var: ~'highlight-@{color3}';
+		@c4var: ~'highlight-@{color4}';
+		background-color: tint( mix( @@c1var, mix( @@c2var, average( @@c3var, @@c4var ), 25% ), 25% ), 25% );
+	}
+}

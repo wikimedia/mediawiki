@@ -214,6 +214,7 @@ class MssqlInstaller extends DatabaseInstaller {
 		try {
 			$db = Database::factory( 'mssql', [
 				'host' => $this->getVar( 'wgDBserver' ),
+				'port' => $this->getVar( 'wgDBport' ),
 				'user' => $user,
 				'password' => $password,
 				'dbname' => false,

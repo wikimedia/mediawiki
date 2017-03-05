@@ -134,7 +134,7 @@ class Title implements LinkTarget {
 
 	/**
 	 * @var int Namespace index when there is no namespace. Don't change the
-	 *   following default, NS_MAIN is hardcoded in several places. See bug 696.
+	 *   following default, NS_MAIN is hardcoded in several places. See T2696.
 	 *   Zero except in {{transclusion}} tags.
 	 */
 	public $mDefaultNamespace = NS_MAIN;
@@ -307,7 +307,7 @@ class Title implements LinkTarget {
 			}
 		}
 
-		// Convert things like &eacute; &#257; or &#x3017; into normalized (bug 14952) text
+		// Convert things like &eacute; &#257; or &#x3017; into normalized (T16952) text
 		$filteredText = Sanitizer::decodeCharReferencesAndNormalize( $text );
 
 		$t = new Title();
@@ -1232,12 +1232,6 @@ class Title implements LinkTarget {
 		$isCssOrJsPage = NS_MEDIAWIKI == $this->mNamespace
 			&& ( $this->hasContentModel( CONTENT_MODEL_CSS )
 				|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) );
-
-		# @note This hook is also called in ContentHandler::getDefaultModel.
-		#   It's called here again to make sure hook functions can force this
-		#   method to return true even outside the MediaWiki namespace.
-
-		Hooks::run( 'TitleIsCssOrJsPage', [ $this, &$isCssOrJsPage ], '1.25' );
 
 		return $isCssOrJsPage;
 	}
@@ -2423,7 +2417,7 @@ class Title implements LinkTarget {
 	 *
 	 * @param string $action The action to check
 	 * @param bool $short Short circuit on first error
-	 * @return array List of errors
+	 * @return array Array containing an error message key and any parameters
 	 */
 	private function missingPermissionError( $action, $short ) {
 		// We avoid expensive display logic for quickUserCan's and such
@@ -2431,19 +2425,7 @@ class Title implements LinkTarget {
 			return [ 'badaccess-group0' ];
 		}
 
-		$groups = array_map( [ 'User', 'makeGroupLinkWiki' ],
-			User::getGroupsWithPermission( $action ) );
-
-		if ( count( $groups ) ) {
-			global $wgLang;
-			return [
-				'badaccess-groups',
-				$wgLang->commaList( $groups ),
-				count( $groups )
-			];
-		} else {
-			return [ 'badaccess-group0' ];
-		}
+		return User::newFatalPermissionDeniedStatus( $action )->getErrorsArray()[0];
 	}
 
 	/**
@@ -3672,9 +3654,12 @@ class Title implements LinkTarget {
 	 * @param string $reason The reason for the move
 	 * @param bool $createRedirect Whether to create a redirect from the old title to the new title.
 	 *  Ignored if the user doesn't have the suppressredirect right.
+	 * @param array $changeTags Applied to the entry in the move log and redirect page revision
 	 * @return array|bool True on success, getUserPermissionsErrors()-like array on failure
 	 */
-	public function moveTo( &$nt, $auth = true, $reason = '', $createRedirect = true ) {
+	public function moveTo( &$nt, $auth = true, $reason = '', $createRedirect = true,
+		array $changeTags = [] ) {
+
 		global $wgUser;
 		$err = $this->isValidMoveOperation( $nt, $auth, $reason );
 		if ( is_array( $err ) ) {
@@ -3688,7 +3673,7 @@ class Title implements LinkTarget {
 		}
 
 		$mp = new MovePage( $this, $nt );
-		$status = $mp->move( $wgUser, $reason, $createRedirect );
+		$status = $mp->move( $wgUser, $reason, $createRedirect, $changeTags );
 		if ( $status->isOK() ) {
 			return true;
 		} else {
@@ -3704,12 +3689,15 @@ class Title implements LinkTarget {
 	 * @param string $reason The reason for the move
 	 * @param bool $createRedirect Whether to create redirects from the old subpages to
 	 *     the new ones Ignored if the user doesn't have the 'suppressredirect' right
+	 * @param array $changeTags Applied to the entry in the move log and redirect page revision
 	 * @return array Array with old page titles as keys, and strings (new page titles) or
 	 *     getUserPermissionsErrors()-like arrays (errors) as values, or a
 	 *     getUserPermissionsErrors()-like error array with numeric indices if
 	 *     no pages were moved
 	 */
-	public function moveSubpages( $nt, $auth = true, $reason = '', $createRedirect = true ) {
+	public function moveSubpages( $nt, $auth = true, $reason = '', $createRedirect = true,
+		array $changeTags = [] ) {
+
 		global $wgMaximumMovedPages;
 		// Check permissions
 		if ( !$this->userCan( 'move-subpages' ) ) {
@@ -3753,18 +3741,18 @@ class Title implements LinkTarget {
 			}
 			$newPageName = preg_replace(
 					'#^' . preg_quote( $this->getDBkey(), '#' ) . '#',
-					StringUtils::escapeRegexReplacement( $nt->getDBkey() ), # bug 21234
+					StringUtils::escapeRegexReplacement( $nt->getDBkey() ), # T23234
 					$oldSubpage->getDBkey() );
 			if ( $oldSubpage->isTalkPage() ) {
 				$newNs = $nt->getTalkPage()->getNamespace();
 			} else {
 				$newNs = $nt->getSubjectPage()->getNamespace();
 			}
-			# Bug 14385: we need makeTitleSafe because the new page names may
+			# T16385: we need makeTitleSafe because the new page names may
 			# be longer than 255 characters.
 			$newSubpage = Title::makeTitleSafe( $newNs, $newPageName );
 
-			$success = $oldSubpage->moveTo( $newSubpage, $auth, $reason, $createRedirect );
+			$success = $oldSubpage->moveTo( $newSubpage, $auth, $reason, $createRedirect, $changeTags );
 			if ( $success === true ) {
 				$retval[$oldSubpage->getPrefixedText()] = $newSubpage->getPrefixedText();
 			} else {
@@ -3877,7 +3865,7 @@ class Title implements LinkTarget {
 	 * categories' names.
 	 *
 	 * @return array Array of parents in the form:
-	 *	  $parent => $currentarticle
+	 *     $parent => $currentarticle
 	 */
 	public function getParentCategories() {
 		global $wgContLang;

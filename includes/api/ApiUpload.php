@@ -494,6 +494,13 @@ class ApiUpload extends ApiBase {
 				$this->mParams['filekey'], $this->mParams['filename'], !$this->mParams['async']
 			);
 		} elseif ( isset( $this->mParams['file'] ) ) {
+			// Can't async upload directly from a POSTed file, we'd have to
+			// stash the file and then queue the publish job. The user should
+			// just submit the two API queries to perform those two steps.
+			if ( $this->mParams['async'] ) {
+				$this->dieWithError( 'apierror-cannot-async-upload-file' );
+			}
+
 			$this->mUpload = new UploadFromFile();
 			$this->mUpload->initialize(
 				$this->mParams['filename'],
@@ -637,7 +644,8 @@ class ApiUpload extends ApiBase {
 				break;
 
 			case UploadBase::HOOK_ABORTED:
-				$this->dieWithError( $params, 'hookaborted', [ 'details' => $verification['error'] ] );
+				$msg = $verification['error'] === '' ? 'hookaborted' : $verification['error'];
+				$this->dieWithError( $msg, 'hookaborted', [ 'details' => $verification['error'] ] );
 				break;
 			default:
 				$this->dieWithError( 'apierror-unknownerror-nocode', 'unknown-error',
@@ -719,7 +727,7 @@ class ApiUpload extends ApiBase {
 	 * @return StatusValue
 	 */
 	protected function handleStashException( $e ) {
-		switch ( get_class( $exception ) ) {
+		switch ( get_class( $e ) ) {
 			case 'UploadStashFileNotFoundException':
 				$wrap = 'apierror-stashedfilenotfound';
 				break;

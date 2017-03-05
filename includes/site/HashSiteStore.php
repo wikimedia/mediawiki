@@ -37,7 +37,7 @@ class HashSiteStore implements SiteStore {
 	private $sites = [];
 
 	/**
-	 * @param array $sites
+	 * @param Site[] $sites
 	 */
 	public function __construct( $sites = [] ) {
 		$this->saveSites( $sites );

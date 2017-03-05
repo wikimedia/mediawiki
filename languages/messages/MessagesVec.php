@@ -155,4 +155,3 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'PuntaQua' ],
 	'Withoutinterwiki'          => [ 'PagineSensaInterwiki' ],
 ];
-

@@ -397,9 +397,9 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 *
 	 * The return value is such that someone could theoretically do this:
 	 * @code
-	 *  foreach ( $provider->getVaryHeaders() as $header => $options ) {
-	 *  	$outputPage->addVaryHeader( $header, $options );
-	 *  }
+	 * foreach ( $provider->getVaryHeaders() as $header => $options ) {
+	 *   $outputPage->addVaryHeader( $header, $options );
+	 * }
 	 * @endcode
 	 *
 	 * @protected For use by \MediaWiki\Session\SessionManager only

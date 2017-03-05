@@ -3,7 +3,7 @@
 -- Unique indexes need to be handled with INSERT SELECT since just running
 -- the CREATE INDEX statement will fail if there are duplicate values.
 --
--- Ignore duplicates, several tables will have them (e.g. bug 16966) but in
+-- Ignore duplicates, several tables will have them (e.g. T18966) but in
 -- most cases it's harmless to discard them.
 
 --------------------------------------------------------------------------------

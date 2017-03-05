@@ -1,7 +1,7 @@
 // Common Less mixin library for MediaWiki
 //
 // By default the folder containing this file is included in $wgResourceLoaderLESSImportPaths,
-// which makes this file importable by all less files via '@import "mediawiki.mixins";'.
+// which makes this file importable by all less files via `@import 'mediawiki.mixins';`.
 //
 // The mixins included below are considered a public interface for MediaWiki extensions.
 // The signatures of parametrized mixins should be kept as stable as possible.
@@ -88,10 +88,17 @@
 }
 
 .flex-display( @display: flex ) {
-	display: ~"-webkit-@{display}"; // iOS 6-, Safari 3.1-6
-	display: ~"-moz-@{display}"; // Firefox 21-
-	display: ~"-ms-@{display}box"; // IE 10
+	display: ~'-webkit-@{display}'; // iOS 6-, Safari 3.1-6
+	display: ~'-moz-@{display}'; // Firefox 21-
+	display: ~'-ms-@{display}box'; // IE 10
 	display: @display;
+}
+
+.flex-wrap( @wrap: wrap ) {
+	-webkit-flex-wrap: @wrap; // iOS 6-, Safari 3.1-6
+	-moz-flex-wrap: @wrap; // Firefox 21-
+	-ms-flex-wrap: @wrap; // IE 10
+	flex-wrap: @wrap;
 }
 
 .flex( @grow: 1, @shrink: 1, @width: auto, @order: 1 ) {
@@ -116,11 +123,39 @@
 	order: @order;
 }
 
+/* stylelint-disable selector-no-vendor-prefix, at-rule-no-unknown */
+.mixin-placeholder( @rules ) {
+	// WebKit, Blink, Edge
+	&::-webkit-input-placeholder {
+		@rules();
+	}
+	// Internet Explorer 10-11
+	&:-ms-input-placeholder {
+		@rules();
+	}
+	// Firefox 19-
+	&::-moz-placeholder {
+		@rules();
+	}
+	// Firefox 4-18
+	&:-moz-placeholder {
+		@rules();
+	}
+	// W3C Standard Selectors Level 4
+	&::placeholder {
+		@rules();
+	}
+	// For inputs that use jquery.placeholder.js e.g. IE9
+	&.placeholder {
+		@rules();
+	}
+}
+/* stylelint-enable selector-no-vendor-prefix, at-rule-no-unknown */
 
 // Screen Reader Helper Mixin
 .mixin-screen-reader-text() {
 	display: block;
-	position: absolute !important;
+	position: absolute !important; /* stylelint-disable-line declaration-no-important */
 	clip: rect( 1px, 1px, 1px, 1px );
 	width: 1px;
 	height: 1px;

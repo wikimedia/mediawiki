@@ -55,8 +55,6 @@ class Preferences {
 	/** @var array */
 	protected static $saveFilters = [
 		'timecorrection' => [ 'Preferences', 'filterTimezoneInput' ],
-		'cols' => [ 'Preferences', 'filterIntval' ],
-		'rows' => [ 'Preferences', 'filterIntval' ],
 		'rclimit' => [ 'Preferences', 'filterIntval' ],
 		'wllimit' => [ 'Preferences', 'filterIntval' ],
 		'searchlimit' => [ 'Preferences', 'filterIntval' ],
@@ -122,7 +120,7 @@ class Preferences {
 			}
 		}
 
-		# # Make sure that form fields have their parent set. See bug 41337.
+		# # Make sure that form fields have their parent set. See T43337.
 		$dummyForm = new HTMLForm( [], $context );
 
 		$disable = !$user->isAllowed( 'editmyoptions' );
@@ -224,24 +222,48 @@ class Preferences {
 			'section' => 'personal/info',
 		];
 
+		$lang = $context->getLanguage();
+
 		# Get groups to which the user belongs
 		$userEffectiveGroups = $user->getEffectiveGroups();
-		$userGroups = $userMembers = [];
+		$userGroupMemberships = $user->getGroupMemberships();
+		$userGroups = $userMembers = $userTempGroups = $userTempMembers = [];
 		foreach ( $userEffectiveGroups as $ueg ) {
 			if ( $ueg == '*' ) {
 				// Skip the default * group, seems useless here
 				continue;
 			}
-			$groupName = User::getGroupName( $ueg );
-			$userGroups[] = User::makeGroupLinkHTML( $ueg, $groupName );
 
-			$memberName = User::getGroupMember( $ueg, $userName );
-			$userMembers[] = User::makeGroupLinkHTML( $ueg, $memberName );
+			if ( isset( $userGroupMemberships[$ueg] ) ) {
+				$groupStringOrObject = $userGroupMemberships[$ueg];
+			} else {
+				$groupStringOrObject = $ueg;
+			}
+
+			$userG = UserGroupMembership::getLink( $groupStringOrObject, $context, 'html' );
+			$userM = UserGroupMembership::getLink( $groupStringOrObject, $context, 'html',
+				$userName );
+
+			// Store expiring groups separately, so we can place them before non-expiring
+			// groups in the list. This is to avoid the ambiguity of something like
+			// "administrator, bureaucrat (until X date)" -- users might wonder whether the
+			// expiry date applies to both groups, or just the last one
+			if ( $groupStringOrObject instanceof UserGroupMembership &&
+				$groupStringOrObject->getExpiry()
+			) {
+				$userTempGroups[] = $userG;
+				$userTempMembers[] = $userM;
+			} else {
+				$userGroups[] = $userG;
+				$userMembers[] = $userM;
+			}
 		}
-		asort( $userGroups );
-		asort( $userMembers );
-
-		$lang = $context->getLanguage();
+		sort( $userGroups );
+		sort( $userMembers );
+		sort( $userTempGroups );
+		sort( $userTempMembers );
+		$userGroups = array_merge( $userTempGroups, $userGroups );
+		$userMembers = array_merge( $userTempMembers, $userMembers );
 
 		$defaultPreferences['usergroups'] = [
 			'type' => 'info',
@@ -495,9 +517,9 @@ class Preferences {
 					} else {
 						$disableEmailPrefs = true;
 						$emailauthenticated = $context->msg( 'emailnotauthenticated' )->parse() . '<br />' .
-							Linker::linkKnown(
+							$linkRenderer->makeKnownLink(
 								SpecialPage::getTitleFor( 'Confirmemail' ),
-								$context->msg( 'emailconfirmlink' )->escaped()
+								$context->msg( 'emailconfirmlink' )->text()
 							) . '<br />';
 						$emailauthenticationclass = "mw-email-not-authenticated";
 					}
@@ -696,18 +718,22 @@ class Preferences {
 		$tzOptions = self::getTimezoneOptions( $context );
 
 		$tzSetting = $tzOffset;
+		if ( count( $tz ) > 1 && $tz[0] == 'ZoneInfo' &&
+			!in_array( $tzOffset, HTMLFormField::flattenOptions( $tzOptions ) )
+		) {
+			// Timezone offset can vary with DST
+			try {
+				$userTZ = new DateTimeZone( $tz[2] );
+				$minDiff = floor( $userTZ->getOffset( new DateTime( 'now' ) ) / 60 );
+				$tzSetting = "ZoneInfo|$minDiff|{$tz[2]}";
+			} catch ( Exception $e ) {
+				// User has an invalid time zone set. Fall back to just using the offset
+				$tz[0] = 'Offset';
+			}
+		}
 		if ( count( $tz ) > 1 && $tz[0] == 'Offset' ) {
 			$minDiff = $tz[1];
 			$tzSetting = sprintf( '%+03d:%02d', floor( $minDiff / 60 ), abs( $minDiff ) % 60 );
-		} elseif ( count( $tz ) > 1 && $tz[0] == 'ZoneInfo' &&
-			!in_array( $tzOffset, HTMLFormField::flattenOptions( $tzOptions ) )
-		) {
-			# Timezone offset can vary with DST
-			$userTZ = timezone_open( $tz[2] );
-			if ( $userTZ !== false ) {
-				$minDiff = floor( timezone_offset_get( $userTZ, date_create( 'now' ) ) / 60 );
-				$tzSetting = "ZoneInfo|$minDiff|{$tz[2]}";
-			}
 		}
 
 		$defaultPreferences['timecorrection'] = [
@@ -813,20 +839,7 @@ class Preferences {
 				]
 			];
 		}
-		$defaultPreferences['cols'] = [
-			'type' => 'int',
-			'label-message' => 'columns',
-			'section' => 'editing/editor',
-			'min' => 4,
-			'max' => 1000,
-		];
-		$defaultPreferences['rows'] = [
-			'type' => 'int',
-			'label-message' => 'rows',
-			'section' => 'editing/editor',
-			'min' => 4,
-			'max' => 1000,
-		];
+
 		if ( $user->isAllowed( 'minoredit' ) ) {
 			$defaultPreferences['minordefault'] = [
 				'type' => 'toggle',
@@ -834,6 +847,7 @@ class Preferences {
 				'label-message' => 'tog-minordefault',
 			];
 		}
+
 		$defaultPreferences['forceeditsummary'] = [
 			'type' => 'toggle',
 			'section' => 'editing/editor',
@@ -952,11 +966,12 @@ class Preferences {
 				'raw' => [ 'EditWatchlist', 'raw' ],
 				'clear' => [ 'EditWatchlist', 'clear' ],
 			];
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 			foreach ( $editWatchlistModes as $editWatchlistMode => $mode ) {
 				// Messages: prefs-editwatchlist-edit, prefs-editwatchlist-raw, prefs-editwatchlist-clear
-				$editWatchlistLinks[] = Linker::linkKnown(
+				$editWatchlistLinks[] = $linkRenderer->makeKnownLink(
 					SpecialPage::getTitleFor( $mode[0], $mode[1] ),
-					$context->msg( "prefs-editwatchlist-{$editWatchlistMode}" )->parse()
+					new HtmlArmor( $context->msg( "prefs-editwatchlist-{$editWatchlistMode}" )->parse() )
 				);
 			}
 
@@ -1186,8 +1201,7 @@ class Preferences {
 
 		if ( $dateopts ) {
 			if ( !in_array( 'default', $dateopts ) ) {
-				$dateopts[] = 'default'; // Make sure default is always valid
-										// Bug 19237
+				$dateopts[] = 'default'; // Make sure default is always valid T21237
 			}
 
 			// FIXME KLUGE: site default might not be valid for user language
@@ -1391,6 +1405,24 @@ class Preferences {
 		$data = explode( '|', $tz, 3 );
 		switch ( $data[0] ) {
 			case 'ZoneInfo':
+				$valid = false;
+
+				if ( count( $data ) === 3 ) {
+					// Make sure this timezone exists
+					try {
+						new DateTimeZone( $data[2] );
+						// If the constructor didn't throw, we know it's valid
+						$valid = true;
+					} catch ( Exception $e ) {
+						// Not a valid timezone
+					}
+				}
+
+				if ( !$valid ) {
+					// If the supplied timezone doesn't exist, fall back to the encoded offset
+					return 'Offset|' . intval( $tz[1] );
+				}
+				return $tz;
 			case 'System':
 				return $tz;
 			default:
@@ -1409,7 +1441,7 @@ class Preferences {
 				# Max is +14:00 and min is -12:00, see:
 				# https://en.wikipedia.org/wiki/Timezone
 				$minDiff = min( $minDiff, 840 );  # 14:00
-				$minDiff = max( $minDiff, - 720 ); # -12:00
+				$minDiff = max( $minDiff, -720 ); # -12:00
 				return 'Offset|' . $minDiff;
 		}
 	}

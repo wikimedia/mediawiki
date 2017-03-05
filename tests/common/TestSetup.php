@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Common code for test environment initialisation and teardown
  */
@@ -91,7 +89,7 @@ class TestSetup {
 		];
 		$wgAuth = new MediaWiki\Auth\AuthManagerAuthPlugin();
 
-		// Bug 44192 Do not attempt to send a real e-mail
+		// T46192 Do not attempt to send a real e-mail
 		Hooks::clear( 'AlternateUserMailer' );
 		Hooks::register(
 			'AlternateUserMailer',

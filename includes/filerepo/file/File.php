@@ -919,7 +919,7 @@ abstract class File implements IDBAccessObject {
 			return $this->iconThumb();
 		}
 		$hp['width'] = $width;
-		// be sure to ignore any height specification as well (bug 62258)
+		// be sure to ignore any height specification as well (T64258)
 		unset( $hp['height'] );
 
 		return $this->transform( $hp );
@@ -1039,7 +1039,7 @@ abstract class File implements IDBAccessObject {
 				break; // not a bitmap or renderable image, don't try
 			}
 
-			// Get the descriptionUrl to embed it as comment into the thumbnail. Bug 19791.
+			// Get the descriptionUrl to embed it as comment into the thumbnail. T21791.
 			$descriptionUrl = $this->getDescriptionUrl();
 			if ( $descriptionUrl ) {
 				$params['descriptionUrl'] = wfExpandUrl( $descriptionUrl, PROTO_CANONICAL );

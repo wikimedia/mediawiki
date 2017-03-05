@@ -144,4 +144,3 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'Lisćina_wotkazow' ],
 	'Withoutinterwiki'          => [ 'Falowace_mjezyrěčne_wotkazy' ],
 ];
-

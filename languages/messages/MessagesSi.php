@@ -188,4 +188,3 @@ $magicWords = [
 	'img_middle'                => [ '1', 'මැද', 'middle' ],
 	'special'                   => [ '0', 'විශේෂ', 'special' ],
 ];
-
