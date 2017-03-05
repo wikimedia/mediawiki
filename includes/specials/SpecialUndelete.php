@@ -20,13 +20,12 @@
  * @file
  * @ingroup SpecialPage
  */
+
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ResultWrapper;
 
 /**
  * Used to show archived pages and eventually restore them.
- *
- * @ingroup SpecialPage
  */
 class PageArchive {
 	/** @var Title */
@@ -41,7 +40,7 @@ class PageArchive {
 	/** @var Config */
 	protected $config;
 
-	function __construct( $title, Config $config = null ) {
+	public function __construct( $title, Config $config = null ) {
 		if ( is_null( $title ) ) {
 			throw new MWException( __METHOD__ . ' given a null title.' );
 		}
@@ -128,7 +127,7 @@ class PageArchive {
 	 *
 	 * @return ResultWrapper
 	 */
-	function listRevisions() {
+	public function listRevisions() {
 		$dbr = wfGetDB( DB_REPLICA );
 
 		$tables = [ 'archive' ];
@@ -176,7 +175,7 @@ class PageArchive {
 	 * @return ResultWrapper
 	 * @todo Does this belong in Image for fuller encapsulation?
 	 */
-	function listFiles() {
+	public function listFiles() {
 		if ( $this->title->getNamespace() != NS_FILE ) {
 			return null;
 		}
@@ -198,7 +197,7 @@ class PageArchive {
 	 * @param string $timestamp
 	 * @return Revision|null
 	 */
-	function getRevision( $timestamp ) {
+	public function getRevision( $timestamp ) {
 		$dbr = wfGetDB( DB_REPLICA );
 
 		$fields = [
@@ -245,7 +244,7 @@ class PageArchive {
 	 * @param string $timestamp
 	 * @return Revision|null Null when there is no previous revision
 	 */
-	function getPreviousRevision( $timestamp ) {
+	public function getPreviousRevision( $timestamp ) {
 		$dbr = wfGetDB( DB_REPLICA );
 
 		// Check the previous deleted revision...
@@ -254,7 +253,7 @@ class PageArchive {
 			[ 'ar_namespace' => $this->title->getNamespace(),
 				'ar_title' => $this->title->getDBkey(),
 				'ar_timestamp < ' .
-					$dbr->addQuotes( $dbr->timestamp( $timestamp ) ) ],
+				$dbr->addQuotes( $dbr->timestamp( $timestamp ) ) ],
 			__METHOD__,
 			[
 				'ORDER BY' => 'ar_timestamp DESC',
@@ -268,7 +267,7 @@ class PageArchive {
 				'page_title' => $this->title->getDBkey(),
 				'page_id = rev_page',
 				'rev_timestamp < ' .
-					$dbr->addQuotes( $dbr->timestamp( $timestamp ) ) ],
+				$dbr->addQuotes( $dbr->timestamp( $timestamp ) ) ],
 			__METHOD__,
 			[
 				'ORDER BY' => 'rev_timestamp DESC',
@@ -294,7 +293,7 @@ class PageArchive {
 	 * @param object $row Database row
 	 * @return string
 	 */
-	function getTextFromRow( $row ) {
+	public function getTextFromRow( $row ) {
 		if ( is_null( $row->ar_text_id ) ) {
 			// An old row from MediaWiki 1.4 or previous.
 			// Text is embedded in this row in classic compression format.
@@ -319,7 +318,7 @@ class PageArchive {
 	 *
 	 * @return string|null
 	 */
-	function getLastRevisionText() {
+	public function getLastRevisionText() {
 		$dbr = wfGetDB( DB_REPLICA );
 		$row = $dbr->selectRow( 'archive',
 			[ 'ar_text', 'ar_flags', 'ar_text_id' ],
@@ -340,7 +339,7 @@ class PageArchive {
 	 *
 	 * @return bool
 	 */
-	function isDeleted() {
+	public function isDeleted() {
 		$dbr = wfGetDB( DB_REPLICA );
 		$n = $dbr->selectField( 'archive', 'COUNT(ar_title)',
 			[ 'ar_namespace' => $this->title->getNamespace(),
@@ -367,10 +366,10 @@ class PageArchive {
 	 * @param User $user User performing the action, or null to use $wgUser
 	 * @param string|string[] $tags Change tags to add to log entry
 	 *   ($user should be able to add the specified tags before this is called)
-	 * @return array(number of file revisions restored, number of image revisions
+	 * @return array|bool array(number of file revisions restored, number of image revisions
 	 *   restored, log message) on success, false on failure.
 	 */
-	function undelete( $timestamps, $comment = '', $fileVersions = [],
+	public function undelete( $timestamps, $comment = '', $fileVersions = [],
 		$unsuppress = false, User $user = null, $tags = null
 	) {
 		// If both the set of text revisions and file revisions are empty,
@@ -734,14 +733,14 @@ class PageArchive {
 	/**
 	 * @return Status
 	 */
-	function getFileStatus() {
+	public function getFileStatus() {
 		return $this->fileStatus;
 	}
 
 	/**
 	 * @return Status
 	 */
-	function getRevisionStatus() {
+	public function getRevisionStatus() {
 		return $this->revisionStatus;
 	}
 }
