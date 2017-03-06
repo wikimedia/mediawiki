@@ -141,9 +141,7 @@
 		}, 'Map.get return includes keys that were not found as null values' );
 
 		// Interacting with globals and accessing the values object
-		this.suppressWarnings();
 		assert.strictEqual( conf.get(), conf.values, 'Map.get returns the entire values object by reference (if called without arguments)' );
-		this.restoreWarnings();
 
 		conf.set( 'globalMapChecker', 'Hi' );
 
