@@ -187,7 +187,7 @@
 	mw.rcfilters.ui.FilterWrapperWidget.prototype.scrollToTop = function ( $element, marginFromTop ) {
 		var container = OO.ui.Element.static.getClosestScrollableContainer( $element[ 0 ], 'y' ),
 			pos = OO.ui.Element.static.getRelativePosition( $element, $( container ) ),
-			containerScrollTop = $( container ).is( 'body' ) ? 0 : $( container ).scrollTop();
+			containerScrollTop = $( container ).is( 'body, html' ) ? 0 : $( container ).scrollTop();
 
 		// Scroll to item
 		$( container ).animate( {
