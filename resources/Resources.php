@@ -1360,9 +1360,10 @@ return [
 	'mediawiki.user' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.user.js',
 		'dependencies' => [
-			'mediawiki.cookie',
 			'mediawiki.api',
 			'mediawiki.api.user',
+			'mediawiki.cookie',
+			'mediawiki.storage',
 			'user.options',
 			'user.tokens',
 		],
