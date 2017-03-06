@@ -110,9 +110,6 @@ class MessageBlobStore implements LoggerAwareInterface {
 		foreach ( $modules as $name => $module ) {
 			$key = $cacheKeys[$name];
 			if ( !isset( $result[$key] ) || $curTTLs[$key] === null || $curTTLs[$key] < 0 ) {
-				$this->logger->info( 'Message blob cache-miss for {module}',
-					[ 'module' => $name, 'cacheKey' => $key ]
-				);
 				$blobs[$name] = $this->recacheMessageBlob( $key, $module, $lang );
 			} else {
 				// Use unexpired cache
