@@ -1929,7 +1929,10 @@ return [
 	'mediawiki.special.block' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.block.js',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.block.css',
-		'dependencies' => 'mediawiki.util',
+		'dependencies' => [
+			'mediawiki.util',
+			'mediawiki.htmlform',
+		],
 	],
 	'mediawiki.special.changeslist' => [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.css',
