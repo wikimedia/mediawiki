@@ -330,8 +330,8 @@
 
 		caFoo = mw.util.addPortletLink( 'p-test-views', '#', 'Foo' );
 
-		assert.strictEqual( $tbMW.find( 'span' ).length, 0, 'No <span> element should be added for porlets without vectorTabs class.' );
-		assert.strictEqual( $( caFoo ).find( 'span' ).length, 1, 'A <span> element should be added for porlets with vectorTabs class.' );
+		assert.strictEqual( $tbMW.find( 'span' ).length, 1, '<span> elements should now be added in portlets even without vectorTabs class.' );
+		assert.strictEqual( $( caFoo ).find( 'span' ).length, 1, 'A <span> element should be added in portlets with vectorTabs class.' );
 
 		addedAfter = mw.util.addPortletLink( 'p-test-tb', '#', 'After foo', 'post-foo', 'After foo', null, $( tbRL ) );
 		assert.strictEqual( $( addedAfter ).next()[ 0 ], tbRL, 'Link is in the correct position (jQuery object as nextnode)' );
