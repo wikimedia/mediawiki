@@ -162,6 +162,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			// 1.29
 			[ 'addField', 'externallinks', 'el_index_60', 'patch-externallinks-el_index_60.sql' ],
 			[ 'addField', 'user_groups', 'ug_expiry', 'patch-user_groups-ug_expiry.sql' ],
+			[ 'addIndex', 'image', 'img_user_timestamp', 'patch-image-user-index.sql' ],
 		];
 	}
 

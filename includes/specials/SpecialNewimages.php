@@ -39,6 +39,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		$opts = new FormOptions();
 
 		$opts->add( 'like', '' );
+		$opts->add( 'user', '' );
 		$opts->add( 'showbots', false );
 		$opts->add( 'hidepatrolled', false );
 		$opts->add( 'limit', 50 );
@@ -73,6 +74,12 @@ class SpecialNewFiles extends IncludableSpecialPage {
 				'type' => 'text',
 				'label-message' => 'newimages-label',
 				'name' => 'like',
+			],
+
+			'user' => [
+				'type' => 'text',
+				'label-message' => 'newimages-user',
+				'name' => 'user',
 			],
 
 			'showbots' => [
