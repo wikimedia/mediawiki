@@ -1308,6 +1308,7 @@ $wgAutoloadLocalClasses = [
 	'SpecialApiHelp' => __DIR__ . '/includes/specials/SpecialApiHelp.php',
 	'SpecialApiSandbox' => __DIR__ . '/includes/specials/SpecialApiSandbox.php',
 	'SpecialBlankpage' => __DIR__ . '/includes/specials/SpecialBlankpage.php',
+	'SpecialAutoblockList' => __DIR__ . '/includes/specials/SpecialAutoblockList.php',
 	'SpecialBlock' => __DIR__ . '/includes/specials/SpecialBlock.php',
 	'SpecialBlockList' => __DIR__ . '/includes/specials/SpecialBlockList.php',
 	'SpecialBookSources' => __DIR__ . '/includes/specials/SpecialBooksources.php',

@@ -96,6 +96,7 @@ class SpecialPageFactory {
 		'Block' => 'SpecialBlock',
 		'Unblock' => 'SpecialUnblock',
 		'BlockList' => 'SpecialBlockList',
+		'AutoblockList' => 'SpecialAutoblockList',
 		'ChangePassword' => 'SpecialChangePassword',
 		'BotPasswords' => 'SpecialBotPasswords',
 		'PasswordReset' => 'SpecialPasswordReset',
@@ -504,7 +505,7 @@ class SpecialPageFactory {
 	 * @param bool $including Bool output is being captured for use in {{special:whatever}}
 	 * @param LinkRenderer|null $linkRenderer (since 1.28)
 	 *
-	 * @return bool
+	 * @return bool|Title
 	 */
 	public static function executePath( Title &$title, IContextSource &$context, $including = false,
 		LinkRenderer $linkRenderer = null
