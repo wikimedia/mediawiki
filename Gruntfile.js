@@ -73,7 +73,7 @@ module.exports = function ( grunt ) {
 			options: {
 				proxies: karmaProxy,
 				files: [ {
-					pattern: wgServer + wgScriptPath + '/index.php?title=Special:JavaScriptTest/qunit/export',
+					pattern: wgServer + wgScriptPath + '/index.php?debug=true&amp;title=Special:JavaScriptTest/qunit/export',
 					watched: false,
 					included: true,
 					served: false
