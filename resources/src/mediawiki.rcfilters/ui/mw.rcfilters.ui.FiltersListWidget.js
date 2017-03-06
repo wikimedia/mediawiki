@@ -29,7 +29,8 @@
 		this.groups = {};
 		this.selected = null;
 
-		this.highlightButton = new OO.ui.ButtonWidget( {
+		this.highlightButton = new OO.ui.ToggleButtonWidget( {
+			icon: 'highlight',
 			label: mw.message( 'rcfilters-highlightbutton-title' ).text(),
 			classes: [ 'mw-rcfilters-ui-filtersListWidget-hightlightButton' ]
 		} );
@@ -43,7 +44,7 @@
 		this.highlightButton.connect( this, { click: 'onHighlightButtonClick' } );
 		this.model.connect( this, {
 			initialize: 'onModelInitialize',
-			highlightChange: 'onHighlightChange'
+			highlightChange: 'onModelHighlightChange'
 		} );
 
 		// Initialize
@@ -109,7 +110,12 @@
 		);
 	};
 
-	mw.rcfilters.ui.FiltersListWidget.prototype.onHighlightChange = function ( highlightEnabled ) {
+	/**
+	 * Respond to model highlight change event
+	 *
+	 * @param {boolean} highlightEnabled Highlight is enabled
+	 */
+	mw.rcfilters.ui.FiltersListWidget.prototype.onModelHighlightChange = function ( highlightEnabled ) {
 		this.highlightButton.setActive( highlightEnabled );
 	};
 
