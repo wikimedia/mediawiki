@@ -42,8 +42,7 @@
 		// Initialize
 		this.cleanUpFieldset();
 		this.$element
-			.addClass( 'mw-rcfilters-ui-FormWrapperWidget' )
-			.addClass( 'mw-rcfilters-ui-ready' );
+			.addClass( 'mw-rcfilters-ui-FormWrapperWidget' );
 	};
 
 	/* Initialization */
