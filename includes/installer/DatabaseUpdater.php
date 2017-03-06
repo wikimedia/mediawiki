@@ -59,6 +59,11 @@ abstract class DatabaseUpdater {
 	 */
 	protected $db;
 
+	/**
+	 * @var Maintenance
+	 */
+	protected $maintenance;
+
 	protected $shared = false;
 
 	/**
