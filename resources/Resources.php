@@ -1433,7 +1433,7 @@ return [
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.collapsibleFooter.css',
 		'dependencies' => [
 			'jquery.makeCollapsible',
-			'mediawiki.cookie',
+			'mediawiki.storage',
 			'mediawiki.icon',
 		],
 	],
