@@ -44,15 +44,20 @@ use Psr\Log\NullLogger;
  *
  * The simplest purge method is delete().
  *
- * There are two supported ways to handle broadcasted operations:
+ * There are three supported ways to handle broadcasted operations:
  *   - a) Configure the 'purge' EventRelayer to point to a valid PubSub endpoint
- *        that has subscribed listeners on the cache servers applying the cache updates.
+ *         that has subscribed listeners on the cache servers applying the cache updates.
  *   - b) Ignore the 'purge' EventRelayer configuration (default is NullEventRelayer)
- *        and set up mcrouter as the underlying cache backend, using one of the memcached
- *        BagOStuff classes as 'cache'. Use OperationSelectorRoute in the mcrouter settings
- *        to configure 'set' and 'delete' operations to go to all DCs via AllAsyncRoute and
- *        configure other operations to go to the local DC via PoolRoute (for reference,
- *        see https://github.com/facebook/mcrouter/wiki/List-of-Route-Handles).
+ *         and set up mcrouter as the underlying cache backend, using one of the memcached
+ *         BagOStuff classes as 'cache'. Use OperationSelectorRoute in the mcrouter settings
+ *         to configure 'set' and 'delete' operations to go to all DCs via AllAsyncRoute and
+ *         configure other operations to go to the local DC via PoolRoute (for reference,
+ *         see https://github.com/facebook/mcrouter/wiki/List-of-Route-Handles).
+ *   - c) Ignore the 'purge' EventRelayer configuration (default is NullEventRelayer)
+ *         and set up dynomite as cache middleware between the web servers and either
+ *         memcached or redis. This will also broadcast all key setting operations, not just purges,
+ *         which can be useful for cache warming. Writes are eventually consistent via the
+ *         Dynamo replication model (see https://github.com/Netflix/dynomite).
  *
  * Broadcasted operations like delete() and touchCheckKey() are done asynchronously
  * in all datacenters this way, though the local one should likely be near immediate.
