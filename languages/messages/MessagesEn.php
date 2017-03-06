@@ -431,6 +431,7 @@ $specialPageAliases = [
 	'Invalidateemail'           => [ 'InvalidateEmail' ],
 	'JavaScriptTest'            => [ 'JavaScriptTest' ],
 	'BlockList'                 => [ 'BlockList', 'ListBlocks', 'IPBlockList' ],
+	'AutoBlockList'             => [ 'AutoBlockList', 'ListAutoBlocks' ],
 	'LinkSearch'                => [ 'LinkSearch' ],
 	'LinkAccounts'              => [ 'LinkAccounts' ],
 	'Listadmins'                => [ 'ListAdmins' ],
