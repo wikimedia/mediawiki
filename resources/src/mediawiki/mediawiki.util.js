@@ -276,12 +276,6 @@
 			if ( arguments.length < 3 ) {
 				return null;
 			}
-			// Setup the anchor tag
-			$link = $( '<a>' ).attr( 'href', href ).text( text );
-			if ( tooltip ) {
-				$link.attr( 'title', tooltip );
-			}
-
 			// Select the specified portlet
 			$portlet = $( '#' + portlet );
 			if ( $portlet.length === 0 ) {
@@ -312,6 +306,16 @@
 			// Unhide portlet if it was hidden before
 			$portlet.removeClass( 'emptyPortlet' );
 
+			// Set up the anchor tag
+			if ( $portlet.hasClass( 'vectorTabs' ) ) {
+				$link = $( '<a>' ).attr( 'href', href ).text( text );
+			} else {
+				// Match default span wrapping in BaseTemplate::makeLink()
+				$link = $( '<a>' ).attr( 'href', href ).append( $( '<span>' ).text( text ) );
+			}
+			if ( tooltip ) {
+				$link.attr( 'title', tooltip );
+			}
 			// Wrap the anchor tag in a list item (and a span if $portlet is a Vector tab)
 			// and back up the selector to the list item
 			if ( $portlet.hasClass( 'vectorTabs' ) ) {
