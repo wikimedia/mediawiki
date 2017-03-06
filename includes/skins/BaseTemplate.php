@@ -354,7 +354,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			$text = $this->translator->translate( isset( $item['msg'] ) ? $item['msg'] : $key );
 		}
 
-		$html = htmlspecialchars( $text );
+		$html = Html::element( 'span', [], $text );
 
 		if ( isset( $options['text-wrapper'] ) ) {
 			$wrapper = $options['text-wrapper'];
