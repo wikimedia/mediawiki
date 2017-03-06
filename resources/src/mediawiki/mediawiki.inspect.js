@@ -73,9 +73,9 @@
 		 */
 		getModuleSize: function ( moduleName ) {
 			var module = mw.loader.moduleRegistry[ moduleName ],
-				args, i;
+				args, i, size;
 
-			if ( mw.loader.getState( moduleName ) !== 'ready' ) {
+			if ( module.state !== 'ready' ) {
 				return null;
 			}
 
@@ -83,31 +83,47 @@
 				return 0;
 			}
 
-			// Reverse-engineer the load.php response for this module.
-			// For example: `mw.loader.implement("example", function(){}, );`
+			function getFunctionBody( func ) {
+				return String( func )
+					// To ensure a deterministic result, replace the start of the function
+					// declaration with a fixed string. For example, in Chrome 55, it seems
+					// V8 seemingly-at-random decides to sometimes put a line break between
+					// the opening brace and first statement of the function body. T159751.
+					.replace( /^\s*function\s*\([^)]*\)\s*{\s*/, 'function(){' )
+					.replace( /\s*}\s*$/, '}' );
+			}
+
+			// Based on the load.php response for this module.
+			// For example: `mw.loader.implement("example", function(){}, {"css":[".x{color:red}"]});`
 			// @see mw.loader.store.set().
 			args = [
-				JSON.stringify( moduleName ),
-				// function, array of urls, or eval string
-				typeof module.script === 'function' ?
-						String( module.script ) :
-						JSON.stringify( module.script ),
-				JSON.stringify( module.style ),
-				JSON.stringify( module.messages ),
-				JSON.stringify( module.templates )
+				moduleName,
+				module.script,
+				module.style,
+				module.messages,
+				module.templates
 			];
 			// Trim trailing null or empty object, as load.php would have done.
 			// @see ResourceLoader::makeLoaderImplementScript and ResourceLoader::trimArray.
 			i = args.length;
 			while ( i-- ) {
-				if ( args[ i ] === '{}' || args[ i ] === 'null' ) {
+				if ( args[ i ] === null || ( $.isPlainObject( args[ i ] ) && $.isEmptyObject( args[ i ] ) ) ) {
 					args.splice( i, 1 );
 				} else {
 					break;
 				}
 			}
 
-			return $.byteLength( args.join( ',' ) );
+			size = 0;
+			for ( i = 0; i < args.length; i++ ) {
+				if ( typeof args[ i ] === 'function' ) {
+					size += $.byteLength( getFunctionBody( args[ i ] ) );
+				} else {
+					size += $.byteLength( JSON.stringify( args[ i ] ) );
+				}
+			}
+
+			return size;
 		},
 
 		/**

@@ -1,7 +1,4 @@
 ( function ( mw ) {
-	// Whitespace and serialisation of function bodies
-	// different in browsers.
-	var functionSize = String( function () {} ).length;
 
 	QUnit.module( 'mediawiki.inspect' );
 
@@ -13,9 +10,9 @@
 
 		return mw.loader.using( 'test.inspect.script' ).then( function () {
 			assert.equal(
-				mw.inspect.getModuleSize( 'test.inspect.script' ) - functionSize,
+				mw.inspect.getModuleSize( 'test.inspect.script' ),
 				// name, script function
-				32,
+				43,
 				'test.inspect.script'
 			);
 		} );
@@ -30,9 +27,9 @@
 
 		return mw.loader.using( 'test.inspect.both' ).then( function () {
 			assert.equal(
-				mw.inspect.getModuleSize( 'test.inspect.both' ) - functionSize,
+				mw.inspect.getModuleSize( 'test.inspect.both' ),
 				// name, script function, styles object
-				54,
+				64,
 				'test.inspect.both'
 			);
 		} );
@@ -48,9 +45,9 @@
 
 		return mw.loader.using( 'test.inspect.scriptmsg' ).then( function () {
 			assert.equal(
-				mw.inspect.getModuleSize( 'test.inspect.scriptmsg' ) - functionSize,
+				mw.inspect.getModuleSize( 'test.inspect.scriptmsg' ),
 				// name, script function, empty styles object, messages object
-				65,
+				74,
 				'test.inspect.scriptmsg'
 			);
 		} );
@@ -67,9 +64,9 @@
 
 		return mw.loader.using( 'test.inspect.all' ).then( function () {
 			assert.equal(
-				mw.inspect.getModuleSize( 'test.inspect.all' ) - functionSize,
+				mw.inspect.getModuleSize( 'test.inspect.all' ),
 				// name, script function, styles object, messages object, templates object
-				118,
+				126,
 				'test.inspect.all'
 			);
 		} );
