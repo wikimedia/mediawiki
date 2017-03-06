@@ -186,11 +186,12 @@
 	 */
 	mw.rcfilters.ui.FilterWrapperWidget.prototype.scrollToTop = function ( $element, marginFromTop ) {
 		var container = OO.ui.Element.static.getClosestScrollableContainer( $element[ 0 ], 'y' ),
-			pos = OO.ui.Element.static.getRelativePosition( $element, $( container ) );
+			pos = OO.ui.Element.static.getRelativePosition( $element, $( container ) ),
+			containerScrollTop = $( container ).is( 'body' ) ? 0 : $( container ).scrollTop();
 
 		// Scroll to item
 		$( container ).animate( {
-			scrollTop: $( container ).scrollTop() + pos.top + ( marginFromTop || 0 )
+			scrollTop: containerScrollTop + pos.top - ( marginFromTop || 0 )
 		} );
 	};
 }( mediaWiki ) );
