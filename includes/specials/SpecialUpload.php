@@ -821,6 +821,7 @@ class SpecialUpload extends SpecialPage {
 
 		$gallery = ImageGalleryBase::factory( false, $this->getContext() );
 		$gallery->setShowBytes( false );
+		$gallery->setShowDimensions( false );
 		foreach ( $dupes as $file ) {
 			$gallery->add( $file->getTitle() );
 		}

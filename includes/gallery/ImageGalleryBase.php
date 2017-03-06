@@ -39,6 +39,11 @@ abstract class ImageGalleryBase extends ContextSource {
 	protected $mShowBytes;
 
 	/**
+	 * @var bool Whether to show the dimensions in categories
+	 */
+	protected $mShowDimensions;
+
+	/**
 	 * @var bool Whether to show the filename. Default: true
 	 */
 	protected $mShowFilename;
@@ -136,6 +141,7 @@ abstract class ImageGalleryBase extends ContextSource {
 		$galleryOptions = $this->getConfig()->get( 'GalleryOptions' );
 		$this->mImages = [];
 		$this->mShowBytes = $galleryOptions['showBytes'];
+		$this->mShowDimensions = $galleryOptions['showDimensions'];
 		$this->mShowFilename = true;
 		$this->mParser = false;
 		$this->mHideBadImages = false;
@@ -281,6 +287,16 @@ abstract class ImageGalleryBase extends ContextSource {
 	 */
 	function isEmpty() {
 		return empty( $this->mImages );
+	}
+
+	/**
+	 * Enable/Disable showing of the dimensions of an image in the gallery.
+	 * Enabled by default.
+	 *
+	 * @param bool $f Set to false to disable
+	 */
+	function setShowDimensions( $f ) {
+		$this->mShowDimensions = (bool)$f;
 	}
 
 	/**
