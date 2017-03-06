@@ -3172,7 +3172,7 @@
 	"logentry-move-move-noredirect": "$1 je {{GENDER:$2|premjestio|premjestila}} stranicu $3 na $4 bez preusmjeravanja",
 	"logentry-move-move_redir": "$1 je {{GENDER:$2|premjestio|premjestila}} stranicu $3 na $4 preko preusmjeravanja",
 	"logentry-move-move_redir-noredirect": "$1 je {{GENDER:$2|premjestio|premjestila}} stranicu $3 na $4 preko preusmjeravanja bez ostavljanja preusmjeravanja",
-	"logentry-patrol-patrol": "$1 je {{GENDER:$2|označio|označila}} uređivanje $4 stranice $3 pregledanim",
+	"logentry-patrol-patrol": "$1 {{GENDER:$2|označio|označila}} je uređivanje $4 stranice $3 ophođenim",
 	"logentry-patrol-patrol-auto": "$1 je automatski {{GENDER:$2|označio|označila}} uređivanje $4 stranice $3 pregledanim",
 	"logentry-newusers-newusers": "$1 je {{GENDER:$2|otvorio|otvorila}} suradnički račun",
 	"logentry-newusers-create": "$1 je {{GENDER:$2|stvorio|stvorila}} suradnički račun.",

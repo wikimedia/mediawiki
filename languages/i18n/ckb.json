@@ -1672,6 +1672,7 @@
 	"modifiedarticleprotection": "ئاستی پاراستنی «[[$1]]»ی گۆڕی",
 	"unprotectedarticle": "پاراستنی لەسەر «[[$1]]» لابرد",
 	"movedarticleprotection": "ڕێککارییەکانی پاراستن لە  «[[$2]]» گوازرایەوە بۆ «[[$1]]»",
+	"unprotectedarticle-comment": "{{GENDER:$2|پاراستنی}} لەسەر ''[[$1]]'' لابرد",
 	"protect-title": "گۆڕینی ئاستی پاراستنی \"$1\"",
 	"protect-title-notallowed": "دیتنی ئاستی پاراستنی «$1»",
 	"prot_1movedto2": "[[$1]] گوازرایەوە بۆ [[$2]]",

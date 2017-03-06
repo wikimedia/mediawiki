@@ -81,7 +81,8 @@
 			"Knch903",
 			"Winstonyin",
 			"Wmr",
-			"烈羽"
+			"烈羽",
+			"和平奮鬥救地球"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -1371,8 +1372,11 @@
 	"rcfilters-search-placeholder": "過濾最近變更（瀏覽或開始輸入）",
 	"rcfilters-invalid-filter": "過濾規則無效",
 	"rcfilters-filterlist-title": "篩選器",
+	"rcfilters-filterlist-feedbacklink": "在新（測試版）過濾器中提供反饋",
 	"rcfilters-highlightmenu-title": "選擇顏色",
 	"rcfilters-filterlist-noresults": "找不到過濾規則",
+	"rcfilters-filter-registered-label": "已註冊",
+	"rcfilters-filter-unregistered-label": "未註冊",
 	"rcfilters-filtergroup-authorship": "編輯者",
 	"rcfilters-filter-editsbyself-label": "您自己的編輯",
 	"rcfilters-filter-editsbyself-description": "您的編輯。",
