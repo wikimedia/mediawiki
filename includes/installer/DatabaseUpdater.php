@@ -392,7 +392,7 @@ abstract class DatabaseUpdater {
 	 * Writes the schema updates desired to a file for the DB Admin to run.
 	 * @param array $schemaUpdate
 	 */
-	private function writeSchemaUpdateFile( $schemaUpdate = [] ) {
+	private function writeSchemaUpdateFile( array $schemaUpdate = [] ) {
 		$updates = $this->updatesSkipped;
 		$this->updatesSkipped = [];
 
@@ -425,7 +425,7 @@ abstract class DatabaseUpdater {
 	 *
 	 * @param array $what What updates to perform
 	 */
-	public function doUpdates( $what = [ 'core', 'extensions', 'stats' ] ) {
+	public function doUpdates( array $what = [ 'core', 'extensions', 'stats' ] ) {
 		$this->db->setSchemaVars( $this->getSchemaVars() );
 
 		$what = array_flip( $what );
