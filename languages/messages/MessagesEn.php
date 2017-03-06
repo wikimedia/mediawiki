@@ -400,6 +400,7 @@ $specialPageAliases = [
 	'ApiHelp'                   => [ 'ApiHelp' ],
 	'ApiSandbox'                => [ 'ApiSandbox' ],
 	'Ancientpages'              => [ 'AncientPages' ],
+	'AutoblockList'             => [ 'AutoblockList', 'ListAutoblocks' ],
 	'Badtitle'                  => [ 'Badtitle' ],
 	'Blankpage'                 => [ 'BlankPage' ],
 	'Block'                     => [ 'Block', 'BlockIP', 'BlockUser' ],
