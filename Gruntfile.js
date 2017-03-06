@@ -80,7 +80,7 @@ module.exports = function ( grunt ) {
 				} ],
 				logLevel: 'DEBUG',
 				frameworks: [ 'qunit' ],
-				reporters: [ 'progress' ],
+				reporters: [ 'mocha' ],
 				singleRun: true,
 				autoWatch: false,
 				// Some tests in extensions don't yield for more than the default 10s (T89075)
