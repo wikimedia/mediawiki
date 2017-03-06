@@ -1787,7 +1787,6 @@ return [
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.variables.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.Overlay.less',
-			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.FilterItemWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.CapsuleItemWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.FilterGroupWidget.less',
