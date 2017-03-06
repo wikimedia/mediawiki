@@ -333,16 +333,19 @@ abstract class BaseTemplate extends QuickTemplate {
 	 *
 	 * @param array $options Can be used to affect the output of a link.
 	 * Possible options are:
+	 *
 	 *   - 'text-wrapper' key to specify a list of elements to wrap the text of
 	 *   a link in. This should be an array of arrays containing a 'tag' and
 	 *   optionally an 'attributes' key. If you only have one element you don't
 	 *   need to wrap it in another array. eg: To use <a><span>...</span></a>
 	 *   in all links use [ 'text-wrapper' => [ 'tag' => 'span' ] ]
 	 *   for your options.
+	 *
 	 *   - 'link-class' key can be used to specify additional classes to apply
 	 *   to all links.
+	 *
 	 *   - 'link-fallback' can be used to specify a tag to use instead of "<a>"
-	 *   if there is no link. eg: If you specify 'link-fallback' => 'span' than
+	 *   if there is no link. eg: If you specify 'link-fallback' => 'span' then
 	 *   any non-link will output a "<span>" instead of just text.
 	 *
 	 * @return string
@@ -354,20 +357,20 @@ abstract class BaseTemplate extends QuickTemplate {
 			$text = $this->translator->translate( isset( $item['msg'] ) ? $item['msg'] : $key );
 		}
 
-		$html = htmlspecialchars( $text );
-
+		$wrapper = 'span';
+		$wrapperOptions = [];
 		if ( isset( $options['text-wrapper'] ) ) {
-			$wrapper = $options['text-wrapper'];
-			if ( isset( $wrapper['tag'] ) ) {
-				$wrapper = [ $wrapper ];
-			}
-			while ( count( $wrapper ) > 0 ) {
-				$element = array_pop( $wrapper );
-				$html = Html::rawElement( $element['tag'], isset( $element['attributes'] )
-					? $element['attributes']
-					: null, $html );
+			if ( isset( $options['text-wrapper']['tag'] ) ) {
+				$wrapper = $options['text-wrapper']['tag'];
+
+				if ( isset( $options['text-wrapper']['attributes'] ) ) {
+					$wrapperOptions = $options['text-wrapper']['attributes'];
+				}
+			} elseif ( is_string( $options['text-wrapper'] ) ) {
+				$wrapper = $options['text-wrapper'];
 			}
 		}
+		$html = Html::element( $wrapper, $wrapperOptions, $text );
 
 		if ( isset( $item['href'] ) || isset( $options['link-fallback'] ) ) {
 			$attrs = $item;

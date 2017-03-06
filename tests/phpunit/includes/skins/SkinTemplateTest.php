@@ -25,7 +25,7 @@ class SkinTemplateTest extends MediaWikiTestCase {
 	public function makeListItemProvider() {
 		return [
 			[
-				'<li class="class" title="itemtitle"><a href="url" title="title">text</a></li>',
+				'<li class="class" title="itemtitle"><a href="url" title="title"><span>text</span></a></li>',
 				'',
 				[
 					'class' => 'class',
