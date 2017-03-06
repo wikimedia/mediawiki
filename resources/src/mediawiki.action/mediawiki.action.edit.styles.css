@@ -6,6 +6,10 @@
 #wpTextbox1 {
 	margin: 0;
 	display: block;
+	/* Ensure the textarea is not higher than browser's viewport on small screens */
+	max-height: 100vh;
+	/* But don't let it collapse into nothingness on really tiny screens */
+	min-height: 5em;
 }
 
 /* Adjustments to edit form elements */
