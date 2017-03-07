@@ -344,7 +344,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'charset', 'UTF-8' );
 		$tpl->setRef( 'wgScript', $wgScript );
 		$tpl->setRef( 'skinname', $this->skinname );
-		$tpl->set( 'skinclass', get_class( $this ) );
+		$tpl->set( 'skinclass', static::class );
 		$tpl->setRef( 'skin', $this );
 		$tpl->setRef( 'stylename', $this->stylename );
 		$tpl->set( 'printable', $out->isPrintable() );

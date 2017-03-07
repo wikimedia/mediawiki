@@ -330,7 +330,7 @@ class IcuCollation extends Collation {
 			$cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
 			$cacheKey = $cache->makeKey(
 				'first-letters',
-				get_class( $this ),
+				static::class,
 				$this->locale,
 				$this->digitTransformLanguage->getCode(),
 				self::getICUVersion(),

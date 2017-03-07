@@ -845,9 +845,8 @@ class LanguageConverter {
 	 * @throws MWException
 	 */
 	function loadDefaultTables() {
-		$name = get_class( $this );
-
-		throw new MWException( "Must implement loadDefaultTables() method in class $name" );
+		$class = static::class;
+		throw new MWException( "Must implement loadDefaultTables() method in class $class" );
 	}
 
 	/**

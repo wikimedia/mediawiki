@@ -569,7 +569,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 */
 	public function rotate( $file, $params ) {
 		return new MediaTransformError( 'thumbnail_error', 0, 0,
-			get_class( $this ) . ' rotation not implemented' );
+			static::class . ' rotation not implemented' );
 	}
 
 	/**

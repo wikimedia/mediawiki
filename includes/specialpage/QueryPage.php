@@ -304,7 +304,7 @@ abstract class QueryPage extends SpecialPage {
 			return 0;
 		}
 
-		$fname = get_class( $this ) . '::recache';
+		$fname = static::class . '::recache';
 		$dbw = wfGetDB( DB_MASTER );
 		if ( !$dbw ) {
 			return false;
@@ -389,7 +389,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @since 1.18
 	 */
 	public function reallyDoQuery( $limit, $offset = false ) {
-		$fname = get_class( $this ) . "::reallyDoQuery";
+		$fname = static::class . '::reallyDoQuery';
 		$dbr = $this->getRecacheDB();
 		$query = $this->getQueryInfo();
 		$order = $this->getOrderFields();
@@ -480,7 +480,7 @@ abstract class QueryPage extends SpecialPage {
 	public function getCachedTimestamp() {
 		if ( is_null( $this->cachedTimestamp ) ) {
 			$dbr = wfGetDB( DB_REPLICA );
-			$fname = get_class( $this ) . '::getCachedTimestamp';
+			$fname = static::class . '::getCachedTimestamp';
 			$this->cachedTimestamp = $dbr->selectField( 'querycache_info', 'qci_timestamp',
 				[ 'qci_type' => $this->getName() ], $fname );
 		}

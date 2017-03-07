@@ -46,7 +46,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 	protected $uniqueId;
 
 	public function __construct( $params ) {
-		$this->uniqueId = get_class( $this ) . ++self::$counter . 'x';
+		$this->uniqueId = static::class . ++self::$counter . 'x';
 		parent::__construct( $params );
 
 		if ( empty( $this->mParams['fields'] ) || !is_array( $this->mParams['fields'] ) ) {

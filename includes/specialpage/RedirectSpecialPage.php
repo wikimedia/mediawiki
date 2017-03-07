@@ -52,7 +52,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 
 			return $redirect;
 		} else {
-			$class = get_class( $this );
+			$class = static::class;
 			throw new MWException( "RedirectSpecialPage $class doesn't redirect!" );
 		}
 	}

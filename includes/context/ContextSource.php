@@ -39,7 +39,7 @@ abstract class ContextSource implements IContextSource {
 	 */
 	public function getContext() {
 		if ( $this->context === null ) {
-			$class = get_class( $this );
+			$class = static::class;
 			wfDebug( __METHOD__ . " ($class): called and \$context is null. " .
 				"Using RequestContext::getMain() for sanity\n" );
 			$this->context = RequestContext::getMain();

@@ -415,10 +415,10 @@ class Language {
 	function __construct() {
 		$this->mConverter = new FakeConverter( $this );
 		// Set the code to the name of the descendant
-		if ( get_class( $this ) == 'Language' ) {
+		if ( static::class === 'Language' ) {
 			$this->mCode = 'en';
 		} else {
-			$this->mCode = str_replace( '_', '-', strtolower( substr( get_class( $this ), 8 ) ) );
+			$this->mCode = str_replace( '_', '-', strtolower( substr( static::class, 8 ) ) );
 		}
 		self::getLocalisationCache();
 	}

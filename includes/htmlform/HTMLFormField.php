@@ -475,7 +475,7 @@ abstract class HTMLFormField {
 	public function getTableRow( $value ) {
 		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
 		$inputHtml = $this->getInputHTML( $value );
-		$fieldType = get_class( $this );
+		$fieldType = static::class;
 		$helptext = $this->getHelpTextHtmlTable( $this->getHelpText() );
 		$cellAttributes = [];
 		$rowAttributes = [];
@@ -533,7 +533,7 @@ abstract class HTMLFormField {
 	public function getDiv( $value ) {
 		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
 		$inputHtml = $this->getInputHTML( $value );
-		$fieldType = get_class( $this );
+		$fieldType = static::class;
 		$helptext = $this->getHelpTextHtmlDiv( $this->getHelpText() );
 		$cellAttributes = [];
 		$label = $this->getLabelHtml( $cellAttributes );
@@ -601,7 +601,7 @@ abstract class HTMLFormField {
 			$infusable = false;
 		}
 
-		$fieldType = get_class( $this );
+		$fieldType = static::class;
 		$help = $this->getHelpText();
 		$errors = $this->getErrorsRaw( $value );
 		foreach ( $errors as &$error ) {
