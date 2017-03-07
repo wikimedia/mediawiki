@@ -2,6 +2,7 @@
 /* eslint no-console: 0 */
 /* eslint-env node*/
 'use strict';
+var seleniumServers = [];
 
 exports.config = {
 
@@ -141,7 +142,7 @@ exports.config = {
 	mochaOpts: {
 		ui: 'bdd',
 		timeout: 20000
-	}
+	},
 	//
 	// =====
 	// Hooks
@@ -152,8 +153,29 @@ exports.config = {
 	// resolved to continue.
 	//
 	// Gets executed once before all workers get launched.
-	// onPrepare: function ( config, capabilities ) {
-	// }
+	onPrepare: function ( config, capabilities ) {
+		var wants, spawn;
+
+		wants = capabilities.map( function( capability ) {
+			return capability.browserName;
+		} );
+		spawn = require( 'child_process' ).spawn;
+
+		if ( wants.includes( 'chrome' ) ) {
+			console.log( 'Spawing a chromedriver' );
+			seleniumServers.push(
+				spawn( 'chromedriver',
+					[ '--url-base=/wd/hub', '--port=4444' ],
+					{ env: process.env, detached: true, stdio: 'inherit' }
+				)
+			);
+		}
+		process.on( 'exit', function () {
+			seleniumServers.forEach( function ( server ) {
+				server.kill();
+			} );
+		} );
+	}
 	//
 	// Gets executed before test execution begins. At this point you can access all global
 	// variables, such as `browser`. It is the perfect place to define custom commands.
