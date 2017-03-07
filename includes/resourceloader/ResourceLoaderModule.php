@@ -843,7 +843,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 */
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
 		return [
-			'_class' => get_class( $this ),
+			'_class' => static::class,
 			'_cacheEpoch' => $this->getConfig()->get( 'CacheEpoch' ),
 		];
 	}
