@@ -1381,6 +1381,7 @@
 	"rcfilters-filterlist-feedbacklink": "Provide feedback on the new (beta) filters",
 	"rcfilters-highlightbutton-title": "Highlight results",
 	"rcfilters-highlightmenu-title": "Select a color",
+	"rcfilters-highlightmenu-help": "Select a color to highlight this property",
 	"rcfilters-filterlist-noresults": "No filters found",
 	"rcfilters-filtergroup-registration": "User registration",
 	"rcfilters-filter-registered-label": "Registered",

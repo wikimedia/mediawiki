@@ -1845,6 +1845,7 @@ return [
 			'rcfilters-filter-logactions-description',
 			'rcfilters-highlightbutton-title',
 			'rcfilters-highlightmenu-title',
+			'rcfilters-highlightmenu-help',
 			'recentchanges-noresult',
 		],
 		'dependencies' => [
