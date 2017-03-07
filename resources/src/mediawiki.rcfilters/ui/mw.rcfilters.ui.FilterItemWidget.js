@@ -45,7 +45,8 @@
 			this.controller,
 			this.model,
 			{
-				$overlay: config.$overlay || this.$element
+				$overlay: config.$overlay || this.$element,
+				title: mw.msg( 'rcfilters-highlightmenu-help' )
 			}
 		);
 		this.highlightButton.toggle( this.model.isHighlightEnabled() );
