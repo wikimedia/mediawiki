@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.19.4
+ * OOjs UI v0.19.5
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-02-28T23:19:40Z
+ * Date: 2017-03-07T22:57:01Z
  */
 ( function ( OO ) {
 
@@ -4079,6 +4079,8 @@ OO.ui.mixin.PendingElement.prototype.popPending = function () {
  *  'start': Align the start (left in LTR, right in RTL) edge with $floatableContainer's start edge
  *  'end': Align the end (right in LTR, left in RTL) edge with $floatableContainer's end edge
  *  'center': Horizontally align the center with $floatableContainer's center
+ * @cfg {boolean} [hideWhenOutOfView=true] Whether to hide the floatable element if the container
+ *  is out of view
  */
 OO.ui.mixin.FloatableElement = function OoUiMixinFloatableElement( config ) {
 	// Configuration initialization
@@ -4097,6 +4099,7 @@ OO.ui.mixin.FloatableElement = function OoUiMixinFloatableElement( config ) {
 	this.setFloatableElement( config.$floatable || this.$element );
 	this.setVerticalPosition( config.verticalPosition || 'below' );
 	this.setHorizontalPosition( config.horizontalPosition || 'start' );
+	this.hideWhenOutOfView = config.hideWhenOutOfView === undefined ? true : !!config.hideWhenOutOfView;
 };
 
 /* Methods */
@@ -4141,9 +4144,11 @@ OO.ui.mixin.FloatableElement.prototype.setVerticalPosition = function ( position
 	if ( [ 'below', 'above', 'top', 'bottom', 'center' ].indexOf( position ) === -1 ) {
 		throw new Error( 'Invalid value for vertical position: ' + position );
 	}
-	this.verticalPosition = position;
-	if ( this.$floatable ) {
-		this.position();
+	if ( this.verticalPosition !== position ) {
+		this.verticalPosition = position;
+		if ( this.$floatable ) {
+			this.position();
+		}
 	}
 };
 
@@ -4156,9 +4161,11 @@ OO.ui.mixin.FloatableElement.prototype.setHorizontalPosition = function ( positi
 	if ( [ 'before', 'after', 'start', 'end', 'center' ].indexOf( position ) === -1 ) {
 		throw new Error( 'Invalid value for horizontal position: ' + position );
 	}
-	this.horizontalPosition = position;
-	if ( this.$floatable ) {
-		this.position();
+	if ( this.horizontalPosition !== position ) {
+		this.horizontalPosition = position;
+		if ( this.$floatable ) {
+			this.position();
+		}
 	}
 };
 
@@ -4290,27 +4297,49 @@ OO.ui.mixin.FloatableElement.prototype.isElementInViewport = function ( $element
  * @chainable
  */
 OO.ui.mixin.FloatableElement.prototype.position = function () {
-	var containerPos, direction, $offsetParent, isBody, scrollableX, scrollableY,
-		horizScrollbarHeight, vertScrollbarWidth, scrollTop, scrollLeft,
-		newPos = { top: '', left: '', bottom: '', right: '' };
-
 	if ( !this.positioning ) {
 		return this;
 	}
 
-	if ( !this.isElementInViewport( this.$floatableContainer, this.$floatableClosestScrollable ) ) {
+	if ( this.hideWhenOutOfView && !this.isElementInViewport( this.$floatableContainer, this.$floatableClosestScrollable ) ) {
 		this.$floatable.addClass( 'oo-ui-element-hidden' );
-		return;
+		return this;
 	} else {
 		this.$floatable.removeClass( 'oo-ui-element-hidden' );
 	}
 
 	if ( !this.needsCustomPosition ) {
-		return;
+		return this;
 	}
 
-	direction = this.$floatableContainer.css( 'direction' );
-	$offsetParent = this.$floatable.offsetParent();
+	this.$floatable.css( this.computePosition() );
+
+	// We updated the position, so re-evaluate the clipping state.
+	// (ClippableElement does not listen to 'scroll' events on $floatableContainer's parent, and so
+	// will not notice the need to update itself.)
+	// TODO: This is terrible, we shouldn't need to know about ClippableElement at all here. Why does
+	// it not listen to the right events in the right places?
+	if ( this.clip ) {
+		this.clip();
+	}
+
+	return this;
+};
+
+/**
+ * Compute how #$floatable should be positioned based on the position of #$floatableContainer
+ * and the positioning settings. This is a helper for #position that shouldn't be called directly,
+ * but may be overridden by subclasses if they want to change or add to the positioning logic.
+ *
+ * @return {Object} New position to apply with .css(). Keys are 'top', 'left', 'bottom' and 'right'.
+ */
+OO.ui.mixin.FloatableElement.prototype.computePosition = function () {
+	var isBody, scrollableX, scrollableY, containerPos,
+		horizScrollbarHeight, vertScrollbarWidth, scrollTop, scrollLeft,
+		newPos = { top: '', left: '', bottom: '', right: '' },
+		direction = this.$floatableContainer.css( 'direction' ),
+		$offsetParent = this.$floatable.offsetParent();
+
 	if ( $offsetParent.is( 'html' ) ) {
 		// The innerHeight/Width and clientHeight/Width calculations don't work well on the
 		// <html> element, but they do work on the <body>
@@ -4408,18 +4437,7 @@ OO.ui.mixin.FloatableElement.prototype.position = function () {
 		}
 	}
 
-	this.$floatable.css( newPos );
-
-	// We updated the position, so re-evaluate the clipping state.
-	// (ClippableElement does not listen to 'scroll' events on $floatableContainer's parent, and so
-	// will not notice the need to update itself.)
-	// TODO: This is terrible, we shouldn't need to know about ClippableElement at all here. Why does
-	// it not listen to the right events in the right places?
-	if ( this.clip ) {
-		this.clip();
-	}
-
-	return this;
+	return newPos;
 };
 
 /**
@@ -4745,13 +4763,24 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
  * @cfg {number} [width=320] Width of popup in pixels
  * @cfg {number} [height] Height of popup in pixels. Omit to use the automatic height.
  * @cfg {boolean} [anchor=true] Show anchor pointing to origin of popup
- * @cfg {string} [align='center'] Alignment of the popup: `center`, `force-left`, `force-right`, `backwards` or `forwards`.
- *  If the popup is forced-left the popup body is leaning towards the left. For force-right alignment, the body of the
- *  popup is leaning towards the right of the screen.
- *  Using 'backwards' is a logical direction which will result in the popup leaning towards the beginning of the sentence
- *  in the given language, which means it will flip to the correct positioning in right-to-left languages.
- *  Using 'forward' will also result in a logical alignment where the body of the popup leans towards the end of the
- *  sentence in the given language.
+ * @cfg {string} [position='below'] Where to position the popup relative to $floatableContainer
+ *  'above': Put popup above $floatableContainer; anchor points down to the start edge of $floatableContainer
+ *  'below': Put popup below $floatableContainer; anchor points up to the start edge of $floatableContainer
+ *  'before': Put popup to the left (LTR) / right (RTL) of $floatableContainer; anchor points
+ *            endwards (right/left) to the vertical center of $floatableContainer
+ *  'after': Put popup to the right (LTR) / left (RTL) of $floatableContainer; anchor points
+ *            startwards (left/right) to the vertical center of $floatableContainer
+ * @cfg {string} [align='center'] How to align the popup to $floatableContainer
+ *  'forwards': If position is above/below, move the popup as far endwards (right in LTR, left in RTL)
+ *              as possible while still keeping the anchor within the popup;
+ *              if position is before/after, move the popup as far downwards as possible.
+ *  'backwards': If position is above/below, move the popup as far startwards (left in LTR, right in RTL)
+ *               as possible while still keeping the anchor within the popup;
+ *               if position in before/after, move the popup as far upwards as possible.
+ *  'center': Horizontally (if position is above/below) or vertically (before/after) align the center
+ *            of the popup with the center of $floatableContainer.
+ * 'force-left': Alias for 'forwards' in LTR and 'backwards' in RTL
+ * 'force-right': Alias for 'backwards' in RTL and 'forwards' in LTR
  * @cfg {jQuery} [$container] Constrain the popup to the boundaries of the specified container.
  *  See the [OOjs UI docs on MediaWiki][3] for an example.
  *  [3]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Popups#containerExample
@@ -4794,15 +4823,16 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	this.autoClose = !!config.autoClose;
 	this.$autoCloseIgnore = config.$autoCloseIgnore;
 	this.transitionTimeout = null;
-	this.anchor = null;
+	this.anchored = false;
 	this.width = config.width !== undefined ? config.width : 320;
 	this.height = config.height !== undefined ? config.height : null;
-	this.setAlignment( config.align );
 	this.onMouseDownHandler = this.onMouseDown.bind( this );
 	this.onDocumentKeyDownHandler = this.onDocumentKeyDown.bind( this );
 
 	// Initialization
 	this.toggleAnchor( config.anchor === undefined || config.anchor );
+	this.setAlignment( config.align || 'center' );
+	this.setPosition( config.position || 'below' );
 	this.$body.addClass( 'oo-ui-popupWidget-body' );
 	this.$anchor.addClass( 'oo-ui-popupWidget-anchor' );
 	this.$popup
@@ -4950,6 +4980,21 @@ OO.ui.PopupWidget.prototype.toggleAnchor = function ( show ) {
 		this.anchored = show;
 	}
 };
+/**
+ * Change which edge the anchor appears on.
+ *
+ * @param {string} edge 'top', 'bottom', 'start' or 'end'
+ */
+OO.ui.PopupWidget.prototype.setAnchorEdge = function ( edge ) {
+	if ( [ 'top', 'bottom', 'start', 'end' ].indexOf( edge ) === -1 ) {
+		throw new Error( 'Invalid value for edge: ' + edge );
+	}
+	if ( this.anchorEdge !== null ) {
+		this.$element.removeClass( 'oo-ui-popupWidget-anchored-' + this.anchorEdge );
+	}
+	this.anchorEdge = edge;
+	this.$element.addClass( 'oo-ui-popupWidget-anchored-' + edge );
+};
 
 /**
  * Check if the anchor is visible.
@@ -4957,7 +5002,7 @@ OO.ui.PopupWidget.prototype.toggleAnchor = function ( show ) {
  * @return {boolean} Anchor is visible
  */
 OO.ui.PopupWidget.prototype.hasAnchor = function () {
-	return this.anchor;
+	return this.anchored;
 };
 
 /**
@@ -4980,6 +5025,10 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 	if ( show && !this.warnedUnattached && !this.isElementAttached() ) {
 		OO.ui.warnDeprecation( 'PopupWidget#toggle: Before calling this method, the popup must be attached to the DOM.' );
 		this.warnedUnattached = true;
+	}
+	if ( show && !this.$floatableContainer && this.isElementAttached() ) {
+		// Fall back to the parent node if the floatableContainer is not set
+		this.setFloatableContainer( this.$element.parent() );
 	}
 
 	// Parent method
@@ -5035,65 +5084,7 @@ OO.ui.PopupWidget.prototype.setSize = function ( width, height, transition ) {
  * @chainable
  */
 OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
-	var popupOffset, originOffset, containerLeft, containerWidth, containerRight,
-		popupLeft, popupRight, overlapLeft, overlapRight, anchorWidth, direction,
-		dirFactor, align,
-		alignMap = {
-			ltr: {
-				'force-left': 'backwards',
-				'force-right': 'forwards'
-			},
-			rtl: {
-				'force-left': 'forwards',
-				'force-right': 'backwards'
-			}
-		},
-		widget = this;
-
-	if ( !this.$container ) {
-		// Lazy-initialize $container if not specified in constructor
-		this.$container = $( this.getClosestScrollableElementContainer() );
-	}
-	direction = this.$container.css( 'direction' );
-	dirFactor = direction === 'rtl' ? -1 : 1;
-	align = alignMap[ direction ][ this.align ] || this.align;
-
-	// Set height and width before measuring things, since it might cause our measurements
-	// to change (e.g. due to scrollbars appearing or disappearing)
-	this.$popup.css( {
-		width: this.width,
-		height: this.height !== null ? this.height : 'auto'
-	} );
-
-	// Compute initial popupOffset based on alignment
-	popupOffset = this.width * ( { backwards: -1, center: -0.5, forwards: 0 } )[ align ];
-
-	// Figure out if this will cause the popup to go beyond the edge of the container
-	originOffset = this.$element.offset().left;
-	containerLeft = this.$container.offset().left;
-	containerWidth = this.$container.innerWidth();
-	containerRight = containerLeft + containerWidth;
-	popupLeft = dirFactor * popupOffset - this.containerPadding;
-	popupRight = dirFactor * popupOffset + this.containerPadding + this.width + this.containerPadding;
-	overlapLeft = ( originOffset + popupLeft ) - containerLeft;
-	overlapRight = containerRight - ( originOffset + popupRight );
-
-	// Adjust offset to make the popup not go beyond the edge, if needed
-	if ( overlapRight < 0 ) {
-		popupOffset += dirFactor * overlapRight;
-	} else if ( overlapLeft < 0 ) {
-		popupOffset -= dirFactor * overlapLeft;
-	}
-
-	// Adjust offset to avoid anchor being rendered too close to the edge
-	// $anchor.width() doesn't work with the pure CSS anchor (returns 0)
-	// TODO: Find a measurement that works for CSS anchors and image anchors
-	anchorWidth = this.$anchor[ 0 ].scrollWidth * 2;
-	if ( popupOffset + this.width < anchorWidth ) {
-		popupOffset = anchorWidth - this.width;
-	} else if ( -popupOffset < anchorWidth ) {
-		popupOffset = -anchorWidth;
-	}
+	var widget = this;
 
 	// Prevent transition from being interrupted
 	clearTimeout( this.transitionTimeout );
@@ -5102,8 +5093,7 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 		this.$element.addClass( 'oo-ui-popupWidget-transitioning' );
 	}
 
-	// Position body relative to anchor
-	this.$popup.css( direction === 'rtl' ? 'margin-right' : 'margin-left', popupOffset );
+	this.position();
 
 	if ( transition ) {
 		// Prevent transitioning after transition is complete
@@ -5114,11 +5104,140 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 		// Prevent transitioning immediately
 		this.$element.removeClass( 'oo-ui-popupWidget-transitioning' );
 	}
+};
 
-	// Reevaluate clipping state since we've relocated and resized the popup
-	this.clip();
+/**
+ * @inheritdoc
+ */
+OO.ui.PopupWidget.prototype.computePosition = function () {
+	var direction, align, vertical, start, end, near, far, sizeProp, popupSize, anchorSize, anchorPos,
+		anchorOffset, anchorMargin, parentPosition, positionProp, positionAdjustment, floatablePos,
+		offsetParentPos, containerPos,
+		popupPos = {},
+		anchorCss = { left: '', right: '', top: '', bottom: '' },
+		alignMap = {
+			ltr: {
+				'force-left': 'backwards',
+				'force-right': 'forwards'
+			},
+			rtl: {
+				'force-left': 'forwards',
+				'force-right': 'backwards'
+			}
+		},
+		anchorEdgeMap = {
+			above: 'bottom',
+			below: 'top',
+			before: 'end',
+			after: 'start'
+		},
+		hPosMap = {
+			forwards: 'start',
+			center: 'center',
+			backwards: 'before'
+		},
+		vPosMap = {
+			forwards: 'top',
+			center: 'center',
+			backwards: 'bottom'
+		};
 
-	return this;
+	if ( !this.$container ) {
+		// Lazy-initialize $container if not specified in constructor
+		this.$container = $( this.getClosestScrollableElementContainer() );
+	}
+	direction = this.$container.css( 'direction' );
+
+	// Set height and width before we do anything else, since it might cause our measurements
+	// to change (e.g. due to scrollbars appearing or disappearing), and it also affects centering
+	this.$popup.css( {
+		width: this.width,
+		height: this.height !== null ? this.height : 'auto'
+	} );
+
+	align = alignMap[ direction ][ this.align ] || this.align;
+	// If the popup is positioned before or after, then the anchor positioning is vertical, otherwise horizontal
+	vertical = this.popupPosition === 'before' || this.popupPosition === 'after';
+	start = vertical ? 'top' : ( direction === 'rtl' ? 'right' : 'left' );
+	end = vertical ? 'bottom' : ( direction === 'rtl' ? 'left' : 'right' );
+	near = vertical ? 'top' : 'left';
+	far = vertical ? 'bottom' : 'right';
+	sizeProp = vertical ? 'Height' : 'Width';
+	popupSize = vertical ? ( this.height || this.$popup.height() ) : this.width;
+
+	this.setAnchorEdge( anchorEdgeMap[ this.popupPosition ] );
+	this.horizontalPosition = vertical ? this.popupPosition : hPosMap[ align ];
+	this.verticalPosition = vertical ? vPosMap[ align ] : this.popupPosition;
+
+	// Parent method
+	parentPosition = OO.ui.mixin.FloatableElement.prototype.computePosition.call( this );
+	// Find out which property FloatableElement used for positioning, and adjust that value
+	positionProp = vertical ?
+		( parentPosition.top !== '' ? 'top' : 'bottom' ) :
+		( parentPosition.left !== '' ? 'left' : 'right' );
+
+	// Figure out where the near and far edges of the popup and $floatableContainer are
+	floatablePos = this.$floatableContainer.offset();
+	floatablePos[ far ] = floatablePos[ near ] + this.$floatableContainer[ 'outer' + sizeProp ]();
+	// Measure where the offsetParent is and compute our position based on that and parentPosition
+	offsetParentPos = this.$element.offsetParent().offset();
+
+	if ( positionProp === near ) {
+		popupPos[ near ] = offsetParentPos[ near ] + parentPosition[ near ];
+		popupPos[ far ] = popupPos[ near ] + popupSize;
+	} else {
+		popupPos[ far ] = offsetParentPos[ near ] +
+			this.$element.offsetParent()[ 'inner' + sizeProp ]() - parentPosition[ far ];
+		popupPos[ near ] = popupPos[ far ] - popupSize;
+	}
+
+	// Position the anchor (which is positioned relative to the popup) to point to $floatableContainer
+	// For popups above/below, we point to the start edge; for popups before/after, we point to the center
+	anchorPos = vertical ? ( floatablePos[ start ] + floatablePos[ end ] ) / 2 : floatablePos[ start ];
+	anchorOffset = ( start === far ? -1 : 1 ) * ( anchorPos - popupPos[ start ] );
+
+	// If the anchor is less than 2*anchorSize from either edge, move the popup to make more space
+	// this.$anchor.width()/height() returns 0 because of the CSS trickery we use, so use scrollWidth/Height
+	anchorSize = this.$anchor[ 0 ][ 'scroll' + sizeProp ];
+	anchorMargin = parseFloat( this.$anchor.css( 'margin-' + start ) );
+	if ( anchorOffset + anchorMargin < 2 * anchorSize ) {
+		// Not enough space for the anchor on the start side; pull the popup startwards
+		positionAdjustment = ( positionProp === start ? -1 : 1 ) *
+			( 2 * anchorSize - ( anchorOffset + anchorMargin ) );
+	} else if ( anchorOffset + anchorMargin > popupSize - 2 * anchorSize ) {
+		// Not enough space for the anchor on the end side; pull the popup endwards
+		positionAdjustment = ( positionProp === end ? -1 : 1 ) *
+			( anchorOffset + anchorMargin - ( popupSize - 2 * anchorSize ) );
+	} else {
+		positionAdjustment = 0;
+	}
+
+	// Check if the popup will go beyond the edge of this.$container
+	containerPos = this.$container.offset();
+	containerPos[ far ] = containerPos[ near ] + this.$container[ 'inner' + sizeProp ]();
+	// Take into account how much the popup will move because of the adjustments we're going to make
+	popupPos[ near ] += ( positionProp === near ? 1 : -1 ) * positionAdjustment;
+	popupPos[ far ] += ( positionProp === near ? 1 : -1 ) * positionAdjustment;
+	if ( containerPos[ near ] + this.containerPadding > popupPos[ near ] ) {
+		// Popup goes beyond the near (left/top) edge, move it to the right/bottom
+		positionAdjustment += ( positionProp === near ? 1 : -1 ) *
+			( containerPos[ near ] + this.containerPadding - popupPos[ near ] );
+	} else if ( containerPos[ far ] - this.containerPadding < popupPos[ far ] ) {
+		// Popup goes beyond the far (right/bottom) edge, move it to the left/top
+		positionAdjustment += ( positionProp === far ? 1 : -1 ) *
+			( popupPos[ far ] - ( containerPos[ far ] - this.containerPadding ) );
+	}
+
+	// Adjust anchorOffset for positionAdjustment
+	anchorOffset += ( positionProp === start ? -1 : 1 ) * positionAdjustment;
+
+	// Position the anchor
+	anchorCss[ start ] = anchorOffset;
+	this.$anchor.css( anchorCss );
+	// Move the popup if needed
+	parentPosition[ positionProp ] += positionAdjustment;
+
+	return parentPosition;
 };
 
 /**
@@ -5140,16 +5259,39 @@ OO.ui.PopupWidget.prototype.setAlignment = function ( align ) {
 	} else {
 		this.align = 'center';
 	}
+	this.position();
 };
 
 /**
  * Get popup alignment
  *
- * @return {string} align Alignment of the popup, `center`, `force-left`, `force-right`,
+ * @return {string} Alignment of the popup, `center`, `force-left`, `force-right`,
  *  `backwards` or `forwards`.
  */
 OO.ui.PopupWidget.prototype.getAlignment = function () {
 	return this.align;
+};
+
+/**
+ * Change the positioning of the popup.
+ *
+ * @param {string} position 'above', 'below', 'before' or 'after'
+ */
+OO.ui.PopupWidget.prototype.setPosition = function ( position ) {
+	if ( [ 'above', 'below', 'before', 'after' ].indexOf( position ) === -1 ) {
+		position = 'below';
+	}
+	this.popupPosition = position;
+	this.position();
+};
+
+/**
+ * Get popup positioning.
+ *
+ * @return {string} 'above', 'below', 'before' or 'after'
+ */
+OO.ui.PopupWidget.prototype.getPosition = function () {
+	return this.popupPosition;
 };
 
 /**
@@ -5172,9 +5314,14 @@ OO.ui.mixin.PopupElement = function OoUiMixinPopupElement( config ) {
 
 	// Properties
 	this.popup = new OO.ui.PopupWidget( $.extend(
-		{ autoClose: true },
+		{
+			autoClose: true,
+			$floatableContainer: this.$element
+		},
 		config.popup,
-		{ $autoCloseIgnore: this.$element.add( config.popup && config.popup.$autoCloseIgnore ) }
+		{
+			$autoCloseIgnore: this.$element.add( config.popup && config.popup.$autoCloseIgnore )
+		}
 	) );
 };
 
@@ -5222,11 +5369,7 @@ OO.ui.PopupButtonWidget = function OoUiPopupButtonWidget( config ) {
 	OO.ui.PopupButtonWidget.parent.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.PopupElement.call( this, $.extend( true, {}, config, {
-		popup: {
-			$floatableContainer: this.$element
-		}
-	} ) );
+	OO.ui.mixin.PopupElement.call( this, config );
 
 	// Properties
 	this.$overlay = config.$overlay || this.$element;
@@ -6736,19 +6879,33 @@ OO.ui.MenuSelectWidget.prototype.onKeyDown = function ( e ) {
  * @protected
  */
 OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
-	var i, item, visible,
+	var i, item, visible, section, sectionEmpty,
 		anyVisible = false,
 		len = this.items.length,
 		showAll = !this.isVisible(),
 		filter = showAll ? null : this.getItemMatcher( this.$input.val() );
 
+	// Hide non-matching options, and also hide section headers if all options
+	// in their section are hidden.
 	for ( i = 0; i < len; i++ ) {
 		item = this.items[ i ];
-		if ( item instanceof OO.ui.OptionWidget ) {
+		if ( item instanceof OO.ui.MenuSectionOptionWidget ) {
+			if ( section ) {
+				// If the previous section was empty, hide its header
+				section.toggle( showAll || !sectionEmpty );
+			}
+			section = item;
+			sectionEmpty = true;
+		} else if ( item instanceof OO.ui.OptionWidget ) {
 			visible = showAll || filter( item );
 			anyVisible = anyVisible || visible;
+			sectionEmpty = sectionEmpty && !visible;
 			item.toggle( visible );
 		}
+	}
+	// Process the final section
+	if ( section ) {
+		section.toggle( showAll || !sectionEmpty );
 	}
 
 	this.$element.toggleClass( 'oo-ui-menuSelectWidget-invisible', !anyVisible );
@@ -9125,7 +9282,7 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.setOptions = function ( options )
  *  specifies minimum number of rows to display.
  * @cfg {boolean} [autosize=false] Automatically resize the text input to fit its content.
  *  Use the #maxRows config to specify a maximum number of displayed rows.
- * @cfg {boolean} [maxRows] Maximum number of rows to display when #autosize is set to true.
+ * @cfg {number} [maxRows] Maximum number of rows to display when #autosize is set to true.
  *  Defaults to the maximum of `10` and `2 * rows`, or `10` if `rows` isn't provided.
  * @cfg {string} [labelPosition='after'] The position of the inline label relative to that of
  *  the value or placeholder text: `'before'` or `'after'`
@@ -10081,6 +10238,10 @@ OO.ui.SearchInputWidget.prototype.setReadOnly = function ( state ) {
  * - by choosing a value from the menu. The value of the chosen option will then appear in the text
  *   input field.
  *
+ * After the user chooses an option, its `data` will be used as a new value for the widget.
+ * A `label` also can be specified for each option: if given, it will be shown instead of the
+ * `data` in the dropdown menu.
+ *
  * This widget can be used inside an HTML form, such as a OO.ui.FormLayout.
  *
  * For more information about menus and options, please see the [OOjs UI documentation on MediaWiki][1].
@@ -10088,32 +10249,33 @@ OO.ui.SearchInputWidget.prototype.setReadOnly = function ( state ) {
  *     @example
  *     // Example: A ComboBoxInputWidget.
  *     var comboBox = new OO.ui.ComboBoxInputWidget( {
- *         label: 'ComboBoxInputWidget',
  *         value: 'Option 1',
- *         menu: {
- *             items: [
- *                 new OO.ui.MenuOptionWidget( {
- *                     data: 'Option 1',
- *                     label: 'Option One'
- *                 } ),
- *                 new OO.ui.MenuOptionWidget( {
- *                     data: 'Option 2',
- *                     label: 'Option Two'
- *                 } ),
- *                 new OO.ui.MenuOptionWidget( {
- *                     data: 'Option 3',
- *                     label: 'Option Three'
- *                 } ),
- *                 new OO.ui.MenuOptionWidget( {
- *                     data: 'Option 4',
- *                     label: 'Option Four'
- *                 } ),
- *                 new OO.ui.MenuOptionWidget( {
- *                     data: 'Option 5',
- *                     label: 'Option Five'
- *                 } )
- *             ]
- *         }
+ *         options: [
+ *             { data: 'Option 1' },
+ *             { data: 'Option 2' },
+ *             { data: 'Option 3' }
+ *         ]
+ *     } );
+ *     $( 'body' ).append( comboBox.$element );
+ *
+ *     @example
+ *     // Example: A ComboBoxInputWidget with additional option labels.
+ *     var comboBox = new OO.ui.ComboBoxInputWidget( {
+ *         value: 'Option 1',
+ *         options: [
+ *             {
+ *                 data: 'Option 1',
+ *                 label: 'Option One'
+ *             },
+ *             {
+ *                 data: 'Option 2',
+ *                 label: 'Option Two'
+ *             },
+ *             {
+ *                 data: 'Option 3',
+ *                 label: 'Option Three'
+ *             }
+ *         ]
  *     } );
  *     $( 'body' ).append( comboBox.$element );
  *

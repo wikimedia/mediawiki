@@ -2,7 +2,7 @@
 	"prefix": "oo-ui-icon",
 	"intro": "@import '../../../../src/styles/common';",
 	"images": {
-		"add": { "file": "images/icons/add.svg" },
+		"add": { "file": "images/icons/add.svg", "deprecated": "Moved since v0.19.5, use from the 'interactive' pack instead." },
 		"advanced": { "file": "images/icons/advanced.svg" },
 		"alert": { "file": "images/icons/alert.svg" },
 		"cancel": { "file": "images/icons/cancel.svg" },

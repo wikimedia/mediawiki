@@ -22,16 +22,13 @@
 		}
 	},
 	"images": {
-		"add": { "file": "images/icons/add.svg", "variants": [ "constructive", "progressive" ] },
+		"add": { "file": "images/icons/add.svg", "variants": [ "constructive", "progressive" ], "deprecated": "Moved since v0.19.5, use from the 'interactive' pack instead." },
 		"advanced": { "file": "images/icons/advanced.svg" },
 		"alert": { "file": "images/icons/alert.svg", "variants": [ "warning" ] },
 		"cancel": { "file": "images/icons/cancel.svg", "variants": [ "destructive" ] },
 		"check": { "file": "images/icons/check.svg", "variants": [ "constructive", "progressive", "destructive" ] },
 		"circle": { "file": "images/icons/circle.svg", "variants": [ "constructive", "progressive" ] },
-		"close": { "file": {
-			"ltr": "images/icons/close-ltr.svg",
-			"rtl": "images/icons/close-rtl.svg"
-		} },
+		"close": { "file": "images/icons/close.svg" },
 		"code": { "file": "images/icons/code.svg" },
 		"collapse": { "file": "images/icons/collapse.svg" },
 		"comment": { "file": "images/icons/comment.svg" },

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.19.4
+ * OOjs UI v0.19.5
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-02-28T23:19:40Z
+ * Date: 2017-03-07T22:57:01Z
  */
 ( function ( OO ) {
 
@@ -1469,6 +1469,7 @@ OO.ui.PopupTool = function OoUiPopupTool( toolGroup, config ) {
 	OO.ui.mixin.PopupElement.call( this, config );
 
 	// Initialization
+	this.popup.setPosition( toolGroup.getToolbar().position === 'bottom' ? 'above' : 'below' );
 	this.$element
 		.addClass( 'oo-ui-popupTool' )
 		.append( this.popup.$element );
@@ -2194,6 +2195,9 @@ OO.ui.ListToolGroup.prototype.updateCollapsibleState = function () {
 	for ( i = 0, len = this.collapsibleTools.length; i < len; i++ ) {
 		this.collapsibleTools[ i ].toggle( this.expanded );
 	}
+
+	// Re-evaluate clipping, because our height has changed
+	this.clip();
 };
 
 /**
