@@ -2,7 +2,7 @@
 /* eslint-env node*/
 'use strict';
 var merge = require( 'deepmerge' ),
-	wdioConf = require( './wdio.conf.vagrant.js' );
+	wdioConf = require( './wdio.conf.default.js' );
 // have main config file as default but overwrite environment specific information
 exports.config = merge( wdioConf.config, {
 	// Define any custom variables.

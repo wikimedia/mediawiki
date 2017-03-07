@@ -3,6 +3,8 @@
 var WebdriverIOconfigFile;
 if ( process.env.JENKINS_HOME ) {
 	WebdriverIOconfigFile = './wdio.conf.jenkins.js';
+} else if ( process.env.MW_SERVER !== undefined && process.env.MW_SCRIPT_PATH !== undefined ) {
+	WebdriverIOconfigFile = './wdio.conf.default.js';
 } else {
 	WebdriverIOconfigFile = './wdio.conf.vagrant.js';
 }
