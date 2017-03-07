@@ -228,7 +228,7 @@ class LocalisationCache {
 			}
 		}
 
-		wfDebugLog( 'caches', get_class( $this ) . ": using store $storeClass" );
+		wfDebugLog( 'caches', static::class . ": using store $storeClass" );
 		if ( !empty( $conf['storeDirectory'] ) ) {
 			$storeConf['directory'] = $conf['storeDirectory'];
 		}

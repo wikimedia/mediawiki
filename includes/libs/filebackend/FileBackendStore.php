@@ -360,7 +360,7 @@ abstract class FileBackendStore extends FileBackend {
 			$status->merge( $this->doConcatenate( $params ) );
 			$sec = microtime( true ) - $start_time;
 			if ( !$status->isOK() ) {
-				$this->logger->error( get_class( $this ) . "-{$this->name}" .
+				$this->logger->error( static::class . "-{$this->name}" .
 					" failed to concatenate " . count( $params['srcs'] ) . " file(s) [$sec sec]" );
 			}
 		}
@@ -1123,7 +1123,7 @@ abstract class FileBackendStore extends FileBackend {
 				$subStatus->success[$i] = false;
 				++$subStatus->failCount;
 			}
-			$this->logger->error( get_class( $this ) . "-{$this->name} " .
+			$this->logger->error( static::class . "-{$this->name} " .
 				" stat failure; aborted operations: " . FormatJson::encode( $ops ) );
 		}
 

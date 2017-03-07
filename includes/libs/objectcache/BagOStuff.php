@@ -679,7 +679,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	protected function debug( $text ) {
 		if ( $this->debugMode ) {
 			$this->logger->debug( "{class} debug: $text", [
-				'class' => get_class( $this ),
+				'class' => static::class,
 			] );
 		}
 	}
