@@ -1,16 +1,10 @@
 /* eslint-env node */
 
-var WebdriverIOconfigFile;
-if ( process.env.JENKINS_HOME ) {
-	WebdriverIOconfigFile = './wdio.conf.jenkins.js';
-} else {
-	WebdriverIOconfigFile = './wdio.conf.vagrant.js';
-}
-
 module.exports = function ( grunt ) {
 
 	var wgServer = process.env.MW_SERVER,
 		wgScriptPath = process.env.MW_SCRIPT_PATH,
+		WebdriverIOconfigFile,
 		karmaProxy = {};
 
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
@@ -26,6 +20,14 @@ module.exports = function ( grunt ) {
 		target: wgServer + wgScriptPath,
 		changeOrigin: true
 	};
+
+	if ( process.env.JENKINS_HOME ) {
+		WebdriverIOconfigFile = './tests/selenium/wdio.conf.jenkins.js';
+	} else if ( process.env.USER === 'vagrant' ) {
+		WebdriverIOconfigFile = './tests/selenium/wdio.conf.vagrant.js';
+	} else {
+		WebdriverIOconfigFile = './tests/selenium/wdio.conf.js';
+	}
 
 	grunt.initConfig( {
 		eslint: {
@@ -119,6 +121,9 @@ module.exports = function ( grunt ) {
 		webdriver: {
 			test: {
 				configFile: WebdriverIOconfigFile
+			},
+			vagrant: {
+				configFile: './tests/selenium/wdio.conf.vagrant.js'
 			}
 		}
 
