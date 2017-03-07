@@ -189,6 +189,9 @@
 			$( '.rcfilters-container' ).append( filtersWidget.$element );
 			$( 'body' ).append( $overlay );
 
+			// Set as ready
+			$( '.rcfilters-head' ).addClass( 'mw-rcfilters-ui-ready' );
+
 			window.addEventListener( 'popstate', function () {
 				controller.updateChangesList();
 			} );

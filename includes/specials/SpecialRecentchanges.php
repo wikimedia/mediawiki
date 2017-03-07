@@ -456,23 +456,30 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$panel[] = $form;
 		$panelString = implode( "\n", $panel );
 
+		$rcoptions = Xml::fieldset(
+			$this->msg( 'recentchanges-legend' )->text(),
+			$panelString,
+			[ 'class' => 'rcoptions' ]
+		);
+
 		// Insert a placeholder for RCFilters
 		if ( $this->getUser()->getOption( 'rcenhancedfilters' ) ) {
+			$rcfilterContainer = Html::element(
+				'div',
+				[ 'class' => 'rcfilters-container' ]
+			);
+
+			// Wrap both with rcfilters-head
 			$this->getOutput()->addHTML(
-				Html::element(
+				Html::rawElement(
 					'div',
-					[ 'class' => 'rcfilters-container' ]
+					[ 'class' => 'rcfilters-head' ],
+					$rcfilterContainer . $rcoptions
 				)
 			);
+		} else {
+			$this->getOutput()->addHTML( $rcoptions );
 		}
-
-		$this->getOutput()->addHTML(
-			Xml::fieldset(
-				$this->msg( 'recentchanges-legend' )->text(),
-				$panelString,
-				[ 'class' => 'rcoptions' ]
-			)
-		);
 
 		$this->setBottomText( $opts );
 	}
