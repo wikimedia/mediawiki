@@ -1404,6 +1404,7 @@
 	"rcfilters-empty-filter": "Nessun filtro attivo. Sono mostrati tutti i contributi.",
 	"rcfilters-filterlist-title": "Filtri",
 	"rcfilters-highlightmenu-title": "Seleziona un colore",
+	"rcfilters-highlightmenu-help": "Seleziona un colore per evidenziare questa proprietà",
 	"rcfilters-filterlist-noresults": "Nessun filtro trovato",
 	"rcfilters-filtergroup-registration": "Registrazione utente",
 	"rcfilters-filter-registered-label": "Registrato",

@@ -1396,6 +1396,7 @@
 	"rcfilters-filterlist-feedbacklink": "Rückmeldung zu den neuen (Beta-)Filtern hinterlassen",
 	"rcfilters-highlightbutton-title": "Ergebnisse hervorheben",
 	"rcfilters-highlightmenu-title": "Eine Farbe auswählen",
+	"rcfilters-highlightmenu-help": "Eine Farbe auswählen, um diese Eigenschaft hervorzuheben.",
 	"rcfilters-filterlist-noresults": "Keine Filter gefunden",
 	"rcfilters-filtergroup-registration": "Benutzerregistrierung",
 	"rcfilters-filter-registered-label": "Angemeldet",

@@ -1374,6 +1374,7 @@
 	"rcfilters-filterlist-feedbacklink": "تقديم مراجعات لمرشحات (بيتا) الجديدة",
 	"rcfilters-highlightbutton-title": "التعليم على النتائج",
 	"rcfilters-highlightmenu-title": "اختر لونًا",
+	"rcfilters-highlightmenu-help": "اختر لونا للتعليم على هذه الخاصية",
 	"rcfilters-filterlist-noresults": "لم يتم العثور على مرشحات",
 	"rcfilters-filtergroup-registration": "تسجيل المستخدم",
 	"rcfilters-filter-registered-label": "مسجل",

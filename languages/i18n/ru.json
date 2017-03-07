@@ -1406,6 +1406,7 @@
 	"rcfilters-filterlist-feedbacklink": "Оставить отзыв о новых (бета) фильтрах",
 	"rcfilters-highlightbutton-title": "Выделить результаты",
 	"rcfilters-highlightmenu-title": "Выберите цвет",
+	"rcfilters-highlightmenu-help": "Выберите цвет, чтобы подсветить это свойство",
 	"rcfilters-filterlist-noresults": "Фильтры не найдены",
 	"rcfilters-filtergroup-registration": "Регистрация участников",
 	"rcfilters-filter-registered-label": "Зарегистрированные",

@@ -1315,6 +1315,7 @@
 	"rcfilters-invalid-filter": "Filtru inválidu",
 	"rcfilters-empty-filter": "Nun hai filtros activos. Amuésense toles contribuciones.",
 	"rcfilters-filterlist-title": "Filtros",
+	"rcfilters-filterlist-feedbacklink": "Comentar sobro los nuevos filtros (beta)",
 	"rcfilters-highlightbutton-title": "Resaltar resultaos",
 	"rcfilters-highlightmenu-title": "Seleiciona un color",
 	"rcfilters-filterlist-noresults": "Nun s'alcontraron filtros",

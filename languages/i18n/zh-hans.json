@@ -1400,6 +1400,7 @@
 	"rcfilters-filterlist-feedbacklink": "在新（测试版）过滤器中提供反馈",
 	"rcfilters-highlightbutton-title": "高亮结果",
 	"rcfilters-highlightmenu-title": "选择颜色",
+	"rcfilters-highlightmenu-help": "选择颜色来高亮该属性",
 	"rcfilters-filterlist-noresults": "找不到过滤器",
 	"rcfilters-filtergroup-registration": "用户注册",
 	"rcfilters-filter-registered-label": "已注册",

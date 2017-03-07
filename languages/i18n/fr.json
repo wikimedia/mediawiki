@@ -1470,6 +1470,7 @@
 	"rcfilters-filterlist-feedbacklink": "Fournir un commentaire sur les nouveaux filtres (en bêta)",
 	"rcfilters-highlightbutton-title": "Mettre en valeur les résultats",
 	"rcfilters-highlightmenu-title": "Choisir une couleur",
+	"rcfilters-highlightmenu-help": "Sélectionner une couleur pour mettre en évidence cette propriété",
 	"rcfilters-filterlist-noresults": "Aucun filtre trouvé",
 	"rcfilters-filtergroup-registration": "Inscription de l’utilisateur",
 	"rcfilters-filter-registered-label": "Connectés",

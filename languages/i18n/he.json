@@ -1340,6 +1340,7 @@
 	"rcfilters-filterlist-feedbacklink": "שליחת משוב על המסננים החדשים (בטא)",
 	"rcfilters-highlightbutton-title": "הבלטת התוצאות",
 	"rcfilters-highlightmenu-title": "בחירת צבע",
+	"rcfilters-highlightmenu-help": "בחירת צבע להדגשת מאפיין זה",
 	"rcfilters-filterlist-noresults": "לא נמצאו מסננים",
 	"rcfilters-filtergroup-registration": "רישום העורכים",
 	"rcfilters-filter-registered-label": "רשומים",

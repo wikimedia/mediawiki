@@ -1319,6 +1319,7 @@
 	"rcfilters-filterlist-feedbacklink": "Podajte povratne informacije o novih (preizkusnih) filtrih",
 	"rcfilters-highlightbutton-title": "Označi rezultate",
 	"rcfilters-highlightmenu-title": "Izberite barvo",
+	"rcfilters-highlightmenu-help": "Izberite barvo za označitev te lastnosti",
 	"rcfilters-filterlist-noresults": "Nismo našli nobenega filtra",
 	"rcfilters-filtergroup-registration": "Registracija uporabnika",
 	"rcfilters-filter-registered-label": "Registriran",
