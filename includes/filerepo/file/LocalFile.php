@@ -391,7 +391,7 @@ class LocalFile extends File {
 	 * @param int $flags
 	 */
 	function loadFromDB( $flags = 0 ) {
-		$fname = get_class( $this ) . '::' . __FUNCTION__;
+		$fname = static::class . '::' . __FUNCTION__;
 
 		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
 		$this->dataLoaded = true;
@@ -416,7 +416,7 @@ class LocalFile extends File {
 	 * This covers fields that are sometimes not cached.
 	 */
 	protected function loadExtraFromDB() {
-		$fname = get_class( $this ) . '::' . __FUNCTION__;
+		$fname = static::class . '::' . __FUNCTION__;
 
 		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
 		$this->extraDataLoaded = true;
@@ -1100,7 +1100,7 @@ class LocalFile extends File {
 	 */
 	public function nextHistoryLine() {
 		# Polymorphic function name to distinguish foreign and local fetches
-		$fname = get_class( $this ) . '::' . __FUNCTION__;
+		$fname = static::class . '::' . __FUNCTION__;
 
 		$dbr = $this->repo->getReplicaDB();
 
