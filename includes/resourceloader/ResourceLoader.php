@@ -830,11 +830,13 @@ class ResourceLoader implements LoggerAwareInterface {
 		) {
 			$maxage = $rlMaxage['unversioned']['client'];
 			$smaxage = $rlMaxage['unversioned']['server'];
+			$immutable = false;
 		// If a version was specified we can use a longer expiry time since changing
 		// version numbers causes cache misses
 		} else {
 			$maxage = $rlMaxage['versioned']['client'];
 			$smaxage = $rlMaxage['versioned']['server'];
+			$immutable = true;
 		}
 		if ( $context->getImageObj() ) {
 			// Output different headers if we're outputting textual errors.
@@ -857,7 +859,11 @@ class ResourceLoader implements LoggerAwareInterface {
 			header( 'Cache-Control: private, no-cache, must-revalidate' );
 			header( 'Pragma: no-cache' );
 		} else {
-			header( "Cache-Control: public, max-age=$maxage, s-maxage=$smaxage" );
+			if ( $immutable ) {
+				header( "Cache-Control: public, max-age=$maxage, s-maxage=$smaxage, immutable" );
+			} else {
+				header( "Cache-Control: public, max-age=$maxage, s-maxage=$smaxage" );
+			}
 			$exp = min( $maxage, $smaxage );
 			header( 'Expires: ' . wfTimestamp( TS_RFC2822, $exp + time() ) );
 		}
