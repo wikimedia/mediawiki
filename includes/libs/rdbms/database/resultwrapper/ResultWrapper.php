@@ -82,7 +82,7 @@ class ResultWrapper implements IResultWrapper {
 	 */
 	private function getDB() {
 		if ( !$this->db ) {
-			throw new RuntimeException( get_class( $this ) . ' needs a DB handle for iteration.' );
+			throw new RuntimeException( static::class . ' needs a DB handle for iteration.' );
 		}
 
 		return $this->db;

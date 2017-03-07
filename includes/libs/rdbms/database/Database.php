@@ -3412,7 +3412,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	public function __clone() {
 		$this->connLogger->warning(
-			"Cloning " . get_class( $this ) . " is not recomended; forking connection:\n" .
+			"Cloning " . static::class . " is not recomended; forking connection:\n" .
 			( new RuntimeException() )->getTraceAsString()
 		);
 
