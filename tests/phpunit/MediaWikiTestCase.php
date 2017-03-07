@@ -439,7 +439,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @return string Absolute name of the temporary file
 	 */
 	protected function getNewTempFile() {
-		$fileName = tempnam( wfTempDir(), 'MW_PHPUnit_' . get_class( $this ) . '_' );
+		$fileName = tempnam( wfTempDir(), 'MW_PHPUnit_' . static::class . '_' );
 		$this->tmpFiles[] = $fileName;
 
 		return $fileName;
@@ -1304,8 +1304,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		if ( isset( $compatibility[$func] ) ) {
 			return call_user_func_array( [ $this, $compatibility[$func] ], $args );
 		} else {
-			throw new MWException( "Called non-existent $func method on "
-				. get_class( $this ) );
+			throw new MWException( "Called non-existent $func method on " . static::class );
 		}
 	}
 

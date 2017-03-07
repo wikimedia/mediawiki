@@ -133,7 +133,7 @@ abstract class WebInstallerPage {
 	 * @return string
 	 */
 	public function getName() {
-		return str_replace( 'WebInstaller', '', get_class( $this ) );
+		return str_replace( 'WebInstaller', '', static::class );
 	}
 
 	/**
