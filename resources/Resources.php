@@ -1853,6 +1853,7 @@ return [
 			'mediawiki.rcfilters.filters.dm',
 			'oojs-ui.styles.icons-moderation',
 			'oojs-ui.styles.icons-editing-core',
+			'oojs-ui.styles.icons-editing-styling',
 			'oojs-ui.styles.icons-interactions',
 		],
 	],
