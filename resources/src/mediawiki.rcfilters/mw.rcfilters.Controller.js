@@ -59,6 +59,7 @@
 	 */
 	mw.rcfilters.Controller.prototype.resetToDefaults = function () {
 		this.filtersModel.setFiltersToDefaults();
+		this.filtersModel.clearAllHighlightColors();
 		// Check all filter interactions
 		this.filtersModel.reassessFilterInteractions();
 
