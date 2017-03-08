@@ -1188,7 +1188,6 @@ return [
 			'searchsuggest-containing',
 		],
 		'dependencies' => [
-			'jquery.placeholder',
 			'jquery.suggestions',
 			'jquery.getAttrs',
 			'mediawiki.api',
@@ -1671,7 +1670,6 @@ return [
 			'jquery.accessKeyLabel',
 			'jquery.checkboxShiftClick',
 			'jquery.makeCollapsible',
-			'jquery.placeholder',
 			'jquery.mw-jump',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
