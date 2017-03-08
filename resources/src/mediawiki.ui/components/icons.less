@@ -36,8 +36,8 @@
 	// <div class="mw-ui-icon mw-ui-icon-element mw-ui-icon-ok">OK</div><br>
 	// <div class="mw-ui-icon mw-ui-icon-element mw-ui-icon-ok mw-ui-button mw-ui-progressive">OK</div><br>
 	// <button class="mw-ui-icon mw-ui-icon-ok mw-ui-icon-element mw-ui-button mw-ui-quiet" title="">Close</button>
-	//
 	// Styleguide 6.1.1.
+	&.mw-ui-icon-element-standalone,
 	&.mw-ui-icon-element {
 		@width: @iconSize + ( 2 * @iconGutterWidth );
 
@@ -55,8 +55,13 @@
 		}
 	}
 
+	&.mw-ui-icon-element {
+		background-image: none;
+	}
+
 	&.mw-ui-icon-before:before,
-	&.mw-ui-icon-element:before {
+	&.mw-ui-icon-element:before,
+	&.mw-ui-icon-element-standalone {
 		background-position: 50% 50%;
 		background-repeat: no-repeat;
 		background-size: 100% auto;
@@ -64,6 +69,10 @@
 		display: block;
 		min-height: @iconSize;
 		content: '';
+	}
+
+	&.mw-ui-icon-element-standalone {
+		background-size: 1.5em auto;
 	}
 
 	// Icons with text
