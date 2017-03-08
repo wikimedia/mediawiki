@@ -1671,7 +1671,6 @@ return [
 		'dependencies' => [
 			'jquery.accessKeyLabel',
 			'jquery.checkboxShiftClick',
-			'jquery.makeCollapsible',
 			'jquery.placeholder',
 			'jquery.mw-jump',
 		],

@@ -12,15 +12,20 @@
 	}
 
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
-		var $sortable;
+		var $sortable, $colllapsible;
 
 		// Run jquery.placeholder polyfill if placeholder is not supported
 		if ( !supportsPlaceholder ) {
 			$content.find( 'input[placeholder]' ).placeholder();
 		}
 
-		// Run jquery.makeCollapsible
-		$content.find( '.mw-collapsible' ).makeCollapsible();
+		$colllapsible = $content.find( '.mw-collapsible' );
+		if ( $colllapsible.length ) {
+			// Preloaded by Skin::getDefaultModules()
+			mw.loader.using( 'jquery.makeCollapsible', function () {
+				$colllapsible.makeCollapsible();
+			} );
+		}
 
 		$sortable = $content.find( 'table.sortable' );
 		if ( $sortable.length ) {
