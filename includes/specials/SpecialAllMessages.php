@@ -61,10 +61,14 @@ class SpecialAllMessages extends SpecialPage {
 		$out->addModuleStyles( 'mediawiki.special' );
 		$this->addHelpLink( 'Help:System message' );
 
+		$lang = $request->getVal( 'lang', $par );
+		// Replace deprecated language codes
+		$lang = LanguageCode::replaceDeprecatedCodes( $lang );
+
 		$this->table = new AllMessagesTablePager(
 			$this,
 			[],
-			wfGetLangObj( $request->getVal( 'lang', $par ) )
+			wfGetLangObj( $lang )
 		);
 
 		$out->addHTML( $this->table->buildForm() );

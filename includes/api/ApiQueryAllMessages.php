@@ -37,15 +37,18 @@ class ApiQueryAllMessages extends ApiQueryBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
+		$lang = $params['lang'];
 
-		if ( is_null( $params['lang'] ) ) {
+		if ( is_null( $lang ) ) {
 			$langObj = $this->getLanguage();
-		} elseif ( !Language::isValidCode( $params['lang'] ) ) {
+		} elseif ( !Language::isValidCode( $lang ) ) {
 			$this->dieWithError(
 				[ 'apierror-invalidlang', $this->encodeParamName( 'lang' ) ], 'invalidlang'
 			);
 		} else {
-			$langObj = Language::factory( $params['lang'] );
+			// Replace deprecated language codes
+			$lang = LanguageCode::replaceDeprecatedCodes( $lang );
+			$langObj = Language::factory( $lang );
 		}
 
 		if ( $params['enableparser'] ) {
