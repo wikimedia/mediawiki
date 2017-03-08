@@ -149,6 +149,9 @@ abstract class Skin extends ContextSource {
 	 * Defines the ResourceLoader modules that should be added to the skin
 	 * It is recommended that skins wishing to override call parent::getDefaultModules()
 	 * and substitute out any modules they wish to change by using a key to look them up
+	 *
+	 * For style modules, use setupSkinUserCss() instead.
+	 *
 	 * @return array Array of modules with helper keys for easy overriding
 	 */
 	public function getDefaultModules() {
@@ -170,6 +173,11 @@ abstract class Skin extends ContextSource {
 			// modules which relate to the current users preferences
 			'user' => [],
 		];
+
+		// Preload jquery.tablesorter for mediawiki.page.ready
+		if ( strpos( $out->getHTML(), 'sortable' ) !== false ) {
+			$modules['content'][] = 'jquery.tablesorter';
+		}
 
 		// Add various resources if required
 		if ( $wgUseAjax && $wgEnableAPI ) {
