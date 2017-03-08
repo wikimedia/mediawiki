@@ -181,10 +181,15 @@ class Language {
 	 * @return Language
 	 */
 	static function factory( $code ) {
-		global $wgDummyLanguageCodes, $wgLangObjCacheSize;
+		global $wgExtraLanguageCodes, $wgLangObjCacheSize;
 
-		if ( isset( $wgDummyLanguageCodes[$code] ) ) {
-			$code = $wgDummyLanguageCodes[$code];
+		$deprecatedLanguages = LanguageCode::getDeprecatedCodeMapping();
+		if ( isset( $deprecatedLanguages[$code] ) ) {
+			throw new MWException( "Deprecated language code \"$code\"" );;
+		}
+
+		if ( isset( $wgExtraLanguageCodes[$code] ) ) {
+			$code = $wgExtraLanguageCodes[$code];
 		}
 
 		// get the language object to process

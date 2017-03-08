@@ -365,6 +365,12 @@ class RequestContext implements IContextSource, MutableContext {
 				}
 				$code = self::sanitizeLangCode( $code );
 
+				// Replace deprecated language codes
+				$deprecatedLanguages = LanguageCode::getDeprecatedCodeMapping();
+				if ( isset( $deprecatedLanguages[$code] ) ) {
+					$code = $deprecatedLanguages[$code];
+				}
+
 				Hooks::run( 'UserGetLanguageObject', [ $user, &$code, $this ] );
 
 				if ( $code === $this->getConfig()->get( 'LanguageCode' ) ) {
