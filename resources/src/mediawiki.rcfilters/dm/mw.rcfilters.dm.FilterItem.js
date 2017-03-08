@@ -378,4 +378,13 @@
 	mw.rcfilters.dm.FilterItem.prototype.isHighlightSupported = function () {
 		return !!this.getCssClass();
 	};
+
+	/**
+	 * Check if the filter is currently highlighted
+	 *
+	 * @return {boolean}
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.isHighlighted = function () {
+		return this.isHighlightEnabled() && !!this.getHighlightColor();
+	};
 }( mediaWiki ) );

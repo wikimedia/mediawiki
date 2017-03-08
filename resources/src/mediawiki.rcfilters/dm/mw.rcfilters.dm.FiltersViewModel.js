@@ -359,7 +359,7 @@
 	mw.rcfilters.dm.FiltersViewModel.prototype.setFiltersToDefaults = function () {
 		var defaultFilterStates = this.getFiltersFromParameters( this.getDefaultParams() );
 
-		this.updateFilters( defaultFilterStates );
+		this.toggleFiltersSelected( defaultFilterStates );
 	};
 
 	/**
@@ -418,7 +418,7 @@
 	 *                  are the selected highlight colors.
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getHighlightParameters = function () {
-		var result = { highlight: this.isHighlightEnabled() };
+		var result = { highlight: Number( this.isHighlightEnabled() ) };
 
 		this.getItems().forEach( function ( filterItem ) {
 			result[ filterItem.getName() + '_color' ] = filterItem.getHighlightColor();
@@ -472,15 +472,10 @@
 	 * @return {boolean} Current filters are all empty
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.areCurrentFiltersEmpty = function () {
-		var model = this;
-
 		// Check if there are either any selected items or any items
 		// that have highlight enabled
 		return !this.getItems().some( function ( filterItem ) {
-			return (
-				filterItem.isSelected() ||
-				( model.isHighlightEnabled() && filterItem.getHighlightColor() )
-			);
+			return filterItem.isSelected() || filterItem.isHighlighted();
 		} );
 	};
 
@@ -602,14 +597,19 @@
 	 * This is equivalent to display all.
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.emptyAllFilters = function () {
-		var filters = {};
-
 		this.getItems().forEach( function ( filterItem ) {
-			filters[ filterItem.getName() ] = false;
-		} );
+			this.toggleFilterSelected( filterItem.getName(), false );
+		}.bind( this ) );
+	};
 
-		// Update filters
-		this.updateFilters( filters );
+	/**
+	 * Toggle selected state of one item
+	 *
+	 * @param {string} name Name of the filter item
+	 * @param {boolean} [isSelected] Filter selected state
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.toggleFilterSelected = function ( name, isSelected ) {
+		this.getItemByName( name ).toggleSelected( isSelected );
 	};
 
 	/**
@@ -617,13 +617,10 @@
 	 *
 	 * @param {Object} filterDef Filter definitions
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.updateFilters = function ( filterDef ) {
-		var name, filterItem;
-
-		for ( name in filterDef ) {
-			filterItem = this.getItemByName( name );
-			filterItem.toggleSelected( filterDef[ name ] );
-		}
+	mw.rcfilters.dm.FiltersViewModel.prototype.toggleFiltersSelected = function ( filterDef ) {
+		Object.keys( filterDef ).forEach( function ( name ) {
+			this.toggleFilterSelected( name, filterDef[ name ] );
+		}.bind( this ) );
 	};
 
 	/**
@@ -726,7 +723,7 @@
 	 * @return {boolean}
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.isHighlightEnabled = function () {
-		return this.highlightEnabled;
+		return !!this.highlightEnabled;
 	};
 
 	/**
