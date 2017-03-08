@@ -138,6 +138,9 @@ class MWTidy {
 			case 'Html5Internal':
 				$instance = new MediaWiki\Tidy\Html5Internal( $config );
 				break;
+			case 'RemexHtml':
+				$instance = new MediaWiki\Tidy\RemexDriver( $config );
+				break;
 			case 'disabled':
 				return false;
 			default:
