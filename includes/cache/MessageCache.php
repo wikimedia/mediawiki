@@ -1233,6 +1233,13 @@ class MessageCache {
 		}
 
 		$lang = array_pop( $pieces );
+
+		// Replace deprecated language codes
+		$deprecatedLanguageCodes = LanguageCode::getDeprecatedCodeMapping();
+		if ( isset( $deprecatedLanguageCodes[$lang] ) ) {
+			$lang = $deprecatedLanguageCodes[$lang];
+		}
+
 		if ( !Language::fetchLanguageName( $lang, null, 'mw' ) ) {
 			return [ $key, $wgLanguageCode ];
 		}
