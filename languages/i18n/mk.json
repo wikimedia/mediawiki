@@ -1331,6 +1331,7 @@
 	"rcfilters-filterlist-feedbacklink": "Дајте мислење за новите (бета) филтри",
 	"rcfilters-highlightbutton-title": "Истакнување на исход",
 	"rcfilters-highlightmenu-title": "Изберете боја",
+	"rcfilters-highlightmenu-help": "Изберете боја за да го истакнете ова својство",
 	"rcfilters-filterlist-noresults": "Не пронајдов ниеден филтер",
 	"rcfilters-filtergroup-registration": "Регистрација на корисници",
 	"rcfilters-filter-registered-label": "Регистрирани",

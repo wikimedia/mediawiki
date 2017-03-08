@@ -1388,6 +1388,7 @@
 	"rcfilters-filterlist-feedbacklink": "Geef feedback op de nieuwe (beta) filters",
 	"rcfilters-highlightbutton-title": "Resultaten markeren",
 	"rcfilters-highlightmenu-title": "Kies een kleur",
+	"rcfilters-highlightmenu-help": "Selecteer een kleur om deze eigenschap uit te lichten",
 	"rcfilters-filterlist-noresults": "Geen filters gevonden",
 	"rcfilters-filtergroup-registration": "Gebruikers-registratie",
 	"rcfilters-filter-registered-label": "Geregistreerd",

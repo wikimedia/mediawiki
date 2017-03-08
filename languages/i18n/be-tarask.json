@@ -3764,6 +3764,7 @@
 	"authmanager-link-not-in-progress": "Злучэньне рахункаў не выконваецца або страчаныя зьвесткі сэсіі. Калі ласка, пачніце ізноў спачатку.",
 	"authmanager-authplugin-setpass-failed-title": "Памылка зьмены паролю",
 	"authmanager-authplugin-setpass-failed-message": "Дадатак аўтэнтыфікацыі адмовіў зьмену паролю.",
+	"authmanager-authplugin-create-fail": "Дадатак аўтэнтыфікацыі адмовіў у стварэньні рахунку.",
 	"authmanager-realname-label": "Сапраўднае імя",
 	"authmanager-provider-temporarypassword": "Часовы пароль",
 	"changecredentials": "Зьмена ўліковых зьвестак",

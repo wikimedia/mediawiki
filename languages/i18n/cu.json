@@ -784,7 +784,7 @@
 	"logentry-upload-upload": "$1 {{GENDER:$2|положишє}} $3",
 	"revdelete-summary": "мѣнꙑ опьсаниѥ",
 	"feedback-cancel": "отъмѣтаниѥ",
-	"searchsuggest-search": "исканиѥ",
+	"searchsuggest-search": "{{SITENAME}} : исканиѥ",
 	"searchsuggest-containing": "сѥ дрьжащи···",
 	"api-error-unknownerror": "нєвѣдома блаꙁна : ⁖ $1 ⁖",
 	"duration-seconds": "$1 {{PLURAL:$1|дєѵтєролєпто|дєѵтєролєпта|дєѵтєролєптъ}}",
