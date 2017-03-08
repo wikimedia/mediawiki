@@ -30,15 +30,17 @@
 @indicator-size: unit( 12 / 16 / 0.8, em );
 
 .mw-widget-dateInputWidget {
-	display: inline-block;
-	position: relative;
-	width: 21em;
-	margin-top: 0.25em;
-	.oo-ui-inline-spacing( 0.5em );
-	margin-bottom: 0.25em;
-	margin-left: 0;
+	&.oo-ui-textInputWidget {
+		display: inline-block;
+		position: relative;
+		width: 21em;
+		margin-top: 0.25em;
+		.oo-ui-inline-spacing(0.5em);
+		margin-bottom: 0.25em;
+		margin-left: 0;
+	}
 
-	&-handle {
+	&-handle, &.oo-ui-textInputWidget input {
 		background-color: #fff;
 		display: inline-block;
 		position: relative;

@@ -56,7 +56,7 @@
 	 *     } );
 	 *
 	 * @class
-	 * @extends OO.ui.InputWidget
+	 * @extends OO.ui.TextInputWidget
 	 * @mixins OO.ui.mixin.IndicatorElement
 	 *
 	 * @constructor
@@ -116,7 +116,6 @@
 
 		// Properties (must be set before parent constructor, which calls #setValue)
 		this.$handle = $( '<div>' );
-		this.label = new OO.ui.LabelWidget();
 		this.textInput = new OO.ui.TextInputWidget( {
 			required: config.required,
 			placeholder: placeholderDateFormat,
@@ -135,8 +134,8 @@
 		this.longDisplayFormat = config.longDisplayFormat;
 		this.required = config.required;
 		this.placeholderLabel = config.placeholderLabel;
-
 		// Validate and set min and max dates as properties
+
 		if ( config.mustBeAfter !== undefined ) {
 			mustBeAfter = moment( config.mustBeAfter, 'YYYY-MM-DD' );
 			if ( mustBeAfter.isValid() ) {
@@ -149,12 +148,13 @@
 				this.mustBeBefore = mustBeBefore;
 			}
 		}
-
 		// Parent constructor
 		mw.widgets.DateInputWidget.parent.call( this, config );
 
 		// Mixin constructors
 		OO.ui.mixin.IndicatorElement.call( this, config );
+
+		this.label = new OO.ui.LabelWidget();
 
 		// Events
 		this.calendar.connect( this, {
@@ -239,7 +239,7 @@
 
 	/* Inheritance */
 
-	OO.inheritClass( mw.widgets.DateInputWidget, OO.ui.InputWidget );
+	OO.inheritClass( mw.widgets.DateInputWidget, OO.ui.TextInputWidget );
 	OO.mixinClass( mw.widgets.DateInputWidget, OO.ui.mixin.IndicatorElement );
 
 	/* Methods */
