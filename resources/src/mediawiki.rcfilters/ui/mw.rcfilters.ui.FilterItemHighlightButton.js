@@ -19,7 +19,11 @@
 			icon: 'highlight',
 			indicator: 'down',
 			popup: {
-				anchor: false,
+				// TODO: There is a bug in non-anchored popups in
+				// OOUI, so we set this popup to "anchored" until
+				// the bug is fixed.
+				// See: https://phabricator.wikimedia.org/T159906
+				anchor: true,
 				padded: true,
 				align: 'backwards',
 				horizontalPosition: 'end',
