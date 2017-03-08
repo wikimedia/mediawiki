@@ -307,6 +307,9 @@ class RequestContext implements IContextSource, MutableContext {
 		// BCP 47 - letter case MUST NOT carry meaning
 		$code = strtolower( $code );
 
+		// Replace deprecated language codes
+		$code = LanguageCode::replaceDeprecatedCodes( $code );
+
 		# Validate $code
 		if ( !$code || !Language::isValidCode( $code ) || $code === 'qqq' ) {
 			wfDebug( "Invalid user language code\n" );
@@ -364,6 +367,9 @@ class RequestContext implements IContextSource, MutableContext {
 					$code = $user->getOption( 'language' );
 				}
 				$code = self::sanitizeLangCode( $code );
+
+				// Replace deprecated language codes
+				$code = LanguageCode::replaceDeprecatedCodes( $code );
 
 				Hooks::run( 'UserGetLanguageObject', [ $user, &$code, $this ] );
 
