@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.19.4
+ * OOjs UI v0.19.5
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-02-28T23:19:40Z
+ * Date: 2017-03-07T22:57:01Z
  */
 ( function ( OO ) {
 
@@ -3643,11 +3643,7 @@ OO.ui.CapsuleMultiselectWidget = function OoUiCapsuleMultiselectWidget( config )
 			align: 'forwards',
 			anchor: false
 		} );
-		OO.ui.mixin.PopupElement.call( this, $.extend( true, {}, config, {
-			popup: {
-				$floatableContainer: this.$element
-			}
-		} ) );
+		OO.ui.mixin.PopupElement.call( this, config );
 		$tabFocus = $( '<span>' );
 		OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: $tabFocus } ) );
 	} else {
@@ -4273,6 +4269,9 @@ OO.ui.CapsuleMultiselectWidget.prototype.updateIfHeightChanged = function () {
 	if ( height !== this.height ) {
 		this.height = height;
 		this.menu.position();
+		if ( this.popup ) {
+			this.popup.updateDimensions();
+		}
 		this.emit( 'resize' );
 	}
 };

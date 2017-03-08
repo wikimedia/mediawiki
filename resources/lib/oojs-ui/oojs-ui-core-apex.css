@@ -1,18 +1,15 @@
 /*!
- * OOjs UI v0.19.4
+ * OOjs UI v0.19.5
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-02-28T23:19:44Z
+ * Date: 2017-03-07T22:57:06Z
  */
-/* stylelint-disable selector-no-vendor-prefix, at-rule-no-unknown */
-/* stylelint-enable selector-no-vendor-prefix, at-rule-no-unknown */
 .oo-ui-element-hidden {
   display: none !important;
-  /* stylelint-disable-line declaration-no-important */
 }
 .oo-ui-buttonElement {
   display: inline-block;
@@ -667,8 +664,48 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-popupWidget-anchored .oo-ui-popupWidget-anchor {
   display: block;
   position: absolute;
-  /* `top` property is to be set in theme's selector due to specific `@size-anchor` values */
   background-repeat: no-repeat;
+}
+.oo-ui-popupWidget-anchored .oo-ui-popupWidget-anchor:before,
+.oo-ui-popupWidget-anchored .oo-ui-popupWidget-anchor:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+}
+.oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor {
+  left: 0;
+  /* `top` property is to be set in theme's selector due to specific `@size-anchor` values */
+}
+.oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor:before,
+.oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor:after {
+  border-top: 0;
+}
+.oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor {
+  left: 0;
+  /* `bottom` property is to be set in theme's selector due to specific `@size-anchor` values */
+}
+.oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor:before,
+.oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor:after {
+  border-bottom: 0;
+}
+.oo-ui-popupWidget-anchored-start .oo-ui-popupWidget-anchor {
+  top: 0;
+  /* `left` property is to be set in theme's selector due to specific `@size-anchor` values */
+}
+.oo-ui-popupWidget-anchored-start .oo-ui-popupWidget-anchor:before,
+.oo-ui-popupWidget-anchored-start .oo-ui-popupWidget-anchor:after {
+  border-left: 0;
+}
+.oo-ui-popupWidget-anchored-end .oo-ui-popupWidget-anchor {
+  top: 0;
+  /* `right` property is to be set in theme's selector due to specific `@size-anchor` values */
+}
+.oo-ui-popupWidget-anchored-end .oo-ui-popupWidget-anchor:before,
+.oo-ui-popupWidget-anchored-end .oo-ui-popupWidget-anchor:after {
+  border-right: 0;
 }
 .oo-ui-popupWidget-head {
   -webkit-touch-callout: none;
@@ -696,32 +733,76 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-radius: 0.25em;
   box-shadow: 0 0.15em 0.5em 0 rgba(0, 0, 0, 0.2);
 }
-.oo-ui-popupWidget-anchored {
+.oo-ui-popupWidget-anchored-top {
   margin-top: 6px;
 }
-.oo-ui-popupWidget-anchored .oo-ui-popupWidget-anchor {
+.oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor {
   top: -6px;
 }
-.oo-ui-popupWidget-anchored .oo-ui-popupWidget-anchor:before,
-.oo-ui-popupWidget-anchored .oo-ui-popupWidget-anchor:after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-color: transparent;
-  border-top: 0;
-}
-.oo-ui-popupWidget-anchored .oo-ui-popupWidget-anchor:before {
+.oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor:before {
   bottom: -7px;
   left: -6px;
   border-bottom-color: #aaa;
   border-width: 7px;
 }
-.oo-ui-popupWidget-anchored .oo-ui-popupWidget-anchor:after {
+.oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor:after {
   bottom: -7px;
   left: -5px;
   border-bottom-color: #fff;
+  border-width: 6px;
+}
+.oo-ui-popupWidget-anchored-bottom {
+  margin-bottom: 6px;
+}
+.oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor {
+  bottom: -6px;
+}
+.oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor:before {
+  top: -7px;
+  left: -6px;
+  border-top-color: #aaa;
+  border-width: 7px;
+}
+.oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor:after {
+  top: -7px;
+  left: -5px;
+  border-top-color: #fff;
+  border-width: 6px;
+}
+.oo-ui-popupWidget-anchored-start {
+  margin-left: 6px;
+}
+.oo-ui-popupWidget-anchored-start .oo-ui-popupWidget-anchor {
+  left: -6px;
+}
+.oo-ui-popupWidget-anchored-start .oo-ui-popupWidget-anchor:before {
+  right: -7px;
+  top: -6px;
+  border-right-color: #aaa;
+  border-width: 7px;
+}
+.oo-ui-popupWidget-anchored-start .oo-ui-popupWidget-anchor:after {
+  right: -7px;
+  top: -5px;
+  border-right-color: #fff;
+  border-width: 6px;
+}
+.oo-ui-popupWidget-anchored-end {
+  margin-right: 6px;
+}
+.oo-ui-popupWidget-anchored-end .oo-ui-popupWidget-anchor {
+  right: -6px;
+}
+.oo-ui-popupWidget-anchored-end .oo-ui-popupWidget-anchor:before {
+  left: -7px;
+  top: -6px;
+  border-left-color: #aaa;
+  border-width: 7px;
+}
+.oo-ui-popupWidget-anchored-end .oo-ui-popupWidget-anchor:after {
+  left: -7px;
+  top: -5px;
+  border-left-color: #fff;
   border-width: 6px;
 }
 .oo-ui-popupWidget-transitioning .oo-ui-popupWidget-popup {
@@ -750,10 +831,12 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-popupButtonWidget .oo-ui-popupWidget {
   cursor: auto;
 }
-.oo-ui-popupWidget.oo-ui-popupButtonWidget-frameless-popup {
+.oo-ui-popupButtonWidget-frameless-popup.oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor,
+.oo-ui-popupButtonWidget-frameless-popup.oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor {
   margin-left: 0.9375em;
 }
-.oo-ui-popupWidget.oo-ui-popupButtonWidget-framed-popup {
+.oo-ui-popupButtonWidget-framed-popup.oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor,
+.oo-ui-popupButtonWidget-framed-popup.oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor {
   margin-left: 1.2375em;
 }
 .oo-ui-inputWidget {
@@ -931,8 +1014,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -webkit-transition: border-color 250ms ease, box-shadow 250ms ease;
      -moz-transition: border-color 250ms ease, box-shadow 250ms ease;
           transition: border-color 250ms ease, box-shadow 250ms ease;
-  /* stylelint-disable indentation */
-  /* stylelint-enable indentation */
 }
 .oo-ui-textInputWidget input.oo-ui-pendingElement-pending,
 .oo-ui-textInputWidget textarea.oo-ui-pendingElement-pending {

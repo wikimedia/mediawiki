@@ -56,6 +56,10 @@
 				"os": "images/icons/bold-cyrl-be.svg"
 			}
 		} },
+		"highlight": { "file": {
+			"ltr": "images/icons/highlight-ltr.svg",
+			"rtl": "images/icons/highlight-rtl.svg"
+		} },
 		"italic": { "file": {
 			"default": "images/icons/italic-a.svg",
 			"lang": {

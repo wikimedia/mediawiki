@@ -10,6 +10,10 @@
 			"ltr": "images/icons/articleRedirect-ltr.svg",
 			"rtl": "images/icons/articleRedirect-rtl.svg"
 		} },
+		"journal": { "file": {
+			"ltr": "images/icons/journal-ltr.svg",
+			"rtl": "images/icons/journal-rtl.svg"
+		} },
 		"upload": { "file": {
 			"ltr": "images/icons/upload-ltr.svg",
 			"rtl": "images/icons/upload-rtl.svg"
