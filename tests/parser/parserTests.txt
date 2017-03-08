@@ -11744,8 +11744,11 @@ Preprocessor precedence 3: language converter is rightmost opening
 language=zh
 !! wikitext
 {{-{R|raw}}}-
+
+[[-{R|raw]]}-
 !! html
 <p>{{raw}}
+</p><p>[[raw]]
 </p>
 !! end
 
@@ -11881,7 +11884,63 @@ Preprocessor precedence 11: found during visual diff testing
 </p>
 !! end
 
+!! test
+Preprocessor precedence 12: broken language converter closed by brace.
+!! wikitext
+This form breaks the template, which is unfortunate:
+* {{echo|foo-{bar}bat}}
 
+But if the broken language converter markup is inside an extension
+tag, nothing bad happens:
+* <tag>foo-{bar}bat</tag>
+* {{echo|<tag>foo-{bar}bat</tag>}}
+* <nowiki>foo-{bar}bat</nowiki>
+* {{echo|<tag>foo-{bar}bat</tag>}}
+* <pre>foo-{bar}bat</pre>
+* {{echo|<pre>foo-{bar}bat</pre>}}
+
+<references>
+{{cite web|title=foo-{bar} bat|date=}}
+<ref name="xyz">Foo -{bar} bat</ref>
+<ref name="pdq">x</ref>
+</references>
+
+[http://example.com Example in -{foo} link]
+
+<ref>[http://example.com Example in -{foo} link]</ref>
+
+This can be confusing, since by default...
+
+* <tag>-{foo}</tag> ...should be ignored inside extension markup
+* [http://foo/bar-{bat} Bat] ...should be ignored inside URL string
+* <!--{{foo}}--> ...should be ok
+* <!---{{foo}}--> ...extra dashes
+* {{echo|foo<!-- -{bar} -->bat}} ...should be ok
+
+This only occurs inside template context:
+* {{Foo -{R|raw}yep }-}}
+* [[Foo -{R|raw}nopge }-]]
+* -{R|raw}nope }-
+
+This behavior is for backwards-compatibility with existing text
+(mostly chemical formulas); other brace types don't do this.  Compare:
+* {{echo|foo[[bar}bat}}
+* {{echo|foo[[bar]bat}}
+* {{echo|foo{{{bar}bat}}
+
+Headings have a similar behavior, though.
+===foo[[bar===
+
+[http://example.com-{foo sasd]
+
+{{echo|foo}}
+
+{{echo|[http://example.com-{foo sasd]}}
+
+[http://example.com-{foo sasd] {{echo|foo}}
+
+!! html
+!! end
 
 ###
 ### Token Stream Patcher tests
