@@ -180,6 +180,14 @@ class ResourceLoaderContext {
 			// Must be a valid language code after this point (T64849)
 			// Only support uselang values that follow built-in conventions (T102058)
 			$lang = $this->getRequest()->getRawVal( 'lang', '' );
+
+			// Replace deprecated language codes
+			$deprecatedLanguageCodes = LanguageCode::getDeprecatedCodeMapping();
+			if ( isset( $deprecatedLanguageCodes[$lang] ) ) {
+				wfDebug( "Deprecated user language code\n" );
+				$lang = $deprecatedLanguageCodes[$lang];
+			}
+
 			// Stricter version of RequestContext::sanitizeLangCode()
 			if ( !Language::isValidBuiltInCode( $lang ) ) {
 				wfDebug( "Invalid user language code\n" );
