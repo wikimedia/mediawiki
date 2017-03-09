@@ -103,3 +103,8 @@
 	-o-tab-size: 4;
 	tab-size: 4;
 }
+
+.mw-apisandbox-widget-field .oo-ui-textInputWidget {
+	/* Leave at least enough space for icon, indicator, and a sliver of text */
+	min-width: 6em;
+}
