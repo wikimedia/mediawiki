@@ -2080,6 +2080,7 @@
 	"apisandbox-dynamic-error-exists": "A parameter named \"$1\" already exists.",
 	"apisandbox-deprecated-parameters": "Deprecated parameters",
 	"apisandbox-fetch-token": "Auto-fill the token",
+	"apisandbox-add-multi": "Add",
 	"apisandbox-submit-invalid-fields-title": "Some fields are invalid",
 	"apisandbox-submit-invalid-fields-message": "Please correct the marked fields and try again.",
 	"apisandbox-results": "Results",

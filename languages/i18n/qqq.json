@@ -2277,6 +2277,7 @@
 	"apisandbox-dynamic-error-exists": "Displayed as an error message from JavaScript when trying to add a new arbitrary parameter with a name that already exists. Parameters:\n* $1 - Parameter name that failed.",
 	"apisandbox-deprecated-parameters": "JavaScript button label and fieldset legend for separating deprecated parameters in the UI.",
 	"apisandbox-fetch-token": "Label for the button that fetches a CSRF token.",
+	"apisandbox-add-multi": "Label for the button to add another value to a field that accepts multiple values",
 	"apisandbox-submit-invalid-fields-title": "Title for a JavaScript error message when fields are invalid.",
 	"apisandbox-submit-invalid-fields-message": "Content for a JavaScript error message when fields are invalid.",
 	"apisandbox-results": "JavaScript tab label for the tab displaying the API query results.\n{{Identical|Result}}",

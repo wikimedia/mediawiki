@@ -2015,6 +2015,7 @@ return [
 			'apisandbox-loading',
 			'apisandbox-load-error',
 			'apisandbox-fetch-token',
+			'apisandbox-add-multi',
 			'apisandbox-helpurls',
 			'apisandbox-examples',
 			'apisandbox-dynamic-parameters',
