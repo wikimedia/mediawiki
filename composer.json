@@ -64,6 +64,7 @@
 	},
 	"suggest": {
 		"ext-apc": "Local data and opcode cache",
+		"ext-curl": "Improved http communication abilities",
 		"ext-fileinfo": "Improved mime magic detection",
 		"ext-intl": "ICU integration",
 		"ext-wikidiff2": "Diff accelerator",
