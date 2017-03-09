@@ -252,6 +252,33 @@ class RemexDriverTest extends MediaWikiTestCase {
 			'<table><b>1<p>2</b>3</p>',
 			'<b>1</b><p><b>2</b>3</p><table></table>'
 		],
+		[
+			'Entity pass-through (performance hack)',
+			'&#65;',
+			'<p>&#65;</p>'
+		],
+		[
+			'Optional entity decoding',
+			'&#65;',
+			'<p>A</p>',
+			[ 'ignoreCharRefs' => false ]
+		],
+		[
+			'NBSP encoding',
+			"\xc2\xa0",
+			'<p>&#160;</p>',
+		],
+		[
+			'Bare ampersand (pass through mode)',
+			'&',
+			'<p>&</p>',
+		],
+		[
+			'Bare ampersand (compliant mode)',
+			'&',
+			'<p>&amp;</p>',
+			[ 'ignoreCharRefs' => false ]
+		],
 	];
 
 	public function provider() {
@@ -265,8 +292,8 @@ class RemexDriverTest extends MediaWikiTestCase {
 	 * @covers MediaWiki\Tidy\RemexDriver
 	 * @covers MediaWiki\Tidy\RemexMungerData
 	 */
-	public function testTidy( $desc, $input, $expected ) {
-		$r = new MediaWiki\Tidy\RemexDriver( [] );
+	public function testTidy( $desc, $input, $expected, $options = [] ) {
+		$r = new MediaWiki\Tidy\RemexDriver( $options );
 		$result = $r->tidy( $input );
 		$this->assertEquals( $expected, $result, $desc );
 	}

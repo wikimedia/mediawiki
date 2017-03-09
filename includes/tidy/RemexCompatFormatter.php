@@ -19,10 +19,16 @@ class RemexCompatFormatter extends HtmlFormatter {
 
 	public function __construct( $options = [] ) {
 		parent::__construct( $options );
+		$options += [
+			'ignoreCharRefs' => true
+		];
+
 		$this->attributeEscapes["\xc2\xa0"] = '&#160;';
-		unset( $this->attributeEscapes["&"] );
 		$this->textEscapes["\xc2\xa0"] = '&#160;';
-		unset( $this->textEscapes["&"] );
+		if ( $options['ignoreCharRefs'] ) {
+			unset( $this->attributeEscapes["&"] );
+			unset( $this->textEscapes["&"] );
+		}
 	}
 
 	public function startDocument( $fragmentNamespace, $fragmentName ) {

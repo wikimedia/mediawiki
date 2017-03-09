@@ -11,19 +11,24 @@ use RemexHtml\TreeBuilder\TreeMutationTracer;
 class RemexDriver extends TidyDriverBase {
 	private $trace;
 	private $pwrap;
+	private $ignoreCharRefs;
 
 	public function __construct( array $config ) {
 		$config += [
 			'treeMutationTrace' => false,
-			'pwrap' => true
+			'pwrap' => true,
+			'ignoreCharRefs' => true,
 		];
 		$this->trace = $config['treeMutationTrace'];
 		$this->pwrap = $config['pwrap'];
+		$this->ignoreCharRefs = $config['ignoreCharRefs'];
 		parent::__construct( $config );
 	}
 
 	public function tidy( $text ) {
-		$formatter = new RemexCompatFormatter;
+		$formatter = new RemexCompatFormatter( [
+			'ignoreCharRefs' => $this->ignoreCharRefs
+		] );
 		$serializer = new Serializer( $formatter );
 		if ( $this->pwrap ) {
 			$munger = new RemexCompatMunger( $serializer );
@@ -44,7 +49,7 @@ class RemexDriver extends TidyDriverBase {
 		$dispatcher = new Dispatcher( $treeBuilder );
 		$tokenizer = new Tokenizer( $dispatcher, $text, [
 			'ignoreErrors' => true,
-			'ignoreCharRefs' => true,
+			'ignoreCharRefs' => $this->ignoreCharRefs,
 			'ignoreNulls' => true,
 			'skipPreprocess' => true,
 		] );
