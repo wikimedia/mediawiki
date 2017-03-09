@@ -2905,6 +2905,14 @@ $wgExtraLanguageCodes = [
 ];
 
 /**
+ * Functionally the same as $wgExtraLanguageCodes, but deprecated. Instead of
+ * appending values to this array, append them to $wgExtraLanguageCodes.
+ *
+ * @deprecated since 1.29
+ */
+$wgDummyLanguageCodes = [];
+
+/**
  * Set this to true to replace Arabic presentation forms with their standard
  * forms in the U+0600-U+06FF block. This only works if $wgLanguageCode is
  * set to "ar".
