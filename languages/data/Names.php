@@ -311,7 +311,7 @@ class Names {
 		'nl' => 'Nederlands', # Dutch
 		'nl-informal' => "Nederlands (informeel)\xE2\x80\x8E", # Dutch (informal address ("je"))
 		'nn' => 'norsk nynorsk', # Norwegian (Nynorsk)
-		'no' => 'norsk bokmål', # Norwegian (falls back to nb).
+		'no' => 'norsk', # Norwegian macro language (falls back to nb).
 		'nov' => 'Novial', # Novial
 		'nrm' => 'Nouormand', # Norman
 		'nso' => 'Sesotho sa Leboa', # Northern Sotho
