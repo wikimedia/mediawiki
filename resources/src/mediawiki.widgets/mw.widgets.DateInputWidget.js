@@ -173,7 +173,11 @@
 		} );
 		this.$handle.on( {
 			click: this.onClick.bind( this ),
-			keypress: this.onKeyPress.bind( this )
+			keypress: this.onKeyPress.bind( this ),
+			focus: function () {
+//				this.activate();
+				this.$element.addClass( 'mw-widget-dateInputWidget-active' );
+			}.bind( this )
 		} );
 
 		// Initialization
