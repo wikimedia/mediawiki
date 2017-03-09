@@ -21,6 +21,20 @@
 	overflow: visible;
 }
 
+/* Display contents of the popup on a single line */
+.mw-apisandbox-popup > .oo-ui-popupWidget-popup > .oo-ui-popupWidget-body {
+	display: table;
+}
+
+.mw-apisandbox-popup > .oo-ui-popupWidget-popup > .oo-ui-popupWidget-body > * {
+	display: table-cell;
+}
+
+.mw-apisandbox-popup > .oo-ui-popupWidget-popup > .oo-ui-popupWidget-body > .oo-ui-buttonWidget {
+	padding-left: 0.5em;
+	width: 1%;
+}
+
 .mw-apisandbox-fullscreen #mw-apisandbox-ui {
 	position: fixed;
 	top: 0;
