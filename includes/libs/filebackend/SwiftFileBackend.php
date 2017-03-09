@@ -348,6 +348,8 @@ class SwiftFileBackend extends FileBackendStore {
 		};
 
 		$opHandle = new SwiftFileOpHandle( $this, $handler, $reqs );
+		$opHandle->resourcesToClose[] = $handle;
+
 		if ( !empty( $params['async'] ) ) { // deferred
 			$status->value = $opHandle;
 		} else { // actually write the object in Swift
