@@ -821,7 +821,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 		$row = $res ? $this->fetchRow( $res ) : false;
 		if ( !$row ) {
-			throw new DBExpectedError( $this, "Failed to query MASTER_POS_WAIT()" );
+			throw new DBExpectedError( $this, "MASTER_POS_WAIT() or MASTER_GTID_WAIT() failed." );
 		}
 
 		// Result can be NULL (error), -1 (timeout), or 0+ per the MySQL manual
