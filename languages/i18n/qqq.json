@@ -1562,6 +1562,7 @@
 	"rcfilters-highlightmenu-title": "Title for the highlight menu used to select the highlight color for an individual filter.",
 	"rcfilters-highlightmenu-help": "Tooltip for the highlight menu for individual filters.",
 	"rcfilters-filterlist-noresults": "Message showing no results found for searching a filter.",
+	"rcfilters-subset-title": "Tooltip shown when hovering over a filter tag when one or more broader filters that contain the hovered filter are also selected. This indicates that the hovered filter has no effect because all the results it matches are also matched by the broader filter(s).  Parameters:\n* $1 - Comma-separated string of selected broader filters that this filter is a subset of\n* $2 - Count of filters in $1, for PLURAL",
 	"rcfilters-filtergroup-registration": "Title for the filter group for editor registration type.",
 	"rcfilters-filter-registered-label": "Label for the filter for showing edits made by logged-in users.\n{{Identical|Registered}}",
 	"rcfilters-filter-registered-description": "Description for the filter for showing edits made by logged-in users.",

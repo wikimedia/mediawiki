@@ -1815,10 +1815,12 @@ return [
 			'rcfilters-highlightbutton-title',
 			'rcfilters-highlightmenu-title',
 			'rcfilters-highlightmenu-help',
+			'rcfilters-subset-title',
 			'recentchanges-noresult',
 		],
 		'dependencies' => [
 			'oojs-ui',
+			'mediawiki.language',
 			'mediawiki.rcfilters.filters.dm',
 			'oojs-ui.styles.icons-moderation',
 			'oojs-ui.styles.icons-editing-core',

@@ -1375,6 +1375,7 @@
 	"rcfilters-highlightmenu-title": "Select a color",
 	"rcfilters-highlightmenu-help": "Select a color to highlight this property",
 	"rcfilters-filterlist-noresults": "No filters found",
+	"rcfilters-subset-title": "This filter has no effect because its results are already included with those of the following broader {{PLURAL:$2|filter|filters}} (try using highlighting to distinguishing this property): $1",
 	"rcfilters-filtergroup-registration": "User registration",
 	"rcfilters-filter-registered-label": "Registered",
 	"rcfilters-filter-registered-description": "Logged-in editors.",
