@@ -1052,13 +1052,13 @@
 						name: 'filter1',
 						label: '1',
 						description: '1',
-						conflicts: [ 'filter2', 'filter4' ]
+						conflicts: [ { group: 'group2' } ]
 					},
 					{
 						name: 'filter2',
 						label: '2',
 						description: '2',
-						conflicts: [ 'filter6' ]
+						conflicts: [ { group: 'group2', filter: 'filter6' } ]
 					},
 					{
 						name: 'filter3',
@@ -1070,6 +1070,7 @@
 				name: 'group2',
 				title: 'Group 2',
 				type: 'send_unselected_if_any',
+				conflicts: [ { group: 'group1', filter: 'filter1' } ],
 				filters: [
 					{
 						name: 'filter4',
@@ -1079,13 +1080,13 @@
 					{
 						name: 'filter5',
 						label: '5',
-						description: '5',
-						conflicts: [ 'filter3' ]
+						description: '5'
 					},
 					{
 						name: 'filter6',
 						label: '6',
-						description: '6'
+						description: '6',
+						conflicts: [ { group: 'group1', filter: 'filter2' } ]
 					}
 				]
 			} ],
@@ -1107,9 +1108,9 @@
 			'Initial state: no conflicts because no selections.'
 		);
 
-		// Select a filter that has a conflict with another
+		// Select a filter that has a conflict with an entire group
 		model.toggleFiltersSelected( {
-			filter1: true // conflicts: filter2, filter4
+			filter1: true // conflicts: entire of group 2 ( filter4, filter5, filter6)
 		} );
 
 		model.reassessFilterInteractions( model.getItemByName( 'filter1' ) );
@@ -1118,10 +1119,11 @@
 			model.getFullState(),
 			$.extend( true, {}, baseFullState, {
 				filter1: { selected: true },
-				filter2: { conflicted: true },
-				filter4: { conflicted: true }
+				filter4: { conflicted: true },
+				filter5: { conflicted: true },
+				filter6: { conflicted: true }
 			} ),
-			'Selecting a filter set its conflicts list as "conflicted".'
+			'Selecting a filter that conflicts with a group sets all the conflicted group items as "conflicted".'
 		);
 
 		// Select one of the conflicts (both filters are now conflicted and selected)
@@ -1134,28 +1136,106 @@
 			model.getFullState(),
 			$.extend( true, {}, baseFullState, {
 				filter1: { selected: true, conflicted: true },
-				filter2: { conflicted: true },
-				filter4: { selected: true, conflicted: true }
+				filter4: { selected: true, conflicted: true },
+				filter5: { conflicted: true },
+				filter6: { conflicted: true }
 			} ),
-			'Selecting a conflicting filter sets both sides to conflicted and selected.'
+			'Selecting a conflicting filter inside a group, sets both sides to conflicted and selected.'
 		);
 
-		// Select another filter from filter4 group, meaning:
-		// now filter1 no longer conflicts with filter4
+		// Reset
+		model = new mw.rcfilters.dm.FiltersViewModel();
+		model.initializeFilters( definition );
+
+		// Select a filter that has a conflict with a specific filter
+		model.toggleFiltersSelected( {
+			filter2: true // conflicts: filter6
+		} );
+
+		model.reassessFilterInteractions( model.getItemByName( 'filter2' ) );
+
+		assert.deepEqual(
+			model.getFullState(),
+			$.extend( true, {}, baseFullState, {
+				filter2: { selected: true },
+				filter6: { conflicted: true }
+			} ),
+			'Selecting a filter that conflicts with another filter sets the other as "conflicted".'
+		);
+
+		// Select the conflicting filter
 		model.toggleFiltersSelected( {
 			filter6: true // conflicts: filter2
 		} );
+
 		model.reassessFilterInteractions( model.getItemByName( 'filter6' ) );
 
 		assert.deepEqual(
 			model.getFullState(),
 			$.extend( true, {}, baseFullState, {
-				filter1: { selected: true, conflicted: false }, // No longer conflicts (filter4 is not the only in the group)
-				filter2: { conflicted: true }, // While not selected, still in conflict with filter1, which is selected
-				filter4: { selected: true, conflicted: false }, // No longer conflicts with filter1
-				filter6: { selected: true, conflicted: false }
+				filter2: { selected: true, conflicted: true },
+				filter6: { selected: true, conflicted: true },
+				filter1: { conflicted: true } // This is added to the conflicts because filter6 is part of group2, who is in conflict with filter1
 			} ),
-			'Selecting a non-conflicting filter from a conflicting group removes the conflict'
+			'Selecting a conflicting filter with an individual filter, sets both sides to conflicted and selected.'
+		);
+
+		// Now choose a non-conflicting filter from the group
+		model.toggleFiltersSelected( {
+			filter5: true
+		} );
+
+		model.reassessFilterInteractions( model.getItemByName( 'filter5' ) );
+
+		assert.deepEqual(
+			model.getFullState(),
+			$.extend( true, {}, baseFullState, {
+				filter2: { selected: true },
+				filter6: { selected: true },
+				filter5: { selected: true }
+				// Filter6 and filter1 are no longer in conflict because
+				// filter5 is selected within filter6's group, which
+				// removes the conflict
+			} ),
+			'Selecting a non-conflicting filter within the group of a conflicting filter removes the conflicts.'
+		);
+
+		// Followup on the previous test, unselect filter2 so filter1
+		// is now the only one selected in its own group, and since
+		// it is in conflict with the entire of group2, it means
+		// filter1 is once again conflicted
+		model.toggleFiltersSelected( {
+			filter2: false
+		} );
+
+		model.reassessFilterInteractions( model.getItemByName( 'filter5' ) );
+
+		assert.deepEqual(
+			model.getFullState(),
+			$.extend( true, {}, baseFullState, {
+				filter1: { conflicted: true },
+				filter6: { selected: true },
+				filter5: { selected: true }
+			} ),
+			'Unselecting an item that did not conflict returns the conflict state.'
+		);
+
+		// Followup #2: Now actually select filter1, and make everything conflicted
+		model.toggleFiltersSelected( {
+			filter1: true
+		} );
+
+		model.reassessFilterInteractions( model.getItemByName( 'filter5' ) );
+
+		assert.deepEqual(
+			model.getFullState(),
+			$.extend( true, {}, baseFullState, {
+				filter1: { selected: true, conflicted: true },
+				filter6: { selected: true, conflicted: true },
+				filter5: { selected: true, conflicted: true },
+				filter4: { conflicted: true } // Not selected but conflicted because it's in group2
+			} ),
+			'Selecting an item that conflicts with a whole group makes all selections in that group conflicted.'
 		);
 	} );
 

@@ -3,7 +3,8 @@
 
 	QUnit.test( 'Initializing filter item', function ( assert ) {
 		var item,
-			group1 = new mw.rcfilters.dm.FilterGroup( 'group1' );
+			group1 = new mw.rcfilters.dm.FilterGroup( 'group1' ),
+			group2 = new mw.rcfilters.dm.FilterGroup( 'group2' );
 
 		item = new mw.rcfilters.dm.FilterItem( 'filter1', group1 );
 		assert.equal(
@@ -96,18 +97,26 @@
 			'filter1',
 			group1,
 			{
-				conflicts: [ 'conflict1', 'conflict2', 'conflict3' ]
+				conflicts: {
+					conflict1: { group: 'group2', filter: 'conflict1' },
+					conflict2: { group: 'group2', filter: 'conflict2' },
+					conflict3: { group: 'group2', filter: 'conflict3' }
+				}
 			}
 		);
 		assert.deepEqual(
 			item.getConflicts(),
-			[ 'conflict1', 'conflict2', 'conflict3' ],
+			{
+				conflict1: { group: 'group2', filter: 'conflict1' },
+				conflict2: { group: 'group2', filter: 'conflict2' },
+				conflict3: { group: 'group2', filter: 'conflict3' }
+			},
 			'Conflict information is retained.'
 		);
 		assert.equal(
 			// TODO: Consider allowing for either a FilterItem or a filter name
 			// in this method, so it is consistent with the subset one
-			item.existsInConflicts( new mw.rcfilters.dm.FilterItem( 'conflict1', group1 ) ),
+			item.existsInConflicts( new mw.rcfilters.dm.FilterItem( 'conflict1', group2 ) ),
 			true,
 			'Specific item exists in conflicts.'
 		);
