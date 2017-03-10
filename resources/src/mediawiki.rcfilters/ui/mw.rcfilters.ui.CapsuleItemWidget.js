@@ -13,15 +13,12 @@
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
 	 */
 	mw.rcfilters.ui.CapsuleItemWidget = function MwRcfiltersUiCapsuleItemWidget( controller, model, config ) {
-		var $popupContent = $( '<div>' )
-				.addClass( 'mw-rcfilters-ui-capsuleItemWidget-popup-content' ),
-			descLabelWidget = new OO.ui.LabelWidget();
-
 		// Configuration initialization
 		config = config || {};
 
 		this.controller = controller;
 		this.model = model;
+		this.popupLabel = new OO.ui.LabelWidget();
 		this.$overlay = config.$overlay || this.$element;
 		this.positioned = false;
 		this.popupTimeoutShow = null;
@@ -39,15 +36,13 @@
 				padded: false,
 				align: 'center',
 				position: 'above',
-				$content: $popupContent
-					.append( descLabelWidget.$element ),
+				$content: $( '<div>' )
+					.addClass( 'mw-rcfilters-ui-capsuleItemWidget-popup-content' )
+					.append( this.popupLabel.$element ),
 				$floatableContainer: this.$element,
 				classes: [ 'mw-rcfilters-ui-capsuleItemWidget-popup' ]
 			}
 		}, config ) );
-
-		// Set initial text for the popup - the description
-		descLabelWidget.setLabel( this.model.getDescription() );
 
 		this.$highlight = $( '<div>' )
 			.addClass( 'mw-rcfilters-ui-capsuleItemWidget-highlight' );
@@ -147,7 +142,11 @@
 	 * Respond to mouse enter event
 	 */
 	mw.rcfilters.ui.CapsuleItemWidget.prototype.onMouseEnter = function () {
-		if ( this.model.getDescription() ) {
+		var labelText = this.model.getStateMessage();
+
+		if ( labelText ) {
+			this.popupLabel.setLabel( labelText );
+
 			if ( !this.positioned ) {
 				// Recalculate anchor position to be center of the capsule item
 				this.popup.$anchor.css( 'margin-left', ( this.$element.width() / 2 ) );
