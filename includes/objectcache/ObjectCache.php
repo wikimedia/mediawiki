@@ -359,7 +359,7 @@ class ObjectCache {
 	 *
 	 * @since 1.26
 	 * @return WANObjectCache
-	 * @deprecated Since 1.28 Use MediaWikiServices::getMainWANCache()
+	 * @deprecated Since 1.28 Use MediaWikiServices::getMainWANObjectCache()
 	 */
 	public static function getMainWANInstance() {
 		return MediaWikiServices::getInstance()->getMainWANObjectCache();
