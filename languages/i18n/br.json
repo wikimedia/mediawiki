@@ -1973,6 +1973,8 @@
 	"restricted-displaytitle-ignored-desc": "Ar bajenn-mañ zo dezhi un <code><nowiki>{{DISPLAYTITLE}}</nowiki></code> zo bet laosket a-gostez peogwir n'eo ket kevatal d'an titl zo d'ar bajenn bremañ.",
 	"noindex-category-desc": "Ar bajenn-mañ n'eo ket menegeret gant ar robotoù rak ar ger hud <code><nowiki>__NOINDEX__</nowiki></code> zo enni hag emañ en un esaouenn anv m'eo aotreet ar merkañ.",
 	"index-category-desc": "Un <code><nowiki>__INDEX__</nowiki></code> zo er bajenn (hag emañ en un esaouenn anv m'eo aotreet ober gant ar merk-se). Abalamour da se e vo menegeret gant robotoù pa ne vije ket bet a-hend-all.",
+	"post-expand-template-inclusion-category-desc": "Brasoc'h eo ment ar bajenn eget <code>$wgMaxArticleSize</code> ur wech dispaket he holl batromoù. Gant se n'eus ket bet gallet dispakañ patromoù zo.",
+	"post-expand-template-argument-category-desc": "Brasoc'h eo ar bajenn eget <code>$wgMaxArticleSize</code> ur wech dispaket arguzenn ur patrom (un dra bennak etre un triad briataennoù, evel <code>{{{Foo}}}</code>).",
 	"broken-file-category-desc": "Er bajenn-mañ ez eus ul liamm restr torr (ul liamm da enframmañ ur restr pa n'eus ket eus ar restr-se).",
 	"trackingcategories-nodesc": "N'eus deskrivadur ebet.",
 	"trackingcategories-disabled": "Diweredekaet eo ar rummad",

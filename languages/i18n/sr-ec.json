@@ -1894,7 +1894,7 @@
 	"deletepage": "Обриши страницу",
 	"confirm": "Потврди",
 	"excontent": "садржај је био: „$1“",
-	"excontentauthor": "садржај је био: „$1“, а једини уредник [[Special:Contributions/$2|$2]] ([[User talk:$2|разговор]])",
+	"excontentauthor": "садржај је био: „$1“, а једини уредник „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|разговор]])",
 	"exbeforeblank": "садржај пре брисања је био: „$1“",
 	"delete-confirm": "Брисање странице „$1“",
 	"delete-legend": "Обриши",
