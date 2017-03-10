@@ -162,9 +162,12 @@
 	 * @param {Array} filters Filter group definition
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.initializeFilters = function ( filters ) {
-		var i, filterItem, selectedFilterNames,
+		var i, filterItem, selectedFilterNames, filterConflictResult, groupConflictResult,
 			model = this,
 			items = [],
+			supersetMap = {},
+			groupConflictMap = {},
+			filterConflictMap = {},
 			addArrayElementsUnique = function ( arr, elements ) {
 				elements = Array.isArray( elements ) ? elements : [ elements ];
 
@@ -176,8 +179,31 @@
 
 				return arr;
 			},
-			conflictMap = {},
-			supersetMap = {};
+			expandConflictDefinitions = function ( obj ) {
+				var result = {};
+
+				$.each( obj, function ( group, conflicts ) {
+					var adjustedConflicts = {};
+					conflicts.forEach( function ( conflict ) {
+						if ( conflict.filter ) {
+							adjustedConflicts[ conflict.filter ] = conflict;
+						} else {
+							// This conflict is for an entire group. Split it up to
+							// represent each filter
+
+							// Get the relevant group items
+							model.groups[ conflict.group ].getItems().forEach( function ( groupItem ) {
+								// Rebuild the conflict
+								adjustedConflicts[ groupItem.getName() ] = $.extend( {}, conflict, { filter: groupItem.getName() } );
+							} );
+						}
+					} );
+
+					result[ group ] = adjustedConflicts;
+				} );
+
+				return result;
+			};
 
 		// Reset
 		this.clearItems();
@@ -193,6 +219,10 @@
 					separator: data.separator,
 					fullCoverage: !!data.fullCoverage
 				} );
+			}
+
+			if ( data.conflicts ) {
+				groupConflictMap[ group ] = data.conflicts;
 			}
 
 			selectedFilterNames = [];
@@ -224,26 +254,9 @@
 					} );
 				}
 
-				// Conflicts are bi-directional, which means FilterA can define having
-				// a conflict with FilterB, and this conflict should appear in **both**
-				// filter definitions.
-				// We need to remap all the 'conflicts' so they reflect the entire state
-				// in either direction regardless of which filter defined the other as conflicting.
+				// Store conflicts
 				if ( data.filters[ i ].conflicts ) {
-					conflictMap[ filterItem.getName() ] = conflictMap[ filterItem.getName() ] || [];
-					addArrayElementsUnique(
-						conflictMap[ filterItem.getName() ],
-						data.filters[ i ].conflicts
-					);
-
-					data.filters[ i ].conflicts.forEach( function ( conflictingFilterName ) { // eslint-disable-line no-loop-func
-						// Add this filter to the conflicts of each of the filters in its list
-						conflictMap[ conflictingFilterName ] = conflictMap[ conflictingFilterName ] || [];
-						addArrayElementsUnique(
-							conflictMap[ conflictingFilterName ],
-							filterItem.getName()
-						);
-					} );
+					filterConflictMap[ data.filters[ i ].name ] = data.filters[ i ].conflicts;
 				}
 
 				if ( data.type === 'send_unselected_if_any' ) {
@@ -269,14 +282,23 @@
 			}
 		} );
 
-		items.forEach( function ( filterItem ) {
-			// Apply conflict map to the items
-			// Now that we mapped all items and conflicts bi-directionally
-			// we need to apply the definition to each filter again
-			filterItem.setConflicts( conflictMap[ filterItem.getName() ] );
+		// Expand conflicts
+		groupConflictResult = expandConflictDefinitions( groupConflictMap );
+		filterConflictResult = expandConflictDefinitions( filterConflictMap );
 
+		// Set conflicts for groups
+		$.each( groupConflictResult, function ( group, conflicts ) {
+			model.groups[ group ].setConflicts( conflicts );
+		} );
+
+		items.forEach( function ( filterItem ) {
 			// Apply the superset map
 			filterItem.setSuperset( supersetMap[ filterItem.getName() ] );
+
+			// set conflicts for item
+			if ( filterConflictResult[ filterItem.getName() ] ) {
+				filterItem.setConflicts( filterConflictResult[ filterItem.getName() ] );
+			}
 		} );
 
 		// Add items to the model

@@ -16,7 +16,7 @@
 	 *  selected, makes inactive.
 	 * @cfg {boolean} [selected] The item is selected
 	 * @cfg {string[]} [subset] Defining the names of filters that are a subset of this filter
-	 * @cfg {string[]} [conflictsWith] Defining the names of filters that conflict with this item
+	 * @cfg {Object} [conflicts] Defines the conflicts for this filter
 	 * @cfg {string} [cssClass] The class identifying the results that match this filter
 	 */
 	mw.rcfilters.dm.FilterItem = function MwRcfiltersDmFilterItem( name, groupModel, config ) {
@@ -34,7 +34,7 @@
 
 		// Interaction definitions
 		this.subset = config.subset || [];
-		this.conflicts = config.conflicts || [];
+		this.conflicts = config.conflicts || {};
 		this.superset = [];
 
 		// Interaction states
@@ -192,19 +192,33 @@
 	/**
 	 * Get filter conflicts
 	 *
-	 * @return {string[]} Filter conflicts
+	 * Conflict object is set up by filter name keys and conflict
+	 * definition. For example:
+	 * 		{
+	 * 			filterName: {
+	 * 				filter: filterName,
+	 * 				group: group1
+	 * 			}
+	 * 			filterName2: {
+	 * 				filter: filterName2,
+	 * 				group: group2
+	 * 			}
+	 * 		}
+	 *
+	 * @return {Object} Filter conflicts
 	 */
 	mw.rcfilters.dm.FilterItem.prototype.getConflicts = function () {
-		return this.conflicts;
+		return $.extend( {}, this.conflicts, this.getGroupModel().getConflicts() );
 	};
 
 	/**
-	 * Set filter conflicts
+	 * Set conflicts for this filter. See #getConflicts for the expected
+	 * structure of the definition.
 	 *
-	 * @param {string[]} conflicts Filter conflicts
+	 * @param {Object} conflicts Conflicts for this filter
 	 */
 	mw.rcfilters.dm.FilterItem.prototype.setConflicts = function ( conflicts ) {
-		this.conflicts = conflicts || [];
+		this.conflicts = conflicts || {};
 	};
 
 	/**
@@ -237,7 +251,7 @@
 	 * @return {boolean} This item has a conflict with the given item
 	 */
 	mw.rcfilters.dm.FilterItem.prototype.existsInConflicts = function ( filterItem ) {
-		return this.conflicts.indexOf( filterItem.getName() ) > -1;
+		return Object.prototype.hasOwnProperty.call( this.getConflicts(), filterItem.getName() );
 	};
 
 	/**
