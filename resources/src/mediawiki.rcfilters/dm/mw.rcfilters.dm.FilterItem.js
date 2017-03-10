@@ -34,7 +34,7 @@
 
 		// Interaction definitions
 		this.subset = config.subset || [];
-		this.conflicts = config.conflicts || [];
+		this.conflicts = config.conflicts || {};
 		this.superset = [];
 
 		// Interaction states
@@ -195,7 +195,7 @@
 	 * @return {string[]} Filter conflicts
 	 */
 	mw.rcfilters.dm.FilterItem.prototype.getConflicts = function () {
-		return this.conflicts;
+		return $.extend( {}, this.conflicts, this.getGroupModel().getConflicts() );
 	};
 
 	/**
@@ -204,7 +204,7 @@
 	 * @param {string[]} conflicts Filter conflicts
 	 */
 	mw.rcfilters.dm.FilterItem.prototype.setConflicts = function ( conflicts ) {
-		this.conflicts = conflicts || [];
+		this.conflicts = conflicts || {};
 	};
 
 	/**
@@ -237,7 +237,7 @@
 	 * @return {boolean} This item has a conflict with the given item
 	 */
 	mw.rcfilters.dm.FilterItem.prototype.existsInConflicts = function ( filterItem ) {
-		return this.conflicts.indexOf( filterItem.getName() ) > -1;
+		return Object.prototype.hasOwnProperty.call( this.getConflicts(), filterItem.getName() );
 	};
 
 	/**
