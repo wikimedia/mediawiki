@@ -171,7 +171,7 @@ class HTMLDateTimeField extends HTMLTextField {
 			}
 		}
 
-		return new MediaWiki\Widget\DateTimeInputWidget( $params );
+		return new MediaWiki\Widgets\DateTimeInputWidget( $params );
 	}
 
 	protected function getOOUIModules() {

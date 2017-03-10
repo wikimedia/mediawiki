@@ -5,7 +5,7 @@
  * @copyright 2017 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
-namespace MediaWiki\Widget;
+namespace MediaWiki\Widgets;
 
 use \OOUI\TextInputWidget;
 

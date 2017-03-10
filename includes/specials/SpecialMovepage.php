@@ -303,7 +303,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$fields = [];
 
 		$fields[] = new OOUI\FieldLayout(
-			new MediaWiki\Widget\ComplexTitleInputWidget( [
+			new MediaWiki\Widgets\ComplexTitleInputWidget( [
 				'id' => 'wpNewTitle',
 				'namespace' => [
 					'id' => 'wpNewTitleNs',

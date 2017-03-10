@@ -5,7 +5,7 @@
  * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
-namespace MediaWiki\Widget;
+namespace MediaWiki\Widgets;
 
 /**
  * Namespace input widget. Displays a dropdown box with the choice of available namespaces, plus two

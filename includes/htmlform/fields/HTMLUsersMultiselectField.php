@@ -1,6 +1,6 @@
 <?php
 
-use MediaWiki\Widget\UsersMultiselectWidget;
+use MediaWiki\Widgets\UsersMultiselectWidget;
 
 /**
  * Implements a capsule multiselect input field for user names.

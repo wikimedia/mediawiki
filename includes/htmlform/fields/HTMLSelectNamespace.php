@@ -25,7 +25,7 @@ class HTMLSelectNamespace extends HTMLFormField {
 	}
 
 	public function getInputOOUI( $value ) {
-		return new MediaWiki\Widget\NamespaceInputWidget( [
+		return new MediaWiki\Widgets\NamespaceInputWidget( [
 			'value' => $value,
 			'name' => $this->mName,
 			'id' => $this->mID,

@@ -1,6 +1,6 @@
 <?php
 
-use MediaWiki\Widget\UserInputWidget;
+use MediaWiki\Widgets\UserInputWidget;
 
 /**
  * Implements a text input field for user names.

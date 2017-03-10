@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Widget\Search;
+namespace MediaWiki\SearchWidgets;
 
 use HtmlArmor;
 use MediaWiki\Linker\LinkRenderer;

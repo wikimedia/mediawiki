@@ -1,6 +1,6 @@
 <?php
 
-use MediaWiki\Widget\TitleInputWidget;
+use MediaWiki\Widgets\TitleInputWidget;
 
 /**
  * Implements a text input field for page titles.

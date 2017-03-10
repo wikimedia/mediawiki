@@ -1,10 +1,10 @@
 <?php
 
-namespace MediaWiki\Widget\Search;
+namespace MediaWiki\SearchWidgets;
 
 use Hooks;
 use Html;
-use MediaWiki\Widget\SearchInputWidget;
+use MediaWiki\SearchWidgetsInputWidget;
 use MWNamespace;
 use SearchEngineConfig;
 use SpecialSearch;

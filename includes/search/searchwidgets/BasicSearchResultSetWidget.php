@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Widget\Search;
+namespace MediaWiki\SearchWidgets;
 
 use Message;
 use SearchResultSet;

@@ -24,12 +24,12 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Widget\Search\BasicSearchResultSetWidget;
-use MediaWiki\Widget\Search\FullSearchResultWidget;
-use MediaWiki\Widget\Search\InterwikiSearchResultWidget;
-use MediaWiki\Widget\Search\InterwikiSearchResultSetWidget;
-use MediaWiki\Widget\Search\SimpleSearchResultWidget;
-use MediaWiki\Widget\Search\SimpleSearchResultSetWidget;
+use MediaWiki\SearchWidgets\BasicSearchResultSetWidget;
+use MediaWiki\SearchWidgets\FullSearchResultWidget;
+use MediaWiki\SearchWidgets\InterwikiSearchResultWidget;
+use MediaWiki\SearchWidgets\InterwikiSearchResultSetWidget;
+use MediaWiki\SearchWidgets\SimpleSearchResultWidget;
+use MediaWiki\SearchWidgets\SimpleSearchResultSetWidget;
 
 /**
  * implements Special:Search - Run text & title search and display the output
@@ -267,7 +267,7 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		$out = $this->getOutput();
-		$formWidget = new MediaWiki\Widget\Search\SearchFormWidget(
+		$formWidget = new MediaWiki\SearchWidgets\SearchFormWidget(
 			$this,
 			$this->searchConfig,
 			$this->getSearchProfiles()
@@ -342,7 +342,7 @@ class SpecialSearch extends SpecialPage {
 
 		// did you mean... suggestions
 		if ( $textMatches ) {
-			$dymWidget = new MediaWiki\Widget\Search\DidYouMeanWidget( $this );
+			$dymWidget = new MediaWiki\SearchWidgets\DidYouMeanWidget( $this );
 			$out->addHTML( $dymWidget->render( $term, $textMatches ) );
 		}
 
