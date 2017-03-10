@@ -29,6 +29,8 @@
 		this.active = !!config.active;
 		this.fullCoverage = !!config.fullCoverage;
 
+		this.conflicts = config.conflicts || {};
+
 		this.aggregate( { update: 'filterItemUpdate' } );
 		this.connect( this, { filterItemUpdate: 'onFilterItemUpdate' } );
 	};
@@ -81,6 +83,27 @@
 		return this.name;
 	};
 
+	mw.rcfilters.dm.FilterGroup.prototype.getConflicts = function () {
+		return this.conflicts;
+	};
+	mw.rcfilters.dm.FilterGroup.prototype.setConflicts = function ( conflicts ) {
+		this.conflicts = conflicts;
+	};
+
+	/**
+	 * Check whether this item has a potential conflict with the given item
+	 *
+	 * This checks whether the given item is in the list of conflicts of
+	 * the current item, but makes no judgment about whether the conflict
+	 * is currently at play (either one of the items may not be selected)
+	 *
+	 * @param {mw.rcfilters.dm.FilterItem} filterItem Filter item
+	 * @return {boolean} This item has a conflict with the given item
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.existsInConflicts = function ( filterItem ) {
+		return Object.prototype.hasOwnProperty.call( this.getConflicts(), filterItem.getName() );
+	};
+
 	/**
 	 * Check whether there are any items selected
 	 *
@@ -126,9 +149,15 @@
 	mw.rcfilters.dm.FilterGroup.prototype.areAllSelectedInConflictWith = function ( filterItem ) {
 		var selectedItems = this.getSelectedItems( filterItem );
 
-		return selectedItems.length > 0 && selectedItems.every( function ( selectedFilter ) {
-			return selectedFilter.existsInConflicts( filterItem );
-		} );
+		return selectedItems.length > 0 &&
+			(
+				// The group as a whole is in conflict with this item
+				this.existsInConflicts( filterItem ) ||
+				// All selected items are in conflict individually
+				selectedItems.every( function ( selectedFilter ) {
+					return selectedFilter.existsInConflicts( filterItem );
+				} )
+			);
 	};
 
 	/**
@@ -140,9 +169,14 @@
 	mw.rcfilters.dm.FilterGroup.prototype.areAnySelectedInConflictWith = function ( filterItem ) {
 		var selectedItems = this.getSelectedItems( filterItem );
 
-		return selectedItems.length > 0 && selectedItems.some( function ( selectedFilter ) {
-			return selectedFilter.existsInConflicts( filterItem );
-		} );
+		return selectedItems.length > 0 && (
+			// The group as a whole is in conflict with this item
+			this.existsInConflicts( filterItem ) ||
+			// Any selected items are in conflict individually
+			selectedItems.some( function ( selectedFilter ) {
+				return selectedFilter.existsInConflicts( filterItem );
+			} )
+		);
 	};
 
 	/**
