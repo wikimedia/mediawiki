@@ -3,7 +3,7 @@
 	var api = new mw.Api(),
 		pageUrl = new mw.Uri(),
 		imagesText = new mw.Message( mw.messages, 'searchprofile-images' ),
-		moreResultsText = new mw.Message( mw.messages, 'search-interwiki-more' );
+		moreResultsText = new mw.Message( mw.messages, 'search-interwiki-more-results' );
 
 	function itemTemplate( results ) {
 
@@ -67,7 +67,7 @@
 		}
 
 		results.sort( function( a, b ) {
-			return b.index - a.index;
+			return a.index - b.index;
 		} );
 
 		multimediaWidgetTemplate = itemWrapperTemplate( pageUrl.query.search, itemTemplate( results ) );
