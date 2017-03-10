@@ -39,7 +39,12 @@
 							name: 'hideanons',
 							label: mw.msg( 'rcfilters-filter-unregistered-label' ),
 							description: mw.msg( 'rcfilters-filter-unregistered-description' ),
-							'class': 'mw-changeslist-anon'
+							'class': 'mw-changeslist-anon',
+							conflicts: [
+								{
+									group: 'userExpLevel'
+								}
+							]
 						}
 					]
 				},
@@ -53,26 +58,29 @@
 					type: 'string_options',
 					separator: ',',
 					fullCoverage: false,
+					conflicts: [
+						{
+							group: 'registration',
+							filter: 'hideanons'
+						}
+					],
 					filters: [
 						{
 							name: 'newcomer',
 							label: mw.msg( 'rcfilters-filter-userExpLevel-newcomer-label' ),
 							description: mw.msg( 'rcfilters-filter-userExpLevel-newcomer-description' ),
-							conflicts: [ 'hideanons' ],
 							'class': 'mw-changeslist-user-newcomer'
 						},
 						{
 							name: 'learner',
 							label: mw.msg( 'rcfilters-filter-userExpLevel-learner-label' ),
 							description: mw.msg( 'rcfilters-filter-userExpLevel-learner-description' ),
-							conflicts: [ 'hideanons' ],
 							'class': 'mw-changeslist-user-learner'
 						},
 						{
 							name: 'experienced',
 							label: mw.msg( 'rcfilters-filter-userExpLevel-experienced-label' ),
 							description: mw.msg( 'rcfilters-filter-userExpLevel-experienced-description' ),
-							conflicts: [ 'hideanons' ],
 							'class': 'mw-changeslist-user-experienced'
 						}
 					]
