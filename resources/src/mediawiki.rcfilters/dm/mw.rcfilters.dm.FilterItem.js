@@ -5,7 +5,7 @@
 	 * @mixins OO.EventEmitter
 	 *
 	 * @constructor
-	 * @param {string} name Filter name
+	 * @param {string} param Filter param name
 	 * @param {mw.rcfilters.dm.FilterGroup} groupModel Filter group model
 	 * @param {Object} config Configuration object
 	 * @cfg {string} [group] The group this item belongs to
@@ -19,14 +19,15 @@
 	 * @cfg {Object} [conflicts] Defines the conflicts for this filter
 	 * @cfg {string} [cssClass] The class identifying the results that match this filter
 	 */
-	mw.rcfilters.dm.FilterItem = function MwRcfiltersDmFilterItem( name, groupModel, config ) {
+	mw.rcfilters.dm.FilterItem = function MwRcfiltersDmFilterItem( param, groupModel, config ) {
 		config = config || {};
 
 		// Mixin constructor
 		OO.EventEmitter.call( this );
 
-		this.name = name;
+		this.param = param;
 		this.groupModel = groupModel;
+		this.name = this.groupModel.getNamePrefix() + param;
 
 		this.label = config.label || this.name;
 		this.description = config.description;
@@ -84,6 +85,15 @@
 	 */
 	mw.rcfilters.dm.FilterItem.prototype.getName = function () {
 		return this.name;
+	};
+
+	/**
+	 * Get the param name or value of this filter
+	 *
+	 * @return {string} Filter param name
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.getParamName = function () {
+		return this.param;
 	};
 
 	/**
@@ -228,6 +238,15 @@
 	 */
 	mw.rcfilters.dm.FilterItem.prototype.setSuperset = function ( superset ) {
 		this.superset = superset || [];
+	};
+
+	/**
+	 * Set filter subset
+	 *
+	 * @param {string[]} subset Filter subset
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.setSubset = function ( subset ) {
+		this.subset = subset || [];
 	};
 
 	/**
