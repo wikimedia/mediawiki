@@ -180,6 +180,42 @@
 	};
 
 	/**
+	 * Get the parameter representation from this group
+	 *
+	 * @return {Object} Parameter representation
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.getParamRepresentation = function () {
+		var result = {},
+			filterItems = this.getItems();
+
+		if ( this.getType() === 'send_unselected_if_any' ) {
+			// First, check if any of the items are selected at all.
+			// If none is selected, we're treating it as if they are
+			// all false
+
+			// Go over the items and define the correct values
+			for ( i = 0; i < filterItems.length; i++ ) {
+				result[ filterItems[ i ].getParamName() ] = this.areAnySelected() ?
+					Number( !filterItems[ i ].isSelected() ) : 0;
+			}
+
+		} else if ( this.getType() === 'string_options' ) {
+			values = [];
+			for ( i = 0; i < filterItems.length; i++ ) {
+				if ( filterItems[ i ].isSelected() ) {
+					values.push( filterItems[ i ].getParamName() );
+				}
+			}
+
+			result[ this.getName() ] = (
+					!values.length || values.length === filterItems.length
+				) ?
+				'all' : values.join( this.getSeparator() );
+		}
+
+		return result;
+	};
+	/**
 	 * Get group type
 	 *
 	 * @return {string} Group type
