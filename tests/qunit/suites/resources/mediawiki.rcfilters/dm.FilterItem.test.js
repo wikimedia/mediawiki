@@ -9,7 +9,7 @@
 		item = new mw.rcfilters.dm.FilterItem( 'filter1', group1 );
 		assert.equal(
 			item.getName(),
-			'filter1',
+			'group1__filter1',
 			'Filter name is retained.'
 		);
 		assert.equal(
@@ -98,24 +98,22 @@
 			group1,
 			{
 				conflicts: {
-					conflict1: { group: 'group2', filter: 'conflict1' },
-					conflict2: { group: 'group2', filter: 'conflict2' },
-					conflict3: { group: 'group2', filter: 'conflict3' }
+					group2__conflict1: { group: 'group2', filter: 'group2__conflict1' },
+					group2__conflict2: { group: 'group2', filter: 'group2__conflict2' },
+					group2__conflict3: { group: 'group2', filter: 'group2__conflict3' }
 				}
 			}
 		);
 		assert.deepEqual(
 			item.getConflicts(),
 			{
-				conflict1: { group: 'group2', filter: 'conflict1' },
-				conflict2: { group: 'group2', filter: 'conflict2' },
-				conflict3: { group: 'group2', filter: 'conflict3' }
+				group2__conflict1: { group: 'group2', filter: 'group2__conflict1' },
+				group2__conflict2: { group: 'group2', filter: 'group2__conflict2' },
+				group2__conflict3: { group: 'group2', filter: 'group2__conflict3' }
 			},
 			'Conflict information is retained.'
 		);
 		assert.equal(
-			// TODO: Consider allowing for either a FilterItem or a filter name
-			// in this method, so it is consistent with the subset one
 			item.existsInConflicts( new mw.rcfilters.dm.FilterItem( 'conflict1', group2 ) ),
 			true,
 			'Specific item exists in conflicts.'
