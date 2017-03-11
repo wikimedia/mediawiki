@@ -162,7 +162,7 @@
 	 * @param {Object} filters Filter group definition
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.initializeFilters = function ( filters ) {
-		var i, filterItem, selectedFilterNames, filterConflictResult, groupConflictResult,
+		var i, filterItem, selectedFilterNames, filterConflictResult, groupConflictResult, subsetNames,
 			model = this,
 			items = [],
 			supersetMap = {},
@@ -182,11 +182,20 @@
 			expandConflictDefinitions = function ( obj ) {
 				var result = {};
 
-				$.each( obj, function ( group, conflicts ) {
-					var adjustedConflicts = {};
+				$.each( obj, function ( key, conflicts ) {
+					var filterName,
+						adjustedConflicts = {};
+
 					conflicts.forEach( function ( conflict ) {
 						if ( conflict.filter ) {
-							adjustedConflicts[ conflict.filter ] = conflict;
+							filterName = model.groups[ conflict.group ].getNamePrefix() + conflict.filter;
+
+							// Rename
+							adjustedConflicts[ filterName ] = $.extend(
+								{},
+								conflict,
+								{ filter: filterName }
+							);
 						} else {
 							// This conflict is for an entire group. Split it up to
 							// represent each filter
@@ -194,12 +203,16 @@
 							// Get the relevant group items
 							model.groups[ conflict.group ].getItems().forEach( function ( groupItem ) {
 								// Rebuild the conflict
-								adjustedConflicts[ groupItem.getName() ] = $.extend( {}, conflict, { filter: groupItem.getName() } );
+								adjustedConflicts[ groupItem.getName() ] = $.extend(
+									{},
+									conflict,
+									{ filter: groupItem.getName() }
+								);
 							} );
 						}
 					} );
 
-					result[ group ] = adjustedConflicts;
+					result[ key ] = adjustedConflicts;
 				} );
 
 				return result;
@@ -229,27 +242,36 @@
 					group: group,
 					label: data.filters[ i ].label,
 					description: data.filters[ i ].description,
-					subset: data.filters[ i ].subset,
 					cssClass: data.filters[ i ].class
 				} );
 
-				// For convenience, we should store each filter's "supersets" -- these are
-				// the filters that have that item in their subset list. This will just
-				// make it easier to go through whether the item has any other items
-				// that affect it (and are selected) at any given time
 				if ( data.filters[ i ].subset ) {
+					subsetNames = [];
 					data.filters[ i ].subset.forEach( function ( subsetFilterName ) { // eslint-disable-line no-loop-func
-						supersetMap[ subsetFilterName ] = supersetMap[ subsetFilterName ] || [];
+						var subsetName = model.groups[ group ].getNamePrefix() + subsetFilterName;
+						// For convenience, we should store each filter's "supersets" -- these are
+						// the filters that have that item in their subset list. This will just
+						// make it easier to go through whether the item has any other items
+						// that affect it (and are selected) at any given time
+						supersetMap[ subsetName ] = supersetMap[ subsetName ] || [];
 						addArrayElementsUnique(
-							supersetMap[ subsetFilterName ],
+							supersetMap[ subsetName ],
 							filterItem.getName()
 						);
+
+						// Translate subset param name to add the group name, so we
+						// get consistent naming. We know that subsets are only within
+						// the same group
+						subsetNames.push( subsetName );
 					} );
+
+					// Set translated subset
+					filterItem.setSubset( subsetNames );
 				}
 
 				// Store conflicts
 				if ( data.filters[ i ].conflicts ) {
-					filterConflictMap[ data.filters[ i ].name ] = data.filters[ i ].conflicts;
+					filterConflictMap[ filterItem.getName() ] = data.filters[ i ].conflicts;
 				}
 
 				if ( data.type === 'send_unselected_if_any' ) {
@@ -258,7 +280,7 @@
 					model.defaultParams[ data.filters[ i ].name ] = Number( !!data.filters[ i ].default );
 				} else if (
 					data.type === 'string_options' &&
-					data.filters[ i ].default
+					data.filters[ i ].default !== undefined
 				) {
 					selectedFilterNames.push( data.filters[ i ].name );
 				}
@@ -394,40 +416,11 @@
 	 * @return {Object} Parameter state object
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getParametersFromFilters = function ( filterGroups ) {
-		var i, filterItems, anySelected, values,
-			result = {},
+		var result = {},
 			groupItems = filterGroups || this.getFilterGroups();
 
 		$.each( groupItems, function ( group, model ) {
-			filterItems = model.getItems();
-
-			if ( model.getType() === 'send_unselected_if_any' ) {
-				// First, check if any of the items are selected at all.
-				// If none is selected, we're treating it as if they are
-				// all false
-				anySelected = filterItems.some( function ( filterItem ) {
-					return filterItem.isSelected();
-				} );
-
-				// Go over the items and define the correct values
-				for ( i = 0; i < filterItems.length; i++ ) {
-					result[ filterItems[ i ].getName() ] = anySelected ?
-						Number( !filterItems[ i ].isSelected() ) : 0;
-				}
-			} else if ( model.getType() === 'string_options' ) {
-				values = [];
-				for ( i = 0; i < filterItems.length; i++ ) {
-					if ( filterItems[ i ].isSelected() ) {
-						values.push( filterItems[ i ].getName() );
-					}
-				}
-
-				if ( values.length === 0 || values.length === filterItems.length ) {
-					result[ group ] = 'all';
-				} else {
-					result[ group ] = values.join( model.getSeparator() );
-				}
-			}
+			$.extend( result, model.getParamRepresentation() );
 		} );
 
 		return result;
@@ -461,7 +454,7 @@
 	mw.rcfilters.dm.FiltersViewModel.prototype.sanitizeStringOptionGroup = function( groupName, valueArray ) {
 		var result = [],
 			validNames = this.getGroupFilters( groupName ).map( function ( filterItem ) {
-				return filterItem.getName();
+				return filterItem.getParamName();
 			} );
 
 		if ( valueArray.indexOf( 'all' ) > -1 ) {
@@ -529,7 +522,8 @@
 	 * @return {Object} Filter state object
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getFiltersFromParameters = function ( params ) {
-		var i, filterItem,
+		var i,
+			parameterMap = {},
 			groupMap = {},
 			model = this,
 			base = this.getDefaultParams(),
@@ -537,26 +531,40 @@
 
 		params = $.extend( {}, base, params );
 
-		$.each( params, function ( paramName, paramValue ) {
-			// Find the filter item
-			filterItem = model.getItemByName( paramName );
-			// Ignore if no filter item exists
-			if ( filterItem ) {
-				groupMap[ filterItem.getGroupName() ] = groupMap[ filterItem.getGroupName() ] || {};
+		// Create a map between known parameters and their models
+		$.each( this.groups, function ( group, groupModel ) {
+			if ( groupModel.getType() === 'send_unselected_if_any' ) {
+				// Individual filters
+				groupModel.getItems().forEach( function ( filterItem ) {
+					parameterMap[ filterItem.getParamName() ] = filterItem;
+				} );
+			} else if ( groupModel.getType() === 'string_options' ) {
+				// Group
+				parameterMap[ groupModel.getName() ] = groupModel;
+			}
+		} );
 
+		// Go over the given parameters
+		$.each( params, function ( paramName, paramValue ) {
+			var filterItem;
+
+			if ( parameterMap[ paramName ] instanceof mw.rcfilters.dm.FilterItem ) {
+				filterItem = parameterMap[ paramName ];
 				// Mark the group if it has any items that are selected
+				groupMap[ filterItem.getGroupName() ] = groupMap[ filterItem.getGroupName() ] || {};
 				groupMap[ filterItem.getGroupName() ].hasSelected = (
 					groupMap[ filterItem.getGroupName() ].hasSelected ||
 					!!Number( paramValue )
 				);
 
-				// Add the relevant filter into the group map
+				// Add filters
 				groupMap[ filterItem.getGroupName() ].filters = groupMap[ filterItem.getGroupName() ].filters || [];
 				groupMap[ filterItem.getGroupName() ].filters.push( filterItem );
-			} else if ( model.groups.hasOwnProperty( paramName ) ) {
+			} else if ( parameterMap[ paramName ] instanceof mw.rcfilters.dm.FilterGroup ) {
+				groupMap[ paramName ] = groupMap[ paramName ] || {};
 				// This parameter represents a group (values are the filters)
 				// this is equivalent to checking if the group is 'string_options'
-				groupMap[ paramName ] = { filters: model.groups[ paramName ].getItems() };
+				groupMap[ paramName ].filters = parameterMap[ paramName ].getItems();
 			}
 		} );
 
@@ -570,17 +578,22 @@
 				for ( i = 0; i < allItemsInGroup.length; i++ ) {
 					filterItem = allItemsInGroup[ i ];
 
-					result[ filterItem.getName() ] = data.hasSelected ?
+					result[ filterItem.getName() ] = groupMap[ filterItem.getGroupName() ].hasSelected ?
 						// Flip the definition between the parameter
 						// state and the filter state
 						// This is what the 'toggleSelected' value of the filter is
-						!Number( params[ filterItem.getName() ] ) :
+						!Number( params[ filterItem.getParamName() ] ) :
 						// Otherwise, there are no selected items in the
 						// group, which means the state is false
 						false;
 				}
 			} else if ( model.groups[ group ].getType() === 'string_options' ) {
-				paramValues = model.sanitizeStringOptionGroup( group, params[ group ].split( model.groups[ group ].getSeparator() ) );
+				paramValues = model.sanitizeStringOptionGroup(
+					group,
+					params[ group ].split(
+						model.groups[ group ].getSeparator()
+					)
+				);
 
 				for ( i = 0; i < allItemsInGroup.length; i++ ) {
 					filterItem = allItemsInGroup[ i ];
@@ -595,10 +608,11 @@
 						// is the same as all filters set to false
 						false :
 						// Otherwise, the filter is selected only if it appears in the parameter values
-						paramValues.indexOf( filterItem.getName() ) > -1;
+						paramValues.indexOf( filterItem.getParamName() ) > -1;
 				}
 			}
 		} );
+
 		return result;
 	};
 
@@ -631,7 +645,9 @@
 	 * @param {boolean} [isSelected] Filter selected state
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.toggleFilterSelected = function ( name, isSelected ) {
-		this.getItemByName( name ).toggleSelected( isSelected );
+		if ( this.getItemByName( name ) ) {
+			this.getItemByName( name ).toggleSelected( isSelected );
+		}
 	};
 
 	/**

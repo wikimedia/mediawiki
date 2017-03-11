@@ -1,4 +1,5 @@
 ( function ( mw, $ ) {
+	/* eslint camelcase: "off" */
 	QUnit.module( 'mediawiki.rcfilters - FiltersViewModel' );
 
 	QUnit.test( 'Setting up filters', function ( assert ) {
@@ -8,12 +9,12 @@
 					type: 'send_unselected_if_any',
 					filters: [
 						{
-							name: 'group1filter1',
+							name: 'filter1',
 							label: 'Group 1: Filter 1',
 							description: 'Description of Filter 1 in Group 1'
 						},
 						{
-							name: 'group1filter2',
+							name: 'filter2',
 							label: 'Group 1: Filter 2',
 							description: 'Description of Filter 2 in Group 1'
 						}
@@ -24,12 +25,12 @@
 					type: 'send_unselected_if_any',
 					filters: [
 						{
-							name: 'group2filter1',
+							name: 'filter1',
 							label: 'Group 2: Filter 1',
 							description: 'Description of Filter 1 in Group 2'
 						},
 						{
-							name: 'group2filter2',
+							name: 'filter2',
 							label: 'Group 2: Filter 2',
 							description: 'Description of Filter 2 in Group 2'
 						}
@@ -40,12 +41,12 @@
 					type: 'string_options',
 					filters: [
 						{
-							name: 'group3filter1',
+							name: 'filter1',
 							label: 'Group 3: Filter 1',
 							description: 'Description of Filter 1 in Group 3'
 						},
 						{
-							name: 'group3filter2',
+							name: 'filter2',
 							label: 'Group 3: Filter 2',
 							description: 'Description of Filter 2 in Group 3'
 						}
@@ -57,42 +58,42 @@
 		model.initializeFilters( definition );
 
 		assert.ok(
-			model.getItemByName( 'group1filter1' ) instanceof mw.rcfilters.dm.FilterItem &&
-			model.getItemByName( 'group1filter2' ) instanceof mw.rcfilters.dm.FilterItem &&
-			model.getItemByName( 'group2filter1' ) instanceof mw.rcfilters.dm.FilterItem &&
-			model.getItemByName( 'group2filter2' ) instanceof mw.rcfilters.dm.FilterItem &&
-			model.getItemByName( 'group3filter1' ) instanceof mw.rcfilters.dm.FilterItem &&
-			model.getItemByName( 'group3filter2' ) instanceof mw.rcfilters.dm.FilterItem,
+			model.getItemByName( 'group1__filter1' ) instanceof mw.rcfilters.dm.FilterItem &&
+			model.getItemByName( 'group1__filter2' ) instanceof mw.rcfilters.dm.FilterItem &&
+			model.getItemByName( 'group2__filter1' ) instanceof mw.rcfilters.dm.FilterItem &&
+			model.getItemByName( 'group2__filter2' ) instanceof mw.rcfilters.dm.FilterItem &&
+			model.getItemByName( 'group3__filter1' ) instanceof mw.rcfilters.dm.FilterItem &&
+			model.getItemByName( 'group3__filter2' ) instanceof mw.rcfilters.dm.FilterItem,
 			'Filters instantiated and stored correctly'
 		);
 
 		assert.deepEqual(
 			model.getSelectedState(),
 			{
-				group1filter1: false,
-				group1filter2: false,
-				group2filter1: false,
-				group2filter2: false,
-				group3filter1: false,
-				group3filter2: false
+				group1__filter1: false,
+				group1__filter2: false,
+				group2__filter1: false,
+				group2__filter2: false,
+				group3__filter1: false,
+				group3__filter2: false
 			},
 			'Initial state of filters'
 		);
 
 		model.toggleFiltersSelected( {
-			group1filter1: true,
-			group2filter2: true,
-			group3filter1: true
+			group1__filter1: true,
+			group2__filter2: true,
+			group3__filter1: true
 		} );
 		assert.deepEqual(
 			model.getSelectedState(),
 			{
-				group1filter1: true,
-				group1filter2: false,
-				group2filter1: false,
-				group2filter2: true,
-				group3filter1: true,
-				group3filter2: false
+				group1__filter1: true,
+				group1__filter2: false,
+				group2__filter1: false,
+				group2__filter2: true,
+				group3__filter1: true,
+				group3__filter2: false
 			},
 			'Updating filter states correctly'
 		);
@@ -106,12 +107,12 @@
 					type: 'send_unselected_if_any',
 					filters: [
 						{
-							name: 'group1filter1',
+							name: 'filter1',
 							label: 'Group 1: Filter 1',
 							description: 'Description of Filter 1 in Group 1'
 						},
 						{
-							name: 'group1filter2',
+							name: 'filter2',
 							label: 'Group 1: Filter 2',
 							description: 'Description of Filter 2 in Group 1'
 						}
@@ -122,12 +123,12 @@
 					type: 'send_unselected_if_any',
 					filters: [
 						{
-							name: 'group2filter1',
+							name: 'filter1',
 							label: 'Group 2: Filter 1',
 							description: 'Description of Filter 1 in Group 2'
 						},
 						{
-							name: 'group2filter2',
+							name: 'filter2',
 							label: 'xGroup 2: Filter 2',
 							description: 'Description of Filter 2 in Group 2'
 						}
@@ -138,24 +139,24 @@
 				{
 					query: 'group',
 					expectedMatches: {
-						group1: [ 'group1filter1', 'group1filter2' ],
-						group2: [ 'group2filter1' ]
+						group1: [ 'group1__filter1', 'group1__filter2' ],
+						group2: [ 'group2__filter1' ]
 					},
 					reason: 'Finds filters starting with the query string'
 				},
 				{
 					query: 'filter 2 in group',
 					expectedMatches: {
-						group1: [ 'group1filter2' ],
-						group2: [ 'group2filter2' ]
+						group1: [ 'group1__filter2' ],
+						group2: [ 'group2__filter2' ]
 					},
 					reason: 'Finds filters containing the query string in their description'
 				},
 				{
 					query: 'title',
 					expectedMatches: {
-						group1: [ 'group1filter1', 'group1filter2' ],
-						group2: [ 'group2filter1', 'group2filter2' ]
+						group1: [ 'group1__filter1', 'group1__filter2' ],
+						group2: [ 'group2__filter1', 'group2__filter2' ]
 					},
 					reason: 'Finds filters containing the query string in their group title'
 				}
@@ -277,12 +278,12 @@
 
 		// Select 1 filter
 		model.toggleFiltersSelected( {
-			hidefilter1: true,
-			hidefilter2: false,
-			hidefilter3: false,
-			hidefilter4: false,
-			hidefilter5: false,
-			hidefilter6: false
+			group1__hidefilter1: true,
+			group1__hidefilter2: false,
+			group1__hidefilter3: false,
+			group2__hidefilter4: false,
+			group2__hidefilter5: false,
+			group2__hidefilter6: false
 		} );
 		// Only one filter in one group
 		assert.deepEqual(
@@ -303,12 +304,12 @@
 
 		// Select 2 filters
 		model.toggleFiltersSelected( {
-			hidefilter1: true,
-			hidefilter2: true,
-			hidefilter3: false,
-			hidefilter4: false,
-			hidefilter5: false,
-			hidefilter6: false
+			group1__hidefilter1: true,
+			group1__hidefilter2: true,
+			group1__hidefilter3: false,
+			group2__hidefilter4: false,
+			group2__hidefilter5: false,
+			group2__hidefilter6: false
 		} );
 		// Two selected filters in one group
 		assert.deepEqual(
@@ -329,12 +330,12 @@
 
 		// Select 3 filters
 		model.toggleFiltersSelected( {
-			hidefilter1: true,
-			hidefilter2: true,
-			hidefilter3: true,
-			hidefilter4: false,
-			hidefilter5: false,
-			hidefilter6: false
+			group1__hidefilter1: true,
+			group1__hidefilter2: true,
+			group1__hidefilter3: true,
+			group2__hidefilter4: false,
+			group2__hidefilter5: false,
+			group2__hidefilter6: false
 		} );
 		// All filters of the group are selected == this is the same as not selecting any
 		assert.deepEqual(
@@ -355,9 +356,9 @@
 
 		// Select 1 filter from string_options
 		model.toggleFiltersSelected( {
-			filter7: true,
-			filter8: false,
-			filter9: false
+			group3__filter7: true,
+			group3__filter8: false,
+			group3__filter9: false
 		} );
 		// All filters of the group are selected == this is the same as not selecting any
 		assert.deepEqual(
@@ -378,9 +379,9 @@
 
 		// Select 2 filters from string_options
 		model.toggleFiltersSelected( {
-			filter7: true,
-			filter8: true,
-			filter9: false
+			group3__filter7: true,
+			group3__filter8: true,
+			group3__filter9: false
 		} );
 		// All filters of the group are selected == this is the same as not selecting any
 		assert.deepEqual(
@@ -401,9 +402,9 @@
 
 		// Select 3 filters from string_options
 		model.toggleFiltersSelected( {
-			filter7: true,
-			filter8: true,
-			filter9: true
+			group3__filter7: true,
+			group3__filter8: true,
+			group3__filter9: true
 		} );
 		// All filters of the group are selected == this is the same as not selecting any
 		assert.deepEqual(
@@ -497,16 +498,16 @@
 			},
 			defaultFilterRepresentation = {
 				// Group 1 and 2, "send_unselected_if_any", the values of the filters are "flipped" from the values of the parameters
-				hidefilter1: false,
-				hidefilter2: true,
-				hidefilter3: false,
-				hidefilter4: true,
-				hidefilter5: false,
-				hidefilter6: true,
+				group1__hidefilter1: false,
+				group1__hidefilter2: true,
+				group1__hidefilter3: false,
+				group2__hidefilter4: true,
+				group2__hidefilter5: false,
+				group2__hidefilter6: true,
 				// Group 3, "string_options", default values correspond to parameters and filters
-				filter7: false,
-				filter8: true,
-				filter9: false
+				group3__filter7: false,
+				group3__filter8: true,
+				group3__filter9: false
 			},
 			model = new mw.rcfilters.dm.FiltersViewModel();
 
@@ -524,9 +525,9 @@
 				hidefilter2: '1'
 			} ),
 			$.extend( {}, defaultFilterRepresentation, {
-				hidefilter1: false, // The text is "show filter 1"
-				hidefilter2: false, // The text is "show filter 2"
-				hidefilter3: false // The text is "show filter 3"
+				group1__hidefilter1: false, // The text is "show filter 1"
+				group1__hidefilter2: false, // The text is "show filter 2"
+				group1__hidefilter3: false // The text is "show filter 3"
 			} ),
 			'One truthy parameter in a group whose other parameters are true by default makes the rest of the filters in the group false (unchecked)'
 		);
@@ -538,9 +539,9 @@
 				hidefilter3: '1'
 			} ),
 			$.extend( {}, defaultFilterRepresentation, {
-				hidefilter1: false, // The text is "show filter 1"
-				hidefilter2: false, // The text is "show filter 2"
-				hidefilter3: false // The text is "show filter 3"
+				group1__hidefilter1: false, // The text is "show filter 1"
+				group1__hidefilter2: false, // The text is "show filter 2"
+				group1__hidefilter3: false // The text is "show filter 3"
 			} ),
 			'All paremeters in the same \'send_unselected_if_any\' group false is equivalent to none are truthy (checked) in the interface'
 		);
@@ -571,8 +572,8 @@
 		assert.deepEqual(
 			model.getSelectedState(),
 			$.extend( {}, defaultFilterRepresentation, {
-				hidefilter5: false,
-				hidefilter6: false
+				group2__hidefilter5: false,
+				group2__hidefilter6: false
 			} ),
 			'getFiltersFromParameters does not care about previous or existing state.'
 		);
@@ -608,9 +609,9 @@
 		assert.deepEqual(
 			model.getSelectedState(),
 			$.extend( {}, defaultFilterRepresentation, {
-				filter7: true,
-				filter8: false,
-				filter9: false
+				group3__filter7: true,
+				group3__filter8: false,
+				group3__filter9: false
 			} ),
 			'A \'string_options\' parameter containing 1 value, results in the corresponding filter as checked'
 		);
@@ -623,9 +624,9 @@
 		assert.deepEqual(
 			model.getSelectedState(),
 			$.extend( {}, defaultFilterRepresentation, {
-				filter7: true,
-				filter8: true,
-				filter9: false
+				group3__filter7: true,
+				group3__filter8: true,
+				group3__filter9: false
 			} ),
 			'A \'string_options\' parameter containing 2 values, results in both corresponding filters as checked'
 		);
@@ -638,9 +639,9 @@
 		assert.deepEqual(
 			model.getSelectedState(),
 			$.extend( {}, defaultFilterRepresentation, {
-				filter7: false,
-				filter8: false,
-				filter9: false
+				group3__filter7: false,
+				group3__filter8: false,
+				group3__filter9: false
 			} ),
 			'A \'string_options\' parameter containing all values, results in all filters of the group as unchecked.'
 		);
@@ -653,9 +654,9 @@
 		assert.deepEqual(
 			model.getSelectedState(),
 			$.extend( {}, defaultFilterRepresentation, {
-				filter7: false,
-				filter8: false,
-				filter9: false
+				group3__filter7: false,
+				group3__filter8: false,
+				group3__filter9: false
 			} ),
 			'A \'string_options\' parameter containing the value \'all\', results in all filters of the group as unchecked.'
 		);
@@ -668,9 +669,9 @@
 		assert.deepEqual(
 			model.getSelectedState(),
 			$.extend( {}, defaultFilterRepresentation, {
-				filter7: true,
-				filter8: false,
-				filter9: true
+				group3__filter7: true,
+				group3__filter8: false,
+				group3__filter9: true
 			} ),
 			'A \'string_options\' parameter containing an invalid value, results in the invalid value ignored and the valid corresponding filters checked.'
 		);
@@ -773,12 +774,12 @@
 			},
 			defaultFilterRepresentation = {
 				// Group 1 and 2, "send_unselected_if_any", the values of the filters are "flipped" from the values of the parameters
-				hidefilter1: false,
-				hidefilter2: true,
-				hidefilter3: false,
-				hidefilter4: true,
-				hidefilter5: false,
-				hidefilter6: true
+				group1__hidefilter1: false,
+				group1__hidefilter2: true,
+				group1__hidefilter3: false,
+				group2__hidefilter4: true,
+				group2__hidefilter5: false,
+				group2__hidefilter6: true
 			},
 			model = new mw.rcfilters.dm.FiltersViewModel();
 
@@ -787,19 +788,19 @@
 		assert.deepEqual(
 			model.getSelectedState(),
 			{
-				hidefilter1: false,
-				hidefilter2: false,
-				hidefilter3: false,
-				hidefilter4: false,
-				hidefilter5: false,
-				hidefilter6: false
+				group1__hidefilter1: false,
+				group1__hidefilter2: false,
+				group1__hidefilter3: false,
+				group2__hidefilter4: false,
+				group2__hidefilter5: false,
+				group2__hidefilter6: false
 			},
 			'Initial state: default filters are not selected (controller selects defaults explicitly).'
 		);
 
 		model.toggleFiltersSelected( {
-			hidefilter1: false,
-			hidefilter3: false
+			group1__hidefilter1: false,
+			group1__hidefilter3: false
 		} );
 
 		model.setFiltersToDefaults();
@@ -821,7 +822,7 @@
 							name: 'filter1',
 							label: 'Show filter 1',
 							description: 'Description of Filter 1 in Group 1',
-							subset: [ 'filter2', 'filter5' ]
+							subset: [ 'filter2' ]
 						},
 						{
 							name: 'filter2',
@@ -843,7 +844,7 @@
 							name: 'filter4',
 							label: 'Show filter 4',
 							description: 'Description of Filter 1 in Group 2',
-							subset: [ 'filter3', 'filter5' ]
+							subset: [ 'filter5', 'filter6' ]
 						},
 						{
 							name: 'filter5',
@@ -859,69 +860,68 @@
 				}
 			},
 			baseFullState = {
-				filter1: { selected: false, conflicted: false, included: false },
-				filter2: { selected: false, conflicted: false, included: false },
-				filter3: { selected: false, conflicted: false, included: false },
-				filter4: { selected: false, conflicted: false, included: false },
-				filter5: { selected: false, conflicted: false, included: false },
-				filter6: { selected: false, conflicted: false, included: false }
+				group1__filter1: { selected: false, conflicted: false, included: false },
+				group1__filter2: { selected: false, conflicted: false, included: false },
+				group1__filter3: { selected: false, conflicted: false, included: false },
+				group2__filter4: { selected: false, conflicted: false, included: false },
+				group2__filter5: { selected: false, conflicted: false, included: false },
+				group2__filter6: { selected: false, conflicted: false, included: false }
 			},
 			model = new mw.rcfilters.dm.FiltersViewModel();
 
 		model.initializeFilters( definition );
 		// Select a filter that has subset with another filter
 		model.toggleFiltersSelected( {
-			filter1: true
+			group1__filter1: true
 		} );
 
-		model.reassessFilterInteractions( model.getItemByName( 'filter1' ) );
+		model.reassessFilterInteractions( model.getItemByName( 'group1__filter1' ) );
 		assert.deepEqual(
 			model.getFullState(),
 			$.extend( true, {}, baseFullState, {
-				filter1: { selected: true },
-				filter2: { included: true },
-				filter5: { included: true }
+				group1__filter1: { selected: true },
+				group1__filter2: { included: true }
 			} ),
 			'Filters with subsets are represented in the model.'
 		);
 
 		// Select another filter that has a subset with the same previous filter
 		model.toggleFiltersSelected( {
-			filter4: true
+			group2__filter4: true
 		} );
-		model.reassessFilterInteractions( model.getItemByName( 'filter4' ) );
+		model.reassessFilterInteractions( model.getItemByName( 'group2__filter4' ) );
 		assert.deepEqual(
 			model.getFullState(),
 			$.extend( true, {}, baseFullState, {
-				filter1: { selected: true },
-				filter2: { included: true },
-				filter3: { included: true },
-				filter4: { selected: true },
-				filter5: { included: true }
+				group1__filter1: { selected: true },
+				group1__filter2: { included: true },
+				group2__filter4: { selected: true },
+				group2__filter5: { included: true },
+				group2__filter6: { included: true }
 			} ),
 			'Filters that have multiple subsets are represented.'
 		);
 
 		// Remove one filter (but leave the other) that affects filter2
 		model.toggleFiltersSelected( {
-			filter1: false
+			group1__filter1: false
 		} );
-		model.reassessFilterInteractions( model.getItemByName( 'filter1' ) );
+		model.reassessFilterInteractions( model.getItemByName( 'group1__filter1' ) );
 		assert.deepEqual(
 			model.getFullState(),
 			$.extend( true, {}, baseFullState, {
-				filter2: { included: false },
-				filter3: { included: true },
-				filter4: { selected: true },
-				filter5: { included: true }
+				group1__filter2: { included: false },
+				group2__filter4: { selected: true },
+				group2__filter5: { included: true },
+				group2__filter6: { included: true }
 			} ),
 			'Removing a filter only un-includes its subset if there is no other filter affecting.'
 		);
 
 		model.toggleFiltersSelected( {
-			filter4: false
+			group2__filter4: false
 		} );
-		model.reassessFilterInteractions( model.getItemByName( 'filter4' ) );
+		model.reassessFilterInteractions( model.getItemByName( 'group2__filter4' ) );
 		assert.deepEqual(
 			model.getFullState(),
 			baseFullState,
@@ -967,21 +967,21 @@
 			},
 			getCurrentItemsMutedState = function () {
 				return {
-					filter1: isCapsuleItemMuted( 'filter1' ),
-					filter2: isCapsuleItemMuted( 'filter2' ),
-					filter3: isCapsuleItemMuted( 'filter3' ),
-					filter4: isCapsuleItemMuted( 'filter4' ),
-					filter5: isCapsuleItemMuted( 'filter5' ),
-					filter6: isCapsuleItemMuted( 'filter6' )
+					group1__filter1: isCapsuleItemMuted( 'group1__filter1' ),
+					group1__filter2: isCapsuleItemMuted( 'group1__filter2' ),
+					group1__filter3: isCapsuleItemMuted( 'group1__filter3' ),
+					group2__filter4: isCapsuleItemMuted( 'group2__filter4' ),
+					group2__filter5: isCapsuleItemMuted( 'group2__filter5' ),
+					group2__filter6: isCapsuleItemMuted( 'group2__filter6' )
 				};
 			},
 			baseMuteState = {
-				filter1: false,
-				filter2: false,
-				filter3: false,
-				filter4: false,
-				filter5: false,
-				filter6: false
+				group1__filter1: false,
+				group1__filter2: false,
+				group1__filter3: false,
+				group2__filter4: false,
+				group2__filter5: false,
+				group2__filter6: false
 			};
 
 		model.initializeFilters( definition );
@@ -995,10 +995,10 @@
 
 		// Select most (but not all) items in each group
 		model.toggleFiltersSelected( {
-			filter1: true,
-			filter2: true,
-			filter4: true,
-			filter5: true
+			group1__filter1: true,
+			group1__filter2: true,
+			group2__filter4: true,
+			group2__filter5: true
 		} );
 
 		// Both groups have multiple (but not all) items selected, all items are non-muted
@@ -1010,40 +1010,40 @@
 
 		// Select all items in 'fullCoverage' group (group2)
 		model.toggleFiltersSelected( {
-			filter6: true
+			group2__filter6: true
 		} );
 
 		// Group2 (full coverage) has all items selected, all its items are muted
 		assert.deepEqual(
 			getCurrentItemsMutedState(),
 			$.extend( {}, baseMuteState, {
-				filter4: true,
-				filter5: true,
-				filter6: true
+				group2__filter4: true,
+				group2__filter5: true,
+				group2__filter6: true
 			} ),
 			'All items in \'full coverage\' group are selected - all items in the group are muted'
 		);
 
 		// Select all items in non 'fullCoverage' group (group1)
 		model.toggleFiltersSelected( {
-			filter3: true
+			group1__filter3: true
 		} );
 
 		// Group1 (full coverage) has all items selected, no items in it are muted (non full coverage)
 		assert.deepEqual(
 			getCurrentItemsMutedState(),
 			$.extend( {}, baseMuteState, {
-				filter4: true,
-				filter5: true,
-				filter6: true
+				group2__filter4: true,
+				group2__filter5: true,
+				group2__filter6: true
 			} ),
 			'All items in a non \'full coverage\' group are selected - none of the items in the group are muted'
 		);
 
 		// Uncheck an item from each group
 		model.toggleFiltersSelected( {
-			filter3: false,
-			filter5: false
+			group1__filter3: false,
+			group2__filter5: false
 		} );
 		assert.deepEqual(
 			getCurrentItemsMutedState(),
@@ -1098,12 +1098,12 @@
 				}
 			},
 			baseFullState = {
-				filter1: { selected: false, conflicted: false, included: false },
-				filter2: { selected: false, conflicted: false, included: false },
-				filter3: { selected: false, conflicted: false, included: false },
-				filter4: { selected: false, conflicted: false, included: false },
-				filter5: { selected: false, conflicted: false, included: false },
-				filter6: { selected: false, conflicted: false, included: false }
+				group1__filter1: { selected: false, conflicted: false, included: false },
+				group1__filter2: { selected: false, conflicted: false, included: false },
+				group1__filter3: { selected: false, conflicted: false, included: false },
+				group2__filter4: { selected: false, conflicted: false, included: false },
+				group2__filter5: { selected: false, conflicted: false, included: false },
+				group2__filter6: { selected: false, conflicted: false, included: false }
 			},
 			model = new mw.rcfilters.dm.FiltersViewModel();
 
@@ -1117,35 +1117,35 @@
 
 		// Select a filter that has a conflict with an entire group
 		model.toggleFiltersSelected( {
-			filter1: true // conflicts: entire of group 2 ( filter4, filter5, filter6)
+			group1__filter1: true // conflicts: entire of group 2 ( filter4, filter5, filter6)
 		} );
 
-		model.reassessFilterInteractions( model.getItemByName( 'filter1' ) );
+		model.reassessFilterInteractions( model.getItemByName( 'group1__filter1' ) );
 
 		assert.deepEqual(
 			model.getFullState(),
 			$.extend( true, {}, baseFullState, {
-				filter1: { selected: true },
-				filter4: { conflicted: true },
-				filter5: { conflicted: true },
-				filter6: { conflicted: true }
+				group1__filter1: { selected: true },
+				group2__filter4: { conflicted: true },
+				group2__filter5: { conflicted: true },
+				group2__filter6: { conflicted: true }
 			} ),
 			'Selecting a filter that conflicts with a group sets all the conflicted group items as "conflicted".'
 		);
 
 		// Select one of the conflicts (both filters are now conflicted and selected)
 		model.toggleFiltersSelected( {
-			filter4: true // conflicts: filter 1
+			group2__filter4: true // conflicts: filter 1
 		} );
-		model.reassessFilterInteractions( model.getItemByName( 'filter4' ) );
+		model.reassessFilterInteractions( model.getItemByName( 'group2__filter4' ) );
 
 		assert.deepEqual(
 			model.getFullState(),
 			$.extend( true, {}, baseFullState, {
-				filter1: { selected: true, conflicted: true },
-				filter4: { selected: true, conflicted: true },
-				filter5: { conflicted: true },
-				filter6: { conflicted: true }
+				group1__filter1: { selected: true, conflicted: true },
+				group2__filter4: { selected: true, conflicted: true },
+				group2__filter5: { conflicted: true },
+				group2__filter6: { conflicted: true }
 			} ),
 			'Selecting a conflicting filter inside a group, sets both sides to conflicted and selected.'
 		);
@@ -1156,50 +1156,49 @@
 
 		// Select a filter that has a conflict with a specific filter
 		model.toggleFiltersSelected( {
-			filter2: true // conflicts: filter6
+			group1__filter2: true // conflicts: filter6
 		} );
-
-		model.reassessFilterInteractions( model.getItemByName( 'filter2' ) );
+		model.reassessFilterInteractions( model.getItemByName( 'group1__filter2' ) );
 
 		assert.deepEqual(
 			model.getFullState(),
 			$.extend( true, {}, baseFullState, {
-				filter2: { selected: true },
-				filter6: { conflicted: true }
+				group1__filter2: { selected: true },
+				group2__filter6: { conflicted: true }
 			} ),
 			'Selecting a filter that conflicts with another filter sets the other as "conflicted".'
 		);
 
 		// Select the conflicting filter
 		model.toggleFiltersSelected( {
-			filter6: true // conflicts: filter2
+			group2__filter6: true // conflicts: filter2
 		} );
 
-		model.reassessFilterInteractions( model.getItemByName( 'filter6' ) );
+		model.reassessFilterInteractions( model.getItemByName( 'group2__filter6' ) );
 
 		assert.deepEqual(
 			model.getFullState(),
 			$.extend( true, {}, baseFullState, {
-				filter2: { selected: true, conflicted: true },
-				filter6: { selected: true, conflicted: true },
-				filter1: { conflicted: true } // This is added to the conflicts because filter6 is part of group2, who is in conflict with filter1
+				group1__filter2: { selected: true, conflicted: true },
+				group2__filter6: { selected: true, conflicted: true },
+				group1__filter1: { conflicted: true } // This is added to the conflicts because filter6 is part of group2, who is in conflict with filter1
 			} ),
 			'Selecting a conflicting filter with an individual filter, sets both sides to conflicted and selected.'
 		);
 
 		// Now choose a non-conflicting filter from the group
 		model.toggleFiltersSelected( {
-			filter5: true
+			group2__filter5: true
 		} );
 
-		model.reassessFilterInteractions( model.getItemByName( 'filter5' ) );
+		model.reassessFilterInteractions( model.getItemByName( 'group2__filter5' ) );
 
 		assert.deepEqual(
 			model.getFullState(),
 			$.extend( true, {}, baseFullState, {
-				filter2: { selected: true },
-				filter6: { selected: true },
-				filter5: { selected: true }
+				group1__filter2: { selected: true },
+				group2__filter6: { selected: true },
+				group2__filter5: { selected: true }
 				// Filter1 is no longer in conflict because filter2 is selected
 				// within its own group, which removes the conflict
 			} ),
@@ -1208,35 +1207,35 @@
 
 		// Followup on the previous test, unselect filter2 so filter1 is once again conflicted
 		model.toggleFiltersSelected( {
-			filter2: false
+			group1__filter2: false
 		} );
 
-		model.reassessFilterInteractions( model.getItemByName( 'filter5' ) );
+		model.reassessFilterInteractions( model.getItemByName( 'group1__filter2' ) );
 
 		assert.deepEqual(
 			model.getFullState(),
 			$.extend( true, {}, baseFullState, {
-				filter1: { conflicted: true },
-				filter6: { selected: true },
-				filter5: { selected: true }
+				group1__filter1: { conflicted: true },
+				group2__filter6: { selected: true },
+				group2__filter5: { selected: true }
 			} ),
 			'Unselecting an item that did not conflict returns the conflict state.'
 		);
 
 		// Followup #2: Now actually select filter1, and make everything conflicted
 		model.toggleFiltersSelected( {
-			filter1: true
+			group1__filter1: true
 		} );
 
-		model.reassessFilterInteractions( model.getItemByName( 'filter5' ) );
+		model.reassessFilterInteractions( model.getItemByName( 'group1__filter1' ) );
 
 		assert.deepEqual(
 			model.getFullState(),
 			$.extend( true, {}, baseFullState, {
-				filter1: { selected: true, conflicted: true },
-				filter6: { selected: true, conflicted: true },
-				filter5: { selected: true, conflicted: true },
-				filter4: { conflicted: true } // Not selected but conflicted because it's in group2
+				group1__filter1: { selected: true, conflicted: true },
+				group2__filter6: { selected: true, conflicted: true },
+				group2__filter5: { selected: true, conflicted: true },
+				group2__filter4: { conflicted: true } // Not selected but conflicted because it's in group2
 			} ),
 			'Selecting an item that conflicts with a whole group makes all selections in that group conflicted.'
 		);
@@ -1272,40 +1271,40 @@
 			'Highlight is enabled on toggle.'
 		);
 
-		model.setHighlightColor( 'filter1', 'color1' );
-		model.setHighlightColor( 'filter2', 'color2' );
+		model.setHighlightColor( 'group1__filter1', 'color1' );
+		model.setHighlightColor( 'group1__filter2', 'color2' );
 
 		assert.deepEqual(
 			model.getHighlightedItems().map( function ( item ) {
 				return item.getName();
 			} ),
 			[
-				'filter1',
-				'filter2'
+				'group1__filter1',
+				'group1__filter2'
 			],
 			'Highlighted items are highlighted.'
 		);
 
 		assert.equal(
-			model.getItemByName( 'filter1' ).getHighlightColor(),
+			model.getItemByName( 'group1__filter1' ).getHighlightColor(),
 			'color1',
 			'Item highlight color is set.'
 		);
 
-		model.setHighlightColor( 'filter1', 'color1changed' );
+		model.setHighlightColor( 'group1__filter1', 'color1changed' );
 		assert.equal(
-			model.getItemByName( 'filter1' ).getHighlightColor(),
+			model.getItemByName( 'group1__filter1' ).getHighlightColor(),
 			'color1changed',
 			'Item highlight color is changed on setHighlightColor.'
 		);
 
-		model.clearHighlightColor( 'filter1' );
+		model.clearHighlightColor( 'group1__filter1' );
 		assert.deepEqual(
 			model.getHighlightedItems().map( function ( item ) {
 				return item.getName();
 			} ),
 			[
-				'filter2'
+				'group1__filter2'
 			],
 			'Clear highlight from an item results in the item no longer being highlighted.'
 		);
@@ -1314,18 +1313,18 @@
 		model = new mw.rcfilters.dm.FiltersViewModel();
 		model.initializeFilters( definition );
 
-		model.setHighlightColor( 'filter1', 'color1' );
-		model.setHighlightColor( 'filter2', 'color2' );
-		model.setHighlightColor( 'filter3', 'color3' );
+		model.setHighlightColor( 'group1__filter1', 'color1' );
+		model.setHighlightColor( 'group1__filter2', 'color2' );
+		model.setHighlightColor( 'group1__filter3', 'color3' );
 
 		assert.deepEqual(
 			model.getHighlightedItems().map( function ( item ) {
 				return item.getName();
 			} ),
 			[
-				'filter1',
-				'filter2',
-				'filter3'
+				'group1__filter1',
+				'group1__filter2',
+				'group1__filter3'
 			],
 			'Even if highlights are not enabled, the items remember their highlight state'
 			// NOTE: When actually displaying the highlights, the UI checks whether
@@ -1340,15 +1339,15 @@
 		model = new mw.rcfilters.dm.FiltersViewModel();
 		model.initializeFilters( definition );
 
-		model.setHighlightColor( 'filter1', 'color1' );
-		model.setHighlightColor( 'filter6', 'color6' );
+		model.setHighlightColor( 'group1__filter1', 'color1' );
+		model.setHighlightColor( 'group1__filter6', 'color6' );
 
 		assert.deepEqual(
 			model.getHighlightedItems().map( function ( item ) {
 				return item.getName();
 			} ),
 			[
-				'filter1'
+				'group1__filter1'
 			],
 			'Items without a specified class identifier are not highlighted.'
 		);
