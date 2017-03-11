@@ -2943,8 +2943,6 @@ class Title implements LinkTarget {
 					continue;
 				}
 
-				// This code should be refactored, now that it's being used more generally,
-				// But I don't really see any harm in leaving it in Block for now -werdna
 				$expiry = $dbr->decodeExpiry( $row->pr_expiry );
 
 				// Only apply the restrictions if they haven't expired!
