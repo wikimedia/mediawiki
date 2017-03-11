@@ -24,6 +24,7 @@
 global $wgAutoloadClasses;
 $testDir = __DIR__ . "/..";
 
+// @codingStandardsIgnoreStart Generic.Files.LineLength.TooLong
 $wgAutoloadClasses += [
 
 	# tests/common
@@ -130,6 +131,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/specialpage
 	'SpecialPageTestHelper' => "$testDir/phpunit/includes/specialpage/SpecialPageTestHelper.php",
+	'AbstractChangesListSpecialPageTestCase' => "$testDir/phpunit/includes/specialpage/AbstractChangesListSpecialPageTestCase.php",
 
 	# tests/phpunit/includes/specials
 	'SpecialPageTestBase' => "$testDir/phpunit/includes/specials/SpecialPageTestBase.php",
@@ -167,3 +169,4 @@ $wgAutoloadClasses += [
 	'ParserTestFileSuite' => "$testDir/phpunit/suites/ParserTestFileSuite.php",
 	'ParserTestTopLevelSuite' => "$testDir/phpunit/suites/ParserTestTopLevelSuite.php",
 ];
+// @codingStandardsIgnoreEnd
