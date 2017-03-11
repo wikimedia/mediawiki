@@ -31,22 +31,27 @@ class UnwatchAction extends WatchAction {
 		return 'unwatch';
 	}
 
-	protected function getDescription() {
-		return $this->msg( 'removewatch' )->escaped();
-	}
-
 	public function onSubmit( $data ) {
 		self::doUnwatch( $this->getTitle(), $this->getUser() );
 
 		return true;
 	}
 
-	protected function alterForm( HTMLForm $form ) {
-		$form->setSubmitTextMsg( 'confirm-unwatch-button' );
+	protected function getFormFields() {
+		return [
+			'intro' => [
+				'type' => 'info',
+				'vertical-label' => true,
+				'raw' => true,
+				'default' => $this->msg( 'confirm-unwatch-top' )->parse()
+			]
+		];
 	}
 
-	protected function preText() {
-		return $this->msg( 'confirm-unwatch-top' )->parse();
+	protected function alterForm( HTMLForm $form ) {
+		parent::alterForm( $form );
+		$form->setWrapperLegendMsg( 'removewatch' );
+		$form->setSubmitTextMsg( 'confirm-unwatch-button' );
 	}
 
 	public function onSuccess() {
