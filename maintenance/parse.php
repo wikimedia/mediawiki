@@ -68,6 +68,7 @@ class CLIParser extends Maintenance {
 			false,
 			true
 		);
+		$this->addOption( 'tidy', 'Tidy the output' );
 		$this->addArg( 'file', 'File containing wikitext (Default: stdin)', false );
 	}
 
@@ -81,7 +82,11 @@ class CLIParser extends Maintenance {
 	 * @return string HTML Rendering
 	 */
 	public function render( $wikitext ) {
-		return $this->parse( $wikitext )->getText();
+		$out = $this->parse( $wikitext )->getText();
+		if ( $this->getOption( 'tidy' ) ) {
+			$out = MWTidy::tidy( $out );
+		}
+		return $out;
 	}
 
 	/**
