@@ -3076,6 +3076,7 @@
 	"mw-widgets-titleinput-description-new-page": "sida finst ikkje enno",
 	"mw-widgets-titleinput-description-redirect": "omdiriger til $1",
 	"randomrootpage": "Tilfeldig rotsida",
+	"log-action-filter-rights": "Type endring av rettar:",
 	"authmanager-userdoesnotexist": "Brukarkontoen «$1» er ikkje oppretta.",
 	"userjsispublic": "Merk: JavaScript-undersider bør ikkje innehalda konfidensielle data sidan dei er synlege for andre brukarar.",
 	"usercssispublic": "Merk: CSS-undersider bør ikkje innehalda konfidensielle data sidan dei er synlege for andre brukarar."

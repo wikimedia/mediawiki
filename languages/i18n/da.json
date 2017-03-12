@@ -1297,7 +1297,7 @@
 	"rcfilters-activefilters": "Aktive filtre",
 	"rcfilters-invalid-filter": "Ugyldigt filter",
 	"rcfilters-filterlist-title": "Filtre",
-	"rcfilters-filter-userExpLevel-experienced-label": "Erfarne brugere",
+	"rcfilters-filter-user-experience-level-experienced-label": "Erfarne brugere",
 	"rcnotefrom": "Nedenfor er op til '''$1''' {{PLURAL:$5|ændring|ændringer}} siden '''$2''' vist.",
 	"rclistfrom": "Vis nye ændringer startende fra den $3 kl. $2",
 	"rcshowhideminor": "$1 mindre ændringer",

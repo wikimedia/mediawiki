@@ -1239,7 +1239,7 @@
 	"rcfilters-filter-editsbyself-label": "Ваши собствени редакции",
 	"rcfilters-filter-editsbyself-description": "Ваши редакции.",
 	"rcfilters-filter-editsbyother-label": "Чужди редакции",
-	"rcfilters-filter-userExpLevel-newcomer-label": "Новодошли",
+	"rcfilters-filter-user-experience-level-newcomer-label": "Новодошли",
 	"rcfilters-filter-bots-label": "Бот",
 	"rcfilters-filter-humans-label": "Човек (не бот)",
 	"rcfilters-filter-minor-label": "Малки промени",
