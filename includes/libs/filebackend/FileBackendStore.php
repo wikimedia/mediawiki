@@ -1200,21 +1200,20 @@ abstract class FileBackendStore extends FileBackend {
 	 * to the order in which the handles where given.
 	 *
 	 * @param FileBackendStoreOpHandle[] $fileOpHandles
-	 *
-	 * @throws FileBackendError
 	 * @return StatusValue[] Map of StatusValue objects
+	 * @throws FileBackendError
 	 */
 	final public function executeOpHandlesInternal( array $fileOpHandles ) {
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 
 		foreach ( $fileOpHandles as $fileOpHandle ) {
 			if ( !( $fileOpHandle instanceof FileBackendStoreOpHandle ) ) {
-				throw new InvalidArgumentException( "Got a non-FileBackendStoreOpHandle object." );
+				throw new InvalidArgumentException( "Expected FileBackendStoreOpHandle object." );
 			} elseif ( $fileOpHandle->backend->getName() !== $this->getName() ) {
-				throw new InvalidArgumentException(
-					"Got a FileBackendStoreOpHandle for the wrong backend." );
+				throw new InvalidArgumentException( "Expected handle for this file backend." );
 			}
 		}
+
 		$res = $this->doExecuteOpHandlesInternal( $fileOpHandles );
 		foreach ( $fileOpHandles as $fileOpHandle ) {
 			$fileOpHandle->closeResources();
