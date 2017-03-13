@@ -29,7 +29,8 @@
 			"Aefgh39622",
 			"Anomie",
 			"Dr. Shikha Jaggi",
-			"Xð"
+			"Xð",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Link underlining:",
@@ -173,9 +174,9 @@
 	"and": "&#32;and",
 	"qbfind": "Find",
 	"qbbrowse": "Browse",
-	"qbedit": "संपादित करें",
-	"qbpageoptions": "यह पन्ना",
-	"qbmyoptions": "मेरे पृष्ठों",
+	"qbedit": "Edit",
+	"qbpageoptions": "This page",
+	"qbmyoptions": "My pages",
 	"faq": "FAQ",
 	"faqpage": "Project:FAQ",
 	"actions": "Actions",

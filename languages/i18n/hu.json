@@ -1111,7 +1111,7 @@
 	"editinguser": "<strong>[[User:$1|$1]]</strong> felhasználó jogainak megváltoztatása $2",
 	"viewinguserrights": "<strong>[[User:$1|$1]]</strong> felhasználói csoportjainak megtekintése $2",
 	"userrights-editusergroup": "Szerkesztőcsoportok módosítása",
-	"userrights-viewusergroup": "{{GENDER:$1|Felhasználói}}csoportok megtekintése",
+	"userrights-viewusergroup": "{{GENDER:$1|Felhasználói}} csoportok megtekintése",
 	"saveusergroups": "{{GENDER:$1|Szerkesztőcsoportok}} mentése",
 	"userrights-groupsmember": "Csoporttag:",
 	"userrights-groupsmember-auto": "Alapértelmezetten tagja:",
