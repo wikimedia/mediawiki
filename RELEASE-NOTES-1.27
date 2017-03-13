@@ -19,6 +19,7 @@ was released.
   action=createaccount, action=linkaccount, and action=changeauthenticationdata
   in the query string is now deprecated and outputs a warning. They should be
   submitted in the POST body instead.
+* (T158766) Avoid SQL error on MSSQL when using selectRowCount()
 
 == MediaWiki 1.27.1 ==
 
