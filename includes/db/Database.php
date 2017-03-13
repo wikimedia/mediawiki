@@ -1324,7 +1324,10 @@ abstract class DatabaseBase implements IDatabase {
 	) {
 		$rows = 0;
 		$sql = $this->selectSQLText( $tables, '1', $conds, $fname, $options, $join_conds );
-		$res = $this->query( "SELECT COUNT(*) AS rowcount FROM ($sql) tmp_count", $fname );
+		// The identifier quotes is primarily for MSSQL.
+		$rowCountCol = $this->addIdentifierQuotes( "rowcount" );
+		$tableName = $this->addIdentifierQuotes( "tmp_count" );
+		$res = $this->query( "SELECT COUNT(*) AS $rowCountCol FROM ($sql) $tableName", $fname );
 
 		if ( $res ) {
 			$row = $this->fetchRow( $res );
