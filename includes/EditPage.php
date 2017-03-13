@@ -801,7 +801,10 @@ class EditPage {
 			throw new ErrorPageError(
 				'editpage-notsupportedcontentformat-title',
 				'editpage-notsupportedcontentformat-text',
-				array( $this->contentFormat, ContentHandler::getLocalizedName( $this->contentModel ) )
+				array(
+					wfEscapeWikiText( $this->contentFormat ),
+					wfEscapeWikiText( ContentHandler::getLocalizedName( $this->contentModel ) )
+				)
 			);
 		}
 		#TODO: check if the desired model is allowed in this namespace, and if a transition from the page's current model to the new model is allowed
