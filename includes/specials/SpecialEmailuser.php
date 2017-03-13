@@ -231,12 +231,13 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			return 'usermaildisabled';
 		}
 
-		if ( !$user->isAllowed( 'sendemail' ) ) {
-			return 'badaccess';
-		}
-
+		// Run this before $user->isAllowed, to show appropriate message to anons (T160309)
 		if ( !$user->isEmailConfirmed() ) {
 			return 'mailnologin';
+		}
+
+		if ( !$user->isAllowed( 'sendemail' ) ) {
+			return 'badaccess';
 		}
 
 		if ( $user->isBlockedFromEmailuser() ) {
