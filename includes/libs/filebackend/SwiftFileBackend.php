@@ -287,7 +287,7 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( !empty( $params['async'] ) ) { // deferred
 			$status->value = $opHandle;
 		} else { // actually write the object in Swift
-			$status->merge( current( $this->doExecuteOpHandlesInternal( [ $opHandle ] ) ) );
+			$status->merge( current( $this->executeOpHandlesInternal( [ $opHandle ] ) ) );
 		}
 
 		return $status;
@@ -353,7 +353,7 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( !empty( $params['async'] ) ) { // deferred
 			$status->value = $opHandle;
 		} else { // actually write the object in Swift
-			$status->merge( current( $this->doExecuteOpHandlesInternal( [ $opHandle ] ) ) );
+			$status->merge( current( $this->executeOpHandlesInternal( [ $opHandle ] ) ) );
 		}
 
 		return $status;
@@ -401,7 +401,7 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( !empty( $params['async'] ) ) { // deferred
 			$status->value = $opHandle;
 		} else { // actually write the object in Swift
-			$status->merge( current( $this->doExecuteOpHandlesInternal( [ $opHandle ] ) ) );
+			$status->merge( current( $this->executeOpHandlesInternal( [ $opHandle ] ) ) );
 		}
 
 		return $status;
@@ -460,7 +460,7 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( !empty( $params['async'] ) ) { // deferred
 			$status->value = $opHandle;
 		} else { // actually move the object in Swift
-			$status->merge( current( $this->doExecuteOpHandlesInternal( [ $opHandle ] ) ) );
+			$status->merge( current( $this->executeOpHandlesInternal( [ $opHandle ] ) ) );
 		}
 
 		return $status;
@@ -500,7 +500,7 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( !empty( $params['async'] ) ) { // deferred
 			$status->value = $opHandle;
 		} else { // actually delete the object in Swift
-			$status->merge( current( $this->doExecuteOpHandlesInternal( [ $opHandle ] ) ) );
+			$status->merge( current( $this->executeOpHandlesInternal( [ $opHandle ] ) ) );
 		}
 
 		return $status;
@@ -556,7 +556,7 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( !empty( $params['async'] ) ) { // deferred
 			$status->value = $opHandle;
 		} else { // actually change the object in Swift
-			$status->merge( current( $this->doExecuteOpHandlesInternal( [ $opHandle ] ) ) );
+			$status->merge( current( $this->executeOpHandlesInternal( [ $opHandle ] ) ) );
 		}
 
 		return $status;
