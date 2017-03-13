@@ -31,6 +31,7 @@ was released.
   their values out of the logs.
 * (T150044) SECURITY: "Mark all pages visited" on the watchlist now requires a CSRF
   token.
+* (T156184) SECURITY: Escape content model/format url parameter in message.
 
 == MediaWiki 1.27.1 ==
 
