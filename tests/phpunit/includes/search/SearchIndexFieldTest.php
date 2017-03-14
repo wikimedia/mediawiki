@@ -46,7 +46,7 @@ class SearchIndexFieldTest extends MediaWikiTestCase {
 		$this->assertFalse( $field1->merge( $field2 ) );
 
 		$field1->setMergeCallback(
-			function ( $this, $that ) {
+			function ( $a, $b ) {
 				return "test";
 			}
 		);
