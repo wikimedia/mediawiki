@@ -1422,6 +1422,8 @@
 	"rcfilters-filter-bots-description": "Правки, сделанные с помощью автоматизированных инструментов.",
 	"rcfilters-filter-humans-label": "Человек (не бот)",
 	"rcfilters-filter-humans-description": "Правки, внесённые редакторами.",
+	"rcfilters-filter-patrolled-label": "Отпатрулировано",
+	"rcfilters-filter-patrolled-description": "Правки, помеченные как отпатрулированные.",
 	"rcfilters-filtergroup-significance": "Значение",
 	"rcfilters-filter-minor-label": "Малые правки",
 	"rcfilters-filter-minor-description": "Правки, которые автор пометил как малые.",

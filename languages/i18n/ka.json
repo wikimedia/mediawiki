@@ -3528,7 +3528,7 @@
 	"feedback-thanks": "გმადლობთ! თქვენი შეფასება განთავსებულია „[$2 $1]“ გვერდზე.",
 	"feedback-thanks-title": "გმადლობთ!",
 	"feedback-useragent": "მომხმარებლის აგენტი:",
-	"searchsuggest-search": "ძიება პროექტში {{grammar:prepositional|{{SITENAME}}}}",
+	"searchsuggest-search": "ძიება {{grammar:prepositional|{{SITENAME}}}}ში",
 	"searchsuggest-containing": "შეიცავს...",
 	"api-error-badtoken": "შიდა შეცდომა: ცუდი ტოკენი.",
 	"api-error-emptypage": "ახალი, ცარიელი გვერდების შექმნა აკრძალულია.",

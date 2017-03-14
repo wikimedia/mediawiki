@@ -1151,7 +1151,7 @@
 	"prefs-help-prefershttps": "Diese Einstellung wird bei deiner nächsten Anmeldung wirksam.",
 	"prefswarning-warning": "Du hast Änderungen an deinen Einstellungen durchgeführt, die noch nicht gespeichert wurden.\nWenn du diese Seite verlässt ohne auf „$1“ zu klicken, werden deine Einstellungen nicht aktualisiert.",
 	"prefs-tabs-navigation-hint": "Tipp: Du kannst die linke und rechte Pfeiltasten benutzen, um zwischen den Registerkarten in der Reiterliste zu navigieren.",
-	"userrights": "Benutzerrechte verwalten",
+	"userrights": "Benutzerrechte",
 	"userrights-lookup-user": "Einen Benutzer auswählen",
 	"userrights-user-editname": "Benutzername:",
 	"editusergroup": "Benutzergruppen laden",

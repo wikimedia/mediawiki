@@ -3377,7 +3377,7 @@
 	"feedback-thanks": "Mulțumim! Comentariile dumneavoastră au fost publicate pe pagina „[ $2  $1 ]”.",
 	"feedback-thanks-title": "Mulțumim!",
 	"feedback-useragent": "Agent utilizator:",
-	"searchsuggest-search": "Căutare",
+	"searchsuggest-search": "Căutare în {{SITENAME}}",
 	"searchsuggest-containing": "conținând...",
 	"api-error-badtoken": "Eroare internă: jeton greșit.",
 	"api-error-emptypage": "Crearea paginilor noi, goale nu este permisă.",

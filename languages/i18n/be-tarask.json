@@ -1338,6 +1338,8 @@
 	"rcfilters-filter-humans-label": "Чалавек (ня робат)",
 	"rcfilters-filter-humans-description": "Праўкі, зробленыя людзьмі.",
 	"rcfilters-filtergroup-reviewstatus": "Статус праверкі",
+	"rcfilters-filter-patrolled-label": "Правераныя",
+	"rcfilters-filter-patrolled-description": "Праўкі, пазначаныя як правераныя.",
 	"rcfilters-filtergroup-significance": "Значэньне",
 	"rcfilters-filter-minor-label": "Дробныя праўкі",
 	"rcfilters-filter-minor-description": "Праўкі, якія аўтар пазначыў як дробныя.",

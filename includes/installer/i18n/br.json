@@ -62,6 +62,7 @@
 	"config-memory-bad": "'''Diwallit :''' Da $1 emañ arventenn <code>memory_limit</code> PHP.\nRe izel eo moarvat.\nMarteze e c'hwito ar staliadenn !",
 	"config-xcache": "Staliet eo [http://xcache.lighttpd.net/ XCache]",
 	"config-apc": "Staliet eo [http://www.php.net/apc APC]",
+	"config-apcu": "Staliet eo [http://www.php.net/apcu APCu]",
 	"config-wincache": "Staliet eo [http://www.iis.net/download/WinCacheForPhp WinCache]",
 	"config-diff3-bad": "N'eo ket bet kavet GNU diff3.",
 	"config-imagemagick": "ImageMagick kavet : <code>$1</code>.\nGweredekaet e vo ar bihanaat skeudennoù ma vez gweredekaet ganeoc'h ar pellgargañ restroù.",
