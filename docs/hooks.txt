@@ -3160,10 +3160,6 @@ $term: The string the user searched for
 $title: The title the 'go' feature has decided to forward the user to
 &$url: Initially null, hook subscribers can set this to specify the final url to redirect to
 
-'SpecialSearchNogomatch': Called when user clicked the "Go" button but the
-target doesn't exist.
-&$title: title object generated from the text entered by the user
-
 'SpecialSearchPowerBox': The equivalent of SpecialSearchProfileForm for
 the advanced form, a.k.a. power search box.
 &$showSections: an array to add values with more options to
