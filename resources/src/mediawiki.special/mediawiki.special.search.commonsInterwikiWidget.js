@@ -3,7 +3,7 @@
 	var api = new mw.Api(),
 		pageUrl = new mw.Uri(),
 		imagesText = new mw.Message( mw.messages, 'searchprofile-images' ),
-		moreResultsText = new mw.Message( mw.messages, 'search-interwiki-more' );
+		moreResultsText = new mw.Message( mw.messages, 'search-interwiki-more-results' );
 
 	function itemTemplate( results ) {
 
@@ -28,7 +28,7 @@
 
 	function itemWrapperTemplate( pageQuery, itemTemplateOutput ) {
 
-		return '<li class="iw-resultset iw-resultset--image" data-iw-resultsset-pos="0">' +
+		return '<li class="iw-resultset iw-resultset--image" data-iw-resultset-pos="0">' +
 				'<div class="iw-result__header">' +
 					'<span class="iw-result__icon iw-result__icon--image"></span>' +
 					'<strong>' + imagesText.escaped() + '</strong>' +
@@ -67,7 +67,7 @@
 		}
 
 		results.sort( function( a, b ) {
-			return b.index - a.index;
+			return a.index - b.index;
 		} );
 
 		multimediaWidgetTemplate = itemWrapperTemplate( pageUrl.query.search, itemTemplate( results ) );

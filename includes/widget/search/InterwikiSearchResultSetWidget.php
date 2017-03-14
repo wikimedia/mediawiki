@@ -161,7 +161,7 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 		$searchLink = Html::rawElement(
 			'a',
 			[ 'href' => $href ],
-			$this->specialSearch->msg( 'search-interwiki-more' )->escaped()
+			$this->specialSearch->msg( 'search-interwiki-more-results' )->escaped()
 		);
 
 		return Html::rawElement( 'div', [ 'class' => 'iw-result__footer' ], $searchLink );

@@ -2015,7 +2015,7 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 		'messages' => [
-			'search-interwiki-more',
+			'search-interwiki-more-results',
 			'searchprofile-images'
 		],
 	],
