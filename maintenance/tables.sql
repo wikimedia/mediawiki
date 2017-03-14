@@ -899,6 +899,8 @@ CREATE TABLE /*_*/image (
   img_sha1 varbinary(32) NOT NULL default ''
 ) /*$wgDBTableOptions*/;
 
+-- Used by Special:Newimages and ApiQueryAllImages
+CREATE INDEX /*i*/img_user_timestamp ON /*_*/image (img_user,img_timestamp);
 CREATE INDEX /*i*/img_usertext_timestamp ON /*_*/image (img_user_text,img_timestamp);
 -- Used by Special:ListFiles for sort-by-size
 CREATE INDEX /*i*/img_size ON /*_*/image (img_size);
