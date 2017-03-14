@@ -146,6 +146,12 @@ class SpecialSearch extends SpecialPage {
 				$out->redirect( $url );
 				return;
 			}
+			// No match. If it could plausibly be a title
+			// run the No go match hook.
+			$title = Title::newFromText( $term );
+			if ( !is_null( $title ) ) {
+				Hooks::run( 'SpecialSearchNogomatch', [ &$title ] );
+			}
 		}
 
 		$this->setupPage( $term );
