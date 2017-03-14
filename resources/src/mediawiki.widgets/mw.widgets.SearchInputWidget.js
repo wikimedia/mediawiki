@@ -30,7 +30,6 @@
 		var $form = config.$input ? config.$input.closest( 'form' ) : $();
 
 		config = $.extend( {
-			type: 'search',
 			icon: 'search',
 			maxLength: undefined,
 			performSearchOnClick: true,
@@ -74,6 +73,14 @@
 	OO.inheritClass( mw.widgets.SearchInputWidget, mw.widgets.TitleInputWidget );
 
 	/* Methods */
+
+	/**
+	 * @inheritdoc
+	 * @protected
+	 */
+	mw.widgets.SearchInputWidget.prototype.getInputElement = function () {
+		return $( '<input>' ).attr( 'type', 'search' );
+	};
 
 	/**
 	 * @inheritdoc mw.widgets.TitleWidget
