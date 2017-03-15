@@ -14,6 +14,7 @@ This is not a release yet!
 * (T158766) Avoid SQL error on MSSQL when using selectRowCount()
 * (T145635) Fix too long index error when installing with MSSQL
 * (T156184) $wgRawHtml will no longer apply to internationalization messages.
+* (T160519) CACHE_ANYTHING will not be CACHE_ACCEL if no accelerator is installed.
 
 == MediaWiki 1.28 ==
 
