@@ -23,10 +23,6 @@
 	},
 	"images": {
 		"block": { "file": "images/icons/block.svg", "variants": [ "destructive" ] },
-		"blockUndo": { "file": {
-			"ltr": "images/icons/unBlock-ltr.svg",
-			"rtl": "images/icons/unBlock-rtl.svg"
-		}, "deprecated": "Renamed since v0.18.3, use 'unBlock' instead." },
 		"unBlock": { "file": {
 			"ltr": "images/icons/unBlock-ltr.svg",
 			"rtl": "images/icons/unBlock-rtl.svg"
@@ -39,10 +35,6 @@
 			"ltr": "images/icons/unFlag-ltr.svg",
 			"rtl": "images/icons/unFlag-rtl.svg"
 		} },
-		"flagUndo": { "file": {
-			"ltr": "images/icons/unFlag-ltr.svg",
-			"rtl": "images/icons/unFlag-rtl.svg"
-		}, "deprecated": "Renamed since v0.18.3, use 'unFlag' instead." },
 		"lock": { "file": {
 			"ltr": "images/icons/lock-ltr.svg",
 			"rtl": "images/icons/lock-rtl.svg"
@@ -62,10 +54,6 @@
 			"ltr": "images/icons/unTrash-ltr.svg",
 			"rtl": "images/icons/unTrash-rtl.svg"
 		} },
-		"trashUndo": { "file": {
-			"ltr": "images/icons/unTrash-ltr.svg",
-			"rtl": "images/icons/unTrash-rtl.svg"
-		}, "deprecated": "Renamed since v0.18.3, use 'unTrash' instead." },
 		"ongoingConversation": {
 			"file": {
 				"ltr": "images/icons/ongoingConversation-ltr.svg",

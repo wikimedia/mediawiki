@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.19.5
+ * OOjs UI v0.20.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-03-07T22:57:01Z
+ * Date: 2017-03-15T17:06:24Z
  */
 ( function ( OO ) {
 
@@ -2739,6 +2739,14 @@ OO.mixinClass( OO.ui.ToggleButtonWidget, OO.ui.mixin.TitledElement );
 OO.mixinClass( OO.ui.ToggleButtonWidget, OO.ui.mixin.FlaggedElement );
 OO.mixinClass( OO.ui.ToggleButtonWidget, OO.ui.mixin.TabIndexedElement );
 
+/* Static Properties */
+
+/**
+ * @static
+ * @inheritdoc
+ */
+OO.ui.ToggleButtonWidget.static.tagName = 'span';
+
 /* Methods */
 
 /**
@@ -3969,7 +3977,7 @@ OO.ui.CapsuleMultiselectWidget.prototype.addItems = function ( items ) {
 	}
 	if ( !same ) {
 		this.emit( 'change', this.getItemsData() );
-		this.updateIfHeightChanged();
+		this.updateInputSize();
 	}
 
 	return this;
@@ -4009,7 +4017,7 @@ OO.ui.CapsuleMultiselectWidget.prototype.removeItems = function ( items ) {
 	}
 	if ( !same ) {
 		this.emit( 'change', this.getItemsData() );
-		this.updateIfHeightChanged();
+		this.updateInputSize();
 	}
 
 	return this;
@@ -4022,7 +4030,7 @@ OO.ui.CapsuleMultiselectWidget.prototype.clearItems = function () {
 	if ( this.items.length ) {
 		OO.ui.mixin.GroupElement.prototype.clearItems.call( this );
 		this.emit( 'change', this.getItemsData() );
-		this.updateIfHeightChanged();
+		this.updateInputSize();
 	}
 	return this;
 };
@@ -4235,6 +4243,7 @@ OO.ui.CapsuleMultiselectWidget.prototype.updateInputSize = function () {
 		currentWidth = this.$input.width();
 
 		if ( contentWidth < currentWidth ) {
+			this.updateIfHeightChanged();
 			// All is fine, don't perform expensive calculations
 			return;
 		}
@@ -4255,6 +4264,8 @@ OO.ui.CapsuleMultiselectWidget.prototype.updateInputSize = function () {
 			bestWidth = this.$content.innerWidth() - 10;
 		}
 		this.$input.width( Math.floor( bestWidth ) );
+		this.updateIfHeightChanged();
+	} else {
 		this.updateIfHeightChanged();
 	}
 };
@@ -4375,23 +4386,6 @@ OO.ui.CapsuleMultiselectWidget.prototype.focus = function () {
 	}
 	return this;
 };
-
-/**
- * The old name for the CapsuleMultiselectWidget widget, provided for backwards-compatibility.
- *
- * @class
- * @extends OO.ui.CapsuleMultiselectWidget
- *
- * @constructor
- * @deprecated since 0.17.3; use OO.ui.CapsuleMultiselectWidget instead
- */
-OO.ui.CapsuleMultiSelectWidget = function OoUiCapsuleMultiSelectWidget() {
-	OO.ui.warnDeprecation( 'CapsuleMultiSelectWidget is deprecated. Use the CapsuleMultiselectWidget instead.' );
-	// Parent constructor
-	OO.ui.CapsuleMultiSelectWidget.parent.apply( this, arguments );
-};
-
-OO.inheritClass( OO.ui.CapsuleMultiSelectWidget, OO.ui.CapsuleMultiselectWidget );
 
 /**
  * SelectFileWidgets allow for selecting files, using the HTML5 File API. These

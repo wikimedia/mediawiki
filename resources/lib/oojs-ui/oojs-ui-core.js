@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.19.5
+ * OOjs UI v0.20.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-03-07T22:57:01Z
+ * Date: 2017-03-15T17:06:24Z
  */
 ( function ( OO ) {
 
@@ -1223,22 +1223,16 @@ OO.ui.Element.static.getClosestScrollableContainer = function ( el, dimension ) 
  * @param {string} [config.duration='fast'] jQuery animation duration value
  * @param {string} [config.direction] Scroll in only one direction, e.g. 'x' or 'y', omit
  *  to scroll in both directions
- * @param {Function} [config.complete] Function to call when scrolling completes.
- *  Deprecated since 0.15.4, use the return promise instead.
  * @return {jQuery.Promise} Promise which resolves when the scroll is complete
  */
 OO.ui.Element.static.scrollIntoView = function ( el, config ) {
-	var position, animations, callback, container, $container, elementDimensions, containerDimensions, $window,
+	var position, animations, container, $container, elementDimensions, containerDimensions, $window,
 		deferred = $.Deferred();
 
 	// Configuration initialization
 	config = config || {};
 
 	animations = {};
-	callback = typeof config.complete === 'function' && config.complete;
-	if ( callback ) {
-		OO.ui.warnDeprecation( 'Element#scrollIntoView: The `complete` callback config option is deprecated. Use the return promise instead.' );
-	}
 	container = this.getClosestScrollableContainer( el, config.direction );
 	$container = $( container );
 	elementDimensions = this.getDimensions( el );
@@ -1281,16 +1275,10 @@ OO.ui.Element.static.scrollIntoView = function ( el, config ) {
 	if ( !$.isEmptyObject( animations ) ) {
 		$container.stop( true ).animate( animations, config.duration === undefined ? 'fast' : config.duration );
 		$container.queue( function ( next ) {
-			if ( callback ) {
-				callback();
-			}
 			deferred.resolve();
 			next();
 		} );
 	} else {
-		if ( callback ) {
-			callback();
-		}
 		deferred.resolve();
 	}
 	return deferred.promise();
@@ -3541,6 +3529,12 @@ OO.mixinClass( OO.ui.ButtonWidget, OO.ui.mixin.AccessKeyedElement );
  */
 OO.ui.ButtonWidget.static.cancelButtonMouseDownEvents = false;
 
+/**
+ * @static
+ * @inheritdoc
+ */
+OO.ui.ButtonWidget.static.tagName = 'span';
+
 /* Methods */
 
 /**
@@ -3717,6 +3711,14 @@ OO.ui.ButtonGroupWidget = function OoUiButtonGroupWidget( config ) {
 
 OO.inheritClass( OO.ui.ButtonGroupWidget, OO.ui.Widget );
 OO.mixinClass( OO.ui.ButtonGroupWidget, OO.ui.mixin.GroupElement );
+
+/* Static Properties */
+
+/**
+ * @static
+ * @inheritdoc
+ */
+OO.ui.ButtonGroupWidget.static.tagName = 'span';
 
 /**
  * IconWidget is a generic widget for {@link OO.ui.mixin.IconElement icons}. In general, IconWidgets should be used with OO.ui.LabelWidget,
@@ -5247,12 +5249,6 @@ OO.ui.PopupWidget.prototype.computePosition = function () {
  *  `backwards` or `forwards`.
  */
 OO.ui.PopupWidget.prototype.setAlignment = function ( align ) {
-	// Transform values deprecated since v0.11.0
-	if ( align === 'left' || align === 'right' ) {
-		OO.ui.warnDeprecation( 'PopupWidget#setAlignment parameter value `' + align + '` is deprecated. Use `force-right` or `force-left` instead.' );
-		align = { left: 'force-right', right: 'force-left' }[ align ];
-	}
-
 	// Validate alignment
 	if ( [ 'force-left', 'force-right', 'backwards', 'forwards', 'center' ].indexOf( align ) > -1 ) {
 		this.align = align;
@@ -6723,7 +6719,8 @@ OO.ui.MenuSectionOptionWidget = function OoUiMenuSectionOptionWidget( config ) {
 	OO.ui.MenuSectionOptionWidget.parent.call( this, config );
 
 	// Initialization
-	this.$element.addClass( 'oo-ui-menuSectionOptionWidget' );
+	this.$element.addClass( 'oo-ui-menuSectionOptionWidget' )
+		.attr( 'role', '' );
 };
 
 /* Setup */
@@ -7939,23 +7936,6 @@ OO.ui.FloatingMenuSelectWidget.prototype.toggle = function ( visible ) {
 	return this;
 };
 
-/*
- * The old name for the FloatingMenuSelectWidget widget, provided for backwards-compatibility.
- *
- * @class
- * @extends OO.ui.FloatingMenuSelectWidget
- *
- * @constructor
- * @deprecated since v0.12.5.
- */
-OO.ui.TextInputMenuSelectWidget = function OoUiTextInputMenuSelectWidget() {
-	OO.ui.warnDeprecation( 'TextInputMenuSelectWidget is deprecated. Use the FloatingMenuSelectWidget instead.' );
-	// Parent constructor
-	OO.ui.TextInputMenuSelectWidget.parent.apply( this, arguments );
-};
-
-OO.inheritClass( OO.ui.TextInputMenuSelectWidget, OO.ui.FloatingMenuSelectWidget );
-
 /**
  * Progress bars visually display the status of an operation, such as a download,
  * and can be either determinate or indeterminate:
@@ -8429,6 +8409,12 @@ OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.mixin.TitledElement );
  */
 OO.ui.ButtonInputWidget.static.supportsSimpleLabel = false;
 
+/**
+ * @static
+ * @inheritdoc
+ */
+OO.ui.ButtonInputWidget.static.tagName = 'span';
+
 /* Methods */
 
 /**
@@ -8542,6 +8528,14 @@ OO.ui.CheckboxInputWidget = function OoUiCheckboxInputWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.CheckboxInputWidget, OO.ui.InputWidget );
+
+/* Static Properties */
+
+/**
+ * @static
+ * @inheritdoc
+ */
+OO.ui.CheckboxInputWidget.static.tagName = 'span';
 
 /* Static Methods */
 
@@ -8740,10 +8734,17 @@ OO.ui.DropdownInputWidget.prototype.setOptions = function ( options ) {
 		.clearItems()
 		.addItems( options.map( function ( opt ) {
 			var optValue = widget.cleanUpValue( opt.data );
-			return new OO.ui.MenuOptionWidget( {
-				data: optValue,
-				label: opt.label !== undefined ? opt.label : optValue
-			} );
+
+			if ( opt.optgroup === undefined ) {
+				return new OO.ui.MenuOptionWidget( {
+					data: optValue,
+					label: opt.label !== undefined ? opt.label : optValue
+				} );
+			} else {
+				return new OO.ui.MenuSectionOptionWidget( {
+					label: opt.optgroup
+				} );
+			}
 		} ) );
 
 	// Restore the previous value, or reset to something sensible
@@ -8835,6 +8836,14 @@ OO.ui.RadioInputWidget = function OoUiRadioInputWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.RadioInputWidget, OO.ui.InputWidget );
+
+/* Static Properties */
+
+/**
+ * @static
+ * @inheritdoc
+ */
+OO.ui.RadioInputWidget.static.tagName = 'span';
 
 /* Static Methods */
 
@@ -9266,7 +9275,7 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.setOptions = function ( options )
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {string} [type='text'] The value of the HTML `type` attribute: 'text', 'password', 'search',
- *  'email', 'url', 'date', 'month' or 'number'. Ignored if `multiline` is true.
+ *  'email', 'url' or 'number'. Ignored if `multiline` is true.
  *
  *  Some values of `type` result in additional behaviors:
  *
@@ -9793,8 +9802,6 @@ OO.ui.TextInputWidget.prototype.getSaneType = function ( config ) {
 		'search',
 		'email',
 		'url',
-		'date',
-		'month',
 		'number'
 	];
 	return allowedTypes.indexOf( config.type ) !== -1 ? config.type : 'text';
@@ -10547,9 +10554,9 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	this.fieldWidget = fieldWidget;
 	this.errors = [];
 	this.notices = [];
-	this.$field = $( '<div>' );
+	this.$field = this.isFieldInline() ? $( '<span>' ) : $( '<div>' );
 	this.$messages = $( '<ul>' );
-	this.$header = $( '<div>' );
+	this.$header = $( '<span>' );
 	this.$body = $( '<div>' );
 	this.align = null;
 	if ( config.help ) {
@@ -10630,6 +10637,17 @@ OO.ui.FieldLayout.prototype.getField = function () {
 };
 
 /**
+ * Return `true` if the given field widget can be used with `'inline'` alignment (see
+ * #setAlignment). Return `false` if it can't or if this can't be determined.
+ *
+ * @return {boolean}
+ */
+OO.ui.FieldLayout.prototype.isFieldInline = function () {
+	// This is very simplistic, but should be good enough.
+	return this.getField().$element.prop( 'tagName' ).toLowerCase() === 'span';
+};
+
+/**
  * @protected
  * @param {string} kind 'error' or 'notice'
  * @param {string|OO.ui.HtmlSnippet} text
@@ -10664,6 +10682,10 @@ OO.ui.FieldLayout.prototype.setAlignment = function ( value ) {
 		// Default to 'left'
 		if ( [ 'left', 'right', 'top', 'inline' ].indexOf( value ) === -1 ) {
 			value = 'left';
+		}
+		// Validate
+		if ( value === 'inline' && !this.isFieldInline() ) {
+			value = 'top';
 		}
 		// Reorder elements
 		if ( value === 'top' ) {
@@ -10800,8 +10822,8 @@ OO.ui.ActionFieldLayout = function OoUiActionFieldLayout( fieldWidget, buttonWid
 
 	// Properties
 	this.buttonWidget = buttonWidget;
-	this.$button = $( '<div>' );
-	this.$input = $( '<div>' );
+	this.$button = $( '<span>' );
+	this.$input = this.isFieldInline() ? $( '<span>' ) : $( '<div>' );
 
 	// Initialization
 	this.$element

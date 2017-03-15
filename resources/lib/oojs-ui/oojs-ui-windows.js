@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.19.5
+ * OOjs UI v0.20.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-03-07T22:57:01Z
+ * Date: 2017-03-15T17:06:24Z
  */
 ( function ( OO ) {
 
@@ -118,7 +118,10 @@ OO.ui.ActionWidget.prototype.propagateResize = function () {
 		if ( width !== this.width || height !== this.height ) {
 			this.width = width;
 			this.height = height;
-			this.emit( 'resize' );
+			this.emit( 'resizePrivate' );
+			if ( this.emit( 'resize' ) ) {
+				OO.ui.warnDeprecation( 'ActionWidget: resize event is deprecated. See T129162.' );
+			}
 		}
 	}
 
@@ -561,9 +564,13 @@ OO.ui.ActionSet.prototype.add = function ( actions ) {
 		action = actions[ i ];
 		action.connect( this, {
 			click: [ 'emit', 'click', action ],
-			resize: [ 'emit', 'resize', action ],
 			toggle: [ 'onActionChange' ]
 		} );
+		action.on( 'resizePrivate', function ( action ) {
+			if ( this.emit( 'resize', action ) ) {
+				OO.ui.warnDeprecation( 'ActionSet: resize event is deprecated. See T129162.' );
+			}
+		}, [ action ], this );
 		this.list.push( action );
 	}
 	this.organized = false;
@@ -2734,12 +2741,6 @@ OO.ui.MessageDialog.static.name = 'message';
 OO.ui.MessageDialog.static.size = 'small';
 
 /**
- * @static
- * @deprecated since v0.18.4 as default; TODO: Remove
- */
-OO.ui.MessageDialog.static.verbose = true;
-
-/**
  * Dialog title.
  *
  * The title of a confirmation dialog describes what a progressive action will do. The
@@ -2855,11 +2856,6 @@ OO.ui.MessageDialog.prototype.getSetupProcess = function ( data ) {
 			);
 			this.message.setLabel(
 				data.message !== undefined ? data.message : this.constructor.static.message
-			);
-			// @deprecated since v0.18.4 as default; TODO: Remove and make default instead.
-			this.message.$element.toggleClass(
-				'oo-ui-messageDialog-message-verbose',
-				data.verbose !== undefined ? data.verbose : this.constructor.static.verbose
 			);
 		}, this );
 };
