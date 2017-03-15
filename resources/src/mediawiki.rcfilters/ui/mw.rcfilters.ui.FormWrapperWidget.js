@@ -101,6 +101,8 @@
 
 		// Replace the entire fieldset
 		this.$element.empty().append( $fieldset.contents() );
+		// Make sure enhanced RC re-initializes correctly
+		mw.hook( 'wikipage.content' ).fire( this.$element );
 
 		this.cleanUpFieldset();
 
@@ -111,6 +113,10 @@
 	 * Clean up the old-style show/hide that we have implemented in the filter list
 	 */
 	mw.rcfilters.ui.FormWrapperWidget.prototype.cleanUpFieldset = function () {
+		var $namespaceSelect = this.$element.find( '#namespace' ),
+			$namespaceChekboxes = this.$element.find( '#nsassociated, #nsinvert' ),
+			collapseCookieName = 'changeslist-state';
+
 		this.$element.find( '.rcshowhideoption[data-feature-in-structured-ui=1]' ).each( function () {
 			// HACK: Remove the text node after the span.
 			// If there isn't one, we're at the end, so remove the text node before the span.
@@ -123,5 +129,26 @@
 			// Remove the span itself
 			this.parentNode.removeChild( this );
 		} );
+
+		// Bind namespace select to change event
+		// see resources/src/mediawiki.special/mediawiki.special.recentchanges.js
+		$namespaceChekboxes.prop( 'disabled', $namespaceSelect.val() === '' );
+		$namespaceSelect.on( 'change', function () {
+			$namespaceChekboxes.prop( 'disabled', $( this ).val() === '' );
+		} );
+
+		// Collapse legend
+		// see resources/src/mediawiki.special/mediawiki.special.changelist.legend.js
+		this.$element.find( '.mw-changeslist-legend' )
+			.makeCollapsible( {
+				collapsed: mw.cookie.get( collapseCookieName ) === 'collapsed'
+			} )
+			.on( 'beforeExpand.mw-collapsible', function () {
+				mw.cookie.set( collapseCookieName, 'expanded' );
+			} )
+			.on( 'beforeCollapse.mw-collapsible', function () {
+				mw.cookie.set( collapseCookieName, 'collapsed' );
+			} );
+
 	};
 }( mediaWiki ) );
