@@ -12,7 +12,7 @@
 	}
 
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
-		var $sortableTables;
+		var $sortable;
 
 		// Run jquery.placeholder polyfill if placeholder is not supported
 		if ( !supportsPlaceholder ) {
@@ -22,11 +22,11 @@
 		// Run jquery.makeCollapsible
 		$content.find( '.mw-collapsible' ).makeCollapsible();
 
-		// Lazy load jquery.tablesorter
-		$sortableTables = $content.find( 'table.sortable' );
-		if ( $sortableTables.length ) {
+		$sortable = $content.find( 'table.sortable' );
+		if ( $sortable.length ) {
+			// Preloaded by Skin::getDefaultModules()
 			mw.loader.using( 'jquery.tablesorter', function () {
-				$sortableTables.tablesorter();
+				$sortable.tablesorter();
 			} );
 		}
 
