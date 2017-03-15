@@ -246,8 +246,13 @@ class ObjectCache {
 		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType;
 		$candidates = [ $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType ];
 		foreach ( $candidates as $candidate ) {
+			$cache = false;
 			if ( $candidate !== CACHE_NONE && $candidate !== CACHE_ANYTHING ) {
-				return self::getInstance( $candidate );
+				$cache = self::getInstance( $candidate );
+			}
+			// CACHE_ACCEL might default to nothing if no APCu
+			if ( $cache && !( $cache instanceof EmptyBagOStuff ) ) {
+				return $cache;
 			}
 		}
 
