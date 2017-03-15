@@ -4,6 +4,23 @@
  * @covers ChangesListFilterGroup
  */
 class ChangesListFilterGroupTest extends MediaWikiTestCase {
+	// @codingStandardsIgnoreStart
+	/**
+	 * @expectedException MWException
+	 * @expectedExceptionMessage Group names may not contain '_'.  Use the naming convention: 'camelCase'
+	 */
+	// @codingStandardsIgnoreEnd
+	public function testReservedCharacter() {
+		new MockChangesListFilterGroup(
+			[
+				'type' => 'some_type',
+				'name' => 'group_name',
+				'priority' => 1,
+				'filters' => [],
+			]
+		);
+	}
+
 	public function testAutoPriorities() {
 		$group = new MockChangesListFilterGroup(
 			[
