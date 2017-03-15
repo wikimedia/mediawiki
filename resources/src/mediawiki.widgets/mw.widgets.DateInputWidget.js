@@ -56,7 +56,7 @@
 	 *     } );
 	 *
 	 * @class
-	 * @extends OO.ui.InputWidget
+	 * @extends OO.ui.TextInputWidget
 	 * @mixins OO.ui.mixin.IndicatorElement
 	 *
 	 * @constructor
@@ -116,7 +116,7 @@
 
 		// Properties (must be set before parent constructor, which calls #setValue)
 		this.$handle = $( '<div>' );
-		this.label = new OO.ui.LabelWidget();
+		this.innerLabel = new OO.ui.LabelWidget();
 		this.textInput = new OO.ui.TextInputWidget( {
 			required: config.required,
 			placeholder: placeholderDateFormat,
@@ -135,8 +135,8 @@
 		this.longDisplayFormat = config.longDisplayFormat;
 		this.required = config.required;
 		this.placeholderLabel = config.placeholderLabel;
-
 		// Validate and set min and max dates as properties
+
 		if ( config.mustBeAfter !== undefined ) {
 			mustBeAfter = moment( config.mustBeAfter, 'YYYY-MM-DD' );
 			if ( mustBeAfter.isValid() ) {
@@ -149,7 +149,6 @@
 				this.mustBeBefore = mustBeBefore;
 			}
 		}
-
 		// Parent constructor
 		mw.widgets.DateInputWidget.parent.call( this, config );
 
@@ -180,7 +179,7 @@
 		// Move 'tabindex' from this.$input (which is invisible) to the visible handle
 		this.setTabIndexedElement( this.$handle );
 		this.$handle
-			.append( this.label.$element, this.$indicator )
+			.append( this.innerLabel.$element, this.$indicator )
 			.addClass( 'mw-widget-dateInputWidget-handle' );
 		this.calendar.$element
 			.addClass( 'mw-widget-dateInputWidget-calendar' );
@@ -239,7 +238,7 @@
 
 	/* Inheritance */
 
-	OO.inheritClass( mw.widgets.DateInputWidget, OO.ui.InputWidget );
+	OO.inheritClass( mw.widgets.DateInputWidget, OO.ui.TextInputWidget );
 	OO.mixinClass( mw.widgets.DateInputWidget, OO.ui.mixin.IndicatorElement );
 
 	/* Methods */
@@ -367,7 +366,7 @@
 		if ( this.getValue() === '' ) {
 			this.textInput.setValue( '' );
 			this.calendar.setDate( null );
-			this.label.setLabel( this.placeholderLabel );
+			this.innerLabel.setLabel( this.placeholderLabel );
 			this.$element.addClass( 'mw-widget-dateInputWidget-empty' );
 		} else {
 			moment = this.getMoment();
@@ -377,7 +376,7 @@
 			if ( !this.inCalendar ) {
 				this.calendar.setDate( this.getValue() );
 			}
-			this.label.setLabel( moment.format( this.getDisplayFormat() ) );
+			this.innerLabel.setLabel( moment.format( this.getDisplayFormat() ) );
 			this.$element.removeClass( 'mw-widget-dateInputWidget-empty' );
 		}
 	};
