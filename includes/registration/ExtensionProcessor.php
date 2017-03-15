@@ -239,9 +239,18 @@ class ExtensionProcessor implements Processor {
 	 * @param array $info
 	 */
 	protected function extractNamespaces( array $info ) {
+		global $wgExtensionsNamespaceIds;
 		if ( isset( $info['namespaces'] ) ) {
 			foreach ( $info['namespaces'] as $ns ) {
-				$id = $ns['id'];
+				if ( isset( $ns['constant'] ) &&
+					array_key_exists( $ns['constant'], $wgExtensionsNamespaceIds )
+				) {
+					// People should be able to override ns id: T160462
+					$id = $wgExtensionsNamespaceIds[$ns['constant']];
+				} else {
+					$id = $ns['id'];
+				}
+
 				$this->defines[$ns['constant']] = $id;
 				if ( !( isset( $ns['conditional'] ) && $ns['conditional'] ) ) {
 					// If it is not conditional, register it
