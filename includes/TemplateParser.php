@@ -121,8 +121,6 @@ class TemplateParser {
 			$code = $this->compileForEval( $fileContents, $filename );
 		}
 
-		echo "About to eval:\n";
-		echo $code;
 		$renderer = eval( $code );
 		if ( !is_callable( $renderer ) ) {
 			throw new RuntimeException( "Requested template, {$templateName}, is not callable" );
