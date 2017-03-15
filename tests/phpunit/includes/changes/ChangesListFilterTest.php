@@ -24,6 +24,22 @@ class ChangesListFilterTest extends MediaWikiTestCase {
 
 	}
 
+	// @codingStandardsIgnoreStart
+	/**
+	 * @expectedException MWException
+	 * @expectedExceptionMessage Filter names may not contain '_'.  Use the naming convention: 'lowercase'
+	 */
+	// @codingStandardsIgnoreEnd
+	public function testReservedCharacter() {
+		$filter = new MockChangesListFilter(
+			[
+				'group' => $this->group,
+				'name' => 'some_name',
+				'priority' => 1,
+			]
+		);
+	}
+
 	/**
 	 * @expectedException MWException
 	 * @expectedExceptionMessage Supersets can only be defined for filters in the same group
