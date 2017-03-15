@@ -4,6 +4,28 @@
  * @covers ChangesListBooleanFilter
  */
 class ChangesListBooleanFilterTest extends MediaWikiTestCase {
+	// @codingStandardsIgnoreStart
+	/**
+	 * @expectedException MWException
+	 * @expectedExceptionMessage Filter names may not contain '_'.  Use the naming convention: 'lowercase'
+	 */
+	// @codingStandardsIgnoreEnd
+	public function testReservedCharacter() {
+		$group = new ChangesListBooleanFilterGroup( [
+			'name' => 'group',
+			'priority' => 2,
+			'filters' => [],
+		] );
+
+		$filter = new ChangesListBooleanFilter( [
+			'group' => $group,
+			'name' => 'some_name',
+			'showHide' => 'hidesomename',
+			'default' => 1,
+			'priority' => 1,
+		] );
+	}
+
 	public function testGetJsData() {
 		$group = new ChangesListBooleanFilterGroup( [
 			'name' => 'group',
