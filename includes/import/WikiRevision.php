@@ -124,7 +124,7 @@ class WikiRevision {
 	 * @param Title $title
 	 * @throws MWException
 	 */
-	function setTitle( $title ) {
+	public function setTitle( $title ) {
 		if ( is_object( $title ) ) {
 			$this->title = $title;
 		} elseif ( is_null( $title ) ) {
@@ -138,14 +138,14 @@ class WikiRevision {
 	/**
 	 * @param int $id
 	 */
-	function setID( $id ) {
+	public function setID( $id ) {
 		$this->id = $id;
 	}
 
 	/**
 	 * @param string $ts
 	 */
-	function setTimestamp( $ts ) {
+	public function setTimestamp( $ts ) {
 		# 2003-08-05T18:30:02Z
 		$this->timestamp = wfTimestamp( TS_MW, $ts );
 	}
@@ -153,63 +153,63 @@ class WikiRevision {
 	/**
 	 * @param string $user
 	 */
-	function setUsername( $user ) {
+	public function setUsername( $user ) {
 		$this->user_text = $user;
 	}
 
 	/**
 	 * @param User $user
 	 */
-	function setUserObj( $user ) {
+	public function setUserObj( $user ) {
 		$this->userObj = $user;
 	}
 
 	/**
 	 * @param string $ip
 	 */
-	function setUserIP( $ip ) {
+	public function setUserIP( $ip ) {
 		$this->user_text = $ip;
 	}
 
 	/**
 	 * @param string $model
 	 */
-	function setModel( $model ) {
+	public function setModel( $model ) {
 		$this->model = $model;
 	}
 
 	/**
 	 * @param string $format
 	 */
-	function setFormat( $format ) {
+	public function setFormat( $format ) {
 		$this->format = $format;
 	}
 
 	/**
 	 * @param string $text
 	 */
-	function setText( $text ) {
+	public function setText( $text ) {
 		$this->text = $text;
 	}
 
 	/**
 	 * @param string $text
 	 */
-	function setComment( $text ) {
+	public function setComment( $text ) {
 		$this->comment = $text;
 	}
 
 	/**
 	 * @param bool $minor
 	 */
-	function setMinor( $minor ) {
+	public function setMinor( $minor ) {
 		$this->minor = (bool)$minor;
 	}
 
 	/**
 	 * @param mixed $src
 	 */
-	function setSrc( $src ) {
+	public function setSrc( $src ) {
 		$this->src = $src;
 	}
 
@@ -217,7 +217,7 @@ class WikiRevision {
 	 * @param string $src
 	 * @param bool $isTemp
 	 */
-	function setFileSrc( $src, $isTemp ) {
+	public function setFileSrc( $src, $isTemp ) {
 		$this->fileSrc = $src;
 		$this->fileIsTemp = $isTemp;
 	}
@@ -225,49 +225,49 @@ class WikiRevision {
 	/**
 	 * @param string $sha1base36
 	 */
-	function setSha1Base36( $sha1base36 ) {
+	public function setSha1Base36( $sha1base36 ) {
 		$this->sha1base36 = $sha1base36;
 	}
 
 	/**
 	 * @param string $filename
 	 */
-	function setFilename( $filename ) {
+	public function setFilename( $filename ) {
 		$this->filename = $filename;
 	}
 
 	/**
 	 * @param string $archiveName
 	 */
-	function setArchiveName( $archiveName ) {
+	public function setArchiveName( $archiveName ) {
 		$this->archiveName = $archiveName;
 	}
 
 	/**
 	 * @param int $size
 	 */
-	function setSize( $size ) {
+	public function setSize( $size ) {
 		$this->size = intval( $size );
 	}
 
 	/**
 	 * @param string $type
 	 */
-	function setType( $type ) {
+	public function setType( $type ) {
 		$this->type = $type;
 	}
 
 	/**
 	 * @param string $action
 	 */
-	function setAction( $action ) {
+	public function setAction( $action ) {
 		$this->action = $action;
 	}
 
 	/**
 	 * @param array $params
 	 */
-	function setParams( $params ) {
+	public function setParams( $params ) {
 		$this->params = $params;
 	}
 
@@ -281,49 +281,49 @@ class WikiRevision {
 	/**
 	 * @return Title
 	 */
-	function getTitle() {
+	public function getTitle() {
 		return $this->title;
 	}
 
 	/**
 	 * @return int
 	 */
-	function getID() {
+	public function getID() {
 		return $this->id;
 	}
 
 	/**
 	 * @return string
 	 */
-	function getTimestamp() {
+	public function getTimestamp() {
 		return $this->timestamp;
 	}
 
 	/**
 	 * @return string
 	 */
-	function getUser() {
+	public function getUser() {
 		return $this->user_text;
 	}
 
 	/**
 	 * @return User
 	 */
-	function getUserObj() {
+	public function getUserObj() {
 		return $this->userObj;
 	}
 
 	/**
 	 * @return string
 	 */
-	function getText() {
+	public function getText() {
 		return $this->text;
 	}
 
 	/**
 	 * @return ContentHandler
 	 */
-	function getContentHandler() {
+	public function getContentHandler() {
 		if ( is_null( $this->contentHandler ) ) {
 			$this->contentHandler = ContentHandler::getForModelID( $this->getModel() );
 		}
@@ -334,7 +334,7 @@ class WikiRevision {
 	/**
 	 * @return Content
 	 */
-	function getContent() {
+	public function getContent() {
 		if ( is_null( $this->content ) ) {
 			$handler = $this->getContentHandler();
 			$this->content = $handler->unserializeContent( $this->text, $this->getFormat() );
@@ -346,7 +346,7 @@ class WikiRevision {
 	/**
 	 * @return string
 	 */
-	function getModel() {
+	public function getModel() {
 		if ( is_null( $this->model ) ) {
 			$this->model = $this->getTitle()->getContentModel();
 		}
@@ -357,7 +357,7 @@ class WikiRevision {
 	/**
 	 * @return string
 	 */
-	function getFormat() {
+	public function getFormat() {
 		if ( is_null( $this->format ) ) {
 			$this->format = $this->getContentHandler()->getDefaultFormat();
 		}
@@ -368,28 +368,28 @@ class WikiRevision {
 	/**
 	 * @return string
 	 */
-	function getComment() {
+	public function getComment() {
 		return $this->comment;
 	}
 
 	/**
 	 * @return bool
 	 */
-	function getMinor() {
+	public function getMinor() {
 		return $this->minor;
 	}
 
 	/**
 	 * @return mixed
 	 */
-	function getSrc() {
+	public function getSrc() {
 		return $this->src;
 	}
 
 	/**
 	 * @return bool|string
 	 */
-	function getSha1() {
+	public function getSha1() {
 		if ( $this->sha1base36 ) {
 			return Wikimedia\base_convert( $this->sha1base36, 36, 16 );
 		}
@@ -399,63 +399,63 @@ class WikiRevision {
 	/**
 	 * @return string
 	 */
-	function getFileSrc() {
+	public function getFileSrc() {
 		return $this->fileSrc;
 	}
 
 	/**
 	 * @return bool
 	 */
-	function isTempSrc() {
+	public function isTempSrc() {
 		return $this->isTemp;
 	}
 
 	/**
 	 * @return mixed
 	 */
-	function getFilename() {
+	public function getFilename() {
 		return $this->filename;
 	}
 
 	/**
 	 * @return string
 	 */
-	function getArchiveName() {
+	public function getArchiveName() {
 		return $this->archiveName;
 	}
 
 	/**
 	 * @return mixed
 	 */
-	function getSize() {
+	public function getSize() {
 		return $this->size;
 	}
 
 	/**
 	 * @return string
 	 */
-	function getType() {
+	public function getType() {
 		return $this->type;
 	}
 
 	/**
 	 * @return string
 	 */
-	function getAction() {
+	public function getAction() {
 		return $this->action;
 	}
 
 	/**
 	 * @return string
 	 */
-	function getParams() {
+	public function getParams() {
 		return $this->params;
 	}
 
 	/**
 	 * @return bool
 	 */
-	function importOldRevision() {
+	public function importOldRevision() {
 		$dbw = wfGetDB( DB_MASTER );
 
 		# Sneak a single revision into place
@@ -554,7 +554,7 @@ class WikiRevision {
 		return true;
 	}
 
-	function importLogItem() {
+	public function importLogItem() {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$user = $this->getUserObj() ?: User::newFromName( $this->getUser() );
@@ -613,7 +613,7 @@ class WikiRevision {
 	/**
 	 * @return bool
 	 */
-	function importUpload() {
+	public function importUpload() {
 		# Construct a file
 		$archiveName = $this->getArchiveName();
 		if ( $archiveName ) {
@@ -684,7 +684,7 @@ class WikiRevision {
 	/**
 	 * @return bool|string
 	 */
-	function downloadSource() {
+	public function downloadSource() {
 		if ( !$this->config->get( 'EnableUploads' ) ) {
 			return false;
 		}
