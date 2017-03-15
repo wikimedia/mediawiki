@@ -19,6 +19,18 @@ class ChangesListBooleanFilterGroupTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @expectedException MWException
+	 * @expectedExceptionMessage Group names may not contain '_'.  Use the naming convention: 'camelCase'
+	 */
+	public function testReservedCharacter() {
+		$group = new ChangesListBooleanFilterGroup( [
+			'name' => 'group_name',
+			'priority' => 1,
+			'filters' => [],
+		] );
+	}
+
 	public function testAutoPriorities() {
 		$group = new ChangesListBooleanFilterGroup( [
 			'name' => 'groupName',
