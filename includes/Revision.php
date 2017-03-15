@@ -1240,8 +1240,9 @@ class Revision implements IDBAccessObject {
 
 	/**
 	 * Get revision text associated with an old or archive row
-	 * $row is usually an object from wfFetchRow(), both the flags and the text
-	 * field must be included.
+	 *
+	 * Both the flags and the text field must be included. Including the old_id
+	 * field will activate cache usage as long as the $wiki parameter is not set.
 	 *
 	 * @param stdClass $row The text data
 	 * @param string $prefix Table prefix (default 'old_')
@@ -1252,8 +1253,6 @@ class Revision implements IDBAccessObject {
 	 * @return string|false Text the text requested or false on failure
 	 */
 	public static function getRevisionText( $row, $prefix = 'old_', $wiki = false ) {
-
-		# Get data
 		$textField = $prefix . 'text';
 		$flagsField = $prefix . 'flags';
 
@@ -1269,20 +1268,36 @@ class Revision implements IDBAccessObject {
 			return false;
 		}
 
-		# Use external methods for external objects, text in table is URL-only then
+		// Use external methods for external objects, text in table is URL-only then
 		if ( in_array( 'external', $flags ) ) {
 			$url = $text;
 			$parts = explode( '://', $url, 2 );
 			if ( count( $parts ) == 1 || $parts[1] == '' ) {
 				return false;
 			}
-			$text = ExternalStore::fetchFromURL( $url, [ 'wiki' => $wiki ] );
+
+			if ( isset( $row->old_id ) && $wiki === false ) {
+				// Make use of the wiki-local revision text cache
+				$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+				$text = $cache->getWithSetCallback(
+					$cache->makeKey( 'revisiontext', 'textid', $row->old_id ),
+					self::getCacheTTL( $cache ),
+					function () use ( $url, $wiki ) {
+						// No negative caching per Revision::loadText()
+						return ExternalStore::fetchFromURL( $url, [ 'wiki' => $wiki ] );
+					},
+					[ 'pcGroup' => self::TEXT_CACHE_GROUP, 'pcTTL' => $cache::TTL_PROC_LONG ]
+				);
+			} else {
+				$text = ExternalStore::fetchFromURL( $url, [ 'wiki' => $wiki ] );
+			}
 		}
 
 		// If the text was fetched without an error, convert it
 		if ( $text !== false ) {
 			$text = self::decompressRevisionText( $text, $flags );
 		}
+
 		return $text;
 	}
 
@@ -1559,15 +1574,14 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * Lazy-load the revision's text.
-	 * Currently hardcoded to the 'text' table storage engine.
+	 * Get the text cache TTL
 	 *
-	 * @return string|bool The revision's text, or false on failure
+	 * @param WANObjectCache $cache
+	 * @return integer
 	 */
-	private function loadText() {
+	private static function getCacheTTL( WANObjectCache $cache ) {
 		global $wgRevisionCacheExpiry;
 
-		$cache = ObjectCache::getMainWANInstance();
 		if ( $cache->getQoS( $cache::ATTR_EMULATION ) <= $cache::QOS_EMULATION_SQL ) {
 			// Do not cache RDBMs blobs in...the RDBMs store
 			$ttl = $cache::TTL_UNCACHEABLE;
@@ -1575,10 +1589,22 @@ class Revision implements IDBAccessObject {
 			$ttl = $wgRevisionCacheExpiry ?: $cache::TTL_UNCACHEABLE;
 		}
 
+		return $ttl;
+	}
+
+	/**
+	 * Lazy-load the revision's text.
+	 * Currently hardcoded to the 'text' table storage engine.
+	 *
+	 * @return string|bool The revision's text, or false on failure
+	 */
+	private function loadText() {
+		$cache = ObjectCache::getMainWANInstance();
+
 		// No negative caching; negative hits on text rows may be due to corrupted replica DBs
 		return $cache->getWithSetCallback(
 			$cache->makeKey( 'revisiontext', 'textid', $this->getTextId() ),
-			$ttl,
+			self::getCacheTTL( $cache ),
 			function () {
 				return $this->fetchText();
 			},
