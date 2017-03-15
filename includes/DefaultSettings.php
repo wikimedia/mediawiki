@@ -8610,6 +8610,21 @@ $wgExperiencedUserMemberSince = 30; # days
 $wgInterwikiPrefixDisplayTypes = [];
 
 /**
+ * Overriding extension namespace IDs if needed.
+ * You can only change ID of namespaces defined by extensions
+ * and you can't change other characteristics such as their names.
+ * This can be useful when there is a conflict between your custom namespaces
+ * and namespaces defined by your extensions.
+ * It should be the namespace constant as the key and the new ID as the value.
+ *
+ * @par Example:
+ * @code
+ * $wgExtensionsNamespaceIds['NS_SCHEMA'] = 5000;
+ * @endcode
+ */
+$wgExtensionsNamespaceIds = [];
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
