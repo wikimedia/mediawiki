@@ -1156,7 +1156,7 @@
 	"prefs-help-prefershttps": "该设置将在下次登录时生效。",
 	"prefswarning-warning": "您对您的参数设置的更改尚未保存。如果您不点击“$1”就离开，您的设置就不会更新。",
 	"prefs-tabs-navigation-hint": "提示：您可以通过左、右箭头键在选项卡之间切换。",
-	"userrights": "用户权限管理",
+	"userrights": "用户权限",
 	"userrights-lookup-user": "选择用户",
 	"userrights-user-editname": "输入用户名：",
 	"editusergroup": "加载用户组",

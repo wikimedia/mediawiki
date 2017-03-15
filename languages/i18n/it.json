@@ -1165,7 +1165,7 @@
 	"prefs-help-prefershttps": "Questa preferenza avrà effetto dal prossimo accesso.",
 	"prefswarning-warning": "Hai fatto modifiche alle tue preferenze che non sono state ancora salvate.\nSe esci da questa pagina senza cliccare \"$1\" le preferenze non verranno aggiornate.",
 	"prefs-tabs-navigation-hint": "Suggerimento: è possibile utilizzare i tasti freccia sinistra e destra per spostarsi tra le schede nell'elenco delle schede.",
-	"userrights": "Gestione dei permessi degli utenti",
+	"userrights": "Diritti utente",
 	"userrights-lookup-user": "Seleziona un utente",
 	"userrights-user-editname": "Inserire il nome utente:",
 	"editusergroup": "Modifica gruppi utente",

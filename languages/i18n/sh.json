@@ -606,7 +606,7 @@
 	"userinvalidcssjstitle": "'''Upozorenje:''' Nema skina pod imenom \"$1\".\nUpamtite da korisničke .css i .js stranice koriste naslov s malim slovom, npr. {{ns:user}}:Foo/monobook.css umjesto {{ns:user}}:Foo/Monobook.css.",
 	"updated": "(Osvježeno)",
 	"note": "'''Napomena:'''",
-	"previewnote": "'''Ne zaboravite da je ovo samo pregled'''\nIzmjene stranice nisu još sačuvane!",
+	"previewnote": "<strong>Ne zaboravite da je ovo samo pregled</strong>\nIzmjene stranice nisu još sačuvane!",
 	"continue-editing": "Idi na područje uređivanja",
 	"previewconflict": "Ovaj pretpregled reflektuje tekst u gornjem polju\nkako će izgledati ako pritisnete \"Snimi stranicu\".",
 	"session_fail_preview": "'''Izvinjavamo se! Nismo mogli obraditi vašu izmjenu zbog gubitka podataka o prijavi. Molimo pokušajte ponovno. Ako i dalje ne bude radilo, pokušajte se [[Special:UserLogout|odjaviti]] i ponovno prijaviti.'''",

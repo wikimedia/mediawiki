@@ -1224,7 +1224,7 @@
 	"prefs-help-prefershttps": "Cette préférence sera effective lors de votre prochaine connexion.",
 	"prefswarning-warning": "Vous avez effectué des modifications dans vos préférences qui n’ont pas encore été enregistrées.\nSi vous quittez cette page sans cliquer sur « $1 », vos préférences ne seront pas mises à jour.",
 	"prefs-tabs-navigation-hint": "Astuce : Vous pouvez utiliser les flèches de gauche et de droite pour naviguer entre les onglets.",
-	"userrights": "Gestion des droits des utilisateurs",
+	"userrights": "Droits des utilisateurs",
 	"userrights-lookup-user": "Sélectionner un utilisateur",
 	"userrights-user-editname": "Entrez un nom d'utilisateur :",
 	"editusergroup": "Charger des groupes d’utilisateurs",
