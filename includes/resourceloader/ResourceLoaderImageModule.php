@@ -315,11 +315,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		$selectors = $this->getSelectors();
 
 		foreach ( $this->getImages( $context ) as $name => $image ) {
-			$declarations = $this->getCssDeclarations(
-				$image->getDataUri( $context, null, 'original' ),
-				$image->getUrl( $context, $script, null, 'rasterized' )
-			);
-			$declarations = implode( "\n\t", $declarations );
+			$declarations = $this->getStyleDeclarations( $context, $image, $script );
 			$selector = strtr(
 				$selectors['selectorWithoutVariant'],
 				[
@@ -331,11 +327,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 			$rules[] = "$selector {\n\t$declarations\n}";
 
 			foreach ( $image->getVariants() as $variant ) {
-				$declarations = $this->getCssDeclarations(
-					$image->getDataUri( $context, $variant, 'original' ),
-					$image->getUrl( $context, $script, $variant, 'rasterized' )
-				);
-				$declarations = implode( "\n\t", $declarations );
+				$declarations = $this->getStyleDeclarations( $context, $image, $script, $variant );
 				$selector = strtr(
 					$selectors['selectorWithVariant'],
 					[
@@ -350,6 +342,29 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 
 		$style = implode( "\n", $rules );
 		return [ 'all' => $style ];
+	}
+
+
+	/**
+	 * @param ResourceLoaderContext $context
+	 * @param ResourceLoaderImage $image Image to get the style for
+	 * @param string $script URL to load.php
+	 * @param string|null $variant Variant to get the style for
+	 * @return string
+	 */
+	private function getStyleDeclarations(
+		ResourceLoaderContext $context,
+		ResourceLoaderImage $image,
+		$script,
+		$variant = null
+	) {
+		$imageDataUri = $image->getDataUri( $context, $variant, 'original' );
+		$primaryUrl = $imageDataUri ?: $image->getUrl( $context, $script, $variant, 'original' );
+		$declarations = $this->getCssDeclarations(
+			$primaryUrl,
+			$image->getUrl( $context, $script, $variant, 'rasterized' )
+		);
+		return implode( "\n\t", $declarations );
 	}
 
 	/**
