@@ -8610,6 +8610,17 @@ $wgExperiencedUserMemberSince = 30; # days
 $wgInterwikiPrefixDisplayTypes = [];
 
 /**
+ * Overriding extension namespace IDs if needed.
+ * It should be the namespace constant as key and the new ID as value
+ *
+ * @par Example:
+ * @code
+ * $wgExtensionsNamespaceIds['NS_SCHEMA'] = 5000;
+ * @endcode
+ */
+$wgExtensionsNamespaceIds = [];
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
