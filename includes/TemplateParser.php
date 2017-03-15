@@ -54,18 +54,11 @@ class TemplateParser {
 	 * @throws UnexpectedValueException If $templateName attempts upwards directory traversal
 	 */
 	protected function getTemplateFilename( $templateName ) {
-		// Prevent upwards directory traversal using same methods as Title::secureAndSplit
+		// Prevent path traversal. Based on Language::isValidCode().
+		// This is for paranoia. The $templateName should never come from
+		// untrusted input.
 		if (
-			strpos( $templateName, '.' ) !== false &&
-			(
-				$templateName === '.' || $templateName === '..' ||
-				strpos( $templateName, './' ) === 0 ||
-				strpos( $templateName, '../' ) === 0 ||
-				strpos( $templateName, '/./' ) !== false ||
-				strpos( $templateName, '/../' ) !== false ||
-				substr( $templateName, -2 ) === '/.' ||
-				substr( $templateName, -3 ) === '/..'
-			)
+			strcspn( $templateName, ":/\\\000&<>'\"%" ) !== strlen( $templateName )
 		) {
 			throw new UnexpectedValueException( "Malformed \$templateName: $templateName" );
 		}
@@ -128,6 +121,8 @@ class TemplateParser {
 			$code = $this->compileForEval( $fileContents, $filename );
 		}
 
+		echo "About to eval:\n";
+		echo $code;
 		$renderer = eval( $code );
 		if ( !is_callable( $renderer ) ) {
 			throw new RuntimeException( "Requested template, {$templateName}, is not callable" );
