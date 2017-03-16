@@ -1,0 +1,26 @@
+jquery.ui.draggable.js
+* 71e11de2a3 Fix positioning error with draggable, revert and grid.
+             https://phabricator.wikimedia.org/T140965#2944610
+
+             https://bugs.jqueryui.com/ticket/4696
+
+
+jquery.ui.datepicker
+* 19531f3c23 Add translations in de-AT and de-CH
+
+
+themes/smoothness/jquery.ui.theme.css
+* 5e772e39dd Remove dark color from links inside dialogs
+             https://phabricator.wikimedia.org/T85857
+
+             Removed ".ui-widget-content a { color: #222222; }"
+             and ".ui-widget-header a { color: #222222; }"
+
+
+themes/smoothness/jquery.ui.core.css:
+* dc1c29f204 Collapse border in ui-helper-clearfix
+             https://phabricator.wikimedia.org/T73601
+
+             Backport of upstream change released in jQuery UI v1.10.1
+             - http://bugs.jqueryui.com/ticket/8442
+             - https://github.com/jquery/jquery-ui/commit/cb42ee7ccd

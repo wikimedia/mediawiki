@@ -1,3 +1,0 @@
-jquery.ui.theme.css
-* Removed ".ui-widget-content a { color: #222222; }" and
-  ".ui-widget-header a { color: #222222; }" due to bug T85857.
