@@ -136,12 +136,13 @@
 		this.$element.toggleClass(
 			'mw-rcfilters-ui-filterItemWidget-muted',
 			this.model.isConflicted() ||
-			this.model.isIncluded() ||
 			(
 				// Item is also muted when any of the items in its group is active
 				this.model.getGroupModel().isActive() &&
 				// But it isn't selected
-				!this.model.isSelected()
+				!this.model.isSelected() &&
+				// And also not included
+				!this.model.isIncluded()
 			)
 		);
 
