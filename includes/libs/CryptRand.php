@@ -249,7 +249,20 @@ class CryptRand {
 			// On Windows starting in PHP 5.3.0 Windows' native CryptGenRandom is used to generate
 			// entropy so this is also preferable to just trying to read urandom because it may work
 			// on Windows systems as well.
-			if ( function_exists( 'mcrypt_create_iv' ) ) {
+			if (
+				version_compare( PHP_VERSION, "7.0.0" ) < 0 &&
+				function_exists( 'random_bytes' )
+			) {
+				$rem = $bytes - strlen( $buffer );
+				$iv = random_bytes( $rem );
+				if ( $iv === false ) {
+					$this->logger->debug( "random_bytes returned false." );
+				} else {
+					$buffer .= $iv;
+					$this->logger->debug( "random_bytes generated " . strlen( $iv ) .
+						" bytes of randomness." );
+				}
+			} else if ( function_exists( 'mcrypt_create_iv' ) ) {
 				$rem = $bytes - strlen( $buffer );
 				$iv = mcrypt_create_iv( $rem, MCRYPT_DEV_URANDOM );
 				if ( $iv === false ) {
@@ -257,7 +270,7 @@ class CryptRand {
 				} else {
 					$buffer .= $iv;
 					$this->logger->debug( "mcrypt_create_iv generated " . strlen( $iv ) .
-						" bytes of randomness." );
+					" bytes of randomness." );
 				}
 			}
 		}
