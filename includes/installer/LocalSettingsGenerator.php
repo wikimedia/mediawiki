@@ -65,7 +65,6 @@ class LocalSettingsGenerator {
 				'_MemCachedServers', 'wgDBserver', 'wgDBuser',
 				'wgDBpassword', 'wgUseInstantCommons', 'wgUpgradeKey', 'wgDefaultSkin',
 				'wgMetaNamespace', 'wgLogo', 'wgAuthenticationTokenVersion', 'wgPingback',
-				'_Caches',
 			],
 			$db->getGlobalNames()
 		);
@@ -294,17 +293,11 @@ class LocalSettingsGenerator {
 			case 'db':
 			case 'memcached':
 			case 'accel':
-			case 'none':
 				$cacheType = 'CACHE_' . strtoupper( $this->values['_MainCacheType'] );
 				break;
+			case 'none':
 			default:
-				// If the user skipped the options page,
-				// default to CACHE_ACCEL if available
-				if ( count( $this->values['_Caches'] ) ) {
-					$cacheType = 'CACHE_ACCEL';
-				} else {
-					$cacheType = 'CACHE_NONE';
-				}
+				$cacheType = 'CACHE_NONE';
 		}
 
 		$mcservers = $this->buildMemcachedServerList();
