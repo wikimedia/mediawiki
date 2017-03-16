@@ -632,7 +632,7 @@
 	"previewnote": "<strong>Ne zaboravite da je ovo samo pretpregled.</strong>\nVaše izmene još nisu sačuvane!",
 	"continue-editing": "Idi na uređivački okvir",
 	"previewconflict": "Ovaj pregled oslikava kako će tekst u tekstualnom okviru izgledati.",
-	"session_fail_preview": "'''Nismo mogli da obradimo vašu izmenu zbog gubitka podataka sesije.'''\nPokušajte ponovo.\nAko i dalje ne radi, pokušajte da se [[Special:UserLogout|odjavite]] i ponovo prijavite.",
+	"session_fail_preview": "Izvinjavamo se! Nismo mogli da obradimo Vašu izmenu zbog gubitka podataka sesije.\n\nMožda ste odjavljeni. <strong>Proverite da li ste prijavljen i pokušajte ponovo</strong>.\nAko i dalje ne radi, pokušajte da se [[Special:UserLogout|odjavite]] i ponovo prijavite i proverite da li su na Vašem pretraživaču dozvoljeni kolačići sa ovog sajta.",
 	"session_fail_preview_html": "'''Nismo mogli da obradimo vašu izmenu zbog gubitka podataka sesije.'''\n\n''Budući da je na ovom vikiju omogućen unos HTML oznaka, pregled je sakriven kao mera predostrožnosti protiv napada preko javaskripta.''\n\n'''Ako ste pokušali da napravite pravu izmenu, pokušajte ponovo.\nAko i dalje ne radi, pokušajte da se [[Special:UserLogout|odjavite]] i ponovo prijavite.'''",
 	"token_suffix_mismatch": "'''Vaša izmena je odbačena jer je vaš pregledač ubacio znakove interpunkcije u novčić uređivanja.\nTo se ponekad događa kada se koristi neispravan posrednik.'''",
 	"edit_form_incomplete": "<strong>Neki delovi obrasca za uređivanje nisu stigli do servera. Proverite da li su vaše izmene nepromenjene i pokušajte ponovo.</strong>",

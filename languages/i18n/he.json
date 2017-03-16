@@ -812,7 +812,7 @@
 	"page_last": "אחרון",
 	"histlegend": "בחירת גרסאות להשוואה: {{GENDER:|בחר|בחרי|בחרו}} את הגרסאות ש{{GENDER:|ברצונך|ברצונך|ברצונכם}} להשוות ולאחר מכן {{GENDER:|הקש|הקישי|הקישו}} על Enter או {{GENDER:|לחץ|לחצי|לחצו}} על הכפתור שלמטה.<br />\nמקרא: <strong>({{int:cur}})</strong> = השוואה עם הגרסה הנוכחית, <strong>({{int:last}})</strong> = השוואה עם הגרסה הקודמת, <strong>{{int:minoreditletter}}</strong> = עריכה משנית.",
 	"history-fieldset-title": "חיפוש בהיסטוריית הדף",
-	"history-show-deleted": "עריכות מוסתרות בלבד",
+	"history-show-deleted": "גרסאות מוסתרות בלבד",
 	"histfirst": "הישנות ביותר",
 	"histlast": "החדשות ביותר",
 	"historysize": "({{PLURAL:$1|בייט אחד|$1 בייטים}})",

@@ -129,7 +129,7 @@
 	"config-missing-db-name": "Meg kell adnod a(z) „{{int:config-db-name}}” értékét.",
 	"config-missing-db-host": "Meg kell adnod az „{{int:config-db-host}}” értékét.",
 	"config-missing-db-server-oracle": "Meg kell adnod az „{{int:config-db-host-oracle}}” értékét.",
-	"config-invalid-db-server-oracle": "Érvénytelen adatbázis TNS: „$1”\nCsak ASCII betűk (a-z, A-Z), számok (0-9), alulvonás (_) és pont (.) használható.",
+	"config-invalid-db-server-oracle": "Érvénytelen adatbázis TNS: „$1”\nHasználd a „TNS Name” vagy az Easy Connect” sztringet!\n([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle Naming Methods]).",
 	"config-invalid-db-name": "Érvénytelen adatbázisnév: „$1”.\nCsak ASCII-karakterek (a-z, A-Z), számok (0-9), alulvonás (_) és kötőjel (-) használható.",
 	"config-invalid-db-prefix": "Érvénytelen adatbázisnév-előtag: „$1”.\nCsak ASCII-karakterek (a-z, A-Z), számok (0-9), alulvonás (_) és kötőjel (-) használható.",
 	"config-connection-error": "$1.\n\nEllenőrizd a hosztot, felhasználónevet és jelszót, majd próbáld újra.",
@@ -303,5 +303,5 @@
 	"config-nofile": "\"$1\" fájl nem található. Törölve lett?",
 	"config-extension-link": "Tudtad, hogy a wikid támogat [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions kiterjesztéseket]?\n\nBöngészhetsz [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category kiterjesztéseket kategóriánként] vagy válogathatsz a [https://www.mediawiki.org/wiki/Extension_Matrix kiterjesztésmátrixból] az összes kiterjesztés áttekintéséhez.",
 	"mainpagetext": "<strong>A MediaWiki telepítése sikeresen befejeződött.</strong>",
-	"mainpagedocfooter": "Ha segítségre van szükséged a wikiszoftver használatához, akkor keresd fel a [https://meta.wikimedia.org/wiki/Help:Contents User's Guide] oldalt.\n\n== Alapok (angol nyelven) ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Beállítások listája]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki GyIK]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-kiadások levelezőlistája]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources A MediaWiki fordítása a saját nyelvedre]"
+	"mainpagedocfooter": "Ha segítségre van szükséged a wikiszoftver használatához, akkor keresd fel a [https://meta.wikimedia.org/wiki/Help:Contents User's Guide] oldalt.\n\n== Alapok (angol nyelven) ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Beállítások listája]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki GyIK]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-kiadások levelezőlistája]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources A MediaWiki fordítása a saját nyelvedre]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Tudd meg többet, hogyan küzdhetsz a kéretlen levelek ellen a wikiden]"
 }

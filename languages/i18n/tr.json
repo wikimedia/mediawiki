@@ -3140,7 +3140,7 @@
 	"table_pager_limit_label": "Sayfa başına öğe:",
 	"table_pager_limit_submit": "Git",
 	"table_pager_empty": "Sonuç yok",
-	"autosumm-blank": "Sayfayı boşalttı",
+	"autosumm-blank": "Sayfa boşaltıldı",
 	"autosumm-replace": "Sayfa içeriği '$1' ile değiştiriliyor",
 	"autoredircomment": "[[$1]] sayfasına yönlendirildi",
 	"autosumm-new": "Yeni sayfa: \"$1\"",
