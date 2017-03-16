@@ -25,6 +25,9 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	/** @var FormOptions */
 	protected $opts;
 
+	/** @var string[] */
+	protected $mediaTypes;
+
 	public function __construct() {
 		parent::__construct( 'Newimages' );
 	}
@@ -32,6 +35,8 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
+		$mimeAnalyzer = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
+		$this->mediaTypes = $mimeAnalyzer->getMediaTypes();
 
 		$out = $this->getOutput();
 		$this->addHelpLink( 'Help:New images' );
@@ -41,6 +46,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		$opts->add( 'like', '' );
 		$opts->add( 'showbots', false );
 		$opts->add( 'hidepatrolled', false );
+		$opts->add( 'mediatype', $this->mediaTypes );
 		$opts->add( 'limit', 50 );
 		$opts->add( 'offset', '' );
 
@@ -48,6 +54,14 @@ class SpecialNewFiles extends IncludableSpecialPage {
 
 		if ( $par !== null ) {
 			$opts->setValue( is_numeric( $par ) ? 'limit' : 'like', $par );
+		}
+
+		// if all media types have been selected, wipe out the array to prevent
+		// the pointless IN(...) query condition (which would have no effect
+		// because every possible type has been selected)
+		$missingMediaTypes = array_diff( $this->mediaTypes, $opts->getValue( 'mediatype' ) );
+		if ( empty( $missingMediaTypes ) ) {
+			$opts->setValue( 'mediatype', [] );
 		}
 
 		$opts->validateIntBounds( 'limit', 0, 500 );
@@ -68,6 +82,17 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	}
 
 	protected function buildForm() {
+		$mediaTypesText = array_map( function ( $type ) {
+			// mediastatistics-header-unknown, mediastatistics-header-bitmap,
+			// mediastatistics-header-drawing, mediastatistics-header-audio,
+			// mediastatistics-header-video, mediastatistics-header-multimedia,
+			// mediastatistics-header-office, mediastatistics-header-text,
+			// mediastatistics-header-executable, mediastatistics-header-archive,
+			return wfMessage( 'mediastatistics-header-' . strtolower( $type ) )->text();
+		}, $this->mediaTypes );
+		$mediaTypesOptions = array_combine( $mediaTypesText, $this->mediaTypes );
+		ksort( $mediaTypesOptions );
+
 		$formDescriptor = [
 			'like' => [
 				'type' => 'text',
@@ -85,6 +110,16 @@ class SpecialNewFiles extends IncludableSpecialPage {
 				'type' => 'check',
 				'label-message' => 'newimages-hidepatrolled',
 				'name' => 'hidepatrolled',
+			],
+
+			'mediatype' => [
+				'type' => 'multiselect',
+				'dropdown' => true,
+				'flatlist' => true,
+				'name' => 'mediatype',
+				'label-message' => 'newimages-mediatype',
+				'options' => $mediaTypesOptions,
+				'default' => $this->mediaTypes,
 			],
 
 			'limit' => [
@@ -109,6 +144,8 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		}
 
 		HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
+			// For the 'multiselect' field values to be preserved on submit
+			->setFormIdentifier( 'specialnewimages' )
 			->setWrapperLegendMsg( 'newimages-legend' )
 			->setSubmitTextMsg( 'ilsubmit' )
 			->setMethod( 'get' )

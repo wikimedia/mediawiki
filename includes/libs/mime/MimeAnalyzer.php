@@ -1142,6 +1142,15 @@ EOT;
 	}
 
 	/**
+	 * Returns an array of media types (MEDIATYPE_xxx constants)
+	 *
+	 * @return array
+	 */
+	public function getMediaTypes() {
+		return array_keys( $this->mediaTypes );
+	}
+
+	/**
 	 * Get the MIME types that various versions of Internet Explorer would
 	 * detect from a chunk of the content.
 	 *
