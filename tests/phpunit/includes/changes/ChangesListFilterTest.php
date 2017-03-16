@@ -40,6 +40,30 @@ class ChangesListFilterTest extends MediaWikiTestCase {
 		);
 	}
 
+	// @codingStandardsIgnoreStart
+	/**
+	 * @expectedException MWException
+	 * @expectedExceptionMessage Two filters in a group cannot have the same name: 'somename'
+	 */
+	// @codingStandardsIgnoreEnd
+	public function testDuplicateName() {
+		new MockChangesListFilter(
+			[
+				'group' => $this->group,
+				'name' => 'somename',
+				'priority' => 1,
+			]
+		);
+
+		new MockChangesListFilter(
+			[
+				'group' => $this->group,
+				'name' => 'somename',
+				'priority' => 2,
+			]
+		);
+	}
+
 	/**
 	 * @expectedException MWException
 	 * @expectedExceptionMessage Supersets can only be defined for filters in the same group
