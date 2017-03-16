@@ -264,6 +264,7 @@ changes to languages because of Phabricator reports.
   breaking change.
 * Removed 'jquery.arrowSteps' module. (deprecated since 1.28)
 * The 'jquery.autoEllipsis' ResourceLoader module is now deprecated.
+* WikiRevision::$fileIsTemp was deprecated.
 
 == Compatibility ==
 
