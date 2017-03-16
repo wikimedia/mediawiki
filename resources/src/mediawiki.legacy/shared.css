@@ -322,6 +322,16 @@ a.new {
 	color: #ba0000;
 }
 
+/* self links */
+a.mw-selflink {
+	color: inherit;
+	font-weight: bold;
+}
+a.mw-selflink:hover {
+	cursor: inherit;
+	text-decoration: inherit;
+}
+
 /* Plainlinks - this can be used to switch
  * off special external link styling */
 .plainlinks a.external {

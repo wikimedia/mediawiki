@@ -276,6 +276,9 @@ changes to languages because of Phabricator reports.
   'EditPageGetCheckboxesDefinition', or 'EditPage::showStandardInputs:options'
   if you don't actually care about checkboxes and just want to add some HTML
   to the page.
+* Selflinks are now rendered as href-less <a> tags with the class mw-selflink
+  rather than <strong> tags. The old class name, "selflink", was deprecated
+  and will be removed in a future release. (T160480)
 
 == Compatibility ==
 
