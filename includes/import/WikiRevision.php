@@ -62,7 +62,9 @@ class WikiRevision {
 	/**
 	 * @since 1.2
 	 * @var int
-	 * @todo Can't find any uses. Public, because that's suspicious. Get clarity. */
+	 * @deprecated in 1.29. Unused.
+	 * @note Introduced in 436a028086fb3f01c4605c5ad2964d56f9306aca, unused there, unused now.
+	 */
 	public $user = 0;
 
 	/**

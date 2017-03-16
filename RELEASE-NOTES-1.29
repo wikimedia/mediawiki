@@ -258,6 +258,7 @@ changes to languages because of Phabricator reports.
   public.
 * WikiRevision::$fileIsTemp was deprecated.
 * WikiRevision::$importer was deprecated.
+* WikiRevision::$user was deprecated.
 
   Also, some related hooks were deprecated, but this is not yet a
   breaking change.
