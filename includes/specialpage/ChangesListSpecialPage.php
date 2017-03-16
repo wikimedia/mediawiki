@@ -663,10 +663,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 *
 	 * @param string $groupName Name of group
 	 *
-	 * @return ChangesListFilterGroup
+	 * @return ChangesListFilterGroup|null Group, or null if not registered
 	 */
 	public function getFilterGroup( $groupName ) {
-		return $this->filterGroups[$groupName];
+		return isset( $this->filterGroups[$groupName] ) ?
+			$this->filterGroups[$groupName] :
+			null;
 	}
 
 	// Currently, this intentionally only includes filters that display
