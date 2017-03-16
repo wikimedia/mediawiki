@@ -257,6 +257,7 @@ changes to languages because of Phabricator reports.
   (possibly both), but other classes might too, because they were
   public.
 * WikiRevision::$fileIsTemp was deprecated.
+* WikiRevision::$importer was deprecated.
 
   Also, some related hooks were deprecated, but this is not yet a
   breaking change.
