@@ -51,4 +51,24 @@ class ChangesListFilterGroupTest extends MediaWikiTestCase {
 			)
 		);
 	}
+
+	// Get without warnings
+	public function testGetFilter() {
+		$group = new MockChangesListFilterGroup(
+			[
+				'type' => 'some_type',
+				'name' => 'groupName',
+				'isFullCoverage' => true,
+				'priority' => 1,
+				'filters' => [
+					[ 'name' => 'foo' ],
+				],
+			]
+		);
+
+		$this->assertEquals(
+			'foo',
+			$group->getFilter( 'foo' )->getName()
+		);
+	}
 }
