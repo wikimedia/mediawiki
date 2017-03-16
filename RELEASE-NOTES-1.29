@@ -266,6 +266,7 @@ changes to languages because of Phabricator reports.
 * The 'jquery.autoEllipsis' ResourceLoader module is now deprecated.
 * WikiRevision::$fileIsTemp was deprecated.
 * WikiRevision::$importer was deprecated.
+* WikiRevision::$user was deprecated.
 
 == Compatibility ==
 
