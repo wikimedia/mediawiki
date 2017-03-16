@@ -3197,6 +3197,7 @@
 	"newimages-label": "Caption of the filter editbox on [[Special:NewImages]]",
 	"newimages-showbots": "Used as label for a checkbox. When checked, [[Special:NewImages]] will also display uploads by users in the bots group.",
 	"newimages-hidepatrolled": "Used as label for a checkbox. When checked, [[Special:NewImages]] will not display patrolled uploads.\n\nCf. {{msg-mw|tog-hidepatrolled}} and {{msg-mw|apihelp-feedrecentchanges-param-hidepatrolled}}.",
+	"newimages-mediatype": "Used as label for a multiselect where users can select the media types to display.",
 	"noimages": "This is shown on the special page [[Special:NewImages]], when there aren't any recently uploaded files.",
 	"gallery-slideshow-toggle": "Tooltip for the icon that toggles thumbnails on a slideshow  gallery.",
 	"ilsubmit": "Search button in [[Special:MIMESearch]].\n\nStrings on the page:\n* {{msg-mw|Mimesearch|page title, legend of input form, link in special pages}}\n* {{msg-mw|Mimesearch-summary|page summary}}\n* {{msg-mw|Mimetype|label for input box}}\n* {{msg-mw|Ilsubmit|search button}}\n\nCheck [[mw:Manual:MIME_type_detection]] for MIME types.\n\n{{Identical|Search}}",
