@@ -107,58 +107,6 @@ class ChangesListBooleanFilterTest extends MediaWikiTestCase {
 		);
 	}
 
-	/**
-	 * @expectedException MWException
-	 * @expectedExceptionMessage Supersets can only be defined for filters in the same group
-	 */
-	public function testSetAsSupersetOf() {
-		$groupA = new ChangesListBooleanFilterGroup( [
-			'name' => 'groupA',
-			'priority' => 2,
-			'filters' => [
-				[
-					'name' => 'foo',
-					'default' => false,
-				],
-				[
-					'name' => 'bar',
-					'default' => false,
-				]
-			],
-		] );
-
-		$groupB = new ChangesListBooleanFilterGroup( [
-			'name' => 'groupB',
-			'priority' => 3,
-			'filters' => [
-				[
-					'name' => 'baz',
-					'default' => true,
-				],
-			],
-		] );
-
-		$foo = TestingAccessWrapper::newFromObject( $groupA->getFilter( 'foo' ) );
-
-		$bar = $groupA->getFilter( 'bar' );
-
-		$baz = $groupB->getFilter( 'baz' );
-
-		$foo->setAsSupersetOf( $bar );
-		$this->assertArrayEquals( [
-				[
-					'group' => 'groupA',
-					'filter' => 'bar',
-				],
-			],
-			$foo->subsetFilters,
-			/** ordered= */ false,
-			/** named= */ true
-		);
-
-		$foo->setAsSupersetOf( $baz, 'some-message' );
-	}
-
 	public function testIsFeatureAvailableOnStructuredUi() {
 		$specialPage = $this->getMockBuilder( 'ChangesListSpecialPage' )
 			->setConstructorArgs( [
