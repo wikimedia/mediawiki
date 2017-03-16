@@ -315,10 +315,10 @@ abstract class ChangesListFilterGroup {
 	 * Get filter by name
 	 *
 	 * @param string $name Filter name
-	 * @return ChangesListFilter Specified filter
+	 * @return ChangesListFilter|null Specified filter, or null if it is not registered
 	 */
 	public function getFilter( $name ) {
-		return $this->filters[$name];
+		return isset( $this->filters[$name] ) ? $this->filters[$name] : null;
 	}
 
 	/**
