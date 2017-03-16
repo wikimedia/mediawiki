@@ -110,6 +110,8 @@ abstract class ChangesListFilter {
 	 */
 	protected $priority;
 
+	const RESERVED_NAME_CHAR = '_';
+
 	/**
 	 * Create a new filter with the specified configuration.
 	 *
@@ -122,7 +124,8 @@ abstract class ChangesListFilter {
 	 *
 	 * @param array $filterDefinition ChangesListFilter definition
 	 *
-	 * $filterDefinition['name'] string Name of filter
+	 * $filterDefinition['name'] string Name of filter; use lowercase with no
+	 *  punctuation
 	 * $filterDefinition['cssClassSuffix'] string CSS class suffix, used to mark
 	 *  that a particular row belongs to this filter (when a row is included by the
 	 *  filter) (optional)
@@ -149,6 +152,13 @@ abstract class ChangesListFilter {
 		} else {
 			throw new MWException( 'You must use \'group\' to specify the ' .
 				'ChangesListFilterGroup this filter belongs to' );
+		}
+
+		if ( strpos( $filterDefinition['name'], self::RESERVED_NAME_CHAR ) !== false ) {
+			throw new MWException( 'Filter names may not contain \'' .
+				self::RESERVED_NAME_CHAR .
+				'\'.  Use the naming convention: \'lowercase\''
+			);
 		}
 
 		$this->name = $filterDefinition['name'];

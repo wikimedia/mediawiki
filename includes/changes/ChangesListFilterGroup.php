@@ -123,11 +123,13 @@ abstract class ChangesListFilterGroup {
 
 	const DEFAULT_PRIORITY = -100;
 
+	const RESERVED_NAME_CHAR = '_';
+
 	/**
 	 * Create a new filter group with the specified configuration
 	 *
 	 * @param array $groupDefinition Configuration of group
-	 * * $groupDefinition['name'] string Group name
+	 * * $groupDefinition['name'] string Group name; use camelCase with no punctuation
 	 * * $groupDefinition['title'] string i18n key for title (optional, can be omitted
 	 * *  only if none of the filters in the group display in the structured UI)
 	 * * $groupDefinition['type'] string A type constant from a subclass of this one
@@ -142,6 +144,13 @@ abstract class ChangesListFilterGroup {
 	 * *  changes list entries are filtered out.
 	 */
 	public function __construct( array $groupDefinition ) {
+		if ( strpos( $groupDefinition['name'], self::RESERVED_NAME_CHAR ) !== false ) {
+			throw new MWException( 'Group names may not contain \'' .
+				self::RESERVED_NAME_CHAR .
+				'\'.  Use the naming convention: \'camelCase\''
+			);
+		}
+
 		$this->name = $groupDefinition['name'];
 
 		if ( isset( $groupDefinition['title'] ) ) {
