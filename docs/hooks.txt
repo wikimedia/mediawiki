@@ -1015,10 +1015,11 @@ $opts: FormOptions for this request
 'ChangesListSpecialPageStructuredFilters': Called to allow extensions to register
 filters for pages inheriting from ChangesListSpecialPage (in core: RecentChanges,
 RecentChangesLinked, and Watchlist).  Generally, you will want to construct
-new ChangesListBooleanFilter or ChangesListStringOptionsFilter objects.  You can
-then either add them to existing ChangesListFilterGroup objects (accessed through
-$special->getFilterGroup), or create your own.  If you create new groups, you
-must register them with $special->registerFilterGroup.
+new ChangesListBooleanFilter or ChangesListStringOptionsFilter objects.
+
+When constructing them, you specify which group they belong to.  You can reuse
+existing groups (accessed through $special->getFilterGroup), or create your own.
+If you create new groups, you must register them with $special->registerFilterGroup.
 $special: ChangesListSpecialPage instance
 
 'ChangeTagAfterDelete': Called after a change tag has been deleted (that is,

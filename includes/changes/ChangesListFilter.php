@@ -113,7 +113,8 @@ abstract class ChangesListFilter {
 	const RESERVED_NAME_CHAR = '_';
 
 	/**
-	 * Create a new filter with the specified configuration.
+	 * Creates a new filter with the specified configuration, and registers it to the
+	 * specified group.
 	 *
 	 * It infers which UI (it can be either or both) to display the filter on based on
 	 * which messages are provided.
@@ -159,6 +160,11 @@ abstract class ChangesListFilter {
 				self::RESERVED_NAME_CHAR .
 				'\'.  Use the naming convention: \'lowercase\''
 			);
+		}
+
+		if ( $this->group->getFilter( $filterDefinition['name'] ) ) {
+			throw new MWException( 'Two filters in a group can not have the ' .
+				"same name: '{$filterDefinition['name']}'" );
 		}
 
 		$this->name = $filterDefinition['name'];
