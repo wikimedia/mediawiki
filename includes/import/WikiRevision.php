@@ -36,7 +36,8 @@ class WikiRevision {
 
 	/**
 	 * @since 1.17
-	 * @todo Unused?
+	 * @deprecated in 1.29. Unused.
+	 * @note Introduced in 9b3128eb2b654761f21fd4ca1d5a1a4b796dc912, unused there, unused now.
 	 */
 	public $importer = null;
 
