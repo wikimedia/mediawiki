@@ -19,33 +19,6 @@ class ChangesListBooleanFilterGroupTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function testAutoPriorities() {
-		$group = new ChangesListBooleanFilterGroup( [
-			'name' => 'groupName',
-			'priority' => 1,
-			'filters' => [
-				[ 'name' => 'hidefoo', 'default' => false, ],
-				[ 'name' => 'hidebar', 'default' => false, ],
-				[ 'name' => 'hidebaz', 'default' => false, ],
-			],
-		] );
-
-		$filters = $group->getFilters();
-		$this->assertEquals(
-			[
-				-2,
-				-3,
-				-4,
-			],
-			array_map(
-				function ( $f ) {
-					return $f->getPriority();
-				},
-				array_values( $filters )
-			)
-		);
-	}
-
 	public function testGetJsData() {
 		$definition = [
 			'name' => 'some-group',
