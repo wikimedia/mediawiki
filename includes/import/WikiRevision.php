@@ -28,6 +28,8 @@
  * Represents a revision, log entry or upload during the import process.
  * This class sticks closely to the structure of the XML dump.
  *
+ * @since 1.2
+ *
  * @ingroup SpecialPage
  */
 class WikiRevision {
@@ -39,74 +41,144 @@ class WikiRevision {
 	 */
 	public $importer = null;
 
-	/** @var Title */
+	/**
+	 * @since 1.2
+	 * @var Title
+	 */
 	public $title = null;
 
-	/** @var int */
+	/**
+	 * @since 1.6.4
+	 * @var int
+	 */
 	public $id = 0;
 
-	/** @var string */
+	/**
+	 * @since 1.2
+	 * @var string
+	 */
 	public $timestamp = "20010115000000";
 
 	/**
+	 * @since 1.2
 	 * @var int
 	 * @deprecated in 1.29. Unused.
 	 * @note Introduced in 436a028086fb3f01c4605c5ad2964d56f9306aca, unused there, unused now.
 	 */
 	public $user = 0;
 
-	/** @var string */
+	/**
+	 * @since 1.2
+	 * @var string
+	 */
 	public $user_text = "";
 
-	/** @var User */
+	/**
+	 * @since 1.27
+	 * @var User
+	 */
 	public $userObj = null;
 
-	/** @var string */
+	/**
+	 * @since 1.21
+	 * @var string
+	 */
 	public $model = null;
 
-	/** @var string */
+	/**
+	 * @since 1.21
+	 * @var string
+	 */
 	public $format = null;
 
-	/** @var string */
+	/**
+	 * @since 1.2
+	 * @var string
+	 */
 	public $text = "";
 
-	/** @var int */
+	/**
+	 * @since 1.12.2
+	 * @var int
+	 */
 	protected $size;
 
-	/** @var Content */
+	/**
+	 * @since 1.21
+	 * @var Content
+	 */
 	public $content = null;
 
-	/** @var ContentHandler */
+	/**
+	 * @since 1.24
+	 * @var ContentHandler
+	 */
 	protected $contentHandler = null;
 
-	/** @var string */
+	/**
+	 * @since 1.2.6
+	 * @var string
+	 */
 	public $comment = "";
 
-	/** @var bool */
+	/**
+	 * @since 1.5.7
+	 * @var bool
+	 */
 	public $minor = false;
 
-	/** @var string */
+	/**
+	 * @since 1.12.2
+	 * @var string
+	 */
 	public $type = "";
 
-	/** @var string */
+	/**
+	 * @since 1.12.2
+	 * @var string
+	 */
 	public $action = "";
 
-	/** @var string */
+	/**
+	 * @since 1.12.2
+	 * @var string
+	 */
 	public $params = "";
 
-	/** @var string */
+	/**
+	 * @since 1.17
+	 * @var string
+	 */
 	public $fileSrc = '';
 
-	/** @var bool|string */
+	/**
+	 * @since 1.17
+	 * @var bool|string
+	 */
 	public $sha1base36 = false;
 
 	/**
-	/** @var string */
+	 * @since 1.18
+	 * @var bool
+	 * @todo Unused?
+	 */
+	public $isTemp = false;
+
+	/**
+	 * @since 1.17
+	 * @var string
+	 */
 	public $archiveName = '';
 
+	/**
+	 * @since 1.12.2
+	 */
 	protected $filename;
 
-	/** @var mixed */
+	/**
+	 * @since 1.12.2
+	 * @var mixed
+	 */
 	protected $src;
 
 	/**
@@ -134,6 +206,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.7 taking a Title object (string before)
 	 * @param Title $title
 	 * @throws MWException
 	 */
@@ -149,6 +222,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.6.4
 	 * @param int $id
 	 */
 	public function setID( $id ) {
@@ -156,6 +230,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.2
 	 * @param string $ts
 	 */
 	public function setTimestamp( $ts ) {
@@ -164,6 +239,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.2
 	 * @param string $user
 	 */
 	public function setUsername( $user ) {
@@ -171,6 +247,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.27
 	 * @param User $user
 	 */
 	public function setUserObj( $user ) {
@@ -178,6 +255,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.2
 	 * @param string $ip
 	 */
 	public function setUserIP( $ip ) {
@@ -185,6 +263,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.21
 	 * @param string $model
 	 */
 	public function setModel( $model ) {
@@ -192,6 +271,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.21
 	 * @param string $format
 	 */
 	public function setFormat( $format ) {
@@ -199,6 +279,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.2
 	 * @param string $text
 	 */
 	public function setText( $text ) {
@@ -206,6 +287,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.2.6
 	 * @param string $text
 	 */
 	public function setComment( $text ) {
@@ -213,6 +295,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.5.7
 	 * @param bool $minor
 	 */
 	public function setMinor( $minor ) {
@@ -220,6 +303,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.12.2
 	 * @param mixed $src
 	 */
 	public function setSrc( $src ) {
@@ -227,6 +311,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.17
 	 * @param string $src
 	 * @param bool $isTemp
 	 */
@@ -237,6 +322,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.17
 	 * @param string $sha1base36
 	 */
 	public function setSha1Base36( $sha1base36 ) {
@@ -244,6 +330,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.12.2
 	 * @param string $filename
 	 */
 	public function setFilename( $filename ) {
@@ -251,6 +338,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.17
 	 * @param string $archiveName
 	 */
 	public function setArchiveName( $archiveName ) {
@@ -258,6 +346,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.12.2
 	 * @param int $size
 	 */
 	public function setSize( $size ) {
@@ -265,6 +354,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.12.2
 	 * @param string $type
 	 */
 	public function setType( $type ) {
@@ -272,6 +362,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.12.2
 	 * @param string $action
 	 */
 	public function setAction( $action ) {
@@ -279,6 +370,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.12.2
 	 * @param array $params
 	 */
 	public function setParams( $params ) {
@@ -286,6 +378,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.18
 	 * @param bool $noupdates
 	 */
 	public function setNoUpdates( $noupdates ) {
@@ -293,6 +386,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.2
 	 * @return Title
 	 */
 	public function getTitle() {
@@ -300,6 +394,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.6.4
 	 * @return int
 	 */
 	public function getID() {
@@ -307,6 +402,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.2
 	 * @return string
 	 */
 	public function getTimestamp() {
@@ -314,6 +410,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.2
 	 * @return string
 	 */
 	public function getUser() {
@@ -321,6 +418,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.27
 	 * @return User
 	 */
 	public function getUserObj() {
@@ -328,6 +426,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.2
 	 * @return string
 	 */
 	public function getText() {
@@ -335,6 +434,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.24
 	 * @return ContentHandler
 	 */
 	public function getContentHandler() {
@@ -346,6 +446,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.21
 	 * @return Content
 	 */
 	public function getContent() {
@@ -358,6 +459,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.21
 	 * @return string
 	 */
 	public function getModel() {
@@ -369,6 +471,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.21
 	 * @return string
 	 */
 	public function getFormat() {
@@ -380,6 +483,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.2.6
 	 * @return string
 	 */
 	public function getComment() {
@@ -387,6 +491,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.5.7
 	 * @return bool
 	 */
 	public function getMinor() {
@@ -394,6 +499,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.12.2
 	 * @return mixed
 	 */
 	public function getSrc() {
@@ -401,6 +507,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.17
 	 * @return bool|string
 	 */
 	public function getSha1() {
@@ -411,6 +518,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.17
 	 * @return string
 	 */
 	public function getFileSrc() {
@@ -418,6 +526,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.17
 	 * @return bool
 	 */
 	public function isTempSrc() {
@@ -425,6 +534,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.12.2
 	 * @return mixed
 	 */
 	public function getFilename() {
@@ -432,6 +542,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.17
 	 * @return string
 	 */
 	public function getArchiveName() {
@@ -439,6 +550,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.12.2
 	 * @return mixed
 	 */
 	public function getSize() {
@@ -446,6 +558,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.12.2
 	 * @return string
 	 */
 	public function getType() {
@@ -453,6 +566,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.12.2
 	 * @return string
 	 */
 	public function getAction() {
@@ -460,6 +574,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.12.2
 	 * @return string
 	 */
 	public function getParams() {
@@ -467,6 +582,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.4.1
 	 * @return bool
 	 */
 	public function importOldRevision() {
@@ -568,6 +684,10 @@ class WikiRevision {
 		return true;
 	}
 
+	/**
+	 * @since 1.12.2
+	 * @return bool
+	 */
 	public function importLogItem() {
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -625,6 +745,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.12.2
 	 * @return bool
 	 */
 	public function importUpload() {
@@ -696,6 +817,7 @@ class WikiRevision {
 	}
 
 	/**
+	 * @since 1.12.2
 	 * @return bool|string
 	 */
 	public function downloadSource() {
