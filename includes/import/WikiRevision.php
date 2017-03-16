@@ -94,11 +94,6 @@ class WikiRevision {
 	public $sha1base36 = false;
 
 	/**
-	 * @var bool
-	 * @todo Unused?
-	 */
-	public $isTemp = false;
-
 	/** @var string */
 	public $archiveName = '';
 
@@ -107,7 +102,18 @@ class WikiRevision {
 	/** @var mixed */
 	protected $src;
 
-	/** @todo Unused? */
+	/**
+	 * @since 1.18
+	 * @var bool
+	 */
+	public $isTemp = false;
+
+	/**
+	 * @since 1.18
+	 * @deprecated 1.29 use Wikirevision::isTempSrc()
+	 * First written to in 43d5d3b682cc1733ad01a837d11af4a402d57e6a
+	 * Actually introduced in 52cd34acf590e5be946b7885ffdc13a157c1c6cf
+	 */
 	public $fileIsTemp;
 
 	/** @var bool */
@@ -220,6 +226,7 @@ class WikiRevision {
 	public function setFileSrc( $src, $isTemp ) {
 		$this->fileSrc = $src;
 		$this->fileIsTemp = $isTemp;
+		$this->isTemp = $isTemp;
 	}
 
 	/**
