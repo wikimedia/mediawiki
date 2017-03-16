@@ -3044,6 +3044,7 @@
 	"newimages-user": "IP address or username",
 	"newimages-showbots": "Show uploads by bots",
 	"newimages-hidepatrolled": "Hide patrolled uploads",
+	"newimages-mediatype": "Media type:",
 	"noimages": "Nothing to see.",
 	"gallery-slideshow-toggle": "Toggle thumbnails",
 	"ilsubmit": "Search",
