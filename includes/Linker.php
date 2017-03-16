@@ -164,10 +164,10 @@ class Linker {
 	}
 
 	/**
-	 * Make appropriate markup for a link to the current article. This is
-	 * currently rendered as the bold link text. The calling sequence is the
-	 * same as the other make*LinkObj static functions, despite $query not
-	 * being used.
+	 * Make appropriate markup for a link to the current article. This is since
+	 * MediaWiki 1.29.0 rendered as an <a> tag without an href and with a class
+	 * showing the link text. The calling sequence is the same as for the other
+	 * make*LinkObj static functions, but $query is not used.
 	 *
 	 * @since 1.16.3
 	 * @param Title $nt
@@ -179,7 +179,7 @@ class Linker {
 	 * @return string
 	 */
 	public static function makeSelfLinkObj( $nt, $html = '', $query = '', $trail = '', $prefix = '' ) {
-		$ret = "<strong class=\"selflink\">{$prefix}{$html}</strong>{$trail}";
+		$ret = "<a class=\"mw-selflink selflink\">{$prefix}{$html}</a>{$trail}";
 		if ( !Hooks::run( 'SelfLinkBegin', [ $nt, &$html, &$trail, &$prefix, &$ret ] ) ) {
 			return $ret;
 		}
@@ -188,7 +188,7 @@ class Linker {
 			$html = htmlspecialchars( $nt->getPrefixedText() );
 		}
 		list( $inside, $trail ) = self::splitTrail( $trail );
-		return "<strong class=\"selflink\">{$prefix}{$html}{$inside}</strong>{$trail}";
+		return "<a class=\"mw-selflink selflink\">{$prefix}{$html}{$inside}</a>{$trail}";
 	}
 
 	/**

@@ -268,6 +268,9 @@ changes to languages because of Phabricator reports.
 * WikiRevision::$fileIsTemp was deprecated.
 * WikiRevision::$importer was deprecated.
 * WikiRevision::$user was deprecated.
+* Selflinks are now rendered as href-less <a> tags with the class mw-selflink
+  rather than <strong> tags. The old class name, "selflink", was deprecated
+  and will be removed in a future release. (T160480)
 
 == Compatibility ==
 
