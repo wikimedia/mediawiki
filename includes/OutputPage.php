@@ -3969,10 +3969,8 @@ class OutputPage extends ContextSource {
 	 * @param String $dir Language direction
 	 */
 	public static function setupOOUI( $skinName = '', $dir = 'ltr' ) {
-		$themes = ExtensionRegistry::getInstance()->getAttribute( 'SkinOOUIThemes' );
-		// Make keys (skin names) lowercase for case-insensitive matching.
-		$themes = array_change_key_case( $themes, CASE_LOWER );
-		$theme = isset( $themes[$skinName] ) ? $themes[$skinName] : 'MediaWiki';
+		$themes = ResourceLoaderOOUIModule::getSkinThemeMap();
+		$theme = isset( $themes[$skinName] ) ? $themes[$skinName] : $themes['default'];
 		// For example, 'OOUI\MediaWikiTheme'.
 		$themeClass = "OOUI\\{$theme}Theme";
 		OOUI\Theme::setSingleton( new $themeClass() );
