@@ -473,7 +473,7 @@
 					break;
 
 				default:
-					if ( !$.isArray( pi.type ) ) {
+					if ( !Array.isArray( pi.type ) ) {
 						throw new Error( 'Unknown parameter type ' + pi.type );
 					}
 
@@ -1532,7 +1532,7 @@
 								break;
 
 							default:
-								if ( $.isArray( pi.parameters[ i ].type ) ) {
+								if ( Array.isArray( pi.parameters[ i ].type ) ) {
 									flag = false;
 									count = pi.parameters[ i ].type.length;
 								}

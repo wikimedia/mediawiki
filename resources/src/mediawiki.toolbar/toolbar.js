@@ -124,7 +124,7 @@
 		 *  button object in a list of variadic arguments.
 		 */
 		addButtons: function ( buttons ) {
-			if ( !$.isArray( buttons ) ) {
+			if ( !Array.isArray( buttons ) ) {
 				buttons = slice.call( arguments );
 			}
 			if ( isReady ) {
@@ -180,7 +180,7 @@
 
 		for ( i = 0; i < queue.length; i++ ) {
 			button = queue[ i ];
-			if ( $.isArray( button ) ) {
+			if ( Array.isArray( button ) ) {
 				// Forwarded arguments array from mw.toolbar.addButton
 				insertButton.apply( toolbar, button );
 			} else {
