@@ -21,6 +21,7 @@
  * @file
  * @ingroup Profiler
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * ProfilerOutput class that flushes profiling data to the profiling
@@ -38,7 +39,7 @@ class ProfilerOutputStats extends ProfilerOutput {
 	 */
 	public function log( array $stats ) {
 		$prefix = isset( $this->params['prefix'] ) ? $this->params['prefix'] : '';
-		$contextStats = $this->collector->getContext()->getStats();
+		$contextStats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 
 		foreach ( $stats as $stat ) {
 			$key = "{$prefix}.{$stat['name']}";

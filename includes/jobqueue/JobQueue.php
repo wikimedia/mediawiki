@@ -21,6 +21,7 @@
  * @defgroup JobQueue JobQueue
  * @author Aaron Schulz
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Class to handle enqueueing and running of background jobs
@@ -709,7 +710,7 @@ abstract class JobQueue {
 	public static function incrStats( $key, $type, $delta = 1 ) {
 		static $stats;
 		if ( !$stats ) {
-			$stats = RequestContext::getMain()->getStats();
+			$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 		}
 		$stats->updateCount( "jobqueue.{$key}.all", $delta );
 		$stats->updateCount( "jobqueue.{$key}.{$type}", $delta );

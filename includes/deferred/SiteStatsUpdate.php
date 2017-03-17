@@ -17,6 +17,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -169,7 +170,7 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 	}
 
 	protected function doUpdateContextStats() {
-		$stats = RequestContext::getMain()->getStats();
+		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 		foreach ( [ 'edits', 'articles', 'pages', 'users', 'images' ] as $type ) {
 			$delta = $this->$type;
 			if ( $delta !== 0 ) {

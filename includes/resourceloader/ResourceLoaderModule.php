@@ -624,7 +624,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 */
 	final protected function buildContent( ResourceLoaderContext $context ) {
 		$rl = $context->getResourceLoader();
-		$stats = RequestContext::getMain()->getStats();
+		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 		$statStart = microtime( true );
 
 		// Only include properties that are relevant to this context (e.g. only=scripts)

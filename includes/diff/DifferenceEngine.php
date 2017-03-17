@@ -20,6 +20,7 @@
  * @file
  * @ingroup DifferenceEngine
  */
+use MediaWiki\MediaWikiServices;
 
 /** @deprecated use class constant instead */
 define( 'MW_DIFF_VERSION', '1.11a' );
@@ -852,7 +853,7 @@ class DifferenceEngine extends ContextSource {
 			$result = $this->textDiff( $otext, $ntext );
 
 			$time = intval( ( microtime( true ) - $time ) * 1000 );
-			$this->getStats()->timing( 'diff_time', $time );
+			MediaWikiServices::getInstance()->getStatsdDataFactory()->timing( 'diff_time', $time );
 			// Log requests slower than 99th percentile
 			if ( $time > 100 && $this->mOldPage && $this->mNewPage ) {
 				wfDebugLog( 'diff',
