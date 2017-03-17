@@ -24,7 +24,10 @@
 
 		// Parent
 		mw.rcfilters.ui.FilterCapsuleMultiselectWidget.parent.call( this, $.extend( true, {
-			popup: { $autoCloseIgnore: filterInput.$element.add( this.$overlay ) }
+			popup: {
+				$autoCloseIgnore: filterInput.$element.add( this.$overlay ),
+				$floatableContainer: filterInput.$element
+			}
 		}, config ) );
 
 		this.controller = controller;
