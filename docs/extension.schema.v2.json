@@ -667,6 +667,10 @@
 			"type": "object",
 			"description": "Map of skin names to OOjs UI themes to use. Same format as ResourceLoaderOOUIModule::$builtinSkinThemeMap."
 		},
+		"OOUIThemePaths": {
+			"type": "object",
+			"description": "Map of custom OOjs UI theme names to paths to load them from. Same format as ResourceLoaderOOUIModule::$builtinThemePaths."
+		},
 		"PasswordPolicy": {
 			"type": "object",
 			"description": "Password policies"

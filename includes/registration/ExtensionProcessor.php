@@ -118,6 +118,7 @@ class ExtensionProcessor implements Processor {
 		'ResourceFileModulePaths',
 		'ResourceModules',
 		'ResourceModuleSkinStyles',
+		'OOUIThemePaths',
 		'ExtensionMessagesFiles',
 		'MessagesDirs',
 		'type',
@@ -356,7 +357,7 @@ class ExtensionProcessor implements Processor {
 			}
 		}
 
-		foreach ( [ 'ResourceModules', 'ResourceModuleSkinStyles' ] as $setting ) {
+		foreach ( [ 'ResourceModules', 'ResourceModuleSkinStyles', 'OOUIThemePaths' ] as $setting ) {
 			if ( isset( $info[$setting] ) ) {
 				foreach ( $info[$setting] as $name => $data ) {
 					if ( isset( $data['localBasePath'] ) ) {
@@ -370,7 +371,11 @@ class ExtensionProcessor implements Processor {
 					if ( $defaultPaths ) {
 						$data += $defaultPaths;
 					}
-					$this->globals["wg$setting"][$name] = $data;
+					if ( $setting === 'OOUIThemePaths' ) {
+						$this->attributes[$setting][$name] = $data;
+					} else {
+						$this->globals["wg$setting"][$name] = $data;
+					}
 				}
 			}
 		}
