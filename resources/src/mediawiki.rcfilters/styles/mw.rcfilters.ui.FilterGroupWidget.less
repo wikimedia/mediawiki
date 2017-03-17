@@ -3,16 +3,51 @@
 .mw-rcfilters-ui-filterGroupWidget {
 	padding-bottom: 0.5em;
 
-	&-title {
-		// TODO: Unify colors with official design palette
+	&-header {
 		background: #eaecf0;
 		padding: 0.5em 0.75em;
-		color: #555a5d;
-		.box-sizing( border-box );
+
+		&-title {
+			// TODO: Unify colors with official design palette
+			color: #555a5d;
+			.box-sizing( border-box );
+			display: inline-block;
+		}
+	}
+
+	&-whatsThisButton {
+		display: inline-block;
+		margin-left: 1.5em;
+
+		&.oo-ui-buttonElement {
+			vertical-align: text-bottom;
+
+			& > .oo-ui-buttonElement-button {
+				font-weight: normal;
+			}
+		}
+
+		&-popup-content {
+			padding: 1em;
+
+			&-header {
+				font-weight: bold;
+				margin-bottom: 1em;
+			}
+
+			&-link {
+				margin: 1em 0;
+
+			}
+
+			.oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
+				margin-left: 0;
+			}
+		}
 	}
 
 	&-active {
-		.mw-rcfilters-ui-filterGroupWidget-title {
+		.mw-rcfilters-ui-filterGroupWidget-header-title {
 			font-weight: bold;
 		}
 	}
