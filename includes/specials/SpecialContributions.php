@@ -28,6 +28,7 @@
  */
 class SpecialContributions extends IncludableSpecialPage {
 	protected $opts;
+	protected $contribsempty = false;
 
 	public function __construct() {
 		parent::__construct( 'Contributions' );
@@ -202,6 +203,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 			if ( !$pager->getNumRows() ) {
 				$out->addWikiMsg( 'nocontribs', $target );
+				$contribsempty = true;
 			} else {
 				# Show a message about replica DB lag, if applicable
 				$lag = wfGetLB()->safeGetLag( $pager->getDatabase() );
@@ -261,7 +263,7 @@ class SpecialContributions extends IncludableSpecialPage {
 						wfEscapeWikiText( $userObj->getName() ),
 					]
 				);
-				if ( !$this->including() ) {
+				if ( !$this->including() & $contribsempty ) {
 					$this->getOutput()->setStatusCode( 404 );
 				}
 			}
