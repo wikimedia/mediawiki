@@ -546,7 +546,7 @@
 				assert.ok( true, 'QUnit expected() count dummy' );
 			},
 			function ( e, dependencies ) {
-				assert.strictEqual( $.isArray( dependencies ), true, 'Expected array of dependencies' );
+				assert.strictEqual( Array.isArray( dependencies ), true, 'Expected array of dependencies' );
 				assert.deepEqual( dependencies, [ 'test.module7' ], 'Error callback called with module test.module7' );
 			}
 		);
@@ -557,7 +557,7 @@
 				assert.ok( true, 'QUnit expected() count dummy' );
 			},
 			function ( e, dependencies ) {
-				assert.strictEqual( $.isArray( dependencies ), true, 'Expected array of dependencies' );
+				assert.strictEqual( Array.isArray( dependencies ), true, 'Expected array of dependencies' );
 				dependencies.sort();
 				assert.deepEqual(
 					dependencies,
