@@ -49,9 +49,12 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 					strtolower( $theme ) . '/' .
 					$this->definition['name'] . '.json';
 			}
-			$localDataPath = $this->localBasePath . '/' . $dataPath;
 
 			// If there's no file for this module of this theme, that's okay, it will just use the defaults
+			if ( !$dataPath ) {
+				continue;
+			}
+			$localDataPath = $this->getLocalPath( $dataPath );
 			if ( !file_exists( $localDataPath ) ) {
 				continue;
 			}
@@ -60,7 +63,15 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 			// Expand the paths to images (since they are relative to the JSON file that defines them, not
 			// our base directory)
 			$fixPath = function ( &$path ) use ( $dataPath ) {
-				$path = dirname( $dataPath ) . '/' . $path;
+				if ( $dataPath instanceof ResourceLoaderFilePath ) {
+					$path = new ResourceLoaderFilePath(
+						dirname( $dataPath->getPath() ) . '/' . $path,
+						$dataPath->getLocalBasePath(),
+						$dataPath->getRemoteBasePath()
+					);
+				} else {
+					$path = dirname( $dataPath ) . '/' . $path;
+				}
 			};
 			array_walk( $data['images'], function ( &$value ) use ( $fixPath ) {
 				if ( is_string( $value['file'] ) ) {
