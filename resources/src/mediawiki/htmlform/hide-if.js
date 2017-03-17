@@ -66,7 +66,7 @@
 				funcs = [];
 				fields = [];
 				for ( i = 1; i < l; i++ ) {
-					if ( !$.isArray( spec[ i ] ) ) {
+					if ( !Array.isArray( spec[ i ] ) ) {
 						throw new Error( op + ' parameters must be arrays' );
 					}
 					v = hideIfParse( $el, spec[ i ] );
@@ -131,7 +131,7 @@
 				if ( l !== 2 ) {
 					throw new Error( 'NOT takes exactly one parameter' );
 				}
-				if ( !$.isArray( spec[ 1 ] ) ) {
+				if ( !Array.isArray( spec[ 1 ] ) ) {
 					throw new Error( 'NOT parameters must be arrays' );
 				}
 				v = hideIfParse( $el, spec[ 1 ] );

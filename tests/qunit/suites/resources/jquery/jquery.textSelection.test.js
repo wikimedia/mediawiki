@@ -223,7 +223,7 @@
 			}
 
 			function among( actual, expected, message ) {
-				if ( $.isArray( expected ) ) {
+				if ( Array.isArray( expected ) ) {
 					assert.ok( $.inArray( actual, expected ) !== -1, message + ' (got ' + actual + '; expected one of ' + expected.join( ', ' ) + ')' );
 				} else {
 					assert.equal( actual, expected, message );
