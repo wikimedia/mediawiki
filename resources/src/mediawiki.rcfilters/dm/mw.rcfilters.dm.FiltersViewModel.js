@@ -217,7 +217,13 @@
 					type: data.type,
 					title: mw.msg( data.title ),
 					separator: data.separator,
-					fullCoverage: !!data.fullCoverage
+					fullCoverage: !!data.fullCoverage,
+					whatsThis: {
+						body: data.whatsThisBody,
+						header: data.whatsThisHeader,
+						linkText: data.whatsThisLinkText,
+						url: data.whatsThisUrl
+					}
 				} );
 			}
 
