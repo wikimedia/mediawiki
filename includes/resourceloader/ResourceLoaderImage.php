@@ -176,6 +176,7 @@ class ResourceLoaderImage {
 			'variant' => $variant,
 			'format' => $format,
 			'lang' => $context->getLanguage(),
+			'skin' => $context->getSkin(),
 			'version' => $context->getVersion(),
 		];
 
