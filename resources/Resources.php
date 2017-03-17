@@ -166,6 +166,7 @@ return [
 		'scripts' => 'resources/lib/jquery/jquery.async.js',
 	],
 	'jquery.autoEllipsis' => [
+		'deprecated' => true,
 		'scripts' => 'resources/src/jquery/jquery.autoEllipsis.js',
 		'dependencies' => 'jquery.highlightText',
 		'targets' => [ 'desktop', 'mobile' ],
