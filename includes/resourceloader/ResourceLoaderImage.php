@@ -74,9 +74,9 @@ class ResourceLoaderImage {
 
 		// Ensure that all files have common extension.
 		$extensions = [];
-		$descriptor = (array)$this->descriptor;
+		$descriptor = is_array( $this->descriptor ) ? $this->descriptor : [ $this->descriptor ];
 		array_walk_recursive( $descriptor, function ( $path ) use ( &$extensions ) {
-			$extensions[] = pathinfo( $path, PATHINFO_EXTENSION );
+			$extensions[] = pathinfo( $this->getLocalPath( $path ), PATHINFO_EXTENSION );
 		} );
 		$extensions = array_unique( $extensions );
 		if ( count( $extensions ) !== 1 ) {
@@ -128,15 +128,27 @@ class ResourceLoaderImage {
 	 */
 	public function getPath( ResourceLoaderContext $context ) {
 		$desc = $this->descriptor;
-		if ( is_string( $desc ) ) {
-			return $this->basePath . '/' . $desc;
+		if ( !is_array( $desc ) ) {
+			return $this->getLocalPath( $desc );
 		} elseif ( isset( $desc['lang'][$context->getLanguage()] ) ) {
-			return $this->basePath . '/' . $desc['lang'][$context->getLanguage()];
+			return $this->getLocalPath( $desc['lang'][$context->getLanguage()] );
 		} elseif ( isset( $desc[$context->getDirection()] ) ) {
-			return $this->basePath . '/' . $desc[$context->getDirection()];
+			return $this->getLocalPath( $desc[$context->getDirection()] );
 		} else {
-			return $this->basePath . '/' . $desc['default'];
+			return $this->getLocalPath( $desc['default'] );
 		}
+	}
+
+	/**
+	 * @param string|ResourceLoaderFilePath $path
+	 * @return string
+	 */
+	protected function getLocalPath( $path ) {
+		if ( $path instanceof ResourceLoaderFilePath ) {
+			return $path->getLocalPath();
+		}
+
+		return "{$this->basePath}/$path";
 	}
 
 	/**
