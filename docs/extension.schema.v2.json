@@ -664,7 +664,8 @@
 			"description": "Available feeds objects"
 		},
 		"SkinOOUIThemes": {
-			"type": "object"
+			"type": "object",
+			"description": "Map of skin names to OOjs UI themes to use. Same format as ResourceLoaderOOUIModule::$builtinSkinThemeMap."
 		},
 		"PasswordPolicy": {
 			"type": "object",
