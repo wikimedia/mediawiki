@@ -10,8 +10,15 @@
 	 * @param {mw.rcfilters.Controller} controller Controller
 	 * @param {mw.rcfilters.dm.FilterGroup} model Filter group model
 	 * @param {Object} config Configuration object
+	 * @cfg {jQuery} [$overlay] Overlay
 	 */
 	mw.rcfilters.ui.FilterGroupWidget = function MwRcfiltersUiFilterGroupWidget( controller, model, config ) {
+		var whatsThisMessages,
+			$header = $( '<div>' )
+				.addClass( 'mw-rcfilters-ui-filterGroupWidget-header' ),
+			$popupContent = $( '<div>' )
+				.addClass( 'mw-rcfilters-ui-filterGroupWidget-whatsThisButton-popup-content' );
+
 		config = config || {};
 
 		// Parent
@@ -20,15 +27,69 @@
 		this.controller = controller;
 		this.model = model;
 		this.filters = {};
+		this.$overlay = config.$overlay || this.$element;
 
 		// Mixin constructors
 		OO.ui.mixin.GroupWidget.call( this, config );
 		OO.ui.mixin.LabelElement.call( this, $.extend( {}, config, {
 			label: this.model.getTitle(),
 			$label: $( '<div>' )
-				.addClass( 'mw-rcfilters-ui-filterGroupWidget-title' )
+				.addClass( 'mw-rcfilters-ui-filterGroupWidget-header-title' )
 		} ) );
-		this.$overlay = config.$overlay || this.$element;
+
+		$header.append( this.$label );
+
+		if ( this.model.hasWhatsThis() ) {
+			whatsThisMessages = this.model.getWhatsThis();
+
+			// Create popup
+			if ( whatsThisMessages.header ) {
+				$popupContent.append(
+					( new OO.ui.LabelWidget( {
+						label: mw.msg( whatsThisMessages.header ),
+						classes: [ 'mw-rcfilters-ui-filterGroupWidget-whatsThisButton-popup-content-header' ]
+					} ) ).$element
+				);
+			}
+			if ( whatsThisMessages.body ) {
+				$popupContent.append(
+					( new OO.ui.LabelWidget( {
+						label: mw.msg( whatsThisMessages.body ),
+						classes: [ 'mw-rcfilters-ui-filterGroupWidget-whatsThisButton-popup-content-body' ]
+					} ) ).$element
+				);
+			}
+			if ( whatsThisMessages.linkText && whatsThisMessages.url ) {
+				$popupContent.append(
+					( new OO.ui.ButtonWidget( {
+						framed: false,
+						flags: [ 'progressive' ],
+						href: whatsThisMessages.url,
+						label: mw.msg( whatsThisMessages.linkText ),
+						classes: [ 'mw-rcfilters-ui-filterGroupWidget-whatsThisButton-popup-content-link' ]
+					} ) ).$element
+				);
+			}
+
+			// Add button
+			this.whatsThisButton = new OO.ui.PopupButtonWidget( {
+				framed: false,
+				label: mw.msg( 'rcfilters-filterlist-whatsthis' ),
+				$overlay: this.$overlay,
+				classes: [ 'mw-rcfilters-ui-filterGroupWidget-whatsThisButton' ],
+				flags: [ 'progressive' ],
+				popup: {
+					padded: false,
+					align: 'center',
+					position: 'above',
+					$content: $popupContent,
+					classes: [ 'mw-rcfilters-ui-filterGroupWidget-whatsThisButton-popup' ]
+				}
+			} );
+
+			$header
+				.append( this.whatsThisButton.$element );
+		}
 
 		// Populate
 		this.populateFromModel();
@@ -39,7 +100,7 @@
 			.addClass( 'mw-rcfilters-ui-filterGroupWidget' )
 			.addClass( 'mw-rcfilters-ui-filterGroupWidget-name-' + this.model.getName() )
 			.append(
-				this.$label,
+				$header,
 				this.$group
 					.addClass( 'mw-rcfilters-ui-filterGroupWidget-group' )
 			);
