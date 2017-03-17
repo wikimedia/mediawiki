@@ -181,24 +181,25 @@ class SpecialContributions extends IncludableSpecialPage {
 		// Add RSS/atom links
 		$this->addFeedLinks( $feedParams );
 
+		$pager = new ContribsPager( $this->getContext(), [
+			'target' => $target,
+			'contribs' => $this->opts['contribs'],
+			'namespace' => $this->opts['namespace'],
+			'tagfilter' => $this->opts['tagfilter'],
+			'year' => $this->opts['year'],
+			'month' => $this->opts['month'],
+			'deletedOnly' => $this->opts['deletedOnly'],
+			'topOnly' => $this->opts['topOnly'],
+			'newOnly' => $this->opts['newOnly'],
+			'hideMinor' => $this->opts['hideMinor'],
+			'nsInvert' => $this->opts['nsInvert'],
+			'associated' => $this->opts['associated'],
+		] );
+
 		if ( Hooks::run( 'SpecialContributionsBeforeMainOutput', [ $id, $userObj, $this ] ) ) {
 			if ( !$this->including() ) {
 				$out->addHTML( $this->getForm() );
 			}
-			$pager = new ContribsPager( $this->getContext(), [
-				'target' => $target,
-				'contribs' => $this->opts['contribs'],
-				'namespace' => $this->opts['namespace'],
-				'tagfilter' => $this->opts['tagfilter'],
-				'year' => $this->opts['year'],
-				'month' => $this->opts['month'],
-				'deletedOnly' => $this->opts['deletedOnly'],
-				'topOnly' => $this->opts['topOnly'],
-				'newOnly' => $this->opts['newOnly'],
-				'hideMinor' => $this->opts['hideMinor'],
-				'nsInvert' => $this->opts['nsInvert'],
-				'associated' => $this->opts['associated'],
-			] );
 
 			if ( !$pager->getNumRows() ) {
 				$out->addWikiMsg( 'nocontribs', $target );
@@ -261,7 +262,7 @@ class SpecialContributions extends IncludableSpecialPage {
 						wfEscapeWikiText( $userObj->getName() ),
 					]
 				);
-				if ( !$this->including() ) {
+				if ( !$this->including() & !$pager->getNumRows() ) {
 					$this->getOutput()->setStatusCode( 404 );
 				}
 			}
