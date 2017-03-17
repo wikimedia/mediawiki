@@ -165,10 +165,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$opts->add( 'days', $user->getOption( 'watchlistdays' ), FormOptions::FLOAT );
 		$opts->add( 'extended', $user->getBoolOption( 'extendwatchlist' ) );
-		if ( $this->getRequest()->getVal( 'action' ) == 'submit' ) {
-			// The user has submitted the form, so we dont need the default values
-			return $opts;
-		}
 
 		return $opts;
 	}
@@ -212,6 +208,26 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				$params[$to] = $params[$from];
 				unset( $params[$from] );
 			}
+		}
+
+		if ( $this->getRequest()->getVal( 'action' ) == 'submit' ) {
+			$allBooleansFalse = [];
+
+			// If the user submitted the form, start with a baseline of "all
+			// booleans are false", then change the ones they checked.  This
+			// means we ignore the defaults.
+			//
+			// This is how we handle the fact that HTML forms don't submit
+			// unchecked boxes.
+			foreach ( $this->filterGroups as $filterGroup ) {
+				if ( $filterGroup instanceof ChangesListBooleanFilterGroup ) {
+					foreach ( $filterGroup->getFilters() as $filter ) {
+						$allBooleansFalse[$filter->getName()] = false;
+					}
+				}
+			}
+
+			$params = $params + $allBooleansFalse;
 		}
 
 		// Not the prettiest way to achieve this… FormOptions internally depends on data sanitization
