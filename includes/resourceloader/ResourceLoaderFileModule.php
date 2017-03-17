@@ -227,11 +227,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				case 'scripts':
 				case 'debugScripts':
 				case 'styles':
-					$this->{$member} = (array)$option;
+					$this->{$member} = is_array( $option ) ? $option : [ $option ];
 					break;
 				case 'templates':
 					$hasTemplates = true;
-					$this->{$member} = (array)$option;
+					$this->{$member} = is_array( $option ) ? $option : [ $option ];
 					break;
 				// Collated lists of file paths
 				case 'languageScripts':
@@ -250,7 +250,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 								"'$key' given, string expected."
 							);
 						}
-						$this->{$member}[$key] = (array)$value;
+						$this->{$member}[$key] = is_array( $value ) ? $value : [ $value ];
 					}
 					break;
 				case 'deprecated':
