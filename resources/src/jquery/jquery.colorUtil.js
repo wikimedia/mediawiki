@@ -26,7 +26,7 @@
 			var result;
 
 			// Check if we're already dealing with an array of colors
-			if ( color && $.isArray( color ) && color.length === 3 ) {
+			if ( color && Array.isArray( color ) && color.length === 3 ) {
 				return color;
 			}
 

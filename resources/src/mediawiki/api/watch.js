@@ -28,7 +28,7 @@
 				{
 					formatversion: 2,
 					action: 'watch',
-					titles: $.isArray( pages ) ? pages.join( '|' ) : String( pages )
+					titles: Array.isArray( pages ) ? pages.join( '|' ) : String( pages )
 				},
 				addParams
 			)
@@ -37,7 +37,7 @@
 		return apiPromise
 			.then( function ( data ) {
 				// If a single page was given (not an array) respond with a single item as well.
-				return $.isArray( pages ) ? data.watch : data.watch[ 0 ];
+				return Array.isArray( pages ) ? data.watch : data.watch[ 0 ];
 			} )
 			.promise( { abort: apiPromise.abort } );
 	}
