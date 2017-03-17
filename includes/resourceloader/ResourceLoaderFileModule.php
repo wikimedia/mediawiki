@@ -256,11 +256,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				case 'debugScripts':
 				case 'styles':
 				case 'packageFiles':
-					$this->{$member} = (array)$option;
+					$this->{$member} = is_array( $option ) ? $option : [ $option ];
 					break;
 				case 'templates':
 					$hasTemplates = true;
-					$this->{$member} = (array)$option;
+					$this->{$member} = is_array( $option ) ? $option : [ $option ];
 					break;
 				// Collated lists of file paths
 				case 'languageScripts':
@@ -279,7 +279,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 								"'$key' given, string expected."
 							);
 						}
-						$this->{$member}[$key] = (array)$value;
+						$this->{$member}[$key] = is_array( $value ) ? $value : [ $value ];
 					}
 					break;
 				case 'deprecated':
@@ -315,7 +315,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			// Ensure relevant template compiler module gets loaded
 			foreach ( $this->templates as $alias => $templatePath ) {
 				if ( is_int( $alias ) ) {
-					$alias = $templatePath;
+					$alias = $this->getPath( $templatePath );
 				}
 				$suffix = explode( '.', $alias );
 				$suffix = end( $suffix );
@@ -641,6 +641,18 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 
 		return $summary;
+	}
+
+	/**
+	 * @param string|ResourceLoaderFilePath $path
+	 * @return string
+	 */
+	protected function getPath( $path ) {
+		if ( $path instanceof ResourceLoaderFilePath ) {
+			return $path->getPath();
+		}
+
+		return $path;
 	}
 
 	/**
@@ -1060,7 +1072,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		foreach ( $this->templates as $alias => $templatePath ) {
 			// Alias is optional
 			if ( is_int( $alias ) ) {
-				$alias = $templatePath;
+				$alias = $this->getPath( $templatePath );
 			}
 			$localPath = $this->getLocalPath( $templatePath );
 			if ( file_exists( $localPath ) ) {

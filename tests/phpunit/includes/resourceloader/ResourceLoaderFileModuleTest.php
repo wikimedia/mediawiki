@@ -265,6 +265,47 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		);
 	}
 
+	/**
+	 * Test reading files from elsewhere than localBasePath using ResourceLoaderFilePath.
+	 *
+	 * This mimics modules modified by skins using 'ResourceModuleSkinStyles' and 'OOUIThemePaths'
+	 * skin attributes.
+	 *
+	 * @covers ResourceLoaderFilePath::getLocalBasePath
+	 * @covers ResourceLoaderFilePath::getRemoteBasePath
+	 */
+	public function testResourceLoaderFilePath() {
+		$basePath = __DIR__ . '/../../data/blahblah';
+		$filePath = __DIR__ . '/../../data/rlfilepath';
+		$testModule = new ResourceLoaderFileModule( [
+			'localBasePath' => $basePath,
+			'remoteBasePath' => 'blahblah',
+			'styles' => new ResourceLoaderFilePath( 'style.css', $filePath, 'rlfilepath' ),
+			'skinStyles' => [
+				'vector' => new ResourceLoaderFilePath( 'skinStyle.css', $filePath, 'rlfilepath' ),
+			],
+			'scripts' => new ResourceLoaderFilePath( 'script.js', $filePath, 'rlfilepath' ),
+			'templates' => new ResourceLoaderFilePath( 'template.html', $filePath, 'rlfilepath' ),
+		] );
+		$expectedModule = new ResourceLoaderFileModule( [
+			'localBasePath' => $filePath,
+			'remoteBasePath' => 'rlfilepath',
+			'styles' => 'style.css',
+			'skinStyles' => [
+				'vector' => 'skinStyle.css',
+			],
+			'scripts' => 'script.js',
+			'templates' => 'template.html',
+		] );
+
+		$context = $this->getResourceLoaderContext();
+		$this->assertEquals(
+			$expectedModule->getModuleContent( $context ),
+			$testModule->getModuleContent( $context ),
+			"Using ResourceLoaderFilePath works correctly"
+		);
+	}
+
 	public static function providerGetTemplates() {
 		$modules = self::getModules();
 

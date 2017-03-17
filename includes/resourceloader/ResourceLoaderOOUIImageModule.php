@@ -97,6 +97,9 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 		// Find the path to the JSON file which contains the actual image definitions for this theme
 		if ( $module ) {
 			$dataPath = $this->getThemeImagesPath( $theme, $module );
+			if ( !$dataPath ) {
+				return false;
+			}
 		} else {
 			// Backwards-compatibility for things that probably shouldn't have used this class...
 			$dataPath =
@@ -116,7 +119,7 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 	 * @return array|false
 	 */
 	protected function readJSONFile( $dataPath ) {
-		$localDataPath = $this->localBasePath . '/' . $dataPath;
+		$localDataPath = $this->getLocalPath( $dataPath );
 
 		if ( !file_exists( $localDataPath ) ) {
 			return false;
@@ -127,7 +130,15 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 		// Expand the paths to images (since they are relative to the JSON file that defines them, not
 		// our base directory)
 		$fixPath = function ( &$path ) use ( $dataPath ) {
-			$path = dirname( $dataPath ) . '/' . $path;
+			if ( $dataPath instanceof ResourceLoaderFilePath ) {
+				$path = new ResourceLoaderFilePath(
+					dirname( $dataPath->getPath() ) . '/' . $path,
+					$dataPath->getLocalBasePath(),
+					$dataPath->getRemoteBasePath()
+				);
+			} else {
+				$path = dirname( $dataPath ) . '/' . $path;
+			}
 		};
 		array_walk( $data['images'], function ( &$value ) use ( $fixPath ) {
 			if ( is_string( $value['file'] ) ) {
