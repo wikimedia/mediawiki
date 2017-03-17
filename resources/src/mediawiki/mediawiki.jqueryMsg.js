@@ -74,7 +74,7 @@
 	function appendWithoutParsing( $parent, children ) {
 		var i, len;
 
-		if ( !$.isArray( children ) ) {
+		if ( !Array.isArray( children ) ) {
 			children = [ children ];
 		}
 
@@ -139,7 +139,7 @@
 				// eslint-disable-next-line new-cap
 				parser = new mw.jqueryMsg.parser( options ),
 				key = args[ 0 ],
-				argsArray = $.isArray( args[ 1 ] ) ? args[ 1 ] : slice.call( args, 1 );
+				argsArray = Array.isArray( args[ 1 ] ) ? args[ 1 ] : slice.call( args, 1 );
 			try {
 				return parser.parse( key, argsArray );
 			} catch ( e ) {
