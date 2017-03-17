@@ -745,7 +745,7 @@
 			var i, len,
 				pages = this.pages;
 
-			titles = $.isArray( titles ) ? titles : [ titles ];
+			titles = Array.isArray( titles ) ? titles : [ titles ];
 			state = state === undefined ? true : !!state;
 
 			for ( i = 0, len = titles.length; i < len; i++ ) {

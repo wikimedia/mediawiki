@@ -162,7 +162,7 @@
 			// Handle common MediaWiki API idioms for passing parameters
 			for ( key in parameters ) {
 				// Multiple values are pipe-separated
-				if ( $.isArray( parameters[ key ] ) ) {
+				if ( Array.isArray( parameters[ key ] ) ) {
 					if ( !useUS || parameters[ key ].join( '' ).indexOf( '|' ) === -1 ) {
 						parameters[ key ] = parameters[ key ].join( '|' );
 					} else {

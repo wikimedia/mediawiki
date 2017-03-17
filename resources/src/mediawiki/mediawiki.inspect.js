@@ -315,7 +315,7 @@
 
 				// Grep module's CSS
 				if (
-					$.isPlainObject( module.style ) && $.isArray( module.style.css ) &&
+					$.isPlainObject( module.style ) && Array.isArray( module.style.css ) &&
 					pattern.test( module.style.css.join( '' ) )
 				) {
 					// Module's CSS source matches

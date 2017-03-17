@@ -198,7 +198,7 @@
 						// Only copy direct properties, not inherited ones
 						if ( uri.hasOwnProperty( prop ) ) {
 							// Deep copy object properties
-							if ( $.isArray( uri[ prop ] ) || $.isPlainObject( uri[ prop ] ) ) {
+							if ( Array.isArray( uri[ prop ] ) || $.isPlainObject( uri[ prop ] ) ) {
 								this[ prop ] = $.extend( true, {}, uri[ prop ] );
 							} else {
 								this[ prop ] = uri[ prop ];
@@ -316,7 +316,7 @@
 									q[ k ] = [ q[ k ] ];
 								}
 								// Add to the array
-								if ( $.isArray( q[ k ] ) ) {
+								if ( Array.isArray( q[ k ] ) ) {
 									q[ k ].push( v );
 								}
 							}
@@ -366,7 +366,7 @@
 				var args = [];
 				$.each( this.query, function ( key, val ) {
 					var k = Uri.encode( key ),
-						vals = $.isArray( val ) ? val : [ val ];
+						vals = Array.isArray( val ) ? val : [ val ];
 					$.each( vals, function ( i, v ) {
 						if ( v === null ) {
 							args.push( k );
