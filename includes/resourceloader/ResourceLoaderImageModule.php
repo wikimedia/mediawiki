@@ -70,7 +70,8 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 *         'selectorWithVariant' => [CSS selector template, variables: {prefix} {name} {variant}],
 	 *         // List of variants that may be used for the image files
 	 *         'variants' => [
-	 *             [theme name] => [
+	 *             // This level of nesting can be omitted if you use the same images for every skin
+	 *             [skin name (or 'default')] => [
 	 *                 [variant name] => [
 	 *                     'color' => [color string, e.g. '#ffff00'],
 	 *                     'global' => [boolean, if true, this variant is available
@@ -82,7 +83,8 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 *         ],
 	 *         // List of image files and their options
 	 *         'images' => [
-	 *             [theme name] => [
+	 *             // This level of nesting can be omitted if you use the same images for every skin
+	 *             [skin name (or 'default')] => [
 	 *                 [icon name] => [
 	 *                     'file' => [file path string or array whose values are file path strings
 	 *                                    and whose keys are 'default', 'ltr', 'rtl', a single
