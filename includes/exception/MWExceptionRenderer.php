@@ -136,9 +136,13 @@ class MWExceptionRenderer {
 			}
 		}
 
+		// Has the OutputPage been set up, and does it have basic stuff like a Title?
+		if ( empty( $GLOBALS['wgOut'] ) || !$GLOBALS['wgOut']->getTitle() ) {
+			return false;
+		}
+
 		return (
 			!empty( $GLOBALS['wgFullyInitialised'] ) &&
-			!empty( $GLOBALS['wgOut'] ) &&
 			!defined( 'MEDIAWIKI_INSTALL' )
 		);
 	}
