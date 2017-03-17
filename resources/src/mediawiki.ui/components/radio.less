@@ -67,7 +67,7 @@
 			background-origin: border-box;
 			background-position: center center;
 			background-repeat: no-repeat;
-			.background-size( 0, 0 );
+			background-size: 0;
 			.box-sizing( border-box );
 			position: absolute;
 			left: 0;
@@ -80,7 +80,7 @@
 
 		// when the input is checked, style the label pseudo before element that followed as a checked radio
 		&:checked + label:before {
-			.background-size( 100%, 100% );
+			background-size: 100% 100%;
 		}
 
 		&:active + label:before {
