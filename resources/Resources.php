@@ -1092,6 +1092,12 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.htmlform.checker' => [
+		'scripts' => [
+			'resources/src/mediawiki/htmlform/htmlform.Checker.js',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.htmlform.ooui' => [
 		'scripts' => [
 			'resources/src/mediawiki/htmlform/htmlform.Element.js',
@@ -2070,7 +2076,6 @@ return [
 	'mediawiki.special.userlogin.signup.js' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.userlogin.signup.js',
 		'messages' => [
-			'createacct-error',
 			'createacct-emailrequired',
 			'noname',
 			'userexists',
@@ -2079,6 +2084,7 @@ return [
 			'mediawiki.api',
 			'mediawiki.jqueryMsg',
 			'jquery.throttle-debounce',
+			'mediawiki.htmlform.checker',
 		],
 	],
 	'mediawiki.special.unwatchedPages' => [
