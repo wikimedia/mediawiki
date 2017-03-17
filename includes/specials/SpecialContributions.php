@@ -254,6 +254,20 @@ class SpecialContributions extends IncludableSpecialPage {
 		if ( $userObj->isAnon() ) {
 			// Show a warning message that the user being searched for doesn't exists
 			if ( !User::isIP( $userObj->getName() ) ) {
+				$pager = new ContribsPager( $this->getContext(), [
+					'target' => $target,
+					'contribs' => $this->opts['contribs'],
+					'namespace' => $this->opts['namespace'],
+					'tagfilter' => $this->opts['tagfilter'],
+					'year' => $this->opts['year'],
+					'month' => $this->opts['month'],
+					'deletedOnly' => $this->opts['deletedOnly'],
+					'topOnly' => $this->opts['topOnly'],
+					'newOnly' => $this->opts['newOnly'],
+					'hideMinor' => $this->opts['hideMinor'],
+					'nsInvert' => $this->opts['nsInvert'],
+					'associated' => $this->opts['associated'],
+				] );
 				$this->getOutput()->wrapWikiMsg(
 					"<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
 					[
@@ -261,7 +275,7 @@ class SpecialContributions extends IncludableSpecialPage {
 						wfEscapeWikiText( $userObj->getName() ),
 					]
 				);
-				if ( !$this->including() ) {
+				if ( !$this->including() & !$pager->getNumRows() ) {
 					$this->getOutput()->setStatusCode( 404 );
 				}
 			}
