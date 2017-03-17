@@ -24,24 +24,31 @@
  * @since 1.26
  */
 class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
+	use ResourceLoaderOOUIModule;
+
 	protected function loadFromDefinition() {
 		if ( $this->definition === null ) {
 			// Do nothing if definition was already processed
 			return;
 		}
 
-		// Core default themes
-		$themes = [ 'default' => 'mediawiki' ];
-		$themes += ExtensionRegistry::getInstance()->getAttribute( 'SkinOOUIThemes' );
+		$themes = self::getSkinThemeMap();
 
-		$name = $this->definition['name'];
-		$rootPath = $this->definition['rootPath'];
+		// For backwards-compatibility, allow missing 'themeImages'
+		$module = isset( $this->definition['themeImages'] ) ? $this->definition['themeImages'] : '';
 
 		$definition = [];
 		foreach ( $themes as $skin => $theme ) {
 			// Find the path to the JSON file which contains the actual image definitions for this theme
-			// TODO Allow extensions to specify this path somehow
-			$dataPath = $rootPath . '/' . strtolower( $theme ) . '/' . $name . '.json';
+			if ( $module ) {
+				$dataPath = $this->getThemeImagesPath( $theme, $module );
+			} else {
+				// Backwards-compatibility for things that probably shouldn't have used this class...
+				$dataPath =
+					$this->definition['rootPath'] . '/' .
+					strtolower( $theme ) . '/' .
+					$this->definition['name'] . '.json';
+			}
 			$localDataPath = $this->localBasePath . '/' . $dataPath;
 
 			// If there's no file for this module of this theme, that's okay, it will just use the defaults
@@ -79,13 +86,23 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 						} elseif ( $definition[$key] !== $data[$key] ) {
 							throw new Exception(
 								"Mismatched OOUI theme images definition: " .
-									"key '$key' of theme '$theme' " .
+									"key '$key' of theme '$theme' for module '$module' " .
 									"does not match other themes"
 							);
 						}
 						break;
 				}
 			}
+		}
+
+		// Extra selectors to allow using the same icons for old-style MediaWiki UI code
+		if ( substr( $module, 0, 5 ) === 'icons' ) {
+			$definition['selectorWithoutVariant'] = '.oo-ui-icon-{name}, .mw-ui-icon-{name}:before';
+			$definition['selectorWithVariant'] = '
+				.oo-ui-image-{variant}.oo-ui-icon-{name}, .mw-ui-icon-{name}-{variant}:before,
+				/* Hack for Flow, see T110051 */
+				.mw-ui-hovericon:hover .mw-ui-icon-{name}-{variant}-hover:before,
+				.mw-ui-hovericon.mw-ui-icon-{name}-{variant}-hover:hover:before';
 		}
 
 		// Fields from module definition silently override keys from JSON files
