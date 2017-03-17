@@ -1858,6 +1858,7 @@
 	"trackingcategories-msg": "Sledovacia kategória",
 	"trackingcategories-name": "Názov správy",
 	"trackingcategories-desc": "Kritériá pre zaradenie do kategórie",
+	"restricted-displaytitle-ignored": "Stránky s ignorovanými zobrazovanými názvami",
 	"noindex-category-desc": "Stránka nie je indexovaná robotmi, pretože obsahuje magické slovo <code><nowiki>__NOINDEX__</nowiki></code> a je v mennom priestore, v ktorom je tento príznak povolený.",
 	"index-category-desc": "Stránka obsahuje magické slovo <code><nowiki>__INDEX__</nowiki></code> (a je v mennom prostore, v ktorom je tento príznak povolený), takže je indexovaná robotmi, hoci by normálne nebola.",
 	"post-expand-template-inclusion-category-desc": "Stránka je po rozbalení všetkých šablón väčšia než <code>$wgMaxArticleSize</code>, takže niektoré šablóny nemohli byť rozbalené.",

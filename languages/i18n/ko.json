@@ -1123,7 +1123,7 @@
 	"prefs-help-prefershttps": "이 사용자 환경 설정은 다음 로그인부터 적용됩니다.",
 	"prefswarning-warning": "사용자 환경 설정에서 바뀐 것이 아직 저장되어 있지 않습니다.\n사용자 환경 설정에서 \"$1\"을 클릭하지 않고 이 페이지를 떠나면 바뀌지 않습니다.",
 	"prefs-tabs-navigation-hint": "팁: 탭 목록에서 탭 사이를 둘러보려면 왼쪽과 오른쪽 화살표 키를 사용할 수 있습니다.",
-	"userrights": "사용자 권한 관리",
+	"userrights": "사용자 권한",
 	"userrights-lookup-user": "사용자 선택",
 	"userrights-user-editname": "사용자 이름 입력:",
 	"editusergroup": "사용자 그룹 불러오기",

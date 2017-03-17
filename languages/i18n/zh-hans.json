@@ -3293,6 +3293,7 @@
 	"colon-separator": "：",
 	"pipe-separator": "&#32;|&#32;",
 	"word-separator": "",
+	"ellipsis": "…",
 	"parentheses": "（$1）",
 	"quotation-marks": "“$1”",
 	"imgmultipageprev": "← 上一页",

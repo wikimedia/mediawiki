@@ -1005,7 +1005,7 @@
 	"apihelp-query+revisions-param-excludeuser": "Exclure les révisions faites par l’utilisateur.",
 	"apihelp-query+revisions-param-tag": "Lister uniquement les révisions marquées avec cette balise.",
 	"apihelp-query+revisions-param-token": "Quels jetons obtenir pour chaque révision.",
-	"apihelp-query+revisions-example-content": "Obtenir des données avec le contenu pour la dernière révision des titres <kbd>API</kbd> et <kbd>Page principale</kbd>.",
+	"apihelp-query+revisions-example-content": "Obtenir des données avec le contenu pour la dernière révision des titres <kbd>API</kbd> et <kbd>Main Page</kbd>.",
 	"apihelp-query+revisions-example-last5": "Obtenir les 5 dernières révisions de la <kbd>Main Page</kbd>.",
 	"apihelp-query+revisions-example-first5": "Obtenir les 5 premières révisions de la <kbd>Page principale</kbd>.",
 	"apihelp-query+revisions-example-first5-after": "Obtenir les 5 premières révisions de la <kbd>Page principale</kbd> faites après le 01/05/2006.",

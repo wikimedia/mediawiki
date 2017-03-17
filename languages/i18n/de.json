@@ -1385,6 +1385,7 @@
 	"rcfilters-invalid-filter": "Ungültiger Filter",
 	"rcfilters-empty-filter": "Keine aktiven Filter. Es werden alle Beiträge angezeigt.",
 	"rcfilters-filterlist-title": "Filter",
+	"rcfilters-filterlist-whatsthis": "Was ist das?",
 	"rcfilters-filterlist-feedbacklink": "Rückmeldung zu den neuen (Beta-)Filtern hinterlassen",
 	"rcfilters-highlightbutton-title": "Ergebnisse hervorheben",
 	"rcfilters-highlightmenu-title": "Eine Farbe auswählen",
