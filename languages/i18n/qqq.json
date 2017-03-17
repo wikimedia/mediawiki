@@ -979,6 +979,8 @@
 	"post-expand-template-argument-warning": "Used as warning in parser limitation.\n\nSee also:\n* {{msg-mw|Post-expand-template-argument-category}}",
 	"post-expand-template-argument-category": "This message is used as a category name for a [[mw:Special:MyLanguage/Help:Tracking categories|tracking category]] where pages are placed automatically if they contain omitted template arguments.\n\nSee also:\n* {{msg-mw|Post-expand-template-argument-category-desc}}\n* {{msg-mw|Post-expand-template-argument-warning}}",
 	"parser-template-loop-warning": "Parameters:\n* $1 - page title",
+	"template-loop-category": "This message is used as a category name for a [[mw:Special:MyLanguage/Help:Tracking categories|tracking category]] where pages with template loops will be listed.",
+	"template-loop-category-desc": "Pages with template loops category description. Shown on [[Special:TrackingCategories]].\n\nSee also:\n* {{msg-mw|Template-loop-category}}",
 	"parser-template-recursion-depth-warning": "Parameters:\n* $1 - limit value of recursion depth",
 	"language-converter-depth-warning": "Error message shown when a page uses too deeply nested language conversion syntax. Parameters:\n* $1 - the value of the depth limit",
 	"node-count-exceeded-category": "This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if the node-count of the preprocessor exceeds the limit.\n\nSee also:\n* {{msg-mw|Node-count-exceeded-warning}}",
