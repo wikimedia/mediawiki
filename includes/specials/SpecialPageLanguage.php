@@ -135,6 +135,18 @@ class SpecialPageLanguage extends FormSpecialPage {
 			return Status::newFatal( $ex->getMessageObject() );
 		}
 
+		// Check permissions and make sure the user has permission to:
+		$errors = wfMergeErrorArrays(
+		// edit the page
+			$title->getUserPermissionsErrors( 'edit', $this->getUser() )
+		);
+		if ( $errors ) {
+			$out = $this->getOutput();
+			$wikitext = $out->formatPermissionsErrorMessage( $errors );
+			// Hack to get our wikitext parsed
+			return Status::newFatal( new RawMessage( '$1', [ $wikitext ] ) );
+		}
+
 		// Url to redirect to after the operation
 		$this->goToUrl = $title->getFullURL(
 			$title->isRedirect() ? [ 'redirect' => 'no' ] : []
