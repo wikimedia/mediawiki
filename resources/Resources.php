@@ -160,6 +160,7 @@ return [
 		'scripts' => 'resources/lib/jquery/jquery.async.js',
 	],
 	'jquery.autoEllipsis' => [
+		'deprecated' => 'Use CSS text-overflow instead.',
 		'scripts' => 'resources/src/jquery/jquery.autoEllipsis.js',
 		'dependencies' => 'jquery.highlightText',
 		'targets' => [ 'desktop', 'mobile' ],
