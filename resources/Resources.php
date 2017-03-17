@@ -1806,6 +1806,7 @@ return [
 			'rcfilters-filterlist-title',
 			'rcfilters-filterlist-feedbacklink',
 			'rcfilters-filterlist-noresults',
+			'rcfilters-filterlist-whatsthis',
 			'rcfilters-highlightbutton-title',
 			'rcfilters-highlightmenu-title',
 			'rcfilters-highlightmenu-help',

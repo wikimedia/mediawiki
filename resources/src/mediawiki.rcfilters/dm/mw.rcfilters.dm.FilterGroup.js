@@ -14,6 +14,11 @@
 	 * @cfg {boolean} [active] Group is active
 	 * @cfg {boolean} [fullCoverage] This filters in this group collectively cover all results
 	 * @cfg {Object} [conflicts] Defines the conflicts for this filter group
+	 * @cfg {Object} [whatsThis] Defines the messages that should appear for the 'whats this' popup
+	 * @cfg {string} [whatsThis.header] The header of the whatsThis popup message
+	 * @cfg {string} [whatsThis.body] The body of the whatsThis popup message
+	 * @cfg {string} [whatsThis.url] The url for the link in the whatsThis popup message
+	 * @cfg {string} [whatsThis.linkMessage] The text for the link in the whatsThis popup message
 	 */
 	mw.rcfilters.dm.FilterGroup = function MwRcfiltersDmFilterGroup( name, config ) {
 		config = config || {};
@@ -29,6 +34,8 @@
 
 		this.active = !!config.active;
 		this.fullCoverage = !!config.fullCoverage;
+
+		this.whatsThis = config.whatsThis || {};
 
 		this.conflicts = config.conflicts || {};
 
@@ -82,6 +89,24 @@
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.getName = function () {
 		return this.name;
+	};
+
+	/**
+	 * Get the messags defining the 'whats this' popup for this group
+	 *
+	 * @return {Object} What's this messages
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.getWhatsThis = function () {
+		return this.whatsThis;
+	};
+
+	/**
+	 * Check whether this group has a 'what's this' message
+	 *
+	 * @return {boolean} This group has a what's this message
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.hasWhatsThis = function () {
+		return !!this.whatsThis.body;
 	};
 
 	/**
