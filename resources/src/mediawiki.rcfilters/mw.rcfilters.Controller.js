@@ -20,9 +20,19 @@
 	 * @param {Array} filterStructure Filter definition and structure for the model
 	 */
 	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure ) {
+		var $changesList = $( '.mw-changeslist' ).first().contents(),
+			$fieldset = $( 'fieldset.rcoptions' ).first();
 		// Initialize the model
 		this.filtersModel.initializeFilters( filterStructure );
 		this.updateStateBasedOnUrl();
+
+		// Update the changes list with the existing data
+		// so it gets processed
+		this.changesListModel.update(
+			$changesList.length ? $changesList : 'NO_RESULTS',
+			$( 'fieldset.rcoptions' ).first()
+		);
+
 	};
 
 	/**
