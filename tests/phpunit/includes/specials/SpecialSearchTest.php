@@ -150,23 +150,25 @@ class SpecialSearchTest extends MediaWikiTestCase {
 			[
 				'With suggestion and no rewritten query shows did you mean',
 				'/Did you mean: <a[^>]+>first suggestion/',
-				new SpecialSearchTestMockResultSet( 'first suggestion', null, [
-					SearchResult::newFromTitle( Title::newMainPage() ),
-				] ),
+				'first suggestion',
+				null,
+				[ Title::newMainPage() ]
 			],
 
 			[
 				'With rewritten query informs user of change',
 				'/Showing results for <a[^>]+>first suggestion/',
-				new SpecialSearchTestMockResultSet( 'asdf', 'first suggestion', [
-					SearchResult::newFromTitle( Title::newMainPage() ),
-				] ),
+				'asdf',
+				'first suggestion',
+				[ Title::newMainPage() ]
 			],
 
 			[
 				'When both queries have no results user gets no results',
 				'/There were no results matching the query/',
-				new SpecialSearchTestMockResultSet( 'first suggestion', 'first suggestion', [] ),
+				'first suggestion',
+				'first suggestion',
+				[]
 			],
 		];
 	}
@@ -174,8 +176,24 @@ class SpecialSearchTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideRewriteQueryWithSuggestion
 	 */
-	public function testRewriteQueryWithSuggestion( $message, $expectRegex, $results ) {
-		$mockSearchEngine = $this->mockSearchEngine( $results );
+	public function testRewriteQueryWithSuggestion(
+		$message,
+		$expectRegex,
+		$suggestion,
+		$rewrittenQuery,
+		array $resultTitles
+	) {
+		$results = array_map( function( $title ) {
+			return SearchResult::newFromTitle( $title );
+		}, $resultTitles );
+
+		$searchResults = new SpecialSearchTestMockResultSet(
+			$suggestion,
+			$rewrittenQuery,
+			$results
+		);
+
+		$mockSearchEngine = $this->mockSearchEngine( $searchResults );
 		$search = $this->getMockBuilder( 'SpecialSearch' )
 			->setMethods( [ 'getSearchEngine' ] )
 			->getMock();
