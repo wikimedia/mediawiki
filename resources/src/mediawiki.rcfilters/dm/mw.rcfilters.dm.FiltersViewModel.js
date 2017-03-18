@@ -157,6 +157,35 @@
 	};
 
 	/**
+	 * Get whether the model has any conflict in its items
+	 *
+	 * @return {boolean} There is a conflict
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.hasConflict = function () {
+		return this.getItems().some( function ( filterItem ) {
+			return filterItem.isSelected() && filterItem.isConflicted();
+		} );
+	};
+
+	/**
+	 * Get the first item with a current conflict
+	 *
+	 * @return {mw.rcfilters.dm.FilterItem} Conflicted item
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getFirstConflictedItem = function () {
+		var conflictedItem;
+
+		$.each( this.getItems(), function ( index, filterItem ) {
+			if ( filterItem.isSelected() && filterItem.isConflicted() ) {
+				conflictedItem = filterItem;
+				return false;
+			}
+		} );
+
+		return conflictedItem;
+	};
+
+	/**
 	 * Set filters and preserve a group relationship based on
 	 * the definition given by an object
 	 *
