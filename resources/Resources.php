@@ -151,9 +151,7 @@ return [
 		'targets' => [ 'mobile', 'desktop' ],
 	],
 	'jquery.appear' => [
-		'deprecated' => [
-			'message' => 'Please use "mediawiki.viewport" instead.',
-		],
+		'deprecated' => 'Please use "mediawiki.viewport" instead.',
 		'scripts' => 'resources/lib/jquery/jquery.appear.js',
 	],
 	'jquery.async' => [
@@ -320,9 +318,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.jStorage' => [
-		'deprecated' => [
-			'message' => 'Please use "mediawiki.storage" instead.',
-		],
+		'deprecated' => 'Please use "mediawiki.storage" instead.',
 		'scripts' => 'resources/lib/jquery/jquery.jStorage.js',
 	],
 	'jquery.suggestions' => [
@@ -366,9 +362,7 @@ return [
 	/* jQuery UI */
 
 	'jquery.ui.core' => [
-		'deprecated' => [
-			'message' => 'Please use "mediawiki.ui.button" or "oojs-ui" instead.',
-		],
+		'deprecated' => 'Please use "mediawiki.ui.button" or "oojs-ui" instead.',
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.core.js',
 		'dependencies' => [
 			'jquery.ui.core.styles',
