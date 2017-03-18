@@ -35,6 +35,9 @@ production.
 * (T156983) $wgRateLimitsExcludedIPs now accepts CIDR ranges as well as single IPs.
 * $wgDummyLanguageCodes is deprecated. Additional language code mappings may be
   added to $wgExtraLanguageCodes instead.
+* The CategorizedRecentChanges feature and the configuration option that enabled
+  it, $wgAllowCategorizedRecentChanges, has been removed. The feature was broken
+  and had been emitting errors for some time. (T85742, T89638, T160214)
 
 === New features in 1.29 ===
 * (T5233) A cookie can now be set when a user is autoblocked, to track that user

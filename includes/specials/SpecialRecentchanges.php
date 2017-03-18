@@ -285,11 +285,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$join_conds
 		);
 
-		// Build the final data
-		if ( $this->getConfig()->get( 'AllowCategorizedRecentChanges' ) ) {
-			$this->filterByCategories( $rows, $opts );
-		}
-
 		return $rows;
 	}
 
@@ -535,10 +530,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$extraOpts = [];
 		$extraOpts['namespace'] = $this->namespaceFilterForm( $opts );
 
-		if ( $this->getConfig()->get( 'AllowCategorizedRecentChanges' ) ) {
-			$extraOpts['category'] = $this->categoryFilterForm( $opts );
-		}
-
 		$tagFilter = ChangeTags::buildTagFilterSelector(
 			$opts['tagfilter'], false, $this->getContext() );
 		if ( count( $tagFilter ) ) {
@@ -615,22 +606,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		);
 
 		return [ $nsLabel, "$nsSelect $invert $associated" ];
-	}
-
-	/**
-	 * Create an input to filter changes by categories
-	 *
-	 * @param FormOptions $opts
-	 * @return array
-	 */
-	protected function categoryFilterForm( FormOptions $opts ) {
-		list( $label, $input ) = Xml::inputLabelSep( $this->msg( 'rc_categories' )->text(),
-			'categories', 'mw-categories', false, $opts['categories'] );
-
-		$input .= ' ' . Xml::checkLabel( $this->msg( 'rc_categories_any' )->text(),
-			'categories_any', 'mw-categories_any', $opts['categories_any'] );
-
-		return [ $label, $input ];
 	}
 
 	/**
