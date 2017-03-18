@@ -1386,6 +1386,7 @@
 	"rcfilters-filter-bots-label": "बॉट",
 	"rcfilters-filter-humans-label": "मानव (बॉट नहीं)",
 	"rcfilters-filter-humans-description": "मानव संपादक द्वारा किए गए संपादन।",
+	"rcfilters-filter-patrolled-label": "गश्त",
 	"rcfilters-filtergroup-significance": "महत्व",
 	"rcfilters-filter-minor-label": "छोटा संपादन",
 	"rcfilters-filter-major-label": "गैर-मामूली संपादन",

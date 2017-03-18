@@ -102,7 +102,8 @@
 			"Gamliel Fishkin",
 			"Ping08",
 			"Yuryleb",
-			"Redredsonia"
+			"Redredsonia",
+			"Nitch"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -1395,6 +1396,7 @@
 	"rcfilters-invalid-filter": "Недопустимый фильтр",
 	"rcfilters-empty-filter": "Нет активных фильтров. Показываются все правки.",
 	"rcfilters-filterlist-title": "Фильтры",
+	"rcfilters-filterlist-whatsthis": "Что это?",
 	"rcfilters-filterlist-feedbacklink": "Оставить отзыв о новых (бета) фильтрах",
 	"rcfilters-highlightbutton-title": "Выделить результаты",
 	"rcfilters-highlightmenu-title": "Выберите цвет",
