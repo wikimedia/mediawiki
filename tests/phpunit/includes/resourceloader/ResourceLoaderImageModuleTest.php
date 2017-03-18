@@ -222,7 +222,7 @@ TEXT
 
 	/**
 	 * @dataProvider providerGetStyleDeclarations
-	 * @covers ResourceLoaderContext::getStyleDeclarations
+	 * @covers ResourceLoaderImageModule::getStyleDeclarations
 	 */
 	public function testGetStyleDeclarations( $dataUriReturnValue, $expected ) {
 		$module = TestingAccessWrapper::newFromObject( new ResourceLoaderImageModule() );
