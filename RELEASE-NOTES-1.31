@@ -15,6 +15,9 @@ production.
   possible for fallback images such as png.
 * (T44246) $wgFilterLogTypes will no longer ignore 'patrol' when user does
   not have the right to mark things patrolled.
+* (T85742, T89638) The CategorizedRecentChanges feature, including its related
+  configuration option $wgAllowCategorizedRecentChanges, has been removed. The
+  feature was broken and had been emitting errors for some time.
 * …
 
 === New features in 1.31 ===

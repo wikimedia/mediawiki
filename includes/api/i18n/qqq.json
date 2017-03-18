@@ -204,8 +204,6 @@
 	"apihelp-feedrecentchanges-param-tagfilter": "{{doc-apihelp-param|feedrecentchanges|tagfilter}}",
 	"apihelp-feedrecentchanges-param-target": "{{doc-apihelp-param|feedrecentchanges|target}}",
 	"apihelp-feedrecentchanges-param-showlinkedto": "{{doc-apihelp-param|feedrecentchanges|showlinkedto}}",
-	"apihelp-feedrecentchanges-param-categories": "{{doc-apihelp-param|feedrecentchanges|categories}}",
-	"apihelp-feedrecentchanges-param-categories_any": "{{doc-apihelp-param|feedrecentchanges|categories_any}}",
 	"apihelp-feedrecentchanges-example-simple": "{{doc-apihelp-example|feedrecentchanges}}",
 	"apihelp-feedrecentchanges-example-30days": "{{doc-apihelp-example|feedrecentchanges}}",
 	"apihelp-feedwatchlist-summary": "{{doc-apihelp-summary|feedwatchlist}}",

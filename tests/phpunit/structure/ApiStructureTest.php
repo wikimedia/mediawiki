@@ -20,11 +20,9 @@ class ApiStructureTest extends MediaWikiTestCase {
 	private static $testGlobals = [
 		[
 			'MiserMode' => false,
-			'AllowCategorizedRecentChanges' => false,
 		],
 		[
 			'MiserMode' => true,
-			'AllowCategorizedRecentChanges' => true,
 		],
 	];
 

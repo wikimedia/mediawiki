@@ -6951,11 +6951,6 @@ $wgShowUpdatedMarker = true;
 $wgDisableAnonTalk = false;
 
 /**
- * Enable filtering of categories in Recentchanges
- */
-$wgAllowCategorizedRecentChanges = false;
-
-/**
  * Allow filtering by change tag in recentchanges, history, etc
  * Has no effect if no tags are defined in valid_tag.
  */
