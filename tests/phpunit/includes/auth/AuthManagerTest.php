@@ -1083,10 +1083,6 @@ class AuthManagerTest extends \MediaWikiTestCase {
 	}
 
 	public function provideAuthentication() {
-		$user = \User::newFromName( 'UTSysop' );
-		$id = $user->getId();
-		$name = $user->getName();
-
 		$rememberReq = new RememberMeAuthenticationRequest;
 		$rememberReq->action = AuthManager::ACTION_LOGIN;
 
@@ -1107,6 +1103,8 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		);
 		$restartResponse2->createRequest->action = AuthManager::ACTION_LOGIN;
 		$restartResponse2->neededRequests = [ $rememberReq, $restartResponse2->createRequest ];
+
+		$userName = 'UTSysop';
 
 		return [
 			'Failure in pre-auth' => [
@@ -1202,7 +1200,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			'Secondary fail' => [
 				StatusValue::newGood(),
 				[
-					AuthenticationResponse::newPass( $name ),
+					AuthenticationResponse::newPass( $userName ),
 				],
 				$tmp = [
 					AuthenticationResponse::newFail( $this->message( 'fail-in-secondary' ) ),
@@ -1212,7 +1210,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			'Secondary UI, then abstain' => [
 				StatusValue::newGood(),
 				[
-					AuthenticationResponse::newPass( $name ),
+					AuthenticationResponse::newPass( $userName ),
 				],
 				[
 					$tmp = AuthenticationResponse::newUI( [ $req ], $this->message( '...' ) ),
@@ -1220,19 +1218,19 @@ class AuthManagerTest extends \MediaWikiTestCase {
 				],
 				[
 					$tmp,
-					AuthenticationResponse::newPass( $name ),
+					AuthenticationResponse::newPass( $userName ),
 				]
 			],
 			'Secondary pass' => [
 				StatusValue::newGood(),
 				[
-					AuthenticationResponse::newPass( $name ),
+					AuthenticationResponse::newPass( $userName ),
 				],
 				[
 					AuthenticationResponse::newPass()
 				],
 				[
-					AuthenticationResponse::newPass( $name ),
+					AuthenticationResponse::newPass( $userName ),
 				]
 			],
 		];
