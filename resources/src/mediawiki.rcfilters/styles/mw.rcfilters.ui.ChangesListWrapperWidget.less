@@ -1,6 +1,15 @@
 @import 'mw.rcfilters.mixins';
 
 .mw-rcfilters-ui-changesListWrapperWidget {
+	&-results {
+		width: 35em;
+		margin: 5em auto;
+		&-conflict {
+			font-weight: bold;
+			margin-bottom: 0.5em;
+		}
+	}
+
 	&-highlighted {
 		ul {
 			list-style: none;
