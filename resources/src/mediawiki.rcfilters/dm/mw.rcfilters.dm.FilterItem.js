@@ -97,6 +97,97 @@
 	};
 
 	/**
+	 * Get the details of the active conflict on this filter
+	 *
+	 * @param {Object} conflicts Conflicts to examine
+	 * @param {string} [key='contextDescription'] Message key
+	 * @return {Object} Object with conflict message and conflict items
+	 * @return {string} return.message Conflict message
+	 * @return {string[]} return.names Conflicting item labels
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.getConflictDetails = function ( conflicts, key ) {
+		var group,
+			conflictMessage = '',
+			itemLabels = [];
+
+		key = key || 'contextDescription';
+
+		$.each( conflicts, function ( filterName, conflict ) {
+			if ( !conflict.item.isSelected() ) {
+				return;
+			}
+
+			if ( !conflictMessage ) {
+				conflictMessage = conflict[ key ];
+				group = conflict.group;
+			}
+
+			if ( group === conflict.group ) {
+				itemLabels.push( mw.msg( 'quotation-marks', conflict.item.getLabel() ) );
+			}
+		} );
+
+		return {
+			message: conflictMessage,
+			names: itemLabels
+		};
+
+	};
+
+	/**
+	 * Get the message representing the state of this model.
+	 *
+	 * @return {string} State message
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.getStateMessage = function () {
+		var messageKey, details, superset,
+			affectingItems = [];
+
+		if ( this.isConflicted() ) {
+			// First look in filter's own conflicts
+			details = this.getConflictDetails( this.getOwnConflicts() );
+			if ( !details.message ) {
+				// Fall back onto conflicts in the group
+				details = this.getConflictDetails( this.getGroupModel().getConflicts() );
+			}
+
+			messageKey = details.message;
+			affectingItems = details.names;
+		} else if ( this.isIncluded() ) {
+			superset = this.getSuperset();
+			// For this message we need to collect the affecting superset
+			affectingItems = this.getGroupModel().getSelectedItems( this )
+				.filter( function ( item ) {
+					return superset.indexOf( item.getName() ) !== -1;
+				} )
+				.map( function ( item ) {
+					return mw.msg( 'quotation-marks', item.getLabel() );
+				} );
+
+			messageKey = 'rcfilters-state-message-subset';
+		} else if ( this.isFullyCovered() ) {
+			affectingItems = this.getGroupModel().getSelectedItems( this )
+				.map( function ( item ) {
+					return mw.msg( 'quotation-marks', item.getLabel() );
+				} );
+
+			messageKey = 'rcfilters-state-message-fullcoverage';
+		}
+
+		if ( messageKey ) {
+			// Build message
+			return mw.msg(
+				messageKey,
+				mw.language.listToText( affectingItems ),
+				affectingItems.length
+			);
+		}
+
+		// Display description
+		return this.getDescription();
+	};
+
+	/**
 	 * Get the model of the group this filter belongs to
 	 *
 	 * @return {mw.rcfilters.dm.FilterGroup} Filter group model
@@ -200,18 +291,22 @@
 	};
 
 	/**
-	 * Get filter conflicts
+	 * Get all conflicts associated with this filter or its group
 	 *
 	 * Conflict object is set up by filter name keys and conflict
 	 * definition. For example:
 	 * 		{
 	 * 			filterName: {
 	 * 				filter: filterName,
-	 * 				group: group1
+	 * 				group: group1,
+	 * 				label: itemLabel,
+	 * 				item: itemModel
 	 * 			}
 	 * 			filterName2: {
 	 * 				filter: filterName2,
 	 * 				group: group2
+	 * 				label: itemLabel2,
+	 * 				item: itemModel2
 	 * 			}
 	 * 		}
 	 *
@@ -219,6 +314,15 @@
 	 */
 	mw.rcfilters.dm.FilterItem.prototype.getConflicts = function () {
 		return $.extend( {}, this.conflicts, this.getGroupModel().getConflicts() );
+	};
+
+	/**
+	 * Get the conflicts associated with this filter
+	 *
+	 * @return {Object} Filter conflicts
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.getOwnConflicts = function () {
+		return this.conflicts;
 	};
 
 	/**

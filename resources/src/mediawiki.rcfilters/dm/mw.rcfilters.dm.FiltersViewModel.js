@@ -188,14 +188,20 @@
 						adjustedConflicts = {};
 
 					conflicts.forEach( function ( conflict ) {
+						var filter;
+
 						if ( conflict.filter ) {
 							filterName = model.groups[ conflict.group ].getNamePrefix() + conflict.filter;
+							filter = model.getItemByName( filterName );
 
 							// Rename
 							adjustedConflicts[ filterName ] = $.extend(
 								{},
 								conflict,
-								{ filter: filterName }
+								{
+									filter: filterName,
+									item: filter
+								}
 							);
 						} else {
 							// This conflict is for an entire group. Split it up to
@@ -207,7 +213,10 @@
 								adjustedConflicts[ groupItem.getName() ] = $.extend(
 									{},
 									conflict,
-									{ filter: groupItem.getName() }
+									{
+										filter: groupItem.getName(),
+										item: groupItem
+									}
 								);
 							} );
 						}
@@ -311,6 +320,9 @@
 			}
 		} );
 
+		// Add items to the model
+		this.addItems( items );
+
 		// Expand conflicts
 		groupConflictResult = expandConflictDefinitions( groupConflictMap );
 		filterConflictResult = expandConflictDefinitions( filterConflictMap );
@@ -342,9 +354,6 @@
 				model.parameterMap[ groupModel.getName() ] = groupModel;
 			}
 		} );
-
-		// Add items to the model
-		this.addItems( items );
 
 		this.emit( 'initialize' );
 	};
