@@ -256,9 +256,9 @@ changes to languages because of Phabricator reports.
   signature).  Subclasses are likely to call at least doMainQuery
   (possibly both), but other classes might too, because they were
   public.
-
   Also, some related hooks were deprecated, but this is not yet a
   breaking change.
+* Removed 'jquery.arrowSteps' module. (deprecated since 1.28)
 
 == Compatibility ==
 
