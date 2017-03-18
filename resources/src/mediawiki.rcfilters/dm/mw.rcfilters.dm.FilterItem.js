@@ -97,6 +97,24 @@
 	};
 
 	/**
+	 * Get the message for the display area for the currently active conflict
+	 *
+	 * @return {string} Conflict result message key
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.getCurrentConflictResultMessage = function () {
+		var details = {};
+
+		// First look in filter's own conflicts
+		details = this.getConflictDetails( this.getOwnConflicts(), 'globalDescription' );
+		if ( !details.message ) {
+			// Fall back onto conflicts in the group
+			details = this.getConflictDetails( this.getGroupModel().getConflicts(), 'globalDescription' );
+		}
+
+		return details.message;
+	};
+
+	/**
 	 * Get the details of the active conflict on this filter
 	 *
 	 * @param {Object} conflicts Conflicts to examine
