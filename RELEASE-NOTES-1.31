@@ -26,6 +26,8 @@ production.
   default mode.
 * CACHE_ACCEL now only supports APC(u) or WinCache. XCache support was removed
   as upstream is inactive and has no plans to move to PHP 7.
+* The old CategorizedRecentChanges feature, including its related configuration
+  option $wgAllowCategorizedRecentChanges, has been removed.
 
 === New features in 1.31 ===
 * Wikimedia\Rdbms\IDatabase->select() and similar methods now support
