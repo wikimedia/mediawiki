@@ -367,7 +367,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$needsResetDB = false;
 
-		if ( !self::$dbSetup || $this->needsDB() ) {
+		if ( $this->needsDB() ) {
 			// set up a DB connection for this test to use
 
 			self::$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
