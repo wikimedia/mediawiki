@@ -11,8 +11,11 @@ use Wikimedia\Rdbms\LoadBalancer;
  * Storage layer class for WatchedItems.
  * Database interaction.
  *
- * @author Addshore
+ * Uses database because this uses User::isAnon
  *
+ * @group Database
+ *
+ * @author Addshore
  * @since 1.27
  */
 class WatchedItemStore implements StatsdAwareInterface {

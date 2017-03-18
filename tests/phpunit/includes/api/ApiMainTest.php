@@ -2,6 +2,7 @@
 
 /**
  * @group API
+ * @group Database
  * @group medium
  *
  * @covers ApiMain

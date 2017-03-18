@@ -4,6 +4,7 @@
  *
  * @author Matthew Flaschen
  *
+ * @group Database
  * @group Output
  *
  * @todo factor tests in this class into providers and test methods
