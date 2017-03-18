@@ -2232,17 +2232,17 @@ return [
 
 	'mediawiki.widgets' => [
 		'scripts' => [
-			'resources/src/mediawiki.widgets/mw.widgets.NamespaceInputWidget.js',
-			'resources/src/mediawiki.widgets/mw.widgets.ComplexNamespaceInputWidget.js',
-			'resources/src/mediawiki.widgets/mw.widgets.TitleWidget.js',
-			'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.js',
-			'resources/src/mediawiki.widgets/mw.widgets.TitleSearchWidget.js',
-			'resources/src/mediawiki.widgets/mw.widgets.ComplexTitleInputWidget.js',
-			'resources/src/mediawiki.widgets/mw.widgets.TitleOptionWidget.js',
+			'resources/src/mediawiki.widgets/NamespaceInputWidget.js',
+			'resources/src/mediawiki.widgets/ComplexNamespaceInputWidget.js',
+			'resources/src/mediawiki.widgets/TitleWidget.js',
+			'resources/src/mediawiki.widgets/TitleInputWidget.js',
+			'resources/src/mediawiki.widgets/TitleSearchWidget.js',
+			'resources/src/mediawiki.widgets/ComplexTitleInputWidget.js',
+			'resources/src/mediawiki.widgets/TitleOptionWidget.js',
 		],
 		'skinStyles' => [
 			'default' => [
-				'resources/src/mediawiki.widgets/mw.widgets.TitleWidget.less',
+				'resources/src/mediawiki.widgets/TitleWidget.less',
 			],
 		],
 		'dependencies' => [
@@ -2268,21 +2268,21 @@ return [
 	'mediawiki.widgets.styles' => [
 		'skinStyles' => [
 			'default' => [
-				'resources/src/mediawiki.widgets/mw.widgets.ComplexNamespaceInputWidget.base.css',
-				'resources/src/mediawiki.widgets/mw.widgets.ComplexTitleInputWidget.base.css',
+				'resources/src/mediawiki.widgets/ComplexNamespaceInputWidget.base.css',
+				'resources/src/mediawiki.widgets/ComplexTitleInputWidget.base.css',
 			],
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.widgets.DateInputWidget' => [
 		'scripts' => [
-			'resources/src/mediawiki.widgets/mw.widgets.CalendarWidget.js',
-			'resources/src/mediawiki.widgets/mw.widgets.DateInputWidget.js',
+			'resources/src/mediawiki.widgets/CalendarWidget.js',
+			'resources/src/mediawiki.widgets/DateInputWidget.js',
 		],
 		'skinStyles' => [
 			'default' => [
-				'resources/src/mediawiki.widgets/mw.widgets.CalendarWidget.less',
-				'resources/src/mediawiki.widgets/mw.widgets.DateInputWidget.less',
+				'resources/src/mediawiki.widgets/CalendarWidget.less',
+				'resources/src/mediawiki.widgets/DateInputWidget.less',
 			],
 		],
 		'messages' => [
@@ -2298,7 +2298,7 @@ return [
 	],
 	'mediawiki.widgets.datetime' => [
 		'scripts' => [
-			'resources/src/mediawiki.widgets.datetime/mediawiki.widgets.datetime.js',
+			'resources/src/mediawiki.widgets.datetime/index.js',
 			'resources/src/mediawiki.widgets.datetime/CalendarWidget.js',
 			'resources/src/mediawiki.widgets.datetime/DateTimeFormatter.js',
 			'resources/src/mediawiki.widgets.datetime/DateTimeInputWidget.js',
@@ -2361,8 +2361,8 @@ return [
 	],
 	'mediawiki.widgets.CategorySelector' => [
 		'scripts' => [
-			'resources/src/mediawiki.widgets/mw.widgets.CategoryCapsuleItemWidget.js',
-			'resources/src/mediawiki.widgets/mw.widgets.CategorySelector.js',
+			'resources/src/mediawiki.widgets/CategoryCapsuleItemWidget.js',
+			'resources/src/mediawiki.widgets/CategorySelector.js',
 		],
 		'dependencies' => [
 			'oojs-ui-widgets',
@@ -2378,18 +2378,18 @@ return [
 	],
 	'mediawiki.widgets.MediaSearch' => [
 		'scripts' => [
-			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.APIResultsProvider.js',
-			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.APIResultsQueue.js',
-			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaResourceProvider.js',
-			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaSearchProvider.js',
-			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaResourceQueue.js',
-			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaSearchQueue.js',
-			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaSearchWidget.js',
-			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaResultWidget.js',
+			'resources/src/mediawiki.widgets/MediaSearch/APIResultsProvider.js',
+			'resources/src/mediawiki.widgets/MediaSearch/APIResultsQueue.js',
+			'resources/src/mediawiki.widgets/MediaSearch/MediaResourceProvider.js',
+			'resources/src/mediawiki.widgets/MediaSearch/MediaSearchProvider.js',
+			'resources/src/mediawiki.widgets/MediaSearch/MediaResourceQueue.js',
+			'resources/src/mediawiki.widgets/MediaSearch/MediaSearchQueue.js',
+			'resources/src/mediawiki.widgets/MediaSearch/MediaSearchWidget.js',
+			'resources/src/mediawiki.widgets/MediaSearch/MediaResultWidget.js',
 		],
 		'styles' => [
-			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaSearchWidget.css',
-			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaResultWidget.css',
+			'resources/src/mediawiki.widgets/MediaSearch/MediaSearchWidget.css',
+			'resources/src/mediawiki.widgets/MediaSearch/MediaResultWidget.css',
 		],
 		'dependencies' => [
 			'oojs-ui-widgets',
@@ -2404,7 +2404,7 @@ return [
 	],
 	'mediawiki.widgets.UserInputWidget' => [
 		'scripts' => [
-			'resources/src/mediawiki.widgets/mw.widgets.UserInputWidget.js',
+			'resources/src/mediawiki.widgets/UserInputWidget.js',
 		],
 		'dependencies' => [
 			'oojs-ui-widgets',
@@ -2413,7 +2413,7 @@ return [
 	],
 	'mediawiki.widgets.UsersMultiselectWidget' => [
 		'scripts' => [
-			'resources/src/mediawiki.widgets/mw.widgets.UsersMultiselectWidget.js',
+			'resources/src/mediawiki.widgets/UsersMultiselectWidget.js',
 		],
 		'dependencies' => [
 			'oojs-ui-widgets',
@@ -2422,7 +2422,7 @@ return [
 	],
 	'mediawiki.widgets.SearchInputWidget' => [
 		'scripts' => [
-			'resources/src/mediawiki.widgets/mw.widgets.SearchInputWidget.js',
+			'resources/src/mediawiki.widgets/SearchInputWidget.js',
 		],
 		'dependencies' => [
 			'mediawiki.searchSuggest',
@@ -2433,18 +2433,18 @@ return [
 	'mediawiki.widgets.SearchInputWidget.styles' => [
 		'skinStyles' => [
 			'default' => [
-				'resources/src/mediawiki.widgets/mw.widgets.SearchInputWidget.css',
+				'resources/src/mediawiki.widgets/SearchInputWidget.css',
 			],
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.widgets.StashedFileWidget' => [
 		'scripts' => [
-			'resources/src/mediawiki.widgets/mw.widgets.StashedFileWidget.js',
+			'resources/src/mediawiki.widgets/StashedFileWidget.js',
 		],
 		'skinStyles' => [
 			'default' => [
-				'resources/src/mediawiki.widgets/mw.widgets.StashedFileWidget.less',
+				'resources/src/mediawiki.widgets/StashedFileWidget.less',
 			],
 		],
 		'dependencies' => [
