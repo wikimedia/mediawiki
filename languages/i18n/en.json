@@ -732,7 +732,7 @@
 	"readonlywarning": "<strong>Warning: The database has been locked for maintenance, so you will not be able to save your edits right now.</strong>\nYou may wish to copy and paste your text into a text file and save it for later.\n\nThe system administrator who locked it offered this explanation: $1",
 	"protectedpagewarning": "<strong>Warning: This page has been protected so that only users with administrator privileges can edit it.</strong>\nThe latest log entry is provided below for reference:",
 	"semiprotectedpagewarning": "<strong>Note:</strong> This page has been protected so that only registered users can edit it.\nThe latest log entry is provided below for reference:",
-	"cascadeprotectedwarning": "<strong>Warning:</strong> This page has been protected so that only users with administrator privileges can edit it because it is transcluded in the following cascade-protected {{PLURAL:$1|page|pages}}:",
+	"cascadeprotectedwarning": "<strong>Warning:</strong> This page has been protected so that only users with [[Special:ListGroupRights|specific rights]] privileges can edit it because it is transcluded in the following cascade-protected {{PLURAL:$1|page|pages}}:",
 	"titleprotectedwarning": "<strong>Warning: This page has been protected so that [[Special:ListGroupRights|specific rights]] are needed to create it.</strong>\nThe latest log entry is provided below for reference:",
 	"templatesused": "{{PLURAL:$1|Template|Templates}} used on this page:",
 	"templatesusedpreview": "{{PLURAL:$1|Template|Templates}} used in this preview:",
