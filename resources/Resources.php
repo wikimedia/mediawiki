@@ -1815,6 +1815,7 @@ return [
 			'rcfilters-highlightbutton-title',
 			'rcfilters-highlightmenu-title',
 			'rcfilters-highlightmenu-help',
+			'rcfilters-noresults-conflict',
 			'rcfilters-state-message-subset',
 			'rcfilters-state-message-fullcoverage',
 			'recentchanges-noresult',
