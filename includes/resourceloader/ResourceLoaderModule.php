@@ -147,8 +147,8 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		if ( $deprecationInfo ) {
 			$name = $this->getName();
 			$warning = 'This page is using the deprecated ResourceLoader module "' . $name . '".';
-			if ( !is_bool( $deprecationInfo ) && isset( $deprecationInfo['message'] ) ) {
-				$warning .= "\n" . $deprecationInfo['message'];
+			if ( is_string( $deprecationInfo ) ) {
+				$warning .= "\n" . $deprecationInfo;
 			}
 			return Xml::encodeJsCall(
 				'mw.log.warn',

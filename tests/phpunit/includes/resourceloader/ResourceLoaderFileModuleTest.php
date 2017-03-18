@@ -31,9 +31,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 				'deprecated' => true,
 			],
 			'deprecatedTomorrow' => $base + [
-				'deprecated' => [
-					'message' => 'Will be removed tomorrow.'
-				],
+				'deprecated' => 'Will be removed tomorrow.'
 			],
 
 			'htmlTemplateModule' => $base + [
