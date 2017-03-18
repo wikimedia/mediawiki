@@ -564,36 +564,6 @@ class Xml {
 	}
 
 	/**
-	 * Converts textual drop-down list to array
-	 *
-	 * @param string $list Correctly formatted text (newline delimited) to be
-	 *   used to generate the options.
-	 * @return array
-	 */
-	public static function getArrayFromWikiTextList( $list = '' ) {
-		$options = [];
-
-		foreach ( explode( "\n", $list ) as $option ) {
-			$value = trim( $option );
-			if ( $value == '' ) {
-				continue;
-			} elseif ( substr( $value, 0, 1 ) == '*' && substr( $value, 1, 1 ) != '*' ) {
-				// A new group is starting ...
-				$value = trim( substr( $value, 1 ) );
-				$options[] = $value;
-			} elseif ( substr( $value, 0, 2 ) == '**' ) {
-				// groupmember
-				$value = trim( substr( $value, 2 ) );
-				$options[] = $value;
-			} else {
-				// groupless reason list
-				$options[] = $value;
-			}
-		}
-		return $options;
-	}
-
-	/**
 	 * Shortcut for creating fieldsets.
 	 *
 	 * @param string|bool $legend Legend of the fieldset. If evaluates to false,

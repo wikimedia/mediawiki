@@ -397,4 +397,33 @@ class XmlTest extends MediaWikiTestCase {
 			'encodeJsVar() with float-like string'
 		);
 	}
+
+	/**
+	 * @covers Xml::listDropDown
+	 */
+	public function testListDropDown() {
+		$this->assertEquals(
+			'<select id="test-name" name="test-name" class="test-css" tabindex="2">' . "\n" .
+				'<option value="other">other reasons</option>' .
+				'<optgroup label="Foo"><option value="Foo 1">Foo 1</option>' .
+				'<option value="Example" selected="">Example</option>' .
+				'</optgroup><optgroup label="Bar">' .
+				'<option value="Bar 1">Bar 1</option></optgroup>' . "\n" .
+				'</select>',
+			Xml::listDropDown(
+				// name
+				'test-name',
+				// source list
+				"* Foo\n** Foo 1\n** Example\n* Bar\n** Bar 1",
+				// other
+				'other reasons',
+				// selected
+				'Example',
+				// class
+				'test-css',
+				// tabindex
+				2
+			)
+		);
+	}
 }
