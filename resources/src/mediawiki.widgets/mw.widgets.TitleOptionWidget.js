@@ -65,7 +65,7 @@
 		} );
 
 		// Highlight matching parts of link suggestion
-		this.$label.autoEllipsis( { hasSpan: false, tooltip: true, matchText: config.query } );
+		this.$label.highlightText( config.query );
 
 		if ( config.missing ) {
 			this.$label.addClass( 'new' );
