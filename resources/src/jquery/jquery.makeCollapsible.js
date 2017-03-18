@@ -159,7 +159,7 @@
 			if (
 				e.type === 'click' &&
 				options.linksPassthru &&
-				$.nodeName( e.target, 'a' ) &&
+				e.target.nodeName.toLowerCase() === 'a' &&
 				$( e.target ).attr( 'href' ) &&
 				$( e.target ).attr( 'href' ) !== '#'
 			) {
