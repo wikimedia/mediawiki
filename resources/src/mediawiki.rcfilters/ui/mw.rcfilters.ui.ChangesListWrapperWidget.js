@@ -86,15 +86,38 @@
 	 * @param {jQuery|string} $changesListContent The content of the updated changes list
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onModelUpdate = function ( $changesListContent ) {
-		var isEmpty = $changesListContent === 'NO_RESULTS';
+		var conflictItem,
+			$message = $( '<div>' )
+				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results' ),
+			isEmpty = $changesListContent === 'NO_RESULTS';
 
 		this.$element.toggleClass( 'mw-changeslist', !isEmpty );
 		this.$element.toggleClass( 'mw-changeslist-empty', isEmpty );
 		if ( isEmpty ) {
 			this.$changesListContent = null;
-			this.$element.empty().append(
-				document.createTextNode( mw.message( 'recentchanges-noresult' ).text() )
-			);
+			this.$element.empty();
+
+			if ( this.filtersViewModel.hasConflict() ) {
+				conflictItem = this.filtersViewModel.getFirstConflictedItem();
+
+				$message
+					.append(
+						$( '<div>' )
+							.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results-conflict' )
+							.text( mw.message( 'rcfilters-noresults-conflict' ).text() ),
+						$( '<div>' )
+							.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results-message' )
+							.text( mw.message( conflictItem.getCurrentConflictResultMessage() ).text() )
+					);
+			} else {
+				$message
+					.append(
+						$( '<div>' )
+							.text( mw.message( 'recentchanges-noresult' ).text() )
+					);
+			}
+
+			this.$element.append( $message );
 		} else {
 			this.$changesListContent = $changesListContent;
 			this.$element.empty().append( this.$changesListContent );
