@@ -11,6 +11,8 @@ This is not a release yet!
 * Submitting the lgtoken and lgpassword parameters in the query string to
   action=login is now deprecated and outputs a warning. They should be submitted
   in the POST body instead.
+* (T109140) (T122209) SECURITY: Special:UserLogin and Special:Search allow redirect
+  to interwiki links.
 
 == MediaWiki 1.23.15 ==
 

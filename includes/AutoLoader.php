@@ -1006,6 +1006,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialExpandTemplates' => 'includes/specials/SpecialExpandTemplates.php',
 	'SpecialExport' => 'includes/specials/SpecialExport.php',
 	'SpecialFilepath' => 'includes/specials/SpecialFilepath.php',
+	'SpecialGoToInterwiki' => 'includes/specials/SpecialGoToInterwiki.php',
 	'SpecialImport' => 'includes/specials/SpecialImport.php',
 	'SpecialJavaScriptTest' => 'includes/specials/SpecialJavaScriptTest.php',
 	'SpecialListAdmins' => 'includes/specials/SpecialListusers.php',

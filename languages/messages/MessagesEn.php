@@ -413,6 +413,7 @@ $specialPageAliases = array(
 	'Fewestrevisions'           => array( 'FewestRevisions' ),
 	'FileDuplicateSearch'       => array( 'FileDuplicateSearch' ),
 	'Filepath'                  => array( 'FilePath' ),
+	'GoToInterwiki'             => array( 'GoToInterwiki' ),
 	'Import'                    => array( 'Import' ),
 	'Invalidateemail'           => array( 'InvalidateEmail' ),
 	'JavaScriptTest'            => array( 'JavaScriptTest' ),

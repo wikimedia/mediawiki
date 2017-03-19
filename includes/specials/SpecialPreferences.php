@@ -88,7 +88,7 @@ class SpecialPreferences extends SpecialPage {
 		$user->resetOptions( 'all', $this->getContext() );
 		$user->saveSettings();
 
-		$url = $this->getPageTitle()->getFullURL( 'success' );
+		$url = $this->getPageTitle()->getFullUrlForRedirect( 'success' );
 
 		$this->getOutput()->redirect( $url );
 

@@ -1150,7 +1150,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		if ( $type == 'successredirect' ) {
-			$redirectUrl = $returnToTitle->getFullURL( $returnToQuery, false, $proto );
+			$redirectUrl = $returnToTitle->getFullUrlForRedirect( $returnToQuery, false, $proto );
 			$this->getOutput()->redirect( $redirectUrl );
 		} else {
 			$this->getOutput()->addReturnTo( $returnToTitle, $returnToQuery, null, $options );

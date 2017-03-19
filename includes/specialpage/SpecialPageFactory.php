@@ -132,6 +132,7 @@ class SpecialPageFactory {
 		'Randompage' => 'RandomPage',
 		'RandomInCategory' => 'SpecialRandomInCategory',
 		'Randomredirect' => 'SpecialRandomredirect',
+		'GoToInterwiki' => 'SpecialGoToInterwiki',
 
 		// High use pages
 		'Mostlinkedcategories' => 'MostlinkedCategoriesPage',

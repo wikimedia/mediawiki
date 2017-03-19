@@ -122,7 +122,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 			$titleObj = Title::newMainPage();
 		}
 		if ( $type == 'hard' ) {
-			$this->getOutput()->redirect( $titleObj->getFullURL() );
+			$this->getOutput()->redirect( $titleObj->getFullUrlForRedirect() );
 		} else {
 			$this->getOutput()->addReturnTo( $titleObj );
 		}

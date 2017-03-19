@@ -2536,7 +2536,9 @@ $templates
 		} else {
 			$titleObj = Title::newFromText( $returnto );
 		}
-		if ( !is_object( $titleObj ) ) {
+		// We don't want people to return to external interwiki. That
+		// might potentially be used as part of a phishing scheme
+		if ( !is_object( $titleObj ) || $titleObj->isExternal() ) {
 			$titleObj = Title::newMainPage();
 		}
 
