@@ -865,12 +865,9 @@ class LanguageConverter {
 		$this->mTables = false;
 		$cache = ObjectCache::getInstance( $wgLanguageConverterCacheType );
 		if ( $fromCache ) {
-			wfProfileIn( __METHOD__ . '-cache' );
 			$this->mTables = $cache->get( $this->mCacheKey );
-			wfProfileOut( __METHOD__ . '-cache' );
 		}
 		if ( !$this->mTables || !array_key_exists( self::CACHE_VERSION_KEY, $this->mTables ) ) {
-			wfProfileIn( __METHOD__ . '-recache' );
 			// not in cache, or we need a fresh reload.
 			// We will first load the default tables
 			// then update them using things in MediaWiki:Conversiontable/*
@@ -884,7 +881,6 @@ class LanguageConverter {
 			$this->mTables[self::CACHE_VERSION_KEY] = true;
 
 			$cache->set( $this->mCacheKey, $this->mTables, 43200 );
-			wfProfileOut( __METHOD__ . '-recache' );
 		}
 	}
 
