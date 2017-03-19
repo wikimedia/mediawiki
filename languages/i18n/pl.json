@@ -1380,6 +1380,7 @@
 	"rcfilters-invalid-filter": "Nieprawidłowy filtr",
 	"rcfilters-empty-filter": "Brak aktywnych filtrów. Wyświetlane są wszystkie zmiany.",
 	"rcfilters-filterlist-title": "Filtry",
+	"rcfilters-filterlist-whatsthis": "Co to jest?",
 	"rcfilters-filterlist-feedbacklink": "Podziel się swoją opinią na temat tych nowych (beta) filtrów",
 	"rcfilters-highlightbutton-title": "Podświetl wyniki",
 	"rcfilters-highlightmenu-title": "Wybierz kolor",

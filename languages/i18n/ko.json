@@ -1361,6 +1361,7 @@
 	"rcfilters-highlightmenu-title": "색 선택",
 	"rcfilters-highlightmenu-help": "이 속성을 강조할 색을 선택하십시오",
 	"rcfilters-filterlist-noresults": "필터를 찾을 수 없습니다",
+	"rcfilters-noresults-conflict": "검색 조건이 충돌하기 때문에 결과를 찾을 수 없습니다",
 	"rcfilters-filtergroup-registration": "사용자 등록",
 	"rcfilters-filter-registered-label": "등록됨",
 	"rcfilters-filter-registered-description": "로그인된 편집자.",

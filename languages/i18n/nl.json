@@ -1377,6 +1377,7 @@
 	"rcfilters-invalid-filter": "Ongeldig filter",
 	"rcfilters-empty-filter": "Geen actieve filters. Alle bijdragen worden weergeven.",
 	"rcfilters-filterlist-title": "Filters",
+	"rcfilters-filterlist-whatsthis": "Wat is dit?",
 	"rcfilters-filterlist-feedbacklink": "Geef feedback op de nieuwe (beta) filters",
 	"rcfilters-highlightbutton-title": "Resultaten markeren",
 	"rcfilters-highlightmenu-title": "Kies een kleur",

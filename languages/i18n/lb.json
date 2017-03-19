@@ -1276,6 +1276,7 @@
 	"rcfilters-highlightbutton-title": "Resultater ervirhiewen",
 	"rcfilters-highlightmenu-title": "Eng Faarf eraussichen",
 	"rcfilters-filterlist-noresults": "Keng Filtere fonnt",
+	"rcfilters-noresults-conflict": "Näischt fonnt well d'Sichcritère sech widderspriechen",
 	"rcfilters-filter-unregistered-description": "Auteuren déi net ageloggt sinn.",
 	"rcfilters-filter-editsbyself-label": "Är eegen Ännerungen",
 	"rcfilters-filter-editsbyself-description": "Ännerunge vun Iech.",

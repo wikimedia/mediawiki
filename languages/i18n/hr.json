@@ -752,7 +752,7 @@
 	"currentrev": "Trenutačna inačica",
 	"currentrev-asof": "Trenutačna izmjena od $1",
 	"revisionasof": "Inačica od $1",
-	"revision-info": "Inačica od $1 koju je unio/unijela $2",
+	"revision-info": "Inačica $3 od $4 u $5 koju je {{GENDER:$6|unio|unijela}} {{GENDER:$6|$2}}$7",
 	"previousrevision": "←Starija inačica",
 	"nextrevision": "Novija inačica→",
 	"currentrevisionlink": "vidi trenutačnu inačicu",

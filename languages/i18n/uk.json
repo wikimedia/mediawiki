@@ -2049,7 +2049,7 @@
 	"noindex-category-desc": "Сторінка не індексується пошуковими роботами, тому що на ній є «чарівне слово» <code><nowiki>__NOINDEX__</nowiki></code>, і вона знаходиться в просторі імен, де дозволений цей прапор).",
 	"index-category-desc": "На сторінці є «чарівне слово» <code><nowiki>__INDEX__</nowiki></code> (і сторінка знаходиться в просторі назв, де дозволений цей прапор), тому вона індексується пошуковими роботами в тих випадках, коли цього зазвичай не відбувається.",
 	"post-expand-template-inclusion-category-desc": "Розмір сторінки стане більший за <code>$wgMaxArticleSize</code> після показу всіх шаблонів, тому деякі з них не були показані повністю.",
-	"post-expand-template-argument-category-desc": "Сторінка стане більшою за <code>$wgMaxArticleSize</code> після розкриття аргументу шаблона (що-небудь в потрійних фігурних дужках, наприклад, <code>{{{Foo}}})</code>).",
+	"post-expand-template-argument-category-desc": "Сторінка стане більшою за <code>$wgMaxArticleSize</code> після розкриття аргументу шаблону (щось у потрійних фігурних дужках, наприклад, <code>{{{Foo}}}</code>).",
 	"expensive-parserfunction-category-desc": "На сторінці також використовується занадто багато ресурсомістких функцій (таких, як <code>#ifexist</code>). Детальніше - на сторінці [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit].",
 	"broken-file-category-desc": "Сторінка містить некоректне файлове посилання (посилання на неіснуючий файл).",
 	"hidden-category-category-desc": "Ця категорія містить мітку <code><nowiki>__HIDDENCAT__</nowiki></code> у вмісті сторінки, що типово запобігає її відображенню на сторінках в розділі категорій.",

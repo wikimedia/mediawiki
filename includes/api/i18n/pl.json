@@ -627,6 +627,7 @@
 	"api-help-permissions-granted-to": "{{PLURAL:$1|Przydzielone dla}}: $2",
 	"api-help-right-apihighlimits": "Użyj wyższych limitów w zapytaniach API (dla zapytań powolnych: $1; dla zapytań szbkich: $2). Limity zapytań powolnych są także stosowane dla parametrów z podanymi wieloma wartościami.",
 	"api-help-open-in-apisandbox": "<small>[otwórz w brudnopisie]</small>",
+	"apierror-articleexists": "Artykuł, który próbowałeś utworzyć, już został utworzony.",
 	"apierror-baddiff": "Różnicy wersji nie można odtworzyć. Jedna lub obie wersje nie istnieją, lub nie masz uprawnień do ich wyświetlenia.",
 	"apierror-badgenerator-unknown": "Nieznany <kbd>generator=$1</kbd>.",
 	"apierror-badip": "Parametr IP nie jest prawidłowy.",
