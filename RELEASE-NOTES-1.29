@@ -330,6 +330,11 @@ changes to languages because of Phabricator reports.
   tooltipAccessKeyRegexp, updateTooltipAccessKeys.
 * The ID of the <li> element containing the login link has changed from
   'pt-login' to 'pt-login-private' in private wikis.
+* The old, neglected "bulletin board style toolbar" in the edit form is now
+  deprecated (T30856). This old code dates from 2006, and was replaced in the
+  MediaWiki release tarball and in Wikimedia production by the WikiEditor
+  extension in 2010. It is only shown to users if no other editor was
+  installed, and leads to confusion.
 
 == Compatibility ==
 
