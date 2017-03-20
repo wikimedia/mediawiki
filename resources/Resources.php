@@ -2254,7 +2254,7 @@ return [
 			'mediawiki.api',
 			'jquery.byteLimit',
 			// TitleOptionWidget
-			'jquery.autoEllipsis',
+			'jquery.highlightText',
 		],
 		'messages' => [
 			// NamespaceInputWidget
