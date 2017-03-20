@@ -115,6 +115,10 @@
 			}
 		} else {
 			this.scrollToTop( this.capsule.$element, 10 );
+			if ( !this.filterPopup.getSelectedFilter() ) {
+				// No selection, scroll the popup list to top
+				setTimeout( function () { this.capsule.popup.$body.scrollTop( 0 ); }.bind( this ), 0 );
+			}
 		}
 	};
 
