@@ -71,7 +71,10 @@
 			enter: 'onTextInputEnter'
 		} );
 		this.capsule.connect( this, { capsuleItemClick: 'onCapsuleItemClick' } );
-		this.capsule.popup.connect( this, { toggle: 'onCapsulePopupToggle' } );
+		this.capsule.popup.connect( this, {
+			toggle: 'onCapsulePopupToggle',
+			ready: 'onCapsulePopupReady'
+		} );
 
 		// Initialize
 		this.$element
@@ -115,10 +118,16 @@
 			}
 		} else {
 			this.scrollToTop( this.capsule.$element, 10 );
-			if ( !this.filterPopup.getSelectedFilter() ) {
-				// No selection, scroll the popup list to top
-				setTimeout( function () { this.capsule.popup.$body.scrollTop( 0 ); }.bind( this ), 0 );
-			}
+		}
+	};
+
+	/**
+	 * Respond to popup ready event
+	 */
+	mw.rcfilters.ui.FilterWrapperWidget.prototype.onCapsulePopupReady = function () {
+		if ( !this.filterPopup.getSelectedFilter() ) {
+			// No selection - bring to top
+			this.capsule.popup.$body.scrollTop( 0 );
 		}
 	};
 
