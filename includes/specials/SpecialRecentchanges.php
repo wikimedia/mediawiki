@@ -694,7 +694,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				$newrows[$k] = $rowsarr[$k];
 			}
 		}
-		$rows = $newrows;
+		$rows = new FakeResultWrapper( array_values( $newrows ) );
 	}
 
 	/**
