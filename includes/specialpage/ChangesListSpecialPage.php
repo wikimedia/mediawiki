@@ -531,6 +531,33 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			'rcfilters-filtergroup-user-experience-level-conflicts-unregistered',
 			'rcfilters-filter-unregistered-conflicts-user-experience-level'
 		);
+
+		$changeTypeGroup = $this->getFilterGroup( 'changeType' );
+		$categoryFilter = $changeTypeGroup->getFilter( 'hidecategorization' );
+		$logactionsFilter = $changeTypeGroup->getFilter( 'hidelog' );
+		$pagecreationFilter = $changeTypeGroup->getFilter( 'hidenewpages' );
+
+		$significanceTypeGroup = $this->getFilterGroup( 'significance' );
+		$hideMinorFilter = $significanceTypeGroup->getFilter( 'hideminor' );
+
+		$hideMinorFilter->conflictsWith(
+			$categoryFilter,
+			'rcfilters-hideminor-conflicts-typeofchange-global',
+			'rcfilters-hideminor-conflicts-typeofchange',
+			'rcfilters-typeofchange-conflicts-hideminor'
+		);
+		$hideMinorFilter->conflictsWith(
+			$logactionsFilter,
+			'rcfilters-hideminor-conflicts-typeofchange-global',
+			'rcfilters-hideminor-conflicts-typeofchange',
+			'rcfilters-typeofchange-conflicts-hideminor'
+		);
+		$hideMinorFilter->conflictsWith(
+			$pagecreationFilter,
+			'rcfilters-hideminor-conflicts-typeofchange-global',
+			'rcfilters-hideminor-conflicts-typeofchange',
+			'rcfilters-typeofchange-conflicts-hideminor'
+		);
 	}
 
 	/**
