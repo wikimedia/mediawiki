@@ -69,7 +69,11 @@ class SpecialAllPages extends IncludableSpecialPage {
 		$from = $request->getVal( 'from', null );
 		$to = $request->getVal( 'to', null );
 		$namespace = $request->getInt( 'namespace' );
-		$hideredirects = $request->getBool( 'hideredirects', false );
+
+		$miserMode = (bool)$this->getConfig()->get( 'MiserMode' );
+
+		// Redirects filter is disabled in MiserMode
+		$hideredirects = $request->getBool( 'hideredirects', false ) && !$miserMode;
 
 		$namespaces = $this->getLanguage()->getNamespaces();
 
@@ -100,6 +104,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 	protected function outputHTMLForm( $namespace = NS_MAIN,
 		$from = '', $to = '', $hideRedirects = false
 	) {
+		$miserMode = (bool)$this->getConfig()->get( 'MiserMode' );
 		$fields = [
 			'from' => [
 				'type' => 'text',
@@ -125,14 +130,18 @@ class SpecialAllPages extends IncludableSpecialPage {
 				'all' => null,
 				'value' => $namespace,
 			],
-			'hideredirects' => [
+		];
+
+		if ( !$miserMode ) {
+			$fields['hideredirects'] = [
 				'type' => 'check',
 				'name' => 'hideredirects',
 				'id' => 'hidredirects',
 				'label-message' => 'allpages-hide-redirects',
 				'value' => $hideRedirects,
-			],
-		];
+			];
+		}
+
 		$form = HTMLForm::factory( 'table', $fields, $this->getContext() );
 		$form->setMethod( 'get' )
 			->setWrapperLegendMsg( 'allpages' )

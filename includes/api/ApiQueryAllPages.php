@@ -76,6 +76,10 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			$this->addWhere( "page_title $op= $cont_from" );
 		}
 
+		if ( $params['filterredir'] !== 'all' && $this->getConfig()->get( 'MiserMode' ) ) {
+			$this->dieWithError( 'apierror-filterredirdisabled' );
+		}
+
 		if ( $params['filterredir'] == 'redirects' ) {
 			$this->addWhereFld( 'page_is_redirect', 1 );
 		} elseif ( $params['filterredir'] == 'nonredirects' ) {
@@ -242,7 +246,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		return [
+		$ret = [
 			'from' => null,
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
@@ -314,6 +318,12 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_DFLT => 'all'
 			],
 		];
+
+		if ( $this->getConfig()->get( 'MiserMode' ) ) {
+			$ret['filterredir'][ApiBase::PARAM_HELP_MSG] = 'api-help-param-disabled-in-miser-mode';
+		}
+
+		return $ret;
 	}
 
 	protected function getExamplesMessages() {
