@@ -6632,6 +6632,13 @@ $wgCommandLineDarkBg = false;
 $wgReadOnly = null;
 
 /**
+ * Set this to true to put the wiki watchlists into read-only mode.
+ * @var bool
+ * @since 1.31
+ */
+$wgReadOnlyWatchedItemStore = false;
+
+/**
  * If this lock file exists (size > 0), the wiki will be forced into read-only mode.
  * Its contents will be shown to users as part of the read-only warning
  * message.
