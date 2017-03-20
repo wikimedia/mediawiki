@@ -164,10 +164,11 @@
 	mw.log.deprecate( window, 'insertTags', toolbar.insertTags, 'Use mw.toolbar.insertTags instead.' );
 
 	// For backwards compatibility. Used to be called from EditPage.php, maybe other places as well.
-	mw.log.deprecate( toolbar, 'init', $.noop );
+	toolbar.init = $.noop;
 
 	// Expose API publicly
-	mw.toolbar = toolbar;
+	// @deprecated since MW 1.29
+	mw.log.deprecate( mw, 'toolbar', toolbar );
 
 	$( function () {
 		var i, button;
