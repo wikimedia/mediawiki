@@ -37,9 +37,7 @@
 		this.selected = null;
 
 		this.resetButton = new OO.ui.ButtonWidget( {
-			icon: 'trash',
 			framed: false,
-			title: mw.msg( 'rcfilters-clear-all-filters' ),
 			classes: [ 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-resetButton' ]
 		} );
 
@@ -182,6 +180,9 @@
 
 		this.resetButton.setLabel(
 			currFiltersAreEmpty ? mw.msg( 'rcfilters-restore-default-filters' ) : ''
+		);
+		this.resetButton.setTitle(
+			currFiltersAreEmpty ? null : mw.msg( 'rcfilters-clear-all-filters' )
 		);
 
 		this.resetButton.toggle( !hideResetButton );
