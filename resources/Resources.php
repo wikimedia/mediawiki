@@ -1347,11 +1347,6 @@ return [
 		'dependencies' => 'mediawiki.util',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'mediawiki.user.blockcookie' => [
-		'scripts' => 'resources/src/mediawiki/mediawiki.user.blockcookie.js',
-		'dependencies' => [ 'mediawiki.cookie', 'mediawiki.storage' ],
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'mediawiki.user' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.user.js',
 		'dependencies' => [
