@@ -76,10 +76,13 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			$this->addWhere( "page_title $op= $cont_from" );
 		}
 
-		if ( $params['filterredir'] == 'redirects' ) {
-			$this->addWhereFld( 'page_is_redirect', 1 );
-		} elseif ( $params['filterredir'] == 'nonredirects' ) {
-			$this->addWhereFld( 'page_is_redirect', 0 );
+		$miserMode = $this->getConfig()->get( 'MiserMode' );
+		if ( !$miserMode ) {
+			if ( $params['filterredir'] == 'redirects' ) {
+				$this->addWhereFld( 'page_is_redirect', 1 );
+			} elseif ( $params['filterredir'] == 'nonredirects' ) {
+				$this->addWhereFld( 'page_is_redirect', 0 );
+			}
 		}
 
 		$this->addWhereFld( 'page_namespace', $params['namespace'] );
@@ -106,6 +109,18 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			];
 		} else {
 			$selectFields = $resultPageSet->getPageTableFields();
+		}
+
+		$miserModeFilterRedirValue = null;
+		$miserModeFilterRedir = $miserMode && $params['filterredir'] !== 'all';
+		if ( $miserModeFilterRedir ) {
+			$selectFields[] = 'page_is_redirect';
+
+			if ( $params['filterredir'] == 'redirects' ) {
+				$miserModeFilterRedirValue = 1;
+			} elseif ( $params['filterredir'] == 'nonredirects' ) {
+				$miserModeFilterRedirValue = 0;
+			}
 		}
 
 		$this->addFields( $selectFields );
@@ -219,6 +234,11 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 				break;
 			}
 
+			if ( $miserModeFilterRedir && $row->page_is_redirect !== $miserModeFilterRedirValue ) {
+				// Filter implemented in PHP due to being in Miser Mode
+				continue;
+			}
+
 			if ( is_null( $resultPageSet ) ) {
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 				$vals = [
@@ -242,7 +262,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		return [
+		$ret = [
 			'from' => null,
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
@@ -314,6 +334,12 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_DFLT => 'all'
 			],
 		];
+
+		if ( $this->getConfig()->get( 'MiserMode' ) ) {
+			$ret['filterredir'][ApiBase::PARAM_HELP_MSG] = 'api-help-param-limited-in-miser-mode';
+		}
+
+		return $ret;
 	}
 
 	protected function getExamplesMessages() {
