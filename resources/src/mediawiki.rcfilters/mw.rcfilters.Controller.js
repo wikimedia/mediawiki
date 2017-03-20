@@ -86,12 +86,20 @@
 	 * Empty all selected filters
 	 */
 	mw.rcfilters.Controller.prototype.emptyFilters = function () {
+		var highlightedFilterNames = this.filtersModel
+			.getHighlightedItems()
+			.map( function ( filterItem ) { return { name: filterItem.getName() }; } );
+
 		this.filtersModel.emptyAllFilters();
 		this.filtersModel.clearAllHighlightColors();
 		// Check all filter interactions
 		this.filtersModel.reassessFilterInteractions();
 
 		this.updateChangesList();
+
+		if ( highlightedFilterNames ) {
+			this.trackHighlight( 'clearAll', highlightedFilterNames );
+		}
 	};
 
 	/**
@@ -259,6 +267,7 @@
 	mw.rcfilters.Controller.prototype.setHighlightColor = function ( filterName, color ) {
 		this.filtersModel.setHighlightColor( filterName, color );
 		this.updateURL();
+		this.trackHighlight( 'set', { name: filterName, color: color } );
 	};
 
 	/**
@@ -269,6 +278,7 @@
 	mw.rcfilters.Controller.prototype.clearHighlightColor = function ( filterName ) {
 		this.filtersModel.clearHighlightColor( filterName );
 		this.updateURL();
+		this.trackHighlight( 'clear', filterName );
 	};
 
 	/**
@@ -277,13 +287,18 @@
 	 * @param {string} filterName Name of the filter item
 	 */
 	mw.rcfilters.Controller.prototype.clearFilter = function ( filterName ) {
-		var filterItem = this.filtersModel.getItemByName( filterName );
+		var filterItem = this.filtersModel.getItemByName( filterName ),
+			isHighlighted = filterItem.isHighlighted();
 
-		if ( filterItem.isSelected() || filterItem.isHighlighted() ) {
+		if ( filterItem.isSelected() || isHighlighted ) {
 			this.filtersModel.clearHighlightColor( filterName );
 			this.filtersModel.toggleFilterSelected( filterName, false );
 			this.updateChangesList();
 			this.filtersModel.reassessFilterInteractions( filterItem );
+		}
+
+		if ( isHighlighted ) {
+			this.trackHighlight( 'clear', filterName );
 		}
 	};
 
@@ -296,6 +311,24 @@
 			{ tag: 'rcfilters' },
 			document.title,
 			this.getUpdatedUri().toString()
+		);
+	};
+
+	/**
+	 * Track usage of highlight feature
+	 *
+	 * @param {string} action
+	 * @param {array|object|string} filters
+	 */
+	mw.rcfilters.Controller.prototype.trackHighlight = function ( action, filters ) {
+		filters = $.type( filters ) === 'string' ? { name: filters } : filters;
+		filters = $.type( filters ) === 'object' ? [ filters ] : filters;
+		mw.track(
+			'event.ChangesListHighlights',
+			{
+				action: action,
+				filters: filters
+			}
 		);
 	};
 }( mediaWiki, jQuery ) );
