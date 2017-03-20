@@ -1366,7 +1366,6 @@
 	"rcfilters-activefilters": "Active filters",
 	"rcfilters-restore-default-filters": "Restore default filters",
 	"rcfilters-clear-all-filters": "Clear all filters",
-	"rcfilters-clear-filters-to-defaults": "Set filters to defaults",
 	"rcfilters-search-placeholder": "Filter recent changes (browse or start typing)",
 	"rcfilters-invalid-filter": "Invalid filter",
 	"rcfilters-empty-filter": "No active filters. All contributions are shown.",

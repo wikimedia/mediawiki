@@ -1795,7 +1795,6 @@ return [
 			'rcfilters-activefilters',
 			'rcfilters-restore-default-filters',
 			'rcfilters-clear-all-filters',
-			'rcfilters-clear-filters-to-defaults',
 			'rcfilters-search-placeholder',
 			'rcfilters-invalid-filter',
 			'rcfilters-empty-filter',
