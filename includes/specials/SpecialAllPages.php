@@ -80,6 +80,8 @@ class SpecialAllPages extends IncludableSpecialPage {
 		);
 		$out->addModuleStyles( 'mediawiki.special' );
 
+		return;
+
 		if ( $par !== null ) {
 			$this->showChunk( $namespace, $par, $to, $hideredirects );
 		} elseif ( $from !== null && $to === null ) {
