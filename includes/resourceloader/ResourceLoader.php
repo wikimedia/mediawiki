@@ -185,7 +185,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			return self::applyFilter( $filter, $data );
 		}
 
-		$stats = RequestContext::getMain()->getStats();
+		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 		$cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
 
 		$key = $cache->makeGlobalKey(

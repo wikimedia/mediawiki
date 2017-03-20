@@ -26,6 +26,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
@@ -544,7 +545,7 @@ class ApiMain extends ApiBase {
 			$runTime = microtime( true ) - $t;
 			$this->logRequest( $runTime );
 			if ( $this->mModule->isWriteMode() && $this->getRequest()->wasPosted() ) {
-				$this->getStats()->timing(
+				MediaWikiServices::getInstance()->getStatsdDataFactory()->timing(
 					'api.' . $this->mModule->getModuleName() . '.executeTiming', 1000 * $runTime
 				);
 			}

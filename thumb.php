@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
 require __DIR__ . '/includes/WebStart.php';
@@ -317,7 +318,9 @@ function wfStreamThumb( array $params ) {
 		$streamtime = microtime( true ) - $starttime;
 
 		if ( $status->isOK() ) {
-			RequestContext::getMain()->getStats()->timing( 'media.thumbnail.stream', $streamtime );
+			MediaWikiServices::getInstance()->getStatsdDataFactory()->timing(
+				'media.thumbnail.stream', $streamtime
+			);
 		} else {
 			wfThumbError( 500, 'Could not stream the file', null, [ 'file' => $thumbName,
 				'path' => $thumbPath, 'error' => $status->getWikiText( false, false, 'en' ) ] );

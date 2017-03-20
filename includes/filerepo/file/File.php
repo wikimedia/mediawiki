@@ -5,6 +5,7 @@
  *
  * Represents files in a repository.
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Base code for files.
@@ -436,7 +437,7 @@ abstract class File implements IDBAccessObject {
 			$this->fsFile = $this->repo->getLocalReference( $this->getPath() );
 
 			$statTiming = microtime( true ) - $starttime;
-			RequestContext::getMain()->getStats()->timing(
+			MediaWikiServices::getInstance()->getStatsdDataFactory()->timing(
 				'media.thumbnail.generate.fetchoriginal', 1000 * $statTiming );
 
 			if ( !$this->fsFile ) {
@@ -1117,7 +1118,7 @@ abstract class File implements IDBAccessObject {
 	public function generateAndSaveThumb( $tmpFile, $transformParams, $flags ) {
 		global $wgIgnoreImageErrors;
 
-		$stats = RequestContext::getMain()->getStats();
+		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 
 		$handler = $this->getHandler();
 
@@ -1227,7 +1228,7 @@ abstract class File implements IDBAccessObject {
 		// this object exists
 		$tmpFile->bind( $this );
 
-		RequestContext::getMain()->getStats()->timing(
+		MediaWikiServices::getInstance()->getStatsdDataFactory()->timing(
 			'media.thumbnail.generate.bucket', 1000 * $buckettime );
 
 		return true;
