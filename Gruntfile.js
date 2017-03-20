@@ -92,7 +92,10 @@ module.exports = function ( grunt ) {
 				singleRun: true,
 				autoWatch: false,
 				// Some tests in extensions don't yield for more than the default 10s (T89075)
-				browserNoActivityTimeout: 60 * 1000
+				browserNoActivityTimeout: 60 * 1000,
+				// Karma requires Same-Origin (or CORS) by default since v1.1.1
+				// for better stacktraces. But we load the first request from wgServer
+				crossOriginAttribute: false
 			},
 			main: {
 				browsers: [ 'Chrome' ]
