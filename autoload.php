@@ -1005,6 +1005,7 @@ $wgAutoloadLocalClasses = [
 	'NewUsersLogFormatter' => __DIR__ . '/includes/logging/NewUsersLogFormatter.php',
 	'NolinesImageGallery' => __DIR__ . '/includes/gallery/NolinesImageGallery.php',
 	'NotRecursiveIterator' => __DIR__ . '/includes/libs/iterators/NotRecursiveIterator.php',
+	'NoWriteWatchedItemStore' => __DIR__ . '/includes/watcheditem/NoWriteWatchedItemStore.php',
 	'NukeNS' => __DIR__ . '/maintenance/nukeNS.php',
 	'NukePage' => __DIR__ . '/maintenance/nukePage.php',
 	'NullFileJournal' => __DIR__ . '/includes/libs/filebackend/filejournal/NullFileJournal.php',
