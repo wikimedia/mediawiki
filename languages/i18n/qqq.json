@@ -1553,6 +1553,7 @@
 	"rcfilters-activefilters": "Title for the filters selection showing the active filters.",
 	"rcfilters-restore-default-filters": "Label for the button that resets filters to defaults",
 	"rcfilters-clear-all-filters": "Title for the button that clears all filters",
+	"rcfilters-clear-filters-to-defaults": "Title for the button that sets filters to default",
 	"rcfilters-search-placeholder": "Placeholder for the filter search input.",
 	"rcfilters-invalid-filter": "A label for an invalid filter.",
 	"rcfilters-empty-filter": "Placeholder for the filter list when no filters were chosen.",
