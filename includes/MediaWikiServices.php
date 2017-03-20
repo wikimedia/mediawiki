@@ -31,7 +31,7 @@ use SearchEngineConfig;
 use SearchEngineFactory;
 use SiteLookup;
 use SiteStore;
-use WatchedItemStore;
+use WatchedItemStoreInterface;
 use WatchedItemQueryService;
 use SkinFactory;
 use TitleFormatter;
@@ -513,7 +513,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.28
-	 * @return WatchedItemStore
+	 * @return WatchedItemStoreInterface
 	 */
 	public function getWatchedItemStore() {
 		return $this->getService( 'WatchedItemStore' );
