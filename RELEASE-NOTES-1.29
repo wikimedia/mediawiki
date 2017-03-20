@@ -78,6 +78,7 @@ production.
 * (T27187) Search suggestions based on jquery.suggestions will now correctly only
   highlight prefix matches in the results.
 * (T157035) "new mw.Uri()" was ignoring options when using default URI.
+* Special:Allpages can no longer be filtered by redirect in miser mode.
 
 === Action API changes in 1.29 ===
 * Submitting sensitive authentication request parameters to action=login,
@@ -112,6 +113,9 @@ production.
 * action=purge now requires a POST.
 * There is a new `languagevariants` siprop for action=query&meta=siteinfo,
   which returns a list of languages with active LanguageConverter instances.
+* action=query&query=allpages will no longer filter redirects using a database
+  query in miser mode. This may result in less results being returned than were
+  requested.
 
 === Action API internal changes in 1.29 ===
 * New methods were added to ApiBase to handle errors and warnings using i18n
