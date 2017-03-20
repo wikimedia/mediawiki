@@ -3215,7 +3215,7 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Get the permissions this user has.
-	 * @return array Array of String permission names
+	 * @return string[] permission names
 	 */
 	public function getRights() {
 		if ( is_null( $this->mRights ) ) {
