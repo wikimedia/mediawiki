@@ -161,35 +161,37 @@
 		var messageKey, details, superset,
 			affectingItems = [];
 
-		if ( this.isConflicted() ) {
-			// First look in filter's own conflicts
-			details = this.getConflictDetails( this.getOwnConflicts() );
-			if ( !details.message ) {
-				// Fall back onto conflicts in the group
-				details = this.getConflictDetails( this.getGroupModel().getConflicts() );
+		if ( this.isSelected() ) {
+			if ( this.isConflicted() ) {
+				// First look in filter's own conflicts
+				details = this.getConflictDetails( this.getOwnConflicts() );
+				if ( !details.message ) {
+					// Fall back onto conflicts in the group
+					details = this.getConflictDetails( this.getGroupModel().getConflicts() );
+				}
+
+				messageKey = details.message;
+				affectingItems = details.names;
+			} else if ( this.isIncluded() ) {
+				superset = this.getSuperset();
+				// For this message we need to collect the affecting superset
+				affectingItems = this.getGroupModel().getSelectedItems( this )
+					.filter( function ( item ) {
+						return superset.indexOf( item.getName() ) !== -1;
+					} )
+					.map( function ( item ) {
+						return mw.msg( 'quotation-marks', item.getLabel() );
+					} );
+
+				messageKey = 'rcfilters-state-message-subset';
+			} else if ( this.isFullyCovered() ) {
+				affectingItems = this.getGroupModel().getSelectedItems( this )
+					.map( function ( item ) {
+						return mw.msg( 'quotation-marks', item.getLabel() );
+					} );
+
+				messageKey = 'rcfilters-state-message-fullcoverage';
 			}
-
-			messageKey = details.message;
-			affectingItems = details.names;
-		} else if ( this.isIncluded() ) {
-			superset = this.getSuperset();
-			// For this message we need to collect the affecting superset
-			affectingItems = this.getGroupModel().getSelectedItems( this )
-				.filter( function ( item ) {
-					return superset.indexOf( item.getName() ) !== -1;
-				} )
-				.map( function ( item ) {
-					return mw.msg( 'quotation-marks', item.getLabel() );
-				} );
-
-			messageKey = 'rcfilters-state-message-subset';
-		} else if ( this.isFullyCovered() ) {
-			affectingItems = this.getGroupModel().getSelectedItems( this )
-				.map( function ( item ) {
-					return mw.msg( 'quotation-marks', item.getLabel() );
-				} );
-
-			messageKey = 'rcfilters-state-message-fullcoverage';
 		}
 
 		if ( messageKey ) {
