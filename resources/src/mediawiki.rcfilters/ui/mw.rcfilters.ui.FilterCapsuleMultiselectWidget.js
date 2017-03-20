@@ -183,11 +183,6 @@
 		this.resetButton.setLabel(
 			currFiltersAreEmpty ? mw.msg( 'rcfilters-restore-default-filters' ) : ''
 		);
-		this.resetButton.setTitle(
-			currFiltersAreEmpty ?
-				mw.msg( 'rcfilters-clear-filters-to-defaults' ) :
-				mw.msg( 'rcfilters-clear-all-filters' )
-		);
 
 		this.resetButton.toggle( !hideResetButton );
 		this.emptyFilterMessage.toggle( currFiltersAreEmpty );
