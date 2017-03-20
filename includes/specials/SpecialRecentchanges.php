@@ -23,6 +23,7 @@
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
  * A special page that lists last changes made to the wiki
@@ -694,7 +695,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				$newrows[$k] = $rowsarr[$k];
 			}
 		}
-		$rows = $newrows;
+		$rows = new FakeResultWrapper( array_values( $newrows ) );
 	}
 
 	/**
