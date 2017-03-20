@@ -158,6 +158,11 @@ return [
 			new HashBagOStuff( [ 'maxKeys' => 100 ] )
 		);
 		$store->setStatsdDataFactory( $services->getStatsdDataFactory() );
+
+		if ( $services->getMainConfig()->get( 'ReadOnlyWatchedItemStore' ) ) {
+			$store = new NoWriteWatchedItemStore( $store );
+		}
+
 		return $store;
 	},
 
