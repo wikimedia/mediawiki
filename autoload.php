@@ -1032,6 +1032,7 @@ $wgAutoloadLocalClasses = [
 	'NewFilesPager' => __DIR__ . '/includes/specials/pagers/NewFilesPager.php',
 	'NewPagesPager' => __DIR__ . '/includes/specials/pagers/NewPagesPager.php',
 	'NewUsersLogFormatter' => __DIR__ . '/includes/logging/NewUsersLogFormatter.php',
+	'NoWriteWatchedItemStore' => __DIR__ . '/includes/watcheditem/NoWriteWatchedItemStore.php',
 	'NolinesImageGallery' => __DIR__ . '/includes/gallery/NolinesImageGallery.php',
 	'NotRecursiveIterator' => __DIR__ . '/includes/libs/iterators/NotRecursiveIterator.php',
 	'NukeNS' => __DIR__ . '/maintenance/nukeNS.php',
