@@ -86,13 +86,14 @@ module.exports = function ( grunt ) {
 					included: true,
 					served: false
 				} ],
-				logLevel: 'DEBUG',
+				logLevel: 'INFO',
 				frameworks: [ 'qunit' ],
 				reporters: [ 'mocha' ],
 				singleRun: true,
 				autoWatch: false,
 				// Some tests in extensions don't yield for more than the default 10s (T89075)
-				browserNoActivityTimeout: 60 * 1000
+				browserNoActivityTimeout: 60 * 1000,
+				crossOriginAttribute: true
 			},
 			main: {
 				browsers: [ 'Chrome' ]
