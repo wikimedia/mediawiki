@@ -31,6 +31,10 @@ production.
 * File storage backends that supports headers (eg. Swift) now store an
   X-Content-Dimensions header for originals that contain the media's dimensions
   as page ranges keyed by dimensions.
+  
+=== Languages updated in 1.29 ===
+
+* Support for kbp (Kabɩyɛ / Kabye) was added.
 
 === External library changes in 1.30 ===
 
