@@ -4,6 +4,7 @@ module.exports = function ( grunt ) {
 
 	var wgServer = process.env.MW_SERVER,
 		wgScriptPath = process.env.MW_SCRIPT_PATH,
+		WebdriverIOconfigFile,
 		karmaProxy = {};
 
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
@@ -13,11 +14,18 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
 	grunt.loadNpmTasks( 'grunt-karma' );
 	grunt.loadNpmTasks( 'grunt-stylelint' );
+	grunt.loadNpmTasks( 'grunt-webdriver' );
 
 	karmaProxy[ wgScriptPath ] = {
 		target: wgServer + wgScriptPath,
 		changeOrigin: true
 	};
+
+	if ( process.env.JENKINS_HOME ) {
+		WebdriverIOconfigFile = './tests/selenium/wdio.conf.jenkins.js';
+	} else {
+		WebdriverIOconfigFile = './tests/selenium/wdio.conf.js';
+	}
 
 	grunt.initConfig( {
 		eslint: {
@@ -105,7 +113,15 @@ module.exports = function ( grunt ) {
 					return require( 'path' ).join( dest, src.replace( 'resources/', '' ) );
 				}
 			}
+		},
+
+		// Configure WebdriverIO task
+		webdriver: {
+			test: {
+				configFile: WebdriverIOconfigFile
+			}
 		}
+
 	} );
 
 	grunt.registerTask( 'assert-mw-env', function () {
