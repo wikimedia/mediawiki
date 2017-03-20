@@ -29,6 +29,7 @@
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\DBReadOnlyError;
 
 /**
  * Provides the UI through which users can perform editing
@@ -451,6 +452,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Remove all titles from a user's watchlist
 	 */
 	private function clearWatchlist() {
+		if ( $this->getConfig()->get( 'ReadOnlyWatchedItemStore' ) ) {
+			throw new DBReadOnlyError( null, 'The watchlist is currently readonly.' );
+		}
+
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete(
 			'watchlist',
