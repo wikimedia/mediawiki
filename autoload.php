@@ -1596,6 +1596,7 @@ $wgAutoloadLocalClasses = [
 	'WatchedItemQueryService' => __DIR__ . '/includes/watcheditem/WatchedItemQueryService.php',
 	'WatchedItemQueryServiceExtension' => __DIR__ . '/includes/watcheditem/WatchedItemQueryServiceExtension.php',
 	'WatchedItemStore' => __DIR__ . '/includes/watcheditem/WatchedItemStore.php',
+	'WatchedItemStoreInterface' => __DIR__ . '/includes/watcheditem/WatchedItemStoreInterface.php',
 	'WatchlistCleanup' => __DIR__ . '/maintenance/cleanupWatchlist.php',
 	'WebInstaller' => __DIR__ . '/includes/installer/WebInstaller.php',
 	'WebInstallerComplete' => __DIR__ . '/includes/installer/WebInstallerComplete.php',
