@@ -27,6 +27,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 		$options += [
 			'lang' => 'en',
 			'dir' => 'ltr',
+			'skin' => 'vector',
 			'modules' => 'startup',
 			'only' => 'scripts',
 		];
@@ -35,7 +36,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 				'lang' => $options['lang'],
 				'modules' => $options['modules'],
 				'only' => $options['only'],
-				'skin' => 'vector',
+				'skin' => $options['skin'],
 				'target' => 'phpunit',
 		] );
 		$ctx = $this->getMockBuilder( 'ResourceLoaderContext' )
