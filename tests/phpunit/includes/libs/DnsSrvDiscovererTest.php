@@ -85,4 +85,56 @@ class DnsSrvDiscovererTest extends PHPUnit_Framework_TestCase {
 			],
 		];
 	}
+
+	public function testRemoveServer() {
+		$dsd = new DnsSrvDiscoverer( 'localhost' );
+
+		$servers = [
+			[
+				'target' => 'conf1001.eqiad.wmnet',
+				'port' => 35,
+				'pri' => 2,
+				'weight' => 1,
+			],
+			[
+				'target' => 'conf1004.eqiad.wmnet',
+				'port' => 74,
+				'pri' => 2,
+				'weight' => 1,
+			],
+			[
+				'target' => 'conf1005.eqiad.wmnet',
+				'port' => 77,
+				'pri' => 3,
+				'weight' => 1,
+			],
+		];
+		$server = $servers[1];
+
+		$expected = [
+			[
+				'target' => 'conf1001.eqiad.wmnet',
+				'port' => 35,
+				'pri' => 2,
+				'weight' => 1,
+			],
+			[
+				'target' => 'conf1005.eqiad.wmnet',
+				'port' => 77,
+				'pri' => 3,
+				'weight' => 1,
+			],
+		];
+
+		$this->assertEquals(
+			$expected,
+			$dsd->removeServer( $server, $servers ),
+			"Correct server removed"
+		);
+		$this->assertEquals(
+			$expected,
+			$dsd->removeServer( $server, $servers ),
+			"Nothing to remove"
+		);
+	}
 }
