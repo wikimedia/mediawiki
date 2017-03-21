@@ -140,7 +140,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 		];
 
 		if ( $miserMode ) {
-			unset ( $fields['hideredirects'] );
+			unset( $fields['hideredirects'] );
 		}
 
 		$form = HTMLForm::factory( 'table', $fields, $this->getContext() );
