@@ -1786,6 +1786,12 @@ return [
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.HighlightColorPickerWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.FilterItemHighlightButton.less',
 		],
+		'skinStyles' => [
+			'monobook' => [
+				'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.Overlay.monobook.less',
+				'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.CapsuleItemWidget.monobook.less',
+			],
+		],
 		'messages' => [
 			'rcfilters-activefilters',
 			'rcfilters-restore-default-filters',
