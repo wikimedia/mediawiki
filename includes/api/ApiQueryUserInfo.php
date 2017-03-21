@@ -178,7 +178,11 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['options'] ) ) {
-			$vals['options'] = $user->getOptions();
+			// Convert '0' to 0. PHP's boolean conversion considers them both
+			// false, but e.g. JavaScript considers the former as true.
+			$vals['options'] = array_map( function ( $v ) {
+				return $v === '0' ? 0 : $v;
+			}, $user->getOptions() );
 			$vals['options'][ApiResult::META_BC_BOOLS] = array_keys( $vals['options'] );
 		}
 

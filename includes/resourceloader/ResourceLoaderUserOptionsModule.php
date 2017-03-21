@@ -51,10 +51,12 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	 * @return string
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		return Xml::encodeJsCall( 'mw.user.options.set',
-			[ $context->getUserObj()->getOptions( User::GETOPTIONS_EXCLUDE_DEFAULTS ) ],
-			ResourceLoader::inDebugMode()
-		);
+		// Convert '0' to 0. PHP's boolean conversion considers them both
+		// false, but e.g. JavaScript considers the former as true.
+		$options = array_map( function ( $v ) {
+			return $v === '0' ? 0 : $v;
+		}, $context->getUserObj()->getOptions( User::GETOPTIONS_EXCLUDE_DEFAULTS ) );
+		return Xml::encodeJsCall( 'mw.user.options.set', [ $options ], ResourceLoader::inDebugMode() );
 	}
 
 	/**
