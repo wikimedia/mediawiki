@@ -1253,7 +1253,7 @@
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "Afișează",
 	"rcnotefrom": "Dedesubt {{PLURAL:$5|se află o modificare|sunt modificările}} începând cu <b>$3, $4</b> (maximum <b>$1</b> afișate).",
-	"rclistfrom": "Se afișează modificările începând cu $3, $2",
+	"rclistfrom": "Afișează modificările începând cu $3, ora $2",
 	"rcshowhideminor": "$1 modificările minore",
 	"rcshowhideminor-show": "Arată",
 	"rcshowhideminor-hide": "Ascunde",

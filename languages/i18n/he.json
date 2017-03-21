@@ -37,7 +37,8 @@
 			"IKhitron",
 			"Matma Rex",
 			"Or",
-			"שמזן"
+			"שמזן",
+			"Uziel302"
 		]
 	},
 	"tog-underline": "סימון קישורים בקו תחתי:",
@@ -811,7 +812,7 @@
 	"page_first": "ראשון",
 	"page_last": "אחרון",
 	"histlegend": "בחירת גרסאות להשוואה: {{GENDER:|בחר|בחרי|בחרו}} את הגרסאות ש{{GENDER:|ברצונך|ברצונך|ברצונכם}} להשוות ולאחר מכן {{GENDER:|הקש|הקישי|הקישו}} על Enter או {{GENDER:|לחץ|לחצי|לחצו}} על הכפתור שלמטה.<br />\nמקרא: <strong>({{int:cur}})</strong> = השוואה עם הגרסה הנוכחית, <strong>({{int:last}})</strong> = השוואה עם הגרסה הקודמת, <strong>{{int:minoreditletter}}</strong> = עריכה משנית.",
-	"history-fieldset-title": "חיפוש בהיסטוריית הדף",
+	"history-fieldset-title": "חיפוש גרסאות",
 	"history-show-deleted": "גרסאות מוסתרות בלבד",
 	"histfirst": "הישנות ביותר",
 	"histlast": "החדשות ביותר",
@@ -1336,7 +1337,7 @@
 	"rcfilters-highlightmenu-title": "בחירת צבע",
 	"rcfilters-highlightmenu-help": "בחירת צבע להדגשת מאפיין זה",
 	"rcfilters-filterlist-noresults": "לא נמצאו מסננים",
-	"rcfilters-noresults-conflict": "לא נמצאו תוצאות כי דרישות החיפוש מתנגשות",
+	"rcfilters-noresults-conflict": "לא נמצאו תוצאות משום שקריטריוני החיפוש מתנגשים",
 	"rcfilters-state-message-subset": "המסנן הזה אינו משפיע כי התוצאות שלו כלולות {{PLURAL:$2|במסנן הרחב יותר הבא|במסננים הרחבים יותר הבאים}} (נסו להדגיש כדי להבדיל ביניהם): $1",
 	"rcfilters-state-message-fullcoverage": "בחירת כל המסננים בקבוצה זהה לביטול כל הבחירות, אז למסנן הזה אין השפעה. הקבוצה כוללת: $1",
 	"rcfilters-filtergroup-registration": "רישום העורכים",
@@ -1351,7 +1352,7 @@
 	"rcfilters-filter-editsbyother-label": "עריכות של אחרים",
 	"rcfilters-filter-editsbyother-description": "עריכות שבוצעו על־ידי משתמשים אחרים (מלבדך).",
 	"rcfilters-filtergroup-userExpLevel": "רמת ניסיון (למשתמשים רשומים בלבד)",
-	"rcfilters-filtergroup-user-experience-level-conflicts-unregistered": "מסנני הניסיון מוצאים רק משתמשים רשומים, אז המסנן הזה מתנגש עם המסנן \"לא רשומים\".",
+	"rcfilters-filtergroup-user-experience-level-conflicts-unregistered": "מסנני הניסיון מוצאים רק משתמשים רשומים, כך שמסנן זה מתנגש עם המסנן \"לא רשומים\".",
 	"rcfilters-filtergroup-user-experience-level-conflicts-unregistered-global": "המסנן \"לא רשומים\" מתנגש עם אחד או יותר ממסנני רמת הניסיון, שמוצאים משתמשים רשומים בלבד. המסננים המתנגשים מסומנים באזור המסננים הפעילים לעיל.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "חדשים",
 	"rcfilters-filter-user-experience-level-newcomer-description": "פחות מ־10 עריכות ומ־4 ימים של פעילות.",

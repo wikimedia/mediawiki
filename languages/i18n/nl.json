@@ -84,7 +84,8 @@
 			"Xxmarijnw",
 			"Mainframe98",
 			"QZanden",
-			"Huhbakker"
+			"Huhbakker",
+			"Jos1950"
 		]
 	},
 	"tog-underline": "Verwijzingen onderstrepen:",
@@ -571,7 +572,7 @@
 	"login-migrated-generic": "Uw gebruikersnaam is hernoemd, en uw gebruikersnaam bestaat niet langer op deze wiki.",
 	"loginlanguagelabel": "Taal: $1",
 	"suspicious-userlogout": "Uw verzoek om af te melden is genegeerd, omdat het lijkt alsof het verzoek is verzonden door een browser of cacheproxy die stuk is.",
-	"createacct-another-realname-tip": "Echte naam is optioneel.\nAls u deze opgeeft, wordt deze naam gebruikt worden om u erkenning te geven voor uw werk.",
+	"createacct-another-realname-tip": "Een echte naam is optioneel.\nAls u deze opgeeft, wordt deze naam gebruikt ter erkenning voor uw werk.",
 	"pt-login": "Aanmelden",
 	"pt-login-button": "Aanmelden",
 	"pt-login-continue-button": "Doorgaan met aanmelden",

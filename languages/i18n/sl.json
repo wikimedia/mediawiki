@@ -789,7 +789,7 @@
 	"page_first": "prva",
 	"page_last": "zadnja",
 	"histlegend": "Izbira primerjave: označite okroglo polje ob redakciji za primerjavo in stisnite enter ali gumb na dnu strani.<br />\nLegenda: '''({{int:cur}})''' = primerjava s trenutno redakcijo, '''({{int:last}})''' = primerjava s prejšnjo redakcijo, '''{{int:minoreditletter}}''' = manjše urejanje.",
-	"history-fieldset-title": "Zgodovina poizvedovanj",
+	"history-fieldset-title": "Iskanje redakcij",
 	"history-show-deleted": "Samo izbrisana redakcija",
 	"histfirst": "najstarejše",
 	"histlast": "najnovejše",

@@ -777,7 +777,7 @@
 	"page_first": "esimene",
 	"page_last": "viimane",
 	"histlegend": "Märgi versioonid, mida tahad võrrelda ja vajuta võrdlemisnupule.\nLegend: (viim) = erinevused võrreldes viimase redaktsiooniga,\n(eel) = erinevused võrreldes eelmise redaktsiooniga, P = pisimuudatus",
-	"history-fieldset-title": "Ajaloo sirvimine",
+	"history-fieldset-title": "Redaktsioonide otsimine",
 	"history-show-deleted": "Üksnes kustutatud redaktsioonid",
 	"histfirst": "vanimad",
 	"histlast": "uusimad",
