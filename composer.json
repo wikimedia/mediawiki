@@ -60,7 +60,8 @@
 		"wikimedia/avro": "1.7.7",
 		"hamcrest/hamcrest-php": "^2.0",
 		"wmde/hamcrest-html-matchers": "^0.1.0",
-		"psy/psysh": "0.8.1"
+		"psy/psysh": "0.8.1",
+		"activecollab/etcd": "^1.0"
 	},
 	"suggest": {
 		"ext-apc": "Local data and opcode cache",
