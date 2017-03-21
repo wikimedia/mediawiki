@@ -84,6 +84,22 @@ class DnsSrvDiscoverer {
 	}
 
 	/**
+	 * @param array $server
+	 * @param array $servers
+	 * @return array[]
+	 */
+	public function removeServer( $server, array $servers ) {
+		foreach ( $servers as $i => $srv ) {
+			if ( $srv['target'] === $server['target'] && $srv['port'] === $server['port'] ) {
+				unset( $servers[$i] );
+				break;
+			}
+		}
+
+		return array_values( $servers );
+	}
+
+	/**
 	 * @return array[]
 	 */
 	protected function getDnsRecords() {
