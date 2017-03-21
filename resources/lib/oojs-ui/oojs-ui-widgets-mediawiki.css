@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.19.5
+ * OOjs UI v0.20.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-03-07T22:57:06Z
+ * Date: 2017-03-15T17:06:28Z
  */
 .oo-ui-draggableElement-handle,
 .oo-ui-draggableElement-handle.oo-ui-widget {
@@ -561,9 +561,10 @@
           box-sizing: border-box;
   display: block;
   right: 2.375em;
-  margin: 0;
-  padding-left: 0.5em;
-  line-height: 2.3;
+  padding-top: 0.625em;
+  padding-left: 0.546875em;
+  padding-bottom: 0.546875em;
+  line-height: 1.172em;
   white-space: nowrap;
 }
 .oo-ui-selectFileWidget-fileName {
@@ -572,14 +573,14 @@
   text-overflow: ellipsis;
 }
 .oo-ui-selectFileWidget-clearButton {
-  top: 0;
+  top: -1px;
   right: 0;
   min-width: 24px;
   width: 1.875em;
   margin-right: 0;
 }
 .oo-ui-selectFileWidget-clearButton .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
-  height: 2.3em;
+  height: 2.5em;
 }
 .oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-label {
   color: #72777d;
@@ -643,11 +644,13 @@
 }
 .oo-ui-selectFileWidget.oo-ui-widget-disabled .oo-ui-selectFileWidget-info > .oo-ui-iconElement-icon,
 .oo-ui-selectFileWidget-empty.oo-ui-widget-disabled .oo-ui-selectFileWidget-info > .oo-ui-iconElement-icon,
-.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-info > .oo-ui-iconElement-icon,
+.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-info > .oo-ui-iconElement-icon {
+  opacity: 0.51;
+}
 .oo-ui-selectFileWidget.oo-ui-widget-disabled .oo-ui-selectFileWidget-info > .oo-ui-indicatorElement-indicator,
 .oo-ui-selectFileWidget-empty.oo-ui-widget-disabled .oo-ui-selectFileWidget-info > .oo-ui-indicatorElement-indicator,
 .oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-info > .oo-ui-indicatorElement-indicator {
-  opacity: 0.51;
+  opacity: 0.15;
 }
 .oo-ui-widget-disabled .oo-ui-selectFileWidget-dropLabel {
   display: none;
@@ -1026,6 +1029,10 @@
 .oo-ui-numberInputWidget-buttoned .oo-ui-buttonWidget,
 .oo-ui-numberInputWidget-buttoned .oo-ui-textInputWidget {
   display: table-cell;
+  height: 100%;
+}
+.oo-ui-numberInputWidget-buttoned .oo-ui-textInputWidget input {
+  height: 100%;
 }
 .oo-ui-numberInputWidget-field {
   display: table;

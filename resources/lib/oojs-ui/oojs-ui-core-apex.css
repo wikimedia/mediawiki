@@ -1,18 +1,19 @@
 /*!
- * OOjs UI v0.19.5
+ * OOjs UI v0.20.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-03-07T22:57:06Z
+ * Date: 2017-03-15T17:06:28Z
  */
 .oo-ui-element-hidden {
   display: none !important;
 }
 .oo-ui-buttonElement {
   display: inline-block;
+  line-height: normal;
   vertical-align: middle;
 }
 .oo-ui-buttonElement > .oo-ui-buttonElement-button {
@@ -24,7 +25,6 @@
   vertical-align: middle;
   font-family: inherit;
   font-size: inherit;
-  line-height: normal;
   white-space: nowrap;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -310,6 +310,10 @@
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
   width: 1px;
 }
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-top > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-top > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
+  display: block;
+}
 .oo-ui-fieldLayout .oo-ui-fieldLayout-help {
   float: right;
 }
@@ -571,7 +575,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   opacity: 0.2;
 }
 .oo-ui-radioOptionWidget {
-  cursor: default;
   padding: 0;
   background-color: transparent;
 }
@@ -868,11 +871,15 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   display: block;
 }
 .oo-ui-dropdownInputWidget select {
+  background-position: -9999em 0;
+  background-repeat: no-repeat;
   width: 100%;
-  cursor: pointer;
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
+}
+.oo-ui-dropdownInputWidget.oo-ui-widget-enabled select {
+  cursor: pointer;
 }
 .oo-ui-dropdownInputWidget select {
   background-color: #fff;
@@ -1301,7 +1308,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   color: #ccc;
 }
 .oo-ui-checkboxMultioptionWidget {
-  cursor: default;
   padding: 0;
 }
 .oo-ui-checkboxMultioptionWidget .oo-ui-checkboxInputWidget,

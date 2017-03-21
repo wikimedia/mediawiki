@@ -9,8 +9,6 @@
 	},
 	"images": {
 		"add": { "file": "images/icons/add.svg" },
-		"beta": { "file": "images/icons/beta.svg", "deprecated": "Deprecated since v0.18.3, don't use." },
-		"betaLaunch": { "file": "images/icons/logo-wikimediaDiscovery.svg", "deprecated": "Moved since v0.18.3, use 'logoWikimediaDiscovery' from the 'Wikimedia' pack instead." },
 		"bookmark": { "file": {
 			"ltr": "images/icons/bookmark-ltr.svg",
 			"rtl": "images/icons/bookmark-rtl.svg"
@@ -50,7 +48,6 @@
 			"ltr": "images/icons/printer-ltr.svg",
 			"rtl": "images/icons/printer-rtl.svg"
 		} },
-		"ribbonPrize": { "file": "images/icons/ribbonPrize.svg", "deprecated": "Deprecated since v0.18.3, don't use." },
 		"subtract": { "file": "images/icons/subtract.svg" },
 		"sun": { "file": {
 			"ltr": "images/icons/sun-ltr.svg",
