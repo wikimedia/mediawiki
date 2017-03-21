@@ -113,6 +113,7 @@
 				$message
 					.append(
 						$( '<div>' )
+							.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results-noresult' )
 							.text( mw.message( 'recentchanges-noresult' ).text() )
 					);
 			}
