@@ -49,6 +49,7 @@
 
 		// Events
 		this.resetButton.connect( this, { click: 'onResetButtonClick' } );
+		this.resetButton.$element.on( 'mousedown', this.onResetButtonMouseDown.bind( this ) );
 		this.model.connect( this, {
 			itemUpdate: 'onModelItemUpdate',
 			highlightChange: 'onModelHighlightChange'
@@ -164,6 +165,15 @@
 			// Reset to have no filters
 			this.controller.emptyFilters();
 		}
+	};
+
+	/**
+	 * Respond to mouse down event on the reset button to prevent the popup from opening
+	 *
+	 * @param {jQuery.Event} e Event
+	 */
+	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.onResetButtonMouseDown = function ( e ) {
+		e.stopPropagation();
 	};
 
 	/**
