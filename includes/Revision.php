@@ -1279,12 +1279,15 @@ class Revision implements IDBAccessObject {
 			if ( isset( $row->old_id ) && $wiki === false ) {
 				// Make use of the wiki-local revision text cache
 				$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-				$text = $cache->getWithSetCallback(
+				// The cached value should be decompressed, so handle that and return here
+				return $cache->getWithSetCallback(
 					$cache->makeKey( 'revisiontext', 'textid', $row->old_id ),
 					self::getCacheTTL( $cache ),
-					function () use ( $url, $wiki ) {
+					function () use ( $url, $wiki, $flags ) {
 						// No negative caching per Revision::loadText()
-						return ExternalStore::fetchFromURL( $url, [ 'wiki' => $wiki ] );
+						$text = ExternalStore::fetchFromURL( $url, [ 'wiki' => $wiki ] );
+
+						return ExternalStore::decompressRevisionText( $text, $flags );
 					},
 					[ 'pcGroup' => self::TEXT_CACHE_GROUP, 'pcTTL' => $cache::TTL_PROC_LONG ]
 				);
@@ -1293,12 +1296,7 @@ class Revision implements IDBAccessObject {
 			}
 		}
 
-		// If the text was fetched without an error, convert it
-		if ( $text !== false ) {
-			$text = self::decompressRevisionText( $text, $flags );
-		}
-
-		return $text;
+		return self::decompressRevisionText( $text, $flags );
 	}
 
 	/**
@@ -1344,6 +1342,13 @@ class Revision implements IDBAccessObject {
 	 * @return string|bool Decompressed text, or false on failure
 	 */
 	public static function decompressRevisionText( $text, $flags ) {
+		global $wgLegacyEncoding, $wgContLang;
+
+		if ( $text === false ) {
+			// Text failed to be fetched; nothing to do
+			return false;
+		}
+
 		if ( in_array( 'gzip', $flags ) ) {
 			# Deal with optional compression of archived pages.
 			# This can be done periodically via maintenance/compressOld.php, and
@@ -1366,7 +1371,6 @@ class Revision implements IDBAccessObject {
 			$text = $obj->getText();
 		}
 
-		global $wgLegacyEncoding;
 		if ( $text !== false && $wgLegacyEncoding
 			&& !in_array( 'utf-8', $flags ) && !in_array( 'utf8', $flags )
 		) {
@@ -1374,7 +1378,6 @@ class Revision implements IDBAccessObject {
 			# Upconvert on demand.
 			# ("utf8" checked for compatibility with some broken
 			#  conversion scripts 2008-12-30)
-			global $wgContLang;
 			$text = $wgContLang->iconv( $wgLegacyEncoding, 'UTF-8', $text );
 		}
 
