@@ -32,6 +32,24 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 	protected $mTitle;
 
 	/**
+	 * @since 1.14
+	 * @var ImagePage
+	 */
+	public $mImagePage;
+
+	/**
+	 * @since 1.14
+	 * @var File[]
+	 */
+	public $mHist;
+
+	/**
+	 * @since 1.14
+	 * @var int[]
+	 */
+	public $mRange;
+
+	/**
 	 * @param ImagePage $imagePage
 	 */
 	public function __construct( $imagePage ) {
