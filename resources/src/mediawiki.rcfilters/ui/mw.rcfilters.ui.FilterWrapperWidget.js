@@ -98,6 +98,7 @@
 		this.filterPopup.select( filterName );
 		this.capsule.select( item );
 
+		this.capsule.popup.toggle( true );
 		this.scrollToTop( filterWidget.$element );
 	};
 
@@ -114,6 +115,8 @@
 				this.capsule.resetSelection();
 			}
 		} else {
+			mw.hook( 'RcFilters.popup.open' ).fire( this.filterPopup.getSelectedFilter() );
+
 			this.scrollToTop( this.capsule.$element, 10 );
 			if ( !this.filterPopup.getSelectedFilter() ) {
 				// No selection, scroll the popup list to top
