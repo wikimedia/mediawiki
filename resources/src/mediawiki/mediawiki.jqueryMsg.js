@@ -16,8 +16,7 @@
 		parserDefaults = {
 			magic: {
 				PAGENAME: mw.config.get( 'wgPageName' ),
-				PAGENAMEE: mw.util.wikiUrlencode( mw.config.get( 'wgPageName' ) ),
-				SITENAME: mw.config.get( 'wgSiteName' )
+				PAGENAMEE: mw.util.wikiUrlencode( mw.config.get( 'wgPageName' ) )
 			},
 			// Whitelist for allowed HTML elements in wikitext.
 			// Self-closing tags are not currently supported.
@@ -164,10 +163,15 @@
 	 * parsers, pass the relevant options to mw.jqueryMsg.parser.
 	 *
 	 * @private
-	 * @param {Object} data
+	 * @param {Object} data New data to extend parser defaults with
+	 * @param {boolean} [deep=false] Whether the extend is done recursively (deep)
 	 */
-	mw.jqueryMsg.setParserDefaults = function ( data ) {
-		$.extend( parserDefaults, data );
+	mw.jqueryMsg.setParserDefaults = function ( data, deep ) {
+		if ( deep ) {
+			$.extend( true, parserDefaults, data );
+		} else {
+			$.extend( parserDefaults, data );
+		}
 	};
 
 	/**
