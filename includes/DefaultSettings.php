@@ -4173,7 +4173,7 @@ $wgMaxPPExpandDepth = 40;
  *
  * WARNING: Do not add 'file:' to this or internal file links will be broken.
  * Instead, if you want to support file links, add 'file://'. The same applies
- * to any other protocols with the same name as a namespace. See bug #44011 for
+ * to any other protocols with the same name as a namespace. See task T46011 for
  * more information.
  *
  * @see wfParseUrl
