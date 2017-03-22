@@ -1363,6 +1363,7 @@
 	"rcfilters-filter-categorization-description": "Roll ar pajennoù ouzhpennet da rummadoù zo pe dilamet diouto.",
 	"rcfilters-filter-logactions-label": "Obererezhioù enrollet",
 	"rcfilters-filter-logactions-description": "Obererezhioù melestradurel, krouiñ kontoù, diverkañ pajennoù, enporzhiañ...",
+	"rcfilters-hideminor-conflicts-typeofchange": "Seurtoù kemmoù zo n'hallont ket bezañ merket evel \"dister,\", rak se ez eus tabut etre ar sil-mañ ha siloù ar Seurtoù kemmoù da heul : $1",
 	"rcnotefrom": "Setu aze {{PLURAL:$5|ar c'hemm|ar c'hemmoù}} c'hoarvezet abaoe an <strong>$3, $4</strong> (<strong>$1</strong> d'ar muiañ).",
 	"rclistfrom": "Diskouez ar c'hemmoù diwezhañ abaoe an/ar $3 $2",
 	"rcshowhideminor": "$1 ar c'hemmoù dister",

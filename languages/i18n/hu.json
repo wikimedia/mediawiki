@@ -45,7 +45,8 @@
 			"Bencoke",
 			"Máté",
 			"Wolf Rex",
-			"BanKris"
+			"BanKris",
+			"Notramo"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -1335,6 +1336,7 @@
 	"rcfilters-invalid-filter": "Érvénytelen szűrő",
 	"rcfilters-empty-filter": "Nincs aktív szűrő. Minden közreműködés látható.",
 	"rcfilters-filterlist-title": "Szűrők",
+	"rcfilters-filterlist-whatsthis": "Mi ez?",
 	"rcfilters-highlightmenu-title": "Válassz egy színt",
 	"rcfilters-filterlist-noresults": "Nem található szűrő",
 	"rcfilters-filter-registered-label": "Regisztrált",

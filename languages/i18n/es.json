@@ -930,7 +930,7 @@
 	"page_first": "primeras",
 	"page_last": "últimas",
 	"histlegend": "Selección de diferencias: marca las casillas correspondientes a las versiones a comparar y pulsa Intro o el botón de abajo.<br />\nLeyenda: <strong>({{int:cur}})</strong> = diferencias con la versión actual,\n<strong>({{int:last}})</strong> = diferencias con la versión anterior, <strong>{{int:minoreditletter}}</strong> = edición menor.",
-	"history-fieldset-title": "Buscar en el historial",
+	"history-fieldset-title": "Buscar revisiones",
 	"history-show-deleted": "Solo revisiones eliminadas",
 	"histfirst": "primeras",
 	"histlast": "últimas",
