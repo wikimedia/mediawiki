@@ -508,7 +508,7 @@ class MessageCache {
 
 		$res = $dbr->select(
 			[ 'page', 'revision', 'text' ],
-			[ 'page_title', 'old_id', 'old_text', 'old_flags' ],
+			[ 'page_title', 'old_text', 'old_flags' ],
 			$smallConds,
 			__METHOD__ . "($code)-small"
 		);
