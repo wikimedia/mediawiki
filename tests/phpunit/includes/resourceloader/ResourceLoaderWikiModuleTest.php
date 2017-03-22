@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 
 	/**
@@ -213,6 +215,50 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 
 		$module = TestingAccessWrapper::newFromObject( $module );
 		$this->assertEquals( $expected, $module->getTitleInfo( $context ), 'Title info' );
+	}
+
+	/**
+	 * @covers ResourceLoaderWikiModule::getContent
+	 */
+	public function testGetContentForRedirects() {
+		// Set up context and module object
+		$context = $this->getResourceLoaderContext( [], new EmptyResourceLoader );
+		$module = $this->getMockBuilder( 'ResourceLoaderWikiModule' )
+			->setMethods( [ 'getPages', 'getContentObj' ] )
+			->getMock();
+		$module->expects( $this->any() )
+			->method( 'getPages' )
+			->will( $this->returnValue( [
+				'MediaWiki:Redirect.js' => [ 'type' => 'script' ]
+			] ) );
+		$module->expects( $this->any() )
+			->method( 'getContentObj' )
+			->will( $this->returnCallback( function ( Title $title ) {
+				if ( $title->getPrefixedText() === 'MediaWiki:Redirect.js' ) {
+					$handler = new JavaScriptContentHandler();
+					return $handler->makeRedirectContent(
+						Title::makeTitle( NS_MEDIAWIKI, 'Target.js' )
+					);
+				} elseif ( $title->getPrefixedText() === 'MediaWiki:Target.js' ) {
+					return new JavaScriptContent( 'target;' );
+				} else {
+					return null;
+				}
+			} ) );
+
+		// Mock away Title's db queries with LinkCache
+		MediaWikiServices::getInstance()->getLinkCache()->addGoodLinkObj(
+			1, // id
+			new TitleValue( NS_MEDIAWIKI, 'Redirect.js' ),
+			1, // len
+			1 // redirect
+		);
+
+		$this->assertEquals(
+			"/*\nMediaWiki:Redirect.js\n*/\ntarget;\n",
+			$module->getScript( $context ),
+			'Redirect resolved by getContent'
+		);
 	}
 }
 
