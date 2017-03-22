@@ -1287,7 +1287,7 @@ class Revision implements IDBAccessObject {
 						// No negative caching per Revision::loadText()
 						$text = ExternalStore::fetchFromURL( $url, [ 'wiki' => $wiki ] );
 
-						return ExternalStore::decompressRevisionText( $text, $flags );
+						return self::decompressRevisionText( $text, $flags );
 					},
 					[ 'pcGroup' => self::TEXT_CACHE_GROUP, 'pcTTL' => $cache::TTL_PROC_LONG ]
 				);
