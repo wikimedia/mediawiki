@@ -1542,7 +1542,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$sql .= " WHERE " . $this->makeList( $conds, self::LIST_AND );
 		}
 
-		return $this->query( $sql, $fname );
+		return (bool)$this->query( $sql, $fname );
 	}
 
 	public function makeList( $a, $mode = self::LIST_COMMA ) {
