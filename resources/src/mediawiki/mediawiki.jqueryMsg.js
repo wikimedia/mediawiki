@@ -164,10 +164,15 @@
 	 * parsers, pass the relevant options to mw.jqueryMsg.parser.
 	 *
 	 * @private
-	 * @param {Object} data
+	 * @param {Object} data New data to extend parser defaults with
+	 * @param {boolean} [deep=false] Whether the extend is done recursively (deep)
 	 */
-	mw.jqueryMsg.setParserDefaults = function ( data ) {
-		$.extend( parserDefaults, data );
+	mw.jqueryMsg.setParserDefaults = function ( data, deep ) {
+		if ( deep ) {
+			$.extend( true, parserDefaults, data );
+		} else {
+			$.extend( parserDefaults, data );
+		}
 	};
 
 	/**

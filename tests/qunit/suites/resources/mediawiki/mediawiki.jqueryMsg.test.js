@@ -1196,4 +1196,40 @@
 		);
 	} );
 
+	QUnit.test( 'setParserDefaults', function ( assert ) {
+		mw.jqueryMsg.setParserDefaults( {
+			magic: {
+				FOO: 'foo',
+				BAR: 'bar'
+			}
+		} );
+
+		assert.equal(
+			mw.jqueryMsg.getParserDefaults().magic,
+			{
+				FOO: 'foo',
+				BAR: 'bar'
+			},
+			'setParserDefaults is shallow by default'
+		);
+
+		mw.jqueryMsg.setParserDefaults(
+			{
+				magic: {
+					BAZ: 'baz'
+				}
+			},
+			true
+		);
+
+		assert.equal(
+			mw.jqueryMsg.getParserDefaults().magic,
+			{
+				FOO: 'foo',
+				BAR: 'bar',
+				BAZ: 'baz'
+			},
+			'setParserDefaults is deep if requested'
+		);
+	} );
 }( mediaWiki, jQuery ) );
