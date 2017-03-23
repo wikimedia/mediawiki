@@ -41,7 +41,7 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 		foreach ( $themes as $skin => $theme ) {
 			// Find the path to the JSON file which contains the actual image definitions for this theme
 			// TODO Allow extensions to specify this path somehow
-			$dataPath = $rootPath . '/' . $theme . '/' . $name . '.json';
+			$dataPath = $rootPath . '/' . strtolower( $theme ) . '/' . $name . '.json';
 			$localDataPath = $this->localBasePath . '/' . $dataPath;
 
 			// If there's no file for this module of this theme, that's okay, it will just use the defaults
