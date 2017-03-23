@@ -327,7 +327,8 @@
 			'event.ChangesListHighlights',
 			{
 				action: action,
-				filters: filters
+				filters: filters,
+				userId: mw.user.getId()
 			}
 		);
 	};
