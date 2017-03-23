@@ -158,6 +158,7 @@ class SqliteUpdater extends DatabaseUpdater {
 				'patch-add-rc_name_type_patrolled_timestamp_index.sql' ],
 			[ 'addField', 'change_tag', 'ct_id', 'patch-change_tag-ct_id.sql' ],
 			[ 'addField', 'tag_summary', 'ts_id', 'patch-tag_summary-ts_id.sql' ],
+			[ 'addIndex', 'archive', 'ar_usertext_timestamp', 'patch-add-ar_usertext_timestampindex.sql' ],
 
 			// 1.29
 			[ 'addField', 'externallinks', 'el_index_60', 'patch-externallinks-el_index_60.sql' ],
