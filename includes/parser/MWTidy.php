@@ -83,7 +83,7 @@ class MWTidy {
 	/**
 	 * @return bool|\MediaWiki\Tidy\TidyDriverBase
 	 */
-	protected static function singleton() {
+	public static function singleton() {
 		global $wgUseTidy, $wgTidyInternal, $wgTidyConf, $wgDebugTidy, $wgTidyConfig,
 			$wgTidyBin, $wgTidyOpts;
 
