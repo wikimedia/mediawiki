@@ -229,7 +229,6 @@ class RemexCompatMunger implements TreeHandler {
 	 * @param integer $sourceStart
 	 * @param integer $sourceLength
 	 */
-
 	public function insertElement( $preposition, $refElement, Element $element, $void,
 		$sourceStart, $sourceLength
 	) {
@@ -248,9 +247,10 @@ class RemexCompatMunger implements TreeHandler {
 			$newParent = $this->serializer->getParentNode( $parent );
 			$parent = $newParent;
 			$parentData = $parent->snData;
+			$pElement = $parentData->childPElement;
 			$parentData->childPElement = null;
 			$newRef = $refElement->userData;
-			// FIXME cannot call endTag() since we don't have an Element
+			$this->endTag( $pElement, $sourceStart, 0 );
 		} elseif ( $under && $parentData->isSplittable
 			&& (bool)$parentData->ancestorPNode !== $inline
 		) {
@@ -425,7 +425,13 @@ class RemexCompatMunger implements TreeHandler {
 	}
 
 	public function endTag( Element $element, $sourceStart, $sourceLength ) {
+		$data = $element->userData->snData;
+		if ( $data->childPElement ) {
+			$this->endTag( $data->childPElement, $sourceStart, 0 );
+		}
 		$this->serializer->endTag( $element, $sourceStart, $sourceLength );
+		$element->userData->snData = null;
+		$element->userData = null;
 	}
 
 	public function doctype( $name, $public, $system, $quirks, $sourceStart, $sourceLength ) {
