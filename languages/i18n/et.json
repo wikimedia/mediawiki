@@ -3522,6 +3522,12 @@
 	"pagelang-language": "Keel",
 	"pagelang-use-default": "Kasuta vaikekeelt",
 	"pagelang-select-lang": "Vali keel",
+	"pagelang-reason": "Põhjus",
+	"pagelang-submit": "Saada",
+	"pagelang-nonexistent-page": "Lehekülge $1 pole olemas.",
+	"pagelang-unchanged-language": "Lehekülje $1 keeleks on juba määratud \"$2\".",
+	"pagelang-unchanged-language-default": "Lehekülje $1 keeleks on juba määratud viki sisu vaikekeel.",
+	"pagelang-db-failed": "Andmebaasis ei õnnestunud lehekülje keelt muuta.",
 	"right-pagelang": "Muuta lehekülje keelt",
 	"action-pagelang": "muuta lehekülje keelt",
 	"log-name-pagelang": "Keele muutmise logi",
@@ -3661,7 +3667,10 @@
 	"credentialsform-provider": "Andmete tüüp:",
 	"credentialsform-account": "Konto nimi:",
 	"userjsispublic": "Pea silmas, et JavaScripti alamleheküljed ei tohiks sisaldada konfidentsiaalseid andmeid, kuna neid näevad teised kasutajad.",
+	"usercssispublic": "Palun pane tähele: CSS-alamleheküljel ei peaks olema konfidentsiaalseid andmeid, kuna teised kasutajad näevad seda.",
 	"restrictionsfield-badip": "Vigane IP-aadress või -aadressivahemik: $1",
 	"restrictionsfield-label": "Lubatud IP-aadressivahemikud:",
-	"restrictionsfield-help": "Üks IP-aadress või CIDR-vahemik rea kohta. Et lubada kõik, kasuta järgmist süntaksit:<pre>0.0.0.0/0\n::/0</pre>"
+	"restrictionsfield-help": "Üks IP-aadress või CIDR-vahemik rea kohta. Et lubada kõik, kasuta järgmist süntaksit:<pre>0.0.0.0/0\n::/0</pre>",
+	"revid": "redaktsioon $1",
+	"pageid": "lehekülje identifikaator $1"
 }
