@@ -443,6 +443,8 @@ class PostgresUpdater extends DatabaseUpdater {
 				"INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('change_tag_ct_id_seq')" ],
 			[ 'addPgField', 'tag_summary', 'ts_id',
 				"INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('tag_summary_ts_id_seq')" ],
+			[ 'addPgIndex', 'archive', 'ar_usertext_timestamp', '( ar_user_text, ar_timestamp )' ],
+			[ 'dropIndex', 'archive', 'usertext_timestamp' ],
 
 			// 1.29
 			[ 'addPgField', 'externallinks', 'el_index_60', "BYTEA NOT NULL DEFAULT ''" ],
