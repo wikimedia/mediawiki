@@ -5,3 +5,6 @@ To get somehow accurate result, you might want to bound the PHP process
 to a specific CPU with `taskset` and raise its priority with `nice`. Example:
 
  $ taskset 1 nice -n-10 php bench_wfIsWindows.php
+
+australia-untidy.html.gz contains representative input text for
+benchmarkTidy.php. It needs to be decompressed before use.
