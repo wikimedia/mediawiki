@@ -126,11 +126,24 @@ class DeletedContribsPager extends IndexPager {
 	}
 
 	function getUserCond() {
+		global $wgUseUserTextIndex;
+
 		$condition = [];
 
 		$condition['ar_user_text'] = $this->target;
-		$index = 'usertext_timestamp';
 
+		if ( $wgUseUserTextIndex !== null ) {
+			$wgUseUserTextIndex = $wgUseUserTextIndex;
+		} else {
+			$wgUseUserTextIndex = false;
+		}
+
+		// for wmf wiki's
+		if ( $wgUseUserTextIndex ) {
+			$index = 'usertext_timestamp';
+		} else {
+			$index = 'ar_usertext_timestamp';
+		}
 		return [ $index, $condition ];
 	}
 
