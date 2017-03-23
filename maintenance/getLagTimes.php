@@ -61,7 +61,7 @@ class GetLagTimes extends Maintenance {
 				$this->output( sprintf( "%10s %20s %3d %s\n", $ip, $host, $lag, $stars ) );
 
 				if ( $this->hasOption( 'report' ) ) {
-					$stats->gauge( "loadbalancer.lag.$cluster.$host", $lag );
+					$stats->gauge( "loadbalancer.lag.$cluster.$host", intval( $lag * 1e3 ) );
 				}
 			}
 		}
