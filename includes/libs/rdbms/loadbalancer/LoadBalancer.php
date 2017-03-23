@@ -815,6 +815,9 @@ class LoadBalancer implements ILoadBalancer {
 			$server['serverIndex'] = $i;
 			$server['foreignPoolRefCount'] = 0;
 			$server['foreign'] = true;
+			if ( isset( $server['dbname'] ) ) {
+				$dbName = $server['dbname'];
+			}
 			$conn = $this->reallyOpenConnection( $server, $dbName );
 			if ( !$conn->isOpen() ) {
 				$this->connLogger->warning( __METHOD__ . ": connection error for $i/$domain" );
