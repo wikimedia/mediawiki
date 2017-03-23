@@ -134,7 +134,7 @@
 			)
 			.toggleClass(
 				'mw-rcfilters-ui-capsuleItemWidget-conflicted',
-				this.model.isConflicted()
+				this.model.isSelected() && this.model.isConflicted()
 			);
 	};
 
