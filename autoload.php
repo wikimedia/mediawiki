@@ -192,6 +192,7 @@ $wgAutoloadLocalClasses = [
 	'BenchmarkHooks' => __DIR__ . '/maintenance/benchmarks/benchmarkHooks.php',
 	'BenchmarkParse' => __DIR__ . '/maintenance/benchmarks/benchmarkParse.php',
 	'BenchmarkPurge' => __DIR__ . '/maintenance/benchmarks/benchmarkPurge.php',
+	'BenchmarkTidy' => __DIR__ . '/maintenance/benchmarks/benchmarkTidy.php',
 	'Benchmarker' => __DIR__ . '/maintenance/benchmarks/Benchmarker.php',
 	'BitmapHandler' => __DIR__ . '/includes/media/Bitmap.php',
 	'BitmapHandler_ClientOnly' => __DIR__ . '/includes/media/Bitmap_ClientOnly.php',
