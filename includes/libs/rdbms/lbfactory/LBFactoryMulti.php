@@ -252,9 +252,7 @@ class LBFactoryMulti extends LBFactory {
 	public function getMainLB( $domain = false ) {
 		$section = $this->getSectionForDomain( $domain );
 		if ( !isset( $this->mainLBs[$section] ) ) {
-			$lb = $this->newMainLB( $domain );
-			$this->getChronologyProtector()->initLB( $lb );
-			$this->mainLBs[$section] = $lb;
+			$this->mainLBs[$section] = $this->newMainLB( $domain );
 		}
 
 		return $this->mainLBs[$section];
@@ -283,7 +281,6 @@ class LBFactoryMulti extends LBFactory {
 	public function getExternalLB( $cluster ) {
 		if ( !isset( $this->extLBs[$cluster] ) ) {
 			$this->extLBs[$cluster] = $this->newExternalLB( $cluster );
-			$this->getChronologyProtector()->initLB( $this->extLBs[$cluster] );
 		}
 
 		return $this->extLBs[$cluster];

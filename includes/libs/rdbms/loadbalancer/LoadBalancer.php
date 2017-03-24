@@ -69,6 +69,8 @@ class LoadBalancer implements ILoadBalancer {
 
 	/** @var ILoadMonitor */
 	private $loadMonitor;
+	/** @var ChronologyProtector|null */
+	private $chronProt;
 	/** @var BagOStuff */
 	private $srvCache;
 	/** @var BagOStuff */
@@ -124,6 +126,8 @@ class LoadBalancer implements ILoadBalancer {
 
 	/** @var boolean */
 	private $disabled = false;
+	/** @var boolean */
+	private $chronProtInitialized = false;
 
 	/** @var integer Warn when this many connection are held */
 	const CONN_HELD_WARN_THRESHOLD = 10;
@@ -222,6 +226,10 @@ class LoadBalancer implements ILoadBalancer {
 			: ( gethostname() ?: 'unknown' );
 		$this->cliMode = isset( $params['cliMode'] ) ? $params['cliMode'] : PHP_SAPI === 'cli';
 		$this->agent = isset( $params['agent'] ) ? $params['agent'] : '';
+
+		if ( isset( $params['chronologyProtector'] ) ) {
+			$this->chronProt = $params['chronologyProtector'];
+		}
 	}
 
 	/**
@@ -424,21 +432,24 @@ class LoadBalancer implements ILoadBalancer {
 		return $i;
 	}
 
-	/**
-	 * @param DBMasterPos|false $pos
-	 */
 	public function waitFor( $pos ) {
+		$oldPos = $this->mWaitForPos;
 		$this->mWaitForPos = $pos;
-		$i = $this->mReadIndex;
 
+		// If a generic reader connection was already established, then wait now
+		$i = $this->mReadIndex;
 		if ( $i > 0 ) {
 			if ( !$this->doWait( $i ) ) {
 				$this->laggedReplicaMode = true;
 			}
 		}
+
+		// Restore the older position if it was higher
+		$this->setWaitForPositionIfHigher( $oldPos );
 	}
 
 	public function waitForOne( $pos, $timeout = null ) {
+		$oldPos = $this->mWaitForPos;
 		$this->mWaitForPos = $pos;
 
 		$i = $this->mReadIndex;
@@ -456,10 +467,14 @@ class LoadBalancer implements ILoadBalancer {
 			$ok = true; // no applicable loads
 		}
 
+		// Restore the older position if it was higher
+		$this->setWaitForPositionIfHigher( $oldPos );
+
 		return $ok;
 	}
 
 	public function waitForAll( $pos, $timeout = null ) {
+		$oldPos = $this->mWaitForPos;
 		$this->mWaitForPos = $pos;
 		$serverCount = count( $this->mServers );
 
@@ -470,7 +485,23 @@ class LoadBalancer implements ILoadBalancer {
 			}
 		}
 
+		// Restore the older position if it was higher
+		$this->setWaitForPositionIfHigher( $oldPos );
+
 		return $ok;
+	}
+
+	/**
+	 * @param DBMasterPos|bool $pos
+	 */
+	private function setWaitForPositionIfHigher( $pos ) {
+		if ( !$pos ) {
+			return;
+		}
+
+		if ( !$this->mWaitForPos || $pos->hasReached( $this->mWaitForPos ) ) {
+			$this->mWaitForPos = $pos;
+		}
 	}
 
 	/**
@@ -716,6 +747,13 @@ class LoadBalancer implements ILoadBalancer {
 	public function openConnection( $i, $domain = false ) {
 		if ( $this->localDomain->equals( $domain ) || $domain === $this->localDomainIdAlias ) {
 			$domain = false; // local connection requested
+		}
+
+		if ( !$this->chronProtInitialized && $this->chronProt ) {
+			$this->connLogger->debug( __METHOD__ . ': calling initLB() before first connection.' );
+			// Load CP positions before connecting so that doWait() triggers later if needed
+			$this->chronProtInitialized = true;
+			$this->chronProt->initLB( $this );
 		}
 
 		if ( $domain !== false ) {
