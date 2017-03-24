@@ -1307,7 +1307,7 @@ return [
 		'dependencies' => [
 			'mediawiki.ForeignStructuredUpload',
 			'mediawiki.Upload.BookletLayout',
-			'mediawiki.widgets.CategorySelector',
+			'mediawiki.widgets.CategorySelectorWidget',
 			'mediawiki.widgets.DateInputWidget',
 			'mediawiki.jqueryMsg',
 			'mediawiki.api.messages',
