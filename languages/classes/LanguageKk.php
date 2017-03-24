@@ -408,7 +408,7 @@ class LanguageKk extends LanguageKk_cyrl {
 	 * @return string
 	 */
 	function lcfirst( $string ) {
-		if ( $string[0] == 'I' ) {
+		if ( substr( $string, 0, 1 ) === 'I' ) {
 			$variant = $this->getPreferredVariant();
 			if ( $variant == 'kk-latn' || $variant == 'kk-tr' ) {
 				return 'ı' . substr( $string, 1 );
