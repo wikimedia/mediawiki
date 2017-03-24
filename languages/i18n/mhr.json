@@ -368,7 +368,7 @@
 	"searchprofile-articles": "Возымо лаштык-влак",
 	"searchprofile-images": "Мультимедий",
 	"searchprofile-everything": "Чыла",
-	"searchprofile-advanced": "Кумдарак",
+	"searchprofile-advanced": "Кумда кычалмаш",
 	"searchprofile-articles-tooltip": "Кычалмаш $1ште",
 	"searchprofile-images-tooltip": "Файл-влакым кычалмаш",
 	"searchprofile-everything-tooltip": "Чыла лаштык-влакыште кычалаш (каҥашымаш лаштык-влакыштат)",
@@ -386,7 +386,7 @@
 	"search-nonefound": "Тыйын йодышет почеш нимо муалтын огыл",
 	"powersearch-legend": "Сайынрак кычалаш",
 	"powersearch-ns": "Кычалаш тиде лӱм-влакын кумдыкышт-влакыште:",
-	"powersearch-togglelabel": "Сайлаш:",
+	"powersearch-togglelabel": "Ойыраш:",
 	"powersearch-toggleall": "Чыла",
 	"powersearch-togglenone": "Нимо",
 	"preferences": "Келыштарымаш",
@@ -806,7 +806,7 @@
 	"tag-filter": "[[Special:Tags|Метке]] фильтр:",
 	"logentry-delete-delete": "$1 {{GENDER:$2|шӧрен|шӧрен}} лаштыкым $3",
 	"logentry-newusers-create": "Пайдаланыше {{GENDER:$2}} $1 лаштыкым ыштен.",
-	"searchsuggest-search": "{{SITENAME}} сайтыште кычалаш",
+	"searchsuggest-search": "кычалаш",
 	"expand_templates_ok": "Йӧра",
 	"expand_templates_preview": "Ончылгоч ончымаш"
 }
