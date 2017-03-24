@@ -46,11 +46,11 @@
 		return mw.ForeignStructuredUpload.BookletLayout.parent.prototype.initialize.call( this ).then(
 			function () {
 				return $.when(
-					// Point the CategorySelector to the right wiki
+					// Point the CategoryMultiselectWidget to the right wiki
 					booklet.upload.getApi().then( function ( api ) {
 						// If this is a ForeignApi, it will have a apiUrl, otherwise we don't need to do anything
 						if ( api.apiUrl ) {
-							// Can't reuse the same object, CategorySelector calls #abort on its mw.Api instance
+							// Can't reuse the same object, CategoryMultiselectWidget calls #abort on its mw.Api instance
 							booklet.categoriesWidget.api = new mw.ForeignApi( api.apiUrl );
 						}
 						return $.Deferred().resolve();
@@ -242,7 +242,7 @@
 			multiline: true,
 			autosize: true
 		} );
-		this.categoriesWidget = new mw.widgets.CategorySelector( {
+		this.categoriesWidget = new mw.widgets.CategoryMultiselectWidget( {
 			// Can't be done here because we don't know the target wiki yet... done in #initialize.
 			// api: new mw.ForeignApi( ... ),
 			$overlay: this.$overlay
