@@ -103,4 +103,13 @@
 		this.title.restorePreInfuseState( state.title );
 	};
 
+	/**
+	 * @inheritdoc
+	 */
+	mw.widgets.ComplexTitleInputWidget.prototype.setDisabled = function ( disabled ) {
+		mw.widgets.ComplexTitleInputWidget.parent.prototype.setDisabled.call( this, disabled );
+		this.namespace.setDisabled( disabled );
+		this.title.setDisabled( disabled );
+	};
+
 }( jQuery, mediaWiki ) );
