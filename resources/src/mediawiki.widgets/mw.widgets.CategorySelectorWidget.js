@@ -1,31 +1,30 @@
 /*!
- * MediaWiki Widgets - CategorySelector class.
+ * MediaWiki Widgets - CategorySelectorWidget class.
  *
  * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
 ( function ( $, mw ) {
-	var CSP,
-		NS_CATEGORY = mw.config.get( 'wgNamespaceIds' ).category;
+	var NS_CATEGORY = mw.config.get( 'wgNamespaceIds' ).category;
 
 	/**
 	 * Category selector widget. Displays an OO.ui.CapsuleMultiselectWidget
 	 * and autocompletes with available categories.
 	 *
-	 *     mw.loader.using( 'mediawiki.widgets.CategorySelector', function () {
-	 *       var selector = new mw.widgets.CategorySelector( {
+	 *     mw.loader.using( 'mediawiki.widgets.CategorySelectorWidget', function () {
+	 *       var selector = new mw.widgets.CategorySelectorWidget( {
 	 *         searchTypes: [
-	 *           mw.widgets.CategorySelector.SearchType.OpenSearch,
-	 *           mw.widgets.CategorySelector.SearchType.InternalSearch
+	 *           mw.widgets.CategorySelectorWidget.SearchType.OpenSearch,
+	 *           mw.widgets.CategorySelectorWidget.SearchType.InternalSearch
 	 *         ]
 	 *       } );
 	 *
 	 *       $( 'body' ).append( selector.$element );
 	 *
-	 *       selector.setSearchTypes( [ mw.widgets.CategorySelector.SearchType.SubCategories ] );
+	 *       selector.setSearchTypes( [ mw.widgets.CategorySelectorWidget.SearchType.SubCategories ] );
 	 *     } );
 	 *
-	 * @class mw.widgets.CategorySelector
+	 * @class mw.widgets.CategorySelectorWidget
 	 * @uses mw.Api
 	 * @extends OO.ui.CapsuleMultiselectWidget
 	 * @mixins OO.ui.mixin.PendingElement
@@ -34,21 +33,21 @@
 	 * @param {Object} [config] Configuration options
 	 * @cfg {mw.Api} [api] Instance of mw.Api (or subclass thereof) to use for queries
 	 * @cfg {number} [limit=10] Maximum number of results to load
-	 * @cfg {mw.widgets.CategorySelector.SearchType[]} [searchTypes=[mw.widgets.CategorySelector.SearchType.OpenSearch]]
+	 * @cfg {mw.widgets.CategorySelectorWidget.SearchType[]} [searchTypes=[mw.widgets.CategorySelectorWidget.SearchType.OpenSearch]]
 	 *   Default search API to use when searching.
 	 */
-	function CategorySelector( config ) {
+	mw.widgets.CategorySelectorWidget = function MWCategorySelectorWidget( config ) {
 		// Config initialization
 		config = $.extend( {
 			limit: 10,
-			searchTypes: [ CategorySelector.SearchType.OpenSearch ]
+			searchTypes: [ mw.widgets.CategorySelectorWidget.SearchType.OpenSearch ]
 		}, config );
 		this.limit = config.limit;
 		this.searchTypes = config.searchTypes;
 		this.validateSearchTypes();
 
 		// Parent constructor
-		mw.widgets.CategorySelector.parent.call( this, $.extend( true, {}, config, {
+		mw.widgets.CategorySelectorWidget.parent.call( this, $.extend( true, {}, config, {
 			menu: {
 				filterFromInput: false
 			},
@@ -67,13 +66,12 @@
 		// Initialize
 		this.api = config.api || new mw.Api();
 		this.searchCache = {};
-	}
+	};
 
 	/* Setup */
 
-	OO.inheritClass( CategorySelector, OO.ui.CapsuleMultiselectWidget );
-	OO.mixinClass( CategorySelector, OO.ui.mixin.PendingElement );
-	CSP = CategorySelector.prototype;
+	OO.inheritClass( mw.widgets.CategorySelectorWidget, OO.ui.CapsuleMultiselectWidget );
+	OO.mixinClass( mw.widgets.CategorySelectorWidget, OO.ui.mixin.PendingElement );
 
 	/* Methods */
 
@@ -85,7 +83,7 @@
 	 * @private
 	 * @method
 	 */
-	CSP.updateMenuItems = function () {
+	mw.widgets.CategorySelectorWidget.prototype.updateMenuItems = function () {
 		this.getMenu().clearItems();
 		this.getNewMenuItems( this.$input.val() ).then( function ( items ) {
 			var existingItems, filteredItems,
@@ -121,8 +119,8 @@
 	/**
 	 * @inheritdoc
 	 */
-	CSP.clearInput = function () {
-		CategorySelector.parent.prototype.clearInput.call( this );
+	mw.widgets.CategorySelectorWidget.prototype.clearInput = function () {
+		mw.widgets.CategorySelectorWidget.parent.prototype.clearInput.call( this );
 		// Abort all pending requests, we won't need their results
 		this.api.abort();
 	};
@@ -135,7 +133,7 @@
 	 * @param {string} input The input used to prefix search categories
 	 * @return {jQuery.Promise} Resolves with an array of categories
 	 */
-	CSP.getNewMenuItems = function ( input ) {
+	mw.widgets.CategorySelectorWidget.prototype.getNewMenuItems = function ( input ) {
 		var i,
 			promises = [],
 			deferred = $.Deferred();
@@ -189,7 +187,7 @@
 	/**
 	 * @inheritdoc
 	 */
-	CSP.createItemWidget = function ( data ) {
+	mw.widgets.CategorySelectorWidget.prototype.createItemWidget = function ( data ) {
 		var title = mw.Title.makeTitle( NS_CATEGORY, data );
 		if ( !title ) {
 			return null;
@@ -203,7 +201,7 @@
 	/**
 	 * @inheritdoc
 	 */
-	CSP.getItemFromData = function ( data ) {
+	mw.widgets.CategorySelectorWidget.prototype.getItemFromData = function ( data ) {
 		// This is a bit of a hack... We have to canonicalize the data in the same way that
 		// #createItemWidget and CategoryCapsuleItemWidget will do, otherwise we won't find duplicates.
 		var title = mw.Title.makeTitle( NS_CATEGORY, data );
@@ -219,9 +217,9 @@
 	 * @private
 	 * @return {boolean}
 	 */
-	CSP.validateSearchTypes = function () {
+	mw.widgets.CategorySelectorWidget.prototype.validateSearchTypes = function () {
 		var validSearchTypes = false,
-			searchTypeEnumCount = Object.keys( CategorySelector.SearchType ).length;
+			searchTypeEnumCount = Object.keys( mw.widgets.CategorySelectorWidget.SearchType ).length;
 
 		// Check if all values are in the SearchType enum
 		validSearchTypes = this.searchTypes.every( function ( searchType ) {
@@ -232,20 +230,20 @@
 			throw new Error( 'Unknown searchType in searchTypes' );
 		}
 
-		// If the searchTypes has CategorySelector.SearchType.SubCategories
+		// If the searchTypes has mw.widgets.CategorySelectorWidget.SearchType.SubCategories
 		// it can be the only search type.
-		if ( this.searchTypes.indexOf( CategorySelector.SearchType.SubCategories ) > -1 &&
+		if ( this.searchTypes.indexOf( mw.widgets.CategorySelectorWidget.SearchType.SubCategories ) > -1 &&
 			this.searchTypes.length > 1
 		) {
-			throw new Error( 'Can\'t have additional search types with CategorySelector.SearchType.SubCategories' );
+			throw new Error( 'Can\'t have additional search types with mw.widgets.CategorySelectorWidget.SearchType.SubCategories' );
 		}
 
-		// If the searchTypes has CategorySelector.SearchType.ParentCategories
+		// If the searchTypes has mw.widgets.CategorySelectorWidget.SearchType.ParentCategories
 		// it can be the only search type.
-		if ( this.searchTypes.indexOf( CategorySelector.SearchType.ParentCategories ) > -1 &&
+		if ( this.searchTypes.indexOf( mw.widgets.CategorySelectorWidget.SearchType.ParentCategories ) > -1 &&
 			this.searchTypes.length > 1
 		) {
-			throw new Error( 'Can\'t have additional search types with CategorySelector.SearchType.ParentCategories' );
+			throw new Error( 'Can\'t have additional search types with mw.widgets.CategorySelectorWidget.SearchType.ParentCategories' );
 		}
 
 		return true;
@@ -254,9 +252,9 @@
 	/**
 	 * Sets and validates the value of `this.searchType`.
 	 *
-	 * @param {mw.widgets.CategorySelector.SearchType[]} searchTypes
+	 * @param {mw.widgets.CategorySelectorWidget.SearchType[]} searchTypes
 	 */
-	CSP.setSearchTypes = function ( searchTypes ) {
+	mw.widgets.CategorySelectorWidget.prototype.setSearchTypes = function ( searchTypes ) {
 		this.searchTypes = searchTypes;
 		this.validateSearchTypes();
 	};
@@ -267,10 +265,10 @@
 	 * @private
 	 * @method
 	 * @param {string} input The input used to prefix search categories
-	 * @param {mw.widgets.CategorySelector.SearchType} searchType
+	 * @param {mw.widgets.CategorySelectorWidget.SearchType} searchType
 	 * @return {jQuery.Promise} Resolves with an array of categories
 	 */
-	CSP.searchCategories = function ( input, searchType ) {
+	mw.widgets.CategorySelectorWidget.prototype.searchCategories = function ( input, searchType ) {
 		var deferred = $.Deferred(),
 			cacheKey = input + searchType.toString();
 
@@ -280,7 +278,7 @@
 		}
 
 		switch ( searchType ) {
-			case CategorySelector.SearchType.OpenSearch:
+			case mw.widgets.CategorySelectorWidget.SearchType.OpenSearch:
 				this.api.get( {
 					formatversion: 2,
 					action: 'opensearch',
@@ -293,7 +291,7 @@
 				} ).fail( deferred.reject.bind( deferred ) );
 				break;
 
-			case CategorySelector.SearchType.InternalSearch:
+			case mw.widgets.CategorySelectorWidget.SearchType.InternalSearch:
 				this.api.get( {
 					formatversion: 2,
 					action: 'query',
@@ -310,7 +308,7 @@
 				} ).fail( deferred.reject.bind( deferred ) );
 				break;
 
-			case CategorySelector.SearchType.Exists:
+			case mw.widgets.CategorySelectorWidget.SearchType.Exists:
 				if ( input.indexOf( '|' ) > -1 ) {
 					deferred.resolve( [] );
 					break;
@@ -334,7 +332,7 @@
 				} ).fail( deferred.reject.bind( deferred ) );
 				break;
 
-			case CategorySelector.SearchType.SubCategories:
+			case mw.widgets.CategorySelectorWidget.SearchType.SubCategories:
 				if ( input.indexOf( '|' ) > -1 ) {
 					deferred.resolve( [] );
 					break;
@@ -355,7 +353,7 @@
 				} ).fail( deferred.reject.bind( deferred ) );
 				break;
 
-			case CategorySelector.SearchType.ParentCategories:
+			case mw.widgets.CategorySelectorWidget.SearchType.ParentCategories:
 				if ( input.indexOf( '|' ) > -1 ) {
 					deferred.resolve( [] );
 					break;
@@ -393,10 +391,10 @@
 	};
 
 	/**
-	 * @enum mw.widgets.CategorySelector.SearchType
+	 * @enum mw.widgets.CategorySelectorWidget.SearchType
 	 * Types of search available.
 	 */
-	CategorySelector.SearchType = {
+	mw.widgets.CategorySelectorWidget.SearchType = {
 		/** Search using action=opensearch */
 		OpenSearch: 0,
 
@@ -413,5 +411,5 @@
 		ParentCategories: 4
 	};
 
-	mw.widgets.CategorySelector = CategorySelector;
+	mw.widgets.CategorySelector = mw.widgets.CategorySelectorWidget;
 }( jQuery, mediaWiki ) );
