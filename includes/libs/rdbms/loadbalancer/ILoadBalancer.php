@@ -105,6 +105,7 @@ interface ILoadBalancer {
 	 *  - srvCache : BagOStuff object for server cache [optional]
 	 *  - memCache : BagOStuff object for cluster memory cache [optional]
 	 *  - wanCache : WANObjectCache object [optional]
+	 *  - chronologyProtector: ChronologyProtector object [optional]
 	 *  - hostname : The name of the current server [optional]
 	 *  - cliMode: Whether the execution context is a CLI script. [optional]
 	 *  - profiler : Class name or instance with profileIn()/profileOut() methods. [optional]

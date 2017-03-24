@@ -89,7 +89,6 @@ class LBFactorySimple extends LBFactory {
 	public function getMainLB( $domain = false ) {
 		if ( !isset( $this->mainLB ) ) {
 			$this->mainLB = $this->newMainLB( $domain );
-			$this->getChronologyProtector()->initLB( $this->mainLB );
 		}
 
 		return $this->mainLB;
@@ -106,7 +105,6 @@ class LBFactorySimple extends LBFactory {
 	public function getExternalLB( $cluster ) {
 		if ( !isset( $this->extLBs[$cluster] ) ) {
 			$this->extLBs[$cluster] = $this->newExternalLB( $cluster );
-			$this->getChronologyProtector()->initLB( $this->extLBs[$cluster] );
 		}
 
 		return $this->extLBs[$cluster];
