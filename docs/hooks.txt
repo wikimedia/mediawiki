@@ -1018,7 +1018,8 @@ RecentChangesLinked, and Watchlist).  Generally, you will want to construct
 new ChangesListBooleanFilter or ChangesListStringOptionsFilter objects.
 
 When constructing them, you specify which group they belong to.  You can reuse
-existing groups (accessed through $special->getFilterGroup), or create your own.
+existing groups (accessed through $special->getFilterGroup), or create your own
+(ChangesListBooleanFilterGroup or ChangesListStringOptionsFilterGroup).
 If you create new groups, you must register them with $special->registerFilterGroup.
 $special: ChangesListSpecialPage instance
 
