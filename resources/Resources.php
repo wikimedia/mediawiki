@@ -2355,9 +2355,27 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.widgets.CategorySelector' => [
+		'deprecated' => 'Use of the "mediawiki.widgets.CategorySelector" module is deprecated. Use "mediawiki.widgets.CategorySelectorWidget instead. (See T161285)',
 		'scripts' => [
 			'resources/src/mediawiki.widgets/mw.widgets.CategoryCapsuleItemWidget.js',
-			'resources/src/mediawiki.widgets/mw.widgets.CategorySelector.js',
+			'resources/src/mediawiki.widgets/mw.widgets.CategorySelectorWidget.js',
+		],
+		'dependencies' => [
+			'oojs-ui-widgets',
+			'mediawiki.api',
+			'mediawiki.ForeignApi',
+			'mediawiki.Title',
+		],
+		'messages' => [
+			'red-link-title',
+			'mw-widgets-categoryselector-add-category-placeholder'
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	'mediawiki.widgets.CategorySelectorWidget' => [
+		'scripts' => [
+			'resources/src/mediawiki.widgets/mw.widgets.CategoryCapsuleItemWidget.js',
+			'resources/src/mediawiki.widgets/mw.widgets.CategorySelectorWidget.js',
 		],
 		'dependencies' => [
 			'oojs-ui-widgets',
