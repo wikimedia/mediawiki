@@ -1404,10 +1404,12 @@ textarea in the edit form.
 &$buttons: Array of edit buttons "Save", "Preview", "Live", and "Diff"
 &$tabindex: HTML tabindex of the last edit check/button
 
-'EditPageBeforeEditChecks': Allows modifying the edit checks below the textarea
-in the edit form.
+'EditPageBeforeEditChecks': DEPRECATED! Use 'EditPageGetCheckboxesDefinition' instead,
+or 'EditPage::showStandardInputs:options' if you don't actually care about checkboxes
+and just want to add some HTML to the page.
+Allows modifying the edit checks below the textarea in the edit form.
 &$editpage: The current EditPage object
-&$checks: Array of edit checks like "watch this page"/"minor edit"
+&$checks: Array of the HTML for edit checks like "watch this page"/"minor edit"
 &$tabindex: HTML tabindex of the last edit check/button
 
 'EditPageBeforeEditToolbar': Allows modifying the edit toolbar above the
@@ -1419,6 +1421,12 @@ contribution/copyright notice.
 $title: title of page being edited
 &$msg: localization message name, overridable. Default is either
   'copyrightwarning' or 'copyrightwarning2'.
+
+'EditPageGetCheckboxesDefinition': Allows modifying the edit checkboxes
+below the textarea in the edit form.
+$editpage: The current EditPage object
+&$checkboxes: Array of checkbox definitions. See EditPage::getCheckboxesDefinition()
+for the format.
 
 'EditPageGetDiffContent': Allow modifying the wikitext that will be used in
 "Show changes". Note that it is preferable to implement diff handling for

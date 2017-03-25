@@ -268,6 +268,10 @@ changes to languages because of Phabricator reports.
 * WikiRevision::$fileIsTemp was deprecated.
 * WikiRevision::$importer was deprecated.
 * WikiRevision::$user was deprecated.
+* Hook 'EditPageBeforeEditChecks' is now deprecated. Instead use the new hook
+  'EditPageGetCheckboxesDefinition', or 'EditPage::showStandardInputs:options'
+  if you don't actually care about checkboxes and just want to add some HTML
+  to the page.
 
 == Compatibility ==
 
