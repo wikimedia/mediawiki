@@ -22,6 +22,7 @@
     "karma": "1.1.0",
     "karma-chrome-launcher": "2.0.0",
     "karma-firefox-launcher": "1.0.0",
+    "karma-mocha-reporter": "2.2.3",
     "karma-qunit": "1.0.0",
     "qunitjs": "1.22.0",
     "stylelint-config-wikimedia": "0.4.1",
