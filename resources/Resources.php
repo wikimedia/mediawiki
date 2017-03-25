@@ -308,11 +308,6 @@ return [
 		'styles' => 'resources/lib/qunitjs/qunit.css',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'jquery.qunit.completenessTest' => [
-		'scripts' => 'resources/src/jquery/jquery.qunit.completenessTest.js',
-		'dependencies' => 'jquery.qunit',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'jquery.spinner' => [
 		'scripts' => 'resources/src/jquery/jquery.spinner.js',
 		'styles' => 'resources/src/jquery/jquery.spinner.css',
