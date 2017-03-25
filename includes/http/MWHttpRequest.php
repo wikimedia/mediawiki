@@ -52,6 +52,9 @@ class MWHttpRequest implements LoggerAwareInterface {
 	protected $followRedirects = false;
 	protected $connectTimeout;
 
+	/** @var string[] Associative array with 'ip' and 'userAgent' keys */
+	protected $originalRequest;
+
 	/**
 	 * @var CookieJar
 	 */
@@ -124,6 +127,10 @@ class MWHttpRequest implements LoggerAwareInterface {
 				'Authorization',
 				'Basic ' . base64_encode( $options['username'] . ':' . $options['password'] )
 			);
+		}
+		var_dump(array_keys($options));
+		if ( isset( $options['originalRequest'] ) ) {
+			$this->setOriginalRequest( $options['originalRequest'] );
 		}
 
 		$members = [ "postData", "proxy", "noProxy", "sslVerifyHost", "caInfo",
@@ -631,5 +638,35 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 */
 	public function canFollowRedirects() {
 		return true;
+	}
+
+	/**
+	 * Set information about the original request. This can be useful for
+	 * endpoints/API modules which act as a proxy for some service, and
+	 * throttling etc. needs to happen in that service.
+	 * Calling this will result in the X-Forwarded-For and X-Original-User-Agent
+	 * headers being set.
+	 * @param WebRequest|array $originalRequest When in array form, it's
+     *   expected to have the keys 'ip' and 'userAgent'.
+	 * @note IP/user agent is personally identifiable information, and should
+	 *   only be set when the privacy policy of the request target is
+	 *   compatible with that of the MediaWiki installation.
+	 */
+	public function setOriginalRequest( $originalRequest ) {
+		if ( $originalRequest instanceof WebRequest ) {
+			$originalRequest = [
+				'ip' => $originalRequest->getIP(),
+				'userAgent' => $originalRequest->getHeader( 'User-Agent' ),
+			];
+		} elseif (
+			!is_array( $originalRequest )
+			|| array_diff( [ 'ip', 'userAgent' ], array_keys( $originalRequest ) )
+		) {
+			throw new InvalidArgumentException( __METHOD__ . ': $originalReuqest must be a '
+				. "WebRequest or an array with 'ip' and 'userAgent' keys" );
+		}
+
+		$this->reqHeaders['X-Forwarder-For'] = $originalRequest['ip'];
+		$this->reqHeaders['X-Original-User-Agent'] = $originalRequest['userAgent'];
 	}
 }
