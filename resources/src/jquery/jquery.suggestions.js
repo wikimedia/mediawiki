@@ -96,7 +96,7 @@
  */
  // jscs:enable checkParamNames
 
-( function ( $ ) {
+( function ( $, mw ) {
 
 	var hasOwn = Object.hasOwnProperty;
 
@@ -178,7 +178,7 @@
 					context.data.prevText = val;
 					// Try cache first
 					if ( context.config.cache && hasOwn.call( cache, val ) ) {
-						if ( +new Date() - cache[ val ].timestamp < context.config.cacheMaxAge ) {
+						if ( mw.now() - cache[ val ].timestamp < context.config.cacheMaxAge ) {
 							context.data.$textbox.suggestions( 'suggestions', cache[ val ].suggestions );
 							if ( typeof context.config.update.after === 'function' ) {
 								context.config.update.after.call( context.data.$textbox, cache[ val ].metadata );
@@ -203,7 +203,7 @@
 									cache[ val ] = {
 										suggestions: suggestions,
 										metadata: metadata,
-										timestamp: +new Date()
+										timestamp: mw.now()
 									};
 								}
 							},
@@ -786,4 +786,4 @@
 	 * @mixins jQuery.plugin.suggestions
 	 */
 
-}( jQuery ) );
+}( jQuery, mediaWiki ) );
