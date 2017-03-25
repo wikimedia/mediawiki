@@ -88,18 +88,18 @@ figure[typeof*='mw:Image'] {
 		display: table-caption;
 		caption-side: bottom;
 		/* In mw-core the font-size is duplicated, 94% in thumbiner
-		 * and again 94% in thumbcaption. 88% for font size of the
+		 * and again 94% in thumbcaption. 88.4% for font size of the
 		 * caption results in the same behavior. */
 		font-size: 88.4%;
 		line-height: 1.4em;
 		text-align: left;
 
-		border: 1px solid #ccc;
+		border: 1px solid #c8ccd1;
 		border-top: 0;
 
 		/* taken from .thumbcaption, plus .thumbinner */
 		padding: 0 6px 6px 6px;
-		background-color: #f9f9f9;
+		background-color: #f8f9fa;
 
 		table {
 			/* reset caption side for tables inside figcaptions */
@@ -113,10 +113,10 @@ figure[typeof~='mw:Image/Frame'] {
 	display: table;
 	overflow: auto;
 	text-align: center;
-	border: 1px solid #ccc;
+	border: 1px solid #c8ccd1;
 	border-bottom: 0; // No border to caption
 	border-collapse: collapse;
-	background-color: #f9f9f9;
+	background-color: #f8f9fa;
 	// Default to right alignment. This is needed since Parsoid only specifies the
 	// alignment class when the alignment is explicitly set.
 	margin: 0.5em 0 1.3em 1.4em;
@@ -127,7 +127,7 @@ figure[typeof~='mw:Image/Frame'] {
 figure[typeof~='mw:Image/Thumb'] > *:first-child > img,
 figure[typeof~='mw:Image/Frame'] > *:first-child > img,
 .mw-image-border > *:first-child > img {
-	border: 1px solid #ccc;
+	border: 1px solid #c8ccd1;
 	margin: 3px;
 	background: #fff;
 }
