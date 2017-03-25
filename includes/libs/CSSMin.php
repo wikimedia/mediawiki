@@ -176,6 +176,12 @@ class CSSMin {
 	 * @return bool|string
 	 */
 	public static function getMimeType( $file ) {
+		// Infer the MIME-type from the file extension
+		$ext = strtolower( pathinfo( $file, PATHINFO_EXTENSION ) );
+		if ( isset( self::$mimeTypes[$ext] ) ) {
+			return self::$mimeTypes[$ext];
+		}
+
 		$realpath = realpath( $file );
 		if (
 			$realpath
@@ -184,12 +190,6 @@ class CSSMin {
 			&& defined( 'FILEINFO_MIME_TYPE' )
 		) {
 			return finfo_file( finfo_open( FILEINFO_MIME_TYPE ), $realpath );
-		}
-
-		// Infer the MIME-type from the file extension
-		$ext = strtolower( pathinfo( $file, PATHINFO_EXTENSION ) );
-		if ( isset( self::$mimeTypes[$ext] ) ) {
-			return self::$mimeTypes[$ext];
 		}
 
 		return false;
