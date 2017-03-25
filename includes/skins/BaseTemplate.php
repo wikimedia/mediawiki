@@ -287,12 +287,31 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @param string $name
 	 */
 	protected function renderAfterPortlet( $name ) {
+		echo $this->getAfterPortlet( $name );
+	}
+
+	/**
+	 * Allows extensions to hook into known portlets and add stuff to them
+	 *
+	 * @param string $name
+	 *
+	 * @return string html
+	 * @since 1.29
+	 */
+	protected function getAfterPortlet( $name ) {
+		$html = '';
 		$content = '';
 		Hooks::run( 'BaseTemplateAfterPortlet', [ $this, $name, &$content ] );
 
 		if ( $content !== '' ) {
-			echo "<div class='after-portlet after-portlet-$name'>$content</div>";
+			$html = Html::rawElement(
+				'div',
+				[ 'class' => [ 'after-portlet', 'after-portlet-' . $name ] ],
+				$content
+			);
 		}
+
+		return $html;
 	}
 
 	/**
@@ -499,6 +518,74 @@ abstract class BaseTemplate extends QuickTemplate {
 		return Html::rawElement( isset( $options['tag'] ) ? $options['tag'] : 'li', $attrs, $html );
 	}
 
+	/**
+	 * Generates a block of navigation links with a header
+	 *
+	 * @param string $name
+	 * @param array|string $content array of links for use with makeListItem, or a block of text
+	 * @param null|string|array|bool $msg
+	 *
+	 * @return string html
+	 * @since 1.29
+	 */
+	protected function getPortlet( $name, $content, $msg = null ) {
+		if ( $msg === null ) {
+			$msg = $name;
+		} elseif ( is_array( $msg ) ) {
+			$msgString = array_shift( $msg );
+			$msgParams = $msg;
+			$msg = $msgString;
+		}
+		$msgObj = wfMessage( $msg );
+		if ( $msgObj->exists() ) {
+			if ( isset( $msgParams ) && !empty( $msgParams ) ) {
+				$msgString = $this->getMsg( $msg, $msgParams )->parse();
+			} else {
+				$msgString = $msgObj->parse();
+			}
+		} else {
+			$msgString = htmlspecialchars( $msg );
+		}
+
+		$labelId = Sanitizer::escapeId( "p-$name-label" );
+
+		if ( is_array( $content ) ) {
+			$contentText = Html::openElement( 'ul' );
+			foreach ( $content as $key => $item ) {
+				$contentText .= $this->makeListItem(
+					$key,
+					$item,
+					[ 'text-wrapper' => [ 'tag' => 'span' ] ]
+				);
+			}
+			$contentText .= Html::closeElement( 'ul' );
+		} else {
+			$contentText = $content;
+		}
+
+		$html = Html::rawElement( 'div', [
+				'role' => 'navigation',
+				'class' => 'mw-portlet',
+				'id' => Sanitizer::escapeId( 'p-' . $name ),
+				'title' => Linker::titleAttrib( 'p-' . $name ),
+				'aria-labelledby' => $labelId
+			],
+			Html::rawElement( 'h3', [
+					'id' => $labelId,
+					'lang' => $this->get( 'userlang' ),
+					'dir' => $this->get( 'dir' )
+				],
+				$msgString
+			) .
+			Html::rawElement( 'div', [ 'class' => 'p-body' ],
+				$contentText .
+				$this->renderAfterPortlet( $name )
+			)
+		);
+
+		return $html;
+	}
+
 	function makeSearchInput( $attrs = [] ) {
 		$realAttrs = [
 			'type' => 'search',
@@ -633,6 +720,69 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
+	 * Renderer for getFooterIcons and getFooterLinks
+	 *
+	 * @param string $iconStyle $option for getFooterIcons: "icononly", "nocopyright"
+	 * @param string $linkStyle $option for getFooterLinks: "flat"
+	 *
+	 * @return string html
+	 * @since 1.29
+	 */
+	protected function getFooter( $iconStyle = 'icononly', $linkStyle = 'flat' ) {
+		$validFooterIcons = $this->getFooterIcons( $iconStyle );
+		$validFooterLinks = $this->getFooterLinks( $linkStyle );
+
+		$html = '';
+
+		if ( count( $validFooterIcons ) + count( $validFooterLinks ) > 0 ) {
+			$html .= Html::openElement( 'div', [
+				'id' => 'footer-bottom',
+				'role' => 'contentinfo',
+				'lang' => $this->get( 'userlang' ),
+				'dir' => $this->get( 'dir' )
+			] );
+			$footerEnd = Html::closeElement( 'div' );
+		} else {
+			$footerEnd = '';
+		}
+		foreach ( $validFooterIcons as $blockName => $footerIcons ) {
+			$html .= Html::openElement( 'div', [
+				'id' => 'f-' . Sanitizer::escapeId( $blockName ) . 'ico',
+				'class' => 'footer-icons'
+			] );
+			foreach ( $footerIcons as $icon ) {
+				$html .= $this->getSkin()->makeFooterIcon( $icon );
+			}
+			$html .= Html::closeElement( 'div' );
+		}
+		if ( count( $validFooterLinks ) > 0 ) {
+			$html .= Html::openElement( 'ul', [ 'id' => 'f-list', 'class' => 'footer-places' ] );
+			foreach ( $validFooterLinks as $aLink ) {
+				$html .= Html::rawElement(
+					'li',
+					[ 'id' => Sanitizer::escapeId( $aLink ) ],
+					$this->get( $aLink )
+				);
+			}
+			$html .= Html::closeElement( 'ul' );
+		}
+
+		$html .= $this->clear() . $footerEnd;
+
+		return $html;
+	}
+
+	/**
+	 * Get a div with the core visualClear class, for clearing floats
+	 *
+	 * @return string html
+	 * @since 1.29
+	 */
+	protected function clear() {
+		return Html::element( 'div', [ 'class' => 'visualClear' ] );
+	}
+
+	/**
 	 * Get the suggested HTML for page status indicators: icons (or short text snippets) usually
 	 * displayed in the top-right corner of the page, outside of the main content.
 	 *
@@ -664,15 +814,25 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
-	 * Output the basic end-page trail including bottomscripts, reporttime, and
-	 * debug stuff. This should be called right before outputting the closing
-	 * body and html tags.
+	 * Output getTrail
 	 */
 	function printTrail() {
-?>
-<?php echo MWDebug::getDebugHTML( $this->getSkin()->getContext() ); ?>
-<?php $this->html( 'bottomscripts' ); /* JS call to runBodyOnloadHook */ ?>
-<?php $this->html( 'reporttime' ) ?>
-<?php
+		echo $this->getTrail();
+	}
+
+	/**
+	 * Get the basic end-page trail including bottomscripts, reporttime, and
+	 * debug stuff. This should be called right before outputting the closing
+	 * body and html tags.
+	 *
+	 * @return string
+	 * @since 1.29
+	 */
+	function getTrail() {
+		$html = MWDebug::getDebugHTML( $this->getSkin()->getContext() );
+		$html .= $this->get( 'bottomscripts' );
+		$html .= $this->get( 'reporttime' );
+
+		return $html;
 	}
 }
