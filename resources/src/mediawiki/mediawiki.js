@@ -2146,9 +2146,7 @@
 				 * @return {Array}
 				 */
 				getModuleNames: function () {
-					return $.map( registry, function ( obj, key ) {
-						return key;
-					} );
+					return Object.keys( registry );
 				},
 
 				/**
