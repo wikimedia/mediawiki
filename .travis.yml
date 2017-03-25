@@ -19,6 +19,11 @@ matrix:
       php: hhvm
     - env: dbtype=mysql
       php: 7
+  allow_failures:
+    # Postgres support for unit tests is still buggy
+    # https://phabricator.wikimedia.org/T75174
+    - env: dbtype=postgres dbuser=travis
+      php: 5.5
 
 services:
   - mysql
