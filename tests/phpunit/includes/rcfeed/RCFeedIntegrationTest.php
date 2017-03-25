@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group Database
+ */
 class RCFeedIntegrationTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();

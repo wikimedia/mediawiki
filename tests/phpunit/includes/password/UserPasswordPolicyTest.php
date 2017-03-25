@@ -20,6 +20,9 @@
  * @file
  */
 
+/**
+ * @group Database
+ */
 class UserPasswordPolicyTest extends MediaWikiTestCase {
 
 	protected $policies = [

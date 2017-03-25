@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group Database
  * @group GlobalFunctions
  */
 class GlobalTest extends MediaWikiTestCase {
