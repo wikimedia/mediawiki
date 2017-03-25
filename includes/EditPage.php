@@ -4006,69 +4006,113 @@ HTML
 	}
 
 	/**
+	 * Return an array of checkbox definitions.
+	 *
+	 * Array keys correspond to the `<input>` 'name' attribute to use for each checkbox.
+	 *
+	 * Array values are associative arrays with the following keys:
+	 *  - 'label-message' (required): message for label text
+	 *  - 'id' (required): 'id' attribute for the `<input>`
+	 *  - 'default' (required): default checkedness (true or false)
+	 *  - 'title-message' (optional): used to generate 'title' attribute for the `<label>`
+	 *  - 'tooltip' (optional): used to generate 'title' and 'accesskey' attributes
+	 *    from messages like 'tooltip-foo', 'accesskey-foo'
+	 *  - 'label-id' (optional): 'id' attribute for the `<label>`
+	 *  - 'legacy-name' (optional): short name for backwards-compatibility
+	 * @param array $checked Array of checkbox name (matching the 'legacy-name') => bool,
+	 *   where bool indicates the checked status of the checkbox
+	 * @return array
+	 */
+	protected function getCheckboxesDefinition( $checked ) {
+		global $wgUser;
+		$checkboxes = [];
+
+		// don't show the minor edit checkbox if it's a new page or section
+		if ( !$this->isNew && $wgUser->isAllowed( 'minoredit' ) ) {
+			$checkboxes['wpMinoredit'] = [
+				'id' => 'wpMinoredit',
+				'label-message' => 'minoredit',
+				// Uses messages: tooltip-minoredit, accesskey-minoredit
+				'tooltip' => 'minoredit',
+				'label-id' => 'mw-editpage-minoredit',
+				'legacy-name' => 'minor',
+				'default' => $checked['minor'],
+			];
+		}
+
+		if ( $wgUser->isLoggedIn() ) {
+			$checkboxes['wpWatchthis'] = [
+				'id' => 'wpWatchthis',
+				'label-message' => 'watchthis',
+				// Uses messages: tooltip-watch, accesskey-watch
+				'tooltip' => 'watch',
+				'label-id' => 'mw-editpage-watch',
+				'legacy-name' => 'watch',
+				'default' => $checked['watch'],
+			];
+		}
+
+		$editPage = $this;
+		Hooks::run( 'EditPageGetCheckboxesDefinition', [ $editPage, &$checkboxes ] );
+
+		return $checkboxes;
+	}
+
+	/**
 	 * Returns an array of html code of the following checkboxes:
 	 * minor and watch
 	 *
 	 * @param int $tabindex Current tabindex
-	 * @param array $checked Array of checkbox => bool, where bool indicates the checked
-	 *                 status of the checkbox
-	 *
+	 * @param array $checked See getCheckboxesDefinition()
 	 * @return array
 	 */
 	public function getCheckboxes( &$tabindex, $checked ) {
-		global $wgUser, $wgUseMediaWikiUIEverywhere;
+		global $wgUseMediaWikiUIEverywhere;
 
 		$checkboxes = [];
+		$checkboxesDef = $this->getCheckboxesDefinition( $checked );
 
-		// don't show the minor edit checkbox if it's a new page or section
+		// Backwards-compatibility for the EditPageBeforeEditChecks hook
 		if ( !$this->isNew ) {
 			$checkboxes['minor'] = '';
-			$minorLabel = $this->context->msg( 'minoredit' )->parse();
-			if ( $wgUser->isAllowed( 'minoredit' ) ) {
-				$attribs = [
-					'tabindex' => ++$tabindex,
-					'accesskey' => $this->context->msg( 'accesskey-minoredit' )->text(),
-					'id' => 'wpMinoredit',
-				];
-				$minorEditHtml =
-					Xml::check( 'wpMinoredit', $checked['minor'], $attribs ) .
-					"&#160;<label for='wpMinoredit' id='mw-editpage-minoredit'" .
-					Xml::expandAttributes( [ 'title' => Linker::titleAttrib( 'minoredit', 'withaccess' ) ] ) .
-					">{$minorLabel}</label>";
-
-				if ( $wgUseMediaWikiUIEverywhere ) {
-					$checkboxes['minor'] =
-						Html::rawElement( 'div', [ 'class' => 'mw-ui-checkbox' ], $minorEditHtml );
-				} else {
-					$checkboxes['minor'] = $minorEditHtml;
-				}
-			}
 		}
-
-		$watchLabel = $this->context->msg( 'watchthis' )->parse();
 		$checkboxes['watch'] = '';
-		if ( $wgUser->isLoggedIn() ) {
+
+		foreach ( $checkboxesDef as $name => $options ) {
+			$legacyName = isset( $options['legacy-name'] ) ? $options['legacy-name'] : $name;
+			$label = $this->context->msg( $options['label-message'] )->parse();
 			$attribs = [
 				'tabindex' => ++$tabindex,
-				'accesskey' => $this->context->msg( 'accesskey-watch' )->text(),
-				'id' => 'wpWatchthis',
+				'id' => $options['id'],
 			];
-			$watchThisHtml =
-				Xml::check( 'wpWatchthis', $checked['watch'], $attribs ) .
-				"&#160;<label for='wpWatchthis' id='mw-editpage-watch'" .
-				Xml::expandAttributes( [ 'title' => Linker::titleAttrib( 'watch', 'withaccess' ) ] ) .
-				">{$watchLabel}</label>";
-			if ( $wgUseMediaWikiUIEverywhere ) {
-				$checkboxes['watch'] =
-					Html::rawElement( 'div', [ 'class' => 'mw-ui-checkbox' ], $watchThisHtml );
-			} else {
-				$checkboxes['watch'] = $watchThisHtml;
+			$labelAttribs = [
+				'for' => $options['id'],
+			];
+			if ( isset( $options['tooltip'] ) ) {
+				$attribs['accesskey'] = $this->context->msg( "accesskey-{$options['tooltip']}" )->text();
+				$labelAttribs['title'] = Linker::titleAttrib( $options['tooltip'], 'withaccess' );
 			}
+			if ( isset( $options['title-message'] ) ) {
+				$labelAttribs['title'] = $this->context->msg( $options['title-message'] )->text();
+			}
+			if ( isset( $options['label-id'] ) ) {
+				$labelAttribs['id'] = $options['label-id'];
+			}
+			$checkboxHtml =
+				Xml::check( $name, $options['default'], $attribs ) .
+				'&#160;' .
+				Xml::tags( 'label', $labelAttribs, $label );
+
+			if ( $wgUseMediaWikiUIEverywhere ) {
+				$checkboxHtml = Html::rawElement( 'div', [ 'class' => 'mw-ui-checkbox' ], $checkboxHtml );
+			}
+
+			$checkboxes[ $legacyName ] = $checkboxHtml;
 		}
 
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$editPage = $this;
-		Hooks::run( 'EditPageBeforeEditChecks', [ &$editPage, &$checkboxes, &$tabindex ] );
+		Hooks::run( 'EditPageBeforeEditChecks', [ &$editPage, &$checkboxes, &$tabindex ], '1.29' );
 		return $checkboxes;
 	}
 
