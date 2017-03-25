@@ -230,7 +230,7 @@
 	 */
 	mw.Upload.BookletLayout.prototype.uploadFile = function () {
 		var deferred = $.Deferred(),
-			startTime = new Date(),
+			startTime = mw.now(),
 			layout = this,
 			file = this.getFile();
 
@@ -265,7 +265,7 @@
 				deferred.reject( errorMessage );
 			} );
 		}, function ( progress ) {
-			var elapsedTime = new Date() - startTime,
+			var elapsedTime = mw.now() - startTime,
 				estimatedTotalTime = ( 1 / progress ) * elapsedTime,
 				estimatedRemainingTime = moment.duration( estimatedTotalTime - elapsedTime );
 			layout.emit( 'fileUploadProgress', progress, estimatedRemainingTime );

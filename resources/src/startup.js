@@ -15,7 +15,7 @@ var mwPerformance = ( window.performance && performance.mark ) ? performance : {
 			navStart = perf && perf.timing && perf.timing.navigationStart;
 		return navStart && typeof perf.now === 'function' ?
 			function () { return navStart + perf.now(); } :
-			function () { return +new Date(); };
+			function () { return + new Date(); };
 	}() ),
 	// eslint-disable-next-line no-unused-vars
 	mediaWikiLoadStart = mwNow();
