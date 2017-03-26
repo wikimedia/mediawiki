@@ -773,6 +773,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-general": "システム全体の情報。",
 	"apihelp-query+siteinfo-paramvalue-prop-specialpagealiases": "特別ページの別名の一覧。",
 	"apihelp-query+siteinfo-paramvalue-prop-magicwords": "マジックワードとこれらの別名の一覧。",
+	"apihelp-query+siteinfo-paramvalue-prop-fileextensions": "アップロードが許可されているファイル拡張子の一覧を返します。",
 	"apihelp-query+siteinfo-param-numberingroup": "利用者グループに属する利用者の数を一覧表示します。",
 	"apihelp-query+siteinfo-example-simple": "サイト情報を取得する。",
 	"apihelp-query+tags-description": "変更タグを一覧表示します。",

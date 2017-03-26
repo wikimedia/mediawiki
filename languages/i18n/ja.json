@@ -3716,6 +3716,7 @@
 	"pagelang-language": "言語",
 	"pagelang-use-default": "既定の言語を使用",
 	"pagelang-select-lang": "言語を選択",
+	"pagelang-reason": "理由",
 	"pagelang-submit": "変更",
 	"right-pagelang": "ページの言語を変更",
 	"action-pagelang": "ページの言語の変更",

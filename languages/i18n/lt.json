@@ -1307,6 +1307,7 @@
 	"rcfilters-clear-all-filters": "Valyti visus filtrus",
 	"rcfilters-invalid-filter": "Negalimas filtras",
 	"rcfilters-filterlist-title": "Filtrai",
+	"rcfilters-filterlist-whatsthis": "Kas tai?",
 	"rcfilters-highlightmenu-title": "Pasirinkite spalvą",
 	"rcfilters-filterlist-noresults": "Nerastas toks filtras",
 	"rcfilters-filtergroup-registration": "Vartotojo registracija",

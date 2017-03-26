@@ -4,7 +4,8 @@
 			"MF-Warburg",
 			"Nemo bis",
 			"Reedy",
-			"아라"
+			"아라",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Subliña ligasaun sira:",
@@ -145,7 +146,7 @@
 	"aboutsite": "Kona-ba {{SITENAME}}",
 	"aboutpage": "Project:Kona-ba",
 	"copyright": "Testu pájina nian iha $1 okos.",
-	"copyrightpage": "{{ns:project}}:Direitu_autór_nian",
+	"copyrightpage": "{{ns:project}}:Direitu autór nian",
 	"currentevents": "Mamosuk atuál sira",
 	"currentevents-url": "Project:Mamosuk atuál sira",
 	"disclaimers": "Avisu legál",
@@ -201,14 +202,9 @@
 	"yourname": "Naran uza-na'in:",
 	"login": "Log in",
 	"nav-login-createaccount": "Log in / kriar konta ida",
-	"userlogin": "Log in / kriar konta ida",
 	"logout": "Husik",
 	"userlogout": "Husik",
-	"nologin": "La iha konta ida? '''$1'''.",
-	"nologinlink": "Registrar",
 	"createaccount": "Registrar uza-na'in",
-	"gotaccount": "Ó iha konta ona? '''$1'''.",
-	"gotaccountlink": "Log in",
 	"userexists": "Naran uza-na'in ne'e ona iha wiki.\nFavór ida lori naran seluk.",
 	"nosuchuser": "Konta uza-na'in (naran \"$1\") la iha.\nUser names are case sensitive.\nCheck your spelling, ka [[Special:CreateAccount|kria konta foun]].",
 	"nouserspecified": "Ó tenke espesífiku naran uza-na'in ida.",
