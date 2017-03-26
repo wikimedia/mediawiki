@@ -19,6 +19,81 @@ class CSSMinTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider mimeTypeProvider
+	 */
+	public function testGetMimeType( $fileContents, $fileExtension, $expected ) {
+		$fileName = wfTempDir() . DIRECTORY_SEPARATOR . uniqid( 'MW_PHPUnit_CSSMinTest_' ) . '.'
+			. $fileExtension;
+		$this->addTmpFiles( $fileName );
+		file_put_contents( $fileName, $fileContents );
+		$this->assertSame( $expected, CSSMin::getMimeType( $fileName ) );
+	}
+
+	public function mimeTypeProvider() {
+		return [
+			'JPEG with short extension' => [
+				"\xFF\xD8\xFF",
+				'jpg',
+				'image/jpeg'
+			],
+			'JPEG with long extension' => [
+				"\xFF\xD8\xFF",
+				'jpeg',
+				'image/jpeg'
+			],
+			'PNG' => [
+				"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A",
+				'png',
+				'image/png'
+			],
+
+			'PNG extension but JPEG content' => [
+				"\xFF\xD8\xFF",
+				'png',
+				'image/png'
+			],
+			'JPEG extension but PNG content' => [
+				"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A",
+				'jpg',
+				'image/jpeg'
+			],
+			'PNG extension but SVG content' => [
+				'<?xml version="1.0"?><svg></svg>',
+				'png',
+				'image/png'
+			],
+			'SVG extension but PNG content' => [
+				"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A",
+				'svg',
+				'image/svg+xml'
+			],
+
+			'SVG with all headers' => [
+				'<?xml version="1.0"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" '
+				. '"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg></svg>',
+				'svg',
+				'image/svg+xml'
+			],
+			'SVG with XML header only' => [
+				'<?xml version="1.0"?><svg></svg>',
+				'svg',
+				'image/svg+xml'
+			],
+			'SVG with DOCTYPE only' => [
+				'<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" '
+				. '"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg></svg>',
+				'svg',
+				'image/svg+xml'
+			],
+			'SVG without any header' => [
+				'<svg></svg>',
+				'svg',
+				'image/svg+xml'
+			],
+		];
+	}
+
+	/**
 	 * @dataProvider provideMinifyCases
 	 * @covers CSSMin::minify
 	 */
