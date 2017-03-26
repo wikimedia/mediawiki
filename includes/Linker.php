@@ -1002,9 +1002,11 @@ class Linker {
 	 */
 	public static function blockLink( $userId, $userText ) {
 		$blockPage = SpecialPage::getTitleFor( 'Block', $userText );
+		$message = User::newFromId( $userId )->isBlocked() ?
+			'change-blocklink' : 'blocklink';
 		$moreLinkAttribs['class'] = 'mw-usertoollinks-block';
 		$blockLink = self::link( $blockPage,
-					 wfMessage( 'blocklink' )->escaped(),
+					 wfMessage( $message )->escaped(),
 					 $moreLinkAttribs );
 		return $blockLink;
 	}
