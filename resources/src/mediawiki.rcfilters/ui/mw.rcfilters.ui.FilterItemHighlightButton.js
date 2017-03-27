@@ -15,10 +15,11 @@
 		this.colorPickerWidget = new mw.rcfilters.ui.HighlightColorPickerWidget( controller, model );
 
 		// Parent
-		mw.rcfilters.ui.FilterItemHighlightButton.parent.call( this, $.extend( {}, config, {
+		mw.rcfilters.ui.FilterItemHighlightButton.parent.call( this, $.extend( true, {}, config, {
 			icon: 'highlight',
 			indicator: 'down',
 			popup: {
+				$autoCloseIgnore: config.$overlay,
 				// TODO: There is a bug in non-anchored popups in
 				// OOUI, so we set this popup to "anchored" until
 				// the bug is fixed.
@@ -39,6 +40,7 @@
 		// Event
 		this.model.connect( this, { update: 'onModelUpdate' } );
 		this.colorPickerWidget.connect( this, { chooseColor: 'onChooseColor' } );
+		this.$element.on( 'mousedown', function ( e ) { e.stopPropagation(); } );
 
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterItemHighlightButton' );
