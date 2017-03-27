@@ -14,7 +14,9 @@
 		mw.rcfilters.ui.CheckboxInputWidget.parent.call( this, config );
 
 		// Event
-		this.$input.on( 'change', this.onUserChange.bind( this ) );
+		this.$input
+			.on( 'click', false )
+			.on( 'change', this.onUserChange.bind( this ) );
 	};
 
 	/* Initialization */
@@ -31,6 +33,8 @@
 	 */
 
 	/* Methods */
+
+	mw.rcfilters.ui.CheckboxInputWidget.prototype.onEdit = function () {};
 
 	/**
 	 * Respond to checkbox change by a user and emit 'userChange'.
