@@ -45,7 +45,7 @@ class ResourceLoaderSpecialCharacterDataModule extends ResourceLoaderModule {
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		return Xml::encodeJsCall(
-			'mw.language.setSpecialCharacters',
+			'mediaWiki.language.setSpecialCharacters',
 			[
 				$this->getData()
 			],

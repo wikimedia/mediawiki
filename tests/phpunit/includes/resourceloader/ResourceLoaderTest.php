@@ -282,7 +282,8 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 				'messages' => [ 'example' => '' ],
 				'templates' => [],
 
-				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
+				'expected' =>
+'mediaWiki.loader.implement( "test.example", function ( $, jQuery, require, module ) {
 mw.example();
 }, {
     "css": [
@@ -299,7 +300,8 @@ mw.example();
 				'scripts' => 'mw.example();',
 				'styles' => [],
 
-				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
+				'expected' =>
+'mediaWiki.loader.implement( "test.example", function ( $, jQuery, require, module ) {
 mw.example();
 } );',
 			] ],
@@ -310,7 +312,7 @@ mw.example();
 				'scripts' => [],
 				'styles' => [ 'css' => [ '.mw-example {}' ] ],
 
-				'expected' => 'mw.loader.implement( "test.example", [], {
+				'expected' => 'mediaWiki.loader.implement( "test.example", [], {
     "css": [
         ".mw-example {}"
     ]
@@ -323,7 +325,8 @@ mw.example();
 				'scripts' => 'mw.example();',
 				'messages' => [ 'example' => '' ],
 
-				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
+				'expected' =>
+'mediaWiki.loader.implement( "test.example", function ( $, jQuery, require, module ) {
 mw.example();
 }, {}, {
     "example": ""
@@ -336,7 +339,8 @@ mw.example();
 				'scripts' => 'mw.example();',
 				'templates' => [ 'example.html' => '' ],
 
-				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
+				'expected' =>
+'mediaWiki.loader.implement( "test.example", function ( $, jQuery, require, module ) {
 mw.example();
 }, {}, {}, {
     "example.html": ""
@@ -349,7 +353,7 @@ mw.example();
 				'scripts' => 'mw.example( 1 );',
 				'wrap' => false,
 
-				'expected' => 'mw.loader.implement( "user", "mw.example( 1 );" );',
+				'expected' => 'mediaWiki.loader.implement( "user", "mw.example( 1 );" );',
 			] ],
 		];
 	}
@@ -402,7 +406,7 @@ mw.example();
 	 */
 	public function testMakeLoaderRegisterScript() {
 		$this->assertEquals(
-			'mw.loader.register( [
+			'mediaWiki.loader.register( [
     [
         "test.name",
         "1234567"
@@ -415,7 +419,7 @@ mw.example();
 		);
 
 		$this->assertEquals(
-			'mw.loader.register( "test.name", "1234567" );',
+			'mediaWiki.loader.register( "test.name", "1234567" );',
 			ResourceLoader::makeLoaderRegisterScript(
 				'test.name',
 				'1234567'
@@ -429,17 +433,17 @@ mw.example();
 	 */
 	public function testMakeLoaderSourcesScript() {
 		$this->assertEquals(
-			'mw.loader.addSource( "local", "/w/load.php" );',
+			'mediaWiki.loader.addSource( "local", "/w/load.php" );',
 			ResourceLoader::makeLoaderSourcesScript( 'local', '/w/load.php' )
 		);
 		$this->assertEquals(
-			'mw.loader.addSource( {
+			'mediaWiki.loader.addSource( {
     "local": "/w/load.php"
 } );',
 			ResourceLoader::makeLoaderSourcesScript( [ 'local' => '/w/load.php' ] )
 		);
 		$this->assertEquals(
-			'mw.loader.addSource( {
+			'mediaWiki.loader.addSource( {
     "local": "/w/load.php",
     "example": "https://example.org/w/load.php"
 } );',
@@ -449,7 +453,7 @@ mw.example();
 			] )
 		);
 		$this->assertEquals(
-			'mw.loader.addSource( [] );',
+			'mediaWiki.loader.addSource( [] );',
 			ResourceLoader::makeLoaderSourcesScript( [] )
 		);
 	}
@@ -559,7 +563,7 @@ mw.example();
 		$this->assertCount( 1, $errors );
 		$this->assertRegExp( '/Ferry not found/', $errors[0] );
 		$this->assertEquals(
-			'foo();bar();mw.loader.state( {
+			'foo();bar();mediaWiki.loader.state( {
     "ferry": "error",
     "foo": "ready",
     "bar": "ready"

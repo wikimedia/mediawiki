@@ -4,7 +4,7 @@
  * This file is where we decide whether to initialise the modern run-time.
  */
 
-/* global mw, $VARS, $CODE */
+/* global mediaWiki, $VARS, $CODE */
 
 var mwPerformance = ( window.performance && performance.mark ) ? performance : {
 		mark: function () {}
@@ -127,11 +127,11 @@ function isCompatible( str ) {
 	 * The $CODE and $VARS placeholders are substituted in ResourceLoaderStartUpModule.php.
 	 */
 	function startUp() {
-		mw.config = new mw.Map( $VARS.wgLegacyJavaScriptGlobals );
+		mediaWiki.config = new mediaWiki.Map( $VARS.wgLegacyJavaScriptGlobals );
 
 		$CODE.registrations();
 
-		mw.config.set( $VARS.configuration );
+		mediaWiki.config.set( $VARS.configuration );
 
 		// Must be after mw.config.set because these callbacks may use mw.loader which
 		// needs to have values 'skin', 'debug' etc. from mw.config.
