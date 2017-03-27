@@ -1,24 +1,23 @@
 @import 'mediawiki.mixins';
 
-.mw-rcfilters-ui-filterGroupWidget {
-	padding-bottom: 0.5em;
+.mw-rcfilters-ui-filterMenuSectionOptionWidget {
+	background: #eaecf0;
+	padding-bottom: 0.7em;
 
 	&-header {
-		background: #eaecf0;
-		padding: 0.5em 0.75em;
-
-		&-title {
+		padding: 0 0.75em;
+		// Use a high specificity to override OOUI
+		.oo-ui-optionWidget.oo-ui-labelElement &-title.oo-ui-labelElement-label {
 			// TODO: Unify colors with official design palette
 			color: #555a5d;
 			.box-sizing( border-box );
 			display: inline-block;
+			line-height: normal;
 		}
 	}
 
 	&-whatsThisButton {
-		display: inline-block;
 		margin-left: 1.5em;
-
 		&.oo-ui-buttonElement {
 			vertical-align: text-bottom;
 
@@ -45,7 +44,6 @@
 
 			&-link {
 				margin: 1em 0;
-
 			}
 
 			.oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
@@ -55,7 +53,7 @@
 	}
 
 	&-active {
-		.mw-rcfilters-ui-filterGroupWidget-header-title {
+		.mw-rcfilters-ui-filterMenuSectionOptionWidget-header-title {
 			font-weight: bold;
 		}
 	}
