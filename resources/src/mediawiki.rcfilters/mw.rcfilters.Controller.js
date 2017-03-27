@@ -321,8 +321,8 @@
 	 * @param {array|object|string} filters
 	 */
 	mw.rcfilters.Controller.prototype.trackHighlight = function ( action, filters ) {
-		filters = $.type( filters ) === 'string' ? { name: filters } : filters;
-		filters = $.type( filters ) === 'object' ? [ filters ] : filters;
+		filters = typeof filters === 'string' ? { name: filters } : filters;
+		filters = !Array.isArray( filters ) ? [ filters ] : filters;
 		mw.track(
 			'event.ChangesListHighlights',
 			{
