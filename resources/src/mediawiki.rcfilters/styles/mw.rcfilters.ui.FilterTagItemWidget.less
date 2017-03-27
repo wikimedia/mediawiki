@@ -1,0 +1,75 @@
+@import 'mw.rcfilters.mixins';
+
+.mw-rcfilters-ui-filterTagItemWidget {
+	background-color: #fff;
+	border-color: #979797;
+	color: #222;
+
+	// Background and color of the capsule widget need a bit
+	// more specificity to override ooui internals
+	&-muted.oo-ui-tagItemWidget.oo-ui-widget-enabled {
+		// Muted state
+		background-color: #eaecf0;
+		border-color: #c8ccd1;
+
+		.oo-ui-labelElement-label {
+			color: #72777d;
+		}
+		.oo-ui-buttonWidget {
+			opacity: @muted-opacity;
+		}
+	}
+
+	&-conflicted.oo-ui-tagItemWidget.oo-ui-widget-enabled {
+		background-color: #fee7e6; // Red90 AAA
+		border-color: #b32424; // Red30 AAA
+
+		.oo-ui-labelElement-label {
+			color: #b32424;
+		}
+		.oo-ui-buttonWidget {
+			opacity: @muted-opacity;
+		}
+	}
+
+	&-selected.oo-ui-tagItemWidget.oo-ui-widget-enabled {
+		background-color: #eaf3ff;
+		border-color: #36c;
+	}
+
+	&-popup-content {
+		padding: 0.5em;
+		color: #54595d;
+	}
+
+	&.oo-ui-labelElement .oo-ui-labelElement-label {
+		vertical-align: middle;
+		cursor: pointer;
+	}
+
+	&-highlight {
+		display: none;
+		padding-right: 0.5em;
+
+		&-highlighted {
+			display: inline-block;
+
+		}
+
+		&[data-color='c1'] {
+			.mw-rcfilters-mixin-circle( @highlight-c1, 10px, ~'0 0.5em 0 0' );
+		}
+		&[data-color='c2'] {
+			.mw-rcfilters-mixin-circle( @highlight-c2, 10px, ~'0 0.5em 0 0' );
+		}
+		&[data-color='c3'] {
+			.mw-rcfilters-mixin-circle( @highlight-c3, 10px, ~'0 0.5em 0 0' );
+		}
+		&[data-color='c4'] {
+			.mw-rcfilters-mixin-circle( @highlight-c4, 10px, ~'0 0.5em 0 0' );
+		}
+		&[data-color='c5'] {
+			.mw-rcfilters-mixin-circle( @highlight-c5, 10px, ~'0 0.5em 0 0' );
+		}
+	}
+}
