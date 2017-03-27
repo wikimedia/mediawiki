@@ -172,7 +172,9 @@
 
 				messageKey = details.message;
 				affectingItems = details.names;
-			} else if ( this.isIncluded() ) {
+			} else if ( this.isIncluded() && !this.isHighlighted() ) {
+				// We only show the 'no effect' full-coverage message
+				// if the item is also not highlighted. See T161273
 				superset = this.getSuperset();
 				// For this message we need to collect the affecting superset
 				affectingItems = this.getGroupModel().getSelectedItems( this )
@@ -184,7 +186,7 @@
 					} );
 
 				messageKey = 'rcfilters-state-message-subset';
-			} else if ( this.isFullyCovered() ) {
+			} else if ( this.isFullyCovered() && !this.isHighlighted() ) {
 				affectingItems = this.getGroupModel().getSelectedItems( this )
 					.map( function ( item ) {
 						return mw.msg( 'quotation-marks', item.getLabel() );
