@@ -29,31 +29,31 @@ require_once __DIR__ . '/../../../includes/Xml.php';
 
 $moduleImplementations = [
 	'testUsesMissing' => "
-mw.loader.implement( 'testUsesMissing', function () {
+mediaWiki.loader.implement( 'testUsesMissing', function () {
 	QUnit.ok( false, 'Module usesMissing script should not run.' );
 	QUnit.start();
 }, {}, {});
 ",
 
 	'testUsesNestedMissing' => "
-mw.loader.implement( 'testUsesNestedMissing', function () {
+mediaWiki.loader.implement( 'testUsesNestedMissing', function () {
 	QUnit.ok( false, 'Module testUsesNestedMissing script should not run.' );
 	QUnit.start();
 }, {}, {});
 ",
 
 	'testSkipped' =>"
-mw.loader.implement( 'testSkipped', function () {
+mediaWiki.loader.implement( 'testSkipped', function () {
 	QUnit.ok( false, 'Module testSkipped was supposed to be skipped.' );
 }, {}, {});
 ",
 
 	'testNotSkipped' =>"
-mw.loader.implement( 'testNotSkipped', function () {}, {}, {});
+mediaWiki.loader.implement( 'testNotSkipped', function () {}, {}, {});
 ",
 
 	'testUsesSkippable' =>"
-mw.loader.implement( 'testUsesSkippable', function () {}, {}, {});
+mediaWiki.loader.implement( 'testUsesSkippable', function () {}, {}, {});
 ",
 ];
 
@@ -66,7 +66,7 @@ if ( isset( $_GET['modules'] ) ) {
 		if ( isset( $moduleImplementations[$module] ) ) {
 			$response .= $moduleImplementations[$module];
 		} else {
-			$response .= Xml::encodeJsCall( 'mw.loader.state', [ $module, 'missing' ], true );
+			$response .= Xml::encodeJsCall( 'mediaWiki.loader.state', [ $module, 'missing' ], true );
 		}
 	}
 }

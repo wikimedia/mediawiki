@@ -14,10 +14,10 @@ class ResourceLoaderStartUpModuleTest extends ResourceLoaderTestCase {
 				'msg' => 'Empty registry',
 				'modules' => [],
 				'out' => '
-mw.loader.addSource( {
+mediaWiki.loader.addSource( {
     "local": "/w/load.php"
 } );
-mw.loader.register( [] );'
+mediaWiki.loader.register( [] );'
 			] ],
 			[ [
 				'msg' => 'Basic registry',
@@ -25,10 +25,10 @@ mw.loader.register( [] );'
 					'test.blank' => new ResourceLoaderTestModule(),
 				],
 				'out' => '
-mw.loader.addSource( {
+mediaWiki.loader.addSource( {
     "local": "/w/load.php"
 } );
-mw.loader.register( [
+mediaWiki.loader.register( [
     [
         "test.blank",
         "{blankVer}"
@@ -43,10 +43,10 @@ mw.loader.register( [
 					'test.group.bar' => new ResourceLoaderTestModule( [ 'group' => 'x-bar' ] ),
 				],
 				'out' => '
-mw.loader.addSource( {
+mediaWiki.loader.addSource( {
     "local": "/w/load.php"
 } );
-mw.loader.register( [
+mediaWiki.loader.register( [
     [
         "test.blank",
         "{blankVer}"
@@ -72,10 +72,10 @@ mw.loader.register( [
 					'test.target.foo' => new ResourceLoaderTestModule( [ 'targets' => [ 'x-foo' ] ] ),
 				],
 				'out' => '
-mw.loader.addSource( {
+mediaWiki.loader.addSource( {
     "local": "/w/load.php"
 } );
-mw.loader.register( [
+mediaWiki.loader.register( [
     [
         "test.blank",
         "{blankVer}"
@@ -94,11 +94,11 @@ mw.loader.register( [
 					'test.blank' => new ResourceLoaderTestModule( [ 'source' => 'example' ] ),
 				],
 				'out' => '
-mw.loader.addSource( {
+mediaWiki.loader.addSource( {
     "local": "/w/load.php",
     "example": "http://example.org/w/load.php"
 } );
-mw.loader.register( [
+mediaWiki.loader.register( [
     [
         "test.blank",
         "{blankVer}",
@@ -132,10 +132,10 @@ mw.loader.register( [
 					] ),
 				],
 				'out' => '
-mw.loader.addSource( {
+mediaWiki.loader.addSource( {
     "local": "/w/load.php"
 } );
-mw.loader.register( [
+mediaWiki.loader.register( [
     [
         "test.x.core",
         "{blankVer}"
@@ -228,11 +228,11 @@ mw.loader.register( [
 					] ),
 				],
 				'out' => '
-mw.loader.addSource( {
+mediaWiki.loader.addSource( {
     "local": "/w/load.php",
     "example": "http://example.org/w/load.php"
 } );
-mw.loader.register( [
+mediaWiki.loader.register( [
     [
         "test.blank",
         "{blankVer}"
@@ -353,8 +353,8 @@ mw.loader.register( [
 		$rl = $context->getResourceLoader();
 		$rl->register( $modules );
 		$module = new ResourceLoaderStartUpModule();
-		$out = 'mw.loader.addSource({"local":"/w/load.php"});' . "\n"
-		. 'mw.loader.register(['
+		$out = 'mediaWiki.loader.addSource({"local":"/w/load.php"});' . "\n"
+		. 'mediaWiki.loader.register(['
 		. '["test.blank","{blankVer}"],'
 		. '["test.min","{blankVer}",[0],null,null,'
 		. '"return!!(window.JSON\u0026\u0026JSON.parse\u0026\u0026JSON.stringify);"'
@@ -376,10 +376,10 @@ mw.loader.register( [
 		$rl->register( $modules );
 		$module = new ResourceLoaderStartUpModule();
 		$out =
-'mw.loader.addSource( {
+'mediaWiki.loader.addSource( {
     "local": "/w/load.php"
 } );
-mw.loader.register( [
+mediaWiki.loader.register( [
     [
         "test.blank",
         "{blankVer}"

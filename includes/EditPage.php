@@ -3968,7 +3968,7 @@ HTML
 			]
 		];
 
-		$script = 'mw.loader.using("mediawiki.toolbar", function () {';
+		$script = 'mediaWiki.loader.using("mediawiki.toolbar", function () {';
 		foreach ( $toolarray as $tool ) {
 			if ( !$tool ) {
 				continue;
@@ -3989,7 +3989,7 @@ HTML
 			];
 
 			$script .= Xml::encodeJsCall(
-				'mw.toolbar.addButton',
+				'mediaWiki.toolbar.addButton',
 				$params,
 				ResourceLoader::inDebugMode()
 			);

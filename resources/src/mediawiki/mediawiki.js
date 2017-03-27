@@ -2376,7 +2376,7 @@
 							return false;
 						}
 
-						src = 'mw.loader.implement(' + args.join( ',' ) + ');';
+						src = 'mediaWiki.loader.implement(' + args.join( ',' ) + ');';
 						if ( src.length > mw.loader.store.MODULE_SIZE_MAX ) {
 							return false;
 						}
@@ -2792,6 +2792,9 @@
 		} );
 	} );
 
-	// Attach to window and globally alias
-	window.mw = window.mediaWiki = mw;
+	// Attach to window
+	window.mediaWiki = mw;
+
+	// Deprecated global alias
+	mw.log.deprecate( window, 'mw', mw, 'Use mediaWiki instead.' );
 }( jQuery ) );
