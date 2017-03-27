@@ -3012,7 +3012,7 @@ class OutputPage extends ContextSource {
 					[ 'excludepage' => $this->getTitle()->getPrefixedDBkey() ]
 				);
 				$chunks[] = ResourceLoader::makeInlineScript(
-					Xml::encodeJsCall( 'mw.loader.using', [
+					Xml::encodeJsCall( 'mediaWiki.loader.using', [
 						[ 'user', 'site' ],
 						new XmlJsCode(
 							'function () {'

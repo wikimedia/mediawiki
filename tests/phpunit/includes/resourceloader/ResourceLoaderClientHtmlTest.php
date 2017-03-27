@@ -169,11 +169,11 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 		// @codingStandardsIgnoreStart Generic.Files.LineLength
 		$expected = '<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>' . "\n"
 			. '<script>(window.RLQ=window.RLQ||[]).push(function(){'
-			. 'mw.config.set({"key":"value"});'
-			. 'mw.loader.state({"test.exempt":"ready","test.private.top":"loading","test.styles.pure":"ready","test.styles.private":"ready","test.scripts.top":"loading"});'
-			. 'mw.loader.implement("test.private.top@{blankVer}",function($,jQuery,require,module){},{"css":[]});'
-			. 'mw.loader.load(["test.top"]);'
-			. 'mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.scripts.top\u0026only=scripts\u0026skin=fallback");'
+			. 'mediaWiki.config.set({"key":"value"});'
+			. 'mediaWiki.loader.state({"test.exempt":"ready","test.private.top":"loading","test.styles.pure":"ready","test.styles.private":"ready","test.scripts.top":"loading"});'
+			. 'mediaWiki.loader.implement("test.private.top@{blankVer}",function($,jQuery,require,module){},{"css":[]});'
+			. 'mediaWiki.loader.load(["test.top"]);'
+			. 'mediaWiki.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.scripts.top\u0026only=scripts\u0026skin=fallback");'
 			. '});</script>' . "\n"
 			. '<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.styles.pure&amp;only=styles&amp;skin=fallback"/>' . "\n"
 			. '<style>.private{}</style>' . "\n"
@@ -227,7 +227,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 				'context' => [],
 				'modules' => [ 'test.private.top' ],
 				'only' => ResourceLoaderModule::TYPE_COMBINED,
-				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.implement("test.private.top@{blankVer}",function($,jQuery,require,module){},{"css":[]});});</script>',
+				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mediaWiki.loader.implement("test.private.top@{blankVer}",function($,jQuery,require,module){},{"css":[]});});</script>',
 			],
 			[
 				'context' => [],
@@ -240,7 +240,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 				'context' => [],
 				'modules' => [ 'test.scripts.mixed.user' ],
 				'only' => ResourceLoaderModule::TYPE_SCRIPTS,
-				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.scripts.mixed.user\u0026only=scripts\u0026skin=fallback\u0026user=Example\u0026version=0a56zyi");});</script>',
+				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mediaWiki.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.scripts.mixed.user\u0026only=scripts\u0026skin=fallback\u0026user=Example\u0026version=0a56zyi");});</script>',
 			],
 			[
 				'context' => [ 'debug' => true ],

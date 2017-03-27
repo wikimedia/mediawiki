@@ -279,7 +279,7 @@ class ResourceLoaderClientHtml {
 		// Inline RLQ: Load general modules
 		if ( $data['general'] ) {
 			$chunks[] = ResourceLoader::makeInlineScript(
-				Xml::encodeJsCall( 'mw.loader.load', [ $data['general'] ] )
+				Xml::encodeJsCall( 'mediaWiki.loader.load', [ $data['general'] ] )
 			);
 		}
 
@@ -438,7 +438,7 @@ class ResourceLoaderClientHtml {
 						] );
 					} else {
 						$chunk = ResourceLoader::makeInlineScript(
-							Xml::encodeJsCall( 'mw.loader.load', [ $url ] )
+							Xml::encodeJsCall( 'mediaWiki.loader.load', [ $url ] )
 						);
 					}
 				}

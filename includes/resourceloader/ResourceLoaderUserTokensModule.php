@@ -61,7 +61,7 @@ class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		return Xml::encodeJsCall(
-			'mw.user.tokens.set',
+			'mediaWiki.user.tokens.set',
 			[ $this->contextUserTokens( $context ) ],
 			ResourceLoader::inDebugMode()
 		) . ResourceLoader::FILTER_NOMIN;

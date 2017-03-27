@@ -278,7 +278,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			[
 				[ 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS ],
 				"<script>(window.RLQ=window.RLQ||[]).push(function(){"
-					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.foo\u0026only=scripts\u0026skin=fallback");'
+					. 'mediaWiki.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.foo\u0026only=scripts\u0026skin=fallback");'
 					. "});</script>"
 			],
 			// Multiple only=styles load
@@ -291,7 +291,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			[
 				[ 'test.quux', ResourceLoaderModule::TYPE_SCRIPTS ],
 				"<script>(window.RLQ=window.RLQ||[]).push(function(){"
-					. "mw.test.baz({token:123});mw.loader.state({\"test.quux\":\"ready\"});"
+					. "mw.test.baz({token:123});mediaWiki.loader.state({\"test.quux\":\"ready\"});"
 					. "});</script>"
 			],
 		];

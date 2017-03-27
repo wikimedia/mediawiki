@@ -51,7 +51,7 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	 * @return string
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		return Xml::encodeJsCall( 'mw.user.options.set',
+		return Xml::encodeJsCall( 'mediaWiki.user.options.set',
 			[ $context->getUserObj()->getOptions( User::GETOPTIONS_EXCLUDE_DEFAULTS ) ],
 			ResourceLoader::inDebugMode()
 		);
