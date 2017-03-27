@@ -1,27 +1,31 @@
-( function ( mw, $ ) {
+( function ( mw ) {
 	/**
 	 * A widget representing a single toggle filter
 	 *
-	 * @extends OO.ui.Widget
+	 * @extends OO.ui.MenuOptionWidget
 	 *
 	 * @constructor
 	 * @param {mw.rcfilters.Controller} controller RCFilters controller
 	 * @param {mw.rcfilters.dm.FilterItem} model Filter item model
 	 * @param {Object} config Configuration object
 	 */
-	mw.rcfilters.ui.FilterItemWidget = function MwRcfiltersUiFilterItemWidget( controller, model, config ) {
+	mw.rcfilters.ui.FilterMenuOptionWidget = function MwRcfiltersUiFilterMenuOptionWidget( controller, model, config ) {
 		var layout,
 			$label = $( '<div>' )
-				.addClass( 'mw-rcfilters-ui-filterItemWidget-label' );
+				.addClass( 'mw-rcfilters-ui-filterMenuOptionWidget-label' );
 
 		config = config || {};
 
-		// Parent
-		mw.rcfilters.ui.FilterItemWidget.parent.call( this, config );
-
 		this.controller = controller;
 		this.model = model;
-		this.selected = false;
+
+		// Parent
+		mw.rcfilters.ui.FilterMenuOptionWidget.parent.call( this, $.extend( {
+			// Override the 'check' icon that OOUI defines
+			icon: '',
+			data: this.model.getName(),
+			label: this.model.getLabel()
+		}, config ) );
 
 		this.checkboxWidget = new mw.rcfilters.ui.CheckboxInputWidget( {
 			value: this.model.getName(),
@@ -30,13 +34,13 @@
 
 		$label.append(
 			$( '<div>' )
-				.addClass( 'mw-rcfilters-ui-filterItemWidget-label-title' )
-				.text( this.model.getLabel() )
+				.addClass( 'mw-rcfilters-ui-filterMenuOptionWidget-label-title' )
+				.append( this.$label )
 		);
 		if ( this.model.getDescription() ) {
 			$label.append(
 				$( '<div>' )
-					.addClass( 'mw-rcfilters-ui-filterItemWidget-label-desc' )
+					.addClass( 'mw-rcfilters-ui-filterMenuOptionWidget-label-desc' )
 					.text( this.model.getDescription() )
 			);
 		}
@@ -62,7 +66,7 @@
 		this.model.getGroupModel().connect( this, { update: 'onGroupModelUpdate' } );
 
 		this.$element
-			.addClass( 'mw-rcfilters-ui-filterItemWidget' )
+			.addClass( 'mw-rcfilters-ui-filterMenuOptionWidget' )
 			.append(
 				$( '<div>' )
 					.addClass( 'mw-rcfilters-ui-table' )
@@ -71,10 +75,10 @@
 							.addClass( 'mw-rcfilters-ui-row' )
 							.append(
 								$( '<div>' )
-									.addClass( 'mw-rcfilters-ui-cell mw-rcfilters-ui-filterItemWidget-filterCheckbox' )
+									.addClass( 'mw-rcfilters-ui-cell mw-rcfilters-ui-filterMenuOptionWidget-filterCheckbox' )
 									.append( layout.$element ),
 								$( '<div>' )
-									.addClass( 'mw-rcfilters-ui-cell mw-rcfilters-ui-filterItemWidget-highlightButton' )
+									.addClass( 'mw-rcfilters-ui-cell mw-rcfilters-ui-filterMenuOptionWidget-highlightButton' )
 									.append( this.highlightButton.$element )
 							)
 					)
@@ -83,7 +87,12 @@
 
 	/* Initialization */
 
-	OO.inheritClass( mw.rcfilters.ui.FilterItemWidget, OO.ui.Widget );
+	OO.inheritClass( mw.rcfilters.ui.FilterMenuOptionWidget, OO.ui.MenuOptionWidget );
+
+	/* Static properties */
+
+	// We do our own scrolling to top
+	mw.rcfilters.ui.FilterMenuOptionWidget.static.scrollIntoViewOnSelect = false;
 
 	/* Methods */
 
@@ -94,14 +103,14 @@
 	 *
 	 * @param {boolean} isSelected The checkbox is selected
 	 */
-	mw.rcfilters.ui.FilterItemWidget.prototype.onCheckboxChange = function ( isSelected ) {
-		this.controller.toggleFilterSelect( this.model.getName(), isSelected );
+	mw.rcfilters.ui.FilterMenuOptionWidget.prototype.onCheckboxChange = function ( isSelected ) {
+		// this.controller.toggleFilterSelect( this.model.getName(), isSelected );
 	};
 
 	/**
 	 * Respond to item model update event
 	 */
-	mw.rcfilters.ui.FilterItemWidget.prototype.onModelUpdate = function () {
+	mw.rcfilters.ui.FilterMenuOptionWidget.prototype.onModelUpdate = function () {
 		this.checkboxWidget.setSelected( this.model.isSelected() );
 
 		this.setCurrentMuteState();
@@ -110,31 +119,16 @@
 	/**
 	 * Respond to item group model update event
 	 */
-	mw.rcfilters.ui.FilterItemWidget.prototype.onGroupModelUpdate = function () {
+	mw.rcfilters.ui.FilterMenuOptionWidget.prototype.onGroupModelUpdate = function () {
 		this.setCurrentMuteState();
-	};
-
-	/**
-	 * Set selected state on this widget
-	 *
-	 * @param {boolean} [isSelected] Widget is selected
-	 */
-	mw.rcfilters.ui.FilterItemWidget.prototype.toggleSelected = function ( isSelected ) {
-		isSelected = isSelected !== undefined ? isSelected : !this.selected;
-
-		if ( this.selected !== isSelected ) {
-			this.selected = isSelected;
-
-			this.$element.toggleClass( 'mw-rcfilters-ui-filterItemWidget-selected', this.selected );
-		}
 	};
 
 	/**
 	 * Set the current mute state for this item
 	 */
-	mw.rcfilters.ui.FilterItemWidget.prototype.setCurrentMuteState = function () {
+	mw.rcfilters.ui.FilterMenuOptionWidget.prototype.setCurrentMuteState = function () {
 		this.$element.toggleClass(
-			'mw-rcfilters-ui-filterItemWidget-muted',
+			'mw-rcfilters-ui-filterMenuOptionWidget-muted',
 			this.model.isConflicted() ||
 			(
 				// Item is also muted when any of the items in its group is active
@@ -154,7 +148,12 @@
 	 *
 	 * @return {string} Filter name
 	 */
-	mw.rcfilters.ui.FilterItemWidget.prototype.getName = function () {
+	mw.rcfilters.ui.FilterMenuOptionWidget.prototype.getName = function () {
 		return this.model.getName();
 	};
-}( mediaWiki, jQuery ) );
+
+	mw.rcfilters.ui.FilterMenuOptionWidget.prototype.getModel = function () {
+		return this.model;
+	};
+
+}( mediaWiki ) );
