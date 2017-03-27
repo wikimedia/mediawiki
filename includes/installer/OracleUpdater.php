@@ -285,7 +285,7 @@ class OracleUpdater extends DatabaseUpdater {
 	 *
 	 * @param array $what
 	 */
-	public function doUpdates( $what = [ 'core', 'extensions', 'purge', 'stats' ] ) {
+	public function doUpdates( array $what = [ 'core', 'extensions', 'purge', 'stats' ] ) {
 		parent::doUpdates( $what );
 
 		$this->db->query( 'BEGIN fill_wiki_info; END;' );
