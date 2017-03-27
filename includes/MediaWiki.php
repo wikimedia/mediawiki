@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use Psr\Log\LoggerInterface;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\LBFactory;
@@ -942,24 +943,45 @@ class MediaWiki {
 			$n = intval( $jobRunRate );
 		}
 
-		$runJobsLogger = LoggerFactory::getInstance( 'runJobs' );
+		$logger = LoggerFactory::getInstance( 'runJobs' );
 
-		// Fall back to running the job(s) while the user waits if needed
-		if ( !$this->config->get( 'RunJobsAsync' ) ) {
-			$runner = new JobRunner( $runJobsLogger );
-			$runner->run( [ 'maxJobs' => $n ] );
-			return;
-		}
-
-		// Do not send request if there are probably no jobs
 		try {
-			$group = JobQueueGroup::singleton();
-			if ( !$group->queuesHaveJobs( JobQueueGroup::TYPE_DEFAULT ) ) {
-				return;
+			if ( $this->config->get( 'RunJobsAsync' ) ) {
+				// Send an HTTP request to the job RPC entry point if possible
+				$invokedWithSuccess = $this->triggerAsyncJobs( $n, $logger );
+				if ( !$invokedWithSuccess ) {
+					// Fall back to blocking on running the job(s)
+					$logger->warning( "Jobs switched to blocking; Special:RunJobs disabled" );
+					$this->triggerSyncJobs( $n, $logger );
+				}
+			} else {
+				$this->triggerSyncJobs( $n, $logger );
 			}
 		} catch ( JobQueueError $e ) {
+			// Do not make the site unavailable (T88312)
 			MWExceptionHandler::logException( $e );
-			return; // do not make the site unavailable
+		}
+	}
+
+	/**
+	 * @param integer $n Number of jobs to try to run
+	 * @param LoggerInterface $runJobsLogger
+	 */
+	private function triggerSyncJobs( $n, LoggerInterface $runJobsLogger ) {
+		$runner = new JobRunner( $runJobsLogger );
+		$runner->run( [ 'maxJobs' => $n ] );
+	}
+
+	/**
+	 * @param integer $n Number of jobs to try to run
+	 * @param LoggerInterface $runJobsLogger
+	 * @return bool Success
+	 */
+	private function triggerAsyncJobs( $n, LoggerInterface $runJobsLogger ) {
+		// Do not send request if there are probably no jobs
+		$group = JobQueueGroup::singleton();
+		if ( !$group->queuesHaveJobs( JobQueueGroup::TYPE_DEFAULT ) ) {
+			return true;
 		}
 
 		$query = [ 'title' => 'Special:RunJobs',
@@ -1026,12 +1048,6 @@ class MediaWiki {
 			$runJobsLogger->error( "Failed to start cron API (socket error $errno): $errstr" );
 		}
 
-		// Fall back to running the job(s) while the user waits if needed
-		if ( !$invokedWithSuccess ) {
-			$runJobsLogger->warning( "Jobs switched to blocking; Special:RunJobs disabled" );
-
-			$runner = new JobRunner( $runJobsLogger );
-			$runner->run( [ 'maxJobs'  => $n ] );
-		}
+		return $invokedWithSuccess;
 	}
 }
