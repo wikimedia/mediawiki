@@ -39,6 +39,7 @@
 		// Event
 		this.model.connect( this, { update: 'onModelUpdate' } );
 		this.colorPickerWidget.connect( this, { chooseColor: 'onChooseColor' } );
+		this.$element.on( 'mousedown', function ( e ) { e.stopPropagation(); } );
 
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterItemHighlightButton' );
