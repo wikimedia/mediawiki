@@ -737,13 +737,18 @@
 	 * Find items whose labels match the given string
 	 *
 	 * @param {string} query Search string
+	 * @param {boolean} [returnFlat] Return a flat array. If false, the result
+	 *  is an object whose keys are the group names and values are an array of
+	 *  filters per group. If set to true, returns an array of filters regardless
+	 *  of their groups.
 	 * @return {Object} An object of items to show
 	 *  arranged by their group names
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.findMatches = function ( query ) {
+	mw.rcfilters.dm.FiltersViewModel.prototype.findMatches = function ( query, returnFlat ) {
 		var i,
 			groupTitle,
 			result = {},
+			flatResult = [],
 			items = this.getItems();
 
 		// Normalize so we can search strings regardless of case
@@ -754,6 +759,7 @@
 			if ( items[ i ].getLabel().toLowerCase().indexOf( query ) === 0 ) {
 				result[ items[ i ].getGroupName() ] = result[ items[ i ].getGroupName() ] || [];
 				result[ items[ i ].getGroupName() ].push( items[ i ] );
+				flatResult.push( items[ i ] );
 			}
 		}
 
@@ -768,11 +774,12 @@
 				) {
 					result[ items[ i ].getGroupName() ] = result[ items[ i ].getGroupName() ] || [];
 					result[ items[ i ].getGroupName() ].push( items[ i ] );
+					flatResult.push( items[ i ] );
 				}
 			}
 		}
 
-		return result;
+		return returnFlat ? flatResult : result;
 	};
 
 	/**
