@@ -71,6 +71,7 @@ class Names {
 		'as' => 'অসমীয়া', # Assamese
 		'ase' => 'American sign language', # American sign language
 		'ast' => 'asturianu', # Asturian
+		'atj' => 'Atikamekw', # Atikamekw
 		'av' => 'авар', # Avar
 		'avk' => 'Kotava', # Kotava
 		'awa' => 'अवधी', # Awadhi
