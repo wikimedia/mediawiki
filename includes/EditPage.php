@@ -3058,6 +3058,7 @@ class EditPage {
 	 */
 	protected function showSummaryInput( $isSubjectPreview, $summary = "" ) {
 		global $wgOut;
+
 		# Add a class if 'missingsummary' is triggered to allow styling of the summary line
 		$summaryClass = $this->missingSummary ? 'mw-summarymissed' : 'mw-summary';
 		if ( $isSubjectPreview ) {
@@ -3506,12 +3507,12 @@ HTML
 
 		$message = $this->context->msg( 'edithelppage' )->inContentLanguage()->text();
 		$edithelpurl = Skin::makeInternalOrExternalUrl( $message );
-		$attrs = [
-			'target' => 'helpwindow',
-			'href' => $edithelpurl,
-		];
-		$edithelp = Html::linkButton( $this->context->msg( 'edithelp' )->text(),
-			$attrs, [ 'mw-ui-quiet' ] ) .
+		$edithelp =
+			Html::linkButton(
+				$this->context->msg( 'edithelp' )->text(),
+				[ 'target' => 'helpwindow', 'href' => $edithelpurl ],
+				[ 'mw-ui-quiet' ]
+			) .
 			$this->context->msg( 'word-separator' )->escaped() .
 			$this->context->msg( 'newwindow' )->parse();
 
@@ -3571,18 +3572,16 @@ HTML
 	 */
 	public function getCancelLink() {
 		$cancelParams = [];
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( !$this->isConflict && $this->oldid > 0 ) {
 			$cancelParams['oldid'] = $this->oldid;
 		} elseif ( $this->getContextTitle()->isRedirect() ) {
 			$cancelParams['redirect'] = 'no';
 		}
-		$attrs = [ 'id' => 'mw-editform-cancel' ];
 
-		return $linkRenderer->makeKnownLink(
+		return MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
 			$this->getContextTitle(),
 			new HtmlArmor( $this->context->msg( 'cancel' )->parse() ),
-			Html::buttonAttributes( $attrs, [ 'mw-ui-quiet' ] ),
+			Html::buttonAttributes( [ 'id' => 'mw-editform-cancel' ], [ 'mw-ui-quiet' ] ),
 			$cancelParams
 		);
 	}
@@ -4038,9 +4037,8 @@ HTML
 					">{$minorLabel}</label>";
 
 				if ( $wgUseMediaWikiUIEverywhere ) {
-					$checkboxes['minor'] = Html::openElement( 'div', [ 'class' => 'mw-ui-checkbox' ] ) .
-						$minorEditHtml .
-					Html::closeElement( 'div' );
+					$checkboxes['minor'] =
+						Html::rawElement( 'div', [ 'class' => 'mw-ui-checkbox' ], $minorEditHtml );
 				} else {
 					$checkboxes['minor'] = $minorEditHtml;
 				}
@@ -4061,9 +4059,8 @@ HTML
 				Xml::expandAttributes( [ 'title' => Linker::titleAttrib( 'watch', 'withaccess' ) ] ) .
 				">{$watchLabel}</label>";
 			if ( $wgUseMediaWikiUIEverywhere ) {
-				$checkboxes['watch'] = Html::openElement( 'div', [ 'class' => 'mw-ui-checkbox' ] ) .
-					$watchThisHtml .
-					Html::closeElement( 'div' );
+				$checkboxes['watch'] =
+					Html::rawElement( 'div', [ 'class' => 'mw-ui-checkbox' ], $watchThisHtml );
 			} else {
 				$checkboxes['watch'] = $watchThisHtml;
 			}
@@ -4095,34 +4092,41 @@ HTML
 		} else {
 			$buttonLabelKey = !$this->mTitle->exists() ? 'savearticle' : 'savechanges';
 		}
-		$buttonLabel = $this->context->msg( $buttonLabelKey )->text();
 		$attribs = [
 			'id' => 'wpSave',
 			'name' => 'wpSave',
 			'tabindex' => ++$tabindex,
 		] + Linker::tooltipAndAccesskeyAttribs( 'save' );
-		$buttons['save'] = Html::submitButton( $buttonLabel, $attribs, [ 'mw-ui-progressive' ] );
+		$buttons['save'] = Html::submitButton(
+			$this->context->msg( $buttonLabelKey )->text(),
+			$attribs,
+			[ 'mw-ui-progressive' ]
+		);
 
-		++$tabindex; // use the same for preview and live preview
 		$attribs = [
 			'id' => 'wpPreview',
 			'name' => 'wpPreview',
-			'tabindex' => $tabindex,
+			'tabindex' => ++$tabindex,
 		] + Linker::tooltipAndAccesskeyAttribs( 'preview' );
-		$buttons['preview'] = Html::submitButton( $this->context->msg( 'showpreview' )->text(),
-			$attribs );
+		$buttons['preview'] = Html::submitButton(
+			$this->context->msg( 'showpreview' )->text(),
+			$attribs
+		);
 
 		$attribs = [
 			'id' => 'wpDiff',
 			'name' => 'wpDiff',
 			'tabindex' => ++$tabindex,
 		] + Linker::tooltipAndAccesskeyAttribs( 'diff' );
-		$buttons['diff'] = Html::submitButton( $this->context->msg( 'showdiff' )->text(),
-			$attribs );
+		$buttons['diff'] = Html::submitButton(
+			$this->context->msg( 'showdiff' )->text(),
+			$attribs
+		);
 
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$editPage = $this;
 		Hooks::run( 'EditPageBeforeEditButtons', [ &$editPage, &$buttons, &$tabindex ] );
+
 		return $buttons;
 	}
 
