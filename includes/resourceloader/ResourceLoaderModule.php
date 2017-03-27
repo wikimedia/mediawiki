@@ -151,7 +151,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 				$warning .= "\n" . $deprecationInfo;
 			}
 			return Xml::encodeJsCall(
-				'mw.log.warn',
+				'mediaWiki.log.warn',
 				[ $warning ]
 			);
 		} else {
@@ -952,7 +952,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 			} catch ( Exception $e ) {
 				// We'll save this to cache to avoid having to validate broken JS over and over...
 				$err = $e->getMessage();
-				$result = "mw.log.error(" .
+				$result = "mediaWiki.log.error(" .
 					Xml::encodeJsVar( "JavaScript parse error: $err" ) . ");";
 			}
 

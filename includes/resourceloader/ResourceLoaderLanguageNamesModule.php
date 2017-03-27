@@ -49,7 +49,7 @@ class ResourceLoaderLanguageNamesModule extends ResourceLoaderModule {
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		return Xml::encodeJsCall(
-			'mw.language.setData',
+			'mediaWiki.language.setData',
 			[
 				$context->getLanguage(),
 				'languageNames',
