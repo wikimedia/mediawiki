@@ -177,11 +177,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 							&$query_options, &$join_conds ) {
 
 							$user = $ctx->getUser();
-							if ( $user->getId() ) {
-								$conds[] = 'rc_user != ' . $dbr->addQuotes( $user->getId() );
-							} else {
-								$conds[] = 'rc_user_text != ' . $dbr->addQuotes( $user->getName() );
-							}
+							$conds[] = 'rc_user_text != ' . $dbr->addQuotes( $user->getName() );
 						},
 						'cssClassSuffix' => 'self',
 						'isRowApplicableCallable' => function ( $ctx, $rc ) {
@@ -197,11 +193,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 							&$query_options, &$join_conds ) {
 
 							$user = $ctx->getUser();
-							if ( $user->getId() ) {
-								$conds[] = 'rc_user = ' . $dbr->addQuotes( $user->getId() );
-							} else {
-								$conds[] = 'rc_user_text = ' . $dbr->addQuotes( $user->getName() );
-							}
+							$conds[] = 'rc_user_text = ' . $dbr->addQuotes( $user->getName() );
 						},
 						'cssClassSuffix' => 'others',
 						'isRowApplicableCallable' => function ( $ctx, $rc ) {
