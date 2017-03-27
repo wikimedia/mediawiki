@@ -1,13 +1,13 @@
 @import 'mw.rcfilters.mixins';
 
-.mw-rcfilters-ui-capsuleItemWidget {
+.mw-rcfilters-ui-filterTagItemWidget {
 	background-color: #fff;
 	border-color: #979797;
 	color: #222;
 
 	// Background and color of the capsule widget need a bit
 	// more specificity to override ooui internals
-	&-muted.oo-ui-capsuleItemWidget.oo-ui-widget-enabled {
+	&-muted.oo-ui-tagItemWidget.oo-ui-widget-enabled {
 		// Muted state
 		background-color: #eaecf0;
 		border-color: #c8ccd1;
@@ -20,7 +20,7 @@
 		}
 	}
 
-	&-conflicted.oo-ui-capsuleItemWidget.oo-ui-widget-enabled {
+	&-conflicted.oo-ui-tagItemWidget.oo-ui-widget-enabled {
 		background-color: #fee7e6; // Red90 AAA
 		border-color: #b32424; // Red30 AAA
 
@@ -32,7 +32,7 @@
 		}
 	}
 
-	&-selected.oo-ui-capsuleItemWidget.oo-ui-widget-enabled {
+	&-selected.oo-ui-tagItemWidget.oo-ui-widget-enabled {
 		background-color: #eaf3ff;
 		border-color: #36c;
 	}

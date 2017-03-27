@@ -6,33 +6,33 @@
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-03-15T17:06:28Z
+ * Date: 2017-04-04T22:45:52Z
  */
-.oo-ui-draggableElement-handle,
-.oo-ui-draggableElement-handle.oo-ui-widget {
+.oo-ui-draggableElement:not( .oo-ui-draggableElement-undraggable )-handle,
+.oo-ui-draggableElement:not( .oo-ui-draggableElement-undraggable )-handle.oo-ui-widget {
   cursor: move;
   cursor: url(images/grab.cur );
   cursor: -webkit-grab;
   cursor:    -moz-grab;
   cursor:         grab;
 }
-.oo-ui-draggableElement-handle:active {
+.oo-ui-draggableElement:not( .oo-ui-draggableElement-undraggable )-handle:active {
   cursor: url(images/grabbing.cur );
   cursor: -webkit-grabbing;
   cursor:    -moz-grabbing;
   cursor:         grabbing;
 }
-.oo-ui-draggableElement-handle.oo-ui-widget-disabled,
-.oo-ui-widget-disabled .oo-ui-draggableElement-handle {
+.oo-ui-draggableElement:not( .oo-ui-draggableElement-undraggable )-handle.oo-ui-widget-disabled,
+.oo-ui-widget-disabled .oo-ui-draggableElement:not( .oo-ui-draggableElement-undraggable )-handle {
   cursor: default;
 }
-.oo-ui-draggableElement-placeholder {
+.oo-ui-draggableElement:not( .oo-ui-draggableElement-undraggable )-placeholder {
   opacity: 0.2;
 }
-.oo-ui-draggableGroupElement-horizontal .oo-ui-draggableElement {
+.oo-ui-draggableGroupElement-horizontal .oo-ui-draggableElement:not( .oo-ui-draggableElement-undraggable ) {
   display: inline-block;
 }
-.oo-ui-draggableElement-handle:focus {
+.oo-ui-draggableElement:not( .oo-ui-draggableElement-undraggable )-handle:focus {
   border-radius: 2px;
   box-shadow: inset 0 0 0 1px #36c, 0 0 0 1px #36c;
   outline: 0;
@@ -792,6 +792,208 @@
 .oo-ui-tabOptionWidget.oo-ui-optionWidget-selected:hover {
   background-color: #fff;
   color: #000;
+}
+.oo-ui-tagMultiselectWidget {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  max-width: 50em;
+}
+.oo-ui-tagMultiselectWidget-handle {
+  width: 100%;
+  display: block;
+  position: relative;
+}
+.oo-ui-tagMultiselectWidget-handle > .oo-ui-iconElement-icon,
+.oo-ui-tagMultiselectWidget-handle > .oo-ui-indicatorElement-indicator {
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
+.oo-ui-tagMultiselectWidget-content {
+  position: relative;
+}
+.oo-ui-tagMultiselectWidget.oo-ui-widget-disabled .oo-ui-tagMultiselectWidget-content > input {
+  display: none;
+}
+.oo-ui-tagMultiselectWidget-group {
+  display: inline;
+}
+.oo-ui-tagMultiselectWidget-inputPosition-outline {
+  width: 100%;
+}
+.oo-ui-tagMultiselectWidget-focusTrap {
+  display: inline-block;
+  height: 1px;
+  width: 1px;
+}
+.oo-ui-tagMultiselectWidget-handle {
+  min-height: 2.4em;
+  margin-right: 0.5em;
+  padding: 0.15em 0.25em;
+  border: 1px solid #a2a9b1;
+  border-radius: 2px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.oo-ui-tagMultiselectWidget-handle:last-child {
+  margin-right: 0;
+}
+.oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > input {
+  border: 0;
+  line-height: 1.675;
+  margin: 0 0 0 0.2em;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+  background-color: transparent;
+  color: #000;
+  vertical-align: middle;
+}
+.oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > input::-webkit-input-placeholder {
+  color: #72777d;
+  opacity: 1;
+}
+.oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > input:-ms-input-placeholder {
+  color: #72777d;
+  opacity: 1;
+}
+.oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > input::-moz-placeholder {
+  color: #72777d;
+  opacity: 1;
+}
+.oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > input:-moz-placeholder {
+  color: #72777d;
+  opacity: 1;
+}
+.oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > input::placeholder {
+  color: #72777d;
+  opacity: 1;
+}
+.oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > input:focus {
+  outline: 0;
+}
+.oo-ui-tagMultiselectWidget.oo-ui-iconElement .oo-ui-tagMultiselectWidget-handle {
+  padding-left: 2.475em;
+}
+.oo-ui-tagMultiselectWidget.oo-ui-iconElement .oo-ui-tagMultiselectWidget-handle > .oo-ui-iconElement-icon {
+  left: 0;
+  margin: 0 0.3em;
+}
+.oo-ui-tagMultiselectWidget.oo-ui-indicatorElement .oo-ui-tagMultiselectWidget-handle {
+  padding-right: 2.4875em;
+}
+.oo-ui-tagMultiselectWidget.oo-ui-indicatorElement .oo-ui-tagMultiselectWidget-handle > .oo-ui-indicatorElement-indicator {
+  right: 0;
+  margin: 0 0.775em;
+}
+.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled .oo-ui-tagMultiselectWidget-handle {
+  background-color: #fff;
+  cursor: text;
+  -webkit-transition: border-color 200ms cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
+     -moz-transition: border-color 200ms cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
+          transition: border-color 200ms cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled:hover .oo-ui-tagMultiselectWidget-handle {
+  border-color: #72777d;
+}
+.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-open .oo-ui-tagMultiselectWidget-handle {
+  border-color: #36c;
+  outline: 0;
+  box-shadow: inset 0 0 0 1px #36c;
+}
+.oo-ui-tagMultiselectWidget.oo-ui-widget-disabled .oo-ui-tagMultiselectWidget-handle {
+  color: #72777d;
+  text-shadow: 0 1px 1px #fff;
+  border-color: #c8ccd1;
+  background-color: #eaecf0;
+}
+.oo-ui-tagMultiselectWidget.oo-ui-widget-disabled .oo-ui-tagMultiselectWidget-handle > .oo-ui-iconElement-icon {
+  opacity: 0.51;
+}
+.oo-ui-tagMultiselectWidget.oo-ui-widget-disabled .oo-ui-tagMultiselectWidget-handle > .oo-ui-indicatorElement-indicator {
+  opacity: 0.15;
+}
+.oo-ui-tagItemWidget {
+  position: relative;
+  display: inline-block;
+  cursor: default;
+  white-space: nowrap;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  width: auto;
+  max-width: 100%;
+  height: 1.7em;
+  margin: 0.1em;
+  border: 1px solid #a2a9b1;
+  border-radius: 2px;
+  padding: 0 0.4em;
+  line-height: 1.7;
+  vertical-align: middle;
+}
+.oo-ui-tagItemWidget.oo-ui-labelElement .oo-ui-labelElement-label {
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  cursor: text;
+}
+.oo-ui-tagItemWidget.oo-ui-flaggedElement-invalid {
+  border-color: #d33;
+}
+.oo-ui-tagItemWidget.oo-ui-flaggedElement-invalid:hover {
+  border-color: #d33;
+}
+.oo-ui-tagItemWidget.oo-ui-flaggedElement-invalid:focus {
+  border-color: #d33;
+  box-shadow: inset 0 0 0 1px #d33;
+}
+.oo-ui-tagItemWidget.oo-ui-widget-enabled {
+  background-color: #f8f9fa;
+  color: #222;
+  padding-right: 1.5375em;
+  -webkit-transition: background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms;
+     -moz-transition: background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms;
+          transition: background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms;
+}
+.oo-ui-tagItemWidget.oo-ui-widget-enabled:hover {
+  background-color: #fff;
+  color: #444;
+  border-color: #a2a9b1;
+}
+.oo-ui-tagItemWidget.oo-ui-widget-enabled:focus {
+  border-color: #36c;
+  box-shadow: inset 0 0 0 1px #36c;
+  outline: 0;
+}
+.oo-ui-tagItemWidget.oo-ui-widget-enabled > .oo-ui-buttonElement {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+.oo-ui-tagItemWidget.oo-ui-widget-enabled .oo-ui-buttonElement-button {
+  display: block;
+  width: 1.5375em;
+  height: 100%;
+}
+.oo-ui-tagItemWidget.oo-ui-widget-enabled .oo-ui-buttonElement-button .oo-ui-indicator-clear {
+  position: absolute;
+  top: 0;
+  right: 0.3em;
+  bottom: 0;
+  height: auto;
+}
+.oo-ui-tagItemWidget.oo-ui-widget-disabled {
+  background-color: #eaecf0;
+  color: #72777d;
+  border-color: #c8ccd1;
+  text-shadow: 0 1px 1px #fff;
+}
+.oo-ui-tagItemWidget.oo-ui-widget-disabled > .oo-ui-buttonElement {
+  display: none;
 }
 .oo-ui-capsuleMultiselectWidget {
   display: inline-block;

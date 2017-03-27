@@ -6,7 +6,7 @@
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-03-15T17:06:24Z
+ * Date: 2017-04-04T22:45:46Z
  */
 ( function ( OO ) {
 
@@ -90,7 +90,7 @@ OO.ui.isFocusableElement = function ( $element ) {
 	// Check if the element is visible
 	if ( !(
 		// This is quicker than calling $element.is( ':visible' )
-		$.expr.filters.visible( element ) &&
+		$.expr.pseudos.visible( element ) &&
 		// Check that all parents are visible
 		!$element.parents().addBack().filter( function () {
 			return $.css( this, 'visibility' ) === 'hidden';
@@ -883,7 +883,7 @@ OO.ui.Element.static.getDocument = function ( obj ) {
 		// Window
 		obj.document ||
 		// HTMLDocument
-		( obj.nodeType === 9 && obj ) ||
+		( obj.nodeType === Node.DOCUMENT_NODE && obj ) ||
 		null;
 };
 
@@ -912,7 +912,7 @@ OO.ui.Element.static.getDir = function ( obj ) {
 	if ( obj instanceof jQuery ) {
 		obj = obj[ 0 ];
 	}
-	isDoc = obj.nodeType === 9;
+	isDoc = obj.nodeType === Node.DOCUMENT_NODE;
 	isWin = obj.document !== undefined;
 	if ( isDoc || isWin ) {
 		if ( isWin ) {
@@ -1140,17 +1140,18 @@ OO.ui.Element.static.getScrollLeft = ( function () {
 }() );
 
 /**
- * Get scrollable object parent
+ * Get the root scrollable element of given element's document.
  *
- * documentElement can't be used to get or set the scrollTop
- * property on Blink. Changing and testing its value lets us
- * use 'body' or 'documentElement' based on what is working.
+ * On Blink-based browsers (Chrome etc.), `document.documentElement` can't be used to get or set
+ * the scrollTop property; instead we have to use `document.body`. Changing and testing the value
+ * lets us use 'body' or 'documentElement' based on what is working.
  *
  * https://code.google.com/p/chromium/issues/detail?id=303131
  *
  * @static
- * @param {HTMLElement} el Element to find scrollable parent for
- * @return {HTMLElement} Scrollable parent
+ * @param {HTMLElement} el Element to find root scrollable parent for
+ * @return {HTMLElement} Scrollable parent, `document.body` or `document.documentElement`
+ *     depending on browser
  */
 OO.ui.Element.static.getRootScrollableElement = function ( el ) {
 	var scrollTop, body;
@@ -1174,8 +1175,8 @@ OO.ui.Element.static.getRootScrollableElement = function ( el ) {
 /**
  * Get closest scrollable container.
  *
- * Traverses up until either a scrollable element or the root is reached, in which case the window
- * will be returned.
+ * Traverses up until either a scrollable element or the root is reached, in which case the root
+ * scrollable element will be returned (see #getRootScrollableElement).
  *
  * @static
  * @param {HTMLElement} el Element to find scrollable container for
@@ -1191,6 +1192,12 @@ OO.ui.Element.static.getClosestScrollableContainer = function ( el, dimension ) 
 
 	if ( dimension === 'x' || dimension === 'y' ) {
 		props = [ 'overflow-' + dimension ];
+	}
+
+	// Special case for the document root (which doesn't really have any scrollable container, since
+	// it is the ultimate scrollable container, but this is probably saner than null or exception)
+	if ( $( el ).is( 'html, body' ) ) {
+		return this.getRootScrollableElement( el );
 	}
 
 	while ( $parent.length ) {
@@ -1211,7 +1218,8 @@ OO.ui.Element.static.getClosestScrollableContainer = function ( el, dimension ) 
 		}
 		$parent = $parent.parent();
 	}
-	return this.getDocument( el ).body;
+	// The element is unattached... return something mostly sane
+	return this.getRootScrollableElement( el );
 };
 
 /**
@@ -4303,6 +4311,20 @@ OO.ui.mixin.FloatableElement.prototype.position = function () {
 		return this;
 	}
 
+	if ( !(
+		// To continue, some things need to be true:
+		// The element must actually be in the DOM
+		this.isElementAttached() && (
+			// The closest scrollable is the current window
+			this.$floatableClosestScrollable[ 0 ] === this.getElementWindow() ||
+			// OR is an element in the element's DOM
+			$.contains( this.getElementDocument(), this.$floatableClosestScrollable[ 0 ] )
+		)
+	) ) {
+		// Abort early if important parts of the widget are no longer attached to the DOM
+		return this;
+	}
+
 	if ( this.hideWhenOutOfView && !this.isElementInViewport( this.$floatableContainer, this.$floatableClosestScrollable ) ) {
 		this.$floatable.addClass( 'oo-ui-element-hidden' );
 		return this;
@@ -7081,6 +7103,9 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
  *     // Example: A DropdownWidget with a menu that contains three options
  *     var dropDown = new OO.ui.DropdownWidget( {
  *         label: 'Dropdown menu: Select a menu option',
+ *         options: [
+ *         	{ data: 'a', }
+ *         ],
  *         menu: {
  *             items: [
  *                 new OO.ui.MenuOptionWidget( {
@@ -7489,8 +7514,9 @@ OO.ui.MultioptionWidget.prototype.isSelected = function () {
  * should be handled by the SelectWidget’s {@link OO.ui.SelectWidget#selectItem selectItem( [item] )}
  * method instead of this method.
  *
- * @param {boolean} [state=false] Select option
+ * @param {boolean} [state] Select option
  * @chainable
+ * @fires change
  */
 OO.ui.MultioptionWidget.prototype.setSelected = function ( state ) {
 	state = !!state;
@@ -7878,6 +7904,7 @@ OO.ui.CheckboxMultiselectWidget.prototype.onClick = function ( e ) {
  *   Deprecated, omit this parameter and specify `$container` instead.
  * @param {Object} [config] Configuration options
  * @cfg {jQuery} [$container=inputWidget.$element] Element to render menu under
+ * @cfg {number} [width] Width of the menu
  */
 OO.ui.FloatingMenuSelectWidget = function OoUiFloatingMenuSelectWidget( inputWidget, config ) {
 	// Allow 'inputWidget' parameter and config for backwards compatibility
@@ -7888,6 +7915,8 @@ OO.ui.FloatingMenuSelectWidget = function OoUiFloatingMenuSelectWidget( inputWid
 
 	// Configuration initialization
 	config = config || {};
+
+	this.width = config.width;
 
 	// Parent constructor
 	OO.ui.FloatingMenuSelectWidget.parent.call( this, config );
@@ -7922,7 +7951,7 @@ OO.ui.FloatingMenuSelectWidget.prototype.toggle = function ( visible ) {
 
 	if ( change && visible ) {
 		// Make sure the width is set before the parent method runs.
-		this.setIdealSize( this.$container.width() );
+		this.setIdealSize( this.width || this.$container.width() );
 	}
 
 	// Parent method

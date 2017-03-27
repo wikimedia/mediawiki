@@ -22,17 +22,20 @@
 		}
 	},
 	"images": {
+		"alert": { "file": "images/icons/alert.svg", "variants": [ "warning" ] },
 		"bell": { "file": "images/icons/bell.svg" },
 		"bellOn": { "file": {
 			"ltr": "images/icons/bellOn-ltr.svg",
 			"rtl": "images/icons/bellOn-rtl.svg"
 		} },
+		"comment": { "file": "images/icons/comment.svg" },
 		"eye": { "file": "images/icons/eye.svg" },
 		"eyeClosed": { "file": "images/icons/eyeClosed.svg" },
 		"message": { "file": {
 			"ltr": "images/icons/message-ltr.svg",
 			"rtl": "images/icons/message-rtl.svg"
 		} },
+		"notice": { "file": "images/icons/notice.svg" },
 		"signature": { "file": {
 			"ltr": "images/icons/signature-ltr.svg",
 			"rtl": "images/icons/signature-rtl.svg"
