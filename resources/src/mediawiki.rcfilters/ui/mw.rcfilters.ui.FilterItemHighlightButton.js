@@ -15,7 +15,7 @@
 		this.colorPickerWidget = new mw.rcfilters.ui.HighlightColorPickerWidget( controller, model );
 
 		// Parent
-		mw.rcfilters.ui.FilterItemHighlightButton.parent.call( this, $.extend( {}, config, {
+		mw.rcfilters.ui.FilterItemHighlightButton.parent.call( this, $.extend( true, {}, config, {
 			icon: 'highlight',
 			indicator: 'down',
 			popup: {
@@ -39,6 +39,10 @@
 		// Event
 		this.model.connect( this, { update: 'onModelUpdate' } );
 		this.colorPickerWidget.connect( this, { chooseColor: 'onChooseColor' } );
+		// This lives inside an MenuOptionWidget, which intercepts mousedown
+		// to select the item. We want to prevent that when we click the highlight
+		// button
+		this.$element.on( 'mousedown', function ( e ) { e.stopPropagation(); } );
 
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterItemHighlightButton' );
