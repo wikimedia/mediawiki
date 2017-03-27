@@ -76,7 +76,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 			'script' => "var a = 'this is';\n {\ninvalid"
 		] );
 		$this->assertEquals(
-			'mw.log.error(' .
+			'mediaWiki.log.error(' .
 				'"JavaScript parse error: Parse error: Unexpected token; ' .
 				'token } expected in file \'input\' on line 3"' .
 			');',

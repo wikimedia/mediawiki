@@ -1183,7 +1183,7 @@ MESSAGE;
 		];
 		self::trimArray( $module );
 
-		return Xml::encodeJsCall( 'mw.loader.implement', $module, ResourceLoader::inDebugMode() );
+		return Xml::encodeJsCall( 'mediaWiki.loader.implement', $module, ResourceLoader::inDebugMode() );
 	}
 
 	/**
@@ -1195,7 +1195,7 @@ MESSAGE;
 	 */
 	public static function makeMessageSetScript( $messages ) {
 		return Xml::encodeJsCall(
-			'mw.messages.set',
+			'mediaWiki.messages.set',
 			[ (object)$messages ],
 			ResourceLoader::inDebugMode()
 		);
@@ -1252,13 +1252,13 @@ MESSAGE;
 	public static function makeLoaderStateScript( $name, $state = null ) {
 		if ( is_array( $name ) ) {
 			return Xml::encodeJsCall(
-				'mw.loader.state',
+				'mediaWiki.loader.state',
 				[ $name ],
 				ResourceLoader::inDebugMode()
 			);
 		} else {
 			return Xml::encodeJsCall(
-				'mw.loader.state',
+				'mediaWiki.loader.state',
 				[ $name, $state ],
 				ResourceLoader::inDebugMode()
 			);
@@ -1376,7 +1376,7 @@ MESSAGE;
 			array_walk( $name, [ 'self', 'trimArray' ] );
 
 			return Xml::encodeJsCall(
-				'mw.loader.register',
+				'mediaWiki.loader.register',
 				[ $name ],
 				ResourceLoader::inDebugMode()
 			);
@@ -1384,7 +1384,7 @@ MESSAGE;
 			$registration = [ $name, $version, $dependencies, $group, $source, $skip ];
 			self::trimArray( $registration );
 			return Xml::encodeJsCall(
-				'mw.loader.register',
+				'mediaWiki.loader.register',
 				$registration,
 				ResourceLoader::inDebugMode()
 			);
@@ -1408,13 +1408,13 @@ MESSAGE;
 	public static function makeLoaderSourcesScript( $id, $loadUrl = null ) {
 		if ( is_array( $id ) ) {
 			return Xml::encodeJsCall(
-				'mw.loader.addSource',
+				'mediaWiki.loader.addSource',
 				[ $id ],
 				ResourceLoader::inDebugMode()
 			);
 		} else {
 			return Xml::encodeJsCall(
-				'mw.loader.addSource',
+				'mediaWiki.loader.addSource',
 				[ $id, $loadUrl ],
 				ResourceLoader::inDebugMode()
 			);
@@ -1461,7 +1461,7 @@ MESSAGE;
 	 */
 	public static function makeConfigSetScript( array $configuration ) {
 		return Xml::encodeJsCall(
-			'mw.config.set',
+			'mediaWiki.config.set',
 			[ $configuration ],
 			ResourceLoader::inDebugMode()
 		);

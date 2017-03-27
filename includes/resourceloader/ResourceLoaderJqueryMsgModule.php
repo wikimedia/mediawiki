@@ -43,7 +43,10 @@ class ResourceLoaderJqueryMsgModule extends ResourceLoaderFileModule {
 			)
 		);
 
-		$mainDataScript = Xml::encodeJsCall( 'mw.jqueryMsg.setParserDefaults', [ $parserDefaults ] );
+		$mainDataScript = Xml::encodeJsCall(
+			'mediaWiki.jqueryMsg.setParserDefaults',
+			[ $parserDefaults ]
+		);
 
 		// Associative array mapping magic words (e.g. SITENAME)
 		// to their values.
@@ -57,7 +60,7 @@ class ResourceLoaderJqueryMsgModule extends ResourceLoaderFileModule {
 			'magic' => $magicWords,
 		];
 
-		$magicWordDataScript = Xml::encodeJsCall( 'mw.jqueryMsg.setParserDefaults', [
+		$magicWordDataScript = Xml::encodeJsCall( 'mediaWiki.jqueryMsg.setParserDefaults', [
 			$magicWordExtendData,
 			/* deep= */ true
 		] );

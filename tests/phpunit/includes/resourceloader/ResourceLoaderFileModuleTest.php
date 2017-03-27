@@ -108,11 +108,13 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		return [
 			[
 				'deprecatedModule',
-				'mw.log.warn("This page is using the deprecated ResourceLoader module \"deprecatedModule\".");',
+				'mediaWiki.log.warn(' .
+					'"This page is using the deprecated ResourceLoader module \"deprecatedModule\"."' .
+					');',
 			],
 			[
 				'deprecatedTomorrow',
-				'mw.log.warn(' .
+				'mediaWiki.log.warn(' .
 					'"This page is using the deprecated ResourceLoader module \"deprecatedTomorrow\".\\n' .
 					"Will be removed tomorrow." .
 					'");'
