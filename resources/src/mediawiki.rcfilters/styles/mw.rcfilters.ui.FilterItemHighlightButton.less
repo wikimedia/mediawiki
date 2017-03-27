@@ -1,11 +1,17 @@
 @import 'mw.rcfilters.mixins';
 
 .mw-rcfilters-ui-filterItemHighlightButton {
+	.oo-ui-buttonElement-button .oo-ui-indicatorElement-indicator {
+		// Override OOUI style
+		position: static !important;
+	}
+
 	.oo-ui-buttonWidget.oo-ui-popupButtonWidget .oo-ui-buttonElement-button > &-circle {
 		display: inline-block;
 		vertical-align: middle;
 		background-image: none;
 		margin-right: 0.2em;
+
 
 		&-color {
 			&-c1 {
