@@ -3781,6 +3781,8 @@
 	"authmanager-password-help": "Пароль для аўтэнтыфікацыі.",
 	"authmanager-domain-help": "Дамэн для вонкавай аўтэнтыфікацыі.",
 	"authmanager-retype-help": "Пароль яшчэ раз для пацьверджаньня.",
+	"authmanager-email-label": "Электронная пошта",
+	"authmanager-email-help": "Адрас электроннай пошты",
 	"authmanager-realname-label": "Сапраўднае імя",
 	"authmanager-provider-temporarypassword": "Часовы пароль",
 	"changecredentials": "Зьмена ўліковых зьвестак",

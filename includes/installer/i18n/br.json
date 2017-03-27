@@ -91,6 +91,7 @@
 	"config-db-name": "Anv an diaz roadennoù :",
 	"config-db-name-help": "Dibabit un anv evit ho wiki.\nNa lakait ket a esaouennoù ennañ.\n\nMa ri gant un herberc'hiañ kenrannet e vo pourchaset deoc'h un anv diaz roadennoù dibar da vezañ graet gantañ gant ho herberc'hier pe e lezo ac'hanoc'h da grouiñ diazoù roadennoù dre ur banell gontrolliñ.",
 	"config-db-name-oracle": "Brastres diaz roadennoù :",
+	"config-db-account-oracle-warn": "Skoret ez eus tri doare evit staliañ Oracle da v/backend diaz roadennoù :\n\nMar fell deoc'h krouiñ ur gont diaz roadennoù e-ser an argerzh staliañ eo rekis pourchas ur gont gant ur roll SYSDBA evel kont diaz roadennoù evit ar staliañ, ha spisaat an titouroù anaout a fell deoc'h evit ar gont moned ouzh ar web. A-hend-all, e c'hallit krouiñ ar gont moned ouzh ar web gant an dorn ha pourchas hepken ar gont-se (ma'z eus bet ranket diskouez aotreoù ret evit krouiñ traezoù ar brastres) pe pourveziñ div gont disheñvel, unan gant dreistwirioù krouiñ hag eben, gant gwirioù strishaet, evit moned ouzh ar web.\n\nGallout a reer kaout ar skript evit kouiñ ur gont a zo rekis dreistwirioù eviti e kavlec'h \"trezalc'h/oracle/\" ar staliadur-mañ. Na zisoñjit ket e vo diweredekaet holl varregezhioù trezalc'h ar gont dre ziouer ma rit gant ur gont strishaet he gwirioù.",
 	"config-db-install-account": "Kont implijer evit ar staliadur",
 	"config-db-username": "Anv implijer an diaz roadennoù :",
 	"config-db-password": "Ger-tremen an diaz roadennoù :",

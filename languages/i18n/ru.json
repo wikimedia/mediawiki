@@ -2228,7 +2228,7 @@
 	"movedarticleprotection": "перенёс настройки защиты с «[[$2]]» на «[[$1]]»",
 	"protectedarticle-comment": "Защитил{{GENDER:$2||а}} «[[$1]]»",
 	"modifiedarticleprotection-comment": "Изменил{{GENDER:$2||а}} уровень защиты «[[$1]]»",
-	"unprotectedarticle-comment": "Убрал {{GENDER:$2||а}} защиту с «[[$1]]»",
+	"unprotectedarticle-comment": "Cнял{{GENDER:$2||а}} защиту с «[[$1]]»",
 	"protect-title": "Установка уровня защиты для «$1»",
 	"protect-title-notallowed": "Просмотр уровня защиты «$1»",
 	"prot_1movedto2": "[[$1]] переименована в [[$2]]",

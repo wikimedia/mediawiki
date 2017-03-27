@@ -1232,7 +1232,7 @@
 	"action-move-rootuserpages": "teisaldada kasutajalehekülgi",
 	"action-move-categorypages": "teisaldada kategoorialehekülgi",
 	"action-movefile": "seda faili teisaldada",
-	"action-upload": "seda faili üles laadida",
+	"action-upload": "faile üles laadida",
 	"action-reupload": "seda olemasolevat faili üle kirjutada",
 	"action-reupload-shared": "seda jagatud varamus asuvat faili üle kirjutada",
 	"action-upload_by_url": "seda faili internetiaadressilt üles laadida",
