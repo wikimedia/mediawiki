@@ -1302,7 +1302,7 @@ return [
 		'dependencies' => [
 			'mediawiki.ForeignStructuredUpload',
 			'mediawiki.Upload.BookletLayout',
-			'mediawiki.widgets.CategorySelector',
+			'mediawiki.widgets.CategoryMultiselectWidget',
 			'mediawiki.widgets.DateInputWidget',
 			'mediawiki.jqueryMsg',
 			'mediawiki.api.messages',
@@ -2357,9 +2357,15 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.widgets.CategorySelector' => [
+		'deprecated' => 'Use "mw.widgets.CategoryMultiselectWidget" instead. See T161285.',
+		'dependencies' => [
+			'mediawiki.widgets.CategoryMultiselectWidget',
+		],
+	],
+	'mediawiki.widgets.CategoryMultiselectWidget' => [
 		'scripts' => [
 			'resources/src/mediawiki.widgets/mw.widgets.CategoryCapsuleItemWidget.js',
-			'resources/src/mediawiki.widgets/mw.widgets.CategorySelector.js',
+			'resources/src/mediawiki.widgets/mw.widgets.CategoryMultiselectWidget.js',
 		],
 		'dependencies' => [
 			'oojs-ui-widgets',
@@ -2369,7 +2375,7 @@ return [
 		],
 		'messages' => [
 			'red-link-title',
-			'mw-widgets-categoryselector-add-category-placeholder'
+			'mw-widgets-categoryselector-add-category-placeholder',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
