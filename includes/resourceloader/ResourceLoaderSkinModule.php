@@ -23,8 +23,6 @@
 
 class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 
-	/* Methods */
-
 	/**
 	 * @param ResourceLoaderContext $context
 	 * @return array
@@ -77,13 +75,12 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		return false;
 	}
 
-	/**
-	 * @param ResourceLoaderContext $context
-	 * @return string: Hash
-	 */
-	public function getModifiedHash( ResourceLoaderContext $context ) {
-		$logo = $this->getConfig()->get( 'Logo' );
-		$logoHD = $this->getConfig()->get( 'LogoHD' );
-		return md5( parent::getModifiedHash( $context ) . $logo . json_encode( $logoHD ) );
+	public function getDefinitionSummary( ResourceLoaderContext $context ) {
+		$summary = parent::getDefinitionSummary( $context );
+		$summary[] = [
+			'logo' => $this->getConfig()->get( 'Logo' ),
+			'logoHD' => $this->getConfig()->get( 'LogoHD' ),
+		];
+		return $summary;
 	}
 }
