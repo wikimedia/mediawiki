@@ -53,6 +53,8 @@ class Http {
 	 *    - logger              A \Psr\Logger\LoggerInterface instance for debug logging
 	 *    - username            Username for HTTP Basic Authentication
 	 *    - password            Password for HTTP Basic Authentication
+	 *    - originalRequest     Information about the original request (as a WebRequest object or
+	 *                          an associative array with 'ip' and 'userAgent').
 	 * @param string $caller The method making this request, for profiling
 	 * @return string|bool (bool)false on failure or a string on success
 	 */
