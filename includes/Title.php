@@ -4028,7 +4028,11 @@ class Title implements LinkTarget {
 			$row = $db->selectRow( 'revision', Revision::selectFields(),
 				[ 'rev_page' => $pageId ],
 				__METHOD__,
-				[ 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 1 ]
+				[
+					'ORDER BY' => 'rev_timestamp ASC',
+					'LIMIT' => 1,
+					'IGNORE INDEX' => 'rev_timestamp'
+				]
 			);
 			if ( $row ) {
 				return new Revision( $row );
