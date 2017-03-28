@@ -31,9 +31,14 @@
 			"ltr": "images/icons/mapPinAdd-ltr.svg",
 			"rtl": "images/icons/mapPinAdd-rtl.svg"
 		} },
+		"mapTrail": { "file": {
+			"ltr": "images/icons/mapTrail-ltr.svg",
+			"rtl": "images/icons/mapTrail-rtl.svg"
+		} },
 		"wikitrail": { "file": {
-			"ltr": "images/icons/wikitrail-ltr.svg",
-			"rtl": "images/icons/wikitrail-rtl.svg"
-		} }
+			"ltr": "images/icons/mapTrail-ltr.svg",
+			"rtl": "images/icons/mapTrail-rtl.svg"
+		}, "deprecated": "Renamed to 'mapTrail' since v0.20.1."
+		}
 	}
 }

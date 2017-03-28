@@ -10,13 +10,17 @@
 			"ltr": "images/icons/articleRedirect-ltr.svg",
 			"rtl": "images/icons/articleRedirect-rtl.svg"
 		} },
+		"history": { "file": "images/icons/history.svg" },
+		"info": { "file": "images/icons/info.svg" },
 		"journal": { "file": {
 			"ltr": "images/icons/journal-ltr.svg",
 			"rtl": "images/icons/journal-rtl.svg"
 		} },
+		"tag": { "file": "images/icons/tag.svg" },
 		"upload": { "file": {
 			"ltr": "images/icons/upload-ltr.svg",
 			"rtl": "images/icons/upload-rtl.svg"
-		} }
+		} },
+		"window": { "file": "images/icons/window.svg" }
 	}
 }

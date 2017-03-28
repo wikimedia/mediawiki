@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.20.0
+ * OOjs UI v0.20.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-03-15T17:06:24Z
+ * Date: 2017-03-28T22:19:29Z
  */
 ( function ( OO ) {
 
@@ -24,6 +24,9 @@
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {jQuery} [$handle] The part of the element which can be used for dragging, defaults to the whole element
+ * @cfg {boolean} [draggable] The items are draggable. This can change with #toggleDraggable
+ *  but the draggable state should be called from the DraggableGroupElement, which updates
+ *  the whole group
  */
 OO.ui.mixin.DraggableElement = function OoUiMixinDraggableElement( config ) {
 	config = config || {};
@@ -32,6 +35,7 @@ OO.ui.mixin.DraggableElement = function OoUiMixinDraggableElement( config ) {
 	this.index = null;
 	this.$handle = config.$handle || this.$element;
 	this.wasHandleUsed = null;
+	this.draggable = config.draggable === undefined ? true : !!config.draggable;
 
 	// Initialize and events
 	this.$element.addClass( 'oo-ui-draggableElement' )
@@ -82,12 +86,42 @@ OO.ui.mixin.DraggableElement.static.cancelButtonMouseDownEvents = false;
 /* Methods */
 
 /**
+ * Change the draggable state of this widget.
+ * This allows users to temporarily halt the dragging operations.
+ *
+ * @param {boolean} isDraggable Widget supports draggable operations
+ * @fires draggable
+ */
+OO.ui.mixin.DraggableElement.prototype.toggleDraggable = function ( isDraggable ) {
+	isDraggable = isDraggable !== undefined ? !!isDraggable : !this.draggable;
+
+	if ( this.draggable !== isDraggable ) {
+		this.draggable = isDraggable;
+
+		this.$element.toggleClass( 'oo-ui-draggableElement-undraggable', !this.draggable );
+	}
+};
+
+/**
+ * Check the draggable state of this widget
+ *
+ * @return {boolean} Widget supports draggable operations
+ */
+OO.ui.mixin.DraggableElement.prototype.isDraggable = function () {
+	return this.draggable;
+};
+
+/**
  * Respond to mousedown event.
  *
  * @private
  * @param {jQuery.Event} e Drag event
  */
 OO.ui.mixin.DraggableElement.prototype.onDragMouseDown = function ( e ) {
+	if ( !this.isDraggable() ) {
+		return;
+	}
+
 	this.wasHandleUsed =
 		// Optimization: if the handle is the whole element this is always true
 		this.$handle[ 0 ] === this.$element[ 0 ] ||
@@ -107,7 +141,7 @@ OO.ui.mixin.DraggableElement.prototype.onDragStart = function ( e ) {
 	var element = this,
 		dataTransfer = e.originalEvent.dataTransfer;
 
-	if ( !this.wasHandleUsed ) {
+	if ( !this.wasHandleUsed || !this.isDraggable() ) {
 		return false;
 	}
 
@@ -208,6 +242,7 @@ OO.ui.mixin.DraggableElement.prototype.getIndex = function () {
  *  should match the layout of the items. Items displayed in a single row
  *  or in several rows should use horizontal orientation. The vertical orientation should only be
  *  used when the items are displayed in a single column. Defaults to 'vertical'
+ * @cfg {boolean} [draggable] The items are draggable. This can change with #toggleDraggable
  */
 OO.ui.mixin.DraggableGroupElement = function OoUiMixinDraggableGroupElement( config ) {
 	// Configuration initialization
@@ -222,6 +257,7 @@ OO.ui.mixin.DraggableGroupElement = function OoUiMixinDraggableGroupElement( con
 	this.itemKeys = {};
 	this.dir = null;
 	this.itemsOrder = null;
+	this.draggable = config.draggable === undefined ? true : !!config.draggable;
 
 	// Events
 	this.aggregate( {
@@ -260,14 +296,53 @@ OO.mixinClass( OO.ui.mixin.DraggableGroupElement, OO.ui.mixin.GroupElement );
  */
 
 /**
- * And item has been dropped at a new position.
+ * An item has been dropped at a new position.
  *
  * @event reorder
  * @param {OO.ui.mixin.DraggableElement} item Reordered item
  * @param {number} [newIndex] New index for the item
  */
 
+/**
+ * Draggable state of this widget has changed.
+ *
+ * @event draggable
+ * @param {boolean} [draggable] Widget is draggable
+ */
+
 /* Methods */
+
+/**
+ * Change the draggable state of this widget.
+ * This allows users to temporarily halt the dragging operations.
+ *
+ * @param {boolean} isDraggable Widget supports draggable operations
+ * @fires draggable
+ */
+OO.ui.mixin.DraggableGroupElement.prototype.toggleDraggable = function ( isDraggable ) {
+	isDraggable = isDraggable !== undefined ? !!isDraggable : !this.draggable;
+
+	if ( this.draggable !== isDraggable ) {
+		this.draggable = isDraggable;
+
+		// Tell the items their draggable state changed
+		this.getItems().forEach( function ( item ) {
+			item.toggleDraggable( this.draggable );
+		}.bind( this ) );
+
+		// Emit event
+		this.emit( 'draggable', this.draggable );
+	}
+};
+
+/**
+ * Check the draggable state of this widget
+ *
+ * @return {boolean} Widget supports draggable operations
+ */
+OO.ui.mixin.DraggableGroupElement.prototype.isDraggable = function () {
+	return this.draggable;
+};
 
 /**
  * Respond to item drag start event
@@ -276,6 +351,9 @@ OO.mixinClass( OO.ui.mixin.DraggableGroupElement, OO.ui.mixin.GroupElement );
  * @param {OO.ui.mixin.DraggableElement} item Dragged item
  */
 OO.ui.mixin.DraggableGroupElement.prototype.onItemDragStart = function ( item ) {
+	if ( !this.isDraggable() ) {
+		return;
+	}
 	// Make a shallow copy of this.items so we can re-order it during previews
 	// without affecting the original array.
 	this.itemsOrder = this.items.slice();
