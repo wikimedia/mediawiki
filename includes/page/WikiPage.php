@@ -590,7 +590,8 @@ class WikiPage implements Page, IDBAccessObject {
 				],
 				__METHOD__,
 				[
-					'ORDER BY' => 'rev_timestamp ASC'
+					'ORDER BY' => 'rev_timestamp ASC',
+					'IGNORE INDEX' => 'rev_timestamp'
 				]
 			);
 
