@@ -3961,14 +3961,22 @@ class Title implements LinkTarget {
 	 * @return int|bool Old revision ID, or false if none exists
 	 */
 	public function getPreviousRevisionID( $revId, $flags = 0 ) {
-		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_REPLICA );
+		/* This function and getNextRevisionID have bad performance when
+		   used on a page with many revisions on mysql. An explicit extended
+		   primary key may help in some cases, if the PRIMARY KEY is banned:
+		   T159319 */
+		if ( $flags & self::GAID_FOR_UPDATE ) {
+			$db = wfGetDB( DB_MASTER );
+		} else {
+			$db = wfGetDB( DB_REPLICA, 'contributions' );
+		}
 		$revId = $db->selectField( 'revision', 'rev_id',
 			[
 				'rev_page' => $this->getArticleID( $flags ),
 				'rev_id < ' . intval( $revId )
 			],
 			__METHOD__,
-			[ 'ORDER BY' => 'rev_id DESC' ]
+			[ 'ORDER BY' => 'rev_id DESC', 'IGNORE INDEX' => 'PRIMARY' ]
 		);
 
 		if ( $revId === false ) {
@@ -3986,14 +3994,18 @@ class Title implements LinkTarget {
 	 * @return int|bool Next revision ID, or false if none exists
 	 */
 	public function getNextRevisionID( $revId, $flags = 0 ) {
-		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_REPLICA );
+		if ( $flags & self::GAID_FOR_UPDATE ) {
+			$db = wfGetDB( DB_MASTER );
+		} else {
+			$db = wfGetDB( DB_REPLICA, 'contributions' );
+		}
 		$revId = $db->selectField( 'revision', 'rev_id',
 			[
 				'rev_page' => $this->getArticleID( $flags ),
 				'rev_id > ' . intval( $revId )
 			],
 			__METHOD__,
-			[ 'ORDER BY' => 'rev_id' ]
+			[ 'ORDER BY' => 'rev_id', 'IGNORE INDEX' => 'PRIMARY' ]
 		);
 
 		if ( $revId === false ) {
