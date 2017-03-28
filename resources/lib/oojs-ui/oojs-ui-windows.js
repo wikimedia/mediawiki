@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.20.0
+ * OOjs UI v0.20.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-03-15T17:06:24Z
+ * Date: 2017-03-28T22:19:29Z
  */
 ( function ( OO ) {
 
@@ -1333,7 +1333,7 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data ) {
 				manager.toggleGlobalEvents( true );
 				manager.toggleAriaIsolation( true );
 			}
-			manager.$returnFocusTo = data.$returnFocusTo || $( document.activeElement );
+			manager.$returnFocusTo = data.$returnFocusTo !== undefined ? data.$returnFocusTo : $( document.activeElement );
 			manager.currentWindow = win;
 			manager.opening = opening;
 			manager.preparingToOpen = null;
