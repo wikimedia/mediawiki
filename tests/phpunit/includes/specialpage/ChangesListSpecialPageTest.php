@@ -173,7 +173,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$user = $this->getTestUser()->getUser();
 		$this->assertConditions(
 			[ # expected
-				"rc_user != '{$user->getId()}'",
+				"rc_user_text != '{$user->getName()}'",
 			],
 			[
 				'hidemyself' => 1,
@@ -199,7 +199,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$user = $this->getTestUser()->getUser();
 		$this->assertConditions(
 			[ # expected
-				"rc_user = '{$user->getId()}'",
+				"rc_user_text = '{$user->getName()}'",
 			],
 			[
 				'hidebyothers' => 1,
@@ -225,8 +225,8 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$user = $this->getTestUser()->getUser();
 		$this->assertConditions(
 			[ # expected
-				"rc_user != '{$user->getId()}'",
-				"rc_user = '{$user->getId()}'",
+				"rc_user_text != '{$user->getName()}'",
+				"rc_user_text = '{$user->getName()}'",
 			],
 			[
 				'hidemyself' => 1,
