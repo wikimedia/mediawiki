@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.20.0
+ * OOjs UI v0.20.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-03-15T17:06:24Z
+ * Date: 2017-03-28T22:19:29Z
  */
 ( function ( OO ) {
 
@@ -90,7 +90,7 @@ OO.ui.isFocusableElement = function ( $element ) {
 	// Check if the element is visible
 	if ( !(
 		// This is quicker than calling $element.is( ':visible' )
-		$.expr.filters.visible( element ) &&
+		$.expr.pseudos.visible( element ) &&
 		// Check that all parents are visible
 		!$element.parents().addBack().filter( function () {
 			return $.css( this, 'visibility' ) === 'hidden';
@@ -883,7 +883,7 @@ OO.ui.Element.static.getDocument = function ( obj ) {
 		// Window
 		obj.document ||
 		// HTMLDocument
-		( obj.nodeType === 9 && obj ) ||
+		( obj.nodeType === Node.DOCUMENT_NODE && obj ) ||
 		null;
 };
 
@@ -912,7 +912,7 @@ OO.ui.Element.static.getDir = function ( obj ) {
 	if ( obj instanceof jQuery ) {
 		obj = obj[ 0 ];
 	}
-	isDoc = obj.nodeType === 9;
+	isDoc = obj.nodeType === Node.DOCUMENT_NODE;
 	isWin = obj.document !== undefined;
 	if ( isDoc || isWin ) {
 		if ( isWin ) {
@@ -1140,17 +1140,18 @@ OO.ui.Element.static.getScrollLeft = ( function () {
 }() );
 
 /**
- * Get scrollable object parent
+ * Get the root scrollable element of given element's document.
  *
- * documentElement can't be used to get or set the scrollTop
- * property on Blink. Changing and testing its value lets us
- * use 'body' or 'documentElement' based on what is working.
+ * On Blink-based browsers (Chrome etc.), `document.documentElement` can't be used to get or set
+ * the scrollTop property; instead we have to use `document.body`. Changing and testing the value
+ * lets us use 'body' or 'documentElement' based on what is working.
  *
  * https://code.google.com/p/chromium/issues/detail?id=303131
  *
  * @static
- * @param {HTMLElement} el Element to find scrollable parent for
- * @return {HTMLElement} Scrollable parent
+ * @param {HTMLElement} el Element to find root scrollable parent for
+ * @return {HTMLElement} Scrollable parent, `document.body` or `document.documentElement`
+ *     depending on browser
  */
 OO.ui.Element.static.getRootScrollableElement = function ( el ) {
 	var scrollTop, body;
@@ -1174,8 +1175,8 @@ OO.ui.Element.static.getRootScrollableElement = function ( el ) {
 /**
  * Get closest scrollable container.
  *
- * Traverses up until either a scrollable element or the root is reached, in which case the window
- * will be returned.
+ * Traverses up until either a scrollable element or the root is reached, in which case the root
+ * scrollable element will be returned (see #getRootScrollableElement).
  *
  * @static
  * @param {HTMLElement} el Element to find scrollable container for
@@ -1191,6 +1192,12 @@ OO.ui.Element.static.getClosestScrollableContainer = function ( el, dimension ) 
 
 	if ( dimension === 'x' || dimension === 'y' ) {
 		props = [ 'overflow-' + dimension ];
+	}
+
+	// Special case for the document root (which doesn't really have any scrollable container, since
+	// it is the ultimate scrollable container, but this is probably saner than null or exception)
+	if ( $( el ).is( 'html, body' ) ) {
+		return this.getRootScrollableElement( el );
 	}
 
 	while ( $parent.length ) {
@@ -1211,7 +1218,8 @@ OO.ui.Element.static.getClosestScrollableContainer = function ( el, dimension ) 
 		}
 		$parent = $parent.parent();
 	}
-	return this.getDocument( el ).body;
+	// The element is unattached... return something mostly sane
+	return this.getRootScrollableElement( el );
 };
 
 /**
@@ -2181,6 +2189,7 @@ OO.ui.mixin.ButtonElement.prototype.isActive = function () {
  * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Elements/Groups
  *
  * @abstract
+ * @mixins OO.EmitterList
  * @class
  *
  * @constructor
@@ -2192,14 +2201,19 @@ OO.ui.mixin.GroupElement = function OoUiMixinGroupElement( config ) {
 	// Configuration initialization
 	config = config || {};
 
+	// Mixin constructors
+	OO.EmitterList.call( this, config );
+
 	// Properties
 	this.$group = null;
-	this.items = [];
-	this.aggregateItemEvents = {};
 
 	// Initialization
 	this.setGroupElement( config.$group || $( '<div>' ) );
 };
+
+/* Setup */
+
+OO.mixinClass( OO.ui.mixin.GroupElement, OO.EmitterList );
 
 /* Events */
 
@@ -2227,28 +2241,6 @@ OO.ui.mixin.GroupElement.prototype.setGroupElement = function ( $group ) {
 	for ( i = 0, len = this.items.length; i < len; i++ ) {
 		this.$group.append( this.items[ i ].$element );
 	}
-};
-
-/**
- * Check if a group contains no items.
- *
- * @return {boolean} Group is empty
- */
-OO.ui.mixin.GroupElement.prototype.isEmpty = function () {
-	return !this.items.length;
-};
-
-/**
- * Get all items in the group.
- *
- * The method returns an array of item references (e.g., [button1, button2, button3]) and is useful
- * when synchronizing groups of items, or whenever the references are required (e.g., when removing items
- * from a group).
- *
- * @return {OO.ui.Element[]} An array of items.
- */
-OO.ui.mixin.GroupElement.prototype.getItems = function () {
-	return this.items.slice( 0 );
 };
 
 /**
@@ -2298,62 +2290,6 @@ OO.ui.mixin.GroupElement.prototype.getItemsFromData = function ( data ) {
 };
 
 /**
- * Aggregate the events emitted by the group.
- *
- * When events are aggregated, the group will listen to all contained items for the event,
- * and then emit the event under a new name. The new event will contain an additional leading
- * parameter containing the item that emitted the original event. Other arguments emitted from
- * the original event are passed through.
- *
- * @param {Object.<string,string|null>} events An object keyed by the name of the event that should be
- *  aggregated  (e.g., ‘click’) and the value of the new name to use (e.g., ‘groupClick’).
- *  A `null` value will remove aggregated events.
-
- * @throws {Error} An error is thrown if aggregation already exists.
- */
-OO.ui.mixin.GroupElement.prototype.aggregate = function ( events ) {
-	var i, len, item, add, remove, itemEvent, groupEvent;
-
-	for ( itemEvent in events ) {
-		groupEvent = events[ itemEvent ];
-
-		// Remove existing aggregated event
-		if ( Object.prototype.hasOwnProperty.call( this.aggregateItemEvents, itemEvent ) ) {
-			// Don't allow duplicate aggregations
-			if ( groupEvent ) {
-				throw new Error( 'Duplicate item event aggregation for ' + itemEvent );
-			}
-			// Remove event aggregation from existing items
-			for ( i = 0, len = this.items.length; i < len; i++ ) {
-				item = this.items[ i ];
-				if ( item.connect && item.disconnect ) {
-					remove = {};
-					remove[ itemEvent ] = [ 'emit', this.aggregateItemEvents[ itemEvent ], item ];
-					item.disconnect( this, remove );
-				}
-			}
-			// Prevent future items from aggregating event
-			delete this.aggregateItemEvents[ itemEvent ];
-		}
-
-		// Add new aggregate event
-		if ( groupEvent ) {
-			// Make future items aggregate event
-			this.aggregateItemEvents[ itemEvent ] = groupEvent;
-			// Add event aggregation to existing items
-			for ( i = 0, len = this.items.length; i < len; i++ ) {
-				item = this.items[ i ];
-				if ( item.connect && item.disconnect ) {
-					add = {};
-					add[ itemEvent ] = [ 'emit', groupEvent, item ];
-					item.connect( this, add );
-				}
-			}
-		}
-	}
-};
-
-/**
  * Add items to the group.
  *
  * Items will be added to the end of the group array unless the optional `index` parameter specifies
@@ -2364,46 +2300,74 @@ OO.ui.mixin.GroupElement.prototype.aggregate = function ( events ) {
  * @chainable
  */
 OO.ui.mixin.GroupElement.prototype.addItems = function ( items, index ) {
-	var i, len, item, itemEvent, events, currentIndex,
+	var i, len, item,
 		itemElements = [];
+
+	// Mixin method
+	OO.EmitterList.prototype.addItems.call( this, items, index );
 
 	for ( i = 0, len = items.length; i < len; i++ ) {
 		item = items[ i ];
 
-		// Check if item exists then remove it first, effectively "moving" it
-		currentIndex = this.items.indexOf( item );
-		if ( currentIndex >= 0 ) {
-			this.removeItems( [ item ] );
-			// Adjust index to compensate for removal
-			if ( currentIndex < index ) {
-				index--;
-			}
-		}
 		// Add the item
-		if ( item.connect && item.disconnect && !$.isEmptyObject( this.aggregateItemEvents ) ) {
-			events = {};
-			for ( itemEvent in this.aggregateItemEvents ) {
-				events[ itemEvent ] = [ 'emit', this.aggregateItemEvents[ itemEvent ], item ];
-			}
-			item.connect( this, events );
-		}
 		item.setElementGroup( this );
 		itemElements.push( item.$element.get( 0 ) );
 	}
 
-	if ( index === undefined || index < 0 || index >= this.items.length ) {
-		this.$group.append( itemElements );
-		this.items.push.apply( this.items, items );
-	} else if ( index === 0 ) {
-		this.$group.prepend( itemElements );
-		this.items.unshift.apply( this.items, items );
-	} else {
-		this.items[ index ].$element.before( itemElements );
-		this.items.splice.apply( this.items, [ index, 0 ].concat( items ) );
-	}
+	this.insertItemElements( items, index );
 
 	this.emit( 'change', this.getItems() );
 	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.mixin.GroupElement.prototype.moveItem = function ( items, newIndex ) {
+	// Mixin method
+	newIndex = OO.EmitterList.prototype.moveItem.call( this, items, newIndex );
+
+	this.insertItemElements( items, newIndex );
+
+	return newIndex;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.mixin.GroupElement.prototype.insertItem = function ( item, index ) {
+	// Mixin method
+	index = OO.EmitterList.prototype.insertItem.call( this, item, index );
+
+	this.insertItemElements( item, index );
+
+	return index;
+};
+
+/**
+ * Insert element into the group
+ *
+ * @param {OO.ui.Element|OO.ui.Element[]} itemWidgets Items to insert
+ * @param {number} index Insertion index
+ */
+OO.ui.mixin.GroupElement.prototype.insertItemElements = function ( itemWidgets, index ) {
+	var i, len, item;
+
+	if ( !Array.isArray( itemWidgets ) ) {
+		itemWidgets = [ itemWidgets ];
+	}
+
+	for ( i = 0, len = itemWidgets.length; i < len; i++ ) {
+		item = itemWidgets[ i ];
+
+		if ( index === undefined || index < 0 || index >= this.items.length ) {
+			this.$group.append( item.$element.get( 0 ) );
+		} else if ( index === 0 ) {
+			this.$group.prepend( item.$element.get( 0 ) );
+		} else {
+			this.items[ index ].$element.before( item.$element.get( 0 ) );
+		}
+	}
 };
 
 /**
@@ -2416,25 +2380,20 @@ OO.ui.mixin.GroupElement.prototype.addItems = function ( items, index ) {
  * @chainable
  */
 OO.ui.mixin.GroupElement.prototype.removeItems = function ( items ) {
-	var i, len, item, index, events, itemEvent;
+	var i, len, item, index;
 
-	// Remove specific items
+	// Remove specific items elements
 	for ( i = 0, len = items.length; i < len; i++ ) {
 		item = items[ i ];
 		index = this.items.indexOf( item );
 		if ( index !== -1 ) {
-			if ( item.connect && item.disconnect && !$.isEmptyObject( this.aggregateItemEvents ) ) {
-				events = {};
-				for ( itemEvent in this.aggregateItemEvents ) {
-					events[ itemEvent ] = [ 'emit', this.aggregateItemEvents[ itemEvent ], item ];
-				}
-				item.disconnect( this, events );
-			}
 			item.setElementGroup( null );
-			this.items.splice( index, 1 );
 			item.$element.detach();
 		}
 	}
+
+	// Mixin method
+	OO.EmitterList.prototype.removeItems.call( this, items );
 
 	this.emit( 'change', this.getItems() );
 	return this;
@@ -2449,27 +2408,18 @@ OO.ui.mixin.GroupElement.prototype.removeItems = function ( items ) {
  * @chainable
  */
 OO.ui.mixin.GroupElement.prototype.clearItems = function () {
-	var i, len, item, remove, itemEvent;
+	var i, len;
 
-	// Remove all items
+	// Remove all item elements
 	for ( i = 0, len = this.items.length; i < len; i++ ) {
-		item = this.items[ i ];
-		if (
-			item.connect && item.disconnect &&
-			!$.isEmptyObject( this.aggregateItemEvents )
-		) {
-			remove = {};
-			if ( Object.prototype.hasOwnProperty.call( this.aggregateItemEvents, itemEvent ) ) {
-				remove[ itemEvent ] = [ 'emit', this.aggregateItemEvents[ itemEvent ], item ];
-			}
-			item.disconnect( this, remove );
-		}
-		item.setElementGroup( null );
-		item.$element.detach();
+		this.items[ i ].setElementGroup( null );
+		this.items[ i ].$element.detach();
 	}
 
+	// Mixin method
+	OO.EmitterList.prototype.clearItems.call( this );
+
 	this.emit( 'change', this.getItems() );
-	this.items = [];
 	return this;
 };
 
@@ -4303,6 +4253,20 @@ OO.ui.mixin.FloatableElement.prototype.position = function () {
 		return this;
 	}
 
+	if ( !(
+		// To continue, some things need to be true:
+		// The element must actually be in the DOM
+		this.isElementAttached() && (
+			// The closest scrollable is the current window
+			this.$floatableClosestScrollable[ 0 ] === this.getElementWindow() ||
+			// OR is an element in the element's DOM
+			$.contains( this.getElementDocument(), this.$floatableClosestScrollable[ 0 ] )
+		)
+	) ) {
+		// Abort early if important parts of the widget are no longer attached to the DOM
+		return this;
+	}
+
 	if ( this.hideWhenOutOfView && !this.isElementInViewport( this.$floatableContainer, this.$floatableClosestScrollable ) ) {
 		this.$floatable.addClass( 'oo-ui-element-hidden' );
 		return this;
@@ -4883,6 +4847,14 @@ OO.mixinClass( OO.ui.PopupWidget, OO.ui.mixin.LabelElement );
 OO.mixinClass( OO.ui.PopupWidget, OO.ui.mixin.ClippableElement );
 OO.mixinClass( OO.ui.PopupWidget, OO.ui.mixin.FloatableElement );
 
+/* Events */
+
+/**
+ * @event ready
+ *
+ * The popup is ready: it is visible and has been positioned and clipped.
+ */
+
 /* Methods */
 
 /**
@@ -5016,6 +4988,7 @@ OO.ui.PopupWidget.prototype.hasAnchor = function () {
  * Side-effects may include broken interface and exceptions being thrown. This wasn't always
  * strictly enforced, so currently it only generates a warning in the browser console.
  *
+ * @fires ready
  * @inheritdoc
  */
 OO.ui.PopupWidget.prototype.toggle = function ( show ) {
@@ -5046,6 +5019,7 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 			}
 			this.updateDimensions();
 			this.toggleClipping( true );
+			this.emit( 'ready' );
 		} else {
 			this.toggleClipping( false );
 			if ( this.autoClose ) {
