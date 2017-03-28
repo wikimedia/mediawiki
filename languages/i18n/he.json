@@ -778,6 +778,8 @@
 	"post-expand-template-argument-warning": "'''אזהרה:''' דף זה כולל לפחות תבנית אחת שבה פרמטרים גדולים מדי.\nפרמטרים אלה הושמטו.",
 	"post-expand-template-argument-category": "דפים שבהם הושמטו פרמטרים של תבניות",
 	"parser-template-loop-warning": "נמצאה תבנית הקוראת לעצמה: [[$1]]",
+	"template-loop-category": "דפים עם לולאות בתבנית",
+	"template-loop-category-desc": "הדף הזה מכיל לולאה בתבנית, כלומר תבנית שקוראת לעצמה באופן רקורסיבי.",
 	"parser-template-recursion-depth-warning": "עומק התבניות המוכללות זו בזו עבר את המגבלה ($1)",
 	"language-converter-depth-warning": "עומק ממיר השפה עבר את המגבלה ($1)",
 	"node-count-exceeded-category": "דפים שבהם מספר הצמתים גדול מדי",

@@ -755,6 +755,8 @@
 	"post-expand-template-argument-warning": "'''Opozorilo:'''' Ta stran vsebuje vsaj en argument predloge, ki ima preveliko razširitev.\nNaslednji argumenti so bili izpuščeni.",
 	"post-expand-template-argument-category": "Strani z izpuščenimi argumenti predloge",
 	"parser-template-loop-warning": "V predlogi je bila odkrita zanka: [[$1]]",
+	"template-loop-category": "Strani z zankami predlog",
+	"template-loop-category-desc": "Stran vsebuje zanko predloge, tj. predlogo, ki rekurzivno kliče sama sebe.",
 	"parser-template-recursion-depth-warning": "Prekoračena globina rekurzije predlog ($1)",
 	"language-converter-depth-warning": "Prekoračena globina pretvorbe jezikov ($1)",
 	"node-count-exceeded-category": "Strani s prekoračenim številom vozlišč",

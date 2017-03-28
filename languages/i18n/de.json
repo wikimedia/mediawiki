@@ -829,6 +829,8 @@
 	"post-expand-template-argument-warning": "'''Warnung:''' Diese Seite enthält mindestens einen Parameter in einer Vorlage, der expandiert zu groß ist. Diese Parameter werden ignoriert.",
 	"post-expand-template-argument-category": "Seiten mit ignorierten Vorlagenparametern",
 	"parser-template-loop-warning": "Vorlagenschleife entdeckt: [[$1]]",
+	"template-loop-category": "Seiten mit Vorlagenschleifen",
+	"template-loop-category-desc": "Die Seite enthält eine Vorlagenschleife, z.&nbsp;B. eine Vorlage, die sich selbst rekursiv aufruft.",
 	"parser-template-recursion-depth-warning": "Vorlagenrekursionstiefengrenze überschritten ($1)",
 	"language-converter-depth-warning": "Sprachkonvertertiefenlimit überschritten ($1)",
 	"node-count-exceeded-category": "Seiten, die die Knotenanzahl überschritten haben",

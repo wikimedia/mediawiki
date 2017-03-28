@@ -836,6 +836,8 @@
 	"post-expand-template-argument-warning": "<strong>警告：</strong>本页面包含至少一个展开后过大的模板参数。这些参数会被忽略。",
 	"post-expand-template-argument-category": "含有略过模板参数的页面",
 	"parser-template-loop-warning": "检查到模板循环：[[$1]]",
+	"template-loop-category": "有模板循环的页面",
+	"template-loop-category-desc": "页面存在模板循环，就是递归进行自我调用的模板。",
 	"parser-template-recursion-depth-warning": "模板递归深度越限（$1）",
 	"language-converter-depth-warning": "字词转换器深度越限（$1）",
 	"node-count-exceeded-category": "页面的节点数超出限制",
