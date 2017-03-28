@@ -27,6 +27,8 @@ This is not a release yet!
 * (T156184) SECURITY: Escape content model/format url parameter in message.
 * (T151735) SECURITY: SVG filter evasion using default attribute values in DTD
   declaration.
+* (T161453) SECURITY: LocalisationCache will no longer use the temporary directory
+  in it's fallback chain when trying to work out where to write the cache.
 
 == MediaWiki 1.28 ==
 
