@@ -269,6 +269,9 @@ changes to languages because of Phabricator reports.
 * WikiRevision::$fileIsTemp was deprecated.
 * WikiRevision::$importer was deprecated.
 * WikiRevision::$user was deprecated.
+* Article::getLastPurgeTimestamp(), WikiPage::getLastPurgeTimestamp(), and the
+  WikiPage::PURGE_* constants are deprecated, and the functions will always
+  return false. They were a hack for an issue that has since been fixed.
 
 == Compatibility ==
 
