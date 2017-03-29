@@ -1,9 +1,9 @@
 <?php
 
-use Wikimedia\Rdbms\DatabaseDomain;
-use Wikimedia\Rdbms\ILoadBalancer;
-use Wikimedia\Rdbms\DBMasterPos;
-use Wikimedia\Rdbms\IDatabase;
+namespace Wikimedia\Rdbms;
+
+use Database;
+use InvalidArgumentException;
 
 /**
  * Helper class to handle automatically marking connections as reusable (via RAII pattern)
@@ -604,3 +604,5 @@ class DBConnRef implements IDatabase {
 		}
 	}
 }
+
+class_alias( 'Wikimedia\Rdbms\DBConnRef', 'DBConnRef' );

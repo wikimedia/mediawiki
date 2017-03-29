@@ -1,6 +1,6 @@
 <?php
 
-use Wikimedia\Rdbms\IMaintainableDatabase;
+namespace Wikimedia\Rdbms;
 
 /**
  * Helper class to handle automatically marking connections as reusable (via RAII pattern)
@@ -69,3 +69,5 @@ class MaintainableDBConnRef extends DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 }
+
+class_alias( 'Wikimedia\Rdbms\MaintainableDBConnRef', 'MaintainableDBConnRef' );

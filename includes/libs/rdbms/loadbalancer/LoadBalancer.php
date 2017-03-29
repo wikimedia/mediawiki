@@ -26,8 +26,6 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\ScopedCallback;
 use Database;
-use DBConnRef;
-use MaintainableDBConnRef;
 use BagOStuff;
 use EmptyBagOStuff;
 use WANObjectCache;
