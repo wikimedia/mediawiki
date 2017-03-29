@@ -1676,6 +1676,15 @@ class SwiftFileBackend extends FileBackendStore {
 						'auth_token' => $rhdrs['x-auth-token'],
 						'storage_url' => $rhdrs['x-storage-url']
 					];
+					// Handle proxy-based TLS support where Swift is not TLS-aware (T160616)
+					if ( preg_match( '/^https:/', $this->swiftAuthUrl ) ) {
+						$this->authCreds['storage_url'] = preg_replace(
+							'/^http:/',
+							'https:',
+							$this->authCreds['storage_url']
+						);
+					}
+
 					$this->srvCache->set( $cacheKey, $this->authCreds, ceil( $this->authTTL / 2 ) );
 					$this->authSessionTimestamp = time();
 				} elseif ( $rcode === 401 ) {
