@@ -23,6 +23,7 @@
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Rdbms\DBConnRef;
 
 /**
  * Class to handle job queues stored in the DB

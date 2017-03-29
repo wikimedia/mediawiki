@@ -24,8 +24,6 @@
 namespace Wikimedia\Rdbms;
 
 use Database;
-use DBConnRef;
-use MaintainableDBConnRef;
 use DBError;
 use DBAccessError;
 use DBTransactionError;

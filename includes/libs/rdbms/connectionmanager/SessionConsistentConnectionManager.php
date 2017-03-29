@@ -3,7 +3,6 @@
 namespace Wikimedia\Rdbms;
 
 use Database;
-use DBConnRef;
 
 /**
  * Database connection manager.
