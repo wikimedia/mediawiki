@@ -4030,7 +4030,6 @@ class Title implements LinkTarget {
 				__METHOD__,
 				[
 					'ORDER BY' => 'rev_timestamp ASC',
-					'LIMIT' => 1,
 					'IGNORE INDEX' => 'rev_timestamp'
 				]
 			);
