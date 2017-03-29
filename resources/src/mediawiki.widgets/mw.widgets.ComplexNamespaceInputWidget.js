@@ -115,4 +115,20 @@
 		}
 	};
 
+	/**
+	 * @inheritdoc
+	 */
+	mw.widgets.ComplexNamespaceInputWidget.prototype.setDisabled = function ( disabled ) {
+		mw.widgets.ComplexNamespaceInputWidget.parent.prototype.setDisabled.call( this, disabled );
+		this.namespace.setDisabled( disabled );
+
+		if ( this.invert ) {
+			this.invert.setDisabled( disabled );
+		}
+
+		if ( this.associated ) {
+			this.associated.setDisabled( disabled );
+		}
+	};
+
 }( jQuery, mediaWiki ) );
