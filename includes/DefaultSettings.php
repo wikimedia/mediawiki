@@ -3792,6 +3792,7 @@ $wgResourceLoaderLESSVars = [
  */
 $wgResourceLoaderLESSImportPaths = [
 	"$IP/resources/src/mediawiki.less/",
+	"$IP/resources/src/mediawiki.less/theme/",
 ];
 
 /**
