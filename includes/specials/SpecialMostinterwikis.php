@@ -25,6 +25,7 @@
  */
 
 use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * A special page that listed pages that have highest interwiki count

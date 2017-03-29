@@ -22,6 +22,7 @@
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * List for revision table items for a single page
@@ -36,7 +37,7 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 	/** @var ResultWrapper|bool */
 	protected $res;
 
-	/** @var bool|object */
+	/** @var bool|Revision */
 	protected $current;
 
 	/**

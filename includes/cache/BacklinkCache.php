@@ -28,6 +28,7 @@
 
 use Wikimedia\Rdbms\ResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Class for fetching backlink lists, approximate backlink counts and

@@ -19,6 +19,8 @@
  * @ingroup Change tagging
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Stores a list of taggable revisions.
  * @since 1.25

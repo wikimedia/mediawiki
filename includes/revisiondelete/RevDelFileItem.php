@@ -19,6 +19,8 @@
  * @ingroup RevisionDelete
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Item class for an oldimage table row
  */

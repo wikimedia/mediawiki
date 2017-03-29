@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Factory class for SearchEngine.
  * Allows to create engine of the specific type.
