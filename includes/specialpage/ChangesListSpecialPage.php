@@ -427,6 +427,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		if ( $rows === false ) {
 			if ( !$this->including() ) {
 				$this->doHeader( $opts, 0 );
+				$this->outputNoResults();
 				$this->getOutput()->setStatusCode( 404 );
 			}
 
@@ -446,7 +447,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			}
 		}
 		$batch->execute();
-
 		$this->webOutput( $rows, $opts );
 
 		$rows->free();
@@ -458,6 +458,17 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				LoggerFactory::getInstance( 'objectcache' )
 			) );
 		}
+	}
+
+	/**
+	 * Add the "no results" message to the output
+	 */
+	protected function outputNoResults() {
+		$this->getOutput()->addHTML(
+			'<div class="mw-changeslist-empty">' .
+			$this->msg( 'recentchanges-noresult' )->parse() .
+			'</div>'
+		);
 	}
 
 	/**

@@ -398,11 +398,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$rclistOutput .= $list->endRecentChangesList();
 
 		if ( $rows->numRows() === 0 ) {
-			$this->getOutput()->addHTML(
-				'<div class="mw-changeslist-empty">' .
-				$this->msg( 'recentchanges-noresult' )->parse() .
-				'</div>'
-			);
+			$this->outputNoResults();
 			if ( !$this->including() ) {
 				$this->getOutput()->setStatusCode( 404 );
 			}
