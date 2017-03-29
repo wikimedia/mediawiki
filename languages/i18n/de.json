@@ -2863,6 +2863,7 @@
 	"newimages-summary": "Diese Spezialseite zeigt die zuletzt hochgeladenen Dateien an.",
 	"newimages-legend": "Filter",
 	"newimages-label": "Dateiname (oder ein Teil davon):",
+	"newimages-user": "IP-Adresse oder Benutzername",
 	"newimages-showbots": "Von Bots hochgeladene Dateien anzeigen",
 	"newimages-hidepatrolled": "Kontrollierte Dateien ausblenden",
 	"noimages": "Keine Dateien gefunden.",

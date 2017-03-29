@@ -1087,6 +1087,7 @@
 	"userrights-nodatabase": "$1 базаһы юҡ йәки урындағы (локаль) база түгел.",
 	"userrights-changeable-col": "Һеҙ үҙгәртә алған төркөмдәр",
 	"userrights-unchangeable-col": "Һеҙ үҙгәртә алмаған төркөмдәр",
+	"userrights-expiry-options": "1 көн:1 day,1 аҙна:1 week,1 ай:1 mopnth, 3 ай:3 months,6 ай:6 months,1 йыл:1 year",
 	"userrights-conflict": "Ҡатнашыусының хоҡуҡтарын үҙгәртеү яраманы! Зинһар, үҙгәрештәрҙе тикшерегеҙ һәм яңынан индерегеҙ.",
 	"group": "Төркөм:",
 	"group-user": "Ҡулланыусылар",

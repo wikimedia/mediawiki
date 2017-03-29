@@ -764,6 +764,8 @@
 	"post-expand-template-argument-warning": "'''Aviso:''' Esta páxina contén, polo menos, un argumento de modelo que ten un tamaño e expansión moi grande.\nEstes argumentos foron omitidos.",
 	"post-expand-template-argument-category": "Páxinas que conteñen argumentos de modelo omitidos",
 	"parser-template-loop-warning": "Detectouse un modelo en bucle: [[$1]]",
+	"template-loop-category": "Páxinas con bucles de modelo",
+	"template-loop-category-desc": "A páxina contén un bucle de modelo, por exemplo, un modelo que se chama a si mesmo recursivamente.",
 	"parser-template-recursion-depth-warning": "Excedeuse o límite de profundidade de recursión do modelo ($1)",
 	"language-converter-depth-warning": "Excedeuse o límite de profundidade do convertedor de lingua ($1)",
 	"node-count-exceeded-category": "Páxinas nas que se supera o número de nodos",

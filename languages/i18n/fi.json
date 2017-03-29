@@ -3666,7 +3666,7 @@
 	"mediastatistics-table-count": "Tiedostojen lukumäärä",
 	"mediastatistics-table-totalbytes": "Yhteenlaskettu koko",
 	"mediastatistics-header-unknown": "Tuntematon",
-	"mediastatistics-header-bitmap": "Bitmap-kuvat",
+	"mediastatistics-header-bitmap": "Bittikarttakuvat",
 	"mediastatistics-header-drawing": "Piirrokset (vektorikuvat)",
 	"mediastatistics-header-audio": "Audio",
 	"mediastatistics-header-video": "Videot",

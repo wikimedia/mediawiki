@@ -755,6 +755,7 @@
 	"post-expand-template-argument-warning": "<strong>Увага</strong>: гэтая старонка ўтрымлівае прынамсі адзін парамэтар шаблёну, які мае занадта вялікі выгляд у разгорнутым выглядзе.\nГэтыя парамэтры былі прапушчаныя.",
 	"post-expand-template-argument-category": "Старонкі, у якіх прапушчаныя парамэтры шаблёнаў",
 	"parser-template-loop-warning": "Выяўлены цыкль у шаблёнах: [[$1]]",
+	"template-loop-category": "Старонкі з цыклямі шаблёнаў",
 	"parser-template-recursion-depth-warning": "Перавышаны ліміт глыбіні рэкурсіі шаблёну ($1)",
 	"language-converter-depth-warning": "Перавышанае абмежаваньне глыбіні канвэртару варыянтаў мовы ($1)",
 	"node-count-exceeded-category": "Старонкі зь перавышанай колькасьцю вузлоў",
