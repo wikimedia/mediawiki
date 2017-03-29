@@ -332,7 +332,7 @@
 					model.defaultParams[ data.filters[ i ].name ] = Number( !!data.filters[ i ].default );
 				} else if (
 					data.type === 'string_options' &&
-					data.filters[ i ].default
+					data.filters[ i ].name === data.default
 				) {
 					selectedFilterNames.push( data.filters[ i ].name );
 				}
