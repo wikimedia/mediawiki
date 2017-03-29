@@ -55,6 +55,16 @@ class NewFilesPager extends ReverseChronologicalPager {
 		$fields = [ 'img_name', 'img_user', 'img_timestamp' ];
 		$options = [];
 
+		$user = $opts->getValue( 'user' );
+		if ( $user !== '' ) {
+			$userId = User::idFromName( $user );
+			if ( $userId ) {
+				$conds['img_user'] = $userId;
+			} else {
+				$conds['img_user_text'] = $user;
+			}
+		}
+
 		if ( !$opts->getValue( 'showbots' ) ) {
 			$groupsWithBotPermission = User::getGroupsWithPermission( 'bot' );
 

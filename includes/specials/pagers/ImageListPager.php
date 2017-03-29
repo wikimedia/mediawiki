@@ -193,7 +193,8 @@ class ImageListPager extends TablePager {
 		}
 		$sortable = [ 'img_timestamp', 'img_name', 'img_size' ];
 		/* For reference, the indicies we can use for sorting are:
-		 * On the image table: img_usertext_timestamp, img_size, img_timestamp
+		 * On the image table: img_user_timestamp, img_usertext_timestamp,
+		 * img_size, img_timestamp
 		 * On oldimage: oi_usertext_timestamp, oi_name_timestamp
 		 *
 		 * In particular that means we cannot sort by timestamp when not filtering

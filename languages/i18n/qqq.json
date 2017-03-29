@@ -3197,6 +3197,7 @@
 	"newimages-summary": "This message is displayed at the top of [[Special:NewImages]] to explain what is shown on that special page.",
 	"newimages-legend": "Caption of the fieldset for the filter on [[Special:NewImages]]\n\n{{Identical|Filter}}",
 	"newimages-label": "Caption of the filter editbox on [[Special:NewImages]]",
+	"newimages-user": "Caption of the username/IP address editbox on [[Special:NewImages]]",
 	"newimages-showbots": "Used as label for a checkbox. When checked, [[Special:NewImages]] will also display uploads by users in the bots group.",
 	"newimages-hidepatrolled": "Used as label for a checkbox. When checked, [[Special:NewImages]] will not display patrolled uploads.\n\nCf. {{msg-mw|tog-hidepatrolled}} and {{msg-mw|apihelp-feedrecentchanges-param-hidepatrolled}}.",
 	"noimages": "This is shown on the special page [[Special:NewImages]], when there aren't any recently uploaded files.",

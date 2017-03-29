@@ -87,6 +87,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		$db = $this->getDB();
 
 		$params = $this->extractRequestParams();
+		$userId = !is_null( $params['user'] ) ? User::idFromName( $params['user'] ) : null;
 
 		// Table and return fields
 		$this->addTables( 'image' );
@@ -191,7 +192,11 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 			// Image filters
 			if ( !is_null( $params['user'] ) ) {
-				$this->addWhereFld( 'img_user_text', $params['user'] );
+				if ( $userId ) {
+					$this->addWhereFld( 'img_user', $userId );
+				} else {
+					$this->addWhereFld( 'img_user_text', $params['user'] );
+				}
 			}
 			if ( $params['filterbots'] != 'all' ) {
 				$this->addTables( 'user_groups' );
@@ -271,7 +276,11 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		if ( $params['sort'] == 'timestamp' ) {
 			$this->addOption( 'ORDER BY', 'img_timestamp' . $sortFlag );
 			if ( !is_null( $params['user'] ) ) {
-				$this->addOption( 'USE INDEX', [ 'image' => 'img_usertext_timestamp' ] );
+				if ( $userId ) {
+					$this->addOption( 'USE INDEX', [ 'image' => 'img_user_timestamp' ] );
+				} else {
+					$this->addOption( 'USE INDEX', [ 'image' => 'img_usertext_timestamp' ] );
+				}
 			} else {
 				$this->addOption( 'USE INDEX', [ 'image' => 'img_timestamp' ] );
 			}
