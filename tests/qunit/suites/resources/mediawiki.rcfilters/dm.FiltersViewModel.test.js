@@ -485,6 +485,7 @@
 				title: 'Group 3',
 				type: 'string_options',
 				separator: ',',
+				default: 'filter8',
 				filters: [
 					{
 						name: 'filter7',
@@ -494,8 +495,7 @@
 					{
 						name: 'filter8',
 						label: 'Group 3: Filter 2',
-						description: 'Description of Filter 2 in Group 3',
-						default: true
+						description: 'Description of Filter 2 in Group 3'
 					},
 					{
 						name: 'filter9',
