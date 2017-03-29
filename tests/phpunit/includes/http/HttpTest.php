@@ -66,6 +66,13 @@ class HttpTest extends MediaWikiTestCase {
 	 * @covers Http::getProxy
 	 */
 	public function testGetProxy() {
+		$this->setMwGlobals( 'wgHTTPProxy', false );
+		$this->assertEquals(
+			'',
+			Http::getProxy(),
+			'default setting'
+		);
+
 		$this->setMwGlobals( 'wgHTTPProxy', 'proxy.domain.tld' );
 		$this->assertEquals(
 			'proxy.domain.tld',
@@ -140,50 +147,56 @@ class HttpTest extends MediaWikiTestCase {
 		];
 	}
 
+	public static function provideRelativeRedirects() {
+		return [
+			[
+				'location' => [ 'http://newsite/file.ext', '/newfile.ext' ],
+				'final' => 'http://newsite/newfile.ext',
+				'Relative file path Location: interpreted as full URL'
+			],
+			[
+				'location' => [ 'https://oldsite/file.ext' ],
+				'final' => 'https://oldsite/file.ext',
+				'Location to the HTTPS version of the site'
+			],
+			[
+				'location' => [
+					'/anotherfile.ext',
+					'http://anotherfile/hoster.ext',
+					'https://anotherfile/hoster.ext'
+				],
+				'final' => 'https://anotherfile/hoster.ext',
+				'Relative file path Location: should keep the latest host and scheme!'
+			],
+			[
+				'location' => [ '/anotherfile.ext' ],
+				'final' => 'http://oldsite/anotherfile.ext',
+				'Relative Location without domain '
+			],
+			[
+				'location' => null,
+				'final' => 'http://oldsite/file.ext',
+				'No Location (no redirect) '
+			],
+		];
+	}
+
 	/**
 	 * Warning:
 	 *
 	 * These tests are for code that makes use of an artifact of how CURL
 	 * handles header reporting on redirect pages, and will need to be
-	 * rewritten when T31232 is taken care of (high-level handling of
-	 * HTTP redirects).
+	 * rewritten when T31232 is taken care of (high-level handling of HTTP redirects).
+	 *
+	 * @dataProvider provideRelativeRedirects
+	 * @covers MWHttpRequest::getFinalUrl
 	 */
-	public function testRelativeRedirections() {
+	public function testRelativeRedirections( $location, $final, $message = null ) {
 		$h = MWHttpRequestTester::factory( 'http://oldsite/file.ext', [], __METHOD__ );
-
-		# Forge a Location header
-		$h->setRespHeaders( 'location', [
-				'http://newsite/file.ext',
-				'/newfile.ext',
-			]
-		);
-		# Verify we correctly fix the Location
-		$this->assertEquals(
-			'http://newsite/newfile.ext',
-			$h->getFinalUrl(),
-			"Relative file path Location: interpreted as full URL"
-		);
-
-		$h->setRespHeaders( 'location', [
-				'https://oldsite/file.ext'
-			]
-		);
-		$this->assertEquals(
-			'https://oldsite/file.ext',
-			$h->getFinalUrl(),
-			"Location to the HTTPS version of the site"
-		);
-
-		$h->setRespHeaders( 'location', [
-				'/anotherfile.ext',
-				'http://anotherfile/hoster.ext',
-				'https://anotherfile/hoster.ext'
-			]
-		);
-		$this->assertEquals(
-			'https://anotherfile/hoster.ext',
-			$h->getFinalUrl( "Relative file path Location: should keep the latest host and scheme!" )
-		);
+		// Forge a Location header
+		$h->setRespHeaders( 'location', $location );
+		// Verify it correctly fixes the Location
+		$this->assertEquals( $final, $h->getFinalUrl(), $message );
 	}
 
 	/**
@@ -201,8 +214,6 @@ class HttpTest extends MediaWikiTestCase {
 	 * Extension API: 20140829
 	 *
 	 * Commented out constants that were removed in PHP 5.6.0
-	 *
-	 * @covers CurlHttpRequest::execute
 	 */
 	public function provideCurlConstants() {
 		return [
@@ -481,9 +492,8 @@ class HttpTest extends MediaWikiTestCase {
 
 	/**
 	 * Added this test based on an issue experienced with HHVM 3.3.0-dev
-	 * where it did not define a cURL constant.
+	 * where it did not define a cURL constant. T72570
 	 *
-	 * T72570
 	 * @dataProvider provideCurlConstants
 	 */
 	public function testCurlConstants( $value ) {
