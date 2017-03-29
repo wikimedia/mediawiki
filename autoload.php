@@ -383,6 +383,7 @@ $wgAutoloadLocalClasses = [
 	'Digit2Html' => __DIR__ . '/maintenance/language/digit2html.php',
 	'DjVuHandler' => __DIR__ . '/includes/media/DjVu.php',
 	'DjVuImage' => __DIR__ . '/includes/media/DjVuImage.php',
+	'DnsSrvDiscoverer' => __DIR__ . '/includes/libs/DnsSrvDiscoverer.php',
 	'DoubleRedirectJob' => __DIR__ . '/includes/jobqueue/jobs/DoubleRedirectJob.php',
 	'DoubleRedirectsPage' => __DIR__ . '/includes/specials/SpecialDoubleRedirects.php',
 	'DoubleReplacer' => __DIR__ . '/includes/libs/replacers/DoubleReplacer.php',
