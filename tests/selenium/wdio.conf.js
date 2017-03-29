@@ -76,7 +76,7 @@ exports.config = {
 		// 5 instances get started at a time.
 		maxInstances: 1,
 		//
-		browserName: 'chrome',
+		browserName: 'firefox',
 		// Since Chrome v57 https://bugs.chromium.org/p/chromedriver/issues/detail?id=1625
 		chromeOptions: {
 			args: [ '--enable-automation' ]
@@ -95,6 +95,9 @@ exports.config = {
 	//
 	// Level of logging verbosity: silent | verbose | command | data | result | error
 	logLevel: 'error',
+	//
+	// Path to WebDriver server. Default: '/wd/hub'
+	path: '/',
 	//
 	// Enables colors for log output.
 	coloredLogs: true,
