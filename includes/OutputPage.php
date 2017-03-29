@@ -2367,6 +2367,11 @@ class OutputPage extends ContextSource {
 		if ( $this->mArticleBodyOnly ) {
 			echo $this->mBodytext;
 		} else {
+			// Enable safe mode if requested
+			if ( $this->getRequest()->getBool( 'safemode' ) ) {
+				$this->disallowUserJs();
+			}
+
 			$sk = $this->getSkin();
 			// add skin specific modules
 			$modules = $sk->getDefaultModules();
