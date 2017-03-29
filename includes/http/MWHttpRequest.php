@@ -609,18 +609,16 @@ class MWHttpRequest implements LoggerAwareInterface {
 				}
 			}
 
-			if ( $foundRelativeURI ) {
-				if ( $domain ) {
-					return $domain . $locations[$countLocations - 1];
-				} else {
-					$url = parse_url( $this->url );
-					if ( isset( $url['host'] ) ) {
-						return $url['scheme'] . '://' . $url['host'] .
-							$locations[$countLocations - 1];
-					}
-				}
-			} else {
+			if ( !$foundRelativeURI ) {
 				return $locations[$countLocations - 1];
+			}
+			if ( $domain ) {
+				return $domain . $locations[$countLocations - 1];
+			}
+			$url = parse_url( $this->url );
+			if ( isset( $url['host'] ) ) {
+				return $url['scheme'] . '://' . $url['host'] .
+					$locations[$countLocations - 1];
 			}
 		}
 
