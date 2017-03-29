@@ -1,0 +1,118 @@
+/*
+ * Default interface variables.
+ * The variables are only meant for reference.
+ * Refer to themes/
+
+/* Colors */
+// Background Colors
+@background-color-base:       #fff;
+@background-color-code:       #eee;
+// 'Framed' UI elements (Framed Buttons, Dropdowns, ToggleSwitches...)
+@background-color-framed:     #eee;
+@background-color-framed--hover: #fff;
+@background-color-framed--active: #ccc;
+// Tabs Navigation Background Color
+@background-color-tabs:       #ddd;
+// Highlight Colors, RGBA Colors include hex fallback on `#fff` for IE 6/7/8
+@background-color-highlight:  rgba( 255, 200, 0, 0.5 );
+@background-color-highlight--fallback: #fc0;
+
+// Foreground Colors
+@color-base:                  #222;
+@color-base--hover:           #444;
+@color-base--active:          #000;
+@color-base--inverted:        #fff;
+@color-base--emphasized:      #000;
+@color-base--subtle:          #666;
+@color-base--disabled:        #888;
+@color-filled--disabled:      @color-base--inverted;
+@color-placeholder:           #888;
+// Primary 'Progressive' Color, Background Color and states
+@background-color-primary:    #cef;
+@background-color-primary--hover: rgba( 205, 230, 255, 0.25 );
+@color-primary:               #22f;
+@color-primary--hover:        #44f;
+@color-primary--active:       #00e;
+@color-primary--focus:        #22f;
+// 'Destructive' Color, Background Color and states
+@background-color-destructive: #d5fdf4;
+@color-destructive:           #c33;
+@color-destructive--hover:    #e44;
+@color-destructive--active:   #b22;
+@color-destructive--focus:    #f33;
+// Secondary Color and states (links only)
+@color-secondary:             #282;
+@color-secondary--hover:      #3a3;
+@color-secondary--active:     #161;
+@color-secondary--focus:      #282;
+// Validation error feedback
+@color-erroneous:             #f33;
+
+// Opacity
+@opacity-base:                1;
+@opacity-base--disabled:      0.5; // = `#7d7d7d` on `background-color: #fff`;
+@opacity-icon-base:           0.87; // = `#222` on `background-color: #fff`
+@opacity-icon-base--hover:    0.73; // = `#454545` on `background-color: #fff`, closest to `#444`
+@opacity-icon-base--selected: 1;
+
+/* Positioning */
+// Z-Index
+@z-index-base:                0;
+
+/* Box Model properties */
+/* Max Widths */
+@max-width-button:            28.75em; // = `460px` at `16px` base, see T95367
+@max-width-input-inline:      100%;
+
+// Border
+@border-base:                 @border-width-base solid @border-color-base;
+@border-dialog:               @border-base;
+@border-menu:                 @border-base;
+// Border Colors
+@border-color-base:           #aaa;
+@border-color-base--hover:    #aaa;
+@border-color-base--active:   #888;
+@border-color-base--disabled: @color-base--disabled;
+@border-color-filled--disabled: @color-filled--disabled;
+@border-color-primary--active: #89c;
+@border-color-destructive--active: #b77;
+@border-color-inset--focus:   @color-base--inverted;
+@border-color-heading:        #666;
+// Border Widths
+@border-width-base:           1px;
+// Border Radius
+@border-radius-base:          2px;
+
+// Box Shadows
+@box-shadow-base--focus:      inset 0 0 0 1px @color-primary;
+@box-shadow-primary--focus:   inset 0 0 0 1px @color-primary, inset 0 0 0 2px @color-base--inverted;
+@box-shadow-inset--inverted:  inset 0 0 0 1px @color-base--inverted;
+@box-shadow-filled--disabled: inset 0 0 0 1px @color-filled--disabled;
+@box-shadow-dialog:           0 2px 2px 0 rgba( 0, 0, 0, 0.25 );
+@box-shadow-menu:             @box-shadow-dialog;
+
+/* Typography incl. print properties */
+// Font Families
+@font-family-base:            @font-family-sans;
+@font-family-heading-main:    @font-family-serif;
+@font-family-sans:            sans-serif;
+@font-family-serif:           serif;
+// Line Heights
+@line-height-base:            1.6;
+@line-height-heading:         1.25;
+@text-decoration-link--hover: none;
+// Text Shadows
+@text-shadow-base:            0 1px 1px @color-base--inverted;
+@text-shadow-base--disabled:  @text-shadow-base;
+
+/* Other Properties */
+// Cursors
+@cursor-base--disabled:       default;
+
+/* Animation & Transition */
+// Transitions
+@transition-base:             @transition-duration-base;
+@transition-medium:           @transition-duration-medium;
+// Transitions > Durations
+@transition-duration-base:    100ms;
+@transition-duration-medium:  250ms;
