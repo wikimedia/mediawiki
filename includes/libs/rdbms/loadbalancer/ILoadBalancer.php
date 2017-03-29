@@ -105,6 +105,7 @@ interface ILoadBalancer {
 	 *  - srvCache : BagOStuff object for server cache [optional]
 	 *  - memCache : BagOStuff object for cluster memory cache [optional]
 	 *  - wanCache : WANObjectCache object [optional]
+	 *  - chronologyProtector: ChronologyProtector object [optional]
 	 *  - hostname : The name of the current server [optional]
 	 *  - cliMode: Whether the execution context is a CLI script. [optional]
 	 *  - profiler : Class name or instance with profileIn()/profileOut() methods. [optional]
@@ -138,7 +139,7 @@ interface ILoadBalancer {
 	 * If a DB_REPLICA connection has been opened already, then wait immediately.
 	 * Otherwise sets a variable telling it to wait if such a connection is opened.
 	 *
-	 * @param DBMasterPos $pos
+	 * @param DBMasterPos|bool $pos Master position or false
 	 */
 	public function waitFor( $pos );
 
@@ -147,7 +148,7 @@ interface ILoadBalancer {
 	 *
 	 * This can be used a faster proxy for waitForAll()
 	 *
-	 * @param DBMasterPos $pos
+	 * @param DBMasterPos|bool $pos Master position or false
 	 * @param int $timeout Max seconds to wait; default is mWaitTimeout
 	 * @return bool Success (able to connect and no timeouts reached)
 	 */
@@ -156,7 +157,7 @@ interface ILoadBalancer {
 	/**
 	 * Set the master wait position and wait for ALL replica DBs to catch up to it
 	 *
-	 * @param DBMasterPos $pos
+	 * @param DBMasterPos|bool $pos Master position or false
 	 * @param int $timeout Max seconds to wait; default is mWaitTimeout
 	 * @return bool Success (able to connect and no timeouts reached)
 	 */

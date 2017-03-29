@@ -508,7 +508,8 @@ abstract class LBFactory implements ILBFactory {
 			'errorLogger' => $this->errorLogger,
 			'hostname' => $this->hostname,
 			'cliMode' => $this->cliMode,
-			'agent' => $this->agent
+			'agent' => $this->agent,
+			'chronologyProtector' => $this->getChronologyProtector()
 		];
 	}
 
