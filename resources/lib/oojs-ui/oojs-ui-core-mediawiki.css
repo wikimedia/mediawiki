@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.20.0
+ * OOjs UI v0.20.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-03-15T17:06:28Z
+ * Date: 2017-03-28T22:19:34Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -31,6 +31,10 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+}
+.oo-ui-buttonElement > .oo-ui-buttonElement-button::-moz-focus-inner {
+  border-color: transparent;
+  padding: 0;
 }
 .oo-ui-buttonElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon,
 .oo-ui-buttonElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator {
@@ -59,9 +63,6 @@
 .oo-ui-buttonElement > .oo-ui-buttonElement-button:focus {
   border-radius: 2px;
   outline: 0;
-}
-.oo-ui-buttonElement > .oo-ui-buttonElement-button:focus::-moz-focus-inner {
-  border-color: transparent;
 }
 .oo-ui-buttonElement.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator {
   margin-right: 0.25em;
@@ -670,7 +671,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-optionWidget {
   position: relative;
   display: block;
-  border: 0;
 }
 .oo-ui-optionWidget.oo-ui-widget-enabled {
   cursor: pointer;
@@ -1566,7 +1566,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   display: none;
 }
 .oo-ui-menuOptionWidget {
-  position: relative;
   padding: 0.5em 1em;
   -webkit-transition: background-color 100ms, color 100ms;
      -moz-transition: background-color 100ms, color 100ms;
