@@ -332,6 +332,10 @@ a.mw-selflink:hover {
 	cursor: inherit;
 	text-decoration: inherit;
 }
+a.mw-selflink:active,
+a.mw-selflink:visited {
+	color: inherit;
+}
 
 /* Plainlinks - this can be used to switch
  * off special external link styling */
