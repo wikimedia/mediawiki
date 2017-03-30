@@ -1,4 +1,4 @@
-/* global moment*/
+/* global moment */
 ( function ( $, mw, moment ) {
 
 	/**

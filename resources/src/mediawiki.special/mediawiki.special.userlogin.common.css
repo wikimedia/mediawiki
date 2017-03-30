@@ -29,7 +29,7 @@
 	font-size: 0.8em;
 }
 
-/* Put some space under template's header, which may contain CAPTCHA HTML.*/
+/* Put some space under template's header, which may contain CAPTCHA HTML. */
 section.mw-form-header {
 	margin-bottom: 10px;
 }
