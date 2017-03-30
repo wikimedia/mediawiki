@@ -294,6 +294,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addField', 'change_tag', 'ct_id', 'patch-change_tag-ct_id.sql' ],
 			[ 'addField', 'tag_summary', 'ts_id', 'patch-tag_summary-ts_id.sql' ],
 			[ 'modifyField', 'recentchanges', 'rc_ip', 'patch-rc_ip_modify.sql' ],
+			[ 'dropIndex', 'archive', 'ar_usertext_timestamp',
+				'patch-archive_kill_ar_usertext_timestamp.sql' ],
+			[ 'addIndex', 'archive', 'usertext_timestamp', 'patch-archive-usertext_timestamp.sql' ],
 
 			// 1.29
 			[ 'addField', 'externallinks', 'el_index_60', 'patch-externallinks-el_index_60.sql' ],
