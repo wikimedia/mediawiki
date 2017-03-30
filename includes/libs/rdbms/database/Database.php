@@ -1951,24 +1951,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Get the name of an index in a given table.
+	 * Allows for index remapping in queries where this is not consistent across DBMS
 	 *
 	 * @param string $index
 	 * @return string
 	 */
 	protected function indexName( $index ) {
-		// Backwards-compatibility hack
-		$renamed = [
-			'ar_usertext_timestamp' => 'usertext_timestamp',
-			'un_user_id' => 'user_id',
-			'un_user_ip' => 'user_ip',
-		];
-
-		if ( isset( $renamed[$index] ) ) {
-			return $renamed[$index];
-		} else {
-			return $index;
-		}
+		return $index;
 	}
 
 	public function addQuotes( $s ) {
