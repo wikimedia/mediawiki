@@ -1343,7 +1343,20 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return string
 	 */
 	protected function indexName( $index ) {
-		// Backwards-compatibility hack
+		/**
+		 * When SQLite indexes were introduced in r45764, it was noted that
+		 * SQLite requires index names to be unique within the whole database,
+		 * not just within a schema. As discussed in CR r45819, to avoid the
+		 * need for a schema change on existing installations, the indexes
+		 * were implicitly mapped from the new names to the old names.
+		 *
+		 * This mapping can be removed if DB patches are introduced to alter
+		 * the relevant tables in existing installations. Note that because
+		 * this index mapping applies to table creation, even new installations
+		 * of MySQL have the old names (except for installations created during
+		 * a period where this mapping was inappropriately removed, see
+		 * T154872).
+		 */
 		$renamed = [
 			'ar_usertext_timestamp' => 'usertext_timestamp',
 			'un_user_id' => 'user_id',
