@@ -1957,7 +1957,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return string
 	 */
 	protected function indexName( $index ) {
-		return $index;
+		// Backwards-compatibility hack
+		$renamed = [
+			'ar_usertext_timestamp' => 'usertext_timestamp',
+			'un_user_id' => 'user_id',
+			'un_user_ip' => 'user_ip',
+		];
+
+		if ( isset( $renamed[$index] ) ) {
+			return $renamed[$index];
+		} else {
+			return $index;
+		}
 	}
 
 	public function addQuotes( $s ) {
