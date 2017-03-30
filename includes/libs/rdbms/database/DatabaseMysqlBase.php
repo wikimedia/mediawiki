@@ -1054,36 +1054,26 @@ abstract class DatabaseMysqlBase extends Database {
 		return true;
 	}
 
-	/**
-	 * @param array $read
-	 * @param array $write
-	 * @param string $method
-	 * @param bool $lowPriority
-	 * @return bool
-	 */
-	public function lockTables( $read, $write, $method, $lowPriority = true ) {
-		$items = [];
+	public function supportsSessionTableLocks() {
+		return true;
+	}
 
+	protected function doLockTables( array $read, array $write, $method ) {
+		$items = [];
 		foreach ( $write as $table ) {
-			$tbl = $this->tableName( $table ) .
-				( $lowPriority ? ' LOW_PRIORITY' : '' ) .
-				' WRITE';
-			$items[] = $tbl;
+			$items[] = $this->tableName( $table ) . ' WRITE';
 		}
 		foreach ( $read as $table ) {
 			$items[] = $this->tableName( $table ) . ' READ';
 		}
+
 		$sql = "LOCK TABLES " . implode( ',', $items );
 		$this->query( $sql, $method );
 
 		return true;
 	}
 
-	/**
-	 * @param string $method
-	 * @return bool
-	 */
-	public function unlockTables( $method ) {
+	protected function doUnlockTables( $method ) {
 		$this->query( "UNLOCK TABLES", $method );
 
 		return true;
