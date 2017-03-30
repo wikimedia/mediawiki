@@ -32,6 +32,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use Wikimedia\Rdbms\IMaintainableDatabase;
+
 /**
  * Maintenance script to update image metadata records.
  *
@@ -40,7 +42,7 @@ require_once __DIR__ . '/Maintenance.php';
 class ImageBuilder extends Maintenance {
 
 	/**
-	 * @var Database
+	 * @var IMaintainableDatabase
 	 */
 	protected $dbw;
 

@@ -27,7 +27,7 @@
 require_once __DIR__ . '/backup.inc';
 require_once __DIR__ . '/../includes/export/WikiExporter.php';
 
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
  * @ingroup Maintenance
@@ -88,7 +88,7 @@ class TextPassDumper extends BackupDumper {
 	protected $checkpointFiles = [];
 
 	/**
-	 * @var Database
+	 * @var IMaintainableDatabase
 	 */
 	protected $db;
 

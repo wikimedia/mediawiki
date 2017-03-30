@@ -24,6 +24,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Maintenance script used to fetch page text in a subprocess.
  *
@@ -71,7 +73,7 @@ class FetchText extends Maintenance {
 
 	/**
 	 * May throw a database error if, say, the server dies during query.
-	 * @param Database $db
+	 * @param IDatabase $db
 	 * @param int $id The old_id
 	 * @return string
 	 */
