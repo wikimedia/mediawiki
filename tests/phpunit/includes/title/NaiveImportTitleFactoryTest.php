@@ -40,39 +40,39 @@ class NaiveImportTitleFactoryTest extends MediaWikiTestCase {
 		return [
 			[
 				new ForeignTitle( 0, '', 'MainNamespaceArticle' ),
-				Title::newFromText( 'MainNamespaceArticle' )
+				'MainNamespaceArticle'
 			],
 			[
 				new ForeignTitle( null, '', 'MainNamespaceArticle' ),
-				Title::newFromText( 'MainNamespaceArticle' )
+				'MainNamespaceArticle'
 			],
 			[
 				new ForeignTitle( 1, 'Discussion', 'Nice_talk' ),
-				Title::newFromText( 'Talk:Nice_talk' )
+				'Talk:Nice_talk'
 			],
 			[
 				new ForeignTitle( 0, '', 'Bogus:Nice_talk' ),
-				Title::newFromText( 'Bogus:Nice_talk' )
+				'Bogus:Nice_talk'
 			],
 			[
 				new ForeignTitle( 100, 'Bogus', 'Nice_talk' ),
-				Title::newFromText( 'Bogus:Nice_talk' ) // not Portal:Nice_talk
+				'Bogus:Nice_talk' // not Portal:Nice_talk
 			],
 			[
 				new ForeignTitle( 1, 'Bogus', 'Nice_talk' ),
-				Title::newFromText( 'Talk:Nice_talk' ) // not Bogus:Nice_talk
+				'Talk:Nice_talk' // not Bogus:Nice_talk
 			],
 			[
 				new ForeignTitle( 100, 'Portal', 'Nice_talk' ),
-				Title::newFromText( 'Portal:Nice_talk' )
+				'Portal:Nice_talk'
 			],
 			[
 				new ForeignTitle( 724, 'Portal', 'Nice_talk' ),
-				Title::newFromText( 'Portal:Nice_talk' )
+				'Portal:Nice_talk'
 			],
 			[
 				new ForeignTitle( 2, 'Portal', 'Nice_talk' ),
-				Title::newFromText( 'User:Nice_talk' )
+				'User:Nice_talk'
 			],
 		];
 	}
@@ -80,9 +80,10 @@ class NaiveImportTitleFactoryTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider basicProvider
 	 */
-	public function testBasic( ForeignTitle $foreignTitle, Title $title ) {
+	public function testBasic( ForeignTitle $foreignTitle, $titleText ) {
 		$factory = new NaiveImportTitleFactory();
 		$testTitle = $factory->createTitleFromForeignTitle( $foreignTitle );
+		$title = Title::newFromText( $titleText );
 
 		$this->assertTrue( $title->equals( $testTitle ) );
 	}
