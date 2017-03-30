@@ -9962,9 +9962,10 @@ Magic Words LOCAL (UTC)
 Magic Word: {{FULLPAGENAME}}
 !! options
 title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{FULLPAGENAME}}
-!! html
+!! html/*
 <p>User:Ævar Arnfjörð Bjarmason
 </p>
 !! end
@@ -9973,9 +9974,10 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 Magic Word: {{FULLPAGENAMEE}}
 !! options
 title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{FULLPAGENAMEE}}
-!! html
+!! html/*
 <p>User:%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
 </p>
 !! end
@@ -9984,9 +9986,10 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 Magic Word: {{TALKSPACE}}
 !! options
 title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{TALKSPACE}}
-!! html
+!! html/*
 <p>User talk
 </p>
 !! end
@@ -9995,9 +9998,10 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 Magic Word: {{TALKSPACE}}, same namespace
 !! options
 title=[[User talk:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{TALKSPACE}}
-!! html
+!! html/*
 <p>User talk
 </p>
 !! end
@@ -10006,9 +10010,10 @@ title=[[User talk:Ævar Arnfjörð Bjarmason]]
 Magic Word: {{TALKSPACE}}, main namespace
 !! options
 title=[[Parser Test]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{TALKSPACE}}
-!! html
+!! html/*
 <p>Talk
 </p>
 !! end
@@ -10017,9 +10022,10 @@ title=[[Parser Test]]
 Magic Word: {{TALKSPACEE}}
 !! options
 title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{TALKSPACEE}}
-!! html
+!! html/*
 <p>User_talk
 </p>
 !! end
@@ -10028,9 +10034,10 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 Magic Word: {{SUBJECTSPACE}}
 !! options
 title=[[User talk:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{SUBJECTSPACE}}
-!! html
+!! html/*
 <p>User
 </p>
 !! end
@@ -10039,9 +10046,10 @@ title=[[User talk:Ævar Arnfjörð Bjarmason]]
 Magic Word: {{SUBJECTSPACE}}, same namespace
 !! options
 title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{SUBJECTSPACE}}
-!! html
+!! html/*
 <p>User
 </p>
 !! end
@@ -10050,9 +10058,10 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 Magic Word: {{SUBJECTSPACE}}, main namespace
 !! options
 title=[[Parser Test]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{SUBJECTSPACE}}
-!! html
+!! html/*
 
 !! end
 
@@ -10060,9 +10069,10 @@ title=[[Parser Test]]
 Magic Word: {{SUBJECTSPACEE}}
 !! options
 title=[[User talk:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{SUBJECTSPACEE}}
-!! html
+!! html/*
 <p>User
 </p>
 !! end
@@ -10071,9 +10081,10 @@ title=[[User talk:Ævar Arnfjörð Bjarmason]]
 Magic Word: {{NAMESPACE}}
 !! options
 title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{NAMESPACE}}
-!! html
+!! html/*
 <p>User
 </p>
 !! end
@@ -10082,9 +10093,10 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 Magic Word: {{NAMESPACEE}}
 !! options
 title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{NAMESPACEE}}
-!! html
+!! html/*
 <p>User
 </p>
 !! end
@@ -10093,9 +10105,10 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 Magic Word: {{NAMESPACENUMBER}}
 !! options
 title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{NAMESPACENUMBER}}
-!! html
+!! html/*
 <p>2
 </p>
 !! end
@@ -10104,9 +10117,10 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 Magic Word: {{SUBPAGENAME}}
 !! options
 title=[[Ævar Arnfjörð Bjarmason/sub ö]] subpage
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{SUBPAGENAME}}
-!! html
+!! html/*
 <p>sub ö
 </p>
 !! end
@@ -10115,9 +10129,10 @@ title=[[Ævar Arnfjörð Bjarmason/sub ö]] subpage
 Magic Word: {{SUBPAGENAMEE}}
 !! options
 title=[[Ævar Arnfjörð Bjarmason/sub ö]] subpage
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{SUBPAGENAMEE}}
-!! html
+!! html/*
 <p>sub_%C3%B6
 </p>
 !! end
@@ -10126,9 +10141,10 @@ title=[[Ævar Arnfjörð Bjarmason/sub ö]] subpage
 Magic Word: {{ROOTPAGENAME}}
 !! options
 title=[[Ævar Arnfjörð Bjarmason/sub/sub2]] subpage
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{ROOTPAGENAME}}
-!! html
+!! html/*
 <p>Ævar Arnfjörð Bjarmason
 </p>
 !! end
@@ -10137,9 +10153,10 @@ title=[[Ævar Arnfjörð Bjarmason/sub/sub2]] subpage
 Magic Word: {{ROOTPAGENAMEE}}
 !! options
 title=[[Ævar Arnfjörð Bjarmason/sub/sub2]] subpage
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{ROOTPAGENAMEE}}
-!! html
+!! html/*
 <p>%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
 </p>
 !! end
@@ -10148,9 +10165,10 @@ title=[[Ævar Arnfjörð Bjarmason/sub/sub2]] subpage
 Magic Word: {{BASEPAGENAME}}
 !! options
 title=[[Ævar Arnfjörð Bjarmason/sub]] subpage
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{BASEPAGENAME}}
-!! html
+!! html/*
 <p>Ævar Arnfjörð Bjarmason
 </p>
 !! end
@@ -10159,9 +10177,10 @@ title=[[Ævar Arnfjörð Bjarmason/sub]] subpage
 Magic Word: {{BASEPAGENAMEE}}
 !! options
 title=[[Ævar Arnfjörð Bjarmason/sub]] subpage
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{BASEPAGENAMEE}}
-!! html
+!! html/*
 <p>%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
 </p>
 !! end
@@ -10170,9 +10189,10 @@ title=[[Ævar Arnfjörð Bjarmason/sub]] subpage
 Magic Word: {{TALKPAGENAME}}
 !! options
 title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{TALKPAGENAME}}
-!! html
+!! html/*
 <p>User talk:Ævar Arnfjörð Bjarmason
 </p>
 !! end
@@ -10181,9 +10201,10 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 Magic Word: {{TALKPAGENAMEE}}
 !! options
 title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{TALKPAGENAMEE}}
-!! html
+!! html/*
 <p>User_talk:%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
 </p>
 !! end
@@ -10192,9 +10213,10 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 Magic Word: {{SUBJECTPAGENAME}}
 !! options
 title=[[User talk:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{SUBJECTPAGENAME}}
-!! html
+!! html/*
 <p>User:Ævar Arnfjörð Bjarmason
 </p>
 !! end
@@ -10203,18 +10225,21 @@ title=[[User talk:Ævar Arnfjörð Bjarmason]]
 Magic Word: {{SUBJECTPAGENAMEE}}
 !! options
 title=[[User talk:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{SUBJECTPAGENAMEE}}
-!! html
+!! html/*
 <p>User:%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
 </p>
 !! end
 
 !! test
 Magic Word: {{NUMBEROFFILES}}
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{NUMBEROFFILES}}
-!! html
+!! html/*
 <p>7
 </p>
 !! end
@@ -10223,9 +10248,10 @@ Magic Word: {{NUMBEROFFILES}}
 Magic Word: {{PAGENAME}}
 !! options
 title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{PAGENAME}}
-!! html
+!! html/*
 <p>Ævar Arnfjörð Bjarmason
 </p>
 !! end
@@ -10234,6 +10260,7 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 Magic Word: {{PAGENAME}} with metacharacters
 !! options
 title=[['foo & bar = baz']]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 ''{{PAGENAME}}''
 !! html/php
@@ -10247,6 +10274,7 @@ title=[['foo & bar = baz']]
 Magic Word: {{PAGENAME}} with metacharacters (T28781)
 !! options
 title=[[*RFC 1234 http://example.com/]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{PAGENAME}}
 !! html/php
@@ -10260,9 +10288,10 @@ title=[[*RFC 1234 http://example.com/]]
 Magic Word: {{PAGENAMEE}}
 !! options
 title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{PAGENAMEE}}
-!! html
+!! html/*
 <p>%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
 </p>
 !! end
@@ -10271,6 +10300,7 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 Magic Word: {{PAGENAMEE}} with metacharacters (T28781)
 !! options
 title=[[*RFC 1234 http://example.com/]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{PAGENAMEE}}
 !! html/php
@@ -10282,53 +10312,65 @@ title=[[*RFC 1234 http://example.com/]]
 
 !! test
 Magic Word: {{REVISIONID}}
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{REVISIONID}}
-!! html
+!! html/*
 <p>1337
 </p>
 !! end
 
 !! test
 Magic Word: {{SCRIPTPATH}}
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{SCRIPTPATH}}
-!! html
+!! html/*
 
 !! end
 
 !! test
 Magic Word: {{STYLEPATH}}
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{STYLEPATH}}
-!! html
+!! html/*
 <p>/skins
 </p>
 !! end
 
 !! test
 Magic Word: {{SERVER}}
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{SERVER}}
-!! html
+!! html/*
 <p><a rel="nofollow" class="external free" href="http://example.org">http://example.org</a>
 </p>
 !! end
 
 !! test
 Magic Word: {{SERVERNAME}}
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{SERVERNAME}}
-!! html
+!! html/*
 <p>example.org
 </p>
 !! end
 
 !! test
 Magic Word: {{SITENAME}}
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{SITENAME}}
-!! html
+!! html/*
 <p>MediaWiki
 </p>
 !! end
@@ -10337,18 +10379,21 @@ Magic Word: {{SITENAME}}
 Magic Word: {{PAGELANGUAGE}}
 !! options
 language=fr
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{PAGELANGUAGE}}
-!! html
+!! html/*
 <p>fr
 </p>
 !! end
 
 !! test
 Magic Word: {{PAGELANGUAGE}} on a page with no explicitly set language
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{PAGELANGUAGE}}
-!! html
+!! html/*
 <p>en
 </p>
 !! end
@@ -13745,7 +13790,7 @@ Manually-specified thumbnail image
 !! options
 thumbsize=220
 !! wikitext
-[[File:Foobar.jpg|thumb=Thumb.png|Title]]
+[[File:Foobar.jpg|thumbnail=Thumb.png|Title]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="/wiki/File:Foobar.jpg"><img alt="" src="http://example.com/images/e/ea/Thumb.png" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>Title</div></div></div>
 
@@ -19614,6 +19659,31 @@ File:Test.png
 !! end
 
 !! test
+Gallery with class attribute
+!! options
+parsoid={
+  "nativeGallery": true
+}
+!! wikitext
+<gallery class="center">
+File:Foobar.jpg
+</gallery>
+!! html/php
+<ul class="gallery mw-gallery-traditional center">
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" width="120" height="14" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" /></a></div></div>
+			<div class="gallerytext">
+			</div>
+		</div></li>
+</ul>
+
+!! html/parsoid
+<ul class="gallery mw-gallery-traditional center" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{"class":"center"},"body":{}}'>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"></div></li>
+</ul>
+!! end
+
+!! test
 HTML Hex character encoding (spells the word "JavaScript")
 !! options
 parsoid=wt2html,wt2wt,html2html
@@ -21793,7 +21863,7 @@ showindicators
 !! wikitext
 <indicator name=" "></indicator>
 <indicator></indicator>
-!! html
+!! html/php
 <p><span class="error"><strong>Error:</strong> Page status indicators' <code>name</code> attribute must not be empty.</span>
 <span class="error"><strong>Error:</strong> Page status indicators' <code>name</code> attribute must not be empty.</span>
 </p>
@@ -21806,7 +21876,7 @@ showindicators
 !! wikitext
 <indicator name="empty" />
 <indicator name="name"></indicator>
-!! html
+!! html/php
 empty=
 name=
 <p><br />
@@ -21833,7 +21903,7 @@ showindicators
 <indicator name="10">Two
 
 paragraphs</indicator>
-!! html
+!! html/php
 01=hello world
 02=<a href="/wiki/Main_Page" title="Main Page">Main Page</a>
 03=<img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg" width="25" height="3" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/38px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x" />
@@ -22746,14 +22816,12 @@ parsoid={
 ## recognized as an extension tag w/o a native handler.
 !! test
 LST Sections: Newfangled approach
-!! options
-parsoid={ "suppressErrors": true }
 !! wikitext
 <section begin="2011-05-16" />
 <section end="2014-04-10 (MW 1.23wmf22)" />
 !! html/parsoid
-<p><span typeof="mw:Extension/section" about="#mwt1" data-parsoid='{"stx":"html","selfClose":true,"src":"&lt;section begin=\"2011-05-16\" />","tagWidths":[30,0]}'>&lt;section begin="2011-05-16" /></span>
-<span typeof="mw:Extension/section" about="#mwt2" data-parsoid='{"stx":"html","selfClose":true,"src":"&lt;section end=\"2014-04-10 (MW 1.23wmf22)\" />","tagWidths":[43,0]}'>&lt;section end="2014-04-10 (MW 1.23wmf22)" /></span></p>
+<p><span typeof="mw:Error mw:Extension/section" about="#mwt1" data-mw='{"name":"section","attrs":{"begin":"2011-05-16"},"body":null,"errors":[{"key":"mw-api-extexpand-error","message":"Could not expand extension source."}]}'>&lt;section begin="2011-05-16" /></span>
+<span typeof="mw:Error mw:Extension/section" about="#mwt2" data-mw='{"name":"section","attrs":{"end":"2014-04-10 (MW 1.23wmf22)"},"body":null,"errors":[{"key":"mw-api-extexpand-error","message":"Could not expand extension source."}]}'>&lt;section end="2014-04-10 (MW 1.23wmf22)" /></span></p>
 !! end
 
 #--------- Test stripping of empty nodes in template content ----------
@@ -23780,7 +23848,8 @@ Links 4. ExtLinks: Escapes needed
 parsoid=html2wt
 !! html/parsoid
 <p><a rel="mw:ExtLink" href="http://google.com">[google]</a>
-<a rel="mw:ExtLink" href="http://google.com">google]</a></p>
+<a rel="mw:ExtLink" href="http://google.com">google]</a>
+<a rel="mw:ExtLink" href="http://google.com">goog] le</a></p>
 <p>[http://google.com]</p>
 <p>[http://google.com google]</p>
 <p>[<a rel="mw:ExtLink" href="http://google.com">http://google.com</a>]</p>
@@ -23788,6 +23857,7 @@ parsoid=html2wt
 !! wikitext
 [http://google.com <nowiki>[google]</nowiki>]
 [http://google.com <nowiki>google]</nowiki>]
+[http://google.com <nowiki>goog] le</nowiki>]
 
 <nowiki>[http://google.com]</nowiki>
 
@@ -23799,6 +23869,7 @@ parsoid=html2wt
 !! html/php
 <p><a rel="nofollow" class="external text" href="http://google.com">[google]</a>
 <a rel="nofollow" class="external text" href="http://google.com">google]</a>
+<a rel="nofollow" class="external text" href="http://google.com">goog] le</a>
 </p><p>[http://google.com]
 </p><p>[http://google.com google]
 </p><p>[<a rel="nofollow" class="external free" href="http://google.com">http://google.com</a>]
@@ -24142,7 +24213,7 @@ parsoid=html2wt
 !! test
 4. No escaping needed
 !! options
-options=html2wt
+parsoid=html2wt
 !! html/parsoid
 <p>'<span><i>bar</i></span>'
 '<span><b>bar</b></span>'
@@ -24279,7 +24350,7 @@ parsoid=html2wt
 !! test
 4. Leading whitespace in indent-pre suppressing contexts should not be escaped
 !! options
-options=html2wt
+parsoid=html2wt
 !! html/parsoid
  <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption>caption</figcaption></figure>
 !! wikitext
@@ -26632,6 +26703,20 @@ parsoid= {
 # --------------------------------------------
 # Tests spec'ing wikitext serialization norms |
 # --------------------------------------------
+
+!! test
+Serialize multi-line indent-pre starting with wikitext syntax
+!! options
+parsoid=html2wt
+!! html/parsoid
+<pre>* 1
+** 2
+* 3</pre>
+!! wikitext
+ * 1
+ ** 2
+ * 3
+!! end
 
 !! test
 1. Categories should always be serialized on their own line
