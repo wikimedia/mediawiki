@@ -29,6 +29,9 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IMaintainableDatabase;
+
 /**
  * Maintenance script to refresh image metadata fields.
  *
@@ -37,7 +40,7 @@ require_once __DIR__ . '/Maintenance.php';
 class RefreshImageMetadata extends Maintenance {
 
 	/**
-	 * @var Database
+	 * @var IMaintainableDatabase
 	 */
 	protected $dbw;
 
@@ -205,7 +208,7 @@ class RefreshImageMetadata extends Maintenance {
 	}
 
 	/**
-	 * @param Database $dbw
+	 * @param IDatabase $dbw
 	 * @return array
 	 */
 	function getConditions( $dbw ) {

@@ -117,7 +117,7 @@ abstract class DumpIterator extends Maintenance {
 	/**
 	 * Callback function for each revision, child classes should override
 	 * processRevision instead.
-	 * @param Database $rev
+	 * @param WikiRevision $rev
 	 */
 	public function handleRevision( $rev ) {
 		$title = $rev->getTitle();

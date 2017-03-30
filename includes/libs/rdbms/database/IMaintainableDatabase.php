@@ -210,6 +210,31 @@ interface IMaintainableDatabase extends IDatabase {
 	public function duplicateTableStructure(
 		$oldName, $newName, $temporary = false, $fname = __METHOD__
 	);
+
+	/**
+	 * Lock specific tables
+	 *
+	 * Only use this method within a transaction
+	 *
+	 * @param array $read Array of tables to lock for read access
+	 * @param array $write Array of tables to lock for write access
+	 * @param string $method Name of caller
+	 * @param bool $lowPriority Whether to indicate writes to be LOW PRIORITY
+	 * @return bool
+	 * @since 1.29
+	 */
+	public function lockTables( $read, $write, $method, $lowPriority = true );
+
+	/**
+	 * Unlock specific tables
+	 *
+	 * Only use this method within a transaction
+	 *
+	 * @param string $method The caller
+	 * @return bool
+	 * @since 1.29
+	 */
+	public function unlockTables( $method );
 }
 
 class_alias( 'Wikimedia\Rdbms\IMaintainableDatabase', 'IMaintainableDatabase' );
