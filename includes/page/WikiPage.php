@@ -576,36 +576,12 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public function getOldestRevision() {
-
 		// Try using the replica DB first, then try the master
-		$continue = 2;
-		$db = wfGetDB( DB_REPLICA );
-		$revSelectFields = Revision::selectFields();
-
-		$row = null;
-		while ( $continue ) {
-			$row = $db->selectRow(
-				[ 'revision' ],
-				$revSelectFields,
-				[
-					'rev_page' => $this->getId()
-				],
-				__METHOD__,
-				[
-					'ORDER BY' => 'rev_timestamp ASC',
-					'IGNORE INDEX' => 'rev_timestamp'
-				]
-			);
-
-			if ( $row ) {
-				$continue = 0;
-			} else {
-				$db = wfGetDB( DB_MASTER );
-				$continue--;
-			}
+		$rev = $this->mTitle->getFirstRevision();
+		if ( !$rev ) {
+			$rev = $this->mTitle->getFirstRevision( Title::GAID_FOR_UPDATE );
 		}
-
-		return $row ? Revision::newFromRow( $row ) : null;
+		return $rev;
 	}
 
 	/**
