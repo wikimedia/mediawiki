@@ -23,6 +23,9 @@
 
 require_once __DIR__ . '/Benchmarker.php';
 
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IMaintainableDatabase;
+
 /**
  * Maintenance script that benchmarks SQL DELETE vs SQL TRUNCATE.
  *
@@ -69,7 +72,7 @@ class BenchmarkDeleteTruncate extends Benchmarker {
 	}
 
 	/**
-	 * @param Database $dbw
+	 * @param IDatabase $dbw
 	 * @return void
 	 */
 	private function insertData( $dbw ) {
@@ -82,7 +85,7 @@ class BenchmarkDeleteTruncate extends Benchmarker {
 	}
 
 	/**
-	 * @param Database $dbw
+	 * @param IDatabase $dbw
 	 * @return void
 	 */
 	private function delete( $dbw ) {
@@ -90,7 +93,7 @@ class BenchmarkDeleteTruncate extends Benchmarker {
 	}
 
 	/**
-	 * @param Database $dbw
+	 * @param IMaintainableDatabase $dbw
 	 * @return void
 	 */
 	private function truncate( $dbw ) {

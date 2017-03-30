@@ -24,11 +24,12 @@
  * @ingroup Maintenance
  */
 
+require_once __DIR__ . '/Maintenance.php';
+
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ResultWrapper;
-
-require_once __DIR__ . '/Maintenance.php';
+use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
  * Maintenance script that checks for articles to fix after
@@ -39,7 +40,7 @@ require_once __DIR__ . '/Maintenance.php';
 class NamespaceConflictChecker extends Maintenance {
 
 	/**
-	 * @var Database
+	 * @var IMaintainableDatabase
 	 */
 	protected $db;
 

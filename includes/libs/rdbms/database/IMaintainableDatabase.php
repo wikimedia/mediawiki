@@ -220,9 +220,7 @@ interface IMaintainableDatabase extends IDatabase {
 	public function supportsSessionTableLocks();
 
 	/**
-	 * Lock specific tables for the currently active transaction
-	 *
-	 * Only use this method within a transaction
+	 * Lock specific tables
 	 *
 	 * @param array $read Array of tables to lock for read access
 	 * @param array $write Array of tables to lock for write access
@@ -233,9 +231,7 @@ interface IMaintainableDatabase extends IDatabase {
 	public function lockTables( array $read, array $write, $method );
 
 	/**
-	 * Unlock specific tables for the currently active transaction
-	 *
-	 * Only use this method within a transaction
+	 * Unlock specific tables
 	 *
 	 * @param string $method The caller
 	 * @return bool

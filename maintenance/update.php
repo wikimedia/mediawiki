@@ -27,6 +27,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use Wikimedia\Rdbms\IMaintainableDatabase;
+
 /**
  * Maintenance script to run database schema updates.
  *
@@ -145,7 +147,7 @@ class UpdateMediaWiki extends Maintenance {
 
 		$this->output( "Going to run database updates for " . wfWikiID() . "\n" );
 		if ( $db->getType() === 'sqlite' ) {
-			/** @var Database|DatabaseSqlite $db */
+			/** @var IMaintainableDatabase|DatabaseSqlite $db */
 			$this->output( "Using SQLite file: '{$db->getDbFilePath()}'\n" );
 		}
 		$this->output( "Depending on the size of your database this may take a while!\n" );

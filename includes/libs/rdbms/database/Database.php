@@ -3310,16 +3310,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return false;
 	}
 
-	/**
-	 * Lock specific tables for the currently active transaction
-	 *
-	 * Only use this method within a transaction
-	 *
-	 * @param array $read Array of tables to lock for read access
-	 * @param array $write Array of tables to lock for write access
-	 * @param string $method Name of caller
-	 * @return bool
-	 */
 	final public function lockTables( array $read, array $write, $method ) {
 		if ( !$this->supportsSessionTableLocks() && !$this->mTrxLevel ) {
 			$this->queryLogger->warning( __METHOD__ .
@@ -3336,14 +3326,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return true;
 	}
 
-	/**
-	 * Unlock specific tables for the currently active transaction
-	 *
-	 * Only use this method within a transaction
-	 *
-	 * @param string $method The caller
-	 * @return bool
-	 */
 	final public function unlockTables( $method ) {
 		if ( !$this->supportsSessionTableLocks() && !$this->mTrxLevel ) {
 			$this->queryLogger->warning( __METHOD__ .
