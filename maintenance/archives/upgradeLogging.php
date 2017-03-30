@@ -23,16 +23,18 @@
 
 require __DIR__ . '/../commandLine.inc';
 
+use Wikimedia\Rdbms\IMaintainableDatabase;
+
 /**
  * Maintenance script that upgrade for log_id/log_deleted fields in a
  * replication-safe way.
  *
  * @ingroup Maintenance
  */
-class UpdateLogging {
+class UpdateLogging extends Maintenance {
 
 	/**
-	 * @var Database
+	 * @var IMaintainableDatabase
 	 */
 	public $dbw;
 	public $batchSize = 1000;
