@@ -210,6 +210,48 @@ interface IMaintainableDatabase extends IDatabase {
 	public function duplicateTableStructure(
 		$oldName, $newName, $temporary = false, $fname = __METHOD__
 	);
+
+	/**
+	 * Checks if lockTables() supports table locks outside the scope of transactions
+	 *
+	 * @return bool
+	 * @since 1.29
+	 */
+	public function supportsSessionTableLocks();
+
+	/**
+	 * Lock specific tables
+	 *
+	 * Generally, any transaction should be flushed before calling this method.
+	 * Previous row and table locks from the transaction or session may be released
+	 * when this is called, so be sure to get all relevant table locks up-front.
+	 *
+	 * For compatibility, callers should check supportsSessionTableLocks() before using this.
+	 * method. If session scope locks are not supported, then caller must decide whether to:
+	 *   - a) start a new transaction and acquire table locks for the scope of that transaction,
+	 *        doing all table updates within that transaction
+	 *   - b) forgo table locks entirely and avoid calling this method
+	 * 
+	 * In any case, avoid using begin()/commit() in code that runs while such table
+	 * locks are acquired, as that breaks in the transaction scope case. The startAtomic()
+	 * and endAtomic() methods are safe, however, since they will join any existing transaction.
+	 *
+	 * @param array $read Array of tables to lock for read access
+	 * @param array $write Array of tables to lock for write access
+	 * @param string $method Name of caller
+	 * @return bool
+	 * @since 1.29
+	 */
+	public function lockTables( array $read, array $write, $method );
+
+	/**
+	 * Unlock specific tables
+	 *
+	 * @param string $method The caller
+	 * @return bool
+	 * @since 1.29
+	 */
+	public function unlockTables( $method );
 }
 
 class_alias( 'Wikimedia\Rdbms\IMaintainableDatabase', 'IMaintainableDatabase' );
