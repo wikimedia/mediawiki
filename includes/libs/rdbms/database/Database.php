@@ -3295,26 +3295,37 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return false;
 	}
 
-	/**
-	 * Lock specific tables
-	 *
-	 * @param array $read Array of tables to lock for read access
-	 * @param array $write Array of tables to lock for write access
-	 * @param string $method Name of caller
-	 * @param bool $lowPriority Whether to indicate writes to be LOW PRIORITY
-	 * @return bool
-	 */
-	public function lockTables( $read, $write, $method, $lowPriority = true ) {
+	public function tableLocksHaveTransactionScope() {
 		return true;
 	}
 
-	/**
-	 * Unlock specific tables
-	 *
-	 * @param string $method The caller
-	 * @return bool
-	 */
-	public function unlockTables( $method ) {
+	final public function lockTables( array $read, array $write, $method ) {
+		if ( $this->writesOrCallbacksPending() ) {
+			throw new DBUnexpectedError( $this, "Transaction writes or callbacks still pending." );
+		}
+
+		if ( $this->tableLocksHaveTransactionScope() ) {
+			$this->startAtomic( $method );
+		}
+
+		return $this->doLockTables( $read, $write, $method );
+	}
+
+	protected function doLockTables( array $read, array $write, $method ) {
+		return true;
+	}
+
+	final public function unlockTables( $method ) {
+		if ( $this->tableLocksHaveTransactionScope() ) {
+			$this->endAtomic( $method );
+
+			return true; // locks released on COMMIT/ROLLBACK
+		}
+
+		return $this->doUnlockTables( $method );
+	}
+
+	protected function doUnlockTables( $method ) {
 		return true;
 	}
 
