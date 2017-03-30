@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.20.1
+ * OOjs UI v0.20.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-03-28T22:19:29Z
+ * Date: 2017-03-30T20:34:37Z
  */
 ( function ( OO ) {
 
@@ -2300,21 +2300,8 @@ OO.ui.mixin.GroupElement.prototype.getItemsFromData = function ( data ) {
  * @chainable
  */
 OO.ui.mixin.GroupElement.prototype.addItems = function ( items, index ) {
-	var i, len, item,
-		itemElements = [];
-
 	// Mixin method
 	OO.EmitterList.prototype.addItems.call( this, items, index );
-
-	for ( i = 0, len = items.length; i < len; i++ ) {
-		item = items[ i ];
-
-		// Add the item
-		item.setElementGroup( this );
-		itemElements.push( item.$element.get( 0 ) );
-	}
-
-	this.insertItemElements( items, index );
 
 	this.emit( 'change', this.getItems() );
 	return this;
@@ -2324,10 +2311,11 @@ OO.ui.mixin.GroupElement.prototype.addItems = function ( items, index ) {
  * @inheritdoc
  */
 OO.ui.mixin.GroupElement.prototype.moveItem = function ( items, newIndex ) {
+	// insertItemElements expects this.items to not have been modified yet, so call before the mixin
+	this.insertItemElements( items, newIndex );
+
 	// Mixin method
 	newIndex = OO.EmitterList.prototype.moveItem.call( this, items, newIndex );
-
-	this.insertItemElements( items, newIndex );
 
 	return newIndex;
 };
@@ -2336,37 +2324,29 @@ OO.ui.mixin.GroupElement.prototype.moveItem = function ( items, newIndex ) {
  * @inheritdoc
  */
 OO.ui.mixin.GroupElement.prototype.insertItem = function ( item, index ) {
+	item.setElementGroup( this );
+	this.insertItemElements( item, index );
+
 	// Mixin method
 	index = OO.EmitterList.prototype.insertItem.call( this, item, index );
-
-	this.insertItemElements( item, index );
 
 	return index;
 };
 
 /**
- * Insert element into the group
+ * Insert elements into the group
  *
- * @param {OO.ui.Element|OO.ui.Element[]} itemWidgets Items to insert
+ * @private
+ * @param {OO.ui.Element} itemWidget Item to insert
  * @param {number} index Insertion index
  */
-OO.ui.mixin.GroupElement.prototype.insertItemElements = function ( itemWidgets, index ) {
-	var i, len, item;
-
-	if ( !Array.isArray( itemWidgets ) ) {
-		itemWidgets = [ itemWidgets ];
-	}
-
-	for ( i = 0, len = itemWidgets.length; i < len; i++ ) {
-		item = itemWidgets[ i ];
-
-		if ( index === undefined || index < 0 || index >= this.items.length ) {
-			this.$group.append( item.$element.get( 0 ) );
-		} else if ( index === 0 ) {
-			this.$group.prepend( item.$element.get( 0 ) );
-		} else {
-			this.items[ index ].$element.before( item.$element.get( 0 ) );
-		}
+OO.ui.mixin.GroupElement.prototype.insertItemElements = function ( itemWidget, index ) {
+	if ( index === undefined || index < 0 || index >= this.items.length ) {
+		this.$group.append( itemWidget.$element );
+	} else if ( index === 0 ) {
+		this.$group.prepend( itemWidget.$element );
+	} else {
+		this.items[ index ].$element.before( itemWidget.$element );
 	}
 };
 

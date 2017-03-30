@@ -1,38 +1,38 @@
 /*!
- * OOjs UI v0.20.1
+ * OOjs UI v0.20.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-03-28T22:19:34Z
+ * Date: 2017-03-30T20:34:41Z
  */
-.oo-ui-draggableElement:not( .oo-ui-draggableElement-undraggable )-handle,
-.oo-ui-draggableElement:not( .oo-ui-draggableElement-undraggable )-handle.oo-ui-widget {
+.oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ),
+.oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
   cursor: url(images/grab.cur );
   cursor: -webkit-grab;
   cursor:    -moz-grab;
   cursor:         grab;
 }
-.oo-ui-draggableElement:not( .oo-ui-draggableElement-undraggable )-handle:active {
+.oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ):active {
   cursor: url(images/grabbing.cur );
   cursor: -webkit-grabbing;
   cursor:    -moz-grabbing;
   cursor:         grabbing;
 }
-.oo-ui-draggableElement:not( .oo-ui-draggableElement-undraggable )-handle.oo-ui-widget-disabled,
-.oo-ui-widget-disabled .oo-ui-draggableElement:not( .oo-ui-draggableElement-undraggable )-handle {
+.oo-ui-draggableElement-handle.oo-ui-widget-disabled,
+.oo-ui-widget-disabled .oo-ui-draggableElement-handle {
   cursor: default;
 }
-.oo-ui-draggableElement:not( .oo-ui-draggableElement-undraggable )-placeholder {
+.oo-ui-draggableElement-placeholder {
   opacity: 0.2;
 }
-.oo-ui-draggableGroupElement-horizontal .oo-ui-draggableElement:not( .oo-ui-draggableElement-undraggable ) {
+.oo-ui-draggableGroupElement-horizontal .oo-ui-draggableElement {
   display: inline-block;
 }
-.oo-ui-draggableElement:not( .oo-ui-draggableElement-undraggable )-handle:focus {
+.oo-ui-draggableElement-handle:focus {
   border-radius: 2px;
   box-shadow: inset 0 0 0 1px #36c, 0 0 0 1px #36c;
   outline: 0;
