@@ -3306,25 +3306,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return false;
 	}
 
-	/**
-	 * Lock specific tables
-	 *
-	 * @param array $read Array of tables to lock for read access
-	 * @param array $write Array of tables to lock for write access
-	 * @param string $method Name of caller
-	 * @param bool $lowPriority Whether to indicate writes to be LOW PRIORITY
-	 * @return bool
-	 */
 	public function lockTables( $read, $write, $method, $lowPriority = true ) {
 		return true;
 	}
 
-	/**
-	 * Unlock specific tables
-	 *
-	 * @param string $method The caller
-	 * @return bool
-	 */
 	public function unlockTables( $method ) {
 		return true;
 	}
