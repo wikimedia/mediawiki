@@ -756,6 +756,7 @@
 	"post-expand-template-argument-category": "Старонкі, у якіх прапушчаныя парамэтры шаблёнаў",
 	"parser-template-loop-warning": "Выяўлены цыкль у шаблёнах: [[$1]]",
 	"template-loop-category": "Старонкі з цыклямі шаблёнаў",
+	"template-loop-category-desc": "Старонка ўтрымлівае цыкль шаблёну, г. зн., шаблён уключае сам сябе рэкурсіўна.",
 	"parser-template-recursion-depth-warning": "Перавышаны ліміт глыбіні рэкурсіі шаблёну ($1)",
 	"language-converter-depth-warning": "Перавышанае абмежаваньне глыбіні канвэртару варыянтаў мовы ($1)",
 	"node-count-exceeded-category": "Старонкі зь перавышанай колькасьцю вузлоў",

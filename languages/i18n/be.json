@@ -3488,6 +3488,7 @@
 	"default-skin-not-found-no-skins": "Упс! Прадвызначаная вокладка для вашай вікі (<code>$wgDefaultSkin</code>), <code>$1</code>, недаступна.\n\nВы не ўстанавілі вокладкі.\n\n; Калі вы толькі што ўстанавілі ці абнавілі MediaWiki:\n: Магчыма, вы ўстанавілі з git, ці наўпрост з зыходнага коду, выкарыстаўшы іншы метад. Гэта нармальна. MediaWiki 1.24 і навейшыя не ўключаюць вокладкі ў асноўнае сховішча. Паспрабуйце ўстанавіць некалькі вокладак з [https://www.mediawiki.org/wiki/Category:All_skins каталога вокладак mediawiki.org], такім чынам:\n:* Узяўшы [https://www.mediawiki.org/wiki/Download tarball-інсталятар], які ўтрымлівае некалькі вокладак і прыставак. Вы можаце скапіяваць і ўставіць каталог <code>skins/</code> адтуль.\n:* Зрабіўшы клон аднаго з сховішчаў <code>mediawiki/skins/*</code> праз git у каталог <code>skins/</code> вашай інсталяцыі MediaWiki.\n: Калі вы распрацоўшчык MediaWiki, гэта не павінна адбіцца на вашым git-сховішчы. Гл. [https://www.mediawiki.org/wiki/Manual:Skin_configuration Інструкцыя: Настройка вокладак] дзеля інфармацыі па ўключэнні вокладак і выбары прадвызначэння.",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (уключана)",
 	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 (<strong>выключана</strong>)",
+	"mediastatistics-table-extensions": "Магчымыя прыстаўкі",
 	"mediastatistics-table-count": "Колькасць файлаў",
 	"mediastatistics-table-totalbytes": "Агульны памер",
 	"mediastatistics-header-unknown": "Невядомыя",

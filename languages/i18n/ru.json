@@ -2863,6 +2863,7 @@
 	"newimages-summary": "На этой служебной странице показаны недавно загруженные файлы.",
 	"newimages-legend": "Фильтр",
 	"newimages-label": "Имя файла (или его часть):",
+	"newimages-user": "IP-адрес или имя участника",
 	"newimages-showbots": "Показать загрузки ботов",
 	"newimages-hidepatrolled": "Скрыть отпатрулированные загрузки",
 	"noimages": "Изображения отсутствуют.",

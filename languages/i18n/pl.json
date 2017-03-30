@@ -2846,6 +2846,7 @@
 	"newimages-summary": "Na tej stronie specjalnej prezentowane są ostatnio przesłane pliki.",
 	"newimages-legend": "Filtruj",
 	"newimages-label": "Nazwa pliku (lub jej fragment):",
+	"newimages-user": "Adres IP lub nazwa użytkownika",
 	"newimages-showbots": "Pokaż pliki przesłane przez boty",
 	"newimages-hidepatrolled": "Ukryj sprawdzone pliki",
 	"noimages": "Brak plików do pokazania.",

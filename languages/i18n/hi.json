@@ -3632,7 +3632,7 @@
 	"feedback-thanks": "धन्यवाद! आपकी प्रतिक्रिया पृष्ठ में नियुक्त किया गया है \"[ $2  $1 ]\"।",
 	"feedback-thanks-title": "धन्यवाद!",
 	"feedback-useragent": "सदस्य कर्ता:",
-	"searchsuggest-search": "खोजें {{SITENAME}}",
+	"searchsuggest-search": "{{SITENAME}} में खोजें",
 	"searchsuggest-containing": "...से युक्त",
 	"api-error-badtoken": "आंतरिक त्रुटि: बुरी टोकन।",
 	"api-error-emptypage": "नए खाली पृष्ठ बनाने की अनुमति नहीं है।",

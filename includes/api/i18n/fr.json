@@ -971,7 +971,7 @@
 	"apihelp-query+recentchanges-paramvalue-prop-timestamp": "Ajoute l’horodatage de la modification.",
 	"apihelp-query+recentchanges-paramvalue-prop-title": "Ajoute le titre de la page modifiée.",
 	"apihelp-query+recentchanges-paramvalue-prop-ids": "Ajoute l’ID de la page, l’ID des modifications récentes et l’ID de l’ancienne et la nouvelle révisions.",
-	"apihelp-query+recentchanges-paramvalue-prop-sizes": "Ajoute l’ancienne et la nouvelle tailles de la page en octets.",
+	"apihelp-query+recentchanges-paramvalue-prop-sizes": "Ajoute l’ancienne et la nouvelle taille de la page en octets.",
 	"apihelp-query+recentchanges-paramvalue-prop-redirect": "Marque la modification si la page est une redirection.",
 	"apihelp-query+recentchanges-paramvalue-prop-patrolled": "Marque les modifications patrouillables comme patrouillées ou non.",
 	"apihelp-query+recentchanges-paramvalue-prop-loginfo": "Ajoute les informations du journal (Id du journal, type de trace, etc.) aux entrées du journal.",

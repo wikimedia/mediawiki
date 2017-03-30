@@ -3159,7 +3159,7 @@
 	"htmlform-time-invalid": "Unesena vrijednost nije prepoznati format vremena. Pokušajte koristiti format HH:MM:SS.",
 	"htmlform-datetime-toohigh": "Uneseni datum i vrijeme su veći od $1",
 	"logentry-delete-delete": "$1 je {{GENDER:$2|obrisao|obrisala}} stranicu $3",
-	"logentry-delete-delete_redir": "$1 je premještanjem {{GENDER:$2|pobrisao|pobrisala}} preusmjeravanje $3",
+	"logentry-delete-delete_redir": "$1 premještanjem je {{GENDER:$2|pobrisao|pobrisala}} preusmjeravanje $3",
 	"logentry-delete-restore": "$1 je {{GENDER:$2|vratio|vratila}} stranicu $3",
 	"logentry-delete-event": "$1 je {{GENDER:$2|promijenio|promijenila}} vidljivost {{PLURAL:$5|zapisa u evidenciji|$5 zapisa u evidenciji}} na $3: $4",
 	"logentry-delete-revision": "$1 je {{GENDER:$2|promijenio|promijenila}} vidljivost {{PLURAL:$5|uređivanja|$5 uređivanja}} na stranici $3: $4",

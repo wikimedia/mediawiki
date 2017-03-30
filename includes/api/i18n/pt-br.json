@@ -11,7 +11,8 @@
 			"Caçador de Palavras",
 			"LucyDiniz",
 			"Eduardo Addad de Oliveira",
-			"Warley Felipe C."
+			"Warley Felipe C.",
+			"TheEduGobi"
 		]
 	},
 	"apihelp-main-param-action": "Qual ação executar.",
@@ -22,6 +23,7 @@
 	"apihelp-main-param-requestid": "Qualquer valor dado aqui será incluído na resposta. Pode ser usado para distinguir requisições.",
 	"apihelp-main-param-servedby": "Inclua o nome de host que atendeu a solicitação nos resultados.",
 	"apihelp-main-param-curtimestamp": "Inclui a data atual no resultado.",
+	"apihelp-main-param-origin": "Ao acessar a API usando uma solicitação AJAX por domínio cruzado (CORS), defina isto como o domínio de origem. Isto deve estar incluso em toda solicitação ''pre-flight'', sendo portanto parte do URI da solicitação (ao invés do corpo do POST).\n\nPara solicitações autenticadas, isto deve corresponder a uma das origens no cabeçalho <code>Origin</code>, para que seja algo como <kbd>https://pt.wikipedia.org</kbd> ou <kbd>https://meta.wikimedia.org</kbd>. Se este parâmetro não corresponder ao cabeçalho <code>Origin</code>, uma resposta 403 será retornada. Se este parâmetro corresponder ao cabeçalho <code>Origin</code> e a origem for permitida (''whitelisted''), os cabeçalhos <code>Access-Control-Allow-Origin</code> e <code>Access-Control-Allow-Credentials</code> serão definidos.\n\nPara solicitações não autenticadas, especifique o valor <kbd>*</kbd>. Isto fará com que o cabeçalho <code>Access-Control-Allow-Origin</code> seja definido, porém o <code>Access-Control-Allow-Credentials</code> será <code>false</code> e todos os dados específicos para usuários tornar-se-ão restritos.",
 	"apihelp-block-description": "Bloquear um usuário",
 	"apihelp-block-param-user": "Nome de usuário, endereço IP ou faixa de IP para bloquear.",
 	"apihelp-block-param-reason": "Razão do bloqueio.",
@@ -91,7 +93,7 @@
 	"apihelp-feedcontributions-param-newonly": "Mostrar somente as edições que são criação de páginas.",
 	"apihelp-feedcontributions-param-hideminor": "Ocultar edições menores.",
 	"apihelp-feedcontributions-param-showsizediff": "Mostrar a diferença de tamanho entre as revisões.",
-	"apihelp-feedrecentchanges-description": "Retorna um feed de alterações recentes.",
+	"apihelp-feedrecentchanges-description": "Retorna um ''feed'' de mudanças recentes.",
 	"apihelp-feedrecentchanges-param-feedformat": "O formato do feed.",
 	"apihelp-feedrecentchanges-param-namespace": "Espaço nominal a partir do qual limitar resultados.",
 	"apihelp-feedrecentchanges-param-invert": "Todos os espaços nominais, exceto o selecionado.",
@@ -104,7 +106,7 @@
 	"apihelp-feedrecentchanges-param-hidecategorization": "Alterações de membros pertencentes à uma categoria.",
 	"apihelp-feedrecentchanges-param-tagfilter": "Filtrar por tag.",
 	"apihelp-feedrecentchanges-example-simple": "Mostrar as mudanças recentes.",
-	"apihelp-feedrecentchanges-example-30days": "Mostrar as alterações recentes por 30 dias.",
+	"apihelp-feedrecentchanges-example-30days": "Mostrar as mudanças recentes por 30 dias.",
 	"apihelp-feedwatchlist-description": "Retornar um feed da lista de vigiados.",
 	"apihelp-feedwatchlist-param-feedformat": "O formato do feed.",
 	"apihelp-feedwatchlist-param-hours": "Lista páginas modificadas dentro dessa quantia de horas a partir de agora.",

@@ -2769,6 +2769,7 @@
 	"newimages-summary": "Ta posebna stran prikazuje najnovejše naložene datoteke.",
 	"newimages-legend": "Filter",
 	"newimages-label": "Ime datoteke (ali njen del):",
+	"newimages-user": "IP-naslov ali uporabniško ime",
 	"newimages-showbots": "Prikaži nalaganja botov",
 	"newimages-hidepatrolled": "Skrij nadzorovana nalaganja",
 	"noimages": "Nič ni videti.",

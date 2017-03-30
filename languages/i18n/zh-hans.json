@@ -2867,6 +2867,7 @@
 	"newimages-summary": "本特殊页面展示最后上传的文件。",
 	"newimages-legend": "过滤",
 	"newimages-label": "文件名（或它的一部份）：",
+	"newimages-user": "IP地址或用户名",
 	"newimages-showbots": "显示机器人上传",
 	"newimages-hidepatrolled": "隐藏已巡查的上传",
 	"noimages": "无可查看文件。",

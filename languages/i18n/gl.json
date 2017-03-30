@@ -2785,6 +2785,7 @@
 	"newimages-summary": "Esta páxina especial mostra os últimos ficheiros cargados.",
 	"newimages-legend": "Filtro",
 	"newimages-label": "Nome do ficheiro (ou parte del):",
+	"newimages-user": "Enderezo IP ou nome de usuario",
 	"newimages-showbots": "Mostrar as cargas feitas por bots",
 	"newimages-hidepatrolled": "Agochar as subidas patrulladas",
 	"noimages": "Non hai imaxes que mostrar.",

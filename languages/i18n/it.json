@@ -2828,6 +2828,7 @@
 	"newimages-summary": "Questa pagina speciale mostra i file caricati più di recente.",
 	"newimages-legend": "Filtra",
 	"newimages-label": "Nome file (o una parte di esso):",
+	"newimages-user": "Indirizzo IP o nome utente",
 	"newimages-showbots": "Mostra caricamenti di bot",
 	"newimages-hidepatrolled": "Nascondi caricamenti verificati",
 	"noimages": "Non c'è nulla da vedere.",

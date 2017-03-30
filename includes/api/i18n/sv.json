@@ -415,6 +415,7 @@
 	"apihelp-query+protectedtitles-example-simple": "Lista skyddade titlar.",
 	"apihelp-query+recentchanges-example-simple": "Lista de senaste ändringarna.",
 	"apihelp-query+revisions-example-first5-not-localhost": "Hämta första 5 revideringarna av \"huvudsidan\" och som inte gjorts av anonym användare \"127.0.0.1\"",
+	"apihelp-query+siteinfo-paramvalue-prop-languagevariants": "Returnerar en lista över språkkoder som [[mw:LanguageConverter|LanguageConverter]] har aktiverat och de varianter som varje stöder.",
 	"apihelp-query+siteinfo-example-simple": "Hämta information om webbplatsen.",
 	"apihelp-query+stashimageinfo-description": "Returnerar filinformation för temporära filer.",
 	"apihelp-query+stashimageinfo-param-filekey": "Nyckel som identifierar en tidigare uppladdning som lagrats temporärt.",

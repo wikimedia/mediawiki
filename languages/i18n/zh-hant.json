@@ -2844,6 +2844,7 @@
 	"newimages-summary": "此特殊頁面中顯示最新上傳的檔案。",
 	"newimages-legend": "搜尋",
 	"newimages-label": "檔案名稱 (或部份檔名)：",
+	"newimages-user": "IP 位址或使用者名稱",
 	"newimages-showbots": "顯示由機器人上傳的檔案",
 	"newimages-hidepatrolled": "隱藏己巡查上傳",
 	"noimages": "無任何圖片。",
