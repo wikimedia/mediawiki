@@ -1,7 +1,7 @@
 /* eslint comma-dangle: 0 */
-/* eslint no-undef: "error"*/
+/* eslint no-undef: "error" */
 /* eslint no-console: 0 */
-/* eslint-env node*/
+/* eslint-env node */
 'use strict';
 
 const path = require( 'path' );

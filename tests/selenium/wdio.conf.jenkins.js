@@ -1,5 +1,5 @@
-/* eslint no-undef: "error"*/
-/* eslint-env node*/
+/* eslint no-undef: "error" */
+/* eslint-env node */
 'use strict';
 var merge = require( 'deepmerge' ),
 	wdioConf = require( './wdio.conf.js' );

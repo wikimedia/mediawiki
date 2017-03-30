@@ -2421,7 +2421,7 @@ class EditPage {
 		# Show log extract when the user is currently blocked
 		if ( $namespace == NS_USER || $namespace == NS_USER_TALK ) {
 			$username = explode( '/', $this->mTitle->getText(), 2 )[0];
-			$user = User::newFromName( $username, false /* allow IP users*/ );
+			$user = User::newFromName( $username, false /* allow IP users */ );
 			$ip = User::isIP( $username );
 			$block = Block::newFromTarget( $user, $user );
 			if ( !( $user && $user->isLoggedIn() ) && !$ip ) { # User does not exist

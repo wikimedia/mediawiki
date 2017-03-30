@@ -131,7 +131,7 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 			: "";
 
 		if ( isset( $this->customCaptions[$iwPrefix] ) ) {
-			/* customCaptions composed by loadCustomCaptions() with pre-escaped content.*/
+			/* customCaptions composed by loadCustomCaptions() with pre-escaped content. */
 			$caption = $this->customCaptions[$iwPrefix];
 		} else {
 			$interwiki = $this->iwLookup->fetch( $iwPrefix );
