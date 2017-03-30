@@ -23,13 +23,15 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Usage:
  *  populateContentModel.php --ns=1 --table=page
  */
 class PopulateContentModel extends Maintenance {
 	protected $wikiId;
-
+	/** @var WANObjectCache */
 	protected $wanCache;
 
 	public function __construct() {
@@ -78,7 +80,7 @@ class PopulateContentModel extends Maintenance {
 		$this->wanCache->delete( $revisionKey );
 	}
 
-	private function updatePageRows( Database $dbw, $pageIds, $model ) {
+	private function updatePageRows( IDatabase $dbw, $pageIds, $model ) {
 		$count = count( $pageIds );
 		$this->output( "Setting $count rows to $model..." );
 		$dbw->update(
@@ -91,7 +93,7 @@ class PopulateContentModel extends Maintenance {
 		$this->output( "done.\n" );
 	}
 
-	protected function populatePage( Database $dbw, $ns ) {
+	protected function populatePage( IDatabase $dbw, $ns ) {
 		$toSave = [];
 		$lastId = 0;
 		$nsCondition = $ns === 'all' ? [] : [ 'page_namespace' => $ns ];
@@ -123,7 +125,7 @@ class PopulateContentModel extends Maintenance {
 		}
 	}
 
-	private function updateRevisionOrArchiveRows( Database $dbw, $ids, $model, $table ) {
+	private function updateRevisionOrArchiveRows( IDatabase $dbw, $ids, $model, $table ) {
 		$prefix = $table === 'archive' ? 'ar' : 'rev';
 		$model_column = "{$prefix}_content_model";
 		$format_column = "{$prefix}_content_format";
@@ -142,7 +144,7 @@ class PopulateContentModel extends Maintenance {
 		$this->output( "done.\n" );
 	}
 
-	protected function populateRevisionOrArchive( Database $dbw, $table, $ns ) {
+	protected function populateRevisionOrArchive( IDatabase $dbw, $table, $ns ) {
 		$prefix = $table === 'archive' ? 'ar' : 'rev';
 		$model_column = "{$prefix}_content_model";
 		$format_column = "{$prefix}_content_format";
