@@ -340,6 +340,9 @@ class ApiParse extends ApiBase {
 		if ( isset( $prop['sections'] ) ) {
 			$result_array['sections'] = $p_result->getSections();
 		}
+		if ( isset( $prop['parsewarnings'] ) ) {
+			$result_array['parsewarnings'] = $p_result->getWarnings();
+		}
 
 		if ( isset( $prop['displaytitle'] ) ) {
 			$result_array['displaytitle'] = $p_result->getDisplayTitle() ?:
@@ -452,6 +455,7 @@ class ApiParse extends ApiBase {
 			'modulestyles' => 'm',
 			'properties' => 'pp',
 			'limitreportdata' => 'lr',
+			'parsewarnings' => 'pw'
 		];
 		$this->setIndexedTagNames( $result_array, $result_mapping );
 		$result->addValue( null, $this->getModuleName(), $result_array );
@@ -751,7 +755,8 @@ class ApiParse extends ApiBase {
 			],
 			'prop' => [
 				ApiBase::PARAM_DFLT => 'text|langlinks|categories|links|templates|' .
-					'images|externallinks|sections|revid|displaytitle|iwlinks|properties',
+					'images|externallinks|sections|revid|displaytitle|iwlinks|' .
+					'properties|parsewarnings',
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => [
 					'text',
@@ -777,6 +782,7 @@ class ApiParse extends ApiBase {
 					'limitreportdata',
 					'limitreporthtml',
 					'parsetree',
+					'parsewarnings'
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [
 					'parsetree' => [ 'apihelp-parse-paramvalue-prop-parsetree', CONTENT_MODEL_WIKITEXT ],
