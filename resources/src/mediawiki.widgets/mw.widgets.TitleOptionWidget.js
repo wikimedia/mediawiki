@@ -71,6 +71,10 @@
 
 		if ( config.missing ) {
 			this.$label.addClass( 'new' );
+		} else if ( config.redirect ) {
+			this.$label.addClass( 'mw-redirect' );
+		} else if ( config.disambiguation ) {
+			this.$label.addClass( 'mw-disambig' );
 		}
 
 		if ( config.imageUrl ) {
