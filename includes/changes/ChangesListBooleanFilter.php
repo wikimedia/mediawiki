@@ -97,11 +97,6 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	 *  to true.  It does not need to be set if the exact same filter is simply visible
 	 *  on both.
 	 * $filterDefinition['default'] bool Default
-	 * $filterDefinition['isAllowedCallable'] callable Callable taking two parameters,
-	 *  the class name of the special page and an IContextSource, and returning true
-	 *  if and only if the current user is permitted to use this filter on the current
-	 *  wiki.  If it returns false, it will both hide the UI (in all UIs) and prevent
-	 *  the DB query modification from taking effect. (optional, defaults to allowed)
 	 * $filterDefinition['priority'] int Priority integer.  Higher value means higher
 	 *  up in the group's filter list.
 	 * $filterDefinition['queryCallable'] callable Callable accepting parameters, used
@@ -166,17 +161,16 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	/**
 	 * @inheritdoc
 	 */
-	public function displaysOnUnstructuredUi( ChangesListSpecialPage $specialPage ) {
-		return $this->showHide &&
-			$this->isAllowed( $specialPage );
+	public function displaysOnUnstructuredUi() {
+		return !!$this->showHide;
 	}
 
 	/**
 	 * @inheritdoc
 	 */
-	public function isFeatureAvailableOnStructuredUi( ChangesListSpecialPage $specialPage ) {
+	public function isFeatureAvailableOnStructuredUi() {
 		return $this->isReplacedInStructuredUi ||
-			parent::isFeatureAvailableOnStructuredUi( $specialPage );
+			parent::isFeatureAvailableOnStructuredUi();
 	}
 
 	/**

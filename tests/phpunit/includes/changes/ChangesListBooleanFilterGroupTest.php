@@ -45,13 +45,6 @@ class ChangesListBooleanFilterGroupTest extends MediaWikiTestCase {
 
 		$group = new ChangesListBooleanFilterGroup( $definition );
 
-		$specialPage = $this->getMockBuilder( 'ChangesListSpecialPage' )
-			->setConstructorArgs( [
-				'ChangesListSpecialPage',
-				'',
-			] )
-			->getMockForAbstractClass();
-
 		$this->assertArrayEquals(
 			[
 				'name' => 'some-group',
@@ -91,7 +84,7 @@ class ChangesListBooleanFilterGroupTest extends MediaWikiTestCase {
 				],
 			],
 
-			$group->getJsData( $specialPage ),
+			$group->getJsData(),
 			/** ordered= */ false,
 			/** named= */ true
 		);
