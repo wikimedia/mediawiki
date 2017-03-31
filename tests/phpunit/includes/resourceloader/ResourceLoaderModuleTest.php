@@ -76,11 +76,11 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 			'script' => "var a = 'this is';\n {\ninvalid"
 		] );
 		$this->assertEquals(
-			$module->getScript( $context ),
 			'mw.log.error(' .
 				'"JavaScript parse error: Parse error: Unexpected token; ' .
 				'token } expected in file \'input\' on line 3"' .
 			');',
+			$module->getScript( $context ),
 			'Replace invalid syntax with error logging'
 		);
 
@@ -88,8 +88,8 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 			'script' => "\n'valid';"
 		] );
 		$this->assertEquals(
-			$module->getScript( $context ),
 			"\n'valid';",
+			$module->getScript( $context ),
 			'Leave valid scripts as-is'
 		);
 	}
@@ -120,13 +120,13 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 				'../skins/Example/images/quux.png',
 		];
 		$this->assertEquals(
-			$getRelativePaths->invoke( null, $raw ),
 			$canonical,
+			$getRelativePaths->invoke( null, $raw ),
 			'Insert placeholders'
 		);
 		$this->assertEquals(
-			$expandRelativePaths->invoke( null, $canonical ),
 			$raw,
+			$expandRelativePaths->invoke( null, $canonical ),
 			'Substitute placeholders'
 		);
 	}
