@@ -3942,5 +3942,6 @@
 	"restrictionsfield-label": "Erlaubte IP-Adressbereiche:",
 	"restrictionsfield-help": "Eine IP-Adresse oder ein CIDR-Bereich pro Zeile. Um alles zu aktivieren, verwende:\n<pre>\n0.0.0.0/0\n::/0\n</pre>",
 	"revid": "Version $1",
-	"pageid": "Seitenkennung $1"
+	"pageid": "Seitenkennung $1",
+	"rawhtml-notallowed": "&lt;html&gt;-Tags können nicht außerhalb von normalen Seiten verwendet werden."
 }

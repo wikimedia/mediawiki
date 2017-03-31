@@ -3840,5 +3840,6 @@
 	"restrictionsfield-label": "Lijorennoù IP aotreet :",
 	"restrictionsfield-help": "Ur chomlec'h IP pe un esaouenn CIDR dre linenn. Evit gweredekaat pep tra, ober gant <pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "Adweladenn $1",
-	"pageid": "ID ar bajenn $1"
+	"pageid": "ID ar bajenn $1",
+	"rawhtml-notallowed": "N'hall an tikedennoù &lt;html&gt; bezañ implijet nemet er pajennoù normal."
 }

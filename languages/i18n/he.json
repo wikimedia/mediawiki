@@ -3943,5 +3943,6 @@
 	"restrictionsfield-label": "טווחי כתובות IP מותרים:",
 	"restrictionsfield-help": "כתובת IP אחת או טווח CIDR אחד בשורה. כדי לאפשר את הכול, ניתן להשתמש ב:<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "גרסה $1",
-	"pageid": "מזהה דף $1"
+	"pageid": "מזהה דף $1",
+	"rawhtml-notallowed": "לא ניתן להשתמש בתגיות &lt;html&gt; מחוץ לדפים רגילים."
 }

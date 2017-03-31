@@ -3829,5 +3829,6 @@
 	"restrictionsfield-label": "Dovoljeni IP-obsegi:",
 	"restrictionsfield-help": "En IP-naslov ali CIDR-območje na vrstico. Da omogočite vse, uporabite:\n<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "redakcija $1",
-	"pageid": "ID strani $1"
+	"pageid": "ID strani $1",
+	"rawhtml-notallowed": "Oznak &lt;html&gt; ni možno uporabljati izven normalnih strani."
 }

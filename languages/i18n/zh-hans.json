@@ -3941,5 +3941,6 @@
 	"restrictionsfield-label": "允许的IP段：",
 	"restrictionsfield-help": "每行一个IP地址或CIDR段。要启用任何地址或地址段，可使用：<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "修订版本$1",
-	"pageid": "页面ID$1"
+	"pageid": "页面ID$1",
+	"rawhtml-notallowed": "&lt;html&gt;标签不能在一般页面以外使用。"
 }

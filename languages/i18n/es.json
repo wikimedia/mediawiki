@@ -896,6 +896,8 @@
 	"post-expand-template-argument-warning": "Aviso: Esta página contiene al menos un parámetro de plantilla con un tamaño de expansión demasiado grande.\nSe han descartado esos parámetros.",
 	"post-expand-template-argument-category": "Páginas que contienen plantillas con parámetros descartados",
 	"parser-template-loop-warning": "Se ha detectado un bucle de plantilla: [[$1]]",
+	"template-loop-category": "Páginas con bucles de plantillas",
+	"template-loop-category-desc": "Esta página contiene un bucle de plantillas, es decir, una plantilla que se llama a sí misma recursivamente.",
 	"parser-template-recursion-depth-warning": "Se ha superado el límite de profundidad de la recursividad de plantillas ($1)",
 	"language-converter-depth-warning": "Se ha superado el límite de profundidad del convertidor de idioma ($1)",
 	"node-count-exceeded-category": "Páginas que sobrepasan la cantidad de nodos",
