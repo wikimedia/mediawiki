@@ -13,15 +13,42 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiTestCase 
 	 */
 	protected $changesListSpecialPage;
 
+	protected $oldPatrollersGroup;
+
 	protected function setUp() {
+		global $wgGroupPermissions;
+
 		parent::setUp();
 		$this->setMwGlobals( 'wgRCWatchCategoryMembership', true );
+
+		if ( isset( $wgGroupPermissions['patrollers'] ) ) {
+			$this->oldPatrollersGroup = $wgGroupPermissions['patrollers'];
+		}
+
+		$wgGroupPermissions['patrollers'] = [
+			'patrol' => true,
+		];
+	}
+
+	protected function tearDown() {
+		global $wgGroupPermissions;
+
+		parent::tearDown();
+
+		if ( $this->oldPatrollersGroup !== null ) {
+			$wgGroupPermissions['patrollers'] = $this->oldPatrollersGroup;
+		}
 	}
 
 	/**
 	 * @dataProvider provideParseParameters
 	 */
 	public function testParseParameters( $params, $expected ) {
+		$context = $this->changesListSpecialPage->getContext();
+		$context = new DerivativeContext( $context );
+		$context->setUser( $this->getTestUser( [ 'patrollers' ] )->getUser() );
+		$this->changesListSpecialPage->setContext( $context );
+
 		$this->changesListSpecialPage->registerFilters();
 
 		$opts = new FormOptions();

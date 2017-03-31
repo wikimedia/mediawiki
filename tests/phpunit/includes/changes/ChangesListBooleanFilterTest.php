@@ -108,13 +108,6 @@ class ChangesListBooleanFilterTest extends MediaWikiTestCase {
 	}
 
 	public function testIsFeatureAvailableOnStructuredUi() {
-		$specialPage = $this->getMockBuilder( 'ChangesListSpecialPage' )
-			->setConstructorArgs( [
-					'ChangesListSpecialPage',
-					'',
-				] )
-			->getMockForAbstractClass();
-
 		$groupA = new ChangesListBooleanFilterGroup( [
 			'name' => 'groupA',
 			'priority' => 1,
@@ -133,7 +126,7 @@ class ChangesListBooleanFilterTest extends MediaWikiTestCase {
 
 		$this->assertEquals(
 			true,
-			$foo->isFeatureAvailableOnStructuredUi( $specialPage ),
+			$foo->isFeatureAvailableOnStructuredUi(),
 			'Same filter appears on both'
 		);
 
@@ -148,7 +141,7 @@ class ChangesListBooleanFilterTest extends MediaWikiTestCase {
 
 		$this->assertEquals(
 			false,
-			$bar->isFeatureAvailableOnStructuredUi( $specialPage ),
+			$bar->isFeatureAvailableOnStructuredUi(),
 			'Only on unstructured UI'
 		);
 
@@ -163,7 +156,7 @@ class ChangesListBooleanFilterTest extends MediaWikiTestCase {
 
 		$this->assertEquals(
 			true,
-			$baz->isFeatureAvailableOnStructuredUi( $specialPage ),
+			$baz->isFeatureAvailableOnStructuredUi(),
 			'Legacy filter does not appear directly in new UI, but equivalent ' .
 				'does and is marked with isReplacedInStructuredUi'
 		);

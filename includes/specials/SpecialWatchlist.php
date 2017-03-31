@@ -108,16 +108,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	/**
 	 * @inheritdoc
 	 */
-	protected function registerFiltersFromDefinitions( array $definition ) {
-		foreach ( $definition as $groupName => &$groupDefinition ) {
-			foreach ( $groupDefinition['filters'] as &$filterDefinition ) {
-				if ( isset( $filterDefinition['showHideSuffix'] ) ) {
-					$filterDefinition['showHide'] = 'wl' . $filterDefinition['showHideSuffix'];
-				}
-			}
+	protected function transformFilterDefinition( array $filterDefinition ) {
+		if ( isset( $filterDefinition['showHideSuffix'] ) ) {
+			  $filterDefinition['showHide'] = 'wl' . $filterDefinition['showHideSuffix'];
 		}
 
-		parent::registerFiltersFromDefinitions( $definition );
+		return $filterDefinition;
 	}
 
 	/**
@@ -143,8 +139,11 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$hideLiu->setDefault( $user->getBoolOption( 'watchlisthideliu' ) );
 
 		$reviewStatus = $this->getFilterGroup( 'reviewStatus' );
-		$hidePatrolled = $reviewStatus->getFilter( 'hidepatrolled' );
-		$hidePatrolled->setDefault( $user->getBoolOption( 'watchlisthidepatrolled' ) );
+		// Not registered if the user does not have patrol rights.
+		if ( $reviewStatus !== null ) {
+			$hidePatrolled = $reviewStatus->getFilter( 'hidepatrolled' );
+			$hidePatrolled->setDefault( $user->getBoolOption( 'watchlisthidepatrolled' ) );
+		}
 
 		$authorship = $this->getFilterGroup( 'authorship' );
 		$hideMyself = $authorship->getFilter( 'hidemyself' );
