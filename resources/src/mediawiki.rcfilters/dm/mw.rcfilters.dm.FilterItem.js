@@ -131,7 +131,7 @@
 		key = key || 'contextDescription';
 
 		$.each( conflicts, function ( filterName, conflict ) {
-			if ( !conflict.item.isSelected() ) {
+			if ( !( conflict.item && conflict.item.isSelected() ) ) {
 				return;
 			}
 
