@@ -332,12 +332,11 @@ abstract class ChangesListFilterGroup {
 	/**
 	 * Gets the JS data in the format required by the front-end of the structured UI
 	 *
-	 * @param ChangesListSpecialPage $specialPage
 	 * @return array|null Associative array, or null if there are no filters that
 	 *  display in the structured UI.  messageKeys is a special top-level value, with
 	 *  the value being an array of the message keys to send to the client.
 	 */
-	public function getJsData( ChangesListSpecialPage $specialPage ) {
+	public function getJsData() {
 		$output = [
 			'name' => $this->name,
 			'type' => $this->type,
@@ -367,7 +366,7 @@ abstract class ChangesListFilterGroup {
 		} );
 
 		foreach ( $this->filters as $filterName => $filter ) {
-			if ( $filter->displaysOnStructuredUi( $specialPage ) ) {
+			if ( $filter->displaysOnStructuredUi() ) {
 				$filterData = $filter->getJsData();
 				$output['messageKeys'] = array_merge(
 					$output['messageKeys'],

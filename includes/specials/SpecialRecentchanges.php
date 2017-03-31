@@ -91,16 +91,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	/**
 	 * @inheritdoc
 	 */
-	protected function registerFiltersFromDefinitions( array $definition ) {
-		foreach ( $definition as $groupName => &$groupDefinition ) {
-			foreach ( $groupDefinition['filters'] as &$filterDefinition ) {
-				if ( isset( $filterDefinition['showHideSuffix'] ) ) {
-					$filterDefinition['showHide'] = 'rc' . $filterDefinition['showHideSuffix'];
-				}
-			}
+	protected function transformFilterDefinition( array $filterDefinition ) {
+		if ( isset( $filterDefinition['showHideSuffix'] ) ) {
+			$filterDefinition['showHide'] = 'rc' . $filterDefinition['showHideSuffix'];
 		}
 
-		parent::registerFiltersFromDefinitions( $definition );
+		return $filterDefinition;
 	}
 
 	/**
@@ -120,12 +116,18 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$hideBots->setDefault( true );
 
 		$reviewStatus = $this->getFilterGroup( 'reviewStatus' );
-		$hidePatrolled = $reviewStatus->getFilter( 'hidepatrolled' );
-		$hidePatrolled->setDefault( $user->getBoolOption( 'hidepatrolled' ) );
+		if ( $reviewStatus !== null ) {
+			// Conditional on feature being available and rights
+			$hidePatrolled = $reviewStatus->getFilter( 'hidepatrolled' );
+			$hidePatrolled->setDefault( $user->getBoolOption( 'hidepatrolled' ) );
+		}
 
 		$changeType = $this->getFilterGroup( 'changeType' );
 		$hideCategorization = $changeType->getFilter( 'hidecategorization' );
-		$hideCategorization->setDefault( $user->getBoolOption( 'hidecategorization' ) );
+		if ( $hideCategorization !== null ) {
+			// Conditional on feature being available
+			$hideCategorization->setDefault( $user->getBoolOption( 'hidecategorization' ) );
+		}
 	}
 
 	/**
