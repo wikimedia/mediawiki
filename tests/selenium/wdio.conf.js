@@ -30,6 +30,13 @@ exports.config = {
 		'vagrant' :
 		process.env.MEDIAWIKI_PASSWORD,
 	//
+	// ======
+	// Sauce Labs
+	// ======
+	//
+	user: process.env.SAUCE_USERNAME,
+	key: process.env.SAUCE_ACCESS_KEY,
+	//
 	// ==================
 	// Specify Test Files
 	// ==================
