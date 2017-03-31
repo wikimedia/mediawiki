@@ -91,16 +91,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	/**
 	 * @inheritdoc
 	 */
-	protected function registerFiltersFromDefinitions( array $definition ) {
-		foreach ( $definition as $groupName => &$groupDefinition ) {
-			foreach ( $groupDefinition['filters'] as &$filterDefinition ) {
-				if ( isset( $filterDefinition['showHideSuffix'] ) ) {
-					$filterDefinition['showHide'] = 'rc' . $filterDefinition['showHideSuffix'];
-				}
-			}
+	protected function transformFilterDefinition( array $filterDefinition ) {
+		if ( isset( $filterDefinition['showHideSuffix'] ) ) {
+			$filterDefinition['showHide'] = 'rc' . $filterDefinition['showHideSuffix'];
 		}
 
-		parent::registerFiltersFromDefinitions( $definition );
+		return $filterDefinition;
 	}
 
 	/**

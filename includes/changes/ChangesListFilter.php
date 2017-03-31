@@ -74,13 +74,6 @@ abstract class ChangesListFilter {
 	protected $description;
 
 	/**
-	 * Callable used to check whether this filter is allowed to take effect
-	 *
-	 * @var callable $isAllowedCallable
-	 */
-	protected $isAllowedCallable;
-
-	/**
 	 * List of conflicting groups
 	 *
 	 * @var array $conflictingGroups Array of associative arrays with conflict
@@ -139,11 +132,6 @@ abstract class ChangesListFilter {
 	 * $filterDefinition['label'] string i18n key of label for structured UI.
 	 * $filterDefinition['description'] string i18n key of description for structured
 	 *  UI.
-	 * $filterDefinition['isAllowedCallable'] callable Callable taking two parameters,
-	 *  the class name of the special page and an IContextSource, and returning true
-	 *  if and only if the current user is permitted to use this filter on the current
-	 *  wiki.  If it returns false, it will both hide the UI (in all UIs) and prevent
-	 *  the DB query modification from taking effect. (optional, defaults to allowed)
 	 * $filterDefinition['priority'] int Priority integer.  Higher value means higher
 	 *  up in the group's filter list.
 	 */
@@ -177,10 +165,6 @@ abstract class ChangesListFilter {
 		if ( isset( $filterDefinition['label'] ) ) {
 			$this->label = $filterDefinition['label'];
 			$this->description = $filterDefinition['description'];
-		}
-
-		if ( isset( $filterDefinition['isAllowedCallable'] ) ) {
-			$this->isAllowedCallable = $filterDefinition['isAllowedCallable'];
 		}
 
 		$this->priority = $filterDefinition['priority'];
@@ -311,20 +295,18 @@ abstract class ChangesListFilter {
 	/**
 	 * Checks whether the filter should display on the unstructured UI
 	 *
-	 * @param ChangesListSpecialPage $specialPage Current special page
 	 * @return bool Whether to display
 	 */
-	abstract public function displaysOnUnstructuredUi( ChangesListSpecialPage $specialPage );
+	abstract public function displaysOnUnstructuredUi();
 
 	/**
 	 * Checks whether the filter should display on the structured UI
 	 * This refers to the exact filter.  See also isFeatureAvailableOnStructuredUi.
 	 *
-	 * @param ChangesListSpecialPage $specialPage Current special page
 	 * @return bool Whether to display
 	 */
-	public function displaysOnStructuredUi( ChangesListSpecialPage $specialPage ) {
-		return $this->label !== null && $this->isAllowed( $specialPage );
+	public function displaysOnStructuredUi() {
+		return $this->label !== null;
 	}
 
 	/**
@@ -333,8 +315,8 @@ abstract class ChangesListFilter {
 	 *
 	 * This can either be the exact filter, or a new filter that replaces it.
 	 */
-	public function isFeatureAvailableOnStructuredUi( ChangesListSpecialPage $specialPage ) {
-		return $this->displaysOnStructuredUi( $specialPage );
+	public function isFeatureAvailableOnStructuredUi( ) {
+		return $this->displaysOnStructuredUi();
 	}
 
 	/**
@@ -342,24 +324,6 @@ abstract class ChangesListFilter {
 	 */
 	public function getPriority() {
 		return $this->priority;
-	}
-
-	/**
-	 * Checks whether the filter is allowed for the current context
-	 *
-	 * @param ChangesListSpecialPage $specialPage Current special page
-	 * @return bool Whether it is allowed
-	 */
-	public function isAllowed( ChangesListSpecialPage $specialPage ) {
-		if ( $this->isAllowedCallable === null ) {
-			return true;
-		} else {
-			return call_user_func(
-				$this->isAllowedCallable,
-				get_class( $specialPage ),
-				$specialPage->getContext()
-			);
-		}
 	}
 
 	/**

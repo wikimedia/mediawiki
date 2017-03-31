@@ -187,9 +187,7 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 
 		$allowedFilterNames = [];
 		foreach ( $this->filters as $filter ) {
-			if ( $filter->isAllowed( $specialPage ) ) {
-				$allowedFilterNames[] = $filter->getName();
-			}
+			$allowedFilterNames[] = $filter->getName();
 		}
 
 		if ( $value === self::ALL ) {
@@ -234,8 +232,8 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 	/**
 	 * @inheritdoc
 	 */
-	public function getJsData( ChangesListSpecialPage $specialPage ) {
-		$output = parent::getJsData( $specialPage );
+	public function getJsData() {
+		$output = parent::getJsData();
 
 		$output['separator'] = self::SEPARATOR;
 		$output['default'] = $this->getDefault();

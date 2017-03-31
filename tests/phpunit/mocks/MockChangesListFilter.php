@@ -1,7 +1,7 @@
 <?php
 
 class MockChangesListFilter extends ChangesListFilter {
-	public function displaysOnUnstructuredUi( ChangesListSpecialPage $specialPage ) {
+	public function displaysOnUnstructuredUi() {
 		throw new MWException(
 			'Not implemented: If the test relies on this, put it one of the ' .
 			'subclasses\' tests (e.g. ChangesListBooleanFilterTest) ' .

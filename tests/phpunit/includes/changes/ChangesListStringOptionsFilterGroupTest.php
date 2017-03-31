@@ -74,12 +74,6 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiTestCase {
 				'name' => 'foo',
 			],
 			[
-				'name' => 'bar',
-				'isAllowedCallable' => function () {
-					return false;
-				},
-			],
-			[
 				'name' => 'baz',
 			],
 			[
@@ -141,25 +135,7 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiTestCase {
 	}
 
 	public function provideNoOpModifyQuery() {
-		$isAllowedFalse = [
-			'isAllowedCallable' => function () {
-				return false;
-			},
-		];
-
-		$allDisallowedFilters = [
-			[
-				'name' => 'disallowed1',
-			] + $isAllowedFalse,
-
-			[
-				'name' => 'disallowed2',
-			] + $isAllowedFalse,
-
-			[
-				'name' => 'disallowed3',
-			] + $isAllowedFalse,
-		];
+		$noFilters = [];
 
 		$normalFilters = [
 			[
@@ -172,9 +148,9 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiTestCase {
 
 		return [
 			[
-				$allDisallowedFilters,
+				$noFilters,
 				'disallowed1;disallowed3',
-				'The queryCallable should not be called if no filters are allowed',
+				'The queryCallable should not be called if there are no filters',
 			],
 
 			[
@@ -254,8 +230,6 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiTestCase {
 
 		$group = new ChangesListStringOptionsFilterGroup( $definition );
 
-		$specialPage = $this->getSpecialPage();
-
 		$this->assertArrayEquals(
 			[
 				'name' => 'some-group',
@@ -294,7 +268,7 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiTestCase {
 					'foo-description',
 				],
 			],
-			$group->getJsData( $specialPage ),
+			$group->getJsData(),
 			/** ordered= */ false,
 			/** named= */ true
 		);
