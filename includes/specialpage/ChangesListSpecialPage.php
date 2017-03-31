@@ -59,6 +59,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	private $filterGroupDefinitions;
 
+	// Same format as filterGroupDefinitions, but for a single group (reviewStatus)
+	// that is registered conditionally.
+	private $reviewStatusFilterGroupDefinition;
+
+	// Single filter registered conditionally
+	private $hideCategorizationFilterDefinition;
+
 	/**
 	 * Filter groups, and their contained filters
 	 * This is an associative array (with group name as key) of ChangesListFilterGroup objects.
@@ -245,57 +252,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				]
 			],
 
-			[
-				'name' => 'reviewStatus',
-				'title' => 'rcfilters-filtergroup-reviewstatus',
-				'class' => ChangesListBooleanFilterGroup::class,
-				'filters' => [
-					[
-						'name' => 'hidepatrolled',
-						'label' => 'rcfilters-filter-patrolled-label',
-						'description' => 'rcfilters-filter-patrolled-description',
-						// rcshowhidepatr-show, rcshowhidepatr-hide
-						// wlshowhidepatr
-						'showHideSuffix' => 'showhidepatr',
-						'default' => false,
-						'isAllowedCallable' => function ( $pageClassName, $context ) {
-							return $context->getUser()->useRCPatrol();
-						},
-						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) {
-
-							$conds[] = 'rc_patrolled = 0';
-						},
-						'cssClassSuffix' => 'patrolled',
-						'isRowApplicableCallable' => function ( $ctx, $rc ) {
-							return $rc->getAttribute( 'rc_patrolled' );
-						},
-					],
-					[
-						'name' => 'hideunpatrolled',
-						'label' => 'rcfilters-filter-unpatrolled-label',
-						'description' => 'rcfilters-filter-unpatrolled-description',
-						'default' => false,
-						'isAllowedCallable' => function ( $pageClassName, $context ) {
-							return $context->getUser()->useRCPatrol();
-						},
-						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) {
-
-							$conds[] = 'rc_patrolled = 1';
-						},
-						'cssClassSuffix' => 'unpatrolled',
-						'isRowApplicableCallable' => function ( $ctx, $rc ) {
-							return !$rc->getAttribute( 'rc_patrolled' );
-						},
-					],
-				],
-			],
+			// reviewStatus (conditional)
 
 			[
 				'name' => 'significance',
 				'title' => 'rcfilters-filtergroup-significance',
 				'class' => ChangesListBooleanFilterGroup::class,
+				'priority' => -6,
 				'filters' => [
 					[
 						'name' => 'hideminor',
@@ -344,6 +307,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'label' => 'rcfilters-filter-pageedits-label',
 						'description' => 'rcfilters-filter-pageedits-description',
 						'default' => false,
+						'priority' => -2,
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
 							&$query_options, &$join_conds ) {
 
@@ -359,6 +323,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'label' => 'rcfilters-filter-newpages-label',
 						'description' => 'rcfilters-filter-newpages-description',
 						'default' => false,
+						'priority' => -3,
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
 							&$query_options, &$join_conds ) {
 
@@ -369,32 +334,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 							return $rc->getAttribute( 'rc_source' ) === RecentChange::SRC_NEW;
 						},
 					],
-					[
-						'name' => 'hidecategorization',
-						'label' => 'rcfilters-filter-categorization-label',
-						'description' => 'rcfilters-filter-categorization-description',
-						// rcshowhidecategorization-show, rcshowhidecategorization-hide.
-						// wlshowhidecategorization
-						'showHideSuffix' => 'showhidecategorization',
-						'isAllowedCallable' => function ( $pageClassName, $context ) {
-							return $context->getConfig()->get( 'RCWatchCategoryMembership' );
-						},
-						'default' => false,
-						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) {
 
-							$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_CATEGORIZE );
-						},
-						'cssClassSuffix' => 'src-mw-categorize',
-						'isRowApplicableCallable' => function ( $ctx, $rc ) {
-							return $rc->getAttribute( 'rc_source' ) === RecentChange::SRC_CATEGORIZE;
-						},
-					],
+					// hidecategorization
+
 					[
 						'name' => 'hidelog',
 						'label' => 'rcfilters-filter-logactions-label',
 						'description' => 'rcfilters-filter-logactions-description',
 						'default' => false,
+						'priority' => -5,
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
 							&$query_options, &$join_conds ) {
 
@@ -407,6 +355,69 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					],
 				],
 			],
+		];
+
+		$this->reviewStatusFilterGroupDefinition = [
+			[
+				'name' => 'reviewStatus',
+				'title' => 'rcfilters-filtergroup-reviewstatus',
+				'class' => ChangesListBooleanFilterGroup::class,
+				'priority' => -5,
+				'filters' => [
+					[
+						'name' => 'hidepatrolled',
+						'label' => 'rcfilters-filter-patrolled-label',
+						'description' => 'rcfilters-filter-patrolled-description',
+						// rcshowhidepatr-show, rcshowhidepatr-hide
+						// wlshowhidepatr
+						'showHideSuffix' => 'showhidepatr',
+						'default' => false,
+						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
+							&$query_options, &$join_conds ) {
+
+									   $conds[] = 'rc_patrolled = 0';
+								   },
+						'cssClassSuffix' => 'patrolled',
+						'isRowApplicableCallable' => function ( $ctx, $rc ) {
+										     return $rc->getAttribute( 'rc_patrolled' );
+									     },
+					],
+					[
+						'name' => 'hideunpatrolled',
+						'label' => 'rcfilters-filter-unpatrolled-label',
+						'description' => 'rcfilters-filter-unpatrolled-description',
+						'default' => false,
+						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
+							&$query_options, &$join_conds ) {
+
+									   $conds[] = 'rc_patrolled = 1';
+								   },
+						'cssClassSuffix' => 'unpatrolled',
+						'isRowApplicableCallable' => function ( $ctx, $rc ) {
+										     return !$rc->getAttribute( 'rc_patrolled' );
+									     },
+					],
+				],
+			]
+		];
+
+		$this->hideCategorizationFilterDefinition = [
+			'name' => 'hidecategorization',
+			'label' => 'rcfilters-filter-categorization-label',
+			'description' => 'rcfilters-filter-categorization-description',
+			// rcshowhidecategorization-show, rcshowhidecategorization-hide.
+			// wlshowhidecategorization
+			'showHideSuffix' => 'showhidecategorization',
+			'default' => false,
+			'priority' => -4,
+			'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
+				&$query_options, &$join_conds ) {
+				   $conds[] = 'rc_type != ' . $dbr->addQuotes( RC_CATEGORIZE );
+			},
+			'cssClassSuffix' => 'src-mw-categorize',
+			'isRowApplicableCallable' => function ( $ctx, $rc ) {
+				return $rc->getAttribute( 'rc_source' ) === RecentChange::SRC_CATEGORIZE;
+			},
 		];
 	}
 
@@ -503,7 +514,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Register all filters and their groups, plus conflicts
+	 * Register all filters and their groups (including those from hooks), plus handle
+	 * conflicts and defaults.
 	 *
 	 * You might want to customize these in the same method, in subclasses.  You can
 	 * call getFilterGroup to access a group, and (on the group) getFilter to access a
@@ -512,6 +524,27 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	protected function registerFilters() {
 		$this->registerFiltersFromDefinitions( $this->filterGroupDefinitions );
+
+		// Make sure this is not being transcluded (we don't want to show this
+		// information to all users just because the user that saves the edit can
+		// patrol)
+		if ( !$this->including() && $this->getUser()->useRCPatrol() ) {
+			$this->registerFiltersFromDefinitions( $this->reviewStatusFilterGroupDefinition );
+		}
+
+		$changeTypeGroup = $this->getFilterGroup( 'changeType' );
+
+		if ( $this->getConfig()->get( 'RCWatchCategoryMembership' ) ) {
+			$transformedHideCategorizationDef = $this->transformFilterDefinition(
+				$this->hideCategorizationFilterDefinition
+			);
+
+			$transformedHideCategorizationDef['group'] = $changeTypeGroup;
+
+			$hideCategorization = new ChangesListBooleanFilter(
+				$transformedHideCategorizationDef
+			);
+		}
 
 		Hooks::run( 'ChangesListSpecialPageStructuredFilters', [ $this ] );
 
@@ -536,7 +569,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			'rcfilters-filter-unregistered-conflicts-user-experience-level'
 		);
 
-		$changeTypeGroup = $this->getFilterGroup( 'changeType' );
 		$categoryFilter = $changeTypeGroup->getFilter( 'hidecategorization' );
 		$logactionsFilter = $changeTypeGroup->getFilter( 'hidelog' );
 		$pagecreationFilter = $changeTypeGroup->getFilter( 'hidenewpages' );
@@ -544,12 +576,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$significanceTypeGroup = $this->getFilterGroup( 'significance' );
 		$hideMinorFilter = $significanceTypeGroup->getFilter( 'hideminor' );
 
-		$hideMinorFilter->conflictsWith(
-			$categoryFilter,
-			'rcfilters-hideminor-conflicts-typeofchange-global',
-			'rcfilters-hideminor-conflicts-typeofchange',
-			'rcfilters-typeofchange-conflicts-hideminor'
-		);
+		// categoryFilter is conditional; see registerFilters
+		if ( $categoryFilter !== null ) {
+			$hideMinorFilter->conflictsWith(
+				$categoryFilter,
+				'rcfilters-hideminor-conflicts-typeofchange-global',
+				'rcfilters-hideminor-conflicts-typeofchange',
+				'rcfilters-typeofchange-conflicts-hideminor'
+			);
+		}
 		$hideMinorFilter->conflictsWith(
 			$logactionsFilter,
 			'rcfilters-hideminor-conflicts-typeofchange-global',
@@ -565,22 +600,46 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
+	 * Transforms filter definition to prepare it for constructor.
+	 *
+	 * See overrides of this method as well.
+	 *
+	 * @param array $filterDefinition Original filter definition
+	 *
+	 * @return array Transformed definition
+	 */
+	protected function transformFilterDefinition( array $filterDefinition ) {
+		return $filterDefinition;
+	}
+
+
+	/**
 	 * Register filters from a definition object
 	 *
 	 * Array specifying groups and their filters; see Filter and
 	 * ChangesListFilterGroup constructors.
 	 *
-	 * There is light processing to simplify core maintenance.  See overrides
-	 * of this method as well.
+	 * There is light processing to simplify core maintenance.
 	 */
 	protected function registerFiltersFromDefinitions( array $definition ) {
-		$priority = -1;
+		$autoFillPriority = -1;
 		foreach ( $definition as $groupDefinition ) {
-			$groupDefinition['priority'] = $priority;
-			$priority--;
+			if ( !isset( $groupDefinition['priority'] ) ) {
+				$groupDefinition['priority'] = $autoFillPriority;
+			} else {
+				// If it's explicitly specified, start over the auto-fill
+				$autoFillPriority = $groupDefinition['priority'];
+			}
+
+			$autoFillPriority--;
 
 			$className = $groupDefinition['class'];
 			unset( $groupDefinition['class'] );
+
+			foreach ( $groupDefinition['filters'] as &$filterDefinition ) {
+				$filterDefinition = $this->transformFilterDefinition( $filterDefinition );
+			}
+
 			$this->registerFilterGroup( new $className( $groupDefinition ) );
 		}
 	}
@@ -846,7 +905,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					$query_options, $join_conds, $opts[$filterGroup->getName()] );
 			} else {
 				foreach ( $filterGroup->getFilters() as $filter ) {
-					if ( $opts[$filter->getName()] && $filter->isAllowed( $this ) ) {
+					if ( $opts[$filter->getName()] ) {
 						$filter->modifyQuery( $dbr, $this, $tables, $fields, $conds,
 							$query_options, $join_conds );
 					}

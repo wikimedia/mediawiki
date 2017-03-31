@@ -11,7 +11,7 @@ class ChangesListStringOptionsFilter extends ChangesListFilter {
 	/**
 	 * @inheritdoc
 	 */
-	public function displaysOnUnstructuredUi( ChangesListSpecialPage $specialPage ) {
+	public function displaysOnUnstructuredUi() {
 		return false;
 	}
 }
