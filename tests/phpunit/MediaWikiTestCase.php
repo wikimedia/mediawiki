@@ -1769,51 +1769,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @param array $matcher
-	 * @param string $actual
-	 * @param bool $isHtml
-	 *
-	 * @return bool
-	 */
-	private static function tagMatch( $matcher, $actual, $isHtml = true ) {
-		$dom = PHPUnit_Util_XML::load( $actual, $isHtml );
-		$tags = PHPUnit_Util_XML::findNodes( $dom, $matcher, $isHtml );
-		return count( $tags ) > 0 && $tags[0] instanceof DOMNode;
-	}
-
-	/**
-	 * Note: we are overriding this method to remove the deprecated error
-	 * @see https://phabricator.wikimedia.org/T71505
-	 * @see https://github.com/sebastianbergmann/phpunit/issues/1292
-	 * @deprecated
-	 *
-	 * @param array $matcher
-	 * @param string $actual
-	 * @param string $message
-	 * @param bool $isHtml
-	 */
-	public static function assertTag( $matcher, $actual, $message = '', $isHtml = true ) {
-		// trigger_error(__METHOD__ . ' is deprecated', E_USER_DEPRECATED);
-
-		self::assertTrue( self::tagMatch( $matcher, $actual, $isHtml ), $message );
-	}
-
-	/**
-	 * @see MediaWikiTestCase::assertTag
-	 * @deprecated
-	 *
-	 * @param array $matcher
-	 * @param string $actual
-	 * @param string $message
-	 * @param bool $isHtml
-	 */
-	public static function assertNotTag( $matcher, $actual, $message = '', $isHtml = true ) {
-		// trigger_error(__METHOD__ . ' is deprecated', E_USER_DEPRECATED);
-
-		self::assertFalse( self::tagMatch( $matcher, $actual, $isHtml ), $message );
-	}
-
-	/**
 	 * Used as a marker to prevent wfResetOutputBuffers from breaking PHPUnit.
 	 * @return string
 	 */
