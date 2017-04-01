@@ -83,6 +83,7 @@ production.
   highlight prefix matches in the results.
 * (T157035) "new mw.Uri()" was ignoring options when using default URI.
 * Special:Allpages can no longer be filtered by redirect in miser mode.
+* (T160519) CACHE_ANYTHING will not be CACHE_ACCEL if no accelerator is installed.
 
 === Action API changes in 1.29 ===
 * Submitting sensitive authentication request parameters to action=login,
