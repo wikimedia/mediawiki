@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Session\SessionManager;
+
 class FauxRequestTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @covers FauxRequest::__construct
@@ -15,6 +17,17 @@ class FauxRequestTest extends PHPUnit_Framework_TestCase {
 	public function testConstructInvalidSession() {
 		$this->setExpectedException( MWException::class, 'bogus session' );
 		$req = new FauxRequest( [], false, 'x' );
+	}
+
+	/**
+	 * @covers FauxRequest::__construct
+	 */
+	public function testConstructWithSession() {
+		$session = SessionManager::singleton()->getEmptySession( new FauxRequest( [] ) );
+		$this->assertInstanceOf(
+			FauxRequest::class,
+			new FauxRequest( [], false, $session )
+		);
 	}
 
 	/**
