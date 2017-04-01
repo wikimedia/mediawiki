@@ -305,6 +305,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.30
 			[ 'modifyField', 'image', 'img_media_type', 'patch-add-3d.sql' ],
 			[ 'addTable', 'ip_changes', 'patch-ip_changes.sql' ],
+			[ 'dropIndex', 'querycache', 'qc_type', 'patch-querycache-primary-key.sql' ],
 		];
 	}
 
