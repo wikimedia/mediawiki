@@ -19069,6 +19069,23 @@ title=[[Parser test]]
 !! end
 ### Note: Above tests excludes the "{{NUMBEROFADMINS}}" magic word because it generates a MySQL error when included.
 
+!! test
+Gallery with valid attributes
+!! wikitext
+<gallery type="123" summary="345">
+File:File:Foobar.jpg
+</gallery>
+!! html/php
+<ul class="gallery mw-gallery-traditional" type="123">
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="height: 150px;">File:Foobar.jpg</div>
+			<div class="gallerytext">
+			</div>
+		</div></li>
+</ul>
+
+!! end
+
 ## Parsoid thinks the "centre" here is a property, not a caption.
 !! test
 Gallery
