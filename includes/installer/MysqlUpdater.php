@@ -329,6 +329,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'migrateComments' ],
 			[ 'renameIndex', 'l10n_cache', 'lc_lang_key', 'PRIMARY', false,
 				'patch-l10n_cache-primary-key.sql' ],
+			[ 'dropIndex', 'querycache', 'qc_type', 'patch-querycache-primary-key.sql' ],
 		];
 	}
 
