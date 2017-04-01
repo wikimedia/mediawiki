@@ -10,7 +10,7 @@
  * - Add mw.libs.jpegmeta wrapper.
  */
 
-( function () {
+( function ( mw ) {
 	/*
 	Copyright (c) 2009 Ben Leslie
 	
@@ -734,4 +734,4 @@
 		return new JpegMeta.JpegFile( fileReaderResult, fileName );
 	};
 
-}() );
+}( mediaWiki ) );
