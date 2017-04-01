@@ -148,7 +148,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	protected function getContent( $titleText ) {
 		$title = Title::newFromText( $titleText );
 		if ( !$title ) {
-			return null;
+			return null; // Bad title
 		}
 
 		// If the page is a redirect, follow the redirect.
@@ -156,7 +156,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			$content = $this->getContentObj( $title );
 			$title = $content ? $content->getUltimateRedirectTarget() : null;
 			if ( !$title ) {
-				return null;
+				return null; // Dead redirect
 			}
 		}
 
@@ -166,12 +166,12 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		} elseif ( $handler->isSupportedFormat( CONTENT_FORMAT_JAVASCRIPT ) ) {
 			$format = CONTENT_FORMAT_JAVASCRIPT;
 		} else {
-			return null;
+			return null; // Bad content model
 		}
 
 		$content = $this->getContentObj( $title );
 		if ( !$content ) {
-			return null;
+			return null; // No content found
 		}
 
 		return $content->serialize( $format );
