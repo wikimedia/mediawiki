@@ -41,6 +41,9 @@ class HtmlTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Html::element
+	 * @covers Html::rawElement
+	 * @covers Html::openElement
+	 * @covers Html::closeElement
 	 */
 	public function testElementBasics() {
 		$this->assertEquals(
@@ -302,6 +305,7 @@ class HtmlTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Html::namespaceSelector
+	 * @covers Html::namespaceSelectorOptions
 	 */
 	public function testNamespaceSelector() {
 		$this->assertEquals(
