@@ -447,7 +447,6 @@ CREATE INDEX /*i*/new_name_timestamp ON /*_*/recentchanges (rc_new,rc_namespace,
 CREATE INDEX /*i*/rc_ip ON /*_*/recentchanges (rc_ip);
 CREATE INDEX /*i*/rc_ns_usertext ON /*_*/recentchanges (rc_namespace, rc_user_text);
 CREATE INDEX /*i*/rc_user_text ON /*_*/recentchanges (rc_user_text, rc_timestamp);
-CREATE INDEX /*i*/qc_type_value ON /*_*/querycache (qc_type,qc_value);
 CREATE INDEX /*i*/oc_exptime ON /*_*/objectcache (exptime);
 CREATE INDEX /*i*/type_time ON /*_*/logging (log_type, log_timestamp);
 CREATE INDEX /*i*/user_time ON /*_*/logging (log_user, log_timestamp);
