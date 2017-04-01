@@ -1242,10 +1242,9 @@ CREATE TABLE /*_*/querycache (
 
   -- Target namespace+title
   qc_namespace int NOT NULL default 0,
-  qc_title varchar(255) binary NOT NULL default ''
+  qc_title varchar(255) binary NOT NULL default '',
+  PRIMARY KEY (qc_type, qc_value)
 ) /*$wgDBTableOptions*/;
-
-CREATE INDEX /*i*/qc_type ON /*_*/querycache (qc_type,qc_value);
 
 
 --
