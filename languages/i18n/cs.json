@@ -2802,6 +2802,7 @@
 	"newimages-summary": "Na této speciální stránce se zobrazují poslední načtené soubory.",
 	"newimages-legend": "Filtr",
 	"newimages-label": "Název souboru (nebo jeho část):",
+	"newimages-user": "IP adresa nebo uživatelské jméno",
 	"newimages-showbots": "Zobrazit soubory načtené roboty",
 	"newimages-hidepatrolled": "Skrýt prověřená načtení souborů",
 	"noimages": "Není co zobrazit.",
@@ -3908,5 +3909,6 @@
 	"restrictionsfield-label": "Povolené rozsahy IP adres:",
 	"restrictionsfield-help": "Jedna IP adresa nebo CIDR rozsah na řádek. Všechno povolíte pomocí:<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "revize $1",
-	"pageid": "Stránka s ID $1"
+	"pageid": "Stránka s ID $1",
+	"rawhtml-notallowed": "Značky &lt;html&gt; nelze používat mimo běžné stránky."
 }

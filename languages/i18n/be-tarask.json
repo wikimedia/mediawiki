@@ -3787,6 +3787,7 @@
 	"authmanager-email-label": "Электронная пошта",
 	"authmanager-email-help": "Адрас электроннай пошты",
 	"authmanager-realname-label": "Сапраўднае імя",
+	"authmanager-realname-help": "Сапраўднае імя ўдзельніка",
 	"authmanager-provider-temporarypassword": "Часовы пароль",
 	"changecredentials": "Зьмена ўліковых зьвестак",
 	"removecredentials": "Выдаленьне ўліковых зьвестак",

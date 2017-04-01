@@ -823,6 +823,8 @@
 	"post-expand-template-argument-warning": "<strong>警告：</strong>此頁面有一個以上的模板參數過長。\n過長的參數會被直接忽略。",
 	"post-expand-template-argument-category": "模板參數有部份被忽略的頁面",
 	"parser-template-loop-warning": "偵測到模板迴圈：[[$1]]",
+	"template-loop-category": "有樣板迴圈的頁面",
+	"template-loop-category-desc": "頁面含有樣板迴圈，即會自己不斷呼叫自己樣板。",
 	"parser-template-recursion-depth-warning": "超出模板遞迴深度限制 ($1)",
 	"language-converter-depth-warning": "已超出語言轉換器深度限制 ($1)",
 	"node-count-exceeded-category": "節點數量超出限制的頁面",
@@ -3912,5 +3914,6 @@
 	"restrictionsfield-label": "允許的 IP 範圍：",
 	"restrictionsfield-help": "一個 IP 位址或 CIDR 範圍一行，要開啟所有範圍可使用：<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "修訂 $1",
-	"pageid": "頁面 ID $1"
+	"pageid": "頁面 ID $1",
+	"rawhtml-notallowed": "&lt;html&gt; 標籤無法在一般頁面之外使用。"
 }

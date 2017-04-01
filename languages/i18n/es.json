@@ -2913,6 +2913,7 @@
 	"newimages-summary": "Esta página especial muestra una galería de los últimos archivos subidos.",
 	"newimages-legend": "Filtro",
 	"newimages-label": "Nombre del archivo (o una parte):",
+	"newimages-user": "Dirección IP o nombre de usuario",
 	"newimages-showbots": "Mostrar cargas de bots",
 	"newimages-hidepatrolled": "Ocultar las subidas verificadas",
 	"noimages": "No hay nada que ver.",
