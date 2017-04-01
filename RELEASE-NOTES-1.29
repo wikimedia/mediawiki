@@ -279,6 +279,7 @@ changes to languages because of Phabricator reports.
 * Selflinks are now rendered as href-less <a> tags with the class mw-selflink
   rather than <strong> tags. The old class name, "selflink", was deprecated
   and will be removed in a future release. (T160480)
+* (T156184) $wgRawHtml will no longer apply to internationalization messages.
 
 == Compatibility ==
 
