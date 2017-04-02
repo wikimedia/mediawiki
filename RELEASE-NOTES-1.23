@@ -2,7 +2,7 @@ Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
 
 == MediaWiki 1.23.16 ==
-This is not a release yet!
+This is a security and maintenance release of the MediaWiki 1.23 branch.
 
 === Changes since 1.23.15 ===
 * (T68404) CSS3 attr() function with url type is no longer allowed

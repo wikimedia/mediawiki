@@ -73,7 +73,7 @@ $wgConfigRegistry = array(
  * MediaWiki version number
  * @since 1.2
  */
-$wgVersion = '1.23.15';
+$wgVersion = '1.23.16';
 
 /**
  * Name of the site. It must be changed in LocalSettings.php
