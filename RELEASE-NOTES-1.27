@@ -1,5 +1,5 @@
 == MediaWiki 1.27.2 ==
-This is not a release yet!
+This is a security and maintenance release of the MediaWiki 1.27 branch.
 
 ApiCreateAccount was removed in 1.27.0. It was incorrectly still marked as
 deprecated (rather than already removed) in the RELEASE-NOTES at the point 1.27.0
