@@ -736,7 +736,7 @@
 	"contentmodelediterror": "Jūs negalite redaguoti šios versijos, nes jos turinio modelis yra <code>$1</code>, kuris skiriasi nuo dabartinio puslapio turinio modelio, kuris yra <code>$2</code>.",
 	"recreate-moveddeleted-warn": "'''Dėmesio: Jūs atkuriate puslapį, kuris anksčiau buvo ištrintas.'''\n\nTurėtumėte nuspręsti, ar reikėtų toliau redaguoti šį puslapį.\nJūsų patogumui čia pateikiamas šio puslapio šalinimų ir perkėlimų sąrašas:",
 	"moveddeleted-notice": "Šis puslapis buvo ištrintas.\nŽemiau pateikiamas puslapio šalinimų ir pervadinimų sąrašas.",
-	"moveddeleted-notice-recent": "Atsiprašome, šis puslapis nesenai buvo ištrintas (per pastarąsias 24 valandas). Puslapio ištrynimo ir perkėlimo istorija yra pateikiama žemiau kaip nuoroda.",
+	"moveddeleted-notice-recent": "Atsiprašome, šis puslapis neseniai buvo ištrintas (per pastarąsias 24 valandas). Žemiau pateikiama detali puslapio ištrynimo ir perkėlimo istorija.",
 	"log-fulllog": "Rodyti visą istoriją",
 	"edit-hook-aborted": "Keitimas nutrauktas užlūžimo.\nTam nėra paaiškinimo.",
 	"edit-gone-missing": "Negalima atnaujinti puslapio.\nGreičiausiai jis yra ištrintas.",
