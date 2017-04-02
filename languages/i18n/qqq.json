@@ -4319,6 +4319,7 @@
 	"special-characters-group-thai": "The name of the [[w:Thai alphabet|Thai]] character set (alphabet).",
 	"special-characters-group-lao": "{{Identical|Lao}}",
 	"special-characters-group-khmer": "{{Identical|Khmer}}",
+	"special-characters-group-canadianaboriginal": "The name of the [[w:Canadian Aboriginal syllabics|Canadian Aboriginal]] character set (alphabet).",
 	"special-characters-title-endash": "Title tooltip for the en dash character (–); See https://en.wikipedia.org/wiki/Dash",
 	"special-characters-title-emdash": "Title tooltip for the em dash character (—); See https://en.wikipedia.org/wiki/Dash",
 	"special-characters-title-minus": "Title tooltip for the minus sign character (−), not to be confused with a hyphen",
