@@ -1,5 +1,6 @@
 == MediaWiki 1.28.1 ==
-This is not a release yet!
+
+This is a security and maintenance release of the MediaWiki 1.28 branch.
 
 === Changes since 1.28.0 ===
 
@@ -7,12 +8,12 @@ This is not a release yet!
   wikis with $wgJobRunRate > 0.
 * Fix fatal from "WaitConditionLoop" not being found, experienced when a wiki has
   more than one database server setup.
-* (T152717) Better escaping for PHP mail() command
+* (T152717) Better escaping for PHP mail() command,
 * (T154670) A missing method causing the MySQL installer to fatal in rare
   circumstances was restored.
 * (T154672) Un-deprecate ArticleAfterFetchContentObject hook.
-* (T158766) Avoid SQL error on MSSQL when using selectRowCount()
-* (T145635) Fix too long index error when installing with MSSQL
+* (T158766) Avoid SQL error on MSSQL when using selectRowCount().
+* (T145635) Fix too long index error when installing with MSSQL.
 * (T156184) $wgRawHtml will no longer apply to internationalization messages.
 * (T160519) CACHE_ANYTHING will not be CACHE_ACCEL if no accelerator is installed.
 * (T154872) Fix incorrect ar_usertext_timestamp index names in new 1.28 installs.
