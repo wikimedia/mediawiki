@@ -125,11 +125,15 @@ figure[typeof~='mw:Image/Frame'] {
 }
 
 figure[typeof~='mw:Image/Thumb'] > *:first-child > img,
-figure[typeof~='mw:Image/Frame'] > *:first-child > img,
-.mw-image-border > *:first-child > img {
+figure[typeof~='mw:Image/Frame'] > *:first-child > img {
 	border: 1px solid #c8ccd1;
 	margin: 3px;
 	background: #fff;
+}
+
+/* Same as img.thumbborder in content.css */
+.mw-image-border > *:first-child > img {
+	border: 1px solid #eaecf0;
 }
 
 /* Hide the caption for frameless and plain floated images */
