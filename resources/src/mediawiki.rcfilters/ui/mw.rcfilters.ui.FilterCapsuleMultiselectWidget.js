@@ -50,6 +50,7 @@
 		// Events
 		this.resetButton.connect( this, { click: 'onResetButtonClick' } );
 		this.resetButton.$element.on( 'mousedown', this.onResetButtonMouseDown.bind( this ) );
+
 		this.model.connect( this, {
 			itemUpdate: 'onModelItemUpdate',
 			highlightChange: 'onModelHighlightChange'
@@ -58,7 +59,10 @@
 
 		// Add the filterInput as trigger
 		this.filterInput.$input
-			.on( 'focus', this.focus.bind( this ) );
+			.on( {
+				focus: this.focus.bind( this ),
+				keyup: this.onFilterInputKeyUp.bind( this )
+			} );
 
 		// Build the content
 		$contentWrapper.append(
@@ -107,6 +111,18 @@
 	 */
 
 	/* Methods */
+
+	/**
+	 * Respond to input keyup event, which is the way to intercept 'escape' key
+	 *
+	 * @param {jQuery.event} e Event data
+	 */
+	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.onFilterInputKeyUp = function ( e ) {
+		if ( e.keyCode === OO.ui.Keys.ESCAPE ) {
+			this.clearInput();
+			return;
+		}
+	};
 
 	/**
 	 * Respond to model itemUpdate event
