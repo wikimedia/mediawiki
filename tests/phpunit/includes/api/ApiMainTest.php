@@ -331,8 +331,6 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	public static function provideApiErrorFormatterCreation() {
-		global $wgContLang;
-
 		return [
 			'Default (BC)' => [ [], [
 				'uselang' => 'ru',
@@ -382,9 +380,9 @@ class ApiMainTest extends ApiTestCase {
 			'uselang=content' => [
 				[ 'uselang' => 'content', 'errorformat' => 'plaintext' ],
 				[
-					'uselang' => $wgContLang->getCode(),
+					'uselang' => 'en',
 					'class' => ApiErrorFormatter::class,
-					'lang' => $wgContLang->getCode(),
+					'lang' => 'en',
 					'format' => 'plaintext',
 					'usedb' => false,
 				]
@@ -394,7 +392,7 @@ class ApiMainTest extends ApiTestCase {
 				[
 					'uselang' => 'ru',
 					'class' => ApiErrorFormatter::class,
-					'lang' => $wgContLang->getCode(),
+					'lang' => 'en',
 					'format' => 'plaintext',
 					'usedb' => false,
 				]
