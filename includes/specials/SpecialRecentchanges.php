@@ -78,9 +78,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 			$out->addHTML(
 				ResourceLoader::makeInlineScript(
-					Xml::encodeJsCall( 'mw.messages.set', [
-						$messages
-					] )
+					ResourceLoader::makeMessageSetScript( $messages )
 				)
 			);
 
