@@ -198,7 +198,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 	/**
 	 * @param ResourceLoaderContext $context
-	 * @return string
+	 * @return string JavaScript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		$scripts = '';
