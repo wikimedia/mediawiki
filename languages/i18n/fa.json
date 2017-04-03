@@ -57,7 +57,8 @@
 			"4nn1l2",
 			"Namo",
 			"Alifakoor",
-			"Dejavu"
+			"Dejavu",
+			"AzorAhai"
 		]
 	},
 	"tog-underline": "خط کشیدن زیر پیوندها:",
@@ -2812,6 +2813,7 @@
 	"newimages-summary": "این صفحهٔ ویژه آخرین پرونده‌های بارگذاری شده را نمایش می‌دهد",
 	"newimages-legend": "پالودن",
 	"newimages-label": "نام پرونده (یا قسمتی از آن):",
+	"newimages-user": "نشانی آی‌پی یا نام کاربری",
 	"newimages-showbots": "نمایش بارگذاری‌ها توسط ربات‌ها",
 	"newimages-hidepatrolled": "مخفی کردن بارگذاری گشت‌زن‌ها",
 	"noimages": "چیزی برای دیدن نیست.",

@@ -155,7 +155,8 @@
 			"Sophivorus",
 			"Pompilos",
 			"Igv",
-			"Juanpabl"
+			"Juanpabl",
+			"AlimanRuna"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -3643,7 +3644,7 @@
 	"revdelete-restricted": "restricciones para administradores aplicadas",
 	"revdelete-unrestricted": "restricciones para administradores eliminadas",
 	"logentry-block-block": "$1 {{GENDER:$2|bloqueó}} a {{GENDER:$4|$3}} durante un plazo de $5 $6",
-	"logentry-block-unblock": "$1 {{GENDER:$2|desbloqueó}} {{GENDER:$4|$3}}",
+	"logentry-block-unblock": "$1 {{GENDER:$2|desbloqueó}} a {{GENDER:$4|$3}}",
 	"logentry-block-reblock": "$1 {{GENDER:$2|cambió}} la configuración del bloqueo de {{GENDER:$4|$3}} durante un plazo de $5 $6",
 	"logentry-suppress-block": "$1 {{GENDER:$2|bloqueó a}} {{GENDER:$4|$3}} durante un plazo de $5 $6",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|cambió}} la configuración del bloqueo de {{GENDER:$4|$3}} durante un plazo de $5 $6",

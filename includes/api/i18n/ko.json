@@ -618,6 +618,7 @@
 	"apierror-invalid-file-key": "유효한 파일 키가 아닙니다.",
 	"apierror-invalidoldimage": "<var>oldimage</var> 변수에 유효하지 않은 형식이 있습니다.",
 	"apierror-invalidparammix-cannotusewith": "<kbd>$1</kbd> 변수는 <kbd>$2</kbd>와(과) 함께 사용할 수 없습니다.",
+	"apierror-invalidsection": "<var>section</var> 변수는 유효한 섹션 ID 또는 <kbd>new</kbd>이어야 합니다.",
 	"apierror-invalidsha1base36hash": "제공된 SHA1Base36 해시가 유효하지 않습니다.",
 	"apierror-invalidsha1hash": "제공된 SHA1 해시가 유효하지 않습니다.",
 	"apierror-invalidtitle": "잘못된 제목 \"$1\".",

@@ -786,6 +786,8 @@
 	"post-expand-template-argument-warning": "Figyelem: Ez a lap legalább egy olyan sablonparamétert tartalmaz, amely kibontva túl nagy, így el lett(ek) hagyva.",
 	"post-expand-template-argument-category": "Elhagyott sablonparaméterekkel rendelkező lapok",
 	"parser-template-loop-warning": "Végtelen ciklus a következő sablonban: [[$1]]",
+	"template-loop-category": "Lapok végtelen sablonciklusokkal",
+	"template-loop-category-desc": "A lap végtelen sablonciklust tartalmaz, vagyis egy sablon önmagát hívja meg rekurzívan.",
 	"parser-template-recursion-depth-warning": "A sablon rekurzív beillesztésének mélysége átlépte a határértéket ($1)",
 	"language-converter-depth-warning": "A nyelvátalakító rekurzióinak száma túllépve ($1)",
 	"node-count-exceeded-category": "Túl sok csomópontot tartalmazó lapok",
@@ -2789,6 +2791,7 @@
 	"newimages-summary": "Ezen a speciális lapon láthatóak a legutóbb feltöltött fájlok.",
 	"newimages-legend": "Fájlnév",
 	"newimages-label": "Fájlnév (vagy annak részlete):",
+	"newimages-user": "IP-cím vagy felhasználónév",
 	"newimages-showbots": "Botos feltöltések mutatása",
 	"newimages-hidepatrolled": "Ellenőrzött szerkesztések elrejtése",
 	"noimages": "Nem tekinthető meg semmi.",
@@ -3830,5 +3833,6 @@
 	"restrictionsfield-label": "Engedélyezett IP-tartományok:",
 	"restrictionsfield-help": "Egy IP-cím vagy CIDR-tartomány soronként. Minden engedélyezéséhez használd a következő tartományokat:\n<pre>\n0.0.0.0/0\n::/0\n</pre>",
 	"revid": "$1 változat",
-	"pageid": "$1 lapazonosító"
+	"pageid": "$1 lapazonosító",
+	"rawhtml-notallowed": "&lt;html&gt; címkék nem használhatók normál lapokon kívül."
 }

@@ -791,6 +791,7 @@
 	"post-expand-template-argument-warning": "Advarsel: Siden inneholder ett eller flere malparametere som blir for lange når de utvides.\nDisse parameterne har blitt utelatt.",
 	"post-expand-template-argument-category": "Sider med utelatte malparametere",
 	"parser-template-loop-warning": "Mal-loop oppdaget: [[$1]]",
+	"template-loop-category": "Sider med mal-løkker",
 	"parser-template-recursion-depth-warning": "Mal er brukt for mange ganger ($1)",
 	"language-converter-depth-warning": "Dybdegrense for språkkonvertering overskredet ($1)",
 	"node-count-exceeded-category": "Sider hvor antallet noder er overskredet",

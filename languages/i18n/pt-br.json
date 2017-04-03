@@ -1430,6 +1430,8 @@
 	"rcfilters-filter-bots-description": "Edições feitas por ferramentas automatizadas.",
 	"rcfilters-filter-humans-label": "Humano (não bot)",
 	"rcfilters-filter-humans-description": "Edições feitas por editores humanos.",
+	"rcfilters-filter-unpatrolled-label": "Não patrulhadas",
+	"rcfilters-filter-unpatrolled-description": "Edições não marcadas como patrulhadas.",
 	"rcfilters-filtergroup-significance": "Significado",
 	"rcfilters-filter-minor-label": "Edições menores",
 	"rcfilters-filter-minor-description": "Edita o autor rotulado como menor.",
