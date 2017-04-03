@@ -37,7 +37,6 @@ production.
   added to $wgExtraLanguageCodes instead.
 
 === New features in 1.29 ===
-* (T137376) New language support: Atikamekw (atj)
 * (T5233) A cookie can now be set when a user is autoblocked, to track that user
   if they move to a new IP address. This is disabled by default.
 * Added ILocalizedException interface to standardize the use of localized
@@ -161,6 +160,7 @@ changes to languages because of Phabricator reports.
   The new or reinstated language fallbacks are (after cs ↔ sk in 1.28):
   ca ↔ oc; hsb ↔ dsb; io → eo; mdf → ru; pnt → el; roa-tara → it; rup → ro;
   sh → bs, sr-el, hr.
+* (T137376) New language support: Atikamekw (atj).
 * (T155957) Talk Namespaces for Javanese language (jv) have been updated.
 
 ==== No fallback for Ukrainian ====
