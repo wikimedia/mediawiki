@@ -1335,4 +1335,25 @@ abstract class DatabaseMysqlBase extends Database {
 	public function isView( $name, $prefix = null ) {
 		return in_array( $name, $this->listViews( $prefix ) );
 	}
+
+	/**
+	 * Allows for index remapping in queries where this is not consistent across DBMS
+	 *
+	 * @param string $index
+	 * @return string
+	 */
+	protected function indexName( $index ) {
+		// Backwards-compatibility hack
+		$renamed = [
+			'ar_usertext_timestamp' => 'usertext_timestamp',
+			'un_user_id' => 'user_id',
+			'un_user_ip' => 'user_ip',
+		];
+
+		if ( isset( $renamed[$index] ) ) {
+			return $renamed[$index];
+		} else {
+			return $index;
+		}
+	}
 }
