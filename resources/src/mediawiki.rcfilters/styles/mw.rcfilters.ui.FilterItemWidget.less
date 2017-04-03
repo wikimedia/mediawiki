@@ -44,6 +44,11 @@
 			// Override margin-top and -bottom rules from FieldLayout
 			margin: 0 !important; /* stylelint-disable-line declaration-no-important */
 		}
+
+		.oo-ui-checkboxInputWidget {
+			// Workaround for IE11 rendering issues. T162098
+			display: block;
+		}
 	}
 
 	&-highlightButton {
