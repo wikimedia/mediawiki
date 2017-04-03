@@ -446,6 +446,8 @@ abstract class Installer {
 		$this->parserTitle = Title::newFromText( 'Installer' );
 		$this->parserOptions = new ParserOptions( $wgUser ); // language will be wrong :(
 		$this->parserOptions->setEditSection( false );
+		// Don't try to access DB before user language is initialised
+		$this->setParserLanguage( Language::factory( 'en' ) );
 	}
 
 	/**
@@ -674,7 +676,7 @@ abstract class Installer {
 		try {
 			$out = $wgParser->parse( $text, $this->parserTitle, $this->parserOptions, $lineStart );
 			$html = $out->getText();
-		} catch ( DBAccessError $e ) {
+		} catch ( MediaWiki\Services\ServiceDisabledException $e ) {
 			$html = '<!--DB access attempted during parse-->  ' . htmlspecialchars( $text );
 
 			if ( !empty( $this->debug ) ) {
