@@ -57,7 +57,7 @@ class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 	 * Add FILTER_NOMIN annotation to prevent needless minification and caching (T84960).
 	 *
 	 * @param ResourceLoaderContext $context
-	 * @return string
+	 * @return string JavaScript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		return Xml::encodeJsCall(
