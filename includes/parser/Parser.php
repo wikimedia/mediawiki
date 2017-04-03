@@ -4975,7 +4975,7 @@ class Parser {
 		$ig->setShowFilename( false );
 		$ig->setParser( $this );
 		$ig->setHideBadImages();
-		$ig->setAttributes( Sanitizer::validateTagAttributes( $params, 'table' ) );
+		$ig->setAttributes( Sanitizer::validateTagAttributes( $params, 'ul' ) );
 
 		if ( isset( $params['showfilename'] ) ) {
 			$ig->setShowFilename( true );
