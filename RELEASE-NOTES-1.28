@@ -15,6 +15,7 @@ This is not a release yet!
 * (T145635) Fix too long index error when installing with MSSQL
 * (T156184) $wgRawHtml will no longer apply to internationalization messages.
 * (T160519) CACHE_ANYTHING will not be CACHE_ACCEL if no accelerator is installed.
+* (T154872) Fix incorrect ar_usertext_timestamp index names in new 1.28 installs.
 
 == MediaWiki 1.28 ==
 
