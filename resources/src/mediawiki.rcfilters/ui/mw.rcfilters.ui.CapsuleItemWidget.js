@@ -50,14 +50,13 @@
 		// Events
 		this.model.connect( this, { update: 'onModelUpdate' } );
 
-		this.closeButton.$element.on( 'mousedown', this.onCloseButtonMouseDown.bind( this ) );
-
 		// Initialization
 		this.$overlay.append( this.popup.$element );
 		this.$element
 			.prepend( this.$highlight )
 			.attr( 'aria-haspopup', 'true' )
 			.addClass( 'mw-rcfilters-ui-capsuleItemWidget' )
+			.on( 'mousedown', this.onMouseDown.bind( this ) )
 			.on( 'mouseenter', this.onMouseEnter.bind( this ) )
 			.on( 'mouseleave', this.onMouseLeave.bind( this ) );
 
@@ -84,7 +83,7 @@
 	 *
 	 * @param {jQuery.Event} e Event
 	 */
-	mw.rcfilters.ui.CapsuleItemWidget.prototype.onCloseButtonMouseDown = function ( e ) {
+	mw.rcfilters.ui.CapsuleItemWidget.prototype.onMouseDown = function ( e ) {
 		e.stopPropagation();
 	};
 

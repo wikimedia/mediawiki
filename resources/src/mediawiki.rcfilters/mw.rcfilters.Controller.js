@@ -256,6 +256,10 @@
 	mw.rcfilters.Controller.prototype.toggleHighlight = function () {
 		this.filtersModel.toggleHighlight();
 		this.updateURL();
+
+		if ( this.filtersModel.isHighlightEnabled() ) {
+			mw.hook( 'RcFilters.highlight.enable' ).fire();
+		}
 	};
 
 	/**
