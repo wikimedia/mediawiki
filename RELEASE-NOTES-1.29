@@ -283,7 +283,7 @@ changes to languages because of Phabricator reports.
   rather than <strong> tags. The old class name, "selflink", was deprecated
   and will be removed in a future release. (T160480)
 * (T156184) $wgRawHtml will no longer apply to internationalization messages.
-* Browser support for non-ES5 JavaScript browsers, including Android 2, Opera 12,
+* Browser support for non-ES5 JavaScript browsers, including Android 2, Opera 12.0-12.10,
   and Internet Explorer 9, was lowered from Grade A to Grade C.
 
 == Compatibility ==
