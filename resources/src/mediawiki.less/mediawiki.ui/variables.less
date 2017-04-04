@@ -1,4 +1,6 @@
-// Colors for use in mediawiki.ui and elsewhere
+@import 'themes/theme';
+
+// Colors for use in mediawiki.ui
 
 // Although this defines many shades, be parsimonious in your own use of grays. Prefer
 // colors already in use in MediaWiki. Prefer semantic color names such as "@colorText".
@@ -20,15 +22,15 @@
 
 // Semantic background colors
 // Blue; for contextual use of a continuing action
-@colorProgressive: #36c;
-@colorProgressiveHighlight: #447ff5;
-@colorProgressiveActive: #2a4b8d;
+@colorProgressive: @color-primary;
+@colorProgressiveHighlight: @color-primary--hover;
+@colorProgressiveActive: @color-primary--active;
 // Orange; for contextual use of returning to a past action
 @colorRegressive: #ff5d00;
 // Red; for contextual use of a negative action of high severity
-@colorDestructive: #d33;
-@colorDestructiveHighlight: #ff4242;
-@colorDestructiveActive: #b32424;
+@colorDestructive: @color-destructive;
+@colorDestructiveHighlight: @color-destructive--hover;
+@colorDestructiveActive: @color-destructive--active;
 // Orange; for contextual use of a potentially negative action of medium severity
 @colorMediumSevere: #ff5d00;
 // Yellow; for contextual use of a potentially negative action of low severity
@@ -40,23 +42,22 @@
 @colorLightenPercentage: 13.5%;
 
 // Text colors
-@colorText: @colorGray2;
+@colorText: @color-base;
 @colorTextLight: @colorGray6;
-@colorButtonText: @colorGray2;
-@colorButtonTextHighlight: @colorGray4;
-@colorButtonTextActive: @colorGray1;
+@colorButtonText: @color-base;
+@colorButtonTextHighlight: @color-base--hover;
+@colorButtonTextActive: @color-base--active;
 @colorDisabledText: @colorGray12;
-@colorErrorText: #c00;
+@colorErrorText: @color-destructive;
 @colorWarningText: #705000;
 
 // UI colors
-@colorFieldBorder: #a2a9b1;
+@colorFieldBorder: @border-color-base;
 @colorShadow: @colorGray14;
-@colorPlaceholder: @colorGray10;
-@colorNeutral: @colorGray7;
+@colorNeutral: @color-base--subtle;
 
 // Global border radius to be used to buttons and inputs
-@borderRadius: 2px;
+@borderRadius: @border-radius-base;
 
 // Icon related variables
 @iconSize: 1.5em;
