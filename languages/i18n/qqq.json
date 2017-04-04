@@ -3517,7 +3517,7 @@
 	"exif-exposureprogram-6": "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[[w:Mode_dial|Mode dial]]' for an explanation.\n{{Related|Exif-exposureprogram}}",
 	"exif-exposureprogram-7": "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[[w:Mode_dial|Mode dial]]' for an explanation.\n{{Related|Exif-exposureprogram}}",
 	"exif-exposureprogram-8": "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[[w:Mode_dial|Mode dial]]' for an explanation.\n{{Related|Exif-exposureprogram}}",
-	"exif-subjectdistance-value": "Parameters:\n* $1 - a distance measured in meters. The value can, and usually does, include decimal places.",
+	"exif-subjectdistance-value": "Parameters:\n* $1 - a distance measured in meters. The value can, and usually does, include decimal places.\n{{Identical|Meter}}",
 	"exif-meteringmode-0": "{{Related|Exif-meteringmode}}\n{{Identical|Unknown}}",
 	"exif-meteringmode-1": "{{Related|Exif-meteringmode}}\n{{Identical|Average}}",
 	"exif-meteringmode-2": "{{exif-qqq}}\n{{Related|Exif-meteringmode}}",

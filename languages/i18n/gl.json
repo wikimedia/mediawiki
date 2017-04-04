@@ -1352,7 +1352,7 @@
 	"rcfilters-filter-bots-description": "Edicións realizadas por ferramentas automatizadas.",
 	"rcfilters-filter-humans-label": "Humano (non bot)",
 	"rcfilters-filter-humans-description": "Edicións realizadas por editores humanos.",
-	"rcfilters-filtergroup-reviewstatus": "Revisar o estado",
+	"rcfilters-filtergroup-reviewstatus": "Estado de revisión",
 	"rcfilters-filter-patrolled-label": "Patrulladas",
 	"rcfilters-filter-patrolled-description": "Edicións marcadas como patrulladas.",
 	"rcfilters-filter-unpatrolled-label": "Sen patrullar",

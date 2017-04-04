@@ -16,7 +16,8 @@
 			"Meelo",
 			"HakanIST",
 			"McAang",
-			"Elftrkn"
+			"Elftrkn",
+			"Vito Genovese"
 		]
 	},
 	"config-desc": "MediaWiki yükleyicisi",
@@ -164,13 +165,13 @@
 	"config-ns-conflict": "Belirtilen ad \"<nowiki> $1 </nowiki>\" varsayılan MediaWiki ad alanı ile çakışıyor.\nFarklı proje isim alanı belirtin.",
 	"config-admin-box": "Yönetici hesabı",
 	"config-admin-name": "Kullanıcı adınız:",
-	"config-admin-password": "Şifre:",
-	"config-admin-password-confirm": "Şifre tekrar:",
+	"config-admin-password": "Parola:",
+	"config-admin-password-confirm": "Yeniden parola:",
 	"config-admin-help": "Buraya tercih ettiğiniz kullanıcı adını girin; örneğin \"Joe Bloggs\". Bu vikide oturum açmak için kullanacağınız addır.",
 	"config-admin-name-blank": "Bir yönetici kullanıcı adını giriniz.",
 	"config-admin-name-invalid": "Belirtilen ad \"<nowiki> $1 </nowiki>\" geçersiz.\nFarklı bir kullanıcı adı belirtin.",
 	"config-admin-password-blank": "Yönetici hesabı için bir parola girin.",
-	"config-admin-password-mismatch": "Girdiğiniz şifreler birbirleriyle uyuşmuyor.",
+	"config-admin-password-mismatch": "Girdiğiniz iki parola eşleşmiyor.",
 	"config-admin-email": "E-posta adresi:",
 	"config-admin-email-help": "Wiki'de diğer kullanıcılardan e-posta almak, parolanızı sıfırlamak ve sizin izlediğiniz sayfalarda yapılan değişikliklerin bildirilmesini sağlamak için e-posta adresinizi girin. Bu alanı boş bırakabilirsiniz.",
 	"config-admin-error-user": "Bir yönetici adı ile oluşturma sırasında iç hata \"<nowiki> $1 </nowiki>\".",

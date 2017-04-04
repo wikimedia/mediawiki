@@ -843,6 +843,7 @@
 	"post-expand-template-argument-warning": "'''Внимание:''' эта страница содержит по крайней мере один шаблон, аргумент которого имеет слишком большой размер развёртывания.\nПодобные аргументы были опущены.",
 	"post-expand-template-argument-category": "Страницы, содержащие пропущенные аргументы шаблонов",
 	"parser-template-loop-warning": "Обнаружена петля в шаблонах: [[$1]]",
+	"template-loop-category": "Страницы с петлями в шаблонах",
 	"parser-template-recursion-depth-warning": "Превышен предел глубины рекурсии шаблона ($1)",
 	"language-converter-depth-warning": "Превышен предел глубины преобразователя языков ($1)",
 	"node-count-exceeded-category": "Страницы, на которых превышено число узлов",

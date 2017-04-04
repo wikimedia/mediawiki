@@ -791,7 +791,8 @@
 	"post-expand-template-argument-warning": "Advarsel: Siden inneholder ett eller flere malparametere som blir for lange når de utvides.\nDisse parameterne har blitt utelatt.",
 	"post-expand-template-argument-category": "Sider med utelatte malparametere",
 	"parser-template-loop-warning": "Mal-loop oppdaget: [[$1]]",
-	"template-loop-category": "Sider med mal-løkker",
+	"template-loop-category": "Sider med malsløyfer",
+	"template-loop-category-desc": "Siden inneholder en malløkke, altså en mal som kaller seg selv rekursivt.",
 	"parser-template-recursion-depth-warning": "Mal er brukt for mange ganger ($1)",
 	"language-converter-depth-warning": "Dybdegrense for språkkonvertering overskredet ($1)",
 	"node-count-exceeded-category": "Sider hvor antallet noder er overskredet",
@@ -2818,6 +2819,7 @@
 	"newimages-summary": "Denne spesialsiden viser de sist opplastede filene.",
 	"newimages-legend": "Filnavn",
 	"newimages-label": "Filnavn (helt eller delvis):",
+	"newimages-user": "IP-adresse eller brukernavn",
 	"newimages-showbots": "Vis opplastinger av botter",
 	"newimages-hidepatrolled": "Skjul patruljerte opplastinger",
 	"noimages": "Ingenting å se.",
@@ -3910,5 +3912,6 @@
 	"restrictionsfield-label": "Tillatte IP-intervaller:",
 	"restrictionsfield-help": "Én IP-adresse eller CIDR-intervall per linje. For å slå på alt, bruk: <pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "revisjon $1",
-	"pageid": "side-ID $1"
+	"pageid": "side-ID $1",
+	"rawhtml-notallowed": "&lt;html&gt;-tagger kan ikke brukes utenfor normale sider."
 }

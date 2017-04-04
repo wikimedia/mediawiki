@@ -23,7 +23,8 @@
 			"Kareyac",
 			"Mailman",
 			"Ping08",
-			"Ivan-r"
+			"Ivan-r",
+			"Redredsonia"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Документация]]\n* [[mw:API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почтовая рассылка]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> Все отображаемые на этой странице функции должны работать, однако API находится в статусе активной разработки и может измениться в любой момент. Подпишитесь на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом «MediaWiki-API-Error», после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:API:Errors_and_warnings|API: Ошибки и предупреждения]].\n\n<strong>Тестирование:</strong> для удобства тестирования API-запросов, см. [[Special:ApiSandbox]].",
@@ -414,6 +415,7 @@
 	"api-help-permissions": "{{PLURAL:$1|Разрешение|Разрешения}}:",
 	"api-help-permissions-granted-to": "{{PLURAL:$1|Granted to}}: $2",
 	"apierror-integeroutofrange-abovemax": "<var>$1</var> не может быть более $2 (на $3) для пользователей.",
+	"apierror-invalidoldimage": "Параметр <var>oldimage</var> имеет недопустимый формат.",
 	"apierror-nosuchuserid": "Нет пользователя с ID $1.",
 	"apierror-pagelang-disabled": "Меняется язык страницы не допускается в этой Вики.",
 	"apierror-protect-invalidaction": "Недопустимый тип защиты \"$1\".",

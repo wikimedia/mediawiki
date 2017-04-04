@@ -2794,7 +2794,7 @@
 	"markedaspatrollederror": "لا يمكن التعليم بالمراجعة",
 	"markedaspatrollederrortext": "يجب عليك اختيار المراجعة التي تريد أن تشير أنها مراجعة",
 	"markedaspatrollederror-noautopatrol": "لا يجوز لك تعليم تغييراتك الشخصية بعلامة المراجعة.",
-	"markedaspatrollednotify": "هذا التغيير لـ $1  تم تعليمه كمراقب.",
+	"markedaspatrollednotify": "هذا التغيير لـ $1  تم تعليمه كمراجَع.",
 	"markedaspatrollederrornotify": "لم ينجح وسم هذه النسخة بأنها مراجعة",
 	"patrol-log-page": "سجل الخفر",
 	"patrol-log-header": "هذا سجل بالمراجعات المراجعة.",
