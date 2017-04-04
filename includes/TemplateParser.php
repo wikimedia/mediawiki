@@ -1,5 +1,6 @@
 <?php
 use MediaWiki\MediaWikiServices;
+use LightnCandy\LightnCandy;
 
 /**
  * Handles compiling Mustache templates into PHP rendering functions
@@ -160,7 +161,7 @@ class TemplateParser {
 	 * @throws RuntimeException
 	 */
 	protected function compile( $code ) {
-		if ( !class_exists( 'LightnCandy' ) ) {
+		if ( !class_exists( LightnCandy::class ) ) {
 			throw new RuntimeException( 'LightnCandy class not defined' );
 		}
 		return LightnCandy::compile(
