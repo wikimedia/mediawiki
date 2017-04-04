@@ -23,7 +23,7 @@ production.
 === External library changes in 1.30 ===
 
 ==== Upgraded external libraries ====
-* …
+* Updated zordius/lightncandy from v0.23 to v1.1.0.
 
 ==== New external libraries ====
 * …
