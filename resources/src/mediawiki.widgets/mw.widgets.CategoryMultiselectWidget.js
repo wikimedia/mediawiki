@@ -369,7 +369,7 @@
 					var categories = [];
 
 					$.each( res.query.pages, function ( index, page ) {
-						if ( !page.missing && $.isArray( page.categories ) ) {
+						if ( !page.missing && Array.isArray( page.categories ) ) {
 							categories.push.apply( categories, page.categories.map( function ( category ) {
 								return category.title;
 							} ) );

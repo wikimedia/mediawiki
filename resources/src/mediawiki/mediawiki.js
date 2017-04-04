@@ -144,7 +144,7 @@
 			var results, i;
 			fallback = arguments.length > 1 ? fallback : null;
 
-			if ( $.isArray( selection ) ) {
+			if ( Array.isArray( selection ) ) {
 				results = {};
 				for ( i = 0; i < selection.length; i++ ) {
 					if ( typeof selection[ i ] === 'string' ) {
@@ -205,7 +205,7 @@
 		 */
 		exists: function ( selection ) {
 			var i;
-			if ( $.isArray( selection ) ) {
+			if ( Array.isArray( selection ) ) {
 				for ( i = 0; i < selection.length; i++ ) {
 					if ( typeof selection[ i ] !== 'string' || !hasOwn.call( this.values, selection[ i ] ) ) {
 						return false;
@@ -1321,7 +1321,7 @@
 
 					legacyWait.always( function () {
 						try {
-							if ( $.isArray( script ) ) {
+							if ( Array.isArray( script ) ) {
 								nestedAddScript( script, markModuleReady, 0 );
 							} else if ( typeof script === 'function' ) {
 								// Pass jQuery twice so that the signature of the closure which wraps
@@ -1412,7 +1412,7 @@
 
 						// Array of css strings in key 'css',
 						// or back-compat array of urls from media-type
-						if ( $.isArray( value ) ) {
+						if ( Array.isArray( value ) ) {
 							for ( i = 0; i < value.length; i++ ) {
 								if ( key === 'bc-url' ) {
 									// back-compat: { <media>: [url, ..] }

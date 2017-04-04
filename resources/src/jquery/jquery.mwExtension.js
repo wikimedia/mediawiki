@@ -45,7 +45,7 @@
 				return false;
 			}
 			for ( i = 0; i < arrThis.length; i++ ) {
-				if ( $.isArray( arrThis[ i ] ) ) {
+				if ( Array.isArray( arrThis[ i ] ) ) {
 					if ( !$.compareArray( arrThis[ i ], arrAgainst[ i ] ) ) {
 						return false;
 					}
