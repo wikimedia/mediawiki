@@ -536,10 +536,10 @@ class ApiQuery extends ApiBase {
 
 	public function getHelpUrls() {
 		return [
-			'https://www.mediawiki.org/wiki/API:Query',
-			'https://www.mediawiki.org/wiki/API:Meta',
-			'https://www.mediawiki.org/wiki/API:Properties',
-			'https://www.mediawiki.org/wiki/API:Lists',
+			'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Query',
+			'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Meta',
+			'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Properties',
+			'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Lists',
 		];
 	}
 }

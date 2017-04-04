@@ -137,6 +137,6 @@ class ApiMergeHistory extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Mergehistory';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Mergehistory';
 	}
 }

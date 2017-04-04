@@ -125,6 +125,6 @@ class ApiManageTags extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Tag_management';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tag_management';
 	}
 }

@@ -200,6 +200,6 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Allcategories';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Allcategories';
 	}
 }

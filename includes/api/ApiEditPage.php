@@ -611,6 +611,6 @@ class ApiEditPage extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Edit';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Edit';
 	}
 }

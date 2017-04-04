@@ -821,6 +821,6 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Imageinfo';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Imageinfo';
 	}
 }

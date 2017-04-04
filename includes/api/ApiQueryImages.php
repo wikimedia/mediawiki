@@ -172,6 +172,6 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Images';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Images';
 	}
 }

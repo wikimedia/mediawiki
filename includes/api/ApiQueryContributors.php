@@ -256,6 +256,6 @@ class ApiQueryContributors extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Contributors';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Contributors';
 	}
 }

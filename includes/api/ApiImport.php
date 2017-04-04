@@ -171,7 +171,7 @@ class ApiImport extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Import';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Import';
 	}
 }
 

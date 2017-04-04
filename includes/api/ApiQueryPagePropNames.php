@@ -104,6 +104,6 @@ class ApiQueryPagePropNames extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Pagepropnames';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Pagepropnames';
 	}
 }

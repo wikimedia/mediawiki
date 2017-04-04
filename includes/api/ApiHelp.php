@@ -844,9 +844,9 @@ class ApiHelp extends ApiBase {
 
 	public function getHelpUrls() {
 		return [
-			'https://www.mediawiki.org/wiki/API:Main_page',
-			'https://www.mediawiki.org/wiki/API:FAQ',
-			'https://www.mediawiki.org/wiki/API:Quick_start_guide',
+			'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page',
+			'https://www.mediawiki.org/wiki/Special:MyLanguage/API:FAQ',
+			'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Quick_start_guide',
 		];
 	}
 }
