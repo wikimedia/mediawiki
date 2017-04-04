@@ -173,6 +173,6 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Pageswithprop';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Pageswithprop';
 	}
 }

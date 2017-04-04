@@ -124,6 +124,6 @@ class ApiLinkAccount extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Linkaccount';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Linkaccount';
 	}
 }

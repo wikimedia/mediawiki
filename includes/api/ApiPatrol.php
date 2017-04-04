@@ -112,6 +112,6 @@ class ApiPatrol extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Patrol';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Patrol';
 	}
 }

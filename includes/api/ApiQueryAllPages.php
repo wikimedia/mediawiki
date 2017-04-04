@@ -355,6 +355,6 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Allpages';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Allpages';
 	}
 }

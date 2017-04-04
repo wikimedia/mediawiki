@@ -145,6 +145,6 @@ class ApiQueryMyStashedFiles extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:mystashedfiles';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:mystashedfiles';
 	}
 }

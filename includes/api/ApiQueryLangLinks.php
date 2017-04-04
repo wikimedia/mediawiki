@@ -190,6 +190,6 @@ class ApiQueryLangLinks extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Langlinks';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Langlinks';
 	}
 }

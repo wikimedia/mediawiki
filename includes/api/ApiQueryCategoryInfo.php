@@ -115,6 +115,6 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Categoryinfo';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Categoryinfo';
 	}
 }

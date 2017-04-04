@@ -123,6 +123,6 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Stashimageinfo';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Stashimageinfo';
 	}
 }

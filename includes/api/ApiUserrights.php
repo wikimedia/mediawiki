@@ -214,6 +214,6 @@ class ApiUserrights extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:User_group_membership';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:User_group_membership';
 	}
 }

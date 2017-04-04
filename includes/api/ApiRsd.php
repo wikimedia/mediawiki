@@ -89,7 +89,7 @@ class ApiRsd extends ApiBase {
 				'apiLink' => wfExpandUrl( wfScript( 'api' ), PROTO_CURRENT ),
 
 				// Docs link is optional, but recommended.
-				'docs' => 'https://www.mediawiki.org/wiki/API',
+				'docs' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/API',
 
 				// Some APIs may need a blog ID, but it may be left blank.
 				'blogID' => '',

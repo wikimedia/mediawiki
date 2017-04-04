@@ -114,6 +114,6 @@ class ApiEmailUser extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Email';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Email';
 	}
 }

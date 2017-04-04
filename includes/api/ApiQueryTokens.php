@@ -131,6 +131,6 @@ class ApiQueryTokens extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Tokens';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tokens';
 	}
 }

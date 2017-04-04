@@ -127,6 +127,6 @@ class ApiQueryAuthManagerInfo extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Authmanagerinfo';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Authmanagerinfo';
 	}
 }

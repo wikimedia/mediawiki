@@ -76,6 +76,6 @@ class ApiValidatePassword extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Validatepassword';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Validatepassword';
 	}
 }

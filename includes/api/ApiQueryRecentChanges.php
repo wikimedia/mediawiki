@@ -699,6 +699,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Recentchanges';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Recentchanges';
 	}
 }

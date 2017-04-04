@@ -292,6 +292,6 @@ class ApiMove extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Move';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Move';
 	}
 }
