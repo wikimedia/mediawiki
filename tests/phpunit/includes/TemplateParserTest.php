@@ -114,7 +114,7 @@ class TemplateParserTest extends MediaWikiTestCase {
 						[ 'baz' => 'y' ]
 					]
 				],
-				"f\n\n\tf x\n\n\tf y\n\n"
+				"f\n\tf x\n\tf y\n"
 			]
 		];
 	}

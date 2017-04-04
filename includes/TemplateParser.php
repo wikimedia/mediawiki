@@ -1,5 +1,6 @@
 <?php
 
+use LightnCandy\LightnCandy;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -183,6 +184,7 @@ class TemplateParser {
 	 * Compile the Mustache code into PHP code using LightnCandy
 	 * @param string $code Mustache code
 	 * @return string PHP code (with '<?php')
+	 * @suppress PhanTypeMismatchArgument
 	 */
 	protected function compile( $code ) {
 		return LightnCandy::compile(
@@ -191,6 +193,20 @@ class TemplateParser {
 				'flags' => $this->compileFlags,
 				'basedir' => $this->templateDir,
 				'fileext' => '.mustache',
+				'partialresolver' => function ( $cx, $name ) {
+					$filePath = "{$this->templateDir}/{$name}.mustache";
+					if ( !file_exists( $filePath ) ) {
+						throw new RuntimeException( "Failed to find partial `{$name}`" );
+					}
+
+					$fileContents = file_get_contents( $filePath );
+
+					if ( $fileContents === false ) {
+						throw new RuntimeException( "Failed to read partial `{$name}`" );
+					}
+
+					return $fileContents;
+				}
 			]
 		);
 	}
