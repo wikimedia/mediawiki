@@ -419,19 +419,35 @@
 
 	/* eslint-disable no-console */
 	log = ( function () {
-		// Also update the restoration of methods in mediawiki.log.js
-		// when adding or removing methods here.
+		/**
+		 * Write a verbose message to the browser's console in debug mode.
+		 *
+		 * This method is mainly intended for verbose logging. It is a no-op in production mode.
+		 * In ResourceLoader debug mode, it will use the browser's console if available, with
+		 * fallback to creating a console interface in the DOM and logging messages there.
+		 *
+		 * See {@link mw.log} for other logging methods.
+		 *
+		 * @member mw
+		 * @param {...string} msg Messages to output to console.
+		 */
 		var log = function () {},
 			console = window.console;
 
+		// Note: Keep list of methods in sync with restoration in mediawiki.log.js
+		// when adding or removing mw.log methods below!
+
 		/**
+		 * Collection of methods to help log messages to the console.
+		 *
 		 * @class mw.log
 		 * @singleton
 		 */
 
 		/**
-		 * Write a message to the console's warning channel.
-		 * Actions not supported by the browser console are silently ignored.
+		 * Write a message to the browser console's warning channel.
+		 *
+		 * This method is a no-op in browsers that don't implement the Console API.
 		 *
 		 * @param {...string} msg Messages to output to console
 		 */
@@ -440,10 +456,12 @@
 			$.noop;
 
 		/**
-		 * Write a message to the console's error channel.
+		 * Write a message to the browser console's error channel.
 		 *
-		 * Most browsers provide a stacktrace by default if the argument
-		 * is a caught Error object.
+		 * Most browsers also print a stacktrace when calling this method if the
+		 * argument is an Error object.
+		 *
+		 * This method is a no-op in browsers that don't implement the Console API.
 		 *
 		 * @since 1.26
 		 * @param {Error|...string} msg Messages to output to console
@@ -453,7 +471,7 @@
 			$.noop;
 
 		/**
-		 * Create a property in a host object that, when accessed, will produce
+		 * Create a property on a host object that, when accessed, will produce
 		 * a deprecation warning in the console.
 		 *
 		 * @param {Object} obj Host object of deprecated property
@@ -702,11 +720,7 @@
 			return mw.message.apply( mw.message, arguments ).toString();
 		},
 
-		/**
-		 * No-op dummy placeholder for {@link mw.log} in debug mode.
-		 *
-		 * @method
-		 */
+		// Expose mw.log
 		log: log,
 
 		/**
