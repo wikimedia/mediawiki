@@ -983,7 +983,7 @@
 			 * @return {string} Hash of concatenated version hashes.
 			 */
 			function getCombinedVersion( modules ) {
-				var hashes = $.map( modules, function ( module ) {
+				var hashes = modules.map( function ( module ) {
 					return registry[ module ].version;
 				} );
 				return fnv132( hashes.join( '' ) );
@@ -2146,7 +2146,7 @@
 				 * @return {Array}
 				 */
 				getModuleNames: function () {
-					return $.map( registry, function ( i, key ) {
+					return $.map( registry, function ( obj, key ) {
 						return key;
 					} );
 				},
@@ -2778,7 +2778,7 @@
 		// for all loading modules. If one fails, fall back to tracking each module
 		// separately via $.when(), this is expensive.
 		loading = mw.loader.using( loading ).then( null, function () {
-			var all = $.map( loading, function ( module ) {
+			var all = loading.map( function ( module ) {
 				return mw.loader.using( module ).then( null, function () {
 					return $.Deferred().resolve();
 				} );
