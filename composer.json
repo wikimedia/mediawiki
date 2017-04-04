@@ -53,7 +53,7 @@
 		"justinrainbow/json-schema": "~3.0",
 		"mediawiki/mediawiki-codesniffer": "0.7.2",
 		"jetbrains/phpstorm-stubs": "dev-master#1b9906084d6635456fcf3f3a01f0d7d5b99a578a",
-		"monolog/monolog": "~1.18.2",
+		"monolog/monolog": "~1.22.1",
 		"nikic/php-parser": "2.1.0",
 		"nmred/kafka-php": "0.1.5",
 		"phpunit/phpunit": "4.8.35",
