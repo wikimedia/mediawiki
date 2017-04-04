@@ -300,6 +300,8 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.placeholder' => [
+		'deprecated' => 'Use of "jquery.placeholder" is deprecated since MediaWiki 1.29.0',
+
 		'scripts' => 'resources/src/jquery/jquery.placeholder.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -1176,7 +1178,6 @@ return [
 			'searchsuggest-containing',
 		],
 		'dependencies' => [
-			'jquery.placeholder',
 			'jquery.suggestions',
 			'jquery.getAttrs',
 			'mediawiki.api',
@@ -1654,7 +1655,6 @@ return [
 		'dependencies' => [
 			'jquery.accessKeyLabel',
 			'jquery.checkboxShiftClick',
-			'jquery.placeholder',
 			'jquery.mw-jump',
 		],
 		'targets' => [ 'desktop', 'mobile' ],

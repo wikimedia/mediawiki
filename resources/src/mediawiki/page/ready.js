@@ -1,6 +1,4 @@
 ( function ( mw, $ ) {
-	var supportsPlaceholder = 'placeholder' in document.createElement( 'input' );
-
 	// Break out of framesets
 	if ( mw.config.get( 'wgBreakFrames' ) ) {
 		// Note: In IE < 9 strict comparison to window is non-standard (the standard didn't exist yet)
@@ -13,11 +11,6 @@
 
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
 		var $sortable, $collapsible;
-
-		// Run jquery.placeholder polyfill if placeholder is not supported
-		if ( !supportsPlaceholder ) {
-			$content.find( 'input[placeholder]' ).placeholder();
-		}
 
 		$collapsible = $content.find( '.mw-collapsible' );
 		if ( $collapsible.length ) {
@@ -42,11 +35,6 @@
 	// Things outside the wikipage content
 	$( function () {
 		var $nodes;
-
-		if ( !supportsPlaceholder ) {
-			// Exclude content to avoid hitting it twice for the (first) wikipage content
-			$( 'input[placeholder]' ).not( '#mw-content-text input' ).placeholder();
-		}
 
 		// Add accesskey hints to the tooltips
 		$( '[accesskey]' ).updateTooltipAccessKeys();
