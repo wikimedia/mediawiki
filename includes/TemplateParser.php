@@ -1,5 +1,6 @@
 <?php
 use MediaWiki\MediaWikiServices;
+use LightnCandy\LightnCandy;
 
 /**
  * Handles compiling Mustache templates into PHP rendering functions
