@@ -36,7 +36,7 @@ mwPerformance.mark( 'mwLoadStart' );
  * - IE 10+
  * - Firefox 4+
  * - Safari 5+
- * - Opera 15+
+ * - Opera 12.10+
  * - Mobile Safari 5.1+ (iOS 5+)
  * - Android 4.1+
  *
