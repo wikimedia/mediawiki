@@ -857,7 +857,6 @@
 				cssBuffer = '',
 				cssBufferTimer = null,
 				cssCallbacks = $.Callbacks(),
-				isIE9 = document.documentMode === 9,
 				rAF = window.requestAnimationFrame || setTimeout;
 
 			function getMarker() {
@@ -906,8 +905,6 @@
 			 * @param {Function} [callback]
 			 */
 			function addEmbeddedCSS( cssText, callback ) {
-				var $style, styleEl;
-
 				function fireCallbacks() {
 					var oldCallbacks = cssCallbacks;
 					// Reset cssCallbacks variable so it's not polluted by any calls to
@@ -950,29 +947,7 @@
 					cssBuffer = '';
 				}
 
-				// By default, always create a new <style>. Appending text to a <style> tag is
-				// is a performance anti-pattern as it requires CSS to be reparsed (T47810).
-				//
-				// Support: IE 6-9
-				// Try to re-use existing <style> tags due to the IE stylesheet limit (T33676).
-				if ( isIE9 ) {
-					$style = $( getMarker() ).prev();
-					// Verify that the element before the marker actually is a <style> tag created
-					// by mw.loader (not some other style tag, or e.g. a <meta> tag).
-					if ( $style.data( 'ResourceLoaderDynamicStyleTag' ) ) {
-						styleEl = $style[ 0 ];
-						styleEl.appendChild( document.createTextNode( cssText ) );
-						fireCallbacks();
-						return;
-					}
-					// Else: No existing tag to reuse. Continue below and create the first one.
-				}
-
-				$style = $( newStyleTag( cssText, getMarker() ) );
-
-				if ( isIE9 ) {
-					$style.data( 'ResourceLoaderDynamicStyleTag', true );
-				}
+				$( newStyleTag( cssText, getMarker() ) );
 
 				fireCallbacks();
 			}
@@ -1255,7 +1230,7 @@
 					el.media = media;
 				}
 				// If you end up here from an IE exception "SCRIPT: Invalid property value.",
-				// see #addEmbeddedCSS, T33676, and T49277 for details.
+				// see #addEmbeddedCSS, T33676, T43331, and T49277 for details.
 				el.href = url;
 
 				$( getMarker() ).before( el );
@@ -2042,10 +2017,6 @@
 						// "https://example.org/x.js", "http://example.org/x.js", "//example.org/x.js", "/x.js"
 						if ( /^(https?:)?\/?\//.test( modules ) ) {
 							if ( type === 'text/css' ) {
-								// Support: IE 7-8
-								// Use properties instead of attributes as IE throws security
-								// warnings when inserting a <link> tag with a protocol-relative
-								// URL set though attributes - when on HTTPS. See T43331.
 								l = document.createElement( 'link' );
 								l.rel = 'stylesheet';
 								l.href = modules;
