@@ -71,6 +71,7 @@ production.
 * Updated oyejorge/less.php from v1.7.0.10 to v1.7.0.13.
 * Added wikimedia/remex-html v1.0.1.
 * Updated monolog from v1.18.2 to 1.22.1.
+* Updated wikimedia/composer-merge-plugin from v1.3.1 to v1.4.0.
 
 ==== New external libraries ====
 
