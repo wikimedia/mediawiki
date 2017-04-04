@@ -1,5 +1,6 @@
 <?php
 use MediaWiki\MediaWikiServices;
+use LightnCandy\LightnCandy;
 
 /**
  * Handles compiling Mustache templates into PHP rendering functions
@@ -160,7 +161,7 @@ class TemplateParser {
 	 * @throws RuntimeException
 	 */
 	protected function compile( $code ) {
-		if ( !class_exists( 'LightnCandy' ) ) {
+		if ( !class_exists( LightnCandy::class ) ) {
 			throw new RuntimeException( 'LightnCandy class not defined' );
 		}
 		return LightnCandy::compile(
@@ -169,8 +170,20 @@ class TemplateParser {
 				// Do not add more flags here without discussion.
 				// If you do add more flags, be sure to update unit tests as well.
 				'flags' => LightnCandy::FLAG_ERROR_EXCEPTION,
-				'basedir' => $this->templateDir,
-				'fileext' => '.mustache',
+				'partialresolver' => function ( $cx, $name ) {
+					$filePath = "{$this->templateDir}/{$name}.mustache";
+					if ( !file_exists( $filePath ) ) {
+						throw new RuntimeException( "Failed to find partial `{$name}`" );
+					}
+
+					$fileContents = file_get_contents( $filePath );
+
+					if ( $fileContents === false ) {
+						throw new RuntimeException( "Failed to read partial `{$name}`" );
+					}
+
+					return $fileContents;
+				}
 			]
 		);
 	}
