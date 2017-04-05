@@ -288,7 +288,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 
 				$row = $dbr->selectRow(
 					'interwiki',
-					ClassicInterwikiLookup::selectFields(),
+					self::selectFields(),
 					[ 'iw_prefix' => $prefix ],
 					__METHOD__
 				);
@@ -408,7 +408,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 		}
 
 		$res = $db->select( 'interwiki',
-			$this->selectFields(),
+			self::selectFields(),
 			$where, __METHOD__, [ 'ORDER BY' => 'iw_prefix' ]
 		);
 
