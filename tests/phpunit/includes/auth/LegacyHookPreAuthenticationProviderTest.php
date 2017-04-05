@@ -15,7 +15,8 @@ class LegacyHookPreAuthenticationProviderTest extends \MediaWikiTestCase {
 	 * @return LegacyHookPreAuthenticationProvider
 	 */
 	protected function getProvider() {
-		$request = $this->getMock( 'FauxRequest', [ 'getIP' ] );
+		$request = $this->getMockBuilder( 'FauxRequest' )
+			->setMethods( [ 'getIP' ] )->getMock();
 		$request->expects( $this->any() )->method( 'getIP' )->will( $this->returnValue( '127.0.0.42' ) );
 
 		$manager = new AuthManager(

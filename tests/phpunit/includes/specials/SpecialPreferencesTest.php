@@ -25,7 +25,7 @@ class SpecialPreferencesTest extends MediaWikiTestCase {
 		// Set a low limit
 		$this->setMwGlobals( 'wgMaxSigChars', 2 );
 
-		$user = $this->getMock( 'User' );
+		$user = $this->createMock( 'User' );
 		$user->expects( $this->any() )
 			->method( 'isAnon' )
 			->will( $this->returnValue( false ) );

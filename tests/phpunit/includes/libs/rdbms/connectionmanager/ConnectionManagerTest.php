@@ -19,7 +19,7 @@ class ConnectionManagerTest extends \PHPUnit_Framework_TestCase {
 	 * @return IDatabase|PHPUnit_Framework_MockObject_MockObject
 	 */
 	private function getIDatabaseMock() {
-		return $this->getMock( IDatabase::class );
+		return $this->createMock( IDatabase::class );
 	}
 
 	/**

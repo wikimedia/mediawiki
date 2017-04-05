@@ -55,7 +55,7 @@ class AbstractSecondaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	public function testProviderRevokeAccessForUser() {
 		$reqs = [];
 		for ( $i = 0; $i < 3; $i++ ) {
-			$reqs[$i] = $this->getMock( AuthenticationRequest::class );
+			$reqs[$i] = $this->createMock( AuthenticationRequest::class );
 			$reqs[$i]->done = false;
 		}
 
