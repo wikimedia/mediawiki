@@ -136,10 +136,15 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	}
 
 	/**
+	 * Get the default value
+	 *
+	 * @param bool $structuredUI Are we currently showing the structured UI
 	 * @return bool|null Default value
 	 */
-	public function getDefault() {
-		return $this->defaultValue;
+	public function getDefault( $structuredUI = false ) {
+		return $this->isReplacedInStructuredUi && $structuredUI ?
+			false :
+			$this->defaultValue;
 	}
 
 	/**
