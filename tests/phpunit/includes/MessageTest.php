@@ -152,7 +152,7 @@ class MessageTest extends MediaWikiLangTestCase {
 		// to register the html hook
 		MessageCache::destroyInstance();
 		$this->setMwGlobals( 'wgParser',
-			ObjectFactory::constructClassInstance( $wgParserConf['class'], array( $wgParserConf ) )
+			new $wgParserConf['class']( array( $wgParserConf ) );
 		);
 
 		$msg = new RawMessage( '<html><script>alert("xss")</script></html>' );
