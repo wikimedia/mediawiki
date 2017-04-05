@@ -17,7 +17,7 @@ class MailAddressTest extends MediaWikiTestCase {
 		if ( wfIsWindows() ) {
 			$this->markTestSkipped( 'This test only works on non-Windows platforms' );
 		}
-		$user = $this->getMock( 'User' );
+		$user = $this->createMock( 'User' );
 		$user->expects( $this->any() )->method( 'getName' )->will(
 			$this->returnValue( 'UserName' )
 		);

@@ -37,8 +37,9 @@ class SessionTest extends MediaWikiTestCase {
 	 * @param bool $ret Whether the method returns a value
 	 */
 	public function testMethods( $m, $args, $index, $ret ) {
-		$mock = $this->getMock( DummySessionBackend::class,
-			[ $m, 'deregisterSession' ] );
+		$mock = $this->getMockBuilder( DummySessionBackend::class )
+			->setMethods( [ $m, 'deregisterSession' ] )
+			->getMock();
 		$mock->expects( $this->once() )->method( 'deregisterSession' )
 			->with( $this->identicalTo( 42 ) );
 
@@ -223,9 +224,9 @@ class SessionTest extends MediaWikiTestCase {
 		$session = TestUtils::getDummySession();
 		$priv = \TestingAccessWrapper::newFromObject( $session );
 
-		$backend = $this->getMock(
-			DummySessionBackend::class, [ 'canSetUser', 'setUser', 'save' ]
-		);
+		$backend = $this->getMockBuilder( DummySessionBackend::class )
+			->setMethods( [ 'canSetUser', 'setUser', 'save' ] )
+			->getMock();
 		$backend->expects( $this->once() )->method( 'canSetUser' )
 			->will( $this->returnValue( true ) );
 		$backend->expects( $this->once() )->method( 'setUser' )
@@ -238,9 +239,9 @@ class SessionTest extends MediaWikiTestCase {
 		$this->assertSame( [], $backend->data );
 		$this->assertTrue( $backend->dirty );
 
-		$backend = $this->getMock(
-			DummySessionBackend::class, [ 'canSetUser', 'setUser', 'save' ]
-		);
+		$backend = $this->getMockBuilder( DummySessionBackend::class )
+			->setMethod( [ 'canSetUser', 'setUser', 'save' ] )
+			->getMock();
 		$backend->data = [];
 		$backend->expects( $this->once() )->method( 'canSetUser' )
 			->will( $this->returnValue( true ) );
@@ -253,9 +254,9 @@ class SessionTest extends MediaWikiTestCase {
 		$session->clear();
 		$this->assertFalse( $backend->dirty );
 
-		$backend = $this->getMock(
-			DummySessionBackend::class, [ 'canSetUser', 'setUser', 'save' ]
-		);
+		$backend = $this->getMockBuilder( DummySessionBackend::class )
+			->setMethods( [ 'canSetUser', 'setUser', 'save' ] )
+			->getMock();;
 		$backend->expects( $this->once() )->method( 'canSetUser' )
 			->will( $this->returnValue( false ) );
 		$backend->expects( $this->never() )->method( 'setUser' );

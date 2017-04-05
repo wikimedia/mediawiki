@@ -138,7 +138,7 @@ class AuthenticationRequestTest extends \MediaWikiTestCase {
 	public function testMergeFieldInfo() {
 		$msg = wfMessage( 'foo' );
 
-		$req1 = $this->getMock( AuthenticationRequest::class );
+		$req1 = $this->createMock( AuthenticationRequest::class );
 		$req1->required = AuthenticationRequest::REQUIRED;
 		$req1->expects( $this->any() )->method( 'getFieldInfo' )->will( $this->returnValue( [
 			'string1' => [
@@ -165,7 +165,7 @@ class AuthenticationRequestTest extends \MediaWikiTestCase {
 			],
 		] ) );
 
-		$req2 = $this->getMock( AuthenticationRequest::class );
+		$req2 = $this->createMock( AuthenticationRequest::class );
 		$req2->required = AuthenticationRequest::REQUIRED;
 		$req2->expects( $this->any() )->method( 'getFieldInfo' )->will( $this->returnValue( [
 			'string1' => [
@@ -187,7 +187,7 @@ class AuthenticationRequestTest extends \MediaWikiTestCase {
 			],
 		] ) );
 
-		$req3 = $this->getMock( AuthenticationRequest::class );
+		$req3 = $this->createMock( AuthenticationRequest::class );
 		$req3->required = AuthenticationRequest::REQUIRED;
 		$req3->expects( $this->any() )->method( 'getFieldInfo' )->will( $this->returnValue( [
 			'string1' => [
@@ -197,7 +197,7 @@ class AuthenticationRequestTest extends \MediaWikiTestCase {
 			],
 		] ) );
 
-		$req4 = $this->getMock( AuthenticationRequest::class );
+		$req4 = $this->createMock( AuthenticationRequest::class );
 		$req4->required = AuthenticationRequest::REQUIRED;
 		$req4->expects( $this->any() )->method( 'getFieldInfo' )->will( $this->returnValue( [] ) );
 
