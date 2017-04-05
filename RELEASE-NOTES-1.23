@@ -8,6 +8,9 @@ This is not a release yet!
 * (T68404) CSS3 attr() function with url type is no longer allowed
   in inline styles.
 * (T156184) $wgRawHtml will no longer apply to internationalization messages.
+* Submitting the lgtoken and lgpassword parameters in the query string to
+  action=login is now deprecated and outputs a warning. They should be submitted
+  in the POST body instead.
 
 == MediaWiki 1.23.15 ==
 
