@@ -13,7 +13,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	 * @return PHPUnit_Framework_MockObject_MockObject|IDatabase
 	 */
 	private function getMockDb() {
-		return $this->getMock( IDatabase::class );
+		return $this->createMock( IDatabase::class );
 	}
 
 	/**
@@ -63,7 +63,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	 * @return PHPUnit_Framework_MockObject_MockObject|User
 	 */
 	private function getMockNonAnonUserWithId( $id ) {
-		$mock = $this->getMock( User::class );
+		$mock = $this->createMock( User::class );
 		$mock->expects( $this->any() )
 			->method( 'isAnon' )
 			->will( $this->returnValue( false ) );
@@ -1978,7 +1978,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	 * @return PHPUnit_Framework_MockObject_MockObject|Title
 	 */
 	private function getMockTitle( $text, $ns = 0 ) {
-		$title = $this->getMock( Title::class );
+		$title = $this->createMock( Title::class );
 		$title->expects( $this->any() )
 			->method( 'getText' )
 			->will( $this->returnValue( str_replace( '_', ' ', $text ) ) );

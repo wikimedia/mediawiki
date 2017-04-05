@@ -326,7 +326,8 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 	public function testDisableService() {
 		$services = $this->newServiceContainer( [ 'Foo' ] );
 
-		$destructible = $this->getMock( 'MediaWiki\Services\DestructibleService' );
+		$destructible = $this->getMockBuilder( 'MediaWiki\Services\DestructibleService' )
+			->getMock();
 		$destructible->expects( $this->once() )
 			->method( 'destroy' );
 
@@ -384,7 +385,8 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 	public function testDestroy() {
 		$services = $this->newServiceContainer();
 
-		$destructible = $this->getMock( 'MediaWiki\Services\DestructibleService' );
+		$destructible = $this->getMockBuilder( 'MediaWiki\Services\DestructibleService' )
+			->getMock();
 		$destructible->expects( $this->once() )
 			->method( 'destroy' );
 
