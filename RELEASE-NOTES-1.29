@@ -70,6 +70,7 @@ production.
 * Updated oyejorge/less.php from v1.7.0.10 to v1.7.0.14.
 * Updated monolog from v1.18.2 to 1.22.1.
 * Updated wikimedia/composer-merge-plugin from v1.3.1 to v1.4.0.
+* Updated OOjs from v1.1.10 to v2.0.0.
 
 ==== New external libraries ====
 * Added wikimedia/timestamp v1.0.0.
