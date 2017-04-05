@@ -707,6 +707,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	public function getDefaultOptions() {
 		$config = $this->getConfig();
 		$opts = new FormOptions();
+		$structuredUI = $this->getUser()->getOption( 'rcenhancedfilters' );
 
 		// Add all filters
 		foreach ( $this->filterGroups as $filterGroup ) {
@@ -716,7 +717,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				$opts->add( $filterGroup->getName(), $filterGroup->getDefault() );
 			} else {
 				foreach ( $filterGroup->getFilters() as $filter ) {
-					$opts->add( $filter->getName(), $filter->getDefault() );
+					$opts->add( $filter->getName(), $filter->getDefault( $structuredUI ) );
 				}
 			}
 		}
