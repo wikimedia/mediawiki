@@ -46,7 +46,9 @@ sub {
 /**
  * Block media items
  */
-figure[typeof*='mw:Image'] {
+figure[typeof*='mw:Image'],
+figure[typeof*='mw:Video'],
+figure[typeof*='mw:Audio'] {
 	margin: 0;
 
 	a {
@@ -109,7 +111,11 @@ figure[typeof*='mw:Image'] {
 }
 
 figure[typeof~='mw:Image/Thumb'],
-figure[typeof~='mw:Image/Frame'] {
+figure[typeof~='mw:Video/Thumb'],
+figure[typeof~='mw:Audio/Thumb'],
+figure[typeof~='mw:Image/Frame'],
+figure[typeof~='mw:Video/Frame'],
+figure[typeof~='mw:Audio/Frame'] {
 	display: table;
 	overflow: auto;
 	text-align: center;
@@ -125,19 +131,28 @@ figure[typeof~='mw:Image/Frame'] {
 }
 
 figure[typeof~='mw:Image/Thumb'] > *:first-child > img,
-figure[typeof~='mw:Image/Frame'] > *:first-child > img {
+figure[typeof~='mw:Video/Thumb'] > *:first-child > video,
+figure[typeof~='mw:Audio/Thumb'] > *:first-child > video,
+figure[typeof~='mw:Image/Frame'] > *:first-child > img,
+figure[typeof~='mw:Video/Frame'] > *:first-child > video,
+figure[typeof~='mw:Audio/Frame'] > *:first-child > video {
 	border: 1px solid #c8ccd1;
 	margin: 3px;
 	background: #fff;
 }
 
 /* Same as img.thumbborder in content.css */
-.mw-image-border > *:first-child > img {
+.mw-image-border > *:first-child > img,
+.mw-image-border > *:first-child > video {
 	border: 1px solid #eaecf0;
 }
 
 /* Hide the caption for frameless and plain floated images */
 figure[typeof~='mw:Image/Frameless'] > figcaption,
-figure[typeof~='mw:Image'] > figcaption {
+figure[typeof~='mw:Video/Frameless'] > figcaption,
+figure[typeof~='mw:Audio/Frameless'] > figcaption,
+figure[typeof~='mw:Image'] > figcaption,
+figure[typeof~='mw:Video'] > figcaption,
+figure[typeof~='mw:Audio'] > figcaption {
 	display: none;
 }
