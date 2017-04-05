@@ -352,6 +352,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Userinfo';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Userinfo';
 	}
 }

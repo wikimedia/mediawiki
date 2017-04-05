@@ -120,6 +120,6 @@ class ApiQueryPageProps extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Pageprops';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Pageprops';
 	}
 }

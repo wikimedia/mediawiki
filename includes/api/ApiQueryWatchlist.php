@@ -501,6 +501,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Watchlist';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Watchlist';
 	}
 }

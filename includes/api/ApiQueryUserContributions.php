@@ -582,6 +582,6 @@ class ApiQueryContributions extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Usercontribs';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Usercontribs';
 	}
 }

@@ -432,6 +432,6 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
 	public function getHelpUrls() {
 		$name = ucfirst( $this->getModuleName() );
-		return "https://www.mediawiki.org/wiki/API:{$name}";
+		return "https://www.mediawiki.org/wiki/Special:MyLanguage/API:{$name}";
 	}
 }

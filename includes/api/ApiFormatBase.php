@@ -330,7 +330,7 @@ abstract class ApiFormatBase extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Data_formats';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Data_formats';
 	}
 
 }

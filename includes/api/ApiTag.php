@@ -187,6 +187,6 @@ class ApiTag extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Tag';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tag';
 	}
 }

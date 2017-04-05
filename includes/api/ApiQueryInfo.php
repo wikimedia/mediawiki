@@ -946,6 +946,6 @@ class ApiQueryInfo extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Info';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Info';
 	}
 }

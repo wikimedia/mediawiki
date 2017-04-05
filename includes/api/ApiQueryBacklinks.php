@@ -59,19 +59,19 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			'code' => 'bl',
 			'prefix' => 'pl',
 			'linktbl' => 'pagelinks',
-			'helpurl' => 'https://www.mediawiki.org/wiki/API:Backlinks',
+			'helpurl' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Backlinks',
 		],
 		'embeddedin' => [
 			'code' => 'ei',
 			'prefix' => 'tl',
 			'linktbl' => 'templatelinks',
-			'helpurl' => 'https://www.mediawiki.org/wiki/API:Embeddedin',
+			'helpurl' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Embeddedin',
 		],
 		'imageusage' => [
 			'code' => 'iu',
 			'prefix' => 'il',
 			'linktbl' => 'imagelinks',
-			'helpurl' => 'https://www.mediawiki.org/wiki/API:Imageusage',
+			'helpurl' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Imageusage',
 		]
 	];
 

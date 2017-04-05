@@ -288,6 +288,6 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Deletedrevisions';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Deletedrevisions';
 	}
 }

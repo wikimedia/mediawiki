@@ -199,6 +199,6 @@ class ApiRevisionDelete extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Revisiondelete';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Revisiondelete';
 	}
 }

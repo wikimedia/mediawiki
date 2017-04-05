@@ -193,6 +193,6 @@ class ApiBlock extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Block';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Block';
 	}
 }

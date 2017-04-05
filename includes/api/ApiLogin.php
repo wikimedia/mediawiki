@@ -265,7 +265,7 @@ class ApiLogin extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Login';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Login';
 	}
 
 	/**

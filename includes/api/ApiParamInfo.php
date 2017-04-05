@@ -543,6 +543,6 @@ class ApiParamInfo extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Parameter_information';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Parameter_information';
 	}
 }

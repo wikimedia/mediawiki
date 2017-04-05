@@ -447,6 +447,6 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Revisions';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Revisions';
 	}
 }

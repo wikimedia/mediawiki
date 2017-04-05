@@ -290,6 +290,6 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Allrevisions';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Allrevisions';
 	}
 }

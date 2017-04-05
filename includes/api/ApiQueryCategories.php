@@ -227,6 +227,6 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Categories';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Categories';
 	}
 }
