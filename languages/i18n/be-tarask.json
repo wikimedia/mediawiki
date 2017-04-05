@@ -3789,6 +3789,7 @@
 	"authmanager-realname-label": "Сапраўднае імя",
 	"authmanager-realname-help": "Сапраўднае імя ўдзельніка",
 	"authmanager-provider-password": "Аўтэнтыфікацыя на аснове паролю",
+	"authmanager-provider-password-domain": "Аўтэнтыфікацыя на аснове паролю і дамэну",
 	"authmanager-provider-temporarypassword": "Часовы пароль",
 	"changecredentials": "Зьмена ўліковых зьвестак",
 	"removecredentials": "Выдаленьне ўліковых зьвестак",

@@ -2215,7 +2215,7 @@
 	"protect-summary-cascade": "सीढ़ी",
 	"protect-expiring": "समाप्ती $1 (UTC)",
 	"protect-expiring-local": "समाप्ती $1",
-	"protect-expiry-indefinite": "अनिश्चितकालीन",
+	"protect-expiry-indefinite": "हमेशा",
 	"protect-cascade": "इस पृष्ठ से जुड़े हुए पृष्ठ सुरक्षित करें (सुरक्षा-सीढ़ी)",
 	"protect-cantedit": "आप इस पृष्ठ का सुरक्षा-स्तर बदल नहीं सकते क्योंकि आपको ऐसा करने का अधिकार नहीं है।",
 	"protect-othertime": "अन्य समय:",

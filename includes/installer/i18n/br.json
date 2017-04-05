@@ -142,6 +142,7 @@
 	"config-postgres-old": "Rekis eo PostgreSQL $1 pe ur stumm nevesoc'h; ober a rit gant $2.",
 	"config-mssql-old": "Stumm $1 Microsoft SQL Server, pe unan nevesoc'h, zo rekis. Ganeoc'h emañ ar stumm $2.",
 	"config-sqlite-name-help": "Dibabit un anv dibar d'ho wiki.\nArabat ober gant esaouennoù pe barrennigoù-stagañ.\nImplijet e vo evit ar restr roadennoù SQLite.",
+	"config-sqlite-parent-unwritable-group": "N'haller ket krouiñ ar c'havlec'h roadennoù <code><nowiki>$1</nowiki></code> peogwir n'hall ket ar servijer Web skrivañ war ar c'havlec'h kar <code><nowiki>$2</nowiki></code>.\n\nKavet eo bet gant ar stalier an anv implijer m'eo oberiant ar servijer drezañ. Evit gallout kenderc'hel, lakait ar c'havlec'h <code><nowiki>$3</nowiki></code> da vezañ tizhus evit ar skrivañ.\nWar ur reizhiad Unix/Linux system ober :\n\n<pre>cd $2\nmkdir $3\nchgrp $4 $3\nchmod g+w $3</pre>",
 	"config-sqlite-mkdir-error": "Ur fazi zo bet e-ser krouiñ ar c'havlec'h roadennoù \"$1\".\nGwiriañ al lec'hiadur ha klask en-dro.",
 	"config-sqlite-dir-unwritable": "Dibosupl skrivañ er c'havlec'h \"$1\".\nCheñchit ar aotreoù evit ma c'hallfe ar servijer web skrivañ ennañ ha klaskit en-dro.",
 	"config-sqlite-connection-error": "$1.\n\nGwiriañ ar c'havlec'h roadennoù hag anv an diaz roadennoù a-is ha klaskit en-dro.",

@@ -2778,6 +2778,7 @@
 	"newimages-summary": "Tällä toimintosivulla on viimeisimmät tallennetut tiedostot.",
 	"newimages-legend": "Suodatin",
 	"newimages-label": "Tiedostonimi (tai osa siitä)",
+	"newimages-user": "IP-osoite tai käyttäjänimi:",
 	"newimages-showbots": "Näytä bottien tekemät tallennukset",
 	"newimages-hidepatrolled": "Piilota tarkastetut tiedostotallennukset",
 	"noimages": "Ei uusia tiedostoja.",

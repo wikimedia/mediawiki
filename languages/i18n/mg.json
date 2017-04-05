@@ -3173,7 +3173,7 @@
 	"feedback-thanks": "Misaotra! lanefa tany amin'ilay pejy ''[$2 $1]'' ilay fanehoan-kevitrao.",
 	"feedback-thanks-title": "Misaotra indrindra!",
 	"feedback-useragent": "User agent:",
-	"searchsuggest-search": "Hikaroha eto amin'i {{SITENAME}}",
+	"searchsuggest-search": "Hikaroka eto amin'i {{SITENAME}}",
 	"searchsuggest-containing": "misy...",
 	"api-error-badtoken": "Hadisoana anaty : \"token\" diso.",
 	"api-error-emptypage": "Tsy azo atao ny mamorona pejy vaovao tsy misy votoatiny.",
