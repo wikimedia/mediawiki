@@ -65,7 +65,7 @@
 		this.$results.on( 'scroll', this.onResultsScroll.bind( this ) );
 		this.$query.append( this.noItemsMessage.$element );
 		this.results.connect( this, {
-			add: 'onResultsAdd',
+			change: 'onResultsChange',
 			remove: 'onResultsRemove'
 		} );
 
@@ -357,8 +357,12 @@
 	 *
 	 * @param {mw.widgets.MediaResultWidget[]} items An array of item elements
 	 */
-	mw.widgets.MediaSearchWidget.prototype.onResultsAdd = function ( items ) {
+	mw.widgets.MediaSearchWidget.prototype.onResultsChange = function ( items ) {
 		var search = this;
+
+		if ( !items.length ) {
+			return;
+		}
 
 		// Add method to a queue; this queue will only run when the widget
 		// is visible
