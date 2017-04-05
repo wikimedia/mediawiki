@@ -163,7 +163,8 @@ class ThrottlerTest extends \MediaWikiTestCase {
 	}
 
 	public function testExpiration() {
-		$cache = $this->getMock( HashBagOStuff::class, [ 'add' ] );
+		$cache = $this->getMockBuilder( HashBagOStuff::class )
+			->setMethods( [ 'add' ] )->getMock();
 		$throttler = new Throttler( [ [ 'count' => 3, 'seconds' => 10 ] ], [ 'cache' => $cache ] );
 		$throttler->setLogger( new NullLogger() );
 

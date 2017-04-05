@@ -169,7 +169,10 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 		];
 
 		// The mock itself
-		$prefetchMock = $this->getMock( 'BaseDump', [ 'prefetch' ], [], '', false );
+		$prefetchMock = $this->getMockBuilder( 'BaseDump' )
+			->setMethods( [ 'prefetch' ] )
+			->disableOriginalConstructor()
+			->getMock();
 		$prefetchMock->expects( $this->exactly( 6 ) )
 			->method( 'prefetch' )
 			->will( $this->returnValueMap( $prefetchMap ) );

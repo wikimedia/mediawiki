@@ -963,7 +963,8 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase  {
 	}
 
 	public function testMcRouterSupport() {
-		$localBag = $this->getMock( 'EmptyBagOStuff', [ 'set', 'delete' ] );
+		$localBag = $this->getMockBuilder( 'EmptyBagOStuff' )
+			->setMethods( [ 'set', 'delete' ] )->getMock();
 		$localBag->expects( $this->never() )->method( 'set' );
 		$localBag->expects( $this->never() )->method( 'delete' );
 		$wanCache = new WANObjectCache( [

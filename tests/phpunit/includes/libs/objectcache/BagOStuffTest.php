@@ -275,7 +275,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 	 * @covers BagOStuff::trackDuplicateKeys
 	 */
 	public function testReportDupes() {
-		$logger = $this->getMock( 'Psr\Log\NullLogger' );
+		$logger = $this->createMock( Psr\Log\NullLogger::class );
 		$logger->expects( $this->once() )
 			->method( 'warning' )
 			->with( 'Duplicate get(): "{key}" fetched {count} times', [

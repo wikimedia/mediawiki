@@ -16,7 +16,7 @@ class FileContentHandlerTest extends MediaWikiLangTestCase {
 	}
 
 	public function testIndexMapping() {
-		$mockEngine = $this->getMock( 'SearchEngine' );
+		$mockEngine = $this->createMock( 'SearchEngine' );
 
 		$mockEngine->expects( $this->atLeastOnce() )
 			->method( 'makeSearchFieldMapping' )
