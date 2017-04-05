@@ -38,11 +38,10 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		}
 		$this->validity = \Status::newGood();
 
-		$provider = $this->getMock(
-			LocalPasswordPrimaryAuthenticationProvider::class,
-			[ 'checkPasswordValidity' ],
-			[ [ 'loginOnly' => $loginOnly ] ]
-		);
+		$provider = $this->getMockBuilder( LocalPasswordPrimaryAuthenticationProvider::class )
+			->setMethods( [ 'checkPasswordValidity' ] )
+			->setConstructorArgs( [ [ 'loginOnly' => $loginOnly ] ] )
+			->getMock();
 		$provider->expects( $this->any() )->method( 'checkPasswordValidity' )
 			->will( $this->returnCallback( function () {
 				return $this->validity;
@@ -348,7 +347,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		} elseif ( $type === PasswordDomainAuthenticationRequest::class ) {
 			$req = new $type( [] );
 		} else {
-			$req = $this->getMock( $type );
+			$req = $this->createMock( $type );
 		}
 		$req->action = AuthManager::ACTION_CHANGE;
 		$req->username = $user;
@@ -444,7 +443,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		if ( $type === PasswordAuthenticationRequest::class ) {
 			$changeReq = new $type();
 		} else {
-			$changeReq = $this->getMock( $type );
+			$changeReq = $this->createMock( $type );
 		}
 		$changeReq->action = AuthManager::ACTION_CHANGE;
 		$changeReq->username = $user;
