@@ -1298,6 +1298,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 */
 	public function __call( $func, $args ) {
 		static $compatibility = [
+			'createMock' => 'createMock2',
 		];
 
 		if ( isset( $compatibility[$func] ) ) {
@@ -1306,6 +1307,23 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			throw new MWException( "Called non-existent $func method on " . static::class );
 		}
 	}
+
+    /**
+     * Return a test double for the specified class.
+     *
+     * @param string $originalClassName
+     * @return PHPUnit_Framework_MockObject_MockObject
+     * @throws Exception
+     */
+    private function createMock2( $originalClassName ) {
+        return $this->getMockBuilder( $originalClassName )
+            ->disableOriginalConstructor()
+            ->disableOriginalClone()
+            ->disableArgumentCloning()
+            // New in phpunit-mock-objects 3.2 (phpunit 5.4.0)
+            // ->disallowMockingUnknownTypes()
+            ->getMock();
+    }
 
 	private static function unprefixTable( &$tableName, $ind, $prefix ) {
 		$tableName = substr( $tableName, strlen( $prefix ) );
