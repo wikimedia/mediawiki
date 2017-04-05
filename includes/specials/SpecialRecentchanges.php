@@ -746,6 +746,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$user = $this->getUser();
 		$config = $this->getConfig();
 		if ( $options['from'] ) {
+			$resetLink = $this->makeOptionsLink( $this->msg( 'rclistfromreset' ),
+				[ 'from' => '' ], $nondefaults );
+
 			$note .= $this->msg( 'rcnotefrom' )
 				->numParams( $options['limit'] )
 				->params(
@@ -754,7 +757,13 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 					$lang->userTime( $options['from'], $user )
 				)
 				->numParams( $numRows )
-				->parse() . '<br />';
+				->parse() . ' ' .
+				Html::rawElement(
+					'span',
+					[ 'class' => 'rcoptions-listfromreset' ],
+					$this->msg( 'parentheses' )->rawParams( $resetLink )->parse()
+				) .
+				'<br />';
 		}
 
 		# Sort data for display and make sure it's unique after we've added user data.
