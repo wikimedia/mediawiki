@@ -117,20 +117,21 @@ class FileBackendDBRepoWrapperTest extends MediaWikiTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$backendMock = $this->getMock( 'FSFileBackend',
-			[],
-			[ [
-				'name' => $this->backendName,
-				'wikiId' => wfWikiID()
-			] ] );
+		$backendMock = $this->getMockBuilder( 'FSFileBackend' )
+			->setConstructorArgs( [ [
+					'name' => $this->backendName,
+					'wikiId' => wfWikiID()
+				] ] )
+			->getMock();
 
-		$wrapperMock = $this->getMock( 'FileBackendDBRepoWrapper',
-			[ 'getDB' ],
-			[ [
-				'backend' => $backendMock,
-				'repoName' => $this->repoName,
-				'dbHandleFactory' => null
-			] ] );
+		$wrapperMock = $this->getMockBuilder( 'FileBackendDBRepoWrapper' )
+			->setMethods( [ 'getDB' ] )
+			->setConstructorArgs( [ [
+					'backend' => $backendMock,
+					'repoName' => $this->repoName,
+					'dbHandleFactory' => null
+				] ] )
+			->getMock();
 
 		$wrapperMock->expects( $this->any() )->method( 'getDB' )->will( $this->returnValue( $dbMock ) );
 

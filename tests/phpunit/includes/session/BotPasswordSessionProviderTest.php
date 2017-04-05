@@ -183,7 +183,8 @@ class BotPasswordSessionProviderTest extends MediaWikiTestCase {
 	public function testNewSessionInfoForRequest() {
 		$provider = $this->getProvider();
 		$user = static::getTestSysop()->getUser();
-		$request = $this->getMock( 'FauxRequest', [ 'getIP' ] );
+		$request = $this->getMockBuilder( 'FauxRequest' )
+			->setMethods( [ 'getIP' ] )->getMock();
 		$request->expects( $this->any() )->method( 'getIP' )
 			->will( $this->returnValue( '127.0.0.1' ) );
 		$bp = \BotPassword::newFromUser( $user, 'BotPasswordSessionProvider' );
@@ -210,7 +211,8 @@ class BotPasswordSessionProviderTest extends MediaWikiTestCase {
 		$provider->setLogger( $logger );
 
 		$user = static::getTestSysop()->getUser();
-		$request = $this->getMock( 'FauxRequest', [ 'getIP' ] );
+		$request = $this->getMockBuilder( 'FauxRequest' )
+			->setMethods( [ 'getIP' ] )->getMock();
 		$request->expects( $this->any() )->method( 'getIP' )
 			->will( $this->returnValue( '127.0.0.1' ) );
 		$bp = \BotPassword::newFromUser( $user, 'BotPasswordSessionProvider' );
@@ -261,7 +263,8 @@ class BotPasswordSessionProviderTest extends MediaWikiTestCase {
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
-		$request2 = $this->getMock( 'FauxRequest', [ 'getIP' ] );
+		$request = $this->getMockBuilder( 'FauxRequest' )
+			->setMethods( [ 'getIP' ] )->getMock();
 		$request2->expects( $this->any() )->method( 'getIP' )
 			->will( $this->returnValue( '10.0.0.1' ) );
 		$data['metadata'] = $dataMD;

@@ -66,7 +66,7 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 	 * @return PHPUnit_Framework_MockObject_MockObject|User
 	 */
 	private function getMockNonAnonUserWithId( $id ) {
-		$mock = $this->getMock( User::class );
+		$mock = $this->getMockBuilder( User::class )->getMock();
 		$mock->expects( $this->any() )
 			->method( 'isAnon' )
 			->will( $this->returnValue( false ) );
@@ -142,7 +142,7 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 	}
 
 	private function getMockAnonUser() {
-		$mock = $this->getMock( User::class );
+		$mock = $this->getMockBuilder( User::class )->getMock();
 		$mock->expects( $this->any() )
 			->method( 'isAnon' )
 			->will( $this->returnValue( true ) );

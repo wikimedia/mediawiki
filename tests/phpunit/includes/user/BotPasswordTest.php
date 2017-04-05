@@ -311,7 +311,9 @@ class BotPasswordTest extends MediaWikiTestCase {
 		);
 
 		// Failed restriction
-		$request = $this->getMock( 'FauxRequest', [ 'getIP' ] );
+		$request = $this->getMockBuilder( 'FauxRequest' )
+			->setMethods( [ 'getIP' ] )
+			->getMock();
 		$request->expects( $this->any() )->method( 'getIP' )
 			->will( $this->returnValue( '10.0.0.1' ) );
 		$status = BotPassword::login( "{$this->testUserName}@BotPassword", 'foobaz', $request );

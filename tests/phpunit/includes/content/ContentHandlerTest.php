@@ -429,7 +429,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	 * @covers ContentHandler::getDataForSearchIndex
 	 */
 	public function testDataIndexFields() {
-		$mockEngine = $this->getMock( 'SearchEngine' );
+		$mockEngine = $this->createMock( 'SearchEngine' );
 		$title = Title::newFromText( 'Not_Main_Page', NS_MAIN );
 		$page = new WikiPage( $title );
 

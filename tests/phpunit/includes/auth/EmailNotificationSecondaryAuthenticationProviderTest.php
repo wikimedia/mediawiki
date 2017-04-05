@@ -57,24 +57,24 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends \PHPUnit_Fram
 	public function testBeginSecondaryAccountCreation() {
 		$authManager = new AuthManager( new \FauxRequest(), new \HashConfig() );
 
-		$creator = $this->getMock( 'User' );
-		$userWithoutEmail = $this->getMock( 'User' );
+		$creator = $this->getMockBuilder( 'User' )->getMock();
+		$userWithoutEmail = $this->getMockBuilder( 'User' )->getMock();
 		$userWithoutEmail->expects( $this->any() )->method( 'getEmail' )->willReturn( '' );
 		$userWithoutEmail->expects( $this->any() )->method( 'getInstanceForUpdate' )->willReturnSelf();
 		$userWithoutEmail->expects( $this->never() )->method( 'sendConfirmationMail' );
-		$userWithEmailError = $this->getMock( 'User' );
+		$userWithEmailError = $this->getMockBuilder( 'User' )->getMock();
 		$userWithEmailError->expects( $this->any() )->method( 'getEmail' )->willReturn( 'foo@bar.baz' );
 		$userWithEmailError->expects( $this->any() )->method( 'getInstanceForUpdate' )->willReturnSelf();
 		$userWithEmailError->expects( $this->any() )->method( 'sendConfirmationMail' )
 			->willReturn( \Status::newFatal( 'fail' ) );
-		$userExpectsConfirmation = $this->getMock( 'User' );
+		$userExpectsConfirmation = $this->getMockBuilder( 'User' )->getMock();
 		$userExpectsConfirmation->expects( $this->any() )->method( 'getEmail' )
 			->willReturn( 'foo@bar.baz' );
 		$userExpectsConfirmation->expects( $this->any() )->method( 'getInstanceForUpdate' )
 			->willReturnSelf();
 		$userExpectsConfirmation->expects( $this->once() )->method( 'sendConfirmationMail' )
 			->willReturn( \Status::newGood() );
-		$userNotExpectsConfirmation = $this->getMock( 'User' );
+		$userNotExpectsConfirmation = $this->getMockBuilder( 'User' )->getMock();
 		$userNotExpectsConfirmation->expects( $this->any() )->method( 'getEmail' )
 			->willReturn( 'foo@bar.baz' );
 		$userNotExpectsConfirmation->expects( $this->any() )->method( 'getInstanceForUpdate' )
