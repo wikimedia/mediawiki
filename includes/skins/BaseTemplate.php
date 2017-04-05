@@ -710,7 +710,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @return string html
 	 * @since 1.29
 	 */
-	protected function clear() {
+	protected function getClear() {
 		return Html::element( 'div', [ 'class' => 'visualClear' ] );
 	}
 
