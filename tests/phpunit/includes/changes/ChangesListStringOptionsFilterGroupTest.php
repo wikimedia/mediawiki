@@ -183,8 +183,8 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiTestCase {
 	 * @dataProvider provideModifyQuery
 	 */
 	protected function modifyQueryHelper( $groupDefinition, $input ) {
-		$ctx = $this->getMock( 'IContextSource' );
-		$dbr = $this->getMock( 'IDatabase' );
+		$ctx = $this->createMock( 'IContextSource' );
+		$dbr = $this->createMock( 'IDatabase' );
 		$tables = $fields = $conds = $query_options = $join_conds = [];
 
 		$group = new ChangesListStringOptionsFilterGroup( $groupDefinition );

@@ -472,7 +472,7 @@ class ApiMainTest extends ApiTestCase {
 		);
 	}
 
-	// Not static so $this->getMock() can be used
+	// Not static so $this can be used
 	public function provideExceptionErrors() {
 		$reqId = WebRequest::getRequestId();
 		$doclink = wfExpandUrl( wfScript( 'api' ) );
@@ -485,7 +485,9 @@ class ApiMainTest extends ApiTestCase {
 			MWExceptionHandler::getRedactedTraceAsString( $ex )
 		)->inLanguage( 'en' )->useDatabase( false )->text();
 
-		$dbex = new DBQueryError( $this->getMock( 'IDatabase' ), 'error', 1234, 'SELECT 1', __METHOD__ );
+		$dbex = new DBQueryError(
+			$this->createMock( 'IDatabase' ),
+			'error', 1234, 'SELECT 1', __METHOD__ );
 		$dbtrace = wfMessage( 'api-exception-trace',
 			get_class( $dbex ),
 			$dbex->getFile(),

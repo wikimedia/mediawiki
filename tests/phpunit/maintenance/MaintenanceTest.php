@@ -835,7 +835,7 @@ class MaintenanceTest extends MediaWikiTestCase {
 	 * @covers Maintenance::setConfig
 	 */
 	public function testSetConfig() {
-		$conf = $this->getMock( 'Config' );
+		$conf = $this->createMock( 'Config' );
 		$this->m->setConfig( $conf );
 		$this->assertSame( $conf, $this->m->getConfig() );
 	}
