@@ -1298,7 +1298,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 */
 	public function __call( $func, $args ) {
 		static $compatibility = [
-			'assertEmpty' => 'assertEmpty2', // assertEmpty was added in phpunit 3.7.32
 		];
 
 		if ( isset( $compatibility[$func] ) ) {
@@ -1306,15 +1305,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		} else {
 			throw new MWException( "Called non-existent $func method on " . static::class );
 		}
-	}
-
-	/**
-	 * Used as a compatibility method for phpunit < 3.7.32
-	 * @param string $value
-	 * @param string $msg
-	 */
-	private function assertEmpty2( $value, $msg ) {
-		$this->assertTrue( $value == '', $msg );
 	}
 
 	private static function unprefixTable( &$tableName, $ind, $prefix ) {
