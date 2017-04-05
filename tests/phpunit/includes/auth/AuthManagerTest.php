@@ -45,7 +45,9 @@ class AuthManagerTest extends \MediaWikiTestCase {
 	 */
 	protected function hook( $hook, $expect ) {
 		global $wgHooks;
-		$mock = $this->getMock( __CLASS__, [ "on$hook" ] );
+		$mock = $this->getMockBuilder( __CLASS__ )
+			->setMethods( [ "on$hook" ] )
+			->getMock();
 		$wgHooks[$hook] = [ $mock ];
 		return $mock->expects( $expect )->method( "on$hook" );
 	}
@@ -762,9 +764,9 @@ class AuthManagerTest extends \MediaWikiTestCase {
 
 	public function testCreateFromLogin() {
 		$user = \User::newFromName( 'UTSysop' );
-		$req1 = $this->getMock( AuthenticationRequest::class );
-		$req2 = $this->getMock( AuthenticationRequest::class );
-		$req3 = $this->getMock( AuthenticationRequest::class );
+		$req1 = $this->createMock( AuthenticationRequest::class );
+		$req2 = $this->createMock( AuthenticationRequest::class );
+		$req3 = $this->createMock( AuthenticationRequest::class );
 		$userReq = new UsernameAuthenticationRequest;
 		$userReq->username = 'UTDummy';
 

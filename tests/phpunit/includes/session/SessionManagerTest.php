@@ -779,7 +779,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$manager = \TestingAccessWrapper::newFromObject( $this->getManager() );
 		$manager->setLogger( new \Psr\Log\NullLogger() );
 
-		$mock = $this->getMock( 'stdClass', [ 'shutdown' ] );
+		$mock = $this->createMock( 'stdClass', [ 'shutdown' ] );
 		$mock->expects( $this->once() )->method( 'shutdown' );
 
 		$manager->allSessionBackends = [ $mock ];
