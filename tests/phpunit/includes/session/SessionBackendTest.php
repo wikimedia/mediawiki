@@ -293,7 +293,8 @@ class SessionBackendTest extends MediaWikiTestCase {
 	}
 
 	public function testPersist() {
-		$this->provider = $this->getMock( 'DummySessionProvider', [ 'persistSession' ] );
+		$this->provider = $this->getMockBuilder( 'DummySessionProvider' )
+			->setMethods( [ 'persistSession' ] )->getMock();
 		$this->provider->expects( $this->once() )->method( 'persistSession' );
 		$backend = $this->getBackend();
 		$this->assertFalse( $backend->isPersistent(), 'sanity check' );
@@ -312,7 +313,8 @@ class SessionBackendTest extends MediaWikiTestCase {
 	}
 
 	public function testUnpersist() {
-		$this->provider = $this->getMock( 'DummySessionProvider', [ 'unpersistSession' ] );
+		$this->provider = $this->getMockBuilder( 'DummySessionProvider' )
+			->setMethods( [ 'unpersistSession' ] )->getMock();
 		$this->provider->expects( $this->once() )->method( 'unpersistSession' );
 		$backend = $this->getBackend();
 		$wrap = \TestingAccessWrapper::newFromObject( $backend );
@@ -362,7 +364,8 @@ class SessionBackendTest extends MediaWikiTestCase {
 	public function testSetUser() {
 		$user = static::getTestSysop()->getUser();
 
-		$this->provider = $this->getMock( 'DummySessionProvider', [ 'canChangeUser' ] );
+		$this->provider = $this->getMockBuilder( 'DummySessionProvider' )
+			->setMethods( [ 'canChangeUser' ] )->getMock();
 		$this->provider->expects( $this->any() )->method( 'canChangeUser' )
 			->will( $this->returnValue( false ) );
 		$backend = $this->getBackend();
@@ -488,7 +491,8 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$this->store = new TestBagOStuff();
 		$testData = [ 'foo' => 'foo!', 'bar', [ 'baz', null ] ];
 
-		$neverHook = $this->getMock( __CLASS__, [ 'onSessionMetadata' ] );
+		$neverHook = $this->getMockBuilder( __CLASS__ )
+			->setMethods( [ 'onSessionMetadata' ] )->getMock();
 		$neverHook->expects( $this->never() )->method( 'onSessionMetadata' );
 
 		$builder = $this->getMockBuilder( 'DummySessionProvider' )
@@ -694,7 +698,8 @@ class SessionBackendTest extends MediaWikiTestCase {
 
 		// Bad hook
 		$this->provider = null;
-		$mockHook = $this->getMock( __CLASS__, [ 'onSessionMetadata' ] );
+		$mockHook = $this->getMockBuilder( __CLASS__ )
+			->setMethods( [ 'onSessionMetadata' ] )->getMock();
 		$mockHook->expects( $this->any() )->method( 'onSessionMetadata' )
 			->will( $this->returnCallback(
 				function ( SessionBackend $backend, array &$metadata, array $requests ) {
@@ -738,7 +743,8 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$testData = [ 'foo' => 'foo!', 'bar', [ 'baz', null ] ];
 
 		// Not persistent
-		$this->provider = $this->getMock( 'DummySessionProvider', [ 'persistSession' ] );
+		$this->provider = $this->getMockBuilder( 'DummySessionProvider' )
+			->setMethods( [ 'persistSession' ] )->getMock();
 		$this->provider->expects( $this->never() )->method( 'persistSession' );
 		$this->onSessionMetadataCalled = false;
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'SessionMetadata' => [ $this ] ] );
@@ -763,7 +769,8 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$this->assertNotEquals( 0, $wrap->expires );
 
 		// Persistent
-		$this->provider = $this->getMock( 'DummySessionProvider', [ 'persistSession' ] );
+		$this->provider = $this->getMockBuilder( 'DummySessionProvider' )
+			->setMethods( [ 'persistSession' ] )->getMock();
 		$this->provider->expects( $this->atLeastOnce() )->method( 'persistSession' );
 		$this->onSessionMetadataCalled = false;
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'SessionMetadata' => [ $this ] ] );
@@ -789,7 +796,8 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$this->assertNotEquals( 0, $wrap->expires );
 
 		// Not persistent, not expiring
-		$this->provider = $this->getMock( 'DummySessionProvider', [ 'persistSession' ] );
+		$this->provider = $this->getMockBuilder( 'DummySessionProvider' )
+			->setMethods( [ 'persistSession' ] )->getMock();
 		$this->provider->expects( $this->never() )->method( 'persistSession' );
 		$this->onSessionMetadataCalled = false;
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'SessionMetadata' => [ $this ] ] );

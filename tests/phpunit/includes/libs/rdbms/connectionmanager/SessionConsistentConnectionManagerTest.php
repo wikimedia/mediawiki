@@ -19,7 +19,8 @@ class SessionConsistentConnectionManagerTest extends \PHPUnit_Framework_TestCase
 	 * @return IDatabase|PHPUnit_Framework_MockObject_MockObject
 	 */
 	private function getIDatabaseMock() {
-		return $this->getMock( IDatabase::class );
+		return $this->getMockBuilder( IDatabase::class )
+			->getMock();
 	}
 
 	/**
