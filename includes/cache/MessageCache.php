@@ -485,7 +485,8 @@ class MessageCache {
 		} else {
 			# Effectively disallows use of '/' character in NS_MEDIAWIKI for uses
 			# other than language code.
-			$conds[] = 'page_title NOT' . $dbr->buildLike( $dbr->anyString(), '/', $dbr->anyString() );
+			$conds[] = 'page_title NOT' .
+				$dbr->buildLike( $dbr->anyString(), '/', $dbr->anyString() );
 		}
 
 		# Conditions to fetch oversized pages to ignore them
@@ -551,7 +552,7 @@ class MessageCache {
 	/**
 	 * Updates cache as necessary when message page is changed
 	 *
-	 * @param string $title Message cache key with initial uppercase letter.
+	 * @param string $title Message cache key with initial uppercase letter
 	 * @param string|bool $text New contents of the page (false if deleted)
 	 */
 	public function replace( $title, $text ) {
@@ -596,9 +597,8 @@ class MessageCache {
 				$page->loadPageData( $page::READ_LATEST );
 				$text = $this->getMessageTextFromContent( $page->getContent() );
 				// Check if an individual cache key should exist and update cache accordingly
-				$titleKey = $this->wanCache->makeKey(
-					'messages-big', $this->mCache[$code]['HASH'], $title );
 				if ( is_string( $text ) && strlen( $text ) > $wgMaxMsgCacheEntrySize ) {
+					$titleKey = $this->bigMessageCacheKey( $this->mCache[$code]['HASH'], $title );
 					$this->wanCache->set( $titleKey, ' ' . $text, $this->mExpiry );
 				}
 				// Mark this cache as definitely being "latest" (non-volatile) so
@@ -967,8 +967,8 @@ class MessageCache {
 	 * some callers require this behavior. LanguageConverter::parseCachedTable()
 	 * and self::get() are some examples in core.
 	 *
-	 * @param string $title Message cache key with initial uppercase letter.
-	 * @param string $code Code denoting the language to try.
+	 * @param string $title Message cache key with initial uppercase letter
+	 * @param string $code Code denoting the language to try
 	 * @return string|bool The message, or false if it does not exist or on error
 	 */
 	public function getMsgFromNamespace( $title, $code ) {
@@ -995,8 +995,8 @@ class MessageCache {
 			return false;
 		}
 
-		// Try the individual message cache
-		$titleKey = $this->wanCache->makeKey( 'messages-big', $this->mCache[$code]['HASH'], $title );
+		// Individual message cache key
+		$titleKey = $this->bigMessageCacheKey( $this->mCache[$code]['HASH'], $title );
 
 		if ( $this->mCacheVolatile[$code] ) {
 			$entry = false;
@@ -1005,6 +1005,7 @@ class MessageCache {
 				__METHOD__ . ': loading volatile key \'{titleKey}\'',
 				[ 'titleKey' => $titleKey, 'code' => $code ] );
 		} else {
+			// Try the individual message cache
 			$entry = $this->wanCache->get( $titleKey );
 		}
 
@@ -1057,7 +1058,8 @@ class MessageCache {
 			$message = false; // negative caching
 		}
 
-		if ( $message === false ) { // negative caching
+		if ( $message === false ) {
+			// Negative caching in case a "too big" message is no longer available (deleted)
 			$this->mCache[$code][$title] = '!NONEXISTENT';
 			$this->wanCache->set( $titleKey, '!NONEXISTENT', $this->mExpiry, $cacheOpts );
 		}
@@ -1300,5 +1302,14 @@ class MessageCache {
 		}
 
 		return $msgText;
+	}
+
+	/**
+	 * @param string $hash Hash for this version of the entire key/value overrides map
+	 * @param string $title Message cache key with initial uppercase letter
+	 * @return string
+	 */
+	private function bigMessageCacheKey( $hash, $title ) {
+		return $this->wanCache->makeKey( 'messages-big', $hash, $title );
 	}
 }
