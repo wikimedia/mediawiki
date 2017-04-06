@@ -35,6 +35,8 @@ production.
 * (T156983) $wgRateLimitsExcludedIPs now accepts CIDR ranges as well as single IPs.
 * $wgDummyLanguageCodes is deprecated. Additional language code mappings may be
   added to $wgExtraLanguageCodes instead.
+* (T161453) LocalisationCache will no longer use the temporary directory in it's
+  fallback chain when trying to work out where to write the cache.
 
 === New features in 1.29 ===
 * (T5233) A cookie can now be set when a user is autoblocked, to track that user
@@ -97,6 +99,8 @@ production.
 * (T156184) SECURITY: Escape content model/format url parameter in message.
 * (T151735) SECURITY: SVG filter evasion using default attribute values in DTD
   declaration.
+* (T161453) SECURITY: LocalisationCache will no longer use the temporary directory
+  in it's fallback chain when trying to work out where to write the cache.
 
 === Action API changes in 1.29 ===
 * Submitting sensitive authentication request parameters to action=login,
