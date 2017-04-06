@@ -742,7 +742,12 @@ class CategoryViewer extends ContextSource {
 			$totalcnt = $rescnt;
 			$category = $this->cat;
 			DeferredUpdates::addCallableUpdate( function () use ( $category ) {
-				$category->refreshCounts();
+				# Avoid excess contention on the same category (T162121)
+				$name = __METHOD__ . ':' . md5( $this->mName );
+				$scopedLock = wfGetDB( DB_MASTER )->getScopedLockAndFlush( $name );
+				if ( $scopedLock ) {
+					$category->refreshCounts();
+				}
 			} );
 		} else {
 			// Case 3: hopeless.  Don't give a total count at all.
