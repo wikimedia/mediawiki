@@ -26,6 +26,19 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 
 /**
+ * Contacts: elukey || hashar
+ */
+class RedisMonkeyPatched extends Redis {
+	/**
+     * Skip sending QUIT and just close socket
+     */
+	public function close() {
+		fclose($this->connection);
+		$this->connection = null;
+	}
+}
+
+/**
  * Helper class to manage Redis connections.
  *
  * This can be used to get handle wrappers that free the handle when the wrapper
@@ -78,6 +91,9 @@ class RedisConnectionPool implements LoggerAwareInterface {
 			throw new RuntimeException(
 				__CLASS__ . ' requires a Redis client library. ' .
 				'See https://www.mediawiki.org/wiki/Redis#Setup' );
+		}
+		if ( !class_exists( 'RedisMonkeyPatched' ) ) {
+			die( "This jobrunner must be monkey patched. CC elukey,hashar\n" );
 		}
 		$this->logger = isset( $options['logger'] )
 			? $options['logger']
@@ -227,7 +243,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 			}
 		}
 
-		$conn = new Redis();
+		$conn = new RedisMonkeyPatched();
 		try {
 			if ( $this->persistent ) {
 				$result = $conn->pconnect( $host, $port, $this->connectTimeout );
