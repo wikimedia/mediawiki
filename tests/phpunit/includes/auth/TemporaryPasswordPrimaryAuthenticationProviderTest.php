@@ -42,11 +42,10 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		$this->validity = \Status::newGood();
 
 		$mockedMethods[] = 'checkPasswordValidity';
-		$provider = $this->getMock(
-			TemporaryPasswordPrimaryAuthenticationProvider::class,
-			$mockedMethods,
-			[ $params ]
-		);
+		$provider = $this->getMockBuilder( TemporaryPasswordPrimaryAuthenticationProvider::class )
+			->setMethods( $mockedMethods )
+			->setConstructorArgs( [ $params ] )
+			->getMock();
 		$provider->expects( $this->any() )->method( 'checkPasswordValidity' )
 			->will( $this->returnCallback( function () {
 				return $this->validity;
@@ -366,7 +365,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		) {
 			$req = new $type();
 		} else {
-			$req = $this->getMock( $type );
+			$req = $this->createMock( $type );
 		}
 		$req->action = AuthManager::ACTION_CHANGE;
 		$req->username = $user;
@@ -446,7 +445,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		) {
 			$changeReq = new $type();
 		} else {
-			$changeReq = $this->getMock( $type );
+			$changeReq = $this->createMock( $type );
 		}
 		$changeReq->action = AuthManager::ACTION_CHANGE;
 		$changeReq->username = $user;

@@ -1,13 +1,14 @@
 <?php
 
 use Liuggio\StatsdClient\Entity\StatsdData;
+use Liuggio\StatsdClient\Sender\SenderInterface;
 
 class SamplingStatsdClientTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider samplingDataProvider
 	 */
 	public function testSampling( $data, $sampleRate, $seed, $expectWrite ) {
-		$sender = $this->getMock( 'Liuggio\StatsdClient\Sender\SenderInterface' );
+		$sender = $this->getMockBuilder( SenderInterface::class )->getMock();
 		$sender->expects( $this->any() )->method( 'open' )->will( $this->returnValue( true ) );
 		if ( $expectWrite ) {
 			$sender->expects( $this->once() )->method( 'write' )
@@ -50,7 +51,7 @@ class SamplingStatsdClientTest extends PHPUnit_Framework_TestCase {
 		$nonMatching->setKey( 'oof.bar' );
 		$nonMatching->setValue( 1 );
 
-		$sender = $this->getMock( 'Liuggio\StatsdClient\Sender\SenderInterface' );
+		$sender = $this->getMockBuilder( SenderInterface::class )->getMock();
 		$sender->expects( $this->any() )->method( 'open' )->will( $this->returnValue( true ) );
 		$sender->expects( $this->once() )->method( 'write' )->with( $this->anything(),
 			$this->equalTo( $nonMatching ) );
