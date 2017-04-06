@@ -192,7 +192,7 @@
 
 		/**
 		 * Formats language tags according the BCP47 standard.
-		 * See wfBCP47 for the PHP implementation.
+		 * See LanguageCode::bcp47 for the PHP implementation.
 		 *
 		 * @param {string} languageTag Well-formed language tag
 		 * @return {string}
