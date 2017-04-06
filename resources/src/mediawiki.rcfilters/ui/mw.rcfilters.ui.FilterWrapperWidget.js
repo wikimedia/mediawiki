@@ -71,7 +71,10 @@
 			enter: 'onTextInputEnter'
 		} );
 		this.capsule.connect( this, { capsuleItemClick: 'onCapsuleItemClick' } );
-		this.capsule.popup.connect( this, { toggle: 'onCapsulePopupToggle' } );
+		this.capsule.popup.connect( this, {
+			toggle: 'onCapsulePopupToggle',
+			ready: 'onCapsulePopupReady'
+		} );
 
 		// Initialize
 		this.$element
@@ -103,25 +106,28 @@
 	};
 
 	/**
+	 * Respond to capsule popup ready event, fired after the popup is visible, positioned and clipped
+	 */
+	mw.rcfilters.ui.FilterWrapperWidget.prototype.onCapsulePopupReady = function () {
+		mw.hook( 'RcFilters.popup.open' ).fire( this.filterPopup.getSelectedFilter() );
+
+		this.scrollToTop( this.capsule.$element, 10 );
+		if ( !this.filterPopup.getSelectedFilter() ) {
+			// No selection, scroll the popup list to top
+			setTimeout( function () { this.capsule.popup.$body.scrollTop( 0 ); }.bind( this ), 0 );
+		}
+	};
+
+	/**
 	 * Respond to popup toggle event. Reset selection in the list when the popup is closed.
 	 *
 	 * @param {boolean} isVisible Popup is visible
 	 */
 	mw.rcfilters.ui.FilterWrapperWidget.prototype.onCapsulePopupToggle = function ( isVisible ) {
-		if ( !isVisible ) {
-			if ( !this.textInput.getValue() ) {
-				// Only reset selection if we are not filtering
-				this.filterPopup.resetSelection();
-				this.capsule.resetSelection();
-			}
-		} else {
-			mw.hook( 'RcFilters.popup.open' ).fire( this.filterPopup.getSelectedFilter() );
-
-			this.scrollToTop( this.capsule.$element, 10 );
-			if ( !this.filterPopup.getSelectedFilter() ) {
-				// No selection, scroll the popup list to top
-				setTimeout( function () { this.capsule.popup.$body.scrollTop( 0 ); }.bind( this ), 0 );
-			}
+		if ( !isVisible && !this.textInput.getValue() ) {
+			// Only reset selection if we are not filtering
+			this.filterPopup.resetSelection();
+			this.capsule.resetSelection();
 		}
 	};
 
