@@ -7,7 +7,9 @@
 	 *
 	 * @constructor
 	 */
-	mw.rcfilters.dm.FiltersViewModel = function MwRcfiltersDmFiltersViewModel() {
+	mw.rcfilters.dm.FiltersViewModel = function MwRcfiltersDmFiltersViewModel( config ) {
+		config = config || {};
+
 		// Mixin constructor
 		OO.EventEmitter.call( this );
 		OO.EmitterList.call( this );

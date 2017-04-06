@@ -4,10 +4,12 @@
 	 *
 	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersModel Filters view model
 	 * @param {mw.rcfilters.dm.ChangesListViewModel} changesListModel Changes list view model
+	 * @param {mw.rcfilters.dm.SavedQueriesModel} changesListModel Changes list view model
 	 */
-	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel ) {
+	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel, savedQueriesModel ) {
 		this.filtersModel = filtersModel;
 		this.changesListModel = changesListModel;
+		this.savedQueriesModel = savedQueriesModel;
 		this.requestCounter = 0;
 	};
 
@@ -20,7 +22,8 @@
 	 * @param {Array} filterStructure Filter definition and structure for the model
 	 */
 	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure ) {
-		var $changesList = $( '.mw-changeslist' ).first().contents();
+		var savedQuery =  this.savedQueriesModel.getDefault(),
+			$changesList = $( '.mw-changeslist' ).first().contents();
 		// Initialize the model
 		this.filtersModel.initializeFilters( filterStructure );
 		this.updateStateBasedOnUrl();
@@ -32,6 +35,10 @@
 			$( 'fieldset.rcoptions' ).first()
 		);
 
+		if( savedQuery ) {
+			// Set to default saved query
+			this.loadSavedQuery( savedQuery );
+		}
 	};
 
 	/**
@@ -335,5 +342,62 @@
 				userId: mw.user.getId()
 			}
 		);
+	};
+
+	/**
+	 * Save the current parameters as a saved query
+	 *
+	 * @return {string} Query ID
+	 */
+	mw.rcfilters.Controller.prototype.saveCurrentFiltersQuery = function () {
+		var id = new Date().getTime();
+
+		this.savedQueriesModel.addQuery(
+			id,
+			{
+				// Add with a temporary name
+				label: mw.msg( 'rcfilters-savedqueries-temporary-name' ),
+				parameters: this.filtersModel.getParametersFromFilters(),
+				highlights: this.filtersModel.getHighlightParameters()
+			},
+			true
+		);
+
+		return id;
+	};
+
+	/**
+	 * Remove a saved query
+	 *
+	 * @param {string} queryId Query ID
+	 */
+	mw.rcfilters.Controller.prototype.removeSavedQuery = function ( queryId ) {
+		this.savedQueriesModel.removeQuery( queryId );
+	};
+
+	/**
+	 * Set filters to a saved query by its ID
+	 *
+	 * @param {string} queryId Query ID
+	 */
+	mw.rcfilters.Controller.prototype.loadSavedQuery = function ( queryId ) {
+		var query = this.savedQueriesModel.getQueryByID( queryId );
+
+		this.updateChangesList( $.extend( {}, query.parameters, query.highlights ) );
+		this.updateStateBasedOnUrl();
+	};
+
+	/**
+	 * Edit the label of a saved query
+	 *
+	 * @param {string} queryId Query ID
+	 * @param {string} newLabel New label
+	 */
+	mw.rcfilters.Controller.prototype.editSavedQuery = function ( queryId, newLabel ) {
+		this.savedQueriesModel.editQueryLabel( queryId, newLabel );
+	};
+
+	mw.rcfilters.Controller.prototype.setSavedQueryDefault = function ( queryId ) {
+		this.savedQueriesModel.setDefault( queryId );
 	};
 }( mediaWiki, jQuery ) );

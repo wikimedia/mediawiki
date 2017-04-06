@@ -11,11 +11,17 @@
 		init: function () {
 			var filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
 				changesListModel = new mw.rcfilters.dm.ChangesListViewModel(),
-				controller = new mw.rcfilters.Controller( filtersModel, changesListModel ),
+				savedQueriesModel = new mw.rcfilters.dm.SavedQueriesModel(),
+				controller = new mw.rcfilters.Controller( filtersModel, changesListModel, savedQueriesModel ),
 				$overlay = $( '<div>' )
 					.addClass( 'mw-rcfilters-ui-overlay' ),
 				filtersWidget = new mw.rcfilters.ui.FilterWrapperWidget(
-					controller, filtersModel, { $overlay: $overlay } );
+					controller, filtersModel, { $overlay: $overlay } ),
+				savedQueriesWidget = new mw.rcfilters.ui.SavedQueriesWidget(
+					controller,
+					savedQueriesModel,
+					{ $overlay: $overlay }
+				);
 
 			// TODO: The changesListWrapperWidget should be able to initialize
 			// after the model is ready.
@@ -29,7 +35,10 @@
 			new mw.rcfilters.ui.FormWrapperWidget(
 				filtersModel, changesListModel, controller, $( 'fieldset.rcoptions' ) );
 
-			$( '.rcfilters-container' ).append( filtersWidget.$element );
+			$( '.rcfilters-container' ).append(
+				savedQueriesWidget.$element,
+				filtersWidget.$element
+			);
 			$( 'body' ).append( $overlay );
 
 			// Set as ready

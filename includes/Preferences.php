@@ -915,6 +915,9 @@ class Preferences {
 			'label-message' => 'tog-hideminor',
 			'section' => 'rc/advancedrc',
 		];
+		$defaultPreferences['rcfilters-saved-queries'] = [
+			'type' => 'api',
+		];
 
 		if ( $config->get( 'RCWatchCategoryMembership' ) ) {
 			$defaultPreferences['hidecategorization'] = [
