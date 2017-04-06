@@ -876,7 +876,7 @@ class CoreParserFunctions {
 		$code = strtolower( $code );
 		$inLanguage = strtolower( $inLanguage );
 		$lang = Language::fetchLanguageName( $code, $inLanguage );
-		return $lang !== '' ? $lang : wfBCP47( $code );
+		return $lang !== '' ? $lang : LanguageCode::bcp47( $code );
 	}
 
 	/**

@@ -4310,7 +4310,7 @@ class Language {
 	 */
 	public function getHtmlCode() {
 		if ( is_null( $this->mHtmlCode ) ) {
-			$this->mHtmlCode = wfBCP47( $this->getCode() );
+			$this->mHtmlCode = LanguageCode::bcp47( $this->getCode() );
 		}
 		return $this->mHtmlCode;
 	}
