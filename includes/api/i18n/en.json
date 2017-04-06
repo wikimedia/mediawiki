@@ -916,9 +916,11 @@
 	"apihelp-query+links-param-limit": "How many links to return.",
 	"apihelp-query+links-param-titles": "Only list links to these titles. Useful for checking whether a certain page links to a certain title.",
 	"apihelp-query+links-param-dir": "The direction in which to list.",
+	"apihelp-query+links-param-filter": "An optional filter to apply to results.",
 	"apihelp-query+links-example-simple": "Get links from the page <kbd>Main Page</kbd>",
 	"apihelp-query+links-example-generator": "Get information about the link pages in the page <kbd>Main Page</kbd>.",
 	"apihelp-query+links-example-namespaces": "Get links from the page <kbd>Main Page</kbd> in the {{ns:user}} and {{ns:template}} namespaces.",
+	"apihelp-query+links-example-exists": "Get links only to existing pages from the page <kbd>Staraya Ladoga</kbd>.",
 
 	"apihelp-query+linkshere-description": "Find all pages that link to the given pages.",
 	"apihelp-query+linkshere-param-prop": "Which properties to get:",
@@ -1180,9 +1182,11 @@
 	"apihelp-query+templates-param-limit": "How many templates to return.",
 	"apihelp-query+templates-param-templates": "Only list these templates. Useful for checking whether a certain page uses a certain template.",
 	"apihelp-query+templates-param-dir": "The direction in which to list.",
+	"apihelp-query+templates-param-filter": "An optional filter to apply to results.",
 	"apihelp-query+templates-example-simple": "Get the templates used on the page <kbd>Main Page</kbd>.",
 	"apihelp-query+templates-example-generator": "Get information about the template pages used on <kbd>Main Page</kbd>.",
 	"apihelp-query+templates-example-namespaces": "Get pages in the {{ns:user}} and {{ns:template}} namespaces that are transcluded on the page <kbd>Main Page</kbd>.",
+	"apihelp-query+templates-example-exists": "Get links only to existing template pages used on the page <kbd>Staraya Ladoga</kbd>.",
 
 	"apihelp-query+tokens-description": "Gets tokens for data-modifying actions.",
 	"apihelp-query+tokens-param-type": "Types of token to request.",
