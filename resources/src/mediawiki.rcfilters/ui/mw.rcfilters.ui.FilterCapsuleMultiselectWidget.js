@@ -41,6 +41,12 @@
 			classes: [ 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-resetButton' ]
 		} );
 
+		this.saveFiltersButton = new OO.ui.ButtonWidget( {
+			icon: 'bookmark',
+			classes: [ 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-saveFilters' ],
+			label: mw.msg( 'rcfilters-savedqueries-save' )
+		} );
+
 		this.emptyFilterMessage = new OO.ui.LabelWidget( {
 			label: mw.msg( 'rcfilters-empty-filter' ),
 			classes: [ 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-emptyFilters' ]
@@ -49,7 +55,9 @@
 
 		// Events
 		this.resetButton.connect( this, { click: 'onResetButtonClick' } );
+		this.saveFiltersButton.connect( this, { click: 'onSaveFiltersButtonClick' } );
 		this.resetButton.$element.on( 'mousedown', this.onResetButtonMouseDown.bind( this ) );
+		this.saveFiltersButton.$element.on( 'mousedown', this.onResetButtonMouseDown.bind( this ) );
 		this.model.connect( this, {
 			itemUpdate: 'onModelItemUpdate',
 			highlightChange: 'onModelHighlightChange'
@@ -78,8 +86,25 @@
 								.addClass( 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-cell-filters' ),
 							$( '<div>' )
 								.addClass( 'mw-rcfilters-ui-cell' )
-								.addClass( 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-cell-reset' )
-								.append( this.resetButton.$element )
+								.addClass( 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-cell-options' )
+								.append(
+									$( '<div>' )
+										.addClass( 'mw-rcfilters-ui-table' )
+										.append(
+											$( '<div>' )
+												.addClass( 'mw-rcfilters-ui-row' )
+												.append(
+													$( '<div>' )
+														.addClass( 'mw-rcfilters-ui-cell' )
+														.addClass( 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-cell-reset' )
+														.append( this.resetButton.$element ),
+													$( '<div>' )
+														.addClass( 'mw-rcfilters-ui-cell' )
+														.addClass( 'mw-rcfilters-ui-filterCapsuleMultiselectWidget-cell-save' )
+														.append( this.saveFiltersButton.$element )
+												)
+										)
+								)
 						)
 				)
 		);
@@ -152,6 +177,13 @@
 				}
 			}.bind( this ) );
 		}
+	};
+
+	/**
+	 * Respond to click event on the save filters button
+	 */
+	mw.rcfilters.ui.FilterCapsuleMultiselectWidget.prototype.onSaveFiltersButtonClick = function () {
+		this.controller.saveCurrentFiltersQuery();
 	};
 
 	/**
