@@ -2186,7 +2186,7 @@ class OutputPage extends ContextSource {
 					// IE and some other browsers use BCP 47 standards in
 					// their Accept-Language header, like "zh-CN" or "zh-Hant".
 					// We should handle these too.
-					$variantBCP47 = wfBCP47( $variant );
+					$variantBCP47 = LanguageCode::bcp47( $variant );
 					if ( $variantBCP47 !== $variant ) {
 						$aloption[] = 'substr=' . $variantBCP47;
 					}
@@ -3424,7 +3424,7 @@ class OutputPage extends ContextSource {
 				foreach ( $variants as $variant ) {
 					$tags["variant-$variant"] = Html::element( 'link', [
 						'rel' => 'alternate',
-						'hreflang' => wfBCP47( $variant ),
+						'hreflang' => LanguageCode::bcp47( $variant ),
 						'href' => $this->getTitle()->getLocalURL(
 							[ 'variant' => $variant ] )
 						]
