@@ -135,6 +135,13 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			$order[] = $this->prefix . '_namespace' . $sort;
 		}
 
+		if ( $params['filter'] && in_array( $params['filter'], [ 'exists', '!exists' ], true ) ) {
+			$this->addTables( 'page' );
+			$this->addJoinConds( [ 'page' => [ 'LEFT JOIN', [ "page_title={$this->prefix}_title",
+															  "page_namespace={$this->prefix}_namespace" ] ] ] );
+			$this->addWhere( "page_title " . ( $params['filter'] === "exists" ? "IS NOT" : "IS" ) . " NULL" );
+		}
+
 		$order[] = $this->prefix . '_title' . $sort;
 		$this->addOption( 'ORDER BY', $order );
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
@@ -204,6 +211,12 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 					'descending'
 				]
 			],
+			'filter' => [
+				ApiBase::PARAM_TYPE => [
+					'exists',
+					'!exists'
+				]
+			],
 		];
 	}
 
@@ -218,6 +231,10 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				=> "apihelp-{$path}-example-generator",
 			"action=query&prop={$name}&titles=Main%20Page&{$this->prefix}namespace=2|10"
 				=> "apihelp-{$path}-example-namespaces",
+			"action=query&generator={$name}&titles=Staraya%20Ladoga&{$this->prefix}filter=exists"
+				=> "apihelp-{$path}-example-exists",
+			"action=query&generator={$name}&titles=Staraya%20Ladoga&{$this->prefix}filter=!exists"
+				=> "apihelp-{$path}-example-!exists",
 		];
 	}
 
