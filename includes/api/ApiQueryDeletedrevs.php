@@ -250,7 +250,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$this->addOption( 'LIMIT', $limit + 1 );
 		$this->addOption(
 			'USE INDEX',
-			[ 'archive' => ( $mode == 'user' ? 'usertext_timestamp' : 'name_title_timestamp' ) ]
+			[ 'archive' => ( $mode == 'user' ? 'ar_usertext_timestamp' : 'name_title_timestamp' ) ]
 		);
 		if ( $mode == 'all' ) {
 			if ( $params['unique'] ) {
