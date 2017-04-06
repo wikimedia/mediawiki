@@ -1027,7 +1027,7 @@ class EditPage {
 			throw new ErrorPageError(
 				'editpage-invalidcontentmodel-title',
 				'editpage-invalidcontentmodel-text',
-				[ $this->contentModel ]
+				[ wfEscapeWikiText( $this->contentModel ) ]
 			);
 		}
 
@@ -1035,7 +1035,10 @@ class EditPage {
 			throw new ErrorPageError(
 				'editpage-notsupportedcontentformat-title',
 				'editpage-notsupportedcontentformat-text',
-				[ $this->contentFormat, ContentHandler::getLocalizedName( $this->contentModel ) ]
+				[
+					wfEscapeWikiText( $this->contentFormat ),
+					wfEscapeWikiText( ContentHandler::getLocalizedName( $this->contentModel ) )
+				]
 			);
 		}
 
