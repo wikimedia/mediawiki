@@ -262,11 +262,11 @@
 		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
 	} );
 
-	QUnit.test( 'clicks on links inside toggler pass through (options.linksPassthru)', function ( assert ) {
+	QUnit.test( 'clicks on links inside toggler pass through', function ( assert ) {
 		var $collapsible = prepareCollapsible(
 				'<div class="mw-collapsible">' +
 					'<div class="mw-collapsible-toggle">' +
-						'Toggle <a href="#top">toggle</a> toggle <b>toggle</b>' +
+						'Toggle <a href="#">toggle</a> toggle <b>toggle</b>' +
 					'</div>' +
 					'<div class="mw-collapsible-content">' + loremIpsum + '</div>' +
 				'</div>',
@@ -288,12 +288,12 @@
 					loremIpsum +
 				'</div>'
 			),
-			$toggleLink = $collapsible.find( '.mw-collapsible-toggle a' );
+			$toggleText = $collapsible.find( '.mw-collapsible-text' );
 
-		assert.equal( $toggleLink.text(), 'Collapse me!', 'data-collapsetext is respected' );
+		assert.equal( $toggleText.text(), 'Collapse me!', 'data-collapsetext is respected' );
 
 		$collapsible.on( 'afterCollapse.mw-collapsible', function () {
-			assert.equal( $toggleLink.text(), 'Expand me!', 'data-expandtext is respected' );
+			assert.equal( $toggleText.text(), 'Expand me!', 'data-expandtext is respected' );
 		} );
 
 		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
@@ -304,12 +304,39 @@
 				'<div class="mw-collapsible">' + loremIpsum + '</div>',
 				{ collapseText: 'Collapse me!', expandText: 'Expand me!' }
 			),
-			$toggleLink = $collapsible.find( '.mw-collapsible-toggle a' );
+			$toggleText = $collapsible.find( '.mw-collapsible-text' );
 
-		assert.equal( $toggleLink.text(), 'Collapse me!', 'options.collapseText is respected' );
+		assert.equal( $toggleText.text(), 'Collapse me!', 'options.collapseText is respected' );
 
 		$collapsible.on( 'afterCollapse.mw-collapsible', function () {
-			assert.equal( $toggleLink.text(), 'Expand me!', 'options.expandText is respected' );
+			assert.equal( $toggleText.text(), 'Expand me!', 'options.expandText is respected' );
+		} );
+
+		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
+	} );
+
+	QUnit.test( 'predefined toggle button and text (.mw-collapsible-toggle/.mw-collapsible-text)', function ( assert ) {
+		var $collapsible = prepareCollapsible(
+				'<div class="mw-collapsible">' +
+					'<div class="mw-collapsible-toggle">' +
+						'<span>[</span><span class="mw-collapsible-text">Toggle</span><span>]</span>' +
+					'</div>' +
+					'<div class="mw-collapsible-content">' + loremIpsum + '</div>' +
+				'</div>',
+				{ collapseText: 'Hide', expandText: 'Show' }
+			),
+			$toggleText = $collapsible.find( '.mw-collapsible-text' );
+
+		assert.equal( $toggleText.text(), 'Toggle', 'predefined text remains' );
+
+		$collapsible.on( 'afterCollapse.mw-collapsible', function () {
+			assert.equal( $toggleText.text(), 'Show', 'predefined text is toggled' );
+
+			$collapsible.on( 'afterExpand.mw-collapsible', function () {
+				assert.equal( $toggleText.text(), 'Hide', 'predefined text is toggled back' );
+			} );
+
+			$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
 		} );
 
 		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
