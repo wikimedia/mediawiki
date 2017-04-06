@@ -24,8 +24,7 @@
 			"Mailman",
 			"Ping08",
 			"Ivan-r",
-			"Redredsonia",
-			"Alexey zakharenkov"
+			"Redredsonia"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Документация]]\n* [[mw:API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почтовая рассылка]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> Все отображаемые на этой странице функции должны работать, однако API находится в статусе активной разработки и может измениться в любой момент. Подпишитесь на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом «MediaWiki-API-Error», после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:API:Errors_and_warnings|API: Ошибки и предупреждения]].\n\n<strong>Тестирование:</strong> для удобства тестирования API-запросов, см. [[Special:ApiSandbox]].",
@@ -332,7 +331,6 @@
 	"apihelp-query+revisions+base-param-limit": "Ограничение на количество версий которое будут вовзращено",
 	"apihelp-query+search-description": "Выполнить полнотекстовый поиск.",
 	"apihelp-query+siteinfo-paramvalue-prop-fileextensions": "Возвращает список расширений (типы файлов), которые доступны к загрузке",
-	"apihelp-query+siteinfo-paramvalue-prop-languagevariants": "Возвращает список кодов языков, для которых включён [[mw:Special:MyLanguage/LanguageConverter|LanguageConverter]], а также варианты,поддерживаемые для каждого языка.",
 	"apihelp-query+tags-description": "Список изменерий тегов.",
 	"apihelp-query+tags-example-simple": "Лист доступных тегов",
 	"apihelp-query+templates-param-namespace": "Показывать шаблоны только из данного списка имен",

@@ -1616,8 +1616,8 @@
 	"rcfilters-hideminor-conflicts-typeofchange": "Tooltip shown when hovering over the Minor edits tag, when a Type of Change filter is also selected.\n\n\"Minor edits\" is {{msg-mw|rcfilters-filter-minor-label}}.\n\n\"Type of change\" is {{msg-mw|rcfilters-filtergroup-changetype}}.\n\nThis indicates that no results will be shown.  Parameters:\n* $1 - Comma-separated string of selected Type of Change filters, e.g. \"Category, Logged Actions\"\n* $2 - Count of selected User Experience Level filters, for PLURAL",
 	"rcfilters-typeofchange-conflicts-hideminor": "Tooltip shown when hovering over a Type of change filter tag, when the Minor edits filter is also selected.\n\n\"Minor edits\" is {{msg-mw|rcfilters-filter-minor-label}}.\n\n\"Type of change\" is {{msg-mw|rcfilters-filtergroup-changetype}}.\n\nThis indicates that no results will be shown.",
 	"rcnotefrom": "This message is displayed at [[Special:RecentChanges]] when viewing recentchanges from some specific time.\n\nThe corresponding message is {{msg-mw|Rclistfrom}}.\n\nParameters:\n* $1 - the maximum number of changes that are displayed\n* $2 - (Optional) a date and time\n* $3 - a date\n* $4 - a time\n* $5 - Number of changes are displayed, for use with PLURAL",
-	"rclistfromreset": "Used on [[Special:RecentChanges]] to reset a selection of a certain date range.",
 	"rclistfrom": "Used on [[Special:RecentChanges]]. Parameters:\n* $1 - (Currently not use) date and time. The date and the time adds to the rclistfrom description.\n* $2 - time. The time adds to the rclistfrom link description (with split of date and time).\n* $3 - date. The date adds to the rclistfrom link description (with split of date and time).\n\nThe corresponding message is {{msg-mw|Rcnotefrom}}.",
+	"rclistfromreset": "Used on [[Special:RecentChanges]] to reset a selection of a certain date range.",
 	"rcshowhideminor": "Option text in [[Special:RecentChanges]]. Parameters:\n* $1 - the \"show/hide\" command, with the text taken from either {{msg-mw|rcshowhideminor-show}} or {{msg-mw|rcshowhideminor-hide}}\n{{Identical|Minor edit}}",
 	"rcshowhideminor-show": "{{doc-actionlink}}\nOption text in [[Special:RecentChanges]] in conjunction with {{msg-mw|rcshowhideminor}}.\n\nSee also:\n* {{msg-mw|rcshowhideminor-hide}}\n{{Identical|Show}}",
 	"rcshowhideminor-hide": "{{doc-actionlink}}\nOption text in [[Special:RecentChanges]] in conjunction with {{msg-mw|rcshowhideminor}}.\n\nSee also:\n* {{msg-mw|rcshowhideminor-show}}\n{{Identical|Hide}}",
@@ -4475,5 +4475,8 @@
 	"restrictionsfield-help": "Placeholder text displayed in restriction fields (e.g. on Special:BotPassword).",
 	"revid": "Used to format a revision ID number in text. Parameters:\n* $1 - Revision ID number.\n{{Identical|Revision}}",
 	"pageid": "Used to format a page ID number in text. Parameters:\n* $1 - Page ID number.",
-	"rawhtml-notallowed": "Error message given when $wgRawHtml = true; is set and a user uses an &lt;html&gt; tag in a system message or somewhere other than a normal page."
+	"rawhtml-notallowed": "Error message given when $wgRawHtml = true; is set and a user uses an &lt;html&gt; tag in a system message or somewhere other than a normal page.",
+	"gotointerwiki": "{{doc-special|GoToInterwiki}}\n\nSpecial:GoToInterwiki is a warning page displayed before redirecting users to external interwiki links. Its triggered by people going to something like [[Special:Search/google:foo]].",
+	"gotointerwiki-invalid": "Message shown on Special:GoToInterwiki if given an invalid title.",
+	"gotointerwiki-external": "Message shown on Special:GoToInterwiki if given a external interwiki link (e.g. [[Special:GoToInterwiki/Google:Foo]]). $1 is the full url the user is trying to get to. $2 is the text of the interwiki link (e.g. \"Google:foo\")."
 }
