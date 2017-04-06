@@ -72,3 +72,4 @@ Thumbs.db
 /.htaccess
 /.htpasswd
 /tests/phan/issues
+*.rej
