@@ -8,7 +8,7 @@ class ResourceLoaderStartUpModuleTest extends ResourceLoaderTestCase {
 		] );
 	}
 
-	public static function provideGetModuleRegistrations() {
+	public function provideGetModuleRegistrations() {
 		return [
 			[ [
 				'msg' => 'Empty registry',
@@ -32,6 +32,88 @@ mw.loader.register( [
     [
         "test.blank",
         "{blankVer}"
+    ]
+] );',
+			] ],
+			[ [
+				'msg' => 'Omit raw modules from registry',
+				'modules' => [
+					'test.raw' => new ResourceLoaderTestModule( [ 'isRaw' => true ] ),
+					'test.blank' => new ResourceLoaderTestModule(),
+				],
+				'out' => '
+mw.loader.addSource( {
+    "local": "/w/load.php"
+} );
+mw.loader.register( [
+    [
+        "test.blank",
+        "{blankVer}"
+    ]
+] );',
+			] ],
+			[ [
+				'msg' => 'Version falls back gracefully if getVersionHash throws',
+				'modules' => [
+					'test.fail' => (
+						( $mock = $this->getMockBuilder( 'ResourceLoaderTestModule' )
+							->setMethods( [ 'getVersionHash' ] )->getMock() )
+						&& $mock->method( 'getVersionHash' )->will(
+							$this->throwException( new Exception )
+						)
+					) ? $mock : $mock
+				],
+				'out' => '
+mw.loader.addSource( {
+    "local": "/w/load.php"
+} );
+mw.loader.register( [
+    [
+        "test.fail",
+        ""
+    ]
+] );
+mw.loader.state( {
+    "test.fail": "error"
+} );',
+			] ],
+			[ [
+				'msg' => 'Use version from getVersionHash',
+				'modules' => [
+					'test.version' => (
+						( $mock = $this->getMockBuilder( 'ResourceLoaderTestModule' )
+							->setMethods( [ 'getVersionHash' ] )->getMock() )
+						&& $mock->method( 'getVersionHash' )->willReturn( '1234567' )
+					) ? $mock : $mock
+				],
+				'out' => '
+mw.loader.addSource( {
+    "local": "/w/load.php"
+} );
+mw.loader.register( [
+    [
+        "test.version",
+        "1234567"
+    ]
+] );',
+			] ],
+			[ [
+				'msg' => 'Re-hash version from getVersionHash if too long',
+				'modules' => [
+					'test.version' => (
+						( $mock = $this->getMockBuilder( 'ResourceLoaderTestModule' )
+							->setMethods( [ 'getVersionHash' ] )->getMock() )
+						&& $mock->method( 'getVersionHash' )->willReturn( '12345678' )
+					) ? $mock : $mock
+				],
+				'out' => '
+mw.loader.addSource( {
+    "local": "/w/load.php"
+} );
+mw.loader.register( [
+    [
+        "test.version",
+        "016es8l"
     ]
 ] );',
 			] ],
@@ -303,8 +385,8 @@ mw.loader.register( [
 
 	/**
 	 * @dataProvider provideGetModuleRegistrations
-	 * @covers ResourceLoaderStartUpModule::compileUnresolvedDependencies
 	 * @covers ResourceLoaderStartUpModule::getModuleRegistrations
+	 * @covers ResourceLoaderStartUpModule::compileUnresolvedDependencies
 	 * @covers ResourceLoader::makeLoaderRegisterScript
 	 */
 	public function testGetModuleRegistrations( $case ) {
@@ -344,6 +426,7 @@ mw.loader.register( [
 		];
 	}
 	/**
+	 * @covers ResourceLoaderStartUpModule::getModuleRegistrations
 	 * @dataProvider provideRegistrations
 	 */
 	public function testRegistrationsMinified( $modules ) {
@@ -368,6 +451,7 @@ mw.loader.register( [
 	}
 
 	/**
+	 * @covers ResourceLoaderStartUpModule::getModuleRegistrations
 	 * @dataProvider provideRegistrations
 	 */
 	public function testRegistrationsUnminified( $modules ) {

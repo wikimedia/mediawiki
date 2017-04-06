@@ -49,10 +49,23 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoader::register
 	 * @covers ResourceLoader::getModule
 	 */
-	public function testRegisterValid() {
+	public function testRegisterValidObject() {
 		$module = new ResourceLoaderTestModule();
 		$resourceLoader = new EmptyResourceLoader();
 		$resourceLoader->register( 'test', $module );
+		$this->assertEquals( $module, $resourceLoader->getModule( 'test' ) );
+	}
+
+	/**
+	 * @covers ResourceLoader::register
+	 * @covers ResourceLoader::getModule
+	 */
+	public function testRegisterValidArray() {
+		$module = new ResourceLoaderTestModule();
+		$resourceLoader = new EmptyResourceLoader();
+		// Covers case of register() setting $rl->moduleInfos,
+		// but $rl->modules lazy-populated by getModule()
+		$resourceLoader->register( 'test', [ 'object' => $module ] );
 		$this->assertEquals( $module, $resourceLoader->getModule( 'test' ) );
 	}
 
@@ -381,6 +394,33 @@ mw.example();
 			null, // styles
 			null, // messages
 			null // templates
+		);
+	}
+
+	/**
+	 * @covers ResourceLoader::makeLoaderRegisterScript
+	 */
+	public function testMakeLoaderRegisterScript() {
+		$this->assertEquals(
+			'mw.loader.register( [
+    [
+        "test.name",
+        "1234567"
+    ]
+] );',
+			ResourceLoader::makeLoaderRegisterScript( [
+				[ 'test.name', '1234567' ],
+			] ),
+			'Nested array parameter'
+		);
+
+		$this->assertEquals(
+			'mw.loader.register( "test.name", "1234567" );',
+			ResourceLoader::makeLoaderRegisterScript(
+				'test.name',
+				'1234567'
+			),
+			'Variadic parameters'
 		);
 	}
 
