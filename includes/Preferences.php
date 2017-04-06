@@ -354,7 +354,7 @@ class Preferences {
 
 		$options = [];
 		foreach ( $languages as $code => $name ) {
-			$display = wfBCP47( $code ) . ' - ' . $name;
+			$display = LanguageCode::bcp47( $code ) . ' - ' . $name;
 			$options[$display] = $code;
 		}
 		$defaultPreferences['language'] = [
@@ -396,7 +396,7 @@ class Preferences {
 
 					$options = [];
 					foreach ( $variantArray as $code => $name ) {
-						$display = wfBCP47( $code ) . ' - ' . $name;
+						$display = LanguageCode::bcp47( $code ) . ' - ' . $name;
 						$options[$display] = $code;
 					}
 

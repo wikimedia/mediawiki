@@ -1054,8 +1054,8 @@ EOT
 	protected function doRenderLangOpt( array $langChoices, $curLang, $defaultLang ) {
 		global $wgScript;
 		sort( $langChoices );
-		$curLang = wfBCP47( $curLang );
-		$defaultLang = wfBCP47( $defaultLang );
+		$curLang = LanguageCode::bcp47( $curLang );
+		$defaultLang = LanguageCode::bcp47( $defaultLang );
 		$opts = '';
 		$haveCurrentLang = false;
 		$haveDefaultLang = false;
@@ -1067,7 +1067,7 @@ EOT
 		// include a choice for that. Last of all, if we're viewing
 		// the file in a language not on the list, add it as a choice.
 		foreach ( $langChoices as $lang ) {
-			$code = wfBCP47( $lang );
+			$code = LanguageCode::bcp47( $lang );
 			$name = Language::fetchLanguageName( $code, $this->getContext()->getLanguage()->getCode() );
 			if ( $name !== '' ) {
 				$display = $this->getContext()->msg( 'img-lang-opt', $code, $name )->text();
