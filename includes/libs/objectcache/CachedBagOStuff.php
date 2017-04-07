@@ -106,4 +106,12 @@ class CachedBagOStuff extends HashBagOStuff {
 		return $this->backend->modifySimpleRelayEvent( $event );
 	}
 
+	public function makeKey() {
+		return call_user_func_array( [ $this->backend, __FUNCTION__ ], func_get_args() );
+	}
+
+	public function makeGlobalKey() {
+		return call_user_func_array( [ $this->backend, __FUNCTION__ ], func_get_args() );
+	}
+
 }
