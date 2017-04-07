@@ -116,6 +116,18 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	}
 
 	/**
+	 * @covers ResourceLoader::register
+	 * @covers ResourceLoader::getModule
+	 */
+	public function testRegisterWildcard() {
+		$module = new ResourceLoaderTestModule();
+		$resourceLoader = new EmptyResourceLoader();
+		$resourceLoader->register( 'test.foo.*', $module );
+		$this->assertEquals( $module, $resourceLoader->getModule( 'test.foo.bar' ) );
+		$this->assertEquals( $module, $resourceLoader->getModule( 'test.foo.baz' ) );
+	}
+
+	/**
 	 * @covers ResourceLoader::getModuleNames
 	 */
 	public function testGetModuleNames() {
@@ -123,8 +135,10 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		$resourceLoader = new EmptyResourceLoader();
 		$resourceLoader->register( 'test.foo', new ResourceLoaderTestModule() );
 		$resourceLoader->register( 'test.bar', new ResourceLoaderTestModule() );
+		$resourceLoader->register( 'test.baz.*', new ResourceLoaderTestModule() );
+		$resourceLoader->isModuleRegistered( 'test.baz.123' );
 		$this->assertEquals(
-			[ 'test.foo', 'test.bar' ],
+			[ 'test.foo', 'test.bar', 'test.baz.*' ],
 			$resourceLoader->getModuleNames()
 		);
 	}
@@ -195,8 +209,12 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	public function testIsModuleRegistered() {
 		$rl = new EmptyResourceLoader();
 		$rl->register( 'test', new ResourceLoaderTestModule() );
+		$rl->register( 'test.foo.*', new ResourceLoaderTestModule() );
 		$this->assertTrue( $rl->isModuleRegistered( 'test' ) );
 		$this->assertFalse( $rl->isModuleRegistered( 'test.unknown' ) );
+		$this->assertTrue( $rl->isModuleRegistered( 'test.foo.*' ) );
+		$this->assertTrue( $rl->isModuleRegistered( 'test.foo.bar' ) );
+		$this->assertFalse( $rl->isModuleRegistered( 'test.foo.bar.baz' ) );
 	}
 
 	/**

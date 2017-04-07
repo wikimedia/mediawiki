@@ -28,6 +28,8 @@ production.
 * Added 'ApiParseMakeOutputPage' hook.
 * (T174313) Added checkbox on Special:ListUsers to display only users in temporary
   user groups.
+* ResourceLoader now supports wildcard modules.
+* …
 
 === External library changes in 1.32 ===
 * …
@@ -59,6 +61,7 @@ production.
 * Added 'ApiParseMakeOutputPage' hook.
 * Parameter names may no longer contain '{' or '}', as these are now used for
   templated parameters.
+* …
 
 === Languages updated in 1.32 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.
@@ -97,6 +100,7 @@ because of Phabricator reports.
 * The Html5Internal and Html5Depurate tidy driver classes were removed, along with the
   Balancer tidy implementation. Both implementations were experimental, and were replaced
   by RemexHtml.
+* …
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
@@ -112,6 +116,7 @@ because of Phabricator reports.
   in extending classes is deprecated.  Extend related doSearch* methods
   instead.
 * CollationFa has been removed completely as it's not needed anymore
+* …
 
 === Other changes in 1.32 ===
 * Soft hyphens (U+00AD) are now automatically removed from titles; these
