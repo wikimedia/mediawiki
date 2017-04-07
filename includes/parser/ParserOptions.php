@@ -124,6 +124,11 @@ class ParserOptions {
 		[ 'Parser', 'statelessFetchRevision' ];
 
 	/**
+	 * @var bool Whether it's safe to use $this->mCurrentRevisionCallback to load JavaScript
+	 */
+	private $mCurrentRevisionCallbackIsSafe = false;
+
+	/**
 	 * @var callable Callback for template fetching; first argument to call_user_func().
 	 */
 	private $mTemplateCallback =
@@ -332,6 +337,11 @@ class ParserOptions {
 	/* @since 1.24 */
 	public function getCurrentRevisionCallback() {
 		return $this->mCurrentRevisionCallback;
+	}
+
+	/* @since 1.29 */
+	public function getCurrentRevisionCallbackIsSafe() {
+		return $this->mCurrentRevisionCallbackIsSafe;
 	}
 
 	public function getTemplateCallback() {
@@ -551,7 +561,9 @@ class ParserOptions {
 	}
 
 	/* @since 1.24 */
-	public function setCurrentRevisionCallback( $x ) {
+	/* @since 1.29 Added the $isSafe parameter */
+	public function setCurrentRevisionCallback( $x, $isSafe = false ) {
+		$this->mCurrentRevisionCallbackIsSafe = (bool)$isSafe;
 		return wfSetVar( $this->mCurrentRevisionCallback, $x );
 	}
 
