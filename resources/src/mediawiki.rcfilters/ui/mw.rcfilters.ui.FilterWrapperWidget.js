@@ -158,7 +158,9 @@
 		var filter = this.filterPopup.getSelectedFilter();
 
 		// Toggle the filter
-		this.controller.toggleFilterSelect( filter );
+		if ( filter ) {
+			this.controller.toggleFilterSelect( filter );
+		}
 	};
 
 	/**

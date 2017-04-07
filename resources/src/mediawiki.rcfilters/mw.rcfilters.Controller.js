@@ -111,6 +111,11 @@
 	mw.rcfilters.Controller.prototype.toggleFilterSelect = function ( filterName, isSelected ) {
 		var filterItem = this.filtersModel.getItemByName( filterName );
 
+		if ( !filterItem ) {
+			// If no filter was found, break
+			return;
+		}
+
 		isSelected = isSelected === undefined ? !filterItem.isSelected() : isSelected;
 
 		if ( filterItem.isSelected() !== isSelected ) {
