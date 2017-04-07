@@ -74,6 +74,7 @@ production.
   and non-MySQL ::replace() and ::upsert() no longer roll back the whole
   transaction on failure.
 * (T189785) Added a monthly heartbeat ping to the pingback feature.
+* ResourceLoader now supports wildcard modules.
 
 === External library changes in 1.31 ===
 
