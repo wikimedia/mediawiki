@@ -84,6 +84,39 @@ class CachedBagOStuffTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * @covers CachedBagOStuff::setDebug
+	 */
+	public function testSetDebug() {
+		$backend = new HashBagOStuff();
+		$cache = new CachedBagOStuff( $backend );
+		// Access private property 'debugMode'
+		$backend = TestingAccessWrapper::newFromObject( $backend );
+		$cache = TestingAccessWrapper::newFromObject( $cache );
+		$this->assertFalse( $backend->debugMode );
+		$this->assertFalse( $cache->debugMode );
+
+		$cache->setDebug( true );
+		// Should have set both
+		$this->assertTrue( $backend->debugMode, 'sets backend' );
+		$this->assertTrue( $cache->debugMode, 'sets self' );
+	}
+
+	/**
+	 * @covers CachedBagOStuff::deleteObjectsExpiringBefore
+	 */
+	public function testExpire() {
+		$backend = $this->getMockBuilder( HashBagOStuff::class )
+			->setMethods( [ 'deleteObjectsExpiringBefore' ] )
+			->getMock();
+		$backend->expects( $this->once() )
+			->method( 'deleteObjectsExpiringBefore' )
+			->willReturn( false );
+
+		$cache = new CachedBagOStuff( $backend );
+		$cache->deleteObjectsExpiringBefore( '20110401000000' );
+	}
+
+	/**
 	 * @covers CachedBagOStuff::makeKey
 	 */
 	public function testMakeKey() {
