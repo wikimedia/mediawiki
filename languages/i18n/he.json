@@ -1390,6 +1390,7 @@
 	"rcfilters-hideminor-conflicts-typeofchange": "סוגים מסוימים של שינויים אינם יכולים להיות מסווגים כ\"משניים\", כך שמסנן זה מתנגש עם מסנן סוג השינויים הבא: $1",
 	"rcfilters-typeofchange-conflicts-hideminor": "מסנן סוג השינויים הזה מתנגש עם מסנן \"עריכות משניות\". סוגים מסוימים של שינויים אינם יכולים מסווגים כ\"משניים\".",
 	"rcnotefrom": "להלן {{PLURAL:$5|השינוי שבוצע|השינויים שבוצעו}} מאז <strong>$3, $4</strong> (מוצגים עד <strong>$1</strong>).",
+	"rclistfromreset": "איפוס בחירת התאריך",
 	"rclistfrom": "הצגת שינויים חדשים החל מ־$2, $3",
 	"rcshowhideminor": "$1 עריכות משניות",
 	"rcshowhideminor-show": "הצגת",
@@ -1510,6 +1511,7 @@
 	"php-uploaddisabledtext": "אפשרות העלאת הקבצים מבוטלת ברמת PHP. אנא בדקו את ההגדרה file_uploads.",
 	"uploadscripted": "הקובץ כולל קוד סקריפט או HTML שעשוי להתפרש או להתבצע בטעות על־ידי הדפדפן.",
 	"upload-scripted-pi-callback": "לא ניתן להעלות קובץ שמכיל את הוראת העיבוד XML-stylesheet.",
+	"upload-scripted-dtd": "לא ניתן להעלות קבצי SVG שכוללים הכרזת DTD לא־סטנדרטית.",
 	"uploaded-script-svg": "נמצא אלמנט שאפשר לכתוב בו תסריט \"$1\" בקובץ ה־SVG שהועלה.",
 	"uploaded-hostile-svg": "נמצא CSS בלתי־מאובטח באלמנט style בקובץ ה־SVG שהועלה.",
 	"uploaded-event-handler-on-svg": "אסור להגדיר מאפייני טיפול באירועים <code dir=\"ltr\">$1=\"$2\"</code> בקובצי SVG.",
@@ -3800,6 +3802,7 @@
 	"special-characters-group-thai": "תאית",
 	"special-characters-group-lao": "לאו",
 	"special-characters-group-khmer": "קמרית",
+	"special-characters-group-canadianaboriginal": "לשונות ילידיות קנדיות",
 	"special-characters-title-endash": "קו מפריד",
 	"special-characters-title-emdash": "קו מפריד ארוך",
 	"special-characters-title-minus": "מינוס",
@@ -3944,5 +3947,10 @@
 	"restrictionsfield-help": "כתובת IP אחת או טווח CIDR אחד בשורה. כדי לאפשר את הכול, ניתן להשתמש ב:<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "גרסה $1",
 	"pageid": "מזהה דף $1",
-	"rawhtml-notallowed": "לא ניתן להשתמש בתגיות &lt;html&gt; מחוץ לדפים רגילים."
+	"rawhtml-notallowed": "לא ניתן להשתמש בתגיות &lt;html&gt; מחוץ לדפים רגילים.",
+	"gotointerwiki": "עזיבת {{SITENAME}}",
+	"gotointerwiki-invalid": "הכותרת שצוינה אינה תקינה.",
+	"gotointerwiki-external": "{{GENDER:|אתה עומד|את עומדת|אתם עומדים}} לעזוב את {{SITENAME}} כדי לבקר באתר הנפרד \"[[$2]]\".\n\n[$1 {{GENDER:|לחץ|לחצי|לחצו}} כאן כדי להמשיך לכתובת $1].",
+	"undelete-cantedit": "אין באפשרותך לשחזר דף זה, כי אין באפשרותך לערוך אותו.",
+	"undelete-cantcreate": "אין באפשרותך לשחזר דף זה, כי אין דף קיים בשם זה ואין באפשרותך ליצור אותו."
 }

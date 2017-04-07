@@ -1089,7 +1089,7 @@
 	"saveusergroups": "Salveguardar gruppos de {{GENDER:$1|usator}}",
 	"userrights-groupsmember": "Membro de:",
 	"userrights-groupsmember-auto": "Membro implicite de:",
-	"userrights-groups-help": "Tu pote alterar le gruppos al quales iste usator pertine:\n* Un quadrato marcate significa que le usator es in le gruppo.\n* Un non marcate significa que ille non lo es.\n* Un * indica que tu non pote remover le gruppo post adder lo, o vice versa.\n* Un # indica que tu pote solmente reducer le tempore de expiration del gruppo e non extender lo.",
+	"userrights-groups-help": "Tu pote alterar le gruppos al quales iste usator pertine:\n* Un quadrato marcate significa que le usator es in le gruppo.\n* Un non marcate significa que ille non lo es.\n* Un * indica que tu non pote remover le gruppo post adder lo, o vice versa.\n* Un # indica que tu pote solmente prolongar le pertinentia a iste gruppo e non accurtar lo.",
 	"userrights-reason": "Motivo:",
 	"userrights-no-interwiki": "Tu non ha le permission de modificar le derectos de usatores in altere wikis.",
 	"userrights-nodatabase": "Le base de datos $1 non existe o non es local.",

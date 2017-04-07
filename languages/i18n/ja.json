@@ -1957,6 +1957,8 @@
 	"activeusers-intro": "これは過去 $1 {{PLURAL:$1|日|日間}}に何らかの活動をした利用者の一覧です。",
 	"activeusers-count": "過去 {{PLURAL:$3|1 日|$3 日間}}に $1 {{PLURAL:$1|回の操作}}",
 	"activeusers-from": "最初に表示する利用者:",
+	"activeusers-groups": "選択した利用者グループに属する利用者を表示:",
+	"activeusers-excludegroups": "選択した利用者グループに属する利用者を非表示:",
 	"activeusers-noresult": "利用者が見つかりませんでした。",
 	"activeusers-submit": "活動中の利用者を表示",
 	"listgrouprights": "利用者グループの権限",

@@ -1097,7 +1097,7 @@
 	"saveusergroups": "Gardar os grupos {{GENDER:$1|do usuario|da usuaria}}",
 	"userrights-groupsmember": "Membro de:",
 	"userrights-groupsmember-auto": "Membro implícito de:",
-	"userrights-groups-help": "Pode cambiar os grupos aos que {{GENDER:$1|o usuario|a usuaria}} pertence:\n* Se a caixa ten un sinal (✓) significa que {{GENDER:$1|o usuario|a usuaria}} pertence a ese grupo.\n* Se, pola contra, non o ten, significa que non pertence.\n* Un asterisco (*) indica que non pode eliminar o grupo unha vez que o engadiu, e viceversa.\n* Un # indica que só se pode atrasar a data de caducidade deste grupo; non se pode adiantar.",
+	"userrights-groups-help": "Pode cambiar os grupos aos que {{GENDER:$1|o usuario|a usuaria}} pertence:\n* Se a caixa ten un sinal (✓) significa que {{GENDER:$1|o usuario|a usuaria}} pertence a ese grupo.\n* Se, pola contra, non o ten, significa que non pertence.\n* Un asterisco (*) indica que non pode eliminar o grupo unha vez que o engadiu, e viceversa.\n* Un # indica que só se pode atrasar a data de caducidade de pertenza a este grupo; non se pode adiantar.",
 	"userrights-reason": "Motivo:",
 	"userrights-no-interwiki": "Non ten os permisos necesarios para editar os dereitos de usuario noutros wikis.",
 	"userrights-nodatabase": "A base de datos \"$1\" non existe ou non é local.",
@@ -1111,7 +1111,7 @@
 	"userrights-expiry-options": "1 día:1 día,1 semana:1 semana,1 mes:1 mes,3 meses:3 meses,6 meses:6 meses,1 ano:1 ano",
 	"userrights-invalid-expiry": "O tempo de caducidade para o grupo \"$1\" non é válido.",
 	"userrights-expiry-in-past": "O tempo de caducidade para o grupo \"$1\" está no pasado.",
-	"userrights-cannot-shorten-expiry": "Non pode adiantar a data de caducidade do grupo \"$1\". Só os usuarios con permisos para engadir e eliminar este grupo poden adiantar datas de caducidade.",
+	"userrights-cannot-shorten-expiry": "Non pode adiantar a data de caducidade de pertenza ó grupo \"$1\". Só os usuarios con permisos para engadir e eliminar este grupo poden adiantar datas de caducidade.",
 	"userrights-conflict": "Hai un conflito na modificación dos dereitos de usuario! Por favor, revíseo e confirme os seus cambios.",
 	"group": "Grupo:",
 	"group-user": "Usuarios",
@@ -1372,6 +1372,7 @@
 	"rcfilters-filter-logactions-label": "Accións rexistradas",
 	"rcfilters-filter-logactions-description": "Accións administrativas, creacións de conta, borrados de páxinas, subas de ficheiros....",
 	"rcnotefrom": "A continuación {{PLURAL:$5|móstrase o cambio feito|móstranse os cambios feitos}} desde o <strong>$3</strong> ás <strong>$4</strong> (móstranse <strong>$1</strong> como máximo).",
+	"rclistfromreset": "Reinicializar a selección da data",
 	"rclistfrom": "Mostrar os cambios novos desde o $3 ás $2",
 	"rcshowhideminor": "$1 as edicións pequenas",
 	"rcshowhideminor-show": "Mostrar",
@@ -3695,6 +3696,7 @@
 	"special-characters-group-thai": "Tailandés",
 	"special-characters-group-lao": "Laosiano",
 	"special-characters-group-khmer": "Camboxano",
+	"special-characters-group-canadianaboriginal": "Aborixe canadense",
 	"special-characters-title-endash": "guión",
 	"special-characters-title-emdash": "raia",
 	"special-characters-title-minus": "signo menos",
@@ -3840,5 +3842,8 @@
 	"restrictionsfield-label": "Rangos de IP permitidos:",
 	"restrictionsfield-help": "Un único enderezo IP ou rango CIDR por liña. Para habilitalos todos, utiliceː\n<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "revisión $1",
-	"pageid": "identificador de páxina $1"
+	"pageid": "identificador de páxina $1",
+	"rawhtml-notallowed": "As marcas &lt;html&gt; non poden usarse fóra das páxinas normais.",
+	"gotointerwiki": "Deixando {{SITENAME}}",
+	"gotointerwiki-invalid": "O título especificado non era válido."
 }

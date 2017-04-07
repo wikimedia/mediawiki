@@ -1109,7 +1109,7 @@
 	"saveusergroups": "Uložit {{GENDER:$1|uživatelské}} skupiny",
 	"userrights-groupsmember": "{{GENDER:$2|Člen|Členka}} {{PLURAL:$1|skupiny|skupin}}:",
 	"userrights-groupsmember-auto": "Automaticky {{GENDER:$2|člen|členka}} {{PLURAL:$1|skupiny|skupin}}:",
-	"userrights-groups-help": "Můžete měnit skupiny, do nichž je {{GENDER:$1|uživatel zařazen|uživatelka zařazena}}.\n* Zaškrtnuté políčko znamená, že {{GENDER:$1|uživatel|uživatelka}} je v dané skupině.\n* Nezaškrtnuté políčko značí, že {{GENDER:$1|uživatel|uživatelka}} v dané skupině není.\n* Hvězdička (*) znamená, že nemůžete danou skupinu odstranit, jakmile ji přidáte, nebo naopak.\n* Křížek (#) znamená, že čas do vypršení dané skupiny můžete pouze prodloužit, ne zkrátit.",
+	"userrights-groups-help": "Můžete měnit skupiny, do nichž je {{GENDER:$1|uživatel zařazen|uživatelka zařazena}}.\n* Zaškrtnuté políčko znamená, že {{GENDER:$1|uživatel|uživatelka}} je v dané skupině.\n* Nezaškrtnuté políčko značí, že {{GENDER:$1|uživatel|uživatelka}} v dané skupině není.\n* Hvězdička (*) znamená, že nemůžete danou skupinu odstranit, jakmile ji přidáte, nebo naopak.\n* Křížek (#) znamená, že čas do vypršení členství v dané skupině můžete pouze prodloužit, ne zkrátit.",
 	"userrights-reason": "Důvod:",
 	"userrights-no-interwiki": "Nemáte povoleno měnit uživatelská práva na jiných wiki.",
 	"userrights-nodatabase": "Databáze $1 neexistuje nebo není místní.",
@@ -1123,7 +1123,7 @@
 	"userrights-expiry-options": "1 den:1 day,1 týden:1 week,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 rok",
 	"userrights-invalid-expiry": "Čas vypršení pro skupinu „$1“ je neplatný.",
 	"userrights-expiry-in-past": "Čas vypršení pro skupinu „$1“ je v minulosti.",
-	"userrights-cannot-shorten-expiry": "Čas do vypršení skupiny „$1“ nemůžete zkrátit. To mohou provést pouze uživatelé oprávnění k jejímu přiřazení nebo odstranění.",
+	"userrights-cannot-shorten-expiry": "Čas do vypršení členství ve skupině „$1“ nemůžete zkrátit. To mohou provést pouze uživatelé oprávnění k jejímu přiřazení nebo odstranění.",
 	"userrights-conflict": "Konflikt změn uživatelských práv! Zkontrolujte a potvrďte požadované změny.",
 	"group": "Skupina:",
 	"group-user": "Uživatelé",
@@ -1388,6 +1388,7 @@
 	"rcfilters-hideminor-conflicts-typeofchange": "Určité typy změn nelze označit jako malé, tento filtr je proto v konfliktu s následujícími filtry podle typu změny: $1",
 	"rcfilters-typeofchange-conflicts-hideminor": "Tento filtr podle typu změny je v konfliktu s filtrem „Malé editace“. Určité typy změn nelze označit jako malé.",
 	"rcnotefrom": "Níže {{PLURAL:$5|je změna|jsou změny}} od <strong>$3, $4</strong> ({{PLURAL:$1|zobrazena|zobrazeny|zobrazeno}} nejvýše <strong>$1</strong>).",
+	"rclistfromreset": "Obnovit výběr data",
 	"rclistfrom": "Ukázat nové změny, počínaje od $2, $3",
 	"rcshowhideminor": "$1 malé editace",
 	"rcshowhideminor-show": "Zobrazit",
@@ -3911,5 +3912,10 @@
 	"restrictionsfield-help": "Jedna IP adresa nebo CIDR rozsah na řádek. Všechno povolíte pomocí:<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "revize $1",
 	"pageid": "Stránka s ID $1",
-	"rawhtml-notallowed": "Značky &lt;html&gt; nelze používat mimo běžné stránky."
+	"rawhtml-notallowed": "Značky &lt;html&gt; nelze používat mimo běžné stránky.",
+	"gotointerwiki": "Opustit {{GENDER:4sg|{{SITENAME}}}}",
+	"gotointerwiki-invalid": "Zadaný název byl neplatný.",
+	"gotointerwiki-external": "Chystáte se opustit {{GRAMMAR:4sg|{{SITENAME}}}} a navštívit [[$2]], což je jiná webová stránka.\n\n[$1 Kliknutím zde budete pokračovat na $1].",
+	"undelete-cantedit": "Tuto stránku nemůžete obnovit, protože ji nejste oprávněni editovat.",
+	"undelete-cantcreate": "Tuto stránku nemůžete obnovit, protože stránka s tímto názvem neexistuje a vy ji nejste oprávněni vytvořit."
 }

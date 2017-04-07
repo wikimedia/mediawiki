@@ -1067,7 +1067,7 @@
 	"saveusergroups": "{{GENDER:$1|Benotzer}}gruppe späicheren",
 	"userrights-groupsmember": "Member vun:",
 	"userrights-groupsmember-auto": "Implizit Member vun:",
-	"userrights-groups-help": "Dir kënnt d'Gruppen zu deenen dëse Benotzer gehéiert änneren.\n* Een ugekräizt Haische bedeit, datt de Benotzer Member vun dëser Grupp ass.\n* Een net ugekräizt Haische bedeit, datt de Benotzer net Member vun dëser Grupp ass.\n* E Stäerchen (*) bedeit datt Dir d'Grupp net méi ewechhuele kënnt wann e bis eemol dobäigesat ass oder gouf.\n* Eng Raut (#) gëtt un Datt Dir d'Oflafzäit vun dëser Grupp just zrécksetze kënnt; Dir kënnt se net no vir setzen.",
+	"userrights-groups-help": "Dir kënnt d'Gruppen zu deenen dëse Benotzer gehéiert änneren.\n* Een ugekräizt Haische bedeit, datt de Benotzer Member vun dëser Grupp ass.\n* Een net ugekräizt Haische bedeit, datt de Benotzer net Member vun dëser Grupp ass.\n* E Stäerchen (*) bedeit datt Dir d'Grupp net méi ewechhuele kënnt wann e bis eemol dobäigesat ass oder gouf.\n* Eng Raut (#) gëtt un Datt Dir d'Oflafzäit als Member vun dëser Grupp just zrécksetze kënnt; Dir kënnt se net no vir setzen.",
 	"userrights-reason": "Grond:",
 	"userrights-no-interwiki": "Dir hutt net déi néideg Rechter, fir d'Rechter vu Benoutzer op anere Wikien z'änneren.",
 	"userrights-nodatabase": "D'Datebank $1 gëtt et net oder se ass net lokal.",
@@ -3478,6 +3478,7 @@
 	"special-characters-group-thai": "Thai",
 	"special-characters-group-lao": "Lao",
 	"special-characters-group-khmer": "Khmer",
+	"special-characters-group-canadianaboriginal": "Kanadesch Silbeschrëft",
 	"special-characters-title-endash": "en dash",
 	"special-characters-title-emdash": "em dash",
 	"special-characters-title-minus": "Minus-Zeechen",
@@ -3581,5 +3582,7 @@
 	"userjsispublic": "DEnkt drun: Op JavaScript-Ënnersäite solle keng vertraulech Informatioune stoe well se vun anere Benotzer kënne gesi ginn.",
 	"restrictionsfield-badip": "Net valabel IP-Adress oder Beräich: $1",
 	"restrictionsfield-label": "Zougeloossen IP-Beräicher:",
-	"revid": "Versioun $1"
+	"revid": "Versioun $1",
+	"gotointerwiki": "{{SITENAME}} verloossen",
+	"gotointerwiki-invalid": "De spezifizéierten Titel war net valabel."
 }

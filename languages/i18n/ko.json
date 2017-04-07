@@ -1409,6 +1409,7 @@
 	"rcfilters-hideminor-conflicts-typeofchange": "특정한 종류의 변경사항은 \"사소한 편집\"으로 지정할 수 없으므로 이 필터는 다음 유형의 변경사항 필터와 충돌합니다: $1",
 	"rcfilters-typeofchange-conflicts-hideminor": "이 유형의 변경사항 필터는 \"사소한 편집\" 필터와 충돌합니다. 특정한 종류의 변경사항은 \"사소한 편집\"으로 지정할 수 없습니다.",
 	"rcnotefrom": "아래는 <strong>$3, $4</strong>부터 시작하는 {{PLURAL:$5|바뀜이 있습니다}}. (최대 <strong>$1</strong>개가 표시됨)",
+	"rclistfromreset": "날짜 선택 초기화",
 	"rclistfrom": "$3 $2부터 시작하는 새로 바뀐 문서 보기",
 	"rcshowhideminor": "사소한 편집 $1",
 	"rcshowhideminor-show": "보이기",
@@ -3892,5 +3893,6 @@
 	"restrictionsfield-label": "허용된 IP 대역:",
 	"restrictionsfield-help": "줄 단위의 하나의 IP 주소 또는 CIDR 대역입니다. 모든 곳에 적용하려면, 다음을 사용하세요:<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "$1 판",
-	"pageid": "페이지 ID $1"
+	"pageid": "페이지 ID $1",
+	"gotointerwiki-invalid": "지정된 제목이 올바르지 않습니다."
 }
