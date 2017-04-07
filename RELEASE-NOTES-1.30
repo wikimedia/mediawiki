@@ -15,6 +15,7 @@ production.
 * (T160563) The PHP parser now supports embedding ResourceLoader style modules
   inline in the parsed HTML, with deduplication if the same ResourceLoader
   module is embedded multiple times.
+* ResourceLoader now supports wildcard modules.
 
 === External library changes in 1.30 ===
 
