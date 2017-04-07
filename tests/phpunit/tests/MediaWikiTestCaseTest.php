@@ -30,6 +30,24 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 		}
 	}
 
+	public function testGetMock() {
+		MWDebug::clearLog();
+		MediaWiki\suppressWarnings();
+
+		$this->assertInstanceOf(
+			HashBagOStuff::class,
+			$this->getMock( HashBagOStuff::class )
+		);
+
+		MediaWiki\restoreWarnings();
+		$log = MWDebug::getLog();
+		MWDebug::clearLog();
+
+		$this->assertEquals( 1, count( $log ) );
+		$this->assertEquals( 'deprecated', $log[0]['type'] );
+		$this->assertEquals( 'MediaWikiTestCaseTest::testGetMock', $log[0]['caller'] );
+	}
+
 	public function provideExistingKeysAndNewValues() {
 		$providedArray = [];
 		foreach ( array_keys( self::$startGlobals ) as $key ) {

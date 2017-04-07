@@ -1309,6 +1309,26 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * Return a mock for the specified class.
+	 *
+	 * TestCase::getMock() is deprecated in PHPUnit 5. We currently use
+	 * PHPUnit 4 mainly but want to avoid addin new calls.
+	 *
+	 * @deprecated Use createMock() or getMockBuilder() instead.
+	 * @return PHPUnit_Framework_MockObject_MockObject
+	 * @throws PHPUnit_Framework_Exception
+	 */
+	public function getMock( $originalClassName, $methods = [], array $arguments = [],
+		$mockClassName = '', $callOriginalConstructor = true, $callOriginalClone = true,
+		$callAutoload = true, $cloneArguments = false, $callOriginalMethods = false,
+		$proxyTarget = null
+	) {
+		wfDeprecated( __METHOD__ );
+		$ret = call_user_func_array( [ 'parent', __FUNCTION__ ], func_get_args() );
+		return $ret;
+	}
+
+	/**
 	 * Return a test double for the specified class.
 	 *
 	 * @param string $originalClassName
