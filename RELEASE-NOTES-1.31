@@ -25,6 +25,7 @@ production.
 * (T112474) Generalized the ResourceLoader mechanism for overriding modules
   using a particular page during edit previews.
 * Added 'ApiParseMakeOutputPage' hook.
+* ResourceLoader now supports wildcard modules.
 
 === External library changes in 1.31 ===
 

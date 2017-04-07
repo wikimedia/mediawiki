@@ -48,7 +48,7 @@
 				graph = {};
 
 			modules.forEach( function ( moduleName ) {
-				var dependencies = mw.loader.moduleRegistry[ moduleName ].dependencies || [];
+				var dependencies = mw.loader.moduleRegistry.get( moduleName ).dependencies || [];
 
 				if ( !hasOwn.call( graph, moduleName ) ) {
 					graph[ moduleName ] = { requiredBy: [] };
@@ -72,7 +72,7 @@
 		 * @return {number|null} Module size in bytes or null
 		 */
 		getModuleSize: function ( moduleName ) {
-			var module = mw.loader.moduleRegistry[ moduleName ],
+			var module = mw.loader.moduleRegistry.get( moduleName ),
 				args, i, size;
 
 			if ( module.state !== 'ready' ) {
@@ -253,7 +253,7 @@
 				var modules = [];
 
 				inspect.getLoadedModules().forEach( function ( name ) {
-					var css, stats, module = mw.loader.moduleRegistry[ name ];
+					var css, stats, module = mw.loader.moduleRegistry.get( name );
 
 					try {
 						css = module.style.css.join();
@@ -307,7 +307,7 @@
 			}
 
 			return inspect.getLoadedModules().filter( function ( moduleName ) {
-				var module = mw.loader.moduleRegistry[ moduleName ];
+				var module = mw.loader.moduleRegistry.get( moduleName );
 
 				// Grep module's JavaScript
 				if ( $.isFunction( module.script ) && pattern.test( module.script.toString() ) ) {
