@@ -804,6 +804,8 @@
 	"expansion-depth-exceeded-warning": "Page exceeded the expansion depth",
 	"parser-unstrip-loop-warning": "Unstrip loop detected",
 	"parser-unstrip-recursion-limit": "Unstrip recursion limit exceeded ($1)",
+	"parser-missing-embedded-module-warning": "Module does not exist.",
+	"parser-nonlocal-embedded-module-warning": "Module is not local, cannot embed.",
 	"converter-manual-rule-error": "Error detected in manual language conversion rule",
 	"undo-success": "The edit can be undone.\nPlease check the comparison below to verify that this is what you want to do, and then save the changes below to finish undoing the edit.",
 	"undo-failure": "The edit could not be undone due to conflicting intermediate edits.",
