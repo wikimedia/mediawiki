@@ -143,7 +143,7 @@ class ApiMain extends ApiBase {
 	private $mCacheMode = 'private';
 	private $mCacheControl = array();
 	private $mParamsUsed = array();
-	private $mParamsSensitive = [];
+	private $mParamsSensitive = array();
 
 	/** @var bool|null Cached return value from self::lacksSameOriginSecurity() */
 	private $lacksSameOriginSecurity = null;

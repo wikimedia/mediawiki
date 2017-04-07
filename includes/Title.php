@@ -2280,13 +2280,13 @@ class Title {
 		} elseif ( $action === 'undelete' ) {
 			if ( count( $this->getUserPermissionsErrorsInternal( 'edit', $user, $doExpensiveQueries, true ) ) ) {
 				// Undeleting implies editing
-				$errors[] = [ 'undelete-cantedit' ];
+				$errors[] = array( 'undelete-cantedit' );
 			}
 			if ( !$this->exists()
 				&& count( $this->getUserPermissionsErrorsInternal( 'create', $user, $doExpensiveQueries, true ) )
 			) {
 				// Undeleting where nothing currently exists implies creating
-				$errors[] = [ 'undelete-cantcreate' ];
+				$errors[] = array( 'undelete-cantcreate' );
 			}
 		}
 		return $errors;
