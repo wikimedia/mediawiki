@@ -88,14 +88,13 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 				$iwResultItemOutput .= $this->resultWidget->render( $result, $term, $position++ );
 			}
 
-			$headerHtml = $this->headerHtml( $term, $iwPrefix );
 			$footerHtml = $this->footerHtml( $term, $iwPrefix );
 			$iwResultListOutput .= Html::rawElement( 'li',
 				[
 					'class' => 'iw-resultset iw-resultset--' . $iwDisplayType,
 					'data-iw-resultset-pos' => $iwResultSetPos
 				],
-				$headerHtml .
+
 				$iwResultItemOutput .
 				$footerHtml
 			);
@@ -118,34 +117,6 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 	}
 
 	/**
-	 * Generates an appropriate HTML header for the given interwiki prefix
-	 *
-	 * @param string $term User provided search term
-	 * @param string $iwPrefix Interwiki prefix of wiki to show header for
-	 * @return string HTML
-	 */
-	protected function headerHtml( $term, $iwPrefix ) {
-
-		$iwDisplayType = isset( $this->iwPrefixDisplayTypes[$iwPrefix] )
-			? $this->iwPrefixDisplayTypes[$iwPrefix]
-			: "";
-
-		if ( isset( $this->customCaptions[$iwPrefix] ) ) {
-			/* customCaptions composed by loadCustomCaptions() with pre-escaped content. */
-			$caption = $this->customCaptions[$iwPrefix];
-		} else {
-			$interwiki = $this->iwLookup->fetch( $iwPrefix );
-			$parsed = wfParseUrl( wfExpandUrl( $interwiki ? $interwiki->getURL() : '/' ) );
-			$caption = $this->specialSearch->msg( 'search-interwiki-default', $parsed['host'] )->escaped();
-		}
-
-		return Html::rawElement( 'div', [ 'class' => 'iw-result__header' ],
-			Html::rawElement( 'span', [ 'class' => 'iw-result__icon iw-result__icon--' . $iwDisplayType ] )
-			. $caption
-		);
-	}
-
-	/**
 	 * Generates an HTML footer for the given interwiki prefix
 	 *
 	 * @param string $term User provided search term
@@ -154,17 +125,42 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 	 */
 	protected function footerHtml( $term, $iwPrefix ) {
 
+		$iwDisplayType = isset( $this->iwPrefixDisplayTypes[$iwPrefix] )
+			? $this->iwPrefixDisplayTypes[$iwPrefix]
+			: "";
+
 		$href = Title::makeTitle( NS_SPECIAL, 'Search', null, $iwPrefix )->getLocalURL(
 			[ 'search' => $term, 'fulltext' => 1 ]
 		);
 
-		$searchLink = Html::rawElement(
-			'a',
-			[ 'href' => $href ],
-			$this->specialSearch->msg( 'search-interwiki-more-results' )->escaped()
+		if ( isset( $this->customCaptions[$iwPrefix] ) ) {
+			$caption = $this->customCaptions[$iwPrefix];
+		} else {
+			$caption = $this->specialSearch->msg( 'search-interwiki-more-results' )->escaped();
+		}
+
+		$interwiki = $this->iwLookup->fetch( $iwPrefix );
+
+		$parsed = wfParseUrl( wfExpandUrl( $interwiki ? $interwiki->getURL() : '/' ) );
+
+		$iwFavicon = $parsed['scheme'] .
+			$parsed['delimiter'] .
+			$parsed['host'] .
+			( $parsed['port'] ? ":".$parsed['port'] : "" ) .
+			'/favicon.ico';
+
+		$icon = Html::rawElement( 'span',
+			[
+				'class' => 'iw-result__icon iw-result__icon--' . $iwDisplayType,
+				'style' => "background-image: url({$iwFavicon});"
+			]
 		);
 
-		return Html::rawElement( 'div', [ 'class' => 'iw-result__footer' ], $searchLink );
+		$searchLink = Html::rawElement( 'em', null,
+			Html::rawElement( 'a', [ 'href' => $href, 'target' => '_BLANK' ], $caption )
+		);
+
+		return Html::rawElement( 'div', [ 'class' => 'iw-result__footer' ], $icon . $searchLink );
 	}
 
 	protected function loadCustomCaptions() {

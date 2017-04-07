@@ -69,18 +69,7 @@ class InterwikiSearchResultWidget implements SearchResultWidget {
 			);
 		}
 
-		switch ( $displayType ) {
-			case 'definition':
-				return "<div class='iw-result__content'>" .
-					"<span class='iw-result__title'>{$link} {$redirect}: </span>" .
-					$snippet .
-				"</div>";
-			case 'quotation':
-				return "<div class='iw-result__content'>{$snippet}</div>" .
-					"<div class='iw-result__title'>{$link} {$redirect}</div>";
-			default:
-				return "<div class='iw-result__title'>{$link} {$redirect}</div>" .
-					"<div class='iw-result__content'>{$snippet}</div>";
-		}
+		return "<div class='iw-result__title'>{$link} {$redirect}</div>" .
+			"<div class='iw-result__content'>{$snippet}</div>";
 	}
 }
