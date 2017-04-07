@@ -68,6 +68,18 @@ class MaintainableDBConnRef extends DBConnRef implements IMaintainableDatabase {
 	) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
+
+	public function tableLocksHaveTransactionScope() {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function lockTables( array $read, array $write, $method ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function unlockTables( $method ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
 }
 
 class_alias( 'Wikimedia\Rdbms\MaintainableDBConnRef', 'MaintainableDBConnRef' );
