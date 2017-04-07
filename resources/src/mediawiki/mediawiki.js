@@ -831,7 +831,11 @@
 			 * @property
 			 * @private
 			 */
-			var registry = {},
+			var registry = {
+					data: {},
+					wildcards: {}
+				},
+
 				// Mapping of sources, keyed by source-id, values are strings.
 				//
 				// Format:
@@ -883,6 +887,44 @@
 				cssBufferTimer = null,
 				cssCallbacks = [],
 				rAF = window.requestAnimationFrame || setTimeout;
+
+			/**
+			 * Get a module from the registry
+			 *
+			 * @private
+			 * @param {string} module Module name
+			 * @return {Object|undefined} Module data
+			 */
+			registry.get = function ( module ) {
+				var wildcard;
+
+				if ( !hasOwn.call( registry.data, module ) ) {
+					wildcard = module.substr( 0, module.lastIndexOf( '.' ) ) + '.*';
+					if ( hasOwn.call( registry.wildcards, wildcard ) ) {
+						// Use $.extend() to make a shallow clone of the object
+						registry.data[ module ] = $.extend( {}, registry.wildcards[ wildcard ] );
+						registry.data[ module ].fromWildcard = true;
+					} else {
+						registry.data[ module ] = undefined;
+					}
+				}
+				return registry.data[ module ];
+			};
+
+			/**
+			 * Set module data into the registry
+			 *
+			 * @private
+			 * @param {string} module Module name
+			 * @param {Object|undefined} data Module data
+			 */
+			registry.set = function ( module, data ) {
+				if ( module.substr( module.lastIndexOf( '.' ) ) === '.*' ) {
+					// Use $.extend() to make a shallow clone of the object
+					registry.wildcards[ module ] = $.extend( {}, data );
+				}
+				registry.data[ module ] = data;
+			};
 
 			/**
 			 * Create a new style element and add it to the DOM.
@@ -973,7 +1015,7 @@
 			 */
 			function getCombinedVersion( modules ) {
 				var hashes = modules.map( function ( module ) {
-					return registry[ module ].version;
+					return registry.get( module ).version;
 				} );
 				return fnv132( hashes.join( '' ) );
 			}
@@ -1029,16 +1071,16 @@
 			function handlePending( module ) {
 				var j, job, hasErrors, m, stateChange;
 
-				if ( registry[ module ].state === 'error' || registry[ module ].state === 'missing' ) {
+				if ( registry.get( module ).state === 'error' || registry.get( module ).state === 'missing' ) {
 					// If the current module failed, mark all dependent modules also as failed.
 					// Iterate until steady-state to propagate the error state upwards in the
 					// dependency tree.
 					do {
 						stateChange = false;
-						for ( m in registry ) {
-							if ( registry[ m ].state !== 'error' && registry[ m ].state !== 'missing' ) {
-								if ( anyFailed( registry[ m ].dependencies ) ) {
-									registry[ m ].state = 'error';
+						for ( m in registry.data ) {
+							if ( registry.data[ m ] && registry.data[ m ].state !== 'error' && registry.data[ m ].state !== 'missing' ) {
+								if ( anyFailed( registry.data[ m ].dependencies ) ) {
+									registry.data[ m ].state = 'error';
 									stateChange = true;
 								}
 							}
@@ -1072,12 +1114,12 @@
 					}
 				}
 
-				if ( registry[ module ].state === 'ready' ) {
+				if ( registry.get( module ).state === 'ready' ) {
 					// The current module became 'ready'. Set it in the module store, and recursively execute all
 					// dependent modules that are loaded and now have all dependencies satisfied.
-					mw.loader.store.set( module, registry[ module ] );
-					for ( m in registry ) {
-						if ( registry[ m ].state === 'loaded' && allReady( registry[ m ].dependencies ) ) {
+					mw.loader.store.set( module, registry.get( module ) );
+					for ( m in registry.data ) {
+						if ( registry.data[ m ] && registry.data[ m ].state === 'loaded' && allReady( registry.data[ m ].dependencies ) ) {
 							execute( m );
 						}
 					}
@@ -1101,18 +1143,18 @@
 			function sortDependencies( module, resolved, unresolved ) {
 				var i, deps, skip;
 
-				if ( !hasOwn.call( registry, module ) ) {
+				if ( registry.get( module ) === undefined ) {
 					throw new Error( 'Unknown dependency: ' + module );
 				}
 
-				if ( registry[ module ].skip !== null ) {
+				if ( registry.get( module ).skip !== null ) {
 					// eslint-disable-next-line no-new-func
-					skip = new Function( registry[ module ].skip );
-					registry[ module ].skip = null;
+					skip = new Function( registry.get( module ).skip );
+					registry.get( module ).skip = null;
 					if ( skip() ) {
-						registry[ module ].skipped = true;
-						registry[ module ].dependencies = [];
-						registry[ module ].state = 'ready';
+						registry.get( module ).skipped = true;
+						registry.get( module ).dependencies = [];
+						registry.get( module ).state = 'ready';
 						handlePending( module );
 						return;
 					}
@@ -1127,7 +1169,7 @@
 					unresolved = new StringSet();
 				}
 				// Tracks down dependencies
-				deps = registry[ module ].dependencies;
+				deps = registry.get( module ).dependencies;
 				for ( i = 0; i < deps.length; i++ ) {
 					if ( resolved.indexOf( deps[ i ] ) === -1 ) {
 						if ( unresolved.has( deps[ i ] ) ) {
@@ -1221,10 +1263,10 @@
 			 */
 			function queueModuleScript( src, moduleName, callback ) {
 				pendingRequests.push( function () {
-					if ( hasOwn.call( registry, moduleName ) ) {
+					if ( registry.get( moduleName ) !== undefined ) {
 						// Emulate runScript() part of execute()
 						window.require = mw.loader.require;
-						window.module = registry[ moduleName ].module;
+						window.module = registry.get( moduleName ).module;
 					}
 					addScript( src, function () {
 						// 'module.exports' should not persist after the file is executed to
@@ -1281,21 +1323,21 @@
 				var key, value, media, i, urls, cssHandle, checkCssHandles, runScript,
 					cssHandlesRegistered = false;
 
-				if ( !hasOwn.call( registry, module ) ) {
+				if ( registry.get( module ) === undefined ) {
 					throw new Error( 'Module has not been registered yet: ' + module );
 				}
-				if ( registry[ module ].state !== 'loaded' ) {
-					throw new Error( 'Module in state "' + registry[ module ].state + '" may not be executed: ' + module );
+				if ( registry.get( module ).state !== 'loaded' ) {
+					throw new Error( 'Module in state "' + registry.get( module ).state + '" may not be executed: ' + module );
 				}
 
-				registry[ module ].state = 'executing';
+				registry.get( module ).state = 'executing';
 
 				runScript = function () {
 					var script, markModuleReady, nestedAddScript;
 
-					script = registry[ module ].script;
+					script = registry.get( module ).script;
 					markModuleReady = function () {
-						registry[ module ].state = 'ready';
+						registry.get( module ).state = 'ready';
 						handlePending( module );
 					};
 					nestedAddScript = function ( arr, callback, i ) {
@@ -1318,7 +1360,7 @@
 						} else if ( typeof script === 'function' ) {
 							// Pass jQuery twice so that the signature of the closure which wraps
 							// the script can bind both '$' and 'jQuery'.
-							script( $, $, mw.loader.require, registry[ module ].module );
+							script( $, $, mw.loader.require, registry.get( module ).module );
 							markModuleReady();
 
 						} else if ( typeof script === 'string' ) {
@@ -1335,20 +1377,20 @@
 					} catch ( e ) {
 						// Use mw.track instead of mw.log because these errors are common in production mode
 						// (e.g. undefined variable), and mw.log is only enabled in debug mode.
-						registry[ module ].state = 'error';
+						registry.get( module ).state = 'error';
 						mw.track( 'resourceloader.exception', { exception: e, module: module, source: 'module-execute' } );
 						handlePending( module );
 					}
 				};
 
 				// Add localizations to message system
-				if ( registry[ module ].messages ) {
-					mw.messages.set( registry[ module ].messages );
+				if ( registry.get( module ).messages ) {
+					mw.messages.set( registry.get( module ).messages );
 				}
 
 				// Initialise templates
-				if ( registry[ module ].templates ) {
-					mw.templates.set( module, registry[ module ].templates );
+				if ( registry.get( module ).templates ) {
+					mw.templates.set( module, registry.get( module ).templates );
 				}
 
 				// Make sure we don't run the scripts until all stylesheet insertions have completed.
@@ -1386,9 +1428,9 @@
 				// * back-compat: { <media>: [url, ..] }
 				// * { "css": [css, ..] }
 				// * { "url": { <media>: [url, ..] } }
-				if ( registry[ module ].style ) {
-					for ( key in registry[ module ].style ) {
-						value = registry[ module ].style[ key ];
+				if ( registry.get( module ).style ) {
+					for ( key in registry.get( module ).style ) {
+						value = registry.get( module ).style[ key ];
 						media = undefined;
 
 						if ( key !== 'url' && key !== 'css' ) {
@@ -1474,8 +1516,8 @@
 					if ( state === 'registered' && queue.indexOf( module ) === -1 ) {
 						// Private modules must be embedded in the page. Don't bother queuing
 						// these as the server will deny them anyway (T101806).
-						if ( registry[ module ].group === 'private' ) {
-							registry[ module ].state = 'error';
+						if ( registry.get( module ).group === 'private' ) {
+							registry.get( module ).state = 'error';
 							handlePending( module );
 							return;
 						}
@@ -1620,8 +1662,8 @@
 				// Split module list by source and by group.
 				splits = {};
 				for ( b = 0; b < batch.length; b++ ) {
-					bSource = registry[ batch[ b ] ].source;
-					bGroup = registry[ batch[ b ] ].group;
+					bSource = registry.get( batch[ b ] ).source;
+					bGroup = registry.get( batch[ b ] ).group;
 					if ( !hasOwn.call( splits, bSource ) ) {
 						splits[ bSource ] = {};
 					}
@@ -1727,8 +1769,8 @@
 			 *  or null if the module does not exist
 			 */
 			function getModuleKey( module ) {
-				return hasOwn.call( registry, module ) ?
-					( module + '@' + registry[ module ].version ) : null;
+				return registry.get( module ) !== undefined ?
+					( module + '@' + registry.get( module ).version ) : null;
 			}
 
 			/**
@@ -1781,12 +1823,12 @@
 					// Appends a list of modules from the queue to the batch
 					for ( q = 0; q < queue.length; q++ ) {
 						// Only load modules which are registered
-						if ( hasOwn.call( registry, queue[ q ] ) && registry[ queue[ q ] ].state === 'registered' ) {
+						if ( registry.get( queue[ q ] ) !== undefined && registry.get( queue[ q ] ).state === 'registered' ) {
 							// Prevent duplicate entries
 							if ( batch.indexOf( queue[ q ] ) === -1 ) {
 								batch.push( queue[ q ] );
 								// Mark registered modules as loading
-								registry[ queue[ q ] ].state = 'loading';
+								registry.get( queue[ q ] ).state = 'loading';
 							}
 						}
 					}
@@ -1832,7 +1874,7 @@
 							mw.track( 'resourceloader.exception', { exception: err, source: 'store-eval' } );
 							// Re-add the failed ones that are still pending back to the batch
 							failed = sourceModules.filter( function ( module ) {
-								return registry[ module ].state === 'loading';
+								return registry.get( module ).state === 'loading';
 							} );
 							batchRequest( failed );
 						} );
@@ -1904,7 +1946,7 @@
 						}
 						return;
 					}
-					if ( hasOwn.call( registry, module ) ) {
+					if ( registry.get( module ) !== undefined ) {
 						throw new Error( 'module already registered: ' + module );
 					}
 					if ( typeof dependencies === 'string' ) {
@@ -1915,7 +1957,7 @@
 						deps = dependencies;
 					}
 					// List the module as registered
-					registry[ module ] = {
+					registry.set( module, {
 						// Exposed to execute() for mw.loader.implement() closures.
 						// Import happens via require().
 						module: {
@@ -1927,7 +1969,7 @@
 						source: typeof source === 'string' ? source : 'local',
 						state: 'registered',
 						skip: typeof skip === 'string' ? skip : null
-					};
+					} );
 				},
 
 				/**
@@ -1964,11 +2006,11 @@
 						name = split.name,
 						version = split.version;
 					// Automatically register module
-					if ( !hasOwn.call( registry, name ) ) {
+					if ( registry.get( name ) === undefined ) {
 						mw.loader.register( name );
 					}
 					// Check for duplicate implementation
-					if ( hasOwn.call( registry, name ) && registry[ name ].script !== undefined ) {
+					if ( registry.get( name ) !== undefined && registry.get( name ).script !== undefined ) {
 						throw new Error( 'module already implemented: ' + name );
 					}
 					if ( version ) {
@@ -1976,17 +2018,17 @@
 						// requested and received module version, then mw.loader.store would
 						// cache the response under the requested key. Thus poisoning the cache
 						// indefinitely with a stale value. (T117587)
-						registry[ name ].version = version;
+						registry.get( name ).version = version;
 					}
 					// Attach components
-					registry[ name ].script = script || null;
-					registry[ name ].style = style || null;
-					registry[ name ].messages = messages || null;
-					registry[ name ].templates = templates || null;
+					registry.get( name ).script = script || null;
+					registry.get( name ).style = style || null;
+					registry.get( name ).messages = messages || null;
+					registry.get( name ).templates = templates || null;
 					// The module may already have been marked as erroneous
-					if ( registry[ name ].state !== 'error' && registry[ name ].state !== 'missing' ) {
-						registry[ name ].state = 'loaded';
-						if ( allReady( registry[ name ].dependencies ) ) {
+					if ( registry.get( name ).state !== 'error' && registry.get( name ).state !== 'missing' ) {
+						registry.get( name ).state = 'loaded';
+						if ( allReady( registry.get( name ).dependencies ) ) {
 							execute( name );
 						}
 					}
@@ -2134,10 +2176,10 @@
 						}
 						return;
 					}
-					if ( !hasOwn.call( registry, module ) ) {
+					if ( registry.get( module ) === undefined ) {
 						mw.loader.register( module );
 					}
-					registry[ module ].state = state;
+					registry.get( module ).state = state;
 					if ( state === 'ready' || state === 'error' || state === 'missing' ) {
 						// Make sure pending modules depending on this one get executed if their
 						// dependencies are now fulfilled!
@@ -2153,7 +2195,10 @@
 				 *  in the registry.
 				 */
 				getVersion: function ( module ) {
-					return hasOwn.call( registry, module ) ? registry[ module ].version : null;
+					if ( registry.get( module ) === undefined || registry.get( module ).version === undefined ) {
+						return null;
+					}
+					return registry.get( module ).version;
 				},
 
 				/**
@@ -2164,16 +2209,23 @@
 				 *  in the registry.
 				 */
 				getState: function ( module ) {
-					return hasOwn.call( registry, module ) ? registry[ module ].state : null;
+					if ( registry.get( module ) === undefined || registry.get( module ).state === undefined ) {
+						return null;
+					}
+					return registry.get( module ).state;
 				},
 
 				/**
 				 * Get the names of all registered modules.
 				 *
+				 * Does not include modules that are registered via wildcards.
+				 *
 				 * @return {Array}
 				 */
 				getModuleNames: function () {
-					return Object.keys( registry );
+					return $.map( registry.data, function ( data, key ) {
+						return data === undefined || data.fromWildcard ? null : key;
+					} );
 				},
 
 				/**
@@ -2200,7 +2252,7 @@
 						throw new Error( 'Module "' + moduleName + '" is not loaded.' );
 					}
 
-					return registry[ moduleName ].module.exports;
+					return registry.get( moduleName ).module.exports;
 				},
 
 				/**
