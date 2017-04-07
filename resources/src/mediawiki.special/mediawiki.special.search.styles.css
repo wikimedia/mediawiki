@@ -33,6 +33,7 @@
 .mw-search-results {
 	margin: 0;
 	max-width: 38em;
+	float: left;
 }
 
 .mw-search-visualclear {
