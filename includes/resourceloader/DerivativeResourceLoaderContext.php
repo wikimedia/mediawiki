@@ -207,7 +207,8 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	/**
 	 * @see self::getContentOverrideCallback
 	 * @since 1.31
-	 * @param callable|null|int As per self::getContentOverrideCallback, or self::INHERIT_VALUE
+	 * @param callable|null|int $callback As per self::getContentOverrideCallback,
+	 *  or self::INHERIT_VALUE
 	 */
 	public function setContentOverrideCallback( $callback ) {
 		$this->contentOverrideCallback = $callback;
