@@ -66,6 +66,7 @@ production.
     the SQL query. The ActorMigration class may also be used to get feature-flagged
     information needed to access actor-related fields during the migration
     period.
+* ResourceLoader now supports wildcard modules.
 
 === External library changes in 1.31 ===
 

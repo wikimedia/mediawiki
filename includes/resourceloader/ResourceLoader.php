@@ -53,6 +53,10 @@ class ResourceLoader implements LoggerAwareInterface {
 
 	/**
 	 * Associative array mapping module name to info associative array
+	 *
+	 * Info for modules loaded via wildcards is auto-registered on reference
+	 * via self::isModuleRegistered().
+	 *
 	 * @var array
 	 */
 	protected $moduleInfos = [];
@@ -484,10 +488,13 @@ class ResourceLoader implements LoggerAwareInterface {
 	/**
 	 * Get a list of module names.
 	 *
-	 * @return array List of module names
+	 * @return array List of module names. Does not include modules that could
+	 *  be loaded via wildcards.
 	 */
 	public function getModuleNames() {
-		return array_keys( $this->moduleInfos );
+		return array_keys( array_filter( $this->moduleInfos, function ( $info ) {
+			return empty( $info['fromWildcard'] );
+		} ) );
 	}
 
 	/**
@@ -516,12 +523,27 @@ class ResourceLoader implements LoggerAwareInterface {
 	/**
 	 * Check whether a ResourceLoader module is registered
 	 *
+	 * If it's possible to load it via a wildcard, this returns true.
+	 *
 	 * @since 1.25
 	 * @param string $name
 	 * @return bool
 	 */
 	public function isModuleRegistered( $name ) {
-		return isset( $this->moduleInfos[$name] );
+		if ( isset( $this->moduleInfos[$name] ) ) {
+			return true;
+		}
+
+		$nameParts = explode( '.', $name );
+		if ( array_pop( $nameParts ) !== '*' ) {
+			$wildcard = implode( '.', $nameParts ) . '.*';
+			if ( isset( $this->moduleInfos[$wildcard] ) ) {
+				$this->moduleInfos[$name] = [ 'fromWildcard' => true ] + $this->moduleInfos[$wildcard];
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -537,7 +559,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 */
 	public function getModule( $name ) {
 		if ( !isset( $this->modules[$name] ) ) {
-			if ( !isset( $this->moduleInfos[$name] ) ) {
+			if ( !$this->isModuleRegistered( $name ) ) {
 				// No such module
 				return null;
 			}
@@ -577,7 +599,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @return bool
 	 */
 	protected function isFileModule( $name ) {
-		if ( !isset( $this->moduleInfos[$name] ) ) {
+		if ( !$this->isModuleRegistered( $name ) ) {
 			return false;
 		}
 		$info = $this->moduleInfos[$name];
