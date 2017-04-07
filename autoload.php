@@ -1420,6 +1420,7 @@ $wgAutoloadLocalClasses = [
 	'SpecialSearch' => __DIR__ . '/includes/specials/SpecialSearch.php',
 	'SpecialSpecialpages' => __DIR__ . '/includes/specials/SpecialSpecialpages.php',
 	'SpecialStatistics' => __DIR__ . '/includes/specials/SpecialStatistics.php',
+	'SpecialSystemInfo' => __DIR__ . '/includes/specials/SpecialSystemInfo.php',
 	'SpecialTags' => __DIR__ . '/includes/specials/SpecialTags.php',
 	'SpecialTrackingCategories' => __DIR__ . '/includes/specials/SpecialTrackingCategories.php',
 	'SpecialUnblock' => __DIR__ . '/includes/specials/SpecialUnblock.php',
