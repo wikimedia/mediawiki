@@ -30,6 +30,9 @@ production.
 * (T112474) Generalized the ResourceLoader mechanism for overriding modules
   using a particular page during edit previews.
 * Added 'ApiParseOutputPageForHeadHtml' hook.
+* (T160563) The PHP parser now supports embedding ResourceLoader style modules
+  inline in the parsed HTML, with deduplication if the same ResourceLoader
+  module is embedded multiple times.
 
 === External library changes in 1.30 ===
 

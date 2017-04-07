@@ -179,6 +179,81 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		];
 	}
 
+	/**
+	 * @dataProvider provideEmbeddedModules
+	 */
+	public function testEmbeddedModules( $module, $expect, $isSafe = true ) {
+		$popt = new ParserOptions;
+		$oldCallback = $popt->setCurrentRevisionCallback( function ( $title ) use ( &$oldCallback ) {
+			if ( $title->getPrefixedText() === 'Template:Test.css' ) {
+				$user = RequestContext::getMain()->getUser();
+				return new Revision( [
+					'page' => $title->getArticleID(),
+					'user_text' => $user->getName(),
+					'user' => $user->getId(),
+					'parent_id' => $title->getLatestRevId(),
+					'title' => $title,
+					'content' => new CssContent( '.baz { color: orange; }' )
+				] );
+			}
+			return call_user_func_array( $oldCallback, func_get_args() );
+		}, $isSafe );
+
+		$parser = new Parser();
+		$parser->startExternalParse( Title::newMainPage(), $popt, Parser::OT_HTML );
+		$pWrap = TestingAccessWrapper::newFromObject( $parser );
+
+		$rl = $pWrap->getResourceLoaderContext()->getResourceLoader();
+		$rl->register( 'test.nonlocal', new ResourceLoaderTestModule( [
+			'source' => 'nonlocal',
+		] ) );
+		$rl->register( 'test.local', new ResourceLoaderTestModule( [
+			'styles' => '.foo { color: red; }',
+		] ) );
+		$rl->register( 'test.local2', new ResourceLoaderTestModule( [
+			'styles' => '.bar { color: blue; }',
+		] ) );
+		$rl->register( 'test.wiki', new ResourceLoaderWikiModule( [
+			'styles' => [ 'Template:Test.css' ],
+		] ) );
+
+		$token = $parser->getEmbeddedStyleModuleStripItem( $module );
+		$token2 = $parser->getEmbeddedStyleModuleStripItem( 'test.local2' );
+
+		$this->assertSame(
+			$expect,
+			$pWrap->internalParseHalfParsed( "$token\n$token\n$token2", true )
+		);
+	}
+
+	public static function provideEmbeddedModules() {
+		return [
+			// @codingStandardsIgnoreStart Generic.Files.LineLength
+			[
+				'test.local',
+				"<style data-mw-embedded-module=\"test.local\">.foo{color:red}</style>\n<style data-mw-embedded-module=\"test.local\"></style>\n<style data-mw-embedded-module=\"test.local2\">.bar{color:blue}</style>\n",
+			],
+			[
+				'test.nonlocal',
+				"<style data-mw-embedded-module=\"test.nonlocal\">/* Module is not local, cannot embed. */</style>\n<style data-mw-embedded-module=\"test.nonlocal\"></style>\n<style data-mw-embedded-module=\"test.local2\">.bar{color:blue}</style>\n",
+			],
+			[
+				'test.missing',
+				"<style data-mw-embedded-module=\"test.missing\">/* Module does not exist. */</style>\n<style data-mw-embedded-module=\"test.missing\"></style>\n<style data-mw-embedded-module=\"test.local2\">.bar{color:blue}</style>\n",
+			],
+			[
+				'test.wiki',
+				"<style data-mw-embedded-module=\"test.wiki\">.baz{color:orange}</style>\n<style data-mw-embedded-module=\"test.wiki\"></style>\n<style data-mw-embedded-module=\"test.local2\">.bar{color:blue}</style>\n",
+			],
+			[
+				'test.wiki',
+				"<style data-mw-embedded-module=\"test.wiki\"></style>\n<style data-mw-embedded-module=\"test.wiki\"></style>\n<style data-mw-embedded-module=\"test.local2\">.bar{color:blue}</style>\n",
+				false
+			],
+			// @codingStandardsIgnoreEnd
+		];
+	}
+
 	// @todo Add tests for cleanSig() / cleanSigInSig(), getSection(),
 	// replaceSection(), getPreloadText()
 }

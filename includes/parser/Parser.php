@@ -20,7 +20,9 @@
  * @file
  * @ingroup Parser
  */
+
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
 
@@ -258,6 +260,9 @@ class Parser {
 	 */
 	protected $mLinkRenderer;
 
+	/** @var DerivativeResourceLoaderContext|null */
+	protected $mResourceLoaderContext;
+
 	/**
 	 * @param array $conf
 	 */
@@ -384,6 +389,8 @@ class Parser {
 		}
 
 		$this->mProfiler = new SectionProfiler();
+
+		$this->mResourceLoaderContext = null;
 
 		// Avoid PHP 7.1 warning from passing $this by reference
 		$parser = $this;
@@ -956,6 +963,135 @@ class Parser {
 	}
 
 	/**
+	 * Get a ResourceLoaderContext to use for embedding stylesheets
+	 * @since 1.30
+	 * @return DerivativeResourceLoaderContext
+	 */
+	private function getResourceLoaderContext() {
+		if ( !$this->mResourceLoaderContext ) {
+			$query = ResourceLoader::makeLoaderQuery(
+				[], // modules; not relevant
+				$this->getTargetLanguage()->getCode(),
+				'fallback', // skin; not relevant
+				null, // user; not relevant
+				null, // version; not relevant
+				ResourceLoader::inDebugMode(),
+				ResourceLoaderModule::TYPE_STYLES,
+				$this->getOptions()->getIsPrintable()
+			);
+			$this->mResourceLoaderContext = new DerivativeResourceLoaderContext( new ResourceLoaderContext(
+				new ResourceLoader(
+					RequestContext::getMain()->getConfig(),
+					LoggerFactory::getInstance( 'resourceloader' )
+				),
+				new FauxRequest( $query )
+			) );
+			$this->mResourceLoaderContext->setContentOverrideCallback( function ( Title $title ) {
+				if ( $this->getOptions()->getCurrentRevisionCallbackIsSafe() ) {
+					$rev = $this->fetchCurrentRevisionOfTitle( $title );
+				} else {
+					$rev = static::statelessFetchRevision( $title, $this );
+				}
+				return $rev ? $rev->getContent() : null;
+			} );
+		}
+
+		return $this->mResourceLoaderContext;
+	}
+
+	/**
+	 * Return a strip marker for an embedded stylesheet
+	 *
+	 * Embedded stylesheets are deduplicated at the end of the (main) parse:
+	 * the first strip marker for a module will result in a `<style>` block
+	 * containing the style content of the module, while any further markers in
+	 * the page will result in empty placeholder `<style>` blocks. All of these
+	 * `<style>` tags will have an attribute 'data-mw-embedded-module'
+	 * identifying the source module.
+	 *
+	 * If the main parse is somehow bypassed, all the markers will result in
+	 * `<link>` tags that will attempt to load the module. These link tags will
+	 * have an attribute 'data-mw-embed-module' identifying the module.
+	 *
+	 * @since 1.30
+	 * @param string $module ResourceLoader module name
+	 * @return string
+	 */
+	public function getEmbeddedStyleModuleStripItem( $module ) {
+		$context = $this->getResourceLoaderContext();
+		$context->setModules( [ $module ] );
+
+		// We use a <link> tag here to serve two purposes:
+		// 1. If self::embedStyleModules() somehow doesn't get called, the
+		//    styles will still be loaded (just less efficiently).
+		// 2. We could do <style> here and then deduplicate in self::embedStyleModules(),
+		//    but that would require actually processing the RL modules every
+		//    time here and storing their content in the StripState, only for
+		//    it to be removed later.
+		$text = Html::element( 'link', [
+			'rel' => 'stylesheet',
+			'href' => $context->getResourceLoader()->createLoaderURL( 'local', $context ),
+			'data-mw-embed-module' => $module,
+		] );
+
+		$marker = self::MARKER_PREFIX . "-embeddedstyle-{$this->mMarkerIndex}-" . self::MARKER_SUFFIX;
+		$this->mMarkerIndex++;
+		$this->mStripState->addGeneral( $marker, $text );
+		return $marker;
+	}
+
+	/**
+	 * Actually embed style modules
+	 * @since 1.30
+	 * @param string $text HTML text to process
+	 * @return string Processed HTML text
+	 */
+	protected function embedStyleModules( $text ) {
+		$context = $this->getResourceLoaderContext();
+		$rl = $context->getResourceLoader();
+		$seen = [];
+		return preg_replace_callback(
+			'!<link rel="stylesheet" href="[^"]*" data-mw-embed-module="([^"]*)"/>!i',
+			function ( $m ) use ( $context, $rl, &$seen ) {
+				$moduleName = $m[1];
+				$content = '';
+				if ( !isset( $seen[$moduleName] ) ) {
+					$seen[$moduleName] = true;
+					$module = $rl->getModule( $moduleName );
+					$error = false;
+					if ( !$module ) {
+						$error = 'parser-missing-embedded-module-warning';
+					} elseif ( $module->getSource() !== 'local' ) {
+						$error = 'parser-nonlocal-embedded-module-warning';
+					} else {
+						$context->setModules( [ $moduleName ] );
+						$content = $rl->makeModuleResponse( $context, [ $moduleName => $module ] );
+						$content = strtr( $content, [
+							'<' => '\3C ',
+							// CDATA end tag for good measure
+							']]>' => '\5D\5D\3E '
+						] );
+						if ( preg_match( '/[<&]/', $content ) ) {
+							$content = "/*<![CDATA[*/$content/*]]>*/";
+						}
+					}
+					if ( $error ) {
+						$content = '/* ' . strtr( wfMessage( $error )->inContentLanguage()->text(), [
+							// Use some lookalike unicode characters to avoid
+							// things that might otherwise confuse browsers.
+							'*' => '•', '-' => '‐', '<' => '⧼', '>' => '⧽',
+						] ) . ' */';
+					}
+				}
+				return Html::rawElement( 'style', [
+					'data-mw-embedded-module' => $moduleName,
+				], $content );
+			},
+			$text
+		);
+	}
+
+	/**
 	 * Replaces all occurrences of HTML-style comments and the given tags
 	 * in the text with a random marker and returns the next text. The output
 	 * parameter $matches will be an associative array filled with data in
@@ -1396,6 +1532,7 @@ class Parser {
 		$text = $this->mStripState->unstripNoWiki( $text );
 
 		if ( $isMain ) {
+			$text = $this->embedStyleModules( $text );
 			Hooks::run( 'ParserBeforeTidy', [ &$parser, &$text ] );
 		}
 
