@@ -992,7 +992,7 @@
 	"search-file-match": "(matches file content)",
 	"search-suggest": "Did you mean: $1",
 	"search-rewritten": "Showing results for $1. Search instead for $2.",
-	"search-interwiki-caption": "Sister projects",
+	"search-interwiki-caption": "Results from sister projects",
 	"search-interwiki-default": "Results from $1:",
 	"search-interwiki-custom": "",
 	"search-interwiki-more": "(more)",
