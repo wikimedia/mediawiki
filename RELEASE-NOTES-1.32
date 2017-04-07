@@ -26,6 +26,8 @@ production.
 * (T112474) Generalized the ResourceLoader mechanism for overriding modules
   using a particular page during edit previews.
 * Added 'ApiParseMakeOutputPage' hook.
+* ResourceLoader now supports wildcard modules.
+* …
 
 === External library changes in 1.32 ===
 * …
@@ -47,6 +49,7 @@ production.
 
 === Action API internal changes in 1.32 ===
 * Added 'ApiParseMakeOutputPage' hook.
+* …
 
 === Languages updated in 1.32 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.
@@ -85,6 +88,7 @@ because of Phabricator reports.
 * The Html5Internal and Html5Depurate tidy driver classes were removed, along with the
   Balancer tidy implementation. Both implementations were experimental, and were replaced
   by RemexHtml.
+* …
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
@@ -99,6 +103,7 @@ because of Phabricator reports.
 * Overriding SearchEngine::{searchText,searchTitle,searchArchiveTitle}
   in extending classes is deprecated.  Extend related doSearch* methods
   instead.
+* …
 
 === Other changes in 1.32 ===
 * …
