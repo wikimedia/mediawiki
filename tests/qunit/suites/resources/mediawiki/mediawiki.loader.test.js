@@ -843,9 +843,9 @@
 			} )
 			.then( function () {
 				// Reset run time, but keep mw.loader.store
-				mw.loader.moduleRegistry[ 'test.stale' ].script = undefined;
-				mw.loader.moduleRegistry[ 'test.stale' ].state = 'registered';
-				mw.loader.moduleRegistry[ 'test.stale' ].version = 'v2';
+				mw.loader.moduleRegistry.get( 'test.stale' ).script = undefined;
+				mw.loader.moduleRegistry.get( 'test.stale' ).state = 'registered';
+				mw.loader.moduleRegistry.get( 'test.stale' ).version = 'v2';
 
 				// Module was stored correctly as v1
 				// On future navigations, it will be ignored until evicted
@@ -871,9 +871,9 @@
 			} )
 			.then( function () {
 				// Reset run time, but keep mw.loader.store
-				mw.loader.moduleRegistry[ 'test.stalebc' ].script = undefined;
-				mw.loader.moduleRegistry[ 'test.stalebc' ].state = 'registered';
-				mw.loader.moduleRegistry[ 'test.stalebc' ].version = 'v2';
+				mw.loader.moduleRegistry.get( 'test.stalebc' ).script = undefined;
+				mw.loader.moduleRegistry.get( 'test.stalebc' ).state = 'registered';
+				mw.loader.moduleRegistry.get( 'test.stalebc' ).version = 'v2';
 
 				// Legacy behaviour is storing under the expected version,
 				// which woudl lead to whitewashing and stale values (T117587).
@@ -972,9 +972,20 @@
 			assert.strictEqual( siteFromUser, 1, 'site ran before user' );
 		} ).always( function () {
 			// Reset
-			mw.loader.moduleRegistry[ 'site' ].state = 'registered';
-			mw.loader.moduleRegistry[ 'user' ].state = 'registered';
+			mw.loader.moduleRegistry.get( 'site' ).state = 'registered';
+			mw.loader.moduleRegistry.get( 'user' ).state = 'registered';
 		} );
+	} );
+
+	QUnit.test( 'Wildcard modules are seen as registered', function ( assert ) {
+		mw.loader.register( [
+			[ 'test.wildcard.*', '0' ]
+		] );
+
+		assert.strictEqual( mw.loader.getState( 'test.wildcard.foo' ), 'registered', 'Expected "registered" state for test.wildcard.foo' );
+		assert.strictEqual( mw.loader.getState( 'test.wildcard.bar' ), 'registered', 'Expected "registered" state for test.wildcard.bar' );
+		assert.strictEqual( mw.loader.getState( 'test.wildcard.*' ), 'registered', 'Expected "registered" state for test.wildcard.*' );
+		assert.strictEqual( mw.loader.getState( 'test.wildcard.baz.baz' ), null, 'Expected null state for test.wildcard.baz.baz' );
 	} );
 
 }( mediaWiki, jQuery ) );

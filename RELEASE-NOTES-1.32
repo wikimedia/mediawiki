@@ -17,6 +17,8 @@ production.
 * (T112474) Generalized the ResourceLoader mechanism for overriding modules
   using a particular page during edit previews.
 * Added 'ApiParseMakeOutputPage' hook.
+* ResourceLoader now supports wildcard modules.
+* …
 
 === External library changes in 1.32 ===
 * …
@@ -38,6 +40,7 @@ production.
 
 === Action API internal changes in 1.32 ===
 * Added 'ApiParseMakeOutputPage' hook.
+* …
 
 === Languages updated in 1.32 ===
 MediaWiki supports over 350 languages. Many localisations are updated
@@ -58,10 +61,12 @@ changes to languages because of Phabricator reports.
   removed (deprecated in 1.31).
 * The EDIT_TOKEN_SUFFIX constant was removed (deprecated in 1.27).
   Use MediaWiki\Session\Token::SUFFIX instead.
+* …
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
   configuration in LocalSettings.php.
+* …
 
 === Other changes in 1.32 ===
 * …
