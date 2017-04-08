@@ -2059,8 +2059,6 @@
 	"undeleteviewlink": "hijery",
 	"undeleteinvert": "Hampifamaidika ny safidy",
 	"undeletecomment": "Antony :",
-	"undeletedrevisions": "voaverina ny {{PLURAL:$1|fanovana|fanovana}} $1",
-	"undeletedfiles": "rakitra voaverina $1 {{PLURAL:$1}}",
 	"cannotundelete": "Tsy nandeha soa aman-tsara ilay famerenana ;\nefa nisy mpikambana iray hafa angamba no namerina ilay pejy.",
 	"undeletedpage": "'''Voaverina ny pejy $1.'''\n\nVakio ny [[Special:Log/delete|laogim-pamafana]] ho an'ny lisitry ny famafana sy ny famerenana pejy.",
 	"undelete-header": "Jereo ny [[Special:Log/delete|laogim-pamafana]] rehefa hanalisitra ny pejy vao voafafa.",

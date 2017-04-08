@@ -1502,7 +1502,6 @@
 	"undeleteviewlink": "карау",
 	"undeleteinvert": "Киресен сайлау",
 	"undeletecomment": "Сәбәп:",
-	"undeletedrevisions": "$1 {{PLURAL:$1|үзгәреш}} яңадан {{PLURAL:$1|торгызылды}}",
 	"undelete-search-submit": "Эзләү",
 	"undelete-error-long": "Файлны торгызу вакытында хаталар чыкты:\n\n$1",
 	"undelete-show-file-submit": "Әйе",

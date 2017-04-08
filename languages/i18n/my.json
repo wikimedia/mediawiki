@@ -1290,7 +1290,6 @@
 	"undeleteviewlink": "ကြည့်ရန်",
 	"undeleteinvert": "ရွေးချယ်ထားခြင်းကို ပြောင်းပြန်လှန်ရန်",
 	"undeletecomment": "အ​ကြောင်း​ပြ​ချက် -",
-	"undeletedrevisions": "{{PLURAL:$1|မူတစ်ခု|မူ $1 ခု}} ကိုပြန်လည် ထိန်းသိမ်းပြီး",
 	"undelete-search-box": "ဖျက်ပစ်သည့် စာမျက်နှာများမှ ရှာရန်",
 	"undelete-search-submit": "ရှာဖွေရန်",
 	"undelete-show-file-submit": "မှန်",

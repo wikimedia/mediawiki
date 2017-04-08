@@ -1530,6 +1530,7 @@
 	"php-uploaddisabledtext": "PHP 파일 올리기가 비활성화되었습니다. 파일 올리기 설정을 확인하십시오.",
 	"uploadscripted": "이 파일에는 HTML이나 다른 스크립트 코드가 포함되어 있어, 웹 브라우저에서 오류를 일으킬 수 있습니다.",
 	"upload-scripted-pi-callback": "XML 스타일시트 처리 명령을 포함하는 파일은 업로드할 수 없습니다.",
+	"upload-scripted-dtd": "비표준 DTD 선언이 포함된 SVG 파일을 업로드할 수 없습니다.",
 	"uploaded-script-svg": "업로드된 SVG 파일에서 스크립트로 만들 수 있는 \"$1\" 요소를 발견했습니다.",
 	"uploaded-hostile-svg": "업로드된 SVG 파일의 스타일 요소에 안전하지 않은 CSS가 있습니다.",
 	"uploaded-event-handler-on-svg": "이벤트 핸들러 속성 <code>$1=\"$2\"</code> 설정은 SVG 파일에서 사용할 수 없습니다.",
@@ -2265,9 +2266,6 @@
 	"undeleteviewlink": "보기",
 	"undeleteinvert": "선택 반전",
 	"undeletecomment": "이유:",
-	"undeletedrevisions": "{{PLURAL:$1|판 1개|판 $1개}}를 되살렸습니다",
-	"undeletedrevisions-files": "{{PLURAL:$1|판 1개|판 $1개}}와 {{PLURAL:$2|파일 1개|파일 $2개}}를 되살렸습니다",
-	"undeletedfiles": "{{PLURAL:$1|파일 1개|파일 $1개}}를 되살렸습니다",
 	"cannotundelete": "일부 또는 모든 항목의 되살리기를 실패했습니다:\n$1",
 	"undeletedpage": "<strong>$1 문서를 되살렸습니다.</strong>\n\n[[Special:Log/delete|삭제 기록]]에서 최근의 삭제 및 되살리기 기록을 볼 수 있습니다.",
 	"undelete-header": "최근에 삭제한 문서에 대한 기록은 [[Special:Log/delete|여기]]에서 볼 수 있습니다.",
@@ -3894,5 +3892,9 @@
 	"restrictionsfield-help": "줄 단위의 하나의 IP 주소 또는 CIDR 대역입니다. 모든 곳에 적용하려면, 다음을 사용하세요:<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "$1 판",
 	"pageid": "페이지 ID $1",
-	"gotointerwiki-invalid": "지정된 제목이 올바르지 않습니다."
+	"gotointerwiki": "{{SITENAME}}을(를) 떠납니다",
+	"gotointerwiki-invalid": "지정된 제목이 올바르지 않습니다.",
+	"gotointerwiki-external": "별개의 웹사이트인 [[$2]]의 방문을 위해 {{SITENAME}}을(를) 떠나려고 합니다.\n\n[$1 $1(으)로 계속 진행하려면 여기를 클릭하십시오].",
+	"undelete-cantedit": "이 문서를 편집할 권한이 없으므로 이 문서를 복구할 수 없습니다.",
+	"undelete-cantcreate": "이 이름으로 된 문서가 없고 이 문서를 만들 권한이 없으므로 이 문서를 복구할 수 없습니다."
 }

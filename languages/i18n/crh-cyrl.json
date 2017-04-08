@@ -1108,7 +1108,6 @@
 	"undeletebtn": "Кери кетир!",
 	"undeletelink": "косьтер/кери кетир",
 	"undeletecomment": "Себеп:",
-	"undeletedrevisions": "Топлам {{PLURAL:$1|1=1 къайд|$1 къайд}} кери кетирильди.",
 	"undelete-header": "Кеченлерде ёкъ этильген саифелерни корьмек ичюн [[Special:Log/delete|ёкъ этюв журналына]] бакъынъыз.",
 	"undelete-search-submit": "Къыдыр",
 	"namespace": "Исим фезасы:",

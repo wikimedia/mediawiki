@@ -1679,6 +1679,7 @@
 	"apiwarn-nothumb-noimagehandler": "不能创建缩略图，因为$1没有关联的图片处理器。",
 	"apiwarn-parse-nocontentmodel": "<var>title</var>或<var>contentmodel</var>未提供，假设$1。",
 	"apiwarn-parse-titlewithouttext": "<var>title</var>在没有<var>text</var>的情况下被使用，并且请求了已解析页面的属性。您是想用<var>page</var>而不是<var>title</var>么？",
+	"apiwarn-redirectsandrevids": "重定向解决方案不能与<var>revids</var>参数一起使用。任何<var>revids</var>所指向的重定向都未被解决。",
 	"apiwarn-tokennotallowed": "操作“$1”不允许当前用户使用。",
 	"apiwarn-toomanyvalues": "参数<var>$1</var>指定了太多的值。上限为$2。",
 	"apiwarn-truncatedresult": "此结果被缩短，否则其将大于$1字节的限制。",

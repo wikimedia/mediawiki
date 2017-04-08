@@ -1103,7 +1103,6 @@
 	"undeletebtn": "Keri ketir!",
 	"undeletelink": "köster/keri ketir",
 	"undeletecomment": "Sebep:",
-	"undeletedrevisions": "Toplam {{PLURAL:$1|1 qayd|$1 qayd}} keri ketirildi.",
 	"undelete-header": "Keçenlerde yoq etilgen saifelerni körmek içün [[Special:Log/delete|yoq etüv jurnalına]] baqıñız.",
 	"undelete-search-submit": "Qıdır",
 	"namespace": "İsim fezası:",

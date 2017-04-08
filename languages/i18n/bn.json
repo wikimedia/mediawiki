@@ -2239,9 +2239,6 @@
 	"undeleteviewlink": "দেখাও",
 	"undeleteinvert": "ব্যুত্ক্রমে নির্বাচন",
 	"undeletecomment": "কারণ:",
-	"undeletedrevisions": "{{PLURAL:$1|১টি সংশোধন|$1টি সংশোধন}} পুনরুদ্ধার করা হয়েছে",
-	"undeletedrevisions-files": "{{PLURAL:$1|১টি সংশোধন|$1টি সংশোধন}} এবং {{PLURAL:$2|১টি ফাইল|$2টি ফাইল}} পুনরুদ্ধার করা হয়েছে",
-	"undeletedfiles": "{{PLURAL:$1|১টি ফাইল|$1টি ফাইল}} পুনরুদ্ধার করা হয়েছে",
 	"cannotundelete": "কিছু বা সব পুনরুদ্ধার করা যায়নি:\n$1",
 	"undeletedpage": "'''$1 পুনরুদ্ধার করা হয়েছে'''\n\nসাম্প্রতিক মুছে ফেলা ও পুনরুদ্ধারের ঘটনাগুলির জন্য [[Special:Log/delete|অবলুপ্তি লগ]] দেখুন।",
 	"undelete-header": "সাম্প্রতিক সময়ে মুছে ফেলা পাতাগুলি দেখতে [[Special:Log/delete|অবলুপ্তি লগ]] দেখুন।",
@@ -3782,6 +3779,7 @@
 	"special-characters-group-thai": "থাই",
 	"special-characters-group-lao": "লাও",
 	"special-characters-group-khmer": "খেমার",
+	"special-characters-group-canadianaboriginal": "কানাডীয় আদিবাসী",
 	"special-characters-title-endash": "en ড্যাশ",
 	"special-characters-title-emdash": "em ড্যাশ",
 	"special-characters-title-minus": "বিয়োগ চিহ্ন",
@@ -3928,5 +3926,8 @@
 	"restrictionsfield-help": "লাইন প্রতি একটি আইপি ঠিকানা বা CIDR পরিসীমা। সবকিছু সক্রিয় করতে ব্যবহার করুন: :<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "সংশোধন $1",
 	"pageid": "পাতার আইডি $1",
-	"rawhtml-notallowed": "&lt;html&gt; ট্যাগ স্বাভাবিক পৃষ্ঠাগুলির বাহিরে ব্যবহার করা যাবে না।"
+	"rawhtml-notallowed": "&lt;html&gt; ট্যাগ স্বাভাবিক পৃষ্ঠাগুলির বাহিরে ব্যবহার করা যাবে না।",
+	"gotointerwiki": "{{SITENAME}} ছেড়ে যাচ্ছেন",
+	"gotointerwiki-invalid": "নিদিষ্টকৃত শিরোনামটি অবৈধ ছিল।",
+	"gotointerwiki-external": "আপনি [[$2]] পরিদর্শন করতে {{SITENAME}} ছাড়তে চলেছেন যা একটি ভিন্ন ওয়েবসাইট।\n\n[$1 $1-এ অবিরত থাকতে এখানে ক্লিক করুন]।"
 }
