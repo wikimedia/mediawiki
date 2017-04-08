@@ -455,7 +455,7 @@ class MovePage {
 			$overwriteMessage = wfMessage(
 					'delete_and_move_reason',
 					$this->oldTitle->getPrefixedText()
-				)->text();
+				)->inContentLanguage()->text();
 			$newpage = WikiPage::factory( $nt );
 			$errs = [];
 			$status = $newpage->doDeleteArticleReal(
