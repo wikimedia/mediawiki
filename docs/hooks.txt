@@ -3589,6 +3589,10 @@ $removed: Groups removed
 $performer: User who performed the change, false if via autopromotion
 $reason: The reason, if any, given by the user performing the change,
 false if via autopromotion.
+$oldUGMs: An associative array (group name => UserGroupMembership object) of
+the user's group memberships before the change.
+$newUGMs: An associative array (group name => UserGroupMembership object) of
+the user's current group memberships.
 
 'UserIsBlockedFrom': Check if a user is blocked from a specific page (for
 specific block exemptions).

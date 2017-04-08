@@ -387,7 +387,8 @@ class UserrightsPage extends SpecialPage {
 		$user->invalidateCache();
 
 		// update groups in external authentication database
-		Hooks::run( 'UserGroupsChanged', [ $user, $add, $remove, $this->getUser(), $reason ] );
+		Hooks::run( 'UserGroupsChanged', [ $user, $add, $remove, $this->getUser(),
+			$reason, $oldUGMs, $newUGMs ] );
 		MediaWiki\Auth\AuthManager::callLegacyAuthPlugin(
 			'updateExternalDBGroups', [ $user, $add, $remove ]
 		);
