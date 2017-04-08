@@ -390,7 +390,7 @@ class RefreshLinks extends Maintenance {
 	 * By specifying a null $start or $end, it is also possible to create
 	 * half-bounded or unbounded intervals using this function.
 	 *
-	 * @param IDatabase $db Database connection
+	 * @param IDatabase $db
 	 * @param string $var Field name
 	 * @param mixed $start First value to include or null
 	 * @param mixed $end Last value to include or null

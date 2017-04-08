@@ -77,7 +77,7 @@ class MwSql extends Maintenance {
 			$index = DB_MASTER;
 		}
 
-		/** @var Database $db DB handle for the appropriate cluster/wiki */
+		/** @var IDatabase $db DB handle for the appropriate cluster/wiki */
 		$db = $lb->getConnection( $index, [], $wiki );
 		if ( $replicaDB != '' && $db->getLBInfo( 'master' ) !== null ) {
 			$this->error( "The server selected ({$db->getServer()}) is not a replica DB.", 1 );

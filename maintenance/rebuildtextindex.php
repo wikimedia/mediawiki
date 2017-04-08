@@ -27,6 +27,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use Wikimedia\Rdbms\IMaintainableDatabase;
+
 /**
  * Maintenance script that rebuilds search index table from scratch.
  *
@@ -36,7 +38,7 @@ class RebuildTextIndex extends Maintenance {
 	const RTI_CHUNK_SIZE = 500;
 
 	/**
-	 * @var Database
+	 * @var IMaintainableDatabase
 	 */
 	private $db;
 
