@@ -159,6 +159,7 @@
 	"apihelp-revisiondelete-param-reason": "Grond fir ze Läschen oder ze Restauréieren.",
 	"apihelp-rsd-example-simple": "Den RSD-Schema exportéieren",
 	"apihelp-setpagelanguage-description": "D'Sprooch vun enger Säit änneren",
+	"apihelp-setpagelanguage-description-disabled": "Aschalten\n<var>[[mw:Special:MyLanguage/Manual:$wgPageLanguageUseDB|$wgPageLanguageUseDB]]</var> fir dëse Aktioun ze benotzen",
 	"apihelp-setpagelanguage-param-reason": "Grond fir d'Ännerung.",
 	"apihelp-setpagelanguage-example-language": "Ännert d'Sprooch vun der <kbd>Main Page</kbd> op baskesch.",
 	"apihelp-stashedit-param-title": "Titel vun der Säit déi geännert gëtt.",

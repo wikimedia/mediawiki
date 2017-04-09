@@ -3585,7 +3585,7 @@
 	"htmlform-user-not-valid": "<strong>$1</strong> ist kein gültiger Benutzername.",
 	"logentry-delete-delete": "$1 {{GENDER:$2|löschte}} Seite $3",
 	"logentry-delete-delete_redir": "$1 {{GENDER:$2|löschte}} die Weiterleitung $3 durch Überschreiben",
-	"logentry-delete-restore": "$1 {{GENDER:$2|stellte}} Seite $3 wieder her ($4)",
+	"logentry-delete-restore": "$1 {{GENDER:$2|stellte}} die Seite „$3“ wieder her ($4)",
 	"logentry-delete-restore-nocount": "$1 {{GENDER:$2|stellte}} die Seite „$3“ wieder her",
 	"restore-count-revisions": "{{PLURAL:$1|Eine Version|$1 Versionen}}",
 	"restore-count-files": "{{PLURAL:$1|Eine Datei|$1 Dateien}}",

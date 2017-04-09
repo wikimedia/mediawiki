@@ -3311,7 +3311,10 @@
 	"htmlform-user-not-valid": "<strong>$1</strong> ass kee valabele Benotzernumm.",
 	"logentry-delete-delete": "$1 {{GENDER:$2|huet}} d'Säit $3 geläscht",
 	"logentry-delete-delete_redir": "$1 huet d'Viruleedung $3 duerch Iwwerschreiwe {{GENDER:$2|geläscht}}.",
-	"logentry-delete-restore": "$1 {{GENDER:$2|huet}} d'Säit $3 restauréiert",
+	"logentry-delete-restore": "$1 {{GENDER:$2|huet}} d'Säit $3 ($4) restauréiert",
+	"logentry-delete-restore-nocount": "$1 {{GENDER:$2|huet}} d'Säit $3 restauréiert",
+	"restore-count-revisions": "{{PLURAL:$1|1 Versioun|$1 Versiounen}}",
+	"restore-count-files": "{{PLURAL: $1|1 Fichier|$1 Fichieren}}",
 	"logentry-delete-event": "$1 huet d'Visibilitéit vun {{PLURAL:$5|engem Evenement|$5 Evenementer}} am Logbuch op $3:$4 {{GENDER:$2|geännert}}",
 	"logentry-delete-revision": "$1 huet d'Visibilitéit {{PLURAL:$5|vun enger Versioun|vu(n) $5 Versiounen}} op der Säit $3:$4 {{GENDER:$2|geännert}}",
 	"logentry-delete-event-legacy": "$1 huet d'Visibilitéit vun Elementer am Log op $3 {{GENDER:$2|geännert}}",
@@ -3581,5 +3584,6 @@
 	"restrictionsfield-label": "Zougeloossen IP-Beräicher:",
 	"revid": "Versioun $1",
 	"gotointerwiki": "{{SITENAME}} verloossen",
-	"gotointerwiki-invalid": "De spezifizéierten Titel war net valabel."
+	"gotointerwiki-invalid": "De spezifizéierten Titel war net valabel.",
+	"undelete-cantcreate": "Dir kënnt dës Säit net restauréieren well et elo keng Säit mat deem Numm gëtt a well Dir dës Säit net uleeën däerft."
 }

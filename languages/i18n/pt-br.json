@@ -107,7 +107,8 @@
 			"Joao Xavier",
 			"Nahime2015",
 			"Alex Great",
-			"EVinente"
+			"EVinente",
+			"Felipe L. Ewald"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -851,6 +852,7 @@
 	"post-expand-template-argument-warning": "Aviso: Esta página contém pelo menos um argumento de predefinição com um tamanho muito grande.\nEstes argumentos foram omitidos.",
 	"post-expand-template-argument-category": "Páginas com argumentos de predefinições descartados",
 	"parser-template-loop-warning": "Ciclo de predefinições detectado: [[$1]]",
+	"template-loop-category": "Páginas com loops de predefinição",
 	"parser-template-recursion-depth-warning": "O limite de profundidade de recursividade de predefinição foi ultrapassado ($1)",
 	"language-converter-depth-warning": "O limite de profundidade do conversor de línguas excedeu a ($1)",
 	"node-count-exceeded-category": "Páginas em que o total de nós é excedido",
@@ -1408,6 +1410,7 @@
 	"rcfilters-highlightbutton-title": "Realçar os resultados",
 	"rcfilters-highlightmenu-title": "Selecione uma cor",
 	"rcfilters-filterlist-noresults": "Nenhum filtro encontrado",
+	"rcfilters-noresults-conflict": "Nenhum resultado encontrado porque os critérios de pesquisa estão em conflito",
 	"rcfilters-filtergroup-registration": "Registro de usuário",
 	"rcfilters-filter-registered-label": "Registrado",
 	"rcfilters-filter-registered-description": "Editores conectados.",

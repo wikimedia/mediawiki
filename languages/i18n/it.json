@@ -105,7 +105,8 @@
 			"Tosky",
 			"Selven",
 			"Margherita.mignanelli",
-			"Redredsonia"
+			"Redredsonia",
+			"Luigi.delia"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -3544,6 +3545,7 @@
 	"htmlform-user-not-valid": "<strong>$1</strong> non è un nome utente valido.",
 	"logentry-delete-delete": "$1 {{GENDER:$2|ha cancellato}} la pagina $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|ha ripristinato}} la pagina \"$3\"",
+	"restore-count-revisions": "{{PLURAL:$1|1 versione|$1 versioni}}",
 	"logentry-delete-event": "$1 {{GENDER:$2|ha modificato}} la visibilità di {{PLURAL:$5|un'azione del registro|$5 azioni del registro}} di \"$3\": $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|ha modificato}} la visibilità per {{PLURAL:$5|una versione|$5 versioni}} della pagina $3: $4",
 	"logentry-delete-event-legacy": "$1 {{GENDER:$2|ha modificato}} la visibilità di alcune azioni del registro di $3",

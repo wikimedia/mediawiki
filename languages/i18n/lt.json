@@ -2716,6 +2716,7 @@
 	"newimages-summary": "Šis specialus puslapis rodo paskiausiai įkeltus failus.",
 	"newimages-legend": "Filtras",
 	"newimages-label": "Failo vardas (ar jo dalis):",
+	"newimages-user": "IP adresas ar vartotojo vardas",
 	"newimages-showbots": "Rodyti robotų atliktus įkėlimus",
 	"newimages-hidepatrolled": "Paslėpti patruliuotus įkeltus failus",
 	"noimages": "Nėra ką parodyti.",
@@ -3403,7 +3404,9 @@
 	"htmlform-user-not-valid": "<strong>$1</strong> nėra tinkamas naudotojo vardas.",
 	"logentry-delete-delete": "$1 {{GENDER:$2|ištrynė}} puslapį $3",
 	"logentry-delete-delete_redir": "$1 pervadindamas {{GENDER:$2|ištrynė}} buvusį nukreipimą $3",
-	"logentry-delete-restore": "$1 {{GENDER:$2|atkūrė}} puslapį $3",
+	"logentry-delete-restore": "$1 atkūrė puslapį $3 ($4)",
+	"logentry-delete-restore-nocount": "$1 atkūrė puslapį $3",
+	"restore-count-files": "{{PLURAL:$1|1 failas|$1 failai}}",
 	"logentry-delete-event": "$1 {{GENDER:$2|pakeitė}} matomumą {{PLURAL:$5|žurnalo įvykio|$5 žurnalo įvykių}} $3: $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|pakeitė}} matomumą {{PLURAL:$5|versijos|$5 versijų}} puslapyje $3: $4",
 	"logentry-delete-event-legacy": "$1 {{GENDER:$2|pakeitė}} matomumą žurnalo renginiams $3",
@@ -3704,5 +3707,8 @@
 	"unlinkaccounts": "Atsieti paskyras",
 	"unlinkaccounts-success": "Paskyra buvo atsieta.",
 	"revid": "apžvalga $1",
-	"pageid": "puslapio ID $1"
+	"pageid": "puslapio ID $1",
+	"rawhtml-notallowed": "&lt;html&gt; negali būti naudojamos ne normaliuose puslapiuose.",
+	"gotointerwiki": "Išeinama iš {{SITENAME}}",
+	"gotointerwiki-invalid": "Nurodytas pavadinimas negalimas."
 }
