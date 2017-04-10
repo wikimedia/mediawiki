@@ -485,6 +485,7 @@
 				title: 'Group 3',
 				type: 'string_options',
 				separator: ',',
+				default: 'filter8',
 				filters: [
 					{
 						name: 'filter7',
@@ -494,8 +495,7 @@
 					{
 						name: 'filter8',
 						label: 'Group 3: Filter 2',
-						description: 'Description of Filter 2 in Group 3',
-						default: true
+						description: 'Description of Filter 2 in Group 3'
 					},
 					{
 						name: 'filter9',
@@ -647,11 +647,11 @@
 		assert.deepEqual(
 			model.getSelectedState(),
 			$.extend( {}, defaultFilterRepresentation, {
-				group3__filter7: false,
-				group3__filter8: false,
-				group3__filter9: false
+				group3__filter7: true,
+				group3__filter8: true,
+				group3__filter9: true
 			} ),
-			'A \'string_options\' parameter containing all values, results in all filters of the group as unchecked.'
+			'A \'string_options\' parameter containing all values, results in all filters of the group as checked.'
 		);
 
 		model.toggleFiltersSelected(
@@ -662,11 +662,11 @@
 		assert.deepEqual(
 			model.getSelectedState(),
 			$.extend( {}, defaultFilterRepresentation, {
-				group3__filter7: false,
-				group3__filter8: false,
-				group3__filter9: false
+				group3__filter7: true,
+				group3__filter8: true,
+				group3__filter9: true
 			} ),
-			'A \'string_options\' parameter containing the value \'all\', results in all filters of the group as unchecked.'
+			'A \'string_options\' parameter containing the value \'all\', results in all filters of the group as checked.'
 		);
 
 		model.toggleFiltersSelected(

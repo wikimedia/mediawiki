@@ -192,7 +192,7 @@
 	 * @param {Array} filters Filter group definition
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.initializeFilters = function ( filters ) {
-		var i, filterItem, selectedFilterNames, filterConflictResult, groupConflictResult, subsetNames,
+		var i, filterItem, filterConflictResult, groupConflictResult, subsetNames,
 			model = this,
 			items = [],
 			supersetMap = {},
@@ -283,7 +283,6 @@
 				groupConflictMap[ group ] = data.conflicts;
 			}
 
-			selectedFilterNames = [];
 			for ( i = 0; i < data.filters.length; i++ ) {
 				data.filters[ i ].subset = data.filters[ i ].subset || [];
 				data.filters[ i ].subset = data.filters[ i ].subset.map( function ( el ) {
@@ -330,22 +329,20 @@
 					// Store the default parameter state
 					// For this group type, parameter values are direct
 					model.defaultParams[ data.filters[ i ].name ] = Number( !!data.filters[ i ].default );
-				} else if (
-					data.type === 'string_options' &&
-					data.filters[ i ].default
-				) {
-					selectedFilterNames.push( data.filters[ i ].name );
 				}
 
 				model.groups[ group ].addItems( filterItem );
 				items.push( filterItem );
 			}
 
-			if ( data.type === 'string_options' ) {
+			if ( data.type === 'string_options' && data.default ) {
 				// Store the default parameter group state
 				// For this group, the parameter is group name and value is the names
 				// of selected items
-				model.defaultParams[ group ] = model.sanitizeStringOptionGroup( group, selectedFilterNames ).join( model.groups[ group ].getSeparator() );
+				model.defaultParams[ group ] = model.sanitizeStringOptionGroup(
+					group,
+					data.default.split( model.groups[ group ].getSeparator() )
+				).join( model.groups[ group ].getSeparator() );
 			}
 		} );
 
@@ -655,8 +652,8 @@
 							paramValues.length === model.groups[ group ].getItemCount()
 						) ?
 						// All true (either because all values are written or the term 'all' is written)
-						// is the same as all filters set to false
-						false :
+						// is the same as all filters set to true
+						true :
 						// Otherwise, the filter is selected only if it appears in the parameter values
 						paramValues.indexOf( filterItem.getParamName() ) > -1;
 				}
