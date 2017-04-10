@@ -31,6 +31,11 @@ class WatchedItemStore implements StatsdAwareInterface {
 	private $loadBalancer;
 
 	/**
+	 * @var ReadOnlyMode
+	 */
+	private $readOnlyMode;
+
+	/**
 	 * @var HashBagOStuff
 	 */
 	private $cache;
@@ -61,13 +66,16 @@ class WatchedItemStore implements StatsdAwareInterface {
 	/**
 	 * @param LoadBalancer $loadBalancer
 	 * @param HashBagOStuff $cache
+	 * @param ReadOnlyMode $readOnlyMode
 	 */
 	public function __construct(
 		LoadBalancer $loadBalancer,
-		HashBagOStuff $cache
+		HashBagOStuff $cache,
+		ReadOnlyMode $readOnlyMode
 	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->cache = $cache;
+		$this->readOnlyMode = $readOnlyMode;
 		$this->stats = new NullStatsdDataFactory();
 		$this->deferredUpdatesAddCallableUpdateCallback = [ 'DeferredUpdates', 'addCallableUpdate' ];
 		$this->revisionGetTimestampFromIdCallback = [ 'Revision', 'getTimestampFromId' ];
@@ -596,7 +604,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 * @return bool success
 	 */
 	public function addWatchBatchForUser( User $user, array $targets ) {
-		if ( $this->loadBalancer->getReadOnlyReason() !== false ) {
+		if ( $this->readOnlyMode->isReadOnly() ) {
 			return false;
 		}
 		// Only loggedin user can have a watchlist
@@ -654,7 +662,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 */
 	public function removeWatch( User $user, LinkTarget $target ) {
 		// Only logged in user can have a watchlist
-		if ( $this->loadBalancer->getReadOnlyReason() !== false || $user->isAnon() ) {
+		if ( $this->readOnlyMode->isReadOnly() || $user->isAnon() ) {
 			return false;
 		}
 
@@ -785,7 +793,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 */
 	public function resetNotificationTimestamp( User $user, Title $title, $force = '', $oldid = 0 ) {
 		// Only loggedin user can have a watchlist
-		if ( $this->loadBalancer->getReadOnlyReason() !== false || $user->isAnon() ) {
+		if ( $this->readOnlyMode->isReadOnly() || $user->isAnon() ) {
 			return false;
 		}
 
