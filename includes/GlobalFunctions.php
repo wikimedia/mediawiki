@@ -2429,7 +2429,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = [],
 	$eintrMessage = "stream_select(): unable to select [$eintr]";
 
 	$running = true;
-	$timeout = null;
+	$timeout = 10;
 	$numReadyPipes = 0;
 
 	while ( $running === true || $numReadyPipes !== 0 ) {
@@ -2459,6 +2459,9 @@ function wfShellExec( $cmd, &$retval = null, $environ = [],
 				$logMsg = $error['message'];
 				break;
 			}
+		} elseif ( $numReadyPipes === 0 ) {
+			// Timeout for now, continue until some data arrives
+			continue;
 		}
 		foreach ( $readyPipes as $fd => $pipe ) {
 			$block = fread( $pipe, 65536 );
