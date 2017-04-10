@@ -274,8 +274,9 @@ class Command {
 		$eintr = defined( 'SOCKET_EINTR' ) ? SOCKET_EINTR : 4;
 		$eintrMessage = "stream_select(): unable to select [$eintr]";
 
+		// T72357: the timeout prevents indefinite waiting but is useless in normal operations
 		$running = true;
-		$timeout = null;
+		$timeout = 10;
 		$numReadyPipes = 0;
 
 		while ( $running === true || $numReadyPipes !== 0 ) {
@@ -305,6 +306,9 @@ class Command {
 					$logMsg = $error['message'];
 					break;
 				}
+			} elseif ( $numReadyPipes === 0 ) {
+				// stream_select reached its timeout, loop again until some data comes
+				continue;
 			}
 			foreach ( $readyPipes as $fd => $pipe ) {
 				$block = fread( $pipe, 65536 );
