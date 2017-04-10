@@ -33,9 +33,12 @@ abstract class MWLBFactory {
 	/**
 	 * @param array $lbConf Config for LBFactory::__construct()
 	 * @param Config $mainConfig Main config object from MediaWikiServices
+	 * @param ReadOnlyMode $readOnlyMode
 	 * @return array
 	 */
-	public static function applyDefaultConfig( array $lbConf, Config $mainConfig ) {
+	public static function applyDefaultConfig( array $lbConf, Config $mainConfig,
+		ReadOnlyMode $readOnlyMode
+	) {
 		global $wgCommandLineMode;
 
 		static $typesWithSchema = [ 'postgres', 'msssql' ];
@@ -55,8 +58,7 @@ abstract class MWLBFactory {
 			'errorLogger' => [ MWExceptionHandler::class, 'logException' ],
 			'cliMode' => $wgCommandLineMode,
 			'hostname' => wfHostname(),
-			// TODO: replace the global wfConfiguredReadOnlyReason() with a service.
-			'readOnlyReason' => wfConfiguredReadOnlyReason(),
+			'readOnlyReason' => $readOnlyMode->getReason(),
 		];
 
 		// When making changes here, remember to also specify MediaWiki-specific options

@@ -8,11 +8,7 @@ class GlobalTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$readOnlyFile = $this->getNewTempFile();
-		unlink( $readOnlyFile );
-
 		$this->setMwGlobals( [
-			'wgReadOnlyFile' => $readOnlyFile,
 			'wgUrlProtocols' => [
 				'http://',
 				'https://',
@@ -99,38 +95,6 @@ class GlobalTest extends MediaWikiTestCase {
 				. "%E0%B0%B5%E0%B0%BE%E0%B0%A1%E0%B1%81%E0%B0%95%E0%B0%B0%E0%B0%BF_"
 				. "%E0%B0%AE%E0%B0%BE%E0%B0%B0%E0%B1%8D%E0%B0%97%E0%B0%A6%E0%B0%B0"
 				. "%E0%B1%8D%E0%B0%B6%E0%B0%A8%E0%B0%BF" ) );
-	}
-
-	/**
-	 * @covers ::wfReadOnly
-	 */
-	public function testReadOnlyEmpty() {
-		global $wgReadOnly;
-		$wgReadOnly = null;
-
-		$this->assertFalse( wfReadOnly() );
-		$this->assertFalse( wfReadOnly() );
-	}
-
-	/**
-	 * @covers ::wfReadOnly
-	 */
-	public function testReadOnlySet() {
-		global $wgReadOnly, $wgReadOnlyFile;
-
-		$f = fopen( $wgReadOnlyFile, "wt" );
-		fwrite( $f, 'Message' );
-		fclose( $f );
-		$wgReadOnly = null; # Check on $wgReadOnlyFile
-
-		$this->assertTrue( wfReadOnly() );
-		$this->assertTrue( wfReadOnly() ); # Check cached
-
-		unlink( $wgReadOnlyFile );
-		$wgReadOnly = null; # Clean cache
-
-		$this->assertFalse( wfReadOnly() );
-		$this->assertFalse( wfReadOnly() );
 	}
 
 	public static function provideArrayToCGI() {
