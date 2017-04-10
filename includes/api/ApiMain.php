@@ -1231,6 +1231,37 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
+	 * @return array
+	 */
+	private function getMaxLag() {
+		$checkJobQueue = $this->getConfig()->get( 'JobQueueIncludeInMaxLagFactor' );
+		$dbLag = MediaWikiServices::getInstance()->getDBLoadBalancer()->getMaxLag();
+		$dbLagInfo = [
+			'host' => $dbLag[0],
+			'lag' => $dbLag[1],
+			'type' => 'db'
+		];
+		if ( $checkJobQueue === false ) {
+			return $dbLagInfo;
+		}
+
+		// Turn total number of jobs into seconds by using the configured value
+		$totalJobs = array_sum( JobQueueGroup::singleton()->getQueueSizes() );
+		$jobQueueLag = $totalJobs / (float)$checkJobQueue;
+		if ( $jobQueueLag > $dbLagInfo['lag'] ) {
+			return [
+				'host' => wfHostname(), // XXX: Is there a better value that could be used?
+				'lag' => $jobQueueLag,
+				'type' => 'jobqueue',
+				'jobs' => $totalJobs,
+			];
+		} else {
+			// $dbLag >= $jobQueueLag
+			return $dbLagInfo;
+		}
+	}
+
+	/**
 	 * Check the max lag if necessary
 	 * @param ApiBase $module Api module being used
 	 * @param array $params Array an array containing the request parameters.
@@ -1239,18 +1270,22 @@ class ApiMain extends ApiBase {
 	protected function checkMaxLag( $module, $params ) {
 		if ( $module->shouldCheckMaxlag() && isset( $params['maxlag'] ) ) {
 			$maxLag = $params['maxlag'];
-			list( $host, $lag ) = wfGetLB()->getMaxLag();
-			if ( $lag > $maxLag ) {
+			$lagInfo = $this->getMaxLag();
+			if ( $lagInfo['lag'] > $maxLag ) {
 				$response = $this->getRequest()->response();
 
 				$response->header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
-				$response->header( 'X-Database-Lag: ' . intval( $lag ) );
+				$response->header( 'X-Database-Lag: ' . intval( $lagInfo['lag'] ) );
 
 				if ( $this->getConfig()->get( 'ShowHostnames' ) ) {
-					$this->dieWithError( [ 'apierror-maxlag', $lag, $host ] );
+					$this->dieWithError(
+						[ 'apierror-maxlag', $lagInfo['lag'], $lagInfo['host'] ],
+						'maxlag',
+						$lagInfo
+					);
 				}
 
-				$this->dieWithError( [ 'apierror-maxlag-generic', $lag ], 'maxlag' );
+				$this->dieWithError( [ 'apierror-maxlag-generic', $lagInfo['lag'] ], 'maxlag', $lagInfo );
 			}
 		}
 
