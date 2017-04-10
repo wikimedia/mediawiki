@@ -63,7 +63,8 @@ class ImageBuilder extends Maintenance {
 		$this->dbw = $this->getDB( DB_MASTER );
 		$this->dryrun = $this->hasOption( 'dry-run' );
 		if ( $this->dryrun ) {
-			$GLOBALS['wgReadOnly'] = 'Dry run mode, image upgrades are suppressed';
+			MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()
+				->setReason( 'Dry run mode, image upgrades are suppressed' );
 		}
 
 		if ( $this->hasOption( 'missing' ) ) {
