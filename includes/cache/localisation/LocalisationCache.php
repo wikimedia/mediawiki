@@ -210,17 +210,19 @@ class LocalisationCache {
 				case 'detect':
 					if ( !empty( $conf['storeDirectory'] ) ) {
 						$storeClass = 'LCStoreCDB';
-					} elseif ( $wgCacheDirectory ) {
-						$storeConf['directory'] = $wgCacheDirectory;
-						$storeClass = 'LCStoreCDB';
 					} else {
-						$storeClass = 'LCStoreDB';
+						$cacheDir = $wgCacheDirectory ?: wfTempDir();
+						if ( $cacheDir ) {
+							$storeConf['directory'] = $cacheDir;
+							$storeClass = 'LCStoreCDB';
+						} else {
+							$storeClass = 'LCStoreDB';
+						}
 					}
 					break;
 				default:
 					throw new MWException(
-						'Please set $wgLocalisationCacheConf[\'store\'] to something sensible.'
-					);
+						'Please set $wgLocalisationCacheConf[\'store\'] to something sensible.' );
 			}
 		}
 

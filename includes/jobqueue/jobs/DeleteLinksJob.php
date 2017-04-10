@@ -48,10 +48,8 @@ class DeleteLinksJob extends Job {
 			return false;
 		}
 
-		$timestamp = isset( $this->params['timestamp'] ) ? $this->params['timestamp'] : null;
-
 		$page = WikiPage::factory( $this->title ); // title when deleted
-		$update = new LinksDeletionUpdate( $page, $pageId, $timestamp );
+		$update = new LinksDeletionUpdate( $page, $pageId );
 		DataUpdate::runUpdates( [ $update ] );
 
 		return true;

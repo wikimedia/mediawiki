@@ -15,6 +15,10 @@ class ComposerLock {
 		$this->contents = json_decode( file_get_contents( $location ), true );
 	}
 
+	public function getHash() {
+		return $this->contents['hash'];
+	}
+
 	/**
 	 * Dependencies currently installed according to composer.lock
 	 *

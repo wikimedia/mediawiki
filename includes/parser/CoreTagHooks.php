@@ -79,25 +79,12 @@ class CoreTagHooks {
 	 * @param array $attributes
 	 * @param Parser $parser
 	 * @throws MWException
-	 * @return array|string Output of tag hook
+	 * @return array
 	 */
 	public static function html( $content, $attributes, $parser ) {
 		global $wgRawHtml;
 		if ( $wgRawHtml ) {
-			if ( $parser->getOptions()->getAllowUnsafeRawHtml() ) {
-				return [ $content, 'markerType' => 'nowiki' ];
-			} else {
-				// In a system message where raw html is
-				// not allowed (but it is allowed in other
-				// contexts).
-				return Html::rawElement(
-					'span',
-					[ 'class' => 'error' ],
-					// Using ->text() not ->parse() as
-					// a paranoia measure against a loop.
-					wfMessage( 'rawhtml-notallowed' )->escaped()
-				);
-			}
+			return [ $content, 'markerType' => 'nowiki' ];
 		} else {
 			throw new MWException( '<html> extension tag encountered unexpectedly' );
 		}

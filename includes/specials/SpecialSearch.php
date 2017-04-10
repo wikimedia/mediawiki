@@ -218,7 +218,7 @@ class SpecialSearch extends SpecialPage {
 			Hooks::run( 'SpecialSearchGoResult', [ $term, $title, &$url ] )
 		) {
 			if ( $url === null ) {
-				$url = $title->getFullUrlForRedirect();
+				$url = $title->getFullURL();
 			}
 			$this->getOutput()->redirect( $url );
 

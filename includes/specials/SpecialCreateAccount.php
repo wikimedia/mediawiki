@@ -120,12 +120,7 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 				} else {
 					$out->addWikiMsg( 'accountcreatedtext', $user->getName() );
 				}
-
-				$rt = Title::newFromText( $this->mReturnTo );
-				$out->addReturnTo(
-					( $rt && !$rt->isExternal() ) ? $rt : $this->getPageTitle(),
-					wfCgiToArray( $this->mReturnToQuery )
-				);
+				$out->addReturnTo( $this->getPageTitle() );
 				return;
 			}
 		}

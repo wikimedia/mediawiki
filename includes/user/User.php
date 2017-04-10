@@ -325,7 +325,7 @@ class User implements IDBAccessObject {
 	 * @return string
 	 */
 	public function __toString() {
-		return (string)$this->getName();
+		return $this->getName();
 	}
 
 	/**
@@ -1355,6 +1355,8 @@ class User implements IDBAccessObject {
 	 */
 	protected function loadFromUserObject( $user ) {
 		$user->load();
+		$user->loadGroups();
+		$user->loadOptions();
 		foreach ( self::$mCacheVars as $var ) {
 			$this->$var = $user->$var;
 		}

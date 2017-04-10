@@ -41,7 +41,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 		$query = $this->getRedirectQuery();
 		// Redirect to a page title with possible query parameters
 		if ( $redirect instanceof Title ) {
-			$url = $redirect->getFullUrlForRedirect( $query );
+			$url = $redirect->getFullURL( $query );
 			$this->getOutput()->redirect( $url );
 
 			return $redirect;

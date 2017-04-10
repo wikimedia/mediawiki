@@ -1319,7 +1319,6 @@
 	"action-managechangetags": "create and delete tags from the database",
 	"action-applychangetags": "apply tags along with your changes",
 	"action-changetags": "add and remove arbitrary tags on individual revisions and log entries",
-	"action-purge": "purge this page",
 	"nchanges": "$1 {{PLURAL:$1|change|changes}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|since last visit}}",
 	"enhancedrc-history": "history",
@@ -1469,7 +1468,6 @@
 	"php-uploaddisabledtext": "File uploads are disabled in PHP.\nPlease check the file_uploads setting.",
 	"uploadscripted": "This file contains HTML or script code that may be erroneously interpreted by a web browser.",
 	"upload-scripted-pi-callback": "Cannot upload a file that contains XML-stylesheet processing instruction.",
-	"upload-scripted-dtd": "Cannot upload SVG files that contain a non-standard DTD declaration.",
 	"uploaded-script-svg": "Found scriptable element \"$1\" in the uploaded SVG file.",
 	"uploaded-hostile-svg": "Found unsafe CSS in the style element of uploaded SVG file.",
 	"uploaded-event-handler-on-svg": "Setting event-handler attributes <code>$1=\"$2\"</code> is not allowed in SVG files.",
@@ -4170,11 +4168,5 @@
 	"linkaccounts-submit": "Link accounts",
 	"unlinkaccounts": "Unlink accounts",
 	"unlinkaccounts-success": "The account was unlinked.",
-	"authenticationdatachange-ignored": "The authentication data change was not handled. Maybe no provider was configured?",
-	"rawhtml-notallowed": "&lt;html&gt; tags cannot be used outside of normal pages.",
-	"gotointerwiki": "Leaving {{SITENAME}}",
-	"gotointerwiki-invalid": "The specified title was invalid.",
-	"gotointerwiki-external": "You are about to leave {{SITENAME}} to visit [[$2]] which is a separate website.\n\n[$1 Click here to continue on to $1].",
-	"undelete-cantedit": "You cannot undelete this page as you are not allowed to edit this page.",
-	"undelete-cantcreate": "You cannot undelete this page as there is no existing page with this name and you are not allowed to create this page."
+	"authenticationdatachange-ignored": "The authentication data change was not handled. Maybe no provider was configured?"
 }

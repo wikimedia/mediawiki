@@ -632,27 +632,21 @@
 				obj[ key ] = val;
 			} : function ( obj, key, val, msg ) {
 				msg = 'Use of "' + key + '" is deprecated.' + ( msg ? ( ' ' + msg ) : '' );
-				// Support: Safari 5.0
-				// Throws "not supported on DOM Objects" for Node or Element objects (incl. document)
-				// Safari 4.0 doesn't have this method, and it was fixed in Safari 5.1.
-				try {
-					Object.defineProperty( obj, key, {
-						configurable: true,
-						enumerable: true,
-						get: function () {
-							mw.track( 'mw.deprecate', key );
-							mw.log.warn( msg );
-							return val;
-						},
-						set: function ( newVal ) {
-							mw.track( 'mw.deprecate', key );
-							mw.log.warn( msg );
-							val = newVal;
-						}
-					} );
-				} catch ( err ) {
-					obj[ key ] = val;
-				}
+				Object.defineProperty( obj, key, {
+					configurable: true,
+					enumerable: true,
+					get: function () {
+						mw.track( 'mw.deprecate', key );
+						mw.log.warn( msg );
+						return val;
+					},
+					set: function ( newVal ) {
+						mw.track( 'mw.deprecate', key );
+						mw.log.warn( msg );
+						val = newVal;
+					}
+				} );
+
 			};
 
 			return log;

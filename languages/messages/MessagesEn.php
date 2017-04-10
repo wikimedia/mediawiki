@@ -426,7 +426,6 @@ $specialPageAliases = [
 	'Fewestrevisions'           => [ 'FewestRevisions' ],
 	'FileDuplicateSearch'       => [ 'FileDuplicateSearch' ],
 	'Filepath'                  => [ 'FilePath' ],
-	'GoToInterwiki'             => [ 'GoToInterwiki' ],
 	'Import'                    => [ 'Import' ],
 	'Invalidateemail'           => [ 'InvalidateEmail' ],
 	'JavaScriptTest'            => [ 'JavaScriptTest' ],

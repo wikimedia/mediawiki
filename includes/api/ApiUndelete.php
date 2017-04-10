@@ -34,6 +34,9 @@ class ApiUndelete extends ApiBase {
 
 		$params = $this->extractRequestParams();
 		$user = $this->getUser();
+		if ( !$user->isAllowed( 'undelete' ) ) {
+			$this->dieUsageMsg( 'permdenied-undelete' );
+		}
 
 		if ( $user->isBlocked() ) {
 			$this->dieBlocked( $user->getBlock() );
@@ -42,10 +45,6 @@ class ApiUndelete extends ApiBase {
 		$titleObj = Title::newFromText( $params['title'] );
 		if ( !$titleObj || $titleObj->isExternal() ) {
 			$this->dieUsageMsg( [ 'invalidtitle', $params['title'] ] );
-		}
-
-		if ( !$titleObj->userCan( 'undelete', $user, 'secure' ) ) {
-			$this->dieUsageMsg( 'permdenied-undelete' );
 		}
 
 		// Check if user can add tags

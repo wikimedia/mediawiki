@@ -27,28 +27,23 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 	protected $page;
 	/** @var integer */
 	protected $pageId;
-	/** @var string */
-	protected $timestamp;
 
 	/**
 	 * @param WikiPage $page Page we are updating
 	 * @param integer|null $pageId ID of the page we are updating [optional]
-	 * @param string|null $timestamp TS_MW timestamp of deletion
 	 * @throws MWException
 	 */
-	function __construct( WikiPage $page, $pageId = null, $timestamp = null ) {
+	function __construct( WikiPage $page, $pageId = null ) {
 		parent::__construct( false ); // no implicit transaction
 
 		$this->page = $page;
-		if ( $pageId ) {
-			$this->pageId = $pageId; // page ID at time of deletion
-		} elseif ( $page->exists() ) {
+		if ( $page->exists() ) {
 			$this->pageId = $page->getId();
+		} elseif ( $pageId ) {
+			$this->pageId = $pageId;
 		} else {
 			throw new MWException( "Page ID not known, perhaps the page doesn't exist?" );
 		}
-
-		$this->timestamp = $timestamp ?: wfTimestampNow();
 	}
 
 	public function doUpdate() {
@@ -90,9 +85,7 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 				[
 					'rc_type != ' . RC_LOG,
 					'rc_namespace' => $title->getNamespace(),
-					'rc_title' => $title->getDBkey(),
-					'rc_timestamp < ' .
-						$this->mDb->addQuotes( $this->mDb->timestamp( $this->timestamp ) )
+					'rc_title' => $title->getDBkey()
 				],
 				__METHOD__
 			);
@@ -115,7 +108,7 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 			'wiki' => $this->mDb->getWikiID(),
 			'job'  => new JobSpecification(
 				'deleteLinks',
-				[ 'pageId' => $this->pageId, 'timestamp' => $this->timestamp ],
+				[ 'pageId' => $this->pageId ],
 				[ 'removeDuplicates' => true ],
 				$this->page->getTitle()
 			)

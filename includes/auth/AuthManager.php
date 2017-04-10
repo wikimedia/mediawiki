@@ -2000,26 +2000,37 @@ class AuthManager implements LoggerAwareInterface {
 
 		// Query them and merge results
 		$reqs = [];
+		$allPrimaryRequired = null;
 		foreach ( $providers as $provider ) {
 			$isPrimary = $provider instanceof PrimaryAuthenticationProvider;
+			$thisRequired = [];
 			foreach ( $provider->getAuthenticationRequests( $providerAction, $options ) as $req ) {
 				$id = $req->getUniqueId();
 
-				// If a required request if from a Primary, mark it as "primary-required" instead
+				// If it's from a Primary, mark it as "primary-required" but
+				// track it for later.
 				if ( $isPrimary ) {
 					if ( $req->required ) {
+						$thisRequired[$id] = true;
 						$req->required = AuthenticationRequest::PRIMARY_REQUIRED;
 					}
 				}
 
-				if (
-					!isset( $reqs[$id] )
-					|| $req->required === AuthenticationRequest::REQUIRED
-					|| $reqs[$id] === AuthenticationRequest::OPTIONAL
-				) {
+				if ( !isset( $reqs[$id] ) || $req->required === AuthenticationRequest::REQUIRED ) {
 					$reqs[$id] = $req;
 				}
 			}
+
+			// Track which requests are required by all primaries
+			if ( $isPrimary ) {
+				$allPrimaryRequired = $allPrimaryRequired === null
+					? $thisRequired
+					: array_intersect_key( $allPrimaryRequired, $thisRequired );
+			}
+		}
+		// Any requests that were required by all primaries are required.
+		foreach ( (array)$allPrimaryRequired as $id => $dummy ) {
+			$reqs[$id]->required = AuthenticationRequest::REQUIRED;
 		}
 
 		// AuthManager has its own req for some actions

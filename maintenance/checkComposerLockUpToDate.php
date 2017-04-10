@@ -34,7 +34,11 @@ class CheckComposerLockUpToDate extends Maintenance {
 		$lock = new ComposerLock( $lockLocation );
 		$json = new ComposerJson( $jsonLocation );
 
-		// Check all the dependencies to see if any are old
+		if ( $lock->getHash() === $json->getHash() ) {
+			$this->output( "Your composer.lock file is up to date with current dependencies!\n" );
+			return;
+		}
+		// Out of date, lets figure out which dependencies are old
 		$found = false;
 		$installed = $lock->getInstalledDependencies();
 		foreach ( $json->getRequiredDependencies() as $name => $version ) {
@@ -57,6 +61,8 @@ class CheckComposerLockUpToDate extends Maintenance {
 				1
 			);
 		} else {
+			// The hash is the entire composer.json file,
+			// so it can be updated without any of the dependencies changing
 			// We couldn't find any out-of-date dependencies, so assume everything is ok!
 			$this->output( "Your composer.lock file is up to date with current dependencies!\n" );
 		}

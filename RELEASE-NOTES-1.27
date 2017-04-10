@@ -1,67 +1,3 @@
-== MediaWiki 1.27.2 ==
-This is a security and maintenance release of the MediaWiki 1.27 branch.
-
-ApiCreateAccount was removed in 1.27.0. It was incorrectly still marked as
-deprecated (rather than already removed) in the RELEASE-NOTES at the point 1.27.0
-was released.
-
-=== Changes since 1.27.1 ===
-
-* (T68404) CSS3 attr() function with url type argument is no longer allowed
-  in inline styles.
-* $wgRunJobsAsync is now false by default (T142751). This change only affects
-  wikis with $wgJobRunRate > 0.
-* (T152717) Better escaping for PHP mail() command
-* Submitting the lgtoken and lgpassword parameters in the query string to
-  action=login is now deprecated and outputs a warning. They should be submitted
-  in the POST body instead.
-* Submitting sensitive authentication request parameters to action=clientlogin,
-  action=createaccount, action=linkaccount, and action=changeauthenticationdata
-  in the query string is now deprecated and outputs a warning. They should be
-  submitted in the POST body instead.
-* (T158766) Avoid SQL error on MSSQL when using selectRowCount()
-* (T145635) Fix too long index error when installing with MSSQL.
-* (T156184) $wgRawHtml will no longer apply to internationalization messages.
-* (T160519) CACHE_ANYTHING will not be CACHE_ACCEL if no accelerator is installed.
-* (T109140) (T122209) SECURITY: Special:UserLogin and Special:Search allow redirect
-  to interwiki links.
-* (T144845) SECURITY: XSS in SearchHighlighter::highlightText() when
-  $wgAdvancedSearchHighlighting is true.
-* (T125177) SECURITY: API parameters may now be marked as "sensitive" to keep
-  their values out of the logs.
-* (T150044) SECURITY: "Mark all pages visited" on the watchlist now requires a CSRF
-  token.
-* (T156184) SECURITY: Escape content model/format url parameter in message.
-* (T151735) SECURITY: SVG filter evasion using default attribute values in DTD
-  declaration.
-* (T161453) SECURITY: LocalisationCache will no longer use the temporary directory
-  in it's fallback chain when trying to work out where to write the cache.
-* (T48143) SECURITY: Spam blacklist ineffective on encoded URLs inside file inclusion
-  syntax's link parameter.
-* (T108138) SECURITY: Sysops can undelete pages, although the page is protected against
-  it.
-
-== MediaWiki 1.27.1 ==
-
-This is a maintenance release of the MediaWiki 1.27 branch.
-
-=== Changes since 1.27.0 ===
-* BREAKING CHANGE: $wgHTTPProxy is now *required* for all external requests
-  made by MediaWiki via a proxy. Relying on the http_proxy environment
-  variable is no longer supported.
-* (T139565) SECURITY: API: Generate head items in the context of the given title
-* (T137264) SECURITY: XSS in unclosed internal links
-* (T133147) SECURITY: Escape '<' and ']]>' in inline <style> blocks
-* (T133147) SECURITY: Require login to preview user CSS pages
-* (T132926) SECURITY: Do not allow undeleting a revision deleted file if it is
-  the top file
-* (T129738) SECURITY: Make $wgBlockDisablesLogin also restrict logged in
-  permissions
-* (T129738) SECURITY: Make blocks log users out if $wgBlockDisablesLogin is true
-* (T115333) SECURITY: Check read permission when loading page content in ApiParse
-* (T57548) Remove support for $wgWellFormedXml = false, all output is now well formed
-* (T139670) Move 'UserGetRights' call before application of Session::getAllowedUserRights()
-
 == MediaWiki 1.27 ==
 
 === PHP version requirement ===
@@ -354,8 +290,6 @@ The following PHP extensions are strongly recommended:
 * Added action=changeauthenticationdata.
 * Added action=removeauthenticationdata.
 * Added action=resetpassword.
-* (T125177) SECURITY: API parameters may now be marked as "sensitive" to keep
-  their values out of the logs.
 
 === Action API internal changes in 1.27 ===
 * ApiQueryORM removed.
@@ -388,7 +322,7 @@ The following PHP extensions are strongly recommended:
 * ApiMain::addFormat() was removed (deprecated in 1.21).
 * ApiMain::getFormats() was removed (deprecated in 1.21).
 * ApiPageSet::finishPageSetGeneration() was removed (deprecated in 1.21).
-* ApiCreateAccount was removed.
+* ApiCreateAccount is deprecated, and will be removed soon.
 
 === Languages updated in 1.27 ===
 

@@ -75,35 +75,25 @@ class APCBagOStuff extends BagOStuff {
 	}
 
 	protected function doGet( $key, $flags = 0 ) {
-		return $this->getUnserialize(
-			apc_fetch( $key . self::KEY_SUFFIX )
-		);
-	}
+		$val = apc_fetch( $key . self::KEY_SUFFIX );
 
-	protected function getUnserialize( $value ) {
-		if ( is_string( $value ) && !$this->nativeSerialize ) {
-			$value = $this->isInteger( $value )
-				? intval( $value )
-				: unserialize( $value );
+		if ( is_string( $val ) && !$this->nativeSerialize ) {
+			$val = $this->isInteger( $val )
+				? intval( $val )
+				: unserialize( $val );
 		}
-		return $value;
+
+		return $val;
 	}
 
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
-		apc_store(
-			$key . self::KEY_SUFFIX,
-			$this->setSerialize( $value ),
-			$exptime
-		);
-
-		return true;
-	}
-
-	protected function setSerialize( $value ) {
 		if ( !$this->nativeSerialize && !$this->isInteger( $value ) ) {
 			$value = serialize( $value );
 		}
-		return $value;
+
+		apc_store( $key . self::KEY_SUFFIX, $value, $exptime );
+
+		return true;
 	}
 
 	public function delete( $key ) {

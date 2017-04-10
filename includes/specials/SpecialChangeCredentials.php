@@ -159,7 +159,7 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 		return $form;
 	}
 
-	protected function needsSubmitButton( array $requests ) {
+	protected function needsSubmitButton( $formDescriptor ) {
 		// Change/remove forms show are built from a single AuthenticationRequest and do not allow
 		// for redirect flow; they always need a submit button.
 		return true;
@@ -243,7 +243,7 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 		}
 
 		$title = Title::newFromText( $returnTo );
-		return $title->getFullUrlForRedirect( $returnToQuery );
+		return $title->getFullURL( $returnToQuery );
 	}
 
 	protected function getRequestBlacklist() {

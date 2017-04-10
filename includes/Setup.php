@@ -241,7 +241,7 @@ if ( $wgUseInstantCommons ) {
 		'transformVia404' => true,
 		'fetchDescription' => true,
 		'descriptionCacheExpiry' => 43200,
-		'apiThumbCacheExpiry' => 0,
+		'apiThumbCacheExpiry' => 86400,
 	];
 }
 /*
@@ -684,9 +684,7 @@ wfDebugLog( 'caches',
 	', WAN: ' . $wgMainWANCache .
 	', stash: ' . $wgMainStash .
 	', message: ' . get_class( $messageMemc ) .
-	', parser: ' . get_class( $parserMemc ) .
-	', session: ' . get_class( ObjectCache::getInstance( $wgSessionCacheType ) )
-);
+	', parser: ' . get_class( $parserMemc ) );
 
 Profiler::instance()->scopedProfileOut( $ps_memcached );
 

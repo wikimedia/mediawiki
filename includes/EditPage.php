@@ -980,10 +980,7 @@ class EditPage {
 			throw new ErrorPageError(
 				'editpage-notsupportedcontentformat-title',
 				'editpage-notsupportedcontentformat-text',
-				[
-					wfEscapeWikiText( $this->contentFormat ),
-					wfEscapeWikiText( ContentHandler::getLocalizedName( $this->contentModel ) )
-				]
+				[ $this->contentFormat, ContentHandler::getLocalizedName( $this->contentModel ) ]
 			);
 		}
 
