@@ -218,4 +218,13 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 		return $output;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
+	public function isSelected( FormOptions $opts ) {
+		return !$opts[ $this->getName() ] &&
+			array_filter( $this->getSiblings(), function ( $sibling ) use ( $opts ) {
+				return $opts[ $sibling->getName() ];
+			} );
+	}
 }
