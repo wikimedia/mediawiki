@@ -1,3 +1,5 @@
+@import 'mediawiki.mixins';
+
 .postedit-container {
 	margin: 0 auto;
 	position: fixed;
@@ -6,29 +8,22 @@
 	left: 50%;
 	z-index: 1000;
 	font-size: 13px;
-}
 
-.postedit-container:hover {
-	cursor: pointer;
+	&:hover {
+		cursor: pointer;
+	}
 }
 
 .postedit {
 	position: relative;
 	top: 0.6em;
 	left: -50%;
-	padding: 0.6em 3.6em 0.6em 1.1em;
-	line-height: 1.5625em;
-	color: #626465;
-	background-color: #f4f4f4;
-	border: 1px solid #dcd9d9;
-	text-shadow: 0 0.0625em 0 rgba( 255, 255, 255, 0.5 );
-	border-radius: 5px;
-	box-shadow: 0 2px 5px 0 #ccc;
-	-webkit-transition: all 0.25s ease-in-out;
-	-moz-transition: all 0.25s ease-in-out;
-	-ms-transition: all 0.25s ease-in-out;
-	-o-transition: all 0.25s ease-in-out;
-	transition: all 0.25s ease-in-out;
+	line-height: 1.35;
+	opacity: 1;
+	.transition( opacity 250ms );
+	&.mw-notification {
+		padding-right: 3em;
+	}
 }
 
 .skin-monobook .postedit {
@@ -65,12 +60,10 @@
 	text-shadow: 0 0.0625em 0 #fff;
 	text-decoration: none;
 	opacity: 0.2;
-	filter: alpha( opacity=20 );
-}
 
-.postedit-close:hover {
-	color: #000;
-	text-decoration: none;
-	opacity: 0.4;
-	filter: alpha( opacity=40 );
+	.postedit:hover & {
+		color: #000;
+		text-decoration: none;
+		opacity: 0.4;
+	}
 }
