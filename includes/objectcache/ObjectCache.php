@@ -50,7 +50,7 @@ use MediaWiki\MediaWikiServices;
  *
  * - ObjectCache::getLocalServerInstance( $fallbackType )
  *   Purpose: Memory cache for very hot keys.
- *   Stored only on the individual web server (typically APC for web requests,
+ *   Stored only on the individual web server (typically APC or APCu for web requests,
  *   and EmptyBagOStuff in CLI mode).
  *   Not replicated to the other servers.
  *
@@ -222,8 +222,14 @@ class ObjectCache {
 		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType;
 		$candidates = [ $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType ];
 		foreach ( $candidates as $candidate ) {
+			$cache = false;
 			if ( $candidate !== CACHE_NONE && $candidate !== CACHE_ANYTHING ) {
-				return self::getInstance( $candidate );
+				$cache = self::getInstance( $candidate );
+				// CACHE_ACCEL might default to nothing if no APCu
+				// See includes/ServiceWiring.php
+				if ( !( $cache instanceof EmptyBagOStuff ) ) {
+					return $cache;
+				}
 			}
 		}
 		return self::getInstance( CACHE_DB );
@@ -232,7 +238,7 @@ class ObjectCache {
 	/**
 	 * Factory function for CACHE_ACCEL (referenced from DefaultSettings.php)
 	 *
-	 * This will look for any APC style server-local cache.
+	 * This will look for any APC or APCu style server-local cache.
 	 * A fallback cache can be specified if none is found.
 	 *
 	 *     // Direct calls
@@ -249,6 +255,8 @@ class ObjectCache {
 	public static function getLocalServerInstance( $fallback = CACHE_NONE ) {
 		if ( function_exists( 'apc_fetch' ) ) {
 			$id = 'apc';
+		} elseif ( function_exists( 'apcu_fetch' ) ) {
+			$id = 'apcu';
 		} elseif ( function_exists( 'xcache_get' ) && wfIniGetBool( 'xcache.var_size' ) ) {
 			$id = 'xcache';
 		} elseif ( function_exists( 'wincache_ucache_get' ) ) {

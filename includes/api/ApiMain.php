@@ -145,6 +145,7 @@ class ApiMain extends ApiBase {
 	private $mCacheMode = 'private';
 	private $mCacheControl = [];
 	private $mParamsUsed = [];
+	private $mParamsSensitive = [];
 
 	/** @var bool|null Cached return value from self::lacksSameOriginSecurity() */
 	private $lacksSameOriginSecurity = null;
@@ -1038,18 +1039,7 @@ class ApiMain extends ApiBase {
 				$this->dieUsageMsg( [ 'missingparam', 'token' ] );
 			}
 
-			if ( !$this->getConfig()->get( 'DebugAPI' ) &&
-				array_key_exists(
-					$module->encodeParamName( 'token' ),
-					$this->getRequest()->getQueryValues()
-				)
-			) {
-				$this->dieUsage(
-					"The '{$module->encodeParamName( 'token' )}' parameter was " .
-						'found in the query string, but must be in the POST body',
-					'mustposttoken'
-				);
-			}
+			$module->requirePostedParameters( [ 'token' ] );
 
 			if ( !$module->validateToken( $moduleParams['token'], $moduleParams ) ) {
 				$this->dieUsageMsg( 'sessionfailure' );
@@ -1429,13 +1419,17 @@ class ApiMain extends ApiBase {
 			" {$logCtx['ip']} " .
 			"T={$logCtx['timeSpentBackend']}ms";
 
+		$sensitive = array_flip( $this->getSensitiveParams() );
 		foreach ( $this->getParamsUsed() as $name ) {
 			$value = $request->getVal( $name );
 			if ( $value === null ) {
 				continue;
 			}
 
-			if ( strlen( $value ) > 256 ) {
+			if ( isset( $sensitive[$name] ) ) {
+				$value = '[redacted]';
+				$encValue = '[redacted]';
+			} elseif ( strlen( $value ) > 256 ) {
 				$value = substr( $value, 0, 256 );
 				$encValue = $this->encodeRequestLogValue( $value ) . '[...]';
 			} else {
@@ -1483,6 +1477,24 @@ class ApiMain extends ApiBase {
 	 */
 	public function markParamsUsed( $params ) {
 		$this->mParamsUsed += array_fill_keys( (array)$params, true );
+	}
+
+	/**
+	 * Get the request parameters that should be considered sensitive
+	 * @since 1.28
+	 * @return array
+	 */
+	protected function getSensitiveParams() {
+		return array_keys( $this->mParamsSensitive );
+	}
+
+	/**
+	 * Mark parameters as sensitive
+	 * @since 1.28
+	 * @param string|string[] $params
+	 */
+	public function markParamsSensitive( $params ) {
+		$this->mParamsSensitive += array_fill_keys( (array)$params, true );
 	}
 
 	/**

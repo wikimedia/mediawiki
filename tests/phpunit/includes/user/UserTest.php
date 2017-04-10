@@ -110,7 +110,11 @@ class UserTest extends MediaWikiTestCase {
 		// Add a hook manipluating the rights
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'UserGetRights' => [ function ( $user, &$rights ) {
 			$rights[] = 'nukeworld';
+<<<<<<< HEAD   (a56fc7 Add blank index.html)
 			$rights = array_diff( $rights, array( 'writetest' ) );
+=======
+			$rights = array_diff( $rights, [ 'writetest' ] );
+>>>>>>> BRANCH (1c409c Bump $wgVersion and finalise RELEASE-NOTES for 1.27.2)
 		} ] ] );
 
 		$userWrapper->mRights = null;

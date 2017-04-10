@@ -156,14 +156,30 @@ class ApiAuthManagerHelper {
 
 		// Collect the fields for all the requests
 		$fields = [];
+		$sensitive = [];
 		foreach ( $reqs as $req ) {
-			$fields += (array)$req->getFieldInfo();
+			$info = (array)$req->getFieldInfo();
+			$fields += $info;
+			$sensitive += array_filter( $info, function ( $opts ) {
+				return !empty( $opts['sensitive'] );
+			} );
 		}
 
 		// Extract the request data for the fields and mark those request
 		// parameters as used
 		$data = array_intersect_key( $this->module->getRequest()->getValues(), $fields );
 		$this->module->getMain()->markParamsUsed( array_keys( $data ) );
+
+		if ( $sensitive ) {
+			$this->module->getMain()->markParamsSensitive( array_keys( $sensitive ) );
+			try {
+				$this->module->requirePostedParameters( array_keys( $sensitive ), 'noprefix' );
+			} catch ( UsageException $ex ) {
+				// Make this a warning for now, upgrade to an error in 1.29.
+				$this->module->setWarning( $ex->getMessage() );
+				$this->module->logFeatureUsage( $this->module->getModuleName() . '-params-in-query-string' );
+			}
+		}
 
 		return AuthenticationRequest::loadRequestsFromSubmission( $reqs, $data );
 	}

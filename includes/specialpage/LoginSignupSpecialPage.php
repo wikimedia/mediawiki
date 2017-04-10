@@ -290,6 +290,14 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			return;
 		}
 
+		if ( $this->canBypassForm( $button_name ) ) {
+			$this->setRequest( [], true );
+			$this->getRequest()->setVal( $this->getTokenName(), $this->getToken() );
+			if ( $button_name ) {
+				$this->getRequest()->setVal( $button_name, true );
+			}
+		}
+
 		$status = $this->trySubmit();
 
 		if ( !$status || !$status->isGood() ) {
@@ -360,6 +368,46 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			default:
 				throw new LogicException( 'invalid AuthenticationResponse' );
 		}
+	}
+
+	/**
+	 * Determine if the login form can be bypassed. This will be the case when no more than one
+	 * button is present and no other user input fields that are not marked as 'skippable' are
+	 * present. If the login form were not bypassed, the user would be presented with a
+	 * superfluous page on which they must press the single button to proceed with login.
+	 * Not only does this cause an additional mouse click and page load, it confuses users,
+	 * especially since there are a help link and forgotten password link that are
+	 * provided on the login page that do not apply to this situation.
+	 *
+	 * @param string|null &$button_name if the form has a single button, returns
+	 *   the name of the button; otherwise, returns null
+	 * @return bool
+	 */
+	private function canBypassForm( &$button_name ) {
+		$button_name = null;
+		if ( $this->isContinued() ) {
+			return false;
+		}
+		$fields = AuthenticationRequest::mergeFieldInfo( $this->authRequests );
+		foreach ( $fields as $fieldname => $field ) {
+			if ( !isset( $field['type'] ) ) {
+				return false;
+			}
+			if ( !empty( $field['skippable'] ) ) {
+				continue;
+			}
+			if ( $field['type'] === 'button' ) {
+				if ( $button_name !== null ) {
+					$button_name = null;
+					return false;
+				} else {
+					$button_name = $fieldname;
+				}
+			} elseif ( $field['type'] !== 'null' ) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -586,7 +634,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$this->fakeTemplate = $fakeTemplate; // FIXME there should be a saner way to pass this to the hook
 		// this will call onAuthChangeFormFields()
 		$formDescriptor = static::fieldInfoToFormDescriptor( $requests, $fieldInfo, $this->authAction );
-		$this->postProcessFormDescriptor( $formDescriptor );
+		$this->postProcessFormDescriptor( $formDescriptor, $requests );
 
 		$context = $this->getContext();
 		if ( $context->getRequest() !== $this->getRequest() ) {
@@ -1249,7 +1297,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	/**
 	 * @param array $formDescriptor
 	 */
-	protected function postProcessFormDescriptor( &$formDescriptor ) {
+	protected function postProcessFormDescriptor( &$formDescriptor, $requests ) {
 		// Pre-fill username (if not creating an account, T46775).
 		if (
 			isset( $formDescriptor['username'] ) &&
@@ -1267,7 +1315,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		// don't show a submit button if there is nothing to submit (i.e. the only form content
 		// is other submit buttons, for redirect flows)
-		if ( !$this->needsSubmitButton( $formDescriptor ) ) {
+		if ( !$this->needsSubmitButton( $requests ) ) {
 			unset( $formDescriptor['createaccount'], $formDescriptor['loginattempt'] );
 		}
 

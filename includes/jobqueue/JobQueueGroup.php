@@ -142,6 +142,20 @@ class JobQueueGroup {
 				$this->cache->clear( 'queues-ready' );
 			}
 		}
+
+		$cache = ObjectCache::getLocalClusterInstance();
+		$cache->set(
+			$cache->makeGlobalKey( 'jobqueue', $this->wiki, 'hasjobs', self::TYPE_ANY ),
+			'true',
+			15
+		);
+		if ( array_intersect( array_keys( $jobsByType ), $this->getDefaultQueueTypes() ) ) {
+			$cache->set(
+				$cache->makeGlobalKey( 'jobqueue', $this->wiki, 'hasjobs', self::TYPE_DEFAULT ),
+				'true',
+				15
+			);
+		}
 	}
 
 	/**
@@ -298,8 +312,8 @@ class JobQueueGroup {
 	 * @since 1.23
 	 */
 	public function queuesHaveJobs( $type = self::TYPE_ANY ) {
-		$key = wfMemcKey( 'jobqueue', 'queueshavejobs', $type );
 		$cache = ObjectCache::getLocalClusterInstance();
+		$key = $cache->makeGlobalKey( 'jobqueue', $this->wiki, 'hasjobs', $type );
 
 		$value = $cache->get( $key );
 		if ( $value === false ) {
