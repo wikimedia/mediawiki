@@ -22,43 +22,48 @@
 	 * @member mw.hook
 	 */
 
-	var config = mw.config.get( [ 'wgAction', 'wgCurRevisionId' ] ),
+	var cookieVal,
+		config = mw.config.get( [ 'wgAction', 'wgCurRevisionId' ] ),
 		// This should match EditPage::POST_EDIT_COOKIE_KEY_PREFIX:
-		cookieKey = 'PostEditRevision' + config.wgCurRevisionId,
-		cookieVal, $div, id;
-
-	function removeConfirmation() {
-		$div.remove();
-		mw.hook( 'postEdit.afterRemoval' ).fire();
-	}
-
-	function fadeOutConfirmation() {
-		clearTimeout( id );
-		$div.find( '.postedit' ).addClass( 'postedit postedit-faded' );
-		setTimeout( removeConfirmation, 500 );
-
-		return false;
-	}
+		cookieKey = 'PostEditRevision' + config.wgCurRevisionId;
 
 	function showConfirmation( data ) {
+		var $container, $popup, $content, timeoutId;
+
+		function fadeOutConfirmation() {
+			$popup.addClass( 'postedit-faded' );
+			setTimeout( function () {
+				$container.remove();
+				mw.hook( 'postEdit.afterRemoval' ).fire();
+			}, 250 );
+		}
+
 		data = data || {};
+
 		if ( data.message === undefined ) {
 			data.message = $.parseHTML( mw.message( 'postedit-confirmation-saved', data.user || mw.user ).escaped() );
 		}
 
-		$div = mw.template.get( 'mediawiki.action.view.postEdit', 'postEdit.html' ).render();
-
+		$content = $( '<div>' ).addClass( 'postedit-icon postedit-icon-checkmark postedit-content' );
 		if ( typeof data.message === 'string' ) {
-			$div.find( '.postedit-content' ).text( data.message );
+			$content.text( data.message );
 		} else if ( typeof data.message === 'object' ) {
-			$div.find( '.postedit-content' ).append( data.message );
+			$content.append( data.message );
 		}
 
-		$div
-			.click( fadeOutConfirmation )
-			.prependTo( 'body' );
+		$popup = $( '<div>' ).addClass( 'postedit mw-notification' ).append(
+			$content,
+			$( '<a>' ).addClass( 'postedit-close' ).attr( 'href', '#' ).text( 'x' )
+		).on( 'click', function ( e ) {
+			clearTimeout( timeoutId );
+			fadeOutConfirmation();
+			e.preventDefault();
+		} );
 
-		id = setTimeout( fadeOutConfirmation, 3000 );
+		$container = $( '<div>' ).addClass( 'postedit-container' ).append( $popup );
+		timeoutId = setTimeout( fadeOutConfirmation, 3000 );
+
+		$( 'body' ).prepend( $container );
 	}
 
 	mw.hook( 'postEdit' ).add( showConfirmation );
