@@ -22,11 +22,9 @@
 .mw-widget-mediaResultWidget-thumbnail {
 	opacity: 0;
 	display: inline-block;
-	/* stylelint-disable no-unsupported-browser-features */
 	-webkit-transition: opacity 400ms;
 	-moz-transition: opacity 400ms;
 	transition: opacity 400ms;
-	/* stylelint-enable no-unsupported-browser-features */
 }
 
 .mw-widget-mediaResultWidget-done .mw-widget-mediaResultWidget-thumbnail,
@@ -35,7 +33,7 @@
 }
 
 .mw-widget-mediaResultWidget-crop {
-	background-size: cover; /* stylelint-disable-line no-unsupported-browser-features */
+	background-size: cover;
 	background-position: center center;
 }
 
@@ -56,7 +54,7 @@
 .mw-widget-mediaResultWidget-error .mw-widget-mediaResultWidget-thumbnail {
 	/* @embed */
 	background-image: url( broken-image.png );
-	background-size: auto; /* stylelint-disable-line no-unsupported-browser-features */
+	background-size: auto;
 	background-position: center center;
 	background-repeat: no-repeat;
 }
@@ -69,7 +67,7 @@
 	overflow: hidden;
 	padding: 0.5em;
 	color: #fff;
-	text-shadow: 1px 1px #000; /* stylelint-disable-line no-unsupported-browser-features */
+	text-shadow: 1px 1px #000;
 	line-height: 1.125em;
 	background-color: rgba( 0, 0, 0, 0.5 );
 	text-overflow: ellipsis;
