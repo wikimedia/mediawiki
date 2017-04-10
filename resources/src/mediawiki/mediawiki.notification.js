@@ -396,9 +396,9 @@
 		defaults: {
 			autoHide: true,
 			autoHideSeconds: 'short',
-			tag: false,
-			title: undefined,
-			type: false
+			tag: null,
+			title: null,
+			type: null
 		},
 
 		/**

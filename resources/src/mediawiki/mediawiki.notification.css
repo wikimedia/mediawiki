@@ -1,7 +1,8 @@
 .mw-notification-area {
 	top: 0;
 	right: 0;
-	padding: 1em 1em 0 0;
+	/* Padding on all sides so drop shadows aren't cut by overflow: hidden */
+	padding: 1em;
 	width: 20em;
 	line-height: 1.35;
 	z-index: 10000;
