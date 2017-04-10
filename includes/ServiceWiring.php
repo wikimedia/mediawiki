@@ -48,7 +48,8 @@ return [
 
 		$lbConf = MWLBFactory::applyDefaultConfig(
 			$mainConfig->get( 'LBFactoryConf' ),
-			$mainConfig
+			$mainConfig,
+			$services->getConfiguredReadOnlyMode()
 		);
 		$class = MWLBFactory::getLBFactoryClass( $lbConf );
 
@@ -155,7 +156,8 @@ return [
 	'WatchedItemStore' => function( MediaWikiServices $services ) {
 		$store = new WatchedItemStore(
 			$services->getDBLoadBalancer(),
-			new HashBagOStuff( [ 'maxKeys' => 100 ] )
+			new HashBagOStuff( [ 'maxKeys' => 100 ] ),
+			$services->getReadOnlyMode()
 		);
 		$store->setStatsdDataFactory( $services->getStatsdDataFactory() );
 		return $store;
@@ -402,6 +404,16 @@ return [
 		}
 
 		return $vrsClient;
+	},
+
+	'ConfiguredReadOnlyMode' => function( MediaWikiServices $services ) {
+		return new ReadOnlyMode( $services->getMainConfig() );
+	},
+
+	'ReadOnlyMode' => function( MediaWikiServices $services ) {
+		$readOnlyMode = new ReadOnlyMode( $services->getMainConfig() );
+		$readOnlyMode->addLoadBalancer( $services->getDBLoadBalancer() );
+		return $readOnlyMode;
 	},
 
 	///////////////////////////////////////////////////////////////////////////

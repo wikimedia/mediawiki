@@ -656,6 +656,22 @@ class MediaWikiServices extends ServiceContainer {
 		return $this->getService( 'VirtualRESTServiceClient' );
 	}
 
+	/**
+	 * @since 1.29
+	 * @return ReadOnlyMode
+	 */
+	public function getConfiguredReadOnlyMode() {
+		return $this->getService( 'ConfiguredReadOnlyMode' );
+	}
+
+	/**
+	 * @since 1.29
+	 * @return ReadOnlyMode
+	 */
+	public function getReadOnlyMode() {
+		return $this->getService( 'ReadOnlyMode' );
+	}
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service getter here, don't forget to add a test
 	// case for it in MediaWikiServicesTest::provideGetters() and in

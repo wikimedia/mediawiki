@@ -1159,6 +1159,7 @@ $wgAutoloadLocalClasses = [
 	'RawAction' => __DIR__ . '/includes/actions/RawAction.php',
 	'RawMessage' => __DIR__ . '/includes/Message.php',
 	'ReadOnlyError' => __DIR__ . '/includes/exception/ReadOnlyError.php',
+	'ReadOnlyMode' => __DIR__ . '/includes/ReadOnlyMode.php',
 	'ReassignEdits' => __DIR__ . '/maintenance/reassignEdits.php',
 	'RebuildAll' => __DIR__ . '/maintenance/rebuildall.php',
 	'RebuildFileCache' => __DIR__ . '/maintenance/rebuildFileCache.php',

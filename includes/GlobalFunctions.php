@@ -1272,7 +1272,8 @@ function wfIncrStats( $key, $count = 1 ) {
  * @return bool
  */
 function wfReadOnly() {
-	return wfReadOnlyReason() !== false;
+	return \MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()
+		->isReadOnly();
 }
 
 /**
@@ -1284,19 +1285,8 @@ function wfReadOnly() {
  * @return string|bool String when in read-only mode; false otherwise
  */
 function wfReadOnlyReason() {
-	$readOnly = wfConfiguredReadOnlyReason();
-	if ( $readOnly !== false ) {
-		return $readOnly;
-	}
-
-	static $lbReadOnly = null;
-	if ( $lbReadOnly === null ) {
-		// Callers use this method to be aware that data presented to a user
-		// may be very stale and thus allowing submissions can be problematic.
-		$lbReadOnly = wfGetLB()->getReadOnlyReason();
-	}
-
-	return $lbReadOnly;
+	return \MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()
+		->getReason();
 }
 
 /**
@@ -1306,18 +1296,8 @@ function wfReadOnlyReason() {
  * @since 1.27
  */
 function wfConfiguredReadOnlyReason() {
-	global $wgReadOnly, $wgReadOnlyFile;
-
-	if ( $wgReadOnly === null ) {
-		// Set $wgReadOnly for faster access next time
-		if ( is_file( $wgReadOnlyFile ) && filesize( $wgReadOnlyFile ) > 0 ) {
-			$wgReadOnly = file_get_contents( $wgReadOnlyFile );
-		} else {
-			$wgReadOnly = false;
-		}
-	}
-
-	return $wgReadOnly;
+	return \MediaWiki\MediaWikiServices::getInstance()->getConfiguredReadOnlyMode()
+		->getReason();
 }
 
 /**
