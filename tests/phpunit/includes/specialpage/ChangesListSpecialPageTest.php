@@ -801,4 +801,85 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 			],
 		];
 	}
+
+	public function provideGetFilterConflicts() {
+		return [
+			[
+				"parameters" => [],
+				"expectedConflicts" => false,
+			],
+			[
+				"parameters" => [
+					"hideliu" => true,
+					"userExpLevel" => "newcomer",
+				],
+				"expectedConflicts" => true,
+			],
+			[
+				"parameters" => [
+					"hideanons" => true,
+					"userExpLevel" => "learner",
+				],
+				"expectedConflicts" => false,
+			],
+			[
+				"parameters" => [
+					"hidemajor" => true,
+					"hidenewpages" => true,
+					"hidepageedits" => true,
+					"hidecategorization" => false,
+					"hidelog" => true,
+					"hideWikidata" => true,
+				],
+				"expectedConflicts" => true,
+			],
+			[
+				"parameters" => [
+					"hidemajor" => true,
+					"hidenewpages" => false,
+					"hidepageedits" => true,
+					"hidecategorization" => false,
+					"hidelog" => false,
+					"hideWikidata" => true,
+				],
+				"expectedConflicts" => true,
+			],
+			[
+				"parameters" => [
+					"hidemajor" => true,
+					"hidenewpages" => false,
+					"hidepageedits" => false,
+					"hidecategorization" => true,
+					"hidelog" => true,
+					"hideWikidata" => true,
+				],
+				"expectedConflicts" => false,
+			],
+			[
+				"parameters" => [
+					"hideminor" => true,
+					"hidenewpages" => true,
+					"hidepageedits" => true,
+					"hidecategorization" => false,
+					"hidelog" => true,
+					"hideWikidata" => true,
+				],
+				"expectedConflicts" => false,
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetFilterConflicts
+	 */
+	public function testGetFilterConflicts( $parameters, $expectedConflicts ) {
+		$context = new RequestContext;
+		$context->setRequest( new FauxRequest( $parameters ) );
+		$this->changesListSpecialPage->setContext( $context );
+
+		$this->assertEquals(
+			$expectedConflicts,
+			$this->changesListSpecialPage->areFilterInConflict()
+		);
+	}
 }

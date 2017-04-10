@@ -14,4 +14,15 @@ class ChangesListStringOptionsFilter extends ChangesListFilter {
 	public function displaysOnUnstructuredUi() {
 		return false;
 	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function isSelected( FormOptions $opts ) {
+		$values = explode(
+			ChangesListStringOptionsFilterGroup::SEPARATOR,
+			$opts[ $this->getGroup()->getName() ]
+		);
+		return in_array( $this->getName(), $values );
+	}
 }
