@@ -275,7 +275,7 @@ class Command {
 		$eintrMessage = "stream_select(): unable to select [$eintr]";
 
 		$running = true;
-		$timeout = null;
+		$timeout = 10;
 		$numReadyPipes = 0;
 
 		while ( $running === true || $numReadyPipes !== 0 ) {
@@ -294,6 +294,7 @@ class Command {
 			// Clear last error
 			// @codingStandardsIgnoreStart Generic.PHP.NoSilencedErrors.Discouraged
 			@trigger_error( '' );
+			// T72357: the timeout prevents indefinite waiting but is useless in normal operations
 			$numReadyPipes = @stream_select( $readyPipes, $emptyArray, $emptyArray, $timeout );
 			if ( $numReadyPipes === false ) {
 				// @codingStandardsIgnoreEnd
@@ -305,6 +306,9 @@ class Command {
 					$logMsg = $error['message'];
 					break;
 				}
+			} elseif ( $numReadyPipes === 0 ) {
+				// Timeout for now, continue until some data arrives
+				continue;
 			}
 			foreach ( $readyPipes as $fd => $pipe ) {
 				$block = fread( $pipe, 65536 );
