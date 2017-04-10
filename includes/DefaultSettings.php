@@ -7395,6 +7395,19 @@ $wgJobQueueAggregator = [
 ];
 
 /**
+ * Whether to include the number of jobs that are queued
+ * for the API's maxlag parameter.
+ * The total number of jobs will be divided by this to get an
+ * estimated second of maxlag. Typically bots backoff at maxlag=5,
+ * so setting this to the max number of jobs that should be in your
+ * queue divided by 5 should have the effect of stopping bots once
+ * that limit is hit.
+ *
+ * @since 1.29
+ */
+$wgJobQueueIncludeInMaxLagFactor = false;
+
+/**
  * Additional functions to be performed with updateSpecialPages.
  * Expensive Querypages are already updated.
  */
