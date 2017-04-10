@@ -41,7 +41,7 @@ class RebuildFileCache extends Maintenance {
 	}
 
 	public function finalSetup() {
-		global $wgDebugToolbar, $wgUseFileCache, $wgReadOnly;
+		global $wgDebugToolbar, $wgUseFileCache;
 
 		$this->enabled = $wgUseFileCache;
 		// Script will handle capturing output and saving it itself
@@ -50,7 +50,8 @@ class RebuildFileCache extends Maintenance {
 		// Has to be done before Setup.php initialize MWDebug
 		$wgDebugToolbar = false;
 		//  Avoid DB writes (like enotif/counters)
-		$wgReadOnly = 'Building cache'; // avoid DB writes (like enotif/counters)
+		MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()
+			->setReason( 'Building cache' );
 
 		parent::finalSetup();
 	}
