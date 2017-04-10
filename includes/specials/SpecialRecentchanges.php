@@ -268,6 +268,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			return false;
 		}
 
+		if ( $this->areFiltersInConflict() ) {
+			return false;
+		}
+
 		// array_merge() is used intentionally here so that hooks can, should
 		// they so desire, override the ORDER BY / LIMIT condition(s); prior to
 		// MediaWiki 1.26 this used to use the plus operator instead, which meant

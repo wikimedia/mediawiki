@@ -227,6 +227,7 @@ abstract class ChangesListFilter {
 		if ( $other instanceof ChangesListFilterGroup ) {
 			$this->conflictingGroups[] = [
 				'group' => $other->getName(),
+				'groupObject' => $other,
 				'globalDescription' => $globalDescription,
 				'contextDescription' => $contextDescription,
 			];
@@ -234,6 +235,7 @@ abstract class ChangesListFilter {
 			$this->conflictingFilters[] = [
 				'group' => $other->getGroup()->getName(),
 				'filter' => $other->getName(),
+				'filterObject' => $other,
 				'globalDescription' => $globalDescription,
 				'contextDescription' => $contextDescription,
 			];
@@ -385,6 +387,8 @@ abstract class ChangesListFilter {
 		);
 
 		foreach ( $conflicts as $conflictInfo ) {
+			unset( $conflictInfo['filterObject'] );
+			unset( $conflictInfo['groupObject'] );
 			$output['conflicts'][] = $conflictInfo;
 			array_push(
 				$output['messageKeys'],
@@ -394,5 +398,106 @@ abstract class ChangesListFilter {
 		}
 
 		return $output;
+	}
+
+	/**
+	 * Checks whether this filter is selected in the provided options
+	 *
+	 * @param FormOptions $opts
+	 * @return bool
+	 */
+	abstract public function isSelected( FormOptions $opts );
+
+	/**
+	 * Get groups conflicting with this filter
+	 *
+	 * @return ChangesListFilterGroup[]
+	 */
+	public function getConflictingGroups() {
+		return array_map(
+			function ( $conflictDesc ) {
+				return $conflictDesc[ 'groupObject' ];
+			},
+			$this->conflictingGroups
+		);
+	}
+
+	/**
+	 * Get filters conflicting with this filter
+	 *
+	 * @return ChangesListFilter[]
+	 */
+	public function getConflictingFilters() {
+		return array_map(
+			function ( $conflictDesc ) {
+				return $conflictDesc[ 'filterObject' ];
+			},
+			$this->conflictingFilters
+		);
+	}
+
+	/**
+	 * Check if the conflict with a group is currently "active"
+	 *
+	 * @param ChangesListFilterGroup $group
+	 * @param FormOptions $opts
+	 * @return bool
+	 */
+	public function activelyInConflictWithGroup( ChangesListFilterGroup $group, FormOptions $opts ) {
+		if ( $group->anySelected( $opts ) && $this->isSelected( $opts ) ) {
+			/** @var ChangesListFilter $siblingFilter */
+			foreach ( $this->getSiblings() as $siblingFilter ) {
+				if ( $siblingFilter->isSelected( $opts ) && !$siblingFilter->hasConflictWithGroup( $group ) ) {
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
+	}
+
+	private function hasConflictWithGroup( ChangesListFilterGroup $group ) {
+		return in_array( $group, $this->getConflictingGroups() );
+	}
+
+	/**
+	 * Check if the conflict with a filter is currently "active"
+	 *
+	 * @param ChangesListFilter $filter
+	 * @param FormOptions $opts
+	 * @return bool
+	 */
+	public function activelyInConflictWithFilter( ChangeslistFilter $filter, FormOptions $opts ) {
+		if ( $this->isSelected( $opts ) && $filter->isSelected( $opts ) ) {
+			/** @var ChangesListFilter $siblingFilter */
+			foreach ( $this->getSiblings() as $siblingFilter ) {
+				if (
+					$siblingFilter->isSelected( $opts ) &&
+					!$siblingFilter->hasConflictWithFilter( $filter )
+				) {
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
+	}
+
+	private function hasConflictWithFilter( ChangeslistFilter $filter ) {
+		return in_array( $filter, $this->getConflictingFilters() );
+	}
+
+	/**
+	 * Get filters in the same group
+	 *
+	 * @return ChangesListFilter[]
+	 */
+	protected function getSiblings() {
+		return array_filter(
+			$this->getGroup()->getFilters(),
+			function ( $filter ) {
+				return $filter !== $this;
+			}
+		);
 	}
 }

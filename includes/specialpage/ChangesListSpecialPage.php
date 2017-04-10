@@ -423,6 +423,47 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
+	 * Check if filters are in conflict and guaranteed to return no results.
+	 *
+	 * @return bool
+	 */
+	protected function areFiltersInConflict() {
+		$opts = $this->getOptions();
+		/** @var ChangesListFilterGroup $group */
+		foreach ( $this->getFilterGroups() as $group ) {
+
+			if ( $group->getConflictingGroups() ) {
+				wfLogWarning( "{$group->getName()} specifies conflicts with other groups but these are not supported yet." );
+			}
+
+			/** @var ChangesListFilter $conflictingFilter */
+			foreach ( $group->getConflictingFilters() as $conflictingFilter ) {
+				if ( $conflictingFilter->activelyInConflictWithGroup( $group, $opts ) ) {
+					return true;
+				}
+			}
+
+			/** @var ChangesListFilter $filter */
+			foreach ( $group->getFilters() as $filter ) {
+
+				/** @var ChangesListFilter $conflictingFilter */
+				foreach ( $filter->getConflictingFilters() as $conflictingFilter ) {
+					if (
+						$conflictingFilter->activelyInConflictWithFilter( $filter, $opts ) &&
+						$filter->activelyInConflictWithFilter( $conflictingFilter, $opts )
+					) {
+						return true;
+					}
+				}
+
+			}
+
+		}
+
+		return false;
+	}
+
+	/**
 	 * Main execution point
 	 *
 	 * @param string $subpage
