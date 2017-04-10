@@ -1491,14 +1491,12 @@ return [
 		'targets' => [ 'desktop', 'mobile' ]
 	],
 	'mediawiki.action.view.postEdit' => [
-		'templates' => [
-			'postEdit.html' => 'resources/src/mediawiki.action/templates/postEdit.html',
-		],
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.postEdit.js',
-		'styles' => 'resources/src/mediawiki.action/mediawiki.action.view.postEdit.css',
+		'styles' => 'resources/src/mediawiki.action/mediawiki.action.view.postEdit.less',
 		'dependencies' => [
 			'mediawiki.cookie',
-			'mediawiki.jqueryMsg'
+			'mediawiki.jqueryMsg',
+			'mediawiki.notification'
 		],
 		'messages' => [
 			'postedit-confirmation-created',
