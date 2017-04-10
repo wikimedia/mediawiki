@@ -19129,6 +19129,10 @@ File:File:Foobar.jpg
 		</div></li>
 </ul>
 
+!! html/parsoid
+<ul class="gallery mw-gallery-traditional" type="123" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{"type":"123","summary":"345"},"body":{"extsrc":"\nFile:File:Foobar.jpg\n"}}'>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span style="vertical-align: middle; display: inline-block;">File:File:Foobar.jpg</span></div><div class="gallerytext"></div></li>
+</ul>
 !! end
 
 ## Parsoid thinks the "centre" here is a property, not a caption.
@@ -19676,17 +19680,17 @@ File:Test.png
 !! end
 
 !! test
-Gallery with class attribute
+Gallery with class and style attributes
 !! options
 parsoid={
   "nativeGallery": true
 }
 !! wikitext
-<gallery class="center">
+<gallery class="center" style="text-align: center;">
 File:Foobar.jpg
 </gallery>
 !! html/php
-<ul class="gallery mw-gallery-traditional center">
+<ul class="gallery mw-gallery-traditional center" style="text-align: center;">
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
 			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" width="120" height="14" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" /></a></div></div>
 			<div class="gallerytext">
@@ -19695,8 +19699,33 @@ File:Foobar.jpg
 </ul>
 
 !! html/parsoid
-<ul class="gallery mw-gallery-traditional center" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{"class":"center"},"body":{}}'>
+<ul class="gallery mw-gallery-traditional center" style="text-align: center;" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{"class":"center","style":"text-align: center;"},"body":{}}'>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"></div></li>
+</ul>
+!! end
+
+!! test
+Gallery in slideshow mode
+!! options
+parsoid={
+  "nativeGallery": true
+}
+!! wikitext
+<gallery mode="slideshow" showthumbnails="">
+File:Foobar.jpg
+</gallery>
+!! html/php
+<ul class="gallery mw-gallery-slideshow" data-showthumbnails="1">
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" width="120" height="14" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" /></a></div></div>
+			<div class="gallerytext">
+			</div>
+		</div></li>
+</ul>
+
+!! html/parsoid
+<ul class="gallery mw-gallery-slideshow" data-showthumbnails="1" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{"mode":"slideshow","showthumbnails":""},"body":{}}'>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px;"><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"></div></li>
 </ul>
 !! end
 
@@ -27464,6 +27493,20 @@ b
 |'''c'''
 d
 |}
+!! end
+
+!! test
+Anchor without href scenarios
+!! options
+parsoid={ "modes": ["html2wt"], "suppressErrors": true }
+!! html/parsoid
+<a class="bc"></a>
+<a class="no">dice</a>
+<a name="foo"></a>
+!! wikitext
+
+dice
+<span name="foo"></span>
 !! end
 
 # -----------------------------------------------------------------
