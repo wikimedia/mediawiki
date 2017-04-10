@@ -3544,8 +3544,10 @@
 	"htmlform-user-not-exists": "<strong>$1</strong> non esiste.",
 	"htmlform-user-not-valid": "<strong>$1</strong> non è un nome utente valido.",
 	"logentry-delete-delete": "$1 {{GENDER:$2|ha cancellato}} la pagina $3",
-	"logentry-delete-restore": "$1 {{GENDER:$2|ha ripristinato}} la pagina \"$3\"",
+	"logentry-delete-restore": "$1 {{GENDER:$2|ha ripristinato}} la pagina $3 ($4)",
+	"logentry-delete-restore-nocount": "$1 {{GENDER:$2|ha ripristinato}} la pagina $3",
 	"restore-count-revisions": "{{PLURAL:$1|1 versione|$1 versioni}}",
+	"restore-count-files": "{{PLURAL:$1|1 file|$1 file}}",
 	"logentry-delete-event": "$1 {{GENDER:$2|ha modificato}} la visibilità di {{PLURAL:$5|un'azione del registro|$5 azioni del registro}} di \"$3\": $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|ha modificato}} la visibilità per {{PLURAL:$5|una versione|$5 versioni}} della pagina $3: $4",
 	"logentry-delete-event-legacy": "$1 {{GENDER:$2|ha modificato}} la visibilità di alcune azioni del registro di $3",
@@ -3893,5 +3895,6 @@
 	"restrictionsfield-help": "Un indirizzo IP o intervallo CIDR per linea. Per consentire tutto, utilizza:<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "versione $1",
 	"pageid": "ID della pagina $1",
-	"rawhtml-notallowed": "I tag &lt;html&gt; non possono essere utilizzati al di fuori delle normali pagine."
+	"rawhtml-notallowed": "I tag &lt;html&gt; non possono essere utilizzati al di fuori delle normali pagine.",
+	"gotointerwiki-invalid": "Il titolo specificato non è valido."
 }

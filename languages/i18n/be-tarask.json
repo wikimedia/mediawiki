@@ -3485,6 +3485,7 @@
 	"logentry-delete-delete": "$1 {{GENDER:$2|выдаліў|выдаліла}} старонку $3",
 	"logentry-delete-delete_redir": "$1 {{GENDER:$2|выдаліў|выдаліла}} перанакіраваньне $3 шляхам перазапісу",
 	"logentry-delete-restore": "$1 {{GENDER:$2|аднавіў|аднавіла}} старонку $3 ($4)",
+	"logentry-delete-restore-nocount": "$1 {{GENDER:$2|аднавіў|аднавіла}} старонку $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|зьмяніў|зьмяніла}} бачнасьць $5 {{PLURAL:$5|1=падзеі ў журнале|падзеяў у журнале}} на $3: $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|зьмяніў|зьмяніла}} бачнасьць $5 {{PLURAL:$5|вэрсіі|вэрсіяў}} старонкі $3: $4",
 	"logentry-delete-event-legacy": "$1 {{GENDER:$2|зьмяніў|зьмяніла}} бачнасьць падзеяў у журнале на $3",
