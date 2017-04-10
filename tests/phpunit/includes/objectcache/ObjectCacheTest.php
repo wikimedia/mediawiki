@@ -63,7 +63,7 @@ class ObjectCacheTest extends MediaWikiTestCase {
 	}
 
 	/** @covers ObjectCache::newAnything */
-	public function txestNewAnythingNoAccel() {
+	public function testNewAnythingNoAccel() {
 		$this->setMwGlobals( [
 			'wgMainCacheType' => CACHE_ACCEL
 		] );
@@ -77,6 +77,39 @@ class ObjectCacheTest extends MediaWikiTestCase {
 			SqlBagOStuff::class,
 			ObjectCache::newAnything( [] ),
 			'Fallback to DB if available types fall back to Empty'
+		);
+	}
+
+	/** @covers ObjectCache::newAnything */
+	public function testNewAnythingNoAccelNoDb() {
+		$this->overrideMwServices(); // Ensures restore on tear down
+		MediaWiki\MediaWikiServices::disableStorageBackend();
+
+		$this->setMwGlobals( [
+			'wgMainCacheType' => CACHE_ACCEL
+		] );
+
+		$this->setCacheConfig( [
+			// Mock APC not being installed (T160519, T147161)
+			CACHE_ACCEL => [ 'class' => 'EmptyBagOStuff' ]
+		] );
+
+		$this->assertInstanceOf(
+			EmptyBagOStuff::class,
+			ObjectCache::newAnything( [] ),
+			'Fallback to none if available types and DB are unavailable'
+		);
+	}
+
+	/** @covers ObjectCache::newAnything */
+	public function testNewAnythingNothingNoDb() {
+		$this->overrideMwServices();
+		MediaWiki\MediaWikiServices::disableStorageBackend();
+
+		$this->assertInstanceOf(
+			EmptyBagOStuff::class,
+			ObjectCache::newAnything( [] ),
+			'No available types or DB. Fallback to none.'
 		);
 	}
 }
