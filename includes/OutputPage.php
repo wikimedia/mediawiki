@@ -1541,6 +1541,7 @@ class OutputPage extends ContextSource {
 			// been changed somehow, and keep it if so.
 			$anonPO = ParserOptions::newFromAnon();
 			$anonPO->setEditSection( false );
+			$anonPO->setAllowUnsafeRawHtml( false );
 			if ( !$options->matches( $anonPO ) ) {
 				wfLogWarning( __METHOD__ . ': Setting a changed bogus ParserOptions: ' . wfGetAllCallers( 5 ) );
 				$options->isBogus = false;
@@ -1554,6 +1555,7 @@ class OutputPage extends ContextSource {
 				// either.
 				$po = ParserOptions::newFromAnon();
 				$po->setEditSection( false );
+				$po->setAllowUnsafeRawHtml( false );
 				$po->isBogus = true;
 				if ( $options !== null ) {
 					$this->mParserOptions = empty( $options->isBogus ) ? $options : null;
@@ -1563,6 +1565,7 @@ class OutputPage extends ContextSource {
 
 			$this->mParserOptions = ParserOptions::newFromContext( $this->getContext() );
 			$this->mParserOptions->setEditSection( false );
+			$this->mParserOptions->setAllowUnsafeRawHtml( false );
 		}
 
 		if ( $options !== null && !empty( $options->isBogus ) ) {
@@ -2636,7 +2639,9 @@ class OutputPage extends ContextSource {
 		} else {
 			$titleObj = Title::newFromText( $returnto );
 		}
-		if ( !is_object( $titleObj ) ) {
+		// We don't want people to return to external interwiki. That
+		// might potentially be used as part of a phishing scheme
+		if ( !is_object( $titleObj ) || $titleObj->isExternal() ) {
 			$titleObj = Title::newMainPage();
 		}
 

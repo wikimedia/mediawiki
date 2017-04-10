@@ -75,7 +75,7 @@ $wgConfigRegistry = [
  * MediaWiki version number
  * @since 1.2
  */
-$wgVersion = '1.27.0-fundraising';
+$wgVersion = '1.27.2-fundraising';
 
 /**
  * Name of the site. It must be changed in LocalSettings.php
@@ -2193,7 +2193,7 @@ $wgCacheDirectory = false;
  *   - CACHE_NONE:       Do not cache
  *   - CACHE_DB:         Store cache objects in the DB
  *   - CACHE_MEMCACHED:  MemCached, must specify servers in $wgMemCachedServers
- *   - CACHE_ACCEL:      APC, XCache or WinCache
+ *   - CACHE_ACCEL:      APC, APCU, XCache or WinCache
  *   - (other):          A string may be used which identifies a cache
  *                       configuration in $wgObjectCaches.
  *
@@ -2269,6 +2269,7 @@ $wgObjectCaches = [
 	],
 
 	'apc' => [ 'class' => 'APCBagOStuff', 'reportDupes' => false ],
+	'apcu' => [ 'class' => 'APCUBagOStuff', 'reportDupes' => false ],
 	'xcache' => [ 'class' => 'XCacheBagOStuff', 'reportDupes' => false ],
 	'wincache' => [ 'class' => 'WinCacheBagOStuff', 'reportDupes' => false ],
 	'memcached-php' => [ 'class' => 'MemcachedPhpBagOStuff', 'loggroup' => 'memcached' ],
@@ -8028,7 +8029,7 @@ $wgJobRunRate = 1;
  * execution finishes.
  * @since 1.23
  */
-$wgRunJobsAsync = true;
+$wgRunJobsAsync = false;
 
 /**
  * Number of rows to update per job
@@ -8283,9 +8284,9 @@ $wgSearchRunSuggestedQuery = true;
 /**
  * Where popular password file is located.
  *
- * Default in core contains 50,000 most popular. This config
+ * Default in core contains 10,000 most popular. This config
  * allows you to change which file, in case you want to generate
- * a password file with > 50000 entries in it.
+ * a password file with > 10000 entries in it.
  *
  * @see maintenance/createCommonPasswordCdb.php
  * @since 1.27

@@ -3087,7 +3087,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$actual = $this->manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN );
 		$expected = [
 			$rememberReq,
-			$makeReq( "primary-shared", AuthenticationRequest::REQUIRED ),
+			$makeReq( "primary-shared", AuthenticationRequest::PRIMARY_REQUIRED ),
 			$makeReq( "required", AuthenticationRequest::PRIMARY_REQUIRED ),
 			$makeReq( "required2", AuthenticationRequest::PRIMARY_REQUIRED ),
 			$makeReq( "optional", AuthenticationRequest::OPTIONAL ),
@@ -3107,10 +3107,10 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$actual = $this->manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN );
 		$expected = [
 			$rememberReq,
-			$makeReq( "primary-shared", AuthenticationRequest::REQUIRED ),
-			$makeReq( "required", AuthenticationRequest::REQUIRED ),
+			$makeReq( "primary-shared", AuthenticationRequest::PRIMARY_REQUIRED ),
+			$makeReq( "required", AuthenticationRequest::PRIMARY_REQUIRED ),
 			$makeReq( "optional", AuthenticationRequest::OPTIONAL ),
-			$makeReq( "foo", AuthenticationRequest::REQUIRED ),
+			$makeReq( "foo", AuthenticationRequest::PRIMARY_REQUIRED ),
 			$makeReq( "bar", AuthenticationRequest::REQUIRED ),
 			$makeReq( "baz", AuthenticationRequest::REQUIRED ),
 		];

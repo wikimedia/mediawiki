@@ -66,6 +66,7 @@ class ApiCheckToken extends ApiBase {
 			'token' => [
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true,
+				ApiBase::PARAM_SENSITIVE => true,
 			],
 			'maxtokenage' => [
 				ApiBase::PARAM_TYPE => 'integer',

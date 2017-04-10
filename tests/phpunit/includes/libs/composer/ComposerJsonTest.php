@@ -11,22 +11,6 @@ class ComposerJsonTest extends MediaWikiTestCase {
 		$this->json2 = "$IP/tests/phpunit/data/composer/new-composer.json";
 	}
 
-	public static function provideGetHash() {
-		return [
-			[ 'json', 'cc6e7fc565b246cb30b0cac103a2b31e' ],
-			[ 'json2', '19921dd1fc457f1b00561da932432001' ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideGetHash
-	 * @covers ComposerJson::getHash
-	 */
-	public function testIsHashUpToDate( $file, $expected ) {
-		$json = new ComposerJson( $this->$file );
-		$this->assertEquals( $expected, $json->getHash() );
-	}
-
 	/**
 	 * @covers ComposerJson::getRequiredDependencies
 	 */
