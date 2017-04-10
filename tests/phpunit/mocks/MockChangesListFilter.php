@@ -8,4 +8,8 @@ class MockChangesListFilter extends ChangesListFilter {
 			'instead of testing the abstract class'
 		);
 	}
+
+	public function isSelected( FormOptions $opts ) {
+		return false;
+	}
 }
