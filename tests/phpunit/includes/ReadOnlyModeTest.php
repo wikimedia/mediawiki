@@ -1,0 +1,163 @@
+<?php
+
+use MediaWiki\MediaWikiServices;
+
+/**
+ * @group Database
+ *
+ * @covers ReadOnlyMode
+ * @covers ConfiguredReadOnlyMode
+ */
+class ReadOnlyModeTest extends MediaWikiTestCase {
+	public function provider() {
+		$rawTests = [
+			'None of anything' => [
+				'confMessage' => null,
+				'hasFileName' => false,
+				'fileContents' => false,
+				'lbMessage' => false,
+				'expectedState' => false,
+				'expectedMessage' => false,
+				'expectedConfMessage' => false
+			],
+			'File missing' => [
+				'confMessage' => null,
+				'hasFileName' => true,
+				'fileContents' => false,
+				'lbMessage' => false,
+				'expectedState' => false,
+				'expectedMessage' => false,
+				'expectedConfMessage' => false
+			],
+			'File empty' => [
+				'confMessage' => null,
+				'hasFileName' => true,
+				'fileContents' => '',
+				'lbMessage' => false,
+				'expectedState' => false,
+				'expectedMessage' => false,
+				'expectedConfMessage' => false
+			],
+			'File has message' => [
+				'confMessage' => null,
+				'hasFileName' => true,
+				'fileContents' => 'Message',
+				'lbMessage' => false,
+				'expectedState' => true,
+				'expectedMessage' => 'Message',
+				'expectedConfMessage' => 'Message',
+			],
+			'Conf has message' => [
+				'confMessage' => 'Message',
+				'hasFileName' => false,
+				'fileContents' => false,
+				'lbMessage' => false,
+				'expectedState' => true,
+				'expectedMessage' => 'Message',
+				'expectedConfMessage' => 'Message'
+			],
+			"Conf=false means don't check the file" => [
+				'confMessage' => false,
+				'hasFileName' => true,
+				'fileContents' => 'Message',
+				'lbMessage' => false,
+				'expectedState' => false,
+				'expectedMessage' => false,
+				'expectedConfMessage' => false,
+			],
+			'LB has message' => [
+				'confMessage' => null,
+				'hasFileName' => false,
+				'fileContents' => false,
+				'lbMessage' => 'Message',
+				'expectedState' => true,
+				'expectedMessage' => 'Message',
+				'expectedConfMessage' => false
+			],
+			'All three have a message: conf wins' => [
+				'confMessage' => 'conf',
+				'hasFileName' => true,
+				'fileContents' => 'file',
+				'lbMessage' => 'lb',
+				'expectedState' => true,
+				'expectedMessage' => 'conf',
+				'expectedConfMessage' => 'conf'
+			]
+		];
+		$cookedTests = [];
+		foreach ( $rawTests as $desc => $test ) {
+			$cookedTests[$desc] = [ $test ];
+		}
+		return $cookedTests;
+	}
+
+	private function createMode( $params, $makeLB ) {
+		$config = new HashConfig( [
+			'ReadOnly' => $params['confMessage'],
+			'ReadOnlyFile' => $this->createFile( $params ),
+		] );
+
+		$rom = new ConfiguredReadOnlyMode( $config );
+
+		if ( $makeLB ) {
+			$lb = $this->createLB( $params );
+			$rom = new ReadOnlyMode( $rom, $lb );
+		}
+
+		return $rom;
+	}
+
+	private function createLB( $params ) {
+		$lb = $this->getMockBuilder( \Wikimedia\Rdbms\LoadBalancer::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$lb->expects( $this->any() )->method( 'getReadOnlyReason' )
+			->willReturn( $params['lbMessage'] );
+		return $lb;
+	}
+
+	private function createFile( $params ) {
+		if ( $params['hasFileName'] ) {
+			$fileName = $this->getNewTempFile();
+
+			if ( $params['fileContents'] === false ) {
+				unlink( $fileName );
+			} else {
+				file_put_contents( $fileName, $params['fileContents'] );
+			}
+		} else {
+			$fileName = null;
+		}
+		return $fileName;
+	}
+
+	/**
+	 * @dataProvider provider
+	 */
+	public function testWithLB( $params ) {
+		$rom = $this->createMode( $params, true );
+		$this->assertSame( $params['expectedMessage'], $rom->getReason() );
+		$this->assertSame( $params['expectedState'], $rom->isReadOnly() );
+	}
+
+	/**
+	 * @dataProvider provider
+	 */
+	public function testWithoutLB( $params ) {
+		$rom = $this->createMode( $params, false );
+		$this->assertSame( $params['expectedConfMessage'], $rom->getReason() );
+	}
+
+	public function testSetReadOnlyReason() {
+		$rom = $this->createMode(
+			[
+				'confMessage' => 'conf',
+				'hasFileName' => false,
+				'fileContents' => false,
+				'lbMessage' => 'lb'
+			],
+			true );
+		$rom->setReason( 'override' );
+		$this->assertSame( 'override', $rom->getReason() );
+	}
+}
