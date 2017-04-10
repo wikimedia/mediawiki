@@ -171,6 +171,13 @@ abstract class ApiBase extends ContextSource {
 	 */
 	const PARAM_SUBMODULE_PARAM_PREFIX = 16;
 
+	/**
+	 * (boolean) Is the parameter sensitive? Note 'password'-type fields are
+	 * always sensitive regardless of the value of this field.
+	 * @since 1.28
+	 */
+	const PARAM_SENSITIVE = 17;
+
 	/**@}*/
 
 	/** Fast query, standard limit. */
@@ -777,6 +784,39 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Die if any of the specified parameters were found in the query part of
+	 * the URL rather than the post body.
+	 * @since 1.28
+	 * @param string[] $params Parameters to check
+	 * @param string $prefix Set to 'noprefix' to skip calling $this->encodeParamName()
+	 */
+	public function requirePostedParameters( $params, $prefix = 'prefix' ) {
+		// Skip if $wgDebugAPI is set or we're in internal mode
+		if ( $this->getConfig()->get( 'DebugAPI' ) || $this->getMain()->isInternalMode() ) {
+			return;
+		}
+
+		$queryValues = $this->getRequest()->getQueryValues();
+		$badParams = [];
+		foreach ( $params as $param ) {
+			if ( $prefix !== 'noprefix' ) {
+				$param = $this->encodeParamName( $param );
+			}
+			if ( array_key_exists( $param, $queryValues ) ) {
+				$badParams[] = $param;
+			}
+		}
+
+		if ( $badParams ) {
+			$this->dieUsage(
+				'The following parameters were found in the query string, but must be in the POST body: '
+					. join( ', ', $badParams ),
+				'mustpostparams'
+			);
+		}
+	}
+
+	/**
 	 * Callback function used in requireOnlyOneParameter to check whether required parameters are set
 	 *
 	 * @param object $x Parameter to check is not null/false
@@ -915,6 +955,11 @@ abstract class ApiBase extends ContextSource {
 					$type = 'NULL'; // allow everything
 				}
 			}
+
+			if ( $type == 'password' || !empty( $paramSettings[self::PARAM_SENSITIVE] ) ) {
+				$this->getMain()->markParamsSensitive( $encParamName );
+			}
+
 		}
 
 		if ( $type == 'boolean' ) {
@@ -2191,7 +2236,7 @@ abstract class ApiBase extends ContextSource {
 	 * analysis.
 	 * @param string $feature Feature being used.
 	 */
-	protected function logFeatureUsage( $feature ) {
+	public function logFeatureUsage( $feature ) {
 		$request = $this->getRequest();
 		$s = '"' . addslashes( $feature ) . '"' .
 			' "' . wfUrlencode( str_replace( ' ', '_', $this->getUser()->getName() ) ) . '"' .
@@ -2267,6 +2312,7 @@ abstract class ApiBase extends ContextSource {
 			$params['token'] = [
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true,
+				ApiBase::PARAM_SENSITIVE => true,
 				ApiBase::PARAM_HELP_MSG => [
 					'api-help-param-token',
 					$this->needsToken(),

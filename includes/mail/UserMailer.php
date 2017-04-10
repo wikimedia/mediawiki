@@ -268,7 +268,14 @@ class UserMailer {
 		// Add the envelope sender address using the -f command line option when PHP mail() is used.
 		// Will default to the $from->address when the UserMailerChangeReturnPath hook fails and the
 		// generated VERP address when the hook runs effectively.
-		$extraParams .= ' -f ' . $returnPath;
+
+		// PHP runs this through escapeshellcmd(). However that's not sufficient
+		// escaping (e.g. due to spaces). MediaWiki's email sanitizer should generally
+		// be good enough, but just in case, put in double quotes, and remove any
+		// double quotes present (" is not allowed in emails, so should have no
+		// effect, although this might cause apostrophees to be double escaped)
+		$returnPathCLI = '"' . str_replace( '"', '', $returnPath ) . '"';
+		$extraParams .= ' -f ' . $returnPathCLI;
 
 		$headers['Return-Path'] = $returnPath;
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * APC-backed function memoization
+ * APC-backed and APCu-backed function memoization
  *
  * This class provides memoization for pure functions. A function is pure
  * if its result value depends on nothing other than its input parameters
@@ -8,7 +8,7 @@
  *
  * The first invocation of the memoized callable with a particular set of
  * arguments will be delegated to the underlying callable. Repeat invocations
- * with the same input parameters will be served from APC.
+ * with the same input parameters will be served from APC or APCu.
  *
  * @par Example:
  * @code
@@ -70,7 +70,7 @@ class MemoizedCallable {
 	}
 
 	/**
-	 * Fetch the result of a previous invocation from APC.
+	 * Fetch the result of a previous invocation from APC or APCu.
 	 *
 	 * @param string $key
 	 * @param bool &$success
@@ -79,12 +79,14 @@ class MemoizedCallable {
 		$success = false;
 		if ( function_exists( 'apc_fetch' ) ) {
 			return apc_fetch( $key, $success );
+		} elseif ( function_exists( 'apcu_fetch' ) ) {
+			return apcu_fetch( $key, $success );
 		}
 		return false;
 	}
 
 	/**
-	 * Store the result of an invocation in APC.
+	 * Store the result of an invocation in APC or APCu.
 	 *
 	 * @param string $key
 	 * @param mixed $result
@@ -92,6 +94,8 @@ class MemoizedCallable {
 	protected function storeResult( $key, $result ) {
 		if ( function_exists( 'apc_store' ) ) {
 			apc_store( $key, $result, $this->ttl );
+		} elseif ( function_exists( 'apcu_store' ) ) {
+			apcu_store( $key, $result, $this->ttl );
 		}
 	}
 

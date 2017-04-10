@@ -222,6 +222,21 @@ class ParserOptions {
 	 */
 	private $redirectTarget = null;
 
+	/**
+	 * If the wiki is configured to allow raw html ($wgRawHtml = true)
+	 * is it allowed in the specific case of parsing this page.
+	 *
+	 * This is meant to disable unsafe parser tags in cases where
+	 * a malicious user may control the input to the parser.
+	 *
+	 * @note This is expected to be true for normal pages even if the
+	 *  wiki has $wgRawHtml disabled in general. The setting only
+	 *  signifies that raw html would be unsafe in the current context
+	 *  provided that raw html is allowed at all.
+	 * @var boolean
+	 */
+	private $allowUnsafeRawHtml = true;
+
 	public function getInterwikiMagic() {
 		return $this->mInterwikiMagic;
 	}
@@ -409,6 +424,14 @@ class ParserOptions {
 		return $this->getUserLangObj()->getCode();
 	}
 
+	/**
+	 * @since 1.29
+	 * @return bool
+	 */
+	public function getAllowUnsafeRawHtml() {
+		return $this->allowUnsafeRawHtml;
+	}
+
 	public function setInterwikiMagic( $x ) {
 		return wfSetVar( $this->mInterwikiMagic, $x );
 	}
@@ -541,6 +564,15 @@ class ParserOptions {
 
 	public function setIsPrintable( $x ) {
 		return wfSetVar( $this->mIsPrintable, $x );
+	}
+
+	/**
+	 * @param bool|null Value to set or null to get current value
+	 * @return bool Current value for allowUnsafeRawHtml
+	 * @since 1.29
+	 */
+	public function setAllowUnsafeRawHtml( $x ) {
+		return wfSetVar( $this->allowUnsafeRawHtml, $x );
 	}
 
 	/**

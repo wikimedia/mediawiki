@@ -1,4 +1,5 @@
 <?php
+// @codingStandardsIgnoreFile Generic.Arrays.DisallowLongArraySyntax
 /**
  * New version of MediaWiki web-based config/installation
  *
@@ -60,7 +61,7 @@ function wfInstallerMain() {
 	if ( isset( $_SESSION['installData'][$fingerprint] ) ) {
 		$session = $_SESSION['installData'][$fingerprint];
 	} else {
-		$session = [];
+		$session = array();
 	}
 
 	if ( !is_null( $wgRequest->getVal( 'uselang' ) ) ) {

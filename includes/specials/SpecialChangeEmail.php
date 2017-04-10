@@ -136,7 +136,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 		$query = $request->getVal( 'returntoquery' );
 
 		if ( $this->status->value === true ) {
-			$this->getOutput()->redirect( $titleObj->getFullURL( $query ) );
+			$this->getOutput()->redirect( $titleObj->getFullUrlForRedirect( $query ) );
 		} elseif ( $this->status->value === 'eauth' ) {
 			# Notify user that a confirmation email has been sent...
 			$this->getOutput()->wrapWikiMsg( "<div class='error' style='clear: both;'>\n$1\n</div>",

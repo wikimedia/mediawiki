@@ -58,6 +58,14 @@ interface PrimaryAuthenticationProvider extends AuthenticationProvider {
 	const TYPE_NONE = 'none';
 
 	/**
+	 * {@inheritdoc}
+	 *
+	 * Of the requests returned by this method, exactly one should have
+	 * {@link AuthenticationRequest::$required} set to REQUIRED.
+	 */
+	public function getAuthenticationRequests( $action, array $options );
+
+	/**
 	 * Start an authentication flow
 	 *
 	 * @param AuthenticationRequest[] $reqs

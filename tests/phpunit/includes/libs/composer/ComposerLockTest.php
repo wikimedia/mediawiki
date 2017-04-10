@@ -11,14 +11,6 @@ class ComposerLockTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers ComposerLock::getHash
-	 */
-	public function testGetHash() {
-		$lock = new ComposerLock( $this->lock );
-		$this->assertEquals( 'a3bb80b0ac4c4a31e52574d48c032923', $lock->getHash() );
-	}
-
-	/**
 	 * @covers ComposerLock::getInstalledDependencies
 	 */
 	public function testGetInstalledDependencies() {
