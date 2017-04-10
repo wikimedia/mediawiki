@@ -2633,7 +2633,7 @@ class EditPage {
 		}
 
 		// @todo add EditForm plugin interface and use it here!
-		//       search for textarea1 and textares2, and allow EditForm to override all uses.
+		//       search for textarea1 and textarea2, and allow EditForm to override all uses.
 		$wgOut->addHTML( Html::openElement(
 			'form',
 			[
