@@ -1404,12 +1404,13 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			$this->manager->checkAccountCreatePermissions( new \User )
 		);
 
-		$this->setMwGlobals( [ 'wgReadOnly' => 'Because' ] );
+		$readOnlyMode = \MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode();
+		$readOnlyMode->setReason( 'Because' );
 		$this->assertEquals(
 			\Status::newFatal( 'readonlytext', 'Because' ),
 			$this->manager->checkAccountCreatePermissions( new \User )
 		);
-		$this->setMwGlobals( [ 'wgReadOnly' => false ] );
+		$readOnlyMode->setReason( false );
 
 		$wgGroupPermissions['*']['createaccount'] = false;
 		$status = $this->manager->checkAccountCreatePermissions( new \User );
@@ -1597,7 +1598,8 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$this->assertSame( AuthenticationResponse::FAIL, $ret->status );
 		$this->assertSame( 'noname', $ret->message->getKey() );
 
-		$this->setMwGlobals( [ 'wgReadOnly' => 'Because' ] );
+		$readOnlyMode = \MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode();
+		$readOnlyMode->setReason( 'Because' );
 		$this->hook( 'LocalUserCreated', $this->never() );
 		$userReq->username = self::usernameForCreation();
 		$ret = $this->manager->beginAccountCreation( $creator, [ $userReq ], 'http://localhost/' );
@@ -1605,7 +1607,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$this->assertSame( AuthenticationResponse::FAIL, $ret->status );
 		$this->assertSame( 'readonlytext', $ret->message->getKey() );
 		$this->assertSame( [ 'Because' ], $ret->message->getParams() );
-		$this->setMwGlobals( [ 'wgReadOnly' => false ] );
+		$readOnlyMode->setReason( false );
 
 		$this->hook( 'LocalUserCreated', $this->never() );
 		$userReq->username = self::usernameForCreation();
@@ -1770,14 +1772,15 @@ class AuthManagerTest extends \MediaWikiTestCase {
 
 		$this->request->getSession()->setSecret( 'AuthManager::accountCreationState',
 			[ 'username' => $creator->getName() ] + $session );
-		$this->setMwGlobals( [ 'wgReadOnly' => 'Because' ] );
+		$readOnlyMode = \MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode();
+		$readOnlyMode->setReason( 'Because' );
 		$this->hook( 'LocalUserCreated', $this->never() );
 		$ret = $this->manager->continueAccountCreation( [] );
 		$this->unhook( 'LocalUserCreated' );
 		$this->assertSame( AuthenticationResponse::FAIL, $ret->status );
 		$this->assertSame( 'readonlytext', $ret->message->getKey() );
 		$this->assertSame( [ 'Because' ], $ret->message->getParams() );
-		$this->setMwGlobals( [ 'wgReadOnly' => false ] );
+		$readOnlyMode->setReason( false );
 
 		$this->request->getSession()->setSecret( 'AuthManager::accountCreationState',
 			[ 'username' => $creator->getName() ] + $session );
@@ -2468,7 +2471,8 @@ class AuthManagerTest extends \MediaWikiTestCase {
 
 		// Wiki is read-only
 		$session->clear();
-		$this->setMwGlobals( [ 'wgReadOnly' => 'Because' ] );
+		$readOnlyMode = \MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode();
+		$readOnlyMode->setReason( 'Because' );
 		$user = \User::newFromName( $username );
 		$this->hook( 'LocalUserCreated', $this->never() );
 		$ret = $this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_SESSION, true );
@@ -2481,7 +2485,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			[ LogLevel::DEBUG, 'denied by wfReadOnly(): {reason}' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
-		$this->setMwGlobals( [ 'wgReadOnly' => false ] );
+		$readOnlyMode->setReason( false );
 
 		// Session blacklisted
 		$session->clear();
