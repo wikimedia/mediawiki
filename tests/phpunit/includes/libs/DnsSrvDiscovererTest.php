@@ -6,7 +6,7 @@ class DnsSrvDiscovererTest extends PHPUnit_Framework_TestCase {
 	 * @dataProvider provideRecords
 	 */
 	public function testPickServer( $params, $expected ) {
-		$discoverer = new DnsSrvDiscoverer( '_etcd._tcp.eqiad.wmnet' );
+		$discoverer = new DnsSrvDiscoverer( 'etcd-tcp.example.net' );
 		$record = $discoverer->pickServer( $params );
 
 		$this->assertEquals( $expected, $record );
@@ -18,26 +18,26 @@ class DnsSrvDiscovererTest extends PHPUnit_Framework_TestCase {
 			[
 				[ // record list
 					[
-						'target' => 'conf1003.eqiad.wmnet',
+						'target' => 'conf03.example.net',
 						'port' => 'SRV',
 						'pri' => 0,
 						'weight' => 1,
 					],
 					[
-						'target' => 'conf1002.eqiad.wmnet',
+						'target' => 'conf02.example.net',
 						'port' => 'SRV',
 						'pri' => 1,
 						'weight' => 1,
 					],
 					[
-						'target' => 'conf1001.eqiad.wmnet',
+						'target' => 'conf01.example.net',
 						'port' => 'SRV',
 						'pri' => 2,
 						'weight' => 1,
 					],
 				], // selected record
 				[
-					'target' => 'conf1003.eqiad.wmnet',
+					'target' => 'conf03.example.net',
 					'port' => 'SRV',
 					'pri' => 0,
 					'weight' => 1,
@@ -46,38 +46,38 @@ class DnsSrvDiscovererTest extends PHPUnit_Framework_TestCase {
 			[
 				[ // record list
 					[
-						'target' => 'conf1003or2.eqiad.wmnet',
+						'target' => 'conf03or2.example.net',
 						'port' => 'SRV',
 						'pri' => 0,
 						'weight' => 1,
 					],
 					[
-						'target' => 'conf1003or2.eqiad.wmnet',
+						'target' => 'conf03or2.example.net',
 						'port' => 'SRV',
 						'pri' => 0,
 						'weight' => 1,
 					],
 					[
-						'target' => 'conf1001.eqiad.wmnet',
+						'target' => 'conf01.example.net',
 						'port' => 'SRV',
 						'pri' => 2,
 						'weight' => 1,
 					],
 					[
-						'target' => 'conf1004.eqiad.wmnet',
+						'target' => 'conf04.example.net',
 						'port' => 'SRV',
 						'pri' => 2,
 						'weight' => 1,
 					],
 					[
-						'target' => 'conf1005.eqiad.wmnet',
+						'target' => 'conf05.example.net',
 						'port' => 'SRV',
 						'pri' => 3,
 						'weight' => 1,
 					],
 				], // selected record
 				[
-					'target' => 'conf1003or2.eqiad.wmnet',
+					'target' => 'conf03or2.example.net',
 					'port' => 'SRV',
 					'pri' => 0,
 					'weight' => 1,
@@ -91,19 +91,19 @@ class DnsSrvDiscovererTest extends PHPUnit_Framework_TestCase {
 
 		$servers = [
 			[
-				'target' => 'conf1001.eqiad.wmnet',
+				'target' => 'conf01.example.net',
 				'port' => 35,
 				'pri' => 2,
 				'weight' => 1,
 			],
 			[
-				'target' => 'conf1004.eqiad.wmnet',
+				'target' => 'conf04.example.net',
 				'port' => 74,
 				'pri' => 2,
 				'weight' => 1,
 			],
 			[
-				'target' => 'conf1005.eqiad.wmnet',
+				'target' => 'conf05.example.net',
 				'port' => 77,
 				'pri' => 3,
 				'weight' => 1,
@@ -113,13 +113,13 @@ class DnsSrvDiscovererTest extends PHPUnit_Framework_TestCase {
 
 		$expected = [
 			[
-				'target' => 'conf1001.eqiad.wmnet',
+				'target' => 'conf01.example.net',
 				'port' => 35,
 				'pri' => 2,
 				'weight' => 1,
 			],
 			[
-				'target' => 'conf1005.eqiad.wmnet',
+				'target' => 'conf05.example.net',
 				'port' => 77,
 				'pri' => 3,
 				'weight' => 1,
