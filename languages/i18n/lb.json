@@ -3585,5 +3585,6 @@
 	"revid": "Versioun $1",
 	"gotointerwiki": "{{SITENAME}} verloossen",
 	"gotointerwiki-invalid": "De spezifizéierten Titel war net valabel.",
+	"undelete-cantedit": "Dir kënnt dës Säit net restauréiere well Dir dës Säit net änneren däerft.",
 	"undelete-cantcreate": "Dir kënnt dës Säit net restauréieren well et elo keng Säit mat deem Numm gëtt a well Dir dës Säit net uleeën däerft."
 }

@@ -2660,7 +2660,7 @@
 	"blocklist": "{{doc-special|BlockList}}",
 	"autoblocklist": "Title of [[Special:AutoblockList]].",
 	"autoblocklist-submit": "Used as Submit button text in the form on [[Special:AutoblockList]].\n\nSee also:\n* {{msg-mw|Ipblocklist-legend}}\n* {{msg-mw|Autoblocklist-submit}}\n{{Identical|Search}}",
-	"autoblocklist-legend":"Used as legend of the form in [[Special:AutoblockList]].\n\nSee also:\n* {{msg-mw|Autoblocklist-legend}}\n* {{msg-mw|Autoblocklist-submit}}",
+	"autoblocklist-legend": "Used as legend of the form in [[Special:AutoblockList]].\n\nSee also:\n* {{msg-mw|Autoblocklist-legend}}\n* {{msg-mw|Autoblocklist-submit}}",
 	"autoblocklist-localblocks": "[[File:Special AutoBlockList new.png|thumb|Example]]\nUsed on [[Special:AutoblockList]] as header when global autoblocks exists too.",
 	"autoblocklist-empty": "Used in [[Special:AutoblockList]].",
 	"autoblocklist-otherblocks": "[[File:Special AutoBlockList new.png|thumb|Example]]\nUsed on [[Special:AutoblockList]] as header for other blocks, i.e. from GlobalBlocking or TorBlocks.\n\nParameters:\n* $1 - number of blocks",

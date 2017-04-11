@@ -1230,7 +1230,7 @@
 	"saveusergroups": "Guardar grupos {{GENDER:$1|del usuario|de la usuaria}}",
 	"userrights-groupsmember": "Miembro de:",
 	"userrights-groupsmember-auto": "Miembro implícito de:",
-	"userrights-groups-help": "Usted puede alterar los grupos en que está este usuario:\n* Una casilla marcada significa que el usuario está en ese grupo.\n* Una casilla sin marcar significa que el usuario no está en ese grupo.\n* Un * indica que no se puede eliminar el grupo una vez que se han añadido o viceversa.\n* Un # indica que sólo se puede volver a poner la fecha de caducidad de este grupo; no se pueden llevar adelante.",
+	"userrights-groups-help": "Puedes cambiar los grupos en que está este usuario:\n* Una casilla marcada significa que el usuario está en ese grupo.\n* Una casilla sin marcar significa que el usuario no está en ese grupo.\n* Un * indica que no se puede eliminar el grupo una vez que se ha añadido o viceversa.\n* Un # indica que sólo se puede volver a poner la fecha de caducidad de membresía de este grupo; no se pueden llevar adelante.",
 	"userrights-reason": "Motivo:",
 	"userrights-no-interwiki": "No tienes permiso para editar permisos de usuario en otros wikis.",
 	"userrights-nodatabase": "La base de datos $1 no existe o no es local.",
@@ -3622,7 +3622,10 @@
 	"htmlform-user-not-valid": "<strong>$1</strong> no es un nombre de usuario válido.",
 	"logentry-delete-delete": "$1 {{GENDER:$2|borró}} la página $3",
 	"logentry-delete-delete_redir": "$1 {{GENDER:$2|borró}} la redirección $3 con un traslado",
-	"logentry-delete-restore": "$1 restauró la página $3",
+	"logentry-delete-restore": "$1 {{GENDER:$2|restauró}} la página $3 ($4)",
+	"logentry-delete-restore-nocount": "$1 {{GENDER:$2|restauró}} la página $3",
+	"restore-count-revisions": "{{PLURAL:$1|1 revisión|$1 revisiones}}",
+	"restore-count-files": "{{PLURAL:$1|1 archivo|$1 archivos}}",
 	"logentry-delete-event": "$1 {{GENDER:$2|modificó}} la visibilidad de {{PLURAL:$5|un evento|$5 eventos}} del registro en $3: $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|modificó}} la visibilidad de {{PLURAL:$5|una revisión |$5 revisiones}} en la página  $3: $4",
 	"logentry-delete-event-legacy": "$1 ha {{GENDER:$2|cambiado}} la visibilidad de eventos del registro en $3",
@@ -3975,5 +3978,7 @@
 	"restrictionsfield-label": "Intervalos de IP permitidos:",
 	"restrictionsfield-help": "Una dirección IP o intervalo de CIDR por renglón. Para activarlo todo, utiliza <pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "revisión $1",
-	"pageid": "ID de página $1"
+	"pageid": "ID de página $1",
+	"gotointerwiki": "Salir de {{SITENAME}}",
+	"gotointerwiki-invalid": "El título especificado no es válido."
 }
