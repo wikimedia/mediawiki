@@ -5912,15 +5912,6 @@ $wgBotPasswordsCluster = false;
  */
 $wgBotPasswordsDatabase = false;
 
-/**
- * Whether to disable user group expiry. This is a transitional feature flag
- * in accordance with WMF schema change policy, and will be removed later
- * (hopefully before MW 1.29 release).
- *
- * @since 1.29
- */
-$wgDisableUserGroupExpiry = false;
-
 /** @} */ # end of user rights settings
 
 /************************************************************************//**
