@@ -24,6 +24,14 @@
 
 			& > .oo-ui-buttonElement-button {
 				font-weight: normal;
+				// Override OOUI's definitions for button
+				border-color: transparent;
+				padding: 0;
+
+				&:focus {
+					box-shadow: none;
+					outline: 0;
+				}
 			}
 		}
 
