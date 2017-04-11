@@ -130,7 +130,7 @@ class Interwiki {
 	 */
 	public static function invalidateCache( $prefix ) {
 		$cache = ObjectCache::getMainWANInstance();
-		$key = wfMemcKey( 'interwiki', $prefix );
+		$key = $cache->makeKey( 'interwiki', $prefix );
 		$cache->delete( $key );
 		unset( static::$smCache[$prefix] );
 	}
@@ -236,8 +236,9 @@ class Interwiki {
 			}
 		}
 
-		$iwData = ObjectCache::getMainWANInstance()->getWithSetCallback(
-			wfMemcKey( 'interwiki', $prefix ),
+		$cache = ObjectCache::getMainWANInstance();
+		$iwData = $cache->getWithSetCallback(
+			$cache->makeKey( 'interwiki', $prefix ),
 			$wgInterwikiExpiry,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $prefix ) {
 				$dbr = wfGetDB( DB_SLAVE );
