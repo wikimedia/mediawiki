@@ -221,7 +221,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 				}
 			}
 
-			$value = $this->getCacheValue( wfMemcKey( $prefix ) );
+			$value = $this->getCacheValue( wfWikiID() . ':' . $prefix );
 			// Site level
 			if ( $value == '' && $this->interwikiScopes >= 3 ) {
 				$value = $this->getCacheValue( "_{$this->thisSite}:{$prefix}" );
