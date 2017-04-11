@@ -215,7 +215,7 @@ class UserrightsPage extends SpecialPage {
 	 * @return bool
 	 */
 	public function canProcessExpiries() {
-		return !$this->getConfig()->get( 'DisableUserGroupExpiry' );
+		return true;
 	}
 
 	/**

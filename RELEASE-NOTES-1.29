@@ -28,9 +28,6 @@ production.
   $wgNamespacesWithSubpages[NS_TEMPLATE] to false to keep the old behavior.
 * $wgRunJobsAsync is now false by default (T142751). This change only affects
   wikis with $wgJobRunRate > 0.
-* A temporary feature flag, $wgDisableUserGroupExpiry, is provided to disable
-  new features that rely on the schema changes to the user_groups table. This
-  feature flag will likely be removed before 1.29 is released.
 * (T158474) "Unknown user" has been added to $wgReservedUsernames.
 * (T156983) $wgRateLimitsExcludedIPs now accepts CIDR ranges as well as single IPs.
 * $wgDummyLanguageCodes is deprecated. Additional language code mappings may be
