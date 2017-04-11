@@ -49,11 +49,6 @@ class UserGroupMembership {
 	 * @param string|null $expiry Timestamp of expiry in TS_MW format, or null if no expiry
 	 */
 	public function __construct( $userId = 0, $group = null, $expiry = null ) {
-		global $wgDisableUserGroupExpiry;
-		if ( $wgDisableUserGroupExpiry ) {
-			$expiry = null;
-		}
-
 		$this->userId = (int)$userId;
 		$this->group = $group; // TODO throw on invalid group?
 		$this->expiry = $expiry ?: null;
@@ -77,26 +72,15 @@ class UserGroupMembership {
 	 * @return string|null Timestamp of expiry in TS_MW format, or null if no expiry
 	 */
 	public function getExpiry() {
-		global $wgDisableUserGroupExpiry;
-		if ( $wgDisableUserGroupExpiry ) {
-			return null;
-		}
-
 		return $this->expiry;
 	}
 
 	protected function initFromRow( $row ) {
-		global $wgDisableUserGroupExpiry;
-
 		$this->userId = (int)$row->ug_user;
 		$this->group = $row->ug_group;
-		if ( $wgDisableUserGroupExpiry ) {
-			$this->expiry = null;
-		} else {
-			$this->expiry = $row->ug_expiry === null ?
-				null :
-				wfTimestamp( TS_MW, $row->ug_expiry );
-		}
+		$this->expiry = $row->ug_expiry === null ?
+			null :
+			wfTimestamp( TS_MW, $row->ug_expiry );
 	}
 
 	/**
@@ -117,19 +101,11 @@ class UserGroupMembership {
 	 * @return array
 	 */
 	public static function selectFields() {
-		global $wgDisableUserGroupExpiry;
-		if ( $wgDisableUserGroupExpiry ) {
-			return [
-				'ug_user',
-				'ug_group',
-			];
-		} else {
-			return [
-				'ug_user',
-				'ug_group',
-				'ug_expiry',
-			];
-		}
+		return [
+			'ug_user',
+			'ug_group',
+			'ug_expiry',
+		];
 	}
 
 	/**
@@ -140,7 +116,6 @@ class UserGroupMembership {
 	 * @return bool Whether or not anything was deleted
 	 */
 	public function delete( IDatabase $dbw = null ) {
-		global $wgDisableUserGroupExpiry;
 		if ( wfReadOnly() ) {
 			return false;
 		}
@@ -149,14 +124,10 @@ class UserGroupMembership {
 			$dbw = wfGetDB( DB_MASTER );
 		}
 
-		if ( $wgDisableUserGroupExpiry ) {
-			$dbw->delete( 'user_groups', $this->getDatabaseArray( $dbw ), __METHOD__ );
-		} else {
-			$dbw->delete(
-				'user_groups',
-				[ 'ug_user' => $this->userId, 'ug_group' => $this->group ],
-				__METHOD__ );
-		}
+		$dbw->delete(
+			'user_groups',
+			[ 'ug_user' => $this->userId, 'ug_group' => $this->group ],
+			__METHOD__ );
 		if ( !$dbw->affectedRows() ) {
 			return false;
 		}
@@ -182,7 +153,6 @@ class UserGroupMembership {
 	 * @return bool Whether or not anything was inserted
 	 */
 	public function insert( $allowUpdate = false, IDatabase $dbw = null ) {
-		global $wgDisableUserGroupExpiry;
 		if ( $dbw === null ) {
 			$dbw = wfGetDB( DB_MASTER );
 		}
@@ -206,7 +176,7 @@ class UserGroupMembership {
 
 		// Don't collide with expired user group memberships
 		// Do this after trying to insert, in order to avoid locking
-		if ( !$wgDisableUserGroupExpiry && !$affected ) {
+		if ( !$affected ) {
 			$conds = [
 				'ug_user' => $row['ug_user'],
 				'ug_group' => $row['ug_group'],
@@ -245,16 +215,11 @@ class UserGroupMembership {
 	 * @return array
 	 */
 	protected function getDatabaseArray( IDatabase $db ) {
-		global $wgDisableUserGroupExpiry;
-
-		$a = [
+		return [
 			'ug_user' => $this->userId,
 			'ug_group' => $this->group,
+			'ug_expiry' => $this->expiry ? $db->timestamp( $this->expiry ) : null,
 		];
-		if ( !$wgDisableUserGroupExpiry ) {
-			$a['ug_expiry'] = $this->expiry ? $db->timestamp( $this->expiry ) : null;
-		}
-		return $a;
 	}
 
 	/**
@@ -262,8 +227,7 @@ class UserGroupMembership {
 	 * @return bool
 	 */
 	public function isExpired() {
-		global $wgDisableUserGroupExpiry;
-		if ( $wgDisableUserGroupExpiry || !$this->expiry ) {
+		if ( !$this->expiry ) {
 			return false;
 		} else {
 			return wfTimestampNow() > $this->expiry;
@@ -276,8 +240,7 @@ class UserGroupMembership {
 	 * @param IDatabase|null $dbw
 	 */
 	public static function purgeExpired( IDatabase $dbw = null ) {
-		global $wgDisableUserGroupExpiry;
-		if ( $wgDisableUserGroupExpiry || wfReadOnly() ) {
+		if ( wfReadOnly() ) {
 			return;
 		}
 

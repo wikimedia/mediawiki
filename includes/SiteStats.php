@@ -189,7 +189,6 @@ class SiteStats {
 			wfMemcKey( 'SiteStats', 'groupcounts', $group ),
 			$cache::TTL_HOUR,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $group ) {
-				global $wgDisableUserGroupExpiry;
 				$dbr = wfGetDB( DB_REPLICA );
 
 				$setOpts += Database::getCacheSetOptions( $dbr );
@@ -199,9 +198,7 @@ class SiteStats {
 					'COUNT(*)',
 					[
 						'ug_group' => $group,
-						$wgDisableUserGroupExpiry ?
-							'1' :
-							'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
+						'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
 					],
 					__METHOD__
 				);

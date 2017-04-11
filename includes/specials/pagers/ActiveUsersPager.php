@@ -101,9 +101,7 @@ class ActiveUsersPager extends UsersPager {
 			$tables[] = 'user_groups';
 			$conds[] = 'ug_user = user_id';
 			$conds['ug_group'] = $this->groups;
-			if ( !$this->getConfig()->get( 'DisableUserGroupExpiry' ) ) {
-				$conds[] = 'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() );
-			}
+			$conds[] = 'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() );
 		}
 		if ( $this->excludegroups !== [] ) {
 			foreach ( $this->excludegroups as $group ) {
@@ -111,9 +109,7 @@ class ActiveUsersPager extends UsersPager {
 					'user_groups', '1', [
 						'ug_user = user_id',
 						'ug_group' => $group,
-						$this->getConfig()->get( 'DisableUserGroupExpiry' ) ?
-							'1' :
-							'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
+						'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
 					]
 				) . ')';
 			}
