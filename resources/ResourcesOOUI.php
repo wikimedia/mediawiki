@@ -33,13 +33,19 @@ return call_user_func( function () {
 	$themes['default'] = 'mediawiki';
 
 	// Helper function to generate paths to files used in 'skinStyles' and 'skinScripts'.
-	$getSkinSpecific = function ( $module, $ext = 'css' ) use ( $themes ) {
+	$getSkinSpecific = function ( $module, $ext = 'css', $themeAt = 'append' ) use ( $themes ) {
 		return array_combine(
 			array_keys( $themes ),
 			array_map( function ( $theme ) use ( $module, $ext ) {
-				$module = $module ? "$module-" : '';
 				// TODO Allow extensions to specify this path somehow
-				return "resources/lib/oojs-ui/oojs-ui-$module$theme.$ext";
+				// NOTE: For most files, -{theme} is appended, but for
+				// icon stylesheets, theme is prepended instead.
+				if ( $themeAt === 'append' ) {
+					$module = $module ? "$module-" : '';
+					return "resources/lib/oojs-ui/oojs-ui-$module$theme.$ext";
+				} else {
+					return "resources/lib/oojs-ui/oojs-ui-$theme-$module.$ext";
+				}
 			}, array_values( $themes ) )
 		);
 	};
@@ -147,9 +153,19 @@ return call_user_func( function () {
 		'icons-user', // oojs-ui.styles.icons-user
 		'icons-wikimedia', // oojs-ui.styles.icons-wikimedia
 	];
+	$basePath = 'resources/lib/oojs-ui';
 	$rootPath = 'resources/lib/oojs-ui/themes';
 
 	foreach ( $imageSets as $name ) {
+		if ( substr( $name, 0, 6 ) === 'icons-' ) {
+			$modules["oojs-ui.styles.$name"] = [
+				'class' => 'ResourceLoaderFileModule',
+				'skinStyles' => $getSkinSpecific( $name, 'css', 'prepend' ),
+				'targets' => [ 'desktop', 'mobile' ],
+			];
+			continue;
+		}
+
 		$module = [
 			'position' => 'top',
 			'class' => 'ResourceLoaderOOUIImageModule',

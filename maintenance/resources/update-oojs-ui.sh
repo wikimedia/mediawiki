@@ -53,6 +53,8 @@ cp ./node_modules/oojs-ui/dist/oojs-ui-toolbars-{mediawiki,apex}.css "$REPO_DIR/
 cp ./node_modules/oojs-ui/dist/oojs-ui-windows.js "$REPO_DIR/$TARGET_DIR"
 cp ./node_modules/oojs-ui/dist/oojs-ui-windows-{mediawiki,apex}.css "$REPO_DIR/$TARGET_DIR"
 cp ./node_modules/oojs-ui/dist/oojs-ui-{mediawiki,apex}.js "$REPO_DIR/$TARGET_DIR"
+cp ./node_modules/oojs-ui/dist/oojs-ui-{mediawiki,apex}-icons-*.css "$REPO_DIR/$TARGET_DIR"
+rm "$REPO_DIR/$TARGET_DIR/"oojs-ui-*-icons-*.{rtl,min}.css
 cp -R ./node_modules/oojs-ui/dist/i18n "$REPO_DIR/$TARGET_DIR"
 cp -R ./node_modules/oojs-ui/dist/images "$REPO_DIR/$TARGET_DIR"
 cp -R ./node_modules/oojs-ui/dist/themes/mediawiki/images "$REPO_DIR/$TARGET_DIR/themes/mediawiki"
