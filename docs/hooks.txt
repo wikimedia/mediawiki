@@ -2312,6 +2312,10 @@ $page: the Page that was rendered.
 $title: the Title of the rendered page.
 $parserOutput: ParserOutput resulting from rendering the page.
 
+'OtherAutoblockLogLink': Get links to the autoblock log from extensions which
+autoblocks users and/or IP addresses too.
+&$otherBlockLink: An array with links to other autoblock logs
+
 'OtherBlockLogLink': Get links to the block log from extensions which blocks
 users and/or IP addresses too.
 &$otherBlockLink: An array with links to other block logs
