@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.20.2
+ * OOjs UI v0.21.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-03-30T20:34:41Z
+ * Date: 2017-04-11T22:51:10Z
  */
 .oo-ui-actionWidget.oo-ui-pendingElement-pending {
   background-image: /* @embed */ url(themes/apex/images/textures/pending.gif);
@@ -404,7 +404,7 @@
   top: 1em;
   bottom: 1em;
   max-height: 100%;
-  max-height: calc(100% - 2em);
+  max-height: calc( 100% - 2em );
   border: 1px solid #ccc;
   border-radius: 0.5em;
   box-shadow: 0 0.2em 1em rgba(0, 0, 0, 0.3);

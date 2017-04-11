@@ -1,20 +1,16 @@
 /*!
- * OOjs UI v0.20.2
+ * OOjs UI v0.21.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-03-30T20:34:41Z
+ * Date: 2017-04-11T22:51:10Z
  */
 .oo-ui-popupTool .oo-ui-popupWidget-popup,
 .oo-ui-popupTool .oo-ui-popupWidget-anchor {
   z-index: 4;
-}
-.oo-ui-popupTool .oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor,
-.oo-ui-popupTool .oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor {
-  margin-left: 1.25em;
 }
 .oo-ui-toolGroupTool > .oo-ui-popupToolGroup {
   border: 0;
@@ -123,10 +119,10 @@
   border-color: rgba(0, 0, 0, 0.2);
   box-shadow: inset 0 0.0875em 0.0875em 0 rgba(0, 0, 0, 0.07);
   background-color: #f8fbfd;
-  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #F1F7FB), color-stop(100%, #fff));
-  background-image: -webkit-linear-gradient(top, #F1F7FB 0, #fff 100%);
-  background-image:    -moz-linear-gradient(top, #F1F7FB 0, #fff 100%);
-  background-image:         linear-gradient(to bottom, #F1F7FB 0, #fff 100%);
+  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #f1f7fb), color-stop(100%, #fff));
+  background-image: -webkit-linear-gradient(top, #f1f7fb 0, #fff 100%);
+  background-image:    -moz-linear-gradient(top, #f1f7fb 0, #fff 100%);
+  background-image:         linear-gradient(to bottom, #f1f7fb 0, #fff 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff1f7fb', endColorstr='#ffffffff' )";
 }
 .oo-ui-barToolGroup.oo-ui-widget-enabled > .oo-ui-toolGroup-tools > .oo-ui-tool.oo-ui-tool-active.oo-ui-widget-enabled + .oo-ui-tool-active.oo-ui-widget-enabled {
@@ -269,10 +265,10 @@
   border-bottom-right-radius: 0;
   box-shadow: inset 0 0.0875em 0.0875em 0 rgba(0, 0, 0, 0.07);
   background-color: #f8fbfd;
-  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #F1F7FB), color-stop(100%, #fff));
-  background-image: -webkit-linear-gradient(top, #F1F7FB 0, #fff 100%);
-  background-image:    -moz-linear-gradient(top, #F1F7FB 0, #fff 100%);
-  background-image:         linear-gradient(to bottom, #F1F7FB 0, #fff 100%);
+  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #f1f7fb), color-stop(100%, #fff));
+  background-image: -webkit-linear-gradient(top, #f1f7fb 0, #fff 100%);
+  background-image:    -moz-linear-gradient(top, #f1f7fb 0, #fff 100%);
+  background-image:         linear-gradient(to bottom, #f1f7fb 0, #fff 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff1f7fb', endColorstr='#ffffffff' )";
 }
 .oo-ui-popupToolGroup .oo-ui-toolGroup-tools {
@@ -303,7 +299,7 @@
   line-height: 2em;
 }
 .oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-accel {
-  color: #888;
+  color: #767676;
 }
 .oo-ui-listToolGroup .oo-ui-tool {
   display: block;
@@ -326,10 +322,10 @@
   border-color: rgba(0, 0, 0, 0.1);
   box-shadow: inset 0 0.0875em 0.0875em 0 rgba(0, 0, 0, 0.07);
   background-color: #f8fbfd;
-  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #F1F7FB), color-stop(100%, #fff));
-  background-image: -webkit-linear-gradient(top, #F1F7FB 0, #fff 100%);
-  background-image:    -moz-linear-gradient(top, #F1F7FB 0, #fff 100%);
-  background-image:         linear-gradient(to bottom, #F1F7FB 0, #fff 100%);
+  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #f1f7fb), color-stop(100%, #fff));
+  background-image: -webkit-linear-gradient(top, #f1f7fb 0, #fff 100%);
+  background-image:    -moz-linear-gradient(top, #f1f7fb 0, #fff 100%);
+  background-image:         linear-gradient(to bottom, #f1f7fb 0, #fff 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff1f7fb', endColorstr='#ffffffff' )";
 }
 .oo-ui-listToolGroup .oo-ui-tool-active.oo-ui-widget-enabled + .oo-ui-tool-active.oo-ui-widget-enabled {

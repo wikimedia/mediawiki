@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.20.2
+ * OOjs UI v0.21.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-03-30T20:34:37Z
+ * Date: 2017-04-11T22:51:05Z
  */
 ( function ( OO ) {
 
@@ -73,10 +73,10 @@ OO.ui.generateElementId = function () {
 
 /**
  * Check if an element is focusable.
- * Inspired from :focusable in jQueryUI v1.11.4 - 2015-04-14
+ * Inspired by :focusable in jQueryUI v1.11.4 - 2015-04-14
  *
  * @param {jQuery} $element Element to test
- * @return {boolean}
+ * @return {boolean} Element is focusable
  */
 OO.ui.isFocusableElement = function ( $element ) {
 	var nodeName,
@@ -131,7 +131,7 @@ OO.ui.isFocusableElement = function ( $element ) {
  *
  * @param {jQuery} $container Container to search in
  * @param {boolean} [backwards] Search backwards
- * @return {jQuery} Focusable child, an empty jQuery object if none found
+ * @return {jQuery} Focusable child, or an empty jQuery object if none found
  */
 OO.ui.findFocusable = function ( $container, backwards ) {
 	var $focusable = $( [] ),
@@ -235,10 +235,10 @@ OO.ui.contains = function ( containers, contained, matchContainers ) {
  *
  * Ported from: http://underscorejs.org/underscore.js
  *
- * @param {Function} func
- * @param {number} wait
- * @param {boolean} immediate
- * @return {Function}
+ * @param {Function} func Function to debounce
+ * @param {number} [wait=0] Wait period in milliseconds
+ * @param {boolean} [immediate] Trigger on leading edge
+ * @return {Function} Debounced function
  */
 OO.ui.debounce = function ( func, wait, immediate ) {
 	var timeout;
@@ -264,7 +264,7 @@ OO.ui.debounce = function ( func, wait, immediate ) {
 /**
  * Puts a console warning with provided message.
  *
- * @param {string} message
+ * @param {string} message Message
  */
 OO.ui.warnDeprecation = function ( message ) {
 	if ( OO.getProp( window, 'console', 'warn' ) !== undefined ) {
@@ -282,9 +282,9 @@ OO.ui.warnDeprecation = function ( message ) {
  * when the wrapper is called, return values from the function are entirely
  * discarded.
  *
- * @param {Function} func
- * @param {number} wait
- * @return {Function}
+ * @param {Function} func Function to throttle
+ * @param {number} wait Throttle window length, in milliseconds
+ * @return {Function} Throttled function
  */
 OO.ui.throttle = function ( func, wait ) {
 	var context, args, timeout,
@@ -319,7 +319,7 @@ OO.ui.throttle = function ( func, wait ) {
 /**
  * A (possibly faster) way to get the current timestamp as an integer
  *
- * @return {number} Current timestamp
+ * @return {number} Current timestamp, in milliseconds since the Unix epoch
  */
 OO.ui.now = Date.now || function () {
 	return new Date().getTime();
@@ -3583,9 +3583,11 @@ OO.ui.ButtonWidget.prototype.setNoFollow = function ( noFollow ) {
 // Override method visibility hints from ButtonElement
 /**
  * @method setActive
+ * @inheritdoc
  */
 /**
  * @method isActive
+ * @inheritdoc
  */
 
 /**
@@ -4560,7 +4562,7 @@ OO.ui.mixin.ClippableElement.prototype.isClippedVertically = function () {
 };
 
 /**
- * Set the ideal size. These are the dimensions the element will have when it's not being clipped.
+ * Set the ideal size. These are the dimensions #$clippable will have when it's not being clipped.
  *
  * @param {number|string} [width] Width as a number of pixels or CSS string with unit suffix
  * @param {number|string} [height] Height as a number of pixels or CSS string with unit suffix
@@ -4645,7 +4647,7 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 	} else {
 		this.$clippable.css( {
 			overflowX: '',
-			width: this.idealWidth ? this.idealWidth - extraWidth : '',
+			width: this.idealWidth || '',
 			maxWidth: Math.max( 0, allotedWidth )
 		} );
 	}
@@ -4661,7 +4663,7 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 	} else {
 		this.$clippable.css( {
 			overflowY: '',
-			height: this.idealHeight ? this.idealHeight - extraHeight : '',
+			height: this.idealHeight || '',
 			maxHeight: Math.max( 0, allotedHeight )
 		} );
 	}
@@ -4710,8 +4712,10 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
  * @cfg {number} [height] Height of popup in pixels. Omit to use the automatic height.
  * @cfg {boolean} [anchor=true] Show anchor pointing to origin of popup
  * @cfg {string} [position='below'] Where to position the popup relative to $floatableContainer
- *  'above': Put popup above $floatableContainer; anchor points down to the start edge of $floatableContainer
- *  'below': Put popup below $floatableContainer; anchor points up to the start edge of $floatableContainer
+ *  'above': Put popup above $floatableContainer; anchor points down to the horizontal center
+ *           of $floatableContainer
+ *  'below': Put popup below $floatableContainer; anchor points up to the horizontal center
+ *           of $floatableContainer
  *  'before': Put popup to the left (LTR) / right (RTL) of $floatableContainer; anchor points
  *            endwards (right/left) to the vertical center of $floatableContainer
  *  'after': Put popup to the right (LTR) / left (RTL) of $floatableContainer; anchor points
@@ -5148,8 +5152,7 @@ OO.ui.PopupWidget.prototype.computePosition = function () {
 	}
 
 	// Position the anchor (which is positioned relative to the popup) to point to $floatableContainer
-	// For popups above/below, we point to the start edge; for popups before/after, we point to the center
-	anchorPos = vertical ? ( floatablePos[ start ] + floatablePos[ end ] ) / 2 : floatablePos[ start ];
+	anchorPos = ( floatablePos[ start ] + floatablePos[ end ] ) / 2;
 	anchorOffset = ( start === far ? -1 : 1 ) * ( anchorPos - popupPos[ start ] );
 
 	// If the anchor is less than 2*anchorSize from either edge, move the popup to make more space
@@ -6734,8 +6737,10 @@ OO.ui.MenuSectionOptionWidget.static.highlightable = false;
  *  that toggles the menu's visibility on click, the menu will be hidden then re-shown when the user clicks
  *  that button, unless the button (or its parent widget) is passed in here.
  * @cfg {boolean} [autoHide=true] Hide the menu when the mouse is pressed outside the menu.
+ * @cfg {jQuery} [$autoCloseIgnore] If these elements are clicked, don't auto-hide the menu.
  * @cfg {boolean} [hideOnChoose=true] Hide the menu when the user chooses an option.
  * @cfg {boolean} [filterFromInput=false] Filter the displayed options from the input
+ * @cfg {boolean} [highlightOnFilter] Highlight the first result when filtering
  */
 OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 	// Configuration initialization
@@ -6753,8 +6758,10 @@ OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 	this.filterFromInput = !!config.filterFromInput;
 	this.$input = config.$input ? config.$input : config.input ? config.input.$input : null;
 	this.$widget = config.widget ? config.widget.$element : null;
+	this.$autoCloseIgnore = config.$autoCloseIgnore || $( [] );
 	this.onDocumentMouseDownHandler = this.onDocumentMouseDown.bind( this );
 	this.onInputEditHandler = OO.ui.debounce( this.updateItemVisibility.bind( this ), 100 );
+	this.highlightOnFilter = !!config.highlightOnFilter;
 
 	// Initialization
 	this.$element
@@ -6783,8 +6790,12 @@ OO.mixinClass( OO.ui.MenuSelectWidget, OO.ui.mixin.ClippableElement );
  */
 OO.ui.MenuSelectWidget.prototype.onDocumentMouseDown = function ( e ) {
 	if (
-		!OO.ui.contains( this.$element[ 0 ], e.target, true ) &&
-		( !this.$widget || !OO.ui.contains( this.$widget[ 0 ], e.target, true ) )
+		this.isVisible() &&
+		!OO.ui.contains(
+				this.$element.add( this.$widget ).add( this.$autoCloseIgnore ).get(),
+				e.target,
+				true
+		)
 	) {
 		this.toggle( false );
 	}
@@ -6831,6 +6842,7 @@ OO.ui.MenuSelectWidget.prototype.onKeyDown = function ( e ) {
  */
 OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
 	var i, item, visible, section, sectionEmpty,
+		firstItemFound = false,
 		anyVisible = false,
 		len = this.items.length,
 		showAll = !this.isVisible(),
@@ -6852,6 +6864,11 @@ OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
 			anyVisible = anyVisible || visible;
 			sectionEmpty = sectionEmpty && !visible;
 			item.toggle( visible );
+			if ( this.highlightOnFilter && visible && !firstItemFound ) {
+				// Highlight the first item in the list
+				this.highlightItem( item );
+				firstItemFound = true;
+			}
 		}
 	}
 	// Process the final section
@@ -7832,6 +7849,7 @@ OO.ui.CheckboxMultiselectWidget.prototype.onClick = function ( e ) {
  *   Deprecated, omit this parameter and specify `$container` instead.
  * @param {Object} [config] Configuration options
  * @cfg {jQuery} [$container=inputWidget.$element] Element to render menu under
+ * @cfg {number} [width] Width of the menu
  */
 OO.ui.FloatingMenuSelectWidget = function OoUiFloatingMenuSelectWidget( inputWidget, config ) {
 	// Allow 'inputWidget' parameter and config for backwards compatibility
@@ -7842,6 +7860,8 @@ OO.ui.FloatingMenuSelectWidget = function OoUiFloatingMenuSelectWidget( inputWid
 
 	// Configuration initialization
 	config = config || {};
+
+	this.width = config.width;
 
 	// Parent constructor
 	OO.ui.FloatingMenuSelectWidget.parent.call( this, config );
@@ -7876,7 +7896,7 @@ OO.ui.FloatingMenuSelectWidget.prototype.toggle = function ( visible ) {
 
 	if ( change && visible ) {
 		// Make sure the width is set before the parent method runs.
-		this.setIdealSize( this.$container.width() );
+		this.setIdealSize( this.width || this.$container.width() );
 	}
 
 	// Parent method
@@ -8657,8 +8677,12 @@ OO.ui.DropdownInputWidget.prototype.onMenuSelect = function ( item ) {
  * @inheritdoc
  */
 OO.ui.DropdownInputWidget.prototype.setValue = function ( value ) {
+	var selected;
 	value = this.cleanUpValue( value );
 	this.dropdownWidget.getMenu().selectItemByData( value );
+	// Only allow setting values that are actually present in the dropdown
+	selected = this.dropdownWidget.getMenu().getSelectedItem();
+	value = selected ? selected.getData() : '';
 	OO.ui.DropdownInputWidget.parent.prototype.setValue.call( this, value );
 	return this;
 };
@@ -9560,14 +9584,14 @@ OO.ui.TextInputWidget.prototype.setRequired = function ( state ) {
 	this.required = !!state;
 	if ( this.required ) {
 		this.$input
-			.attr( 'required', 'required' )
+			.prop( 'required', true )
 			.attr( 'aria-required', 'true' );
 		if ( this.getIndicator() === null ) {
 			this.setIndicator( 'required' );
 		}
 	} else {
 		this.$input
-			.removeAttr( 'required' )
+			.prop( 'required', false )
 			.removeAttr( 'aria-required' );
 		if ( this.getIndicator() === 'required' ) {
 			this.setIndicator( null );
@@ -10259,8 +10283,13 @@ OO.ui.ComboBoxInputWidget = function OoUiComboBoxInputWidget( config ) {
 		autocomplete: false
 	}, config );
 
-	// ComboBoxInputWidget shouldn't support multiline
+	// ComboBoxInputWidget shouldn't support `multiline`
 	config.multiline = false;
+
+	// See InputWidget#reusePreInfuseDOM about `config.$input`
+	if ( config.$input ) {
+		config.$input.removeAttr( 'list' );
+	}
 
 	// Parent constructor
 	OO.ui.ComboBoxInputWidget.parent.call( this, config );

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.20.2
+ * OOjs UI v0.21.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-03-30T20:34:41Z
+ * Date: 2017-04-11T22:51:10Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -838,14 +838,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-popupButtonWidget .oo-ui-popupWidget {
   cursor: auto;
 }
-.oo-ui-popupButtonWidget-frameless-popup.oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor,
-.oo-ui-popupButtonWidget-frameless-popup.oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor {
-  margin-left: 0.9375em;
-}
-.oo-ui-popupButtonWidget-framed-popup.oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor,
-.oo-ui-popupButtonWidget-framed-popup.oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor {
-  margin-left: 1.2375em;
-}
 .oo-ui-inputWidget {
   margin-right: 0.5em;
 }
@@ -977,13 +969,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   cursor: pointer;
 }
 .oo-ui-textInputWidget.oo-ui-widget-disabled input,
-.oo-ui-textInputWidget.oo-ui-widget-disabled textarea {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
+.oo-ui-textInputWidget.oo-ui-widget-disabled textarea,
 .oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-labelElement-label {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -1032,27 +1018,27 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-textInputWidget input::-webkit-input-placeholder,
 .oo-ui-textInputWidget textarea::-webkit-input-placeholder {
-  color: #72777d;
+  color: #767676;
   opacity: 1;
 }
 .oo-ui-textInputWidget input:-ms-input-placeholder,
 .oo-ui-textInputWidget textarea:-ms-input-placeholder {
-  color: #72777d;
+  color: #767676;
   opacity: 1;
 }
 .oo-ui-textInputWidget input::-moz-placeholder,
 .oo-ui-textInputWidget textarea::-moz-placeholder {
-  color: #72777d;
+  color: #767676;
   opacity: 1;
 }
 .oo-ui-textInputWidget input:-moz-placeholder,
 .oo-ui-textInputWidget textarea:-moz-placeholder {
-  color: #72777d;
+  color: #767676;
   opacity: 1;
 }
 .oo-ui-textInputWidget input::placeholder,
 .oo-ui-textInputWidget textarea::placeholder {
-  color: #72777d;
+  color: #767676;
   opacity: 1;
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled input:focus,
@@ -1063,7 +1049,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled input[readonly],
 .oo-ui-textInputWidget.oo-ui-widget-enabled textarea[readonly] {
-  color: #777;
+  color: #767676;
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid input,
 .oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid textarea {
@@ -1103,7 +1089,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-textInputWidget > .oo-ui-labelElement-label {
   padding: 0.4em;
   line-height: 1.5em;
-  color: #888;
+  color: #767676;
 }
 .oo-ui-textInputWidget-labelPosition-after.oo-ui-indicatorElement > .oo-ui-labelElement-label {
   margin-right: 2.0875em;
@@ -1148,9 +1134,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   background-color: #e1f3ff;
 }
 .oo-ui-menuSectionOptionWidget {
-  cursor: default;
   padding: 0.33em 0.75em;
-  color: #888;
+  color: #767676;
+}
+.oo-ui-menuSectionOptionWidget.oo-ui-widget-enabled {
+  cursor: default;
 }
 .oo-ui-dropdownWidget {
   display: inline-block;
@@ -1161,6 +1149,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin-right: 0.5em;
 }
 .oo-ui-dropdownWidget-handle {
+  position: relative;
   width: 100%;
   display: block;
   white-space: nowrap;
@@ -1263,7 +1252,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   height: 2.5em;
   padding: 0;
 }
-.oo-ui-comboBoxInputWidget-php > .oo-ui-indicatorElement-indicator {
+.oo-ui-comboBoxInputWidget-php > .oo-ui-indicatorWidget {
+  display: block;
+  position: absolute;
+  top: 0;
+  height: 100%;
   pointer-events: none;
 }
 .oo-ui-comboBoxInputWidget:last-child {
@@ -1281,6 +1274,12 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-comboBoxInputWidget-dropdownButton .oo-ui-buttonElement-button .oo-ui-indicatorElement-indicator.oo-ui-indicator-down {
   visibility: visible;
   margin: 0.775em;
+}
+.oo-ui-comboBoxInputWidget-php .oo-ui-indicatorWidget {
+  right: 0;
+  max-height: 2.375em;
+  margin: 0;
+  margin-right: 0.775em;
 }
 .oo-ui-comboBoxInputWidget.oo-ui-widget-disabled .oo-ui-textInputWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
   cursor: default;

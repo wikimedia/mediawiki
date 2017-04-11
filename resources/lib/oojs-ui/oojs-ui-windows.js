@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.20.2
+ * OOjs UI v0.21.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-03-30T20:34:37Z
+ * Date: 2017-04-11T22:51:05Z
  */
 ( function ( OO ) {
 
@@ -60,14 +60,6 @@ OO.ui.ActionWidget = function OoUiActionWidget( config ) {
 OO.inheritClass( OO.ui.ActionWidget, OO.ui.ButtonWidget );
 OO.mixinClass( OO.ui.ActionWidget, OO.ui.mixin.PendingElement );
 
-/* Events */
-
-/**
- * A resize event is emitted when the size of the widget changes.
- *
- * @event resize
- */
-
 /* Methods */
 
 /**
@@ -100,90 +92,6 @@ OO.ui.ActionWidget.prototype.getAction = function () {
  */
 OO.ui.ActionWidget.prototype.getModes = function () {
 	return this.modes.slice();
-};
-
-/**
- * Emit a resize event if the size has changed.
- *
- * @private
- * @chainable
- */
-OO.ui.ActionWidget.prototype.propagateResize = function () {
-	var width, height;
-
-	if ( this.isElementAttached() ) {
-		width = this.$element.width();
-		height = this.$element.height();
-
-		if ( width !== this.width || height !== this.height ) {
-			this.width = width;
-			this.height = height;
-			this.emit( 'resizePrivate' );
-			if ( this.emit( 'resize' ) ) {
-				OO.ui.warnDeprecation( 'ActionWidget: resize event is deprecated. See T129162.' );
-			}
-		}
-	}
-
-	return this;
-};
-
-/**
- * @inheritdoc
- */
-OO.ui.ActionWidget.prototype.setIcon = function () {
-	// Mixin method
-	OO.ui.mixin.IconElement.prototype.setIcon.apply( this, arguments );
-	this.propagateResize();
-
-	return this;
-};
-
-/**
- * @inheritdoc
- */
-OO.ui.ActionWidget.prototype.setLabel = function () {
-	// Mixin method
-	OO.ui.mixin.LabelElement.prototype.setLabel.apply( this, arguments );
-	this.propagateResize();
-
-	return this;
-};
-
-/**
- * @inheritdoc
- */
-OO.ui.ActionWidget.prototype.setFlags = function () {
-	// Mixin method
-	OO.ui.mixin.FlaggedElement.prototype.setFlags.apply( this, arguments );
-	this.propagateResize();
-
-	return this;
-};
-
-/**
- * @inheritdoc
- */
-OO.ui.ActionWidget.prototype.clearFlags = function () {
-	// Mixin method
-	OO.ui.mixin.FlaggedElement.prototype.clearFlags.apply( this, arguments );
-	this.propagateResize();
-
-	return this;
-};
-
-/**
- * Toggle the visibility of the action button.
- *
- * @param {boolean} [show] Show button, omit to toggle visibility
- * @chainable
- */
-OO.ui.ActionWidget.prototype.toggle = function () {
-	// Parent method
-	OO.ui.ActionWidget.parent.prototype.toggle.apply( this, arguments );
-	this.propagateResize();
-
-	return this;
 };
 
 /* eslint-disable no-unused-vars */
@@ -318,14 +226,6 @@ OO.ui.ActionSet.static.specialFlags = [ 'safe', 'primary' ];
  * A 'click' event is emitted when an action is clicked.
  *
  * @param {OO.ui.ActionWidget} action Action that was clicked
- */
-
-/**
- * @event resize
- *
- * A 'resize' event is emitted when an action widget is resized.
- *
- * @param {OO.ui.ActionWidget} action Action that was resized
  */
 
 /**
@@ -566,11 +466,6 @@ OO.ui.ActionSet.prototype.add = function ( actions ) {
 			click: [ 'emit', 'click', action ],
 			toggle: [ 'onActionChange' ]
 		} );
-		action.on( 'resizePrivate', function ( action ) {
-			if ( this.emit( 'resize', action ) ) {
-				OO.ui.warnDeprecation( 'ActionSet: resize event is deprecated. See T129162.' );
-			}
-		}, [ action ], this );
 		this.list.push( action );
 	}
 	this.organized = false;
@@ -2842,6 +2737,7 @@ OO.ui.MessageDialog.prototype.getActionProcess = function ( action ) {
  * @param {Object} [data] Dialog opening data
  * @param {jQuery|string|Function|null} [data.title] Description of the action being confirmed
  * @param {jQuery|string|Function|null} [data.message] Description of the action's consequence
+ * @param {string} [data.size] Symbolic name of the dialog size, see OO.ui.Window
  * @param {Object[]} [data.actions] List of OO.ui.ActionOptionWidget configuration options for each
  *   action item
  */
@@ -2857,6 +2753,7 @@ OO.ui.MessageDialog.prototype.getSetupProcess = function ( data ) {
 			this.message.setLabel(
 				data.message !== undefined ? data.message : this.constructor.static.message
 			);
+			this.size = data.size !== undefined ? data.size : this.constructor.static.size;
 		}, this );
 };
 
@@ -3407,6 +3304,8 @@ OO.ui.getWindowManager = function () {
  *     OO.ui.alert( 'Something happened!' ).done( function () {
  *         console.log( 'User closed the dialog.' );
  *     } );
+ *
+ *     OO.ui.alert( 'Something larger happened!', { size: 'large' } );
  *
  * @param {jQuery|string} text Message text to display
  * @param {Object} [options] Additional options, see OO.ui.MessageDialog#getSetupProcess

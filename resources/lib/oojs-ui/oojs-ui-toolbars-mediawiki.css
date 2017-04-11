@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.20.2
+ * OOjs UI v0.21.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-03-30T20:34:41Z
+ * Date: 2017-04-11T22:51:10Z
  */
 .oo-ui-tool.oo-ui-widget-enabled {
   -webkit-transition: background-color 100ms;
@@ -21,10 +21,6 @@
 .oo-ui-popupTool .oo-ui-popupWidget-popup,
 .oo-ui-popupTool .oo-ui-popupWidget-anchor {
   z-index: 4;
-}
-.oo-ui-popupTool .oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor,
-.oo-ui-popupTool .oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor {
-  margin-left: 1.25em;
 }
 .oo-ui-toolGroupTool > .oo-ui-toolGroup {
   border-right: 0;
@@ -219,7 +215,7 @@
   width: 0.9375em;
   height: 100%;
   margin: 0 0.5em;
-  opacity: 0.3;
+  opacity: 0.87;
 }
 .oo-ui-toolbar-narrow .oo-ui-popupToolGroup-handle .oo-ui-indicatorElement-indicator {
   right: -0.3125em;
@@ -278,10 +274,15 @@
 .oo-ui-popupToolGroup.oo-ui-widget-enabled.oo-ui-popupToolGroup-active .oo-ui-tool-active.oo-ui-widget-enabled .oo-ui-tool-link .oo-ui-tool-title {
   color: #36c;
 }
-.oo-ui-popupToolGroup.oo-ui-widget-enabled-handle:hover {
+.oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle {
+  -webkit-transition: background-color 100ms, box-shadow 100ms;
+     -moz-transition: background-color 100ms, box-shadow 100ms;
+          transition: background-color 100ms, box-shadow 100ms;
+}
+.oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle:hover {
   background-color: #eaecf0;
 }
-.oo-ui-popupToolGroup.oo-ui-widget-enabled-handle:active {
+.oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle:active {
   background-color: #eaf3ff;
 }
 .oo-ui-listToolGroup .oo-ui-tool {
@@ -408,17 +409,42 @@
   background-color: transparent;
   box-shadow: none;
 }
-.oo-ui-toolbar-actions > .oo-ui-buttonElement.oo-ui-labelElement {
+.oo-ui-toolbar-narrow .oo-ui-toolbar-bar:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 3.125em;
+  left: 0;
+  width: 100%;
+  height: 0;
+  border-bottom: 1px solid #c8ccd1;
+}
+.oo-ui-toolbar-actions > .oo-ui-buttonElement.oo-ui-labelElement,
+.oo-ui-toolbar-actions > .oo-ui-buttonElement.oo-ui-indicatorElement,
+.oo-ui-toolbar-actions > .oo-ui-buttonGroupWidget > .oo-ui-buttonElement.oo-ui-labelElement,
+.oo-ui-toolbar-actions > .oo-ui-buttonGroupWidget > .oo-ui-buttonElement.oo-ui-indicatorElement {
   margin: 0;
 }
-.oo-ui-toolbar-actions > .oo-ui-buttonElement.oo-ui-labelElement > .oo-ui-buttonElement-button {
+.oo-ui-toolbar-actions > .oo-ui-buttonElement.oo-ui-labelElement > .oo-ui-buttonElement-button,
+.oo-ui-toolbar-actions > .oo-ui-buttonElement.oo-ui-indicatorElement > .oo-ui-buttonElement-button,
+.oo-ui-toolbar-actions > .oo-ui-buttonGroupWidget > .oo-ui-buttonElement.oo-ui-labelElement > .oo-ui-buttonElement-button,
+.oo-ui-toolbar-actions > .oo-ui-buttonGroupWidget > .oo-ui-buttonElement.oo-ui-indicatorElement > .oo-ui-buttonElement-button {
   border: 0;
   border-radius: 0;
   padding: 0 0.3125em;
 }
-.oo-ui-toolbar-actions > .oo-ui-buttonElement.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
+.oo-ui-toolbar-actions > .oo-ui-buttonElement.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label,
+.oo-ui-toolbar-actions > .oo-ui-buttonElement.oo-ui-indicatorElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label,
+.oo-ui-toolbar-actions > .oo-ui-buttonGroupWidget > .oo-ui-buttonElement.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label,
+.oo-ui-toolbar-actions > .oo-ui-buttonGroupWidget > .oo-ui-buttonElement.oo-ui-indicatorElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
   margin: 0 1em;
   line-height: 3.125em;
+}
+.oo-ui-toolbar-actions > .oo-ui-buttonGroupWidget > .oo-ui-buttonElement.oo-ui-indicatorElement:not( .oo-ui-labelElement ) > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
+  margin: 0;
+}
+.oo-ui-toolbar-actions > .oo-ui-buttonGroupWidget > .oo-ui-buttonElement.oo-ui-indicatorElement:not( .oo-ui-labelElement ) > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator {
+  margin: 0 0.3125em;
 }
 .oo-ui-toolbar-actions > .oo-ui-toolbar:not( :last-child ) {
   border-right: 1px solid #c8ccd1;
