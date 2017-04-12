@@ -87,25 +87,34 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 		$this->addTables( $this->table );
 		$this->addWhereFld( $this->prefix . '_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
-		$this->addWhereFld( $this->prefix . '_namespace', $params['namespace'] );
 
+		$multiNS = true;
+		$multiTitle = true;
 		if ( $params[$this->titlesParam] ) {
+			// Filter the titles in PHP so our ORDER BY bug avoidance below works right.
+			$filterNS = $params['namespace'] ? array_flip( $params['namespace'] ) : false;
+
 			$lb = new LinkBatch;
 			foreach ( $params[$this->titlesParam] as $t ) {
 				$title = Title::newFromText( $t );
 				if ( !$title ) {
 					$this->addWarning( [ 'apiwarn-invalidtitle', wfEscapeWikiText( $t ) ] );
-				} else {
+				} elseif ( !$filterNS || isset( $filterNS[$title->getNamespace()] ) ) {
 					$lb->addObj( $title );
 				}
 			}
 			$cond = $lb->constructSet( $this->prefix, $this->getDB() );
 			if ( $cond ) {
 				$this->addWhere( $cond );
+				$multiNS = count( $lb->data ) !== 1;
+				$multiTitle = count( call_user_func_array( 'array_merge', $lb->data ) ) !== 1;
 			} else {
 				// No titles so no results
 				return;
 			}
+		} elseif ( $params['namespace'] ) {
+			$this->addWhereFld( $this->prefix . '_namespace', $params['namespace'] );
+			$multiNS = count( $params['namespace'] ) !== 1;
 		}
 
 		if ( !is_null( $params['continue'] ) ) {
@@ -134,12 +143,15 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		if ( count( $this->getPageSet()->getGoodTitles() ) != 1 ) {
 			$order[] = $this->prefix . '_from' . $sort;
 		}
-		if ( count( $params['namespace'] ) != 1 ) {
+		if ( $multiNS ) {
 			$order[] = $this->prefix . '_namespace' . $sort;
 		}
-
-		$order[] = $this->prefix . '_title' . $sort;
-		$this->addOption( 'ORDER BY', $order );
+		if ( $multiTitle ) {
+			$order[] = $this->prefix . '_title' . $sort;
+		}
+		if ( $order ) {
+			$this->addOption( 'ORDER BY', $order );
+		}
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
 		$res = $this->select( __METHOD__ );
