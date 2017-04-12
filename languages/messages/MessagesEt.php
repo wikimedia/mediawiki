@@ -15,8 +15,8 @@ $namespaceNames = [
 	NS_USER             => 'Kasutaja',
 	NS_USER_TALK        => 'Kasutaja_arutelu',
 	NS_PROJECT_TALK     => '{{GRAMMAR:genitive|$1}}_arutelu',
-	NS_FILE             => 'Pilt',
-	NS_FILE_TALK        => 'Pildi_arutelu',
+	NS_FILE             => 'Fail',
+	NS_FILE_TALK        => 'Faili_arutelu',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_arutelu',
 	NS_TEMPLATE         => 'Mall',
@@ -29,6 +29,8 @@ $namespaceNames = [
 
 $namespaceAliases = [
 	'$1_arutelu' => NS_PROJECT_TALK,
+	'Pilt' => NS_FILE,
+	'Pildi_arutelu' => NS_FILE_TALK,
 ];
 
 $specialPageAliases = [
