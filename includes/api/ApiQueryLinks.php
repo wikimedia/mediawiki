@@ -137,7 +137,6 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 		$order[] = $this->prefix . '_title' . $sort;
 		$this->addOption( 'ORDER BY', $order );
-		$this->addOption( 'USE INDEX', $this->prefix . '_from' );
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
 		$res = $this->select( __METHOD__ );
