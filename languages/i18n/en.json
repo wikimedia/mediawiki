@@ -1226,7 +1226,6 @@
 	"right-editsemiprotected": "Edit pages protected as \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "Edit the content model of a page",
 	"right-editinterface": "Edit the user interface",
-	"right-editusercssjs": "Edit other users' CSS and JavaScript files",
 	"right-editusercss": "Edit other users' CSS files",
 	"right-edituserjs": "Edit other users' JavaScript files",
 	"right-editmyusercss": "Edit your own user CSS files",
