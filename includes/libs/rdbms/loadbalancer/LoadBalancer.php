@@ -430,18 +430,19 @@ class LoadBalancer implements ILoadBalancer {
 
 	public function waitFor( $pos ) {
 		$oldPos = $this->mWaitForPos;
-		$this->mWaitForPos = $pos;
-
-		// If a generic reader connection was already established, then wait now
-		$i = $this->mReadIndex;
-		if ( $i > 0 ) {
-			if ( !$this->doWait( $i ) ) {
-				$this->laggedReplicaMode = true;
+		try {
+			$this->mWaitForPos = $pos;
+			// If a generic reader connection was already established, then wait now
+			$i = $this->mReadIndex;
+			if ( $i > 0 ) {
+				if ( !$this->doWait( $i ) ) {
+					$this->laggedReplicaMode = true;
+				}
 			}
+		} finally {
+			// Restore the older position if it was higher
+			$this->setWaitForPositionIfHigher( $oldPos );
 		}
-
-		// Restore the older position if it was higher
-		$this->setWaitForPositionIfHigher( $oldPos );
 	}
 
 	public function waitForOne( $pos, $timeout = null ) {
