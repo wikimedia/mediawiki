@@ -89,7 +89,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		$this->addWhereFld( $this->prefix . '_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
 		$this->addWhereFld( $this->prefix . '_namespace', $params['namespace'] );
 
-		if ( !is_null( $params[$this->titlesParam] ) ) {
+		if ( $params[$this->titlesParam] ) {
 			$lb = new LinkBatch;
 			foreach ( $params[$this->titlesParam] as $t ) {
 				$title = Title::newFromText( $t );
@@ -102,6 +102,9 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			$cond = $lb->constructSet( $this->prefix, $this->getDB() );
 			if ( $cond ) {
 				$this->addWhere( $cond );
+			} else {
+				// No titles so no results
+				return;
 			}
 		}
 
