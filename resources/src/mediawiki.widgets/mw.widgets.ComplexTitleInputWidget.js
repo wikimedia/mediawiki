@@ -108,8 +108,14 @@
 	 */
 	mw.widgets.ComplexTitleInputWidget.prototype.setDisabled = function ( disabled ) {
 		mw.widgets.ComplexTitleInputWidget.parent.prototype.setDisabled.call( this, disabled );
-		this.namespace.setDisabled( disabled );
-		this.title.setDisabled( disabled );
+		if ( this.namespace ) {
+			this.namespace.setDisabled( disabled );
+		}
+
+		if ( this.title ) {
+			this.title.setDisabled( disabled );
+		}
+		return this;
 	};
 
 }( jQuery, mediaWiki ) );
