@@ -1192,7 +1192,6 @@
 	"right-editsemiprotected": "עריכת דפים המוגנים ברמת ההגנה \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "שינוי מודל התוכן של דפים",
 	"right-editinterface": "עריכת ממשק המשתמש",
-	"right-editusercssjs": "עריכת קובצי CSS ו־JavaScript של משתמשים אחרים",
 	"right-editusercss": "עריכת קובצי CSS של משתמשים אחרים",
 	"right-edituserjs": "עריכת קובצי JavaScript של משתמשים אחרים",
 	"right-editmyusercss": "עריכת קובצי CSS של המשתמש עצמו",

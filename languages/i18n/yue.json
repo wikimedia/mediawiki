@@ -1133,7 +1133,6 @@
 	"right-editsemiprotected": "改保護等級係「{{int:protect-level-autoconfirmed}}」嘅版面",
 	"right-editcontentmodel": "改版面嘅內容模型",
 	"right-editinterface": "編輯用戶界面",
-	"right-editusercssjs": "編輯其他用戶嘅CSS同埋JavaScript檔",
 	"right-editusercss": "編輯其他用戶嘅CSS檔",
 	"right-edituserjs": "編輯其他用戶嘅JavaScript檔",
 	"right-editmyusercss": "編輯戶口嘅CSS文件",

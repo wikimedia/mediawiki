@@ -1266,7 +1266,6 @@
 	"right-editsemiprotected": "Editar páginas protegidas como \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "Editar o modelo de uma pagina",
 	"right-editinterface": "Editar a interface de usuário",
-	"right-editusercssjs": "Editar os arquivos CSS e JS de outros usuários",
 	"right-editusercss": "Editar os arquivos CSS de outros usuários",
 	"right-edituserjs": "Editar os arquivos JS de outros usuários",
 	"right-editmyusercss": "Edite seu próprio arquivo CSS de usuário",
@@ -1435,6 +1434,7 @@
 	"rcfilters-filter-bots-description": "Edições feitas por ferramentas automatizadas.",
 	"rcfilters-filter-humans-label": "Humano (não bot)",
 	"rcfilters-filter-humans-description": "Edições feitas por editores humanos.",
+	"rcfilters-filter-patrolled-label": "Patrulhado",
 	"rcfilters-filter-unpatrolled-label": "Não patrulhadas",
 	"rcfilters-filter-unpatrolled-description": "Edições não marcadas como patrulhadas.",
 	"rcfilters-filtergroup-significance": "Significado",
@@ -2416,6 +2416,10 @@
 	"unblocked-id": "O bloqueio de $1 foi removido com sucesso",
 	"unblocked-ip": "[[Special:Contributions/$1|$1]] foi desbloqueado.",
 	"blocklist": "Usuários bloqueados",
+	"autoblocklist": "Bloqueios automáticos",
+	"autoblocklist-submit": "Pesquisar",
+	"autoblocklist-legend": "Listar bloqueios automáticos",
+	"autoblocklist-empty": "A lista de bloqueios automáticos está vazia.",
 	"ipblocklist": "Usuários bloqueados",
 	"ipblocklist-legend": "Procurar por um usuário bloqueado",
 	"blocklist-userblocks": "Esconder bloqueios de contas",
@@ -3906,5 +3910,6 @@
 	"restrictionsfield-label": "Intervalos IP permitidos:",
 	"restrictionsfield-help": "Um endereço IP ou intervalo CIDR por linha. Para ativar tudo, use\n<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "revisão $1",
-	"pageid": "ID da página $1"
+	"pageid": "ID da página $1",
+	"gotointerwiki-invalid": "O título especificado é invalido."
 }

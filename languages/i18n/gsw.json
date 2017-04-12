@@ -1112,7 +1112,6 @@
 	"right-editsemiprotected": "Mit «{{protect-level-autoconfirmed}}» gschützti Syten ändere",
 	"right-editcontentmodel": "Inhaltsmodäll vo’re Syten ändere",
 	"right-editinterface": "Benutzerinterface bearbeite",
-	"right-editusercssjs": "Bearbeite vu CSS- und JS-Dateie vu andere Benutzer",
 	"right-editusercss": "Bearbeite vu CSS-Dateie vu andere Benutzer",
 	"right-edituserjs": "Bearbeite vu JS-Dateie vu andere Benutzer",
 	"right-editmyusercss": "Dyni eigete CSS-Dateien ändere",

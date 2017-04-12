@@ -1172,7 +1172,6 @@
 	"right-editsemiprotected": "Taisyti puslapius, apsaugotus kaip \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "Redaguoti puslapio turinio modelį",
 	"right-editinterface": "Keisti naudotojo aplinką",
-	"right-editusercssjs": "Redaguoti kitų naudotojų CSS ir JS failus",
 	"right-editusercss": "Redaguoti kitų naudotojų CSS failus",
 	"right-edituserjs": "Redaguoti kitų naudotojų JS failus",
 	"right-editmyusercss": "Redaguoti savo vartotojo CSS failus",

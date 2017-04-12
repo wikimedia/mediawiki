@@ -1237,7 +1237,6 @@
 	"right-editsemiprotected": "編輯保護層級為 \"{{int:protect-level-autoconfirmed}}\" 的頁面",
 	"right-editcontentmodel": "編輯頁面的內容模型",
 	"right-editinterface": "編輯使用者介面",
-	"right-editusercssjs": "編輯其他使用者的 CSS 與 JavaScript 檔",
 	"right-editusercss": "編輯其他使用者的 CSS 檔",
 	"right-edituserjs": "編輯其他使用者的 JavaScript 檔",
 	"right-editmyusercss": "編輯自己的使用者 CSS 檔",

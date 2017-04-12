@@ -1206,7 +1206,6 @@
 	"right-editsemiprotected": "Redigere beskyttede sider som er «{{int:protect-level-autoconfirmed}}»",
 	"right-editcontentmodel": "Redigere innholdsmodellen til en side",
 	"right-editinterface": "Redigere brukergrensesnittet",
-	"right-editusercssjs": "Redigere andre brukeres CSS- og JS-filer",
 	"right-editusercss": "Redigere andre brukeres CSS-filer",
 	"right-edituserjs": "Redigere andre brukeres JS-filer",
 	"right-editmyusercss": "Redigere sine egne CSS-filer",

@@ -1190,7 +1190,6 @@
 	"right-editsemiprotected": "Editace stránek zamčených na „{{int:protect-level-autoconfirmed}}“",
 	"right-editcontentmodel": "Editace modelu obsahu stránky",
 	"right-editinterface": "Editace zpráv uživatelského rozhraní",
-	"right-editusercssjs": "Editace CSS a JS souborů jiných uživatelů",
 	"right-editusercss": "Editace CSS souborů jiných uživatelů",
 	"right-edituserjs": "Editace JavaScriptových souborů jiných uživatelů",
 	"right-editmyusercss": "Editace vlastních uživatelských CSS souborů",

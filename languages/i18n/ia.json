@@ -1170,7 +1170,6 @@
 	"right-editsemiprotected": "Modificar paginas protegite como \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "Modificar le modello de contento de un pagina",
 	"right-editinterface": "Modificar le interfacie de usator",
-	"right-editusercssjs": "Modificar le files CSS e JS de altere usatores",
 	"right-editusercss": "Modificar le files CSS de altere usatores",
 	"right-edituserjs": "Modificar le files JS de altere usatores",
 	"right-editmyusercss": "Modificar le proprie files CSS de usator",

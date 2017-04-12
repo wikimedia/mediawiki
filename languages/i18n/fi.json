@@ -1198,7 +1198,6 @@
 	"right-editsemiprotected": "Muokata sivuja, jotka on suojattu tasolle \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "Muokata sivun sisältömallia (content model)",
 	"right-editinterface": "Muokata käyttöliittymätekstejä",
-	"right-editusercssjs": "Muokata toisten käyttäjien CSS- ja JavaScript-tiedostoja",
 	"right-editusercss": "Muokata toisten käyttäjien CSS-tiedostoja",
 	"right-edituserjs": "Muokata toisten käyttäjien JavaScript-tiedostoja",
 	"right-editmyusercss": "Muokata omia CSS-tiedostoja",

@@ -1212,7 +1212,6 @@
 	"right-editsemiprotected": "Sunting halaman yang dilindungi sebagai \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "Edit model konten halaman",
 	"right-editinterface": "Menyunting antarmuka pengguna",
-	"right-editusercssjs": "Menyunting arsip CSS dan JS pengguna lain",
 	"right-editusercss": "Menyunting berkas CSS pengguna lain",
 	"right-edituserjs": "Menyunting berkas JS pengguna lain",
 	"right-editmyusercss": "Sunting berkas CSS pengguna Anda",

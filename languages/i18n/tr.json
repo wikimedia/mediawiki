@@ -1230,7 +1230,6 @@
 	"right-editsemiprotected": "\"{{int:protect-level-autoconfirmed}}\" olarak korunan sayfalarda değişiklik yap",
 	"right-editcontentmodel": "Sayfanın içerik modelini düzenle",
 	"right-editinterface": "Kullanıcı arayüzünü değiştirmek",
-	"right-editusercssjs": "Diğer kullanıcıların CSS ve JS dosyalarında değişiklik yap",
 	"right-editusercss": "Diğer kullanıcıların CSS dosyalarında değişiklik yap",
 	"right-edituserjs": "Diğer kullanıcıların JS dosyalarında değişiklik yap",
 	"right-editmyusercss": "Kendi kullanıcı CSS dosyaları düzenle",

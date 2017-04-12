@@ -1129,7 +1129,6 @@
 	"right-editsemiprotected": "Hanova ny pejy narovna ho \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "Hanova ny modelim-botoatin'ny pejy",
 	"right-editinterface": "Manova ny interface ny mpikambana",
-	"right-editusercssjs": "Manova ny rakitra CSS sy JS ny mpikambana hafa",
 	"right-editusercss": "Manova ny rakitra CSS ny mpikambana hafa",
 	"right-edituserjs": "Manova ny rakitra JS an'ny mpikambana hafa",
 	"right-editmyusercss": "Manova ny rakitra CSS-nao",

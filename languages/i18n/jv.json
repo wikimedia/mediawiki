@@ -1051,7 +1051,6 @@
 	"right-editprotected": "Owah kaca-kaca sing direksa (tanpa pangreksan runtun)",
 	"right-editsemiprotected": "Owah kaca-kaca sing direksa dadi \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editinterface": "Besut antarmuka panganggo",
-	"right-editusercssjs": "Besut barkas-barkas CSS lan JavaScript panganggo liya",
 	"right-editusercss": "Besut barkas-barkas CSS panganggo liya",
 	"right-edituserjs": "Besut barkas-barkas JavaScript panganggo liya",
 	"right-editmyusercss": "Owahi berkas CSS panganggo sampeyan",

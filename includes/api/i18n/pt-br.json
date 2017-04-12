@@ -12,7 +12,8 @@
 			"LucyDiniz",
 			"Eduardo Addad de Oliveira",
 			"Warley Felipe C.",
-			"TheEduGobi"
+			"TheEduGobi",
+			"Felipe L. Ewald"
 		]
 	},
 	"apihelp-main-param-action": "Qual ação executar.",
@@ -373,7 +374,7 @@
 	"apihelp-upload-param-ignorewarnings": "Ignorar todos os avisos.",
 	"apihelp-userrights-param-user": "Nome de usuário.",
 	"apihelp-userrights-param-userid": "ID de usuário.",
-	"apihelp-userrights-param-add": "Adicionar o usuário para estes grupos.",
+	"apihelp-userrights-param-add": "Adicione o usuário a esses grupos ou, se ele já for membro, atualizar a expiração de sua associação nesse grupo.",
 	"apihelp-userrights-param-remove": "Remover o usuário destes grupos.",
 	"apihelp-userrights-param-reason": "Motivo para a mudança.",
 	"apihelp-none-description": "Nenhuma saída.",
@@ -385,5 +386,6 @@
 	"api-help-license-unknown": "Fonte: <span class=\"apihelp-unknown\">desconhecida</span>",
 	"api-help-parameters": "{{PLURAL:$1|Parâmetro|Parâmetros}}:",
 	"api-help-param-deprecated": "Obsoleto",
-	"api-help-param-required": "Este parâmetro é obrigatório."
+	"api-help-param-required": "Este parâmetro é obrigatório.",
+	"api-credits-header": "Créditos"
 }

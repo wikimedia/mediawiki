@@ -1174,7 +1174,6 @@
 	"right-editsemiprotected": "გვერდების რედაქტირება რომლებიც დაცულია როგორც „{{int:protect-level-autoconfirmed}}“",
 	"right-editcontentmodel": "გვერდის კონტენტური მოდელის რედაქტირება",
 	"right-editinterface": "მომხმარებლის ინტერფეისის შეცვლა",
-	"right-editusercssjs": "სხვა მომხმარებლების CSS- и JS- ფაილების შესწორება",
 	"right-editusercss": "სხვა მომხმარებლების CSS- ფაილების შესწორება",
 	"right-edituserjs": "სხვა მომხმარებლების JS- ფაილების შესწორება",
 	"right-editmyusercss": "თქვენი საკუთარი CSS-ფაილების რედაქტირება",

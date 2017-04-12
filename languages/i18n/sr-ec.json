@@ -1125,7 +1125,6 @@
 	"right-editsemiprotected": "уређивање страница под заштитом „{{int:protect-level-autoconfirmed}}“",
 	"right-editcontentmodel": "мењање модела садржаја странице",
 	"right-editinterface": "уређивање корисничког окружења",
-	"right-editusercssjs": "уређивање туђих CSS и јаваскрипт датотека",
 	"right-editusercss": "уређивање туђих CSS датотека",
 	"right-edituserjs": "уређивање туђих JavaScript датотека",
 	"right-editmyusercss": "уређивање сопствених CSS датотека",

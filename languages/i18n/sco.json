@@ -1105,7 +1105,6 @@
 	"right-editsemiprotected": "Eedit pages protected aes \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "Eedit the content model o ae page",
 	"right-editinterface": "Eedit the uiser interface",
-	"right-editusercssjs": "Eedit ither uisers' CSS n JavaScript files",
 	"right-editusercss": "Eedit ither uisers' CSS files",
 	"right-edituserjs": "Eedit ither uisers' JavaScript files",
 	"right-editmyusercss": "Eidit yer ain uiser CSS files",

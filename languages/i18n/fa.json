@@ -1215,7 +1215,6 @@
 	"right-editsemiprotected": "ویرایش صفحه حفاظت‌شده به عنوان \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "ویرایش مدل محتوای یک صفحه",
 	"right-editinterface": "ویرایش واسط کاربری",
-	"right-editusercssjs": "ویرایش صفحه‌های CSS و JS دیگر کاربرها",
 	"right-editusercss": "ویرایش صفحه‌های CSS دیگر کاربرها",
 	"right-edituserjs": "ویرایش صفحه‌های JS دیگر کاربرها",
 	"right-editmyusercss": "پرونده‌های سی‌اس‌اس کاربری خود را ویرایش کنید",

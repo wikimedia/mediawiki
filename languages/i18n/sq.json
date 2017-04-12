@@ -1061,7 +1061,6 @@
 	"right-editsemiprotected": "Redakto faqet e mbrojtura, si \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "Redakto modelin e përmbajtjes së një faqeje",
 	"right-editinterface": "Ndrysho parapamjen e përdoruesit",
-	"right-editusercssjs": "Redakto skedat CSS dhe JS të përdoruesve tjerë",
 	"right-editusercss": "Redakto skedat CSS të përdoruesve tjerë",
 	"right-edituserjs": "Redakto skedat JS të përdoruesve tjerë",
 	"right-editmyusercss": "Redakto CSS - skedat e tua të përdoruesit",

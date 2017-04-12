@@ -1242,7 +1242,6 @@
 	"right-editsemiprotected": "Edycja stron zabezpieczonych na poziomie „{{int:protect-level-autoconfirmed}}”",
 	"right-editcontentmodel": "Edycja modelu zawartości strony",
 	"right-editinterface": "Edycja interfejsu użytkownika",
-	"right-editusercssjs": "Edycja plików CSS i JS innych użytkowników",
 	"right-editusercss": "Edycja plików CSS innych użytkowników",
 	"right-edituserjs": "Edycja plików JS innych użytkowników",
 	"right-editmyusercss": "Edycja swoich plików CSS",

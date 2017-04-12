@@ -870,7 +870,6 @@
 	"right-protect": "Befeiligingsnivo's feroarje en beskerme siden bewurkje",
 	"right-editprotected": "Befeilige siden bewurkje (sûnder cascading-befeiliging)",
 	"right-editinterface": "Brûkersinterface bewurkje",
-	"right-editusercssjs": "De CSS- en JS-triemmen fan oare brûkers bewurkje",
 	"right-editusercss": "De CSS-JS-triemmen fan oare brûkers bewurkje",
 	"right-edituserjs": "De JS-triemmen fan oare brûkers bewurkje",
 	"right-rollback": "Gau de lêste bewurking(s) fan in brûker fan in side tebekdraaie",

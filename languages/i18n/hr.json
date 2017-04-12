@@ -1120,7 +1120,6 @@
 	"right-editsemiprotected": "Uređivanje stranica zaštićenih kao \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "Odredi modela sadržaja stranice",
 	"right-editinterface": "Uređivanje suradničkog sučelja",
-	"right-editusercssjs": "Uređivanje CSS i JS stranica drugih suradnika",
 	"right-editusercss": "Uređivanje CSS stranica drugih suradnika",
 	"right-edituserjs": "Uređivanje JS stranica drugih suradnika",
 	"right-editmyusercss": "Uređivanje vlastitih CSS stranica",

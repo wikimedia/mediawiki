@@ -1234,7 +1234,6 @@
 	"right-editsemiprotected": "「{{int:protect-level-autoconfirmed}}」の保護を設定されたページを編集",
 	"right-editcontentmodel": "ページのコンテンツモデルを編集",
 	"right-editinterface": "ユーザーインターフェースを編集",
-	"right-editusercssjs": "他の利用者のCSSファイル/JavaScriptファイルを編集",
 	"right-editusercss": "他の利用者のCSSファイルを編集",
 	"right-edituserjs": "他の利用者のJavaScriptファイルを編集",
 	"right-editmyusercss": "自身のCSSファイルを編集",

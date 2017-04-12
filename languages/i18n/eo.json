@@ -1193,7 +1193,6 @@
 	"right-editsemiprotected": "Redakti paĝojn protektitajn kiel \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "Redakti paĝan enhavmodelon",
 	"right-editinterface": "Redakti la uzantointerfacon",
-	"right-editusercssjs": "Redaktu CSS- kaj JS-dosierojn de aliaj uzantoj",
 	"right-editusercss": "Redaktu CSS-dosierojn de aliaj uzantoj",
 	"right-edituserjs": "Redaktu JS-dosierojn de aliaj uzantoj",
 	"right-editmyusercss": "Redakti viajn proprajn CSS-dosierojn",

@@ -1238,7 +1238,6 @@
 	"right-editsemiprotected": "उन पृष्ठों को सम्पादित करें जिनका सुरक्षा स्तर है \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "एक पेज की सामग्री मॉडल को संपादित।",
 	"right-editinterface": "सॉफ़्टवेयर इंटरफ़ेस सम्पादित करें",
-	"right-editusercssjs": "अन्य सदस्यों के सी॰एस॰एस और जावास्क्रिप्ट पृष्ठ सम्पादित करें",
 	"right-editusercss": "अन्य सदस्यों के सी॰एस॰एस पृष्ठ सम्पादित करें",
 	"right-edituserjs": "अन्य सदस्यों के जावास्क्रिप्ट पृष्ठ सम्पादित करें",
 	"right-editmyusercss": "अपनी सदस्य स्तर की सी॰एस॰एस फ़ाइलें सम्पादित करें",

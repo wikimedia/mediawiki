@@ -1168,7 +1168,6 @@
 	"right-editsemiprotected": "Editar les páxines protexíes como \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "Editar el modelu de conteníu d'una páxina",
 	"right-editinterface": "Editar la interfaz d'usuariu",
-	"right-editusercssjs": "Editar los ficheros CSS y JavaScript d'otros usuarios",
 	"right-editusercss": "Editar los ficheros CSS d'otros usuarios",
 	"right-edituserjs": "Editar los ficheros JavaScript d'otros usuarios",
 	"right-editmyusercss": "Editar los propios ficheros CSS d'usuariu",

@@ -1092,7 +1092,6 @@
 	"right-editprotected": "uređivanje stranice pod zaštitom „{{int:protect-level-sysop}}“",
 	"right-editsemiprotected": "uređivanje stranica pod zaštitom „{{int:protect-level-autoconfirmed}}“",
 	"right-editinterface": "uređivanje korisničkog okruženja",
-	"right-editusercssjs": "uređivanje tuđih CSS i javaskript datoteka",
 	"right-editusercss": "uređivanje tuđih CSS datoteka",
 	"right-edituserjs": "uređivanje tuđih JavaScript datoteka",
 	"right-editmyusercss": "uređivanje sopstvenih CSS datoteka",

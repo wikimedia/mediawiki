@@ -1246,7 +1246,6 @@
 	"right-editsemiprotected": "Seiten bearbeiten, die als „{{int:protect-level-autoconfirmed}}“ geschützt sind",
 	"right-editcontentmodel": "Das Inhaltsmodell einer Seite bearbeiten",
 	"right-editinterface": "Systemnachrichten und Benutzeroberflächen bearbeiten",
-	"right-editusercssjs": "Fremde CSS- und JavaScript-Dateien bearbeiten",
 	"right-editusercss": "Fremde CSS-Dateien bearbeiten",
 	"right-edituserjs": "Fremde JavaScript-Dateien bearbeiten",
 	"right-editmyusercss": "Eigene Benutzer-CSS-Dateien bearbeiten",

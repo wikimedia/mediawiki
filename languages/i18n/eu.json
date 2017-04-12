@@ -1065,7 +1065,6 @@
 	"right-editprotected": "Babestutako orrialdeak aldatu (babes jauzirik gabe)",
 	"right-editsemiprotected": "Aldatu \"{{int:protect-level-autoconfirmed}}\" babesa duten orrialdeak",
 	"right-editinterface": "Erabiltzailearen interfazea aldatu",
-	"right-editusercssjs": "Beste lankideen CSS eta JS fitxategiak aldatu",
 	"right-editusercss": "Beste lankideen CSS fitxategiak aldatu",
 	"right-edituserjs": "Beste lankideen JS fitxategiak aldatu",
 	"right-editmyusercss": "Aldatu zure CSS fitxategi propioak",

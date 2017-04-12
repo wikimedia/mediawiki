@@ -1147,7 +1147,6 @@
 	"right-editsemiprotected": "Menyunting halaman-halaman yang dilindungi sebagai \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "Menyunting model kandungan laman",
 	"right-editinterface": "Menyunting antara muka pengguna",
-	"right-editusercssjs": "Menyunting fail CSS dan JavaScript pengguna lain",
 	"right-editusercss": "Menyunting fail CSS pengguna lain",
 	"right-edituserjs": "Menyunting fail JavaScript pengguna lain",
 	"right-editmyusercss": "Menyunting fail CSS pengguna sendiri",
