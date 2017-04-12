@@ -390,7 +390,7 @@ class WatchedItemQueryService {
 		}
 
 		if ( array_key_exists( 'rcTypes', $options ) ) {
-			$conds['rc_type'] = array_map( 'intval',  $options['rcTypes'] );
+			$conds['rc_type'] = array_map( 'intval', $options['rcTypes'] );
 		}
 
 		$conds = array_merge(
@@ -565,7 +565,7 @@ class WatchedItemQueryService {
 		}
 		if ( isset( $options['filter'] ) ) {
 			$filter = $options['filter'];
-			if ( $filter ===  self::FILTER_CHANGED ) {
+			if ( $filter === self::FILTER_CHANGED ) {
 				$conds[] = 'wl_notificationtimestamp IS NOT NULL';
 			} else {
 				$conds[] = 'wl_notificationtimestamp IS NULL';

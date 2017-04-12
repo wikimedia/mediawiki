@@ -409,7 +409,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 
 		$deleteWheres = []; // list of WHERE clause arrays for each DB delete() call
 		if ( $table === 'pagelinks' || $table === 'templatelinks' || $table === 'iwlinks' ) {
-			$baseKey =  ( $table === 'iwlinks' ) ? 'iwl_prefix' : "{$prefix}_namespace";
+			$baseKey = ( $table === 'iwlinks' ) ? 'iwl_prefix' : "{$prefix}_namespace";
 
 			$curBatchSize = 0;
 			$curDeletionBatch = [];

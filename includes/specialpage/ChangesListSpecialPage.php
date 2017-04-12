@@ -379,7 +379,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						},
 						'cssClassSuffix' => 'patrolled',
 						'isRowApplicableCallable' => function ( $ctx, $rc ) {
-										     return $rc->getAttribute( 'rc_patrolled' );
+							return $rc->getAttribute( 'rc_patrolled' );
 						},
 					],
 					[
@@ -394,7 +394,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						},
 						'cssClassSuffix' => 'unpatrolled',
 						'isRowApplicableCallable' => function ( $ctx, $rc ) {
-										     return !$rc->getAttribute( 'rc_patrolled' );
+							return !$rc->getAttribute( 'rc_patrolled' );
 						},
 					],
 				],
@@ -1169,9 +1169,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		&$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedExpLevels ) {
 
 		global $wgLearnerEdits,
-			   $wgExperiencedUserEdits,
-			   $wgLearnerMemberSince,
-			   $wgExperiencedUserMemberSince;
+			$wgExperiencedUserEdits,
+			$wgLearnerMemberSince,
+			$wgExperiencedUserMemberSince;
 
 		$LEVEL_COUNT = 3;
 
@@ -1207,7 +1207,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		);
 
 		if ( $selectedExpLevels === [ 'newcomer' ] ) {
-			$conds[] =  "NOT ( $aboveNewcomer )";
+			$conds[] = "NOT ( $aboveNewcomer )";
 		} elseif ( $selectedExpLevels === [ 'learner' ] ) {
 			$conds[] = $dbr->makeList(
 				[ $aboveNewcomer, "NOT ( $aboveLearner )" ],

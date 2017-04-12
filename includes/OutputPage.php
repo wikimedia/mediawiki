@@ -4002,7 +4002,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add Link headers for preloading the wiki's logo.
 	 *
-	 * @since  1.26
+	 * @since 1.26
 	 */
 	protected function addLogoPreloadLinkHeaders() {
 		$logo = $this->getConfig()->get( 'Logo' ); // wgLogo
@@ -4064,7 +4064,7 @@ class OutputPage extends ContextSource {
 				// (e.g. can't express ">= 1.5 and not >= 2).
 				// Workaround: Use <= 1.9999 in place of < 2.
 				$upper_bound = floatval( $logos[ $i + 1 ]['dppx'] ) - 0.000001;
-				$media_query = '(min-resolution: ' .  $logos[ $i ]['dppx'] .
+				$media_query = '(min-resolution: ' . $logos[ $i ]['dppx'] .
 					'dppx) and (max-resolution: ' . $upper_bound . 'dppx)';
 			} else {
 				// Largest dppx

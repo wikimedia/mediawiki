@@ -1784,7 +1784,7 @@ class Sanitizer {
 			'rb'         => $common,
 			'rp'         => $common,
 			'rt'         => $common, # array_merge( $common, array( 'rbspan' ) ),
-			'rtc'         => $common,
+			'rtc'        => $common,
 
 			# MathML root element, where used for extensions
 			# 'title' may not be 100% valid here; it's XHTML

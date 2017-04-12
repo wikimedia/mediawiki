@@ -111,7 +111,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 */
 	protected function transformFilterDefinition( array $filterDefinition ) {
 		if ( isset( $filterDefinition['showHideSuffix'] ) ) {
-			  $filterDefinition['showHide'] = 'wl' . $filterDefinition['showHideSuffix'];
+			$filterDefinition['showHide'] = 'wl' . $filterDefinition['showHideSuffix'];
 		}
 
 		return $filterDefinition;

@@ -874,7 +874,7 @@ class RecentChange {
 			'rc_logid' => 0,
 			'rc_log_type' => null,
 			'rc_log_action' => '',
-			'rc_params' =>  serialize( [
+			'rc_params' => serialize( [
 				'hidden-cat' => WikiCategoryPage::factory( $categoryTitle )->isHidden()
 			] )
 		];

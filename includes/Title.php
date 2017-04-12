@@ -4650,7 +4650,7 @@ class Title implements LinkTarget {
 	}
 
 	/**
-	 * Whether the magic words __INDEX__ and __NOINDEX__ function for  this page.
+	 * Whether the magic words __INDEX__ and __NOINDEX__ function for this page.
 	 *
 	 * @return bool
 	 */

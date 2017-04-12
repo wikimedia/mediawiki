@@ -130,7 +130,7 @@ class Throttler implements LoggerAwareInterface {
 			$throttleKey = wfGlobalCacheKey( 'throttler', $this->type, $index, $ipKey, $userKey );
 			$throttleCount = $this->cache->get( $throttleKey );
 
-			if ( !$throttleCount ) {  // counter not started yet
+			if ( !$throttleCount ) { // counter not started yet
 				$this->cache->add( $throttleKey, 1, $expiry );
 			} elseif ( $throttleCount < $count ) { // throttle limited not yet reached
 				$this->cache->incr( $throttleKey );

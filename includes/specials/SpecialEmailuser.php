@@ -289,7 +289,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				'text',
 				[
 					'id' => 'emailusertarget',
-					'class' => 'mw-autocomplete-user',  // used by mediawiki.userSuggest
+					'class' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
 					'autofocus' => true,
 					'size' => 30,
 				]

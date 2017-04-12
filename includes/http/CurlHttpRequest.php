@@ -145,7 +145,7 @@ class CurlHttpRequest extends MWHttpRequest {
 		$this->parseHeader();
 		$this->setStatus();
 
-		return Status::wrap( $this->status );  // TODO B/C; move this to callers
+		return Status::wrap( $this->status ); // TODO B/C; move this to callers
 	}
 
 	/**

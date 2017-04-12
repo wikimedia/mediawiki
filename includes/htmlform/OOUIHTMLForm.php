@@ -207,7 +207,7 @@ class OOUIHTMLForm extends HTMLForm {
 					$error = array_merge( [ $error['message'] ], $error['params'] );
 				}
 			}
-		} elseif ( $elementsType === 'errors' )  {
+		} elseif ( $elementsType === 'errors' ) {
 			$errors = $elements;
 			if ( !is_array( $errors ) ) {
 				$errors = [ $errors ];
