@@ -22,6 +22,7 @@
  * @author Roan Kattouw
  */
 
+use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 
 /**

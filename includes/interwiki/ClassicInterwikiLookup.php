@@ -23,7 +23,7 @@ namespace MediaWiki\Interwiki;
  */
 use \Cdb\Exception as CdbException;
 use \Cdb\Reader as CdbReader;
-use Database;
+use Wikimedia\Rdbms\Database;
 use Hooks;
 use Interwiki;
 use Language;

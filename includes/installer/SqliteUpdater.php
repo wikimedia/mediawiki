@@ -21,6 +21,8 @@
  * @ingroup Deployment
  */
 
+use Wikimedia\Rdbms\DatabaseSqlite;
+
 /**
  * Class for handling updates to Sqlite databases.
  *

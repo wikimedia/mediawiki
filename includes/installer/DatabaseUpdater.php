@@ -20,6 +20,7 @@
  * @file
  * @ingroup Deployment
  */
+use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\MediaWikiServices;
 

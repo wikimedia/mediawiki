@@ -21,6 +21,7 @@
  * @ingroup Cache
  */
 
+use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use \MediaWiki\MediaWikiServices;
 use \Wikimedia\WaitConditionLoop;

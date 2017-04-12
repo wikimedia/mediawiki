@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\Database;
 
 /**
  * Displays information about a page.
