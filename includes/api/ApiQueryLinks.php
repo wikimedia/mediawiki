@@ -102,6 +102,9 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			$cond = $lb->constructSet( $this->prefix, $this->getDB() );
 			if ( $cond ) {
 				$this->addWhere( $cond );
+			} else {
+				// No titles so no results
+				return;
 			}
 		}
 
