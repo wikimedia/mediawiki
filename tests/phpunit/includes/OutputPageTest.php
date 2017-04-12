@@ -508,7 +508,10 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @dataProvider providePreloadLinkHeaders
 	 * @covers OutputPage::addLogoPreloadLinkHeaders
 	 */
-	public function testPreloadLinkHeaders( $config, $result ) {
+	public function testPreloadLinkHeaders( $config, $result, $baseDir = null ) {
+		if ( $baseDir ) {
+			$this->setMwGlobals( 'IP', $baseDir );
+		}
 		$out = TestingAccessWrapper::newFromObject( $this->newInstance( $config ) );
 		$out->addLogoPreloadLinkHeaders();
 
@@ -519,6 +522,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		return [
 			[
 				[
+					'ResourceBasePath' => '/w',
 					'Logo' => '/img/default.png',
 					'LogoHD' => [
 						'1.5x' => '/img/one-point-five.png',
@@ -533,6 +537,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			],
 			[
 				[
+					'ResourceBasePath' => '/w',
 					'Logo' => '/img/default.png',
 					'LogoHD' => false,
 				],
@@ -540,6 +545,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			],
 			[
 				[
+					'ResourceBasePath' => '/w',
 					'Logo' => '/img/default.png',
 					'LogoHD' => [
 						'2x' => '/img/two-x.png',
@@ -548,6 +554,16 @@ class OutputPageTest extends MediaWikiTestCase {
 				'Link: </img/default.png>;rel=preload;as=image;media=' .
 				'not all and (min-resolution: 2dppx),' .
 				'</img/two-x.png>;rel=preload;as=image;media=(min-resolution: 2dppx)'
+			],
+			[
+				[
+					'ResourceBasePath' => '/w',
+					'Logo' => '/w/test.jpg',
+					'LogoHD' => false,
+					'UploadPath' => '/w/images',
+				],
+				'Link: </w/test.jpg?edcf2>;rel=preload;as=image',
+				'baseDir' => dirname( __DIR__ ) . '/data/media',
 			],
 		];
 	}
