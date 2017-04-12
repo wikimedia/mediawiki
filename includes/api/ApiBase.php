@@ -385,6 +385,13 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Indicates whether this module requires write mode
+	 *
+	 * This should return true for modules that may require synchronous database writes.
+	 * Modules that do not need such writes should also not rely on master database access,
+	 * since only read queries are needed and each master DB is a single point of failure.
+	 * Additionally, requests that only need replica DBs can be efficiently routed to any
+	 * datacenter via the Promise-Non-Write-API-Action header.
+	 *
 	 * @return bool
 	 */
 	public function isWriteMode() {
