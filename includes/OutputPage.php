@@ -4005,29 +4005,22 @@ class OutputPage extends ContextSource {
 	 * @since 1.26
 	 */
 	protected function addLogoPreloadLinkHeaders() {
-		$logo = $this->getConfig()->get( 'Logo' ); // wgLogo
-		$logoHD = $this->getConfig()->get( 'LogoHD' ); // wgLogoHD
+		$logo = ResourceLoaderSkinModule::getLogo( $this->getConfig() );
 
 		$tags = [];
 		$logosPerDppx = [];
 		$logos = [];
 
-		$logosPerDppx['1.0'] = $logo;
-
-		if ( !$logoHD ) {
+		if ( !is_array( $logo ) ) {
 			// No media queries required if we only have one variant
 			$this->addLinkHeader( '<' . $logo . '>;rel=preload;as=image' );
 			return;
 		}
 
-		foreach ( $logoHD as $dppx => $src ) {
-			// Only 1.5x and 2x are supported
-			// Note: Keep in sync with ResourceLoaderSkinModule
-			if ( in_array( $dppx, [ '1.5x', '2x' ] ) ) {
-				// LogoHD uses a string in this format: "1.5x"
-				$dppx = substr( $dppx, 0, -1 );
-				$logosPerDppx[$dppx] = $src;
-			}
+		foreach ( $logo as $dppx => $src ) {
+			// Keys are in this format: "1.5x"
+			$dppx = substr( $dppx, 0, -1 );
+			$logosPerDppx[$dppx] = $src;
 		}
 
 		// Because PHP can't have floats as array keys
