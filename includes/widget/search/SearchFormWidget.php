@@ -103,7 +103,11 @@ class SearchFormWidget {
 		if ( $totalResults > 0 && $offset < $totalResults ) {
 			$html .= Xml::tags(
 				'div',
-				[ 'class' => 'results-info' ],
+				[
+					'class' => 'results-info',
+					'data-mw-num-results-offset' => "$offset",
+					'data-mw-num-results-total' => "$totalResults"
+				],
 				$this->specialSearch->msg( 'search-showingresults' )
 					->numParams( $offset + 1, $offset + $numResults, $totalResults )
 					->numParams( $numResults )
