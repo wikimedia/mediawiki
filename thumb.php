@@ -530,15 +530,6 @@ function wfExtractThumbParams( $file, $params ) {
 	$thumbname = $params['thumbName'];
 	unset( $params['thumbName'] );
 
-	// Do the hook first for older extensions that rely on it.
-	if ( !Hooks::run( 'ExtractThumbParameters', [ $thumbname, &$params ] ) ) {
-		// Check hooks if parameters can be extracted
-		// Hooks return false if they manage to *resolve* the parameters
-		// This hook should be considered deprecated
-		wfDeprecated( 'ExtractThumbParameters', '1.22' );
-		return $params; // valid thumbnail URL (via extension or config)
-	}
-
 	// FIXME: Files in the temp zone don't set a MIME type, which means
 	// they don't have a handler. Which means we can't parse the param
 	// string. However, not a big issue as what good is a param string
