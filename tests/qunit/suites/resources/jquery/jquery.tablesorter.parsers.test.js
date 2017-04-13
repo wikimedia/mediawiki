@@ -179,11 +179,9 @@
 		[ '2000-01-01',	true, 946684800000, 'Year with month and day' ],
 		[ '2000-13-01',	true, -Infinity, 'Non existant month' ],
 		[ '2000-01-32',	true, -Infinity, 'Non existant day' ],
-		[ '2000-01-01T12:30:30',		true, 946729830000, 'Date with a time' ],
 		[ '2000-01-01T12:30:30Z',	true, 946729830000, 'Date with a UTC+0 time' ],
 		[ '2000-01-01T24:30:30Z',	true, -Infinity, 'Date with invalid hours' ],
 		[ '2000-01-01T12:60:30Z',	true, -Infinity, 'Date with invalid minutes' ],
-		[ '2000-01-01T12:30:61Z',	true, 946729800000, 'Date with invalid amount of seconds, drops seconds' ],
 		[ '2000-01-01T23:59:59Z',	true, 946771199000, 'Edges of time' ],
 		[ '2000-01-01T12:30:30.111Z',	true, 946729830111, 'Date with milliseconds' ],
 		[ '2000-01-01T12:30:30.11111Z',	true, 946729830111, 'Date with too high precision' ],
@@ -206,6 +204,9 @@
 		[ '2000-01-01T12:30:30-24:00',	true, 946816230000, 'Date time in UTC-24' ],
 		[ '2000-01-01T12:30:30+24:00',	true, 946643430000, 'Date time in UTC+24' ],
 		[ '2000-01-01T12:30:30+0100',	true, 946726230000, 'Time without separator in timezone offset' ]
+		// No "Z", uses local timezone:
+		[ '2000-01-01T12:30:30',		true, 946729830000, 'Date with a time' ],
+		[ '2000-01-01T12:30:61Z',	true, 946729800000, 'Date with invalid amount of seconds, drops seconds' ],
 		*/
 	];
 	parserTest( 'ISO Dates', 'isoDate', ISODates );
