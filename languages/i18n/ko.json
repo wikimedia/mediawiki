@@ -3902,7 +3902,7 @@
 	"pageid": "페이지 ID $1",
 	"gotointerwiki": "{{SITENAME}}을(를) 떠납니다",
 	"gotointerwiki-invalid": "지정된 제목이 올바르지 않습니다.",
-	"gotointerwiki-external": "다른 웹사이트 [[$2]]를 방문하기 위해 {{SITENAME}}을(를) 떠나려고 합니다.\n\n[$1 $1(으)로 계속 진행하려면 여기를 눌러주세요].",
+	"gotointerwiki-external": "다른 웹사이트 [[$2]]을(를) 방문하기 위해 {{SITENAME}}을(를) 떠나려고 합니다.\n\n[$1 $1(으)로 계속 진행하려면 여기를 눌러주세요].",
 	"undelete-cantedit": "이 문서를 편집할 권한이 없으므로 이 문서를 복구할 수 없습니다.",
 	"undelete-cantcreate": "이 이름으로 된 문서가 없고 이 문서를 만들 권한이 없으므로 이 문서를 복구할 수 없습니다."
 }

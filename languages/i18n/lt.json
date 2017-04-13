@@ -2100,7 +2100,7 @@
 	"modifiedarticleprotection": "pakeistas „[[$1]]“ apsaugos lygis",
 	"unprotectedarticle": "atrakino „[[$1]]“",
 	"movedarticleprotection": "perkelti apsaugos nustatymai iš „[[$2]]“ į „[[$1]]“",
-	"protectedarticle-comment": "{{GENDER:$2|Apsaugojo}} „[[$1]]“",
+	"protectedarticle-comment": "{{GENDER:$2|Užrakino}} „[[$1]]“",
 	"modifiedarticleprotection-comment": "{{GENDER:$2|Pakeitė „[[$1]]“ apsaugos lygį}}",
 	"unprotectedarticle-comment": "{{GENDER:$2|Pašalino apsaugą}} iš „[[$1]]“",
 	"protect-title": "Nustatomas apsaugos lygis puslapiui „$1“",

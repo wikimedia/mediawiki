@@ -3526,6 +3526,9 @@
 	"logentry-delete-delete": "$1 apagou a página $3",
 	"logentry-delete-delete_redir": "$1 {{GENDER:$2|eliminou}} o redirecionamento $3, sobrescrevendo-o",
 	"logentry-delete-restore": "$1 {{GENDER:$2|restaurou}} a página $3 ($4)",
+	"logentry-delete-restore-nocount": "$1 {{GENDER:$2|restaurou}} a página $3",
+	"restore-count-revisions": "{{PLURAL:$1|1 revisão|$1 revisões}}",
+	"restore-count-files": "{{PLURAL:$1|1 ficheiro|$1 ficheiros}}",
 	"logentry-delete-event": "$1 alterou a visibilidade de {{PLURAL:$5|uma entrada|$5 entradas}} em $3: $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|alterou}} a visibilidade de {{PLURAL:$5|uma revisão|$5 revisões}} em $3: $4",
 	"logentry-delete-event-legacy": "$1 {{GENDER:$2|alterou}} a visibilidade de entradas de registo em $3",
@@ -3732,6 +3735,7 @@
 	"special-characters-group-thai": "Tailandês",
 	"special-characters-group-lao": "Laociano",
 	"special-characters-group-khmer": "Cambojano",
+	"special-characters-group-canadianaboriginal": "Aborígene Canadense",
 	"special-characters-title-endash": "hífen",
 	"special-characters-title-emdash": "travessão",
 	"special-characters-title-minus": "sinal de subtração",
@@ -3877,5 +3881,9 @@
 	"restrictionsfield-label": "Gamas de endereços IP permitidas:",
 	"restrictionsfield-help": "Um endereço IP ou uma gama CIDR por linha. Para ativar todos,\nuse: <pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "revisão $1",
-	"pageid": "identificador de página $1"
+	"pageid": "identificador de página $1",
+	"rawhtml-notallowed": "As etiquetas &lt;html&gt; não podem ser utilizadas fora de páginas normais.",
+	"gotointerwiki": "A sair de {{SITENAME}}",
+	"gotointerwiki-invalid": "O título especificado é inválido.",
+	"gotointerwiki-external": "Está prestes a sair de {{SITENAME}} para visitar [[$2]], que é um sítio web externo.\n\n[$1 Clique aqui para continuar para $1]"
 }

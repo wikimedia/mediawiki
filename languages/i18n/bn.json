@@ -2136,7 +2136,7 @@
 	"rollback-missingparam": "অনুরোধে প্রয়োজনীয় প্যারামিটারগুলি অনুপস্থিত।",
 	"rollback-missingrevision": "সংশোধনের উপাত্ত লোড করতে অক্ষম।",
 	"cantrollback": "পূর্বের সংস্করণে ফেরত যাওয়া সম্ভব হল না, সর্বশেষ সম্পাদনাকারী এই নিবন্ধটির একমাত্র লেখক।",
-	"alreadyrolled": "[[User:$2|$2]] ([[User talk:$2|talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) দ্বারা সম্পাদিত সর্বশেষ [[:$1]] সম্পাদনাটি পুনর্বহাল করা যাচ্ছে না;\nঅন্য কোন ব্যবহারকারী এই পাতা ইতিমধ্যে সম্পাদনা বা পুনর্বহাল করেছেন।\n\nএই পাতায় সর্বোশেষে [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) দ্বারা সম্পাদিত।",
+	"alreadyrolled": "[[User:$2|$2]] ([[User talk:$2|আলাপ]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) দ্বারা সম্পাদিত [[:$1]]-এর সর্বশেষ সম্পাদনাটি পুনর্বহাল করা যাচ্ছে না;\nঅন্য কোন ব্যবহারকারী এই পাতা ইতিমধ্যে সম্পাদনা বা পুনর্বহাল করেছেন।\n\nএই পাতায় সর্বশেষ সম্পাদনা করেছেন [[User:$3|$3]] ([[User talk:$3|আলাপ]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]])।",
 	"editcomment": "সম্পাদনা সারাংশ ছিল: \"''$1''\"।",
 	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|আলাপ]]) এর সম্পাদিত সংস্করণ হতে [[User:$1|$1]] এর সম্পাদিত সর্বশেষ সংস্করণে ফেরত যাওয়া হয়েছে।",
 	"revertpage-nouser": "একজন গোপন ব্যবহারকারী কর্তৃক সম্পাদিত সম্পাদনাটি বাতিলপূর্বক {{GENDER:$1|[[User:$1|$1]]}}-এর সর্বশেষ সম্পাদনায় ফেরত যাওয়া হয়েছে।",

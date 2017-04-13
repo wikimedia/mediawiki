@@ -3899,6 +3899,7 @@
 	"special-characters-group-thai": "Тайські",
 	"special-characters-group-lao": "Лаоські",
 	"special-characters-group-khmer": "Кхмерські",
+	"special-characters-group-canadianaboriginal": "Письмо канадських аборигенів",
 	"special-characters-title-endash": "коротке тире",
 	"special-characters-title-emdash": "довге тире",
 	"special-characters-title-minus": "мінус",
@@ -4045,5 +4046,10 @@
 	"restrictionsfield-help": "Одна IP-адреса або CIDR-діапазон на рядок. Щоб увімкнути все, використайте:<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "версія $1",
 	"pageid": "ID сторінки $1",
-	"rawhtml-notallowed": "Теги &lt;html&gt; не можна використовувати за межами звичайних сторінок."
+	"rawhtml-notallowed": "Теги &lt;html&gt; не можна використовувати за межами звичайних сторінок.",
+	"gotointerwiki": "Ви покидаєте сайт {{SITENAME}}",
+	"gotointerwiki-invalid": "Вказана назва була неприпустимою.",
+	"gotointerwiki-external": "Ви збираєтесь покинути сайт {{SITENAME}}, щоб відвідати проект [[$2]], який є окремим веб-сайтом.\n\n[$1 Клацніть тут, щоб продовжити, перейшовши до $1].",
+	"undelete-cantedit": "Ви не можете відновити цю сторінку, оскільки Ви не маєте прав на редагування цієї сторінки.",
+	"undelete-cantcreate": "Ви не можете відновити цю сторінку, оскільки сторінка з такою назвою не існує, і Ви не маєте прав на створення цієї сторінки."
 }
