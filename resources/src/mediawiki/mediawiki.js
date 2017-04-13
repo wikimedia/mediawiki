@@ -1270,10 +1270,7 @@
 				registry[ module ].state = 'executing';
 
 				runScript = function () {
-					var script, markModuleReady, nestedAddScript, legacyWait, implicitDependencies,
-						// Expand to include dependencies since we have to exclude both legacy modules
-						// and their dependencies from the legacyWait (to prevent a circular dependency).
-						legacyModules = resolve( mw.config.get( 'wgResourceLoaderLegacyModules', [] ) );
+					var script, markModuleReady, nestedAddScript, implicitDependencies, implicitWait;
 
 					script = registry[ module ].script;
 					markModuleReady = function () {
@@ -1294,9 +1291,7 @@
 						} );
 					};
 
-					implicitDependencies = ( $.inArray( module, legacyModules ) !== -1 ) ?
-						[] :
-						legacyModules;
+					implicitDependencies = [];
 
 					if ( module === 'user' ) {
 						// Implicit dependency on the site module. Not real dependency because
@@ -1304,11 +1299,11 @@
 						implicitDependencies.push( 'site' );
 					}
 
-					legacyWait = implicitDependencies.length ?
+					implicitWait = implicitDependencies.length ?
 						mw.loader.using( implicitDependencies ) :
 						$.Deferred().resolve();
 
-					legacyWait.always( function () {
+					implicitWait.always( function () {
 						try {
 							if ( Array.isArray( script ) ) {
 								nestedAddScript( script, markModuleReady, 0 );
