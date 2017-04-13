@@ -328,6 +328,8 @@ changes to languages because of Phabricator reports.
   escapeQuotesHTML, jsMsg, addPortletLink, appendCSS, tooltipAccessKeyPrefix,
   tooltipAccessKeyRegexp, updateTooltipAccessKeys.
 * The ExtractThumbParameters hook (deprecated in 1.21) was removed.
+* The OutputPage::addParserOutputNoText and ::getHeadLinks methods (both
+  deprecated in 1.24) were removed.
 
 == Compatibility ==
 
