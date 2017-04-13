@@ -430,59 +430,64 @@ class LoadBalancer implements ILoadBalancer {
 
 	public function waitFor( $pos ) {
 		$oldPos = $this->mWaitForPos;
-		$this->mWaitForPos = $pos;
-
-		// If a generic reader connection was already established, then wait now
-		$i = $this->mReadIndex;
-		if ( $i > 0 ) {
-			if ( !$this->doWait( $i ) ) {
-				$this->laggedReplicaMode = true;
+		try {
+			$this->mWaitForPos = $pos;
+			// If a generic reader connection was already established, then wait now
+			$i = $this->mReadIndex;
+			if ( $i > 0 ) {
+				if ( !$this->doWait( $i ) ) {
+					$this->laggedReplicaMode = true;
+				}
 			}
+		} finally {
+			// Restore the older position if it was higher
+			$this->setWaitForPositionIfHigher( $oldPos );
 		}
-
-		// Restore the older position if it was higher
-		$this->setWaitForPositionIfHigher( $oldPos );
 	}
 
 	public function waitForOne( $pos, $timeout = null ) {
 		$oldPos = $this->mWaitForPos;
-		$this->mWaitForPos = $pos;
+		try {
+			$this->mWaitForPos = $pos;
 
-		$i = $this->mReadIndex;
-		if ( $i <= 0 ) {
-			// Pick a generic replica DB if there isn't one yet
-			$readLoads = $this->mLoads;
-			unset( $readLoads[$this->getWriterIndex()] ); // replica DBs only
-			$readLoads = array_filter( $readLoads ); // with non-zero load
-			$i = ArrayUtils::pickRandom( $readLoads );
+			$i = $this->mReadIndex;
+			if ( $i <= 0 ) {
+				// Pick a generic replica DB if there isn't one yet
+				$readLoads = $this->mLoads;
+				unset( $readLoads[$this->getWriterIndex()] ); // replica DBs only
+				$readLoads = array_filter( $readLoads ); // with non-zero load
+				$i = ArrayUtils::pickRandom( $readLoads );
+			}
+
+			if ( $i > 0 ) {
+				$ok = $this->doWait( $i, true, $timeout );
+			} else {
+				$ok = true; // no applicable loads
+			}
+		} finally {
+			// Restore the older position if it was higher
+			$this->setWaitForPositionIfHigher( $oldPos );
 		}
-
-		if ( $i > 0 ) {
-			$ok = $this->doWait( $i, true, $timeout );
-		} else {
-			$ok = true; // no applicable loads
-		}
-
-		// Restore the older position if it was higher
-		$this->setWaitForPositionIfHigher( $oldPos );
 
 		return $ok;
 	}
 
 	public function waitForAll( $pos, $timeout = null ) {
 		$oldPos = $this->mWaitForPos;
-		$this->mWaitForPos = $pos;
-		$serverCount = count( $this->mServers );
+		try {
+			$this->mWaitForPos = $pos;
+			$serverCount = count( $this->mServers );
 
-		$ok = true;
-		for ( $i = 1; $i < $serverCount; $i++ ) {
-			if ( $this->mLoads[$i] > 0 ) {
-				$ok = $this->doWait( $i, true, $timeout ) && $ok;
+			$ok = true;
+			for ( $i = 1; $i < $serverCount; $i++ ) {
+				if ( $this->mLoads[$i] > 0 ) {
+					$ok = $this->doWait( $i, true, $timeout ) && $ok;
+				}
 			}
+		} finally {
+			// Restore the older position if it was higher
+			$this->setWaitForPositionIfHigher( $oldPos );
 		}
-
-		// Restore the older position if it was higher
-		$this->setWaitForPositionIfHigher( $oldPos );
 
 		return $ok;
 	}
