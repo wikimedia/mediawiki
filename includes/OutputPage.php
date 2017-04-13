@@ -1774,17 +1774,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add a ParserOutput object, but without Html.
-	 *
-	 * @deprecated since 1.24, use addParserOutputMetadata() instead.
-	 * @param ParserOutput $parserOutput
-	 */
-	public function addParserOutputNoText( $parserOutput ) {
-		wfDeprecated( __METHOD__, '1.24' );
-		$this->addParserOutputMetadata( $parserOutput );
-	}
-
-	/**
 	 * Add all metadata associated with a ParserOutput object, but without the actual HTML. This
 	 * includes categories, language links, ResourceLoader modules, effects of certain magic words,
 	 * and so on.
@@ -3558,16 +3547,6 @@ class OutputPage extends ContextSource {
 		}
 
 		return $tags;
-	}
-
-	/**
-	 * @return string HTML tag links to be put in the header.
-	 * @deprecated since 1.24 Use OutputPage::headElement or if you have to,
-	 *   OutputPage::getHeadLinksArray directly.
-	 */
-	public function getHeadLinks() {
-		wfDeprecated( __METHOD__, '1.24' );
-		return implode( "\n", $this->getHeadLinksArray() );
 	}
 
 	/**
