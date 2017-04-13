@@ -14,7 +14,16 @@
 		mw.rcfilters.ui.CheckboxInputWidget.parent.call( this, config );
 
 		// Event
-		this.$input.on( 'change', this.onUserChange.bind( this ) );
+		this.$input
+			// HACK: This widget just pretends to be a checkbox for visual purposes.
+			// In reality, all actions - setting to true or false, etc - are
+			// decided by the model, and executed by the controller. This means
+			// that we want to let the controller and model make the decision
+			// of whether to check/uncheck this checkboxInputWidget, and for that,
+			// we have to bypass the browser action that checks/unchecks it during
+			// click.
+			.on( 'click', false )
+			.on( 'change', this.onUserChange.bind( this ) );
 	};
 
 	/* Initialization */
@@ -31,6 +40,19 @@
 	 */
 
 	/* Methods */
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.rcfilters.ui.CheckboxInputWidget.prototype.onEdit = function () {
+		// Similarly to preventing defaults in 'click' event, we want
+		// to prevent this widget from deciding anything about its own
+		// state; it emits a change event and the model and controller
+		// make a decision about what its select state is.
+		// onEdit has a widget.$input.prop( 'checked' ) inside a setTimeout()
+		// so we really want to prevent that from messing with what
+		// the model decides the state of the widget is.
+	};
 
 	/**
 	 * Respond to checkbox change by a user and emit 'userChange'.
