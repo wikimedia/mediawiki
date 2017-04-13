@@ -256,6 +256,7 @@
 			function () { widget.scrollToTop( menuOption.$element ); }
 		);
 	};
+
 	/**
 	 * @inheritdoc
 	 */
@@ -264,6 +265,8 @@
 		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.prototype.onTagRemove.call( this, tagItem );
 
 		this.controller.clearFilter( tagItem.getName() );
+
+		tagItem.destroy();
 	};
 
 	/**
