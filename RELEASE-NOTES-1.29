@@ -327,6 +327,7 @@ changes to languages because of Phabricator reports.
   mwCustomEditButtons, injectSpinner, removeSpinner, escapeQuotes,
   escapeQuotesHTML, jsMsg, addPortletLink, appendCSS, tooltipAccessKeyPrefix,
   tooltipAccessKeyRegexp, updateTooltipAccessKeys.
+* The ExtractThumbParameters hook (deprecated in 1.21) was removed.
 
 == Compatibility ==
 
