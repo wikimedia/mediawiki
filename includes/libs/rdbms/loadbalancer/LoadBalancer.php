@@ -411,7 +411,9 @@ class LoadBalancer implements ILoadBalancer {
 			# Replica DB connection successful.
 			# Wait for the session master pos for a short time.
 			if ( $this->mWaitForPos && $i > 0 ) {
-				$this->doWait( $i );
+				# When LoadBalancer::waitFor() set mWaitForPos, the wait will happen here.
+				# Be sure to update laggedReplicaMode accordingly for consistency.
+				$laggedReplicaMode = !$this->doWait( $i );
 			}
 			if ( $this->mReadIndex <= 0 && $this->mLoads[$i] > 0 && $group === false ) {
 				$this->mReadIndex = $i;
@@ -440,7 +442,7 @@ class LoadBalancer implements ILoadBalancer {
 				}
 			}
 		} finally {
-			// Restore the older position if it was higher
+			// Restore the older position if it was higher since this is used for lag-protection
 			$this->setWaitForPositionIfHigher( $oldPos );
 		}
 	}
@@ -465,8 +467,8 @@ class LoadBalancer implements ILoadBalancer {
 				$ok = true; // no applicable loads
 			}
 		} finally {
-			// Restore the older position if it was higher
-			$this->setWaitForPositionIfHigher( $oldPos );
+			# Restore the old position, as this is not used for lag-protection but for throttling
+			$this->mWaitForPos = $oldPos;
 		}
 
 		return $ok;
@@ -485,8 +487,8 @@ class LoadBalancer implements ILoadBalancer {
 				}
 			}
 		} finally {
-			// Restore the older position if it was higher
-			$this->setWaitForPositionIfHigher( $oldPos );
+			# Restore the old position, as this is not used for lag-protection but for throttling
+			$this->mWaitForPos = $oldPos;
 		}
 
 		return $ok;
