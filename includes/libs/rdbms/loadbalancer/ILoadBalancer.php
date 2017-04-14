@@ -135,6 +135,10 @@ interface ILoadBalancer {
 	 * If a DB_REPLICA connection has been opened already, then wait immediately.
 	 * Otherwise sets a variable telling it to wait if such a connection is opened.
 	 *
+	 * This only applies to connections to the generic replica DB for this request.
+	 * If a timeout happens when waiting, then getLaggedReplicaMode()/laggedReplicaUsed()
+	 * will return true.
+	 *
 	 * @param DBMasterPos|bool $pos Master position or false
 	 */
 	public function waitFor( $pos );
