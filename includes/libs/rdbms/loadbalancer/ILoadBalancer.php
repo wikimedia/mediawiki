@@ -444,13 +444,17 @@ interface ILoadBalancer {
 	/**
 	 * @note This method will trigger a DB connection if not yet done
 	 * @param string|bool $domain Domain ID, or false for the current domain
-	 * @return bool Whether the generic connection for reads is highly "lagged"
+	 * @return bool Whether the database for generic connections this request is highly "lagged"
 	 */
 	public function getLaggedReplicaMode( $domain = false );
 
 	/**
+	 * Checks whether the database for generic connections this request was both:
+	 *   - a) Already choosen due to a prior connection attempt
+	 *   - b) Considered highly "lagged"
+	 *
 	 * @note This method will never cause a new DB connection
-	 * @return bool Whether any generic connection used for reads was highly "lagged"
+	 * @return bool
 	 */
 	public function laggedReplicaUsed();
 
