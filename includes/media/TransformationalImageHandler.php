@@ -521,7 +521,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 				$cmd = wfEscapeShellArg( $wgImageMagickConvertCommand ) . ' -version';
 				wfDebug( $method . ": Running convert -version\n" );
 				$retval = '';
-				$return = wfShellExec( $cmd, $retval );
+				$return = wfShellExecWithStderr( $cmd, $retval );
 				$x = preg_match(
 					'/Version: ImageMagick ([0-9]*\.[0-9]*\.[0-9]*)/', $return, $matches
 				);
