@@ -1292,13 +1292,13 @@ $wgVerifyMimeType = true;
  * Set to null, to use built-in defaults only.
  * example: $wgMimeTypeFile = '/etc/mime.types';
  */
-$wgMimeTypeFile = 'includes/mime.types';
+$wgMimeTypeFile = 'includes/libs/mime/mime.types';
 
 /**
  * Sets the MIME type info file to use by MimeMagic.php.
  * Set to null, to use built-in defaults only.
  */
-$wgMimeInfoFile = 'includes/mime.info';
+$wgMimeInfoFile = 'includes/libs/mime/mime.info';
 
 /**
  * Sets an external MIME detector program. The command must print only
