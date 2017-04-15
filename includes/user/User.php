@@ -20,6 +20,7 @@
  * @file
  */
 
+use IPSet\IPSet;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\Token;
@@ -1843,18 +1844,33 @@ class User implements IDBAccessObject {
 			$wgProxyList = array_map( 'trim', file( $wgProxyList ) );
 		}
 
-		if ( is_array( $wgProxyList ) ) {
-			if (
-				// Look for IP as value
-				array_search( $ip, $wgProxyList ) !== false ||
-				// Look for IP as key (for backwards-compatility)
-				array_key_exists( $ip, $wgProxyList )
-			) {
-				return true;
+		$resultProxyList = [];
+		$deprecatedIPEntries = [];
+
+		// backward compatibility: move all ip addresses in keys to values
+		foreach ( $wgProxyList as $key => $value ) {
+			$keyIsIP = IP::isIPAddress( $key );
+			$valueIsIP = IP::isIPAddress( $value );
+			if ( $keyIsIP && !$valueIsIP ) {
+				$deprecatedIPEntries[] = $key;
+				$resultProxyList[] = $key;
+			} elseif ( $keyIsIP && $valueIsIP ) {
+				$deprecatedIPEntries[] = $key;
+				$resultProxyList[] = $key;
+				$resultProxyList[] = $value;
+			} else {
+				$resultProxyList[] = $value;
 			}
 		}
 
-		return false;
+		if ( $deprecatedIPEntries ) {
+			wfDeprecated(
+				'IP addresses in the keys of $wgProxyList (found the following IP addresses in keys: ' .
+				implode( ', ', $deprecatedIPEntries ) . ', please move them to values)', '1.29' );
+		}
+
+		$proxyListIPSet = new IPSet( $resultProxyList );
+		return $proxyListIPSet->match( $ip );
 	}
 
 	/**
