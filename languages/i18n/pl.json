@@ -1439,7 +1439,7 @@
 	"rcfilters-hideminor-conflicts-typeofchange": "Niektóre rodzaje zmian nie mogą być uznawane za „drobne”, dlatego ten filtr koliduje z następującymi filtrami Rodzaju zmian: $1",
 	"rcfilters-typeofchange-conflicts-hideminor": "Ten filtr Rodzaju zmian koliduje z filtrem „Drobne zmiany”. Nie wszystkie zmiany mogą być uznawane za „drobne”.",
 	"rcnotefrom": "Poniżej {{PLURAL:$5|pokazano zmianę|pokazano zmiany}} {{PLURAL:$5|wykonaną|wykonane}} po <strong>$3, $4</strong> (nie więcej niż '''$1''' pozycji).",
-	"rclistfromreset": "Zresetuj wybór danych",
+	"rclistfromreset": "Zresetuj wybór daty",
 	"rclistfrom": "Pokaż nowe zmiany od $3 $2",
 	"rcshowhideminor": "$1 drobne edycje",
 	"rcshowhideminor-show": "Pokaż",

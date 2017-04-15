@@ -1172,7 +1172,6 @@
 	"right-editsemiprotected": "Aozañ ar pajennoù gwarezet evel \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "Kemmañ patrom danvez ur bajenn bennak",
 	"right-editinterface": "Kemmañ an etrefas implijer",
-	"right-editusercssjs": "Kemmañ restroù CSS ha JS implijerien all",
 	"right-editusercss": "Kemmañ restroù CSS implijerien all",
 	"right-edituserjs": "Kemmañ restroù JS implijerien all",
 	"right-editmyusercss": "Aozañ ho restroù implijer CSS deoc'h-c'hwi",
@@ -2333,6 +2332,11 @@
 	"unblocked-id": "Distanket eo bet $1",
 	"unblocked-ip": "[[Special:Contributions/$1|$1]] zo bet distanket.",
 	"blocklist": "Implijerien stanket",
+	"autoblocklist": "Stankadennoù emgefre",
+	"autoblocklist-submit": "Klask",
+	"autoblocklist-legend": "Rollañ ar stankadennoù emgefre",
+	"autoblocklist-localblocks": "{{PLURAL:$1|Stankadenn emgefre|Stankadennoù emgefre}} lec'hel",
+	"autoblocklist-empty": "Goullo eo roll ar stankadennoù emgefre",
 	"ipblocklist": "Implijerien stanket",
 	"ipblocklist-legend": "Kavout un implijer stanket",
 	"blocklist-userblocks": "Kuzhat ar stankadennoù kont",
@@ -3488,6 +3492,7 @@
 	"logentry-delete-delete": "Diverket eo bet ar bajenn $3 gant $1",
 	"logentry-delete-delete_redir": "{{GENDER:$2|Friket}} eo bet an adkas $3 gant $1",
 	"logentry-delete-restore": "Assavet eo bet ar bajenn $3 gant $1",
+	"restore-count-files": "{{PLURAL:$1|1 restr|$1 restr}}",
 	"logentry-delete-event": "Kemmet eo bet gwelusted {{PLURAL:$5|un darvoud eus ar marilh|$5 darvoud eus ar marilh}} d'an $3 gant $1 : $4",
 	"logentry-delete-revision": "{{GENDER:$2|Kemmet}} eo bet gwelusted {{PLURAL:$5|reizhadenn|$5 reizhadenn}} war ar bajenn $3 gant $1 : $4",
 	"logentry-delete-event-legacy": "{{GENDER:$2|Kemmet}} eo bet gwelusted darvoudoù ar marilh $3 gant $1",
@@ -3838,5 +3843,7 @@
 	"restrictionsfield-help": "Ur chomlec'h IP pe un esaouenn CIDR dre linenn. Evit gweredekaat pep tra, ober gant <pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "Adweladenn $1",
 	"pageid": "ID ar bajenn $1",
-	"rawhtml-notallowed": "N'hall an tikedennoù &lt;html&gt; bezañ implijet nemet er pajennoù normal."
+	"rawhtml-notallowed": "N'hall an tikedennoù &lt;html&gt; bezañ implijet nemet er pajennoù normal.",
+	"gotointerwiki": "Kuitaat {{SITENAME}}",
+	"gotointerwiki-invalid": "Direizh eo an titl merket"
 }

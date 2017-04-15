@@ -735,7 +735,7 @@
 	"readonlywarning": "<strong>ADVARSEL: Databasen er låst på grunn av vedlikehold,\nså du kan ikke lagre dine endringer akkurat nå.</strong>\nDet kan være en god idé å kopiere teksten din til en tekstfil og lagre den til senere.\n\nSystemadministratoren som låste databasen ga følgende begrunnelse: $1",
 	"protectedpagewarning": "'''Advarsel: Denne siden har blitt låst slik at kun brukere med administratorrettigheter kan redigere den.'''\nDet siste loggelementet er oppgitt under som referanse:",
 	"semiprotectedpagewarning": "'''Merk:''' Denne siden har blitt låst slik at kun registrerte brukere kan endre den.\nDet siste loggelementet er oppgitt under som referanse:",
-	"cascadeprotectedwarning": "<strong>Advarsel:</strong> Denne siden har blitt låst slik at kun brukere med administratorrettigheter kan redigere den, fordi den inkluderes på følgende dypbeskyttede {{PLURAL:$1|side|sider}}:",
+	"cascadeprotectedwarning": "<strong>Advarsel:</strong> Denne siden har blitt låst slik at kun brukere med [[Special:ListGroupRights|spesifikke rettigheter]] som kan redigere den, fordi den transkluderes på følgende dypbeskyttede {{PLURAL:$1|side|sider}}:",
 	"titleprotectedwarning": "'''Advarsel: Denne siden har blitt låst slik at [[Special:ListGroupRights|bestemte rettigheter]] kreves for å opprette den.'''\nTil orientering vises den siste loggoppføringen under:",
 	"templatesused": "{{PLURAL:$1|Mal|Maler}} som brukes på denne siden:",
 	"templatesusedpreview": "{{PLURAL:$1|Mal|Maler}} brukt i denne forhåndsvisningen:",

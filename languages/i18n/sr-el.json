@@ -1724,6 +1724,7 @@
 	"listgrouprights-namespaceprotection-header": "Ograničenja imenskih prostora",
 	"listgrouprights-namespaceprotection-namespace": "Imenski prostor",
 	"listgrouprights-namespaceprotection-restrictedto": "Prava potrebna za uređivanje",
+	"listgrants": "Dozvole",
 	"listgrants-rights": "Prava",
 	"trackingcategories": "Medijaviki kategorije",
 	"trackingcategories-summary": "Ova posebna stranica je spisak kategorija koje su deo Medijavikija, one se automatski ažuriraju i njihovi nazivi se mogu menjati uređivanjem sistemskih poruka u imenskom prostoru {{ns:8}}.",
@@ -3414,5 +3415,6 @@
 	"log-action-filter-upload-upload": "Novo otpremanje",
 	"authmanager-email-label": "Imejl",
 	"authmanager-email-help": "Imejl adresa",
-	"changecredentials": "Promjena akreditiva"
+	"changecredentials": "Promjena akreditiva",
+	"removecredentials": "Uklanjanje akreditiva"
 }

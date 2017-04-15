@@ -1794,6 +1794,7 @@
 	"listgrouprights-namespaceprotection-header": "Ограничења именских простора",
 	"listgrouprights-namespaceprotection-namespace": "Именски простор",
 	"listgrouprights-namespaceprotection-restrictedto": "Права потребна за уређивање",
+	"listgrants": "Дозволе",
 	"listgrants-rights": "Права",
 	"trackingcategories": "Медијавики категорије",
 	"trackingcategories-summary": "Ова посебна страница је списак категорија које су део Медијавикија, оне се аутоматски ажурирају и њихови називи се могу мењати уређивањем системских порука у именском простору {{ns:8}}.",
@@ -3543,6 +3544,7 @@
 	"authprovider-resetpass-skip-label": "Прескочи",
 	"changecredentials": "Промјена акредитива",
 	"changecredentials-submit": "Промени",
+	"removecredentials": "Уклањање акредитива",
 	"credentialsform-provider": "Врста акредитива:",
 	"credentialsform-account": "Назив налога:"
 }

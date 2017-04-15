@@ -699,7 +699,7 @@
 	"readonlywarning": "<strong>Opozorilo: Zbirka podatkov je zaradi vzdrževanja začasno zaklenjena, kar pomeni, da sprememb trenutno ne morete shraniti.</strong>\nProsimo, prenesite besedilo v urejevalnik in ga dodajte pozneje.\n\nSistemski skrbnik, ki jo je zaklenil, je podal naslednjo razlago: $1",
 	"protectedpagewarning": "'''Opozorilo: Stran je bila zaklenjena in jo lahko urejajo le uporabniki z administratorskimi pravicami.'''\nZadnji vnos v dnevnik je naveden spodaj:",
 	"semiprotectedpagewarning": "'''Opomba:''' Stran je bila zaklenjena in jo lahko urejajo le registrirani uporabniki.\nZadnji vnos v dnevnik je naveden spodaj:",
-	"cascadeprotectedwarning": "'''Opozorilo:''' Ta stran je zaklenjena, tako da jo lahko urejajo le administratorji, saj je bila vključena med {{PLURAL:$1|sledečo stran|sledeči strani|sledeče strani}} s kaskadno zaščito:",
+	"cascadeprotectedwarning": "'''Opozorilo:''' Ta stran je zaklenjena, tako da jo lahko urejajo le uporabniki z [[Special:ListGroupRights|določenimi pravicami]], saj je bila vključena med {{PLURAL:$1|sledečo stran|sledeči strani|sledeče strani}} s kaskadno zaščito:",
 	"titleprotectedwarning": "'''Opozorilo: Stran je bila zaklenjena in jo lahko urejajo le uporabniki s [[Special:ListGroupRights|specifičnimi pravicami]].'''\nZa sklic je priskrbljen spodnji dnevnik vnosov:",
 	"templatesused": "{{PLURAL:$1|Predloga, uporabljena|Predlogi, uporabljeni|Predloge, uporabljene}} na strani:",
 	"templatesusedpreview": "{{PLURAL:$1|Predloga, uporabljena|Predlogi, uporabljeni|Predloge, uporabljene}} v predogledu:",

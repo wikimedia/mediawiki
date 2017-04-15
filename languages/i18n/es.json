@@ -1497,6 +1497,7 @@
 	"rcfilters-filter-logactions-label": "Acciones registradas",
 	"rcfilters-filter-logactions-description": "Acciones administrativas, creación de cuentas, borrados de páginas, subidas de archivos...",
 	"rcnotefrom": "Debajo aparece{{PLURAL:$5| el cambio|n los cambios}} desde <strong>$3, $4</strong> (se muestran hasta <strong>$1</strong>).",
+	"rclistfromreset": "Reiniciar selección de fecha",
 	"rclistfrom": "Mostrar cambios nuevos desde las $2 del $3",
 	"rcshowhideminor": "$1 ediciones menores",
 	"rcshowhideminor-show": "Mostrar",

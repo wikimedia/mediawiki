@@ -2000,7 +2000,7 @@
 	"notvisiblerev": "Versija buvo ištrinta",
 	"watchlist-details": "Stebima {{PLURAL:$1|$1 puslapis|$1 puslapiai|$1 puslapių}}, neskaičiuojant aptarimų puslapių.",
 	"wlheader-enotif": "El. pašto pranešimai yra įjungti.",
-	"wlheader-showupdated": "Puslapiai pakeisti nuo tada, kai paskutinį kartą apsilankėte juose, yra pažymėti '''pastorintai'''",
+	"wlheader-showupdated": "Puslapiai pakeisti nuo tada, kai paskutinį kartą apsilankėte juose, yra '''paryškinti'''.",
 	"wlnote": "{{PLURAL:$1|Rodomas '''$1''' paskutinis pakeitimas, atliktas|Rodomi '''$1''' paskutiniai pakeitimai, atlikti|Rodoma '''$1''' paskutinių pakeitimų, atliktų}} per '''$2''' {{PLURAL:$2|paskutinę valandą|paskutines valandas|paskutinių valandų}}, nuo $3 $4.",
 	"wlshowlast": "Rodyti paskutinių $1 valandų, $2 dienų",
 	"watchlist-hide": "Slėpti",
