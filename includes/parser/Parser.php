@@ -5141,6 +5141,11 @@ class Parser {
 				$internalParamMap = [];
 				foreach ( $internalParamNames as $type => $names ) {
 					foreach ( $names as $name ) {
+						// For grep: img_left, img_right, img_center, img_none,
+						// img_baseline, img_sub, img_super, img_top, img_text_top, img_middle,
+						// img_bottom, img_text_bottom,
+						// img_thumbnail, img_manualthumb, img_framed, img_frameless, img_upright,
+						// img_border, img_link, img_alt, img_class
 						$magicName = str_replace( '-', '_', "img_$name" );
 						$internalParamMap[$magicName] = [ $type, $name ];
 					}
