@@ -327,6 +327,9 @@ changes to languages because of Phabricator reports.
   mwCustomEditButtons, injectSpinner, removeSpinner, escapeQuotes,
   escapeQuotesHTML, jsMsg, addPortletLink, appendCSS, tooltipAccessKeyPrefix,
   tooltipAccessKeyRegexp, updateTooltipAccessKeys.
+* $wgProxyList does not take an associative array anymore. The blocked IP addresses
+  needs to be passed as an indexed/sequential array, otherwise an E_ERROR will be
+  thrown.
 
 == Compatibility ==
 
