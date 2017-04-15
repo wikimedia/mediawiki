@@ -934,4 +934,50 @@ class UserTest extends MediaWikiTestCase {
 
 		$this->assertFalse( $user->getExperienceLevel() );
 	}
+
+	public static function provideIsLocallBlockedProxy() {
+		return [
+			[ '1.2.3.4', '1.2.3.4' ],
+			[ '1.2.3.4', '1.2.3.0/16' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideIsLocallBlockedProxy
+	 * @covers User::isLocallyBlockedProxy
+	 */
+	public function testIsLocallyBlockedProxy( $ip, $blockListEntry ) {
+		$this->setMwGlobals(
+			'wgProxyList', []
+		);
+		$this->assertFalse( User::isLocallyBlockedProxy( $ip ) );
+
+		$this->setMwGlobals(
+			'wgProxyList',
+			[
+				$blockListEntry
+			]
+		);
+		$this->assertTrue( User::isLocallyBlockedProxy( $ip ) );
+
+		$this->setMwGlobals(
+			'wgProxyList',
+			[
+				'test' => $blockListEntry
+			]
+		);
+		$this->assertTrue( User::isLocallyBlockedProxy( $ip ) );
+
+		$this->hideDeprecated(
+			'IP addresses in the keys of $wgProxyList (found the following IP ' .
+			'addresses in keys: ' . $blockListEntry . ', please move them to values)'
+		);
+		$this->setMwGlobals(
+			'wgProxyList',
+			[
+				$blockListEntry => 'test'
+			]
+		);
+		$this->assertTrue( User::isLocallyBlockedProxy( $ip ) );
+	}
 }

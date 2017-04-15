@@ -5938,7 +5938,7 @@ $wgSecretKey = false;
  *
  * This can have the following formats:
  * - An array of addresses, either in the values
- *   or the keys (for backward compatibility)
+ *   or the keys (for backward compatibility, deprecated since 1.30)
  * - A string, in that case this is the path to a file
  *   containing the list of IP addresses, one per line
  */
