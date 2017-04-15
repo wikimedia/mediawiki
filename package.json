@@ -19,7 +19,7 @@
     "grunt-karma": "2.0.0",
     "grunt-stylelint": "0.7.0",
     "grunt-webdriver": "2.0.3",
-    "karma": "1.1.0",
+    "karma": "1.1.2",
     "karma-chrome-launcher": "2.0.0",
     "karma-firefox-launcher": "1.0.0",
     "karma-mocha-reporter": "2.2.3",
