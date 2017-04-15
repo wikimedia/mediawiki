@@ -5937,8 +5937,7 @@ $wgSecretKey = false;
  * Big list of banned IP addresses.
  *
  * This can have the following formats:
- * - An array of addresses, either in the values
- *   or the keys (for backward compatibility)
+ * - An array of addresses, in the values
  * - A string, in that case this is the path to a file
  *   containing the list of IP addresses, one per line
  */
