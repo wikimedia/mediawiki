@@ -9,7 +9,7 @@
 	QUnit.asyncTest( 'toggleToc', function ( assert ) {
 		var tocHtml, $toggleLink, $tocList;
 
-		assert.strictEqual( $( '#toc' ).length, 0, 'There is no table of contents on the page at the beginning' );
+		assert.strictEqual( $( '.toc' ).length, 0, 'There is no table of contents on the page at the beginning' );
 
 		tocHtml = '<div id="toc" class="toc">' +
 			'<div id="toctitle" class="toctitle">' +
@@ -20,8 +20,8 @@
 		$( tocHtml ).appendTo( '#qunit-fixture' );
 		mw.hook( 'wikipage.content' ).fire( $( '#qunit-fixture' ) );
 
-		$tocList = $( '#toc ul:first' );
-		$toggleLink = $( '#toc .togglelink' );
+		$tocList = $( '.toc ul:first' );
+		$toggleLink = $( '.toc .togglelink' );
 
 		assert.strictEqual( $toggleLink.length, 1, 'Toggle link is added to the table of contents' );
 
