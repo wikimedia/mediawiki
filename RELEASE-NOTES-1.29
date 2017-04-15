@@ -329,6 +329,10 @@ changes to languages because of Phabricator reports.
   tooltipAccessKeyRegexp, updateTooltipAccessKeys.
 * The ID of the <li> element containing the login link has changed from
   'pt-login' to 'pt-login-private' in private wikis.
+* The use of an associative array for $wgProxyList, where the blocked IP address is
+  set in the key instead of the value (e.g. [ '127.0.0.1' => 'something' ], is deprecated.
+  Please convert these arrays to indexed/sequential ones
+  (e.g. [ '127.0.0.1' ]).
 
 == Compatibility ==
 
