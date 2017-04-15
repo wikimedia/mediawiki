@@ -288,7 +288,7 @@ class MWExceptionRenderer {
 			$vars[] = '$wgShowDBErrorBacktrace = true;';
 		}
 		$vars = implode( ' and ', $vars );
-		return "Set $vars at the bottom of LocalSettings.php to show detailed debugging information";
+		return "Set $vars at the bottom of LocalSettings.php to show detailed debugging information\n";
 	}
 
 	/**
