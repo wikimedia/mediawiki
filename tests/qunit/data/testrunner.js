@@ -131,9 +131,11 @@
 		liveMessages = mw.messages;
 
 		function suppressWarnings() {
-			warn = mw.log.warn;
-			error = mw.log.error;
-			mw.log.warn = mw.log.error = $.noop;
+			if ( warn === undefined ) {
+				warn = mw.log.warn;
+				error = mw.log.error;
+				mw.log.warn = mw.log.error = $.noop;
+			}
 		}
 
 		function restoreWarnings() {
@@ -215,6 +217,10 @@
 					// Stop tracking ajax requests
 					$( document ).off( 'ajaxSend', trackAjax );
 
+					// As a convenience feature, automatically restore warnings if they're
+					// still suppressed by the end of the test.
+					restoreWarnings();
+
 					// Farewell, mock environment!
 					mw.config = liveConfig;
 					mw.messages = liveMessages;
@@ -222,10 +228,6 @@
 					mw.jqueryMsg.setParserDefaults( {
 						messages: liveMessages
 					} );
-
-					// As a convenience feature, automatically restore warnings if they're
-					// still suppressed by the end of the test.
-					restoreWarnings();
 
 					// Tests should use fake timers or wait for animations to complete
 					// Check for incomplete animations/requests/etc and throw if there are any.
@@ -253,8 +255,11 @@
 							mw.log.warn( 'Pending requests does not match jQuery.active count' );
 						}
 						// Force requests to stop to give the next test a clean start
-						$.each( pending, function ( i, ajax ) {
-							mw.log.warn( 'Pending AJAX request #' + i, ajax.options );
+						$.each( ajaxRequests, function ( i, ajax ) {
+							mw.log.warn(
+								'AJAX request #' + i + ' (state: ' + ajax.xhr.state() + ')',
+								ajax.options
+							);
 							ajax.xhr.abort();
 						} );
 						ajaxRequests = [];
