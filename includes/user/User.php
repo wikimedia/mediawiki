@@ -1843,14 +1843,9 @@ class User implements IDBAccessObject {
 		}
 
 		if ( is_array( $wgProxyList ) ) {
-			if (
-				// Look for IP as value
-				array_search( $ip, $wgProxyList ) !== false ||
-				// Look for IP as key (for backwards-compatility)
-				array_key_exists( $ip, $wgProxyList )
-			) {
-				return true;
-			}
+			$proxyListIPTSet = new \IPSet\IPSet( $wgProxyList );
+
+			return $proxyListIPTSet->match( $ip );
 		}
 
 		return false;
