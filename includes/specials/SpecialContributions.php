@@ -395,7 +395,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		if ( $userrightsPage->userCanChangeRights( $target ) ) {
 			$tools['userrights'] = $linkRenderer->makeKnownLink(
 				SpecialPage::getTitleFor( 'Userrights', $username ),
-				$sp->msg( 'sp-contributions-userrights' )->text()
+				$sp->msg( 'sp-contributions-userrights', $username )->text()
 			);
 		}
 
