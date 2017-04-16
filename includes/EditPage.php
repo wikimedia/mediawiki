@@ -3108,6 +3108,7 @@ class EditPage {
 		return new OOUI\FieldLayout(
 			new OOUI\TextInputWidget( [
 				'value' => $summary,
+				'infusable' => true,
 			] + $inputAttrs ),
 			[
 				'label' => new OOUI\HtmlSnippet( $labelText ),
@@ -3672,6 +3673,7 @@ HTML
 				'href' => $this->getContextTitle()->getLinkUrl( $cancelParams ),
 				'label' => new OOUI\HtmlSnippet( $this->context->msg( 'cancel' )->parse() ),
 				'framed' => false,
+				'infusable' => true,
 				'flags' => 'destructive',
 			] );
 		} else {
@@ -4253,6 +4255,7 @@ HTML
 					'id' => $options['id'],
 					'name' => $name,
 					'selected' => $options['default'],
+					'infusable' => true,
 				] ),
 				[
 					'align' => 'inline',
@@ -4307,6 +4310,7 @@ HTML
 			$buttons['save'] = new OOUI\ButtonInputWidget( [
 				'flags' => [ 'constructive', 'primary' ],
 				'label' => $this->context->msg( $buttonLabelKey )->text(),
+				'infusable' => true,
 				'type' => 'submit',
 			] + $saveConfig );
 		} else {
@@ -4326,6 +4330,7 @@ HTML
 			$previewConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
 			$buttons['preview'] = new OOUI\ButtonInputWidget( [
 				'label' => $this->context->msg( 'showpreview' )->text(),
+				'infusable' => true,
 				'type' => 'submit'
 			] + $previewConfig );
 		} else {
@@ -4343,6 +4348,7 @@ HTML
 			$diffConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
 			$buttons['diff'] = new OOUI\ButtonInputWidget( [
 				'label' => $this->context->msg( 'showdiff' )->text(),
+				'infusable' => true,
 				'type' => 'submit',
 			] + $diffConfig );
 		} else {
