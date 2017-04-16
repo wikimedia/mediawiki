@@ -105,7 +105,8 @@
 			"Redredsonia",
 			"Nitch",
 			"Alexey zakharenkov",
-			"Ivan-r"
+			"Ivan-r",
+			"Choomaq"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -1431,6 +1432,7 @@
 	"rcfilters-filter-humans-description": "Правки, внесённые редакторами.",
 	"rcfilters-filter-patrolled-label": "Отпатрулировано",
 	"rcfilters-filter-patrolled-description": "Правки, помеченные как отпатрулированные.",
+	"rcfilters-filter-unpatrolled-label": "Непатрулированные",
 	"rcfilters-filter-unpatrolled-description": "Правки, не помеченные как отпатрулированные.",
 	"rcfilters-filtergroup-significance": "Значение",
 	"rcfilters-filter-minor-label": "Малые правки",
@@ -1446,6 +1448,7 @@
 	"rcfilters-filter-categorization-description": "Записи о страницах, добавленных или удаленных из категорий.",
 	"rcfilters-filter-logactions-label": "Протоколируемые действия",
 	"rcfilters-filter-logactions-description": "Административные действия, создания учётных записей, удаления страниц, загрузки файлов…",
+	"rcfilters-hideminor-conflicts-typeofchange-global": "Фильтр \"малые правки\" конфликтует с одним или несколькими фильтрами, поскольку некоторые типы правок не могут быть названы малыми. Конфликтные фильтры отмечены вверху, в области Активных фильтров.",
 	"rcnotefrom": "Ниже {{PLURAL:$5|указано изменение|перечислены изменения}} с <strong>$3, $4</strong> (показано не более <strong>$1</strong>).",
 	"rclistfromreset": "Сбросить выбор даты",
 	"rclistfrom": "Показать изменения с $3 $2.",

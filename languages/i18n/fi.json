@@ -2326,6 +2326,7 @@
 	"unblocked-id": "Esto $1 on poistettu",
 	"unblocked-ip": "Käyttäjän [[Special:Contributions/$1|$1]] esto on poistettu.",
 	"blocklist": "Estetyt käyttäjät",
+	"autoblocklist-submit": "Hae",
 	"ipblocklist": "Estetyt käyttäjät",
 	"ipblocklist-legend": "Haku",
 	"blocklist-userblocks": "Piilota tunnusten estot",

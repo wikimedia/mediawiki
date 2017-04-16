@@ -108,10 +108,11 @@
 			"Nahime2015",
 			"Alex Great",
 			"EVinente",
-			"Felipe L. Ewald"
+			"Felipe L. Ewald",
+			"WikiUser22222"
 		]
 	},
-	"tog-underline": "Sublinhar links:",
+	"tog-underline": "Link sublinhado:",
 	"tog-hideminor": "Ocultar edições menores nas mudanças recentes",
 	"tog-hidepatrolled": "Ocultar edições patrulhadas nas mudanças recentes",
 	"tog-newpageshidepatrolled": "Ocultar páginas patrulhadas da lista de páginas novas",
@@ -1502,10 +1503,10 @@
 	"rc-enhanced-expand": "Exibir detalhes",
 	"rc-enhanced-hide": "Ocultar detalhes",
 	"rc-old-title": "criado originalmente como \"$1\"",
-	"recentchangeslinked": "Alterações relacionadas",
-	"recentchangeslinked-feed": "Alterações relacionadas",
-	"recentchangeslinked-toolbox": "Alterações relacionadas",
-	"recentchangeslinked-title": "Alterações relacionadas com \"$1\"",
+	"recentchangeslinked": "Mudanças relacionadas",
+	"recentchangeslinked-feed": "Mudanças relacionadas",
+	"recentchangeslinked-toolbox": "Mudanças relacionadas",
+	"recentchangeslinked-title": "Mudanças relacionadas com “$1”",
 	"recentchangeslinked-summary": "Esta página lista alterações feitas recentemente em páginas com links a uma em específico (ou de membros de uma categoria especificada).\nPáginas de sua [[Special:Watchlist|lista de páginas vigiadas]] são exibidas em '''negrito'''.",
 	"recentchangeslinked-page": "Nome da página:",
 	"recentchangeslinked-to": "Inversamente, mostrar mudanças nas páginas que contêm ligações para esta",

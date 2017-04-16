@@ -6,7 +6,8 @@
 			"Macofe",
 			"Jkb8",
 			"Hamilton Abreu",
-			"Mansil"
+			"Mansil",
+			"Felipe L. Ewald"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentação]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de discussão]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anúncios da API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Erros e pedidos]\n</div>\n<strong>Estado:</strong> Todas as funcionalidades mostradas nesta página devem ter o comportamento documentado mas a API ainda está em desenvolvimento ativo e pode ser alterada a qualquer momento. Inscreva-se na [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ lista de discussão mediawiki-api-announce] para ser informado acerca das atualizações.\n\n<strong>Pedidos incorretos:</strong> Quando são enviados pedidos incorretos à API, será devolvido um cabeçalho HTTP com a chave \"MediaWiki-API-Error\" e depois tanto o valor desse cabeçalho como o código de erro devolvido serão definidos com o mesmo valor. Para mais informação, consulte [[mw:API:Errors_and_warnings|API:Erros e avisos]].\n\n<strong>Testes:</strong> Para testar facilmente pedidos à API, visite [[Special:ApiSandbox|Testes da API]].",
@@ -1097,7 +1098,7 @@
 	"apihelp-query+templates-example-simple": "Obter as predefinições usadas na página <kbd>Main Page</kbd>.",
 	"apihelp-query+templates-example-generator": "Obter informação sobre as páginas das predefinições usadas na página <kbd>Main Page</kbd>.",
 	"apihelp-query+templates-example-namespaces": "Obter as páginas dos espaços nominais {{ns:user}} e {{ns:template}} que são transcluídas na página <kbd>Main Page</kbd>.",
-	"apihelp-query+tokens-description": "Obtém chaves para operações de modificação de dados.",
+	"apihelp-query+tokens-description": "Obtêm tokens para ações de modificação de dados.",
 	"apihelp-query+tokens-param-type": "Tipos de chave a pedir.",
 	"apihelp-query+tokens-example-simple": "Obter uma chave csfr (padrão).",
 	"apihelp-query+tokens-example-types": "Obter uma chave de vigilância e uma chave de patrulha.",
@@ -1422,7 +1423,7 @@
 	"api-help-param-default": "Valor por omissão: $1",
 	"api-help-param-default-empty": "Padrão: <span class=\"apihelp-empty\">(vazio)</span>",
 	"api-help-param-token": "Uma chave \"$1\" obtida de [[Special:ApiHelp/query+tokens|action=query&meta=tokens]]",
-	"api-help-param-token-webui": "Para efeitos de compatibilidade, a chave usada na interface ''web'' também é aceite.",
+	"api-help-param-token-webui": "Para efeitos de compatibilidade, o token usado na interface ''web'' também é aceito.",
 	"api-help-param-disabled-in-miser-mode": "Desativado devido ao [[mw:Manual:$wgMiserMode|modo avarento]] (''miser mode'').",
 	"api-help-param-limited-in-miser-mode": "<strong>Nota:</strong> devido ao [[mw:Manual:$wgMiserMode|modo avarento]] (''miser mode''), usar isto pode resultar na devolução de menos de <var>$1limit</var> resultados antes de continuar; em casos extremos pode não ser devolvido qualquer resultado.",
 	"api-help-param-direction": "A direção da enumeração:\n;newer:Listar o mais antigo primeiro. Nota: $1start tem de estar antes de $1end.\n;older:Listar o mais recente primeiro (padrão). Nota: $1start tem de estar depois de $1end.",
