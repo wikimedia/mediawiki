@@ -3693,6 +3693,7 @@
 	"confirmrecreate-noreason": "Followed by the checkbox which has the label {{msg-mw|Recreate}}.\n\nParameters:\n* $1 - username, also used for GENDER support\n* $2 - (Unused) reason\nSee also:\n* {{msg-mw|Confirmrecreate}}",
 	"recreate": "Text shown when the editor fails to save the page due to it having been deleted since they opened VE. $1 is the message {{msg-mw|ooui-dialog-process-continue}}.",
 	"unit-pixel": "{{optional}}\npx is the abbreviation for \"pixel\".",
+	"confirm-purge-title": "Title for the confirmation form that appears when the user is about to purge the page.",
 	"confirm_purge_button": "Used as Submit button text.\n{{Identical|OK}}",
 	"confirm-purge-top": "Used as confirmation message.",
 	"confirm-purge-bottom": "Additional description for Purge form.",

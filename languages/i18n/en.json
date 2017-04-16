@@ -3506,6 +3506,7 @@
 	"confirmrecreate-noreason": "User [[User:$1|$1]] ([[User talk:$1|talk]]) {{GENDER:$1|deleted}} this page after you started editing. Please confirm that you really want to recreate this page.",
 	"recreate": "Recreate",
 	"unit-pixel": "px",
+	"confirm-purge-title": "Purge this page",
 	"confirm_purge_button": "OK",
 	"confirm-purge-top": "Clear the cache of this page?",
 	"confirm-purge-bottom": "Purging a page clears the cache and forces the most current revision to appear.",

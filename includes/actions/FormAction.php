@@ -59,6 +59,14 @@ abstract class FormAction extends Action {
 	}
 
 	/**
+	 * Whether the form should use OOUI
+	 * @return bool
+	 */
+	protected function usesOOUI() {
+		return false;
+	}
+
+	/**
 	 * Get the HTMLForm to control behavior
 	 * @return HTMLForm|null
 	 */
@@ -68,7 +76,11 @@ abstract class FormAction extends Action {
 		// Give hooks a chance to alter the form, adding extra fields or text etc
 		Hooks::run( 'ActionModifyFormFields', [ $this->getName(), &$this->fields, $this->page ] );
 
-		$form = new HTMLForm( $this->fields, $this->getContext(), $this->getName() );
+		if ( $this->usesOOUI() ) {
+			$form = HTMLForm::factory( 'ooui', $this->fields, $this->getContext(), $this->getName() );
+		} else {
+			$form = new HTMLForm( $this->fields, $this->getContext(), $this->getName() );
+		}
 		$form->setSubmitCallback( [ $this, 'onSubmit' ] );
 
 		$title = $this->getTitle();
