@@ -78,17 +78,6 @@ class FormatJson {
 	const STRIP_COMMENTS = 0x400;
 
 	/**
-	 * Regex that matches whitespace inside empty arrays and objects.
-	 *
-	 * This doesn't affect regular strings inside the JSON because those can't
-	 * have a real line break (\n) in them, at this point they are already escaped
-	 * as the string "\n" which this doesn't match.
-	 *
-	 * @private
-	 */
-	const WS_CLEANUP_REGEX = '/(?<=[\[{])\n\s*+(?=[\]}])/';
-
-	/**
 	 * Characters problematic in JavaScript.
 	 *
 	 * @note These are listed in ECMA-262 (5.1 Ed.), §7.3 Line Terminators along with U+000A (LF)
@@ -129,11 +118,6 @@ class FormatJson {
 			$pretty = $pretty ? '    ' : false;
 		}
 
-		static $bug66021;
-		if ( $pretty !== false && $bug66021 === null ) {
-			$bug66021 = json_encode( [], JSON_PRETTY_PRINT ) !== '[]';
-		}
-
 		// PHP escapes '/' to prevent breaking out of inline script blocks using '</script>',
 		// which is hardly useful when '<' and '>' are escaped (and inadequate), and such
 		// escaping negatively impacts the human readability of URLs and similar strings.
@@ -147,10 +131,6 @@ class FormatJson {
 		}
 
 		if ( $pretty !== false ) {
-			// Workaround for <https://bugs.php.net/bug.php?id=66021>
-			if ( $bug66021 ) {
-				$json = preg_replace( self::WS_CLEANUP_REGEX, '', $json );
-			}
 			if ( $pretty !== '    ' ) {
 				// Change the four-space indent to a tab indent
 				$json = str_replace( "\n    ", "\n\t", $json );
