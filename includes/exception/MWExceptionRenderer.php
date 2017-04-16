@@ -43,6 +43,7 @@ class MWExceptionRenderer {
 			self::printError( self::getText( $e ) );
 		} elseif ( $mode === self::AS_PRETTY ) {
 			if ( $e instanceof DBConnectionError ) {
+				self::statusHeader( 503 );
 				self::reportOutageHTML( $e );
 			} else {
 				self::statusHeader( 500 );
