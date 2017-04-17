@@ -220,6 +220,102 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 		$this->assertEquals( 'somevalue', $extracted['globals']['egBar'] );
 	}
 
+	/**
+	 * @covers ExtensionProcessor::addConfigGlobal()
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testDuplicateConfigKey1() {
+		$processor = new ExtensionProcessor;
+		$info = [
+			'config' => [
+				'Bar' => '',
+			]
+		] + self::$default;
+		$info2 = [
+			'config' => [
+				'Bar' => 'g',
+			],
+			'name' => 'FooBar2',
+		];
+		$processor->extractInfo( $this->dir, $info, 1 );
+		$processor->extractInfo( $this->dir, $info2, 1 );
+	}
+
+	/**
+	 * @covers ExtensionProcessor::addConfigGlobal()
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testDuplicateConfigKey2() {
+		$processor = new ExtensionProcessor;
+		$info = [
+			'config' => [
+				'Bar' => [ 'value' => 'somevalue' ],
+			]
+		] + self::$default;
+		$info2 = [
+			'config' => [
+				'Bar' => [ 'value' => 'somevalue' ],
+			],
+			'name' => 'FooBar2',
+		];
+		$processor->extractInfo( $this->dir, $info, 2 );
+		$processor->extractInfo( $this->dir, $info2, 2 );
+	}
+
+	public function testDuplicateConfigKey1Merged() {
+		$processor = new ExtensionProcessor;
+		$info = [
+				'config' => [
+					'Bar' => [
+						'test' => 'somevalue',
+					],
+				]
+			] + self::$default;
+		$info2 = [
+			'config' => [
+				'Bar' => [
+					'test1' => 'somevalue',
+				],
+			],
+			'name' => 'FooBar2',
+		];
+		$processor->extractInfo( $this->dir, $info, 1 );
+		$processor->extractInfo( $this->dir, $info2, 1 );
+
+		$data = $processor->getExtractedInfo();
+		$this->assertEquals( $data['globals']['wgBar'], [
+			'test' => 'somevalue',
+			'test1' => 'somevalue',
+		] );
+	}
+
+	public function testDuplicateConfigKey2Merged() {
+		$processor = new ExtensionProcessor;
+		$info = [
+				'config' => [
+					'Bar' => [ 'value' => [
+						'test' => 'somevalue',
+					] ],
+				]
+			] + self::$default;
+		$info2 = [
+			'config' => [
+				'Bar' => [ 'value' => [
+					'test1' => 'somevalue',
+				] ],
+			],
+			'name' => 'FooBar2',
+		];
+		$processor->extractInfo( $this->dir, $info, 2 );
+		$processor->extractInfo( $this->dir, $info2, 2 );
+
+		$data = $processor->getExtractedInfo();
+		$this->assertEquals( $data['globals']['wgBar'], [
+			'test' => 'somevalue',
+			'test1' => 'somevalue',
+		] );
+	}
+
 	public static function provideExtractExtensionMessagesFiles() {
 		$dir = __DIR__ . '/FooBar/';
 		return [
