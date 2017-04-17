@@ -19,6 +19,11 @@
  * @author Aaron Schulz
  */
 
+use Wikimedia\Rdbms\DBConnectionError;
+use Wikimedia\Rdbms\DBError;
+use Wikimedia\Rdbms\DBReadOnlyError;
+use Wikimedia\Rdbms\DBExpectedError;
+
 /**
  * Class to expose exceptions to the client (API bots, users, admins using CLI scripts)
  * @since 1.28

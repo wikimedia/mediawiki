@@ -33,10 +33,6 @@ use MediaWiki;
 use BagOStuff;
 use HashBagOStuff;
 use InvalidArgumentException;
-use DBQueryError;
-use DBUnexpectedError;
-use DBConnectionError;
-use DBReadOnlyError;
 use Exception;
 use RuntimeException;
 

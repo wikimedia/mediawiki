@@ -21,6 +21,7 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LogLevel;
+use Wikimedia\Rdbms\DBError;
 
 /**
  * Handler class for MWExceptions

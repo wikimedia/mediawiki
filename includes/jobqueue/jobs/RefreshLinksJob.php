@@ -21,6 +21,7 @@
  * @ingroup JobQueue
  */
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\DBReplicationWaitError;
 
 /**
  * Job to update link tables for pages

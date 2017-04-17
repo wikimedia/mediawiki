@@ -23,7 +23,6 @@
 namespace Wikimedia\Rdbms;
 
 use mysqli;
-use DBConnectionError;
 use IP;
 
 /**

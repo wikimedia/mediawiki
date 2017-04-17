@@ -27,11 +27,8 @@ use PDO;
 use PDOException;
 use LockManager;
 use FSLockManager;
-use DBConnectionError;
-use DBReadOnlyError;
 use InvalidArgumentException;
 use RuntimeException;
-use DBError;
 use stdClass;
 
 /**

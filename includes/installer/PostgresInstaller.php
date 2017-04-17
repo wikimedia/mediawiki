@@ -22,6 +22,8 @@
  */
 
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DBQueryError;
+use Wikimedia\Rdbms\DBConnectionError;
 
 /**
  * Class for setting up the MediaWiki database using Postgres.

@@ -24,6 +24,7 @@
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\DBError;
 
 /**
  * Version of FileJournal that logs to a DB table

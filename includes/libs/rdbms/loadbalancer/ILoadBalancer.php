@@ -23,10 +23,6 @@
  */
 namespace Wikimedia\Rdbms;
 
-use DBError;
-use DBAccessError;
-use DBTransactionError;
-use DBExpectedError;
 use Exception;
 use InvalidArgumentException;
 

@@ -23,6 +23,7 @@
 
 use Wikimedia\Rdbms\ResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\DBError;
 
 /**
  * This is a class for doing query pages; since they're almost all the same,

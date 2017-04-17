@@ -7,6 +7,7 @@ use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\Assert;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\DBUnexpectedError;
 
 /**
  * Storage layer class for WatchedItems.

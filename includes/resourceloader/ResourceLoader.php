@@ -27,6 +27,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use WrappedString\WrappedString;
+use Wikimedia\Rdbms\DBConnectionError;
 
 /**
  * Dynamic JavaScript and CSS resource loading system.

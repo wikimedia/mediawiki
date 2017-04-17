@@ -21,9 +21,11 @@
  * @author Aaron Schulz
  */
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\DBConnectionError;
+use Wikimedia\Rdbms\DBError;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
-use Wikimedia\Rdbms\DBConnRef;
 
 /**
  * Class to handle job queues stored in the DB

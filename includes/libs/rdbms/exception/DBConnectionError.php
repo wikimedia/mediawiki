@@ -18,7 +18,7 @@
  * @file
  * @ingroup Database
  */
-use Wikimedia\Rdbms\IDatabase;
+namespace Wikimedia\Rdbms;
 
 /**
  * @ingroup Database
@@ -37,3 +37,5 @@ class DBConnectionError extends DBExpectedError {
 		parent::__construct( $db, $msg );
 	}
 }
+
+class_alias( DBConnectionError::class, 'DBConnectionError' );

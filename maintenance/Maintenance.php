@@ -25,6 +25,8 @@
 require_once __DIR__ . '/../includes/PHPVersionCheck.php';
 wfEntryPointCheck( 'cli' );
 
+use Wikimedia\Rdbms\DBReplicationWaitError;
+
 /**
  * @defgroup MaintenanceArchive Maintenance archives
  * @ingroup Maintenance

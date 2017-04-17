@@ -28,9 +28,6 @@
 namespace Wikimedia\Rdbms;
 
 use MediaWiki;
-use DBConnectionError;
-use DBUnexpectedError;
-use DBQueryError;
 use Exception;
 use stdClass;
 

@@ -26,10 +26,6 @@ use DateTime;
 use DateTimeZone;
 use MediaWiki;
 use InvalidArgumentException;
-use DBError;
-use DBExpectedError;
-use DBUnexpectedError;
-use DBConnectionError;
 use Exception;
 use stdClass;
 

@@ -21,6 +21,8 @@
  * @ingroup FileAbstraction
  */
 
+use Wikimedia\Rdbms\DBUnexpectedError;
+
 /**
  * Foreign file with an accessible MediaWiki database
  *

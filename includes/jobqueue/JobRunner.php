@@ -28,6 +28,8 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\DBError;
+use Wikimedia\Rdbms\DBReplicationWaitError;
 
 /**
  * Job queue runner utility methods

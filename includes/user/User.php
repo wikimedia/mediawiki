@@ -28,6 +28,7 @@ use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthenticationRequest;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DBExpectedError;
 
 /**
  * String Some punctuation to prevent editing from broken text-mangling proxies.

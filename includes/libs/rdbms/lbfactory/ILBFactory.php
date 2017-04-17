@@ -24,8 +24,6 @@
 namespace Wikimedia\Rdbms;
 
 use InvalidArgumentException;
-use DBTransactionError;
-use DBReplicationWaitError;
 
 /**
  * An interface for generating database load balancers

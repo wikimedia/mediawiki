@@ -24,6 +24,8 @@ use \MediaWiki\Logger\LoggerFactory;
 use \MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\DBError;
+use Wikimedia\Rdbms\DBUnexpectedError;
 
 /**
  * Class representing a MediaWiki article and history.

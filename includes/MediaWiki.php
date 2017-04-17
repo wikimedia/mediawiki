@@ -25,6 +25,7 @@ use Psr\Log\LoggerInterface;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\DBConnectionError;
 
 /**
  * The MediaWiki class is the helper class for the index.php entry point.

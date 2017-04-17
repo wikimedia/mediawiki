@@ -20,6 +20,7 @@
  * @ingroup JobQueue
  */
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\DBReplicationWaitError;
 
 /**
  * Job for pruning recent changes

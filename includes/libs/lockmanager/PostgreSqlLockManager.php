@@ -1,4 +1,7 @@
 <?php
+
+use Wikimedia\Rdbms\DBError;
+
 /**
  * PostgreSQL version of DBLockManager that supports shared locks.
  * All locks are non-blocking, which avoids deadlocks.

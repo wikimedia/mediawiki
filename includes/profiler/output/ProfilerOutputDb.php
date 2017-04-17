@@ -21,6 +21,8 @@
  * @ingroup Profiler
  */
 
+use Wikimedia\Rdbms\DBError;
+
 /**
  * Logs profiling data into the local DB
  *
