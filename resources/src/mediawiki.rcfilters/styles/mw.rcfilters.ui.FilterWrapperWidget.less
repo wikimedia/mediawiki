@@ -2,16 +2,4 @@
 	width: 100%;
 	// Make sure this uses the interface direction, not the content direction
 	direction: ltr;
-
-	&-search {
-		max-width: none;
-		margin-top: -1px;
-
-		input {
-			// We need to reiterate the directionality
-			// for the input as well to literally override
-			// a MediaWiki CSS rule that turns it 'ltr'
-			direction: ltr;
-		}
-	}
 }
