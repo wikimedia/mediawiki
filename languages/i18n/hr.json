@@ -2480,6 +2480,7 @@
 	"newimages-summary": "Ova posebna stranica pokazuje posljednje nedavno postavljene datoteke.",
 	"newimages-legend": "Filtar",
 	"newimages-label": "Naziv datoteke (ili njen dio):",
+	"newimages-user": "IP adresa ili suradničko ime",
 	"newimages-showbots": "Prikaži datoteke koje su postavili botovi",
 	"newimages-hidepatrolled": "Sakrij pregledana postavljanja",
 	"noimages": "Nema slika.",

@@ -2391,7 +2391,7 @@
 	"blocklist": "المستخدمون الممنوعون",
 	"autoblocklist": "منع تلقائي",
 	"autoblocklist-submit": "بحث",
-	"autoblocklist-legend": "عرض عمليات المنع التلقائي",
+	"autoblocklist-legend": "قائمة المنع التلقائي",
 	"autoblocklist-localblocks": "{{PLURAL:$1|المنع التلقائي المحلي|عمليات المنع التلقائي المحلية}}",
 	"autoblocklist-empty": "قائمة المنع التلقائي فارغة.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|المنع التلقائي الآخر|عمليات المنع التلقائي الأخرى}}",

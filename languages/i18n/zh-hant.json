@@ -2399,6 +2399,7 @@
 	"unblocked-id": "已經移除 $1 的封鎖。",
 	"unblocked-ip": "[[Special:Contributions/$1|$1]] 已解除封鎖。",
 	"blocklist": "已封鎖的使用者",
+	"autoblocklist-submit": "搜尋",
 	"ipblocklist": "已封鎖的使用者",
 	"ipblocklist-legend": "搜尋已封鎖的使用者",
 	"blocklist-userblocks": "隱藏帳號封鎖",

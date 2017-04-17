@@ -2098,7 +2098,7 @@
 	"listgrouprights-removegroup": "Eliminar {{PLURAL:$2|grupo|grupos}}: $1",
 	"listgrouprights-addgroup-all": "Agregar todos los grupos",
 	"listgrouprights-removegroup-all": "Eliminar todos los grupos",
-	"listgrouprights-addgroup-self": "Agregar {{PLURAL:$2|grupo|grupos}} a tu propia cuenta: $1",
+	"listgrouprights-addgroup-self": "Agregar {{PLURAL:$2|grupo|grupos}} a su propia cuenta: $1",
 	"listgrouprights-removegroup-self": "Eliminar {{PLURAL:$2|grupo|grupos}} de su propia cuenta: $1",
 	"listgrouprights-addgroup-self-all": "Agregar todos los grupos a tu propia cuenta",
 	"listgrouprights-removegroup-self-all": "Eliminar todos los grupos de tu propia cuenta",

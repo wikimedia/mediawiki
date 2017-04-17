@@ -757,7 +757,7 @@
 	"readonlywarning": "<strong>Atenção: A base de dados foi bloqueada para manutenção, pelo que não poderá gravar as suas edições neste momento.</strong>\nPode, contudo, copiar e colar o seu texto num ficheiro de texto e guardá-lo para mais tarde.\n\nO administrador do sistema que a bloqueou forneceu a seguinte explicação: $1",
 	"protectedpagewarning": "'''Aviso: Esta página foi protegida para só poder ser editada por administradores.'''\nO último registo é apresentado abaixo para referência:",
 	"semiprotectedpagewarning": "'''Nota:''' Esta página foi protegida de modo a que apenas utilizadores registados a possam editar.\nA última entrada no histórico é fornecida abaixo como referência.",
-	"cascadeprotectedwarning": "<strong>Aviso:</strong> Esta página está protegida de forma que apenas os administradores possam editá-la, porque se encontra transcluída {{PLURAL:$1|na seguinte página protegida|nas seguintes páginas protegidas}} em cascata:",
+	"cascadeprotectedwarning": "<strong>Aviso:</strong> Esta página está protegida de forma que apenas os utilizadores com [[Special:ListGroupRights|privilégios específicos]] possam editá-la, porque se encontra transcluída {{PLURAL:$1|na seguinte página protegida|nas seguintes páginas protegidas}} em cascata:",
 	"titleprotectedwarning": "'''Aviso: Esta página foi protegida de forma a que [[Special:ListGroupRights|privilégios específicos]] sejam necessários para criá-la.'''\nPara referência, é apresentada abaixo a última entrada do registo:",
 	"templatesused": "{{PLURAL:$1|Predefinição utilizada|Predefinições utilizadas}} nesta página:",
 	"templatesusedpreview": "{{PLURAL:$1|Predefinição utilizada|Predefinições utilizadas}} nesta antevisão:",
