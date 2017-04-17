@@ -3186,6 +3186,7 @@
 	"confirmrecreate-noreason": "{{GENDER:$1|Uporabnik|Uporabnica}} [[User:$1|$1]] ([[User talk:$1|pogovor]]) je {{GENDER:$1|izbrisal|izbrisala}} to stran po začetku vašega urejanja. Potrdite, da jo resnično želite znova ustvariti.",
 	"recreate": "Ponovno ustvari",
 	"unit-pixel": " točk",
+	"confirm-purge-title": "Osveži predpomnilnik strani",
 	"confirm_purge_button": "Osveži",
 	"confirm-purge-top": "Osvežim predpomnjenje strani?",
 	"confirm-purge-bottom": "Osvežitev strani počisti predpomnilnik in prisili prikaz najnovejše različice.",

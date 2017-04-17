@@ -3293,6 +3293,7 @@
 	"confirmrecreate": "在您开始编辑后，[[User:$1|$1]]（[[User talk:$1|讨论]]）因以下列原因{{GENDER:$1|删除}}了该页面：\n: <em>$2</em>\n请确认在您重新创建页面前三思。",
 	"confirmrecreate-noreason": "用户 [[User:$1|$1]]（[[User talk:$1|talk]]） 在您开始编辑之后{{GENDER:$1|删除}}此页面。请确认您确实要重新创建此页面。",
 	"recreate": "重新创建",
+	"confirm-purge-title": "刷新本页",
 	"confirm_purge_button": "确定",
 	"confirm-purge-top": "要清除此页面的缓存吗？",
 	"confirm-purge-bottom": "清除页面数据会清除缓存并强制显示最近的版本。",
