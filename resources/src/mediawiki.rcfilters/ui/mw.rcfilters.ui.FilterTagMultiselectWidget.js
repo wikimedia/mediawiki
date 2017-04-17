@@ -137,6 +137,7 @@
 		} else {
 			// Clear selection
 			this.getMenu().selectItem( null );
+			this.selectTag( null );
 		}
 	};
 
@@ -207,6 +208,9 @@
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onMenuChoose = function ( item ) {
 		this.controller.toggleFilterSelect( item.model.getName() );
 
+		// Select the tag if it exists, or reset selection otherwise
+		this.selectTag( this.getItemFromData( item.model.getName() ) );
+
 		this.focus();
 	};
 
@@ -248,6 +252,7 @@
 		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.prototype.onTagSelect.call( this, tagItem );
 
 		this.menu.selectItem( menuOption );
+		this.selectTag( tagItem );
 
 		// Scroll to the item
 		if ( oldInputValue ) {
@@ -264,6 +269,24 @@
 		}
 	};
 
+	/**
+	 * Select a tag by reference. This is what OO.ui.SelectWidget is doing.
+	 * If no items are given, reset selection from all.
+	 *
+	 * @param {mw.rcfilters.ui.FilterTagItemWidget} [item] Tag to select,
+	 *  omit to deselect all
+	 */
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.selectTag = function ( item ) {
+		var i, len, selected,
+			changed = false;
+
+		for ( i = 0, len = this.items.length; i < len; i++ ) {
+			selected = this.items[ i ] === item;
+			if ( this.items[ i ].isSelected() !== selected ) {
+				this.items[ i ].toggleSelected( selected );
+			}
+		}
+	};
 	/**
 	 * @inheritdoc
 	 */
