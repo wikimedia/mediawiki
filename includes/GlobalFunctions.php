@@ -1197,7 +1197,9 @@ function wfLogProfilingData() {
 			$statsdSender = new SocketSender( $statsdHost, $statsdPort );
 			$statsdClient = new SamplingStatsdClient( $statsdSender, true, false );
 			$statsdClient->setSamplingRates( $config->get( 'StatsdSamplingRates' ) );
-			$statsdClient->send( $context->getStats()->getBuffer() );
+			$statsdClient->send(
+				\MediaWiki\MediaWikiServices::getInstance()->getStatsdDataFactory()->getBuffer()
+			);
 		} catch ( Exception $ex ) {
 			MWExceptionHandler::logException( $ex );
 		}
@@ -1262,7 +1264,7 @@ function wfLogProfilingData() {
  * @return void
  */
 function wfIncrStats( $key, $count = 1 ) {
-	$stats = RequestContext::getMain()->getStats();
+	$stats = \MediaWiki\MediaWikiServices::getInstance()->getStatsdDataFactory();
 	$stats->updateCount( $key, $count );
 }
 
