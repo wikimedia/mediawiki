@@ -52,6 +52,14 @@
 
 	OO.inheritClass( mw.rcfilters.ui.FilterItemHighlightButton, OO.ui.PopupButtonWidget );
 
+	/* Static Properties */
+
+	/**
+	 * @static
+	 * @inheritdoc
+	 */
+	mw.rcfilters.ui.FilterItemHighlightButton.static.cancelButtonMouseDownEvents = true;
+
 	/* Methods */
 
 	/**
