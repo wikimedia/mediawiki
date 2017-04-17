@@ -18,6 +18,7 @@
 
 		this.controller = controller;
 		this.model = model;
+		this.selected = false;
 
 		mw.rcfilters.ui.FilterTagItemWidget.parent.call( this, $.extend( {
 			data: this.model.getName(),
@@ -159,6 +160,15 @@
 
 			this.$element.toggleClass( 'mw-rcfilters-ui-filterTagItemWidget-selected', this.selected );
 		}
+	};
+
+	/**
+	 * Get the selected state of this widget
+	 *
+	 * @return {boolean} Tag is selected
+	 */
+	mw.rcfilters.ui.FilterTagItemWidget.prototype.isSelected = function () {
+		return this.selected;
 	};
 
 	/**
