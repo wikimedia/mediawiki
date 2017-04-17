@@ -27,6 +27,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 use Liuggio\StatsdClient\Sender\SocketSender;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
 
 // Hide compatibility functions from Doxygen
@@ -1197,7 +1198,9 @@ function wfLogProfilingData() {
 			$statsdSender = new SocketSender( $statsdHost, $statsdPort );
 			$statsdClient = new SamplingStatsdClient( $statsdSender, true, false );
 			$statsdClient->setSamplingRates( $config->get( 'StatsdSamplingRates' ) );
-			$statsdClient->send( $context->getStats()->getBuffer() );
+			$statsdClient->send(
+				MediaWikiServices::getInstance()->getStatsdDataFactory()->getBuffer()
+			);
 		} catch ( Exception $ex ) {
 			MWExceptionHandler::logException( $ex );
 		}
@@ -1262,7 +1265,7 @@ function wfLogProfilingData() {
  * @return void
  */
 function wfIncrStats( $key, $count = 1 ) {
-	$stats = RequestContext::getMain()->getStats();
+	$stats = \MediaWiki\MediaWikiServices::getInstance()->getStatsdDataFactory();
 	$stats->updateCount( $key, $count );
 }
 
