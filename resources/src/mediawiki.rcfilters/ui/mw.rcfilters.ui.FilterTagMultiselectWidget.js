@@ -236,7 +236,8 @@
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onTagSelect = function ( tagItem ) {
 		var widget = this,
-			menuOption = this.menu.getItemFromData( tagItem.getData() );
+			menuOption = this.menu.getItemFromData( tagItem.getData() ),
+			oldInputValue = this.input.getValue();
 
 		// Reset input
 		this.input.setValue( '' );
@@ -247,14 +248,18 @@
 		this.menu.selectItem( menuOption );
 
 		// Scroll to the item
-		// We're binding a 'once' to the itemVisibilityChange event
-		// so this happens when the menu is ready after the items
-		// are visible again, in case this is done right after the
-		// user filtered the results
-		this.getMenu().once(
-			'itemVisibilityChange',
-			function () { widget.scrollToTop( menuOption.$element ); }
-		);
+		if ( oldInputValue ) {
+			// We're binding a 'once' to the itemVisibilityChange event
+			// so this happens when the menu is ready after the items
+			// are visible again, in case this is done right after the
+			// user filtered the results
+			this.getMenu().once(
+				'itemVisibilityChange',
+				function () { widget.scrollToTop( menuOption.$element ); }
+			);
+		} else {
+			this.scrollToTop( menuOption.$element );
+		}
 	};
 
 	/**
