@@ -59,10 +59,15 @@
 			label: $label,
 			align: 'inline'
 		} );
-
 		// Event
 		this.model.connect( this, { update: 'onModelUpdate' } );
 		this.model.getGroupModel().connect( this, { update: 'onGroupModelUpdate' } );
+		// HACK: Prevent defaults on 'click' for the label so it
+		// doesn't steal the focus away from the input. This means
+		// we can continue arrow-movement after we click the label
+		// and is consistent with the checkbox *itself* also preventing
+		// defaults on 'click' as well.
+		layout.$label.on( 'click', false );
 
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterMenuOptionWidget' )
