@@ -41,6 +41,13 @@ class ExtensionRegistry {
 	const MERGE_STRATEGY = '_merge_strategy';
 
 	/**
+	 * The default merge strategy to be used whenever no merge strategy was provided.
+	 *
+	 * @since 1.30
+	 */
+	const DEFAULT_MERGE_STRATEGY = 'array_merge';
+
+	/**
 	 * Array of loaded things, keyed by name, values are credits information
 	 *
 	 * @var array
@@ -141,7 +148,7 @@ class ExtensionRegistry {
 			'registration',
 			md5( json_encode( $this->queued + $versions ) )
 		);
-		$data = $cache->get( $key );
+		$data = false; //$cache->get( $key );
 		if ( $data ) {
 			$this->exportExtractedData( $data );
 		} else {
@@ -279,7 +286,7 @@ class ExtensionRegistry {
 				$mergeStrategy = $val[self::MERGE_STRATEGY];
 				unset( $val[self::MERGE_STRATEGY] );
 			} else {
-				$mergeStrategy = 'array_merge';
+				$mergeStrategy = self::DEFAULT_MERGE_STRATEGY;
 			}
 
 			// Optimistic: If the global is not set, or is an empty array, replace it entirely.
@@ -294,25 +301,7 @@ class ExtensionRegistry {
 				continue;
 			}
 
-			switch ( $mergeStrategy ) {
-				case 'array_merge_recursive':
-					$GLOBALS[$key] = array_merge_recursive( $GLOBALS[$key], $val );
-					break;
-				case 'array_replace_recursive':
-					$GLOBALS[$key] = array_replace_recursive( $GLOBALS[$key], $val );
-					break;
-				case 'array_plus_2d':
-					$GLOBALS[$key] = wfArrayPlus2d( $GLOBALS[$key], $val );
-					break;
-				case 'array_plus':
-					$GLOBALS[$key] += $val;
-					break;
-				case 'array_merge':
-					$GLOBALS[$key] = array_merge( $val, $GLOBALS[$key] );
-					break;
-				default:
-					throw new UnexpectedValueException( "Unknown merge strategy '$mergeStrategy'" );
-			}
+			$GLOBALS[$key] = self::getMergedValue( $mergeStrategy, $GLOBALS[$key], $val );
 		}
 
 		foreach ( $info['defines'] as $name => $val ) {
@@ -333,6 +322,30 @@ class ExtensionRegistry {
 
 		foreach ( $info['callbacks'] as $name => $cb ) {
 			call_user_func( $cb, $info['credits'][$name] );
+		}
+	}
+
+	/**
+	 * @param $mergeStrategy
+	 * @param $existingValue
+	 * @param $newValue
+	 * @return mixed
+	 */
+	public static function getMergedValue( $mergeStrategy, $existingValue, $newValue ) {
+		switch ( $mergeStrategy ) {
+			case 'array_merge_recursive':
+				return array_merge_recursive( $existingValue, $newValue );
+			case 'array_replace_recursive':
+				return array_replace_recursive( $existingValue, $newValue );
+			case 'array_plus_2d':
+				return wfArrayPlus2d( $existingValue, $newValue );
+			case 'array_plus':
+				$existingValue += $newValue;
+				return $existingValue;
+			case 'array_merge':
+				return array_merge( $newValue, $existingValue );
+			default:
+				throw new UnexpectedValueException( "Unknown merge strategy '$mergeStrategy'" );
 		}
 	}
 
