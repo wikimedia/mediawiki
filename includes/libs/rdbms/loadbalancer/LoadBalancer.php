@@ -304,60 +304,99 @@ class LoadBalancer implements ILoadBalancer {
 
 	public function getReaderIndex( $group = false, $domain = false ) {
 		if ( count( $this->mServers ) == 1 ) {
-			# Skip the load balancing if there's only one server
+			// Skip the load balancing if there's only one server
 			return $this->getWriterIndex();
 		} elseif ( $group === false && $this->mReadIndex >= 0 ) {
-			# Shortcut if generic reader exists already
+			// Shortcut if the generic reader index was already cached
 			return $this->mReadIndex;
 		}
 
-		# Find the relevant load array
 		if ( $group !== false ) {
+			// Use the server weight array for this load group
 			if ( isset( $this->mGroupLoads[$group] ) ) {
-				$nonErrorLoads = $this->mGroupLoads[$group];
+				$loads = $this->mGroupLoads[$group];
 			} else {
-				# No loads for this group, return false and the caller can use some other group
+				// No loads for this group, return false and the caller can use some other group
 				$this->connLogger->info( __METHOD__ . ": no loads for group $group" );
 
 				return false;
 			}
 		} else {
-			$nonErrorLoads = $this->mLoads;
+			// Use the generic load group
+			$loads = $this->mLoads;
 		}
 
-		if ( !count( $nonErrorLoads ) ) {
+		// Scale the configured load ratios according to each server's load and state
+		$this->getLoadMonitor()->scaleLoads( $loads, $domain );
+
+		// Pick a server to use, accounting for weights, load, lag, and mWaitForPos
+		list( $i, $laggedReplicaMode ) = $this->pickReaderIndex( $loads, $domain );
+		if ( $i === false ) {
+			// Replica DB connection unsuccessful
+			return false;
+		}
+
+		if ( $this->mWaitForPos && $i != $this->getWriterIndex() ) {
+			// Before any data queries are run, wait for the server to catch up to the
+			// specified position. This is used to improve session consistency. Note that
+			// when LoadBalancer::waitFor() sets mWaitForPos, the waiting triggers here,
+			// so update laggedReplicaMode as needed for consistency.
+			if ( !$this->doWait( $i ) ) {
+				$laggedReplicaMode = true;
+			}
+		}
+
+		if ( $this->mReadIndex <= 0 && $this->mLoads[$i] > 0 && $group === false ) {
+			// Cache the generic reader index for future ungrouped DB_REPLICA handles
+			$this->mReadIndex = $i;
+			// Record if the generic reader index is in "lagged replica DB" mode
+			if ( $laggedReplicaMode ) {
+				$this->laggedReplicaMode = true;
+			}
+		}
+
+		$serverName = $this->getServerName( $i );
+		$this->connLogger->debug( __METHOD__ . ": using server $serverName for group '$group'" );
+
+		return $i;
+	}
+
+	/**
+	 * @param array $loads List of server weights
+	 * @param string|bool $domain
+	 * @return array (reader index, lagged replica mode) or false on failure
+	 */
+	private function pickReaderIndex( array $loads, $domain = false ) {
+		if ( !count( $loads ) ) {
 			throw new InvalidArgumentException( "Empty server array given to LoadBalancer" );
 		}
 
-		# Scale the configured load ratios according to the dynamic load if supported
-		$this->getLoadMonitor()->scaleLoads( $nonErrorLoads, $domain );
-
+		/** @var $i int|bool Index of selected server */
+		$i = false;
+		/** @var $laggedReplicaMode bool Whether server is considered lagged */
 		$laggedReplicaMode = false;
 
-		# No server found yet
-		$i = false;
-		# First try quickly looking through the available servers for a server that
-		# meets our criteria
-		$currentLoads = $nonErrorLoads;
+		// Quickly look through the available servers for a server that meets criteria...
+		$currentLoads = $loads;
 		while ( count( $currentLoads ) ) {
 			if ( $this->mAllowLagged || $laggedReplicaMode ) {
 				$i = ArrayUtils::pickRandom( $currentLoads );
 			} else {
 				$i = false;
 				if ( $this->mWaitForPos && $this->mWaitForPos->asOfTime() ) {
-					# ChronologyProtecter causes mWaitForPos to be set via sessions.
-					# This triggers doWait() after connect, so it's especially good to
-					# avoid lagged servers so as to avoid just blocking in that method.
+					// ChronologyProtecter sets mWaitForPos for session consistency.
+					// This triggers doWait() after connect, so it's especially good to
+					// avoid lagged servers so as to avoid excessive delay in that method.
 					$ago = microtime( true ) - $this->mWaitForPos->asOfTime();
-					# Aim for <= 1 second of waiting (being too picky can backfire)
+					// Aim for <= 1 second of waiting (being too picky can backfire)
 					$i = $this->getRandomNonLagged( $currentLoads, $domain, $ago + 1 );
 				}
 				if ( $i === false ) {
-					# Any server with less lag than it's 'max lag' param is preferable
+					// Any server with less lag than it's 'max lag' param is preferable
 					$i = $this->getRandomNonLagged( $currentLoads, $domain );
 				}
 				if ( $i === false && count( $currentLoads ) != 0 ) {
-					# All replica DBs lagged. Switch to read-only mode
+					// All replica DBs lagged. Switch to read-only mode
 					$this->replLogger->error( "All replica DBs lagged. Switch to read-only mode" );
 					$i = ArrayUtils::pickRandom( $currentLoads );
 					$laggedReplicaMode = true;
@@ -365,12 +404,12 @@ class LoadBalancer implements ILoadBalancer {
 			}
 
 			if ( $i === false ) {
-				# pickRandom() returned false
-				# This is permanent and means the configuration or the load monitor
-				# wants us to return false.
+				// pickRandom() returned false.
+				// This is permanent and means the configuration or the load monitor
+				// wants us to return false.
 				$this->connLogger->debug( __METHOD__ . ": pickRandom() returned false" );
 
-				return false;
+				return [ false, false ];
 			}
 
 			$serverName = $this->getServerName( $i );
@@ -379,8 +418,7 @@ class LoadBalancer implements ILoadBalancer {
 			$conn = $this->openConnection( $i, $domain );
 			if ( !$conn ) {
 				$this->connLogger->warning( __METHOD__ . ": Failed connecting to $i/$domain" );
-				unset( $nonErrorLoads[$i] );
-				unset( $currentLoads[$i] );
+				unset( $currentLoads[$i] ); // avoid this server next iteration
 				$i = false;
 				continue;
 			}
@@ -391,38 +429,16 @@ class LoadBalancer implements ILoadBalancer {
 				$this->reuseConnection( $conn );
 			}
 
-			# Return this server
+			// Return this server
 			break;
 		}
 
-		# If all servers were down, quit now
-		if ( !count( $nonErrorLoads ) ) {
+		// If all servers were down, quit now
+		if ( !count( $currentLoads ) ) {
 			$this->connLogger->error( "All servers down" );
 		}
 
-		if ( $i !== false ) {
-			# Replica DB connection successful.
-			# Wait for the session master pos for a short time.
-			if ( $this->mWaitForPos && $i > 0 ) {
-				# When LoadBalancer::waitFor() set mWaitForPos, the wait will happen here.
-				# Be sure to update laggedReplicaMode accordingly for consistency.
-				if ( !$this->doWait( $i ) ) {
-					$laggedReplicaMode = true;
-				}
-			}
-			if ( $this->mReadIndex <= 0 && $this->mLoads[$i] > 0 && $group === false ) {
-				$this->mReadIndex = $i;
-				# Record if the generic reader index is in "lagged replica DB" mode
-				if ( $laggedReplicaMode ) {
-					$this->laggedReplicaMode = true;
-				}
-			}
-			$serverName = $this->getServerName( $i );
-			$this->connLogger->debug(
-				__METHOD__ . ": using server $serverName for group '$group'" );
-		}
-
-		return $i;
+		return [ $i, $laggedReplicaMode ];
 	}
 
 	public function waitFor( $pos ) {
