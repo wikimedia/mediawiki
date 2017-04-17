@@ -376,7 +376,7 @@ class ExtensionProcessor implements Processor {
 			}
 			foreach ( $info['config'] as $key => $val ) {
 				if ( $key[0] !== '@' ) {
-					$this->globals["$prefix$key"] = $val;
+					$this->addConfigGlobal( "$prefix$key", $val );
 				}
 			}
 		}
@@ -404,9 +404,24 @@ class ExtensionProcessor implements Processor {
 				if ( isset( $data['path'] ) && $data['path'] ) {
 					$value = "$dir/$value";
 				}
-				$this->globals["$prefix$key"] = $value;
+				$this->addConfigGlobal( "$prefix$key", $value );
 			}
 		}
+	}
+
+	/**
+	 * Helper function to set a value to a specific global, if it isn't set already.
+	 *
+	 * @param string $key The config key with the prefix and anything
+	 * @param mixed $value The value of the config
+	 */
+	private function addConfigGlobal( $key, $value ) {
+		if ( isset( $this->globals[$key] ) ) {
+			throw new InvalidArgumentException(
+				'Duplicate configuration key detected: The configuration option ' . $key .
+				' was already set by another extension and can not be set again.' );
+		}
+		$this->globals[$key] = $value;
 	}
 
 	protected function extractServiceWiringFiles( $dir, array $info ) {
