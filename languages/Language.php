@@ -4127,7 +4127,7 @@ class Language {
 	 * Get the list of variants supported by this language
 	 * see sample implementation in LanguageZh.php
 	 *
-	 * @return array An array of language codes
+	 * @return string[] An array of language codes
 	 */
 	public function getVariants() {
 		return $this->mConverter->getVariants();

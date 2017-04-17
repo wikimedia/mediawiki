@@ -48,6 +48,10 @@ class LanguageConverter {
 	];
 
 	public $mMainLanguageCode;
+
+	/**
+	 * @var string[]
+	 */
 	public $mVariants;
 	public $mVariantFallbacks;
 	public $mVariantNames;
@@ -75,11 +79,9 @@ class LanguageConverter {
 	const CACHE_VERSION_KEY = 'VERSION 7';
 
 	/**
-	 * Constructor
-	 *
 	 * @param Language $langobj
 	 * @param string $maincode The main language code of this language
-	 * @param array $variants The supported variants of this language
+	 * @param string[] $variants The supported variants of this language
 	 * @param array $variantfallbacks The fallback language of each variant
 	 * @param array $flags Defining the custom strings that maps to the flags
 	 * @param array $manualLevel Limit for supported variants
@@ -122,7 +124,7 @@ class LanguageConverter {
 	 * Get all valid variants.
 	 * Call this instead of using $this->mVariants directly.
 	 *
-	 * @return array Contains all valid variants
+	 * @return string[] Contains all valid variants
 	 */
 	public function getVariants() {
 		return $this->mVariants;
