@@ -43,7 +43,12 @@
 	function showConfirmation( data ) {
 		data = data || {};
 		if ( data.message === undefined ) {
-			data.message = $.parseHTML( mw.message( 'postedit-confirmation-saved', data.user || mw.user ).escaped() );
+			data.message = $.parseHTML( mw.message(
+				mw.config.get( 'wgEditSubmitButtonLabelPublish' ) ?
+					'postedit-confirmation-published' :
+					'postedit-confirmation-saved',
+				data.user || mw.user
+			).escaped() );
 		}
 
 		$div = mw.template.get( 'mediawiki.action.view.postEdit', 'postEdit.html' ).render();
