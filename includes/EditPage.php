@@ -2909,24 +2909,38 @@ class EditPage {
 				}
 			}
 
+			$buttonLabelKey = $this->getSaveButtonLabel();
+
 			if ( $this->missingComment ) {
 				$wgOut->wrapWikiMsg( "<div id='mw-missingcommenttext'>\n$1\n</div>", 'missingcommenttext' );
 			}
 
 			if ( $this->missingSummary && $this->section != 'new' ) {
-				$wgOut->wrapWikiMsg( "<div id='mw-missingsummary'>\n$1\n</div>", 'missingsummary' );
+				$wgOut->wrapWikiMsg(
+					"<div id='mw-missingsummary'>\n$1\n</div>",
+					[ 'missingsummary', $buttonLabelKey ]
+				);
 			}
 
 			if ( $this->missingSummary && $this->section == 'new' ) {
-				$wgOut->wrapWikiMsg( "<div id='mw-missingcommentheader'>\n$1\n</div>", 'missingcommentheader' );
+				$wgOut->wrapWikiMsg(
+					"<div id='mw-missingcommentheader'>\n$1\n</div>",
+					[ 'missingcommentheader', $buttonLabelKey ]
+				);
 			}
 
 			if ( $this->blankArticle ) {
-				$wgOut->wrapWikiMsg( "<div id='mw-blankarticle'>\n$1\n</div>", 'blankarticle' );
+				$wgOut->wrapWikiMsg(
+					"<div id='mw-blankarticle'>\n$1\n</div>",
+					[ 'blankarticle', $buttonLabelKey ]
+				);
 			}
 
 			if ( $this->selfRedirect ) {
-				$wgOut->wrapWikiMsg( "<div id='mw-selfredirect'>\n$1\n</div>", 'selfredirect' );
+				$wgOut->wrapWikiMsg(
+					"<div id='mw-selfredirect'>\n$1\n</div>",
+					[ 'selfredirect', $buttonLabelKey ]
+				);
 			}
 
 			if ( $this->hookError !== '' ) {
@@ -4673,7 +4687,10 @@ HTML
 	 * @since 1.29
 	 */
 	protected function addExplainConflictHeader( OutputPage $out ) {
-		$out->wrapWikiMsg( "<div class='mw-explainconflict'>\n$1\n</div>", 'explainconflict' );
+		$out->wrapWikiMsg(
+			"<div class='mw-explainconflict'>\n$1\n</div>",
+			[ 'explainconflict', $this->getSaveButtonLabel() ]
+		);
 	}
 
 	/**
