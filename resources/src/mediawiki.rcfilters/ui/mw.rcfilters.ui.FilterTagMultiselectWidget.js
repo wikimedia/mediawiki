@@ -206,6 +206,8 @@
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onMenuChoose = function ( item ) {
 		this.controller.toggleFilterSelect( item.model.getName() );
+
+		this.focus();
 	};
 
 	/**
