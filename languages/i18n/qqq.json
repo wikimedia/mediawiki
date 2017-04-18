@@ -940,6 +940,7 @@
 	"postedit-confirmation-created": "{{gender}}\nShown after a user creates a new page. Parameters:\n* $1 - the current user, for GENDER support",
 	"postedit-confirmation-restored": "{{gender}}\nShown after a user restores a page to a previous revision. Parameters:\n* $1 - the current user, for GENDER support",
 	"postedit-confirmation-saved": "{{gender}}\nShown after a user saves a page. Parameters:\n* $1 - the current user, for GENDER support",
+	"postedit-confirmation-published": "{{gender}}\nShown after a user publishes a page. Parameters:\n* $1 - the current user, for GENDER support",
 	"edit-already-exists": "Used as error message.\n\nSee also:\n* {{msg-mw|edit-hook-aborted}}\n* {{msg-mw|edit-gone-missing}}\n* {{msg-mw|edit-conflict}}\n* {{msg-mw|edit-no-change}}",
 	"addsection-preload": "{{notranslate}}",
 	"addsection-editintro": "{{notranslate}}",
