@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.0
+ * OOjs UI v0.21.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-04-11T22:51:05Z
+ * Date: 2017-04-18T23:32:49Z
  */
 ( function ( OO ) {
 
@@ -4713,6 +4713,9 @@ OO.ui.TagItemWidget.prototype.isValid = function () {
  * @constructor
  * @param {Object} config Configuration object
  * @cfg {Object} [input] Configuration options for the input widget
+ * @cfg {OO.ui.InputWidget} [inputWidget] An optional input widget. If given, it will
+ *  replace the input widget used in the TagMultiselectWidget. If not given,
+ *  TagMultiselectWidget creates its own.
  * @cfg {boolean} [inputPosition='inline'] Position of the input. Options are:
  * 	- inline: The input is invisible, but exists inside the tag list, so
  * 		the user types into the tag groups to add tags.
@@ -4802,14 +4805,17 @@ OO.ui.TagMultiselectWidget = function OoUiTagMultiselectWidget( config ) {
 	// Initialize
 	this.$element
 		.addClass( 'oo-ui-tagMultiselectWidget' )
-		.addClass( 'oo-ui-tagMultiselectWidget-inputPosition-' + this.inputPosition )
 		.append( this.$handle );
 
 	if ( this.hasInput ) {
-		this.input = new OO.ui.TextInputWidget( $.extend( {
-			placeholder: config.placeholder,
-			classes: [ 'oo-ui-tagMultiselectWidget-input' ]
-		}, config.input ) );
+		if ( config.inputWidget ) {
+			this.input = config.inputWidget;
+		} else {
+			this.input = new OO.ui.TextInputWidget( $.extend( {
+				placeholder: config.placeholder,
+				classes: [ 'oo-ui-tagMultiselectWidget-input' ]
+			}, config.input ) );
+		}
 		this.input.setDisabled( this.isDisabled() );
 
 		inputEvents = {
@@ -4828,8 +4834,11 @@ OO.ui.TagMultiselectWidget = function OoUiTagMultiselectWidget( config ) {
 			// in the case the widget is outline so it can
 			// stretch all the way if the widet is wide
 			this.input.$element.css( 'max-width', 'inherit' );
-			this.$element.append( this.input.$element );
+			this.$element
+				.addClass( 'oo-ui-tagMultiselectWidget-outlined' )
+				.append( this.input.$element );
 		} else {
+			this.$element.addClass( 'oo-ui-tagMultiselectWidget-inlined' );
 			// HACK: When the widget is using 'inline' input, the
 			// behavior needs to only use the $input itself
 			// so we style and size it accordingly (otherwise
@@ -5155,11 +5164,9 @@ OO.ui.TagMultiselectWidget.prototype.isDuplicateData = function ( data ) {
  * Check whether a given value is allowed to be added
  *
  * @param {string|Object} data Requested value
- * @return {boolean} Value exists in the allowed values list
+ * @return {boolean} Value is allowed
  */
 OO.ui.TagMultiselectWidget.prototype.isAllowedData = function ( data ) {
-	var hash = OO.getHash( data );
-
 	if ( this.allowArbitrary ) {
 		return true;
 	}
@@ -5174,7 +5181,7 @@ OO.ui.TagMultiselectWidget.prototype.isAllowedData = function ( data ) {
 	// Check with allowed values
 	if (
 		this.getAllowedValues().some( function ( value ) {
-			return hash === OO.getHash( value );
+			return data === value;
 		} )
 	) {
 		return true;
@@ -5865,11 +5872,15 @@ OO.ui.MenuTagMultiselectWidget.prototype.getMenu = function () {
 };
 
 /**
- * @inheritdoc
+ * Get the allowed values list
+ *
+ * @return {string[]} Allowed data values
  */
-OO.ui.MenuTagMultiselectWidget.prototype.isAllowedData = function ( data ) {
-	return OO.ui.MenuTagMultiselectWidget.parent.prototype.isAllowedData.call( this, data ) &&
-		!!this.menu.getItemFromData( data );
+OO.ui.MenuTagMultiselectWidget.prototype.getAllowedValues = function () {
+	var menuDatas = this.menu.getItems().map( function ( menuItem ) {
+		return menuItem.getData();
+	} );
+	return this.allowedValues.concat( menuDatas );
 };
 
 /**

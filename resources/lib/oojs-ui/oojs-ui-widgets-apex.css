@@ -1,25 +1,25 @@
 /*!
- * OOjs UI v0.21.0
+ * OOjs UI v0.21.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-04-11T22:51:10Z
+ * Date: 2017-04-18T23:32:54Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
   cursor: url(images/grab.cur );
   cursor: -webkit-grab;
-  cursor:    -moz-grab;
-  cursor:         grab;
+  cursor: -moz-grab;
+  cursor: grab;
 }
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ):active {
   cursor: url(images/grabbing.cur );
   cursor: -webkit-grabbing;
-  cursor:    -moz-grabbing;
-  cursor:         grabbing;
+  cursor: -moz-grabbing;
+  cursor: grabbing;
 }
 .oo-ui-draggableElement-handle.oo-ui-widget-disabled,
 .oo-ui-widget-disabled .oo-ui-draggableElement-handle {
@@ -37,8 +37,8 @@
 .oo-ui-bookletLayout-stackLayout > .oo-ui-panelLayout {
   width: 100%;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .oo-ui-bookletLayout-outlinePanel-editable > .oo-ui-outlineSelectWidget {
   position: absolute;
@@ -83,8 +83,8 @@
 .oo-ui-menuLayout-content {
   position: absolute;
   -webkit-transition: all 200ms ease;
-     -moz-transition: all 200ms ease;
-          transition: all 200ms ease;
+  -moz-transition: all 200ms ease;
+  transition: all 200ms ease;
 }
 .oo-ui-menuLayout-menu {
   height: 18em;
@@ -208,10 +208,10 @@
   vertical-align: middle;
   overflow: hidden;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   -webkit-transform: translateZ(0);
-          transform: translateZ(0);
+  transform: translateZ(0);
   height: 2em;
   width: 4em;
   border-radius: 1em;
@@ -221,8 +221,8 @@
   background-color: #eeeeee;
   background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #ddd), color-stop(100%, #fff));
   background-image: -webkit-linear-gradient(top, #ddd 0, #fff 100%);
-  background-image:    -moz-linear-gradient(top, #ddd 0, #fff 100%);
-  background-image:         linear-gradient(to bottom, #ddd 0, #fff 100%);
+  background-image: -moz-linear-gradient(top, #ddd 0, #fff 100%);
+  background-image: linear-gradient(to bottom, #ddd 0, #fff 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffdddddd', endColorstr='#ffffffff' )";
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled {
@@ -232,8 +232,8 @@
   position: absolute;
   display: block;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .oo-ui-toggleSwitchWidget:last-child {
   margin-right: 0;
@@ -255,13 +255,13 @@
   box-shadow: 0 0.1em 0.25em rgba(0, 0, 0, 0.1);
   border: 1px #c9c9c9 solid;
   -webkit-transition: left 250ms ease, margin-left 250ms ease;
-     -moz-transition: left 250ms ease, margin-left 250ms ease;
-          transition: left 250ms ease, margin-left 250ms ease;
+  -moz-transition: left 250ms ease, margin-left 250ms ease;
+  transition: left 250ms ease, margin-left 250ms ease;
   background-color: #eeeeee;
   background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #fff), color-stop(100%, #ddd));
   background-image: -webkit-linear-gradient(top, #fff 0, #ddd 100%);
-  background-image:    -moz-linear-gradient(top, #fff 0, #ddd 100%);
-  background-image:         linear-gradient(to bottom, #fff 0, #ddd 100%);
+  background-image: -moz-linear-gradient(top, #fff 0, #ddd 100%);
+  background-image: linear-gradient(to bottom, #fff 0, #ddd 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffffff', endColorstr='#ffdddddd' )";
 }
 .oo-ui-toggleSwitchWidget-glow {
@@ -273,19 +273,19 @@
   border-radius: 1em;
   box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.07);
   -webkit-transition: opacity 250ms ease;
-     -moz-transition: opacity 250ms ease;
-          transition: opacity 250ms ease;
+  -moz-transition: opacity 250ms ease;
+  transition: opacity 250ms ease;
   background-color: #cde7f4;
   background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #b0d9ee), color-stop(100%, #eaf4fa));
   background-image: -webkit-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
-  background-image:    -moz-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
-  background-image:         linear-gradient(to bottom, #b0d9ee 0, #eaf4fa 100%);
+  background-image: -moz-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
+  background-image: linear-gradient(to bottom, #b0d9ee 0, #eaf4fa 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb0d9ee', endColorstr='#ffeaf4fa' )";
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .oo-ui-toggleWidget-off .oo-ui-toggleSwitchWidget-glow {
   opacity: 0;
@@ -338,8 +338,8 @@
   position: relative;
   overflow: hidden;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .oo-ui-selectFileWidget-info > .oo-ui-indicatorElement-indicator,
 .oo-ui-selectFileWidget-info > .oo-ui-iconElement-icon {
@@ -351,9 +351,9 @@
   cursor: default;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .oo-ui-selectFileWidget-label {
   position: absolute;
@@ -441,9 +441,9 @@
 .oo-ui-selectFileWidget-notsupported.oo-ui-selectFileWidget-dropTarget {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .oo-ui-selectFileWidget-empty.oo-ui-widget-disabled.oo-ui-selectFileWidget-dropTarget,
 .oo-ui-selectFileWidget-notsupported.oo-ui-selectFileWidget-dropTarget,
@@ -477,8 +477,8 @@
 }
 .oo-ui-selectFileWidget-label {
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   left: 0.5em;
   right: 2.175em;
   line-height: 2.3em;
@@ -575,9 +575,9 @@
 .oo-ui-outlineOptionWidget {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-size: 1.1em;
   padding: 0.75em;
 }
@@ -623,8 +623,8 @@
 .oo-ui-outlineControlsWidget-movers {
   float: left;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .oo-ui-outlineControlsWidget > .oo-ui-iconElement-icon {
   float: left;
@@ -714,14 +714,17 @@
 .oo-ui-tagMultiselectWidget-content {
   position: relative;
 }
-.oo-ui-tagMultiselectWidget.oo-ui-widget-disabled .oo-ui-tagMultiselectWidget-content > input {
-  display: none;
-}
 .oo-ui-tagMultiselectWidget-group {
   display: inline;
 }
-.oo-ui-tagMultiselectWidget-inputPosition-outline {
+.oo-ui-tagMultiselectWidget-outlined {
   width: 100%;
+}
+.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-inlined .oo-ui-tagMultiselectWidget-handle {
+  cursor: text;
+}
+.oo-ui-tagMultiselectWidget.oo-ui-widget-disabled .oo-ui-tagMultiselectWidget-content > input {
+  display: none;
 }
 .oo-ui-tagMultiselectWidget-focusTrap {
   display: inline-block;
@@ -737,8 +740,8 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0.25em;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .oo-ui-tagMultiselectWidget-handle:last-child {
   margin-right: 0;
@@ -817,8 +820,8 @@
   width: auto;
   max-width: 100%;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   vertical-align: middle;
   padding: 0 0.4em;
   margin: 0.1em;
@@ -827,8 +830,8 @@
   background-color: #eeeeee;
   background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #fff), color-stop(100%, #ddd));
   background-image: -webkit-linear-gradient(top, #fff 0, #ddd 100%);
-  background-image:    -moz-linear-gradient(top, #fff 0, #ddd 100%);
-  background-image:         linear-gradient(to bottom, #fff 0, #ddd 100%);
+  background-image: -moz-linear-gradient(top, #fff 0, #ddd 100%);
+  background-image: linear-gradient(to bottom, #fff 0, #ddd 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffffff', endColorstr='#ffdddddd' )";
   border: 1px solid #ccc;
   color: #333;
@@ -847,7 +850,7 @@
 .oo-ui-tagItemWidget.oo-ui-widget-disabled {
   opacity: 0.5;
   -webkit-transform: translateZ(0);
-          transform: translateZ(0);
+  transform: translateZ(0);
   box-shadow: none;
   color: #333;
   background: #eee;
@@ -900,8 +903,8 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0.25em;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .oo-ui-capsuleMultiselectWidget-handle:last-child {
   margin-right: 0;
@@ -980,8 +983,8 @@
   width: auto;
   max-width: 100%;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   vertical-align: middle;
   padding: 0 0.4em;
   margin: 0.1em;
@@ -990,8 +993,8 @@
   background-color: #eeeeee;
   background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #fff), color-stop(100%, #ddd));
   background-image: -webkit-linear-gradient(top, #fff 0, #ddd 100%);
-  background-image:    -moz-linear-gradient(top, #fff 0, #ddd 100%);
-  background-image:         linear-gradient(to bottom, #fff 0, #ddd 100%);
+  background-image: -moz-linear-gradient(top, #fff 0, #ddd 100%);
+  background-image: linear-gradient(to bottom, #fff 0, #ddd 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffffff', endColorstr='#ffdddddd' )";
   border: 1px solid #ccc;
   color: #333;
@@ -1010,7 +1013,7 @@
 .oo-ui-capsuleItemWidget.oo-ui-widget-disabled {
   opacity: 0.5;
   -webkit-transform: translateZ(0);
-          transform: translateZ(0);
+  transform: translateZ(0);
   box-shadow: none;
   color: #333;
   background: #eee;
