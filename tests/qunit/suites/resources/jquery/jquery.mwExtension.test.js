@@ -25,6 +25,12 @@
 	} );
 
 	QUnit.test( 'isDomElement', function ( assert ) {
+		var $a = $( '<div>' ).addClass( 'krinkle' ).css( {
+			width: 300,
+			height: 400
+		} );
+		$( 'body' ).prepend( $a );
+		$a.slideUp( 900 );
 		assert.strictEqual( $.isDomElement( document.createElement( 'div' ) ), true,
 			'isDomElement: HTMLElement' );
 		assert.strictEqual( $.isDomElement( document.createTextNode( '' ) ), true,
