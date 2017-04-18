@@ -2452,12 +2452,22 @@ class EditPage {
 			$displayTitle = $contextTitle->getPrefixedText();
 		}
 		$out->setPageTitle( $this->context->msg( $msg, $displayTitle ) );
+
+		$config = $this->context->getConfig();
+
 		# Transmit the name of the message to JavaScript for live preview
 		# Keep Resources.php/mediawiki.action.edit.preview in sync with the possible keys
 		$out->addJsConfigVars( [
 			'wgEditMessage' => $msg,
-			'wgAjaxEditStash' => $this->context->getConfig()->get( 'AjaxEditStash' ),
+			'wgAjaxEditStash' => $config->get( 'AjaxEditStash' ),
 		] );
+
+		// Add whether to use 'save' or 'publish' messages to JavaScript for post-edit, other
+		// editors, etc.
+		$out->addJsConfigVars(
+			'wgEditSubmitButtonLabelPublish',
+			$this->$config->get( 'EditSubmitButtonLabelPublish' )
+		);
 	}
 
 	/**

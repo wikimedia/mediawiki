@@ -1508,6 +1508,7 @@ return [
 			'postedit-confirmation-created',
 			'postedit-confirmation-restored',
 			'postedit-confirmation-saved',
+			'postedit-confirmation-published',
 		],
 	],
 	'mediawiki.action.view.redirect' => [
