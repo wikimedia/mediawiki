@@ -3044,6 +3044,7 @@ class EditPage {
 		// Note: the maxlength is overridden in JS to 255 and to make it use UTF-8 bytes, not characters.
 		return ( is_array( $inputAttrs ) ? $inputAttrs : [] ) + [
 			'id' => 'wpSummary',
+			'name' => 'wpSummary',
 			'maxlength' => '200',
 			'tabindex' => '1',
 			'size' => 60,
