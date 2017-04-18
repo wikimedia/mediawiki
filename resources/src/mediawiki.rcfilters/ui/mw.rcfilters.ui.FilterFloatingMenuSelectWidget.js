@@ -45,11 +45,16 @@
 			}
 		);
 
+		this.noResults = new OO.ui.LabelWidget( {
+			label: mw.msg( 'rcfilters-filterlist-noresults' ),
+			classes: [ 'mw-rcfilters-ui-filterFloatingMenuSelectWidget-noresults' ]
+		} );
+
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterFloatingMenuSelectWidget' )
 			.append(
 				this.$body
-					.append( header.$element, this.$group )
+					.append( header.$element, this.$group, this.noResults.$element )
 			);
 
 		if ( this.$footer ) {
