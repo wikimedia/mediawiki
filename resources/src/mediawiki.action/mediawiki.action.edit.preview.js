@@ -224,10 +224,10 @@
 						.detach()
 						.html( response.parse.text );
 
-					mw.hook( 'wikipage.content' ).fire( $content );
-
 					// Reattach
 					$wikiPreview.append( $content );
+
+					mw.hook( 'wikipage.content' ).fire( $content );
 
 					$wikiPreview.show();
 				}
