@@ -1788,6 +1788,23 @@ class OutputPage extends ContextSource {
 		$this->mNewSectionLink = $parserOutput->getNewSection();
 		$this->mHideNewSectionLink = $parserOutput->getHideNewSection();
 
+		$urls = [];
+		foreach ( $parserOutput->getImages() as $key => $value ) {
+			$file = wfFindFile( $key );
+			$server = $this->getConfig()->get( 'Server' );
+			if ( $file ) {
+				$bits = wfParseUrl( $file->getUrl() );
+				$url = $bits['scheme'] . $bits['delimiter'] . $bits['host'] .
+					( isset( $bits['port'] ) ? ":{$bits['port']}" : '' );
+				if ( $server !== $url && !in_array( $url, $urls ) ) {
+					$urls[] = $url;
+				}
+			}
+		}
+		foreach ( $urls as $url ) {
+			$this->addLinkHeader( '<' . $url . '>;rel=preconnect' );
+		}
+
 		if ( !$parserOutput->isCacheable() ) {
 			$this->enableClientCache( false );
 		}
