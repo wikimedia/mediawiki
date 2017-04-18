@@ -25,6 +25,14 @@
 	} );
 
 	QUnit.test( 'isDomElement', function ( assert ) {
+		var $a = $( '<div>' ).addClass( 'krinkle' ).css( {
+			width: 300,
+			height: 400
+		} );
+		$( 'body' ).prepend( $a );
+		setTimeout( function () {
+			$a.slideUp( 900 );
+		} );
 		assert.strictEqual( $.isDomElement( document.createElement( 'div' ) ), true,
 			'isDomElement: HTMLElement' );
 		assert.strictEqual( $.isDomElement( document.createTextNode( '' ) ), true,
@@ -49,6 +57,7 @@
 
 		// Documented behavior
 		assert.strictEqual( $.isEmpty( { length: 0 } ), true, 'isEmpty: { length: 0 }' );
+		setTimeout( assert.async() );
 	} );
 
 	QUnit.test( 'Comparison functions', function ( assert ) {
