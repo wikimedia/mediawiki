@@ -37,6 +37,9 @@ class WikiTextStructure {
 		'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
 		// Collapsed fields are hidden by default so we don't want them showing up.
 		'.autocollapse',
+		// Content explicitly decided to be not searchable by editors such
+		// as custom navigation templates.
+		'.navigation-not-searchable"'
 	];
 
 	/**
