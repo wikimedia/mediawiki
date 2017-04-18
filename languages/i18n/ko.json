@@ -1431,7 +1431,7 @@
 	"rcshowhidecategorization": "문서 분류 $1",
 	"rcshowhidecategorization-show": "보이기",
 	"rcshowhidecategorization-hide": "숨기기",
-	"rclinks": "최근 $2일간의 $1개 바뀐 문서 보기<br />$3",
+	"rclinks": "최근 $2일간의 $1개 바뀐 문서 보기",
 	"diff": "차이",
 	"hist": "역사",
 	"hide": "숨기기",

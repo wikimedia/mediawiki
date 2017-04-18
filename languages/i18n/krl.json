@@ -329,7 +329,7 @@
 	"rcshowhidemine": "$1 miun kohennukšet",
 	"rcshowhidemine-show": "Näytä",
 	"rcshowhidemine-hide": "Peitä",
-	"rclinks": "Näytä $1 vereštä kohennušta viimesen $2 päivän ajalta.<br />$3",
+	"rclinks": "Näytä $1 vereštä kohennušta viimesen $2 päivän ajalta.",
 	"diff": "ero",
 	"hist": "ist",
 	"hide": "Peitä",

@@ -350,7 +350,7 @@
 	"rcshowhideanons": "$1 i cuntributori anonimi",
 	"rcshowhidepatr": "$1 e mudifiche verificate",
 	"rcshowhidemine": "$1 e mo cuntribuzioni",
-	"rclinks": "Mustrà l'ultime $1 mudifiche in i $2 ghjorni scorsi<br />$3",
+	"rclinks": "Mustrà l'ultime $1 mudifiche in i $2 ghjorni scorsi",
 	"hist": "cron",
 	"hide": "piattà",
 	"show": "mustrà",

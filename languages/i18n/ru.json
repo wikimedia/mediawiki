@@ -1473,7 +1473,7 @@
 	"rcshowhidecategorization": "$1 категоризацию страниц",
 	"rcshowhidecategorization-show": "Показать",
 	"rcshowhidecategorization-hide": "Скрыть",
-	"rclinks": "Показать последние $1 изменений за $2 дней<br />$3",
+	"rclinks": "Показать последние $1 изменений за $2 дней",
 	"diff": "разн.",
 	"hist": "история",
 	"hide": "Скрыть",

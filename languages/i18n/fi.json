@@ -1399,7 +1399,7 @@
 	"rcshowhidecategorization": "$1 sivujen luokkien muutokset",
 	"rcshowhidecategorization-show": "Näytä",
 	"rcshowhidecategorization-hide": "Piilota",
-	"rclinks": "Näytä $1 tuoretta muutosta viimeisten $2 päivän ajalta.<br />$3",
+	"rclinks": "Näytä $1 tuoretta muutosta viimeisten $2 päivän ajalta.",
 	"diff": "ero",
 	"hist": "historia",
 	"hide": "Piilota",

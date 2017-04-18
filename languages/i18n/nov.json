@@ -195,7 +195,7 @@
 	"rcshowhideminor": "$1 minori modifikos",
 	"rcshowhideanons": "$1 anonimi useres",
 	"rcshowhidemine": "$1 men modifikos",
-	"rclinks": "Montra lasti $1 chanjes in lasti $2 dies<br />$3",
+	"rclinks": "Montra lasti $1 chanjes in lasti $2 dies",
 	"hist": "hist",
 	"hide": "Kasha",
 	"show": "Montra",

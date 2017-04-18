@@ -940,7 +940,7 @@
 	"rcshowhidemine-show": "wiesen",
 	"rcshowhidemine-hide": "versteken",
 	"rcshowhidecategorization": "kategoriserung vun Sieden $1",
-	"rclinks": "Wies de letzten '''$1''' Ännern vun de letzten '''$2''' Daag. ('''N''' - Ne’e Sieden; '''L''' - Lütte Ännern)<br />$3",
+	"rclinks": "Wies de letzten '''$1''' Ännern vun de letzten '''$2''' Daag. ('''N''' - Ne’e Sieden; '''L''' - Lütte Ännern)",
 	"diff": "Ünnerscheed",
 	"hist": "Versionen",
 	"hide": "Nich wiesen",

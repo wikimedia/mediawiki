@@ -443,7 +443,7 @@
 	"rcshowhideanons": "$1 wa vatirhisi lava tumbeleke",
 	"rcshowhidepatr": "$1 mundzulamiso leyi languteriweke",
 	"rcshowhidemine": "$1 wa mindzulamiso ya mina",
-	"rclinks": "Kumba $1 ya ku cinca eka $2 wa masiku lamahundzeke<br />$3",
+	"rclinks": "Kumba $1 ya ku cinca eka $2 wa masiku lamahundzeke",
 	"diff": "Hamban",
 	"hist": "Matimu",
 	"hide": "Tumbeta",

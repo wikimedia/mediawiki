@@ -220,7 +220,7 @@
 	"rcshowhideanons": "$1 bijangle jene",
 	"rcshowhidepatr": "$1 dikhle paruvimata",
 	"rcshowhidemine": "$1 mire editisaripena",
-	"rclinks": "Dikh le palutne $1 paruvimata andar le palutne $2 divesa.<br />$3",
+	"rclinks": "Dikh le palutne $1 paruvimata andar le palutne $2 divesa.",
 	"diff": "ververipen",
 	"hist": "puranipen",
 	"hide": "garav",

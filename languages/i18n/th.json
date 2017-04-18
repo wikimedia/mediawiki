@@ -1322,7 +1322,7 @@
 	"rcshowhidecategorization": "$1การจัดหมวดหมู่หน้า",
 	"rcshowhidecategorization-show": "แสดง",
 	"rcshowhidecategorization-hide": "ซ่อน",
-	"rclinks": "แสดงการปรับปรุงล่าสุด $1 รายการ ในช่วง $2 วันที่ผ่านมา<br />$3",
+	"rclinks": "แสดงการปรับปรุงล่าสุด $1 รายการ ในช่วง $2 วันที่ผ่านมา",
 	"diff": "ต่าง",
 	"hist": "ประวัติ",
 	"hide": "ซ่อน",

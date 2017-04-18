@@ -1435,7 +1435,7 @@
 	"rcshowhidecategorization": "$1 رده‌بندی صفحه‌ها",
 	"rcshowhidecategorization-show": "نمایش",
 	"rcshowhidecategorization-hide": "نهفتن",
-	"rclinks": "نمایش آخرین $1 تغییر در $2 روز اخیر<br />$3",
+	"rclinks": "نمایش آخرین $1 تغییر در $2 روز اخیر",
 	"diff": "تفاوت",
 	"hist": "تاریخچه",
 	"hide": "نهفتن",

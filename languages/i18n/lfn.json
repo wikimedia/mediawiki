@@ -556,7 +556,7 @@
 	"rcshowhidemine": "$1 me editas",
 	"rcshowhidemine-show": "Mostra",
 	"rcshowhidemine-hide": "Asconde",
-	"rclinks": "Mostra la $1 cambias presedente en la $2 dias presedente<br />$3",
+	"rclinks": "Mostra la $1 cambias presedente en la $2 dias presedente",
 	"diff": "dife",
 	"hist": "isto",
 	"hide": "Asconde",

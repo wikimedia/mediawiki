@@ -300,7 +300,7 @@
 	"rcshowhideanons": "$1 anonyymit käyttäjät",
 	"rcshowhidepatr": "$1 tarkistetut muutokset",
 	"rcshowhidemine": "$1 omat muutokset",
-	"rclinks": "Näytä $1 verestä muutosta viimisitten $2 päivitten aikana.<br />$3",
+	"rclinks": "Näytä $1 verestä muutosta viimisitten $2 päivitten aikana.",
 	"diff": "ero",
 	"hist": "histuuria",
 	"hide": "Piilota",

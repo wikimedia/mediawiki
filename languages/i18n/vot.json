@@ -352,7 +352,7 @@
 	"rcshowhideanons": "$1 anonüümid cäüttijäd",
 	"rcshowhidepatr": "Tarkasõttu kõrjausije $1",
 	"rcshowhidemine": "$1 õmad muutussõd",
-	"rclinks": "Näüt viimõiss $1 muutuhsõiss viimõizõ $2 päivää ajalt.<br />$3",
+	"rclinks": "Näüt viimõiss $1 muutuhsõiss viimõizõ $2 päivää ajalt.",
 	"diff": "vahõ",
 	"hist": "istori",
 	"hide": "Salauta",

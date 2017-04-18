@@ -1302,7 +1302,7 @@
 	"rcshowhidecategorization": "$1 категоризации",
 	"rcshowhidecategorization-show": "Показване на",
 	"rcshowhidecategorization-hide": "Скриване на",
-	"rclinks": "Показване на последните $1 промени за последните $2 дни<br />$3",
+	"rclinks": "Показване на последните $1 промени за последните $2 дни",
 	"diff": "разл",
 	"hist": "ист",
 	"hide": "Скриване",

@@ -1449,7 +1449,7 @@
 	"rcshowhidecategorization": "paginacategorisatie $1",
 	"rcshowhidecategorization-show": "weergeven",
 	"rcshowhidecategorization-hide": "Verbergen",
-	"rclinks": "De $1 laatste wijzigingen bekijken in de laatste $2 dagen<br />$3",
+	"rclinks": "De $1 laatste wijzigingen bekijken in de laatste $2 dagen",
 	"diff": "wijz",
 	"hist": "gesch",
 	"hide": "verbergen",

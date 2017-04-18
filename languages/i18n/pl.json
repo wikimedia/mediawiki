@@ -1462,7 +1462,7 @@
 	"rcshowhidecategorization": "$1 kategoryzację stron",
 	"rcshowhidecategorization-show": "Pokaż",
 	"rcshowhidecategorization-hide": "Ukryj",
-	"rclinks": "Pokaż ostatnie $1 zmian w ciągu ostatnich $2 dni.<br />$3",
+	"rclinks": "Pokaż ostatnie $1 zmian w ciągu ostatnich $2 dni.",
 	"diff": "różn.",
 	"hist": "hist.",
 	"hide": "Ukryj",

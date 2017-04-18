@@ -709,7 +709,7 @@
 	"rcshowhidemine": "$1 mo chuid athruithe",
 	"rcshowhidemine-show": "Taispeáin",
 	"rcshowhidemine-hide": "Folaigh",
-	"rclinks": "Taispeáin an $1 athrú is déanaí sa $2 lá seo caite<br />$3",
+	"rclinks": "Taispeáin an $1 athrú is déanaí sa $2 lá seo caite",
 	"diff": "difr",
 	"hist": "stair",
 	"hide": "Folaigh",

@@ -909,7 +909,7 @@
 	"rcshowhidecategorization": "$1, kap poslapiam doud kateguorėjės",
 	"rcshowhidecategorization-show": "Ruodītė",
 	"rcshowhidecategorization-hide": "Kavuotė",
-	"rclinks": "Ruodītė vielībus $1 pakeitėmu par paskuojės $2 dėinas<br />$3",
+	"rclinks": "Ruodītė vielībus $1 pakeitėmu par paskuojės $2 dėinas",
 	"diff": "skėrt",
 	"hist": "ist",
 	"hide": "Kavuotė",

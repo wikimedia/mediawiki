@@ -1520,7 +1520,7 @@
 	"rcshowhidecategorization": "$1 categorización de páginas",
 	"rcshowhidecategorization-show": "Mostrar",
 	"rcshowhidecategorization-hide": "Ocultar",
-	"rclinks": "Ver los últimos $1 cambios en los últimos $2 días.<br />$3",
+	"rclinks": "Ver los últimos $1 cambios en los últimos $2 días.",
 	"diff": "dif",
 	"hist": "hist",
 	"hide": "Ocultar",

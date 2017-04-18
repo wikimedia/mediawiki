@@ -1470,7 +1470,7 @@
 	"rcshowhidecategorization": "$1页面分类",
 	"rcshowhidecategorization-show": "显示",
 	"rcshowhidecategorization-hide": "隐藏",
-	"rclinks": "显示过去$2天的最后$1个更改<br />$3",
+	"rclinks": "显示过去$2天的最后$1个更改",
 	"diff": "差异",
 	"hist": "历史",
 	"hide": "隐藏",

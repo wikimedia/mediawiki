@@ -946,7 +946,7 @@
 	"rcshowhideanons": "$1 pangguno anon",
 	"rcshowhidepatr": "$1 suntiangan tapatroli",
 	"rcshowhidemine": "$1 suntiangan denai",
-	"rclinks": "Tunjuakan $1 parubahan tabaru dalam $2 hari tarakhia<br />$3",
+	"rclinks": "Tunjuakan $1 parubahan tabaru dalam $2 hari tarakhia",
 	"diff": "bedo",
 	"hist": "sijarah",
 	"hide": "Suruakan",

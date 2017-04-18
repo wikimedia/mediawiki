@@ -1310,7 +1310,7 @@
 	"rcshowhidecategorization": "Kategoriseerimine ($1)",
 	"rcshowhidecategorization-show": "näita",
 	"rcshowhidecategorization-hide": "peida",
-	"rclinks": "Näita viimast $1 muudatust viimase $2 päeva jooksul<br />$3",
+	"rclinks": "Näita viimast $1 muudatust viimase $2 päeva jooksul",
 	"diff": "erin",
 	"hist": "ajal",
 	"hide": "peida",

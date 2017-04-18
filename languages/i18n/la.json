@@ -868,7 +868,7 @@
 	"rcshowhidecategorization": "$1 classificationes",
 	"rcshowhidecategorization-show": "Ostendere",
 	"rcshowhidecategorization-hide": "Supprimere",
-	"rclinks": "Monstrare $1 nuperrime mutata in $2 diebus proximis.<br />$3",
+	"rclinks": "Monstrare $1 nuperrime mutata in $2 diebus proximis.",
 	"diff": "diff",
 	"hist": "hist",
 	"hide": "celare",

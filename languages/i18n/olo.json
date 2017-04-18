@@ -716,7 +716,7 @@
 	"rcshowhidemine": "$1 minun kohendukset",
 	"rcshowhidemine-show": "Ozuta",
 	"rcshowhidemine-hide": "Peitä",
-	"rclinks": "Ozuta jälgimäzet $1 muutostu jälgimäzen $2 päivän aijannu<br />$3",
+	"rclinks": "Ozuta jälgimäzet $1 muutostu jälgimäzen $2 päivän aijannu",
 	"diff": "erot",
 	"hist": "Histourii",
 	"hide": "Peitä",

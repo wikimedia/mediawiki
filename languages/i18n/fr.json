@@ -1540,7 +1540,7 @@
 	"rcshowhidecategorization": "$1 la catégorisation des pages",
 	"rcshowhidecategorization-show": "Afficher",
 	"rcshowhidecategorization-hide": "Cacher",
-	"rclinks": "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours<br />$3.",
+	"rclinks": "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours.",
 	"diff": "diff",
 	"hist": "hist",
 	"hide": "Masquer",

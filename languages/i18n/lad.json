@@ -651,7 +651,7 @@
 	"rcshowhideanons": "$1 usadores anónimos",
 	"rcshowhidepatr": "$1 trocamientos akavidados",
 	"rcshowhidemine": "$1 mis trocamientos",
-	"rclinks": "Ver los $1 trocamientos dalcavo en los $2 días dalcavo<br />$3",
+	"rclinks": "Ver los $1 trocamientos dalcavo en los $2 días dalcavo",
 	"diff": "dif",
 	"hist": "ist",
 	"hide": "Esconder",

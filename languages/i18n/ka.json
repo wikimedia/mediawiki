@@ -1326,7 +1326,7 @@
 	"rcshowhidecategorization": "გვერდის კატეგორიზაციის $1",
 	"rcshowhidecategorization-show": "ჩვენება",
 	"rcshowhidecategorization-hide": "დამალვა",
-	"rclinks": "ბოლო $1 ცვლილების ჩვენება უკანასკნელი $2 დღის მანძილზე<br />$3",
+	"rclinks": "ბოლო $1 ცვლილების ჩვენება უკანასკნელი $2 დღის მანძილზე",
 	"diff": "განსხ.",
 	"hist": "ისტ.",
 	"hide": "დამალვა",

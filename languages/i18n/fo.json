@@ -1114,7 +1114,7 @@
 	"rcshowhidemine": "$1 mínar rættingar",
 	"rcshowhidemine-show": "Vís",
 	"rcshowhidemine-hide": "Fjal",
-	"rclinks": "Sýn seinastu $1 broytingarnar seinastu $2 dagarnar<br />$3",
+	"rclinks": "Sýn seinastu $1 broytingarnar seinastu $2 dagarnar",
 	"diff": "munur",
 	"hist": "søga",
 	"hide": "Goym",

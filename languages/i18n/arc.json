@@ -646,7 +646,7 @@
 	"rcshowhidemine": "$1 ܫܘܚܠܦ̈ܝ",
 	"rcshowhidemine-show": "ܚܘܝ",
 	"rcshowhidemine-hide": "ܛܫܝ",
-	"rclinks": "ܚܘܝ $1 ܫܘܚܠܦ̈ܐ ܐܚܪ̈ܝܐ ܒ $2 ܝܘܡܬ̈ܐ ܐܚܪ̈ܝܐ<br />$3",
+	"rclinks": "ܚܘܝ $1 ܫܘܚܠܦ̈ܐ ܐܚܪ̈ܝܐ ܒ $2 ܝܘܡܬ̈ܐ ܐܚܪ̈ܝܐ",
 	"diff": "ܦܘܪܫܐ",
 	"hist": "ܬܫܥܝܬܐ",
 	"hide": "ܛܫܝ",

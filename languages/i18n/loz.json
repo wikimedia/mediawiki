@@ -394,7 +394,7 @@
 	"rcshowhideanons": "$1 IP",
 	"rcshowhidepatr": "$1 afina patoli",
 	"rcshowhidemine": "$1 zwa afina",
-	"rclinks": "Kamukile lapu-lila $1 petuhoni di lapu-lila $2 dia<br />$3",
+	"rclinks": "Kamukile lapu-lila $1 petuhoni di lapu-lila $2 dia",
 	"diff": "petuho",
 	"hist": "bundau",
 	"hide": "Cwankekile",

@@ -1231,7 +1231,7 @@
 	"rcshowhidecategorization": "$1 flokkun síðna",
 	"rcshowhidecategorization-show": "Birta",
 	"rcshowhidecategorization-hide": "Fela",
-	"rclinks": "Sýna síðustu $1 breytingar síðustu $2 daga<br />$3",
+	"rclinks": "Sýna síðustu $1 breytingar síðustu $2 daga",
 	"diff": "breyting",
 	"hist": "breytingaskrá",
 	"hide": "Fela",

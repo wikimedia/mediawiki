@@ -1287,7 +1287,7 @@
 	"rcshowhidecategorization": "$1 la categorizacion de las paginas",
 	"rcshowhidecategorization-show": "Afichar",
 	"rcshowhidecategorization-hide": "Amagar",
-	"rclinks": "Afichar los $1 darrièrs cambiaments efectuats al cors dels $2 darrièrs jorns<br />$3.",
+	"rclinks": "Afichar los $1 darrièrs cambiaments efectuats al cors dels $2 darrièrs jorns",
 	"diff": "dif",
 	"hist": "ist",
 	"hide": "amagar",

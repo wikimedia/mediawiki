@@ -1466,7 +1466,7 @@
 	"rcshowhidecategorization": "Seitenkategorisierungen $1",
 	"rcshowhidecategorization-show": "anzeigen",
 	"rcshowhidecategorization-hide": "ausblenden",
-	"rclinks": "Zeige die letzten $1 Änderungen der letzten $2 Tage.<br />$3",
+	"rclinks": "Zeige die letzten $1 Änderungen der letzten $2 Tage.",
 	"diff": "Unterschied",
 	"hist": "Versionen",
 	"hide": "ausblenden",

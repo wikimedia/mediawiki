@@ -1409,7 +1409,7 @@
 	"rcshowhidecategorization": "lapok kategorizálásának $1",
 	"rcshowhidecategorization-show": "megjelenítése",
 	"rcshowhidecategorization-hide": "elrejtése",
-	"rclinks": "Az elmúlt $2 nap utolsó $1 változtatása legyen látható<br />$3",
+	"rclinks": "Az elmúlt $2 nap utolsó $1 változtatása legyen látható",
 	"diff": "eltér",
 	"hist": "történet",
 	"hide": "elrejtése",

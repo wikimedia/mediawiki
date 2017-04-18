@@ -1456,7 +1456,7 @@
 	"rcshowhidecategorization": "$1 頁面分類",
 	"rcshowhidecategorization-show": "顯示",
 	"rcshowhidecategorization-hide": "隱藏",
-	"rclinks": "顯示最近 $2 天內的 $1 次變更。<br />$3",
+	"rclinks": "顯示最近 $2 天內的 $1 次變更。",
 	"diff": "差異",
 	"hist": "歷史",
 	"hide": "隱藏",

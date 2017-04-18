@@ -1389,7 +1389,7 @@
 	"rcshowhidecategorization": "$1 kategorizacijo strani",
 	"rcshowhidecategorization-show": "Prikaži",
 	"rcshowhidecategorization-hide": "Skrij",
-	"rclinks": "Prikaži zadnjih $1 sprememb v zadnjih $2 dneh<br />$3",
+	"rclinks": "Prikaži zadnjih $1 sprememb v zadnjih $2 dneh",
 	"diff": "prim",
 	"hist": "zgod",
 	"hide": "skrij",

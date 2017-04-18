@@ -1406,7 +1406,7 @@
 	"rcshowhidecategorization": "ページのカテゴリー追加・除去を$1",
 	"rcshowhidecategorization-show": "表示する",
 	"rcshowhidecategorization-hide": "非表示にする",
-	"rclinks": "最近 $2 日間の更新を最大 $1 件表示<br />$3",
+	"rclinks": "最近 $2 日間の更新を最大 $1 件表示",
 	"diff": "差分",
 	"hist": "履歴",
 	"hide": "非表示",
