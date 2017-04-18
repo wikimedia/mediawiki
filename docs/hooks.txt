@@ -3403,6 +3403,13 @@ processing.
 &$archive: PageArchive object
 $title: Title object of the page that we're about to undelete
 
+'UndeletePermissionErrors': Called with errors specific to page undeletions
+(any combination of "undelete-cantedit" and undelete-cantcreate).
+allows to overwrite these.
+$title: The Title to be undeleted.
+$user: The user that wants to undelete the page.
+&$errors: Array of undelete specific errors.
+
 'UndeleteShowRevision': Called when showing a revision in Special:Undelete.
 $title: title object related to the revision
 $rev: revision (object) that will be viewed

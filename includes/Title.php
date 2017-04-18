@@ -2327,6 +2327,8 @@ class Title implements LinkTarget {
 				// Undeleting where nothing currently exists implies creating
 				$errors[] = [ 'undelete-cantcreate' ];
 			}
+
+			Hooks::run( 'UndeletePermissionErrors', [ $this, $user, &$errors ] );
 		}
 		return $errors;
 	}
