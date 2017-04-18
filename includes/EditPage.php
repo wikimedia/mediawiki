@@ -4308,6 +4308,8 @@ HTML
 		if ( $this->oouiEnabled ) {
 			$saveConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
 			$buttons['save'] = new OOUI\ButtonInputWidget( [
+				// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
+				'useInputTag' => true,
 				'flags' => [ 'constructive', 'primary' ],
 				'label' => $this->context->msg( $buttonLabelKey )->text(),
 				'infusable' => true,
@@ -4329,6 +4331,8 @@ HTML
 		if ( $this->oouiEnabled ) {
 			$previewConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
 			$buttons['preview'] = new OOUI\ButtonInputWidget( [
+				// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
+				'useInputTag' => true,
 				'label' => $this->context->msg( 'showpreview' )->text(),
 				'infusable' => true,
 				'type' => 'submit'
@@ -4347,6 +4351,8 @@ HTML
 		if ( $this->oouiEnabled ) {
 			$diffConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
 			$buttons['diff'] = new OOUI\ButtonInputWidget( [
+				// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
+				'useInputTag' => true,
 				'label' => $this->context->msg( 'showdiff' )->text(),
 				'infusable' => true,
 				'type' => 'submit',
