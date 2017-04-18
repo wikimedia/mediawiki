@@ -1222,6 +1222,6 @@
 	"htmlform-selectorother-other": "Åndre",
 	"logentry-move-move_redir": "$1 hod de Seitn $3 af $4 {{GENDER:$2|verschom}} und hod dabei a Weidaloatung ibaschriem",
 	"logentry-move-move_redir-noredirect": "$1 hod de Seitn $3 af $4 {{GENDER:$2|verschom}} und dabei a Weidaloatung ibaschriem, ohne a neiche ozlegn",
-	"searchsuggest-search": "Suach",
+	"searchsuggest-search": "Suach (af Boarisch oda Deutsch)",
 	"searchsuggest-containing": "Voitextsuach noch ..."
 }

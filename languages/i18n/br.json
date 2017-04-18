@@ -3183,6 +3183,7 @@
 	"confirmrecreate": "{{GENDER:$1|Diverket}} eo bet ar bajenn-mañ gant [[User:$1|$1]] ([[User talk:$1|kaozeal]]) goude ma vije bet kroget ganeoc'h kemmañ anezhi :\n: ''$2''\nKadarnait mar plij e fell deoc'h krouiñ ar pennad-mañ en-dro.",
 	"confirmrecreate-noreason": "{{GENDER:$1|Diverket}} eo bet ar bajenn-mañ gant [[User:$1|$1]] ([[User talk:$1|kaozeal]]) goude ma vije bet kroget ganeoc'h kemmañ anezhi. Kadarnait e fell deoc'h adkrouiñ ar pennad-mañ e gwirionez.",
 	"recreate": "Adkrouiñ",
+	"confirm-purge-title": "Spurjañ ar bajenn-mañ.",
 	"confirm_purge_button": "Mat eo",
 	"confirm-purge-top": "Spurjañ krubuilh ar bajenn-mañ?",
 	"confirm-purge-bottom": "Spurjañ ur bajenn a a naeta ar grubuilh hag a redi ar stumm nevesañ da zont war wel.",

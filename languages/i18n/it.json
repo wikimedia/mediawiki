@@ -106,7 +106,8 @@
 			"Selven",
 			"Margherita.mignanelli",
 			"Redredsonia",
-			"Luigi.delia"
+			"Luigi.delia",
+			"Samuele2002"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -1407,8 +1408,14 @@
 	"rcfilters-noresults-conflict": "Nessun risultato trovato, perché i criteri di ricerca sono in conflitto",
 	"rcfilters-filtergroup-registration": "Registrazione utente",
 	"rcfilters-filter-registered-label": "Registrato",
+	"rcfilters-filter-unregistered-label": "Non registrato",
 	"rcfilters-filtergroup-authorship": "Modifica paternità",
+	"rcfilters-filter-editsbyself-description": "Proprie modifiche.",
+	"rcfilters-filter-editsbyother-label": "Modifiche di altri",
+	"rcfilters-filter-editsbyother-description": "Modifiche create da altri utenti (non tu).",
+	"rcfilters-filtergroup-automated": "Contributi automatici",
 	"rcfilters-filter-bots-label": "Bot",
+	"rcfilters-filter-humans-label": "Umani (non bot)",
 	"rcfilters-filter-patrolled-label": "Verificate",
 	"rcfilters-filter-patrolled-description": "Modifiche contrassegnate come verificate.",
 	"rcfilters-filter-unpatrolled-label": "Non verificate",
@@ -2314,7 +2321,7 @@
 	"sp-contributions-uploads": "file caricati",
 	"sp-contributions-logs": "registri",
 	"sp-contributions-talk": "discussione",
-	"sp-contributions-userrights": "gestione dei permessi",
+	"sp-contributions-userrights": "gestione permessi {{GENDER:$1|utente}}",
 	"sp-contributions-blocked-notice": "Questo utente è attualmente bloccato.\nL'ultimo elemento del registro dei blocchi è riportato di seguito per informazione:",
 	"sp-contributions-blocked-notice-anon": "Questo indirizzo IP è attualmente bloccato.\nL'ultimo elemento del registro dei blocchi è riportato di seguito per informazione:",
 	"sp-contributions-search": "Ricerca contributi",
