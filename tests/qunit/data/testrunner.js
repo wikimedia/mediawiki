@@ -240,6 +240,7 @@
 							);
 						} );
 						// Force animations to stop to give the next test a clean start
+						$.timers = [];
 						$.fx.stop();
 
 						throw new Error( 'Unfinished animations: ' + timers );
