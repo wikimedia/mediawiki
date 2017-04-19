@@ -1351,7 +1351,6 @@ return [
 		'dependencies' => [
 			'mediawiki.api',
 			'mediawiki.api.user',
-			'mediawiki.cookie',
 			'mediawiki.storage',
 			'user.options',
 			'user.tokens',
