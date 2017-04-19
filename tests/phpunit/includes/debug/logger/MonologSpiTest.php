@@ -21,7 +21,7 @@
 namespace MediaWiki\Logger;
 
 use MediaWikiTestCase;
-use TestingAccessWrapper;
+use Wikimedia\TestingAccessWrapper;
 
 class MonologSpiTest extends MediaWikiTestCase {
 
