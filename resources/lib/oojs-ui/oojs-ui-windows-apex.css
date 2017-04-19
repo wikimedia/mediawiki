@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.0
+ * OOjs UI v0.21.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-04-11T22:51:10Z
+ * Date: 2017-04-18T23:32:54Z
  */
 .oo-ui-actionWidget.oo-ui-pendingElement-pending {
   background-image: /* @embed */ url(themes/apex/images/textures/pending.gif);
@@ -17,8 +17,8 @@
 }
 .oo-ui-window-frame {
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .oo-ui-window-content {
   position: absolute;
@@ -34,9 +34,9 @@
 .oo-ui-window-foot {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .oo-ui-window-body {
   margin: 0;
@@ -56,8 +56,8 @@
   left: 0;
   right: 0;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .oo-ui-dialog-content > .oo-ui-window-head {
   overflow: hidden;
@@ -376,19 +376,19 @@
   background-color: rgba(255, 255, 255, 0.5);
   opacity: 0;
   -webkit-transition: opacity 250ms ease;
-     -moz-transition: opacity 250ms ease;
-          transition: opacity 250ms ease;
+  -moz-transition: opacity 250ms ease;
+  transition: opacity 250ms ease;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog > .oo-ui-window-frame {
   background-color: #fff;
   opacity: 0;
   -webkit-transform: scale(0.5);
-     -moz-transform: scale(0.5);
-      -ms-transform: scale(0.5);
-          transform: scale(0.5);
+  -moz-transform: scale(0.5);
+  -ms-transform: scale(0.5);
+  transform: scale(0.5);
   -webkit-transition: all 250ms ease;
-     -moz-transition: all 250ms ease;
-          transition: all 250ms ease;
+  -moz-transition: all 250ms ease;
+  transition: all 250ms ease;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-setup {
   opacity: 1;
@@ -396,9 +396,9 @@
 .oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-ready > .oo-ui-window-frame {
   opacity: 1;
   -webkit-transform: scale(1);
-     -moz-transform: scale(1);
-      -ms-transform: scale(1);
-          transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
 }
 .oo-ui-windowManager-modal.oo-ui-windowManager-floating > .oo-ui-dialog > .oo-ui-window-frame {
   top: 1em;

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.0
+ * OOjs UI v0.21.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-04-11T22:51:10Z
+ * Date: 2017-04-18T23:32:54Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -20,17 +20,17 @@
   cursor: pointer;
   display: inline-block;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   vertical-align: middle;
   font-family: inherit;
   font-size: inherit;
   white-space: nowrap;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .oo-ui-buttonElement > .oo-ui-buttonElement-button::-moz-focus-inner {
   border-color: transparent;
@@ -115,13 +115,13 @@
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
   border: 1px #c9c9c9 solid;
   -webkit-transition: border-color 100ms ease;
-     -moz-transition: border-color 100ms ease;
-          transition: border-color 100ms ease;
+  -moz-transition: border-color 100ms ease;
+  transition: border-color 100ms ease;
   background-color: #eeeeee;
   background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #fff), color-stop(100%, #ddd));
   background-image: -webkit-linear-gradient(top, #fff 0, #ddd 100%);
-  background-image:    -moz-linear-gradient(top, #fff 0, #ddd 100%);
-  background-image:         linear-gradient(to bottom, #fff 0, #ddd 100%);
+  background-image: -moz-linear-gradient(top, #fff 0, #ddd 100%);
+  background-image: linear-gradient(to bottom, #fff 0, #ddd 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffffff', endColorstr='#ffdddddd' )";
 }
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:hover,
@@ -142,8 +142,8 @@
   background-color: #eeeeee;
   background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #ddd), color-stop(100%, #fff));
   background-image: -webkit-linear-gradient(top, #ddd 0, #fff 100%);
-  background-image:    -moz-linear-gradient(top, #ddd 0, #fff 100%);
-  background-image:         linear-gradient(to bottom, #ddd 0, #fff 100%);
+  background-image: -moz-linear-gradient(top, #ddd 0, #fff 100%);
+  background-image: linear-gradient(to bottom, #ddd 0, #fff 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffdddddd', endColorstr='#ffffffff' )";
 }
 .oo-ui-buttonElement-framed.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
@@ -169,8 +169,8 @@
   background-color: #cde7f4;
   background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #eaf4fa), color-stop(100%, #b0d9ee));
   background-image: -webkit-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
-  background-image:    -moz-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
-  background-image:         linear-gradient(to bottom, #eaf4fa 0, #b0d9ee 100%);
+  background-image: -moz-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
+  background-image: linear-gradient(to bottom, #eaf4fa 0, #b0d9ee 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeaf4fa', endColorstr='#ffb0d9ee' )";
 }
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:hover,
@@ -184,8 +184,8 @@
   background-color: #cde7f4;
   background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #b0d9ee), color-stop(100%, #eaf4fa));
   background-image: -webkit-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
-  background-image:    -moz-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
-  background-image:         linear-gradient(to bottom, #b0d9ee 0, #eaf4fa 100%);
+  background-image: -moz-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
+  background-image: linear-gradient(to bottom, #b0d9ee 0, #eaf4fa 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb0d9ee', endColorstr='#ffeaf4fa' )";
 }
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button {
@@ -193,8 +193,8 @@
   background-color: #daf0bd;
   background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #f0fbe1), color-stop(100%, #c3e59a));
   background-image: -webkit-linear-gradient(top, #f0fbe1 0, #c3e59a 100%);
-  background-image:    -moz-linear-gradient(top, #f0fbe1 0, #c3e59a 100%);
-  background-image:         linear-gradient(to bottom, #f0fbe1 0, #c3e59a 100%);
+  background-image: -moz-linear-gradient(top, #f0fbe1 0, #c3e59a 100%);
+  background-image: linear-gradient(to bottom, #f0fbe1 0, #c3e59a 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff0fbe1', endColorstr='#ffc3e59a' )";
 }
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button:hover,
@@ -208,8 +208,8 @@
   background-color: #daf0bd;
   background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #c3e59a), color-stop(100%, #f0fbe1));
   background-image: -webkit-linear-gradient(top, #c3e59a 0, #f0fbe1 100%);
-  background-image:    -moz-linear-gradient(top, #c3e59a 0, #f0fbe1 100%);
-  background-image:         linear-gradient(to bottom, #c3e59a 0, #f0fbe1 100%);
+  background-image: -moz-linear-gradient(top, #c3e59a 0, #f0fbe1 100%);
+  background-image: linear-gradient(to bottom, #c3e59a 0, #f0fbe1 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffc3e59a', endColorstr='#fff0fbe1' )";
 }
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button {
@@ -220,7 +220,7 @@
 .oo-ui-buttonElement-framed.oo-ui-widget-disabled.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
   opacity: 0.5;
   -webkit-transform: translateZ(0);
-          transform: translateZ(0);
+  transform: translateZ(0);
   box-shadow: none;
   color: #333;
   background: #eee;
@@ -237,8 +237,8 @@
 }
 .oo-ui-clippableElement-clippable {
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   min-height: 3.125em;
 }
 .oo-ui-floatableElement {
@@ -483,7 +483,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-panelLayout-scrollable {
   overflow: auto;
   -webkit-transform: translateZ(0);
-          transform: translateZ(0);
+  transform: translateZ(0);
 }
 .oo-ui-panelLayout-expanded {
   position: absolute;
@@ -717,9 +717,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-popupWidget-head {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .oo-ui-popupWidget-head > .oo-ui-buttonWidget {
   float: right;
@@ -814,8 +814,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-popupWidget-transitioning .oo-ui-popupWidget-popup {
   -webkit-transition: width 100ms ease, height 100ms ease, left 100ms ease;
-     -moz-transition: width 100ms ease, height 100ms ease, left 100ms ease;
-          transition: width 100ms ease, height 100ms ease, left 100ms ease;
+  -moz-transition: width 100ms ease, height 100ms ease, left 100ms ease;
+  transition: width 100ms ease, height 100ms ease, left 100ms ease;
 }
 .oo-ui-popupWidget-head {
   height: 2.5em;
@@ -857,8 +857,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   position: relative;
   vertical-align: middle;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   width: 100%;
   max-width: 50em;
 }
@@ -871,8 +871,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   background-repeat: no-repeat;
   width: 100%;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .oo-ui-dropdownInputWidget.oo-ui-widget-enabled select {
   cursor: pointer;
@@ -909,8 +909,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   position: relative;
   vertical-align: middle;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   width: 100%;
   max-width: 50em;
 }
@@ -919,8 +919,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   display: block;
   width: 100%;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .oo-ui-textInputWidget textarea {
   overflow: auto;
@@ -957,9 +957,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   height: 100%;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-iconElement-icon,
 .oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-indicatorElement-indicator {
@@ -973,9 +973,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-labelElement-label {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .oo-ui-textInputWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
   display: block;
@@ -1009,8 +1009,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   box-shadow: 0 0 0 #fff, inset 0 0.1em 0.2em #ddd;
   border-radius: 0.25em;
   -webkit-transition: border-color 250ms ease, box-shadow 250ms ease;
-     -moz-transition: border-color 250ms ease, box-shadow 250ms ease;
-          transition: border-color 250ms ease, box-shadow 250ms ease;
+  -moz-transition: border-color 250ms ease, box-shadow 250ms ease;
+  transition: border-color 250ms ease, box-shadow 250ms ease;
 }
 .oo-ui-textInputWidget input.oo-ui-pendingElement-pending,
 .oo-ui-textInputWidget textarea.oo-ui-pendingElement-pending {
@@ -1120,14 +1120,24 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-menuSelectWidget-invisible {
   display: none;
 }
-.oo-ui-menuOptionWidget .oo-ui-iconElement-icon {
-  display: none;
-}
-.oo-ui-menuOptionWidget.oo-ui-optionWidget-selected .oo-ui-iconElement-icon {
-  display: block;
-}
 .oo-ui-menuOptionWidget.oo-ui-optionWidget-selected {
   background-color: transparent;
+}
+.oo-ui-menuOptionWidget.oo-ui-optionWidget-selected .oo-ui-iconElement-icon {
+  background-image: url('themes/apex/images/icons/check.png');
+  background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url('themes/apex/images/icons/check.svg');
+  background-image: linear-gradient(transparent, transparent), /* @embed */ url('themes/apex/images/icons/check.svg');
+  background-image: -o-linear-gradient(transparent, transparent), url('themes/apex/images/icons/check.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+  left: 0.5em;
+  top: 0;
+  min-width: 24px;
+  width: 1.875em;
+  min-height: 24px;
+  height: 100%;
 }
 .oo-ui-menuOptionWidget.oo-ui-optionWidget-highlighted,
 .oo-ui-menuOptionWidget.oo-ui-optionWidget-highlighted.oo-ui-optionWidget-selected {
@@ -1158,12 +1168,12 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   cursor: default;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .oo-ui-dropdownWidget-handle .oo-ui-iconElement-icon,
 .oo-ui-dropdownWidget-handle .oo-ui-indicatorElement-indicator {
@@ -1332,24 +1342,24 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   height: 1em;
   border-right: 1px solid #ccc;
   -webkit-transition: width 250ms ease;
-     -moz-transition: width 250ms ease;
-          transition: width 250ms ease;
+  -moz-transition: width 250ms ease;
+  transition: width 250ms ease;
   background-color: #cde7f4;
   background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #eaf4fa), color-stop(100%, #b0d9ee));
   background-image: -webkit-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
-  background-image:    -moz-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
-  background-image:         linear-gradient(to bottom, #eaf4fa 0, #b0d9ee 100%);
+  background-image: -moz-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
+  background-image: linear-gradient(to bottom, #eaf4fa 0, #b0d9ee 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeaf4fa', endColorstr='#ffb0d9ee' )";
 }
 .oo-ui-progressBarWidget-indeterminate .oo-ui-progressBarWidget-bar {
   -webkit-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
-     -moz-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
-          animation: oo-ui-progressBarWidget-slide 2s infinite linear;
+  -moz-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
+  animation: oo-ui-progressBarWidget-slide 2s infinite linear;
   width: 40%;
   -webkit-transform: translate(-25%);
-     -moz-transform: translate(-25%);
-      -ms-transform: translate(-25%);
-          transform: translate(-25%);
+  -moz-transform: translate(-25%);
+  -ms-transform: translate(-25%);
+  transform: translate(-25%);
   border-left: 1px solid #a6cee1;
 }
 .oo-ui-progressBarWidget.oo-ui-widget-disabled {
@@ -1358,42 +1368,42 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
   from {
     -webkit-transform: translate(-100%);
-       -moz-transform: translate(-100%);
-        -ms-transform: translate(-100%);
-            transform: translate(-100%);
+    -moz-transform: translate(-100%);
+    -ms-transform: translate(-100%);
+    transform: translate(-100%);
   }
   to {
     -webkit-transform: translate(350%);
-       -moz-transform: translate(350%);
-        -ms-transform: translate(350%);
-            transform: translate(350%);
+    -moz-transform: translate(350%);
+    -ms-transform: translate(350%);
+    transform: translate(350%);
   }
 }
 @-moz-keyframes oo-ui-progressBarWidget-slide {
   from {
     -webkit-transform: translate(-100%);
-       -moz-transform: translate(-100%);
-        -ms-transform: translate(-100%);
-            transform: translate(-100%);
+    -moz-transform: translate(-100%);
+    -ms-transform: translate(-100%);
+    transform: translate(-100%);
   }
   to {
     -webkit-transform: translate(350%);
-       -moz-transform: translate(350%);
-        -ms-transform: translate(350%);
-            transform: translate(350%);
+    -moz-transform: translate(350%);
+    -ms-transform: translate(350%);
+    transform: translate(350%);
   }
 }
 @keyframes oo-ui-progressBarWidget-slide {
   from {
     -webkit-transform: translate(-100%);
-       -moz-transform: translate(-100%);
-        -ms-transform: translate(-100%);
-            transform: translate(-100%);
+    -moz-transform: translate(-100%);
+    -ms-transform: translate(-100%);
+    transform: translate(-100%);
   }
   to {
     -webkit-transform: translate(350%);
-       -moz-transform: translate(350%);
-        -ms-transform: translate(350%);
-            transform: translate(350%);
+    -moz-transform: translate(350%);
+    -ms-transform: translate(350%);
+    transform: translate(350%);
   }
 }

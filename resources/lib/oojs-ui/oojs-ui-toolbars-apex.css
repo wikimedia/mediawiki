@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.0
+ * OOjs UI v0.21.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-04-11T22:51:10Z
+ * Date: 2017-04-18T23:32:54Z
  */
 .oo-ui-popupTool .oo-ui-popupWidget-popup,
 .oo-ui-popupTool .oo-ui-popupWidget-anchor {
@@ -43,8 +43,8 @@
   border-radius: 0.3125em;
   border: 1px solid transparent;
   -webkit-transition: border-color 250ms ease;
-     -moz-transition: border-color 250ms ease;
-          transition: border-color 250ms ease;
+  -moz-transition: border-color 250ms ease;
+  transition: border-color 250ms ease;
 }
 .oo-ui-toolGroup-empty {
   display: none;
@@ -121,8 +121,8 @@
   background-color: #f8fbfd;
   background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #f1f7fb), color-stop(100%, #fff));
   background-image: -webkit-linear-gradient(top, #f1f7fb 0, #fff 100%);
-  background-image:    -moz-linear-gradient(top, #f1f7fb 0, #fff 100%);
-  background-image:         linear-gradient(to bottom, #f1f7fb 0, #fff 100%);
+  background-image: -moz-linear-gradient(top, #f1f7fb 0, #fff 100%);
+  background-image: linear-gradient(to bottom, #f1f7fb 0, #fff 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff1f7fb', endColorstr='#ffffffff' )";
 }
 .oo-ui-barToolGroup.oo-ui-widget-enabled > .oo-ui-toolGroup-tools > .oo-ui-tool.oo-ui-tool-active.oo-ui-widget-enabled + .oo-ui-tool-active.oo-ui-widget-enabled {
@@ -235,6 +235,75 @@
 .oo-ui-toolbar-narrow .oo-ui-popupToolGroup.oo-ui-labelElement.oo-ui-indicatorElement .oo-ui-popupToolGroup-handle .oo-ui-labelElement-label {
   margin-right: 1.75em;
 }
+.oo-ui-popupToolGroup.oo-ui-flaggedElement-progressive > .oo-ui-popupToolGroup-handle {
+  border: 1px solid #a6cee1;
+  background-color: #cde7f4;
+  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #eaf4fa), color-stop(100%, #b0d9ee));
+  background-image: -webkit-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
+  background-image: -moz-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
+  background-image: linear-gradient(to bottom, #eaf4fa 0, #b0d9ee 100%);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeaf4fa', endColorstr='#ffb0d9ee' )";
+}
+.oo-ui-popupToolGroup.oo-ui-flaggedElement-progressive > .oo-ui-popupToolGroup-handle:hover,
+.oo-ui-popupToolGroup.oo-ui-flaggedElement-progressive > .oo-ui-popupToolGroup-handle:focus {
+  border-color: #9dc2d4;
+}
+.oo-ui-popupToolGroup.oo-ui-flaggedElement-progressive.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle:active,
+.oo-ui-popupToolGroup.oo-ui-flaggedElement-progressive.oo-ui-popupToolGroup-active > .oo-ui-popupToolGroup-handle {
+  border: 1px solid #a6cee1;
+  background-color: #cde7f4;
+  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #b0d9ee), color-stop(100%, #eaf4fa));
+  background-image: -webkit-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
+  background-image: -moz-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
+  background-image: linear-gradient(to bottom, #b0d9ee 0, #eaf4fa 100%);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb0d9ee', endColorstr='#ffeaf4fa' )";
+}
+.oo-ui-popupToolGroup.oo-ui-flaggedElement-constructive > .oo-ui-popupToolGroup-handle {
+  border: 1px solid #b8d892;
+  background-color: #daf0bd;
+  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #f0fbe1), color-stop(100%, #c3e59a));
+  background-image: -webkit-linear-gradient(top, #f0fbe1 0, #c3e59a 100%);
+  background-image: -moz-linear-gradient(top, #f0fbe1 0, #c3e59a 100%);
+  background-image: linear-gradient(to bottom, #f0fbe1 0, #c3e59a 100%);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff0fbe1', endColorstr='#ffc3e59a' )";
+}
+.oo-ui-popupToolGroup.oo-ui-flaggedElement-constructive > .oo-ui-popupToolGroup-handle:hover,
+.oo-ui-popupToolGroup.oo-ui-flaggedElement-constructive > .oo-ui-popupToolGroup-handle:focus {
+  border-color: #adcb89;
+}
+.oo-ui-popupToolGroup.oo-ui-flaggedElement-constructive.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle:active,
+.oo-ui-popupToolGroup.oo-ui-flaggedElement-constructive.oo-ui-popupToolGroup-active > .oo-ui-popupToolGroup-handle {
+  border: 1px solid #b8d892;
+  background-color: #daf0bd;
+  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #c3e59a), color-stop(100%, #f0fbe1));
+  background-image: -webkit-linear-gradient(top, #c3e59a 0, #f0fbe1 100%);
+  background-image: -moz-linear-gradient(top, #c3e59a 0, #f0fbe1 100%);
+  background-image: linear-gradient(to bottom, #c3e59a 0, #f0fbe1 100%);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffc3e59a', endColorstr='#fff0fbe1' )";
+}
+.oo-ui-popupToolGroup.oo-ui-flaggedElement-destructive > .oo-ui-popupToolGroup-handle {
+  color: #d45353;
+}
+.oo-ui-buttonGroupWidget .oo-ui-popupToolGroup {
+  margin-left: 0;
+}
+.oo-ui-buttonGroupWidget .oo-ui-popupToolGroup > .oo-ui-popupToolGroup-handle {
+  height: 2.3em;
+  border-radius: 0;
+  margin-left: -2px;
+}
+.oo-ui-buttonGroupWidget .oo-ui-popupToolGroup:first-child > .oo-ui-popupToolGroup-handle {
+  border-bottom-left-radius: 0.3em;
+  border-top-left-radius: 0.3em;
+  margin-left: 0;
+}
+.oo-ui-buttonGroupWidget .oo-ui-popupToolGroup:last-child {
+  margin-right: 0.5em;
+}
+.oo-ui-buttonGroupWidget .oo-ui-popupToolGroup:last-child > .oo-ui-popupToolGroup-handle {
+  border-bottom-right-radius: 0.3em;
+  border-top-right-radius: 0.3em;
+}
 .oo-ui-popupToolGroup-handle .oo-ui-indicatorElement-indicator {
   width: 0.9375em;
   height: 0.9375em;
@@ -267,8 +336,8 @@
   background-color: #f8fbfd;
   background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #f1f7fb), color-stop(100%, #fff));
   background-image: -webkit-linear-gradient(top, #f1f7fb 0, #fff 100%);
-  background-image:    -moz-linear-gradient(top, #f1f7fb 0, #fff 100%);
-  background-image:         linear-gradient(to bottom, #f1f7fb 0, #fff 100%);
+  background-image: -moz-linear-gradient(top, #f1f7fb 0, #fff 100%);
+  background-image: linear-gradient(to bottom, #f1f7fb 0, #fff 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff1f7fb', endColorstr='#ffffffff' )";
 }
 .oo-ui-popupToolGroup .oo-ui-toolGroup-tools {
@@ -304,8 +373,8 @@
 .oo-ui-listToolGroup .oo-ui-tool {
   display: block;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .oo-ui-listToolGroup .oo-ui-toolGroup-tools {
   padding: 0.3125em;
@@ -324,8 +393,8 @@
   background-color: #f8fbfd;
   background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #f1f7fb), color-stop(100%, #fff));
   background-image: -webkit-linear-gradient(top, #f1f7fb 0, #fff 100%);
-  background-image:    -moz-linear-gradient(top, #f1f7fb 0, #fff 100%);
-  background-image:         linear-gradient(to bottom, #f1f7fb 0, #fff 100%);
+  background-image: -moz-linear-gradient(top, #f1f7fb 0, #fff 100%);
+  background-image: linear-gradient(to bottom, #f1f7fb 0, #fff 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff1f7fb', endColorstr='#ffffffff' )";
 }
 .oo-ui-listToolGroup .oo-ui-tool-active.oo-ui-widget-enabled + .oo-ui-tool-active.oo-ui-widget-enabled {
@@ -386,8 +455,8 @@
 .oo-ui-menuToolGroup .oo-ui-tool-active .oo-ui-tool-link .oo-ui-iconElement-icon {
   background-image: url('themes/apex/images/icons/check.png');
   background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url('themes/apex/images/icons/check.svg');
-  background-image:         linear-gradient(transparent, transparent), /* @embed */ url('themes/apex/images/icons/check.svg');
-  background-image:      -o-linear-gradient(transparent, transparent), url('themes/apex/images/icons/check.png');
+  background-image: linear-gradient(transparent, transparent), /* @embed */ url('themes/apex/images/icons/check.svg');
+  background-image: -o-linear-gradient(transparent, transparent), url('themes/apex/images/icons/check.png');
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
@@ -420,9 +489,9 @@
 .oo-ui-toolbar-actions {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .oo-ui-toolbar-tools {
   display: inline;
@@ -443,16 +512,16 @@
 .oo-ui-toolbar-actions .oo-ui-popupWidget {
   -webkit-touch-callout: default;
   -webkit-user-select: all;
-     -moz-user-select: all;
-      -ms-user-select: all;
-          user-select: all;
+  -moz-user-select: all;
+  -ms-user-select: all;
+  user-select: all;
 }
 .oo-ui-toolbar-bar {
   background-color: #f8fbfd;
   background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #fff), color-stop(100%, #F1F7FB));
   background-image: -webkit-linear-gradient(top, #fff 0, #F1F7FB 100%);
-  background-image:    -moz-linear-gradient(top, #fff 0, #F1F7FB 100%);
-  background-image:         linear-gradient(to bottom, #fff 0, #F1F7FB 100%);
+  background-image: -moz-linear-gradient(top, #fff 0, #F1F7FB 100%);
+  background-image: linear-gradient(to bottom, #fff 0, #F1F7FB 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffffff', endColorstr='#fff1f7fb' )";
 }
 .oo-ui-toolbar-position-top > .oo-ui-toolbar-bar {

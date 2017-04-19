@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.0
+ * OOjs UI v0.21.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-04-11T22:51:05Z
+ * Date: 2017-04-18T23:32:49Z
  */
 ( function ( OO ) {
 
@@ -719,7 +719,7 @@ OO.ui.Element.static.unsafeInfuse = function ( idOrNode, domPromise ) {
 		throw new Error( 'No infusion data found: ' + id );
 	}
 	try {
-		data = $.parseJSON( data );
+		data = JSON.parse( data );
 	} catch ( _ ) {
 		data = null;
 	}
@@ -4932,8 +4932,10 @@ OO.ui.PopupWidget.prototype.toggleAnchor = function ( show ) {
 	if ( this.anchored !== show ) {
 		if ( show ) {
 			this.$element.addClass( 'oo-ui-popupWidget-anchored' );
+			this.$element.addClass( 'oo-ui-popupWidget-anchored-' + this.anchorEdge );
 		} else {
 			this.$element.removeClass( 'oo-ui-popupWidget-anchored' );
+			this.$element.removeClass( 'oo-ui-popupWidget-anchored-' + this.anchorEdge );
 		}
 		this.anchored = show;
 	}
@@ -4951,7 +4953,9 @@ OO.ui.PopupWidget.prototype.setAnchorEdge = function ( edge ) {
 		this.$element.removeClass( 'oo-ui-popupWidget-anchored-' + this.anchorEdge );
 	}
 	this.anchorEdge = edge;
-	this.$element.addClass( 'oo-ui-popupWidget-anchored-' + edge );
+	if ( this.anchored ) {
+		this.$element.addClass( 'oo-ui-popupWidget-anchored-' + edge );
+	}
 };
 
 /**
@@ -6610,9 +6614,6 @@ OO.mixinClass( OO.ui.DecoratedOptionWidget, OO.ui.mixin.IndicatorElement );
  * @param {Object} [config] Configuration options
  */
 OO.ui.MenuOptionWidget = function OoUiMenuOptionWidget( config ) {
-	// Configuration initialization
-	config = $.extend( { icon: 'check' }, config );
-
 	// Parent constructor
 	OO.ui.MenuOptionWidget.parent.call( this, config );
 
@@ -7884,9 +7885,18 @@ OO.ui.FloatingMenuSelectWidget = function OoUiFloatingMenuSelectWidget( inputWid
 OO.inheritClass( OO.ui.FloatingMenuSelectWidget, OO.ui.MenuSelectWidget );
 OO.mixinClass( OO.ui.FloatingMenuSelectWidget, OO.ui.mixin.FloatableElement );
 
+/* Events */
+
+/**
+ * @event ready
+ *
+ * The menu is ready: it is visible and has been positioned and clipped.
+ */
+
 /* Methods */
 
 /**
+ * @fires ready
  * @inheritdoc
  */
 OO.ui.FloatingMenuSelectWidget.prototype.toggle = function ( visible ) {
@@ -7905,6 +7915,9 @@ OO.ui.FloatingMenuSelectWidget.prototype.toggle = function ( visible ) {
 
 	if ( change ) {
 		this.togglePositioning( this.isVisible() );
+		if ( visible ) {
+			this.emit( 'ready' );
+		}
 	}
 
 	return this;
@@ -8646,6 +8659,7 @@ OO.ui.DropdownInputWidget = function OoUiDropdownInputWidget( config ) {
 	this.$element
 		.addClass( 'oo-ui-dropdownInputWidget' )
 		.append( this.dropdownWidget.$element );
+	this.setTabIndexedElement( null );
 };
 
 /* Setup */
@@ -8928,6 +8942,7 @@ OO.ui.RadioSelectInputWidget = function OoUiRadioSelectInputWidget( config ) {
 	this.$element
 		.addClass( 'oo-ui-radioSelectInputWidget' )
 		.append( this.radioSelectWidget.$element );
+	this.setTabIndexedElement( null );
 };
 
 /* Setup */
