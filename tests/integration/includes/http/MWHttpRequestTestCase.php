@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 class MWHttpRequestTestCase extends PHPUnit_Framework_TestCase {
 	protected static $httpEngine;
 	protected $oldHttpEngine;
