@@ -1092,7 +1092,6 @@
 	"right-editprotected": "Breyta síðum vernduðum sem „{{int:protect-level-sysop}}“",
 	"right-editsemiprotected": "Breyta síðum vernduðum sem „{{int:protect-level-autoconfirmed}}“",
 	"right-editinterface": "Breyta notandaviðmótinu",
-	"right-editusercssjs": "Breyta CSS- og JS-skrám annarra",
 	"right-editusercss": "Breyta CSS-skrám annarra",
 	"right-edituserjs": "Breyta JS-skrám annarra",
 	"right-editmyusercss": "Breyta þinni eigin CSS-notandaskrá",

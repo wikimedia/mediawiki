@@ -580,7 +580,7 @@
 	"listusers-submit": "ончыкташ",
 	"listusers-blocked": "(йӧн петырыме)",
 	"activeusers": "Чӱчкыдын пайдаланыше-влак",
-	"activeusers-count": "Пытартыш $3 {{PLURAL:$3|1=кечыште|кечылаште}} $1 {{PLURAL:$1|1=тӧрлатымаш|тӧрлатымаш-влак}}",
+	"activeusers-count": "Пытартыш $3 {{PLURAL:$3|1=кечыште|кечылаште}} $1 {{PLURAL:$1|1=тӧрлатымаш|тӧрлатымаш}}",
 	"activeusers-submit": "ончыкташ",
 	"listgrouprights-members": "(тӱшкаште улшо-влак)",
 	"emailuser": "Пайдаланыше дек серыш",

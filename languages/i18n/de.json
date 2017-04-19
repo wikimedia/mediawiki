@@ -3308,7 +3308,7 @@
 	"table_pager_first": "Erste Seite",
 	"table_pager_last": "Letzte Seite",
 	"table_pager_limit": "Zeige $1 Einträge pro Seite",
-	"table_pager_limit_label": "Positionen pro Seite:",
+	"table_pager_limit_label": "Einträge pro Seite:",
 	"table_pager_limit_submit": "Los",
 	"table_pager_empty": "Keine Ergebnisse",
 	"autosumm-blank": "Die Seite wurde geleert.",

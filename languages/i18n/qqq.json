@@ -186,7 +186,8 @@
 			"MarcoAurelio",
 			"Joao Xavier",
 			"Winstonyin",
-			"Jhertel"
+			"Jhertel",
+			"Stryn"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -1571,7 +1572,7 @@
 	"rcfilters-filter-registered-label": "Label for the filter for showing edits made by logged-in users.\n{{Identical|Registered}}",
 	"rcfilters-filter-registered-description": "Description for the filter for showing edits made by logged-in users.",
 	"rcfilters-filter-unregistered-label": "Label for the filter for showing edits made by logged-out users.",
-	"rcfilters-filter-unregistered-description": " Description for the filter for showing edits made by logged-out users.",
+	"rcfilters-filter-unregistered-description": "Description for the filter for showing edits made by logged-out users.",
 	"rcfilters-filter-unregistered-conflicts-user-experience-level": "Tooltip shown when hovering over a Unregistered filter tag, when a User Experience Level filter is also selected.\n\n\"Unregistered\" is {{msg-mw|Rcfilters-filter-unregistered-label}}.\n\n\"Experience\" is based on {{msg-mw|Rcfilters-filtergroup-userExpLevel}}.\n\nThis indicates that no results will be shown, because users matched by the User Experience Level groups are never unregistered.  Parameters:\n* $1 - Comma-separated string of selected User Experience Level filters, e.g. \"Newcomer, Experienced\"\n* $2 - Count of selected User Experience Level filters, for PLURAL",
 	"rcfilters-filtergroup-authorship": "Title for the filter group for edit authorship. This filter group allows the user to choose between \"Your own edits\" and \"Edits by others\". More info: https://phabricator.wikimedia.org/T149859\n\n{{doc-important|This is another typical example of ambiguity in the English language. Only the documentation will reveal that this message means \"(filter by) authorship of these edits\", not \"edit the authorship\". That is, \"edit\" is a modifying noun, not a verb.}}",
 	"rcfilters-filter-editsbyself-label": "Label for the filter for showing edits made by the current user.",

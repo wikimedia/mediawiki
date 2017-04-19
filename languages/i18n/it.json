@@ -3908,5 +3908,9 @@
 	"revid": "versione $1",
 	"pageid": "ID della pagina $1",
 	"rawhtml-notallowed": "I tag &lt;html&gt; non possono essere utilizzati al di fuori delle normali pagine.",
-	"gotointerwiki-invalid": "Il titolo specificato non è valido."
+	"gotointerwiki": "Stai per lasciare {{SITENAME}}",
+	"gotointerwiki-invalid": "Il titolo specificato non è valido.",
+	"gotointerwiki-external": "Stai per lasciare {{SITENAME}} per visitare [[$2]] che è un diverso sito web.\n\n[$1 Clicca qui per continuare su $1].",
+	"undelete-cantedit": "Non puoi ripristinare questa pagina poiché non hai sufficienti permessi per editarla.",
+	"undelete-cantcreate": "Non puoi ripristinare questa pagina poiché la pagina con questo nome è ancora inesistente e non hai sufficienti permessi per crearla."
 }

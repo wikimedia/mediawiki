@@ -911,7 +911,6 @@
 	"right-protect": "Nganti tingkatan pangreksan lan nyunting kaca-kaca sing direksa",
 	"right-editprotected": "Nyunting kaca-kaca sing direksa (tanpa pangreksan runtun)",
 	"right-editinterface": "Nyunting antarmukane panganggo",
-	"right-editusercssjs": "Nyunting berkas CSS lan JavaScript panganggo liyane",
 	"right-editusercss": "Nyunting berkas CSS panganggo liyane",
 	"right-edituserjs": "Nyunting berkas JavaScript panganggo liyane",
 	"right-rollback": "Gelis gole mbalekna suntingane panganggo pungkasan sing nyunting kaca tartamtu",

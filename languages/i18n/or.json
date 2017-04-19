@@ -1098,7 +1098,6 @@
 	"right-editprotected": "କିଳାଯାଇଥିବା ପୃଷ୍ଠାମାନଙ୍କର ସମ୍ପାଦନା କରିବେ (କ୍ୟାସକେଡ଼କରା କିଳଣା ବିନା)",
 	"right-editsemiprotected": "\"{{int:protect-level-autoconfirmed}}\" ଭାବେ ଲୁଚାଯାଇଥିବା ପୃଷ୍ଠାସବୁ ସମ୍ପାଦନା କରନ୍ତୁ",
 	"right-editinterface": "ସଭ୍ୟଙ୍କ ଇଣ୍ଟରଫେସ ବଦଳାଇବେ",
-	"right-editusercssjs": "ବାକି ସଭ୍ୟମାନଙ୍କର CSS ଓ ଜାଭାସ୍କ୍ରିପ୍ଟ ଫାଇଲ ସବୁକୁ ବଦଳାଇବେ",
 	"right-editusercss": "ବାକି ସଭ୍ୟମାନଙ୍କ CSS ଫାଇଲସବୁ ବଦଳାଇବେ",
 	"right-edituserjs": "ବାକି ସଭ୍ୟମାନଙ୍କର ଜାଭାସ୍କ୍ରିପ୍ଟ ଫାଇଲ ସବୁକୁ ବଦଳାଇବେ",
 	"right-editmyusercss": "ନିଜ ସଭ୍ୟ CSS ଫାଇଲସବୁ ସମ୍ପାଦନା କରନ୍ତୁ",

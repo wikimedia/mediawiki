@@ -1749,6 +1749,7 @@
 	"namespace": "Vārdtelpa:",
 	"invert": "Izvēlēties pretēji",
 	"namespace_association": "Saistītā vārdtelpa",
+	"tooltip-namespace_association": "Atzīmē šo rūtiņu, lai iekļautu diskusijas vai temata vārdtelpu, kas saistīta ar izvēlēto vārdtelpu",
 	"blanknamespace": "(Pamatlapa)",
 	"contributions": "{{GENDER:$1|Dalībnieka|Dalībnieces|Dalībnieka}} devums",
 	"contributions-title": "Dalībnieka $1 devums",

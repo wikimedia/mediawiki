@@ -999,7 +999,6 @@
 	"right-editsemiprotected": "កែប្រែទំព័រដែលបានការពារដោយ \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "កែប្រែខ្លឹមសារគំរូរបស់ទំព័រមួយ",
 	"right-editinterface": "កែប្រែអន្តរមុខអ្នកប្រើប្រាស់",
-	"right-editusercssjs": "កែប្រែឯកសារ CSS និង JS របស់អ្នកប្រើប្រាស់ផ្សេងទៀត",
 	"right-editusercss": "កែប្រែឯកសារ CSS របស់អ្នកប្រើប្រាស់ផ្សេងទៀត",
 	"right-edituserjs": "កែប្រែឯកសារ JavaScript របស់អ្នកប្រើប្រាស់ផ្សេងទៀត",
 	"right-editmyusercss": "កែប្រែឯកសារ CSS របស់ខ្លួនអ្នកផ្ទាល់",

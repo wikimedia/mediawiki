@@ -1001,7 +1001,6 @@
 	"right-editprotected": "Amachasqa p'anqakunata \"{{int:protect-level-sysop}}\" hina llamk'apuy",
 	"right-editsemiprotected": "\"{{int:protect-level-autoconfirmed}}\" hina amachasqa p'anqakunata llamk'apuy",
 	"right-editinterface": "Ruraqpaq uyapurata llamk'apuy",
-	"right-editusercssjs": "Huk ruraqkunap CSS, JS willañiqinkunata llamk'apuy",
 	"right-editusercss": "Huk ruraqkunap CSS willañiqinkunata llamk'apuy",
 	"right-edituserjs": "Huk ruraqkunap JS willañiqinkunata llamk'apuy",
 	"right-editmyusercss": "Kikiykip ruraqpaq CSS willañiqiykikunata llamk'apuy",

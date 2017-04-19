@@ -1154,7 +1154,6 @@
 	"right-editsemiprotected": "\"{{int:protect-level-autoconfirmed}}\" булараҡ һаҡланған биттәрҙе төҙәтеү",
 	"right-editcontentmodel": "Биттең контент моделен мөхәррирләү",
 	"right-editinterface": "Ҡулланыусы интерфейсын үҙгәртеү",
-	"right-editusercssjs": "Башҡа ҡатнашыусыларҙың CSS һәм JS файлдарын мөхәррирләү",
 	"right-editusercss": "Башҡа ҡатнашыусыларҙың CSS файлдарын мөхәррирләү",
 	"right-edituserjs": "Башҡа ҡатнашыусыларҙың JS файлдарын мөхәррирләү",
 	"right-editmyusercss": "Файҙаланыусының CSS файлдарын мөхәррирләү",
