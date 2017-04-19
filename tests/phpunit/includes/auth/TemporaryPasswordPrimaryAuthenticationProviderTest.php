@@ -4,6 +4,7 @@ namespace MediaWiki\Auth;
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group AuthManager
@@ -106,13 +107,13 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 			'PasswordReminderResendTime' => 101,
 		] );
 
-		$p = \TestingAccessWrapper::newFromObject( new TemporaryPasswordPrimaryAuthenticationProvider() );
+		$p = TestingAccessWrapper::newFromObject( new TemporaryPasswordPrimaryAuthenticationProvider() );
 		$p->setConfig( $config );
 		$this->assertSame( false, $p->emailEnabled );
 		$this->assertSame( 100, $p->newPasswordExpiry );
 		$this->assertSame( 101, $p->passwordReminderResendTime );
 
-		$p = \TestingAccessWrapper::newFromObject( new TemporaryPasswordPrimaryAuthenticationProvider( [
+		$p = TestingAccessWrapper::newFromObject( new TemporaryPasswordPrimaryAuthenticationProvider( [
 			'emailEnabled' => true,
 			'newPasswordExpiry' => 42,
 			'passwordReminderResendTime' => 43,
@@ -135,7 +136,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		$pwhash = $passwordFactory->newFromPlaintext( 'password' )->toString();
 
 		$provider = $this->getProvider();
-		$providerPriv = \TestingAccessWrapper::newFromObject( $provider );
+		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 
 		$this->assertFalse( $provider->testUserCanAuthenticate( '<invalid>' ) );
 		$this->assertFalse( $provider->testUserCanAuthenticate( 'DoesNotExist' ) );
@@ -249,7 +250,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		$reqs = [ PasswordAuthenticationRequest::class => $req ];
 
 		$provider = $this->getProvider();
-		$providerPriv = \TestingAccessWrapper::newFromObject( $provider );
+		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 
 		$providerPriv->newPasswordExpiry = 100;
 
@@ -573,7 +574,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		ScopedCallback::consume( $resetMailer );
 		$this->assertTrue( $mailed );
 
-		$priv = \TestingAccessWrapper::newFromObject( $provider );
+		$priv = TestingAccessWrapper::newFromObject( $provider );
 		$req->username = '<invalid>';
 		$status = $priv->sendPasswordResetEmail( $req );
 		$this->assertEquals( \Status::newFatal( 'noname' ), $status );

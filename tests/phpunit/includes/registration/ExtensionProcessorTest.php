@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 class ExtensionProcessorTest extends MediaWikiTestCase {
 
 	private $dir, $dirname;

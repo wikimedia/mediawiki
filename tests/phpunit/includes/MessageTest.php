@@ -1,5 +1,6 @@
 <?php
-use MediaWiki\MediaWikiServices;
+
+use Wikimedia\TestingAccessWrapper;
 
 class MessageTest extends MediaWikiLangTestCase {
 
