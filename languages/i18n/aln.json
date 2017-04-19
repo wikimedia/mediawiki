@@ -813,7 +813,7 @@
 	"rcshowhideanons": "$1 përdorues anonim",
 	"rcshowhidepatr": "$1 redaktime të patrullueme",
 	"rcshowhidemine": "$1 redaktimet e mija",
-	"rclinks": "Trego $1 ndryshime gjatë $2 ditëve<br />$3",
+	"rclinks": "Trego $1 ndryshime gjatë $2 ditëve",
 	"diff": "ndrysh",
 	"hist": "hist",
 	"hide": "msheh",

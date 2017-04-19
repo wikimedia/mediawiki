@@ -1450,7 +1450,7 @@
 	"rcshowhidecategorization": "$1 categorizzazione della pagina",
 	"rcshowhidecategorization-show": "Mostra",
 	"rcshowhidecategorization-hide": "Nascondi",
-	"rclinks": "Mostra le $1 modifiche più recenti apportate negli ultimi $2 giorni<br />$3",
+	"rclinks": "Mostra le $1 modifiche più recenti apportate negli ultimi $2 giorni",
 	"diff": "diff",
 	"hist": "cron",
 	"hide": "Nascondi",

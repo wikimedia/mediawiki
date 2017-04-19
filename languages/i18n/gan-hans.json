@@ -661,7 +661,7 @@
 	"rcshowhideanons": "$1匿名用户𠮶编辑",
 	"rcshowhidepatr": "$1检查过𠮶编辑",
 	"rcshowhidemine": "$1偶𠮶编辑",
-	"rclinks": "显示最晏$2日之内最新𠮶$1回改动。<br />$3",
+	"rclinks": "显示最晏$2日之内最新𠮶$1回改动。",
 	"diff": "差异",
 	"hist": "历史",
 	"hide": "弆到",

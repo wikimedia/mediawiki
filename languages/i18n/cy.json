@@ -1297,7 +1297,7 @@
 	"rcshowhidecategorization": "Categoreiddio tudalen $1",
 	"rcshowhidecategorization-show": "Dangos",
 	"rcshowhidecategorization-hide": "Cuddio",
-	"rclinks": "Dangos y $1 newid diweddaraf yn ystod y(r) $2 diwrnod diwethaf<br />$3",
+	"rclinks": "Dangos y $1 newid diweddaraf yn ystod y(r) $2 diwrnod diwethaf",
 	"diff": "gwahan",
 	"hist": "hanes",
 	"hide": "Cuddier",

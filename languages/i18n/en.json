@@ -1451,7 +1451,7 @@
 	"rcshowhidecategorization": "$1 page categorization",
 	"rcshowhidecategorization-show": "Show",
 	"rcshowhidecategorization-hide": "Hide",
-	"rclinks": "Show last $1 changes in last $2 days<br />$3",
+	"rclinks": "Show last $1 changes in last $2 days",
 	"diff": "diff",
 	"hist": "hist",
 	"hide": "Hide",

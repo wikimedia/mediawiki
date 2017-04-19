@@ -1005,7 +1005,7 @@
 	"rcshowhideanons": "$1 anonieme gebroekers",
 	"rcshowhidepatr": "$1 gecontroleerde bewerkinge",
 	"rcshowhidemine": "$1 mien bewirkinge",
-	"rclinks": "Bekiek de $1 lètste verangeringe van de aafgeloupe $2 daag.<br />$3",
+	"rclinks": "Bekiek de $1 lètste verangeringe van de aafgeloupe $2 daag.",
 	"diff": "vers",
 	"hist": "hist",
 	"hide": "Versjtaek",

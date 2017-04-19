@@ -657,7 +657,7 @@
 	"rcshowhideanons": "$1匿名用戶嗰編輯",
 	"rcshowhidepatr": "$1檢查過嗰編輯",
 	"rcshowhidemine": "$1我嗰編輯",
-	"rclinks": "顯示頂晏$2日之內頂新嗰$1回改動。<br />$3",
+	"rclinks": "顯示頂晏$2日之內頂新嗰$1回改動。",
 	"diff": "差異",
 	"hist": "歷史",
 	"hide": "弆到",

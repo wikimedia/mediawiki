@@ -668,7 +668,7 @@
 	"rcshowhideanons": "$1 anonieme gebrukers",
 	"rcshowhidepatr": "hecontroleerde bewerkiengen $1",
 	"rcshowhidemine": "$1 mien bewerkiengen",
-	"rclinks": "Bekiek de lèste $1 wiezigingen in de lèste $2 daegen<br />$3",
+	"rclinks": "Bekiek de lèste $1 wiezigingen in de lèste $2 daegen",
 	"diff": "wiez",
 	"hist": "hesch",
 	"hide": "Verberge",

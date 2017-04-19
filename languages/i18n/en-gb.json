@@ -374,7 +374,7 @@
 	"rclistfrom": "Show new changes starting from $2, $3",
 	"rcshowhidebots": "$1 bots",
 	"rcshowhideliu": "$1 registered users",
-	"rclinks": "Show last $1 changes in last $2 days<br />$3",
+	"rclinks": "Show last $1 changes in last $2 days",
 	"diff": "diff",
 	"hist": "hist",
 	"minoreditletter": "m",

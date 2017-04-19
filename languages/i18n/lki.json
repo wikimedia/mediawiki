@@ -1275,7 +1275,7 @@
 	"rcshowhidecategorization": "$1 رده‌بندی صفحه‌ها",
 	"rcshowhidecategorization-show": "نیشان دائن",
 	"rcshowhidecategorization-hide": "ئآشاردن-پنهان کردن",
-	"rclinks": "نمایش آخرین $1 تغییر در $2 روز اخیر<br />$3",
+	"rclinks": "نمایش آخرین $1 تغییر در $2 روز اخیر",
 	"diff": "تفاوت",
 	"hist": "تاریخچۀ",
 	"hide": "ئآشاردن-پنهان کردن",

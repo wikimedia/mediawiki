@@ -1226,7 +1226,7 @@
 	"rcshowhidemine-show": "Shaw",
 	"rcshowhidemine-hide": "Skauk",
 	"rcshowhidecategorization-show": "Shaw",
-	"rclinks": "Shaw last $1 chynges in last $2 days<br />$3",
+	"rclinks": "Shaw last $1 chynges in last $2 days",
 	"diff": "diff",
 	"hist": "hist",
 	"hide": "Skauk",

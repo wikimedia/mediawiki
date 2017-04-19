@@ -1189,7 +1189,7 @@
 	"rcshowhidecategorization": "orrialde baten kategorizazioa $1",
 	"rcshowhidecategorization-show": "Erakutsi",
 	"rcshowhidecategorization-hide": "Ezkutatu",
-	"rclinks": "Erakutsi azken $2 egunetako $1 aldaketak<br />$3",
+	"rclinks": "Erakutsi azken $2 egunetako $1 aldaketak",
 	"diff": "ezb",
 	"hist": "hist",
 	"hide": "Ezkutatu",

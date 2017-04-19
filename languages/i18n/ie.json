@@ -623,7 +623,7 @@
 	"rcshowhidepatr-hide": "Ocultar",
 	"rcshowhidemine": "$1 mi redactiones",
 	"rcshowhidemine-show": "Monstrar",
-	"rclinks": "Monstrar li $1 ultim modificationes fat durante li $2 ultim dies<br />$3.",
+	"rclinks": "Monstrar li $1 ultim modificationes fat durante li $2 ultim dies",
 	"diff": "dif",
 	"hist": "hist",
 	"hide": "Celar",

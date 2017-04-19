@@ -1358,7 +1358,7 @@
 	"rcshowhidecategorization": "$1 kategorizaciju stranica",
 	"rcshowhidecategorization-show": "Prikaži",
 	"rcshowhidecategorization-hide": "Sakrij",
-	"rclinks": "Prikaži posljednjih $1 izmjena u posljednjih $2 dana<br />$3",
+	"rclinks": "Prikaži posljednjih $1 izmjena u posljednjih $2 dana",
 	"diff": "razl",
 	"hist": "hist",
 	"hide": "Sakrij",

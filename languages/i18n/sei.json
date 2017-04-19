@@ -506,7 +506,7 @@
 	"rcshowhideanons": "$1 caitóm anoniimóm",
 	"rcshowhidepatr": "$1 ticpatlöx patrollöx",
 	"rcshowhidemine": "$1 hániideditám",
-	"rclinks": "Cohuatlöx hunquiix $1 zo ixáap $2 zo iti <br />$3",
+	"rclinks": "Cohuatlöx hunquiix $1 zo ixáap $2 zo iti",
 	"diff": "quiix",
 	"hist": "histó",
 	"hide": "Cíiitám",

@@ -579,7 +579,7 @@
 	"rcshowhideanons": "{{PLURAL:$1|$1 ymmydeyr|$1 ymmydeyr|$1 ymmydeyr|$1 ymmydeyryn}} neuenmyssit",
 	"rcshowhidepatr": "$1 arraghyn patrolit",
 	"rcshowhidemine": "$1 m'arraghyn",
-	"rclinks": "Soilshee {{PLURAL:$1|ny $1 caghlaa|yn $1 chaghlaa|ny $1 chaghlaa|ny $1 caghlaaghyn}} s'jerree ayns {{PLURAL:$2|ny $2 laa|yn $2 laa|ny $2 laa|ny $2 laaghyn}} s'jerree<br />$3",
+	"rclinks": "Soilshee {{PLURAL:$1|ny $1 caghlaa|yn $1 chaghlaa|ny $1 chaghlaa|ny $1 caghlaaghyn}} s'jerree ayns {{PLURAL:$2|ny $2 laa|yn $2 laa|ny $2 laa|ny $2 laaghyn}} s'jerree",
 	"diff": "anch",
 	"hist": "shen",
 	"hide": "Follee",

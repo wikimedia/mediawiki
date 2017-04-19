@@ -1449,7 +1449,7 @@
 	"rcshowhidecategorization": "$1 kategorisering av sidor",
 	"rcshowhidecategorization-show": "Visa",
 	"rcshowhidecategorization-hide": "Dölj",
-	"rclinks": "Visa senaste $1 ändringar under de senaste $2 dygnen<br />$3",
+	"rclinks": "Visa senaste $1 ändringar under de senaste $2 dygnen",
 	"diff": "skillnad",
 	"hist": "historik",
 	"hide": "Dölj",

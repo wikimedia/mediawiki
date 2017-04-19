@@ -1392,7 +1392,7 @@
 	"rcshowhidecategorization": "$1 kategoriigon de paĝoj",
 	"rcshowhidecategorization-show": "Montri",
 	"rcshowhidecategorization-hide": "Kaŝi",
-	"rclinks": "Montri $1 lastajn ŝanĝojn dum la $2 lastaj tagoj.<br />$3",
+	"rclinks": "Montri $1 lastajn ŝanĝojn dum la $2 lastaj tagoj.",
 	"diff": "malsamoj",
 	"hist": "historio",
 	"hide": "Kaŝi",

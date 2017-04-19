@@ -1344,7 +1344,7 @@
 	"rcshowhidecategorization": "பக்க பகுப்பாக்கத்தை $1",
 	"rcshowhidecategorization-show": "காட்டு",
 	"rcshowhidecategorization-hide": "மறை",
-	"rclinks": "கடைசி $2 நாட்களில் கடைசி $1 மாற்றங்களைக் காட்டு.<br />$3",
+	"rclinks": "கடைசி $2 நாட்களில் கடைசி $1 மாற்றங்களைக் காட்டு.",
 	"diff": "வேறுபாடு",
 	"hist": "வரலாறு",
 	"hide": "மறை",

@@ -242,7 +242,7 @@
 	"rcshowhideanons": "$1 atuisut anonymejusut",
 	"rcshowhidepatr": "$1 allannguutit misissorneqarsimasut",
 	"rcshowhidemine": "$1 nammineq tapit",
-	"rclinks": "Takutikkit $1 -it allannguutit kingulliit ulluni kingullerni $2 -ni<br />$3",
+	"rclinks": "Takutikkit $1 -it allannguutit kingulliit ulluni kingullerni $2 -ni",
 	"diff": "assigiinng",
 	"hist": "oqalutt",
 	"hide": "Assequt",

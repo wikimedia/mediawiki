@@ -606,7 +606,7 @@
 	"rcshowhidepatr": "$1 التعديلات المراجعة",
 	"rcshowhidemine": "$1 تعديلاتي",
 	"rcshowhidemine-hide": "خبّي",
-	"rclinks": "أظهر آخر $1 تعديل في آخر $2 يوم<br />$3",
+	"rclinks": "أظهر آخر $1 تعديل في آخر $2 يوم",
 	"diff": "فرق",
 	"hist": "تاريخ",
 	"hide": "أخف",

@@ -725,7 +725,7 @@
 	"rcshowhidemine": "$1 miei cambiaments",
 	"rcshowhidemine-show": "Mostre",
 	"rcshowhidemine-hide": "plate",
-	"rclinks": "Mostre i ultins $1 cambiaments tes ultimis $2 zornadis<br />$3",
+	"rclinks": "Mostre i ultins $1 cambiaments tes ultimis $2 zornadis",
 	"diff": "difarencis",
 	"hist": "stor",
 	"hide": "plate",

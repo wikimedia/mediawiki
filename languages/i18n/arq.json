@@ -741,7 +741,7 @@
 	"rcshowhidemine": "$1 تبديلات نتاعي",
 	"rcshowhidemine-show": "ورّي",
 	"rcshowhidemine-hide": "خبّي",
-	"rclinks": "بين آخر $1 تبديل في آخر $2 يوم<br />$3",
+	"rclinks": "بين آخر $1 تبديل في آخر $2 يوم",
 	"diff": "إختلاف",
 	"hist": "تاريخ",
 	"hide": "خبي",

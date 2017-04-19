@@ -1427,7 +1427,7 @@
 	"rcshowhidecategorization": "$1 categoritzacions de pàgina",
 	"rcshowhidecategorization-show": "Mostra",
 	"rcshowhidecategorization-hide": "Amaga",
-	"rclinks": "Mostra els darrers $1 canvis en els darrers $2 dies<br />$3",
+	"rclinks": "Mostra els darrers $1 canvis en els darrers $2 dies",
 	"diff": "dif",
 	"hist": "hist",
 	"hide": "Amaga",

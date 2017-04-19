@@ -576,7 +576,7 @@
 	"rcshowhidemine": "$1 mi editdem",
 	"rcshowhidemine-show": "Shuo",
 	"rcshowhidemine-hide": "Aid",
-	"rclinks": "Shuo laas $1 chienj ina laas $2 die<br />$3",
+	"rclinks": "Shuo laas $1 chienj ina laas $2 die",
 	"diff": "dif",
 	"hist": "isch",
 	"hide": "Aid",

@@ -1452,7 +1452,7 @@
 	"rcshowhidecategorization": "$1 категоризацію сторінок",
 	"rcshowhidecategorization-show": "Показати",
 	"rcshowhidecategorization-hide": "Приховати",
-	"rclinks": "Показати останні $1 редагувань за $2 днів<br />$3",
+	"rclinks": "Показати останні $1 редагувань за $2 днів",
 	"diff": "різн.",
 	"hist": "історія",
 	"hide": "сховати",

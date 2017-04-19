@@ -693,7 +693,7 @@
 	"rcshowhideanons": "Anonim paydalanıwshılardı $1",
 	"rcshowhidepatr": "Tekserilgen o'zgerislerdi $1",
 	"rcshowhidemine": "O'zgertiwlerimdi $1",
-	"rclinks": "Aqırg'ı $2 ku'ndegi aqırg'ı $1 o'zgeristi ko'rset<br />$3",
+	"rclinks": "Aqırg'ı $2 ku'ndegi aqırg'ı $1 o'zgeristi ko'rset",
 	"diff": "parq",
 	"hist": "tar.",
 	"hide": "jasır",

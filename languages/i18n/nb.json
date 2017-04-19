@@ -1426,7 +1426,7 @@
 	"rcshowhidecategorization": "$1 kategorisering av sider",
 	"rcshowhidecategorization-show": "Vis",
 	"rcshowhidecategorization-hide": "Skjul",
-	"rclinks": "Vis siste $1 endringer i de siste $2 dagene<br />$3",
+	"rclinks": "Vis siste $1 endringer i de siste $2 dagene",
 	"diff": "diff",
 	"hist": "hist",
 	"hide": "Skjul",

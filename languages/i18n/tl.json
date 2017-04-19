@@ -1107,7 +1107,7 @@
 	"rcshowhidemine": "$1 ang mga pagbabago ko",
 	"rcshowhidemine-show": "Ipakita",
 	"rcshowhidemine-hide": "Itago",
-	"rclinks": "Ipakita ang huling $1 mga pagbabago sa loob ng huling $2 mga araw<br />$3",
+	"rclinks": "Ipakita ang huling $1 mga pagbabago sa loob ng huling $2 mga araw",
 	"diff": "pagkakaiba",
 	"hist": "kasaysayan",
 	"hide": "Itago",

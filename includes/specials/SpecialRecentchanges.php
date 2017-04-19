@@ -845,7 +845,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$datenow = $lang->userDate( $timestamp, $user );
 		$pipedLinks = '<span class="rcshowhide">' . $lang->pipeList( $links ) . '</span>';
 
-		$rclinks = '<span class="rclinks">' . $this->msg( 'rclinks' )->rawParams( $cl, $dl, $pipedLinks )
+		$rclinks = '<span class="rclinks">' . $this->msg( 'rclinks' )->rawParams( $cl, $dl, '' )
 			->parse() . '</span>';
 
 		$rclistfrom = '<span class="rclistfrom">' . $this->makeOptionsLink(
@@ -854,7 +854,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$nondefaults
 		) . '</span>';
 
-		return "{$note}$rclinks<br />$rclistfrom";
+		return "{$note}$rclinks<br />$pipedLinks<br />$rclistfrom";
 	}
 
 	public function isIncludable() {

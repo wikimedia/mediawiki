@@ -813,7 +813,7 @@
 	"rcshowhidemine": "Oʻz tahrirlarimni $1",
 	"rcshowhidemine-show": "koʻrsat",
 	"rcshowhidemine-hide": "yashir",
-	"rclinks": "Oxirgi $2 kun ichida sodir boʻlgan $1 ta oʻzgarish koʻrsatildi<br />$3",
+	"rclinks": "Oxirgi $2 kun ichida sodir boʻlgan $1 ta oʻzgarish koʻrsatildi",
 	"diff": "farq",
 	"hist": "tarix",
 	"hide": "yashir",

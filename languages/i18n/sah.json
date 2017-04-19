@@ -1336,7 +1336,7 @@
 	"rcshowhidecategorization": "$1 сирэй категориялааһынын",
 	"rcshowhidecategorization-show": "Көрдөр",
 	"rcshowhidecategorization-hide": "Кистээ",
-	"rclinks": "$2 күҥҥэ бүтэһик $1 уларытыыны көрдөр;<br />$3.",
+	"rclinks": "$2 күҥҥэ бүтэһик $1 уларытыыны көрдөр;",
 	"diff": "уратыта",
 	"hist": "устуоруйата",
 	"hide": "Кистээ",

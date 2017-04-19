@@ -1133,7 +1133,7 @@
 	"rcshowhidemine": "$1 modifiki tiegħi",
 	"rcshowhidemine-show": "Uri",
 	"rcshowhidemine-hide": "Aħbi",
-	"rclinks": "Uri l-aħħar $1 modifiki fl-aħħar $2 ġranet<br />$3",
+	"rclinks": "Uri l-aħħar $1 modifiki fl-aħħar $2 ġranet",
 	"diff": "diff",
 	"hist": "kron",
 	"hide": "Aħbi",

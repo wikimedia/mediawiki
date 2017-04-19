@@ -1389,7 +1389,7 @@
 	"rcshowhidecategorization": "$1 le categorisation de paginas",
 	"rcshowhidecategorization-show": "Monstrar",
 	"rcshowhidecategorization-hide": "Celar",
-	"rclinks": "Monstrar le $1 ultime modificationes in le $2 ultime dies<br />$3",
+	"rclinks": "Monstrar le $1 ultime modificationes in le $2 ultime dies",
 	"diff": "diff",
 	"hist": "hist",
 	"hide": "Celar",
