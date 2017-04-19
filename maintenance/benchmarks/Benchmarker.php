@@ -38,7 +38,7 @@ abstract class Benchmarker extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->addOption( 'count', "How many times to run a benchmark", false, true );
+		$this->addOption( 'count', 'How many times to run a benchmark', false, true );
 	}
 
 	public function bench( array $benchs ) {
@@ -68,7 +68,7 @@ abstract class Benchmarker extends Maintenance {
 				'function' => $bench['function'],
 				'arguments' => $bench['args'],
 				'count' => $count,
-				'delta' => $delta,
+				'total' => $delta,
 				'average' => $delta / $count,
 			];
 		}
@@ -89,9 +89,9 @@ abstract class Benchmarker extends Maintenance {
 				$res['function'],
 				implode( ', ', $res['arguments'] )
 			);
-			$ret .= sprintf( "   %6.2fms (%6.2fms each)\n",
-				$res['delta'] * 1000,
-				$res['average'] * 1000
+			$ret .= sprintf( "   %6.2fms (%6.4fms each)\n",
+				$res['total'] * 1e3,
+				$res['average'] * 1e3
 			);
 		}
 
