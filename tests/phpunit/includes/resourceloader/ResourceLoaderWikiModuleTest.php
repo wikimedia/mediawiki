@@ -2,6 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\TestingAccessWrapper;
 
 class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 

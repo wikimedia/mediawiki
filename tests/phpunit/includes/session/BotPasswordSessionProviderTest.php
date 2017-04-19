@@ -4,6 +4,7 @@ namespace MediaWiki\Session;
 
 use Psr\Log\LogLevel;
 use MediaWikiTestCase;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Session
@@ -127,7 +128,7 @@ class BotPasswordSessionProviderTest extends MediaWikiTestCase {
 		$provider = new BotPasswordSessionProvider( [
 			'priority' => 40
 		] );
-		$priv = \TestingAccessWrapper::newFromObject( $provider );
+		$priv = TestingAccessWrapper::newFromObject( $provider );
 		$this->assertSame( 40, $priv->priority );
 		$this->assertSame( '_BPsession', $priv->sessionCookieName );
 		$this->assertSame( [], $priv->sessionCookieOptions );
@@ -136,7 +137,7 @@ class BotPasswordSessionProviderTest extends MediaWikiTestCase {
 			'priority' => 40,
 			'sessionCookieName' => null,
 		] );
-		$priv = \TestingAccessWrapper::newFromObject( $provider );
+		$priv = TestingAccessWrapper::newFromObject( $provider );
 		$this->assertSame( '_BPsession', $priv->sessionCookieName );
 
 		$provider = new BotPasswordSessionProvider( [
@@ -144,7 +145,7 @@ class BotPasswordSessionProviderTest extends MediaWikiTestCase {
 			'sessionCookieName' => 'Foo',
 			'sessionCookieOptions' => [ 'Bar' ],
 		] );
-		$priv = \TestingAccessWrapper::newFromObject( $provider );
+		$priv = TestingAccessWrapper::newFromObject( $provider );
 		$this->assertSame( 'Foo', $priv->sessionCookieName );
 		$this->assertSame( [ 'Bar' ], $priv->sessionCookieOptions );
 	}
@@ -289,7 +290,7 @@ class BotPasswordSessionProviderTest extends MediaWikiTestCase {
 		$provider->setLogger( $logger );
 
 		$backend = TestUtils::getDummySessionBackend();
-		$backendPriv = \TestingAccessWrapper::newFromObject( $backend );
+		$backendPriv = TestingAccessWrapper::newFromObject( $backend );
 
 		try {
 			$provider->getAllowedUserRights( $backend );

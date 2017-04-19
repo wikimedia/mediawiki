@@ -3,6 +3,7 @@
 namespace MediaWiki\Auth;
 
 use Psr\Log\LoggerInterface;
+use Wikimedia\TestingAccessWrapper;
 
 class EmailNotificationSecondaryAuthenticationProviderTest extends \PHPUnit_Framework_TestCase {
 	public function testConstructor() {
@@ -13,14 +14,14 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends \PHPUnit_Fram
 
 		$provider = new EmailNotificationSecondaryAuthenticationProvider();
 		$provider->setConfig( $config );
-		$providerPriv = \TestingAccessWrapper::newFromObject( $provider );
+		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 		$this->assertTrue( $providerPriv->sendConfirmationEmail );
 
 		$provider = new EmailNotificationSecondaryAuthenticationProvider( [
 			'sendConfirmationEmail' => false,
 		] );
 		$provider->setConfig( $config );
-		$providerPriv = \TestingAccessWrapper::newFromObject( $provider );
+		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 		$this->assertFalse( $providerPriv->sendConfirmationEmail );
 	}
 
