@@ -60,8 +60,6 @@ class BenchWikimediaBaseConvert extends Benchmarker {
 				'args' => [ $number, $inbase, $outbase, 0, true, 'gmp' ]
 			],
 		] );
-
-		$this->output( $this->getFormattedResults() );
 	}
 
 	protected static function makeRandomNumber( $base, $length ) {

@@ -68,8 +68,6 @@ class BenchmarkDeleteTruncate extends Benchmarker {
 		] );
 
 		$dbw->dropTable( 'test' );
-
-		$this->output( $this->getFormattedResults() );
 	}
 
 	/**
