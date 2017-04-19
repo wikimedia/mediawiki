@@ -32,6 +32,8 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
  * @ingroup Benchmark
  */
 class BenchmarkDeleteTruncate extends Benchmarker {
+	protected $defaultCount = 10;
+
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Benchmarks SQL DELETE vs SQL TRUNCATE.' );
@@ -46,29 +48,28 @@ class BenchmarkDeleteTruncate extends Benchmarker {
   text varbinary(255) NOT NULL
 );" );
 
-		$this->insertData( $dbw );
-
-		$start = microtime( true );
-
-		$this->delete( $dbw );
-
-		$end = microtime( true );
-
-		echo "Delete: " . sprintf( "%6.3fms", ( $end - $start ) * 1000 );
-		echo "\r\n";
-
-		$this->insertData( $dbw );
-
-		$start = microtime( true );
-
-		$this->truncate( $dbw );
-
-		$end = microtime( true );
-
-		echo "Truncate: " . sprintf( "%6.3fms", ( $end - $start ) * 1000 );
-		echo "\r\n";
+		$this->bench( [
+			'Delete' => [
+				'setup' => function () use ( $dbw ) {
+					$this->insertData( $dbw );
+				},
+				'function' => function () use ( $dbw ) {
+					$this->delete( $dbw );
+				}
+			],
+			'Truncate' => [
+				'setup' => function () use ( $dbw ) {
+					$this->insertData( $dbw );
+				},
+				'function' => function () use ( $dbw ) {
+					$this->truncate( $dbw );
+				}
+			]
+		] );
 
 		$dbw->dropTable( 'test' );
+
+		$this->output( $this->getFormattedResults() );
 	}
 
 	/**

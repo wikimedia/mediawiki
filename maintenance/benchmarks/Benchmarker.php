@@ -35,6 +35,7 @@ require_once __DIR__ . '/../Maintenance.php';
  */
 abstract class Benchmarker extends Maintenance {
 	private $results;
+	protected $defaultCount = 100;
 
 	public function __construct() {
 		parent::__construct();
@@ -42,31 +43,40 @@ abstract class Benchmarker extends Maintenance {
 	}
 
 	public function bench( array $benchs ) {
-		$bench_number = 0;
-		$count = $this->getOption( 'count', 100 );
-
-		foreach ( $benchs as $bench ) {
-			// handle empty args
-			if ( !array_key_exists( 'args', $bench ) ) {
+		$count = $this->getOption( 'count', $this->defaultCount );
+		foreach ( $benchs as $key => $bench ) {
+			// Default to no arguments
+			if ( !isset( $bench['args'] ) ) {
 				$bench['args'] = [];
 			}
 
-			$bench_number++;
+			// Optional setup called outside time measure
+			if ( isset( $bench['setup'] ) ) {
+				call_user_func( $bench['setup'] );
+			}
 			$start = microtime( true );
 			for ( $i = 0; $i < $count; $i++ ) {
 				call_user_func_array( $bench['function'], $bench['args'] );
 			}
 			$delta = microtime( true ) - $start;
 
-			// function passed as a callback
-			if ( is_array( $bench['function'] ) ) {
-				$ret = get_class( $bench['function'][0] ) . '->' . $bench['function'][1];
-				$bench['function'] = $ret;
+			// Name defaults to name of called function
+			if ( is_string( $key ) ) {
+				$name = $key;
+			} else {
+				if ( is_array( $bench['function'] ) ) {
+					$name = get_class( $bench['function'][0] ) . '::' . $bench['function'][1];
+				} else {
+					$name = strval( $bench['function'] );
+				}
+				$name = sprintf( "%s(%s)",
+					$name,
+					implode( ', ', $bench['args'] )
+				);
 			}
 
-			$this->results[$bench_number] = [
-				'function' => $bench['function'],
-				'arguments' => $bench['args'],
+			$this->results[] = [
+				'name' => $name,
 				'count' => $count,
 				'total' => $delta,
 				'average' => $delta / $count,
@@ -84,10 +94,9 @@ abstract class Benchmarker extends Maintenance {
 		);
 		foreach ( $this->results as $res ) {
 			// show function with args
-			$ret .= sprintf( "%s times: function %s(%s) :\n",
+			$ret .= sprintf( "%s times: %s\n",
 				$res['count'],
-				$res['function'],
-				implode( ', ', $res['arguments'] )
+				$res['name']
 			);
 			$ret .= sprintf( "   %6.2fms (%6.4fms each)\n",
 				$res['total'] * 1e3,
