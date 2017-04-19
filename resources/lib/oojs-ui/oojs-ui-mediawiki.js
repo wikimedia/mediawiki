@@ -52,7 +52,7 @@ OO.ui.MediaWikiTheme.prototype.getElementClasses = function ( element ) {
 			// Button with a dark background
 			isFramed && ( isActive || element.isDisabled() || element.hasFlag( 'primary' ) ) ||
 			// Toolbar with a dark background
-			element instanceof OO.ui.ToolGroup && ( isActive || element.hasFlag( 'primary' ) )
+			OO.ui.ToolGroup && element instanceof OO.ui.ToolGroup && ( isActive || element.hasFlag( 'primary' ) )
 		) {
 			// … use white icon / indicator, regardless of other flags
 			variants.invert = true;
