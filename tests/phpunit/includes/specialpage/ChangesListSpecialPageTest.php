@@ -1,4 +1,7 @@
 <?php
+
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * Test class for ChangesListSpecialPage class
  *

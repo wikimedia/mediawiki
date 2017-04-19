@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Auth;
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @group AuthManager
  * @covers MediaWiki\Auth\ResetPasswordSecondaryAuthenticationProvider
@@ -85,7 +87,7 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiTestCas
 		] );
 		$manager = new AuthManager( new \FauxRequest, $config );
 		$provider->setManager( $manager );
-		$provider = \TestingAccessWrapper::newFromObject( $provider );
+		$provider = TestingAccessWrapper::newFromObject( $provider );
 
 		$msg = wfMessage( 'foo' );
 		$skipReq = new ButtonAuthenticationRequest(
