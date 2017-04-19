@@ -1,7 +1,8 @@
 /**
- * Code in this file MUST work on even the most ancient of browsers!
+ * This file is where we decide whether to initialise the Grade A run-time.
  *
- * This file is where we decide whether to initialise the modern run-time.
+ * - Beware: This file MUST parse without errors on even the most ancient of browsers!
+ * - Beware: Do not call mwNow before the isCompatible() check.
  */
 
 /* global mw, $VARS, $CODE */
@@ -18,9 +19,7 @@ var mwPerformance = ( window.performance && performance.mark ) ? performance : {
 			function () { return Date.now(); };
 	}() ),
 	// eslint-disable-next-line no-unused-vars
-	mediaWikiLoadStart = mwNow();
-
-mwPerformance.mark( 'mwLoadStart' );
+	mediaWikiLoadStart;
 
 /**
  * See <https://www.mediawiki.org/wiki/Compatibility#Browsers>
@@ -152,6 +151,9 @@ function isCompatible( str ) {
 			push: function () {}
 		};
 	}
+
+	mediaWikiLoadStart = mwNow();
+	mwPerformance.mark( 'mwLoadStart' );
 
 	script = document.createElement( 'script' );
 	script.src = $VARS.baseModulesUri;
