@@ -658,7 +658,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.29
-	 * @return \ReadOnlyMode
+	 * @return \ConfiguredReadOnlyMode
 	 */
 	public function getConfiguredReadOnlyMode() {
 		return $this->getService( 'ConfiguredReadOnlyMode' );
