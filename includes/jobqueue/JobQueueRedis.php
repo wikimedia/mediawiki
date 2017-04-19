@@ -75,6 +75,8 @@ class JobQueueRedis extends JobQueue {
 	/** @var string Compression method to use */
 	protected $compression;
 
+	const MAX_PUSH_SIZE = 25; // avoid tying up the server
+
 	/**
 	 * @param array $params Possible keys:
 	 *   - redisConfig : An array of parameters to RedisConnectionPool::__construct().
@@ -212,7 +214,7 @@ class JobQueueRedis extends JobQueue {
 			if ( $flags & self::QOS_ATOMIC ) {
 				$batches = [ $items ]; // all or nothing
 			} else {
-				$batches = array_chunk( $items, 100 ); // avoid tying up the server
+				$batches = array_chunk( $items, self::MAX_PUSH_SIZE );
 			}
 			$failed = 0;
 			$pushed = 0;
