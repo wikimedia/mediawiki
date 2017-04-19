@@ -478,29 +478,55 @@ class Preprocessor_DOM extends Preprocessor {
 					$close = '';
 				} else {
 					$attrEnd = $tagEndPos;
-					// Find closing tag
-					if (
-						!isset( $noMoreClosingTag[$name] ) &&
-						preg_match( "/<\/" . preg_quote( $name, '/' ) . "\s*>/i",
-							$text, $matches, PREG_OFFSET_CAPTURE, $tagEndPos + 1 )
-					) {
-						$inner = substr( $text, $tagEndPos + 1, $matches[0][1] - $tagEndPos - 1 );
-						$i = $matches[0][1] + strlen( $matches[0][0] );
-						$close = '<close>' . htmlspecialchars( $matches[0][0] ) . '</close>';
-					} else {
-						// No end tag
+
+					// We know that one start tag was already found
+					$numOfStartTags = 1;
+					$numOfEndTags = 0; 
+					$offset = $tagEndPos;
+					$pattern = "/<" . preg_quote( $name, '/' ) . "[^>]*>" . "|" . "<\/" . preg_quote( $name, '/' ) . "\s*>/i";
+
+					while ( $numOfStartTags != $numOfEndTags ) {
+						// match start tag or end tag 
+						if ( preg_match( $pattern, $text, $matches, PREG_OFFSET_CAPTURE, $offset + 1 ) === 0 ) {
+							break; // Nothing found
+						}
+	
+						// what is it, start or end tag?
+						if ( substr( $matches[ 0 ][ 0 ], 0, 2 ) === "</" ) {
+						   $numOfEndTags++;
+						} else {
+						   $numOfStartTags++;
+						}
+	
+						$previousMatches = $matches;
+						$offset = $matches[ 0 ][ 1 ];
+					}
+
+					if ( $numOfEndTags === 0 ) {
 						if ( in_array( $name, $xmlishAllowMissingEndTag ) ) {
-							// Let it run out to the end of the text.
+							// Let it run out to the end of the text
 							$inner = substr( $text, $tagEndPos + 1 );
 							$i = $lengthText;
 							$close = '';
 						} else {
-							// Don't match the tag, treat opening tag as literal and resume parsing.
+							// Don't match the tag, treat opening tag as literal and resume parsing
 							$i = $tagEndPos + 1;
 							$accum .= htmlspecialchars( substr( $text, $tagStartPos, $tagEndPos + 1 - $tagStartPos ) );
 							// Cache results, otherwise we have O(N^2) performance for input like <foo><foo><foo>...
-							$noMoreClosingTag[$name] = true;
+							$noMoreClosingTag[ $name ] = true;
 							continue;
+						}
+					} else {
+						if ( $numOfStartTags === $numOfEndTags ) {
+							// Match made in heaven, all start tags have end tags
+							$inner = substr( $text, $tagEndPos + 1, $offset - ( $tagEndPos + 1 ) );
+							$i = $offset + strlen( $matches[0][0] );
+							$close = '<close>' . htmlspecialchars( $matches[0][0] ) . '</close>';
+						} else {
+							// Not balanced, at least one start tag is orphan
+							$inner = substr( $text, $tagEndPos + 1, $offset - ( $tagEndPos + 1 ) );
+							$i = $offset + strlen( $previousMatches[0][0] );
+							$close = '<close>' . htmlspecialchars( $previousMatches[0][0] ) . '</close>';
 						}
 					}
 				}

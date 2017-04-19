@@ -17108,10 +17108,10 @@ Parser hook: nested tags
 <tag><tag></tag></tag>
 !! html/php
 <pre>
-'<tag>'
+'<tag></tag>'
 array (
 )
-</pre>&lt;/tag&gt;
+</pre>
 
 !! html/parsoid
 <pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"&lt;tag>"}}' data-parsoid='{}' about="#mwt2"></pre>&lt;/tag>
