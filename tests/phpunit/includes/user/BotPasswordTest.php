@@ -2,6 +2,7 @@
 
 use MediaWiki\Session\SessionManager;
 use Wikimedia\ScopedCallback;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers BotPassword

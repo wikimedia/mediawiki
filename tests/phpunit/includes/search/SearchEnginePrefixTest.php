@@ -1,5 +1,7 @@
 <?php
+
 use MediaWiki\MediaWikiServices;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Search
