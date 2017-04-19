@@ -9,7 +9,10 @@ use Wikimedia\Rdbms\LoadBalancer;
  * @since 1.29
  */
 class ReadOnlyMode {
+	/** @var ConfiguredReadOnlyMode */
 	private $configuredReadOnly;
+
+	/** @var LoadBalancer */
 	private $loadBalancer;
 
 	public function __construct( ConfiguredReadOnlyMode $cro, LoadBalancer $loadBalancer ) {
@@ -49,6 +52,8 @@ class ReadOnlyMode {
 	/**
 	 * Set the read-only mode, which will apply for the remainder of the
 	 * request or until a service reset.
+	 *
+	 * @param string|null $msg
 	 */
 	public function setReason( $msg ) {
 		$this->configuredReadOnly->setReason( $msg );
@@ -69,8 +74,13 @@ class ReadOnlyMode {
  * @since 1.29
  */
 class ConfiguredReadOnlyMode {
+	/** @var Config */
 	private $config;
+
+	/** @var string|bool|null */
 	private $fileReason;
+
+	/** @var string|null */
 	private $overrideReason;
 
 	public function __construct( Config $config ) {
@@ -114,6 +124,8 @@ class ConfiguredReadOnlyMode {
 	/**
 	 * Set the read-only mode, which will apply for the remainder of the
 	 * request or until a service reset.
+	 *
+	 * @param string|null $msg
 	 */
 	public function setReason( $msg ) {
 		$this->overrideReason = $msg;
