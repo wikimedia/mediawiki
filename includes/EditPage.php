@@ -229,9 +229,6 @@ class EditPage {
 	/** @var bool */
 	public $isJsSubpage = false;
 
-	/** @var bool */
-	public $isWrongCaseCssJsPage = false;
-
 	/** @var bool New page or new section */
 	public $isNew = false;
 
@@ -619,8 +616,6 @@ class EditPage {
 		$this->isCssJsSubpage = $this->mTitle->isCssJsSubpage();
 		$this->isCssSubpage = $this->mTitle->isCssSubpage();
 		$this->isJsSubpage = $this->mTitle->isJsSubpage();
-		// @todo FIXME: Silly assignment.
-		$this->isWrongCaseCssJsPage = $this->isWrongCaseCssJsPage();
 
 		# Show applicable editing introductions
 		if ( $this->formtype == 'initial' || $this->firsttime ) {
@@ -815,26 +810,6 @@ class EditPage {
 		) {
 			// Categories are special
 			return true;
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * Checks whether the user entered a skin name in uppercase,
-	 * e.g. "User:Example/Monobook.css" instead of "monobook.css"
-	 *
-	 * @return bool
-	 */
-	protected function isWrongCaseCssJsPage() {
-		if ( $this->mTitle->isCssJsSubpage() ) {
-			$name = $this->mTitle->getSkinFromCssJsSubpage();
-			$skins = array_merge(
-				array_keys( Skin::getSkinNames() ),
-				[ 'common' ]
-			);
-			return !in_array( $name, $skins )
-				&& in_array( strtolower( $name ), $skins );
 		} else {
 			return false;
 		}
@@ -2995,12 +2970,21 @@ class EditPage {
 			}
 		} else {
 			if ( $this->isCssJsSubpage ) {
-				# Check the skin exists
-				if ( $this->isWrongCaseCssJsPage ) {
-					$wgOut->wrapWikiMsg(
-						"<div class='error' id='mw-userinvalidcssjstitle'>\n$1\n</div>",
-						[ 'userinvalidcssjstitle', $this->mTitle->getSkinFromCssJsSubpage() ]
+					# Check the skin exists
+					if ( $this->mTitle->isCssJsSubpage() ) {
+					# Checks whether the user entered a skin name in uppercase,
+					# e.g. "User:Example/Monobook.css" instead of "monobook.css"
+					$nameQQ = $this->mTitle->getSkinFromCssJsSubpage();
+					$skinsQQ = array_merge(
+					array_keys( Skin::getSkinNames() ),
+					[ 'common' ]
 					);
+					if ( !in_array( $nameQQ, $skinsQQ )  && in_array( strtolower( $nameQQ ), $skinsQQ ) ) {
+						$wgOut->wrapWikiMsg(
+							"<div class='error' id='mw-userinvalidcssjstitle'>\n$1\n</div>",
+							[ 'userinvalidcssjstitle', $this->mTitle->getSkinFromCssJsSubpage() ]
+						);
+					}
 				}
 				if ( $this->getTitle()->isSubpageOf( $wgUser->getUserPage() ) ) {
 					$wgOut->wrapWikiMsg( '<div class="mw-usercssjspublic">$1</div>',
