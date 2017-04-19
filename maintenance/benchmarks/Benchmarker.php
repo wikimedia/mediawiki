@@ -34,7 +34,6 @@ require_once __DIR__ . '/../Maintenance.php';
  * @ingroup Benchmark
  */
 abstract class Benchmarker extends Maintenance {
-	private $results;
 	protected $defaultCount = 100;
 
 	public function __construct() {
@@ -43,6 +42,7 @@ abstract class Benchmarker extends Maintenance {
 	}
 
 	public function bench( array $benchs ) {
+		$this->startBench();
 		$count = $this->getOption( 'count', $this->defaultCount );
 		foreach ( $benchs as $key => $bench ) {
 			// Default to no arguments
@@ -54,11 +54,27 @@ abstract class Benchmarker extends Maintenance {
 			if ( isset( $bench['setup'] ) ) {
 				call_user_func( $bench['setup'] );
 			}
-			$start = microtime( true );
+
+			// Run benchmarks
+			$times = [];
 			for ( $i = 0; $i < $count; $i++ ) {
+				$t = microtime( true );
 				call_user_func_array( $bench['function'], $bench['args'] );
+				$t = ( microtime( true ) - $t ) * 1000;
+				$times[] = $t;
 			}
-			$delta = microtime( true ) - $start;
+
+			// Collect metrics
+			sort( $times, SORT_NUMERIC );
+			$min = $times[0];
+			$max = end( $times );
+			if ( $count % 2 ) {
+				$median = $times[ ( $count - 1 ) / 2 ];
+			} else {
+				$median = ( $times[$count / 2] + $times[$count / 2 - 1] ) / 2;
+			}
+			$total = array_sum( $times );
+			$mean = $total / $count;
 
 			// Name defaults to name of called function
 			if ( is_string( $key ) ) {
@@ -75,35 +91,42 @@ abstract class Benchmarker extends Maintenance {
 				);
 			}
 
-			$this->results[] = [
+			$this->addResult( [
 				'name' => $name,
 				'count' => $count,
-				'total' => $delta,
-				'average' => $delta / $count,
-			];
+				'total' => $total,
+				'min' => $min,
+				'median' => $median,
+				'mean' => $mean,
+				'max' => $max,
+			] );
 		}
 	}
 
-	public function getFormattedResults() {
-		$ret = sprintf( "Running PHP version %s (%s) on %s %s %s\n\n",
-			phpversion(),
-			php_uname( 'm' ),
-			php_uname( 's' ),
-			php_uname( 'r' ),
-			php_uname( 'v' )
+	public function startBench() {
+		$this->output(
+			sprintf( "Running PHP version %s (%s) on %s %s %s\n\n",
+				phpversion(),
+				php_uname( 'm' ),
+				php_uname( 's' ),
+				php_uname( 'r' ),
+				php_uname( 'v' )
+			)
 		);
-		foreach ( $this->results as $res ) {
-			// show function with args
-			$ret .= sprintf( "%s times: %s\n",
-				$res['count'],
-				$res['name']
-			);
-			$ret .= sprintf( "   %6.2fms (%6.4fms each)\n",
-				$res['total'] * 1e3,
-				$res['average'] * 1e3
+	}
+
+	public function addResult( $res ) {
+		$ret = sprintf( "%s\n  %' 6s: %d\n",
+			$res['name'],
+			'times',
+			$res['count']
+		);
+		foreach ( [ 'total', 'min', 'median', 'mean', 'max' ] as $metric ) {
+			$ret .= sprintf( "  %' 6s: %6.2fms\n",
+				$metric,
+				$res[$metric]
 			);
 		}
-
-		return $ret;
+		$this->output( "$ret\n" );
 	}
 }

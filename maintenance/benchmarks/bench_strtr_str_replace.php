@@ -51,7 +51,6 @@ class BenchStrtrStrReplace extends Benchmarker {
 			[ 'function' => [ $this, 'benchstrtr_indirect' ] ],
 			[ 'function' => [ $this, 'benchstr_replace_indirect' ] ],
 		] );
-		$this->output( $this->getFormattedResults() );
 	}
 
 	protected function benchstrtr() {

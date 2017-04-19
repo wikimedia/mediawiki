@@ -42,7 +42,6 @@ class BenchHttpHttps extends Benchmarker {
 			[ 'function' => [ $this, 'getHTTP' ] ],
 			[ 'function' => [ $this, 'getHTTPS' ] ],
 		] );
-		$this->output( $this->getFormattedResults() );
 	}
 
 	private function doRequest( $proto ) {

@@ -86,7 +86,6 @@ class BenchUtf8TitleCheck extends Benchmarker {
 			];
 		}
 		$this->bench( $benchmarks );
-		$this->output( $this->getFormattedResults() );
 	}
 
 	protected function use_regexp( $s ) {

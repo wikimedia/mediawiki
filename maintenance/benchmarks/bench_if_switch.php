@@ -42,7 +42,6 @@ class BenchIfSwitch extends Benchmarker {
 			[ 'function' => [ $this, 'doElseIf' ] ],
 			[ 'function' => [ $this, 'doSwitch' ] ],
 		] );
-		$this->output( $this->getFormattedResults() );
 	}
 
 	// bench function 1
