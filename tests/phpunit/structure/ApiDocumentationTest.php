@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * Checks that all API modules, core and extensions, have documentation i18n messages
  *

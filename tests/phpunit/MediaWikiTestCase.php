@@ -1,9 +1,11 @@
 <?php
+
 use MediaWiki\Logger\LegacySpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\MonologSpi;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @since 1.18
