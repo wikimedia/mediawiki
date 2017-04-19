@@ -32,6 +32,8 @@ require_once __DIR__ . '/Benchmarker.php';
 class BenchUtf8TitleCheck extends Benchmarker {
 	private $data;
 
+	private $isutf8;
+
 	public function __construct() {
 		parent::__construct();
 
@@ -84,29 +86,27 @@ class BenchUtf8TitleCheck extends Benchmarker {
 			];
 		}
 		$this->bench( $benchmarks );
-		print $this->getFormattedResults();
+		$this->output( $this->getFormattedResults() );
 	}
 
-	private $isutf8;
-
-	function use_regexp( $s ) {
+	protected function use_regexp( $s ) {
 		$this->isutf8 = preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
 			'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
 	}
 
-	function use_regexp_non_capturing( $s ) {
+	protected function use_regexp_non_capturing( $s ) {
 		// Same as above with a non-capturing subgroup.
 		$this->isutf8 = preg_match( '/^(?:[\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
 			'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
 	}
 
-	function use_regexp_once_only( $s ) {
+	protected function use_regexp_once_only( $s ) {
 		// Same as above with a once-only subgroup.
 		$this->isutf8 = preg_match( '/^(?>[\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
 			'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
 	}
 
-	function use_mb_check_encoding( $s ) {
+	protected function use_mb_check_encoding( $s ) {
 		$this->isutf8 = mb_check_encoding( $s, 'UTF-8' );
 	}
 }
