@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Auth;
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @group AuthManager
  * @covers MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider
@@ -126,7 +128,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiTestCase 
 			->will( $this->returnValue( "BadReq" ) );
 
 		$user = \User::newFromName( 'UTSysop' );
-		$provider = \TestingAccessWrapper::newFromObject(
+		$provider = TestingAccessWrapper::newFromObject(
 			new ConfirmLinkSecondaryAuthenticationProvider
 		);
 		$request = new \FauxRequest();
@@ -171,7 +173,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiTestCase 
 			$r->action = AuthManager::ACTION_CHANGE;
 			$r->username = $user->getName();
 		}
-		$this->assertEquals( $expectReqs, \TestingAccessWrapper::newFromObject( $req )->linkRequests );
+		$this->assertEquals( $expectReqs, TestingAccessWrapper::newFromObject( $req )->linkRequests );
 	}
 
 	public function testContinueLinkAttempt() {
@@ -190,7 +192,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiTestCase 
 			->will( $this->returnValue( $obj ) );
 		$this->assertSame(
 			$obj,
-			\TestingAccessWrapper::newFromObject( $mock )->continueLinkAttempt( $user, 'state', $reqs )
+			TestingAccessWrapper::newFromObject( $mock )->continueLinkAttempt( $user, 'state', $reqs )
 		);
 
 		// Now test the actual functioning
@@ -224,7 +226,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		$request = new \FauxRequest();
 		$manager = new AuthManager( $request, $config );
 		$provider->setManager( $manager );
-		$provider = \TestingAccessWrapper::newFromObject( $provider );
+		$provider = TestingAccessWrapper::newFromObject( $provider );
 
 		$req = new ConfirmLinkAuthenticationRequest( $reqs );
 

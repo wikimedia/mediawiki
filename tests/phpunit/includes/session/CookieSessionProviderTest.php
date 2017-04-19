@@ -5,6 +5,7 @@ namespace MediaWiki\Session;
 use MediaWikiTestCase;
 use User;
 use Psr\Log\LogLevel;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Session
@@ -76,7 +77,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		}
 
 		$config = $this->getConfig();
-		$p = \TestingAccessWrapper::newFromObject(
+		$p = TestingAccessWrapper::newFromObject(
 			new CookieSessionProvider( [ 'priority' => 1 ] )
 		);
 		$p->setLogger( new \TestLogger() );
@@ -95,7 +96,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		], $p->cookieOptions );
 
 		$config->set( 'SessionName', 'SessionName' );
-		$p = \TestingAccessWrapper::newFromObject(
+		$p = TestingAccessWrapper::newFromObject(
 			new CookieSessionProvider( [ 'priority' => 3 ] )
 		);
 		$p->setLogger( new \TestLogger() );
@@ -113,7 +114,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 			'httpOnly' => true,
 		], $p->cookieOptions );
 
-		$p = \TestingAccessWrapper::newFromObject( new CookieSessionProvider( [
+		$p = TestingAccessWrapper::newFromObject( new CookieSessionProvider( [
 			'priority' => 10,
 			'callUserSetCookiesHook' => true,
 			'cookieOptions' => [
@@ -151,7 +152,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 
 		$this->assertEquals(
 			$extendedCookies,
-			\TestingAccessWrapper::newFromObject( $provider )->getExtendedLoginCookies(),
+			TestingAccessWrapper::newFromObject( $provider )->getExtendedLoginCookies(),
 			'List of extended cookies (subclasses can add values, but we\'re calling the core one here)'
 		);
 
@@ -412,7 +413,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 			new \Psr\Log\NullLogger(),
 			10
 		);
-		\TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = false;
+		TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = false;
 
 		$mock = $this->getMockBuilder( 'stdClass' )
 			->setMethods( [ 'onUserSetCookies' ] )
@@ -499,7 +500,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 			new \Psr\Log\NullLogger(),
 			10
 		);
-		\TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = false;
+		TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = false;
 		$backend->setUser( $user );
 		$backend->setRememberUser( $remember );
 		$backend->setForceHTTPS( $secure );
@@ -604,7 +605,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 			new \Psr\Log\NullLogger(),
 			10
 		);
-		\TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = false;
+		TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = false;
 
 		// Anonymous user
 		$mock = $this->getMockBuilder( 'stdClass' )
@@ -736,7 +737,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 	}
 
 	public function testSetLoggedOutCookie() {
-		$provider = \TestingAccessWrapper::newFromObject( new CookieSessionProvider( [
+		$provider = TestingAccessWrapper::newFromObject( new CookieSessionProvider( [
 			'priority' => 1,
 			'sessionName' => 'MySessionName',
 			'cookieOptions' => [ 'prefix' => 'x' ],
@@ -783,7 +784,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$provider->setLogger( new \Psr\Log\NullLogger() );
 		$provider->setConfig( $this->getConfig() );
 		$provider->setManager( SessionManager::singleton() );
-		$provider = \TestingAccessWrapper::newFromObject( $provider );
+		$provider = TestingAccessWrapper::newFromObject( $provider );
 
 		$request = new \FauxRequest();
 		$request->setCookies( [
@@ -815,7 +816,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 
 	public function testGetLoginCookieExpiration() {
 		$config = $this->getConfig();
-		$provider = \TestingAccessWrapper::newFromObject( new CookieSessionProvider( [
+		$provider = TestingAccessWrapper::newFromObject( new CookieSessionProvider( [
 			'priority' => 10
 		] ) );
 		$provider->setLogger( new \Psr\Log\NullLogger() );

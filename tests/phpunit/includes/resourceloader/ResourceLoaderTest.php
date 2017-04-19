@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 class ResourceLoaderTest extends ResourceLoaderTestCase {
 
 	protected function setUp() {
