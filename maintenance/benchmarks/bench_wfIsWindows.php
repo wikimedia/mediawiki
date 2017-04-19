@@ -42,7 +42,6 @@ class BenchWfIsWindows extends Benchmarker {
 			[ 'function' => [ $this, 'wfIsWindows' ] ],
 			[ 'function' => [ $this, 'wfIsWindowsCached' ] ],
 		] );
-		print $this->getFormattedResults();
 	}
 
 	protected static function is_win() {
