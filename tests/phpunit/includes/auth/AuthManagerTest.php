@@ -7,6 +7,7 @@ use MediaWiki\Session\UserInfo;
 use Psr\Log\LogLevel;
 use StatusValue;
 use Wikimedia\ScopedCallback;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group AuthManager
@@ -127,7 +128,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		}
 		$this->manager = new AuthManager( $this->request, $this->config );
 		$this->manager->setLogger( $this->logger );
-		$this->managerPriv = \TestingAccessWrapper::newFromObject( $this->manager );
+		$this->managerPriv = TestingAccessWrapper::newFromObject( $this->manager );
 	}
 
 	/**
@@ -170,7 +171,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			'logger' => new \Psr\Log\NullLogger(),
 			'store' => new \HashBagOStuff(),
 		] );
-		\TestingAccessWrapper::newFromObject( $manager )->getProvider( (string)$provider );
+		TestingAccessWrapper::newFromObject( $manager )->getProvider( (string)$provider );
 
 		$reset = \MediaWiki\Session\TestUtils::setSessionManagerSingleton( $manager );
 
@@ -196,7 +197,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$this->assertSame( \RequestContext::getMain()->getRequest(), $singleton->getRequest() );
 		$this->assertSame(
 			\RequestContext::getMain()->getConfig(),
-			\TestingAccessWrapper::newFromObject( $singleton )->config
+			TestingAccessWrapper::newFromObject( $singleton )->config
 		);
 	}
 
