@@ -42,6 +42,7 @@ changes to languages because of Phabricator reports.
 * The use of an associative array for $wgProxyList, where the IP address is in
   the key instead of the value, is deprecated (e.g. [ '127.0.0.1' => 'value' ]).
   Please convert these arrays to indexed/sequential ones (e.g. [ '127.0.0.1' ]).
+* mw.user.bucket (deprecated in 1.23) was removed.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for

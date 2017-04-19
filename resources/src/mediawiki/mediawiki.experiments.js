@@ -66,8 +66,6 @@
 		 * assigned to either the A or B buckets. If the experiment were disabled,
 		 * then the user would always be assigned to the control bucket.
 		 *
-		 * This function is based on the deprecated `mw.user.bucket` function.
-		 *
 		 * @param {Object} experiment
 		 * @param {string} experiment.name The name of the experiment
 		 * @param {boolean} experiment.enabled Whether or not the experiment is
