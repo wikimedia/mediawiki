@@ -307,12 +307,6 @@ class SVGReader {
 		}
 	}
 
-	// @todo FIXME: Unused, remove?
-	private function throwXmlError( $err ) {
-		$this->debug( "FAILURE: $err" );
-		wfDebug( "SVGReader XML error: $err\n" );
-	}
-
 	private function debug( $data ) {
 		if ( $this->mDebug ) {
 			wfDebug( "SVGReader: $data\n" );
