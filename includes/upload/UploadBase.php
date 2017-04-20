@@ -798,7 +798,7 @@ abstract class UploadBase {
 	 * Returns the title of the file to be uploaded. Sets mTitleError in case
 	 * the name was illegal.
 	 *
-	 * @return Title The title of the file or null in case the name was illegal
+	 * @return Title|null The title of the file or null in case the name was illegal
 	 */
 	public function getTitle() {
 		if ( $this->mTitle !== false ) {
