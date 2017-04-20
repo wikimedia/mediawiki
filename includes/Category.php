@@ -321,6 +321,13 @@ class Category {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
+		# Avoid excess contention on the same category (T162121)
+		$name = __METHOD__ . ':' . md5( $this->mName );
+		$scopedLock = $dbw->getScopedLockAndFlush( $name, __METHOD__, 1 );
+		if ( !$scopedLock ) {
+			return;
+		}
+
 		$dbw->startAtomic( __METHOD__ );
 
 		$cond1 = $dbw->conditional( [ 'page_namespace' => NS_CATEGORY ], 1, 'NULL' );
