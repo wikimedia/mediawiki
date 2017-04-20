@@ -720,7 +720,10 @@ class SkinTemplate extends Skin {
 			}
 
 			if ( $authManager->canAuthenticateNow() ) {
-				$personal_urls['login'] = $login_url;
+				$key = User::groupHasPermission( '*', 'read' )
+					? 'login'
+					: 'login-private';
+				$personal_urls[$key] = $login_url;
 			}
 		}
 

@@ -327,6 +327,8 @@ changes to languages because of Phabricator reports.
   mwCustomEditButtons, injectSpinner, removeSpinner, escapeQuotes,
   escapeQuotesHTML, jsMsg, addPortletLink, appendCSS, tooltipAccessKeyPrefix,
   tooltipAccessKeyRegexp, updateTooltipAccessKeys.
+* The ID of the <li> element containing the login link has changed from
+  'pt-login' to 'pt-login-private' in private wikis.
 
 == Compatibility ==
 
