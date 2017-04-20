@@ -62,12 +62,12 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 	 *   - host: the host address and port
 	 *   - protocol: either http or https
 	 *   - directory: the etc "directory" were MediaWiki specific variables are located
-	 *   - encoding: one of ("JSON", "YAML")
+	 *   - encoding: one of ("JSON", "YAML"). Defaults to JSON. [optional]
 	 *   - cache: BagOStuff instance or ObjectFactory spec thereof for a server cache.
-	 *            The cache will also be used as a fallback if etcd is down.
-	 *   - cacheTTL: logical cache TTL in seconds
-	 *   - skewTTL: maximum seconds to randomly lower the assigned TTL on cache save
-	 *   - timeout: seconds to wait for etcd before throwing an error
+	 *            The cache will also be used as a fallback if etcd is down. [optional]
+	 *   - cacheTTL: logical cache TTL in seconds [optional]
+	 *   - skewTTL: maximum seconds to randomly lower the assigned TTL on cache save [optional]
+	 *   - timeout: seconds to wait for etcd before throwing an error [optional]
 	 */
 	public function __construct( array $params ) {
 		$params += [
