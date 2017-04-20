@@ -82,7 +82,7 @@ class RefreshLinksJob extends Job {
 		global $wgUpdateRowsPerJob;
 
 		// Job to update all (or a range of) backlink pages for a page
-		if ( !empty( $this->params['recursive'] ) ) {
+		if ( false && !empty( $this->params['recursive'] ) ) {
 			// When the base job branches, wait for the replica DBs to catch up to the master.
 			// From then on, we know that any template changes at the time the base job was
 			// enqueued will be reflected in backlink page parses when the leaf jobs run.
