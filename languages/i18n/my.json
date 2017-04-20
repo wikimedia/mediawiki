@@ -23,7 +23,8 @@
 			"9.sinistra",
 			"Ninjastrikers",
 			"Penguinlay",
-			"Nemo bis"
+			"Nemo bis",
+			"Stephanecbisson"
 		]
 	},
 	"tog-underline": "လင့်ကို မျဉ်းသားသည့် ပုံစံ -",
@@ -898,7 +899,7 @@
 	"rcshowhidecategorization": "စာမျက်နှာ ကဏ္ဍထည့်သွင်းခြင်း $1ရန်",
 	"rcshowhidecategorization-show": "ပြ",
 	"rcshowhidecategorization-hide": "ဝှက်",
-	"rclinks": "$2 ရက်အတွင်းမှ နောက်ဆုံးပြင်ဆင်ချက် $1 ခုကို ပြရန်</br> $3",
+	"rclinks": "$2 ရက်အတွင်းမှ နောက်ဆုံးပြင်ဆင်ချက် $1 ခုကို ပြရန်",
 	"diff": "ကွဲပြားမှု",
 	"hist": "မှတ်တမ်း",
 	"hide": "ဝှက်",

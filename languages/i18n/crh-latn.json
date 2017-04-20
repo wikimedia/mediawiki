@@ -5,7 +5,8 @@
 			"Don Alessandro",
 			"Urhixidur",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Stephanecbisson"
 		]
 	},
 	"tog-underline": "Bağlantılarnıñ tübüni sızuv:",
@@ -767,7 +768,7 @@
 	"rcshowhidemine": "menim yapqan deñiştirmelerimni $1",
 	"rcshowhidemine-show": "köster",
 	"rcshowhidemine-hide": "gizle",
-	"rclinks": "Soñki $2 künde yapılğan soñki $1 deñiştirmeni köster;<br /> $3",
+	"rclinks": "Soñki $2 künde yapılğan soñki $1 deñiştirmeni köster;",
 	"diff": "farq",
 	"hist": "keçmiş",
 	"hide": "gizle",

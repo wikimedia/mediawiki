@@ -2645,6 +2645,7 @@
 	"tooltip-pt-mycontris": "قائمة{{GENDER:|your}}  مساهماتك",
 	"tooltip-pt-anoncontribs": "قائمة بتعديلات قام بها عنوان الآي بي",
 	"tooltip-pt-login": "يفضل أن تسجل الدخول، لكنه ليس إلزاميا.",
+	"tooltip-pt-login-private": "عليك تسجيل الدخول لاستخدام هذه الويكي.",
 	"tooltip-pt-logout": "تسجيل الخروج",
 	"tooltip-pt-createaccount": "نشجعك على عمل حساب وتسجيل دخولك; لكنه غير ضروري على اي حال",
 	"tooltip-ca-talk": "نقاش عن صفحة المحتوى",

@@ -9,7 +9,8 @@
 			"Исмаил Садуев",
 			"Умар",
 			"Macofe",
-			"Danvintius Bookix"
+			"Danvintius Bookix",
+			"Stephanecbisson"
 		]
 	},
 	"tog-underline": "Багълантыларнынъ тюбюни сызув:",
@@ -772,7 +773,7 @@
 	"rcshowhidemine": "меним япкъан денъиштирмелеримни $1",
 	"rcshowhidemine-show": "косьтер",
 	"rcshowhidemine-hide": "гизле",
-	"rclinks": "Сонъки $2 куньде япылгъан сонъки $1 денъиштирмени косьтер;<br /> $3",
+	"rclinks": "Сонъки $2 куньде япылгъан сонъки $1 денъиштирмени косьтер;",
 	"diff": "фаркъ",
 	"hist": "кечмиш",
 	"hide": "гизле",

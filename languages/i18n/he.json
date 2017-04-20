@@ -2613,6 +2613,7 @@
 	"tooltip-pt-mycontris": "רשימת העריכות שביצעת",
 	"tooltip-pt-anoncontribs": "רשימת העריכות שנעשו מכתובת ה־IP הזאת",
 	"tooltip-pt-login": "מומלץ להיכנס לחשבון, אך אין חובה לעשות זאת",
+	"tooltip-pt-login-private": "יש להיכנס לחשבון כדי להשתמש באתר הוויקי הזה",
 	"tooltip-pt-logout": "יציאה מהחשבון",
 	"tooltip-pt-createaccount": "מומלץ ליצור חשבון ולהיכנס אליו, אך אין חובה לעשות זאת",
 	"tooltip-ca-talk": "שיחה על דף זה",

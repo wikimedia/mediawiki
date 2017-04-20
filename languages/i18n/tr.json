@@ -92,7 +92,8 @@
 			"Alikaan",
 			"By erdo can",
 			"1917 Ekim Devrimi",
-			"Asmen"
+			"Asmen",
+			"Stephanecbisson"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çizme:",
@@ -1415,7 +1416,7 @@
 	"rcshowhidecategorization": "sayfa kategorizasyonunu $1",
 	"rcshowhidecategorization-show": "göster",
 	"rcshowhidecategorization-hide": "gizle",
-	"rclinks": "Son $2 günde yapılan son $1 değişikliği göster;<br /> $3",
+	"rclinks": "Son $2 günde yapılan son $1 değişikliği göster;",
 	"diff": "fark",
 	"hist": "geçmiş",
 	"hide": "gizle",

@@ -35,7 +35,8 @@
 			"Matma Rex",
 			"Xð",
 			"Nguyên Lê",
-			"Asmen"
+			"Asmen",
+			"Stephanecbisson"
 		]
 	},
 	"tog-underline": "Gạch chân liên kết:",
@@ -1188,7 +1189,6 @@
 	"right-editsemiprotected": "Sửa trang khóa ở mức “{{int:protect-level-autoconfirmed}}”",
 	"right-editcontentmodel": "Sửa kiểu nội dung của trang",
 	"right-editinterface": "Sửa giao diện người dùng",
-	"right-editusercssjs": "Sửa tập tin CSS và JS của người dùng khác",
 	"right-editusercss": "Sửa tập tin CSS của người dùng khác",
 	"right-edituserjs": "Sửa đổi tập tin JavaScript của người dùng khác",
 	"right-editmyusercss": "Sửa đổi tập tin CSS cá nhân của mình",
@@ -1389,7 +1389,7 @@
 	"rcshowhidecategorization": "$1 tác vụ xếp thể loại",
 	"rcshowhidecategorization-show": "Hiện",
 	"rcshowhidecategorization-hide": "Ẩn",
-	"rclinks": "Xem $1 sửa đổi gần đây nhất trong $2 ngày qua; $3.",
+	"rclinks": "Xem $1 sửa đổi gần đây nhất trong $2 ngày qua;",
 	"diff": "khác",
 	"hist": "sử",
 	"hide": "Ẩn",

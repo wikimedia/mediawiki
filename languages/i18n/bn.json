@@ -32,7 +32,8 @@
 			"আজিজ",
 			"Kayser Ahmad",
 			"NahidSultan",
-			"Elias Ahmmad"
+			"Elias Ahmmad",
+			"Catrope"
 		]
 	},
 	"tog-underline": "সংযোগের নিচে দাগ দেখানো হোক:",
@@ -1407,7 +1408,7 @@
 	"rcshowhidecategorization": "পাতা শ্রেণীবদ্ধকরণ $1",
 	"rcshowhidecategorization-show": "দেখাও",
 	"rcshowhidecategorization-hide": "লুকিয়ে রাখো",
-	"rclinks": "'''প্রদর্শনের ধরন'''<br />\n* বিগত ($2) দিনের শেষ ($1)টি পরিবর্তন দেখাও\n* $3",
+	"rclinks": "'''প্রদর্শনের ধরন'''<br />\n* বিগত ($2) দিনের শেষ ($1)টি পরিবর্তন দেখাও",
 	"diff": "পরিবর্তন",
 	"hist": "ইতিহাস",
 	"hide": "লুকিয়ে রাখো",

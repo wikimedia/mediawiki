@@ -30,7 +30,8 @@
 			"Wintereu",
 			"Rsocol",
 			"Nemo bis",
-			"Turbojet"
+			"Turbojet",
+			"Stephanecbisson"
 		]
 	},
 	"tog-underline": "Sublinierea legăturilor:",
@@ -1143,7 +1144,6 @@
 	"right-editsemiprotected": "Modifică pagini protejate ca „{{int:protect-level-autoconfirmed}}”",
 	"right-editcontentmodel": "Modifică modelul de conținut al unei pagini",
 	"right-editinterface": "Modifică interfața cu utilizatorul",
-	"right-editusercssjs": "Modifică fișierele CSS și JS ale altor utilizatori",
 	"right-editusercss": "Modifică fișierele CSS ale altor utilizatori",
 	"right-edituserjs": "Modifică fișierele JS ale altor utilizatori",
 	"right-editmyusercss": "Modificați-vă propriile fișiere CSS",
@@ -1275,7 +1275,7 @@
 	"rcshowhidecategorization": "$1 categorisirea paginilor",
 	"rcshowhidecategorization-show": "Arată",
 	"rcshowhidecategorization-hide": "Ascunde",
-	"rclinks": "Se arată ultimele $1 modificări din ultimele $2 zile.<br />\n$3",
+	"rclinks": "Se arată ultimele $1 modificări din ultimele $2 zile.",
 	"diff": "dif",
 	"hist": "ist",
 	"hide": "Ascunde",
@@ -2065,9 +2065,6 @@
 	"undeleteviewlink": "vezi",
 	"undeleteinvert": "Exclude spațiul",
 	"undeletecomment": "Motiv:",
-	"undeletedrevisions": "{{PLURAL:$1|o versiune restaurată|$1 versiuni restaurate|$1 de versiuni restaurate}}",
-	"undeletedrevisions-files": "{{PLURAL:$1|O versiune|$1 versiuni|$1 de versiuni}} și {{PLURAL:$2|un fișier|$2 fișiere|$2 de fișiere}} recuperate",
-	"undeletedfiles": "{{PLURAL:$1|O versiune recuperată|$1 versiuni recuperate|$1 de versiuni recuperate}}",
 	"cannotundelete": "Recuperarea a eșuat:\n$1",
 	"undeletedpage": "'''$1 a fost recuperat'''\n\nConsultați [[Special:Log/delete|jurnalul ștergerilor]] pentru a vedea toate ștergerile și recuperările recente.",
 	"undelete-header": "Consultați [[Special:Log/delete|jurnalul de ștergeri]] pentru paginile șterse recent.",

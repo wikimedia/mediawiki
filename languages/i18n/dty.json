@@ -1014,7 +1014,7 @@
 	"rcshowhidemine-hide": "लुकाऽ",
 	"rcshowhidecategorization-show": "धेकाउन्या",
 	"rcshowhidecategorization-hide": "लुकाउन्या",
-	"rclinks": "पछिल्ला $1 परिवर्तनहरू पछाडिका $2 दिनहरूमी",
+	"rclinks": "पछिल्ला $1 परिवर्तनहरू <br/> पछाडिका $2 दिनहरूमी",
 	"diff": "फरक",
 	"hist": "इतिहास",
 	"hide": "लुकाइदिय",

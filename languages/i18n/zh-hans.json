@@ -2671,6 +2671,7 @@
 	"tooltip-pt-mycontris": "{{GENDER:|您}}的贡献的列表",
 	"tooltip-pt-anoncontribs": "来自此IP地址的编辑列表",
 	"tooltip-pt-login": "我们鼓励您登录；然而，这不是强制性的",
+	"tooltip-pt-login-private": "您需要登录以使用此wiki",
 	"tooltip-pt-logout": "退出登录",
 	"tooltip-pt-createaccount": "建议您创建一个账户并登录，但这不是强制的",
 	"tooltip-ca-talk": "关于内容页面的讨论",

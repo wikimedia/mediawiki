@@ -2336,6 +2336,7 @@
 	"autoblocklist-legend": "Сьпіс аўтаблякаваньняў",
 	"autoblocklist-localblocks": "{{PLURAL:$1|1=Лякальнае аўтаблякаваньне|Лякальныя аўтаблякаваньні}}",
 	"autoblocklist-empty": "Сьпіс аўтаблякаваньняў пусты.",
+	"autoblocklist-otherblocks": "{{PLURAL:$1|1=Іншае аўтаблякаваньне|Іншыя аўтаблякаваньні}}",
 	"ipblocklist": "Заблякаваныя ўдзельнікі",
 	"ipblocklist-legend": "Пошук заблякаванага ўдзельніка",
 	"blocklist-userblocks": "Схаваць блякаваньні рахункаў",

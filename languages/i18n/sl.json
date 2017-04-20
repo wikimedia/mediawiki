@@ -2587,6 +2587,7 @@
 	"tooltip-pt-mycontris": "Seznam {{GENDER:|tvojih}} prispevkov",
 	"tooltip-pt-anoncontribs": "Seznam urejanj s tega IP-naslova",
 	"tooltip-pt-login": "Prijava ni obvezna, vendar je zaželena",
+	"tooltip-pt-login-private": "Da lahko uporabljate ta wiki, se morate prijaviti",
 	"tooltip-pt-logout": "Odjavi se",
 	"tooltip-pt-createaccount": "Predlagamo vam, da ustvarite račun in se prijavite, vendar pa to ni obvezno.",
 	"tooltip-ca-talk": "Pogovor o strani",

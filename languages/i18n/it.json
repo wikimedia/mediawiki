@@ -2644,6 +2644,7 @@
 	"tooltip-pt-mycontris": "La lista dei {{GENDER:|tuoi}} contributi",
 	"tooltip-pt-anoncontribs": "Un elenco delle modifiche fatte da questo indirizzo IP",
 	"tooltip-pt-login": "Si consiglia di effettuare l'accesso, anche se non è obbligatorio",
+	"tooltip-pt-login-private": "Devi accedere per utilizzare questo wiki",
 	"tooltip-pt-logout": "Uscita (logout)",
 	"tooltip-pt-createaccount": "Si consiglia di registrarsi e di effettuare l'accesso, anche se non è obbligatorio",
 	"tooltip-ca-talk": "Vedi le discussioni relative a questa pagina",
@@ -3911,6 +3912,6 @@
 	"gotointerwiki": "Stai per lasciare {{SITENAME}}",
 	"gotointerwiki-invalid": "Il titolo specificato non è valido.",
 	"gotointerwiki-external": "Stai per lasciare {{SITENAME}} per visitare [[$2]] che è un diverso sito web.\n\n[$1 Clicca qui per continuare su $1].",
-	"undelete-cantedit": "Non puoi ripristinare questa pagina poiché non hai sufficienti permessi per editarla.",
-	"undelete-cantcreate": "Non puoi ripristinare questa pagina poiché la pagina con questo nome è ancora inesistente e non hai sufficienti permessi per crearla."
+	"undelete-cantedit": "Non puoi ripristinare questa pagina poiché non hai sufficienti permessi per modificarla.",
+	"undelete-cantcreate": "Non puoi ripristinare questa pagina poiché la pagina con questo nome non è ancora inesistente e non hai sufficienti permessi per crearla."
 }

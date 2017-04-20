@@ -3271,7 +3271,7 @@
 	"revdelete-uname-unhid": "nameyê karberi nênımıteyo",
 	"revdelete-restricted": "vergırewtışê ke xızmekaran rê biye",
 	"revdelete-unrestricted": "vergırewtışê ke xızmekaran rê dariyê we",
-	"logentry-move-move": "{| style=\"border:1px solid skyblue; margin-bottom: 1em\" cellspacing=\"0\" cellpadding=\"2\" width=\"60%\"\n\t\n| style=\"font: 100% verdana; color:black\" align=\"center\" bgcolor=\"greenyellow\" | $1,  pera $3'i {{GENDER:$2|kırışt}} $4\n|}",
+	"logentry-move-move": "$1 perra $3 {{GENDER:$2|kırışt}} $4",
 	"logentry-move-move-noredirect": "$1, pera $3'i bêhetenayış {{GENDER:$2|kırışt}} pera $4`i",
 	"logentry-move-move_redir": "Hetenayışi sera karber $1 pera $3'i  {{GENDER:$2|kırışt}} pera $4",
 	"logentry-move-move_redir-noredirect": "Hetenayışi sera pela $3 ra $1 {{GENDER:$2|berd}} pela $4",

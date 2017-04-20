@@ -2622,6 +2622,7 @@
 	"tooltip-pt-mycontris": "Lista das súas contribucións",
 	"tooltip-pt-anoncontribs": "Unha lista das modificacións feitas desde este enderezo IP",
 	"tooltip-pt-login": "Recoméndaselle rexistrarse, se ben non é obrigatorio",
+	"tooltip-pt-login-private": "Precisa conectarse para usa esta wiki",
 	"tooltip-pt-logout": "Saír ao anonimato",
 	"tooltip-pt-createaccount": "Recoméndaselle crear unha conta e acceder ao sistema, se ben non é obrigatorio",
 	"tooltip-ca-talk": "Conversa acerca do contido desta páxina",

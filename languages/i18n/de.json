@@ -2666,6 +2666,7 @@
 	"tooltip-pt-mycontris": "Liste {{GENDER:|eigener}} Beiträge",
 	"tooltip-pt-anoncontribs": "Eine Liste der Bearbeitungen, die von dieser IP-Adresse gemacht wurden",
 	"tooltip-pt-login": "Sich anzumelden wird gerne gesehen, ist jedoch nicht zwingend erforderlich.",
+	"tooltip-pt-login-private": "Du musst dich anmelden, um dieses Wiki zu nutzen.",
 	"tooltip-pt-logout": "Abmelden",
 	"tooltip-pt-createaccount": "Wir ermutigen dich dazu, ein Benutzerkonto zu erstellen und dich anzumelden. Es ist jedoch nicht zwingend erforderlich.",
 	"tooltip-ca-talk": "Diskussion zum Seiteninhalt",

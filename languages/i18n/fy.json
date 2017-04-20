@@ -16,7 +16,8 @@
 			"Macofe",
 			"Xð",
 			"Robin van der Vliet",
-			"PiefPafPier"
+			"PiefPafPier",
+			"Catrope"
 		]
 	},
 	"tog-underline": "Keppelings ûnderstreekje:",
@@ -961,7 +962,7 @@
 	"rcshowhidemine": "$1 eigen bewurkings",
 	"rcshowhidemine-show": "werjaan",
 	"rcshowhidemine-hide": "ferbergje",
-	"rclinks": "Jou $1 nije feroarings yn de lêste $2 dagen<br /> $3",
+	"rclinks": "Jou $1 nije feroarings yn de lêste $2 dagen",
 	"diff": "ferskil",
 	"hist": "skiednis",
 	"hide": "gjin",
