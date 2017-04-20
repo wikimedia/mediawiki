@@ -3,6 +3,7 @@
 namespace MediaWiki\Session;
 
 use MediaWikiTestCase;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Session
@@ -27,7 +28,7 @@ class TokenTest extends MediaWikiTestCase {
 	}
 
 	public function testToStringAtTimestamp() {
-		$token = \TestingAccessWrapper::newFromObject( new Token( 'sekret', 'salty', false ) );
+		$token = TestingAccessWrapper::newFromObject( new Token( 'sekret', 'salty', false ) );
 
 		$this->assertSame(
 			'd9ade0c7d4349e9df9094e61c33a5a0d5644fde2+\\',
@@ -53,7 +54,7 @@ class TokenTest extends MediaWikiTestCase {
 	}
 
 	public function testMatch() {
-		$token = \TestingAccessWrapper::newFromObject( new Token( 'sekret', 'salty', false ) );
+		$token = TestingAccessWrapper::newFromObject( new Token( 'sekret', 'salty', false ) );
 
 		$test = $token->toStringAtTimestamp( time() - 10 );
 		$this->assertTrue( $token->match( $test ) );
