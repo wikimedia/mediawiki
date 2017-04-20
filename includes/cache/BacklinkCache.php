@@ -339,7 +339,11 @@ class BacklinkCache {
 			return min( $max, $this->fullResultCache[$table]->numRows() );
 		}
 
-		$memcKey = wfMemcKey( 'numbacklinks', md5( $this->title->getPrefixedDBkey() ), $table );
+		$memcKey = $cache->makeKey(
+			'numbacklinks',
+			md5( $this->title->getPrefixedDBkey() ),
+			$table
+		);
 
 		// 3) ... fallback to memcached ...
 		$count = $cache->get( $memcKey );
@@ -393,7 +397,7 @@ class BacklinkCache {
 			return $cacheEntry['batches'];
 		}
 
-		$memcKey = wfMemcKey(
+		$memcKey = $cache->makeKey(
 			'backlinks',
 			md5( $this->title->getPrefixedDBkey() ),
 			$table,
@@ -436,7 +440,11 @@ class BacklinkCache {
 		$cache->set( $memcKey, $cacheEntry, self::CACHE_EXPIRY );
 
 		// Save backlink count to memcached
-		$memcKey = wfMemcKey( 'numbacklinks', md5( $this->title->getPrefixedDBkey() ), $table );
+		$memcKey = $cache->makeKey(
+			'numbacklinks',
+			md5( $this->title->getPrefixedDBkey() ),
+			$table
+		);
 		$cache->set( $memcKey, $cacheEntry['numRows'], self::CACHE_EXPIRY );
 
 		wfDebug( __METHOD__ . ": got from database\n" );
