@@ -1890,6 +1890,7 @@ class OutputPage extends ContextSource {
 	 */
 	function addParserOutput( $parserOutput ) {
 		$this->addParserOutputMetadata( $parserOutput );
+		// For back-compat with deprecated OutputPage::setTOCEnabled()
 		$parserOutput->setTOCEnabled( $this->mEnableTOC );
 
 		// Touch section edit links only if not previously disabled
@@ -3929,6 +3930,7 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Enables/disables TOC, doesn't override __NOTOC__
+	 *
 	 * @param bool $flag
 	 * @since 1.22
 	 */
@@ -3946,6 +3948,8 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Enables/disables section edit links, doesn't override __NOEDITSECTION__
+	 *
+	 * @deprecated since 1.29 Use ParserOutput::setEditSectionTokens() instead.
 	 * @param bool $flag
 	 * @since 1.23
 	 */
@@ -3954,6 +3958,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * @deprecated since 1.29 Use ParserOutput::getEditSectionTokens() instead.
 	 * @return bool
 	 * @since 1.23
 	 */
