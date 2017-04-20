@@ -744,7 +744,7 @@ class CategoryViewer extends ContextSource {
 			DeferredUpdates::addCallableUpdate( function () use ( $category ) {
 				# Avoid excess contention on the same category (T162121)
 				$dbw = wfGetDB( DB_MASTER );
-				$name = __METHOD__ . ':' . md5( $this->mName );
+				$name = __METHOD__ . ':' . md5( $category->getName() );
 				$scopedLock = $dbw->getScopedLockAndFlush( $name, __METHOD__, 1 );
 				if ( $scopedLock ) {
 					$category->refreshCounts();
