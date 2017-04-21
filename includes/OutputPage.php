@@ -1861,6 +1861,11 @@ class OutputPage extends ContextSource {
 	 */
 	public function addParserOutputContent( $parserOutput ) {
 		$this->addParserOutputText( $parserOutput );
+		// This check must be after 'OutputPageParserOutput' runs in addParserOutputMetadata
+		// so that extensions may modify ParserOutput to toggle TOC.
+		if ( $parserOutput->getTOCEnabled() && $parserOutput->getTOCHTML() ) {
+			$this->addModules( 'mediawiki.toc' );
+		}
 
 		$this->addModules( $parserOutput->getModules() );
 		$this->addModuleScripts( $parserOutput->getModuleScripts() );
@@ -1891,6 +1896,12 @@ class OutputPage extends ContextSource {
 	function addParserOutput( $parserOutput ) {
 		$this->addParserOutputMetadata( $parserOutput );
 		$parserOutput->setTOCEnabled( $this->mEnableTOC );
+
+		// This check must be after 'OutputPageParserOutput' runs in addParserOutputMetadata
+		// so that extensions may modify ParserOutput to toggle TOC.
+		if ( $parserOutput->getTOCEnabled() && $parserOutput->getTOCHTML() ) {
+			$this->addModules( 'mediawiki.toc' );
+		}
 
 		// Touch section edit links only if not previously disabled
 		if ( $parserOutput->getEditSectionTokens() ) {
