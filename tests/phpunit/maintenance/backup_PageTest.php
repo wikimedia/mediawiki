@@ -29,6 +29,7 @@ class BackupDumperPageTest extends DumpTestCase {
 
 		$this->tablesUsed[] = 'page';
 		$this->tablesUsed[] = 'revision';
+		$this->tablesUsed[] = 'ip_changes';
 		$this->tablesUsed[] = 'text';
 
 		try {

@@ -103,7 +103,12 @@ class SpecialContributions extends IncludableSpecialPage {
 				'pagetitle',
 				$this->msg( 'contributions-title', $target )->plain()
 			)->inContentLanguage() );
-			$this->getSkin()->setRelevantUser( $userObj );
+
+			# For IP ranges, we want the contributionsSub, but not the skin-dependent
+			# links under 'Tools', which may include irrelevant links like 'Logs'.
+			if ( !IP::isValidRange( $target ) ) {
+				$this->getSkin()->setRelevantUser( $userObj );
+			}
 		} else {
 			$out->addSubtitle( $this->msg( 'sp-contributions-newbies-sub' ) );
 			$out->setHTMLTitle( $this->msg(
@@ -206,7 +211,11 @@ class SpecialContributions extends IncludableSpecialPage {
 				'associated' => $this->opts['associated'],
 			] );
 
-			if ( !$pager->getNumRows() ) {
+			if ( IP::isValidRange( $target ) && !IP::isQueryableRange( $target ) ) {
+				global $wgRangeContributionsCIDRLimit;
+				$limit = $wgRangeContributionsCIDRLimit[ IP::isIPv4( $target ) ? 'IPv4' : 'IPv6' ];
+				$out->addWikiMsg( 'search-outofrange', $limit );
+			} else if ( !$pager->getNumRows() ) {
 				$out->addWikiMsg( 'nocontribs', $target );
 			} else {
 				# Show a message about replica DB lag, if applicable
@@ -223,11 +232,14 @@ class SpecialContributions extends IncludableSpecialPage {
 				}
 				$out->addHTML( $output );
 			}
+
 			$out->preventClickjacking( $pager->getPreventClickjacking() );
 
 			# Show the appropriate "footer" message - WHOIS tools, etc.
 			if ( $this->opts['contribs'] == 'newbie' ) {
 				$message = 'sp-contributions-footer-newbies';
+			} elseif ( IP::isValidRange( $target ) ) {
+				$message = 'sp-contributions-footer-anon-range';
 			} elseif ( IP::isIPAddress( $target ) ) {
 				$message = 'sp-contributions-footer-anon';
 			} elseif ( $userObj->isAnon() ) {
@@ -259,7 +271,7 @@ class SpecialContributions extends IncludableSpecialPage {
 	protected function contributionsSub( $userObj ) {
 		if ( $userObj->isAnon() ) {
 			// Show a warning message that the user being searched for doesn't exists
-			if ( !User::isIP( $userObj->getName() ) ) {
+			if ( !IP::isIPAddress( $userObj->getName() ) ) {
 				$this->getOutput()->wrapWikiMsg(
 					"<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
 					[
@@ -286,7 +298,13 @@ class SpecialContributions extends IncludableSpecialPage {
 			// Do not expose the autoblocks, since that may lead to a leak of accounts' IPs,
 			// and also this will display a totally irrelevant log entry as a current block.
 			if ( !$this->including() ) {
-				$block = Block::newFromTarget( $userObj, $userObj );
+				// For IP ranges you must give Block::newFromTarget the CIDR string and not a user object.
+				if ( $userObj->isIPRange() ) {
+					$block = Block::newFromTarget( $userObj->getName(), $userObj->getName() );
+				} else {
+					$block = Block::newFromTarget( $userObj, $userObj );
+				}
+
 				if ( !is_null( $block ) && $block->getType() != Block::TYPE_AUTO ) {
 					if ( $block->getType() == Block::TYPE_RANGE ) {
 						$nt = MWNamespace::getCanonicalName( NS_USER ) . ':' . $block->getTarget();
@@ -332,10 +350,14 @@ class SpecialContributions extends IncludableSpecialPage {
 		$talkpage = $target->getTalkPage();
 
 		$linkRenderer = $sp->getLinkRenderer();
-		$tools['user-talk'] = $linkRenderer->makeLink(
-			$talkpage,
-			$sp->msg( 'sp-contributions-talk' )->text()
-		);
+
+		# No talk pages for IP ranges.
+		if ( !IP::isValidRange( $username ) ) {
+			$tools['user-talk'] = $linkRenderer->makeLink(
+				$talkpage,
+				$sp->msg( 'sp-contributions-talk' )->text()
+			);
+		}
 
 		if ( ( $id !== null ) || ( $id === null && IP::isIPAddress( $username ) ) ) {
 			if ( $sp->getUser()->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
@@ -374,24 +396,28 @@ class SpecialContributions extends IncludableSpecialPage {
 				);
 			}
 		}
-		# Uploads
-		$tools['uploads'] = $linkRenderer->makeKnownLink(
-			SpecialPage::getTitleFor( 'Listfiles', $username ),
-			$sp->msg( 'sp-contributions-uploads' )->text()
-		);
 
-		# Other logs link
-		$tools['logs'] = $linkRenderer->makeKnownLink(
-			SpecialPage::getTitleFor( 'Log', $username ),
-			$sp->msg( 'sp-contributions-logs' )->text()
-		);
-
-		# Add link to deleted user contributions for priviledged users
-		if ( $sp->getUser()->isAllowed( 'deletedhistory' ) ) {
-			$tools['deletedcontribs'] = $linkRenderer->makeKnownLink(
-				SpecialPage::getTitleFor( 'DeletedContributions', $username ),
-				$sp->msg( 'sp-contributions-deleted', $username )->text()
+		# Don't show some links for IP ranges
+		if ( !IP::isValidRange( $username ) ) {
+			# Uploads
+			$tools['uploads'] = $linkRenderer->makeKnownLink(
+				SpecialPage::getTitleFor( 'Listfiles', $username ),
+				$sp->msg( 'sp-contributions-uploads' )->text()
 			);
+
+			# Other logs link
+			$tools['logs'] = $linkRenderer->makeKnownLink(
+				SpecialPage::getTitleFor( 'Log', $username ),
+				$sp->msg( 'sp-contributions-logs' )->text()
+			);
+
+			# Add link to deleted user contributions for priviledged users
+			if ( $sp->getUser()->isAllowed( 'deletedhistory' ) ) {
+				$tools['deletedcontribs'] = $linkRenderer->makeKnownLink(
+					SpecialPage::getTitleFor( 'DeletedContributions', $username ),
+					$sp->msg( 'sp-contributions-deleted', $username )->text()
+				);
+			}
 		}
 
 		# Add a link to change user rights for privileged users

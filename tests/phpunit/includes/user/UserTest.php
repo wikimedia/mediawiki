@@ -217,6 +217,8 @@ class UserTest extends MediaWikiTestCase {
 			[ 'Ab/cd', false, 'Contains slash' ],
 			[ 'Ab cd', true, 'Whitespace' ],
 			[ '192.168.1.1', false, 'IP' ],
+			[ '116.17.184.5/32', false, 'IP range' ],
+			[ '::e:f:2001/96', false, 'IPv6 range' ],
 			[ 'User:Abcd', false, 'Reserved Namespace' ],
 			[ '12abcd232', true, 'Starts with Numbers' ],
 			[ '?abcd', true, 'Start with ? mark' ],
