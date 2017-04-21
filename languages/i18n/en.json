@@ -2407,6 +2407,7 @@
 	"sp-contributions-explain": "",
 	"sp-contributions-footer": "-",
 	"sp-contributions-footer-anon": "-",
+	"sp-contributions-footer-anon-range": "-",
 	"sp-contributions-footer-newbies": "-",
 	"whatlinkshere": "What links here",
 	"whatlinkshere-title": "Pages that link to \"$1\"",
