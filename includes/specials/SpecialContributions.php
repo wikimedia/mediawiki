@@ -224,6 +224,9 @@ class SpecialContributions extends IncludableSpecialPage {
 				$message = 'sp-contributions-footer-newbies';
 			} elseif ( IP::isIPAddress( $target ) ) {
 				$message = 'sp-contributions-footer-anon';
+			} elseif ( !IP::isValid( $target ) ) {
+				// isValid returns false for ranges
+				$message = 'sp-contributions-footer-anon-range';
 			} elseif ( $userObj->isAnon() ) {
 				// No message for non-existing users
 				$message = '';
@@ -253,7 +256,7 @@ class SpecialContributions extends IncludableSpecialPage {
 	protected function contributionsSub( $userObj ) {
 		if ( $userObj->isAnon() ) {
 			// Show a warning message that the user being searched for doesn't exists
-			if ( !User::isIP( $userObj->getName() ) ) {
+			if ( !IP::isIPAddress( $userObj->getName() ) ) {
 				$this->getOutput()->wrapWikiMsg(
 					"<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
 					[
@@ -369,17 +372,22 @@ class SpecialContributions extends IncludableSpecialPage {
 				);
 			}
 		}
-		# Uploads
-		$tools['uploads'] = $linkRenderer->makeKnownLink(
-			SpecialPage::getTitleFor( 'Listfiles', $username ),
-			$sp->msg( 'sp-contributions-uploads' )->text()
-		);
 
-		# Other logs link
-		$tools['logs'] = $linkRenderer->makeKnownLink(
-			SpecialPage::getTitleFor( 'Log', $username ),
-			$sp->msg( 'sp-contributions-logs' )->text()
-		);
+		# Don't show some links for IP ranges (isValid returns false for a range)
+		# FIXME: 'Logs' still appears under 'Tools' on the left sidebar
+		if ( IP::isIPAddress( $username ) xor !IP::isValid( $username ) ) {
+			# Uploads
+			$tools['uploads'] = $linkRenderer->makeKnownLink(
+				SpecialPage::getTitleFor( 'Listfiles', $username ),
+				$sp->msg( 'sp-contributions-uploads' )->text()
+			);
+
+			# Other logs link
+			$tools['logs'] = $linkRenderer->makeKnownLink(
+				SpecialPage::getTitleFor( 'Log', $username ),
+				$sp->msg( 'sp-contributions-logs' )->text()
+			);
+		}
 
 		# Add link to deleted user contributions for priviledged users
 		if ( $sp->getUser()->isAllowed( 'deletedhistory' ) ) {
