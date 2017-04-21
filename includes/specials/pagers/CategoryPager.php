@@ -74,7 +74,12 @@ class CategoryPager extends AlphabeticPager {
 		$this->mResult->rewind();
 
 		foreach ( $this->mResult as $row ) {
-			$batch->addObj( new TitleValue( NS_CATEGORY, $row->cat_title ) );
+			try {
+				// This try...catch should not be needed, but WMF wikis have broken entries (T99736)
+				$batch->addObj( new TitleValue( NS_CATEGORY, $row->cat_title ) );
+			} catch ( Wikimedia\Assert\ParameterAssertionException $ex ) {
+				// Ignore
+			}
 		}
 		$batch->execute();
 		$this->mResult->rewind();
@@ -83,7 +88,12 @@ class CategoryPager extends AlphabeticPager {
 	}
 
 	function formatRow( $result ) {
-		$title = new TitleValue( NS_CATEGORY, $result->cat_title );
+		try {
+			// This try...catch should not be needed, but WMF wikis have broken entries (T99736)
+			$title = new TitleValue( NS_CATEGORY, $result->cat_title );
+		} catch ( Wikimedia\Assert\ParameterAssertionException $ex ) {
+			return "<!-- Broken entry (T99736): " . htmlspecialchars( $result->cat_title ) . " -->\n";
+		}
 		$text = $title->getText();
 		$link = $this->linkRenderer->makeLink( $title, $text );
 
