@@ -1850,6 +1850,17 @@ class OutputPage extends ContextSource {
 		$outputPage = $this;
 		Hooks::run( 'LanguageLinks', [ $this->getTitle(), &$this->mLanguageLinks, &$linkFlags ] );
 		Hooks::run( 'OutputPageParserOutput', [ &$outputPage, $parserOutput ] );
+
+		// For back-compat with deprecated OutputPage::setTOCEnabled() usage from
+		// 'OutputPageParserOutput' hooks, perform mediawiki.toc addModules() here
+		// instead of higher up in this function. Extensions should use ParserOutputHooks
+		// instead.
+		// TODO: Once OutputPage::setTOCEnabled() is removed, move this up.
+		$parserOutput->setTOCEnabled( $this->mEnableTOC );
+		if ( $parserOutput->getTOCEnabled() && $parserOutput->getTOCHTML() ) {
+			$parserOutput->addModules( 'mediawiki.toc' ); // Compat with ApiParse
+			$this->addModules( 'mediawiki.toc' );
+		}
 	}
 
 	/**
@@ -1890,7 +1901,6 @@ class OutputPage extends ContextSource {
 	 */
 	function addParserOutput( $parserOutput ) {
 		$this->addParserOutputMetadata( $parserOutput );
-		$parserOutput->setTOCEnabled( $this->mEnableTOC );
 
 		// Touch section edit links only if not previously disabled
 		if ( $parserOutput->getEditSectionTokens() ) {
