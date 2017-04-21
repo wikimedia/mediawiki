@@ -862,7 +862,7 @@
 	"apihelp-query+langlinks-paramvalue-prop-autonym": "Ajoute le nom natif de la langue.",
 	"apihelp-query+langlinks-param-lang": "Renvoyer uniquement les liens interlangue avec ce code de langue.",
 	"apihelp-query+langlinks-param-title": "Lien à rechercher. Doit être utilisé avec <var>$1lang</var>.",
-	"apihelp-query+langlinks-param-dir": "La direction dans laquelle énumérer.",
+	"apihelp-query+langlinks-param-dir": "La direction dans laquelle lister.",
 	"apihelp-query+langlinks-param-inlanguagecode": "Code de langue pour les noms de langue localisés.",
 	"apihelp-query+langlinks-example-simple": "Obtenir les liens interlangue de la page <kbd>Main Page</kbd>.",
 	"apihelp-query+links-description": "Renvoie tous les liens des pages fournies.",
