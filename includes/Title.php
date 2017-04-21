@@ -3994,29 +3994,52 @@ class Title implements LinkTarget {
 	}
 
 	/**
-	 * Get the revision ID of the previous revision
-	 *
+	 * Get next/previous revision ID relative to another revision ID
 	 * @param int $revId Revision ID. Get the revision that was before this one.
 	 * @param int $flags Title::GAID_FOR_UPDATE
-	 * @return int|bool Old revision ID, or false if none exists
+	 * @param string $dir 'next' or 'prev'
+	 * @return int|bool New revision ID, or false if none exists
 	 */
-	public function getPreviousRevisionID( $revId, $flags = 0 ) {
-		/* This function and getNextRevisionID have bad performance when
-		   used on a page with many revisions on mysql. An explicit extended
-		   primary key may help in some cases, if the PRIMARY KEY is banned:
-		   T159319 */
+	private function getRelativeRevisionID( $revId, $flags, $dir ) {
+		$revId = (int)$revId;
+		if ( $dir === 'next' ) {
+			$op = '>';
+			$sort = 'ASC';
+		} elseif ( $dir === 'prev' ) {
+			$op = '<';
+			$sort = 'DESC';
+		} else {
+			throw new InvalidArgumentException( '$dir must be "next" or "prev"' );
+		}
+
 		if ( $flags & self::GAID_FOR_UPDATE ) {
 			$db = wfGetDB( DB_MASTER );
 		} else {
 			$db = wfGetDB( DB_REPLICA, 'contributions' );
 		}
+
+		// Intentionally not caring if the specified revision belongs to this
+		// page. We only care about the timestamp.
+		$ts = $db->selectField( 'revision', 'rev_timestamp', [ 'rev_id' => $revId ], __METHOD__ );
+		if ( $ts === false ) {
+			$ts = $db->selectField( 'archive', 'ar_timestamp', [ 'ar_rev_id' => $revId ], __METHOD__ );
+			if ( $ts === false ) {
+				// Or should this throw an InvalidArgumentException or something?
+				return false;
+			}
+		}
+		$ts = $db->addQuotes( $ts );
+
 		$revId = $db->selectField( 'revision', 'rev_id',
 			[
 				'rev_page' => $this->getArticleID( $flags ),
-				'rev_id < ' . intval( $revId )
+				"rev_timestamp $op $ts OR (rev_timestamp = $ts AND rev_id $op $revId)"
 			],
 			__METHOD__,
-			[ 'ORDER BY' => 'rev_id DESC', 'IGNORE INDEX' => 'PRIMARY' ]
+			[
+				'ORDER BY' => "rev_timestamp $sort, rev_id $sort",
+				'IGNORE INDEX' => 'rev_timestamp', // Probably needed for T159319
+			]
 		);
 
 		if ( $revId === false ) {
@@ -4027,6 +4050,17 @@ class Title implements LinkTarget {
 	}
 
 	/**
+	 * Get the revision ID of the previous revision
+	 *
+	 * @param int $revId Revision ID. Get the revision that was before this one.
+	 * @param int $flags Title::GAID_FOR_UPDATE
+	 * @return int|bool Old revision ID, or false if none exists
+	 */
+	public function getPreviousRevisionID( $revId, $flags = 0 ) {
+		return $this->getRelativeRevisionID( $revId, $flags, 'prev' );
+	}
+
+	/**
 	 * Get the revision ID of the next revision
 	 *
 	 * @param int $revId Revision ID. Get the revision that was after this one.
@@ -4034,25 +4068,7 @@ class Title implements LinkTarget {
 	 * @return int|bool Next revision ID, or false if none exists
 	 */
 	public function getNextRevisionID( $revId, $flags = 0 ) {
-		if ( $flags & self::GAID_FOR_UPDATE ) {
-			$db = wfGetDB( DB_MASTER );
-		} else {
-			$db = wfGetDB( DB_REPLICA, 'contributions' );
-		}
-		$revId = $db->selectField( 'revision', 'rev_id',
-			[
-				'rev_page' => $this->getArticleID( $flags ),
-				'rev_id > ' . intval( $revId )
-			],
-			__METHOD__,
-			[ 'ORDER BY' => 'rev_id', 'IGNORE INDEX' => 'PRIMARY' ]
-		);
-
-		if ( $revId === false ) {
-			return false;
-		} else {
-			return intval( $revId );
-		}
+		return $this->getRelativeRevisionID( $revId, $flags, 'next' );
 	}
 
 	/**
@@ -4069,8 +4085,8 @@ class Title implements LinkTarget {
 				[ 'rev_page' => $pageId ],
 				__METHOD__,
 				[
-					'ORDER BY' => 'rev_timestamp ASC',
-					'IGNORE INDEX' => 'rev_timestamp'
+					'ORDER BY' => 'rev_timestamp ASC, rev_id ASC',
+					'IGNORE INDEX' => 'rev_timestamp', // See T159319
 				]
 			);
 			if ( $row ) {
