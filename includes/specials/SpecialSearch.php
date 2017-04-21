@@ -475,7 +475,7 @@ class SpecialSearch extends SpecialPage {
 			if ( $title->isKnown() ) {
 				$messageName = 'searchmenu-exists';
 				$linkClass = 'mw-search-exists';
-			} elseif ( $title->quickUserCan( 'create', $this->getUser() ) ) {
+			} elseif ( ContentHandler::getForTitle( $title )->supportsDirectEditing() && $title->quickUserCan( 'create', $this->getUser() ) ) {
 				$messageName = 'searchmenu-new';
 			}
 		}
