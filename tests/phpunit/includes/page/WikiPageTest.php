@@ -17,6 +17,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 			$this->tablesUsed,
 			[ 'page',
 				'revision',
+				'ip_changes',
 				'text',
 
 				'recentchanges',

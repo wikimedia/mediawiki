@@ -2860,6 +2860,11 @@ class WikiPage implements Page, IDBAccessObject {
 				$rowInsert['ar_content_format'] = $row->rev_content_format;
 			}
 			$rowsInsert[] = $rowInsert;
+
+			// Also delete record from ip_changes if applicable.
+			if ( (int)$row->rev_user === 0 ) {
+				$dbw->delete( 'ip_changes', [ 'ipc_rev_id' => $row->rev_id ] );
+			}
 		}
 		// Copy them into the archive table
 		$dbw->insert( 'archive', $rowsInsert, __METHOD__ );
