@@ -246,8 +246,19 @@ class ContribsPager extends ReverseChronologicalPager {
 				$condition['rev_user'] = $uid;
 				$index = 'user_timestamp';
 			} else {
-				$condition['rev_user_text'] = $this->target;
-				$index = 'usertext_timestamp';
+				$tables[] = 'ip_changes';
+				$join_conds['ip_changes'] = [
+					'LEFT JOIN', [ 'ipc_rev_id = rev_id' ]
+				];
+				$ipRangeConds = self::getIpRangeConds( $this->mDb, $this->target );
+
+				if ( $ipRangeConds ) {
+					$condition[] = $ipRangeConds;
+					$index = 'usertext_timestamp';
+				} else {
+					$condition['rev_user_text'] = $this->target;
+					$index = 'usertext_timestamp';
+				}
 			}
 		}
 
@@ -292,6 +303,34 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 
 		return [];
+	}
+
+	/**
+	 * Get SQL conditions for an IP range, if applicable
+	 * @param IDatabase $db
+	 * @param string    $ip The IP address or CIDR
+	 * @return array|false  Array for valid IP ranges, false if invalid
+	 */
+	public static function getIpRangeConds( $db, $ip ) {
+		global $wgRangeContributionsCIDRLimit;
+		$matches = [];
+		if ( preg_match( '#^(\d+\.\d+\.\d+\.\d+)/(\d+)$#', $ip, $matches ) ) {
+			// IPv4 CIDR, 16-32 bits
+			if ( $matches[2] < $wgRangeContributionsCIDRLimit['IPv4'] || $matches[2] > 32 ) {
+				return false; // invalid
+			}
+			list( $start, $end ) = IP::parseRange( $ip );
+			return 'ipc_hex BETWEEN ' . $db->addQuotes( $start ) . ' AND ' . $db->addQuotes( $end );
+		} elseif ( preg_match( '#^\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}/(\d+)$#', $ip, $matches ) ) {
+			// IPv6 CIDR, 32-128 bits
+			if ( $matches[1] < $wgRangeContributionsCIDRLimit['IPv6'] || $matches[1] > 128 ) {
+				return false; // invalid
+			}
+			list( $start, $end ) = IP::parseRange( $ip );
+			return 'ipc_hex BETWEEN ' . $db->addQuotes( $start ) . ' AND ' . $db->addQuotes( $end );
+		}
+		// Throw away this query, incomplete IP, these don't get through the entry point anyway
+		return false;
 	}
 
 	function getIndexField() {
@@ -389,6 +428,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			# Mark current revisions
 			$topmarktext = '';
 			$user = $this->getUser();
+
 			if ( $row->rev_id === $row->page_latest ) {
 				$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
 				$classes[] = 'mw-contributions-current';
@@ -460,9 +500,11 @@ class ContribsPager extends ReverseChronologicalPager {
 				$d = '<span class="history-deleted">' . $d . '</span>';
 			}
 
-			# Show user names for /newbies as there may be different users.
+			$isIPRange = IP::isIPAddress( $this->target ) && !IP::isValid( $this->target );
+
+			# Show user names for /newbies and IP ranges as there may be different users.
 			# Note that we already excluded rows with hidden user names.
-			if ( $this->contribs == 'newbie' ) {
+			if ( $this->contribs == 'newbie' || $isIPRange ) {
 				$userlink = ' . . ' . $lang->getDirMark()
 					. Linker::userLink( $rev->getUser(), $rev->getUserText() );
 				$userlink .= ' ' . $this->msg( 'parentheses' )->rawParams(
