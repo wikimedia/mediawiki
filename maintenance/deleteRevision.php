@@ -72,6 +72,10 @@ class DeleteRevision extends Maintenance {
 				$this->output( "Revision $revID not found\n" );
 			} else {
 				$affected += $dbw->affectedRows();
+
+				// Also delete from ip_changes if it exists.
+				$dbw->delete( 'ip_changes', [ 'ipc_rev_id' => $revID ] );
+
 				$pageID = $dbw->selectField(
 					'revision',
 					'rev_page',
