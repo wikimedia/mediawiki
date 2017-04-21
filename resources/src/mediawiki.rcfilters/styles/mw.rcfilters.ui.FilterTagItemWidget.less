@@ -1,13 +1,9 @@
 @import 'mw.rcfilters.mixins';
 
 .mw-rcfilters-ui-filterTagItemWidget {
-	background-color: #fff;
-	border-color: #979797;
-	color: #222;
-
 	// Background and color of the capsule widget need a bit
 	// more specificity to override ooui internals
-	&-muted.oo-ui-tagItemWidget.oo-ui-widget-enabled {
+	&.oo-ui-flaggedElement-muted.oo-ui-tagItemWidget.oo-ui-widget-enabled {
 		// Muted state
 		background-color: #eaecf0;
 		border-color: #c8ccd1;
@@ -20,18 +16,16 @@
 		}
 	}
 
-	&-conflicted.oo-ui-tagItemWidget.oo-ui-widget-enabled {
-		background-color: #fee7e6; // Red90 AAA
-		border-color: #b32424; // Red30 AAA
-
+	&.oo-ui-flaggedElement-invalid.oo-ui-tagItemWidget.oo-ui-widget-enabled {
 		.oo-ui-labelElement-label {
 			color: #b32424;
 		}
-		.oo-ui-buttonWidget {
-			opacity: @muted-opacity;
-		}
 	}
 
+	// OOUI classes require super-specificity in order to override
+	// the white background
+	.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-outlined
+	.oo-ui-tagMultiselectWidget-handle
 	&-selected.oo-ui-tagItemWidget.oo-ui-widget-enabled {
 		background-color: #eaf3ff;
 		border-color: #36c;
@@ -43,7 +37,6 @@
 	}
 
 	&.oo-ui-labelElement .oo-ui-labelElement-label {
-		vertical-align: middle;
 		cursor: pointer;
 	}
 
