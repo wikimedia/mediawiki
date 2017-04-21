@@ -1056,8 +1056,8 @@
 
 	"apihelp-query+revisions-description": "Get revision information.\n\nMay be used in several ways:\n# Get data about a set of pages (last revision), by setting titles or pageids.\n# Get revisions for one given page, by using titles or pageids with start, end, or limit.\n# Get data about a set of revisions by setting their IDs with revids.",
 	"apihelp-query+revisions-paraminfo-singlepageonly": "May only be used with a single page (mode #2).",
-	"apihelp-query+revisions-param-startid": "From which revision ID to start enumeration.",
-	"apihelp-query+revisions-param-endid": "Stop revision enumeration on this revision ID.",
+	"apihelp-query+revisions-param-startid": "Start enumeration from this revision's timestamp. The revision must exist, but need not belong to this page.",
+	"apihelp-query+revisions-param-endid": "Stop enumeration at this revision's timestamp. The revision must exist, but need not belong to this page.",
 	"apihelp-query+revisions-param-start": "From which revision timestamp to start enumeration.",
 	"apihelp-query+revisions-param-end": "Enumerate up to this timestamp.",
 	"apihelp-query+revisions-param-user": "Only include revisions made by user.",
@@ -1720,6 +1720,7 @@
 	"apierror-revdel-mutuallyexclusive": "The same field cannot be used in both <var>hide</var> and <var>show</var>.",
 	"apierror-revdel-needtarget": "A target title is required for this RevDel type.",
 	"apierror-revdel-paramneeded": "At least one value is required for <var>hide</var> and/or <var>show</var>.",
+	"apierror-revisions-badid": "No revision was found for parameter <var>$1</var>.",
 	"apierror-revisions-norevids": "The <var>revids</var> parameter may not be used with the list options (<var>$1limit</var>, <var>$1startid</var>, <var>$1endid</var>, <kbd>$1dir=newer</kbd>, <var>$1user</var>, <var>$1excludeuser</var>, <var>$1start</var>, and <var>$1end</var>).",
 	"apierror-revisions-singlepage": "<var>titles</var>, <var>pageids</var> or a generator was used to supply multiple pages, but the <var>$1limit</var>, <var>$1startid</var>, <var>$1endid</var>, <kbd>$1dir=newer</kbd>, <var>$1user</var>, <var>$1excludeuser</var>, <var>$1start</var>, and <var>$1end</var> parameters may only be used on a single page.",
 	"apierror-revwrongpage": "r$1 is not a revision of $2.",

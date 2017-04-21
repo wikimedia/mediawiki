@@ -218,10 +218,53 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 				);
 			}
 
+			// Convert startid/endid to timestamps (T163532)
+			if ( $params['startid'] !== null || $params['endid'] !== null ) {
+				$ids = [
+					(int)$params['startid'] => true,
+					(int)$params['endid'] => true,
+				];
+				unset( $ids[0] ); // null
+				$ids = array_keys( $ids );
+
+				$db = $this->getDB();
+				$sql = $db->unionQueries( [
+					$db->selectSQLText(
+						'revision',
+						[ 'id' => 'rev_id', 'ts' => 'rev_timestamp' ],
+						[ 'rev_id' => $ids ],
+						__METHOD__
+					),
+					$db->selectSQLText(
+						'archive',
+						[ 'id' => 'ar_rev_id', 'ts' => 'ar_timestamp' ],
+						[ 'ar_rev_id' => $ids ],
+						__METHOD__
+					),
+				] );
+				$res = $db->query( $sql, __METHOD__ );
+				foreach ( $res as $row ) {
+					if ( (int)$row->id === (int)$params['startid'] ) {
+						$params['start'] = $row->ts;
+					}
+					if ( (int)$row->id === (int)$params['endid'] ) {
+						$params['end'] = $row->ts;
+					}
+				}
+				if ( $params['startid'] !== null && $params['start'] === null ) {
+					$p = $this->encodeParamName( 'startid' );
+					$this->dieWithError( [ 'apierror-revisions-badid', $p ], "badid_$p" );
+				}
+				if ( $params['endid'] !== null && $params['end'] === null ) {
+					$p = $this->encodeParamName( 'endid' );
+					$this->dieWithError( [ 'apierror-revisions-badid', $p ], "badid_$p" );
+				}
+			}
+
 			$this->addTimestampWhereRange( 'rev_timestamp', $params['dir'],
 				$params['start'], $params['end'] );
-			$this->addWhereRange( 'rev_id', $params['dir'],
-				$params['startid'], $params['endid'] );
+			// Dummy to add rev_id to ORDER BY
+			$this->addWhereRange( 'rev_id', $params['dir'], null, null );
 
 			// There is only one ID, use it
 			$ids = array_keys( $pageSet->getGoodTitles() );
