@@ -87,6 +87,10 @@ class ContribsPager extends RangeChronologicalPager {
 		}
 		$this->getDateRangeCond( $startTimestamp, $endTimestamp );
 
+		// This property on IndexPager is set by $this->getIndexField() in parent::__construct().
+		// We need to reassign it here so that it is used when the actual query is ran.
+		$this->mIndexField = $this->getIndexField();
+
 		// Most of this code will use the 'contributions' group DB, which can map to replica DBs
 		// with extra user based indexes or partioning by user. The additional metadata
 		// queries should use a regular replica DB since the lookup pattern is not all by user.
@@ -150,6 +154,10 @@ class ContribsPager extends RangeChronologicalPager {
 		foreach ( $data as $query ) {
 			foreach ( $query as $i => $row ) {
 				// use index column as key, allowing us to easily sort in PHP
+				//
+				// FIXME: should this be getIndexField()? The values returned by
+				// SELECT include Revision::selectFields(), which may or may not
+				// contain getIndexField().
 				$result[$row->{$this->getIndexField()} . "-$i"] = $row;
 			}
 		}
@@ -207,6 +215,14 @@ class ContribsPager extends RangeChronologicalPager {
 			'join_conds' => $join_cond
 		];
 
+		// For IPv6, we use ipc_rev_timestamp on ip_changes as the index field,
+		// which will be referenced when parsing the results of a query.
+		// FIXME: see for loops in reallyDoQuery(). We maybe shouldn't be
+		// using mIndexField when parsing results.
+		if ( self::isValidIPRange( $this->target ) ) {
+			$queryInfo['fields'][] = 'ipc_rev_timestamp';
+		}
+
 		ChangeTags::modifyDisplayQuery(
 			$queryInfo['tables'],
 			$queryInfo['fields'],
@@ -257,8 +273,18 @@ class ContribsPager extends RangeChronologicalPager {
 				$condition['rev_user'] = $uid;
 				$index = 'user_timestamp';
 			} else {
-				$condition['rev_user_text'] = $this->target;
-				$index = 'usertext_timestamp';
+				$ipRangeConds = self::getIpRangeConds( $this->mDb, $this->target );
+
+				if ( $ipRangeConds ) {
+					$tables[] = 'ip_changes';
+					$join_conds['ip_changes'] = [
+						'LEFT JOIN', [ 'ipc_rev_id = rev_id' ]
+					];
+					$condition[] = $ipRangeConds;
+				} else {
+					$condition['rev_user_text'] = $this->target;
+					$index = 'usertext_timestamp';
+				}
 			}
 		}
 
@@ -305,8 +331,55 @@ class ContribsPager extends RangeChronologicalPager {
 		return [];
 	}
 
+	/**
+	 * Get SQL conditions for an IP range, if applicable
+	 * @param IDatabase      $db
+	 * @param string         $ip The IP address or CIDR
+	 * @return string|false  SQL for valid IP ranges, false if invalid
+	 */
+	public static function getIpRangeConds( $db, $ip ) {
+		// First make sure it is a valid range and they are not outside the CIDR limit
+		if ( !self::isValidIPRange( $ip ) ) {
+			return false;
+		}
+
+		list( $start, $end ) = IP::parseRange( $ip );
+
+		return 'ipc_hex BETWEEN ' . $db->addQuotes( $start ) . ' AND ' . $db->addQuotes( $end );
+	}
+
+	/**
+	 * Is the given IP a range and within the CIDR limit?
+	 * @param string $ip IP address or range
+	 * @return bool      True if the given target is an IP range
+	 */
+	public static function isValidIPRange( $ip ) {
+		global $wgRangeContributionsCIDRLimit;
+
+		$bits = IP::parseCIDR( $ip )[1];
+		if (
+			( $bits === false ) ||
+			( IP::isIPv4( $ip ) && $bits < $wgRangeContributionsCIDRLimit['IPv4'] ) ||
+			( IP::isIPv6( $ip ) && $bits < $wgRangeContributionsCIDRLimit['IPv6'] )
+		) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Override of getIndexField() in IndexPager.
+	 * For IP ranges, it's faster to use the replicated ipc_rev_timestamp
+	 * on the `ip_changes` table than the rev_timestamp on the `revision` table.
+	 * @return string Name of field
+	 */
 	function getIndexField() {
-		return 'rev_timestamp';
+		if ( self::isValidIPRange( $this->target ) ) {
+			return 'ipc_rev_timestamp';
+		} else {
+			return 'rev_timestamp';
+		}
 	}
 
 	function doBatchLookups() {
@@ -400,6 +473,7 @@ class ContribsPager extends RangeChronologicalPager {
 			# Mark current revisions
 			$topmarktext = '';
 			$user = $this->getUser();
+
 			if ( $row->rev_id === $row->page_latest ) {
 				$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
 				$classes[] = 'mw-contributions-current';
@@ -473,8 +547,11 @@ class ContribsPager extends RangeChronologicalPager {
 
 			# Show user names for /newbies as there may be different users.
 			# Note that only unprivileged users have rows with hidden user names excluded.
+			# User page and talk links don't apply to IP ranges.
 			$userlink = '';
-			if ( $this->contribs == 'newbie' && !$rev->isDeleted( Revision::DELETED_USER ) ) {
+			if ( ( $this->contribs == 'newbie' && !$rev->isDeleted( Revision::DELETED_USER ) )
+				|| self::isValidIPRange( $this->target ) )
+			{
 				$userlink = ' . . ' . $lang->getDirMark()
 					. Linker::userLink( $rev->getUser(), $rev->getUserText() );
 				$userlink .= ' ' . $this->msg( 'parentheses' )->rawParams(
