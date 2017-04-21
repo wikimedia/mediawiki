@@ -69,4 +69,40 @@ class MimeMagicTest extends PHPUnit_Framework_TestCase {
 		$actualType = $this->mimeAnalyzer->getMediaType( $oggFile, 'application/ogg' );
 		$this->assertEquals( $actualType, MEDIATYPE_AUDIO );
 	}
+
+	/**
+	 * Test to make sure that MP3 with id3 tag is recognized
+	 */
+	function testMP3WithID3Recognize() {
+		$oggFile = __DIR__ . '/../../../data/media/say-test-with-id3.mp3';
+		$actualType = $this->mimeAnalyzer->getMediaType( $oggFile, 'audio/mpeg' );
+		$this->assertEquals( $actualType, MEDIATYPE_AUDIO );
+	}
+
+	/**
+	 * Test to make sure that MP3 without id3 tag is recognized (MPEG-1 sample rates)
+	 */
+	function testMP3NoID3RecognizeMPEG1() {
+		$oggFile = __DIR__ . '/../../../data/media/say-test-mpeg1.mp3';
+		$actualType = $this->mimeAnalyzer->getMediaType( $oggFile, 'audio/mpeg' );
+		$this->assertEquals( $actualType, MEDIATYPE_AUDIO );
+	}
+
+	/**
+	 * Test to make sure that MP3 without id3 tag is recognized (MPEG-2 sample rates)
+	 */
+	function testMP3NoID3RecognizeMPEG2() {
+		$oggFile = __DIR__ . '/../../../data/media/say-test-mpeg2.mp3';
+		$actualType = $this->mimeAnalyzer->getMediaType( $oggFile, 'audio/mpeg' );
+		$this->assertEquals( $actualType, MEDIATYPE_AUDIO );
+	}
+
+	/**
+	 * Test to make sure that MP3 without id3 tag is recognized (MPEG-2.5 sample rates)
+	 */
+	function testMP3NoID3RecognizeMPEG2_5() {
+		$oggFile = __DIR__ . '/../../../data/media/say-test-mpeg2.5.mp3';
+		$actualType = $this->mimeAnalyzer->getMediaType( $oggFile, 'audio/mpeg' );
+		$this->assertEquals( $actualType, MEDIATYPE_AUDIO );
+	}
 }
