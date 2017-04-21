@@ -148,6 +148,11 @@
 						.prop( 'data-color', 'none' )
 				);
 
+		if ( $( '.mw-rcfilters-ui-changesListWrapperWidget-highlights' ).length ) {
+			// Already set up
+			return;
+		}
+
 		mw.rcfilters.HighlightColors.forEach( function ( color ) {
 			$highlights.append(
 				$( '<div>' )
